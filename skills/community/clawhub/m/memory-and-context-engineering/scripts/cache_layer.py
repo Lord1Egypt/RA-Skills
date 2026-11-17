@@ -41,6 +41,7 @@
 - L3 延迟：< 20ms
 """
 
+import threading
 import time
 import json
 from typing import Any, Dict, List, Optional, Tuple
@@ -109,9 +110,14 @@ class L1MemoryCache:
         self.cache: OrderedDict[str, CacheEntry] = OrderedDict()
 
         # Bloom Filter 用于快速过滤
-        self.bloom_filter = BloomFilter(
-            expected_items=bloom_filter_size,
-            false_positive_rate=0.01,
+        # BloomFilter 为可选依赖：不可用时降级为 None（跳过快速过滤）
+        self.bloom_filter = (
+            BloomFilter(
+                expected_items=bloom_filter_size,
+                false_positive_rate=0.01,
+            )
+            if BloomFilter is not None
+            else None
         )
 
         # 统计信息
@@ -121,51 +127,60 @@ class L1MemoryCache:
             "evictions": 0,
         }
 
+        # 并发安全锁
+        self._lock = threading.RLock()
+
     def get(self, key: str) -> Optional[Any]:
         """获取缓存值"""
-        # 先用 Bloom Filter 快速检查
-        if not self.bloom_filter.contains(key):
-            self.stats["misses"] += 1
-            return None
+        with self._lock:
+            # 先用 Bloom Filter 快速检查
+            if (
+                self.bloom_filter is not None
+                and not self.bloom_filter.contains(key)
+            ):
+                self.stats["misses"] += 1
+                return None
 
-        if key not in self.cache:
-            self.stats["misses"] += 1
-            return None
+            if key not in self.cache:
+                self.stats["misses"] += 1
+                return None
 
-        # 更新访问信息
-        entry = self.cache[key]
-        entry.access_count += 1
-        entry.last_access_time = datetime.now()
+            # 更新访问信息
+            entry = self.cache[key]
+            entry.access_count += 1
+            entry.last_access_time = datetime.now()
 
-        # 移到末尾（表示最近访问）
-        self.cache.move_to_end(key)
+            # 移到末尾（表示最近访问）
+            self.cache.move_to_end(key)
 
-        self.stats["hits"] += 1
-        return entry.value
+            self.stats["hits"] += 1
+            return entry.value
 
     def set(self, key: str, value: Any, metadata: Optional[Dict[str, Any]] = None) -> None:
         """设置缓存值"""
-        # 添加到 Bloom Filter
-        self.bloom_filter.add(key)
+        with self._lock:
+            # 添加到 Bloom Filter
+            if self.bloom_filter is not None:
+                self.bloom_filter.add(key)
 
-        # 创建缓存条目
-        entry = CacheEntry(
-            key=key,
-            value=value,
-            timestamp=datetime.now(),
-            metadata=metadata or {},
-        )
+            # 创建缓存条目
+            entry = CacheEntry(
+                key=key,
+                value=value,
+                timestamp=datetime.now(),
+                metadata=metadata or {},
+            )
 
-        # 如果已存在，更新
-        if key in self.cache:
-            self.cache[key] = entry
-            self.cache.move_to_end(key)
-        else:
-            # 检查是否需要淘汰
-            if len(self.cache) >= self.max_size:
-                self._evict()
+            # 如果已存在，更新
+            if key in self.cache:
+                self.cache[key] = entry
+                self.cache.move_to_end(key)
+            else:
+                # 检查是否需要淘汰
+                if len(self.cache) >= self.max_size:
+                    self._evict()
 
-            self.cache[key] = entry
+                self.cache[key] = entry
 
     def _evict(self) -> None:
         """
@@ -190,35 +205,42 @@ class L1MemoryCache:
 
     def delete(self, key: str) -> bool:
         """删除缓存条目"""
-        if key in self.cache:
-            del self.cache[key]
-            return True
-        return False
+        with self._lock:
+            if key in self.cache:
+                del self.cache[key]
+                return True
+            return False
 
     def clear(self) -> None:
         """清空缓存"""
-        self.cache.clear()
-        self.bloom_filter = BloomFilter(
-            expected_items=10000,
-            false_positive_rate=0.01,
-        )
-        self.stats = {
-            "hits": 0,
-            "misses": 0,
-            "evictions": 0,
-        }
+        with self._lock:
+            self.cache.clear()
+            self.bloom_filter = (
+                BloomFilter(
+                    expected_items=10000,
+                    false_positive_rate=0.01,
+                )
+                if BloomFilter is not None
+                else None
+            )
+            self.stats = {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+            }
 
     def get_stats(self) -> Dict[str, Any]:
         """获取统计信息"""
-        total_requests = self.stats["hits"] + self.stats["misses"]
-        hit_rate = self.stats["hits"] / total_requests if total_requests > 0 else 0
+        with self._lock:
+            total_requests = self.stats["hits"] + self.stats["misses"]
+            hit_rate = self.stats["hits"] / total_requests if total_requests > 0 else 0
 
-        return {
-            **self.stats,
-            "size": len(self.cache),
-            "hit_rate": hit_rate,
-            "usage_percent": len(self.cache) / self.max_size * 100,
-        }
+            return {
+                **self.stats,
+                "size": len(self.cache),
+                "hit_rate": hit_rate,
+                "usage_percent": len(self.cache) / self.max_size * 100,
+            }
 
 
 class L2RedisCache:
@@ -516,6 +538,9 @@ class MultiLayerCache:
             "total_misses": 0,
         }
 
+        # 并发安全锁
+        self._lock = threading.RLock()
+
     def get(self, key: str) -> Optional[Any]:
         """
         获取缓存值（三层查找）
@@ -523,34 +548,35 @@ class MultiLayerCache:
         返回：
             缓存值，如果所有层都未命中则返回 None
         """
-        # L1 查找
-        value = self.l1_cache.get(key)
-        if value is not None:
-            self.global_stats["l1_hits"] += 1
-            return value
-
-        # L2 查找
-        if self.l2_cache:
-            value = self.l2_cache.get(key)
+        with self._lock:
+            # L1 查找
+            value = self.l1_cache.get(key)
             if value is not None:
-                self.global_stats["l2_hits"] += 1
-                # 提升到 L1
+                self.global_stats["l1_hits"] += 1
+                return value
+
+            # L2 查找
+            if self.l2_cache:
+                value = self.l2_cache.get(key)
+                if value is not None:
+                    self.global_stats["l2_hits"] += 1
+                    # 提升到 L1
+                    self.l1_cache.set(key, value)
+                    return value
+
+            # L3 查找
+            value = self.l3_cache.get(key)
+            if value is not None:
+                self.global_stats["l3_hits"] += 1
+                # 提升到 L2 和 L1
+                if self.l2_cache:
+                    self.l2_cache.set(key, value)
                 self.l1_cache.set(key, value)
                 return value
 
-        # L3 查找
-        value = self.l3_cache.get(key)
-        if value is not None:
-            self.global_stats["l3_hits"] += 1
-            # 提升到 L2 和 L1
-            if self.l2_cache:
-                self.l2_cache.set(key, value)
-            self.l1_cache.set(key, value)
-            return value
-
-        # 全部未命中
-        self.global_stats["total_misses"] += 1
-        return None
+            # 全部未命中
+            self.global_stats["total_misses"] += 1
+            return None
 
     def set(self, key: str, value: Any, write_all_layers: bool = True) -> None:
         """
@@ -561,56 +587,60 @@ class MultiLayerCache:
             value: 缓存值
             write_all_layers: 是否写入所有层（默认 True）
         """
-        # 写入 L1
-        self.l1_cache.set(key, value)
+        with self._lock:
+            # 写入 L1
+            self.l1_cache.set(key, value)
 
-        if write_all_layers:
-            # 写入 L2（异步）
-            if self.l2_cache:
-                self.l2_cache.set(key, value)
+            if write_all_layers:
+                # 写入 L2（异步）
+                if self.l2_cache:
+                    self.l2_cache.set(key, value)
 
-            # 写入 L3（异步）
-            self.l3_cache.set(key, value)
+                # 写入 L3（异步）
+                self.l3_cache.set(key, value)
 
     def delete(self, key: str) -> None:
         """删除所有层的缓存"""
-        self.l1_cache.delete(key)
-        if self.l2_cache:
-            self.l2_cache.delete(key)
-        self.l3_cache.delete(key)
+        with self._lock:
+            self.l1_cache.delete(key)
+            if self.l2_cache:
+                self.l2_cache.delete(key)
+            self.l3_cache.delete(key)
 
     def clear(self) -> None:
         """清空所有层的缓存"""
-        self.l1_cache.clear()
-        if self.l2_cache:
-            self.l2_cache.clear()
-        self.l3_cache.clear()
-        self.global_stats = {
-            "l1_hits": 0,
-            "l2_hits": 0,
-            "l3_hits": 0,
-            "total_misses": 0,
-        }
+        with self._lock:
+            self.l1_cache.clear()
+            if self.l2_cache:
+                self.l2_cache.clear()
+            self.l3_cache.clear()
+            self.global_stats = {
+                "l1_hits": 0,
+                "l2_hits": 0,
+                "l3_hits": 0,
+                "total_misses": 0,
+            }
 
     def get_stats(self) -> Dict[str, Any]:
         """获取综合统计信息"""
-        total_requests = sum(self.global_stats.values())
-        overall_hit_rate = (
-            (self.global_stats["l1_hits"] + self.global_stats["l2_hits"] + self.global_stats["l3_hits"]) /
-            total_requests
-            if total_requests > 0 else 0
-        )
+        with self._lock:
+            total_requests = sum(self.global_stats.values())
+            overall_hit_rate = (
+                (self.global_stats["l1_hits"] + self.global_stats["l2_hits"] + self.global_stats["l3_hits"]) /
+                total_requests
+                if total_requests > 0 else 0
+            )
 
-        return {
-            "global": {
-                **self.global_stats,
-                "overall_hit_rate": overall_hit_rate,
-                "total_requests": total_requests,
-            },
-            "l1": self.l1_cache.get_stats(),
-            "l2": self.l2_cache.get_stats() if self.l2_cache else None,
-            "l3": self.l3_cache.get_stats(),
-        }
+            return {
+                "global": {
+                    **self.global_stats,
+                    "overall_hit_rate": overall_hit_rate,
+                    "total_requests": total_requests,
+                },
+                "l1": self.l1_cache.get_stats(),
+                "l2": self.l2_cache.get_stats() if self.l2_cache else None,
+                "l3": self.l3_cache.get_stats(),
+            }
 
 
 # 使用示例
@@ -663,6 +693,7 @@ if __name__ == "__main__":
     print(f"L3 统计: {stats['l3']}")
 
     # 清理测试缓存
+    import os
     import shutil
     if os.path.exists("./test_cache"):
         shutil.rmtree("./test_cache")

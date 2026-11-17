@@ -1,43 +1,52 @@
-## Description: <br>
-Specialized Twitter/X discovery, analysis, content generation, and strategy for niche topics: ClawHub/AI agents, WHL hockey scouting, acreage/land dev, Saskatchewan housing, indie hackers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Niche Twitter helps agents research Twitter/X niches, identify accounts and trends, draft posts and threads, and plan monitoring for topics such as hockey, AI agents, land development, Saskatchewan housing, and indie hackers.
 
-## Publisher: <br>
-[skunnyo](https://clawhub.ai/user/skunnyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skunnyo](https://clawhub.ai/user/skunnyo)
 
-## Use Case: <br>
-Developers, marketers, and domain researchers use this skill to find niche Twitter/X accounts, monitor topic conversations, analyze hashtags, and draft posts or threads for focused communities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring Twitter/X monitoring can be under-scoped. <br>
-Mitigation: Allow monitoring only after setting the exact query, schedule, notification target, end date, and disable procedure. <br>
-Risk: The skill references a local formatter command that is not present in the artifact. <br>
-Mitigation: Do not run that command unless a reviewer supplies or inspects a safe formatter script. <br>
+## Use Case:
 
+External users and content operators use this skill to research niche Twitter/X communities, find relevant accounts and conversations, draft social posts, and shape content strategy for focused audiences.
 
-## Reference(s): <br>
-- [Niche Twitter skill page](https://clawhub.ai/skunnyo/niche-twitter) <br>
-- [Twitter/X Advanced Search Operators](references/advanced-search.md) <br>
-- [Niche Hashtags](references/niche-hashtags.md) <br>
-- [Thread Template](assets/thread-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown tables, drafted Twitter/X threads, search URLs, and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include proposed monitoring queries and social content drafts that require user review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can lead an agent to propose recurring Twitter/X monitoring or notifications without clear consent, limits, or a stop mechanism.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before creating any cron job, scheduled search, notification workflow, or persistent monitoring process, and define scope, frequency, and a stop condition.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skunnyo/skills/niche-twitter)
+- [Twitter/X advanced search operators](references/advanced-search.md)
+- [Niche hashtags](references/niche-hashtags.md)
+- [Thread template](assets/thread-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with tables, social post drafts, search queries, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Twitter/X search URLs, account research tables, thread drafts, poll or reply suggestions, and monitoring recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

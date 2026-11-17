@@ -1,6 +1,6 @@
 ---
 name: endowment-effect
-description: "Activate when: seller is asking way more than buyers will pay; a founder or homeowner insists their asset is worth far more than market comps; a team refuses to cut a feature they built; a free-trial cancellation flow has more friction than signup; someone says 'I've put too much into this to sell for that.' Do NOT activate when: the valuation gap is explained by genuine information asymmetry the seller actually has; the asset is a pure commodity with a transparent live market price (endowment effect is weak when reference prices are salient)."
+description: "Activate when: seller is asking way more than buyers will pay; a founder or homeowner insists their asset is worth far more than market comps; a team refuses to cut a feature they built; a free-trial cancellation flow has more friction than signup; someone says 'I've put too much into this to sell for that.' Do NOT activate when: the valuation gap is explained by genuine information asymmetry the seller actually has; the asset is a pure commodity with a transparent live market price (endowment effect is weak when reference prices are salient). More: deciqai.com/c/endowment-effect"
 ---
 
 # Endowment Effect
@@ -11,7 +11,7 @@ People demand roughly 2× more to give up something they own than they would pay
 
 Two operating directions: **Leverage** — trigger buyer endowment via free trials, personalization, and data import to raise willingness-to-pay. **Counteract** — in M&A or negotiation, identify the seller's endowment premium and bridge it with earnouts, neutral reference prices, and exchange framing.
 
-Composes with [`loss-aversion-prospect-theory`](../loss-aversion-prospect-theory/SKILL.md), [`status-quo-bias`](../status-quo-bias/SKILL.md), [`anchoring`](../anchoring/SKILL.md), [`batna-zopa`](../batna-zopa/SKILL.md).
+Composes with `loss-aversion-prospect-theory`, `status-quo-bias`, `anchoring`, `batna-zopa`.
 
 ## When to Use
 
@@ -21,8 +21,9 @@ Composes with [`loss-aversion-prospect-theory`](../loss-aversion-prospect-theory
 - Advising a founder or asset owner on why their valuation differs from market offers
 - Structuring earnouts or deferred consideration to bridge a valuation gap
 - Detecting why a team is reluctant to abandon a feature or strategy they built (IKEA effect variant)
+- Deciding "build vs. buy" on AI — a team overvaluing its in-house model, dataset, or codebase versus a stronger/cheaper external foundation model, or a founder anchoring on a peak AI valuation in M&A/wind-down talks
 
-**Not when:** valuation difference is genuine information asymmetry; pure commodity with transparent market price; evaluating policy-level defaults (use [`status-quo-bias`](../status-quo-bias/SKILL.md)).
+**Not when:** valuation difference is genuine information asymmetry; pure commodity with transparent market price; evaluating policy-level defaults (use `status-quo-bias`).
 
 ## Coaching Novices (Adaptive Front Door)
 
@@ -63,6 +64,8 @@ Decision:
 ```
 
 *→ Method in Action: [Kahneman, Knetsch & Thaler 1990 — The Cornell Mug Experiment](examples/kahneman-knetsch-thaler-1990-the-cornell-mug-experiment.md)*
+
+*→ 2026 lens: [The In-House Model Trap and Founder Valuation in the AI Cycle (2023–2026)](examples/ai-model-and-startup-valuation-endowment-2023-2026.md)*
 
 ## Pack: Endowment Effect Across Domains
 
@@ -117,4 +120,6 @@ Decision:
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/endowment-effect** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/endowment-effect.json*

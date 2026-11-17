@@ -1,43 +1,54 @@
-## Description: <br>
-Automatically sync local skills to ClawHub and GitHub by detecting new or modified skills, publishing to ClawHub, committing to GitHub, and maintaining sync status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically sync local skills to ClawHub and GitHub by detecting new or modified skills, publishing them, committing changes, and maintaining sync status.
 
-## Publisher: <br>
-[sunnyhot](https://clawhub.ai/user/sunnyhot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunnyhot](https://clawhub.ai/user/sunnyhot)
 
-## Use Case: <br>
-Developers and skill maintainers use Skill Sync to automate publishing and repository synchronization for their own ClawHub skills. It scans configured skill directories, identifies release candidates, publishes updates, commits changes, and records sync status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically publish to ClawHub and push Git commits with weak review controls. <br>
-Mitigation: Disable unattended cron or automatic publishing until a review step and explicit confirmation are configured. <br>
-Risk: Unsafe shell command construction may allow skill metadata to affect command execution. <br>
-Mitigation: Audit and fix command construction before use; restrict synchronized skills to a narrow allowlist. <br>
-Risk: Automated repository synchronization may publish sensitive local content if repositories are not reviewed. <br>
-Mitigation: Audit synchronized repositories for secrets and generated files before enabling auto-commit, auto-push, or publishing. <br>
+## Use Case:
 
+Developers and skill maintainers use this agent skill to scan local skill workspaces, identify skills that need synchronization, publish them to ClawHub, push repository updates, and report sync status.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sunnyhot/skill-sync) <br>
-- [Publisher Profile](https://clawhub.ai/user/sunnyhot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown reports, console logs, JSON status files, and shell command execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish to ClawHub, commit and push Git repositories, and update local status and log files when configured to run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata) <br>
+Risk: Automatic publishing and Git pushing can expose unintended skill changes or repository contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a controlled skills workspace, review the sync list before execution, and inspect repositories for secrets before publishing or pushing.
+
+Risk: Advertised safety controls are incomplete or not enforced, including dry-run and confirmation behavior.
+
+Mitigation: Avoid unattended cron use until confirmation and dry-run controls are verified or implemented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunnyhot/skills/skill-sync)
+- [Artifact-declared GitHub repository](https://github.com/sunnyhot/skill-sync)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Console text, Markdown sync reports, JSON status files, and command/configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May publish ClawHub releases, commit and push Git repositories, and write local sync status and log files when executed.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata; artifact frontmatter and package.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Go naming guidance for packages, identifiers, constructors, types, errors, booleans, receivers, functions, options, acronyms, and tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Go (Golang) naming conventions for packages, constructors, structs, interfaces, constants, enums, errors, booleans, receivers, getters/setters, functional options, acronyms, test functions, and subtest names.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineering teams use this skill when writing, reviewing, or refactoring Go code to choose idiomatic names for packages, identifiers, APIs, errors, and tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide edits to Go source files during refactoring, and naming changes may be incorrect or disruptive if accepted blindly. <br>
-Mitigation: Review proposed naming changes before accepting them, especially in important codebases. <br>
+## Use Case:
 
+Developers and engineers use this skill when writing, reviewing, or refactoring Go code where naming decisions affect readability, exported APIs, or idiomatic Go style.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samber/golang-naming) <br>
-- [Source homepage](https://github.com/samber/cc-skills-golang) <br>
-- [Packages, Files & Import Aliasing](artifact/references/packages-files.md) <br>
-- [Variables, Booleans, Receivers & Acronyms](artifact/references/identifiers.md) <br>
-- [Functions, Methods & Options](artifact/references/functions-methods.md) <br>
-- [Types, Constants & Errors](artifact/references/types-errors.md) <br>
-- [Test Naming](artifact/references/testing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown prose with Go code examples and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose source-file naming edits when invoked for refactoring; review changes before accepting them in important codebases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill requests broad Go and Git command execution, file editing, and delegated agent authority beyond what naming guidance strictly requires.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in repositories where those actions are acceptable, or restrict usage to read-only review and explicit user-approved validation commands.
+
+Risk: Naming recommendations can trigger API-wide renames or behavior-affecting code edits if applied automatically.
+
+Mitigation: Review proposed renames before applying them, run Go tests and linters afterward, and prefer language-aware rename tooling for project-wide changes.
+
+## Reference(s):
+
+- [Functions, Methods & Options](artifact/references/functions-methods.md)
+- [Variables, Booleans, Receivers & Acronyms](artifact/references/identifiers.md)
+- [Packages, Files & Import Aliasing](artifact/references/packages-files.md)
+- [Test Naming](artifact/references/testing.md)
+- [Types, Constants & Errors](artifact/references/types-errors.md)
+- [Project Homepage](https://github.com/samber/cc-skills-golang)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown guidance with Go code examples and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose edits to Go files and validation commands when the agent harness grants those tools.]
+
+## Skill Version(s):
+
+1.2.0 (source: artifact/SKILL.md metadata.version and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

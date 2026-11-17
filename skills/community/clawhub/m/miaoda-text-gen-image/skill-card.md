@@ -1,39 +1,53 @@
-## Description: <br>
-让 AI 生成的图片像真实摄影师拍的一样，不用学 prompt 技巧，一句话生成电影感大片。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助用户为文字生成图片任务编写更真实、自然、电影感的提示词，并提供可通过 miaoda-studio-cli 执行的基础命令示例。
 
-## Publisher: <br>
-[nice1234-h](https://clawhub.ai/user/nice1234-h) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nice1234-h](https://clawhub.ai/user/nice1234-h)
 
-## Use Case: <br>
-External creators, marketers, social media operators, and developers use this skill to turn brief Chinese or English image ideas into more realistic text-to-image prompts and CLI commands for portraits, scenes, covers, illustrations, and product visuals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on the separate miaoda-studio-cli package and an external image-generation service, so prompts may be processed outside the local agent environment. <br>
-Mitigation: Install the CLI only from a trusted source and avoid submitting confidential, personal, regulated, or proprietary information unless external processing is acceptable. <br>
+## Use Case:
 
+External users, creators, marketers, and developers use this skill to turn short image ideas into detailed realism-oriented prompts and CLI commands for text-to-image generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nice1234-h/miaoda-text-gen-image) <br>
-- [Publisher profile](https://clawhub.ai/user/nice1234-h) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with prompt examples and optional miaoda-studio-cli commands that can return text or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference an external image-generation CLI and service; output quality depends on user prompt detail and provider behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Installing miaoda-studio-cli from npm may introduce dependency or supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package before installation and prefer a pinned version or local vetted install.
+
+Risk: Image prompts may contain sensitive, private, or regulated information that could be sent to the image-generation service.
+
+Mitigation: Avoid including sensitive information in prompts unless the user trusts the service and its data handling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nice1234-h/skills/miaoda-text-gen-image)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline bash command examples; CLI output may be text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers prompt wording, image aspect ratio, optional watermarking, and text/json CLI output options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

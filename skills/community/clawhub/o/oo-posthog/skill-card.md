@@ -1,42 +1,56 @@
-## Description: <br>
-Use this skill for PostHog requests involving reading, creating, updating, and deleting data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate PostHog through an OOMOL-connected account to read and manage analytics data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, operators, and analytics teams use this skill to inspect and manage PostHog projects, dashboards, insights, feature flags, cohorts, annotations, definitions, collaborators, and query results through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete PostHog dashboards, cohorts, feature flags, definitions, insights, collaborators, and related data. <br>
-Mitigation: Require explicit user confirmation for actions marked write or destructive, including the exact target and payload. <br>
-Risk: The skill operates through a connected PostHog account and may require sensitive credentials managed outside the skill. <br>
-Mitigation: Install only when the publisher is trusted and use OOMOL-managed credentials rather than exposing raw tokens to the agent. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect PostHog projects, dashboards, cohorts, events, insights, and feature flags, and to make approved changes through the connected account.
 
-## Reference(s): <br>
-- [PostHog homepage](https://posthog.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-posthog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return JSON data from PostHog connector actions when commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: The required CLI may install persistent skills across agents without that behavior being clearly described in the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review any additional skills before enabling them, use a verified fixed CLI release, and set OO_SKILLS_SYNC_DISABLED=1 if startup skill synchronization is unwanted.
+
+Risk: PostHog write and deletion actions can change connected account data.
+
+Mitigation: Use a narrowly scoped PostHog connection and retain user approval for changes and deletions.
+
+## Reference(s):
+
+- [PostHog homepage](https://posthog.com)
+- [PostHog API documentation](https://posthog.com/docs/api)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [PostHog skill release](https://clawhub.ai/oomol/skills/oo-posthog)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with shell commands, JSON request payloads, and returned PostHog data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions that change or delete PostHog data require user confirmation; outputs depend on the connected account and PostHog response.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,54 @@
-## Description: <br>
-Expert playbook for Meta Ads campaign optimization decisions covering budget scaling, pausing, bid strategy selection, audience expansion, and ROAS improvement for Vietnamese ecommerce and retail advertisers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert playbook for Meta Ads campaign optimization decisions, covering budget scaling, pausing, bid strategy selection, audience expansion, and ROAS improvement for Vietnamese ecommerce and retail advertisers.
 
-## Publisher: <br>
-[Phap1106](https://clawhub.ai/user/Phap1106) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phap1106](https://clawhub.ai/user/phap1106)
 
-## Use Case: <br>
-External marketers and ecommerce operators use this skill to evaluate Meta Ads campaign health, decide when to scale or pause budgets, choose bid strategies, and plan audience or landing-page improvements using metric-based rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Vietnam <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying the playbook directly could affect live advertising spend, targeting, or campaign delivery. <br>
-Mitigation: Verify campaign data, business thresholds, inventory, landing-page status, and approval requirements before changing budgets, pausing ads, or altering targeting. <br>
+## Use Case:
 
+External ecommerce and retail advertisers use this skill to evaluate Meta Ads campaign metrics and draft optimization guidance for scaling, pausing, bid strategy, audience expansion, landing page checks, and budget reallocation. It is especially oriented toward Vietnam-market campaigns and should keep final budget or pause decisions under human approval.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Vietnam
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with campaign decision rules, checklists, scoring tables, and budget reallocation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, account access, API calls, or shell commands are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Fixed CPA, ROAS, VND, and seasonal assumptions may not match a specific business, margin profile, or campaign context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the thresholds and seasonal assumptions against current business targets before relying on recommendations.
+
+Risk: Budget scaling, pausing, and reallocation guidance can affect advertising spend if applied without review.
+
+Mitigation: Treat outputs as proposals and require human approval before changing campaign budgets, bids, or status.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phap1106/skills/ads-claw4)
+- [Publisher profile](https://clawhub.ai/user/phap1106)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with checklists, metric thresholds, and decision rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not execute code, persist data, handle credentials, or call external services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

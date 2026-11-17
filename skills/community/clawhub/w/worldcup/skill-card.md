@@ -1,45 +1,60 @@
-## Description: <br>
-FIFA World Cup 2026 skill covering the 48-team tournament format, host cities, stadiums, ticket guidance, key dates, and official information channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FIFA World Cup 2026 skill covering the first 48-team World Cup, co-hosted across the U.S., Mexico, and Canada from June 11 to July 19, 2026, with guidance on groups, host cities, stadiums, tickets, key dates, and tournament format.
 
-## Publisher: <br>
-[jononovo](https://clawhub.ai/user/jononovo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jononovo](https://clawhub.ai/user/jononovo)
 
-## Use Case: <br>
-External users use this skill to orient themselves around the FIFA World Cup 2026 schedule, tournament structure, venues, and ticket-buying options. It is informational only and does not sell tickets, process payments, or provide official FIFA affiliation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: World Cup schedules, ticket phases, prices, and playoff details are time-sensitive and may change. <br>
-Mitigation: Verify current match, ticket, and pricing details through official FIFA channels before acting. <br>
-Risk: Major event ticket scams and unofficial secondary-market listings can mislead buyers. <br>
-Mitigation: Use FIFA's official ticket portal, FIFA resale options, official hospitality channels, or reputable platforms with buyer protection. <br>
-Risk: Readers may mistake informational guidance for an official FIFA or ticketing service. <br>
-Mitigation: Make clear that the skill is not affiliated with FIFA and does not sell tickets or process payments. <br>
+## Use Case:
 
+External users and agents use this skill to answer FIFA World Cup 2026 planning questions and provide ticket-buying guidance, official-channel references, venue details, schedule milestones, and tournament-format summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jononovo/worldcup) <br>
-- [FIFA World Cup 2026](https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026) <br>
-- [FIFA World Cup 2026 tickets](https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/tickets) <br>
-- [FIFA Hospitality](https://www.fifa.com/en/hospitality) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static informational guide; no credentials, executable code, persistence, payment handling, or tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Ticket availability, pricing, schedule details, and payment guidance are time-sensitive and may change after publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current ticket, schedule, and payment information directly with official FIFA sources before making purchases or presenting details as current.
+
+Risk: Major-event ticket scams and unofficial resale offers can mislead buyers.
+
+Mitigation: Prefer official FIFA ticketing and resale channels, and treat secondary marketplaces as higher risk unless buyer protections are clear.
+
+Risk: Some tournament details in the artifact mention pending playoff spots and provisional group composition.
+
+Mitigation: Confirm final qualifiers, groups, venues, and match details against official tournament references before relying on them.
+
+## Reference(s):
+
+- [FIFA World Cup 2026 Official Tournament Page](https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026)
+- [FIFA World Cup 2026 Tickets](https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/tickets)
+- [FIFA Hospitality](https://www.fifa.com/en/hospitality)
+- [ClawHub Skill Page](https://clawhub.ai/jononovo/skills/worldcup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content-only guidance; no credentials, executable code, ticket sales, payment processing, or persistence.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

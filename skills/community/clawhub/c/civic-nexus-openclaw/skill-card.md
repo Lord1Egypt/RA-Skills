@@ -1,45 +1,55 @@
-## Description: <br>
-Connect to Civic Nexus MCP for 100+ integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to Civic Nexus MCP for 100+ integrations.
 
-## Publisher: <br>
-[civictechuser](https://clawhub.ai/user/civictechuser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[civictechuser](https://clawhub.ai/user/civictechuser)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to connect an agent to Civic Nexus MCP integrations, then list, search, inspect schemas, and call tools across connected services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad access to many connected services through Civic Nexus. <br>
-Mitigation: Use a least-privilege Nexus token and profile, connect only required services, and require manual approval before write, delete, send, bulk, or SQL-execution actions. <br>
-Risk: NEXUS_TOKEN can grant access to connected services if exposed. <br>
-Mitigation: Store the token only in environment or secret configuration, avoid pasting it into prompts or logs, and rotate it after suspected exposure. <br>
-Risk: Some tool calls may trigger OAuth authorization or long-running continuation flows. <br>
-Mitigation: Show authorization URLs to the user, confirm the requested service and action, and continue only after user authorization. <br>
+## Use Case:
 
+Developers and agent operators use Civic Nexus to connect OpenClaw agents to Civic Nexus MCP integrations, list or search available tools, inspect schemas, and call external-service tools through mcporter or the TypeScript fallback.
 
-## Reference(s): <br>
-- [Civic Nexus Documentation](https://docs.civic.com) <br>
-- [Civic Nexus](https://nexus.civic.com) <br>
-- [Civic Nexus MCP Endpoint](https://nexus.civic.com/hub/mcp) <br>
-- [ClawHub Skill Page](https://clawhub.ai/civictechuser/civic-nexus-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NEXUS_URL and NEXUS_TOKEN, plus either mcporter or npx.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill can give an agent broad access to connected services through a Nexus bearer token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Nexus token and profile, and require explicit review before write, delete, posting, database, email, or storage actions.
+
+Risk: A changed MCP destination or unpinned command path can alter what service or code the agent uses.
+
+Mitigation: Keep NEXUS_URL on the official HTTPS Nexus endpoint and prefer pinned, reviewed installations for mcporter or npx-based execution.
+
+## Reference(s):
+
+- [Civic Nexus documentation](https://docs.civic.com)
+- [Civic Nexus](https://nexus.civic.com)
+- [ClawHub skill page](https://clawhub.ai/civictechuser/skills/civic-nexus-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples; the tool runner emits text or JSON from MCP calls.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NEXUS_URL and NEXUS_TOKEN; can use either mcporter or npx.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

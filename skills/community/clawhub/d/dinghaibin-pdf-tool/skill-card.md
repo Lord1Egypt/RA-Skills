@@ -1,43 +1,53 @@
-## Description: <br>
-Helps agents work with local PDF files by merging PDFs, splitting PDFs, extracting pages or text, and reading PDF metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with PDF files including merge, split, extract text, and convert.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and agents use this skill to perform basic local PDF operations such as merging files, splitting pages, extracting text, extracting individual pages, and inspecting metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Processing untrusted or unintended PDFs can expose local PDF parser behavior to malformed files. <br>
-Mitigation: Use the skill only on PDFs the user intends to process locally, and install pypdf from a trusted source. <br>
-Risk: Output paths can overwrite important local files. <br>
-Mitigation: Choose explicit output paths and review them before running merge, page extraction, split, or text extraction commands. <br>
-Risk: Some advertised image, conversion, and compression features are not implemented in this version. <br>
-Mitigation: Treat the release as a basic merge, split, page extraction, text extraction, and metadata tool until those features are added and reviewed. <br>
+## Use Case:
 
+Developers and other agent users use this skill to inspect and manipulate local PDF files, including extracting text, merging files, splitting documents, extracting pages, and viewing PDF metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/dinghaibin-pdf-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local PDF or text files through the bundled command-line script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The tool depends on pypdf, so behavior and security depend on the installed package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a low-privilege Python environment and use a pinned, reviewed pypdf version.
+
+Risk: The documentation advertises image extraction, conversion, and compression, but the artifact primarily implements local PDF text extraction, merge, split, page extraction, and info operations.
+
+Mitigation: Rely only on the implemented PDF operations unless the package is updated and re-reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/skills/dinghaibin-pdf-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and local file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local PDF or text files when output paths are provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

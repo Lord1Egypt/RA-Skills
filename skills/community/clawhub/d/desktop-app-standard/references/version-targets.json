@@ -1,0 +1,14 @@
+{
+  "npm": {
+    "electron": 45,
+    "electron-builder": 26,
+    "electron-updater": 6,
+    "@tauri-apps/api": 2,
+    "@tauri-apps/cli": 2
+  },
+  "cargo": {
+    "tauri": 2,
+    "tauri-cli": 2,
+    "tauri-build": 2
+  }
+}

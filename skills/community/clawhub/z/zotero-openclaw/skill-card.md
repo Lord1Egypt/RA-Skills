@@ -1,43 +1,54 @@
-## Description: <br>
-Saves paper metadata, optional AI summaries, tags, and arXiv PDF attachments to a user's Zotero library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saves paper metadata, PDF links, tags, and AI-generated summaries to a user's Zotero library using Zotero API credentials.
 
-## Publisher: <br>
-[Little-Cat1](https://clawhub.ai/user/Little-Cat1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[little-cat1](https://clawhub.ai/user/little-cat1)
 
-## Use Case: <br>
-Researchers, students, and knowledge workers use this skill to add paper records, summaries, tags, and available arXiv PDFs to their Zotero library from agent-provided bibliographic details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes user-provided paper metadata, summaries, tags, and attachments to a Zotero library. <br>
-Mitigation: Review paper URLs, metadata, and AI-generated summaries before saving them. <br>
-Risk: The skill uses a Zotero API key from the ZOTERO_CREDENTIALS environment variable. <br>
-Mitigation: Use a Zotero API key with only the permissions needed and avoid exposing the credential in prompts, logs, or shared shell history. <br>
-Risk: The helper depends on pyzotero and may download arXiv PDFs before attaching them to Zotero. <br>
-Mitigation: Install pyzotero from a trusted Python environment and confirm downloaded PDFs come from expected paper URLs. <br>
+## Use Case:
 
+Researchers, students, and developers use this skill to add paper metadata, optional abstracts, tags, AI-generated summaries, and arXiv PDF attachments to a Zotero library from command-line inputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Little-Cat1/zotero-openclaw) <br>
-- [Zotero](https://www.zotero.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and parameter descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python, pyzotero, and ZOTERO_CREDENTIALS formatted as userid:apiKey.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can use Zotero API credentials to create library entries and upload attachments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a minimally scoped Zotero API key and install only when the workflow is trusted.
+
+Risk: The skill may automatically download a PDF from a loosely checked arXiv URL and upload it to Zotero.
+
+Mitigation: Review PDF attachment behavior before use, avoid untrusted URLs, and prefer stricter HTTPS arxiv.org validation with size and timeout limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/little-cat1/skills/zotero-openclaw)
+- [Zotero](https://www.zotero.org)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown with shell command examples and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.10+, pyzotero, and ZOTERO_CREDENTIALS in userid:apiKey format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

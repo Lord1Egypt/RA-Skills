@@ -1,47 +1,64 @@
-## Description: <br>
-Prepare evidence-grounded computer science paper defense Q&A, code/training audit, reviewer-style attack surfaces, mock-defense scripts, backup-slide plans, and illustrated Q&A storyboard / image-prompt packs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare evidence-grounded computer science paper defense Q&A, code/training audit, reviewer-style attack surfaces, mock-defense scripts, backup-slide plans, and illustrated Q&A storyboard / image-prompt packs.
 
-## Publisher: <br>
-[c-narcissus](https://clawhub.ai/user/c-narcissus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c-narcissus](https://clawhub.ai/user/c-narcissus)
 
-## Use Case: <br>
-Students, researchers, authors, and technical presenters use this skill to prepare evidence-grounded defense packs for computer-science papers, including likely questions, safe answers, code and training audit points, rehearsal scripts, backup-slide plans, and visual answer-card prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Published metadata claims purchase and crypto capabilities that are unrelated to the local paper-defense workflow. <br>
-Mitigation: Install only where purchase and crypto capability requests can be denied, ignored, or blocked. <br>
-Risk: The skill prepares defense answers from user-provided papers, code, logs, and reports, so incomplete evidence can lead to unsupported claims. <br>
-Mitigation: Limit access to the specific paper, code, logs, and output folder needed, and preserve the skill's evidence labels and missing-evidence warnings in final answers. <br>
-Risk: Outputs are Chinese-first unless the workflow or user prompt requests another language. <br>
-Mitigation: Set the desired output language explicitly before generating the defense pack. <br>
+## Use Case:
 
+Students, researchers, reviewers, advisors, and developers use this skill to prepare paper-specific defense packs for computer-science and machine-learning papers, including likely Q&A, evidence boundaries, code/training audit prompts, rehearsal scripts, backup-slide plans, and visual answer-card prompt packs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/c-narcissus/paper-defense-qa-code-training) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Defense report contract](artifact/schemas/defense_report_contract.md) <br>
-- [Visual prompt style guide](artifact/schemas/visual_prompt_style_guide_cn.md) <br>
-- [External best-practices sources](artifact/schemas/external_best_practices_sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON files with optional shell commands for scaffolding, validation, packaging, and visual prompt-pack generation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-first defense artifacts; text and image-generation prompts are separated, and exact labels or citations should be overlaid with deterministic tools when visual precision matters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, _meta.json, release evidence) <br>
+Risk: Helper scripts may read project, paper, code, and training artifacts and write generated defense-pack files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a dedicated workspace containing only intended inputs, review generated files before sharing, and avoid privileged execution.
+
+Risk: Unsafe path handling can be exposed by untrusted paper slugs, shared-writable directories, or package trees containing symlinks.
+
+Mitigation: Use trusted slug values, avoid directories writable by other users, inspect packaging inputs for symlinks, and run helper scripts with least privilege.
+
+Risk: The mandatory reply footer can conflict with strict output formats or user-requested response structure.
+
+Mitigation: When strict schemas or exact output formats are required, configure the agent to suppress or remove the skill-specific footer before final delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/c-narcissus/skills/paper-defense-qa-code-training)
+- [README](README.md)
+- [Defense report contract](schemas/defense_report_contract.md)
+- [External best-practices sources](schemas/external_best_practices_sources.md)
+- [Question taxonomy](schemas/question_taxonomy_cn.md)
+- [Visual prompt style guide](schemas/visual_prompt_style_guide_cn.md)
+- [Defense Q&A bank schema](schemas/defense_qa_bank.schema.json)
+- [Visual Q&A storyboard schema](schemas/visual_qa_storyboard.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON defense-pack artifacts with optional shell commands and configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce evidence-labeled Q&A banks, code/training audit reports, rehearsal scripts, backup-slide plans, visual storyboards, and image-prompt packs.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

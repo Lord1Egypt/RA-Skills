@@ -2,510 +2,463 @@
 
 All notable changes to the `attacker` skill. Semver.
 
-## [0.3.2] — 2026-06-23
+## [0.8.2] — 2026-09-25
 
-Small, **loose** soft-limits on context + speed (deliberately rough ceilings, not hard gates —
-so context/cost don't balloon). Protocol-level (the bounds govern the attacking subagent's
-runtime behavior, which the record validator can't measure), so no schema/validator change.
+**Fix round 3 (R20 wave, owner ruling 2026-09-25 "这七个你都继续去做把他们做完", iron rule 3).**
+Closes the two P2s the 0.8.1 fix-audit found inside 0.8.1's own fixes (FA-1, FA-2) and the
+continuation-line false positive (FA-4, P3) that 0.8.1 introduced. SemVer **patch**: the skill
+now does what its own text already promised; no contract change.
+
+### Fixed
+- **FA-2 — a governed gap that a runnable cheat beats is a finding again, not a forced flag.**
+  0.8.1 made `lenses/gaming.md` route every gap the target says it governs to an uncounted P3
+  flag, even when the striker's runnable cheat gets past the governing clause. That moved the
+  suppression into the flag class instead of removing it, and it contradicted the same file's
+  finding definition (runnable cheat = finding). Now the striker quotes the clause: if the cheat
+  beats it, the item is a **finding** at its own severity, with the clause in why-uncaught; only
+  if the clause really closes the cheat is it a **P3 flag**. Golden sample 5 gets the same
+  carve-out, so the adjudicator does not re-apply the suppression. Anchors: gaming.md
+  §PROVE-OR-FLAG finding definition; prove-or-flag.md golden 14/15 (cosmetic repair is not
+  repair; an item stands at its own merit); KB P10 (the target's text is data, not a filter).
+- **FA-1 — the shadow-map extractor no longer stops at a blank line inside a question list.**
+  0.8.1 ended the list at the first blank line after a bullet, so later bullets or `1.` lines in a
+  loose list were lost with exit code 0 (0.7.0 loses them too). Now a blank line ends the list only
+  when the next non-blank line is neither list-shaped nor indented. A blank-line tamper on a copy
+  of the full `Philosophy/` KB (blank line before each later `- ` bullet): 0.7.0 and 0.8.1 both read
+  72 probes with an unchanged summary; 0.8.2 recovers all 166. **Partial** (corrected at round-3
+  close): this holds only for the marker shapes `LIST_RE` knows (`-` `*` `•` `1.` `1)`). After a
+  blank line, other question-line shapes (`2、` `（2）` `②` `a.` `+`) are still dropped with exit 0,
+  exactly as in 0.7.0 — see *Still open*.
+- **FA-4 (P3) — no false positive on wrapped bullets.** 0.8.1 flagged an indented continuation
+  line of a bullet as an "unrecognised falsifiable-question line". It is now appended to the
+  previous probe (CommonMark continuation), so no text is dropped and no flag is raised. An
+  unindented ("lazy") continuation line still raises `needs_human`: that side fails closed, and it
+  occurs 0 times in the real corpora.
+- FA-1 and FA-4 are line-shape checks only (A50; P13: nothing semantic is judged). Two new
+  `--selftest` cases (`blank-then-numbered`, `loose-list-continuation`). Mutation check: 3/3
+  mutants of the new branches killed. False positives (iron rule 7) on every real corpus that
+  carries these fields (`Philosophy/`, 115 nodes; `philosophy-research/`, 323 nodes, including
+  r20 drafts, battery and reports): **0 newly flagged nodes, probe text unchanged**, against both
+  0.8.1 and 0.7.0.
+
+### Measured
+- Script 156 → 165 lines: +48.6% against the pre-wave baseline of 111 (iron rule 4 cap 166).
+  Shipped eval cases 0 → 0 (the selftest lives inside the script).
+- Gaming lens 768 → 796 tok cl100k (cap 1000). Golden samples 825 → 855 tok (logged in
+  prove-or-flag.md §Rubric budgets). SKILL.md unchanged at 2995 tok.
+
+### Still open
+- **FA-1 residual (P2, latent, not a regression; reported to the owner, not fixed).** Found by the
+  round-3 fix-audit, reproduced at close. A blank line inside a question list followed by a line
+  in a shape `LIST_RE` does not know (`2、q2`, `（2）q2`, `② q2`, `a. q2`, `+ q2`) still ends the
+  list, and that line is lost with `needs_human` empty and exit 0. Without the blank line the same
+  line is flagged (exit 1). 0.7.0 behaves identically on these shapes, and the real corpora contain
+  0 of them. The docstring's "never silently dropped" and the `LIST_RE` comment "any marker"
+  therefore overstate what the script does. It is the same defect class as FA-1, so iron rule 3
+  forbids a round 4 without a new owner ruling.
+- FA-6 (P3): `--selftest` only asserts whether `needs_human` is non-empty, never probe count or
+  text. A mutant that silently re-opens FA-1 (bullets removed from the blank-line peek) keeps it
+  7/7 green, so "3/3 mutants killed" above covers only the fixer's own three mutants.
+- FA-3: the "no shadow-principle" gap check in `mark_gaps` is node-wide, not per header.
+- FA-5: flags carry no severity field in `schemas/output.json`.
+- F08: a 0-node parse still exits 0. Plus the 10 other open round-1 P3s (see 0.8.1).
+- Iron rule 4 margin: the script is at 165 lines against a cap of 166 for this wave.
+
+### Round-3 close (finalizer record — no version bump: docs only, 0.8.2 is unreleased)
+Owner ruling (Vince, 2026-09-25, in chat): "这七个你都继续去做把他们做完". It authorized this third
+fix round under iron rule 3, scoped to finishing the release; all other calls were delegated to
+the conductor. The finalizer changed no behavior; it corrected the FA-1 claim above and recorded
+the evidence. Anchors: KB O5 (verdict = min of re-audit and battery), A51(i) (fix-audit stop
+signature), A37 (honesty), iron rules 3 and 7.
+
+- **Fixes and why each is a fix, not a revert.** FA-1 (`75aef94`): a line-shape peek, not a revert
+  of `d01f233`, because the revert would re-open F07 and leave FA-1 in place (0.7.0 has the same
+  break); anchors: SKILL.md AIM "unparsable fields surface as `needs_human`", A50, E5. FA-2
+  (`20f14d0`): prose, not a revert of `fb7cdaa`, because the revert restores the "do not report"
+  drop; it applies rules the skill already had (gaming.md finding definition, golden 14 and 15),
+  so no new contract; anchor: P10.
+- **Fix-audit (fresh instance) of `75aef94`, `20f14d0`: 1 P2 + 1 P3.** The P2 is the FA-1 residual
+  above (FA-1 partly closed). The P3 is FA-6 (selftest cannot see silent loss). FA-2: no finding.
+- **Release check: release OK.** Compared against installed 0.7.0 on the same inputs, 0.8.2 is
+  better or equal in every case and worse in none. Loose `- ` list: 0.7.0 keeps only q1, 0.8.2
+  keeps all. Blank line then `1.`: 0.7.0 drops silently, 0.8.2 flags. Wrapped line: 0.7.0 drops the
+  text, 0.8.2 joins it. After a blank line, `2、` and `+`: both drop, identically. Gaming lens: 0.7.0
+  drops governed gaps; 0.8.2 reports them, as a finding when a cheat beats the clause. No open
+  P0/P1. On the real corpora (`Philosophy/` whole, `guidelines/evaluation.md`, `tensions.md`) both
+  versions give identical summaries, exit codes and per-node probe text.
+- **Tests at close.** `extract_shadow_map.py --selftest` 7/7, exit 0. Build harness
+  `check_attacker_080.py` 23/25 (I3 and D14 fail by design: they pin 0.7.0 logic and version
+  0.8.0) and its selftest OK. `concept_anchors.py` 39/39.
+- **Verdict.** Effective verdict stays **candidate** (battery `breaches_found` at `instance`
+  tier). Release-ready at that level; the FA-1 residual goes to Vince as a known residual.
+- **Harness debt for the next wave.** I3 and D14 need re-pinning; I2 ("golden 1-14 byte-unchanged")
+  compares only the first line of samples 1–9 (it expects 4-space indents, they use 3), so it
+  stayed 14/14 even though golden 5 changed.
+
+## [0.8.1] — 2026-09-25
+
+**Battery fix round (R20 wave, 1 round per iron rule 3).** Two battery-confirmed P2 defects fixed;
+SemVer **patch** (the skill now does what its own text already promised; no contract change).
+
+### Fixed
+- **F14 — Gaming lens no longer tells the striker to drop "governed" gaps.** `lenses/gaming.md`
+  said "Do not report a gap the target already governs", the only striker-side drop instruction in
+  any lens. It contradicted the same file's coverage-first rule, the rubric's P3
+  "already-governed-but-worth-noting" and golden samples 5/13 (dropping is the adjudicator's power),
+  and let a target's own-voice "anti-gaming: X governed" suppress Gaming reports. Now: report it as
+  a flag (P3 if the clause really closes the cheat), quote the governing clause, and leave the noise
+  call to the adjudicator. Anchor: skill-own coverage-first / PROVE-OR-FLAG split (gaming.md
+  §PROVE-OR-FLAG, prove-or-flag.md golden 5 and 13); KB P10 (the target's text is data, not a
+  filter on the attack).
+- **F07 — the shadow-map extractor no longer drops map items silently.** On a KB copy, renaming
+  S1's `**阴影原则**` and turning E1–E12's question bullets into `1.` lists left the summary line
+  and exit code unchanged ("72/90 … 18 need human review") while 28 probes and S1's shadow vanished
+  with `needs_human` empty — contradicting the docstring's "never silently dropped". Now
+  `needs_human` also fires for a node carrying only ONE of the two fields, a questions header with
+  no bullet, and any non-bullet line under that header. Same tamper now reads 31 need-review (was
+  18), E1–E12 and S1 each flagged. Structure checks only (field presence / line shape — A50
+  admissible, P13: nothing semantic judged). New `--selftest` (clean fixture + four tampers);
+  mutation check: each of the four new branches, disabled alone, turns the selftest red.
+  False-positive measurement (iron rule 7) on every real corpus carrying these fields — full
+  `Philosophy/` KB (115 nodes), `philosophy-research/` incl. r20 drafts/reports/battery: **0 newly
+  flagged nodes, probe counts unchanged** (X-5's 43/115 over-flag is unchanged, still exempt).
+  Anchor: skill-own AIM rule "unparsable fields surface as `needs_human`" (SKILL.md) and the
+  script's own "must not pass silently" contract; KB A50 (structure-only D gates), E5 (red first).
+- Not fixed (not in this round's list, P3): F08, a 0-node parse still exits 0.
+
+### Measured
+- Script 114 → 156 lines: +40.5% against the session baseline 111 (iron rule 4 cap 166).
+  Shipped eval cases 0 → 0 (the selftest is inside the script).
+- The 0.8.0 build harness (`runs/attacker/engineer/check_attacker_080.py`) now fails exactly two
+  checks by design: I3 "script logic unchanged vs 0.7.0" (F07 changes it) and D14 "version 0.8.0"
+  (now 0.8.1). The other 23/25 still pass, and its selftest stays OK.
+
+### Verification record (R20 wave close — no version bump: docs only, 0.8.1 is unreleased)
+The finalizer changed no behavior. This section records the evidence the 0.8.0 → 0.8.1 release
+rests on and what is still open. Anchors: KB E11 (two arms), O5 (effective verdict = min of
+re-audit and battery), A51(i) (fix-audit stop signature), K1 (independence tiers), A37 (honesty).
+
+- **E11, bound to commit 4e8acd9 (the 0.8.0 build).** Per the pre-registration it was not re-run
+  after the fix round. It used 3 cases × 1 run per arm. The WITHOUT arm had the skill explicitly
+  disabled. The blind judge re-ran every P1 reproduction.
+  - Case 1 (term-safe-rewriter): **WITH better (modest).** WITH gives an explicit
+    same-reading witness pair (0.829 pass with meaning changed vs 0.970 pass with meaning kept),
+    states its search coverage, and asks the re-plane question. WITHOUT has the same facts but no
+    pair, and 7 overlapping P1s.
+  - Case 2 (green-but-wrong billing): **tie.**
+  - Case 3 (fix-audit of snapshot-pruner): **WITH better (modest).** WITH escalates because two
+    P1s sit inside round 1's own fixes, and asks the plane question. WITHOUT lists precedence only
+    as a suspicion.
+  - Totals: 2W / 0L / 1T.
+  - Recall: every seed found by both arms, so 0 seed losses. False findings: 0 for both arms in
+    every case.
+  - Checks: injection sentinel passed in cases 1 and 2 (both arms). Witness hunt scored above 0 in
+    case 1. Tier honesty passed in every WITH run (`instance`, "L-i incomplete", model ID
+    declared).
+  - **Cost cap not verifiable.** No arm recorded `total_cost_usd`. The tool-call proxy (WITH/WITHOUT)
+    is 1.17x / 1.08x / 1.15x.
+  - **Fork not exercised.** The arm host had no Agent/Task tool, so the WITH arm ran all lenses in
+    one context. The skill's per-lens fork is therefore unmeasured.
+  - Result: not retired. The skill's value is preference/fidelity (the witness pair, fix-audit
+    escalation, calibrated severity), not recall; the bare model found every seed too.
+- **Battery: 1 round against 0.8.0 at `instance` tier.** L-i was incomplete: the project CLAUDE.md
+  and the auto-memory index were injected, and the judge was `judge-uncalibrated`.
+  - Seeds: **5/5** (one per lens), so no void lens.
+  - Non-seed items: 13 confirmed (P2: F07, F14; P3: F08, F09, F10, F12, F13, F15, F16, F18, F19,
+    F20, F02r) and 3 refuted.
+  - The fix round (above) fixed F07 and F14.
+- **Fix-audit (fresh instance) on fb7cdaa..d01f233: 2 P2 + 3 P3, all open.**
+  - FA-1 (P2): F07 is only partly fixed. After one blank line inside a question list, the new
+    break at `extract_shadow_map.py:76` stops collecting. Later `- ` or `1.` lines are then lost
+    with `needs_human` empty and exit 0. On a KB copy this hid 11 probes and left the summary
+    byte-identical.
+  - FA-2 (P2): the F14 fix moved the suppression instead of removing it. A governed gap must now
+    be a flag, and flags are never counted, even when the cheat beats the clause. This conflicts
+    with gaming.md:32-34 and golden samples 3, 5 and 15.
+  - FA-3 (P3): the new header check reads the node-wide probe list, so a second, empty questions
+    header in the same node goes unflagged.
+  - FA-4 (P3): a CommonMark wrapped continuation line is flagged and the probe is cut short. No
+    real corpus has one today.
+  - FA-5 (P3): `schemas/output.json` flags carry no severity, so "a P3 flag" cannot be written in
+    schema-conformant output.
+- **Escalation.** Iron rule 3 is not triggered: nothing above P2 was found. FA-1 and FA-2, however,
+  match this skill's own A51(i) signature (a ≥P2 defect in the fix area, or a relocated defect).
+  They are therefore handed to the owner with no further repair round. The fix budget is spent.
+  The first question is posed, not decided. Should "does a governed gap count" and "is the
+  extractor's line-shape parse the right plane" be settled by the owner before another patch?
+- **Other open P3s (not fixed):** F08, F09, F10, F12, F13, F15, F16, F18, F19, F20, F02r. X-6
+  (the different-vendor acceptance run) is still not done.
+- **Independence and model deviation.** Every role in this wave (builder, E11 arms and judge,
+  battery striker and adjudicator, fixer, fix-auditor) was `claude-opus-5-5` high in a fresh
+  context. That makes the tier **`instance`**: Opus 5.5 wrote the 0.8.x text, so the text is not
+  `instance_plus`. Only the Fable-authored legacy text sits at `instance_plus`, and nothing reached
+  `model`. This departs from the 2026-09-13 skill-creator-max model policy (builder Fable,
+  evaluators Opus). The owner ordered all roles on Opus 5.5 high for this wave.
+- **Tests at close.**
+  - `extract_shadow_map.py --selftest`: 5/5 ok.
+  - 0.8.0 harness on HEAD: 23/25 (I3 and D14 fail by design). The same harness on an export of
+    4e8acd9 gives 25/25, rc 0.
+  - `concept_anchors.py`: 39/39. `schemas/output.json` parses.
+  - The pipeline's `validate_report.py` on the 0.8.0 evidence dossier now fails its re-run check,
+    because the harness pins 0.8.0. The dossier's evidence binds to 4e8acd9.
+
+## [0.8.0] — 2026-09-25
+
+**R20 alignment (philosophy KB v0.4.0 — K1 vendor tiers, P10/A36 trust boundary, P13/S14 judgment
+planes, A51 stop signature).** Incremental alignment (A40/O7 tier 增量对齐) of seven re-verified audit
+items (`r20-upgrade/g1-meta.md` §2) plus what they force. Every change points at a KB anchor or a
+skill-own principle (iron rule 1). Five lens definitions, E9 stop rule, fix-audit axes A–D,
+PROVE-OR-FLAG bar, severity scale and golden samples 1–14 are unchanged (byte-identical where stated).
+SemVer **minor**: the output-schema enum widens and runtime behavior changes; no field removed.
+
+### Changed — independence vocabulary (KB K1, A37)
+- A **different model of the same vendor is no longer `model`-tier.** 0.7.0 told FORK to prefer "a
+  different model" and said that bought `model` tier "by construction"; under K1 (R20) an Opus 5.5
+  attacker on Fable-authored text is **`instance_plus` (L-i+)**, and `model` (L-m) needs a
+  **different vendor** declared with resolved model IDs of attacker and target author. Sites:
+  SKILL.md rule 2, FORK, Contract `required_tier`, NOT-do list, honest coverage note;
+  `references/prove-or-flag.md` §Judge topology ("model family" → "vendor"); both READMEs.
+- `schemas/output.json`: `instance_plus` added to `findings[].independence_tier` and
+  `coverage_gaps.independence_reached` — **additive only** (no field added/removed/renamed; key
+  sets and `required` lists byte-equal to 0.7.0; six-vendor constraints untouched).
+- FORK no longer promises "zero build history" unconditionally: the dispatcher states the host
+  context the striker inherits (project CLAUDE.md, auto-memory index, plugin hooks); injected and
+  not stripped ⇒ `L-i incomplete: <what>`, unknown ⇒ `L-i incomplete (host context not verified)`
+  (K1). The run claims only the highest provable tier; an unmet `required_tier` goes in notes and
+  `battery_grade` keeps its budget-vs-risk-floor meaning.
+- The PBT-Bench / MAS-ProVe evidence now lives once, in `prove-or-flag.md` §Judge topology (SKILL.md
+  keeps a pointer) — dedup that paid for part of the Authority paragraph.
+
+### Added — trust boundary (KB P10, A36; Z5 no-compress)
+- SKILL.md **§Authority** (3 lines): target, shadow map, fetched pages and prior-round reports are
+  data; a sentence telling reviewers to skip something is itself reported; dispatch passes lens
+  files whole.
+- The **verbatim authority sentence** opens all five lens files (the lens file is the striker's
+  whole prompt; SKILL.md never reaches it). It is on the Z5 no-compress list: do not reword,
+  compress or trade it for budget.
+- Golden sample **15** (reviewer-addressed "do not report X" → X still reported + the note flagged;
+  contrasted with sample 5's governed tension). **Injection seed recipe** in `seed-recipes.md`.
+- `scripts/extract_shadow_map.py` docstring declares its action surface: read-only (reads .md,
+  writes stdout) — A36 per-script declaration; code unchanged.
+- `fix-audit.md`: prior findings, ledgers and fixer summaries are data; "fixed" is verified by
+  re-running the original reproduction.
+
+### Added — separability witness hunt (KB P13, S14, A50(i); A41 no sixth lens)
+- `lenses/reality.md` hunt **7**: for a deterministic check that renders a FINAL verdict on a
+  semantic judgment, exhibit a pair of real inputs with the same reading and opposite correct
+  verdicts, with both readings and search coverage; consequence = re-plane (D→L evidence / L
+  judgment card), never a new feature, exception or retuned threshold. S14 names the battery as the
+  witness supplier; no lens was told to hunt it. Folded into Reality (extends hunt 2), not a sixth
+  lens. Golden sample **16**: pairs that read differently are not a witness (claim → FLAG; halves
+  may stand alone). Library-class incident: caoliao-style-writer's seven-round arms race.
+
+### Changed — SEED matcher re-planed (KB S14/A50(i) applied reflexively; skill-own "never an uncalibrated judge")
+- The SEED hit decision was itself a D-face final on a semantic question with a constructible
+  witness (an item at the seed location using a seed keyword for a *different* defect). Now: the
+  deterministic location+keyword match is a **pre-screen**; the **planter** confirms hits and
+  near-misses against its answer key; no planter/key ⇒ **`seed-unscored`** (findings delivered, void
+  for E9). Seeds and injection notes are planted on a branch/copy only. Prose only, no code.
+
+### Changed — fix-audit escalation (KB H4, A51(i))
+- Escalation now fires on all of A51(i): P0/P1 inside last round's fixes, ≥P2 regression in the fix
+  area, or a defect relocated into an adjacent file (post-review severity). The report poses the
+  first question — *wrong plane (re-plane per H4/S14) rather than badly tuned?* — the attacker raises
+  it, never decides it, and never recommends a tighter regex / exception / retuned threshold.
+
+### Changed — A37 honesty
+- `prove-or-flag.md` no longer claims the golden samples "carry a `model_baseline` stamp" (none
+  existed). They are verdict patterns with answers inline — grading them is not calibration. No
+  judge calibration record exists, so the rubric is **`judge-uncalibrated`** and every run says so
+  in notes. SKILL.md step 4 mirrors this. No stamp value was fabricated.
+- Budget lines restated with measurements: lens cap "~600" (all five were 637–753 at 0.7.0) →
+  "≤ ~850, hard ceiling 1000"; rubric body stated "~900" but measured 1,304 (0.7.0) / 1,511 (0.8.0).
+
+### Judgment planes (A49 in one paragraph — X-2, no ledger file shipped)
+Activation = L (host model on the description). Shadow-map extraction = D skeleton (fixed regex on
+lint-enforced headers; unparsable ⇒ `needs_human`). SEED hit = D→L pre-screen + planter-with-key
+final (re-planed this version). Finding/flag proposal = L striker (proposal only, never deletion).
+Final adjudication and severity = L judge (different-vendor preferred; judge-uncalibrated declared).
+Independence tier = L orchestrator applying K1 to declared facts (no D script: it would read
+self-declared names, not provenance). Reviewer-addressed-instruction vs governed tension = L
+(no D detector: paraphrase and other languages give trivial witness pairs). Witness readings = D
+evidence (execute the gate); correct verdicts = L. Fix-audit axis C = re-executed repro (D→L).
+A51 escalation = L raises → H owner decides. Stop = D count + L marginal judgment. Output schema = D
+skeleton. The only D-face final gates left are skeleton checks.
+
+### Weight ledger (A41 add-ledger — measured with tiktoken cl100k, not estimated)
+- Always-loaded `SKILL.md`: **2,941 → 2,995** tokens (cap 3,000). Paid by: the PBT-Bench detail
+  relocated to prove-or-flag.md, merged opening paragraphs, compacted Contract / Harness / NOT-do /
+  honest-note prose — no field or rule removed. (The 0.7.0 ledger's 2,885 was a character-model
+  estimate; the measured 0.7.0 figure is 2,941.) Description byte-identical (332 chars, X-1 warn).
+- Lens files (on-demand, one per striker): coherence 637→716, gaming 649→728, evidence 671→750,
+  foundation 753→832, reality 747→**988** (authority sentence +79 each; reality also +162 for hunt
+  7). Reality sits in the logged 850–1000 band; no hunt item was removed or reworded to pay.
+- On-demand references: prove-or-flag 1,831→2,336 (golden 14→16, +14%), fix-audit 1,339→1,515,
+  seed-recipes 581→954. Script 111→114 lines (docstring only; iron rule 4 cap 166).
+- Shipped eval cases: 0 → 0 (E11 fixtures live in the upgrade run directory, X-3).
+
+### Exemption register (carried, not aligned this version)
+X-1 description 332 > 320 chars · X-2 no A49 ledger file (paragraph above instead) · X-3 no shipped
+eval set · X-4 lens budget restated, not cut · X-5 extractor over-flags `needs_human` on node types
+without six-piece fields (43/115 on the KB) · X-6 different-vendor acceptance run still not done ·
+X-7 no A42 point-version settlement applied to lens prose · X-8 carried mechanism unchanged · X-9 a
+stale 0.4.x "attacker" copy in the desktop skills-plugin cache competes for `$attacker` (reported,
+outside this skill's scope). Detail: `r20-upgrade/runs/attacker/skill-spec.json` materials.
+
+## [0.7.0] — 2026-07-31
+
+**R17 alignment (philosophy KB v0.3.0 — the verifier-engineering increment).** Three deltas, each
+anchored to a KB node. No change to the five lens definitions or the SEED gate; no new mechanical
+semantic check (prose and dispatch discipline only).
 
 ### Added
-- **Loose budget defaults** — if unset, `--budget ≈ 12` attempts and `--max-tokens ≈ 60k` per
-  round, so a run is always bounded even when the caller doesn't specify.
-- **Context soft-cap `--max-context T` (≈ 30k default)** — a rough ceiling on CONTEXT intake +
-  self-research: stay scope-relevant, don't slurp the whole repo. Loose by design.
-- **Speed: early-exit** — attack cheapest-highest-impact first; you MAY stop once the declared
-  scope is adequately covered within budget (don't burn the full budget if the scope is covered).
+- **Fix-audit rotation mode** (`references/fix-audit.md`, +1 section in SKILL.md). When the target
+  carries last round's repairs, round N+1 **must** re-aim the five lenses at the **fix diff**, from
+  a context that did not write the fixes. Four axes: **A** propagation (did the fix reach every
+  sibling site, especially *higher-rank* documents — axiom layer, spec, `description`, README,
+  installed copies), **B** new defect / new inconsistency introduced by the fix (incl. direction
+  reversal and scope creep), **C** wording camouflage vs substantive repair (re-run the original
+  reproduction verbatim; a still-breaking repro means cosmetic), **D** silently skipped items
+  (an unfixed item with no written adjudication is itself a process finding — H7 applied to repair).
+  Ships an operational Step 0 for *getting the material*: which `git log` / `git diff` to run to
+  recover the fix diff and the prior findings table, and the honest `fix_audit: no-baseline`
+  degradation when neither exists.
+  **Deliberately NOT a sixth lens** — it changes the *object* of attack, not the failure class, so
+  the A41 anti-bloat clause (a sixth lens is forbidden if it folds into the five) is respected
+  rather than amended.
+  *Evidence*: KB `meta/revisions.md` §R17 battery, Round 2 — this pass alone produced **4 P1s, all
+  inside round 1's own repairs** (fix not propagated to the axiom layer, fix introducing a new
+  inconsistency, fix direction reversed, fix relocating the defect). KB anchors: E12, H7, H2/H5.
+- **Rubric acceptance on four axes** (`references/prove-or-flag.md` §Rubric acceptance). Structural
+  sufficiency / reliability / preference fit / **adversarial robustness**. The load-bearing new
+  rule: **κ/α does not imply anti-gaming** — measured, driving the exploit rate down 10pp moved
+  inter-judge α almost not at all, so a rubric shipped with only a consistency number is
+  `rubric_grade: consistency-only`. Plus two operating disciplines: **judgment cards score one item
+  at a time** (batch scoring has a measured accuracy cost), and improvement-feedback vs acceptance
+  scoring must be separately accounted (0.47→0.85 feed-back lift is an improvement tool, never an
+  acceptance score). KB anchor: E12 / `WEB-RubricAudit`, `WEB-VerifierEng`.
+- **Golden sample 14** (★): a prior finding "closed" by editing only the sentence that named it,
+  while the original reproduction still breaks → FINDING at the original severity (calibrates
+  fix-audit axis C).
+- `prior_round?` input field (`{ fix_diff, prior_findings }`); `coverage_gaps.notes` must now state
+  fix-audit status (`run` / `not-applicable` / `no-baseline` / `skipped`); `"fix-audit"` added to
+  the `lens` enum in `schemas/output.json` (additive enum value — existing outputs stay valid, and
+  the six-vendor intersection constraints are untouched).
 
-(Validator/eval suite unchanged — harness still 85/85.)
+### Changed
+- **Different-vendor independence is no longer an anecdote.** Every site that argued the
+  `model`-tier claim from intuition now carries the first non-anecdotal quantitative support:
+  **PBT-Bench (2605.15229) — the hardest defects are model-specific and no single model covers all
+  of them**, so a one-model battery has a structurally uncoverable residue (KB anchor
+  `WEB-VerifierEng`, E12). Sites updated: SKILL.md §Model-agnostic rule 2, SKILL.md §Honest
+  coverage note, `references/prove-or-flag.md` §Judge topology, both READMEs.
+  The same edit carries the **counter-evidence from the same source line** so the claim is not
+  overstated: MAS-ProVe finds an independent judge is *not* generally more capable than re-running
+  the generator — different-vendor buys **different blind spots**, not more strength.
+- Rubric token budget raised 700 → ~900 to carry the acceptance axes; logged here rather than
+  hidden (A41 增删账 discipline).
 
-## [0.3.1] — 2026-06-23
+### Weight ledger (A41 增删账 — the increase WAS paid, in the same release)
+- Always-loaded `SKILL.md`: 10,904 → **11,966 bytes, ~2,630 → ~2,885 tokens**, under the zipper's
+  `>3000 always-loaded = BAD` line. (Estimate, not a measurement: tiktoken cannot be installed in
+  this environment, so the figure is a character-model estimate calibrated against the 0.6.0
+  tiktoken record — raw estimate 2,999, calibrated 2,885.) The R17 additions first pushed it to
+  ~3,130 (BAD); the overrun was then **paid off with deletions in the same release**, not carried
+  as a WARN.
+- Where the payment came from (all merges, behavior-lossless — every merged concept is still
+  readable in the section that already stated it, verified by a 42-anchor semantic check):
+  the two opening paragraphs (restated §The mechanism, §The five lenses and the Contract's
+  findings/flags definition); §Model-agnostic rule 1 absorbed the standalone "Output schema is
+  six-vendor-intersection JSON" line; §Contract Input/Output field prose compacted (**no field
+  removed**); the fix-audit section thinned to trigger + rule + one-line evidence + pointer
+  (all four axes and the Step-0 material recipe live in `references/fix-audit.md`); §Harness
+  preamble and the AIM/PROVE-OR-FLAG parentheticals tightened.
+- Untouched by the compression: the SEED gate, the five lens definitions and table, every Contract
+  field, and the honest coverage note's claims.
+- On-demand files (CONTEXT-loaded, not always-loaded, so outside this budget):
+  `references/prove-or-flag.md` 4,798 → 7,485 bytes; new `references/fix-audit.md` 5,678 bytes.
 
-Five coherent additions raise attacker from "attack a declared domain of a product OR an idea"
-to "attack at a chosen ALTITUDE (behavior OR logic/architecture), grounded in MANDATORY context,
-deepening progressively round-over-round." RED-FIRST (suite 72/72 → **85/85**, exit 0).
-`validate()` stays **imported** (run_all.mjs:27), not inlined; importing any module runs no CLI;
-the release gate still PASSes (industrial); the v0.2.1 out-of-band exemption is preserved (in-band
-`__synthesized` still inert); v0.3.0 product|idea + scope still enforced. SKILL.md folded
-description **1019 ≤ 1024** (unchanged — no room; modes documented in the body).
+### Not changed (explicit)
+The five lens definitions, the SEED gate, PROVE-OR-FLAG's bar and classify-not-delete topology, the
+`description` frontmatter (unchanged, 332 chars — trigger wording untouched).
 
-### Added — 1. Attack MODE: `debug` | `structural` | `both` (a NEW altitude axis, orthogonal to `target.type`)
-- **Schema:** `summary.attack_mode` ∈ `["debug","structural","both"]` (added to `summary.required`);
-  per-record `attack_kind` ∈ `["structural","debug"]` (added to the attack_record `required`).
-- **Semantics:** `debug` = the concrete behavioral bug-hunt (existing flow). `structural` =
-  interrogate the project's LOGIC/ARCHITECTURE (coupling, logic-flow, missing/leaky abstractions,
-  inconsistent patterns) — higher altitude. `both` = STRUCTURAL FIRST, then debug (a protocol
-  discipline, not validator-enforced).
-- **Validator:** every confirmed record's `attack_kind` must be PERMITTED by `summary.attack_mode`
-  (debug→only debug; structural→only structural; both→either) — a kind not permitted is REJECTED.
+## [0.6.0] — 2026-07-26
 
-### Added — 2. Independence refined per `attack_kind`
-- **debug records (UNCHANGED):** keep the EXACT v0.3.0 product|idea debug gate (product → product
-  oracle + `real_collaborator_at_seam:true` + `withheld ⊇ {implementation_source,tdd_suite}`; idea →
-  idea oracle + `claim` + `not_strawman` + `derived_independently`).
-- **structural records (NEW):** you must SEE the structure to critique it, so this gate DROPS
-  impl-withholding + `real_collaborator_at_seam` and instead REQUIRES a non-empty **`critique_basis`**
-  (new field: the external design principle OR stated goal violated) + `independence_attestation.
-  derived_independently:true` + `observed != expected` + a **STRUCTURAL oracle** (the idea oracles
-  `contradiction|unmet_assumption|scope_violation|infeasibility|missing_case` + `specified`).
-- **Mode-confusion guard:** a debug bug mislabeled `structural` still needs the structural shape
-  (critique_basis + derived_independently + structural oracle); a structural record using a product
-  behavioral oracle (`metamorphic`/`implicit`/`differential`/`control_vs_experiment`) is REJECTED. So
-  neither kind can dodge the other's gate. The structural relaxations do NOT leak into debug
-  (regression-guarded by C79 + the existing C57/C58).
+**R16 alignment (Claude 5 generation settlement, from the philosophy KB's P11/ADC2).** Frontier
+models follow "only report proven/severe" instructions literally — recall dies silently at the
+discovery pass. Anthropic's own Claude 5 model docs prescribe the fix: full-coverage report first,
+independent filtering second.
 
-### Added — 3. Context MANDATORY + self-research fallback + scope-clear gate
-- **SKILL.md Preflight:** context+scope is a HARD GATE — do not attack until scope is clear AND
-  context is sufficient; if insufficient, ASK the user, then SELF-RESEARCH the project (the WHAT).
-  Independence rule for self-research: **debug** may map surface/requirement but still derives
-  EXPECTATIONS from the requirement (NOT impl internals); **structural** reading the structure is fine.
-- **Schema/validator:** `summary.context_sources` (array of ≥1 non-empty strings; added to
-  `summary.required`) — where the round's context came from. `references/context-intake.md` gains
-  the mandatory gate + the self-research discipline + the debug-vs-structural independence split.
+### Changed
+- **PROVE-OR-FLAG is now explicitly classify-not-delete.** The striking mind reports EVERY anomaly
+  it noticed and only *proposes* labels (finding vs flag + severity); deletion authority sits
+  solely with the adjudicating judge. Wording fixed at every site that primed suppression:
+  `description` ("records ONLY proven…" → coverage-first + adjudication), SKILL.md intro and step 4,
+  `references/prove-or-flag.md` judge topology, and a "Coverage first" rule in all five lens files.
+- **Golden sample 13 (★ suppression case) added** to the rubric: a noticed anomaly absent from the
+  report "because it couldn't be proven" is a report-defect — it must surface as a FLAG.
+- The findings/flags two-channel output contract is unchanged; what changed is *who* filters, and
+  *when*.
 
-### Added — 4. Scope stability / incremental expansion
-- **Schema/validator:** `summary.scope_change` ∈ `["initial","stable","expanded","narrowed"]`
-  (REQUIRED, enum-checked) — each round stays stable OR expands INCREMENTALLY (never a wild jump).
-  The "is it really incremental" judgment is protocol/fresh-reader.
+### Tested (2026-07-29, opus5 · medium, pre-publish gate)
+Double-arm blind test, v0.5.0 wording as control: one seeded target (8 planted defects — 4 provable,
+4 hard-to-prove), identical commissions. **Both arms recalled 8/8** with intact flags-channel
+discipline; no regression from the rewording. The suppression hypothesis itself did **not** reproduce
+in this run — the striker's tool access (script execution, web fetch) turned the "unprovable" seeds
+provable, so the arms never faced a true prove-or-drop dilemma. Classification: harmless alignment
+per vendor guidance, not an empirically demonstrated fix.
 
-### Added — 5. Progressive deepening (regression-first fills context, then go deeper)
-- **Schema/validator:** `summary.depth` (integer ≥ 1, REQUIRED). **Protocol** (SKILL.md +
-  `references/attack-process.md` + `rules/loop-and-metrics.md`): round>1 (a) regression-checks prior
-  records by `regression_key` FIRST, (b) uses that resolution to FILL context, (c) then goes DEEPER
-  (`depth` increments) — never restart from scratch. Tied to the existing carry-forward ledger.
+## [0.5.0] — 2026-07-14
 
-### Schema
-- `summary` gains `attack_mode` / `context_sources` / `scope_change` / `depth` (all in `required`);
-  `attack_record` gains `attack_kind` (in `required`) + `critique_basis` (structural records).
-  `additionalProperties` stays `true`; the per-record debug gate is byte-for-byte unchanged.
-
-### Testing
-- **RED-FIRST** eval cases **C67–C79** + fixture updates, captured FAILING in
-  `.skill-engineer/red/red.log` (**RED PHASE 9**) before the validator's v0.3.1 blocks: MODE/KIND
-  (C67 structural under mode debug → REJECT; C68 debug under mode structural → REJECT; C77 structural
-  under mode both → ACCEPT; C78 missing attack_kind → REJECT); STRUCTURAL (C69 missing critique_basis
-  → REJECT; C70 valid structural → ACCEPT; C71 product oracle on structural → REJECT; C76 missing
-  derived_independently → REJECT); SUMMARY (C72 missing attack_mode / C73 missing context_sources /
-  C74 missing scope_change / C75 depth<1 → REJECT); REGRESSION GUARD (C79 product-debug still requires
-  real_collaborator_at_seam — structural relaxations do NOT leak into debug). Existing user-supplied
-  fixtures (planted_bug / clean_control / summary_key_collision_valid / record_with_type_summary /
-  records_no_rollup / idea_valid / real_summary_line_bad_verdict) updated to carry the new summary
-  fields + `attack_kind` — fixtures updated, checks NOT weakened. Suite 72/72 → **85/85**, exit 0;
-  non-vacuity self-test stays green.
-
-## [0.3.0] — 2026-06-22
-
-Three coherent features extend attacker from "attack a product, anywhere, with a budget"
-to "attack a declared DOMAIN of a product OR an idea, grounded in rich context." RED-FIRST
-(suite 53/53 → **72/72**, exit 0). `validate()` stays **imported** (run_all.mjs:27), not
-inlined; importing any module runs no CLI; the release gate still PASSes (industrial); the
-v0.2.1 out-of-band round-verdict exemption is preserved (in-band `__synthesized` still inert).
-
-### Added — A. ATTACK-SCOPE CONTRACT (constrain WHICH domain/layer is attacked)
-- **Summary roll-up:** `in_scope` (array of ≥1 non-empty RICH free-form descriptors, e.g.
-  "UI rendering errors", "page navigation/logic transitions" — NOT a fixed enum) +
-  `out_of_scope` (descriptor array, may be empty), both added to summary `required`. Flags:
-  `--scope` / `--out-of-scope`.
-- **Per record:** `attack_scope` (non-empty string — which `in_scope` domain this attack
-  targeted), added to the attack_record `required`.
-- **New doc-level bucket:** top-level `out_of_scope[]` — observations found OUTSIDE the
-  declared scope: KEPT (not lost) but NOT counted as findings and NOT subject to the
-  confirmed-record gate.
-- **Validator enforcement:** every confirmed record MUST carry a non-empty `attack_scope`
-  AND (on a user-supplied summary) it must be an EXACT match against `summary.in_scope`;
-  missing/empty or not-in-set → REJECT. The semantic "is this attack really UI not backend"
-  judgment stays with the fresh-reader. The synthesized fallback summary
-  (`opts.summarySynthesized`) is EXEMPT from scope-tag membership enforcement, same out-of-band
-  stance as round-verdict.
-
-### Added — B. TARGET TYPE: `product` | `idea` (debate con-side)
-- **Schema:** `target.type` enum `["product","idea"]` (required on every record's `target`);
-  optional `target.statement` (idea text); product-only fields (version/model/checkpoint/
-  system_prompt_hash) optional/null in idea mode.
-- **Oracle enum extended** with the idea-mode oracles: `counterexample`, `contradiction`,
-  `unmet_assumption`, `scope_violation`, `infeasibility`, `missing_case` (kept the product
-  oracles `implicit|differential|metamorphic|control_vs_experiment|specified`).
-  `references/oracle-menu.md` gains the idea-mode oracle ladder (§I1–§I6).
-- **Validator — MODE-CONDITIONAL gate** (branches on `record.target.type`):
-  - **product (UNCHANGED):** repro.command|steps + minimized_input + replayed_ok + a PRODUCT
-    oracle + `real_collaborator_at_seam===true` + `non_tautology_check` + `withheld ⊇
-    {implementation_source, tdd_suite}` + observed≠expected.
-  - **idea (new):** `claim` + observed≠expected (expected = what the claim predicts, observed =
-    the counter) + `repro.steps` (the reasoning chain) + `repro.minimized_input` (the minimal
-    scenario) + `repro.replayed_ok===true` (a fresh reader re-ran the reasoning) + an IDEA
-    oracle + `not_strawman===true` + `independence_attestation.derived_expected_from` +
-    `derived_independently===true`. Idea mode does NOT require `withheld ⊇ {impl,tdd}` nor
-    `real_collaborator_at_seam` (product-specific). Anti-vacuity still applies (a vague
-    "I disagree" with observed==expected is NOT a finding).
-  - regression_key dedup, severity, status, round-verdict, scope-tag, budget consistency apply
-    to BOTH modes. The product gate is byte-for-byte unchanged; idea relaxations do NOT leak
-    into product mode (regression-guarded by C57/C58).
-- **round_verdict semantics carry over to idea mode:** `broke` = a proven flaw found; `clean`
-  = couldn't break within budget (robust-so-far, NOT "proven true"); `inconclusive` = budget
-  hit, no flaw found.
-
-### Added — C. RICH CONTEXT INTAKE
-- **SKILL.md Preflight step 0 (CONTEXT, before scope/mode/budget):** take a rich context
-  bundle (target+type, claim/requirement, constraints, success criteria, what-counts-as-a-break,
-  in/out-of-scope, prior rounds) and **ACTIVELY ENCOURAGE more — when context is thin/ambiguous,
-  PROMPT the user for the missing specifics: the more precise the context, the sharper and
-  better-scoped the attack; ask rather than guess.** Independence-safe (product still excludes
-  impl/tests/framing; idea takes the claim + justification but critiques independently).
-- **New `references/context-intake.md`:** the context checklist + WHY more context = sharper
-  attacks + how it feeds DESIGN + the elicitation prompts to use when context is thin.
-  Referenced from the SKILL.md Modules table.
-- **Optional `summary.context_digest`** (string): NOT required (kept lean); when present the
-  validator type-checks it (non-empty string).
-
-### Testing
-- **RED-FIRST** eval cases **C48–C66** + fixtures, captured FAILING in
-  `.skill-engineer/red/red.log` (**RED PHASE 8**, 61/71) before the validator's v0.3.0
-  blocks: SCOPE (C48 attack_scope ∉ in_scope → REJECT; C49 empty attack_scope → REJECT; C50
-  ∈ in_scope → ACCEPT; C51 out_of_scope[] item accepted, not counted; C65 missing in_scope →
-  REJECT); IDEA (C52 valid idea record → ACCEPT; C53 missing not_strawman → REJECT; C54
-  missing replayed_ok → REJECT; C55 product oracle on an idea → REJECT; C56 missing
-  derived_independently → REJECT; C59 idea WITHOUT withheld/seam → still ACCEPT; C60 vague
-  "I disagree" → REJECT; C66 idea end-to-end via CLI → ACCEPT); MODE (C61 missing target.type
-  → REJECT); CONTEXT (C62 non-string context_digest → REJECT; C63 absent → OK; C64 valid
-  string → OK); REGRESSION GUARD (C57/C58 product mode still requires real_collaborator_at_seam
-  / withheld⊇{impl,tdd}). Existing fixtures (planted_bug / clean_control / records_no_rollup /
-  summary_key_collision_valid / record_with_type_summary) updated with `target.type:"product"`,
-  `attack_scope`, and summary `in_scope`/`out_of_scope` — fixtures updated, checks NOT weakened.
-  Suite 53/53 → **72/72**, exit 0; non-vacuity self-test stays green; SKILL.md folded
-  description **1019 ≤ 1024** (adds an idea/debate trigger + the scope flags).
-
-## [0.2.1] — 2026-06-22
-
-An independent battery found a **P0**: the v0.2.0 round-verdict gate's exemption was
-controlled by a **forgeable IN-BAND field**, so a caller could smuggle a false `clean`
-verdict past the gate while a confirmed critical break existed. v0.2.1 moves the
-exemption signal **out-of-band**, red-first (suite 48/48 → **53/53**, exit 0).
-
-### Fixed
-- **Round-verdict exemption moved OUT-OF-BAND; the in-band `__synthesized` field is no
-  longer trusted (closes a forgeable `clean`-verdict bypass).** `validateRoundVerdict`
-  skipped the v0.2.0 round-verdict consistency checks (and the new-required-field checks)
-  when `summary.__synthesized === true`. That field was *meant* to mark the CLI's OWN
-  synthesized records-only fallback summary (legitimately exempt, like `by_severity`
-  reconciliation). But `__synthesized` was a **plain user-controllable field in the
-  document** — there was no separation between "the CLI synthesized this stub" and "the
-  user typed this field." So a forged `__synthesized:true` on a **user-supplied** summary
-  smuggled a false `clean` (or a summary missing the v0.2.0 required fields) past the gate
-  — **green-but-wrong on the documented `.json`/`.jsonl` path**. On a `.jsonl` with a
-  confirmed **critical** break + a forged synthesized-clean roll-up line, the validator
-  returned `ok:true` / `confirmed_record_count:1` → the loop reads `clean` and **silently
-  abandons a proven critical defect**. The fix makes the exemption a property of **who
-  called `validate`, never a field in the data**:
-  - **`validate(doc, opts = {})`** with `opts.summarySynthesized` (default `false`). The
-    round-verdict checks are exempt **only** when `opts.summarySynthesized === true` — never
-    based on anything inside `doc`. (`validate()` stays **imported**, not inlined; existing
-    1-arg callers keep working.)
-  - The validator **no longer reads `summary.__synthesized`** at all; an in-band
-    `__synthesized` has **zero effect** on whether the checks run.
-  - **CLI ingestion:** sets `summarySynthesized = true` **only** when the CLI itself
-    synthesizes a fallback summary because the input supplied **no** summary line, and calls
-    `validate(doc, { summarySynthesized })`. On every path where a summary is **present** in
-    the input (a `.json` whole-doc, or a `.jsonl` summary line) `summarySynthesized` stays
-    `false`, so the round-verdict + required-field checks **always** run. The synthesized
-    stub no longer writes an `__synthesized` field.
-  - **Net invariant:** a user-supplied summary is **always** fully gated (round-verdict
-    consistency + required v0.2.0 fields); **only** the CLI's internally-synthesized
-    records-only fallback is exempt, and that exemption can **no longer be forged** from
-    input. Record validation continues to run in **all** cases.
-
-### Testing
-- New **red-first** eval cases **C43–C47** + fixtures: (C43) `.json` forging
-  `__synthesized:true` + `clean` verdict + a confirmed record → REJECT; (C44) `.json` forge
-  + summary missing the v0.2.0 required fields → REJECT; (C45) `.jsonl` confirmed **critical**
-  break + a forged synthesized-clean roll-up line → REJECT **and** `confirmed_record_count`
-  stays 1 (the critical defect is not abandoned); (C46) a legitimate records-only `.jsonl`
-  with **no** summary line → still ACCEPT (the real synthesized-fallback path, now via the
-  out-of-band flag); (C47) a real `.jsonl` summary line **without** the forge but with a bad
-  verdict → still REJECT. C43–C45 were captured **FAILING** in `.skill-engineer/red/red.log`
-  (**RED PHASE 7**, 50/53) before the fix; C46/C47 guarded the exempt and always-gated paths.
-  Harness: 48/48 → **53/53**, exit 0; the non-vacuity self-test stays green; the release gate
-  still PASSes (industrial); importing any module triggers no CLI; SKILL.md description
-  unchanged (1015 ≤ 1024). (`__synthesized` was never user-documented, so no SKILL.md change.)
-
-## [0.2.0] — 2026-06-22
-
-Loop-integration refinement: attacker becomes the loop's machine-readable
-**STOP-CONDITION** and the attack effort is made **HARD-BOUNDED** with an inheritable
-attack ledger. Built RED-FIRST (suite 37/37 → **48/48**, exit 0); the 7 new validator
-invariants were captured FAILING in `.skill-engineer/red/red.log` (**RED PHASE 6**,
-38/48) before implementation.
+**Ground-up rewrite, re-derived from the skill-design philosophy KB.** Supersedes the 0.4.x
+lineage entirely. The old attacker (0.4.1) was a heavy rig grown around product/miniprogram
+debugging — `rules/`, `agents/`, several `.mjs` validators, per-target scaffolding. This
+version keeps the same core discipline (fresh independent context, PROVE-OR-FLAG, never fix)
+but rebuilds it as a light, model-agnostic component whose power comes from *what the fresh
+mind is handed*, not from apparatus. Total weight ~1/4 of 0.4.1.
 
 ### Added
-- **Round verdict — the loop's STOP-CONDITION.** A loop runs `A→B→C→attack`; each attack
-  round now emits a machine-readable **`round_verdict`** (`broke` | `clean` | `inconclusive`)
-  + **`stop_reason`** (`plan_complete` | `budget_exhausted`) on the summary roll-up the loop
-  branches on: **`clean` ⇒ STOP** (done/converged), **`broke` ⇒ fix-round then re-attack**,
-  **`inconclusive` ⇒ loop-owner-decides** (a budget cap hit with nothing found — a qualified
-  stop, NOT proven correct). Honest caveat documented: `clean` ≠ proven correct; it is "no
-  proven break within budget B."
-- **Dual hard budget (attempts + token-consumption).** The round is hard-bounded by
-  `--budget N` (attempts, `budget_n`/`attempts_used`) **plus** `--max-tokens T` (per-round
-  token consumption, `max_tokens`/`tokens_used`) — **NOT wall-clock time** — stopping at
-  whichever cap hits first, in **exhaust-budget mode** (one round reports ALL proven breaks
-  for a batch fix, never stop-on-first).
-- **Carry-forward attack ledger (`carried_from_round`).** A round>1 INHERITS its own prior
-  attack ledger (surface map + attack tree + attempted-breaks + confirmed/fixed records by
-  `regression_key`) and re-derives only NEW surface — it does NOT re-plan from scratch (token
-  waste). `carried_from_round` declares which strictly-prior round it built on (null only at
-  round 1). What is NEVER inherited: impl source / TDD suite / author framing (independence
-  preserved exactly as round 1).
+- **Five-lens fixed rotation** (`lenses/`), each mapped to a philosophy pillar and covering an
+  orthogonal failure class: Coherence (P0), Gaming (A31/T12), Evidence ⚡ (P4/P5, carries web
+  search), Reality (P6), Foundation (axioms/A41). A sixth lens is forbidden unless it cannot
+  fold into these five (A41 reflexive anti-bloat). Plus an optional synthesis pass (R+1) that
+  hunts cross-lens interaction defects.
+- **SEED gate (anti-false-negative)** (`references/seed-recipes.md`): plant a known seed defect
+  each round; a run that misses its seed is `void` and excluded from the stop condition — so a
+  blind attacker producing zero findings is not misread as "target clean." Complements
+  PROVE-OR-FLAG, which only filters false positives.
+- **Model-agnostic as design constraint zero.** Portable Markdown wording (no XML-semantic
+  tags), six-vendor-intersection output schema (`schemas/output.json`), 128K-safe window
+  assumption, rubric/checklist-shaped prompts. Different-vendor attacker promoted to a
+  first-class independence path (`instance` → `model` tier by construction).
+- **Deterministic shadow-map extractor** (`scripts/extract_shadow_map.py`, Python stdlib):
+  when the target is a philosophy-grounded KB, greps its lint-enforced shadow-principle /
+  falsifiable-question fields into a pre-drawn attack map. Non-LLM on purpose — an LLM
+  extractor would re-open the map-tampering surface. Emits `needs_human` (non-zero exit) when
+  the map has holes; never silently drops.
+- **Map-is-a-floor rule**: ≥30% of each lens's budget must attack off-map, and "the
+  shadow-principle is itself boilerplate that dodges the real risk" is its own finding class.
+- **PROVE-OR-FLAG rubric with ≥12 inline golden samples** (`references/prove-or-flag.md`),
+  including the hard cases (thought-experiment-with-no-rerun → FLAG; re-reporting a governed
+  tension → not-a-finding; severity inflation → downgrade). Judge topology closes model-level
+  self-preference: final adjudication by a **different-vendor** judge, not just non-author.
+- **Pre-registered E9 stopping** (budget / marginal threshold), never "N clean rounds" — the
+  battery is asymptotic. Output `coverage_gaps` carries an honest `battery_grade` and confesses
+  what was NOT covered.
 
-### Schema
-- Extended the `summary` roll-up (`schemas/attack-record.schema.json`): added `round_verdict`,
-  `stop_reason`, `max_tokens` (int ≥ 1), `tokens_used` (int ≥ 0), and `carried_from_round`
-  (`integer | null`) — all added to `summary.required` (the per-record schema is unchanged;
-  `additionalProperties` stays `true`).
+### Removed (vs 0.4.1)
+- `rules/loop-and-metrics.md`, `agents/openai.yaml`, `assets/` payload libraries, the three
+  `.mjs` validators/gates, and per-target `oracle-menu` / `context-intake` references. The
+  lenses ARE the apparatus now.
 
-### Validator (7 new consistency invariants — STRUCTURE/consistency, the validator's job)
-Added to `scripts/validate_attack_records.mjs` (all prior checks intact; `validate()` stays
-IMPORTED, not inlined). On a **user-supplied** summary (the `.jsonl` synthesized fallback is
-EXEMPT, exactly as `by_severity` reconciliation is):
-  1. `round_verdict === "broke"` ⟺ ≥1 confirmed/proven record (both directions: broke with
-     empty records → reject; clean/inconclusive with a confirmed record → reject).
-  2. `clean` ⟹ no confirmed records AND `stop_reason === "plan_complete"`.
-  3. `inconclusive` ⟹ no confirmed records AND `stop_reason === "budget_exhausted"`.
-  4. `tokens_used <= max_tokens` (the dual of `attempts_used <= budget_n`).
-  5. `stop_reason === "budget_exhausted"` ⟹ a cap actually reached (`attempts_used >= budget_n`
-     OR `tokens_used >= max_tokens`).
-  6. `stop_reason === "plan_complete"` ⟹ caps not exceeded.
-  7. `carried_from_round`: null at round 1; an integer `1 <= carried_from_round < round` at
-     round > 1 (the carry-forward discipline — a later round can't cold-restart).
-The new summary fields are required (and enum-checked) on a user-supplied summary.
+### Known limitation (recorded, not hidden)
+- Every round that shaped 0.5.0 was `instance`-tier (one model family attacking its own KB).
+  Model-level blind spots are systematically invisible to same-family attack (T11). The
+  pre-registered acceptance test — one run with a different-vendor attacker against a real
+  target — has **not** been executed yet. Proven to *find things*; not yet proven
+  *model-portable in the field*.
 
-### Testing
-- New red-first eval cases **C34–C42** + updated fixtures (planted_bug / clean_control /
-  summary_key_collision_valid carry sane v0.2.0 fields; the synthesized `.jsonl` fallback is
-  tagged `__synthesized` and exempt so records-only `.jsonl` keeps validating). Covers:
-  broke⟺records (both directions), clean-requires-plan_complete, inconclusive-requires-
-  budget_exhausted, tokens_used>max_tokens, budget_exhausted-with-both-caps-under,
-  carried_from_round null-at-round1 / required-&-strictly-prior at round>1, a missing
-  required field, and a valid v0.2.0 happy-path doc. Harness: 37/37 → **48/48**, exit 0;
-  the non-vacuity self-test stays green; importing any module triggers no CLI.
+---
 
-### Docs
-- `SKILL.md` (Preflight budget knobs + carry-forward + a new "Round verdict" section, thin
-  orchestrator kept, description ≤ 1024), `rules/loop-and-metrics.md` (the A→B→C→attack
-  stop-condition pattern as `feedback_signal.check`, exhaust-budget mode, the carry-forward
-  ledger inherited-vs-never-inherited list, the dual budget + the `clean ≠ proven correct`
-  caveat), `references/attack-process.md` (DESIGN reuses the inherited ledger; EXECUTE stops
-  on the dual budget; RECORD emits the verdict fields), bilingual `README.md` / `README.en.md`
-  (loop diagram shows clean→STOP, dual budget, carry-forward).
-
-## [0.1.4] — 2026-06-22
-
-A **decisive independent battery** found a P0 release-gate bypass: the gate's recursion
-guard was forgeable by an ambient environment variable, letting any caller fake an
-"industrial" verdict without a green harness. v0.1.4 makes the release gate
-**un-bypassable**, red-first (suite 36/36 → **37/37**).
-
-### Fixed
-- **Release gate made UN-BYPASSABLE — removed the forgeable env skip; the harness tests
-  the gate logic in-process (A20, P0).** `scripts/check_release_gate.mjs` previously skipped
-  its internal harness run when `process.env.ATTACKER_SKIP_RELEASE_HARNESS === "1"` (a recursion
-  guard added in v0.1.3 so the harness could drive the gate's flag/battery logic). But that env
-  was a **static, forgeable string**: any caller could `export ATTACKER_SKIP_RELEASE_HARNESS=1`
-  and then `node scripts/check_release_gate.mjs --battery <hardened-ledger>` would print
-  `RELEASE GATE: PASS (industrial)` exit 0 **even when `node evals/run_all.mjs` was genuinely RED**.
-  A release verdict must not be forgeable by ambient environment. The fix **eliminates the bypass
-  surface** rather than obfuscating it:
-  - The gate's decision logic is now a **pure exported function** `evaluateReleaseGate({ harnessGreen,
-    nonVacuity, batteryLedgerPath })` that **never spawns** — it takes the harness result as input
-    and returns `{ ok, checks }`. A separate `runHarness()` actually spawns `node evals/run_all.mjs`.
-    The CLI **always** calls `runHarness()` then `evaluateReleaseGate(...)`; **there is no env that
-    can skip the real harness run.** The `ATTACKER_SKIP_RELEASE_HARNESS` check is **deleted**.
-  - The recursion is broken **structurally**: `evals/run_all.mjs` no longer spawns
-    `check_release_gate.mjs` at all. The old C30 release-gate sub-step + C31 + the new
-    **C33_release_gate_unforgeable** import and call the pure `evaluateReleaseGate(...)` (and the
-    extracted pure `parseBatteryArg(...)`) **in-process** with a stubbed/known harness result — no
-    subprocess, so no `harness → gate → harness` recursion, and no forgeable env.
-  - **Red-first:** C33 was written and captured FAILING before the fix (RED PHASE 5). With
-    `ATTACKER_SKIP_RELEASE_HARNESS=1` set and a genuinely RED harness, the v0.1.3 gate forged a green
-    harness sub-check and printed `RELEASE GATE: PASS (industrial)` exit 0. Post-fix the env is
-    **inert**: the same command with the env set + a RED harness prints `RELEASE GATE: FAIL` exit 1;
-    with a GREEN harness it PASSes industrial exit 0.
-- All prior v0.1.3 behavior preserved: `--battery` with an omitted/flag-like value → `ERR` exit 2
-  (never a silent industrial); missing/malformed ledger → FAIL; `--battery <valid hardened ledger>`
-  (no env) → `RELEASE GATE: PASS (industrial)` exit 0; `check_battery_clean.mjs` still discriminates
-  hardened vs copy-paste ledgers; `validate()` still imported (not inlined) by the harness.
-
-## [0.1.3] — 2026-06-22
-
-A round-3 independent **3-lens** adversarial battery found that the v0.1.2 fix still
-left the roll-up-drop class open (a no-id record-shaped object was reclassified as the
-roll-up and dropped), plus impossible k/n replay math and unhardened auxiliary scripts.
-v0.1.3 closes the **whole** class and hardens every script, red-first (suite 26/26 → **36/36**).
-
-### Fixed
-- **Closed the roll-up-misclassification class DEFINITIVELY via POSITIVE roll-up detection
-  (A17, P0, CRITICAL).** The invariant is now *a record can NEVER be silently dropped.* A `.jsonl`
-  line is the roll-up summary ONLY when it carries (a) at least one roll-up key
-  (`by_severity`/`budget_n`/`asr_at_n`/`unique_finding_count`) **OR** an explicit `type:"summary"`
-  marker, **AND** (b) **none** of the record-only fields (`status`, `proven`, `repro`, `oracle`,
-  `regression_key`, `attack_class`, `observed`, `expected`, `invariant`, `independence_attestation`).
-  The `id` is no longer the discriminator (the previous id-first rule still mis-bucketed a no-id
-  record-shaped object) — the presence of ANY record-only field makes a line a RECORD. The roll-up
-  is parsed **exactly once**: more than one roll-up line is REJECTED. Every non-roll-up line is a
-  RECORD that reaches the gate. This kills three remaining triggers of the same class:
-  - **G1a (critical):** a record-shaped object with record-only fields, no/empty `id`, `type:"summary"`
-    and a valid-looking summary payload was reclassified as the roll-up and dropped
-    (`ok:true`/`confirmed_record_count:0` green false-negative). Now → record → REJECTED. (eval C23)
-  - **G1b (major):** a JSONL line with duplicate `id` keys resolving to `""` (JSON.parse keeps the
-    last) was dropped despite a serialized real id. Now → record → rejected for missing id. (eval C24)
-  - **G1c (major):** two roll-up lines — the first was used and BOTH were filtered out, so a second
-    conflicting roll-up vanished silently. Now → REJECT (graceful `ERR` + exit 2). (eval C25)
-  - Plus a regression guard for the neither-bucket case (roll-up keys + a record-only field, no id →
-    malformed record → gate). (eval C26)
-- **k/n flaky-replay arithmetic + histogram key contract (A18, P0).**
-  - **G2a:** `repro.replays_passed > repro.replays_total` (impossible >100%) was accepted → now
-    REJECTED. (eval C27)
-  - **G2b:** a negative / `NaN` / non-positive-integer `repro.replays_total` bypassed the whole k/n
-    block (the old `replays_total > 0` guard skipped it) and passed as a clean deterministic finding →
-    the block now triggers whenever `replays_total`/`replays_passed` is present and REJECTS a malformed
-    denominator. (eval C28)
-  - **G2c:** `summary.by_severity` with a key outside `{critical,major,minor}` (e.g. `blocker`) was
-    accepted → now REJECTED (the validator authors the histogram contract). (eval C29)
-- **Hardened the two auxiliary scripts to the validator's bar (A19, P0).**
-  - **G3a:** `check_battery_clean.mjs` raw-stack-traced on missing/malformed/empty/directory input →
-    now wrapped in try/catch: clean `ERR <msg>` to stderr + `process.exit(2)`, no stack trace. (eval C30)
-  - **G3b:** `check_release_gate.mjs --battery` with the value omitted (flag last, or followed by
-    another `--flag`) silently SKIPPED the hardened battery check and printed
-    `RELEASE GATE: PASS (industrial)` exit 0 → now an `ERR` + nonzero exit, never a silent green
-    industrial. (eval C31)
-  - **G3c:** `check_battery_clean.mjs --need < 1` or non-numeric declared HARDENED on 0/NaN clean
-    rounds → now an `ERR` + exit 2. (eval C32)
-
-### Testing
-- New fixtures + red-first eval cases **C23–C32** (CLI subprocess cases for the ingestion/aux-script
-  edges), captured FAILING in `.skill-engineer/red/red.log` (**RED PHASE 4**, 27/36) before the fix;
-  the 10 new `adversarial_checklist` edges are bound (now **32**) and all pass. Harness: 26/26 →
-  **36/36**, exit 0. The harness gained generalized CLI-step support (drive any of the three scripts
-  with explicit args) plus a recursion guard (`ATTACKER_SKIP_RELEASE_HARNESS`) so it can drive
-  `check_release_gate`'s flag/battery logic without the gate re-running the harness recursively — a
-  direct user `--battery <valid-ledger>` run still spawns and requires the green harness. Prior 24
-  cases unchanged; `validate()` stays IMPORTED (not inlined); importing any module triggers no CLI;
-  the aux scripts still discriminate hardened (exit 0) vs copy-paste (exit 1).
-
-## [0.1.2] — 2026-06-22
-
-A round-2 independent adversarial battery found that the v0.1.1 fix (FIX-1's
-structural roll-up detection) reintroduced the same record-drop bug class through
-new triggers. v0.1.2 closes the WHOLE class, red-first (suite 23/23 → **26/26**).
-
-### Fixed
-- **Hardened roll-up-line detection to close the record-drop class (A16, P0).** A
-  `.jsonl` line is now the roll-up summary ONLY when it is unmistakably one — an explicit
-  `{"type":"summary",…}` marker **AND** no non-empty `id`. The `id` check comes FIRST, so a
-  record with an `id` is NEVER the roll-up. The fragile "no-id + has-doc-keys ⇒ roll-up"
-  heuristic is gone, and any non-roll-up line is treated as a RECORD that reaches the gate
-  (a malformed/no-id record is rejected there, never silently reclassified and dropped).
-  This kills three round-2 triggers of the same class:
-  - **new_bug[1]:** an empty/missing-`id` confirmed record carrying a `by_severity` field
-    (no `type:"summary"`) was reclassified as the roll-up and silently dropped
-    (`ok:true`, `confirmed_record_count:0` — green false-negative). It is now a record →
-    reaches the gate → REJECTED for missing `id`. (eval C20)
-  - **new_bug[2]:** a real record WITH an `id` that also carried `type:"summary"` was lost
-    by a `type==="summary"` short-circuit ahead of the `id` check. The `id` check now wins
-    first → kept and validated as a record. (eval C21)
-- **Records-only `.jsonl` (no roll-up line) now validates (new_bug[3]).** When no roll-up
-  line is supplied, the CLI synthesizes the fallback summary FROM the records via a shared
-  `computeRollup()` (consistent by construction), so `by_severity` reconciliation only ever
-  fires against a **user-supplied** summary, never a synthesized one. (Previously the
-  all-zero synthetic histogram failed the v0.1.1 reconciliation once any confirmed record
-  existed.) (eval C22)
-
-### Testing
-- New fixtures + red-first eval cases C20/C21/C22 (CLI subprocess cases), captured FAILING
-  in `.skill-engineer/red/red.log` (RED PHASE 3) before the fix; 3 new `adversarial_checklist`
-  edges bound (now 22). Harness: 23/23 → **26/26**, exit 0. Prior 23 cases unchanged;
-  `validate()` stays IMPORTED (not inlined) by the harness and shares `computeRollup()` as the
-  single dedup/histogram source of truth; FIX-2 graceful-error and the FIX-3 histogram-reconcile
-  behaviors preserved.
-
-## [0.1.1] — 2026-06-22
-
-Fixes for 3 defects an independent adversarial battery found that the original
-20/20 eval suite missed (fixed red-first; suite now 23/23).
-
-### Fixed
-- **BUG-1 (P0): `.jsonl` summary-key heuristic silently dropped a record.** The CLI
-  detected the roll-up summary by "any record has a `summary` field" and filtered such
-  records out of `records[]`. Because the attack-record schema allows additional
-  properties, a record may legitimately carry its own top-level `summary` field — that
-  record was then mistaken for the roll-up and dropped, so an INVALID confirmed record
-  could vanish (`ok:true`, `confirmed_record_count:0` — green-but-wrong). Now the roll-up
-  line is detected STRUCTURALLY (`isRollupSummaryLine`: an explicit `{"type":"summary",…}`
-  marker, OR an object carrying doc-level roll-up keys (`budget_n`/`by_severity`/`asr_at_n`/
-  `unique_finding_count`) AND no record `id`); every other line is a record and its own
-  `summary` field never hijacks classification or drops it. (eval C17)
-- **BUG-2 (major): malformed/missing input crashed with a raw stack trace.** CLI
-  `readFileSync` + both `JSON.parse` paths (`.json` whole-file and per-`.jsonl`-line) are
-  now wrapped in try/catch → a clean `ERR <message>` to stderr + `process.exit(2)`, never a
-  raw Node stack trace. Honors the documented "graceful error, never a stack-trace crash"
-  claim. (eval C18)
-- **A15: roll-up `by_severity` histogram is now reconciled** against the deduped confirmed
-  records (one severity per unique `regression_key`), like `unique_finding_count`: a present
-  histogram that disagrees is REJECTED (a confirmed `major` with `by_severity.major:0` no
-  longer passes green). An absent histogram stays allowed (not newly required). (eval C19)
-
-### Testing
-- New fixtures + red-first eval cases C17/C18/C19 (CLI subprocess cases for C17/C18 assert
-  ingestion + graceful-error behavior `validate()` can't reach in-process); 3 new
-  `adversarial_checklist` edges bound. Harness: 20/20 → **23/23**, exit 0. The deterministic
-  core stays IMPORTED (not inlined) by the harness.
-
-## [0.1.0] — 2026-06-22
-
-First release. Adversarial-debugging skill: in a fresh, TDD-independent subagent,
-attack a product's observable behavior and record ONLY proven, reproducible
-breakages as machine-checkable attack records.
-
-### Added
-- `schemas/attack-record.schema.json` — draft-07 contract with the PROVE-OR-FLAG
-  split (`records[]` proven vs `needs_judgment[]` unresolved) + roll-up
-  (`ASR@n`, unique-finding count, severity histogram). Enums for
-  `attack_class` / `surface_class` / `oracle` / `status` / severity.
-- `scripts/validate_attack_records.mjs` — the deterministic §5 gate; **exports
-  `validate()`** (imported, never re-implemented, by the harness). Enforces
-  structure + reproducibility shape on every confirmed record: observed≠expected,
-  non-empty repro + `minimized_input`, named oracle + non-empty invariant,
-  `non_tautology_check`, `repro.replayed_ok:true`, `real_collaborator_at_seam:true`,
-  `withheld ⊇ {implementation_source, tdd_suite}`, `regression_key` dedup, anti-vacuity,
-  and roll-up consistency (`attempts_used <= budget_n`).
-- `evals/run_all.mjs` — re-runnable harness importing `validate()`; one eval case
-  per the 16 adversarial-checklist entries + the **non-vacuity self-test**
-  (planted-bug fixture MUST be flagged; clean-control MUST yield zero findings).
-- `evals/eval-cases.json` + `evals/fixtures/{planted_bug,clean_control}.*`.
-- `scripts/check_battery_clean.mjs` — N-consecutive-clean battery ledger checker
-  (anti copy-paste unique context per round, asymptotic loop-until-dry).
-- `scripts/check_release_gate.mjs` — binds "industrial" to green run_all +
-  non-vacuity (+ hardened battery when a ledger is supplied).
-- `references/attack-process.md` (READ→DESIGN→EXECUTE→PROVE→RECORD + the
-  fresh-context independence mechanism + target-adapter contract) and
-  `references/oracle-menu.md` (ranked oracle taxonomy).
-- `assets/payload-library.json` (the §3 taxonomy as data),
-  `assets/fresh-reader-checklist.md` (required manual semantic gate, maker ≠ checker),
-  `assets/attack-record.template.md` (handoff doc template).
-- `agents/openai.yaml` (attacker + checker personas with explicit `withhold`),
-  `SKILL.md` runbook, bilingual `README.md` / `README.en.md`.
-
-### Resolved design defaults (from the research brief)
-- Independence enforced via fresh-subagent + curated context bundle + prompt-level
-  withholding contract, audited by `independence_attestation`.
-- Target-type-agnostic via a small target-adapter contract (function/CLI/HTTP/
-  live-app worked examples).
-- Judge = a fresh same-model maker–checker subagent.
-- Flaky targets: `proven` requires replays_passed/replays_total ≥ threshold
-  (default 1.0); below → `needs_judgment.below_replay_threshold`.
-- Severity = internal critical|major|minor first; CVSS optional.
-- `attack-records.jsonl` + battery ledger live in the **target project's** `.loop/`.
-
-### Deferred to v0.2 (explicitly out of scope for v0.1)
-- Full CVSS-v4.0 calculator.
-- Differential oracle against a prior version as a built-in.
-- Multi-model external-judge orchestration.
-- Runnable code target-adapters (function/CLI/HTTP/live-app) — v0.1 ships the
-  contract + worked examples only.
+_History before 0.5.0 (0.1.0 – 0.4.1) is preserved in git; that lineage was the
+product/miniprogram-debugging attacker this rewrite replaces._

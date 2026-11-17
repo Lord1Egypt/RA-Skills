@@ -1,49 +1,61 @@
-## Description: <br>
-Use this skill when an agent needs to manage VMware vSphere storage, including datastores, iSCSI targets, and vSAN health and capacity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill whenever the user needs to manage VMware storage — datastores, iSCSI targets, and vSAN clusters.
 
-## Publisher: <br>
-[zw008](https://clawhub.ai/user/zw008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zw008](https://clawhub.ai/user/zw008)
 
-## Use Case: <br>
-External developers and infrastructure operators use this skill to inspect datastores, find deployable images, manage iSCSI host targets, and check vSAN health and capacity through CLI or MCP workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can administer VMware storage and uses credentials for vCenter or ESXi targets. <br>
-Mitigation: Install only for agents that should manage VMware storage, use a least-privileged vSphere account, and protect the per-target password environment variables. <br>
-Risk: TLS verification and authentication bypass guidance can weaken production safeguards if used casually. <br>
-Mitigation: Set certificate verification to true in production and reserve --skip-auth for isolated diagnostics. <br>
-Risk: iSCSI target changes and storage rescans can affect host storage state during sensitive windows. <br>
-Mitigation: Require explicit human approval, prefer dry-run previews, and schedule changes during approved maintenance windows. <br>
-Risk: Notification or webhook configuration could expose operational storage details. <br>
-Mitigation: Review webhook destinations and payload handling before enabling notifications. <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to inspect VMware datastores, iSCSI, vSAN, and Fibre Channel storage, and to make approved storage configuration changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zw008/skills/vmware-storage) <br>
-- [Project homepage](https://github.com/zw008/VMware-Storage) <br>
-- [VMware Storage Capabilities](references/capabilities.md) <br>
-- [CLI Reference](references/cli-reference.md) <br>
-- [Setup Guide](references/setup-guide.md) <br>
-- [VMware Policy auto-remediation pattern docs](https://github.com/zw008/VMware-Policy/blob/main/docs/auto-remediation-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured CLI or MCP guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-shaped CLI or MCP output examples when describing storage results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.3 (source: server release metadata) <br>
+Risk: The skill handles per-target VMware credentials, and insecurely stored passwords could be exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep passwords in the documented .env file with owner-only permissions (chmod 600); avoid placing secrets in configuration files or agent-visible output.
+
+Risk: The doctor --skip-auth option bypasses connectivity and authentication checks.
+
+Mitigation: Run the full doctor check before relying on the configured target's authentication status; treat a skipped check as unverified.
+
+Risk: Removing an iSCSI target can make backing LUNs and datastores inaccessible.
+
+Mitigation: Inspect affected paths and blast radius, confirm the target is unused, and proceed only after explicit user approval.
+
+## Reference(s):
+
+- [VMware Storage project homepage](https://github.com/vmware-skills/VMware-Storage)
+- [Setup guide](references/setup-guide.md)
+- [CLI reference](references/cli-reference.md)
+- [Capabilities](references/capabilities.md)
+- [Agent guardrails](references/agent-guardrails.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Structured tool results and human-readable text or Markdown; CLI examples use shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the configured VMware target and account privileges.]
+
+## Skill Version(s):
+
+2.6.2 (source: server-resolved release metadata, skill installation instructions)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

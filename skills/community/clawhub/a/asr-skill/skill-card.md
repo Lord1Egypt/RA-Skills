@@ -1,45 +1,69 @@
-## Description: <br>
-A local speech-to-text skill based on Qwen3-ASR-0.6B that supports multilingual recognition and 22 Chinese dialects for OpenClaw voice interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Speech-to-text skill that uses Qwen3-ASR-0.6B to transcribe audio, with claimed support for 22 Chinese dialects and multiple languages.
 
-## Publisher: <br>
-[yszheda](https://clawhub.ai/user/yszheda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yszheda](https://clawhub.ai/user/yszheda)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to convert uploaded or webhook-delivered speech into text, including supported Chinese dialects and multilingual audio, before passing transcripts to an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes a network-facing audio service with under-scoped endpoints and weak deployment safeguards. <br>
-Mitigation: Install only in a controlled environment, bind the service to 127.0.0.1 or protect it with firewall rules, and add authentication or signed webhook validation before exposure. <br>
-Risk: Voice recordings and transcripts may contain sensitive information. <br>
-Mitigation: Avoid sending sensitive voice recordings unless local storage, transcript handling, and downstream model forwarding have been reviewed for the deployment. <br>
-Risk: Runtime dependencies may require review before deployment. <br>
-Mitigation: Review and patch dependency versions before use in a managed environment. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to convert uploaded or webhook audio messages into text for downstream agent conversations. It supports optional language or dialect selection and returns structured transcription results.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yszheda/asr-skill) <br>
-- [README](artifact/README.md) <br>
-- [Installation guide](artifact/INSTALL.md) <br>
-- [Skill metadata](artifact/skill.yml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [JSON responses containing transcription text, detected language, confidence, duration, and optional timestamps or alignment data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes audio files or base64 audio through local HTTP endpoints and returns transcript-oriented fields for agent use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release metadata) <br>
+Risk: Unauthenticated audio processing is exposed on all network interfaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only in a contained local or private environment, bind the service to 127.0.0.1 when possible, and add authentication before wider network exposure.
+
+Risk: Webhook and audio payload handling may accept unsafe inputs, including URLs or filesystem paths.
+
+Mitigation: Validate webhook signatures, reject arbitrary URLs and filesystem paths, enforce audio type and size limits, and keep temporary audio cleanup enabled.
+
+Risk: ASR inference can be resource intensive and may degrade host availability under load.
+
+Mitigation: Rate-limit requests, cap inference concurrency, and set deployment resource limits appropriate for the model's memory and CPU requirements.
+
+Risk: Unpinned dependencies and model downloads can change behavior across installations.
+
+Mitigation: Pin Node.js and Python dependencies and review model source, version, and license before deployment.
+
+Risk: The broad process stop command may terminate unrelated Node.js processes.
+
+Mitigation: Replace it with a skill-specific process manager or PID-based stop mechanism.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yszheda/skills/asr-skill)
+- [README](artifact/README.md)
+- [Installation guide](artifact/INSTALL.md)
+- [Developer guide](artifact/DEVELOPER-GUIDE.md)
+- [Skill configuration](artifact/skill.yml)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON response containing transcription text, detected language or dialect, confidence, and duration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include timestamps or alignment data when those options are enabled.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; artifact package and changelog reference 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

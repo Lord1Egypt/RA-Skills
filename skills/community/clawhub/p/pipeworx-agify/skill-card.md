@@ -1,42 +1,57 @@
-## Description: <br>
-Agify MCP — age prediction from first name (agify.io, free, no auth) <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agify MCP provides age prediction from a first name using agify.io without authentication.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to query the Pipeworx Agify MCP gateway for age predictions from first names and to inspect available JSON-RPC tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried first names are sent to the Pipeworx gateway. <br>
-Mitigation: Avoid sending sensitive or private names unless third-party gateway processing is acceptable for the use case. <br>
-Risk: The optional MCP client configuration runs mcp-remote through npx. <br>
-Mitigation: Use the curl examples for minimal exposure, or enable the remote MCP client only after trusting the npm package and remote endpoint. <br>
+## Use Case:
 
+Developers and agents use this skill to query Pipeworx's Agify MCP endpoint for first-name age-prediction data and receive JSON-RPC responses.
 
-## Reference(s): <br>
-- [Pipeworx Agify Pack](https://pipeworx.io/packs/agify) <br>
-- [Pipeworx](https://pipeworx.io) <br>
-- [Pipeworx Agify MCP Gateway](https://gateway.pipeworx.io/agify/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown instructions with bash and JSON examples; gateway responses are JSON-RPC 2.0.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for direct HTTP examples; optional MCP client configuration uses npx mcp-remote.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The MCP client configuration uses mcp-remote@latest, which can execute changing third-party code locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer a pinned, reviewed MCP bridge version.
+
+Risk: Name queries are sent to Pipeworx and may reach Agify, so sensitive or personal data could leave the local environment.
+
+Mitigation: Use only non-sensitive first-name age-prediction queries and avoid submitting confidential or identifying context.
+
+## Reference(s):
+
+- [Pipeworx Agify Pack](https://pipeworx.io/packs/agify)
+- [Pipeworx](https://pipeworx.io)
+- [Pipeworx Agify MCP endpoint](https://gateway.pipeworx.io/agify/mcp)
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-agify)
+- [Publisher profile](https://clawhub.ai/user/brucegutman)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON-RPC examples and MCP client configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses from the service are JSON-RPC 2.0 payloads; anonymous use is rate limited.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

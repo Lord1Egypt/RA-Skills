@@ -1,39 +1,54 @@
-## Description: <br>
-Calculate MACD from price data. Use when computing MACD/signal/histogram from a price series, spotting crossovers, reading momentum, or planning MACD-based entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate MACD from price data. Use when computing MACD/signal/histogram from a price series, spotting crossovers, reading momentum, or planning MACD-based entries.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users and developers use this skill to calculate MACD, signal-line, and histogram values from inline or CSV price data, then review crossover, momentum, and strategy guidance for educational trading analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill emits BUY, SELL, stop, target, and hold language that could be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as educational technical-analysis guidance only, and do not place trades based only on this skill's output. <br>
+## Use Case:
 
+External users and finance-focused agents use this skill to compute MACD, signal line, histogram, and EMA values from supplied price data. It also provides educational momentum, crossover, histogram, and strategy guidance for interpreting MACD outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/macd) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text with numeric MACD tables and explanatory trading-analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash 4+ and python3 standard library; accepts inline price series or CSV input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release evidence, SKILL.md frontmatter, script VERSION) <br>
+Risk: CSV filename handling in calculate-file can allow local code execution when filenames or paths come from untrusted sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix filename handling before using calculate-file with external or untrusted paths; use only trusted local files until then.
+
+Risk: The skill provides direct trading actions without a risk disclosure.
+
+Mitigation: Use outputs as educational technical-analysis guidance only, not financial advice; require human review before acting on trading suggestions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/macd)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text terminal output with tabular numeric values and explanatory guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash 4+ and python3 standard library; calculation commands require enough price observations for the selected slow and signal periods.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

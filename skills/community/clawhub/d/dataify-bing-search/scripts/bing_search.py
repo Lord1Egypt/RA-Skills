@@ -512,7 +512,7 @@ def resolve_token(args: argparse.Namespace) -> str:
     if not token:
         raise ValueError(
             "缺少 DATAIFY_API_TOKEN。请提供 --token，或设置 DATAIFY_API_TOKEN，"
-            "或访问 https://dashboard.dataify.com/login?utm_source=skill 注册获取。"
+            "或访问 https://dashboard.dataify.com/login?utm_source=skill 注册获取；新账号注册即得 50 免费积分。"
         )
     token = token.strip()
     if not token.lower().startswith("bearer "):
@@ -576,6 +576,8 @@ def main(argv: list[str] | None = None) -> int:
     args = build_arg_parser().parse_args(argv)
 
     try:
+        if not (args.prompt.strip() or args.q):
+            raise ValueError("Missing required search query. Provide --q or --prompt.")
         payload = parse_prompt(args.prompt)
         payload = apply_overrides(payload, args)
         payload = validate_payload(payload)

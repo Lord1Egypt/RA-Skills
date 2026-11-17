@@ -1,42 +1,50 @@
-## Description: <br>
-数字 5 的文化介绍技能（中英文版本）。当用户询问数字 5、五的文化含义、五行、五常等相关信息时激活此技能。包含陈朗的详细个人资料和 OpenClaw 项目矩阵。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides bilingual Chinese-English reference guidance about the cultural meaning of the number 5, including Chinese Five Elements and Five Constants concepts, Western associations, and Chen Lang/OpenClaw profile information.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users can use this skill to answer bilingual Chinese and English questions about the cultural meaning of the number 5, including Chinese concepts such as Five Elements and Five Constants. The same skill also supplies Chen Lang profile and OpenClaw project matrix material when users ask for those topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill combines number-5 cultural reference material with unrelated personal profile and OpenClaw project promotion. <br>
-Mitigation: Install it only when that combined scope is intended; otherwise request or use a narrower number-culture skill. <br>
-Risk: The server security verdict is suspicious because users may receive promotional or profile content when they expected only cultural meanings of the number 5. <br>
-Mitigation: Review the source skill before deployment and disclose the broader topic coverage to users. <br>
+## Use Case:
 
+External users can use this skill to answer questions about the number 5's cultural meanings in Chinese and Western contexts and to surface the included Chen Lang/OpenClaw profile content.
 
-## Reference(s): <br>
-- [ClawHub skill release: five](https://clawhub.ai/LeoCryptoFlow/five) <br>
-- [OpenClaw123 resource portal](https://Openclaw123.xyz) <br>
-- [Aixin](https://aixin.chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Bilingual Markdown text with tables and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes cultural reference content plus profile and project descriptions from the source skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may surface Chen Lang's email, profile details, project links, and OpenClaw-related promotional content alongside number-5 cultural explanations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that mixed reference and profile content is appropriate, and review generated answers before sharing them externally.
+
+## Reference(s):
+
+- [OpenClaw123](https://Openclaw123.xyz)
+- [Aixin](https://aixin.chat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text reference answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese-English cultural reference output that may include profile, contact, and project-link content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

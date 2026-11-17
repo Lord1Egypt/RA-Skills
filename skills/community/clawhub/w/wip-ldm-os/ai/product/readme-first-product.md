@@ -1,6 +1,6 @@
 # LDM OS ... Read Me First
 
-**Last updated:** 2026-04-28
+**Last updated:** 2026-07-06
 **Status:** Living document. Read this before any plan, build, or PR.
 
 ---
@@ -109,7 +109,7 @@ ldm install (bare)
 
 ---
 
-## What's Built (as of v0.4.84)
+## What's Built (as of v0.4.86)
 
 - ldm install with self-update, health check, ghost migration
 - ldm install --dry-run with summary block

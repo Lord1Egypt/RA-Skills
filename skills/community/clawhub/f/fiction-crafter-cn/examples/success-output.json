@@ -1,0 +1,9 @@
+{
+  "check_type": "project_structure",
+  "structure_status": "complete",
+  "missing": [],
+  "empty": [],
+  "invalid": [],
+  "chapter_count": 1,
+  "message": "必需文件均存在且非空；正文连续性尚未检查。"
+}

@@ -1,39 +1,54 @@
-## Description: <br>
-Defines the contract for deferred-item capture across plugins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defines the contract for deferred-item capture across plugins.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to build or validate deferred-capture wrappers, source labels, issue templates, and compliance checks for leyline-style plugin workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deferred-capture issue titles, context, branch or session metadata, labels, and artifact paths may expose sensitive information to repository collaborators or the public. <br>
-Mitigation: Redact secrets, private customer data, internal paths, and sensitive debugging details before allowing issue creation. <br>
+## Use Case:
 
+Developers and plugin maintainers use this skill to build or validate deferred-capture wrappers, source labels, and issue templates across plugins.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-deferred-capture) <br>
-- [Leyline plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with CLI examples and JSON result shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes GitHub issue fields, labels, duplicate detection, and dry-run compliance output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: Wrappers built from this contract may publish verbatim context, absolute paths, session IDs, or other sensitive metadata into GitHub issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review wrappers before use, redact secrets and sensitive metadata, preview issue bodies, and require confirmation before creating issues.
+
+Risk: Issue creation in public repositories may expose private or customer work if wrapper safeguards are missing.
+
+Mitigation: Use dry-run output for review first and avoid using wrappers on private or customer work until redaction and confirmation behavior are verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-deferred-capture)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with CLI examples and JSON output conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defines a contract; conforming wrappers may create GitHub issues or emit dry-run JSON.]
+
+## Skill Version(s):
+
+1.9.19 (source: server release metadata; artifact frontmatter says 1.9.8)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

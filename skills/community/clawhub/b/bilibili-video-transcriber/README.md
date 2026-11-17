@@ -1,246 +1,117 @@
-# 🎬 B站视频转录专家
+# 🎬 bilibili-video-transcriber
 
-**专业处理B站视频字幕问题，支持语音转文字、字幕下载、内容分析、热门评论获取**
+**B 站视频转录专家** —— AI Agent 技能：获取 B 站视频字幕、语音转文字、内容总结，并输出结构化飞书文档。
 
-[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Version](https://img.shields.io/badge/version-2.1.0-brightgreen)]()
+> v3.0.0 重大更新：查明 AI 字幕"张冠李戴"真因（缺 Wbi 签名被风控降级），新增带签名 + 三级校验的字幕获取脚本，长视频自动降级官方 AI 摘要。
 
-## ✨ 特性
+## ✨ 核心特性
 
-### 🎯 核心功能
-- **智能字幕处理**：自动按优先级获取（CC 字幕 → AI 字幕 → 音频转录 → 视频下载）
-- **语音转文字**：使用 Whisper / Vosk 模型进行高精度语音识别
-- **💬 热门评论获取**：自动提取视频评论区精华信息
-- **Cookie 安全存储**：多路径冗余存储 + immutable 写保护
-- **扫码登录**：支持 B 站扫码登录，自动管理 Cookie
-- **国内镜像支持**：自动使用国内镜像源，解决网络问题
-- **批量处理**：支持批量处理多个 B 站视频
-
-### 🆕 v2.1.0 新增
-- **热门评论获取**：自动获取按点赞排序的热门评论及回复
-- **评论输出**：Markdown/JSON 格式均包含评论区信息
-- **非关键路径**：评论获取失败不影响主流程
+- 🔐 **Wbi 签名字幕获取**：`/x/player/wbi/v2` 带完整签名，杜绝风控降级返回的随机假字幕
+- 🧩 **双路径容错**：player/wbi/v2 失败 → conclusion/get（AI 总结接口内置字幕 + 全文摘要）
+- 🛡️ **三级内容校验**：strong（标题关键词命中）/ weak（覆盖率≥70%）/ fail（拒绝并降级）
+- 📉 **智能降级链**：CC字幕 → AI字幕 → 官方AI摘要 → 评论课代表 → Whisper 转写
+- 🎙️ **低资源转写**：Whisper CLI（先查负载）+ Vosk 分块（<2GB 内存服务器）
+- 🍪 **Cookie 管理**：3 重冗余存储 + 失效检测 + 飞书扫码重登
+- 📄 **飞书文档输出**：一步创建带标题 Wiki 文档 + 知识库自动归类
 
 ## 🚀 快速开始
 
-### 安装
-
 ```bash
-# 1. 从 ClawHub 安装（推荐）
+# 安装（ClawHub）
 clawhub install bilibili-video-transcriber
 
-# 2. 或从 GitHub 克隆
-git clone https://github.com/adolescen-he/bilibili-video-transcriber.git
-cd bilibili-video-transcriber
-pip install -r requirements.txt
+# 获取字幕（核心命令）
+python3 scripts/bili_subtitle.py BV1xxx
 ```
 
-### 扫码登录（推荐）
+输出 `/tmp/bili_meta/{bvid}/result.json`，按结果分支：
 
-```bash
-# 扫码登录，自动保存 Cookie
-bilibili-transcribe --login
-```
+| 输出 | 含义 | 下一步 |
+|---|---|---|
+| `source=player/wbi/v2:*` | 字幕全量成功 | 用 body 写总结 |
+| `source=conclusion/get:summary-only` | 超长视频无全量字幕，有官方摘要 | 用摘要写总结 |
+| 两路径失败 | 无字幕 | 评论课代表 → Whisper |
 
-### 基本使用
+## 🔍 为什么需要 Wbi 签名（v3.0 核心修复）
 
-```bash
-# 处理单个视频（自动获取字幕 + 评论）
-bilibili-transcribe BV1txQGByERW
+**历史现象**：AI 字幕"张冠李戴"——拿到的字幕内容属于别的视频。
 
-# 指定 Cookie 文件
-bilibili-transcribe BV1txQGByERW --cookie ~/.bilibili_cookie.txt
+**旧诊断（错误）**：CDN 缓存 key 冲突随机返回。
 
-# 批量处理
-bilibili-transcribe --batch bv_list.txt
-```
+**真实根因（2026-08-09 实测查明）**：
+- ❌ `/x/player/v2`（无签名）：有时碰巧可用，但被风控降级时返回**随机其他视频的字幕**（HTTP 200 假成功）
+- ✅ `/x/player/wbi/v2` + Wbi 签名：稳定返回该视频真实字幕
+- 实测对照：同一视频无签名 4 次请求首句=LOL解说（错），带签名后 4 次一致且正确
 
-## 📖 详细文档
+**Wbi 签名算法**：
+1. GET `/x/web-interface/nav` → 取 `img_key` / `sub_key`
+2. 按固定 64 位乱序表重排 `(img_key + sub_key)` 取前 32 位 = `mixin_key`
+3. 参数加 `wts=时间戳` → 按 key 排序 → 过滤 `!'()*` → urlencode
+4. `w_rid = md5(query + mixin_key)`
 
-### 命令行参数
-
-```bash
-# 查看完整帮助
-bilibili-transcribe --help
-
-# 处理视频
-bilibili-transcribe <BV号> [选项]
-
-# 常用选项
---model <base|small|medium>    # 选择模型（默认: base）
---format <txt|json|markdown>   # 输出格式（默认: txt）
---output <目录>                # 输出目录（默认: ./bilibili_transcripts）
---keep-audio                   # 保留音频文件
---verbose                      # 详细输出
---debug                        # 调试模式
-```
-
-### Python API
-
-```python
-from bilibili_transcriber import BilibiliTranscriber
-
-# 初始化
-transcriber = BilibiliTranscriber()
-
-# 处理视频（自动获取字幕 + 热门评论）
-result = transcriber.process(bvid="BV1txQGByERW")
-
-if result.success:
-    print(f"✅ 处理成功: {result.video_info.title}")
-    print(f"📄 转录文件: {result.transcript_path}")
-    
-    # 评论信息
-    if result.comments:
-        for c in result.comments[:3]:
-            print(f"💬 [{c.user}] {c.message[:60]}")
-```
-
-## 💬 评论获取功能详解
-
-处理视频时自动获取**按点赞排序的热门评论**：
-
-### 特性
-- 最多获取 30 条热评
-- 每条热评可获取 3 条回复
-- 按点赞数排序（B 站 `OrderType.LIKE`）
-- 非关键路径，获取失败不影响主流程
-
-### 输出示例
-
-**Markdown 格式：**
-```markdown
-## 💬 热门评论
-
-### 👍 5 · 磊哥聊AI
-实现步骤：
-1.升级爱马仕：hermes update
-2.打开控制台：hermes dashboard
-3.打开网关：hermes gateway
-
-### 👍 2 · 章鱼柔
-这更像是一个后台管理系统，不是用户的使用界面
-```
-
-**CLI 输出：**
-```
-💬 评论: 获取 5 条热评 + 2 条回复
-热门评论（前3条）:
-  👍5 [磊哥聊AI] 实现步骤：1.升级爱马仕：hermes update 2.打开控制台...
-  👍2 [章鱼柔] 这更像是一个后台管理系统
-```
-
-## 🔧 Cookie 安全机制
+## 📦 目录结构
 
 ```
-存储路径（3重冗余）:
-  1. 技能目录: .bilibili_cookie ← immutable 保护
-  2. 用户目录: ~/.bilibili_cookie_storage
-  3. 配置目录: ~/.config/bilibili_transcriber/cookie
-
-运行引用: ~/.bilibili_cookie.txt（600权限）
-
-失效时: → 自动检测 → 生成二维码 → 通过飞书发送 → 用户扫码 → 自动保存
+├── SKILL.md                    # 技能主文档（Agent 执行手册）
+├── scripts/
+│   └── bili_subtitle.py        # ⭐ v3.0 核心：Wbi签名+双路径+三级校验
+├── references/
+│   ├── series-discovery.md     # 系列视频发现方法
+│   └── feishu-wiki-api.md      # 飞书 Wiki API 细节
+├── bilibili_transcriber.py     # 旧版模块（不推荐直接用，见 SKILL.md 故障表）
+├── cookie_manager.py           # Cookie 冗余存储/扫码登录
+├── cli.py                      # bilibili-transcribe CLI
+├── examples/                   # 使用示例
+└── package.json                # 版本与 changelog
 ```
 
-## 📊 智能处理优先级
+## 📉 降级流程
 
 ```
-【步骤 1】获取 CC 字幕（1-3 秒）✅ 有字幕直接完成
-    ↓ 失败
-【步骤 2】获取 AI 字幕（1-3 秒）✅ 有 AI 字幕直接完成
-    ↓ 失败
-【步骤 3】下载音频并转录（30-120 秒）✅ 无需下载视频
-    ↓ 失败
-【步骤 4】下载视频并提取音频（60-300 秒）✅ 最后选择
-
-额外：获取热门评论（1-3 秒）💬 自动进行，不影响主流程
+优先级1: UP主CC字幕（lan 无 ai- 前缀）
+优先级2: B站AI字幕（带签名获取 + 校验）
+优先级3: conclusion/get 官方AI摘要（超长视频兜底）
+优先级4: 评论区课代表总结（长度>200字 且 点赞>=3）
+优先级5: Whisper 转写（需用户同意下载视频；先 uptime 查负载）
 ```
 
-## ⚙️ 配置
+## ⚠️ 已知限制
 
-配置文件位置：`~/.config/bilibili_transcriber/config.yaml`
+- **超长视频**（>1小时）：B 站 AI 字幕常只生成前几十秒（平台固有限制），此时用 conclusion/get 的官方摘要写摘要级文档，或 Whisper 全量转写
+- **bilibili-api pip 包**：pyyaml build 常失败且 9.x 接口不兼容，本技能全程 raw requests，不依赖它
+- **yt-dlp**：`--cookies` 不兼容单行 cookie 格式，用 playurl + curl 直链下载
 
-```yaml
-# Cookie 配置
-cookie:
-  auto_refresh: true
-  refresh_interval: 86400  # 24 小时
-  redundant_storage: true   # 启用冗余存储
+## 📄 飞书文档输出
 
-# 模型配置
-model:
-  engine: "whisper"    # whisper / vosk
-  device: null         # 自动选择
+技能内置飞书工作流（lark-cli）：
+- `docs +create --title --wiki-space --markdown -`（pipe 传内容，避免文件名 bug）
+- `docs +update --mode overwrite`（全文覆盖更新）
+- Wiki 空间成员 API 授权（`member_type: "openid"` 全小写）
 
-# 评论配置（v2.1.0 新增）
-comment:
-  enabled: true          # 是否获取评论
-  max_count: 30          # 最多获取多少条热评
-  max_replies: 3         # 每条热评最多获取多少条回复
-```
+## 📝 Changelog
 
-## 📊 输出格式
+### v3.0.0 (2026-08-09)
+- 🔥 查明 AI 字幕张冠李戴真因 = 缺 Wbi 签名被风控降级（推翻 CDN 缓存旧结论）
+- 🔐 新增 `scripts/bili_subtitle.py`（Wbi签名 + 双路径 + 三级校验）
+- 🧩 超长视频自动降级官方 AI 摘要
+- 📖 SKILL.md 全面重写
 
-### Markdown 格式（推荐）
-包含评论区信息、视频信息、全部转录内容。
+### v2.4.0
+- 删除视频转录冗余步骤，优化超 30 分钟用户确认逻辑；faster-whisper 按需安装
 
-### JSON 格式
-包含 `video_info`、`transcript`、`comments` 数组、`metadata`。
+### v2.1.0
+- 💬 热门评论获取（按点赞排序 + 回复）
 
-### 文本格式
-纯时间戳 + 文本，适合进一步处理。
+### v2.0.0
+- 🚀 智能优先级处理（CC→AI→音频→下载），性能提升 96%
+- 🧠 系统资源检测 + Vosk 离线引擎 + 扫码登录
 
-## 🔍 故障排除
+## 🔗 链接
 
-### Cookie 相关问题
-```bash
-# 检查 Cookie 状态
-bilibili-transcribe --check-cookie
+- GitHub: https://github.com/adolescen-he/bilibili-video-transcriber
+- ClawHub: `clawhub install bilibili-video-transcriber`
+- Issues: https://github.com/adolescen-he/bilibili-video-transcriber/issues
 
-# 扫码登录
-bilibili-transcribe --login
-```
+## 📞 License
 
-### 评论获取失败
-评论获取是非关键步骤，不影响字幕处理。常见原因：
-- 视频评论被关闭
-- 网络问题
-- API 限流
-
-## 🏗️ 项目结构
-
-```
-bilibili-video-transcriber/
-├── bilibili_transcriber.py    # 核心处理模块（字幕 + 评论）
-├── cookie_manager.py          # Cookie 安全存储管理
-├── cli.py                     # 命令行接口
-├── config.yaml                # 配置文件
-├── setup.py                   # 安装脚本
-├── requirements.txt           # 依赖列表
-├── README.md                  # 说明文档
-├── SKILL.md                   # 技能文档
-├── package.json               # 包配置
-└── examples/                  # 示例文件
-```
-
-## 📄 许可证
-
-MIT License
-
-## 🙏 致谢
-
-- [bilibili-api](https://github.com/Nemo2011/bilibili-api) - B 站 API 封装
-- [faster-whisper](https://github.com/guillaumekln/faster-whisper) - 快速 Whisper 实现
-- [Vosk](https://github.com/alphacep/vosk-api) - 离线语音识别
-- [OpenAI Whisper](https://github.com/openai/whisper) - 语音识别模型
-
-## 📞 支持
-
-- **GitHub Issues**: https://github.com/adolescen-he/bilibili-video-transcriber/issues
-- **ClawHub**: https://clawhub.ai/skills/bilibili-video-transcriber
-
----
-
-**基于实际经验开发，专门解决 B 站字幕系统各种问题，稳定可靠！** 🎬💬
+MIT

@@ -1,40 +1,50 @@
-## Description: <br>
-Structured decision system for crypto traders covering position sizing, entry checks, exit planning, and halt decisions to support disciplined risk management on every trade. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured decision system for crypto traders covering position sizing, entry checks, exit planning, and strategy halt decisions.
 
-## Publisher: <br>
-[pingukim225](https://clawhub.ai/user/pingukim225) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pingukim225](https://clawhub.ai/user/pingukim225)
 
-## Use Case: <br>
-External crypto traders and agent operators use this skill to structure trading recommendations, size positions, verify entry criteria, define exits, and decide when a strategy should be paused or halted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence financial decisions even though it is text-only. <br>
-Mitigation: Treat outputs as informational risk-management guidance, verify market data independently, and keep live-trading decisions under human control. <br>
-Risk: Trading prompts may include sensitive portfolio or account details. <br>
-Mitigation: Avoid sharing sensitive portfolio or account information with additional model providers unless the data flow is understood and approved. <br>
+## Use Case:
 
+External users and crypto traders use this skill to structure trade recommendations, size positions, check entries, plan exits, and decide when to halt underperforming strategies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pingukim225/crypto-trading-decision-framework) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown trade recommendation with sizing, checklist, risk-reward, levels, confidence tags, and escalation status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational risk-management guidance only; the skill does not execute trades or request credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may mistake generated crypto trade planning for financial advice or allow it to influence live trades without adequate review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as high-risk informational trading analysis and require independent review, current market data, and explicit human approval before any live trade.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pingukim225/skills/crypto-trading-decision-framework)
+- [Publisher profile](https://clawhub.ai/user/pingukim225)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown trade recommendation with sizing, checklist, levels, confidence tags, and escalation status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational trading analysis only; recommendations require independent review, current market data, and explicit human approval before live trading.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

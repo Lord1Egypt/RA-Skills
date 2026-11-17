@@ -1,42 +1,58 @@
-## Description: <br>
-AI-powered marketing copy helper for drafting emails, social media posts, ads, landing page copy, subject lines, product descriptions, and related campaign variants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Marketing Drafter helps generate marketing copy for emails, social posts, ads, landing pages, subject lines, product descriptions, and related campaign assets.
 
-## Publisher: <br>
-[Shepherd217](https://clawhub.ai/user/Shepherd217) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shepherd217](https://clawhub.ai/user/shepherd217)
 
-## Use Case: <br>
-Marketing teams, founders, content creators, and developers use this skill to generate multi-channel campaign copy, A/B test variants, SEO-oriented drafts, and brand-voice-aligned marketing text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Marketing prompts or brand guides may contain confidential customer data, launch plans, regulated data, or trade secrets that could be sent to an AI provider. <br>
-Mitigation: Use an approved provider configuration, avoid sensitive inputs unless organizational approval is in place, and store API keys in environment variables or a secrets manager. <br>
-Risk: The executable npm or PyPI package code is not included in this skill artifact. <br>
-Mitigation: Verify the package and repository before installation, and configure provider spend limits where available. <br>
+## Use Case:
 
+Marketing teams, founders, and content creators use this skill to draft multi-channel campaign copy, variants, and brand-aligned assets for emails, social media, ads, landing pages, and product messaging.
 
-## Reference(s): <br>
-- [Marketing Drafter ClawHub Page](https://clawhub.ai/Shepherd217/marketing-drafter) <br>
-- [Marketing Drafter Documentation](https://docs.midas-skills.com/marketing-drafter) <br>
-- [Marketing Drafter Repository](https://github.com/midas-skills/marketing-drafter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with generated copy, structured examples, and code or shell command blocks when setup guidance is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include multiple marketing variants, platform-specific copy fields, predicted performance scores, image descriptions, and calls to action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill asks for API keys and business campaign inputs while relying on external AI providers and package installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approved providers and pinned, provenance-checked package versions; keep secrets in environment variables; and avoid confidential customer records, regulated data, or unreleased campaign plans unless approved.
+
+Risk: Generated marketing claims, SEO copy, and predicted performance scores may be inaccurate, misleading, or off-brand.
+
+Mitigation: Review generated content for factual accuracy, legal compliance, brand voice, and substantiated claims before publication.
+
+Risk: Package installation instructions reference external packages whose implementation was not verified by the provided security evidence.
+
+Mitigation: Install only from trusted registries after dependency review, lock versions, and scan packages before use in production workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/shepherd217/skills/marketing-drafter)
+- [Marketing Drafter Docs](https://docs.midas-skills.com/marketing-drafter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with generated copy, structured variants, and occasional setup code or shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include multiple channel-specific variants, SEO keywords, tone guidance, image captions, and predicted performance scores.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

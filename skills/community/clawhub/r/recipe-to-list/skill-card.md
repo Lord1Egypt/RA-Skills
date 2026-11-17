@@ -1,43 +1,55 @@
-## Description: <br>
-Turn recipes into a Todoist Shopping list. Extract ingredients from recipe photos (Gemini Flash vision) or recipe web pages (search + fetch), then compare against the existing Shopping project with conservative synonym/overlap rules, skip pantry staples (salt/pepper), and sum quantities when units match. Also saves each cooked recipe into the workspace cookbook (recipes/). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn recipes into a Todoist Shopping list by extracting ingredients from recipe photos or web pages, comparing them against the existing Shopping project, skipping common pantry staples by default, summing matching quantities when units align, and saving cooked recipes into a workspace cookbook.
 
-## Publisher: <br>
-[Borahm](https://clawhub.ai/user/Borahm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[borahm](https://clawhub.ai/user/borahm)
 
-## Use Case: <br>
-External users and personal automation agents use this skill to extract recipe ingredients from photos or recipe pages, normalize them into shopping-list items, update a Todoist Shopping project, and optionally save a Markdown recipe record. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recipe photos or text are sent to Gemini for ingredient extraction. <br>
-Mitigation: Crop photos to the ingredient list and avoid sending private recipe content unless that external processing is acceptable. <br>
-Risk: The skill can create or update tasks in the user's Todoist Shopping project. <br>
-Mitigation: Start with --dry-run and review the proposed items before allowing Todoist changes. <br>
-Risk: The shell wrapper loads credentials from ~/.clawdbot/.env. <br>
-Mitigation: Use the wrapper only when that file contains only the Gemini and Todoist credentials needed for this skill. <br>
-Risk: The skill saves recipe records to the local workspace cookbook by default. <br>
-Mitigation: Use --no-save for private recipes or when a persistent local cookbook entry is not wanted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Borahm/recipe-to-list) <br>
+## Use Case:
+
+External users and developers use this skill to turn recipe photos or confirmed recipe web content into a flat Todoist Shopping list and a local cookbook entry. It is intended for personal grocery planning workflows that can tolerate manual review of extracted ingredients and list updates.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill loads local credentials broadly through the shell wrapper.
+
+Mitigation: Avoid the wrapper or replace its dotenv sourcing with an allowlisted parser for only GEMINI_API_KEY, GOOGLE_API_KEY, and TODOIST_API_TOKEN.
+
+Risk: Normal execution can make live Todoist and workspace changes.
+
+Mitigation: Run with --dry-run and --no-save first, and require confirmation before allowing Todoist updates.
+
+Risk: Recipe photos or extracted recipe text may be sent to Gemini.
+
+Mitigation: Install and run only when sending that recipe content to Gemini is acceptable.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands; script output is JSON and saved recipe entries are Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create or update Todoist Shopping tasks and write recipe files under recipes/ unless dry-run or no-save options are used.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.3 (source: ClawHub release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [JSON status output, Todoist task updates, markdown recipe files, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Gemini with recipe images or text, may update Todoist tasks, and may write recipe markdown files into recipes/ unless run with --dry-run or --no-save.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Qa Shift Right helps teams plan post-release quality validation through canary monitoring, production synthetic checks, A/B validation, chaos engineering, alert thresholds, and rollback criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps QA and release teams plan post-deployment validation through canary monitoring, production alerts, user feedback, and authorized chaos testing.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-Developers, QA engineers, SREs, and release teams use this skill to design production validation plans after deployment. It is most useful when planning gray releases, monitoring dashboards, user feedback loops, chaos experiments, and rollback triggers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Production validation recommendations may be mistaken for authorization to change live systems. <br>
-Mitigation: Treat the skill output as planning guidance and confirm explicit team or organizational authorization before applying changes to real systems. <br>
-Risk: Gray release, rollback, monitoring, or chaos testing plans can affect availability if applied without controls. <br>
-Mitigation: Use scoped rollout stages, predefined alert thresholds, rehearsed rollback paths, and blast-radius limits before expanding production exposure. <br>
-Risk: User feedback and behavior analysis can involve privacy-sensitive data. <br>
-Mitigation: Confirm consent, data minimization, and applicable privacy obligations before collecting or analyzing user behavior data. <br>
+## Use Case:
 
+QA engineers and release teams use this skill to plan canary checks, production monitoring, alert responses, and feedback loops after deployment. It references upstream release criteria for rollout and rollback decisions rather than setting new thresholds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokxi/skills/qa-shift-right) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kokxi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown with structured release validation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a shift-right plan, monitoring dashboard outline, feedback loop, and canary strategy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release evidence) <br>
+Risk: The optional companion-skill installation command is unpinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the package and source before running it; prefer a pinned version or trusted commit.
+
+Risk: Production chaos tests or monitoring changes could disrupt live services.
+
+Mitigation: Require organizational authorization, limit the experiment scope, and establish rollback plans before applying changes.
+
+Risk: Collecting production user feedback or behavior data may expose personal information.
+
+Mitigation: Confirm user authorization and privacy compliance before collecting or processing the data.
+
+## Reference(s):
+
+- [Right-shift validation stages](references/right-stages.md)
+- [qa-shift-right on ClawHub](https://clawhub.ai/kokxi/skills/qa-shift-right)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown validation plan and monitoring tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers canary indicators, alert thresholds and responses, optional chaos experiments, and user-feedback routing; references upstream rollback criteria.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill metadata and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

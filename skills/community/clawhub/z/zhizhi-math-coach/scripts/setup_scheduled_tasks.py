@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import json
 import shutil
 import subprocess
@@ -22,6 +23,9 @@ from learning_workspace_config import (  # noqa: E402
     load_config,
     update_config,
 )
+
+PHOTO_TASK = {"name": "Zhizhi photo archive worker", "kind": "photo_archive", "enabled": True,
+              "cron": "*/5 * * * *", "session": "isolated"}
 
 
 def run(args: list[str], cwd: Path) -> subprocess.CompletedProcess[str]:
@@ -54,6 +58,23 @@ def task_message(task: dict[str, Any], workspace: Path, config: dict[str, Any]) 
         f"Workspace path: {workspace}. "
         "Read .zhizhi-math-coach/config.json first. If Git sync is configured, pull latest learning data before reading records. "
     )
+    if task.get("kind") == "photo_archive":
+        worker = SCRIPT_DIR / "photo_jobs.py"
+        return (
+            f"Use $zhizhi-math-coach in {workspace}. Read references/photo-intake.md. "
+            "Read .zhizhi-math-coach/config.json; exit if automation.enabled or automation.allow_photo_archive is false. "
+            f"Claim at most one job: python3 {shell_quote(str(worker))} --workspace {shell_quote(str(workspace))} claim. "
+            "If job is null, exit quietly. Open ONLY this job's saved images and compact grading context. "
+            "Document every visible question, including correct, wrong, unanswered and unreadable items. "
+            "Tag each readable item with stable knowledge-point IDs, recognition confidence and assistance evidence. "
+            "If a saved photo-inputs/<job-id>.json already exists, retry finish with that exact payload first. "
+            "Otherwise create the complete diagnosis JSON following photo-intake.md and run photo_jobs.py finish "
+            "with the job id, lease token and input path. Renew the lease with heartbeat if approaching 15 minutes. "
+            "On failure call fail with the same lease and the exact error. Do not grade unreadable content by guessing. "
+            "This job authorizes local archival and evidence-based assessment of explicitly queued photos only. "
+            "Do not auto-generate worksheets or publish. If Git auto-sync is configured, use grading sync only after finish. "
+            "Return a concise summary with local record and knowledge dashboard paths; no external messages unless configured."
+        )
     if task.get("kind") == "weekly_review":
         purpose = (
             "Review this week's learning records, weak points, worksheet status, and due spaced reviews. "
@@ -86,7 +107,7 @@ def build_command(
         "cron",
         "add",
         "--name",
-        str(task["name"]),
+        str(task["name"]) + (" " + hashlib.sha256(str(workspace.resolve()).encode()).hexdigest()[:8] if task.get("kind") == "photo_archive" else ""),
         "--cron",
         str(task["cron"]),
         "--tz",
@@ -95,10 +116,6 @@ def build_command(
         str(task.get("session") or "isolated"),
         "--message",
         task_message(task, workspace, load_config(workspace) or {}),
-        "--label",
-        "zhizhi-math-coach",
-        "--label",
-        str(task.get("kind") or "math-learning"),
     ]
     if model:
         cmd.extend(["--model", model])
@@ -111,7 +128,7 @@ def print_command(cmd: list[str]) -> None:
     print(" ".join(shell_quote(part) if any(ch.isspace() for ch in part) else part for part in cmd))
 
 
-def ensure_automation_config(workspace: Path, auto_register: bool, timezone: str | None) -> dict[str, Any]:
+def ensure_automation_config(workspace: Path, auto_register: bool, timezone: str | None, photo_worker: bool = False) -> dict[str, Any]:
     config = load_config(workspace) or {}
     automation = config.get("automation", {})
     if not isinstance(automation, dict):
@@ -119,6 +136,8 @@ def ensure_automation_config(workspace: Path, auto_register: bool, timezone: str
     tasks = automation.get("tasks")
     if not isinstance(tasks, list) or not tasks:
         tasks = DEFAULT_AUTOMATION_TASKS
+    if photo_worker:
+        tasks = [task for task in tasks if task.get("kind") != "photo_archive"] + [dict(PHOTO_TASK)]
     patch = {
         "automation": {
             "enabled": True,
@@ -127,6 +146,7 @@ def ensure_automation_config(workspace: Path, auto_register: bool, timezone: str
             "timezone": timezone or automation.get("timezone") or "Asia/Shanghai",
             "allow_record_writes": bool(automation.get("allow_record_writes")),
             "allow_auto_worksheet_generation": bool(automation.get("allow_auto_worksheet_generation")),
+            "allow_photo_archive": photo_worker or bool(automation.get("allow_photo_archive")),
             "tasks": tasks,
             "registered_jobs": automation.get("registered_jobs") if isinstance(automation.get("registered_jobs"), list) else [],
         }
@@ -144,6 +164,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--print-only", action="store_true", help="Print commands without executing them.")
     parser.add_argument("--enable-config", action="store_true", help="Enable automation in .zhizhi-math-coach/config.json.")
     parser.add_argument("--auto-register", action="store_true", help="Persist auto_register_when_supported=true in config.")
+    parser.add_argument("--photo-worker", action="store_true", help="Enable local archival of queued photos via a worker every 5 minutes.")
     parser.add_argument("--force", action="store_true", help="Add jobs even if a job name already appears in openclaw cron list output.")
     return parser.parse_args()
 
@@ -156,8 +177,8 @@ def main() -> int:
         return 2
 
     config = load_config(workspace)
-    if args.enable_config or config is None:
-        config = ensure_automation_config(workspace, args.auto_register, args.timezone)
+    if args.enable_config or args.photo_worker or config is None:
+        config = ensure_automation_config(workspace, args.auto_register, args.timezone, args.photo_worker)
     if config is None:
         print("error: missing .zhizhi-math-coach/config.json; run configure_learning_workspace.py first", file=sys.stderr)
         return 2

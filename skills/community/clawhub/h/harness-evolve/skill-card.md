@@ -1,42 +1,57 @@
-## Description: <br>
-Harness Evolve helps an agent consume research logs, run system self-checks, produce architecture optimization proposals or safe maintenance changes, and write a daily evolution summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Harness Evolve helps AI agent systems consume research logs, self-check configuration and recent logs, propose or safely apply graded improvements, and write a daily evolution summary.
 
-## Publisher: <br>
-[dottythehomeless](https://clawhub.ai/user/dottythehomeless) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dottythehomeless](https://clawhub.ai/user/dottythehomeless)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to turn research backlog and recent system observations into auditable maintenance actions, review proposals, and daily status summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically change and commit project files. <br>
-Mitigation: Run it on a branch, define safe_files and config_files explicitly, and review diffs and commits before merging. <br>
-Risk: Maintenance proposals may affect runtime agent behavior if applied without review. <br>
-Mitigation: Keep runtime configuration changes proposal-only and require human approval before applying them. <br>
-Risk: A configured notify_command can run a shell notification command. <br>
-Mitigation: Leave notify_command unset unless the command and repository configuration are fully trusted. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn research findings and system self-checks into safe maintenance actions, review proposals, and daily evolution summaries for AI agent projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dottythehomeless/harness-evolve) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summaries, review proposals, file edits or commits, and optional shell notification command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May overwrite the daily evolution summary file and create git commits for safe file changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter says 1.1.0) <br>
+Risk: The skill may read recent logs or memory that contain sensitive operational context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in projects where log and memory access is approved, and redact secrets or sensitive records before use.
+
+Risk: The skill can edit project files and create commits automatically.
+
+Mitigation: Require explicit confirmation for every write, delete, and commit, and keep runtime configuration changes as proposal-only.
+
+Risk: The optional notify_command path can execute shell commands from project configuration.
+
+Mitigation: Remove notify_command or restrict it to a fixed, reviewed allowlist before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dottythehomeless/skills/harness-evolve)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, review proposals, file edits, commits, and optional shell command invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an overwriteable daily evolution summary and may append proposal or status entries to project files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

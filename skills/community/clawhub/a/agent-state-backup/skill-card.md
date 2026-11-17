@@ -1,42 +1,58 @@
-## Description: <br>
-Automatically backs up OpenClaw agent state files daily via cron into compressed archives and supports manual restore for migration or recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-backs up OpenClaw core state files daily via cron into compressed archives and supports restore in a new environment to reduce context loss after restart or migration.
 
-## Publisher: <br>
-[benxiao2026](https://clawhub.ai/user/benxiao2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[benxiao2026](https://clawhub.ai/user/benxiao2026)
 
-## Use Case: <br>
-OpenClaw users and agent operators use this skill to back up identity, personality, memory, user, and knowledge-base files and restore them during migration or recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup archives may contain sensitive identity, memory, user, and knowledge-base data. <br>
-Mitigation: Store archives in a protected location, restrict access, and treat copied backup files as sensitive data. <br>
-Risk: Restore operations can overwrite the current OpenClaw state. <br>
-Mitigation: Create or verify a current backup before restoring, and restore only from archives you trust. <br>
-Risk: Retention cleanup deletes older backup archives. <br>
-Mitigation: Review the retention command and adjust the archive count before enabling automated cleanup. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure recurring and manual backups of identity, memory, user, and knowledge files, then restore those archives during restart, migration, or recovery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/benxiao2026/agent-state-backup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and file path guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes local backup, restore, cron setup, retention, and log inspection steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to run local backup, restore, and cron setup scripts that are not included in the artifact for direct review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced shell scripts, confirm their ownership and permissions, and verify the cron entry before enabling automatic backups.
+
+Risk: Restore overwrites current OpenClaw state files.
+
+Mitigation: Create or preserve a current backup before restore and treat restore as a destructive operation.
+
+Risk: Backup archives may contain memory, user information, identity files, and knowledge files.
+
+Mitigation: Store backup archives with appropriate access controls and limit access to trusted users.
+
+## Reference(s):
+
+- [Agent State Backup skill source](artifact/SKILL.md)
+- [Agent State Backup on ClawHub](https://clawhub.ai/benxiao2026/skills/agent-state-backup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes backup and restore command paths, cron setup guidance, backup location, retention guidance, and restore warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/SKILL.md body)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

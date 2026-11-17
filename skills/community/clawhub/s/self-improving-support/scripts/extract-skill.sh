@@ -129,7 +129,7 @@ if [ "$DRY_RUN" = true ]; then
     echo "---"
     cat << TEMPLATE
 name: $SKILL_NAME
-description: "[TODO: Describe the support pattern, resolution workflow, or diagnostic skill this addresses]"
+description: "[TODO: Describe the support pattern, resolution workflow, or diagnostic skill this addresses. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers).]"
 ---
 
 # $(echo "$SKILL_NAME" | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) tolower(substr($i,2))}1')
@@ -181,7 +181,7 @@ mkdir -p "$SKILL_PATH"
 cat > "$SKILL_PATH/SKILL.md" << TEMPLATE
 ---
 name: $SKILL_NAME
-description: "[TODO: Describe the support pattern, resolution workflow, or diagnostic skill this addresses]"
+description: "[TODO: Describe the support pattern, resolution workflow, or diagnostic skill this addresses. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers).]"
 ---
 
 # $(echo "$SKILL_NAME" | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) tolower(substr($i,2))}1')

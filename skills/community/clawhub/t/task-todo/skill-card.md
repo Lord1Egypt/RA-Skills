@@ -1,41 +1,55 @@
-## Description: <br>
-Manage tasks with persistent SQLite storage, including creation, retrieval, updates, deletion, filtering by status or priority, and status tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage tasks with persistent SQLite storage, including creation, retrieval, updates, deletion, status tracking, and priority filtering.
 
-## Publisher: <br>
-[makkzone](https://clawhub.ai/user/makkzone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[makkzone](https://clawhub.ai/user/makkzone)
 
-## Use Case: <br>
-Developers and agents use this skill to maintain a local persistent TODO list with task status, priority, timestamps, and CRUD operations from Python or the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: Task titles and descriptions are stored in a local SQLite database and may persist sensitive information. <br>
-Mitigation: Do not store secrets or confidential data in task text; remove the local tasks.db file when stored task data should no longer persist. <br>
-Risk: Delete commands remove tasks from the local database. <br>
-Mitigation: Confirm task IDs before deleting important tasks. <br>
+## Use Case:
 
+Developers, agents, and workflow users can use this skill to maintain a persistent local task list with status and priority fields for personal task tracking, lightweight project tracking, and automated workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/makkzone/task-todo) <br>
-- [Publisher profile](https://clawhub.ai/user/makkzone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands] <br>
-**Output Format:** [Structured Python dictionaries and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates a local tasks.db SQLite database in the working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Task data is stored in a local tasks.db SQLite file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where local SQLite storage is acceptable, and avoid storing sensitive task titles or descriptions unless the local data handling is appropriate for the workflow.
+
+Risk: Delete commands remove task records without an extra confirmation prompt.
+
+Mitigation: Review task identifiers before deletion and document deletion behavior for users or agents that call the skill.
+
+## Reference(s):
+
+- [Task ToDo ClawHub Skill Page](https://clawhub.ai/makkzone/skills/task-todo)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands]
+
+**Output Format:** [Structured Python dictionaries from agent methods and plain text command-line output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Task records include id, title, description, status, priority, created_at, and updated_at fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

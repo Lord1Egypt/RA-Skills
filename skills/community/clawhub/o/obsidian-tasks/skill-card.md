@@ -1,44 +1,52 @@
-## Description: <br>
-Set up and manage an Obsidian task board with Kanban + Dataview, including a Tasks/Board.md pipeline, per-task notes with YAML frontmatter, and Dataview dashboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and manage Obsidian task boards with Kanban, Dataview dashboards, structured task notes, and synchronized board/frontmatter workflows.
 
-## Publisher: <br>
-[larsderidder](https://clawhub.ai/user/larsderidder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[larsderidder](https://clawhub.ai/user/larsderidder)
 
-## Use Case: <br>
-Developers and Obsidian users use this skill to initialize and maintain task-tracking files in an Obsidian vault, including Kanban board entries, task-note frontmatter, and dashboard queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local task-board setup and task management can modify files inside an Obsidian vault. <br>
-Mitigation: Use a precise vault path, keep normal Obsidian backups or sync history, and review broad task edits before relying on them. <br>
-Risk: The maintainer publish helper can publish this skill to ClawHub if run with publisher credentials. <br>
-Mitigation: Ignore the publish script during normal task-board use and run it only when intentionally publishing a release. <br>
-Risk: Board and dashboard behavior depends on the Obsidian Kanban and Dataview community plugins. <br>
-Mitigation: Install and enable those plugins in the target Obsidian vault before relying on rendered boards or dashboard queries. <br>
+## Use Case:
 
+Developers, agents, and Obsidian users use this skill to initialize and maintain a task board in an Obsidian vault, including task notes, board cards, status updates, and Dataview dashboards.
 
-## Reference(s): <br>
-- [Obsidian](https://obsidian.md) <br>
-- [Obsidian Kanban plugin](https://github.com/mgmeyers/obsidian-kanban) <br>
-- [Obsidian Dataview plugin](https://github.com/blacksmithgu/obsidian-dataview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files and concise setup or task-management instructions with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local Obsidian task-board files under a user-specified vault folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The setup script can write outside the intended Obsidian vault folder if given an absolute path or traversal value in --folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill first on a test or backed-up vault, pass a simple relative folder name such as Tasks, and avoid absolute paths or ../ in --folder.
+
+## Reference(s):
+
+- [Obsidian](https://obsidian.md)
+- [Obsidian Kanban plugin](https://github.com/mgmeyers/obsidian-kanban)
+- [Obsidian Dataview plugin](https://github.com/blacksmithgu/obsidian-dataview)
+- [ClawHub skill page](https://clawhub.ai/larsderidder/skills/obsidian-tasks)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files and concise setup guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates Obsidian board and dashboard files in a selected vault folder; requires the Kanban and Dataview community plugins.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

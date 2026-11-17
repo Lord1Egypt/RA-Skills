@@ -1,48 +1,61 @@
-## Description: <br>
-Manages local OpenClaw backups, retention cleanup, pre-change snapshots, and restore guidance for configuration and workspace files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages local OpenClaw backups by scheduling configuration backups, cleaning expired archives, and creating pre-change snapshots.
 
-## Publisher: <br>
-[reaperchen](https://clawhub.ai/user/reaperchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reaperchen](https://clawhub.ai/user/reaperchen)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to create scheduled and manual backups, preserve state before configuration changes, clean expired backup data, and restore from trusted local backup archives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups may contain sensitive OpenClaw data such as API keys, auth profiles, agent memory, identity files, skills, and extensions. <br>
-Mitigation: Protect or encrypt the backup directory, restrict filesystem permissions, and restore only from backup archives you trust. <br>
-Risk: Scheduled backup setup can modify the user's crontab and setup-cron-auto.sh installs jobs without an interactive confirmation step. <br>
-Mitigation: Prefer the interactive cron setup, review the exact cron entries before installation, and keep a copy of the prior crontab so jobs can be removed or rolled back. <br>
-Risk: Restore operations can overwrite current OpenClaw configuration and workspace files. <br>
-Mitigation: Use the restore script's confirmation flow, keep the pre-restore safety backup, and verify restored files before restarting OpenClaw. <br>
-Risk: Cleanup scripts delete expired backup directories and archives according to retention rules. <br>
-Mitigation: Review retention settings before enabling scheduled cleanup and keep critical backups outside automated cleanup paths when long-term retention is required. <br>
+## Use Case:
 
+OpenClaw users and operators use this skill to set up local daily, weekly, and monthly backups, create snapshots before changes, clean expired backups, and restore from trusted backup archives.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/reaperchen/backup-manager-pro) <br>
-- [Backup Strategies](backup-strategies.md) <br>
-- [Backup Scripts Reference](backup-scripts.md) <br>
-- [Recovery Guide](recovery-guide.md) <br>
-- [Memory Template](memory-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell command examples and Bash scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local backup and restore procedures for OpenClaw; scripts write tar.gz archives, log files, symlinks, and optional cron entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can schedule persistent cron jobs that run backups and cleanup without further prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cron setup scripts before running them, and avoid setup-cron-auto.sh unless unattended recurring backups and cleanup are intended.
+
+Risk: Backup scripts can collect sensitive OpenClaw configuration and identity data into local archives.
+
+Mitigation: Store generated archives with restricted permissions, keep them local or in trusted storage, and review backup targets before execution.
+
+Risk: Cleanup and restore workflows can delete backups or overwrite live OpenClaw files.
+
+Mitigation: Follow the documented confirmation and retention practices, restore only from trusted archives, and keep a current-state backup before restoring.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/reaperchen/skills/backup-manager-pro)
+- [Backup strategies](artifact/backup-strategies.md)
+- [Backup scripts reference](artifact/backup-scripts.md)
+- [Recovery guide](artifact/recovery-guide.md)
+- [Memory template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline bash commands and shell script references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operates locally on OpenClaw backup paths and cron configuration.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

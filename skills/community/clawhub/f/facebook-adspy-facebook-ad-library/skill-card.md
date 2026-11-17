@@ -1,44 +1,59 @@
-## Description: <br>
-Research Facebook ad creatives and Meta Ad Library results using PipiAds adspy and ad library tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research Facebook ad creatives and Meta Ad Library results using PipiAds adspy and ad library tools.
 
-## Publisher: <br>
-[fanyanggod](https://clawhub.ai/user/fanyanggod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanyanggod](https://clawhub.ai/user/fanyanggod)
 
-## Use Case: <br>
-External users and marketing researchers use this skill for one-off Facebook ad research, including finding ads, advertisers, products, creatives, landing pages, and Meta Ad Library records through PipiAds tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill globally installs and runs a third-party npm MCP server. <br>
-Mitigation: Vet the npm package before deployment and consider running it in a contained environment. <br>
-Risk: The MCP server receives access to the PipiAds API key for service calls. <br>
-Mitigation: Use a dedicated or least-privilege API key and rotate or revoke it if usage looks abnormal. <br>
-Risk: PipiAds API calls consume account credits and can affect billing. <br>
-Mitigation: Ask users to narrow platform, region, keyword, and result limits before broad searches, and monitor PipiAds credit and billing usage. <br>
+## Use Case:
 
+External users and developers use this skill for focused Facebook ad research, including keyword, advertiser, region, product, creative, and Meta Ad Library lookups through PipiAds.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/fanyanggod/facebook-adspy-facebook-ad-library) <br>
-- [PipiAds homepage](https://www.pipiads.com) <br>
-- [PipiSpy account and billing portal](https://www.pipispy.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with tool-selection recommendations and PipiAds MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npm and a PIPIADS_API_KEY; API calls consume PipiAds account credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill installs a third-party MCP server globally through npm.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after deciding that the pipiads-mcp-server package is trusted, and avoid elevated privileges during installation.
+
+Risk: The MCP server receives a PipiAds API key.
+
+Mitigation: Use a narrowly scoped, revocable API key where possible and rotate or revoke it if the environment is no longer trusted.
+
+Risk: PipiAds API calls may consume account credits.
+
+Mitigation: Use specific platform, region, advertiser, and keyword filters before broad searches, and monitor account credit usage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fanyanggod/skills/facebook-adspy-facebook-ad-library)
+- [PipiAds product website](https://www.pipiads.com)
+- [PipiAds account and API key management](https://www.pipispy.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration instructions]
+
+**Output Format:** [Markdown guidance with tool and configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a PipiAds API key and may consume account credits for search and detail requests.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

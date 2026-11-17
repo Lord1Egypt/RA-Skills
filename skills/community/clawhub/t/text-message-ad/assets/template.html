@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text-Message Ad — Template</title>
+<style>
+  :root{
+    --bg:#000; --chat-bg:#0b0b0d; --incoming:#26262a; --outgoing:#0a84ff;
+    --text:#f5f5f7; --sub:#8e8e93; --brand:#0a84ff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    display:flex;align-items:center;justify-content:center;min-height:100vh;padding:12px;
+  }
+  .stage{
+    width:min(420px, 100vw - 24px); aspect-ratio:9/16;
+    background:var(--chat-bg); border-radius:28px; overflow:hidden;
+    position:relative; display:flex; flex-direction:column;
+    box-shadow:0 20px 60px rgba(0,0,0,.6);
+  }
+  .statusbar{display:flex;justify-content:space-between;align-items:center;padding:12px 22px 2px;color:var(--text);font-size:14px;font-weight:600}
+  .statusbar .icons{display:flex;gap:6px;font-size:12px;letter-spacing:1px}
+  .header{display:flex;flex-direction:column;align-items:center;padding:4px 16px 8px;border-bottom:.5px solid rgba(255,255,255,.12);position:relative}
+  .back{position:absolute;left:14px;top:12px;color:var(--brand);font-size:22px;line-height:1}
+  .avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(145deg,#8e8e93,#5b5b60);color:#fff;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center}
+  .header .name{color:var(--text);font-size:12px;margin-top:3px}
+  .header .name .chev{color:var(--sub);font-size:10px}
+  .chat{flex:1;overflow-y:auto;padding:12px 12px 8px;display:flex;flex-direction:column;gap:3px;scroll-behavior:smooth}
+  .timestamp{text-align:center;color:var(--sub);font-size:11px;margin:2px 0 6px;opacity:0}
+  /* rows are collapsed until shown — fixes truncation */
+  .row{display:none;width:100%}
+  .row.visible{display:flex}
+  .row.in{justify-content:flex-start}
+  .row.out{justify-content:flex-end}
+  .bubble{
+    max-width:78%;padding:8px 13px;border-radius:20px;
+    font-size:15px;line-height:1.32;color:var(--text);
+    opacity:0;transform:scale(.5) translateY(14px);transform-origin:bottom left;margin-top:2px;word-wrap:break-word;
+  }
+  .row.out .bubble{transform-origin:bottom right}
+  .in .bubble{background:var(--incoming);border-bottom-left-radius:6px}
+  .out .bubble{background:var(--outgoing);border-bottom-right-radius:6px}
+  .bubble.show{animation:pop .38s cubic-bezier(.34,1.45,.6,1) forwards}
+  @keyframes pop{to{opacity:1;transform:scale(1) translateY(0)}}
+  .timestamp.show{animation:fadein .5s ease forwards}
+  @keyframes fadein{to{opacity:1}}
+  .typing{background:var(--incoming);border-radius:20px;border-bottom-left-radius:6px;padding:12px 15px;display:flex;gap:4px;align-items:center;margin-top:2px;opacity:0;transform:scale(.5)}
+  .typing.show{animation:pop .3s cubic-bezier(.34,1.45,.6,1) forwards}
+  .typing span{width:8px;height:8px;border-radius:50%;background:#8e8e93;animation:blink 1.2s infinite ease-in-out}
+  .typing span:nth-child(2){animation-delay:.18s}
+  .typing span:nth-child(3){animation-delay:.36s}
+  @keyframes blink{0%,60%,100%{opacity:.35;transform:translateY(0)}30%{opacity:1;transform:translateY(-2px)}}
+  .linkcard{
+    max-width:78%;border-radius:16px;overflow:hidden;background:var(--incoming);
+    opacity:0;transform:scale(.5) translateY(14px);transform-origin:bottom left;margin-top:2px;
+  }
+  .linkcard.show{animation:pop .38s cubic-bezier(.34,1.45,.6,1) forwards}
+  .linkcard .preview{
+    height:92px;background:linear-gradient(135deg,#0d2b47 0%,#0a84ff 65%,#67b7ff 100%);
+    display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;padding:0 14px;
+  }
+  .linkcard .preview .pv-text{font-weight:700;font-size:14px;letter-spacing:.3px;text-align:left;line-height:1.25}
+  .linkcard .meta{padding:8px 12px 10px}
+  .linkcard .meta .t{color:var(--text);font-size:13.5px;font-weight:600}
+  .linkcard .meta .u{color:var(--sub);font-size:12px;margin-top:2px}
+  .logo-mark{flex:0 0 auto}
+  .inputbar{display:flex;align-items:center;gap:10px;padding:8px 12px 18px}
+  .plus{width:32px;height:32px;border-radius:50%;background:var(--incoming);color:var(--sub);display:flex;align-items:center;justify-content:center;font-size:20px}
+  .field{flex:1;border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:6px 14px;color:var(--sub);font-size:15px}
+  .endcard{
+    position:absolute;inset:0;background:rgba(5,10,18,.94);backdrop-filter:blur(6px);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:32px;gap:12px;opacity:0;pointer-events:none;transition:opacity .6s ease;
+  }
+  .endcard.show{opacity:1;pointer-events:auto}
+  .endcard .logoimg{width:78%;max-width:280px;border-radius:18px;display:block;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  .endcard .brand{font-size:26px;font-weight:800;color:#fff;letter-spacing:-.5px}
+  .endcard .brand em{color:#67b7ff;font-style:normal}
+  .endcard .tag{color:#c9d6e5;font-size:15px;line-height:1.45;max-width:290px}
+  .endcard .price{color:#fff;font-size:15px;font-weight:700}
+  .endcard .price s{color:#5f6b78;font-weight:500;margin-right:8px}
+  .endcard .cta{margin-top:4px;background:var(--outgoing);color:#fff;padding:12px 26px;border-radius:24px;font-size:16px;font-weight:600;border:none}
+  .endcard .disc{color:#5f6b78;font-size:10.5px;margin-top:8px;letter-spacing:.5px;text-transform:uppercase}
+  .replay{position:absolute;top:14px;right:14px;z-index:5;background:rgba(255,255,255,.12);color:#fff;border:none;border-radius:16px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;opacity:0;transition:opacity .3s}
+  .replay.show{opacity:1}
+  @media (prefers-reduced-motion: reduce){
+    .bubble,.linkcard,.typing{animation:none !important;opacity:1 !important;transform:none !important}
+  }
+</style>
+</head>
+<body>
+<!-- ============================================================
+     LOGO PLACEHOLDER: the SVG with id="logo" below is a stand-in
+     "Proof" shield mark. Replace both instances (link card preview
+     + end card) with your logo image:  <img src="logo.png" ...>
+     ============================================================ -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9fd4ff"/><stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+    <symbol id="logo" viewBox="0 0 48 48">
+      <path d="M24 3 42 10v13c0 11-7.6 19.4-18 22C13.6 42.4 6 34 6 23V10L24 3z" fill="url(#lg)" opacity=".95"/>
+      <path d="M16 24.5l5.5 5.5L33 18.5" fill="none" stroke="#0d2b47" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="stage">
+  <div class="statusbar"><div>9:41</div><div class="icons">▮▮▮ ⏻ 🔋</div></div>
+  <div class="header">
+    <div class="back">‹</div>
+    <div class="avatar">A</div>
+    <div class="name">Alex <span class="chev">›</span></div>
+  </div>
+
+  <div class="chat" id="chat">
+    <div class="timestamp" id="ts">Today 2:14 PM</div>
+
+    <div class="row out"><div class="bubble">Ugh, [customer states the painful problem in their own words] 😩</div></div>
+
+    <div class="row in"><div class="typing"><span></span><span></span><span></span></div></div>
+    <div class="row in"><div class="bubble">[Friend reframes: what's actually needed / busts the expensive myth]</div></div>
+    <div class="row in"><div class="bubble">[Friend names YourProduct + price + one concrete proof point]</div></div>
+
+    <div class="row in">
+      <div class="linkcard">
+        <div class="preview">
+          <svg class="logo-mark" width="40" height="40"><use href="#logo"/></svg>
+          <div class="pv-text">YourProduct™<br>One-line value proposition</div>
+        </div>
+        <div class="meta">
+          <div class="t">YourProduct™ — Short Descriptive Title</div>
+          <div class="u">yourdomain.com</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row out"><div class="bubble">Wait, [surprise/objection beat]??</div></div>
+
+    <div class="row in"><div class="typing"><span></span><span></span><span></span></div></div>
+    <div class="row in"><div class="bubble">Yep. [speed/ease proof point] 🙌</div></div>
+
+    <div class="row out"><div class="bubble">Doing it right now 🙏</div></div>
+  </div>
+
+  <div class="inputbar"><div class="plus">＋</div><div class="field">iMessage</div></div>
+
+  <div class="endcard" id="endcard">
+    <img class="logoimg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAqgAAAEYBAMAAABitBmHAAAAMFBMVEX////9/f34+Pn09PXz8/Tu7u/m5ujc3ODV1dzV1dnPz9TDw8m6usG1tbyysrmwsLjHhY6UAAALBklEQVR42u2dbYxcVRnH//O2OyoJAxah6IfxrS0fTPaLpjSoI5A2gWgGX4i20U5rjGKIQrRhlUo3WpMNMUqsDaEC3agUSJt2ogGhFTsmDcZCYeMnsI2daKKlDd0hiJ3deXn8cM6599w7c+/M7L3tzMj//2F37j13zn3Ob87znOeceyYDUBRFURRFURRFURT1/6yE/8QsmQys+kwoVCKNA2uKTONQ+oZKEFQyjYdq2irIAsA0AQ2s7IyGp5X0FtXJdDkRddrr5hbUmc5hjOpT04pfB9QsmUajmu0yUO0EthPOsnWsAGesSlodlfE0Wqaa7RJT6yQTiWqXgYrhNLpmfFCzxBodabbD/en9sfl/kt4fv/8nwaAad0g1ULNEEssigK+nMqTGF1STZBG/CPXiaZbr03GE1NkZ9lS6P6ESKkWohEqoFKESKqFShEqohEoRKqESKkWohEqoFKESKqFShEqohEoRKqESKkWohEqohEoRKqESKkWohEqoFKESKqFShEqohEoRKqESKkWohEqoFKESKqFShEqohEoRKqESKkWohEqohEoRKqESKkWohEqoFKESKqFShEqohEoRKqESKkWol1rpS3mzqz6bk1MHL0bNiS+8H+ePVLuUfPjGnJx/+FLa4iieH/maEBGRdl4fXiYiIhecZhxYEBE5vtV9g4iIvKkPPikiIs5pEZHWySdu897ichERmfIh3fiSiEhzX95v0ernRETk5C/8SDttiUHmR75ihYqjIiLygD76toiI/EkfXXdak2r/pm+oItLa1RNq8hFz8dmC155NC6bk9zn7fDdbRhbqZhER+YcH8V3qYOWCC+p3A0CV9q96QE086l7c8JRssqp53jrf1ZaRhfouERHRP3WZERGRpuoiEy/bnO4eAKo0i+FQ77Qv/neuOzuR37pRqqstMUKNd/RfUjRVwzIAgEYNABIP2RwS9+cHqDS1O7R4pSc+XOP26+TTHpe/xXw2UWwZRkrVqABAsgQAuBkAcBwAcG3Jm3MMFMquKYSN+/u8x7c4F2/yRt7Uj/WLSLYMI0+dAwCoEXsLAGAvACT8hq+dGsTGMA+91kc89SMD64e+K9eoK6PZMgyo+wEAHwWAZAEAWnMAsNLf11I/H6TW9SEd1Z8s4Xrtzmv8bp1UlCPaMgSoSzUAmACAyZwbZbeZ8gWn6YPUmskFFk2aSCk1w0hndLs6rl0bhy1DgNqsAECqBGAFAOAwAGR0FHvmpitXbFeNT9/Vq6rF6enp71cUp+Cgeru+77YPXLn2qHq9QdHW75Ejew7omVamuFxbhjmjAvAJEREpA9ghIiIlAHifyl6eAgDcqg7+2iulehMAMi97phMdKVVClTeKAJBWiXErDwAf0YnrFgDvUQVSDrNlZPNU4J0iIvKWaW4DcPgu6kvuExGRpb6g4uMOja5QJ8WGPqkS0zkA2KsAl+yCt8JsGdk8FVg0QXViygmpCRX37jEfoPK5/tLDFwEAgTH1KgBAXfvvomrTjc4wiedVOrK4w2TOUWwZ2tJfqwIA6YJO/Y8AQGYKABrGh5fmACDRXyBrAgACG/05AMCT5nAPAOBqAJk8ALS/7ClI5SLZMrylvx1FAChVvurmrYrvK84lPygBQH/ZoYQXFwGg7USy+vwUgJTTrrpZDFz8ukkkItgyPKgnAQA3qeY2ywDwQQCAu3Z5zk1mey+UAgCqQX6m+p1TLOUpAKliGR9yHQUAZI9+EcWWobk/FqsAcHWm4GapnwIANXwon6v2f2d1VS2oS+QA4Kx74lETLQrWBM9WFFuGB7Wtguoqa4KVB4CW29tkHtpJe2tFKFRl/UvuidehvXkKAFrljndEsWV4UPFTAEjstHrEFAC0rUvm+76znoVWghaw/MGhZcjl/ffUimDLEGOqDqpFd36lEqKWdUnfLvfubxQDepwdcectPzFQc27q4NHybRkq1MWqkwC9FjCMVwEgkauF1nOZ+45G+JU1P9Qr7NLLreI3csuzZejub40Cz6F7llkNz+g7dLxv69umA+cD8rHItgwHKh5x8M70n3CGfkw/Q789tb8kV3BxdRGgnnO8tmo1OuEPbP3rTDmcWs4fZLvdE/HYMiyoS/O+kNrRkHx4B/O79DfRN9SkOd031MFsGRpUZ03pYGhD2v025LHyoFBPDwq1PfJQTVBtP2A3JBWWLIb1031f6bUyMNUlca0F5PSRbBkm1LPekNqZXzuZec0u6Z6v1zeF3KnlH9GTBmpQTh9sy4hDbaig+qqnIamSmxsXDJBqR17uDsz/SVYB/bwrHOrH3BM3mxtWnXu+kUgkEolEqZctIw5VZ6p7velq0Smf8CYJnp4q/mpCHyA15wGznAcAKJmg/kffPc3LHraMLlS9OFTx9if3OfPnAQBHTU9N29FNOmLzlrA7zQNA2ul4am2sWTMrK+49M0V1ebAtow7Vn2PVAGDSjCd6b0TFgVq0gLQ6YvOasKqVN3zHHK52pvxq2m8eqQKrAQDlEFvGDKp6xJI0D+KvmwKA5pyzFHK31Wx7yFiquLAD9KJVo3OLw857k2arT2IXALTLIbaMGVSoaeY63SPVtpsGYCLfujyA9K8BAC90hJHQB0jqOWPqMXW0saD7o/mD6/WOoVsLJh8JtCV+xfaIWi0M+fY7vkM/g78NQOaQ+wxeP9CWs1uvWHXQethsHlGrnZn/Dat6r36MnwOwUd8GAPBevQ9zKwBsXHD2HwfaEoMu1nP/ri3XWx6k9eQ9e8zLPACkF7xbUfVpA1UVN3MhVeu9EfK3B793QOytESlddfuwW1IMs2XcoOLT4te/VMEh32m1X9jZTHHI3ovdter0aX/NbZ0L7Oi4Zz3clvigXpqv/DzTMbe+X/27z3f6We+h2gPR+W0H3cVmgOaOjjA757lDR+WBtozZQIWGv+lLel3gVd9E37dyerJ3UvWEn9FD+v8Ff6Rsbg63Zdyg4sGqd85ltt0seYIQXvEljHU7kQ1Igr/lPT7jBIuNviv31cJtGTuojTs9h392Oses3dHa93ad8CZKYVU/7vkgWnc4Ly94cZ/Z3MuWcYOKp22na7grT4t2VH2q3H0VcX1Yzc0v2p/LPquK3Tbu5pd62jJ2UGWns76Cc7dbDrj7kNtnPhOwijiRC6v6tXUOVfEsvrbXu1RbX6v0tmWskn/18d2rM5i/eOedyZ/oVMj9ho61P/Vo102/4oz+aoarN/U2/V8AyDxs0thiX7aMVZ6qtOqXJ86fOvzdjss37D9x/tSz1mqUBVV9h/Cf4VCRvOMPf3/9hce7ENqw/8T5U4e35fq1ZXShvl11aZP/t5kIlVAJlVApQiVUQqUIlVAJlSJUQiVUilAJlVApQiVUQqUIlVAJlSJUQiVUilAJlVApQiVUQiVUilAJlVApQiVUQqUIlVAJlSJUQiVUilAJlVApQiVUQqUIlVAJlSJUQiVUilAJlVAJlSJUQiVUilAJlVApQiVUQqUIlVAJlSJUQiVUilAJlVApQiVUQqUIlVAJlSJUQiVUQqUIdXzk+xVlalkyPz7Nnkr3HzOoWbKIHEN9UOtEEofqfvfnSBVVM373J9IYsSbBoBp3SHWg1tlZo3fTun/0J9L4gmoS9P+4vd+FWgdmSSYCU9f7kXLOHivghgrhLFc7ge2d09Q6kGVgXa5m7QmU21NxrIA0++qymbod1R6o6jNAlnF1OfF0FsC0e5z2z1xJNdK0399TPbCpAZnOBEEl1ViYItEt5FJRkFIURVEURVEURVHUSOl/2zn9F2X/gFUAAAAASUVORK5CYII=" alt="your logo">
+    <div class="brand">Your<em>Product</em>™</div>
+    <div class="tag">[One-sentence positive-framing tagline: what the customer gains, how fast.]</div>
+    <div class="price"><s>$expensive alternative</s> $YourPrice</div>
+    <button class="cta">Get YourProduct</button>
+  </div>
+
+  <button class="replay" id="replay">↻ Replay</button>
+</div>
+
+<script>
+const chat = document.getElementById('chat');
+const rows = [...chat.querySelectorAll('.row')];
+const ts = document.getElementById('ts');
+const endcard = document.getElementById('endcard');
+const replay = document.getElementById('replay');
+let timers = [];
+const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+const scrollDown = () => chat.scrollTop = chat.scrollHeight;
+
+function showRow(i){
+  const row = rows[i];
+  row.classList.add('visible');
+  const el = row.querySelector('.bubble, .linkcard, .typing');
+  el.classList.add('show');
+  scrollDown();
+}
+function hideRow(i){
+  const row = rows[i];
+  row.classList.remove('visible');
+  row.querySelector('.typing')?.classList.remove('show');
+}
+
+function play(){
+  timers.forEach(clearTimeout); timers = [];
+  endcard.classList.remove('show'); replay.classList.remove('show'); ts.classList.remove('show');
+  rows.forEach(r => { r.classList.remove('visible'); r.querySelectorAll('.show').forEach(e => e.classList.remove('show')); });
+  chat.scrollTop = 0;
+
+  at(400,  () => ts.classList.add('show'));
+  at(900,  () => showRow(0));                       // out: prove the storm
+  at(2000, () => showRow(1));                       // typing
+  at(3500, () => { hideRow(1); showRow(2); });      // friend reframes
+  at(4700, () => showRow(3));                       // product proof point
+  at(5900, () => showRow(4));                       // link card
+  at(7200, () => showRow(5));                       // surprise beat
+  at(8100, () => showRow(6));                       // typing
+  at(9600, () => { hideRow(6); showRow(7); });      // speed proof
+  at(10900,() => showRow(8));                       // doing it now
+  at(12700,() => endcard.classList.add('show'));
+  at(13300,() => replay.classList.add('show'));
+}
+replay.addEventListener('click', play);
+play();
+</script>
+</body>
+</html>

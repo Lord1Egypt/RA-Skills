@@ -1,40 +1,55 @@
-## Description: <br>
-Validate a business idea using the minimalist entrepreneur framework before building anything. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate a business idea using the minimalist entrepreneur framework. Use when someone has a business idea and wants to test if it's worth pursuing before building anything.
 
-## Publisher: <br>
-[carollili](https://clawhub.ai/user/carollili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carollili](https://clawhub.ai/user/carollili)
 
-## Use Case: <br>
-Founders, creators, and business operators use this skill to test whether an idea is worth pursuing by clarifying the customer problem, checking manual service feasibility, and looking for willingness to pay before building a product. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The validation framework may produce business guidance that does not fit a user's market, customer base, or financial constraints. <br>
-Mitigation: Review the recommendations for fit and validate claims through direct customer conversations, manual service tests, and willingness-to-pay evidence before spending money or building. <br>
-Risk: Future companion skills that automate payments, outreach, surveys, or customer-data handling would require higher-permission review. <br>
-Mitigation: Treat any automation beyond this markdown guidance as a separate release and review its permissions, data handling, and security posture before installation. <br>
+## Use Case:
 
+Founders, product builders, and business advisors use this skill to test whether a business idea has enough customer pain, manual-service feasibility, and willingness to pay before building a product.
 
-## Reference(s): <br>
-- [The Minimalist Entrepreneur](https://minimalistentrepreneur.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown with questions, validation checks, and a clear verdict] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces business-advice text only; no code or runtime actions are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Bilingual source material may produce responses in an unexpected language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State the preferred response language when invoking the skill.
+
+Risk: Business validation guidance can be mistaken for a definitive investment or launch decision.
+
+Mitigation: Use the skill's verdict as planning support and confirm decisions with direct customer conversations, payment signals, and appropriate business review.
+
+## Reference(s):
+
+- [The Minimalist Entrepreneur](https://minimalistentrepreneur.com)
+- [Sahil Lavingia](https://twitter.com/shl)
+- [ClawHub skill page](https://clawhub.ai/carollili/skills/validate-idea)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with a validation verdict and recommended next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May provide bilingual guidance based on the source material.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

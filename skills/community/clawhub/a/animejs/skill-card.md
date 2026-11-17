@@ -1,43 +1,54 @@
-## Description: <br>
-Anime.js adapter patterns for HyperFrames. Use when writing Anime.js animations or timelines inside HyperFrames compositions, registering animations on window.__hfAnime, making Anime.js seek-driven and deterministic, or translating Anime.js examples into render-safe HyperFrames HTML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anime.js adapter patterns for HyperFrames. Use when writing Anime.js animations or timelines inside HyperFrames compositions, registering animations on window.__hfAnime, making Anime.js seek-driven and deterministic, or translating Anime.js examples into render-safe HyperFrames HTML.
 
-## Publisher: <br>
-[lucas-kay8](https://clawhub.ai/user/lucas-kay8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucas-kay8](https://clawhub.ai/user/lucas-kay8)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement Anime.js animations inside HyperFrames compositions with deterministic, seek-based playback. It helps convert Anime.js examples into render-safe HTML by registering animations on window.__hfAnime and avoiding wall-clock behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Projects may load Anime.js from public CDNs shown in examples. <br>
-Mitigation: Review project policy for public CDN use and pin or vendor approved dependencies where required. <br>
-Risk: Validation examples use npx-based commands that may execute external project tooling. <br>
-Mitigation: Run validation commands in a controlled project environment according to the project's tooling policy. <br>
-Risk: Animations can become nondeterministic if they rely on autoplay, timers, async asset loading, network state, or unseeded randomness. <br>
-Mitigation: Create animations synchronously, set autoplay to false, register instances on window.__hfAnime, and use finite durations and loop counts. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement Anime.js animations and timelines in HyperFrames compositions with deterministic, seek-based playback.
 
-## Reference(s): <br>
-- [Anime.js documentation](https://animejs.com/documentation/) <br>
-- [ClawHub Animejs release page](https://clawhub.ai/lucas-kay8/animejs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with HTML, JavaScript, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for deterministic Anime.js registrations in HyperFrames.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Mutable third-party JavaScript imports can change animation behavior after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin Anime.js CDN imports to explicit versions before using generated examples.
+
+Risk: Validation commands can execute unexpected package versions when run through unpinned tooling.
+
+Mitigation: Run HyperFrames validation through a lockfile-pinned local dependency or npx --no-install.
+
+## Reference(s):
+
+- [Anime.js documentation](https://animejs.com/documentation/)
+- [HyperFrames Anime.js adapter source](packages/core/src/runtime/adapters/animejs.ts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with HTML/JavaScript examples and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance emphasizes deterministic, seek-driven animation registration for HyperFrames.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

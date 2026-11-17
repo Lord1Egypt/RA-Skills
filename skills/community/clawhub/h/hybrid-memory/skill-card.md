@@ -1,40 +1,49 @@
-## Description: <br>
-Hybrid memory strategy combining OpenClaw's built-in vector memory with Graphiti temporal knowledge graph. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hybrid Memory provides a decision framework for using OpenClaw's built-in vector memory together with Graphiti temporal knowledge graph recall.
 
-## Publisher: <br>
-[clawdbrunner](https://clawhub.ai/user/clawdbrunner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clawdbrunner](https://clawhub.ai/user/clawdbrunner)
 
-## Use Case: <br>
-Developers and agent users use this skill to decide when to retrieve document-style memory with OpenClaw memory search and when to query temporal facts with Graphiti. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory tools may store personal or project context longer than expected. <br>
-Mitigation: Review what facts may be logged, how stored memory can be inspected, and how it can be deleted before setting up Graphiti or sync daemons. <br>
-Risk: Memory recall can return incomplete or uncertain past context. <br>
-Mitigation: Use the skill's low-confidence pattern: state that memory was checked and avoid presenting uncertain recall as definitive. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hybrid Memory on ClawHub](https://clawhub.ai/clawdbrunner/hybrid-memory) <br>
-- [OpenClaw Graphiti Memory setup guide](https://github.com/clawdbrunner/openclaw-graphiti-memory) <br>
+## Use Case:
 
+Developers and agent operators use this skill to decide when an agent should search markdown memory files, query Graphiti for temporal facts, or combine both sources when recalling past context.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; may guide use of persistent memory tools when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent memory logging may retain personal context without explicit privacy guardrails or retention controls.
+
+Mitigation: Define clear rules for what may be logged, avoid secrets and sensitive personal data, and confirm how Graphiti data can be reviewed and deleted before use.
+
+## Reference(s):
+
+- [Hybrid Memory skill page](https://clawhub.ai/clawdbrunner/skills/hybrid-memory)
+- [OpenClaw Graphiti memory setup guide](https://github.com/clawdbrunner/openclaw-graphiti-memory)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Decision framework for choosing memory_search, memory_get, and Graphiti recall or logging commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

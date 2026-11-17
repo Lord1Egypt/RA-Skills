@@ -1,45 +1,60 @@
-## Description: <br>
-MiniMax TTS Plus generates text-to-speech audio with selectable MiniMax voices and can produce local MP3 output or prepare/send voice messages for Telegram and Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax TTS Plus lets an agent turn text into speech with MiniMax voices, generate MP3 audio, optionally transcode Feishu voice messages to OGG/Opus, and send Telegram voice messages when configured.
 
-## Publisher: <br>
-[vshen009](https://clawhub.ai/user/vshen009) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vshen009](https://clawhub.ai/user/vshen009)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add MiniMax text-to-speech output to agent workflows, including local audio generation and optional voice-message delivery through Telegram or Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for speech synthesis is sent to the MiniMax API. <br>
-Mitigation: Do not synthesize sensitive text unless that use is approved, and protect the MINIMAX_API_KEY credential. <br>
-Risk: When Telegram credentials are configured, generated audio and captions can be sent to the configured Telegram chat. <br>
-Mitigation: Use --generate-only when local audio is sufficient, verify the target chat before sending, and protect TELEGRAM_BOT_TOKEN and TELEGRAM_TARGET. <br>
-Risk: Generated audio files may persist in the workspace and can contain sensitive spoken content. <br>
-Mitigation: Delete generated audio files when they are no longer needed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add text-to-speech output to OpenClaw workflows, including generated audio files and optional delivery to Telegram or Feishu. It is useful when an agent needs spoken responses, per-agent voice selection, or channel-native voice message formatting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vshen009/minimax-tts-plus) <br>
-- [MiniMax Speech T2A API documentation](https://platform.minimax.io/docs/api-reference/speech-t2a-http) <br>
-- [MiniMax developer portal](https://platform.minimax.io) <br>
-- [Telegram BotFather](https://t.me/BotFather) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON, files] <br>
-**Output Format:** [JSON status objects and generated audio files, with setup guidance in Markdown and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates MP3 audio locally by default, can transcode to OGG/Opus for Feishu, and can optionally send voice messages through Telegram when credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: server release evidence) <br>
+Risk: TTS text is sent to the MiniMax API service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive or regulated content unless the deployment owner has approved MiniMax API use for that data.
+
+Risk: Default wrapper mode can send generated audio to a configured Telegram chat.
+
+Mitigation: Use --generate-only when message delivery is not intended and verify TELEGRAM_TARGET before enabling Telegram sending.
+
+Risk: The security review reports unsafe handling of Telegram bot credentials in the delivery path.
+
+Mitigation: Keep .env private, use a low-privilege Telegram bot, and address the reported curl token exposure and .env allowlist concerns before production use.
+
+## Reference(s):
+
+- [MiniMax Speech T2A HTTP API Documentation](https://platform.minimax.io/docs/api-reference/speech-t2a-http)
+- [MiniMax Developer Platform](https://platform.minimax.io)
+- [MiniMax API Endpoint](https://api.minimaxi.com)
+- [ClawHub Skill Page](https://clawhub.ai/vshen009/skills/minimax-tts-plus)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [JSON status objects, generated audio files, and Markdown usage examples with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates MP3 audio by default, can produce OGG/Opus for Feishu, and can send Telegram voice messages when Telegram credentials and a target are configured.]
+
+## Skill Version(s):
+
+1.2.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

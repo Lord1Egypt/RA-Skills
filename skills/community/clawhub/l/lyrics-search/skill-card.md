@@ -1,40 +1,52 @@
-## Description: <br>
-Search song lyrics by title and artist using the LrcApi public API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search song lyrics by title and artist using the LrcApi public API.
 
-## Publisher: <br>
-[hone1983](https://clawhub.ai/user/hone1983) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hone1983](https://clawhub.ai/user/hone1983)
 
-## Use Case: <br>
-External users and agents use this skill to look up song lyrics by title and optional artist, then display or print cleaned plain-text lyrics from LRC responses. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Song titles and artist names are sent to the public LrcApi service. <br>
-Mitigation: Use only the title and artist needed for the lyrics lookup, and avoid adding unrelated private information to search terms. <br>
-Risk: The public lyrics API may be slow or return no result for a particular query. <br>
-Mitigation: Use a reasonable timeout and retry with title-only or alternate song-name spellings when appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lyrics Search on ClawHub](https://clawhub.ai/hone1983/lyrics-search) <br>
-- [LrcApi lyrics endpoint](https://api.lrc.cx/lyrics?title={title}&artist={artist}) <br>
+## Use Case:
 
+External users and developers use this skill to look up lyrics for a requested song by title and, when available, artist, then present the result as readable text.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text lyrics, optionally transformed from LRC timestamped text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include song title, artist, and credits header for printable output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Song title and artist queries are sent to the public api.lrc.cx lyrics API.
+
+Mitigation: Avoid using the skill for private, sensitive, or unreleased song information when disclosure to the public API would be a concern.
+
+Risk: The public lyrics API may be slow or fail to find a match.
+
+Mitigation: Use a reasonable timeout and retry with only the song title or alternate spellings when no result is returned.
+
+## Reference(s):
+
+- [LrcApi lyrics endpoint](https://api.lrc.cx/lyrics?title={title}&artist={artist})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown lyrics output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lyrics may include LRC timestamps and metadata that the skill directs the agent to remove for clean display.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

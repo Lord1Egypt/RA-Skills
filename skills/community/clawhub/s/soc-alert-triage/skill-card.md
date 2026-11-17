@@ -1,42 +1,56 @@
-## Description: <br>
-Use when a SOC, MDR, or incident-response analyst needs to triage a single security alert from a SIEM, EDR, XDR, or detection pipeline. Guides structured intake, indicator enrichment, MITRE ATT&CK mapping, and produces a verdict, severity-scored disposition, and audit-ready triage report with recommended next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides SOC, MDR, and incident-response analysts through structured intake, indicator enrichment, MITRE ATT&CK mapping, severity scoring, and an audit-ready triage report for a single security alert.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+SOC, MDR, incident-response, and detection engineering analysts use this skill to turn a raw SIEM, EDR, XDR, or detection-pipeline alert into a defensible triage disposition, severity assessment, MITRE ATT&CK mapping, and recommended next steps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: SOC alert payloads can contain sensitive hostnames, usernames, IP addresses, and asset identifiers.
+
+Mitigation: Treat alert content as confidential and avoid reusing provided indicators in examples, comparisons, or external lookups.
+
+Risk: Triage recommendations could be mistaken for completed containment or remediation.
+
+Mitigation: Frame blocking, isolation, account disablement, token revocation, and quarantine as recommendations that require confirmation and execution by an authorized human.
+
+Risk: Unsupported enrichment, attribution, or MITRE ATT&CK mapping can mislead incident response decisions.
+
+Mitigation: Use only alert payload data and user-supplied context; mark missing enrichment as unavailable and leave technique IDs blank when evidence is insufficient.
+
+## Reference(s):
 
 
-## Use Case: <br>
-SOC, MDR, incident-response, MSSP, and detection-engineering analysts use this skill to convert a single SIEM, EDR, XDR, or detection-pipeline alert into a structured triage disposition. It guides intake, IOC extraction, conservative MITRE ATT&CK mapping, severity scoring, verdict selection, and human-confirmed next steps. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Alert payloads may contain sensitive usernames, hostnames, IP addresses, file paths, and incident details. <br>
-Mitigation: Use the skill only in an agent session approved for sensitive SOC data, and avoid pasting data that is not needed for the triage decision. <br>
-Risk: Recommended containment steps such as blocking, isolation, account disablement, or token revocation could disrupt business activity if applied without review. <br>
-Mitigation: Treat all containment items as recommendations and require a human analyst to confirm and execute them in the organization's security tools. <br>
-Risk: Threat intelligence, IOC reputation, or MITRE ATT&CK mappings may be incomplete when external context is unavailable. <br>
-Mitigation: Use only alert payload data and user-supplied enrichment, mark gaps explicitly, and avoid unsupported attribution or technique IDs. <br>
+**Output Format:** [Structured Markdown triage report with tables and action checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/archlab-space/soc-alert-triage) <br>
+**Other Properties Related to Output:** [Produces recommendations only; containment, isolation, account disablement, token revocation, and quarantine actions require authorized human execution in security tooling.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown triage report with tables, verdict, severity rationale, recommended actions, escalation notes, and open questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations only; containment actions and external enrichment require human confirmation outside the skill.] <br>
+0.2.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.2.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

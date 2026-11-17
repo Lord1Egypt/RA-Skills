@@ -1,13 +1,14 @@
 ---
 name: operately-cli
 description: >
-  Manage Operately from the CLI: goals, OKRs, projects, tasks, milestones,
-  spaces, documents, discussions, check-ins, reviews, assignments, people,
-  permissions, and resource hubs. Use when operating an Operately workspace,
-  automating startup/company operations, updating project status, tracking goal
-  progress, managing async execution, or working with the open source company
-  operating system.
-version: 1.2.0
+  Manage Operately from the CLI: goals, OKRs, projects, project templates,
+  tasks, milestones, spaces, documents, discussions, check-ins, reviews,
+  assignments, people, permissions, full-text search, document history, and
+  Docs & Files. Use when operating an Operately workspace, automating
+  startup/company operations, updating project status, tracking goal progress,
+  managing async execution, or working with the open source company operating
+  system.
+version: 1.9.0
 metadata:
   openclaw:
     requires:
@@ -60,7 +61,7 @@ Operate an Operately instance through the `operately` CLI.
 | Logout | `operately auth logout` |
 | Set profile picture | `operately people update_picture --avatar-file ./avatar.png` |
 | Remove profile picture | `operately people update_picture --clear` |
-| Create file in resource hub | `operately files create --resource-hub-id <id> --file ./report.pdf` |
+| Upload file to Docs & Files | `operately documents create_file --space-id <id> --file ./report.pdf` |
 | List my assignments | `operately people list_assignments` |
 | List projects | `operately projects list` |
 | Get project | `operately projects get --id <id> --include-space` |
@@ -70,8 +71,13 @@ Operate an Operately instance through the `operately` CLI.
 | List tasks | `operately tasks list --project-id <id>` |
 | Create task | `operately tasks create --type project --id <project-id> --name "Design mockups" --milestone-id <id> --assignee-id null --due-date <date>` |
 | List spaces | `operately spaces list` |
-| Create document | `operately documents create --resource-hub-id <id> --name "Guide" --content "# Guide"` |
-| List hub contents | `operately resource_hubs list_nodes --resource-hub-id <id>` |
+| Create document | `operately documents create_document --space-id <id> --name "Guide" --content "# Guide"` |
+| List Docs & Files contents | `operately documents list_contents --space-id <id>` |
+| List project templates | `operately project_templates list --space-id <id>` |
+| Create project from template | `operately project_templates create_project --template-id <id> --space-id <id> --start-date <date> --name "..." --anonymous-access-level 0 --company-access-level 10 --space-access-level 70` |
+| Full-text search | `operately companies search --query "..."` |
+| Search Docs & Files | `operately documents search --space-id <id> --query "..."` |
+| Restore document version | `operately documents restore_document_version --document-id <id> --version-number <n>` |
 
 ## Verify CLI Is Installed
 
@@ -86,6 +92,8 @@ If this does not print the version number, the CLI is **not installed**. Stop an
 > The Operately CLI is not installed. Install it with `npm install -g @operately/operately-cli` and then re-run this task.
 
 Do **not** attempt to install the CLI on behalf of the user. Do **not** continue without a working CLI.
+
+This skill documents **Operately CLI 1.9.0** (`@operately/operately-cli`). If `operately --version` reports an older release, ask the user to run `npm update -g @operately/operately-cli` before template, search, or document-history workflows.
 
 Only after confirming the binary exists should you verify the session:
 
@@ -258,9 +266,9 @@ Examples:
 operately people get_me
 operately people update_picture --avatar-file path-to-avatar-file
 operately projects list
-operately goals create --name "Q2 Revenue Goal" --space-id s1
+operately goals create --name "Q2 Revenue Goal" --space-id s1 --anonymous-access-level 0 --company-access-level 10 --space-access-level 70
 operately tasks update_status --task-id t1 --type project --status.id done --status.label "Done" --status.color green --status.index 2 --status.value done --status.closed true
-operately files create --resource-hub-id r1 --file path-to-file
+operately documents create_file --space-id s1 --file path-to-file
 ```
 
 ### 3. Input Flags
@@ -306,6 +314,7 @@ operately notifications mark_many_as_read --ids n1 --ids n2
 **Nested objects** (dot-index notation):
 ```bash
 operately projects update_task_statuses \
+  --project-id p1 \
   --task-statuses.0.id ts1 \
   --task-statuses.0.label "To Do" \
   --task-statuses.1.id ts2 \
@@ -356,8 +365,8 @@ operately spaces create_discussion \
   --body-file /tmp/post.md
 
 # Document creation
-operately documents create \
-  --resource-hub-id rh1 \
+operately documents create_document \
+  --space-id s1 \
   --name "API Documentation" \
   --content-file ./api-docs.md
 ```
@@ -371,8 +380,8 @@ operately documents create \
 
 ```bash
 # Only use inline --body/--content/--description for simple one-liners
-operately documents create \
-  --resource-hub-id rh1 \
+operately documents create_document \
+  --space-id s1 \
   --name "Quick Note" \
   --content "A short note with **bold** text."
 
@@ -393,14 +402,14 @@ operately people update_picture --avatar-file ./avatar.png
 # Remove your profile picture
 operately people update_picture --clear
 
-# Upload one file into a resource hub
-operately files create \
-  --resource-hub-id rh1 \
+# Upload one file into Docs & Files
+operately documents create_file \
+  --space-id s1 \
   --file ./quarterly-report.pdf
 
 # Upload one file into a folder
-operately files create \
-  --resource-hub-id rh1 \
+operately documents create_file \
+  --space-id s1 \
   --folder-id f1 \
   --file ./quarterly-report.pdf \
   --name "Quarterly Report" \
@@ -409,8 +418,8 @@ operately files create \
 
 Rules for file inputs:
 - `people update_picture` accepts `--avatar-file <path>` to upload or `--clear` to remove the current picture.
-- `files create` accepts exactly one `--file <path>` per command.
-- `files create --name` overrides the base filename while preserving the source extension.
+- `documents create_file` accepts exactly one `--file <path>` per command.
+- `documents create_file --name` overrides the base filename while preserving the source extension.
 - `--description-file <path>` still means "load markdown from disk"; the uploaded binary stays on `--file <path>`.
 - Do not try to create blobs manually first. These commands already handle blob creation, upload, preview generation, and finalization.
 
@@ -466,19 +475,19 @@ operately people get_me --verbose
 
 The CLI provides access to the external API across these namespaces:
 
-- **comments** - Comment management on resources
-- **companies** - Company settings, members, permissions
-- **documents** - Document creation and management in resource hubs
-- **files** - File upload, retrieval, renaming, and deletion in resource hubs
+- **comments** - Comment management on live resources
+- **companies** - Company settings, members, permissions, search
+- **documents** - Docs & Files: documents, files, links, folders, search, version history
 - **goals** - Goal management, check-ins, targets
-- **links** - Link management in resource hubs
 - **notifications** - Notification preferences and subscriptions
 - **people** - User and team member management, including profile picture updates
-- **projects** - Project management, milestones, check-ins
+- **project_templates** - Reusable project blueprints (library, plan, contributors, template Docs & Files)
+- **projects** - Project management, milestones, check-ins, contributors
 - **reactions** - Emoji reactions to content
-- **resource_hubs** - Resource hub and folder operations
 - **spaces** - Space (team/department) management
-- **tasks** - Task management across projects
+- **tasks** - Task management across projects and spaces
+
+The CLI also exposes a **kpis** namespace; this skill does not document KPI workflows.
 
 ## Assignments and Reviews
 
@@ -491,7 +500,7 @@ operately people list_assignments
 This returns assignments categorized into three groups:
 
 - **`due_soon`** - Items you own that are overdue, due today, or due soon
-- **`needs_review`** - Items where you are the reviewer (check-ins, goal updates) awaiting acknowledgment
+- **`needs_review`** - Items where you are the reviewer (check-ins, retrospectives) awaiting acknowledgment
 - **`upcoming`** - Items you own with future due dates
 
 Each category contains groups of assignments organized by their origin (project, goal, or space). Assignments include:
@@ -501,6 +510,7 @@ Each category contains groups of assignments organized by their origin (project,
 - **Projects** - Projects you own or are reviewing
 - **Goals** - Goals you own or are reviewing
 - **Check-ins** - Project and goal check-ins requiring your review
+- **Retrospectives** - Closed project/goal retrospectives requiring your review
 
 The response structure groups related items together and sorts by urgency, making it easy to prioritize your work. Items needing review show the author's name and what action is required.
 
@@ -568,6 +578,7 @@ operately projects create_check_in \
   --project-id p1 \
   --status on_track \
   --description "# Progress\n\nCompleted design phase."
+  # Publish later instead: add --scheduled-at (see "Scheduling Posts")
 
 # List check-ins
 operately projects list_check_ins --project-id p1
@@ -575,6 +586,8 @@ operately projects list_check_ins --project-id p1
 # Acknowledge check-in
 operately projects acknowledge_check_in --id ci1
 ```
+
+**Editing a published check-in:** you can fully edit only the *latest* project check-in, and only within 72 hours of posting. Outside that window (or for any older check-in), `update_check_in` still saves `--description` but silently ignores `--status` — the call succeeds, so do not assume the status changed.
 
 ### Contributors
 
@@ -659,6 +672,7 @@ operately goals create_check_in \
   --status on_track \
   --due-date 2026-04-01 \
   --content "Making good progress on Q2 targets"
+  # Publish later instead: add --scheduled-at (see "Scheduling Posts")
 
 # List check-ins
 operately goals list_check_ins --goal-id g1
@@ -676,6 +690,9 @@ operately goals close \
   --success achieved \
   --success-status achieved \
   --retrospective "# Retrospective\n\nWe exceeded our target."
+
+# Reviewer acknowledges retrospective (authors cannot acknowledge their own)
+operately goals acknowledge_retrospective --goal-id g1
 
 # Reopen goal
 operately goals reopen --id g1 --message "Reopening after new planning input."
@@ -732,9 +749,29 @@ operately tasks update_milestone --task-id t1 --milestone-id m2
 operately tasks update_milestone_and_ordering \
   --task-id t1 \
   --milestone-id m2 \
-  --milestones-ordering-state.0.milestone-id m2 \
-  --milestones-ordering-state.0.ordering-state.0 t1
+  --index 0
 ```
+
+For template blueprint tasks, use `project_templates update_milestone_and_ordering` instead. See [Project Template Workflows](references/project-template-workflows.md).
+
+## Project Templates
+
+```bash
+# List templates in a space
+operately project_templates list --space-id s1
+
+# Create a project from a template
+operately project_templates create_project \
+  --template-id pt1 \
+  --space-id s1 \
+  --start-date 2026-09-01 \
+  --name "Q4 Launch" \
+  --anonymous-access-level 0 \
+  --company-access-level 10 \
+  --space-access-level 70
+```
+
+**See:** `references/project-template-workflows.md` for lifecycle, scheduling offsets, contributors, template Docs & Files, and live-vs-template routing.
 
 ## Spaces
 
@@ -778,49 +815,41 @@ operately spaces update_members_permissions \
 # List available tools
 operately spaces list_tools --space-id s1
 
-# Update enabled tools
+# Enable templates only (partial update)
 operately spaces update_tools \
   --space-id s1 \
-  --tools.tasks-enabled true \
-  --tools.discussions-enabled true \
-  --tools.resource-hub-enabled true
+  --tools.templates-enabled true
 ```
 
-## Resource Hubs
+## Docs & Files
 
-See [Resource Hubs Reference](references/resource-hubs.md) for detailed workflows.
+See [Docs & Files Reference](references/docs-and-files.md) for detailed workflows.
 
-### Find Resource Hub ID
+Every space, project, and goal has a Docs & Files hub. Scope hub-level commands with **`--space-id`**, **`--project-id`**, or **`--goal-id`** (mutually exclusive). Do not look up a hub ID via `spaces list_tools` — pass the space, project, or goal ID directly.
 
-Every space already has a resource hub. To find the resource hub ID for a space:
-
-```bash
-operately spaces list_tools --space-id s1
-```
-
-Use the returned resource hub ID with `documents`, `files`, `links`, and `resource_hubs`.
+For folder-scoped listing, **`--folder-id` alone** is enough (no space/project ID required).
 
 ### Folder Management
 
 ```bash
 # Create folder at root
-operately resource_hubs create_folder \
-  --resource-hub-id rh1 \
+operately documents create_folder \
+  --space-id s1 \
   --name "Guides"
 
 # Create nested folder
-operately resource_hubs create_folder \
-  --resource-hub-id rh1 \
+operately documents create_folder \
+  --space-id s1 \
   --folder-id f1 \
   --name "Onboarding"
 
 # Rename folder
-operately resource_hubs rename_folder \
+operately documents rename_folder \
   --folder-id f1 \
   --new-name "Team Guides"
 
 # Move folder
-operately resource_hubs update_parent_folder \
+operately documents update_parent_folder \
   --resource-id f2 \
   --resource-type "folder" \
   --new-folder-id f1
@@ -830,41 +859,47 @@ operately resource_hubs update_parent_folder \
 
 ```bash
 # Create document at root
-operately documents create \
-  --resource-hub-id rh1 \
+operately documents create_document \
+  --space-id s1 \
   --name "Getting Started" \
   --content "# Getting Started\n\nWelcome to the team."
 
 # Create document in folder
-operately documents create \
-  --resource-hub-id rh1 \
+operately documents create_document \
+  --space-id s1 \
   --folder-id f1 \
   --name "Onboarding Guide" \
   --content "# Onboarding\n\nFirst steps..."
 
 # Update document
-operately documents update \
+operately documents update_document \
   --document-id d1 \
   --name "Updated Guide" \
-  --content "# Updated Content"
+  --content "# Updated Content" \
+  --expected-version 3
 
 # Publish draft
-operately documents publish --document-id d1
+operately documents publish_document --document-id d1
+
+# Version history
+operately documents list_document_versions --document-id d1
+operately documents get_document_version --document-id d1 --version-number 2
+operately documents restore_document_version --document-id d1 --version-number 2 --expected-current-version 5
 ```
 
 ### Links
 
 ```bash
 # Create link at root
-operately links create \
-  --resource-hub-id rh1 \
+operately documents create_link \
+  --space-id s1 \
   --name "Company Handbook" \
   --url "https://handbook.example.com" \
   --type "other"
 
 # Create link in folder
-operately links create \
-  --resource-hub-id rh1 \
+operately documents create_link \
+  --space-id s1 \
   --folder-id f1 \
   --name "Design System" \
   --url "https://design.example.com" \
@@ -872,18 +907,34 @@ operately links create \
   --description "Our design system documentation"
 ```
 
+### File Uploads
+
+```bash
+# Upload file at root
+operately documents create_file \
+  --space-id s1 \
+  --file ./report.pdf
+
+# Upload file into a folder
+operately documents create_file \
+  --project-id p1 \
+  --folder-id f1 \
+  --file ./spec.pdf \
+  --name "Product Spec"
+```
+
 ### List Contents
 
 ```bash
 # List root contents
-operately resource_hubs list_nodes --resource-hub-id rh1
+operately documents list_contents --space-id s1
 
 # List folder contents
-operately resource_hubs list_nodes --folder-id f1
+operately documents list_contents --folder-id f1
 
 # Include metadata
-operately resource_hubs list_nodes \
-  --resource-hub-id rh1 \
+operately documents list_contents \
+  --space-id s1 \
   --include-comments-count \
   --include-children-count
 ```
@@ -898,6 +949,7 @@ operately spaces create_discussion \
   --space-id s1 \
   --title "Q2 Planning" \
   --body "# Q2 Planning\n\nLet's discuss priorities."
+  # Publish later instead: add --scheduled-at (see "Scheduling Posts")
 
 # Space discussion from a markdown file
 operately spaces create_discussion \
@@ -926,7 +978,35 @@ operately projects list_discussions --project-id p1
 operately goals list_discussions --goal-id g1
 ```
 
+## Scheduling Posts
+
+Goal check-ins, project check-ins, and **space** discussions can be written now and published later. Add `--scheduled-at <datetime>` when creating them:
+
+- `operately goals create_check_in --scheduled-at ...`
+- `operately projects create_check_in --scheduled-at ...`
+- `operately spaces create_discussion --scheduled-at ...`
+
+Scheduling is not available for goal or project discussions.
+
+**Datetime format:** a full ISO-8601 timestamp *with a timezone offset*, and it must be in the future. A date alone (`2026-08-01`) or a time without an offset (`2026-08-01T09:00:00`) is rejected. Offsets are stored as UTC.
+
+```bash
+operately projects create_check_in \
+  --project-id p1 \
+  --status on_track \
+  --description "Weekly update" \
+  --scheduled-at 2026-08-01T09:00:00Z          # UTC
+  # or a local offset, e.g. --scheduled-at 2026-08-01T09:00:00-03:00
+```
+
+A scheduled item stays unpublished (`state: scheduled`) until its time. Before it publishes, use the matching update command (`goals update_check_in`, `projects update_check_in`, `spaces update_discussion`) to change it:
+
+- `--scheduled-at <new datetime>` reschedules it.
+- `--state published` publishes it now; `--state draft` turns it into a draft.
+
 ## Comments
+
+**Routing:** Use `comments/*` for live work (projects, goals, spaces, tasks, check-ins, hub docs/files/links). Use `project_templates create_comment`, `update_comment`, and `delete_comment` for comments on template blueprint content only.
 
 ```bash
 # Create comment
@@ -987,6 +1067,10 @@ operately notifications unsubscribe \
 
 If `subscription_list` is missing from the `projects get` response, do not assume the project lacks one. It means `--include-subscription-list` was omitted and the field was not preloaded.
 
+### Notification Recipients on Mutations
+
+Many content mutations accept `--send-notifications-to-everyone` and repeated `--subscriber-ids` flags (check-ins, documents, discussions, goal close/reopen, etc.). Prefer targeted `--subscriber-ids` over notifying everyone.
+
 ## People
 
 ```bash
@@ -1027,7 +1111,11 @@ operately companies list
 # Get work map
 operately companies get_work_map
 
-# Global search
+# Full-text search (preferred)
+operately companies search --query "roadmap" --sort best_match
+
+# Quick/broad lookup
+operately companies quick_search --query "roadmap"
 operately companies global_search --query "roadmap"
 
 # Create member
@@ -1170,8 +1258,10 @@ This is the primary skill for Operately CLI operations. Future skills may includ
 ## References
 
 - [Project Workflows](references/project-workflows.md) - Project lifecycle and milestone management
+- [Project Template Workflows](references/project-template-workflows.md) - Reusable templates and live-vs-template routing
 - [Goal Workflows](references/goal-workflows.md) - OKR patterns and goal tracking
 - [Task Workflows](references/task-workflows.md) - Task management best practices for projects and spaces
 - [Space Workflows](references/space-workflows.md) - Space management, members, tools, and access control
-- [Resource Hubs](references/resource-hubs.md) - Knowledge base organization
+- [Docs & Files](references/docs-and-files.md) - Knowledge base organization, search, and version history
 - [Collaboration Patterns](references/collaboration-patterns.md) - Team collaboration workflows
+- [Assignments and Reviews](references/assignments-and-reviews.md) - Assignments inbox and review workflows

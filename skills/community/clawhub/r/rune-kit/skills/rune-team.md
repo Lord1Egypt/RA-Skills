@@ -198,7 +198,7 @@ Contract format in NEXUS Handoff:
 
 **1d. Question Gate (non-trivial tasks only).**
 
-> From superpowers (obra/superpowers, 84k★): "Subagents that start work without asking questions produce the wrong thing 40% of the time."
+Subagents that start work without asking questions frequently produce the wrong thing.
 
 Before dispatching streams, include in each NEXUS Handoff: "Before starting, ask up to 3 clarifying questions if anything is unclear about scope, conventions, or expected output."
 
@@ -218,7 +218,7 @@ Mark todo[1] `in_progress`.
 
 Launch independent streams (depends_on: []) in parallel using Task tool with worktree isolation.
 
-> From agency-agents (msitarzewski/agency-agents, 50.8k★): "Structured handoff docs prevent the #1 multi-agent failure: context loss between agents."
+Structured handoff docs prevent the most common multi-agent failure: context loss between agents.
 
 Each stream receives a **NEXUS Handoff Template** — not a bare prompt:
 
@@ -589,7 +589,7 @@ Known failure modes for this skill. Check these before declaring done.
 **Scope guardrail**: Do not invoke launch, rescue, or scaffold autonomously unless explicitly delegated by the parent agent.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

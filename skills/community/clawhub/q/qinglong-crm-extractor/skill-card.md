@@ -1,41 +1,52 @@
-## Description: <br>
-This release is listed as a CRM extractor, while its bundled files implement a simulated space-login demo with command-line and Python examples. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+A Chinese-language demonstration skill that simulates space login, destination selection, status checks, and return-to-Earth flows with local Python scripts.
 
-## Publisher: <br>
-[PandaSun](https://clawhub.ai/user/PandaSun) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pandasun](https://clawhub.ai/user/pandasun)
 
-## Use Case: <br>
-Developers and reviewers can inspect or run the bundled Python demo for simulated space login, status checks, and logout behavior. Do not rely on this release for CRM extraction or business-data automation unless the publisher aligns the package identity with the implementation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Package identity mismatch: server evidence says the release is listed as a CRM extractor, but the artifact implements a simulated space-login toy. <br>
-Mitigation: Do not install or depend on this release for CRM extraction or business-data automation until the publisher aligns the package name, slug, summary, install command, and implemented purpose. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/PandaSun/qinglong-crm-extractor) <br>
-- [Publisher profile](https://clawhub.ai/user/PandaSun) <br>
-- [NASA](https://www.nasa.gov) <br>
-- [SpaceX](https://www.spacex.com) <br>
-- [China Manned Space](http://www.cmse.gov.cn) <br>
+## Use Case:
 
+Developers and agents can use this skill as a toy or learning example for producing and running local Python code that simulates a space-login workflow. It is not suitable for real authentication, mission operations, or production access control.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact includes a local Python demo, an example configuration file, and empty requirements.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence; bundled artifact docs mention 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may mistake the simulated space-login flow for real authentication or operational tooling.
+
+Mitigation: Use it only as a toy, demo, or learning aid, and do not rely on it for production authentication, authorization, or operational decisions.
+
+Risk: The interface and documentation are primarily Chinese-language.
+
+Mitigation: Review or translate user-facing prompts and instructions before use in non-Chinese-language environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pandasun/skills/qinglong-crm-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples, plus JSON-style configuration examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are human-facing and primarily Chinese-language; included scripts simulate behavior locally and do not perform real authentication or space operations.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

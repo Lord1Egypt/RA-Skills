@@ -1,0 +1,32 @@
+{
+  "skill_name": "ask-the-data",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "In data/ there is facilities.xlsx and a data-dictionary.md. Which facilities support tests above 80°C and are available in Q4?",
+      "expected_output": "The workflow reads the dictionary, inspects relevant sheets/schema, queries the required fields, and returns a traceable answer.",
+      "assertions": [
+        "The data dictionary is used when relevant",
+        "Only relevant tables/sheets are selected rather than blindly loading everything",
+        "The answer includes source/query provenance"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Count customers in customers.csv by region. No dictionary exists.",
+      "expected_output": "A lightweight structured query without unnecessary persistence overhead for a simple task.",
+      "assertions": [
+        "The skill does not require a dictionary or heavy setup when semantics are obvious",
+        "The count is reproducible"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "The status column says A/I/P. Tell me how many active records there are; there is a codes.xlsx next to the data.",
+      "expected_output": "The agent reads the code dictionary before assuming which code means active.",
+      "assertions": [
+        "The meaning of status codes is established from the dictionary rather than guessed"
+      ]
+    }
+  ]
+}

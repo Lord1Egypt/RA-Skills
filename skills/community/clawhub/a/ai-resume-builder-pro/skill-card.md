@@ -1,39 +1,57 @@
-## Description: <br>
-Professional AI resume builder that creates ATS-optimized resumes with tailored content, achievement highlighting, and industry-specific templates, including cover letter generation and LinkedIn optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional AI resume builder that creates ATS-optimized resumes with tailored content, achievement highlighting, and industry-specific templates.
 
-## Publisher: <br>
-[banxian87](https://clawhub.ai/user/banxian87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[banxian87](https://clawhub.ai/user/banxian87)
 
-## Use Case: <br>
-External users and career-focused agents use this skill to draft ATS-oriented resumes, tailor resume content to job descriptions, generate cover letters, and improve LinkedIn profile text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume and cover-letter drafting can involve personal, employment, education, and contact details. <br>
-Mitigation: Share only the personal and employment details needed for the requested document, and review generated content before using it in applications. <br>
-Risk: The documentation examples describe a ResumeBuilder API, but the supplied package does not include the referenced implementation file. <br>
-Mitigation: Treat API examples as guidance unless an implementation is separately supplied and reviewed. <br>
+## Use Case:
 
+Job seekers and career-support agents use this skill to draft ATS-optimized resumes, tailored resume variants, cover letters, and LinkedIn profile content from career details and target job information.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and plain text guidance with example JavaScript usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces resume, cover letter, LinkedIn profile, and career-document guidance; supplied package evidence does not include the referenced ResumeBuilder implementation file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md Version section) <br>
+Risk: Resume details and career history may contain personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only information needed for the resume and avoid regulated identifiers, confidential employer material, or unnecessary private details.
+
+Risk: The skill does not state explicit privacy or retention practices.
+
+Mitigation: Review platform data-handling terms before submitting sensitive career history, and redact details when possible.
+
+Risk: The examples may influence output toward Chinese-language resume conventions.
+
+Mitigation: Specify the preferred language, locale, and resume conventions when using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/banxian87/skills/ai-resume-builder-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown and structured text with JavaScript usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce resume, cover letter, and LinkedIn profile content; artifact documentation also describes PDF, DOCX, and TXT resume exports.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact/SKILL.md Version section)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

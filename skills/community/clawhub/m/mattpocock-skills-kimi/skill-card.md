@@ -1,47 +1,63 @@
-## Description: <br>
-Bundles six Kimi/OpenClaw-adapted engineering workflow skills for requirements alignment, codebase-aware planning, handoffs, test-driven development, bug diagnosis, and PRD creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Kimi/OpenClaw adaptation bundle of six Matt Pocock developer workflow skills for requirement alignment, codebase-aware planning, handoffs, test-driven development, bug diagnosis, and PRD creation.
 
-## Publisher: <br>
-[coolingrabbit](https://clawhub.ai/user/coolingrabbit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolingrabbit](https://clawhub.ai/user/coolingrabbit)
 
-## Use Case: <br>
-Developers and engineering teams use this bundle to add structured coding workflows to Kimi/OpenClaw agents: clarifying requirements, maintaining project context and ADRs, creating handoff notes, developing with tests, diagnosing bugs, and turning aligned discussions into PRDs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundle contains broad auto-triggered workflow instructions that may activate during normal coding conversations. <br>
-Mitigation: Review and narrow trigger phrases before enabling the bundled skills. <br>
-Risk: Some workflows can write project files such as CONTEXT.md, ADRs, handoff notes, PRD markdown, tests, or code changes. <br>
-Mitigation: Require user confirmation before creating or modifying project documentation, tests, or code. <br>
-Risk: The PRD workflow can publish content to an issue tracker through configured GitHub MCP, token, or CLI paths. <br>
-Mitigation: Require confirmation before publishing issues and prefer local Markdown fallback until the issue-tracker configuration is reviewed. <br>
-Risk: Installing the meta-skill requires copying bundled skills into an agent skills directory. <br>
-Mitigation: Back up or inspect the existing .agents/skills directory before copying the bundled skills. <br>
+## Use Case:
 
+Developers and engineering teams use this meta-skill to install and invoke structured software-development workflows in Kimi Work or OpenClaw. It helps agents align requirements, maintain project context, write handoff notes, drive TDD loops, diagnose bugs, and convert aligned conversations into PRDs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coolingrabbit/skills/mattpocock-skills-kimi) <br>
-- [Publisher profile](https://clawhub.ai/user/coolingrabbit) <br>
-- [Adaptation notes](docs/ADAPTATION-NOTES.md) <br>
-- [Original Matt Pocock skills](https://github.com/mattpocock/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command snippets, issue-tracker actions, and workspace file outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write CONTEXT.md, ADRs, handoff notes, PRD markdown, tests, code changes, and issue tracker content when enabled by the host agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad automatic triggers can change future agent behavior by adding multiple auto-invoked developer workflow skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the bundle before installing and prefer explicit invocation or clear user confirmation for sensitive workflows.
+
+Risk: The bundled skills may read repositories and create persistent workspace documents such as context files, ADRs, handoff summaries, PRDs, tests, or implementation changes.
+
+Mitigation: Require confirmation before file writes, review generated files before committing, and keep repository access scoped to the active workspace.
+
+Risk: PRD publishing workflows can configure issue tracking or create GitHub issues when external access is available.
+
+Mitigation: Confirm issue-tracker configuration and destination before publishing, and use local Markdown fallback when external publishing is not intended.
+
+Risk: Unpinned installer commands can install changing upstream content.
+
+Mitigation: Avoid the unpinned npx install path unless the installer source is trusted; prefer a reviewed release artifact or pinned source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coolingrabbit/skills/mattpocock-skills-kimi)
+- [README](README.md)
+- [Adaptation Notes](docs/ADAPTATION-NOTES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, plain text, inline code blocks, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update workspace documentation, handoff files, issue-tracker configuration, PRD markdown, tests, and implementation code when the active agent has appropriate tool access.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

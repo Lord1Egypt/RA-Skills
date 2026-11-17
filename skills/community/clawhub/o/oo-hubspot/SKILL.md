@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "HubSpot"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["hubspot"]
   icon: "https://static.oomol.com/logo/third-party/HubSpot.svg"
 ---
@@ -40,14 +40,26 @@ Each action is listed below with a one-line description; actions that change sta
 - `create_company` — Create a HubSpot company with the provided properties and optional associations. [write]
 - `create_contact` — Create a HubSpot contact with the provided properties and optional associations. [write]
 - `create_deal` — Create a HubSpot deal with the provided properties and optional associations. [write]
+- `get_campaign_analytics` — Get HubSpot campaign analytics for one or more campaigns.
+- `get_campaign_asset_metrics` — Get metrics and properties for CRM objects associated with a HubSpot campaign.
+- `get_campaign_asset_types` — List HubSpot asset type names available as campaign assets.
+- `get_campaign_contacts_by_type` — Fetch paginated HubSpot contact IDs for a campaign filtered by attribution type.
 - `get_company` — Get a HubSpot company by record ID or by a custom idProperty value.
 - `get_contact` — Get a HubSpot contact by record ID or by a custom idProperty value.
+- `get_crm_objects` — Fetch one or more HubSpot CRM objects by ID through the MCP server.
 - `get_deal` — Get a HubSpot deal by record ID or by a custom idProperty value.
-- `get_property` — Get a single HubSpot property definition for contacts, companies, or deals.
-- `list_properties` — List HubSpot property definitions for contacts, companies, or deals.
+- `get_properties` — Get full HubSpot property definitions for an object type.
+- `get_property` — Get a single HubSpot property definition for an MCP-supported object type.
+- `get_user_details` — Get the authenticated HubSpot MCP user's account and access details.
+- `list_properties` — List or search HubSpot property definitions for an MCP-supported object type.
+- `manage_crm_objects` — Create or update HubSpot CRM records or activities through the MCP server. [write]
 - `search_companies` — Search HubSpot companies with optional filters, sorting, and selected properties.
 - `search_contacts` — Search HubSpot contacts with optional filters, sorting, and selected properties.
+- `search_crm_objects` — Search and filter HubSpot CRM records for any object type supported by the MCP server.
 - `search_deals` — Search HubSpot deals with optional filters, sorting, and selected properties.
+- `search_owners` — Find HubSpot CRM record owners by name, email, or owner ID.
+- `search_properties` — Find HubSpot property definitions for an object type using keyword search.
+- `submit_feedback` — Send feedback about the HubSpot MCP server experience to HubSpot. [write]
 - `update_company` — Update a HubSpot company by record ID or by a custom idProperty value. [write]
 - `update_contact` — Update a HubSpot contact by record ID or by a custom idProperty value. [write]
 - `update_deal` — Update a HubSpot deal by record ID or by a custom idProperty value. [write]
@@ -81,11 +93,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — HubSpot is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=hubspot
+  https://console.oomol.com/connections/hubspot
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - HubSpot homepage: https://www.hubspot.com
+- API documentation: https://developers.hubspot.com/docs/api/overview

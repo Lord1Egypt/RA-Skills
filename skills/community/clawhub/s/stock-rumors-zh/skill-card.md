@@ -1,42 +1,62 @@
-## Description: <br>
-Scans AISA for market-rumor signals related to M&A, insider activity, analyst actions, social media, and regulatory events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans AISA for market rumor signals related to M&A, insider activity, analyst actions, social media, and regulatory events.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-Agents supporting market intelligence workflows use this skill to request AISA scans for recent rumor and early-signal categories, then rank signals by potential impact. The output is informational and should be independently verified before any trading or business decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill returns rumor and early-signal analysis that may be unconfirmed or misleading. <br>
-Mitigation: Treat results as informational only and independently verify sources before acting on them. <br>
-Risk: The skill sends prompts to an external AISA-compatible API using an API key. <br>
-Mitigation: Use a dedicated AISA_API_KEY and avoid submitting private trading strategies, personal financial details, or other sensitive data. <br>
-Risk: Changing the AISA_BASE_URL can redirect requests to a different endpoint. <br>
-Mitigation: Leave AISA_BASE_URL unset unless the alternate endpoint is intentionally configured and trusted. <br>
+## Use Case:
 
+External users and analysts use this skill to scan early market rumor signals and rank them by potential impact. Outputs should be independently verified before any investment or trading decision.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/aisadocs/stock-rumors-zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown market-rumor report with an optional appended JSON summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and Python 3; supports focus filters for all, M&A, insider, analyst, or social signals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: AISA_BASE_URL can redirect the AISA API key and prompts to an arbitrary endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or lock down AISA_BASE_URL and allow only the expected AISA endpoint before deployment.
+
+Risk: The skill sends market-rumor scan requests and prompts to AISA.
+
+Mitigation: Use a narrowly scoped, revocable AISA_API_KEY and avoid submitting confidential information.
+
+Risk: The OpenAI SDK dependency is not pinned.
+
+Mitigation: Pin and review the dependency version before installing in controlled environments.
+
+Risk: Rumor outputs may be unconfirmed or misleading.
+
+Mitigation: Independently verify signals against authoritative market, filing, and news sources before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aisadocs/skills/stock-rumors-zh)
+- [ClawHub publisher profile](https://clawhub.ai/user/aisadocs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json]
+
+**Output Format:** [Markdown market-rumor report with an optional compact JSON summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and python3; sends scan requests to AISA.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

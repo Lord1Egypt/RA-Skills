@@ -1,0 +1,12 @@
+# Personal, sensitive health database — never version this.
+*.duckdb
+db/
+
+# Generated report output (agent chooses an out-dir; nothing to track here).
+reports/
+
+# Python / editor / OS cruft
+__pycache__/
+*.pyc
+.idea/
+.DS_Store

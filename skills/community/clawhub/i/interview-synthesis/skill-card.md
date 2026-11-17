@@ -1,42 +1,48 @@
-## Description: <br>
-Synthesizes qualitative user research data, including interviews, usability tests, focus groups, and survey open-ends, into a structured report with named themes, supporting quotes, insights, and prioritized recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a UX researcher or product team wants to synthesize qualitative data, including interviews, usability tests, focus groups, or survey open-ends, into structured themes, insights, prioritized recommendations, and a stakeholder-ready report.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+UX researchers, product teams, and research operations staff use this skill to turn raw qualitative research data into themes, supporting evidence, insights, and prioritized product recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Research inputs may include participant identifiers or sensitive personal disclosures.
+
+Mitigation: Review transcripts before use, remove unnecessary sensitive details where possible, and rely on the skill's participant anonymization and synthesis-focused reporting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-UX researchers, product teams, and design stakeholders use this skill to turn pasted qualitative research data into structured themes, evidence-backed insights, and prioritized recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Research data may contain participant identifiers or sensitive personal disclosures. <br>
-Mitigation: Confirm the user is allowed to provide the data, anonymize participants as P1, P2, etc., and review the final report for accidental identifiers. <br>
-Risk: The synthesis could overstate qualitative findings or imply statistical significance. <br>
-Mitigation: Review themes, prevalence counts, and recommendations against the source data, and preserve the distinction between observations, insights, and recommendations. <br>
-Risk: Final reports may expose too much raw transcript content. <br>
-Mitigation: Use short, representative quotes only when needed and avoid reproducing full transcripts verbatim. <br>
+**Output Format:** [Structured Markdown report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/interview-synthesis) <br>
+**Other Properties Related to Output:** [Uses participant codes, selective verbatim quotes, prevalence counts, prioritized recommendations, top insights, and suggested next steps.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown synthesis report with themes, supporting quotes, insights, and prioritized recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Participant identifiers are anonymized to P1, P2, etc.; direct quotes are used selectively rather than reproducing full transcripts.] <br>
+0.2.2 (source: changelog, released 2026-05-28)
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata and CHANGELOG, released 2026-05-28) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

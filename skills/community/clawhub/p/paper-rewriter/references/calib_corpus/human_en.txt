@@ -1,0 +1,9 @@
+We retrospectively reviewed 176 patients who underwent laparoscopic cholecystectomy at a single teaching hospital between 2022 and 2025. Operations were performed or supervised by three senior surgeons, and intraoperative recordings were reviewed for conversion events.
+
+Patients were grouped by preoperative gallbladder wall thickness. The primary outcome was conversion to open surgery; secondary outcomes included operative time, hospital stay and readmission within 30 days.
+
+Wall thickness above 5 mm was associated with longer operative times. Two conversions occurred, both in the thick-wall group; neither resulted in bile duct injury.
+
+Statistical analysis used Stata 18. Continuous variables were compared with the Mann-Whitney U test, and categorical variables with Fisher's exact test.
+
+Limitations include the retrospective design and the small number of conversions, which restricts multivariable modelling. We conclude that routine ultrasound remains a useful preoperative marker, and that consent conversations should reflect the elevated conversion risk in thick-wall gallbladders.

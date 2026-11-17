@@ -1,44 +1,59 @@
-## Description: <br>
-Internet-native payments using the HTTP 402 Payment Required standard. Set up as a buyer to pay for API access, or as a seller to monetize your APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Internet-native payments using the HTTP 402 Payment Required standard. Set up as a buyer to pay for API access, or as a seller to monetize your APIs.
 
-## Publisher: <br>
-[notorious-d-e-v](https://clawhub.ai/user/notorious-d-e-v) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[notorious-d-e-v](https://clawhub.ai/user/notorious-d-e-v)
 
-## Use Case: <br>
-Developers and API builders use this skill for x402 buyer, seller, and paywall examples across TypeScript, Python, and Go. It helps agents produce setup guidance, dependency commands, code snippets, and payment configuration for HTTP 402-based API access and monetization. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to work with raw crypto payment credentials. <br>
-Mitigation: Use dedicated low-balance wallets or testnet keys, avoid primary wallets, and keep spending limits outside the skill where possible. <br>
-Risk: Paid requests may be made without clear spend limits or approval controls. <br>
-Mitigation: Require explicit confirmation before any paid request and verify the price, network, facilitator, and destination before execution. <br>
-Risk: Production payment examples can move real stablecoin value if mainnet credentials and facilitators are used. <br>
-Mitigation: Test with Base Sepolia or Solana Devnet first, then review payee addresses, facilitator URLs, and network identifiers before production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [x402 Documentation](https://docs.x402.org) <br>
-- [coinbase/x402 GitHub Repository](https://github.com/coinbase/x402) <br>
-- [ClawHub Skill Page](https://clawhub.ai/notorious-d-e-v/x402-enhanced) <br>
-- [Publisher Profile](https://clawhub.ai/user/notorious-d-e-v) <br>
+## Use Case:
 
+Developers and engineers use this skill to configure x402 buyer clients, seller servers, facilitators, supported networks, paywalls, and payment examples for APIs that use HTTP 402 payment flows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with code blocks, tables, environment variables, and dependency commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces buyer, seller, and paywall integration examples for x402 payment flows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Examples require wallet private keys or payee addresses for payment flows.
+
+Mitigation: Treat wallet keys as sensitive secrets, use dedicated wallets or spending limits, and start with testnet networks before production use.
+
+Risk: Payment verification can depend on external facilitator services and installed packages.
+
+Mitigation: Verify facilitator URLs and package sources before use, and select a production facilitator intentionally for production deployments.
+
+Risk: Demo API servers can expose paid routes or payment behavior if published unintentionally.
+
+Mitigation: Keep demo servers local unless deliberately deployed, and review host, network, and route settings before exposing them.
+
+## Reference(s):
+
+- [x402 Documentation](https://docs.x402.org)
+- [x402 GitHub Repository](https://github.com/coinbase/x402)
+- [x402 Default Facilitator](https://x402.org/facilitator)
+- [Coinbase x402 Facilitator](https://api.cdp.coinbase.com/platform/v2/x402)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code examples, shell commands, configuration snippets, and reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only examples for buyer clients, seller servers, facilitator selection, network identifiers, paywall setup, and testing guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

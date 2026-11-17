@@ -1,42 +1,58 @@
-## Description: <br>
-Manages a local V2Ray proxy by starting or stopping V2Ray and configuring system proxy settings based on network availability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages a local V2Ray/Xray proxy by starting or stopping the proxy process, setting proxy environment variables, testing connectivity, and optionally wrapping shell commands with temporary proxy access.
 
-## Publisher: <br>
-[Felixqian4160](https://clawhub.ai/user/Felixqian4160) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[felixqian4160](https://clawhub.ai/user/felixqian4160)
 
-## Use Case: <br>
-Developers and agent users can use this skill to enable, disable, test, or automatically manage a local V2Ray proxy when OpenClaw or shell commands need external network access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes risky command execution through a wrapper that can run supplied shell commands. <br>
-Mitigation: Review and replace or remove the eval-based wrapper before use, and run only commands from trusted sources. <br>
-Risk: The skill can make persistent shell-profile changes and alter system proxy state. <br>
-Mitigation: Confirm whether it edits ~/.bashrc before use, and verify that proxy changes have a clear rollback path. <br>
-Risk: Proxy changes may disrupt local network behavior if V2Ray fails to start, stop, or clean up correctly. <br>
-Mitigation: Test the on, off, status, and disable-sys flows in a controlled environment before relying on the skill. <br>
+## Use Case:
 
+Developers and agents use this skill to manage local proxy access when external network connectivity is needed, including enabling, disabling, testing, and wrapping commands through a V2Ray/Xray proxy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Felixqian4160/v2ray-proxy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local V2Ray or Xray installation and a configured proxy path before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The command wrapper uses eval and can execute unsafe input if untrusted URLs, filenames, branch names, or user-provided command text are passed to it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the wrapper only with trusted, fully reviewed command arguments, or replace it with argument-preserving execution that avoids eval.
+
+Risk: The script may leave a persistent marker in ~/.bashrc when enabling system proxy behavior.
+
+Mitigation: Require explicit opt-in for shell profile changes and document a reversible cleanup path before deployment.
+
+Risk: The script stops processes with pattern-based pkill matching for V2Ray/Xray-related process names.
+
+Mitigation: Track and stop the specific V2Ray process ID launched by the skill instead of relying on broad process-name matching.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/felixqian4160/skills/v2ray-proxy)
+- [ClawHub publisher profile](https://clawhub.ai/user/felixqian4160)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill delegates proxy actions to a Bash script and reports connection status and command results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

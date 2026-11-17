@@ -1,17 +1,17 @@
 ---
 name: skill-trust-auditor
-description: "Audit a ClawHub skill for security risks BEFORE installation."
-version: "1.1.3"
+description: Audit a named ClawHub skill or skill URL before installation by combining OpenClaw verification with bounded static analysis. Use when the user explicitly asks whether a skill is safe or requests a pre-install review; report evidence and uncertainty instead of treating a score as proof.
 metadata:
-  {
-    "openclaw": {
-      "emoji": "🛡️",
-      "requires": {
-        "bins": ["python3"],
-        "anyBins": ["clawhub"]
-      }
-    }
-  }
+  openclaw:
+    version: "1.1.5"
+    emoji: "🛡️"
+    homepage: https://clawhub.ai/jonathanjing/skill-trust-auditor
+    requires:
+      bins: [python3]
+    envVars:
+      - name: ANTHROPIC_API_KEY
+        required: false
+        description: Optional LLM judge credential for ambiguous findings.
 ---
 
 # Skill Trust Auditor
@@ -21,29 +21,35 @@ Audit any ClawHub skill for security risks before installation.
 ## 🛠️ Installation
 
 ### 1. Ask OpenClaw (Recommended)
-Tell OpenClaw: *"Install the skill-trust-auditor skill."* The agent will handle the installation and configuration automatically.
+Tell OpenClaw: *"Install @jonathanjing/skill-trust-auditor."*
 
 ### 2. Manual Installation (CLI)
 If you prefer the terminal, run:
 ```bash
-clawhub install skill-trust-auditor
+openclaw skills install @jonathanjing/skill-trust-auditor
 ```
 
 ## Setup (first run only)
 
 ```bash
-bash scripts/setup.sh
+bash "{baseDir}/scripts/setup.sh"
 ```
 
 ## Audit a Skill
 
-When user says "audit [skill-name]" or "is [skill-name] safe" or before any `clawhub install`:
+First request the registry trust envelope:
 
 ```bash
-bash scripts/audit.sh [skill-name-or-url]
+openclaw skills verify @owner/skill --json
+```
+
+Then run bounded local analysis when the user asks for a deeper audit:
+
+```bash
+bash "{baseDir}/scripts/audit.sh" [skill-name-or-url]
 # Example:
-bash scripts/audit.sh steipete/clawhub
-bash scripts/audit.sh https://clawhub.ai/someuser/someskill
+bash "{baseDir}/scripts/audit.sh" steipete/clawhub
+bash "{baseDir}/scripts/audit.sh" https://clawhub.ai/someuser/someskill
 ```
 
 Output:
@@ -71,7 +77,7 @@ Score: 72/100 — ⚠️ INSTALL WITH CAUTION
 🟡 MEDIUM: reads your MEMORY.md
 
 Recommendation: Inspect line 14 of sync.sh before proceeding.
-Run: clawhub show someuser/someskill --file scripts/sync.sh
+Inspect the exact version's Files tab or installed folder before proceeding.
 ```
 
 ## Trust Score Guide
@@ -101,14 +107,8 @@ Run: clawhub show someuser/someskill --file scripts/sync.sh
 - `web_fetch` to standard domains
 - Read-only file access in workspace
 
-## Auto-Audit Mode
-
-Optionally prepend audit to every install:
-```bash
-# Add to your shell aliases:
-alias clawhub-safe='bash ~/.openclaw/workspace/skills/skill-trust-auditor/scripts/audit.sh $1 && clawhub install $1'
-```
+Do not auto-install from an audit score. Present findings, the registry decision, and the exact install reference; let the user authorize installation separately.
 
 ## ClawHavoc Pattern Reference
 
-See `references/clawhavoc-patterns.md` for known malicious patterns from the February 2026 incident. Update this file when new incidents are reported.
+See `{baseDir}/references/clawhavoc-patterns.md` for known malicious patterns. Treat it as a heuristic reference, not a complete malware signature set.

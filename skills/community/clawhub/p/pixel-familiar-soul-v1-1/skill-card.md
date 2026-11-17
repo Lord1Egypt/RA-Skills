@@ -1,41 +1,54 @@
-## Description: <br>
-A complete AI agent identity as the CEO of Pixel Familiar Inc. Includes SOUL.md, identity framework, model routing, delegation protocols, and operational guidelines for building revenue-focused autonomous agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A complete AI agent identity as the CEO of Pixel Familiar Inc. Includes SOUL.md, identity framework, model routing, delegation protocols, and operational guidelines for building revenue-focused autonomous agents.
 
-## Publisher: <br>
-[PixelFamiliar](https://clawhub.ai/user/PixelFamiliar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pixelfamiliar](https://clawhub.ai/user/pixelfamiliar)
 
-## Use Case: <br>
-Developers and operators use this skill to configure an AI agent identity for revenue-focused business orchestration, model routing, and delegation across specialist agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad autonomous authority for non-financial work. <br>
-Mitigation: Add explicit approval gates for publishing, external communications, account or production changes, destructive edits, sensitive data access, and delegated background work before real workspace use. <br>
-Risk: Aggressive delegation guidance may start background work without enough oversight. <br>
-Mitigation: Require clear acceptance criteria, named recipients, priority, and human review for high-impact delegated tasks. <br>
+## Use Case:
 
+External users and developers use this skill to give an agent the Pixel Familiar CEO/orchestrator identity for revenue-focused business coordination, model routing, delegation, and operational decision support.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/PixelFamiliar/pixel-familiar-soul-v1-1) <br>
-- [Pixel Familiar website](https://pixelfamiliar.ca) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with identity, model-routing, delegation, and operating instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No runtime artifact is produced; the skill changes agent identity, routing posture, and delegation behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill gives the agent broad autonomous business and delegation authority with weak approval boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation for data sharing, external communications, file or account changes, production operations, publication, credential use, memory writes, model or session changes, and delegation that sends context to other agents.
+
+Risk: The skill is designed for a named Pixel Familiar CEO/orchestrator setup and may not match a general-purpose agent deployment.
+
+Mitigation: Install only when the desired behavior is for the agent to operate as the Pixel Familiar CEO/orchestrator in that named multi-agent setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pixelfamiliar/skills/pixel-familiar-soul-v1-1)
+- [Pixel Familiar website](https://pixelfamiliar.ca)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline command examples and delegation templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces identity, routing, delegation, and operating guidance for an agent; no executable code or credentials are included in the artifact.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

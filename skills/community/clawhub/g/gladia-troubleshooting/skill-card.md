@@ -1,46 +1,61 @@
-## Description: <br>
-Diagnose and fix common Gladia API issues, including authentication errors, rate limits, unexpected behavior, transcription quality issues, billing confusion, audio format problems, WebSocket disconnections, and polling failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose and fix common Gladia API issues, including authentication and rate-limit errors, unexpected transcription behavior, audio format problems, WebSocket disconnections, polling failures, billing confusion, and limits questions.
 
-## Publisher: <br>
-[gladiaio](https://clawhub.ai/user/gladiaio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gladiaio](https://clawhub.ai/user/gladiaio)
 
-## Use Case: <br>
-Developers and support engineers use this skill to diagnose Gladia API integrations before or during production use. It provides targeted troubleshooting guidance for credentials, limits, audio configuration, SDK usage, WebSocket recovery, callbacks, transcription quality, and billing-related surprises. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Troubleshooting may involve API keys, webhook secrets, callback payloads, or other sensitive integration data. <br>
-Mitigation: Use test credentials and sample payloads when possible, avoid pasting real secrets into chats or logs, and rotate any credential that may have been exposed. <br>
-Risk: Plan limits, billing behavior, feature availability, and API limits may change after the skill release. <br>
-Mitigation: Verify current limits and billing behavior against the linked Gladia documentation, dashboard, or support resources before making production changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose Gladia API integration failures, transcription quality issues, billing or concurrency confusion, and production-readiness problems. It guides users toward SDK-first fixes and targeted checks for authentication, rate limits, audio formats, live sessions, webhooks, and plan restrictions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gladiaio/gladia-troubleshooting) <br>
-- [Gladia authentication documentation](https://docs.gladia.io/chapters/api/authentication) <br>
-- [Gladia rate limits and concurrency](https://docs.gladia.io/chapters/limits-and-specifications/rate-limits) <br>
-- [Gladia supported formats and limits](https://docs.gladia.io/chapters/limits-and-specifications/supported-formats) <br>
-- [Gladia webhooks documentation](https://docs.gladia.io/chapters/pre-recorded-stt/webhooks) <br>
-- [Gladia API reference](https://docs.gladia.io/api-reference) <br>
-- [Gladia API status](https://status.gladia.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown diagnostic guidance with JSON, TypeScript, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; may discuss API keys, webhook payloads, billing behavior, and plan limits but does not execute code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Troubleshooting may involve API keys or account details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep Gladia API keys private and avoid sharing secrets in prompts, logs, or copied error output.
+
+Risk: Limits, pricing, SDK versions, and plan restrictions can change over time.
+
+Mitigation: Verify time-sensitive production decisions against Gladia's current official documentation or dashboard.
+
+## Reference(s):
+
+- [Authentication](https://docs.gladia.io/chapters/api/authentication)
+- [Rate limits and concurrency](https://docs.gladia.io/chapters/limits-and-specifications/rate-limits)
+- [Supported formats and limits](https://docs.gladia.io/chapters/limits-and-specifications/supported-formats)
+- [Webhooks](https://docs.gladia.io/chapters/pre-recorded-stt/webhooks)
+- [API reference](https://docs.gladia.io/api-reference)
+- [Gladia Documentation](https://docs.gladia.io)
+- [Support Center](https://support.gladia.io)
+- [API Status](https://status.gladia.io)
+- [Dashboard](https://app.gladia.io)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions]
+
+**Output Format:** [Markdown with inline JSON, TypeScript, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides troubleshooting checks, remediation steps, and verification checklist items; it does not execute API calls or require tool access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

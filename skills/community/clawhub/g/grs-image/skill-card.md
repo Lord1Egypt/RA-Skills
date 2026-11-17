@@ -1,44 +1,59 @@
-## Description: <br>
-GrsAI Nano Banana Pro image generation skill that uses the GrsAI API to create images from Chinese or English prompts for interior design renders, launch posters, and design materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GrsAI Nano Banana Pro image generation tool that uses the GrsAI API for Chinese-language prompts, interior design renderings, launch posters, design materials, and image-to-image reference workflows.
 
-## Publisher: <br>
-[mapleslove](https://clawhub.ai/user/mapleslove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mapleslove](https://clawhub.ai/user/mapleslove)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to generate GrsAI images from prompts, choose model, aspect ratio, and resolution settings, and save the generated image locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference images are submitted to GrsAI for processing. <br>
-Mitigation: Avoid sending confidential prompts, personal images, internal URLs, or regulated data unless that external processing is acceptable. <br>
-Risk: The script reads an API key from the environment and uses it for GrsAI requests. <br>
-Mitigation: Keep GRSAAI_API_KEY private and run the skill only in a trusted Python environment. <br>
-Risk: The selected output path can overwrite files accessible to the current user. <br>
-Mitigation: Choose output filenames carefully and review paths before running commands that save generated images. <br>
+## Use Case:
 
+Developers and designers use this skill to generate images through the GrsAI Nano Banana Pro API from text prompts or reference images. It is suited to design visualization tasks such as interior renderings, promotional posters, material studies, and prompt-template-assisted image generation.
 
-## Reference(s): <br>
-- [GrsAI Nano Banana API documentation](https://grsai.ai/zh/dashboard/documents/nano-banana) <br>
-- [Interior design prompt templates](references/prompts.json) <br>
-- [ClawHub skill page](https://clawhub.ai/mapleslove/grs-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, guidance] <br>
-**Output Format:** [PNG image files saved to disk, with terminal status text and generated image URL output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GRSAAI_API_KEY and network access to GrsAI; supports prompt, model, aspect ratio, resolution, output path, and optional reference image URLs or Base64 input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends user prompts and optional reference images to a third-party GrsAI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting confidential prompts or reference images, and use a dedicated low-privilege GrsAI API key.
+
+Risk: The remote API response can direct the script to download an image from a returned URL.
+
+Mitigation: Review before installing and consider URL allowlisting, response size limits, and content-type checks before regular use.
+
+Risk: The script depends on external Python packages and a remote image-generation API.
+
+Mitigation: Install dependencies in a virtual environment and pin dependency versions for repeatable use.
+
+## Reference(s):
+
+- [GrsAI Nano Banana API Documentation](https://grsai.ai/zh/dashboard/documents/nano-banana)
+- [Prompt Templates](references/prompts.json)
+- [ClawHub Grs Image Skill Page](https://clawhub.ai/mapleslove/skills/grs-image)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, code, files, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and generated image files saved to disk]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GrsAI API key; prompts and optional reference images are sent to a third-party API, and generated image URLs may be time-limited.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

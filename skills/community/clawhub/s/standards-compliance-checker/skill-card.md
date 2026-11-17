@@ -1,41 +1,54 @@
-## Description: <br>
-Check data compliance with construction standards. Validate data against ISO 19650, IFC, COBie, UniFormat standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check data compliance with construction standards and validate data against ISO 19650, IFC, COBie, and UniFormat standards.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Developers, engineers, and construction project teams use this skill to validate project data against BIM and construction classification standards, review compliance issues, and generate structured summaries or exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Filesystem access can read or write project files explicitly provided to the agent. <br>
-Mitigation: Install only if that access is acceptable, and review export paths before writing reports. <br>
-Risk: Compliance results are advisory and validation coverage may have accuracy gaps, especially for OmniClass coverage. <br>
-Mitigation: Review findings against authoritative standards before using them for compliance decisions. <br>
+## Use Case:
 
+Developers, construction data teams, BIM managers, and project management assistants use this skill to check project records against construction data standards, summarize compliance status, and identify rule failures or warnings. It supports individual records, batches, and multiple standards for workflows involving ISO 19650, IFC, COBie, UniFormat, MasterFormat, and Omniclass.
 
-## Reference(s): <br>
-- [Data Driven Construction](https://datadrivenconstruction.io) <br>
-- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/standards-compliance-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Structured Markdown tables and summaries, with optional CSV, Excel, or JSON exports when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided construction data and file paths; may write report exports when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The skill may read project data files and create exports through filesystem access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm intended file access scope before installation and use workspace permissions that limit the skill to the project data needed for the compliance check.
+
+Risk: Custom validation rules can include patterns that may be unsafe or expensive if accepted from untrusted users.
+
+Mitigation: Apply schema checks, pattern length limits, and regex execution safeguards before accepting third-party or user-supplied rules.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/datadrivenconstruction/skills/standards-compliance-checker)
+- [DataDrivenConstruction Homepage](https://datadrivenconstruction.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, files, guidance]
+
+**Output Format:** [Markdown, structured tables, Python examples, and optional CSV, Excel, or JSON exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes compliance levels, pass/fail counts, warning counts, issue details, summary statistics, and suggested fixes.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata; artifact/claw.json lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

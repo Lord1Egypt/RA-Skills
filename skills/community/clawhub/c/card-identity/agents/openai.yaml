@@ -1,0 +1,7 @@
+interface:
+  display_name: "Card Identity"
+  short_description: "Resolve a card name to the exact variant"
+  default_prompt: "Use $card-identity to resolve 'Amex Gold' to the exact card."
+
+policy:
+  allow_implicit_invocation: false

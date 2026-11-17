@@ -1,0 +1,433 @@
+{
+  "skill": "ai-governance-playbook",
+  "version": "1.0.0",
+  "generated_at": "",
+  "note": "本地闭环验证：零网络、零数据采集、可重复",
+  "dimensions": [
+    {
+      "key": "regulatory_timeliness",
+      "label": "法规时效性",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "欧盟 AI Act 2026-08-02 一般适用日",
+          "pass": true
+        },
+        {
+          "name": "Digital Omnibus 修订（Annex III → 2027-12-02）",
+          "pass": true
+        },
+        {
+          "name": "Digital Omnibus 修订（Annex I → 2028-08-02）",
+          "pass": true
+        },
+        {
+          "name": "Digital Omnibus 法规编号 2026/1744",
+          "pass": true
+        },
+        {
+          "name": "透明度义务 Article 50 生效",
+          "pass": true
+        },
+        {
+          "name": "透明度罚款 1500 万欧/3%（非 750 万/1%）",
+          "pass": true
+        },
+        {
+          "name": "GPAI 行为准则与训练数据摘要",
+          "pass": true
+        },
+        {
+          "name": "中国内容标识办法 2025-09-01",
+          "pass": true
+        },
+        {
+          "name": "中国新网安法 2026-01-01",
+          "pass": true
+        },
+        {
+          "name": "中国智能体政策 2026-05",
+          "pass": true
+        },
+        {
+          "name": "中国 AI 版权司法动态 2026-04 最高法方案",
+          "pass": true
+        },
+        {
+          "name": "韩国 AI 基本法 2026-01 生效",
+          "pass": true
+        },
+        {
+          "name": "日本 AI 促进法 2025-06 生效",
+          "pass": true
+        },
+        {
+          "name": "新加坡 AI Verify",
+          "pass": true
+        },
+        {
+          "name": "核对基准日标注",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "coverage_completeness",
+      "label": "覆盖完整性",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "references 模块数=11（实际 11）",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 01-AI治理全景框架.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 02-AI治理组织与制度模板.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 03-AI风险评估清单.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 04-中国AI治理法规速查.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 05-欧盟AI治理法规速查.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 06-国际框架与标准速查.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 07-AI应用登记与审批流程.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 08-落地路线与成熟度自评.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 09-FAQ.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 10-亚太与全球治理速查.md",
+          "pass": true
+        },
+        {
+          "name": "导航表包含 11-行业AI治理专项.md",
+          "pass": true
+        },
+        {
+          "name": "FAQ 专节存在",
+          "pass": true
+        },
+        {
+          "name": "快速上手三步存在",
+          "pass": true
+        },
+        {
+          "name": "能力边界如实说明",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "template_usability",
+      "label": "模板可用性",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "policy 命令执行成功",
+          "pass": true
+        },
+        {
+          "name": "政策草案含「数据分级」",
+          "pass": true
+        },
+        {
+          "name": "政策草案含「禁止行为」",
+          "pass": true
+        },
+        {
+          "name": "政策草案含「内容标识」",
+          "pass": true
+        },
+        {
+          "name": "政策草案含「登记」",
+          "pass": true
+        },
+        {
+          "name": "政策草案含「生效与修订」",
+          "pass": true
+        },
+        {
+          "name": "政策草案含「人工复核」",
+          "pass": true
+        },
+        {
+          "name": "registry 命令执行成功",
+          "pass": true
+        },
+        {
+          "name": "登记表含「风险等级」",
+          "pass": true
+        },
+        {
+          "name": "登记表含「涉及数据级别」",
+          "pass": true
+        },
+        {
+          "name": "登记表含「供应商」",
+          "pass": true
+        },
+        {
+          "name": "登记表含「审批状态」",
+          "pass": true
+        },
+        {
+          "name": "checklist apac 命令执行成功",
+          "pass": true
+        },
+        {
+          "name": "亚太清单含「韩国」",
+          "pass": true
+        },
+        {
+          "name": "亚太清单含「AI 基本法」",
+          "pass": true
+        },
+        {
+          "name": "亚太清单含「新加坡」",
+          "pass": true
+        },
+        {
+          "name": "亚太清单含「AI Verify」",
+          "pass": true
+        },
+        {
+          "name": "亚太清单含「ISO/IEC 42001」",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "risk_accuracy",
+      "label": "风险分级准确性",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "「用AI筛选候选人简历，辅…」判定=高风险",
+          "pass": true
+        },
+        {
+          "name": "「用AI翻译公开资料…」判定=低风险",
+          "pass": true
+        },
+        {
+          "name": "「AI客服自动回复客户咨询…」判定=中风险",
+          "pass": true
+        },
+        {
+          "name": "「人脸识别考勤打卡…」判定=高风险",
+          "pass": true
+        },
+        {
+          "name": "「用AI做社会信用评分…」判定=禁止级",
+          "pass": true
+        },
+        {
+          "name": "「AI辅助医疗诊断…」判定=高风险",
+          "pass": true
+        },
+        {
+          "name": "「AI自动信贷审批…」判定=高风险",
+          "pass": true
+        },
+        {
+          "name": "「用AI整理内部会议纪要…」判定=低风险",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "structure_compliance",
+      "label": "结构规范性",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "frontmatter 含 name:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 display_name:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 version:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 category:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 platforms:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 author:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 license:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 description:",
+          "pass": true
+        },
+        {
+          "name": "frontmatter 含 tags:",
+          "pass": true
+        },
+        {
+          "name": "版权与许可段存在",
+          "pass": true
+        },
+        {
+          "name": "MIT 声明",
+          "pass": true
+        },
+        {
+          "name": "知识版权声明存在",
+          "pass": true
+        },
+        {
+          "name": "免责声明（AS IS）存在",
+          "pass": true
+        },
+        {
+          "name": "LICENSE.md 存在且含 MIT",
+          "pass": true
+        },
+        {
+          "name": "工具实现命令 classify",
+          "pass": true
+        },
+        {
+          "name": "工具实现命令 policy",
+          "pass": true
+        },
+        {
+          "name": "工具实现命令 registry",
+          "pass": true
+        },
+        {
+          "name": "工具实现命令 maturity",
+          "pass": true
+        },
+        {
+          "name": "工具实现命令 checklist",
+          "pass": true
+        },
+        {
+          "name": "工具实现命令 --help",
+          "pass": true
+        },
+        {
+          "name": "工具实现参数 --scenario",
+          "pass": true
+        },
+        {
+          "name": "工具实现参数 --company",
+          "pass": true
+        },
+        {
+          "name": "工具实现参数 --sector",
+          "pass": true
+        },
+        {
+          "name": "工具实现参数 --scores",
+          "pass": true
+        },
+        {
+          "name": "工具实现参数 --region",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "key": "security_cleanliness",
+      "label": "安全净度",
+      "score": 5.0,
+      "checks": [
+        {
+          "name": "敏感模式「真实邮箱」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「手机号」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「本地路径(Win)」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「本地路径(Unix)」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「密钥前缀」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「token 字样(代码语境)」0 命中",
+          "pass": true
+        },
+        {
+          "name": "敏感模式「私钥头」0 命中",
+          "pass": true
+        },
+        {
+          "name": "全包无任何命中",
+          "pass": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "regulatory_timeliness": 5.0,
+    "coverage_completeness": 5.0,
+    "template_usability": 5.0,
+    "risk_accuracy": 5.0,
+    "structure_compliance": 5.0,
+    "security_cleanliness": 5.0,
+    "average": 5.0
+  },
+  "benchmarks": {
+    "industry_baseline": {
+      "regulatory_timeliness": 2.5,
+      "coverage_completeness": 3.0,
+      "template_usability": 2.0,
+      "risk_accuracy": 2.5,
+      "structure_compliance": 3.0,
+      "security_cleanliness": 3.0
+    },
+    "enterprise_standard": {
+      "regulatory_timeliness": 4.5,
+      "coverage_completeness": 4.5,
+      "template_usability": 4.0,
+      "risk_accuracy": 4.5,
+      "structure_compliance": 5.0,
+      "security_cleanliness": 5.0
+    }
+  }
+}

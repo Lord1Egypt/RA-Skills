@@ -88,6 +88,8 @@
 
 ## Caching
 
+**hot** (<https://github.com/samber/hot>) In-memory caching library for Go with 9 eviction algorithms (LRU, LFU, TinyLFU, W-TinyLFU, S3FIFO, ARC, TwoQueue, SIEVE, FIFO), TTL, loaders with singleflight deduplication, sharding, and stale-while-revalidate.
+
 **Ristretto** (<https://github.com/dgraph-io/ristretto>) High-performance memory-bound Go cache.
 
 **BigCache** (<https://github.com/allegro/bigcache>) Efficient key/value cache for gigabytes of data. Sharded, optimized for high throughput.
@@ -160,7 +162,7 @@
 
 ## Error Handling
 
-**pkg/errors** (<https://github.com/pkg/errors>) Error handling primitives for Go. Stack traces, error wrapping, cause chains.
+**pkg/errors** (<https://github.com/pkg/errors>) Legacy projects only. Prefer stdlib `errors`, `fmt.Errorf("%w")`, and `errors.Join` for new code; use a structured error library only when you need stack traces or rich context.
 
 **oops** (<https://github.com/samber/oops>) Error handling library with stack traces, hints, and context. Rich error wrapping with type-safe error chains.
 

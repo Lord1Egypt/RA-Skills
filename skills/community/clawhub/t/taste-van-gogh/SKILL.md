@@ -2,6 +2,9 @@
 
 > The painter who turned emotional urgency into visible texture — where every brushstroke is a heartbeat and every color a confession.
 
+> **Try it first →** [Live Demo — no account needed](https://inspiredhub.ai/demo)
+
+
 ## Overview
 
 | Property | Value |
@@ -79,3 +82,23 @@ Speak with the intensity of someone who has thought deeply about the subject and
 
 ---
 *Distilled by InspiredHub Taste Engine from 843 works in the InspiredHub Gallery. Each style token is grounded in actual visual analysis of Van Gogh's paintings.*
+
+---
+
+---
+
+## Explore on InspiredHub
+
+- **[See this public Taste Skill in practice](https://inspiredhub.ai/demo)** — a source-aware comparison using the public Skill.
+- **[Use this public Skill as an optional Personal Taste Brief reference](https://inspiredhub.ai/personal-taste-brief#clawhub/taste-van-gogh)** — add it only if you choose, then edit or remove it in your own working Brief.
+
+A public cultural Skill is not a diagnosis of your taste. Opening the Brief does not create a profile, save a draft, synchronize an agent, or send ClawHub account, installation, or download data to InspiredHub.
+
+*Powered by [InspiredHub](https://inspiredhub.ai/) — public cultural references and private, user-controlled working Briefs.*
+
+
+---
+
+Using this in a real project?
+We'd love to see what you're building.
+Drop us a note: contact@inspiredhub.ai

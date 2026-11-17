@@ -1,41 +1,53 @@
-## Description: <br>
-Master orchestrator for turning high-value GEO content and capabilities into AI plugins/tools across ChatGPT, Claude, Perplexity, Gemini and other ecosystems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master orchestrator for turning high-value GEO content and capabilities into AI plugins/tools across ChatGPT, Claude, Perplexity, Gemini and other ecosystems.
 
-## Publisher: <br>
-[geoly-geo](https://clawhub.ai/user/geoly-geo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geoly-geo](https://clawhub.ai/user/geoly-geo)
 
-## Use Case: <br>
-External teams, developers, and GEO strategists use this skill to turn content, data, APIs, and workflows into AI plugin catalogs and implementation-ready tool specifications across assistant ecosystems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated plugin specifications can omit or under-specify authentication, privacy, data retention, telemetry, or regulated-data handling requirements. <br>
-Mitigation: Review each generated specification before implementation and add explicit controls for authentication, permissions, data handling, logging, and compliance. <br>
-Risk: Broad tool descriptions or invocation rules could cause an assistant to call a proposed tool in inappropriate contexts. <br>
-Mitigation: Constrain tool descriptions, input schemas, and examples so each tool has a clear use case, required inputs, and refusal or fallback behavior. <br>
+## Use Case:
 
+Developers, marketers, and product teams use this skill to turn brand content, data, services, and GEO assets into AI plugin catalogs, tool specifications, implementation blueprints, and roadmaps across major AI ecosystems.
 
-## Reference(s): <br>
-- [GEO AI Plugin Patterns](references/geo-ai-plugin-patterns.md) <br>
-- [ClawHub release page](https://clawhub.ai/geoly-geo/geo-ai-plugin-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON schema examples and implementation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include plugin catalog tables, tool specifications, example calls and responses, GEO notes, and developer handoff roadmaps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Generated plugin schemas may be too broad or unclear about when a tool should be invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated schema for narrow invocation criteria, explicit input and output boundaries, and clear model-facing descriptions before implementation.
+
+Risk: Generated plugin plans may omit authentication, privacy, or compliance constraints when the user provides incomplete context.
+
+Mitigation: Confirm data sources, access controls, regulated data handling, and privacy requirements with the product or security owner before deploying any generated plugin.
+
+## Reference(s):
+
+- [GEO AI Plugin Patterns](references/geo-ai-plugin-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with tables, JSON schemas, example calls and responses, and implementation checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include documented assumptions, GEO notes, tool invocation criteria, data-boundary guidance, authentication expectations, and privacy constraints.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

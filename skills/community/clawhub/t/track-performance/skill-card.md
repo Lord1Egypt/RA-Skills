@@ -1,41 +1,52 @@
-## Description: <br>
-Track the performance of Uniswap LP positions over time — check which positions need attention, are out of range, or have uncollected fees. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track the performance of Uniswap LP positions over time — check which positions need attention, are out of range, or have uncollected fees.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-External users with existing Uniswap liquidity positions use this skill to review position health, fee accumulation, out-of-range status, and action items across wallet, chain, and time-window filters. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is primarily read-only, but its artifact guidance references configuring a private key when no wallet is configured. <br>
-Mitigation: Use a public wallet address or another clearly read-only data source for tracking. Do not provide a private key unless the portfolio analysis environment is fully trusted and transaction signing is explicitly prevented. <br>
-Risk: Performance, fee, and range data may be delayed by RPC or subgraph synchronization. <br>
-Mitigation: Treat summaries and action items as decision support and verify current on-chain data before rebalancing, collecting fees, or taking other financial action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/track-performance) <br>
-- [README](artifact/README.md) <br>
-- [Skill specification](artifact/SKILL.md) <br>
+## Use Case:
 
+External users with existing Uniswap LP positions use this skill to review position health, fee accumulation, range status, and action items across wallet, chain, and time-window filters.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown performance summary with position status, fee notes, value changes, and actionable alerts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports optional wallet, chain, and time-window filters; action items are suggestions and not automatic transactions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill documentation mentions configuring a private wallet key even though performance tracking should only need public wallet data.
+
+Mitigation: Use a public wallet address for tracking and do not provide seed phrases, private keys, or signing credentials.
+
+Risk: Mutable install sources can change after review.
+
+Mitigation: Prefer a pinned install source or a reviewed ClawHub release instead of mutable latest or main references.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/track-performance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown performance summary with position status, fee details, alerts, and action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Delegates analysis to the portfolio-analyst agent; performance data may be delayed due to RPC or subgraph synchronization.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

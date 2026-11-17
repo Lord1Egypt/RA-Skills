@@ -1,40 +1,49 @@
-## Description: <br>
-Analyzes finance competency gaps and generates individualized development plans for current and target roles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes finance competency gaps against a target role and produces a personalized individual development plan.
 
-## Publisher: <br>
-[7679457979](https://clawhub.ai/user/7679457979) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[7679457979](https://clawhub.ai/user/7679457979)
 
-## Use Case: <br>
-Finance managers, HR talent teams, and employees use this skill to compare self-assessed finance competencies against target-role expectations and produce a structured individual development plan with actions, timelines, and evaluation methods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Employee competency assessments and career plans may contain sensitive personal or HR data. <br>
-Mitigation: Use only with appropriate internal approvals and avoid sharing assessment details the user would not want processed by their agent. <br>
-Risk: Development recommendations may be incomplete or unsuitable if the self-assessment or target-role expectations are inaccurate. <br>
-Mitigation: Review generated plans with a manager, mentor, or HR partner before using them for personnel decisions. <br>
+## Use Case:
 
+Finance employees, managers, and talent-development teams use this skill to compare current and target role competencies, prioritize gaps, and draft an individual development plan with on-the-job, mentoring, training, certification, and self-learning actions.
 
-## Reference(s): <br>
-- [Finance Idp ClawHub release](https://clawhub.ai/7679457979/finance-idp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with a competency gap table and structured development plan sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses current position, target position, competency self-assessment, and optional business strategy context as inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may enter unnecessary personal employee data while requesting finance-role development guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit inputs to the role, competency scores, and business context needed for the plan; avoid sensitive personal details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/7679457979/skills/finance-idp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with a competency gap table and individual development plan sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses provided role, self-assessment, and optional strategy inputs; no external access or persistence is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

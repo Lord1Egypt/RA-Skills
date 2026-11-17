@@ -1,45 +1,55 @@
-## Description: <br>
-AI architectural blueprint analysis that extracts rooms, dimensions, materials, and structural elements from floor plans for $0.05 USDC via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI architectural blueprint analysis - extract rooms, dimensions, materials from floor plans. $0.05 USDC via x402.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-Developers and external users use this skill to submit blueprint or floor plan images to a paid remote analysis service and receive structured room, dimension, area, material, and structural-element data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Blueprint images or URLs are sent to x402.ntriq.co.kr. <br>
-Mitigation: Avoid confidential building plans unless the user has authorization and accepts the provider's privacy and retention practices. <br>
-Risk: Each request may cost $0.05 USDC through the x402 payment flow. <br>
-Mitigation: Confirm the payment header, Base mainnet network, and expected cost before issuing requests. <br>
-Risk: Extracted dimensions, materials, or structural details may be incorrect or incomplete. <br>
-Mitigation: Review returned analysis before using it for construction, safety, compliance, or purchasing decisions. <br>
+## Use Case:
 
+Developers and external users can use this skill to call a paid x402 blueprint-analysis service that extracts structured room, dimension, material, area, scale, and structural-element data from floor-plan images.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ntriq-gh/ntriq-x402-blueprint) <br>
-- [ntriq x402 homepage](https://x402.ntriq.co.kr) <br>
-- [x402 protocol](https://x402.org) <br>
-- [Blueprint analysis API endpoint](https://x402.ntriq.co.kr/blueprint) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON] <br>
-**Output Format:** [Markdown instructions with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calls a paid remote service that returns structured blueprint analysis JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Blueprints and floor plans may contain sensitive building, occupancy, or security information and are sent to a remote API as either a URL or base64 image content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only blueprint data you are authorized to submit, avoid restricted building plans, and review the provider's privacy and retention practices before use.
+
+Risk: The service is paid per call through x402, so accidental or automated repeated requests may create unwanted charges.
+
+Mitigation: Review generated API calls before execution and apply local rate limits, confirmation steps, or budget controls when integrating the skill into agent workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ntriq-gh/skills/ntriq-x402-blueprint)
+- [Ntriq x402 Homepage](https://x402.ntriq.co.kr)
+- [x402 Protocol](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with API request examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to submit either an image URL or base64 image content with an analysis type and optional language.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

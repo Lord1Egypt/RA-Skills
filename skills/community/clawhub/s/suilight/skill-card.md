@@ -1,41 +1,55 @@
-## Description: <br>
-SuiLight is a Streamlit-based multi-agent knowledge collaboration skill for exploring topics with virtual thinkers, knowledge capsules, consensus tracking, and knowledge graph visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SuiLight is a Python Streamlit multi-agent knowledge collaboration skill for cross-domain discussion, knowledge capsules, consensus tracking, and knowledge graph visualization with 100 virtual thinkers across 26 domains.
 
-## Publisher: <br>
-[wanyview1](https://clawhub.ai/user/wanyview1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanyview1](https://clawhub.ai/user/wanyview1)
 
-## Use Case: <br>
-Developers and knowledge-work agents use this skill to set up and explain the SuiLight app, run its Streamlit UI and FastAPI service, and guide workflows for multi-perspective discussions, virtual thinker roles, knowledge capsules, and knowledge graph views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to run code and install Python dependencies from an external GitHub repository. <br>
-Mitigation: Review the repository and requirements file before installation, and run the app in a virtual environment or container. <br>
-Risk: The app stores knowledge data using JSON and filesystem storage, which may retain user-entered content locally. <br>
-Mitigation: Avoid entering sensitive or confidential information until storage locations, retention behavior, and deletion steps are understood. <br>
+## Use Case:
 
+Developers and knowledge-work teams use this skill to set up or reason about a Streamlit and FastAPI application for multi-perspective knowledge discussions, virtual thinker roles, knowledge capsules, and graph-based knowledge visualization.
 
-## Reference(s): <br>
-- [SuiLight GitHub repository](https://github.com/wanyview1/SuiLight) <br>
-- [ClawHub skill page](https://clawhub.ai/wanyview1/suilight) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include setup steps, API endpoint descriptions, deployment guidance, and Python examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs users to clone, install dependencies for, and run external Python code that was not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external repository and requirements before installation, prefer a specific reviewed commit, and run it in an isolated virtual environment or container.
+
+Risk: Running the Streamlit or FastAPI application in an environment with secrets or sensitive directories could expose data to unreviewed code.
+
+Mitigation: Use a dedicated runtime environment with only the files and credentials needed for the SuiLight application.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanyview1/skills/suilight)
+- [Publisher profile](https://clawhub.ai/user/wanyview1)
+- [SuiLight GitHub repository referenced by the skill](https://github.com/wanyview1/SuiLight)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup, deployment, API, and application-structure guidance for a Python Streamlit and FastAPI project.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

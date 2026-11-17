@@ -1,38 +1,53 @@
-## Description: <br>
-A high-end spatial ownership and lineage recognition protocol. Teaches the OpenClaw agent to treat the physical space (mansion/villa) as a sovereign domain, using the owner's Chinese Surname (Hanzi) as the ultimate visual totem, security matrix, and ambient interactive core. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A high-end spatial ownership and lineage recognition protocol that teaches the OpenClaw agent to treat a mansion, villa, or executive space as a sovereign domain organized around the owner's Chinese surname Hanzi.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-External users and smart-home concept designers use this skill to have an OpenClaw agent frame luxury residence interactions around a Chinese surname totem for arrival, night-security, guest-hosting, and spatial identity consultations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make an agent sound as if it verified identity or secured a home when no real safeguard or integration is shown. <br>
-Mitigation: Use it as a dramatic narration layer only; require a separate trusted integration and explicit confirmation before representing real locks, alarms, identity, guest access, lighting, climate, or safety state. <br>
+## Use Case:
 
+External users and developers use this skill to guide an OpenClaw agent toward luxury smart-home personalization, where arrival, security, guest-hosting, and spatial identity prompts are answered through Hanzi surname totem narration.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/spacesq/s2-surname-spatial-identity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown-style agent guidance and narrative response patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no tools, packages, environment variables, or credentials required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Agent responses may imply that locks, biometrics, perimeter access, guest permissions, or other physical-security states have been verified or changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as narrative personalization only unless a separate reviewed automation integration performs and confirms those actions.
+
+Risk: The persona can overstate security posture or user authority in smart-home scenarios.
+
+Mitigation: Review deployments carefully and avoid relying on its language for safety-sensitive decisions without explicit external verification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-surname-spatial-identity)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain-text agent responses and guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external tools, package dependencies, or environment variables are declared.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

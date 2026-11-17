@@ -1,41 +1,50 @@
-## Description: <br>
-Send real-time alerts to NotiLens from any script, app, or AI agent for task lifecycle events, errors, completions, metric tracking, and custom alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send real-time alerts to NotiLens from any script, app, or AI agent - task lifecycle events, errors, completions, metric tracking, and custom alerts.
 
-## Publisher: <br>
-[notilens](https://clawhub.ai/user/notilens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[notilens](https://clawhub.ai/user/notilens)
 
-## Use Case: <br>
-Developers and operators use this skill to send structured NotiLens notifications from scripts, applications, and agents so task starts, progress, errors, human-input requests, completions, and metrics are visible in real time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Notification payloads may send secrets, personal data, internal hostnames, stack traces, approval links, or sensitive report URLs to an external webhook. <br>
-Mitigation: Only include information intended to leave the local environment, keep NOTILENS_SECRET private, and ensure any linked resources are access-controlled. <br>
-Risk: Frequent progress notifications can create noisy alert streams. <br>
-Mitigation: Use terminal events consistently and avoid sending progress events more often than needed for operational visibility. <br>
+## Use Case:
 
+Developers and operators use this skill to send structured task status, error, completion, metric, and human-input alerts from scripts, applications, or agents to NotiLens.
 
-## Reference(s): <br>
-- [NotiLens homepage](https://www.notilens.com) <br>
-- [NotiLens ClawHub skill page](https://clawhub.ai/notilens/notilens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON payload examples and bash curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NOTILENS_TOKEN, NOTILENS_SECRET, and curl to send webhook notifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Notification payloads are sent to NotiLens and may expose sensitive task details if populated with secrets, personal data, internal hostnames, raw stack traces, long-lived download links, or privileged approval URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only send task alert data that is intended for NotiLens, keep messages concise, and exclude sensitive values from payload fields including message, meta, open_url, and download_url.
+
+## Reference(s):
+
+- [NotiLens homepage](https://www.notilens.com)
+- [ClawHub skill page](https://clawhub.ai/notilens/skills/notilens)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON payload examples and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NOTILENS_TOKEN, NOTILENS_SECRET, and curl to send webhook notifications.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

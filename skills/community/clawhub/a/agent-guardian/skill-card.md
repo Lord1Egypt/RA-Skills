@@ -1,46 +1,59 @@
-## Description: <br>
-Agent Guardian helps AI assistants reduce long no-response periods, stuck tasks, mixed-language replies, and opaque status by combining watchdog monitoring, status reporting, instant status queries, language consistency filtering, and message queue tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Guardian helps OpenClaw-based assistants monitor work state, report status, answer status queries, filter mixed-language replies, and track message processing queues.
 
-## Publisher: <br>
-[fanxinyun1991](https://clawhub.ai/user/fanxinyun1991) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanxinyun1991](https://clawhub.ai/user/fanxinyun1991)
 
-## Use Case: <br>
-Developers and operators use this skill to add watchdog, status-reporting, status-query, language-filtering, and message-tracking behavior around OpenClaw-based assistants and messaging channels. It is intended for assistant deployments where users need clearer progress feedback and faster visibility when an agent appears stuck. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent host-level components can continue running through cron or systemd after installation. <br>
-Mitigation: Install only in a controlled single-user environment, review service and cron entries before enabling them, and define an uninstall or rollback path before production use. <br>
-Risk: The skill uses /tmp-based state and trigger files for status, queue, and activity tracking. <br>
-Mitigation: Move state to a private directory with restrictive permissions before use on shared hosts or sensitive systems. <br>
-Risk: Status messages may expose host metrics or operational state to configured messaging targets. <br>
-Mitigation: Restrict status-query triggers and report targets to authenticated administrators and review message contents for sensitive deployment details. <br>
-Risk: Optional channel patches modify bot message handling and outbound filtering behavior. <br>
-Mitigation: Review patches before applying them, test on a staging bot, and disable automatic rewriting unless it is explicitly desired. <br>
+## Use Case:
 
+Developers and operators use this skill to add watchdog checks, status reporting, immediate status responses, language-consistency filtering, and queue visibility to OpenClaw channel integrations such as QQ, WeChat, Telegram, Feishu, and Discord.
 
-## Reference(s): <br>
-- [Agent Guardian ClawHub Release](https://clawhub.ai/fanxinyun1991/agent-guardian) <br>
-- [Generic Channel Integration Guide](references/patches/generic.md) <br>
-- [QQ Bot Channel Integration Guide](references/patches/qqbot.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON cron examples, and code patch snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install or configure local scripts, cron entries, systemd service behavior, and channel plugin patches when the user follows the provided commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Persistent host-level services and cron jobs can continue running after installation and may affect the host beyond the agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on a test or dedicated host, review the systemd and crontab changes before enabling them, and require a documented uninstall path before production use.
+
+Risk: Channel patches introduce shell-based execSync calls into message-handling paths.
+
+Mitigation: Do not apply channel patches until command execution paths are reviewed, inputs are validated, and safer process invocation patterns are implemented.
+
+Risk: The skill stores operational state in shared /tmp files, which can be overwritten or read by unrelated local processes.
+
+Mitigation: Move state to a dedicated directory with restrictive permissions before use on shared or multi-user hosts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fanxinyun1991/skills/agent-guardian)
+- [Generic Channel Adapter Guide](references/patches/generic.md)
+- [QQ Bot Channel Adapter Guide](references/patches/qqbot.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, code snippets, and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces host-level setup steps, channel patch guidance, watchdog reports, queue summaries, and language-filtered text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

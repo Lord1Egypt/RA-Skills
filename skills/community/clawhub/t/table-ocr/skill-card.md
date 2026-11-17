@@ -1,44 +1,60 @@
-## Description: <br>
-OCR and extract tables from scanned PDFs and images using MinerU, converting image-based table content into structured Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OCR and extract tables from scanned PDFs and images using MinerU, converting image-based table structures into structured Markdown.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers and automation builders use this skill to extract structured table content from scanned PDFs and image files. It is useful for digitizing printed reports, financial statements, screenshots, and other image-based documents that contain tables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Processed PDFs, images, or URLs may be sent to MinerU during extraction. <br>
-Mitigation: Avoid confidential files or internal URLs unless MinerU is approved for that data and workflow. <br>
-Risk: MINERU_TOKEN is an API credential required by the CLI. <br>
-Mitigation: Treat MINERU_TOKEN like an API key, avoid logging it, and review where the CLI stores authentication before use. <br>
+## Use Case:
 
+Developers, operations teams, and data-entry automation users use this skill to invoke MinerU table OCR for scanned PDFs and image files, producing structured Markdown from table images and scanned documents.
 
-## Reference(s): <br>
-- [Table Ocr on ClawHub](https://clawhub.ai/mzlzyca/table-ocr) <br>
-- [MinerU Homepage](https://mineru.net) <br>
-- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU) <br>
-- [MinerU Open API Go Package](https://github.com/opendatalab/MinerU-Ecosystem/cli/mineru-open-api) <br>
-- [MinerU Token Management](https://mineru.net/apiManage/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct mineru-open-api output to stdout or an output directory; progress and status messages go to stderr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata) <br>
+Risk: The skill relies on a third-party MinerU CLI and service for OCR processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and trusting MinerU/OpenDataLab, and prefer a pinned, reviewed CLI version.
+
+Risk: Documents processed through MinerU may be sent to an external service.
+
+Mitigation: Use the skill only for documents appropriate for that service and avoid sending sensitive content unless approved.
+
+Risk: The MinerU token is required for extraction and can grant access to the service.
+
+Mitigation: Keep MINERU_TOKEN scoped, protected, and out of logs, prompts, and committed files.
+
+## Reference(s):
+
+- [MinerU homepage](https://mineru.net)
+- [MinerU token management](https://mineru.net/apiManage/token)
+- [MinerU GitHub repository](https://github.com/opendatalab/MinerU)
+- [ClawHub skill page](https://clawhub.ai/mzlzyca/skills/table-ocr)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides the agent to use mineru-open-api with a MinerU token for PDF and image table extraction.]
+
+## Skill Version(s):
+
+0.4.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

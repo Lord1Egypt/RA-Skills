@@ -1,46 +1,60 @@
-## Description: <br>
-Captures learnings, errors, and corrections in markdown logs so coding agents can improve future workflows and promote recurring lessons to project memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, command failures, user corrections, feature requests, and better recurring approaches so agents can maintain structured improvement logs.
 
-## Publisher: <br>
-[aceundefeated](https://clawhub.ai/user/aceundefeated) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aceundefeated](https://clawhub.ai/user/aceundefeated)
 
-## Use Case: <br>
-Developers and agent operators use this skill to record corrections, command failures, missing capabilities, and recurring best practices as structured markdown entries. It also provides optional reminders and hook setup guidance for promoting useful lessons into durable agent context files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Learning logs and promoted prompt files can capture sensitive project details, secrets, customer data, command output, or private transcript context. <br>
-Mitigation: Redact secrets, tokens, customer data, full command output, and private transcript details before saving entries or promoting them into durable agent context. <br>
-Risk: Incorrect or misleading learning entries can be promoted into future agent guidance. <br>
-Mitigation: Review proposed entries and scan changes before promotion into AGENTS.md, CLAUDE.md, SOUL.md, TOOLS.md, or Copilot instructions. <br>
-Risk: Optional hooks can inject reminders or inspect command output during agent workflows. <br>
-Mitigation: Enable hooks only after reviewing their configured paths and script contents. <br>
+## Use Case:
 
+Developers and agent users use this skill to record non-obvious learnings, errors, corrections, and requested capabilities in structured Markdown files, then promote durable guidance into project or workspace memory after review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aceundefeated/aj-self-improving-agent) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [Learning Entry Examples](references/examples.md) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured learning, error, and feature-request entries intended for local .learnings files and optional promotion into agent context files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent learning logs can capture sensitive session details or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep .learnings local by default and redact secrets, credentials, and personal data before logging.
+
+Risk: Global or broad hooks can inject reminders across more agent sessions than intended.
+
+Mitigation: Use hooks only after auditing the scripts and prefer scoped, opt-in hook configuration.
+
+Risk: Promoting unreviewed learnings into agent instruction files can preserve incorrect or misleading guidance.
+
+Mitigation: Require a human-reviewed diff before promoting entries into CLAUDE.md, AGENTS.md, SOUL.md, TOOLS.md, or Copilot instructions.
+
+## Reference(s):
+
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [Hook Setup Guide](references/hooks-setup.md)
+- [Entry Examples](references/examples.md)
+- [Agent Skills Specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, shell commands, templates, and hook configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit reminder text through optional hooks and scaffold skill files when helper scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

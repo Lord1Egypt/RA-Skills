@@ -1,50 +1,67 @@
-## Description: <br>
-A-share market automated review and analysis system, generating daily market insights with Gemini AI, supporting publishing to Hugo blog and WeChat Official Account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A-share market automated review and analysis system, generating daily market insights with Gemini AI, supporting publishing to Hugo blog and WeChat Official Account.
 
-## Publisher: <br>
-[donvink](https://clawhub.ai/user/donvink) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[donvink](https://clawhub.ai/user/donvink)
 
-## Use Case: <br>
-Developers and market analysts use this skill to fetch A-share market data, generate daily Markdown review reports, optionally analyze the report with Gemini, and publish outputs to a Hugo blog or WeChat Official Account draft. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send generated market summaries to Gemini when a Gemini API key is configured. <br>
-Mitigation: Run with AI analysis disabled or use an account and data handling mode appropriate for the sensitivity of the market data being processed. <br>
-Risk: The skill can publish generated reports to local Hugo content files or create WeChat drafts when those platforms are enabled. <br>
-Mitigation: Review config.yaml platforms, generated content, and publishing credentials before running in an environment connected to public channels. <br>
-Risk: The skill loads credentials from environment variables and discovered .env files. <br>
-Mitigation: Keep .env files in trusted locations, scope API credentials to the intended use, and avoid running the skill from directories containing untrusted configuration. <br>
-Risk: Generated market analysis could be mistaken for financial advice. <br>
-Mitigation: Treat outputs as informational analysis, keep the included investment-risk disclaimer, and require human review before acting on or publishing trading guidance. <br>
+## Use Case:
 
+Developers and market-analysis users use this skill to automate daily A-share data collection, generate Markdown market summaries, optionally add Gemini-based analysis, and publish reports to Hugo or WeChat.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/donvink/stock-review-ai) <br>
-- [Project Homepage](https://github.com/donvink/stock-review) <br>
-- [Live Demo Blog](https://donvink.github.io/stock-review/) <br>
-- [AkShare Documentation](https://akshare.akfamily.xyz/index.html) <br>
-- [Gemini API Key Portal](https://aistudio.google.com/) <br>
-- [WeChat Official Account Platform](https://developers.weixin.qq.com/platform/) <br>
-- [Hugo Documentation](https://gohugo.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, local data files, optional blog post files, optional WeChat draft identifiers, and JSON execution status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches market data, may call Gemini when GEMINI_API_KEY is configured, writes report/blog files locally, and can create WeChat drafts when WeChat credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill handles Gemini and WeChat credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped credentials in a trusted workspace and verify or fix secret redaction in logs before using real WeChat credentials.
+
+Risk: The skill can publish generated reports to Hugo output paths or create WeChat drafts.
+
+Mitigation: Review publishing platform settings before execution and inspect generated posts or drafts before making them public.
+
+Risk: The skill writes market data and report files to local data and content directories.
+
+Mitigation: Run it in a workspace where writing data and content/posts is expected, and set output paths deliberately.
+
+Risk: Generated market analysis may contain incomplete or misleading trading guidance.
+
+Mitigation: Treat reports as informational analysis, keep the investment-risk disclaimer, and require human review before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/donvink/skills/stock-review-ai)
+- [Project homepage from metadata](https://github.com/donvink/stock-review)
+- [Live demo blog](https://donvink.github.io/stock-review/)
+- [AkShare Documentation](https://akshare.akfamily.xyz/index.html)
+- [Google AI Studio](https://aistudio.google.com/)
+- [WeChat Official Account Platform](https://developers.weixin.qq.com/platform/)
+- [Hugo Documentation](https://gohugo.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, CSV data files, shell commands, configuration snippets, and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write local data and blog-post files, optionally call Gemini for analysis, and optionally create WeChat drafts when credentials are configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

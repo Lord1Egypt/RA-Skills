@@ -1,41 +1,60 @@
-## Description: <br>
-Provides middle managers with structured guidance, tools, and methods for self-management, team management, work management, and strategic management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language frameworks, checklists, and reference guidance for middle managers across self, team, work, and strategy management.
 
-## Publisher: <br>
-[yjkj999999](https://clawhub.ai/user/yjkj999999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yjkj999999](https://clawhub.ai/user/yjkj999999)
 
-## Use Case: <br>
-Middle managers and management coaches use this skill to get practical guidance for communication, mindset, cross-department collaboration, execution, planning, team leadership, role development, and work methodology. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The content is book-derived static reference material, and provenance for the release is unavailable. <br>
-Mitigation: Confirm content provenance, attribution, and reuse rights before commercial deployment or redistribution. <br>
-Risk: License signals differ between server evidence and artifact files. <br>
-Mitigation: Verify the authoritative license terms before publication or installation. <br>
+## Use Case:
 
+Middle managers, team leads, and agents assisting them use this skill as a Chinese-language reference for communication, cross-functional coordination, execution, department planning, team leadership, role development, and work-method coaching.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yjkj999999/super-middle-manager-academy) <br>
-- [Publisher profile](https://clawhub.ai/user/yjkj999999) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style management guidance, checklists, tables, and structured methods] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content derived from a structured middle-management training framework] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The authoritative license is unclear because server evidence and artifact metadata disagree.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the release license and redistribution rights before using or republishing the skill.
+
+Risk: The skill is primarily Chinese-language and does not clearly state supported languages.
+
+Mitigation: Use it for Chinese-language management guidance or verify any translated output before relying on it.
+
+Risk: Management guidance may not fit every organization, role, or regulatory environment.
+
+Mitigation: Have a qualified manager adapt recommendations to local policies, employment practices, and business context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yjkj999999/skills/super-middle-manager-academy)
+- [Publisher profile](https://clawhub.ai/user/yjkj999999)
+- [Artifact README](artifact/README.md)
+- [Artifact skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose, tables, checklists, and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language management reference output; no code execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

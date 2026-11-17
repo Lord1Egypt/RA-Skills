@@ -1,41 +1,54 @@
-## Description: <br>
-Auto-wires new skills into core system by reading SKILL.md, AGENT.md, SOUL.md, and hooks, then injecting onboarding details into soul, memory, and agent files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-wires new skills into core agent files by reading skill definitions, agent rules, soul sections, and hooks, then registering the installed skill.
 
-## Publisher: <br>
-[cyber-bye](https://clawhub.ai/user/cyber-bye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyber-bye](https://clawhub.ai/user/cyber-bye)
 
-## Use Case: <br>
-Developers and agent operators use this skill to onboard newly installed skills by extracting their triggers, rules, sections, and hooks, then preparing the agent's core registration files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to write into core agent, soul, workspace, and memory files during onboarding. <br>
-Mitigation: Require explicit user confirmation, show a visible diff before writes, keep trigger scope narrow, and provide a clear rollback path before installation or execution. <br>
-Risk: The security scan reports a clean verdict but states that scanner concerns are unverified rather than proven because referenced artifact files were not found in its workspace. <br>
-Mitigation: Review the actual package contents and file hashes before treating the release as approved for installation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to onboard newly installed skills by extracting their triggers, rules, sections, and hooks and wiring them into persistent agent configuration files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cyber-bye/skill-onboarder) <br>
-- [JSON Schema Draft 7](http://json-schema.org/draft-07/schema#) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown summaries and structured registration entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces extraction summaries and idempotent registration updates for agent, soul, workspace, and memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can persist instructions from installed skills into core agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in controlled environments and require exact diffs before any write.
+
+Risk: Onboarding untrusted skills may introduce broad triggers or weak review controls.
+
+Mitigation: Review and scan each skill before onboarding, and reject unexpected writes or trigger expansion.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cyber-bye/skills/skill-onboarder)
+- [JSON Schema Draft 7](http://json-schema.org/draft-07/schema#)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown status summaries and structured configuration entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or perform idempotent updates to persistent agent files after confirmation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

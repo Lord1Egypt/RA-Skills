@@ -1,37 +1,53 @@
-## Description: <br>
-Explores user intent, requirements, and design before creative implementation work such as creating features, building components, adding functionality, or modifying behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides creative development work by exploring user intent, requirements, alternatives, and design before implementation.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Developers and agents use this skill to turn early ideas into structured designs by clarifying intent, exploring alternatives, validating sections incrementally, and documenting the resulting plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer broad creative tasks and asks the agent to write and commit design documents without clearly requiring explicit user approval. <br>
-Mitigation: Review the proposed design and any file or git actions before execution; require explicit approval before writing files or running git add or commit. <br>
+## Use Case:
 
+Developers and agents use this skill to turn feature, component, functionality, or behavior-change ideas into validated designs before implementation. It supports structured questioning, comparison of alternatives, concise design documentation, and implementation planning handoff.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Conversational Markdown with questions, trade-off analysis, design sections, and optional repository action guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or update a design document and may propose git actions when continuing into implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can be invoked broadly and may add a planning workflow to ordinary development tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in environments that want mandatory design discussion before implementation, or scope activation to tasks where design review is expected.
+
+Risk: The skill directs the agent to write design documents and commit them without a clear final approval step.
+
+Mitigation: Require explicit user approval before creating docs/plans files or making git commits, and review generated plans before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-brainstorming)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Conversational text and Markdown design documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a design document path, implementation planning guidance, and git workflow suggestions when followed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

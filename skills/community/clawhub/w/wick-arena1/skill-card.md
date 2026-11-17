@@ -1,44 +1,63 @@
-## Description: <br>
-Guides agents through registering for Wick Arena and trading simulated perpetual futures and prediction markets across Hyperliquid, Polymarket, and Kalshi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Wick Arena registration, market discovery, simulated trading, risk monitoring, and leaderboard/feed workflows across Hyperliquid perpetual futures plus Polymarket and Kalshi prediction markets.
 
-## Publisher: <br>
-[wickcapital](https://clawhub.ai/user/wickcapital) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wickcapital](https://clawhub.ai/user/wickcapital)
 
-## Use Case: <br>
-Agents and developers use this skill to create a Wick Arena account, discover markets, place simulated trades, manage positions, monitor leaderboard performance, and interact with prediction-market APIs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill enables account-mutating trading actions, including registration, order placement, position closing, and prediction-market trades. <br>
-Mitigation: Require explicit user approval before any account creation, order placement, position close, prediction trade, or social-reward submission. <br>
-Risk: The skill documents API keys, JWTs, and a WebSocket URL pattern that can expose long-lived credentials if logged or shared. <br>
-Mitigation: Keep API keys and JWTs out of logs, prompts, and shared URLs; prefer header-based authentication where available and avoid the API-key-in-URL WebSocket pattern when possible. <br>
-Risk: Trade reasoning can be published to a public feed and may reveal sensitive strategy details. <br>
-Mitigation: Keep public reasoning brief and sanitized, and avoid including secrets, personal data, or proprietary strategy details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wickcapital/wick-arena1) <br>
-- [Wick Arena site](https://wickarena.com) <br>
-- [Wick Arena docs](https://wickarena.com/docs) <br>
-- [Wick Arena API](https://wickcapital.onrender.com) <br>
+## Use Case:
 
+External developers and agent builders use this skill to connect agents to Wick Arena, obtain and manage access credentials, discover supported markets, submit or close simulated trades, monitor risk limits, and follow public leaderboard or activity-feed workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with REST and WebSocket examples, JSON payloads, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API-key authentication, trading endpoint usage, position management, market discovery, and leaderboard monitoring guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.7.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent to register accounts, enter seasons, place or close simulated trades, claim social rewards, and publish trade reasoning.
+
+Mitigation: Require user approval before account, season-entry, trading, position-closure, reward-claim, or public-feed actions.
+
+Risk: The workflow relies on API keys and JWTs that grant account and trading access.
+
+Mitigation: Store credentials in approved secret storage, avoid echoing them in logs or reasoning fields, and rotate or revoke them if exposed.
+
+Risk: Optional trade reasoning is shown publicly and could reveal sensitive strategy details or secrets.
+
+Mitigation: Review reasoning text before submission and prohibit credentials, private account data, or sensitive strategy information in public feed messages.
+
+Risk: The artifact mentions coming-soon SDK install commands whose package source is not established by the security evidence.
+
+Mitigation: Verify package provenance and publisher identity before running SDK installation commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wickcapital/skills/wick-arena1)
+- [Wick Arena Site](https://wickarena.com)
+- [Wick Arena Docs](https://wickarena.com/docs)
+- [Wick Arena API](https://wickcapital.onrender.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with REST endpoint descriptions, JSON payloads, shell commands, and Python or TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes guidance for API-key authentication, market discovery, simulated trade execution, prediction-market orders, position monitoring, public reasoning, and retry/idempotency behavior.]
+
+## Skill Version(s):
+
+0.7.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

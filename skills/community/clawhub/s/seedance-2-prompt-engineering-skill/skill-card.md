@@ -1,44 +1,59 @@
-## Description: <br>
-Generates precise, timecoded Seedance 2.0 prompts that map multimodal assets to controlled short-form video generation and editing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate precise, timecoded Seedance 2.0 prompts integrating multimodal inputs with asset mapping for controlled 4-15s video creation and editing.
 
-## Publisher: <br>
-[dandysuper](https://clawhub.ai/user/dandysuper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dandysuper](https://clawhub.ai/user/dandysuper)
 
-## Use Case: <br>
-Developers, creators, and prompt engineers use this skill to turn rough video ideas and reference media into Seedance 2.0 prompts with explicit modes, asset mappings, timeline beats, negative constraints, and generation settings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional shell helpers create local files and directories when run. <br>
-Mitigation: Review helper scripts before running them and execute them only in a dedicated workspace directory. <br>
-Risk: Prompts and media later uploaded to external video-generation services may be shared with that provider. <br>
-Mitigation: Avoid uploading sensitive media or confidential prompts unless the target service terms and data-handling practices are acceptable. <br>
-Risk: Seedance prompts may be rejected when they include recognizable franchise, character, brand, or realistic face references. <br>
-Mitigation: Use original names, generic visual descriptions, explicit negative constraints, and IP-safe prompt variants as described by the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dandysuper/seedance-2-prompt-engineering-skill) <br>
-- [Seedance 2.0 Prompt Recipes](artifact/references/recipes.md) <br>
-- [Modes and Interaction Notes](artifact/references/modes-and-recipes.md) <br>
-- [Camera Language & Visual Styles Vocabulary](artifact/references/camera-and-styles.md) <br>
+## Use Case:
 
+Developers, creators, and production teams use this skill to turn rough video concepts and reference assets into structured Seedance 2.0 prompts with mode selection, asset mapping, timeline beats, negative constraints, and generation settings.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown prompt structures with optional inline shell commands for local workspace setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Seedance mode selection, asset mapping, timecoded prompt beats, negative constraints, and generation settings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts may involve user-selected media references for use with an external video-generation platform.
+
+Mitigation: Review platform terms and avoid using sensitive, private, or unauthorized media as references.
+
+Risk: Prompts that imitate recognizable franchises, characters, brands, logos, or realistic face references may be rejected or create rights or privacy concerns.
+
+Mitigation: Use original names and designs, strip brand identifiers, and include negative constraints for logos, trademarks, recognizable likenesses, and franchise terms.
+
+Risk: Long or multimodal requests can exceed Seedance input limits or lose control when assets are not mapped clearly.
+
+Mitigation: Respect documented file, duration, and size limits; declare mode first; map each @asset role; use timecoded beats and segment handoff notes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dandysuper/skills/seedance-2-prompt-engineering-skill)
+- [Seedance 2.0 Prompt Recipes](artifact/references/recipes.md)
+- [Modes and Interaction Notes](artifact/references/modes-and-recipes.md)
+- [Camera Language & Visual Styles Vocabulary](artifact/references/camera-and-styles.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Structured Markdown prompt drafts with mode, asset mapping, final prompt, negative constraints, and generation settings; helper scripts emit shell output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include timecoded video beats, @asset role mappings, IP-safety constraints, and workspace scaffold commands.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

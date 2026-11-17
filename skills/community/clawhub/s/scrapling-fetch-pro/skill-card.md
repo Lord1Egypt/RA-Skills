@@ -1,41 +1,58 @@
-## Description: <br>
-Scrapling Fetch Pro fetches article content from webpages, converts it to Markdown or JSON, and supports automatic basic or stealth fetching with WeChat article cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapling Fetch Pro helps agents fetch web page content, extract article bodies, clean common noise, and return Markdown or JSON, including support for WeChat public-account articles and stealth fetching modes.
 
-## Publisher: <br>
-[shuxiangfanclaw](https://clawhub.ai/user/shuxiangfanclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shuxiangfanclaw](https://clawhub.ai/user/shuxiangfanclaw)
 
-## Use Case: <br>
-Developers and external users use this skill to fetch web articles, blogs, news pages, announcements, and WeChat public-account articles for downstream AI summarization, analysis, or archiving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary flags that the skill openly promotes stealth anti-bot bypass without clear authorization or data-handling boundaries. <br>
-Mitigation: Use it only on sites the user owns or is authorized to access, avoid using stealth mode to defeat site protections, and respect site terms and applicable law. <br>
-Risk: Fetched pages are untrusted data that may contain misleading, adversarial, or sensitive content before being passed to another AI agent. <br>
-Mitigation: Treat fetched content as untrusted, minimize retained scraped data, and review or sanitize content before downstream use. <br>
+## Use Case:
 
+Developers and external agent users use this skill to retrieve article-like content from blogs, news pages, announcements, WeChat public-account articles, and pages that may require browser-based fetching. It is intended to provide scraped content to an agent as Markdown or structured JSON for downstream reading, summarization, or analysis.
 
-## Reference(s): <br>
-- [Usage Guide](references/usage.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shuxiangfanclaw/scrapling-fetch-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown text by default, or structured JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output may include fetched URL, title, extracted content, selector, source length, truncation status, fetch mode, and WeChat detection status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill accepts arbitrary URLs and can fetch content from broad web targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in controlled environments and avoid networks that can reach private services, internal hosts, or cloud metadata endpoints.
+
+Risk: The skill includes stealth behavior for anti-bot or protected pages.
+
+Mitigation: Use stealth mode only for sites where the operator is authorized to fetch content and where the site's terms and applicable rules permit automated access.
+
+Risk: Scraped page content can be untrusted or misleading when passed to an agent.
+
+Mitigation: Treat fetched content as untrusted input, keep it separate from instructions, and review downstream agent outputs before acting on them.
+
+## Reference(s):
+
+- [Usage Guide](artifact/references/usage.md)
+- [ClawHub Skill Page](https://clawhub.ai/shuxiangfanclaw/skills/scrapling-fetch-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown text by default, or JSON when requested with the command-line flag]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script accepts a URL, optional maximum character count, fetch mode selection, JSON output mode, and debug output mode; text output may be truncated at the requested character limit.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

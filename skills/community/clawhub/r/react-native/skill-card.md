@@ -1,36 +1,53 @@
-## Description: <br>
-Build performant cross-platform mobile apps with React Native components, navigation, and native modules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build performant cross-platform mobile apps with React Native components, navigation, and native modules.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers use this skill for React Native implementation guidance, including component performance, navigation, styling, native modules, debugging, platform differences, and build or release workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Build, clean, install, or release commands may modify project caches, generated files, dependencies, or release configuration. <br>
-Mitigation: Confirm the active project directory and keep version control or backups before following those commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to get React Native guidance for building, debugging, and releasing cross-platform mobile apps with components, navigation, native modules, and platform-specific practices.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only output; commands should be reviewed before use in a project workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: An unpinned npx react-native command can execute a package version that has not been reviewed.
+
+Mitigation: Prefer a lockfile-pinned local React Native CLI or an explicit reviewed version before running the command.
+
+Risk: Build cleanup commands can remove or regenerate local build artifacts when run in the wrong project.
+
+Mitigation: Run cleanup commands only from the intended React Native project after checking the working tree and target platform directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/react-native)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local build cleanup commands; review paths and package versions before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

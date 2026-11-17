@@ -1,39 +1,58 @@
-## Description: <br>
-Turns product requirements, meeting notes, or feature descriptions into PRD content that a coding agent can execute. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将产品需求转化为Coding Agent可执行的需求文档。当用户提到"写PRD"、"产品需求文档"、"用户故事"、"功能说明"，或提供会议记录/功能描述需要整理成开发文档时触发。
 
-## Publisher: <br>
-[xuyinghan02-cell](https://clawhub.ai/user/xuyinghan02-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuyinghan02-cell](https://clawhub.ai/user/xuyinghan02-cell)
 
-## Use Case: <br>
-Product managers, developers, and delivery teams use this skill to turn early product ideas, meeting notes, or feature descriptions into structured PRDs with project background, user stories, feature specifications, interaction flows, and Word-document handoff guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may hand work to downstream skills such as DNS-analysis, botnet-analysis, or docx_handler. <br>
-Mitigation: Review downstream skills before using the workflow with sensitive product plans, meeting notes, or operational details. <br>
-Risk: Generated PRD content can contain incomplete, incorrect, or ambiguous requirements if the initial inputs are underspecified. <br>
-Mitigation: Review the generated user stories, feature specifications, interaction flows, and any [to confirm] items before relying on the document for implementation. <br>
+## Use Case:
 
+Product managers, developers, and agents use this skill to turn product ideas, meeting notes, user stories, and feature descriptions into structured PRD content for coding agents. It guides the conversation through background clarification, domain identification, user stories, outline confirmation, functional requirements, interaction details, and final document preparation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown PRD guidance and document-writing workflow output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May route domain-specific analysis to named downstream skills and may hand completed PRD content to docx_handler for Word document output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can activate for broad PRD, user-story, feature-description, and meeting-note requests, which may steer general planning conversations into a detailed PRD workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants a PRD-style requirements workflow before applying the full staged process.
+
+Risk: The workflow may suggest loading related domain skills when DNS or botnet/security keywords appear.
+
+Mitigation: Load additional domain skills only when the requested product context clearly matches that domain or after the user confirms the domain.
+
+Risk: Opinionated staged requirements output can omit product-specific constraints if the initial problem, goal, or success criteria are incomplete.
+
+Mitigation: Use the skill's background-clarification and outline-confirmation steps before writing detailed functional requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuyinghan02-cell/skills/prd-development)
+- [Publisher profile](https://clawhub.ai/user/xuyinghan02-cell)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style structured requirements prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include user stories, feature outlines, functional specifications, interaction flows, confirmation prompts, and handoff guidance for document generation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

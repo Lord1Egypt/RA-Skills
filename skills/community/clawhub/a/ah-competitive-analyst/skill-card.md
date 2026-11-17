@@ -1,41 +1,53 @@
-## Description: <br>
-Competitive Analyst provides strategic analysis of competitors, market positioning, competitive advantages, and strategic planning needs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a competitive intelligence specialist providing strategic analysis of competitors, market positioning, and competitive advantages.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Business, product, strategy, and go-to-market teams use this skill to structure competitive intelligence, compare products and pricing, assess win/loss patterns, monitor market movement, and produce strategic recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competitive analyses can expose confidential customer lists, revenue, deal data, or internal strategy when users include sensitive business context. <br>
-Mitigation: Avoid sharing confidential or regulated business information in the agent session unless the user is comfortable with that information being processed there. <br>
-Risk: Competitive intelligence outputs may be incomplete, outdated, or biased if the user supplies stale or one-sided source material. <br>
-Mitigation: Review outputs against current, multiple-source evidence and clearly mark assumptions, gaps, and confidence before using recommendations for business decisions. <br>
+## Use Case:
 
+Business, product, sales, and strategy teams use this skill to structure competitor profiles, market landscape reviews, pricing comparisons, win/loss analysis, and competitive positioning recommendations.
 
-## Reference(s): <br>
-- [Competitive Analyst Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/ah-competitive-analyst) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis briefs, comparison tables, battlecards, monitoring plans, and strategic recommendation templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill; no code, credentials, persistence, or hidden actions reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Competitive analysis may rely on public information that is outdated, incomplete, or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important claims against current sources, state assumptions, and call out gaps before using recommendations for business decisions.
+
+Risk: Users may include confidential sales, pricing, customer, or strategy information while requesting analysis.
+
+Mitigation: Use only approved data for the active agent session, anonymize sensitive details where possible, and avoid pasting confidential internal data unless that use is permitted.
+
+## Reference(s):
+
+- [Competitive Analyst Examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with tables, matrices, checklists, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include competitor profiles, feature comparisons, pricing analysis, win/loss summaries, monitoring signals, and strategic recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Merge Partitions Without Data Loss - Combine adjacent or non-adjacent partitions into one larger volume to consolidate space and simplify drive management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Merge Partitions Without Data Loss - Combine adjacent or non-adjacent partitions into one larger volume to consolidate space and simplify drive management.
 
-## Publisher: <br>
-[hezhaoyun](https://clawhub.ai/user/hezhaoyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hezhaoyun](https://clawhub.ai/user/hezhaoyun)
 
-## Use Case: <br>
-Windows users and support technicians use this skill to consolidate adjacent or non-adjacent partitions into a larger volume with EaseUS Partition Master. It provides workflow guidance, launch commands, validation checks, and troubleshooting for partition merge operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs powerful disk-management software and can launch disk operations beyond ordinary partition-merge guidance. <br>
-Mitigation: Review the installer source and publisher signature, run only on an intended Windows machine, and avoid approving any disk operation until the preview matches the target disk and partition. <br>
-Risk: Partition changes can cause data loss if the wrong disk, partition, or operation is selected. <br>
-Mitigation: Make a full backup first, confirm partition letters and capacities before execution, and stop if the preview differs from the intended merge. <br>
+## Use Case:
 
+External Windows users and support agents use this skill to plan and launch a partition merge workflow with EaseUS Partition Master, including pre-checks, command examples, and troubleshooting for adjacent and non-adjacent partition consolidation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hezhaoyun/merge-partition-coach) <br>
-- [EaseUS Partition Manager](https://www.easeus.com/partition-manager/) <br>
-- [EaseUS Partition Master installer](https://down.easeus.com/product/epm_free?source=skills&dest=merge-partition-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets Windows 10+ and EaseUS Partition Master workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can lead users to install and run disk-management software capable of modifying partitions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a verified backup and recovery plan, and confirm the operation preview before any write operation.
+
+Risk: The bundled installer script downloads and silently runs third-party vendor software.
+
+Mitigation: Prefer manual download from a trusted source with signature or hash verification before running elevated installation.
+
+Risk: Partition merge guidance may be applied to unsupported disk layouts.
+
+Mitigation: Confirm target partitions are on the same basic disk, use supported file systems, and avoid dynamic volumes for this workflow.
+
+## Reference(s):
+
+- [Merge Partition Coach on ClawHub](https://clawhub.ai/hezhaoyun/skills/merge-partition-coach)
+- [EaseUS Partition Master](https://www.easeus.com/partition-manager/)
+- [EaseUS Partition Master Free download](https://down.easeus.com/product/epm_free?source=skills&dest=merge-partition-coach)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with Windows command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes disk-partition pre-checks, installation guidance, launch commands, and troubleshooting notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

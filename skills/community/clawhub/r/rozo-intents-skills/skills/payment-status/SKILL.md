@@ -3,15 +3,29 @@ name: payment-status
 description: >
   Check the status of a Rozo cross-chain payment. Supports lookup by
   payment ID, source transaction hash, or deposit address + memo. Use
-  when user says "check payment", "payment status", "where is my payment",
-  "track payment", "is my payment done", or provides a payment UUID,
-  transaction hash, or deposit address.
+  when user asks about a Rozo/crypto payment — "check my crypto payment",
+  "payment status", "where is my payment", "track payment", "is my
+  payment done" — or provides a payment UUID, transaction hash, or
+  deposit address. NOT for bank transfers, card payments, or other fiat
+  payment tracking.
 metadata:
   author: rozo
   version: 0.2.0
 ---
 
 # Check Payment Status
+
+## Runtime
+
+All `node scripts/dist/*.js` commands below MUST run from the **plugin root**
+(the directory containing `.claude-plugin/plugin.json`), not from this
+skill's directory. When installed as a Claude Code plugin, the plugin root
+is `${CLAUDE_PLUGIN_ROOT}`. If that env var isn't set, `cd` to the directory
+that contains `scripts/dist/`, `skills/`, and `.claude-plugin/`.
+
+**Do not `sleep` between polls.** Some harnesses block `sleep` in Bash
+commands. If the payment is still processing, just re-run `get-payment.js`
+again — Rozo typically confirms within 10–15 seconds end-to-end.
 
 ## Instructions
 
@@ -32,6 +46,8 @@ If none is clear, ask:
 **By payment ID:**
 ```bash
 node scripts/dist/get-payment.js --payment-id <uuid>
+# or, equivalently:
+node scripts/dist/get-payment.js --id <uuid>
 ```
 
 **By source transaction hash:**

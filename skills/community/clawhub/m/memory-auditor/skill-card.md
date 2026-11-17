@@ -1,44 +1,58 @@
-## Description: <br>
-Audits an agent's current claims against stored memory to detect fabricated, drifted, or inconsistent memory behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits an agent's current claims against stored memory to detect fabricated, drifted, or inconsistent memory details using token-level analysis.
 
-## Publisher: <br>
-[crftsmnd](https://clawhub.ai/user/crftsmnd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crftsmnd](https://clawhub.ai/user/crftsmnd)
 
-## Use Case: <br>
-Developers, operators, and agent maintainers use this skill to audit memory consistency, compare current behavior with stored memory, and identify possible context drift or confidence fabrication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit requires sending selected memory or behavior excerpts to a third-party endpoint. <br>
-Mitigation: Do not submit secrets, credentials, regulated data, or broad memory dumps unless the operator's data handling terms are trusted. <br>
-Risk: The release evidence reports an exposed unused API key in the artifact. <br>
-Mitigation: Publisher should remove and rotate the exposed key before broader deployment. <br>
-Risk: The service charges per audit. <br>
-Mitigation: Confirm payment intent and pricing before submitting audit requests. <br>
+## Use Case:
 
+Developers, operators, and QA teams use this skill to audit agent memory consistency, compare current claims with stored memory, and identify likely performed memory or context drift.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/crftsmnd/memory-auditor) <br>
-- [Publisher profile](https://clawhub.ai/user/crftsmnd) <br>
-- [Memory Auditor API endpoint](https://memory-auditor.cvapi.workers.dev/audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Analysis, API Calls, Guidance] <br>
-**Output Format:** [JSON response with verdict, confidence score, analysis details, and comparison statistics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires paid audit access and input memory or behavior excerpts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The skill sends raw agent memory and behavior text to a third-party endpoint, which may expose sensitive conversations, customer data, regulated data, or private memory contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with non-sensitive data unless the operator has explicit privacy, retention, and service-trust assurances.
+
+Risk: The evidence reports an exposed, unnecessary API key.
+
+Mitigation: The publisher should remove or rotate the exposed key before production use.
+
+Risk: The evidence warns that payment validation is not implemented properly.
+
+Mitigation: Treat the paid flow as untrusted until the publisher implements proper payment validation.
+
+## Reference(s):
+
+- [Memory-Auditor ClawHub page](https://clawhub.ai/crftsmnd/skills/memory-auditor)
+- [Memory Auditor API endpoint](https://memory-auditor.cvapi.workers.dev/audit)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Guidance]
+
+**Output Format:** [JSON audit result with verdict, confidence score, analysis details, and comparison statistics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current behavior text, stored memory text, and optional threshold; paid audit flow is described by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

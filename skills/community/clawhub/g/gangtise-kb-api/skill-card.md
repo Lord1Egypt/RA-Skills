@@ -1,42 +1,57 @@
-## Description: <br>
-Searches the Gangtise internal knowledge base for semantically relevant excerpts from reports, opinions, meeting notes, and related documents, with optional file download by type and ID. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches the Gangtise internal knowledge base for semantically relevant passages from reports, viewpoints, meeting notes, and related documents.
 
-## Publisher: <br>
-[gangtisegts](https://clawhub.ai/user/gangtisegts) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gangtisegts](https://clawhub.ai/user/gangtisegts)
 
-## Use Case: <br>
-Credentialed Gangtise users use this skill to retrieve, summarize, cite, and reason over relevant internal knowledge-base content such as research reports, internal reports, meeting notes, chief analyst views, and announcements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive Gangtise credentials to query internal content. <br>
-Mitigation: Use least-privilege credentials where possible and keep scripts/.authorization and credential environment variables out of source control and logs. <br>
-Risk: Search results, excerpts, reports, or downloaded files can be saved locally. <br>
-Mitigation: Avoid shared output directories, enable local saving or downloads only when needed, and delete saved excerpts or reports when no longer required. <br>
-Risk: The agent can access internal knowledge-base content through the configured credentials. <br>
-Mitigation: Install only in environments where the agent is intended to query Gangtise internal content, and review retrieved content before external sharing. <br>
+## Use Case:
 
+Developers and analysts use this skill to retrieve, cite, and summarize relevant content from Gangtise knowledge-base documents when they care about the document text rather than only locating files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gangtisegts/gangtise-kb-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-like text containing matched excerpts, titles, dates, file types, and source IDs, with optional saved PDF or Markdown files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Gangtise access credentials; optional local save and download behavior is controlled by environment variables and CLI flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.3 (source: server release evidence; artifact metadata reports 1.4.2) <br>
+Risk: The skill sends credential-bearing requests to Gangtise API endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where Gangtise credentials are intended for this skill, use scoped credentials where possible, and keep endpoint environment variables controlled.
+
+Risk: The skill can write retrieved search results and downloaded documents to local workspace paths.
+
+Mitigation: Run it in a contained workspace and review file download behavior before relying on direct downloads.
+
+Risk: Search results may include proprietary or sensitive internal knowledge-base content.
+
+Mitigation: Review retrieved passages before sharing or using them in downstream deliverables.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gangtisegts/skills/gangtise-kb-api)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown search results with optional downloaded PDF or Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results include titles, document dates, content excerpts, file types, and source IDs; optional downloads write files into a Gangtise workspace.]
+
+## Skill Version(s):
+
+1.4.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

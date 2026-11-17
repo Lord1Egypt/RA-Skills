@@ -1,41 +1,50 @@
-## Description: <br>
-Upgraded to https://clawhub.ai/tyxiang/ai-agent-email-skill and no longer maintains this version. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upgraded to https://clawhub.ai/tyxiang/ai-agent-email-skill and no longer maintains this version.
 
-## Publisher: <br>
-[tyxiang](https://clawhub.ai/user/tyxiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tyxiang](https://clawhub.ai/user/tyxiang)
 
-## Use Case: <br>
-External users and developers use this deprecated release as a pointer to the maintained replacement skill rather than to perform email automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may assume this deprecated release still enables email automation. <br>
-Mitigation: Treat this release as a deprecation notice only and use the linked replacement skill for maintained email workflows. <br>
-Risk: The linked replacement skill may introduce separate email account permission or credential-handling considerations. <br>
-Mitigation: Review the replacement skill independently before installing or granting email access. <br>
+## Use Case:
 
+Developers and agents use this deprecated placeholder to identify that easy-agent-email has moved to the newer ai-agent-email-skill release instead of relying on this version for email operations.
 
-## Reference(s): <br>
-- [Replacement skill](https://clawhub.ai/tyxiang/ai-agent-email-skill) <br>
-- [ClawHub release page](https://clawhub.ai/tyxiang/easy-agent-email) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deprecation notice only; no active email automation output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: This version is functionally obsolete and may be mistaken for an active email automation skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as a migration pointer and review the replacement skill separately before relying on email access or automation.
+
+## Reference(s):
+
+- [Replacement skill: ai-agent-email-skill](https://clawhub.ai/tyxiang/ai-agent-email-skill)
+- [ClawHub skill page: easy-agent-email](https://clawhub.ai/tyxiang/skills/easy-agent-email)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown metadata and plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecated placeholder; no scripts, tools, or email actions are provided in this version.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

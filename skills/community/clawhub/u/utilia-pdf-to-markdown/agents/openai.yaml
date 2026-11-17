@@ -1,0 +1,4 @@
+interface:
+  display_name: "Utilia PDF to Markdown"
+  short_description: "Pay per PDF and return agent-ready Markdown"
+  default_prompt: "Use $utilia-pdf-to-markdown to convert a public PDF into page-delimited Markdown."

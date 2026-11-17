@@ -1,46 +1,56 @@
-## Description: <br>
-qweather lets agents query QWeather for real-time weather, forecasts, life indices, and city lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+qweather helps agents query QWeather for real-time weather, daily forecasts, life indices, and city lookup.
 
-## Publisher: <br>
-[deusyu](https://clawhub.ai/user/deusyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deusyu](https://clawhub.ai/user/deusyu)
 
-## Use Case: <br>
-Developers and agent users use this skill to answer weather questions, resolve city names to QWeather location IDs, and fetch current conditions, forecasts, or lifestyle indices through the QWeather API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather lookups send requested locations to QWeather. <br>
-Mitigation: Use the skill only when sharing weather locations with QWeather is acceptable. <br>
-Risk: Failed requests may expose the QWeather API key in raw URL error output. <br>
-Mitigation: Use a dedicated QWeather API key and avoid sharing raw error output. <br>
-Risk: QWEATHER_API_HOST controls the API destination. <br>
-Mitigation: Set QWEATHER_API_HOST to the official host assigned in the QWeather console. <br>
+## Use Case:
 
+Developers and agents use qweather to resolve city names or coordinates and answer weather questions with current conditions, 3- or 7-day forecasts, and life index guidance such as UV, clothing, and car-wash indices.
 
-## Reference(s): <br>
-- [Command Map](references/command-map.md) <br>
-- [QWeather Console](https://console.qweather.com) <br>
-- [QWeather API Host Settings](https://console.qweather.com/setting) <br>
-- [ClawHub Skill Page](https://clawhub.ai/deusyu/rainman-qweather) <br>
-- [Publisher Profile](https://clawhub.ai/user/deusyu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Natural-language guidance with shell commands and JSON API results when commands are run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QWEATHER_API_KEY and QWEATHER_API_HOST; command output depends on QWeather API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The QWeather API key can be exposed through request URLs in error output or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid running the skill where stderr is broadly logged and prefer a patched version that redacts key= values from errors.
+
+Risk: A misconfigured QWEATHER_API_HOST can send the API key and city or coordinate queries to an unintended host.
+
+Mitigation: Set QWEATHER_API_HOST only to the official QWeather host assigned for the account and validate the host before use.
+
+## Reference(s):
+
+- [Command Map](references/command-map.md)
+- [QWeather Console](https://console.qweather.com)
+- [QWeather API Host Settings](https://console.qweather.com/setting)
+- [ClawHub Skill Page](https://clawhub.ai/deusyu/skills/rainman-qweather)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration guidance]
+
+**Output Format:** [JSON from the CLI, typically summarized by the agent as concise natural-language text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QWEATHER_API_KEY and QWEATHER_API_HOST; city or coordinate queries are sent to the configured QWeather host.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "status": "portable_starting_preferences_adapt_per_recipient",
+  "output": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "color_space": "BT.709",
+    "audio_sample_rate": 48000
+  },
+  "font_candidates": [
+    "公共资源/字体/SmileySans/SmileySans-Oblique.ttf",
+    "公共资源/字体/MaShanZheng/MaShanZheng-Regular.ttf"
+  ],
+  "subtitles": {
+    "font_size_px": 52,
+    "fill": "#FFFFFF",
+    "outline": "#181818",
+    "outline_px": 3
+  },
+  "accent_color": "#E6BF73",
+  "photo_sequence": {
+    "duration_seconds": 1.0,
+    "transition_seconds": 0.2,
+    "story_can_override": true,
+    "transition_seconds_note": "0.2 is the general short-transition starting point, not the selected photo-placement entrance. See photo_placement."
+  },
+  "preferred_transitions": [
+    "cut",
+    "short_dissolve",
+    "fade",
+    "match_cut"
+  ],
+  "avoid": [
+    "uniform_center_crop",
+    "stretching",
+    "cutting_group_portrait_edges",
+    "excessive_effects"
+  ],
+  "music_default": "speech_clear_music_supporting_establish_recipient_reference",
+  "revision": 4,
+  "audio_defaults": {
+    "accepted_reference": null,
+    "establish_recipient_reference": true,
+    "avoid_repeated_reduction": true,
+    "gain_scope": "BGM_only_when_requested",
+    "requested_thirty_percent_reduction_multiplier": 0.7,
+    "automatic_reduction": false,
+    "trim_unsuitable_intro_per_track": true,
+    "speech_ducking": true,
+    "lock_accepted_audio_for_visual_only_changes": true
+  },
+  "art_titles": {
+    "use_when": "opening_chapter_turn_emphasis_when_story_benefits",
+    "visual_options": [
+      "independent_word_chips",
+      "contrasting_sizes",
+      "warm_white_thick_outline",
+      "dark_thin_outline",
+      "warm_offset_extrusion",
+      "palette_adapt_to_story"
+    ],
+    "motion_options": [
+      "staggered_entry",
+      "light_scale_rebound",
+      "brief_decaying_rotation_wobble",
+      "stable_hold"
+    ],
+    "animation_applies_to": "text_layer",
+    "stable_reading_hold": true,
+    "all_caption_continuous_shake": false,
+    "avoid_face_and_action_occlusion": true,
+    "preset_id": "art_B_layered_sticker",
+    "name": "B 立体贴纸",
+    "palette_reference": {
+      "green": "#214C41",
+      "peach": "#EAAA7E",
+      "cream": "#FFF7E5",
+      "ink": "#14251F",
+      "extrusion": "#AF765C"
+    },
+    "stagger_seconds_starting_point": 0.12,
+    "entrance_seconds_starting_point": 0.36,
+    "fully_settled_by_seconds_starting_point": 0.9,
+    "background_shake": false
+  },
+  "shot_finishing": {
+    "color_review_each_shot": true,
+    "stabilization": "selective_after_before_after_review"
+  },
+  "cover": {
+    "starting_aspect_ratio": "2:3",
+    "select_source": "opening_frame_or_story_core_photo_per_project",
+    "protect_friend_faces_with_crop_or_designed_type_blocks": true,
+    "confirm_subject_from_user_when_unclear": true,
+    "brief_title_and_caption": true
+  },
+  "updated_on": "2026-10-21",
+  "visual_preset_scope": "Reusable starting point for suitable Vlogs; adapt to story and latest instructions, not all photo-editing tasks; never retroactively rerender accepted projects.",
+  "photo_placement": {
+    "preset_id": "photo_01_gentle_diagonal_placement",
+    "name": "01 斜落轻放",
+    "reference_canvas": [
+      1080,
+      1920
+    ],
+    "entry_direction": "upper_right_to_scene_selected_position",
+    "paper_color": "#F6F4EE",
+    "border_px": 18,
+    "lower_border_px": 42,
+    "soft_physical_shadow": true,
+    "background_blur": false,
+    "background_dim": false,
+    "entry_seconds_starting_point": 0.65,
+    "entry_overlaps_previous_clip": true,
+    "entry_easing": "cubic_ease_out",
+    "short_sequence_can_shorten_entry": true,
+    "photo_hold": "story_and_speech_alignment_not_fixed_to_entry_duration",
+    "full_screen_photos": "place_then_straighten_and_expand_to_exact_canvas_with_reviewed_crop",
+    "full_screen_fill_seconds_starting_range": [
+      0.22,
+      0.32
+    ],
+    "subject_crop_requires_actual_view": true,
+    "align_photo_with_corresponding_speech": true,
+    "background_keeps_playing": true
+  },
+  "title_cards": {
+    "preset_id": "card_C_sport_brush",
+    "name": "C 运动笔刷",
+    "use_when": "chapter_true_footage_gap_or_story_ending",
+    "visual_options": [
+      "charcoal_forest_texture",
+      "ivory_and_lime_brush_type",
+      "large_small_hierarchy",
+      "sparse_decorative_landscape"
+    ],
+    "palette_adapt_to_story": true,
+    "default_inside_page_motion": "none_static_reading_page",
+    "implemented_internal_animation": false,
+    "transition": "natural_cut_or_next_photo_placement_overlap_as_story_requires",
+    "reserve_bottom_for_captions_and_credits": true,
+    "starting_main_text_bottom_margin_fraction": 0.25,
+    "decorations_are_not_real_geography_evidence": true,
+    "verify_actual_dimensions_chinese_and_video_fit": true
+  },
+  "editing": {
+    "speech_keyword_alignment": true,
+    "meaningful_pauses_only": true,
+    "ordinary_speech_tail_review_seconds": [
+      2,
+      3
+    ],
+    "preserve_later_approved_anchors": true,
+    "progressive_montage": {
+      "enabled_by_default": false,
+      "requires": "explicit_current_project_user_request"
+    }
+  }
+}

@@ -1,40 +1,57 @@
-## Description: <br>
-Queries China Merchants Bank foreign-exchange mid-rate data for HKD-CNY using the disclosed CMB FX rate endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries China Merchants Bank foreign exchange quote data and explains how to calculate HKD-CNY mid-rates.
 
-## Publisher: <br>
-[horsley](https://clawhub.ai/user/horsley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[horsley](https://clawhub.ai/user/horsley)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent fetch CMB foreign-exchange data, filter for HKD, interpret quote fields, and calculate the HKD-CNY spot mid-rate. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to make an outbound network request to the disclosed CMB FX rate endpoint. <br>
-Mitigation: Review the endpoint before execution and run the skill only in environments where outbound access to fx.cmbchina.com is acceptable. <br>
-Risk: The provided example depends on local command-line tooling. <br>
-Mitigation: Confirm curl is installed and install jq or adapt the response filtering before relying on the example command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CMB FX Rate API](https://fx.cmbchina.com/api/v1/fx/rate) <br>
-- [ClawHub skill page](https://clawhub.ai/horsley/cmb-fx) <br>
+## Use Case:
 
+External users and developers use this skill to query China Merchants Bank FX rate data and calculate a midpoint price for HKD-CNY exchange-rate workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and exchange-rate calculation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; jq is needed to run the provided filtering example exactly as written.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes live network requests to China Merchants Bank's FX API when used.
+
+Mitigation: Review the target API URL before execution and use the skill only in environments where outbound requests to fx.cmbchina.com are allowed.
+
+Risk: The documented filtering example uses jq, but the metadata declares only curl as required.
+
+Mitigation: Install jq or adapt the JSON parsing step to an available tool before relying on the example command.
+
+Risk: Live FX quote data can change or become unavailable if the external API changes or is unreachable.
+
+Mitigation: Check the response timestamp and handle failed or stale responses before using calculated mid-rates.
+
+## Reference(s):
+
+- [China Merchants Bank FX rate API](https://fx.cmbchina.com/api/v1/fx/rate)
+- [ClawHub skill page](https://clawhub.ai/horsley/skills/cmb-fx)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and exchange-rate calculation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May make network requests to the CMB FX API; the documented filtering example uses jq although only curl is declared as required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

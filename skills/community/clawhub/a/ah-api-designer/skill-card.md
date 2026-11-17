@@ -1,41 +1,53 @@
-## Description: <br>
-API design specialist for RESTful services, GraphQL, OpenAPI/Swagger specifications, and API-first development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+API Designer helps agents design REST, GraphQL, OpenAPI/Swagger, versioning, authentication, and authorization patterns for API-first development.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to design REST, GraphQL, and related API interfaces, including schemas, authentication and authorization patterns, documentation, tests, SDK code, and migration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste production secrets or credentials while asking for authentication and SDK design help. <br>
-Mitigation: Do not include production secrets in prompts; use placeholders and store real secrets only in approved secret-management systems. <br>
-Risk: Generated SDK authentication or state-changing request code may be incomplete for production reliability and security. <br>
-Mitigation: Review generated code before use and add retry limits, token-refresh preconditions, idempotency protections, and secure secret storage. <br>
+## Use Case:
 
+Developers and engineers use this skill to draft API specifications, endpoint and schema designs, authentication patterns, client SDK examples, testing strategies, and migration guidance.
 
-## Reference(s): <br>
-- [Api Designer Code Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/ah-api-designer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with API specifications, schema examples, code snippets, testing strategies, security considerations, and migration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OpenAPI/Swagger documentation, GraphQL schemas, SDK code, testing strategies, and migration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated client code may mishandle authentication, retry limits, token refresh, or where API keys and bearer tokens are sent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated client code before production use, with specific attention to authentication handling, retry behavior, token refresh, and credential destinations.
+
+Risk: Generated API specifications or SDK patterns may be incomplete or unsuitable for the target service.
+
+Mitigation: Validate generated specifications, schemas, tests, and migration guidance against the service requirements before deployment.
+
+## Reference(s):
+
+- [Api Designer Code Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with API specifications, schema examples, client SDK code, testing strategies, security considerations, and migration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review generated client code and API security details before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,241 @@
+/* ============================================================
+   HBR 商业杂志横版版式 — mag.css（reading-notes-master v2.7）
+   逆向来源：哈佛商业评论 2025 年度精选 88 页实战（PDF 11.7MB 三重验收通过）
+   开本 612×756pt = 8.5×10.5in | 刊名红 #E41824 | 橙金 #F09C18 | 墨色 #231F20
+   用法：复制到 <项目>/output/，与 full.html 同级；遮罩 PNG 放 scrim/ 子目录
+   换肤：只改 :root 的 --red / --artgold / --ink / --cream（刊名 DNA 四色）
+   ============================================================ */
+
+:root {
+  --red: #E41824;          /* 刊头红 (中文版实测众数) */
+  --brick: #842418;        /* 英文版大标题暗砖红 (实测) */
+  --artgold: #F09C18;      /* 特写开篇压图标题橙金 (实测) */
+  --art1: #F0B400;         /* 插画四色: 金黄 (实测) */
+  --art2: #F07818;         /* 插画四色: 橙 (实测) */
+  --art3: #70B0D0;         /* 插画四色: 天蓝 (实测) */
+  --art4: #40B060;         /* 插画四色: 绿 (实测) */
+  --red-deep: #A31218;     /* 深红 */
+  --coral: #F37060;        /* 数据高亮珊瑚红 (实测) */
+  --blue: #0674B4;         /* 辅助蓝 (实测) */
+  --cyan: #00AEEF;         /* 亮蓝 (实测) */
+  --gold: #8A734C;         /* 金棕 (实测封面) */
+  --ink: #231F20;          /* 墨色 (实测) */
+  --gray: #6E6A67;         /* 暖灰 */
+  --gray-lt: #A7A9AC;      /* 浅灰 (实测) */
+  --rule: #D8D5D0;         /* 细线 */
+  --cream: #F4F1EA;        /* 米色底 */
+  --paper: #FFFFFF;
+
+  --sans: "GTAmerica", "Helvetica Neue", "PingFang SC", "Arial", sans-serif;
+  --serif: "Tiempos", "Georgia", "Songti SC", "STSong", "Times New Roman", serif;
+  --cond: "GTAmerica Condensed", "Helvetica Neue Condensed", "Arial Narrow", "PingFang SC", sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: #8E8E8E;
+}
+
+
+/* ---------- 页面画布 612x756pt ---------- */
+.page {
+  width: 612pt;
+  height: 756pt;
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+  margin: 16pt auto;
+  box-shadow: 0 2pt 8pt rgba(0,0,0,.35);
+  padding: 44pt 60pt 40pt;
+}
+.page.fullbleed { padding: 0; }
+
+/* ---------- 页眉页脚 ---------- */
+.folio {
+  position: absolute; top: 34pt; left: 60pt; right: 60pt;
+  display: flex; justify-content: space-between; align-items: baseline;
+  font: 500 6.5pt/1 var(--sans); letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gray);
+  border-bottom: .6pt solid var(--ink);
+  padding-bottom: 7pt;
+}
+.folio .fb { color: var(--red); font-weight: 700; }
+.pageno {
+  position: absolute; bottom: 24pt; left: 60pt; right: 60pt;
+  display: flex; justify-content: space-between;
+  font: 500 6.5pt/1 var(--sans); letter-spacing: .22em; color: var(--gray);
+  border-top: .6pt solid var(--rule); padding-top: 7pt;
+}
+.pageno b { color: var(--ink); font-weight: 700; }
+
+
+/* ============================================================
+   打印规则 — 8.5x10.5in 精确出纸 (@page margin:0 全出血方案)
+   ============================================================ */
+@page { size: 8.5in 10.5in; margin: 0; }
+@media print {
+  html, body { background: #fff !important; }
+  .page { margin: 0 !important; box-shadow: none !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
+
+/* ============================================================
+   MAG 杂志化系统 — 高端时尚杂志语言
+   全出血照片 / 巨型展示字体 / 非对称网格 / 极简文本
+   ============================================================ */
+
+/* ---------- 封面 ---------- */
+.mag-cover { background-size: cover; background-position: center; background-repeat: no-repeat; color: #fff; }
+.mc-scrim { position: absolute; inset: 0;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAQACAYAAADcExj1AAAA2UlEQVR42u3TMQ6EMAxFwR+UIkLcv+SqcINQUGBgqNE+7xi3dWx7Js+Si6cnOW79QoXET/6mhIQESQkJCZISEhIkJSScP0kJCedPUkLC+ZOUkHD+JCUknL+EhITzl5CQcP4SEhIfPv8KL/QkjQMokqBAkSQJChRJUF4gCQoUSVCgQJEEBYokKFAkQYEiCQoUKJKgQJEst4tXJDgYkgMHy+LAwbI4GJIDBw6G5MDBsjgYkgMHQ3LgwMGyOPhoLYuDITlwsCwOHByvZXEwJAcOlsWBg2Vx4PDgkCfUyHtCYVVt8QAAAABJRU5ErkJggg==); background-size: 100% 100%; background-repeat: no-repeat; }
+.mc-mast { position: absolute; top: 34pt; left: 40pt; right: 40pt; display: flex; justify-content: space-between; align-items: flex-start; }
+.mc-mast-l { font: 800 15pt/1.1 var(--sans); letter-spacing: .42em; }
+.mc-mast-r { font: 700 8pt/1.5 var(--sans); letter-spacing: .18em; text-align: right; opacity: .92; }
+.mc-year { position: absolute; top: 88pt; left: 40pt; font: 600 7.5pt/1 var(--sans);
+  letter-spacing: .30em; padding: 5pt 10pt; border: .7pt solid rgba(255,255,255,.75); }
+.mc-title { position: absolute; left: 40pt; right: 40pt; top: 210pt;
+  font: 800 44pt/1.16 var(--sans); letter-spacing: .01em; }
+.mc-rule { position: absolute; left: 40pt; top: 330pt; width: 84pt; height: 3pt; background: var(--red); }
+.mc-deck { position: absolute; left: 40pt; right: 130pt; top: 352pt;
+  font: 400 10.5pt/1.85 var(--serif); opacity: .95; }
+.mc-strip { position: absolute; left: 40pt; right: 40pt; bottom: 96pt; display: flex; gap: 6pt; height: 74pt; }
+.mc-cell { flex: 1; background-size: cover; background-position: center; background-repeat: no-repeat; border: .7pt solid rgba(255,255,255,.55); }
+.mc-foot { position: absolute; left: 40pt; right: 40pt; bottom: 34pt; display: flex;
+  justify-content: space-between; font: 600 7pt/1 var(--sans); letter-spacing: .24em; opacity: .85; }
+
+/* ---------- 章隔页：全出血 + 巨号 ---------- */
+.mag-div { background-size: cover; background-position: center; background-repeat: no-repeat; color: #fff; }
+.md-scrim { position: absolute; inset: 0;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAQACAYAAADcExj1AAAA30lEQVR42u3TQQqAMBADwFR6EPHp/ll/oAdhWWU8B02nZmzrfuTmWfLwzCTnqzcUfEJJJR1TSSVNT0kllXQXSiqppGMqqaTpKamkku5CSSVNT0klTc9dKKmkku5CSSVNT0klTa//MQsCM8noXlJAwHAEBCwLlICA4QgIGI6AgOEICBiOgIDhgBIQMBwBAcMREPjucAqm16EkKFCgHBMUKFCgQIECBQoUKMf0P4ACBQoUKFCgQIHyP4ACBQoUKFCgQIEC5ZigQIECBQoUKFCgQDkmKFCgQIECBQoUqP+94QInp4isIHa+sQAAAABJRU5ErkJggg==); background-size: 100% 100%; background-repeat: no-repeat; }
+.md-top { position: absolute; top: 40pt; left: 40pt; right: 40pt; display: flex; justify-content: space-between; align-items: flex-start; }
+.md-tag { font: 700 8pt/1 var(--sans); letter-spacing: .34em; padding-top: 10pt; }
+.md-num { font: 800 150pt/0.9 var(--sans); letter-spacing: -.04em; }
+.md-vert { position: absolute; top: 190pt; right: 44pt; writing-mode: vertical-rl;
+  font: 700 9pt/1 var(--sans); letter-spacing: .5em; opacity: .9; }
+.md-bottom { position: absolute; left: 40pt; right: 40pt; bottom: 44pt; }
+.md-title { font: 800 34pt/1.2 var(--sans); }
+.md-sub { font: 600 8.5pt/1 var(--sans); letter-spacing: .30em; margin-top: 10pt; color: var(--artgold); }
+.md-cap { font: 400 9pt/1.8 var(--serif); margin-top: 14pt; opacity: .92; max-width: 380pt; }
+
+/* ---------- 编辑开篇页：非对称图文 ---------- */
+.mag-ed { display: flex; }
+.mag-ed .me-photo { width: 310pt; flex: none; background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; }
+.mag-ed.me-flip .me-photo { order: 2; }
+.mag-ed.me-flip .me-body { order: 1; }
+.me-pcap { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(10,8,12,.72);
+  color: #fff; font: 400 6.5pt/1.6 var(--sans); padding: 6pt 10pt; letter-spacing: .06em; }
+.mag-ed .me-body { flex: 1; min-width: 0; padding: 40pt 32pt 34pt 34pt; position: relative; }
+.me-kick { font: 700 7.5pt/1 var(--sans); letter-spacing: .30em; color: var(--red); margin-bottom: 16pt; }
+.me-kick::after { content: ""; display: block; width: 26pt; height: 2pt; background: var(--red); margin-top: 8pt; }
+.me-title { font: 800 23pt/1.28 var(--sans); letter-spacing: -.01em; }
+.me-deck { font: 400 10pt/1.82 var(--serif); color: #3C383A; margin-top: 12pt; }
+.me-stat { display: flex; align-items: baseline; gap: 10pt; margin-top: 12pt; padding: 8pt 0;
+  border-top: .7pt solid var(--rule); border-bottom: .7pt solid var(--rule); }
+.me-stat b { font: 800 30pt/1 var(--sans); color: var(--red); letter-spacing: -.02em; }
+.me-stat span { font: 600 8pt/1.5 var(--sans); color: var(--gray); letter-spacing: .08em; }
+.me-text { margin-top: 13pt; font: 300 8.2pt/1.84 var(--sans); color: #2B2729; }
+.me-text p { margin-bottom: 6.5pt; }
+.me-text p.lede { font-weight: 400; }
+.me-text b { font-weight: 600; }
+
+/* ---------- 整页大图表 ---------- */
+.mag-chart { padding: 42pt 44pt 36pt; display: flex; flex-direction: column; }
+.mch-kick { font: 700 7.5pt/1 var(--sans); letter-spacing: .30em; color: var(--red); }
+.mch-kick::after { content: ""; display: block; width: 26pt; height: 2pt; background: var(--red); margin-top: 8pt; }
+.mch-title { font: 800 26pt/1.25 var(--sans); margin-top: 14pt; letter-spacing: -.01em; }
+.mch-sub { font: 400 9.5pt/1.8 var(--serif); color: var(--gray); margin-top: 10pt; max-width: 460pt; }
+.mch-stage { flex: 1; min-height: 300pt; margin: 22pt 0 16pt; background-repeat: no-repeat; background-size: contain;
+  background-repeat: no-repeat; background-position: center; }
+.mch-svgstage { flex: 1; min-height: 300pt; margin: 22pt 0 16pt; display: flex;
+  align-items: center; justify-content: center; background: var(--cream); padding: 18pt; }
+.mch-svgstage svg { display: block; width: 100%; height: auto; }
+.mch-foot { border-top: .7pt solid var(--ink); padding-top: 12pt; }
+.mch-insight { font: 300 8.8pt/1.9 var(--sans); color: #2B2729; }
+.mch-insight b { font: 700 7.5pt/1 var(--sans); letter-spacing: .2em; color: #fff;
+  background: var(--ink); padding: 3pt 7pt; margin-right: 8pt; }
+.mch-note { font: 400 7.5pt/1.7 var(--serif); color: var(--gray); margin-top: 8pt; }
+.mch-src { font: 400 7pt/1 var(--sans); color: var(--gray-lt); margin-top: 10pt; letter-spacing: .05em; }
+
+/* ---------- 巨型统计页 ---------- */
+.mag-stat { display: flex; }
+.mag-stat .ms-photo { width: 208pt; flex: none; background-size: cover; background-position: center; background-repeat: no-repeat; }
+.mag-stat .ms-body { flex: 1; min-width: 0; padding: 48pt 40pt 40pt 38pt; position: relative; }
+.ms-kick { font: 700 7.5pt/1 var(--sans); letter-spacing: .30em; color: var(--red); }
+.ms-num { font: 800 100pt/0.95 var(--sans); letter-spacing: -.045em; margin-top: 12pt; color: var(--ink); }
+.ms-num i { font: 800 24pt/1 var(--sans); font-style: normal; color: var(--red); margin-left: 6pt; letter-spacing: 0; }
+.ms-desc { font: 600 10pt/1.7 var(--sans); color: #3C383A; margin-top: 6pt; letter-spacing: .04em; }
+.ms-rule { width: 84pt; height: 3pt; background: var(--red); margin: 22pt 0 20pt; }
+.ms-title { font: 800 19pt/1.35 var(--sans); }
+.ms-text { margin-top: 12pt; font: 300 8.3pt/1.88 var(--sans); color: #2B2729; }
+.ms-text p { margin-bottom: 8pt; }
+.ms-text b { font-weight: 600; }
+
+/* ---------- 大字文本页 ---------- */
+.mag-text { padding: 46pt 54pt 38pt; }
+.mt-kick { font: 700 7.5pt/1 var(--sans); letter-spacing: .30em; color: var(--red); }
+.mt-kick::after { content: ""; display: block; width: 26pt; height: 2pt; background: var(--red); margin-top: 8pt; }
+.mt-title { font: 800 22pt/1.24 var(--sans); margin-top: 13pt; letter-spacing: -.01em; }
+.mt-lead { font: 400 10.5pt/1.85 var(--serif); color: #3C383A; margin-top: 13pt;
+  padding-left: 16pt; border-left: 2.5pt solid var(--red); }
+.mt-text { margin-top: 16pt; column-count: 2; column-gap: 24pt; column-rule: .5pt solid var(--rule);
+  font: 300 8.2pt/1.86 var(--sans); color: #2B2729; }
+.mt-text p { margin-bottom: 7pt; }
+.mt-text p.lede { font-weight: 400; }
+.mt-text p.lede .dropcap { font-weight: 600; }
+.mt-text b { font-weight: 600; }
+.mt-text .pullquote { margin: 4pt 0 10pt; }
+.mt-text .pullquote .pq { font: 700 12.5pt/1.6 var(--sans); }
+.mt-text .keybox { margin: 2pt 0 10pt; }
+.mt-text .statrow { margin: 2pt 0 10pt; }
+
+/* ---------- 照片特写页 ---------- */
+.mag-photo { background-size: cover; background-position: center; background-repeat: no-repeat; color: #fff; }
+.mp-scrim { position: absolute; inset: 0;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAQACAYAAADcExj1AAAAz0lEQVR42u3UwQnAIBAEwFV8SLA0+2/HdBB/QWR8C7O3HFeePmY+Xs3mnfChJVlCmkJIUwhpCiFNIaQphDSFkPZB1aq2D6oWUtVCqlpIVQupaiFVrWoh7YOQ9kFI+yCkfRDSPqjaPqjaPqjaFEKaQkhTCGkf7gnZkhSEMREIhCOmSQQC4YghEAgXRpMIBMIRQyAQCEcMgUC4MAgEAuGIIRAIhDERCIQLg0AgEI4YAoFwYRAIBMIRQyAQCGMiEAgXBoFAIIyJQCAcMU0iEH8QLxOhVws70BPbAAAAAElFTkSuQmCC); background-size: 100% 100%; background-repeat: no-repeat; }
+.mp-cap { position: absolute; left: 40pt; right: 40pt; bottom: 40pt; }
+.mp-kick { display: block; font: 700 7pt/1 var(--sans); letter-spacing: .34em; color: var(--artgold); margin-bottom: 10pt; }
+.mp-txt { display: block; font: 400 8.5pt/1.75 var(--serif); opacity: .92; max-width: 420pt; }
+
+/* ---------- 金句页 ---------- */
+.mag-quote { background-size: cover; background-position: center; background-repeat: no-repeat; color: #fff; }
+.mq-scrim { position: absolute; inset: 0; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPg4uBZAQABBQDHuynAhgAAAABJRU5ErkJggg==); background-size: 100% 100%; background-repeat: no-repeat; }
+.mq-inner { position: absolute; left: 60pt; right: 60pt; top: 50%; transform: translateY(-50%); text-align: center; }
+.mq-mark { font: 800 72pt/1 var(--serif); color: var(--red); height: 34pt; overflow: visible; }
+.mq-quote { font: 800 24pt/1.55 var(--sans); letter-spacing: .01em; margin-top: 18pt; }
+.mq-src { font: 600 8pt/1 var(--sans); letter-spacing: .26em; margin-top: 22pt; color: var(--artgold); }
+.mq-note { font: 400 8.5pt/1.9 var(--serif); margin: 20pt auto 0; max-width: 360pt; opacity: .88; }
+
+/* ---------- 目录（杂志式） ---------- */
+.mag-toc { padding: 46pt 44pt 36pt; }
+.toc-head { display: flex; justify-content: space-between; font: 700 8pt/1 var(--sans);
+  letter-spacing: .30em; padding-bottom: 12pt; border-bottom: 2pt solid var(--ink); }
+.toc-body { margin-top: 18pt; }
+.toc-sec { margin-bottom: 16pt; }
+.toc-sec-t { font: 800 10.5pt/1 var(--sans); letter-spacing: .14em; color: var(--red); margin-bottom: 8pt; }
+.toc-row { display: flex; align-items: baseline; gap: 8pt; padding: 3.2pt 0;
+  border-bottom: .4pt solid var(--rule); }
+.toc-dot { width: 3pt; height: 3pt; background: var(--ink); flex: none; }
+.toc-t { font: 600 8.6pt/1.4 var(--sans); flex: 1; min-width: 0; }
+.toc-au { font: 400 7pt/1.4 var(--serif); color: var(--gray); flex: none; max-width: 130pt; text-align: right; }
+.toc-pg { font: 800 9pt/1 var(--sans); flex: none; width: 20pt; text-align: right; }
+
+/* ---------- 12 期总览 ---------- */
+.mag-imap { padding: 44pt 42pt 34pt; }
+.im-kick { font: 700 7.5pt/1 var(--sans); letter-spacing: .30em; color: var(--red); }
+.im-title { font: 800 28pt/1.15 var(--sans); margin-top: 12pt; }
+.im-sub { font: 400 9.5pt/1.8 var(--serif); color: var(--gray); margin-top: 10pt; }
+.im-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12pt; margin-top: 24pt; }
+.im-card { border-top: 2pt solid var(--ink); padding-top: 8pt; }
+.im-img { height: 62pt; background-size: cover; background-position: center; background-repeat: no-repeat; margin-bottom: 8pt; }
+.im-lab { font: 800 9pt/1 var(--sans); letter-spacing: .06em; }
+.im-hot { font: 700 5.5pt/1 var(--sans); background: var(--red); color: #fff;
+  padding: 2pt 4pt; margin-left: 5pt; letter-spacing: .1em; vertical-align: 2pt; }
+.im-theme { font: 600 7.8pt/1.45 var(--sans); color: #3C383A; margin-top: 5pt; min-height: 22pt; }
+.im-desc { font: 300 6.6pt/1.6 var(--sans); color: var(--gray); margin-top: 4pt; }
+.im-tags { font: 600 6.2pt/1 var(--sans); color: var(--blue); letter-spacing: .08em; margin-top: 6pt; }
+

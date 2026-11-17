@@ -1,42 +1,55 @@
-## Description: <br>
-Prepare, validate, and explicitly upload YouTube Shorts through the official YouTube Data API with dry-run safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare, validate, and explicitly upload YouTube Shorts through the official YouTube Data API with dry-run safety.
 
-## Publisher: <br>
-[davidmosiah](https://clawhub.ai/user/davidmosiah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidmosiah](https://clawhub.ai/user/davidmosiah)
 
-## Use Case: <br>
-Developers and agent users use this skill to install, configure, validate, and operate YouTube Shorts Agent for YouTube OAuth readiness, dry-run checks, privacy review, and explicit Shorts uploads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires YouTube OAuth permissions and sensitive credentials. <br>
-Mitigation: Install only from a trusted package source, verify requested OAuth scopes, and avoid printing OAuth tokens, API keys, service-account JSON, local token files, or private user data. <br>
-Risk: The skill can perform live YouTube Shorts uploads. <br>
-Mitigation: Use doctor, connection status, privacy audit, manifest, and dry-run checks before live upload, and require explicit user intent and final confirmation. <br>
+## Use Case:
 
+Developers and agent users use this skill to install and configure YouTube Shorts Agent, check OAuth and privacy readiness, and perform dry-run or explicitly confirmed uploads for user-owned YouTube Shorts workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/davidmosiah/youtube-shorts-agent) <br>
-- [Repository](https://github.com/davidmosiah/youtube-shorts-agent) <br>
-- [npm Package](https://www.npmjs.com/package/youtube-shorts-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide OAuth readiness checks, dry-run upload checks, privacy audits, manifests, and explicit live upload workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The setup flow can run an unpinned npm package that may change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package source, pin an exact package version before installation, and keep dry-run or confirmation steps enabled before any live upload.
+
+Risk: The skill may interact with YouTube credentials, local token files, user media, and upload operations.
+
+Mitigation: Run it with only the files, environment variables, and YouTube credentials needed, and do not print OAuth tokens, API keys, service-account JSON, local token files, or private user data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/davidmosiah/skills/youtube-shorts-agent)
+- [YouTube Shorts Agent Repository](https://github.com/davidmosiah/youtube-shorts-agent)
+- [YouTube Shorts Agent npm Package](https://www.npmjs.com/package/youtube-shorts-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance emphasizes dry-run checks, privacy boundaries, and explicit user confirmation before live uploads.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

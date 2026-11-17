@@ -1,0 +1,140 @@
+part: MSPM0G3519
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "TI MSPM0G3519 \u2014 80 MHz Cortex-M0+ MCU with 2x CAN-FD + PSA-L1"
+main_page: https://www.ti.com/product/MSPM0G3519
+datasheet_path_expected: ../../datasheets/mspm0g3519.pdf
+datasheet_source_url: https://www.ti.com/lit/ds/symlink/mspm0g3519.pdf
+created_at: '2026-06-30T10:42:00+08:00'
+specs:
+  family: MSPM0G (high-performance MSPM0 with advanced peripherals)
+  psa_cert_level: 1
+  cores:
+  - Arm Cortex-M0+ @ 80 MHz with MPU
+  - Math accelerator (DIV, SQRT, MAC, TRIG)
+  memory:
+    flash: 512 KB with ECC (dual-bank + address swap for OTA)
+    data_flash: 16 KB with ECC
+    sram: 128 KB total
+    sram_bank_0: 64 KB with ECC/parity + STANDBY retention
+    sram_bank_1: 64 KB with STOP retention
+  operating_conditions:
+    temperature_c_min: -40
+    temperature_c_max: 125
+    voltage_v_min: 1.62
+    voltage_v_max: 3.6
+  analog:
+    adc:
+    - 2x simultaneous sampling 12-bit 4 Msps (up to 27 ext channels)
+    - 14-bit effective @ 250 ksps (hardware averaging)
+    comparators: "3x high-speed (8-bit ref DAC, 32 ns prop, <1 \xB5A LP)"
+    dac: 1x 12-bit 1 Msps with output buffer
+    programmable_analog_routing: "yes (ADC \u2194 COMP \u2194 DAC)"
+    vref_selectable:
+    - 1.4 V
+    - 2.5 V
+    temperature_sensor: integrated
+  power:
+    modes:
+    - mode: RUN
+      current: "123 \xB5A/MHz (CoreMark)"
+    - mode: SLEEP
+      current: "38 \xB5A/MHz"
+    - mode: STOP @ 4 MHz
+      current: "223 \xB5A"
+    - mode: STANDBY @ 32 kHz
+      current: "1.7 \xB5A (RTC + Bank 0 SRAM + state retention)"
+    - mode: SHUTDOWN
+      current: 92 nA (IO wake-up)
+  digital:
+    dma_controller: 12-channel
+    timers_count: 9
+    pwm_channels_total: 28
+    timers_breakdown:
+    - 2x 16-bit GP with QEI
+    - 4x 16-bit GP with STANDBY-capable operation
+    - 1x 32-bit GP
+    - 2x 16-bit advanced with deadband + complementary outputs (12 PWM)
+    watchdog: 2x WWDT + 1x IWDT
+    rtc: with alarm + calendar mode
+  communication:
+    uart: 7
+    i2c: 3
+    spi: 3
+    can_fd: 2
+  clocks:
+    sysosc: "4-32 MHz, \xB11.2% accuracy"
+    pll: up to 80 MHz
+    lfosc: "32 kHz, \xB13% accuracy"
+    hfxt: external 4-48 MHz crystal
+    lfxt: external 32 kHz crystal
+    external_clock_input: true
+  security:
+    aes_128_256: with GCM/GMAC, CCM/CBC-MAC, CBC, CTR
+    key_storage: up to 4 AES keys secure
+    firewalls: flexible (code + data protection)
+    trng: true
+    crc:
+    - CRC-16
+    - CRC-32
+  io:
+    gpio_max: 94
+    open_drain_5v_tolerant: 2
+    high_drive_20ma: 3
+    high_speed: 4
+  debug:
+    swd: 2-pin
+  package_options:
+  - type: nFBGA (ZAW)
+    pins: 100
+    pitch_mm: 0.8
+  - type: LQFP (PZ)
+    pins: 100
+    pitch_mm: 0.5
+  - type: LQFP (PN)
+    pins: 80
+    pitch_mm: 0.5
+  - type: LQFP (PM)
+    pins: 64
+    pitch_mm: 0.5
+  - type: LQFP (PT)
+    pins: 48
+    pitch_mm: 0.5
+  - type: VQFN (RGZ)
+    pins: 48
+    pitch_mm: 0.5
+  - type: VQFN (RHB)
+    pins: 32
+    pitch_mm: 0.5
+  dev_tools:
+    launchpad: LP-MSPM0G3519
+    programmer: ALGO-3P-UISP1-TI
+    debug_probes:
+    - TMDSEMU110-U
+    - TMDSEMU200-U
+  use_cases:
+  - Industrial sensor hub with CAN-FD + 80 MHz + 128 KB SRAM
+  - Battery-powered automotive sensor nodes (PSA-L1)
+  - Home/Building automation with dual CAN-FD
+  - Motor control with advanced timers + deadband + math accelerator
+  - Industrial IoT / supervisory PLCs
+unverified:
+- exact energy traceability / ASIL rating
+- exact encryption performance (cycles per block)
+- exact CAN-FD max bitrate
+- exact PLL lock time
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from ti.com MSPM0G3519 product page via Firecrawl (295,609 bytes raw)."
+- 'Family differentiator vs MSPM0G3507 (existing yaml): G3519 adds 2nd ADC + CAN-FD + Math accelerator + 92 nA SHUTDOWN +
+  128 KB SRAM (vs G3507 smaller). G3507 is cost-down; G3519 is full-featured.'
+- 'Family differentiator vs MSPM0L1306 (newly-added round 2): L1306 is ultra-low-power (61 nA SHUTDOWN, no CAN-FD); G3519
+  is high-performance (80 MHz + CAN-FD + 92 nA SHUTDOWN, still LP).'
+- 'Use case: industrial CAN-FD backbone node with strong cryptographic security (AES + TRNG + key storage). PSA-L1 IoT cybersecurity
+  level certified target.'
+- "Verified 2026-07-01 via pdfplumber against datasheets/mspm0g3519.pdf (TI vendor-direct, no auth): 62/89 spec fields matched\
+  \ (70%). Large PDF (7.6 MB > 5 MB script cap) \u2014 verified manually via pdfplumber first 15 pages. 27 not-found are nested/list\
+  \ fields with format mismatches."
+extracted_at: '2026-06-30T10:42:00+08:00'
+extraction_method: firecrawl-extract (keyed) of ti.com product page + manual enrich
+extraction_source: references/semiconductor-vendor/TI/firecrawl-snapshots/MSPM0G3519-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/TI/firecrawl-snapshots/MSPM0G3519-family_raw.md
+extraction_credits_used: 1

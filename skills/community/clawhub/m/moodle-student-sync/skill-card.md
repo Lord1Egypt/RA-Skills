@@ -1,41 +1,57 @@
-## Description: <br>
-Sync and summarize student Moodle data including courses, upcoming deadlines, grades, files, and announcements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync and summarize student Moodle data including courses, upcoming deadlines, grades, files, and announcements.
 
-## Publisher: <br>
-[yerassyl-sailaubay](https://clawhub.ai/user/yerassyl-sailaubay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yerassyl-sailaubay](https://clawhub.ai/user/yerassyl-sailaubay)
 
-## Use Case: <br>
-Students and education-focused agents use this skill to retrieve Moodle course data, deadlines, grades, notifications, and course resources, then turn them into snapshots, reports, digests, and study plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses MOODLE_TOKEN to access student Moodle data, including courses, grades, deadlines, files, and notifications. <br>
-Mitigation: Install only when Moodle account access is intended, use the least-privilege Moodle token available, and keep MOODLE_TOKEN out of shared logs and screenshots. <br>
-Risk: Generated snapshots and reports can contain private academic records when written to files or shared from stdout. <br>
-Mitigation: Prefer HTTPS for MOODLE_URL and store exported reports in a private location with appropriate access controls. <br>
+## Use Case:
 
+Students and education-support agents use this skill to retrieve Moodle course data and turn it into deadline lists, grade summaries, daily digests, and short-term study plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yerassyl-sailaubay/moodle-student-sync) <br>
-- [Publisher profile](https://clawhub.ai/user/yerassyl-sailaubay) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON snapshots and Markdown reports, digests, and study plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, requests, MOODLE_URL, and MOODLE_TOKEN; MOODLE_USER_ID is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact/skill.json) <br>
+Risk: The skill handles private student records and a Moodle access token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Moodle token, set MOODLE_URL only to the real HTTPS Moodle site, and avoid shared or synced output directories.
+
+Risk: Generated snapshots, digests, grade summaries, and study plans may contain sensitive academic information.
+
+Mitigation: Restrict permissions on generated files and delete snapshots or digests when they are no longer needed.
+
+Risk: Server security evidence flags the release as suspicious because safeguards are under-disclosed and insufficiently constrained.
+
+Mitigation: Review the skill and its configured environment before installation, and confirm the token scope and output path are appropriate for the user account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yerassyl-sailaubay/skills/moodle-student-sync)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [JSON snapshots and Markdown reports with command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.10+, requests, MOODLE_URL, and MOODLE_TOKEN; MOODLE_USER_ID is optional.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

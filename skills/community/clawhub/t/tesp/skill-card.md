@@ -1,45 +1,54 @@
-## Description: <br>
-TESP enforces the Task Execution Signal Protocol for non-instant work so execution stays visible, staged, versioned, and auditable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TESP enforces a task execution signal protocol for non-instant work so agent execution stays visible, staged, versioned, and auditable.
 
-## Publisher: <br>
-[wewehg](https://clawhub.ai/user/wewehg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wewehg](https://clawhub.ai/user/wewehg)
 
-## Use Case: <br>
-Developers, operators, and agent coordinators use TESP to keep long or multi-agent work visible through fast acknowledgement, staged progress updates, task boards, blocker escalation, and handoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The protocol includes hardcoded local task-board paths that may not match the user's workspace. <br>
-Mitigation: Replace those paths with approved workspace locations before using the queue, archive, or handoff conventions. <br>
-Risk: Queue, archive, and handoff notes can expose sensitive task or client details if used without filtering. <br>
-Mitigation: Avoid placing secrets, credentials, or sensitive client information in progress notes and task-board files. <br>
-Risk: The skill names preferred model providers for governance tasks that may not match organizational policy. <br>
-Mitigation: Follow the organization's approved model-provider policy instead of treating GLM or MiniMax as mandatory. <br>
-Risk: Applying the protocol to instant work can add unnecessary process overhead. <br>
-Mitigation: Use TESP for non-instant, multi-step, asynchronous, or cross-agent work where status visibility matters. <br>
+## Use Case:
 
+Developers, operators, and agent supervisors use TESP to keep long-running or multi-agent work visible through acknowledgements, staged progress, blocker escalation, active queues, archives, and handoffs.
 
-## Reference(s): <br>
-- [TESP Protocol Reference](references/protocol.md) <br>
-- [TESP Templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and plain-text progress updates, task-board tables, handoff notes, and audit checklists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses visible protocol versions, numeric progress stages, active/archive task-board separation, and concise blocker escalation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Agents may create or update persistent task queue and archive files outside the current project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review storage paths before installation and prefer project-local paths for task queue and archive files.
+
+Risk: Broad triggers may cause task metadata to be recorded more often than intended.
+
+Mitigation: Define what task details must not be recorded and require confirmation before persisting sensitive or unnecessary task metadata.
+
+## Reference(s):
+
+- [TESP Protocol Reference](references/protocol.md)
+- [TESP Templates](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown task updates, task-board entries, and handoff guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include staged progress, blocker escalation, task queue/archive updates, and handoff summaries.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

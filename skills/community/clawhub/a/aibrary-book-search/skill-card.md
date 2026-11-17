@@ -1,37 +1,49 @@
-## Description: <br>
-Aibrary Book Search helps an agent recommend relevant books for a user's scenario, need, question, or keyword search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+[Aibrary] Search and find books based on user scenarios, needs, questions, or keywords.
 
-## Publisher: <br>
-[asoiso](https://clawhub.ai/user/asoiso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[asoiso](https://clawhub.ai/user/asoiso)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to find ranked book recommendations for a stated topic, question, scenario, or learning need. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Book recommendations can include outdated or incorrect edition, publication-year, or relevance details. <br>
-Mitigation: Verify editions, publication years, and current relevance before relying on recommendations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asoiso/aibrary-book-search) <br>
+## Use Case:
 
+External users use this skill to find relevant books for a scenario, question, keyword, or knowledge gap. It ranks book recommendations and explains why each title fits the user's specific need.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranked 5-8 book recommendations with author, publication year, match rationale, core insight, and best-fit audience; responds in the user's language.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for broadly phrased book-discovery requests that are better handled by a more specific research, summary, medical, legal, or financial skill.
+
+Mitigation: Use it for book recommendations and route non-book research, summaries, medical, legal, or financial advice requests to a more appropriate skill.
+
+## Reference(s):
+
+- [Aibrary Book Search release page](https://clawhub.ai/asoiso/skills/aibrary-book-search)
+- [asoiso publisher profile](https://clawhub.ai/user/asoiso)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown ranked list with book metadata and concise explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user's language and may ask a clarifying question when the request is vague.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

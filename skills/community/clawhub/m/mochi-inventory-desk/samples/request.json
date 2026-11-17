@@ -1,0 +1,8 @@
+{
+  "action": "item.upsert",
+  "sku": "cable",
+  "name": "USB cable",
+  "currency": "CNY",
+  "reorderPoint": "5",
+  "targetStock": "20"
+}

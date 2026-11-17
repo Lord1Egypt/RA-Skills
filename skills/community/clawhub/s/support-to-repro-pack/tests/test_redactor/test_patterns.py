@@ -32,7 +32,7 @@ class TestPatterns:
         assert self._match("ip_address", "server at 10.0.0.1")
 
     def test_aws_key(self):
-        assert self._match("aws_key", "key: AKIAFAKEKEY00EXAMPLE")
+        assert self._match("aws_key", "key: REDACTED-SECRET")
 
     def test_jwt(self):
         assert self._match(

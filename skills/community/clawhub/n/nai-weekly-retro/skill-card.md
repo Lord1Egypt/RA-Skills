@@ -1,40 +1,58 @@
-## Description: <br>
-Weekly Retro analyzes memory logs to identify accomplishments, recurring patterns, friction points, and forward-looking recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weekly Retro analyzes memory logs to identify accomplishments, recurring patterns, friction points, unfinished work, and forward-looking recommendations for the next week.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-Developers and agents use this skill to gather weekly memory logs, analyze accomplishments and recurring patterns, and generate a forward-looking retrospective for vault storage and long-term review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local memory logs and optional workspace context files that may contain sensitive personal or project information. <br>
-Mitigation: Check the configured memory, vault, history, SOUL.md, and AGENTS.md paths before running it, avoid storing secrets in those files, and review generated retrospectives before syncing or sharing them. <br>
-Risk: Cron integration can run the retrospective automatically on a schedule. <br>
-Mitigation: Enable the cron schedule only when automatic weekly runs are intended and the configured output location is appropriate. <br>
+## Use Case:
 
+Developers, knowledge workers, and OpenClaw users use this skill to turn weekly memory logs into a strategic retrospective with wins, patterns, friction points, carry-forward work, recommendations, and a week score.
 
-## Reference(s): <br>
-- [Retrospective Format Reference](references/retro-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown retrospective with YAML frontmatter, plus intermediate structured JSON from gather and analysis steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Python standard library only; supports optional history tracking and cron-based weekly runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can process private OpenClaw memory logs and may read SOUL.md and AGENTS.md by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit --memory-dir, --soul, and --agents paths, and review those inputs before running the pipeline.
+
+Risk: Generated retrospectives and optional history files may preserve sensitive work patterns and personal notes as long-lived files.
+
+Mitigation: Choose explicit --output and --history paths, restrict access to the destination vault or history directory, and review generated Markdown before sharing.
+
+Risk: The cron example can run the skill automatically before output location and privacy expectations are reviewed.
+
+Mitigation: Do not enable scheduled execution until configuration paths and retention expectations are confirmed.
+
+## Reference(s):
+
+- [Retrospective Format Reference](references/retro-format.md)
+- [ClawHub Skill Page](https://clawhub.ai/newageinvestments25-byte/skills/nai-weekly-retro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Obsidian-compatible Markdown with YAML frontmatter, plus intermediate JSON from the gather and analysis scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write retrospectives and history files to user-selected paths; uses only the Python standard library.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

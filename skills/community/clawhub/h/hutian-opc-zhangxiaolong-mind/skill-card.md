@@ -1,49 +1,61 @@
-## Description: <br>
-Chinese-language product-thinking guidance that uses a Zhang Xiaolong-inspired perspective to analyze product decisions, user value, and tradeoffs between commercialization and user experience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a persona-style product-thinking framework based on Zhang Xiaolong's public speeches, product practice, and related materials for evaluating product decisions, user value, and tradeoffs between commercialization and user experience.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External users and product teams use this skill for Chinese-language product strategy discussion, especially when evaluating user value, product simplicity, commercialization pressure, and user-experience tradeoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Readers may mistake simulated Zhang Xiaolong-inspired responses for statements from Zhang Xiaolong. <br>
-Mitigation: Present outputs as simulated perspective only and avoid representing responses as authentic statements from Zhang Xiaolong. <br>
-Risk: The artifact includes referral and contact language that may route users toward promotional channels. <br>
-Mitigation: Remove or ignore referral/contact language when promotional routing is not desired. <br>
-Risk: The artifact says the perspective is based on public information and may lag current views or omit internal decision context. <br>
-Mitigation: Use the guidance as a product-thinking reference, then validate recommendations against current product, market, and organizational context. <br>
+## Use Case:
 
+External users and product teams use this skill as a product-thinking advisor for analyzing feature decisions, user-value questions, platform strategy, and commercialization tradeoffs through a Zhang Xiaolong-inspired lens.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/golngod/hutian-opc-zhangxiaolong-mind) <br>
-- [核心论点库](references/01-核心论点库.md) <br>
-- [即兴反应库](references/02-即兴反应库.md) <br>
-- [句式指纹库](references/03-句式指纹库.md) <br>
-- [外部观察模式库](references/04-外部观察模式库.md) <br>
-- [逻辑权重矩阵](references/05-逻辑权重矩阵.md) <br>
-- [思想演化时间线](references/06-思想演化时间线.md) <br>
-- [三重验证报告](references/07-三重验证报告.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese natural-language text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no tools, API calls, shell commands, or credential requirements were detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may cause an agent to speak in the first person as Zhang Xiaolong, which can blur attribution for a real person's views.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require transparent attribution that responses are generated from a third-party skill inspired by public materials, not statements from Zhang Xiaolong.
+
+Risk: The artifact includes promotional referral and third-party contact instructions unrelated to neutral product analysis.
+
+Mitigation: Review and remove referral or funneling language before deployment in neutral advisory workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/hutian-opc-zhangxiaolong-mind)
+- [README](README.md)
+- [核心论点库](references/01-核心论点库.md)
+- [即兴反应库](references/02-即兴反应库.md)
+- [句式指纹库](references/03-句式指纹库.md)
+- [外部观察模式库](references/04-外部观察模式库.md)
+- [逻辑权重矩阵](references/05-逻辑权重矩阵.md)
+- [思想演化时间线](references/06-思想演化时间线.md)
+- [三重验证报告](references/07-三重验证报告.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill is text-only and does not require code execution or sensitive access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

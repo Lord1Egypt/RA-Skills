@@ -1,0 +1,311 @@
+{
+  "schema": "bidhunter-compliance-redlines/v1",
+  "version": "3.5.0",
+  "updated": "2026-09-08",
+  "legal_basis": [
+    "《中华人民共和国招标投标法》（2017修正）",
+    "《中华人民共和国招标投标法实施条例》（2019修订）",
+    "《评标委员会和评标方法暂行规定》（七部委12号令，2013修订）"
+  ],
+  "disclaimer": "本规则库为法规条文的机器可读索引，用于本地风险提示。不构成法律意见，最终判定以招标文件、评标委员会认定及有权机关解释为准。法规未给出量化标准的（如『低于成本』），本库不设阈值。",
+  "usage_note": "tender_patterns 用于扫描【招标文件】找埋雷；bid_patterns 用于扫描【投标文件】找致命项；manual=true 表示纯人工核对项，正则扫不出来。",
+
+  "categories": {
+    "A": {"name": "拒收/不予受理", "phase": "交标现场", "decider": "招标人/代理机构", "consequence": "当场拒收，进不了评标"},
+    "B": {"name": "否决投标", "phase": "评标阶段", "decider": "评标委员会", "consequence": "该份投标出局"},
+    "C": {"name": "投标无效", "phase": "全程（法定自始无效）", "decider": "无需认定", "consequence": "相关投标均无效"},
+    "D": {"name": "反向保护条款（盾牌）", "phase": "维权", "decider": "投标人主张", "consequence": "可据此质疑/投诉"},
+    "E": {"name": "多主体串标隔离", "phase": "评审/调查", "decider": "评标委员会/行政监督", "consequence": "视为串通投标，中标无效"}
+  },
+
+  "redlines": [
+    {
+      "id": "A01", "category": "A", "name": "逾期送达 / 未在截止时间前送达",
+      "legal_basis": "实施条例第36条",
+      "severity": "致命", "manual": true,
+      "tender_patterns": ["投标截止(时间|日期)", "递交(投标)?文件(的)?截止", "逾期(送达|递交)"],
+      "bid_patterns": [],
+      "check": "核对招标文件载明的截止时间与递交方式（现场/邮寄/电子平台），预留≥2小时缓冲",
+      "remedy": "无。逾期即拒收，不可申辩。建议交标前一日完成装订"
+    },
+    {
+      "id": "A02", "category": "A", "name": "未通过资格预审仍提交投标文件",
+      "legal_basis": "实施条例第36条",
+      "severity": "致命", "manual": true,
+      "tender_patterns": ["资格预审", "通过资格预审的申请人", "未通过资格预审"],
+      "bid_patterns": [],
+      "check": "确认已收到资格预审合格通知书；未通过者不得投标",
+      "remedy": "无"
+    },
+    {
+      "id": "A03", "category": "A", "name": "未按招标文件要求密封 / 标记",
+      "legal_basis": "实施条例第36条",
+      "severity": "致命", "manual": true,
+      "tender_patterns": ["密封", "封套", "标记", "加盖(骑缝|密封)章"],
+      "bid_patterns": [],
+      "check": "逐项比对密封、封套标注、骑缝章、正副本份数要求",
+      "remedy": "交标现场前可补救；一旦递交不可补"
+    },
+    {
+      "id": "A04", "category": "A", "name": "递交方式/平台不符合要求",
+      "legal_basis": "实施条例第36条；电子招投标办法",
+      "severity": "致命", "manual": true,
+      "tender_patterns": ["电子(招标)?投标", "递交(至|到).{0,10}(平台|系统)", "CA(证书|锁|签章)"],
+      "bid_patterns": [],
+      "check": "电子标确认 CA 锁有效、文件已成功上传并解密测试通过",
+      "remedy": "无"
+    },
+
+    {
+      "id": "B01", "category": "B", "name": "投标文件未经投标单位盖章和单位负责人签字",
+      "legal_basis": "实施条例第51条第(一)项；12号令第25条第(二)项",
+      "severity": "致命", "manual": false,
+      "tender_patterns": ["(签字|签章).{0,6}(并|和).{0,6}(盖章|加盖)", "法定代表人(或|和)授权代表(签字|签章)", "逐页(签字|盖章|小签)"],
+      "bid_patterns": ["(未|漏|缺少).{0,8}(盖章|签字|签章)"],
+      "check": "『盖章和签字』是并列关系，缺一即触发。逐页检查要求小签/盖章处",
+      "remedy": "装订前完成；这是废标率最高且完全不可申辩的一项"
+    },
+    {
+      "id": "B02", "category": "B", "name": "联合体未提交共同投标协议",
+      "legal_basis": "实施条例第51条第(二)项",
+      "severity": "致命", "manual": false,
+      "tender_patterns": ["联合体", "共同投标协议", "联合体(各方|成员)"],
+      "exclude_patterns": ["(不|不予)?接受联合体", "不接受.{0,8}联合体", "禁止联合体", "不得(以)?联合体"],
+      "exclude_note": "招标文件明确不接受联合体投标时，本条不适用",
+      "bid_patterns": ["联合体"],
+      "check": "联合体各方须签署共同投标协议并随投标文件提交",
+      "remedy": "无（形式要件，属重大偏差，不补正即废）"
+    },
+    {
+      "id": "B03", "category": "B", "name": "不符合国家或招标文件规定的资格条件",
+      "legal_basis": "实施条例第51条第(三)项",
+      "severity": "致命", "manual": false,
+      "tender_patterns": ["(资质|资格)(要求|条件)", "(须|应|必须)(具有|具备)", "业绩(要求|条件)", "注册资本", "安全生产许可证"],
+      "bid_patterns": [],
+      "check": "逐条比对资质等级/业绩/人员/财务门槛，标红缺口",
+      "remedy": "缺项无法补；只能换有资质的主体或放弃"
+    },
+    {
+      "id": "B04", "category": "B", "name": "同一投标人提交两个以上不同的投标文件或报价",
+      "legal_basis": "实施条例第51条第(四)项",
+      "severity": "致命", "manual": true,
+      "tender_patterns": ["备选(投标|方案)", "只允许(提交)?一个(投标)?(文件|报价)"],
+      "bid_patterns": [],
+      "check": "除招标文件明确允许备选方案外，只能有一份投标文件/一个报价",
+      "remedy": "无"
+    },
+    {
+      "id": "B05", "category": "B", "name": "报价低于成本或高于最高投标限价",
+      "legal_basis": "实施条例第51条第(五)项",
+      "severity": "致命", "manual": false,
+      "tender_patterns": ["最高(投标)?限价", "招标控制价", "超过.{0,8}限价.{0,10}(否决|废|无效)", "低于成本"],
+      "bid_patterns": [],
+      "check": "【上限硬】超过最高限价直接否决，无解释空间；【下限软】低于成本须经『要求说明→举证→举证不能才否决』三步",
+      "remedy": "超限必废；低于成本有法定举证窗口，见 bid-price-redline"
+    },
+    {
+      "id": "B06", "category": "B", "name": "未对招标文件的实质性要求和条件作出响应（兜底条款）",
+      "legal_basis": "实施条例第51条第(六)项；12号令第25条第(七)项",
+      "severity": "致命", "manual": false,
+      "tender_patterns": ["实质性(要求|条款|响应)", "(必须|应|不得).{0,20}", "承诺函", "偏离表"],
+      "bid_patterns": ["偏离", "无偏离", "不响应"],
+      "check": "凡用『必须/应/不得』表述或标注『实质性条款』的，逐条做『要求→投标文件对应位置』对照表。这是实务中『莫名其妙被废』的主因",
+      "remedy": "逐条响应；技术参数偏离须在偏离表中说明"
+    },
+    {
+      "id": "B07", "category": "B", "name": "串通投标、弄虚作假、行贿等违法行为",
+      "legal_basis": "实施条例第51条第(七)项；第39-42条",
+      "severity": "致命", "manual": true,
+      "tender_patterns": ["串通", "弄虚作假", "行贿", "以他人名义"],
+      "exclude_patterns": ["无行贿", "无.{0,6}犯罪记录", "行贿犯罪记录承诺"],
+      "exclude_note": "『无行贿犯罪记录承诺函』是常规合规文件，不构成行贿行为",
+      "bid_patterns": [],
+      "check": "多主体投标必查，见 E 类六项客观推定",
+      "remedy": "无（中标无效+罚款+取消投标资格）"
+    },
+    {
+      "id": "B08", "category": "B", "name": "未提供投标担保或担保有瑕疵",
+      "legal_basis": "12号令第25条第(一)项",
+      "severity": "致命", "manual": false,
+      "tender_patterns": ["投标(保证金|担保)", "(保函|保险)", "基本(存款)?账户(转出|汇出)"],
+      "bid_patterns": [],
+      "check": "金额、形式（转账/保函）、到账时间、是否从基本账户转出，四项全对",
+      "remedy": "无（形式要件，重大偏差）"
+    },
+    {
+      "id": "B09", "category": "B", "name": "完成期限（工期）超过招标文件规定",
+      "legal_basis": "12号令第25条第(三)项",
+      "severity": "致命", "manual": true,
+      "tender_patterns": ["(工期|交货期|服务期)(要求)?", "(须|应|不得)超过.{0,8}(天|日|月)"],
+      "bid_patterns": [],
+      "check": "投标工期 ≤ 招标要求工期；含节点工期",
+      "remedy": "无"
+    },
+    {
+      "id": "B10", "category": "B", "name": "明显不符合技术规格、技术标准",
+      "legal_basis": "12号令第25条第(四)项",
+      "severity": "致命", "manual": false,
+      "tender_patterns": ["技术(规格|标准|参数)", "(主要|关键)技术(指标|参数)", "★", "▲"],
+      "bid_patterns": [],
+      "check": "招标文件带★/▲的关键参数必须全部满足，无偏离",
+      "remedy": "无"
+    },
+    {
+      "id": "B11", "category": "B", "name": "包装方式、检验标准和方法不符合要求",
+      "legal_basis": "12号令第25条第(五)项",
+      "severity": "风险", "manual": true,
+      "tender_patterns": ["(包装|检验)(方式|标准|方法)"],
+      "bid_patterns": [],
+      "check": "按招标文件载明的包装/检验要求响应",
+      "remedy": "可澄清补正"
+    },
+    {
+      "id": "B12", "category": "B", "name": "投标文件附有招标人不能接受的条件",
+      "legal_basis": "12号令第25条第(六)项",
+      "severity": "致命", "manual": true,
+      "tender_patterns": ["(不得|不允许).{0,10}(附加|保留|限制性)条件"],
+      "bid_patterns": ["(保留|附加|特别)说明", "我方(要求|希望)"],
+      "check": "投标文件不得附加任何招标人未接受的保留或限制条件",
+      "remedy": "删除附加条件"
+    },
+    {
+      "id": "B13", "category": "B", "name": "拒不按要求澄清、说明或补正",
+      "legal_basis": "12号令第22条；实施条例第52条",
+      "severity": "致命", "manual": true,
+      "tender_patterns": ["澄清", "说明", "补正"],
+      "bid_patterns": [],
+      "check": "澄清不得超出投标文件范围、不得改变实质性内容；评标委员会不接受投标人主动提出的澄清",
+      "remedy": "按评标委员会要求书面回复，不主动提交"
+    },
+    {
+      "id": "B14", "category": "B", "name": "有效投标不足三个且明显缺乏竞争",
+      "legal_basis": "12号令第27条",
+      "severity": "提示", "manual": true,
+      "tender_patterns": ["(少于|不足)三个", "重新招标"],
+      "bid_patterns": [],
+      "check": "评标委员会可否决全部投标，招标人应重新招标",
+      "remedy": "重新招标"
+    },
+
+    {
+      "id": "C01", "category": "C", "name": "与招标人存在利害关系可能影响招标公正性",
+      "legal_basis": "实施条例第34条第1款",
+      "severity": "致命", "manual": true,
+      "tender_patterns": ["利害关系", "可能影响(招标)?公正"],
+      "bid_patterns": [],
+      "check": "投标人与招标人是否存在股权/人事/利益关联",
+      "remedy": "无（相关投标无效）"
+    },
+    {
+      "id": "C02", "category": "C", "name": "单位负责人同一 / 存在控股或管理关系的不同单位投同一标段",
+      "legal_basis": "实施条例第34条第2款",
+      "severity": "致命", "manual": true,
+      "priority": "最高（优先于一切串标推定）",
+      "tender_patterns": ["同一标段", "未划分标段的同一招标项目"],
+      "bid_patterns": [],
+      "check": "★多主体投标的第一道闸门：①各方法定代表人是否同一人？②相互间有无股权控股？③有无统一管理关系（统一人事/财务/决策）？任一为是→不得投同一标段",
+      "remedy": "无。这是资格硬禁止，无需任何串通证据，客观状态成立即自始无效"
+    },
+    {
+      "id": "C03", "category": "C", "name": "资格预审后联合体增减、更换成员",
+      "legal_basis": "实施条例第37条",
+      "severity": "致命", "manual": true,
+      "tender_patterns": ["联合体(成员|组成).{0,10}(不得|不得再)", "资格预审"],
+      "bid_patterns": [],
+      "check": "通过资格预审后联合体组成不得变更",
+      "remedy": "无（其投标无效）"
+    },
+    {
+      "id": "C04", "category": "C", "name": "以他人名义投标 / 出借或借用资质",
+      "legal_basis": "实施条例第42条",
+      "severity": "致命", "manual": true,
+      "tender_patterns": ["以他人名义", "挂靠", "出借(资质|资格)"],
+      "bid_patterns": [],
+      "check": "与 E03 构成死结：同一批人不可能同时与两个主体建立真实劳动关系",
+      "remedy": "无"
+    },
+
+    {
+      "id": "D01", "category": "D", "name": "标底不得作为中标条件或否决条件",
+      "legal_basis": "实施条例第50条",
+      "severity": "提示", "manual": false,
+      "tender_patterns": ["(接近|靠近)标底", "标底.{0,8}(上下)?浮动", "超出标底.{0,10}(否决|废)", "最低限价"],
+      "bid_patterns": [],
+      "check": "★反向维权：招标文件若写『报价超出标底±X%作废标处理』『以接近标底为中标条件』『设最低限价』——该条款本身违法",
+      "remedy": "可依据第50条提出质疑/投诉"
+    },
+    {
+      "id": "D02", "category": "D", "name": "细微偏差不影响投标有效性",
+      "legal_basis": "12号令第26条",
+      "severity": "提示", "manual": false,
+      "tender_patterns": ["细微偏差", "(量化|扣分)标准"],
+      "bid_patterns": [],
+      "check": "★最救命的一条：个别漏项属细微偏差，只可被要求补正；招标文件没规定量化标准的，不得扣分。与『重大偏差=否决』严格区分",
+      "remedy": "若被以细微偏差扣分且招标文件无量化标准，可质疑"
+    },
+    {
+      "id": "D03", "category": "D", "name": "报价书写不一致按法定规则修正（不废标）",
+      "legal_basis": "12号令第19条",
+      "severity": "提示", "manual": false,
+      "tender_patterns": ["(大写|小写)金额不一致", "总价.{0,6}单价.{0,6}不一致"],
+      "bid_patterns": [],
+      "check": "大写 vs 小写→以大写为准；总价 vs 单价→以单价为准（小数点明显错误除外）；中外文本→以中文为准。★陷阱：以单价为准意味着写错的单价会直接成为结算依据",
+      "remedy": "交标前必须逐项复核『单价×工程量=总价』"
+    },
+
+    {
+      "id": "E01", "category": "E", "name": "不同投标人的投标文件由同一单位或个人编制",
+      "legal_basis": "实施条例第40条第(一)项（视为串通）",
+      "severity": "致命", "manual": true,
+      "tender_patterns": [],
+      "bid_patterns": [],
+      "check": "各主体独立编制投标文件；不共用模板/电脑/编制人员",
+      "remedy": "无（客观推定，不可反证）"
+    },
+    {
+      "id": "E02", "category": "E", "name": "不同投标人委托同一单位或个人办理投标事宜",
+      "legal_basis": "实施条例第40条第(二)项（视为串通）",
+      "severity": "致命", "manual": true,
+      "tender_patterns": [],
+      "bid_patterns": [],
+      "check": "各主体分别委托、分别递交；不由同一人代领招标文件",
+      "remedy": "无"
+    },
+    {
+      "id": "E03", "category": "E", "name": "不同投标人的项目管理成员为同一人",
+      "legal_basis": "实施条例第40条第(三)项（视为串通）",
+      "severity": "致命", "manual": true,
+      "tender_patterns": [],
+      "bid_patterns": [],
+      "check": "★与C04构成死结：成员同一→视为串标；造假劳动关系→弄虚作假。唯一解=各主体配置真实独立的人员团队",
+      "remedy": "无第三条路"
+    },
+    {
+      "id": "E04", "category": "E", "name": "投标文件异常一致或报价呈规律性差异",
+      "legal_basis": "实施条例第40条第(四)项（视为串通）",
+      "severity": "致命", "manual": true,
+      "tender_patterns": [],
+      "bid_patterns": [],
+      "check": "★禁止共用成本测算底稿。等差/等比/固定百分比阶梯报价即构成『规律性差异』。各主体独立测算、报价依据取自不同渠道并留痕",
+      "remedy": "无（多主体投标最常见翻车点）"
+    },
+    {
+      "id": "E05", "category": "E", "name": "不同投标人的投标文件相互混装",
+      "legal_basis": "实施条例第40条第(五)项（视为串通）",
+      "severity": "致命", "manual": true,
+      "tender_patterns": [],
+      "bid_patterns": [],
+      "check": "装订完成后全文检索其他主体的字号、名称、资质页、公章页",
+      "remedy": "低级错误，但一票致命；自检可完全避免"
+    },
+    {
+      "id": "E06", "category": "E", "name": "投标保证金从同一单位或个人的账户转出",
+      "legal_basis": "实施条例第40条第(六)项；第26条第2款",
+      "severity": "致命", "manual": true,
+      "tender_patterns": [],
+      "bid_patterns": [],
+      "check": "★只看资金流出账户，不问主观理由。各主体必须以本单位基本账户独立缴纳，退还账户亦须各自自有账户",
+      "remedy": "无（电子招投标环境下系统自动比对，几乎无法事后辩解）"
+    }
+  ]
+}

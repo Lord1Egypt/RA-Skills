@@ -1,5 +1,5 @@
 ---
-name: fin-cog
+name: stock-analysis-cellcog
 description: "AI financial analysis and stock research powered by CellCog. Stock analysis, valuation models, portfolio optimization, earnings breakdowns, investment research, financial statements, tax planning, DCF modeling. Deliverables as interactive dashboards, PDF reports, and Excel models."
 metadata:
   openclaw:
@@ -12,9 +12,9 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Fin Cog - Wall Street-Grade Analysis, Accessible Globally
+# Stock Analysis - Wall Street-Grade Analysis, Accessible Globally
 
-**Wall Street-grade analysis, accessible globally.** Deep financial reasoning powered by #1 on DeepResearch Bench (Apr 2026) + SOTA financial models.
+**Wall Street-grade analysis, accessible globally.** Deep financial reasoning powered by #1 on DeepResearch Bench (October 2026) + SOTA financial models.
 
 The best financial analysis has always lived behind Bloomberg terminals, institutional research desks, and $500/hour consultants. CellCog brings that same depth — stock analysis, valuation models, portfolio optimization, earnings breakdowns — to anyone with a prompt. From raw tickers to boardroom-ready deliverables in one request.
 
@@ -28,7 +28,7 @@ result = client.create_chat(
     prompt="[your task prompt]",
     notify_session_key="agent:main:main",
     task_label="my-task",
-    chat_mode="agent",
+    chat_mode="team",
 )
 ```
 
@@ -39,7 +39,7 @@ client = CellCogClient(agent_provider="openclaw|cursor|claude-code|codex|...")
 result = client.create_chat(
     prompt="[your task prompt]",
     task_label="my-task",
-    chat_mode="agent",
+    chat_mode="team",
 )
 print(result["message"])
 ```
@@ -128,19 +128,17 @@ Specify your preferred format in the prompt:
 
 ---
 
-## Chat Mode for Finance
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Quick lookups, single stock metrics, basic calculations | `"agent"` |
-| Deep analysis, valuation models, multi-company comparisons, investment research | `"agent team"` |
-| High-stakes investment decisions, M&A due diligence, institutional-grade research | `"agent team max"` |
+**Use `chat_mode="team"` — this is exactly what Agent Team exists for.** Deep research is THE Team use case: multi-source synthesis, cross-validation, citation verification, multiple reasoning passes.
 
-**Use `"agent team"` for most financial analysis.** Financial work demands deep reasoning, data cross-referencing, and multi-source synthesis. Agent team mode delivers the depth that serious financial analysis requires.
+| Scenario | Recommended |
+|----------|-------------|
+| Deep financial analysis, valuation models, multi-company comparisons | `chat_mode="team"` (default tier `"core"`) |
+| M&A due diligence, high-stakes investment decisions | `chat_mode="team", chat_tier="max"` (requires >=2,000 credits) |
+| Quick lookups, simple summaries | `chat_mode="agent"` |
 
-**Use `"agent"` for quick financial lookups** — current stock price, simple calculations, or basic metric checks.
-
-**Use `"agent team max"` for high-stakes financial work** — investment decisions with significant capital at risk, M&A due diligence, regulatory filings, or boardroom-ready deliverables where the extra reasoning depth justifies the cost. Requires ≥2,000 credits.
+Legacy names `"agent team"` / `"agent team max"` still work forever (they map to team core / team max).
 
 ---
 
@@ -217,6 +215,7 @@ Specify your preferred format in the prompt:
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

@@ -1,43 +1,58 @@
-## Description: <br>
-Navigate Hong Kong like a local with district-specific food spots, transport tips, hikes, neighborhoods, and honest advice on what is worth your time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Hong Kong like a local with district-specific food spots, transport tips, hikes, neighborhoods, and honest advice on what is worth your time.
 
-## Publisher: <br>
-[wingchiu](https://clawhub.ai/user/wingchiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wingchiu](https://clawhub.ai/user/wingchiu)
 
-## Use Case: <br>
-External users planning Hong Kong travel use this skill to get local-style guidance on neighborhoods, food, transport, hikes, beaches, family planning, nightlife, itineraries, safety, and practical on-the-ground choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local trip memory may contain personal travel preferences or itinerary details. <br>
-Mitigation: Keep sensitive personal details out of ~/hongkong/memory.md and review or delete saved trip notes when they are no longer needed. <br>
-Risk: Travel, weather, transit, venue, and emergency details can change after the skill content was published. <br>
-Mitigation: Verify time-sensitive plans with current official or primary sources before relying on recommendations. <br>
-Risk: The broad usage preference can cause the skill to join conversations whenever Hong Kong is mentioned. <br>
-Mitigation: Decline the broad preference unless automatic Hong Kong travel help is desired, and ask explicitly when the skill should be used. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to plan Hong Kong trips with neighborhood, food, transport, family, nightlife, hiking, beach, and practical safety guidance. It helps tailor recommendations by trip length, interests, group type, budget, season, and pace.
 
-## Reference(s): <br>
-- [HongKong on ClawHub](https://clawhub.ai/wingchiu/hongkong) <br>
-- [HongKong skill homepage](https://clawic.com/skills/hongkong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown travel-planning guidance with optional local trip notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local trip context stored under ~/hongkong/ when the user opts into memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can store trip preferences locally in ~/hongkong/, which may include travel dates, budget, mobility needs, or other personal planning details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sensitive details out of the local memory file when possible and review or delete ~/hongkong/memory.md when the trip is complete.
+
+Risk: The skill may ask whether it should proactively help whenever Hong Kong is mentioned.
+
+Mitigation: Decline or limit proactive assistance if the skill should only be used for direct travel-planning requests.
+
+Risk: Travel recommendations can become outdated as venues, transport options, prices, weather alerts, and opening hours change.
+
+Mitigation: Verify time-sensitive plans against current official or local sources before booking, traveling, hiking, or responding to emergencies.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/wingchiu/skills/hongkong)
+- [Skill homepage](https://clawic.com/skills/hongkong)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown travel-planning guidance with local memory setup notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain user-provided Hong Kong trip preferences in ~/hongkong/memory.md when enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

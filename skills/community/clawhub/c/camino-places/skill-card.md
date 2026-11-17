@@ -1,43 +1,56 @@
-## Description: <br>
-Places helps agents geocode addresses and find named places through Camino's API, returning coordinates, addresses, and optional street-level imagery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Locate places using flexible query formats, including free-form search and structured address components, and return coordinates, addresses, and optional street-level photos.
 
-## Publisher: <br>
-[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions)
 
-## Use Case: <br>
-External users and developers use this skill to look up landmarks, points of interest, postal codes, or structured addresses and receive geocoded place results for agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Place, address, home, workplace, or other private location queries are sent to Camino's API using the configured Camino API key. <br>
-Mitigation: Use a Camino API key intended for this integration and avoid submitting sensitive private location queries unless Camino processing is acceptable. <br>
-Risk: Installing the broader Camino skill suite can add behavior outside this Places skill. <br>
-Mitigation: Install only camino-places unless the wider Camino skill suite has been reviewed for the target environment. <br>
+## Use Case:
 
+Developers and agent users use this skill to geocode addresses, look up named places, and retrieve structured place details from Camino's location API.
 
-## Reference(s): <br>
-- [ClawHub Places skill page](https://clawhub.ai/james-southendsolutions/camino-places) <br>
-- [Camino API key activation](https://app.getcamino.ai/skills/activate) <br>
-- [Camino search API endpoint](https://api.getcamino.ai/search) <br>
-- [x402 payment protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration] <br>
-**Output Format:** [JSON place-search results returned by a shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CAMINO_API_KEY plus curl and jq; accepts a free-form query or structured address JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Installer examples include mutable remote installation paths and an option to install a broad companion skill suite.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a pinned, reviewed version and choose only camino-places unless the additional Camino skills are required.
+
+Risk: Place lookups send submitted location data to Camino's API.
+
+Mitigation: Use a limited Camino API key where possible and avoid submitting private home addresses or sensitive locations unless that data sharing is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/james-southendsolutions/skills/camino-places)
+- [Publisher profile](https://clawhub.ai/user/james-southendsolutions)
+- [Camino API activation](https://app.getcamino.ai/skills/activate)
+- [Camino search endpoint](https://api.getcamino.ai/search)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, JSON, guidance]
+
+**Output Format:** [JSON API results with Markdown usage guidance and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CAMINO_API_KEY, curl, and jq; accepts a free-form query or structured address fields.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

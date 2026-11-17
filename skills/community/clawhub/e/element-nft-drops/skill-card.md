@@ -1,50 +1,67 @@
-## Description: <br>
-Guides agents through Element NFT drop lifecycle work, including listing and previewing drops, creating and configuring collections, updating settings or media, and publishing, pausing, or resuming drops after preview and confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, inspect, update, publish, pause, and resume Element NFT drops while requiring preview-before-execution handling for state-changing flows.
 
-## Publisher: <br>
-[element-som](https://clawhub.ai/user/element-som) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[element-som](https://clawhub.ai/user/element-som)
 
-## Use Case: <br>
-External creators, operators, and developers use this skill to create, configure, preview, update, publish, pause, and resume Element NFT drops while preserving confirmation gates for wallet and transaction actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires wallet authority through ELEMENT_WALLET_PRIVATE_KEY and can create, update, publish, pause, or resume NFT drops. <br>
-Mitigation: Use a dedicated low-risk wallet, provide the private key only through the documented environment variable, and review the preview before any state-changing command. <br>
-Risk: Confirmed create, update, or publish flows can broadcast blockchain transactions or mutate Element data. <br>
-Mitigation: Confirm the exact chain, slug, symbol, and transaction summary before execution; treat preview mode as the required checkpoint. <br>
-Risk: Advanced utilities may authenticate, expose sensitive authorization material in output, mutate Element data, or broadcast transactions. <br>
-Mitigation: Avoid verify-ref-graphql, create-token, and post-create-collection unless the code and intended action have been reviewed. <br>
-Risk: Media upload paths could accidentally target sensitive local files if user input is careless. <br>
-Mitigation: Upload only user-provided NFT media images and keep the documented upload guard restrictions for absolute paths, image extensions, file type checks, and symlink rejection. <br>
+## Use Case:
 
+Developers and NFT operators use this skill to manage Element drop lifecycle tasks, including creation, listing, previewing, updating, publishing, pausing, and resuming drops. It is intended for Element drop administration, not marketplace trading, analytics, or wallet portfolio inspection.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/element-som/element-nft-drops) <br>
-- [Create Stage Reference](artifact/references/create.md) <br>
-- [List Stage Reference](artifact/references/list.md) <br>
-- [Preview Stage Reference](artifact/references/preview.md) <br>
-- [Update Stage Reference](artifact/references/update.md) <br>
-- [Publish Stage Reference](artifact/references/publish.md) <br>
-- [Element Drop Web Editor](https://element.market/collections/your-slug/edit/drop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [State-changing flows require preview output and explicit confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill uses wallet credentials and can perform live remote or blockchain changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-risk wallet and review every execution preview before confirming any state-changing command.
+
+Risk: Advanced utility commands can bypass the agent-level confirmation workflow if invoked directly.
+
+Mitigation: Avoid direct utility invocation for state-changing work; use the documented lifecycle commands with preview mode and explicit confirmation.
+
+Risk: Terminal output and logs may contain sensitive operational context.
+
+Mitigation: Treat command output and logs as sensitive and do not paste wallet private keys into chat, payloads, files, or command arguments.
+
+Risk: On-demand unpinned package execution can change dependency behavior over time.
+
+Mitigation: Prefer a locked dependency install from the bundled package and lockfile instead of ad hoc unpinned npx execution.
+
+## Reference(s):
+
+- [Element NFT Drops release page](https://clawhub.ai/element-som/skills/element-nft-drops)
+- [Create Stage Reference](references/create.md)
+- [List Stage Reference](references/list.md)
+- [Preview Stage Reference](references/preview.md)
+- [Update Stage Reference](references/update.md)
+- [Publish Stage Reference](references/publish.md)
+- [Element Drop web editor](https://element.market/collections/your-slug/edit/drop)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON payload guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should clearly distinguish preview-only results from confirmed execution and summarize user-visible Element drop state.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

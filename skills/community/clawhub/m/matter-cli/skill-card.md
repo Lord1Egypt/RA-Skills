@@ -1,44 +1,59 @@
-## Description: <br>
-Manage and interact with a user's Matter reading library through the Matter CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with a user's Matter reading library using the Matter CLI.
 
-## Publisher: <br>
-[nicholope](https://clawhub.ai/user/nicholope) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicholope](https://clawhub.ai/user/nicholope)
 
-## Use Case: <br>
-External users and developers with a Matter Pro account use this skill to browse, search, summarize, tag, archive, save, and review content in a Matter reading library. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read saved-reading library content, highlights, and account information. <br>
-Mitigation: Use narrow requests for library, inbox, highlight, and article access, and avoid broad retrieval unless the user explicitly asks for it. <br>
-Risk: The skill can change the user's Matter library by saving, tagging, archiving, updating, or deleting items. <br>
-Mitigation: Confirm user intent before write operations such as archive, tag, save, update, or delete. <br>
-Risk: Large bulk reads with --all can hit rate limits mid-stream and produce incomplete or corrupted JSON. <br>
-Mitigation: Use cursor pagination with documented delays, and stop and wait when a rate-limit error provides a retry interval. <br>
+## Use Case:
 
+External users and developers use this skill to browse, search, save, tag, archive, summarize, and track progress in a Matter reading library through the Matter CLI.
 
-## Reference(s): <br>
-- [Matter CLI command reference](references/commands.md) <br>
-- [Matter CLI GitHub repository](https://github.com/getmatterapp/matter-cli) <br>
-- [Matter CLI ClawHub release](https://clawhub.ai/nicholope/matter-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Matter CLI shell commands and JSON-producing CLI usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Matter CLI commands return JSON by default and can use --plain for human-readable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The setup flow downloads a mutable Matter CLI binary from the latest GitHub release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the install command before use and prefer a pinned Matter CLI release with a verified checksum or signature.
+
+Risk: Authenticated Matter CLI commands can modify or delete library items, annotations, and tags.
+
+Mitigation: Only use the skill when the user explicitly means their Matter account, and confirm destructive actions before execution.
+
+Risk: Bulk operations can hit Matter rate limits and corrupt JSON output mid-stream when `--all` is used on large libraries.
+
+Mitigation: Use manual cursor pagination with delays, and stop immediately when a rate-limit retry message is returned.
+
+## Reference(s):
+
+- [Matter CLI command reference](references/commands.md)
+- [Matter CLI GitHub repository](https://github.com/getmatterapp/matter-cli)
+- [Matter CLI skill page](https://clawhub.ai/nicholope/skills/matter-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; Matter CLI command responses are JSON by default with an optional plain-text mode.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use cursor-based pagination and deliberate sleeps to respect Matter CLI rate limits.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

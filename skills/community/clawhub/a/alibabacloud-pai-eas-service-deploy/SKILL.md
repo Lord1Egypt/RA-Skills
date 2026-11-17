@@ -23,7 +23,7 @@ metadata:
     - aliyun
     - jq
   prerequisites:
-    - "Aliyun CLI >= 3.3.1"
+    - "Aliyun CLI >= 3.3.3"
     - "jq command-line JSON processor"
   required_permissions:
     - "eas:CreateService"
@@ -67,6 +67,9 @@ Execute #1 and #2 ALWAYS, even if user provided the info.
 ❌ CPU+vLLM/SGLang ❌ `file://` in create-service
 ❌ Skip mandatory APIs ❌ Change the service name the user specified
 ❌ Poll describe-service in a loop (call once only)
+❌ Stop after writing/validating service.json — writing the JSON is
+NOT completing the task. You MUST run create-service (Step 6) then
+describe-service (Step 7). If resources were found, deploy them.
 
 **4. Autonomous Execution** — Do NOT ask user for info discoverable
 via APIs. Do NOT ask "should I proceed?" Execute directly.
@@ -100,9 +103,14 @@ or any wrapper functions. Each command = one direct execution.
 ## Pre-checks
 
 ```bash
-aliyun configure ai-mode enable
-aliyun configure ai-mode set-user-agent \
-  --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy"
+# Install or upgrade Aliyun CLI to >= 3.3.3 (required baseline), then verify.
+curl -fsSL https://aliyuncli.alicdn.com/install.sh | bash
+aliyun version   # must report >= 3.3.3; re-run install.sh to upgrade if lower
+
+# Generate the per-session trace id once (see Observability section) and build
+# the unified user-agent. Pass it via --user-agent on every CLI command.
+SESSION_ID=$(openssl rand -hex 16)
+UA="AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy/${SESSION_ID}"
 aliyun plugin update
 aliyun configure set --auto-plugin-install true
 ```
@@ -134,6 +142,35 @@ be installed. NEVER stop execution at the pre-check stage.**
 
 ---
 
+## Observability
+
+All CLI, SDK, and Terraform calls MUST carry a unified user-agent (UA) so
+requests trace back to this skill and one session.
+
+**UA template declaration (placeholder form):**
+
+```bash
+--user-agent AlibabaCloud-Agent-Skills/{SKILL_NAME}/{session-id}
+```
+
+- `{SKILL_NAME}` — fixed identifier: `alibabacloud-pai-eas-service-deploy`
+- `{session-id}` — 32-char lowercase hex (128-bit), generated **once per session**
+
+**session-id rule:** Generate it once before any call via
+`SESSION_ID=$(openssl rand -hex 16)`; reuse the **same** value for **every**
+CLI (`--user-agent`), SDK (client UA), and Terraform (`ALIBABACLOUDSTACK_UA` /
+provider `ua`) call so all requests share one trace id. Do NOT regenerate
+between steps or hardcode it.
+
+```bash
+SESSION_ID=$(openssl rand -hex 16)
+UA="AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy/${SESSION_ID}"
+# Pass on every command, e.g.:
+aliyun eas describe-service --cluster-id <region> --service-name <service> --user-agent "$UA"
+```
+
+---
+
 ## Step 1: Collect Parameters
 
 | Param | Required | Default |
@@ -149,7 +186,7 @@ be installed. NEVER stop execution at the pre-check stage.**
 
 **Service name**: lowercase/digits/underscores only. No hyphens. 3-63 chars.
 **IMPORTANT**: Use the EXACT service name the user specifies. Do NOT rename.
-If the user specifies a prefix (e.g. "skill_qwen_开头"), generate a random suffix of 6 digits (e.g. `skill_qwen_482917`).
+If the user specifies a prefix (e.g. "starts with skill_qwen_"), generate a random suffix of 6 digits (e.g. `skill_qwen_482917`).
 
 **Set profile region** — Set the CLI profile region to match the
 deployment region. This avoids "Region mismatch" errors when
@@ -362,6 +399,7 @@ complete templates with all fields and examples.**
 jq -r '.[] | select(.ImageUri | contains("vllm")) | .ImageUri' /tmp/eas_images.json
 jq -r '.[] | select(.InstanceType == "<type>") | .InstanceType' /tmp/eas_specs.json
 ```
+**➡️ After service.json validates, IMMEDIATELY go to Step 6 — a validated JSON is not a deployment.**
 
 ## Step 6: Create Service (MANDATORY)
 
@@ -443,10 +481,6 @@ and endpoint URL.**
 
 **Success criteria: create-service returning 200 with ServiceId =
 success. Any status (Running, Waiting, Creating) is acceptable.**
-
----
-
-When done, disable AI-Mode: `aliyun configure ai-mode disable`
 
 ## References (read when needed)
 

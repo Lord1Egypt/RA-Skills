@@ -1,43 +1,54 @@
-## Description: <br>
-Workspace boundary enforcement and file operation safety checks. Use before ANY file operation (read, write, edit, exec, delete) to: (1) Validate paths are within ~/openclaw workspace, (2) Confirm user permission for sensitive operations, (3) Check file operation safety, (4) Prevent unauthorized access outside workspace boundaries, or (5) Audit file access patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workspace boundary enforcement and file operation safety checks. Use before ANY file operation (read, write, edit, exec, delete) to: (1) Validate paths are within ~/openclaw workspace, (2) Confirm user permission for sensitive operations, (3) Check file operation safety, (4) Prevent unauthorized access outside workspace boundaries, or (5) Audit file access patterns.
 
-## Publisher: <br>
-[dougchambes](https://clawhub.ai/user/dougchambes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dougchambes](https://clawhub.ai/user/dougchambes)
 
-## Use Case: <br>
-Developers and agent operators use this skill to check workspace boundaries before file operations, classify risky operations, request permission for sensitive actions, and handle blocked access attempts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reference guidance includes an unsafe path-expansion example. <br>
-Mitigation: Replace eval-based path expansion with safe path handling before relying on the pattern. <br>
-Risk: Audit-log storage guidance is inconsistent with the intended workspace boundary. <br>
-Mitigation: Configure audit logs inside the intended workspace and define retention controls before deployment. <br>
-Risk: The skill can block or request approval for legitimate file operations if the workspace root is not configured for the target machine. <br>
-Mitigation: Review and set the workspace root explicitly for each environment before installation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to review planned file operations, validate workspace boundaries, request confirmation for destructive or sensitive actions, and document blocked access attempts.
 
-## Reference(s): <br>
-- [Workspace Boundaries Reference](artifact/references/boundaries.md) <br>
-- [ClawHub skill page](https://clawhub.ai/dougchambes/workspace-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include path checks, operation classifications, permission prompts, and violation-handling messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Boundary-check examples may use unsafe path handling and should not be treated as a reliable enforcement layer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as advisory guidance, review snippets before use, replace eval-based path expansion, and make path canonicalization fail closed.
+
+Risk: Inconsistent workspace roots or external audit log locations can undermine boundary enforcement.
+
+Mitigation: Define one canonical workspace root and keep audit logs inside that root with structured escaping and retention limits.
+
+## Reference(s):
+
+- [Workspace Boundaries Reference](references/boundaries.md)
+- [Workspace Guard ClawHub Skill Page](https://clawhub.ai/dougchambes/skills/workspace-guard)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell snippets and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output for workspace-boundary review, permission prompts, and violation handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

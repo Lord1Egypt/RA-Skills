@@ -1,0 +1,2055 @@
+{
+ "schema": "yuanlin-suanliang/plant-library/v2",
+ "region": "西北",
+ "city": "天水",
+ "zone": "02-区",
+ "zone_climate": "III北部暖温带落叶阔叶林区",
+ "cities": [
+  "沈阳",
+  "大连",
+  "北京",
+  "天津",
+  "天水"
+ ],
+ "scope": "climate-zone-pool",
+ "source": "plant_library_分区苗木选型.json#02-区（按源库 01–08 区章节序列切分；区级候选池，非单城实测分布）",
+ "confidence": "medium",
+ "plants": [
+  {
+   "name": "欧洲云杉",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "油松",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黑松",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "赤松",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "乔松",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "刚松",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白皮松",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "华山松",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "雪松",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "侧柏",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "千头柏",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "圆柏",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鹿角柏",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "西安桧",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "塔柏",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "龙柏",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄花落叶松",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "银杏",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "天女花",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "玉兰",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "二乔玉兰",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫玉兰",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "日本厚朴",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "核桃",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "枫杨",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "麻栎",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "栓皮栎",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "槲树",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "槲栎",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "板栗",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "毛白杨",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "新疆杨",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "河北杨",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "钻天杨",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "辽杨",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "涤柳",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "河柳",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鹅耳枥",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "千斤榆",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "赤杨",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大叶朴",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小叶朴",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "光叶榉",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "香椿",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄栌",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "盐肤木",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "火炬树",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "元宝枫",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "泡桐",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "木本香薷",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "臭檀",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "合欢",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "刺槐",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "无刺刺槐",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红花洋槐",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "江南槐",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "国槐",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "龙爪槐",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "皂荚",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山皂荚",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "臭椿",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "柘树",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "构树",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "桑树",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "龙爪桑",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鸡桑",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "栾树",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "杜仲",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山楂",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "垂丝海棠",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "西府海棠",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "苹果",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫叶李",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "麦李",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "粉红重瓣麦李",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "日本晚樱",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "李",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "樱花",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山桃",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白梨",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "杜梨",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "丝绵木",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "枣树",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "龙爪枣",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "欧洲大叶椴",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "心叶椴",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "沙枣",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "灯台树",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "刺楸",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "柿树",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "君迁子",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白檀",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白蜡",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "绒毛白蜡",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "洋白蜡",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "北京丁香",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "千头椿",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "望春玉兰",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "平头赤松",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "铺地柏",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大叶黄杨",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "朝鲜黄杨",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小叶黄杨",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "花椒",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫穗槐",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "锦鸡儿",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "北京锦鸡儿",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "多花胡枝子",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫荆",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "石榴",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小檗",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫叶小檗",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "牡丹",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "香茶藨(biao)子",
+   "aliases": [
+    "biao"
+   ],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山梅花",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白鹃梅",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "珍珠花",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "珍珠绣球",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "麻叶绣线菊",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金焰叶绣线菊",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金山绣线菊",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "菱叶绣线菊",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "粉花绣线菊",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "贴梗海棠",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "平枝栒子",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "多花栒子",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "碧桃",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "桃",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白碧桃",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红碧桃",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "绯桃",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "绛桃",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫叶桃",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "垂枝桃",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "榆叶梅",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鸡麻",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "珍珠梅",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "月季",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "现代月季",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "丰花月季",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "杂种香水月季",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白玉棠",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "玫瑰",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "腊梅",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "柽柳",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "沙棘",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "秋胡颓子",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "雪柳",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "连翘",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "迎春",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "什锦丁香",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "西蜀丁香",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小叶丁香",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蓝丁香",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫丁香",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白丁香",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "波斯丁香",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "羽叶丁香",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "毛叶丁香",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "垂丝丁香",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "四川丁香",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "关东丁香",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红丁香",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "辽东丁香",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小叶女贞",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金叶女贞",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "枸杞",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "海州常山",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫珠",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "荆条",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "糯米条",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大花六道木",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "美丽忍冬",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "藏花忍冬",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "花叶锦带",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红王子锦带花",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白锦带花",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "早锦带花",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "美丽锦带花",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "香荚蒾",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "猬实",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫薇",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "木槿",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "欧洲琼花",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "三裂绣线菊",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "箬竹",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "早园竹",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄槽竹",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "斑竹",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "苦竹",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "筠竹",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "美国凌霄",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "凌霄",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "南五味子",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "常春油麻藤",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "胶东卫矛",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "爬行卫矛",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "扶芳藤",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "多花蔷薇",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "十姐妹",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "三叶木通",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "中国地锦",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "美国地锦",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "葡萄",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金银花",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "台尔曼忍冬",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "藤本月季",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "木香",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蛇葡萄",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "粉团蔷薇",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "二月兰",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "野牛草",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "结缕草",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "羊茅",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鸢尾",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "萱草",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "玉簪",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "阔叶麦冬",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "早熟禾",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "中华结缕草",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "苇状羊茅",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "加那大早熟禾",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小糠草",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫花地丁",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蛇莓",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蒲公英",
+   "aliases": [],
+   "region": "西北",
+   "city": "天水",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#02-区",
+   "confidence": "medium"
+  }
+ ]
+}

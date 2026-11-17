@@ -1,12 +1,16 @@
 # Life Fork Simulation Stack
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
+运行范围：默认在当前会话顺序分析并输出 Markdown；用户要求多 Agent 且宿主允许时才委派。用户请求文件导出后才生成当前授权报告；遵循 SKILL.md 的工具范围、隐私规则与语言选择，不扫描历史报告或保存额外日志。
+
 用于把一个人生岔路拆成多角色、三种结果和多事件冲击的可审计复盘。多 Agent 的价值来自分歧和制衡，最终报告必须保留关键冲突。
 
 ## 运行方式
 
 ### 支持 sub-agent 的环境
 
-可并行运行各 Agent，各自产出短结论，再由主 Agent 汇总。
+用户要求委派且宿主允许时，可并行分析各视角，再汇总短结论；其他情形在当前会话顺序处理。
 
 建议顺序：
 
@@ -232,7 +236,7 @@
 - 把完整报告整理成终端用户可保存版本。
 - 生成判词、三种结果、6 段报告、继续解释层和 3 个低成本验证动作。
 - 保持人话表达，减少术语和复杂图表。
-- 在支持文件的环境中，优先输出 HTML 用户报告，并把留档方式交给用户浏览器处理。
+- 用户请求文件导出且宿主允许时，输出当前报告的 HTML；保存、打印和转发按用户各自请求处理。
 
 输出：
 
@@ -283,7 +287,7 @@
 
 ## sub-agent 并行优化
 
-可并行组：
+已获用户委派授权时的可并行组：
 
 - 组 1：人生叙事 Agent、职业路径 Agent、资产现金流 Agent、关系与家庭 Agent、健康与能量 Agent。
 - 组 2：事件检索 Agent、时代事件 Agent。

@@ -1,47 +1,55 @@
-## Description: <br>
-Helps agents build conversational AI with AINative's Chat Completions API, including raw API usage, Python, React, Next.js, streaming, tool calling, and credit tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents build conversational AI with AINative's Chat Completions API across REST, Python SDK, React SDK, and Next.js patterns.
 
-## Publisher: <br>
-[urbantech](https://clawhub.ai/user/urbantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[urbantech](https://clawhub.ai/user/urbantech)
 
-## Use Case: <br>
-Developers and AI application builders use this skill to implement chatbots and assistants with AINative's Chat Completions API, including streaming responses, tool calling, SDK integration, and credit usage checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys or bearer tokens may be exposed if copied into frontend bundles, logs, or shared prompts. <br>
-Mitigation: Keep real credentials server-side or in protected secret storage, and use environment variables for server integrations. <br>
-Risk: Chat content is sent to AINative and may include sensitive user or business data. <br>
-Mitigation: Send only content appropriate to share with AINative under the user's privacy and compliance requirements. <br>
-Risk: Using unfamiliar SDK packages or provider endpoints can introduce supply-chain or trust assumptions. <br>
-Mitigation: Verify AINative and its SDK packages are intended providers before installation or deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to implement AINative chatbots and AI assistants, including streaming responses, tool calling, credit checks, and SDK-based application patterns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/urbantech/ainative-chat-completions) <br>
-- [AINative Chat Completions endpoint](https://api.ainative.studio/v1/public/chat/completions) <br>
-- [AINative credits balance endpoint](https://api.ainative.studio/api/v1/public/credits/balance) <br>
-- [CHAT_COMPLETION_API_REFERENCE.md](docs/api/CHAT_COMPLETION_API_REFERENCE.md) <br>
-- [React useChat hook source](packages/sdks/react/src/hooks/useChat.ts) <br>
-- [Next.js SDK source](packages/sdks/nextjs/src/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code examples and command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes REST, Python, React, and Next.js examples for AINative Chat Completions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser-side AINative API key examples could expose account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use server-side routes or server actions for AINative calls, keep API keys in server-only secrets, and rotate any key that was placed in browser code.
+
+Risk: Chat completion requests may include sensitive personal or regulated data.
+
+Mitigation: Review AINative's handling terms before use and add consent, data minimization, and redaction controls where needed.
+
+## Reference(s):
+
+- [AINative Chat Completions API endpoint](https://api.ainative.studio/v1/public/chat/completions)
+- [AINative Credits Balance API endpoint](https://api.ainative.studio/api/v1/public/credits/balance)
+- [ClawHub skill page](https://clawhub.ai/urbantech/skills/ainative-chat-completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes REST, Python, React, and Next.js examples for AINative chat completions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,60 @@
-## Description: <br>
-Drafts precise LinkedIn comment replies from a given comment URL, handling thread structure so replies post under the correct top-level comment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts replies to specific existing LinkedIn comments from their URLs, resolves the correct LinkedIn parent comment target, and can publish the approved reaction and reply through Publora.
 
-## Publisher: <br>
-[sergebulaev](https://clawhub.ai/user/sergebulaev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergebulaev](https://clawhub.ai/user/sergebulaev)
 
-## Use Case: <br>
-External users and social media operators use this skill to draft and approve concise LinkedIn replies from comment URLs while preserving the correct thread context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can post public LinkedIn reactions and replies when a posting backend is configured. <br>
-Mitigation: Review the target comment, reaction, reply text, and parent comment URN before approving any post. <br>
-Risk: Configuring posting credentials enables actions on the user's LinkedIn workflow. <br>
-Mitigation: Leave posting backends unconfigured when only copy-paste drafts are desired. <br>
+## Use Case:
 
+External users and social media operators use this skill to continue an existing LinkedIn comment thread with concise reply drafts, reaction guidance, and the correct parentComment target before approving a live post.
 
-## Reference(s): <br>
-- [Reply Templates](references/reply-templates.md) <br>
-- [Threading Rules](references/threading-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown approval card with short reply drafts, reaction suggestion, thread context, and posting target details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reply drafts are 150-300 characters; posting requires explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Approving a draft can modify the user's live LinkedIn presence by sending both a reaction and a reply.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact reply text, reaction type, target comment URL, and parentComment before approving publication.
+
+Risk: An incorrect parentComment can place the reply in the wrong thread or cause the publish request to fail.
+
+Mitigation: Use the resolved top-level comment URN for parentComment and verify the thread preview before posting.
+
+Risk: Reply drafts may be inappropriate for business or public-facing accounts if context is incomplete.
+
+Mitigation: Confirm the thread context and edit the draft before approval, especially when automated comment fetching is unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sergebulaev/skills/linkedin-reply-handler)
+- [Reply templates](artifact/references/reply-templates.md)
+- [Threading rules](artifact/references/threading-rules.md)
+- [Examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with short reply drafts, reaction suggestion, thread context summary, approval card, and posting target details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reply drafts are intended to be 150-300 characters each and require user approval before posting.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

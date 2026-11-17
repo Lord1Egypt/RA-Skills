@@ -1,44 +1,54 @@
-## Description: <br>
-Email for AI agents. Create mailboxes, send and receive emails via API. No browser, no OAuth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email for AI agents. Create mailboxes, send and receive emails via API. No browser, no OAuth.
 
-## Publisher: <br>
-[rishavmukherji](https://clawhub.ai/user/rishavmukherji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rishavmukherji](https://clawhub.ai/user/rishavmukherji)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create agent-accessible mailboxes, send email, check inboxes, search messages, and register webhooks through the Neynar Inbox REST API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles email content and mailbox metadata through the Neynar Inbox service. <br>
-Mitigation: Install only if the user trusts Neynar Inbox with the email data handled by the agent. <br>
-Risk: Generated mailbox API keys are returned once and cannot be recovered. <br>
-Mitigation: Store generated API keys immediately in a secret store and rotate keys if they may have been exposed. <br>
-Risk: Sending email, deleting email, or deleting mailboxes can create external effects or data loss. <br>
-Mitigation: Require explicit confirmation before sending or deleting email or mailboxes. <br>
-Risk: Webhook registration and polling can expose or route email events to unintended destinations. <br>
-Mitigation: Only register webhook URLs and polling schedules that the user intentionally controls, and verify webhook signatures. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Neynar Inbox homepage](https://email.neynar.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/rishavmukherji/neynar-inbox) <br>
+## Use Case:
 
+Developers and external agents use this skill to create agent mailboxes, send email, receive and search inbox messages, and configure webhooks through Neynar's hosted REST API.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes REST API endpoint, authentication, webhook, error code, and mailbox limit guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recurring inbox polling can keep using the hosted email API key in the background if scheduled without limits or cleanup.
+
+Mitigation: Approve polling schedules explicitly, set an end time, keep the API key in secure storage, and know how to remove the recurring task or rotate the key.
+
+Risk: Mailbox API keys are returned only once and cannot be recovered.
+
+Mitigation: Store the API key immediately in a secure secret store and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rishavmukherji/skills/neynar-inbox)
+- [Publisher profile](https://clawhub.ai/user/rishavmukherji)
+- [Neynar Inbox homepage](https://email.neynar.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline curl commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include API endpoints, request headers, payload examples, polling setup, webhook configuration, and API-key handling notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

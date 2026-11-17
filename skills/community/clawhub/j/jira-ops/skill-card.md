@@ -1,41 +1,58 @@
-## Description: <br>
-Retrieve, analyze, and update Jira tickets directly using MCP-based or direct REST API approaches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve, analyze, and update Jira tickets through MCP-based or direct Jira REST API workflows.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to fetch Jira ticket requirements, extract acceptance criteria, search issues, add progress comments, and transition issue statuses during delivery workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write-capable Jira credentials can allow an agent to add comments, create or update issues, and transition statuses. <br>
-Mitigation: Use a least-privilege Jira API token and review intended write actions before allowing the agent to apply them. <br>
-Risk: Jira API tokens may be exposed if copied into prompts, files, or configuration that is not secret-managed. <br>
-Mitigation: Store Jira credentials in environment variables or a secrets manager, never hardcode them, and rotate tokens if exposure is suspected. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to fetch Jira requirements, analyze acceptance criteria, search issues, and update ticket status or comments during delivery workflows.
 
-## Reference(s): <br>
-- [Jira Ops on ClawHub](https://clawhub.ai/djc00p/jira-ops) <br>
-- [Atlassian API token management](https://id.atlassian.com/manage-profile/security/api-tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON configuration snippets and inline command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Jira issue summaries, acceptance criteria analysis, JQL guidance, MCP tool usage, REST API guidance, and proposed ticket updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read and update Jira issues using the configured Jira account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Jira account or narrowly scoped token, and review proposed ticket changes before applying them.
+
+Risk: Jira credentials could be exposed if hardcoded or stored in plain configuration files.
+
+Mitigation: Use environment variables or a secrets manager, keep .env files out of source control, and rotate tokens if exposed.
+
+Risk: The optional MCP package runs with Jira network access.
+
+Mitigation: Pin or review the MCP package and run it with limited filesystem and network access.
+
+## Reference(s):
+
+- [Jira Ops ClawHub skill page](https://clawhub.ai/djc00p/skills/jira-ops)
+- [Atlassian API tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration examples and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Jira MCP tool calls, REST API setup steps, ticket analysis summaries, comments, status transitions, and JQL searches.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

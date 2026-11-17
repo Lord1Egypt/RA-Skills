@@ -1,48 +1,59 @@
-## Description: <br>
-Provides AgentPMT-hosted elevation lookups for points and paths, including elevation units, path statistics, and optional elevation profile chart URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AgentPMT-hosted remote tool guidance for looking up point elevations, sampling path elevations, generating elevation profile charts, and returning elevation statistics.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to request elevation data for individual coordinates or route paths for trail planning, cycling route assessment, surveying, flood-risk mapping, real estate site review, and terrain visualization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location coordinates and route points are sent to AgentPMT for elevation lookup. <br>
-Mitigation: Send only the coordinates needed for the task and avoid including unrelated sensitive location context. <br>
-Risk: Generated elevation chart images may be accessible through signed URLs for 7 days. <br>
-Mitigation: Share chart URLs only with intended recipients and avoid generating charts for routes that should not be exposed. <br>
-Risk: AgentPMT calls consume credits, and higher sample counts can increase usage. <br>
-Mitigation: Confirm the account route and choose sample counts appropriate to the analysis before making repeated or high-volume calls. <br>
-Risk: Account secrets, wallet material, signatures, or payment headers could be exposed if placed in prompts or logs. <br>
-Mitigation: Use the setup skill for credential handling and keep secrets out of prompts, chat transcripts, and logs. <br>
+## Use Case:
 
+Developers and external agents use this skill to call AgentPMT elevation tools for hiking, cycling, surveying, terrain analysis, real estate site evaluation, and route planning workflows.
 
-## Reference(s): <br>
-- [Action schema](artifact/schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/elevation-data-point-path-charts-statistics) <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/elevation-data-point-path-charts-statistics) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown instructions with JSON request examples and schema references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote AgentPMT calls return JSON elevation data, statistics, and optional PNG chart signed URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Exact coordinates, paths, and chart requests are sent to AgentPMT.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only the minimum location data needed for the task and avoid including sensitive locations unless the user has approved that disclosure.
+
+Risk: Generated chart links may be stored for seven days and exposed through signed URLs.
+
+Mitigation: Share chart URLs only with intended recipients and avoid generating charts for sensitive routes when a numeric response is sufficient.
+
+Risk: Unpinned npx setup commands can execute package code from the network.
+
+Mitigation: Prefer ClawHub or OpenClaw installation routes, or verify the package source and version before running setup commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/elevation-data-point-path-charts-statistics)
+- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/elevation-data-point-path-charts-statistics)
+- [Generated Action Schema](schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with JSON request examples and remote API response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return elevation values, path statistics, and signed PNG chart URLs that expire after 7 days.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

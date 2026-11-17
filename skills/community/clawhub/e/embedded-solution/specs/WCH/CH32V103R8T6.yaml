@@ -1,0 +1,44 @@
+part: CH32V103R8T6
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "WCH CH32V103 \u2014 general-purpose RISC-V MCU (Cortex-M3 class)"
+main_page: https://www.wch-ic.com/products/CH32V103.html
+datasheet_path_expected: ../../embedded_dev/wch/datasheet/CH32V103_datasheet.pdf
+datasheet_source_url: https://doc.platan.ru/pdf/datasheets/wch/CH32V103.pdf
+datasheet_source_note: "platan.ru mirror (Russian electronics distributor) of WCH CH32V103 datasheet (V1.0, 1.2 MB). The datasheet\
+  \ describes the CH32V103 family \u2014 the R8T6 SKU is the 64 KB flash / 20 KB SRAM / LQFP-64 variant."
+created_at: '2026-06-27T20:39:00+08:00'
+specs:
+  cores: RV3A (branch prediction, hardware mul/div)
+  wireless: none
+  package:
+  - QFN48
+  - LQFP64
+  - LQFP48
+  clock_mhz_max: 80
+  supply_voltage_v_min: 2.7
+  supply_voltage_v_max: 5.5
+  ram: 20 KB
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 extracted 7 spec fields from datasheet."
+- "CH32V103R8T6 \u2014 popular general-purpose WCH RISC-V MCU."
+- "Pin compatibility with STM32F103 in many packages \u2014 popular choice for STM32 cost-down redesigns."
+- 'Family differentiator vs CH32V003: more peripherals (USB, CAN, more GPIO, more timers).'
+- 'Family differentiator vs CH32V203/303: simpler peripherals, lower cost.'
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet PDF: 8/9 spec fields matched
+  (89%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-06-28T10:07:37+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

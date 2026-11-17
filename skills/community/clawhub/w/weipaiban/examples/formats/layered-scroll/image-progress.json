@@ -1,0 +1,15 @@
+{
+  "taskId": "layered-scroll",
+  "assets": [
+    { "assetId": "background-tile", "status": "placeholder" },
+    { "assetId": "middle-marker", "status": "placeholder" },
+    { "assetId": "foreground-lattice", "status": "placeholder" },
+    { "assetId": "story-boat", "status": "placeholder" },
+    { "assetId": "popup-scene", "status": "placeholder" },
+    { "assetId": "popup-detail", "status": "placeholder" },
+    { "assetId": "popup-open", "status": "placeholder" },
+    { "assetId": "slideshow-1", "status": "placeholder" },
+    { "assetId": "slideshow-2", "status": "placeholder" },
+    { "assetId": "slideshow-3", "status": "placeholder" }
+  ]
+}

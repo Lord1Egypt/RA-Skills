@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "build_name": "冰霜流派名稱",
+  "league": "LeagueName",
+  "mode": "SC Trade",
+  "concept": {
+    "class": "Witch",
+    "ascendancy": "Elementalist",
+    "main_skill": "Creeping Frost",
+    "mechanics": ["cold damage", "cold damage over time"]
+  },
+  "sources": {
+    "poe_ninja": {
+      "url_or_file": null,
+      "captured_at": null,
+      "filters": {},
+      "sample_size": 0
+    },
+    "pob_cli_repository": "https://github.com/qpooqp777/pob-cli",
+    "pob_version": null,
+    "tree_version": null
+  },
+  "stages": {
+    "early": {
+      "level_range": "1-70",
+      "main_skill": "",
+      "skill_links": [],
+      "passive_plan": [],
+      "equipment_targets": {},
+      "upgrade_trigger": "",
+      "pob_metrics": {},
+      "verification": "unverified"
+    },
+    "mid": {
+      "level_range": "70-90",
+      "main_skill": "",
+      "skill_links": [],
+      "passive_plan": [],
+      "equipment_targets": {},
+      "upgrade_trigger": "",
+      "pob_metrics": {},
+      "verification": "unverified"
+    },
+    "late": {
+      "level_range": "90+",
+      "main_skill": "",
+      "skill_links": [],
+      "passive_plan": [],
+      "equipment_targets": {},
+      "upgrade_trigger": "",
+      "pob_metrics": {},
+      "verification": "unverified"
+    }
+  },
+  "character_code": {
+    "format": "pobb.in-compatible",
+    "code": null,
+    "uploaded": false,
+    "xml_path": null
+  },
+  "assumptions": [],
+  "warnings": []
+}

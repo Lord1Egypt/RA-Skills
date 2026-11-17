@@ -1,11 +1,13 @@
 ---
 name: rotifer-agent
 description: >-
-  End-to-end guide for building AI Agents from Genes: intent decomposition, Gene selection,
-  Genome composition, Agent creation, and testing.
-  Use when the user mentions "build Agent", "compose Genes", "Agent composition", "agent create",
-  "agent run", "Genome", "assemble Agent", "Agent architecture", "composition strategy",
-  "Seq", "Par", "Cond", "Try", "TryPool", "synthesize Agent".
+  Build a Rotifer Agent from Genes — decompose intent into capability units, pick Genes by
+  Arena F(g), compose a Rotifer Genome, create the Agent and test it.
+  Use when the user is working with Rotifer specifically: "Rotifer Agent", "compose Genes",
+  "Rotifer Genome", "Gene composition", "rotifer agent create".
+  Do NOT use for general agent frameworks, or when the words Seq / Par / Cond / Try appear as
+  ordinary programming terms — in Rotifer those name Genome composition strategies, and this
+  Skill applies only when the user is composing Rotifer Genes.
 ---
 
 # Rotifer Agent — From Genes to Agents
@@ -14,11 +16,28 @@ Decompose user intent into capability units, select Genes from the ecosystem, co
 
 ## Prerequisites
 
-This Skill requires the Rotifer CLI:
+This Skill requires the Rotifer CLI. Check for an installed one first; this
+downloads nothing:
 
 ```bash
-npx @rotifer/playground --version
+rotifer --version
+rotifer doctor
 ```
+
+`rotifer doctor` checks the TypeScript→WASM toolchain. Composing an Agent from
+Native Genes means compiling them, and without esbuild and javy that step fails
+with an error that reads like a code problem.
+
+If `rotifer` is not found, propose an install and wait for the user's approval
+before running it. Each option downloads `@rotifer/playground@0.38.0` from npm:
+`npm i -g @rotifer/playground@0.38.0` puts the `rotifer` binary in npm's global
+prefix, `npm install --save-dev --save-exact @rotifer/playground@0.38.0` keeps it
+in the project (run it as `npm exec -- rotifer`), and
+`npx --yes @rotifer/playground@0.38.0 <command>` runs it from npm's cache without
+installing it. `--yes` only skips npx's own "Ok to proceed?" prompt, which npx
+also skips by itself when its input is not a terminal, as in most assistant
+shells. It is not the approval: the user's approval is the reply to your
+proposal, and it comes before the command runs.
 
 Or use the MCP Server for IDE integration:
 
@@ -27,11 +46,17 @@ Or use the MCP Server for IDE integration:
   "mcpServers": {
     "rotifer": {
       "command": "npx",
-      "args": ["@rotifer/mcp-server"]
+      "args": ["@rotifer/mcp-server@0.20.2"]
     }
   }
 }
 ```
+
+Your MCP host runs this `npx` command when it starts the server, and nothing asks
+first: npx does not prompt when its input is not a terminal, so the first start
+downloads `@rotifer/mcp-server@0.20.2` from npm and runs it. To review it before it ever
+runs, install that version with `npm i -g @rotifer/mcp-server@0.20.2` and use
+`rotifer-mcp-server` as the command, with no `args`.
 
 ---
 
@@ -64,17 +89,33 @@ Break the user's goal into independent capability units (each maps to a Gene).
 Match existing Genes to each capability unit.
 
 ```bash
-rotifer list
-rotifer arena list --domain <domain>
+rotifer list                                  # what is already in this workspace
+rotifer arena list --domain <domain>          # ranked by F(g) within one domain
+rotifer search <capability> --domain <domain> # the Cloud registry — everyone else's Genes
 ```
+
+The three answer different questions, and skipping the third is how a Genome
+ends up built only from what happened to be installed already.
 
 **Selection priority**:
 
 | Priority | Source | Command |
 |----------|--------|---------|
 | 1 | Local Gene with highest Arena rank | `rotifer arena list --domain <d>` |
-| 2 | Cloud Registry | `rotifer install <name>` |
+| 2 | Cloud Registry | `rotifer search <capability>` → `rotifer info <ref>` → `rotifer install <ref>` |
 | 3 | Doesn't exist, needs creation | Proceed to Phase 3 |
+
+Before committing a candidate to the Genome, run it on its own — a Gene that
+fails alone will fail inside a pipeline, where the error is much harder to
+locate:
+
+```bash
+rotifer run <gene-name> --input '{"...": "..."}'
+```
+
+`run` checks the input against the Gene's inputSchema before running it and the
+output against its outputSchema after; a mismatch fails the run and names the
+field (an input mismatch is `INVALID_INPUT`, and the Gene does not run).
 
 Show the user candidate Genes' F(g) fitness and fidelity, let them confirm the selection.
 
@@ -86,8 +127,8 @@ If a capability unit has no existing Gene:
 
 | Approach | When to use | Action |
 |----------|------------|--------|
-| Create Wrapped Gene | External API / Skill available to wrap | Route to `gene-dev` Skill |
-| Create Native Gene | Pure computation, no external dependencies | Route to `gene-dev` Skill |
+| Create Wrapped Gene | External API / Skill available to wrap | Route to `rotifer-gene` Skill (dev module) |
+| Create Native Gene | Pure computation, no external dependencies | Route to `rotifer-gene` Skill (dev module) |
 | Adjust decomposition | Capability unit granularity is wrong | Return to Phase 1 |
 | Merge units | Two units are too coupled, splitting makes the interface awkward | Merge into one Gene |
 
@@ -107,7 +148,9 @@ Choose a composition strategy based on relationships between capability units.
 | **Par(A, B)** | Parallel: run simultaneously | Independent tasks, merge results | Grammar check + Readability analysis |
 | **Cond(p, A, B)** | Branch: if p then A else B | Input characteristics determine path | Chinese → Chinese proofing / English → English proofing |
 | **Try(A, B)** | Fallback: A fails → B | Primary path unreliable | Main API → Backup API |
-| **TryPool(A, B, C)** | Race: all try, first success wins | Multiple equivalent implementations | Multiple translation services racing |
+| **TryPool(A, B, C)** | Failover: per domain, the active Gene runs; the others are tried one at a time, best running fitness first, only if it fails | Interchangeable implementations of one capability | Main translation service, with backups that take over when it fails |
+
+Par, Cond and Try run in the sandbox on compiled Genes: `rotifer compile` each Gene first. `agent run` refuses them otherwise, rather than running them as Seq.
 
 ### Par Merge Strategies
 
@@ -119,32 +162,15 @@ When using Par, specify `--par-merge`:
 | `concat` | Concatenate all results (array) | Results are complementary |
 | `merge` | Deep-merge objects | Same structure, merge fields |
 
-### Seq Schema Compatibility Warning
+### Seq Schema Compatibility
 
-> **Known limitation**: Seq composition requires the previous Gene's outputSchema to be compatible with the next Gene's inputSchema. The current version does not auto-validate — schema mismatches cause runtime errors.
+> In a Seq, each Gene's output is the next Gene's input, so every field the next Gene's inputSchema requires must be in the previous Gene's outputSchema. `rotifer agent create` compares them and prints a warning such as `FAIL — missing: [text]`, but still creates the Agent; run it anyway and a Gene can get empty input and return empty output without an error.
 >
-> **Recommendation**: Before creating a Seq composition, manually compare adjacent Genes' inputSchema / outputSchema in phenotype.json to confirm field names and types match.
+> **Treat the warning as a blocker**: choose Genes whose fields meet, or put a Gene in between that turns one shape into the other.
 
 ### Nested Composition
 
-Strategies can be nested:
-
-```text
-Seq(
-  Par(grammar-checker, readability-analyzer),
-  tone-analyzer
-)
-```
-
-Corresponding CLI:
-
-```bash
-rotifer agent create doc-qa \
-  --genes grammar-checker readability-analyzer tone-analyzer \
-  --composition Seq
-```
-
-> The current CLI only supports top-level composition strategies. Nested compositions require manual editing of `.rotifer/agents/<id>.json`.
+Not supported yet. An Agent has one top-level strategy: `agent create` writes only that, and `agent run` reads only that, so `Seq(Par(A, B), C)` cannot be expressed. To get close, run `Par(A, B)` as one Agent and pass its output to C yourself.
 
 ---
 
@@ -177,8 +203,14 @@ After creation, verify the Agent configuration file `.rotifer/agents/<name>.json
 ## Phase 6: Test Run
 
 ```bash
+rotifer agent list
 rotifer agent run <name> --input '{"text": "Test input content"}'
 ```
+
+`rotifer agent list` shows every Agent in the workspace with its state and
+genome — use it to confirm the Agent was created with the Genes you intended
+before running it, and to recover the exact name when a run reports "agent not
+found".
 
 **Validation checklist**:
 
@@ -196,7 +228,8 @@ If results are unsatisfactory, proceed to Phase 7.
 
 | Problem | Optimization |
 |---------|-------------|
-| One Gene's output quality is poor | `rotifer arena list --domain <d>` to find alternatives |
+| One Gene's output quality is poor | `rotifer arena list --domain <d>` for ranked local alternatives, or `rotifer search <capability>` to look beyond what is installed |
+| Not sure which Gene in the pipeline is at fault | `rotifer run <gene-name> --input '{...}'` on each one in isolation |
 | Seq intermediate results missing fields | Check schema compatibility, consider inserting an adapter Gene |
 | Par merge results are messy | Switch `--par-merge` strategy |
 | Latency too high | Seq → Par (if Genes are independent) |
@@ -221,6 +254,10 @@ If results are unsatisfactory, proceed to Phase 7.
 **Composition**: All three accept `text` input, no dependencies → Par + concat.
 
 ```bash
+rotifer compile grammar-checker
+rotifer compile readability-analyzer
+rotifer compile tone-analyzer
+
 rotifer agent create doc-quality \
   --genes grammar-checker readability-analyzer tone-analyzer \
   --composition Par \
@@ -231,47 +268,65 @@ rotifer agent run doc-quality --input '{"text": "Document content to check..."}'
 
 ### Scenario 2: Code Review Agent
 
-**Goal**: Input code file, output security vulnerabilities + complexity report + documentation suggestions.
+**Goal**: Input code, output security findings + a complexity report (documentation suggestions as a separate step).
 
 | # | Capability | Gene | Domain |
 |---|-----------|------|--------|
-| 1 | Security audit | security-auditor | security.audit |
-| 2 | Complexity analysis | code-complexity | code.analysis |
-| 3 | Documentation generation | docs-writer | content.docs |
+| 1 | Security audit | security-auditor | code.security |
+| 2 | Complexity analysis | code-complexity | code.analyze |
+| 3 | Documentation generation | docs-writer | docs.technical |
 
-**Composition**: Security audit and complexity analysis can run in parallel, documentation depends on both → Seq(Par(1,2), 3).
+**Composition**: Security audit and complexity analysis both read the code, so they run side by side → Par(1, 2), results merged. Documentation would follow both, Seq(Par(1, 2), 3), which needs nesting (not supported yet); docs-writer also takes a `subject`, which neither result carries, so run it as a separate step.
 
 ```bash
+rotifer compile security-auditor
+rotifer compile code-complexity
+
 rotifer agent create code-review \
-  --genes security-auditor code-complexity docs-writer \
-  --composition Seq
+  --genes security-auditor code-complexity \
+  --composition Par \
+  --par-merge merge
 
 rotifer agent run code-review --input '{"code": "...", "language": "typescript"}'
 ```
 
-> Note: The Par(security-auditor, code-complexity) merged output must be compatible with docs-writer's inputSchema. Manual verification required.
+### Scenario 3: Content Review Agent
 
-### Scenario 3: Search & Summarize Agent
-
-**Goal**: Input a search query, search → summarize → format output.
+**Goal**: Input an article, get a quality analysis and then a prioritized list of edits.
 
 | # | Capability | Gene | Domain |
 |---|-----------|------|--------|
-| 1 | Web search | genesis-web-search | search.web |
-| 2 | Text summarization | text-summarizer | content.summarize |
-| 3 | Markdown formatting | markdown-formatter | content.format |
+| 1 | Quality analysis | content-quality-analyzer | quality.content |
+| 2 | Optimization plan | content-optimizer | quality.content |
 
-**Composition**: Strict serial pipeline → Seq.
+**Composition**: The analysis is exactly what the optimizer reads (readability, virality, sentiment, structure) → Seq.
 
 ```bash
-rotifer agent create search-digest \
-  --genes genesis-web-search text-summarizer markdown-formatter \
+rotifer agent create content-review \
+  --genes content-quality-analyzer content-optimizer \
   --composition Seq
 
-rotifer agent run search-digest --input '{"query": "Rotifer Protocol agent framework"}'
+rotifer agent run content-review --input '{"text": "# My article\n\n...", "platform": "dev.to"}'
 ```
 
-> Note the Seq schema chain: genesis-web-search output field names must match text-summarizer's inputSchema. Run `cat genes/*/phenotype.json | jq '.inputSchema, .outputSchema'` to verify before creating.
+---
+
+## What this Skill does on your machine
+
+It has no code of its own — it tells your assistant which `rotifer` commands to
+run. That is why its manifest declares process execution, filesystem read/write
+and outbound network access: every one of those is the CLI acting, not this
+Skill.
+
+| | |
+|---|---|
+| **Runs** | The `rotifer` CLI, pinned to `@rotifer/playground@0.38.0`. If it is not installed, it is downloaded from npm only after you approve the install (see Prerequisites). |
+| **Reads** | Genes and Agent definitions in the current project workspace. |
+| **Writes** | Only what the commands below write — Genes into the project's `genes/`, Agent definitions into `.rotifer/agents/`. Outside the project: the CLI's own state in your home directory (`~/.rotifer/`, `~/.config/rotifer/`); when `rotifer compile` runs, the javy toolchain it calls writes its own caches in your user cache folder; and npm's cache or global prefix when the CLI is installed. |
+| **Sends** | Cloud registry and Arena queries, to the public Rotifer API. Your code is not uploaded unless you run `rotifer publish` yourself. |
+
+Commands that install, publish or overwrite are proposed for your approval
+first, never run silently.
 
 ---
 
@@ -279,9 +334,9 @@ rotifer agent run search-digest --input '{"query": "Rotifer Protocol agent frame
 
 | Skill | Relationship | When to route |
 |-------|-------------|---------------|
-| `gene-dev` | Gene creation/development | Phase 3 gap filling |
+| `rotifer-gene` (dev module) | Gene creation/development | Phase 3 gap filling |
 | `rotifer-arena` | Gene comparison & evaluation | Phase 7 when replacing underperforming Genes |
-| `genome` | Genome quality analysis | After Agent creation for overall assessment |
+| `rotifer-genome` | Genome quality analysis | After Agent creation for overall assessment |
 
 ---
 

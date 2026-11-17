@@ -1,0 +1,5 @@
+# ClawHub reads the skill icon from here (interface.icon_small / icon_large).
+# Only the icon is set, so the display name and summary stay as published.
+interface:
+  icon_small: assets/icon.png
+  icon_large: assets/icon.png

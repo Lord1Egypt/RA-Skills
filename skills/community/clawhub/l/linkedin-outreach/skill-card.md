@@ -1,41 +1,58 @@
-## Description: <br>
-LinkedIn automation with Free (10/month) and Pro ($29/mo unlimited) tiers for connection requests, follow-ups, lead generation, and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LinkedIn outreach automation for searching leads, sending connection requests, sending follow-up messages, and generating outreach reports.
 
-## Publisher: <br>
-[limoxt](https://clawhub.ai/user/limoxt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[limoxt](https://clawhub.ai/user/limoxt)
 
-## Use Case: <br>
-Sales, recruiting, and business-development users can use this skill to search LinkedIn profiles, send connection requests, follow up with pending contacts, and generate outreach reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automate LinkedIn actions from the user's account, including bulk connection requests and follow-up messages. <br>
-Mitigation: Review target lists and message templates before running connect or follow-up commands, use dry-run previews where available, and keep automation volume conservative. <br>
-Risk: Saved browser session data can function like account access if exposed on a shared or compromised machine. <br>
-Mitigation: Avoid shared machines, treat local session files as sensitive, and delete local configuration and session data when the skill is no longer needed. <br>
+## Use Case:
 
+External users and sales operators use this skill to automate LinkedIn prospect discovery, connection outreach, follow-up messaging, and CSV or JSON reporting. Review all recipients, message content, and LinkedIn account-use constraints before sending outreach.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/limoxt/linkedin-outreach) <br>
-- [Publisher profile](https://clawhub.ai/user/limoxt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI guidance, terminal output, CSV reports, and JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local session, usage, contact, and report files under the user's configured local filesystem paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter and package.json report 1.0.3) <br>
+Risk: The skill handles LinkedIn credentials and stores reusable login session state locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an environment where local session cookies are acceptable, prefer a dedicated or hardened local user profile, restrict file permissions, and remove stored session data when no longer needed.
+
+Risk: The skill can send real connection requests and follow-up messages in bulk.
+
+Mitigation: Manually verify every recipient and message before running send commands, use dry-run behavior where available, and add explicit send confirmations before production use.
+
+Risk: The security verdict is suspicious because safeguards around stored account state and bulk outreach are limited.
+
+Mitigation: Follow the server-provided security guidance: update dependencies, add owner-only permissions, implement deletion or logout support, sanitize CSV output, and review the skill carefully before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/limoxt/skills/linkedin-outreach)
+- [Publisher profile](https://clawhub.ai/user/limoxt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Markdown guidance, CLI commands, local JSON state, and CSV or JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local browser automation and writes session, usage, contact, pending outreach, and report data under the user's local configuration or chosen output path.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter and package.json list 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

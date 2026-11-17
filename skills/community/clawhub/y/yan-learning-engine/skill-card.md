@@ -1,40 +1,56 @@
-## Description: <br>
-yan-learning-engine drives an hourly autonomous learning and contribution loop for the YanYue agent, including planning, execution, self-checking, and next-step planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+yan-learning-engine schedules hourly self-learning, contribution, planning, and self-check tasks for an agent persona.
 
-## Publisher: <br>
-[eightroad](https://clawhub.ai/user/eightroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[eightroad](https://clawhub.ai/user/eightroad)
 
-## Use Case: <br>
-Developers or agent operators use this skill to schedule recurring agent work across code contribution, technical learning, community participation, content creation, system optimization, skill development, knowledge organization, and experimentation. It is intended to keep a personal agent moving through a measurable learning and contribution cycle. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed for hourly autonomous execution and may publish, create PRs or issues, post comments, share content, edit persistent memory or configuration, or clean workspace files without prior approval. <br>
-Mitigation: Require explicit approval for publishing, PRs/issues, public comments, sharing, persistent memory/config edits, and workspace cleanup before enabling scheduled runs. <br>
-Risk: A cron-based setup can continue running after the operator has stopped actively supervising it. <br>
-Mitigation: Use draft-only defaults, narrow account permissions, activity logging, and a documented way to disable the cron job. <br>
+## Use Case:
 
+Developers and agent operators can use this skill to drive recurring learning, contribution, planning, and progress-tracking routines. It is best treated as a scheduler and workflow prompt that requires review before any autonomous external action.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eightroad/yan-learning-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation, JSON planning records, and shell-script console output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local progress and planning JSON files to track hourly agent tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md) <br>
+Risk: The server security summary says the skill repeatedly tells the agent to publish, submit, modify repositories, and post externally without asking first.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, remove no-confirmation language and require explicit approval for publishing, repository changes, pull requests, issue filing, comments, and public posts.
+
+Risk: The skill provides an hourly cron workflow that can trigger unattended recurring actions.
+
+Mitigation: Disable or avoid the cron entry unless the execution environment has clear human approval gates and scoped permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eightroad/skills/yan-learning-engine)
+- [Publisher profile](https://clawhub.ai/user/eightroad)
+- [SKILL.md](artifact/SKILL.md)
+- [EXECUTION_RULES.md](artifact/EXECUTION_RULES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON progress files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill includes hourly scheduling guidance, a shell runner, and JSON files for plans, progress, and self-check reports.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

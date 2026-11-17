@@ -1,40 +1,54 @@
-## Description: <br>
-Runs a standardized code review workflow that checks code quality, security, maintainability, and performance, then produces a structured review report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a standardized code review workflow that checks code quality, security, maintainability, and performance, then produces a structured review report.
 
-## Publisher: <br>
-[bobbhchen](https://clawhub.ai/user/bobbhchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bobbhchen](https://clawhub.ai/user/bobbhchen)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review files, pull requests, or commit history for technical quality, security risks, maintainability, and performance issues. It returns prioritized findings with locations and suggested fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect proprietary code or secrets when they are included in the requested review target. <br>
-Mitigation: Provide a clear review scope and avoid supplying secrets unless they are intentionally part of the code-review context. <br>
-Risk: Review findings can be incomplete or misleading if the supplied diff, file set, or commit range is incomplete. <br>
-Mitigation: Give the agent the complete target to review and have a human reviewer validate findings before applying changes. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review files, commits, or pull request diffs for technical quality, security concerns, maintainability, and performance issues. It returns specific findings with locations, severity, and suggested fixes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bobbhchen/enterprise-code-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown structured review report with issue table, rating, strengths, and summary recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a clear review target such as files, a branch, a commit, or a pull request URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may inspect code, commits, or pull request diffs that contain sensitive material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only point the agent at repositories or diffs whose contents are appropriate for the active agent environment.
+
+Risk: Review findings and suggested fixes may be incomplete or incorrect.
+
+Mitigation: Have a qualified reviewer validate findings and scan proposed changes before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bobbhchen/skills/enterprise-code-review)
+- [ClawHub publisher profile](https://clawhub.ai/user/bobbhchen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown structured code review report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes review target, review date, overall rating, issue table, strengths, and summary recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

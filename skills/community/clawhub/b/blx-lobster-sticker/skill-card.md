@@ -1,40 +1,49 @@
-## Description: <br>
-BLX Lobster Sticker maps Chinese chat emotions and simple object requests to matching local cartoon crayfish sticker images for chat agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BLX Lobster Sticker helps a Chinese-language assistant choose and send matching cartoon crayfish sticker images for common emotions and chat reactions.
 
-## Publisher: <br>
-[gui-gitai](https://clawhub.ai/user/gui-gitai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gui-gitai](https://clawhub.ai/user/gui-gitai)
 
-## Use Case: <br>
-Developers and operators of chatbots, customer-service assistants, and conversational agents use this skill to send a single matching BLX crayfish sticker when a user expresses an emotion or requests a supported sticker. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Common phrases such as thanks, okay, or surprised reactions may trigger stickers unexpectedly. <br>
-Mitigation: Test the skill in a low-stakes conversation and send a sticker only when the user intent is clear. <br>
-Risk: Referenced sticker assets may be missing or have artwork licensing or provenance concerns. <br>
-Mitigation: Verify that the referenced image assets exist and confirm the artwork licensing and provenance before deployment. <br>
+## Use Case:
 
+Chatbot, customer-support, and assistant builders use this skill to map Chinese emotional phrases and sticker requests to a consistent set of crayfish-themed reaction images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gui-gitai/blx-lobster-sticker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Files] <br>
-**Output Format:** [Text instructions with local image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Selects at most one matching sticker; WeChat environments use JPG files from assets_wx, while other environments use PNG files from assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Broad automatic sticker triggers may send stickers unexpectedly in professional, customer-support, or high-volume conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit sticker requests or disable automatic sends where unexpected image replies could disrupt the conversation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gui-gitai/skills/blx-lobster-sticker)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration]
+
+**Output Format:** [Markdown instructions with image asset paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Selects one matching sticker image per interaction when the user's emotion or requested sticker is clear.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

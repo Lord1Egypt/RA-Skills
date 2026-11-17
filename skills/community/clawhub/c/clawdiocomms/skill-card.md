@@ -1,41 +1,62 @@
-## Description: <br>
-Clawdio helps AI agents establish secure peer-to-peer communication over Telegram or another messaging transport using Noise XX handshakes, XChaCha20-Poly1305 encryption, connection consent, and optional human verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawdio enables secure peer-to-peer communication for AI agents over Telegram or other messaging transports using Noise XX handshake, XChaCha20-Poly1305 encryption, connection consent, and human verification.
 
-## Publisher: <br>
-[JamesEBall](https://clawhub.ai/user/JamesEBall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jameseball](https://clawhub.ai/user/jameseball)
 
-## Use Case: <br>
-Developers and agent operators use Clawdio to set up encrypted agent-to-agent communication for task delegation, distributed AI workflows, and cross-platform coordination without direct network exposure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The included launcher can start a detached background process from a hard-coded local path and fixed endpoint. <br>
-Mitigation: Review before running; avoid the launcher until the path, endpoint, process behavior, and missing runtime target are fixed or clearly documented. <br>
-Risk: Identity material is read from local plaintext files by the artifact behavior. <br>
-Mitigation: Store identity files with restrictive permissions and review how keys are created, persisted, and shared before deployment. <br>
+## Use Case:
 
+Developers and external agent users use Clawdio to connect agents across machines for encrypted task delegation, distributed AI workflows, and cross-platform coordination without direct port forwarding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JamesEBall/clawdiocomms) <br>
-- [Publisher profile](https://clawhub.ai/user/JamesEBall) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command examples; the library emits base64-encoded transport messages when used by an agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a caller-provided message transport and peer consent for unknown inbound connections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata and SKILL.md frontmatter; package.json lists 2.0.0) <br>
+Risk: Plaintext identity key files can expose long-lived agent identity keys if the host or file permissions are weak.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where plaintext local identity storage is acceptable, restrict permissions on identity files, keep them on trusted hosts, and rotate identities after suspected exposure.
+
+Risk: Encrypted messages sent through Telegram or another third-party transport may still expose communication metadata.
+
+Mitigation: Avoid highly sensitive workflows unless a metadata threat model has been reviewed, and use the 6-word verification flow before treating a peer as human-verified.
+
+Risk: scripts/start.js can start unreviewed background code from a hard-coded local path.
+
+Mitigation: Inspect the target path and external run.js before invoking the startup script, or run reviewed build and startup commands from the artifact instead.
+
+Risk: Dependency ranges can change installed code across environments.
+
+Mitigation: Prefer pinned dependencies, trusted package sources, and a reviewed lockfile for production deployments.
+
+## Reference(s):
+
+- [Clawdio ClawHub skill page](https://clawhub.ai/jameseball/skills/clawdiocomms)
+- [jameseball publisher profile](https://clawhub.ai/user/jameseball)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JavaScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public keys, connection strings, verification codes, and transport setup guidance.]
+
+## Skill Version(s):
+
+2.2.0 (source: SKILL.md frontmatter and ClawHub release metadata; package.json reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

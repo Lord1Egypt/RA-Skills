@@ -1,52 +1,70 @@
-## Description: <br>
-Build beautiful native iOS/Android apps with Expo Router, including route structure, native tabs, animations, blur effects, liquid glass, SF Symbols, and platform patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build beautiful native iOS/Android apps with Expo Router, including route structure, native tabs, animations, blur effects, liquid glass, SF Symbols, and platform patterns.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and engineers use this skill to build or refine Expo Router mobile apps with native navigation, native controls, media features, visual effects, animations, and platform-appropriate UI patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes an unpinned GitHub npx install path and examples that may trigger native build steps. <br>
-Mitigation: Prefer the ClawHub install command unless the repository has been reviewed and trusted, and review native build steps before approving them. <br>
-Risk: Example app patterns may request sensitive permissions such as camera, microphone, media library, files, or secure storage. <br>
-Mitigation: Grant sensitive permissions only for app features that actually need them and review platform permission prompts during implementation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Route Structure](references/route-structure.md) <br>
-- [Native Tabs](references/tabs.md) <br>
-- [Icons](references/icons.md) <br>
-- [Native Controls](references/controls.md) <br>
-- [Visual Effects](references/visual-effects.md) <br>
-- [Animations](references/animations.md) <br>
-- [Search](references/search.md) <br>
-- [Gradients](references/gradients.md) <br>
-- [Media](references/media.md) <br>
-- [Storage](references/storage.md) <br>
-- [WebGPU and Three.js](references/webgpu-three.md) <br>
-- [Toolbar and Headers](references/toolbar-and-headers.md) <br>
-- [Form Sheets](references/form-sheet.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wpank/expo-native-ui) <br>
+## Use Case:
 
+Developers and engineers use this skill to build or refine Expo Router mobile apps with native navigation, platform controls, visual effects, media handling, storage, and animation patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline TypeScript, TSX, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; generated guidance may include native dependency, build, and permission recommendations for Expo apps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Guidance may recommend unpinned npm or npx commands, which can introduce supply-chain risk if package versions change.
+
+Mitigation: Pin installer and dependency versions where practical, review package lockfile changes, and verify packages before use.
+
+Risk: Mobile features such as camera, microphone, media library, and storage can request sensitive device permissions.
+
+Mitigation: Request sensitive permissions only after a clear user action and explain why the app needs each permission.
+
+Risk: Dependency workarounds such as --legacy-peer-deps can mask incompatible React Native or Expo package versions.
+
+Mitigation: Avoid dependency workarounds unless necessary, and test the resulting app on the intended Expo SDK and native platforms.
+
+## Reference(s):
+
+- [Route Structure](references/route-structure.md)
+- [Native Tabs](references/tabs.md)
+- [Icons (SF Symbols)](references/icons.md)
+- [Native Controls](references/controls.md)
+- [Visual Effects](references/visual-effects.md)
+- [Animations](references/animations.md)
+- [Search](references/search.md)
+- [CSS Gradients](references/gradients.md)
+- [Media](references/media.md)
+- [Storage](references/storage.md)
+- [WebGPU & Three.js for Expo](references/webgpu-three.md)
+- [Toolbars and Headers](references/toolbar-and-headers.md)
+- [Form Sheets in Expo Router](references/form-sheet.md)
+- [SF Symbols](https://developer.apple.com/sf-symbols/)
+- [Expo Router API Documentation](https://docs.expo.dev/versions/unversioned/sdk/router)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with TypeScript, TSX, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent output may include implementation recommendations for Expo, React Native, Expo Router, and platform-specific mobile UI patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-GitHub notification auto-triage via an email channel that forwards CI failures and security alerts, buffers PR-related notifications for daily summaries, and silently archives lower-priority notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub 通知自动分拣 triages GitHub notification emails by forwarding urgent failures and security alerts, buffering review and merge items for a daily summary, and silently archiving low-priority messages.
 
-## Publisher: <br>
-[devincodel](https://clawhub.ai/user/devincodel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devincodel](https://clawhub.ai/user/devincodel)
 
-## Use Case: <br>
-Developers and maintainers use this skill in OpenClaw to route GitHub notification email from a dedicated mailbox into urgent forwards, daily review summaries, or read/archive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GitHub notification content and repository metadata may be forwarded to the resolved master email address. <br>
-Mitigation: Review the destination address and forwarded notification fields before installing; use only for repositories and notifications acceptable to expose to that recipient. <br>
-Risk: Buffered notification metadata may be stored in workspace memory files visible to local workspace readers. <br>
-Mitigation: Review workspace access and retention expectations before use, and avoid private or security-sensitive notifications unless this storage behavior is acceptable. <br>
+## Use Case:
 
+Developers and maintainers use this skill to route GitHub notification emails from a dedicated sub-mailbox into urgent forwards, daily-summary buffer entries, or read archives. It is intended for GitHub notifications, not non-GitHub email handling or manual email composition.
 
-## Reference(s): <br>
-- [GitHub Triage Rules](references/triage-rules.md) <br>
-- [ClawHub skill page](https://clawhub.ai/devincodel/github-triage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send email, mark messages read, and write daily buffer JSON files when executed by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The configured mail-cli profile can read, send, and mark messages in the GitHub sub-mailbox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that mailbox authority is acceptable, review credential scope before deployment, and pin @clawemail/mail-cli where possible.
+
+Risk: Urgent forwards and daily summaries may expose full urgent-message bodies or repository metadata to the resolved main email address.
+
+Mitigation: Review the forwarding and summary formats before use, and adjust the workflow if full bodies or repository metadata should not be forwarded or stored.
+
+## Reference(s):
+
+- [GitHub Triage Rules](references/triage-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/devincodel/skills/github-triage)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Markdown]
+
+**Output Format:** [Markdown guidance with bash commands, JSON examples, and email summary formats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses mail-cli actions to forward urgent messages, buffer daily-summary metadata, and mark low-priority messages as read.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

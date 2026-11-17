@@ -1,43 +1,56 @@
-## Description: <br>
-Audit an Odoo database's data quality with evidence before trusting AI answers, importing, or migrating -- duplicates, missing required values, orphaned references, format anomalies -- and drive remediation through odoo-mcp's gated write workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits an Odoo database's data quality with evidence before AI use, import, or migration, and guides remediation through odoo-mcp's gated write workflow.
 
-## Publisher: <br>
-[tuanle96](https://clawhub.ai/user/tuanle96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tuanle96](https://clawhub.ai/user/tuanle96)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operations teams use this skill to audit Odoo records for duplicates, missing required values, orphaned references, and format anomalies before trusting AI answers, importing data, or preparing migrations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can expose sensitive Odoo data-quality evidence to the agent while auditing live records.
+
+Mitigation: Use it only in Odoo environments approved for agent access and respect redacted fields without requesting broader field access.
+
+Risk: Remediation batches could change incorrect records or values if approved without review.
+
+Mitigation: Keep writes disabled unless required, inspect previewed record IDs and values, and confirm each gated write batch explicitly before execution.
+
+Risk: Partial audits can mislead users when checks error or access limits hide records.
+
+Mitigation: Report errored checks, diagnose access for orphaned references, and avoid presenting partial results as complete.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, ERP operators, and migration teams use this skill to audit Odoo data quality before relying on AI answers, imports, or migrations. It guides evidence-based remediation planning and gated write approval through odoo-mcp. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may inspect sensitive Odoo business records through odoo-mcp. <br>
-Mitigation: Install only for environments where this database access is intended, and respect redacted fields and field ACLs in tool responses. <br>
-Risk: Remediation proposals could change production records if write gates are enabled and approved without review. <br>
-Mitigation: Keep writes disabled by default, require previewed diffs for exact record-id batches, and confirm each approved batch before execution. <br>
-Risk: A partial audit could be mistaken for a complete data-quality verdict when checks error or access is limited. <br>
-Mitigation: Report errored checks and access-diagnosis results explicitly, and re-run the data-quality report after remediation. <br>
+**Output Format:** [Markdown tables, remediation plan, and per-model verdicts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tuanle96/skills/odoo-data-quality-gate) <br>
-- [Publisher profile](https://clawhub.ai/user/tuanle96) <br>
+**Other Properties Related to Output:** [Includes record-level evidence, proposed gated remediation batches, and before/after issue counts when remediation is run.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown tables and remediation plans with inline tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes per-model verdicts, issue evidence, batch remediation proposals, and before/after issue counts.] <br>
+1.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

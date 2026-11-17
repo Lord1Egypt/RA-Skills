@@ -1,40 +1,48 @@
-## Description: <br>
-Expert network engineer specializing in cloud and hybrid network architectures, security, and performance optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Network Engineer helps agents design, troubleshoot, secure, and optimize cloud and hybrid network architectures with a focus on reliability, scalability, and zero-trust principles.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, network engineers, cloud engineers, and operations teams use this skill to assess network topology, design VPC and hybrid connectivity, plan network security controls, troubleshoot performance issues, and prepare implementation guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Network guidance may affect live routing, firewall, DNS, VPN, load-balancer, or cloud-network behavior if applied without review.
+
+Mitigation: Require a proposed change plan, explicit approval, maintenance-window check, and rollback plan before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, infrastructure engineers, and operations teams use this skill for network architecture review, cloud and hybrid connectivity planning, security hardening, troubleshooting, performance optimization, and network automation guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Network guidance may lead to disruptive infrastructure changes if applied without operational review. <br>
-Mitigation: Set a clear scope, require explicit approval before changes, use a change window, and prepare a rollback plan. <br>
-Risk: Troubleshooting or design work may expose sensitive network topology, routing, firewall, VPN, DNS, or monitoring details. <br>
-Mitigation: Share only the network details needed for the task and avoid unnecessary secrets, credentials, or sensitive internal data. <br>
+**Output Format:** [Markdown guidance with implementation plans, configuration snippets, and command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-network-engineer) <br>
+**Other Properties Related to Output:** [No executable artifact is included; live network changes should remain subject to operator approval.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with configuration guidance and optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed before use on production network infrastructure.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

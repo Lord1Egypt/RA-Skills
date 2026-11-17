@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""实战 61 智能 query 重写 (2026-06-16)
+"""v20.61 智能 query 重写 (2026-06-16)
 - 生僻词 / 合成词 / 拼音: 自动加同义词 + 拼音
 - 短 query (< 4 字符): 不动
 - 速度快: LLM 重写 < 500ms (缓存常见词)
@@ -14,7 +14,7 @@ import urllib.parse
 from typing import List, Dict, Optional
 from pathlib import Path
 
-LLM_BASE_URL = os.environ.get('LLM_BASE_URL', 'https://api.token-star.cn/v1')
+LLM_BASE_URL = os.environ.get('LLM_BASE_URL', 'https://api.<service-domain>/v1')
 LLM_API_KEY = os.environ.get('LLM_API_KEY', '')
 LLM_MODEL = os.environ.get('LLM_MODEL', 'DeepSeek-V4-Flash')
 LLM_TIMEOUT = int(os.environ.get('LLM_TIMEOUT', '8'))
@@ -74,7 +74,7 @@ EN_MAP = {
 
 
 def simple_pinyin(text: str) -> str:
-    """实战 61: 简单字符 → 拼音映射 (部分)
+    """v20.61: 简单字符 → 拼音映射 (部分)
     """
     out = []
     for c in text:
@@ -86,7 +86,7 @@ def simple_pinyin(text: str) -> str:
 
 
 def expand_query(query: str) -> List[str]:
-    """实战 61: 扩展 query (同义词 + 拼音 + 英文)
+    """v20.61: 扩展 query (同义词 + 拼音 + 英文)
     返回: 多个变体 query 列表
     """
     variants = [query]  # 原 query 优先
@@ -113,7 +113,7 @@ def expand_query(query: str) -> List[str]:
 
 
 def rewrite_query(query: str, use_llm: bool = False) -> List[str]:
-    """实战 61: 智能 query 重写
+    """v20.61: 智能 query 重写
     use_llm=False: 快速路径 (拼音 + 英文映射)
     use_llm=True: LLM 拆词 + 加同义词 (慢 1-3s, 慎用)
     """

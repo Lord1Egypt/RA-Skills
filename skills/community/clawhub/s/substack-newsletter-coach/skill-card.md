@@ -1,40 +1,54 @@
-## Description: <br>
-Coaches newsletter writers on niche selection, voice, post structure, growth strategy, monetization, pricing, paid conversion, and platform migration across Substack and similar platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coach a Substack writer or other newsletter-platform writer through niche selection, voice development, post structure, growth strategy, free-versus-paid mix, pricing, paid conversion, and migration scenarios.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Newsletter writers, creators, and publishing operators use this skill to diagnose growth bottlenecks and plan concrete next steps for launching, scaling, monetizing, or migrating a newsletter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Newsletter platform, pricing, migration, and growth guidance may not fit a specific audience, market, or business model. <br>
-Mitigation: Review recommendations against current platform terms, audience data, revenue goals, and operational constraints before changing paid subscriptions or migrating platforms. <br>
-Risk: The skill provides coaching guidance rather than verified business, legal, or financial advice. <br>
-Mitigation: Treat outputs as planning input and validate major monetization, sponsorship, tax, or contractual decisions with appropriate human expertise. <br>
+## Use Case:
 
+External writers and creator teams use this skill to plan, launch, grow, monetize, and migrate newsletters on Substack, Beehiiv, Ghost, and ConvertKit. It helps diagnose subscriber growth, open-rate, and paid-conversion problems and returns stage-aware next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/substack-newsletter-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with structured recommendations, plans, title ideas, and metrics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stage diagnosis, bottleneck identification, 30-day and 90-day plans, post ideas, metrics to track, and advice to ignore.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Newsletter strategy, pricing, migration, or monetization recommendations may be incomplete or unsuitable for a specific business.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review business and paid-tier decisions before acting, especially pricing tests, platform migration, sponsorship, and paid-conversion changes.
+
+Risk: The skill may be invoked for broad newsletter-related requests and return general growth advice.
+
+Mitigation: Provide current newsletter stage, subscriber count, open rate, conversion data, platform, and goals so the advice can be checked against the user's context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/substack-newsletter-coach)
+- [ClawHub publisher profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance with ordered plans, diagnoses, post ideas, and metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No files, shell commands, code, credentials, persistence, or tool calls are produced by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

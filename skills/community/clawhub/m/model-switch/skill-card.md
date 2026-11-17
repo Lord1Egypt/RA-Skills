@@ -1,44 +1,55 @@
-## Description: <br>
-OpenClaw one-click AI model switching skill for switching models, viewing the current model, diagnosing model issues, adding or removing models, and comparing available models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw users switch, add, compare, and diagnose AI model configurations across agent defaults, model allowlists, and auth profiles.
 
-## Publisher: <br>
-[samsonvacity](https://clawhub.ai/user/samsonvacity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samsonvacity](https://clawhub.ai/user/samsonvacity)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage OpenClaw model configuration across session state, agent defaults, allowlists, and provider authentication files. It supports model switching, provider key setup, model listing, comparison, and configuration diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently change OpenClaw settings and auth profile files. <br>
-Mitigation: Back up ~/.openclaw before use and review openclaw.json and auth-profiles.json after running switch, add, remove, or add-key commands. <br>
-Risk: The skill can copy provider API keys from environment variables into per-agent authentication files. <br>
-Mitigation: Use narrowly scoped provider keys and install only when comfortable with API keys being written into OpenClaw configuration. <br>
-Risk: Bulk switching can affect all configured agents. <br>
-Mitigation: Avoid switch ALL unless intentional and verify the target model and provider before executing. <br>
+## Use Case:
 
+Developers and engineers using OpenClaw use this skill to switch active models, update model defaults, add provider models, compare model profiles, and diagnose provider/API-key configuration problems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samsonvacity/model-switch) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Matt Pocock Skills](https://github.com/mattpocock/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text and Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update OpenClaw JSON configuration and per-agent auth profile files when command scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server-resolved release metadata) <br>
+Risk: The skill can persist provider API keys into local OpenClaw configuration and agent auth-profile JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege API keys, back up ~/.openclaw before running add-key or switch commands, verify file permissions afterward, and rotate keys if those files may have been exposed.
+
+Risk: The skill can change OpenClaw model defaults, agent model selections, and model allowlists.
+
+Mitigation: Review the target provider/model before execution, run diagnostic or listing commands first when possible, and keep a backup of OpenClaw configuration so model settings can be restored.
+
+## Reference(s):
+
+- [ClawHub Model Switch Skill Page](https://clawhub.ai/samsonvacity/skills/model-switch)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+- [Matt Pocock Skills](https://github.com/mattpocock/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and configuration-change instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local OpenClaw JSON configuration changes and shell commands that affect model defaults and provider authentication profiles.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

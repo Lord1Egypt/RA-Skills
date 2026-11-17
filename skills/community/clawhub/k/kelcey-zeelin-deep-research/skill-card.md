@@ -1,42 +1,61 @@
-## Description: <br>
-ZeeLin Deep Research 深度研究是一款 AI 驱动的专业研究辅助平台，支持一句话生成与多步骤生成，提供深度、专家两大研究路径。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZeeLin Deep Research 深度研究 is an AI-assisted research skill that sends user research questions to ZeeLin's Deep Research service to create deep or expert-mode research analysis and reports.
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-External users, analysts, and business researchers use this skill to submit research questions to ZeeLin and receive deep or expert-mode research outputs for market, company, policy, product, and investment analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research prompts, generated outputs, and the ZeeLin API key are sent to the ZeeLin service. <br>
-Mitigation: Use a dedicated revocable API key and avoid confidential or regulated material unless the deployment has been approved for that data. <br>
-Risk: Report delivery workflows may create temporary files or publish generated content into Feishu. <br>
-Mitigation: Confirm the intended delivery channel and remove temporary report files after delivery when the runtime does not clean them automatically. <br>
+## Use Case:
 
+External users and developers use this skill to run structured research tasks through ZeeLin's Deep Research API, choosing deep mode for general synthesis or expert mode for longer market, company, policy, product, investment, or technical reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kelcey2023/kelcey-zeelin-deep-research) <br>
-- [ZeeLin Deep Research service](https://desearch.zeelin.cn) <br>
-- [ZeeLin API key and activity page](https://desearch.zeelin.cn/skill-activity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain-text research answers, with shell commands for setup and execution.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DESEARCH_API_KEY; report delivery may involve generated files or Feishu document links depending on the channel workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: User prompts and generated report data are processed by the external ZeeLin service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in environments where external processing by ZeeLin is approved, and avoid confidential, regulated, or proprietary research topics unless data-handling terms have been reviewed.
+
+Risk: Automated report delivery can upload report contents to Feishu or send downloaded files through messaging channels.
+
+Mitigation: Confirm the destination channel, recipient, and data-sharing policy before enabling automated delivery or Feishu document creation.
+
+Risk: Background execution and temporary report-file workflows may leave generated research artifacts on shared systems.
+
+Mitigation: Harden scripts before shared or automated use by constraining runtime, using unique temporary paths, limiting permissions, and cleaning up report files after delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kelcey2023/skills/kelcey-zeelin-deep-research)
+- [Publisher profile](https://clawhub.ai/user/kelcey2023)
+- [ZeeLin Deep Research service](https://desearch.zeelin.cn)
+- [ZeeLin registration and API key page](https://desearch.zeelin.cn/skill-activity)
+- [ZeeLin conversation API](https://desearch.zeelin.cn/api/conversation/anew)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and research report text returned from API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, node, and a DESEARCH_API_KEY environment variable; can retrieve report content after polling a ZeeLin session.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

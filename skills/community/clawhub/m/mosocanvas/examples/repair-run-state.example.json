@@ -1,0 +1,67 @@
+{
+  "schema": "moso.run-state/0.4",
+  "task_id": "example-multi-round-repair",
+  "mode": "repair",
+  "phase": "preflight",
+  "spec_ref": "moso.visual-spec/example/3",
+  "approved_checkpoint": {
+    "source_ref": "codex://artifact/approved-v3",
+    "role": "approved-output",
+    "width_px": 1536,
+    "height_px": 1024,
+    "user_confirmed_at": "2026-07-26T00:00:00Z"
+  },
+  "lineage": {
+    "parent_ref": "codex://artifact/approved-v3",
+    "operation": "masked-generative",
+    "depends_on_parent": true,
+    "branch_reason": "The next repair depends on accepted changes in v3."
+  },
+  "allowed_changes": ["skin material inside the reviewed torso mask"],
+  "protected_elements": ["face", "hands", "pose", "cat", "helmet", "wordmark", "background", "dimensions"],
+  "attempt_budget": {
+    "generative": 0,
+    "repair": 2,
+    "generative_used": 0,
+    "repair_used": 0
+  },
+  "output_requirements": {
+    "carrier": "horizontal social key visual",
+    "formats": ["PNG"],
+    "width": 1536,
+    "height": 1024,
+    "unit": "px",
+    "frame_count": 1
+  },
+  "verification": [
+    {"check": "skin works at feed and detail scale", "method": "use-scale and 200-percent crops", "status": "pending"},
+    {"check": "protected content remains stable", "method": "outside-mask pixel check plus identity review", "status": "pending"}
+  ],
+  "direction_approval_status": "approved",
+  "quality_status": {
+    "use_scale": "pending",
+    "detail_scale": "pending",
+    "protected_drift": "pending",
+    "trajectory": "pending",
+    "independent_review": "pending",
+    "user_acceptance": "pending"
+  },
+  "generation_attempts": [
+    {
+      "attempt_id": "repair-v4-a1",
+      "status": "planned",
+      "pre_generation_brief": {
+        "objective": "Remove synthetic skin pattern without changing identity or pose.",
+        "viewer_position": "unchanged from the approved checkpoint",
+        "first_read": "the accepted seated figure remains dominant",
+        "composition_geometry": "immutable full-frame composition; edit only the reviewed torso mask",
+        "narrative_beat": "unchanged",
+        "color_light_logic": "preserve existing directional monochrome light",
+        "required_content": ["accepted figure", "cat", "helmet", "wordmark", "background"],
+        "protected_content": ["face", "hands", "anatomy", "pose", "all out-of-mask pixels"],
+        "main_risk": "The repair may reinterpret anatomy or spread texture outside the mask.",
+        "communicated_to_user": true
+      }
+    }
+  ]
+}

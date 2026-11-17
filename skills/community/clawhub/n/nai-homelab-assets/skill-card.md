@@ -1,39 +1,50 @@
-## Description: <br>
-Track, manage, and report on homelab hardware inventory, including purchase details, warranty dates, power use, location, and insurance-ready asset reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track, manage, and report on homelab hardware inventory with purchase, warranty, power use, location, and insurance-ready reporting details.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-Developers, homelab operators, and technical users use this skill to maintain a local hardware inventory, search assets, check warranties, estimate power costs, and generate asset reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Inventory files and generated reports can reveal owned equipment, physical locations, serial numbers, purchase prices, and operational notes. <br>
-Mitigation: Keep the inventory JSON and generated reports private, avoid sharing them publicly, and remove sensitive fields before sending reports to others. <br>
+## Use Case:
 
+Homelab operators and technical users use this skill to maintain a local hardware inventory, inspect warranties and locations, estimate power costs, and generate insurance-ready Markdown reports.
 
-## Reference(s): <br>
-- [Common Homelab Device Power Draw Estimates](references/power-estimates.md) <br>
-- [Example inventory structure](assets/inventory.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration] <br>
-**Output Format:** [Markdown reports, JSON inventory data, terminal text, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads and writes a local inventory JSON file; reports can be written to Markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Homelab inventory records and reports can expose serial numbers, purchase prices, service notes, and physical locations stored in local plaintext JSON.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep inventory files and generated reports private, restrict filesystem access to the inventory path, and remove or replace sensitive values before sharing JSON, search output, reports, or examples.
+
+## Reference(s):
+
+- [Common Homelab Device Power Draw Estimates](references/power-estimates.md)
+- [Example Homelab Inventory JSON](assets/inventory.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, JSON, and Markdown reports with shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local inventory JSON file, defaulting to ~/.openclaw/workspace/homelab-assets/inventory.json or a path set with HOMELAB_ASSETS_PATH.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

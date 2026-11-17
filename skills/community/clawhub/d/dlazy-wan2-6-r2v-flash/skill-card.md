@@ -1,44 +1,60 @@
-## Description: <br>
-Dlazy Wan2.6 R2v Flash helps agents generate dynamic short videos from reference images using Wan 2.6 Flash. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quickly generate dynamic short videos from reference images using Wan 2.6 Flash.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Creators, developers, and agents use this skill to generate short videos from reference images through the dLazy CLI and hosted Wan 2.6 Flash API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and referenced media files may be sent to dLazy's hosted API and media storage. <br>
-Mitigation: Confirm the user intends to use dLazy's hosted service before invocation and avoid sending sensitive media unless approved. <br>
-Risk: The skill requires a dLazy API key and may consume account credits. <br>
-Mitigation: Use the documented dLazy authentication flow, keep the key scoped to the user's organization, and rotate or revoke it from the dLazy dashboard if needed. <br>
-Risk: A global CLI install persists a local executable and configuration. <br>
-Mitigation: Prefer the pinned npx invocation or review the pinned CLI source before installing globally. <br>
+## Use Case:
 
+External users and developers use this skill to invoke dLazy's hosted Wan 2.6 Flash workflow for fast reference-image-to-video generation from prompts, images, and generation options.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-wan2-6-r2v-flash) <br>
-- [dLazy CLI repository](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a dLazy API key; may upload prompts and referenced media to dLazy and return hosted output URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: The skill runs a third-party npm CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the pinned @dlazy/cli version, prefer npx when possible, review the package before installation, and avoid running npm as administrator or root.
+
+Risk: The workflow requires a dLazy API key that may be stored locally or passed through the environment.
+
+Mitigation: Use a revocable or limited API key, protect the local config and environment variables, and rotate or revoke the key when access changes.
+
+Risk: Prompts and selected media files are sent to dLazy cloud endpoints for generation.
+
+Mitigation: Only submit media intended for third-party processing and confirm that uploaded content is appropriate for the user's privacy and usage requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dlazyai/skills/dlazy-wan2-6-r2v-flash)
+- [dLazy CLI homepage](https://github.com/dlazyai/cli)
+- [@dlazy/cli npm package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON result examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The invoked CLI returns generated media URLs or, for asynchronous runs, a task identifier that can be polled.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

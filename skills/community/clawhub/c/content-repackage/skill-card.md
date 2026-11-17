@@ -1,43 +1,53 @@
-## Description: <br>
-Convert markdown content into Twitter threads, email digests, and HTML landing pages for reuse across publishing channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert markdown content into Twitter threads, email digests, and standalone HTML landing pages.
 
-## Publisher: <br>
-[zhiuannnn](https://clawhub.ai/user/zhiuannnn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhiuannnn](https://clawhub.ai/user/zhiuannnn)
 
-## Use Case: <br>
-Content creators, newsletter authors, developers, and marketers use this skill to repackage one markdown article into social, email, and landing-page outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool may not run if the helper modules referenced by the script are not supplied with the installed artifact. <br>
-Mitigation: Confirm the required helper modules are present and review any separately provided helper modules before running the skill. <br>
-Risk: Generated files are written into the chosen output directory. <br>
-Mitigation: Use an output directory where generated thread, email, and HTML files are expected and acceptable. <br>
-Risk: Input markdown is converted directly into publishable formats. <br>
-Mitigation: Only process markdown files intended for repackaging and review generated outputs before publishing. <br>
+## Use Case:
 
+Content creators, newsletter authors, developers, and marketers use this skill to repackage one markdown source into channel-specific publishing assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhiuannnn/content-repackage) <br>
-- [Publisher profile](https://clawhub.ai/user/zhiuannnn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Generated text files and standalone HTML, with shell command usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a Twitter thread text file, an email digest text file, and a standalone HTML landing page in the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The package appears incomplete because required local helper modules are missing, so the script may fail before generating output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the publisher supplies the required markdown parser and generator modules before relying on the release.
+
+Risk: The script reads a user-selected markdown file and writes generated files to an output directory.
+
+Mitigation: Run it only against intended input files and review the generated files before publishing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhiuannnn/skills/content-repackage)
+
+## Skill Output:
+
+**Output Type(s):** [text, code]
+
+**Output Format:** [Plain text and standalone HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a Twitter thread text file, an email digest text file, and an HTML landing page to the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

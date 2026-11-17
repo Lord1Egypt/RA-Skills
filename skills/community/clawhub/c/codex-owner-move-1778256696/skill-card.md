@@ -1,41 +1,53 @@
-## Description: <br>
-Documents a maintainer validation workflow for moving a ClawHub skill from a personal publisher to an organization publisher, checking the version state, and cleaning up the temporary skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Documents a maintainer-only ClawHub owner migration validation workflow.
 
-## Publisher: <br>
-[steipete](https://clawhub.ai/user/steipete) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[steipete](https://clawhub.ai/user/steipete)
 
-## Use Case: <br>
-ClawHub maintainers use this skill to validate an owner migration flow on a throwaway skill, including publishing under a personal owner, moving to an organization owner with explicit opt-in, inspecting the latest version, and deleting the test skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow directs maintainer-level publishing, ownership migration, and deletion actions that ordinary users should not run. <br>
-Mitigation: Install or invoke it only for intentional ClawHub maintainer validation on a dedicated throwaway skill. <br>
-Risk: Running the workflow against the wrong target could move ownership or delete an unintended skill. <br>
-Mitigation: Verify the exact target slug, publisher, migration opt-in, version state, and cleanup step before each mutation. <br>
+## Use Case:
 
+ClawHub maintainers use this skill to validate moving a temporary skill from a personal publisher to an organization owner, checking version history and cleanup behavior after the move.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/steipete/codex-owner-move-1778256696) <br>
-- [Source skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only workflow for maintainer validation; it does not produce executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: Owner migration validation can alter or delete a skill record if run against a non-temporary release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against a throwaway skill record with the intended permissions, then delete the temporary skill after validation.
+
+Risk: The workflow is not a general-purpose user skill and may be misapplied outside maintainer testing.
+
+Mitigation: Install or use it only for maintainer validation of ClawHub owner migration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/steipete/skills/codex-owner-move-1778256696)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown prose with numbered validation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintainer-only checklist; no executable code in the artifact.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

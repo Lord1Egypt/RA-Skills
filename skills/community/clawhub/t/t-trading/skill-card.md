@@ -1,46 +1,60 @@
-## Description: <br>
-Provides Chinese-language structured technical analysis for A-share and cryptocurrency short-term trading using Vegas Tunnel EMA channels, Fibonacci retracements, multi-timeframe resonance scoring, and signal synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+T Trading is a Chinese-language prompt skill that guides agents to produce structured technical trading analysis for A-share and cryptocurrency markets using Vegas Tunnel EMA channels, Fibonacci levels, multi-timeframe scoring, and signal synthesis.
 
-## Publisher: <br>
-[Wscats](https://clawhub.ai/user/Wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-External traders and market-analysis users can ask an agent for structured A-share or cryptocurrency technical-analysis reports, including trend direction, resonance scores, entry levels, stop-loss levels, take-profit levels, position guidance, and a risk disclaimer. The skill is intended as technical reference material, not personalized financial advice or automated trading execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs may be mistaken for personalized financial advice or automatic trade instructions. <br>
-Mitigation: Treat outputs as technical-analysis reference only; require the user to make independent decisions and keep the disclaimer visible in reports. <br>
-Risk: The skill may activate on broad market-analysis phrasing. <br>
-Mitigation: Confirm the requested symbol, market, timeframe, and analysis purpose before producing trade-oriented guidance. <br>
-Risk: Analysis quality depends on current and complete market data supplied in the conversation. <br>
-Mitigation: Ask for missing price, timeframe, volume, or trend data before calculating levels, and clearly state when analysis is based on incomplete context. <br>
+## Use Case:
 
+Developers and agent users can load this skill when they want a Chinese-language assistant to answer explicit short-term market-analysis requests with a standardized technical-analysis report. It is intended for technical reference workflows and should not be treated as personalized financial advice or automated trading authorization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Wscats/t-trading) <br>
-- [Publisher profile](https://clawhub.ai/user/Wscats) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Vegas Tunnel resonance rules](artifact/vegas-tunnel-resonance-skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese-language Markdown technical-analysis report with scoring tables, price levels, action guidance, and risk disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include entry, stop-loss, take-profit, position-sizing, and observe-only recommendations based on the provided market context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact documentation) <br>
+Risk: The skill can produce entry, stop-loss, take-profit, and position-sizing language that users may mistake for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as technical reference only, retain the artifact disclaimer, and require the user to make independent trading decisions.
+
+Risk: Market analysis can be misleading if the agent lacks current prices, EMA values, Fibonacci anchors, or timeframe data.
+
+Mitigation: Require current market data from the user or an independently verified data source before producing specific price-level guidance.
+
+Risk: The security review notes no code execution or hidden data flow, but the prompt should only activate for explicit market-analysis requests.
+
+Mitigation: Configure activation around clear trading-analysis intent and avoid using the skill for unrelated financial, legal, or personal-advice requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wscats/skills/t-trading)
+- [Publisher Profile](https://clawhub.ai/user/wscats)
+- [Artifact README](artifact/README.md)
+- [Core Vegas Tunnel Resonance Skill](artifact/vegas-tunnel-resonance-skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown technical-analysis report with tables, scores, price levels, operation plan, risk notes, and disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include entry, stop-loss, take-profit, position-sizing, and observe-or-trade guidance; users should verify live market data independently.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

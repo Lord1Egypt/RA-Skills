@@ -1,0 +1,8 @@
+interface:
+  display_name: "小说简介与封底文案"
+  short_description: "为中文小说生成三种定位清晰、避开剧透的简介与卖点文案"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+  default_prompt: "使用 $novel-blurb-variants-cn，基于我的故事梗概、类型和禁剧透点写三版书籍简介与一句卖点。"
+policy:
+  allow_implicit_invocation: true

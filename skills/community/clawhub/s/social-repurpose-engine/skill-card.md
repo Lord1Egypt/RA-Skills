@@ -1,42 +1,54 @@
-## Description: <br>
-Convert long-form content into platform-native assets for LinkedIn, X, newsletter, and email while preserving message consistency and brand voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert long-form content into platform-native assets for LinkedIn, X, newsletter, and email while preserving message consistency and brand voice.
 
-## Publisher: <br>
-[anugotta](https://clawhub.ai/user/anugotta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anugotta](https://clawhub.ai/user/anugotta)
 
-## Use Case: <br>
-Creators, founders, marketers, and brand teams use this skill to turn articles, transcripts, notes, or memos into channel-specific LinkedIn, X, newsletter, and email drafts with aligned CTAs and publishing cadence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated social, newsletter, or email copy could preserve factual errors, omit required attribution, or overstate claims from the source material. <br>
-Mitigation: Review generated drafts against the source content, attribution needs, platform rules, and applicable legal or compliance requirements before publishing or sending. <br>
-Risk: Drafts may miss brand voice, banned terminology, character limits, or posting cadence constraints. <br>
-Mitigation: Confirm brand voice, CTA objective, target channels, banned terms, and publishing constraints before generation, then edit the final pack for fit. <br>
+## Use Case:
 
+External users, content teams, founders, creators, and brands use this skill to repurpose articles, transcripts, notes, and memos into channel-specific LinkedIn, X, newsletter, and email drafts with aligned voice, CTA, and posting cadence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anugotta/social-repurpose-engine) <br>
-- [Setup](setup.md) <br>
-- [Examples](examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown drafts and structured lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces platform-specific drafts, CTA alignment, and a content calendar suggestion for user review before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated marketing drafts may include inaccurate claims, overstatement, or tone that does not fit the user's brand or compliance requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review drafts before publication, verify factual claims against the source material, and apply brand, legal, and compliance constraints before posting.
+
+Risk: The skill uses user-provided long-form content to create publishable drafts, which may expose sensitive or unreleased material to the agent.
+
+Mitigation: Provide only content that is appropriate for the agent to process, and remove confidential details before requesting repurposed outputs.
+
+## Reference(s):
+
+- [Social Repurpose Engine release page](https://clawhub.ai/anugotta/skills/social-repurpose-engine)
+- [Publisher profile](https://clawhub.ai/user/anugotta)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown content pack with platform-specific drafts and a content calendar suggestion]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces LinkedIn drafts, X threads or short-form posts, newsletter drafts, email drafts, CTA alignment, and reuse planning.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

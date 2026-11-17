@@ -1,45 +1,55 @@
-## Description: <br>
-Analyzes manually pasted competitor listing copy across titles, bullets, descriptions, and keywords to produce differentiation suggestions and opportunity points through Yufluent's cloud harness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yufluent Comp Track compares manually provided competitor listing copy across titles, bullets, descriptions, and keywords, then returns differentiation suggestions and opportunity areas through the Yufluent cloud harness.
 
-## Publisher: <br>
-[metahuan](https://clawhub.ai/user/metahuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[metahuan](https://clawhub.ai/user/metahuan)
 
-## Use Case: <br>
-External ecommerce operators and developers use this skill to compare their product listing copy with manually supplied competitor copy for Amazon, Shopify, or TikTok and receive a cloud-generated competitor analysis report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends manually supplied competitor listing text and optional own product copy to Yufluent's cloud service. <br>
-Mitigation: Use it only with content your organization permits sending to the Yufluent service, and avoid confidential or partner-restricted listing material. <br>
-Risk: The skill requires TOKENAPI_KEY and can optionally use TOKENAPI_BASE_URL to change the API endpoint. <br>
-Mitigation: Store TOKENAPI_KEY as a secret and set TOKENAPI_BASE_URL only when the target endpoint is explicitly trusted. <br>
-Risk: Competitor analysis output may be incomplete or misleading if the pasted listing copy is inaccurate or incomplete. <br>
-Mitigation: Review the generated report before applying listing changes, and validate recommendations against marketplace policy and business context. <br>
+## Use Case:
 
+External ecommerce sellers, operators, and agents use this skill to compare manually supplied competitor listing copy for Amazon, Shopify, or TikTok. It helps identify positioning gaps, keyword opportunities, and concrete listing improvements without scraping platform product pages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metahuan/yufluentcn-comp-track) <br>
-- [Publisher profile](https://clawhub.ai/user/metahuan) <br>
-- [Yufluent homepage](https://claw.changzhiai.com) <br>
-- [Yufluent OpenClaw documentation](https://claw.changzhiai.com/app/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown or JSON returned from a cloud API client, with CLI examples for invocation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOKENAPI_KEY; optional TOKENAPI_BASE_URL overrides the default API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence and skill frontmatter) <br>
+Risk: Local file paths supplied as listing inputs can cause those file contents to be uploaded for cloud analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each file before passing its path and only submit content intended for the Yufluent service.
+
+Risk: A configurable TOKENAPI_BASE_URL can receive the TOKENAPI_KEY and submitted listing content.
+
+Mitigation: Use a trusted HTTPS endpoint, avoid untrusted local or third-party endpoints, and keep TOKENAPI_KEY secret.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/metahuan/skills/yufluentcn-comp-track)
+- [Yufluent homepage](https://claw.changzhiai.com)
+- [Yufluent OpenClaw](https://claw.changzhiai.com/app/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text report returned from cloud skill execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOKENAPI_KEY; TOKENAPI_BASE_URL is optional and should point to a trusted service endpoint.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

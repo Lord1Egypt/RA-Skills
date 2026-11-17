@@ -1,43 +1,60 @@
-## Description: <br>
-Build and modify Knods visual AI workflows using either the OpenClaw Gateway polling protocol or the Knods headless flows API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and modify Knods visual AI workflows using either the OpenClaw Gateway polling protocol or the Knods headless flows API.
 
-## Publisher: <br>
-[alesys](https://clawhub.ai/user/alesys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alesys](https://clawhub.ai/user/alesys)
 
-## Use Case: <br>
-Developers and operators use this skill to connect OpenClaw agents with Knods Iris chat and to drive Knods flows programmatically. It supports canvas mutation actions, flow discovery, schema inspection, run execution, polling, cancellation, and output retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The packaged bridge installs and runs an always-on user service for polling Knods messages. <br>
-Mitigation: Install only when continuous bridge polling is needed, and stop or disable the user service when it is not in use. <br>
-Risk: Gateway-token URLs may appear in service logs. <br>
-Mitigation: Use dedicated, revocable Knods tokens with minimal scopes, avoid sharing service logs, and rotate any gateway token already used with this version. <br>
+## Use Case:
 
+Developers and operators use this skill to connect an OpenClaw agent with Knods, either by handling Iris-style canvas chat payloads or by programmatically discovering, running, polling, cancelling, and retrieving results from Knods flows.
 
-## Reference(s): <br>
-- [Knods skill page](https://clawhub.ai/alesys/knods) <br>
-- [Project homepage](https://github.com/alesys/openclaw-skill-knods) <br>
-- [OpenClaw Gateway Protocol](references/protocol.md) <br>
-- [Knods Headless Flow Execution API](references/headless-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Assistant text with inline Knods action JSON blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May stream gateway responses by messageId and may print JSON responses from the packaged headless client.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The skill installs a persistent user service that polls Knods and forwards remote chat content into a local OpenClaw agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privileged OpenClaw agent profile and disable or stop the systemd user service when the bridge is not needed.
+
+Risk: Gateway tokens may be embedded in URLs and exposed through service logs.
+
+Mitigation: Prefer separate locked-down environment files for Knods secrets, avoid placing tokens in logged URLs where possible, and rotate gateway tokens if logs may have exposed them.
+
+Risk: The bridge can connect local automation to a remote Knods host.
+
+Mitigation: Use HTTPS and trusted Knods hosts, and review the configured base URLs and API keys before enabling the service.
+
+## Reference(s):
+
+- [Knods release page](https://clawhub.ai/alesys/skills/knods)
+- [Project homepage](https://github.com/alesys/openclaw-skill-knods)
+- [OpenClaw Gateway Protocol (Knods)](references/protocol.md)
+- [Knods Headless Flow Execution API](references/headless-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON action blocks and shell commands; command-line clients emit JSON responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit compact [KNODS_ACTION] JSON blocks when a Knods canvas mutation is intended; otherwise returns normal assistant text.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

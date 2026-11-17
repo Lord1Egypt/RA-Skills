@@ -1,41 +1,57 @@
-## Description: <br>
-Build a cost-efficient LLM evaluation ensemble with sampling, tiebreakers, and deterministic validators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a cost-efficient LLM evaluation ensemble with sampling, tiebreakers, and deterministic validators.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers and engineers use this skill to design LLM-as-judge evaluation workflows for comparing generative AI outputs across models, promotion gates, and shadow-testing pipelines. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Evaluation workflows may send prompts, source text, candidate outputs, or ground truth to external judge providers. <br>
-Mitigation: Use scoped API keys with spending limits, confirm provider data-handling settings, and avoid sending sensitive data unless the deployment has approved controls. <br>
-Risk: Stored judge inputs, outputs, or rationales can expose sensitive evaluation data if logs are retained broadly. <br>
-Mitigation: Redact sensitive logs, restrict access, and apply retention limits before using the workflow with confidential data. <br>
-Risk: Judge model behavior can drift across provider model versions and affect evaluation consistency. <br>
-Mitigation: Pin judge model versions, calibrate against manually reviewed samples, and use full judge coverage for promotion gates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/reddi-llm-judge) <br>
+## Use Case:
 
+Developers and evaluation engineers use this skill to design LLM-as-judge workflows for comparing generative AI outputs at scale with deterministic validators, heuristic scoring, sampled judges, and tiebreakers.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with Python examples and evaluation configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes external judge-provider considerations and local Ollama workflow guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sampled evaluation artifacts may be sent to external Anthropic or OpenAI judge models.
+
+Mitigation: Use the skill only when external judge API calls are acceptable, and redact sensitive prompts, customer data, source text, ground truth, and model outputs before judging.
+
+Risk: Raw judge responses may retain sensitive evaluation content in logs.
+
+Mitigation: Avoid storing raw judge responses unless necessary, and apply the same retention and access controls used for sensitive evaluation data.
+
+Risk: Judge disagreement or model-version drift can affect evaluation decisions.
+
+Mitigation: Calibrate judge scores against manual review, pin judge model versions, and use tiebreakers or full judging coverage for promotion gates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/reddi-llm-judge)
+- [Publisher profile](https://clawhub.ai/user/nissan)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scoring dimensions, sampling guidance, tiebreaker guidance, and environment prerequisites.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-小窗幽宠物子技能。当用户询问宠物养护、猫狗饮食、护理、行为等问题时激活。涵盖猫狗日常养护知识，包括饮食搭配、日常护理、行为交流、季节养护等。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiao Chuang You Pet helps agents answer general pet-care questions about cat and dog diet, grooming, behavior, seasonal care, and Maine Coon-specific considerations.
 
-## Publisher: <br>
-[zcr3344](https://clawhub.ai/user/zcr3344) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zcr3344](https://clawhub.ai/user/zcr3344)
 
-## Use Case: <br>
-Pet owners use this skill to get warm, conversational guidance about cat and dog feeding, grooming, behavior, seasonal care, and Maine Coon-specific care considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad pet-related terms and provide guidance in casual conversations about animals. <br>
-Mitigation: Review the response context before relying on advice, especially when the animal's species, age, symptoms, or environment are unclear. <br>
-Risk: Pet health or emergency guidance could be mistaken for professional veterinary advice. <br>
-Mitigation: Treat health guidance as informational only and consult a veterinarian for illness, injury, poisoning, emergencies, or persistent symptoms. <br>
+## Use Case:
 
+External pet owners use this skill for general cat and dog care guidance, including feeding, grooming, behavior, and conversational follow-up about their pet's profile. The skill is not intended to provide veterinary diagnosis, medication advice, urgent care triage, or breeding advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zcr3344/xiao-chuang-you-pet) <br>
-- [Publisher profile](https://clawhub.ai/user/zcr3344) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational pet-care guidance; not a veterinary diagnosis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Users may treat general pet-care responses as veterinary diagnosis or urgent medical guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses to general care guidance and direct users to consult a veterinarian for illness, urgent symptoms, medication, diagnosis, or treatment decisions.
+
+Risk: The skill may remember pet details across conversations if the host honors MEMORY.md instructions.
+
+Mitigation: Store only relevant pet profile details and avoid recording sensitive personal information about the owner.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zcr3344/skills/xiao-chuang-you-pet)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Conversational text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [General pet-care guidance; no code execution, network behavior, or tool calls are produced by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and release changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

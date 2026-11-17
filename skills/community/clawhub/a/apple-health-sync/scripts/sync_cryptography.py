@@ -9,23 +9,41 @@ import base64
 import hashlib
 import json
 import os
-import subprocess
-import tempfile
+import stat
 from pathlib import Path
 from typing import Any, Dict, Tuple
 
 try:
     from cryptography.hazmat.primitives import hashes, serialization
-    from cryptography.hazmat.primitives.asymmetric import ed25519, x25519
+    from cryptography.hazmat.primitives.asymmetric import ed25519, padding, rsa, x25519
     from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
     from cryptography.hazmat.primitives.kdf.hkdf import HKDF
 except ImportError as import_error:  # pragma: no cover - import failure is runtime environment specific
     raise RuntimeError(
-        "Missing Python dependency 'cryptography'. Install it before using protocol v5."
+        "Missing Python dependency 'cryptography'. Install the pinned skill requirement before use."
     ) from import_error
 
 
 # Legacy v4 / previous version
+
+
+def read_private_key_bytes(path: Path) -> bytes:
+    if path.is_symlink():
+        raise RuntimeError(f"Private key must not be a symbolic link: {path}")
+    file_mode = path.stat().st_mode
+    if not stat.S_ISREG(file_mode):
+        raise RuntimeError(f"Private key path is not a regular file: {path}")
+    os.chmod(path, 0o600)
+    return path.read_bytes()
+
+
+def secure_public_key_file(path: Path) -> None:
+    if path.is_symlink():
+        raise RuntimeError(f"Public key must not be a symbolic link: {path}")
+    file_mode = path.stat().st_mode
+    if not stat.S_ISREG(file_mode):
+        raise RuntimeError(f"Public key path is not a regular file: {path}")
+    os.chmod(path, 0o644)
 
 
 def public_key_base64_from_pem(public_key_pem: str) -> str:
@@ -76,132 +94,71 @@ def generate_legacy_rsa_keys(
     public_exists = public_key_path.exists()
     if private_exists or public_exists:
         if private_exists and public_exists and not rotate:
+            read_private_key_bytes(private_key_path)
+            secure_public_key_file(public_key_path)
             return "existing"
         if not rotate:
-            raise RuntimeError("Only one key file exists. Fix manually or run with --rotate.")
-        private_key_path.unlink(missing_ok=True)
-        public_key_path.unlink(missing_ok=True)
+            raise RuntimeError(
+                "Only one legacy key file exists. Restore the complete key set from backup before continuing."
+            )
 
-    run_checked(
-        [
-            "openssl",
-            "genpkey",
-            "-algorithm",
-            "RSA",
-            "-pkeyopt",
-            "rsa_keygen_bits:2048",
-            "-out",
-            str(private_key_path),
-        ]
+    private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+    atomic_write_bytes(
+        private_key_path,
+        private_key.private_bytes(
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PrivateFormat.PKCS8,
+            encryption_algorithm=serialization.NoEncryption(),
+        ),
+        0o600,
     )
-
-    run_checked(["openssl", "pkey", "-in", str(private_key_path), "-pubout", "-out", str(public_key_path)])
-    os.chmod(private_key_path, 0o600)
-    os.chmod(public_key_path, 0o644)
+    atomic_write_bytes(
+        public_key_path,
+        private_key.public_key().public_bytes(
+            encoding=serialization.Encoding.PEM,
+            format=serialization.PublicFormat.SubjectPublicKeyInfo,
+        ),
+        0o644,
+    )
     return "generated"
 
 
+def load_legacy_rsa_private_key(path: Path) -> rsa.RSAPrivateKey:
+    key = serialization.load_pem_private_key(read_private_key_bytes(path), password=None)
+    if not isinstance(key, rsa.RSAPrivateKey):
+        raise RuntimeError(f"Unexpected legacy RSA private key type: {path}")
+    return key
+
+
 def sign_legacy_challenge(private_key_path: Path, challenge: str, algorithm: str) -> str:
-    with tempfile.NamedTemporaryFile(delete=False) as challenge_file:
-        challenge_file.write(challenge.encode("utf-8"))
-        challenge_file_path = Path(challenge_file.name)
-    with tempfile.NamedTemporaryFile(delete=False) as signature_file:
-        signature_file_path = Path(signature_file.name)
-
-    algo = algorithm.lower()
-    if "rsa" in algo:
-        command = [
-            "openssl",
-            "dgst",
-            "-sha256",
-            "-sign",
-            str(private_key_path),
-            "-binary",
-            "-out",
-            str(signature_file_path),
-            str(challenge_file_path),
-        ]
-    else:
-        command = [
-            "openssl",
-            "pkeyutl",
-            "-sign",
-            "-rawin",
-            "-inkey",
-            str(private_key_path),
-            "-in",
-            str(challenge_file_path),
-            "-out",
-            str(signature_file_path),
-        ]
-
-    try:
-        subprocess.run(command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        signature_bytes = signature_file_path.read_bytes()
-        return base64.b64encode(signature_bytes).decode("ascii")
-    except subprocess.CalledProcessError as sign_error:
-        message = sign_error.stderr.decode("utf-8", errors="replace")
-        raise RuntimeError(f"Challenge signing failed: {message}") from sign_error
-    finally:
-        challenge_file_path.unlink(missing_ok=True)
-        signature_file_path.unlink(missing_ok=True)
+    if "rsa" not in algorithm.lower():
+        raise RuntimeError(f"Unsupported legacy signing algorithm: {algorithm}")
+    private_key = load_legacy_rsa_private_key(private_key_path)
+    signature = private_key.sign(
+        challenge.encode("utf-8"),
+        padding.PKCS1v15(),
+        hashes.SHA256(),
+    )
+    return b64encode_bytes(signature)
 
 
 def read_legacy_rsa_block_size(private_key_path: Path) -> int:
-    result = subprocess.run(
-        ["openssl", "pkey", "-in", str(private_key_path), "-text", "-noout"],
-        check=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-    )
-    key_size_match = None
-    for line in result.stdout.splitlines():
-        if "Private-Key:" in line:
-            key_size_match = line
-            break
-    if not key_size_match:
-        raise RuntimeError("Unable to determine RSA key size.")
-
-    start = key_size_match.find("(")
-    end = key_size_match.find(" bit")
-    if start < 0 or end < 0:
-        raise RuntimeError("Unable to determine RSA key size.")
-    key_bits = int(key_size_match[start + 1:end])
-    return key_bits // 8
+    return load_legacy_rsa_private_key(private_key_path).key_size // 8
 
 
 def decrypt_legacy_rsa_chunk(private_key_path: Path, encrypted_chunk: bytes) -> bytes:
-    with tempfile.NamedTemporaryFile(delete=False) as in_file:
-        in_file.write(encrypted_chunk)
-        in_path = Path(in_file.name)
-    with tempfile.NamedTemporaryFile(delete=False) as out_file:
-        out_path = Path(out_file.name)
-
-    command = [
-        "openssl",
-        "pkeyutl",
-        "-decrypt",
-        "-inkey",
-        str(private_key_path),
-        "-in",
-        str(in_path),
-        "-out",
-        str(out_path),
-        "-pkeyopt",
-        "rsa_padding_mode:oaep",
-        "-pkeyopt",
-        "rsa_oaep_md:sha256",
-    ]
+    private_key = load_legacy_rsa_private_key(private_key_path)
     try:
-        subprocess.run(command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        return out_path.read_bytes()
-    except subprocess.CalledProcessError as decrypt_error:
-        message = decrypt_error.stderr.decode("utf-8", errors="replace")
-        raise RuntimeError(f"RSA decrypt failed: {message}") from decrypt_error
-    finally:
-        in_path.unlink(missing_ok=True)
-        out_path.unlink(missing_ok=True)
+        return private_key.decrypt(
+            encrypted_chunk,
+            padding.OAEP(
+                mgf=padding.MGF1(algorithm=hashes.SHA256()),
+                algorithm=hashes.SHA256(),
+                label=None,
+            ),
+        )
+    except ValueError as decrypt_error:
+        raise RuntimeError("RSA decrypt failed.") from decrypt_error
 
 
 def decrypt_legacy_rsa_chunked_payload(
@@ -213,10 +170,26 @@ def decrypt_legacy_rsa_chunked_payload(
     if len(encrypted_bytes) % block_size != 0:
         raise RuntimeError("Encrypted payload length does not align with RSA block size.")
 
+    private_key = load_legacy_rsa_private_key(private_key_path)
+    if block_size != private_key.key_size // 8:
+        raise RuntimeError("Configured RSA block size does not match the private key.")
+
     output = bytearray()
     for offset in range(0, len(encrypted_bytes), block_size):
         chunk = encrypted_bytes[offset : offset + block_size]
-        output.extend(decrypt_legacy_rsa_chunk(private_key_path, chunk))
+        try:
+            output.extend(
+                private_key.decrypt(
+                    chunk,
+                    padding.OAEP(
+                        mgf=padding.MGF1(algorithm=hashes.SHA256()),
+                        algorithm=hashes.SHA256(),
+                        label=None,
+                    ),
+                )
+            )
+        except ValueError as decrypt_error:
+            raise RuntimeError("RSA decrypt failed.") from decrypt_error
     return bytes(output)
 
 
@@ -228,10 +201,6 @@ V5_SIGNING_ALGORITHM = "Ed25519"
 V5_ENCRYPTION_ALGORITHM = "X25519"
 V5_BOX_ALGORITHM = "X25519-ChaCha20Poly1305"
 V5_HKDF_SALT = b"healthsync-v5"
-
-
-def run_checked(command: list[str]) -> subprocess.CompletedProcess:
-    return subprocess.run(command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
 def b64encode_bytes(value: bytes) -> str:
@@ -272,9 +241,24 @@ def ensure_parent_dir(path: Path) -> None:
 def atomic_write_bytes(path: Path, value: bytes, mode: int) -> None:
     ensure_parent_dir(path)
     tmp_path = path.with_suffix(path.suffix + ".tmp")
-    tmp_path.write_bytes(value)
-    os.chmod(tmp_path, mode)
-    tmp_path.replace(path)
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL
+    if hasattr(os, "O_NOFOLLOW"):
+        flags |= os.O_NOFOLLOW
+    file_descriptor = None
+    try:
+        file_descriptor = os.open(tmp_path, flags, mode)
+        os.fchmod(file_descriptor, mode)
+        with os.fdopen(file_descriptor, "wb") as file_handle:
+            file_descriptor = None
+            file_handle.write(value)
+            file_handle.flush()
+            os.fsync(file_handle.fileno())
+        tmp_path.replace(path)
+        os.chmod(path, mode)
+    finally:
+        if file_descriptor is not None:
+            os.close(file_descriptor)
+        tmp_path.unlink(missing_ok=True)
 
 
 def generate_v5_keys(
@@ -293,11 +277,15 @@ def generate_v5_keys(
     existing_count = sum(1 for path in existing_paths if path.exists())
     if existing_count:
         if existing_count == len(existing_paths) and not rotate:
+            read_private_key_bytes(signing_private_path)
+            read_private_key_bytes(encryption_private_path)
+            secure_public_key_file(signing_public_path)
+            secure_public_key_file(encryption_public_path)
             return "existing"
         if not rotate:
-            raise RuntimeError("Only part of the v5 key set exists. Fix manually or run with --rotate.")
-        for path in existing_paths:
-            path.unlink(missing_ok=True)
+            raise RuntimeError(
+                "Only part of the v5 key set exists. Restore the complete key set from backup before continuing."
+            )
 
     signing_private = ed25519.Ed25519PrivateKey.generate()
     signing_public = signing_private.public_key()
@@ -342,14 +330,14 @@ def generate_v5_keys(
 
 
 def load_ed25519_private_key(path: Path) -> ed25519.Ed25519PrivateKey:
-    key = serialization.load_pem_private_key(path.read_bytes(), password=None)
+    key = serialization.load_pem_private_key(read_private_key_bytes(path), password=None)
     if not isinstance(key, ed25519.Ed25519PrivateKey):
         raise RuntimeError(f"Unexpected Ed25519 private key type: {path}")
     return key
 
 
 def load_x25519_private_key(path: Path) -> x25519.X25519PrivateKey:
-    key = serialization.load_pem_private_key(path.read_bytes(), password=None)
+    key = serialization.load_pem_private_key(read_private_key_bytes(path), password=None)
     if not isinstance(key, x25519.X25519PrivateKey):
         raise RuntimeError(f"Unexpected X25519 private key type: {path}")
     return key

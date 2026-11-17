@@ -1,41 +1,57 @@
-## Description: <br>
-Task manager for AI agents. Works instantly - no account, no phone needed. 19 tools for nested task trees, batch ops, local storage, optional phone sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task manager for AI agents. Works instantly - no account, no phone needed. 19 tools for nested task trees, batch ops, local storage, optional phone sync.
 
-## Publisher: <br>
-[banonanon](https://clawhub.ai/user/banonanon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[banonanon](https://clawhub.ai/user/banonanon)
 
-## Use Case: <br>
-External users and developers use SHrimp Tasks to let agents create, search, update, batch, sync, and manage nested task trees with local storage and optional iOS pairing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paired mode can let agents access or change prompt sections, provider settings, inbox items, and activity logs. <br>
-Mitigation: Confirm the paired-mode data and setting boundaries before use, and require explicit approval for prompt changes, provider-setting changes, permanent deletes, and batch operations. <br>
-Risk: Installation runs a pinned external npm MCP package. <br>
-Mitigation: Install only when the external package source and pinned version are acceptable for the environment. <br>
+## Use Case:
 
+Developers and agent users use this skill to add a SHrimp MCP task manager that can create, search, update, organize, batch, and sync nested task trees for agent workflows.
 
-## Reference(s): <br>
-- [SHrimp homepage](https://hermitshell.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/banonanon/shrimp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and MCP tool guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can expose task data, prompt sections, provider settings, inbox items, and activity logs when paired with the iOS app.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: The skill installs and runs an external npm package through npx.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust the SHrimp npm package and publisher, and review npm package source or provenance before execution where appropriate.
+
+Risk: Paired mode can read or modify prompt and provider settings, activity logs, inbox items, and synced task data.
+
+Mitigation: Use local mode when sync is not needed, and enable paired mode only for accounts and devices where that access is acceptable.
+
+Risk: Local mode stores task data under ~/.shrimp/tasks.json and sends a disclosed anonymous daily usage ping.
+
+Mitigation: Review local storage expectations and privacy disclosure before use, especially on shared machines or sensitive workflows.
+
+## Reference(s):
+
+- [SHrimp Homepage](https://hermitshell.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and MCP tool descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [MCP integration exposing local and paired task-management tools]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata; artifact frontmatter lists 1.0.6)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

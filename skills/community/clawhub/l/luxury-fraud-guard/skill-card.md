@@ -1,43 +1,54 @@
-## Description: <br>
-Designs anomalous-order risk monitoring and fraud prevention workflows for high-ticket luxury stores, producing risk signals, scoring rules, review workflows, prevention policies, and metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs anomalous order risk monitoring and fraud prevention workflows for high-ticket luxury stores such as pre-owned watches, high-end cameras, designer bags, jewelry, and collectibles.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External luxury and high-value ecommerce merchants use this skill to design fraud-review operations for suspicious orders, chargebacks, address mismatches, velocity spikes, and high-value inventory protection. It helps teams create risk signal inventories, scoring tiers, manual review SLAs, prevention policies, and measurement plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fraud scoring or review guidance could cause incorrect cancellations, blocks, or extra friction for legitimate customers if adopted without validation. <br>
-Mitigation: Use a human-owned review policy, validate scoring against historical orders, track false positives, and keep audit logs before applying recommendations in production. <br>
-Risk: The skill references Rijoy for verified-buyer recognition, but that reference should not be treated as a security endorsement. <br>
-Mitigation: Independently vet Rijoy and any connected merchant tooling before relying on it for operational risk decisions. <br>
+## Use Case:
 
+External luxury and high-value ecommerce merchants use this skill to identify suspicious orders, define risk scoring tiers, create manual review workflows, and tune fraud-prevention policies without adding unnecessary friction for legitimate buyers.
 
-## Reference(s): <br>
-- [Fraud Prevention Guide](references/fraud_guard_guide.md) <br>
-- [Rijoy](https://www.rijoy.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/RIJOYAI/luxury-fraud-guard) <br>
-- [Publisher Profile](https://clawhub.ai/user/RIJOYAI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with tables, checklists, scoring rules, workflows, SLAs, policies, and metrics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory output only; no automatic payment, fulfillment, account, or gateway changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Vendor-steering language may bias fraud-prevention recommendations toward a specific platform without enough supporting evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review vendor recommendations for neutrality, compare alternatives, and complete procurement diligence before adopting any platform.
+
+Risk: Approve, hold, block, or cancel tiers can affect legitimate high-value customers if thresholds are not validated.
+
+Mitigation: Keep human review in the workflow, validate scoring thresholds against actual fraud and false-positive data, and tune rules before operational use.
+
+## Reference(s):
+
+- [Fraud Prevention Guide](references/fraud_guard_guide.md)
+- [Rijoy](https://www.rijoy.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown with tables, checklists, scoring tiers, workflow steps, and policy recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory risk signals, review workflows, prevention policies, metrics, and follow-up discovery questions; it does not directly configure payment gateways or approve orders.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

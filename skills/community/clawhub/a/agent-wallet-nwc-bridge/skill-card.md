@@ -1,42 +1,61 @@
-## Description: <br>
-Expose a local @moneydevkit/agent-wallet as a Nostr Wallet Connect (NIP-47) wallet-service (systemd user service). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expose a local @moneydevkit/agent-wallet as a Nostr Wallet Connect (NIP-47) wallet-service through a systemd user service.
 
-## Publisher: <br>
-[kristapsk](https://clawhub.ai/user/kristapsk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[kristapsk](https://clawhub.ai/user/kristapsk)
 
-## Use Case: <br>
-Developers and operators use this skill to run a local Nostr Wallet Connect bridge for a self-custodial Bitcoin Lightning wallet, allowing NWC clients such as Stacker.News to request invoice creation and payment through @moneydevkit/agent-wallet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bridge can expose Bitcoin Lightning spending authority more broadly than users may expect. <br>
-Mitigation: Use only with a small isolated wallet, avoid sharing generated NWC URIs, and keep NWC connection state and logs protected. <br>
-Risk: Payment permissions may not enforce receive-only or send-only separation before payment execution. <br>
-Mitigation: Keep NWC_AUTO_REGISTER disabled and do not rely on receive-only or send-only separation until allow_methods enforcement is verified. <br>
+## Use Case:
 
+Developers and wallet operators use this skill to connect Nostr Wallet Connect clients, such as Stacker.News, to a local self-custodial Bitcoin Lightning wallet. It helps run the bridge as a Linux systemd user service and manage NWC connection URIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kristapsk/agent-wallet-nwc-bridge) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup, operation, and wallet-bridge usage guidance; runtime files may include NWC connection secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and package.json) <br>
+Risk: Connected NWC clients may be able to spend more than the operator intended because permission and budget controls are weak.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the bridge before installing, use a low-balance wallet, and do not rely on receive-only connection names or bridge-level budgets as hard spending limits.
+
+Risk: state.json and generated NWC URIs contain wallet-service or connection secrets.
+
+Mitigation: Keep state.json and NWC URIs secret, do not commit them, and restrict filesystem access to the service account.
+
+Risk: Automatic NWC registration can authorize unknown client pubkeys if enabled.
+
+Mitigation: Leave NWC_AUTO_REGISTER disabled for normal operation and create explicit connection URIs with reviewed permissions.
+
+Risk: The bridge invokes @moneydevkit/agent-wallet through npx at runtime.
+
+Mitigation: Install or pin the wallet executable through a locked dependency or trusted absolute path before running the service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kristapsk/skills/agent-wallet-nwc-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JavaScript code, systemd service configuration, and environment configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local service setup guidance and runtime artifacts for an NWC bridge; generated state files and NWC URIs contain secrets and must be protected.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

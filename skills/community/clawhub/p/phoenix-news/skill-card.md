@@ -1,41 +1,50 @@
-## Description: <br>
-Phoenix News helps organize public Phoenix News site information, including channel structure, topic entry points, content distribution surfaces, and help information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes public Phoenix News channel structure, topic entry points, product and help information, and platform rules for agent-facing research.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and agents use this skill to summarize public Phoenix News entry points, channel structures, topic pages, product/help information, and rules without using private account data or non-public systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: News pages and platform rules can change quickly, so summaries may become stale or incomplete. <br>
-Mitigation: Verify time-sensitive claims against the original Phoenix News pages before relying on them. <br>
-Risk: Using the skill for scraping abuse, copyrighted content reuse, private account data, or manipulation workflows would exceed its stated scope. <br>
-Mitigation: Use only public pages and keep outputs to lawful summaries, links, and structural guidance. <br>
+## Use Case:
 
+External users and developers use this skill to summarize publicly visible Phoenix News site structure, topic pages, help information, rules, announcements, creator or submission entry points, and FAQ-style details.
 
-## Reference(s): <br>
-- [Phoenix News homepage](https://news.ifeng.com/) <br>
-- [ClawHub Phoenix News release page](https://clawhub.ai/codenova58/phoenix-news) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text summaries with public links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No account access, credential handling, background execution, or private data processing is requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill could be misused for logged-in account activity, private data access, scraping evasion, reposting copyrighted material, or manipulation of platform metrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public Phoenix News information, and decline requests involving accounts, private data, scraping evasion, copyright circumvention, or metric manipulation.
+
+## Reference(s):
+
+- [Phoenix News homepage](https://news.ifeng.com/)
+- [ClawHub Phoenix News skill page](https://clawhub.ai/codenova58/skills/phoenix-news)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise Markdown summaries and structured link lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focused on public Phoenix News pages and links; no account activity, private data access, scraping evasion, copyright circumvention, or metric manipulation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

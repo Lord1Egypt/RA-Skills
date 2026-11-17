@@ -1,48 +1,33 @@
 # Marketplace 索引更新 | Marketplace Index Publishing
 
-> 本文档供 AI Agent 在**首次发布一个全新 skill** 时执行。版本更新（已存在于 marketplace 的 skill 升级 vX.Y.Z）**不需要**读取或执行本文档。
+> 仅在全新 skill 首次发布，或新增平台适配但对应 marketplace 尚无条目时执行。普通版本升级不得重复添加条目。
 
-## 触发条件 | When to Run
+## 触发条件
 
-| 场景 | 是否更新 marketplace 索引 |
-|------|--------------------------|
-| **从 0 发布一个新 skill**（marketplace 中尚无该 skill 条目） | ✅ 必须更新 |
-| 已发布 skill 的版本升级（PATCH/MINOR/MAJOR） | ❌ 不需要 |
-| 仅改文档 / 修 bug / 重构 | ❌ 不需要 |
+分别检查 marketplace 仓库中的：
 
-判断方法：在 marketplace 索引的 `plugins` 数组中检索目标 skill 的 `name`。
-- **不存在** → 新 skill 首发，执行本文档。
-- **已存在** → 版本更新，跳过本文档，按 SKILL.md 的 Five-Way Sync 走即可。
+- Claude Code：`.claude-plugin/marketplace.json`
+- Codex：`.agents/plugins/marketplace.json`
 
-## Step 1: 定位 Marketplace 仓库 | Locate the Marketplace Repo
+| 情况 | 动作 |
+| --- | --- |
+| 两边都不存在该 skill | 添加两种平台条目并同步 README |
+| 仅一边缺失 | 只补缺失平台并更新 README 兼容表 |
+| 两边都存在 | 跳过索引修改，执行常规版本发布 |
 
-**不要硬编码路径。** Marketplace 仓库可能在不同 workspace 或组织位置，运行时动态定位：
+## Step 1: 定位 marketplace 仓库
 
-1. 在当前 workspace 内检索包含 `marketplace` 关键字的仓库/目录：
-   ```bash
-   # 查找 Claude Code marketplace 索引文件
-   find . -path '*/.claude-plugin/marketplace.json' 2>/dev/null
-   # 或按仓库名检索
-   ls -d */ | grep -i marketplace
-   ```
-2. 若 workspace 内未找到，检索所属 GitHub 组织内是否存在 marketplace 仓库：
-   ```bash
-   gh repo list <org> --limit 100 | grep -i marketplace
-   ```
-   找到后 clone 到本地再操作。
-3. 标志性文件：`.claude-plugin/marketplace.json`（核心索引）+ `README.md`（人类可读列表）。
+不要硬编码工作区路径。优先在当前 workspace 搜索上述两个 manifest；未找到时再通过 `gh repo list <org>` 定位并 clone。若组织内完全不存在 marketplace 仓库，先向用户确认，不擅自创建。
 
-> 若仓库/组织内**完全不存在** marketplace 仓库，向用户确认是否需要新建，不要擅自创建。
+## Step 2: 添加 Claude Code 条目
 
-## Step 2: 追加 plugin 条目 | Add Plugin Entry
-
-编辑 `.claude-plugin/marketplace.json`，在 `plugins` 数组末尾追加：
+在 `.claude-plugin/marketplace.json` 的 `plugins` 末尾追加：
 
 ```json
 {
   "name": "<skill-name>",
   "displayName": "<displayName>",
-  "description": "<一句话功能描述>",
+  "description": "<description>",
   "source": {
     "source": "github",
     "repo": "<org>/<skill-repo>"
@@ -51,42 +36,76 @@
 }
 ```
 
-| 字段 | 来源 / 要求 |
-|------|------------|
-| `name` | 与 skill 仓库的 `SKILL.md` 中 `name` 一致（kebab-case） |
-| `displayName` | 与 `SKILL.md` 中 `displayName` 一致 |
-| `description` | 简短功能描述，建议与 SKILL.md description 首句一致 |
-| `source.repo` | `<org>/<repo>` 形式的 GitHub 仓库路径 |
-| `strict` | 一般为 `false` |
+`name` 必须与根 `SKILL.md` 和 `.claude-plugin/plugin.json` 一致。
 
-注意 JSON 语法：追加条目时为前一条目补上逗号。
+## Step 3: 添加 Codex 条目
 
-## Step 3: 同步更新 README 表格 | Sync README Table
+在 `.agents/plugins/marketplace.json` 的 `plugins` 末尾追加：
 
-在 marketplace 仓库 `README.md` 的 "包含的 Skill" 表格中追加一行，保持与 `marketplace.json` 一致：
-
-```markdown
-| [<skill-name>](https://github.com/<org>/<skill-repo>) | <功能描述> |
+```json
+{
+  "name": "<skill-name>",
+  "source": {
+    "source": "url",
+    "url": "https://github.com/<org>/<skill-repo>.git",
+    "ref": "main"
+  },
+  "policy": {
+    "installation": "AVAILABLE",
+    "authentication": "ON_INSTALL"
+  },
+  "category": "Developer Tools"
+}
 ```
 
-## Step 4: 提交并推送 | Commit & Push
+规则：
+
+- 每个条目必须包含 `policy.installation`、`policy.authentication` 和 `category`。
+- 仓库根就是插件根时使用实测兼容的 `url` source；插件位于 monorepo 子目录时按当前 Codex 规范使用相应子目录 source。
+- `ref: main` 允许普通版本升级不修改索引；如改用 tag 或 SHA 固定版本，后续发布必须明确更新 ref。
+- 远程仓库必须已经包含有效 `.codex-plugin/plugin.json` 和其引用的所有文件，再发布 marketplace 条目。
+
+## Step 4: 同步 README
+
+更新 marketplace `README.md` 的兼容表，准确标注 Claude Code 与 Codex 支持状态。不要在 marketplace 仓库保存插件源码快照。
+
+## Step 5: 校验、提交与推送
+
+1. 解析两份 JSON，确认语法合法且无重复名称。
+2. 使用隔离的 `CODEX_HOME` 添加 marketplace，并以 `codex plugin add <skill-name>@<marketplace-name>` 做安装冒烟测试。
+3. 确认 Claude manifest 和 README 一致。
+4. 只提交目标 manifest 与 README，然后推送 marketplace 仓库。
+
+建议提交：
 
 ```bash
-cd <marketplace-repo>
-git add .claude-plugin/marketplace.json README.md
+git add .claude-plugin/marketplace.json .agents/plugins/marketplace.json README.md
 git commit -m "feat: add <skill-name> to marketplace index"
-git push origin master
+git push origin <default-branch>
 ```
 
-推送后，用户即可通过以下命令安装新 skill：
+## 用户安装命令
 
-```
+Claude Code：
+
+```text
 /plugin install <skill-name>@<marketplace-name>
 ```
 
-## 验证 | Verify
+Codex：
 
-- [ ] `marketplace.json` 中存在该 skill 条目，且 JSON 合法（`name`/`displayName`/`source.repo` 正确）
-- [ ] README 表格已同步对应行
-- [ ] marketplace 仓库已 push
-- [ ] `marketplace.json` 与 README 表格的 skill 列表一致
+```bash
+codex plugin marketplace upgrade <marketplace-name>
+codex plugin add <skill-name>@<marketplace-name>
+```
+
+Codex 安装或升级后提醒用户新开对话。
+
+## 验证清单
+
+- [ ] 两种 manifest 中的 `name` 与插件仓库一致
+- [ ] Codex 条目包含完整 source、policy 和 category
+- [ ] 远程插件仓库已先于 marketplace 发布
+- [ ] README 兼容表与两个 manifest 一致
+- [ ] Codex Git source 安装冒烟测试通过
+- [ ] marketplace commit 已推送

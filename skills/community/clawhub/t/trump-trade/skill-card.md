@@ -1,43 +1,58 @@
-## Description: <br>
-English version of the Trump RSS analysis skill that uses trumpstruth.org/feed to track Trump's public TRUTH posts, support Evidence, Latest, Time, and Watch modes, and output educational market analysis plus Trump-style replies. <br>
+## Description:
 
-This skill is for research and development only. <br>
+English version of the Trump RSS analysis skill. Uses trumpstruth.org/feed to track Trump's public TRUTH posts, support Evidence / Latest / Time / Watch modes, and output educational market analysis plus Trump-style replies.
 
-## Publisher: <br>
-[vialiceq](https://clawhub.ai/user/vialiceq) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vialiceq](https://clawhub.ai/user/vialiceq)
 
-## Use Case: <br>
-External users and analysts use this skill to summarize public Trump RSS posts and frame education-only market scenarios, observation checklists, and risk warnings without personalized trading instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill summarizes political content from a third-party public RSS feed, so source availability and feed contents can affect output quality. <br>
-Mitigation: Use the skill's Evidence mode to show published time, title, link, and excerpt before drawing post-related conclusions. <br>
-Risk: The skill produces educational financial commentary that users could mistake for investment advice. <br>
-Mitigation: Keep outputs framed as scenarios and risk discussion, and avoid guaranteed outcomes or personalized buy/sell instructions. <br>
-Risk: Repeated monitoring could run longer or more often than intended if scheduled externally. <br>
-Mitigation: Use user-controlled scheduling and keep watch-mode runs bounded by the requested interval and conversation state. <br>
+## Use Case:
 
+External users and developers use this skill to summarize public TRUTH RSS posts, analyze market themes in educational scenario form, and produce evidence-backed observations without trade instructions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vialiceq/trump-trade) <br>
-- [Public Trump RSS feed](https://www.trumpstruth.org/feed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries with evidence items, educational market analysis, scenario sketches, observation checklists, and risk warnings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require external scheduling for repeated watch-mode execution; outputs are educational and should not be treated as investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses a public RSS source and may reflect incomplete or unverified source data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify RSS source accuracy and compare against authoritative sources before relying on the output.
+
+Risk: Educational market scenarios could be mistaken for personalized financial advice.
+
+Mitigation: Keep outputs framed as scenario and risk discussion, avoid buy/sell instructions, and do not make trades solely from generated commentary.
+
+Risk: Watch mode does not provide its own scheduled execution.
+
+Mitigation: Use an external scheduler for recurring checks and treat each run as an incremental evidence summary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vialiceq/skills/trump-trade)
+- [Public TRUTH RSS feed](https://www.trumpstruth.org/feed)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with evidence lists, educational market commentary, scenario sketches, observation checklists, and risk warnings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Post-related claims must be grounded in shown RSS evidence or clearly marked as summary/inference; actual recurring watch execution requires external scheduling.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

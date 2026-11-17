@@ -1,38 +1,58 @@
-## Description: <br>
-PPT完整制作流程：从素材收集、大纲规划，到图片搜索/裁剪/插入、文字排版调整（字体大小/行间距/位置）、 表格处理、整体视觉评估，直到最终验证。支持红白风格等专业PPT的全流程制作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through a complete PPT production workflow, from material collection and outline planning through image placement, typography, table handling, visual review, and final validation for professional presentation decks.
 
-## Publisher: <br>
-[ameylover](https://clawhub.ai/user/ameylover) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ameylover](https://clawhub.ai/user/ameylover)
 
-## Use Case: <br>
-External users and presentation-building agents use this skill to plan, create, refine, and validate professional PowerPoint decks, including image sourcing, layout, typography, table handling, and final checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Feishu file-send command could send private or client presentation material to an unintended recipient, channel, or account. <br>
-Mitigation: Before running any Feishu send command, confirm the exact file path, recipient, channel, and account. <br>
+## Use Case:
 
+Developers, course creators, and presentation authors use this skill to guide Chinese-oriented professional slide production, including content sourcing, layout adjustment, image review, delivery packaging, and final quality checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ameylover/ppt-pandora) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PPT layout rules, image-handling guidance, validation checklists, and optional Feishu file-send command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The workflow includes examples for deleting older PPT versions or media, which could remove wanted local files if applied broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit the agent to the intended presentation folder and review proposed delete operations before execution.
+
+Risk: The workflow includes file sharing examples that could send a presentation to the wrong recipient.
+
+Mitigation: Confirm the Feishu recipient and target channel before any file transfer command is run.
+
+Risk: The skill is tailored to Chinese-oriented PPT production practices and may not match every presentation style or locale.
+
+Mitigation: Install and use it only when that workflow matches the intended deck and audience.
+
+## Reference(s):
+
+- [PPT Pandora ClawHub skill page](https://clawhub.ai/ameylover/skills/ppt-pandora)
+- [ameylover publisher profile](https://clawhub.ai/user/ameylover)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local PPT workflow instructions, code snippets, image handling guidance, and file delivery checks.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

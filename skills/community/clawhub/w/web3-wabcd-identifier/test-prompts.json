@@ -1,0 +1,73 @@
+{
+  "skill": "wabcd-identifier",
+  "version": "0.1.0",
+  "source_book": "《价值互联网产业应用蓝皮书（2025 年）》 — 价值互联网产业应用蓝皮书编写组",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "这个项目到底算不算真 Web3？我看它宣传 AI+区块链+大数据打造产业 Web3",
+      "expected_behavior": "应激活 S4，用 W-ABCD 五要素逐项核对，重点验证 C（共建社区）真实性并给真伪结论",
+      "notes": "正面场景：投资人/用户判别项目真伪"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "它是不是只是套了区块链壳、伪概念？它说自己有共建社区",
+      "expected_behavior": "应激活 S4，重点判断'共建社区 C'是否真实存在（三问：消费即投资/通证计量/多方共治），缺 C 即判伪 Web3",
+      "notes": "正面场景：对'伪概念/套壳'的识别需求"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "美式 RWA 和中国式 Web3 有啥区别？我想对照着辨辨真伪",
+      "expected_behavior": "应激活 S4，用五要素（尤其 C）对照'美式代币融资叙事'与'中式非金融赋能'，辨真伪与叙事遮蔽",
+      "notes": "正面场景：对照叙事辨真伪"
+    },
+    {
+      "id": "should-trigger-04",
+      "type": "should_trigger",
+      "prompt": "区块链+大数据就是 Web3 吗？我们老板说上了链就是 Web3",
+      "expected_behavior": "应激活 S4，指出单纯技术堆叠缺 C 组织变量只是信息化升级，非真 Web3",
+      "notes": "正面场景：破除'上链=Web3'误识"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "通证化、代币化、RWA 这几个概念到底什么区别？",
+      "expected_behavior": "不应激活 S4，应转 S1（概念辨析器）。用户问概念层级，不是项目真伪",
+      "notes": "诱饵：含'RWA'但意图是概念边界；S4 边界明确'概念区分→用 S1'"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "已经确定我们是真 Web3 了，该选原生型还是产业变革型主导模式？",
+      "expected_behavior": "不应激活 S4，应转 S3（三类主导模式判别器）。S4 只做真伪，选型交给 S3",
+      "notes": "诱饵：已确认真 Web3 后进入选型，属 S3；体现 S4→S3 顺序"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "我们想发个 RWA 代币融资，境内合不合规？",
+      "expected_behavior": "不应激活 S4，应转 S2（合规边界红线检查）。用户问合规而非真伪识别",
+      "notes": "诱饵：出现'RWA'但意图是合规判读，属 S2；S4 不做合规裁决"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我看到一个充电桩 RWA 项目，说是华润隆地那种，是真 Web3 还是伪概念？",
+      "expected_behavior": "激活 S4，用 W-ABCD 核对（物联网数据上链+智能合约自动分配+穿透式监管下投资人共建→含 C）判为真产业应用",
+      "notes": "边界：真实案例的真伪判别，检验 S4 对'含 RWA 金融向但仍有真实 C'项目的识别准确性"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "我们公司说要建共建社区，但其实就一个粉丝群发积分，这算真 Web3 吗？",
+      "expected_behavior": "激活 S4，按第 2 步判停条件——无真实共治/通证计量分配，判为伪 Web3/仅信息化升级，并补风险点",
+      "notes": "边界：'宣称有社区'vs'真有共建社区'（S4 盲点补强点），检验 C 真实性验证是否生效"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "4 条 should_trigger + 3 条 should_not_trigger + 2 条 edge_case。全部 should_not_trigger 必须通过（诱饵容错为 0）。"
+}

@@ -1,41 +1,57 @@
-## Description: <br>
-AI-powered web scraper with intelligent structure recognition that extracts lists, articles, and tables from websites with automatic type detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered web scraper with intelligent structure recognition that extracts lists, articles, and tables from websites with automatic type detection.
 
-## Publisher: <br>
-[yadanzheng68-cmyk](https://clawhub.ai/user/yadanzheng68-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yadanzheng68-cmyk](https://clawhub.ai/user/yadanzheng68-cmyk)
 
-## Use Case: <br>
-Developers and operators use this skill to extract structured content from websites, including lists, articles, and tables. It supports JSON, CSV, and Markdown outputs for downstream analysis, reporting, or automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence flags possible sensitive credential handling and dependency risk. <br>
-Mitigation: Use test or least-privilege accounts, keep secrets out of shared files, and review generated drafts or outputs before publication or reuse. <br>
-Risk: The skill fetches and extracts content from user-supplied websites. <br>
-Mitigation: Run it only against sites you are authorized to access and review extracted data for accuracy before using it downstream. <br>
+## Use Case:
 
+Developers and agents use this skill to scrape user-selected web pages and extract lists, article content, or table data into reusable structured formats.
 
-## Reference(s): <br>
-- [Smart Scraper ClawHub release page](https://clawhub.ai/yadanzheng68-cmyk/smart-scraper) <br>
-- [yadanzheng68-cmyk ClawHub publisher profile](https://clawhub.ai/user/yadanzheng68-cmyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [JSON, CSV, or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can limit extracted list items and optionally scroll pages before extraction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Browser-based scraping can fetch untrusted, private-network, or otherwise sensitive target URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only permitted target URLs, avoid internal or private-network hosts, and keep target selection under user control.
+
+Risk: Scraped CSV or text output contains untrusted website data.
+
+Mitigation: Review and sanitize exported data before opening it in spreadsheet software or feeding it into downstream systems.
+
+Risk: Scraping a site without authorization can violate site rules or legal obligations.
+
+Mitigation: Confirm permission to scrape the target site and follow applicable site terms before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yadanzheng68-cmyk/skills/smart-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [JSON, CSV, or Markdown emitted as CLI text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and npm, installs Playwright, and accepts a target URL, extraction type, output format, maximum item count, and scroll option.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

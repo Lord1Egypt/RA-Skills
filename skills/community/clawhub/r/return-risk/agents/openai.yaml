@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 退货风险线索"
+  short_description: "从评论识别可能导致退货的体验线索"
+  default_prompt: "使用 $amazon-return-risk-detector 从 Amazon 评论识别退货风险线索并提出产品改进方向。"

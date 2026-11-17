@@ -1,0 +1,97 @@
+# ClawHub / WorkBuddy 技能市场发布清单 manifest
+# 打包发布时把本文件放在 skill 根目录，与 SKILL.md 同级。
+
+name: photo-video-organizer
+slug: photo-video-organizer        # 市场 URL 标识，小写+连字符（必须 ASCII，发布后勿改）
+display_name: 时光梳理·照片视频梳理   # 市场展示中文名
+version: 2.0.0
+author: sunerdao
+license: MIT
+
+# 一句话简介（市场卡片展示用）
+summary: 全球通用的跨多年海量照片视频整理利器——找回错乱的拍摄时间与 GPS、多轮去重、统一命名，整理成"多年回忆精选集"级别的长期资料库。地区自适应：中国大陆（GCJ-02 坐标修正、微信/网盘生态）与海外（WGS-84、iCloud/Google Photos 生态）均适用。
+
+# 完整描述（市场详情页）
+description: |
+  专为【跨多年、超大数量】的照片视频资料库设计。当你的照片视频来自手机、云盘、聊天工具、无人机等多个来源，反复下载导致拍摄时间/GPS 错乱、重复泛滥、文件名混乱时，本技能把它们梳理成"时间正确、GPS 齐全、画质完整、重复较少、结构清楚"的长期资料库——便于后续在手机上生成"多年的回忆/精选/旅程"。
+
+  能做：找回错乱的拍摄时间（EXIF 优先、文件名时间戳兜底，绝不用被网盘污染的修改时间）；按行程表补写 GPS（保留已有真实 GPS，写入坐标自动做坐标系修正）；统一文件名；字节级完全相同去重 + CLIP 语义级多轮相似去重（同日粗筛 → 深度轮细筛 → 宠物等特殊主题单独调参，按日期+地点+主题分组，大组递归细分，可交互人工核定）；模糊照片隔离（防误伤抽检）；月份断档与年份归档分析；GPS 来源审计（区分真实 GPS 与行程表推算 GPS）；可逆移动（不真删、附回滚）；哈希校验清单防传输丢元数据；最后安全导入手机/云相册。
+
+  🌏 全球通用 · 地区自适应：技能启动时判定用户地区并加载对应地区档案——
+  · 中国大陆：GCJ-02→WGS-84 坐标转换与往返校验（内置离线脚本）、12306/微信/支付宝账单建行程表、华为（鸿蒙星河互联）/百度网盘生态、微信文件名时间戳判读、北京时间/时区处理。
+  · 海外：WGS-84 直接可用、Google Maps Timeline (Takeout)/机票酒店邮件/银行账单建行程表、iCloud/Google Photos/OneDrive 生态、WhatsApp 等聊天文件名判读、按拍摄地时区换算视频时间。
+  两类用户场景均给出完整验证用例（见 references/region_cn.md §7 与 region_global.md §7）。
+
+  内置 8 个参数化脚本，无硬编码路径，拿来即用。所有"删除"可逆（移子文件夹+保留时间+回滚脚本）。
+
+  ⚠️ 需要人工准备的前置条件（技能不代劳）：
+  1. 一份完全未处理的原始备份（动手前必留）。
+  2. 多年行程表（哪天在哪个城市）——需自行从交通/消费记录梳理（技能提供按地区定制的方法，不代抓数据）。这是写 GPS 的前提。
+  3. 运行环境：exiftool 13.x、Python 3.10+ 及 opencv/clip/torch 等依赖。
+  4. 人工终判：去重候选由算法给出，需在对比图上人工核定后才移动（技能提供可交互 HTML）。
+
+category: productivity             # 生产力/文件处理
+tags:
+  - 照片整理
+  - 视频整理
+  - 去重
+  - EXIF
+  - 拍摄时间
+  - GPS
+  - 文件名统一
+  - CLIP
+  - 相似去重
+  - 元数据修复
+  - 网盘
+  - 动态照片
+  - Live Photo
+  - GCJ-02
+  - WGS-84
+  - photo-organizer
+  - deduplication
+
+# 触发词（用户自然表达，覆盖面要广；中英都要有）
+triggers:
+  - 整理照片
+  - 整理视频
+  - 照片去重
+  - 视频去重
+  - 修复拍摄时间
+  - 修复照片时间
+  - 修复 GPS
+  - 统一文件名
+  - 照片元数据
+  - 动态照片
+  - Live Photo
+  - LIVP
+  - 照片导入 iPhone
+  - 照片导入华为
+  - 海量照片
+  - 网盘照片错乱
+  - organize my photos
+  - deduplicate photo library
+  - fix photo timestamps
+  - fix EXIF GPS
+  - photo library cleanup
+  - photo dedup
+
+# 运行环境要求
+prerequisites:
+  - exiftool 13.x（读写 EXIF/视频元数据）
+  - Python 3.10+ 虚拟环境
+  - Python 包：opencv-python, pillow, pillow-heif, numpy, openai-clip, torch（datum_convert.py 仅需标准库）
+  - 外置盘/大容量空间（去重和移动需空间余量）
+
+# 权限说明（供审核参考）
+permissions:
+  - Read：读取用户照片/视频文件夹
+  - Bash：执行 exiftool、运行 scripts/ 下 Python 脚本
+  - Write：可逆移动文件到子文件夹、写缓存/日志/报告（绝不直接删除原件）
+
+# 局限性
+limitations:
+  - AVI/RIFF 容器写不进 GPS（格式硬限制，跳过）
+  - ≥500MB 大文件相似检测只抽前 13 秒（整段解码不现实）
+  - 行程表需用户自行从交通/消费记录构建（skill 提供方法，不代抓数据）
+  - Apple Live Photo 的 ContentIdentifier 可能被 exiftool 写操作破坏，操作前需确认
+  - 行程表推算的 GPS 是城市级坐标（非精确拍摄点），审计清单中与真实 GPS 区分标记

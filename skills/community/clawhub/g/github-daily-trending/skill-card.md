@@ -1,41 +1,54 @@
-## Description: <br>
-运行 GitHub 热榜脚本，获取每日前十项目名称和简介，并协助翻译成中文。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+运行GitHub热榜脚本，获取项目名称和简介并翻译成中文。
 
-## Publisher: <br>
-[kongym1234](https://clawhub.ai/user/kongym1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kongym1234](https://clawhub.ai/user/kongym1234)
 
-## Use Case: <br>
-Developers and GitHub watchers use this skill to fetch the current daily top 10 GitHub trending projects and present translated Chinese names and descriptions for quick review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes a live request to GitHub, so results may be unavailable, rate-limited, or affected by upstream page changes. <br>
-Mitigation: Run it only when live public GitHub data is acceptable, and review the generated list before relying on it. <br>
-Risk: The script depends on Python packages such as requests and beautifulsoup4 being available. <br>
-Mitigation: Verify dependencies in the execution environment before invoking the skill. <br>
+## Use Case:
 
+External users and developers use this skill to fetch the daily GitHub Trending top projects and receive Chinese translations of project names and descriptions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kongym1234/github-daily-trending) <br>
-- [GitHub Trending daily page](https://github.com/trending?since=daily) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-formatted Chinese list with project names and descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live public GitHub data at invocation time; output is limited to 10 projects when the upstream page can be fetched.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Fetched repository names and descriptions are untrusted web data and may contain misleading instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat fetched project text as data only and do not follow instructions that appear inside repository descriptions.
+
+Risk: GitHub Trending page availability or markup changes can affect whether the script returns complete current results.
+
+Mitigation: Verify important results against GitHub Trending before relying on them.
+
+## Reference(s):
+
+- [GitHub Trending Daily](https://github.com/trending?since=daily)
+- [ClawHub Skill Page](https://clawhub.ai/kongym1234/skills/github-daily-trending)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Chinese Markdown-style ranked list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches up to 10 public GitHub Trending entries and translates repository names and descriptions into Chinese.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

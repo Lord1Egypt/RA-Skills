@@ -1,0 +1,32 @@
+{
+  "skill_name": "checkpoint",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a checkpoint so another agent can resume this contract analysis tomorrow without this chat.",
+      "expected_output": "A self-contained checkpoint with goal, sources, decisions, unresolved issues, evidence, and next action.",
+      "assertions": [
+        "The checkpoint does not depend on chat history",
+        "Authoritative artifacts are identified",
+        "Open issues and next action are concrete"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Checkpoint this finished one-line formatting change.",
+      "expected_output": "The skill may state that a checkpoint adds little value for a trivial completed task.",
+      "assertions": [
+        "The skill avoids unnecessary checkpoint ceremony"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Hand this migration task to another harness; we tried two approaches and one corrupted IDs.",
+      "expected_output": "The checkpoint records the failed/rejected approach so it is not repeated and includes current safe state.",
+      "assertions": [
+        "The rejected corrupting approach is recorded with reason",
+        "The receiver gets a concrete safe next step"
+      ]
+    }
+  ]
+}

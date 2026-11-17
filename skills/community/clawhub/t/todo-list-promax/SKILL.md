@@ -1,6 +1,6 @@
 ---
 name: todo-list-promax
-version: "2.2.0"
+version: "2.2.3"
 description: >
   个人待办事项永久存储、智能分类与定时提醒系统。
   自动从聊天消息中捕获待办（文字/图片/附件），解析时间与优先级，每日晚上9点推送未完成提醒。
@@ -14,7 +14,7 @@ description: >
 
 ## 语言规则
 
-**检测用户使用的语言，全程使用同一语言输出。** 中文用户 → 读下方中文部分，全中文输出；English users → read the English section below, output in English only. 技术术语（JSON、ID 等）保留原文即可。
+**默认跟随用户使用的语言输出**；用户可随时指定其他语言（如"用英文回复"），以用户指定为准。中文用户 → 读下方中文部分；English users → read the English section below. 技术术语（JSON、ID 等）保留原文即可。
 
 ---
 
@@ -184,6 +184,8 @@ description: >
 ### 4. 每日提醒
 
 - **时间：** 每天 21:00
+- **启用需用户同意：** 创建 cron 提醒任务前，先向用户说明"将每天 21:00 自动推送未完成任务提醒，可随时说「关闭提醒」停止"，获得用户确认后再创建任务；用户说"关闭提醒/暂停提醒"时，立即删除或禁用对应 cron 任务
+- **内容最小化：** 提醒消息默认只展示任务摘要（ID + 内容 + 截止时间）；不展开 `source_message` 原文，避免在共享屏幕或他人可见场景泄露敏感信息
 - **配置方式（具体步骤）：**
 
   使用 OpenClaw cron 创建每日提醒任务，最小步骤如下：
@@ -197,9 +199,13 @@ description: >
      e. 如无匹配项，不推送
      f. 更新 `last_reminder_at` 为当前时间
   3. 推送消息末尾附操作指引：`回复"完成 #N"标记完成 · 回复"TODOLIST"查看全部 · 回复"#N due_time:X"修改 · 回复"撤销"恢复最近操作`
-  4. cron 命令示例：`openclaw cron add --schedule "0 21 * * *" --task "Read todos.json, filter pending items with due_time, push reminder if any"`
+  4. cron 命令示例（以 OpenClaw CLI 实测为准）：
+   - 创建：`openclaw cron add --cron "0 21 * * *" "todo-daily-reminder" "读取 ${workspace}/todo-list/todos.json，筛选 status != done 且 due_time 非空的待办，按截止时间升序、同截止按优先级排序，有条目则推送提醒"`
+   - CLI 没有 `--schedule`/`--task` 选项：调度用 `--cron`（或 `--at`/`--every`），任务内容用位置参数传递
+   - 查看：`openclaw cron list`（返回 UUID 与任务名）
+   - 关闭：`openclaw cron remove <UUID>`（remove 只认 UUID，不接受任务名）
 
-- **降级策略：** cron 不可用或执行失败时，在下次用户交互时补充推送未提醒项（检查 `last_reminder_at`，若超过 24 小时则补推）
+- **降级策略：** cron 不可用或执行失败时，在下次用户交互时补充推送未提醒项（检查 `last_reminder_at`，若超过 24 小时则补推）；用户已关闭提醒时不补推
 
 ## 数据结构
 
@@ -242,8 +248,16 @@ description: >
 - `completed_at`: 完成时间 ISO 8601，完成时填入
 - `deleted_at`: 删除时间 ISO 8601，删除时填入（用于附件 7 天清理判断）
 - `attachments`: `[{path, type}]` 附件列表
-- `source_message`: 原始消息内容（完整保留，永不修改）
+- `source_message`: 原始消息内容（完整保留，永不修改，用于溯源与恢复）；展示范围：用户本人的直接查询中可展示摘要级原文；提醒推送、群聊及共享场景一律不展示
 - `last_reminder_at`: 上次提醒时间 ISO 8601（用于降级补推）
+
+## 数据与隐私
+
+- **本地存储**：所有数据（todos.json、备份、附件）仅存储在本地 `${workspace}/todo-list/`，不上传任何外部服务
+- **提醒推送**：由本地 cron 触发，仅推送到用户自己的会话；不包含原始消息全文
+- **原始消息保留**：`source_message` 完整保留用于溯源；用户可随时要求裁剪或清除某条记录
+- **附件保留**：删除待办后附件保留 7 天后自动清理（见「约束」）
+- **用户控制**：用户可随时要求导出或删除全部数据（删除目录即清除）
 
 ## 并发安全
 
@@ -255,6 +269,7 @@ description: >
 - 附件路径：`${workspace}/todo-list/attachments/`
 - ID 自增，已删除的 ID 不重复使用
 - 不修改用户消息原文
+- 提醒与推送仅发给用户本人；敏感原文（source_message）不在提醒中展开
 - 删除操作必须二次确认
 - 时间解析精确到天
 - `todos.json` 或目录不存在时自动创建
@@ -269,8 +284,7 @@ description: >
 
 # English Version
 
-> **This skill is written in Chinese.** For full details, please read the Chinese section above.
-> You can ask AI to translate the Chinese section if needed.
+> **Bilingual skill** — full spec is in Chinese above; this English reference covers the operational essentials, and the AI fully supports English interaction (see Language Rule at top).
 
 ## Summary
 
@@ -288,10 +302,10 @@ description: >
 | Feature | Details |
 |---------|---------|
 | Capture | Triggers: `TODO:`, `add todo`, `remind me to`, etc. Fuzzy input → ask, don't silently capture |
-| Query | Triggers: `TODOLIST`, `my todos`, etc. Filter by date/range/priority/tags. Shows 👤contact, 📝notes, 💬source_message for every item |
+| Query | Triggers: `TODOLIST`, `my todos`, etc. Filter by date/range/priority/tags. Shows 👤contact, 📝notes and 💬source_message excerpt (owner direct queries only; never in reminders or shared contexts) |
 | Operations | Complete, delete (with confirmation), modify, undo (single-step only) |
 | Tags | Auto-extract via keyword mapping (工作/学习/购物/生活/健康/其他) or manual `#tag` syntax. Default: empty array |
-| Daily reminder | Cron at 21:00: read todos.json → filter pending with due_time → push if any. Fallback: push on next interaction if >24h since last reminder |
+| Daily reminder | Cron at 21:00 (user opt-in required before creating the cron task; reminders contain task summaries only — no raw source_message). Fallback: push on next interaction if >24h since last reminder |
 | Attachments | Saved to `attachments/`, auto-cleaned 7 days after todo deletion |
 
 ### Modify Syntax
@@ -317,11 +331,15 @@ description: >
 ```
 
 ### Cron Setup (Minimal Steps)
-1. Create cron: `0 21 * * *`
+1. Create cron: `openclaw cron add --cron "0 21 * * *" "todo-daily-reminder" "<reminder prompt>"` — the CLI has no `--schedule`/`--task` flags; use `--cron` plus positional args
 2. On trigger: read `todos.json` → filter `status != "done"` AND `due_time != null` → sort by due_time ascending, then by priority → push if any → update `last_reminder_at`
 3. Append action guide to push message
+4. Disable: `openclaw cron list` to get the job UUID, then `openclaw cron remove <UUID>` (remove accepts UUID only, not the job name)
 
 ### Constraints
+- Owner consent required before enabling cron reminders; users can disable anytime
+- Reminders show task summaries only; raw `source_message` shown only in owner direct queries, never in reminders or shared contexts
+- All data stays local under `${workspace}/todo-list/`; no external upload
 - Atomic writes (write to `.tmp` then `mv`)
 - Auto-backup to `todos.json.bak` before writes
 - Auto-recover from `.bak` on parse failure

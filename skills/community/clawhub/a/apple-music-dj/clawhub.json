@@ -1,15 +1,82 @@
 {
   "name": "apple-music-dj",
-  "version": "3.1.0",
-  "description": "Intelligent Apple Music personalization engine — taste profiling, playlist generation, discovery, and insights",
+  "version": "3.4.1",
+  "description": "Your AI Apple Music curator — taste profiling, playlists from your real listening, discovery and insights. Try the built-in demo with no tokens.",
   "author": "Andernet (Matthew Anderson)",
-  "license": "MIT",
+  "license": "MIT-0",
   "homepage": "https://github.com/and3rn3t/apple-music-dj",
-  "tags": ["music", "apple-music", "playlists", "personalization", "musickit", "discovery"],
+  "tags": [
+    "music",
+    "apple-music",
+    "playlists",
+    "personalization",
+    "musickit",
+    "discovery",
+    "listening-history",
+    "taste-profile",
+    "playlist-import",
+    "music-discovery",
+    "spotify-import",
+    "demo"
+  ],
   "category": "music",
   "emoji": "🎧",
   "requires": {
-    "bins": ["curl", "jq", "python3"],
-    "env": ["APPLE_MUSIC_DEV_TOKEN", "APPLE_MUSIC_USER_TOKEN"]
-  }
+    "bins": [
+      "curl",
+      "jq",
+      "python3"
+    ]
+  },
+  "envVars": [
+    {
+      "name": "APPLE_MUSIC_DEV_TOKEN",
+      "required": false,
+      "description": "MusicKit developer token (JWT). Needed for anything that reads your Apple Music; not for the demo. scripts/setup_auth.py creates it."
+    },
+    {
+      "name": "APPLE_MUSIC_USER_TOKEN",
+      "required": false,
+      "description": "Music User Token from signing in with Apple. Needed for your own listening data and playlists; not for the demo. scripts/setup_auth.py gets it."
+    },
+    {
+      "name": "APPLE_MUSIC_STOREFRONT",
+      "required": false,
+      "description": "Two-letter storefront code (e.g. us) to override region auto-detection."
+    },
+    {
+      "name": "APPLE_KEY_ID",
+      "required": false,
+      "description": "MusicKit key ID, read only by setup_auth.py / generate_dev_token.py to sign a developer token."
+    },
+    {
+      "name": "APPLE_TEAM_ID",
+      "required": false,
+      "description": "Apple Developer Team ID, read only by setup_auth.py / generate_dev_token.py."
+    },
+    {
+      "name": "APPLE_PRIVATE_KEY_PATH",
+      "required": false,
+      "description": "Path to your MusicKit .p8 signing key, read only by setup_auth.py / generate_dev_token.py. Never sent anywhere."
+    },
+    {
+      "name": "APPLE_TOKEN_EXPIRY",
+      "required": false,
+      "description": "Developer-token lifetime in seconds for generate_dev_token.py (default and maximum 180 days)."
+    },
+    {
+      "name": "APPLE_MUSIC_API_BASE",
+      "required": false,
+      "description": "Testing/demo hook pointing the API wrapper at a local mock. Loopback addresses only; anything else is refused."
+    },
+    {
+      "name": "APPLE_MUSIC_DJ_DEMO",
+      "required": false,
+      "description": "Set by demo.py for the scripts it runs, to mark demo mode. Not meant to be set by hand."
+    }
+  ],
+  "os": [
+    "darwin",
+    "linux"
+  ]
 }

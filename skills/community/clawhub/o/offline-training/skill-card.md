@@ -1,40 +1,53 @@
-## Description: <br>
-该技能介绍如何通过线下培训实现变现；当你计划从事或优化线下培训时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+该技能介绍如何通过线下培训实现变现；当你计划从事或优化线下培训时调用。
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Creators, operators, and small teams use this skill for concise guidance on planning, validating, delivering, and iterating an offline training business. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business advice may not match local legal, advertising, contract, tax, or platform-compliance requirements. <br>
-Mitigation: Verify local requirements and platform policies before using the guidance commercially. <br>
-Risk: Offline training plans may become misleading if claims, pricing, or deliverables are not substantiated. <br>
-Mitigation: Review promotional claims, contracts, invoices, and delivery commitments before publishing or selling an offering. <br>
+## Use Case:
 
+External creators, operators, and small teams use this skill for concise guidance on building a monetizable offline training offer, including positioning, MVP validation, customer acquisition, delivery, metrics, and review loops.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/offline-training) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with checklists and action plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advice-only output; no code execution, tool calls, or credential access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Business, advertising, contract, tax, platform, and training-compliance requirements vary by jurisdiction and market.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as general guidance and independently verify applicable legal, platform, tax, contract, advertising, and training-compliance obligations before use.
+
+Risk: Offline training monetization advice can lead to misleading claims or poor customer outcomes if applied without review.
+
+Mitigation: Review promotional claims, pricing, delivery commitments, copyright status, contracts, and refund or invoicing terms before launching an offer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/offline-training)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance with checklists and action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language informational business guidance; no code execution or external tool access.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

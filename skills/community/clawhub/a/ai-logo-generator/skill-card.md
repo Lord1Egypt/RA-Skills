@@ -1,41 +1,52 @@
-## Description: <br>
-Generate professional logos from text prompts using artificial intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional logos from text prompts using artificial intelligence.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External users, developers, marketers, designers, founders, and brand managers use this skill to turn logo design prompts into generated logo image results for brand exploration, prototyping, and integration into logo-generation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to an external logo-generation API and may expose confidential brand plans, unreleased product names, secrets, or regulated data. <br>
-Mitigation: Use non-sensitive brainstorming prompts only, avoid regulated or confidential information, and review the provider's terms before relying on outputs commercially. <br>
+## Use Case:
 
+External developers, entrepreneurs, designers, marketing teams, and SaaS platforms use this skill to generate logo images from natural-language brand descriptions for prototyping, brand exploration, and design workflows.
 
-## Reference(s): <br>
-- [OpenAPI specification](artifact/openapi.json) <br>
-- [API documentation](https://api.mkkpro.com:8003/docs) <br>
-- [Kong route](https://api.mkkpro.com/creative/ai-logo-generator) <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/ai-logo-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Configuration, Guidance] <br>
-**Output Format:** [JSON API response with generated logo image URL and metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns success status, logo URL, source prompt, image format, image size, generation time, and model version when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Logo prompts are sent to an external API and may disclose confidential brand strategy, unreleased product names, regulated data, or secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts before submission and avoid sending sensitive, regulated, unreleased, or secret information to the service.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/ai-logo-generator)
+- [API Documentation](https://api.mkkpro.com:8003/docs)
+- [API Route](https://api.mkkpro.com/creative/ai-logo-generator)
+- [OpenAPI Specification](artifact/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API Calls, configuration, guidance]
+
+**Output Format:** [Markdown guidance and JSON API request or response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated API response can include a logo URL, image format, size, generation time, and model version.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

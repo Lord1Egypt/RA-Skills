@@ -1,0 +1,40 @@
+[project]
+name = "twist"
+version = "1.1.0"
+description = "Intercept and modify browser network requests/responses via CDP"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+readme = "README.md"
+dependencies = [
+    "websockets>=13.0",
+    "httpx>=0.28.0",
+    "pydantic>=2.10.0",
+    "beautifulsoup4>=4.12.0",
+    "wcwidth>=0.2.13",
+]
+
+[project.scripts]
+twist = "twist.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24.0",
+    "pytest-cov>=6.0",
+]
+
+[build-system]
+requires = ["setuptools>=75.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = ["-v", "--tb=short", "--strict-markers"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests (require a browser)",
+]

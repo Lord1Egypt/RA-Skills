@@ -1,40 +1,53 @@
-## Description: <br>
-Professional SEC EDGAR 10-Q/10-K parser for institutional investors that extracts financial metrics, MD&A risk factors, and exports CSV, HTML, PDF, and Markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional SEC EDGAR 10-Q/10-K parser for institutional investors that extracts financial metrics, risk factors, and calculated ratios from filings and exports reports.
 
-## Publisher: <br>
-[lettywyse](https://clawhub.ai/user/lettywyse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lettywyse](https://clawhub.ai/user/lettywyse)
 
-## Use Case: <br>
-External investors and analysts use this skill to direct an agent to retrieve recent SEC EDGAR filings for a ticker, extract core financial metrics and MD&A risks, and prepare analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated report or spreadsheet links may expose financial analysis artifacts if shared unintentionally. <br>
-Mitigation: Confirm whether PDF or Google Sheet exports should be created, and keep generated links private unless they are intentionally shared. <br>
-Risk: Financial metrics and risk summaries may be incomplete or misleading if the wrong ticker, filing, or tables are selected. <br>
-Mitigation: Confirm the ticker and source filing before running the skill, then review extracted metrics against the SEC filing before relying on the report. <br>
+## Use Case:
 
+External users and investment analysts use this skill to retrieve SEC EDGAR 10-Q/10-K filing data for public-company tickers, summarize key financial metrics, and produce investor-facing reports. Outputs should be treated as generated analysis from public filings rather than investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lettywyse/investment-browser-sec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files] <br>
-**Output Format:** [Markdown analysis with tables and links to CSV, HTML, PDF, and Google Sheet outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ticker-driven workflow; users should confirm the ticker, filing source, and sharing settings for generated report links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Generated financial analysis could be mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat reports as generated summaries of public filings and review conclusions with qualified financial judgment before acting on them.
+
+Risk: PDFs, Google Sheets, or shareable links may expose generated reports beyond the intended audience.
+
+Mitigation: Require user approval before creating cloud documents or public links, and confirm document privacy and storage location.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/lettywyse/skills/investment-browser-sec)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown analysis with tabular financial summaries and generated CSV, HTML, PDF, Markdown, or spreadsheet artifacts when approved.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include shareable report or spreadsheet links; users should approve cloud document creation before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

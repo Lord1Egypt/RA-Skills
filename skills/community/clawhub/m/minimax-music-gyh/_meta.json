@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn760j8hvg3eze215091p55bx982drwk",
+  "ownerId": "gyh",
   "slug": "minimax-music-gyh",
   "version": "1.0.0",
-  "publishedAt": 1775964536775
+  "publishedAt": 1744394400000,
+  "name": "minimax-music",
+  "description": "MiniMax 音乐生成技能（music-2.5+），支持文生音乐。"
 }

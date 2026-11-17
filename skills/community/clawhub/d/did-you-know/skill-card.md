@@ -1,46 +1,62 @@
-## Description: <br>
-Fetches English Wikipedia's "Did you know?" (DYK) facts, caches them locally, and serves them one at a time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches English Wikipedia's "Did you know?" (DYK) facts, caches them locally, and serves them one at a time.
 
-## Publisher: <br>
-[jonathandeamer](https://clawhub.ai/user/jonathandeamer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonathandeamer](https://clawhub.ai/user/jonathandeamer)
 
-## Use Case: <br>
-External users and agents use this skill to fetch a conversational Wikipedia Did You Know fact, optionally tune topic preferences, and optionally schedule recurring fact delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Wikipedia to fetch public Did You Know facts. <br>
-Mitigation: Use it only where outbound access to Wikipedia is acceptable. <br>
-Risk: The skill stores a local facts cache and optional topic preferences in ~/.openclaw. <br>
-Mitigation: Review and remove those local files when cache history or preferences should not persist. <br>
-Risk: Automatic delivery or preference refresh can create recurring OpenClaw cron schedules. <br>
-Mitigation: Confirm the schedule and removal instructions before enabling recurring jobs. <br>
+## Use Case:
 
+External users and agents use this skill to share English Wikipedia DYK facts, optionally tailor facts by topic and tone preferences, and configure recurring fact delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jonathandeamer/did-you-know) <br>
-- [Wikipedia Did You Know](https://en.wikipedia.org/wiki/Wikipedia:Did_you_know) <br>
-- [DYK command reference](references/commands.md) <br>
-- [DYK hook tagging guide](references/tagging-guide.md) <br>
-- [DYK tag vocabulary](references/tags.csv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational text with optional Markdown and silent shell-command execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local JSON cache and preference files under ~/.openclaw; scheduled delivery uses OpenClaw cron when enabled by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release evidence) <br>
+Risk: The skill keeps a local fact cache and preference file under ~/.openclaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where local preference and served-fact history storage is acceptable, and remove ~/.openclaw/dyk-facts.json or ~/.openclaw/dyk-prefs.json when that data is no longer needed.
+
+Risk: Automatic delivery or preference refresh can create recurring OpenClaw cron jobs.
+
+Mitigation: Review scheduled DYK delivery and refresh jobs after setup, and remove them if recurring facts or background refresh are no longer wanted.
+
+Risk: Facts are fetched from public English Wikipedia content and may reflect upstream changes or curation limits.
+
+Mitigation: Treat served facts as trivia and use the included Wikipedia link to check the source article before relying on a fact in higher-stakes contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jonathandeamer/skills/did-you-know)
+- [Wikipedia Did You Know](https://en.wikipedia.org/wiki/Wikipedia:Did_you_know)
+- [Skill homepage](https://github.com/jonathandeamer/did-you-know)
+- [DYK command reference](references/commands.md)
+- [DYK hook tagging guide](references/tagging-guide.md)
+- [DYK tag vocabulary](references/tags.csv)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Conversational text with Wikipedia links, command-backed actions, JSON cache updates, and scheduling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses python3, the public English Wikipedia API, local files under ~/.openclaw, and optional OpenClaw cron schedules.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

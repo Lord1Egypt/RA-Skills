@@ -1,44 +1,55 @@
-## Description: <br>
-Gates persona sharing behind explicit Telegram owner approval and connects to persona-service for external chatbots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gates persona sharing behind explicit Telegram owner approval and connects to persona-service for external chatbots.
 
-## Publisher: <br>
-[kanishkaRandunu](https://clawhub.ai/user/kanishkaRandunu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kanishkarandunu](https://clawhub.ai/user/kanishkarandunu)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to require Telegram owner approval before sharing local persona, profile, identity, writing style, or system-prompt/personality details. When configured with persona-service, it can poll for external chatbot persona requests and return approved results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The optional service mode can start an unsupervised background persona-client that handles secrets and sends approved persona data to an external service. <br>
-Mitigation: Use this mode only with a trusted HTTPS persona-service, configure a shared secret, and supervise or manually run the persona-client so it can be stopped when needed. <br>
-Risk: Misconfigured persona paths could expose the wrong local persona file. <br>
-Mitigation: Set PERSONA_PATH and ALLOWED_PERSONA_PATH to the exact same intended file and verify the path before enabling the skill. <br>
-Risk: Telegram bot tokens, chat IDs, and persona-service shared secrets can be exposed through terminals, screenshots, or logs. <br>
-Mitigation: Use a dedicated Telegram bot for approval and rotate any Telegram or service secrets that may have been pasted into terminals, screenshots, or logs. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to require explicit Telegram owner consent before an agent shares local persona, profile, identity, writing-style, or system-personality content. It can also connect to a persona-service flow so external chatbots can request persona access through the same approval gate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kanishkaRandunu/persona-consent-telegram-hub) <br>
-- [README](README.md) <br>
-- [End-to-end test](docs/E2E-TEST.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns persona text only after approval; denial, timeout, or errors return a refusal JSON or the exact refusal text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; package.json reports 1.0.0) <br>
+Risk: Approved persona content, request metadata, and optional shared secrets can leave the machine through the configured persona-service endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with trusted HTTPS persona-service endpoints, use a dedicated Telegram bot token, and restrict permissions on OpenClaw configuration files.
+
+Risk: The persona-service client can run as a detached background process with weak endpoint and environment scoping.
+
+Mitigation: Be prepared to stop the persona-client process manually, and prefer a version that validates endpoints, allowlists child-process environment variables, validates numeric backoff settings, and ties the client lifecycle to the gateway.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kanishkarandunu/skills/persona-consent-telegram-hub)
+- [README](README.md)
+- [End-to-end test guide](docs/E2E-TEST.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown or refusal text, with JSON returned by the local consent script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns persona Markdown only after approval; denies by default on timeout, error, or refusal.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

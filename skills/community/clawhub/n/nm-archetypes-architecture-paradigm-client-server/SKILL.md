@@ -1,7 +1,7 @@
 ---
 name: architecture-paradigm-client-server
 description: Applies client-server architecture for web/mobile apps
-version: 1.9.8
+version: 1.10.3
 triggers:
   - architecture
   - client-server
@@ -15,7 +15,7 @@ source: claude-night-market
 source_plugin: archetypes
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # The Client-Server and Peer-to-Peer Paradigms
@@ -24,6 +24,13 @@ source_plugin: archetypes
 - For traditional applications that have centralized services, such as web or mobile clients communicating with backend APIs.
 - For systems exploring decentralized or "offline-first" capabilities that rely on peer-to-peer synchronization.
 - To formally document trust boundaries, client-server version negotiation, and API evolution strategies.
+
+## When NOT To Use
+
+- Systems with no network boundary between UI and logic (use
+  `archetypes:architecture-paradigm-modular-monolith`)
+- Choosing among paradigms in the first place (use
+  `archetypes:architecture-paradigms`)
 
 ## Adoption Steps
 1. **Define Responsibilities**: Clearly delineate which logic and data reside on the client versus the server, with the goal of minimizing duplication.
@@ -47,12 +54,19 @@ source_plugin: archetypes
 
 ## Concrete Components
 
-These vocabulary items name the concrete tools and abstractions
-that show up when the paradigm is implemented. They are not
-required dependencies and they are not part of the skill's
-``tools:`` frontmatter (which is reserved for Claude Code tool
-restrictions). Use this list to disambiguate during architecture
-discussions.
+Vocabulary for the tools and abstractions an implementation of this
+paradigm tends to carry. Not dependencies, and not ``tools:`` frontmatter.
 
-- ``api-contract-generator`` -- produces machine-readable OpenAPI/RPC contracts the client and server share
-- ``networking-debugger`` -- captures request/response traces for diagnosing latency, retries, and timeout issues
+- ``api-contract-generator``: produces machine-readable OpenAPI/RPC contracts the client and server share
+- ``networking-debugger``: captures request/response traces for diagnosing latency, retries, and timeout issues
+
+## Exit Criteria
+
+- [ ] An ADR is produced naming client roles, server roles (and peer roles if applicable), trust
+  boundaries, and the API versioning strategy chosen.
+- [ ] A formal API or protocol specification exists (OpenAPI, protobuf, or equivalent) covering
+  all documented endpoints or capabilities.
+- [ ] The version-skew strategy (feature flags, `Accept` headers, or semantic versioning) is
+  documented before any client or server code is written.
+- [ ] If offline-first or P2P capability is included, the conflict-resolution strategy (CRDT,
+  last-write-wins, or consensus mechanism) is named in the ADR.

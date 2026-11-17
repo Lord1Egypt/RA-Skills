@@ -1,42 +1,61 @@
-## Description: <br>
-Ingests pasted PC parts purchase and configuration text into Notion DIY_PC tables, helping agents classify items, enrich details, ask clarifying questions, and upsert rows through the Notion data_sources API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ingest pasted PC parts purchase/config text into Notion DIY_PC tables, classify and enrich item details, ask follow-up questions for ambiguous records, and upsert rows through the Notion data_sources API.
 
-## Publisher: <br>
-[NEXTAltair](https://clawhub.ai/user/NEXTAltair) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nextaltair](https://clawhub.ai/user/nextaltair)
 
-## Use Case: <br>
-Developers, PC builders, and workspace maintainers use this skill to turn raw PC parts receipts, Discord notes, and configuration snippets into reviewed Notion records for DIY_PC inventory tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write, overwrite, or archive Notion pages when configured with a Notion integration token. <br>
-Mitigation: Use a Notion integration shared only with the intended DIY_PC databases, review generated JSONL before running it, and avoid page_id, overwrite, archive, or mirror_to_pcconfig unless explicitly requested. <br>
+## Use Case:
 
+Developers and operators who maintain DIY PC inventory in Notion use this skill to turn pasted purchase logs, receipts, and component notes into classified records for PCConfig, storage, enclosure, and PCInput tables.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/NEXTAltair/openclaw-skill-diy-pc-ingest) <br>
-- [Notion Skill Dependency](https://clawhub.ai/steipete/notion) <br>
-- [Configuration Example](references/config.example.json) <br>
-- [Notion ID Setup Notes](references/notion-ids.md) <br>
-- [Notion Integration Setup](https://www.notion.so/my-integrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSONL records and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Notion API credentials and local target IDs; review generated JSONL before applying changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The skill can perform live writes to Notion pages and databases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect generated JSONL before execution and use a Notion integration shared only with the intended DIY-PC databases.
+
+Risk: Direct page updates, archive, and overwrite controls can modify or remove existing Notion content.
+
+Mitigation: Avoid page_id, id, archive, and overwrite controls unless intentionally targeting a specific page change.
+
+Risk: Notion tokens and database IDs are sensitive operational configuration.
+
+Mitigation: Keep tokens in environment variables or local config files and do not publish real IDs or credentials.
+
+## Reference(s):
+
+- [Skill release page](https://clawhub.ai/nextaltair/skills/openclaw-skill-diy-pc-ingest)
+- [ClawHub Notion dependency](https://clawhub.ai/steipete/notion)
+- [Config example](references/config.example.json)
+- [Notion ID setup notes](references/notion-ids.md)
+- [Notion API endpoint](https://api.notion.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSONL records and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform live Notion create, update, archive, or overwrite operations when run with valid credentials.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

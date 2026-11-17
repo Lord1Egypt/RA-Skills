@@ -1,42 +1,57 @@
-## Description: <br>
-Build and deploy a paid API that other agents can pay to use via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and deploy a paid API that other agents can pay to use via x402.
 
-## Publisher: <br>
-[0xRAG](https://clawhub.ai/user/0xRAG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xrag](https://clawhub.ai/user/0xrag)
 
-## Use Case: <br>
-Developers and engineers use this skill to create Express APIs that charge per request in USDC through x402, including route pricing, payment middleware setup, wallet address configuration, and endpoint testing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow can involve real USDC payments, paid test requests, and public deployment on Base mainnet. <br>
-Mitigation: Prefer Base Sepolia for testing and require explicit confirmation before any mainnet payment, paid test request, or public deployment. <br>
-Risk: The skill proposes npm, npx, node, and curl commands that install packages, run local services, or contact endpoints. <br>
-Mitigation: Review package names, command arguments, and curl targets before execution. <br>
-Risk: Production facilitator use requires CDP credentials and wallet-related configuration. <br>
-Mitigation: Keep CDP keys and wallet credentials in environment variables or a secret manager, and avoid exposing them in code or logs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Coinbase Developer Platform Portal](https://portal.cdp.coinbase.com) <br>
-- [Monetize Service on ClawHub](https://clawhub.ai/0xRAG/monetize-service) <br>
+## Use Case:
 
+Developers and engineers use this skill to create Express APIs that charge per request in USDC over x402, configure paid routes, and test payment flows.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Express and x402 route configuration, wallet setup commands, test commands, and pricing guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide real-money USDC payment flows on Base mainnet.
+
+Mitigation: Test on base-sepolia first, verify the payment recipient address independently, and require explicit user confirmation before any command that can spend funds.
+
+Risk: The skill uses executable npm and npx tooling, including latest-tag commands.
+
+Mitigation: Run in a sandboxed workspace and pin exact package versions before production use.
+
+Risk: Production facilitator setup can involve CDP credentials.
+
+Mitigation: Protect CDP_API_KEY_ID and CDP_API_KEY_SECRET, avoid exposing them in logs or committed files, and confirm before commands that use wallet or CDP credentials.
+
+## Reference(s):
+
+- [Monetize Service on ClawHub](https://clawhub.ai/0xrag/skills/monetize-service)
+- [Coinbase Developer Platform portal](https://portal.cdp.coinbase.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers wallet setup, payment recipient configuration, route pricing, network choice, testing, and credential considerations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

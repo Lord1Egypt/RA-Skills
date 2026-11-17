@@ -307,9 +307,9 @@ This includes:
 
 | Phase | Deadline | Actions |
 |-------|----------|---------|
-| **Assessment** | Now — August 2025 | Identify all AI systems, assess risks |
-| **Preparation** | August 2025 — February 2026 | Implement requirements, train staff |
-| **Compliance** | February 2026 onwards | Full compliance, ongoing monitoring |
+| **Assessment** | Now — August 2026 | Identify all AI systems, assess risks. Article 4 AI literacy deadline. |
+| **Preparation** | August 2026 — December 2027 | Implement requirements, train staff. Extended by Digital Omnibus. |
+| **Compliance** | December 2027 onwards | Full Annex III high-risk compliance, ongoing monitoring |
 
 ---
 
@@ -323,6 +323,6 @@ This includes:
 
 ---
 
-*Last updated: April 2026*  
+*Last updated: July 2026 | Updated for Digital Omnibus package (deadline extension to Dec 2027) and UK DUAA 2025*  
 *Author: Enda Rochford*  
 *For informational purposes only — not legal advice*

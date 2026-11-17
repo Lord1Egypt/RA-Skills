@@ -1,37 +1,52 @@
-## Description: <br>
-Deep Research guides an agent through rigorous multi-source, fact-checked research to produce a cited, decision-oriented brief for high-stakes questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rigorous multi-source, fact-checked research producing a cited brief for high-stakes questions where being wrong is costly.
 
-## Publisher: <br>
-[serkaion](https://clawhub.ai/user/serkaion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[serkaion](https://clawhub.ai/user/serkaion)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, analysts, and decision-makers use this skill to structure high-stakes research into scoped questions, multi-source verification, cited findings, uncertainty notes, implications, and recommended next actions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: High-stakes research outputs may be mistaken for professional legal, financial, regulatory, or other qualified advice.
+
+Mitigation: Review cited sources directly and obtain qualified review before relying on outputs for professional or high-impact decisions.
+
+Risk: Single-source, stale, or contested claims can lead to incorrect conclusions.
+
+Mitigation: Require independent verification for material claims, label confidence, and clearly separate fact from inference.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, employees, and developers use this skill to research high-stakes business, legal, regulatory, market, due diligence, and feasibility questions where evidence quality and traceable citations matter. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown research brief with inline citations and confidence labels]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/serkaion/serkaion-deep-research) <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [Emphasizes independent source verification, explicit uncertainty, and separation of fact from inference.]
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown brief with inline citations, confidence labels, uncertainties, implications, and recommended next action] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Emphasizes multi-source verification, adversarial checking, and explicit separation of fact from inference.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+1.0.0 (source: server release metadata)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

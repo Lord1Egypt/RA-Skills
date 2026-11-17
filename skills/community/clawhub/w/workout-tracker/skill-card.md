@@ -1,45 +1,58 @@
-## Description: <br>
-个人健身跟踪器 — 通过文字记录健身训练数据，自动解析动作、组数、次数和重量，实时写入本地 MySQL 数据库。支持制定专属训练计划、查询历史记录、追踪进步曲线，以及球类和有氧运动记录。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A personal fitness tracking skill that records text-based workout entries, parses exercises, sets, reps, and weights, writes them to a local MySQL database, and supports training plans, history queries, progress tracking, and cardio or ball-sport records.
 
-## Publisher: <br>
-[query1988](https://clawhub.ai/user/query1988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[query1988](https://clawhub.ai/user/query1988)
 
-## Use Case: <br>
-External users and personal fitness agents use this skill to record strength, cardio, and sport workouts in a local MySQL database, query training history, and generate training plans from prior activity and available equipment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workout records are saved to a local MySQL database configured by the user. <br>
-Mitigation: Use a dedicated local database and least-privilege database user for normal tracking. <br>
-Risk: MYSQL_PASSWORD is required for database access and could be exposed through shell history, committed files, or overly broad file permissions. <br>
-Mitigation: Keep MYSQL_PASSWORD out of version control, prefer a private environment file or interactive entry, and restrict file permissions. <br>
-Risk: Database setup may require privileges beyond normal runtime tracking. <br>
-Mitigation: Run setup only with privileges needed to create tables, then use minimal INSERT, SELECT, UPDATE, and DELETE permissions for routine use. <br>
+## Use Case:
 
+External users use this skill as a local personal workout assistant to record gym sets, cardio sessions, available equipment, training status, and workout history. It is intended for single-user local deployment with fitness data stored in MySQL rather than a cloud service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/query1988/workout-tracker) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/query1988) <br>
-- [README](artifact/README.md) <br>
-- [Local configuration and tools](artifact/TOOLS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline SQL and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local MySQL configuration through MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE, and MYSQL_SOCKET.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.7 (source: package.json and server release metadata) <br>
+Risk: The skill needs credentials for a local MySQL database that may contain personal fitness history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated MySQL user limited to the workout_tracker database with only INSERT, SELECT, UPDATE, and DELETE permissions.
+
+Risk: Database credentials can leak if stored in shell startup files, committed configuration, or loosely permissioned .env files.
+
+Mitigation: Prefer interactive secret entry or a local secret manager; if using an .env file, keep it out of version control and set permissions to chmod 600.
+
+Risk: Unpinned Python dependencies can change behavior across installs.
+
+Mitigation: Pin dependencies where possible before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/query1988/skills/workout-tracker)
+- [Publisher Profile](https://clawhub.ai/user/query1988)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, SQL guidance]
+
+**Output Format:** [Markdown with SQL and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-facing workout logs, summaries, training plans, setup guidance, and parameterized MySQL query patterns.]
+
+## Skill Version(s):
+
+1.3.7 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

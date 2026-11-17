@@ -1,0 +1,41 @@
+{
+  "title": "AI-PILC Data",
+  "description": "Per-project data shape for AI-PILC (Project Initiation Life Cycle). One file per project.",
+  "type": "object",
+  "required": ["$schemaVersion","$generatedBy","$generatedOn","$family","$package","data"],
+  "properties": {
+    "$schema": {"type":"string"},
+    "$schemaVersion": {"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "$generatedBy": {"type":"string","const":"AI-DFE"},
+    "$generatedOn": {"type":"string","format":"date-time"},
+    "$family": {"type":"string"},
+    "$package": {"type":"string","const":"ai-pilc"},
+    "data": {
+      "type":"object",
+      "required":["projectId","status"],
+      "properties": {
+        "projectId": {"type":["string","null"]},
+        "projectName": {"type":["string","null"]},
+        "projectHandle": {"type":["string","null"]},
+        "status": {"type":["string","null"],"enum":["In Progress","Paused","Complete",null]},
+        "currentPhase": {"type":["string","null"]},
+        "currentStage": {"type":["integer","null"]},
+        "workflowDepth": {"type":["string","null"],"enum":["Minimal","Standard","Comprehensive",null]},
+        "started": {"type":["string","null"],"format":"date-time"},
+        "lastUpdated": {"type":["string","null"],"format":"date-time"},
+        "producerVersion": {"type":["string","null"]},
+        "route": {"type":["string","null"]},
+        "derivedFrom": {"type":["string","null"]},
+        "progress": {"type":"array","items":{"type":"object","properties":{"stage":{"type":"integer"},"name":{"type":"string"},"status":{"type":"string"},"completed":{"type":["string","null"]},"notes":{"type":["string","null"]}}}},
+        "registerCounts": {"type":["object","null"],"properties":{"decisions":{"type":"integer"},"changes":{"type":"integer"},"issues":{"type":"integer"},"actions":{"type":"integer"},"assumptions":{"type":"integer"},"lessons":{"type":"integer"}}},
+        "decisions": {"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"date":{"type":"string"},"summary":{"type":"string"},"status":{"type":"string"}}}},
+        "changes": {"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"date":{"type":"string"},"description":{"type":"string"},"status":{"type":"string"}}}},
+        "issues": {"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"description":{"type":"string"},"priority":{"type":"string"},"status":{"type":"string"},"owner":{"type":["string","null"]}}}},
+        "actions": {"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"description":{"type":"string"},"owner":{"type":"string"},"due":{"type":["string","null"]},"status":{"type":"string"}}}},
+        "assumptions": {"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"assumption":{"type":"string"},"status":{"type":"string"},"validated":{"type":["string","null"]}}}},
+        "lessons": {"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"lesson":{"type":"string"},"stage":{"type":["string","null"]},"captured":{"type":["string","null"]}}}},
+        "risks": {"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"risk":{"type":"string"},"probability":{"type":["string","null"]},"impact":{"type":["string","null"]},"score":{"type":["number","null"]},"mitigation":{"type":["string","null"]},"owner":{"type":["string","null"]},"status":{"type":["string","null"]}}}}
+      }
+    }
+  }
+}

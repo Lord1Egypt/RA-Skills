@@ -1,44 +1,56 @@
-## Description: <br>
-UK national carbon intensity data for real-time, historical, and generation mix queries from the Carbon Intensity API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UK national carbon intensity data — real-time, historical, and generation mix from the Carbon Intensity API
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users, developers, sustainability teams, and smart-home workflows use this skill to check UK grid carbon intensity, compare historical data, and inspect current generation fuel mix. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup uses mcp-remote through npx with a moving latest tag. <br>
-Mitigation: Pin the mcp-remote package version before production installation. <br>
-Risk: Carbon-data tool calls are routed through Pipeworx's third-party gateway. <br>
-Mitigation: Use the gateway only for intended carbon-intensity queries and review the Pipeworx service before sending sensitive operational context. <br>
-Risk: The release evidence reports overstated capability tags. <br>
-Mitigation: Do not rely on the capability tags for security decisions until the publisher corrects them. <br>
+## Use Case:
 
+Developers, sustainability teams, smart home systems, and researchers use this skill to retrieve current and historical UK grid carbon intensity and generation mix data for operational decisions, dashboards, and analysis.
 
-## Reference(s): <br>
-- [Pipeworx Carbon homepage](https://pipeworx.io/packs/carbon) <br>
-- [Carbon Intensity API](https://carbonintensity.org.uk) <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-carbon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell and JSON snippets; MCP tool responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Depends on the Pipeworx MCP gateway and the Carbon Intensity API being available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The setup uses `npx` with an unpinned `mcp-remote@latest` package, creating supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin `mcp-remote` to a trusted exact version or install it through a controlled package-management process before deployment.
+
+Risk: Requests go through Pipeworx's gateway rather than directly to the public Carbon Intensity API.
+
+Mitigation: Review the gateway endpoint and data-routing requirements before using the skill in sensitive or regulated environments.
+
+## Reference(s):
+
+- [Pipeworx Carbon Pack](https://pipeworx.io/packs/carbon)
+- [Pipeworx Carbon MCP Gateway](https://gateway.pipeworx.io/carbon/mcp)
+- [ClawHub Skill Page](https://clawhub.ai/brucegutman/skills/pipeworx-carbon)
+- [Publisher Profile](https://clawhub.ai/user/brucegutman)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to call the Pipeworx carbon MCP gateway for carbon intensity and generation mix data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

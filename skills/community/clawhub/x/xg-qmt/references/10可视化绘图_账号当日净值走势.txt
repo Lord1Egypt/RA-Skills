@@ -1,0 +1,138 @@
+[python可视化绘图]账号当日净值走势 
+43981
+发表于 2023-12-29 10:32:36
+|
+只看该作者
+只看大图
+阅读模式
+|
+#coding:gbk
+
+"""
+分时周期 在附图绘制账号持仓走势
+init函数中指定参数：
+A.d = {'股票账号1' : ['11001496', 'stock']}
+填入账号信息 格式为 账号名 : [资金账号， 账号类型]， 三者都为字符串格式
+"""
+
+
+class a():
+	pass
+
+A = a()
+
+
+def init(C):
+	A.d = {'两融账号' : ['11800028', 'credit']}
+	A.index_dict = {"上证":'000001.SH', '深证':'399001.SZ', "创业" : '399006.SZ'}
+	#A.d = {}
+	A.holding_dict = {}
+	for name in A.d:
+		acct = A.d[name][0]
+		acct_type = A.d[name][1]
+		holdings = get_trade_detail_data(acct, acct_type, 'position')
+		holdings = {i.m_strInstrumentID + '.' + i.m_strExchangeID : i.m_dMarketValue for i in holdings}
+		print(name, holdings)
+		A.holding_dict[name] = holdings
+	A.init_value = {name : 1 for name in A.d}
+	stock_list = []
+	for l in A.holding_dict.values():
+		stock_list += l
+	stock_list += list(A.index_dict.values())
+	stock_list = list(set(stock_list))
+	for stock in stock_list:
+		C.subscribe_quote(stock, '1m', 'follow')
+
+import datetime
+def handlebar(C):
+	d = C.barpos
+	t = C.get_bar_timetag(d)
+	now = datetime.datetime.now()
+	now_date = now.strftime('%Y%m%d')
+	date = timetag_to_datetime(t, '%Y%m%d')
+	print(d, date)
+	if date < now_date:
+		return
+	time_str = timetag_to_datetime(t, '%Y%m%d%H%M%S')
+	stock_list = []
+	C.paint('0', 0, -1, 0)
+	for name in A.holding_dict:
+		for stock in A.holding_dict[name]:
+			if stock not in stock_list:
+				stock_list.append(stock)
+	for name in A.holding_dict:
+		total_value = sum(A.holding_dict[name].values())
+		if total_value < 1:
+			continue
+	if not C.is_last_bar():
+		market_data = C.get_market_data_ex(['close'], stock_code = stock_list + list(A.index_dict.values()),start_time= date + '000000', end_time = time_str, period = '1m')
+		full_tick = C.get_full_tick(stock_list + list(A.index_dict.values()))
+		out_ratio, outvalue = 0, 0
+		for name in A.holding_dict:
+			total_ratio = 0
+			adjusted_total_value = 0
+			for stock in A.holding_dict[name]:
+				if stock not in market_data or stock not in full_tick:
+					continue
+				ratio = market_data[stock].iloc[-1, 0] /  full_tick[stock]['lastClose']- 1
+				#新股ratio 会是-1 跳过
+				if not ratio > -0.21:
+					continue
+				pre_value = A.holding_dict[name][stock] / (1 + ratio)
+				total_ratio += ratio * pre_value
+				adjusted_total_value += pre_value
+				out_ratio += ratio * pre_value
+				outvalue += pre_value
+				#print(stock, A.holding_dict[name][stock], ratio, total_ratio, adjusted_total_value)
+			if not adjusted_total_value > 0:
+				continue
+			total_ratio /= adjusted_total_value
+			#print(111, time_str, name, round(total_ratio * 100,2))
+			C.paint(name, round(total_ratio * 100,2), -1, 0)
+		#if outvalue >0:
+		#	out_ratio /= outvalue
+		#	C.paint("账号累计", out_ratio * 100, -1, 0)
+		for name in A.index_dict:
+			index_ratio =  market_data[A.index_dict[name]].iloc[-1, 0] /  full_tick[A.index_dict[name]]['lastClose']- 1
+			#print(time_str, index_ratio)
+			C.paint(name, round(index_ratio*100,2),-1,0)
+	else:
+		full_tick = C.get_full_tick(stock_list + list(A.index_dict.values()))
+		out_ratio, outvalue = 0, 0
+		for name in A.holding_dict:
+			total_ratio = 0
+			adjusted_total_value = 0
+			for stock in A.holding_dict[name]:
+				if stock not in full_tick:
+					continue
+				if full_tick[stock]['lastClose'] == 0:
+					continue
+				ratio = full_tick[stock]['lastPrice'] / full_tick[stock]['lastClose'] - 1
+				pre_value = A.holding_dict[name][stock] / (1 + ratio)
+				total_ratio += ratio * pre_value
+				adjusted_total_value += pre_value
+				out_ratio += ratio * pre_value
+				outvalue += pre_value
+			if not adjusted_total_value > 0:
+				continue
+			total_ratio /= adjusted_total_value
+			C.paint(name, round(total_ratio * 100,2), -1, 0)
+			print(222, time_str, name, round(total_ratio * 100,2))
+		#if outvalue >0:
+		#	out_ratio /= outvalue
+		#	C.paint("账号累计", out_ratio * 100, -1, 0)
+		for name in A.index_dict:
+			index_ratio = full_tick[A.index_dict[name]]['lastPrice'] / full_tick[A.index_dict[name]]['lastClose'] - 1
+			C.paint(name, round(index_ratio*100,2),-1,0)
+​
+image.png
+
+18 行填入使用的资金账号, 账号类型
+
+19 行填入作为对比的指数品种, 默认为上证指数, 深证成指, 创业板指.
+
+在分时图页面, 点击运行, 绘制当日账号净值走势.
+
+不清楚的内容可添加下方助理微信咨询，有其他 QMT 小技巧想学习的吗？欢迎在下方留言，笔者将根据大家的留言持续更新哦！
+
+欢迎和我一起加入迅投组建的 QMT 实战交流社群，交流群内有许多做量化交易的高手和大佬，具有良好的分享和互助氛围。且迅投官方会不定期为多次分享、乐于助人的群友申请送投研专业版的机会。

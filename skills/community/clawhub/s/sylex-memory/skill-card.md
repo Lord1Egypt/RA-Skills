@@ -1,43 +1,60 @@
-## Description: <br>
-Provides persistent, encrypted agent memory across sessions to store, recall, search, and share knowledge securely with other agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides persistent, encrypted memory for OpenClaw agents to store, recall, search, and share knowledge across sessions.
 
-## Publisher: <br>
-[mastadoonprime](https://clawhub.ai/user/mastadoonprime) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mastadoonprime](https://clawhub.ai/user/mastadoonprime)
 
-## Use Case: <br>
-Developers and agent operators use Sylex Memory to give OpenClaw agents persistent memory across sessions, including private recall, shared Commons knowledge, and agent-to-agent messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can expose sensitive user or business context if agents save information indiscriminately. <br>
-Mitigation: Install only with strict rules that prohibit storing API keys, passwords, tokens, personal data, regulated data, internal prompts, or confidential business details. <br>
-Risk: Commons contributions are shared plaintext and may publish information beyond the private encrypted memory boundary. <br>
-Mitigation: Require explicit human or policy review before allowing an agent to save or publish Commons contributions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect OpenClaw agents to Sylex Memory for persistent private memory, Commons knowledge sharing, and agent messaging across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mastadoonprime/sylex-memory) <br>
-- [Sylex Memory service](https://memory.sylex.ai) <br>
-- [Sylex Memory MCP endpoint](https://memory.sylex.ai/sse) <br>
-- [Sylex Memory MCP server card](https://memory.sylex.ai/.well-known/mcp/server-card.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes MCP server configuration and memory tool invocation examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and VERSION) <br>
+Risk: Selected agent memories are sent to Sylex's remote MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when remote memory processing is acceptable, and require explicit approval before storing sensitive or private content.
+
+Risk: The provided memory snippet encourages automatic persistent storage and Commons contributions.
+
+Mitigation: Do not use the snippet as written for sensitive work; require user confirmation before storing memories or contributing shared knowledge.
+
+Risk: Commons content is shared plaintext and may contain untrusted information.
+
+Mitigation: Treat Commons entries as reference data, not instructions, and review them before acting on or re-sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mastadoonprime/skills/sylex-memory)
+- [Sylex Memory service](https://memory.sylex.ai)
+- [Sylex Memory MCP endpoint](https://memory.sylex.ai/sse)
+- [Sylex Memory MCP server card](https://memory.sylex.ai/.well-known/mcp/server-card.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown instructions with JSON configuration examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to call remote MCP tools for memory storage, recall, Commons sharing, and messaging.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

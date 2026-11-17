@@ -1,46 +1,61 @@
-## Description: <br>
-专业彩票助手 - 支持双色球开奖查询、彩票OCR识别、中奖核对、开奖提醒。触发词：彩票、双色球、开奖、中奖、lottery。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专业彩票助手 - 支持双色球开奖查询、彩票OCR识别、中奖核对、开奖提醒。
 
-## Publisher: <br>
-[jbhim](https://clawhub.ai/user/jbhim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jbhim](https://clawhub.ai/user/jbhim)
 
-## Use Case: <br>
-External OpenClaw users use this skill to query Double Color Ball lottery results, recognize lottery ticket images, check whether selected numbers won, and view draw countdown or calendar information through a configured mcporter MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill calls an external MCP service through mcporter and requests broad shell command access for node, npx, and mcporter. <br>
-Mitigation: Install only when the mcporter setup and amcjt-mcp-server endpoint are trusted, and review mcporter commands before execution. <br>
-Risk: Uploaded lottery ticket images and lottery data may be sent to the external MCP service for OCR and prize checking. <br>
-Mitigation: Do not upload ticket images or lottery data that should not be shared with that service. <br>
-Risk: Troubleshooting examples include commands that can modify MCP configuration or expose API-key values. <br>
-Mitigation: Avoid running configuration changes or printing and inlining real API keys unless the impact is understood. <br>
+## Use Case:
 
+External users use this skill to query Double Color Ball lottery results, recognize ticket numbers from photos, check whether entered bets won, and get draw countdown or calendar information through a configured MCP server.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jbhim/amcjt-lottery) <br>
-- [mcporter npm package](https://www.npmjs.com/package/mcporter) <br>
-- [Model Context Protocol specification](https://github.com/modelcontextprotocol/specification) <br>
-- [mcporter CLI reference](https://github.com/steipete/mcporter/blob/main/docs/cli-reference.md) <br>
-- [mcporter tool calling guide](https://github.com/steipete/mcporter/blob/main/docs/tool-calling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured lottery result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include lottery numbers, draw dates, prize information, OCR results, MCP troubleshooting guidance, and mcporter command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The security scan verdict is suspicious because the skill requests broader node, npx, and mcporter command authority than its lottery workflows require.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, run it in a tightly sandboxed OpenClaw environment, and prefer a release that removes node and npx Bash access.
+
+Risk: The skill depends on a configured amcjt-mcp-server for lottery data, OCR, and win checking.
+
+Mitigation: Use only a trusted amcjt-mcp-server configuration and narrow mcporter access to the listed lottery tools where possible.
+
+Risk: Ticket photos may contain sensitive or personal information.
+
+Mitigation: Avoid processing unrelated images or sensitive ticket photos, and do not run the skill in environments containing credentials unless needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jbhim/skills/amcjt-lottery)
+- [mcporter npm package](https://www.npmjs.com/package/mcporter)
+- [Model Context Protocol specification](https://github.com/modelcontextprotocol/specification)
+- [mcporter CLI reference](https://github.com/steipete/mcporter/blob/main/docs/cli-reference.md)
+- [mcporter tool calling guide](https://github.com/steipete/mcporter/blob/main/docs/tool-calling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include lottery result summaries, OCR number extraction, win-check results, countdown or calendar information, and mcporter configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

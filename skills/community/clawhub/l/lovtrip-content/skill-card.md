@@ -1,43 +1,57 @@
-## Description: <br>
-Travel Content Browser for searching LovTrip travel guides, destinations, and itineraries without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search LovTrip travel guides, destinations, and itinerary ideas without an API key.
 
-## Publisher: <br>
-[lizhijun](https://clawhub.ai/user/lizhijun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lizhijun](https://clawhub.ai/user/lizhijun)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search LovTrip travel content, browse destinations, and retrieve itinerary ideas through the LovTrip CLI or public API examples. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Travel searches, destination interests, and itinerary queries are sent to lovtrip.app. <br>
-Mitigation: Avoid sending sensitive personal travel details unless the user is comfortable sharing them with LovTrip. <br>
-Risk: The optional CLI examples run an external npm package through npx lovtrip@latest. <br>
-Mitigation: Prefer the curl examples, or pin and review the npm CLI version before running it in controlled environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lizhijun/lovtrip-content) <br>
-- [LovTrip](https://lovtrip.app) <br>
-- [LovTrip developer documentation](https://lovtrip.app/developer) <br>
-- [LovTrip travel guides](https://lovtrip.app/guides) <br>
-- [Search guide examples](examples/search-guides.md) <br>
+## Use Case:
 
+External users and travel-planning assistants use this skill to search travel guides, browse destinations, and retrieve itinerary templates from LovTrip using either public HTTPS API calls or the LovTrip CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use npx lovtrip or curl examples to fetch LovTrip search, guide, destination, and itinerary content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Running the unpinned LovTrip CLI through npx can execute changing third-party code locally.
+
+Mitigation: Prefer the documented curl HTTPS API examples; if CLI use is necessary, pin and review the lovtrip package version and run it in a sandbox with minimal file and credential access.
+
+Risk: Travel search queries may include sensitive personal itinerary details.
+
+Mitigation: Avoid sending sensitive personal, credential, or private trip information in LovTrip search queries.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lizhijun/skills/lovtrip-content)
+- [LovTrip](https://lovtrip.app)
+- [LovTrip Developer Documentation](https://lovtrip.app/developer)
+- [LovTrip Planner](https://lovtrip.app/planner)
+- [LovTrip Guides](https://lovtrip.app/guides)
+- [Search Guides Examples](examples/search-guides.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return CLI-formatted text or JSON from LovTrip public API calls.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

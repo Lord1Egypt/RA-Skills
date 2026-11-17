@@ -557,4 +557,4 @@ python3 {baseDir}/scripts/cleanup.py --all --cloud
 - 环境变量 `TENCENTCLOUD_*` 系列（`SECRET_ID`、`SECRET_KEY`、`TOKEN`、`ROLE_ARN`、`ROLE_NAME`、`ROLE_SESSION`、`STS_DURATION`），脚本会自动检测已设置的变量并生成对应平台的清理命令（`source` 脚本 / PowerShell 脚本）
 - 云端 CAM 角色 `advisor`（仅 `--cloud` 模式，需配置 AK/SK）
 
-<!-- Unique ID: architecture-inventory-risk-assessment-1774326302598 -->
+<!-- Unique ID: architecture-inventory-riREDACTED-SECRET -->

@@ -1,41 +1,54 @@
-## Description: <br>
-Payback reference tool. Use when working with payback in finance contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Payback reference tool. Use when working with payback in finance contexts.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-External users and finance practitioners use this skill as a quick reference for payback concepts, formulas, risks, strategies, glossary terms, and checklist-style guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic finance, regulatory, and checklist content may be mistaken for professional financial, legal, or compliance advice. <br>
-Mitigation: Treat the output as reference material and have qualified professionals review decisions before relying on it. <br>
-Risk: Static formulas, checklists, or regulatory summaries may be incomplete or out of date for a specific jurisdiction or organization. <br>
-Mitigation: Verify outputs against current authoritative financial, regulatory, and internal policy sources before use. <br>
+## Use Case:
 
+Developers and finance practitioners use this skill as a quick static reference for payback-related concepts, formulas, risks, terminology, and checklists.
 
-## Reference(s): <br>
-- [Payback on ClawHub](https://clawhub.ai/bytesagain1/payback) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reference text emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static finance reference content; no credentials, network access, or system changes are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The reference sections may be generic or mismatched to payback finance analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated sections before use and verify finance, accounting, legal, or regulatory points against authoritative sources.
+
+Risk: Users could treat the static content as authoritative financial, accounting, legal, or regulatory advice.
+
+Mitigation: Use it only as a lightweight reference and involve qualified reviewers before relying on outputs for decisions or compliance work.
+
+## Reference(s):
+
+- [Payback on ClawHub](https://clawhub.ai/bytesagain1/skills/payback)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown reference sections and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static finance-themed reference content; no data access, persistence, or hidden actions are reported in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

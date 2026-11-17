@@ -1,40 +1,55 @@
-## Description: <br>
-Generates comprehensive cloud risk summaries by analyzing provider configurations, environments, services, and security exposures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates comprehensive cloud risk summaries by analyzing provider configurations, environments, services, and security exposures.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Cloud security engineers, compliance teams, and DevSecOps professionals use this skill to submit cloud provider, environment, service, and exposure details and receive an executive risk summary with severity context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may send sensitive cloud exposure summaries to an external API. <br>
-Mitigation: Redact secrets, credentials, raw customer data, internal identifiers, and unnecessary architecture details unless the organization has approved the provider and data-handling terms. <br>
+## Use Case:
 
+Cloud security engineers, compliance teams, and DevSecOps professionals use this skill to turn cloud environment, service, and exposure details into executive-level risk summaries and remediation context.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/krishnakumarmahadevan-cmd/cloud-risk-summary) <br>
-- [Kong Route](https://api.mkkpro.com/compliance/cloud-risk-summary) <br>
-- [API Docs](https://api.mkkpro.com:8027/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON response with summary text, risk level, provider, environment, exposure count, affected services, and analyzed exposures.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires provider, environment, services, and exposures in the request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Cloud environment names, service inventories, vulnerability descriptions, and business-impact details may be sensitive when sent to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm organizational approval for this data sharing before use, and avoid submitting secrets, customer data, regulated records, or internal-only identifiers unless approved.
+
+Risk: Generated severity and remediation summaries may influence operational prioritization.
+
+Mitigation: Review generated summaries against the underlying cloud findings before using them for executive reporting or remediation decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/cloud-risk-summary)
+- [API docs](https://api.mkkpro.com:8027/docs)
+- [Kong route](https://api.mkkpro.com/compliance/cloud-risk-summary)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON response containing a risk summary, risk level, affected services, exposure count, and analyzed exposures.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires provider, environment, services, and exposure issue-impact details as structured input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

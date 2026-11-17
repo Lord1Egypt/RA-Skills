@@ -1,41 +1,54 @@
-## Description: <br>
-Guide robot vacuum buyers through floor type, home size, pets, and navigation questions to determine suction, mapping, and filter specs they need -- systematic, brand-neutral. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides robot vacuum buyers through floor type, home size, pets, and navigation questions to determine the suction, mapping, filter, and automation specs they need.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users use this skill when buying or replacing a robot vacuum and need a structured consultation that turns home layout, floors, pets, allergies, furniture clearance, connectivity, and automation preferences into suitable specs and product starting points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product suggestions, prices, availability, and regional app support can change after the skill generates buying guidance. <br>
-Mitigation: Treat suggestions as starting points and verify the current spec sheet, local availability, price, and app support before purchasing. <br>
-Risk: The skill asks for household details such as home size, floors, pets, allergies, furniture clearance, Wi-Fi, and country to tailor recommendations. <br>
-Mitigation: Share only details needed for the buying decision and avoid providing credentials, exact addresses, payment data, or unrelated personal information. <br>
+## Use Case:
 
+External users use this skill to evaluate robot vacuum requirements for their home before buying. It turns user answers about layout, flooring, pets, allergies, clearance, connectivity, and automation preferences into a prioritized spec recommendation and a small set of product starting points.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/robot-vacuum-buying-consultant) <br>
-- [Declared artifact homepage](https://github.com/arbazex/home-appliance-buying-consultants/tree/master/robot-vacuum-buying-consultant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Conversational text followed by structured Markdown spec lists and up to five numbered product suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user answers before product suggestions; current model specs, availability, pricing, and regional app support should be verified before purchase.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Product suggestions may become stale because model specs, regional availability, and pricing change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use suggestions as starting points and verify the current spec sheet, included dock/base, availability, and local pricing before buying.
+
+Risk: Incomplete user answers can lead to unsuitable recommendations for suction, navigation, clearance, filtering, or connectivity.
+
+Mitigation: Collect all critical home, floor, pet, allergy, furniture clearance, Wi-Fi, country, and automation details before producing the final recommendation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/robot-vacuum-buying-consultant)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown consultation questions, prioritized specification lists, and numbered product suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Caps product suggestions at five and instructs users to verify current model specs, availability, and pricing locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

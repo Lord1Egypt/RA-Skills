@@ -1,47 +1,62 @@
-## Description: <br>
-Content Pipeline Provisioner helps OpenClaw users set up and operate a self-hosted AI content pipeline for TikTok, Twitter/X, newsletters, blog publishing, and Telegram briefings using their own accounts and API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-serve OpenClaw skill that provisions a self-hosted content pipeline for TikTok, Twitter/X, newsletters, blog posts, and Telegram briefings using the user's own accounts and API keys.
 
-## Publisher: <br>
-[olivimic](https://clawhub.ai/user/olivimic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olivimic](https://clawhub.ai/user/olivimic)
 
-## Use Case: <br>
-External users, content operators, and developers use this skill to provision a self-hosted marketing content engine for a product or brand, generate its configuration and voice guide, register scheduled jobs, review test outputs, and move the pipeline live or pause/resume it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent public posting can publish incorrect, unwanted, or brand-inappropriate content across connected channels. <br>
-Mitigation: Keep generated jobs in SELF_ONLY or dry-run mode until the exact accounts, channels, schedule, and test outputs are reviewed before go-live. <br>
-Risk: The skill requires broad local secrets for services such as OpenAI, Postiz, MailerLite, Telegram, Supabase, and Netlify. <br>
-Mitigation: Use dedicated low-privilege accounts and keys, restrict ~/.openclaw/.env, and never commit secrets. <br>
-Risk: The Supabase/Xero schema and Larry dependency introduce data-flow and dependency uncertainty. <br>
-Mitigation: Review the Supabase schema purpose and separately review the Larry dependency before installing or running the pipeline. <br>
+## Use Case:
 
+Developers, operators, and brand owners use this skill to set up and manage a self-hosted content engine that creates configurations, voice guidance, scheduled posting jobs, and publishing workflows for a product or brand.
 
-## Reference(s): <br>
-- [Setup Checklist](references/setup-checklist.md) <br>
-- [Larry config.json Field Mapping](references/config-schema.md) <br>
-- [Voice Guide Template](references/voice-guide-template.md) <br>
-- [Blog Schema - Supabase Setup](references/blog-schema.md) <br>
-- [Supabase Schema - pipeline_clients](references/supabase-schema.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/olivimic/content-pipeline-provisioner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local configuration files, voice guides, cron records, and generated content drafts after user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requests broad posting authority across social, newsletter, blog, and briefing channels through persistent scheduled jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep all crons in test mode until the operator reviews exactly what each channel will publish, then approve only the intended jobs for public posting.
+
+Risk: The skill depends on sensitive service credentials for OpenAI, Postiz, MailerLite, Telegram, Supabase, and Netlify.
+
+Mitigation: Use separate scoped credentials per service and brand, lock down or avoid shared env files, and do not store customer newsletter API keys as plain database text.
+
+Risk: The skill relies on the Larry dependency as the underlying TikTok/content posting engine.
+
+Mitigation: Verify the Larry dependency source and version before installation or execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/olivimic/skills/content-pipeline-provisioner)
+- [Setup Checklist](references/setup-checklist.md)
+- [Larry Config Schema](references/config-schema.md)
+- [Voice Guide Template](references/voice-guide-template.md)
+- [Blog Schema](references/blog-schema.md)
+- [Supabase Schema](references/supabase-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration, file templates, cron setup instructions, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup instructions and generated content-pipeline artifacts for user-controlled accounts and local OpenClaw/Larry environments.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

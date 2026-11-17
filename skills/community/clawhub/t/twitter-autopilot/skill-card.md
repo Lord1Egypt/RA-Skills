@@ -1,44 +1,59 @@
-## Description: <br>
-Automate Twitter/X posting, engagement, and growth for OpenClaw AI agents, including OAuth setup, tweet and thread posting, draft workflows, follows, engagement actions, and content strategy support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Twitter/X posting, engagement, draft workflows, thread splitting, and growth planning for OpenClaw AI agents.
 
-## Publisher: <br>
-[persnola1-sketch](https://clawhub.ai/user/persnola1-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[persnola1-sketch](https://clawhub.ai/user/persnola1-sketch)
 
-## Use Case: <br>
-External users and developers use this skill to run an OpenClaw agent's Twitter/X account, prepare approved drafts, post tweets or threads, manage engagement actions, and maintain posting logs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can post, delete, follow, unfollow, retweet, quote, and reply from a live Twitter/X account using OAuth credentials. <br>
-Mitigation: Review before installing, start with a disposable or low-risk account, keep MODE.md in DRAFT until behavior is verified, and avoid unattended cron posting. <br>
-Risk: OAuth credentials grant write access to the connected account and may be exposed or overused if handled carelessly. <br>
-Mitigation: Restrict token permissions where possible, store credentials only as environment variables, rotate tokens regularly, and revoke tokens after testing. <br>
-Risk: Autonomous posting or queue processing can create duplicate, unwanted, or reputationally harmful public content. <br>
-Mitigation: Require human approval for new accounts, check twitter/posted-log.md before posting, log every posted tweet, and confirm the script only reads and writes intended twitter/ files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/persnola1-sketch/twitter-autopilot) <br>
-- [X Developer Portal](https://developer.x.com) <br>
-- [Twitter Strategy Templates](references/strategy-templates.md) <br>
-- [Content Strategy](references/content-strategy.md) <br>
+## Use Case:
 
+External developers and agent operators use this skill to configure an OpenClaw agent for Twitter/X account activity, including posting, replies, retweets, follows, queue-based publishing, and draft review workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples plus local file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the Twitter/X API through tweepy when configured with OAuth credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.1 (source: server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can post, reply, retweet, delete, follow, and unfollow through a real Twitter/X account, creating public account impact.
+
+Mitigation: Install only for accounts where agent read/write Twitter/X authority is acceptable, keep new or sensitive accounts in DRAFT mode, and review queued entries before posting.
+
+Risk: Autonomous cron usage can publish repeated, unsuitable, or unintended content.
+
+Mitigation: Avoid cron posting until the workflow is trusted, maintain the posted log, check for duplicate topics, and require approval for sensitive topics or high-impact tagging.
+
+Risk: The workflow depends on Twitter/X credentials and Tweepy behavior.
+
+Mitigation: Store credentials in environment variables, limit credential exposure, and consider pinning Tweepy in a virtual environment.
+
+## Reference(s):
+
+- [Twitter/X Developer Portal](https://developer.x.com)
+- [Twitter API OAuth2 Token Endpoint](https://api.twitter.com/oauth2/token)
+- [Content Strategy](references/content-strategy.md)
+- [Twitter Strategy Templates](references/strategy-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python usage examples, and local queue/log file conventions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can produce public Twitter/X actions through API calls when credentials and auto-posting workflows are configured.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

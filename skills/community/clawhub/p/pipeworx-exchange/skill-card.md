@@ -1,42 +1,55 @@
-## Description: <br>
-Currency exchange rates and conversion for current, historical, and supported currency pairs via the Frankfurter API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Currency exchange rates and conversion — current, historical, and all supported pairs via the Frankfurter API
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers and agents use this skill to get current and historical exchange rates, convert currency amounts, and list supported currencies for travel planning, analysis, and localized price display. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a remote MCP/API endpoint for exchange-rate data, so responses may be unavailable, delayed, or unsuitable as the sole source for financial commitments. <br>
-Mitigation: Verify rates against an authoritative financial source before making payments, trades, accounting entries, or other commitments. <br>
-Risk: Security guidance for this release advises review before use because installed tooling may operate with elevated agent permissions. <br>
-Mitigation: Review the installed skill files before deployment and keep normal sandbox controls enabled unless broader access is explicitly required. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve current and historical currency exchange rates, convert amounts between supported currencies, and list available currency pairs for travel planning, analysis, or commerce workflows.
 
-## Reference(s): <br>
-- [Pipeworx Exchange homepage](https://pipeworx.io/packs/exchange) <br>
-- [Pipeworx Exchange MCP endpoint](https://gateway.pipeworx.io/exchange/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-exchange) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [JSON responses and concise text summaries, with Markdown examples for curl and MCP client configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for the documented manual request example; no API key requirement is declared in the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The MCP setup can run a mutable npm package automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the MCP setup before installing and prefer a pinned version of mcp-remote.
+
+Risk: Exchange queries are sent to the Pipeworx gateway.
+
+Mitigation: Avoid sending sensitive transaction context, and run the MCP client with minimal environment variables and filesystem access.
+
+## Reference(s):
+
+- [Pipeworx exchange homepage](https://pipeworx.io/packs/exchange)
+- [Pipeworx exchange MCP endpoint](https://gateway.pipeworx.io/exchange/mcp)
+- [ClawHub skill page](https://clawhub.ai/b-gutman/skills/pipeworx-exchange)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, API Calls, Configuration, Shell commands]
+
+**Output Format:** [JSON responses with Markdown setup guidance and shell/configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exchange queries are sent to the Pipeworx gateway; setup requires curl and may use mcp-remote.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Manage secrets through the Bitwarden CLI for shell sessions, Secure Notes, vault listing, and machine setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage secrets with the Bitwarden CLI by loading Secure Notes into shell sessions, creating or updating notes from environment files, listing vault items, and setting up Bitwarden CLI usage.
 
-## Publisher: <br>
-[stevengonsalvez](https://clawhub.ai/user/stevengonsalvez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stevengonsalvez](https://clawhub.ai/user/stevengonsalvez)
 
-## Use Case: <br>
-Developers and operators use this skill to load Bitwarden-stored secrets into shell sessions, create or update Secure Notes from environment files, list vault items, and set up Bitwarden CLI workflows on machines. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Loading Secure Note contents with bwe or bwe_safe can execute shell content from Bitwarden notes. <br>
-Mitigation: Use only Bitwarden notes and vaults you fully trust, prefer bwe_safe for shared or organization accounts, and review note contents before loading them. <br>
-Risk: bwce can store every exported environment variable from the current shell in a Bitwarden Secure Note. <br>
-Mitigation: Use bwce only when intentionally capturing the current environment and review exported variables first. <br>
-Risk: Deletion helpers can remove vault items after resolving an item name. <br>
-Mitigation: Manually confirm the target item identity before deletion and prefer limited Bitwarden accounts or collections. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Bitwarden CLI Documentation](https://bitwarden.com/help/cli/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/stevengonsalvez/bitwarden-bwe) <br>
-- [CLI Reference](references/cli-reference.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Bitwarden CLI workflows and request shell commands for loading, creating, listing, and managing secrets in agent or terminal sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and sourceable shell functions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Bitwarden CLI (bw) and jq; functions operate on Bitwarden vault items and shell environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bitwarden note contents may be evaluated as shell code when secrets are loaded into a session.
+
+Mitigation: Use only trusted vault items, avoid shared or broadly editable notes, review note contents before loading, and prefer strict key/value parsing where possible.
+
+Risk: Creating a note from the current shell can capture more environment variables than intended.
+
+Mitigation: Review the active environment before using current-shell export workflows and prefer a purpose-built .env file containing only required secrets.
+
+Risk: Secrets can persist in the shell environment after loading.
+
+Mitigation: Load secrets only into the needed terminal session, lock Bitwarden when done, and close or clear the session after use.
+
+## Reference(s):
+
+- [Bitwarden CLI Documentation](https://bitwarden.com/help/cli/)
+- [Bitwarden CLI Reference](references/cli-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/stevengonsalvez/skills/bitwarden-bwe)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Bitwarden CLI (bw) and jq; outputs may include commands that handle secrets.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

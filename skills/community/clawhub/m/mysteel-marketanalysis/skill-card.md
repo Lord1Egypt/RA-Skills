@@ -1,42 +1,59 @@
-## Description: <br>
-Provides commodity market analysis for steel, non-ferrous metals, energy and chemical products, furnace materials, and related supply-demand or price-trend questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides commodity market analysis for steel, non-ferrous metals, energy chemicals, raw materials, and related supply-chain questions using Mysteel analysis services.
 
-## Publisher: <br>
-[wyb92](https://clawhub.ai/user/wyb92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wyb92](https://clawhub.ai/user/wyb92)
 
-## Use Case: <br>
-External users and analysts use this skill to request structured Mysteel commodity-market reports and receive expanded Markdown interpretation of prices, supply, demand, inventory, sentiment, risks, and practical guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a local Mysteel API key and sends market-analysis queries to Mysteel. <br>
-Mitigation: Install only when Mysteel is trusted for submitted queries, protect references/api_key.md, and avoid submitting confidential business details unless allowed by the applicable Mysteel terms. <br>
-Risk: The helper script is invoked with a user-derived query argument. <br>
-Mitigation: Use careful argument quoting when running scripts/analyze.py and review generated shell commands before execution. <br>
+## Use Case:
 
+Analysts, traders, procurement teams, and agents use this skill to request commodity price, supply-demand, inventory, and market trend analysis. The skill checks for a Mysteel API key, sends a focused query to the Mysteel analysis endpoint, and returns an expanded Markdown report.
 
-## Reference(s): <br>
-- [API key configuration](references/api_key.md) <br>
-- [Mysteel analysis helper script](scripts/analyze.py) <br>
-- [Mysteel analysis API endpoint](https://mcp.mysteel.com/mcp/info/chat-robot/rag/answer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown commodity-market analysis report with configuration guidance and shell command usage when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a valid Mysteel API key in references/api_key.md; API calls may take about 90 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill asks users to store a Mysteel API key in a plaintext project file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a protected local secret or environment variable for production credentials and avoid committing real API keys to the skill tree.
+
+Risk: The documented exec command interpolates user-provided query text into a shell command.
+
+Mitigation: Pass query arguments without shell interpolation, or strictly quote and validate untrusted query text before execution.
+
+Risk: Market-analysis queries are sent to the Mysteel endpoint.
+
+Mitigation: Use the skill only when the endpoint is trusted and avoid sending unnecessary sensitive business information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wyb92/skills/mysteel-marketanalysis)
+- [API key configuration](references/api_key.md)
+- [Mysteel analysis script](scripts/analyze.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown market analysis report with supporting configuration and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured Mysteel API key and sends the market-analysis query to the Mysteel endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

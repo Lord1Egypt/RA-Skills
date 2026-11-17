@@ -1,45 +1,65 @@
-## Description: <br>
-施炜诊断方法论 helps an agent structure Chinese enterprise management diagnosis from company materials, interviews, and survey evidence into diagnostic Markdown and presentation-ready guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+施炜诊断方法论 guides agents through enterprise management diagnosis using company materials, interviews, surveys, and structured strategy, organization, talent, culture, leadership, and financial analysis frameworks.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-External consultants, business leaders, and strategy teams use this skill to run structured management-consulting diagnosis, assess organizational capabilities, identify growth-stage constraints, and draft change recommendations. It is most appropriate when the user can provide company materials, interview notes, and survey data for triangulation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled scripts include unsafe local command execution. <br>
-Mitigation: Run scripts only in a controlled workspace and review commands before execution. <br>
-Risk: The PPT generator contains client-specific content and a hard-coded output path. <br>
-Mitigation: Revise generate_ppt.js to remove client-specific material and require an explicit output path before use. <br>
-Risk: Management diagnosis can involve confidential interview, HR, financial, and leadership materials. <br>
-Mitigation: Use redacted inputs unless the publisher and execution environment are trusted. <br>
+## Use Case:
 
+Consultants and business analysts use this skill to assess enterprise growth stage, organizational capability, strategy and operations issues, talent, culture, leadership, and financial signals from provided company materials. The skill helps produce a structured diagnosis Markdown document for review and can guide follow-on PPT generation.
 
-## Reference(s): <br>
-- [Diagnosis Framework](references/diagnosis-framework.md) <br>
-- [Markdown Diagnosis Template](references/md-template.md) <br>
-- [PPT Structure and Audit Checklist](references/ppt-structure.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tuobadaidai/skills/shiwei-diagnosis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional JavaScript and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce structured diagnosis Markdown and guide PPT generation and audit workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: PPT generation scripts are flagged as unsafe or mismatched for normal installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix the scripts before installation or execution, and require explicit input and output paths for generated decks.
+
+Risk: Shell execution in the artifact scripts can increase command execution risk.
+
+Mitigation: Replace shell-based execution with argument-array APIs such as execFileSync or spawnSync before production use.
+
+Risk: The skill may process sensitive company interviews, questionnaires, financial data, or leadership materials.
+
+Mitigation: Establish clear user consent, confidentiality handling, and data minimization rules before using the skill with company materials.
+
+Risk: Unpinned runtime dependencies can make PPT generation behavior drift over time.
+
+Mitigation: Pin Node.js dependencies with a lockfile and review dependency updates before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tuobadaidai/skills/shiwei-diagnosis)
+- [Publisher profile](https://clawhub.ai/user/tuobadaidai)
+- [Diagnosis framework](references/diagnosis-framework.md)
+- [Diagnosis Markdown template](references/md-template.md)
+- [PPT structure specification](references/ppt-structure.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with optional JavaScript and shell command references for PPT generation and audit]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces diagnosis documents from user-provided business evidence; PPT generation scripts should be reviewed and adapted before execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

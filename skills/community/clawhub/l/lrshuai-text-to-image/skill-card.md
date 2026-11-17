@@ -1,44 +1,58 @@
-## Description: <br>
-Generates images from text prompts by calling supported remote image-generation models through a Python helper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images from text prompts using the configured Team AI model endpoint.
 
-## Publisher: <br>
-[lrshu](https://clawhub.ai/user/lrshu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrshu](https://clawhub.ai/user/lrshu)
 
-## Use Case: <br>
-Developers and external users can use this skill to submit text prompts to supported image-generation models and receive generated image results through the configured service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the API key and prompt content to a configurable remote endpoint. <br>
-Mitigation: Use a limited TEAM_API_KEY and verify that TEAM_BASE_URL is unset or points to a trusted service before running it. <br>
-Risk: Local image or video inputs can be encoded and uploaded when optional media arguments are used. <br>
-Mitigation: Do not pass local images or videos unless the user intends to upload that content to the configured service. <br>
-Risk: The artifact asks the agent to run the Python helper directly instead of using the standard runner. <br>
-Mitigation: Review the script before installing or executing the skill and prefer a release that explains why direct Python execution is required. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to invoke supported text-to-image models and return generated image task results from a configured API service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lrshu/lrshuai-text-to-image) <br>
-- [Publisher profile](https://clawhub.ai/user/lrshu) <br>
-- [Default remote model API endpoint](https://dlazy.com/api/ai/tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [Console text and JSON returned from the remote image-generation API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and TEAM_API_KEY; TEAM_BASE_URL can override the default remote endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can send TEAM_API_KEY to a configurable API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher and endpoint are trusted, and pin or verify TEAM_BASE_URL before use.
+
+Risk: Prompt text and supplied image or video paths may be uploaded as request data.
+
+Mitigation: Avoid sensitive prompts and local media files; review file paths before invoking the skill.
+
+Risk: The skill directs the agent to run local Python directly instead of the normal OpenClaw runner.
+
+Mitigation: Prefer a release that uses the normal runner with explicit upload consent and endpoint validation, or review the command before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lrshu/skills/lrshuai-text-to-image)
+- [Publisher profile](https://clawhub.ai/user/lrshu)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, API calls, JSON]
+
+**Output Format:** [Console text with JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python and TEAM_API_KEY; may submit asynchronous generation jobs and poll until completion.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

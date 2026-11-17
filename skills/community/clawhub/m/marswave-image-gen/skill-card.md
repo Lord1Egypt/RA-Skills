@@ -1,44 +1,59 @@
-## Description: <br>
-Generate AI images from text prompts using a guided confirmation flow with optional reference image URLs, model, resolution, and aspect ratio choices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI images from text prompts.
 
-## Publisher: <br>
-[0xFANGO](https://clawhub.ai/user/0xFANGO) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xfango](https://clawhub.ai/user/0xfango)
 
-## Use Case: <br>
-External users and developers use this skill to generate cover images, illustrations, concept art, or other visual assets from natural-language prompts through a confirmation-first workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts and reference image URLs are sent to the Labnana provider. <br>
-Mitigation: Avoid sensitive prompts, private image links, and tokenized URLs; review the confirmation summary before approving generation. <br>
-Risk: The skill requires a ListenHub/Labnana API key. <br>
-Mitigation: Provide LISTENHUB_API_KEY only in a trusted environment and do not paste secrets into prompts or saved prompt files. <br>
-Risk: Generated images may be saved locally when download output is enabled. <br>
-Mitigation: Review the configured output mode and inspect .listenhub/image-gen/ before sharing or retaining generated files. <br>
+## Use Case:
 
+External users and developers use this skill to generate AI images from text prompts, choose model, resolution, aspect ratio, and optional reference images, then display or save the generated image.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xFANGO/marswave-image-gen) <br>
-- [Image Prompt Guide](references/prompt-guide.md) <br>
-- [Labnana image generation API endpoint](https://api.labnana.com/openapi/v1/images/generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, files] <br>
-**Output Format:** [Markdown guidance with bash and JSON snippets; generated images are shown inline, saved as JPG files, or both depending on configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LISTENHUB_API_KEY and writes generated image files under .listenhub/image-gen/YYYY-MM-DD-{jobId}/ when download output is selected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Prompts and reference image URLs are sent to Labnana's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompt content and private reference URLs; use the skill only when this external data flow is acceptable.
+
+Risk: Raw curl examples can be unsafe if user-controlled text is interpolated into shell strings.
+
+Mitigation: Build request bodies with safe JSON serialization and review generated commands before execution.
+
+Risk: The image generation API could be called before the user has reviewed the final parameters.
+
+Mitigation: Require explicit user confirmation before submitting any generation request.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xfango/skills/marswave-image-gen)
+- [Image Prompt Guide](references/prompt-guide.md)
+- [Labnana Image Generation API](https://api.labnana.com/openapi/v1/images/generation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May display generated images inline or save JPEG files under .listenhub/image-gen/YYYY-MM-DD-{jobId}/, depending on configuration.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

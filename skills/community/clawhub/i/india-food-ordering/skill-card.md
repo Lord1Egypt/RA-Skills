@@ -1,48 +1,63 @@
-## Description: <br>
-Unified food ordering assistant for India that supports Swiggy and Zomato workflows with strict pre-order confirmation, cart preview, address checks, and vendor fallback logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified food ordering assistant for India that supports Swiggy and Zomato workflows with strict pre-order confirmation, cart preview, address checks, and vendor fallback logic.
 
-## Publisher: <br>
-[anugotta](https://clawhub.ai/user/anugotta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anugotta](https://clawhub.ai/user/anugotta)
 
-## Use Case: <br>
-External users in India use this skill to compare supported food-ordering vendors, prepare carts, verify delivery details, and proceed only after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-India <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help place real food orders, so incorrect cart, address, payment, or cancellation details could cause user-impacting purchases. <br>
-Mitigation: Before order placement, verify the vendor, restaurant, items, total payable, full delivery address, ETA, payment method, and cancellation terms with the user. <br>
-Risk: Checkout failures, fallback flows, or automatic retries could create duplicate or unintended orders. <br>
-Mitigation: Use only trusted connectors, do not auto-retry order placement, and require a fresh full-cart confirmation before fallback checkout. <br>
-Risk: Delivery addresses and order history may expose sensitive personal context in shared sessions. <br>
-Mitigation: Avoid storing address aliases or order logs in shared contexts, and ask the user to clarify ambiguous saved address labels. <br>
+## Use Case:
 
+External users in India use this skill to compare food-ordering options across supported vendors, assemble a cart, confirm delivery details, and place an order only after explicit approval.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/anugotta/india-food-ordering) <br>
-- [OpenClaw Homepage](https://clawhub.ai/regalstreak/swiggy) <br>
-- [Operational Notes](vendor-playbook.md) <br>
-- [Prompt Examples](examples.md) <br>
-- [Safety and QA Checks](validation-checklist.md) <br>
-- [Launch Flow](launch-playbook.md) <br>
-- [Setup](setup.md) <br>
+### Deployment Geography for Use:
 
+India
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown responses with vendor comparisons, cart summaries, confirmation prompts, and order status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires trusted food-ordering connectors and explicit user confirmation before any order placement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill may guide an agent through real food purchases using vendor connectors and delivery address information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted connectors and require the user to review the vendor, cart, total, ETA, address, and cancellation or payment terms before confirming.
+
+Risk: Vendor availability, pricing, ETA, cancellation rights, and payment behavior can change before checkout.
+
+Mitigation: Refresh vendor data during cart review and surface COD-only or non-cancellable constraints before asking for final confirmation.
+
+Risk: Ambiguous saved address labels or checkout retries can lead to wrong delivery details or duplicate orders.
+
+Mitigation: Confirm the exact delivery address and avoid automatic order-placement retries after payment or checkout failures.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anugotta/skills/india-food-ordering)
+- [ClawHub Homepage Metadata](https://clawhub.ai/regalstreak/swiggy)
+- [Setup](setup.md)
+- [Vendor Playbook](vendor-playbook.md)
+- [Examples](examples.md)
+- [Validation Checklist](validation-checklist.md)
+- [Launch Playbook](launch-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown, configuration]
+
+**Output Format:** [Markdown response with ordering options, vendor recommendation, cart summary, and confirmation prompt]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before order placement and returns an order reference after confirmed checkout when a trusted connector supports it.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

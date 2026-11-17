@@ -1,43 +1,60 @@
-## Description: <br>
-每周搜集并整理具身智能领域的实习与就业机会，覆盖软件、硬件、算法、产品和研究岗位。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每周搜集具身智能领域的实习和就业机会，并整理为结构化中文资讯报告。
 
-## Publisher: <br>
-[jessy-huang](https://clawhub.ai/user/jessy-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jessy-huang](https://clawhub.ai/user/jessy-huang)
 
-## Use Case: <br>
-Job seekers, students, researchers, and career-support agents use this skill to monitor embodied AI hiring activity and compile weekly opportunity reports. It is suited for tracking company career pages, recruiting platforms, and WeChat sources across robotics and embodied AI roles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may be written to a hard-coded local Windows path if the user does not adjust the destination. <br>
-Mitigation: Review the output path before installation or execution and prefer a workspace or user-selected directory. <br>
-Risk: Job listings and recruiting links may become stale, unavailable, or inaccurate as source sites change. <br>
-Mitigation: Verify links, posting dates, and application requirements before relying on a report for outreach or application decisions. <br>
+## Use Case:
 
+Students, job seekers, and researchers use this skill to track embodied AI internships and jobs across company career pages, recruiting platforms, and WeChat sources, then receive a categorized weekly Chinese-language report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jessy-huang/embodied-ai-jobs) <br>
-- [具身智能公司大全](references/companies.md) <br>
-- [招聘平台列表](references/platforms.md) <br>
-- [HTML report template](assets/report_template.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, HTML, Configuration, Guidance] <br>
-**Output Format:** [Structured Markdown report with optional HTML rendering] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include role categories, source links, publication timing when available, summary statistics, and highlighted opportunities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Recurring automation can run weekly web searches and write local report files once enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the output directory and enable the recurring schedule only when recurring searches and local report files are intended.
+
+Risk: Job listings, company pages, and WeChat links may be stale, unavailable, or incomplete by the time a reader acts on them.
+
+Mitigation: Verify source links, publication dates, deadlines, and company pages before sharing or acting on a report.
+
+Risk: The skill browses public recruiting sources and summarizes externally sourced content in Chinese-language reports.
+
+Mitigation: Use public sources only and review generated reports for accuracy and appropriate attribution before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jessy-huang/skills/embodied-ai-jobs)
+- [具身智能公司大全](references/companies.md)
+- [招聘平台列表](references/platforms.md)
+- [HTML report template](assets/report_template.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, html, configuration, guidance]
+
+**Output Format:** [Markdown report, with optional HTML report and recurring-task TOML configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include source links, requirements summaries, deadlines when available, publication dates, role-category statistics, and weekly highlights.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Read existing Grafana dashboards and panels without modifying them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read existing Grafana dashboards and panels without modifying them. Use when answering questions about values already visible in Grafana, locating the right dashboard/panel, extracting panel queries, listing dashboard variables, or rerunning panel-backed queries with a different time range or variable set. Best for Grafana-first analytics workflows where read-only access is preferred.
 
-## Publisher: <br>
-[qwqcode](https://clawhub.ai/user/qwqcode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qwqcode](https://clawhub.ai/user/qwqcode)
 
-## Use Case: <br>
-Developers, engineers, and analytics users use this skill to locate Grafana dashboards and panels, inspect panel queries and variables, and rerun existing panel-backed queries under different time ranges or variable selections without modifying Grafana assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent may answer from the wrong Grafana dashboard or panel when search results are ambiguous. <br>
-Mitigation: The skill directs the agent to inspect dashboard structure, panels, variables, and assumptions before answering confidently. <br>
-Risk: A user may request dashboard creation, updates, deletions, alerts, or annotations outside the read-only scope. <br>
-Mitigation: The skill explicitly prohibits create, update, and delete actions and directs the agent to hand off to a build-oriented workflow when modification is required. <br>
-Risk: Existing panels or variables may not support the requested split, filter, or analysis question. <br>
-Mitigation: The skill directs the agent to state variable and time-range assumptions and escalate when no matching dashboard, panel, or variable exists. <br>
+## Use Case:
 
+Developers, operators, and analytics users use this skill to answer questions from existing Grafana dashboards, inspect dashboard structure, review panel queries, list variables, and rerun panel-backed queries without modifying Grafana resources.
 
-## Reference(s): <br>
-- [Grafana Readonly release page](https://clawhub.ai/qwqcode/grafana-readonly) <br>
-- [Grafana Readonly Action Checklist](references/action-checklist.md) <br>
-- [Grafana Skill Evaluation Notes](references/evaluation-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text, API calls] <br>
-**Output Format:** [Markdown or plain text with summarized Grafana findings and referenced dashboard, panel, variable, and time-range assumptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Grafana workflow guidance; raw Grafana JSON is avoided unless explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can guide agents to read Grafana dashboards, panel queries, variables, and query results that may contain sensitive operational or business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where the agent is authorized to read those Grafana resources, and review answers before sharing data outside the intended audience.
+
+Risk: Requests to create, edit, or delete dashboards fall outside the skill's read-only scope.
+
+Mitigation: Use a separate explicitly authorized workflow for Grafana modification tasks.
+
+## Reference(s):
+
+- [Grafana Readonly Action Checklist](references/action-checklist.md)
+- [Grafana Skill Evaluation Notes](references/evaluation-notes.md)
+- [ClawHub Skill Page](https://clawhub.ai/qwqcode/skills/grafana-readonly)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/qwqcode)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with structured summaries and optional JSON-shaped action results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Grafana workflow guidance; no executable code is bundled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

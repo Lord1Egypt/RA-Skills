@@ -1,41 +1,48 @@
-## Description: <br>
-Research a company or person and get actionable sales intel using web search, with optional enrichment and CRM context when connected. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research a company or person and generate actionable sales intelligence using web search, with optional enrichment and CRM context.
 
-## Publisher: <br>
-[rolandpg](https://clawhub.ai/user/rolandpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[rolandpg](https://clawhub.ai/user/rolandpg)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Sales and account teams use this skill to research companies or people before outreach, meetings, or qualification. It synthesizes profile details, recent news, hiring signals, key people, optional CRM history, and recommended outreach angles.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Connected enrichment and CRM tools may expose personal contact details, notes, deal history, or other confidential business information.
+
+Mitigation: Use the skill only where users are authorized for the connected systems, and limit retrieval to fields needed for the current sales research task.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Sales and customer-facing teams use this skill to research companies, prospects, and meeting attendees before outreach. It summarizes business profile, recent news, hiring signals, key people, optional enrichment data, CRM history, qualification signals, and recommended outreach angles. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may query connected enrichment or CRM systems and surface sensitive contact details, prior relationship history, or internal notes. <br>
-Mitigation: Configure least-privilege connectors, require explicit confirmation before CRM or enrichment lookups, and limit display of personal contact details and internal notes by default. <br>
-Risk: Natural-language research prompts may produce broad account lookups that include personal data not needed for the immediate outreach task. <br>
-Mitigation: Ask users to specify the target company, person, and goal, and keep the final brief focused on business-relevant facts and cited sources. <br>
+**Output Format:** [Markdown research brief with tables, bullets, source links, and recommended outreach guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rolandpg/account-research) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/rolandpg) <br>
+**Other Properties Related to Output:** [May include optional enrichment and CRM-derived fields when connected tools are available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research brief with tables, bullets, source links, and recommended outreach guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include web-search findings, optional enrichment contact details, optional CRM relationship history, qualification signals, and cited sources.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

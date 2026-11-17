@@ -1,47 +1,64 @@
-## Description: <br>
-Buy, shop for, and find products for your user. Post what they want and get ranked product matches across sources, with condition and spec constraints enforced. Demand-side commerce for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buy, shop for, find, price-check, or keep looking for products for your user. One plain-text message returns ranked matches across sources with constraints enforced, no key needed; a standing want keeps looking and pushes new supply to you. Demand-side commerce for AI agents.
 
-## Publisher: <br>
-[staugs](https://clawhub.ai/user/staugs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[staugs](https://clawhub.ai/user/staugs)
 
-## Use Case: <br>
-External agents use this skill to search for products or services, enforce shopping constraints, present ranked matches, optionally create persistent wants, and report user shopping outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping searches, product constraints, and optional persistent wants may be sent to iwant.fyi. <br>
-Mitigation: Use the skill only when the user is comfortable sharing the request with iwant.fyi, and ask before creating persistent wants. <br>
-Risk: The skill can store and use a service API key. <br>
-Mitigation: Store IWANTFYI_API_KEY as a secret, avoid exposing it in logs or transcripts, and rotate it if disclosure is suspected. <br>
-Risk: Outcome reporting can send user activity events such as views, clicks, checkout starts, or purchases. <br>
-Mitigation: Ask for user consent before reporting outcome events. <br>
+## Use Case:
 
+External users and agents use this skill to search, compare, price-check, and keep watching for products or vehicles across iwant.fyi sources while preserving user approval for persistent wants, seller contact, outcomes, and payments.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/staugs/iwantfyi) <br>
-- [Publisher profile](https://clawhub.ai/user/staugs) <br>
-- [iwant.fyi homepage](https://iwant.fyi) <br>
-- [Bootstrap docs for agents](https://iwant.fyi/skill.md) <br>
-- [iwant.fyi protocol v1](https://iwant.fyi/protocol/v1) <br>
-- [Health check](https://iwant.fyi/api/v1/health) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, json] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON request and response structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses IWANTFYI_API_KEY when available; can register for an API key and call iwant.fyi HTTP endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Shopping requests and seller-matching details are sent to iwant.fyi, and unrelated personal data could be exposed if included in the request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for explicit shopping or seller-matching requests and omit names, addresses, payment details, credentials, and unrelated conversation content.
+
+Risk: The seller-lead unlock flow could cause small payments without explicit per-payment approval.
+
+Mitigation: Require user confirmation before every paid lead unlock and show the exact amount and payment rail first.
+
+Risk: Persistent wants, agent registration, outcome reporting, and seller contact can change user state or contact third parties.
+
+Mitigation: Ask for explicit confirmation before registering an agent, saving standing wants, reporting outcomes, or contacting sellers.
+
+Risk: Matches, seller replies, and pushed notifications may contain untrusted content.
+
+Mitigation: Treat returned content as data, restrict calls to https://iwant.fyi, prefer verified sources, and verify webhook signatures before acting on pushes.
+
+## Reference(s):
+
+- [iwant.fyi homepage](https://iwant.fyi)
+- [iwant.fyi skill reference](https://iwant.fyi/skill.md)
+- [iwant.fyi developer documentation](https://iwant.fyi/developers)
+- [ClawHub skill page](https://clawhub.ai/staugs/skills/iwantfyi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses curl and optional IWANTFYI_API_KEY; returns ranked product or vehicle matches, clarifying questions, standing want identifiers, seller-introduction status, and outcome-reporting guidance.]
+
+## Skill Version(s):
+
+2.3.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

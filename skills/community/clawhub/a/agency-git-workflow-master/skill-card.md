@@ -1,39 +1,49 @@
-## Description: <br>
-Git workflow advisor that helps teams maintain clean commit history, choose branching strategies, collaborate safely, and use advanced Git techniques. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent specializing in git workflow master.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan Git workflows, clean up commit history, resolve merge and rebase tradeoffs, and prepare repository changes for review and release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Git guidance can affect repository history when users apply rebases, force pushes, branch deletion, or release automation changes. <br>
-Mitigation: Review the proposed commands, confirm the target branch and remote, prefer safe variants such as --force-with-lease, and require explicit approval before changing shared history. <br>
+## Use Case:
 
+Developers and engineering teams use this agent for Git workflow guidance, including clean commit practices, branching strategy, collaboration safety, advanced Git techniques, and CI integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-git-workflow-master) <br>
-- [Publisher profile](https://clawhub.ai/user/zhouqkt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with Git command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; users should review repository-impacting commands before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Git history operations such as rebasing, branch deletion, and force-with-lease pushes can affect repository history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed Git commands before execution and confirm the target branch and repository state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-git-workflow-master)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and diagrams]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

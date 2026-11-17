@@ -1,51 +1,68 @@
-## Description: <br>
-A research-paper figure Skill Factory for generating reusable specialized paper-figure-making skills from lawful corpus evidence, then using those generated skills for concrete target papers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research Paper Figure Skill Factory builds reusable, evidence-backed, class-specific figure-making skills for scientific papers, then uses those generated skills for concrete target-paper figures.
 
-## Publisher: <br>
-[c-narcissus](https://clawhub.ai/user/c-narcissus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c-narcissus](https://clawhub.ai/user/c-narcissus)
 
-## Use Case: <br>
-Researchers, authors, and agent-skill developers use this skill to build evidence-backed, reusable figure-making skills for specific scientific paper figure classes, then use those generated skills to plan, compare, render, review, and integrate figures for target papers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may search the web, download open PDFs, and write local corpus or manifest files. <br>
-Mitigation: Use only lawful sources or user-authorized documents, and scope corpus paths to materials intended for processing. <br>
-Risk: Generated specialized skills may contain incomplete figure taxonomy, workflow, or prompt guidance if the evidence corpus is limited. <br>
-Mitigation: Review evidence maps, taxonomy claims, and generated skill tests before installing or reusing a generated skill. <br>
-Risk: Private PDFs or broad local folders may be processed if the user points the agent at them. <br>
-Mitigation: Avoid private documents and broad directories unless processing those materials is intentional and authorized. <br>
+## Use Case:
 
+Researchers, authors, and agent-skill developers use this skill to build reusable paper-figure-making skills from lawful corpus evidence and then apply those generated skills to target-paper diagrams and figures. It emphasizes corpus-backed taxonomy building, text-only planning, image-only rendering turns, candidate-image comparison, and packaging for reuse.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/c-narcissus/research-paper-figure-skill-factory) <br>
-- [Publisher profile](https://clawhub.ai/user/c-narcissus) <br>
-- [README](README.md) <br>
-- [Skill documentation](docs/README.md) <br>
-- [Master workflow](references/master-workflow.md) <br>
-- [Generated specialized skill output spec](references/generated-specialized-skill-output-spec.md) <br>
-- [Generated skill multi-candidate policy](references/generated-skill-multi-candidate-policy.md) <br>
-- [Visual-first decision board protocol](references/visual-first-decision-board-protocol.md) <br>
-- [Prompt generation and rendering policy](references/prompt-generation-and-rendering-policy.md) <br>
-- [Strict text/image turn separation policy](references/strict-text-image-turn-separation-policy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured state footers, skill-package files, JSON/CSV templates, and image-generation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires image-generation capability for rendering; text and image outputs are separated into distinct response modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter, metadata.json, changelog, server release) <br>
+Risk: The workflow can read provided or local paper material and create local corpus and generated-skill files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with paper material the user is allowed to provide, confirm the intended corpus scope before acquisition or extraction, and review generated files before installing or sharing them.
+
+Risk: The workflow may retrieve lawful open-access PDFs and depends on evidence quality for taxonomy and generated-skill claims.
+
+Mitigation: Keep retrieval manifests, source URLs, and evidence maps with the generated skill, and treat unsupported taxonomy claims as generic fallback guidance rather than class-specific evidence.
+
+Risk: Prompts or reference-image context may be sent to approved image-generation tools.
+
+Mitigation: Remove confidential or rights-restricted content before image generation and review each image request for privacy, copyright, and publication constraints.
+
+Risk: Many templates force Chinese headings and follow-up prompts, which may be unsuitable for some users.
+
+Mitigation: Adapt generated templates and examples to the target user's language and review requirements before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/c-narcissus/skills/research-paper-figure-skill-factory)
+- [Publisher profile](https://clawhub.ai/user/c-narcissus)
+- [Skill documentation](docs/README.md)
+- [Master workflow](references/master-workflow.md)
+- [Generated specialized skill output spec](references/generated-specialized-skill-output-spec.md)
+- [Generated skill multi-candidate policy](references/generated-skill-multi-candidate-policy.md)
+- [Strict text/image turn separation policy](references/strict-text-image-turn-separation-policy.md)
+- [Visual-first decision board protocol](references/visual-first-decision-board-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, generated skill-package files, prompts, state artifacts, and optional image-generation requests.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated workflows separate text-only planning and review turns from image-only generation turns, and may create local corpus, taxonomy, template, testing, and packaging artifacts.]
+
+## Skill Version(s):
+
+1.0.1 (source: metadata, SKILL.md frontmatter, changelog, and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

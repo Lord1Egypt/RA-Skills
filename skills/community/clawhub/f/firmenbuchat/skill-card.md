@@ -1,43 +1,58 @@
-## Description: <br>
-firmenbuchat helps agents use the firmenbuchat CLI to access the Austrian Firmenbuch through HVD WebServices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI fuer den Zugriff auf das oesterreichische Firmenbuch (HVD WebServices).
 
-## Publisher: <br>
-[pasogott](https://clawhub.ai/user/pasogott) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pasogott](https://clawhub.ai/user/pasogott)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to configure the firmenbuchat CLI, search Austrian company and document records, download documents, query changes, and troubleshoot API access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API keys can be exposed if passed directly on the command line or committed in local environment files. <br>
-Mitigation: Store the key with the CLI config or a protected environment file, and do not commit secret files. <br>
-Risk: The CLI is installed from third-party Homebrew or uv sources. <br>
-Mitigation: Install only after reviewing and trusting the publisher and the referenced installation source. <br>
-Risk: Large change-document queries may fail for broad date ranges. <br>
-Mitigation: Use smaller time windows for change queries when the service returns errors. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pasogott/firmenbuchat) <br>
-- [Project homepage](https://github.com/pasogott/firmenbuch-aip) <br>
-- [UV installation source](https://github.com/pasogott/firmenbuch-aip.git) <br>
+## Use Case:
 
+External users and developers use this skill as a command reference for configuring and operating the firmenbuchat CLI to query Austrian company register records, documents, and change feeds.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command examples for setup, key configuration, company search, document search, downloads, change queries, diagnostics, and global CLI options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.3 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The CLI requires a Firmenbuch API key, which could be exposed through committed files, logs, or shared shell history.
+
+Mitigation: Keep the API key out of committed files, logs, and shared shell history; use reviewed local configuration or environment handling.
+
+Risk: Large document-change requests may fail with server-side 5xx responses.
+
+Mitigation: Use smaller time windows for change queries and retry with narrower date ranges.
+
+Risk: Installation uses third-party package sources that are outside NVIDIA ownership.
+
+Mitigation: Review the referenced package source or tap and prefer a pinned or reviewed version before installing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pasogott/skills/firmenbuchat)
+- [Publisher profile](https://clawhub.ai/user/pasogott)
+- [Project homepage](https://github.com/pasogott/firmenbuch-aip)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup, command usage, output option, pagination, and troubleshooting guidance for the firmenbuchat CLI.]
+
+## Skill Version(s):
+
+0.2.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

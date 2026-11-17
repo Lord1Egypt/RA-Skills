@@ -1,50 +1,69 @@
-## Description: <br>
-Easy-to-use agentic wallets powered by Stripe for agent purchases, A2A payments, checkout pages, top-ups, and guarded card-based spending. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Easy-to-use agentic wallets powered by Stripe for agent purchases, top-ups, checkout pages, and A2A payments.
 
-## Publisher: <br>
-[jononovo](https://clawhub.ai/user/jononovo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jononovo](https://clawhub.ai/user/jononovo)
 
-## Use Case: <br>
-External developers and agent operators use this skill to give agents controlled real-money spending ability through CreditClaw wallets, encrypted-card checkout, x402-style wallet flows, payment links, invoices, and storefront operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents broad real-money spending, card-handling, and personal-data authority. <br>
-Mitigation: Install only when the agent should have controlled spending ability; keep ask-for-everything approval enabled, set low limits, and require explicit confirmation before orders, invoices, payment links, public shop changes, or top-up requests. <br>
-Risk: A leaked CreditClaw API key could allow unauthorized wallet actions. <br>
-Mitigation: Use a dedicated API key stored in a secrets manager and send it only to CreditClaw API endpoints. <br>
-Risk: Encrypted-card checkout can expose decrypted card details if handled in the main agent context or persisted in logs or files. <br>
-Mitigation: Use the ephemeral sub-agent checkout flow, avoid main-agent card decryption, never store or log decrypted card data, and keep encrypted card files in a restricted non-synced location. <br>
-Risk: Remote or delivered scripts and files may affect payment behavior. <br>
-Mitigation: Inspect remotely fetched or delivered scripts before execution. <br>
+## Use Case:
 
+External developers and agent operators use this skill to give an agent a CreditClaw payment wallet, request owner-approved spending, monitor balance and permissions, create checkout pages, and receive or send payments through supported rails.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jononovo/cash) <br>
-- [CreditClaw Skill Guide](https://creditclaw.com/stripe/skill.md) <br>
-- [CreditClaw Checkout Guide](https://creditclaw.com/stripe/checkout.md) <br>
-- [CreditClaw Encrypted Card Guide](https://creditclaw.com/stripe/encrypted-card.md) <br>
-- [CreditClaw Management Guide](https://creditclaw.com/stripe/management.md) <br>
-- [CreditClaw Spending Permissions Guide](https://creditclaw.com/stripe/spending.md) <br>
-- [CreditClaw Skill Metadata](https://creditclaw.com/stripe/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with API examples, JSON payloads, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY for authenticated CreditClaw API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact skill metadata reports creditclaw-stripe 2.3.3) <br>
+Risk: The skill can spend real money through CreditClaw payment rails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep approval_mode set to ask_for_everything unless clear spending limits are configured, check spending permissions before purchases, and rely on owner approval for higher-risk transactions.
+
+Risk: The skill uses CREDITCLAW_API_KEY as payment authority.
+
+Mitigation: Store CREDITCLAW_API_KEY only in a secure secrets manager or environment variable and send it only to creditclaw.com API endpoints.
+
+Risk: Encrypted-card checkout can expose decrypted card details if handled in the main agent context.
+
+Mitigation: Use the ephemeral sub-agent checkout flow for each transaction, do not store or log decrypted card data, and delete checkout context after confirmation.
+
+Risk: Checkout may involve server-delivered scripts or remote instructions.
+
+Mitigation: Validate delivered decrypt scripts and checkout instructions before execution and run them in a tightly controlled sandbox.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/jononovo/skills/cash)
+- [CreditClaw main skill documentation](https://creditclaw.com/stripe/skill.md)
+- [CreditClaw checkout guide](https://creditclaw.com/stripe/checkout.md)
+- [CreditClaw encrypted card guide](https://creditclaw.com/stripe/encrypted-card.md)
+- [CreditClaw spending permissions guide](https://creditclaw.com/stripe/spending.md)
+- [CreditClaw wallet management guide](https://creditclaw.com/stripe/management.md)
+- [CreditClaw heartbeat guide](https://creditclaw.com/stripe/heartbeat.md)
+- [CreditClaw Crossmint wallet guide](https://creditclaw.com/stripe/crossmint-wallet.md)
+- [CreditClaw skill metadata](https://creditclaw.com/stripe/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl commands, JSON examples, endpoint tables, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY for authenticated CreditClaw API requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact skill metadata reports 2.3.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Plan Dominican Republic trips with beach-region routing, verified entry steps, off-resort logistics, and practical local safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Dominican Republic trips with beach-region routing, verified entry steps, off-resort logistics, and practical local safety.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External travelers use this skill to plan Dominican Republic trips by matching coast, stay style, entry requirements, transportation, budget, weather, and safety constraints to the trip they want. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local trip memory may contain sensitive travel preferences or itinerary details. <br>
-Mitigation: Avoid storing passport numbers, payment details, or other sensitive identifiers, and review or delete ~/dominican-republic/memory.md when the trip is over. <br>
-Risk: Entry, safety, weather, and destination conditions can change after the skill content was checked. <br>
-Mitigation: Use the linked official travel, e-ticket, visa, tourism, and country-information sources before non-refundable bookings or travel. <br>
-Risk: Overly complex routes or poorly matched transport choices can create avoidable travel friction. <br>
-Mitigation: Prefer fewer bases, realistic transfer buffers, daylight movement when driving, and route choices that match the traveler's water, safety, and mobility needs. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to plan Dominican Republic trips across resort, city, beach, and independent-travel scenarios. It helps choose regions, confirm entry steps, plan transfers, frame costs, and surface practical safety and weather considerations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/dominican-republic) <br>
-- [Dominican Republic official travel FAQ](https://www.godominicanrepublic.com/travel/faqs/) <br>
-- [Dominican Republic e-ticket portal](https://eticket.migracion.gob.do/) <br>
-- [Dominican Republic visa information](https://mirex.gob.do/visas/) <br>
-- [U.S. Dominican Republic country information](https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/DominicanRepublic.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown travel-planning guidance with optional local memory-file setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local trip context in ~/dominican-republic/memory.md when memory setup is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill may store travel dates, airports, preferences, family or mobility notes, and planning decisions in a local trip memory file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the local memory only when that information is appropriate to keep on the machine, and review or delete ~/dominican-republic/ if the device is shared or the trip details are sensitive.
+
+Risk: Entry, safety, weather, and transport details can change after the skill's sources were last checked.
+
+Mitigation: Verify time-sensitive travel requirements and safety guidance against the official sources listed by the skill before booking non-refundable travel or departure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/dominican-republic)
+- [Skill homepage](https://clawic.com/skills/dominican-republic)
+- [Sources - Dominican Republic Skill](sources.md)
+- [Dominican Republic official travel FAQ](https://www.godominicanrepublic.com/travel/faqs/)
+- [Dominican Republic official e-ticket portal](https://eticket.migracion.gob.do/)
+- [Dominican Republic Ministry of Foreign Affairs visa information](https://mirex.gob.do/visas/)
+- [Official Dominican Republic tourism portal](https://www.godominicanrepublic.com/)
+- [U.S. country information for the Dominican Republic](https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/DominicanRepublic.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration]
+
+**Output Format:** [Markdown travel guidance, itineraries, checklists, and optional local memory notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain local trip memory under ~/dominican-republic/memory.md when used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

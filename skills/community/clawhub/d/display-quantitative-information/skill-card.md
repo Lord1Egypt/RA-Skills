@@ -1,49 +1,65 @@
-## Description: <br>
-Use this skill when the user needs to design, critique, redesign, audit, generate, code, or explain quantitative graphics: charts, dashboards, tables, maps, scientific/statistical figures, visual evidence, or chart specifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents design, critique, redesign, audit, generate, code, and explain quantitative displays while checking graphical integrity, accessibility, and misleading encodings.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to choose, critique, redesign, audit, generate, and explain quantitative displays such as charts, dashboards, tables, maps, and statistical figures. It emphasizes truthful quantitative reasoning, appropriate display selection, accessibility, and concrete improvements to comparison and interpretation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled scripts inspect user-supplied data files for visualization recommendations, audits, contrast checks, or SVG generation. <br>
-Mitigation: Run them only on files the user intends the agent to inspect, and avoid supplying sensitive datasets unless that exposure is acceptable. <br>
-Risk: Generated chart audits, redesign guidance, SVGs, or handoff notes may be incorrect or incomplete for publication or decision use. <br>
-Mitigation: Review outputs for units, denominators, source context, uncertainty, accessibility, and scale choices before using them in reports or publications. <br>
+## Use Case:
 
+Developers, analysts, and other external users use this skill to choose, audit, redesign, and generate evidence-focused quantitative displays such as charts, dashboards, tables, maps, and scientific figures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tristanmanchester/display-quantitative-information) <br>
-- [Principles](references/principles.md) <br>
-- [Display Selection](references/display-selection.md) <br>
-- [Integrity Audit](references/integrity-audit.md) <br>
-- [Redesign Workflow](references/redesign-workflow.md) <br>
-- [Chart Specification](references/chart-spec.md) <br>
-- [Accessibility and Output](references/accessibility-and-output.md) <br>
-- [Language and Variation](references/language-and-variation.md) <br>
-- [Rubric](references/rubric.md) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON chart specifications, Python or shell commands, and SVG/chart handoff files when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use optional local Python utilities for CSV inspection, display suggestions, integrity audits, lie-factor checks, contrast checks, SVG rendering, and critique-language review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 2.0.0) <br>
+Risk: The skill can read user-provided data files during chart critique, display selection, and rendering tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it with data the user intends the agent to read, and avoid very large or untrusted CSV files until input limits are added.
+
+Risk: Chart rendering can overwrite files when an output path is reused.
+
+Mitigation: Choose output paths deliberately and confirm existing files before writing chart artifacts.
+
+Risk: Generated chart recommendations or SVG outputs may omit important context for decision-making.
+
+Mitigation: Review generated displays for source, units, uncertainty, denominators, and accessibility before relying on them in reports or slides.
+
+## Reference(s):
+
+- [Principles](references/principles.md)
+- [Display Selection](references/display-selection.md)
+- [Integrity Audit](references/integrity-audit.md)
+- [Redesign Workflow](references/redesign-workflow.md)
+- [Chart Specification](references/chart-spec.md)
+- [Accessibility and Output](references/accessibility-and-output.md)
+- [Language and Variation](references/language-and-variation.md)
+- [Rubric](references/rubric.md)
+- [Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with optional code blocks, JSON chart specifications, shell commands, and SVG chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write chart files to user-selected output paths when rendering SVGs.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -7,22 +7,22 @@ Extended reference of secret patterns detected by the scanner, organized by prov
 ### Cloud Providers
 | Provider | Pattern | Example |
 |----------|---------|---------|
-| AWS Access Key | `AKIA[0-9A-Z]{16}` | AKIAIOSFODNN7EXAMPLE |
+| AWS Access Key | `AKIA[0-9A-Z]{16}` | REDACTED-SECRET |
 | AWS Secret Key | 40-char base64 after `aws_secret_access_key=` | wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY |
-| GCP API Key | `AIza[0-9A-Za-z_-]{35}` | AIzaSyA1234567890abcdefghijklmnopqrstuv |
+| GCP API Key | `AIza[0-9A-Za-z_-]{35}` | REDACTED-SECRET |
 | GCP Service Account | JSON with `"type": "service_account"` | — |
 | Azure Storage Key | 88-char base64 after `AccountKey=` | — |
 
 ### Payment Processors
 | Provider | Pattern | Example |
 |----------|---------|---------|
-| Stripe Secret | `sk_live_[0-9a-zA-Z]{24,}` | sk_live_4eC39HqLyjWDarjtT1zdp7dc |
+| Stripe Secret | `sk_live_[0-9a-zA-Z]{24,}` | REDACTED-SECRET |
 | Stripe Publishable | `pk_live_[0-9a-zA-Z]{24,}` | pk_live_... |
 
 ### Communication
 | Provider | Pattern | Example |
 |----------|---------|---------|
-| Slack Webhook | `https://hooks.slack.com/services/T.../B.../...` | — |
+| Slack Webhook | `REDACTED-SECRET.../B.../...` | — |
 | Discord Webhook | `https://discord.com/api/webhooks/...` | — |
 | Telegram Bot | `\d{8,10}:[A-Za-z0-9_-]{35}` | 123456789:ABCdefGHIjklMNOpqrsTUVwxyz12345 |
 | SendGrid | `SG\.[...]{22}\.[...]{43}` | — |
@@ -38,7 +38,7 @@ Extended reference of secret patterns detected by the scanner, organized by prov
 ### Version Control
 | Provider | Pattern | Example |
 |----------|---------|---------|
-| GitHub PAT | `gh[pousr]_[A-Za-z0-9_]{36,}` | ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx |
+| GitHub PAT | `gh[pousr]_[A-Za-z0-9_]{36,}` | REDACTED-SECRET |
 | GitHub OAuth | `gho_[A-Za-z0-9]{36}` | — |
 
 ## Remediation Guide

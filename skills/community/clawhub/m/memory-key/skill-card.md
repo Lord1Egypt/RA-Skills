@@ -1,42 +1,56 @@
-## Description: <br>
-Memory Key points an agent to the default OpenClaw memory folder used by the companion memory-treasure workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Key points an agent to the default memory folder used by the memory palace workflow and relies on the companion memory-treasure skill for actual memory management.
 
-## Publisher: <br>
-[markma84](https://clawhub.ai/user/markma84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[markma84](https://clawhub.ai/user/markma84)
 
-## Use Case: <br>
-External users and agents use this skill to locate the OpenClaw memory folder and activate a memory workflow alongside memory-treasure. The skill provides path guidance only; memory creation, storage, and management remain outside this skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discloses and encourages use of a local memory folder that may contain sensitive information or untrusted instructions. <br>
-Mitigation: Keep secrets and untrusted instructions out of the memory folder, and review memory contents before allowing an agent to rely on them. <br>
-Risk: The skill depends on the separate memory-treasure workflow for actual memory management. <br>
-Mitigation: Review and install memory-treasure before using this skill as part of a complete memory workflow. <br>
+## Use Case:
 
+Developers and agent users use this skill to locate and activate personal memory files stored under the default memory palace path. It is intended to work alongside memory-treasure, which handles memory management.
 
-## Reference(s): <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Concept memory template](artifact/examples/memory/00-概念模板.md) <br>
-- [Daily memory template](artifact/examples/memory/日记录模板.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with a memory folder path and install command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Points to ~/.openclaw/workspace/memory/ and does not perform memory management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: Users may assume this skill manages memory directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the companion memory-treasure skill is installed and trusted before using Memory Key for a memory workflow.
+
+Risk: The workflow points agents to files under ~/.openclaw/workspace/memory/, which may contain personal or sensitive memory content.
+
+Mitigation: Review the memory folder contents and access expectations before enabling the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/markma84/skills/memory-key)
+- [Publisher profile](https://clawhub.ai/user/markma84)
+- [Memory concept template](artifact/examples/memory/00-概念模板.md)
+- [Daily memory template](artifact/examples/memory/日记录模板.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with memory file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the default memory path ~/.openclaw/workspace/memory/ and depends on memory-treasure for memory management.]
+
+## Skill Version(s):
+
+2.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

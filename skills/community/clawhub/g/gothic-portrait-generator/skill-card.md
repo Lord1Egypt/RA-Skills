@@ -1,43 +1,58 @@
-## Description: <br>
-Generate gothic portraits with dark dramatic lighting, Victorian elegance, and moody atmosphere from text prompts using the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates gothic portrait images from text prompts with dark lighting, Victorian styling, and optional reference-image style inheritance through the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External users and developers use this skill to generate gothic, dark fantasy, Victorian-style, or dark academia portrait images from prompts, with optional size selection and reference-image style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference image UUIDs, and the Neta/TalesOfAI API token are sent to an external service. <br>
-Mitigation: Avoid sensitive personal, proprietary, or regulated content and use the skill only when sharing that data with api.talesofai.com is acceptable. <br>
-Risk: Passing the API token with the documented --token flag may expose it in shell history, process listings, or logs. <br>
-Mitigation: Use a limited-use token and remove or protect command history and logs that may contain the token. <br>
+## Use Case:
 
+External users, creators, and developers use this skill to generate gothic or dark fantasy portrait images from prompts, with optional size selection and reference-image style inheritance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/omactiengartelle/gothic-portrait-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/omactiengartelle) <br>
-- [Neta API token setup](https://www.neta.art/open/) <br>
-- [Image generation endpoint](https://api.talesofai.com/v3/make_image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Text, Guidance] <br>
-**Output Format:** [Plain text image URL with command-line status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token, sends prompt and optional reference image UUID to api.talesofai.com, and supports portrait, landscape, square, and tall image sizes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Prompts, reference image IDs, and the Neta token are sent to an external image service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that data sharing is acceptable for the intended use case, and avoid sending sensitive prompts or reference identifiers.
+
+Risk: Passing a real token on the command line can expose it through shell history or logs.
+
+Mitigation: Avoid placing real tokens in reusable command examples or logs, and rotate any token that may already have been exposed.
+
+Risk: Install and execution instructions rely on broad shell execution.
+
+Mitigation: Prefer a pinned or ClawHub-managed install path and review the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/omactiengartelle/skills/gothic-portrait-generator)
+- [Neta access page](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text image URL with CLI status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; accepts optional image size and reference image UUID parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

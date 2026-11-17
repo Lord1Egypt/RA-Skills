@@ -1,42 +1,55 @@
-## Description: <br>
-Start from what must be true. Stop answering on autopilot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logic helps agents start from what must be true before answering instead of responding on autopilot.
 
-## Publisher: <br>
-[ProjectSnowWork](https://clawhub.ai/user/ProjectSnowWork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[projectsnowwork](https://clawhub.ai/user/projectsnowwork)
 
-## Use Case: <br>
-Employees, external users, developers, and agents use this skill to structure ambiguous strategy, debugging, decision, and judgment tasks before making recommendations. It helps an agent identify objectives, constraints, load-bearing variables, mechanisms, and fragile assumptions before answering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Heartbeat maintenance may update local reasoning notes under ~/logic. <br>
-Mitigation: Review heartbeat changes before relying on them and keep maintenance scoped to ~/logic as described by the skill. <br>
-Risk: The skill can influence agent recommendations by imposing a reasoning structure. <br>
-Mitigation: Review important recommendations for correctness, especially when the cost of weak reasoning is meaningful. <br>
+## Use Case:
 
+Developers, employees, and external users can use this skill to make an agent structure ambiguous, strategic, diagnostic, or decision-heavy requests before recommending action. It is intended to surface objectives, constraints, load-bearing variables, mechanisms, and fragile assumptions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ProjectSnowWork/logic) <br>
-- [Logic Homepage](https://clawic.com/skills/logic) <br>
-- [Logic Philosophy](references/philosophy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with occasional shell commands and local file maintenance notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain scoped local reasoning files under ~/logic when heartbeat behavior is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter, skill.json, server release evidence) <br>
+Risk: The skill may create and maintain persistent reasoning notes under ~/logic/ that influence future sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, prune, or remove ~/logic/ when persistence is not desired, and inspect that directory before relying on long-lived reasoning state.
+
+Risk: The skill can shape a wide range of strategic, diagnostic, and decision-making answers through its structural reasoning framework.
+
+Mitigation: Treat outputs as reasoning structure rather than final authority, and validate objectives, constraints, assumptions, and recommendations before acting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/projectsnowwork/skills/logic)
+- [Logic Homepage](https://clawic.com/skills/logic)
+- [Logic Philosophy](references/philosophy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with occasional shell commands and local state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and maintain local reasoning notes under ~/logic/.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, skill.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

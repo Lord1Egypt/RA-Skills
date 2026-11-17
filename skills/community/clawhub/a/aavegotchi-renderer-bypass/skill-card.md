@@ -1,41 +1,59 @@
-## Description: <br>
-Render Aavegotchi assets by deriving renderer hashes from Goldsky Base core data and calling POST /api/renderer/batch on www.aavegotchi.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render Aavegotchi assets by deriving renderer hashes from Goldsky Base core data and calling POST /api/renderer/batch on www.aavegotchi.com.
 
-## Publisher: <br>
-[cinnabarhorse](https://clawhub.ai/user/cinnabarhorse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cinnabarhorse](https://clawhub.ai/user/cinnabarhorse)
 
-## Use Case: <br>
-Developers and Aavegotchi users use this skill to render public Aavegotchi token assets, derive the renderer hash, and save JSON and PNG artifacts from supported renderer responses. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The local Node script contacts Goldsky and Aavegotchi and writes JSON and PNG artifacts to disk. <br>
-Mitigation: Use public token IDs, choose a dedicated output directory, and review generated files before sharing or reusing them. <br>
-Risk: An untrusted output directory could place generated artifacts in a shared or sensitive location. <br>
-Mitigation: Avoid accepting --out-dir values from untrusted input and prefer a controlled temporary or project-specific output directory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Aavegotchi Renderer Bypass on ClawHub](https://clawhub.ai/cinnabarhorse/aavegotchi-renderer-bypass) <br>
-- [Goldsky Aavegotchi Core Base Subgraph](https://api.goldsky.com/api/public/project_cmh3flagm0001r4p25foufjtt/subgraphs/aavegotchi-core-base/prod/gn) <br>
-- [Aavegotchi Renderer Batch API](https://www.aavegotchi.com/api/renderer/batch) <br>
+## Use Case:
 
+Developers and agents use this skill to render Aavegotchi image and 3D asset availability artifacts from a tokenId or inventory URL. It is intended for deterministic renderer hash derivation, renderer batch API execution, and saving returned JSON and PNG outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, JSON, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON summaries, and saved JSON/PNG artifact paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns token ID, derived hash, API status, raw response path, image artifact paths when available, and GLB availability.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes outbound calls to Goldsky and Aavegotchi endpoints.
+
+Mitigation: Use it only in environments where those outbound calls are expected and approved.
+
+Risk: Renderer-supplied image URLs may be fetched during artifact download.
+
+Mitigation: Review network behavior before installation and prefer domain allowlisting for image downloads.
+
+Risk: The helper writes predictable artifact filenames to /tmp by default.
+
+Mitigation: Run as an unprivileged user and set a private output directory with --out-dir.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cinnabarhorse/skills/aavegotchi-renderer-bypass)
+- [Goldsky Aavegotchi Core Base subgraph](https://api.goldsky.com/api/public/project_cmh3flagm0001r4p25foufjtt/subgraphs/aavegotchi-core-base/prod/gn)
+- [Aavegotchi renderer batch API](https://www.aavegotchi.com/api/renderer/batch)
+- [Aavegotchi web application](https://www.aavegotchi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands plus JSON and PNG file artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns tokenId, renderer hash, HTTP statuses, saved artifact paths, and GLB availability when present.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

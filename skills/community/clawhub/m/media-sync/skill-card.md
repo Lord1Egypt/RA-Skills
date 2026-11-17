@@ -1,45 +1,56 @@
-## Description: <br>
-Download media into /mnt/jellyfin_media subfolders and track progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download media into /mnt/jellyfin_media subfolders and track progress.
 
-## Publisher: <br>
-[vivek9patel](https://clawhub.ai/user/vivek9patel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vivek9patel](https://clawhub.ai/user/vivek9patel)
 
-## Use Case: <br>
-External users and media-library operators use this skill to confirm a destination folder, download user-provided media URLs into a mounted library, and check download progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes downloaded media into /mnt/jellyfin_media. <br>
-Mitigation: Mount only the intended media library at /mnt/jellyfin_media and confirm the destination folder before allowing downloads. <br>
-Risk: Progress files in /tmp may expose private or tokenized media URLs on shared machines. <br>
-Mitigation: Use controlled temporary-file access and avoid private or tokenized URLs in shared environments. <br>
-Risk: User-provided URLs are downloaded by yt-dlp into the configured media folder. <br>
-Mitigation: Review links before confirming the download and keep yt-dlp available from a trusted installation source. <br>
+## Use Case:
 
+People managing a local media library use this skill to validate destination folders, download one or more media URLs into /mnt/jellyfin_media, and check download progress on demand.
 
-## Reference(s): <br>
-- [Media Sync on ClawHub](https://clawhub.ai/vivek9patel/media-sync) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) <br>
-- [Jellyfin](https://jellyfin.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Configuration, Guidance] <br>
-**Output Format:** [Concise text with structured tool-status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OpenClaw tool calls to validate folders, start batched downloads, and report progress.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: Unvalidated URL input can turn a pasted link into command execution inside the skill runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid untrusted or unusual URL strings, and prefer a version that validates http/https URLs and passes -- before yt-dlp URLs.
+
+Risk: The skill writes downloaded media and progress state to mounted filesystem paths.
+
+Mitigation: Run it in a constrained runtime with write access limited to the intended media directory and use a private state directory for progress files.
+
+## Reference(s):
+
+- [Media Sync on ClawHub](https://clawhub.ai/vivek9patel/skills/media-sync)
+- [OpenClaw](https://openclaw.ai)
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- [Jellyfin](https://jellyfin.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text status messages and structured tool reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create media files under /mnt/jellyfin_media and progress logs under /tmp.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

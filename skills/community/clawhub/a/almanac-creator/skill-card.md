@@ -1,46 +1,61 @@
-## Description: <br>
-Almanac Creator generates traditional Chinese Huangli calendar PNG images with zodiac fortune, fengshui timing, auspicious activities, and styling guidance for social media publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Chinese Almanac Image Generator - Create traditional Huangli calendar images with zodiac fortune, fengshui tips, auspicious timing, and dressing advice for social media publishing (Toutiao/Douyin/Xiaohongshu).
 
-## Publisher: <br>
-[zhangj85](https://clawhub.ai/user/zhangj85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangj85](https://clawhub.ai/user/zhangj85)
 
-## Use Case: <br>
-Content creators, social media operators, and developers use this skill to generate one-day or batch Chinese almanac image sets for Toutiao, Douyin, Xiaohongshu, or similar publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated date-named PNG files may overwrite existing outputs in the selected folder. <br>
-Mitigation: Use a dedicated output directory for each run or review existing files before enabling overwrite behavior. <br>
-Risk: Optional examples can make third-party almanac API requests or run the generator on a recurring schedule. <br>
-Mitigation: Use optional API or scheduled-task workflows only after reviewing the network request, data-sharing expectations, and local recurrence settings. <br>
-Risk: Traditional almanac, zodiac, fengshui, and fortune content may be misleading if treated as factual decision support. <br>
-Mitigation: Review generated content before publishing and retain the traditional-culture, reference-only disclaimer. <br>
+## Use Case:
 
+Content creators and social media operators use this skill to generate daily Chinese Huangli image sets with lunar calendar details, zodiac guidance, auspicious timing, fengshui direction, wellness content, and posting copy for Toutiao, Douyin, and Xiaohongshu.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangj85/almanac-creator) <br>
-- [Almanac image standard](references/almanac-image-standard.md) <br>
-- [lunar-python API guide](references/lunar-python-api-guide.md) <br>
-- [Usage examples](references/usage-examples.md) <br>
-- [Qingyunke almanac API](https://api.qingyunke.com/api.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, configuration, guidance] <br>
-**Output Format:** [PNG image files plus Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates one to three 1080x1400 PNG pages per date; batch mode can create date-grouped output directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.5 (source: release evidence; artifact frontmatter reports 3.0.4) <br>
+Risk: Generated pages 2 and 3 include a built-in like, comment, and follow footer that may not fit every publishing policy or audience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated images before posting and adjust the footer or publication workflow when the engagement prompt is inappropriate.
+
+Risk: Optional third-party API examples may send date or query metadata to external almanac services.
+
+Mitigation: Use local/default data generation unless external API use has been reviewed and approved for the intended environment.
+
+Risk: Almanac, fortune, and fengshui content can be culturally contextual and should not be treated as authoritative advice.
+
+Mitigation: Keep the traditional-culture disclaimer visible and review generated text for accuracy before publication.
+
+## Reference(s):
+
+- [Almanac Image Standard](references/almanac-image-standard.md)
+- [lunar-python API Guide](references/lunar-python-api-guide.md)
+- [Usage Examples](references/usage-examples.md)
+- [Qingyunke Almanac API](https://api.qingyunke.com/api.php?key=free&appid=01&msg=%E4%BB%8A%E6%97%A5%E9%BB%84%E5%8E%86)
+- [Qingyunke API Endpoint](https://api.qingyunke.com/api.php)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with bash and Python snippets, configuration YAML, and generated PNG image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generator creates up to three 1080x1400 PNG pages per date, supports batch generation, writes to a local output directory, and can be configured without external API calls.]
+
+## Skill Version(s):
+
+3.0.5 (source: server release metadata; artifact frontmatter reports 3.0.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

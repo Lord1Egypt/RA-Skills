@@ -1,40 +1,59 @@
-## Description: <br>
-Design pricing strategies for products, services, and subscriptions that maximize conversion and value. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents set, test, and change prices across value metrics, packaging, discounts, price increases, pricing research, pricing pages, compliance checks, and commercial deal structures.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Product teams, founders, and pricing strategists use this skill to develop pricing pages, subscription tiers, freemium and trial structures, discounts, bundles, regional pricing, and price tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing recommendations could be mistaken for legal, tax, or financial advice. <br>
-Mitigation: Treat outputs as business guidance and review pricing decisions with qualified stakeholders before customer use. <br>
-Risk: Unreviewed pricing changes can affect customer trust, conversion, or revenue. <br>
-Mitigation: Validate recommendations against market context, customer expectations, and long-term value before launch. <br>
+## Use Case:
 
+External users and business operators use this skill to produce pricing recommendations, price-change plans, discount policies, research plans, pricing-page guidance, and durable local pricing records for products, services, retail, marketplaces, and enterprise deals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/pricing) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown or plain text pricing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory pricing recommendations only; it does not execute code, call external tools, or access sensitive data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can automatically write, move, and delete local business and contact records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or constrain writes to shared contacts, shared projects, legacy pricing folders, and any deletion or migration steps before deployment.
+
+Risk: Pricing work can involve customer details, confidential competitor pricing, and other sensitive commercial information.
+
+Mitigation: Require confirmation before storing customer details or NDA-covered competitor pricing, and keep credentials out of stored notes.
+
+Risk: Durable price-book and pricing-history changes can influence future agent recommendations.
+
+Mitigation: Require confirmation before changing durable price-book or history files, and review generated pricing artifacts before using them operationally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/pricing)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Clawic pricing skill homepage](https://clawic.com/skills/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance and local note templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce pricing recommendations, price books, policy drafts, research write-ups, project notes, and local memory updates for later agent use.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

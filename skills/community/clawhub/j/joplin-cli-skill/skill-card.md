@@ -1,42 +1,58 @@
-## Description: <br>
-Interact with Joplin notes via the Joplin CLI for reading, creating, editing notes, managing todos, WebDAV sync, and kanban-formatted notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Joplin notes via CLI for reading, creating, editing, managing todos, WebDAV sync, and kanban-formatted notes.
 
-## Publisher: <br>
-[davek-dev](https://clawhub.ai/user/davek-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davek-dev](https://clawhub.ai/user/davek-dev)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent operate a local Joplin CLI for note reading, creation, editing, todo management, notebook management, WebDAV sync, imports, exports, and kanban-note maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect note or notebook identifiers could cause unintended edits or deletion. <br>
-Mitigation: Confirm note IDs before edits or deletion and verify changes with Joplin CLI commands such as listing notes and reading note content. <br>
-Risk: WebDAV sync configuration can expose credentials or sync notes to an untrusted server. <br>
-Mitigation: Protect WebDAV passwords and sync only to a trusted server. <br>
-Risk: Direct database edits can cause sync conflicts or data loss. <br>
-Mitigation: Use the Joplin CLI for note operations and avoid modifying the SQLite database directly. <br>
+## Use Case:
 
+Developers and external users use this skill to have an agent operate the Joplin CLI for note, notebook, todo, sync, import/export, and kanban-note workflows.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/davek-dev/joplin-cli-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include Joplin CLI commands that read, create, edit, delete, sync, import, export, or verify notes and notebooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.6 (source: server release metadata) <br>
+Risk: Joplin notes may contain sensitive data, and WebDAV credential commands can expose secrets in shell history or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, avoid entering real WebDAV passwords directly in logged shell commands, and use safer credential handling where available.
+
+Risk: The skill includes commands that delete notes or notebooks.
+
+Mitigation: Require explicit user confirmation before deletion, list the target first, and prefer note or notebook IDs over titles.
+
+Risk: Incorrect direct edits to Joplin storage can cause sync conflicts or data loss.
+
+Mitigation: Use the Joplin CLI instead of direct database edits, then sync and verify important changes with `joplin cat` or status commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davek-dev/skills/joplin-cli-skill)
+- [Publisher profile](https://clawhub.ai/user/davek-dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include destructive Joplin CLI commands and WebDAV credential configuration examples that require explicit user confirmation before use.]
+
+## Skill Version(s):
+
+1.3.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

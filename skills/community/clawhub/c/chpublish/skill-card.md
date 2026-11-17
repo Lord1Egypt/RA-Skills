@@ -1,40 +1,56 @@
-## Description: <br>
-ClawHub 发布助手 helps agents publish or update local skill directories in the ClawHub marketplace by checking the target directory, release history, version, changelog, publish parameters, and result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawHub 发布助手 helps developers publish local skills to the ClawHub marketplace by checking the skill directory, preparing release parameters, running the ClawHub CLI publish command, and verifying the result.
 
-## Publisher: <br>
-[fslong520](https://clawhub.ai/user/fslong520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fslong520](https://clawhub.ai/user/fslong520)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and skill maintainers use this skill to publish new or updated local skills to ClawHub while checking login state, release history, slug, version, changelog, tags, and publish results.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may run ClawHub CLI commands that publish or update content under the user's account.
+
+Mitigation: Use it only for intentional ClawHub releases and verify the target directory, slug, version, changelog, tags, and displayed command arguments before publishing.
+
+Risk: Shell-built publish commands can be exposed to command injection if untrusted skill metadata or changelog text is used as command input.
+
+Mitigation: Avoid untrusted metadata or changelog text unless the workflow is changed to pass command arguments safely without shell interpolation.
+
+Risk: Broad activation language can trigger publishing behavior when the user did not intend an account-changing action.
+
+Mitigation: Invoke the skill only for explicit publishing requests and require confirmation of release parameters before running publish commands.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to prepare, publish, and verify ClawHub skill releases with confirmed slug, display name, version, changelog, and tags. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward publishing or updating a ClawHub skill with incorrect account, directory, slug, name, version, changelog, or tags. <br>
-Mitigation: Confirm the logged-in ClawHub account, target directory, slug, display name, version, changelog, and tags before allowing any final publish command. <br>
-Risk: Broad publish-related trigger phrases could start the publishing workflow when the user only intended to discuss publishing. <br>
-Mitigation: Require explicit user confirmation of the target skill and release parameters before executing ClawHub CLI commands. <br>
+**Output Format:** [Markdown guidance with inline shell commands and release parameter values]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fslong520/chpublish) <br>
+**Other Properties Related to Output:** [May propose and execute ClawHub CLI commands after gathering and confirming release parameters.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides a step-by-step publishing flow and asks for confirmation before final publish parameters are used.] <br>
+2.1.0 (source: server release evidence, released 2026-04-23)
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

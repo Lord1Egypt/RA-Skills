@@ -1,0 +1,41 @@
+{
+  "id": "antenna",
+  "name": "Antenna for OpenClaw",
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "required": [
+      "schemaVersion",
+      "receiver",
+      "bearer",
+      "peers",
+      "destinations",
+      "inboxFile",
+      "replayFile"
+    ],
+    "properties": {
+      "schemaVersion": {
+        "const": 2
+      },
+      "mcs": {
+        "enum": [
+          "off",
+          "dumb",
+          "smart",
+          "both"
+        ],
+        "default": "dumb"
+      },
+      "inbox": {
+        "enum": [
+          "off",
+          "on"
+        ],
+        "default": "on"
+      }
+    },
+    "additionalProperties": true
+  }
+}

@@ -1,41 +1,54 @@
-## Description: <br>
-Webcam helps an agent retrieve bound camera devices, current snapshots, event summaries, event images, online status, and battery state through the camera service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides camera device lookup, current snapshots, event history, event images, online status, and battery checks for authorized webcam devices.
 
-## Publisher: <br>
-[flyfinec](https://clawhub.ai/user/flyfinec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyfinec](https://clawhub.ai/user/flyfinec)
 
-## Use Case: <br>
-External users with bound webcam devices use this skill to inspect available cameras, view current snapshots, review recent events or event images, and check online status or battery state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access private camera snapshots, event images, device status, and battery data for bound cameras. <br>
-Mitigation: Install it only when the user trusts the camera service endpoint and is comfortable granting this level of camera access. <br>
-Risk: The skill stores provided TIVS_CLI_ID and TIVS_API_KEY credentials locally in openclaw.json. <br>
-Mitigation: Treat those values as private credentials, avoid exposing them in chat, and remove or rotate them when persistent access is no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to inspect authorized webcam devices, retrieve current snapshots, review event history and images, and check online status or battery after identifying the correct device.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/flyfinec/webcam) <br>
-- [Webcam Skill API Base](https://skill.webcamapp.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Configuration] <br>
-**Output Format:** [Markdown summaries with retrieved images or concise status details when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses TIVS_CLI_ID and TIVS_API_KEY credentials supplied by the user; avoids echoing the API key in chat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can access private camera device data, snapshots, event history, and event images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when that camera access is intended, and verify the publisher and device scope before use.
+
+Risk: The skill instructs the agent to store camera API credentials in local configuration when credentials are provided in chat.
+
+Mitigation: Prefer a protected secret store or out-of-band credential setup, and define clear credential deletion and rotation procedures.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/flyfinec/skills/webcam)
+- [Webcam Skill API Base](https://skill.webcamapp.cc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Images]
+
+**Output Format:** [Markdown summaries with concise device, event, status, battery, snapshot, or event image results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return image content for snapshots or event images; avoids exposing raw API keys or signed image URLs by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

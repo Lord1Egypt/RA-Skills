@@ -1,38 +1,58 @@
-## Description: <br>
-Convert URL to PDF suitable for mobile reading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert URL to PDF suitable for mobile reading.
 
-## Publisher: <br>
-[guoqiao](https://clawhub.ai/user/guoqiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guoqiao](https://clawhub.ai/user/guoqiao)
 
-## Use Case: <br>
-External users and developers use this skill to render a web page as a mobile-oriented PDF and receive the resulting local PDF file path for sharing through the agent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill opens user-provided URLs from the local machine in a Playwright browser and saves rendered page content as a PDF. <br>
-Mitigation: Avoid using it on localhost, private-network, admin, or credential-bearing pages unless that content is intentionally being rendered into a PDF and shared back through the agent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guoqiao/url2pdf) <br>
-- [Usage examples](https://github.com/guoqiao/skills/tree/main/url2pdf/examples) <br>
+## Use Case:
 
+Developers and agents use this skill to render a supplied webpage URL as a mobile-readable PDF and return the generated file path for delivery to the user.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text] <br>
-**Output Format:** [PDF file with stdout path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script saves the PDF under the configured output path, defaulting to the user's Documents directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-supplied URLs may expose local or private-network pages reachable from the agent host.
+
+Mitigation: Run the skill in a sandbox with restricted outbound network access and no access to local or private services; allow only trusted public URLs.
+
+Risk: Generated PDFs may overwrite files at the selected output path.
+
+Mitigation: Use an isolated output directory and check the destination path before returning or sharing the generated file.
+
+Risk: Runtime dependencies may change because production pinning is not provided by the artifact.
+
+Mitigation: Pin dependencies and browser versions before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guoqiao/skills/url2pdf)
+- [ClawHub homepage metadata](https://clawhub.ai/guoqiao/url2pdf)
+- [Usage examples](https://github.com/guoqiao/skills/tree/main/url2pdf/examples)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PDF file path on stdout with Markdown and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated PDFs are written to the configured output path, defaulting to the user's Documents directory.]
+
+## Skill Version(s):
+
+0.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

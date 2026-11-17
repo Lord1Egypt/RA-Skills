@@ -1,41 +1,48 @@
-## Description: <br>
-马化腾人物介绍技能。当用户询问马化腾、腾讯创始人、Pony Ma、QQ/微信创始人等相关信息时激活此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language reference material for answering questions about Pony Ma, Tencent, QQ, WeChat, and related company history.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to answer biographical questions about Pony Ma and summarize Tencent's history, core products, and business philosophy.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The security review flagged unrelated third-party promotion, external links, and contact details that do not fit the stated biography use case.
+
+Mitigation: Review before installation and remove or move the unrelated promotional material to a clearly named separate skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can use this skill to answer questions about Ma Huateng, Tencent's founding history, Tencent products, and related business philosophy. Reviewers should note that the source also includes unrelated promotional material that may surface in responses. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence identifies unrelated promotional links and personal contact details that could be surfaced to users. <br>
-Mitigation: Review and remove or clearly separate unrelated promotional and contact content before deployment. <br>
-Risk: Biography and company-history content may become outdated or may need source review for factual accuracy. <br>
-Mitigation: Review factual claims against trusted current references before using the skill for authoritative answers. <br>
+**Output Format:** [Markdown or plain text responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LeoCryptoFlow/mahuateng) <br>
-- [Publisher profile](https://clawhub.ai/user/LeoCryptoFlow) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with lists and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only informational responses; no tools, shell commands, API calls, or credential handling are indicated by the evidence.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

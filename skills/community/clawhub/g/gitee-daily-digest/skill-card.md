@@ -1,39 +1,49 @@
-## Description: <br>
-Aggregates unread Gitee notifications, pending pull requests, and open issues into a daily work digest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user asks for a daily summary, today's to-dos, "what's on my plate today", "daily digest", "daily-digest", "show my notifications", "pending PRs and issues". Requires Gitee MCP Server to be configured.
 
-## Publisher: <br>
-[oschina](https://clawhub.ai/user/oschina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oschina](https://clawhub.ai/user/oschina)
 
-## Use Case: <br>
-Developers and maintainers use this skill to summarize their Gitee work queue, including unread notifications, review requests, pending pull requests, and open issues. It helps prioritize daily follow-up across repositories accessible through the configured Gitee MCP Server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads Gitee account notifications, pull requests, issues, and profile data through the configured MCP server. <br>
-Mitigation: Use it only with Gitee MCP server scopes and repositories that are appropriate to summarize in chat. <br>
-Risk: Broad activation wording can cause the skill to run for general daily-planning requests. <br>
-Mitigation: Prefer explicit requests such as "show my Gitee daily digest" when account data should be read. <br>
+## Use Case:
 
+Developers and Gitee users use this skill to aggregate unread notifications, pending pull requests, and open issues into a concise daily work digest.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown daily digest with grouped notifications, pull request tables, issue tables, and prioritized suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Gitee MCP Server with access to the relevant account and repositories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill reads Gitee notifications, user identity, pull requests, and issues to prepare a daily digest.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and invoke it only when a Gitee-based digest is intended, and confirm ambiguous daily-summary requests before fetching account or repository data.
+
+## Reference(s):
+
+- [Daily Digest on ClawHub](https://clawhub.ai/oschina/skills/gitee-daily-digest)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown daily digest with sections and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured Gitee MCP Server access to read notifications, pull requests, issues, and user identity.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

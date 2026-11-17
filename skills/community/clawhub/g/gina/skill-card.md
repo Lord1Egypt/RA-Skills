@@ -1,42 +1,58 @@
-## Description: <br>
-Gina namespace for Netsnek e.U. personal assistant and scheduling framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gina is a Netsnek e.U. personal assistant and scheduling framework for calendar events, reminders, daily briefings, and smart scheduling suggestions.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-External users and developers can use Gina as a personal assistant and scheduling framework namespace for calendar views, reminders, daily briefings, and scheduling suggestions. The current artifact behaves as a stub that prints static assistant information and sample schedule or brief responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests local exec permission even though the current scripts only print static information. <br>
-Mitigation: Review scripts before installation and re-scan future updates, especially if they add calendar, account, credential, or network integrations. <br>
-Risk: The artifact describes calendar and scheduling features that are not implemented in the current scripts. <br>
-Mitigation: Treat this release as a namespace or prototype stub and verify behavior before relying on it for scheduling workflows. <br>
+## Use Case:
 
+External users use Gina to interact with a personal assistant namespace for schedule views, reminders, daily briefings, and smart scheduling suggestions. Developers can install the skill in OpenClaw-compatible environments and invoke its shell-backed assistant commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kleberbaum/gina) <br>
-- [Publisher profile](https://clawhub.ai/user/kleberbaum) <br>
-- [Netsnek website](https://netsnek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Current scripts print static responses and do not connect to calendar, account, credential, or network integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter, claw.json, release metadata) <br>
+Risk: Future calendar, reminder, or preference integrations could change user data without enough intent checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear user intent and confirmation before mutating calendars, reminders, or preferences.
+
+Risk: The current assistant scripts are placeholders and may not reflect real schedule or briefing data.
+
+Mitigation: Treat schedule and brief responses as non-authoritative until connected to verified calendar and briefing sources.
+
+Risk: License terms are inconsistent across release evidence and artifact files.
+
+Mitigation: Confirm the governing license before redistribution or commercial deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kleberbaum/skills/gina)
+- [Netsnek](https://netsnek.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Current scripts return placeholder schedule, daily brief, and identity responses.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, claw.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

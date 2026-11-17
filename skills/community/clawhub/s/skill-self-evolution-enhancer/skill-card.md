@@ -1,44 +1,61 @@
-## Description: <br>
-Enables any skill to gain self-evolution capabilities by generating domain-specific learning logs, evolution rules, and a Review-Apply-Report workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables an agent to add self-evolution scaffolding to other skills, including domain-specific learnings, error logs, feature requests, evolution rules, and a Review-Apply-Report workflow.
 
-## Publisher: <br>
-[Zhaobudaoyuema](https://clawhub.ai/user/Zhaobudaoyuema) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobudaoyuema](https://clawhub.ai/user/zhaobudaoyuema)
 
-## Use Case: <br>
-Developers and agent-skill maintainers use this skill to add self-evolution behavior to another skill, including feedback logs, error logs, feature-request tracking, and evolution rules tailored to the target skill's domain. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently rewrite another skill's behavior and overwrite evolution files. <br>
-Mitigation: Run the scaffold script with --dry-run first, inspect diffs, and back up the target skill before applying changes. <br>
-Risk: Adding workspace-level SOUL.md or AGENTS.md snippets can change agent behavior beyond a single target skill. <br>
-Mitigation: Add workspace-level snippets only when that broader behavior change is intentional and review them before deployment. <br>
-Risk: Applying this to third-party skills the user does not control can introduce unreviewed behavior changes. <br>
-Mitigation: Use the skill only on skills the operator controls or has permission to modify. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to add persistent learning workflows to an existing skill. It analyzes a target skill, drafts domain-specific learning and error structures, and produces evolution guidance tailored to the target skill's language and use case.
 
-## Reference(s): <br>
-- [Domain examples](references/domain-examples.md) <br>
-- [OpenClaw active feedback integration](references/openclaw-feedback.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Zhaobudaoyuema/skill-self-evolution-enhancer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files and shell scaffold commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create .learnings/ files, DOMAIN-CONFIG-DRAFT.md, and EVOLUTION.md in a target skill; dry-run mode is available for the scaffold script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill introduces persistent self-modifying behavior into other skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dry run first, back up the target skill, and review every generated file before deployment.
+
+Risk: Learning logs may accidentally retain secrets, raw user data, or sensitive corrections.
+
+Mitigation: Avoid storing secrets or raw user data in .learnings and redact sensitive details before keeping entries.
+
+Risk: Promoting learnings into durable rules can make incorrect or misleading guidance persist across future tasks.
+
+Mitigation: Require explicit approval before promoting learnings into rules and periodically review superseded or contradicted entries.
+
+## Reference(s):
+
+- [Skill workflow](SKILL.md)
+- [README](README.md)
+- [Domain examples](references/domain-examples.md)
+- [OpenClaw feedback integration](references/openclaw-feedback.md)
+- [ClawHub release page](https://clawhub.ai/zhaobudaoyuema/skills/skill-self-evolution-enhancer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, generated Markdown files, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create .learnings/ logs, EVOLUTION.md, and domain configuration drafts in a target skill after review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

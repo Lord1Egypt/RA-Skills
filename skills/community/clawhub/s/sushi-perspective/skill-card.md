@@ -1,46 +1,57 @@
-## Description: <br>
-基于女娲心智蒸馏方法论，对苏轼思维模式、人格特质、决策逻辑进行系统性蒸馏。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于女娲心智蒸馏方法论，对苏轼思维模式、人格特质、决策逻辑进行系统性蒸馏。
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External users and individual creators use this Chinese-language skill to apply a Su Shi-inspired mindset to adversity, creative work, independent entrepreneurship, and work-life reflection. It provides reflective framing and practical perspective rather than professional medical, legal, crisis, or workplace-harm advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-apply reflective coaching output to medical, legal, crisis, or workplace-harm decisions. <br>
-Mitigation: Use the skill only for perspective and reflection, and consult qualified professionals or appropriate response channels for high-stakes decisions. <br>
-Risk: The skill frames responses through a stylized Su Shi perspective, which may simplify historical interpretation or current personal circumstances. <br>
-Mitigation: Treat outputs as interpretive guidance and review them against the user's concrete context before acting. <br>
+## Use Case:
 
+External users, OPC practitioners, solo entrepreneurs, and creators use this Chinese-language skill to ask for Su Shi-inspired perspective on adversity, work-life balance, creativity, and life aesthetics. It frames responses as a historical and philosophical lens rather than professional advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/sushi-perspective) <br>
-- [01-核心论点库](references/01-核心论点库.md) <br>
-- [02-即兴反应库](references/02-即兴反应库.md) <br>
-- [03-句式指纹库](references/03-句式指纹库.md) <br>
-- [04-外部观察模式库](references/04-外部观察模式库.md) <br>
-- [05-逻辑权重矩阵](references/05-逻辑权重矩阵.md) <br>
-- [06-思想演化时间线](references/06-思想演化时间线.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text reflective guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language Su Shi-themed coaching perspective; no code execution, tools, or sensitive access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Users may treat Su Shi-inspired reflective guidance as mental health, legal, financial, or crisis advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses framed as a historical and philosophical perspective, and direct professional or crisis requests to qualified support.
+
+## Reference(s):
+
+- [苏轼 - 核心论点库](references/01-核心论点库.md)
+- [苏轼 - 即兴反应库](references/02-即兴反应库.md)
+- [苏轼 - 句式指纹库](references/03-句式指纹库.md)
+- [苏轼 - 外部观察模式库](references/04-外部观察模式库.md)
+- [苏轼 - 逻辑权重矩阵](references/05-逻辑权重矩阵.md)
+- [苏轼 - 思想演化时间线](references/06-思想演化时间线.md)
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/sushi-perspective)
+- [Coze platform](https://coze.cn)
+- [OPC platform](https://opc.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted Chinese guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static Markdown reference content; no credential use, persistence, data access, hidden code, or tool execution reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

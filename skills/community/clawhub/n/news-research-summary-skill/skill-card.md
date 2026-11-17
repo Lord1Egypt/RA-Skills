@@ -1,43 +1,55 @@
-## Description: <br>
-Researches news and factual information on the web, then produces a cited, deduplicated summary tailored to constraints such as topic, time range, region, sources, language, length, and angle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Researches news and factual information on the web, then produces a cited, deduplicated summary tailored to constraints such as topic, time range, region, sources, language, length, and angle.
 
-## Publisher: <br>
-[darinouyang](https://clawhub.ai/user/darinouyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darinouyang](https://clawhub.ai/user/darinouyang)
 
-## Use Case: <br>
-External users and employees use this skill to research current news, policy, competitive, industry, or factual topics on the public web and receive concise summaries with citations, deduplication, source quality checks, and clear separation of fact from analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: News and factual summaries may contain source errors, stale information, or unverified single-source claims. <br>
-Mitigation: Review important cited claims directly, prefer primary sources, and label single-source or conflicting claims as required by the skill guidance. <br>
-Risk: The skill may produce Chinese section headings or bilingual query behavior when that does not fit the deployment context. <br>
-Mitigation: Adapt the output language and template headings to the user or product context before publishing results. <br>
+## Use Case:
 
+External users, analysts, product teams, and developers use this skill to research current news, policy updates, competitor activity, industry developments, and factual topics, then receive concise cited summaries with source lists and search notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/darinouyang/news-research-summary-skill) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [examples.md](artifact/examples.md) <br>
-- [reference.md](artifact/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary with source links, key points, details, optional impact assessment, source list, and search notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cited factual bullets, deduplicated stories, labeled single-source or conflicting claims, and output language matched to the user when possible] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill depends on web search, so summaries can reflect stale, incomplete, conflicting, or single-source information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prioritize primary and reputable sources, corroborate key claims with independent sources when possible, cite discrepancies, and label single-source claims clearly.
+
+Risk: The default output template uses Chinese headings and may not match every installer's preferred language.
+
+Mitigation: Review the output language preference at installation or use time and ask the agent to match the user's language when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/darinouyang/skills/news-research-summary-skill)
+- [Web research and summarization reference](artifact/reference.md)
+- [Example prompts and outputs](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summary with cited bullets, details, optional impact assessment, source list, and search notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Factual claims should include source links; unsupported analysis should be labeled as analysis, judgment, or speculation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

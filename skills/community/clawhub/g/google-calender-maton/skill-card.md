@@ -1,41 +1,54 @@
-## Description: <br>
-Create, update, list, and delete Google Calendar events with support for attendees, time zones, and Google Meet through Maton API key authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, update, list, and delete Google Calendar events with support for attendees, time zones, and Google Meet through Maton API key authentication.
 
-## Publisher: <br>
-[otman-ai](https://clawhub.ai/user/otman-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[otman-ai](https://clawhub.ai/user/otman-ai)
 
-## Use Case: <br>
-Developers and agents use this skill to manage Google Calendar events through Maton, including creating meetings, changing schedules, inviting attendees, and adding Google Meet links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Maton API key for Google Calendar access. <br>
-Mitigation: Install only when use of a Maton API key is acceptable, store the key securely, and avoid exposing it in logs or shared prompts. <br>
-Risk: Calendar write actions can create, update, reschedule, invite attendees to, or delete events. <br>
-Mitigation: Before running write actions, confirm the target calendar, event ID, time zone, attendee emails, and whether invitations or update notifications should be sent. <br>
+## Use Case:
 
+Developers and automation agents use this skill to manage Google Calendar events through Maton Gateway, including scheduling meetings, updating attendees, creating Meet links, and deleting events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/otman-ai/google-calender-maton) <br>
-- [Maton Google Calendar gateway](https://gateway.maton.ai/google-calendar/calendar/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with curl examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses MATON_API_KEY authentication and IANA time zones for calendar operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill enables reading, changing, deleting, and notifying people from the user's primary Google Calendar.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, use only a trusted Maton API key, confirm event IDs before updates or deletion, and explicitly approve attendee email addresses and notification settings.
+
+Risk: Sensitive personal or business scheduling information may be handled through the gateway workflow.
+
+Mitigation: Use the skill only with calendar data and credentials appropriate for the intended environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/otman-ai/skills/google-calender-maton)
+- [Maton Google Calendar Gateway endpoint](https://gateway.maton.ai/google-calendar/calendar/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with curl and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a trusted Maton API key and access to the target Google Calendar.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

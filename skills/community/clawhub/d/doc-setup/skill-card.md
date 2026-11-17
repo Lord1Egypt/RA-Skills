@@ -1,43 +1,55 @@
-## Description: <br>
-Organize, summarize, and index technical documentation from any source into structured, source-linked documentation notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes, summarizes, and indexes technical documentation from repositories, websites, and manuals into numbered, source-linked Markdown notes and setup guides.
 
-## Publisher: <br>
-[brauliodiasribeiro](https://clawhub.ai/user/brauliodiasribeiro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brauliodiasribeiro](https://clawhub.ai/user/brauliodiasribeiro)
 
-## Use Case: <br>
-Developers, technical writers, and teams use this skill to turn raw documentation from repositories, websites, manuals, or mixed sources into numbered Markdown topic files with indexes, source links, concise summaries, and setup guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Source documentation may contain private or secret material that could be summarized into generated notes. <br>
-Mitigation: Use a specific source and destination folder, and avoid pointing the skill at private or secret-containing documentation unless that material is intended to be summarized. <br>
-Risk: Generated documentation can become misleading if summaries or proposed file changes are accepted without review. <br>
-Mitigation: Review proposed file changes before applying them, keep original source links in each file, and use living-document markers to support future updates. <br>
+## Use Case:
 
+Developers, technical writers, and documentation maintainers use this skill to turn raw documentation into navigable knowledge bases with indexes, topic files, source attribution, and setup steps.
 
-## Reference(s): <br>
-- [Workflow Patterns](references/workflow-patterns.md) <br>
-- [Output Examples](references/output-examples.md) <br>
-- [Structure Validator](scripts/validate_structure.py) <br>
-- [Doc Setup on ClawHub](https://clawhub.ai/brauliodiasribeiro/doc-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes with numbered files, source attribution, tables, checklists, and inline command or configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated notes are intended to preserve source links and living-document markers; optional validation checks numbered Markdown structure and source attribution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can read or fetch source documentation and summarize it into local notes, which may expose private or authenticated documentation if those sources are provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only source URLs or folders intended for documentation output, and avoid private or authenticated sources unless summarizing them into local notes is intended.
+
+Risk: Generated documentation may become stale or may summarize source material incorrectly.
+
+Mitigation: Keep original source links in each file, mark outputs as living documents, and review generated summaries before relying on them.
+
+## Reference(s):
+
+- [Doc Setup ClawHub release](https://clawhub.ai/brauliodiasribeiro/skills/doc-setup)
+- [Workflow Patterns](references/workflow-patterns.md)
+- [Output Examples](references/output-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files with source links, tables, checklists, and optional code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates numbered files such as 00-index.md and NN-topic.md, with living document markers when applicable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

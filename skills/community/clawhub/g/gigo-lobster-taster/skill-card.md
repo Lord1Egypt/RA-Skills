@@ -1,45 +1,62 @@
-## Description: <br>
-Gigo Lobster Taster runs the full GIGO benchmark, uploads verified results by default, generates a personal result page, and enters the result on the leaderboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gigo Lobster Taster runs the full OpenClaw lobster benchmark, uploads verified results by default, creates a personal result page, and enters the result on the leaderboard.
 
-## Publisher: <br>
-[gigolab](https://clawhub.ai/user/gigolab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gigolab](https://clawhub.ai/user/gigolab)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to run a multi-task agent benchmark, produce local result artifacts, and optionally publish verified results to the GIGO result page and leaderboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default mode uploads detailed benchmark results to the GIGO API and may create a public result page or leaderboard entry. <br>
-Mitigation: Use the local or offline mode where available when cloud submission is not intended, and review generated reports before sharing links. <br>
-Risk: The benchmark may execute local tests and package commands and create local caches or work directories. <br>
-Mitigation: Run it in a dedicated workspace with only the files needed for evaluation, and review the security guidance before deployment. <br>
-Risk: The skill may load OpenClaw-related profile or secrets files while running. <br>
-Mitigation: Keep unrelated secrets out of workspace-level secrets.env files and use scoped credentials for benchmark runs. <br>
+## Use Case:
 
+External OpenClaw users and agent developers use this skill to run a multi-task agent benchmark, review local reports and certificates, and optionally publish verified results to a personal result page and leaderboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gigolab/gigo-lobster-taster) <br>
-- [GIGO Lobster Skill Family README](artifact/README.md) <br>
-- [GIGO Lobster Taster v2 Bundle README](artifact/bundle/README.md) <br>
-- [GIGO Lobster Taster Integration Guide](artifact/bundle/INTEGRATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated HTML, PNG or SVG, and log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces benchmark progress updates and writes outputs such as lobster-report.html, lobster-cert.png or lobster-cert.svg, and gigo-run.log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release evidence and manifest.json) <br>
+Risk: The benchmark may execute adversarial coding tasks with broad local environment access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a disposable workspace or container with only the files and environment variables needed for the benchmark.
+
+Risk: Default runs can upload complete agent answers and results to api.agent-gigo.com.
+
+Mitigation: Use the local or skip-upload mode when responses or results should not be sent to the service.
+
+Risk: Local caches, logs, reports, and certificates are created during execution.
+
+Mitigation: Review the output directory and remove generated logs or artifacts that should not be retained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gigolab/skills/gigo-lobster-taster)
+- [README](README.md)
+- [GIGO Lobster Taster v2 task bundle](bundle/README.md)
+- [Task schema](bundle/specs/task-schema.md)
+- [Scoring](bundle/specs/scoring.md)
+- [Judge protocol](bundle/specs/judge-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command invocations and generated local report, certificate, log, and result artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default runs may upload complete agent answers and benchmark results to api.agent-gigo.com; local and register-only modes alter publication behavior when explicitly selected.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

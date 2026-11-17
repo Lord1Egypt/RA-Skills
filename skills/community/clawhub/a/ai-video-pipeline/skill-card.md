@@ -1,42 +1,59 @@
-## Description: <br>
-Ai Video Pipeline is a conversational AI short-video creation skill that guides a user from an idea through script design, human confirmation, and automated MP4 production. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Video Pipeline guides an agent from a user short-video idea through script drafting, human confirmation, TTS, background music, generated video clips, subtitles, and MP4 assembly.
 
-## Publisher: <br>
-[mydearzsy](https://clawhub.ai/user/mydearzsy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mydearzsy](https://clawhub.ai/user/mydearzsy)
 
-## Use Case: <br>
-Content creators and agents use this skill to turn a short-video idea or manuscript into a confirmed script and a generated MP4 with narration, subtitles, BGM, and optional AI video clips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scripts, prompts, generated audio/video, and API-authenticated requests are sent to named third-party AI services. <br>
-Mitigation: Use only non-sensitive content unless the providers' data-handling terms are acceptable, and configure API credentials with least privilege and cost controls. <br>
-Risk: The default work directory can reuse prior cached media without confirming it matches the current script. <br>
-Mitigation: Use a fresh work directory per job or clear /tmp/video-poc before running a new production. <br>
+## Use Case:
 
+External creators and developers use this skill to turn short-video ideas or manuscripts into confirmed scripts and generated MP4 assets with narration, background music, subtitles, and AI-generated clips. The workflow is designed for agent-assisted Chinese short-video production with human approval before media generation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mydearzsy/ai-video-pipeline) <br>
-- [Volcengine visual intelligence documentation](https://www.volcengine.com/docs/85621) <br>
-- [MiniMax music generation API](https://api.minimaxi.com/v1/music_generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown production plans, bash commands, Python configuration guidance, and generated MP4/audio/subtitle files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before production; generated media may depend on third-party API credentials and cached work-directory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: Video scripts, prompts, generated media, and API-authenticated requests are sent to named third-party services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content and provider terms appropriate for those services, and avoid sensitive or regulated content unless provider and Feishu handling policies allow it.
+
+Risk: The default work directory is /tmp/video-poc, which can be inappropriate in shared environments.
+
+Mitigation: Use a private per-job work directory and avoid reusing shared temporary paths for user content or generated media.
+
+Risk: Untrusted output paths or filenames can increase local file handling risk.
+
+Mitigation: Use fixed, trusted output directories and validate user-supplied filenames before running the media pipeline.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mydearzsy/skills/ai-video-pipeline)
+- [Volcengine Visual Intelligence documentation](https://www.volcengine.com/docs/85621)
+- [MiniMax music generation API endpoint](https://api.minimaxi.com/v1/music_generation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown and text guidance with inline shell commands and generated MP4 files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured third-party media service credentials and local video tooling.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Linear"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["linear"]
   icon: "https://static.oomol.com/logo/third-party/Linear.svg"
 ---
@@ -65,12 +65,12 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_linear_users` — List Linear users in the current workspace and support cursor paging.
 - `remove_issue_label` — Removes a label from the specified Linear issue. [destructive]
 - `remove_reaction` — Delete an existing Linear reaction. [destructive]
-- `run_mutation` — Perform a mutation directly on the Linear GraphQL API. [write]
+- `run_mutation` — Perform a mutation directly on the Linear GraphQL API. [destructive]
 - `run_query` — Execute a read-only query directly against the Linear GraphQL API.
 - `search_issues` — Retrieve issues through Linear's full-text search capabilities.
 - `update_issue` — Update an existing Linear issue and support fields such as title, description, status, project, label, etc. [write]
 - `update_linear_comment` — Update the text of an existing Linear comment. [write]
-- `update_linear_project` — Update an existing Linear project. [write]
+- `update_linear_project` — Update an existing Linear project. [destructive]
 
 ## Safety
 
@@ -101,11 +101,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Linear is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2, API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=linear
+  https://console.oomol.com/connections/linear
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Linear homepage: https://linear.app
+- API documentation: https://linear.app/developers/graphql

@@ -1,38 +1,48 @@
-## Description: <br>
-Generate ASCII mind maps from indented text outlines to visualize hierarchies and structures directly in the terminal or export them as Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate ASCII mind maps from indented text outlines for terminal viewing or Markdown export.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, writers, and agents use this skill to convert indented outlines or bullet lists into readable hierarchy diagrams in the terminal or Markdown documents.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Outlines from other people may contain crafted labels that visually mislead terminal output or Markdown exports.
+
+Mitigation: Review untrusted outlines before using or sharing rendered output, especially when terminal formatting or Markdown presentation affects interpretation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and other agent users use this skill to turn plain indented outlines, files, or stdin into readable terminal mind maps and Markdown exports for documentation, planning, and hierarchy review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local files explicitly passed to the view or export commands. <br>
-Mitigation: Use it only with outline files intended for rendering or inclusion in exported Markdown. <br>
+**Output Format:** [Plain text ASCII tree diagrams or Markdown fenced code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Bytesagain Mindmap on ClawHub](https://clawhub.ai/loutai0307-prog/bytesagain-mindmap) <br>
+**Other Properties Related to Output:** [Accepts inline text, files, or stdin; requires bash and python3 with no external packages.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [ASCII tree text or Markdown fenced mindmap block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads inline text, stdin, or a named local outline file; no external packages are required.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

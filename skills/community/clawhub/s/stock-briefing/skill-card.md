@@ -1,47 +1,60 @@
-## Description: <br>
-盘前简报Pro is an offline educational OpenClaw skill that generates simulated pre-market stock briefings, technical-analysis examples, and local Markdown logs without network calls. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+纯离线的中文股市数据分析教学系统，使用模拟数据生成盘前市场分析示例，不调用外部网络服务。
 
-## Publisher: <br>
-[luckjackyer](https://clawhub.ai/user/luckjackyer) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luckjackyer](https://clawhub.ai/user/luckjackyer)
 
-## Use Case: <br>
-External developers and learners use this skill to study OpenClaw skill structure, local configuration, report logging, and simulated stock-analysis strategy code. It is not a source of real market data or investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Portfolio-style fields in config.json and generated logs could expose sensitive position information if a user replaces the sample holdings with real holdings. <br>
-Mitigation: Keep the sample values for demonstrations, or protect and delete config.json and logs before sharing the workspace. <br>
-Risk: The cron example uses a /root path, which can encourage running the script with unnecessary privileges. <br>
-Mitigation: Run the script as a normal user and schedule it from a user-owned OpenClaw workspace. <br>
-Risk: Simulated market reports and strategy examples could be mistaken for real recommendations. <br>
-Mitigation: Keep the educational and simulated-data notices visible, and do not use generated briefings for trading decisions. <br>
+## Use Case:
 
+Developers and learners use this skill to study OpenClaw-style agent scripting and offline quantitative-analysis patterns. It generates Chinese-language simulated market briefings, stock-screening examples, technical levels, and local Markdown logs for educational review.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/luckjackyer/stock-briefing) <br>
-- [Publisher profile](https://clawhub.ai/user/luckjackyer) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Artifact README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [Sample generated briefing](logs/briefing-2026-03-15.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown briefing files and console text, with JSON configuration inputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local logs/briefing-YYYY-MM-DD.md reports and may create config.json with sample holdings if it is missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Generated briefings may look like market guidance even though they are based on simulated data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat all generated output as educational material only and do not use it for investment decisions.
+
+Risk: The skill writes local configuration and Markdown report files.
+
+Mitigation: Review config.json before running and periodically remove generated logs that are no longer needed.
+
+Risk: The documentation includes an optional weekday cron schedule.
+
+Mitigation: Enable the cron entry only when recurring local execution is intended, and remove that entry to stop scheduled runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luckjackyer/skills/stock-briefing)
+- [OpenClaw](https://openclaw.ai)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Console text, JSON configuration, and Markdown briefing logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local logs/briefing-YYYY-MM-DD.md files and may create config.json with sample holdings if absent.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

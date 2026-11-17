@@ -1,45 +1,57 @@
-## Description: <br>
-Read-only Rolling Suds workflow for processing Workiz leads and associated client data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A read-only workflow for reviewing Rolling Suds Workiz leads and associated client data, validating required fields, and producing lead summaries, cleaned intake, estimates when possible, Workiz-ready notes, and manual-review flags.
 
-## Publisher: <br>
-[mwdearing](https://clawhub.ai/user/mwdearing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mwdearing](https://clawhub.ai/user/mwdearing)
 
-## Use Case: <br>
-External operators and agents use this skill to review pasted or exported Workiz lead and client data, preserve the Workiz Lead #, and route sufficiently complete records through Rolling Suds intake, estimation, and note-building workflows. It blocks estimate generation when required data such as address is missing and returns lead summaries, cleaned intake, estimates when possible, Workiz-ready notes, and manual-review flags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pasted Workiz lead and client details may contain sensitive customer data. <br>
-Mitigation: Treat all pasted lead and client details as sensitive customer data and avoid sharing them outside the intended review workflow. <br>
-Risk: Future Workiz API use could expand the skill from manual review into credentialed account access. <br>
-Mitigation: Re-review the skill before granting Workiz API credentials, write permissions, or automated account actions. <br>
-Risk: Incomplete pasted lead data can produce weak or inappropriate estimates. <br>
-Mitigation: Require address before estimate generation and surface missing required data as manual-review items. <br>
+## Use Case:
 
+Rolling Suds operators or agents use this skill to process current-day, specified-day, pasted, or exported Workiz lead and client data in a read-only review flow. It helps preserve the Workiz Lead #, identify missing required address data, and prepare downstream intake, estimate, note, and manual-review outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mwdearing/rolling-suds-workiz-lead-runner) <br>
-- [Workiz Developer Documentation](https://developer.workiz.com) <br>
-- [Default Design](references/default-design.md) <br>
-- [Version History](references/version-history.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured lead-review sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves Workiz Lead # when provided and marks missing required data before estimation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release metadata and artifact version history) <br>
+Risk: The workflow may expose Workiz lead and connected client details to the agent and downstream Rolling Suds skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only in contexts where sharing those lead and client details with the agent workflow is approved.
+
+Risk: Future Workiz API use could exceed the reviewed read-only posture if write access is added later.
+
+Mitigation: Keep API activity read-only unless a later skill version is explicitly updated and reviewed for write access.
+
+## Reference(s):
+
+- [Default design](references/default-design.md)
+- [Iteration notes](references/iteration-notes.md)
+- [Version history](references/version-history.md)
+- [Workiz developer documentation](https://developer.workiz.com)
+- [ClawHub skill page](https://clawhub.ai/mwdearing/skills/rolling-suds-workiz-lead-runner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured lead-by-lead sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves provided Workiz Lead # values and stops estimate generation when required address data is missing.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release evidence and artifact version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

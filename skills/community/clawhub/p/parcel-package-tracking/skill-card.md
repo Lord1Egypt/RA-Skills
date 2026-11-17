@@ -1,42 +1,59 @@
-## Description: <br>
-Track and add deliveries via Parcel API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and add deliveries via Parcel API.
 
-## Publisher: <br>
-[gumadeiras](https://clawhub.ai/user/gumadeiras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gumadeiras](https://clawhub.ai/user/gumadeiras)
 
-## Use Case: <br>
-External users use this skill to list recent or active Parcel deliveries, add new package tracking entries, and search supported carriers from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends a Parcel API key and shipment data to Parcel API endpoints. <br>
-Mitigation: Install only if comfortable sharing that data with Parcel, and rotate or remove PARCEL_API_KEY when the skill is no longer used. <br>
-Risk: The add command changes the Parcel account by creating a new delivery and can request push confirmation. <br>
-Mitigation: Confirm the tracking number, carrier, description, and --notify setting before running the add command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Parcel web app](https://web.parcelapp.net) <br>
-- [Parcel external API endpoint](https://api.parcel.app/external) <br>
-- [Parcel supported carriers JSON](https://api.parcel.app/external/supported_carriers.json) <br>
-- [ClawHub release page](https://clawhub.ai/gumadeiras/parcel-package-tracking) <br>
+## Use Case:
 
+External users and developers use this skill to list recent or active Parcel deliveries, add package tracking records, and search supported carriers from an agent session.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Text, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PARCEL_API_KEY and may print shipment descriptions, tracking numbers, status codes, expected dates, and latest delivery events.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a Parcel API key to access delivery data and add delivery records.
+
+Mitigation: Install it only when Parcel API access is intended, store PARCEL_API_KEY securely, and rotate the key if it may have been exposed.
+
+Risk: Tracking numbers and package descriptions are private shipment data sent to Parcel's service.
+
+Mitigation: Avoid placing sensitive personal details in package descriptions and review outputs before sharing them.
+
+Risk: Malformed add-command arguments can submit an incorrect delivery record.
+
+Mitigation: Confirm tracking number, carrier code, and description before running the add command, especially when automation fills those values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gumadeiras/skills/parcel-package-tracking)
+- [Parcel Web](https://web.parcelapp.net)
+- [Parcel external API](https://api.parcel.app/external)
+- [Parcel supported carriers](https://api.parcel.app/external/supported_carriers.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls]
+
+**Output Format:** [Plain text CLI output and guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PARCEL_API_KEY and sends tracking numbers and package descriptions to Parcel's external API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

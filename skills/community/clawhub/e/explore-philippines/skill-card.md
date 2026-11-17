@@ -1,47 +1,61 @@
-## Description: <br>
-Book flights to the Philippines including Manila, Boracay, and Cebu, with support for related travel services such as hotels, tickets, itinerary planning, visa information, insurance, and car rental through Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights to the Philippines including Manila, Boracay, and Cebu, with support for flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, car rental, and related travel tasks powered by Fliggy and flyai.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to search Philippines flight options and related travel services through the flyai CLI, then present current results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and run an unpinned global npm CLI package during ordinary travel queries. <br>
-Mitigation: Require user confirmation before installation or networked search, prefer a pinned package version, and review exact commands before execution. <br>
-Risk: Travel search details may be sent through FlyAI or Fliggy during live searches. <br>
-Mitigation: Tell users before submitting itinerary details to the external service and avoid sending sensitive personal data unless necessary. <br>
-Risk: If the CLI fails or returns invalid data, the skill could otherwise produce misleading travel results. <br>
-Mitigation: Stop on CLI failure, retry only as documented, and do not answer from training data when live CLI results are unavailable. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to search Philippines-focused flights and related travel options from flyai CLI results, then present concise booking-oriented Markdown with comparison tables and booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/explore-philippines) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with formatted travel results, comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results must be based on flyai CLI output, include booking links when results are shown, and avoid raw JSON in user-facing responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may install and run an unpinned global third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, approve installation manually, and verify the package source before execution.
+
+Risk: Travel search inputs may be sent to a third-party flight service.
+
+Mitigation: Avoid entering unnecessary personal or sensitive information in search queries.
+
+Risk: Booking links are taken from CLI output and may not be independently validated by the skill.
+
+Mitigation: Verify booking domains and offer details before opening links or completing purchases.
+
+## Reference(s):
+
+- [Parameter Collection and Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/skills/explore-philippines)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with comparison tables, concise travel guidance, and booking links derived from CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI execution for travel results; should not present booking options when CLI data is unavailable.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

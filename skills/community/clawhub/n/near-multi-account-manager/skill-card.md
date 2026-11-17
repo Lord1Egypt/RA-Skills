@@ -1,44 +1,61 @@
-## Description: <br>
-Secure multi-account management for NEAR Protocol with encrypted credential storage, account switching, and balance aggregation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure multi-account management for NEAR Protocol with encrypted credential storage, account switching, and balance aggregation.
 
-## Publisher: <br>
-[shaiss](https://clawhub.ai/user/shaiss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shaiss](https://clawhub.ai/user/shaiss)
 
-## Use Case: <br>
-Developers, organizations, traders, DeFi users, and advanced NEAR users use this skill to manage multiple NEAR Protocol accounts, switch active accounts, aggregate balances, transfer NEAR, and export or import account metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Private keys for NEAR accounts may be stored by the skill, and the security summary identifies weak wallet-key safeguards. <br>
-Mitigation: Use a strong unique NEAR_SKILL_KEY before adding accounts, review the local storage behavior, and avoid storing valuable private keys until the fallback key issue is addressed. <br>
-Risk: The skill can initiate NEAR mainnet transfers. <br>
-Mitigation: Require explicit human confirmation for transfers and verify the sender, recipient, and amount before invoking transfer actions. <br>
-Risk: Unrelated marketplace helper scripts include an exposed authenticated token according to the security guidance. <br>
-Mitigation: Remove or ignore those scripts before installation, and have the publisher revoke the exposed token. <br>
+## Use Case:
 
+Developers, organizations, traders, DeFi users, and advanced NEAR users use this skill to manage multiple NEAR accounts, switch active accounts, check balances, transfer NEAR, and summarize account holdings from one agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shaiss/near-multi-account-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/shaiss) <br>
-- [NEAR mainnet explorer](https://explorer.mainnet.near.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration, guidance] <br>
-**Output Format:** [Structured JavaScript object responses with status fields, account summaries, balance data, transfer results, and setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local encrypted account storage and submit NEAR mainnet transactions when transfer entrypoints are invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: The release bundles unrelated authenticated marketplace deliverable/job scripts and an exposed token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the bundled deliverable/job scripts and exposed token before installation or release.
+
+Risk: Private-key storage has weak safeguards if the built-in default encryption key is used.
+
+Mitigation: Require a real user-provided or OS-backed secret for key storage and verify local storage permissions before storing keys.
+
+Risk: The skill can initiate real NEAR mainnet transfers.
+
+Mitigation: Add clear mainnet transfer confirmations and declare the needed filesystem, environment, network, and wallet-operation capabilities.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shaiss/skills/near-multi-account-manager)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [NEAR Mainnet RPC](https://rpc.mainnet.near.org)
+- [NEAR Explorer](https://explorer.mainnet.near.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured JSON-like operation results with JavaScript usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute NEAR account operations, local encrypted account storage updates, balance queries, transaction lookups, imports, exports, and mainnet transfers.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact package manifests report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

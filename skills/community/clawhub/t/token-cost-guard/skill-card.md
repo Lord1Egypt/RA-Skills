@@ -1,42 +1,57 @@
-## Description: <br>
-Monitors agent token usage and model cost from OpenClaw session logs or Hermes logs and state.db, compares current spend with prior snapshots or thresholds, and can generate or send alert reports when cost growth exceeds configured limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token Cost Guard monitors OpenClaw or Hermes agent token usage and cost records, compares spending against prior snapshots or time windows, and generates or sends threshold alert reports.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and agent operators use this skill to track OpenClaw or Hermes token spend, identify cost spikes, and configure threshold-based cost alerts for agent runtimes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw or Hermes usage logs and Hermes state.db to summarize token spend. <br>
-Mitigation: Install and run it only in environments where that local usage data may be read for cost reporting. <br>
-Risk: The skill writes local cost reports and snapshot state on disk. <br>
-Mitigation: Review or configure the state and reports directories when local persistence matters. <br>
-Risk: The skill can send alert reports to an OpenClaw channel or target when configured. <br>
-Mitigation: Use --send-openclaw only with an intended channel and target, and use dry-run behavior before enabling delivery where appropriate. <br>
+## Use Case:
 
+Developers and agent operators use this skill to monitor token spend across local OpenClaw or Hermes runtimes, detect spending spikes, and prepare threshold-based alert reports. It is suited for operational cost awareness where local runtime usage records are available.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/harrylabsj/token-cost-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Chinese Markdown cost reports with optional JSON summaries and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local report and snapshot state files; sends OpenClaw alerts only when explicitly configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: evidence.release.version, artifact skill.json, clawhub.json) <br>
+Risk: The skill can inspect broad local OpenClaw or Hermes usage logs and runtime databases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only in trusted workspaces, prefer explicit invocation, and restrict use to specific agents or runtime paths when possible.
+
+Risk: Implicit invocation may run cost checks without a direct user command.
+
+Mitigation: Disable or limit implicit invocation in environments where local usage records should only be read after explicit approval.
+
+Risk: Alert delivery can expose cost and model usage details to external channels or unintended recipients.
+
+Mitigation: Use --send-openclaw only with trusted channels and targets, and test delivery with dry-run or controlled recipients before scheduled use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/token-cost-guard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with optional JSON summaries and CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local state snapshots and report files under the selected runtime when invoked.]
+
+## Skill Version(s):
+
+0.2.4 (source: evidence.json release and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,61 @@
-## Description: <br>
-Generates short videos from text prompts through the Jimeng model for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short videos from text prompts using the Jimeng model through the Wanjiedata/OpenClaw workflow, with asynchronous task handling and result URL persistence.
 
-## Publisher: <br>
-[liangshenghzj888-stack](https://clawhub.ai/user/liangshenghzj888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liangshenghzj888-stack](https://clawhub.ai/user/liangshenghzj888-stack)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to submit text-to-video prompts to the Wanjie/Jimeng service, poll for completion, and retrieve a generated video URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Wanjie/Jimeng service availability and applicable law. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads an OpenClaw provider API key and uses it to call the Wanjie/Jimeng service. <br>
-Mitigation: Use a dedicated provider key for this service, confirm which key the skill reads, and avoid sensitive prompts. <br>
-Risk: Video generation may consume API quota or incur charges. <br>
-Mitigation: Confirm Wanjie/Jimeng quota and billing settings before running the skill. <br>
-Risk: Prompts, task status, and generated video links may be written to local log and result files. <br>
-Mitigation: Avoid sensitive prompts and review or clear local log and result files when needed. <br>
-Risk: The skill may install the requests package on first run if it is missing. <br>
-Mitigation: Run it in a controlled Python environment and preinstall reviewed dependencies where possible. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to submit text-to-video prompts to Jimeng and retrieve the generated video URL. It is suited for agent workflows that need asynchronous video generation from prompt text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liangshenghzj888-stack/jimeng-openclaw-video-v1) <br>
-- [Wanjie Ark](https://www.wjark.com) <br>
-- [Wanjie MaaS OpenClaw tutorial](https://docs.wjark.com/maas/scenarios/Development/openclaw.html) <br>
-- [Wanjie model selection](https://www.wjark.com/center/model) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files] <br>
-**Output Format:** [Plain text status plus a local result file containing SUCCESS|<video URL> when generation succeeds.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs asynchronously, writes local logs and result files, and returns temporary video URLs from the provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact manifest) <br>
+Risk: The skill can send a locally configured OpenClaw API credential and user prompts to an external Wanjiedata service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Wanjiedata/OpenClaw credential with limited quota and avoid submitting sensitive or confidential prompts.
+
+Risk: Prompts and generated video URLs may be written to local log and result files.
+
+Mitigation: Run the skill in a workspace where local logs are acceptable, and remove generated logs or result files when they are no longer needed.
+
+Risk: The skill may automatically install Python dependencies and start a detached background worker.
+
+Mitigation: Review before installing and run only in environments where automatic pip installs and background worker processes are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liangshenghzj888-stack/skills/jimeng-openclaw-video-v1)
+- [Wanjie Ark](https://www.wjark.com)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Wanjie Ark OpenClaw tutorial](https://docs.wjark.com/maas/scenarios/Development/openclaw.html)
+- [Wanjie Ark model selection](https://www.wjark.com/center/model)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, API Calls]
+
+**Output Format:** [Plain text status messages and a result file containing SUCCESS|<video URL>]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Submits one prompt at a time, polls asynchronously, and writes local logs and generated video URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: manifest.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

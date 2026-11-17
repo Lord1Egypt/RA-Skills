@@ -1,44 +1,60 @@
-## Description: <br>
-Music Composer helps agents plan MiniMax mmx-cli music generation prompts and commands for instrumental tracks, lyric songs, and cover-style music from user requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Music Composer plans music-generation prompts and mmx CLI commands for instrumental tracks, Chinese or English songs, and cover-style transformations.
 
-## Publisher: <br>
-[yuhouxinliang](https://clawhub.ai/user/yuhouxinliang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuhouxinliang](https://clawhub.ai/user/yuhouxinliang)
 
-## Use Case: <br>
-External users and developers use this skill to turn music ideas into structured genre, tempo, arrangement, vocal, lyric, and mmx command guidance for generated music assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lyrics or source audio selected by the user may be sent to the external MiniMax mmx service. <br>
-Mitigation: Only provide lyrics or audio files that are appropriate to send to MiniMax, and confirm service use before generation. <br>
-Risk: Running an untrusted or unexpected mmx binary could execute the wrong music-generation tool. <br>
-Mitigation: Install mmx only from a trusted source and run the documented existence and version checks before any generation command. <br>
-Risk: Generation commands may consume account quota and write output files. <br>
-Mitigation: Confirm quota, output filename, and destination before running generation commands. <br>
+## Use Case:
 
+External users and creators use this skill to turn high-level music requests into structured genre, tempo, instrumentation, vocal, lyric, and generation-command plans for mmx-based music creation.
 
-## Reference(s): <br>
-- [Music Genre & Production Parameters Reference](references/music-genres.md) <br>
-- [Lyrics Structure Templates](references/lyrics-structures.md) <br>
-- [MiniMax](https://www.minimax.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and structured prompt guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include mmx command examples, output filename guidance, lyrics structures, and music-generation prompt parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The skill installs and runs an external mmx CLI with broad local file access and weak containment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, verify the executable path and source before running commands, and stop if the CLI identity check fails.
+
+Risk: Prompts, lyrics, and reference audio may be sent to the external tool or its service.
+
+Mitigation: Avoid private, sensitive, or unreleased material unless the user has approved that disclosure.
+
+Risk: Generated output paths can affect local files.
+
+Mitigation: Keep output names to simple filenames under the intended output folder.
+
+## Reference(s):
+
+- [Music Composer skill page](https://clawhub.ai/yuhouxinliang/skills/music-composer)
+- [MiniMax](https://www.minimax.io)
+- [Music Genre & Production Parameters Reference](references/music-genres.md)
+- [Lyrics Structure Templates](references/lyrics-structures.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Shell commands, Configuration instructions, Files]
+
+**Output Format:** [Markdown with prompt text, lyrics, and inline bash commands; mmx may save generated audio files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a trusted mmx CLI installation and user-provided prompts, lyrics, or reference audio.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

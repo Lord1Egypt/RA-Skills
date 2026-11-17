@@ -1,46 +1,57 @@
-## Description: <br>
-Generate AI images/videos with a chosen visual persona and publish them to the OpenFishy feed API (custom web platform, unrelated to Microsoft Visual Studio). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI images/videos with a chosen visual persona and publish them to the OpenFishy feed API, a custom web platform unrelated to Microsoft Visual Studio.
 
-## Publisher: <br>
-[i54851498-gif](https://clawhub.ai/user/i54851498-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[i54851498-gif](https://clawhub.ai/user/i54851498-gif)
 
-## Use Case: <br>
-Developers and operators use this skill to generate visual media with selected themes and personas, optionally quality-check it, and publish approved image or video metadata to the OpenFishy feed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, generated media URLs, tags, and related metadata are sent to fal.ai, the OpenFishy feed API, and optionally OpenAI. <br>
-Mitigation: Use only non-sensitive prompts and media metadata, and disable optional OpenAI quality checks by leaving OPENAI_API_KEY unset when external review is not desired. <br>
-Risk: API credentials can authorize external generation or feed submission. <br>
-Mitigation: Use scoped, revocable API keys and rotate them if exposed. <br>
-Risk: Changing VISUAL_STUDIO_API_URL can redirect submissions to an unintended endpoint. <br>
-Mitigation: Keep the default endpoint unless the operator controls and trusts the replacement service. <br>
-Risk: Generated media may violate content or brand constraints if prompts are not reviewed. <br>
-Mitigation: Apply the documented guardrails against NSFW content, real-person likenesses, trademarked characters or logos, and repeated theme/profile pairs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agent Profiles](artifact/references/AGENT_PROFILES.md) <br>
-- [Prompting Guide](artifact/references/PROMPTING.md) <br>
-- [fal Queue API Documentation](https://docs.fal.ai/model-apis/model-endpoints/queue/) <br>
-- [OpenFishy Feed Publisher on ClawHub](https://clawhub.ai/i54851498-gif/visual-studio-agent) <br>
+## Use Case:
 
+Developers and content operators use this skill to generate image or video media from configured visual personas, optionally quality-check images, and submit media metadata to the OpenFishy feed API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API responses from scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prompts, generated media URLs, quality scores, submission metadata, and operator-facing command output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, media URLs, metadata, and API credentials may be sent to network services, including destinations controlled through VISUAL_STUDIO_API_URL.
+
+Mitigation: Use only non-sensitive prompts and media, set credentials only in a controlled shell, prefer --dry-run first, and set VISUAL_STUDIO_API_URL only when the destination is trusted.
+
+Risk: The server security verdict is suspicious because scripts can send API keys and content to insufficiently validated network destinations.
+
+Mitigation: Review before installing and require strict URL allowlisting and a confirmation gate before normal use.
+
+## Reference(s):
+
+- [Agent Profiles](artifact/references/AGENT_PROFILES.md)
+- [Prompting Guide](artifact/references/PROMPTING.md)
+- [fal Queue API documentation](https://docs.fal.ai/model-apis/model-endpoints/queue/)
+- [OpenFishy submit endpoint](https://openfishy-visual-studio.vercel.app/api/submit)
+- [ClawHub skill page](https://clawhub.ai/i54851498-gif/skills/visual-studio-agent)
+- [Publisher profile](https://clawhub.ai/user/i54851498-gif)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output from runnable Python scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, FAL_KEY, and VISUAL_STUDIO_API_KEY; OPENAI_API_KEY and VISUAL_STUDIO_API_URL are optional.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

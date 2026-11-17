@@ -1,40 +1,54 @@
-## Description: <br>
-Acts as a personal travel planning assistant that tracks destinations, past trips, budgets, documents, and packing checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Acts as a personal travel planning assistant that helps plan trips, manage wishlists, budgets, travel history, checklists, and travel document reminders.
 
-## Publisher: <br>
-[GekaCross](https://clawhub.ai/user/GekaCross) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gekacross](https://clawhub.ai/user/gekacross)
 
-## Use Case: <br>
-External users use this skill as a personal travel assistant to plan trips, maintain a destination wishlist, track past travel, manage travel-document dates, estimate budgets, and generate packing checklists. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores travel notes and document dates in a persistent workspace file. <br>
-Mitigation: Keep stored document details minimal, such as expiry dates and visa status, and avoid saving full passport numbers, scans, insurance credentials, or other sensitive travel records. <br>
-Risk: Travel prices and visa requirements may change and can affect trip planning decisions. <br>
-Mitigation: Verify current prices and visa rules with authoritative sources before relying on generated plans. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Personal Travel on ClawHub](https://clawhub.ai/GekaCross/personal-travel) <br>
-- [GekaCross publisher profile](https://clawhub.ai/user/GekaCross) <br>
+## Use Case:
 
+OpenClaw users use this skill to plan personal travel, maintain destination wishlists and trip history, estimate budgets, generate packing checklists, and track passport, visa, and insurance details.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown responses and updates to knowledge/personal/travel.md] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist travel notes, wishlist entries, trip history, budgets, and document expiry dates in the workspace memory file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores sensitive travel history, passport expiration, visa, insurance, and budget details in a persistent workspace file.
+
+Mitigation: Confirm each memory update with the user, store only the minimum useful details, and avoid saving document numbers or full policy details.
+
+Risk: Persistent travel memory can become inaccurate or over-retained if users cannot inspect or remove saved entries.
+
+Mitigation: Provide a clear way for users to review, correct, and delete the saved travel file before and after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gekacross/skills/personal-travel)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown and plain text travel planning guidance with structured memory updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a persistent workspace travel memory file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

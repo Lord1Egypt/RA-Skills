@@ -1,0 +1,119 @@
+'''
+46查询LV2数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+获取 Lv2 数据（需要数据源支持）
+方法1 - 查询LV2数据
+使用该函数后，会定期查询最新数据，并进行数据返回。
+
+python返回值
+
+#coding:gbk
+def init(C):
+	C.sub_nums  = []
+
+	C.stock = C.stockcode+'.'+C.market
+	for field in ['l2transaction', 'l2order', 'l2transactioncount', 'l2quote']:
+		num = C.subscribe_quote(C.stock, period=field,
+							dividend_type='follow',
+							)
+		
+		C.sub_nums.append(num)
+
+def handlebar(C):
+	if not C.is_last_bar():
+		return
+	price = C.get_market_data_ex([],[C.stock],period='l2transaction',count=10)[C.stock]
+	price_dict = price.to_dict('index')
+	print(price_dict)
+	for pos, t in enumerate(price_dict):
+		print(f" 逐笔成交:{pos+1} 时间:{price_dict[t]['stime']}, 时间戳:{price_dict[t]['time']}, 成交价:{price_dict[t]['price']}, \
+成交量:{price_dict[t]['volume']}, 成交额:{price_dict[t]['amount']} \
+成交记录号:{price_dict[t]['tradeIndex']}, 买方委托号:{price_dict[t]['buyNo']},\
+卖方委托号:{price_dict[t]['sellNo']}, 成交类型:{price_dict[t]['tradeType']}, \
+成交标志:{price_dict[t]['tradeFlag']}, ")
+
+	price = C.get_market_data_ex([],[C.stock],period='l2quote',count=10)[C.stock]
+	price_dict = price.to_dict('index')
+	print(price_dict)
+	for pos, t in enumerate(price_dict):
+		print(f" 十档快照:{pos+1} 时间:{price_dict[t]['stime']}, 时间戳:{price_dict[t]['time']}, 最新价:{price_dict[t]['lastPrice']}, \
+开盘价:{price_dict[t]['open']}, 最高价:{price_dict[t]['high']} 最低价:{price_dict[t]['low']}, 成交额:{price_dict[t]['amount']},\
+成交总量:{price_dict[t]['volume']}, 原始成交总量:{price_dict[t]['pvolume']}, 证券状态:{price_dict[t]['stockStatus']}, 持仓量:{price_dict[t]['openInt']},\
+成交笔数:{price_dict[t]['transactionNum']},前收盘价:{price_dict[t]['lastClose']},多档委卖价:{price_dict[t]['askPrice']},多档委卖量:{price_dict[t]['askVol']},\
+多档委买价:{price_dict[t]['bidPrice']},多档委买量:{price_dict[t]['bidVol']}")
+
+
+	price = C.get_market_data_ex([],[C.stock],period='l2order',count=10)[C.stock]
+	price_dict = price.to_dict('index')
+	for pos, t in enumerate(price_dict):
+		print(f" 逐笔委托:{pos+1} 时间:{price_dict[t]['stime']}, 时间戳:{price_dict[t]['time']}, 委托价:{price_dict[t]['price']}, \
+委托量:{price_dict[t]['volume']}, 委托号:{price_dict[t]['entrustNo']} \
+委托类型:{price_dict[t]['entrustType']}, 委托方向:{price_dict[t]['entrustDirection']},\
+")
+# 委托类型: 0：未知 1: 买入,2: 卖出,3: 撤单
+
+
+	price = C.get_market_data_ex([],[C.stock],period='l2transactioncount',count=10)[C.stock]
+	price_dict = price.to_dict('index')
+	for pos, t in enumerate(price_dict):
+		print('大单统计:', price_dict[t])
+
+def stop(C):
+	for num in C.sub_nums:
+		C.unsubscribe_quote(num)
+
+
+方法2 - 订阅LV2数据
+此方法在发起订阅后，会自动收到所订阅数据，订阅方需要记录订阅函数返回的订阅号，并在不需要订阅时调用unsubscribe_quote反订阅数据，释放资源。
+
+python返回值
+
+#coding:gbk
+
+def l2_quote_callback(data):
+	for s in data:
+		print('lv2快照:',s, data[s])
+
+def l2transaction_callback(data):
+	for s in data:
+		print('逐笔成交',s, data[s])
+
+
+def l2order_callback(data):
+	for s in data:
+		print('逐笔委托',s, data[s])
+
+def l2quoteaux_callback(data):
+	for s in data:
+		print('行情快照补充',s, data[s])
+
+
+def l2transactioncount_callback(data):
+	for s in data:
+		print('大单统计',s, data[s])
+
+
+def l2orderqueue_callback(data):
+	for s in data:
+		print('委买委卖队列',s, data[s])
+
+
+def init(C):
+	C.stock = C.stockcode + '.' + C.market
+
+	# Level2 逐笔快照
+	C.subscribe_quote(C.stock, 'l2quote', result_type='dict', callback=l2_quote_callback)
+	# Level2 行情快照补充
+	C.subscribe_quote(C.stock, 'l2quoteaux', result_type='dict', callback=l2quoteaux_callback)
+	# Level2 逐笔成交
+	C.subscribe_quote(C.stock, 'l2transaction', result_type='dict', callback=l2transaction_callback)
+	# Level2 逐笔委托
+	C.subscribe_quote(C.stock, 'l2order', result_type='dict', callback=l2order_callback)
+	# Level2大单统计
+	C.subscribe_quote(C.stock, 'l2transactioncount', result_type='dict', callback=l2transactioncount_callback)
+	# Level2委买委卖队列
+	C.subscribe_quote(C.stock, 'l2orderqueue', result_type='dict', callback=l2orderqueue_callback)
+
+def handlebar(C):
+	return

@@ -1,40 +1,52 @@
-## Description: <br>
-Provides a coordination protocol for running multiple AI agents in one Telegram group chat through role-based messaging, sender validation, turn-taking, blocker escalation, and mission lifecycle control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a strict role-based protocol for coordinating multiple AI agents in a Telegram group chat with sender validation, turn-taking, blocker escalation, and mission lifecycle control.
 
-## Publisher: <br>
-[Kiril-Shturman](https://clawhub.ai/user/Kiril-Shturman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kiril-shturman](https://clawhub.ai/user/kiril-shturman)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to coordinate COO and worker bots in a shared Telegram group without free-form bot chatter, runaway loops, or unclear mission ownership.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The protocol does not enforce Telegram access controls by itself.
+
+Mitigation: Configure Telegram-side permissions and explicit sender allowlists before using the protocol with real bots.
+
+Risk: Multiple bots in one chat can trigger loops or respond to malformed messages if the protocol is not followed.
+
+Mitigation: Use the defined sender validation rules, visible message prefixes, and strict turn-taking before adding status checks or blockers.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External developers and operators use this skill to coordinate COO and worker bots in a shared Telegram group, keeping task assignment, status reporting, blocker escalation, and mission completion explicit. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: Unverified bot identities or open command triggers could let the wrong participant drive the workflow. <br>
-Mitigation: Verify bot identities, restrict who can trigger commands, use explicit sender allowlists where possible, and keep a human operator able to stop the workflow. <br>
-Risk: Telegram group permissions or provider setup may not enforce the protocol by itself. <br>
-Mitigation: Configure Telegram permissions separately and test one simple mission before adding status checks, blockers, or parallel work. <br>
+**Output Format:** [Markdown protocol guidance with message labels and role rules]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Kiril-Shturman/telegram-agent-coordination) <br>
+**Other Properties Related to Output:** [No code execution, tool invocation, or data collection is requested by the skill.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with protocol message examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only protocol; no executable code or credential handling.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

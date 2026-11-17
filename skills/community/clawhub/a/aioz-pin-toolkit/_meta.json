@@ -1,6 +1,29 @@
 {
-  "ownerId": "kn76mav8k3cqww8y2evzmt7nnd83kezy",
-  "slug": "aioz-pin-toolkit",
-  "version": "1.0.7",
-  "publishedAt": 1774584221206
+  "ownerId": "aioz-pin-mcp-server",
+  "slug": "aioz-pin-mcp-server-toolkit",
+  "version": "1.0.0",
+  "publishedAt": 1739000000000,
+  "requires": {
+    "envVars": [
+      {
+        "name": "PINNING_API_KEY",
+        "description": "AIOZ Pin API key for pinning and billing endpoints",
+        "required": true
+      },
+      {
+        "name": "PINNING_SECRET_KEY",
+        "description": "AIOZ Pin secret key for pinning and billing endpoints",
+        "required": true
+      },
+      {
+        "name": "AIOZ_JWT_TOKEN",
+        "description": "JWT token for API key management endpoints",
+        "required": false
+      }
+    ],
+    "bins": [
+      "curl",
+      "jq"
+    ]
+  }
 }

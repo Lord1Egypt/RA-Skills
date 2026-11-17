@@ -1,39 +1,55 @@
-## Description: <br>
-Analyze Clawdbot logs and diagnostics. Use when the user asks about bot performance, response times, errors, session stats, token usage, API costs, or wants to debug slow responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Clawdbot logs and diagnostics for bot performance, response times, errors, session stats, token usage, API costs, and slow-response debugging.
 
-## Publisher: <br>
-[satriapamudji](https://clawhub.ai/user/satriapamudji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[satriapamudji](https://clawhub.ai/user/satriapamudji)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect local Clawdbot logs, session files, token usage, costs, response times, and service errors while troubleshooting bot performance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local Clawdbot session files and logs can contain private conversation content, token usage, costs, and operational details. <br>
-Mitigation: Use aggregate diagnostics for routine troubleshooting and avoid printing raw recent messages unless the conversation content is necessary for the diagnosis. <br>
-Risk: The diagnostic scripts read local journal entries and Clawdbot session files from the user's machine. <br>
-Mitigation: Install and run the skill only in environments where local Clawdbot log and session-file access is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/satriapamudji/clawdbot-logs) <br>
+## Use Case:
+
+Developers and operators use this skill to inspect local Clawdbot journal logs and session records when diagnosing performance, error patterns, response latency, token usage, and API cost behavior.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can inspect local Clawdbot logs and session records that may contain private conversation text or operational details.
+
+Mitigation: Install only when the operator is trusted, scope commands to the needed session or time window, and redact sensitive output before sharing.
+
+Risk: The raw recent-message command can expose private conversation content from session files.
+
+Mitigation: Avoid raw message extraction unless explicitly needed, scoped to a chosen session, and reviewed for sensitive content before use.
+
+Risk: The response-times script accepts a count argument that the security guidance says should be validated before use.
+
+Mitigation: Use a small numeric count and validate or constrain the argument before running the script in shared or automated environments.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and diagnostic summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local log excerpts, session statistics, token usage, cost summaries, service status, and troubleshooting guidance.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local diagnostics guidance and shell commands that inspect Clawdbot logs and session files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7acadgn656yxmt3ak1964cax82ks1z",
-  "slug": "spotify-control",
-  "version": "1.0.1",
-  "publishedAt": 1773044706070
+    "name": "spotify-control",
+    "version": "1.0.1",
+    "description": "macOS Spotify control skill for OpenClaw. Supports playback, volume, position, and metadata retrieval via AppleScript.",
+    "author": "Antigravity",
+    "platform": "macOS",
+    "main": "SKILL.md"
 }

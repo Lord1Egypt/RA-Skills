@@ -1,0 +1,4251 @@
+{
+  "version": "2.4.0",
+  "sources": [
+    {
+      "id": "cnki",
+      "name": "中国知网 CNKI",
+      "url": "https://www.cnki.net/",
+      "domains": [
+        "cnki.net"
+      ],
+      "aliases": [
+        "中国知网 CNKI",
+        "CNKI",
+        "中国知网",
+        "知网"
+      ],
+      "base_source_id": "cnki",
+      "profile": "references/sites/cnki.json",
+      "task_kinds": [
+        "record-lookup",
+        "statistics-ranking",
+        "product-capability",
+        "official-guidance",
+        "citation-export",
+        "search-syntax"
+      ]
+    },
+    {
+      "id": "cnki-journals",
+      "name": "知网期刊导航",
+      "url": "https://navi.cnki.net/knavi/",
+      "domains": [
+        "navi.cnki.net",
+        "rss.cnki.net"
+      ],
+      "aliases": [
+        "知网期刊导航"
+      ],
+      "base_source_id": "cnki-journals",
+      "profile": "references/sites/cnki-journals.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "wanfang",
+      "name": "万方数据知识服务平台",
+      "url": "https://www.wanfangdata.com.cn/",
+      "domains": [
+        "wanfangdata.com.cn"
+      ],
+      "aliases": [
+        "万方数据知识服务平台",
+        "万方数据",
+        "万方"
+      ],
+      "base_source_id": "wanfang",
+      "profile": "references/sites/wanfang.json",
+      "task_kinds": [
+        "statistics-ranking",
+        "citation-export",
+        "record-lookup",
+        "search-syntax",
+        "product-capability"
+      ]
+    },
+    {
+      "id": "vip",
+      "name": "维普资讯",
+      "url": "https://www.cqvip.com/",
+      "domains": [
+        "cqvip.com"
+      ],
+      "aliases": [
+        "维普资讯",
+        "维普"
+      ],
+      "base_source_id": "vip",
+      "profile": "references/sites/vip.json",
+      "task_kinds": [
+        "statistics-ranking",
+        "search-syntax"
+      ]
+    },
+    {
+      "id": "duxiu",
+      "name": "读秀学术搜索",
+      "url": "https://www.duxiu.com/",
+      "domains": [
+        "duxiu.com"
+      ],
+      "aliases": [
+        "读秀学术搜索",
+        "读秀"
+      ],
+      "base_source_id": "duxiu",
+      "profile": "references/sites/duxiu.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "chaoxing-huiya",
+      "name": "超星汇雅电子图书数据库",
+      "url": "https://www.sslibrary.com/",
+      "domains": [
+        "sslibrary.com",
+        "chaoxing.com"
+      ],
+      "aliases": [
+        "超星汇雅电子图书数据库",
+        "汇雅"
+      ],
+      "base_source_id": "chaoxing-huiya",
+      "profile": "references/sites/chaoxing-huiya.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "yinfu-exam",
+      "name": "银符考试题库",
+      "url": "https://www.yfzxmn.cn/",
+      "domains": [
+        "yfzxmn.cn",
+        "yfzxmn.com"
+      ],
+      "aliases": [
+        "银符考试题库"
+      ],
+      "base_source_id": "yinfu-exam",
+      "profile": "references/sites/yinfu-exam.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "zhongke-exam",
+      "name": "中科 VIPExam 考试学习资源数据库",
+      "url": "https://lib.vipexam.org/",
+      "domains": [
+        "vipexam.org"
+      ],
+      "aliases": [
+        "中科 VIPExam 考试学习资源数据库"
+      ],
+      "base_source_id": "zhongke-exam",
+      "profile": "references/sites/zhongke-exam.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "vip-exam",
+      "name": "维普考试服务平台",
+      "url": "https://vers.cqvip.com/",
+      "domains": [
+        "vers.cqvip.com",
+        "vipinfo.com.cn"
+      ],
+      "aliases": [
+        "维普考试服务平台"
+      ],
+      "base_source_id": "vip-exam",
+      "profile": "references/sites/vip-exam.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "acm",
+      "name": "ACM Digital Library",
+      "url": "https://dl.acm.org/",
+      "domains": [
+        "dl.acm.org"
+      ],
+      "aliases": [
+        "ACM Digital Library",
+        "ACM"
+      ],
+      "base_source_id": "acm",
+      "profile": "references/sites/acm.json",
+      "task_kinds": [
+        "statistics-ranking",
+        "product-capability",
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "arxiv",
+      "name": "arXiv",
+      "url": "https://arxiv.org/",
+      "domains": [
+        "arxiv.org",
+        "export.arxiv.org"
+      ],
+      "aliases": [
+        "arXiv"
+      ],
+      "base_source_id": "arxiv",
+      "profile": "references/sites/arxiv.json",
+      "task_kinds": [
+        "pdf-inspection",
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "pubscholar",
+      "name": "PubScholar 公益学术平台",
+      "url": "https://pubscholar.cn/",
+      "domains": [
+        "pubscholar.cn"
+      ],
+      "aliases": [
+        "PubScholar 公益学术平台",
+        "PubScholar",
+        "pubscholar"
+      ],
+      "base_source_id": "pubscholar",
+      "profile": "references/sites/pubscholar.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "oxford",
+      "name": "Oxford Academic",
+      "url": "https://academic.oup.com/",
+      "domains": [
+        "academic.oup.com"
+      ],
+      "aliases": [
+        "Oxford Academic",
+        "牛津学术",
+        "牛津数据库",
+        "Oxford"
+      ],
+      "base_source_id": "oxford",
+      "profile": "references/sites/oxford.json",
+      "task_kinds": [
+        "pdf-inspection"
+      ]
+    },
+    {
+      "id": "crossref",
+      "name": "Crossref 官方 REST API",
+      "url": "https://api.crossref.org/",
+      "domains": [
+        "api.crossref.org",
+        "crossref.org"
+      ],
+      "aliases": [
+        "Crossref 官方 REST API",
+        "Crossref"
+      ],
+      "base_source_id": "crossref",
+      "profile": "references/sites/crossref.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "pubmed",
+      "name": "PubMed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "domains": [
+        "pubmed.ncbi.nlm.nih.gov",
+        "eutils.ncbi.nlm.nih.gov",
+        "ncbi.nlm.nih.gov"
+      ],
+      "aliases": [
+        "PubMed"
+      ],
+      "base_source_id": "pubmed",
+      "profile": "references/sites/pubmed.json",
+      "task_kinds": [
+        "record-lookup",
+        "statistics-ranking",
+        "search-syntax"
+      ]
+    },
+    {
+      "id": "nlc",
+      "name": "国家图书馆",
+      "url": "https://www.nlc.cn/",
+      "domains": [
+        "nlc.cn"
+      ],
+      "aliases": [
+        "国家图书馆"
+      ],
+      "base_source_id": "nlc",
+      "profile": "references/sites/nlc.json",
+      "task_kinds": [
+        "pdf-inspection",
+        "statistics-ranking",
+        "product-capability"
+      ]
+    },
+    {
+      "id": "nlc-opac",
+      "name": "国家图书馆馆藏目录",
+      "url": "https://opac.nlc.cn/",
+      "domains": [
+        "opac.nlc.cn"
+      ],
+      "aliases": [
+        "国家图书馆馆藏目录"
+      ],
+      "base_source_id": "nlc-opac",
+      "profile": "references/sites/nlc-opac.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "nlc-digital",
+      "name": "国家图书馆数字资源／民国时期文献",
+      "url": "https://read.nlc.cn/",
+      "domains": [
+        "read.nlc.cn"
+      ],
+      "aliases": [
+        "国家图书馆数字资源／民国时期文献",
+        "民国时期文献",
+        "古籍特藏",
+        "民族文字古籍"
+      ],
+      "base_source_id": "nlc-digital",
+      "profile": "references/sites/nlc-digital.json",
+      "task_kinds": [
+        "pdf-inspection",
+        "statistics-ranking"
+      ]
+    },
+    {
+      "id": "nlc-courses",
+      "name": "国家图书馆在线培训／国图公开课",
+      "url": "https://open.nlc.cn/",
+      "domains": [
+        "open.nlc.cn"
+      ],
+      "aliases": [
+        "国家图书馆在线培训／国图公开课"
+      ],
+      "base_source_id": "nlc-courses",
+      "profile": "references/sites/nlc-courses.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "clc",
+      "name": "《中国图书馆分类法》编委会",
+      "url": "https://clc.nlc.cn/",
+      "domains": [
+        "clc.nlc.cn"
+      ],
+      "aliases": [
+        "《中国图书馆分类法》编委会"
+      ],
+      "base_source_id": "clc",
+      "profile": "references/sites/clc.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "sichuan-library",
+      "name": "四川省图书馆／川图书目",
+      "url": "https://www.sclib.cn/",
+      "domains": [
+        "sclib.cn",
+        "sclib.org"
+      ],
+      "aliases": [
+        "四川省图书馆／川图书目"
+      ],
+      "base_source_id": "sichuan-library",
+      "profile": "references/sites/sichuan-library.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "cqu-library",
+      "name": "重庆大学图书馆",
+      "url": "https://lib.cqu.edu.cn/",
+      "domains": [
+        "lib.cqu.edu.cn"
+      ],
+      "aliases": [
+        "重庆大学图书馆"
+      ],
+      "base_source_id": "cqu-library",
+      "profile": "references/sites/cqu-library.json",
+      "task_kinds": [
+        "catalog-holdings"
+      ]
+    },
+    {
+      "id": "shandong-library",
+      "name": "山东省图书馆",
+      "url": "https://www.sdlib.com/",
+      "domains": [
+        "sdlib.com"
+      ],
+      "aliases": [
+        "山东省图书馆"
+      ],
+      "base_source_id": "shandong-library",
+      "profile": "references/sites/shandong-library.json",
+      "task_kinds": [
+        "catalog-holdings"
+      ]
+    },
+    {
+      "id": "mit-library",
+      "name": "MIT Libraries",
+      "url": "https://libraries.mit.edu/",
+      "domains": [
+        "libraries.mit.edu",
+        "lib.mit.edu"
+      ],
+      "aliases": [
+        "MIT Libraries"
+      ],
+      "base_source_id": "mit-library",
+      "profile": "references/sites/mit-library.json",
+      "task_kinds": [
+        "pdf-inspection"
+      ]
+    },
+    {
+      "id": "lzu-library",
+      "name": "兰州大学图书馆",
+      "url": "https://lib.lzu.edu.cn/",
+      "domains": [
+        "lib.lzu.edu.cn"
+      ],
+      "aliases": [
+        "兰州大学图书馆"
+      ],
+      "base_source_id": "lzu-library",
+      "profile": "references/sites/lzu-library.json",
+      "task_kinds": [
+        "catalog-holdings"
+      ]
+    },
+    {
+      "id": "classics-navigation",
+      "name": "中国古典文献资源导航系统（奎章阁）",
+      "url": "https://www.wenxianxue.cn/",
+      "domains": [
+        "wenxianxue.cn"
+      ],
+      "aliases": [
+        "中国古典文献资源导航系统（奎章阁）",
+        "奎章阁·中国古典文献导航",
+        "奎章阁",
+        "中国古典文献资源导航"
+      ],
+      "base_source_id": "classics-navigation",
+      "profile": "references/sites/classics-navigation.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "nstl",
+      "name": "国家科技图书文献中心 NSTL",
+      "url": "https://www.nstl.gov.cn/",
+      "domains": [
+        "nstl.gov.cn"
+      ],
+      "aliases": [
+        "国家科技图书文献中心 NSTL",
+        "NSTL 国家科技图书文献中心"
+      ],
+      "base_source_id": "nstl",
+      "profile": "references/sites/nstl.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "nstl-portal",
+      "name": "重点领域信息门户（中科院文献情报中心）",
+      "url": "https://portal.las.ac.cn/",
+      "domains": [
+        "portal.las.ac.cn"
+      ],
+      "aliases": [
+        "重点领域信息门户（中科院文献情报中心）"
+      ],
+      "base_source_id": "nstl-portal",
+      "profile": "references/sites/nstl-portal.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "baidu-index",
+      "name": "百度指数",
+      "url": "https://index.baidu.com/",
+      "domains": [
+        "index.baidu.com"
+      ],
+      "aliases": [
+        "百度指数"
+      ],
+      "base_source_id": "baidu-index",
+      "profile": "references/sites/baidu-index.json",
+      "task_kinds": [
+        "statistics-ranking"
+      ]
+    },
+    {
+      "id": "baidu-search",
+      "name": "百度搜索／高级检索",
+      "url": "https://www.baidu.com/",
+      "domains": [
+        "baidu.com"
+      ],
+      "aliases": [
+        "百度搜索／高级检索",
+        "百度搜索",
+        "百度检索",
+        "百度的高级",
+        "百度高级"
+      ],
+      "base_source_id": "baidu-search",
+      "profile": "references/sites/baidu-search.json",
+      "task_kinds": [
+        "statistics-ranking",
+        "product-capability",
+        "search-syntax",
+        "official-guidance"
+      ]
+    },
+    {
+      "id": "baidu-scholar",
+      "name": "百度学术",
+      "url": "https://xueshu.baidu.com/",
+      "domains": [
+        "xueshu.baidu.com"
+      ],
+      "aliases": [
+        "百度学术"
+      ],
+      "base_source_id": "baidu-scholar",
+      "profile": "references/sites/baidu-scholar.json",
+      "task_kinds": [
+        "citation-export",
+        "statistics-ranking"
+      ]
+    },
+    {
+      "id": "sogou-search",
+      "name": "搜狗搜索／搜索指南",
+      "url": "https://www.sogou.com/",
+      "domains": [
+        "sogou.com"
+      ],
+      "aliases": [
+        "搜狗搜索／搜索指南"
+      ],
+      "base_source_id": "sogou-search",
+      "profile": "references/sites/sogou-search.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "baidu-images",
+      "name": "百度图片搜索",
+      "url": "https://image.baidu.com/",
+      "domains": [
+        "image.baidu.com"
+      ],
+      "aliases": [
+        "百度图片搜索",
+        "百度图片"
+      ],
+      "base_source_id": "baidu-images",
+      "profile": "references/sites/baidu-images.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "sogou-images",
+      "name": "搜狗图片搜索",
+      "url": "https://pic.sogou.com/",
+      "domains": [
+        "pic.sogou.com"
+      ],
+      "aliases": [
+        "搜狗图片搜索",
+        "搜狗图片"
+      ],
+      "base_source_id": "sogou-images",
+      "profile": "references/sites/sogou-images.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "so-images",
+      "name": "360 图片搜索",
+      "url": "https://image.so.com/",
+      "domains": [
+        "image.so.com"
+      ],
+      "aliases": [
+        "360 图片搜索",
+        "360图片"
+      ],
+      "base_source_id": "so-images",
+      "profile": "references/sites/so-images.json",
+      "task_kinds": [
+        "record-lookup",
+        "product-capability"
+      ]
+    },
+    {
+      "id": "bing-visual",
+      "name": "必应视觉搜寻",
+      "url": "https://cn.bing.com/visualsearch",
+      "domains": [
+        "bing.com"
+      ],
+      "aliases": [
+        "必应视觉搜寻",
+        "必应视觉搜索"
+      ],
+      "base_source_id": "bing-visual",
+      "profile": "references/sites/bing-visual.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "microsoft-academic-retired",
+      "name": "微软学术（已停运，官方说明）",
+      "url": "https://www.microsoft.com/en-us/research/articles/microsoft-academic-to-expand-horizons-with-community-driven-approach/",
+      "domains": [
+        "microsoft.com"
+      ],
+      "aliases": [
+        "微软学术（已停运，官方说明）"
+      ],
+      "base_source_id": "microsoft-academic-retired",
+      "profile": "references/sites/microsoft-academic-retired.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "stats",
+      "name": "国家统计局",
+      "url": "https://www.stats.gov.cn/",
+      "domains": [
+        "stats.gov.cn"
+      ],
+      "aliases": [
+        "国家统计局"
+      ],
+      "base_source_id": "stats",
+      "profile": "references/sites/stats.json",
+      "task_kinds": [
+        "statistics-ranking",
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "national-data",
+      "name": "国家数据（国家统计局）",
+      "url": "https://data.stats.gov.cn/",
+      "domains": [
+        "data.stats.gov.cn"
+      ],
+      "aliases": [
+        "国家数据（国家统计局）",
+        "国家统计局·数据查询",
+        "国家统计局",
+        "国家数据"
+      ],
+      "base_source_id": "national-data",
+      "profile": "references/sites/national-data.json",
+      "task_kinds": [
+        "statistics-ranking",
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "xi-speeches",
+      "name": "习近平系列重要讲话数据库",
+      "url": "https://jhsjk.people.cn/",
+      "domains": [
+        "jhsjk.people.cn"
+      ],
+      "aliases": [
+        "习近平系列重要讲话数据库"
+      ],
+      "base_source_id": "xi-speeches",
+      "profile": "references/sites/xi-speeches.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "gov-policy",
+      "name": "中国政府网／国务院政策文件库",
+      "url": "https://www.gov.cn/zhengce/",
+      "domains": [
+        "gov.cn"
+      ],
+      "aliases": [
+        "中国政府网／国务院政策文件库"
+      ],
+      "base_source_id": "gov-policy",
+      "profile": "references/sites/gov-policy.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "npc-laws",
+      "name": "国家法律法规数据库",
+      "url": "https://flk.npc.gov.cn/",
+      "domains": [
+        "flk.npc.gov.cn",
+        "npc.gov.cn"
+      ],
+      "aliases": [
+        "国家法律法规数据库"
+      ],
+      "base_source_id": "npc-laws",
+      "profile": "references/sites/npc-laws.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "court-enforcement",
+      "name": "中国执行信息公开网",
+      "url": "https://zxgk.court.gov.cn/",
+      "domains": [
+        "zxgk.court.gov.cn"
+      ],
+      "aliases": [
+        "中国执行信息公开网",
+        "失信被执行人"
+      ],
+      "base_source_id": "court-enforcement",
+      "profile": "references/sites/court-enforcement.json",
+      "task_kinds": [
+        "statistics-ranking"
+      ]
+    },
+    {
+      "id": "standards-fulltext",
+      "name": "国家标准全文公开系统",
+      "url": "https://openstd.samr.gov.cn/bzgk/gb/index",
+      "domains": [
+        "openstd.samr.gov.cn"
+      ],
+      "aliases": [
+        "国家标准全文公开系统"
+      ],
+      "base_source_id": "standards-fulltext",
+      "profile": "references/sites/standards-fulltext.json",
+      "task_kinds": [
+        "official-guidance",
+        "pdf-inspection",
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "standards",
+      "name": "全国标准信息公共服务平台",
+      "url": "https://std.samr.gov.cn/",
+      "domains": [
+        "std.samr.gov.cn",
+        "samr.gov.cn"
+      ],
+      "aliases": [
+        "全国标准信息公共服务平台"
+      ],
+      "base_source_id": "standards",
+      "profile": "references/sites/standards.json",
+      "task_kinds": [
+        "pdf-inspection"
+      ]
+    },
+    {
+      "id": "cnipa",
+      "name": "国家知识产权局",
+      "url": "https://www.cnipa.gov.cn/",
+      "domains": [
+        "cnipa.gov.cn"
+      ],
+      "aliases": [
+        "国家知识产权局"
+      ],
+      "base_source_id": "cnipa",
+      "profile": "references/sites/cnipa.json",
+      "task_kinds": [
+        "pdf-inspection",
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "patents",
+      "name": "国家知识产权局专利检索及分析系统",
+      "url": "https://pss-system.cponline.cnipa.gov.cn/conventionalSearch",
+      "domains": [
+        "pss-system.cponline.cnipa.gov.cn"
+      ],
+      "aliases": [
+        "国家知识产权局专利检索及分析系统",
+        "国家知识产权局专利",
+        "中国专利公布公告",
+        "专利公布公告系统"
+      ],
+      "base_source_id": "patents",
+      "profile": "references/sites/patents.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "trademarks",
+      "name": "中国商标网商标综合查询",
+      "url": "https://wcjs.sbj.cnipa.gov.cn/sgtmi",
+      "domains": [
+        "wcjs.sbj.cnipa.gov.cn",
+        "sbj.cnipa.gov.cn"
+      ],
+      "aliases": [
+        "中国商标网商标综合查询"
+      ],
+      "base_source_id": "trademarks",
+      "profile": "references/sites/trademarks.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "geo-indications",
+      "name": "国家知识产权局地理标志资源",
+      "url": "https://www.cnipa.gov.cn/",
+      "domains": [
+        "cnipa.gov.cn"
+      ],
+      "aliases": [
+        "国家知识产权局地理标志资源"
+      ],
+      "base_source_id": "geo-indications",
+      "profile": "references/sites/geo-indications.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "piyao",
+      "name": "中国互联网联合辟谣平台",
+      "url": "https://www.piyao.org.cn/pysjk/frontsql.htm",
+      "domains": [
+        "piyao.org.cn"
+      ],
+      "aliases": [
+        "中国互联网联合辟谣平台"
+      ],
+      "base_source_id": "piyao",
+      "profile": "references/sites/piyao.json",
+      "task_kinds": [
+        "product-capability",
+        "official-guidance"
+      ]
+    },
+    {
+      "id": "nmpa",
+      "name": "国家药品监督管理局数据查询",
+      "url": "https://www.nmpa.gov.cn/",
+      "domains": [
+        "nmpa.gov.cn"
+      ],
+      "aliases": [
+        "国家药品监督管理局数据查询",
+        "国家药品监督管理局",
+        "国家药监局"
+      ],
+      "base_source_id": "nmpa",
+      "profile": "references/sites/nmpa.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "nhc",
+      "name": "国家卫生健康委员会",
+      "url": "https://www.nhc.gov.cn/",
+      "domains": [
+        "nhc.gov.cn"
+      ],
+      "aliases": [
+        "国家卫生健康委员会",
+        "国家卫健委"
+      ],
+      "base_source_id": "nhc",
+      "profile": "references/sites/nhc.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "moe",
+      "name": "教育部",
+      "url": "https://www.moe.gov.cn/",
+      "domains": [
+        "moe.gov.cn"
+      ],
+      "aliases": [
+        "教育部"
+      ],
+      "base_source_id": "moe",
+      "profile": "references/sites/moe.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "yz",
+      "name": "中国研究生招生信息网（研招网）",
+      "url": "https://yz.chsi.com.cn/",
+      "domains": [
+        "yz.chsi.com.cn"
+      ],
+      "aliases": [
+        "中国研究生招生信息网（研招网）",
+        "研招网",
+        "中国研究生招生信息网"
+      ],
+      "base_source_id": "yz",
+      "profile": "references/sites/yz.json",
+      "task_kinds": [
+        "record-lookup",
+        "official-guidance"
+      ]
+    },
+    {
+      "id": "chsi",
+      "name": "中国高等教育学生信息网（学信网）",
+      "url": "https://www.chsi.com.cn/",
+      "domains": [
+        "chsi.com.cn"
+      ],
+      "aliases": [
+        "中国高等教育学生信息网（学信网）",
+        "学信网"
+      ],
+      "base_source_id": "chsi",
+      "profile": "references/sites/chsi.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "gsxt",
+      "name": "国家企业信用信息公示系统",
+      "url": "https://www.gsxt.gov.cn/",
+      "domains": [
+        "gsxt.gov.cn"
+      ],
+      "aliases": [
+        "国家企业信用信息公示系统"
+      ],
+      "base_source_id": "gsxt",
+      "profile": "references/sites/gsxt.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "tianyancha",
+      "name": "天眼查",
+      "url": "https://www.tianyancha.com/",
+      "domains": [
+        "tianyancha.com"
+      ],
+      "aliases": [
+        "天眼查"
+      ],
+      "base_source_id": "tianyancha",
+      "profile": "references/sites/tianyancha.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "qichacha",
+      "name": "企查查",
+      "url": "https://www.qcc.com/",
+      "domains": [
+        "qcc.com"
+      ],
+      "aliases": [
+        "企查查"
+      ],
+      "base_source_id": "qichacha",
+      "profile": "references/sites/qichacha.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "aiqicha",
+      "name": "爱企查",
+      "url": "https://aiqicha.baidu.com/",
+      "domains": [
+        "aiqicha.baidu.com"
+      ],
+      "aliases": [
+        "爱企查"
+      ],
+      "base_source_id": "aiqicha",
+      "profile": "references/sites/aiqicha.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "mooc",
+      "name": "中国大学 MOOC",
+      "url": "https://www.icourse163.org/",
+      "domains": [
+        "icourse163.org"
+      ],
+      "aliases": [
+        "中国大学 MOOC",
+        "中国大学MOOC"
+      ],
+      "base_source_id": "mooc",
+      "profile": "references/sites/mooc.json",
+      "task_kinds": [
+        "course-video"
+      ]
+    },
+    {
+      "id": "mooc-whu-search",
+      "name": "信息检索（武汉大学，黄如花）",
+      "url": "https://www.icourse163.org/course/WHU-29001",
+      "domains": [
+        "icourse163.org"
+      ],
+      "aliases": [
+        "信息检索（武汉大学，黄如花）"
+      ],
+      "base_source_id": "mooc-whu-search",
+      "profile": "references/sites/mooc-whu-search.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "mooc-sysu-literacy",
+      "name": "信息素养通识教程：数字化生存的必修课（中山大学，潘燕桃）",
+      "url": "https://www.icourse163.org/course/SYSU-1001936003",
+      "domains": [
+        "icourse163.org"
+      ],
+      "aliases": [
+        "信息素养通识教程：数字化生存的必修课（中山大学，潘燕桃）"
+      ],
+      "base_source_id": "mooc-sysu-literacy",
+      "profile": "references/sites/mooc-sysu-literacy.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "mooc-whu-practice",
+      "name": "信息素养与实践——学术慧眼（武汉大学，龚芙蓉）",
+      "url": "https://www.icourse163.org/course/WHU-1003640003",
+      "domains": [
+        "icourse163.org"
+      ],
+      "aliases": [
+        "信息素养与实践——学术慧眼（武汉大学，龚芙蓉）"
+      ],
+      "base_source_id": "mooc-whu-practice",
+      "profile": "references/sites/mooc-whu-practice.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "xueyin-course",
+      "name": "文献信息检索与利用（成都航空职业技术大学，陈萍秀）",
+      "url": "https://www.xueyinonline.com/detail/254211146",
+      "domains": [
+        "xueyinonline.com",
+        "chaoxing.com"
+      ],
+      "aliases": [
+        "文献信息检索与利用（成都航空职业技术大学，陈萍秀）"
+      ],
+      "base_source_id": "xueyin-course",
+      "profile": "references/sites/xueyin-course.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "xuetangx",
+      "name": "学堂在线",
+      "url": "https://www.xuetangx.com/",
+      "domains": [
+        "xuetangx.com"
+      ],
+      "aliases": [
+        "学堂在线"
+      ],
+      "base_source_id": "xuetangx",
+      "profile": "references/sites/xuetangx.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "literacy-db",
+      "name": "高校信息素养教育数据库",
+      "url": "https://xxsuyang.com/",
+      "domains": [
+        "xxsuyang.com",
+        "zxhnzq.com"
+      ],
+      "aliases": [
+        "高校信息素养教育数据库"
+      ],
+      "base_source_id": "literacy-db",
+      "profile": "references/sites/literacy-db.json",
+      "task_kinds": [
+        "course-video"
+      ]
+    },
+    {
+      "id": "cambridge",
+      "name": "Cambridge Core",
+      "url": "https://www.cambridge.org/core",
+      "domains": [
+        "cambridge.org"
+      ],
+      "aliases": [
+        "Cambridge Core",
+        "剑桥数据库",
+        "Cambridge"
+      ],
+      "base_source_id": "cambridge",
+      "profile": "references/sites/cambridge.json",
+      "task_kinds": [
+        "pdf-inspection"
+      ]
+    },
+    {
+      "id": "smartedu",
+      "name": "国家智慧教育公共服务平台",
+      "url": "https://www.smartedu.cn/",
+      "domains": [
+        "smartedu.cn"
+      ],
+      "aliases": [
+        "国家智慧教育公共服务平台"
+      ],
+      "base_source_id": "smartedu",
+      "profile": "references/sites/smartedu.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "coursera",
+      "name": "Coursera",
+      "url": "https://www.coursera.org/",
+      "domains": [
+        "coursera.org"
+      ],
+      "aliases": [
+        "Coursera"
+      ],
+      "base_source_id": "coursera",
+      "profile": "references/sites/coursera.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "edx",
+      "name": "edX",
+      "url": "https://www.edx.org/",
+      "domains": [
+        "edx.org"
+      ],
+      "aliases": [
+        "edX"
+      ],
+      "base_source_id": "edx",
+      "profile": "references/sites/edx.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "textbook-medical",
+      "name": "《医学文献检索》第 3 版（赵玉虹）",
+      "url": "https://www.pmphmall.com/gdsdetail/627357-302955",
+      "domains": [
+        "pmphmall.com",
+        "pmph.com"
+      ],
+      "aliases": [
+        "《医学文献检索》第 3 版（赵玉虹）"
+      ],
+      "base_source_id": "textbook-medical",
+      "profile": "references/sites/textbook-medical.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "textbook-practical",
+      "name": "《文献信息检索实用教程》第 4 版（陈萍秀）",
+      "url": "https://www.cmpedu.com/books/book/5608760.htm",
+      "domains": [
+        "cmpedu.com"
+      ],
+      "aliases": [
+        "《文献信息检索实用教程》第 4 版（陈萍秀）"
+      ],
+      "base_source_id": "textbook-practical",
+      "profile": "references/sites/textbook-practical.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "textbook-chemical",
+      "name": "《化学化工信息检索》第 5 版（魏振枢）",
+      "url": "https://www.cip.com.cn/",
+      "domains": [
+        "cip.com.cn"
+      ],
+      "aliases": [
+        "《化学化工信息检索》第 5 版（魏振枢）"
+      ],
+      "base_source_id": "textbook-chemical",
+      "profile": "references/sites/textbook-chemical.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "textbook-project",
+      "name": "《现代化工文献检索项目化教程》第 3 版（伍丽娜）",
+      "url": "https://www.cip.com.cn/",
+      "domains": [
+        "cip.com.cn"
+      ],
+      "aliases": [
+        "《现代化工文献检索项目化教程》第 3 版（伍丽娜）"
+      ],
+      "base_source_id": "textbook-project",
+      "profile": "references/sites/textbook-project.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "textbook-web",
+      "name": "《网络信息检索实例分析与操作训练》第 3 版（宋诚英）",
+      "url": "https://phei.com.cn/module/goods/wssd_content.jsp?bookid=55878",
+      "domains": [
+        "phei.com.cn"
+      ],
+      "aliases": [
+        "《网络信息检索实例分析与操作训练》第 3 版（宋诚英）"
+      ],
+      "base_source_id": "textbook-web",
+      "profile": "references/sites/textbook-web.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "grammarly",
+      "name": "Grammarly",
+      "url": "https://www.grammarly.com/",
+      "domains": [
+        "grammarly.com"
+      ],
+      "aliases": [
+        "Grammarly"
+      ],
+      "base_source_id": "grammarly",
+      "profile": "references/sites/grammarly.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "turnitin",
+      "name": "Turnitin",
+      "url": "https://www.turnitin.com/",
+      "domains": [
+        "turnitin.com"
+      ],
+      "aliases": [
+        "Turnitin"
+      ],
+      "base_source_id": "turnitin",
+      "profile": "references/sites/turnitin.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "wofficebox",
+      "name": "万彩办公大师",
+      "url": "https://www.wofficebox.com/",
+      "domains": [
+        "wofficebox.com"
+      ],
+      "aliases": [
+        "万彩办公大师"
+      ],
+      "base_source_id": "wofficebox",
+      "profile": "references/sites/wofficebox.json",
+      "task_kinds": [
+        "product-capability"
+      ]
+    },
+    {
+      "id": "yuketang",
+      "name": "雨课堂",
+      "url": "https://www.yuketang.cn/",
+      "domains": [
+        "yuketang.cn"
+      ],
+      "aliases": [
+        "雨课堂"
+      ],
+      "base_source_id": "yuketang",
+      "profile": "references/sites/yuketang.json",
+      "task_kinds": [
+        "product-capability",
+        "statistics-ranking"
+      ]
+    },
+    {
+      "id": "cnki-study",
+      "name": "知网研学",
+      "url": "https://x.cnki.net/",
+      "domains": [
+        "x.cnki.net"
+      ],
+      "aliases": [
+        "知网研学",
+        "知网研学 E-study"
+      ],
+      "base_source_id": "cnki-study",
+      "profile": "references/sites/cnki-study.json",
+      "task_kinds": [
+        "record-lookup",
+        "product-capability"
+      ]
+    },
+    {
+      "id": "noteexpress",
+      "name": "NoteExpress",
+      "url": "https://www.inoteexpress.com/aegean/index.php/home/ne/index.html",
+      "domains": [
+        "inoteexpress.com"
+      ],
+      "aliases": [
+        "NoteExpress"
+      ],
+      "base_source_id": "noteexpress",
+      "profile": "references/sites/noteexpress.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "endnote",
+      "name": "EndNote",
+      "url": "https://endnote.com/",
+      "domains": [
+        "endnote.com",
+        "clarivate.com"
+      ],
+      "aliases": [
+        "EndNote"
+      ],
+      "base_source_id": "endnote",
+      "profile": "references/sites/endnote.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "mendeley",
+      "name": "Mendeley",
+      "url": "https://www.mendeley.com/",
+      "domains": [
+        "mendeley.com"
+      ],
+      "aliases": [
+        "Mendeley"
+      ],
+      "base_source_id": "mendeley",
+      "profile": "references/sites/mendeley.json",
+      "task_kinds": [
+        "record-lookup",
+        "official-guidance"
+      ]
+    },
+    {
+      "id": "xmind",
+      "name": "XMind",
+      "url": "https://xmind.app/",
+      "domains": [
+        "xmind.app",
+        "xmind.cn"
+      ],
+      "aliases": [
+        "XMind"
+      ],
+      "base_source_id": "xmind",
+      "profile": "references/sites/xmind.json",
+      "task_kinds": [
+        "citation-export"
+      ]
+    },
+    {
+      "id": "mindmaster",
+      "name": "MindMaster／亿图脑图",
+      "url": "https://www.edrawmind.com/",
+      "domains": [
+        "edrawmind.com",
+        "edrawsoft.cn"
+      ],
+      "aliases": [
+        "MindMaster／亿图脑图"
+      ],
+      "base_source_id": "mindmaster",
+      "profile": "references/sites/mindmaster.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "freemind",
+      "name": "FreeMind",
+      "url": "https://freemind.sourceforge.net/wiki/index.php/Main_Page",
+      "domains": [
+        "freemind.sourceforge.net"
+      ],
+      "aliases": [
+        "FreeMind"
+      ],
+      "base_source_id": "freemind",
+      "profile": "references/sites/freemind.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "baidu-mindmap",
+      "name": "百度脑图",
+      "url": "https://naotu.baidu.com/",
+      "domains": [
+        "naotu.baidu.com"
+      ],
+      "aliases": [
+        "百度脑图"
+      ],
+      "base_source_id": "baidu-mindmap",
+      "profile": "references/sites/baidu-mindmap.json",
+      "task_kinds": [
+        "citation-export"
+      ]
+    },
+    {
+      "id": "yinxiang",
+      "name": "印象笔记",
+      "url": "https://www.yinxiang.com/",
+      "domains": [
+        "yinxiang.com"
+      ],
+      "aliases": [
+        "印象笔记"
+      ],
+      "base_source_id": "yinxiang",
+      "profile": "references/sites/yinxiang.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "wiz",
+      "name": "为知笔记",
+      "url": "https://www.wiz.cn/",
+      "domains": [
+        "wiz.cn"
+      ],
+      "aliases": [
+        "为知笔记"
+      ],
+      "base_source_id": "wiz",
+      "profile": "references/sites/wiz.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "youdao-note",
+      "name": "有道云笔记",
+      "url": "https://note.youdao.com/",
+      "domains": [
+        "note.youdao.com"
+      ],
+      "aliases": [
+        "有道云笔记"
+      ],
+      "base_source_id": "youdao-note",
+      "profile": "references/sites/youdao-note.json",
+      "task_kinds": [
+        "product-capability"
+      ]
+    },
+    {
+      "id": "wjx",
+      "name": "问卷星",
+      "url": "https://www.wjx.cn/",
+      "domains": [
+        "wjx.cn",
+        "wjx.top"
+      ],
+      "aliases": [
+        "问卷星"
+      ],
+      "base_source_id": "wjx",
+      "profile": "references/sites/wjx.json",
+      "task_kinds": [
+        "product-capability",
+        "statistics-ranking"
+      ]
+    },
+    {
+      "id": "spss",
+      "name": "IBM SPSS Statistics",
+      "url": "https://www.ibm.com/products/spss-statistics",
+      "domains": [
+        "ibm.com"
+      ],
+      "aliases": [
+        "IBM SPSS Statistics"
+      ],
+      "base_source_id": "spss",
+      "profile": "references/sites/spss.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "tableau",
+      "name": "Tableau",
+      "url": "https://www.tableau.com/",
+      "domains": [
+        "tableau.com"
+      ],
+      "aliases": [
+        "Tableau"
+      ],
+      "base_source_id": "tableau",
+      "profile": "references/sites/tableau.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "excel-support",
+      "name": "Microsoft Excel 官方支持",
+      "url": "https://support.microsoft.com/zh-cn/excel",
+      "domains": [
+        "support.microsoft.com"
+      ],
+      "aliases": [
+        "Microsoft Excel 官方支持",
+        "Excel 函数速查（微软官方）",
+        "Excel",
+        "excel"
+      ],
+      "base_source_id": "excel-support",
+      "profile": "references/sites/excel-support.json",
+      "task_kinds": [
+        "calculation",
+        "product-capability"
+      ]
+    },
+    {
+      "id": "microsoft-learn",
+      "name": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/zh-cn/",
+      "domains": [
+        "learn.microsoft.com"
+      ],
+      "aliases": [
+        "Microsoft Learn"
+      ],
+      "base_source_id": "microsoft-learn",
+      "profile": "references/sites/microsoft-learn.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "weiciyun",
+      "name": "微词云",
+      "url": "https://www.weiciyun.com/",
+      "domains": [
+        "weiciyun.com"
+      ],
+      "aliases": [
+        "微词云"
+      ],
+      "base_source_id": "weiciyun",
+      "profile": "references/sites/weiciyun.json",
+      "task_kinds": [
+        "official-guidance",
+        "product-capability",
+        "statistics-ranking"
+      ]
+    },
+    {
+      "id": "cssci",
+      "name": "南京大学 CSSCI",
+      "url": "https://cssci.nju.edu.cn/",
+      "domains": [
+        "cssci.nju.edu.cn"
+      ],
+      "aliases": [
+        "南京大学 CSSCI"
+      ],
+      "base_source_id": "cssci",
+      "profile": "references/sites/cssci.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "cscd",
+      "name": "中国科学引文数据库 CSCD",
+      "url": "https://sciencechina.cn/",
+      "domains": [
+        "sciencechina.cn"
+      ],
+      "aliases": [
+        "中国科学引文数据库 CSCD"
+      ],
+      "base_source_id": "cscd",
+      "profile": "references/sites/cscd.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "pku-core",
+      "name": "北京大学图书馆／中文核心期刊要目总览",
+      "url": "https://www.lib.pku.edu.cn/",
+      "domains": [
+        "lib.pku.edu.cn"
+      ],
+      "aliases": [
+        "北京大学图书馆／中文核心期刊要目总览"
+      ],
+      "base_source_id": "pku-core",
+      "profile": "references/sites/pku-core.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "unesco-students",
+      "name": "UNESCO《学生人工智能能力框架》2024 英文版",
+      "url": "https://unesdoc.unesco.org/ark:/48223/pf0000391105",
+      "domains": [
+        "unesdoc.unesco.org",
+        "unesco.org"
+      ],
+      "aliases": [
+        "UNESCO《学生人工智能能力框架》2024 英文版",
+        "联合国教科文组织",
+        "UNESCO"
+      ],
+      "base_source_id": "unesco-students",
+      "profile": "references/sites/unesco-students.json",
+      "task_kinds": [
+        "pdf-inspection"
+      ]
+    },
+    {
+      "id": "szu-ai",
+      "name": "深圳大学图书馆生成式人工智能专题",
+      "url": "https://www.lib.szu.edu.cn/learning/ai",
+      "domains": [
+        "lib.szu.edu.cn"
+      ],
+      "aliases": [
+        "深圳大学图书馆生成式人工智能专题",
+        "深大图书馆·生成式AI专题",
+        "深圳大学图书馆",
+        "深大图书馆"
+      ],
+      "base_source_id": "szu-ai",
+      "profile": "references/sites/szu-ai.json",
+      "task_kinds": [
+        "navigation-membership"
+      ]
+    },
+    {
+      "id": "deepseek",
+      "name": "DeepSeek",
+      "url": "https://chat.deepseek.com/",
+      "domains": [
+        "deepseek.com"
+      ],
+      "aliases": [
+        "DeepSeek"
+      ],
+      "base_source_id": "deepseek",
+      "profile": "references/sites/deepseek.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "doubao",
+      "name": "豆包",
+      "url": "https://www.doubao.com/chat/",
+      "domains": [
+        "doubao.com"
+      ],
+      "aliases": [
+        "豆包"
+      ],
+      "base_source_id": "doubao",
+      "profile": "references/sites/doubao.json",
+      "task_kinds": [
+        "product-capability"
+      ]
+    },
+    {
+      "id": "yuanbao",
+      "name": "腾讯元宝",
+      "url": "https://yuanbao.tencent.com/",
+      "domains": [
+        "yuanbao.tencent.com"
+      ],
+      "aliases": [
+        "腾讯元宝"
+      ],
+      "base_source_id": "yuanbao",
+      "profile": "references/sites/yuanbao.json",
+      "task_kinds": [
+        "product-capability"
+      ]
+    },
+    {
+      "id": "chatglm",
+      "name": "智谱清言",
+      "url": "https://chatglm.cn/",
+      "domains": [
+        "chatglm.cn"
+      ],
+      "aliases": [
+        "智谱清言"
+      ],
+      "base_source_id": "chatglm",
+      "profile": "references/sites/chatglm.json",
+      "task_kinds": [
+        "product-capability"
+      ]
+    },
+    {
+      "id": "tongyi",
+      "name": "通义千问／通义",
+      "url": "https://www.tongyi.com/",
+      "domains": [
+        "tongyi.com",
+        "qwen.ai"
+      ],
+      "aliases": [
+        "通义千问／通义"
+      ],
+      "base_source_id": "tongyi",
+      "profile": "references/sites/tongyi.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "kimi",
+      "name": "Kimi",
+      "url": "https://www.kimi.com/",
+      "domains": [
+        "kimi.com"
+      ],
+      "aliases": [
+        "Kimi"
+      ],
+      "base_source_id": "kimi",
+      "profile": "references/sites/kimi.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "xinghuo",
+      "name": "讯飞星火",
+      "url": "https://xinghuo.xfyun.cn/",
+      "domains": [
+        "xinghuo.xfyun.cn"
+      ],
+      "aliases": [
+        "讯飞星火"
+      ],
+      "base_source_id": "xinghuo",
+      "profile": "references/sites/xinghuo.json",
+      "task_kinds": [
+        "product-capability"
+      ]
+    },
+    {
+      "id": "iflytek-paper",
+      "name": "星火科研助手",
+      "url": "https://paper.iflytek.com/",
+      "domains": [
+        "paper.iflytek.com"
+      ],
+      "aliases": [
+        "星火科研助手"
+      ],
+      "base_source_id": "iflytek-paper",
+      "profile": "references/sites/iflytek-paper.json",
+      "task_kinds": [
+        "product-capability"
+      ]
+    },
+    {
+      "id": "yiyan",
+      "name": "文心一言",
+      "url": "https://yiyan.baidu.com/",
+      "domains": [
+        "yiyan.baidu.com"
+      ],
+      "aliases": [
+        "文心一言"
+      ],
+      "base_source_id": "yiyan",
+      "profile": "references/sites/yiyan.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "nano-ai",
+      "name": "纳米 AI",
+      "url": "https://www.n.cn/",
+      "domains": [
+        "n.cn"
+      ],
+      "aliases": [
+        "纳米 AI"
+      ],
+      "base_source_id": "nano-ai",
+      "profile": "references/sites/nano-ai.json",
+      "task_kinds": [
+        "product-capability"
+      ]
+    },
+    {
+      "id": "metaso",
+      "name": "秘塔 AI 搜索",
+      "url": "https://metaso.cn/",
+      "domains": [
+        "metaso.cn"
+      ],
+      "aliases": [
+        "秘塔 AI 搜索",
+        "秘塔AI搜索"
+      ],
+      "base_source_id": "metaso",
+      "profile": "references/sites/metaso.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "tensorflow",
+      "name": "TensorFlow 官方文档",
+      "url": "https://www.tensorflow.org/",
+      "domains": [
+        "tensorflow.org"
+      ],
+      "aliases": [
+        "TensorFlow 官方文档"
+      ],
+      "base_source_id": "tensorflow",
+      "profile": "references/sites/tensorflow.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "keras",
+      "name": "Keras 官方文档",
+      "url": "https://keras.io/",
+      "domains": [
+        "keras.io"
+      ],
+      "aliases": [
+        "Keras 官方文档"
+      ],
+      "base_source_id": "keras",
+      "profile": "references/sites/keras.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch 官方文档",
+      "url": "https://pytorch.org/",
+      "domains": [
+        "pytorch.org"
+      ],
+      "aliases": [
+        "PyTorch 官方文档"
+      ],
+      "base_source_id": "pytorch",
+      "profile": "references/sites/pytorch.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "gradio",
+      "name": "Gradio 官方文档",
+      "url": "https://www.gradio.app/",
+      "domains": [
+        "gradio.app"
+      ],
+      "aliases": [
+        "Gradio 官方文档"
+      ],
+      "base_source_id": "gradio",
+      "profile": "references/sites/gradio.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "flask",
+      "name": "Flask 官方文档",
+      "url": "https://flask.palletsprojects.com/",
+      "domains": [
+        "flask.palletsprojects.com"
+      ],
+      "aliases": [
+        "Flask 官方文档"
+      ],
+      "base_source_id": "flask",
+      "profile": "references/sites/flask.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "ai-literacy-paper",
+      "name": "What is AI Literacy? Competencies and Design Considerations",
+      "url": "https://dl.acm.org/doi/10.1145/3313831.3376727",
+      "domains": [
+        "dl.acm.org"
+      ],
+      "aliases": [
+        "What is AI Literacy? Competencies and Design Considerations"
+      ],
+      "base_source_id": "ai-literacy-paper",
+      "profile": "references/sites/ai-literacy-paper.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "bilibili",
+      "name": "哔哩哔哩（B 站）",
+      "url": "https://www.bilibili.com/",
+      "domains": [
+        "bilibili.com"
+      ],
+      "aliases": [
+        "哔哩哔哩（B 站）",
+        "B站"
+      ],
+      "base_source_id": "bilibili",
+      "profile": "references/sites/bilibili.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "zhihu",
+      "name": "知乎",
+      "url": "https://www.zhihu.com/",
+      "domains": [
+        "zhihu.com"
+      ],
+      "aliases": [
+        "知乎"
+      ],
+      "base_source_id": "zhihu",
+      "profile": "references/sites/zhihu.json",
+      "task_kinds": [
+        "product-capability"
+      ]
+    },
+    {
+      "id": "jianshu",
+      "name": "简书",
+      "url": "https://www.jianshu.com/",
+      "domains": [
+        "jianshu.com"
+      ],
+      "aliases": [
+        "简书"
+      ],
+      "base_source_id": "jianshu",
+      "profile": "references/sites/jianshu.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "xiaohongshu",
+      "name": "小红书",
+      "url": "https://www.xiaohongshu.com/",
+      "domains": [
+        "xiaohongshu.com"
+      ],
+      "aliases": [
+        "小红书"
+      ],
+      "base_source_id": "xiaohongshu",
+      "profile": "references/sites/xiaohongshu.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "csdn",
+      "name": "CSDN",
+      "url": "https://www.csdn.net/",
+      "domains": [
+        "csdn.net"
+      ],
+      "aliases": [
+        "CSDN"
+      ],
+      "base_source_id": "csdn",
+      "profile": "references/sites/csdn.json",
+      "task_kinds": [
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "quiz-doubao-com",
+      "name": "豆包",
+      "url": "https://www.doubao.com",
+      "domains": [
+        "www.doubao.com"
+      ],
+      "aliases": [
+        "豆包"
+      ],
+      "profile": "references/sites/quiz-doubao-com.json",
+      "task_kinds": [
+        "product-capability"
+      ],
+      "category": "AI 素养"
+    },
+    {
+      "id": "quiz-qianwen",
+      "name": "通义（通义千问）",
+      "url": "https://www.qianwen.com",
+      "domains": [
+        "www.qianwen.com"
+      ],
+      "aliases": [
+        "通义（通义千问）",
+        "千问",
+        "通义千问"
+      ],
+      "profile": "references/sites/quiz-qianwen.json",
+      "task_kinds": [
+        "product-capability"
+      ],
+      "category": "AI 素养"
+    },
+    {
+      "id": "quiz-sciencedirect",
+      "name": "LeapSpace（爱思唯尔）",
+      "url": "https://www.sciencedirect.com/leapspace/",
+      "domains": [
+        "www.sciencedirect.com"
+      ],
+      "aliases": [
+        "LeapSpace（爱思唯尔）"
+      ],
+      "profile": "references/sites/quiz-sciencedirect.json",
+      "task_kinds": [
+        "product-capability",
+        "record-lookup"
+      ],
+      "category": "AI 素养"
+    },
+    {
+      "id": "quiz-aminer",
+      "name": "AMiner",
+      "url": "https://www.aminer.cn",
+      "domains": [
+        "www.aminer.cn"
+      ],
+      "aliases": [
+        "AMiner"
+      ],
+      "profile": "references/sites/quiz-aminer.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "AI 素养"
+    },
+    {
+      "id": "quiz-coze",
+      "name": "扣子 Coze",
+      "url": "https://www.coze.cn",
+      "domains": [
+        "www.coze.cn"
+      ],
+      "aliases": [
+        "扣子 Coze"
+      ],
+      "profile": "references/sites/quiz-coze.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "AI 素养"
+    },
+    {
+      "id": "quiz-yuanqi",
+      "name": "腾讯元器",
+      "url": "https://yuanqi.tencent.com",
+      "domains": [
+        "yuanqi.tencent.com"
+      ],
+      "aliases": [
+        "腾讯元器"
+      ],
+      "profile": "references/sites/quiz-yuanqi.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "AI 素养"
+    },
+    {
+      "id": "quiz-ima",
+      "name": "ima.copilot",
+      "url": "https://ima.qq.com",
+      "domains": [
+        "ima.qq.com"
+      ],
+      "aliases": [
+        "ima.copilot",
+        "腾讯ima",
+        "腾讯 ima",
+        "ima"
+      ],
+      "profile": "references/sites/quiz-ima.json",
+      "task_kinds": [
+        "official-guidance"
+      ],
+      "category": "AI 素养"
+    },
+    {
+      "id": "quiz-klingai-com",
+      "name": "可灵 AI",
+      "url": "https://klingai.com",
+      "domains": [
+        "klingai.com"
+      ],
+      "aliases": [
+        "可灵 AI"
+      ],
+      "profile": "references/sites/quiz-klingai-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "AI 素养"
+    },
+    {
+      "id": "quiz-github",
+      "name": "GitHub",
+      "url": "https://github.com",
+      "domains": [
+        "github.com"
+      ],
+      "aliases": [
+        "GitHub"
+      ],
+      "profile": "references/sites/quiz-github.json",
+      "task_kinds": [
+        "record-lookup",
+        "statistics-ranking"
+      ],
+      "category": "AI 素养"
+    },
+    {
+      "id": "quiz-modelscope-cn",
+      "name": "ModelScope 魔搭",
+      "url": "https://modelscope.cn",
+      "domains": [
+        "modelscope.cn"
+      ],
+      "aliases": [
+        "ModelScope 魔搭"
+      ],
+      "profile": "references/sites/quiz-modelscope-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "AI 素养"
+    },
+    {
+      "id": "quiz-aistudio-baidu-com",
+      "name": "百度 AI Studio",
+      "url": "https://aistudio.baidu.com",
+      "domains": [
+        "aistudio.baidu.com"
+      ],
+      "aliases": [
+        "百度 AI Studio"
+      ],
+      "profile": "references/sites/quiz-aistudio-baidu-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "AI 素养"
+    },
+    {
+      "id": "quiz-archive-ics-uci-edu",
+      "name": "UCI 机器学习数据集",
+      "url": "https://archive.ics.uci.edu",
+      "domains": [
+        "archive.ics.uci.edu"
+      ],
+      "aliases": [
+        "UCI 机器学习数据集"
+      ],
+      "profile": "references/sites/quiz-archive-ics-uci-edu.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "AI 素养"
+    },
+    {
+      "id": "quiz-unesdoc-unesco-org",
+      "name": "UNESCO 文献库",
+      "url": "https://unesdoc.unesco.org",
+      "domains": [
+        "unesdoc.unesco.org"
+      ],
+      "aliases": [
+        "UNESCO 文献库"
+      ],
+      "profile": "references/sites/quiz-unesdoc-unesco-org.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "AI 素养"
+    },
+    {
+      "id": "quiz-ai-xxsuyang-com",
+      "name": "AI素养与技能提升数据库",
+      "url": "https://ai.xxsuyang.com",
+      "domains": [
+        "ai.xxsuyang.com"
+      ],
+      "aliases": [
+        "AI素养与技能提升数据库"
+      ],
+      "profile": "references/sites/quiz-ai-xxsuyang-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "AI 素养"
+    },
+    {
+      "id": "quiz-12371-cn",
+      "name": "共产党员网",
+      "url": "https://www.12371.cn",
+      "domains": [
+        "www.12371.cn"
+      ],
+      "aliases": [
+        "共产党员网"
+      ],
+      "profile": "references/sites/quiz-12371-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-curriculum-politics",
+      "name": "高校课程思政资源平台",
+      "url": "https://xhsz.news.cn",
+      "domains": [
+        "xhsz.news.cn"
+      ],
+      "aliases": [
+        "高校课程思政资源平台",
+        "全国高校课程思政教学资源服务平台"
+      ],
+      "profile": "references/sites/quiz-curriculum-politics.json",
+      "task_kinds": [
+        "course-video"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-data-worldbank-org",
+      "name": "世界银行公开数据",
+      "url": "https://data.worldbank.org",
+      "domains": [
+        "data.worldbank.org",
+        "api.worldbank.org",
+        "datahelpdesk.worldbank.org"
+      ],
+      "aliases": [
+        "世界银行公开数据"
+      ],
+      "profile": "references/sites/quiz-data-worldbank-org.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-scidb-cn",
+      "name": "ScienceDB 科学数据银行",
+      "url": "https://www.scidb.cn",
+      "domains": [
+        "www.scidb.cn"
+      ],
+      "aliases": [
+        "ScienceDB 科学数据银行"
+      ],
+      "profile": "references/sites/quiz-scidb-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-gov-cn",
+      "name": "中国政府网·政策文件库",
+      "url": "https://www.gov.cn/zhengce/xxgk/gjgzk/index.htm",
+      "domains": [
+        "www.gov.cn"
+      ],
+      "aliases": [
+        "中国政府网·政策文件库"
+      ],
+      "profile": "references/sites/quiz-gov-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-xzfg-moj-gov-cn",
+      "name": "司法部·行政法规库",
+      "url": "http://xzfg.moj.gov.cn/search2.html",
+      "domains": [
+        "xzfg.moj.gov.cn"
+      ],
+      "aliases": [
+        "司法部·行政法规库"
+      ],
+      "profile": "references/sites/quiz-xzfg-moj-gov-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-wenshu-court-gov-cn",
+      "name": "中国裁判文书网",
+      "url": "https://wenshu.court.gov.cn",
+      "domains": [
+        "wenshu.court.gov.cn"
+      ],
+      "aliases": [
+        "中国裁判文书网"
+      ],
+      "profile": "references/sites/quiz-wenshu-court-gov-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-rmfyalk-court-gov-cn",
+      "name": "人民法院案例库",
+      "url": "https://rmfyalk.court.gov.cn",
+      "domains": [
+        "rmfyalk.court.gov.cn"
+      ],
+      "aliases": [
+        "人民法院案例库"
+      ],
+      "profile": "references/sites/quiz-rmfyalk-court-gov-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-tingshen-court-gov-cn",
+      "name": "中国庭审公开网",
+      "url": "http://tingshen.court.gov.cn",
+      "domains": [
+        "tingshen.court.gov.cn"
+      ],
+      "aliases": [
+        "中国庭审公开网"
+      ],
+      "profile": "references/sites/quiz-tingshen-court-gov-cn.json",
+      "task_kinds": [
+        "course-video"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-openstd-samr-gov-cn",
+      "name": "国家标准全文公开系统",
+      "url": "https://openstd.samr.gov.cn",
+      "domains": [
+        "openstd.samr.gov.cn"
+      ],
+      "aliases": [
+        "国家标准全文公开系统"
+      ],
+      "profile": "references/sites/quiz-openstd-samr-gov-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-std-samr-gov-cn",
+      "name": "全国标准信息公共服务平台",
+      "url": "http://std.samr.gov.cn/gb",
+      "domains": [
+        "std.samr.gov.cn"
+      ],
+      "aliases": [
+        "全国标准信息公共服务平台"
+      ],
+      "profile": "references/sites/quiz-std-samr-gov-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-sppt-cfsa-net-cn",
+      "name": "食品安全国家标准检索",
+      "url": "https://sppt.cfsa.net.cn:8086/db",
+      "domains": [
+        "sppt.cfsa.net.cn"
+      ],
+      "aliases": [
+        "食品安全国家标准检索"
+      ],
+      "profile": "references/sites/quiz-sppt-cfsa-net-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-mee-gov-cn",
+      "name": "生态环境部·标准库",
+      "url": "https://www.mee.gov.cn/ywgz/fgbz/bz/",
+      "domains": [
+        "www.mee.gov.cn"
+      ],
+      "aliases": [
+        "生态环境部·标准库"
+      ],
+      "profile": "references/sites/quiz-mee-gov-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-mohurd-gov-cn",
+      "name": "住建部·标准公告",
+      "url": "https://www.mohurd.gov.cn/gongkai/fdzdgknr/bzgg/index.html",
+      "domains": [
+        "www.mohurd.gov.cn"
+      ],
+      "aliases": [
+        "住建部·标准公告"
+      ],
+      "profile": "references/sites/quiz-mohurd-gov-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-sbj-cnipa-gov-cn",
+      "name": "商标网上查询（中国商标网）",
+      "url": "https://sbj.cnipa.gov.cn/sbj/sbcx",
+      "domains": [
+        "sbj.cnipa.gov.cn"
+      ],
+      "aliases": [
+        "商标网上查询（中国商标网）"
+      ],
+      "profile": "references/sites/quiz-sbj-cnipa-gov-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-epub-cnipa-gov-cn",
+      "name": "专利公布公告系统",
+      "url": "http://epub.cnipa.gov.cn",
+      "domains": [
+        "epub.cnipa.gov.cn"
+      ],
+      "aliases": [
+        "专利公布公告系统"
+      ],
+      "profile": "references/sites/quiz-epub-cnipa-gov-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-pss-system-cponline-cnipa-gov-cn",
+      "name": "国家知识产权局·专利检索",
+      "url": "https://pss-system.cponline.cnipa.gov.cn",
+      "domains": [
+        "pss-system.cponline.cnipa.gov.cn"
+      ],
+      "aliases": [
+        "国家知识产权局·专利检索"
+      ],
+      "profile": "references/sites/quiz-pss-system-cponline-cnipa-gov-cn.json",
+      "task_kinds": [
+        "pdf-inspection"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-ggfw-cnipa-gov-cn",
+      "name": "地理标志检索（国家知识产权局）",
+      "url": "https://ggfw.cnipa.gov.cn/dlbzsq/dbQuery",
+      "domains": [
+        "ggfw.cnipa.gov.cn"
+      ],
+      "aliases": [
+        "地理标志检索（国家知识产权局）"
+      ],
+      "profile": "references/sites/quiz-ggfw-cnipa-gov-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-ie-espacenet-com",
+      "name": "Espacenet（欧专局）",
+      "url": "https://ie.espacenet.com",
+      "domains": [
+        "ie.espacenet.com"
+      ],
+      "aliases": [
+        "Espacenet（欧专局）"
+      ],
+      "profile": "references/sites/quiz-ie-espacenet-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-patentscope-wipo-int",
+      "name": "WIPO PATENTSCOPE",
+      "url": "https://patentscope.wipo.int",
+      "domains": [
+        "patentscope.wipo.int"
+      ],
+      "aliases": [
+        "WIPO PATENTSCOPE"
+      ],
+      "profile": "references/sites/quiz-patentscope-wipo-int.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-uspto-gov",
+      "name": "USPTO 专利检索",
+      "url": "https://www.uspto.gov/patents/search/patent-public-search",
+      "domains": [
+        "www.uspto.gov"
+      ],
+      "aliases": [
+        "USPTO 专利检索",
+        "美国专利商标局",
+        "USPTO"
+      ],
+      "profile": "references/sites/quiz-uspto-gov.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-piyao-org-cn",
+      "name": "中国互联网联合辟谣平台",
+      "url": "https://www.piyao.org.cn",
+      "domains": [
+        "www.piyao.org.cn"
+      ],
+      "aliases": [
+        "中国互联网联合辟谣平台"
+      ],
+      "profile": "references/sites/quiz-piyao-org-cn.json",
+      "task_kinds": [
+        "product-capability",
+        "official-guidance"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-nmpa-gov-cn",
+      "name": "国家药监局·数据查询",
+      "url": "https://www.nmpa.gov.cn/datasearch/home-index.html",
+      "domains": [
+        "www.nmpa.gov.cn"
+      ],
+      "aliases": [
+        "国家药监局·数据查询"
+      ],
+      "profile": "references/sites/quiz-nmpa-gov-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-chkd-cnki-net",
+      "name": "CHKD 中国医院知识总库",
+      "url": "https://chkd.cnki.net/ai/",
+      "domains": [
+        "chkd.cnki.net"
+      ],
+      "aliases": [
+        "CHKD 中国医院知识总库",
+        "CHKD",
+        "CHKDAI",
+        "中国医院知识总库"
+      ],
+      "profile": "references/sites/quiz-chkd-cnki-net.json",
+      "task_kinds": [
+        "product-capability"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-neea-edu-cn",
+      "name": "中国教育考试网",
+      "url": "https://www.neea.edu.cn",
+      "domains": [
+        "www.neea.edu.cn"
+      ],
+      "aliases": [
+        "中国教育考试网"
+      ],
+      "profile": "references/sites/quiz-neea-edu-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-ncss",
+      "name": "国家大学生就业服务平台",
+      "url": "https://www.ncss.cn",
+      "domains": [
+        "www.ncss.cn"
+      ],
+      "aliases": [
+        "国家大学生就业服务平台",
+        "高校毕业生到国际组织实习任职信息服务平台"
+      ],
+      "profile": "references/sites/quiz-ncss.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-gs-sac-net-cn",
+      "name": "证券业协会·信息公示",
+      "url": "https://gs.sac.net.cn",
+      "domains": [
+        "gs.sac.net.cn"
+      ],
+      "aliases": [
+        "证券业协会·信息公示",
+        "中国证券业协会"
+      ],
+      "profile": "references/sites/quiz-gs-sac-net-cn.json",
+      "task_kinds": [
+        "record-lookup",
+        "navigation-membership"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-amac-org-cn",
+      "name": "基金业协会·从业查询",
+      "url": "https://www.amac.org.cn/fwdt/wyc/jgcprycx/rycx",
+      "domains": [
+        "www.amac.org.cn"
+      ],
+      "aliases": [
+        "基金业协会·从业查询"
+      ],
+      "profile": "references/sites/quiz-amac-org-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-cmis-cicpa-org-cn",
+      "name": "中国注册会计师协会",
+      "url": "https://cmis.cicpa.org.cn",
+      "domains": [
+        "cmis.cicpa.org.cn"
+      ],
+      "aliases": [
+        "中国注册会计师协会"
+      ],
+      "profile": "references/sites/quiz-cmis-cicpa-org-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-press-nppa-gov-cn",
+      "name": "国家新闻出版署·从业查询",
+      "url": "https://press.nppa.gov.cn",
+      "domains": [
+        "press.nppa.gov.cn"
+      ],
+      "aliases": [
+        "国家新闻出版署·从业查询"
+      ],
+      "profile": "references/sites/quiz-press-nppa-gov-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "政府开放信息"
+    },
+    {
+      "id": "quiz-zhihuishu-com",
+      "name": "智慧树",
+      "url": "https://www.zhihuishu.com",
+      "domains": [
+        "www.zhihuishu.com"
+      ],
+      "aliases": [
+        "智慧树"
+      ],
+      "profile": "references/sites/quiz-zhihuishu-com.json",
+      "task_kinds": [
+        "statistics-ranking"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-xueyinonline-com",
+      "name": "学银在线",
+      "url": "https://www.xueyinonline.com",
+      "domains": [
+        "www.xueyinonline.com"
+      ],
+      "aliases": [
+        "学银在线"
+      ],
+      "profile": "references/sites/quiz-xueyinonline-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-higher-smartedu-cn",
+      "name": "智慧高教平台",
+      "url": "https://higher.smartedu.cn",
+      "domains": [
+        "higher.smartedu.cn"
+      ],
+      "aliases": [
+        "智慧高教平台",
+        "国家高等教育智慧教育平台"
+      ],
+      "profile": "references/sites/quiz-higher-smartedu-cn.json",
+      "task_kinds": [
+        "course-video"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-ilab-x-com",
+      "name": "实验空间（虚拟仿真）",
+      "url": "http://www.ilab-x.com",
+      "domains": [
+        "www.ilab-x.com"
+      ],
+      "aliases": [
+        "实验空间（虚拟仿真）"
+      ],
+      "profile": "references/sites/quiz-ilab-x-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-open-163-com",
+      "name": "网易公开课",
+      "url": "https://open.163.com",
+      "domains": [
+        "open.163.com"
+      ],
+      "aliases": [
+        "网易公开课"
+      ],
+      "profile": "references/sites/quiz-open-163-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-xuexi-cn",
+      "name": "学习强国",
+      "url": "https://www.xuexi.cn",
+      "domains": [
+        "www.xuexi.cn"
+      ],
+      "aliases": [
+        "学习强国"
+      ],
+      "profile": "references/sites/quiz-xuexi-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-ted-com",
+      "name": "TED",
+      "url": "https://www.ted.com",
+      "domains": [
+        "www.ted.com"
+      ],
+      "aliases": [
+        "TED"
+      ],
+      "profile": "references/sites/quiz-ted-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-yixi",
+      "name": "一席",
+      "url": "https://www.yixi.tv",
+      "domains": [
+        "www.yixi.tv"
+      ],
+      "aliases": [
+        "一席"
+      ],
+      "profile": "references/sites/quiz-yixi.json",
+      "task_kinds": [
+        "statistics-ranking",
+        "course-video"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-zhida-zhihu-com",
+      "name": "知乎 / 知乎直答",
+      "url": "https://zhida.zhihu.com",
+      "domains": [
+        "zhida.zhihu.com"
+      ],
+      "aliases": [
+        "知乎 / 知乎直答"
+      ],
+      "profile": "references/sites/quiz-zhida-zhihu-com.json",
+      "task_kinds": [
+        "product-capability"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-heywhale-com",
+      "name": "和鲸社区 Heywhale",
+      "url": "https://www.heywhale.com",
+      "domains": [
+        "www.heywhale.com"
+      ],
+      "aliases": [
+        "和鲸社区 Heywhale"
+      ],
+      "profile": "references/sites/quiz-heywhale-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-tianchi-aliyun-com",
+      "name": "阿里天池",
+      "url": "https://tianchi.aliyun.com",
+      "domains": [
+        "tianchi.aliyun.com"
+      ],
+      "aliases": [
+        "阿里天池"
+      ],
+      "profile": "references/sites/quiz-tianchi-aliyun-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-hathitrust-org",
+      "name": "HathiTrust",
+      "url": "https://www.hathitrust.org",
+      "domains": [
+        "www.hathitrust.org"
+      ],
+      "aliases": [
+        "HathiTrust"
+      ],
+      "profile": "references/sites/quiz-hathitrust-org.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-academic-oup-com",
+      "name": "Oxford Academic Books",
+      "url": "https://academic.oup.com/books",
+      "domains": [
+        "academic.oup.com"
+      ],
+      "aliases": [
+        "Oxford Academic Books"
+      ],
+      "profile": "references/sites/quiz-academic-oup-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-ncbi-bookshelf",
+      "name": "NCBI Bookshelf",
+      "url": "https://www.ncbi.nlm.nih.gov/books/",
+      "domains": [
+        "www.ncbi.nlm.nih.gov"
+      ],
+      "aliases": [
+        "NCBI Bookshelf",
+        "bookshelf",
+        "Bookshelf"
+      ],
+      "profile": "references/sites/quiz-ncbi-bookshelf.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-read-nlc-cn",
+      "name": "国图·古籍资源",
+      "url": "http://read.nlc.cn/thematDataSearch/toGujiIndex",
+      "domains": [
+        "read.nlc.cn"
+      ],
+      "aliases": [
+        "国图·古籍资源"
+      ],
+      "profile": "references/sites/quiz-read-nlc-cn.json",
+      "task_kinds": [
+        "statistics-ranking"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-read-nlc-cn-f498f33",
+      "name": "国图·民国时期文献",
+      "url": "http://read.nlc.cn/specialResourse/minguoIndex",
+      "domains": [
+        "read.nlc.cn"
+      ],
+      "aliases": [
+        "国图·民国时期文献"
+      ],
+      "profile": "references/sites/quiz-read-nlc-cn-f498f33.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-loc-gov",
+      "name": "美国国会图书馆",
+      "url": "https://www.loc.gov",
+      "domains": [
+        "www.loc.gov"
+      ],
+      "aliases": [
+        "美国国会图书馆"
+      ],
+      "profile": "references/sites/quiz-loc-gov.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "实用学习资源"
+    },
+    {
+      "id": "quiz-cnki-net",
+      "name": "CNKI AI（知网AI）",
+      "url": "https://cnki.net",
+      "domains": [
+        "cnki.net"
+      ],
+      "aliases": [
+        "CNKI AI（知网AI）"
+      ],
+      "profile": "references/sites/quiz-cnki-net.json",
+      "task_kinds": [
+        "product-capability",
+        "official-guidance"
+      ],
+      "category": "学术信息资源"
+    },
+    {
+      "id": "quiz-sciencedirect-036945c",
+      "name": "ScienceDirect",
+      "url": "https://www.sciencedirect.com",
+      "domains": [
+        "www.sciencedirect.com"
+      ],
+      "aliases": [
+        "ScienceDirect"
+      ],
+      "profile": "references/sites/quiz-sciencedirect-036945c.json",
+      "task_kinds": [
+        "statistics-ranking",
+        "search-syntax"
+      ],
+      "category": "学术信息资源"
+    },
+    {
+      "id": "quiz-wiley",
+      "name": "Wiley Online Library",
+      "url": "https://onlinelibrary.wiley.com",
+      "domains": [
+        "onlinelibrary.wiley.com"
+      ],
+      "aliases": [
+        "Wiley Online Library",
+        "Wiley"
+      ],
+      "profile": "references/sites/quiz-wiley.json",
+      "task_kinds": [
+        "product-capability",
+        "record-lookup",
+        "statistics-ranking"
+      ],
+      "category": "学术信息资源"
+    },
+    {
+      "id": "quiz-taylor-francis",
+      "name": "Taylor & Francis",
+      "url": "https://www.tandfonline.com",
+      "domains": [
+        "www.tandfonline.com"
+      ],
+      "aliases": [
+        "Taylor & Francis",
+        "Taylor&Francis",
+        "Taylor& Francis"
+      ],
+      "profile": "references/sites/quiz-taylor-francis.json",
+      "task_kinds": [
+        "pdf-inspection",
+        "statistics-ranking"
+      ],
+      "category": "学术信息资源"
+    },
+    {
+      "id": "quiz-ieee-xplore",
+      "name": "IEEE Xplore",
+      "url": "https://ieeexplore.ieee.org",
+      "domains": [
+        "ieeexplore.ieee.org"
+      ],
+      "aliases": [
+        "IEEE Xplore"
+      ],
+      "profile": "references/sites/quiz-ieee-xplore.json",
+      "task_kinds": [
+        "statistics-ranking"
+      ],
+      "category": "学术信息资源"
+    },
+    {
+      "id": "quiz-spiedigitallibrary-org",
+      "name": "SPIE Digital Library",
+      "url": "https://www.spiedigitallibrary.org",
+      "domains": [
+        "www.spiedigitallibrary.org"
+      ],
+      "aliases": [
+        "SPIE Digital Library"
+      ],
+      "profile": "references/sites/quiz-spiedigitallibrary-org.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "学术信息资源"
+    },
+    {
+      "id": "quiz-nature-com",
+      "name": "Nature",
+      "url": "https://www.nature.com",
+      "domains": [
+        "www.nature.com"
+      ],
+      "aliases": [
+        "Nature"
+      ],
+      "profile": "references/sites/quiz-nature-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "学术信息资源"
+    },
+    {
+      "id": "quiz-science-org",
+      "name": "Science",
+      "url": "https://www.science.org",
+      "domains": [
+        "www.science.org"
+      ],
+      "aliases": [
+        "Science"
+      ],
+      "profile": "references/sites/quiz-science-org.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "学术信息资源"
+    },
+    {
+      "id": "quiz-cell-com",
+      "name": "Cell",
+      "url": "https://www.cell.com",
+      "domains": [
+        "www.cell.com"
+      ],
+      "aliases": [
+        "Cell"
+      ],
+      "profile": "references/sites/quiz-cell-com.json",
+      "task_kinds": [
+        "statistics-ranking",
+        "record-lookup"
+      ],
+      "category": "学术信息资源"
+    },
+    {
+      "id": "quiz-pnas-org",
+      "name": "PNAS",
+      "url": "https://www.pnas.org",
+      "domains": [
+        "www.pnas.org"
+      ],
+      "aliases": [
+        "PNAS"
+      ],
+      "profile": "references/sites/quiz-pnas-org.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "学术信息资源"
+    },
+    {
+      "id": "quiz-lawpro-cnki-net",
+      "name": "中国知网·法律知识资源总库",
+      "url": "https://lawpro.cnki.net",
+      "domains": [
+        "lawpro.cnki.net"
+      ],
+      "aliases": [
+        "中国知网·法律知识资源总库",
+        "中国法律知识资源总库",
+        "中国法律智库平台"
+      ],
+      "profile": "references/sites/quiz-lawpro-cnki-net.json",
+      "task_kinds": [
+        "record-lookup",
+        "product-capability",
+        "official-guidance"
+      ],
+      "category": "学术信息资源"
+    },
+    {
+      "id": "quiz-fz-people-com-cn",
+      "name": "国家哲社文献中心",
+      "url": "http://fz.people.com.cn/skygb/sk/index.php/index/index/4541",
+      "domains": [
+        "fz.people.com.cn"
+      ],
+      "aliases": [
+        "国家哲社文献中心"
+      ],
+      "profile": "references/sites/quiz-fz-people-com-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "学术信息资源"
+    },
+    {
+      "id": "quiz-nsfc",
+      "name": "国家自然科学基金大数据平台",
+      "url": "https://kd.nsfc.cn",
+      "domains": [
+        "kd.nsfc.cn"
+      ],
+      "aliases": [
+        "国家自然科学基金大数据平台",
+        "国家自然科学基金大数据知识管理服务门户"
+      ],
+      "profile": "references/sites/quiz-nsfc.json",
+      "task_kinds": [
+        "statistics-ranking",
+        "record-lookup"
+      ],
+      "category": "学术信息资源"
+    },
+    {
+      "id": "quiz-image-cnki-net",
+      "name": "CNKI 学术图片库",
+      "url": "https://image.cnki.net/AI",
+      "domains": [
+        "image.cnki.net"
+      ],
+      "aliases": [
+        "CNKI 学术图片库"
+      ],
+      "profile": "references/sites/quiz-image-cnki-net.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "信息检索系统"
+    },
+    {
+      "id": "quiz-iconfont-cn",
+      "name": "iconfont",
+      "url": "https://www.iconfont.cn",
+      "domains": [
+        "www.iconfont.cn"
+      ],
+      "aliases": [
+        "iconfont"
+      ],
+      "profile": "references/sites/quiz-iconfont-cn.json",
+      "task_kinds": [
+        "product-capability"
+      ],
+      "category": "信息检索系统"
+    },
+    {
+      "id": "quiz-unsplash-com",
+      "name": "Unsplash",
+      "url": "https://unsplash.com",
+      "domains": [
+        "unsplash.com"
+      ],
+      "aliases": [
+        "Unsplash"
+      ],
+      "profile": "references/sites/quiz-unsplash-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "信息检索系统"
+    },
+    {
+      "id": "quiz-pixabay-com",
+      "name": "Pixabay",
+      "url": "https://pixabay.com",
+      "domains": [
+        "pixabay.com"
+      ],
+      "aliases": [
+        "Pixabay"
+      ],
+      "profile": "references/sites/quiz-pixabay-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "信息检索系统"
+    },
+    {
+      "id": "quiz-scidraw-io",
+      "name": "SciDraw",
+      "url": "https://scidraw.io",
+      "domains": [
+        "scidraw.io"
+      ],
+      "aliases": [
+        "SciDraw"
+      ],
+      "profile": "references/sites/quiz-scidraw-io.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "信息检索系统"
+    },
+    {
+      "id": "quiz-smart-servier-com",
+      "name": "Servier Medical Art",
+      "url": "https://smart.servier.com",
+      "domains": [
+        "smart.servier.com"
+      ],
+      "aliases": [
+        "Servier Medical Art"
+      ],
+      "profile": "references/sites/quiz-smart-servier-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "信息检索系统"
+    },
+    {
+      "id": "quiz-hao-uisdc-com",
+      "name": "优设导航",
+      "url": "https://hao.uisdc.com",
+      "domains": [
+        "hao.uisdc.com"
+      ],
+      "aliases": [
+        "优设导航"
+      ],
+      "profile": "references/sites/quiz-hao-uisdc-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "信息检索系统"
+    },
+    {
+      "id": "quiz-hippter",
+      "name": "HIPPTER",
+      "url": "http://www.hippter.com",
+      "domains": [
+        "www.hippter.com"
+      ],
+      "aliases": [
+        "HIPPTER"
+      ],
+      "profile": "references/sites/quiz-hippter.json",
+      "task_kinds": [
+        "navigation-membership"
+      ],
+      "category": "信息检索系统"
+    },
+    {
+      "id": "quiz-ai-bot-cn",
+      "name": "AI工具集",
+      "url": "https://ai-bot.cn",
+      "domains": [
+        "ai-bot.cn"
+      ],
+      "aliases": [
+        "AI工具集"
+      ],
+      "profile": "references/sites/quiz-ai-bot-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "信息检索系统"
+    },
+    {
+      "id": "quiz-trendinsight-oceanengine-com",
+      "name": "巨量算数",
+      "url": "https://trendinsight.oceanengine.com",
+      "domains": [
+        "trendinsight.oceanengine.com"
+      ],
+      "aliases": [
+        "巨量算数"
+      ],
+      "profile": "references/sites/quiz-trendinsight-oceanengine-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "信息检索系统"
+    },
+    {
+      "id": "quiz-trends-so-com",
+      "name": "360趋势",
+      "url": "https://trends.so.com",
+      "domains": [
+        "trends.so.com"
+      ],
+      "aliases": [
+        "360趋势"
+      ],
+      "profile": "references/sites/quiz-trends-so-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "信息检索系统"
+    },
+    {
+      "id": "quiz-weixin-qq-com",
+      "name": "微信指数",
+      "url": "https://weixin.qq.com",
+      "domains": [
+        "weixin.qq.com"
+      ],
+      "aliases": [
+        "微信指数"
+      ],
+      "profile": "references/sites/quiz-weixin-qq-com.json",
+      "task_kinds": [
+        "statistics-ranking"
+      ],
+      "category": "信息检索系统"
+    },
+    {
+      "id": "quiz-opac-calis-edu-cn",
+      "name": "CALIS 联合目录",
+      "url": "http://opac.calis.edu.cn",
+      "domains": [
+        "opac.calis.edu.cn"
+      ],
+      "aliases": [
+        "CALIS 联合目录"
+      ],
+      "profile": "references/sites/quiz-opac-calis-edu-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "信息检索系统"
+    },
+    {
+      "id": "quiz-find-nlc-cn",
+      "name": "国图·文津搜索",
+      "url": "https://find.nlc.cn",
+      "domains": [
+        "find.nlc.cn"
+      ],
+      "aliases": [
+        "国图·文津搜索"
+      ],
+      "profile": "references/sites/quiz-find-nlc-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "信息检索系统"
+    },
+    {
+      "id": "quiz-baidu-com",
+      "name": "百度高级搜索",
+      "url": "https://www.baidu.com/gaoji/advanced.html",
+      "domains": [
+        "www.baidu.com"
+      ],
+      "aliases": [
+        "百度高级搜索"
+      ],
+      "profile": "references/sites/quiz-baidu-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "检索技术直达入口"
+    },
+    {
+      "id": "quiz-kns-cnki-net",
+      "name": "CNKI 高级检索",
+      "url": "https://kns.cnki.net/kns8s/AdvSearch",
+      "domains": [
+        "kns.cnki.net"
+      ],
+      "aliases": [
+        "CNKI 高级检索"
+      ],
+      "profile": "references/sites/quiz-kns-cnki-net.json",
+      "task_kinds": [
+        "statistics-ranking"
+      ],
+      "category": "检索技术直达入口"
+    },
+    {
+      "id": "quiz-s-wanfangdata-com-cn",
+      "name": "万方高级检索",
+      "url": "https://s.wanfangdata.com.cn/AdvancedSearch",
+      "domains": [
+        "s.wanfangdata.com.cn"
+      ],
+      "aliases": [
+        "万方高级检索"
+      ],
+      "profile": "references/sites/quiz-s-wanfangdata-com-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "检索技术直达入口"
+    },
+    {
+      "id": "quiz-qikan-cqvip-com",
+      "name": "维普高级检索",
+      "url": "https://qikan.cqvip.com",
+      "domains": [
+        "qikan.cqvip.com"
+      ],
+      "aliases": [
+        "维普高级检索"
+      ],
+      "profile": "references/sites/quiz-qikan-cqvip-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "检索技术直达入口"
+    },
+    {
+      "id": "quiz-pubmed-ncbi-nlm-nih-gov",
+      "name": "PubMed 高级检索",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/advanced/",
+      "domains": [
+        "pubmed.ncbi.nlm.nih.gov"
+      ],
+      "aliases": [
+        "PubMed 高级检索"
+      ],
+      "profile": "references/sites/quiz-pubmed-ncbi-nlm-nih-gov.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "检索技术直达入口"
+    },
+    {
+      "id": "quiz-google-com",
+      "name": "Google 高级搜索",
+      "url": "https://www.google.com/advanced_search",
+      "domains": [
+        "www.google.com"
+      ],
+      "aliases": [
+        "Google 高级搜索"
+      ],
+      "profile": "references/sites/quiz-google-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "检索技术直达入口"
+    },
+    {
+      "id": "quiz-docs-qq-com",
+      "name": "腾讯文档",
+      "url": "https://docs.qq.com",
+      "domains": [
+        "docs.qq.com"
+      ],
+      "aliases": [
+        "腾讯文档"
+      ],
+      "profile": "references/sites/quiz-docs-qq-com.json",
+      "task_kinds": [
+        "product-capability"
+      ],
+      "category": "知识管理工具"
+    },
+    {
+      "id": "quiz-wps-cn",
+      "name": "WPS",
+      "url": "https://www.wps.cn",
+      "domains": [
+        "www.wps.cn"
+      ],
+      "aliases": [
+        "WPS"
+      ],
+      "profile": "references/sites/quiz-wps-cn.json",
+      "task_kinds": [
+        "product-capability"
+      ],
+      "category": "知识管理工具"
+    },
+    {
+      "id": "quiz-xkonglong",
+      "name": "不坑盒子（Office插件）",
+      "url": "https://gw.xkonglong.com",
+      "domains": [
+        "gw.xkonglong.com"
+      ],
+      "aliases": [
+        "不坑盒子（Office插件）",
+        "不坑盒子",
+        "小恐龙公文排版助手"
+      ],
+      "profile": "references/sites/quiz-xkonglong.json",
+      "task_kinds": [
+        "product-capability"
+      ],
+      "category": "知识管理工具"
+    },
+    {
+      "id": "quiz-office-ai-cn",
+      "name": "OfficeAI 助手",
+      "url": "https://www.office-ai.cn",
+      "domains": [
+        "www.office-ai.cn"
+      ],
+      "aliases": [
+        "OfficeAI 助手"
+      ],
+      "profile": "references/sites/quiz-office-ai-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "知识管理工具"
+    },
+    {
+      "id": "quiz-cockos-com",
+      "name": "LICEcap",
+      "url": "https://www.cockos.com/licecap/",
+      "domains": [
+        "www.cockos.com"
+      ],
+      "aliases": [
+        "LICEcap"
+      ],
+      "profile": "references/sites/quiz-cockos-com.json",
+      "task_kinds": [
+        "official-guidance"
+      ],
+      "category": "知识管理工具"
+    },
+    {
+      "id": "quiz-yunzhan365-com",
+      "name": "云展网·PDF转Word",
+      "url": "https://www.yunzhan365.com/tools/pdf-to-word",
+      "domains": [
+        "www.yunzhan365.com"
+      ],
+      "aliases": [
+        "云展网·PDF转Word",
+        "云展网"
+      ],
+      "profile": "references/sites/quiz-yunzhan365-com.json",
+      "task_kinds": [
+        "pdf-inspection",
+        "product-capability"
+      ],
+      "category": "知识管理工具"
+    },
+    {
+      "id": "quiz-ilovepdf-com",
+      "name": "iLovePDF",
+      "url": "https://www.ilovepdf.com/zh-cn",
+      "domains": [
+        "www.ilovepdf.com"
+      ],
+      "aliases": [
+        "iLovePDF"
+      ],
+      "profile": "references/sites/quiz-ilovepdf-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "知识管理工具"
+    },
+    {
+      "id": "quiz-im-qq-com",
+      "name": "QQ截图/录屏",
+      "url": "https://im.qq.com",
+      "domains": [
+        "im.qq.com"
+      ],
+      "aliases": [
+        "QQ截图/录屏",
+        "QQ",
+        "qq"
+      ],
+      "profile": "references/sites/quiz-im-qq-com.json",
+      "task_kinds": [
+        "product-capability",
+        "official-guidance"
+      ],
+      "category": "知识管理工具"
+    },
+    {
+      "id": "quiz-nppa-gov-cn",
+      "name": "国家新闻出版署·期刊查询",
+      "url": "https://www.nppa.gov.cn/bsfw/cyjghcpcx",
+      "domains": [
+        "www.nppa.gov.cn"
+      ],
+      "aliases": [
+        "国家新闻出版署·期刊查询"
+      ],
+      "profile": "references/sites/quiz-nppa-gov-cn.json",
+      "task_kinds": [
+        "official-guidance",
+        "record-lookup"
+      ],
+      "category": "学术写作"
+    },
+    {
+      "id": "quiz-xueshu-cnki-net",
+      "name": "CNKI 写作投稿平台",
+      "url": "https://xueshu.cnki.net",
+      "domains": [
+        "xueshu.cnki.net"
+      ],
+      "aliases": [
+        "CNKI 写作投稿平台"
+      ],
+      "profile": "references/sites/quiz-xueshu-cnki-net.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "学术写作"
+    },
+    {
+      "id": "quiz-cx-wanfangdata-com-cn",
+      "name": "万方·科研诚信学习",
+      "url": "https://cx.wanfangdata.com.cn/e-training",
+      "domains": [
+        "cx.wanfangdata.com.cn"
+      ],
+      "aliases": [
+        "万方·科研诚信学习"
+      ],
+      "profile": "references/sites/quiz-cx-wanfangdata-com-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "学术写作"
+    },
+    {
+      "id": "quiz-letpub-com-cn",
+      "name": "LetPub 期刊查询",
+      "url": "https://www.letpub.com.cn",
+      "domains": [
+        "www.letpub.com.cn"
+      ],
+      "aliases": [
+        "LetPub 期刊查询"
+      ],
+      "profile": "references/sites/quiz-letpub-com-cn.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "学术写作"
+    },
+    {
+      "id": "quiz-jcr-clarivate-com",
+      "name": "Journal Citation Reports",
+      "url": "https://jcr.clarivate.com",
+      "domains": [
+        "jcr.clarivate.com"
+      ],
+      "aliases": [
+        "Journal Citation Reports"
+      ],
+      "profile": "references/sites/quiz-jcr-clarivate-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "学术写作"
+    },
+    {
+      "id": "quiz-std-samr-gov-cn-647f566",
+      "name": "GB/T 7714 参考文献格式",
+      "url": "https://std.samr.gov.cn/gb/search/gbDetailed?id=71F772D8055FD3A7E05397BE0A0AB82A",
+      "domains": [
+        "std.samr.gov.cn"
+      ],
+      "aliases": [
+        "GB/T 7714 参考文献格式"
+      ],
+      "profile": "references/sites/quiz-std-samr-gov-cn-647f566.json",
+      "task_kinds": [
+        "record-lookup",
+        "citation-export"
+      ],
+      "category": "学术写作"
+    },
+    {
+      "id": "quiz-zotero",
+      "name": "Zotero",
+      "url": "https://www.zotero.org",
+      "domains": [
+        "www.zotero.org"
+      ],
+      "aliases": [
+        "Zotero"
+      ],
+      "profile": "references/sites/quiz-zotero.json",
+      "task_kinds": [
+        "official-guidance",
+        "record-lookup"
+      ],
+      "category": "科研工具"
+    },
+    {
+      "id": "quiz-navi-cnki-net",
+      "name": "CNKI 期刊导航/RSS",
+      "url": "https://navi.cnki.net",
+      "domains": [
+        "navi.cnki.net"
+      ],
+      "aliases": [
+        "CNKI 期刊导航/RSS"
+      ],
+      "profile": "references/sites/quiz-navi-cnki-net.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "科研工具"
+    },
+    {
+      "id": "quiz-echarts-apache-org",
+      "name": "ECharts",
+      "url": "https://echarts.apache.org/zh/index.html",
+      "domains": [
+        "echarts.apache.org"
+      ],
+      "aliases": [
+        "ECharts"
+      ],
+      "profile": "references/sites/quiz-echarts-apache-org.json",
+      "task_kinds": [
+        "official-guidance"
+      ],
+      "category": "科研工具"
+    },
+    {
+      "id": "quiz-citexs-com",
+      "name": "CiteSpace 文献可视化",
+      "url": "https://www.citexs.com/Paperpicky",
+      "domains": [
+        "www.citexs.com"
+      ],
+      "aliases": [
+        "CiteSpace 文献可视化"
+      ],
+      "profile": "references/sites/quiz-citexs-com.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "category": "科研工具"
+    },
+    {
+      "id": "quiz-ieee",
+      "name": "IEEE 官网",
+      "url": "https://www.ieee.org/",
+      "domains": [
+        "www.ieee.org"
+      ],
+      "aliases": [
+        "IEEE 官网",
+        "IEEE官网",
+        "IEEE IAS"
+      ],
+      "profile": "references/sites/quiz-ieee.json",
+      "task_kinds": [
+        "record-lookup",
+        "statistics-ranking"
+      ],
+      "origin": "题面明示URL",
+      "additional_to_merged_directory": true
+    },
+    {
+      "id": "quiz-ncpssd",
+      "name": "国家哲学社会科学文献中心",
+      "url": "https://www.ncpssd.org/index",
+      "domains": [
+        "www.ncpssd.org"
+      ],
+      "aliases": [
+        "国家哲学社会科学文献中心"
+      ],
+      "profile": "references/sites/quiz-ncpssd.json",
+      "task_kinds": [
+        "statistics-ranking"
+      ],
+      "origin": "中心官网观察；刷题链接误标为社科基金查询，保留原入口另建本源",
+      "additional_to_merged_directory": true
+    },
+    {
+      "id": "quiz-lawyer-credit",
+      "name": "全国律师执业诚信信息公示平台",
+      "url": "https://credit.acla.org.cn/",
+      "domains": [
+        "credit.acla.org.cn"
+      ],
+      "aliases": [
+        "全国律师执业诚信信息公示平台"
+      ],
+      "profile": "references/sites/quiz-lawyer-credit.json",
+      "task_kinds": [
+        "statistics-ranking"
+      ],
+      "origin": "司法部官网公开的平台网址",
+      "additional_to_merged_directory": true
+    },
+    {
+      "id": "quiz-fj-library",
+      "name": "福建省图书馆",
+      "url": "https://www.fjlib.net/",
+      "domains": [
+        "www.fjlib.net"
+      ],
+      "aliases": [
+        "福建省图书馆"
+      ],
+      "profile": "references/sites/quiz-fj-library.json",
+      "task_kinds": [
+        "catalog-holdings"
+      ],
+      "origin": "图书馆官网",
+      "additional_to_merged_directory": true
+    },
+    {
+      "id": "quiz-scu-library",
+      "name": "四川大学图书馆",
+      "url": "https://lib.scu.edu.cn/",
+      "domains": [
+        "lib.scu.edu.cn"
+      ],
+      "aliases": [
+        "四川大学图书馆"
+      ],
+      "profile": "references/sites/quiz-scu-library.json",
+      "task_kinds": [
+        "navigation-membership"
+      ],
+      "origin": "图书馆官方GenAI介绍页与首页",
+      "additional_to_merged_directory": true
+    },
+    {
+      "id": "quiz-sysu-library",
+      "name": "中山大学图书馆",
+      "url": "https://library.sysu.edu.cn/",
+      "domains": [
+        "library.sysu.edu.cn"
+      ],
+      "aliases": [
+        "中山大学图书馆"
+      ],
+      "profile": "references/sites/quiz-sysu-library.json",
+      "task_kinds": [
+        "catalog-holdings"
+      ],
+      "origin": "题面指定机构官网；官方微信客户端操作另行核验",
+      "additional_to_merged_directory": true
+    },
+    {
+      "id": "quiz-ai-data",
+      "name": "中国知网 AI知数",
+      "url": "https://data.cnki.net/aidata",
+      "domains": [
+        "data.cnki.net"
+      ],
+      "aliases": [
+        "中国知网 AI知数",
+        "AI知数"
+      ],
+      "profile": "references/sites/quiz-ai-data.json",
+      "task_kinds": [
+        "official-guidance",
+        "statistics-ranking"
+      ],
+      "origin": "中科院图书馆发布的官方工具使用手册指向",
+      "additional_to_merged_directory": true
+    },
+    {
+      "id": "quiz-aidaxue",
+      "name": "科大讯飞 AI大学堂",
+      "url": "https://www.aidaxue.com/",
+      "domains": [
+        "www.aidaxue.com"
+      ],
+      "aliases": [
+        "科大讯飞 AI大学堂",
+        "AI大学堂"
+      ],
+      "profile": "references/sites/quiz-aidaxue.json",
+      "task_kinds": [
+        "product-capability"
+      ],
+      "origin": "当前产品官网",
+      "additional_to_merged_directory": true
+    },
+    {
+      "id": "quiz-aliyun-ai-course",
+      "name": "阿里云开发者社区人工智能学习路线",
+      "url": "https://developer.aliyun.com/learning/roadmap/ai",
+      "domains": [
+        "developer.aliyun.com"
+      ],
+      "aliases": [
+        "阿里云开发者社区人工智能学习路线",
+        "阿里云开发者社区"
+      ],
+      "profile": "references/sites/quiz-aliyun-ai-course.json",
+      "task_kinds": [
+        "product-capability"
+      ],
+      "origin": "当前官方学习路线",
+      "additional_to_merged_directory": true
+    },
+    {
+      "id": "quiz-oalib",
+      "name": "OALib",
+      "url": "https://www.oalib.com/",
+      "domains": [
+        "www.oalib.com"
+      ],
+      "aliases": [
+        "OALib"
+      ],
+      "profile": "references/sites/quiz-oalib.json",
+      "task_kinds": [
+        "record-lookup"
+      ],
+      "origin": "当前出版检索平台首页",
+      "additional_to_merged_directory": true
+    },
+    {
+      "id": "quiz-most",
+      "name": "科学技术部",
+      "url": "https://www.most.gov.cn/",
+      "domains": [
+        "www.most.gov.cn"
+      ],
+      "aliases": [
+        "科学技术部"
+      ],
+      "profile": "references/sites/quiz-most.json",
+      "task_kinds": [
+        "pdf-inspection"
+      ],
+      "origin": "题面指定发布机构官网",
+      "additional_to_merged_directory": true
+    },
+    {
+      "id": "quiz-word-support",
+      "name": "Microsoft Word 官方支持",
+      "url": "https://support.microsoft.com/zh-cn/word",
+      "domains": [
+        "support.microsoft.com"
+      ],
+      "aliases": [
+        "Microsoft Word 官方支持",
+        "Word",
+        "word"
+      ],
+      "profile": "references/sites/quiz-word-support.json",
+      "task_kinds": [
+        "record-lookup",
+        "product-capability"
+      ],
+      "origin": "软件发布方官方帮助",
+      "additional_to_merged_directory": true
+    },
+    {
+      "id": "connected-papers",
+      "name": "Connected Papers 文献关系图谱",
+      "url": "https://www.connectedpapers.com/",
+      "domains": [
+        "connectedpapers.com"
+      ],
+      "aliases": [
+        "Connected Papers",
+        "connected papers",
+        "connectedpapers"
+      ],
+      "base_source_id": "connected-papers",
+      "profile": "references/sites/connected-papers.json",
+      "task_kinds": [
+        "citation-count",
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "semantic-scholar",
+      "name": "Semantic Scholar 学术图谱",
+      "url": "https://www.semanticscholar.org/",
+      "domains": [
+        "semanticscholar.org",
+        "api.semanticscholar.org"
+      ],
+      "aliases": [
+        "Semantic Scholar",
+        "semanticscholar",
+        "S2"
+      ],
+      "base_source_id": "semantic-scholar",
+      "profile": "references/sites/semantic-scholar.json",
+      "task_kinds": [
+        "citation-count",
+        "record-lookup",
+        "official-api"
+      ]
+    },
+    {
+      "id": "openalex",
+      "name": "OpenAlex 开放学术图谱",
+      "url": "https://openalex.org/",
+      "domains": [
+        "openalex.org",
+        "api.openalex.org"
+      ],
+      "aliases": [
+        "OpenAlex",
+        "openalex"
+      ],
+      "base_source_id": "openalex",
+      "profile": "references/sites/openalex.json",
+      "task_kinds": [
+        "citation-count",
+        "record-lookup",
+        "official-api"
+      ]
+    },
+    {
+      "id": "hkust-ir",
+      "name": "香港科技大学机构库（学位论文与特藏）",
+      "url": "https://repository.hkust.edu.hk/ir/",
+      "domains": [
+        "repository.hkust.edu.hk",
+        "lbezone.hkust.edu.hk"
+      ],
+      "aliases": [
+        "HKUST Institutional Repository",
+        "香港科技大学电子学位论文库",
+        "港科大机构库",
+        "HKUST SPD"
+      ],
+      "base_source_id": "hkust-ir",
+      "profile": "references/sites/hkust-ir.json",
+      "task_kinds": [
+        "fulltext",
+        "record-lookup"
+      ]
+    },
+    {
+      "id": "rdfybk",
+      "name": "人大复印报刊资料",
+      "url": "https://www.rdfybk.com/",
+      "domains": [
+        "rdfybk.com"
+      ],
+      "aliases": [
+        "复印报刊资料",
+        "人大复印",
+        "中国人民大学书报资料中心",
+        "rdfybk"
+      ],
+      "base_source_id": "rdfybk",
+      "profile": "references/sites/rdfybk.json",
+      "task_kinds": [
+        "statistics-ranking",
+        "record-lookup"
+      ]
+    }
+  ],
+  "provenance": {
+    "quiz_url": "https://89757-creater.github.io/ai-info-literacy-quiz/#/",
+    "base_catalog_count": 123,
+    "quiz_entry_count": 154,
+    "merge_rule": "仅合并规范化后同host/path/query入口；保留不同产品和深链，不按共同主域自动合并。",
+    "learning_policy": "只保留任务路由和参数字段，不保存原题/选项/答案用于答题。"
+  }
+}

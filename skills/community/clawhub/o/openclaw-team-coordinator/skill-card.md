@@ -1,40 +1,48 @@
-## Description: <br>
-Coordinates OpenClaw task triage by routing frontend work to Gemini CLI, backend work to Codex CLI, and final QA review to Claude. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates OpenClaw task planning, assignment, progress tracking, and QA across Claude, Gemini CLI, and Codex CLI roles.
 
-## Publisher: <br>
-[ChenZhouMing](https://clawhub.ai/user/ChenZhouMing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[chenzhouming](https://clawhub.ai/user/chenzhouming)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to route OpenClaw tasks to Claude, Gemini CLI, or Codex CLI based on frontend, backend, full-stack, coordination, and QA needs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill uses a fixed role mapping for Claude, Gemini CLI, and Codex CLI, which may conflict with environments that require user-controlled or policy-driven agent selection.
+
+Mitigation: Review and approve the role mapping before installation or adapt deployment policy so routing decisions remain under the required operator controls.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate OpenClaw work across Claude, Gemini CLI, and Codex CLI, including task classification, delegation, progress tracking, and QA acceptance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Private task details may be exposed to delegated CLI agents if their workspace or tool access is broader than intended. <br>
-Mitigation: Confirm what Claude, Gemini CLI, and Codex CLI can access before routing sensitive project details through this workflow. <br>
-Risk: Keyword-based task routing can misclassify mixed or ambiguous work. <br>
-Mitigation: Have the coordinating agent review unclear tasks and split full-stack work before delegation. <br>
+**Output Format:** [Markdown guidance with role tables, routing rules, and command-oriented workflow steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ChenZhouMing/openclaw-team-coordinator) <br>
+**Other Properties Related to Output:** [No bundled code, persistence, credential handling, or hidden behavior found in the release evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown coordination guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance with no code, persistence, credential access, or hidden behavior.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

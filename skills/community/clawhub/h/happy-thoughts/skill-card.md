@@ -1,45 +1,60 @@
-## Description: <br>
-Happy Thoughts provides pay-per-thought AI second opinions for agents by routing prompts to specialized providers with x402 USDC payments on Base mainnet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pay-per-thought AI second opinions for agents; POST /think with a prompt, buyer wallet, and optional specialty to get a routed response from a specialized provider over x402 USDC on Base mainnet.
 
-## Publisher: <br>
-[proteeninjector-max](https://clawhub.ai/user/proteeninjector-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[proteeninjector-max](https://clawhub.ai/user/proteeninjector-max)
 
-## Use Case: <br>
-External agents and developers use Happy Thoughts to preview providers and request paid, routed second opinions from specialized AI providers for domain-specific prompts. It is useful when an agent needs an additional perspective before taking an action or surfacing a recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes paid x402/USDC actions that can charge a wallet when an agent calls paid endpoints. <br>
-Mitigation: Require explicit approval for every charge, preview providers before paid calls, and use a dedicated low-balance wallet. <br>
-Risk: Prompts are sent to a third-party external AI marketplace and may contain sensitive information if users are not careful. <br>
-Mitigation: Do not send secrets, private keys, regulated data, or confidential business prompts. <br>
-Risk: Returned second opinions can be incorrect or unsuitable for high-stakes decisions. <br>
-Mitigation: Treat responses as advisory input and require human review before acting on financial, legal, medical, or other sensitive guidance. <br>
+## Use Case:
 
+External agents and developers use this skill to request paid second opinions, inspect available providers, preview routing, and integrate with a live AI-provider marketplace using x402 payments.
 
-## Reference(s): <br>
-- [Happy Thoughts API](https://happythoughts.proteeninjector.workers.dev) <br>
-- [Agent Discovery](https://happythoughts.proteeninjector.workers.dev/llm.txt) <br>
-- [OpenAPI Specification](https://happythoughts.proteeninjector.workers.dev/openapi.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/proteeninjector-max/happy-thoughts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON API responses and shell/code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid endpoints may require x402 USDC payment handling on Base mainnet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Live paid endpoints can lead to real USDC payment activity through x402.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation and wallet policy checks before /think, /register, /bundle, /feedback, or /dispute calls.
+
+Risk: Prompts, wallet addresses, and callback data may be sent to a live third-party AI marketplace.
+
+Mitigation: Do not send secrets, private keys, regulated data, sensitive internal context, or unreviewed callback URLs.
+
+Risk: Returned second opinions may be routed through third-party providers and can be wrong, incomplete, or unsuitable for high-stakes decisions.
+
+Mitigation: Treat responses as advisory, review domain-sensitive outputs before action, and avoid using the skill as sole authority for financial, legal, medical, or safety-critical decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/proteeninjector-max/skills/happy-thoughts)
+- [Happy Thoughts Homepage](https://happythoughts.proteeninjector.workers.dev)
+- [Agent Discovery](https://happythoughts.proteeninjector.workers.dev/llm.txt)
+- [OpenAPI Specification](https://happythoughts.proteeninjector.workers.dev/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request and response shapes, shell commands, and integration code examples; live API calls return JSON or text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for shell examples and may initiate live x402 payment flows when paid endpoints are called.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

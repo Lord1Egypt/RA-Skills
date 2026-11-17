@@ -130,7 +130,7 @@ A JSON object keyed by ISO date → nutrition object (empty selection → `{}`):
 ```
 
 `loseit_budget` / `loseit_under` / `exercise_adjustment` appear only when the daily summary provides
-them, after `meals`. Numbers are integers (banker's rounding). See **AGENTS.md** for the full
+them, after `meals`. Numbers are integers (banker's rounding). See [docs/MACHINE_CONTRACT.md](https://github.com/stozo04/loseit-cli/blob/main/docs/MACHINE_CONTRACT.md) for the full
 contract and exit codes.
 
 ## Security & secrets
@@ -138,7 +138,7 @@ contract and exit codes.
 This skill handles two **sensitive** local files. Treat both as you would any password:
 
 - **`config.json`** holds your Lose It **email and password in plaintext**. It is **gitignored** —
-  never commit it, and don't place it in a shared, world-readable, or backed-up directory. On a shared
+  never commit it, and don't place it in a shared directory, one other users can read, or one that is backed up. On a shared
   machine, prefer the `LOSEIT_EMAIL` / `LOSEIT_PASSWORD` environment variables over a file on disk.
 - **The session-token cache** (`token_path`, default `~/.config/loseit/token`) holds the `liauth`
   cookie — a **reusable, ~14-day session credential**. It is written **owner-only (`0600`)** in an
@@ -158,3 +158,5 @@ login/export endpoints, and no secret reaches stdout, stderr, or logs at any ver
 - **Secrets:** the token file and `config.json` (which holds your email/password in plaintext) are
   gitignored — never commit them and keep them owner-only; on shared machines prefer env vars. The
   password and the cookie/token value are never printed.
+
+On Windows, token permissions inherit the directory ACLs; POSIX modes are advisory. Protect the containing directory. For unattended use, select a trusted explicit --config path.

@@ -1,44 +1,60 @@
-## Description: <br>
-Guard-Dog intercepts eight classes of risky AI operations and requires authorization-code verification before allowing them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guard-Dog is an AI safety guard that intercepts eight classes of risky operations and asks for authorization-code verification.
 
-## Publisher: <br>
-[staroldtrace](https://clawhub.ai/user/staroldtrace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[staroldtrace](https://clawhub.ai/user/staroldtrace)
 
-## Use Case: <br>
-External users and developers use this skill to add an authorization gate around risky AI actions such as financial operations, sensitive-data access, destructive commands, prompt-injection attempts, source access, history replay, and changes to the guard skill itself. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner did not fully verify artifact file contents. <br>
-Mitigation: Review the bundled skill files before installation or redistribution when high assurance is required. <br>
-Risk: Authorization input may be captured by the surrounding runtime, conversation history, or platform logs. <br>
-Mitigation: Use the skill only in a trusted runtime with sensitive-input logging disabled or controlled. <br>
-Risk: The skill stores authorization state on the local filesystem. <br>
-Mitigation: Keep ~/.openclaw/.guard-dog-vault and ~/.openclaw/.guard-dog-state restricted to owner read/write permissions. <br>
+## Use Case:
 
+External users and developers use this skill as a prompt-level reminder layer for risky agent actions, including payments, sensitive data access, destructive operations, source inspection, history review, and prompt-injection attempts. It asks for authorization before allowing those actions to proceed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/staroldtrace/guard-dog) <br>
-- [Common attack pattern guide](references/attack-patterns.md) <br>
-- [Guard-dog iron rules](references/iron-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with authorization prompts, pass/fail status messages, configuration notes, and occasional shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and reads local guard state under ~/.openclaw with 600 permissions; responses should never disclose, repeat, or hint at authorization codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.3 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Authorization codes entered through chat can be exposed through conversation history, logs, or transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a unique code that is not reused elsewhere, avoid entering high-value secrets, and confirm the platform's privacy and logging behavior before use.
+
+Risk: The skill can interfere with inspection, source review, history review, or removal of itself.
+
+Mitigation: Review and scan the skill before installation, and keep an administrative path to inspect or remove it outside the skill's own prompt-level controls.
+
+Risk: The authorization flow should not be treated as real access control because enforcement depends on the host environment.
+
+Mitigation: Use it as a reminder layer and rely on platform-native permission prompts, sandboxing, operating-system permissions, and backups for high-impact actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/staroldtrace/skills/guard-dog)
+- [README](README.md)
+- [Common Attack Pattern Recognition Manual](references/attack-patterns.md)
+- [Guard-Dog Iron Rules](references/iron-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with short status text, authorization prompts, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request an authorization code through chat and defines local vault and state-file paths for the host environment.]
+
+## Skill Version(s):
+
+2.1.3 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

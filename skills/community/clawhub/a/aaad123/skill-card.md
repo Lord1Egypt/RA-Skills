@@ -1,44 +1,60 @@
-## Description: <br>
-Gets current weather, multi-day forecasts, clothing index, and feels-like temperature for worldwide city queries, with SkillPay.me billing at 0.001 USDT per call. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current weather, multi-day forecasts, clothing index, and feels-like temperature for cities worldwide, with SkillPay billing support.
 
-## Publisher: <br>
-[kim1903](https://clawhub.ai/user/kim1903) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kim1903](https://clawhub.ai/user/kim1903)
 
-## Use Case: <br>
-External users and agents use this skill to fetch weather conditions, short-range forecasts, feels-like temperature, and clothing recommendations for a requested city. The billing command can charge a SkillPay account when configured with credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The billing script can charge a SkillPay account by default when a SKILLPAY_API_KEY is configured. <br>
-Mitigation: Require explicit user approval before running billing actions, and do not provide SKILLPAY_API_KEY unless billing is intended. <br>
-Risk: Weather requests send user-provided city names to wttr.in. <br>
-Mitigation: Use the weather and forecast commands only when the user is comfortable sharing the requested city with the external weather service. <br>
-Risk: Payment flow trust depends on the package identity and publisher. <br>
-Mitigation: Verify the publisher handle kim1903 and the skill page before trusting SkillPay payment links or charge behavior. <br>
+## Use Case:
 
+External users and agent developers use this skill to fetch current weather, multi-day forecasts, feels-like temperature, comfort details, and clothing recommendations for a named city.
 
-## Reference(s): <br>
-- [Clothing Index Reference](references/clothing-index.md) <br>
-- [Skill page](https://clawhub.ai/kim1903/aaad123) <br>
-- [Publisher profile](https://clawhub.ai/user/kim1903) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON returned by command-line scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Weather and clothing outputs may include city, country, temperature, feels-like temperature, humidity, wind, UV, precipitation, and recommendation fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The billing script can initiate SkillPay charges and handles a billing API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing if automatic SkillPay charges are not acceptable, and keep SKILLPAY_API_KEY in a protected environment or secret store.
+
+Risk: Passing the billing API key on the command line can expose the secret through shell history or process listings.
+
+Mitigation: Prefer SKILLPAY_API_KEY from the environment instead of the --api-key argument.
+
+Risk: City names are sent to wttr.in and billing identifiers are sent to SkillPay.
+
+Mitigation: Confirm the user is comfortable with those external data transfers before running weather or billing commands.
+
+## Reference(s):
+
+- [Clothing Index Reference](references/clothing-index.md)
+- [wttr.in weather data endpoint](https://wttr.in/{encoded}?format=j1)
+- [SkillPay API endpoint](https://skillpay.me/api/v1)
+- [ClawHub skill page](https://clawhub.ai/kim1903/skills/aaad123)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text or JSON from command-line scripts, with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Weather and clothing outputs may include Chinese labels and emoji; forecast output is limited to 7 days.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

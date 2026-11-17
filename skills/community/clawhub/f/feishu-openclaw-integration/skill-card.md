@@ -1,47 +1,59 @@
-## Description: <br>
-Guidance for connecting Feishu with OpenClaw to set up enterprise AI assistants for group chat bots, customer support, and automated workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates Feishu with OpenClaw so teams can configure enterprise AI assistants for group chat, customer support, and automated workflows.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and enterprise administrators use this skill to configure Feishu applications, OpenClaw channel settings, bot message handling, scheduled notifications, file processing, and multi-agent routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Enterprise chat messages, chat history, and uploaded files may be sent to OpenClaw or downstream model providers without clearly defined privacy boundaries. <br>
-Mitigation: Confirm processing locations and retention terms before deployment, and require explicit administrator approval for chat-history and file-analysis features. <br>
-Risk: Feishu app credentials and broad API scopes could expose tenant data or bot controls if mishandled. <br>
-Mitigation: Store FEISHU_APP_ID and FEISHU_APP_SECRET in a secrets manager, rotate them regularly, and grant only the Feishu scopes required for approved use cases. <br>
-Risk: Scheduled notifications configured for ALL groups can broadcast messages more widely than intended. <br>
-Mitigation: Disable broad broadcasts by default and maintain an allowlist of approved chats, groups, and notification templates. <br>
-Risk: File processing can introduce sensitive or unsupported document types into the workflow. <br>
-Mitigation: Restrict allowed file types, scan files before analysis, and define deletion rules for downloaded or cached file content. <br>
+## Use Case:
 
+Developers and enterprise automation teams use this skill to connect Feishu bots to OpenClaw for chat assistants, customer support, scheduled notifications, file processing, and message analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yang1002378395-cmyk/feishu-openclaw-integration) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw community](https://discord.gg/clawd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with configuration snippets and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Feishu app settings, Node.js integration examples, YAML templates, and deployment guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Forwarding Feishu messages, files, or chat history to OpenClaw may expose sensitive enterprise data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted private OpenClaw endpoint over HTTPS, avoid forwarding sensitive files or full chat histories without authorization, and restrict Feishu scopes to the minimum needed.
+
+Risk: Feishu app credentials and verification tokens are required for setup.
+
+Mitigation: Store secrets outside versioned configuration files and manage FEISHU_APP_ID and FEISHU_APP_SECRET through the runtime environment or a secrets manager.
+
+Risk: The Node.js SDK path installs npm dependencies for the integration.
+
+Mitigation: Pin and review npm dependencies before production deployment.
+
+## Reference(s):
+
+- [Feishu Open Platform](https://open.feishu.cn)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/feishu-openclaw-integration)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash, JSON, YAML, JavaScript, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, npm, FEISHU_APP_ID, and FEISHU_APP_SECRET for the documented integration paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

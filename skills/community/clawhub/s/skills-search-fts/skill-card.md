@@ -1,41 +1,54 @@
-## Description: <br>
-Instantly find the best AI agent skills, tools, and capabilities from across the entire web. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instantly find the best AI agent skills, tools, and capabilities from across the entire web.
 
-## Publisher: <br>
-[h4gen](https://clawhub.ai/user/h4gen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[h4gen](https://clawhub.ai/user/h4gen)
 
-## Use Case: <br>
-Developers and agents use this skill to discover relevant public agent skills, tool definitions, and prompts by keyword before deciding what to inspect or install. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to a publisher-operated external search service. <br>
-Mitigation: Do not include secrets, customer data, personal information, or other sensitive content in search queries. <br>
-Risk: Returned third-party skills may vary in quality, provenance, or security posture. <br>
-Mitigation: Review each returned skill and its security information independently before using or installing it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Global Skills Search on ClawHub](https://clawhub.ai/h4gen/skills-search-fts) <br>
-- [Publisher Profile](https://clawhub.ai/user/h4gen) <br>
-- [Search API Endpoint](https://skillsearch-api.hagen-hoferichter.workers.dev/search) <br>
+## Use Case:
 
+Developers and agent builders use this skill to search a publisher-operated global index for existing agent skills, tools, and prompts relevant to a task.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text search results produced by a Python command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include matching skill names, descriptions, and origins; search queries are sent to the publisher-operated external API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.7 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search terms are sent to a publisher-operated external API.
+
+Mitigation: Do not include secrets, credentials, private project identifiers, customer data, or other sensitive information in search queries.
+
+Risk: Search results are remote content and may be incorrect, stale, or unsuitable for the user's environment.
+
+Mitigation: Review result origins and inspect any selected skill before installing, running, or relying on it.
+
+## Reference(s):
+
+- [Global Skills Search on ClawHub](https://clawhub.ai/h4gen/skills/skills-search-fts)
+- [Publisher profile: h4gen](https://clawhub.ai/user/h4gen)
+- [Search API endpoint](https://skillsearch-api.hagen-hoferichter.workers.dev/search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Terminal text listing matching skills with names, origins, and descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and forwards search terms to an external publisher-operated search API.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

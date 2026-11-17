@@ -1,44 +1,62 @@
-## Description: <br>
-Use when users need a lightweight HotTrender crawler for four-region daily hotspot trends or custom keyword/vertical hotspot discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HotTrender Basic Crawler helps agents use a bundled local crawler runtime for four-region daily trend collection and custom keyword hotspot discovery.
 
-## Publisher: <br>
-[7487](https://clawhub.ai/user/7487) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[7487](https://clawhub.ai/user/7487)
 
-## Use Case: <br>
-Developers and engineers use this skill to run or configure a small local crawler for daily hotspot trends across Japan, the United States, Taiwan, and Korea, or for custom keyword and vertical hotspot discovery. It helps agents prefer the bundled runtime and provider scripts before proposing code changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live web requests through Google, YouTube, X, and optional TikTok providers. <br>
-Mitigation: Use offline provider mode for deterministic local validation, then enable real providers intentionally and inspect explicit provider errors instead of substituting sample data. <br>
-Risk: Optional TikTok crawling can require session tokens, browser automation, and proxy configuration. <br>
-Mitigation: Enable TikTok only deliberately, keep TIKTOK_MS_TOKEN, cookies, and proxy credentials out of logs and commits, and avoid untrusted proxies. <br>
+## Use Case:
 
+Developers and external users use this skill when they need an agent to install, configure, run, or extend a small local HotTrender crawler for jp/us/tw/kr daily trends or custom keyword hotspot reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/7487/hottrender-dingtalk-bot) <br>
-- [Setup And Portability](references/setup.md) <br>
-- [Command Reference](references/commands.md) <br>
-- [Basic Crawler Capability Map](references/capabilities.md) <br>
-- [Extension Policy](references/extension-policy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated Markdown or JSON crawler reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled runtime writes local Markdown reports and sibling JSON records for crawler outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Optional TikTok live mode handles TikTok session material and logs part of an acquired msToken.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid optional TikTok mode until token-prefix logging is removed; use a disposable TikTok session token for testing and keep logs private.
+
+Risk: Live crawler mode contacts external platforms and may fail or return incomplete results when providers block or do not support a region.
+
+Mitigation: Run offline mode first for deterministic validation, then keep explicit provider errors in reports instead of replacing failures with fabricated data.
+
+Risk: Runtime dependencies are version-ranged and may change behavior across installs.
+
+Mitigation: Install in an isolated virtual environment or container and prefer pinned or hash-locked dependencies before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/7487/skills/hottrender-dingtalk-bot)
+- [Setup And Portability](references/setup.md)
+- [Command Reference](references/commands.md)
+- [Basic Crawler Capability Map](references/capabilities.md)
+- [Extension Policy](references/extension-policy.md)
+- [HotTrender Basic Crawler Runtime](assets/hottrender-runtime/README_RUNTIME.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Markdown, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands; the bundled runtime can write Markdown and JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live mode contacts external platforms; optional TikTok mode requires extra dependencies and session setup.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

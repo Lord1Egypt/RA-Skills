@@ -1,41 +1,54 @@
-## Description: <br>
-数据库安全审计 helps agents run dbskiter database security audits, including SQL injection checks, sensitive data scans, permission reviews, login monitoring, audit log analysis, password policy checks, and configuration reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+数据库安全审计，支持 SQL 注入检测、敏感数据扫描、权限审计、登录安全监控、审计日志分析、密码策略检查和配置安全审计。
 
-## Publisher: <br>
-[magicczc](https://clawhub.ai/user/magicczc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[magicczc](https://clawhub.ai/user/magicczc)
 
-## Use Case: <br>
-Developers, database administrators, and security engineers use this skill to select and interpret dbskiter security commands for authorized database audits and remediation planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database audits can expose sensitive database, personal data, and account-level security findings if scans are run too broadly or shared carelessly. <br>
-Mitigation: Use the skill only on databases the user is authorized to audit, scope scans to specific databases or tables where possible, and treat generated audit output as confidential. <br>
-Risk: The skill relies on a local dbskiter CLI that performs the actual audit commands. <br>
-Mitigation: Install and use the dbskiter CLI only from a trusted source before allowing an agent to execute its commands. <br>
+## Use Case:
 
+Developers, database administrators, and security engineers use this skill to run dbskiter database security checks and interpret structured findings for remediation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/magicczc/dbskiter-db-security) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/magicczc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Analysis, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Depends on the dbskiter CLI and an authorized database target; command output may include confidential database and account findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can inspect sensitive database contents, users, permissions, logs, login IPs, and weak-password indicators.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only against databases the operator administers, confirm the database name and scope before execution, prefer table-scoped scans, and treat all findings as confidential.
+
+Risk: Broad database security scans can expose more data than needed for the user's immediate question.
+
+Mitigation: Limit scans with available table, user, and time-window parameters when a narrower audit is sufficient.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/magicczc/skills/dbskiter-db-security)
+- [Publisher profile](https://clawhub.ai/user/magicczc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured result interpretation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference database names, table scopes, time windows, users, SQL statements, and dbskiter security subcommands.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Execute local PDF operations through PDFelement PDFToolbox on Windows or Linux, including conversion, OCR, compression, translation, watermarking, security, printing, extraction, page management, signing, splitting, merging, cropping, and PDF creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute local PDF operations through PDFelement PDFToolbox on Windows or Linux for conversion, OCR, compression, translation, security, splitting, merging, watermarking, extraction, printing, and related batch PDF workflows.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-Developers and agent users use this skill to prepare and launch local PDFelement PDFToolbox workflows for batch PDF processing. It is intended for tasks such as converting, optimizing, OCRing, translating, securing, splitting, merging, watermarking, extracting, printing, and creating PDF files on a configured Windows or Linux desktop. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over local PDF workflows and desktop launches. <br>
-Mitigation: Confirm the intended operation and exact file paths before execution, and use copies of important documents. <br>
-Risk: PDF passwords, private paths, generated wspet:// URLs, terminal output, and diagnostic logs may expose sensitive document information. <br>
-Mitigation: Avoid sharing generated launch URLs, terminal output, or logs, and avoid confidential files for translation unless PDFelement data handling is understood. <br>
-Risk: The workflows depend on a correctly installed local PDFelement PDFToolbox, registered Windows protocol handlers, or an active Linux desktop session. <br>
-Mitigation: Verify PDFelement installation, protocol registration, and desktop session availability before running document operations. <br>
+## Use Case:
 
+External users and developers use this skill to route PDF conversion, OCR, compression, translation, security, page management, extraction, printing, and creation requests into a locally installed PDFelement PDFToolbox workflow.
 
-## Reference(s): <br>
-- [PDFToolbox Command-Line API Reference](references/api-reference.md) <br>
-- [PDFelement Launch Templates](references/launch-templates.md) <br>
-- [PDFelement Website](https://pdf.wondershare.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with PowerShell and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may launch the local PDFelement GUI and operate on user-selected PDF files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can launch local PDFelement workflows against user-selected PDF files, including Windows auto-execution after a countdown.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review selected files and output locations before launch, keep the user-facing PDFelement UI in the loop, and allow cancellation before processing.
+
+Risk: Protected PDF passwords, local file paths, and document names may appear in helper arguments or diagnostic logs.
+
+Mitigation: Avoid passing protected PDF passwords through command-line helpers, disable diagnostic logging for sensitive documents, and limit paths to intended files.
+
+Risk: Linux desktop-session reuse can run the toolbox with an existing graphical session's authority.
+
+Mitigation: Use desktop-session reuse only when the session boundary is understood and the user has approved the local GUI launch.
+
+## Reference(s):
+
+- [PDFToolbox Command-Line API Reference](artifact/references/api-reference.md)
+- [PDFelement Launch Templates](artifact/references/launch-templates.md)
+- [PDFelement Product Page](https://pdf.wondershare.com/)
+- [ClawHub Skill Page](https://clawhub.ai/wondershare-boop/skills/pdfelement-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific PowerShell, bash, or URI launch commands for local PDFelement workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Build full-stack web and mobile apps from a text description, including project creation, feature planning, and background Quick Start builds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build full-stack web and mobile apps from a text description, with feature planning and Quick Start builds that return project and session context for monitoring.
 
-## Publisher: <br>
-[VersaceXcodes](https://clawhub.ai/user/VersaceXcodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[versacexcodes](https://clawhub.ai/user/versacexcodes)
 
-## Use Case: <br>
-Developers and builders use this skill to create, iterate, deploy, and publish web or Expo mobile app projects through LaunchPulse from natural-language requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run live deployment, app-store publishing, domain, database, billing, environment-file, and payment-secret workflows. <br>
-Mitigation: Require explicit user approval before those commands and review payload files, SQL, environment variables, and secret values before sending them. <br>
-Risk: The skill stores or accepts LaunchPulse authentication tokens and may handle credentials for related services. <br>
-Mitigation: Use only trusted API endpoints, protect the stored auth token, prefer scoped credentials where possible, and clear stored auth when access is no longer needed. <br>
+## Use Case:
 
+Developers and builders use this skill to create, iterate on, deploy, and publish LaunchPulse web or Expo mobile app projects from natural-language requests.
 
-## Reference(s): <br>
-- [LaunchPulse homepage](https://launchpulse.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/VersaceXcodes/mobile-app-builder-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns project and session context, preview URLs, feature counts, billing context when applicable, and deployment or publishing status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.1) <br>
+Risk: The skill exposes production, billing, deployment, app-store publishing, domain, database, and secret-handling actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands and account permissions before execution, especially for deploy, store-publish, domains, db, payments, storage, and env-files operations.
+
+Risk: Authentication tokens and service credentials can be supplied directly or stored locally for later use.
+
+Mitigation: Use only a trusted LaunchPulse account, avoid production credentials unless intended, and permission-harden or remove the stored auth file after use.
+
+Risk: The API base can be overridden, which could send requests or credentials to an unintended backend.
+
+Mitigation: Use --api-base or LAUNCHPULSE_API_BASE_URL only with a trusted local or hosted backend.
+
+## Reference(s):
+
+- [LaunchPulse Homepage](https://launchpulse.ai)
+- [ClawHub Skill Page](https://clawhub.ai/versacexcodes/skills/mobile-app-builder-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON status responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node and LaunchPulse authentication; may start hosted background builds and return project IDs, session IDs, billing links, and live preview or publishing status URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and script report 1.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

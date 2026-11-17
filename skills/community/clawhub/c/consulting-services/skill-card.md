@@ -1,40 +1,54 @@
-## Description: <br>
-该技能介绍如何通过咨询服务实现变现；当你计划从事或优化咨询服务时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+该技能介绍如何通过咨询服务实现变现；当你计划从事或优化咨询服务时调用。
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and small teams use this skill to plan a consulting-services business model, choose channels, define operating metrics, and organize a 30-day execution plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business guidance may be too generic or unsuitable for a user's market, budget, or legal obligations. <br>
-Mitigation: Treat the output as planning guidance, validate assumptions with current market data, and consult qualified legal, tax, or domain experts before acting. <br>
-Risk: Consulting-service launch plans can create compliance exposure through false advertising, fake engagement, infringement, unclear deliverables, or weak contracting. <br>
-Mitigation: Follow applicable laws and platform policies, avoid false claims or artificial traffic, confirm copyright permissions, and document deliverables, contracts, and invoices. <br>
+## Use Case:
 
+External users and teams use this skill for structured guidance on launching or improving a consulting-service business, including positioning, MVP validation, acquisition channels, delivery operations, metrics, and a 30-day execution plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/consulting-services) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with checklists and execution steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code installation, private access, or tool execution is requested by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Users may treat general monetization and compliance guidance as legal, tax, financial, or jurisdiction-specific advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review plans, claims, contracts, invoices, and compliance obligations with qualified professionals before relying on them for business decisions.
+
+Risk: Business guidance can become inaccurate for specific platforms, channels, or local regulations.
+
+Mitigation: Validate platform policies, advertising rules, and applicable laws for the intended market before launch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/consulting-services)
+- [Publisher profile](https://clawhub.ai/user/mike47512)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with checklists and execution steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces general consulting-business guidance; it does not run code or request unusual access.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

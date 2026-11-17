@@ -1,42 +1,55 @@
-## Description: <br>
-Provides a Tencent Cloud CLI reference for installing, configuring, and using TCCLI commands across common Tencent Cloud services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Tencent Cloud CLI reference for installing, configuring, and using TCCLI to manage Tencent Cloud services from the command line.
 
-## Publisher: <br>
-[sxhoio](https://clawhub.ai/user/sxhoio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxhoio](https://clawhub.ai/user/sxhoio)
 
-## Use Case: <br>
-Developers and cloud operators use this skill as a quick reference for Tencent Cloud CLI setup, command lookup, output formatting, and common operations on services such as CVM, Lighthouse, VPC, SSL, DNSPod, and monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tencent Cloud credentials or secret values can be exposed through shared terminals, logs, screenshots, or repositories. <br>
-Mitigation: Use least-privilege credentials and avoid displaying or committing secretId, secretKey, account details, and command output containing sensitive values. <br>
-Risk: Write commands can change live Tencent Cloud resources, including instances, DNS records, certificates, firewall rules, and networking configuration. <br>
-Mitigation: Verify the target account, region, resource IDs, domains, DNS values, certificate IDs, and command intent before executing write operations. <br>
+## Use Case:
 
+Cloud administrators and developers use this skill to install and configure TCCLI, look up common Tencent Cloud commands, and manage resources such as compute instances, networking, DNS, SSL certificates, monitoring, and databases.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sxhoio/tccli) <br>
-- [TCCLI official documentation](https://cloud.tencent.com/document/product/440/34011) <br>
-- [TencentCloud CLI GitHub repository](https://github.com/TencentCloud/tencentcloud-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with command examples and reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may affect live Tencent Cloud resources when users run them outside the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Cloud CLI commands can change or disrupt Tencent Cloud resources when run with privileged credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privileged Tencent Cloud credentials and review resource IDs, regions, domains, firewall rules, and certificate targets before executing state-changing commands.
+
+Risk: Credential setup examples involve Tencent Cloud secret IDs and keys that could be exposed on shared machines.
+
+Mitigation: Configure credentials only in trusted environments and avoid entering or storing secrets on shared systems.
+
+## Reference(s):
+
+- [TCCLI Official Documentation](https://cloud.tencent.com/document/product/440/34011)
+- [TencentCloud/tencentcloud-cli GitHub Repository](https://github.com/TencentCloud/tencentcloud-cli)
+- [ClawHub Skill Page](https://clawhub.ai/sxhoio/skills/tccli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command examples and lookup tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installation, credential configuration, output formatting, help commands, and service-specific command examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

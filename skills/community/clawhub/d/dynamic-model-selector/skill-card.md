@@ -1,41 +1,49 @@
-## Description: <br>
-Dynamically selects the best AI model for a task based on complexity, cost, and availability in GitHub Copilot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dynamic Model Selector recommends a GitHub Copilot model for a task based on query complexity, cost, and task type.
 
-## Publisher: <br>
-[mpelissari](https://clawhub.ai/user/mpelissari) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mpelissari](https://clawhub.ai/user/mpelissari)
 
-## Use Case: <br>
-Developers and engineers use this skill to classify a prompt or task and choose a GitHub Copilot model that balances task complexity, expected capability, and cost. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Model availability, pricing, and cost information may become outdated. <br>
-Mitigation: Review the model reference and current GitHub Copilot availability before relying on recommendations for production workflows. <br>
-Risk: Highly sensitive prompts passed as shell arguments may be retained in shell history. <br>
-Mitigation: Avoid passing highly sensitive content directly on the command line; redact sensitive details or use a safer input path before classification. <br>
-Risk: Heuristic classification can recommend a model that is not suitable for a specific high-impact task. <br>
-Mitigation: Treat recommendations as guidance and verify the model choice before using it for high-impact work. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Available GitHub Copilot Models - Detailed Specs](references/models.md) <br>
+## Use Case:
 
+Developers and agents use this skill to route GitHub Copilot tasks to a recommended model by balancing task complexity, coding needs, and cost sensitivity.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text recommendation with a model name, reason, and cost tier; Markdown guidance when used by an agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are heuristic and may become outdated as GitHub Copilot model availability changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Model and cost recommendations may be stale or inconsistent with current GitHub Copilot options.
+
+Mitigation: Verify recommendations against current GitHub Copilot model availability and pricing before relying on them for paid usage decisions.
+
+## Reference(s):
+
+- [Dynamic Model Selector on ClawHub](https://clawhub.ai/mpelissari/skills/dynamic-model-selector)
+- [Available GitHub Copilot Models - Detailed Specs](references/models.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with optional shell command invocation and plain-text recommendation output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are advisory and should be checked against current GitHub Copilot model availability and pricing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

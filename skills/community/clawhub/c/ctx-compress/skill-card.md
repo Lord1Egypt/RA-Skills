@@ -1,43 +1,56 @@
-## Description: <br>
-Intelligently compress context - conversations, code, logs - while preserving key information and reducing token usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligently compress context - conversations, code, logs. Preserve key information while reducing token usage. Auto-detects content type and applies optimal compression.
 
-## Publisher: <br>
-[besty0121](https://clawhub.ai/user/besty0121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[besty0121](https://clawhub.ai/user/besty0121)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and productivity agents use this skill to compress conversations, code, logs, and text into compact summaries that preserve decisions, issues, key code, and statistics for context-window management and cross-session handoff.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Compressed summaries are lossy and may omit details needed for later reasoning or replacement of original context.
+
+Mitigation: Review compressed text before using it to replace original conversation history or source material.
+
+Risk: Input files may contain secrets, sensitive logs, URLs, paths, or snippets that can appear in terminal output.
+
+Mitigation: Run the skill only on files intentionally selected for compression or analysis, and avoid highly sensitive inputs unless that output exposure is acceptable.
+
+Risk: Code compression can remove comments or docstrings that carry important operational or safety context.
+
+Mitigation: Use light mode for code when comments may be significant, and inspect the compressed result before relying on it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to compress long conversations, code, logs, and text into smaller summaries that preserve decisions, issues, key code, changes, and statistics for memory-efficient workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Compression is lossy, so summaries can omit context that later becomes important. <br>
-Mitigation: Keep source files or conversation history available for review, and use light compression when fidelity matters. <br>
-Risk: Code compression can remove comments or imports that carry important intent or setup details. <br>
-Mitigation: Review compressed code before using it for implementation decisions, and avoid aggressive mode for unfamiliar code. <br>
-Risk: Chat and log compression rely on pattern matching and can miss non-standard formats. <br>
-Mitigation: Set the content type explicitly when auto-detection is uncertain and verify extracted decisions, errors, and fixes. <br>
+**Output Format:** [Terminal text, Markdown sections, and JSON for structured extraction.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Context Compressor on ClawHub](https://clawhub.ai/besty0121/ctx-compress) <br>
-- [Publisher profile](https://clawhub.ai/user/besty0121) <br>
+**Other Properties Related to Output:** [Supports light, medium, and aggressive compression levels; reads user-selected files, inline text, or stdin.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text, Markdown sections, JSON extraction output, and CLI-oriented shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports light, medium, and aggressive compression levels; content type can be auto-detected or set to chat, code, log, or text.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Prevents agents from autonomously signing contracts, accepting binding terms, confirming subscriptions, or approving wallet signatures by requiring a term summary and explicit one-time user approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prevents autonomous signing of legal agreements or contracts by requiring a concise terms summary and explicit `/approve <id> allow-once` authorization before signing or formal confirmation.
 
-## Publisher: <br>
-[echoofzion](https://clawhub.ai/user/echoofzion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[echoofzion](https://clawhub.ai/user/echoofzion)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+OpenClaw users use Legal Guard to pause signature, contract, Terms of Service, subscription, CLA, and wallet-signing flows until the agent summarizes key terms and receives explicit user approval.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Permanent approvals could allow future legal or financial actions without per-action review.
+
+Mitigation: Prefer `/approve <id> allow-once`; use `allow-always` only when the host approval system is narrowly scoped and revocable.
+
+Risk: Summaries may omit or misunderstand important contract terms.
+
+Mitigation: Review the underlying document before approving and deny the action when terms are unclear or incomplete.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, and developers use Legal Guard to force human review before an agent takes actions that may create legal, financial, IP, subscription, or on-chain obligations. The skill is meant for contract signing, Terms of Service acceptance, free-trial checkout, CLA prompts, and wallet-signature workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Standing approvals for legal or financial actions may create unclear future authority. <br>
-Mitigation: Use allow-once for contracts, subscriptions, Terms of Service acceptance, CLAs, and wallet signatures; avoid allow-always unless the approval scope, duration, and revocation path are explicit. <br>
-Risk: The skill is an instruction-level guardrail, so effectiveness depends on the host agent honoring the protocol. <br>
-Mitigation: Review and scan the skill before deployment, and confirm the agent requires formal approval output before any signing, submission, or wallet-signature action. <br>
+**Output Format:** [Markdown text with approval commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub listing for Legal Guard](https://clawhub.ai/echoofzion/legal-guard) <br>
+**Other Properties Related to Output:** [Includes executive summaries, approval command prompts, approval IDs, and optional declination drafts.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with approval-command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries cover parties, commitments, duration, obligations, IP ownership, governing law, termination, dispute resolution, and red flags when the source material provides them.] <br>
+1.2.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

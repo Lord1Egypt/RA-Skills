@@ -1,42 +1,58 @@
-## Description: <br>
-Upload or download Agentcadia agent workspaces with metadata writeback and detailed reporting using explicit upload and download commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload or download Agentcadia agent drafts through deterministic command-style workflows for syncing local OpenClaw-style workspaces, writing back metadata, or pulling remote agent packages into a local workspace.
 
-## Publisher: <br>
-[ideaforceai-sys](https://clawhub.ai/user/ideaforceai-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ideaforceai-sys](https://clawhub.ai/user/ideaforceai-sys)
 
-## Use Case: <br>
-Developers and agent operators use this skill to move Agentcadia agent drafts between a local OpenClaw-style workspace and Agentcadia while preserving required metadata and delivery reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles bearer tokens and workspace files. <br>
-Mitigation: Install only when the Agentcadia origin is trusted, use HTTPS origins, and avoid running uploads from workspaces that contain secrets or private notes. <br>
-Risk: Downloaded packages may place files into a local workspace and destination handling requires review. <br>
-Mitigation: Download only from trusted origins and review reported placed files and conflicts before approving overwrites or using the downloaded workspace. <br>
+## Use Case:
 
+Developers and operators use this skill to move Agentcadia agent workspaces between a local OpenClaw-style workspace and Agentcadia. It supports upload tasks that require metadata writeback and download tasks that place or extract a remote agent package locally.
 
-## Reference(s): <br>
-- [OpenClaw Runtime Integration](references/openclaw-runtime.md) <br>
-- [Agentcadia](https://agentcadia.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ideaforceai-sys/agentcadia-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or place local workspace files, package skill directories, call Agentcadia APIs, and report upload or download results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Uploads can send unintended workspace content to Agentcadia if the local workspace contains secrets or unrelated files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run uploads from a clean workspace that contains only intended files, and remove secrets from root markdown files and skill directories before use.
+
+Risk: Downloads place remote content and filenames into the local workspace, and overwrite mode can replace existing files.
+
+Mitigation: Use downloads only from a trusted Agentcadia origin and task, inspect the destination first, and enable overwrite only after reviewing the files that may be replaced.
+
+Risk: Share images, captions, links, and runtime actions returned by the remote service may be untrusted remote content.
+
+Mitigation: Review remote owner-facing content before relaying it, expose only public detail links or public share image URLs, and avoid leaking upload tokens or internal upload URLs.
+
+## Reference(s):
+
+- [OpenClaw Runtime Integration](references/openclaw-runtime.md)
+- [Agentcadia](https://agentcadia.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Upload reports include metadata writeback status, uploaded files, share-image delivery requirements, and owner-facing message guidance; download reports include placed files, skipped conflicts, payload type, and overwrite status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

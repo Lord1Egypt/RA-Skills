@@ -1,0 +1,13 @@
+{
+  "type": "weekly",
+  "title": "周报 — {date_range}",
+  "template": "weekly_report",
+  "sections": [
+    {"key": "summary", "title": "📊 本周摘要", "type": "stats_cards"},
+    {"key": "chart_actions", "title": "🔧 命令使用分布", "type": "echarts_pie"},
+    {"key": "chart_daily", "title": "📈 每日调用趋势", "type": "echarts_line"},
+    {"key": "engine_health", "title": "⚙️ 引擎健康度", "type": "table"},
+    {"key": "top_actions", "title": "🏆 高频命令 TOP5", "type": "table"}
+  ],
+  "footer": "由 WPS Office 全家桶 v5.4 自动生成 · {generated_at}"
+}

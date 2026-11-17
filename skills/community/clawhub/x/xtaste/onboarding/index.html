@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="xtaste-token" content="__XTASTE_TOKEN__">
+<title>xtaste</title>
+<script>
+  // Resolve theme before first paint: dark by default, user can pick dark / light / system.
+  (function () {
+    var pref = localStorage.getItem("xtaste-theme") || "dark";
+    var mode = pref === "system" ? (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark") : pref;
+    document.documentElement.dataset.theme = mode;
+    document.documentElement.dataset.pref = pref;
+  })();
+</script>
+<style>
+  /* Chrome stays deliberately neutral so the page itself does not bias the answers. */
+  :root { color-scheme: light dark; }
+  [data-theme="dark"]  { --bg:#121214; --panel:#1b1b1f; --line:#2c2c33; --text:#ececf0; --muted:#9a9aa5; --hi:#ffffff; --chip:#26262c; }
+  [data-theme="light"] { --bg:#f3f3f5; --panel:#ffffff; --line:#dedee3; --text:#1d1d22; --muted:#6b6b76; --hi:#000000; --chip:#ececf0; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:15px/1.6 -apple-system, "Helvetica Neue", "PingFang SC", sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 20px 60px; }
+  header { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px; }
+  header .tools { display:flex; gap:8px; }
+  h1 { font-size:20px; margin:0; font-weight:600; }
+  h2 { font-size:18px; margin:0 0 6px; font-weight:600; }
+  .muted { color:var(--muted); }
+  .seg { display:inline-flex; border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  .seg button { border:0; background:transparent; color:var(--muted); padding:5px 10px; cursor:pointer; font:inherit; font-size:13px; }
+  .seg button[aria-pressed="true"] { background:var(--chip); color:var(--text); }
+  .bar { height:4px; background:var(--line); border-radius:2px; overflow:hidden; margin:6px 0 20px; }
+  .bar i { display:block; height:100%; background:var(--muted); width:0; transition:width .2s; }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:22px; }
+  .pair { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0; }
+  .opt { border:1px solid var(--line); border-radius:10px; padding:12px; min-height:120px; position:relative; }
+  .opt .tag { position:absolute; top:8px; left:10px; font-size:12px; color:var(--muted); font-weight:600; z-index:2; }
+  .opt .body { padding-top:16px; }
+  .opt pre { margin:0; font:12.5px/1.55 ui-monospace, Menlo, monospace; white-space:pre-wrap; }
+  .opt table { border-collapse:collapse; font-size:14px; } .opt td, .opt th { border:1px solid var(--line); padding:3px 8px; }
+  .retest { display:inline-block; font-size:12px; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:0 8px; margin-left:8px; vertical-align:middle; font-weight:400; }
+  .scale { display:grid; grid-template-columns:repeat(5, 1fr); gap:8px; }
+  .scale button, .btn { border:1px solid var(--line); background:var(--chip); color:var(--text); border-radius:8px; padding:10px 6px; font:inherit; cursor:pointer; }
+  .scale button:hover, .btn:hover { border-color:var(--muted); }
+  .scale kbd { display:block; font-size:11px; color:var(--muted); }
+  .btn.primary { background:var(--text); color:var(--bg); border-color:var(--text); padding:10px 22px; }
+  .nav { display:flex; justify-content:space-between; margin-top:14px; }
+  .link { background:none; border:0; color:var(--muted); cursor:pointer; font:inherit; padding:0; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 18px; }
+  .chip { border:1px solid var(--line); background:var(--chip); color:var(--text); border-radius:999px; padding:6px 12px; cursor:pointer; font:inherit; font-size:14px; }
+  .chip[data-s="love"] { outline:2px solid #3fb950; } .chip[data-s="love"]::before { content:"♥ "; color:#3fb950; }
+  .chip[data-s="hate"] { outline:2px solid #f85149; text-decoration:line-through; } .chip[data-s="hate"]::before { content:"✕ "; color:#f85149; }
+  textarea, select { width:100%; background:var(--bg); color:var(--text); border:1px solid var(--line); border-radius:8px; padding:10px; font:inherit; }
+  select { width:auto; padding:6px 8px; }
+  .axis { display:grid; grid-template-columns:130px 1fr 130px; gap:10px; align-items:center; font-size:13px; margin:4px 0; }
+  .axis .track { height:6px; background:var(--line); border-radius:3px; position:relative; }
+  .axis .dot { position:absolute; top:-4px; width:14px; height:14px; border-radius:50%; background:var(--text); transform:translateX(-50%); }
+  .axis span:last-child { text-align:right; }
+  code { background:var(--chip); padding:1px 6px; border-radius:4px; font-size:13px; }
+  @media (max-width: 640px) { .pair { grid-template-columns:1fr; } .scale { grid-template-columns:repeat(5,1fr); font-size:13px; } }
+
+  /* Sample cards: every visual question renders two of these differing in exactly one parameter. */
+  .stage { height:230px; border-radius:8px; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative; }
+  .stage .blob { position:absolute; border-radius:50%; filter:blur(28px); opacity:.85; }
+  .card { position:relative; width:84%; }
+  .card .row { display:flex; justify-content:space-between; align-items:baseline; }
+  .card .stats { display:grid; }
+  .card .cta { display:inline-block; margin-top:10px; font-size:12px; padding:6px 12px; }
+  .card .badge { font-size:10px; padding:1px 6px; margin-left:6px; vertical-align:middle; }
+  .moving .num { animation: pulse 1.6s ease-in-out infinite; display:inline-block; }
+  .moving { animation: float 3s ease-in-out infinite; }
+  .moving .cta { background-size:200% 100% !important; animation: shimmer 2s linear infinite; }
+  @keyframes float { 50% { transform: translateY(-6px); } }
+  @keyframes pulse { 50% { transform: scale(1.08); } }
+  @keyframes shimmer { to { background-position: -200% 0; } }
+  @media (prefers-reduced-motion: reduce) { .moving, .moving .num, .moving .cta { animation: none; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>xtaste</h1>
+    <div class="tools">
+      <div class="seg" id="lang" role="group" aria-label="Language"><button data-v="zh">中</button><button data-v="en">EN</button></div>
+      <div class="seg" id="theme" role="group" aria-label="Theme"><button data-v="dark"></button><button data-v="light"></button><button data-v="system"></button></div>
+    </div>
+  </header>
+  <div id="app"></div>
+</main>
+
+<script>
+"use strict";
+
+// ------------------------------------------------------------ language
+
+let LANG = "en";
+const L = x => (x && typeof x === "object" && "zh" in x) ? x[LANG] : (typeof x === "function" ? x() : x);
+
+const UI = {
+  title:      { zh: "xtaste · 你的品味", en: "xtaste · your taste" },
+  dark:       { zh: "暗", en: "Dark" }, light: { zh: "亮", en: "Light" }, system: { zh: "跟随系统", en: "System" },
+  introH:     { zh: "一次记住你的品味", en: "Remember your taste once" },
+  intro1:     { zh: n => `共 ${n} 道二选一，约 5 分钟，覆盖视觉、文案、命名、代码、做事方式和产品取舍。每题两边只差一个点，凭第一感觉选就好；没有对错，「都行」也是有效答案。最后可以选几个你喜欢或讨厌的参照物。`,
+                en: n => `${n} quick either-or questions, about 5 minutes, covering visual design, writing, naming, code, way of working and product trade-offs. The two sides of each question differ in just one thing — go with your gut. There are no wrong answers, and "Either" is a valid one. At the end you can pick works and styles you love or hate.` },
+  intro2:     { zh: "最后 3 题会换边重问，用来检验一致性，照第一感觉答就好。", en: "The last 3 questions repeat earlier ones with sides swapped, to check consistency — just answer by feel again." },
+  intro3:     { zh: "结果只保存在你自己的电脑上。之后你在对话里的每次反馈，都会让 AI 对你的品味判断得更准。", en: "Results stay on your own computer. Every reaction you give in later conversations makes the AI's read of your taste more accurate." },
+  keys:       { zh: "快捷键：1–5 作答，← 返回上一题。", en: "Shortcuts: 1–5 to answer, ← to go back." },
+  start:      { zh: "开始", en: "Start" },
+  left:       { zh: "左", en: "Left" }, right: { zh: "右", en: "Right" },
+  retest:     { zh: "复测", en: "Retest" },
+  back:       { zh: "← 上一题", en: "← Back" },
+  scale:      { zh: ["明显左边", "偏左边", "都行", "偏右边", "明显右边"], en: ["Clearly left", "Lean left", "Either", "Lean right", "Clearly right"] },
+  anchorsH:   { zh: "参照物（可选，但很有用）", en: "References (optional, but very useful)" },
+  anchorsP:   { zh: "点一下 = 喜欢，再点 = 讨厌，第三下取消。具体的参照物往往比抽象描述更能说清品味。", en: "Click once = love, twice = hate, three times = clear. Concrete references often describe taste better than abstract words." },
+  extraP:     { zh: "其他你特别喜欢或讨厌的作品、品牌、产品、作者——每行一个，前面写 <code>+</code> 或 <code>-</code>", en: "Anything else you particularly love or hate — works, brands, products, authors. One per line, starting with <code>+</code> or <code>-</code>" },
+  extraPh:    { zh: "+ 无印良品\n- 弹窗广告", en: "+ Muji\n- Pop-up ads" },
+  toQs:       { zh: "← 回到题目", en: "← Back to questions" },
+  done:       { zh: "完成", en: "Finish" },
+  saving:     { zh: "正在保存…", en: "Saving…" },
+  resultH:    { zh: "你的基础品味", en: "Your baseline taste" },
+  saved:      { zh: (n, p) => `已保存 ${n} 条信号到 <code>${p}</code>，可以关闭这个页面了。`, en: (n, p) => `Saved ${n} signals to <code>${p}</code>. You can close this page.` },
+  failed:     { zh: e => `保存失败：${e}。`, en: e => `Could not save: ${e}.` },
+  offline:    { zh: "这是离线打开的页面，没法直接保存。", en: "This page was opened offline, so it cannot save directly." },
+  download:   { zh: "下载结果后运行 <code>python3 xtaste.py import xtaste-result.json</code>。", en: "Download the result and run <code>python3 xtaste.py import xtaste-result.json</code>." },
+  downloadB:  { zh: "下载结果", en: "Download result" },
+  after:      { zh: "这只是起点。之后你在对话里的每次「喜欢 / 不要 / 改成…」，AI 都会记下来校正；它还会记录自己事先猜得准不准。", en: "This is only the start. Every \"I like this / not that / change it to…\" in later conversations gets recorded, and the AI also tracks how often it guessed you right beforehand." },
+};
+const DOMAIN_NAMES = {
+  visual: { zh: "视觉设计", en: "Visual design" }, writing: { zh: "文案表达", en: "Writing" }, naming: { zh: "命名", en: "Naming" },
+  code: { zh: "代码风格", en: "Code style" }, work: { zh: "做事方式", en: "Way of working" }, product: { zh: "产品取舍", en: "Product trade-offs" },
+};
+
+// ------------------------------------------------------------ sample cards
+
+const BASE = { density:"mid", ornament:"mid", depth:"mid", color:"mid", shape:"mid", type:"sans", motion:false, tone:"mid" };
+
+const COPY = {
+  zh: {
+    serious: { title: "2026 Q3 营收概览", sub: "单位：万元 · 截至 9 月 30 日", cta: "查看明细", labels: ["营收", "毛利", "客户", "留存", "客单", "退款"] },
+    mid:     { title: "本周进度", sub: "更新于今天 09:30", cta: "查看详情", labels: ["完成", "进行中", "待办", "逾期", "评论", "成员"] },
+    playful: { title: "今天也超棒 🎉", sub: "又往前冲了一大步！", cta: "继续冲鸭 →", labels: ["搞定", "在路上", "排队中", "拖延了", "点赞", "伙伴"] },
+    money: "¥146",
+  },
+  en: {
+    serious: { title: "Q3 2026 Revenue", sub: "In $k · as of Sep 30", cta: "View breakdown", labels: ["Revenue", "Margin", "Clients", "Retention", "AOV", "Refunds"] },
+    mid:     { title: "This week", sub: "Updated today 09:30", cta: "View details", labels: ["Done", "In progress", "To do", "Overdue", "Comments", "Members"] },
+    playful: { title: "Crushing it today 🎉", sub: "Another big step forward!", cta: "Keep going →", labels: ["Nailed", "On the way", "Queued", "Snoozed", "Likes", "Pals"] },
+    money: "$146",
+  },
+};
+
+function card(p) {
+  const dark = p.theme === "dark";
+  const fg = dark ? "#f1f2f5" : "#1c1d22";
+  const sub = dark ? "rgba(241,242,245,.62)" : "rgba(28,29,34,.6)";
+  const accent = { muted: dark ? "#9aa7b4" : "#5f6f7e", mid: "#4f7cff", vivid: "#ff2d78" }[p.color];
+  const statColors = p.color === "vivid" ? ["#ff2d78", "#00b8ff", "#ffb300", "#00d18b", "#a64dff", "#ff6a00"] : [fg, fg, fg, fg, fg, fg];
+  const radius = { sharp: 0, mid: 10, round: 24 }[p.shape];
+  const btnRadius = { sharp: 0, mid: 6, round: 999 }[p.shape];
+  const font = p.type === "serif" ? 'Georgia, "Songti SC", "Noto Serif SC", serif' : '-apple-system, "Helvetica Neue", "PingFang SC", sans-serif';
+  const pad = { airy: 26, mid: 16, dense: 9 }[p.density];
+
+  let stageBg = dark ? "#16181d" : "#eef0f4", blobs = "";
+  let cardBg = dark ? "#23262d" : "#ffffff", border = dark ? "1px solid #333842" : "1px solid #dfe2e8", shadow = "none", filter = "";
+  if (p.depth === "mid") shadow = dark ? "0 6px 18px rgba(0,0,0,.45)" : "0 6px 18px rgba(30,40,60,.12)";
+  if (p.depth === "layered") {
+    const cs = dark ? ["#2c5a6e", "#4b3a7a", "#7a5a2c"] : ["#9fd0ff", "#d7b8ff", "#ffc9a8"];
+    blobs = cs.map((c, i) => `<div class="blob" style="background:${c};width:${120 + i * 30}px;height:${120 + i * 30}px;left:${[5, 55, 30][i]}%;top:${[10, 45, -20][i]}%"></div>`).join("");
+    cardBg = dark ? "rgba(128,128,128,.22)" : "rgba(255,255,255,.42)";
+    filter = "backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);";
+    border = dark ? "1px solid rgba(255,255,255,.16)" : "1px solid rgba(255,255,255,.7)";
+    shadow = dark ? "0 14px 34px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.18)" : "0 14px 34px rgba(60,80,120,.18), inset 0 1px 0 #fff";
+  }
+  if (p.depth === "flat") { border = dark ? "1px solid #2b2e35" : "1px solid #e4e6ea"; }
+  if (p.ornament === "rich") {
+    stageBg += `;background-image:radial-gradient(${dark ? "rgba(255,255,255,.07)" : "rgba(0,0,0,.07)"} 1px, transparent 1px);background-size:12px 12px`;
+  }
+
+  const copy = COPY[LANG][p.tone];
+  const values = ["1,284", "37%", "86", "92%", COPY[LANG].money, "12"];
+  const count = { airy: 1, mid: 3, dense: 6 }[p.density];
+  const statSize = { airy: 34, mid: 20, dense: 13 }[p.density];
+  const icons = ["◆", "▲", "●", "■", "★", "✚"];
+  const stats = Array.from({ length: count }, (_, i) => `
+    <div style="padding:${p.density === "dense" ? 2 : 4}px 0">
+      <div class="num" style="font-size:${statSize}px;font-weight:600;color:${statColors[i]}">${p.ornament === "rich" ? `<span style="font-size:.6em;color:${accent};margin-right:3px">${icons[i]}</span>` : ""}${values[i]}</div>
+      <div style="font-size:${p.density === "dense" ? 10 : 11}px;color:${sub}">${copy.labels[i]}</div>
+    </div>`).join("");
+  const badge = p.ornament === "rich" ? `<span class="badge" style="background:${accent};color:#fff;border-radius:${btnRadius}px">NEW</span>` : "";
+  const divider = p.ornament === "rich" ? `<div style="height:2px;margin:${pad / 2}px 0;background:repeating-linear-gradient(90deg,${accent} 0 6px,transparent 6px 10px);opacity:.6"></div>` : `<div style="height:${pad / 2}px"></div>`;
+  const ctaBg = p.motion ? `linear-gradient(90deg,${accent},${accent}cc,${accent})` : accent;
+  const cta = p.ornament === "plain"
+    ? `<span class="cta" style="color:${accent};padding-left:0;border-radius:${btnRadius}px">${copy.cta}</span>`
+    : `<span class="cta" style="background:${ctaBg};color:#fff;border-radius:${btnRadius}px">${copy.cta}</span>`;
+
+  return `<div class="stage" style="background:${stageBg}">${blobs}
+    <div class="card${p.motion ? " moving" : ""}" style="background:${cardBg};${filter}border:${border};box-shadow:${shadow};border-radius:${radius}px;padding:${pad}px;color:${fg};font-family:${font}">
+      <div class="row"><div style="font-weight:600;font-size:${p.density === "dense" ? 13 : 15}px">${copy.title}${badge}</div></div>
+      <div style="font-size:11px;color:${sub}">${copy.sub}</div>
+      ${divider}
+      <div class="stats" style="grid-template-columns:repeat(${count === 6 ? 3 : count}, 1fr);gap:${p.density === "dense" ? 4 : 8}px">${stats}</div>
+      ${cta}
+    </div></div>`;
+}
+
+const VISUAL_PROMPT = { zh: "哪张卡片更合你的眼缘？", en: "Which card do you like better?" };
+
+// One parameter flips; everything else stays at the neutral base. Themes alternate to avoid a theme bias.
+function vq(id, axis, param, left, right, theme) {
+  const t = theme || "light";
+  return {
+    id, axis, kind: "visual", prompt: VISUAL_PROMPT,
+    left:  () => card({ ...BASE, theme: t, [param]: left }),
+    right: () => card({ ...BASE, theme: t, [param]: right }),
+  };
+}
+
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const tq = (id, axis, prompt, left, right, extra) => ({ id, axis, kind: "text", prompt, left, right, ...extra });
+const cq = (id, axis, prompt, left, right) => ({ id, axis, kind: "code", prompt, left: `<pre>${esc(left)}</pre>`, right: `<pre>${esc(right)}</pre>` });
+
+// left = the axis's left pole (value -1), right = right pole (value +1); display order is shuffled.
+const QUESTIONS = [
+  { id: "v-theme", axis: "visual.theme", kind: "visual", prompt: VISUAL_PROMPT, left: () => card({ ...BASE, theme: "light" }), right: () => card({ ...BASE, theme: "dark" }) },
+  vq("v-density", "visual.density", "density", "airy", "dense", "dark"),
+  vq("v-ornament", "visual.ornament", "ornament", "plain", "rich", "light"),
+  vq("v-depth", "visual.depth", "depth", "flat", "layered", "dark"),
+  vq("v-color", "visual.color", "color", "muted", "vivid", "light"),
+  vq("v-shape", "visual.shape", "shape", "sharp", "round", "dark"),
+  vq("v-type", "visual.type", "type", "sans", "serif", "light"),
+  vq("v-motion", "visual.motion", "motion", false, true, "dark"),
+  vq("v-tone", "visual.tone", "tone", "serious", "playful", "light"),
+
+  tq("w-length", "writing.length",
+    { zh: "你问「这个方案能上线吗？」，更想收到哪种回答？", en: "You ask \"Can this ship?\" Which answer would you rather get?" },
+    { zh: "能上线。剩下两处小风险已记在清单里，不阻塞。", en: "Yes. Two minor risks are logged; neither blocks the release." },
+    { zh: "可以上线。我从三个方面确认过：功能上，全部 42 个用例通过，包括上周补的边界情况；性能上，压测峰值比目标高 30%，余量充足；风险上，还有两处小问题——日志格式不统一、一个低频接口偶发超时——都已记在清单里，评估后不阻塞上线，计划下个迭代处理。",
+      en: "Yes, it can ship. I checked three things. Functionality: all 42 test cases pass, including the edge cases added last week. Performance: the load-test peak is 30% above target, so there is plenty of headroom. Risk: two minor issues remain — inconsistent log formats and an occasional timeout on a rarely used endpoint. Both are logged, assessed as non-blocking, and scheduled for the next iteration." }),
+  tq("w-order", "writing.order",
+    { zh: "同一份汇报的两种写法，你更喜欢？", en: "Two ways to write the same update. Which do you prefer?" },
+    { zh: "<b>结论：建议换供应商。</b><br>依据：现供应商近三月延迟交付 4 次；新供应商报价低 8%，试单质量合格。", en: "<b>Recommendation: switch suppliers.</b><br>Why: the current supplier was late 4 times in three months; the new one quotes 8% less and passed the trial order." },
+    { zh: "近三个月我们持续跟踪了供应情况。现供应商延迟交付 4 次，影响了两次上线；同时我们试单了一家新供应商，质量合格，报价还低 8%。<b>综合来看，建议更换供应商。</b>", en: "Over the past three months we tracked supply closely. The current supplier was late 4 times, delaying two launches. Meanwhile we ran a trial order with a new supplier: quality passed and the quote is 8% lower. <b>Taking all this together, we recommend switching.</b>" }),
+  tq("w-tone", "writing.tone",
+    { zh: "AI 告诉你任务完成时，你更喜欢哪种语气？", en: "When the AI tells you a task is done, which tone do you prefer?" },
+    { zh: "测试已全部通过，可以合并。", en: "All tests pass. Ready to merge." },
+    { zh: "好消息！测试全过啦 🎉 随时可以合并～", en: "Great news! Every test passed 🎉 Merge whenever you like!" }),
+  tq("w-format", "writing.format",
+    { zh: "对比两款手机，你更想看哪种呈现？", en: "Comparing two phones — which presentation do you want?" },
+    { zh: "A 机屏幕更好、续航略短，适合重度看视频；B 机续航强、拍照一般，价格便宜 600 元，适合在意续航和预算的人。", en: "Phone A has the better screen but slightly shorter battery life — good for heavy video watching. Phone B lasts longer and has an average camera, and costs $80 less — good if battery and budget matter most." },
+    { zh: "<table><tr><th></th><th>A 机</th><th>B 机</th></tr><tr><td>屏幕</td><td>更好</td><td>一般</td></tr><tr><td>续航</td><td>略短</td><td>强</td></tr><tr><td>价格</td><td>贵 600</td><td>便宜</td></tr></table>",
+      en: "<table><tr><th></th><th>Phone A</th><th>Phone B</th></tr><tr><td>Screen</td><td>Better</td><td>Average</td></tr><tr><td>Battery</td><td>Shorter</td><td>Strong</td></tr><tr><td>Price</td><td>+$80</td><td>Cheaper</td></tr></table>" }),
+  tq("w-jargon", "writing.jargon",
+    { zh: "说明一项优化效果，你更喜欢？", en: "Describing a performance win — which do you prefer?" },
+    { zh: "页面打开速度快了一倍，用户基本感觉不到等待。", en: "Pages now open twice as fast; users barely notice any wait." },
+    { zh: "P95 首屏 TTFB 从 800ms 降至 400ms，LCP 达到 Good 档。", en: "P95 TTFB dropped from 800 ms to 400 ms; LCP is now in the Good band." }),
+  tq("w-hedging", "writing.hedging",
+    { zh: "你让 AI 评价你的方案，更想要哪种回答？", en: "You ask the AI to review your plan. Which answer do you want?" },
+    { zh: "这个方案不行：数据量上来后单机撑不住。换方案 B。", en: "This won't work: a single machine can't handle the data once it grows. Go with plan B." },
+    { zh: "这个方案在数据量较大时可能会遇到一些瓶颈，或许可以考虑方案 B，当然也要结合实际情况来看。", en: "This plan might run into some bottlenecks at larger data volumes, so plan B could be worth considering — though of course it depends on your situation." }),
+
+  tq("n-length", "naming.length",
+    { zh: "给一款记账 App 起名，你更喜欢哪组？", en: "Naming a budgeting app — which set do you prefer?" },
+    { zh: "<b>小账 · 记记 · 简账</b>", en: "<b>Tally · Penny · Ledgr</b>" },
+    { zh: "<b>个人智能记账助手 · 家庭收支管家</b>", en: "<b>Personal Smart Budget Assistant · Family Expense Manager</b>" }),
+  // Only meaningful when the user's own language is not English.
+  tq("n-lang", "naming.lang", { zh: "同一个产品，你更喜欢哪组名字？", en: "" },
+    { zh: "<b>拾账 · 简记 · 账本</b>", en: "" }, { zh: "<b>Ledgr · Pocket · Tally</b>", en: "" }, { only: "zh" }),
+  tq("n-style", "naming.style",
+    { zh: "给一款笔记 App 起名，你更喜欢哪组？", en: "Naming a notes app — which set do you prefer?" },
+    { zh: "<b>快记 · 笔记本 · 随手记</b>", en: "<b>QuickNote · Notebook · Jotter</b>" },
+    { zh: "<b>拾光 · 星屑 · 萤火</b>", en: "<b>Ember · Stardust · Firefly</b>" }),
+
+  cq("c-abstraction", "code.abstraction", { zh: "实现「按类型发通知」，你更喜欢哪种？", en: "Implementing \"send a notification by type\" — which do you prefer?" },
+`def notify(user, kind, msg):
+    if kind == "email":
+        send_email(user.email, msg)
+    elif kind == "sms":
+        send_sms(user.phone, msg)`,
+`class Notifier(Protocol):
+    def send(self, user, msg): ...
+
+NOTIFIERS: dict[str, Notifier] = {
+    "email": EmailNotifier(),
+    "sms": SmsNotifier(),
+}
+
+def notify(user, kind, msg):
+    NOTIFIERS[kind].send(user, msg)`),
+  cq("c-comments", "code.comments", { zh: "同一段代码，你更喜欢哪种注释量？", en: "Same code — which amount of commenting do you prefer?" },
+`def retry(fn, times=3):
+    for i in range(times):
+        try:
+            return fn()
+        except TimeoutError:
+            time.sleep(2 ** i)
+    raise TimeoutError`,
+`def retry(fn, times=3):
+    """Call fn, retrying on timeout with exponential backoff.
+
+    Args:
+        fn: zero-arg callable to invoke.
+        times: maximum number of attempts.
+    """
+    for i in range(times):
+        try:
+            return fn()  # success: return immediately
+        except TimeoutError:
+            time.sleep(2 ** i)  # wait 1s, 2s, 4s ...
+    raise TimeoutError  # all attempts failed`),
+  cq("c-deps", "code.deps", { zh: "拉取并校验一个 JSON 接口，你更喜欢？", en: "Fetching and validating a JSON API — which do you prefer?" },
+`import json, urllib.request
+
+def fetch(url):
+    with urllib.request.urlopen(url, timeout=10) as r:
+        data = json.load(r)
+    assert isinstance(data["id"], int)
+    return data`,
+`import httpx
+from pydantic import BaseModel
+
+class Item(BaseModel):
+    id: int
+
+def fetch(url) -> Item:
+    return Item.model_validate(httpx.get(url, timeout=10).json())`),
+  cq("c-paradigm", "code.paradigm", { zh: "统计已付款订单总额，你更喜欢？", en: "Summing paid orders — which do you prefer?" },
+`total = 0
+for order in orders:
+    if order.paid:
+        total += order.price`,
+`total = sum(o.price for o in orders if o.paid)`),
+
+  tq("k-autonomy", "work.autonomy",
+    { zh: "你让 AI「给项目加个导出功能」，你更希望它：", en: "You ask the AI to \"add an export feature\". You'd rather it:" },
+    { zh: "先问你 3 个问题（导出格式？范围？放在哪个入口？）再动手。", en: "Asks you 3 questions first (which format? what scope? where in the UI?) before starting." },
+    { zh: "按最常见的做法直接做完，最后告诉你它做了哪些假设、怎么改。", en: "Builds it the most common way, then tells you what it assumed and how to change it." }),
+  tq("k-scope", "work.scope",
+    { zh: "同一个需求，你更希望第一版是：", en: "For the same request, you'd rather the first version be:" },
+    { zh: "先只做 CSV 导出，跑通、用起来再说。", en: "CSV export only — get it working and in use first." },
+    { zh: "CSV / Excel / PDF 加定时导出，一次做齐。", en: "CSV, Excel and PDF plus scheduled exports, all at once." }),
+  tq("k-options", "work.options",
+    { zh: "需要做技术选型时，你更希望 AI：", en: "When a technical choice is needed, you'd rather the AI:" },
+    { zh: "直接推荐一个，并说清楚理由。", en: "Recommends one and explains why." },
+    { zh: "列出 3 个方案的对比表，由你来选。", en: "Lays out 3 options in a comparison table for you to choose." }),
+  tq("k-risk", "work.risk",
+    { zh: "解决同一个问题，你更倾向：", en: "To solve the same problem, you lean towards:" },
+    { zh: "用大家都在用的成熟方案，稳。", en: "The proven option everyone uses. Safe." },
+    { zh: "试一个新出的、可能更好的方案。", en: "A newer option that might be better." }),
+
+  tq("p-features", "product.features", { zh: "两款同类工具，你更想用哪款？", en: "Two tools for the same job — which would you use?" },
+    { zh: "只有三个功能，每个都做到极致。", en: "Only three features, each one perfected." }, { zh: "覆盖所有场景的一站式工具。", en: "An all-in-one tool that covers every case." }),
+  tq("p-novelty", "product.novelty", { zh: "你更欣赏哪种设计？", en: "Which kind of design do you admire more?" },
+    { zh: "十年后再看也不过时的经典设计。", en: "Classic design that still looks right ten years later." }, { zh: "走在潮流前沿、第一眼就惊艳的设计。", en: "Cutting-edge design that wows at first sight." }),
+  tq("p-gamify", "product.gamify", { zh: "一款习惯养成 App，你更喜欢？", en: "A habit-tracking app — which do you prefer?" },
+    { zh: "打开即用，没有积分和徽章打扰。", en: "Open and use — no points or badges." }, { zh: "连续打卡、经验值升级、成就徽章。", en: "Streaks, XP levels and achievement badges." }),
+];
+
+// Asked again near the end with sides swapped; disagreement lowers the weight of the whole quiz.
+const REPEATS = ["v-density", "w-length", "k-autonomy"];
+
+const ANCHORS = {
+  visual: { zh: ["Apple 液态玻璃", "visionOS 空间玻璃", "Linear 暗色精密", "Notion 纸感极简", "Stripe 渐变", "Braun / Dieter Rams 功能主义", "Material Design 3", "微软 Fluent", "新粗野主义 Brutalism", "日式杂志排版", "赛博 HUD", "Bento 便当格"],
+            en: ["Apple Liquid Glass", "visionOS spatial glass", "Linear dark precision", "Notion paper minimalism", "Stripe gradients", "Braun / Dieter Rams functionalism", "Material Design 3", "Microsoft Fluent", "Neo-brutalism", "Japanese magazine layout", "Sci-fi HUD", "Bento grid"] },
+  writing: { zh: ["《经济学人》式简练", "苹果发布会文案", "学术论文式严谨", "小红书种草体", "公文体", "知乎长答"],
+             en: ["The Economist-style brevity", "Apple keynote copy", "Academic-paper rigour", "Lifestyle-influencer voice", "Corporate memo style", "Long-form Q&A essays"] },
+  product: { zh: ["微信", "Notion", "Linear", "Things 3", "Obsidian", "Figma", "抖音", "多邻国 Duolingo"],
+             en: ["WeChat", "Notion", "Linear", "Things 3", "Obsidian", "Figma", "TikTok", "Duolingo"] },
+};
+
+// ------------------------------------------------------------ flow
+
+const state = { i: 0, order: [], answers: {}, anchors: {}, extra: "", extraDomain: "visual", screen: null };
+const app = document.getElementById("app");
+let AXIS_LABELS = {};
+
+function buildOrder() {
+  const seq = QUESTIONS.filter(q => !q.only || q.only === LANG).map(q => ({ q, flip: Math.random() < 0.5 }));
+  REPEATS.forEach(id => {
+    const first = seq.find(s => s.q.id === id);
+    seq.push({ q: first.q, flip: !first.flip, repeatOf: id });
+  });
+  return seq;
+}
+
+function show(screen) { state.screen = screen; screen(); }
+
+function intro() {
+  const n = QUESTIONS.filter(q => !q.only || q.only === LANG).length + REPEATS.length;
+  app.innerHTML = `<div class="panel">
+    <h2>${L(UI.introH)}</h2>
+    <p class="muted">${L(UI.intro1)(n)}</p>
+    <p class="muted">${L(UI.intro2)}</p>
+    <p class="muted">${L(UI.intro3)}</p>
+    <p class="muted">${L(UI.keys)}</p>
+    <button class="btn primary" id="go">${L(UI.start)}</button></div>`;
+  document.getElementById("go").onclick = () => { state.order = buildOrder(); state.i = 0; show(question); };
+}
+
+function question() {
+  if (state.i >= state.order.length) return show(anchorsStep);
+  const s = state.order[state.i];
+  const [l, r] = (s.flip ? [s.q.right, s.q.left] : [s.q.left, s.q.right]).map(L);
+  const pct = Math.round(state.i / state.order.length * 100);
+  const retest = s.repeatOf ? `<span class="retest">${L(UI.retest)}</span>` : "";
+  app.innerHTML = `
+    <div class="muted" style="font-size:13px">${L(DOMAIN_NAMES[s.q.axis.split(".")[0]])} · ${state.i + 1} / ${state.order.length}</div>
+    <div class="bar"><i style="width:${pct}%"></i></div>
+    <div class="panel">
+      <h2>${L(s.q.prompt)}${retest}</h2>
+      <div class="pair">
+        <div class="opt"><span class="tag">${L(UI.left)}</span><div class="body">${l}</div></div>
+        <div class="opt"><span class="tag">${L(UI.right)}</span><div class="body">${r}</div></div>
+      </div>
+      <div class="scale">${L(UI.scale).map((t, k) => `<button data-k="${k}">${t}<kbd>${k + 1}</kbd></button>`).join("")}</div>
+      <div class="nav"><button class="link" id="back" ${state.i ? "" : "hidden"}>${L(UI.back)}</button><span></span></div>
+    </div>`;
+  app.querySelectorAll(".scale button").forEach(b => b.onclick = () => answer(+b.dataset.k));
+  const back = document.getElementById("back");
+  if (back) back.onclick = () => { state.i = Math.max(0, state.i - 1); show(question); };
+}
+
+const SIDE = [-1, -0.5, 0, 0.5, 1];
+
+function answer(k) {
+  const s = state.order[state.i];
+  const side = SIDE[k];                    // -1 = left on screen, +1 = right on screen
+  const value = s.flip ? -side : side;     // convert to the axis pole
+  const key = s.repeatOf ? s.q.id + "-r" : s.q.id;
+  state.answers[key] = { qid: key, axis: s.q.axis, value, ...(s.repeatOf ? { repeat_of: s.repeatOf } : {}) };
+  state.i += 1;
+  show(question);
+}
+
+document.addEventListener("keydown", e => {
+  if (state.screen !== question || state.i >= state.order.length || e.target.tagName === "TEXTAREA") return;
+  if (e.key >= "1" && e.key <= "5") answer(+e.key - 1);
+  if (e.key === "ArrowLeft" && state.i > 0) { state.i -= 1; show(question); }
+});
+
+function anchorsStep() {
+  const groups = Object.entries(ANCHORS).map(([d, refs]) => `
+    <div class="muted" style="font-size:13px">${L(DOMAIN_NAMES[d])}</div>
+    <div class="chips">${L(refs).map(r => `<button class="chip" data-d="${d}" data-r="${esc(r)}" data-s="${state.anchors[d + "|" + r] || ""}">${esc(r)}</button>`).join("")}</div>`).join("");
+  app.innerHTML = `<div class="bar"><i style="width:100%"></i></div>
+    <div class="panel">
+      <h2>${L(UI.anchorsH)}</h2>
+      <p class="muted">${L(UI.anchorsP)}</p>
+      ${groups}
+      <div class="muted" style="font-size:13px;margin-bottom:6px">${L(UI.extraP)}
+        <select id="xd">${Object.keys(DOMAIN_NAMES).map(k => `<option value="${k}" ${k === state.extraDomain ? "selected" : ""}>${L(DOMAIN_NAMES[k])}</option>`).join("")}</select></div>
+      <textarea id="extra" rows="4" placeholder="${esc(L(UI.extraPh))}">${esc(state.extra)}</textarea>
+      <div class="nav"><button class="link" id="back">${L(UI.toQs)}</button><button class="btn primary" id="done">${L(UI.done)}</button></div>
+    </div>`;
+  app.querySelectorAll(".chip").forEach(c => c.onclick = () => {
+    const next = { "": "love", love: "hate", hate: "" }[c.dataset.s];
+    c.dataset.s = next;
+    state.anchors[c.dataset.d + "|" + c.dataset.r] = next;
+  });
+  const keep = () => { state.extra = document.getElementById("extra").value; state.extraDomain = document.getElementById("xd").value; };
+  document.getElementById("extra").oninput = keep;
+  document.getElementById("back").onclick = () => { keep(); state.i = state.order.length - 1; show(question); };
+  document.getElementById("done").onclick = () => { keep(); finish(); };
+}
+
+function payload() {
+  const anchors = Object.entries(state.anchors).filter(([, s]) => s).map(([k, s]) => {
+    const [domain, ref] = k.split("|");
+    return { domain, ref, polarity: s };
+  });
+  state.extra.split("\n").map(l => l.trim()).filter(l => /^[+\-＋－]/.test(l)).forEach(l => {
+    const ref = l.slice(1).trim().slice(0, 80);
+    if (ref) anchors.push({ domain: state.extraDomain, ref, polarity: /^[+＋]/.test(l) ? "love" : "hate" });
+  });
+  return { version: 1, lang: LANG, finished_at: new Date().toISOString(), answers: Object.values(state.answers), anchors };
+}
+
+function summary(p) {
+  const by = {};
+  p.answers.filter(a => !a.repeat_of).forEach(a => { by[a.axis] = a.value; });
+  return Object.keys(DOMAIN_NAMES).map(d => {
+    const rows = QUESTIONS.filter(q => q.axis.startsWith(d + ".") && (!q.only || q.only === LANG)).map(q => {
+      const v = by[q.axis] ?? 0, labels = AXIS_LABELS[q.axis] ? L(AXIS_LABELS[q.axis]) : [q.axis + " −", "+"];
+      return `<div class="axis"><span>${labels[0]}</span><div class="track"><div class="dot" style="left:${(v + 1) * 50}%"></div></div><span>${labels[1]}</span></div>`;
+    }).join("");
+    return `<div style="margin-top:14px"><b>${L(DOMAIN_NAMES[d])}</b>${rows}</div>`;
+  }).join("");
+}
+
+let lastResult = null;
+
+async function finish() {
+  const p = payload();
+  app.innerHTML = `<div class="panel"><h2>${L(UI.saving)}</h2></div>`;
+  let saved = null;
+  try {
+    const token = document.querySelector('meta[name="xtaste-token"]').content;
+    const res = await fetch("/api/result", { method: "POST", headers: { "Content-Type": "application/json", "X-Xtaste-Token": token }, body: JSON.stringify(p) });
+    saved = res.ok ? await res.json() : { error: (await res.json().catch(() => ({}))).error || res.status };
+  } catch (e) { saved = null; }
+  lastResult = { p, saved };
+  show(result);
+}
+
+function result() {
+  const { p, saved } = lastResult;
+  const blob = URL.createObjectURL(new Blob([JSON.stringify(p, null, 2)], { type: "application/json" }));
+  const status = saved && !saved.error
+    ? `<p>${L(UI.saved)(saved.written, esc(saved.profile))}</p>`
+    : `<p>${saved && saved.error ? L(UI.failed)(esc(String(saved.error))) : L(UI.offline)} ${L(UI.download)}</p>
+       <a class="btn primary" style="display:inline-block;text-decoration:none" download="xtaste-result.json" href="${blob}">${L(UI.downloadB)}</a>`;
+  app.innerHTML = `<div class="panel"><h2>${L(UI.resultH)}</h2>${status}<p class="muted">${L(UI.after)}</p>${summary(p)}</div>`;
+}
+
+// ------------------------------------------------------------ boot
+
+function paintChrome() {
+  document.documentElement.lang = LANG === "zh" ? "zh-CN" : "en";
+  document.title = L(UI.title);
+  const theme = document.getElementById("theme");
+  theme.querySelectorAll("button").forEach(b => { b.textContent = L(UI[b.dataset.v]); b.setAttribute("aria-pressed", b.dataset.v === document.documentElement.dataset.pref); });
+  document.getElementById("lang").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === LANG));
+}
+
+(async function boot() {
+  // Language: ?lang= > the user's manual choice > the system language reported by the local server > the browser.
+  let serverLang = null;
+  try {
+    const dims = await (await fetch("/api/dimensions")).json();
+    serverLang = dims.lang;
+    for (const [k, v] of Object.entries(dims.axes)) AXIS_LABELS[k] = { zh: [v.left, v.right], en: [v.left_en, v.right_en] };
+  } catch (e) { /* opened offline: no server */ }
+  const browserLang = (navigator.languages && navigator.languages[0]) || navigator.language || "en";
+  const pick = v => (v === "zh" || v === "en") ? v : null;
+  LANG = pick(new URLSearchParams(location.search).get("lang")) || pick(localStorage.getItem("xtaste-lang"))
+    || pick(serverLang) || (browserLang.toLowerCase().startsWith("zh") ? "zh" : "en");
+
+  document.getElementById("lang").onclick = e => {
+    const v = pick(e.target.dataset.v); if (!v || v === LANG) return;
+    LANG = v; localStorage.setItem("xtaste-lang", v);
+    // Switching mid-quiz is fine except for the language-specific naming question.
+    if (state.screen === question || state.screen === anchorsStep) {
+      const at = state.order[state.i] && state.order[state.i].q.id;
+      state.order = state.order.filter(s => !s.q.only || s.q.only === LANG);
+      const idx = state.order.findIndex(s => s.q.id === at);
+      state.i = idx >= 0 ? idx : Math.min(state.i, state.order.length);
+    }
+    paintChrome(); state.screen && state.screen();
+  };
+  document.getElementById("theme").onclick = e => {
+    const v = e.target.dataset.v; if (!v) return;
+    localStorage.setItem("xtaste-theme", v);
+    document.documentElement.dataset.pref = v;
+    document.documentElement.dataset.theme = v === "system" ? (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark") : v;
+    paintChrome();
+  };
+  paintChrome();
+  show(intro);
+})();
+</script>
+</body>
+</html>

@@ -1,43 +1,57 @@
-## Description: <br>
-Create and manage AI-powered trading bots via natural language, including paper and live trading, portfolio monitoring, backtesting, stock quotes, and options chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage AI-powered trading bots via natural language. Paper & live trading, portfolio monitoring, backtesting, stock quotes, and options chains.
 
-## Publisher: <br>
-[etbars](https://clawhub.ai/user/etbars) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[etbars](https://clawhub.ai/user/etbars)
 
-## Use Case: <br>
-External OpenClaw users use this skill to create, monitor, backtest, and manage AI-powered trading bots, portfolio information, quotes, options data, and trading actions from natural-language chat channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose live trading and account-changing authority, including order placement, position closing, mode switching, and bot deletion. <br>
-Mitigation: Use paper mode first, require explicit human confirmation for live orders and destructive actions, and configure broker-side limits before enabling live trading. <br>
-Risk: A leaked or over-privileged VIBETRADER_API_KEY could allow unauthorized trading or account access. <br>
-Mitigation: Use the narrowest available API key scope, store it only in the OpenClaw environment configuration, revoke it if exposed, and rotate it regularly. <br>
+## Use Case:
 
+External users and developers use this skill to create and manage AI-powered trading bots, monitor portfolios, query market data, and run backtests through natural-language OpenClaw interactions.
 
-## Reference(s): <br>
-- [VibeTrader Website](https://vibetrader.markets) <br>
-- [VibeTrader Documentation](https://vibetrader.markets/docs) <br>
-- [VibeTrader MCP Server](https://vibetrader-mcp-289016366682.us-central1.run.app/mcp) <br>
-- [ClawHub Skill Page](https://clawhub.ai/etbars/vibetrader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown and natural-language responses with inline JSON, shell commands, configuration snippets, and API-backed trading or market-data results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VIBETRADER_API_KEY; supports paper and live trading modes through the VibeTrader MCP server and REST API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: Natural-language trading actions through the remote service can affect real funds when live trading is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper trading or read-only credentials when possible, verify API key scope, and require explicit user confirmation before live orders, live-mode switches, position closures, or bot deletion.
+
+Risk: The skill requires a VibeTrader API key that may grant access to account, portfolio, and trading operations.
+
+Mitigation: Install only after trusting the VibeTrader service, store the key in the configured environment variable, and avoid sharing credentials in prompts or logs.
+
+## Reference(s):
+
+- [VibeTrader Website](https://vibetrader.markets)
+- [VibeTrader Documentation](https://vibetrader.markets/docs)
+- [VibeTrader MCP Server](https://vibetrader-mcp-289016366682.us-central1.run.app/mcp)
+- [VibeTrader REST API Base URL](https://vibetrader-mcp-289016366682.us-central1.run.app)
+- [ClawHub Skill Page](https://clawhub.ai/etbars/skills/vibetrader)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown with JSON configuration, shell command examples, and REST or MCP API call descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VIBETRADER_API_KEY; paper trading is documented as the default, while live trading can affect real funds.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

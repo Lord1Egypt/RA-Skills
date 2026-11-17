@@ -1,38 +1,54 @@
-## Description: <br>
-This skill helps repair an infeasible or non-optimal flexible job scheduling baseline into a downtime-feasible, precedence-feasible schedule while preserving policy-budget constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill should be considered when you need to repair an infeasible or non-optimal flexible job scheduling planning schedule into a downtime-feasible, precedence-feasible one while keep no worse policy budget.
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lnj22](https://clawhub.ai/user/lnj22)
 
-## Use Case: <br>
-Manufacturing planners, optimization engineers, and agent developers use this skill to repair flexible job shop schedules around downtime, precedence, machine eligibility, machine-change budgets, and L1 start-time shift budgets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated schedules or repaired baselines may still be infeasible, suboptimal, or slow to produce on large scheduling problems. <br>
-Mitigation: Independently validate precedence, downtime, machine eligibility, overlap checks, policy-budget calculations, and runtime before relying on the repaired schedule. <br>
+## Use Case:
 
+Manufacturing planners, operations engineers, and scheduling agents use this skill to repair flexible job shop baselines so operations respect precedence, machine availability, downtime windows, and policy budgets. It guides agents toward earlier feasible placements without starting operations before the baseline.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lnj22/manufacturing-fjsp-optimization-fjsp-baseline-repair-with-downtime-and-policy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code] <br>
-**Output Format:** [Markdown with Python pseudocode snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only scheduling guidance; users should validate feasibility, policy-budget calculations, and runtime behavior on their own instances.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Generated schedules may miss real production constraints or business policies that are not represented in the prompt data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review repaired schedules against actual downtime windows, precedence rules, machine eligibility, and policy budgets before operational use.
+
+Risk: Integer-time forward scans can become expensive or hit safety bounds on large or highly constrained schedules.
+
+Mitigation: Set appropriate scan limits for the planning horizon and inspect any fallback or limit-hit result before accepting the schedule.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lnj22/skills/manufacturing-fjsp-optimization-fjsp-baseline-repair-with-downtime-and-policy)
+- [Publisher profile](https://clawhub.ai/user/lnj22)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown with inline Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scheduling-repair guidance and reference code snippets for agent use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

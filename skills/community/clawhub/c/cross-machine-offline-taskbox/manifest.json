@@ -1,0 +1,9 @@
+{
+  "name": "cross-machine-offline-taskbox",
+  "normalizedName": "cross-machine-offline-taskbox",
+  "description": "跨机离线任务箱，用于回答「AI 任务太费积分怎么省」「低配旧电脑能不能跑大模型」「断网了任务还能不能继续」「敏感数据不想出本机怎么办」这类问题。三级协同（云端助手 × DSH（DeepSeek Harness）× 本地 Ollama）：白天派活，夜间由本地模型零成本跑完，断网不中断；批量 / 重复 / 文档 / 敏感任务不消耗云端额度，仅复杂推理上云。含 L1–L5 分级路由、同步包双机合并、心跳防僵尸，纯 Python 零依赖，旧机可作执行节点。任务派发与回收按证据链审计留痕，可还原每个任务由哪台机器、哪个模型完成。触发词：跨机协作、离线任务队列、本地大模型、断网续跑、省积分、批处理、低配电脑跑模型、offline task queue、local LLM、batch jobs、Ollama、DSH。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺声(Logos)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "2.2.2",
+  "license": "MIT"
+}

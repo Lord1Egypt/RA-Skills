@@ -1,42 +1,57 @@
-## Description: <br>
-High-definition generative speech synthesis using Google Cloud Chirp 3 HD voices for realistic, expressive MP3 speech output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-definition generative speech synthesis using Google Cloud Chirp 3 HD voices with natural pacing and expressive prosody.
 
-## Publisher: <br>
-[jarar21](https://clawhub.ai/user/jarar21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jarar21](https://clawhub.ai/user/jarar21)
 
-## Use Case: <br>
-Developers and agents use this skill to turn requested text into natural-sounding speech with Google Cloud Chirp 3 HD voices and receive the generated MP3 file path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text provided to the skill is sent to Google Cloud for speech generation. <br>
-Mitigation: Use the skill only with content approved for Google Cloud processing and with a least-privilege Google Cloud ADC account. <br>
-Risk: The skill may install the Google Cloud Text-to-Speech npm dependency locally on first use. <br>
-Mitigation: Run first use in a trusted workspace and review dependency installation policies before enabling automatic execution. <br>
-Risk: Generated MP3 files are written to the configured workspace or requested output path. <br>
-Mitigation: Use explicit output paths and review workspace permissions before generating speech files. <br>
+## Use Case:
 
+External users and developers use this skill to turn requested text into MP3 speech through Google Cloud Chirp 3 HD voices, including optional pause tags and voice selection.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jarar21/g-tts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [MP3 audio file with a text success or error message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, Google Cloud Application Default Credentials, network access to Google Cloud, and local dependency installation on first use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill auto-installs an unpinned npm dependency on first run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only where npm installation is acceptable, and prefer a pinned dependency with a lockfile.
+
+Risk: The script can write output files outside the intended workspace when given an absolute output path.
+
+Mitigation: Restrict filesystem permissions and direct output to a dedicated audio directory under the intended workspace.
+
+Risk: Google Application Default Credentials may grant broader cloud access than the text-to-speech workflow needs.
+
+Mitigation: Use credentials scoped to the intended Google Cloud project and least required permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jarar21/skills/g-tts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text status plus an MP3 audio file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, Google Application Default Credentials, network access for Google Cloud Text-to-Speech, and a controlled audio output directory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

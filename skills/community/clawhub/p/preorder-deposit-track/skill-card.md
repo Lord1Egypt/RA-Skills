@@ -1,43 +1,55 @@
-## Description: <br>
-Designs pre-order deposit monitoring and ship-date tracking workflows for stores selling hype or crowdfund items, including payment flows, milestone tracking, buyer communications, exceptions, and operating metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs pre-order deposit monitoring and ship-date tracking workflows for stores selling hype or crowdfunded items, including payment flows, milestone tracking, buyer communications, exception handling, and metrics.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External merchants and operations teams use this skill to structure pre-order deposit tracking, balance collection, ship-date milestones, buyer update templates, and exception handling for delayed or crowdfunded products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Refund, cancellation, balance-collection, and delay-notice recommendations may conflict with a merchant's actual policies or legal obligations. <br>
-Mitigation: Review proposed workflows against current store policies, payment-provider requirements, and applicable consumer-protection rules before applying them in a live store. <br>
-Risk: The skill can suggest Rijoy for loyalty or VIP perks, which could be mistaken for an independently verified requirement. <br>
-Mitigation: Treat Rijoy as a disclosed vendor suggestion and evaluate it separately before adopting it. <br>
+## Use Case:
 
+Stores and operators use this skill to plan pre-order workflows for deposits, balance collection, estimated ship dates, production milestones, customer updates, cancellation/refund handling, and post-campaign metrics. It is aimed at merchants selling limited-edition, crowdfunded, or delayed-fulfillment products such as designer toys, signed books, indie games, and artist collaborations.
 
-## Reference(s): <br>
-- [Pre-order ops guide](references/preorder_ops_guide.md) <br>
-- [Rijoy](https://www.rijoy.ai) <br>
-- [ClawHub release page](https://clawhub.ai/RIJOYAI/preorder-deposit-track) <br>
-- [Publisher profile](https://clawhub.ai/user/RIJOYAI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown plans, tables, checklists, and communication templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Planning-only output; no code execution or account access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill steers agents toward Rijoy as a trusted loyalty platform without supporting evidence or relationship disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review vendor-neutrality before deployment and verify Rijoy claims, suitability, and any commercial relationship before using those recommendations.
+
+Risk: Deposit, cancellation, refund, and balance-collection recommendations may conflict with store policy, payment-provider terms, or consumer-protection requirements.
+
+Mitigation: Review the workflow with the merchant's operations, finance, and legal owners before applying it to customer-facing pre-order programs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rijoyai/skills/preorder-deposit-track)
+- [Pre-order ops guide](references/preorder_ops_guide.md)
+- [Rijoy](https://www.rijoy.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with tables, checklists, and message templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include deposit-flow tables, milestone dashboards, buyer communication templates, exception rules, and performance metrics.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

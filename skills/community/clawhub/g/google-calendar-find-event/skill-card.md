@@ -1,38 +1,53 @@
-## Description: <br>
-Atomic node skill to search for events in Google Calendar using the gog CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to search for events in Google Calendar using the gog CLI.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Agents use this skill to search the configured Google Calendar account for events within a bounded time range, optionally filtering by title or subject with the gog CLI query flag. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calendar searches can reveal private event titles and metadata from the configured gog account. <br>
-Mitigation: Use bounded date ranges, specific calendar scope, and clear query terms; only run the skill where the configured calendar account is appropriate for agent access. <br>
+## Use Case:
 
+Agents use this skill to query Google Calendar events for a specified time range or subject through the configured gog CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/google-calendar-find-event) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON array returned by the gog CLI, with skill guidance for constructing the command.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gog CLI and access to the Google Calendar account configured for that CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server-resolved release metadata) <br>
+Risk: The skill can query Google Calendar through the configured gog CLI, which may expose calendar event details to the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only where that calendar access is acceptable for the configured account.
+
+Risk: Vague schedule requests could access broader calendar data than the user intended.
+
+Mitigation: Ask for a date range or subject before accessing calendar events when the request is unclear.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zvirb/skills/google-calendar-find-event)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [JSON array of calendar event objects, with Markdown guidance for command usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the local gog CLI and a configured Google Calendar account.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -188,16 +188,16 @@ def format_cron_summary(crons: list) -> str:
 
 
 def output_openclaw_commands(crons: list) -> str:
-    """Generate cron job JSON configs for the agent to use with the cron tool.
-    
-    NOTE: Does NOT execute any commands. Outputs JSON that the agent
-    should pass to the platform cron tool (cron action=add).
+    """Generate automation JSON configs for the agent to create.
+
+    NOTE: Does NOT execute anything. Outputs JSON the agent passes to the
+    platform automations tool, or to `openclaw automations add`.
     """
     if not crons:
         return json.dumps({"message": "No crons to add"})
     
     return json.dumps({
-        "instructions": "Use the cron tool (action=add) to create these jobs. Do NOT use subprocess or CLI.",
+        "instructions": "Create these as automations (openclaw automations add, or the automations tool). Do NOT shell out from a script.",
         "crons": crons
     }, indent=2)
 
@@ -212,7 +212,7 @@ Examples:
   %(prog)s --days 14                 # Next 14 days
   %(prog)s --team spurs              # Only Spurs
   %(prog)s --output crons.json       # Save to file
-  %(prog)s --commands                # Output as CLI commands
+  %(prog)s --commands                # Output JSON plus agent instructions
         """
     )
     parser.add_argument("--days", "-d", type=int, default=7,
@@ -224,7 +224,7 @@ Examples:
     parser.add_argument("--output", "-o", type=str,
                        help="Output JSON file path")
     parser.add_argument("--commands", "-c", action="store_true",
-                       help="Output as OpenClaw CLI commands")
+                       help="Output JSON with agent instructions for creating the automations")
     parser.add_argument("--json", "-j", action="store_true",
                        help="Output as JSON")
     parser.add_argument("--summary", "-s", action="store_true",

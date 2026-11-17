@@ -1,43 +1,51 @@
-## Description: <br>
-Checks batches of mobile phone numbers with JisuAPI and groups them as real, empty, unknown, or risk numbers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+批量检测手机号是否空号、实号、沉默号或风险号。
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and developers use this skill to classify batches of mobile phone numbers as real, empty, unknown, or risky before cleanup, outreach, or review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Target phone numbers are sent to JisuAPI using the user's API key. <br>
-Mitigation: Use only numbers the user is authorized to process, protect the API key, and review JisuAPI privacy and retention terms before use. <br>
-Risk: Phone-number classifications may be incomplete or unsuitable as the only basis for consequential decisions. <br>
-Mitigation: Treat the result as one signal and apply human review or additional validation before marketing, fraud, eligibility, or similar decisions. <br>
+## Use Case:
 
+External users and developers use this skill to check batches of mobile phone numbers through JisuAPI and group them as real, empty, unknown, or risk numbers. It is suited for contact-list quality checks where the user has authority to process the submitted phone numbers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/mobileempty) <br>
-- [JisuAPI](https://www.jisuapi.com/) <br>
-- [JisuAPI mobile empty-number API](https://www.jisuapi.com/api/mobileempty/) <br>
-- [JisuAPI mobileempty query endpoint](https://api.jisuapi.com/mobileempty/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON from the helper script, usually summarized by the agent in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, JISU_API_KEY, and a comma-separated mobiles string of up to 100 numbers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Checked phone numbers are personal data sent to a third-party JisuAPI service under the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with permission to process the numbers, avoid unnecessary bulk checks, and review the provider's privacy and retention terms before using customer or regulated data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jisuapi/skills/mobileempty)
+- [JisuAPI Mobile Empty API Documentation](https://www.jisuapi.com/api/mobileempty/)
+- [JisuAPI Provider Site](https://www.jisuapi.com/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON returned by a Python CLI, with optional markdown summaries or grouped lists for users]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; accepts a comma-separated mobiles string with up to 100 phone numbers.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

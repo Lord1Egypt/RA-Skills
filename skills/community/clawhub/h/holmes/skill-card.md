@@ -1,53 +1,76 @@
-## Description: <br>
-Holmes guides an agent to analyze problems with abductive reasoning, mental models, logic formulas, active information gathering, and structured case records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through Holmes-style abductive and deductive reasoning with explicit evidence chains, active information gathering, and optional case logging.
 
-## Publisher: <br>
-[jiangqi-7](https://clawhub.ai/user/jiangqi-7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangqi-7](https://clawhub.ai/user/jiangqi-7)
 
-## Use Case: <br>
-External users and developers use this skill to make an agent structure investigations, enumerate hypotheses, acquire missing evidence, and present reasoned conclusions with confidence and boundaries. It is also used to record and review cases so future reasoning workflows can be refined. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may persist case records that contain sensitive user, third-party, or regulated information. <br>
-Mitigation: Require explicit user approval before case logging and avoid recording private, regulated, or third-party personal information. <br>
-Risk: Autoresearch guidance can lead an agent to modify skill or reference files and propose repository commits. <br>
-Mitigation: Review proposed file edits and commits before execution, and keep repository changes separate from unrelated work. <br>
-Risk: The skill asks the agent to use broad web search for missing facts or uncertain reasoning steps. <br>
-Mitigation: Require approval for external web searches when needed and cite sources for claims that affect the conclusion. <br>
-Risk: The reasoning workflow can produce confident but incorrect inferences if assumptions are not checked. <br>
-Mitigation: Preserve explicit confidence levels, boundary statements, and evidence gaps in final answers. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent analyze ambiguous problems by enumerating hypotheses, tracing evidence chains, checking assumptions, and producing a structured conclusion or case report.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Autoresearch mechanism](references/autoresearch.md) <br>
-- [Case logger](references/case_logger.md) <br>
-- [Case closing report](references/case_closing_report.md) <br>
-- [Checklist](references/checklist.md) <br>
-- [Decision rules](references/decision_rule.md) <br>
-- [Mental models](references/mental-models.md) <br>
-- [Case studies](references/case-studies.md) <br>
-- [Skill page](https://clawhub.ai/jiangqi-7/holmes) <br>
-- [Publisher profile](https://clawhub.ai/user/jiangqi-7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown reasoning summaries with optional shell commands and local case-record files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local case records and propose skill edits when case logging or autoresearch is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can persist local case records and reuse lessons from prior cases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before case logging, and review case records before allowing them to influence future instructions.
+
+Risk: The autoresearch workflow can lead an agent to edit skill files and commit repository changes.
+
+Mitigation: Require confirmation before any SKILL.md edit, lesson update, or Git action, and review diffs before accepting changes.
+
+Risk: The bundled workflow proposes broad Git staging during iterative updates.
+
+Mitigation: Use an explicit allowlist of intended files instead of broad repository staging.
+
+Risk: The skill encourages active web search when information is missing.
+
+Mitigation: Require confirmation before web search and avoid sending sensitive user or workspace data to external services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiangqi-7/skills/holmes)
+- [Autoresearch mechanism](references/autoresearch.md)
+- [Case studies](references/case-studies.md)
+- [Case closing report](references/case_closing_report.md)
+- [Case logger](references/case_logger.md)
+- [Reasoning checklist](references/checklist.md)
+- [Decision rules](references/decision_rule.md)
+- [Holmes learnings](references/holmes-learnings.md)
+- [Holmes lessons](references/holmes-lessons.md)
+- [Mental models](references/mental-models.md)
+- [Conversation patterns](references/research/01-conversations/01-conversations.md)
+- [Expression DNA](references/research/02-expression-dna/02-expression-dna.md)
+- [Decision heuristics](references/research/03-decisions/03-decisions.md)
+- [Thinking system](references/research/04-thinking-system/04-thinking-system.md)
+- [Deductive method workflow](references/research/05-deductive-method/05-deductive-method.md)
+- [Logic rules library](references/research/06-case-studies/06-case-studies.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with structured reasoning sections and occasional shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence labels, evidence chains, model or formula names, and boundary statements.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact frontmatter is 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

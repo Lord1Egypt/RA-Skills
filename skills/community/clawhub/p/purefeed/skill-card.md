@@ -1,43 +1,52 @@
-## Description: <br>
-Monitors Twitter/X feeds with AI signal detection, semantic tweet search, signal detector management, and bookmark folder organization for Purefeed accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Twitter/X feeds with AI signal detection. Searches tweets semantically, manages signal detectors, and organizes curated tweets into bookmark folders. Use when the user wants to browse their Twitter feed, find tweets about a topic, set up content monitoring, or organize bookmarks. Do NOT use for general Twitter browsing without a Purefeed account.
 
-## Publisher: <br>
-[poloniki](https://clawhub.ai/user/poloniki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[poloniki](https://clawhub.ai/user/poloniki)
 
-## Use Case: <br>
-External users with Purefeed accounts use this skill to find relevant tweets, monitor topics through AI signal detectors, and organize curated tweet results into folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Purefeed API key that can read and modify signals, folders, and curated tweet data. <br>
-Mitigation: Install only when that account access is acceptable, and revoke or rotate the API key when access is no longer needed. <br>
-Risk: The skill can update account objects and delete signals, including irreversible signal deletion. <br>
-Mitigation: Require the agent to show the exact target and obtain explicit user confirmation before update or delete requests. <br>
-Risk: API error hints may suggest follow-up actions that do not match the user's intent. <br>
-Mitigation: Treat error hints as suggestions and validate them against the user's stated goal before following them. <br>
+## Use Case:
 
+External users with a Purefeed account can search and monitor Twitter/X topics through semantic feed search and AI signal matches, manage signal detectors, and organize curated tweets in bookmark folders.
 
-## Reference(s): <br>
-- [Purefeed ClawHub Release](https://clawhub.ai/poloniki/purefeed) <br>
-- [Purefeed API](https://purefeed.ai/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with inline links, curl commands, and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tweet outputs should include linked screen names, linked tweet references, view counts, and engagement-oriented sorting when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.13.0 (source: server release evidence) <br>
+Risk: API error responses may include action hints that could redirect the agent based on externally supplied text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review API error hints before acting; check that any suggested action is relevant to the user's request and consult the linked API documentation when needed.
+
+## Reference(s):
+
+- [Purefeed API](https://purefeed.ai/api/v1)
+- [Purefeed API change notes](https://purefeed.ai/llms.txt)
+- [Purefeed API key setup](https://purefeed.ai/profile)
+- [Purefeed on ClawHub](https://clawhub.ai/poloniki/skills/purefeed)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with clickable tweet and profile links, view counts, and concise summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tweet data is sorted by views or engagement unless the user requests otherwise.]
+
+## Skill Version(s):
+
+0.19.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

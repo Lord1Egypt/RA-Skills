@@ -1,44 +1,57 @@
-## Description: <br>
-Keyword.com lets agents read Keyword.com projects, groups, keywords, rankings, regions, and current-user data through the OOMOL keyword connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Keyword.com account, project, keyword, ranking, and region data through the oo CLI.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve Keyword.com account, project, region, keyword, and ranking data from a connected OOMOL account without direct API token handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Keyword.com/OOMOL account and may access account-specific keyword and ranking data. <br>
-Mitigation: Grant only the expected Keyword.com permissions and keep credentials managed through OOMOL; do not expose raw tokens to the agent. <br>
-Risk: Connector schemas and account access can change or expire, causing failed commands or incorrect payload assumptions. <br>
-Mitigation: Fetch the live connector schema before each action and retry setup only after authentication, scope, credential, or billing errors. <br>
-Risk: CLI installation or authentication setup changes the local environment. <br>
-Mitigation: Run setup steps only when the CLI or connection is missing and review install or auth commands before execution. <br>
+## Use Case:
 
+Keyword.com users use this skill to inspect their profile, projects, tracked keywords and rankings, and project regions through their connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-keyword) <br>
-- [Keyword.com homepage](https://keyword.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run read-only Keyword.com connector actions that return JSON data and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md metadata) <br>
+Risk: Automatic software installation and automatic changes to other agent skills warrant review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified oo CLI release; set OO_SKILLS_SYNC_DISABLED=1 before invoking it when only Keyword.com access is needed.
+
+Risk: The connected account access is entrusted to OOMOL, and the live installer contents remain unverified.
+
+Mitigation: Consider the account access granted to OOMOL and verify the CLI release before installation.
+
+## Reference(s):
+
+- [Keyword.com SERP API documentation](https://keyword.com/docs/serp-api)
+- [Keyword.com](https://keyword.com)
+- [oo CLI environment variables](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Keyword.com ClawHub release](https://clawhub.ai/oomol/skills/oo-keyword)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON responses with concise guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only account, project, keyword, ranking, and region data; requires the oo CLI and a connected Keyword.com account.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

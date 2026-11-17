@@ -1,22 +1,22 @@
 # SEOwlsClaw — SEO Plan Workflow
 # File: SEO_PLANS/plan_workflow.md
 # Loaded by: BRAIN_ARCHITECTURE.md Step 2e — ONLY when /seoplan command is active
-# Purpose: Full processing logic for the /seoplan brain pipeline (Steps A–G)
+# Purpose: Full processing logic for the `seoplan` brain pipeline (Steps A–G)
 
 ---
 
 ## When This File Is Loaded
 
-This file is loaded ONLY when the `/seoplan` command is issued.
-It is NEVER loaded during `/write`, `/writehtml`, `/seobrief`, `/research`, or `/checks`.
+This file is loaded ONLY when the `seoplan` command is issued.
+It is NEVER loaded during `write`, `writehtml`, `seobrief`, `research`, or `checks`.
 This keeps the standard content generation brain lean and fast.
 
 ---
 
-## /seoplan Brain Pipeline — Overview
+## seoplan Brain Pipeline — Overview
 
-`/seoplan` replaces Steps 3–7 of the standard brain workflow.
-Once Step 2e confirms this is a `/seoplan` command, execute Steps A–G below in order.
+`seoplan` replaces Steps 3–7 of the standard brain workflow.
+Once Step 2e confirms this is a `seoplan` command, execute Steps A–G below in order.
 
 ```
 seoplan-Step A    Niche + Market Research
@@ -82,7 +82,7 @@ Build a full site architecture across multiple clusters:
 2. For each cluster: identify its pillar keyword + 3 example node topics (summary level only)
 3. Output: cluster overview table — no deep node detail per node
 4. Each cluster row ends with the drill-down command:
-   `/seoplan "[cluster topic]" --mode cluster --lang [lang]`
+   `seoplan "[cluster topic]" --mode cluster --lang [lang]`
 
 ---
 
@@ -173,11 +173,11 @@ Generate a numbered execution order following this priority logic:
 
 ### `--priority quickwins`
 - Output QUICKWIN nodes only in the plan body
-- Add note at bottom: "Run `/seoplan "[niche]" --priority strategic` for the full cluster"
+- Add note at bottom: "Run `seoplan "[niche]" --priority strategic` for the full cluster"
 
 ### `--priority strategic`
 - Output all nodes but place PILLAR + STRATEGIC first in the execution list
-- Add note at bottom: "Quick Wins deprioritised. Run `/seoplan "[niche]" --priority quickwins` for fast traffic"
+- Add note at bottom: "Quick Wins deprioritised. Run `seoplan "[niche]" --priority quickwins` for fast traffic"
 
 **Add timeline estimates per tier group:**
 
@@ -233,8 +233,8 @@ Output the full plan in the format defined in `SEO_PLANS/plan-template.md`:
 1. Generate `plan_id` from niche + lang:
    - Lowercase, hyphens for spaces, lang suffix
    - Example: "Vintage analog cameras Germany" + de → `vintage-analog-cameras-de`
-2. Save full plan to `SEO_PLANS/<plan-id>.md`
-3. Add a row to `SEO_PLANS/_index.md`
+2. Save full plan to `SEO_PLANS/<new-seo-plan-id>.md`
+3. Add a row to at the end of the file `SEO_PLANS/_index.md`
 
 ### After Output — Offer the User
 
@@ -248,5 +248,5 @@ Output the full plan in the format defined in `SEO_PLANS/plan-template.md`:
 
 ---
 
-*Last updated: 2026-04-05 (v0.1)*
-*Maintainer: Chris — full /seoplan pipeline logic*
+*Last updated: 05-05-2026 (v0.8)*
+*Maintainer: Chris — full seoplan pipeline logic*

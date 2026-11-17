@@ -1,37 +1,48 @@
-## Description: <br>
-Guides agents in designing retention strategies that reduce client churn, increase recurring revenue, and improve customer lifetime value. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents design client retention strategies that reduce churn, improve onboarding, document recurring value, and identify expansion revenue opportunities.
 
-## Publisher: <br>
-[staybased](https://clawhub.ai/user/staybased) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[staybased](https://clawhub.ai/user/staybased)
 
-## Use Case: <br>
-Developers, operators, and business teams use this skill to help agents plan onboarding, value reporting, proactive check-ins, churn prevention, and expansion revenue workflows for existing clients. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Client retention work may involve confidential client lists, contracts, or sensitive customer data. <br>
-Mitigation: Avoid pasting sensitive client information into the agent environment unless the deployment is approved for that data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Client Retention on ClawHub](https://clawhub.ai/staybased/client-retention) <br>
+## Use Case:
 
+Business owners, consultants, and account teams use this skill to structure recurring revenue models, onboarding flows, monthly value reporting, proactive check-ins, churn prevention responses, and expansion revenue planning for existing clients.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown with structured checklists, frameworks, templates, and playbooks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are directed to workspace/artifacts/ by the skill text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Retention, renewal, or upsell messaging may be inaccurate, poorly fitted to the customer relationship, or inconsistent with legal or contractual obligations.
+
+Mitigation: Review and adapt generated guidance against current account facts, customer expectations, and applicable legal or contractual requirements before sending it to clients.
+
+## Reference(s):
+
+- [Client Retention skill listing](https://clawhub.ai/staybased/skills/client-retention)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with checklists, templates, tables, and playbook steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content-only business guidance; no code, credential access, persistence, or hidden execution behavior is described in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

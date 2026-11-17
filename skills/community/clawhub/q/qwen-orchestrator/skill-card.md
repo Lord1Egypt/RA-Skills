@@ -1,44 +1,64 @@
-## Description: <br>
-Qwen Orchestrator provides Qwen Chat access through Puppeteer browser automation, with daemon mode, session continuity, health checks, graceful shutdown, PM2 management, and optional web search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qwen Orchestrator provides Qwen Chat access through Puppeteer browser automation with a CDP interceptor, a persistent daemon, health checks, graceful shutdown, PM2 management, and `.qwen.json` configuration.
 
-## Publisher: <br>
-[ciklopentan](https://clawhub.ai/user/ciklopentan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ciklopentan](https://clawhub.ai/user/ciklopentan)
 
-## Use Case: <br>
-Developers and agents use this skill to query Qwen Chat for code analysis, review, generation, text analysis, summarization, translation, and Qwen-backed web search when they have an authenticated Qwen Chat browser session but no API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, pasted text, stdin, and session context are sent to Qwen Chat through an authenticated browser session. <br>
-Mitigation: Use a dedicated Qwen account and avoid sending secrets, regulated data, proprietary content, or other sensitive material. <br>
-Risk: The skill uses a persistent logged-in browser service and stores browser-control state locally. <br>
-Mitigation: Keep the skill directory private, protect local runtime state, and disable or review PM2 startup and daemon endpoint files when a persistent service is not desired. <br>
-Risk: Qwen UI selector changes can affect model selection, search toggles, authentication checks, or session continuity. <br>
-Mitigation: Run dry-run health checks, inspect visible mode when selector warnings appear, and end or recreate affected sessions after continuity failures. <br>
+## Use Case:
 
+Developers and agents use this skill to consult Qwen Chat from OpenClaw workflows for code analysis, review, generation, text analysis, summarization, translation, and optional web-search-backed answers without configuring a direct API key.
 
-## Reference(s): <br>
-- [Qwen Chat](https://chat.qwen.ai/) <br>
-- [Qwen Orchestrator on ClawHub](https://clawhub.ai/ciklopentan/qwen-orchestrator) <br>
-- [Publisher profile](https://clawhub.ai/user/ciklopentan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown returned from Qwen Chat, with shell commands and configuration snippets when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports stdin prompts, named sessions, daemon-backed responses, optional web search, and configurable preferred model selection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.8 (source: server release evidence and package.json) <br>
+Risk: A persistent Chromium/PM2 daemon can retain authenticated Qwen browser state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an environment where that local login state is acceptable, and prefer a dedicated low-privilege account.
+
+Risk: Prompts sent through the browser flow may include sensitive local content if users pipe files or secrets into the CLI.
+
+Mitigation: Avoid sending secrets or sensitive files unless the destination service and account posture are approved for that data.
+
+Risk: Qwen UI selector drift, authentication changes, or session hydration lag can break mode selection, search toggles, or follow-up continuity.
+
+Mitigation: Use the documented dry-run, health-check, visible repair, and session reset commands before trusting follow-up output.
+
+Risk: Local mode and daemon mode share a Chromium profile.
+
+Mitigation: Use daemon mode for normal operation or stop the daemon before local browser runs to avoid profile lock and state conflicts.
+
+## Reference(s):
+
+- [Qwen Orchestrator on ClawHub](https://clawhub.ai/ciklopentan/skills/qwen-orchestrator)
+- [Qwen Chat](https://chat.qwen.ai/)
+- [README.md](README.md)
+- [REFERENCE.md](REFERENCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown emitted to stdout, often with code, shell command, or configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local sessions for follow-up context; diagnostics and runtime state remain local.]
+
+## Skill Version(s):
+
+1.5.8 (source: server release evidence, package.json, artifact metadata, SKILL.md heading)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

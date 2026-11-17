@@ -11,13 +11,14 @@ Complete guide to authenticating with the IdentyClaw API server to obtain JWT to
 - [Understanding ID vs Account](#understanding-id-vs-account)
 - [Key Rotation](#key-rotation)
 - [Authentication Flow](#authentication-flow)
+- [Federated login (same family, different API URL)](#federated-login-same-family-different-api-url)
 - [Verify the API server (MITM protection)](#verify-the-api-server-mitm-protection)
 - [Step 1: Get Consistent Timestamp](#step-1-get-consistent-timestamp)
 - [Step 2: Sign the Message](#step-2-sign-the-message)
 - [Step 3: POST /api/login](#step-3-post-apilogin)
 - [Complete Pattern Example](#complete-pattern-example)
 - [Step 4: Use JWT Token](#step-4-use-jwt-token)
-- [Agent harnesses (OpenClaw, Cursor, shell agents)](#agent-harnesses-openclaw-cursor-shell-agents)
+- [Agent harnesses (OpenClaw, Hermes, IronClaw, Cursor, shell)](#agent-harnesses-openclaw-hermes-ironclaw-cursor-shell)
 - [Verify Your Login Works](#verify-your-login-works)
 - [Machine-readable login errors](#machine-readable-login-errors)
 - [Common Pitfalls](#common-pitfalls)
@@ -25,9 +26,18 @@ Complete guide to authenticating with the IdentyClaw API server to obtain JWT to
 
 ## Quick Start: Login Pattern
 
-**Reference (IdentyClaw)** — API `https://api.identyclaw.com`. Proven wire format (also exercised by the deployment test suite in **clienttest-idc** via direct `fetch`/`curl`): challenge → sign locally → `POST /api/login` → Bearer JWT on protected routes. **No client-side NEAR RPC is required** for this path—you only sign with your NEAR/Passport key and call HTTP.
+**By runtime:**
 
-### Complete Flow Pattern (curl)
+| Runtime | How to get a JWT |
+| --- | --- |
+| **OpenClaw** | Plugin tools (`identyclaw_ensure_session`, …) — do **not** curl login in chat. Plugin **v1.6.0+**. |
+| **Hermes / IronClaw / NanoClaw / Cursor / shell** | Host login below (or [`identyclaw-login.mjs`](../../scripts/identyclaw-login.mjs)) — this is the correct path, not a fallback. |
+
+Multi-API / federation: [`skills.md`](skills.md#multi-api-sessions-and-federation) · [Federated login](#federated-login-same-family-different-api-url) · `@rodit/rodit-auth-be` ≥9.13.
+
+**Reference (IdentyClaw)** — home API `https://api.identyclaw.com` (or a federated peer URL). Proven wire format (also exercised by the deployment test suite in **clienttest-idc** via direct `fetch`/`curl`): challenge → sign locally → `POST /api/login` → Bearer JWT on protected routes. **No client-side NEAR RPC is required** for this path—you only sign with your NEAR/Passport key and call HTTP.
+
+### Complete Flow Pattern (curl) — Hermes / IronClaw / NanoClaw / shell
 
 ```bash
 # 1. One-time challenge (use both fields from the same response)
@@ -49,7 +59,7 @@ curl -sS https://api.identyclaw.com/api/me/identity \
 
 **⚠️ CRITICAL:** Fetch a fresh `GET /api/login/timestamp` pair immediately before each login attempt; use it once, then discard.
 
-**Optional — `@rodit/rodit-auth-be`:** `RoditClient.login_server()` also validates the **API server's** on-chain Passport before returning a JWT. That adds **NEAR RPC** load and dependency on RPC bandwidth/latency on the agent host. Use it when MITM protection outweighs that cost; otherwise curl login above is sufficient for most agents. See [Verify the API server (MITM protection)](#verify-the-api-server-mitm-protection).
+**Optional — `@rodit/rodit-auth-be` ≥9.13:** `RoditClient.login_server()` also validates the **API server's** on-chain Passport before returning a JWT. That adds **NEAR RPC** load and dependency on RPC bandwidth/latency on the agent host. Use it when MITM protection outweighs that cost; otherwise curl login above is sufficient for most Hermes / IronClaw / shell agents. Federated peers: `login_server({ apiEndpoint })` — see [Federated login](#federated-login-same-family-different-api-url). See also [Verify the API server (MITM protection)](#verify-the-api-server-mitm-protection).
 
 **Key Points**:
 - ✓ Fetch **fresh timestamp** from API for each login attempt
@@ -103,8 +113,11 @@ Use API Login when you need to:
 - Access protected API endpoints
 - Get your own identity (`/api/me/identity`)
 - Request nonces for HOLA protocol (`GET /api/holanonce16ts` → JSON `noncetsHex`, `timestamp` — see [holanonce-api.md](holanonce-api.md); not `timestamp_iso`)
-- Verify HOLA messages from other agents
-- **This is your FIRST step** - you need a JWT before doing anything else
+- Self-test your outbound HOLA (`POST /api/testhola` — JWT required)
+
+Peer HOLA verification (`POST /api/identity/verify`) is **public** — no JWT required. See [skills.md](skills.md).
+
+For most protected workflows, API login is your **first step** when you need a JWT.
 
 For inter-agent HOLA lines and tooling, see [HOLA Protocol](hola-agent-authentication.md).
 
@@ -112,7 +125,7 @@ For inter-agent HOLA lines and tooling, see [HOLA Protocol](hola-agent-authentic
 
 Think of your **IdentyClaw Passport as your passport** and your **NEAR account as your wallet**:
 
-- **Your Passport (Passport ID)**: Your unique 12-letter identity (e.g., `bkbvehbdcrgm`) that proves who you are. This is what you show to others. IdentyClaw Passports are implemented as on-chain credentials on the NEAR blockchain.
+- **Your Passport (Passport ID)**: Your universally unique 12-letter identity (e.g., `bkbvehbdcrgm`) that proves who you are. This is what you show to others. IdentyClaw Passports are implemented as on-chain credentials on the NEAR blockchain.
 - **Your Wallet (NEAR Account)**: The account that owns and controls your passport (e.g., `alice.near`). This is what holds your private keys and signs on your behalf.
 
 When you authenticate, you're using your wallet's private key to prove you own your passport.
@@ -141,6 +154,61 @@ See [key-rotation.md](key-rotation.md) for the full security guidance, `near-cli
 4. Use JWT in Authorization header for protected endpoints
 ```
 
+## Federated login (same family, different API URL)
+
+A Passport issued for API A (`subjectuniqueidentifier_url`) can log into API B in the **same SR/CR family**. Federation is **login → remint a local JWT** on B; foreign JWTs are not accepted without re-login. Mutual auth (reverse `login_server`) remains optional.
+
+| Layer | How to federate |
+| --- | --- |
+| **OpenClaw plugin v1.6.0+** | `apiEndpoints` / `IDENTYCLAW_API_ENDPOINTS`; call tools with `apiEndpoint`; `identyclaw_ensure_session` / `identyclaw_list_sessions` |
+| **`@rodit/rodit-auth-be` ≥9.13** | `login_server({ apiEndpoint: 'https://api-b.example.com' })` |
+| **curl / fetch** | Same wire login against the federated host URL (`$BASE` = peer API) |
+
+### JWT claim contract (≥9.13)
+
+Unset fields are **always present as `null`**.
+
+| Claim | Same-API login | Federated login |
+|-------|----------------|-----------------|
+| `iss` | Receiving server URL | Client home `subjectuniqueidentifier_url` |
+| `aud` | Server `owner_id` | Federated server `owner_id` |
+| `rodit_subjectuniqueidentifier_url` | `null` | Federated API URL |
+
+A JWT is treated as federated when `rodit_subjectuniqueidentifier_url` is a non-empty URL string.
+
+### Client MITM check (federated)
+
+After crypto validation, the SDK (and OpenClaw plugin soft check) verifies that a federated attempt (`apiEndpoint` ≠ client home) has:
+
+1. Non-empty `rodit_subjectuniqueidentifier_url`
+2. That claim equal to the intended `apiEndpoint`
+3. `iss` equal to the client home URL
+
+| Failure | `errorCode` |
+|---------|-------------|
+| Null/empty federated claim | `FEDERATED_ISSUER_MISSING` |
+| Claim or `iss` mismatch | `FEDERATED_ISSUER_MISMATCH` |
+
+### Operational prerequisites
+
+- Federated server Passport shares the same `bc=;sc=;id=SR;id=CR` family.
+- Federated domain has DNS trust TXT (keyed off **own** `subjectuniqueidentifier_url`).
+- Client→server federation needs `LOGIN_MODE=partner` (or `promiscuous`) on the receiving API.
+
+```javascript
+const { RoditClient } = require("@rodit/rodit-auth-be");
+
+const client = await RoditClient.create("client");
+await client.login_server(); // home
+await client.login_server({
+  apiEndpoint: "https://api-b.example.com", // federated; omit for home
+});
+```
+
+Helpers (package root): `normalizeUrlWithoutPort`, `isNonEmptyUrlClaim`, `isFederatedRoditLogin`, `validateFederatedLoginTarget`.
+
+Agent cheat sheet: [`skills.md`](skills.md#multi-api-sessions-and-federation).
+
 ## Verify the API Server (MITM Protection)
 
 ### The threat
@@ -152,13 +220,16 @@ TLS protects the channel, but it does **not** by itself prove that responses cam
 
 If you log in with raw `fetch` or `curl` and accept any `jwt_token` from the response, you have proved **your** Passport to whatever endpoint answered—you have **not** proved that endpoint **is** IdentyClaw.
 
-### Default for agents: curl / HTTP login
+### Default for agents
 
-Most agents should use the [Quick Start](#quick-start-login-pattern) curl flow:
+| Runtime | Prefer |
+| --- | --- |
+| **OpenClaw** | Plugin auto-login (`identyclaw_ensure_session` / protected `identyclaw_*`) — never curl login in chat |
+| **Hermes / IronClaw / NanoClaw / shell / CI** | [Quick Start](#quick-start-login-pattern) curl or login script |
 
 - You authenticate **to** the server (login signature).
-- You do **not** need a working NEAR RPC on the agent machine for login.
-- Mitigations without RPC: pin the API hostname (`https://api.identyclaw.com` or your deployment URL), use TLS, and cross-check high-value results (canonical `tokenId` on official channels—see [finding-agents.md](finding-agents.md)).
+- Curl path does **not** need a working NEAR RPC on the agent machine for login.
+- Mitigations without RPC: pin the API hostname (`https://api.identyclaw.com` or your federated deployment URL), use TLS, and cross-check high-value results (canonical `tokenId` on official channels—see [finding-agents.md](finding-agents.md)).
 
 This matches how **clienttest-idc** exercises public and many authenticated endpoints with direct HTTP (`fetch`/`curl`); the SDK is used there mainly where the test constitution requires it, not for every agent integration.
 
@@ -171,7 +242,7 @@ Login can be **mutual**: after `POST /api/login`, a client may validate the retu
 | **Server → client** | Your Passport | ✓ (server validates your signature) | ✓ |
 | **Client → server** | The API server's Passport | ✗ (you trust TLS + hostname) | ✓ (loads server Passport via **NEAR RPC**) |
 
-**Tradeoff:** `RoditClient.login_server()` (and `client.request()`) call NEAR RPC to load and validate the server Passport. Agents on constrained networks, rate-limited RPC, or minimal shells may find that **slower or less reliable than curl alone**. Use the SDK when you explicitly need client→server Passport validation and can provision RPC with enough bandwidth.
+**Tradeoff:** `RoditClient.login_server()` (and `client.request()`) call NEAR RPC to load and validate the server Passport. Agents on constrained networks, rate-limited RPC, or minimal shells may find that **slower or less reliable than curl alone**. Use the SDK when you explicitly need client→server Passport validation and can provision RPC with enough bandwidth. For federated targets, also apply the [federated claim check](#client-mitm-check-federated).
 
 ```javascript
 const { RoditClient } = require("@rodit/rodit-auth-be");
@@ -186,6 +257,9 @@ const { jwt_token } = await client.login_server();
 1. Decodes the JWT to read the server's on-chain Passport id (`rodit_id` claim)
 2. Loads that server Passport from NEAR (**RPC required**)
 3. Validates the JWT cryptographically against that Passport (signature, expiry, session state, family, and trust rules)
+4. For federated `apiEndpoint`, checks `rodit_subjectuniqueidentifier_url` / `iss` (see above)
+
+Full policy reference (family, partner vs peer, controlling address, HOLA vs login lanes): [`identity-verification-policy.md`](identity-verification-policy.md).
 
 If the endpoint is an impostor or misconfigured proxy, validation fails with explicit **`[SERVER REJECTED]`** errors, including:
 
@@ -196,10 +270,12 @@ If the endpoint is an impostor or misconfigured proxy, validation fails with exp
 | `SERVER_RODIT_REVOKED` | Server Passport has been revoked |
 | `SERVER_SMART_CONTRACT_NOT_TRUSTED` | Server Passport was not issued by a trusted contract |
 | `SERVER_TOKEN_IDENTITY_MISMATCH` | JWT server identity does not match the on-chain record |
+| `FEDERATED_ISSUER_MISSING` | Federated JWT missing `rodit_subjectuniqueidentifier_url` |
+| `FEDERATED_ISSUER_MISMATCH` | Federated claim or `iss` does not match intended target |
 
 For outbound webhooks from IdentyClaw to your agent, webhook signature verification (SDK `verifyWebhookSignature()` / `getWebhookHandler()`) is separate from login—only needed if you accept server-pushed events.
 
-Install (optional): `npm install @rodit/rodit-auth-be@9.10.6`. Wire-format login in this guide does **not** require the package.
+Install (optional): `npm install @rodit/rodit-auth-be@^9.13.0`. Wire-format login in this guide does **not** require the package.
 
 ## Step 1: Get Consistent Timestamp
 
@@ -227,6 +303,8 @@ curl https://api.identyclaw.com/api/login/timestamp
 - Treat each pair as a one-time challenge for one login attempt
 
 ## Step 2: Sign the Message
+
+⚠️ **Secret handling:** Read `private_key` only from a local credentials file on the signing host. Never paste keys into chat, prompts, tickets, CI logs, or shell history. Prefer the OpenClaw plugin (`identyclaw_ensure_session`) so the model never sees the key or JWT.
 
 **Message to sign** (UTF-8 bytes):
 ```
@@ -311,7 +389,7 @@ For **roditid** login (12-letter Passport ID), use `roditid` and `roditid_base64
 **Success Response Pattern**:
 ```json
 {
-  "jwt_token": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9...",
+  "jwt_token": "<jwt_token>",
   "requestId": "01HQXYZ..."
 }
 ```
@@ -383,9 +461,9 @@ Signing (Step 2) is local Ed25519 over `accountid + timestamp_iso`; see [Step 2]
 Include JWT in `Authorization` header for protected endpoints:
 
 ```bash
-# Use YOUR freshly obtained JWT token
+# Use YOUR freshly obtained JWT token (never paste real tokens into docs/chat/logs)
 curl https://api.identyclaw.com/api/me/identity \
-  -H "Authorization: Bearer eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9..."
+  -H "Authorization: Bearer <jwt_token>"
 ```
 
 **Common Protected Endpoints**:
@@ -394,11 +472,15 @@ curl https://api.identyclaw.com/api/me/identity \
 - `POST /api/identity/verify` - Verify HOLA messages from peers
 - `POST /api/testhola` - Test your HOLA generation
 
-## Agent harnesses (OpenClaw, Cursor, shell agents)
+## Agent harnesses (OpenClaw, Hermes, IronClaw, Cursor, shell)
+
+**OpenClaw:** use `identyclaw_ensure_session` / protected `identyclaw_*` tools. The plugin caches JWTs **per API URL** and never returns them to the model — this avoids redaction bugs entirely. Pass `apiEndpoint` for federated hosts.
+
+**Hermes / IronClaw / NanoClaw / Cursor / shell:** host login is correct. Store the full JWT on the agent machine (file, env, or sidecar) — never paste it into chat. For federated APIs, keep **one JWT file per `$BASE`**.
 
 AI agent runtimes often **redact** `jwt_token` in tool output (for example `eyJhbG…ISDw`). Using that fragment in a later `Authorization: Bearer …` header produces `401 INVALIDATED_TOKEN` with `details.reason: invalid_jwt_format` even when `POST /api/login` returned **200**.
 
-Before debugging server session state, verify the bearer token on the client: length ~1500–2000 characters, three dot-separated segments, field name **`jwt_token`**.
+Before debugging server session state (host clients), verify the bearer token on the client: length ~1500–2000 characters, three dot-separated segments, field name **`jwt_token`**.
 
 Store and reuse the full JWT on the **agent machine** (SDK, local plugin, or file)—not inline in chat or curl the model can see. Complete client-side patterns: [`mcp-auth-tools.md`](mcp-auth-tools.md) (`doc:reference:mcp-auth-tools`). Machine-readable diagnosis: `guide:troubleshooting`.
 

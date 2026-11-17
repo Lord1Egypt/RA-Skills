@@ -1,0 +1,4 @@
+interface:
+  display_name: "CloudArc Bounded-Memory Benchmark"
+  short_description: "Benchmark, dedup and CI for large Vibo packages"
+  default_prompt: "Use $cloudarc-bounded-memory-benchmark for CloudArc bounded-memory, multi-file dedup, remote telemetry and CI checks."

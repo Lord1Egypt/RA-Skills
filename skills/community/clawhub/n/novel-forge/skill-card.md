@@ -1,50 +1,65 @@
-## Description: <br>
-Long-form novel workflow for creating, continuing, resuming, and repairing serialized fiction with externalized project state, role-to-model mapping, worldbuilding, character sheets, full outlines, 10-chapter batch outlines, style sampling, chapter drafting, consistency review, memory tracking, and spawned multi-session collaboration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Novel Forge guides agents through stateful long-form fiction projects, including setup, role-to-model mapping, canon planning, chapter drafting, review, recovery, and memory tracking.
 
-## Publisher: <br>
-[228998098](https://clawhub.ai/user/228998098) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[228998098](https://clawhub.ai/user/228998098)
 
-## Use Case: <br>
-External authors and developers use this skill to manage long-running fiction projects, including project setup, continuation, recovery from truncated drafts, canon planning, chapter drafting, review, and persistent story memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the local OpenClaw model inventory and writes story state and chapter files into a project directory. <br>
-Mitigation: Use it in a dedicated project workspace and review created or modified project files before relying on them as canon. <br>
-Risk: In multi-agent mode, selected story context may be sent to spawned model sessions. <br>
-Mitigation: Confirm the role-to-model mapping before canon work and keep task packets limited to the smallest relevant story context. <br>
-Risk: Long-running fiction state can accumulate stale canon, style drift, or unresolved plot conflicts. <br>
-Mitigation: Use the included checkpoints, reviewer stage, memory updates, and batch-outline invalidation rules before continuing chapters. <br>
+## Use Case:
 
+External creators and agent operators use this skill to start, continue, recover, and maintain serialized fiction projects with file-backed state. It supports single-agent work and staged multi-agent collaboration for worldbuilding, characters, outlines, style, drafting, review, and memory updates.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/228998098/novel-forge) <br>
-- [Workflow](artifact/references/workflow.md) <br>
-- [Runbook](artifact/references/runbook.md) <br>
-- [Schemas](artifact/references/schemas.md) <br>
-- [State Machine](artifact/references/state-machine.md) <br>
-- [Main Session Constraints](artifact/references/main-session-constraints.md) <br>
-- [Continuation Checklist](artifact/references/continuation-checklist.md) <br>
-- [Prompts](artifact/references/prompts.md) <br>
-- [Examples](artifact/references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, JSON project state, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates file-backed novel project state, canon files, chapter drafts, review notes, memory updates, and role-to-model mapping guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: evidence.release.version and artifact/SKILL.md) <br>
+Risk: The skill asks to read local OpenClaw model configuration and may expose model inventory or configuration details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a sanitized model-inventory source where possible, and avoid exposing unrelated local configuration.
+
+Risk: Included scripts create or update project files and accept output paths that can target arbitrary writable locations.
+
+Mitigation: Run only in a constrained workspace, avoid elevated privileges, keep backups of novel project files, and do not pass arbitrary output paths.
+
+Risk: The server security verdict flags the release as suspicious because of broad local configuration access and file-writing behavior.
+
+Mitigation: Follow the server guidance: review the skill before installing and limit execution to trusted workspaces and intended project directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/228998098/skills/novel-forge)
+- [Workflow](artifact/references/workflow.md)
+- [External State Machine](artifact/references/state-machine.md)
+- [Novel Forge Runbook](artifact/references/runbook.md)
+- [Schemas](artifact/references/schemas.md)
+- [Main Session Constraints](artifact/references/main-session-constraints.md)
+- [Continuation Checklist](artifact/references/continuation-checklist.md)
+- [Agent Prompt Templates](artifact/references/prompts.md)
+- [Examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, structured JSON project state, file scaffolds, and shell command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are staged around project state files, chapter markdown, role-to-model mappings, and recovery checkpoints.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md body)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

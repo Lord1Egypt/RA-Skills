@@ -1,0 +1,136 @@
+{
+  "expected_extractions": [
+    {
+      "test_id": "chinese_title_first_line",
+      "expected": {
+        "title": "中医体质学说的理论构建与临床应用研究",
+        "authors": ["王琦"],
+        "first_page": 1,
+        "confidence": {
+          "title": 0.95,
+          "authors": 0.85
+        }
+      }
+    },
+    {
+      "test_id": "english_title_metadata",
+      "expected": {
+        "title": "Development of TCM Constitution Classification System",
+        "authors": ["Wang Qi"],
+        "first_page": 1,
+        "confidence": {
+          "title": 0.99,
+          "authors": 0.90
+        }
+      }
+    },
+    {
+      "test_id": "authors_pattern",
+      "expected": {
+        "title": "中医体质分类与判定标准的研究",
+        "authors": ["王琦", "朱燕波", "李英帅"],
+        "first_page": 1,
+        "confidence": {
+          "title": 0.95,
+          "authors": 0.95
+        }
+      }
+    },
+    {
+      "test_id": "cnki_generic_metadata",
+      "expected": {
+        "title": "中医体质学",
+        "authors": ["王琦"],
+        "first_page": 1,
+        "confidence": {
+          "title": 0.80,
+          "authors": 0.80
+        }
+      }
+    },
+    {
+      "test_id": "mixed_content",
+      "expected": {
+        "title": "中医体质学理论体系的构建",
+        "authors": ["王琦"],
+        "first_page": 1,
+        "confidence": {
+          "title": 0.90,
+          "authors": 0.85
+        }
+      }
+    },
+    {
+      "test_id": "empty_lines_start",
+      "expected": {
+        "title": "中医体质辨识与健康管理",
+        "authors": ["王琦"],
+        "first_page": 1,
+        "confidence": {
+          "title": 0.90,
+          "authors": 0.85
+        }
+      }
+    },
+    {
+      "test_id": "author_affiliation_pattern",
+      "expected": {
+        "title": "基于中医体质的健康干预策略研究",
+        "authors": ["王琦", "朱燕波", "李英帅"],
+        "first_page": 1,
+        "confidence": {
+          "title": 0.95,
+          "authors": 0.95
+        }
+      }
+    },
+    {
+      "test_id": "book_chapter",
+      "expected": {
+        "title": "第九章 体质辨识与养生",
+        "authors": [],
+        "first_page": 1,
+        "confidence": {
+          "title": 0.85,
+          "authors": 0.50
+        }
+      }
+    }
+  ],
+  "extraction_rules": {
+    "title_patterns": [
+      {
+        "pattern": "first_non_empty_line",
+        "description": "First non-empty line is often the title",
+        "priority": 1
+      },
+      {
+        "pattern": "metadata_title",
+        "description": "Title from PDF metadata",
+        "priority": 2
+      },
+      {
+        "pattern": "after_cnki_header",
+        "description": "Title after CNKI download header",
+        "priority": 3
+      }
+    ],
+    "author_patterns": [
+      {
+        "pattern": "作者：(.+)",
+        "description": "Explicit author marker",
+        "priority": 1
+      },
+      {
+        "pattern": "name_after_title",
+        "description": "Name on line after title",
+        "priority": 2
+      },
+      {
+        "pattern": "metadata_author",
+        "description": "Author from PDF metadata",
+        "priority": 3
+      }
+    ]
+  }
+}

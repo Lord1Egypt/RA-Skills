@@ -1,17 +1,17 @@
-# 验证与修复
+# Verification and repair
 
-Frontend Craft skill for 验证与修复.
+Diagnose and repair failures in existing lint, typecheck, test, and build commands.
 
 ## Skill
 
 - ID: `fec-validation-fix`
 - Category: `review-quality`
-- Version: `2.6.0`
+- Version: `2.9.0`
 - Source: `skills/fec-validation-fix/SKILL.md`
 
 ## Description
 
-Use when running existing project validation commands and fixing failures after code changes, including lint, type-check, unit/integration test, build, CI, or local script failures. Do not use when the task is to design or author new component/E2E tests; Chinese triggers include 验证, 检查失败, 修复失败, CI 失败.
+Use when running existing project validation commands and fixing failures after code changes, including lint, type-check, unit/integration test, build, CI, or local script failures. Do not use when the task is to design or author new component/E2E tests; Chinese triggers include validation, check failures, fix failures, CI failures.
 
 ## Usage
 

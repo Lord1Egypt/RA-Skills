@@ -1,41 +1,54 @@
-## Description: <br>
-Actively verifies Python and JavaScript code correctness by generating targeted test cases that expose logic flaws based on problem constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Actively verifies Python and JavaScript code correctness by generating targeted edge-case tests and running candidate solutions against them.
 
-## Publisher: <br>
-[wanng-ide](https://clawhub.ai/user/wanng-ide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wanng-ide](https://clawhub.ai/user/wanng-ide)
 
-## Use Case: <br>
-Developers and engineers use this skill to check candidate Python or JavaScript solutions by generating targeted edge-case tests and comparing actual output against expected output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill executes submitted code directly without enforcing a sandbox. <br>
-Mitigation: Run it only in a disposable sandbox or container with limited filesystem access, no secrets, and restricted networking. <br>
-Risk: Code and problem details may be sent to OpenAI when an API key is configured. <br>
-Mitigation: Use it only with code that is acceptable to share under the organization's data handling policy. <br>
+## Use Case:
 
+Developers and engineers use this skill to evaluate competitive-programming style Python or JavaScript solutions by generating targeted test inputs, expected outputs, and pass/fail verification results.
 
-## Reference(s): <br>
-- [Scaling Agentic Verifier for Competitive Coding](https://arxiv.org/abs/2602.09012) <br>
-- [ClawHub skill page](https://clawhub.ai/wanng-ide/arxiv-agentic-verifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [JSON-like verification results with console text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated test input, expected output, pass/fail status, failure reason, and runtime details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill runs submitted code on the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only inside a disposable, locked-down sandbox or container with restricted filesystem, network, process, CPU, and memory access.
+
+Risk: Submitted problems and code may be sent to OpenAI when an API key is configured.
+
+Mitigation: Review inputs for sensitive data before use and avoid inherited secrets in the execution environment.
+
+## Reference(s):
+
+- [Scaling Agentic Verifier for Competitive Coding](https://arxiv.org/abs/2602.09012)
+- [ClawHub skill page](https://clawhub.ai/wanng-ide/skills/arxiv-agentic-verifier)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Code, Guidance]
+
+**Output Format:** [JSON objects and console text describing generated tests, execution results, and verification outcomes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENAI_API_KEY for model-backed test generation; falls back to mock test data when no key is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

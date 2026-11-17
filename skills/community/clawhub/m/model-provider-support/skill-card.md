@@ -1,54 +1,72 @@
-## Description: <br>
-Answer official-doc-grounded support questions about Claude, OpenAI/GPT, and Gemini model availability across Bedrock, Vertex AI, Azure, OpenAI, and Gemini API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Answer official-doc-grounded support questions about Claude, OpenAI/GPT, and Gemini model availability across Bedrock, Vertex AI, Azure, OpenAI, and Gemini API.
 
-## Publisher: <br>
-[derekhsu529](https://clawhub.ai/user/derekhsu529) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[derekhsu529](https://clawhub.ai/user/derekhsu529)
 
-## Use Case: <br>
-Developers and support teams use this skill to answer model availability and capability questions across Claude, OpenAI/GPT, and Gemini provider surfaces with official documentation. It is intended for provider-specific guidance where hosted model support, regions, API versions, and capabilities may differ. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provider-hosted model support can differ from first-party model documentation or change after release, which can lead to incorrect availability or capability claims. <br>
-Mitigation: Check the official documentation for the exact provider surface, model version, API version, and region; mark unsupported or unclear claims as unknown_needs_live_check. <br>
-Risk: Registry edits could introduce stale or unofficial sources into future support answers. <br>
-Mitigation: Run scripts/check-sources.mjs after registry changes and keep source entries limited to official provider documentation. <br>
+## Use Case:
 
+Developers and technical teams use this skill to answer provider-specific model support questions across Claude, OpenAI/GPT, and Gemini hosted surfaces. It helps keep answers conservative by requiring official provider documentation for model availability, regions, API surfaces, and capabilities.
 
-## Reference(s): <br>
-- [Capability Taxonomy](references/capability-taxonomy.md) <br>
-- [Provider Differences](references/provider-differences.md) <br>
-- [QA Cases](references/qa-cases.md) <br>
-- [Source Registry](references/source-registry.json) <br>
-- [Anthropic Claude in Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock) <br>
-- [Anthropic Claude on Vertex AI](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai) <br>
-- [AWS Bedrock Supported Models](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html) <br>
-- [AWS Bedrock Anthropic Claude Messages Parameters](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html) <br>
-- [Google Cloud Vertex AI Claude Partner Models](https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-claude) <br>
-- [Azure OpenAI Models](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models) <br>
-- [Azure OpenAI API Reference](https://learn.microsoft.com/en-us/azure/ai-services/openai/reference) <br>
-- [OpenAI Models](https://platform.openai.com/docs/models) <br>
-- [OpenAI API Reference](https://platform.openai.com/docs/api-reference) <br>
-- [Google Cloud Vertex AI Gemini Models](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models) <br>
-- [Gemini API Docs](https://ai.google.dev/gemini-api/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with official-source citations and conservative status labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May mark unverified capabilities as unknown_needs_live_check when current official docs are unavailable or conflicting] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Hosted model support can change as providers update models, regions, and API versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the current official provider documentation for the exact model, hosted surface, API version, region, and capability before relying on a support conclusion.
+
+Risk: First-party model documentation can be mistaken for proof that a hosted cloud-provider surface supports the same feature.
+
+Mitigation: Use first-party documentation only for first-party API claims or comparison context, and require hosting-provider documentation for hosted support claims.
+
+Risk: Unavailable, stale, or conflicting documentation can lead to overconfident answers.
+
+Mitigation: State the documentation access or conflict clearly and mark the capability as unknown when current official docs do not confirm it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/derekhsu529/skills/model-provider-support)
+- [Capability Taxonomy](references/capability-taxonomy.md)
+- [Provider Differences](references/provider-differences.md)
+- [QA Cases](references/qa-cases.md)
+- [Source Registry](references/source-registry.json)
+- [Anthropic Claude in Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock)
+- [Anthropic Claude on Vertex AI](https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai)
+- [Amazon Bedrock supported models](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html)
+- [Amazon Bedrock Anthropic Claude messages parameters](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html)
+- [Vertex AI Claude partner models](https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-claude)
+- [Azure OpenAI model docs](https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models)
+- [Azure OpenAI API reference](https://learn.microsoft.com/en-us/azure/ai-services/openai/reference)
+- [OpenAI model docs](https://platform.openai.com/docs/models)
+- [OpenAI API reference](https://platform.openai.com/docs/api-reference)
+- [Vertex AI Gemini models](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models)
+- [Gemini API docs](https://ai.google.dev/gemini-api/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text answers with citations and conservative status labels when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require live official-documentation checks because provider support can change.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Security Audit Assistant generates lightweight security baseline reports and remediation commands for OpenClaw-managed servers, focusing on SSH, firewall, update, password, logging, and file-permission checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts lightweight security baseline audits on OpenClaw-managed servers, identifies SSH, firewall, update, password, logging, service, and file-permission findings, and returns reports with remediation commands.
 
-## Publisher: <br>
-[huoxinjiang](https://clawhub.ai/user/huoxinjiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huoxinjiang](https://clawhub.ai/user/huoxinjiang)
 
-## Use Case: <br>
-DevOps teams, system administrators, and small business operators use this skill to review OpenClaw-managed Linux nodes for common security baseline gaps and to produce human-readable findings with proposed shell remediation commands. Reviewers should confirm results before relying on the report because server security evidence says the current scanner may report success without real node checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Server security evidence says the scanner appears to be a mock that can report success without actually checking the server. <br>
-Mitigation: Install only after source review and non-production testing; do not rely on reports until the command runner performs real OpenClaw node execution. <br>
-Risk: Generated remediation commands can change SSH, firewall, package, logging, and file-permission settings. <br>
-Mitigation: Review each command, confirm it matches the target operating system and maintenance window, and keep rollback access before applying sudo fixes. <br>
-Risk: Documented CLI options and export formats may not match implemented behavior. <br>
-Mitigation: Verify supported arguments and output formats in a test OpenClaw environment before scheduling audits or integrating the output into compliance workflows. <br>
+## Use Case:
 
+DevOps engineers, sysadmins, and small business operators use this skill to run fast baseline checks across OpenClaw-managed nodes and collect human-readable findings for routine hardening or client-facing security reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huoxinjiang/security-audit-assistant) <br>
-- [CIS Benchmark Summary](references/cis-benchmark-summary.md) <br>
-- [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON] <br>
-**Output Format:** [Human-readable security audit report with remediation commands; documented JSON export for integrations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include pass/fail counts, risk categories, actual values when available, and suggested remediation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests managed-node execution and cron authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where that authority is acceptable, and limit runs and schedules to intended OpenClaw-managed nodes.
+
+Risk: The artifact ships an incomplete scanner with a mock executor, so reported audit results may not reflect real node state.
+
+Mitigation: Treat results as unreliable until real OpenClaw node execution is verified in a test environment.
+
+Risk: Suggested fixes include sudo changes to SSH, firewall, packages, and system permissions that can disrupt access or production behavior.
+
+Mitigation: Review each command, make backups, validate SSH and firewall changes, and prepare rollback access before applying fixes.
+
+## Reference(s):
+
+- [Security Audit Assistant on ClawHub](https://clawhub.ai/huoxinjiang/skills/security-audit-assistant)
+- [CIS Benchmark Summary](references/cis-benchmark-summary.md)
+- [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown, JSON, or plain text reports with inline shell remediation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May be scheduled through OpenClaw cron; remediation commands require review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

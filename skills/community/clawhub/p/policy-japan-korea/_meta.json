@@ -1,6 +1,26 @@
 {
-  "ownerId": "kn75q5p7wpr68hmqar9ywtejsx84cw1x",
+  "name": "🇯🇵🇰🇷 日韩市场政策查询Skill",
   "slug": "policy-japan-korea",
+  "description": "提供日韩市场政策、法规及投资环境的智能查询与分析，支持多语言和多数据源配置。",
   "version": "1.1.0",
-  "publishedAt": 1777617292573
+  "author": "Huimai AI",
+  "email": "yezhaowang888@icloud.com",
+  "license": "MIT",
+  "tags": [
+    "trade",
+    "policy",
+    "japan-korea",
+    "huimai",
+    "calibration"
+  ],
+  "lastUpdated": "2026-05-01",
+  "calibration": {
+    "levels": [
+      "quick",
+      "standard"
+    ],
+    "interval": 1800000,
+    "trustedMode": true
+  },
+  "warmMode": "default"
 }

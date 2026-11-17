@@ -1,40 +1,55 @@
-## Description: <br>
-Helps creators and communicators turn product-help requests into practical workflows, artifacts, checklists, analysis, or implementation support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps creators and communicators turn an Ask HN product-help request into a practical workflow, artifact, checklist, analysis, or implementation support.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Creators, communicators, and product builders use this skill to structure early product-validation requests into a clear brief, options, deliverables, and validation checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate the skill on generic product or ask-related prompts. <br>
-Mitigation: Review activation behavior before relying on it and narrow trigger keywords or disable implicit invocation if accidental activation would disrupt the workflow. <br>
+## Use Case:
 
+Creators and communicators use this skill to clarify product-validation requests, generate concrete deliverables, and check outputs against stated success criteria. It is useful when a user needs a practical workflow, checklist, analysis, code change, or decision support for a product idea or request.
 
-## Reference(s): <br>
-- [Product Validation Planner on ClawHub](https://clawhub.ai/kyro-ma/product-validation-planner-125229) <br>
-- [Ask HN: I Need Help for a Product](https://news.ycombinator.com/item?id=48505805) <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, workflows, analysis, or implementation notes as needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only planning output; no credentials, tools, or external service access are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may activate for broad product-related wording because implicit invocation is enabled and trigger terms are generic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation behavior before deployment and narrow trigger wording when precise routing is required.
+
+Risk: Generated planning guidance may not fully match the user's product context if important constraints are missing.
+
+Mitigation: Ask for missing information only when it materially changes the output, then validate the result against the stated success criteria.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [Ask HN: I Need Help for a Product](https://news.ycombinator.com/item?id=48505805)
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/product-validation-planner-125229)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, checklists, workflows, verification notes, and next-step guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

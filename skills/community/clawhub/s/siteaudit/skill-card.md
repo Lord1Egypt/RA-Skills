@@ -1,40 +1,52 @@
-## Description: <br>
-Comprehensive website audit combining uptime checks, TLS certificate inspection, and security headers grading in one command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive website audit combining uptime checking, TLS certificate inspection, and security headers grading in one command.
 
-## Publisher: <br>
-[rogue-agent1](https://clawhub.ai/user/rogue-agent1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[rogue-agent1](https://clawhub.ai/user/rogue-agent1)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, site operators, and security reviewers use Siteaudit to check websites they own or are authorized to test for uptime, HTTPS/TLS status, certificate expiry, and common security header gaps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill makes disclosed network checks against user-provided websites, and audited servers can observe those connections.
+
+Mitigation: Use it only for websites you own or are authorized to test; avoid private, internal, or third-party hosts without permission.
+
+Risk: The output is a lightweight website health and header audit, not a complete security assessment.
+
+Mitigation: Treat findings as triage signals and review important issues with appropriate operational or security tooling before acting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, site operators, and security reviewers use this skill to audit websites they own or are authorized to test for uptime, HTTPS certificate status, response time, and common security header coverage. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, JSON, shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes HTTP and TLS requests to user-provided domains or URLs, which can contact external, internal, or sensitive services. <br>
-Mitigation: Use the skill only against sites you own or are authorized to test, and avoid internal or sensitive targets unless that access is intentional. <br>
-Risk: Website health and header grades are point-in-time checks and may not represent ongoing security posture. <br>
-Mitigation: Treat results as a current audit signal and re-run checks when site configuration, certificates, or response behavior changes. <br>
+**Output Format:** [Plain text report or JSON object from the Siteaudit Python CLI]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rogue-agent1/siteaudit) <br>
+**Other Properties Related to Output:** [Exit code 0 when all checked sites are healthy; exit code 1 when issues are detected.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain-text command output or JSON audit results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports status, response time, TLS certificate details, security header grade, detected issues, and process exit status.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,24 @@
+{
+  "taskId": "parallax-scroll",
+  "imageSource": "ai-assets",
+  "tag": "旅游",
+  "theme": "山径夜灯",
+  "styleAnchor": "纸本淡彩，暖米色与一小块琥珀灯笼",
+  "lightingHint": "暖米色底，灯笼是一小块琥珀光",
+  "assets": [
+    {
+      "assetId": "near-lantern",
+      "name": "近景灯笼",
+      "category": "道具/近景",
+      "usedBy": ["near-lantern"],
+      "width": 120,
+      "height": 160,
+      "cropMode": "contain",
+      "cropGravity": "center",
+      "needsTransparent": true,
+      "visual": "一只纸灯笼，完整居中",
+      "safeArea": "",
+      "role": "transparent"
+    }
+  ]
+}

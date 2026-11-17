@@ -1,39 +1,54 @@
-## Description: <br>
-Provisions the oracle ML inference daemon with onnxruntime via uv. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provisions the oracle ML inference daemon with onnxruntime via uv
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare the oracle plugin's local ONNX inference environment and verify that ONNX Runtime is installed before the daemon starts in a later session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup command creates a local Python environment, downloads ONNX Runtime, and imports oracle.provision code that is not included in the submitted artifact. <br>
-Mitigation: Run it only from the expected plugins/oracle directory after confirming uv is installed, network access is intended, and the local oracle.provision implementation is trusted. <br>
+## Use Case:
 
+Developers setting up the Oracle inference environment use this skill to provision the local ONNX Runtime daemon dependencies for skill quality evaluation. It provisions the environment; it does not perform the quality evaluation itself.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-oracle-setup) <br>
-- [Oracle plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/oracle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes success or failure reporting guidance for the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: ClawHub release evidence) <br>
+Risk: The security analysis has partial coverage because a local Markdown reference could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Resolve and review the referenced material, then review the skill before installation.
+
+Risk: Provisioning installs onnxruntime and pyyaml and requires an initial internet download.
+
+Mitigation: Run provisioning in the intended project virtual environment and follow the environment's dependency and package source policies.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-oracle-setup)
+- [Project homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/oracle)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Text]
+
+**Output Format:** [Markdown instructions with inline shell commands and a provisioning result message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and an internet connection for the initial dependency download.]
+
+## Skill Version(s):
+
+1.10.3 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

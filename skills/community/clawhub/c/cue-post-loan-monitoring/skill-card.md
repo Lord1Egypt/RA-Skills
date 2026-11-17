@@ -1,43 +1,61 @@
-## Description: <br>
-Runs Cue deep research for post-loan monitoring by cross-checking public data and returning source-linked conclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用 Cue 跑贷后监测场景的深度研究，监测授信客户的被执行、诉讼、评级下调、经营异动、股权质押和资产处置等公开风险信号，并生成带来源链接的贷后风险预警底稿。
 
-## Publisher: <br>
-[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu)
 
-## Use Case: <br>
-Financial-risk, credit, and due-diligence users use this skill to monitor borrowers, track company events, review disclosure or regulatory signals, and prepare evidence-linked post-loan research notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may clone or update the external cue-skills runner and execute it locally. <br>
-Mitigation: Review the external runner source or pin a trusted copy before use when stricter supply-chain control is required. <br>
-Risk: Deep research runs can spend Cue credits. <br>
-Mitigation: Confirm the selected research buddy, subject, and expected credit use with the user before running. <br>
-Risk: Results are based on public sources and may be incomplete for lending, legal, or underwriting decisions. <br>
-Mitigation: Review the linked sources and treat the report as research support rather than a substitute for formal diligence. <br>
+## Use Case:
 
+Credit risk, lending operations, and financial due-diligence teams use this skill to run Cue-backed post-loan monitoring on borrowers or counterparties. It helps produce sourced warning reports for enterprise events, judicial execution, litigation, rating changes, pledged equity, operating anomalies, and asset-disposal leads.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangxiaoxu/skills/cue-post-loan-monitoring) <br>
-- [Cue Playbook API](https://cuecue.cn/api/playbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with source links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Cue account/API key; deep research runs may consume Cue credits after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks users to fetch and run mutable external runner code before executing the research workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the runner repository before execution, and install only if cuecue.cn and the sensedeal/cue-skills repository are trusted.
+
+Risk: The Cue workflow uses the user's query and local Cue API key and may consume account credits.
+
+Mitigation: Confirm the subject, selected workflow, data-sharing acceptability, and credit use with the user before running the research command.
+
+Risk: The generated monitoring report is based on public-data research and may be incomplete or unsuitable as a sole basis for lending decisions.
+
+Mitigation: Use the report as an evidence-linked screening artifact and route material findings through normal due-diligence, legal, and credit review processes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaoxu/skills/cue-post-loan-monitoring)
+- [Cue playbook API](https://cuecue.cn/api/playbook)
+- [Cue API key page](https://cuecue.cn/hub/api-key)
+- [Cue skills runner repository](https://github.com/sensedeal/cue-skills)
+- [Cue skills runner mirror](https://gitee.com/sensedeal/cue-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with source links plus setup and execution commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs can take several minutes, consume Cue credits, and may return an empty result that should be reported without fabrication.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

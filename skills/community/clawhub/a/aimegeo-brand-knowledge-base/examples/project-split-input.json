@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "kb": {"id": "project-split-demo", "name": "跨项目事实拆分演示"},
+  "as_of": "2026-10-19",
+  "projects": [
+    {"id": "project-a", "name": "项目 A"},
+    {"id": "project-b", "name": "项目 B"}
+  ],
+  "entities": [
+    {"id": "product-a", "kind": "product", "name": "资料夹 A", "project_ids": ["project-a", "project-b"]}
+  ],
+  "sources": [
+    {"id": "split-v1", "title": "跨项目交付约定（演示）", "path": "materials/project-split-v1.md", "captured_at": "2026-10-19"}
+  ],
+  "records": [
+    {
+      "id": "shared-v1", "entity_id": "product-a", "category": "product", "key": "delivery_formats",
+      "value": "Markdown+JSON", "text": "项目 A 和项目 B 均交付 Markdown 正文与 JSON 索引。",
+      "status": "supported", "project_ids": ["project-a", "project-b"],
+      "sources": [{"source_id": "split-v1", "locator": "正文第2段", "quote": "资料夹 A 在项目 A 和项目 B 中均交付 Markdown 正文与 JSON 索引。"}]
+    }
+  ]
+}

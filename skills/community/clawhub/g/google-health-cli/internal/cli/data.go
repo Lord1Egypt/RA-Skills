@@ -67,8 +67,8 @@ func (a *App) runDataList(cmd *cobra.Command, typeName, date string, days int, f
 	}
 	if !dt.Supports("list") {
 		return withCode(ExitUsage, fmt.Errorf(
-			"data type %q does not support list (supported: %v); it is a rollup/reconcile-only type",
-			dt.EndpointName, dt.Operations,
+			"data type %q does not support list (supported: %v); %s",
+			dt.EndpointName, dt.Operations, readHint(dt),
 		))
 	}
 

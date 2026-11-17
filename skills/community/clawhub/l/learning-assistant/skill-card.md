@@ -1,51 +1,63 @@
-## Description: <br>
-A Chinese-first technical learning assistant for computer science, AI, machine learning, reinforcement learning, and software engineering that helps users learn concepts, review knowledge, prepare for interviews, create study artifacts, analyze code, and research technical topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-default technical learning assistant for computer science, AI, machine learning, reinforcement learning, software engineering, interview preparation, code analysis, study planning, knowledge review, and deeper research.
 
-## Publisher: <br>
-[ChenChen913](https://clawhub.ai/user/ChenChen913) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchen913](https://clawhub.ai/user/chenchen913)
 
-## Use Case: <br>
-Developers, students, and technical learners use this skill to structure CS, AI, ML, RL, and software engineering study sessions, including explanations, review workflows, interview practice, code understanding, study plans, flashcards, and local Markdown learning records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local learning records may contain personal learning goals, weak areas, review schedules, session history, or sensitive project details. <br>
-Mitigation: Install only if local Markdown persistence is acceptable, avoid pasting secrets or highly sensitive details into study notes, and periodically review or delete workspace files that become too personal or inaccurate. <br>
-Risk: The skill can generate study guidance, summaries, interview answers, and code explanations that users may rely on for learning decisions. <br>
-Mitigation: Review generated learning materials and code explanations before relying on them, especially for current technologies, interview preparation, or project-specific implementation details. <br>
+## Use Case:
 
+Developers, students, and technical learners use this skill to receive structured explanations, interactive tutoring, interview practice, code walkthroughs, study plans, flashcards, review prompts, and locally maintained learning records.
 
-## Reference(s): <br>
-- [Learning Assistant Skill Definition](SKILL.md) <br>
-- [Knowledge Analysis Module](references/01-knowledge-analysis.md) <br>
-- [Interaction Modes Module](references/02-interaction-modes.md) <br>
-- [File Templates Module](references/03-file-templates.md) <br>
-- [Code Adaptation Module](references/04-code-adaptation.md) <br>
-- [Domain Adaptation Module](references/05-domain-adaptation.md) <br>
-- [Research Strategy Module](references/06-research-strategy.md) <br>
-- [Index and Review Module](references/07-index-and-review.md) <br>
-- [Session Continuity Module](references/08-session-continuity.md) <br>
-- [Profile Operations Module](references/09-profile-operations.md) <br>
-- [Workspace README](workspace/README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ChenChen913/learning-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance, Files] <br>
-**Output Format:** [Chinese-first Markdown with structured sections, tables, checklists, and code blocks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or maintain local Markdown workspace files such as user profiles, learning indexes, study plans, summaries, flashcards, interview notes, code notes, review reports, and session anchors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may store learner goals, experience level, weak points, mistakes, progress, tags, and review schedules in local Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the workspace files before installation and use; decide whether profile persistence is acceptable and request a no-profile, delete, or export workflow when needed.
+
+Risk: Broad activation triggers may route ordinary learning, code, review, or research requests into profile and study-history workflows.
+
+Mitigation: Confirm the desired mode before longer sessions and review generated profile, index, and study artifacts before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenchen913/skills/learning-assistant)
+- [Knowledge analysis module](references/01-knowledge-analysis.md)
+- [Interaction modes module](references/02-interaction-modes.md)
+- [File templates module](references/03-file-templates.md)
+- [Code adaptation module](references/04-code-adaptation.md)
+- [Domain adaptation module](references/05-domain-adaptation.md)
+- [Research strategy module](references/06-research-strategy.md)
+- [Index and review module](references/07-index-and-review.md)
+- [Session continuity module](references/08-session-continuity.md)
+- [Profile operations module](references/09-profile-operations.md)
+- [Workspace README](workspace/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Chinese-default Markdown with structured sections and optional code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local learner profile, learning index, anchor, plan, summary, confusion, mistake, flashcard, interview, code note, and review Markdown files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

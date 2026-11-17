@@ -1,36 +1,51 @@
-## Description: <br>
-Use to authenticate with Morning (GreenInvoice) and create or manage clients, items, and accounting documents such as invoices, receipts, quotes, orders, and credits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use to authenticate with Morning (GreenInvoice) and create/manage clients, items, and accounting documents (invoice/receipt/quote/order/credit).
 
-## Publisher: <br>
-[k0renn](https://clawhub.ai/user/k0renn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[k0renn](https://clawhub.ai/user/k0renn)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent work with Morning (GreenInvoice) accounts, including authentication, client and item management, and creation of accounting documents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update real accounting records using API credentials without an explicit final confirmation requirement. <br>
-Mitigation: Use a least-privilege API key where available, avoid exposing secrets in untrusted sessions, and manually review client, item, and document payloads before creation or update. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users and business operators use this skill to have an agent authenticate with Morning/GreenInvoice, maintain client and item records, and create invoices, receipts, quotes, orders, credit invoices, or debit invoices.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can create or modify Morning/GreenInvoice business records when given valid API credentials.
+
+Mitigation: Provide client, document, currency, and language details explicitly for important accounting actions and review them before execution.
+
+Risk: API secrets and JWTs are sensitive credentials.
+
+Mitigation: Do not log, echo, or include API secrets or JWTs in user-facing responses.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON tool payloads and concise text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return created resource IDs and document URLs when the connected Morning tool provides them.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [Text, JSON, Guidance, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with JSON tool payload examples and concise text outputs such as resource IDs and document URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or relay created client, item, and document identifiers, plus document links when the Morning/GreenInvoice tool provides them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

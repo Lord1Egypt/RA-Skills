@@ -1,41 +1,57 @@
-## Description: <br>
-Helps agents call the ai.t8star.cn Nano Banana image API for text-to-image generation and image editing, using a user-provided API key and saving generated images locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nano Banana Image T8 helps agents run Nano Banana text-to-image and image-edit tests through the bundled API test script, using user prompts, optional uploaded images, model choices, and size or aspect-ratio options.
 
-## Publisher: <br>
-[flywhale-666](https://clawhub.ai/user/flywhale-666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flywhale-666](https://clawhub.ai/user/flywhale-666)
 
-## Use Case: <br>
-Developers and image-generation users use this skill to run Nano Banana text-to-image and image-edit tests from conversation parameters, including prompts, optional image inputs, aspect ratios, and model selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a user-provided Nano Banana API key and may persist it locally. <br>
-Mitigation: Use a dedicated limited-use API key, treat it as a secret, and delete or rotate the saved key when it is no longer needed. <br>
-Risk: Image-editing mode uploads user-selected image files to the configured Nano Banana API endpoint. <br>
-Mitigation: Provide only image paths that are appropriate to upload to the ai.t8star.cn service. <br>
+## Use Case:
 
+Developers and image workflow testers use this skill to validate Nano Banana text-to-image and image-to-image generation with real API calls. It helps agents collect required prompts, image inputs, API key state, model selection, and output paths for concise test results.
 
-## Reference(s): <br>
-- [ClawHub listing: Nano Banana Image T8](https://clawhub.ai/flywhale-666/nano-banana-image-t8) <br>
-- [Publisher profile: flywhale-666](https://clawhub.ai/user/flywhale-666) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Concise chat responses with shell command execution and local PNG image output paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist the API key and default model under the user's ~/.whaleclaw credentials directory and writes generated images to ~/.whaleclaw/workspace/nano_banana_test by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Risk: A reusable API key may be saved under ~/.whaleclaw/credentials and reused by later runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited or throwaway API key, keep file permissions restrictive, and remove the saved key when it is no longer needed.
+
+Risk: Changing the API base URL could send credentials, prompts, and images to an unintended endpoint.
+
+Mitigation: Use the documented default endpoint and avoid custom base URLs until endpoint validation or removal is available.
+
+Risk: Image prompts and uploaded images are sent to an external image API and generated images may be downloaded from returned URLs.
+
+Mitigation: Use non-sensitive inputs, review the service terms, and run the skill only in trusted environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flywhale-666/skills/nano-banana-image-t8)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown or plain text with shell commands, structured errors, and generated image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a user prompt, optional uploaded image paths, optional model selection, optional aspect ratio or size, and a Nano Banana API key.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

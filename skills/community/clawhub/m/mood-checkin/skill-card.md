@@ -1,41 +1,54 @@
-## Description: <br>
-Mood Checkin provides a Sol persona for short mood check-ins, emotional weather reports, guided breathing, journaling, venting, recaps, read-me reflections, archetypes, and monthly summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mood Checkin helps users run short emotional check-ins, guided breathing, journaling, venting, weekly recaps, and shareable mood summaries through the Sol persona.
 
-## Publisher: <br>
-[sharoonsharif](https://clawhub.ai/user/sharoonsharif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sharoonsharif](https://clawhub.ai/user/sharoonsharif)
 
-## Use Case: <br>
-External users use this skill to run personal emotional check-ins, capture short reflections, generate shareable mood summaries, and receive lightweight grounding prompts. The skill is a self-awareness companion, not a therapist, counselor, or medical professional. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and reuses sensitive emotional check-ins, inferred patterns, archetypes, and monthly summaries in a local mood-checkin-profile.json file. <br>
-Mitigation: Use it in a private workspace, avoid sharing generated cards unless intentional, and delete mood-checkin-profile.json when resetting or removing stored history. <br>
-Risk: The skill discusses emotional distress and may encounter crisis language while explicitly not acting as a therapist or medical professional. <br>
-Mitigation: Preserve the skill's disclaimer, avoid clinical claims, and route crisis situations to real human support such as 988 or the listed crisis resources. <br>
+## Use Case:
 
+External users use this skill for private self-reflection through mood check-ins, breathing and grounding guidance, journaling prompts, venting support, and periodic mood recaps. It is positioned as a friendly check-in companion rather than therapy or medical care.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sharoonsharif/mood-checkin) <br>
-- [International Association for Suicide Prevention Crisis Centres](https://www.iasp.info/resources/Crisis_Centres/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Conversational text and markdown-style shareable cards, with a local JSON mood profile when persistence is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains mood-checkin-profile.json with mood history, streaks, archetypes, and monthly summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill stores sensitive emotional check-ins and derived patterns in a local mood-checkin-profile.json file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in a private workspace, avoid committing or syncing the profile file, and review or delete the file when the stored history is no longer needed.
+
+Risk: Shareable weather reports, archetypes, and monthly wrapped summaries can expose sensitive personal information.
+
+Mitigation: Inspect, redact, or avoid sharing generated summaries when they reveal private emotional patterns or circumstances.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sharoonsharif/skills/mood-checkin)
+- [International Association for Suicide Prevention crisis centres](https://www.iasp.info/resources/Crisis_Centres/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Conversational text and Markdown-style shareable cards, with a local JSON mood profile file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update mood-checkin-profile.json in the current working directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

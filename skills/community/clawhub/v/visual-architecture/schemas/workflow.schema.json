@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/LeoStehlik/visual-architecture/schemas/workflow.schema.json",
+  "title": "Workflow artifact spec",
+  "allOf": [{ "$ref": "architecture.schema.json" }],
+  "properties": {
+    "mode": { "const": "workflow" }
+  }
+}

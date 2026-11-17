@@ -1,42 +1,59 @@
-## Description: <br>
-Coordinates a low-stimulation night-assist routine for Xiaodu smart displays and IoT lights when an older adult gets up at night, using scenes first, selected lighting, short speech, and timed auto-off. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates Xiaodu-connected scenes, lights, smart-screen speech, and auto-off timing for safer, low-disruption nighttime movement by older adults.
 
-## Publisher: <br>
-[dueros-mcp](https://clawhub.ai/user/dueros-mcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dueros-mcp](https://clawhub.ai/user/dueros-mcp)
 
-## Use Case: <br>
-External users with a configured Xiaodu home environment use this skill to help an older adult complete short nighttime activities, such as going to the bathroom or getting water, with restrained path lighting, brief speech, and automatic light shutoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control selected household lights and related Xiaodu devices after broad night-assist phrases. <br>
-Mitigation: Install only with a trusted xiaodu-control-official setup, use wake-word or active-session gating, and review the target lights and rooms before deployment. <br>
-Risk: Preference persistence can reveal household nighttime routines. <br>
-Mitigation: Review or disable XIAODU_CONTEXT.md and MEMORY.md persistence when household routine privacy matters. <br>
+## Use Case:
 
+External users and caregivers use this skill to help an assistant respond to short nighttime Chinese-language requests such as opening a night light or lighting a path to the bathroom. The skill favors low brightness, brief speech, serial device control, and automatic light shutoff.
 
-## Reference(s): <br>
-- [Usage Notes](references/usage-notes.md) <br>
-- [Test Cases](references/test-cases.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dueros-mcp/xiaodu-senior-night-assist-official) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses serial execution, scene-first fallback planning, preference notes, and timed light shutoff when dependencies are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad nighttime phrases could trigger unintended Xiaodu-connected light or scene control in a shared home.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear activation wording and ask one minimal confirmation question when the target room, path, or light is ambiguous.
+
+Risk: Stored night-use preferences may reveal sensitive household routines.
+
+Mitigation: Obtain consent before writing recurring preferences and define whether XIAODU_CONTEXT.md or MEMORY.md may retain nighttime routine details.
+
+Risk: Incorrect device selection could over-light the home or affect the wrong room at night.
+
+Mitigation: Use only server-listed devices, avoid whole-home defaults, prefer low warm light, and execute commands serially so failures can be handled step by step.
+
+## Reference(s):
+
+- [Usage Notes](artifact/references/usage-notes.md)
+- [Test Cases](artifact/references/test-cases.md)
+- [ClawHub Skill Page](https://clawhub.ai/dueros-mcp/skills/xiaodu-senior-night-assist-official)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and short user-facing responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces serial execution plans for Xiaodu scene, IoT light, smart-screen speech, optional thermal comfort, and auto-off actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

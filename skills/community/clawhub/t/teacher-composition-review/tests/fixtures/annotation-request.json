@@ -1,0 +1,13 @@
+{
+  "source_image": "/tmp/elementary-composition-review-source.png",
+  "output_image": "/tmp/elementary-composition-review-annotated.png",
+  "items": [
+    {
+      "id": 1,
+      "kind": "correction",
+      "bbox": [30, 40, 120, 70],
+      "message": "标点使用不当",
+      "confidence": 0.99
+    }
+  ]
+}

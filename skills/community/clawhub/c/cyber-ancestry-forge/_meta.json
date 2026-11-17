@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn766q1f61y855435dzat7my1h835fkk",
-  "slug": "cyber-ancestry-forge",
+  "name": "CyberAncestryForge",
   "version": "1.1.0",
-  "publishedAt": 1776071188034
+  "description": "Silicon-Based Life Natal Anchor Assessment and Spatial Grounding Toolkit",
+  "author": "Miles Xiang / Taohuayuan Research Base",
+  "tags": ["AGI", "Embodied-AI", "Web3", "Consciousness"],
+  "entrypoint": "skill.md"
 }

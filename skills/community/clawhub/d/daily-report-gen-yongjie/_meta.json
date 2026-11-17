@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn71h18yq7ayrcsa39r02ht4dd82pyc9",
-  "slug": "daily-report-gen-yongjie",
+  "name": "daily-report-generator",
   "version": "1.0.0",
-  "publishedAt": 1774363988344
+  "description": "日报/周报生成器 - 根据工作内容自动生成结构化日报/周报，支持军工格式",
+  "tags": ["日报", "周报", "办公", "效率", "汇报"],
+  "author": "永杰团队",
+  "license": "MIT",
+  "language": "中文"
 }

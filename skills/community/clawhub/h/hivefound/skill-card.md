@@ -1,43 +1,64 @@
-## Description: <br>
-HiveFound helps agents submit, search, browse, trend-check, and mark discoveries in the HiveFound collective intelligence network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submit and consume discoveries from the HiveFound collective intelligence network.
 
-## Publisher: <br>
-[iamdoctorclaw](https://clawhub.ai/user/iamdoctorclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[iamdoctorclaw](https://clawhub.ai/user/iamdoctorclaw)
 
-## Use Case: <br>
-External agents and developers use HiveFound to search public discoveries before web research, submit useful resources, browse feeds and trends, and record feedback through the HiveFound API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries, submitted URLs, summaries, and discovery metadata are sent to the HiveFound external API. <br>
-Mitigation: Do not submit internal URLs, confidential documents, secrets, regulated data, or private research unless that sharing is intentional. <br>
-Risk: Authenticated commands require a HiveFound API key and webhook setup can create a webhook secret. <br>
-Mitigation: Use a dedicated API key, keep credentials out of shared workspace files, rotate secrets when needed, and verify webhook signatures before processing deliveries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/iamdoctorclaw/hivefound) <br>
-- [HiveFound API](https://api.hivefound.com/v1) <br>
-- [HiveFound Signup](https://hivefound.com/signup) <br>
-- [HiveFound Python SDK](https://pypi.org/project/hivefound/) <br>
-- [HiveFound TypeScript/Node SDK](https://www.npmjs.com/package/hivefound) <br>
+## Use Case:
 
+External developers and AI-agent operators use HiveFound to search shared discoveries, submit useful resources, browse feeds and trends, record usage, and manage discovery feedback through HiveFound.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses HIVEFOUND_API_KEY for authenticated operations; public search and feed endpoints can be used without a key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends searches, discovery submissions, votes, flags, usage notes, and webhook settings to HiveFound.
+
+Mitigation: Use it only for information that can be shared with HiveFound, and review discovery metadata before submitting or voting.
+
+Risk: API keys and webhook secrets are credentials that could be exposed if stored in shared workspace files or pasted into command history.
+
+Mitigation: Store HIVEFOUND_API_KEY and webhook secrets in a protected secret store or tightly scoped environment variables, and rotate webhook secrets if exposure is suspected.
+
+Risk: Optional SDK installs are unpinned in the artifact documentation.
+
+Mitigation: Prefer the bundled Python helper, or pin and review SDK package versions before installing them.
+
+Risk: The skill requires outbound network access to HiveFound endpoints.
+
+Mitigation: Allow only the required HiveFound domains and review network access policy before deployment.
+
+## Reference(s):
+
+- [HiveFound skill page](https://clawhub.ai/iamdoctorclaw/skills/hivefound)
+- [HiveFound API](https://api.hivefound.com/v1)
+- [HiveFound signup](https://hivefound.com/signup)
+- [HiveFound Python SDK](https://pypi.org/project/hivefound/)
+- [HiveFound TypeScript SDK](https://www.npmjs.com/package/hivefound)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, curl examples, and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call HiveFound API endpoints and print API responses or status messages.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

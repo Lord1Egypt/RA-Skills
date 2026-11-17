@@ -1,0 +1,52 @@
+# Skill Manifest - omnipub-content-engine
+# 上架到 WorkBuddy SkillHub / ClawHub 必需文件
+
+name: omnipub-content-engine
+slug: omnipub-content-engine
+version: 2.0.0
+author: 心明增长实验室
+author_contact: 公众号「心明增长实验室」
+category: 内容创作
+license: MIT
+
+description: |
+  AI 驱动的内容生命周期管理技能，覆盖选题→生成→查证→图表→文末→风格→信息图→GEO→发布→复盘完整闭环。支持微信公众号+今日头条双平台，Gate制度人工把关，GEO闭环AI可见度，数据归因迭代。
+
+long_description: |
+  omnipub-content-engine 是一个 AI 驱动的内容生命周期管理技能。
+
+  核心差异化：Gate制度（人工把关不盲发）+ GEO闭环（内容优化 + AI可见度）。
+
+  v2 更新：
+  1. converter 列表布局从 flex 改为 table（微信渲染器不执行 flexbox）
+  2. UNSAFE_CSS_PROPS 从 14 个扩展到 31 个（新增 flex/grid 全系属性）
+  3. 公众号新增 --verify（draft/get 回读验证）、--force-upload（强制重传图片）、--retry（IP白名单自动重试）
+  4. 头条号生成完整 5 脚本套件（inject + batch_upload + check_cover + check_missing + insert_fallback）
+  5. CSS 兼容性约束文档完善（flex子属性行为说明、vertical-align补充）
+  6. 主题名称修正（05-footer-styles.md）
+
+  10 阶段闭环：选题 → 生成 → 查证 → 图表 → 文末 → 风格 → 信息图 → GEO → 发布 → 复盘
+  Gate 制度：G1选题确认 → G2初稿审阅 → G3文末素材 → G4发布授权 → G5复盘数据
+
+  内置 3 套主题：
+  - xinming-lab（品牌紫绿蓝，调研报告默认）
+  - xinming-minimal（极简黑白灰，随笔短文）
+  - xinming-warm（暖橙古铜，成长故事）
+
+  所有主题 CSS 已过微信兼容性清洗，列表用 table 布局代替 flexbox。
+
+tags:
+  - 公众号
+  - 头条
+  - 内容发布
+  - GEO
+  - 选题
+  - 复盘
+  - 多平台
+  - 微信CSS兼容
+
+platforms:
+  - wechat
+  - toutiao
+
+language: zh-CN

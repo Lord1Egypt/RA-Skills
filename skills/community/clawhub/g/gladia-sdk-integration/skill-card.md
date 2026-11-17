@@ -1,50 +1,63 @@
-## Description: <br>
-Install and configure the official Gladia SDKs (@gladiaio/sdk for JS/TS, gladiaio-sdk for Python). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in installing and configuring Gladia's JavaScript/TypeScript and Python SDKs for speech-to-text integrations.
 
-## Publisher: <br>
-[gladiaio](https://clawhub.ai/user/gladiaio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gladiaio](https://clawhub.ai/user/gladiaio)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up Gladia SDK clients, configure API keys and regions, choose JavaScript/TypeScript or Python usage patterns, and decide when SDK usage is preferable to raw API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples that upload files or stream microphone input send audio to Gladia's service. <br>
-Mitigation: Tell users to get appropriate consent, handle audio according to their privacy requirements, and disclose service-side processing before uploading or streaming. <br>
-Risk: API keys can be exposed if copied into browser-side code. <br>
-Mitigation: Keep API keys server-side where possible and use a backend proxy for browser integrations. <br>
-Risk: Delete methods can remove jobs, sessions, transcripts, or associated audio. <br>
-Mitigation: Require clear user confirmation before generating or running delete operations. <br>
+## Use Case:
 
+Developers use this skill to choose, install, and configure Gladia's JavaScript/TypeScript or Python SDK for speech-to-text applications, including browser and live-session integrations.
 
-## Reference(s): <br>
-- [SDK integration guide](https://docs.gladia.io/chapters/integrations/sdk) <br>
-- [JavaScript SDK on npm](https://www.npmjs.com/package/@gladiaio/sdk) <br>
-- [Python SDK on PyPI](https://pypi.org/project/gladiaio-sdk/) <br>
-- [SDK source code](https://github.com/gladiaio/sdk) <br>
-- [Code samples](https://github.com/gladiaio/gladia-samples) <br>
-- [Current SDK versions](./references/sdk-versions.md) <br>
-- [Client configuration reference](./references/client-config.md) <br>
-- [JavaScript and TypeScript SDK patterns](./references/javascript.md) <br>
-- [Python SDK patterns](./references/python.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SDK installation commands, client configuration snippets, and integration guidance for Gladia API usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Exposing Gladia API keys in browser code can compromise credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep API keys server-side and use a backend proxy for browser integrations.
+
+Risk: Recording or streaming microphone audio may capture sensitive speech without consent.
+
+Mitigation: Get consent before recording or streaming audio and handle it as sensitive data.
+
+Risk: Deleting a transcription job or live session removes stored data.
+
+Mitigation: Confirm the intended job or session before invoking delete methods.
+
+## Reference(s):
+
+- [Gladia SDK integration guide](https://docs.gladia.io/chapters/integrations/sdk)
+- [Client configuration reference](references/client-config.md)
+- [JavaScript/TypeScript SDK reference](references/javascript.md)
+- [Python SDK reference](references/python.md)
+- [SDK versions](references/sdk-versions.md)
+- [JavaScript SDK package](https://www.npmjs.com/package/@gladiaio/sdk)
+- [Python SDK package](https://pypi.org/project/gladiaio-sdk/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

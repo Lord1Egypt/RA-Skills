@@ -1,0 +1,742 @@
+{
+  "_snapshot_note": "Offline fallback for cost estimates only. ofox-video.sh reads the live catalog (GET /v2/models/catalog/...?include=provider_price, public, no API key) and only falls back here. Regenerate with: references/refresh-snapshot.sh",
+  "_snapshot_date": "2026-09-22",
+  "models": [
+    {
+      "id": "alibaba/happyhorse-1.0",
+      "provider_cards": [
+        {
+          "provider_type": "alicloud",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "720p",
+                  "price": "0.14"
+                },
+                {
+                  "resolution": "1080p",
+                  "price": "0.23"
+                },
+                {
+                  "price": "0.23"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "provider_type": "aliyun",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "720p",
+                  "price": "0.14"
+                },
+                {
+                  "resolution": "1080p",
+                  "price": "0.23"
+                },
+                {
+                  "price": "0.23"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "alibaba/happyhorse-1.1",
+      "provider_cards": [
+        {
+          "provider_type": "alicloud",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "720p",
+                  "price": "0.14"
+                },
+                {
+                  "resolution": "1080p",
+                  "price": "0.18"
+                },
+                {
+                  "price": "0.18"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "provider_type": "aliyun",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "720p",
+                  "price": "0.14"
+                },
+                {
+                  "resolution": "1080p",
+                  "price": "0.18"
+                },
+                {
+                  "price": "0.18"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "alibaba/wan-2.6",
+      "provider_cards": [
+        {
+          "provider_type": "alicloud",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "720p",
+                  "price": "0.086"
+                },
+                {
+                  "resolution": "1080p",
+                  "price": "0.15"
+                },
+                {
+                  "price": "0.15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "provider_type": "aliyun",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "720p",
+                  "price": "0.086"
+                },
+                {
+                  "resolution": "1080p",
+                  "price": "0.15"
+                },
+                {
+                  "price": "0.15"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "alibaba/wan-2.7",
+      "provider_cards": [
+        {
+          "provider_type": "alicloud",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "720p",
+                  "price": "0.086"
+                },
+                {
+                  "resolution": "1080p",
+                  "price": "0.15"
+                },
+                {
+                  "price": "0.15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "provider_type": "aliyun",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "720p",
+                  "price": "0.086"
+                },
+                {
+                  "resolution": "1080p",
+                  "price": "0.15"
+                },
+                {
+                  "price": "0.15"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "alibaba/wan-3.0",
+      "provider_cards": [
+        {
+          "provider_type": "alicloud",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "480p",
+                  "price": "0.054"
+                },
+                {
+                  "resolution": "720p",
+                  "price": "0.11"
+                },
+                {
+                  "resolution": "1080p",
+                  "price": "0.21"
+                },
+                {
+                  "price": "0.21"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "provider_type": "aliyun",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "480p",
+                  "price": "0.0429"
+                },
+                {
+                  "resolution": "720p",
+                  "price": "0.0857"
+                },
+                {
+                  "resolution": "1080p",
+                  "price": "0.1714"
+                },
+                {
+                  "price": "0.1714"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "alibaba/wan-3.0-prime",
+      "provider_cards": [
+        {
+          "provider_type": "alicloud",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "480p",
+                  "price": "0.064"
+                },
+                {
+                  "resolution": "720p",
+                  "price": "0.13"
+                },
+                {
+                  "resolution": "1080p",
+                  "price": "0.26"
+                },
+                {
+                  "price": "0.26"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "provider_type": "aliyun",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "480p",
+                  "price": "0.064"
+                },
+                {
+                  "resolution": "720p",
+                  "price": "0.13"
+                },
+                {
+                  "resolution": "1080p",
+                  "price": "0.26"
+                },
+                {
+                  "price": "0.26"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "bytedance/seedance-2.0",
+      "provider_cards": [
+        {
+          "provider_type": "byteplus",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "480p",
+                  "input_type": "t2v",
+                  "price": "0.063"
+                },
+                {
+                  "resolution": "720p",
+                  "input_type": "t2v",
+                  "price": "0.15"
+                },
+                {
+                  "resolution": "1080p",
+                  "input_type": "t2v",
+                  "price": "0.31"
+                },
+                {
+                  "resolution": "4k",
+                  "input_type": "t2v",
+                  "price": "1.24"
+                },
+                {
+                  "resolution": "480p",
+                  "input_type": "v2v",
+                  "price": "0.081"
+                },
+                {
+                  "resolution": "720p",
+                  "input_type": "v2v",
+                  "price": "0.18"
+                },
+                {
+                  "resolution": "1080p",
+                  "input_type": "v2v",
+                  "price": "0.41"
+                },
+                {
+                  "resolution": "4k",
+                  "input_type": "v2v",
+                  "price": "1.53"
+                },
+                {
+                  "price": "1.53"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "provider_type": "volcengine",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "480p",
+                  "input_type": "t2v",
+                  "price": "0.063"
+                },
+                {
+                  "resolution": "720p",
+                  "input_type": "t2v",
+                  "price": "0.15"
+                },
+                {
+                  "resolution": "1080p",
+                  "input_type": "t2v",
+                  "price": "0.31"
+                },
+                {
+                  "resolution": "4k",
+                  "input_type": "t2v",
+                  "price": "1.24"
+                },
+                {
+                  "resolution": "480p",
+                  "input_type": "v2v",
+                  "price": "0.081"
+                },
+                {
+                  "resolution": "720p",
+                  "input_type": "v2v",
+                  "price": "0.18"
+                },
+                {
+                  "resolution": "1080p",
+                  "input_type": "v2v",
+                  "price": "0.41"
+                },
+                {
+                  "resolution": "4k",
+                  "input_type": "v2v",
+                  "price": "1.53"
+                },
+                {
+                  "price": "1.53"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "bytedance/seedance-2.0-fast",
+      "provider_cards": [
+        {
+          "provider_type": "byteplus",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "480p",
+                  "input_type": "t2v",
+                  "price": "0.042"
+                },
+                {
+                  "resolution": "720p",
+                  "input_type": "t2v",
+                  "price": "0.091"
+                },
+                {
+                  "resolution": "480p",
+                  "input_type": "v2v",
+                  "price": "0.05"
+                },
+                {
+                  "resolution": "720p",
+                  "input_type": "v2v",
+                  "price": "0.11"
+                },
+                {
+                  "price": "0.11"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "provider_type": "volcengine",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "480p",
+                  "input_type": "t2v",
+                  "price": "0.042"
+                },
+                {
+                  "resolution": "720p",
+                  "input_type": "t2v",
+                  "price": "0.091"
+                },
+                {
+                  "resolution": "480p",
+                  "input_type": "v2v",
+                  "price": "0.05"
+                },
+                {
+                  "resolution": "720p",
+                  "input_type": "v2v",
+                  "price": "0.11"
+                },
+                {
+                  "price": "0.11"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "bytedance/seedance-2.0-mini",
+      "provider_cards": [
+        {
+          "provider_type": "byteplus",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "480p",
+                  "input_type": "t2v",
+                  "price": "0.02"
+                },
+                {
+                  "resolution": "720p",
+                  "input_type": "t2v",
+                  "price": "0.04"
+                },
+                {
+                  "resolution": "480p",
+                  "input_type": "v2v",
+                  "price": "0.03"
+                },
+                {
+                  "resolution": "720p",
+                  "input_type": "v2v",
+                  "price": "0.05"
+                },
+                {
+                  "price": "0.05"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "provider_type": "volcengine",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "480p",
+                  "input_type": "t2v",
+                  "price": "0.02"
+                },
+                {
+                  "resolution": "720p",
+                  "input_type": "t2v",
+                  "price": "0.04"
+                },
+                {
+                  "resolution": "480p",
+                  "input_type": "v2v",
+                  "price": "0.03"
+                },
+                {
+                  "resolution": "720p",
+                  "input_type": "v2v",
+                  "price": "0.05"
+                },
+                {
+                  "price": "0.05"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "bytedance/seedance-2.5",
+      "provider_cards": [
+        {
+          "provider_type": "byteplus",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "480p",
+                  "input_type": "t2v",
+                  "price": "0.11"
+                },
+                {
+                  "resolution": "720p",
+                  "input_type": "t2v",
+                  "price": "0.24"
+                },
+                {
+                  "resolution": "1080p",
+                  "input_type": "t2v",
+                  "price": "0.6"
+                },
+                {
+                  "resolution": "480p",
+                  "input_type": "v2v",
+                  "price": "0.14"
+                },
+                {
+                  "resolution": "720p",
+                  "input_type": "v2v",
+                  "price": "0.3"
+                },
+                {
+                  "resolution": "1080p",
+                  "input_type": "v2v",
+                  "price": "0.71"
+                },
+                {
+                  "price": "0.71"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "provider_type": "volcengine",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "480p",
+                  "input_type": "t2v",
+                  "price": "0.11"
+                },
+                {
+                  "resolution": "720p",
+                  "input_type": "t2v",
+                  "price": "0.24"
+                },
+                {
+                  "resolution": "1080p",
+                  "input_type": "t2v",
+                  "price": "0.6"
+                },
+                {
+                  "resolution": "480p",
+                  "input_type": "v2v",
+                  "price": "0.14"
+                },
+                {
+                  "resolution": "720p",
+                  "input_type": "v2v",
+                  "price": "0.3"
+                },
+                {
+                  "resolution": "1080p",
+                  "input_type": "v2v",
+                  "price": "0.71"
+                },
+                {
+                  "price": "0.71"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "minimax/hailuo-3",
+      "provider_cards": [
+        {
+          "provider_type": "minimax",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "768p",
+                  "price": "0.08"
+                },
+                {
+                  "resolution": "2k",
+                  "price": "0.13"
+                },
+                {
+                  "price": "0.13"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "provider_type": "novita",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "768p",
+                  "price": "0.08"
+                },
+                {
+                  "resolution": "2k",
+                  "price": "0.13"
+                },
+                {
+                  "price": "0.13"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "minimax/hailuo-3-max",
+      "provider_cards": [
+        {
+          "provider_type": "minimax",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "480p",
+                  "price": "0.05"
+                },
+                {
+                  "resolution": "768p",
+                  "price": "0.08"
+                },
+                {
+                  "price": "0.08"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "provider_type": "novita",
+          "pricing": {
+            "video_pricing": {
+              "unit": "per_second",
+              "tiers": [
+                {
+                  "resolution": "480p",
+                  "price": "0.05"
+                },
+                {
+                  "resolution": "768p",
+                  "price": "0.08"
+                },
+                {
+                  "price": "0.08"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

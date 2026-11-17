@@ -1,40 +1,54 @@
-## Description: <br>
-JSON数据转换 - 查询/过滤/合并/重命名/聚合JSON数据，支持管道式操作和JMESPath表达式 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JSON数据转换 helps agents query, filter, sort, group, rename, merge, aggregate, and persist JSON data using Python examples and pipeline-style operations.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and data workers use this skill to query, clean, merge, rename, sort, group, aggregate, and persist JSON data in repeatable transformation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read JSON files and save transformed results, which may expose sensitive data or overwrite existing files if paths are chosen carelessly. <br>
-Mitigation: Use explicit file paths, avoid unnecessary sensitive inputs, and review transformed output before saving or overwriting files. <br>
+## Use Case:
 
+Developers and data practitioners use this skill to transform JSON records for API response processing, data cleaning, report summaries, and configuration merging.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-json-transformer) <br>
-- [Publisher profile](https://clawhub.ai/user/534422530) <br>
-- [Bundled skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Code, Files, Guidance] <br>
-**Output Format:** [JSON data, Python code examples, file outputs, or concise Markdown guidance depending on the request] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read JSON files and save transformed results when explicitly directed by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The sample code can read JSON from local paths supplied to load_file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only intended, trusted input paths and review the file contents before transformation.
+
+Risk: The sample code can save transformed data to local paths and may persist sensitive JSON values.
+
+Mitigation: Choose output locations deliberately and avoid saving secrets unless the destination is approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-json-transformer)
+- [Publisher profile](https://clawhub.ai/user/534422530)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Python code examples and JSON transformation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file input/output examples for loading and saving JSON data.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

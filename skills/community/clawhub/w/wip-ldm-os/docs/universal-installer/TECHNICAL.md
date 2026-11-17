@@ -148,13 +148,13 @@ A plugin for OpenClaw agents. Lifecycle hooks, tool registration, settings.
 
 A markdown file that teaches agents when and how to use the tool. The instruction interface. Follows the [Agent Skills Spec](https://agentskills.io/specification).
 
-**Convention:** `SKILL.md` at the repo root. Optional `references/` directory for context files.
+**Convention:** either `SKILL.md` at the repo root, or one or more skill folders at `skills/<skill-name>/SKILL.md`. Optional `references/`, `agents/`, `scripts/`, and `assets/` directories live beside `SKILL.md`.
 
 **Platform variants:** Codex CLI reads `AGENTS.md` with the same role and content shape. Treat as the Codex-flavored filename for this same interface, not a separate one.
 
-**Detection:** `SKILL.md` exists.
+**Detection:** `SKILL.md` exists, or at least one `skills/<skill-name>/SKILL.md` exists.
 
-**Install:** `ldm install` deploys `SKILL.md` to `~/.openclaw/skills/<name>/`. If `references/` exists, it is deployed alongside and also to `settings/docs/skills/<name>/` in the workspace (so all agents can read them).
+**Install:** `ldm install` deploys the skill folder to every supported local agent skill surface, including OpenClaw, Codex, Claude Code, and WIP agent compatibility paths when present. If `references/` exists, it is deployed alongside and also to `settings/docs/skills/<name>/` in the workspace so all agents can read them.
 
 **Key rules:**
 - SKILL.md body < 5000 tokens. Process in SKILL.md, context in references/.
@@ -364,7 +364,7 @@ ldm install                            # update all
 | `mcp-server.mjs` | MCP (local stdio) | Adds `command` + `args` entry to `.mcp.json` |
 | `mcp.remote.url` in `package.json` | Remote MCP | Adds `url` + `transport` entry to `.mcp.json`; prints Claude Desktop hint. **Implementation in flight ([ticket](../../ai/product/bugs/installer/2026-04-28--cc-mini--installer-remote-mcp-detection.md)).** |
 | `openclaw.plugin.json` | OpenClaw | Copies to `~/.openclaw/extensions/` |
-| `SKILL.md` | Skill | Reports path |
+| `SKILL.md` or `skills/<name>/SKILL.md` | Skill | Deploys skill folder to supported agent skill paths |
 | `guard.mjs` or `claudeCode.hook` | CC Hook | Adds to `~/.claude/settings.json` |
 | `.claude-plugin/plugin.json` | CC Plugin | Registers with Claude Code marketplace |
 

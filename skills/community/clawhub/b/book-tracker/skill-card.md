@@ -1,45 +1,58 @@
-## Description: <br>
-Tracks reading progress, notes, ratings, themes, and what to read next for users who want to remember and build on what they read. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks reading, including books in progress, notes, themes across completed books, reading goals, and recommendations for what to read next.
 
-## Publisher: <br>
-[rednix](https://clawhub.ai/user/rednix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rednix](https://clawhub.ai/user/rednix)
 
-## Use Case: <br>
-External users use this skill to maintain a private reading log, capture notes and reflections, manage current and future books, and receive reading recommendations based on preferences, ratings, and recent themes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a persistent private reading log with notes, ratings, quotes, and recommendations. <br>
-Mitigation: Install only if you are comfortable keeping that reading history, and surface reading lists or notes only in the owner's private channel. <br>
-Risk: Broad activation phrases could lead the agent to suggest book-tracking actions when the user did not intend to update their library. <br>
-Mitigation: Prefer explicit /book commands for adding, changing, or viewing entries, and require user confirmation before modifying the library or reading list. <br>
-Risk: Quotes or key ideas may be offered for reuse in a knowledge base. <br>
-Mitigation: Approve knowledge-base additions only for notes or quotes the user wants reused later. <br>
+## Use Case:
 
+External users use this skill to maintain a private reading library, capture notes and reflections, manage a reading list, and receive recommendations based on their reading history and preferences.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rednix/book-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/rednix) <br>
-- [ClawHub metadata homepage](https://clawhub.com/skills/book-tracker) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and plain text reading logs, reflections, recommendations, theme summaries, and command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains persistent private reading state in library, reading-list, and configuration files; entries and knowledge-base additions should be made only with explicit user instruction or confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reading history and notes can contain private personal interests, reflections, and quotes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep reading lists and notes in the owner's private channel, as specified by the artifact privacy rules.
+
+Risk: Book-related casual phrases may invoke the skill unexpectedly.
+
+Mitigation: Confirm user intent before adding, removing, exporting, or changing book records.
+
+Risk: Optional knowledge-base export can make selected reading notes searchable outside the book tracker.
+
+Mitigation: Only export notes to a knowledge base after explicit user approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rednix/skills/book-tracker)
+- [OpenClaw skill homepage](https://clawhub.com/skills/book-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with structured book entries, reading-list updates, notes, reflections, and recommendation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update private library.md, reading-list.md, and config.md content when the user instructs it.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

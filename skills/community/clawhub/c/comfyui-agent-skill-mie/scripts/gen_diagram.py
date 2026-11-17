@@ -55,7 +55,7 @@ branches = [
     (410, iy+60, 290, bx+20, "qwen_image (海报/文字)", "#052e16", "#10b981", None),
     (480, iy+80, 480, bx+10, "Vision→prompt→T2I", "#1e1b4b", "#a855f7", None),
     (510, iy+60, 650, bx+20, "klein_edit (编辑图)", "#1c1917", "#f97316", None),
-    (540, iy+40, 810, bx+20, "ltx-23-t2v / i2v", "#052e16", "#10b981", "视频"),
+    (540, iy+40, 810, bx+20, "ltx_23_t2v_distill / i2v", "#052e16", "#10b981", "视频"),
 ]
 for x1, y1, x2, y2, text, fill, stroke, above in branches:
     lines.append(f'  <line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{stroke}" stroke-width="1.5" marker-end="url(#ab)"/>')
@@ -251,7 +251,7 @@ lines.append(f'  <text x="492" y="{sky+82}" class="al">否→执行</text>')
 # ═══════════════ §5 执行引擎 ═══════════════
 s5 = s4+400
 lines.append(f'  <rect x="20" y="{s5}" width="920" height="350" rx="8" fill="#0f172a" stroke="#334155"/>')
-lines.append(f'  <text x="40" y="{s5+22}" class="section">§ 5  执行引擎 & 异步模式</text>')
+lines.append(f'  <text x="40" y="{s5+22}" class="section">§ 5  执行引擎 &amp; 异步模式</text>')
 
 amy = s5+42
 lines.append(f'  <rect x="340" y="{amy}" width="280" height="32" rx="16" fill="#1e1b4b" stroke="#7c3aed" stroke-width="1.5" filter="url(#glow)"/>')
@@ -311,7 +311,7 @@ for name,x in maps:
 # ═══════════════ §6 输出 & 错误码 ═══════════════
 s6 = s5+370
 lines.append(f'  <rect x="20" y="{s6}" width="920" height="280" rx="8" fill="#0f172a" stroke="#334155"/>')
-lines.append(f'  <text x="40" y="{s6+22}" class="section">§ 6  输出 & 错误码速查</text>')
+lines.append(f'  <text x="40" y="{s6+22}" class="section">§ 6  输出 &amp; 错误码速查</text>')
 
 outy = s6+42
 lines.append(f'  <rect x="330" y="{outy}" width="300" height="32" rx="6" fill="#052e16" stroke="#10b981" stroke-width="1.5"/>')

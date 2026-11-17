@@ -1,41 +1,58 @@
-## Description: <br>
-Merges local image files into multipage TIFF files and offers a TIFF page-splitting workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TIFF Merge & Split helps agents merge local image files into a multi-page TIFF or split a TIFF into per-page image outputs.
 
-## Publisher: <br>
-[fly3094](https://clawhub.ai/user/fly3094) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fly3094](https://clawhub.ai/user/fly3094)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to process local image files into TIFF outputs without uploading files. The split workflow should be treated cautiously because release security guidance says it is incomplete until fixed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The TIFF split feature may report PNG or JPG output paths without actually writing those image files. <br>
-Mitigation: Confirm expected output files exist after split operations and treat the split feature as incomplete until the author fixes it. <br>
-Risk: The skill reads and writes local image files at user-supplied paths. <br>
-Mitigation: Confirm input and output paths before execution and run it only on files intended for local TIFF processing. <br>
+## Use Case:
 
+External users and developers use this skill when they need an agent to run local TIFF conversion tasks for document scans, photos, or other image sets without uploading files to a remote service.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fly3094/tiff-merge) <br>
-- [UTIF.js](https://github.com/photopea/UTIF.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local TIFF file paths for merge workflows; split output paths may be reported before actual PNG or JPG files are written.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill reads and writes local image paths supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it from a directory that contains only the intended images and review input and output paths before execution.
+
+Risk: The security guidance notes that TIFF splitting and JPG/PNG support appear incomplete despite the description.
+
+Mitigation: Verify generated files before relying on them, and treat split-mode output as needing review for this release.
+
+Risk: The skill depends on the local Node package utif.
+
+Mitigation: Pin utif to a reviewed version during installation when stronger supply-chain control is required.
+
+## Reference(s):
+
+- [ClawHub TIFF Merge & Split Skill Page](https://clawhub.ai/fly3094/skills/tiff-merge)
+- [UTIF.js](https://github.com/photopea/UTIF.js)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance, files]
+
+**Output Format:** [Text or Markdown with shell commands and local file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local TIFF or image files at user-provided paths; the split path behavior should be verified because the security review notes incomplete functionality.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

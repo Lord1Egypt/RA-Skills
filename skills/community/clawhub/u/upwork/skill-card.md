@@ -1,45 +1,60 @@
-## Description: <br>
-Win freelance projects on Upwork with profile optimization, proposal writing, client communication, and scam detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Win freelance projects on Upwork with profile optimization, proposal writing, client communication, and scam detection.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Freelancers and independent professionals use this skill to draft Upwork profiles, tailored proposals, client messages, pricing guidance, and platform-risk checks while keeping the user responsible for review and submission. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Drafted proposals or messages may contain inaccurate, overbroad, or misleading claims if sent without review. <br>
-Mitigation: Require the user to review, edit, and manually send every proposal or message. <br>
-Risk: Users may expose credentials, confidential client information, or NDA-protected material while seeking drafting help. <br>
-Mitigation: Do not share Upwork credentials, and avoid pasting confidential or NDA-protected client material into AI tools. <br>
-Risk: Platform rules, fee details, or Terms of Service expectations may change after the skill release. <br>
-Mitigation: Verify current Upwork Terms of Service and fee details before relying on platform guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/upwork) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Proposal writing guidance](artifact/proposals.md) <br>
-- [Legal and compliance guidance](artifact/legal.md) <br>
+## Use Case:
 
+Freelancers and external professionals use this skill to prepare Upwork profile improvements, tailored proposals, client communication drafts, pricing guidance, and scam or red-flag reviews before manually acting in Upwork.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and plain-text drafting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Human-reviewed drafts and strategic guidance; no account access, scraping, or automated Upwork actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Drafted proposals, profile text, or client messages could include inaccurate claims, unrealistic timelines, or statements the freelancer cannot substantiate.
+
+Mitigation: Review and edit every draft before use, verify all factual claims, and keep delivery commitments aligned with the freelancer's actual capacity.
+
+Risk: Users could expose confidential client, NDA-covered, or sensitive account information while requesting drafting help.
+
+Mitigation: Avoid pasting confidential or NDA-covered material into an AI system, redact sensitive details, and never share Upwork credentials.
+
+Risk: Platform fees, policy details, or allowed practices may change after the skill release.
+
+Mitigation: Independently verify current Upwork Terms of Service, fee guidance, and platform rules before relying on policy-sensitive advice.
+
+Risk: Using the skill as automation for account actions could violate marketplace rules.
+
+Mitigation: Keep the workflow human-in-the-loop and do not use the skill to log in, scrape data, auto-send proposals, or bypass platform controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/upwork)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and draft text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Human-reviewed drafts only; no account access, scraping, automation, or auto-sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

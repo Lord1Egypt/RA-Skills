@@ -1,39 +1,49 @@
-## Description: <br>
-数据库锁分析与死锁检测帮助代理分析当前数据库锁、检测死锁并追踪锁等待链。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes database locks, detects deadlocks, traces lock wait chains, and guides dbskiter lock commands for MySQL, PostgreSQL, and Oracle.
 
-## Publisher: <br>
-[magicczc](https://clawhub.ai/user/magicczc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[magicczc](https://clawhub.ai/user/magicczc)
 
-## Use Case: <br>
-Database developers and operators use this skill to ask an agent for database lock analysis, deadlock checks, wait-chain tracing, reports, and transaction termination guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide live database lock operations and includes a transaction-kill workflow without enough clear scoping or confirmation in the artifact. <br>
-Mitigation: Before any transaction-kill action, require the agent to show the exact database, session or transaction ID, expected impact, and a separate explicit confirmation from an authorized operator. <br>
+## Use Case:
 
+Developers and database operators use this skill to inspect active locks, identify deadlocks, trace blocking chains, and prepare lock reports while working with dbskiter-supported databases.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/magicczc/dbskiter-db-lock-analyzer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/magicczc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live database lock summaries, deadlock details, wait-chain analysis, reports, and transaction-kill command proposals that require operator confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Transaction termination is a privileged database operation and an incorrect kill recommendation could disrupt production work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human confirmation before running lock kill commands, verify the database name and transaction ID, and use production procedures for incident response.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/magicczc/skills/dbskiter-db-lock-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include database lock statistics, deadlock details, wait-chain analysis, and transaction termination recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

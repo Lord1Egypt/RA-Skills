@@ -1,40 +1,49 @@
-## Description: <br>
-A non-executable MCP development kit bundle for guidance on building and publishing MCP servers, agent commerce discovery patterns, interoperability bridge material, and registry configuration templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A documentation bundle for building and publishing MCP servers, including MCP server development guidance, agent commerce discovery and interoperability guidance, and server.json and smithery.yaml registry templates.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and engineers use this bundle as guidance for building and publishing MCP servers and preparing registry configuration files. The artifact is non-executable and should be reviewed before relying on any required credentials or promised kit contents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence flags sensitive payment, API, signing, and wallet-related credentials without clear scoped instructions. <br>
-Mitigation: Do not provide production Stripe keys, signing keys, wallet values, or other sensitive credentials unless the publisher supplies the promised materials and explains why each value is required. <br>
-Risk: The security evidence says the artifact does not include the promised kit contents. <br>
-Mitigation: Inspect the release contents before use and require the missing guides, templates, and registry configuration files before relying on the bundle. <br>
+## Use Case:
 
+Developers and engineers use this bundle to plan, build, and publish MCP servers and to prepare registry configuration templates for agent interoperability and commerce discovery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-bundle-mcp-development-kit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code and configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable bundle; declares required environment variables for Stripe, GreenHelix, agent signing, and wallet-related use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server evidence and artifact frontmatter) <br>
+Risk: The bundle requests high-value credentials even though the current artifact is non-executable documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, and do not provide Stripe keys, signing keys, wallet details, or platform API keys unless the publisher explains why each value is needed and how it is scoped.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-bundle-mcp-development-kit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code and configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable documentation bundle; review requested credential environment variables before use.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

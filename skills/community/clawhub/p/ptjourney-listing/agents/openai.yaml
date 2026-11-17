@@ -1,0 +1,4 @@
+interface:
+  display_name: "PTJourney 跨境电商上架助手 · Ozon / Wildberries / TEMU"
+  short_description: "PTJourney 跨境上架：1688 商品、Ozon、Wildberries（WB）与 TEMU"
+  default_prompt: "使用 $ptjourney-listing 读取店铺和平台要求，预检 Ozon、Wildberries（WB）或 TEMU 商品上架数据。"

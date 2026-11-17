@@ -1,41 +1,53 @@
-## Description: <br>
-基于迪士尼十二动画法则的动画片脚本创作技能，引导用户逐步提供主题、时长和参考图，生成带镜头编号的专业分镜脚本。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于迪士尼十二动画法则的动画片脚本创作技能，引导用户逐步提供主题、时长和参考图，生成带镜头编号的专业分镜脚本。
 
-## Publisher: <br>
-[liderongyao-crypto](https://clawhub.ai/user/liderongyao-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liderongyao-crypto](https://clawhub.ai/user/liderongyao-crypto)
 
-## Use Case: <br>
-External creators and marketers use this skill to turn a story theme, target duration, and reference images into a structured animation storyboard script for AI video generation tools. The skill guides reference-image numbering and annotates each shot with a Disney animation principle. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide private, sensitive, or unauthorized reference images while building a storyboard. <br>
-Mitigation: Use only images the user is comfortable including in an animation prompt or storyboard workflow and has rights to use. <br>
-Risk: The generated storyboard may not match the final behavior or quality of a downstream AI video tool. <br>
-Mitigation: Review the storyboard, reference-image mapping, and Disney-principle annotations before using the output in a production video workflow. <br>
+## Use Case:
 
+External creators, marketers, and animation script writers use this skill to turn a story theme, duration, and reference-image set into a structured Markdown storyboard for AI video production. The output maps each shot to one of Disney's twelve animation principles and preserves image references for visual consistency.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liderongyao-crypto/disney-12-principles-quickref) <br>
-- [迪士尼十二动画法则速查表](references/disney-12-principles-quickref.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown storyboard script with reference-image table and shot-by-shot fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs text only; it does not generate video files or image assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Users may provide sensitive, private, confidential, or unauthorized reference images while preparing a storyboard.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images that are safe to share with the agent workflow, and avoid personal photos, IDs, private locations, confidential material, or copyrighted images without rights.
+
+Risk: Generated storyboard or advertising copy may include unsupported product, factual, or rights-sensitive claims.
+
+Mitigation: Review the Markdown script before production or publication, especially claims, brand references, and rights-sensitive image usage.
+
+## Reference(s):
+
+- [迪士尼十二动画法则速查表](artifact/references/disney-12-principles-quickref.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown storyboard script with shot timing, reference-image table, narration, style notes, sound notes, and Disney principle annotations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning text only; it does not generate video files or reference images.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

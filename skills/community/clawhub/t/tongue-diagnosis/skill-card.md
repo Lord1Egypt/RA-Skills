@@ -1,49 +1,65 @@
-## Description: <br>
-Provides Chinese-language Traditional Chinese Medicine tongue-image observations and structured wellness reports based on uploaded tongue photos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent analyze uploaded tongue photos using Traditional Chinese Medicine tongue-observation references and produce a structured, disclaimer-bearing wellness assessment.
 
-## Publisher: <br>
-[wwbwin](https://clawhub.ai/user/wwbwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwbwin](https://clawhub.ai/user/wwbwin)
 
-## Use Case: <br>
-External users can request a TCM-style tongue observation report from an uploaded tongue photo, including visible tongue features, a wellness rating, possible areas of concern, and general lifestyle guidance. The skill is informational and must not be used as a medical diagnostic tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake medical-style tongue analysis for clinical diagnosis. <br>
-Mitigation: Present results as informational only and direct users with symptoms, persistent concerns, or urgent signs to a licensed clinician. <br>
-Risk: Photo-only analysis can be unreliable because lighting, angle, focus, and single-image context affect visible tongue features. <br>
-Mitigation: State image-quality limits, request clearer photos when needed, and keep conclusions conservative. <br>
-Risk: Disease-specific claims could encourage self-treatment or delayed care. <br>
-Mitigation: Do not recommend specific medications, do not rule out illness, and include guidance to seek professional medical advice. <br>
+## Use Case:
 
+External users can upload tongue photos or request tongue-observation analysis to receive a structured TCM-style report covering visible tongue features, a wellness rating, possible areas of concern, daily-care guidance, and medical disclaimers.
 
-## Reference(s): <br>
-- [舌质诊断（舌体）](references/tongue-body.md) <br>
-- [舌苔诊断](references/tongue-coating.md) <br>
-- [舌下络脉诊法](references/tongue-sublingual.md) <br>
-- [舌下络脉诊法（补充知识）](references/sublingual-supplement.md) <br>
-- [舌部分区与脏腑对应](references/tongue-zones.md) <br>
-- [舌纹诊病（补充知识）](references/tongue-lines-supplement.md) <br>
-- [常见证候与舌象对照](references/syndrome-patterns.md) <br>
-- [报告输出模板](references/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured report in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided tongue photos; outputs should include a medical disclaimer and avoid medication recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: The skill is framed around medical diagnosis and broad health triggers, so users may over-rely on its tongue-photo assessment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as reference-only wellness information, do not rule illness in or out, and direct users with symptoms or concerns to a qualified clinician.
+
+Risk: Uploaded mouth photos can expose sensitive personal health information.
+
+Mitigation: Use the skill only where uploaded images can be handled privately and avoid retaining or sharing photos beyond the user's intended session.
+
+Risk: The artifact includes daily-care and TCM-style guidance that could be mistaken for treatment advice.
+
+Mitigation: Keep guidance conservative, avoid medication or prescription recommendations, and include the required medical disclaimer in each report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwbwin/skills/tongue-diagnosis)
+- [report-template.md](references/report-template.md)
+- [sublingual-supplement.md](references/sublingual-supplement.md)
+- [syndrome-patterns.md](references/syndrome-patterns.md)
+- [tongue-body.md](references/tongue-body.md)
+- [tongue-coating.md](references/tongue-coating.md)
+- [tongue-lines-supplement.md](references/tongue-lines-supplement.md)
+- [tongue-sublingual.md](references/tongue-sublingual.md)
+- [tongue-zones.md](references/tongue-zones.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes tongue-feature observations, wellness rating, possible concerns, daily-care suggestions, and a medical disclaimer.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-NFT collection tracking, whale monitoring, and portfolio valuation for Base blockchain. Track floor prices, whale moves, and discover undervalued collections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NFT collection tracking, whale monitoring, and portfolio valuation for Base blockchain. Track floor prices, whale moves, and discover undervalued collections.
 
-## Publisher: <br>
-[supah-based](https://clawhub.ai/user/supah-based) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supah-based](https://clawhub.ai/user/supah-based)
 
-## Use Case: <br>
-External users and agents use this skill to query SUPAH NFT intelligence for Base blockchain collections, including floor prices, whale movement, rarity, collection analytics, sale alerts, and portfolio valuation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic x402 requests can incur USDC charges when the skill or alert behavior calls the external SUPAH API. <br>
-Mitigation: Use a dedicated low-balance wallet or strict spending limits, and require explicit confirmation before paid requests or sale alerts are enabled. <br>
-Risk: The skill sends collection or wallet queries to api.supah.ai for NFT analytics. <br>
-Mitigation: Review intended outbound data before use and avoid sending wallet or collection identifiers that should not be shared with the external service. <br>
+## Use Case:
 
+External users and agent developers use this skill to query Base NFT collection floor prices, monitor whale moves and sale alerts, analyze rarity, and value NFT portfolios through SUPAH's paid x402 API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/supah-based/supah-nft-intelligence) <br>
-- [Publisher Profile](https://clawhub.ai/user/supah-based) <br>
-- [SUPAH Website](https://supah.ai) <br>
-- [SUPAH API Endpoint](https://api.supah.ai) <br>
-- [x402 Documentation](https://www.x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON responses and concise text guidance from command-line or agent-invoked NFT analytics requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires outbound network access to api.supah.ai, Node.js execution, and SUPAH_API_BASE configuration when overriding the default API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The skill may send wallet addresses or collection identifiers to SUPAH's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with data that is appropriate to share with SUPAH and disclose this network flow to users.
+
+Risk: Calls may incur x402 USDC charges on Base.
+
+Mitigation: Require explicit payment approval and budget controls before enabling automatic x402 payments.
+
+Risk: SUPAH_API_BASE can redirect requests to an undeclared API host.
+
+Mitigation: Leave SUPAH_API_BASE unset or pin it to a trusted endpoint before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/supah-based/skills/supah-nft-intelligence)
+- [SUPAH website](https://supah.ai)
+- [SUPAH API](https://api.supah.ai)
+- [x402 documentation](https://www.x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, JSON, Guidance]
+
+**Output Format:** [JSON responses and concise agent-facing text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and outbound HTTPS access; x402 USDC charges may apply per call.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

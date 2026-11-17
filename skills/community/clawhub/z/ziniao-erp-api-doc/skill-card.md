@@ -1,51 +1,64 @@
-## Description: <br>
-Helps agents understand the positioning, capabilities, permission model, and call flow of the Ziniao ERP API for ERP integration planning, system design, and interface evaluation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides documentation for planning and evaluating integrations with the Ziniao ERP REST API, including API capabilities, authentication, permissions, identifiers, response structure, and request flow.
 
-## Publisher: <br>
-[ziniao-open](https://clawhub.ai/user/ziniao-open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ziniao-open](https://clawhub.ai/user/ziniao-open)
 
-## Use Case: <br>
-Developers and ERP integration teams use this skill to plan integrations with the Ziniao ERP REST API, understand required permissions, and choose the correct reference file for detailed endpoint parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced ERP operations can affect accounts, authorizations, caches, roles, staff, access policies, and device purchases or renewals. <br>
-Mitigation: Require explicit human review before using the guidance for destructive, permission-changing, or billable operations. <br>
-Risk: Implementations based on the documentation may handle API keys, passwords, or other sensitive ERP credentials. <br>
-Mitigation: Protect secrets, avoid exposing credentials in prompts or logs, and request only the ERP permissions needed for the integration. <br>
+## Use Case:
 
+Developers and integration teams use this skill to understand the Ziniao ERP API surface before designing ERP integrations or requesting required permission points. It is for API documentation lookup and planning, not for executing API operations.
 
-## Reference(s): <br>
-- [Ziniao ERP API overview](artifact/SKILL.md) <br>
-- [API guide](artifact/reference/api-guide.md) <br>
-- [Account CRUD reference](artifact/reference/account-crud.md) <br>
-- [Account authorization reference](artifact/reference/account-auth.md) <br>
-- [Account tags reference](artifact/reference/account-tags.md) <br>
-- [Device management reference](artifact/reference/device-management.md) <br>
-- [Access policy web reference](artifact/reference/access-policy-web.md) <br>
-- [Access policy rules reference](artifact/reference/access-policy-rules.md) <br>
-- [Roles and permissions reference](artifact/reference/roles-permissions.md) <br>
-- [Department and staff reference](artifact/reference/department-staff.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ziniao-open/ziniao-erp-api-doc) <br>
-- [Publisher profile](https://clawhub.ai/user/ziniao-open) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with endpoint paths, JSON request and response shapes, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; does not run commands or make API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The documented ERP workflows involve sensitive values such as API keys, employee passwords, proxy credentials, mobile numbers, account IDs, and company data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those values as secrets and avoid pasting them into shared chats, logs, or generated examples.
+
+Risk: The documented endpoints include high-impact administrative and billing actions such as deletions, authorization changes, role changes, cache clearing, device binding changes, purchases, renewals, and auto-renewal changes.
+
+Mitigation: Require explicit user approval and verify target IDs, permission points, and business intent before using guidance for those operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ziniao-open/skills/ziniao-erp-api-doc)
+- [Publisher profile](https://clawhub.ai/user/ziniao-open)
+- [Skill overview](artifact/SKILL.md)
+- [API guide](artifact/reference/api-guide.md)
+- [Account CRUD](artifact/reference/account-crud.md)
+- [Account authorization](artifact/reference/account-auth.md)
+- [Account tags](artifact/reference/account-tags.md)
+- [Device management](artifact/reference/device-management.md)
+- [Access policy web management](artifact/reference/access-policy-web.md)
+- [Access policy rules](artifact/reference/access-policy-rules.md)
+- [Roles and permissions](artifact/reference/roles-permissions.md)
+- [Department and staff](artifact/reference/department-staff.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration guidance]
+
+**Output Format:** [Markdown guidance with API paths, request fields, response notes, and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; does not install code, run commands, persist state, or call APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

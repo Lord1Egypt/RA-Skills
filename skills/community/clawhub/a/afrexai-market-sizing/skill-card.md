@@ -1,42 +1,53 @@
-## Description: <br>
-Calculate defensible TAM, SAM, and SOM market sizes using top-down and bottom-up methods with source citations for pitches and business cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate defensible TAM, SAM, and SOM market sizes using top-down and bottom-up methods with source citations for pitches and business cases.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Founders, operators, strategy teams, and consultants use this skill to build market sizing for pitch decks, go-to-market planning, product feasibility analysis, board materials, and business cases. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Market data, citations, or sizing assumptions may be inaccurate or become outdated. <br>
-Mitigation: Verify cited sources, calculations, and assumptions before using outputs in investor, board, or business materials. <br>
-Risk: Linked AfrexAI products may collect information or require purchase decisions outside this skill. <br>
-Mitigation: Review linked products separately before buying them or entering business information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-market-sizing) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Founders, operators, analysts, and business teams use this skill to build market-sizing narratives for pitch decks, go-to-market plans, feasibility analysis, board materials, and business cases.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown market-sizing analysis with TAM, SAM, SOM, assumptions, citations, and sizing risks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed for user-provided product, customer, geography, and business-model context.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional promotional links may be mistaken for required analysis resources.
+
+Mitigation: Treat promotional links as advertising and rely on independently cited market data for the sizing work.
+
+Risk: Market sizing can become misleading when assumptions, source data, or conversion rates are weak.
+
+Mitigation: Review cited sources, assumptions, and top-down versus bottom-up triangulation before using outputs in investor, board, or business-case materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-market-sizing)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown market-sizing report with calculations, assumptions, citations, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces TAM, SAM, and SOM estimates using user-provided product, customer, geography, and business-model context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,20 @@
 ---
 name: evaluation-framework
-description: Provides weighted scoring, rubrics, and decision-threshold patterns
-version: 1.9.8
+description: |
+  Weighted scoring, rubrics, thresholds, agent-action utility by expected gain and cost. Use for quality gates or deciding if a tool call or dispatch is worth it
+version: 1.10.3
 triggers:
   - evaluation
   - scoring
   - decision-making
   - metrics
   - quality
-  - designing quality gates
-  - evaluation systems
-  - or decision frameworks
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/leyline", "emoji": "\ud83e\udd9e"}}
 source: claude-night-market
 source_plugin: leyline
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Overview](#overview)
-- [When to Use](#when-to-use)
-- [Core Pattern](#core-pattern)
-- [1. Define Criteria](#1-define-criteria)
-- [2. Score Each Criterion](#2-score-each-criterion)
-- [3. Calculate Weighted Total](#3-calculate-weighted-total)
-- [4. Apply Decision Thresholds](#4-apply-decision-thresholds)
-- [Quick Start](#quick-start)
-- [Define Your Evaluation](#define-your-evaluation)
-- [Example: Code Review Evaluation](#example:-code-review-evaluation)
-- [Evaluation Workflow](#evaluation-workflow)
-- [Common Use Cases](#common-use-cases)
-- [Integration Pattern](#integration-pattern)
-- [Detailed Resources](#detailed-resources)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Evaluation Framework
@@ -105,6 +84,13 @@ thresholds:
   20-39: Reject with feedback
   0-19: Reject
 ```
+
+A score that gates a decision becomes the target. Agent output drifts
+from a visible proxy as the work grows, and standard maintainability
+metrics explain little of why agent code is harder to extend
+(`docs/knowledge-corpus/decoherence.md`). Pair each gating score with
+one check the score does not include: a held-out test, a run on real
+input, or a reviewer reading the output.
 **Verification:** Run the command with `--help` flag to verify availability.
 
 ## Quick Start
@@ -169,6 +155,11 @@ Then customize the framework for your domain:
 
 - **Scoring Patterns**: See `modules/scoring-patterns.md` for detailed methodology
 - **Decision Thresholds**: See `modules/decision-thresholds.md` for threshold design
+- **Utility Scoring**: Load `modules/utility.md` when deciding whether to
+  dispatch an agent, make a tool call, or stop. It scores each action as
+  gain minus weighted cost, uncertainty, and redundancy, and links its
+  component modules (`state-builder`, `gain`, `step-cost`, `uncertainty`,
+  `redundancy`, `action-selector`, `integration`)
 
 ## Exit Criteria
 
@@ -176,4 +167,5 @@ Then customize the framework for your domain:
 - [ ] Weights assigned and sum to 1.0
 - [ ] Scoring guides documented for each criterion
 - [ ] Thresholds mapped to specific actions
+- [ ] Each gating score names its check outside the score
 - [ ] Evaluation process documented and reproducible

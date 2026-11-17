@@ -1,0 +1,35 @@
+name: capsule-bookshelf-skill
+version: "2.0"
+license: MIT
+author: 小黑人
+description: >
+  浓缩一本好书的精华，像胶囊一样随取随用。
+  输入一个作者或一本书，生成精美卡片式书摘文章，存到本地或推送到公众号，
+  帮你对抗遗忘、碎片阅读、为自己的书架留痕。
+
+triggers:
+  - 胶囊书架
+  - 书摘胶囊
+  - 读书胶囊
+  - 来颗胶囊
+  - 浓缩一本书
+  - 做书摘
+  - 书摘卡片
+  - book-capsule
+
+instructions: SKILL.md
+
+dependencies: {}
+
+files:
+  - article-template.html
+  - book-data-dongye.json
+  - book-data-inamori.json
+  - bookshelf-template.html
+  - capsule-registry.json
+  - generate-book-article.py
+  - generate-bookshelf.py
+  - README.md
+  - template-usage.md
+  - SKILL.md
+  - LICENSE

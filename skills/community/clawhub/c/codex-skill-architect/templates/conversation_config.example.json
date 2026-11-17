@@ -1,0 +1,13 @@
+{
+  "skill_name": "project-notes",
+  "topics": [
+    {
+      "name": "需求确认",
+      "output": "skills/requirements/SKILL.md"
+    },
+    {
+      "name": "问题排查",
+      "output": "skills/troubleshooting/SKILL.md"
+    }
+  ]
+}

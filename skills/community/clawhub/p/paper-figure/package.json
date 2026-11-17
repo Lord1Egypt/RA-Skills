@@ -1,0 +1,47 @@
+{
+  "name": "paper-figure",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "把「论文配图不好看」变成一条命令：结构图/数据图出期刊合规矢量图，多 AI 低价会审。零依赖。",
+  "bin": {
+    "paper-figure": "scripts/fig.mjs",
+    "pf": "scripts/fig.mjs"
+  },
+  "scripts": {
+    "smoke": "node tests/smoke.mjs",
+    "selftest": "node scripts/lib/selftest.mjs",
+    "init": "node scripts/fig.mjs init",
+    "spec": "node scripts/fig.mjs spec",
+    "render": "node scripts/fig.mjs render",
+    "chart": "node scripts/fig.mjs chart",
+    "test": "node tests/smoke.mjs && node scripts/lib/selftest.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "scripts",
+    "assets",
+    "examples",
+    "SKILL.md",
+    "README.md",
+    "README.zh.md",
+    "LICENSE",
+    "references"
+  ],
+  "keywords": [
+    "paper-figure",
+    "scientific-figure",
+    "journal-compliance",
+    "matplotlib-alternative",
+    "ai-review"
+  ],
+  "license": "MIT",
+  "private": false,
+  "author": "he fangsheng <hefangsheng@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/u-claw-os/paper-figure.git"
+  },
+  "homepage": "https://github.com/u-claw-os/paper-figure"
+}

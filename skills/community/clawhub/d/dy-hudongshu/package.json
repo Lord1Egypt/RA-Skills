@@ -1,0 +1,10 @@
+{
+  "name": "dy-collect",
+  "version": "1.0.0",
+  "private": true,
+  "description": "抖音视频互动数采集 Skill CLI (点赞/评论/收藏/分享/播放数, 1 条视频 = 1 点数)",
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

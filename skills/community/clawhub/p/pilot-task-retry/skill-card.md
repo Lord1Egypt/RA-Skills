@@ -1,40 +1,55 @@
-## Description: <br>
-Automatic retry with exponential backoff and fallback targets for Pilot Protocol task submissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatic retry with exponential backoff and fallback targets for Pilot Protocol task submissions.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create resilient Pilot Protocol task submission workflows with retries, jitter, and fallback agents for transient failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Retries and fallback agents may repeat or reroute a task submission. <br>
-Mitigation: Use the skill for idempotent tasks and confirm fallback agents are appropriate before submitting sensitive or side-effecting work. <br>
-Risk: The skill depends on the local Pilot Protocol setup and pilotctl daemon. <br>
-Mitigation: Install it only when you intentionally use Pilot Protocol and trust the local pilotctl and daemon configuration. <br>
+## Use Case:
 
+Developers and operators use this skill to generate retry, exponential backoff, jitter, and fallback-agent patterns for resilient Pilot Protocol task submission.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, code, guidance] <br>
-**Output Format:** [Markdown with bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, a running Pilot Protocol daemon, jq, and Bash 4.0+.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Retry and fallback logic may submit the same task more than once or route it to alternate agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for idempotent, non-sensitive tasks and choose trusted fallback agents.
+
+Risk: The examples depend on Pilot Protocol tooling and a running daemon.
+
+Mitigation: Verify pilotctl, jq, Bash 4.0+, the pilot-protocol skill, and daemon readiness before execution.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-task-retry)
+- [Publisher profile](https://clawhub.ai/user/teoslayer)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Bash and pilotctl retry/fallback examples; requires pilotctl, jq, Bash 4.0+, the pilot-protocol skill, and a running daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

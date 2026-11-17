@@ -1,47 +1,67 @@
-## Description: <br>
-该技能调用阿里云晓蜜外呼机器人，向指定手机号码列表发起自动语音外呼，支持自定义话术场景、批量号码处理和任务进度追踪。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+晓蜜智能外呼 helps agents prepare, launch, and monitor Alibaba Cloud Xia蜜 outbound call campaigns for scenarios such as customer notices, satisfaction surveys, interview invitations, reminders, and CRM-driven follow-up.
 
-## Publisher: <br>
-[yuya-xyf](https://clawhub.ai/user/yuya-xyf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuya-xyf](https://clawhub.ai/user/yuya-xyf)
 
-## Use Case: <br>
-Business users and operators use this skill to launch Alibaba Cloud Xiaomi outbound voice campaigns for notifications, surveys, callbacks, interview invitations, and activity reminders after reviewing recipient lists and call context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Mainland China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start real Alibaba Cloud outbound call campaigns at scale, which can incur costs and contact many recipients. <br>
-Mitigation: Use a dedicated least-privilege Alibaba Cloud key, test with a small recipient list first, and confirm the exact phone list before execution. <br>
-Risk: Outbound calls may involve personal phone numbers and business context sent to Alibaba Cloud. <br>
-Mitigation: Verify consent and legal compliance, share only necessary call background, and review the call context before confirming execution. <br>
+## Use Case:
 
+External users and operators use this skill to configure outbound-call campaigns, validate recipient lists, generate task input, start Alibaba Cloud Xia蜜 calls, and query campaign progress or call results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuya-xyf/intelligent-outbound-call) <br>
-- [Input formats](references/input-formats.md) <br>
-- [Phone number setup](references/phone-number-setup.md) <br>
-- [Common scenarios](references/scenarios.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Alibaba Cloud Xiaomi Outbound Bot console](https://outboundbot.console.aliyun.com/) <br>
-- [Alibaba Cloud Xiaomi Outbound Bot documentation](https://help.aliyun.com/product/outboundbot.html) <br>
-- [Alibaba Cloud outbound line application process](https://help.aliyun.com/zh/outboundbot/product-overview/apply-for-a-communication-line) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, JSON, Shell commands, Text] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create taskInput.json and return Alibaba Cloud instance IDs, job group IDs, outbound call counts, and progress summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can start real bulk outbound calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a human confirmation step before execution, verify caller-number authorization, and confirm recipient consent or another valid legal basis for the campaign.
+
+Risk: Alibaba Cloud credentials could grant broader calling or data access than the task requires.
+
+Mitigation: Install and run the skill only with least-privilege Alibaba Cloud credentials dedicated to approved outbound-calling workflows.
+
+Risk: Recipient contact data and business context may include sensitive personal data.
+
+Mitigation: Provide only the minimum required phone, name, scenario, and agentProfile.background data; avoid whole CRM records, resumes, order histories, and sensitive notes.
+
+Risk: Call recordings and signed download links may expose personal data.
+
+Mitigation: Treat recordings and signed recording URLs as sensitive, limit access, and avoid sharing them outside approved review or support workflows.
+
+## Reference(s):
+
+- [Input Formats](artifact/references/input-formats.md)
+- [Phone Number Setup](artifact/references/phone-number-setup.md)
+- [Common Scenarios](artifact/references/scenarios.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+- [Alibaba Cloud Xia蜜 Console](https://outboundbot.console.aliyun.com/)
+- [Alibaba Cloud Xia蜜 Documentation](https://help.aliyun.com/product/outboundbot.html)
+- [Alibaba Cloud Communication Line Application](https://help.aliyun.com/zh/outboundbot/product-overview/apply-for-a-communication-line)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON task input and shell commands; command output includes JSON or text status for call jobs, query results, and recording links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce taskInput.json structure, Alibaba Cloud job group IDs, instance IDs, script IDs, call counts, job status summaries, and signed recording download metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

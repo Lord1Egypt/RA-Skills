@@ -1,39 +1,58 @@
-## Description: <br>
-Lightweight project management for agents. Create projects, track tasks, set priorities and deadlines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight project management for agents. Create projects, track tasks, set priorities and deadlines.
 
-## Publisher: <br>
-[raychanpmp](https://clawhub.ai/user/raychanpmp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raychanpmp](https://clawhub.ai/user/raychanpmp)
 
-## Use Case: <br>
-Developers and agent users use Projectpilot to maintain local project task lists, track task status, assign owners, set deadlines, identify overdue work, and generate status summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project names, task text, assignees, deadlines, and status data are stored on disk. <br>
-Mitigation: Avoid storing sensitive roadmap or personnel details unless workspace storage is acceptable; set PROJECTPILOT_DATA to a dedicated directory for clearer separation, cleanup, and backups. <br>
+## Use Case:
 
+Developers, agents, and project contributors use ProjectPilot to create local project task lists, update task state, track deadlines and priorities, and generate concise project status views.
 
-## Reference(s): <br>
-- [Projectpilot on ClawHub](https://clawhub.ai/raychanpmp/projectpilot) <br>
-- [PM Templates & Frameworks](references/pm-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores project and task records as local JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server-resolved release metadata) <br>
+Risk: The skill can run Bash to execute its bundled Python tracker.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands before execution and run the tracker only in user-owned workspaces.
+
+Risk: The tracker creates or modifies local project JSON files.
+
+Mitigation: Use a private PROJECTPILOT_DATA directory and avoid importing untrusted project JSON.
+
+Risk: Generic project-management triggers may activate the skill in unrelated conversations.
+
+Mitigation: Narrow or disable triggers when broad project-management terms cause unwanted activation.
+
+## Reference(s):
+
+- [PM Templates & Frameworks](references/pm-templates.md)
+- [ProjectPilot ClawHub Page](https://clawhub.ai/raychanpmp/skills/projectpilot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and project/task status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local project JSON files through the bundled tracker.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

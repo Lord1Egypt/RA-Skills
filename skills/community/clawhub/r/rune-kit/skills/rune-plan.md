@@ -13,17 +13,30 @@
 
 ## Platform Constraints
 
+- MUST: After editing JS/TS files, ensure code follows project formatting conventions (Prettier/ESLint).
+- MUST: After editing .ts/.tsx files, verify TypeScript compilation succeeds (no type errors).
 - SHOULD: Monitor your context usage. If working on a long task, summarize progress before context fills up.
 - MUST: Before summarizing/compacting context, save important decisions and progress to project files.
 - SHOULD: Before ending, save architectural decisions and progress to .rune/ directory for future sessions.
 
 ## Purpose
 
-Strategic planning engine for the Rune ecosystem. Produces a **master plan + phase files** architecture — NOT a single monolithic plan. The master plan is a concise overview (<80 lines) that references separate phase files, each containing enough detail (<150 lines) that ANY model can execute with high accuracy.
+Strategic planning engine for the Rune ecosystem. Produces a **master plan + phase files** architecture — NOT a single monolithic plan. The master plan is a concise overview (<80 lines) that references separate phase files, each containing enough detail (<200 lines) that ANY model can execute with high accuracy.
 
 **Design principle: Plan for the weakest coder.** Phase files are designed so that even an Amateur-level model (Haiku) can execute them with minimal errors. When the plan satisfies the Amateur's needs, every model benefits — Junior (Sonnet) executes near-perfectly, Senior (Opus) executes flawlessly.
 
 This is enterprise-grade project management: BA produces WHAT → Plan produces HOW (structured into phases) → ANY coder executes each phase with full context.
+
+> **Goal-first — leverage native goal/outcome commands (advisory, 2026).** Current
+> agent models (Opus 4.8, Sonnet 5, Fable 5) perform best when handed
+> the full goal + constraints up front, then left to execute at high effort. Some
+> platforms now expose this natively: Claude Code `/goal` sets a run's north-star;
+> Managed Agents **Outcomes** (`user.define_outcome` + rubric) grade-and-iterate to a
+> target. The master plan IS that goal contract in durable form — when a native
+> goal/outcome command is present, seed it from the master plan's Overview +
+> acceptance criteria instead of re-stating the goal loosely. Advisory only: the
+> master plan + phase files stay the source of truth on every platform (goal/Outcome
+> are single-session; the plan survives across sessions and platforms).
 
 <HARD-GATE>
 NEVER produce a single monolithic plan file for non-trivial tasks.
@@ -37,7 +50,7 @@ For trivial tasks (1-2 phases, < 5 files): inline plan is acceptable.
 ```
 .rune/
   plan-<feature>.md          ← Master plan: phases overview, goals, status tracker (<80 lines)
-  plan-<feature>-phase1.md   ← Phase 1 detail: tasks, acceptance criteria, files to touch (<150 lines)
+  plan-<feature>-phase1.md   ← Phase 1 detail: tasks, acceptance criteria, files to touch (<200 lines)
   plan-<feature>-phase2.md   ← Phase 2 detail
   ...
 ```
@@ -165,13 +178,34 @@ Phase files are SELF-CONTAINED execution instructions — designed for the weake
 </HARD-GATE>
 
 Phase decomposition rules:
-- **Foundation first**: types, schemas, core engine
+- **Foundation first**: types, schemas, core engine. A Foundational phase holds ONLY what 2+ stories share — it BLOCKS story phases but stays minimal
 - **Dependencies before consumers**: create what's imported before the importer
+- **Ordering law WITHIN each slice**: Data → Logic → Endpoints/Services → UI → Integration. UI is structurally LAST — a UI task whose slice has no upstream data/logic/endpoint task (and doesn't consume Foundational or a prior slice's contract) is an INVALID plan, not a style choice. The button and the endpoint it calls are one slice's tasks, never split across slices
 - **Test alongside**: each phase includes its own test tasks
 - **Max 5-7 tasks per phase**: if more, split the phase
 - **Vertical slices over horizontal layers**: prefer "auth end-to-end" over "all models → all APIs → all UI" (see `references/vertical-slice.md` for tracer-bullet template, AFK/HITL labels, granularity rules)
+- **Story-grouped backbone from BA**: if `.rune/features/<name>/tasks.md` exists, its `## US-n` sections map to slices — refine them, do NOT flatten back into layer groups
 
 Tasks within each phase MUST be organized into waves (parallel-safe groupings). See `references/wave-planning.md`.
+
+### Step 3.7 — Boundary Artifacts (Contracts-First)
+<MUST-READ path="references/boundary-artifacts.md" trigger="when the feature crosses a UI↔data boundary — templates for data-model.md, contracts/, quickstart.md"/>
+
+**Detect the boundary**: requirements.md has a `## Key Entities` section AND any user story renders a UI surface (page/screen/form/component) — OR the task description implies user interaction with persisted data (submit, save, login, search, checkout).
+
+**If the boundary exists, plan MUST emit — BEFORE writing phase files:**
+
+| Artifact | Location | Content |
+|----------|----------|---------|
+| `data-model.md` | `.rune/features/<name>/` | Key Entities expanded: fields, types, validation rules, state transitions |
+| `contracts/` | `.rune/features/<name>/contracts/` | One file per interface: endpoint/function, request/response shape, error cases — each mapped to the `US-n` it serves |
+| `quickstart.md` | `.rune/features/<name>/` | Runnable end-to-end validation: prerequisites, setup commands, per-story Independent Test steps, expected outcomes |
+
+Rules:
+- Tasks are then DERIVED from contracts: every contract file → ≥1 implementation task + ≥1 test task inside the story it serves. A UI task referencing no contract (and no prior slice's contract) is orphaned — fix the plan
+- A story that touches data but maps to no entity in data-model.md = spec gap → bounce to `ba` (Upstream Inconsistency)
+- quickstart.md is the feature's executable end-to-end validation — write commands that actually run, not prose. Task derivation adds a "run quickstart validation" task to the final phase, so the plan itself guarantees it gets executed
+- **Skip** when no boundary: pure-UI features (styling, layout), pure-backend (cron, migration), libraries. Announce the skip: "No UI↔data boundary — skipping boundary artifacts"
 
 ### Step 4 — Write Master Plan File
 <MUST-READ path="references/plan-templates.md" trigger="when writing the master plan file"/>
@@ -211,9 +245,35 @@ Performance Constraints section is optional (only when NFRs apply).
 
 When presenting alternatives (from brainstorm or Step 3), rate each **Completeness X/10**. Always recommend the higher-completeness option — with AI, the marginal cost of completeness is near-zero.
 
+### Step 5.7 — Coverage Gate (after phase files, before presenting)
+
+**Task ID scheme**: every task in a phase file carries the ID `P<phase>-T<seq>` — phase number + sequential position within that phase (`P2-T3` = phase 2, task 3). Phase file task labels use this ID (see `references/plan-templates.md`). Coverage Summary, Traceability Matrix, and Change Stacking `depends_on` all reference tasks by this ID.
+
+When BA requirements exist, build the **Coverage Summary** — every `FR-n` and `US-n` mapped to the task IDs that implement it:
+
+```markdown
+## Coverage Summary
+| Key | Priority | Tasks | Covered |
+|-----|----------|-------|---------|
+| US-1 | P1 | P1-T2, P1-T3, P2-T1 | ✅ |
+| FR-3 | — | P2-T4 | ✅ |
+| US-3 | P2 | — | ❌ deferred to v2 (explicit) |
+```
+
+<HARD-GATE>
+A P1 story or its FRs with ZERO tasks = the plan is INCOMPLETE — do NOT present it for approval. Fix the plan first.
+P2/P3 zero-coverage is allowed ONLY with an explicit deferral line in the master plan ("US-3 deferred to v2 — user-visible in Coverage Summary"), never silently.
+</HARD-GATE>
+
+**Sequencing note**: task IDs exist only AFTER Step 5 writes the phase files — so this step runs after Step 5, and you MUST go back and edit_file the already-written master plan file (`.rune/plan-<feature>.md`) to insert the `## Coverage Summary` section (before `## Architecture`). Present the UPDATED master plan at Step 6. A master plan presented without its Coverage Summary is a Step 5.7 violation, not an oversight.
+
+**Size spillover**: if the table exceeds ~15 rows, write the full table to `.rune/plan-<feature>-coverage.md` instead, and put a one-line pointer + the ❌/deferred rows only in the master plan (the 80-line cap stays intact; zero-coverage rows are never hidden in the spillover file).
+
+Skip when no requirements.md exists (ad-hoc tasks).
+
 ### Step 6 — Present and Get Approval
 
-Present the **master plan** to user (NOT all phase files). User reviews: phase breakdown, key decisions, risks, completeness scores. Wait for explicit approval ("go", "proceed", "yes") before writing phase files.
+Present the **master plan** to user (NOT all phase files). User reviews: phase breakdown, key decisions, risks, completeness scores, **coverage summary**. Wait for explicit approval ("go", "proceed", "yes") before writing phase files.
 
 ### Step 6.5 — Update Feature Map (Always)
 <MUST-READ path="references/feature-map.md" trigger="every plan invocation"/>
@@ -333,6 +393,9 @@ When producing phase files with wave-based task grouping, every task MUST declar
 12. MUST include rejection criteria — explicit "DO NOT" anti-patterns to prevent common mistakes
 13. MUST include cross-phase context — what's assumed from prior phases, what's exported for future
 14. MUST update `.rune/features.md` after every non-trivial plan — feature map is a living artifact
+15. MUST emit boundary artifacts (data-model.md, contracts/, quickstart.md) when the feature crosses a UI↔data boundary — tasks derive from contracts, not the reverse
+16. MUST order layers within each slice Data → Logic → Endpoint → UI — a UI task with no upstream chain in its slice is an invalid plan
+17. MUST NOT present a plan where a P1 story has zero task coverage — Coverage Summary is part of the master plan
 
 ## Returns
 
@@ -341,6 +404,9 @@ When producing phase files with wave-based task grouping, every task MUST declar
 | Master plan | Markdown | `.rune/plan-<feature>.md` |
 | Phase files | Markdown | `.rune/plan-<feature>-phase<N>.md` (one per phase) |
 | Feature spec | Markdown | `.rune/features/<name>/spec.md` (Feature Spec Mode only) |
+| Data model | Markdown | `.rune/features/<name>/data-model.md` (Step 3.7 — UI↔data boundary only) |
+| Interface contracts | Markdown (one per interface) | `.rune/features/<name>/contracts/` (Step 3.7) |
+| Quickstart validation | Markdown (executable steps) | `.rune/features/<name>/quickstart.md` (Step 3.7) |
 | Roadmap | Markdown | `.rune/roadmap.md` (Roadmap Mode only) |
 | Feature map | Markdown | `.rune/features.md` (auto-maintained) |
 | Inline plan | Markdown (inline) | Emitted directly for trivial tasks |
@@ -352,7 +418,7 @@ Append to plan output when invoked standalone. Suppress when called as sub-skill
 ```yaml
 chain_metadata:
   skill: "rune-plan.md"
-  version: "1.6.0"
+  version: "1.7.1"
   status: "[DONE | DONE_WITH_CONCERNS | NEEDS_CONTEXT | BLOCKED]"
   domain: "[area planned]"
   files_changed:
@@ -404,6 +470,11 @@ chain_metadata:
 | Missing dependency between tasks that share artifacts | HIGH | Every task declares `provides[]` and `requires[]` — cycle detection + missing dep check before dispatch |
 | New feature planned without checking existing feature map | HIGH | Step 1 reads `.rune/features.md` — catches overlaps, conflicts, and missing dependencies before planning begins |
 | Feature map never created — gaps accumulate silently | MEDIUM | Step 6.5 always runs (create or update) — feature map grows organically with each plan invocation |
+| UI task planned with no endpoint/contract behind it (dead button at plan time) | CRITICAL | Step 3.7: contracts/ emitted before phase files; every UI task cites its contract; ordering law makes UI structurally last in its slice |
+| P1 story silently missing from tasks (frontend-only plan) | CRITICAL | Step 5.7 Coverage Gate: P1 zero-coverage = plan not presentable; Coverage Summary visible in master plan at approval |
+| Boundary artifacts skipped because "the feature is simple" | HIGH | Detection is mechanical (Key Entities + UI surface), not judgment. Skips are announced, never silent |
+| quickstart.md written as prose instead of runnable commands | MEDIUM | Every step needs an **Expect** with observable outcome — cook executes this file at VERIFY |
+| BA's story-grouped tasks.md flattened back into layer groups | HIGH | Step 3 rule: `## US-n` sections map to slices — refine, don't flatten |
 
 ## Self-Validation
 
@@ -415,6 +486,9 @@ SELF-VALIDATION (run before presenting plan to user):
 - [ ] Phase files have ALL Amateur-Proof sections (data flow, code contracts, failure scenarios, rejection criteria)
 - [ ] Locked decisions from BA are reflected in plan — none contradicted or ignored
 - [ ] Every BA requirement has a corresponding Req ID in at least one phase's Traceability Matrix
+- [ ] Coverage Summary built (Step 5.7) — no P1 story/FR with zero tasks; P2/P3 gaps have explicit deferral lines
+- [ ] Boundary artifacts emitted if UI↔data boundary detected — every contract has a consumer, every UI task cites its contract (or justifies Contract: none)
+- [ ] Layer order within every slice: no UI task precedes its slice's data/logic/endpoint tasks
 - [ ] `.rune/features.md` updated with current feature (or created if first run)
 - [ ] No cross-feature conflicts detected (or flagged to user if found)
 ```
@@ -430,6 +504,8 @@ SELF-VALIDATION (run before presenting plan to user):
   - Failure scenarios table, rejection criteria (DO NOTs)
   - Cross-phase context (assumes/exports), acceptance criteria
 - Every code-producing phase has test tasks
+- Boundary artifacts emitted (data-model.md + contracts/ + quickstart.md) when UI↔data boundary detected — or skip announced
+- Coverage Summary in master plan — every P1 story/FR covered, P2/P3 gaps explicitly deferred
 - Master plan presented to user with "Awaiting Approval"
 - User has explicitly approved
 - Self-Validation: all checks passed
@@ -443,7 +519,7 @@ SELF-VALIDATION (run before presenting plan to user):
 ~3000-8000 tokens input, ~2000-5000 tokens output (master + all phase files). Opus for architectural reasoning. Most expensive L2 skill but runs infrequently. Phase files are written once, executed by cheaper models (Sonnet/Haiku).
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

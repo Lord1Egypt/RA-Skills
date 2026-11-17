@@ -1,45 +1,64 @@
-## Description: <br>
-Generates Midscene UI automation scripts from natural-language requests for Web, Android, iOS, and PC targets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+nl2ms-ui helps agents generate Midscene automation scripts from natural-language requests for Web, Android, iOS, and PC test workflows.
 
-## Publisher: <br>
-[wu-xiyou](https://clawhub.ai/user/wu-xiyou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wu-xiyou](https://clawhub.ai/user/wu-xiyou)
 
-## Use Case: <br>
-Developers and QA automation engineers use this skill to turn natural-language test intent into Midscene automation scripts for browser, mobile, and desktop UI workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated or example automation can send chat messages or accept permission and agreement prompts without clear user confirmation. <br>
-Mitigation: Review generated scripts before execution, use test accounts, test devices, and sandbox URLs, and remove automatic consent behavior unless explicitly approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Midscene API documentation](https://midscenejs.com/api.html) <br>
-- [Android YAML examples](references/examples-android-yaml.md) <br>
-- [Android TypeScript examples](references/examples-android-ts.md) <br>
-- [iOS YAML examples](references/examples-ios-yaml.md) <br>
-- [iOS TypeScript examples](references/examples-ios-ts.md) <br>
-- [Web YAML examples](references/examples-web-yaml.md) <br>
-- [Web TypeScript examples](references/examples-web-ts.md) <br>
-- [PC YAML examples](references/examples-pc-yaml.md) <br>
-- [PC TypeScript examples](references/examples-pc-ts.md) <br>
+## Use Case:
 
+Developers and QA engineers use this skill to turn natural-language testing goals into Midscene automation scripts for mobile, web, and desktop UI workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets Midscene automation for Web, Android, iOS, and PC UI workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated automation can accept permission prompts or user agreements without explicit review.
+
+Mitigation: Remove blanket auto-consent instructions and require human review for permission, agreement, or login flows before running generated scripts.
+
+Risk: Generated examples can send messages or otherwise act in live applications.
+
+Mitigation: Run scripts only in controlled test environments with test accounts, test recipients, and non-production session state.
+
+Risk: Browser automation examples may disable the browser sandbox.
+
+Mitigation: Keep the browser sandbox enabled unless an isolated runtime explicitly requires disabling it.
+
+## Reference(s):
+
+- [Midscene API documentation](https://midscenejs.com/api.html)
+- [Android YAML examples](references/examples-android-yaml.md)
+- [Android TypeScript examples](references/examples-android-ts.md)
+- [iOS YAML examples](references/examples-ios-yaml.md)
+- [iOS TypeScript examples](references/examples-ios-ts.md)
+- [Web YAML examples](references/examples-web-yaml.md)
+- [Web TypeScript examples](references/examples-web-ts.md)
+- [PC YAML examples](references/examples-pc-yaml.md)
+- [PC TypeScript examples](references/examples-pc-ts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with TypeScript and YAML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated scripts may target Android, iOS, Web, or PC Midscene automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

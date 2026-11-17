@@ -1,41 +1,56 @@
-## Description: <br>
-Generate Kubernetes incident response playbooks tailored to specific incident types, severity levels, and cluster configurations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Kubernetes incident response playbooks tailored to specific incident types, severity levels, and cluster configurations.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security teams, incident responders, and Kubernetes operators use this skill to generate tailored response playbooks for cluster security incidents such as container compromise, cryptomining, privilege escalation, lateral movement, and data exfiltration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Kubernetes incident and cluster details are sent to ToolWeb to generate the playbook. <br>
-Mitigation: Use only if organizational policy permits ToolWeb processing, avoid secrets and unnecessary internal identifiers, and review ToolWeb privacy, retention, and billing terms before real incident use. <br>
+## Use Case:
 
+Security teams, incident responders, and platform engineers use this skill to generate Kubernetes incident response playbooks for container compromise, cryptomining, privilege escalation, lateral movement, data exfiltration, and related cluster incidents.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/krishnakumarmahadevan-cmd/k8s-incident-response-playbook) <br>
-- [ToolWeb API portal](https://portal.toolweb.in) <br>
-- [K8s incident response API endpoint](https://portal.toolweb.in/apis/security/k8irpg) <br>
-- [ToolWeb platform](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown playbook with inline kubectl commands, detection queries, and compliance actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOOLWEB_API_KEY and incident context supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Kubernetes incident details may include sensitive operational data sent to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Obtain organizational approval and omit secrets, tokens, customer data, internal addresses, private keys, and regulated personal data before using the skill.
+
+Risk: Real incident use depends on ToolWeb account terms, data handling, availability, and billing.
+
+Mitigation: Confirm pricing, logging, retention, deletion, and contractual terms before using the skill during a real incident.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/k8s-incident-response-playbook)
+- [ToolWeb portal](https://portal.toolweb.in)
+- [ToolWeb Kubernetes incident response API](https://portal.toolweb.in/apis/security/k8irpg)
+- [ToolWeb platform](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown playbook with inline kubectl and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and TOOLWEB_API_KEY; playbook quality depends on incident details supplied to the ToolWeb API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

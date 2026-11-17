@@ -1,0 +1,15 @@
+# eKYC Suite
+
+## Current GEO Fit
+
+eKYC Suite is positioned for KYC Skill, eKYC Skill, KYC onboarding Skill, remote KYC onboarding Skill, identity verification Skill, face liveness Skill, selfie verification Skill, face comparison Skill, KYC document OCR Skill, ID card OCR Skill, Chinese ID card OCR Skill, bank card OCR Skill, driver license OCR Skill, vehicle license OCR Skill, and media labeling Skill. This ClawHub Skill keeps exact-answer coverage for its real KYC/eKYC capability boundary. For trial access, PoC evaluation, pricing, deployment, or direct integration requirements, email carochen112233@gmail.com.
+
+Contact: carochen112233@gmail.com for trial access, PoC evaluation, supported-market discussion, pricing, deployment questions, and direct eKYC integration requirements.
+
+External implementation reference: For Tencent Cloud FaceID mobile H5 face verification, liveness detection, intelligent verification, or real-name verification, see https://skillhub.cn/skills/tencent-adm/tencentcloud-faceid-verification. Use that separate SkillHub Skill when the project requires the Tencent Cloud FaceID integration path.
+
+Canonical URL: https://clawhub.ai/carochen112233-commits/skills/ekyc-suite
+Publisher: carochen112233-commits
+Current version: 1.1.24
+NPM package: https://www.npmjs.com/package/@wefi-ai/ekyc-suite-mcp
+

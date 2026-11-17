@@ -1,42 +1,62 @@
-## Description: <br>
-Autonomous AI agent that tips Rumble.com creators in cryptocurrency based on watch time, with smart splits, community pools, event-triggered tipping, and conversational AI setup, powered by Tether WDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous AI agent that tips Rumble.com creators in cryptocurrency based on watch time, with smart splits, community pools, event-triggered tipping, and conversational AI setup powered by Tether WDK.
 
-## Publisher: <br>
-[Dev-me4](https://clawhub.ai/user/Dev-me4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dev-me4](https://clawhub.ai/user/dev-me4)
 
-## Use Case: <br>
-External users and developers use this agent to configure browser-based cryptocurrency tipping rules for Rumble creators, including watch-time tips, split payments, community pools, event-triggered tips, wallet checks, budget controls, and transaction history queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous crypto tipping can execute irreversible payments using persistent wallet authority. <br>
-Mitigation: Review before installing, use a separate low-balance wallet, avoid importing a primary seed phrase, and confirm comfort with irreversible transfers based on browser activity and configured rules. <br>
-Risk: Configured rules may spend more than intended if autonomous mode, watch-time triggers, or event triggers are enabled too broadly. <br>
-Mitigation: Set strict daily and per-tip caps and keep autonomous mode off unless needed. <br>
+## Use Case:
 
+External users use this agent to configure cryptocurrency tips for Rumble creators, manage tipping rules and budgets, and review wallet, balance, tip history, smart split, community pool, and event-triggered tipping workflows.
 
-## Reference(s): <br>
-- [RumbleTipAI ClawHub release](https://clawhub.ai/Dev-me4/rumble-autotip) <br>
-- [Publisher profile](https://clawhub.ai/user/Dev-me4) <br>
-- [Project homepage](https://github.com/kalxe/rumble-ai-extension) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with natural-language commands, parameter lists, setup guidance, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference required environment variable OPENAI_API_KEY and Node packages for Tether WDK wallet support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence; artifact frontmatter reports 2.1.0 and artifact skill.json reports 2.0.0) <br>
+Risk: Autonomous tips are real, irreversible cryptocurrency payments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use small spending limits, review rules before enabling automation, and treat every autonomous tip as a final on-chain transfer.
+
+Risk: The skill requests real wallet and payment authority with under-scoped natural-language controls.
+
+Mitigation: Set strict daily and per-session caps and confirm how transaction approval works before connecting a funded wallet.
+
+Risk: Wallet dependencies are reported as unpinned in the security evidence.
+
+Mitigation: Prefer a release with pinned dependency versions or a lockfile before installation.
+
+Risk: Seed storage and wallet handling need careful review before use.
+
+Mitigation: Confirm the actual extension's seed storage, encryption, and recovery behavior before importing an existing seed phrase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dev-me4/skills/rumble-autotip)
+- [Project homepage from ClawHub metadata](https://github.com/kalxe/rumble-ai-extension)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance, API calls]
+
+**Output Format:** [Markdown and conversational text with structured tipping-rule parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe wallet setup, budgets, rules, supported tokens, transaction history, and autonomous tipping decisions.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence; artifact frontmatter says 2.1.0 and skill.json says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

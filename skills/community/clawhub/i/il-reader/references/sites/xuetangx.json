@@ -1,0 +1,284 @@
+{
+  "version": "2.4.0",
+  "source_id": "xuetangx",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:01:11.148Z",
+  "entry": {
+    "url": "https://www.xuetangx.com/",
+    "final_url": "https://www.xuetangx.com/",
+    "title": "学堂在线 - 精品在线课程学习平台",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:01:11.148Z",
+    "identity": {
+      "declared_name": "学堂在线",
+      "hostname": "www.xuetangx.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "全部课程",
+        "href": "https://www.xuetangx.com/search?query=&channel=i.area.navigation_bar",
+        "target": ""
+      },
+      {
+        "text": "AI慕课\n人工智能产品创新认知\n围绕人工智能硬件产品，课程系统介绍了相关的人工智能技术，产品\n清华大学\n2865",
+        "href": "https://www.xuetangx.com/course/thu08081014427?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "人气推荐\n清华985教授主讲，系统学习计算机专业！\n疾风计划2026【3期】【实训班】【一年挑战计算机专业】",
+        "href": "https://www.xuetangx.com/course/XT0809003778260302?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "好课推荐\n系统夯实IT基础，赢取全额奖学金\n疾风计划2026【3期】【一年挑战计算机专业】",
+        "href": "https://www.xuetangx.com/course/XT0809003778260301?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "最新上线人工智能\n带你从底层原理走到技术落地\n大模型应用开发工程师（高级）课程【2026年1期】",
+        "href": "https://www.xuetangx.com/course/DMXYYGJ0809018358?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "即将开课爆款好课\n全额奖学金！清华、北师大教授带你系统学习心理学专业\n深心计划2026【3期】【深入学习心理学】",
+        "href": "https://www.xuetangx.com/course/XT0711009705260301?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "爆款好课经济金融\n高校教授丨专属助教丨全额奖金丨系统培养丨拓展视角丨专业认证\n经济金融能力培养计划【2026年3期】",
+        "href": "https://www.xuetangx.com/course/XT0201013723260301?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "一流课程\n操作系统\n为大充分利用操作系统功能进行应用软件研究和开发打下扎实的基础\n清华大学\n27万+",
+        "href": "https://www.xuetangx.com/course/THU08091000267?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "一流课程\n高级大数据系统\n致力于引导学生学习大数据系统的基本概念。\n清华大学\n4万+",
+        "href": "https://www.xuetangx.com/course/THU08091000301?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "一流课程\nC++程序设计\n为学生将来创新实验、毕业设计、科学研究提供了有利的支持。\n西北工业大学\n9882",
+        "href": "https://www.xuetangx.com/course/NWPU0809002990?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "一流课程\nC程序设计\n编程不只是一门技术，它教会人们如何思考，与我们一起学编程吧！\n西北工业大学\n6911",
+        "href": "https://www.xuetangx.com/course/NWPU0809002989?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "一流课程\n模拟电子技术基础\n领略模拟电子技术的无穷魅力\n国防科技大学\n8483",
+        "href": "https://www.xuetangx.com/course/nudt08071006748?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "一流课程\n计算机组成原理\n重点讲授计算机硬件系统的组成结构、工作原理和设计方法\n电子科技大学\n3万+",
+        "href": "https://www.xuetangx.com/course/UESTC0809003187?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "一流课程\nC++语言程序设计\n本课程面向零基础学习者，重点学习程序设计原理和方法。\n中国农业大学\n1万+",
+        "href": "https://www.xuetangx.com/course/cau0809zw4?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "一流课程\nC语言程序设计精髓\n一起欣赏C语言之美，领悟C语言之妙，体会学习C语言之无穷乐趣\n哈尔滨工业大学\n1万+",
+        "href": "https://www.xuetangx.com/course/hit08091005013?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "查看更多计算机课程",
+        "href": "https://www.xuetangx.com/search?query=&status=&page=1&classify=1&org=&type=",
+        "target": ""
+      },
+      {
+        "text": "在线俄语课程：入门课程 （一）\nDzhabbarova Egana\n乌拉尔联邦大学\n8019",
+        "href": "https://www.xuetangx.com/course/UFU0502000000?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "在线俄语课程：入门课程 （二）\nDzhabbarova Egana\n乌拉尔联邦大学\n0",
+        "href": "https://www.xuetangx.com/course/urfu05021007786?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "在线俄语课程：入门课程 （三）\nDzhabbarova Egana\n乌拉尔联邦大学\n1665",
+        "href": "https://www.xuetangx.com/course/urfu05020000?channel=i.area.home_course_ad",
+        "target": ""
+      },
+      {
+        "text": "课程入驻",
+        "href": "https://www.xuetangx.com/admission",
+        "target": ""
+      },
+      {
+        "text": "帮助与反馈",
+        "href": "https://www.xuetangx.com/help",
+        "target": "_blank"
+      }
+    ],
+    "frames": [
+      {
+        "src": "https://turing.captcha.gtimg.com/1/template/drag_ele.html",
+        "id": "tcaptcha_iframe_dy",
+        "name": "https://turing.captcha.qcloud.com",
+        "title": ""
+      },
+      {
+        "src": "https://web-stat.jpush.cn/web/report/html/janalytics.html",
+        "id": "jiguang_iframe",
+        "name": "",
+        "title": ""
+      }
+    ]
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "心理学",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "心理学",
+      "name": null,
+      "id": "pc-search-input",
+      "css": "#pc-search-input",
+      "role": null,
+      "form_action": "https://www.xuetangx.com/",
+      "locator": {
+        "css": "#pc-search-input"
+      },
+      "observed_url": "https://www.xuetangx.com/",
+      "observed_at": "2026-10-09T09:01:09.500Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "中文",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.xuetangx.com/",
+      "observed_at": "2026-10-09T09:01:09.500Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "xuetangx:record-lookup",
+      "source_id": "xuetangx",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.xuetangx.com/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "心理学",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "心理学",
+          "name": null,
+          "id": "pc-search-input",
+          "css": "#pc-search-input",
+          "role": null,
+          "form_action": "https://www.xuetangx.com/",
+          "locator": {
+            "css": "#pc-search-input"
+          },
+          "observed_url": "https://www.xuetangx.com/",
+          "observed_at": "2026-10-09T09:01:09.500Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "network_error",
+      "attempt": 1,
+      "detail": "page.goto: Navigation to \"https://www.xuetangx.com/\" is interrupted by another navigation to \"https://www.icourse163.org/course/WHU-1003640003\"\nCall log:\n\u001b[2m  - navigating to \"https://www.xuetangx.com/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": "xuetangx",
+    "quiz_entries": [
+      "quiz-entry-062"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:01:11.148Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/xuetangx-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/xuetangx-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

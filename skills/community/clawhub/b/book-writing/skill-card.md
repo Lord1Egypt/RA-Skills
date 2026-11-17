@@ -1,40 +1,58 @@
-## Description: <br>
-Plan, draft, and revise complete books with chapter architecture, voice consistency, and finish-ready revision workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan, draft, and revise complete books with chapter architecture, voice consistency, and finish-ready revision workflows.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and writing assistants use this skill to plan nonfiction, fiction, or hybrid books, draft coherent chapters, preserve voice and point of view, and run structured revision passes across a long manuscript. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Project details and writing preferences may be stored in local memory under ~/book-writing/ when that workflow is enabled. <br>
-Mitigation: Review ~/book-writing/memory.md periodically and avoid storing secrets, credentials, private unrelated information, or manuscript details that should not persist locally. <br>
-Risk: Generated drafting or revision guidance can preserve structural problems, weak claims, or unresolved promises if the book premise and chapter outcomes are unclear. <br>
-Mitigation: Confirm the book promise, chapter outcomes, and revision pass target before producing large drafts or treating a section as finish-ready. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/book-writing) <br>
-- [Skill homepage](https://clawic.com/skills/book-writing) <br>
+## Use Case:
 
+Writers and editorial collaborators use this skill to plan, draft, revise, and track nonfiction or fiction book projects across many chapters while preserving structure, voice, and narrative continuity.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and plain text writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local book project memory when the user enables that workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can retain manuscript planning memory and chapter or revision notes under ~/book-writing/ when local memory is enabled.
+
+Mitigation: Keep entries concise, avoid secrets or unrelated sensitive personal information, and delete or disable ~/book-writing/ when local manuscript memory is no longer wanted.
+
+Risk: Long-form drafting can drift from the intended book promise, chapter outcome, voice, or point of view.
+
+Mitigation: Use the blueprint, chapter loop, and revision rubric to define scope before drafting, validate coherence per chapter, and run separate structure, continuity, clarity, and line-quality passes.
+
+## Reference(s):
+
+- [Book Writing ClawHub skill page](https://clawhub.ai/ivangdavila/skills/book-writing)
+- [Book Writing homepage](https://clawic.com/skills/book-writing)
+- [Book Blueprint](artifact/blueprint.md)
+- [Chapter Loop](artifact/chapter-loop.md)
+- [Memory Template](artifact/memory-template.md)
+- [Revision Rubric](artifact/revision-rubric.md)
+- [Setup - Book Writing](artifact/setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance and local project-memory templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and update local markdown memory under ~/book-writing/ when the user enables it.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

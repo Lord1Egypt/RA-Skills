@@ -1,0 +1,1685 @@
+##################
+# Event Entities #
+##################
+"""
+Event: An interface which is shared by all event entities and contains basic transaction data.
+"""
+interface Event {
+"""
+The id of the event entity.
+"""
+id: ID!
+
+"""
+The block number which the event was logged in.
+"""
+blockNumber: BigInt!
+
+"""
+The index of the event, e.g. first event emitted would have `logIndex` of 0.
+"""
+logIndex: BigInt!
+
+"""
+A number used internally to sort the order of transactions.
+The formula: `blockNumber * ORDER_MULTIPLIER + logIndex`
+where: ORDER_MULTIPLIER = 10000
+"""
+order: BigInt!
+
+"""
+The name of the event - is a 1-to-1 match with the name in our smart contracts.
+"""
+name: String!
+
+"""
+Contains the addresses for accounts that were "impacted" by the event.
+This typically involves accounts which experienced a state change as a result of the transaction which emitted this event.
+"""
+addresses: [Bytes!]!
+
+"""
+The block timestamp which the event was logged in.
+"""
+timestamp: BigInt!
+
+"""
+The transaction hash of the transaction that the event was logged in.
+"""
+transactionHash: Bytes!
+
+"""
+The gas price of the transaction that the event was logged in.
+"""
+gasPrice: BigInt!
+
+"""
+The gas used for this transaction.
+"""
+gasUsed: BigInt
+}
+
+# ConstantFlowAgreementV1 #
+"""
+FlowUpdated: An `Event` entity that is emitted
+when a flow is created, updated, or deleted.
+"""
+type FlowUpdatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (supertoken)
+addresses[1] = `sender`
+addresses[2] = `receiver`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+"""
+The address of the `token` (supertoken) being streamed.
+"""
+token: Bytes!
+
+"""
+The address of the flow sender.
+"""
+sender: Bytes!
+
+"""
+The address of the flow receiver.
+"""
+receiver: Bytes!
+
+"""
+The address that is executing the flow update transaction.
+This will be the zero address until the flowOperator feature is live.
+"""
+flowOperator: Bytes!
+
+"""
+The flow rate per second.
+"""
+flowRate: BigInt!
+
+"""
+The total (global/account level) flow rate of `sender` for `token` as of this event.
+"""
+totalSenderFlowRate: BigInt!
+
+"""
+The total (global/account level) flow rate of `receiver` for `token` as of this event.
+"""
+totalReceiverFlowRate: BigInt!
+
+"""
+The deposit amount put up for the creation of the flow.
+"""
+deposit: BigInt!
+
+"""
+Arbitrary bytes (additional data) passed upon flow creation.
+"""
+userData: Bytes!
+
+# Custom Properties (not on event)
+
+"""
+The previous flow rate, the absolute (positive) value.
+"""
+oldFlowRate: BigInt!
+
+"""
+The "type" of the `FlowUpdated` event.
+0 = create
+1 = update
+2 = terminate
+"""
+type: Int!
+
+"""
+The total amount streamed until the timestamp
+for the Stream entity linked to this event.
+"""
+totalAmountStreamedUntilTimestamp: BigInt!
+
+# ---------------------------------- links ----------------------------------
+"""
+The stream entity which is being modified.
+"""
+stream: Stream!
+}
+
+type FlowOperatorUpdatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = sender
+addresses[2] = `flowOperator`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+"""
+The address of the `token` being streamed.
+"""
+token: Bytes!
+sender: Bytes!
+
+"""
+The permissions granted to the `flowOperator`.
+Octo bitmask representation.
+"""
+permissions: Int!
+flowRateAllowance: BigInt!
+
+# ---------------------------------- links ----------------------------------
+flowOperator: FlowOperator!
+}
+
+#  InstantDistributionAgreementV1 #
+type IndexCreatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `publisher`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+
+"""
+The creator of the `index`.
+"""
+publisher: Bytes!
+
+"""
+An arbitrary uint32 value used to allow a publisher to create multiple indexes for a specific `token`.
+"""
+indexId: BigInt!
+userData: Bytes!
+
+# ---------------------------------- links ----------------------------------
+index: Index!
+}
+
+type IndexDistributionClaimedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `publisher`
+addresses[2] = `subscriber`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+
+"""
+The creator of the `index`.
+"""
+publisher: Bytes!
+
+"""
+An arbitrary uint32 value used to allow a publisher to create multiple indexes for a specific `token`.
+"""
+indexId: BigInt!
+
+"""
+The account that is subscribed to `index`. A possible recipient of distributions from the `publisher`.
+`subscriber` only receives tokens if they have been allocated units (can be thought of as shares).
+"""
+subscriber: Bytes!
+amount: BigInt!
+
+# ---------------------------------- links ----------------------------------
+index: Index!
+}
+
+type IndexUpdatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `publisher`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+
+"""
+The creator of the `index`.
+"""
+publisher: Bytes!
+
+"""
+An arbitrary uint32 value used to allow a publisher to create multiple indexes for a specific `token`.
+"""
+indexId: BigInt!
+oldIndexValue: BigInt!
+newIndexValue: BigInt!
+totalUnitsPending: BigInt!
+totalUnitsApproved: BigInt!
+userData: Bytes!
+
+# ---------------------------------- links ----------------------------------
+index: Index!
+}
+
+type IndexSubscribedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `publisher`
+addresses[2] = `subscriber`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+
+"""
+The creator of the `index`.
+"""
+publisher: Bytes!
+
+"""
+An arbitrary uint32 value used to allow a publisher to create multiple indexes for a specific `token`.
+"""
+indexId: BigInt!
+
+"""
+The account that is subscribed to `index`. A possible recipient of distributions from the `publisher`.
+`subscriber` only receives tokens if they have been allocated units (can be thought of as shares).
+"""
+subscriber: Bytes!
+userData: Bytes!
+
+# ---------------------------------- links ----------------------------------
+index: Index!
+}
+
+type IndexUnitsUpdatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `publisher`
+addresses[2] = `subscriber`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+
+"""
+The creator of the `index`.
+"""
+publisher: Bytes!
+
+"""
+An arbitrary uint32 value used to allow a publisher to create multiple indexes for a specific `token`.
+"""
+indexId: BigInt!
+
+"""
+The account that is subscribed to `index`. A possible recipient of distributions from the `publisher`.
+`subscriber` only receives tokens if they have been allocated units (can be thought of as shares).
+"""
+subscriber: Bytes!
+units: BigInt!
+userData: Bytes!
+
+# Custom Properties (not on event)
+oldUnits: BigInt!
+
+# ---------------------------------- links ----------------------------------
+index: Index!
+}
+
+type IndexUnsubscribedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `publisher`
+addresses[2] = `subscriber`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+
+"""
+The creator of the `index`.
+"""
+publisher: Bytes!
+
+"""
+An arbitrary uint32 value used to allow a publisher to create multiple indexes for a specific `token`.
+"""
+indexId: BigInt!
+
+"""
+The account that is subscribed to `index`. A possible recipient of distributions from the `publisher`.
+`subscriber` only receives tokens if they have been allocated units (can be thought of as shares).
+"""
+subscriber: Bytes!
+userData: Bytes!
+
+# ---------------------------------- links ----------------------------------
+index: Index!
+}
+
+type SubscriptionApprovedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `publisher`
+addresses[2] = `subscriber`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+
+"""
+The account that is subscribed to `index`. A possible recipient of distributions from the `publisher`.
+`subscriber` only receives tokens if they have been allocated units (can be thought of as shares).
+"""
+subscriber: Bytes!
+
+"""
+The creator of the `index`.
+"""
+publisher: Bytes!
+
+"""
+An arbitrary uint32 value used to allow a publisher to create multiple indexes for a specific `token`.
+"""
+indexId: BigInt!
+userData: Bytes!
+
+# ---------------------------------- links ----------------------------------
+subscription: IndexSubscription!
+}
+
+type SubscriptionDistributionClaimedEvent implements Event
+@entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `publisher`
+addresses[2] = `subscriber`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+
+"""
+The account that is subscribed to `index`. A possible recipient of distributions from the `publisher`.
+`subscriber` only receives tokens if they have been allocated units (can be thought of as shares).
+"""
+subscriber: Bytes!
+
+"""
+The creator of the `index`.
+"""
+publisher: Bytes!
+
+"""
+An arbitrary uint32 value used to allow a publisher to create multiple indexes for a specific `token`.
+"""
+indexId: BigInt!
+amount: BigInt!
+
+# ---------------------------------- links ----------------------------------
+subscription: IndexSubscription!
+}
+
+type SubscriptionRevokedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `publisher`
+addresses[2] = `subscriber`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+
+"""
+The account that is subscribed to `index`. A possible recipient of distributions from the `publisher`.
+`subscriber` only receives tokens if they have been allocated units (can be thought of as shares).
+"""
+subscriber: Bytes!
+
+"""
+The creator of the `index`.
+"""
+publisher: Bytes!
+
+"""
+An arbitrary uint32 value used to allow a publisher to create multiple indexes for a specific `token`.
+"""
+indexId: BigInt!
+userData: Bytes!
+
+# ---------------------------------- links ----------------------------------
+subscription: IndexSubscription!
+}
+
+type SubscriptionUnitsUpdatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `publisher`
+addresses[2] = `subscriber`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+
+"""
+The account that is subscribed to `index`. A possible recipient of distributions from the `publisher`.
+`subscriber` only receives tokens if they have been allocated units (can be thought of as shares).
+"""
+subscriber: Bytes!
+
+"""
+The creator of the `index`.
+"""
+publisher: Bytes!
+
+"""
+An arbitrary uint32 value used to allow a publisher to create multiple indexes for a specific `token`.
+"""
+indexId: BigInt!
+units: BigInt!
+userData: Bytes!
+
+# Custom Properties (not on event)
+oldUnits: BigInt!
+
+# ---------------------------------- links ----------------------------------
+subscription: IndexSubscription!
+}
+
+#  GeneralDistributionAgreementV1 #
+
+type PoolCreatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `pool`
+addresses[2] = `caller`
+addresses[3] = `admin`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+caller: Bytes!
+admin: Bytes!
+
+pool: Pool!
+}
+
+type PoolConnectionUpdatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `pool`
+addresses[2] = `poolMember`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+connected: Boolean!
+userData: Bytes!
+
+pool: Pool!
+poolMember: PoolMember!
+}
+
+type BufferAdjustedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `pool`
+addresses[2] = `distributor`
+addresses[3] = `operator`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+bufferDelta: BigInt!
+newBufferAmount: BigInt!
+totalBufferAmount: BigInt!
+
+pool: Pool!
+poolDistributor: PoolDistributor!
+}
+
+type InstantDistributionUpdatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `pool`
+addresses[2] = `poolDistributor`
+addresses[3] = `operator`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+operator: Bytes!
+requestedAmount: BigInt!
+actualAmount: BigInt!
+totalUnits: BigInt!
+userData: Bytes!
+
+pool: Pool!
+poolDistributor: PoolDistributor!
+}
+
+type FlowDistributionUpdatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `pool`
+addresses[2] = `poolDistributor`
+addresses[3] = `operator`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+operator: Bytes!
+oldFlowRate: BigInt!
+newDistributorToPoolFlowRate: BigInt!
+newTotalDistributionFlowRate: BigInt!
+adjustmentFlowRecipient: Bytes!
+adjustmentFlowRate: BigInt!
+totalUnits: BigInt!
+userData: Bytes!
+
+pool: Pool!
+poolDistributor: PoolDistributor!
+}
+
+#  SuperfluidPool #
+type DistributionClaimedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `pool`
+addresses[2] = `member`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+claimedAmount: BigInt!
+totalClaimed: BigInt!
+
+pool: Pool!
+poolMember: PoolMember!
+}
+
+type MemberUnitsUpdatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `pool`
+addresses[2] = `member`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+oldUnits: BigInt!
+units: BigInt!
+totalUnits: BigInt!
+
+pool: Pool!
+poolMember: PoolMember!
+}
+
+# Host #
+
+type AgreementClassRegisteredEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `code`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+agreementType: Bytes!
+code: Bytes!
+}
+
+type AgreementClassUpdatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `code`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+agreementType: Bytes!
+code: Bytes!
+}
+
+type AppRegisteredEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `app`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+app: Bytes!
+}
+
+type GovernanceReplacedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `oldGovernance`
+addresses[1] = `newGovernance`
+"""
+addresses: [Bytes!]!
+oldGovernance: Bytes!
+newGovernance: Bytes!
+}
+
+type JailEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `app`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+app: Bytes!
+reason: BigInt!
+}
+
+type SuperTokenFactoryUpdatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `newFactory`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+newFactory: Bytes!
+}
+
+type SuperTokenLogicUpdatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token`
+addresses[1] = `code`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+code: Bytes!
+}
+
+# Resolver #
+type RoleAdminChangedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `previousAdminRole`
+addresses[1] = `newAdminRole`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+role: Bytes!
+previousAdminRole: Bytes!
+newAdminRole: Bytes!
+}
+
+type RoleGrantedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `account`
+addresses[1] = `sender`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+role: Bytes!
+account: Bytes!
+sender: Bytes!
+}
+
+type RoleRevokedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `account`
+addresses[1] = `sender`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+role: Bytes!
+account: Bytes!
+sender: Bytes!
+}
+
+type SetEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Empty addresses array.
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+"""
+Because the name property is indexed, the
+returned value will be a keccak256 hash
+of the string.
+"""
+hashedName: Bytes!
+target: Bytes!
+
+resolverEntry: ResolverEntry!
+}
+
+# SuperfluidGovernance#
+type CFAv1LiquidationPeriodChangedEvent implements Event
+@entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+The address of the governance contract the event was emitted from.
+"""
+governanceAddress: Bytes!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `governanceAddress`
+addresses[1] = `host`
+addresses[2] = `superToken`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+order: BigInt!
+logIndex: BigInt!
+host: Bytes!
+superToken: Bytes!
+isKeySet: Boolean! # changed from Set due to strange bug w/ TheGraph
+liquidationPeriod: BigInt!
+}
+
+type ConfigChangedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+The address of the governance contract the event was emitted from.
+"""
+governanceAddress: Bytes!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `governanceAddress`
+addresses[1] = `host`
+addresses[2] = `superToken`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+host: Bytes!
+superToken: Bytes!
+key: Bytes!
+isKeySet: Boolean! # changed from Set due to strange bug w/ TheGraph
+value: BigInt!
+}
+
+type RewardAddressChangedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+The address of the governance contract the event was emitted from.
+"""
+governanceAddress: Bytes!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `governanceAddress`
+addresses[1] = `host`
+addresses[2] = `superToken`
+addresses[3] = `rewardAddress`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+host: Bytes!
+superToken: Bytes!
+isKeySet: Boolean! # changed from Set due to strange bug w/ TheGraph
+rewardAddress: Bytes!
+}
+
+type PPPConfigurationChangedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+The address of the governance contract the event was emitted from.
+"""
+governanceAddress: Bytes!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `governanceAddress`
+addresses[1] = `host`
+addresses[2] = `superToken`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+host: Bytes!
+superToken: Bytes!
+isKeySet: Boolean! # changed from Set due to strange bug w/ TheGraph
+liquidationPeriod: BigInt!
+patricianPeriod: BigInt!
+}
+
+type SuperTokenMinimumDepositChangedEvent implements Event
+@entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+The address of the governance contract the event was emitted from.
+"""
+governanceAddress: Bytes!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `governanceAddress`
+addresses[1] = `host`
+addresses[2] = `superToken`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+host: Bytes!
+superToken: Bytes!
+isKeySet: Boolean! # changed from Set due to strange bug w/ TheGraph
+minimumDeposit: BigInt!
+}
+
+type TrustedForwarderChangedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+The address of the governance contract the event was emitted from.
+"""
+governanceAddress: Bytes!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `governanceAddress`
+addresses[1] = `host`
+addresses[2] = `superToken`
+addresses[3] = `forwarder`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+host: Bytes!
+superToken: Bytes!
+isKeySet: Boolean! # changed from Set due to strange bug w/ TheGraph
+forwarder: Bytes!
+enabled: Boolean!
+}
+
+# SuperToken #
+"""
+NOTE: This event was deprecated since the introduction of the 3Ps system.
+Replaced by: `AgreementLiquidatedV2Event`
+See: https://docs.superfluid.finance/superfluid/sentinels/liquidations-and-toga#patricians-plebs-and-pirates-3ps for more details on the 3Ps system.
+See: https://github.com/superfluid-finance/protocol-monorepo/blob/dev/packages/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluidToken.sol#L425 for more details on the events.
+"""
+type AgreementLiquidatedByEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = liquidatorAccount (executor of liquidation)
+addresses[2] = penaltyAccount (the sender of the flow/stream)
+addresses[3] = bondAccount (the address receiving the reward - the reward account for the token, pre 3Ps)
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+liquidatorAccount: Bytes!
+agreementClass: Bytes!
+agreementId: Bytes!
+penaltyAccount: Bytes!
+bondAccount: Bytes!
+rewardAmount: BigInt!
+bailoutAmount: BigInt!
+
+"""
+The full deposit amount of the stream that was liquidated.
+"""
+deposit: BigInt!
+
+"""
+The flow rate of the stream at the time of liquidation.
+"""
+flowRateAtLiquidation: BigInt!
+}
+
+type AgreementLiquidatedV2Event implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `liquidatorAccount` (executor of liquidation)
+addresses[2] = `targetAccount` (the sender of the flow/stream)
+addresses[3] = `rewardAmountReceiver` (the address receiving the reward) addresses
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+agreementClass: Bytes!
+agreementId: Bytes!
+liquidatorAccount: Bytes!
+targetAccount: Bytes!
+rewardAmountReceiver: Bytes!
+rewardAmount: BigInt!
+targetAccountBalanceDelta: BigInt!
+version: BigInt!
+liquidationType: Int!
+
+"""
+The full deposit amount of the stream that was liquidated.
+"""
+deposit: BigInt!
+
+"""
+The flow rate of the stream at the time of liquidation.
+"""
+flowRateAtLiquidation: BigInt!
+
+"""
+TO BE DEPRECATED in v2 endpoint - use rewardAmountReceiver instead
+"""
+rewardAccount: Bytes! @deprecated(reason: "use rewardAmountReceiver")
+}
+
+type BurnedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `from`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+operator: Bytes!
+from: Bytes!
+token: Bytes!
+amount: BigInt!
+data: Bytes!
+operatorData: Bytes!
+}
+
+type MintedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `operator`
+addresses[2] = `to`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+operator: Bytes!
+to: Bytes!
+amount: BigInt!
+data: Bytes!
+token: Bytes!
+operatorData: Bytes!
+}
+
+"""
+WARNING: This event has been deprecated. It is not indexed anymore. It's kept in schema to avoid breakage in the schema.
+"""
+type SentEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `operator`
+addresses[2] = `from`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+operator: Bytes!
+from: Bytes!
+to: Bytes!
+token: Bytes!
+amount: BigInt!
+data: Bytes!
+operatorData: Bytes!
+}
+
+type TransferEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token`
+addresses[1] = `from`
+addresses[2] = `to`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+from: Account!
+to: Account!
+value: BigInt!
+
+token: Bytes!
+}
+
+type TokenDowngradedEvent implements Event @entity(immutable: true) {
+id: ID!
+account: Account!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `account`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+amount: BigInt!
+}
+
+type TokenUpgradedEvent implements Event @entity(immutable: true) {
+id: ID!
+account: Account!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `account`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+amount: BigInt!
+}
+
+type ApprovalEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `owner`
+addresses[2] = `to`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+"""
+The address that will be granting allowance to transfer ERC20.
+"""
+owner: Account!
+
+"""
+The address that will be granted allowance to transfer ERC20.
+"""
+to: Account!
+
+"""
+If `amount` is non-zero, this event was emitted for the approval of an ERC20.
+Tne amount of ERC20 tokens that will be granted allowance to transfer.
+"""
+amount: BigInt!
+}
+
+# SuperTokenFactory#
+
+type CustomSuperTokenCreatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+}
+
+type SuperTokenCreatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+token: Bytes!
+}
+
+type SuperTokenLogicCreatedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `tokenLogic`
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+tokenLogic: Bytes!
+}
+
+# TOGA #
+
+type NewPICEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+addresses[1] = `pic` (new Patrician In Charge)
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+"""
+The address of the `token` (supertoken) the PIC is posting a bond for.
+"""
+token: Bytes!
+
+"""
+The address of the new Patrician In Charge (PIC).
+"""
+pic: Bytes!
+
+"""
+The bond the new PIC staked in order to claim the position.
+"""
+bond: BigInt!
+
+"""
+The flowrate at which the bond is streamed back to the PIC.
+"""
+exitRate: BigInt!
+}
+
+type ExitRateChangedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+"""
+The address of the `token` (supertoken).
+"""
+token: Bytes!
+
+"""
+The flowrate at which the bond is streamed back to the Patrician In Charge.
+"""
+exitRate: BigInt!
+}
+
+type BondIncreasedEvent implements Event @entity(immutable: true) {
+id: ID!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+timestamp: BigInt!
+name: String!
+
+"""
+Contains the addresses that were impacted by this event:
+addresses[0] = `token` (superToken)
+"""
+addresses: [Bytes!]!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+
+"""
+The address of the `token` (supertoken).
+"""
+token: Bytes!
+
+"""
+The additional amount added to the bond by the current Patrician In Charge (PIC).
+"""
+additionalBond: BigInt!
+}
+

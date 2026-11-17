@@ -1,43 +1,52 @@
-## Description: <br>
-Hierarchical Coordinator helps agents decompose complex projects into multi-level task hierarchies, delegate work to specialized agents, and synthesize results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a hierarchical task decomposition specialist implementing multi-level agent coordination patterns from enterprise AI systems.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and technical leads use this skill to decompose complex projects into multi-level task hierarchies, coordinate specialist agents, track progress, and aggregate results into coherent delivery plans.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad hierarchical delegation may pass sensitive or unnecessary project context to specialist agents.
+
+Mitigation: Use the skill for genuinely complex work, limit shared context for sensitive projects, and prefer single-agent handling for small or confidential tasks.
+
+Risk: Multi-level decomposition can add coordination overhead or misleading structure for simple tasks.
+
+Mitigation: Apply the skill's complexity assessment before delegation and keep shallow or single-agent handling when the work does not justify a hierarchy.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, engineering leads, and agent operators use this skill to plan complex software or enterprise projects by assessing complexity, assigning hierarchical agent responsibilities, tracking dependencies, and aggregating results. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Delegated agents may receive broader project context than needed for a subtask. <br>
-Mitigation: Scope each delegated agent to the minimum context needed and require escalation for cross-domain changes. <br>
-Risk: The skill can coordinate work that involves purchases, crypto/payment activity, deployments, or broad code changes. <br>
-Mitigation: Require explicit human approval before those actions and review generated plans before execution. <br>
-Risk: Hierarchical decomposition may propagate incorrect assumptions from parent tasks into subtasks. <br>
-Mitigation: Use sync points, quality gates, and final synthesis review to validate dependencies and outputs before implementation. <br>
+**Output Format:** [Markdown with structured task breakdowns, coordination templates, progress tables, and escalation guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-hierarchical-coordinator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mtsatryan) <br>
+**Other Properties Related to Output:** [Produces planning and coordination guidance; no code execution or external tool invocation is defined by the artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown planning templates, task breakdowns, coordination plans, progress dashboards, and synthesis summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; review generated plans before acting on delegated work.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

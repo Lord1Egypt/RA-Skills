@@ -1,46 +1,60 @@
-## Description: <br>
-Benchmark your OpenClaw agent across 40 real-world tasks covering file creation, research, data analysis, multi-step workflows, memory, error handling, and tool efficiency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Benchmark OpenClaw agents across 40 real-world tasks covering file creation, research, data analysis, multi-step workflows, memory, error handling, and tool efficiency.
 
-## Publisher: <br>
-[Exe215](https://clawhub.ai/user/Exe215) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[exe215](https://clawhub.ai/user/exe215)
 
-## Use Case: <br>
-Developers and agent operators use AgentBench to run a structured benchmark suite against an OpenClaw agent, then review scores, metrics, reports, and domain-level performance results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The benchmark creates many local files and per-task workspaces while running. <br>
-Mitigation: Run AgentBench from an isolated workspace and inspect generated files before retaining or sharing them. <br>
-Risk: Task setup scripts may initialize repositories or modify temporary task directories. <br>
-Mitigation: Use the documented /benchmark commands and do not manually point setup.sh scripts at an existing project, home directory, or sensitive path. <br>
-Risk: Benchmark result files may contain details about the agent run before submission to the leaderboard. <br>
-Mitigation: Review results.json, report.md, and report.html before uploading or sharing benchmark results. <br>
+## Use Case:
 
+Developers and agent operators use AgentBench to run a local benchmark suite for OpenClaw agents and compare performance across task domains. The skill produces run reports, metrics, and leaderboard-ready result data.
 
-## Reference(s): <br>
-- [AgentBench ClawHub listing](https://clawhub.ai/Exe215/agentbench) <br>
-- [AgentBench homepage](https://www.agentbench.app) <br>
-- [AgentBench leaderboard](https://www.agentbench.app/leaderboard) <br>
-- [AgentBench result submission](https://www.agentbench.app/submit) <br>
-- [Claude Code version referenced by README](https://github.com/agentbench/agentbench) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, HTML, Shell commands, Files, Guidance] <br>
-**Output Format:** [Console status text plus local Markdown, HTML, and JSON result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates an agentbench-results/{run-id}/ directory containing report.md, report.html, results.json, per-task scores, metrics, and copied task outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The benchmark executes bundled local setup scripts during task runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the benchmark in an isolated workspace or disposable environment before trusting results or generated files.
+
+Risk: One memory task may write package-authored preferences into the agent's persistent memory.
+
+Mitigation: Skip or manually reset the persistent-memory task when testing an agent profile that contains real user preferences.
+
+Risk: The generated signature and externally verified label should not be treated as independent proof of result integrity.
+
+Mitigation: Treat submitted results as benchmark metadata unless they have been reviewed through a separate trusted verification process.
+
+## Reference(s):
+
+- [AgentBench ClawHub Skill Page](https://clawhub.ai/exe215/skills/agentbench)
+- [AgentBench Homepage](https://www.agentbench.app)
+- [AgentBench Leaderboard](https://www.agentbench.app/leaderboard)
+- [AgentBench Results Submission](https://www.agentbench.app/submit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, HTML, Files, Shell commands]
+
+**Output Format:** [Markdown status output plus JSON, Markdown, and HTML result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates agentbench-results/{run-id}/ with results.json, report.md, report.html, per-task scores, and metrics; requires jq, bash, and python3.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

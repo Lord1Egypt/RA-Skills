@@ -1,0 +1,12 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.309441738/ola-cruise-chat-bot",
+  "description": "An AI chat bot designed to assist users in finding and booking cruise products right from their chat interface.",
+  "version": "0.1.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://cruise-mcp.olavacations.com/api/gw/mcp/ca883e1a-aeef-45a3-aeb7-e305be273e2a"
+    }
+  ]
+}

@@ -1,40 +1,48 @@
-## Description: <br>
-Atomic node skill to create a Google Calendar event using the gog CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to create a Google Calendar event using the gog CLI.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zvirb](https://clawhub.ai/user/zvirb)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agents use this skill to create events in the Google Calendar account available through the gog CLI after the calendar, title, and time bounds are confirmed.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The agent may create an event in the wrong calendar or with incorrect event details.
+
+Mitigation: Confirm the calendar, title, start time, end time, and other event details before allowing the gog command to run.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents use this skill when a user wants to schedule or create a Google Calendar event through the gog CLI. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [shell commands, json, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create a real Google Calendar event if the agent runs the gog command with incorrect or unintended details. <br>
-Mitigation: Before execution, verify the event title, calendar, start and end time, timezone, attendees, and intent to write to the calendar. <br>
-Risk: Incorrect time arguments can create an event at the wrong time. <br>
-Mitigation: Use --summary for the title and --from and --to for time bounds, with RFC3339 timestamps or supported relative time values. <br>
+**Output Format:** [CLI command arguments and JSON event confirmation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/google-calendar-create-event) <br>
+**Other Properties Related to Output:** [Requires the gog CLI and access to the target Google Calendar account.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with CLI arguments and JSON result expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gog binary and user confirmation before calendar writes.] <br>
+1.0.4 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

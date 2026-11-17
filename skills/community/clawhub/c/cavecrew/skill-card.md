@@ -1,40 +1,53 @@
-## Description: <br>
-Cavecrew helps an agent choose between compressed-output investigator, builder, and reviewer subagents for code navigation, small edits, and diff review while preserving main-thread context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decision guide for delegating coding tasks to Cavecrew investigator, builder, or reviewer subagents when compressed structured output is preferred.
 
-## Publisher: <br>
-[seanford](https://clawhub.ai/user/seanford) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seanford](https://clawhub.ai/user/seanford)
 
-## Use Case: <br>
-Developers and coding agents use Cavecrew to delegate focused code navigation, small edits, and review tasks to terse subagents when preserving main session context is important. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad delegation or context-saving trigger phrases could activate the skill when the user did not intend it. <br>
-Mitigation: Prefer explicit invocation and review where any saved context is written or reused. <br>
-Risk: Terse subagent output can be hard for humans to interpret directly. <br>
-Mitigation: Paraphrase compact findings before presenting them to a human reader. <br>
+## Use Case:
 
+Developers and coding agents use Cavecrew to decide when to delegate code navigation, small edits, and diff review to compressed-output subagents instead of handling tasks inline or using longer-form agents.
 
-## Reference(s): <br>
-- [Cavecrew ClawHub release](https://clawhub.ai/seanford/cavecrew) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown guidance with compact subagent output contracts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Terse, file-path-first outputs for investigator, builder, and reviewer delegation patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Broad trigger wording may route suitable coding tasks to Cavecrew subagents unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation wording before installation and invoke the skill intentionally for tasks where compressed subagent output is desired.
+
+Risk: Compressed subagent output can be terse and may be difficult for humans to read directly.
+
+Mitigation: Have the main agent paraphrase important findings for human readers, or use a longer-form agent when rationale and context are needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/seanford/skills/cavecrew)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown guidance with structured output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Subagent outputs are intentionally compressed and structured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

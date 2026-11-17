@@ -1,38 +1,49 @@
-## Description: <br>
-Stand-Up Comedy Script Writer helps agents draft concise, humorous, performance-ready stand-up comedy scripts from user-provided topics, stories, opinions, or creative direction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stand-up comedy script writing assistant. Creates concise, humorous, and performance-ready stand-up comedy scripts based on user-provided creative ideas and material, including character dialogue, joke structuring, and stage directions.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Writers, performers, and content creators use this skill to turn a topic, story, rant, or loose idea into a structured stand-up script for open mics, club sets, or short online videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated jokes may be unsuitable for a specific audience or venue. <br>
-Mitigation: Review scripts for taste, originality, and audience fit before performance or publication. <br>
+## Use Case:
 
+External users and creators use this skill to turn topics, stories, opinions, or roast prompts into concise stand-up comedy scripts for open mic sets, club performances, and short online videos.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/standup-script) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown stand-up script with headings, bit sections, stage directions, and performance notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for creative review and editing before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated comedy may include roasts or edgy jokes that are inappropriate for a specific audience or venue.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated material for audience fit, venue rules, and sensitivity before performance or publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/standup-script)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown performance script with stage directions and structured comedy bits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated scripts typically include a topic heading, duration, style, best-fit venue, opening, repeated setup-punchline-tag bits, transitions, a callback closer, and performance notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

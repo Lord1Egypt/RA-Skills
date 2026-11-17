@@ -1,44 +1,54 @@
-## Description: <br>
-Generates Morgan Stanley-style DCF/SOTP financial model Excel workbooks with scenario valuation, WACC, sensitivity, PE band, comps, KPI, and chart sheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Morgan Stanley-style DCF/SOTP financial-model Excel workbooks with valuation scenarios, sensitivity analysis, comparable-company analysis, KPIs, and publication-grade charts.
 
-## Publisher: <br>
-[yjkj999999](https://clawhub.ai/user/yjkj999999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yjkj999999](https://clawhub.ai/user/yjkj999999)
 
-## Use Case: <br>
-External analysts, finance professionals, and agents supporting financial modeling use this skill to create Excel workbooks for DCF/SOTP valuation, scenario analysis, comparable companies, PE band analysis, and operational KPI dashboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes local Excel files and could overwrite an existing workbook if the same output path is reused. <br>
-Mitigation: Choose a deliberate output path and check for existing files before running the generator. <br>
-Risk: Generated valuation workbooks may contain assumptions or financial outputs that are inappropriate for a real investment decision. <br>
-Mitigation: Independently review company data, forecast assumptions, formulas, and valuation conclusions before relying on the workbook. <br>
-Risk: The workbook defaults to Chinese labels unless English output is requested. <br>
-Mitigation: Use the English language option when the reviewer or recipient needs English workbook output. <br>
+## Use Case:
 
+External analysts, finance professionals, and agent developers use this skill to generate structured Excel financial models for DCF valuation, SOTP valuation, sensitivity analysis, PE-band review, comparable-company analysis, and operating KPI dashboards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yjkj999999/ms-financial-model) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; when executed, creates .xlsx workbook files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python >= 3.9 and openpyxl >= 3.1; default workbook language is zh with an en option.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Untrusted text fields can be written into generated spreadsheets as executable formulas.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted input data or sanitize spreadsheet text fields before generating and sharing workbooks.
+
+Risk: Generated margin charts may be approximate or misleading for investment and valuation decisions.
+
+Mitigation: Review workbook formulas and generated margin charts before relying on the model for investment or valuation decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yjkj999999/skills/ms-financial-model)
+- [Publisher profile](https://clawhub.ai/user/yjkj999999)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Guidance]
+
+**Output Format:** [XLSX workbook generated from Python API or CLI inputs, with Markdown usage guidance and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs multi-sheet Excel models with formulas, valuation scenarios, sensitivity tables, and charts; input data should be trusted or sanitized before workbook generation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

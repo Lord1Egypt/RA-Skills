@@ -1,43 +1,54 @@
-## Description: <br>
-Helps agents retrieve and analyze Xiaohongshu / XHS / RedNote comment threads and replies using SocialDataX. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用于小红书评论分析、小红书评论回复、用户反馈、口碑分析、痛点总结和内容讨论分析。覆盖 Xiaohongshu / XHS / RedNote comments，来自 SocialDataX 社媒数据助手。
 
-## Publisher: <br>
-[devinchen2014](https://clawhub.ai/user/devinchen2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devinchen2014](https://clawhub.ai/user/devinchen2014)
 
-## Use Case: <br>
-Developers, analysts, and social media teams use this skill to fetch XHS comment and reply data, then summarize themes, sentiment, objections, FAQs, pain points, and discussion patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to run SocialDataX CLI commands that use an API key and retrieve external social media comment data. <br>
-Mitigation: Review the command, target URL or ID, pagination scope, and API key environment before execution. <br>
-Risk: Large pagination options such as --all or multi-page fetching can collect more comments than intended. <br>
-Mitigation: Use --max-items or a small --pages value when sampling is sufficient, and confirm broad collection requests before running them. <br>
-Risk: Comment analysis may overstate sentiment or themes if based on a single page or empty result set. <br>
-Mitigation: Report whether results cover one page or multiple pages and separate observed themes from inferences. <br>
+## Use Case:
 
+小红书运营人员、品牌团队和市场分析师可用此 skill 获取指定笔记的评论与回复，并归纳受众反馈、情绪主题、异议、痛点和常见问题。
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/devinchen2014/socialdatax-xhs-comments) <br>
-- [SocialDataX homepage and API access](https://socialdatax.52choujiang.com/?from=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON data summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SOCIALDATAX_API_KEY and node/npm for direct CLI use. Comment data returned by the CLI is JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release evidence) <br>
+Risk: The security scan marks the skill suspicious because it repeatedly invokes an unpinned latest CLI package, which creates supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin an approved CLI package version before use.
+
+Risk: The security scan was partial because some local references could not be resolved, so its evidence is incomplete.
+
+Mitigation: Review unresolved references and complete a full security scan before relying on the result.
+
+## Reference(s):
+
+- [SocialDataX API access and management](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-xhs-comments)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Analysis, Text]
+
+**Output Format:** [JSON comment data with concise textual summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include pagination counts and continuation tokens when multiple pages are fetched.]
+
+## Skill Version(s):
+
+0.1.23 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

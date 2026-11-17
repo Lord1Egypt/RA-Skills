@@ -1,39 +1,54 @@
-## Description: <br>
-AI-assisted disk space scanner and cleaner. Finds reclaimable space (node_modules, build caches, package caches, downloads, Docker, Xcode, logs) and intelligently cleans safe items with strict guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-assisted disk space scanner and cleaner that finds reclaimable space from local development artifacts, caches, downloads, Docker, Xcode, logs, and related files, then helps preview and clean approved items.
 
-## Publisher: <br>
-[0xj7r](https://clawhub.ai/user/0xj7r) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xj7r](https://clawhub.ai/user/0xj7r)
 
-## Use Case: <br>
-Developers and power users use this skill to scan local macOS or Linux home directories for reclaimable space and guide reviewed cleanup of caches, build outputs, logs, downloads, Docker data, and other disk usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup actions can permanently delete local cache, build, log, dependency, or download files that the user still needs. <br>
-Mitigation: Run a scan and dry run first, review the listed paths and categories, and execute confirmed cleanup only after explicit user approval. <br>
-Risk: Suggest-tier items such as Downloads, virtual environments, Docker data, and trash may contain user-managed data. <br>
-Mitigation: Treat suggest-tier findings as recommendations and delete only specific approved items or categories under the user's home directory. <br>
+## Use Case:
 
+Developers and engineers use diskclean to scan macOS or Linux home directories for reclaimable local development artifacts and present cleanup recommendations before running approved cleanup commands.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and scan-result tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON scan results produced by diskclean.sh.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Confirmed cleanup can delete more than a user expects because cleanup guardrails are weaker than advertised.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every dry-run item carefully before confirmation, confirm paths are under the user's home directory and clearly understood, and avoid confirmed cleanup until path validation and age checks are fixed.
+
+Risk: Safe-tier labels may overstate safety for logs or aged cache paths.
+
+Mitigation: Treat safe-tier output as a review queue rather than automatic approval, and manually limit deletion to clearly regenerable artifacts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xj7r/skills/diskclean)
+- [Publisher profile](https://clawhub.ai/user/0xj7r)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with shell commands and JSON scan or report output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; intended for macOS and Linux; cleanup should be preceded by dry-run review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

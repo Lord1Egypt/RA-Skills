@@ -1,43 +1,55 @@
-## Description: <br>
-Automates Twitter/X web posting through browser tools, including trending-topic discovery, post drafting, and publishing with either automatic or manual confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Twitter/X web posting through browser tools, including trend review, post drafting, and publishing with either automatic or manual confirmation.
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-External users and agents use this skill to draft and publish posts from a logged-in X/Twitter browser session, including direct user-provided posts or posts generated from selected trending topics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish agent-written public posts from a logged-in X/Twitter account without final confirmation. <br>
-Mitigation: Prefer manual confirmation and review the exact post before publishing, especially for reputationally sensitive accounts. <br>
-Risk: Broad requests such as fully automatic trend selection plus posting can create account and reputation risk. <br>
-Mitigation: Use a dedicated or low-risk account and avoid fully automatic posting unless the user accepts those consequences. <br>
-Risk: Repeated automated posting may trigger platform controls or produce unwanted posts. <br>
-Mitigation: Limit posting frequency, stop after a small number of failed attempts, and ask the user to retry after confirming account state. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kelcey2023/twitter-web-autopost) <br>
-- [X compose page](https://x.com/compose/tweet) <br>
-- [X trends page](https://x.com/explore/tabs/trending) <br>
+## Use Case:
+
+External users and social media operators use this skill to have an agent draft and publish posts from a logged-in Twitter/X web session. It is intended for browser-based posting workflows where the user may choose either review-first operation or fully automatic publishing.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can publish generated public posts from a logged-in Twitter/X account without per-post confirmation.
+
+Mitigation: Use review-first mode for normal use and reserve fully automatic posting for cases where the user explicitly accepts unattended public publishing.
+
+Risk: Automated posting can trigger platform abuse or rate-limit controls if used repeatedly in a short period.
+
+Mitigation: Limit posting frequency, avoid bulk rapid publishing, and stop after a small number of failed retries.
+
+Risk: Generated social posts may contain unsafe, unlawful, hateful, violent, or otherwise inappropriate content.
+
+Mitigation: Review generated content before posting and refuse or revise unsafe requests before using the browser publishing flow.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown or plain text status with the final post text and resulting post URL when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May operate a browser session and publish a public post from the user's logged-in X/Twitter account.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and artifact _meta.json) <br>
+**Output Type(s):** [Guidance, Text]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text with browser action guidance and posting status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include the selected topic, final post text, success or failure status, failure reason, and resulting post URL.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

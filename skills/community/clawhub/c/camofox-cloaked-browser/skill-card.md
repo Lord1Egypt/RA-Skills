@@ -1,46 +1,58 @@
-## Description: <br>
-Use Camofox/Camoufox as an opt-in anti-detection browser server for agent workflows that need cloaked browsing, with guidance for npm/npx startup, OpenClaw tools, REST API commands, sessions, environment variables, and Hermes routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Camofox/Camoufox as an opt-in anti-detection browser server for agent workflows that need cloaked browsing.
 
-## Publisher: <br>
-[tmchow](https://clawhub.ai/user/tmchow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tmchow](https://clawhub.ai/user/tmchow)
 
-## Use Case: <br>
-Developers and agent operators use this skill when a user-directed browser workflow specifically needs Camofox/Camoufox cloaking or stable Camofox accessibility refs because ordinary automation may be blocked. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables cloaked anti-detection browsing and should only be used for workflows where that capability is intentional. <br>
-Mitigation: Load and apply the skill only when the user-directed task specifically needs Camofox/Camoufox or anti-detection browsing. <br>
-Risk: A browser server exposed beyond localhost can create unauthorized access risk if bearer tokens are not configured. <br>
-Mitigation: Keep the server bound to localhost by default, and set strong CAMOFOX_ACCESS_KEY authentication before exposing it beyond loopback. <br>
-Risk: Globally setting CAMOFOX_URL in Hermes can route unrelated browser calls through Camofox for that process. <br>
-Mitigation: Use CAMOFOX_URL only inline for a dedicated cloaked Hermes run, and avoid storing it in global Hermes, shell, gateway, service, or project environments. <br>
-Risk: Cookie, profile, trace, and crash-report data can contain sensitive browsing information. <br>
-Mitigation: Review local storage paths and trace retention, use CAMOFOX_API_KEY for sensitive endpoints, and set CAMOFOX_CRASH_REPORT_ENABLED=false when privacy is important. <br>
+## Use Case:
 
+Developers and agent operators use this skill when ordinary browser automation is likely to be blocked and an opt-in Camofox/Camoufox browser workflow is warranted. It guides local server startup, OpenClaw plugin use, REST commands, session and tab handling, environment variables, and cleanup checks.
 
-## Reference(s): <br>
-- [Camofox Browser homepage](https://github.com/jo-inc/camofox-browser) <br>
-- [ClawHub skill page](https://clawhub.ai/tmchow/skills/camofox-cloaked-browser) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/tmchow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, markdown] <br>
-**Output Format:** [Markdown with inline shell commands, REST examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance includes runtime choice, base URL, auth posture, user/session identifiers, tab handling, verification, and cleanup reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.4 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill asks agents to run an unpinned npm browser package that downloads a large executable at install time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin `@askjo/camofox-browser` to a reviewed version and prefer a verified local Camoufox bundle via `CAMOUFOX_EXECUTABLE`.
+
+Risk: A cloaked browser service exposed beyond loopback can create browser-control risk if access controls are not set.
+
+Mitigation: Keep the server on loopback for local use and set `CAMOFOX_ACCESS_KEY` before any non-local exposure.
+
+Risk: Crash or hang telemetry may be undesirable for privacy-sensitive browsing.
+
+Mitigation: Set `CAMOFOX_CRASH_REPORT_ENABLED=false` when privacy matters, or use a self-hosted crash-report endpoint if telemetry is required.
+
+## Reference(s):
+
+- [Camofox Browser upstream project](https://github.com/jo-inc/camofox-browser)
+- [ClawHub skill page](https://clawhub.ai/tmchow/skills/camofox-cloaked-browser)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance is scoped to macOS and Linux environments with Node.js, npm, and curl available.]
+
+## Skill Version(s):
+
+1.3.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

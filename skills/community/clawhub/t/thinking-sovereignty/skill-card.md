@@ -1,43 +1,57 @@
-## Description: <br>
-Thinking Sovereignty helps agents apply an independent reasoning framework and maintain traceable local memory practices for autonomous cognition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Thinking Sovereignty provides an AI agent with a meta-cognitive framework for independent reasoning, verification-first behavior, and proactive memory traceability.
 
-## Publisher: <br>
-[edwinjhlee](https://clawhub.ai/user/edwinjhlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwinjhlee](https://clawhub.ai/user/edwinjhlee)
 
-## Use Case: <br>
-External users and developers use this skill to establish an agent reasoning posture centered on understanding, verification, deliberate pacing, and local traceability. It is intended for sessions where the agent should pause to reason, ask for clarification, or maintain project memory with user oversight. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents toward persistent local memory logs, which may capture secrets, private prompts, credentials, or sensitive project data. <br>
-Mitigation: Require explicit approval before log writes, restrict storage to a known directory, and exclude secrets and sensitive data from memory logs. <br>
-Risk: The skill encourages backup, git status or submodule inspection, and commit decisions with limited user control. <br>
-Mitigation: Require explicit approval before backups, git inspections, or commits, and review diffs before any repository change. <br>
+## Use Case:
 
+Developers and agent operators use this skill to guide an AI agent toward deliberate analysis, clarification before execution, and structured memory practices for traceability.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edwinjhlee/thinking-sovereignty) <br>
-- [Repository listed in metadata](https://github.com/x-cmd-skill/thinking-sovereignty) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with example workflows, directory structure, and inline shell-oriented actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill; no detected API keys, MCP tools, or runtime dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill encourages persistent local reasoning or memory logs that could capture sensitive user content, secrets, or private notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before logging or backing up content, and configure storage to exclude raw reasoning, secrets, private user content, and conversation-derived notes by default.
+
+Risk: The skill describes autonomous staging, submodule checks, and commits, which could change a repository without sufficient user review.
+
+Mitigation: Require explicit approval for staging, submodule inspection, backups, and commits, and review diffs before any repository-changing action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwinjhlee/skills/thinking-sovereignty)
+- [Publisher profile](https://clawhub.ai/user/edwinjhlee)
+- [Repository metadata link](https://github.com/x-cmd-skill/thinking-sovereignty)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with examples and structured operating practices]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external dependencies declared.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

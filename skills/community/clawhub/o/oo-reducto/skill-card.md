@@ -1,42 +1,52 @@
-## Description: <br>
-Reducto helps agents parse documents, extract structured JSON, and split documents into named page sections through an OOMOL-connected Reducto account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Reducto to search and read data, including extracting structured data, parsing documents, and splitting documents into sections.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agent users use this skill to route Reducto document-processing requests through an OOMOL-connected account for parsing, schema-based extraction, and document sectioning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document-processing requests are routed through an OOMOL-connected Reducto account, which may be inappropriate for sensitive documents unless the user's policies allow that processing. <br>
-Mitigation: Use the skill only with documents approved for Reducto and OOMOL processing under the user's account, data-handling, and compliance policies. <br>
-Risk: First-time setup may require installing the OOMOL oo CLI from a remote installer. <br>
-Mitigation: Review the remote installer and install the oo CLI only from trusted OOMOL sources before using the skill. <br>
+## Use Case:
 
+Developers and other document users can use their connected Reducto account to extract structured data, parse supported documents, and split documents into named sections.
 
-## Reference(s): <br>
-- [ClawHub Reducto Skill](https://clawhub.ai/oomol/skills/oo-reducto) <br>
-- [Reducto](https://reducto.ai) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration guidance, JSON, Text] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before execution so action payloads match Reducto's current contract.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill metadata) <br>
+Risk: Fallback setup may execute a changing remote installer without clear approval or limits on local changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manually installing a verified CLI release, require approval for local setup changes, check skill-synchronization settings, and send only documents authorized for OOMOL and Reducto to process.
+
+## Reference(s):
+
+- [Reducto documentation](https://docs.reducto.ai/)
+- [Reducto](https://reducto.ai)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [ClawHub release](https://clawhub.ai/oomol/skills/oo-reducto)
+
+## Skill Output:
+
+**Output Type(s):** [Structured data, Text, API Calls]
+
+**Output Format:** [JSON containing extracted data or parsed document content, chunks, blocks, and metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected action and input; extraction uses a caller-supplied JSON Schema.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

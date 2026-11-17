@@ -1,43 +1,60 @@
-## Description: <br>
-Helps build a single-file Markdown-to-HTML converter with multiple blog themes, real-time preview, file upload, syntax highlighting, and HTML download support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when building a Markdown to HTML converter with multiple blog themes, real-time preview, and download functionality.
 
-## Publisher: <br>
-[wings229](https://clawhub.ai/user/wings229) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wings229](https://clawhub.ai/user/wings229)
 
-## Use Case: <br>
-Developers and content teams use this skill to build a browser-based converter for turning Markdown documents into styled HTML previews and downloadable pages. It is useful when an agent needs implementation guidance for themes, layout, upload handling, parsing, preview updates, and exported HTML. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated previews or downloadable HTML may be unsafe when processing sensitive or untrusted Markdown without sanitization. <br>
-Mitigation: Sanitize rendered HTML and avoid placing unsanitized user Markdown into trusted pages or privileged contexts. <br>
-Risk: The artifact describes CDN dependencies while also presenting offline use as a goal. <br>
-Mitigation: Bundle or pin dependencies with integrity checks, and document that offline use requires local copies of the parser and highlighter assets. <br>
+## Use Case:
 
+Developers and content authors use this skill to build a single-file web app that converts Markdown into styled HTML with live preview, theme selection, file upload, sample loading, and HTML download support.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wings229/markdown2html-converter) <br>
-- [Marked CDN dependency](https://cdn.jsdelivr.net/npm/marked/marked.min.js) <br>
-- [highlight.js stylesheet dependency](https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css) <br>
-- [highlight.js script dependency](https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, and JavaScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single-file web app guidance; generated HTML may rely on CDN-hosted marked.js and highlight.js unless dependencies are bundled or pinned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser dependencies are loaded from CDNs without vendoring, version pinning, or integrity hashes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Vendor or pin dependencies and add integrity hashes before release or before use in sensitive environments.
+
+Risk: The skill describes offline use while its generated app guidance depends on external CDN resources.
+
+Mitigation: Remove or clarify the offline-use claim unless all required assets are bundled locally.
+
+Risk: Markdown preview and downloaded HTML can expose users to unsafe HTML when processing untrusted Markdown.
+
+Mitigation: Add HTML sanitization and a restrictive preview/download security boundary before accepting untrusted Markdown.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/wings229/skills/markdown2html-converter)
+- [marked.js CDN dependency](https://cdn.jsdelivr.net/npm/marked/marked.min.js)
+- [highlight.js GitHub theme CDN dependency](https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css)
+- [highlight.js script CDN dependency](https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Files, Guidance]
+
+**Output Format:** [Markdown guidance with HTML, CSS, and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically describes a single-file index.html app with CDN dependencies and browser-based preview/download behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

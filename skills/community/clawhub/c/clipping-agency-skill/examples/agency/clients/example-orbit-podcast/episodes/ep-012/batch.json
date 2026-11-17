@@ -1,0 +1,88 @@
+{
+ "client": "example-orbit-podcast",
+ "episode": {
+  "id": "ep-012",
+  "title": "Episode 12: twenty years after the Moon",
+  "recorded": "1989",
+  "published": "2026-10-02T12:00:00Z",
+  "queue_item": "q001",
+  "source": "source.mp4",
+  "transcript": "work/transcript.json",
+  "guests": [
+   "two Apollo 11 crew members (CREDITS.md)"
+  ],
+  "guest_release": "on_file",
+  "guest_release_note": "EXAMPLE ONLY: invented. The footage is NASA's public-domain archive video",
+  "sponsor_segments": [],
+  "music": []
+ },
+ "clips": [
+  {
+   "id": "01",
+   "start": 3.36,
+   "end": 24.88,
+   "reframe": "center",
+   "focus_x": 0.42,
+   "fillers": true,
+   "logo_at": "high-left",
+   "why": "Earth small and fragile, the Moon not a place but a direction: two surprising lines from someone who went, in under half a minute. Stands alone and ends on the line people quote.",
+   "hook": "The Moon isn't a place. It's a direction",
+   "title": "An Apollo 11 astronaut: the Moon is a direction, not a place (1989)",
+   "tags": [
+    "apollo 11",
+    "moon",
+    "earth",
+    "space history"
+   ],
+   "captions": {
+    "TIKTOK": "Twenty years after Apollo 11, one of its crew: Earth is small and fragile, and the Moon is a direction. #apollo11 #moon #space",
+    "INSTAGRAM": "Not a place, a direction. An Apollo 11 astronaut on Earth and the Moon, twenty years after he flew there.\n\nFull episode: link in bio.\n#apollo11 #moon #space",
+    "YOUTUBE": "An Apollo 11 astronaut in 1989 on Earth, the Moon, and why the Moon is a direction. #Shorts"
+   }
+  },
+  {
+   "id": "02",
+   "start": 40.7,
+   "end": 68.46,
+   "reframe": "center",
+   "focus_x": 0.5,
+   "snap": false,
+   "fillers": true,
+   "logo_at": "high-left",
+   "why": "A bold proposal said plainly: a long-range goal for Mars with no timetable, and why it would unite everyone. Opens on the speaker, and the year in the hook keeps it true today.",
+   "hook": "1989: the case for Mars",
+   "title": "An Apollo 11 astronaut makes the case for Mars (1989)",
+   "tags": [
+    "apollo 11",
+    "mars",
+    "space history"
+   ],
+   "captions": {
+    "TIKTOK": "In 1989 an Apollo 11 astronaut argued for one long-range goal, with no firm timetable. Do you agree? #apollo11 #mars #space",
+    "INSTAGRAM": "Twenty years after Apollo 11, one of its crew on the goal he thought would unite everyone.\n\nFull episode: link in bio.\n#apollo11 #mars #space",
+    "YOUTUBE": "An Apollo 11 astronaut in 1989 on a long-range goal for Mars. #Shorts"
+   }
+  },
+  {
+   "id": "03",
+   "start": 74.57,
+   "end": 95.53,
+   "reframe": "fit",
+   "fillers": true,
+   "logo_at": "high-right",
+   "why": "Why people stop caring about anything new, from the first person on the Moon: relatable well beyond space, short, and it ends on a clean line.",
+   "hook": "Why we get bored of the Moon",
+   "title": "Why people get bored of space, from Apollo 11's commander (1989)",
+   "tags": [
+    "apollo 11",
+    "space history",
+    "human nature"
+   ],
+   "captions": {
+    "TIKTOK": "Amazed, then enthralled, then bored. Apollo 11's commander in 1989 on how fast we stop noticing. #apollo11 #space #history",
+    "INSTAGRAM": "Apollo 11's commander, twenty years after the landing, on why the Moon stopped feeling new.\n\nFull episode: link in bio.\n#apollo11 #space #history",
+    "YOUTUBE": "Apollo 11's commander in 1989 on human nature and space. #Shorts"
+   }
+  }
+ ]
+}

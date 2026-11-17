@@ -1,0 +1,343 @@
+{
+  "$schema": "pdlc-ws/data/dashboard-data.schema.json",
+  "$schemaVersion": "1.0.0",
+  "$generatedBy": "AI-DFE",
+  "$generatedOn": "2026-06-22T12:00:00Z",
+  "$family": "pdlc",
+  "$package": "AI-DFE",
+  "consumer": "AIFLC-PDLC-Dashboard",
+  "data": {
+    "generated": "2026-06-22T12:00:00Z",
+    "projects": [
+      {
+        "id": "PRJ-SMP-2026-001",
+        "name": "Sample Project",
+        "status": "active",
+        "priority": 1,
+        "progress": 45,
+        "lastActivity": "2026-06-22",
+        "packages": [
+          {
+            "code": "AI-ILC",
+            "status": "complete",
+            "phase": {
+              "c": 6,
+              "t": 6,
+              "name": "Route & Handoff"
+            },
+            "progress": {
+              "pct": 100,
+              "done": 6,
+              "total": 6
+            },
+            "stage": {
+              "name": "Route & Handoff"
+            },
+            "blockers": [],
+            "artifacts": []
+          },
+          {
+            "code": "AI-PILC",
+            "status": "complete",
+            "phase": {
+              "c": 6,
+              "t": 6,
+              "name": "Mobilization"
+            },
+            "progress": {
+              "pct": 100,
+              "done": 16,
+              "total": 16
+            },
+            "stage": {
+              "name": "Package Assembly"
+            },
+            "blockers": [],
+            "artifacts": []
+          },
+          {
+            "code": "AI-POLC",
+            "status": "active",
+            "phase": {
+              "c": 6,
+              "t": 6,
+              "name": "Governance"
+            },
+            "progress": {
+              "pct": 80,
+              "done": 13,
+              "total": 16
+            },
+            "stage": {
+              "name": "Traceability"
+            },
+            "blockers": [],
+            "artifacts": []
+          },
+          {
+            "code": "AI-UXD",
+            "status": "complete",
+            "phase": {
+              "c": 5,
+              "t": 5,
+              "name": "Assemble"
+            },
+            "progress": {
+              "pct": 100,
+              "done": 16,
+              "total": 16
+            },
+            "stage": {
+              "name": "Package Assembly"
+            },
+            "blockers": [],
+            "artifacts": []
+          },
+          {
+            "code": "AI-ADLC",
+            "status": "complete",
+            "phase": {
+              "c": 5,
+              "t": 5,
+              "name": "Assembly"
+            },
+            "progress": {
+              "pct": 100,
+              "done": 13,
+              "total": 13
+            },
+            "stage": {
+              "name": "Package Assembly"
+            },
+            "blockers": [],
+            "artifacts": []
+          },
+          {
+            "code": "AI-DWG",
+            "status": "complete",
+            "phase": {
+              "c": 1,
+              "t": 1,
+              "name": "Generated"
+            },
+            "progress": {
+              "pct": 100,
+              "done": 1,
+              "total": 1
+            },
+            "stage": {
+              "name": "Workspace Generated"
+            },
+            "blockers": [],
+            "artifacts": []
+          },
+          {
+            "code": "AI-GCE",
+            "status": "active",
+            "phase": {
+              "c": 2,
+              "t": 3,
+              "name": "Tier 2"
+            },
+            "progress": {
+              "pct": 67,
+              "done": 2,
+              "total": 3
+            },
+            "stage": {
+              "name": "Compliance"
+            },
+            "blockers": [],
+            "artifacts": []
+          },
+          {
+            "code": "AI-TGE",
+            "status": "active",
+            "phase": {
+              "c": 2,
+              "t": 2,
+              "name": "Observation"
+            },
+            "progress": {
+              "pct": 83,
+              "done": 9,
+              "total": 12
+            },
+            "stage": {
+              "name": "Coverage"
+            },
+            "blockers": [],
+            "artifacts": []
+          }
+        ],
+        "edges": [
+          {
+            "from": "AI-ILC",
+            "to": "AI-PILC",
+            "type": "handoff",
+            "label": "Idea Brief"
+          },
+          {
+            "from": "AI-PILC",
+            "to": "AI-POLC",
+            "type": "handoff",
+            "label": "PIP"
+          },
+          {
+            "from": "AI-POLC",
+            "to": "AI-UXD",
+            "type": "handoff",
+            "label": "PBP"
+          },
+          {
+            "from": "AI-UXD",
+            "to": "AI-ADLC",
+            "type": "handoff",
+            "label": "UXP"
+          },
+          {
+            "from": "AI-ADLC",
+            "to": "AI-DWG",
+            "type": "handoff",
+            "label": "AP"
+          },
+          {
+            "from": "AI-DWG",
+            "to": "AI-GCE",
+            "type": "handoff",
+            "label": ""
+          },
+          {
+            "from": "AI-DWG",
+            "to": "AI-TGE",
+            "type": "handoff",
+            "label": ""
+          }
+        ],
+        "mgmt": {
+          "decisions": 2,
+          "risks": 1,
+          "changes": 0,
+          "actions": 1,
+          "issues": 1,
+          "lessons": 0
+        },
+        "mgmtDetail": {
+          "decisions": [],
+          "risks": [],
+          "changes": [],
+          "actions": [],
+          "issues": [],
+          "lessons": []
+        },
+        "po": {
+          "vision": { "status": "approved", "statement": "Deliver a sample product that demonstrates the PO pane." },
+          "roadmap": {
+            "now":   [ { "epic": "E1", "stories": 4, "done": 1, "status": "in-progress", "items": [] } ],
+            "next":  [ { "epic": "E2", "stories": 3, "done": 0, "status": "planned", "items": [] } ],
+            "later": [ { "epic": "E3", "stories": 0, "done": 0, "status": "planned", "items": [] } ]
+          },
+          "releases": [ { "name": "Increment 1", "date": "TBD", "status": "planned", "stories": 4, "done": 1, "scope": [] } ],
+          "backlog": {
+            "totalEpics": 5, "totalStories": 7, "prioritised": 5, "inReleasePlan": 3,
+            "dorReady": true, "dodReady": true,
+            "dorPath": "projects/PRJ-SMP-sample/backlog/definition-of-ready.md",
+            "dodPath": "projects/PRJ-SMP-sample/backlog/definition-of-done.md"
+          },
+          "acceptance": { "totalCriteria": 0, "validated": 0 },
+          "velocity": { "trend": "stable" },
+          "stakeholders": [
+            { "name": "Sponsor", "engagement": "champion", "influence": "high" },
+            { "name": "End User Representative", "engagement": "supportive", "influence": "low" }
+          ]
+        },
+        "arch": {
+          "status": "complete",
+          "phase": "Assembly",
+          "stage": "Package Assembly",
+          "stageNum": 13,
+          "c4Progress": { "context": "complete", "container": "complete", "component": "complete", "code": "pending" },
+          "vision": { "status": "approved", "statement": "A sample architecture demonstrating the Architect pane.", "optimisesFor": ["maintainability", "security"], "path": "projects/PRJ-SMP-sample/architecture/01_Architecture_Vision.md" },
+          "principles": [ { "id": "P1", "name": "Security by Default", "summary": "Encryption, RBAC, audit from day one" } ],
+          "constraints": [ { "id": "C1", "text": "Open-source only", "impact": "No proprietary dependencies" } ],
+          "nfrs": { "security": { "defined": true, "target": "OWASP ASVS L2", "priority": "Critical" }, "performance": { "defined": true, "target": "<2s p95", "priority": "High" } },
+          "integrations": [ { "name": "Email Service", "type": "REST", "direction": "outbound", "status": "planned" } ],
+          "adrs": [ { "id": "ADR-001", "title": "Sample decision", "status": "Accepted", "date": "2026-06-22", "path": "projects/PRJ-SMP-sample/architecture/ADR/ADR-001_Sample.md" } ],
+          "risks": [ { "text": "Sample architecture risk", "severity": "Medium" } ],
+          "techStack": { "languages": ["TypeScript"], "frameworks": ["NestJS"], "databases": ["PostgreSQL"], "infrastructure": ["Docker"], "messaging": [], "observability": ["OpenTelemetry"] },
+          "containers": [ { "name": "api", "type": "Service", "tech": "Node.js" } ],
+          "c4Diagrams": {
+            "l1": { "mermaid": "graph TD; User-->API;", "path": "projects/PRJ-SMP-sample/architecture/02_System_Context.md", "status": "complete" },
+            "l2": { "mermaid": "graph TD; API-->DB;", "path": "projects/PRJ-SMP-sample/architecture/03_Container.md", "status": "complete" },
+            "l3": { "mermaid": null, "path": null, "status": "pending" }
+          },
+          "diagrams": {
+            "security": { "mermaid": null, "path": null, "label": "Security" },
+            "data": { "mermaid": null, "path": null, "label": "Data" },
+            "api": { "mermaid": null, "path": null, "label": "API" },
+            "infrastructure": { "mermaid": null, "path": null, "label": "Infrastructure" }
+          }
+        },
+        "ux": {
+          "status": "complete",
+          "phase": "Assemble",
+          "stage": "Package Assembly",
+          "personas": [
+            { "name": "Primary User", "status": "validated", "path": "projects/PRJ-SMP-sample/ux/02_Personas/Persona_01_Primary_User.md" },
+            { "name": "Secondary User", "status": "validated", "path": "projects/PRJ-SMP-sample/ux/02_Personas/Persona_02_Secondary_User.md" },
+            { "name": "Administrator", "status": "in-progress", "path": "projects/PRJ-SMP-sample/ux/02_Personas/Persona_03_Administrator.md" }
+          ],
+          "journeys": [
+            { "name": "Onboarding", "status": "mapped", "persona": "Primary User", "path": "projects/PRJ-SMP-sample/ux/03_Journey_Maps/Journey_01_Onboarding.md", "steps": 6, "goal": "Complete first task", "trigger": "First login", "endStateSuccess": "Task completed", "endStateFailure": "Abandoned at setup", "duration": "5 min", "frequency": "Once" },
+            { "name": "Daily Use", "status": "mapped", "persona": "Primary User", "path": "projects/PRJ-SMP-sample/ux/03_Journey_Maps/Journey_02_Daily_Use.md", "steps": 4, "goal": "Perform routine task", "trigger": "Scheduled need", "endStateSuccess": "Task done", "endStateFailure": "Blocked", "duration": "2 min", "frequency": "Daily" }
+          ],
+          "flows": [
+            { "name": "Sign Up", "status": "produced", "path": "projects/PRJ-SMP-sample/ux/05_User_Flows/Flow_01_Sign_Up.md", "persona": "Primary User", "journey": "Onboarding", "mermaid": null },
+            { "name": "Core Task", "status": "produced", "path": "projects/PRJ-SMP-sample/ux/05_User_Flows/Flow_02_Core_Task.md", "persona": "Primary User", "journey": "Daily Use", "mermaid": null }
+          ],
+          "userFlows": { "total": 5, "mapped": 5 },
+          "wireframes": { "total": 10, "approved": 8, "inReview": 2, "pending": 0, "path": "projects/PRJ-SMP-sample/ux/06_Wireframe_Specifications/Screen_Inventory.md", "experiences": [], "screens": [] },
+          "designSystem": { "tokens": { "total": 7, "defined": 7 }, "components": { "total": 12, "specified": 12 } },
+          "designSystemFiles": [
+            { "name": "Design Tokens", "path": "projects/PRJ-SMP-sample/ux/07_Design_System/Design_Tokens.md", "status": "produced", "description": "Color, type, spacing tokens" }
+          ],
+          "componentLibrary": { "path": "projects/PRJ-SMP-sample/ux/08_Component_Library/Component_Inventory.md", "total": 12, "atoms": 6, "molecules": 4, "organisms": 2, "components": [] },
+          "informationArchitecture": { "status": "complete", "pages": 10 },
+          "accessibility": { "target": "WCAG 2.2", "wcagLevel": "AA", "criteria": 50, "met": 45, "baselineDefined": true }
+        }
+      }
+    ],
+    "ideas": [
+      {
+        "id": "001",
+        "name": "Sample Idea",
+        "stage": "routed",
+        "score": 28,
+        "scoreMax": 35,
+        "decision": "Approved",
+        "domain": "general",
+        "depth": "Standard",
+        "route": "new-project",
+        "routeTarget": "PRJ-SMP-2026-001",
+        "brief": "A sample idea that demonstrates the Ideas funnel.",
+        "created": "2026-06-22T12:00:00Z",
+        "lastUpdated": "2026-06-22T12:00:00Z",
+        "files": [
+          { "name": "Approved Idea Brief", "path": "ideas/001-sample-idea/approved-idea-brief.md", "status": "produced" }
+        ]
+      }
+    ],
+    "ppm": {
+      "totalProjects": 1,
+      "dispatched": 1,
+      "pending": 0,
+      "strategicFit": 0,
+      "topPriority": "PRJ-SMP-2026-001"
+    },
+    "health": {
+      "totalBlockers": 0,
+      "stalledProjects": 0,
+      "overallProgress": 45
+    }
+  }
+}

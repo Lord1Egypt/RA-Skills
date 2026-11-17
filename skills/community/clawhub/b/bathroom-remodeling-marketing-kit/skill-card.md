@@ -1,49 +1,61 @@
-## Description: <br>
-Generates bathroom remodeling marketing drafts, service pages with JSON-LD, reputation and referral copy, local ad materials, SEO calendars, and compliance checklists for contractor review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates bathroom remodeling marketing copy templates, service pages, schema snippets, review requests, referral outreach, ads, and local SEO plans with built-in compliance gates for licensing, permitting, accessibility, lead-safe work, mold scope, structural claims, warranties, reviews, and SMS consent.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Bathroom remodeling contractors, design-build firms, kitchen and bath showrooms, restoration contractors, and home-services marketers use this skill to draft campaigns, service pages, review requests, referral outreach, ads, and local SEO materials. Outputs are intended as publication drafts that require contractor, credential, consent, jurisdiction, and legal review before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States, with the included compliance framing centered on Nevada and Clark County <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated copy may imply legal, permit, advertising, FTC/TCPA/RESPA, contractor, or credential compliance that has not been verified for the user's actual jurisdiction. <br>
-Mitigation: Treat outputs as drafts and confirm all permit, licensing, advertising, contractor, FTC/TCPA/RESPA, warranty, accessibility, and remediation requirements before publishing. <br>
-Risk: Ready-to-use outreach and review language may be misleading or noncompliant if it conditions requests on satisfaction, omits required consent, or uses unsupported claims. <br>
-Mitigation: Remove satisfaction-conditioned review wording, capture prior express written consent before SMS outreach, and verify review counts, ratings, rankings, ROI claims, warranty terms, and certifications. <br>
-Risk: The artifact presents compliance gates as protective, but the security evidence flags the skill as suspicious because outputs can still be misused as finished compliance guidance. <br>
-Mitigation: Use qualified human review for legal and regulatory claims, replace placeholders with verified facts, and keep jurisdiction-specific disclosures current before deployment. <br>
+## Use Case:
 
+External contractors, remodelers, design-build firms, kitchen and bath showrooms, restoration contractors, and marketing teams use this skill to draft bathroom remodeling campaigns, service pages, ads, review workflows, referral letters, and local SEO assets. Users are expected to adapt jurisdiction-specific claims, credentials, permits, and customer details before publishing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gitflopez/bathroom-remodeling-marketing-kit) <br>
-- [README](artifact/README.md) <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [Seasonal Campaigns Prompt](artifact/prompts/01-seasonal-campaigns.md) <br>
-- [Service Pages and JSON-LD Prompt](artifact/prompts/02-service-pages-schema.md) <br>
-- [Reputation and Referral Prompt](artifact/prompts/03-reputation-referral.md) <br>
-- [Digital Ads and Local SEO Prompt](artifact/prompts/04-digital-ads-local-seo.md) <br>
-- [Example Output](artifact/examples/desert-bath-co-henderson-nv.md) <br>
+### Deployment Geography for Use:
 
+United States, with examples and compliance language focused on Nevada and Clark County
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown prompt outputs with templated marketing copy, JSON-LD code blocks, checklists, outreach scripts, and publishing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided business details, license numbers, credential claims, consent status, review data, and jurisdiction checks before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; package.json reports 1.0.0) <br>
+Risk: Generated marketing copy can contain jurisdiction-specific legal, permit, license, accessibility, warranty, review, or SMS-consent claims that are wrong for the contractor using it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify every legal citation, license number, permit statement, credential, warranty term, review claim, and SMS consent workflow with qualified local review before publishing.
+
+Risk: Some review-request examples use satisfaction-gated phrasing even though the skill claims review requests should be unconditional.
+
+Mitigation: Edit review requests to remove positive-sentiment gating and incentives, and keep negative-feedback channels available without discouraging public reviews.
+
+Risk: Example content includes customer names, project details, ratings, locations, and contractor credentials that may be placeholders or unsuitable for reuse.
+
+Mitigation: Replace sample identities and claims with verified business data, minimize customer personal details, and obtain consent for any project photos, testimonials, or review references.
+
+Risk: The kit centers many examples on Clark County, Nevada, which may not match the user's service area.
+
+Mitigation: Adapt permitting, licensing, accessibility, lead-safe, mold, structural, and advertising disclosures to the applicable city, state, and federal requirements.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/gitflopez/skills/bathroom-remodeling-marketing-kit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown prompts and generated marketing copy, with JSON-LD schema code blocks and checklist-style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces templates that require user-supplied business, license, permit, credential, review, consent, and jurisdiction details before public use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

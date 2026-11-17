@@ -1,43 +1,56 @@
-## Description: <br>
-Automates a real Chrome browser through Chrome Debug Protocol to navigate, click, fill forms, extract page data, take screenshots, and run multi-step browser workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a real Chrome browser through Chrome DevTools Protocol for navigation, clicking, form filling, data extraction, screenshots, and multi-step web workflows.
 
-## Publisher: <br>
-[ScottLiu007](https://clawhub.ai/user/ScottLiu007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[scottliu007](https://clawhub.ai/user/scottliu007)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users use this skill to drive a logged-in local Chrome session for browser tasks such as navigating sites, collecting page data, filling forms, and capturing screenshots.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can control a real logged-in browser session, read page data, fill forms, and execute JavaScript on pages.
+
+Mitigation: Review the skill before installation, require explicit approval before accessing logged-in sites or taking sensitive actions, and keep the documented confirmation boundary for passwords, payments, deletion, and message sending.
+
+Risk: The setup uses Chrome remote debugging and a persistent local browser profile.
+
+Mitigation: Start remote debugging only when needed, close or clean up the debug browser after each task, and avoid exposing the debugging endpoint beyond localhost.
+
+Risk: The MCP setup references an unpinned @latest package.
+
+Mitigation: Pin the Playwright MCP package version before operational use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to direct an agent through real browser tasks such as navigation, form filling, data extraction, screenshots, and multi-step web workflows while preserving the user's Chrome session. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad control of a real Chrome browser session, which can expose logged-in accounts or sensitive page data. <br>
-Mitigation: Use a dedicated automation-only Chrome profile and avoid sensitive logged-in accounts when running browser automation. <br>
-Risk: Chrome Debug Protocol control can be started or used without enough user consent for account-changing actions. <br>
-Mitigation: Require explicit user consent before starting CDP control, entering credentials, submitting forms, sending messages, deleting content, making purchases, or changing account state. <br>
-Risk: Using an unpinned Playwright MCP package can change automation behavior between runs. <br>
-Mitigation: Pin and review the MCP package version before installation, and stop the debug Chrome process when automation is finished. <br>
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ScottLiu007/auto-browser) <br>
-- [Publisher profile](https://clawhub.ai/user/ScottLiu007) <br>
+**Other Properties Related to Output:** [May produce browser screenshots, extracted page summaries, and file paths when page data is too long for a response.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Chrome debug endpoint and a Playwright CDP MCP tool configured for the user's browser session.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

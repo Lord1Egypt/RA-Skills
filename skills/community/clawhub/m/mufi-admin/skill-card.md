@@ -1,37 +1,53 @@
-## Description: <br>
-Manage MUFI events by creating and connecting festivals, campaigns, frame templates, and frames with specified details and images in the MUFI admin panel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage MUFI events by creating and connecting festivals, campaigns, frame templates, and frames with specified details and images via admin.muinfilm.com.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Authorized MUFI administrators and operators use this skill to follow the correct sequence for creating events, campaigns, frame templates, and frames, including required fields, image dimensions, and admin-panel navigation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide direct creation and saving of MUFI admin records without built-in rollback safeguards. <br>
-Mitigation: Use only with an authorized account, prefer a test or staging environment first, and require manual final confirmation before any save, upload, or publish action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MUFI Admin Panel](https://admin.muinfilm.com) <br>
+## Use Case:
 
+Authorized MUFI administrators and operators use this skill to create events, campaigns, frame templates, and frame designs, then connect those records and upload required image assets in the MUFI admin console.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands] <br>
-**Output Format:** [Markdown guidance with inline browser automation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ordered admin workflow steps, form field requirements, image dimensions, and browser automation tips.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide persistent changes in a live-looking MUFI admin system.
+
+Mitigation: Use it only when authorized to administer the target MUFI environment, confirm whether the target is production or test, and review each record before saving.
+
+Risk: An authenticated browser profile may allow the agent to act through an existing admin session.
+
+Mitigation: Avoid using an authenticated browser profile unless you are comfortable with the agent acting through that session.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mupengi-bot/skills/mufi-admin)
+- [MUFI admin console](https://admin.muinfilm.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown instructions with inline browser automation snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes ordered admin workflow steps, required fields, image dimensions, and browser automation tips.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

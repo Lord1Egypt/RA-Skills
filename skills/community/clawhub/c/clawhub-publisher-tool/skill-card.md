@@ -1,41 +1,54 @@
-## Description: <br>
-Helps agents publish local skills to ClawHub by checking package metadata, aligning versions, and preparing publish commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一键发布技能到 ClawHub 平台，自动完成登录、版本更新、发布全流程。
 
-## Publisher: <br>
-[romicboy](https://clawhub.ai/user/romicboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[romicboy](https://clawhub.ai/user/romicboy)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to prepare and publish ClawHub skill releases, including version alignment, changelog preparation, login guidance, and publish commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to use account credentials and publish content remotely. <br>
-Mitigation: Confirm the ClawHub account, target skill path, slug, display name, version, changelog, and destination before running publish commands; do not paste tokens into chat or shell history. <br>
-Risk: The skill may edit local skill metadata or run a target skill's publish.sh script. <br>
-Mitigation: Review diffs to package.json and SKILL.md, inspect any publish.sh script, and scan the skill before deployment. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to prepare and publish local ClawHub skills, keep version metadata aligned, authenticate with ClawHub, and run release commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/romicboy/clawhub-publisher-tool) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/romicboy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell and PowerShell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to package.json and SKILL.md version metadata before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence, SKILL.md metadata, package.json) <br>
+Risk: The skill handles publishing credentials and may expose tokens if users paste real tokens into command lines or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit account confirmation before use and avoid placing real tokens in commands, transcripts, or logs.
+
+Risk: The skill can release ClawHub skills and suggests running a project-local publish.sh script.
+
+Mitigation: Confirm the exact skill, version, changelog, and account before publishing; inspect and trust any target repository publish.sh before running it.
+
+## Reference(s):
+
+- [ClawHub发布助手 Skill Page](https://clawhub.ai/romicboy/skills/clawhub-publisher-tool)
+- [ClawHub Publisher Tool Homepage](https://clawhub.ai/skills/clawhub-publisher-tool)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown guidance with shell command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes release checks for package.json, SKILL.md metadata.version, and the publish command version.]
+
+## Skill Version(s):
+
+1.0.3 (source: SKILL.md metadata.version, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

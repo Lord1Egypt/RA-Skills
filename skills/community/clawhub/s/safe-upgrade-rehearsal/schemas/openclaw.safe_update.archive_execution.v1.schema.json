@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.safe_update.archive_execution.v1.schema.json",
+  "title": "OpenClaw Safe Update Archive Execution Telemetry",
+  "type": "object",
+  "required": [
+    "schema",
+    "generated_at",
+    "effect",
+    "runtime_effect",
+    "external_effect",
+    "external_write_effect",
+    "production_apply_allowed",
+    "operator_approval",
+    "authoritative",
+    "workers_requested",
+    "workers_used",
+    "timeout_seconds",
+    "entries",
+    "counts"
+  ],
+  "properties": {
+    "schema": {
+      "const": "openclaw.safe_update.archive_execution.v1"
+    },
+    "generated_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "effect": {
+      "const": "read_only_openclaw_update_rehearsal"
+    },
+    "runtime_effect": {
+      "const": "none"
+    },
+    "external_effect": {
+      "const": "npm_registry_read_only"
+    },
+    "external_write_effect": {
+      "const": "none"
+    },
+    "production_apply_allowed": {
+      "const": false
+    },
+    "operator_approval": {
+      "const": false
+    },
+    "authoritative": {
+      "const": false
+    },
+    "workers_requested": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8
+    },
+    "workers_used": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 8
+    },
+    "timeout_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 900
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "task_id",
+          "package",
+          "lane",
+          "status",
+          "error",
+          "duration_ms"
+        ],
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "package": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lane": {
+            "enum": [
+              "current",
+              "target"
+            ]
+          },
+          "status": {
+            "enum": [
+              "success",
+              "failed",
+              "timed_out"
+            ]
+          },
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "duration_ms": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "counts": {
+      "type": "object",
+      "required": [
+        "success",
+        "failed",
+        "timed_out"
+      ],
+      "properties": {
+        "success": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timed_out": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

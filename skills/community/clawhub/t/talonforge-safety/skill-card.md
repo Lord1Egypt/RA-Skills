@@ -1,44 +1,55 @@
-## Description: <br>
-Configures trust levels, non-negotiable safety rules, prompt injection defenses, and approval workflows for safer AI-agent interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TalonForge Safety Rails (EN/AR) helps an agent configure trust levels, non-negotiable safety rules, prompt injection defenses, and approval workflows for safer autonomous AI interactions.
 
-## Publisher: <br>
-[casperzinou](https://clawhub.ai/user/casperzinou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casperzinou](https://clawhub.ai/user/casperzinou)
 
-## Use Case: <br>
-Agent users and developers use this skill to generate workspace safety configuration before allowing an AI agent to read, draft, or take bounded actions. It is intended for setting risk tolerance, hard rules, trusted channels, approval queues, and prompt-injection defenses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested companion tools may add capabilities outside this skill's no-payload behavior. <br>
-Mitigation: Review and trust the companion packages before allowing installation, and keep installation commands subject to explicit approval. <br>
-Risk: A permissive trust level can authorize actions beyond the user's intended risk tolerance. <br>
-Mitigation: Start with conservative or moderate settings and require explicit confirmation for external messages, financial actions, contracts, and irreversible operations. <br>
-Risk: Untrusted emails, URLs, code, or external messages can attempt prompt injection. <br>
-Mitigation: Treat inbound email and external content as untrusted, ignore embedded instructions, and accept operational commands only through the verified user channel. <br>
+## Use Case:
 
+Developers and operators use this skill to have an agent collect risk tolerance, hard rules, and a verified messaging channel, then draft markdown safety rules for OpenClaw-style autonomous workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/casperzinou/talonforge-safety) <br>
-- [Publisher profile](https://clawhub.ai/user/casperzinou) <br>
-- [TalonForge homepage](https://talonforge.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown safety rules with setup prompts and optional bash installation commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-selected risk tolerance, hard rules, and verified messaging channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill recommends installing additional unpinned remote components at install time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the publishers and package contents before running the commands, and prefer pinned, reviewed versions of ai-sentinel, skill-guard, and the ClawHub installer where possible.
+
+Risk: Generated safety rules may not fully match the user's operational risk tolerance or approval requirements.
+
+Mitigation: Review the generated trust level, hard rules, verified channel, and approval workflow before relying on the configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/casperzinou/skills/talonforge-safety)
+- [Publisher profile](https://clawhub.ai/user/casperzinou)
+- [TalonForge homepage](https://talonforge.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown safety configuration with setup questions and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a trust ladder, approval workflow, prompt-injection defenses, and install commands for related components.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

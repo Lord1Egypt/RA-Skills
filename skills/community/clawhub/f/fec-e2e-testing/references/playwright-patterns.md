@@ -1,6 +1,6 @@
-# Playwright / Cypress E2E 模式
+# Playwright / Cypress E2E Mode
 
-## 目录结构
+## Directory structure
 
 ```text
 tests/
@@ -46,8 +46,8 @@ export class ItemsPage {
 import { expect, test } from "@playwright/test";
 import { ItemsPage } from "../pages/ItemsPage";
 
-test.describe("商品搜索", () => {
-  test("按关键词搜索有结果", async ({ page }) => {
+test.describe("Product Search", () => {
+  test("Search by keyword and there are results", async ({ page }) => {
     const itemsPage = new ItemsPage(page);
     await itemsPage.goto();
     await itemsPage.search("test");
@@ -84,7 +84,7 @@ export default defineConfig({
 });
 ```
 
-## Flaky 调试
+## Flaky Debugging
 
 ```bash
 npx playwright test path/to/spec.ts --repeat-each=10
@@ -92,4 +92,4 @@ npx playwright test path/to/spec.ts --retries=3
 npx playwright show-trace path/to/trace.zip
 ```
 
-常见原因：竞态、网络时序、动画、测试数据污染、跨测试状态泄露。
+Common reasons: race conditions, network timing, animation, test data pollution, cross-test state leakage.

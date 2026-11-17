@@ -1,0 +1,421 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-scidraw-io",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:06:44.914Z",
+  "entry": {
+    "url": "https://scidraw.io",
+    "final_url": "https://scidraw.io/",
+    "title": "SciDraw - Scientific Illustrations",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:06:44.914Z",
+    "identity": {
+      "declared_name": "SciDraw",
+      "hostname": "scidraw.io",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Close LabTab announcement",
+      "label": "",
+      "aria_label": "Close LabTab announcement",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Close LabTab announcement",
+        "exact": true
+      },
+      "observed_url": "https://scidraw.io/",
+      "observed_at": "2026-10-09T09:06:43.476Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Upload",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Upload",
+        "exact": true
+      },
+      "observed_url": "https://scidraw.io/",
+      "observed_at": "2026-10-09T09:06:43.476Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "Search for cells, organisms, equipment, molecules...",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "Search for cells, organisms, equipment, molecules...",
+      "name": null,
+      "id": "",
+      "css": "input[placeholder=\"Search for cells, organisms, equipment, molecules...\"]",
+      "role": null,
+      "form_action": "https://scidraw.io/",
+      "locator": {
+        "css": "input[placeholder=\"Search for cells, organisms, equipment, molecules...\"]"
+      },
+      "observed_url": "https://scidraw.io/",
+      "observed_at": "2026-10-09T09:06:43.476Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Close",
+      "label": "",
+      "aria_label": "Close",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Close",
+        "exact": true
+      },
+      "observed_url": "https://scidraw.io/",
+      "observed_at": "2026-10-09T09:06:43.476Z"
+    },
+    {
+      "tag": "select",
+      "type": null,
+      "text": "All Categories\nmouse (114)\nrat (59)\nfish (36)\ndrosophila (35)\nother (247)\nhuman (65)\nbird (31)\ncell (187)",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://scidraw.io/",
+      "observed_at": "2026-10-09T09:06:43.476Z"
+    },
+    {
+      "tag": "select",
+      "type": null,
+      "text": "Most Downloaded\nNewest First\nName (A-Z)",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://scidraw.io/",
+      "observed_at": "2026-10-09T09:06:43.476Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Cookie preferences",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Cookie preferences",
+        "exact": true
+      },
+      "observed_url": "https://scidraw.io/",
+      "observed_at": "2026-10-09T09:06:43.476Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Reject analytics",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Reject analytics",
+        "exact": true
+      },
+      "observed_url": "https://scidraw.io/",
+      "observed_at": "2026-10-09T09:06:43.476Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Accept analytics",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Accept analytics",
+        "exact": true
+      },
+      "observed_url": "https://scidraw.io/",
+      "observed_at": "2026-10-09T09:06:43.476Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-scidraw-io:record-lookup",
+      "source_id": "quiz-scidraw-io",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://scidraw.io/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Close LabTab announcement",
+          "label": "",
+          "aria_label": "Close LabTab announcement",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Close LabTab announcement",
+            "exact": true
+          },
+          "observed_url": "https://scidraw.io/",
+          "observed_at": "2026-10-09T09:06:43.476Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Upload",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Upload",
+            "exact": true
+          },
+          "observed_url": "https://scidraw.io/",
+          "observed_at": "2026-10-09T09:06:43.476Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "Search for cells, organisms, equipment, molecules...",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "Search for cells, organisms, equipment, molecules...",
+          "name": null,
+          "id": "",
+          "css": "input[placeholder=\"Search for cells, organisms, equipment, molecules...\"]",
+          "role": null,
+          "form_action": "https://scidraw.io/",
+          "locator": {
+            "css": "input[placeholder=\"Search for cells, organisms, equipment, molecules...\"]"
+          },
+          "observed_url": "https://scidraw.io/",
+          "observed_at": "2026-10-09T09:06:43.476Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Close",
+          "label": "",
+          "aria_label": "Close",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Close",
+            "exact": true
+          },
+          "observed_url": "https://scidraw.io/",
+          "observed_at": "2026-10-09T09:06:43.476Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Cookie preferences",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Cookie preferences",
+            "exact": true
+          },
+          "observed_url": "https://scidraw.io/",
+          "observed_at": "2026-10-09T09:06:43.476Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Reject analytics",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Reject analytics",
+            "exact": true
+          },
+          "observed_url": "https://scidraw.io/",
+          "observed_at": "2026-10-09T09:06:43.476Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Accept analytics",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Accept analytics",
+            "exact": true
+          },
+          "observed_url": "https://scidraw.io/",
+          "observed_at": "2026-10-09T09:06:43.476Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "network_error",
+      "attempt": 1,
+      "detail": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://scidraw.io/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-113"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:06:44.914Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-scidraw-io-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-scidraw-io-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

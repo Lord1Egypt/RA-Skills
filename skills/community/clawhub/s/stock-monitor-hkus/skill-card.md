@@ -1,40 +1,56 @@
-## Description: <br>
-港股/美股/加密货币实时监控，使用 Yahoo Finance (yfinance) 获取实时价格和技术指标，支持自定义股票池、涨跌提醒、均线/RSI/MACD信号。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+港股/美股/加密货币实时监控。使用 Yahoo Finance (yfinance) 获取实时价格、技术指标监控。支持自定义股票池、涨跌提醒、均线/RSI/MACD信号。
 
-## Publisher: <br>
-[sanduan003](https://clawhub.ai/user/sanduan003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sanduan003](https://clawhub.ai/user/sanduan003)
 
-## Use Case: <br>
-External users and developers use this skill to monitor selected Hong Kong stocks, U.S. stocks, and cryptocurrency prices, then review technical indicators such as moving averages, RSI, and MACD signals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The monitor writes a local state file to a hard-coded path, which may fail or disclose local monitoring data on some systems. <br>
-Mitigation: Review and change the state-file path before scheduled or repeated use. <br>
-Risk: The quick-start dependency command uses --break-system-packages, which can affect the system Python environment. <br>
-Mitigation: Install dependencies in a Python virtual environment instead. <br>
-Risk: A cron entry can create periodic background market monitoring. <br>
-Mitigation: Add scheduled execution only when ongoing background monitoring is intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers use this skill to monitor configured Hong Kong, U.S., and cryptocurrency tickers, review price changes and technical signals, and optionally run the monitor on a schedule.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled monitor script writes a local JSON state file when run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented install command can modify system Python packages.
+
+Mitigation: Review the script before installation and install yfinance and numpy in a virtual environment with pinned dependency versions.
+
+Risk: The monitor writes state to a hard-coded local path that differs from the documented relative path.
+
+Mitigation: Change the state output path to an expected workspace location or verify the directory exists and has appropriate permissions before running the script.
+
+Risk: Running the monitor contacts Yahoo Finance for the configured ticker symbols.
+
+Mitigation: Use it only in environments where sending those ticker lookups to Yahoo Finance is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sanduan003/skills/stock-monitor-hkus)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, code]
+
+**Output Format:** [Terminal text output with setup and scheduling commands; runtime state is JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Configured tickers are defined in scripts/monitor.py; no credential environment variables were detected.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

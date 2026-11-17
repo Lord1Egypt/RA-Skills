@@ -1,41 +1,56 @@
-## Description: <br>
-Guides agents on adding, optimizing, or auditing breadcrumb navigation for site hierarchy, accessibility, SEO, and BreadcrumbList structured data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to add, optimize, or audit breadcrumb navigation.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, site builders, and SEO practitioners use this skill to design breadcrumb trails, align visible breadcrumbs with BreadcrumbList markup, and avoid common hierarchy, accessibility, and schema errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use .claude/project-context.md or .cursor/project-context.md to infer site hierarchy, which could expose secrets or untrusted instructions if those files contain them. <br>
-Mitigation: Keep secrets and untrusted instructions out of project context files, or tell the agent to skip those files and rely only on the prompt. <br>
+## Use Case:
 
+Developers, SEO practitioners, and site maintainers use this skill to design or audit breadcrumb navigation, including hierarchy, placement, accessibility, and BreadcrumbList schema guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/breadcrumb-generator) <br>
-- [Schema.org BreadcrumbList](https://schema.org/BreadcrumbList) <br>
-- [Google Rich Results Test](https://search.google.com/test/rich-results) <br>
-- [Schema Markup Validator](https://validator.schema.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with HTML and JSON-LD examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May advise reading named project context files to understand site structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: evidence release metadata and SKILL.md metadata) <br>
+Risk: SEO claims or breadcrumb recommendations may not fit a specific site's current search context or information architecture.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against current SEO guidance, project route metadata, and the site's canonical hierarchy before deployment.
+
+Risk: Tasks focused only on BreadcrumbList schema or main navigation can be routed to the wrong skill.
+
+Mitigation: Use the referenced schema-markup skill for schema-only work and navigation-menu-generator for primary navigation work.
+
+## Reference(s):
+
+- [Schema.org BreadcrumbList](https://schema.org/BreadcrumbList)
+- [Schema.org ListItem](https://schema.org/ListItem)
+- [Google Rich Results Test](https://search.google.com/test/rich-results)
+- [Schema Markup Validator](https://validator.schema.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML and JSON-LD examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include breadcrumb structure recommendations, accessible HTML, BreadcrumbList JSON-LD guidance, placement advice, and validation links.]
+
+## Skill Version(s):
+
+1.2.0 (source: artifact frontmatter, evidence metadata, and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,57 @@
-## Description: <br>
-JobNimbus (jobnimbus.com). Use this skill for ANY JobNimbus request - reading, creating, and updating data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JobNimbus (jobnimbus.com). Use this skill for ANY JobNimbus request — reading, creating, and updating data. Whenever a task involves JobNimbus, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to read, create, and update JobNimbus contacts and jobs through an OOMOL-connected JobNimbus account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on OOMOL to broker access to the user's JobNimbus account. <br>
-Mitigation: Install and use it only when the user trusts OOMOL and has connected the intended JobNimbus account. <br>
-Risk: Create and update actions can change JobNimbus CRM records. <br>
-Mitigation: Inspect the live action schema and confirm the exact payload and expected effect with the user before running write actions. <br>
-Risk: Connection, scope, credential, or billing failures can block actions. <br>
-Mitigation: Use first-time setup or recovery steps only after a command fails with the matching authentication, connection, scope, credential, or billing error. <br>
+## Use Case:
 
+JobNimbus users use this agent skill to read, create, and update contacts and jobs through an OOMOL-connected account. It provides schema-guided connector actions and requires confirmation before writes.
 
-## Reference(s): <br>
-- [JobNimbus homepage](https://www.jobnimbus.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-jobnimbus) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill metadata) <br>
+Risk: Automatic CLI setup can run software from an external download source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and review a known CLI release yourself before using the skill.
+
+Risk: The OOMOL connection mediates access to JobNimbus data, and create or update actions can change records.
+
+Mitigation: Review the exact payload and effect, and retain user confirmation before running any write action.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/oomol/skills/oo-jobnimbus)
+- [OOMOL publisher profile](https://clawhub.ai/user/oomol)
+- [JobNimbus](https://www.jobnimbus.com)
+- [JobNimbus API documentation](https://developer.jobnimbus.com/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON connector requests and responses, shell commands, and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Create and update actions require confirmation of the exact payload and effect.]
+
+## Skill Version(s):
+
+1.0.6 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

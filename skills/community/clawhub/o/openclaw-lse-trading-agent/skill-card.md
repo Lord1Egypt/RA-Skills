@@ -1,42 +1,58 @@
-## Description: <br>
-FTSE 350 trading analysis agent. Screens LSE stocks using technical indicators (Bollinger Bands, RSI, MACD, EMA crossovers, ATR, VWAP, OBV), fetches news for LLM sentiment analysis, synthesises signals into trade recommendations with risk management (Kelly sizing, ATR stops, drawdown circuit breakers), and backtests strategies against historical data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FTSE 350 trading analysis agent. Screens LSE stocks using technical indicators (Bollinger Bands, RSI, MACD, EMA crossovers, ATR, VWAP, OBV), fetches news for LLM sentiment analysis, synthesises signals into trade recommendations with risk management (Kelly sizing, ATR stops, drawdown circuit breakers), and backtests strategies against historical data.
 
-## Publisher: <br>
-[ankit-aglawe](https://clawhub.ai/user/ankit-aglawe) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ankit-aglawe](https://clawhub.ai/user/ankit-aglawe)
 
-## Use Case: <br>
-External users and developers use this skill to screen and analyze London Stock Exchange equities, retrieve market and news data, backtest signal strategies, validate risk constraints, and manage a local paper portfolio. Outputs should be treated as trading research rather than financial advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Portfolio commands can initialize, add to, remove from, or otherwise change the local paper portfolio file. <br>
-Mitigation: Back up data/portfolio.json before using --init, --add, or --remove, and review command arguments before execution. <br>
-Risk: The skill fetches market prices and news from Yahoo Finance, so outputs depend on external data availability and freshness. <br>
-Mitigation: Confirm important price, news, and corporate-action data against trusted market sources before using the analysis. <br>
-Risk: Generated trade recommendations and backtests can be mistaken for financial advice or reliable forecasts. <br>
-Mitigation: Treat all outputs as research support, not investment advice, and require independent review before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ankit-aglawe/openclaw-lse-trading-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/ankit-aglawe) <br>
+## Use Case:
 
+External developers and trading-analysis users use this skill to screen London Stock Exchange equities, inspect technical indicators and news sentiment, backtest strategies, and manage a paper portfolio. It is suitable for educational research and paper-trading workflows, not as dependable financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown analysis with inline shell commands and JSON-producing helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local paper portfolio file at data/portfolio.json when portfolio commands are used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may over-rely on the trading recommendations or risk checks as dependable financial advice.
+
+Mitigation: Treat the skill as an educational paper-trading tool and independently verify recommendations, position sizing, sector exposure, drawdown, and daily-loss limits before taking action.
+
+Risk: Portfolio commands can modify the local portfolio JSON file.
+
+Mitigation: Back up portfolio JSON before using init, add, or remove operations.
+
+Risk: The workflow depends on uv-run scripts and third-party market/news data retrieval.
+
+Mitigation: Use a trusted or pinned uv installation and review fetched data before relying on the resulting analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ankit-aglawe/skills/openclaw-lse-trading-agent)
+- [Publisher profile](https://clawhub.ai/user/ankit-aglawe)
+- [Homepage declared in artifact metadata](https://github.com/ankit-aglawe/openclaw-lse-trading-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown analysis with tables, inline shell commands, and JSON script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses uv-run Python scripts for market data, indicators, backtesting, risk checks, sentiment headline retrieval, and local paper-portfolio JSON updates.]
+
+## Skill Version(s):
+
+0.1.1 (source: evidence.release.version and target metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

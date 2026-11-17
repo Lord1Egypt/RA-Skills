@@ -1,41 +1,53 @@
-## Description: <br>
-Compliance Audit provides a local, tamper-evident audit trail for autonomous agent skill executions, data access, decisions, and budget changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logs autonomous-agent operations, data access, decisions, and budget changes with local hash-chained audit entries for later review.
 
-## Publisher: <br>
-[Trypto1019](https://clawhub.ai/user/Trypto1019) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[trypto1019](https://clawhub.ai/user/trypto1019)
 
-## Use Case: <br>
-Developers, agent operators, and governance teams use this skill to record, inspect, verify, export, and summarize local audit logs for incident response, budget accountability, trust verification, enterprise compliance, and debugging. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent audit logs can contain secrets, personal data, or regulated data if callers include them in entry details. <br>
-Mitigation: Do not log API keys, tokens, passwords, PII, or regulated data; set appropriate file permissions and retention or deletion practices for ~/.openclaw/audit. <br>
-Risk: Exported audit data can disclose sensitive operational history. <br>
-Mitigation: Review JSON and CSV exports before sharing them outside the intended governance or incident-response audience. <br>
-Risk: Unsafe shell construction around JSON arguments can corrupt entries or expose untrusted input handling issues. <br>
-Mitigation: Pass JSON arguments safely from the invoking agent without shell string concatenation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Trypto1019/arc-compliance-audit) <br>
+## Use Case:
 
+Developers and operators use this skill to record and inspect local activity logs for autonomous-agent actions, decisions, data access, budget changes, integrity checks, exports, and summaries. It is best treated as a convenience activity log unless filesystem permissions and retention are managed separately.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples; runtime script output includes plain text summaries, JSON exports, CSV exports, and daily JSON audit files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local daily audit logs under ~/.openclaw/audit/ when invoked; requires python3 on Linux or macOS.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The audit trail may be described more strongly than its local mutable plaintext storage supports.
+
+Mitigation: Treat the output as a convenience activity log and pair it with independent access controls, retention policy, and external log protection for compliance or incident-response use.
+
+Risk: Audit details can contain secrets, tokens, personal data, or sensitive financial/account information.
+
+Mitigation: Avoid logging sensitive values directly; redact details before logging and manage filesystem permissions for ~/.openclaw/audit/.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/trypto1019/skills/arc-compliance-audit)
+- [Publisher profile](https://clawhub.ai/user/trypto1019)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local JSON audit files under ~/.openclaw/audit/ when commands are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

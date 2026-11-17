@@ -1,44 +1,58 @@
-## Description: <br>
-Query the public MyIPChecker IP information API and summarize geolocation and network metadata for a specific IPv4 address or the caller IP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query the public MyIPChecker IP information API and explain or return the geolocation and network fields it provides.
 
-## Publisher: <br>
-[tanzhengyang](https://clawhub.ai/user/tanzhengyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanzhengyang](https://clawhub.ai/user/tanzhengyang)
 
-## Use Case: <br>
-Developers and operators use this skill to run live IP metadata lookups, inspect caller-IP information, and explain or troubleshoot MyIPChecker JSON responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live lookups send supplied IP addresses to MyIPChecker, and caller-IP lookups disclose the runtime public IP to the service. <br>
-Mitigation: Use the skill only when that disclosure is acceptable, and avoid sending sensitive or unnecessary IP addresses. <br>
-Risk: The helper supports a custom base URL, which could send lookup data to an alternate endpoint. <br>
-Mitigation: Use the default MyIPChecker endpoint unless the alternate service is intentionally trusted. <br>
-Risk: The upstream service can return HTTP errors, empty bodies, or non-JSON responses instead of successful lookup data. <br>
-Mitigation: Treat transport and HTTP failures as lookup failures and avoid relying on incomplete responses. <br>
+## Use Case:
 
+Developers and agents use this skill to query MyIPChecker for IPv4 geolocation and network metadata, fetch caller-IP metadata when no IP is supplied, and summarize or troubleshoot returned JSON.
 
-## Reference(s): <br>
-- [MyIPChecker API Reference](references/myipchecker-api.md) <br>
-- [MyIPChecker IP API](https://myipchecker.ai/api/ip) <br>
-- [ClawHub skill page](https://clawhub.ai/tanzhengyang/my-ip-checker-iplookup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown summaries with optional shell commands or raw JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May make live unauthenticated HTTPS requests to MyIPChecker and return upstream transport or HTTP error details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Caller-IP lookups can reveal the runtime's apparent IP address and location metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use no-parameter lookups only when the user intends to expose that metadata to MyIPChecker.
+
+Risk: The helper accepts a custom base URL, which can broaden where the agent sends network requests.
+
+Mitigation: Do not allow arbitrary --base-url values unless the agent is network-sandboxed or the destination has been reviewed.
+
+Risk: Upstream API and transport failures can return empty or non-JSON bodies.
+
+Mitigation: Treat non-200 responses, empty bodies, and invalid JSON as failed lookups rather than successful results.
+
+## Reference(s):
+
+- [MyIPChecker API Reference](references/myipchecker-api.md)
+- [MyIPChecker IP API](https://myipchecker.ai/api/ip)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance, JSON]
+
+**Output Format:** [Markdown summaries with optional shell commands or raw JSON from the API]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access to MyIPChecker; failures may be reported as structured transport_error JSON.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

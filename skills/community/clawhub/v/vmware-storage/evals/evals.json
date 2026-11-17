@@ -7,9 +7,9 @@
       "expected_output": "iSCSI target added, storage rescanned, new datastores visible",
       "files": [],
       "expectations": [
-        "Uses storage_iscsi_enable if adapter not enabled",
-        "Uses storage_iscsi_add_target with correct IP",
-        "Uses storage_rescan or verifies with list_all_datastores"
+        "Uses enable_iscsi if adapter not enabled",
+        "Uses add_iscsi_target with correct IP",
+        "Uses rescan_storage or verifies with list_all_datastores"
       ]
     },
     {
@@ -18,8 +18,8 @@
       "expected_output": "vSAN health status and capacity details",
       "files": [],
       "expectations": [
-        "Uses vsan_health for health summary",
-        "Uses vsan_capacity for capacity breakdown",
+        "Uses get_vsan_health for health summary",
+        "Uses get_vsan_capacity for capacity breakdown",
         "Shows total/used/free in human-readable format"
       ]
     },

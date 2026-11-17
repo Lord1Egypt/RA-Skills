@@ -1,0 +1,3476 @@
+[
+  {
+    "major_code": "330201",
+    "major_name": "金融管理",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_cjsmdl/cjsmdl_jrl/202502/P020250207566188222245.pdf"
+  },
+  {
+    "major_code": "330301",
+    "major_name": "大数据与财务管理",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_cjsmdl/cjsmdl_cwkjl/202502/P020250207566480893342.pdf"
+  },
+  {
+    "major_code": "330302",
+    "major_name": "大数据与会计",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_cjsmdl/cjsmdl_cwkjl/202502/P020250207566340615173.pdf"
+  },
+  {
+    "major_code": "330501",
+    "major_name": "国际经济与贸易",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_cjsmdl/cjsmdl_jjmyl/202502/P020250207566641826499.pdf"
+  },
+  {
+    "major_code": "330602",
+    "major_name": "市场营销",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_cjsmdl/cjsmdl_gsggl/202502/P020250207566839993435.pdf"
+  },
+  {
+    "major_code": "330701",
+    "major_name": "电子商务",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_cjsmdl/cjsmdl_dzswl/202502/P020250207567023099509.pdf"
+  },
+  {
+    "major_code": "330802",
+    "major_name": "现代物流管理",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_cjsmdl/cjsmdl_wll/202502/P020250207567196666115.pdf"
+  },
+  {
+    "major_code": "310101",
+    "major_name": "电子信息工程技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_dzyxxdl/dzxxdl_dzxxl/202502/P020250207565102932148.pdf"
+  },
+  {
+    "major_code": "310102",
+    "major_name": "物联网工程技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_dzyxxdl/dzxxdl_dzxxl/202502/P020250207565309725111.pdf"
+  },
+  {
+    "major_code": "310201",
+    "major_name": "计算机应用工程",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_dzyxxdl/dzxxdl_jsjl/202502/P020250207565640134588.pdf"
+  },
+  {
+    "major_code": "310202",
+    "major_name": "网络工程技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_dzyxxdl/dzxxdl_jsjl/202502/P020250207565946812479.pdf"
+  },
+  {
+    "major_code": "310203",
+    "major_name": "软件工程技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_dzyxxdl/dzxxdl_jsjl/202502/P020250207566227063194.pdf"
+  },
+  {
+    "major_code": "310204",
+    "major_name": "数字媒体技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_dzyxxdl/dzxxdl_jsjl/202502/P020250207566452863349.pdf"
+  },
+  {
+    "major_code": "310205",
+    "major_name": "大数据工程技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_dzyxxdl/dzxxdl_jsjl/202502/P020250207566821328685.pdf"
+  },
+  {
+    "major_code": "310301",
+    "major_name": "现代通信工程",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_dzyxxdl/dzxxdl_txl/202502/P020250207568583286035.pdf"
+  },
+  {
+    "major_code": "300203",
+    "major_name": "汽车服务工程技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_jtysdl/jtysdl_tlysl/202502/P020250207564707469391.pdf"
+  },
+  {
+    "major_code": "300601",
+    "major_name": "城市轨道交通信号与控制技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_jtysdl/jtysdl_csgdjtl/202502/P020250207565068361344.pdf"
+  },
+  {
+    "major_code": "370101",
+    "major_name": "学前教育",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_jyytydl/jyytydl_jyl/202502/P020250207568901431338.pdf"
+  },
+  {
+    "major_code": "370201",
+    "major_name": "应用英语",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_jyytydl/jyytydl_yyl/202502/P020250207569140066989.pdf"
+  },
+  {
+    "major_code": "370301",
+    "major_name": "社会体育指导与管理",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_jyytydl/jyytydl_tyl/202502/P020250207569313952777.pdf"
+  },
+  {
+    "major_code": "340101",
+    "major_name": "旅游管理",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_lydl/lydl_lyl/202502/P020250207567924015791.pdf"
+  },
+  {
+    "major_code": "340102",
+    "major_name": "酒店管理",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_lydl/lydl_lyl/202502/P020250207567660252636.pdf"
+  },
+  {
+    "major_code": "210103",
+    "major_name": "智慧农业技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_nlmydl/nlmydl_nyl/202502/P020250207562444554501.pdf"
+  },
+  {
+    "major_code": "210104",
+    "major_name": "设施园艺",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_nlmydl/nlmydl_nyl/202502/P020250207562256870260.pdf"
+  },
+  {
+    "major_code": "210301",
+    "major_name": "动物医学",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_nlmydl/nlmydl_xmyl/202502/P020250207563221301602.pdf"
+  },
+  {
+    "major_code": "210304",
+    "major_name": "现代畜牧",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_nlmydl/nlmydl_xmyl/202502/P020250207563004543988.pdf"
+  },
+  {
+    "major_code": "270201",
+    "major_name": "应用化工技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_swyhgdl/zbzzdl_hgjsl/202502/P020250207564037554706.pdf"
+  },
+  {
+    "major_code": "240101",
+    "major_name": "建筑设计",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_tmjzdl/tmjzdl_jzsjl/202502/P020250207562509805918.pdf"
+  },
+  {
+    "major_code": "240301",
+    "major_name": "建筑工程",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_tmjzdl/tmjzdl_tjsgl/202502/P020250207562701057058.pdf"
+  },
+  {
+    "major_code": "240501",
+    "major_name": "工程造价",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_tmjzdl/tmjzdl_jsgcgll/202502/P020250207563010313671.pdf"
+  },
+  {
+    "major_code": "240502",
+    "major_name": "建设工程管理",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_tmjzdl/tmjzdl_jsgcgll/202502/P020250207562874262944.pdf"
+  },
+  {
+    "major_code": "350101",
+    "major_name": "工艺美术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_whysdl/whysdl_yssjl/202502/P020250207568084025781.pdf"
+  },
+  {
+    "major_code": "350102",
+    "major_name": "视觉传达设计",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_whysdl/whysdl_yssjl/202502/P020250207567958976854.pdf"
+  },
+  {
+    "major_code": "350103",
+    "major_name": "数字媒体艺术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_whysdl/whysdl_yssjl/202502/P020250207567833226930.pdf"
+  },
+  {
+    "major_code": "350105",
+    "major_name": "服装与服饰设计",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_whysdl/whysdl_yssjl/202502/P020250207567695599400.pdf"
+  },
+  {
+    "major_code": "350106",
+    "major_name": "环境艺术设计",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_whysdl/whysdl_yssjl/202502/P020250207567554062130.pdf"
+  },
+  {
+    "major_code": "350201",
+    "major_name": "音乐表演",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_whysdl/whysdl_byysl/202502/P020250207568370441730.pdf"
+  },
+  {
+    "major_code": "350202",
+    "major_name": "舞蹈表演与编导",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_whysdl/whysdl_byysl/202502/P020250207568261557583.pdf"
+  },
+  {
+    "major_code": "360101",
+    "major_name": "网络与新媒体",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_xwcbdl/xwcbdl_xwcbl/202502/P020250207568741316006.pdf"
+  },
+  {
+    "major_code": "360201",
+    "major_name": "播音与主持",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_xwcbdl/xwcbdl_gbysl/202502/P020250207569870625040.pdf"
+  },
+  {
+    "major_code": "360202",
+    "major_name": "影视摄影与制作",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_xwcbdl/xwcbdl_gbysl/202502/P020250207569608014782.pdf"
+  },
+  {
+    "major_code": "360204",
+    "major_name": "影视编导",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_xwcbdl/xwcbdl_gbysl/202502/P020250207569352987098.pdf"
+  },
+  {
+    "major_code": "360206",
+    "major_name": "数字动画",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_xwcbdl/xwcbdl_gbysl/202502/P020250207569137703429.pdf"
+  },
+  {
+    "major_code": "320201",
+    "major_name": "护理",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_yywsdl/yywsdl_hll/202502/P020250207566027467426.pdf"
+  },
+  {
+    "major_code": "320301",
+    "major_name": "药学",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_yywsdl/yywsdl_yxl/202502/P020250207566355586763.pdf"
+  },
+  {
+    "major_code": "320401",
+    "major_name": "中药制药",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_yywsdl/yywsdl_zyyl/202502/P020250207566597532468.pdf"
+  },
+  {
+    "major_code": "320601",
+    "major_name": "康复治疗",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_yywsdl/yywsdl_kfzll/202502/P020250207567009670238.pdf"
+  },
+  {
+    "major_code": "260101",
+    "major_name": "机械设计制造及自动化",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_zbzzdl/zbzzdl_jxsjzzl/202502/P020250207563926311806.pdf"
+  },
+  {
+    "major_code": "260102",
+    "major_name": "智能制造工程技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_zbzzdl/zbzzdl_jxsjzzl/202502/P020250207563797508922.pdf"
+  },
+  {
+    "major_code": "260104",
+    "major_name": "工业设计",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_zbzzdl/zbzzdl_jxsjzzl/202502/P020250207563639287543.pdf"
+  },
+  {
+    "major_code": "260106",
+    "major_name": "材料成型及控制工程",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_zbzzdl/zbzzdl_jxsjzzl/202502/P020250207563521146755.pdf"
+  },
+  {
+    "major_code": "260203",
+    "major_name": "电梯工程技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_zbzzdl/zbzzdl_jdsbl/202502/P020250207564178269370.pdf"
+  },
+  {
+    "major_code": "260301",
+    "major_name": "机械电子工程技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_zbzzdl/zbzzdl_zdhl/202502/P020250207564804191258.pdf"
+  },
+  {
+    "major_code": "260302",
+    "major_name": "电气工程及自动化",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_zbzzdl/zbzzdl_zdhl/202502/P020250207564611752213.pdf"
+  },
+  {
+    "major_code": "260304",
+    "major_name": "机器人技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_zbzzdl/zbzzdl_zdhl/202502/P020250207564494315583.pdf"
+  },
+  {
+    "major_code": "260305",
+    "major_name": "自动化技术与应用",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_zbzzdl/zbzzdl_zdhl/202502/P020250207564339672631.pdf"
+  },
+  {
+    "major_code": "260601",
+    "major_name": "航空智能制造技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_zbzzdl/zbzzdl_hkzbl/202502/P020250207565266766891.pdf"
+  },
+  {
+    "major_code": "260602",
+    "major_name": "飞行器维修工程技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_zbzzdl/zbzzdl_hkzbl/202502/P020250207565146507968.pdf"
+  },
+  {
+    "major_code": "260604",
+    "major_name": "无人机系统应用技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_zbzzdl/zbzzdl_hkzbl/202502/P020250207565027004362.pdf"
+  },
+  {
+    "major_code": "260701",
+    "major_name": "汽车工程技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_zbzzdl/zbzzdl_qczzl/202502/P020250207565576473213.pdf"
+  },
+  {
+    "major_code": "260702",
+    "major_name": "新能源汽车工程技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_zbzzdl/zbzzdl_qczzl/202502/P020250207565449795374.pdf"
+  },
+  {
+    "major_code": "220801",
+    "major_name": "生态环境工程技术",
+    "education_level": "高等职业教育本科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_bk/bk_zyhjyaqdl/zyhjyaqdl_hjbhl/202502/P020250207562061146608.pdf"
+  },
+  {
+    "major_code": "530101",
+    "major_name": "财税大数据应用",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_czswl/202502/P020250207536495240932.pdf"
+  },
+  {
+    "major_code": "530201",
+    "major_name": "金融服务与管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_jrl/202502/P020250207537478444864.pdf"
+  },
+  {
+    "major_code": "530202",
+    "major_name": "金融科技应用",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_jrl/202502/P020250207537316253287.pdf"
+  },
+  {
+    "major_code": "530203",
+    "major_name": "保险实务",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_jrl/202502/P020250207537177316523.pdf"
+  },
+  {
+    "major_code": "530205",
+    "major_name": "财富管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_jrl/202502/P020250207537035417339.pdf"
+  },
+  {
+    "major_code": "530206",
+    "major_name": "证券实务",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_jrl/202502/P020250207536893047075.pdf"
+  },
+  {
+    "major_code": "530301",
+    "major_name": "大数据与财务管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_cwkjl/202502/P020250207538181154911.pdf"
+  },
+  {
+    "major_code": "530302",
+    "major_name": "大数据与会计",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_cwkjl/202502/P020250207538044820150.pdf"
+  },
+  {
+    "major_code": "530303",
+    "major_name": "大数据与审计",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_cwkjl/202502/P020250207537833291309.pdf"
+  },
+  {
+    "major_code": "530304",
+    "major_name": "会计信息管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_cwkjl/202502/P020250207537700760215.pdf"
+  },
+  {
+    "major_code": "530401",
+    "major_name": "统计与大数据分析",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_tjl/202502/P020250207539162364092.pdf"
+  },
+  {
+    "major_code": "530403",
+    "major_name": "市场调查与统计分析",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_tjl/202502/P020250207539014668581.pdf"
+  },
+  {
+    "major_code": "530501",
+    "major_name": "国际经济与贸易",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_jjmyl/202502/P020250207539714114779.pdf"
+  },
+  {
+    "major_code": "530502",
+    "major_name": "国际商务",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_jjmyl/202502/P020250207539570623593.pdf"
+  },
+  {
+    "major_code": "530503",
+    "major_name": "关务与外贸服务",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_jjmyl/202502/P020250207539441891773.pdf"
+  },
+  {
+    "major_code": "530601",
+    "major_name": "工商企业管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_gsggl/202502/P020250207541483550769.pdf"
+  },
+  {
+    "major_code": "530602",
+    "major_name": "连锁经营与管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_gsggl/202502/P020250207540463735777.pdf"
+  },
+  {
+    "major_code": "530603",
+    "major_name": "商务管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_gsggl/202502/P020250207540315338930.pdf"
+  },
+  {
+    "major_code": "530604",
+    "major_name": "中小企业创业与经营",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_gsggl/202502/P020250207540138120226.pdf"
+  },
+  {
+    "major_code": "530605",
+    "major_name": "市场营销",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_gsggl/202502/P020250207539950943391.pdf"
+  },
+  {
+    "major_code": "530701",
+    "major_name": "电子商务",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_dzswl/202502/P020250207542604495307.pdf"
+  },
+  {
+    "major_code": "530702",
+    "major_name": "跨境电子商务",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_dzswl/202502/P020250207542467420725.pdf"
+  },
+  {
+    "major_code": "530703",
+    "major_name": "移动商务",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_dzswl/202502/P020250207542306648526.pdf"
+  },
+  {
+    "major_code": "530704",
+    "major_name": "网络营销与直播电商",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_dzswl/202502/P020250207542166351483.pdf"
+  },
+  {
+    "major_code": "530705",
+    "major_name": "农村电子商务",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_dzswl/202502/P020250207541892624991.pdf"
+  },
+  {
+    "major_code": "530802",
+    "major_name": "现代物流管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_wll/202502/P020250207543564416038.pdf"
+  },
+  {
+    "major_code": "530803",
+    "major_name": "航空物流管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_wll/202502/P020250207543390916417.pdf"
+  },
+  {
+    "major_code": "530804",
+    "major_name": "铁路物流管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_wll/202502/P020250207543247806721.pdf"
+  },
+  {
+    "major_code": "530806",
+    "major_name": "港口物流管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_wll/202502/P020250207543098764667.pdf"
+  },
+  {
+    "major_code": "530809",
+    "major_name": "智能物流技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_cjsmdl/cjsmdl_wll/202502/P020250207542961145488.pdf"
+  },
+  {
+    "major_code": "510101",
+    "major_name": "电子信息工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_dzyxxdl/dzxxdl_dzxxl/202502/P020250207530885821856.pdf"
+  },
+  {
+    "major_code": "510102",
+    "major_name": "物联网应用技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_dzyxxdl/dzxxdl_dzxxl/202502/P020250516598419967636.pdf"
+  },
+  {
+    "major_code": "510103",
+    "major_name": "应用电子技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_dzyxxdl/dzxxdl_dzxxl/202502/P020250207530574248008.pdf"
+  },
+  {
+    "major_code": "510104",
+    "major_name": "电子产品制造技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_dzyxxdl/dzxxdl_dzxxl/202502/P020250207530378851973.pdf"
+  },
+  {
+    "major_code": "510105",
+    "major_name": "电子产品检测技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_dzyxxdl/dzxxdl_dzxxl/202502/P020250207530170176461.pdf"
+  },
+  {
+    "major_code": "510201",
+    "major_name": "计算机应用技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_dzyxxdl/dzxxdl_jsjl/202502/P020250207533801162064.pdf"
+  },
+  {
+    "major_code": "510202",
+    "major_name": "计算机网络技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_dzyxxdl/dzxxdl_jsjl/202502/P020250207533459609558.pdf"
+  },
+  {
+    "major_code": "510203",
+    "major_name": "软件技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_dzyxxdl/dzxxdl_jsjl/202502/P020250207533323690137.pdf"
+  },
+  {
+    "major_code": "510204",
+    "major_name": "数字媒体技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_dzyxxdl/dzxxdl_jsjl/202502/P020250207533156662261.pdf"
+  },
+  {
+    "major_code": "510205",
+    "major_name": "大数据技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_dzyxxdl/dzxxdl_jsjl/202502/P020250207532993683513.pdf"
+  },
+  {
+    "major_code": "510301",
+    "major_name": "现代通信技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_dzyxxdl/dzxxdl_txl/202502/P020250207535356609887.pdf"
+  },
+  {
+    "major_code": "510302",
+    "major_name": "现代移动通信技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_dzyxxdl/dzxxdl_txl/202502/P020250207535185426042.pdf"
+  },
+  {
+    "major_code": "510303",
+    "major_name": "通信软件技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_dzyxxdl/dzxxdl_txl/202502/P020250207534966444348.pdf"
+  },
+  {
+    "major_code": "510304",
+    "major_name": "卫星通信与导航技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_dzyxxdl/dzxxdl_txl/202502/P020250207534649449828.pdf"
+  },
+  {
+    "major_code": "510306",
+    "major_name": "通信系统运行管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_dzyxxdl/dzxxdl_txl/202502/P020250207534496886298.pdf"
+  },
+  {
+    "major_code": "580401",
+    "major_name": "法律事务",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_gaysfdl/gaysfdl_flswl/202502/P020250207554127095580.pdf"
+  },
+  {
+    "major_code": "580402",
+    "major_name": "法律文秘",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_gaysfdl/gaysfdl_flswl/202502/P020250207554374837804.pdf"
+  },
+  {
+    "major_code": "580505",
+    "major_name": "社区矫正",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_gaysfdl/gaysfdl_flzxl/202502/P020250207555597515256.pdf"
+  },
+  {
+    "major_code": "580603",
+    "major_name": "司法鉴定技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_gaysfdl/gaysfdl_sfjsl/202502/P020250207556267164080.pdf"
+  },
+  {
+    "major_code": "580701",
+    "major_name": "安全防范技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_gaysfdl/gaysfdl_aqffl/202502/P020250207556635945873.pdf"
+  },
+  {
+    "major_code": "580702",
+    "major_name": "安全保卫管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_gaysfdl/gaysfdl_aqffl/202502/P020250207556945236411.pdf"
+  },
+  {
+    "major_code": "580703",
+    "major_name": "智能安防运营管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_gaysfdl/gaysfdl_aqffl/202502/P020250207557262705232.pdf"
+  },
+  {
+    "major_code": "590101",
+    "major_name": "社会工作",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_ggglyfwdl/ggglyfwdl_ggsyl/202502/P020250207557219470920.pdf"
+  },
+  {
+    "major_code": "590102",
+    "major_name": "党务工作",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_ggglyfwdl/ggglyfwdl_ggsyl/202502/P020250207557086650382.pdf"
+  },
+  {
+    "major_code": "590104",
+    "major_name": "社区管理与服务",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_ggglyfwdl/ggglyfwdl_ggsyl/202502/P020250207556944006785.pdf"
+  },
+  {
+    "major_code": "590202",
+    "major_name": "人力资源管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_ggglyfwdl/ggglyfwdl_gggll/202502/P020250207557906950427.pdf"
+  },
+  {
+    "major_code": "590209",
+    "major_name": "职业指导与服务",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_ggglyfwdl/ggglyfwdl_gggll/202502/P020250207557541169430.pdf"
+  },
+  {
+    "major_code": "590210",
+    "major_name": "标准化技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_ggglyfwdl/ggglyfwdl_gggll/202502/P020250207557392141051.pdf"
+  },
+  {
+    "major_code": "590301",
+    "major_name": "现代家政服务与管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_ggglyfwdl/ggglyfwdl_ggfwl/202502/P020250207558766671083.pdf"
+  },
+  {
+    "major_code": "590302",
+    "major_name": "智慧健康养老服务与管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_ggglyfwdl/ggglyfwdl_ggfwl/202502/P020250207558594318394.pdf"
+  },
+  {
+    "major_code": "590304",
+    "major_name": "婚庆服务与管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_ggglyfwdl/ggglyfwdl_ggfwl/202502/P020250207558219204044.pdf"
+  },
+  {
+    "major_code": "590306",
+    "major_name": "殡葬设备维护技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_ggglyfwdl/ggglyfwdl_ggfwl/202502/P020250207558079948407.pdf"
+  },
+  {
+    "major_code": "590401",
+    "major_name": "现代文秘",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_ggglyfwdl/ggglyfwdl_wml/202502/P020250207558949382819.pdf"
+  },
+  {
+    "major_code": "500101",
+    "major_name": "铁道工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_tdysl/202502/P020250207526720920093.pdf"
+  },
+  {
+    "major_code": "500102",
+    "major_name": "高速铁路施工与维护",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_tdysl/202502/P020250207527043331235.pdf"
+  },
+  {
+    "major_code": "500103",
+    "major_name": "铁道桥梁隧道工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_tdysl/202502/P020250207528283583666.pdf"
+  },
+  {
+    "major_code": "500104",
+    "major_name": "铁道养路机械应用技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_tdysl/202502/P020250207528796950393.pdf"
+  },
+  {
+    "major_code": "500105",
+    "major_name": "铁道机车运用与维护",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_tdysl/202502/P020250207529084204705.pdf"
+  },
+  {
+    "major_code": "500201",
+    "major_name": "道路与桥梁工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_tlysl/202502/P020250207531349970858.pdf"
+  },
+  {
+    "major_code": "500203",
+    "major_name": "智能工程机械运用技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_tlysl/202502/P020250207531650591270.pdf"
+  },
+  {
+    "major_code": "500204",
+    "major_name": "道路工程检测技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_tlysl/202502/P020250207532005559902.pdf"
+  },
+  {
+    "major_code": "500205",
+    "major_name": "道路工程造价",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_tlysl/202502/P020250207532312900255.pdf"
+  },
+  {
+    "major_code": "500207",
+    "major_name": "智能交通技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_tlysl/202502/P020250207532780415882.pdf"
+  },
+  {
+    "major_code": "500302",
+    "major_name": "港口与航道工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_ssysl/202502/P020250207536027517906.pdf"
+  },
+  {
+    "major_code": "500304",
+    "major_name": "国际邮轮乘务管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_ssysl/202502/P020250207536327520707.pdf"
+  },
+  {
+    "major_code": "500305",
+    "major_name": "水路运输安全管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_ssysl/202502/P020250207536592177123.pdf"
+  },
+  {
+    "major_code": "500306",
+    "major_name": "港口机械与智能控制",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_ssysl/202502/P020250207537011659093.pdf"
+  },
+  {
+    "major_code": "500308",
+    "major_name": "船舶电子电气技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_ssysl/202502/P020250207537315081133.pdf"
+  },
+  {
+    "major_code": "500401",
+    "major_name": "民航运输服务",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_hkysl/202502/P020250207542305663212.pdf"
+  },
+  {
+    "major_code": "500405",
+    "major_name": "空中乘务",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_hkysl/202502/P020250207542782977878.pdf"
+  },
+  {
+    "major_code": "500406",
+    "major_name": "民航安全技术管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_hkysl/202502/P020250207543403809445.pdf"
+  },
+  {
+    "major_code": "500407",
+    "major_name": "民航空中安全保卫",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_hkysl/202502/P020250207545431865867.pdf"
+  },
+  {
+    "major_code": "500408",
+    "major_name": "机场运行服务与管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_hkysl/202502/P020250207547047426500.pdf"
+  },
+  {
+    "major_code": "500601",
+    "major_name": "城市轨道交通工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_csgdjtl/202502/P020250207550528356303.pdf"
+  },
+  {
+    "major_code": "500602",
+    "major_name": "城市轨道车辆应用技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_csgdjtl/202502/P020250207550838820938.pdf"
+  },
+  {
+    "major_code": "500603",
+    "major_name": "城市轨道交通机电技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_csgdjtl/202502/P020250207551144536867.pdf"
+  },
+  {
+    "major_code": "500604",
+    "major_name": "城市轨道交通通信信号技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_csgdjtl/202502/P020250207551424605334.pdf"
+  },
+  {
+    "major_code": "500605",
+    "major_name": "城市轨道交通供配电技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_csgdjtl/202502/P020250207551893050449.pdf"
+  },
+  {
+    "major_code": "500701",
+    "major_name": "邮政快递运营管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_yzl/202502/P020250207552820960248.pdf"
+  },
+  {
+    "major_code": "500702",
+    "major_name": "邮政快递智能技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jtysdl/jtysdl_yzl/202502/P020250207553125520250.pdf"
+  },
+  {
+    "major_code": "570101K",
+    "major_name": "早期教育",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jyytydl/jyytydl_jyl/202502/P020250207552369858391.pdf"
+  },
+  {
+    "major_code": "570102K",
+    "major_name": "学前教育",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jyytydl/jyytydl_jyl/202502/P020250207552226994375.pdf"
+  },
+  {
+    "major_code": "570103K",
+    "major_name": "小学教育",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jyytydl/jyytydl_jyl/202502/P020250207552089033724.pdf"
+  },
+  {
+    "major_code": "570104K",
+    "major_name": "小学语文教育",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jyytydl/jyytydl_jyl/202502/P020250207551935185111.pdf"
+  },
+  {
+    "major_code": "570105K",
+    "major_name": "小学数学教育",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jyytydl/jyytydl_jyl/202502/P020250207551779857595.pdf"
+  },
+  {
+    "major_code": "570201",
+    "major_name": "商务英语",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jyytydl/jyytydl_yyl/202502/P020250207554543068266.pdf"
+  },
+  {
+    "major_code": "570202",
+    "major_name": "应用英语",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jyytydl/jyytydl_yyl/202502/P020250207554325602528.pdf"
+  },
+  {
+    "major_code": "570203",
+    "major_name": "旅游英语",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jyytydl/jyytydl_yyl/202502/P020250207554206806460.pdf"
+  },
+  {
+    "major_code": "570204",
+    "major_name": "应用韩语",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jyytydl/jyytydl_yyl/202502/P020250207554037937743.pdf"
+  },
+  {
+    "major_code": "570205",
+    "major_name": "商务日语",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jyytydl/jyytydl_yyl/202502/P020250207553894679190.pdf"
+  },
+  {
+    "major_code": "570301",
+    "major_name": "社会体育",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jyytydl/jyytydl_tyl/202502/P020250207556346780340.pdf"
+  },
+  {
+    "major_code": "570302",
+    "major_name": "休闲体育",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jyytydl/jyytydl_tyl/202502/P020250207556195554292.pdf"
+  },
+  {
+    "major_code": "570303",
+    "major_name": "运动训练",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jyytydl/jyytydl_tyl/202502/P020250207556070362776.pdf"
+  },
+  {
+    "major_code": "570304",
+    "major_name": "民族传统体育",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jyytydl/jyytydl_tyl/202502/P020250207555950251049.pdf"
+  },
+  {
+    "major_code": "570307",
+    "major_name": "健身指导与管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_jyytydl/jyytydl_tyl/202502/P020250207555816008610.pdf"
+  },
+  {
+    "major_code": "540101",
+    "major_name": "旅游管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_lydl/lydl_lyl/202502/P020250207546565208630.pdf"
+  },
+  {
+    "major_code": "540102",
+    "major_name": "导游",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_lydl/lydl_lyl/202502/P020250207546414632408.pdf"
+  },
+  {
+    "major_code": "540103",
+    "major_name": "旅行社经营与管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_lydl/lydl_lyl/202502/P020250207546276489909.pdf"
+  },
+  {
+    "major_code": "540104",
+    "major_name": "定制旅行管理与服务",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_lydl/lydl_lyl/202502/P020250207546146796713.pdf"
+  },
+  {
+    "major_code": "540105",
+    "major_name": "研学旅行管理与服务",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_lydl/lydl_lyl/202502/P020250207546004445387.pdf"
+  },
+  {
+    "major_code": "540201",
+    "major_name": "餐饮智能管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_lydl/lydl_cyl/202502/P020250207547330723331.pdf"
+  },
+  {
+    "major_code": "540202",
+    "major_name": "烹饪工艺与营养",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_lydl/lydl_cyl/202502/P020250207547199067653.pdf"
+  },
+  {
+    "major_code": "540203",
+    "major_name": "中西面点工艺",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_lydl/lydl_cyl/202502/P020250207547062265052.pdf"
+  },
+  {
+    "major_code": "540204",
+    "major_name": "西式烹饪工艺",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_lydl/lydl_cyl/202502/P020250207546934193749.pdf"
+  },
+  {
+    "major_code": "540205",
+    "major_name": "营养配餐",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_lydl/lydl_cyl/202502/P020250207546796672533.pdf"
+  },
+  {
+    "major_code": "410102",
+    "major_name": "作物生产与经营管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nlmydl/nlmydl_nyl/202502/P020250207513945119934.pdf"
+  },
+  {
+    "major_code": "410103",
+    "major_name": "现代农业技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nlmydl/nlmydl_nyl/202502/P020250207513521959802.pdf"
+  },
+  {
+    "major_code": "410105",
+    "major_name": "园艺技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nlmydl/nlmydl_nyl/202502/P020250207513230956686.pdf"
+  },
+  {
+    "major_code": "410106",
+    "major_name": "植物保护与检疫技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nlmydl/nlmydl_nyl/202502/P020250207512973899768.pdf"
+  },
+  {
+    "major_code": "410107",
+    "major_name": "茶叶生产与加工技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nlmydl/nlmydl_nyl/202502/P020250207512696920472.pdf"
+  },
+  {
+    "major_code": "410202",
+    "major_name": "园林技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nlmydl/nlmydl_lyl/202502/P020250207516722497211.pdf"
+  },
+  {
+    "major_code": "410204",
+    "major_name": "花卉生产与花艺",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nlmydl/nlmydl_lyl/202502/P020250207516003932749.pdf"
+  },
+  {
+    "major_code": "410206",
+    "major_name": "森林和草原资源保护",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nlmydl/nlmydl_lyl/202502/P020250207515603921044.pdf"
+  },
+  {
+    "major_code": "410207",
+    "major_name": "林草生态保护与修复",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nlmydl/nlmydl_lyl/202502/P020250207515011024367.pdf"
+  },
+  {
+    "major_code": "410210",
+    "major_name": "森林生态旅游与康养",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nlmydl/nlmydl_lyl/202502/P020250207514693236940.pdf"
+  },
+  {
+    "major_code": "410301",
+    "major_name": "动物医学",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nlmydl/nlmydl_xmyl/202502/P020250207521200573443.pdf"
+  },
+  {
+    "major_code": "410302",
+    "major_name": "动物药学",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nlmydl/nlmydl_xmyl/202502/P020250207520898037685.pdf"
+  },
+  {
+    "major_code": "410303",
+    "major_name": "畜牧兽医",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nlmydl/nlmydl_xmyl/202502/P020250207520502285384.pdf"
+  },
+  {
+    "major_code": "410304",
+    "major_name": "中兽医",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nlmydl/nlmydl_xmyl/202502/P020250207520234679268.pdf"
+  },
+  {
+    "major_code": "410305",
+    "major_name": "宠物医疗技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nlmydl/nlmydl_xmyl/202502/P020250207519926085986.pdf"
+  },
+  {
+    "major_code": "410401",
+    "major_name": "水产养殖技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nlmydl/nlmydl_yyl/202502/P020250207521749752647.pdf"
+  },
+  {
+    "major_code": "430104",
+    "major_name": "分布式发电与智能微电网技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_dljsl/202502/P020250207503024584406.pdf"
+  },
+  {
+    "major_code": "430105",
+    "major_name": "电力系统自动化技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_dljsl/202502/P020250207503650930772.pdf"
+  },
+  {
+    "major_code": "430106",
+    "major_name": "电力系统继电保护技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_dljsl/202502/P020250207504487131679.pdf"
+  },
+  {
+    "major_code": "430107",
+    "major_name": "输配电工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_dljsl/202502/P020250207506285729165.pdf"
+  },
+  {
+    "major_code": "430108",
+    "major_name": "供用电技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_dljsl/202502/P020250207506725755514.pdf"
+  },
+  {
+    "major_code": "430201",
+    "major_name": "热能动力工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_rnyfdgcl/202502/P020250207507511603875.pdf"
+  },
+  {
+    "major_code": "430203",
+    "major_name": "地热开发技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_rnyfdgcl/202502/P020250207507864656760.pdf"
+  },
+  {
+    "major_code": "430204",
+    "major_name": "太阳能光热技术与应用",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_rnyfdgcl/202502/P020250207508238402496.pdf"
+  },
+  {
+    "major_code": "430205",
+    "major_name": "发电运行技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_rnyfdgcl/202502/P020250207508867937376.pdf"
+  },
+  {
+    "major_code": "430206",
+    "major_name": "热工自动化技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_rnyfdgcl/202502/P020250207509307809080.pdf"
+  },
+  {
+    "major_code": "430301",
+    "major_name": "光伏工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_xnyfdgcl/202502/P020250207510770251032.pdf"
+  },
+  {
+    "major_code": "430302",
+    "major_name": "风力发电工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_xnyfdgcl/202502/P020250207511297922058.pdf"
+  },
+  {
+    "major_code": "430303",
+    "major_name": "生物质能应用技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_xnyfdgcl/202502/P020250207511606803032.pdf"
+  },
+  {
+    "major_code": "430305",
+    "major_name": "工业节能技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_xnyfdgcl/202502/P020250207512000649994.pdf"
+  },
+  {
+    "major_code": "430306",
+    "major_name": "节电技术与管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_xnyfdgcl/202502/P020250207512988228820.pdf"
+  },
+  {
+    "major_code": "430401",
+    "major_name": "钢铁智能冶金技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_hsjscll/202502/P020250207514777962226.pdf"
+  },
+  {
+    "major_code": "430402",
+    "major_name": "智能轧钢技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_hsjscll/202502/P020250207515093582676.pdf"
+  },
+  {
+    "major_code": "430501",
+    "major_name": "有色金属智能冶金技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_ysjscll/202502/P020250207515715029214.pdf"
+  },
+  {
+    "major_code": "430505",
+    "major_name": "稀土材料技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_ysjscll/202502/P020250207516038159261.pdf"
+  },
+  {
+    "major_code": "430601",
+    "major_name": "材料工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_fjscll/202502/P020250207516967907475.pdf"
+  },
+  {
+    "major_code": "430602",
+    "major_name": "高分子材料智能制造技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_fjscll/202502/P020250207517389976190.pdf"
+  },
+  {
+    "major_code": "430603",
+    "major_name": "复合材料智能制造技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_fjscll/202502/P020250207517745776698.pdf"
+  },
+  {
+    "major_code": "430604",
+    "major_name": "航空复合材料成型与加工技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_fjscll/202502/P020250207518040921888.pdf"
+  },
+  {
+    "major_code": "430607",
+    "major_name": "硅材料制备技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_fjscll/202502/P020250207518401651008.pdf"
+  },
+  {
+    "major_code": "430701",
+    "major_name": "建筑材料工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_jzcll/202502/P020250207519062840169.pdf"
+  },
+  {
+    "major_code": "430705",
+    "major_name": "装配式建筑构件智能制造技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_nydlycldl/zyhjyaqdl_jzcll/202502/P020250207519428164089.pdf"
+  },
+  {
+    "major_code": "480103",
+    "major_name": "家具设计与制造",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_qgfzdl/qgfzdl_qhgl/202502/P020250207523063727447.pdf"
+  },
+  {
+    "major_code": "480108",
+    "major_name": "皮具制作与工艺",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_qgfzdl/qgfzdl_qhgl/202502/P020250207522833678064.pdf"
+  },
+  {
+    "major_code": "480302",
+    "major_name": "印刷媒体技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_qgfzdl/qgfzdl_ysl/202502/P020250207523665789782.pdf"
+  },
+  {
+    "major_code": "480303",
+    "major_name": "印刷数字图文技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_qgfzdl/qgfzdl_ysl/202502/P020250207523461026882.pdf"
+  },
+  {
+    "major_code": "480402",
+    "major_name": "服装设计与工艺",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_qgfzdl/qgfzdl_fzfzl/202502/P020250207524541432409.pdf"
+  },
+  {
+    "major_code": "480405",
+    "major_name": "数字化染整技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_qgfzdl/qgfzdl_fzfzl/202502/P020250207524295140566.pdf"
+  },
+  {
+    "major_code": "480409",
+    "major_name": "现代非织造技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_qgfzdl/qgfzdl_fzfzl/202502/P020250207524087593358.pdf"
+  },
+  {
+    "major_code": "450101",
+    "major_name": "水文与水资源技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_sldl/sldl_swszyl/202502/P020250207516158708849.pdf"
+  },
+  {
+    "major_code": "450202",
+    "major_name": "智慧水利技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_sldl/sldl_slgcygll/202502/P020250207516627589995.pdf"
+  },
+  {
+    "major_code": "450204",
+    "major_name": "水利水电工程智能管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_sldl/sldl_slgcygll/202502/P020250207516497382379.pdf"
+  },
+  {
+    "major_code": "450208",
+    "major_name": "智能水务管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_sldl/sldl_slgcygll/202502/P020250207516352947557.pdf"
+  },
+  {
+    "major_code": "450401",
+    "major_name": "水土保持技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_sldl/sldl_stbcyshjl/202502/P020250207517066279124.pdf"
+  },
+  {
+    "major_code": "450403",
+    "major_name": "水生态修复技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_sldl/sldl_stbcyshjl/202502/P020250207516907205219.pdf"
+  },
+  {
+    "major_code": "490101",
+    "major_name": "食品智能加工技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_spypylsdl/spypylsdl_spl/202502/P020250207526318199733.pdf"
+  },
+  {
+    "major_code": "490102",
+    "major_name": "食品质量与安全",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_spypylsdl/spypylsdl_spl/202502/P020250207526074646023.pdf"
+  },
+  {
+    "major_code": "490103",
+    "major_name": "食品营养与健康",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_spypylsdl/spypylsdl_spl/202502/P020250207525797928021.pdf"
+  },
+  {
+    "major_code": "490104",
+    "major_name": "食品检验检测技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_spypylsdl/spypylsdl_spl/202502/P020250207525558989236.pdf"
+  },
+  {
+    "major_code": "490201",
+    "major_name": "药品生产技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_spypylsdl/spypylsdl_ypyylqxl/202502/P020250207529914464449.pdf"
+  },
+  {
+    "major_code": "490202",
+    "major_name": "生物制药技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_spypylsdl/spypylsdl_ypyylqxl/202502/P020250207529694641840.pdf"
+  },
+  {
+    "major_code": "490203",
+    "major_name": "药物制剂技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_spypylsdl/spypylsdl_ypyylqxl/202502/P020250207529491755456.pdf"
+  },
+  {
+    "major_code": "490204",
+    "major_name": "化学制药技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_spypylsdl/spypylsdl_ypyylqxl/202502/P020250207529277642915.pdf"
+  },
+  {
+    "major_code": "490206",
+    "major_name": "药品质量与安全",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_spypylsdl/spypylsdl_ypyylqxl/202502/P020250207529055295257.pdf"
+  },
+  {
+    "major_code": "490301",
+    "major_name": "粮食工程技术与管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_spypylsdl/spypylsdl_lsl/202502/P020250207530692988770.pdf"
+  },
+  {
+    "major_code": "490302",
+    "major_name": "粮食储运与质量安全",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_spypylsdl/spypylsdl_lsl/202502/P020250207530462034658.pdf"
+  },
+  {
+    "major_code": "470101",
+    "major_name": "食品生物技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_swyhgdl/zbzzdl_swjsl/202502/P020250207520998255022.pdf"
+  },
+  {
+    "major_code": "470102",
+    "major_name": "药品生物技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_swyhgdl/zbzzdl_swjsl/202502/P020250207521381867895.pdf"
+  },
+  {
+    "major_code": "470103",
+    "major_name": "农业生物技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_swyhgdl/zbzzdl_swjsl/202502/P020250207521853674028.pdf"
+  },
+  {
+    "major_code": "470105",
+    "major_name": "生物产品检验检疫",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_swyhgdl/zbzzdl_swjsl/202502/P020250207522188890652.pdf"
+  },
+  {
+    "major_code": "470106",
+    "major_name": "绿色生物制造技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_swyhgdl/zbzzdl_swjsl/202502/P020250207522505889646.pdf"
+  },
+  {
+    "major_code": "470201",
+    "major_name": "应用化工技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_swyhgdl/zbzzdl_hgjsl/202502/P020250207523467068832.pdf"
+  },
+  {
+    "major_code": "470208",
+    "major_name": "分析检验技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_swyhgdl/zbzzdl_hgjsl/202502/P020250207523915873912.pdf"
+  },
+  {
+    "major_code": "470209",
+    "major_name": "化工智能制造技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_swyhgdl/zbzzdl_hgjsl/202502/P020250207524220107895.pdf"
+  },
+  {
+    "major_code": "470210",
+    "major_name": "化工装备技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_swyhgdl/zbzzdl_hgjsl/202502/P020250207524606338993.pdf"
+  },
+  {
+    "major_code": "440101",
+    "major_name": "建筑设计",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_jzsjl/202502/P020250207511714826105.pdf"
+  },
+  {
+    "major_code": "440102",
+    "major_name": "建筑装饰工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_jzsjl/202502/P020250207511550044763.pdf"
+  },
+  {
+    "major_code": "440104",
+    "major_name": "园林工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_jzsjl/202502/P020250207511303403849.pdf"
+  },
+  {
+    "major_code": "440105",
+    "major_name": "风景园林设计",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_jzsjl/202502/P020250207511147379970.pdf"
+  },
+  {
+    "major_code": "440106",
+    "major_name": "建筑室内设计",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_jzsjl/202502/P020250207510956512603.pdf"
+  },
+  {
+    "major_code": "440201",
+    "major_name": "城乡规划",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_cxghygll/202502/P020250207512125239738.pdf"
+  },
+  {
+    "major_code": "440202",
+    "major_name": "智慧城市管理技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_cxghygll/202502/P020250207511944433089.pdf"
+  },
+  {
+    "major_code": "440301",
+    "major_name": "建筑工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_tjsgl/202502/P020250207513243977643.pdf"
+  },
+  {
+    "major_code": "440302",
+    "major_name": "装配式建筑工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_tjsgl/202502/P020250207513100241395.pdf"
+  },
+  {
+    "major_code": "440303",
+    "major_name": "建筑钢结构工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_tjsgl/202502/P020250207512938561499.pdf"
+  },
+  {
+    "major_code": "440304",
+    "major_name": "智能建造技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_tjsgl/202502/P020250207512764318855.pdf"
+  },
+  {
+    "major_code": "440305",
+    "major_name": "地下与隧道工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_tjsgl/202502/P020250207512579714743.pdf"
+  },
+  {
+    "major_code": "440404",
+    "major_name": "建筑智能化工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_jzsbl/202502/P020250207513618372652.pdf"
+  },
+  {
+    "major_code": "440406",
+    "major_name": "建筑消防技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_jzsbl/202502/P020250207513457532878.pdf"
+  },
+  {
+    "major_code": "440501",
+    "major_name": "工程造价",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_jsgcgll/202502/P020250207514680118756.pdf"
+  },
+  {
+    "major_code": "440502",
+    "major_name": "建设工程管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_jsgcgll/202502/P020250207514340063467.pdf"
+  },
+  {
+    "major_code": "440503",
+    "major_name": "建筑经济信息化管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_jsgcgll/202502/P020250207514123904563.pdf"
+  },
+  {
+    "major_code": "440504",
+    "major_name": "建设工程监理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_jsgcgll/202502/P020250207513958155811.pdf"
+  },
+  {
+    "major_code": "440601",
+    "major_name": "市政工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_szgcl/202502/P020250207515254075781.pdf"
+  },
+  {
+    "major_code": "440604",
+    "major_name": "市政管网智能检测与维护",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_szgcl/202502/P020250207514909523369.pdf"
+  },
+  {
+    "major_code": "440701",
+    "major_name": "房地产经营与管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_fdcl/202502/P020250207515780960229.pdf"
+  },
+  {
+    "major_code": "440702",
+    "major_name": "房地产智能检测与估价",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_fdcl/202502/P020250207515610905061.pdf"
+  },
+  {
+    "major_code": "440703",
+    "major_name": "现代物业管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_tmjzdl/tmjzdl_fdcl/202502/P020250207515446679094.pdf"
+  },
+  {
+    "major_code": "550101",
+    "major_name": "艺术设计",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_whysdl/whysdl_yssjl/202502/P020250207554664351796.pdf"
+  },
+  {
+    "major_code": "550102",
+    "major_name": "视觉传达设计",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_whysdl/whysdl_yssjl/202502/P020250207554444051937.pdf"
+  },
+  {
+    "major_code": "550103",
+    "major_name": "数字媒体艺术设计",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_whysdl/whysdl_yssjl/202502/P020250207554206255746.pdf"
+  },
+  {
+    "major_code": "550104",
+    "major_name": "产品艺术设计",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_whysdl/whysdl_yssjl/202502/P020250207553930760438.pdf"
+  },
+  {
+    "major_code": "550105",
+    "major_name": "服装与服饰设计",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_whysdl/whysdl_yssjl/202502/P020250207553715742446.pdf"
+  },
+  {
+    "major_code": "550201",
+    "major_name": "音乐表演",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_whysdl/whysdl_byysl/202502/P020250207558813638310.pdf"
+  },
+  {
+    "major_code": "550202",
+    "major_name": "舞蹈表演",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_whysdl/whysdl_byysl/202502/P020250207558625464122.pdf"
+  },
+  {
+    "major_code": "550204",
+    "major_name": "表演艺术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_whysdl/whysdl_byysl/202502/P020250207558372699135.pdf"
+  },
+  {
+    "major_code": "550205",
+    "major_name": "戏剧影视表演",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_whysdl/whysdl_byysl/202502/P020250207558168123103.pdf"
+  },
+  {
+    "major_code": "550206",
+    "major_name": "歌舞表演",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_whysdl/whysdl_byysl/202502/P020250207557944541064.pdf"
+  },
+  {
+    "major_code": "550303",
+    "major_name": "民族服装与饰品",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_whysdl/whysdl_mzwhysl/202502/P020250207559296386790.pdf"
+  },
+  {
+    "major_code": "550402",
+    "major_name": "文化产业经营与管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_whysdl/whysdl_whfwl/202502/P020250207559898464726.pdf"
+  },
+  {
+    "major_code": "550408",
+    "major_name": "石窟寺保护技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_whysdl/whysdl_whfwl/202502/P020250207559684959392.pdf"
+  },
+  {
+    "major_code": "560105",
+    "major_name": "数字出版",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_xwcbdl/xwcbdl_xwcbl/202502/P020250207547670738031.pdf"
+  },
+  {
+    "major_code": "560201",
+    "major_name": "播音与主持",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_xwcbdl/xwcbdl_gbysl/202502/P020250207549510438568.pdf"
+  },
+  {
+    "major_code": "560202",
+    "major_name": "广播影视节目制作",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_xwcbdl/xwcbdl_gbysl/202502/P020250207549350192351.pdf"
+  },
+  {
+    "major_code": "560203",
+    "major_name": "数字广播电视技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_xwcbdl/xwcbdl_gbysl/202502/P020250207549213139228.pdf"
+  },
+  {
+    "major_code": "560204",
+    "major_name": "影视编导",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_xwcbdl/xwcbdl_gbysl/202502/P020250207549088054966.pdf"
+  },
+  {
+    "major_code": "560205",
+    "major_name": "新闻采编与制作",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_xwcbdl/xwcbdl_gbysl/202502/P020250207548927436229.pdf"
+  },
+  {
+    "major_code": "520101K",
+    "major_name": "临床医学",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_lcyxl/202502/P020250207532476574372.pdf"
+  },
+  {
+    "major_code": "520102K",
+    "major_name": "口腔医学",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_lcyxl/202502/P020250207532117813547.pdf"
+  },
+  {
+    "major_code": "520201",
+    "major_name": "护理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_hll/202502/P020250207533183854585.pdf"
+  },
+  {
+    "major_code": "520202",
+    "major_name": "助产",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_hll/202502/P020250207532975079267.pdf"
+  },
+  {
+    "major_code": "520301",
+    "major_name": "药学",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_yxl/202502/P020250207533553493396.pdf"
+  },
+  {
+    "major_code": "520403K",
+    "major_name": "针灸推拿",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_zyyl/202502/P020250207535714216570.pdf"
+  },
+  {
+    "major_code": "520410",
+    "major_name": "中药学",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_zyyl/202502/P020250207535418367068.pdf"
+  },
+  {
+    "major_code": "520414",
+    "major_name": "中药材生产与加工",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_zyyl/202502/P020250207535189271508.pdf"
+  },
+  {
+    "major_code": "520415",
+    "major_name": "中药制药",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_zyyl/202502/P020250207534898851265.pdf"
+  },
+  {
+    "major_code": "520416",
+    "major_name": "中医康复技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_zyyl/202502/P020250207534483733385.pdf"
+  },
+  {
+    "major_code": "520501",
+    "major_name": "医学检验技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_yxjsl/202502/P020250207539424195317.pdf"
+  },
+  {
+    "major_code": "520502",
+    "major_name": "医学影像技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_yxjsl/202502/P020250207539193661811.pdf"
+  },
+  {
+    "major_code": "520503",
+    "major_name": "医学生物技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_yxjsl/202502/P020250207538914697146.pdf"
+  },
+  {
+    "major_code": "520504",
+    "major_name": "口腔医学技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_yxjsl/202502/P020250207538674570916.pdf"
+  },
+  {
+    "major_code": "520507",
+    "major_name": "医学美容技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_yxjsl/202502/P020250207538447365017.pdf"
+  },
+  {
+    "major_code": "520601",
+    "major_name": "康复治疗技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_kfzll/202502/P020250207539797507117.pdf"
+  },
+  {
+    "major_code": "520701",
+    "major_name": "公共卫生管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_ggwsywsgll/202502/P020250207541199236372.pdf"
+  },
+  {
+    "major_code": "520703K",
+    "major_name": "预防医学",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_ggwsywsgll/202502/P020250207540329542046.pdf"
+  },
+  {
+    "major_code": "520704",
+    "major_name": "健康大数据管理与服务",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_ggwsywsgll/202502/P020250207540106860372.pdf"
+  },
+  {
+    "major_code": "520801",
+    "major_name": "健康管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_jkglycjl/202502/P020250207543569178135.pdf"
+  },
+  {
+    "major_code": "520802",
+    "major_name": "婴幼儿托育服务与管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_jkglycjl/202502/P020250207542415972694.pdf"
+  },
+  {
+    "major_code": "520803",
+    "major_name": "老年保健与管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_jkglycjl/202502/P020250207542149570626.pdf"
+  },
+  {
+    "major_code": "520804",
+    "major_name": "心理咨询",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_jkglycjl/202502/P020250207541922159170.pdf"
+  },
+  {
+    "major_code": "520901",
+    "major_name": "眼视光技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_ysgl/202502/P020250208389519309034.pdf"
+  },
+  {
+    "major_code": "520902",
+    "major_name": "眼视光仪器技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_ysgl/202502/P020250207545978962639.pdf"
+  },
+  {
+    "major_code": "520903",
+    "major_name": "视觉训练与康复",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_yywsdl/yywsdl_ysgl/202502/P020250208389140449842.pdf"
+  },
+  {
+    "major_code": "460101",
+    "major_name": "机械设计与制造",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_jxsjzzl/202502/P020250207522292941420.pdf"
+  },
+  {
+    "major_code": "460102",
+    "major_name": "数字化设计与制造技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_jxsjzzl/202502/P020250207522150759734.pdf"
+  },
+  {
+    "major_code": "460103",
+    "major_name": "数控技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_jxsjzzl/202502/P020250207522001246931.pdf"
+  },
+  {
+    "major_code": "460104",
+    "major_name": "机械制造及自动化",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_jxsjzzl/202502/P020250207521767506887.pdf"
+  },
+  {
+    "major_code": "460105",
+    "major_name": "工业设计",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_jxsjzzl/202502/P020250207521569193404.pdf"
+  },
+  {
+    "major_code": "460201",
+    "major_name": "智能制造装备技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_jdsbl/202502/P020250207523132834023.pdf"
+  },
+  {
+    "major_code": "460202",
+    "major_name": "机电设备技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_jdsbl/202502/P020250207522977570730.pdf"
+  },
+  {
+    "major_code": "460203",
+    "major_name": "电机与电器技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_jdsbl/202502/P020250207522795244144.pdf"
+  },
+  {
+    "major_code": "460204",
+    "major_name": "新能源装备技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_jdsbl/202502/P020250207522651602718.pdf"
+  },
+  {
+    "major_code": "460206",
+    "major_name": "电梯工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_jdsbl/202502/P020250207522521063992.pdf"
+  },
+  {
+    "major_code": "460301",
+    "major_name": "机电一体化技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_zdhl/202502/P020250207525314104497.pdf"
+  },
+  {
+    "major_code": "460302",
+    "major_name": "智能机电技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_zdhl/202502/P020250207525125369656.pdf"
+  },
+  {
+    "major_code": "460303",
+    "major_name": "智能控制技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_zdhl/202502/P020250207524950667082.pdf"
+  },
+  {
+    "major_code": "460304",
+    "major_name": "智能机器人技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_zdhl/202502/P020250207524709773761.pdf"
+  },
+  {
+    "major_code": "460305",
+    "major_name": "工业机器人技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_zdhl/202502/P020250207524455884017.pdf"
+  },
+  {
+    "major_code": "460401",
+    "major_name": "铁道机车车辆制造与维护",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_gdzbl/202502/P020250207525868408805.pdf"
+  },
+  {
+    "major_code": "460402",
+    "major_name": "高速铁路动车组制造与维护",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_gdzbl/202502/P020250207525698280806.pdf"
+  },
+  {
+    "major_code": "460403",
+    "major_name": "城市轨道交通车辆制造与维护",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_gdzbl/202502/P020250207525546854319.pdf"
+  },
+  {
+    "major_code": "460501",
+    "major_name": "船舶工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_cbyhygczbl/202502/P020250207526923768815.pdf"
+  },
+  {
+    "major_code": "460502",
+    "major_name": "船舶动力工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_cbyhygczbl/202502/P020250207526791131181.pdf"
+  },
+  {
+    "major_code": "460503",
+    "major_name": "船舶电气工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_cbyhygczbl/202502/P020250207526619170876.pdf"
+  },
+  {
+    "major_code": "460504",
+    "major_name": "船舶智能焊接技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_cbyhygczbl/202502/P020250207526406876067.pdf"
+  },
+  {
+    "major_code": "460508",
+    "major_name": "游艇设计与制造",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_cbyhygczbl/202502/P020250207526241906346.pdf"
+  },
+  {
+    "major_code": "460601",
+    "major_name": "飞行器数字化制造技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_hkzbl/202502/P020250207527930122935.pdf"
+  },
+  {
+    "major_code": "460602",
+    "major_name": "飞行器数字化装配技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_hkzbl/202502/P020250207527787342412.pdf"
+  },
+  {
+    "major_code": "460605",
+    "major_name": "飞机机载设备装配调试技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_hkzbl/202502/P020250207527632926667.pdf"
+  },
+  {
+    "major_code": "460606",
+    "major_name": "航空装备表面处理技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_hkzbl/202502/P020250207527479052938.pdf"
+  },
+  {
+    "major_code": "460607",
+    "major_name": "飞行器维修技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_hkzbl/202502/P020250207527324936581.pdf"
+  },
+  {
+    "major_code": "460701",
+    "major_name": "汽车制造与试验技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_qczzl/202502/P020250207528835215404.pdf"
+  },
+  {
+    "major_code": "460702",
+    "major_name": "新能源汽车技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_qczzl/202502/P020250207528684826334.pdf"
+  },
+  {
+    "major_code": "460703",
+    "major_name": "汽车电子技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_qczzl/202502/P020250207528543453836.pdf"
+  },
+  {
+    "major_code": "460704",
+    "major_name": "智能网联汽车技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_qczzl/202502/P020250207528412902948.pdf"
+  },
+  {
+    "major_code": "460705",
+    "major_name": "汽车造型与改装技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zbzzdl/zbzzdl_qczzl/202502/P020250207528238489234.pdf"
+  },
+  {
+    "major_code": "420103",
+    "major_name": "生态地质调查",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_zykcl/202502/P020250207504022888834.pdf"
+  },
+  {
+    "major_code": "420107",
+    "major_name": "宝玉石鉴定与加工",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_zykcl/202502/P020250207503812736288.pdf"
+  },
+  {
+    "major_code": "420209",
+    "major_name": "城市地质勘查",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_dzl/202502/P020250207504247725132.pdf"
+  },
+  {
+    "major_code": "420301",
+    "major_name": "工程测量技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_hcdlxxl/202502/P020250207505875304431.pdf"
+  },
+  {
+    "major_code": "420302",
+    "major_name": "测绘工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_hcdlxxl/202502/P020250207505709210099.pdf"
+  },
+  {
+    "major_code": "420304",
+    "major_name": "摄影测量与遥感技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_hcdlxxl/202502/P020250207505542661902.pdf"
+  },
+  {
+    "major_code": "420305",
+    "major_name": "地籍测绘与土地管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_hcdlxxl/202502/P020250207505364562715.pdf"
+  },
+  {
+    "major_code": "420306",
+    "major_name": "国土空间规划与测绘",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_hcdlxxl/202502/P020250207505152458069.pdf"
+  },
+  {
+    "major_code": "420401",
+    "major_name": "油气储运技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_syytrql/202502/P020250207506619731817.pdf"
+  },
+  {
+    "major_code": "420402",
+    "major_name": "油气地质勘探技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_syytrql/202502/P020250207506369193758.pdf"
+  },
+  {
+    "major_code": "420404",
+    "major_name": "油气智能开采技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_syytrql/202502/P020250207506149604191.pdf"
+  },
+  {
+    "major_code": "420501",
+    "major_name": "煤矿智能开采技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_mtl/202502/P020250207507382626432.pdf"
+  },
+  {
+    "major_code": "420503",
+    "major_name": "通风技术与安全管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_mtl/202502/P020250207507209698396.pdf"
+  },
+  {
+    "major_code": "420504",
+    "major_name": "矿山机电与智能装备",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_mtl/202502/P020250207507046853893.pdf"
+  },
+  {
+    "major_code": "420505",
+    "major_name": "煤炭清洁利用技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_mtl/202502/P020250207506870162061.pdf"
+  },
+  {
+    "major_code": "420601",
+    "major_name": "矿山智能开采技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_jsyfjskl/202502/P020250207507717503867.pdf"
+  },
+  {
+    "major_code": "420801",
+    "major_name": "环境监测技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_hjbhl/202502/P020250207508723794615.pdf"
+  },
+  {
+    "major_code": "420802",
+    "major_name": "环境工程技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_hjbhl/202502/P020250207508565301583.pdf"
+  },
+  {
+    "major_code": "420805",
+    "major_name": "环境管理与评价",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_hjbhl/202502/P020250207508422222871.pdf"
+  },
+  {
+    "major_code": "420806",
+    "major_name": "生态环境修复技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_hjbhl/202502/P020250207508258158744.pdf"
+  },
+  {
+    "major_code": "420808",
+    "major_name": "资源综合利用技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_hjbhl/202502/P020250207508108257388.pdf"
+  },
+  {
+    "major_code": "420901",
+    "major_name": "安全技术与管理",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_aql/202502/P020250207509466294960.pdf"
+  },
+  {
+    "major_code": "420905",
+    "major_name": "应急救援技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_aql/202502/P020250207509278822780.pdf"
+  },
+  {
+    "major_code": "420906",
+    "major_name": "消防救援技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_aql/202502/P020250207509122027868.pdf"
+  },
+  {
+    "major_code": "420908",
+    "major_name": "职业健康安全技术",
+    "education_level": "高等职业教育专科",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_zyhjyaqdl/zyhjyaqdl_aql/202502/P020250207508978786410.pdf"
+  },
+  {
+    "major_code": "730101",
+    "major_name": "纳税事务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_cjsmdl/cjsmdl_czswl/202502/P020250207454706203753.pdf"
+  },
+  {
+    "major_code": "730201",
+    "major_name": "金融事务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_cjsmdl/cjsmdl_jrl/202502/P020250207454993955090.pdf"
+  },
+  {
+    "major_code": "730301",
+    "major_name": "会计事务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_cjsmdl/cjsmdl_cwkjl/202502/P020250207455418998939.pdf"
+  },
+  {
+    "major_code": "730501",
+    "major_name": "国际商务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_cjsmdl/cjsmdl_jjmyl/202502/P020250207455944574146.pdf"
+  },
+  {
+    "major_code": "730502",
+    "major_name": "服务外包",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_cjsmdl/cjsmdl_jjmyl/202502/P020250207455792482694.pdf"
+  },
+  {
+    "major_code": "730602",
+    "major_name": "市场营销",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_cjsmdl/cjsmdl_gsggl/202502/P020250207456285874767.pdf"
+  },
+  {
+    "major_code": "730701",
+    "major_name": "电子商务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_cjsmdl/cjsmdl_dzswl/202502/P020250207457714575190.pdf"
+  },
+  {
+    "major_code": "730702",
+    "major_name": "跨境电子商务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_cjsmdl/cjsmdl_dzswl/202502/P020250207457396792687.pdf"
+  },
+  {
+    "major_code": "730703",
+    "major_name": "移动商务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_cjsmdl/cjsmdl_dzswl/202502/P020250207457226121205.pdf"
+  },
+  {
+    "major_code": "730704",
+    "major_name": "网络营销",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_cjsmdl/cjsmdl_dzswl/202502/P020250207456764912953.pdf"
+  },
+  {
+    "major_code": "730705",
+    "major_name": "直播电商服务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_cjsmdl/cjsmdl_dzswl/202502/P020250207456541039292.pdf"
+  },
+  {
+    "major_code": "730801",
+    "major_name": "物流服务与管理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_cjsmdl/cjsmdl_wll/202502/P020250207458667185978.pdf"
+  },
+  {
+    "major_code": "730802",
+    "major_name": "冷链物流服务与管理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_cjsmdl/cjsmdl_wll/202502/P020250207458311811225.pdf"
+  },
+  {
+    "major_code": "730803",
+    "major_name": "国际货运代理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_cjsmdl/cjsmdl_wll/202502/P020250207458123572186.pdf"
+  },
+  {
+    "major_code": "730804",
+    "major_name": "物流设施运行与维护",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_cjsmdl/cjsmdl_wll/202502/P020250207457915596126.pdf"
+  },
+  {
+    "major_code": "710101",
+    "major_name": "电子信息技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_dzyxxdl/dzxxdl_dzxxl/202502/P020250207447648191693.pdf"
+  },
+  {
+    "major_code": "710102",
+    "major_name": "物联网技术应用",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_dzyxxdl/dzxxdl_dzxxl/202502/P020250207447334100277.pdf"
+  },
+  {
+    "major_code": "710205",
+    "major_name": "大数据技术应用",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_dzyxxdl/dzxxdl_jsjl/202502/P020250207449488391906.pdf"
+  },
+  {
+    "major_code": "710206",
+    "major_name": "移动应用技术与服务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_dzyxxdl/dzxxdl_jsjl/202502/P020250207449207801448.pdf"
+  },
+  {
+    "major_code": "710207",
+    "major_name": "网络信息安全",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_dzyxxdl/dzxxdl_jsjl/202502/P020250207448808686287.pdf"
+  },
+  {
+    "major_code": "710208",
+    "major_name": "网络安防系统安装与维护",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_dzyxxdl/dzxxdl_jsjl/202502/P020250207448473763376.pdf"
+  },
+  {
+    "major_code": "710211",
+    "major_name": "计算机与数码设备维修",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_dzyxxdl/dzxxdl_jsjl/202502/P020250207448113867343.pdf"
+  },
+  {
+    "major_code": "710301",
+    "major_name": "现代通信技术应用",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_dzyxxdl/dzxxdl_txl/202502/P020250207450647852743.pdf"
+  },
+  {
+    "major_code": "710302",
+    "major_name": "通信系统工程安装与维护",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_dzyxxdl/dzxxdl_txl/202502/P020250207450304750608.pdf"
+  },
+  {
+    "major_code": "710401",
+    "major_name": "微电子技术与器件制造",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_dzyxxdl/dzxxdl_jcdll/202502/P020250207451131729159.pdf"
+  },
+  {
+    "major_code": "780701",
+    "major_name": "安全保卫服务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_gaysfdl/gaysfdl_aqffl/202502/P020250207461346306806.pdf"
+  },
+  {
+    "major_code": "790101",
+    "major_name": "社会工作事务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_ggglyfwdl/ggglyfwdl_ggsyl/202502/P020250207462137076584.pdf"
+  },
+  {
+    "major_code": "790102",
+    "major_name": "社区公共事务管理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_ggglyfwdl/ggglyfwdl_ggsyl/202502/P020250207462004260929.pdf"
+  },
+  {
+    "major_code": "790201",
+    "major_name": "民政服务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_ggglyfwdl/ggglyfwdl_gggll/202502/P020250207462343286347.pdf"
+  },
+  {
+    "major_code": "790301",
+    "major_name": "现代家政服务与管理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_ggglyfwdl/ggglyfwdl_ggfwl/202502/P020250207463694783369.pdf"
+  },
+  {
+    "major_code": "790302",
+    "major_name": "智慧健康养老服务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_ggglyfwdl/ggglyfwdl_ggfwl/202502/P020250207463217003082.pdf"
+  },
+  {
+    "major_code": "790303",
+    "major_name": "老年人服务与管理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_ggglyfwdl/ggglyfwdl_ggfwl/202502/P020250207463088029877.pdf"
+  },
+  {
+    "major_code": "790304",
+    "major_name": "殡葬服务与管理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_ggglyfwdl/ggglyfwdl_ggfwl/202502/P020250207462954952472.pdf"
+  },
+  {
+    "major_code": "790305",
+    "major_name": "母婴照护",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_ggglyfwdl/ggglyfwdl_ggfwl/202502/P020250207462555411025.pdf"
+  },
+  {
+    "major_code": "790401",
+    "major_name": "文秘",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_ggglyfwdl/ggglyfwdl_wml/202502/P020250207464055361379.pdf"
+  },
+  {
+    "major_code": "790402",
+    "major_name": "行政事务助理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_ggglyfwdl/ggglyfwdl_wml/202502/P020250207463918994828.pdf"
+  },
+  {
+    "major_code": "700101",
+    "major_name": "铁道工程施工与维护",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_tdysl/202502/P020250207446842985626.pdf"
+  },
+  {
+    "major_code": "700102",
+    "major_name": "电力机车运用与检修",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_tdysl/202502/P020250207446636454746.pdf"
+  },
+  {
+    "major_code": "700105",
+    "major_name": "电气化铁道供电",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_tdysl/202502/P020250207446464301868.pdf"
+  },
+  {
+    "major_code": "700106",
+    "major_name": "铁道信号施工与维护",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_tdysl/202502/P020250207446271168120.pdf"
+  },
+  {
+    "major_code": "700107",
+    "major_name": "铁道运输服务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_tdysl/202502/P020250207446069072690.pdf"
+  },
+  {
+    "major_code": "700201",
+    "major_name": "道路与桥梁工程施工",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_tlysl/202502/P020250207448452459066.pdf"
+  },
+  {
+    "major_code": "700203",
+    "major_name": "交通运营服务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_tlysl/202502/P020250207448090674032.pdf"
+  },
+  {
+    "major_code": "700204",
+    "major_name": "交通工程机械运用与维修",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_tlysl/202502/P020250207447858240399.pdf"
+  },
+  {
+    "major_code": "700205",
+    "major_name": "汽车服务与营销",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_tlysl/202502/P020250207447646626538.pdf"
+  },
+  {
+    "major_code": "700206",
+    "major_name": "汽车运用与维修",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_tlysl/202502/P020250207447258963744.pdf"
+  },
+  {
+    "major_code": "700302",
+    "major_name": "船舶机工与水手",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_ssysl/202502/P020250207450146024908.pdf"
+  },
+  {
+    "major_code": "700303",
+    "major_name": "轮机维护与管理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_ssysl/202502/P020250207449961811443.pdf"
+  },
+  {
+    "major_code": "700304",
+    "major_name": "邮轮乘务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_ssysl/202502/P020250207449486064955.pdf"
+  },
+  {
+    "major_code": "700305",
+    "major_name": "水路运输服务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_ssysl/202502/P020250207449209232816.pdf"
+  },
+  {
+    "major_code": "700306",
+    "major_name": "港口机械运用与维修",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_ssysl/202502/P020250207448863043526.pdf"
+  },
+  {
+    "major_code": "700401",
+    "major_name": "民航运输服务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_hkysl/202502/P020250207451464964166.pdf"
+  },
+  {
+    "major_code": "700403",
+    "major_name": "飞机设备维修",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_hkysl/202502/P020250207451109799231.pdf"
+  },
+  {
+    "major_code": "700404",
+    "major_name": "机场场务技术与管理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_hkysl/202502/P020250207450950403524.pdf"
+  },
+  {
+    "major_code": "700601",
+    "major_name": "城市轨道交通车辆运用与检修",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_csgdjtl/202502/P020250207452753870951.pdf"
+  },
+  {
+    "major_code": "700602",
+    "major_name": "城市轨道交通信号维护",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_csgdjtl/202502/P020250207452499176873.pdf"
+  },
+  {
+    "major_code": "700603",
+    "major_name": "城市轨道交通供电",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_csgdjtl/202502/P020250207452206948590.pdf"
+  },
+  {
+    "major_code": "700604",
+    "major_name": "城市轨道交通运营服务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_csgdjtl/202502/P020250207451765019316.pdf"
+  },
+  {
+    "major_code": "700701",
+    "major_name": "邮政快递运营",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_yzl/202502/P020250207453602920316.pdf"
+  },
+  {
+    "major_code": "700702",
+    "major_name": "邮政快递安全技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_yzl/202502/P020250207453330943249.pdf"
+  },
+  {
+    "major_code": "700703",
+    "major_name": "邮政通信服务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jtysdl/jtysdl_yzl/202502/P020250207453140478011.pdf"
+  },
+  {
+    "major_code": "770101",
+    "major_name": "幼儿保育",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jyytydl/jyytydl_jyl/202502/P020250207460664966797.pdf"
+  },
+  {
+    "major_code": "770207",
+    "major_name": "商务泰语",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jyytydl/jyytydl_yyl/202502/P020250207461416653313.pdf"
+  },
+  {
+    "major_code": "770208",
+    "major_name": "商务阿拉伯语",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_jyytydl/jyytydl_yyl/202502/P020250207461787781164.pdf"
+  },
+  {
+    "major_code": "740101",
+    "major_name": "旅游服务与管理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_lydl/lydl_lyl/202502/P020250207456221748533.pdf"
+  },
+  {
+    "major_code": "740102",
+    "major_name": "导游服务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_lydl/lydl_lyl/202502/P020250207456568037698.pdf"
+  },
+  {
+    "major_code": "740103",
+    "major_name": "康养休闲旅游服务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_lydl/lydl_lyl/202502/P020250207457369985605.pdf"
+  },
+  {
+    "major_code": "740105",
+    "major_name": "茶艺与茶营销",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_lydl/lydl_lyl/202502/P020250207457773813201.pdf"
+  },
+  {
+    "major_code": "740106",
+    "major_name": "会展服务与管理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_lydl/lydl_lyl/202502/P020250207458147371321.pdf"
+  },
+  {
+    "major_code": "740201",
+    "major_name": "中餐烹饪",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_lydl/lydl_cyl/202502/P020250207458819260588.pdf"
+  },
+  {
+    "major_code": "740203",
+    "major_name": "中西面点",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_lydl/lydl_cyl/202502/P020250207459510308559.pdf"
+  },
+  {
+    "major_code": "610101",
+    "major_name": "种子生产技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nlmydl/nlmydl_nyl/202502/P020250207401762143502.pdf"
+  },
+  {
+    "major_code": "610102",
+    "major_name": "作物生产技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nlmydl/nlmydl_nyl/202502/P020250207401452261552.pdf"
+  },
+  {
+    "major_code": "610103",
+    "major_name": "循环农业与再生资源利用",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nlmydl/nlmydl_nyl/202502/P020250207401016838224.pdf"
+  },
+  {
+    "major_code": "610104",
+    "major_name": "家庭农场生产经营",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nlmydl/nlmydl_nyl/202502/P020250207400681807205.pdf"
+  },
+  {
+    "major_code": "610105",
+    "major_name": "园艺技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nlmydl/nlmydl_nyl/202502/P020250207400297093348.pdf"
+  },
+  {
+    "major_code": "610201",
+    "major_name": "林业生产技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nlmydl/nlmydl_lyl/202502/P020250207403674621466.pdf"
+  },
+  {
+    "major_code": "610202",
+    "major_name": "园林技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nlmydl/nlmydl_lyl/202502/P020250207402975582610.pdf"
+  },
+  {
+    "major_code": "610205",
+    "major_name": "木业产品加工技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nlmydl/nlmydl_lyl/202502/P020250207402633876566.pdf"
+  },
+  {
+    "major_code": "610301",
+    "major_name": "畜禽生产技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nlmydl/nlmydl_xmyl/202502/P020250207404387079569.pdf"
+  },
+  {
+    "major_code": "610402",
+    "major_name": "海水养殖",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nlmydl/nlmydl_yyl/202502/P020250207404820459498.pdf"
+  },
+  {
+    "major_code": "630101",
+    "major_name": "发电厂及变电站运行与维护",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nydlycldl/zyhjyaqdl_dljsl/202502/P020250207411979969538.pdf"
+  },
+  {
+    "major_code": "630103",
+    "major_name": "电力系统自动化装置调试与维护",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nydlycldl/zyhjyaqdl_dljsl/202502/P020250207412934877874.pdf"
+  },
+  {
+    "major_code": "630301",
+    "major_name": "光伏工程技术与应用",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nydlycldl/zyhjyaqdl_xnyfdgcl/202502/P020250207413562119973.pdf"
+  },
+  {
+    "major_code": "630302",
+    "major_name": "风力发电设备运行与维护",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nydlycldl/zyhjyaqdl_xnyfdgcl/202502/P020250207414275404655.pdf"
+  },
+  {
+    "major_code": "630401",
+    "major_name": "钢铁冶炼技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nydlycldl/zyhjyaqdl_hsjscll/202502/P020250207415427832715.pdf"
+  },
+  {
+    "major_code": "630501",
+    "major_name": "有色金属冶炼技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nydlycldl/zyhjyaqdl_ysjscll/202502/P020250207416318849300.pdf"
+  },
+  {
+    "major_code": "630701",
+    "major_name": "建筑材料智能生产技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nydlycldl/zyhjyaqdl_jzcll/202502/P020250207416933660667.pdf"
+  },
+  {
+    "major_code": "630702",
+    "major_name": "新型建筑材料生产技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nydlycldl/zyhjyaqdl_jzcll/202502/P020250207417242867521.pdf"
+  },
+  {
+    "major_code": "630703",
+    "major_name": "建筑材料检测技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nydlycldl/zyhjyaqdl_jzcll/202502/P020250207417645602296.pdf"
+  },
+  {
+    "major_code": "630704",
+    "major_name": "装配式建筑构件制作技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_nydlycldl/zyhjyaqdl_jzcll/202502/P020250207418033422884.pdf"
+  },
+  {
+    "major_code": "680101",
+    "major_name": "化妆品制造技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_qgfzdl/qgfzdl_qhgl/202502/P020250207442420419842.pdf"
+  },
+  {
+    "major_code": "680102",
+    "major_name": "现代造纸工艺",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_qgfzdl/qgfzdl_qhgl/202502/P020250207442245613864.pdf"
+  },
+  {
+    "major_code": "680201",
+    "major_name": "包装设计与制作",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_qgfzdl/qgfzdl_bzl/202502/P020250207442639357390.pdf"
+  },
+  {
+    "major_code": "680301",
+    "major_name": "印刷媒体技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_qgfzdl/qgfzdl_ysl/202502/P020250207442839765425.pdf"
+  },
+  {
+    "major_code": "680401",
+    "major_name": "纺织技术与服务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_qgfzdl/qgfzdl_fzfzl/202502/P020250207443516559347.pdf"
+  },
+  {
+    "major_code": "680402",
+    "major_name": "服装设计与工艺",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_qgfzdl/qgfzdl_fzfzl/202502/P020250207443378440683.pdf"
+  },
+  {
+    "major_code": "680405",
+    "major_name": "数字化染整工艺",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_qgfzdl/qgfzdl_fzfzl/202502/P020250207443239976343.pdf"
+  },
+  {
+    "major_code": "680406",
+    "major_name": "服装制作与生产管理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_qgfzdl/qgfzdl_fzfzl/202502/P020250207443070061252.pdf"
+  },
+  {
+    "major_code": "650201",
+    "major_name": "水利工程运行与管理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_sldl/sldl_slgcygll/202502/P020250207418535895248.pdf"
+  },
+  {
+    "major_code": "650203",
+    "major_name": "机电排灌工程技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_sldl/sldl_slgcygll/202502/P020250207418367448340.pdf"
+  },
+  {
+    "major_code": "650204",
+    "major_name": "现代灌溉技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_sldl/sldl_slgcygll/202502/P020250207418199777179.pdf"
+  },
+  {
+    "major_code": "650205",
+    "major_name": "农村饮水供水工程技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_sldl/sldl_slgcygll/202502/P020250207418011888994.pdf"
+  },
+  {
+    "major_code": "650302",
+    "major_name": "水电站运行与管理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_sldl/sldl_slsdsbl/202502/P020250207418873860825.pdf"
+  },
+  {
+    "major_code": "650401",
+    "major_name": "水土保持技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_sldl/sldl_stbcyshjl/202502/P020250207419352013019.pdf"
+  },
+  {
+    "major_code": "650402",
+    "major_name": "水环境智能监测与保护",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_sldl/sldl_stbcyshjl/202502/P020250207419183876673.pdf"
+  },
+  {
+    "major_code": "690101",
+    "major_name": "食品加工工艺",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_spypylsdl/spypylsdl_spl/202502/P020250207444516480633.pdf"
+  },
+  {
+    "major_code": "690102",
+    "major_name": "酿酒工艺与技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_spypylsdl/spypylsdl_spl/202502/P020250207444357493611.pdf"
+  },
+  {
+    "major_code": "690103",
+    "major_name": "民族食品加工技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_spypylsdl/spypylsdl_spl/202502/P020250207444221992512.pdf"
+  },
+  {
+    "major_code": "690104",
+    "major_name": "食品安全与检测技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_spypylsdl/spypylsdl_spl/202502/P020250207444044200458.pdf"
+  },
+  {
+    "major_code": "690201",
+    "major_name": "制药技术应用",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_spypylsdl/spypylsdl_ypyylqxl/202502/P020250207445059103596.pdf"
+  },
+  {
+    "major_code": "690202",
+    "major_name": "生物制药工艺",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_spypylsdl/spypylsdl_ypyylqxl/202502/P020250207444877255860.pdf"
+  },
+  {
+    "major_code": "690203",
+    "major_name": "生物药物检验",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_spypylsdl/spypylsdl_ypyylqxl/202502/P020250207444724542341.pdf"
+  },
+  {
+    "major_code": "690301",
+    "major_name": "粮油和饲料加工技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_spypylsdl/spypylsdl_lsl/202502/P020250207445243245240.pdf"
+  },
+  {
+    "major_code": "670101",
+    "major_name": "生物产品检验检测",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_swyhgdl/zbzzdl_swjsl/202502/P020250207439850279572.pdf"
+  },
+  {
+    "major_code": "670102",
+    "major_name": "生物化工技术应用",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_swyhgdl/zbzzdl_swjsl/202502/P020250207439685135410.pdf"
+  },
+  {
+    "major_code": "670201",
+    "major_name": "化学工艺",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_swyhgdl/zbzzdl_hgjsl/202502/P020250207441626979557.pdf"
+  },
+  {
+    "major_code": "670202",
+    "major_name": "石油炼制技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_swyhgdl/zbzzdl_hgjsl/202502/P020250207440866269127.pdf"
+  },
+  {
+    "major_code": "670203",
+    "major_name": "精细化工技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_swyhgdl/zbzzdl_hgjsl/202502/P020250207440688838634.pdf"
+  },
+  {
+    "major_code": "670204",
+    "major_name": "高分子材料加工工艺",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_swyhgdl/zbzzdl_hgjsl/202502/P020250207440502561607.pdf"
+  },
+  {
+    "major_code": "670207",
+    "major_name": "分析检验技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_swyhgdl/zbzzdl_hgjsl/202502/P020250207440283593626.pdf"
+  },
+  {
+    "major_code": "640102",
+    "major_name": "建筑装饰技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_tmjzdl/tmjzdl_jzsjl/202502/P020250207414882818264.pdf"
+  },
+  {
+    "major_code": "640103",
+    "major_name": "古建筑修缮",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_tmjzdl/tmjzdl_jzsjl/202502/P020250207414666105058.pdf"
+  },
+  {
+    "major_code": "640104",
+    "major_name": "园林景观施工与维护",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_tmjzdl/tmjzdl_jzsjl/202502/P020250207414438731726.pdf"
+  },
+  {
+    "major_code": "640302",
+    "major_name": "装配式建筑施工",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_tmjzdl/tmjzdl_tjsgl/202502/P020250207415434013542.pdf"
+  },
+  {
+    "major_code": "640303",
+    "major_name": "建筑工程检测",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_tmjzdl/tmjzdl_tjsgl/202502/P020250207415272085664.pdf"
+  },
+  {
+    "major_code": "640401",
+    "major_name": "建筑智能化设备安装与运维",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_tmjzdl/tmjzdl_jzsbl/202502/P020250207415883126069.pdf"
+  },
+  {
+    "major_code": "640402",
+    "major_name": "建筑水电设备安装与运维",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_tmjzdl/tmjzdl_jzsbl/202502/P020250207415718055494.pdf"
+  },
+  {
+    "major_code": "640501",
+    "major_name": "建筑工程造价",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_tmjzdl/tmjzdl_jsgcgll/202502/P020250207416433357226.pdf"
+  },
+  {
+    "major_code": "640502",
+    "major_name": "建设项目材料管理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_tmjzdl/tmjzdl_jsgcgll/202502/P020250207416233055128.pdf"
+  },
+  {
+    "major_code": "640603",
+    "major_name": "城市燃气智能输配与应用",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_tmjzdl/tmjzdl_szgcl/202502/P020250207416831167849.pdf"
+  },
+  {
+    "major_code": "640701",
+    "major_name": "房地产营销",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_tmjzdl/tmjzdl_fdcl/202502/P020250207417271456098.pdf"
+  },
+  {
+    "major_code": "640702",
+    "major_name": "物业服务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_tmjzdl/tmjzdl_fdcl/202502/P020250207417080383506.pdf"
+  },
+  {
+    "major_code": "750101",
+    "major_name": "艺术设计与制作",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_whysdl/whysdl_yssjl/202502/P020250207460682311235.pdf"
+  },
+  {
+    "major_code": "750102",
+    "major_name": "界面设计与制作",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_whysdl/whysdl_yssjl/202502/P020250207460478949687.pdf"
+  },
+  {
+    "major_code": "750103",
+    "major_name": "数字影像技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_whysdl/whysdl_yssjl/202502/P020250207460273487838.pdf"
+  },
+  {
+    "major_code": "750104",
+    "major_name": "皮革制品设计与制作",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_whysdl/whysdl_yssjl/202502/P020250207460011805677.pdf"
+  },
+  {
+    "major_code": "750105",
+    "major_name": "服装陈列与展示设计",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_whysdl/whysdl_yssjl/202502/P020250207459727618578.pdf"
+  },
+  {
+    "major_code": "750201",
+    "major_name": "音乐表演",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_whysdl/whysdl_byysl/202502/P020250207462812918741.pdf"
+  },
+  {
+    "major_code": "750206",
+    "major_name": "服装表演",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_whysdl/whysdl_byysl/202502/P020250207462437301845.pdf"
+  },
+  {
+    "major_code": "750209",
+    "major_name": "戏曲音乐",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_whysdl/whysdl_byysl/202502/P020250207462032130270.pdf"
+  },
+  {
+    "major_code": "750210",
+    "major_name": "舞台艺术设计与制作",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_whysdl/whysdl_byysl/202502/P020250207461765100137.pdf"
+  },
+  {
+    "major_code": "750211",
+    "major_name": "数字音乐制作",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_whysdl/whysdl_byysl/202502/P020250207461414785529.pdf"
+  },
+  {
+    "major_code": "750303",
+    "major_name": "民族服装与饰品",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_whysdl/whysdl_mzwhysl/202502/P020250207463771692625.pdf"
+  },
+  {
+    "major_code": "750304",
+    "major_name": "民族纺染织绣技艺",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_whysdl/whysdl_mzwhysl/202502/P020250207463540291210.pdf"
+  },
+  {
+    "major_code": "750306",
+    "major_name": "民族工艺品设计与制作",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_whysdl/whysdl_mzwhysl/202502/P020250207463294961448.pdf"
+  },
+  {
+    "major_code": "750403",
+    "major_name": "图书档案数字化管理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_whysdl/whysdl_whfwl/202502/P020250207464263845385.pdf"
+  },
+  {
+    "major_code": "760101",
+    "major_name": "出版商务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_xwcbdl/xwcbdl_xwcbl/202502/P020250207459703338612.pdf"
+  },
+  {
+    "major_code": "760201",
+    "major_name": "播音与主持",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_xwcbdl/xwcbdl_gbysl/202502/P020250207460838770596.pdf"
+  },
+  {
+    "major_code": "760202",
+    "major_name": "广播影视节目制作",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_xwcbdl/xwcbdl_gbysl/202502/P020250207460471665896.pdf"
+  },
+  {
+    "major_code": "760204",
+    "major_name": "动漫与游戏制作",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_xwcbdl/xwcbdl_gbysl/202502/P020250207460058411729.pdf"
+  },
+  {
+    "major_code": "720201",
+    "major_name": "护理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_yywsdl/yywsdl_hll/202502/P020250207452129423163.pdf"
+  },
+  {
+    "major_code": "720301",
+    "major_name": "药剂",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_yywsdl/yywsdl_yxl/202502/P020250207452488043264.pdf"
+  },
+  {
+    "major_code": "720401",
+    "major_name": "中医",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_yywsdl/yywsdl_zyyl/202502/P020250207454483083059.pdf"
+  },
+  {
+    "major_code": "720403",
+    "major_name": "中药",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_yywsdl/yywsdl_zyyl/202502/P020250207454212828236.pdf"
+  },
+  {
+    "major_code": "720407",
+    "major_name": "中药制药",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_yywsdl/yywsdl_zyyl/202502/P020250207453811848458.pdf"
+  },
+  {
+    "major_code": "720408",
+    "major_name": "中医康复技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_yywsdl/yywsdl_zyyl/202502/P020250207453535210232.pdf"
+  },
+  {
+    "major_code": "720409",
+    "major_name": "中医养生保健",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_yywsdl/yywsdl_zyyl/202502/P020250207453266639112.pdf"
+  },
+  {
+    "major_code": "720602",
+    "major_name": "康复辅助器具技术及应用",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_yywsdl/yywsdl_kfzll/202502/P020250207455135141257.pdf"
+  },
+  {
+    "major_code": "720803",
+    "major_name": "婴幼儿托育",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_yywsdl/yywsdl_jkglycjl/202502/P020250207455657961091.pdf"
+  },
+  {
+    "major_code": "660101",
+    "major_name": "机械制造技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_jxsjzzl/202502/P020250207419725867968.pdf"
+  },
+  {
+    "major_code": "660102",
+    "major_name": "机械加工技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_jxsjzzl/202502/P020250207420086975620.pdf"
+  },
+  {
+    "major_code": "660103",
+    "major_name": "数控技术应用",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_jxsjzzl/202502/P020250207420742902485.pdf"
+  },
+  {
+    "major_code": "660107",
+    "major_name": "增材制造技术应用",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_jxsjzzl/202502/P020250207421124301018.pdf"
+  },
+  {
+    "major_code": "660108",
+    "major_name": "模具制造技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_jxsjzzl/202502/P020250207421423236938.pdf"
+  },
+  {
+    "major_code": "660201",
+    "major_name": "智能设备运行与维护",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_jdsbl/202502/P020250207444289037695.pdf"
+  },
+  {
+    "major_code": "660204",
+    "major_name": "新能源装备运行与维护",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_jdsbl/202502/P020250207444831246676.pdf"
+  },
+  {
+    "major_code": "660205",
+    "major_name": "制冷和空调设备运行与维护",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_jdsbl/202502/P020250207445264405213.pdf"
+  },
+  {
+    "major_code": "660206",
+    "major_name": "电梯安装与维修保养",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_jdsbl/202502/P020250207445587608528.pdf"
+  },
+  {
+    "major_code": "660301",
+    "major_name": "机电技术应用",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_zdhl/202502/P020250207446204751957.pdf"
+  },
+  {
+    "major_code": "660302",
+    "major_name": "电气设备运行与控制",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_zdhl/202502/P020250207447331017421.pdf"
+  },
+  {
+    "major_code": "660303",
+    "major_name": "工业机器人技术应用",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_zdhl/202502/P020250207448108562209.pdf"
+  },
+  {
+    "major_code": "660304",
+    "major_name": "工业自动化仪表及应用",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_zdhl/202502/P020250207448692439800.pdf"
+  },
+  {
+    "major_code": "660305",
+    "major_name": "液压与气动技术应用",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_zdhl/202502/P020250207449381071484.pdf"
+  },
+  {
+    "major_code": "660501",
+    "major_name": "船体修造技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_cbyhygczbl/202502/P020250207451255168978.pdf"
+  },
+  {
+    "major_code": "660503",
+    "major_name": "船舶电气装置安装与调试",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_cbyhygczbl/202502/P020250207451582913436.pdf"
+  },
+  {
+    "major_code": "660504",
+    "major_name": "船舶内装",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_cbyhygczbl/202502/P020250207451938202276.pdf"
+  },
+  {
+    "major_code": "660601",
+    "major_name": "无人机操控与维护",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_hkzbl/202502/P020250207452589851092.pdf"
+  },
+  {
+    "major_code": "660701",
+    "major_name": "汽车制造与检测",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_qczzl/202502/P020250207453197783519.pdf"
+  },
+  {
+    "major_code": "660702",
+    "major_name": "新能源汽车制造与检测",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_qczzl/202502/P020250207453515631651.pdf"
+  },
+  {
+    "major_code": "660703",
+    "major_name": "汽车电子技术应用",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zbzzdl/zbzzdl_qczzl/202502/P020250207453928829009.pdf"
+  },
+  {
+    "major_code": "620103",
+    "major_name": "宝玉石加工与检测",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_zykcl/202502/P020250207406420217473.pdf"
+  },
+  {
+    "major_code": "620201",
+    "major_name": "水文地质与工程地质勘查",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_dzl/202502/P020250207408266605475.pdf"
+  },
+  {
+    "major_code": "620202",
+    "major_name": "钻探技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_dzl/202502/P020250207407865235277.pdf"
+  },
+  {
+    "major_code": "620204",
+    "major_name": "岩土工程勘察与施工",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_dzl/202502/P020250207407395985143.pdf"
+  },
+  {
+    "major_code": "620205",
+    "major_name": "地球物理勘探技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_dzl/202502/P020250207406972681980.pdf"
+  },
+  {
+    "major_code": "620301",
+    "major_name": "工程测量技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_hcdlxxl/202502/P020250207409583836643.pdf"
+  },
+  {
+    "major_code": "620302",
+    "major_name": "地图绘制与地理信息系统",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_hcdlxxl/202502/P020250207409315053867.pdf"
+  },
+  {
+    "major_code": "620304",
+    "major_name": "航空摄影测量",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_hcdlxxl/202502/P020250207408893272186.pdf"
+  },
+  {
+    "major_code": "620401",
+    "major_name": "油气储运",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_syytrql/202502/P020250207410987691779.pdf"
+  },
+  {
+    "major_code": "620404",
+    "major_name": "油气开采",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_syytrql/202502/P020250207410706278668.pdf"
+  },
+  {
+    "major_code": "620502",
+    "major_name": "矿井建设技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_mtl/202502/P020250207443164855424.pdf"
+  },
+  {
+    "major_code": "620504",
+    "major_name": "矿山机电",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_mtl/202502/P020250207442896246079.pdf"
+  },
+  {
+    "major_code": "620505",
+    "major_name": "煤炭综合利用技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_mtl/202502/P020250207442297344611.pdf"
+  },
+  {
+    "major_code": "620701",
+    "major_name": "气象服务",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_qxl/202502/P020250207443737060674.pdf"
+  },
+  {
+    "major_code": "620801",
+    "major_name": "环境监测技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_hjbhl/202502/P020250207444639243789.pdf"
+  },
+  {
+    "major_code": "620802",
+    "major_name": "环境治理技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_hjbhl/202502/P020250207444325036306.pdf"
+  },
+  {
+    "major_code": "620901",
+    "major_name": "安全技术与管理",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_aql/202502/P020250207446173610211.pdf"
+  },
+  {
+    "major_code": "620902",
+    "major_name": "应急救援技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_aql/202502/P020250207445826065033.pdf"
+  },
+  {
+    "major_code": "620903",
+    "major_name": "防灾减灾技术",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_aql/202502/P020250207445464137127.pdf"
+  },
+  {
+    "major_code": "620904",
+    "major_name": "森林消防",
+    "education_level": "中等职业教育",
+    "pdf_url": "http://www.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/zyjyzyjxbz_zz/zz_zyhjyaqdl/zyhjyaqdl_aql/202502/P020250207445172785876.pdf"
+  }
+]

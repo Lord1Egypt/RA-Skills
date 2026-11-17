@@ -1,41 +1,57 @@
-## Description: <br>
-Helps agents prepare and manage multi-platform book publishing workflows, including platform-specific formatting, cover handling, publishing schedules, status tracking, and exception reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents prepare, adapt, schedule, publish, and track book releases across Amazon KDP, Chinese fiction platforms, Royal Road, and related channels.
 
-## Publisher: <br>
-[ouyang198000](https://clawhub.ai/user/ouyang198000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ouyang198000](https://clawhub.ai/user/ouyang198000)
 
-## Use Case: <br>
-Authors, publishing operators, and automation developers use this skill to prepare manuscripts for Amazon KDP, 番茄小说, 起点中文网, 晋江文学城, Royal Road, 七猫小说, and similar platforms, then track publishing schedules, review status, platform IDs, links, and exceptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests authority over publishing accounts, desktop or browser automation, scheduling, and content submissions. <br>
-Mitigation: Use only with explicit per-platform approval, least-privilege or temporary credentials, and manual review before submissions or scheduled publishing actions. <br>
-Risk: CAPTCHA handling may involve third-party solver services and platform compliance concerns. <br>
-Mitigation: Stop for human handling by default, or require separate informed consent before using any third-party CAPTCHA solver. <br>
+## Use Case:
 
+External users and publishing operators use this skill to adapt manuscripts, covers, metadata, schedules, and status reporting for multi-platform book publication workflows. The skill also describes assisted account login, upload, review submission, scheduling, and publication status collection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ouyang198000/multi-platform-publisher-agent) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured status data examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform publishing reports, book IDs, platform links, review status, schedule recommendations, and exception logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can automate account login, uploads, public posting, and publishing schedules across multiple platforms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval for each target platform, account, manuscript, upload, and publish or schedule action.
+
+Risk: Third-party CAPTCHA solving may violate platform rules or expose verification data.
+
+Mitigation: Disable automatic CAPTCHA solving unless the target platform permits it and the user accepts the privacy implications; prefer pausing for human verification.
+
+Risk: Stored credentials, broad session access, and verbose logs can expose publishing accounts or manuscript details.
+
+Mitigation: Avoid stored credentials where possible, limit session access to the immediate task, and return only the minimum publication status and exception details needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ouyang198000/skills/multi-platform-publisher-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or JSON-style status reports with platform links, book IDs, review status, schedules, and exception notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform configuration examples, publishing workflow steps, generated book metadata, and cover handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

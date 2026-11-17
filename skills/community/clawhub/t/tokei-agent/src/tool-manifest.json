@@ -1,0 +1,982 @@
+{
+  "$comment": "The one tool registry for tokei-agent: MCP tools (def) plus how each maps to a /api/v1 request and to a CLI command (cli). Read by cli/src/mcp.ts and cli/src/index.ts, and by the remote /mcp route. Zero-import JSON so any runtime can load it. See docs/cli-internal.md.",
+  "tools": [
+    {
+      "def": {
+        "name": "me",
+        "title": "Verify API key",
+        "description": "Verify the API key and return account information: plan, API usage today, active page count.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {}
+        },
+        "annotations": {
+          "readOnlyHint": true
+        }
+      },
+      "path": "/me",
+      "cli": {
+        "command": "me"
+      }
+    },
+    {
+      "def": {
+        "name": "pages_list",
+        "title": "List promotion pages",
+        "description": "List your pages (API: promotions/contests) with status, entry counts, and public URLs.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "draft",
+                "active",
+                "completed",
+                "deleted"
+              ]
+            },
+            "mode": {
+              "type": "string",
+              "enum": [
+                "competition",
+                "gamification",
+                "sharing_only"
+              ]
+            },
+            "page": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number (1-based)."
+            },
+            "per_page": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Results per page (max 100)."
+            }
+          }
+        },
+        "annotations": {
+          "readOnlyHint": true
+        }
+      },
+      "path": "/contests",
+      "queryParams": [
+        "status",
+        "mode",
+        "page",
+        "per_page"
+      ],
+      "cli": {
+        "command": "pages:list"
+      }
+    },
+    {
+      "def": {
+        "name": "pages_get",
+        "title": "Get promotion page",
+        "description": "Get one page in full: description, prizes, reward_thresholds, dates, public_url.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "contest_id": {
+              "type": "string",
+              "description": "The page id (API: contest/promotion id, a UUID). Get it from pages_list."
+            }
+          },
+          "required": [
+            "contest_id"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true
+        }
+      },
+      "path": "/contests/{contest_id}",
+      "pathParam": "contest_id",
+      "cli": {
+        "command": "pages:get",
+        "positional": "contestId"
+      }
+    },
+    {
+      "def": {
+        "name": "stats",
+        "title": "Get page analytics",
+        "description": "Aggregated analytics for a page: signups, entries, referrals, top actions.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "contest_id": {
+              "type": "string",
+              "description": "The page id (API: contest/promotion id, a UUID). Get it from pages_list."
+            }
+          },
+          "required": [
+            "contest_id"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true
+        }
+      },
+      "path": "/contests/{contest_id}/analytics",
+      "pathParam": "contest_id",
+      "cli": {
+        "command": "stats",
+        "positional": "contestId"
+      }
+    },
+    {
+      "def": {
+        "name": "leaderboard",
+        "title": "Get page leaderboard",
+        "description": "Participants of a page ranked by entry points.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "contest_id": {
+              "type": "string",
+              "description": "The page id (API: contest/promotion id, a UUID). Get it from pages_list."
+            },
+            "page": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number (1-based)."
+            },
+            "per_page": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Results per page (max 100)."
+            }
+          },
+          "required": [
+            "contest_id"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true
+        }
+      },
+      "path": "/contests/{contest_id}/leaderboard",
+      "pathParam": "contest_id",
+      "queryParams": [
+        "page",
+        "per_page"
+      ],
+      "cli": {
+        "command": "leaderboard",
+        "positional": "contestId"
+      }
+    },
+    {
+      "def": {
+        "name": "referrals_top",
+        "title": "Get top referrers",
+        "description": "A page's top referrers, ranked by converted referrals, with each one's referral code, name, email and counts — plus totals for referral clicks and conversion rate. Only entrants who have referred at least one person are listed.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "contest_id": {
+              "type": "string",
+              "description": "The page id (API: contest/promotion id, a UUID). Get it from pages_list."
+            },
+            "page": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number (1-based)."
+            },
+            "per_page": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Results per page (max 100)."
+            }
+          },
+          "required": [
+            "contest_id"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true
+        }
+      },
+      "path": "/contests/{contest_id}/referrals",
+      "pathParam": "contest_id",
+      "queryParams": [
+        "page",
+        "per_page"
+      ],
+      "cli": {
+        "command": "referrals:top",
+        "positional": "contestId"
+      }
+    },
+    {
+      "def": {
+        "name": "winners_list",
+        "title": "Get selection-run winners",
+        "description": "Selection-run history for a page (newest first): each run's id, seed, algorithm version, status, requested_by_email, total_candidates/total_winners_selected, and its persisted winners — each with entrant identity (email, full_name, entry_points, created_at, country_name, city) and prize details (prize_tier, prize_description, prize_value, selected_at, notified_at, notification_method, verified, claimed_at). Read-only: finalizing a run is session-auth only, not available via this API.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "contest_id": {
+              "type": "string",
+              "description": "The page id (API: contest/promotion id, a UUID). Get it from pages_list."
+            }
+          },
+          "required": [
+            "contest_id"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true
+        }
+      },
+      "path": "/contests/{contest_id}/winners",
+      "pathParam": "contest_id",
+      "cli": {
+        "command": "winners:list",
+        "positional": "contestId"
+      }
+    },
+    {
+      "def": {
+        "name": "entries_list",
+        "title": "List entries",
+        "description": "List a page's entries (signups). Filter by exact email with the email argument.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "contest_id": {
+              "type": "string",
+              "description": "The page id (API: contest/promotion id, a UUID). Get it from pages_list."
+            },
+            "email": {
+              "type": "string",
+              "description": "Exact-match email filter."
+            },
+            "page": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number (1-based)."
+            },
+            "per_page": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Results per page (max 100)."
+            }
+          },
+          "required": [
+            "contest_id"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true
+        }
+      },
+      "path": "/contests/{contest_id}/entries",
+      "pathParam": "contest_id",
+      "queryParams": [
+        "page",
+        "per_page",
+        "email"
+      ],
+      "cli": {
+        "command": "entries:list",
+        "positional": "contestId"
+      }
+    },
+    {
+      "def": {
+        "name": "surveys_list",
+        "title": "List survey responses",
+        "description": "List survey responses for a page.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "contest_id": {
+              "type": "string",
+              "description": "The page id (API: contest/promotion id, a UUID). Get it from pages_list."
+            },
+            "page": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number (1-based)."
+            },
+            "per_page": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Results per page (max 100)."
+            }
+          },
+          "required": [
+            "contest_id"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true
+        }
+      },
+      "path": "/contests/{contest_id}/survey-responses",
+      "pathParam": "contest_id",
+      "queryParams": [
+        "page",
+        "per_page"
+      ],
+      "cli": {
+        "command": "surveys:list",
+        "positional": "contestId"
+      }
+    },
+    {
+      "def": {
+        "name": "templates_list",
+        "title": "List templates",
+        "description": "List the platform's named starting points: id, slug, name, skin (page layout), and entry_method_count. Same list for every key. Clone one by slug with pages_clone's template argument.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {}
+        },
+        "annotations": {
+          "readOnlyHint": true
+        }
+      },
+      "path": "/templates",
+      "cli": {
+        "command": "templates:list"
+      }
+    },
+    {
+      "def": {
+        "name": "actions_catalog",
+        "title": "List entry-action catalog",
+        "description": "List every entry-action type entry actions can use: label, description, default points, platform, and whether it's trust-based / API-verifiable / manually verifiable. Same catalog for every key — not scoped to your account. Optional type argument returns just that one action type's entry; a value matching no known type is a 400.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Filter to one action type, e.g. twitter_follow. Unknown values return 400."
+            }
+          }
+        },
+        "annotations": {
+          "readOnlyHint": true
+        }
+      },
+      "path": "/actions/catalog",
+      "queryParams": [
+        "type"
+      ],
+      "cli": {
+        "command": "actions:catalog"
+      }
+    },
+    {
+      "def": {
+        "name": "events_catalog",
+        "title": "List webhook event catalog",
+        "description": "List every webhook event type Tokei's delivery engine understands: description, payload schema, and whether it's currently subscribable. Same catalog for every key — not scoped to your account. Optional type argument returns just that one event type's entry; a value matching no known type is a 400.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Filter to one event type, e.g. entry.created. Unknown values return 400."
+            }
+          }
+        },
+        "annotations": {
+          "readOnlyHint": true
+        }
+      },
+      "path": "/events/catalog",
+      "queryParams": [
+        "type"
+      ],
+      "cli": {
+        "command": "events:catalog"
+      }
+    },
+    {
+      "def": {
+        "name": "pages_clone",
+        "title": "Create page from clone or template",
+        "description": "Create a page by cloning one you own (source_promotion_id), a named platform template (template — list slugs with templates_list), or the platform starter template (omit both). Sending both source_promotion_id and template is a 422. Template, theme, and entry methods copy verbatim from the source. Capped at 20 API-created pages per account per UTC day (429). Needs a read+write key.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "maxLength": 100,
+              "description": "Dashboard name AND public page headline."
+            },
+            "source_promotion_id": {
+              "type": "string",
+              "description": "Page to clone; must be owned by your account (404 otherwise)."
+            },
+            "template": {
+              "type": "string",
+              "description": "Clone a named platform template by slug instead (from templates_list). Alternative to source_promotion_id, not combinable with it (422). A slug matching no template is a 404."
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "prize": {
+              "type": "string",
+              "maxLength": 200,
+              "description": "Replaces the first prize's name, or creates a prize if the source has none."
+            },
+            "end_date": {
+              "type": "string",
+              "description": "ISO 8601 datetime in the future."
+            },
+            "campaign_url": {
+              "type": "string",
+              "maxLength": 500,
+              "description": "HTTPS URL."
+            },
+            "image_url": {
+              "type": "string",
+              "maxLength": 500,
+              "description": "Hero image URL — must be an https media.tokei.io or res.cloudinary.com URL."
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "draft",
+                "active"
+              ],
+              "description": "active is live immediately at the returned public_url. Default draft."
+            },
+            "idempotency_key": {
+              "type": "string",
+              "maxLength": 100,
+              "description": "Reusing a key returns 409 with the existing page's id instead of a duplicate."
+            }
+          },
+          "required": [
+            "title"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false
+        }
+      },
+      "method": "POST",
+      "path": "/promotions",
+      "hasBody": true,
+      "cli": {
+        "command": "pages:clone",
+        "bodyFlags": [
+          "title",
+          "source_promotion_id",
+          "template",
+          "description",
+          "prize",
+          "end_date",
+          "campaign_url",
+          "image_url",
+          "status",
+          "idempotency_key"
+        ],
+        "flagNames": {
+          "source_promotion_id": "source"
+        }
+      }
+    },
+    {
+      "def": {
+        "name": "pages_update",
+        "title": "Update promotion page",
+        "description": "Update a page: title, description, start/end dates, prizes, reward tiers, entry methods (the action buttons on the page), appearance, and the seven media slots (image_video, secondary_image, third_image, fourth_image, fifth_image, background_image, og_image — use media_upload to get a public_url first). At least one field; unknown fields are rejected (422). prizes, reward_thresholds and entry_methods each REPLACE the existing list wholesale — read with pages_get first, modify, send the complete list back. status is not settable here — use pages_publish / pages_unpublish. Needs a read+write key.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "contest_id": {
+              "type": "string",
+              "description": "The page id (API: contest/promotion id, a UUID). Get it from pages_list."
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100,
+              "description": "Sets the dashboard name AND the public page heading."
+            },
+            "description": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 2000,
+              "description": "Public page description. null clears it."
+            },
+            "start_date": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "ISO 8601 datetime or null. A future start_date pauses new entries until then."
+            },
+            "end_date": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "ISO 8601 datetime in the future, or null. Setting it recomputes days_left."
+            },
+            "prizes": {
+              "type": "array",
+              "maxItems": 20,
+              "description": "Replaces the prize list wholesale. Items: {name, winners, value?, currency?}.",
+              "items": {
+                "type": "object"
+              }
+            },
+            "reward_thresholds": {
+              "type": "array",
+              "maxItems": 50,
+              "description": "Replaces reward tiers wholesale. Items: {id, points, rewardType, rewardDescription, isEnabled, rewardDetails?}.",
+              "items": {
+                "type": "object"
+              }
+            },
+            "entry_methods": {
+              "type": "array",
+              "maxItems": 30,
+              "description": "The page's entry actions. Replaces the list wholesale; [] clears every action. Two row shapes, both may carry an optional id (string, 1-64 chars, [A-Za-z0-9_-] only) for stable per-row identity — optional on input, every stored row has one, and a row sent without one is stored as a new action. Changing a row's target keeps credit for entrants who already did it while the row keeps its id; two rows sharing an id in the same array is a 422: Duplicate entry method id \"<id>\" (already used at index <n>). ACTION ROW: {id?, actionType, label, points?, config?, requireVerification?} — actionType must be one of the writable types from actions_catalog, and config's keys are that type's `fields`. CUSTOM LINK ROW: {id?, label, points?, link, actionsRequired?} with NO actionType — a plain http(s) button to any URL, for anything the catalog has no action for; actionsRequired (0-20) hides it until the entrant has completed that many other actions. icon and config.type are server-derived and ignored if sent. label is 1-100 chars, points 0-100 (0 means 'use the action's default'). Labels starting with 'Visit Our ' are reserved for the page's own campaign-URL button — the dashboard rewrites those. At most 5 rows may share one actionType, and only for twitter_follow, instagram_follow and facebook_visit_page; every other actionType is capped at 1 — exceeding it is a 422: Too many \"twitter_follow\" entry methods (max 5 per promotion). / Only one \"tiktok_follow\" entry method is allowed per promotion. for everything else.",
+              "items": {
+                "type": "object"
+              }
+            },
+            "template": {
+              "type": "string",
+              "enum": [
+                "basic-new",
+                "showcase",
+                "future",
+                "simple"
+              ],
+              "description": "Page skin/layout template. 'simple' is the Custom template — bare structural markup the creator styles via custom_css."
+            },
+            "dark_mode_enabled": {
+              "type": "boolean",
+              "description": "Enable dark mode on the public page."
+            },
+            "custom_css": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Creator CSS for the Custom ('simple') template — applied on the hosted page AND the widget embed, styling via --tokei-* custom properties and .tokei-simple-* class hooks. Max 20 KB; server-sanitised (unsafe constructs rejected with a 422 naming the reason). null clears it."
+            },
+            "primary_color": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Hex colour, e.g. #7d78c6. null resets to the template default."
+            },
+            "card_width": {
+              "type": "string",
+              "enum": [
+                "narrow",
+                "medium",
+                "wide",
+                "xl",
+                "max-w-2xl",
+                "max-w-3xl",
+                "max-w-4xl",
+                "max-w-7xl"
+              ],
+              "description": "Content column width. Friendly names map to Tailwind max-w classes server-side."
+            },
+            "image_video": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Hero media — an image or a video URL, typically the public_url from media_upload. Must be an https Tokei media, Supabase storage or Cloudinary URL (media_upload's output already qualifies). null clears it."
+            },
+            "secondary_image": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Additional layout block image URL (same host allowlist as image_video). null clears it."
+            },
+            "third_image": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Additional layout block image URL (same host allowlist as image_video). null clears it."
+            },
+            "fourth_image": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Additional layout block image URL (same host allowlist as image_video). null clears it."
+            },
+            "fifth_image": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Additional layout block image URL (same host allowlist as image_video). null clears it."
+            },
+            "background_image": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Page background image URL (same host allowlist as image_video); interpolated into the page's CSS. null clears it."
+            },
+            "og_image": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Social-share preview image URL (same host allowlist as image_video). null clears it."
+            }
+          },
+          "required": [
+            "contest_id"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": true
+        }
+      },
+      "method": "PATCH",
+      "path": "/contests/{contest_id}",
+      "pathParam": "contest_id",
+      "hasBody": true,
+      "cli": {
+        "command": "pages:update",
+        "positional": "contestId",
+        "bodyFlags": [
+          "title",
+          "description",
+          "start_date",
+          "end_date",
+          "template",
+          "custom_css",
+          "dark_mode_enabled",
+          "primary_color",
+          "card_width",
+          "image_video",
+          "secondary_image",
+          "third_image",
+          "fourth_image",
+          "fifth_image",
+          "background_image",
+          "og_image"
+        ],
+        "flagNames": {
+          "dark_mode_enabled": "dark-mode"
+        },
+        "requireBody": true
+      }
+    },
+    {
+      "def": {
+        "name": "pages_publish",
+        "title": "Publish page",
+        "description": "Publish a page (status -> active), making it live at its public_url. Requires an end_date in the future — either already stored on the page or supplied here — otherwise returns 422 VALIDATION_ERROR. Re-publishing an already-active page is a no-op and skips that check. Needs a read+write key.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "contest_id": {
+              "type": "string",
+              "description": "The page id (API: contest/promotion id, a UUID). Get it from pages_list."
+            },
+            "end_date": {
+              "type": "string",
+              "description": "ISO 8601 datetime in the future. Required in this same call if the page has no future end_date already."
+            }
+          },
+          "required": [
+            "contest_id"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      "method": "PATCH",
+      "path": "/contests/{contest_id}",
+      "pathParam": "contest_id",
+      "hasBody": true,
+      "fixedBody": {
+        "status": "active"
+      },
+      "cli": {
+        "command": "pages:publish",
+        "positional": "contestId",
+        "requireBody": true
+      }
+    },
+    {
+      "def": {
+        "name": "pages_unpublish",
+        "title": "Unpublish page",
+        "description": "Unpublish a page (status -> draft): blocks new entries and hides the page — visitors to its URL see \"This promotion isn't open right now\"; only the signed-in owner still sees it. Existing entries and entrants are untouched, nothing is deleted, and pages_publish restores it. Needs a read+write key.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "contest_id": {
+              "type": "string",
+              "description": "The page id (API: contest/promotion id, a UUID). Get it from pages_list."
+            }
+          },
+          "required": [
+            "contest_id"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      "method": "PATCH",
+      "path": "/contests/{contest_id}",
+      "pathParam": "contest_id",
+      "hasBody": true,
+      "fixedBody": {
+        "status": "draft"
+      },
+      "cli": {
+        "command": "pages:unpublish",
+        "positional": "contestId",
+        "requireBody": true
+      }
+    },
+    {
+      "def": {
+        "name": "entries_create",
+        "title": "Create entry",
+        "description": "Add an entry (signup) to a page. Duplicate email for the page returns 409 — the person is already signed up. Needs a read+write key.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "contest_id": {
+              "type": "string",
+              "description": "The page id (API: contest/promotion id, a UUID). Get it from pages_list."
+            },
+            "email": {
+              "type": "string",
+              "description": "Participant email."
+            },
+            "name": {
+              "type": "string",
+              "description": "Full name."
+            },
+            "action_type": {
+              "type": "string",
+              "description": "Action type for the entry; defaults to api_import."
+            },
+            "points": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 10000,
+              "description": "Points to award; defaults to the matching entry method's points, or 5. Max 10000."
+            },
+            "value": {
+              "type": "string",
+              "description": "Context string, e.g. \"Order #12345\"."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Custom key-value pairs stored with the entry."
+            },
+            "marketing_consent": {
+              "type": "boolean",
+              "description": "Whether this participant has already given marketing consent elsewhere. true records the consent and its timestamp, and is what enables syncing them to the connected email provider. Send it only when consent was genuinely collected."
+            }
+          },
+          "required": [
+            "contest_id",
+            "email"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false
+        }
+      },
+      "method": "POST",
+      "path": "/contests/{contest_id}/entries",
+      "pathParam": "contest_id",
+      "hasBody": true,
+      "cli": {
+        "command": "entries:create",
+        "positional": "contestId",
+        "bodyFlags": [
+          "email",
+          "name",
+          "action_type",
+          "points",
+          "value"
+        ]
+      }
+    },
+    {
+      "def": {
+        "name": "webhooks_list",
+        "title": "List webhooks",
+        "description": "List webhook subscriptions. failure_count is consecutive failed deliveries — auto-disabled at 10.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number (1-based)."
+            },
+            "per_page": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Results per page (max 100)."
+            }
+          }
+        },
+        "annotations": {
+          "readOnlyHint": true
+        }
+      },
+      "path": "/webhooks",
+      "queryParams": [
+        "page",
+        "per_page"
+      ],
+      "cli": {
+        "command": "webhooks:list"
+      }
+    },
+    {
+      "def": {
+        "name": "webhooks_create",
+        "title": "Create webhook subscription",
+        "description": "Subscribe an HTTPS endpoint to events. The response contains the whsec_ signing secret EXACTLY ONCE — store it immediately, it cannot be retrieved again. Deliveries are HMAC-SHA256 signed (X-TOKEI-Signature). Needs a read+write key.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "HTTPS endpoint that receives event payloads."
+            },
+            "events": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "entry.created",
+                  "contest.ended",
+                  "winner.selected",
+                  "daily_bonus.claimed",
+                  "referral.converted"
+                ]
+              },
+              "minItems": 1,
+              "description": "Events to subscribe to. All five are subscribable: entry.created, contest.ended, winner.selected, daily_bonus.claimed, referral.converted."
+            }
+          },
+          "required": [
+            "url",
+            "events"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false
+        }
+      },
+      "method": "POST",
+      "path": "/webhooks",
+      "hasBody": true,
+      "warnSecretOnce": true,
+      "cli": {
+        "command": "webhooks:create",
+        "bodyFlags": [
+          "url",
+          "events"
+        ]
+      }
+    },
+    {
+      "def": {
+        "name": "webhooks_delete",
+        "title": "Delete webhook subscription",
+        "description": "Delete a webhook subscription. Its queued and historical delivery records are deleted with it (webhook_deliveries cascades on the subscription), so past delivery attempts are no longer retrievable afterwards. A 404 usually means it was already deleted — safe to treat as success.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "webhook_id": {
+              "type": "string",
+              "description": "The webhook subscription id (UUID)."
+            }
+          },
+          "required": [
+            "webhook_id"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": true,
+          "idempotentHint": true
+        }
+      },
+      "method": "DELETE",
+      "path": "/webhooks/{webhook_id}",
+      "pathParam": "webhook_id",
+      "cli": {
+        "command": "webhooks:delete",
+        "positional": "webhookId"
+      }
+    },
+    {
+      "def": {
+        "name": "media_upload",
+        "title": "Upload media file",
+        "description": "Upload an image or video from local disk (one multipart POST) and return a public_url to feed into pages_update's seven media fields (image_video, secondary_image, third_image, fourth_image, fifth_image, background_image, og_image). Content type is inferred from the file extension (.jpg/.jpeg/.png/.gif/.webp/.mp4/.webm/.mov); override with content_type. Uploads are capped at 4MB — applies to video as well as images, and a larger file is rejected before it is sent. The bytes are verified server-side against the declared type for images and video/mp4 (not webm or quicktime), so a mislabelled file of those types is a 422. The stored object name is a server-generated UUID; the filename argument is only echoed back. application/pdf is not accepted. Needs a read+write key.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "file_path": {
+              "type": "string",
+              "description": "Path to the local file to upload (read from disk where this MCP server runs)."
+            },
+            "content_type": {
+              "type": "string",
+              "description": "Override the content type inferred from file_path's extension, e.g. image/png or video/mp4."
+            }
+          },
+          "required": [
+            "file_path"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false
+        }
+      },
+      "method": "POST",
+      "path": "/media",
+      "handler": "media_upload"
+    }
+  ]
+}

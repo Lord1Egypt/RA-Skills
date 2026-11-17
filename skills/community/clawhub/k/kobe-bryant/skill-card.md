@@ -1,40 +1,52 @@
-## Description: <br>
-Kobe Bryant - Mamba Mentality is a persona and motivational response skill that answers Kobe Bryant, Mamba Mentality, basketball, work ethic, leadership, and life-lesson prompts in a direct Kobe-inspired voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kobe Bryant themed skill that responds to Kobe, Mamba Mentality, basketball legends, work ethic, quotes, and life lessons by channeling a direct, relentless, excellence-focused persona.
 
-## Publisher: <br>
-[liangbaikaia](https://clawhub.ai/user/liangbaikaia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[liangbaikaia](https://clawhub.ai/user/liangbaikaia)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill for Kobe Bryant inspired coaching, mindset guidance, basketball-themed motivation, and roleplay-style responses about excellence, discipline, leadership, and resilience.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may generate simulated first-person Kobe-style responses that readers could mistake for authentic quotes or verified personal statements.
+
+Mitigation: Treat persona output as simulated writing and verify quotations or biographical claims against authoritative sources before relying on them.
+
+Risk: Broad trigger wording may activate the persona during general basketball or mindset conversations.
+
+Mitigation: Use the skill only when Kobe Bryant inspired coaching or roleplay-style answers are intended.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can invoke this skill for Kobe Bryant-themed motivational writing, basketball mindset discussion, leadership lessons, and Mamba Mentality-style responses. It is best suited for tone and guidance generation rather than authoritative factual reference. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The Kobe-themed response style may activate on broad basketball or motivation prompts. <br>
-Mitigation: Use the skill only when a Kobe Bryant or Mamba Mentality persona is intended, and review responses before relying on them. <br>
-Risk: The skill may answer in Chinese unless the prompt or skill is revised to honor the user's language preference. <br>
-Mitigation: Specify the desired response language in the user prompt or revise the skill instructions to follow the user's language. <br>
+**Output Format:** [Markdown prose]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liangbaikaia/kobe-bryant) <br>
+**Other Properties Related to Output:** [Simulated first-person persona responses; not authentic quotes or verified personal statements.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language text or Markdown responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Kobe-inspired persona and motivational tone; no evidence of file access, credentials, persistence, external calls, or destructive behavior in server security evidence.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

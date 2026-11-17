@@ -1,42 +1,52 @@
-## Description: <br>
-Provides memecoin price trend analysis, technical indicator interpretation, short-term movement estimates, and holder distribution risk assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes memecoin price trends, technical indicators, short-term movement, and holder distribution risk across supported chains.
 
-## Publisher: <br>
-[pxyyqm626529-afk](https://clawhub.ai/user/pxyyqm626529-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pxyyqm626529-afk](https://clawhub.ai/user/pxyyqm626529-afk)
 
-## Use Case: <br>
-External users and agents use this skill to request concise memecoin analysis reports for supported chains, including price indicators, short-term trend signals, and holder concentration risk notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports a live-looking payment API key and unclear billing or credential ownership. <br>
-Mitigation: Remove and rotate the exposed key, document who pays for each call, and require declared credentials before production use. <br>
-Risk: The release evidence reports that the service endpoint or source code is not verified. <br>
-Mitigation: Verify the endpoint or source code and review the service behavior before relying on the skill. <br>
-Risk: Crypto-analysis output could be mistaken for investment advice. <br>
-Mitigation: Treat all output as informational only and require independent review before making financial decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pxyyqm626529-afk/memecoin-analyst) <br>
-- [Publisher profile](https://clawhub.ai/user/pxyyqm626529-afk) <br>
+## Use Case:
 
+External users and crypto analysts use this skill to request informational memecoin price, indicator, prediction, and holder-distribution reports for supported token contracts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are informational crypto-analysis summaries and should not be treated as investment advice.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The published documentation exposes a credential-shaped payment/API key.
+
+Mitigation: Remove and rotate the exposed key before use; when self-hosting, provide credentials through environment variables with spending limits.
+
+Risk: Crypto and memecoin analysis can be mistaken for investment advice despite volatile markets.
+
+Mitigation: Treat outputs as informational only and require independent review before making any trading or investment decision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pxyyqm626529-afk/skills/memecoin-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include token price data, RSI and MACD interpretation, short-term outlook, holder distribution, and risk notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

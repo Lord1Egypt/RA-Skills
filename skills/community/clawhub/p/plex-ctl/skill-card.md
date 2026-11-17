@@ -1,42 +1,54 @@
-## Description: <br>
-PLEX-CTL helps an agent search, browse, play, and control Plex Media Server libraries and clients through the Plex API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line tool for searching, playing, and controlling Plex Media Server and clients via the Plex API on a local network.
 
-## Publisher: <br>
-[akivasolutions](https://clawhub.ai/user/akivasolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[akivasolutions](https://clawhub.ai/user/akivasolutions)
 
-## Use Case: <br>
-External users and their agents use this skill to control a configured Plex environment: search media libraries, start playback, pause or resume clients, inspect currently playing sessions, browse recently added or on-deck content, and retrieve title metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a Plex token locally, and that token can grant access to the user's Plex server and library metadata. <br>
-Mitigation: Treat the Plex token like a password, keep it out of logs and commits, and restrict access to ~/.plexctl/config.json. <br>
-Risk: Client discovery can fall back to MyPlex cloud resources when local discovery does not find a client. <br>
-Mitigation: Review the cloud discovery fallback before use if the deployment requires strictly local-only behavior. <br>
-Risk: Playback commands can control any reachable Plex client selected during setup or with a command option. <br>
-Mitigation: Confirm the intended default client during setup and specify a client explicitly when controlling shared devices. <br>
+## Use Case:
 
+Developers and agent users use this skill to search Plex libraries, start playback, control Plex clients, and inspect media metadata from a command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub PLEX-CTL release](https://clawhub.ai/akivasolutions/plex-ctl) <br>
-- [Plex Web](https://app.plex.tv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline CLI commands and plain text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Plex server URL, Plex token, and reachable Plex client; stores configuration locally in ~/.plexctl/config.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill stores a Plex access token in ~/.plexctl/config.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the config file, avoid committing or sharing it, and tighten file permissions before use.
+
+Risk: Client discovery can contact Plex cloud services despite local-only privacy claims.
+
+Mitigation: Use the skill only when Plex cloud discovery is acceptable, and review command behavior before relying on local-only operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/akivasolutions/skills/plex-ctl)
+- [Publisher profile](https://clawhub.ai/user/akivasolutions)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Plex server URL, Plex access token, and selected client stored in local configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Open Agent Search"
+  short_description: "Search public sources and fetch page evidence"
+  default_prompt: "Use $open-agent-search to research this topic and cite the sources."

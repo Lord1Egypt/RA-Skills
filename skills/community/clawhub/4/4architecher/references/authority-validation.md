@@ -90,7 +90,7 @@
 ### AI、风险与安全架构
 
 - NIST AI RMF
-  https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10
+  https://www.nist.gov/publications/artificial-intelligence-riREDACTED-SECRET
 - NIST Zero Trust Architecture
   https://www.nist.gov/publications/zero-trust-architecture
 - NIST Cybersecurity Framework

@@ -1,0 +1,34 @@
+{
+  "channel": "telegram",
+  "profile": "default",
+  "pollSeconds": 60,
+  "minAmount": 0,
+  "onlyCredit": false,
+  "accounts": [],
+  "orgName": "Моя Компания",
+  "timezoneOffsetHours": 3,
+  "telegram": {
+    "enabled": true,
+    "token": "123456789:ABCdefGHIjklMNOpqrSTUvwxYZ",
+    "chatId": "-1001234567890"
+  },
+  "max": {
+    "enabled": false,
+    "token": "YOUR_MAX_BOT_TOKEN",
+    "chatId": "-YOUR_MAX_CHAT_ID"
+  },
+  "discord": {
+    "enabled": false,
+    "webhookUrl": "https://discord.com/api/webhooks/YOUR/WEBHOOK/URL"
+  },
+  "slack": {
+    "enabled": false,
+    "webhookUrl": "REDACTED-SECRET"
+  },
+  "webhook": {
+    "enabled": false,
+    "url": "https://api.mycompany.ru/webhooks/sber",
+    "secretHeader": "X-Auth-Token",
+    "secretValue": "YOUR_SECRET_TOKEN"
+  }
+}

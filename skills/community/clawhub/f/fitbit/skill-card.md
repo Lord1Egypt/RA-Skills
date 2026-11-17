@@ -1,40 +1,53 @@
-## Description: <br>
-Query Fitbit health data including sleep, heart rate, activity, SpO2, and breathing rate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Fitbit health data including sleep, heart rate, activity, SpO2, and breathing rate.
 
-## Publisher: <br>
-[mjrussell](https://clawhub.ai/user/mjrussell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mjrussell](https://clawhub.ai/user/mjrussell)
 
-## Use Case: <br>
-Fitbit users use this skill to have an agent run read-only Fitbit CLI queries for sleep, heart rate, activity, SpO2, breathing rate, profile, and device status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Fitbit queries can expose sensitive personal health, profile, and device data in the agent session. <br>
-Mitigation: Run only user-requested metrics, keep date ranges narrow, and avoid asking for data the user does not want shown in the conversation. <br>
-Risk: The skill depends on an installed fitbit-cli binary that can access Fitbit account data. <br>
-Mitigation: Use a trusted fitbit-cli installation and complete authentication intentionally before allowing the agent to query data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Fitbit homepage](https://www.fitbit.com) <br>
-- [Fitbit skill on ClawHub](https://clawhub.ai/mjrussell/fitbit) <br>
+## Use Case:
 
+External users and agents use this skill to answer fitness, sleep, activity, heart-rate, SpO2, breathing-rate, profile, and device-sync questions by running read-only Fitbit CLI queries.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses fitbit-cli for read-only Fitbit queries; date inputs may be today, relative ranges, or explicit dates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can cause an agent to read personal Fitbit health, profile, and device data through the local CLI.
+
+Mitigation: Install and authorize fitbit-cli only on trusted machines, review where OAuth tokens are stored, and revoke Fitbit access when it is no longer needed.
+
+Risk: Returned health and activity data may be stale when a Fitbit device has not synced recently.
+
+Mitigation: Check device sync status before relying on recent readings or trend summaries.
+
+## Reference(s):
+
+- [Fitbit](https://www.fitbit.com)
+- [ClawHub Fitbit Skill](https://clawhub.ai/mjrussell/skills/fitbit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the local fitbit-cli binary and authenticated Fitbit access; Fitbit data may be delayed by device sync.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, released 2026-01-08)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

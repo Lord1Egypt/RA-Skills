@@ -1,44 +1,62 @@
-## Description: <br>
-Automates learning workflows for mooc.ctt.cn, including study hours, topics, courses, and tasks with QR-code login and progress monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cttc Auto Learn helps an agent set up and run browser automation for mooc.ctt.cn learning workflows, including study-hour, topic, course, and task modes.
 
-## Publisher: <br>
-[gandli](https://clawhub.ai/user/gandli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gandli](https://clawhub.ai/user/gandli)
 
-## Use Case: <br>
-External users and agents use this skill to set up and run a browser automation workflow for mooc.ctt.cn study-hour, topic, course, and task completion while reporting progress from local status files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill clones and runs unpinned external code from GitHub. <br>
-Mitigation: Review the upstream repository first and run only a commit or release you have explicitly approved. <br>
-Risk: The workflow stores reusable mooc.ctt.cn login state locally. <br>
-Mitigation: Protect access to the working directory and delete output/auth-state.json when saved login state is no longer needed. <br>
-Risk: The automation can interrupt local Chrome sessions and performs broad browser cleanup actions. <br>
-Mitigation: Run it in an isolated environment or close unrelated Chrome work before execution. <br>
+## Use Case:
 
+External users and developers use this skill to automate mooc.ctt.cn course playback, login handling, progress monitoring, and status reporting for learning-hour workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gandli/cttc-auto-learn) <br>
-- [Project repository](https://github.com/gandli/cttc-auto-learn) <br>
-- [Publisher profile](https://clawhub.ai/user/gandli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with shell commands and status-report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local status, log, QR-code, and saved-login files while operating the upstream automation project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may violate training-platform rules by automating course completion and simulating presence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit authorization from the account owner and platform or organization responsible for the training workflow.
+
+Risk: The skill executes unpinned third-party code.
+
+Mitigation: Review the source code, pin it to a trusted revision, and run it in a restricted environment before using it with real accounts.
+
+Risk: The skill stores reusable login state locally.
+
+Mitigation: Use a dedicated browser profile or isolated environment and protect or delete generated authentication files after use.
+
+Risk: Browser automation and process cleanup may disrupt existing browser sessions.
+
+Mitigation: Run the workflow on a dedicated machine, VM, or disposable browser profile that does not hold unrelated active sessions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gandli/skills/cttc-auto-learn)
+- [Project URL](https://github.com/gandli/cttc-auto-learn)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown instructions with inline shell commands and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.11+, uv, Playwright, and access to mooc.ctt.cn; execution may create local authentication, QR code, log, and status files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

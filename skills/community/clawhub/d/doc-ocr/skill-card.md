@@ -1,41 +1,61 @@
-## Description: <br>
-Doc OCR helps agents use MinerU to extract searchable, editable text from scanned or image-embedded Word (.docx) documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doc OCR helps agents extract searchable, editable text from scanned pages or image-embedded content in Word .docx files using MinerU OCR and VLM modes.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-External users, developers, office teams, legal teams, and archivists use this skill to configure MinerU OCR for Word documents whose useful content is embedded as scanned pages or images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents processed through MinerU may contain confidential, regulated, customer, or secret-bearing information that is sent to an external parsing provider. <br>
-Mitigation: Use the skill only when organizational policy permits sending the document content to MinerU and the provider retention and privacy terms are understood. <br>
+## Use Case:
 
+External users, developers, office teams, legal teams, and archivists use this skill to OCR scanned or image-only content inside Word .docx files and convert it into readable, searchable Markdown or text.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mzlzyca/doc-ocr) <br>
-- [MinerU Homepage](https://mineru.net) <br>
-- [MinerU Token Management](https://mineru.net/apiManage/token) <br>
-- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI flags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mineru-open-api and MINERU_TOKEN; OCR output can be sent to stdout or saved to a target directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: The skill sends or enables processing of potentially sensitive Word documents through the third-party MinerU tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review MinerU data handling terms before use and avoid processing confidential legal, business, medical, or personal files unless approved.
+
+Risk: The install guidance uses mutable global package installs for mineru-open-api.
+
+Mitigation: Use a pinned, reviewed mineru-open-api version in an isolated environment before deploying the skill.
+
+Risk: OCR results can vary when language settings are left implicit.
+
+Mitigation: Set the language flag explicitly for the document language, such as en for English.
+
+## Reference(s):
+
+- [Doc OCR ClawHub Page](https://clawhub.ai/mzlzyca/skills/doc-ocr)
+- [mzlzyca Publisher Profile](https://clawhub.ai/user/mzlzyca)
+- [MinerU Homepage](https://mineru.net)
+- [MinerU Token Management](https://mineru.net/apiManage/token)
+- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and OCR output as text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mineru-open-api and MINERU_TOKEN; document content can be written to stdout or an output directory.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

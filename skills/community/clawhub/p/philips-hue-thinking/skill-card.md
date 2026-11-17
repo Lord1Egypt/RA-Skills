@@ -1,44 +1,59 @@
-## Description: <br>
-Visual AI activity indicator using Philips Hue lights. Pulse red when thinking, green when done. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visual AI activity indicator that uses Philips Hue lights to pulse red while an agent is thinking and turn green when it is done.
 
-## Publisher: <br>
-[JesseRod329](https://clawhub.ai/user/JesseRod329) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jesserod329](https://clawhub.ai/user/jesserod329)
 
-## Use Case: <br>
-Developers and AI assistant users use this skill to show assistant activity through Philips Hue lights, including red thinking or working states and a green done state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed artifact depends on a separate hue executable that was not included in the reviewed files. <br>
-Mitigation: Verify the actual hue executable before installing or running the skill. <br>
-Risk: The local Hue Bridge credential is stored in the user's home configuration directory. <br>
-Mitigation: Keep ~/.config/philips-hue/config.json private and avoid sharing logs or screenshots that expose it. <br>
-Risk: Pulse mode may keep running as a background process until stopped. <br>
-Mitigation: Use the documented reset command or stop the hue-pulse-loop process when the indicator should end. <br>
+## Use Case:
 
+Developers and external users use this skill to give an AI assistant a physical activity indicator through a configured Philips Hue bridge and color bulb. It provides guidance and shell commands for setup, status changes, and workflow hooks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JesseRod329/philips-hue-thinking) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Hue CLI setup and status-control commands; pulse mode may start a background process until stopped.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The assistant can control the configured Philips Hue light on the user's local network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local Hue light control is intended, and configure it for a chosen light rather than broad unattended use.
+
+Risk: The Hue username stored in the local configuration can control lights on the local network.
+
+Mitigation: Protect the Hue configuration file and avoid exposing it in logs, shared shells, or copied troubleshooting output.
+
+Risk: Shell hooks or automatic invocations may run light-control commands from a user profile.
+
+Mitigation: Review hook scripts before adding them to a shell profile and prefer a user-owned PATH install over sudo where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jesserod329/skills/philips-hue-thinking)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Philips Hue bridge, Hue color bulb, curl, Bash 4.0 or later, and a selected light ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

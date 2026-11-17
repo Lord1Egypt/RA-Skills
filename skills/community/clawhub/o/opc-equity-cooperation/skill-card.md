@@ -1,54 +1,67 @@
-## Description: <br>
-OPC分布式协作中台解决方案，解决临时团队动态合作、能力出资合规、多方利益分配 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OPC分布式协作中台解决方案，解决临时团队动态合作、能力出资合规、多方利益分配。
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External users and business operators use this skill as a drafting and reference aid for OPC distributed cooperation structures, contribution-weighted profit sharing, governance roles, and compliance checklists for temporary teams, local alliances, and incubation scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives operational guidance for legal, tax, banking, profit-sharing, and compliance wording workflows. <br>
-Mitigation: Use it only as a high-level drafting and reference aid; obtain qualified legal, tax, and compliance review before applying it to real cooperation arrangements. <br>
-Risk: The artifact discusses accounts, funds, participant ledgers, contracts, and financial records. <br>
-Mitigation: Do not use the skill to operate real accounts, move money, solicit participants, or share ledgers without explicit participant consent and appropriate governance controls. <br>
-Risk: The artifact includes guidance about sensitive-word substitution that could obscure legal or economic substance. <br>
-Mitigation: Describe the actual legal and economic substance plainly in communications and remove euphemistic substitution guidance before operational use. <br>
-Risk: The skill may encourage storing contract or financial data on-chain. <br>
-Mitigation: Avoid storing raw contract, identity, or financial data on-chain; use privacy-preserving records only after legal, security, and participant-consent review. <br>
+## Use Case:
 
+External operators, founders, consultants, and collaboration-platform builders use this skill to structure OPC project cooperation, soft-SPV governance, contribution-weighted profit sharing, compliance checks, and contract templates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/golngod/opc-equity-cooperation) <br>
-- [README](README.md) <br>
-- [核心概念：三层架构、SPV模式、法律框架](references/01-核心概念.md) <br>
-- [治理机制](references/02-治理机制.md) <br>
-- [六大系统](references/03-六大系统.md) <br>
-- [财务税务](references/04-财务税务.md) <br>
-- [信用评级](references/05-信用评级.md) <br>
-- [国企孵化](references/06-国企孵化.md) <br>
-- [合规红线](references/07-合规红线.md) <br>
-- [落地路径](references/08-落地路径.md) <br>
-- [合同模板](references/09-合同模板.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown reference guidance with checklists, tables, and contract template text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no API calls, MCP tools, credentials, or executable dependencies detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Business and legal template material could be mistaken for authority to move money, configure bank access, or make binding tax and legal decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require qualified legal, tax, privacy, and finance review before use in real projects, and keep agents from executing financial actions directly.
+
+Risk: Financial account, payout, and reconciliation guidance can affect high-impact distributions if formulas or controls are incomplete.
+
+Mitigation: Fix and independently review payout formulas, use role-restricted approval workflows, and reconcile distributions before any real payment.
+
+Risk: Publishing source documents or member records to immutable systems can expose sensitive information.
+
+Mitigation: Store only hashes or minimal evidence on-chain, and restrict sensitive records by role.
+
+## Reference(s):
+
+- [Skill source](SKILL.md)
+- [README](README.md)
+- [核心概念：三层架构、SPV模式、法律框架](references/01-核心概念.md)
+- [治理机制：三长老、议事规则、争议解决](references/02-治理机制.md)
+- [六大系统：业务系统完整设计](references/03-六大系统.md)
+- [财务税务：共管账户、分账流程、发票方案](references/04-财务税务.md)
+- [信用评级：5级信用体系、升降级规则](references/05-信用评级.md)
+- [国企孵化：母SPV+子SPV双层架构](references/06-国企孵化.md)
+- [合规红线：非法集资防范、敏感词对照表](references/07-合规红线.md)
+- [落地路径：MVP→完善版→平台版](references/08-落地路径.md)
+- [合同模板：合作协议、服务采购协议模板](references/09-合同模板.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration, Text]
+
+**Output Format:** [Markdown guidance, checklists, and contract templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only business and legal template material; qualified review is required before real financial, tax, privacy, or governance use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

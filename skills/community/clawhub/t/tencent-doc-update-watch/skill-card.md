@@ -1,42 +1,56 @@
-## Description: <br>
-Tencent Doc Update Watcher re-crawls Tencent Docs links, compares snapshots, and produces structured update reports for sheet, doc, and AIO links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Privacy-first re-crawl and diff workflow for Tencent Docs (docs.qq.com) update checks.
 
-## Publisher: <br>
-[chinasilva](https://clawhub.ai/user/chinasilva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chinasilva](https://clawhub.ai/user/chinasilva)
 
-## Use Case: <br>
-Developers, operators, and document owners use this skill to check configured Tencent Docs links for updates, compare the latest crawl against a prior snapshot, and generate a local manifest plus human-readable diff report. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The local Python workflow fetches configured Tencent Docs links with curl and writes snapshot data under the chosen workspace. <br>
-Mitigation: Review the config file before running, use only links you are authorized to check, and choose a private workspace for generated snapshots. <br>
-Risk: Using --keep-raw can retain raw page, header, and cookie data locally. <br>
-Mitigation: Avoid --keep-raw unless debugging requires it, and delete raw files after use if they may contain sensitive document or session data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chinasilva/tencent-doc-update-watch) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Tencent Docs update checker script](artifact/scripts/check-qq-doc-updates.py) <br>
-- [Default Tencent Docs config](artifact/references/default-docs.json) <br>
+## Use Case:
 
+Developers and operators use this skill to re-crawl Tencent Docs links, compare current metadata against previous snapshots, and produce update reports for monitored documents.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python shell commands, JSON configuration examples, and generated JSON manifest plus Markdown report artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The update workflow writes snapshots under the selected workspace and deletes raw fetched HTML, opendoc, header, and cookie files by default unless raw debugging output is explicitly enabled.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Configured URLs can cause the script to fetch unintended or untrusted locations.
+
+Mitigation: Review the docs configuration before execution and restrict monitored URLs to expected https://docs.qq.com links.
+
+Risk: Raw debug mode can retain fetched pages, headers, cookies, and related snapshot metadata.
+
+Mitigation: Keep --keep-raw disabled except during debugging, use a disposable workspace, and avoid sensitive authenticated Tencent Docs links.
+
+Risk: The skill writes local snapshots that may reveal document names, IDs, update timing, or comparison metadata.
+
+Mitigation: Store snapshots in an access-controlled workspace and delete them when monitoring data is no longer needed.
+
+## Reference(s):
+
+- [Default Tencent Docs watch configuration](references/default-docs.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated runs produce manifest.json and report.md files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Snapshot reports include status values such as UNCHANGED, CHANGED, NEW, and FIRST_RUN.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

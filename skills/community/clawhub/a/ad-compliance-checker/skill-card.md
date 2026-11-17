@@ -1,40 +1,62 @@
-## Description: <br>
-(组合技能) 对电商素材（图片/视频）进行两阶段的合规性审查：API快筛通用风险，再由AI模型结合专属知识库进行广告法深度分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+对电商图片、视频和文本素材进行两阶段广告合规审查：先进行通用风险快筛，再结合广告合规知识库生成深度分析。
 
-## Publisher: <br>
-[ahsbnb](https://clawhub.ai/user/ahsbnb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahsbnb](https://clawhub.ai/user/ahsbnb)
 
-## Use Case: <br>
-External teams and operators use this skill to review e-commerce ad text, images, and videos for common content risks, advertising-law concerns, platform policy issues, and concrete revision suggestions before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted unreleased ads, videos, or URLs may be processed by downstream review subskills or third-party review services. <br>
-Mitigation: Before installing or using the skill, confirm which api-check and video-check skills will run in the environment and whether their data handling is acceptable for privacy and compliance requirements. <br>
-Risk: AI-generated compliance findings may miss jurisdiction-specific rules or platform-specific enforcement changes. <br>
-Mitigation: Review generated reports with the responsible compliance or legal owner before relying on them for publication decisions. <br>
+## Use Case:
 
+External marketers, e-commerce operators, and reviewers use this skill to screen ad copy, image descriptions, and video materials for common advertising compliance risks and receive specific revision suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ahsbnb/ad-compliance-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown compliance review report with risk ratings, detailed findings, and modification suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow may include staged results from api-check or video-check when those subskills are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Reviewed ad materials may be submitted to external review services through referenced skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm data handling requirements before use and avoid submitting sensitive or restricted content unless the external service path is approved.
+
+Risk: Ad text or media descriptions could include adversarial instructions that try to influence the model's review.
+
+Mitigation: Treat submitted ad content as untrusted input and keep review rules separate from the content being analyzed.
+
+Risk: The generated compliance report is advisory and may miss legal or platform-specific requirements.
+
+Mitigation: Have qualified reviewers validate high-risk findings and final advertising decisions before publication.
+
+## Reference(s):
+
+- [Skill definition](artifact/SKILL.md)
+- [Absolute terms knowledge base](artifact/knowledge_base/absolute_terms.md)
+- [Efficacy claims knowledge base](artifact/knowledge_base/efficacy_claims.md)
+- [Misleading endorsements knowledge base](artifact/knowledge_base/misleading_endorsements.md)
+- [Prohibited promises knowledge base](artifact/knowledge_base/prohibited_promises.md)
+- [Review prompt template](artifact/prompt_template.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown compliance review report with risk ratings, detailed risk analysis, and modification suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output based on submitted ad text, image descriptions, video review results, and the bundled knowledge base]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

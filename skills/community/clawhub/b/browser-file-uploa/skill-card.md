@@ -1,38 +1,53 @@
-## Description: <br>
-Automates file uploads on web pages via agent-browser CLI or a Python script, supporting flexible file paths and optional file input selectors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation skill for uploading files to web pages with flexible path specification.
 
-## Publisher: <br>
-[weixizi](https://clawhub.ai/user/weixizi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weixizi](https://clawhub.ai/user/weixizi)
 
-## Use Case: <br>
-Developers and agents use this skill to upload user-selected local files to web forms, either by emitting agent-browser commands or by running the bundled Python helper with a URL, path, optional selector, and wait time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploading a local file discloses that file to the destination website. <br>
-Mitigation: Use the skill only with trusted sites after verifying the destination domain, selector, and resolved full file path; avoid uploading secrets, credentials, private documents, or unrelated workspace files unless the site is intended to receive them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to automate file uploads in browser workflows, either by issuing agent-browser commands or by running the included Python helper with a target URL, local file path, optional selector, and wait time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weixizi/browser-file-uploa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and Python helper code.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May resolve local file paths and call agent-browser to upload a specified file to a specified web page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A file upload to the wrong website or with the wrong local path may disclose sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target URL and exact file path before each upload, and avoid secrets, credentials, private workspace files, or unknown sites unless the file is intended to be shared there.
+
+Risk: Flexible path expansion can resolve environment variables, home-directory shortcuts, or workspace-relative paths to files the user did not mean to upload.
+
+Mitigation: Review the resolved path before upload and prefer explicit paths when handling sensitive or business-critical files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/weixizi/skills/browser-file-uploa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and Python script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May operate on local file paths and user-specified web pages through agent-browser.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

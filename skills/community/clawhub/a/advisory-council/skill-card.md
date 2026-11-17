@@ -1,39 +1,52 @@
-## Description: <br>
-Runs a real-time multi-advisor market analysis using live prices to deliver a consensus trading report with actionable insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a real-time multi-advisor market analysis using live prices to deliver a consensus trading report with actionable insights.
 
-## Publisher: <br>
-[ryandeangraves](https://clawhub.ai/user/ryandeangraves) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryandeangraves](https://clawhub.ai/user/ryandeangraves)
 
-## Use Case: <br>
-Developers and agent users use this skill to run a five-advisor crypto market analysis and receive a synthesized report with consensus, dissent, verdict, and action items. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may execute a local Python market-analysis script that can call external services or incur API costs. <br>
-Mitigation: Review the script before use and confirm before running analyses that could incur costs. <br>
-Risk: The generated report can influence trading or financial decisions. <br>
-Mitigation: Treat outputs as advisory analysis only, verify with independent sources, and apply appropriate financial risk controls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryandeangraves/advisory-council) <br>
+## Use Case:
 
+Developers and market-analysis users use this skill to run a five-advisor crypto market council that fetches live prices, compares bullish, bearish, technical, risk, and contrarian views, and summarizes consensus, dissent, verdict, and action items.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with shell commands and bullet-point analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs all advisors or focuses on a requested asset symbol when supplied.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires running an unreviewed local Python script outside the reviewed package.
+
+Mitigation: Install only when the local script is controlled and trusted; prefer a release that bundles the script, pins its integrity, and requests confirmation before execution.
+
+Risk: The script may make live network and model calls while running under the agent's local permissions.
+
+Mitigation: Run it only in an environment where those calls and permissions are acceptable, and report actual execution errors instead of fabricating output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryandeangraves/skills/advisory-council)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown report with shell commands and action-oriented market-analysis sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live market data, advisor bullet points, consensus, dissent, verdict, confidence level, and action items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

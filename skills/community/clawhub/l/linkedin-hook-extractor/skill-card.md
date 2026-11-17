@@ -1,41 +1,55 @@
-## Description: <br>
-Reverse-engineers a viral LinkedIn post URL to identify its hook formula, structure, why it worked, cautions, and a reusable blank template. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reverse-engineer the hook formula from a viral LinkedIn post URL, identifying the matching canonical formula, why it worked, and a blank template for adapting the structure.
 
-## Publisher: <br>
-[sergebulaev](https://clawhub.ai/user/sergebulaev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergebulaev](https://clawhub.ai/user/sergebulaev)
 
-## Use Case: <br>
-External creators, marketers, and writing assistants use this skill to study a viral LinkedIn post and turn its hook and body pattern into a reusable writing template. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use HarvestAPI to fetch LinkedIn post content, which can involve a third-party fetch for the submitted post URL. <br>
-Mitigation: Paste the post text directly instead of a URL when avoiding third-party retrieval is required. <br>
-Risk: Server metadata includes unrelated crypto and purchase capability tags that are not supported by behavior shown in the skill files. <br>
-Mitigation: Treat those tags as a metadata inconsistency and review package metadata before deployment. <br>
+## Use Case:
 
+Marketing operators, creators, and content strategists use this skill to study viral LinkedIn posts, classify hook structure, understand why the post worked, and produce a reusable template for their own topic.
 
-## Reference(s): <br>
-- [Hook Formula Classification Rules](references/classification-rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sergebulaev/linkedin-hook-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with confidence scores, structural sections, cautions, and a reusable template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include top formula matches, post-structure labels, psychological rationale, and slot markers for adapting the pattern.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Using the APIFY_TOKEN path may send the LinkedIn post URL to Apify for fetching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave APIFY_TOKEN unset and paste the post text manually when the URL should not be sent to Apify.
+
+Risk: Non-English posts may not receive full formula classification.
+
+Mitigation: Treat non-English outputs as structural analysis and verify any formula classification manually before reuse.
+
+## Reference(s):
+
+- [Hook Formula Classification Rules](artifact/references/classification-rules.md)
+- [Examples - LinkedIn Hook Extractor](artifact/references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/sergebulaev/skills/linkedin-hook-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured classification, rationale, cautions, and template text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask the user to paste LinkedIn post text when APIFY_TOKEN is unset; non-English posts may receive structural breakdown rather than full formula classification.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

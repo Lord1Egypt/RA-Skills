@@ -1,46 +1,56 @@
-## Description: <br>
-Paper Decompose helps agents produce four-layer deep readings of research papers and reports, covering the gap, delta, napkin sketch, and transferable insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper Decompose guides agents through a four-layer reading workflow for research papers and reports, extracting the core gap, delta, ASCII napkin sketch, and transferable inspirations.
 
-## Publisher: <br>
-[jack-long-2022](https://clawhub.ai/user/jack-long-2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack-long-2022](https://clawhub.ai/user/jack-long-2022)
 
-## Use Case: <br>
-Developers, researchers, analysts, and external users use this skill to turn PDFs, arXiv links, URLs, or text into a structured review of a paper, research report, article, or white paper. It is designed for deep reading workflows that need a problem gap, core contribution, before-and-after ASCII sketch, and cross-domain implications rather than a plain summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment-impact labels and position suggestions may be mistaken for personalized financial advice or current market research. <br>
-Mitigation: Treat investment sections as non-personal analysis, verify claims against current market data, and review decisions with appropriate financial expertise. <br>
-Risk: A structured four-layer output may overstate the novelty or reliability of weak source material. <br>
-Mitigation: Check the original paper or report, especially the evidence for the stated gap, core delta, and comparison metrics. <br>
-Risk: The skill is designed for documents with analyzable research or report structure and may fit poorly on very long reviews, pure theory, or marketing material. <br>
-Mitigation: Use the documented input checks and fall back to another review workflow when the source lacks a clear gap, contribution, or supporting evidence. <br>
+## Use Case:
 
+Developers, analysts, and researchers use this skill to turn PDFs, arXiv links, URLs, or text from papers and research reports into a four-layer decomposition covering the core gap, delta, napkin sketch, and transferable inspirations.
 
-## Reference(s): <br>
-- [PROCESS.md](artifact/PROCESS.md) <br>
-- [TEMPLATE.md](artifact/TEMPLATE.md) <br>
-- [sample-report.md](artifact/test-cases/sample-report.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jack-long-2022/skills/paper-decompose) <br>
-- [Publisher Profile](https://clawhub.ai/user/jack-long-2022) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured sections and ASCII diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include four required analysis layers and an optional investment-impact section for investment reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Investment-report outputs can include actions such as add, hold, reduce, or watch that may be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat these outputs as research commentary and make financial decisions only after independent review or consultation with a qualified advisor.
+
+Risk: The skill analyzes user-provided documents and can produce misleading conclusions if the input is incomplete, unparseable, or outside the stated document scope.
+
+Mitigation: Confirm the source document is parseable and within the skill limits before relying on the decomposition.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jack-long-2022/skills/paper-decompose)
+- [Process guide](artifact/PROCESS.md)
+- [Output template](artifact/TEMPLATE.md)
+- [Sample report test case](artifact/test-cases/sample-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown structured as a four-layer analysis with optional ASCII diagrams and investment impact assessment]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a parseable document and is scoped away from documents over 200 pages, purely theoretical work, marketing-only reports, and previously-read papers.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

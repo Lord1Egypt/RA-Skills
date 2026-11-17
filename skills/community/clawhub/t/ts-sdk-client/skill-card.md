@@ -1,44 +1,60 @@
-## Description: <br>
-Guides developers through creating and configuring an Aptos TypeScript SDK client with AptosConfig, network selection, endpoint overrides, singleton use, and Bun compatibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in creating and configuring the Aptos TypeScript SDK client with AptosConfig, network selection, endpoint overrides, singleton usage, and Bun compatibility.
 
-## Publisher: <br>
-[iskysun96](https://clawhub.ai/user/iskysun96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iskysun96](https://clawhub.ai/user/iskysun96)
 
-## Use Case: <br>
-Developers building Aptos applications use this skill to set up a reusable @aptos-labs/ts-sdk client, choose the right Aptos network, configure custom endpoints, and avoid common client setup mistakes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying examples with mainnet settings, custom endpoints, or added transaction code can affect real assets or route requests through unintended services. <br>
-Mitigation: Default to testnet during development, review network and endpoint environment variables before deployment, and inspect any transaction code added around the configured client. <br>
+## Use Case:
 
+Developers and engineers use this skill to produce Aptos TypeScript SDK client setup guidance, including reusable client configuration, network selection, custom endpoint handling, and common setup mistakes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iskysun96/ts-sdk-client) <br>
-- [Aptos SDK source references](src/api/aptos.ts, src/api/aptosConfig.ts) <br>
-- [TYPESCRIPT_SDK.md](../../../../patterns/fullstack/TYPESCRIPT_SDK.md) <br>
-- [Related skill: ts-sdk-account](../ts-sdk-account/SKILL.md) <br>
-- [Related skill: ts-sdk-transactions](../ts-sdk-transactions/SKILL.md) <br>
-- [Related skill: ts-sdk-wallet-adapter](../ts-sdk-wallet-adapter/SKILL.md) <br>
-- [Related skill: use-ts-sdk](../use-ts-sdk/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no code is installed or executed by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Using mainnet transaction APIs can cause real state-changing operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended Aptos network before applying examples, and default development workflows to testnet unless mainnet use is intentional.
+
+Risk: Faucet funding examples are inappropriate for production or mainnet workflows.
+
+Mitigation: Use faucet funding only in supported devnet or testnet environments.
+
+Risk: Custom endpoint configuration can target the wrong fullnode, indexer, or faucet service.
+
+Mitigation: Set Network.CUSTOM when overriding endpoints and review environment-provided URLs before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iskysun96/skills/ts-sdk-client)
+- [Aptos SDK client source reference](src/api/aptos.ts)
+- [AptosConfig source reference](src/api/aptosConfig.ts)
+- [TypeScript SDK pattern](../../../../patterns/fullstack/TYPESCRIPT_SDK.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown with TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no hidden execution, persistence, or data collection behavior reported.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

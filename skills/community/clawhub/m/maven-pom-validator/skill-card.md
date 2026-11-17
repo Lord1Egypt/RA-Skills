@@ -1,41 +1,53 @@
-## Description: <br>
-Validate and lint Maven pom.xml files for structure, dependencies, plugins, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate and lint Maven pom.xml files for structure, dependencies, plugins, and best practices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to validate, lint, and audit Maven pom.xml files before release or CI integration. It helps identify structural XML errors, dependency hygiene issues, plugin configuration problems, and Maven best-practice gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a bundled local Python script against a chosen Maven POM file. <br>
-Mitigation: Review the bundled script before installation and run it only on intended pom.xml files in a trusted workspace. <br>
-Risk: Strict-mode failures can block CI when warnings are present. <br>
-Mitigation: Review reported findings before enabling strict mode in CI and tune adoption around the project's release policy. <br>
+## Use Case:
 
+Developers and build engineers use this skill to validate Maven pom.xml files, audit dependency and plugin declarations, and identify structural or best-practice issues before release or CI use.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/charlie-morrison/maven-pom-validator) <br>
-- [Maven POM 4.0.0 namespace](http://maven.apache.org/POM/4.0.0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Text, JSON, or Markdown reports with pass/fail status and findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports lint, validate, dependencies, and plugins modes; strict mode exits nonzero on warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can read whichever pom.xml path the agent asks it to validate and may echo dependency, plugin, and path details in its report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on intended local Maven POM files and review generated reports before sharing them outside the project.
+
+Risk: The security evidence describes this as a local Maven POM linter, not a full build security audit.
+
+Mitigation: Use the results as Maven configuration linting and pair them with normal build, dependency, and security review processes.
+
+## Reference(s):
+
+- [Maven POM 4.0.0 namespace](http://maven.apache.org/POM/4.0.0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Text, JSON, or Markdown validation report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exit code indicates pass or failure; --strict treats warnings as failure.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact STATUS.md lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

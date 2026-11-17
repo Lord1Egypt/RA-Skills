@@ -1,44 +1,59 @@
-## Description: <br>
-Fetch SEO data like backlinks, domain authority, tech stack, page metadata, and competitor overlaps for any domain or URL using the RankParse API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch SEO data such as backlinks, domain authority, technology stack, page metadata, and competitor overlap for domains and URLs through the RankParse API.
 
-## Publisher: <br>
-[abhibavishi](https://clawhub.ai/user/abhibavishi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abhibavishi](https://clawhub.ai/user/abhibavishi)
 
-## Use Case: <br>
-SEO analysts, marketers, developers, and agents use this skill to query RankParse for backlink research, competitor comparisons, domain authority checks, page metadata, technology stack signals, and outreach prospecting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RankParse queries may share domains or URLs with a third-party service. <br>
-Mitigation: Query only domains and URLs that are approved for external SEO analysis. <br>
-Risk: The RankParse API key is sensitive and could be misused if exposed. <br>
-Mitigation: Use a dedicated API key, keep it out of shared prompts and files, and rotate it if exposure is suspected. <br>
-Risk: RankParse tool calls consume paid API credits. <br>
-Mitigation: Monitor credit usage and choose lower-cost calls when broad analysis is not required. <br>
+## Use Case:
 
+SEO practitioners, marketers, developers, and agents use this skill to research competitors, audit backlink profiles, inspect site metadata and technology, and build link outreach lists with RankParse data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/abhibavishi/rankparse) <br>
-- [RankParse Signup](https://rankparse.com/signup) <br>
-- [RankParse MCP Endpoint](https://mcp.rankparse.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Configuration] <br>
-**Output Format:** [Markdown with JSON configuration snippets and API-driven SEO results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a RankParse API key and consumes RankParse credits per tool call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: SEO lookups are sent to the external RankParse service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for domains or URLs that are approved to query through RankParse.
+
+Risk: The RankParse API key could be exposed if copied into shared files.
+
+Mitigation: Store RANKPARSE_API_KEY in an environment variable or secret manager and avoid hardcoding it in repository files.
+
+Risk: RankParse API calls may consume paid credits.
+
+Mitigation: Confirm the intended workflow and query scope before running multi-step audits or competitor research.
+
+## Reference(s):
+
+- [RankParse SEO API on ClawHub](https://clawhub.ai/abhibavishi/skills/rankparse)
+- [RankParse Signup](https://rankparse.com/signup)
+- [RankParse MCP Server](https://mcp.rankparse.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands, API Calls]
+
+**Output Format:** [Markdown with JSON configuration and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RANKPARSE_API_KEY; RankParse lookups may consume paid credits and send queried domains or URLs to the service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

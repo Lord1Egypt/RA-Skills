@@ -1,41 +1,59 @@
-## Description: <br>
-Daily English Card generates a daily spoken-English scenario card image, sends it to WeChat, and archives it to an IMA knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a daily English speaking practice card image with scenario dialogue, review scheduling, and style rotation, then sends it to WeChat and archives it to an IMA knowledge base.
 
-## Publisher: <br>
-[jerryaction](https://clawhub.ai/user/jerryaction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerryaction](https://clawhub.ai/user/jerryaction)
 
-## Use Case: <br>
-Learners and personal automation users use this skill to schedule recurring English speaking practice cards, send the generated image to WeChat, and keep an IMA archive of generated cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence flags recurring WeChat delivery and IMA archival through fixed account details and local credential helpers. <br>
-Mitigation: Replace the hard-coded WeChat target, account ID, IMA IDs, and credential helper paths with user-controlled values before enabling the cron job. <br>
-Risk: The skill depends on local Python and Node scripts that are referenced but not bundled in the artifact. <br>
-Mitigation: Inspect the referenced scripts, confirm what content is uploaded and retained, and verify how to pause or remove the daily cron job before installation. <br>
+## Use Case:
 
+English learners and personal automation users use this skill to receive a scheduled daily oral-English study card in WeChat. The skill is also useful for maintaining spaced-review progress and archiving generated cards in an IMA knowledge base.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jerryaction/daily-english-card) <br>
-- [English card preview image](https://r2.image-upload.app/ptImg/4OOX6Lbi.jpeg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands, JSON examples, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for generating an image card, sending it through WeChat, and handling IMA archival failures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill sends generated learning-card images and uploads them to external services automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure and verify the intended WeChat recipient, bot account, cron schedule, and IMA knowledge base before enabling automatic delivery.
+
+Risk: The release depends on local scripts and credential helpers that are not included in the artifact.
+
+Mitigation: Review or package the referenced scripts and credential helpers, pin dependencies, and test card generation and upload manually before scheduled use.
+
+Risk: A fixed Python path or missing Pillow installation can prevent card generation.
+
+Mitigation: Install Pillow in the configured Python 3.9 environment or update the cron payload to a verified Python interpreter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jerryaction/skills/daily-english-card)
+- [README.md](artifact/README.md)
+- [Card example image](https://r2.image-upload.app/ptImg/4OOX6Lbi.jpeg)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [PNG learning card, JSON script output, and concise Markdown/text status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one daily card image and a short delivery confirmation; depends on local Python, Pillow, WeChat messaging, cron, and IMA credentials.]
+
+## Skill Version(s):
+
+1.0.5 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

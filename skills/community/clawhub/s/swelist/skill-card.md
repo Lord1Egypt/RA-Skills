@@ -1,46 +1,62 @@
-## Description: <br>
-Helps agents find tech internships and new-grad jobs, track local applications, and prepare interview or career responses without requiring a sign-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users find tech internships and new-grad jobs, track local applications, and prepare interview or career-advice responses.
 
-## Publisher: <br>
-[chenyuan99](https://clawhub.ai/user/chenyuan99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenyuan99](https://clawhub.ai/user/chenyuan99)
 
-## Use Case: <br>
-Developers, students, and job-search agents use Swelist to browse software engineering internships and new-grad roles, maintain a local application tracker, and generate interview or career-prep writing assistance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local tracking can create or export a SQLite job-application database containing application history and notes. <br>
-Mitigation: Confirm the intended database path before tracker commands, protect exported files, and avoid storing unnecessary sensitive notes. <br>
-Risk: Tracker behavior may read a local profile file to resolve configuration. <br>
-Mitigation: Review the profile configuration before use and pass an explicit database path when predictable local state is required. <br>
-Risk: jobgpt can send job-prep prompts or resume text to OpenAI. <br>
-Mitigation: Review prompts before submission, omit sensitive personal data where possible, and require an appropriate OpenAI API key configuration. <br>
-Risk: The evidence security summary flags conflicting documentation claims around persistent local tracking, profile-file reads, and OpenAI data transmission. <br>
-Mitigation: Treat the scanner verdict as a deployment review signal and verify the specific command behavior before enabling automated use. <br>
+## Use Case:
 
+External users and job-search agents use this skill to browse software engineering internship and new-graduate listings, manage a local application tracker, and generate interview-prep or career-advice text.
 
-## Reference(s): <br>
-- [Swelist on ClawHub](https://clawhub.ai/chenyuan99/swelist) <br>
-- [Swelist on PyPI](https://pypi.org/project/swelist/) <br>
-- [Swelist GitHub repository](https://github.com/chenyuan99/swelist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Configuration] <br>
-**Output Format:** [Plain text, Markdown, CLI commands, JSON, and CSV depending on the Swelist command used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tracker commands can read and write a local SQLite database; jobgpt can send prompts or resume text to OpenAI when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release metadata; artifact frontmatter says 0.1.9) <br>
+Risk: The skill may read a broad local profile path to resolve tracker settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an explicit tracker database path and avoid reading unrelated profile content.
+
+Risk: Tracker commands can initialize, add, update, or export application data in local storage.
+
+Mitigation: Confirm with the user before tracker init, add, update, or export operations.
+
+Risk: Interview-prep prompts may include resumes or personal background details sent to jobgpt.
+
+Mitigation: Redact sensitive resume and background details before using jobgpt.
+
+Risk: The artifact installs the external swelist package, which may change independently of this card.
+
+Mitigation: Install a pinned, reviewed swelist package version.
+
+## Reference(s):
+
+- [Swelist ClawHub skill page](https://clawhub.ai/chenyuan99/skills/swelist)
+- [Swelist PyPI package](https://pypi.org/project/swelist/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and markdown emitted by CLI commands, with tracker export support for JSON or CSV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read or write a local SQLite tracker database and may call the OpenAI API when using jobgpt.]
+
+## Skill Version(s):
+
+1.0.13 (source: server release evidence; artifact frontmatter says 0.1.9)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

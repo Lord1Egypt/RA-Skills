@@ -1,40 +1,57 @@
-## Description: <br>
-Dashboard Manager helps an agent read, update, and synchronize a Jarvis dashboard data.json file, including notes, logs, tasks, statistics, heartbeat, and active-agent status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dashboard Manager reads, updates, and synchronizes a Jarvis dashboard data.json file in real time, including pending notes, logs, tasks, system status, statistics, and sub-agent activity.
 
-## Publisher: <br>
-[Philippeh5](https://clawhub.ai/user/Philippeh5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[philippeh5](https://clawhub.ai/user/philippeh5)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent keep a local Jarvis dashboard data file synchronized with current notes, logs, tasks, token statistics, heartbeat, and model status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change notes, logs, tasks, statistics, heartbeat, and agent status in the configured dashboard data file. <br>
-Mitigation: Install it only for the intended Jarvis dashboard, verify the configured data.json path before use, and keep a backup of the dashboard file. <br>
-Risk: Background or silent workflows may update dashboard state without direct conversational output. <br>
-Mitigation: Review the dashboard logs and status fields during operation so automated changes remain auditable. <br>
+## Use Case:
 
+Developers and Jarvis/OpenClaw users use this skill to keep a local Jarvis dashboard synchronized by reading pending notes and updating notes, logs, tasks, system status, heartbeat, token statistics, and sub-agent activity in data.json.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Philippeh5/dashboard-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Logs, Status updates, Configuration] <br>
-**Output Format:** [Local JSON file updates and console log messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads and writes the configured Jarvis dashboard data.json file; background use may update dashboard state without conversational output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, skill.json, server release metadata) <br>
+Risk: The skill can automatically modify the configured Jarvis dashboard data.json file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that file should be modified, verify the configured path before use, and back up data.json before enabling automatic synchronization.
+
+Risk: Data integrity issues can occur if data.json is missing, inaccessible, or invalid JSON.
+
+Mitigation: Confirm file permissions and JSON validity during setup, and monitor the skill's logs for read or write failures.
+
+Risk: The package declares fs and path dependencies even though those are Node.js built-in modules.
+
+Mitigation: Remove the unnecessary dependency declarations before packaging or deployment to reduce install hygiene issues.
+
+## Reference(s):
+
+- [Dashboard Manager ClawHub page](https://clawhub.ai/philippeh5/skills/dashboard-manager)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, text]
+
+**Output Format:** [JavaScript module functions that read and write JSON data with text status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Modifies the configured local data.json file and returns parsed JSON data or boolean status values from helper functions.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

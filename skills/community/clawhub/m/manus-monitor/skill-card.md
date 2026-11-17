@@ -1,44 +1,59 @@
-## Description: <br>
-Create and manage Manus AI tasks via API, save task metadata locally, monitor saved task status, and download completed output files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage AI agent tasks via Manus API. Manus is an autonomous AI agent that can browse the web, use tools, and deliver complete work products.
 
-## Publisher: <br>
-[tallman2014](https://clawhub.ai/user/tallman2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tallman2014](https://clawhub.ai/user/tallman2014)
 
-## Use Case: <br>
-Developers and external users with a Manus API key use this skill to create autonomous Manus tasks, poll and save task status, download output files, and receive optional status notifications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and task details are sent to Manus, and output files may be downloaded locally. <br>
-Mitigation: Use the skill only with prompts, task data, and output files approved for Manus handling. <br>
-Risk: The skill can create a recurring OpenClaw monitor and save local task metadata. <br>
-Mitigation: Review the saved task list and monitor job before use, stop the monitor when it is no longer needed, and clear saved tasks when appropriate. <br>
-Risk: Optional Telegram notifications can expose task details and Manus links to the configured chat. <br>
-Mitigation: Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID only for an approved destination, or leave them unset to avoid Telegram notifications. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tallman2014/manus-monitor) <br>
-- [Manus API Reference](https://open.manus.ai/docs) <br>
-- [Manus Documentation](https://manus.im/docs) <br>
-- [Manus Homepage](https://manus.im) <br>
+## Use Case:
 
+Developers and external users use this skill to create Manus agent tasks, poll task status, list and download task outputs, save task IDs, and monitor saved tasks through recurring OpenClaw checks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MANUS_API_KEY; optional Telegram notifications use TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A saved Manus task can automatically create a recurring OpenClaw monitor that runs every minute.
+
+Mitigation: Review the monitor behavior before installing and remove or explicitly control the cron monitor unless recurring polling is intended.
+
+Risk: Repeated Manus API polling and optional Telegram notifications can expose task metadata or sensitive task content.
+
+Mitigation: Avoid sensitive prompts or outputs unless notification settings and recipients are explicitly controlled.
+
+Risk: The skill can download local files from Manus task output URLs.
+
+Mitigation: Inspect downloaded files before opening, sharing, or attaching them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tallman2014/skills/manus-monitor)
+- [Manus Homepage](https://manus.im)
+- [Manus API Reference](https://open.manus.ai/docs)
+- [Manus Documentation](https://manus.im/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with bash commands, JSON API responses, and local file paths for downloaded outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MANUS_API_KEY; saved tasks can trigger recurring status checks and optional Telegram notifications.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

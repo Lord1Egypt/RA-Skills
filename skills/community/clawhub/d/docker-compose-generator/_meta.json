@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "docker-compose-generator",
-  "version": "1.0.1",
-  "publishedAt": 1772549247527
+  "schema_version": "1",
+  "name": "docker-compose-generator",
+  "version": "1.0.0",
+  "description": "生成 Docker Compose 配置",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["docker", "docker-compose", "devops", "generator"],
+  "license": "MIT"
 }

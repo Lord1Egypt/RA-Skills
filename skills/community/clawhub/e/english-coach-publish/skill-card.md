@@ -1,51 +1,67 @@
-## Description: <br>
-基于美剧笔记的英语学习技能，覆盖听说读写复习五个模块。触发词：练英语、英语练习、默写、听力、口语、阅读。TTS 使用百度语音API，ASR 使用本地 faster-whisper。首次使用需配置百度 TTS 凭证和 Whisper 模型。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于美剧笔记的英语学习技能，覆盖听说读写复习五个模块，使用百度语音 API 进行可选 TTS，并使用本地 faster-whisper 进行可选语音识别。
 
-## Publisher: <br>
-[nanfeiduliri](https://clawhub.ai/user/nanfeiduliri) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nanfeiduliri](https://clawhub.ai/user/nanfeiduliri)
 
-## Use Case: <br>
-External learners use this skill in WorkBuddy to turn their own English notes into writing, listening, speaking, reading, and spaced-review practice tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Baidu API keys and learning records are kept in local markdown files. <br>
-Mitigation: Keep the skill directory private, do not commit the credentials file to a repository, and rotate any exposed keys. <br>
-Risk: Speaking practice uses a localhost speech-recognition server and microphone recording page. <br>
-Mitigation: Use it only for intended practice sessions, open the localhost page knowingly, and close the speech server when the exercise is finished. <br>
-Risk: User notes may contain personal learning history or excerpts from watched media. <br>
-Mitigation: Review note content before sharing the skill directory and avoid storing sensitive material in study files. <br>
+## Use Case:
 
+WorkBuddy users studying English from their own TV or movie notes use this skill to generate dictation, listening, speaking, reading-comprehension, and spaced-review exercises. The skill is aimed at individual learners who want guided practice and feedback inside an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nanfeiduliri/english-coach-publish) <br>
-- [Baidu Speech Console](https://console.bce.baidu.com/ai/#/ai/speech/app/list) <br>
-- [Baidu TTS Endpoint](https://tsn.baidu.com/text2audio) <br>
-- [Baidu OAuth Token Endpoint](https://openapi.baidu.com/oauth/2.0/token) <br>
-- [Hugging Face Mirror](https://hf-mirror.com) <br>
-- [Baidu Credentials Reference](references/baidu_credentials.md) <br>
-- [Notes Template](references/notes.md) <br>
-- [Review Pool Reference](references/review_pool.md) <br>
-- [Speaking Practice Template](references/speak_template.html) <br>
-- [Notes Path Reference](references/notes_path.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated local files, shell commands, HTML practice pages, and three-part correction text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate temporary local audio and speech-practice files under .workbuddy/tmp_audio/ and maintain local markdown study records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill asks users to store Baidu API credentials in a skill reference file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use quota-limited or throwaway Baidu credentials, keep the skill directory out of shared or synced folders, and rotate credentials if the directory is exposed.
+
+Risk: The speaking practice flow records microphone audio and sends it to a localhost speech server.
+
+Mitigation: Run the speaking server only while actively practicing, review the generated local page before use, and stop the server when finished.
+
+Risk: Imported study notes may contain personal or copyrighted text that becomes part of generated exercises and review files.
+
+Mitigation: Review notes before importing them, avoid sensitive material, and periodically clear generated temporary files and review-pool entries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nanfeiduliri/skills/english-coach-publish)
+- [README](README.md)
+- [Skill definition](SKILL.md)
+- [Notes template](references/notes.md)
+- [Baidu credentials guide](references/baidu_credentials.md)
+- [Review pool template](references/review_pool.md)
+- [Speaking practice HTML template](references/speak_template.html)
+- [Baidu Speech Console](https://console.bce.baidu.com/ai/#/ai/speech/app/list)
+- [Baidu TTS endpoint](https://tsn.baidu.com/text2audio)
+- [Baidu OAuth token endpoint](https://openapi.baidu.com/oauth/2.0/token)
+- [Hugging Face mirror used by setup instructions](https://hf-mirror.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions, learner exercises, correction feedback, shell commands, generated HTML pages, and local Python server code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create temporary local audio and HTML files, maintain a markdown review pool, and use optional user-provided Baidu credentials, microphone audio, and local Whisper model files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

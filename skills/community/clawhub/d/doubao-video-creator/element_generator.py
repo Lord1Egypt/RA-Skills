@@ -17,7 +17,7 @@ import subprocess
 from datetime import datetime
 
 # 配置
-API_KEY = "sk-d05aba5a2dae4453b97ed07fdb983e5a"
+API_KEY = "REDACTED-SECRET"
 WANXIANG_SCRIPT = "/root/.openclaw/workspace/wanxiang_generate.py"
 
 

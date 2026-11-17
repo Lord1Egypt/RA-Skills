@@ -1,38 +1,53 @@
-## Description: <br>
-Run and interact with AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run and interact with AI agents.
 
-## Publisher: <br>
-[ieaves](https://clawhub.ai/user/ieaves) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ieaves](https://clawhub.ai/user/ieaves)
 
-## Use Case: <br>
-Developers and agents use this skill to run RamaLama workflows for local or containerized inference, serving, RAG packaging, benchmarking, and model lifecycle tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Serving a model can expose a local OpenAI-compatible endpoint if it is bound beyond localhost or left running. <br>
-Mitigation: Bind serve workflows to localhost unless remote access is intentional, avoid sensitive prompts on shared or untrusted networks, and stop the server when finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Model Guide](references/models.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ieaves/ramalama-cli) <br>
+## Use Case:
 
+Developers and engineers use this skill to run RamaLama workflows for local or containerized model inference, OpenAI-compatible serving, RAG packaging, benchmarking, and model lifecycle operations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ramalama and either Docker or Podman; serving workflows may start a local HTTP endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts or RAG paths may include private data that is processed by local or containerized model workflows.
+
+Mitigation: Review prompts and RAG inputs before execution, and avoid packaging sensitive files unless the environment is approved for that data.
+
+Risk: Detached serving can expose an OpenAI-compatible endpoint on a host and port.
+
+Mitigation: Verify host and port exposure before running `ramalama serve -d`, resolve port conflicts, and stop the service when finished.
+
+## Reference(s):
+
+- [Model Guide](references/models.md)
+- [RamaLama CLI Skill on ClawHub](https://clawhub.ai/ieaves/skills/ramalama-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes RamaLama command recipes, preflight checks, troubleshooting guidance, and model-selection reference material.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Qualify, prioritize, and advance sales prospects into the next best action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qualify, prioritize, and advance sales prospects into the next best action. Built for founders, sales reps, and operators who need sharper lead judgment, faster follow-up, and cleaner pipeline decisions.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-Founders, sales reps, SDRs, operators, and revenue teams use this skill after engagement begins to assess lead quality, identify qualification gaps, choose the next best action, and draft concise follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer, prospect, or pipeline details may be business-sensitive. <br>
-Mitigation: Share only the lead details needed for qualification and handle pasted information according to internal privacy and CRM policies. <br>
-Risk: Drafted follow-up may be inaccurate, off-brand, or too aggressive if sent without review. <br>
-Mitigation: Review and edit every follow-up before sending, and keep recommendations grounded in visible lead evidence. <br>
+## Use Case:
 
+Founders, sales reps, SDRs, operators, and revenue teams use this skill to evaluate engaged commercial leads, identify qualification gaps, decide the next best action, and draft concise follow-up.
 
-## Reference(s): <br>
-- [Lead Skill Page](https://clawhub.ai/AGIstack/lead) <br>
-- [AGIstack Publisher Profile](https://clawhub.ai/user/AGIstack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a lead assessment, qualification gaps, risks or friction, a recommended next action, and an optional follow-up draft.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence; artifact frontmatter and skill.json list 2.1.0) <br>
+Risk: Lead inputs may include confidential customer or prospect details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid pasting confidential customer details unless they are acceptable for the agent session, and anonymize sensitive lead data where possible.
+
+Risk: Incomplete or weak lead evidence can produce overconfident pursuit recommendations.
+
+Mitigation: Score only from visible evidence, call out missing budget, authority, timeline, fit, and intent signals, and recommend qualification or nurture when evidence is insufficient.
+
+## Reference(s):
+
+- [Lead skill page](https://clawhub.ai/agistack/skills/lead)
+- [AGIstack publisher profile](https://clawhub.ai/user/agistack)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured assessment sections and optional follow-up draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces lead assessment scores, missing-information lists, risk notes, next-action recommendations, and optional follow-up messages.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata; artifact files declare 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

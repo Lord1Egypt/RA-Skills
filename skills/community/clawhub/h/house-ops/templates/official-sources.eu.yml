@@ -1,0 +1,238 @@
+# templates/official-sources.eu.yml — 欧洲各市场官方/公开房地产数据源登记表（scan 模式交叉验证用）
+#
+# 规则：与 official-sources.cn.yml 相同——**登记 ≠ 核实**。用前必须联网核实可达性、
+#       数据口径与粒度，并把 as_of 写进扫描记录；核实结果与本表冲突时以核实结果为准。
+#       欧洲与中国最大的差别：**多数国家没有「单套成交价明细」的开放源**，
+#       只有英国/爱尔兰/法国实现了交易级开放，德国/西班牙只能到统计或片区级——
+#       这一点直接决定一套房源最粗能用什么档位做交叉验证（见 tier 字段）。
+#
+# 字段约定（沿用 CN 表，另加两项）：
+#   market        市场代码（uk / ie / fr / nl / de / es），供 `scan official --market eu` 过滤
+#   tier          落入 `_shared.md` 数据可靠度四档的哪一层：成交数据 | 公开统计 | 开放登记 | 未见开放源
+#   granularity   数据粒度：内联数组，取值 ∈ 单套级|地块级|楼盘级|小区级|街区级|片区级|区级|全市级|全国级
+#                  （枚举 SoT：scrapers/_fields.mjs 的 SOURCE_GRANULARITIES；doctor 断言本表不漂移）
+#   access        访问方式：免登录 | 需注册 | 收费/需现场 | 未知
+#   verify_before_use 恒为 true
+#
+# 首批六个市场的选取依据：是否存在可复核的交易级成交数据（英/爱/法）＋ 华人与其他跨境买家
+# 常见目的地（德/西/荷）。北欧五国、葡萄牙、意大利为第二批候选，尚未登记（见 docs/markets/eu.md）。
+
+as_of_registry: "2026-09-24"
+market_registry: eu
+
+sources:
+  # ---------------- 英国（英格兰与威尔士；苏格兰/威尔士/北爱各自税率不同，见 policy-notes.eu.yml） ----------------
+  - market: uk
+    city: "英格兰与威尔士（England & Wales）"
+    keywords: [London, 伦敦, Manchester, Birmingham, 英国, UK, England, Wales]
+    name: HM Land Registry Price Paid Data（PPD）
+    url: https://use-land-property-data.service.gov.uk
+    data: [住宅成交价明细（1995 年至今）, UPRN 对照表（2026-08 新增）, INSPIRE ID 对照表]
+    tier: 成交数据
+    granularity: [单套级]
+    access: 免登录
+    update: 每月第 20 个工作日
+    licence: Open Government Licence v3.0
+    verify_before_use: true
+    notes: 只覆盖已登记并“有对价”的成交；未登记交易与非售价值转让被排除。可精确到 PAON/SAON+街道+邮编，
+      是极少数能直接核实“这套房当初卖了多少钱”的源。注意同一地址上的多个单元靠 SAON 区分。
+  - market: uk
+    city: "英国（England & Wales / Scotland / Northern Ireland）"
+    keywords: [London, 伦敦, 英国, UK, index]
+    name: UK House Price Index（ONS/Land Registry 联合发布）
+    url: https://landregistry.data.gov.uk/app/ukhpi/browse
+    data: [月度房价指数与成交量（1995 起）, 按地方行政区/住户类型/资金来源细分]
+    tier: 公开统计
+    granularity: [片区级]
+    access: 免登录
+    update: 月度
+    verify_before_use: true
+    notes: 判断趋势用；不能核实单套价格。注意英国有 Home Movers Index 与 incl-cash 等口径差异。
+  - market: uk
+    city: 英格兰与威尔士
+    keywords: [London, 伦敦, EPC, 能耗, energy]
+    name: EPC Open Data Communities（能源绩效证书寄存器）
+    url: https://epc.opendatacommunities.org
+    data: [逐套住宅 EPC 等级与家能耗估算, 建筑年限/构造/供暖与热水类型]
+    tier: 开放登记
+    granularity: [单套级]
+    access: 需注册
+    verify_before_use: true
+    notes: 可核实“这套房的能效等级”与 Bills 估算，是识破“低能耗豪宅”话术的工具。访问门槛可能变化，用前核实。
+  - market: uk
+    city: 英格兰
+    keywords: [London, 伦敦, flood, 洪水, planning, 规划]
+    name: data.gov.uk（洪水风险/土地与规划类官方数据集聚合）
+    url: https://www.data.gov.uk
+    data: [河流与海洋洪水风险（RoFRS/RoFSW）, 地方 planning 边界与国民 planning 数据集, 索引多边形（INSPIRE）]
+    tier: 开放登记
+    granularity: [街区级, 地块级]
+    access: 免登录
+    verify_before_use: true
+    notes: 洪水/劣质土/规划边界应作为 Location 与 Risk 的硬核实项。英国没有“学位占用”概念，
+      但有 catchment（学区划片），学区口径只能以当局当年度招生政策为准。
+  - market: uk
+    city: 苏格兰
+    keywords: [Edinburgh, Glasgow, Scotland, 苏格兰]
+    name: Registers of Scotland（RoS）
+    url: https://www.ros.gov.uk
+    data: [土地与产权登记, 苏格兰住宅房价统计]
+    tier: 公开统计
+    granularity: [片区级]
+    access: 免登录
+    verify_before_use: true
+    notes: 苏格兰制度独立：Home Report 卖方必须提供（含勘察/单套估值/EPC），拿到手之前不应对单套报价下结论。
+
+  # ---------------- 爱尔兰 ----------------
+  - market: ie
+    city: 爱尔兰全国（Ireland）
+    keywords: [Dublin, 都柏林, Cork, Galway, Ireland, 爱尔兰]
+    name: PSRA Residential Property Price Register（PPR）
+    url: https://www.propertypriceregister.ie
+    data: [2010 年起住宅成交明细（日期/地址/成交价/新旧/是否市场价）]
+    tier: 成交数据
+    granularity: [单套级]
+    access: 免登录
+    update: 每周三
+    verify_before_use: true
+    notes: 免注册、可导出 CSV。已知局限：无 Eircode、地址写法不统一（Rd/Road 需变体尝试）、
+      无面积/卧室数/BER、同一笔组合或整栋交易常被记成一行——做单套对比前务必确认行是否只含一套房。
+  - market: ie
+    city: 爱尔兰全国
+    keywords: [Dublin, 都柏林, Ireland, CSO, 统计]
+    name: Central Statistics Office（CSO）住宅房价统计
+    url: https://www.cso.ie
+    data: [住宅房价指数与均价, 按郡/类型/新旧细分]
+    tier: 公开统计
+    granularity: [片区级]
+    access: 免登录
+    verify_before_use: true
+    notes: 趋势与 CSI 口径核实用；单套成交看 PPR。
+
+  # ---------------- 法国 ----------------
+  - market: fr
+    city: 法国本土（Alsace-Moselle 覆盖不全）
+    keywords: [Paris, 巴黎, Lyon, Nice, Bordeaux, France, 法国]
+    name: DVF Demandes de valeurs foncières（DGFiP/Etalab）
+    url: https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres-geolocalisees/
+    data: [2014 年起全部经公证的交易（日期/价格/宗地/面积/类型/地理坐标）]
+    tier: 成交数据
+    granularity: [单套级, 地块级]
+    access: 免登录
+    update: 每年 4 月与 10 月两次
+    licence: Etalab Open Licence
+    verify_before_use: true
+    notes: 地图浏览入口 app.dvf.etalab.gouv.fr。局限：亲属间交易/赠与/继承/经 SCI 的股权转让不进 DVF；
+      户型与楼层字段常缺失，同宗地多套房会被聚合——因此“这笔交易”不一定等于“这套房”，
+      用作可比案例时必须回看原表行数与地块信息。Alsace-Moselle 与海外省覆盖不全。
+  - market: fr
+    city: 法国本土
+    keywords: [Paris, 巴黎, France, risque, 风险, radon]
+    name: Géorisques（生态转型部）
+    url: https://www.georisques.gouv.fr
+    data: [自然灾害与技术风险专区, 氡气潜在等级, 黏土胀缩与采空区]
+    tier: 开放登记
+    granularity: [街区级, 地块级]
+    access: 免登录
+    verify_before_use: true
+    notes: 用于核实所谓“黄金区位”是否落在洪泛、黏土胀缩或氡气风险区内；
+      法国交易时卖方须提供 diagnostics 技术尽调，应与本表交叉比对而不是照单全收。
+  - market: fr
+    city: 法国本土
+    keywords: [Paris, 巴黎, cadastre, 地籍]
+    name: Cadastre Etalab（地籍数据开放版）
+    url: https://cadastre.data.gouv.fr
+    data: [地籍宗地与建筑轮廓, 部门 geojson 下载]
+    tier: 开放登记
+    granularity: [地块级]
+    access: 免登录
+    verify_before_use: true
+    notes: 用于核实土地边界与建筑占地（加成建筑是否入籍）；不含产权人姓名——那是税务与私权信息，不公开。
+
+  # ---------------- 荷兰 ----------------
+  - market: nl
+    city: 荷兰全国（Netherlands）
+    keywords: [Amsterdam, 阿姆斯特丹, Rotterdam, Utrecht, 荷兰, Netherlands, kadaster]
+    name: Kadaster 开放数据（BAG/BRK）
+    url: https://www.kadaster.nl/zakelijke-c1/open-data
+    data: [BAG 地址与建筑登记, BRK 地块与产权登记权属边界, 地名/边界/使用权信息]
+    tier: 开放登记
+    granularity: [单套级, 地块级]
+    access: 免登录
+    verify_before_use: true
+    notes: "**没有公开的单套成交价登记**——只能用 Funda 等挂牌数据与 CBS 统计来近似；
+      不可替代的用途：确认 erfpacht（地租）/产权形式/地上权只能看 Kadaster。"
+
+  - market: nl
+    city: 荷兰全国
+    keywords: [Amsterdam, WOZ, CBS, statistics]
+    name: CBS Open Data（WOZ 值与房价指数）
+    url: https://opendata.cbs.nl
+    data: [各市平均 WOZ 值与分位, 现有自住房房价指数（PBK）, 交易量]
+    tier: 公开统计
+    granularity: [片区级]
+    access: 免登录
+    update: WOZ 年度重估
+    verify_before_use: true
+    notes: WOZ 是税务估值、**落后市场一年**（2026 的 WOZ 基于 2025-01-01 价值），不得直接当“市场价”。
+      逐套 WOZ 值可通过 WOZ-waardeloket 查询但可用性与覆盖要用前核实。
+
+  # ---------------- 德国 ----------------
+  - market: de
+    city: 德国各州（Bundesland，不一）
+    keywords: [Berlin, 柏林, München, Munich, Hamburg, Frankfurt, 德国, Germany]
+    name: Gutachterausschüsse / BORIS 土地标准值系统（各州估价委员会）
+    url: https://www.boris.nrw.de
+    data: [Bodenrichtwerte 土地标准值, 部分州附带 Kaufpreissammlung 汇总报表]
+    tier: 公开统计
+    granularity: [片区级]
+    access: 免登录/需注册（各州不一）
+    verify_before_use: true
+    notes: "**关键结论：德国没有全国性的开放单套成交登记**——Kaufpreissammlung（成交价采集）由各州地产估价委员会持有，常需付费或仅出版汇总；因此德国市场的『成交数据』档天然不可得，挂牌-成交交叉验证只能降级为『片区均价值 + 专业估价』，provenance 建议多为 suspect 起步。NRW 的 BORIS 开放程度最高，其他州用前逐一核实。"
+  - market: de
+    city: 德国全国
+    keywords: [Berlin, destatis, 德国, statistics, Zensus]
+    name: Statistisches Bundesamt（Destatis / GENESIS）
+    url: https://www.destatis.de
+    data: [房价与租金指数, 建房许可与住宅存量, Zensus 2022 建筑与供暖结构]
+    tier: 公开统计
+    granularity: [片区级]
+    access: 免登录
+    verify_before_use: true
+    notes: 趋势、片区供需与房屋存量的统计口径；不含单套价格。
+
+  # ---------------- 西班牙 ----------------
+  - market: es
+    city: 西班牙全国（各自治区税不同）
+    keywords: [Madrid, 马德里, Barcelona, Valencia, Mallorca, Alicante, 西班牙, Spain]
+    name: Sede Electrónica del Catastro
+    url: https://www.sedecatastro.gob.es
+    data: [地籍平面图与地块/建筑数据, Valor de Referencia 官方参考价值, immuebles 查询与 certificación]
+    tier: 开放登记
+    granularity: [单套级, 地块级]
+    access: 免登录
+    verify_before_use: true
+    notes: "**2022 起计税基数按『申报价与 Valor de Referencia 较高者』征收**——低价买入也可能按 Catastro 参考值缴 ITP，这是所谓“捡漏便宜房”最常见的税费陷阱。"
+  - market: es
+    city: 西班牙全国
+    keywords: [Madrid, Barcelona, registradores, nota simple, 西班牙]
+    name: Registro de la Propiedad（Registradores）
+    url: https://www.registradores.org
+    data: [nota simple 产权与负担摘要, 抵押/查封/占用查询]
+    tier: 收费查询（非开放数据）
+    granularity: [单套级]
+    access: 需申请/付费
+    verify_before_use: true
+    notes: 西班牙**没有开放的单套成交价登记**；产权与负担状况只能靠 nota simple（付费调档）核实。
+      未登记的加建/改建（obra sin legalizar）也会在此暴露——意味着合法性风险与可能被拒贷。
+  - market: es
+    city: 西班牙全国
+    keywords: [Madrid, Barcelona, notariado, 西班牙, statistics]
+    name: Consejo General del Notariado（公证人总会统计）
+    url: https://www.notariado.org
+    data: [按自治区分等的成交均价与成交量统计, 平米单价]
+    tier: 公开统计
+    granularity: [片区级]
+    access: 免登录
+    verify_before_use: true
+    notes: 唯一的“接近成交”口径是公证统计（Aggregate），粒度到自治区/省市，不可核实单套。

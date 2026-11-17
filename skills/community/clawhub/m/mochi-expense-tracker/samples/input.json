@@ -1,0 +1,10 @@
+{
+  "action": "add",
+  "requestId": "sample-expense",
+  "kind": "expense",
+  "date": "2026-10-24",
+  "amount": "32.00",
+  "currency": "CNY",
+  "category": "餐饮",
+  "description": "午饭"
+}

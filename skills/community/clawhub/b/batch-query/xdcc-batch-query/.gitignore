@@ -1,0 +1,10 @@
+# 打包产物
+dist/
+
+# Python 编译缓存
+__pycache__/
+*.py[cod]
+
+# 凭据文件（含商业密钥，绝不可入库）
+*.env
+*credentials*.env

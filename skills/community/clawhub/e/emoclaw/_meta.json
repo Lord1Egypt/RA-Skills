@@ -1,6 +1,32 @@
 {
   "ownerId": "kn7adcnm1ksgdcj80tkmnjxzgx7zyk1y",
   "slug": "emoclaw",
-  "version": "1.0.6",
-  "publishedAt": 1770755394829
+  "version": "1.0.3",
+  "publishedAt": 1770497047708,
+  "environment_variables": {
+    "ANTHROPIC_API_KEY": {
+      "required": false,
+      "description": "Claude API key for auto-labeling passages. Only needed if running label.py or bootstrap.py without --skip-label."
+    }
+  },
+  "permissions": {
+    "filesystem": {
+      "reads": ["bootstrap.source_files (configurable)", "bootstrap.memory_patterns (configurable)"],
+      "writes": ["memory/emotional-state.json", "emotion_model/data/", "emotion_model/checkpoints/"]
+    },
+    "network": {
+      "optional": true,
+      "description": "Auto-labeling sends extracted passages to the Anthropic API. Disabled by default."
+    },
+    "daemon": {
+      "socket": "/tmp/{name}-emotion.sock (configurable)",
+      "permissions": "0o660 (user+group read/write)"
+    }
+  },
+  "install": {
+    "method": "manual",
+    "creates_venv": true,
+    "dependencies": ["torch", "sentence-transformers", "numpy", "pyyaml"],
+    "optional_dependencies": ["anthropic"]
+  }
 }

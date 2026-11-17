@@ -1,39 +1,53 @@
-## Description: <br>
-Add money to the wallet through a Coinbase Onramp flow for USDC funding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds USDC funds to a wallet through Coinbase Onramp or manual Base-network deposit instructions, with commands to check wallet status, address, and balance.
 
-## Publisher: <br>
-[0xRAG](https://clawhub.ai/user/0xRAG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xrag](https://clawhub.ai/user/0xrag)
 
-## Use Case: <br>
-External users and agents use this skill to help fund a wallet with USDC, open the wallet companion funding interface, provide the wallet address for manual Base-network deposits, and check funding status or balance. <br>
-
-### Deployment Geography for Use: <br>
-Global, subject to Coinbase Onramp regional availability and payment-method support. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill opens a financial funding flow and may be activated from insufficient-balance or onramp requests. <br>
-Mitigation: Require explicit user confirmation before opening the funding interface or directing the user to purchase USDC. <br>
-Risk: The security review flags `npx awal@latest` usage and wildcard Bash permissions around the wallet CLI. <br>
-Mitigation: Review before installing, pin or justify the CLI version, and narrow allowed commands to exact funding, address, status, and balance checks where possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xRAG/fund) <br>
+## Use Case:
 
+External users and agents use this skill to open a Coinbase Onramp funding flow, show a wallet address for manual USDC deposits on Base, and check wallet status or balance before and after funding.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides wallet funding actions and balance checks; does not itself complete purchases.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Coinbase Onramp supported regions, including the United States
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill invokes an unpinned npm wallet tool in a real-money funding flow, so command behavior can change between runs.
+
+Mitigation: Pin the CLI version before production use and review the resolved package before allowing wallet or funding actions.
+
+Risk: Funding and manual deposit flows can expose users to fees, identity checks, regional restrictions, settlement delays, or funds sent to the wrong address.
+
+Mitigation: Require explicit user confirmation before opening funding flows or sharing deposit instructions, and independently verify the wallet address before sending USDC.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xrag/skills/fund)
+- [0xrag publisher profile](https://clawhub.ai/user/0xrag)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown instructions with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May open wallet, browser, or payment-provider interfaces through the wallet companion app.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

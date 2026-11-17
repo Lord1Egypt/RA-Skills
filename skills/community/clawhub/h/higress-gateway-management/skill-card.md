@@ -1,42 +1,59 @@
-## Description: <br>
-Manage the Higress AI Gateway via its Console API for consumers, routes, AI providers, and MCP server-related gateway settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Higress AI Gateway resources through its Console API, including consumers, routes, AI providers, and MCP server-related settings.
 
-## Publisher: <br>
-[MontyCN](https://clawhub.ai/user/MontyCN) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[montycn](https://clawhub.ai/user/montycn)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to administer a Higress AI Gateway through the local Console API, including consumer credentials, AI routes, provider registration, and gateway access settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent instructions for persistent Higress gateway administration using admin-session credentials. <br>
-Mitigation: Install only when the agent is expected to administer the gateway, review every create, update, delete, provider-token, and route-change command before execution, and keep a rollback plan for production gateways. <br>
-Risk: Route, provider, and credential changes can affect gateway access or model routing. <br>
-Mitigation: Use the documented GET-modify-PUT pattern, verify version fields where required, and confirm the target route, consumer, or provider before applying changes. <br>
+## Use Case:
 
+Developers and gateway operators use this skill to administer a trusted Higress AI Gateway manager environment by creating, updating, listing, and deleting consumers, AI routes, and LLM providers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MontyCN/higress-gateway-management) <br>
-- [Higress Console API reference](references/higress-api-doc.json) <br>
-- [Higress Console project](https://github.com/higress-group/higress-console) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl and jq shell commands plus JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are intended for a local Higress Console API session authenticated with the configured session cookie.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill uses administrator credentials, session cookies, generated consumer keys, provider tokens, and related gateway secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a trusted Higress manager environment; do not paste, print, commit, or log those secrets.
+
+Risk: Update and delete operations can change or remove live gateway consumers, routes, and providers.
+
+Mitigation: Confirm the exact resource name, inspect or export the current object first, and use the documented GET-modify-PUT flow with version fields where required.
+
+Risk: Route and provider changes can interrupt or misroute live AI gateway traffic.
+
+Mitigation: Review route predicates, domains, upstreams, and allowed consumers before applying changes, then allow for the documented auth plugin activation delay.
+
+## Reference(s):
+
+- [Higress Console OpenAPI Reference](artifact/references/higress-api-doc.json)
+- [Higress Console Repository](https://github.com/higress-group/higress-console)
+- [ClawHub Skill Release Page](https://clawhub.ai/montycn/skills/higress-gateway-management)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces commands and operational guidance for authenticated local Higress Console API workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Routes agent tasks across Claude Haiku, Sonnet, and Opus tiers so simple requests use cheaper models and complex work escalates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-routes Claude tasks across Haiku, Sonnet, and Opus by starting with cheaper models and escalating for code, analysis, architecture, debugging, strategic planning, and other complex work.
 
-## Publisher: <br>
-[VictorKing2005](https://clawhub.ai/user/VictorKing2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[victorking2005](https://clawhub.ai/user/victorking2005)
 
-## Use Case: <br>
-External users and developers use this skill to set model-routing guidance for Claude-only agent setups, starting with Haiku for simple work and escalating to Sonnet or Opus for higher-complexity tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad escalation rules can increase use of higher-cost Claude tiers and send more task context to those models. <br>
-Mitigation: Review the routing thresholds before installation and tune or disable escalation for cost-sensitive or sensitive-context workflows. <br>
-Risk: The package name "opus" can be confused with a model-specific skill even though the artifact provides general model-routing guidance. <br>
-Mitigation: Confirm the publisher and skill page match the intended smart-model-switching package before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/VictorKing2005/opus) <br>
+## Use Case:
 
+Agents and developers use this skill to choose an appropriate Claude model for each task, reducing cost while reserving stronger models for complex or high-impact work.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; does not execute tools or require credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The model-routing thresholds are subjective and may under-select model capability for ambiguous, high-impact, production, legal, financial, medical, or security-sensitive work.
+
+Mitigation: Treat the routing rules as guidance and manually choose a stronger model for ambiguous or high-impact tasks.
+
+Risk: The skill provides guidance only and does not enforce routing decisions through code or policy controls.
+
+Mitigation: Review agent behavior after installation and apply local model-selection safeguards where strict routing is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/victorking2005/skills/opus)
+- [ClawHub homepage](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with inline command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces routing recommendations; it does not execute model switches directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

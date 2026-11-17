@@ -1,44 +1,58 @@
-## Description: <br>
-Provides high-availability ACP bridge session management for OpenClaw by persisting ACP session mappings, injecting provider environment variables into spawned sessions, scheduling reviewed cron tasks, and coordinating advisory workspace locks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improves ACP bridge availability and autonomous agent session management by addressing persistence, provider environment injection, host cron scheduling, and shared workspace locking gaps in OpenClaw.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
 
-## Use Case: <br>
-Developers and engineers use this skill to improve ACP bridge reliability for autonomous agent sessions. It helps restore session mappings after restarts, pass provider environment into trusted spawned sessions, schedule reviewed main-session cron tasks, and coordinate shared workspace access with advisory locks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Provider credentials may be injected into spawned or scheduled sessions. <br>
-Mitigation: Use least-privilege, revocable API keys, run dry-run validation before injection, and avoid injecting secrets into untrusted or fully autonomous sessions. <br>
-Risk: Main-session cron scheduling can run reviewed host commands outside sandbox isolation. <br>
-Mitigation: Enable scheduling only for bounded, reviewed, allowlisted commands, keep schedules easy to revoke, and prefer sandboxed sessions for untrusted or external code. <br>
-Risk: Persisted ACP session mappings and stale sessions may survive restarts. <br>
-Mitigation: Protect the local session store with appropriate file permissions, set short restoration windows, and periodically purge stale sessions. <br>
-Risk: Workspace locks are advisory and depend on cooperating agents. <br>
-Mitigation: Require agents to acquire and release locks around shared-resource writes, use try/finally release patterns, and monitor lock status for stale owners. <br>
+## Use Case:
 
+Developers and operators use this skill to keep OpenClaw ACP sessions recoverable across bridge restarts, prepare autonomous sessions with required provider environment variables, schedule approved host-side cron jobs, and coordinate shared workspace writes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/romainsantoli-web/firm-acp-bridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON tool-call examples and inline shell-command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes credential-handling, session recovery, scheduling, and workspace-locking guidance; no standalone generated artifact is promised by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Provider API keys may be exposed to autonomous recipient sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived scoped credentials, run dry-run allowlist checks before injection, restrict target sessions, and avoid PROXY_URL or CUSTOM_* entries unless reviewed.
+
+Risk: Recurring host-level cron commands can bypass sandbox isolation.
+
+Mitigation: Require explicit human approval, fixed allowlisted jobs, logging, expiration, and a documented removal path before scheduling any host-side cron command.
+
+Risk: Workspace locks are advisory and can leave stale ownership if agents fail to release them.
+
+Mitigation: Use acquire-work-release patterns with try/finally release handling and periodic stale session cleanup before shared workspace writes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/skills/firm-acp-bridge)
+- [Skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands, JSON]
+
+**Output Format:** [Markdown with JSON examples and inline command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational patterns for ACP session persistence, provider environment handling, cron scheduling, workspace locking, and session health monitoring.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

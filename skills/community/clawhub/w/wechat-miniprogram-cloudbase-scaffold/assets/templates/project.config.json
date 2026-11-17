@@ -1,0 +1,16 @@
+{
+  "compileType": "miniprogram",
+  "libVersion": "3.7.12",
+  "appid": "__APPID__",
+  "projectname": "__PROJECT_NAME__",
+  "setting": {
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "urlCheck": false
+  },
+  "miniprogramRoot": "miniprogram/",
+  "srcMiniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "condition": {}
+}

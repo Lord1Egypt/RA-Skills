@@ -1,48 +1,64 @@
-## Description: <br>
-Use when upgrading an iOS or macOS app's Auth0.swift SDK from v2 to v3 by detecting the current version, checking v3 SDK signatures, and applying only breaking changes that affect real call sites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers migrate existing iOS or macOS apps from Auth0.swift v2 to v3 by detecting the installed version, checking the target SDK source, and applying only breaking changes that affect real call sites.
 
-## Publisher: <br>
-[auth0](https://clawhub.ai/user/auth0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[auth0](https://clawhub.ai/user/auth0)
 
-## Use Case: <br>
-Developers and engineers maintaining iOS or macOS apps with existing Auth0.swift v2 integrations use this skill to migrate dependencies and affected call sites to Auth0.swift v3 while preserving project-specific authentication behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may edit dependency manifests and Swift source while migrating Auth0.swift v2 projects to v3. <br>
-Mitigation: Use it only in projects intended for this migration, start from a clean git working tree, and review the final diff before committing. <br>
-Risk: Build, grep, or terminal output can contain project-specific secrets if pasted into prompts or summaries. <br>
-Mitigation: Avoid sharing terminal output that includes tokens, client secrets, credentials, or Keychain values; follow the security checklist if scanner commands flag sensitive data. <br>
-Risk: Removed client-side Management API functionality can require backend work, and mishandling it could expose privileged tokens. <br>
-Mitigation: Preserve affected call-site intent with reviewable TODOs and move Management API operations to a secure backend rather than embedding management tokens in the client app. <br>
+## Use Case:
 
+Developers and engineers use this skill to upgrade existing Auth0.swift v2 integrations to v3 while preserving authentication, credential storage, logout, MFA, and build behavior.
 
-## Reference(s): <br>
-- [Migration Process - Edge Cases and Procedures](references/process.md) <br>
-- [Security Checklist - Auth0.swift Migration](references/security.md) <br>
-- [Auth0 Agent Skills Homepage](https://github.com/auth0/agent-skills) <br>
-- [Auth0.swift GitHub](https://github.com/auth0/Auth0.swift) <br>
-- [Auth0.swift Releases](https://github.com/auth0/Auth0.swift/releases) <br>
-- [Auth0.swift API Documentation](https://auth0.github.io/Auth0.swift/documentation/auth0/) <br>
-- [Auth0 Management API Access Tokens](https://auth0.com/docs/secure/tokens/access-tokens/management-api-access-tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and Swift code blocks; agent runs may also produce project file edits.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces a migration summary, dependency update guidance, build and test commands, and focused Swift or dependency manifest changes after project usage is confirmed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata) <br>
+Risk: The bundled evaluation runner can copy broad project contents, including sensitive files, and send source snippets to an external Claude CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run evals only on sanitized projects; remove secrets and exclude .env and credential-bearing configuration files before evaluation.
+
+Risk: Migration changes can affect authentication, credential storage, logout, MFA, and Management API flows.
+
+Mitigation: Start from a clean git worktree, review generated diffs, preserve Keychain and PKCE behavior, and rerun build, tests, and security checks before committing.
+
+Risk: Applying SDK changes from assumptions instead of the target release can break authentication behavior.
+
+Mitigation: Fetch and read the target Auth0.swift v3 source, then apply only changes for APIs found in the project source audit.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/auth0/skills/auth0-swift-major-migration)
+- [Publisher Profile](https://clawhub.ai/user/auth0)
+- [OpenClaw Homepage](https://github.com/auth0/agent-skills)
+- [Auth0.swift GitHub](https://github.com/auth0/Auth0.swift)
+- [Auth0.swift Releases](https://github.com/auth0/Auth0.swift/releases)
+- [Auth0.swift API Documentation](https://auth0.github.io/Auth0.swift/documentation/auth0/)
+- [Migration Process](references/process.md)
+- [Security Checklist](references/security.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Swift, shell, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose source edits and commands; migration changes are gated by project source audit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, SKILL.md metadata, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

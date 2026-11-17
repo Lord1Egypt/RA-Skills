@@ -14,16 +14,62 @@ Read-only. No writes, no sends, no mailbox state changes.
 
 If the script reports failures, do not tag. Either fix the affected tools or remove them from the release. v1.7.0 shipped four tools backed by `/me/mailboxSettings/*` that Microsoft Graph does not support on personal accounts; v1.7.1 yanked them. This script would have caught it in 30 seconds.
 
-When adding a new tool that hits a Graph endpoint family not yet covered, add a row to `ENDPOINTS` in `scripts/preflight.py`.
+When adding a new tool that hits a Graph endpoint family not yet covered, add a row to `ENDPOINTS` in `scripts/preflight.py`. A family that only exists under a real resource id (`.../tasks/{id}/...`) needs a row provisioned at run time, as `_todo_task_rows` and `_mime_export_probe` do; a made-up id 404s for the wrong reason.
+
+## 1b. Live query-shape tests
+
+```bash
+uv run pytest -m live -v
+```
+
+Preflight answers "does this endpoint exist and respond?" — it treats a 400 as a non-blocking SKIP. This tier answers the different question: **does Graph accept and correctly evaluate the queries we actually build?**
+
+That gap shipped three bugs in 1.12.0, all under a fully green mock suite:
+
+- `$orderby` + any non-date `$filter` → `400 InefficientFilter`, breaking `from_address` and `classification` on every call (#31)
+- `list_thread` hit the same rule and 400'd unconditionally — it had never worked in a released version
+- `sanitize_kql` stripped `:`, so every documented KQL property restriction returned `200` with **zero results** (#30)
+
+The second failure mode is the dangerous one: a silent 200 with wrong data. Mocks assert what we *send*; only a live call sees what Graph *does*. These tests assert on returned data, not just absence of an exception.
+
+Read-only, and mailbox-independent — they harvest their own fixtures and skip cleanly when the mailbox lacks the needed data. Auto-skipped without a cached token.
+
+If you change how any `$filter`, `$orderby` or `$search` string is built, run this before tagging.
+
+## 1c. Integration smoke tests
+
+```bash
+uv run pytest -m integration -v
+```
+
+Response-shape checks for each tool family. Read-only.
+
+> These skipped silently for their entire existence — the fixture called a non-existent `AuthManager.login()`, and the `except Exception` swallowed the `AttributeError`. Fixed in 1.13.0. If you see `skipped` here, confirm it's really a missing token and not a broken fixture.
+
+## 1d. Write-tier guards (calendar, contacts, To Do, unsent drafts)
+
+```bash
+OUTLOOK_MCP_LIVE_WRITE=1 uv run pytest -m live_write -v
+```
+
+The only tier that writes. It creates marked items on the authenticated mailbox — short, bounded, attendee-free events (recurring ones included, with keys and attachments), contacts, tasks and drafts that are never sent — and deletes each one in a `finally`.
+
+It exists because recurrence cannot be validated any other way: a `PatternedRecurrence` that is well-formed to the SDK still 400s with `ErrorInvalidRecurrenceRange` if the range disagrees with the series master's start. `outlook_create_event` accepted a `recurrence` argument and silently discarded it for fourteen minor versions (#41) under a fully green mock suite — mocks assert what we *build*.
+
+Double-gated on purpose: the marker is deselected by default **and** the tier skips without `OUTLOOK_MCP_LIVE_WRITE=1`, so a cached token alone can never write to a calendar. Run it if you changed a write path it covers: `tools/_recurrence.py`, `calendar_write.py`, `calendar_attachments.py`, `contacts.py`, `todo.py`, `todo_attachments.py` or `mail_drafts.py`. See the rules at the top of `tests/conftest.py` before adding to it.
 
 ## 2. Tests + lint
 
 ```bash
+uv sync --all-extras   # the `documents` parsers; without them their tests skip
 uv run pytest --tb=no -q
-uv run ruff check src/ tests/
+OUTLOOK_MCP_TOOLSETS="$(uv run python -c 'from outlook_mcp import toolsets; print(",".join(sorted(set(toolsets.TOOL_GROUPS.values()))))')" \
+  uv run pytest --tb=no -q   # every toolset loaded, the opt-in groups included, as CI runs it
+uv run ruff check src/ tests/ scripts/
+uv run ruff format --check src/ tests/ scripts/
 ```
 
-A single pre-existing failure (`test_graph.py::test_graph_client_init`, SOCKS env import) is expected and unrelated.
+The default run is the offline unit suite only — `addopts` deselects the `integration`, `live` and `live_write` markers, so this needs no network or token. Expect zero failures; the deselected count is those three tiers, and grows as they do.
 
 ## 3. Version bump
 
@@ -31,11 +77,14 @@ Update in lockstep:
 
 - `pyproject.toml` — `version = "X.Y.Z"`
 - `server.json` — both `version` fields + `description` (tool count if it changed)
+- `uv.lock` — the `outlook-graph-mcp` package's own `version` line (`uv lock` rewrites it). CI runs `uv sync --locked`, which fails while it disagrees with `pyproject.toml`
+- `.github/workflows/ci.yml` — both tool-count asserts. Both count every registered tool, opt-in groups included — not the default surface, which leaves the opt-in groups out. The fresh-install one pins the working tree's surface (a release that adds or removes a tool updates it in the same PR). The `published-install` one pins the count of the **PyPI-latest** release, so it is only correct until the next publish; leaving it stale turns the weekly canary permanently red the day the release lands
 - `CHANGELOG.md` — new `## [X.Y.Z] — YYYY-MM-DD` entry
 - `SKILL.md` — `## Tools (N)` heading + frontmatter `description` if count changed
 - `README.md` — counts and tables if they changed
+- `README.md` — the **What's new** list: add this release's user-facing changes in plain words, and drop entries older than about four releases (the CHANGELOG keeps everything)
 - `ROADMAP.md` — move shipped items from Near-term to Done
-- `CLAUDE.md` — tools listing if you added/removed a module
+- `CLAUDE.md` — the Architecture list if you added/removed a module, and the docstring count under Conventions if the default tool count changed
 
 ## 4. PR + merge
 
@@ -46,22 +95,83 @@ gh pr merge <num> --rebase --delete-branch
 git checkout main && git pull --ff-only
 ```
 
-## 5. Tag + GitHub release
+## 5. Tag + GitHub release — this publishes everything
 
 ```bash
 gh release create vX.Y.Z --target main --title "vX.Y.Z" --notes "<changelog body>"
 ```
 
-## 6. Publish
+Publishing the release triggers `.github/workflows/publish.yml`, which re-checks the version lockstep, runs tests and lint, builds, publishes to **PyPI**, waits for PyPI's index to catch up, then publishes to the **MCP registry**. Both authenticate through GitHub OIDC — no stored tokens, and no five-minute registry login to race by hand.
+
+It runs as three jobs — `build` (checks, tests, build; no token), `pypi` (uploads the built files and nothing else) and `registry` — so the publishing token exists only in the two jobs that publish. `pypi` runs in the `pypi` GitHub environment, which accepts release tags only, so a run from a branch cannot upload (setup in the appendix). Every action in both workflows is pinned to a commit SHA; Dependabot (`.github/dependabot.yml`) opens PRs to move the pins, and a weekly one that moves `uv.lock` inside `pyproject.toml`'s bounds without editing them.
+
+Watch it:
 
 ```bash
-uv build
-uv publish dist/outlook_graph_mcp-X.Y.Z-py3-none-any.whl dist/outlook_graph_mcp-X.Y.Z.tar.gz
-
-clawhub publish "$(pwd)" --version X.Y.Z --tags latest --changelog "<one-liner>"
-
-mcp-publisher publish   # may need `mcp-publisher login github` if JWT expired
+gh run watch
 ```
+
+If it fails partway, re-run it on the release tag. Uploads already on PyPI are skipped, so a dispatch retries only what didn't finish:
+
+```bash
+gh workflow run publish.yml --ref vX.Y.Z
+```
+
+Name the tag: a dispatch without `--ref` runs on `main`, which the `pypi` environment refuses, and `registry` is then skipped. `gh run rerun <run-id> --failed` also works — it keeps the release's ref.
+
+The MCP registry step uses a pinned, checksum-verified `mcp-publisher` (`scripts/install-mcp-publisher.sh`), because that job holds the publishing credential. If the registry ever refuses the pinned version, move the pin — the script says how — in a PR before tagging; CI's `mcp-publisher-pin` job checks the new pin.
+
+> The workflow deliberately does **not** run the live tier — those need real credentials. Step 1 is still yours, and still the step that matters: a green offline suite is exactly what shipped 1.13.0 and 1.13.1 broken.
+
+### Hotfix — when `main` isn't ready to ship
+
+When a published release needs an urgent fix but `main` carries merged work that hasn't been through the live tier, cut the patch from the tag instead of from `main`. 1.22.1 was released this way, from `v1.22.0`:
+
+```bash
+git fetch origin --tags
+git push origin "vX.Y.Z^{commit}:refs/heads/release/X.Y.x"   # release branch at the published tag
+git switch -c hotfix/X.Y.Z+1 origin/release/X.Y.x
+git cherry-pick <fix commit(s) from main>                    # then the §3 version bump, in its own commit
+gh pr create --base release/X.Y.x                            # CI runs on it like any PR; merge when green
+gh release create vX.Y.Z+1 --target release/X.Y.x --title "vX.Y.Z+1" --notes-file <notes>
+```
+
+Run steps 1–1c from the hotfix branch, not `main`. After publishing, open a PR against `main` that moves the fix's CHANGELOG entry out of `[Unreleased]` into a `## [X.Y.Z+1]` section. Leave `main`'s `pyproject.toml` and `server.json` versions alone; the next release from `main` bumps past both. ClawHub (§6) publishes from a checkout of the hotfix branch — mind §6b's `--slug`.
+
+## 6. Publish to ClawHub (the one manual channel)
+
+ClawHub has no OIDC equivalent, so it stays hand-run. Three steps, and the first and last are the ones that matter.
+
+**6a. Check the CLI is current — nothing else will.**
+
+```bash
+clawhub --cli-version; npm view clawhub version   # must match
+npm i -g clawhub@latest                            # it's npm-global under Homebrew's node, not a brew formula
+```
+
+Site discovery advertises `minCliVersion: "0.1.0"`, so an arbitrarily old client is accepted without a warning. On 2026-09-07 a v0.9.0 client (latest was v0.23.3) printed `✔ OK. Published outlook-mcp@1.15.0` for a submission that was actually pending security scans, and two releases were reported as published to users before anyone checked. Current clients print `pending security scans before it becomes public`, which is the truth.
+
+**6b. Publish.**
+
+```bash
+clawhub publish "$(pwd)" --slug outlook-mcp --name outlook-mcp --version X.Y.Z --tags latest --changelog "<one-liner>" --dry-run
+# must print: Would publish outlook-mcp@X.Y.Z — then run it again without --dry-run
+```
+
+**`--slug` and `--name` are not optional.** Without them the CLI names the skill after the folder. That's harmless from a clone called `outlook-mcp`, but 1.22.1, published from a worktree called `hotfix-1.22.1`, went out as a brand-new skill `hotfix-1-22-1` — and the CLI printed "Update submitted" exactly as it does for the real one. An owner can't delete a skill while its scan is pending, so the stray could only be removed after it went public. The dry run is the one place the slug is visible before it matters.
+
+Expect it to take a minute or two and to say **pending security scans**. That is success. The scan has taken ~12 min to ~1 h in practice; the version is not public until it clears.
+
+Note that ClawHub bundles the **whole repo** (everything not in `.gitignore` with a text extension — `tests/` included), not the wheel. Don't leave one-off scripts that touch real data lying in the tree at publish time.
+
+**6c. Verify — the CLI's success message is not verification.**
+
+```bash
+curl -s -o /dev/null -w '%{http_code}\n' https://clawhub.ai/api/v1/skills/outlook-mcp/versions/X.Y.Z   # 200 once public
+curl -s https://clawhub.ai/api/v1/skills/outlook-mcp | python3 -c "import json,sys; print(json.load(sys.stdin)['latestVersion']['version'])"
+```
+
+`404` immediately after publishing is normal (scan pending). `404` an hour later is not — and `clawhub publish` will then refuse the same version number as a duplicate, so don't burn versions probing it; ask on <https://github.com/openclaw/clawhub/issues> (see #3623 for the shape of this).
 
 ## 7. Update GitHub About
 
@@ -77,8 +187,42 @@ gh repo edit mpalermiti/outlook-mcp --description "MCP server for Microsoft Outl
 curl -s https://pypi.org/pypi/outlook-graph-mcp/X.Y.Z/json | python3 -c "import json,sys; print(json.load(sys.stdin)['info']['version'])"
 ```
 
+Then install what a new user gets — the published package, into a clean venv, without the lock file — and send `/me` through it:
+
+```bash
+uv venv "$TMPDIR/pypi-check" && uv pip install --python "$TMPDIR/pypi-check/bin/python" --refresh outlook-graph-mcp==X.Y.Z
+"$TMPDIR/pypi-check/bin/python" tests/test_me_rewrite_reaches_the_wire.py   # expect: OK: /me reaches the wire as /me
+```
+
+This is the step that proves the release. `uv.lock` keeps every CI job and developer install on tested versions, so only a lock-free install sees what dependency resolution hands a new user today — the five-week `mcp` outage (2026-07) and #80 (2026-09) both shipped under a fully green suite. `--refresh` matters: uv's index cache once made a just-published version look missing.
+
 And confirm the MCP registry shows the new version as `(latest)`:
 
 ```bash
-curl -s 'https://registry.modelcontextprotocol.io/v0/servers?search=mpalermiti&limit=20' | python3 -c "import json,sys; [print(s['server'].get('version'), '(latest)' if s.get('_meta',{}).get('io.modelcontextprotocol.registry/official',{}).get('isLatest') else '') for s in json.load(sys.stdin).get('servers', [])]"
+curl -s 'https://registry.modelcontextprotocol.io/v0/servers?search=mpalermiti&version=latest' | python3 -c "import json,sys; [print(s['server'].get('version'), '(latest)' if s.get('_meta',{}).get('io.modelcontextprotocol.registry/official',{}).get('isLatest') else '') for s in json.load(sys.stdin).get('servers', [])]"
 ```
+
+
+## Appendix — one-time PyPI trusted publisher setup
+
+Step 5 uploads to PyPI without a token by using PyPI's *trusted publishing*: PyPI verifies the workflow through GitHub OIDC rather than a stored API token. It has to be registered once in PyPI's web UI — it cannot be scripted:
+
+1. Go to <https://pypi.org/manage/project/outlook-graph-mcp/settings/publishing/>
+2. Add a **GitHub** publisher with exactly:
+
+   | Field | Value |
+   | --- | --- |
+   | Owner | `mpalermiti` |
+   | Repository | `outlook-mcp` |
+   | Workflow name | `publish.yml` |
+   | Environment | `pypi` |
+
+Until this is saved, the workflow's PyPI step fails with an OIDC/trusted-publishing error. Once saved, `UV_PUBLISH_TOKEN` is no longer needed and can be dropped from the shell environment.
+
+### The `pypi` environment
+
+The `pypi` job names a GitHub environment, `pypi`. PyPI checks the environment claim only when its publisher entry names one; with the field blank it accepts a token from any job in `publish.yml`, including `registry`. Naming it on both sides means only the `pypi` job, running on a `v*` tag, can upload. The environment checks only the tag's *name*, and the workflow that runs is the file at that tag, so step 2 also limits who can create a `v*` tag; without it, anyone with write access could tag any commit and publish from it.
+
+1. **GitHub environment:** Settings → Environments → `pypi` (GitHub creates it, unprotected, the first time a run uses it; create it ahead to protect that run too). Deployment branches and tags → **Selected branches and tags** → add a **tag** rule `v*`.
+2. **Who can make a release tag:** Settings → Rules → Rulesets → New tag ruleset, targeting `v*`, with only **Restrict creations**, and **Repository admin** in its bypass list (with no bypass it also blocks your own `gh release create`). Keep it separate from "Protect release tags": a bypass applies to every rule in its ruleset, and moving or deleting a tag should stay blocked for everyone. Alternatively, make yourself a required reviewer on the `pypi` environment, which costs one approval click per release.
+3. **PyPI:** constrain the publisher to the `pypi` environment — *after* one release has gone through with the workflow naming it. PyPI cannot edit a publisher: use the "constrain" link in the email PyPI sends after that release, or delete the publisher and add a new one with Environment `pypi`. Do not add a second publisher beside the blank one: PyPI falls back to a blank-environment entry for any job, so with both present nothing is locked and nothing shows it. A blank field on PyPI accepts any environment, so the workflow side can never break a release; the PyPI side, changed first, would refuse a run that names none.

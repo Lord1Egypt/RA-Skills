@@ -1,42 +1,52 @@
-## Description: <br>
-Fetch text-based real-time stock prices for KRX and overseas markets using Naver Finance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch text-based real-time stock prices for KRX and overseas markets using Naver Finance.
 
-## Publisher: <br>
-[seungdols](https://clawhub.ai/user/seungdols) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seungdols](https://clawhub.ai/user/seungdols)
 
-## Use Case: <br>
-Developers and agents use this skill to look up public stock, ticker, and currency quote data from Naver Finance and return structured price information for downstream workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The entered stock, ticker, or currency term may be sent to Naver Finance as part of the lookup. <br>
-Mitigation: Use only public market lookup terms and avoid entering sensitive or private portfolio information. <br>
-Risk: Market quote data can be delayed, unavailable, or different between regular KRX and Nextrade sessions. <br>
-Mitigation: Treat returned prices as informational data and verify important financial decisions against an authoritative market source. <br>
-Risk: The skill runs a bundled local Node.js script. <br>
-Mitigation: Install and run it only in environments where local script execution and outbound public market-data lookups are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Naver Stock ClawHub Release](https://clawhub.ai/seungdols/naverstock-skill) <br>
-- [seungdols ClawHub Publisher Profile](https://clawhub.ai/user/seungdols) <br>
+## Use Case:
 
+External users and developers use this skill to look up current stock and exchange-rate data from Naver Finance by providing a ticker, stock name, or supported currency query.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [JSON object printed by a local Node.js command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a stock name, ticker, code, or currency search term.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Stock names, tickers, and exchange-rate queries are sent to Naver Finance.
+
+Mitigation: Do not enter confidential watchlists, private notes, proprietary identifiers, or other sensitive free-text queries.
+
+Risk: Returned market data depends on live external Naver Finance responses and may differ from other sources or trading venues.
+
+Mitigation: Verify prices and exchange rates with an authoritative market-data source before making financial or operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seungdols/skills/naverstock-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [JSON printed by a Node.js command-line script, with error responses also returned as JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and network access to Naver Finance; supported operating systems are macOS, Linux, and Windows.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

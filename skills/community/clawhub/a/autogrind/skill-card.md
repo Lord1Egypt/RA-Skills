@@ -1,41 +1,53 @@
-## Description: <br>
-AutoGrind directs an agent to keep working through repeated autonomous planning, execution, validation, reflection, and pause cycles until the user gives an explicit stop signal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autogrind guides an agent to continue autonomous work through repeated overview, understanding, planning, execution, reflection, and pause cycles until the user explicitly stops it.
 
-## Publisher: <br>
-[ttttonyhe](https://clawhub.ai/user/ttttonyhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ttttonyhe](https://clawhub.ai/user/ttttonyhe)
 
-## Use Case: <br>
-Developers, researchers, writers, and other agent users use AutoGrind when they want an agent to continue improving a project autonomously across repeated cycles until an explicit stop signal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to continue acting autonomously and may keep working longer than intended. <br>
-Mitigation: Set a maximum runtime or cycle count, define the exact stop phrase, and require confirmation for actions outside the approved scope before invoking the skill. <br>
-Risk: Autonomous operation with broad permissions can modify sensitive files, accounts, or services. <br>
-Mitigation: Restrict allowed directories, commands, network access, and external services; avoid sensitive repositories or accounts with broad write privileges. <br>
+## Use Case:
 
+Developers, researchers, writers, and designers use Autogrind when they want an agent to keep improving a project across repeated work cycles until explicitly stopped.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ttttonyhe/autogrind) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ttttonyhe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown progress updates, task plans, code or file changes, and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs repeated autonomous cycles with a 60-second inter-cycle pause until an explicit stop signal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Continuous autonomous work can continue beyond the user's intended scope and make repeated project changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in disposable or version-controlled projects, set clear limits before starting, and monitor the session.
+
+Risk: Weak stopping, approval, and persistence controls can increase the chance of unwanted changes during long-running sessions.
+
+Mitigation: Avoid broad permissions, automatic commits, or exports unless they are intentionally enabled and supervised.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ttttonyhe/skills/autogrind)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Agent responses with task plans, edits, validation results, shell commands, and concise progress updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run repeated autonomous cycles and modify files inside the active project when permissions allow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact metadata version 1.6)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

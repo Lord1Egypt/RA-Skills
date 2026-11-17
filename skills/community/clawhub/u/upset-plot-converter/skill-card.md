@@ -1,40 +1,56 @@
-## Description: <br>
-Converts complex Venn diagrams with more than four sets into clearer Upset Plot visualizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts complex Venn diagrams with more than four sets into clearer Upset Plot visualizations.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and data analysts use this skill to transform multi-set overlap data into Upset Plot PNG visualizations and review intersection statistics.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Unpinned plotting dependencies can change behavior across environments.
+
+Mitigation: Install in an isolated environment and pin matplotlib and numpy before production use.
+
+Risk: The plotting workflow writes files to the local filesystem.
+
+Mitigation: Provide only the intended output path and review generated files before sharing them.
+
+Risk: Unexpected or incomplete set data can produce misleading intersection visualizations.
+
+Mitigation: Validate input set names, element lists, subset thresholds, and maximum intersections before generating the plot.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, and data scientists use this skill to convert set or list inputs into readable Upset Plot PNGs when Venn diagrams with more than four sets become difficult to interpret. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, Analysis, Guidance, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Local Python execution and plotting dependencies can introduce dependency hygiene risk. <br>
-Mitigation: Install and run the skill in a normal sandboxed Python environment, and pin audited versions of matplotlib and numpy for production or repeated use. <br>
-Risk: The plotting workflow writes output files to disk. <br>
-Mitigation: Keep output paths inside the intended workspace and avoid elevated privileges when running the script. <br>
+**Output Format:** [Markdown guidance with optional Python or shell snippets and local PNG plot files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/upset-plot-converter) <br>
+**Other Properties Related to Output:** [Writes visualization output to a user-provided local path; prints intersection statistics when run as an example script.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PNG visualization with concise Markdown or command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes plot images to a user-specified output path; defaults include minimum subset size 1 and up to 30 intersections.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

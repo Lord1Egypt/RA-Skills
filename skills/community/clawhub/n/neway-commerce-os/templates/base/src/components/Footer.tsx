@@ -1,48 +1,82 @@
-import { Instagram, Twitter, Youtube } from 'lucide-react';
+import { Globe, Headphones, Instagram, ShieldCheck, Truck, Twitter, Youtube } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { categories } from '../data/products';
+
+const serviceBanner = [
+  { icon: Truck, title: 'Free shipping', desc: 'Free delivery on orders over ¥299' },
+  { icon: ShieldCheck, title: 'Guaranteed quality', desc: 'Authorised sourcing · money back if not genuine' },
+  { icon: Globe, title: 'Sourced globally', desc: 'Every fabric traceable to its mill' },
+  { icon: Headphones, title: 'Dedicated support', desc: 'Online 10:00–22:00' },
+];
+
+const helpLinks = ['Size guide', 'Shipping', 'Returns', 'Contact us'];
 
 export default function Footer() {
   return (
-    <footer className="bg-neutral-900 text-neutral-400 mt-auto">
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
+    <footer className="mt-auto bg-neutral-900 text-neutral-400">
+      {/* Service banner */}
+      <div className="mx-auto max-w-screen-xl px-4 py-10 sm:px-6">
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+          {serviceBanner.map((s) => (
+            <div key={s.title} className="flex items-start gap-3">
+              <s.icon size={20} className="mt-0.5 shrink-0 text-brand-300" />
+              <div>
+                <p className="text-sm font-medium text-white">{s.title}</p>
+                <p className="mt-0.5 text-xs text-neutral-500">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-screen-xl px-4 pb-16 sm:px-6">
+        <div className="grid grid-cols-2 gap-10 border-t border-neutral-800 pt-12 md:grid-cols-4">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <h3 className="font-display text-white text-xl tracking-[0.15em] uppercase mb-4">__SITE_NAME__</h3>
-            <p className="text-sm leading-relaxed mb-6">
-              Premium products by __BRAND_NAME__. Crafted with passion and attention to detail.
+            <h3 className="mb-4 font-display text-xl uppercase tracking-[0.15em] text-white">
+              __SITE_NAME__
+            </h3>
+            <p className="mb-6 text-sm leading-relaxed">
+              __BRAND_NAME__ is about fabric and cut — everyday pieces built to be judged over time.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="hover:text-white transition-colors" aria-label="Instagram">
+              <a href="#" className="transition-colors hover:text-white" aria-label="Instagram">
                 <Instagram size={18} />
               </a>
-              <a href="#" className="hover:text-white transition-colors" aria-label="Twitter">
+              <a href="#" className="transition-colors hover:text-white" aria-label="Twitter">
                 <Twitter size={18} />
               </a>
-              <a href="#" className="hover:text-white transition-colors" aria-label="Youtube">
+              <a href="#" className="transition-colors hover:text-white" aria-label="Youtube">
                 <Youtube size={18} />
               </a>
             </div>
           </div>
 
-          {/* Shop */}
+          {/* Categories */}
           <div>
-            <h4 className="text-white text-xs tracking-widest uppercase mb-4">Shop</h4>
+            <h4 className="mb-4 text-xs uppercase tracking-widest text-white">Shop</h4>
             <ul className="space-y-3 text-sm">
-              {['New Arrivals', 'Bestsellers', 'Sale', 'Limited Edition'].map((i) => (
-                <li key={i}>
-                  <a href="#" className="hover:text-white transition-colors">{i}</a>
-                </li>
-              ))}
+              {categories
+                .filter((c) => c.key !== 'all')
+                .map((c) => (
+                  <li key={c.key}>
+                    <Link to={`/shop?category=${c.key}`} className="transition-colors hover:text-white">
+                      {c.label}
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </div>
 
           {/* Help */}
           <div>
-            <h4 className="text-white text-xs tracking-widest uppercase mb-4">Help</h4>
+            <h4 className="mb-4 text-xs uppercase tracking-widest text-white">Help</h4>
             <ul className="space-y-3 text-sm">
-              {['Size Guide', 'Shipping Info', 'Returns Policy', 'Contact Us'].map((i) => (
+              {helpLinks.map((i) => (
                 <li key={i}>
-                  <a href="#" className="hover:text-white transition-colors">{i}</a>
+                  <a href="#" className="transition-colors hover:text-white">
+                    {i}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -50,27 +84,27 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h4 className="text-white text-xs tracking-widest uppercase mb-4">Newsletter</h4>
-            <p className="text-sm mb-4">Be the first to know about new arrivals and exclusive offers.</p>
+            <h4 className="mb-4 text-xs uppercase tracking-widest text-white">Newsletter</h4>
+            <p className="mb-4 text-sm">Be first to hear about new arrivals and private offers.</p>
             <div className="flex">
               <input
                 type="email"
                 placeholder="Your email"
-                className="flex-1 px-4 py-2.5 bg-neutral-800 text-white text-sm placeholder-neutral-500 outline-none border border-neutral-700 focus:border-neutral-500 transition-colors"
+                className="flex-1 border border-neutral-700 bg-neutral-800 px-4 py-2.5 text-sm text-white outline-none transition-colors placeholder:text-neutral-500 focus:border-neutral-500"
               />
-              <button className="px-4 py-2.5 bg-white text-neutral-900 text-sm font-medium hover:bg-neutral-100 transition-colors whitespace-nowrap">
+              <button className="whitespace-nowrap bg-white px-4 py-2.5 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-100">
                 Subscribe
               </button>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-neutral-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-          <p>&copy; {new Date().getFullYear()} __BRAND_NAME__. All rights reserved.</p>
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-neutral-800 pt-8 text-xs sm:flex-row">
+          <p>© {new Date().getFullYear()} __BRAND_NAME__. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white transition-colors">Cookie Settings</a>
+            <a href="#" className="transition-colors hover:text-white">Privacy policy</a>
+            <a href="#" className="transition-colors hover:text-white">Terms of service</a>
+            <a href="#" className="transition-colors hover:text-white">Cookie settings</a>
           </div>
         </div>
       </div>

@@ -1,42 +1,60 @@
-## Description: <br>
-Query and manage Linear issues, projects, and team workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and manage Linear issues, projects, and team workflows.
 
-## Publisher: <br>
-[TerryRen2024](https://clawhub.ai/user/TerryRen2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terryren2024](https://clawhub.ai/user/terryren2024)
 
-## Use Case: <br>
-Developers and teams use this skill to inspect Linear issues, projects, priorities, assignments, and daily standup context, and to perform issue workflow actions from an agent-assisted shell session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Linear API key may allow the agent to read and update Linear work items according to the key's permissions. <br>
-Mitigation: Use the least-privileged key available and require explicit approval before create, comment, status, priority, or assignment commands. <br>
-Risk: Team metadata is cached locally, and the default cache path may be unsuitable on shared systems. <br>
-Mitigation: Set LINEAR_TEAMS_CACHE to a private path when using shared machines or multi-user environments. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to inspect Linear work, create or update issues, generate standup summaries, and derive Linear-compatible Git branch names from agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TerryRen2024/linear-1-0-0) <br>
-- [Linear](https://linear.app) <br>
-- [Linear GraphQL API](https://api.linear.app/graphql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LINEAR_API_KEY; optional LINEAR_DEFAULT_TEAM and LINEAR_TEAMS_CACHE tune command behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill uses a Linear API key that can read and modify workspace data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the least-privilege Linear token available, scope it to the intended workspace, and rotate it if exposed.
+
+Risk: Write commands can create issues, add comments, assign users, and change status or priority.
+
+Mitigation: Review generated commands and arguments before running create, comment, assign, status, or priority actions.
+
+Risk: Unsafe input handling could modify unintended Linear data when issue IDs, titles, descriptions, project names, or comments are untrusted.
+
+Mitigation: Avoid passing untrusted text or identifiers to the wrapper until safer GraphQL variable handling and cache handling are implemented.
+
+## Reference(s):
+
+- [Linear](https://linear.app)
+- [Linear GraphQL API endpoint](https://api.linear.app/graphql)
+- [ClawHub release page](https://clawhub.ai/terryren2024/skills/linear-1-0-0)
+- [Publisher profile](https://clawhub.ai/user/terryren2024)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and plain text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LINEAR_API_KEY and local curl and jq availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

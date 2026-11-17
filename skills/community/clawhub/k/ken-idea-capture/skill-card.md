@@ -1,42 +1,54 @@
-## Description: <br>
-Ken Idea Capture helps an agent silently capture possible user ideas, feature requests, complaints, wishes, and pain points into an inbox for later review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures user ideas, wishes, complaints, and pain points during conversation, appends them to an inbox file without confirmation, and supports scheduled review summaries for Telegram and Feishu.
 
-## Publisher: <br>
-[guytogay](https://clawhub.ai/user/guytogay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guytogay](https://clawhub.ai/user/guytogay)
 
-## Use Case: <br>
-Individuals and teams use this skill to have an agent notice possible ideas, needs, complaints, and pain points during ordinary conversations, append them to an inbox, and prepare scheduled review summaries for Telegram and Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill silently logs messages that it classifies as ideas, needs, complaints, wishes, or pain points. <br>
-Mitigation: Enable it only in conversations where silent capture is expected, confirm the inbox path before use, and keep a clear way to disable capture. <br>
-Risk: Captured content may include secrets, personal data, or sensitive business context. <br>
-Mitigation: Avoid using the skill in sensitive chats, review captured entries regularly, and provide a deletion path for entries that should not be retained. <br>
-Risk: Daily and weekly summaries can forward captured content to Telegram and Feishu. <br>
-Mitigation: Confirm the Telegram and Feishu destinations before enabling summaries, and review captured content before forwarding when privacy or confidentiality matters. <br>
+## Use Case:
 
+Individuals and teams use this skill to capture product ideas, feature requests, wishes, complaints, and pain points from everyday agent conversations for later review.
 
-## Reference(s): <br>
-- [ClawHub Ken Idea Capture Skill Page](https://clawhub.ai/guytogay/ken-idea-capture) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown inbox entries and text review summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Silently appends timestamped captures to an inbox path and may send daily or weekly summaries to Telegram and Feishu when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill silently logs broad conversation content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with an explicitly configured private inbox and avoid chats containing secrets, personal data, workplace-sensitive material, health or financial information, or third-party confidential content.
+
+Risk: Captured content can be forwarded to external Telegram and Feishu destinations without sufficient user control.
+
+Mitigation: Configure only private destinations and add opt-in capture, visible notifications, redaction, review-before-send, and deletion controls before using it in sensitive contexts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guytogay/skills/ken-idea-capture)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/guytogay)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown inbox entries and review summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Captured entries include timestamped original text and source channel when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

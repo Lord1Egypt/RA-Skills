@@ -1,39 +1,51 @@
-## Description: <br>
-Query usage statistics and quota from a user-specified new-api endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query usage statistics and quota from a user-specified new-api endpoint. Use when the user asks to check API quota, usage records, token consumption, model-level usage, or remaining balance. Requires explicit --base-url and --key input.
 
-## Publisher: <br>
-[wang48](https://clawhub.ai/user/wang48) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wang48](https://clawhub.ai/user/wang48)
 
-## Use Case: <br>
-Developers and engineers use this skill to check quota, balance, token consumption, model-level usage, and recent usage records for a trusted new-api deployment with explicit endpoint and API-key inputs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends an API key to a user-specified new-api server. <br>
-Mitigation: Use only trusted HTTPS base URLs, verify the endpoint before running commands, and prefer limited or revocable API keys. <br>
-Risk: API keys passed as command-line arguments or query parameters may be exposed through shell history, process listings, server logs, or proxy logs. <br>
-Mitigation: Avoid shared systems for sensitive checks, rotate exposed keys, and review local shell and server logging practices before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wang48/new-api-usage) <br>
+## Use Case:
+
+Developers and operators use this skill to query quota, usage records, token consumption, model-level usage, and remaining balance for a user-specified new-api deployment.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: API keys can be exposed because the usage request places the key in the URL, which may be logged by the destination or infrastructure.
+
+Mitigation: Use only a narrowly scoped key with trusted endpoints, and prefer endpoints or wrappers that authenticate only with an Authorization header.
+
+Risk: The user-supplied base URL may point to an untrusted or non-HTTPS destination.
+
+Mitigation: Use only trusted HTTPS new-api endpoints and confirm unknown endpoints before sending credentials.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON output from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script prints quota and usage summaries, model aggregates, or raw JSON depending on the selected command-line flags.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with shell command examples; script output is plain text tables or JSON when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit base URL and API key inputs; default usage filtering is local-timezone today only.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

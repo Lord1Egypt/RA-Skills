@@ -1,0 +1,56 @@
+{
+  "batch_id": "review-2026-11-10",
+  "total_findings": 3,
+  "verdicts": [
+    {
+      "finding_id": "HIGH-01",
+      "challenge_result": "overturned",
+      "confidence": 97,
+      "reasoning": "The finding's central claim is factually incorrect. Exponential backoff IS implemented in src/http/retry.ts (lines 42-49), not in the middleware file the finding searched.",
+      "counter_evidence": [
+        "src/http/retry.ts lines 42-49: delay computed as base * 2^attempt with ±20% jitter",
+        "src/http/middleware.ts line 18: delegates all retries to retryWithBackoff()"
+      ],
+      "supporting_evidence": [],
+      "adjusted_severity": "none",
+      "recommendation": "Dismiss this finding; the claimed missing backoff logic does not exist",
+      "metadata": {
+        "challenge_duration_ms": 1200,
+        "files_reviewed": ["src/http/retry.ts", "src/http/middleware.ts"],
+        "challenge_strategies_applied": ["direct contradiction"]
+      }
+    },
+    {
+      "finding_id": "MED-02",
+      "challenge_result": "weakened",
+      "confidence": 75,
+      "reasoning": "The finding correctly identifies that function X lacks input validation, but overstates the severity. The function is only called internally with pre-validated data.",
+      "counter_evidence": [
+        "src/service.ts: Function X is only called from Y() which validates inputs"
+      ],
+      "supporting_evidence": [
+        "src/utils.ts line 45: Function X indeed lacks input validation"
+      ],
+      "adjusted_severity": "low",
+      "recommendation": "Add defensive validation as a best practice, but do not prioritize as high severity"
+    },
+    {
+      "finding_id": "CRIT-03",
+      "challenge_result": "confirmed",
+      "confidence": 95,
+      "reasoning": "The finding accurately identifies a SQL injection vulnerability. User input is directly concatenated into the query string without parameterization.",
+      "counter_evidence": [],
+      "supporting_evidence": [
+        "src/db.ts line 78: query = 'SELECT * FROM users WHERE id = ' + userId",
+        "userId comes directly from req.params.id without sanitization"
+      ],
+      "adjusted_severity": "critical",
+      "recommendation": "Immediate fix required; use parameterized queries"
+    }
+  ],
+  "summary": {
+    "overturned": 1,
+    "weakened": 1,
+    "confirmed": 1
+  }
+}

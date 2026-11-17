@@ -1,43 +1,56 @@
-## Description: <br>
-Generates two-sample Mendelian randomization research designs with four workload options, a recommended plan, workflow, validation strategy, figure plan, and publication upgrade path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates complete two-sample Mendelian randomization (MR) research designs from a user-provided research direction.
 
-## Publisher: <br>
-[shanruoyu](https://clawhub.ai/user/shanruoyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shanruoyu](https://clawhub.ai/user/shanruoyu)
 
-## Use Case: <br>
-External researchers and analysts use this skill to plan two-sample Mendelian randomization studies from an exposure-outcome research direction. It structures feasible study designs, sensitivity checks, figure plans, validation steps, and publication upgrade paths using GWAS summary statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research plans may be mistaken for validated statistical or medical advice. <br>
-Mitigation: Treat outputs as research-planning guidance and require domain review before using them to make scientific, clinical, or publication claims. <br>
-Risk: Two-sample MR validity can be undermined by ancestry mismatch, sample overlap, weak instruments, or unsuitable GWAS sources. <br>
-Mitigation: Check ancestry matching, overlap status, instrument strength, and GWAS suitability before running or interpreting the proposed analysis. <br>
+## Use Case:
 
+External researchers, analysts, and agent users use this skill to design two-sample Mendelian randomization studies from an exposure-outcome research direction. It helps produce workload options, a recommended plan, validation steps, figure and deliverable plans, and R framework guidance.
 
-## Reference(s): <br>
-- [GWAS Database Recommendations by Exposure Class](references/gwas_databases.md) <br>
-- [IV Count Benchmarks and Weak-Instrument Risk by Exposure Class](references/iv_benchmarks.md) <br>
-- [IEU Open GWAS](https://gwas.mrcieu.ac.uk) <br>
-- [ClawHub skill page](https://clawhub.ai/shanruoyu/two-sample-mr-research-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with optional R code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Always includes Lite, Standard, Advanced, and Publication+ configurations plus a recommended primary plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill drafts research plans and code templates but does not validate specific GWAS IDs, database currency, or scientific correctness.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current database releases, replace example GWAS IDs with validated phenotype IDs, and review the study design with domain expertise before use.
+
+Risk: Users may overinterpret causal claims when instruments are weak, datasets are ancestry-mismatched, or exposure and outcome GWAS samples overlap.
+
+Mitigation: Use ancestry-matched datasets where possible, report instrument strength and sample-overlap checks, run sensitivity analyses, and state limitations clearly.
+
+## Reference(s):
+
+- [GWAS Database Recommendations by Exposure Class](references/gwas_databases.md)
+- [IV Count Benchmarks and Weak-Instrument Risk by Exposure Class](references/iv_benchmarks.md)
+- [IEU Open GWAS](https://gwas.mrcieu.ac.uk)
+- [ClawHub Skill Page](https://clawhub.ai/shanruoyu/skills/two-sample-mr-research-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown study plan with optional R code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Always includes four workload configurations, a recommended primary plan, validation guidance, figure planning, and example GWAS ID handling guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,61 @@
-## Description: <br>
-Detects ambiguous pronouns, vague referents, and bare imperatives in user messages and flags them for resolution using conversation context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects ambiguous pronouns, vague referents, and bare imperatives in user messages and flags them for resolution using conversation context.
 
-## Publisher: <br>
-[kaicianflone](https://clawhub.ai/user/kaicianflone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaicianflone](https://clawhub.ai/user/kaicianflone)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to surface ambiguous references in prompts so the agent can resolve obvious referents, state assumptions when needed, or ask before acting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an always-on prompt hook and records local metadata about scans and resolved references. <br>
-Mitigation: Install only where local prompt scanning is acceptable, review or clear files under ~/.claude/skills/pronoun-resolver/.claude/, and use the documented .claude/pronoun-resolver-disabled file to disable it for a workspace. <br>
-Risk: Resolved references can still point to the wrong target when conversation context is unclear. <br>
-Mitigation: Follow the documented confidence tiers: act silently only for high-confidence cases, state assumptions for medium-confidence cases, and ask the user when confidence is low or context is missing. <br>
+## Use Case:
 
+Developers and coding-agent users use this skill to make ambiguous prompts visible before an agent guesses the wrong referent. It guides the agent to resolve high-confidence references from conversation context, state assumptions for moderate confidence, or ask before acting when context is weak.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text hook flags with command guidance for optional local logging] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally; no external API calls are described in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.11.0 (source: server evidence, frontmatter, changelog) <br>
+Risk: The hook runs on every submitted prompt and scans prompt text locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where this behavior is acceptable, and use the documented project disable sentinel when prompt scanning should be inactive.
+
+Risk: The skill keeps local analytics and a resolution ledger under the skill directory.
+
+Mitigation: Review the stored fields and delete the ledger or analytics files when retained metadata is no longer wanted.
+
+Risk: Stored free-text resolution metadata may still contain novel secret formats or plain-language personal data despite pattern-based redaction.
+
+Mitigation: Avoid logging sensitive referents, review retained metadata periodically, and clear the local files for sensitive projects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaicianflone/skills/pronoun-resolver)
+- [Publisher profile](https://clawhub.ai/user/kaicianflone)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+- [Evaluation results](artifact/evals/results.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local hook output flags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally as a user-prompt-submit hook; stores local analytics and resolution metadata when the agent records a resolution.]
+
+## Skill Version(s):
+
+0.11.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Provides a structured cryptography reference covering concepts, algorithms, formulas, code examples, and applications across encryption, hashing, signatures, PKI, TLS, ZKP, and MPC. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language structured cryptography reference covering concepts, algorithms, formulas, code examples, and applications across encryption, hashing, signatures, PKI, TLS, zero-knowledge proofs, homomorphic encryption, and MPC.
 
-## Publisher: <br>
-[viewway](https://clawhub.ai/user/viewway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[viewway](https://clawhub.ai/user/viewway)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, engineers, and learners use this skill as a compact Chinese-language reference for cryptographic concepts and implementation examples when reasoning about encryption, signatures, key management, protocol security, and privacy-preserving techniques.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Cryptography reference material and code examples can be misapplied in production designs.
+
+Mitigation: Treat the skill as study/reference material and have qualified security reviewers validate designs, parameters, and code before deployment.
+
+Risk: The content is primarily in Chinese, which may lead to misunderstanding for users who prefer another language.
+
+Mitigation: Ask the agent to translate or respond in the user's preferred language before relying on the guidance.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, engineers, and technical learners use this skill as a cryptography learning and reference aid for understanding common algorithms, protocols, security properties, and illustrative code snippets. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Cryptography code snippets may be reused as if they were audited production implementations. <br>
-Mitigation: Treat examples as educational only and obtain expert review before applying them to real systems. <br>
-Risk: Cryptographic library APIs and best practices may change over time. <br>
-Mitigation: Verify current library documentation, algorithm recommendations, and key-management practices before reuse. <br>
+**Output Format:** [Markdown text with code examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/viewway/cryptography) <br>
+**Other Properties Related to Output:** [Static Chinese-language reference; no executable install steps.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown reference material with code blocks and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational cryptography examples and conceptual guidance; not audited production implementations] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

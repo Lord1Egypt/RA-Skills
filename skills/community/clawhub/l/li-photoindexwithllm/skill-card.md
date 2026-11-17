@@ -1,46 +1,61 @@
-## Description: <br>
-PhotoIndexWithLLM indexes local photo collections with vision-language models and lets agents scan, search, annotate, and return structured photo results through a CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Li PhotoIndexWithLLM helps agents scan local photo directories, index image content with vision-language models, and search photos by natural-language queries.
 
-## Publisher: <br>
-[43622283](https://clawhub.ai/user/43622283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[43622283](https://clawhub.ai/user/43622283)
 
-## Use Case: <br>
-Developers and agents use this skill to create a searchable index of photo folders, then answer natural-language photo retrieval requests with text or JSON results. It is suited for personal or workflow-integrated photo search where users can keep photo analysis local by default and explicitly enable remote providers when acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Photo content may be sent to third-party VL providers when remote models are explicitly enabled. <br>
-Mitigation: Keep the default local-only privacy mode for sensitive photos; enable remote models only after user consent and only for content acceptable to send to the configured provider. <br>
-Risk: The local SQLite index can expose photo paths, descriptions, tags, and other metadata. <br>
-Mitigation: Restrict database file permissions, avoid sharing the index or logs, and delete the local database when the index is no longer needed. <br>
-Risk: API keys may be stored in a local .env file for configured model providers. <br>
-Mitigation: Keep .env out of version control, limit file permissions to the local user, and rotate provider keys if exposure is suspected. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add command-line photo scanning, indexing, and semantic search to personal or workflow agents, with JSON output for downstream parsing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/43622283/li-photoindexwithllm) <br>
-- [English README](artifact/README_EN.md) <br>
-- [Agent integration guide](artifact/AGENTS.md) <br>
-- [Privacy guide](artifact/PRIVACY_GUIDE.md) <br>
-- [Cross-platform verification](artifact/CROSS_PLATFORM_VERIFICATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance, Code] <br>
-**Output Format:** [CLI text or structured JSON, with Markdown documentation and command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and statistics outputs can include local photo paths, filenames, tags, descriptions, scene metadata, confidence scores, and processing status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence and skill.yaml) <br>
+Risk: Private, family, work, or document photos may be sent to a configured non-local model endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a verified loopback endpoint such as localhost or 127.0.0.1, and keep REMOTE_LLM_ENABLED=false unless remote analysis is intentional.
+
+Risk: The local index stores full file paths and derived photo descriptions in plaintext.
+
+Mitigation: Protect the SQLite database with local file permissions, avoid indexing sensitive directories unless necessary, and remove the database when the index is no longer needed.
+
+Risk: Local API keys or endpoint settings in .env may expose access to model services.
+
+Mitigation: Keep .env private, restrict its permissions, and avoid committing it or sharing it with skill outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/43622283/skills/li-photoindexwithllm)
+- [Publisher profile](https://clawhub.ai/user/43622283)
+- [English README](artifact/README_EN.md)
+- [Privacy guide](artifact/PRIVACY_GUIDE.md)
+- [Privacy and data security report](artifact/PRIVACY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Command-line text and JSON search, scan, statistics, and connection-test results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local file paths, derived photo descriptions, tags, counts, and model connection status.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

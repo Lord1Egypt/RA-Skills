@@ -1,38 +1,54 @@
-## Description: <br>
-将中文文本快速润色为更清晰、自然、专业的表达（保留原意，按需提供多种风格）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polishes Chinese text into clearer, more natural, and more professional wording while preserving the original meaning.
 
-## Publisher: <br>
-[zhoulincom](https://clawhub.ai/user/zhoulincom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhoulincom](https://clawhub.ai/user/zhoulincom)
 
-## Use Case: <br>
-Chinese writers, teams, and agents use this skill to polish supplied Chinese text while preserving the original meaning. It supports default polishing, multiple tone variants, and compression or expansion with constraints such as audience, scenario, length, and required keywords. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided text may contain secrets, sensitive personal data, or proprietary content. <br>
-Mitigation: Avoid submitting sensitive text unless the user is comfortable having it processed by the platform. <br>
+## Use Case:
 
+Writers, employees, and agents use this skill to revise Chinese emails, weekly reports, project retrospectives, PRDs, comments, and similar text while keeping key facts intact.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhoulincom/simple-writing-polisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output includes a polished result and up to 12 key modification points.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and release evidence) <br>
+Risk: Users may paste sensitive personal, business, or confidential text into the agent environment for polishing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive details or avoid submitting confidential text unless the user is comfortable sharing it with the agent environment.
+
+Risk: Polishing can unintentionally alter tone, nuance, or key facts in the original Chinese text.
+
+Mitigation: Review the polished result against the original before using it in external or high-stakes communication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhoulincom/skills/simple-writing-polisher)
+- [Publisher profile](https://clawhub.ai/user/zhoulincom)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with polished Chinese text and a concise list of key modification points]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output includes one polished result and up to 12 key modification points; optional modes include formal, neutral, colloquial, compressed, and expanded variants.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

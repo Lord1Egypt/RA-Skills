@@ -1,40 +1,48 @@
-## Description: <br>
-Calls a configured TSY service to fetch WeChat public-account topic recommendations and returns the raw data field. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls a backend API to retrieve popular WeChat public account topic recommendations and returns the raw data field.
 
-## Publisher: <br>
-[tangshiyegit](https://clawhub.ai/user/tangshiyegit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tangshiyegit](https://clawhub.ai/user/tangshiyegit)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Content operators and developers use this skill to request trending topic suggestions for WeChat public accounts through a configured backend service. It returns the service response data directly without analysis or rewriting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill sends an API key in the request URL to a configurable backend, which may expose credentials through logs or untrusted endpoints.
+
+Mitigation: Use an HTTPS allowlisted BASE_URL, trust the configured backend before installation, rotate keys that may have appeared in logs, and prefer moving credentials to an authorization header.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content operators and agents use this skill to retrieve recent high-performing topic recommendations for WeChat public-account planning from the configured TSY service. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [API Calls, Shell commands, Configuration, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the configured API key to the selected TSY API service, and the key is placed in the request URL query string. <br>
-Mitigation: Use only a trusted TSY_API_URL or the default api.tangshiye.cn service, keep TSY_API_KEY private, and avoid environments where request URLs are broadly logged or shared. <br>
-Risk: The skill returns raw service data without independent validation or interpretation. <br>
-Mitigation: Review the returned recommendations before relying on them for publication planning or business decisions. <br>
+**Output Format:** [Raw API response data as text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tangshiyegit/tsy-gzh-find-topic) <br>
+**Other Properties Related to Output:** [Requires TSY_API_KEY in .env and uses TSY_API_URL when configured.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, API response data] <br>
-**Output Format:** [Raw data field from the API response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill does not add analysis, rewriting, summaries, or supplemental content.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

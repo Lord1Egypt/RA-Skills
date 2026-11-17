@@ -1,41 +1,53 @@
-## Description: <br>
-Bridge any AI coding agent to Antigravity executors for task dispatch, receipt tracking, stuck detection, and continue/approve/reject/retry flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+agpair helps an AI coding agent delegate coding work to Antigravity through the agpair CLI, including preflight checks, task dispatch, waiting, evidence review, and follow-up actions.
 
-## Publisher: <br>
-[logicrw](https://clawhub.ai/user/logicrw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[logicrw](https://clawhub.ai/user/logicrw)
 
-## Use Case: <br>
-Developers and coding agents use this skill to delegate coding work to Antigravity through the agpair CLI, monitor health and task state, review evidence, and choose a single follow-up action such as continue, approve, reject, or retry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delegated task state or logs may be misread, leading to premature completion claims or an inappropriate continue, approve, reject, or retry action. <br>
-Mitigation: Check doctor and daemon health, current task status, latest logs, and active waits before acting; require human confirmation for approvals, retries, or force-like recovery on important repositories. <br>
-Risk: The workflow depends on the agpair CLI and Antigravity executor being intentionally installed and trusted. <br>
-Mitigation: Install only when agpair and the executor are expected in the environment, use explicit requests such as "use agpair," and review logs and evidence before taking action. <br>
+## Use Case:
 
+Developers and coding-agent operators use this skill when an AI agent controls delegated Antigravity execution. It guides the agent through health checks, task dispatch or monitoring, evidence review, and continue, approve, reject, or retry decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/logicrw/agpair) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/logicrw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no bundled code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact manifest) <br>
+Risk: Broad delegation phrases may trigger the agpair workflow when the user did not intend to delegate work to Antigravity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill only for intentional agpair or Antigravity delegation requests, and confirm task status and logs before continuing work.
+
+Risk: Delegated coding work may be incomplete, stale, or unsuitable for approval without reviewer judgment.
+
+Mitigation: Review health checks, current task status, latest logs, and any evidence pack before approving, rejecting, continuing, or retrying a task.
+
+## Reference(s):
+
+- [ClawHub agpair skill page](https://clawhub.ai/logicrw/skills/agpair)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the local agpair CLI and Antigravity task state where the guided workflow is invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

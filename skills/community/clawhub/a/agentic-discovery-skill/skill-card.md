@@ -1,47 +1,63 @@
-## Description: <br>
-Create CompleteTech LLC discovery and scoping artifacts for agentic development opportunities, including intake questionnaires, workflow discovery scripts, stakeholder interview guides, workflow maps, readiness checklists, approval gate reviews, risk checks, success criteria, evaluation examples, pilot readiness scorecards, and proposal/SOW handoff briefs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates CompleteTech LLC discovery and scoping artifacts that help Codex gather verified facts for bounded agentic workflow services before proposal, contract, invoice, or delivery work.
 
-## Publisher: <br>
-[completetech](https://clawhub.ai/user/completetech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[completetech](https://clawhub.ai/user/completetech)
 
-## Use Case: <br>
-Developers and service teams use this skill before proposal, contract, invoice, or delivery work to turn an agentic workflow opportunity into verified discovery facts, readiness checks, risk boundaries, success criteria, and proposal handoff material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated discovery documents may contain placeholders, assumptions, or incomplete client facts. <br>
-Mitigation: Review each draft, replace placeholders with verified facts, and confirm workflow owners, approvals, exclusions, risks, and success criteria before sharing. <br>
-Risk: Discovery templates can capture sensitive client workflow, system, or data details. <br>
-Mitigation: Use a dedicated project folder and avoid entering real passwords, API keys, or unnecessary secrets into templates or generated artifacts. <br>
-Risk: The skill installs Python PDF and rendering dependencies and creates local Markdown, PDF, and PNG outputs. <br>
-Mitigation: Install the declared dependencies intentionally and review local outputs before distributing them outside the project team. <br>
+## Use Case:
 
+Developers, consultants, and delivery teams use this skill to qualify agentic workflow opportunities, run structured discovery, capture readiness and risk facts, and prepare proposal or SOW handoff material.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/completetech/agentic-discovery-skill) <br>
-- [Homepage from ClawHub Metadata](https://github.com/CompleteTech-LLC/agentic-discovery-skill) <br>
-- [Discovery Catalog](references/discovery-catalog.md) <br>
-- [Discovery Lifecycle](references/discovery-lifecycle.md) <br>
-- [Discovery Positioning](references/discovery-positioning.md) <br>
-- [Use Case Decision Table](references/use-case-decision-table.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown drafts, branded PDF documents, optional PNG previews, and concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local generation with placeholders that should be replaced by verified client, workflow, systems, approval, risk, and success criteria details before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Generated discovery PDFs may carry CompleteTech branding or default footer and watermark values that are inappropriate for a user's organization or client.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated PDFs before sending them externally and override branding, footer, watermark, and metadata values where appropriate.
+
+Risk: Optional PNG preview dependencies may not satisfy strict dependency-hygiene policies in every environment.
+
+Mitigation: Update, pin, or disable optional PNG preview dependencies when operating in environments with stricter package controls.
+
+Risk: Discovery artifacts are drafts and may include placeholders or unverified assumptions if used without review.
+
+Mitigation: Replace placeholders with verified facts, keep unknowns marked as TBD or open questions, and review outputs before proposal, contract, invoice, launch, or public use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/completetech/skills/agentic-discovery-skill)
+- [OpenClaw homepage](https://github.com/CompleteTech-LLC/agentic-discovery-skill)
+- [Discovery use-case decision table](references/use-case-decision-table.md)
+- [Agentic development discovery lifecycle](references/discovery-lifecycle.md)
+- [CompleteTech LLC discovery positioning](references/discovery-positioning.md)
+- [Near-exhaustive agentic development discovery catalog](references/discovery-catalog.md)
+- [Template index](references/template-index.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown drafts, branded PDF artifacts, optional PNG previews, and command-line rendering guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated discovery artifacts are drafts and must be reviewed, completed with verified client facts, and checked before external use.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

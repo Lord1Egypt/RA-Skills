@@ -1,46 +1,65 @@
-## Description: <br>
-Provides web research workflows using Bright Data MCP tools for search, scraping, structured extraction, and browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides Bright Data MCP workflows for web research, scraping, structured extraction, market research, competitive analysis, price monitoring, and browser-assisted content collection.
 
-## Publisher: <br>
-[liangdabiao](https://clawhub.ai/user/liangdabiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liangdabiao](https://clawhub.ai/user/liangdabiao)
 
-## Use Case: <br>
-External users and developers use this skill to collect web data, compare competitors or prices, extract structured information, and synthesize market, academic, or product research reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can click links, interact with pages, and maintain sessions, including on logged-in or private pages. <br>
-Mitigation: Use the skill only on pages you own or are authorized to access, keep actions read-only by default, and require explicit approval before any interactive browser step. <br>
-Risk: Queries, target URLs, and scraped page content may be sent to Bright Data and target websites. <br>
-Mitigation: Avoid sensitive, private, or regulated data unless the user has approved that disclosure path and it fits the applicable data-handling policy. <br>
-Risk: Large or broad scraping runs can exceed intended scope, rate limits, or site expectations. <br>
-Mitigation: Set explicit domains, URL counts, collection modes, and rate limits before execution, and stop or narrow the run when failures, blocks, or unexpected content appear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/liangdabiao/bright-data-claude-skill-deep-research) <br>
-- [Analysis and Report Template](references/analysis-report.md) <br>
-- [Content Scraping Template](references/content-scraping.md) <br>
-- [Data Extraction Template](references/data-extraction.md) <br>
-- [Deep Scraping Template](references/deep-scraping.md) <br>
-- [Search Discovery Template](references/search-discovery.md) <br>
+## Use Case:
 
+External users and developers use this skill to plan and run Bright Data-powered web research workflows that discover sources, collect page content, extract structured data, and synthesize reports for market research, competitive intelligence, price comparison, academic research, and product analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON datasets, structured analyses, and tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source references, methodology notes, extracted fields, and caveats about failed or incomplete scraping.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad automated scraping can collect data from sites or contexts where scraping is not permitted.
+
+Mitigation: Use the skill only for authorized targets, review site terms and robots.txt, and keep collection rates conservative.
+
+Risk: Submitted URLs and extracted page content may be handled by Bright Data or other external provider infrastructure.
+
+Mitigation: Avoid private, logged-in, internal, regulated, or personal-data sources unless explicit authorization and data-handling approval are in place.
+
+Risk: Browser automation and logged-in sessions can expose sensitive account state or access content beyond the intended scope.
+
+Mitigation: Use dedicated, authorized sessions for approved targets only, avoid sensitive accounts, and close browser sessions after the task.
+
+Risk: Scraped source content can be incomplete, blocked, stale, or misleading.
+
+Mitigation: Cross-check important findings across sources, cite sources in reports, and preserve methodology and validation notes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liangdabiao/skills/bright-data-claude-skill-deep-research)
+- [Search Discovery Template](references/search-discovery.md)
+- [Content Scraping Template](references/content-scraping.md)
+- [Data Extraction Template](references/data-extraction.md)
+- [Deep Scraping Template](references/deep-scraping.md)
+- [Analysis and Report Template](references/analysis-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown reports, structured JSON, source lists, extraction schemas, and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include source references, methodology notes, extracted fields, validation notes, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

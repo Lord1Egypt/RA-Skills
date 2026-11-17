@@ -1,42 +1,59 @@
-## Description: <br>
-Searches Douyin cultural tourism content, ranks popular videos by likes, clusters topics, and generates an HTML report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+文旅抖音信息源 searches Douyin cultural-tourism content, ranks popular works by engagement, clusters topics, and generates an HTML report.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External content operators, tourism professionals, and researchers use this skill to monitor trending Douyin cultural tourism videos, compare hotspots, and produce reports for selected keywords and date ranges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The subscription feature can install persistent scheduled jobs and may store REDFOX_API_KEY in a macOS LaunchAgent. <br>
-Mitigation: Prefer one-off report generation unless recurring reports are required; inspect LaunchAgents or crontab after enabling subscription and rotate the API key if it was written to disk. <br>
-Risk: The security evidence reports unsafe shell-built crontab commands in subscription handling. <br>
-Mitigation: Avoid --subscribe until the scheduling implementation is reviewed or fixed; use a chosen output directory for one-off reports. <br>
+## Use Case:
 
+External content operators, tourism marketers, and researchers use this skill to monitor recent Douyin cultural-tourism trends, compare topics, and produce shareable HTML reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/cultural-tourism-douyin-feed) <br>
-- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFoxHub](https://redfox.hk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, HTML, Files] <br>
-**Output Format:** [Markdown summary with category counts, terminal table output, and a generated HTML report file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY. Optional subscription mode creates recurring local report jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill's subscription and report-generation behavior has avoidable security risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer one-time runs until subscription handling, HTML escaping, and credential storage have been reviewed and fixed.
+
+Risk: The skill sends RedFoxHub API queries and depends on a local API key.
+
+Mitigation: Use a revocable API key, keep it out of prompts, logs, and generated reports, and confirm its scope and expiration before use.
+
+Risk: Generated local HTML reports may include data returned from an external service and can be opened automatically.
+
+Mitigation: Avoid automatically opening reports from untrusted data sources and review generated HTML before sharing it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/redfox-data/skills/cultural-tourism-douyin-feed)
+- [RedFoxHub API Key Settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [Publisher Profile](https://clawhub.ai/user/redfox-data)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration]
+
+**Output Format:** [Terminal text and Markdown-style summary with an HTML report file and JSON article summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a RedFoxHub API key; optional subscription mode creates a recurring local scheduled job.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

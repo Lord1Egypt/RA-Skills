@@ -75,17 +75,13 @@ s3.getBucketCors({Bucket: process.env.S3_BUCKET}, function(err, data) {})
 Si necesita variables de varias líneas, por ejemplo, claves privadas, ahora se admiten en la versión (`>= v15.0.0`) con saltos de línea:
 
 ```dosini
-PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
-...
-Kh9NV...
-...
------END RSA PRIVATE KEY-----"
+PRIVATE_KEY="REDACTED-SECRET"
 ```
 
 Alternativamente, puede usar comillas dobles y usar el carácter `\n`:
 
 ```dosini
-PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----\nKh9NV...\n-----END RSA PRIVATE KEY-----\n"
+PRIVATE_KEY="REDACTED-SECRET\n"
 ```
 
 ### Comentarios

@@ -1,47 +1,57 @@
-## Description: <br>
-Generates SOUL.md persona configuration files from public-person research, SBTI/MBTI presets, or a custom persona description. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language SOUL.md persona configuration files from public-person research, SBTI or MBTI presets, role archetypes, or a custom user description.
 
-## Publisher: <br>
-[adenzhou1350](https://clawhub.ai/user/adenzhou1350) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adenzhou1350](https://clawhub.ai/user/adenzhou1350)
 
-## Use Case: <br>
-Developers and agent users use this skill to create reusable SOUL.md persona files that shape an assistant's identity, voice, decision style, and response rules from presets, public-person research, or custom background details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated persona files can encode inaccurate, outdated, overly broad, or misleading behavior guidance. <br>
-Mitigation: Review each generated SOUL.md before relying on it and edit persona rules that are unsupported or inappropriate. <br>
-Risk: Custom persona descriptions may include sensitive personal details that persist in local SOUL.md files. <br>
-Mitigation: Avoid placing secrets or unnecessary personal data in persona files, and delete or edit personas that should no longer shape assistant behavior. <br>
-Risk: Public-person distillation depends on web search and may reflect low-quality or secondary sources. <br>
-Mitigation: Prefer primary sources when distilling a public person and verify important claims before using the generated persona. <br>
+## Use Case:
 
+Developers and agent users use this skill to create a SOUL.md persona file that captures a desired voice, style, values, response rules, and boundaries. It supports research-based public-person personas, preset SBTI/MBTI styles, role archetypes, and custom descriptions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adenzhou1350/soul-generator) <br>
-- [Skill instructions and SOUL.md format](artifact/SKILL.md) <br>
-- [ENFP persona example](artifact/references/good/01-enfp.md) <br>
-- [Combined persona example](artifact/references/examples/01-combined.md) <br>
-- [Generic persona anti-pattern](artifact/references/bad/01-generic.md) <br>
-- [Rigid persona anti-pattern](artifact/references/bad/02-robot.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown SOUL.md persona file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use web search for public-person distillation and local preset files for SBTI, MBTI, archetype, anime, movie, and personal personas.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release metadata) <br>
+Risk: Broad trigger phrases or an ambiguous persona name could create or overwrite an unintended SOUL.md file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended persona name and review the target file path before allowing the skill to write output.
+
+Risk: Research-based persona generation may depend on web search results that are incomplete or inaccurate.
+
+Mitigation: Review generated persona traits, source assumptions, and boundaries before using the SOUL.md file in an agent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adenzhou1350/skills/soul-generator)
+- [Good SOUL.md example](artifact/references/good/01-enfp.md)
+- [Combined persona example](artifact/references/examples/01-combined.md)
+- [Generic assistant anti-pattern](artifact/references/bad/01-generic.md)
+- [Rigid robot anti-pattern](artifact/references/bad/02-robot.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown SOUL.md persona configuration file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes one SOUL.md file for the requested persona; generated content may be based on web search, built-in presets, or user-provided traits.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release evidence; artifact frontmatter says 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,66 @@
-## Description: <br>
-Two-module mental health protocol covering structured burnout recovery with the Maslach framework and evidence-based sleep improvement through sleep anchoring, wind-down rituals, caffeine timing, and environment changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A two-module agent skill that guides burnout recovery using a Maslach-style assessment and supports a 14-day behavioral sleep improvement protocol.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-Employees and external users can use this skill to work through structured burnout assessment, boundary setting, energy tracking, and sleep-habit improvement. Agents use it to guide interactive assessments, reminders, local notes, and check-ins while escalating medical or crisis concerns to professional support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store sensitive burnout and sleep details and create local reminders or files. <br>
-Mitigation: Use it only in environments where local calendar and filesystem storage are acceptable, and review stored notes or reminders for sensitive content. <br>
-Risk: Users may treat burnout or sleep guidance as a substitute for medical or mental-health care. <br>
-Mitigation: Follow the skill's escalation guidance and seek professional or crisis support first for self-harm thoughts, severe depression, mania, psychosis, substance withdrawal, dangerous sleep symptoms, or urgent medical concerns. <br>
+## Use Case:
 
+External users use this skill with an agent to assess burnout and sleep patterns, follow staged behavioral protocols, set reminders, and create notes for boundaries, energy audits, and sleep routines.
 
-## Reference(s): <br>
-- [Mental Reset Suite on ClawHub](https://clawhub.ai/howtousehumans/mental-reset-suite) <br>
-- [Exercise as burnout intervention DOI](https://doi.org/10.1186/1756-0500-6-78) <br>
-- [988 Suicide & Crisis Lifeline](https://988lifeline.org/) <br>
-- [Open Path Collective](https://openpathcollective.org) <br>
-- [CBT-I clinical practice guideline DOI](https://doi.org/10.5664/jsl.8558) <br>
-- [Evening light exposure sleep study DOI](https://doi.org/10.1073/pnas.1418490112) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with assessment prompts, checklists, scripts, reminder actions, and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local reminders and notes when the agent has calendar and filesystem tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill persists sensitive mental-health, sleep, and alcohol-related information across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm where agent state is stored, how it can be deleted, and whether retention matches the user's expectations before use.
+
+Risk: The skill can schedule reminders and create notes through calendar and filesystem tools.
+
+Mitigation: Require user approval before creating reminders or files, and show the exact timing, destination, and content before saving.
+
+Risk: The server security guidance flags the unpinned npx installer as a review concern.
+
+Mitigation: Prefer a pinned or preinstalled trusted ClawHub CLI, or verify the installer source before running the command.
+
+Risk: The skill covers burnout, sleep problems, crisis resources, possible sleep apnea, alcohol use, and depression flags.
+
+Mitigation: Keep medical guidance conservative, preserve the skill's escalation language, and direct users to qualified professionals or crisis services when red flags appear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/mental-reset-suite)
+- [Gerber et al., exercise as burnout intervention](https://doi.org/10.1186/1756-0500-6-78)
+- [Edinger et al., CBT for adults with insomnia](https://doi.org/10.5664/jsl.8558)
+- [Chang et al., evening light-emitting eReaders and sleep](https://doi.org/10.1073/pnas.1418490112)
+- [988 Suicide and Crisis Lifeline](https://988lifeline.org/)
+- [Open Path Collective](https://openpathcollective.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown instructions with structured prompts, checklists, reminder actions, and YAML state definitions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create user-approved reminders and persist burnout, sleep, alcohol-related, and mental-health state across sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

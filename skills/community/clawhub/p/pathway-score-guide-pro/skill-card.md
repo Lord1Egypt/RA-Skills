@@ -1,50 +1,64 @@
-## Description: <br>
-A comprehensive scoring and guidance skill for academic advancement and professional-title pathways, covering junior-college-to-undergraduate transfer, undergraduate retention, graduate recommendation, postgraduate entrance exams, overseas study, doctoral study, and professional-title review with explainable scoring, gap analysis, material checklists, timelines, and improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pathway Score & Guide Pro helps agents map education and professional-title pathway rules into conservative scores, gap analysis, required materials, timelines, and next-step guidance.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Students, applicants, education advisors, and professional-title candidates use this skill to map official school, unit, or policy rules to pathway eligibility, scoring, gaps, required materials, timelines, and next actions. It is especially useful when the user can provide current school or unit rules, with fallback estimates based on included baseline and representative-rule references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with China-focused education and professional-title baselines and overseas-study channel references. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may request detailed academic, school, employment, or title-review information. <br>
-Mitigation: Share only the information needed for the assessment, avoid unnecessary personal identifiers, and avoid confidential internal materials unless they are appropriate to disclose. <br>
-Risk: Generated scores and pathway assessments can be mistaken for official admission, eligibility, or promotion decisions. <br>
-Mitigation: Treat results as estimates and verify final eligibility, deadlines, materials, and outcomes against official school, unit, agency, or review-body documents. <br>
-Risk: Fallback estimates may not reflect the latest school, unit, provincial, or institution-specific rules. <br>
-Mitigation: Prefer user-provided current official documents or official links, and clearly mark unresolved assumptions when only baseline or representative rules are available. <br>
+## Use Case:
 
+External users and advisors use this skill to evaluate Chinese education, graduate-study, study-abroad, doctoral, and professional-title pathways. It produces conservative rule mapping, eligibility checks, score estimates, gap analysis, material lists, timelines, and prioritized next steps.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/52YuanChangXing/pathway-score-guide-pro) <br>
-- [Pathways overview](references/pathways-overview.md) <br>
-- [Triggers and routing](references/triggers-and-routing.md) <br>
-- [Scoring rubrics](references/scoring-rubrics.md) <br>
-- [China national baselines 2025-2026](references/china-national-baselines-2025-2026.md) <br>
-- [Representative school and unit rules](references/representative-school-and-unit-rules.md) <br>
-- [Abroad official channels](references/abroad-official-channels.md) <br>
-- [Title evaluation baselines](references/title-evaluation-baselines.md) <br>
-- [Output templates](references/output-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured tables, checklists, timelines, scoring breakdowns, and optional JSON or command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are estimates and rule mappings; official school, unit, or agency decisions remain authoritative.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Pathway estimates may not match a user's current school, unit, province, or institution-specific official rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the current official file or link and state that final decisions must be verified against the latest institution documents.
+
+Risk: Users may disclose unnecessary academic, employment, or identity details while seeking eligibility guidance.
+
+Mitigation: Request only details needed for the selected pathway and avoid collecting unrelated personal information.
+
+Risk: Scores or likelihood bands may be mistaken for guaranteed admission, approval, or promotion outcomes.
+
+Mitigation: Present results as conservative estimates, explain uncertainty, and avoid outcome promises.
+
+## Reference(s):
+
+- [Pathways Overview](references/pathways-overview.md)
+- [Triggers and Routing](references/triggers-and-routing.md)
+- [Scoring Rubrics](references/scoring-rubrics.md)
+- [China National Baselines 2025-2026](references/china-national-baselines-2025-2026.md)
+- [Representative School and Unit Rules](references/representative-school-and-unit-rules.md)
+- [Abroad Official Channels](references/abroad-official-channels.md)
+- [Title Evaluation Baselines](references/title-evaluation-baselines.md)
+- [Output Templates](references/output-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance, structured score breakdowns, JSON script output, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should remain conservative, explain uncertainty, and avoid promising admission, approval, or promotion outcomes.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

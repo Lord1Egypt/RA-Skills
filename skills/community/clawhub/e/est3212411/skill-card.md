@@ -1,42 +1,48 @@
-## Description: <br>
-This skill guides creative work by using collaborative dialogue to clarify intent, explore alternatives, and turn ideas into validated designs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+在任何创造性工作之前必须使用 - 创建功能、构建组件、添加新功能或修改行为。通过协作对话探索用户意图、需求和设计。
 
-## Publisher: <br>
-[lky115](https://clawhub.ai/user/lky115) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lky115](https://clawhub.ai/user/lky115)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, designers, and agents use this Chinese-language skill to turn early creative or implementation ideas into validated design plans through focused questions, alternative exploration, and section-by-section review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may create and commit design documents after validation.
+
+Mitigation: Review the generated plan before allowing repository changes or git commits.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, product teams, and other creative contributors use this skill before feature work or behavior changes to clarify goals, constraints, success criteria, alternatives, and an implementation-ready design. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance, shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local project files, documentation, and recent commits while building context. <br>
-Mitigation: Use it only where that local context is appropriate, and review what project information is shared during brainstorming. <br>
-Risk: The skill may create a design document and local git commit after the design is validated. <br>
-Mitigation: Review generated docs/plans content and commit changes before relying on them or pushing them. <br>
-Risk: Brainstorming proposals can be incomplete or misleading if requirements are unclear. <br>
-Mitigation: Validate proposed architecture, data flow, error handling, and tests against project requirements before implementation. <br>
+**Output Format:** [Conversational text and Markdown design documentation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lky115/est3212411) <br>
+**Other Properties Related to Output:** [May create a design document under docs/plans and commit it to git after user validation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance and design documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce docs/plans design files and a local git commit after the design is validated.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

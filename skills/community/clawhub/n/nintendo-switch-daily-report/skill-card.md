@@ -1,45 +1,59 @@
-## Description: <br>
-Automatically gathers Nintendo Switch news, upcoming releases, and system update information from public Nintendo and related gaming news sources to produce a Chinese daily report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically gathers Nintendo-related public sources to produce a Chinese daily Nintendo Switch report covering recent game news, upcoming eShop releases, and system updates.
 
-## Publisher: <br>
-[benzking](https://clawhub.ai/user/benzking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[benzking](https://clawhub.ai/user/benzking)
 
-## Use Case: <br>
-External users and agents use this skill to create a concise Chinese Nintendo Switch daily briefing covering recent game news, next-week eShop releases, and recent console system updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public websites may be unavailable or may contain delayed, changed, or incomplete release information. <br>
-Mitigation: The skill notes unavailable sources and users should verify important dates or release details from the linked official sources. <br>
+## Use Case:
 
+External users, gaming-news editors, and community managers use this skill to create a concise Chinese Nintendo Switch daily report with linked source references. It focuses on recent game news, releases in the next seven days, and recent system-update announcements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/benzking/nintendo-switch-daily-report) <br>
-- [Nintendo Hong Kong Topics](https://www.nintendo.com.hk/hk/topics/) <br>
-- [Nintendo Hong Kong release schedule](https://www.nintendo.com.hk/hk/schedule/) <br>
-- [Nintendo Hong Kong eShop](https://ec.nintendo.com/HK/zh/titles/) <br>
-- [Nintendo Taiwan Topics](https://www.nintendo.com.tw/topics/) <br>
-- [Nintendo Taiwan Switch software](https://www.nintendo.com.tw/tw/software/switch/) <br>
-- [Nintendo Japan](https://www.nintendo.co.jp/) <br>
-- [Bahamut GNN](https://gnn.gamer.com.tw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Chinese Markdown report with headings, numbered news items, tables, and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a three-section report structure for game news, upcoming eShop releases, and console system updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Public web sources may be unavailable or stale, causing gaps in a daily report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State unavailable sources in the report and prefer accessible Nintendo Hong Kong and Taiwan sources when alternates fail.
+
+Risk: The system-update section may be inconsistent when there is no recent update.
+
+Mitigation: Use an explicit no-update statement when no system update is found in the 36-hour window.
+
+## Reference(s):
+
+- [Nintendo Hong Kong Topics](https://www.nintendo.com.hk/hk/topics/)
+- [Nintendo Hong Kong Release Schedule](https://www.nintendo.com.hk/hk/schedule/)
+- [Nintendo Hong Kong eShop Titles](https://ec.nintendo.com/HK/zh/titles/)
+- [Nintendo Taiwan Topics](https://www.nintendo.com.tw/topics/)
+- [Nintendo Taiwan Switch Software](https://www.nintendo.com.tw/tw/software/switch/)
+- [Nintendo Japan](https://www.nintendo.co.jp/)
+- [Bahamut GNN](https://gnn.gamer.com.tw/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown report with source links and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers the previous 36 hours for news and the next seven days for upcoming releases.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

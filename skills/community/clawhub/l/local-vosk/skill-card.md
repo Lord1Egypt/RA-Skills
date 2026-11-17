@@ -1,41 +1,53 @@
-## Description: <br>
-Local Vosk STT provides offline speech-to-text transcription with Vosk for Telegram voice messages and common audio files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Vosk STT helps agents transcribe Telegram voice messages and other audio files with local Vosk speech recognition.
 
-## Publisher: <br>
-[sfkiwi](https://clawhub.ai/user/sfkiwi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sfkiwi](https://clawhub.ai/user/sfkiwi)
 
-## Use Case: <br>
-Developers and external users use this skill to transcribe Telegram voice notes and local audio files without cloud speech-to-text APIs. It is suited to offline workflows after the Vosk dependency and speech model are installed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup asks users to install a local Python package and download a speech model. <br>
-Mitigation: Use a virtual environment when possible, verify the model source, and review local package installation before deployment. <br>
-Risk: The documented workflow depends on a referenced local transcribe script being present in the installed skill package. <br>
-Mitigation: Confirm the transcribe script exists and runs successfully before relying on the skill for operational transcription. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Local Vosk STT on ClawHub](https://clawhub.ai/sfkiwi/local-vosk) <br>
-- [Vosk Models](https://alphacephei.com/vosk/models) <br>
-- [Default Vosk English model download](https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip) <br>
+## Use Case:
 
+Developers and end users can use this skill to transcribe Telegram .ogg voice notes and common audio file formats locally without cloud speech-to-text APIs.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local transcription guidance and command examples; transcription quality depends on the installed Vosk model and input audio.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing Vosk and downloading a speech model without pinned versions or checksum verification can expose users to ordinary supply-chain risk.
+
+Mitigation: Use a dedicated virtual environment, pin the Vosk package version, and verify the downloaded model archive with a trusted checksum before use.
+
+Risk: The provided artifact documents transcribe commands but does not include the referenced transcribe script.
+
+Mitigation: Confirm the transcribe script is supplied by the runtime environment or another trusted artifact before relying on the documented commands.
+
+## Reference(s):
+
+- [Vosk Models](https://alphacephei.com/vosk/models)
+- [Vosk small English model archive](https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and transcription instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local transcription workflow guidance; the artifact documents commands and setup steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

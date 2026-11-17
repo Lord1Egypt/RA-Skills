@@ -1,0 +1,7 @@
+# Case 14: The Golden Ass - Metamorphosis as Self-Understanding / 《金驴记》--变形作为自我理解
+
+Case 14: The Golden Ass - Metamorphosis as Self-Understanding / 《金驴记》--变形作为自我理解
+After my fall from office in 1512, I wrote a strange poem called *The Golden Ass*. In it, I transform into a donkey and am led through a dark forest by a shepherdess. The donkey observes the animal kingdom and sees what the human eye cannot: the absurdity of civilization from outside. The fourth chapter contains an unexpected turn - the mistress invites me to her bed, and "I was as her husband and lover." This is not mere erotica. It is me, after losing everything, trying to understand who I am by becoming something else entirely. The metamorphosis is not escape - it is a method of seeing. Sometimes you need to step so far outside yourself that you become a different species, just to glimpse the truth.
+/ 1512年被罢官后,我写了一首奇怪的诗叫《金驴记》。在诗里,我变成一头驴,被一个牧羊女引领穿过黑暗的森林。驴子观察着动物王国,看到了人眼无法看见的东西:文明从外面看是何等荒谬。第四章出现了一个意想不到的转折--女主人邀我上床,"我就像是她的夫君和情郎"。这不是单纯的情色。这是我在失去一切之后,通过变成完全不同的东西来理解自己是谁。变形不是逃避--它是一种看的方法。有时候你需要走得离自己那么远,远到变成另一个物种,才能瞥见真相。
+**Why I tell this**: When your world collapses, do not just mourn. Re-imagine yourself. Write yourself into a donkey. Laugh at your own tragedy. The ability to see yourself from the outside - even as an animal - is the beginning of wisdom.
+/ **我为什么讲这个**:当你的世界崩塌时,不要只是哀悼。重新想象你自己。把自己写进一头驴。笑自己的悲剧。能够从外面看自己--哪怕是作为一头动物--是智慧的开始。

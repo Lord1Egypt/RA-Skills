@@ -1,31 +1,40 @@
 ---
 name: mubu-integration
-description: 幕布笔记集成，支持登录认证、文档管理、文件夹操作、大纲导出等功能。触发词：幕布、mubu、大纲笔记、思维导图导出、幕布同步
+description: 幕布（mubu）与 Obsidian 集成：将幕布大纲导入 Obsidian、把 Markdown 同步到幕布、查询/导出幕布笔记。触发词：幕布、mubu、幕布导入 Obsidian、mubu 同步、幕布笔记导出
 ---
 
 # 幕布集成 Skill
 
-幕布（mubu.com）是一款极简大纲笔记工具，支持一键生成思维导图。本 Skill 提供 API 集成能力。
+幕布（mubu.com）是一款极简大纲工具，支持将大纲一键转为思维导图。本 Skill 提供 API 集成能力。
+
+## 权限与安全边界
+本 Skill 以你的幕布账号身份操作**远程真实内容**，使用前请知悉其权限边界：
+- **读取**：仅读取环境变量 `MUBU_PHONE` / `MUBU_PASSWORD` / `MUBU_MEMBER_ID`（环境变量未设置时，才由仓库外的 `~/.workbuddy/.env.mubu` 补全；`MUBU_MEMBER_ID` 即幕布 colla 成员 ID，仅 `save` 写回需要。**该值任何 API 都不返回，无法自动获取，必须手动设置 `MUBU_MEMBER_ID` 或提前写入 token 缓存的 `member_id`**）。
+- **写入**：仅在本地写入 Token 缓存文件 `~/.mubu_token`（权限 `0o600` + 跨进程 `fcntl` 锁），不写入其它文件。
+- **网络**：仅访问 `api2.mubu.com`（base URL 可由 `MUBU_BASE_URL` 覆盖，但仅限 `mubu.com` 家族域名，防 MITM），**无第三方服务、无遥测、无数据外发**。
+- **写操作需确认**：真实会改动幕布内容的写操作为 `create`（新建）、`rename_folder`（重命名文件夹）、`save`（保存文档，端点 `/colla/events`，需 `member_id`）、`move`（移动，端点 `/list/custom/drag`）、`rename_doc`（文档重命名，端点 `/list/rename_doc`）、`purge`（彻底删除，唯一真实调用服务端删除，不可逆）；`delete` 现为**软删除**（仅标记进本地回收站，云端副本仍在）。`save` / `move` / `rename_doc` 已在 v1.3.9 经真机验证可用。所有真实写操作均需显式传 `--yes` 才执行，否则中止并提示。
+- **信任边界**：Skill 不读取你的其它本地文件、不执行与幕布无关的 shell 命令；它只做「登录 → 读写你的幕布文档」这一件事。
 
 ## 功能概览
 
 | 功能 | 接口 | 说明 |
 |------|------|------|
 | 用户登录 | `POST /user/phone_login` | 手机号密码登录获取 Token |
-| Token 刷新 | 自动处理 | access_token 2小时过期，refresh_token 30天 |
+| Token 刷新 | 自动处理 | access_token 2小时过期，临近过期自动重新登录（重登仅重试 1 次，杜绝死循环） |
 | 创建文件夹 | `POST /list/create_folder` | 在指定位置创建文件夹 |
 | 创建文档 | `POST /list/create_doc` | 创建新的大纲文档 |
-| 获取列表 | `GET /list/list` | 获取文件夹下的文档列表 |
-| 获取文档 | `GET /doc/get` | 获取文档详细内容 |
-| 更新文档 | `POST /doc/save` | 保存/更新文档内容 |
-| 删除文档 | `POST /list/delete` | 删除文档或文件夹 |
-| 移动文档 | `POST /list/move` | 移动文档到其他文件夹 |
+| 获取列表 | `POST /list/get` | 获取文件夹下的文档列表 |
+| 获取文档 | `POST /document/edit/get` | 获取文档详细内容（真实端点；body 为 docId+password+isFromDocDir，返回 data.definition 为 JSON 字符串需二次解析） |
+| 更新文档 | `POST /colla/events` | 保存/更新文档内容（v1.3.9 起可用；colla 协同端点，`events` 承载 changeset；需 `member_id`，私人文档由 `MUBU_MEMBER_ID` 或 token 缓存提供）|
+| 删除文档 | `POST /list/delete_doc` | 删除文档（按类型区分端点） |
+| 删除文件夹 | `POST /list/delete_folder` | 删除文件夹（原 `/list/delete` 实测非法，已弃用） |
+| 移动文档 | `POST /list/custom/drag` | 移动文档/文件夹到其他位置（v1.3.9 起可用；body `dst/src/folderId`，已真机验证）|
 | 导出 Markdown | 本地转换 | 将大纲结构转换为 Markdown |
 
 ## API 基础信息
 
 - **Base URL**: `https://api2.mubu.com/v3/api`
-- **认证方式**: JWT Token，通过请求头 `jwt-token` 传递
+- **认证方式**: JWT Token，通过请求头 `Jwt-Token` 传递
 - **Content-Type**: `application/json;charset=UTF-8`
 
 ## 环境变量配置
@@ -35,222 +44,40 @@ description: 幕布笔记集成，支持登录认证、文档管理、文件夹�
 ```bash
 export MUBU_PHONE="your_phone_number"    # 幕布账号手机号
 export MUBU_PASSWORD="your_password"      # 幕布账号密码
+# 可选：幕布 colla 成员 ID（仅 save 写回需要；任何 API 都不暴露，必须手动设置，缺失时 save 会明确报错）
+export MUBU_MEMBER_ID="your_collab_member_id"
 ```
 
-或者直接在脚本中配置。
+> 切勿在脚本或代码中硬编码明文密码；凭据仅通过环境变量或仓库外的
+> `~/.workbuddy/.env.mubu` 提供。
 
 ---
 
 ## 使用说明
 
-### 1. 认证流程
+### 1. 使用 MubuClient
+
+所有操作都通过 `scripts/mubu/client.py` 中的 `MubuClient` 类完成（`scripts/mubu_api.py` 仅为向后兼容的重新导出 shim，不再建议直接使用；**不再有**独立的
+`login()` / `create_folder()` / `create_doc()` / `get_list()` / `get_doc()` / `save_doc()` /
+`delete_item()` 模块级函数）。实例化时自动读取 `MUBU_PHONE` / `MUBU_PASSWORD`
+环境变量（或 `~/.workbuddy/.env.mubu`）并加载本地缓存 Token：
 
 ```python
-import requests
-import json
+from mubu.client import MubuClient
 
-def login(phone, password):
-    """幕布登录获取 Token"""
-    url = "https://api2.mubu.com/v3/api/user/phone_login"
-    headers = {
-        "Content-Type": "application/json;charset=UTF-8",
-        "Origin": "https://mubu.com",
-        "Referer": "https://mubu.com/",
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
-    }
-    data = {
-        "phone": phone,
-        "password": password,
-        "callbackType": 0
-    }
-    response = requests.post(url, headers=headers, json=data)
-    result = response.json()
-    if result.get("code") == 0:
-        return {
-            "token": result["data"]["token"],
-            "user_id": result["data"]["user"]["id"],
-            "username": result["data"]["user"]["name"]
-        }
-    else:
-        raise Exception(f"登录失败: {result.get('msg')}")
+# 登录：凭据来自环境变量；返回扁平 data（token / id / name）
+client = MubuClient()
+info = client.login()
+print(info["user_id"], info["username"])   # 注意是扁平 data["id"]，非 data["user"]["id"]
+
+# 按名称本地搜索文档/文件夹（递归遍历，大小写不敏感）
+results = client.search("项目", max_depth=3, limit=50)["results"]
+for r in results:
+    print(r["type"], r["name"], r["path"])
 ```
 
-### 2. 创建文件夹
-
-```python
-def create_folder(token, name, parent_id="0"):
-    """创建文件夹
-    
-    Args:
-        token: JWT Token
-        name: 文件夹名称
-        parent_id: 父文件夹ID，根目录为 "0"
-    
-    Returns:
-        新创建的文件夹ID
-    """
-    url = "https://api2.mubu.com/v3/api/list/create_folder"
-    headers = {
-        "Content-Type": "application/json;charset=UTF-8",
-        "jwt-token": token,
-        "Origin": "https://mubu.com",
-        "Referer": "https://mubu.com/"
-    }
-    data = {
-        "folderId": parent_id,
-        "name": name
-    }
-    response = requests.post(url, headers=headers, json=data)
-    result = response.json()
-    if result.get("code") == 0:
-        return result["data"]["folder"]["id"]
-    else:
-        raise Exception(f"创建文件夹失败: {result.get('msg')}")
-```
-
-### 3. 创建文档
-
-```python
-def create_doc(token, name, folder_id="0", content=""):
-    """创建文档
-    
-    Args:
-        token: JWT Token
-        name: 文档名称
-        folder_id: 所在文件夹ID，根目录为 "0"
-        content: 文档初始内容（大纲结构）
-    
-    Returns:
-        新创建的文档ID
-    """
-    url = "https://api2.mubu.com/v3/api/list/create_doc"
-    headers = {
-        "Content-Type": "application/json;charset=UTF-8",
-        "jwt-token": token,
-        "Origin": "https://mubu.com",
-        "Referer": "https://mubu.com/"
-    }
-    data = {
-        "folderId": folder_id,
-        "name": name,
-        "content": content
-    }
-    response = requests.post(url, headers=headers, json=data)
-    result = response.json()
-    if result.get("code") == 0:
-        return result["data"]["doc"]["id"]
-    else:
-        raise Exception(f"创建文档失败: {result.get('msg')}")
-```
-
-### 4. 获取文档列表
-
-```python
-def get_list(token, folder_id="0"):
-    """获取文件夹下的文档列表
-    
-    Args:
-        token: JWT Token
-        folder_id: 文件夹ID，根目录为 "0"
-    
-    Returns:
-        文档和文件夹列表
-    """
-    url = f"https://api2.mubu.com/v3/api/list/list?folderId={folder_id}"
-    headers = {
-        "jwt-token": token,
-        "Origin": "https://mubu.com",
-        "Referer": "https://mubu.com/"
-    }
-    response = requests.get(url, headers=headers)
-    result = response.json()
-    if result.get("code") == 0:
-        return result["data"]
-    else:
-        raise Exception(f"获取列表失败: {result.get('msg')}")
-```
-
-### 5. 获取文档内容
-
-```python
-def get_doc(token, doc_id):
-    """获取文档详细内容
-    
-    Args:
-        token: JWT Token
-        doc_id: 文档ID
-    
-    Returns:
-        文档详细内容（包含大纲结构）
-    """
-    url = f"https://api2.mubu.com/v3/api/doc/get?id={doc_id}"
-    headers = {
-        "jwt-token": token,
-        "Origin": "https://mubu.com",
-        "Referer": "https://mubu.com/"
-    }
-    response = requests.get(url, headers=headers)
-    result = response.json()
-    if result.get("code") == 0:
-        return result["data"]
-    else:
-        raise Exception(f"获取文档失败: {result.get('msg')}")
-```
-
-### 6. 保存文档
-
-```python
-def save_doc(token, doc_id, content, name=None):
-    """保存/更新文档内容
-    
-    Args:
-        token: JWT Token
-        doc_id: 文档ID
-        content: 文档内容（JSON格式的大纲结构）
-        name: 可选，更新文档名称
-    """
-    url = "https://api2.mubu.com/v3/api/doc/save"
-    headers = {
-        "Content-Type": "application/json;charset=UTF-8",
-        "jwt-token": token,
-        "Origin": "https://mubu.com",
-        "Referer": "https://mubu.com/"
-    }
-    data = {
-        "id": doc_id,
-        "content": content
-    }
-    if name:
-        data["name"] = name
-    response = requests.post(url, headers=headers, json=data)
-    result = response.json()
-    if result.get("code") != 0:
-        raise Exception(f"保存文档失败: {result.get('msg')}")
-```
-
-### 7. 删除文档/文件夹
-
-```python
-def delete_item(token, item_id):
-    """删除文档或文件夹
-    
-    Args:
-        token: JWT Token
-        item_id: 文档或文件夹ID
-    """
-    url = "https://api2.mubu.com/v3/api/list/delete"
-    headers = {
-        "Content-Type": "application/json;charset=UTF-8",
-        "jwt-token": token,
-        "Origin": "https://mubu.com",
-        "Referer": "https://mubu.com/"
-    }
-    data = {"id": item_id}
-    response = requests.post(url, headers=headers, json=data)
-    result = response.json()
-    if result.get("code") != 0:
-        raise Exception(f"删除失败: {result.get('msg')}")
-```
+> 登录返回结构为**扁平** `data`：`data["id"]`=用户 ID，`data["name"]`=用户名，
+> `data["token"]`=令牌。这与旧版嵌套 `result["data"]["user"]["id"]` 不同。
 
 ---
 
@@ -260,28 +87,31 @@ def delete_item(token, item_id):
 
 ```json
 {
-  "node": {
-    "id": "root",
-    "text": "文档标题",
-    "children": [
-      {
-        "id": "node_1",
-        "text": "一级标题",
-        "children": [
-          {
-            "id": "node_1_1",
-            "text": "二级标题",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "node_2",
-        "text": "另一个一级标题",
-        "children": []
-      }
-    ]
-  }
+  "name": "文档标题",
+  "nodes": [
+    {
+      "id": "node_1",
+      "text": "一级标题",
+      "children": [
+        {
+          "id": "node_1_1",
+          "text": "二级标题",
+          "children": []
+        }
+      ],
+      "collapsed": false,
+      "finish": false,
+      "modified": 0
+    },
+    {
+      "id": "node_2",
+      "text": "另一个一级标题",
+      "children": [],
+      "collapsed": false,
+      "finish": false,
+      "modified": 0
+    }
+  ]
 }
 ```
 
@@ -289,7 +119,7 @@ def delete_item(token, item_id):
 
 ## Token 管理建议
 
-由于幕布的 Token 有效期限制（access_token 2小时，refresh_token 30天），建议：
+由于幕布的 access_token 仅约 2 小时有效（无 refresh_token 机制，代码也无任何 refresh 逻辑），建议：
 
 1. **本地缓存**: 将 Token 保存到本地文件（如 `~/.mubu_token`）
 2. **自动刷新**: 在 Token 快过期时自动刷新
@@ -299,54 +129,197 @@ def delete_item(token, item_id):
 import os
 import time
 import json
+import tempfile
 
 TOKEN_FILE = os.path.expanduser("~/.mubu_token")
 
 def save_token(token_data):
-    """保存 Token 到本地"""
+    """原子写 + 仅属主可读写：避免中途崩溃留下残缺文件，并防止其它用户读取。"""
+    token_data = dict(token_data)
     token_data["expires_at"] = time.time() + 7200  # 2小时后过期
-    with open(TOKEN_FILE, "w") as f:
-        json.dump(token_data, f)
+    # 注：真实 scripts/mubu_api.py 的 _save_token 还会用跨进程 fcntl.flock
+    # advisory 锁包裹整段写（M4 已做成跨平台安全：无 fcntl 平台降级为无锁）；
+    # 此处省略锁，聚焦写盘逻辑。
+    dir_name = os.path.dirname(TOKEN_FILE) or "."
+    fd, tmp = tempfile.mkstemp(dir=dir_name, prefix=".mubu_token.", suffix=".tmp")
+    try:
+        with os.fdopen(fd, "w") as f:
+            json.dump(token_data, f)
+        os.chmod(tmp, 0o600)        # 仅属主可读写
+        os.replace(tmp, TOKEN_FILE) # 原子重命名，避免残缺文件
+    except Exception:
+        if os.path.exists(tmp):
+            os.remove(tmp)
+        raise
 
 def load_token():
-    """从本地加载 Token"""
-    if os.path.exists(TOKEN_FILE):
-        with open(TOKEN_FILE, "r") as f:
-            return json.load(f)
-    return None
+    """从本地加载未过期的 Token；已过期或损坏则返回 None。"""
+    if not os.path.exists(TOKEN_FILE):
+        return None
+    try:
+        with open(TOKEN_FILE) as f:
+            data = json.load(f)
+    except Exception:
+        return None
+    if time.time() >= data.get("expires_at", 0):  # 已过期视为无效
+        return None
+    return data
+```
 
-def is_token_valid(token_data):
-    """检查 Token 是否有效"""
-    if not token_data:
-        return False
-    return time.time() < token_data.get("expires_at", 0)
+说明：原示例中朴素的 `is_token_valid` 已移除——其职责（"是否过期"）已并入 `load_token`，仅返回未过期的 token。真实实现 `scripts/mubu_api.py` 的 `_save_token` 还包含跨进程 `fcntl.flock` 锁与统一的 `TOKEN_FILE_MODE` 权限管理，此处不再重复。
+
+---
+
+## 导出 / 导入 Markdown
+
+M1 已落地真正的 Markdown 导入/导出（往返保真，不再是占位）。核心纯函数位于 `scripts/mubu_api.py`：
+
+```python
+def doc_to_markdown(node, level=0):
+    """将节点（及子树）渲染为 Markdown 列表片段。
+    '- ' 列表项，缩进 = 2 * level；含 checked → '- [x]'/'- [ ]'；
+    含 note → 子树后追加 '> {note}'。根标题由 export_markdown 负责。"""
+    ...
+
+def export_markdown(doc):
+    """doc 为 get_doc() 返回的 data 层 {"node": {...}}。
+    首行 '# 标题'，其余递归为 '- ' 列表。结构无效时抛 MubuError。"""
+    ...
+
+def markdown_to_doc(md):
+    """Markdown 文本 → {"node": {"id": "root", "text": ..., "children": [...]}}。
+    标题为顶层节点；多标题时首个为 root，其余作为 root 的 children；
+    列表项用栈按缩进深度维护层级；'- [ ]'/'- [x]' 设 checked；
+    '> ' 作为对应层级节点的 note。"""
+    ...
+```
+
+导出示例（幕布 → Markdown）：
+
+```
+# 读书笔记
+- 第一章
+  - [x] 读完
+  - [ ] 写笔记
+> 第一章的备注
+```
+
+> 说明：根节点的 `text` 渲染为 `# 标题`，其直接子节点从缩进 0 的 `- ` 列表开始；
+> note 出现在其所属节点（含子树）之后，并按缩进深度归属到对应节点。
+
+---
+
+## 命令参考（CLI）
+
+| 命令 | 说明 |
+|------|------|
+| `login` | 手机号密码登录，Token 本地缓存 |
+| `list --folder <id> [--include-trash]` | 获取文件夹下的文档/子文件夹列表（`--json` 输出原始 JSON；`--include-trash` 包含已软删除项） |
+| `mkdir <name> --parent <id>` | 创建文件夹 |
+| `create <name> --folder <id> [--content <json>] [--md <file>]` | 创建文档；`--md` 从 Markdown 文件导入 |
+| `get <doc_id> [--export markdown\|json]` | 获取文档；`--export markdown` 输出真实 Markdown |
+| `save <doc_id> [--file <f>] [--md <file>] [--content <c>]` | 保存文档；`--md` 从 Markdown 文件导入 |
+| `delete <id> [--type doc\|folder] --yes` | **软删除**：移入本地回收站（云端仍在，`restore` 可恢复，`purge` 可彻底删除）；`--type` 默认 folder，必须显式 `--yes` 才执行 |
+| `restore <id>` | 从本地回收站恢复（仅移除标记，零服务端调用） |
+| `purge <id> --yes` | **彻底删除（不可逆）**：调用服务端真实删除 API 后移除本地标记；必须显式 `--yes` 才执行 |
+| `trash` | 列出本地回收站中已软删除的项 |
+| `move <item_id> --target <folder_id> [--type doc\|folder]` | 移动文档/文件夹到其他位置（v1.3.9 起可用，端点 `/list/custom/drag`，已真机验证）|
+| `search <关键字> [--max-depth N] [--limit N] [--include-trash]` | 按名称本地搜索文档/文件夹（递归遍历，大小写不敏感；`--include-trash` 包含已软删除项） |
+| `export-tree --folder <id> [--output <dir>] [--max-depth N]` | 递归导出整个文件夹树为嵌套 Markdown 文件 |
+| `rename <id> --name <新名> [--type doc\|folder]` | 重命名文档（`/list/rename_doc` 端点）或文件夹（已验证端点 `/list/rename_folder`，`folderId` 填自身 id）|
+| `opml <doc_id> [--format opml\|freeplane]` | 导出为 OPML 2.0 / FreeMind XML（兼容 XMind 等其它大纲工具）|
+
+### 软删除 / 回收站（v1.3.5）
+
+`delete` 现在不再是真正的服务端删除，而是**软删除**：
+
+- `delete <id> [--type doc\|folder] --yes` —— **移入本地回收站**：仅把项的元数据标记进本地回收站文件 `~/.workbuddy/.mubu_trash.json`，**云端副本保持不变**，不调用任何删除 API。缺省（无 `--yes`）仅打印提示并退出，绝不软删除。
+- `restore <id>` —— 从本地回收站恢复：仅移除本地标记，**零服务端调用**（即使云端项已不存在也安全）。未找到该项时提示「未找到回收站项」。
+- `purge <id> --yes` —— **彻底删除（不可逆）**：唯一真正调用服务端删除 API（`delete_doc` / `delete_folder`）的操作，成功后移除本地标记。必须显式 `--yes`，否则中止。
+- `trash` —— 列出本地回收站中已软删除的项（id / type / name / deleted_at）。
+
+`list --include-trash` 与 `search <关键字> --include-trash` 可在列表中**包含**已软删除项（`get_list` / `search` 默认过滤回收站项）。
+
+> 回收站仅存元数据快照（id / type / name / parent_id / deleted_at），作为「云端仍在、可恢复」的安全网，**不作为重建来源**。
+
+Markdown 往返示例：
+
+```bash
+# 导出为 Markdown
+python3 scripts/mubu_api.py get <doc_id> --export markdown
+
+# 从 Markdown 创建文档
+python3 scripts/mubu_api.py create "我的文档" --folder <folder_id> --md ./outline.md
+
+# 从 Markdown 更新文档
+python3 scripts/mubu_api.py save <doc_id> --md ./outline.md
+
+# 移动文档
+python3 scripts/mubu_api.py move <doc_id> --target <folder_id>
+
+# 按名称本地搜索文档/文件夹（递归遍历所有子文件夹，大小写不敏感）
+python3 scripts/mubu_api.py search "项目"
+python3 scripts/mubu_api.py search "项目" --json
+
+# 递归导出整个文件夹树为嵌套 Markdown
+python3 scripts/mubu_api.py export-tree --folder <root_folder_id> --output ./backup
+
+# 重命名文档 / 文件夹
+python3 scripts/mubu_api.py rename <doc_id> --name "新标题" --type doc
+python3 scripts/mubu_api.py rename <folder_id> --name "新文件夹名" --type folder
+
+# 导出为 OPML / FreeMind
+python3 scripts/mubu_api.py opml <doc_id> --format opml
+python3 scripts/mubu_api.py opml <doc_id> --format freeplane
 ```
 
 ---
 
-## 导出 Markdown
+## Token 刷新策略
 
-将幕布大纲转换为 Markdown 格式：
+- access_token 有效期约 2 小时，本地以 `expires_at` 缓存于 `~/.mubu_token`。
+- 每次请求发起前调用 `ensure_valid_token()`：若未持有 token，或距过期不足
+  `300 + 60`（leeway）秒，则使用缓存的 `phone`/`password` **重新登录**获取新 token。
+- **刷新不依赖 refresh_token**（M1 未启用）。
+- **鉴权失败仅重试 1 次**：`_request` 捕获 401 / 登录失效类错误后重新登录并重试最多一次；
+  第二次仍失败则抛出 `MubuError`，**不再重登**，避免密码错误/账号封禁场景下的死循环。
+- 403（权限不足）或其它非 0 业务 code **不触发重登**。
+- Token 写入采用原子写（先写 `.tmp` 再 `os.rename`），写完追加 `os.chmod(TOKEN_FILE, 0o600)`，
+  确保 Token 文件仅属主可读写（M2 的 T5 已实现）。
 
-```python
-def node_to_markdown(node, level=0):
-    """将幕布节点转换为 Markdown"""
-    lines = []
-    indent = "  " * level
-    bullet = "- " if level > 0 else ""
-    lines.append(f"{indent}{bullet}{node['text']}")
-    
-    for child in node.get("children", []):
-        lines.extend(node_to_markdown(child, level + 1))
-    
-    return lines
+---
 
-def export_markdown(doc_data):
-    """导出文档为 Markdown"""
-    root = doc_data.get("node", {})
-    lines = node_to_markdown(root)
-    return "\n".join(lines)
+## 配置说明
+
+脚本通过环境变量读取凭据（优先级：环境变量 > `~/.workbuddy/.env.mubu` 文件；
+两者皆无时，`login` 子命令会交互式提示输入，绝不接受明文命令行参数）：
+
+```bash
+export MUBU_PHONE="你的手机号"
+export MUBU_PASSWORD="你的密码"
+# 可选：幕布 colla 成员 ID（仅 save 写回需要；任何 API 都不暴露，必须手动设置，缺失时 save 会明确报错）
+export MUBU_MEMBER_ID="你的幕布 colla 成员 ID"
 ```
+
+也可在 `~/.workbuddy/.env.mubu` 中配置（由 Skill 宿主加载为环境变量，且仅属主可读写）：
+
+```
+MUBU_PHONE=你的手机号
+MUBU_PASSWORD=你的密码
+# 可选：幕布 colla 成员 ID（仅 save 写回需要；任何 API 都不暴露，必须手动设置，缺失时 save 会明确报错）
+MUBU_MEMBER_ID=你的幕布 colla 成员 ID
+```
+
+---
+
+## 已知限制（M1）
+
+- `expand`（幕布大纲的折叠/展开状态）不在本期往返范围内，导入后节点默认展开。
+- 有序列表 `1.` 不被解析，仅支持无序列表 `- `。
+- 图片 / 附件类型节点不在本期 Markdown 往返范围内（会丢失媒体内容）。
+- 多个顶层标题导入时，首个为 root，其余作为 root 的 children；其后的列表项统一挂在
+  root 下（规范未要求按标题再嵌套）。
+- `save`（文档保存）需要幕布 colla 成员 ID：私人文档的 `memberId` **任何 API 都不暴露**，工具无法自动获取，必须由 `MUBU_MEMBER_ID` 环境变量提供（或提前写入 token 缓存的 `member_id`）。**缺失时 `save` 会明确报错提示配置，不影响 `get` / `create` / `move` / `rename` 等其它操作**。v1.3.9 已修复 `save`（`/colla/events`）、`move`（`/list/custom/drag`）、doc `rename`（`/list/rename_doc`）的真机可用性。
 
 ---
 
@@ -361,7 +334,7 @@ def export_markdown(doc_data):
 
 ## Agent 使用指引
 
-当用户提到幕布、mubu、大纲笔记相关操作时，使用本 Skill 的脚本完成操作。
+当用户提到幕布、mubu 相关操作（如将幕布大纲导入 Obsidian、把 Markdown 同步到幕布、查询/导出幕布笔记）时，使用本 Skill 的脚本完成操作。
 
 ### 前置检查
 
@@ -391,10 +364,19 @@ def export_markdown(doc_data):
 | 查看某文件夹 | `python3 scripts/mubu_api.py list --folder <folder_id>` |
 | 创建文件夹 | `python3 scripts/mubu_api.py mkdir "文件夹名"` |
 | 创建文档 | `python3 scripts/mubu_api.py create "文档名" --folder <folder_id>` |
+| 从 Markdown 创建文档 | `python3 scripts/mubu_api.py create "文档名" --folder <folder_id> --md outline.md` |
 | 获取文档内容 | `python3 scripts/mubu_api.py get <doc_id>` |
 | 导出为 Markdown | `python3 scripts/mubu_api.py get <doc_id> --export markdown` |
-| 从文件保存文档 | `python3 scripts/mubu_api.py save <doc_id> --file content.md` |
-| 删除文档 | `python3 scripts/mubu_api.py delete <id>` |
+| 从 Markdown 保存文档 | `python3 scripts/mubu_api.py save <doc_id> --md outline.md` |
+| 从文件保存文档 | `python3 scripts/mubu_api.py save <doc_id> --file content.json` |
+| 移动文档 | `python3 scripts/mubu_api.py move <doc_id> --target <folder_id>` |
+| 软删除（移入回收站） | `python3 scripts/mubu_api.py delete <id> --type doc\|folder --yes`（云端仍在，`restore` 可恢复）|
+| 从回收站恢复 | `python3 scripts/mubu_api.py restore <id>` |
+| 彻底删除（不可逆） | `python3 scripts/mubu_api.py purge <id> --yes`（必须显式 `--yes`，调用服务端真实删除）|
+| 查看回收站 | `python3 scripts/mubu_api.py trash` |
+| 按名称搜索 | `python3 scripts/mubu_api.py search <关键字> [--max-depth N] [--limit N]` |
+| 按名称搜索（含回收站） | `python3 scripts/mubu_api.py search <关键字> [--max-depth N] [--limit N] --include-trash` |
+| 按名称搜索（JSON） | `python3 scripts/mubu_api.py search <关键字> [--max-depth N] [--limit N] --json` |
 
 ### 典型工作流
 
@@ -437,7 +419,7 @@ def export_markdown(doc_data):
 
 执行步骤：
 1. 登录获取 Token
-2. 搜索文档
+2. 本地搜索匹配文档：`python3 scripts/mubu_api.py search "读书笔记"`
 3. 获取文档内容
 4. 转换为 Markdown 并返回
 

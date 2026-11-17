@@ -1,37 +1,48 @@
-## Description: <br>
-A Thai conversational marketing and sales advisor that uses the Brain Audit framework to help users clarify offers, sales messages, objections, testimonials, risk reversal, and simple visual summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Thai-language marketing and sales advisory skill that uses the Brain Audit framework to help users clarify customer problems, offers, sales messages, objections, testimonials, risk reversal, and positioning.
 
-## Publisher: <br>
-[golofu](https://clawhub.ai/user/golofu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[golofu](https://clawhub.ai/user/golofu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill for conversational Thai-language marketing and sales coaching on real products, services, courses, offers, sales pages, social posts, presentation scripts, and closing techniques.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated marketing claims or persuasion-oriented sales messages may be inaccurate, overstated, or unsuitable for publication.
+
+Mitigation: Review all generated claims, testimonials, guarantees, and sales copy before publishing or using them with customers.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, creators, and business operators use this skill for practical marketing and sales guidance on real products, services, courses, offers, sales pages, social posts, presentation scripts, and closing objections. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Marketing and sales recommendations may be incomplete or unsuitable for a user's specific market, audience, or legal obligations. <br>
-Mitigation: Review generated messaging, claims, guarantees, and testimonials before publication, especially where regulated products, advertising rules, or customer evidence are involved. <br>
+**Output Format:** [Conversational text and Markdown, with simple visual summaries when appropriate]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May generate sales copy, offer structures, presentation outlines, objection responses, interview questions for testimonials, and concise marketing diagrams.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Conversational Markdown with optional visual diagram guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill is instruction-only and may suggest using a visualizer for simple diagrams; it does not request files, credentials, accounts, or system access.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

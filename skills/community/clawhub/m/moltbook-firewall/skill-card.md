@@ -1,44 +1,59 @@
-## Description: <br>
-Security layer protecting agents from prompt injection, social engineering, and malicious content on Moltbook and similar platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moltbook Firewall helps agents scan Moltbook and similar social content for prompt injection, social engineering, malicious code requests, and data exfiltration attempts before processing.
 
-## Publisher: <br>
-[machinesbefree](https://clawhub.ai/user/machinesbefree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[machinesbefree](https://clawhub.ai/user/machinesbefree)
 
-## Use Case: <br>
-Developers and agent operators use this skill to screen Moltbook or similar social-platform content before an agent processes it, helping identify prompt injection, malicious command requests, social engineering, data exfiltration attempts, and suspicious URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Scanned text can be retained locally in an audit log preview. <br>
-Mitigation: Avoid scanning secrets unless local retention is acceptable, and periodically clear or disable the log as appropriate. <br>
-Risk: Regex-based detection can miss novel attacks or flag benign content. <br>
-Mitigation: Use scan results as a best-effort signal and keep human review for suspicious or high-impact content. <br>
-Risk: The scanner depends on jq for JSON log generation. <br>
-Mitigation: Verify jq is installed before relying on the scanner in an agent workflow. <br>
+## Use Case:
 
+Developers and agent operators use this skill as a defensive pre-processing check for social platform content. It flags known patterns for prompt injection, social engineering, malicious code execution requests, suspicious URLs, and data exfiltration attempts before an agent acts on external content.
 
-## Reference(s): <br>
-- [Moltbook Firewall README](artifact/README.md) <br>
-- [Threat Pattern Configuration](artifact/patterns/threats.json) <br>
-- [ClawHub Release Page](https://clawhub.ai/machinesbefree/moltbook-firewall) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text status with JSONL audit log entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scanner exits with different status codes for safe, suspicious, and blocked content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Scanned content previews are written to a local audit log, which can retain confidential prompts, credentials, customer data, or secrets if such content is scanned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not scan confidential data unless logging is removed or made opt-in with redaction and restrictive file permissions.
+
+Risk: The documented pattern customization and trusted-source controls are not fully enforced according to the security evidence.
+
+Mitigation: Review and test the scanner before relying on custom rules, trusted-source lists, or the documented add-pattern workflow.
+
+Risk: Pattern matching can miss novel or obfuscated attacks and can flag benign content that matches broad expressions.
+
+Mitigation: Use scan results as a review gate, keep human review for SUSPICIOUS results, and update enforced patterns after validated incidents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/machinesbefree/skills/moltbook-firewall)
+- [README](artifact/README.md)
+- [Threat patterns](artifact/patterns/threats.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text with SAFE, SUSPICIOUS, or BLOCKED status and local JSONL audit log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scanner exits 0 for SAFE, 1 for SUSPICIOUS, and 2 for BLOCKED; scan logs include a local preview of the scanned content.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

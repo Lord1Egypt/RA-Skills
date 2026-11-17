@@ -1,41 +1,54 @@
-## Description: <br>
-Writes academically rigorous Chinese thesis discussion chapters or discussion sections from user-supplied findings, theory, literature, limitations, implications, and requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write detailed, academically rigorous Chinese discussion chapters or discussion sections for theses, dissertations, and undergraduate papers from a user's findings, research questions, hypotheses, themes, theoretical framework, literature review, limitations, implications, and extra information.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Students, researchers, and academic writers use this skill to draft, expand, polish, or structure Chinese thesis and dissertation discussion chapters from supplied findings, research questions, literature, theory, limitations, implications, and school formatting requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide unpublished thesis drafts, research data, or participant information while requesting discussion text. <br>
-Mitigation: Remove sensitive or identifying material before use, and share only content appropriate for processing by the agent. <br>
-Risk: Generated academic prose may contain inaccurate interpretations or overstate conclusions if the supplied findings, literature, or limitations are incomplete. <br>
-Mitigation: Review the output against the actual results chapter, source literature, and institutional academic-integrity requirements before using it. <br>
+## Use Case:
 
+Students, researchers, and academic writers use this skill to draft or polish Chinese thesis discussion chapters from user-supplied findings, theory, literature, limitations, implications, and school formatting requirements.
 
-## Reference(s): <br>
-- [Thesis Discussion Writer on ClawHub](https://clawhub.ai/junwugit/thesis-discussion-writer) <br>
-- [Chinese Discussion Chapter Writing Guide](references/discussion-writing-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose, usually in Chinese, with numbered academic headings and structured discussion sections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a full discussion chapter or a placeholder framework when findings are incomplete; avoids inventing findings, citations, analyses, or unsupported conclusions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill could produce unsupported conclusions if a user asks for a discussion chapter without providing real findings or source context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide actual findings, literature context, limitations, and requirements; when inputs are incomplete, use placeholders and request the missing material instead of drafting final conclusions.
+
+Risk: Academic writing may overstate implications or introduce invented citations, data, or analyses if source boundaries are not respected.
+
+Mitigation: Keep each interpretation, implication, recommendation, and conclusion traceable to user-provided findings, theory, literature, or limitations.
+
+## Reference(s):
+
+- [Chinese Discussion Chapter Writing Guide](references/discussion-writing-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/junwugit/skills/thesis-discussion-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese academic prose in Markdown-style chapter structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include placeholders and requests for exact source material when findings or context are incomplete.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,65 @@
-## Description: <br>
-Converts PPT or presentation files into narrated videos through interactive content assessment, LLM-generated scripts, style-aware narration, user confirmation, and automated media synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keynote Video converts presentation decks into narrated videos by guiding an agent through input review, script generation, style selection, user approval, text-to-speech assembly, video composition, and quality checks.
 
-## Publisher: <br>
-[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo)
 
-## Use Case: <br>
-Creators, trainers, and developers use this skill to turn presentation decks and optional supporting notes into Chinese narrated presentation videos. It guides the agent through input review, script generation, style selection, user approval, video synthesis, and quality checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local media commands with weak argument isolation. <br>
-Mitigation: Run it only in a controlled project workspace, review input file paths and video_design_spec.json values before generation, and avoid untrusted filenames or configuration values. <br>
-Risk: Narration text derived from presentations may be sent to edge-tts. <br>
-Mitigation: Do not use confidential decks unless the edge-tts data flow is acceptable for the content. <br>
-Risk: Generated scripts and narration can misrepresent source presentation content. <br>
-Mitigation: Keep the documented Phase 2 user confirmation gate and review video_design_spec.md plus representative page scripts before running technical synthesis. <br>
+## Use Case:
 
+Presentation creators, developers, and content teams use this skill to turn PPT, PPTX, or PDF presentations plus optional background material into spoken video drafts. It helps an agent evaluate inputs, write plain-text narration scripts, prepare a video design spec for user approval, run synthesis commands, and report video quality checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vincentlau2046-sudo/keynote-video) <br>
-- [README](artifact/README.md) <br>
-- [Design specification](artifact/DESIGN.md) <br>
-- [Skill workflow](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, plain-text narration scripts, JSON video design specifications, shell commands, and generated media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project-local working files, rewritten page scripts, video_design_spec.md, video_design_spec.json, MP4 output, and a completion report when the workflow succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and package.json) <br>
+Risk: The generator can run unsafe shell commands from user-controlled presentation paths or generated spec values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted presentation paths and trusted generated specs in an isolated workspace; replace shell-string execSync calls with argument-array process APIs before broader deployment.
+
+Risk: Narration text may be sent to the edge-tts provider during speech synthesis.
+
+Mitigation: Do not process confidential decks unless users have accepted cloud TTS disclosure and data handling requirements.
+
+Risk: Voice and rate values from generated specs can influence command execution behavior.
+
+Mitigation: Validate voice and rate values against an allowlist before invoking synthesis commands.
+
+Risk: Unpinned runtime dependencies and external tools can change behavior across environments.
+
+Mitigation: Pin Node, Python, ffmpeg, LibreOffice, edge-tts, and related package versions for repeatable releases.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vincentlau2046-sudo/skills/keynote-video)
+- [README.md](artifact/README.md)
+- [DESIGN.md](artifact/DESIGN.md)
+- [Video Design Spec Template](artifact/templates/video_design_spec_template.md)
+- [Script Page Template](artifact/templates/script_page_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown workflow guidance, plain-text narration scripts, JSON video design specs, shell commands, MP4 video files, and Markdown completion reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before video synthesis; generated media depends on local tools and cloud text-to-speech availability.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

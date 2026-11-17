@@ -19,9 +19,9 @@ import platform
 import shutil
 import subprocess
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Optional
 
-_BROWSER_PATHS: Dict[str, List[str]] = {
+_BROWSER_PATHS: dict[str, list[str]] = {
     "Darwin": [
         "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
         "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary",

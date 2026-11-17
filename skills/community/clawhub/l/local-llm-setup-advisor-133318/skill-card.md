@@ -1,38 +1,58 @@
-## Description: <br>
-Advises developers and local-AI users on practical workflows for running LLMs on consumer CPUs or GPUs without relying on cloud-only systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers and privacy-conscious users plan and validate local LLM workflows on consumer CPU or GPU hardware without cloud-only dependencies.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Developers, researchers, privacy-conscious users, hobbyists, and small teams use this skill to plan local LLM setup, implementation steps, checklists, code or command guidance, and verification on ordinary home machines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/local-llm-setup-advisor-133318) <br>
-- [Requirement plan](references/requirement-plan.md) <br>
+Developers, researchers, privacy-conscious users, hobbyists, and small teams use this skill to choose and implement practical local LLM setup workflows, checklists, scripts, or decision support for ordinary home machines.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code and shell command blocks when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only advisory skill with no executable code or data-access behavior in the artifact; review generated setup commands and model recommendations before running them.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Demand-evidence claims may not directly support every local LLM setup scenario.
+
+Mitigation: Treat demand evidence as context and validate recommendations against the user's hardware, operating system, model size, and tooling constraints.
+
+Risk: Broad implicit triggers could route adjacent AI, privacy, or workflow questions to this skill unnecessarily.
+
+Mitigation: Confirm the user's intent and local LLM relevance before applying the setup workflow.
+
+Risk: Generated commands or configuration may be unsuitable for a user's hardware or environment.
+
+Mitigation: Prefer CPU-safe or small-model workflows, state assumptions, and include verification commands before changes are treated as complete.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/local-llm-setup-advisor-133318)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown responses with checklists, commands, configuration snippets, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include verification notes, local-hardware assumptions, and follow-up risks.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and release changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

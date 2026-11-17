@@ -5,46 +5,9 @@
 		"description": "Query data table records by conditions. Supports filtering, pagination, sorting, grouping, and aggregation operations. Field ID refers to the id property of each field in the fieldList obtained by calling query_table_define. All places involving fieldId below are field IDs. The key of the returned data table records is also the field ID",
 		"parameters": {
 			"type": "object",
-			"properties": {
-				"excludeFields": {
-					"type": "array",
-					"items": {
-						"type": "string"
-					},
-					"description": "List of field IDs to exclude from return",
-					"example": [
-						"created_by",
-						"updated_time"
-					]
-				},
-				"includeFields": {
-					"type": "array",
-					"items": {
-						"type": "string"
-					},
-					"description": "Only query and return the fields specified in includeFields; if includeFields is not provided, all fields are queried and returned by default.",
-					"example": [
-						"name",
-						"age"
-					]
-				},
-				"tableId": {
-					"type": "string",
-					"description": "Data table ID obtained through the query_all_table_list interface"
-				},
-				"pageIndex": {
-					"type": "integer",
-					"description": "Page number, starting from 1",
-					"default": 1
-				},
-				"pageSize": {
-					"type": "integer",
-					"description": "Number of records per page. Default 1000. 【Important rule】When no filter is specified and no aggregationQueryList is specified, the maximum pageSize is 1000 and must not exceed.",
-					"default": 1000
-				},
-				"filter": {
+			"$defs": {
+				"filterCondition": {
 					"type": "object",
-					"description": "Tree-shaped filter condition structure",
 					"properties": {
 						"opt": {
 							"type": "string",
@@ -62,7 +25,7 @@
 									},
 									"opt": {
 										"type": "string",
-										"description": "Operator type. Only one of the following values can be filled: \neq (equal, exact match, not applicable for list fields), ne (not equal), gt (greater than), ge (greater than or equal), lt (less than), le (less than or equal), \ncontains (contains substring/list contains), notcontains (does not contain substring/list does not contain), startswith (starts with specified string), endswith (ends with specified string), \nisnull (field is empty), isnotnull (field is not empty), in (value is in collection), notin (value is not in collection), between (value is in range), notbetween (value is outside range), \nparentrooteq (root node match), parenteq (parent node match), parentcontains (parent node path contains), intree (in subtree)"
+										"description": "Operator type. Only one of the following values can be filled: \neq (equal, exact match, not applicable for list fields), ne (not equal), gt (greater than), ge (greater than or equal), lt (less than), le (less than or equal), \ncontains (contains substring/list contains), notcontains (does not contain substring/list does not contain), startswith (starts with specified string), endswith (ends with specified string), \nisnull (field is empty), isnotnull (field is not empty), in (value is in collection), notin (value is not in collection), \nparentrooteq (root node match), parenteq (parent node match), parentcontains (parent node path contains), intree (in subtree)"
 									},
 									"value": {
 										"anyOf": [
@@ -105,30 +68,56 @@
 						"children": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/filterCondition"
+								"$ref": "#/$defs/filterCondition"
 							},
 							"description": "Nested child conditions"
 						}
 					},
 					"required": [
 						"opt"
-					],
-					"definitions": {
-						"filterCondition": {
-							"type": "object",
-							"properties": {
-								"opt": {
-									"$ref": "#/properties/filter/properties/opt"
-								},
-								"conditionList": {
-									"$ref": "#/properties/filter/properties/conditionList"
-								},
-								"children": {
-									"$ref": "#/properties/filter/properties/children"
-								}
-							}
-						}
-					}
+					]
+				}
+			},
+			"properties": {
+				"excludeFields": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"description": "List of field IDs to exclude from return",
+					"example": [
+						"created_by",
+						"updated_time"
+					]
+				},
+				"includeFields": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"description": "Only query and return the fields specified in includeFields; if includeFields is not provided, all fields are queried and returned by default.",
+					"example": [
+						"name",
+						"age"
+					]
+				},
+				"tableId": {
+					"type": "string",
+					"description": "Data table ID obtained through the query_all_table_list interface"
+				},
+				"pageIndex": {
+					"type": "integer",
+					"description": "Page number, starting from 1",
+					"default": 1
+				},
+				"pageSize": {
+					"type": "integer",
+					"description": "Number of records per page. Default 1000. 【Important rule】When no filter is specified and no aggregationQueryList is specified, the maximum pageSize is 1000 and must not exceed.",
+					"default": 1000
+				},
+				"filter": {
+					"$ref": "#/$defs/filterCondition",
+					"description": "Tree-shaped filter condition structure"
 				},
 				"orderByList": {
 					"type": "array",

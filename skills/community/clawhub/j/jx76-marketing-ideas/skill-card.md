@@ -1,41 +1,57 @@
-## Description: <br>
-When the user needs marketing ideas, inspiration, or strategies for their SaaS or software product. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides SaaS and software-product marketing ideas, inspiration, and strategies, with 139 proven approaches organized by category.
 
-## Publisher: <br>
-[JX-76](https://clawhub.ai/user/JX-76) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jx-76](https://clawhub.ai/user/jx-76)
 
-## Use Case: <br>
-External SaaS founders, operators, and marketers use this skill to brainstorm marketing strategies, select relevant growth tactics, and turn selected ideas into implementation steps based on product stage, audience, budget, and team size. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved product marketing context may contain sensitive, stale, or incomplete product details that influence recommendations. <br>
-Mitigation: Review `.claude/product-marketing-context.md` before use and remove sensitive or outdated information. <br>
-Risk: Marketing ideas can be mismatched to the user's stage, budget, team size, or prior failed experiments. <br>
-Mitigation: Confirm product stage, growth goal, budget, team size, and previous marketing attempts before selecting tactics. <br>
+## Use Case:
 
+External users, founders, and SaaS marketing teams use this skill to choose practical marketing tactics for a software product based on product context, audience, stage, budget, and team size.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JX-76/jx76-marketing-ideas) <br>
-- [The 139 Marketing Ideas](references/ideas-by-category.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown recommendations with structured implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use saved product marketing context when available; otherwise asks for product, audience, stage, budget, and prior marketing attempts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; skill frontmatter lists 1.0.0) <br>
+Risk: The broad trigger wording may activate the skill for general growth-strategy prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the request is about SaaS or software-product marketing before applying the skill, and ask clarifying questions when the product context is unclear.
+
+Risk: The skill may read .claude/product-marketing-context.md from the current project if that file exists.
+
+Mitigation: Treat that file as user-provided project context and avoid surfacing sensitive product details unless they are necessary for the current marketing request.
+
+Risk: Marketing recommendations may be incomplete, unsuitable for the user's market, or based on assumptions about budget, audience, or product stage.
+
+Mitigation: Ground recommendations in the user's stated constraints and present the expected outcome, resources needed, and first implementation steps for each idea.
+
+## Reference(s):
+
+- [The 139 Marketing Ideas](references/ideas-by-category.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with concise recommendations and implementation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask task-specific marketing questions and may use .claude/product-marketing-context.md when present.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

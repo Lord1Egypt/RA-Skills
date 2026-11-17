@@ -1,43 +1,55 @@
-## Description: <br>
-Discover, store, and inspect AI model catalog entries from one or more sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, store, and inspect AI model catalog entries from one or more sources.
 
-## Publisher: <br>
-[hoopan007](https://clawhub.ai/user/hoopan007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hoopan007](https://clawhub.ai/user/hoopan007)
 
-## Use Case: <br>
-Developers and operators use this skill to sync OpenRouter model catalog entries into a local SQLite database and inspect newly discovered, recent, monthly, per-model, and aggregate catalog state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is third-party and should be matched to the intended package and publisher before installation. <br>
-Mitigation: Verify the package page and publisher handle hoopan007 before use. <br>
-Risk: The scan command fetches model catalog data from OpenRouter over the network and stores normalized and raw model metadata in SQLite. <br>
-Mitigation: Run it only where outbound OpenRouter access and local database persistence are expected, and review the configured --db path before sharing outputs. <br>
+## Use Case:
 
+Developers and engineers use this skill to sync an AI model catalog into SQLite, identify newly discovered models, query recent or monthly additions, inspect individual model records, and view catalog statistics.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hoopan007/model-watcher) <br>
-- [Publisher profile](https://clawhub.ai/user/hoopan007) <br>
-- [Model Watcher schema](references/schema.md) <br>
-- [OpenRouter model catalog endpoint](https://openrouter.ai/api/v1/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local SQLite database at the configured --db path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The scan command contacts the OpenRouter model catalog API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scan only in environments where outbound access to OpenRouter is acceptable.
+
+Risk: The scan command creates or updates a local SQLite catalog.
+
+Mitigation: Use --db to place the database in an approved location and review the stored catalog data as needed.
+
+## Reference(s):
+
+- [Model Watcher schema](references/schema.md)
+- [OpenRouter model catalog API](https://openrouter.ai/api/v1/models)
+- [AI Model Watcher on ClawHub](https://clawhub.ai/hoopan007/skills/model-watcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scan command creates or updates a local SQLite database and reporting commands print compact catalog summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

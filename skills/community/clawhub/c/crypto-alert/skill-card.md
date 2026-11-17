@@ -1,43 +1,62 @@
-## Description: <br>
-Crypto Alert helps an agent check public cryptocurrency prices, 24-hour changes, and simple surge or drop alerts using Binance market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto Alert monitors cryptocurrency prices from Binance and reports 24-hour changes with surge and drop alerts.
 
-## Publisher: <br>
-[dolphins1123](https://clawhub.ai/user/dolphins1123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dolphins1123](https://clawhub.ai/user/dolphins1123)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current prices and 24-hour movement for supported cryptocurrencies, then present simple alerts when a coin rises or falls sharply. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Coin lookup requests are sent to Binance for public market data. <br>
-Mitigation: Use the skill only when external Binance API requests are acceptable for the deployment environment. <br>
-Risk: The artifact instructs users to install the unpinned Python requests package. <br>
-Mitigation: Pin and review dependencies in the deployment environment before running the script. <br>
-Risk: Server security evidence notes a stale marketplace summary. <br>
-Mitigation: Rely on the included README and SKILL.md behavior description rather than the stale listing summary. <br>
+## Use Case:
 
+Developers and agents can use this skill to check major cryptocurrency prices and 24-hour movement summaries from the command line. It is suited for informational monitoring and alerting, not investment advice.
 
-## Reference(s): <br>
-- [Crypto Alert ClawHub page](https://clawhub.ai/dolphins1123/crypto-alert) <br>
-- [Binance API](https://api.binance.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style text with command examples and price summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs public market prices, 24-hour percent changes, and simple alert labels for supported cryptocurrency symbols.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill makes live requests to Binance for price data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only where outbound Binance API calls are acceptable.
+
+Risk: Displayed prices and alerts could be mistaken for financial advice.
+
+Mitigation: Treat the output as informational market data, not investment guidance.
+
+Risk: The skill depends on the external requests package.
+
+Mitigation: Use an isolated virtual environment and pin the requests dependency before deployment.
+
+Risk: The skill presents output mainly in Traditional Chinese.
+
+Mitigation: Confirm the target users can review and act on Traditional Chinese output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dolphins1123/skills/crypto-alert)
+- [Binance API](https://api.binance.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown-formatted text with CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live Binance API responses; primary output language is Traditional Chinese.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

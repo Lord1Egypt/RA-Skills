@@ -1,0 +1,6 @@
+[
+  ["timestamp", "original", "statuscode", "mimetype"],
+  ["20020120142510", "http://example.com:80/", "200", "text/html"],
+  ["20020508163629", "http://example.com:80/", "200", "text/html"],
+  ["20020810100026", "http://www.example.com:80/", "200", "text/html"]
+]

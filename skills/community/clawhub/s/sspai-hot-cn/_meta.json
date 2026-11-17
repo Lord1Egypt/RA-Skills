@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn71y3mdbcx5dyhwxv1t7sm82x81a168",
-  "slug": "sspai-hot-cn",
+  "name": "sspai-hot-cn",
   "version": "1.0.0",
-  "publishedAt": 1771680193764
+  "description": "少数派热门文章监控 | SSPAI Hot Articles Monitor",
+  "author": "guohongbin-git",
+  "tags": ["sspai", "review", "apps", "productivity", "chinese"]
 }

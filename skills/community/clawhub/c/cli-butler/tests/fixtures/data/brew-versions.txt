@@ -1,0 +1,4 @@
+cowsay 3.7.0
+fd 9.0.0
+orbstack 1.9.1
+ripgrep 14.1.0

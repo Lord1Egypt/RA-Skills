@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reddit Easy Search"
+  short_description: "将 Reddit 讨论转化为有来源的洞察 · Reddit insight"
+  default_prompt: "Use $reddit-easy-search to research what Reddit communities think about a topic."

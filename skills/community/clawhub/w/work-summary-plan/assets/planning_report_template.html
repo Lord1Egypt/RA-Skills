@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>时间分配规划报告</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.7; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.header { background: linear-gradient(135deg, #1a5276, #2980b9); color: white; padding: 40px 30px; border-radius: 12px; margin-bottom: 30px; text-align: center; }
+.header h1 { font-size: 28px; margin-bottom: 8px; }
+.header p { opacity: 0.9; font-size: 15px; }
+.section { background: white; border-radius: 10px; padding: 30px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.section h2 { font-size: 20px; margin-bottom: 20px; color: #1a5276; border-left: 4px solid #2980b9; padding-left: 12px; }
+.section h3 { font-size: 16px; color: #2c3e50; margin: 20px 0 10px; }
+.chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.chart-box { position: relative; height: 400px; }
+.chart-box canvas { max-height: 400px; }
+.radar-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+.quadrant-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; background: #ddd; border-radius: 10px; overflow: hidden; height: 360px; }
+.quadrant { background: white; padding: 24px; display: flex; flex-direction: column; justify-content: center; }
+.quadrant h4 { font-size: 15px; margin-bottom: 8px; }
+.quadrant ul { padding-left: 18px; font-size: 13px; color: #555; }
+.quadrant li { margin-bottom: 4px; }
+.q-important-urgent { border-bottom: 3px solid #e74c3c; }
+.q-important-noturgent { border-bottom: 3px solid #2980b9; }
+.q-notimportant-urgent { border-bottom: 3px solid #f39c12; }
+.q-notimportant-noturgent { border-bottom: 3px solid #95a5a6; }
+
+.timeline { position: relative; padding-left: 30px; }
+.timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 3px; background: #2980b9; border-radius: 2px; }
+.tl-item { position: relative; margin-bottom: 30px; }
+.tl-dot { position: absolute; left: -26px; top: 4px; width: 16px; height: 16px; border-radius: 50%; background: #2980b9; border: 3px solid #d4e6f1; }
+.tl-date { font-size: 13px; color: #2980b9; font-weight: 600; margin-bottom: 4px; }
+.tl-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: #1a5276; }
+.tl-content { font-size: 14px; color: #555; }
+.tl-content ul { padding-left: 18px; }
+.tl-content li { margin-bottom: 4px; }
+.tl-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; color: white; margin-right: 6px; margin-bottom: 4px; }
+.badge-red { background: #e74c3c; }
+.badge-orange { background: #e67e22; }
+.badge-blue { background: #2980b9; }
+.badge-green { background: #27ae60; }
+.badge-purple { background: #8e44ad; }
+
+.compare-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+.compare-table th { background: #2980b9; color: white; padding: 10px 14px; text-align: left; font-size: 13px; }
+.compare-table td { padding: 10px 14px; border-bottom: 1px solid #ecf0f1; font-size: 13px; }
+.compare-table tr:hover { background: #f8f9fa; }
+.compare-table .highlight { background: #eaf2f8; font-weight: 600; }
+
+.heatmap-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px; }
+.heatmap-table th { background: #2980b9; color: white; padding: 8px 10px; text-align: center; font-size: 12px; }
+.heatmap-table td { padding: 8px 10px; text-align: center; border: 1px solid #ecf0f1; }
+.heatmap-table td:first-child { text-align: left; font-weight: 600; }
+.heat-high { background: #e74c3c; color: white; font-weight: 700; border-radius: 4px; }
+.heat-mid { background: #f39c12; color: white; font-weight: 600; border-radius: 4px; }
+.heat-low { background: #27ae60; color: white; border-radius: 4px; }
+
+.advice-card { background: #f8f9fa; border-radius: 8px; padding: 20px; margin-bottom: 12px; border-left: 4px solid #2980b9; }
+.advice-card h4 { font-size: 15px; margin-bottom: 8px; color: #1a5276; }
+.advice-card p { font-size: 13px; color: #555; }
+.insight-box { background: linear-gradient(135deg, #eaf2f8, #d4e6f1); border-radius: 8px; padding: 20px; margin-top: 16px; }
+.insight-box strong { color: #1a5276; }
+.footer { text-align: center; padding: 20px; font-size: 12px; color: #95a5a6; }
+
+@media (max-width: 768px) {
+  .chart-row, .radar-row { grid-template-columns: 1fr; }
+  .quadrant-grid { height: auto; grid-template-columns: 1fr; grid-template-rows: auto; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>{{ROLE}} — 时间分配规划报告</h1>
+  <p>基于 {{YEAR1}}-{{YEAR2}}年工作数据分析 ｜ 未来6-18个月时间分配与关键节点行动指南</p>
+  <p style="margin-top:8px;font-size:13px;opacity:0.8">分析时间：{{ANALYSIS_DATE}} ｜ 规划周期：{{PLAN_PERIOD}}</p>
+</div>
+
+<!-- 一、当前vs建议 -->
+<div class="section">
+  <h2>一、当前 vs 建议 时间分配对比</h2>
+  <p style="font-size:14px;color:#555;margin-bottom:16px;">{{ALLOCATION_RATIONALE}}</p>
+  <div class="chart-row">
+    <div>
+      <h3 style="text-align:center;margin-bottom:8px;color:#e67e22;">当前时间分配</h3>
+      <div class="chart-box"><canvas id="pieCurrent"></canvas></div>
+    </div>
+    <div>
+      <h3 style="text-align:center;margin-bottom:8px;color:#27ae60;">建议时间分配</h3>
+      <div class="chart-box"><canvas id="pieTarget"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- 二、四象限 -->
+<div class="section">
+  <h2>二、工作优先级四象限</h2>
+  <p style="font-size:14px;color:#555;margin-bottom:16px;">{{QUADRANT_INTRO}}</p>
+  <div class="quadrant-grid">
+    <div class="quadrant q-important-urgent">
+      <h4>🔴 重要且紧急（立即处理）</h4>
+      <ul>{{QUADRANT_IU}}</ul>
+      <p style="font-size:12px;color:#e74c3c;margin-top:8px;">{{QUADRANT_IU_GOAL}}</p>
+    </div>
+    <div class="quadrant q-important-noturgent">
+      <h4>🔵 重要不紧急（战略投入）★★★</h4>
+      <ul>{{QUADRANT_INU}}</ul>
+      <p style="font-size:12px;color:#2980b9;margin-top:8px;">{{QUADRANT_INU_GOAL}}</p>
+    </div>
+    <div class="quadrant q-notimportant-urgent">
+      <h4>🟠 紧急不重要（尽量委托）</h4>
+      <ul>{{QUADRANT_NIU}}</ul>
+      <p style="font-size:12px;color:#f39c12;margin-top:8px;">{{QUADRANT_NIU_GOAL}}</p>
+    </div>
+    <div class="quadrant q-notimportant-noturgent">
+      <h4>⚪ 不重要不紧急（控制时间）</h4>
+      <ul>{{QUADRANT_NINU}}</ul>
+      <p style="font-size:12px;color:#95a5a6;margin-top:8px;">{{QUADRANT_NINU_GOAL}}</p>
+    </div>
+  </div>
+</div>
+
+<!-- 三、时间线 -->
+<div class="section">
+  <h2>三、关键节点时间线</h2>
+  <p style="font-size:14px;color:#555;margin-bottom:20px;">{{TIMELINE_INTRO}}</p>
+  <div class="timeline">
+    {{TIMELINE_ITEMS}}
+  </div>
+</div>
+
+<!-- 四、热力图 -->
+<div class="section">
+  <h2>四、各季度建议时间分配热力图</h2>
+  <p style="font-size:14px;color:#555;margin-bottom:16px;">{{HEATMAP_INTRO}}</p>
+  <table class="heatmap-table">
+    <thead>
+      <tr>
+        <th>工作分类</th>
+        <th>全年平均</th>
+        {{HEATMAP_HEADERS}}
+      </tr>
+    </thead>
+    <tbody>
+      {{HEATMAP_ROWS}}
+    </tbody>
+  </table>
+  <div style="display:flex;gap:16px;margin-top:12px;font-size:12px;color:#7f8c8d;">
+    <span><span class="heat-high" style="padding:2px 8px;border-radius:3px;">红色</span> = 高投入（>15%）</span>
+    <span><span class="heat-mid" style="padding:2px 8px;border-radius:3px;">橙色</span> = 中等投入（10-15%）</span>
+    <span><span class="heat-low" style="padding:2px 8px;border-radius:3px;">绿色</span> = 低投入（<10%）</span>
+  </div>
+</div>
+
+<!-- 五、雷达图 -->
+<div class="section">
+  <h2>五、时间分配变化趋势：当前 → 目标</h2>
+  <div class="radar-row">
+    <div class="chart-box"><canvas id="radarChart"></canvas></div>
+    <div style="padding:20px;">
+      <h3 style="margin-bottom:16px;color:#1a5276;">关键调整方向</h3>
+      <div style="font-size:13px;color:#555;line-height:2;">
+        {{RADAR_ADJUSTMENTS}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 六、行动建议 -->
+<div class="section">
+  <h2>六、具体行动建议</h2>
+  <h3 style="color:#e74c3c;">🔴 立即执行（本月内）</h3>
+  {{IMMEDIATE_ACTIONS}}
+  <h3 style="color:#e67e22;">🟠 近期推进（3-6个月）</h3>
+  {{SHORT_TERM_ACTIONS}}
+  <h3 style="color:#2980b9;">🔵 中长期规划（6-18个月）</h3>
+  {{LONG_TERM_ACTIONS}}
+</div>
+
+<!-- 七、效果预期 -->
+<div class="section">
+  <h2>七、时间优化预期效果一览</h2>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>优化项</th>
+        <th>当前状态</th>
+        <th>目标状态</th>
+        <th>关键举措</th>
+        <th>预期见效时间</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{EFFECT_ROWS}}
+    </tbody>
+  </table>
+  <div class="insight-box" style="margin-top:20px;">
+    {{FINAL_CONCLUSION}}
+  </div>
+</div>
+
+<div class="footer">
+  <p>{{ROLE}} · 时间分配规划报告 · {{ANALYSIS_DATE}}</p>
+  <p>数据来源：有道云笔记 | 分析工具：WorkBuddy</p>
+</div>
+
+</div>
+
+<script>
+const cats = {{CATEGORIES_JSON}};
+const currentData = {{CURRENT_DATA_JSON}};
+const targetData = {{TARGET_DATA_JSON}};
+const pieColors = {{COLORS_JSON}};
+
+new Chart(document.getElementById('pieCurrent'), {
+  type: 'doughnut',
+  data: {
+    labels: cats,
+    datasets: [{ data: currentData, backgroundColor: pieColors, borderWidth: 2, borderColor: '#fff' }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 8, usePointStyle: true } },
+      tooltip: { callbacks: { label: ctx => ctx.label + ': ' + ctx.raw + '%' } }
+    }
+  }
+});
+
+new Chart(document.getElementById('pieTarget'), {
+  type: 'doughnut',
+  data: {
+    labels: cats,
+    datasets: [{ data: targetData, backgroundColor: pieColors, borderWidth: 2, borderColor: '#fff' }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 10 }, padding: 8, usePointStyle: true } },
+      tooltip: { callbacks: { label: ctx => ctx.label + ': ' + ctx.raw + '%' } }
+    }
+  }
+});
+
+new Chart(document.getElementById('radarChart'), {
+  type: 'radar',
+  data: {
+    labels: cats,
+    datasets: [
+      {
+        label: '当前',
+        data: currentData,
+        borderColor: '#e74c3c',
+        backgroundColor: 'rgba(231,76,60,0.1)',
+        borderWidth: 2, pointBackgroundColor: '#e74c3c'
+      },
+      {
+        label: '目标',
+        data: targetData,
+        borderColor: '#27ae60',
+        backgroundColor: 'rgba(39,174,96,0.1)',
+        borderWidth: 2, pointBackgroundColor: '#27ae60'
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } },
+    scales: { r: { beginAtZero: true, max: {{RADAR_MAX}}, ticks: { stepSize: 5, font: { size: 9 }, callback: v => v + '%' }, pointLabels: { font: { size: 10 } } } }
+  }
+});
+</script>
+
+</body>
+</html>

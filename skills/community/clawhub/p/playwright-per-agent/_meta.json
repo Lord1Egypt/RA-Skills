@@ -1,6 +1,25 @@
 {
-  "ownerId": "kn7bcaearb90wwcjbr9gpv32s5831k39",
-  "slug": "playwright-per-agent",
+  "name": "playwright-per-agent",
   "version": "1.0.1",
-  "publishedAt": 1780538175623
+  "description": "Per-agent Playwright browser pool: shared/per-agent/ephemeral + subagent inherit. Reads ~/.openclaw/openclaw.json + ~/.cache/agent-browser/.",
+  "author": "openclaw-community",
+  "homepage": "",
+  "keywords": [
+    "playwright",
+    "browser",
+    "agent",
+    "isolation",
+    "profile",
+    "per-agent",
+    "subagent"
+  ],
+  "requires": {
+    "anyBinaries": [
+      "node"
+    ],
+    "os": [
+      "linux",
+      "macos"
+    ]
+  }
 }

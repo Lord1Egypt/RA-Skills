@@ -7,8 +7,9 @@ import json
 import os
 import shutil
 import subprocess
+import sys
 from collections import defaultdict
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 from urllib.parse import quote
 
@@ -16,18 +17,23 @@ from profile_chart import MonthStats, ProfileDeliveryChart
 
 
 DEFAULT_ROOT_GROUP = "xrow-public"
-DEFAULT_PROJECTS = "helm-openclaw ci-tools claw-support"
 DIRECT_OWNER_COMMIT_POINTS = 0.2
 
 
 def glab_json(path: str) -> object:
-    result = subprocess.run(
-        ["glab", "api", path],
-        check=True,
-        text=True,
-        stdout=subprocess.PIPE,
-    )
-    return json.loads(result.stdout)
+    try:
+        result = subprocess.run(
+            ["glab", "api", path],
+            check=True,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=60,
+        )
+        return json.loads(result.stdout)
+    except (subprocess.SubprocessError, json.JSONDecodeError) as exc:
+        # Child output can identify private projects; do not echo it to public logs.
+        raise RuntimeError("GitLab API request failed; profile collection is incomplete") from None
 
 
 def current_user() -> str:
@@ -54,13 +60,14 @@ def username_display_name(username: str) -> str:
     return username
 
 
-def month_keys(months: int) -> list[str]:
-    today = date.today()
-    year = today.year
-    month = today.month
+def month_keys(months: int, today: date | None = None) -> list[str]:
+    """Return completed calendar months only, oldest first."""
+    if months < 1:
+        raise ValueError("months must be a positive integer")
+    today = today or date.today()
     keys: list[str] = []
-    for offset in range(months - 1, -1, -1):
-        absolute = year * 12 + month - 1 - offset
+    for offset in range(months, 0, -1):
+        absolute = today.year * 12 + today.month - 1 - offset
         key_year = absolute // 12
         key_month = absolute % 12 + 1
         keys.append(f"{key_year:04d}-{key_month:02d}")
@@ -73,7 +80,46 @@ def normalize_projects(raw: str, root_group: str) -> list[str]:
         if not item:
             continue
         projects.append(item if "/" in item or not root_group else f"{root_group}/{item}")
-    return projects
+    return list(dict.fromkeys(projects))
+
+
+def resolve_projects(raw: str | None, root_group: str) -> list[dict]:
+    """Discover all accessible group-owned projects, or resolve an explicit override."""
+    root_group = root_group.strip().strip("/")
+    if raw and raw.strip():
+        candidates = [
+            glab_json(f"/projects/{quote(project, safe='')}")
+            for project in normalize_projects(raw, root_group)
+        ]
+    else:
+        if not root_group:
+            raise ValueError("a root group or explicit project list is required")
+        candidates = paginated(
+            f"/groups/{quote(root_group, safe='')}/projects"
+            "?include_subgroups=true&with_shared=false&order_by=id&sort=asc"
+        )
+        if any(
+            not isinstance(project, dict)
+            or not str(project.get("path_with_namespace", "")).startswith(root_group + "/")
+            for project in candidates
+        ):
+            raise ValueError("group discovery returned an unexpected project namespace")
+
+    unique: dict[int, dict] = {}
+    for project in candidates:
+        if (
+            not isinstance(project, dict)
+            or not isinstance(project.get("id"), int)
+            or not isinstance(project.get("path_with_namespace"), str)
+            or project.get("visibility") not in {"public", "private", "internal"}
+        ):
+            raise ValueError("GitLab returned incomplete project metadata")
+        branch = project.get("default_branch")
+        no_repository = project.get("empty_repo") is True or project.get("repository_access_level") == "disabled"
+        if not no_repository and (not isinstance(branch, str) or not branch):
+            raise ValueError("GitLab did not expose the project default branch")
+        unique[project["id"]] = project
+    return sorted(unique.values(), key=lambda project: project["path_with_namespace"])
 
 
 def workspace_path(raw: str, workspace: Path) -> Path:
@@ -111,13 +157,13 @@ def counted_mr_type(labels: list[str], title: str) -> str:
         or "type::docs" in labels
     ):
         return ""
-    if "type::fix" in labels:
-        return "fix"
+    if "type::bug" in labels:
+        return "bug"
     if "type::feature" in labels:
         return "feature"
 
     if lowered.startswith("fix:") or lowered.startswith("fix("):
-        return "fix"
+        return "bug"
     if lowered.startswith("feat:") or lowered.startswith("feat("):
         return "feature"
     return ""
@@ -143,14 +189,16 @@ def paginated(path: str) -> list[dict]:
     while True:
         separator = "&" if "?" in path else "?"
         payload = glab_json(f"{path}{separator}per_page=100&page={page}")
-        if not isinstance(payload, list) or not payload:
+        if not isinstance(payload, list):
+            raise ValueError("GitLab returned an invalid paginated response")
+        if not payload:
             break
         records.extend(payload)
         page += 1
     return records
 
 
-def collect_stats(projects: list[str], owner: str, agent: str, months: list[str]) -> tuple[list[MonthStats], list[dict]]:
+def collect_stats(projects: list[dict], owner: str, agent: str, months: list[str]) -> tuple[list[MonthStats], list[dict]]:
     owner_counts: dict[str, int] = defaultdict(int)
     with_owner_counts: dict[str, int] = defaultdict(int)
     autonomous_counts: dict[str, int] = defaultdict(int)
@@ -158,15 +206,24 @@ def collect_stats(projects: list[str], owner: str, agent: str, months: list[str]
     with_owner_points: dict[str, int] = defaultdict(int)
     autonomous_points: dict[str, int] = defaultdict(int)
     direct_owner_counts: dict[str, int] = defaultdict(int)
-    known_mr_commits: set[str] = set()
     records: list[dict] = []
     month_set = set(months)
     owner_name = username_display_name(owner)
     after = month_start_iso(months[0])
+    last_month = date.fromisoformat(months[-1] + "-01")
+    next_month = (last_month.replace(day=28) + timedelta(days=4)).replace(day=1)
+    until = month_start_iso(next_month.strftime("%Y-%m"))
 
-    for project in projects:
+    for index, metadata in enumerate(projects, start=1):
+        print(f"Collecting project {index}/{len(projects)}", file=sys.stderr, flush=True)
+        project = metadata["path_with_namespace"]
+        visibility = metadata["visibility"]
+        branch = metadata.get("default_branch")
+        if metadata.get("empty_repo") is True:
+            continue
         encoded_project = quote(project, safe="")
-        merge_requests = paginated(
+        known_mr_commits: set[str] = set()
+        merge_requests = [] if metadata.get("merge_requests_enabled") is False else paginated(
             f"/projects/{encoded_project}/merge_requests?state=merged&updated_after={quote(after, safe='')}"
         )
         for mr in merge_requests:
@@ -209,6 +266,7 @@ def collect_stats(projects: list[str], owner: str, agent: str, months: list[str]
                         "date": merged_at,
                         "month": month,
                         "project": project,
+                        "visibility": visibility,
                         "kind": "merge_request",
                         "category": category,
                         "counted_type": counted_type,
@@ -223,8 +281,9 @@ def collect_stats(projects: list[str], owner: str, agent: str, months: list[str]
                     }
                 )
 
-        commits = paginated(
-            f"/projects/{encoded_project}/repository/commits?ref_name=main&since={quote(after, safe='')}"
+        commits = [] if metadata.get("repository_access_level") == "disabled" else paginated(
+            f"/projects/{encoded_project}/repository/commits?ref_name={quote(branch, safe='')}"
+            f"&since={quote(after, safe='')}&until={quote(until, safe='')}"
         )
         for commit in commits:
             sha = commit.get("id")
@@ -245,6 +304,8 @@ def collect_stats(projects: list[str], owner: str, agent: str, months: list[str]
                         "date": committed_at,
                         "month": month,
                         "project": project,
+                        "visibility": visibility,
+                        "default_branch": branch,
                         "kind": "direct_commit",
                         "category": "owner_direct_main",
                         "title": commit.get("title") or "",
@@ -273,10 +334,33 @@ def collect_stats(projects: list[str], owner: str, agent: str, months: list[str]
     return stats, records
 
 
-def write_records(output: Path, records: list[dict], stats: list[MonthStats]) -> None:
+def write_records(output: Path, records: list[dict], stats: list[MonthStats], projects: list[dict]) -> None:
+    # Keep private/internal activity in the score without publishing its identifying details.
+    private_totals: dict[tuple[str, str, str], dict] = {}
+    for record in records:
+        if record["visibility"] == "public":
+            continue
+        key = (record["month"], record["kind"], record["category"])
+        summary = private_totals.setdefault(key, {
+            "month": record["month"], "kind": record["kind"], "category": record["category"],
+            "count": 0, "points": 0.0,
+        })
+        summary["count"] += 1
+        summary["points"] = round(summary["points"] + record["points"], 1)
+    public_projects = sorted(project["path_with_namespace"] for project in projects if project["visibility"] == "public")
     payload = {
         "generated_on": date.today().isoformat(),
-        "records": records,
+        "period": {"first_month": stats[0].month, "last_month": stats[-1].month, "completed_months_only": True},
+        "coverage": {
+            "project_count": len(projects),
+            "public_projects": public_projects,
+            "private_project_count": len(projects) - len(public_projects),
+            "empty_repository_count": sum(project.get("empty_repo") is True for project in projects),
+            "disabled_repository_count": sum(project.get("repository_access_level") == "disabled" for project in projects),
+            "disabled_merge_requests_count": sum(project.get("merge_requests_enabled") is False for project in projects),
+        },
+        "records": [record for record in records if record["visibility"] == "public"],
+        "private_monthly_totals": [private_totals[key] for key in sorted(private_totals, reverse=True)],
         "months": [
             {
                 "month": month.month,
@@ -351,7 +435,6 @@ def main() -> None:
         workspace,
     )
     root_group = os.environ.get("GITLAB_AGENT_PROFILE_ROOT_GROUP", DEFAULT_ROOT_GROUP)
-    projects = normalize_projects(os.environ.get("GITLAB_AGENT_PROFILE_PROJECTS", DEFAULT_PROJECTS), root_group)
     owner = os.environ.get("GITLAB_AGENT_PROFILE_OWNER_USERNAME", "xrow")
     agent = os.environ.get("GITLAB_AGENT_PROFILE_AGENT_USERNAME") or current_user()
     months_raw = os.environ.get("GITLAB_AGENT_PROFILE_MONTHS", "12")
@@ -363,13 +446,14 @@ def main() -> None:
     if months_count < 1:
         raise SystemExit("GITLAB_AGENT_PROFILE_MONTHS must be a positive integer")
 
+    projects = resolve_projects(os.environ.get("GITLAB_AGENT_PROFILE_PROJECTS"), root_group)
     stats, records = collect_stats(projects, owner, agent, month_keys(months_count))
     chart_output.parent.mkdir(parents=True, exist_ok=True)
     chart_output.write_text(
         ProfileDeliveryChart(stats, owner=owner, agent=agent).render(),
         encoding="utf-8",
     )
-    write_records(records_output, records, stats)
+    write_records(records_output, records, stats, projects)
     write_webp(chart_output, webp_output)
 
 

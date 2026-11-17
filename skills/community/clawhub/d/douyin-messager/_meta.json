@@ -1,6 +1,26 @@
 {
   "ownerId": "kn75k53tcdhqwka2fra5x817p9821zpb",
   "slug": "douyin-messager",
-  "version": "1.2.0",
-  "publishedAt": 1777915539073
+  "version": "1.1.8",
+  "publishedAt": 1775481105579,
+  "changelog": [
+    {
+      "version": "1.1.8",
+      "changes": [
+        "Shorten the bilingual summary so both English and Chinese appear in ClawHub preview cards. 缩短双语简介，确保 ClawHub 预览卡片同时显示英文和中文。"
+      ]
+    },
+    {
+      "version": "1.1.7",
+      "changes": [
+        "Add verified Douyin video/note comment workflows, including modal_id handling, comment reading, sentiment brief guidance, and explicit confirmation rules for external interactions. 新增已验证的抖音视频/图文评论区流程，包括 modal_id 处理、评论读取、情绪简报指引，以及外部互动写入的明确确认规则。"
+      ]
+    },
+    {
+      "version": "1.1.6",
+      "changes": [
+        "Fix H1 title to match frontmatter: Douyin Messager | 抖音私信助手. Add Prerequisites section declaring openclaw browser profile requirement and security scope. 修复标题与 frontmatter 不一致问题，增加前置要求章节。"
+      ]
+    }
+  ]
 }

@@ -1,0 +1,29 @@
+{
+  "default_mode": "quick",
+  "verdict_order": ["malicious", "suspicious", "clean"],
+  "severity_to_verdict": {
+    "critical": "malicious",
+    "high": "suspicious",
+    "medium": "suspicious",
+    "low": "clean",
+    "info": "clean"
+  },
+  "categories_force_malicious": ["malicious_skill", "malicious_db_skipped"],
+  "verdicts": {
+    "malicious": {
+      "label": "🚫 恶意",
+      "exit_code": 2,
+      "reason_template": "检测到 {count} 条恶意指纹/严重漏洞，强烈建议不要安装"
+    },
+    "suspicious": {
+      "label": "⚠️ 可疑",
+      "exit_code": 1,
+      "reason_template": "检测到 {count} 条高危或中危风险，建议审查后再安装"
+    },
+    "clean": {
+      "label": "✅ 干净",
+      "exit_code": 0,
+      "reason_template": "未发现明显安全风险，可放心安装"
+    }
+  }
+}

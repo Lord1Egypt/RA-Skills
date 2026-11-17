@@ -1,45 +1,59 @@
-## Description: <br>
-Fetch, transcribe, summarize, and filter YouTube channels or individual videos for analysis and reusable structured outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch, transcribe, summarize, and filter YouTube channels or individual videos. Use when asked to analyze a full YouTube channel, parse a single video, collect transcripts, group or filter videos by date, topic, speakers, or metadata criteria, or produce reusable summaries and structured outputs from YouTube content.
 
-## Publisher: <br>
-[ulyanas](https://clawhub.ai/user/ulyanas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ulyanas](https://clawhub.ai/user/ulyanas)
 
-## Use Case: <br>
-Product managers and researchers use this skill to analyze YouTube channels or individual videos, collect transcripts, filter videos by metadata or content, and produce summaries, notes, reports, and reusable datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports weakened HTTPS checks. <br>
-Mitigation: Prefer fixing certificate or proxy configuration; use certificate-check bypasses only in trusted environments after explicit user acceptance. <br>
-Risk: The security evidence reports optional browser or session cookie use for YouTube access. <br>
-Mitigation: Avoid cookies and browser-derived credentials unless the user intentionally wants account-linked YouTube access for the task. <br>
-Risk: The skill downloads YouTube content, writes multiple local output files, and installs Python packages at runtime. <br>
-Mitigation: Run it only in an environment where those downloads, file writes, and runtime package installs are acceptable. <br>
+## Use Case:
 
+Product managers, researchers, and developers use this skill to inventory YouTube channels or analyze individual videos, retrieve or generate transcripts, filter content by metadata or spoken criteria, and produce reusable summaries, notes, reports, and datasets.
 
-## Reference(s): <br>
-- [Dependencies](references/dependencies.md) <br>
-- [Filtering](references/filtering.md) <br>
-- [Outputs](references/outputs.md) <br>
-- [ClawHub release page](https://clawhub.ai/ulyanas/youtube-channel-parse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, CSV, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, plain-text transcripts, JSON datasets, CSV datasets, and command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local inventory, filtered dataset, transcript, and report files under an output directory named from the requested prefix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Insecure YouTube download settings can weaken transport assurance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review download behavior before use and remove the default certificate-bypass behavior before relying on outputs.
+
+Risk: Weak boundaries around URLs, cookies, output paths, and persistent generated files can expose sensitive video data or local artifacts.
+
+Mitigation: Run the skill in an isolated workspace, avoid browser-cookie options unless explicitly needed, avoid sensitive or proprietary videos, and clean generated artifacts after use.
+
+Risk: Runtime dependencies may change behavior across runs when they are not pinned.
+
+Mitigation: Prefer pinned versions of yt-dlp, youtube-transcript-api, and faster-whisper for repeatable production use.
+
+## Reference(s):
+
+- [Dependencies](references/dependencies.md)
+- [Filtering](references/filtering.md)
+- [Outputs](references/outputs.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, CSV, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports, transcript text files, JSON and CSV datasets, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent artifacts under output/<output_prefix>/, including inventory, filtered dataset, transcript, and report directories.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

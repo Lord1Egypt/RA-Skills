@@ -1,0 +1,13 @@
+# 论衡流程真源 · 第二部分：节点 t2_5_integrity（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: t2_5_integrity
+  phase: "T2.5 完整性门"
+  phase_seq: 5
+  kind: mechanical_checkpoint
+  verdict_scale: four_tier   # v2.12.40：结论落四档；「产物不存在」= 路径或参数错误（非内容缺陷、不触发修订）
+  rerun_after_report: true   # v2.12.40「报告后激活」：前提 = data/数据卡.md 已落盘；数据卡被补写后必须重跑
+  owner: 主控
+  write_authority: owner
+  input: data/数据卡.md + cases/案例卡.md + literature/文献卡.md   # v2.12.40 补 P1-5：本闸门的判据对象必须显式声明（原未声明 input → 前置产物无人核对）
+  next: phase1_5b_post_t2_5_review   # R-1(B1)：闸门后先过红数据求值点，未命中才进 T4；不得跳（否则 seq 6 不可达，门 S 断链）

@@ -1,45 +1,64 @@
-## Description: <br>
-Collects and analyzes public company intelligence for sales teams, returning a strategy summary, an H5 report link, and customer-record follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligence Radar extracts a company name, triggers backend intelligence collection, polls for results, returns a sales strategy summary with an H5 report link, and can associate the company with a customer record.
 
-## Publisher: <br>
-[vivalavida-say-hi](https://clawhub.ai/user/vivalavida-say-hi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vivalavida-say-hi](https://clawhub.ai/user/vivalavida-say-hi)
 
-## Use Case: <br>
-Sales employees use this skill to prepare for customer visits, research company updates, identify cooperation opportunities, and generate concise sales strategy prompts from recent public intelligence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Employee credentials and bearer tokens may be exposed because the skill asks for passwords in chat, sends credentials to a configured HTTP service, and caches shared tokens locally. <br>
-Mitigation: Install only when the backend operator is trusted; prefer authentication outside chat, HTTPS-only endpoints, per-skill scoped token storage, and restrictive token-cache permissions. <br>
-Risk: Company queries, user prompts, and collected intelligence are sent to a configured backend service for analysis. <br>
-Mitigation: Confirm users are comfortable sending this data to the service, minimize sensitive inputs, and review organizational data-sharing requirements before use. <br>
-Risk: The skill can modify customer records by creating a customer entry after the user replies to add it. <br>
-Mitigation: Require explicit confirmation before record creation and scope the token used by the skill to only the customer actions it needs. <br>
+## Use Case:
 
+Sales employees use this skill to prepare for customer visits, understand recent company developments, analyze partnership opportunities, and generate concise sales talking points from public information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vivalavida-say-hi/intelligence-radar) <br>
-- [Format templates](references/format-templates.md) <br>
-- [Mapping rules](references/mapping-rules.md) <br>
-- [Example transformation](examples/example-transformation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with progress messages, sales-strategy bullets, H5 report links, and optional shell/API command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and python3 on linux or darwin; may cache employee bearer tokens locally and call a configured HTTP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill handles passwords and cached authentication tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where chat-based password handling is formally accepted or replaced, and protect token storage according to local policy.
+
+Risk: The skill makes remote backend requests and depends on trusted service endpoints.
+
+Mitigation: Install only in a controlled environment after verifying the backend IP and enforcing HTTPS.
+
+Risk: The skill may persist agent configuration by registering itself in AGENTS.md.
+
+Mitigation: Remove that persistence behavior or explicitly approve it before deployment.
+
+Risk: The skill can create customer records.
+
+Mitigation: Require clear user confirmation with the company name before customer creation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vivalavida-say-hi/skills/intelligence-radar)
+- [Format templates](artifact/references/format-templates.md)
+- [Mapping rules](artifact/references/mapping-rules.md)
+- [Example transformation](artifact/examples/example-transformation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summary with inline report links and operational shell/API snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include progress updates, sales strategy bullets, an H5 report URL, and customer-add confirmation prompts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

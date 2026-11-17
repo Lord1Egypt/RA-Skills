@@ -1,56 +1,72 @@
-## Description: <br>
-Generates personalized Western zodiac horoscope readings for all twelve signs across daily, weekly, and monthly periods, with optional birthday-based personalization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized daily, weekly, or monthly Western zodiac horoscope readings for all twelve signs, including five life dimensions, a lucky guide, and a practical tip.
 
-## Publisher: <br>
-[eamanc-lab](https://clawhub.ai/user/eamanc-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eamanc-lab](https://clawhub.ai/user/eamanc-lab)
 
-## Use Case: <br>
-External users and agent operators use this skill to generate entertainment-focused horoscope readings from a zodiac sign or birthday. It can produce single-sign readings in conversation or batch readings for all twelve signs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save a user's birthday and sun sign locally for personalization. <br>
-Mitigation: Use it only when local profile storage is acceptable, and update or remove saved profile details when the user requests changes. <br>
-Risk: Automated daily delivery can send horoscope content to a configured channel. <br>
-Mitigation: Enable scheduled delivery only after confirming the schedule, destination, and any webhook or delivery skill configuration. <br>
-Risk: Horoscope readings may be mistaken for professional medical, legal, financial, or psychological advice. <br>
-Mitigation: Treat outputs as entertainment and reflection, and rely on qualified professionals for important decisions. <br>
+## Use Case:
 
+External users use this skill to request entertainment-oriented Western zodiac readings by sign or birthday for a selected date or period. Agents can use it to produce single-sign or all-sign horoscope Markdown without relying on external APIs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/eamanc-lab/horoscope-daily) <br>
-- [Project Homepage](https://github.com/eamanc-lab/fortune-telling-skills) <br>
-- [Zodiac Sign Index](references/zodiac-index.md) <br>
-- [Aries Reference](references/signs/aries.md) <br>
-- [Taurus Reference](references/signs/taurus.md) <br>
-- [Gemini Reference](references/signs/gemini.md) <br>
-- [Cancer Reference](references/signs/cancer.md) <br>
-- [Leo Reference](references/signs/leo.md) <br>
-- [Virgo Reference](references/signs/virgo.md) <br>
-- [Libra Reference](references/signs/libra.md) <br>
-- [Scorpio Reference](references/signs/scorpio.md) <br>
-- [Sagittarius Reference](references/signs/sagittarius.md) <br>
-- [Capricorn Reference](references/signs/capricorn.md) <br>
-- [Aquarius Reference](references/signs/aquarius.md) <br>
-- [Pisces Reference](references/signs/pisces.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown horoscope readings, with optional Markdown files for batch daily, weekly, or monthly output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or write local MEMORY.md profile data when the user provides a birthday or sun sign.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can persist a user's full birthday and reuse profile data from a sibling skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for consent before writing memory, prefer storing only a sun sign or month/day, and avoid committing MEMORY.md files.
+
+Risk: Scheduled delivery can send generated readings or profile-derived content to external chat services.
+
+Mitigation: Enable scheduled delivery only after the user confirms the destination and is comfortable with that service receiving the readings.
+
+Risk: Horoscope output may be mistaken for professional advice.
+
+Mitigation: Keep the entertainment and reflection framing visible, and direct users to qualified professionals for important medical, legal, financial, or life decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/eamanc-lab/skills/horoscope-daily)
+- [Publisher Profile](https://clawhub.ai/user/eamanc-lab)
+- [Homepage](https://github.com/eamanc-lab/fortune-telling-skills)
+- [Zodiac Sign Index](references/zodiac-index.md)
+- [Aries](references/signs/aries.md)
+- [Taurus](references/signs/taurus.md)
+- [Gemini](references/signs/gemini.md)
+- [Cancer](references/signs/cancer.md)
+- [Leo](references/signs/leo.md)
+- [Virgo](references/signs/virgo.md)
+- [Libra](references/signs/libra.md)
+- [Scorpio](references/signs/scorpio.md)
+- [Sagittarius](references/signs/sagittarius.md)
+- [Capricorn](references/signs/capricorn.md)
+- [Aquarius](references/signs/aquarius.md)
+- [Pisces](references/signs/pisces.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Files, Guidance]
+
+**Output Format:** [Markdown horoscope readings with structured headings, ratings, lucky-guide lists, and tips]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save batch daily, weekly, or monthly horoscope files when asked for all twelve signs.]
+
+## Skill Version(s):
+
+2.3.0 (source: frontmatter metadata and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Read Aloud"
+  short_description: "Turn text into natural, playable speech"
+  default_prompt: "Use $read-aloud to turn this text into speech and play the resulting audio."

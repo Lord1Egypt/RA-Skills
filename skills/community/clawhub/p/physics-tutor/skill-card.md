@@ -1,44 +1,58 @@
-## Description: <br>
-Guides Chinese high school physics students through core physics topics using Feynman-style questioning, analogies, formula meaning, and checks for understanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language Feynman-method physics tutoring for high-school students across mechanics, energy, waves, electromagnetism, optics, and thermodynamics.
 
-## Publisher: <br>
-[fanxlab](https://clawhub.ai/user/fanxlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanxlab](https://clawhub.ai/user/fanxlab)
 
-## Use Case: <br>
-External learners, tutors, and education-focused agents use this skill to explain Chinese high-school physics concepts and guide problem solving across mechanics, energy, waves, electromagnetism, optics, and thermodynamics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad physics trigger phrases may route some general physics mentions into this tutoring skill. <br>
-Mitigation: Confirm the user's learning or problem-solving intent before applying the tutoring flow. <br>
+## Use Case:
 
+External learners, especially Chinese-speaking Grade 10-12 students, use this skill to understand physics concepts and solve physics problems through guided questions, analogies, formula reasoning, and topic-specific reference notes.
 
-## Reference(s): <br>
-- [Mechanics](references/mechanics.md) <br>
-- [Energy and Work](references/energy.md) <br>
-- [Vibration and Waves](references/waves.md) <br>
-- [Electromagnetism](references/e-m.md) <br>
-- [Optics](references/optics.md) <br>
-- [Thermodynamics](references/thermodynamics.md) <br>
-- [ClawHub release page](https://clawhub.ai/fanxlab/physics-tutor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tutoring responses with formulas, worked reasoning prompts, and understanding checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language tutoring style; no code execution, credential access, persistence, or data collection behavior indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Risk: The skill may engage broadly on physics-related terms and answer in Chinese by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for Chinese-language high-school physics tutoring, and direct the agent explicitly when another language or narrower scope is required.
+
+Risk: Tutoring guidance can be misunderstood as a complete answer rather than a learning scaffold.
+
+Mitigation: Have the agent check the student's reasoning, units, and assumptions before relying on a final solution.
+
+## Reference(s):
+
+- [Feynman Mechanics](references/mechanics.md)
+- [Feynman Energy and Work](references/energy.md)
+- [Feynman Vibrations and Waves](references/waves.md)
+- [Feynman Electromagnetism](references/e-m.md)
+- [Feynman Optics](references/optics.md)
+- [Feynman Thermodynamics](references/thermodynamics.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text tutoring responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Usually responds in Chinese unless the agent is otherwise directed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

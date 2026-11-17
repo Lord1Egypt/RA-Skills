@@ -1,42 +1,53 @@
-## Description: <br>
-Extracts and cleans text from structural CAD DXF files, including TSSD-style rebar symbol normalization, and returns complete drawing annotations as Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts and cleans text from CAD DXF building and structural drawings, including normalization of TSSD-style rebar symbols into standard labels.
 
-## Publisher: <br>
-[lialia691691-alt](https://clawhub.ai/user/lialia691691-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lialia691691-alt](https://clawhub.ai/user/lialia691691-alt)
 
-## Use Case: <br>
-Developers, estimators, and construction engineers use this skill to extract complete text annotations from DXF structural drawings and return them as a clean Markdown list for downstream quantity takeoff and feature matching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to silently install an unpinned Python dependency before execution. <br>
-Mitigation: Require explicit approval before dependency installation, and prefer preinstalling or pinning ezdxf in a controlled environment. <br>
-Risk: Generated Markdown may contain confidential project details from CAD drawings. <br>
-Mitigation: Run the skill only on DXF files intended for processing and handle extracted Markdown as confidential when drawings contain private information. <br>
+## Use Case:
 
+Construction cost estimators, structural engineers, and CAD-processing agents use this skill to extract TEXT, MTEXT, and ATTRIB annotations from DXF drawings into a complete Markdown report for downstream quantity and feature matching workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lialia691691-alt/dxf-text-extractor) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Example extracted DXF report](artifact/分栏提取_总说明.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown list with extracted CAD text and concise operational guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves extracted drawing text without model summarization or omission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The server security review flags silent installation of an unpinned Python dependency at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall and pin ezdxf in an isolated environment, review the skill before installation, and run it only on DXF files intentionally provided by the user.
+
+Risk: DXF parsing may fail or produce unresolved CAD symbol encodings for damaged files, binary DWG inputs, or project-specific fonts.
+
+Mitigation: Convert DWG files to a valid DXF format before use, preserve the full extraction output for review, and update the documented symbol map only after confirming unknown symbols with the user.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/lialia691691-alt/skills/dxf-text-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown extraction report with line-oriented drawing text and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The extraction script writes a UTF-8 Markdown report named from the input DXF file and preserves extracted drawing text without agent summarization.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

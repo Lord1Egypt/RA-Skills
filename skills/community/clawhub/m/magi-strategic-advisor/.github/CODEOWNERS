@@ -1,0 +1,6 @@
+# CODEOWNERS
+# Automatic reviewer assignment for the MAGI Strategic Advisor repository.
+# The default owner covers all paths; add directory-specific entries as the
+# maintainer team grows.
+
+* @JohnSmithfan

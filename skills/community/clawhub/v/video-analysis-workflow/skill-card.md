@@ -1,45 +1,62 @@
-## Description: <br>
-Video Analysis Workflow helps agents analyze local or online videos, extract storyboards, visuals, narration, structure, script templates, and transcripts, and organize the results into an Obsidian-ready case library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Analysis Workflow 视频案例分析助手 helps agents turn local videos or Douyin/Bilibili links into structured video case libraries with storyboard, transcript, case-analysis, and reusable script-template reports.
 
-## Publisher: <br>
-[siconvip](https://clawhub.ai/user/siconvip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[siconvip](https://clawhub.ai/user/siconvip)
 
-## Use Case: <br>
-External creative teams, video planners, game operations staff, marketers, and AI-assisted creators use this skill to turn reference videos or supported platform links into reusable video case studies, storyboard notes, transcripts, and script templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video analysis can persist extracted frames, transcripts, subtitles, and reports that may contain sensitive content. <br>
-Mitigation: Use a dedicated non-sensitive output folder and process confidential videos only when that storage location is appropriate. <br>
-Risk: Online video downloads may require browser-cookie access or platform-specific download tools. <br>
-Mitigation: Ask for explicit authorization before accessing browser cookies and process only videos the user is authorized to download. <br>
-Risk: The reviewed package references a setup script that is not included in the artifact. <br>
-Mitigation: Review any setup script before running it and verify dependencies such as FFmpeg, Whisper, and yt-dlp from trusted sources. <br>
+## Use Case:
 
+External creators, video planners, marketers, game-operations teams, and AI-assisted creative teams use this skill to analyze reference videos, extract visual rhythm and narration structure, and save reusable case-library assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/siconvip/video-analysis-workflow) <br>
-- [Publisher profile](https://clawhub.ai/user/siconvip) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with transcript sidecar files, frame image references, shell command snippets, configuration guidance, and optional HTML report guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces four default case-library reports: case analysis, storyboard frames, transcript, and script template; may also preserve Whisper output files and extracted frame images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow can download online media and write a structured local video case library.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with videos the user is authorized to access, follow platform and copyright rules, and choose an approved local output folder.
+
+Risk: Setup guidance references unaudited installation paths, unpinned dependencies, and PowerShell ExecutionPolicy Bypass.
+
+Mitigation: Review or obtain setup scripts from a trusted source, avoid ExecutionPolicy Bypass where possible, pin or review dependencies, and install in an isolated environment.
+
+Risk: Some platform downloads may request browser-cookie access.
+
+Mitigation: Ask for explicit user authorization before reading cookies and restrict cookie use to videos the user is authorized to download.
+
+Risk: Generated transcripts, frames, and reports may contain sensitive or copyrighted source-video content.
+
+Mitigation: Review generated artifacts before sharing, keep Whisper raw outputs for audit, and store case folders according to the user's content-handling rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/siconvip/skills/video-analysis-workflow)
+- [Publisher profile](https://clawhub.ai/user/siconvip)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, transcript files, frame images, optional HTML reports, and setup or download commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a per-video case folder containing case analysis, storyboard frames, transcript, script template, Whisper outputs, reusable prompts, and optional HTML.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

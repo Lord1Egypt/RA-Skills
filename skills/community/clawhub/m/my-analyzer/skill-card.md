@@ -1,40 +1,62 @@
-## Description: <br>
-基于 Chroma、Ollama 与 MCP 的本地 RAG 检索技能，用于 OpenClaw 查询私有知识库与 PDF 文档。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于 Chroma、Ollama 与 MCP 的本地 RAG 检索技能，用于 OpenClaw 查询私有知识库与 PDF 文档。
 
-## Publisher: <br>
-[xjw163](https://clawhub.ai/user/xjw163) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xjw163](https://clawhub.ai/user/xjw163)
 
-## Use Case: <br>
-OpenClaw users, developers, and internal teams use this skill to query local PDFs, project documents, meeting notes, technical materials, and private knowledge bases through a Chroma-backed RAG workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled artifact is markdown-only and describes a separate rag_mcp_server.py implementation that is not included. <br>
-Mitigation: Review the MCP server implementation and configured Chroma database paths before enabling the skill. <br>
-Risk: Answers can be incomplete or stale when documents have not been embedded, the vector database is outdated, or retrieval confidence is low. <br>
-Mitigation: Rebuild the vector database after adding documents, preserve source metadata in answers, and clearly state when evidence is insufficient. <br>
+## Use Case:
 
+OpenClaw users, local RAG developers, and teams with private knowledge bases use this skill to query local PDFs, project documents, meeting notes, technical materials, and Chroma-backed document collections through an MCP tool.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xjw163/my-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON retrieval results with text snippets and source metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns local document snippets, source names, and page metadata when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 0.1.0) <br>
+Risk: The skill is intended to query a private local Chroma knowledge base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for agents that should access that knowledge base, and limit indexed documents to material the agent is allowed to retrieve.
+
+Risk: Installation uses unpinned Python dependencies.
+
+Mitigation: Use a virtual environment or container, pin dependency versions, and review package versions before deployment.
+
+Risk: The skill depends on a referenced local MCP server script.
+
+Mitigation: Inspect rag_mcp_server.py before connecting it to private documents.
+
+Risk: The embedding model source affects retrieval behavior and trust.
+
+Mitigation: Verify the Ollama model source where possible before using it with private data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xjw163/skills/my-analyzer)
+- [Publisher profile](https://clawhub.ai/user/xjw163)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and JSON retrieval-result examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The MCP tool returns retrieved document snippets with source metadata and optional page metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

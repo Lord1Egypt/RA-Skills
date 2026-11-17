@@ -1,50 +1,72 @@
-## Description: <br>
-Automates WeChat Official Account workflows for topic selection, content collection, article drafting, image planning, layout formatting, draft publishing, analytics, and comment management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wemp Ops helps an agent run WeChat Official Account operations across topic selection, material collection, article writing, layout formatting, draft publishing, analytics, and comment management.
 
-## Publisher: <br>
-[lovensky1992-wk](https://clawhub.ai/user/lovensky1992-wk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovensky1992-wk](https://clawhub.ai/user/lovensky1992-wk)
 
-## Use Case: <br>
-Content operators and agents use this skill to run WeChat Official Account workflows from topic planning and research through article drafting, formatting, draft upload, performance reporting, and comment handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled WeChat credentials may grant access to a real public account. <br>
-Mitigation: Replace or remove bundled credentials before installation and verify which account the skill will control. <br>
-Risk: Publishing, draft deletion, comment replies, mass messaging, and follower administration can affect public-facing account operations. <br>
-Mitigation: Require explicit user approval before upload, publication, deletion, reply, cross-platform posting, mass messaging, or follower-administration actions. <br>
-Risk: Drafts, analytics, and style-learning data may contain sensitive account or audience information. <br>
-Mitigation: Review retention needs, limit access to collected data, and remove stored drafts or analytics that are not required. <br>
+## Use Case:
 
+Content operators and agent users use this skill to produce WeChat Official Account articles, create cover and inline visual plans, convert Markdown into WeChat-compatible HTML, push drafts, review analytics, and manage reader comments. It is intended for external-facing content operations where account credentials and publishing permissions must be controlled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lovensky1992-wk/wemp-ops) <br>
-- [Article Templates](references/article-templates.md) <br>
-- [Cover Image Guide](references/cover-image-guide.md) <br>
-- [Illustration Prompts](references/illustration-prompts.md) <br>
-- [Infographic Layouts](references/infographic-layouts.md) <br>
-- [Style Guide](references/style-guide.md) <br>
-- [Weixin Constraints](references/weixin-constraints.md) <br>
-- [Writing SOP](references/writing-sop.md) <br>
-- [Writing Techniques](references/writing-techniques.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown drafts, WeChat-compatible HTML, shell command sequences, JSON reports, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create draft article files, image prompts, image assets, HTML output, analytics summaries, and comment-reply drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The evidence reports bundled real-looking WeChat credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove bundled credentials before installation, rotate any exposed WeChat secret, and require users to provide account credentials through a controlled secret store or local configuration.
+
+Risk: The evidence reports high-impact account mutation and posting capabilities.
+
+Mitigation: Restrict use to explicit WeChat operations, require human confirmation before publishing, messaging followers, changing account settings, deleting content, or modifying comments, and scope API credentials to the minimum required permissions.
+
+Risk: The evidence calls out unsafe defaults for automatic deletion, retention, and writeback.
+
+Mitigation: Disable automatic cleanup, deletion, retention, and feedback writeback by default, and make each state-changing action opt-in with visible target identifiers.
+
+Risk: The evidence calls out a Markdown upload code-injection bug.
+
+Mitigation: Fix the Markdown upload path before use, sanitize file paths and generated scripts, and avoid executing generated upload code from untrusted Markdown or image paths.
+
+Risk: The evidence says logged-in browser sessions may be used for product screenshots and platform publishing.
+
+Mitigation: Use isolated browser profiles, avoid private pages unless necessary, redact sensitive account or customer data from screenshots, and confirm browser-based publishing actions with the account owner.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lovensky1992-wk/skills/wemp-ops)
+- [README](README.md)
+- [Article structure templates](references/article-templates.md)
+- [Cover image design guide](references/cover-image-guide.md)
+- [Illustration prompt guide](references/illustration-prompts.md)
+- [WeChat platform constraints](references/weixin-constraints.md)
+- [Writing SOP](references/writing-sop.md)
+- [Writing techniques and review method](references/writing-techniques.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown articles, WeChat-compatible HTML, JSON script results, shell commands, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce draft files, image plans, image prompts, local HTML, analytics reports, and proposed or executed WeChat draft, publishing, and comment actions when configured.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

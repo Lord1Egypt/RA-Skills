@@ -1,0 +1,22 @@
+{
+  "name": "cmcc-newmsg",
+  "version": "1.0.0-universal",
+  "type": "ai-skill-cli",
+  "entrypoints": {
+    "instructions": "AI_INSTRUCTIONS.md",
+    "skill": "SKILL.md",
+    "cli": "scripts/cmcc_newmsg.py",
+    "runner": "scripts/run.sh",
+    "installer": "install.sh"
+  },
+  "runtime": {
+    "language": "python",
+    "python": ">=3.10",
+    "requirements": "requirements.txt"
+  },
+  "credentials": {
+    "environment": ["CMCC_NEWMSG_API_KEY"],
+    "example_file": ".env.example"
+  },
+  "compatibility": ["generic-cli", "generic-ai-agent", "hermes"]
+}

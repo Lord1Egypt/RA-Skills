@@ -1,40 +1,57 @@
-## Description: <br>
-Local-first recurring schedule engine for reminders, repeated tasks, and time-based execution plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first recurring schedule engine for reminders, repeated tasks, and time-based execution plans.
 
-## Publisher: <br>
-[morrison230](https://clawhub.ai/user/morrison230) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[morrison230](https://clawhub.ai/user/morrison230)
 
-## Use Case: <br>
-External users and agents use this skill to capture recurring local reminders, repeated tasks, and time-based execution plans, then inspect, pause, resume, and list those schedules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Schedule titles or notes may contain sensitive personal or operational details because job records are stored locally on disk. <br>
-Mitigation: Avoid putting secrets or sensitive details in job titles or notes, and review local schedule records when handling sensitive workflows. <br>
-Risk: An agent may create, pause, or resume schedules when a user only casually mentions timing. <br>
-Mitigation: Confirm user intent before allowing the agent to create, pause, or resume schedules. <br>
+## Use Case:
 
+Developers and agent users use this skill to capture recurring reminders, repeated tasks, and time-based execution plans as local schedules that can be added, inspected, paused, resumed, and listed.
 
-## Reference(s): <br>
-- [Cron Philosophy](references/philosophy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text and JSON-backed local schedule records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local JSON files under ~/.openclaw/workspace/memory/cron; no external sync or third-party cron service is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill.json) <br>
+Risk: Reminder titles, notes, and tags are stored locally under the user's home directory and may contain sensitive personal or work details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid placing highly sensitive details in job notes unless the local account and home directory permissions are protected.
+
+Risk: New or modified recurring jobs could create unwanted reminders or time-based execution plans if accepted without review.
+
+Mitigation: Confirm schedule details before allowing the agent to create or modify jobs, and use pause or resume controls to manage active schedules.
+
+Risk: The add-job script defaults to the Asia/Tokyo timezone when no timezone is supplied.
+
+Mitigation: Override the timezone when Asia/Tokyo is not the intended schedule timezone.
+
+## Reference(s):
+
+- [Cron Philosophy](references/philosophy.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and text or JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local JSON schedule state under ~/.openclaw/workspace/memory/cron.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

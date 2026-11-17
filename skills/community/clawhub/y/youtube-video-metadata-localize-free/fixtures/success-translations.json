@@ -1,0 +1,26 @@
+{
+  "chinese_audience": "偏好家常菜步骤的中国大陆家庭烹饪观众",
+  "audience_adaptation": "面向家庭烹饪观众使用常见做法词，保留热水面团与两面金黄，不添加火候、时长或保证成功。",
+  "title": {
+    "original": "Crispy Scallion Pancakes at Home",
+    "chinese": "在家做酥脆葱油饼",
+    "source_url": "https://www.youtube.com/watch?v=offline-demo",
+    "source_field": "title"
+  },
+  "points": [
+    {
+      "index": 0,
+      "original": "Make layered pancakes with hot-water dough.",
+      "chinese": "用热水面团做出有层次的葱油饼。",
+      "source_url": "https://www.youtube.com/watch?v=offline-demo",
+      "source_field": "description_points[0]"
+    },
+    {
+      "index": 1,
+      "original": "Pan-fry until both sides are golden brown.",
+      "chinese": "用平底锅煎至两面金黄。",
+      "source_url": "https://www.youtube.com/watch?v=offline-demo",
+      "source_field": "description_points[1]"
+    }
+  ]
+}

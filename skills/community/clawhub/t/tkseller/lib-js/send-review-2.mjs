@@ -25,7 +25,7 @@ export async function send(data) {
   const shortId = ct.reserveShortId(videoId, 'review_2');
   const media = ct.mediaUrl(videoUrl);
 
-  const text = `🛒 **成品审核 #${shortId}**\n请审核视频是否可以发布。`;
+  const text = `🛒 **成品审核 #${shortId}**\n\n请审核视频是否可以发布。`;
 
   const buttons = [
     { label: `✅ 通过 #${shortId}`, style: 'success' },

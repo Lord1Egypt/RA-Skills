@@ -1,45 +1,55 @@
-## Description: <br>
-Local Whisper speech-to-text for audio and video files, with transcript cleanup, article-style rewriting, and structured summary guidance while running offline after dependencies and models are available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs local Whisper transcription for audio and video files and helps produce cleaned transcript, article-style rewrite, and structured summary outputs.
 
-## Publisher: <br>
-[zhangjinjin-gitgit](https://clawhub.ai/user/zhangjinjin-gitgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangjinjin-gitgit](https://clawhub.ai/user/zhangjinjin-gitgit)
 
-## Use Case: <br>
-Developers, creators, and knowledge workers use this skill to transcribe local audio or video files with Whisper and produce cleaned transcripts plus human-readable rewritten and summary drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The transcription script writes output files and may overwrite an existing transcript path. <br>
-Mitigation: Use deliberate output paths and review destination files before running the skill on important media. <br>
-Risk: Audio or video transcripts can contain sensitive personal or business information. <br>
-Mitigation: Keep generated transcript, rewrite, summary, Markdown, and HTML files in approved local storage and handle them according to the data sensitivity of the source media. <br>
-Risk: Whisper model loading can download model files when the requested model is not already cached. <br>
-Mitigation: For strict offline use, download and verify the intended Whisper model in advance and run with an explicit model cache directory. <br>
-Risk: The rewrite and summary behavior is mostly instruction-driven rather than fully implemented in the bundled scripts. <br>
-Mitigation: Review generated cleanup, rewrite, and summary outputs before relying on them, especially where completeness or fidelity to the source matters. <br>
+## Use Case:
 
+Developers and content workers use this skill to transcribe local audio or video with Whisper, then produce cleaned Chinese text, rewritten prose, and structured summary files without using an external speech-recognition API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangjinjin-gitgit/whisper-transcribe-summarize) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangjinjin-gitgit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Local text files, Markdown summary files, optional HTML summary output, and concise completion status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local media paths, a Whisper model selection, optional language/task/device settings, and optional output and download directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The release describes offline use, but model weights and Python dependencies may need to be installed or downloaded before offline operation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall and pin openai-whisper in a virtual environment and download the intended Whisper model before handling sensitive media.
+
+Risk: The workflow may rewrite or summarize transcript content unless the user asks for raw transcription.
+
+Mitigation: Request raw transcription or review generated rewrite and summary files against the transcript before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangjinjin-gitgit/skills/whisper-transcribe-summarize)
+- [README](artifact/README.md)
+- [Skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses plus generated .txt, .md, and .html files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate transcript, rewritten article, and summary files alongside source media; dependency and model setup may be needed before offline use.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,61 @@
-## Description: <br>
-Verify AI agent identity and reputation via ERC-8004 on-chain registries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify AI agent identity and reputation via ERC-8004 on-chain registries.
 
-## Publisher: <br>
-[SumeetChougule](https://clawhub.ai/user/SumeetChougule) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sumeetchougule](https://clawhub.ai/user/sumeetchougule)
 
-## Use Case: <br>
-Developers and agent operators use this skill to check whether an AI agent has an ERC-8004 identity and to review on-chain reputation signals before deciding whether to trust it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Optional registration can spend real funds on gas, and the security review flags the current mainnet warning behavior as unsafe. <br>
-Mitigation: Use read-only lookup mode with no wallet key configured when possible; before registering, use a dedicated low-balance wallet and explicitly choose a testnet unless mainnet registration is intended. <br>
-Risk: Configuring a private key enables the skill's on-chain registration path. <br>
-Mitigation: Avoid storing a private key for normal verification and reputation checks, and limit any registration key to a dedicated wallet. <br>
+## Use Case:
 
+External users and developers use this skill to check whether an AI agent has an ERC-8004 identity and to review on-chain reputation signals before trusting that agent. Users can also check their own wallet identity or optionally register an agent, which requires a wallet private key and an on-chain transaction.
 
-## Reference(s): <br>
-- [ChaosChain Homepage](https://chaoscha.in) <br>
-- [ChaosChain Documentation](https://docs.chaoscha.in) <br>
-- [ERC-8004 Specification](https://eips.ethereum.org/EIPS/eip-8004) <br>
-- [8004scan.io Agent Explorer](https://8004scan.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands, configuration] <br>
-**Output Format:** [Plain text or Markdown-style command responses with setup commands and JSON configuration examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only lookups require no wallet key; optional registration can submit an on-chain transaction when a private key is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The optional registration command can sign and broadcast an on-chain transaction when a private key is configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only commands without setting a private key unless registration is required, and prefer a dedicated low-balance wallet.
+
+Risk: Mainnet registration can spend real gas and create a permanent on-chain action.
+
+Mitigation: Prefer Sepolia or another testnet for registration and avoid mainnet registration until the warning and confirmation behavior has been reviewed.
+
+Risk: The setup flow installs Python dependencies in an environment that may also contain wallet secrets.
+
+Mitigation: Review or pin dependencies before running setup, and keep wallet secrets out of general-purpose development environments.
+
+## Reference(s):
+
+- [ChaosChain](https://chaoscha.in)
+- [ChaosChain Documentation](https://docs.chaoscha.in)
+- [ERC-8004 Specification](https://eips.ethereum.org/EIPS/eip-8004)
+- [8004scan Agent Explorer](https://8004scan.io)
+- [ClawHub Skill Page](https://clawhub.ai/sumeetchougule/skills/chaoschain)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-style command responses with wallet addresses, registration status, trust scores, reputation dimensions, and explorer links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only commands depend on Python dependencies and RPC connectivity; identity checks and registration can use wallet environment variables.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

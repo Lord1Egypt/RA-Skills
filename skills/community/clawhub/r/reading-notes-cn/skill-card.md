@@ -1,40 +1,52 @@
-## Description: <br>
-Organizes reading notes from books, articles, and papers into structured summaries, connected insights, and knowledge maps using frameworks such as Zettelkasten and Cornell notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when organizing reading notes from books, articles, or papers into structured summaries and knowledge maps.
 
-## Publisher: <br>
-[goldath](https://clawhub.ai/user/goldath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldath](https://clawhub.ai/user/goldath)
 
-## Use Case: <br>
-Readers, researchers, students, and knowledge workers use this skill to turn scattered reading highlights and notes into reusable summaries, action items, atomic notes, and connected knowledge maps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private annotations, unpublished research, or personal reading notes could be exposed if users store them in cloud or collaboration tools with broad sharing or retention settings. <br>
-Mitigation: Review access controls and retention settings before using suggested cloud or collaboration tools for sensitive notes. <br>
+## Use Case:
 
+Readers, researchers, students, and knowledge workers use this skill to turn notes from books, articles, and papers into structured Markdown summaries, Zettelkasten-style atomic notes, and knowledge graph connections.
 
-## Reference(s): <br>
-- [Book Note Examples](references/book-note-examples.md) <br>
-- [Knowledge Graph Building Guide](references/knowledge-graph-guide.md) <br>
-- [Note-Taking Frameworks Reference](references/note-taking-frameworks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown templates and structured prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only workflow guidance; security evidence reports no code execution, credential access, data transmission, or hidden behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled templates and reference material are heavily Chinese/bilingual and may not match every team's note-taking language or terminology.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Adapt generated headings, examples, and tags to the user's preferred language before adopting the workflow as a shared standard.
+
+## Reference(s):
+
+- [Note-Taking Frameworks Reference](references/note-taking-frameworks.md)
+- [Book Note Examples](references/book-note-examples.md)
+- [Knowledge Graph Building Guide](references/knowledge-graph-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/goldath/skills/reading-notes-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown templates, structured note outlines, knowledge graph relationship guidance, and review routines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credentials, network access, or hidden high-impact behavior identified in server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

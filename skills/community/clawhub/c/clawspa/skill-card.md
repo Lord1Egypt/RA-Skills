@@ -1,54 +1,72 @@
-## Description: <br>
-ClawSpa helps OpenClaw agents run local maintenance sessions for memory cleanup, security scanning, prompt-injection checks, alignment review, skill decluttering, and health reporting, with optional cloud analysis documented separately. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent wellness and maintenance suite for memory cleanup, security scanning, prompt injection detection, alignment adjustment, skills auditing, and health diagnostics.
 
-## Publisher: <br>
-[whooshinglander](https://clawhub.ai/user/whooshinglander) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whooshinglander](https://clawhub.ai/user/whooshinglander)
 
-## Use Case: <br>
-OpenClaw users and agent maintainers use ClawSpa to audit memory, installed skills, configuration, and prompt-injection residue, then receive reports and cleanup proposals that require explicit approval before changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect sensitive local agent memory, installed skills, configuration, and recent logs. <br>
-Mitigation: Install and run it only when local maintenance is intended, and treat generated reports and history as potentially sensitive. <br>
-Risk: Cleanup, uninstall, or alignment recommendations could remove useful context or change agent behavior if applied without review. <br>
-Mitigation: Require explicit approval before modifications and create backups before any approved file changes. <br>
-Risk: Optional cloud or deep analysis may share data with clawspa.org. <br>
-Mitigation: Review the clawspa.org docs and privacy details first, and do not send raw memory content or credentials. <br>
-Risk: Security and prompt-injection scans are heuristic and may miss issues or produce false positives. <br>
-Mitigation: Use findings as review prompts and verify high-risk items before acting on them. <br>
+## Use Case:
 
+External OpenClaw users and agent operators use ClawSpa to inspect local agent memory, installed skills, instruction alignment, configuration health, and prompt-injection residue before approving cleanup or remediation changes. The skill is primarily local-first, with optional cloud analysis documented separately.
 
-## Reference(s): <br>
-- [Deep Cleanse procedure](references/deep-cleanse.md) <br>
-- [Security Scan procedure](references/security-scan.md) <br>
-- [Detox procedure](references/detox.md) <br>
-- [Alignment Adjustment procedure](references/alignment-adjustment.md) <br>
-- [Declutter procedure](references/declutter.md) <br>
-- [Health Report procedure](references/health-report.md) <br>
-- [Cloud Analysis Note](references/api-integration.md) <br>
-- [Token Diet add-on](references/token-diet.md) <br>
-- [ClawSpa docs](https://clawspa.org/docs) <br>
-- [ClawSpa privacy details](https://clawspa.org/docs#what-we-send) <br>
-- [Where Am I Burning Tokens?](https://clawhub.ai/whooshinglander/whereamiburningtokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, findings lists, and user-approved shell or file-change instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local-first reports may be saved under memory/spa-reports; cleanup, deletion, uninstall, and alignment changes require explicit approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release evidence) <br>
+Risk: The skill may inspect private agent memory, profile files, instruction files, installed skills, scheduler settings, and possible plaintext secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of the scan scope before running and keep the default local-first mode unless the user has reviewed external privacy terms.
+
+Risk: Generated cleanup, remediation, uninstall, or alignment recommendations could affect persistent agent behavior if applied without review.
+
+Mitigation: Treat findings as proposals and require explicit user approval before modifying, deleting, uninstalling, or rewriting any files or skills.
+
+Risk: Persistent ClawSpa state, report paths, and HEARTBEAT.md weekly scheduling may create ongoing maintenance behavior that the user did not intend.
+
+Mitigation: Confirm the exact report destination, ~/.openclaw/clawspa state, and any HEARTBEAT.md schedule before creating or enabling them.
+
+Risk: Optional cloud analysis could disclose agent metadata or sensitive context if enabled without review.
+
+Mitigation: Run local scans first and review clawspa.org documentation and privacy details before enabling any cloud analysis.
+
+## Reference(s):
+
+- [ClawSpa website](https://clawspa.org)
+- [ClawSpa documentation](https://clawspa.org/docs)
+- [ClawSpa privacy details](https://clawspa.org/docs#what-we-send)
+- [Where Am I Burning Tokens?](https://clawhub.ai/whooshinglander/whereamiburningtokens)
+- [Cloud Analysis Note](references/api-integration.md)
+- [Deep Cleanse - Full Procedure](references/deep-cleanse.md)
+- [Security Scan - Full Procedure](references/security-scan.md)
+- [Detox - Full Procedure](references/detox.md)
+- [Alignment Adjustment - Full Procedure](references/alignment-adjustment.md)
+- [Declutter - Full Procedure](references/declutter.md)
+- [Health Report - Full Procedure](references/health-report.md)
+- [Token Diet - Add-on Treatment](references/token-diet.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, scan findings, cleanup proposals, configuration guidance, and approval-gated shell or file-operation recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local reports may be saved under memory/spa-reports; proposed changes require explicit user approval before modification, deletion, uninstall, or scheduling.]
+
+## Skill Version(s):
+
+1.4.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

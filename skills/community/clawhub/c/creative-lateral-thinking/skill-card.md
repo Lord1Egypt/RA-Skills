@@ -1,44 +1,58 @@
-## Description: <br>
-Creative Lateral Thinking helps agents break linear reasoning with an eight-direction ideation framework combining Six Thinking Hats, four-way collision analysis, and cross-domain analogies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A creative lateral-thinking framework for breaking linear reasoning with six thinking hats, four-direction collision, and cross-domain analogy.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Developers, product teams, and other agent users can use this skill to generate unconventional ideas, evaluate problems from multiple thinking modes, and surface cross-domain analogies for brainstorming and innovation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate speculative or unconventional recommendations that may be unsuitable without domain review. <br>
-Mitigation: Treat outputs as brainstorming candidates and require human validation before applying ideas to product, operational, safety, or policy decisions. <br>
-Risk: Installation and use depend on trusting a third-party publisher. <br>
-Mitigation: Install only after reviewing the publisher, release evidence, and skill artifacts for the intended workspace. <br>
+## Use Case:
 
+External users and developers use this skill to structure brainstorming, evaluate a problem from multiple perspectives, and generate cross-domain analogies for creative direction setting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingofzhao/creative-lateral-thinking) <br>
-- [Project homepage](https://github.com/KingOfZhao/AGI_PROJECT) <br>
-- [Group-Evolving Agents](https://arxiv.org/abs/2602.04837) <br>
-- [SAGE: Multi-Agent Self-Evolution](https://arxiv.org/abs/2603.15255) <br>
-- [Self-evolving Embodied AI](https://arxiv.org/abs/2602.04411) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with optional Python usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces brainstorming directions, analogies, critique prompts, and candidate idea sets for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Brainstorming outputs may be speculative or unsuitable for a specific domain without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated ideas and analogies with relevant subject-matter experts before using them for decisions or deployments.
+
+Risk: The artifact includes a heartbeat note about checking for new inputs and organizing domain memory.
+
+Mitigation: Review the heartbeat note before use in environments with strict rules around persistent memory; the security evidence found no mechanism for persistence or background tasks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kingofzhao/skills/creative-lateral-thinking)
+- [Publisher Profile](https://clawhub.ai/user/kingofzhao)
+- [Project Homepage](https://github.com/KingOfZhao/AGI_PROJECT)
+- [Group-Evolving Agents](https://arxiv.org/abs/2602.04837)
+- [SAGE: Multi-Agent Self-Evolution](https://arxiv.org/abs/2603.15255)
+- [Self-evolving Embodied AI](https://arxiv.org/abs/2602.04411)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text brainstorming guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces creative ideas, cross-domain analogies, and candidate directions; no executable payload is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, SKILL.md frontmatter, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

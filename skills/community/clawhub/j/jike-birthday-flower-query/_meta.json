@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-birthday-flower-query",
   "version": "1.0.0",
-  "publishedAt": 1777433535992
+  "title": "生日花语 - 即刻数据",
+  "description": "生日花语。输入 MM-DD 生日，查询生日花、花语、诞生石及说明。",
+  "env": "JIKE_BIRTHDAY_FLOWER_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/birthday/flower",
+  "homepage": "https://www.jikeapi.cn/"
 }

@@ -1,45 +1,62 @@
-## Description: <br>
-Self-Improvement (LLM Memory) gives agents a local memory and reflection workflow for logging experience, extracting lessons, tracking preferences, proposing behavior updates, and checking whether changes helped. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous memory and self-learning system for AI agents that logs experience, extracts reusable lessons, manages persistent memory, proposes behavior changes, and verifies whether improvements worked.
 
-## Publisher: <br>
-[brucetangc](https://clawhub.ai/user/brucetangc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucetangc](https://clawhub.ai/user/brucetangc)
 
-## Use Case: <br>
-Developers and agent operators use this skill when they want an agent to maintain local long-term memory, capture feedback, summarize sessions, extract recurring patterns, and propose or apply updates to local guidance files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill keeps long-term local memory, including logs and preferences, which can retain sensitive or outdated information. <br>
-Mitigation: Review the memory directory before enabling the skill, periodically inspect or delete stored logs and preferences, and use it only when persistent local memory is intended. <br>
-Risk: Automatic learning cycles and promotions can change local guidance files and influence future agent behavior with too little user control. <br>
-Mitigation: Avoid or disable automatic cycles where possible, review proposed promotions before relying on them, and verify changes before deployment. <br>
-Risk: Backup ZIP import can restore untrusted memory data into the local workspace. <br>
-Mitigation: Import only trusted backups, prefer non-overwrite imports, and inspect restored memory files before running learning or promotion commands. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent self-improvement workflows to an AI agent, including learning logs, memory distillation, preference tracking, skill draft generation, and later verification of behavior changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/brucetangc/self-improvement-llm) <br>
-- [Reflection Frameworks](references/reflection_frameworks.md) <br>
-- [pskoett/self-improving-agent](https://clawhub.ai/pskoett/self-improving-agent) <br>
-- [Hermes Agent](https://github.com/NousResearch/hermes-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local file-change proposals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local memory logs, indexes, generated skill drafts, and guidance files when its scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.3 (source: server release evidence) <br>
+Risk: Conversation-derived text can persist into future agent memory and instruction files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent agent memory is intended, and review generated changes before allowing them to influence future behavior.
+
+Risk: Automatic promotion, dream distillation, and startup hooks can change local workspace behavior without direct prompting.
+
+Mitigation: Disable or manually gate automatic promotion, dream distillation, and the startup hook unless those behaviors are explicitly desired.
+
+Risk: ZIP import and skill approval helpers can introduce untrusted local files.
+
+Mitigation: Use backup import and skill approval helpers only with trusted archives or reviewed drafts, and keep backups before migration or restore operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucetangc/skills/self-improvement-llm)
+- [CLI Reference & Detailed Structures](references/cli_ref.md)
+- [Reflection Frameworks](references/reflection_frameworks.md)
+- [pskoett/self-improving-agent](https://clawhub.ai/pskoett/self-improving-agent)
+- [Hermes Agent](https://github.com/NousResearch/hermes-agent)
+- [Reflexion](https://arxiv.org/abs/2303.11366)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON memory records, and generated skill or configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local memory, preference, hook-context, and skill draft files when its workflows are run.]
+
+## Skill Version(s):
+
+2.3.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

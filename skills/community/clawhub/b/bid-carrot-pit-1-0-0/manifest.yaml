@@ -1,0 +1,17 @@
+name: 招采萝卜坑识别专家 · 招标文件量身定制扫描
+slug: bid-carrot-pit
+emoji: "🔍"
+version: 1.1.1
+author: 一线评标专家
+license: MIT-0
+description: 投标人侧「招标文件萝卜坑（排他性/歧视性/量身定制）专项识别」独立技能：扫描整份招标文件全文，用多维信号标尺提取疑似为特定供应商量体裁衣的条款，输出风险等级+法条方向+质疑/投诉弹药。与投标模拟评标解耦、可单独触发；含输入预检、分章节定位、无脚本降级、法条核验声明、禁编造/禁断言废标护栏。
+changelog:
+  - version: 1.1.1
+    date: 2026-07-17
+    change: 正式命名「招采萝卜坑识别专家」；完成 IMA 知识库挂载（关联 6 个招采类库）；§9 升级为双层知识库架构 + §9.1 已关联库表与检索纪律。
+  - version: 1.1.0
+    date: 2026-07-17
+    change: 吸收千问诊断 5 条建议：防漏扫盲区回溯（split_sections.py 新增 flags 机械标记）、第9类资金隐性门槛、质疑弹药三重防幻觉锁（模糊化+两法硬隔离+时效核验）、绕坑破局策略（合法突围）、组合分析拼图效应。demo 同步。
+  - version: 1.0.0
+    date: 2026-07-17
+    change: 首版：独立技能「萝卜坑识别器」。SKILL.md（角色+边界+六步工作流+信号标尺速览+内联输出骨架+护栏+部署建议与触发词+疑难Few-Shot）；references/carrot-pit-signals.md（8类信号标尺+组合推理+4 Few-Shot）；references/legal-anchors.md（对齐模式C并扩展的法条方向表+两法分轨）；templates/carrot-pit-report.md（报告骨架+>15项折叠）；scripts/split_sections.py（分章节可选加速器）；demo+test_cases+README。与投标模拟评标解耦。

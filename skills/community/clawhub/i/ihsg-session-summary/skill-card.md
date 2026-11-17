@@ -1,46 +1,65 @@
-## Description: <br>
-Generates Indonesian-language IHSG morning and closing session summaries with index data, top net buy/sell stocks, foreign flow, YTD flow, and market insights using Yahoo Finance, Infovesta, and Tavily. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Indonesian-language morning and closing IHSG market summaries with top net buy/sell, foreign flow, year-to-date flow, and narrative insights using Yahoo Finance, Infovesta, and Tavily-sourced data.
 
-## Publisher: <br>
-[raufimusaddiq](https://clawhub.ai/user/raufimusaddiq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[raufimusaddiq](https://clawhub.ai/user/raufimusaddiq)
 
-## Use Case: <br>
-External users, analysts, and agent operators use this skill to run scheduled Indonesian stock-market session summaries after the IHSG morning and closing sessions. It helps assemble market data, foreign flow signals, and concise Bahasa Indonesia commentary for recurring reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Financial figures and generated market insights may be incomplete, stale, or unsuitable as the sole basis for trading decisions. <br>
-Mitigation: Verify important IHSG, flow, and stock-level figures against trusted market sources before acting on them. <br>
-Risk: The skill requires a Tavily API key and can consume paid or rate-limited web-search quota during scheduled runs. <br>
-Mitigation: Use a limited Tavily key where possible and monitor API usage, especially when enabling cron-based execution. <br>
-Risk: The release runs a local Python script with third-party dependencies and outbound requests to public market and news sources. <br>
-Mitigation: Install dependencies in a controlled environment and review local execution permissions before deployment. <br>
+## Use Case:
 
+External users and market analysts use this skill to produce scheduled Bahasa Indonesia summaries for IHSG morning and closing sessions. The skill gathers index, stock-flow, foreign-flow, and price-change data, then formats a session report with actionable market commentary.
 
-## Reference(s): <br>
-- [IHSG Session Summary on ClawHub](https://clawhub.ai/raufimusaddiq/ihsg-session-summary) <br>
-- [Yahoo Finance IDX Composite Chart Endpoint](https://query1.finance.yahoo.com/v8/finance/chart/%5EJKSE) <br>
-- [Tavily API Key Dashboard](https://app.tavily.com) <br>
-- [Infovesta Top Buy Data](https://www.infovesta.com/index/data_info/saham/topbuy) <br>
-- [Infovesta Top Sell Data](https://www.infovesta.com/index/data_info/saham/topsell) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text market report with ASCII tables; optional JSON from the extractor CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended to be in Bahasa Indonesia and may include generated search queries when market data is incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: server release metadata and SKILL.md metadata) <br>
+Risk: Tavily API keys can be exposed if supplied on the command line or stored in shared job definitions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set TAVILY_API_KEY through the runtime environment and avoid passing secrets with --tavily-api-key in scheduled jobs.
+
+Risk: The skill performs scheduled external web searches and financial-data requests to Yahoo Finance, Tavily, and Infovesta.
+
+Mitigation: Run it in a dedicated environment, monitor network egress and Tavily usage, and confirm the schedule is appropriate before production use.
+
+Risk: Dependency ranges are not pinned, so future package updates may change behavior.
+
+Mitigation: Use pinned dependencies or a lockfile before production deployment.
+
+Risk: Generated market summaries may reflect incomplete, stale, or unavailable source data.
+
+Mitigation: Review generated reports before relying on them for market decisions, especially when the script flags missing top-flow, price-change, foreign-flow, or YTD data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raufimusaddiq/skills/ihsg-session-summary)
+- [Yahoo Finance IHSG chart endpoint](https://query1.finance.yahoo.com/v8/finance/chart/%5EJKSE)
+- [Tavily API](https://app.tavily.com)
+- [Infovesta top buy data](https://www.infovesta.com/index/data_info/saham/topbuy)
+- [Infovesta top sell data](https://www.infovesta.com/index/data_info/saham/topsell)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text reports with ASCII tables, or JSON from the extractor script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are written in Bahasa Indonesia and differ by morning or closing session.]
+
+## Skill Version(s):
+
+4.0.1 (source: skill metadata and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

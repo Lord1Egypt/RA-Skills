@@ -2,6 +2,21 @@
 
 这份设计稿定义 Hui-Yi 如何从 **真实会话** 自动累积 `session_signals`，让 repetition-first 不只是静态字段，而是有稳定的数据来源。
 
+原生自动识别与回答前召回参见 [native-memory.md](native-memory.md)。下文描述保留的可选旧 hook 协议，不是当前原生自动采集入口。
+
+## 1.2.13 实现约束与阅读方式
+
+本文保留早期方案的取舍记录；下文“建议 / Phase / 推荐下一步”不表示尚需自动执行的工作，也不是当前 CLI 合约。当前实现以 `SKILL.md`、`README.md` 和源码为准：
+
+- 仅在当前对话、近期/系统记忆及相关工具记录不足、明确需要低频归档知识时选择 Hui-Yi；泛泛的“之前 / 你记得吗”不自动选择 skill。
+- 可选 TS hook 必须已由用户安装/启用，并收到可信宿主 Hui-Yi selection，或映射后的 `context.body` 开头的严格 `/hui-yi <查询>` / `/hui_yi <查询>` 文本命令。命令不区分大小写，ASCII 空格/tab 后查询不能为空；前导空白、引用/嵌入/其他前缀、空命令及 `bodyForAgent` 独有命令不触发。没有普通正文 heuristic fallback；批量扫描 transcript 未实现，也未被此设计授权。
+- OpenClaw 2026.9.5 原生 mapper 不发 selection metadata；显式命令仅在未包装的映射正文到达 hook 时适用。正文被渠道包装或命令被原生快速路径提前消费时用 CLI/adapter；隔离 mapper 事件验证不等于真实渠道端到端验证。
+- TS handler 独立 inline 执行；Python `core/signal_detect.py`、`core/signal_apply.py`、`core/signal_pipeline.py` 组成显式 CLI 管线。runtime probe 在进程内调用 Python adapter，`--stdin` 可承载输入正文。
+- 自动 hook 仅写 weak activation；强信号来自明确反馈/调用，不因“回忆”措辞自动变 strong。日内按 session 指纹、note、日期和 source 去重；history 每 note 至多 20 项。连续会话窗口目前为 14 天，不保证扫描过所有会话。
+- metadata 只保存 session 指纹；普通/debug hook 日志都不保留正文、原始身份/metadata、note 标题/路径或匹配词。Python detector/pipeline 默认也省略 query/context 与匹配词；显式 `--include-sensitive` 才输出这些敏感诊断字段，仍不输出 raw session key。adapter/probe 没有敏感输出开关。
+- archive 是 workspace 共享的；session 指纹不构成授权。文件辅助函数拒绝链接、junction/reparse point、硬链接、特殊文件并复查身份。Python 暂存写入时先复制现有 Windows DACL、再写数据及原子替换；TS 的 POSIX/Windows 新文件使用暂存原子替换，Windows 已有文件通过核验描述符原位写入以保留 DACL，失败时尽力回滚但不保证崩溃原子性。工作区必须由可信 OS 用户控制，这不是对抗同账户并发目录置换的内核沙箱。
+- loading skill 不授权 cooling 或后台采集；selector 不注册任务/发送消息；保留 repetition-first 与 Ebbinghaus pacing。
+
 ---
 
 ## 1. 目标
@@ -11,7 +26,7 @@
 - `repetition_signal()` 可计算
 - `review.py` / `scheduler.py` 已能消费 repetition 信号
 
-但还缺一层：
+早期设计要补齐的一层（现已有显式 CLI 和 opt-in hook 实现）：
 
 > **如何把真实对话中的重复出现，自动写进 cold memory note 的 session_signals。**
 
@@ -44,8 +59,7 @@
   `manifest.yaml`、`HOOK.md` 都声明了采集内容。
 - **最小化（minimization）**：写回 note / tags.json 的只有激活计数和日期；
   `session_key` 只以截断 sha256 指纹落盘，原始 user/chat/thread 标识和消息正文
-  一律不持久化。默认 hook 日志同样不含正文预览和原始标识，详细诊断需要
-  `HUI_YI_HOOK_DEBUG=1` 显式开启。
+  不写入 signal metadata。普通与 `HUI_YI_HOOK_DEBUG=1` 日志均不含正文、原始标识、事件 metadata、note 标题/路径或匹配词；debug 只增加生命周期/计数。
 - **留存（retention）**：`signal_history` 每条 note 上限 20 条；hook.log 在 256KB
   自动轮转；用户可随时删除 `hooks/hui-yi-signal-hook/hook.log`，或运行
   `scripts/scrub_metadata.py` 清洗 legacy metadata。
@@ -76,12 +90,12 @@
 
 ---
 
-## 4. 建议新增脚本
+## 4. Signal 模块分工
 
-建议增加：
+当前模块位置：
 
 ```text
-scripts/
+core/
 ├── signal_detect.py
 ├── signal_apply.py
 └── signal_pipeline.py
@@ -144,10 +158,10 @@ scripts/
 
 要想区分“同一会话重复”和“跨会话重复”，必须引入统一 session 标识。
 
-建议字段：
+运行时字段（不原样持久化）：
 
 ```text
-session_key = <channel>:<chat_id>:<thread_id-or-main>:<date-bucket?>
+session_key = <channel>:<scope-type>:<scope-id>:<thread:id-or-main>
 ```
 
 实际最小可行值：
@@ -163,7 +177,7 @@ session_key = <channel>:<chat_id>:<thread_id-or-main>:<date-bucket?>
 
 ## 6. Activation Event 结构
 
-建议统一事件结构：
+早期概念事件示例，仅用于解释内部输入，不是落盘格式或当前默认输出。例子里的 raw session/query 不得复制到 signal metadata 或 hook.log：
 
 ```json
 {
@@ -174,7 +188,7 @@ session_key = <channel>:<chat_id>:<thread_id-or-main>:<date-bucket?>
   "match_score": 0.76,
   "match_reasons": ["title", "tags", "semantic_context"],
   "event_strength": "medium",
-  "dedup_key": "feishu:user:ou_xxx:main|hui-yi-memory-boundary|2026-04-12"
+  "dedup_key": "sha256:example-only|hui-yi-memory-boundary|2026-04-12|signal_pipeline"
 }
 ```
 
@@ -232,9 +246,7 @@ session_key = <channel>:<chat_id>:<thread_id-or-main>:<date-bucket?>
 ### 8.1 单会话去重
 不要把同一轮里连续 5 次提到同一个词，当成 5 次高价值强化。
 
-建议：
-- 每个 note 在同一 session 中，按事件窗口去重
-- 比如 15 分钟窗口内最多 +1 次强激活，或 +2 次弱激活
+当前实现按 `session 指纹 | note | 日期 | source` 去重；15 分钟滑动窗口未实现。history 保留最近 20 项，不是无限期历史集合。
 
 ### 8.2 跨会话更值钱
 建议权重：
@@ -242,18 +254,8 @@ session_key = <channel>:<chat_id>:<thread_id-or-main>:<date-bucket?>
 - 不同 session 再次出现：高权重
 - 连续多个 session 都出现：更高权重
 
-### 8.3 用户显式回忆请求更值钱
-如果用户说：
-- “之前怎么处理来着”
-- “你记得吗”
-- “上次我们说过那个”
-
-这种 activation event 应该比普通关键词碰撞更强。
-
-建议 event_strength：
-- `weak`: 只有 tags/title 弱命中
-- `medium`: 多字段命中或明确相关 query
-- `strong`: 用户显式追问历史 / 复盘 / 延续旧决策
+### 8.3 强度应来自实际结果
+历史措辞不自动授权激活，也不自动提升强度。可信宿主 selection 或严格显式文本命令后的 hook 命中只写 `weak`；成功 recall 后真实 `feedback useful=yes` 可以写强激活。显式 CLI 的强度参数由调用者在授权任务中选择，不根据一句“你记得吗”推断成功强化。
 
 ### 8.4 助手主动 resurfacing 不自动算成功强化
 如果是系统自己把 note 捞出来，不应直接加很强 repetition。
@@ -298,7 +300,7 @@ session_key = <channel>:<chat_id>:<thread_id-or-main>:<date-bucket?>
 缺点：
 - 需要上层 skill 框架配合
 
-### 方案 C. Heartbeat / transcript 批处理
+### 方案 C. Heartbeat / transcript 批处理（未实现的历史提案）
 流程：
 1. 定期扫描最近对话摘要或 session transcript
 2. 对命中的 note 批量累计 signals
@@ -310,7 +312,7 @@ session_key = <channel>:<chat_id>:<thread_id-or-main>:<date-bucket?>
 - 容易重、容易脏、容易误记
 - 我不建议作为第一版主路线
 
-### 推荐顺序
+### 原始推荐顺序（历史记录）
 1. 先做 A
 2. 再做 B
 3. 最后再考虑 C
@@ -399,9 +401,9 @@ session_key = <channel>:<chat_id>:<thread_id-or-main>:<date-bucket?>
 
 ---
 
-## 14. 推荐下一步
+## 14. 原始实施步骤（历史记录，已由现有模块覆盖）
 
-如果继续落代码，最值得先做的是：
+早期列出的实施顺序是：
 
 1. 给 `review.py` 增加 `session_key` 输入
 2. 新增 `signal_apply.py`

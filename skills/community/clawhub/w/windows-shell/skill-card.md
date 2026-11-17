@@ -1,39 +1,60 @@
-## Description: <br>
-Windows Shell helps AI coding assistants handle GBK/UTF-8 encoding, PowerShell/pwsh interoperability, Python, Node.js, Git configuration, and code generation on Windows 10/11 with MSYS2/Git Bash. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Windows Shell gives agents practical command-line guidance for Windows 10/11 environments, including shell selection, Git Bash defaults, GBK/UTF-8 encoding, BOM handling, MSYS2 path rewriting, PowerShell and WSL routing, Python/Node.js execution, Git configuration, and code-generation practices.
 
-## Publisher: <br>
-[chenmo0414](https://clawhub.ai/user/chenmo0414) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenmo0414](https://clawhub.ai/user/chenmo0414)
 
-## Use Case: <br>
-Developers and coding agents use this skill to produce Windows shell commands and generated code that avoid GBK/UTF-8 mojibake across PowerShell, Python, Node.js, and Git workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional setup can persistently change user-level environment variables, shell startup files, and global Git configuration. <br>
-Mitigation: Review the exact setup commands before running them and record previous values so the changes can be undone if needed. <br>
+## Use Case:
 
+Developers and coding agents use this skill when running command-line tasks on Windows with MSYS2/Git Bash, PowerShell, or WSL. It helps choose the right shell and avoid common silent failures caused by encoding defaults, path conversion, environment persistence, and cross-shell behavior.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/Chenmo0414/win-encoding-fix) <br>
-- [ClawHub skill page](https://clawhub.ai/chenmo0414/windows-shell) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Windows-focused guidance for encoding-safe shell and code-generation behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The security review flags an unpinned external setup command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect a pinned version of the referenced setup repository before running the one-click setup command, or apply the documented configuration steps manually.
+
+Risk: The skill recommends persistent user-level environment, shell profile, and global Git configuration changes.
+
+Mitigation: Review each persistent change before applying it and limit changes to the specific Windows account or project workflow that needs them.
+
+## Reference(s):
+
+- [windows-shell Skill Page](https://clawhub.ai/chenmo0414/skills/windows-shell)
+- [Publisher Profile](https://clawhub.ai/user/chenmo0414)
+- [Project Homepage](https://github.com/Chenmo0414/win-encoding-fix)
+- [encoding.md](references/encoding.md)
+- [gitbash-pitfalls.md](references/gitbash-pitfalls.md)
+- [msys2.md](references/msys2.md)
+- [shell-routing.md](references/shell-routing.md)
+- [wsl.md](references/wsl.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell, PowerShell, Python, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance is organized as a quick routing table with optional reference files for deeper Windows shell, encoding, MSYS2, Git Bash, and WSL details.]
+
+## Skill Version(s):
+
+5.3.0 (source: server release evidence, SKILL.md frontmatter, CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

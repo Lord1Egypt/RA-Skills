@@ -1,0 +1,4 @@
+{
+  "name": "registry-dashboard-53592",
+  "heartbeat_route": "/v1/heartbeat"
+}

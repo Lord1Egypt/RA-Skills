@@ -1,40 +1,49 @@
-## Description: <br>
-Cron System Manager helps an agent check cron task status, adjust task configuration, detect duplicate responsibilities, and optimize scheduled task assignments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cron System Manager guides agents in checking cron task status, updating task configuration, detecting duplicate responsibilities, and optimizing scheduled task assignments.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-Developers and operators use this skill to review and manage an agent workspace's scheduled tasks, including cron status checks, task responsibility boundaries, Feishu notification rules, retries, and issue-record cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad authority to change task behavior, timeouts, prompts, ownership, and issue records. <br>
-Mitigation: Require user confirmation before changing schedules, timeouts, prompts, task ownership, or deleting issue records. <br>
-Risk: Automatic retries and cleanup can hide operational failures or remove context needed for later review. <br>
-Mitigation: Keep persistent logs or history files for retries, repairs, and issue cleanup so operators can audit what changed. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to manage personal cron workflows, including status checks, task role separation, notification rules, retries, and incident cleanup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianheihei002/cron-system-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with operational checklists and command or configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference workspace paths, cron task IDs, notification rules, and issue records from the user's environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release.version and SKILL.md frontmatter) <br>
+Risk: The skill directs the agent to run checks on every message and make automatic workspace or task-configuration changes without clear user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a controlled personal workspace, narrow activation to explicit cron-management requests, and require approval before file writes, task prompt changes, retries, timeout changes, notifications, or deletion of incident records.
+
+## Reference(s):
+
+- [Cron System Manager on ClawHub](https://clawhub.ai/tianheihei002/skills/cron-system-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with task matrices, checklists, and inline path and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose workspace file edits, cron prompt changes, retries, timeout changes, notifications, and incident record cleanup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

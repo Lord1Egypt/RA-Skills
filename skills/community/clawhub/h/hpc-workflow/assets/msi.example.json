@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "name": "example-msi",
+  "adapter": "direct-ssh",
+  "transport": {
+    "exec_argv": [
+      "ssh",
+      "-o",
+      "BatchMode=yes",
+      "<holder-alias>",
+      "<held-exec-command>"
+    ]
+  },
+  "verified": {
+    "scheduler": "slurm",
+    "local_disk": null,
+    "persistent_archive": null,
+    "compute_ssh": null,
+    "project_qos": [],
+    "partition_qos": {},
+    "default_qos_allowed": null
+  },
+  "storage": {
+    "local_template": "/scratch.local/$USER/hpc-$SLURM_JOB_ID",
+    "local_prefix": "/scratch.local/$USER/",
+    "archive": "/project/<project>/<user>/workspace.tar.zst",
+    "results": "/project/<project>/<user>/results"
+  },
+  "allocation": {
+    "account": "<account>",
+    "cpus": 2,
+    "memory": "8G",
+    "walltime": "00:04:00",
+    "default_gpu": "v100",
+    "local_scratch": "100G",
+    "gpus": {
+      "v100": {
+        "gres": "v100",
+        "partition": "v100",
+        "qos": "",
+        "max_count": 1
+      }
+    }
+  }
+}

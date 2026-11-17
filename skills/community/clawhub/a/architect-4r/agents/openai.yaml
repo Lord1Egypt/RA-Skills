@@ -1,0 +1,6 @@
+interface:
+  display_name: 4R System Modeling Framework
+  short_description: "Map architecture and key scenarios with 4R."
+  default_prompt: $architect-4r
+policy:
+  allow_implicit_invocation: false

@@ -1,37 +1,57 @@
-## Description: <br>
-Cross-platform rolling ad-spend cap that blocks overspend across multiple ad platforms combined, not just per-platform daily limits. Fails closed on unreadable spend data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-platform rolling ad-spend cap that blocks overspend across multiple ad platforms combined, not just per-platform daily limits.
 
-## Publisher: <br>
-[roberthill0475-lang](https://clawhub.ai/user/roberthill0475-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roberthill0475-lang](https://clawhub.ai/user/roberthill0475-lang)
 
-## Use Case: <br>
-Developers and operators use this skill to gate agent-driven ad spend across multiple advertising platforms against one rolling budget cap before spend actions execute. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/roberthill0475-lang/skills/ad-budget-governor) <br>
+Developers and operators use this skill to add a shared rolling spend gate before ad purchases across multiple platforms. It is intended to help prevent combined campaign spend from exceeding a configured cap when agents operate on more than one ad platform.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [Python module with Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3. Configure LEDGER_PATHS narrowly to intended ad-spend ledger files and restrict set_cap access to trusted operators or workflows.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Budget enforcement can allow overspend if live purchases proceed without an atomic reservation or transaction mechanism.
+
+Mitigation: Use an atomic reservation, lock, or transaction before allowing platform purchases, and record spend consistently before releasing the reservation.
+
+Risk: Malformed or unexpectedly missing ledger data can make true ad spend unverifiable.
+
+Mitigation: Fail closed on malformed, unreadable, or unexpectedly missing ledgers, and require operator repair before permitting new spend.
+
+Risk: Invalid monetary inputs can produce incorrect cap or spend decisions.
+
+Mitigation: Validate all cap and spend amounts as finite, non-negative USD values before calling the budget check or updating the cap.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roberthill0475-lang/skills/ad-budget-governor)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration, Guidance]
+
+**Output Format:** [Python module with Markdown usage instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; reads JSON spend ledgers and returns budget status or spend approval decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

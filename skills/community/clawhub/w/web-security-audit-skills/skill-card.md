@@ -1,41 +1,57 @@
-## Description: <br>
-Web Security Audit Skills scans PHP, Java, Python, and Go web application code with regex-based rules and generates Security.md reports with findings, remediation guidance, and PoC examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A multi-language static web application security audit skill that scans PHP, Java, Python, and Go codebases with 60+ regex-based vulnerability rules.
 
-## Publisher: <br>
-[moxin1044](https://clawhub.ai/user/moxin1044) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moxin1044](https://clawhub.ai/user/moxin1044)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to scan authorized web application codebases for common vulnerability patterns and produce a structured Security.md audit report with findings and remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Security.md reports can include runnable exploit scripts for vulnerabilities such as RCE, SSRF, file-read, and webshell upload. <br>
-Mitigation: Use the skill only on code and systems you are authorized to assess, review generated reports before sharing or committing them, and do not run generated PoCs against live targets without explicit permission and containment. <br>
-Risk: Regex-based static analysis may report false positives or miss vulnerabilities that require deeper data-flow analysis. <br>
-Mitigation: Treat findings as triage input, verify results manually, and pair the report with established secure code review or testing practices. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to run a local static scan against authorized web application codebases and generate Security.md findings with remediation guidance and PoC material.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moxin1044/web-security-audit-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/moxin1044) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown Security.md report with optional JSON summary and inline Python PoC code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes Security.md to the selected output path and may write a JSON summary when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated reports can include ready-to-run exploit scripts that could be used against systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep generated reports private and run PoCs only on systems the user owns or is explicitly authorized to test.
+
+Risk: Some generated payloads may probe metadata services, out-of-band callbacks, sensitive file reads, or webshell upload behavior.
+
+Mitigation: Review, remove, or gate those payloads before deployment or distribution.
+
+Risk: The security verdict is suspicious because the skill combines legitimate static scanning with executable exploit material.
+
+Mitigation: Install only when this behavior is deliberate and review the skill before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moxin1044/skills/web-security-audit-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown Security.md report with optional JSON summary and Python PoC code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reports from local source scans; PoC material should be handled as sensitive and used only with authorization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

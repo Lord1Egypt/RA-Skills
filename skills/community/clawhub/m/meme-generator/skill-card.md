@@ -1,38 +1,59 @@
-## Description: <br>
-Meme Generator helps agents draft meme text, captions, and template-based ideas for meme creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates meme captions, common meme template suggestions, and short reaction text for topic-based meme creation.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users and agents use this skill to generate meme captions, browse common meme formats, and produce lightweight text prompts for reaction or viral meme ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Helper commands can save entries and command history on disk by default. <br>
-Mitigation: Avoid entering secrets or sensitive personal information, set MEME_GENERATOR_DIR to a controlled location, or delete the local data files when retention is not desired. <br>
+## Use Case:
 
+External users and creators use this skill to draft meme captions, select familiar meme formats, and produce short reaction or template text for social posts and messaging.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/meme-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local helper-command entries and command history under the configured meme-generator data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: User-provided command text can be retained in local log files by one bundled script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid passing secrets, private project names, or sensitive search terms; use a disposable or reviewable MEME_GENERATOR_DIR and clear local logs when needed.
+
+Risk: The advertised meme purpose does not fully match all bundled utility behavior.
+
+Mitigation: Review available commands before use and limit execution to the expected local meme text and template workflows.
+
+Risk: Script output includes unavoidable publisher branding.
+
+Mitigation: Review generated text before publishing or sharing it in contexts where branding is not appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/meme-generator)
+- [BytesAgain homepage](https://bytesagain.com)
+- [BytesAgain feedback](https://bytesagain.com/feedback)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys are required; MEME_GENERATOR_DIR can be set to change the local data directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

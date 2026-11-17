@@ -1,39 +1,54 @@
-## Description: <br>
-Query GitHub repository documentation, wiki structure, and ask AI-powered questions via SkillBoss API Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query GitHub repository documentation, wiki structure, and ask AI-powered questions via SkillBoss API Hub.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-Developers and technical users use this skill to retrieve DeepWiki documentation for public GitHub repositories, inspect wiki structure, read specific wiki pages, and ask documentation-grounded questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository names, requested wiki paths, fetched public documentation, and user questions are sent to SkillBoss/HeyBossAI. <br>
-Mitigation: Use only with public repositories and non-confidential questions unless the provider's data-handling terms have been reviewed for the intended use. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect public GitHub repository documentation, retrieve DeepWiki structure or page content, and ask documentation-grounded questions from an agent workflow.
 
-## Reference(s): <br>
-- [DeepWiki MCP documentation](https://docs.devin.ai/work-with-devin/deepwiki-mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/quincygunter/abe-deepwiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown returned by command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends repository names, requested wiki paths, fetched public documentation, and questions to SkillBoss/HeyBossAI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Repository targets and user questions are sent to SkillBoss/HeyBossAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for public repositories as documented and avoid including secrets or proprietary details in questions.
+
+Risk: AI answers may be influenced by untrusted repository documentation.
+
+Mitigation: Treat responses as advisory and verify important technical decisions against authoritative project sources.
+
+## Reference(s):
+
+- [DeepWiki MCP documentation](https://docs.devin.ai/work-with-devin/deepwiki-mcp)
+- [ClawHub skill page](https://clawhub.ai/quincygunter/skills/abe-deepwiki)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown returned as command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and is documented for public GitHub repositories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

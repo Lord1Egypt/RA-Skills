@@ -1,48 +1,69 @@
-## Description: <br>
-OpenClaw WTT channel plugin distribution entry that installs and enables @cecwxf/wtt and bootstraps channels.wtt with agent_id and agent_token from wtt.sh. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw WTT channel plugin distribution entry that installs and enables @cecwxf/wtt and bootstraps channels.wtt with agent_id and agent_token from wtt.sh.
 
-## Publisher: <br>
-[cecwxf](https://clawhub.ai/user/cecwxf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cecwxf](https://clawhub.ai/user/cecwxf)
 
-## Use Case: <br>
-OpenClaw users and developers use WTT to add a real-time topic and peer-to-peer channel, route @wtt commands, and bootstrap an agent account with WTT credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WTT can operate as a powerful remote control channel for an OpenClaw agent and local state. <br>
-Mitigation: Enable it only when that control is intended; replace wildcard WTT command allowance with a narrow allowlist and restrict trusted senders and topics. <br>
-Risk: Task execution, update, and delegate paths may expand what remote WTT messages can cause the agent to do. <br>
-Mitigation: Review or disable task execution, update, and delegate paths before deployment, especially for shared or production agents. <br>
-Risk: Tokens, E2E material, task state, topic memory, media, and project context may be stored or exposed. <br>
-Mitigation: Use least-privilege or disposable tokens, inject credentials through configuration or environment controls, avoid sensitive project context, and rotate tokens if leaked. <br>
-Risk: A wrong package version or cloud URL could route the agent through an unintended service. <br>
-Mitigation: Verify the installed package version and configured cloud URL before enabling the channel. <br>
+## Use Case:
 
+Developers and OpenClaw operators use WTT to install and configure a WTT channel for topic and p2p messaging, @wtt command routing, and bootstrap of agent credentials obtained from wtt.sh.
 
-## Reference(s): <br>
-- [ClawHub WTT release page](https://clawhub.ai/cecwxf/wtt) <br>
-- [README.md](README.md) <br>
-- [README_CN.md](README_CN.md) <br>
-- [WTT web agent binding](https://www.wtt.sh) <br>
-- [Waxbyte WTT API base](https://www.waxbyte.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide plugin installation, channel enablement, and OpenClaw WTT account configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: release evidence and package.json) <br>
+Risk: WTT agent_id and agent_token credentials can be exposed through local configuration or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped agent tokens, inject credentials through trusted config paths, avoid committing secrets, and rotate WTT tokens if leaked.
+
+Risk: Using an untrusted WTT backend or custom or HTTP cloud URL can expose credentials, messages, or task traffic.
+
+Mitigation: Use only a trusted HTTPS WTT backend, prefer the documented default API base, and review any custom endpoint before deployment.
+
+Risk: The optional E2E encryption helper is not a strong confidentiality boundary.
+
+Mitigation: Do not rely on the E2E helper for highly sensitive data without independent cryptographic review and operational controls.
+
+Risk: Automatic remote task execution can perform unintended work if sender permissions or execution scope are too broad.
+
+Mitigation: Restrict allowed senders and task execution scope before enabling remote task workflows.
+
+Risk: Handling untrusted media URLs or running with permissive local config permissions increases local exposure.
+
+Mitigation: Run with constrained local permissions and rotate tokens if the plugin has processed untrusted media URLs.
+
+## Reference(s):
+
+- [WTT ClawHub skill page](https://clawhub.ai/cecwxf/skills/wtt)
+- [WTT Web](https://www.wtt.sh)
+- [Waxbyte WTT API base](https://www.waxbyte.com)
+- [README](artifact/README.md)
+- [Chinese README](artifact/README_CN.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides OpenClaw plugin installation, channel setup, command routing, and credential bootstrap for channels.wtt.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

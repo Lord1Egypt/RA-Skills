@@ -1,43 +1,58 @@
-## Description: <br>
-SaySigned enables AI agents to register, create, send, sign, decline, and verify e-signature agreements through a remote MCP server or REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enable AI agents to register, create, send, sign, and verify legally binding e-signature agreements through SaySigned APIs, email delivery, and MCP workflows.
 
-## Publisher: <br>
-[klsv](https://clawhub.ai/user/klsv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[klsv](https://clawhub.ai/user/klsv)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect agents to SaySigned so they can prepare agreements, route them to API or email recipients, collect signatures or declines, and verify completion and audit evidence. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: ClawScan flags this release as suspicious because it gives an agent legally binding signing authority and handles powerful bearer tokens. <br>
-Mitigation: Set an explicit rule that the agent must ask a human before creating, sending, declining, or signing any agreement. <br>
-Risk: API keys and recipient access tokens can authorize signing workflows and expose sensitive agreement access. <br>
-Mitigation: Treat API keys and recipient access tokens as legal-signing credentials; do not log them, paste them into prompts, reuse them, or store them longer than needed. <br>
-Risk: Contract contents and recipient data are sent to a third-party signing service. <br>
-Mitigation: Install and use the skill only where the user trusts SaySigned with the agreement content, recipient data, and signing workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/klsv/saysigned) <br>
-- [SaySigned documentation](https://www.saysigned.com/docs) <br>
-- [SaySigned homepage](https://www.saysigned.com) <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect agents to SaySigned agreement workflows for registration, envelope creation, delivery, signing, decline, void, billing, usage, audit, and verification tasks. It is intended for contract workflows where human approval and careful secret handling are required before legally consequential actions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, code, API calls] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets, shell commands, and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes MCP setup instructions, REST examples, tool schemas, signing workflow notes, and security handling guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agent-driven agreement actions can create legally consequential signatures, declines, voids, sends, or billing events.
+
+Mitigation: Require explicit human approval before every send, sign, decline, void, or billing action, and prefer email delivery when a human signer should review the agreement directly.
+
+Risk: API keys and recipient access tokens can authorize sensitive account or signing actions if exposed.
+
+Mitigation: Never place tokens in URLs, logs, prompts, or saved memory; store API keys only in approved configuration after confirmation and treat the embedded example API key as exposed.
+
+Risk: MCP client configuration changes can persist credentials or alter agent connectivity.
+
+Mitigation: Show proposed MCP configuration changes to the user and obtain confirmation before editing config files, storing API keys, or restarting the MCP client.
+
+## Reference(s):
+
+- [SaySigned ClawHub skill page](https://clawhub.ai/klsv/skills/saysigned)
+- [SaySigned homepage](https://www.saysigned.com)
+- [SaySigned documentation](https://www.saysigned.com/docs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets, shell commands, REST examples, and MCP tool schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API-key and access-token handling guidance, human approval steps for configuration changes, and examples for agreement workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

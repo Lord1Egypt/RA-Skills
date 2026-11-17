@@ -1,41 +1,50 @@
-## Description: <br>
-Helps English learners record daily study check-ins for TOEFL, IELTS, PET, New Concept English, and similar study tracks, with support for non-repeating bilingual motivational quotes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks daily English study check-ins for TOEFL, IELTS, PET, New Concept, and other study types, with support for non-repeating English motivational quotes and Chinese translations.
 
-## Publisher: <br>
-[daizongyu](https://clawhub.ai/user/daizongyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daizongyu](https://clawhub.ai/user/daizongyu)
 
-## Use Case: <br>
-External users and developers use this skill to track daily English study progress, manage a selected study type, check status, and keep a local record of motivational quotes already used. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes a separate learning-checkin script selected by path or environment variable. <br>
-Mitigation: Install only the intended learning-checkin skill, pass an explicit trusted learning_checkin.py path, and avoid setting LEARNING_CHECKIN_PATH in untrusted shells or project directories. <br>
-Risk: The skill stores local progress configuration and quote-history data. <br>
-Mitigation: Keep the skill data directory in a user-controlled location and review the stored JSON files if local study history should be removed or reset. <br>
+## Use Case:
 
+English learners and agents assisting them use this skill to initialize a daily study check-in workflow, record progress by study type, view status, and avoid repeating generated motivational quotes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daizongyu/english-learning-checkin) <br>
-- [learning-checkin dependency](https://clawhub.ai/daizongyu/learning-checkin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains small local configuration and quote-history JSON files in the skill data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version) <br>
+Risk: The skill can execute a local Python file supplied as its learning-checkin dependency path without integrity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only trusted learning-checkin code, use a pinned and verified path, and avoid LEARNING_CHECKIN_PATH or --learning-checkin-path values from untrusted locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daizongyu/skills/english-learning-checkin)
+- [learning-checkin dependency](https://clawhub.ai/daizongyu/learning-checkin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON command responses with human-facing status and guidance text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local data files for learning type and used-quote tracking; depends on a separately installed learning-checkin script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version text)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

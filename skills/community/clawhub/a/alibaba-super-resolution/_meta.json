@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7cbh3cj9m5ekws309h31r20981rk42",
-  "slug": "alibaba-super-resolution",
-  "version": "0.1.0",
-  "publishedAt": 1773152763157
+  "name": "alibaba-super-resolution",
+  "version": "1.0.0",
+  "author": "Double Dog Radio Project",
+  "license": "MIT",
+  "dependencies": ["requests", "alibabacloud_tea_openapi", "alibabacloud_tea_util", "alibabacloud_videoenhan20200320"]
 }

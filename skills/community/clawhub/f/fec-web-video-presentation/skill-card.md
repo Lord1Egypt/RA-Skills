@@ -1,47 +1,57 @@
-## Description: <br>
-Turns articles, scripts, lessons, product demos, or narrated explanations into recordable 16:9 web presentations with step-driven scenes, theme tokens, optional narration alignment, and recording guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns articles, scripts, lessons, and product demos into recordable 16:9 web presentations with step-driven scenes, theme guidance, and optional narration alignment.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers, designers, educators, and content teams use this skill to convert source material into a script, outline, and runnable browser-based presentation that can be advanced step by step and recorded as a video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated project dependencies may not match a user's security or maintenance requirements. <br>
-Mitigation: Review the generated package dependencies before running npm install. <br>
-Risk: Running the scaffold in the wrong location could mix generated files with existing work. <br>
-Mitigation: Choose an empty output directory before running the scaffold. <br>
-Risk: Private or sensitive source material can become part of the generated presentation project files. <br>
-Mitigation: Avoid placing private source material into the presentation unless it is intended to be included in the project. <br>
+## Use Case:
 
+Creators, educators, and developers use this skill to plan spoken content and build a browser-based, screen-recordable presentation with step-by-step scenes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bovinphang/fec-web-video-presentation) <br>
-- [Content Plan](references/content-plan.md) <br>
-- [Chapter Craft](references/chapter-craft.md) <br>
-- [Theme System](references/theme-system.md) <br>
-- [Recording And Audio](references/recording-and-audio.md) <br>
-- [Starter Themes](data/starter-themes.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with optional generated React, Vite, TypeScript, JSON, CSS, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include script and outline content, chapter and step counts, theme choices, recording instructions, audio-path notes, and validation results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.0 (source: server release metadata, package.json, README.md, metadata.json) <br>
+Risk: The generated project requests the latest React and Vite dependencies, which may change before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated package and select suitable dependency versions before running npm install.
+
+Risk: Scaffolding creates files in the selected target directory.
+
+Mitigation: Check the target path with --dry-run and choose the destination deliberately.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/bovinphang/skills/fec-web-video-presentation)
+- [Content planning guide](references/content-plan.md)
+- [Chapter craft guide](references/chapter-craft.md)
+- [Theme system guide](references/theme-system.md)
+- [Recording and audio guide](references/recording-and-audio.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Presentation script and outline, React/TypeScript project files, and recording guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [16:9 step-driven presentation; optional audio alignment]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

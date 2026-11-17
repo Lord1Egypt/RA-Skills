@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7dn7f6gf2q075nhtpdsewya18344qm",
-  "slug": "model-switch-skill",
+  "id": "model-switch-skill",
+  "name": "Model Switch",
+  "description": "切换不同LLM API提供商",
   "version": "1.0.0",
-  "publishedAt": 1773829001452
+  "author": "小贾",
+  "tags": ["ai", "model", "api", "switch"],
+  "runtime": "native"
 }

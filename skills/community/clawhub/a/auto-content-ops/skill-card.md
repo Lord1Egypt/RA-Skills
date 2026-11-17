@@ -1,42 +1,59 @@
-## Description: <br>
-Automates Chinese social content operations by turning trend discovery into viral angles, product tie-ins, publishing copy, account positioning support, and content calendar plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Content Ops helps agents research Chinese web trends, generate short-video topic angles and hooks, connect them to a product or account strategy, and draft content packages and calendars.
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-External content teams, social media operators, and creators use this skill to plan Chinese short-video and social media content from current trends through hooks, scripts, publishing suggestions, and weekly calendars. It is especially oriented toward Zhejiang culture and tourism scenarios, while also supporting broader product seeding and account-positioning work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated trend summaries, claims, or publishing copy may be inaccurate, stale, or too persuasive for the intended brand voice. <br>
-Mitigation: Review all claims, trend selections, and persuasive language before publishing. <br>
-Risk: Trend-search prompts may expose confidential business or campaign details to search providers. <br>
-Mitigation: Avoid providing confidential business details for trend searches unless disclosure to the search provider is acceptable. <br>
+## Use Case:
 
+External content operators, marketers, and creator teams use this skill to plan Chinese social and short-video content workflows, including trend review, topic selection, hook writing, product integration, account positioning, and content calendar planning.
 
-## Reference(s): <br>
-- [Auto Content Ops skill documentation](references/auto-content-ops-skill-完整文档.md) <br>
-- [Methodology reference](references/methodology.md) <br>
-- [ClawHub release page](https://clawhub.ai/kelcey2023/auto-content-ops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports with tables, topic plans, hooks, scripts, publishing recommendations, and content calendars] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated draft content and should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and artifact _meta.json) <br>
+Risk: Trend and competitor research may rely on web search results that are incomplete, stale, or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review sources and validate trend claims before using generated copy in a campaign.
+
+Risk: Campaign, product, account, or audience details entered into the workflow may be used in searches.
+
+Mitigation: Avoid entering confidential or restricted business details unless they are approved for use in web research.
+
+Risk: Generated promotional copy may need brand, legal, cultural, or platform-policy review before posting.
+
+Mitigation: Have a responsible reviewer check final copy, claims, hashtags, and publishing recommendations before publication.
+
+## Reference(s):
+
+- [Auto Content Ops ClawHub Page](https://clawhub.ai/kelcey2023/skills/auto-content-ops)
+- [Methodology Reference](references/methodology.md)
+- [Auto Content Ops Complete Documentation](references/auto-content-ops-skill-完整文档.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces trend lists, topic plans, hooks, scripts, publishing suggestions, and content calendars; does not publish content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

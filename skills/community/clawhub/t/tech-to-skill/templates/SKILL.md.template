@@ -1,0 +1,85 @@
+---
+# Reference example - not a rigid template.
+# The executing agent should adapt structure to the source material.
+# Required: frontmatter fields, What/How/Why sections, Evidence Index.
+# Flexible: section naming, internal format, number of ref files.
+---
+
+---
+name: {{skill-slug}}
+description: |
+  {{Condensed What: what problem + when to trigger + when NOT to trigger.
+  This is the ONLY basis for agent activation. Keep under 300 words.}}
+source_type: {{engineering-longform | paper-blog | project-docs}}
+source_title: {{original title}}
+source_author: {{author}}
+source_url: {{source URL or file path}}
+source_date: {{source publish/update date, ISO 8601}}
+verified_date: {{date this skill content was last verified, ISO 8601}}
+tags: [{{tag1}}, {{tag2}}]
+---
+
+# {{Skill Title}}
+
+## What - The Problem
+
+{{Clear problem definition. Not "a skill about X", but "when you encounter Z in scenario Y, this skill helps you do W".}}
+
+### When to use
+
+{{Situations and language signals that should trigger this skill. Expands on the frontmatter description with more specific scenarios.}}
+
+### When NOT to use
+
+{{When should this skill NOT be activated.}}
+
+---
+
+## How - The Method
+
+{{The method, at a granularity the agent can act on. Not abstract methodology.
+Format is flexible: numbered steps, decision tree, symptom->investigation->fix structure, etc.
+Choose the format that fits the source material.}}
+
+<!-- Example format (steps):
+1. **{{Step name}}**
+   - {{Specific content}}
+   - Completion criterion: {{How the agent can tell this step is done. Must be checkable.}}
+   - Stop condition: {{If X then skip to step N / abort}}
+-->
+
+<!-- Mark any content not directly from the source as [inferred]. -->
+
+---
+
+## Why - The Rationale
+
+### Why this works
+
+{{Explanation from the source material: design tradeoff discussion / research gap + contribution / real story of what happened.
+If the source does not explain why, write "Source does not discuss rationale".}}
+
+### Alternatives considered
+
+{{Alternatives discussed in the source and why they were rejected.
+If the source does not discuss alternatives, write "Source does not discuss alternatives". DO NOT fabricate.}}
+
+---
+
+## Evidence Index
+
+{{When SKILL.md's guidance is not enough, the agent follows this index to load detailed evidence.
+Format is flexible - table, list, or free text, whichever fits.}}
+
+| ref | Points to | Summary |
+|-----|-----------|---------|
+| [ref-01](./references/ref-01.md) | {{source location}} | {{what this ref covers}} |
+| [ref-02](./references/ref-02.md) | {{source location}} | {{what this ref covers}} |
+
+---
+
+## Audit
+
+- Validation: {{structural-check | evidence-check}}
+- Result: {{pass/fail + details}}
+- Note: {{any gaps where source did not provide enough content}}

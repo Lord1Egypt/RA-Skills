@@ -1,39 +1,53 @@
-## Description: <br>
-Extracts text, tables, keywords, metrics, tables of contents, document diffs, and LLM-friendly chunks from PDF files, with optional OCR for low-text scanned pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts text and tables from PDFs, with modes for keyword search, metric extraction, table-of-contents detection, PDF comparison, chunking, batch processing, and header/footer cleanup.
 
-## Publisher: <br>
-[baichenwzj](https://clawhub.ai/user/baichenwzj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baichenwzj](https://clawhub.ai/user/baichenwzj)
 
-## Use Case: <br>
-Developers, analysts, and agents use pdf-miner to convert PDF reports, research papers, and financial documents into readable text, Markdown tables, JSON table data, or chunked files for downstream review and LLM analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF page images can be sent to an external OCR API when automatic OCR is enabled or OCR is requested. <br>
-Mitigation: Avoid OCR for confidential PDFs by running with --no-auto-ocr or leaving OCR credentials unconfigured; when OCR is needed, prefer environment variables for credentials and verify the configured endpoint and model before processing sensitive documents. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to extract readable Markdown or JSON from PDF reports, papers, and financial documents when ordinary web fetchers or simple PDF parsers are insufficient.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baichenwzj/pdf-miner) <br>
-- [OpenRouter-compatible OCR API endpoint](https://openrouter.ai/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, plain text, JSON table data, or generated files from command-line extraction modes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create extracted Markdown files, JSON table output, chunk files, or batch output directories depending on command options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server evidence release.version) <br>
+Risk: Low-text PDF pages can be rendered and sent to a configured external vision API when OCR is available, which may expose confidential document content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use --no-auto-ocr or selective OCR for sensitive PDFs, approve any remote OCR provider before use, and avoid storing API keys in config.json.
+
+Risk: The top-level skill description says OCR is not in scope, while the artifact can trigger automatic OCR for low-text pages.
+
+Mitigation: Treat OCR behavior as active unless disabled, and document this behavior for users who expect extraction-only PDF processing.
+
+## Reference(s):
+
+- [OpenRouter-compatible vision API endpoint](https://openrouter.ai/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown extraction files, optional JSON table output, and shell-command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write extracted pages, tables, search results, metrics, TOC entries, diffs, or chunks to files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

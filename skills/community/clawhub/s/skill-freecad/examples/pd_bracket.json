@@ -1,0 +1,23 @@
+{
+  "doc": "pd_bracket.FCStd",
+  "new": true,
+  "steps": [
+    {"op": "set_params", "values": {"thickness": 8, "length": 90, "depth": 50}},
+    {"op": "body", "name": "Bracket"},
+    {"op": "extrude", "body": "Bracket", "name": "Base", "height": "=Params.thickness",
+     "shapes": [{"rect": [0, 0, "=Params.length", "=Params.depth"], "corner_radius": 6}]},
+    {"op": "extrude", "body": "Bracket", "name": "Boss", "height": 12, "offset": "=Base.Length",
+     "shapes": [{"circle": ["=Params.length / 2", "=Params.depth / 2"], "radius": 12}]},
+    {"op": "extrude", "body": "Bracket", "name": "Bore", "mode": "remove", "through_all": true,
+     "offset": "=Base.Length + Boss.Length", "shapes": [{"circle": ["=Params.length / 2", "=Params.depth / 2"], "radius": 6}]},
+    {"op": "hole", "body": "Bracket", "name": "Mounts", "at": [[10, 10], [80, 10], [10, 40], [80, 40]],
+     "offset": "=Base.Length", "size": "M5", "type": "counterbore"},
+    {"op": "extrude", "body": "Bracket", "name": "Slot", "mode": "remove", "height": 3, "offset": "=Base.Length",
+     "shapes": [{"slot": [[16, 25], [24, 25]], "radius": 3}]},
+    {"op": "fillet", "target": "Bracket", "name": "BossFillet", "radius": 2, "edges": "%CIRCLE and r=12 and not >Z"},
+    {"op": "chamfer", "target": "Bracket", "name": "Edges", "size": 0.8, "edges": "face(>Z) and %CIRCLE and r=6",
+     "expect": {"bbox_size": [90, 50, 20], "solids": 1}},
+    {"op": "render", "filename": "pd_bracket.png", "views": ["iso", "top"]},
+    {"op": "export", "filename": "pd_bracket.step"}
+  ]
+}

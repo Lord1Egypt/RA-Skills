@@ -1,39 +1,52 @@
-## Description: <br>
-Shorten URLs via tinyurl or bitly API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shorten URLs via TinyURL or Bitly API.
 
-## Publisher: <br>
-[Xejrax](https://clawhub.ai/user/Xejrax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xejrax](https://clawhub.ai/user/xejrax)
 
-## Use Case: <br>
-Developers and other ClawHub users use this skill to generate shortened URLs through TinyURL or Bitly from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Shortening a URL sends the submitted URL to TinyURL or Bitly, which can expose sensitive internal links or secrets embedded in query parameters. <br>
-Mitigation: Do not shorten sensitive internal links, password-reset links, pre-signed URLs, invite links, or URLs with secrets in query parameters. <br>
-Risk: Setting BITLY_TOKEN causes the skill to use the user's Bitly account for URL shortening. <br>
-Mitigation: Set BITLY_TOKEN only when the user intends to use Bitly for the request. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Xejrax/url-shorten) <br>
+## Use Case:
 
+Developers and external users use this skill to ask an agent for shortened URLs through TinyURL by default or Bitly when a Bitly token is available.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; optionally uses BITLY_TOKEN for Bitly and otherwise falls back to TinyURL.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Target URLs are sent to third-party URL-shortening services.
+
+Mitigation: Confirm users are comfortable sending URLs to TinyURL or Bitly and avoid URLs containing sensitive embedded data.
+
+Risk: Bitly usage requires a BITLY_TOKEN environment variable.
+
+Mitigation: Provide BITLY_TOKEN only through normal environment handling and avoid exposing it in prompts, logs, or shared command text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xejrax/skills/url-shorten)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl; Bitly use depends on BITLY_TOKEN, otherwise TinyURL is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, published 2026-02-03)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

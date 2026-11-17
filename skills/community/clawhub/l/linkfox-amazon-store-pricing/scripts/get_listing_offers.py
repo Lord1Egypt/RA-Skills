@@ -82,10 +82,14 @@ def ensure_auth_skill_available() -> None:
 
 
 def get_api_key() -> str:
+    """
+获取配置在环境变量的API Key。
+如果获取不到，按 SKILL.md 的 **## 解决认证和算力问题** 处理。
+"""
     key = os.environ.get("LINKFOX_AGENT_API_KEY") or os.environ.get("LINKFOXAGENT_API_KEY")
     if not key:
         print(
-            "API Key not configured. Set:\n  export LINKFOXAGENT_API_KEY=<your-key>",
+            "API Key 未配置",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -102,11 +106,15 @@ def call_api(endpoint: str, params: dict) -> dict:
             "Authorization": api_key,
             "Content-Type": "application/json",
             "User-Agent": "LinkFox-Skill/1.0",
+            "SESSION_ID": os.environ.get("SESSION_ID", ""),
+            "MESSAGE_ID": os.environ.get("MESSAGE_ID", ""),
+            "MODE_ID": os.environ.get("MODE_ID", ""),
+            "APP_NAME": os.environ.get("APP_NAME", ""),
         },
         method="POST",
     )
     try:
-        with urlopen(req, timeout=60) as response:
+        with urlopen(req, timeout=150) as response:
             return json.loads(response.read().decode("utf-8"))
     except HTTPError as e:
         body = e.read().decode("utf-8") if e.fp else ""
@@ -122,14 +130,14 @@ def get_store_tokens(seller_id: str, region: str) -> dict:
 def developer_proxy_get(
     region: str,
     path: str,
-    access_token: str,
+    seller_id: str,
     query_string: Optional[str] = None,
 ) -> dict:
     params: dict = {
         "region": region,
         "path": path,
         "method": "GET",
-        "amzAccessToken": access_token,
+        "sellerId": seller_id,
     }
     if query_string:
         params["queryString"] = query_string
@@ -214,13 +222,7 @@ def main() -> None:
     query_string = _build_query_string(marketplace_id, item_condition, customer_type)
     path = _path_for_listing_offers(sku)
 
-    tokens = get_store_tokens(seller_id, region)
-    if "error" in tokens or "accessToken" not in tokens:
-        print(json.dumps(tokens, indent=2, ensure_ascii=False))
-        sys.exit(1)
-
-    access_token = tokens["accessToken"]
-    proxy = developer_proxy_get(region, path, access_token, query_string)
+    proxy = developer_proxy_get(region, path, seller_id, query_string)
 
     out: dict = {
         "developerProxy": proxy,

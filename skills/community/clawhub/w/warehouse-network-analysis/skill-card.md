@@ -1,41 +1,53 @@
-## Description: <br>
-Analyzes store Excel data against an existing warehouse and distribution network to support warehouse placement, delivery routing, transfer planning, order-cycle planning, and trunk shipping plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes customer store data against an existing warehouse and distribution network to support store distribution statistics, city positioning, delivery distance estimates, regional allocation, replenishment cycle planning, and trunk-line shipping plans.
 
-## Publisher: <br>
-[jinqianfei](https://clawhub.ai/user/jinqianfei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinqianfei](https://clawhub.ai/user/jinqianfei)
 
-## Use Case: <br>
-Logistics, operations, and planning teams use this skill to analyze customer store distribution and existing warehouse resources, then produce warehouse-network recommendations, delivery-cycle guidance, and trunk-shipping plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-provided Excel files that may contain customer, store, address, or business-planning data. <br>
-Mitigation: Use only approved input files, remove unnecessary sensitive fields where practical, and prefer copies of business-critical datasets. <br>
-Risk: Warehouse recommendations may be inaccurate if built-in city coordinates, straight-line distance estimates, or logistics assumptions do not match real operations. <br>
-Mitigation: Validate coordinates, warehouse constraints, route distances, and service-level assumptions against operational data before relying on recommendations. <br>
-Risk: Outputs can be incomplete or misleading when required constraints such as warehouse limits, coverage targets, time requirements, required warehouses, or excluded warehouses are missing. <br>
-Mitigation: Confirm planning constraints before analysis and review generated plans with logistics stakeholders before implementation. <br>
+## Use Case:
 
+Developers, logistics analysts, and operations planners use this skill to analyze Excel-based store distribution data and draft warehouse placement, delivery allocation, replenishment-cycle, and trunk-shipping recommendations. Recommendations should be reviewed against current operational constraints before business decisions are made.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance, Python command output, and Excel workbook] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-provided .xlsx store data and can produce an analysis workbook with distribution statistics, warehouse assignments, delivery-cycle recommendations, shipping plans, and path-planning sheets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Warehouse selection, coverage, replenishment, and trunk-shipping recommendations may be incomplete or misleading because the security review notes contradictory examples and a bundled script that implements only basic statistics and distance calculations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate recommendations independently with operational warehouse data, route distance or traffic data, cost models, and planner review before using them for business decisions.
+
+Risk: Straight-line delivery distances and simplified city coordinates may understate actual delivery time or cost.
+
+Mitigation: Compare outputs with real route, service-level, and carrier data before finalizing network or cycle plans.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinqianfei/skills/warehouse-network-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; the bundled script emits console text from Excel input analysis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference generated Excel analysis workbooks when the full documented workflow is implemented by the agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

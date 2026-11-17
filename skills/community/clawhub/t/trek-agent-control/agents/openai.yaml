@@ -1,0 +1,4 @@
+interface:
+  display_name: "Trek WorkBuddy 旅行助手"
+  short_description: "让 WorkBuddy 规划旅行并同步到 Trek 小程序"
+  default_prompt: "使用 $trek-agent-control 连接我的 Trek 微信旅行空间。小改动优先走 Skill 的待定地点/封面 fast path；任何写入必须立即 read-back，只有小程序对应字段可读回时才能说已同步。"

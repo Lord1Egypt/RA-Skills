@@ -1,48 +1,61 @@
-## Description: <br>
-Long-term episodic memory for OpenClaw with append-only hash-chained local layers, daily dream-cycle consolidation, AES-GCM encrypted Algorand anchoring, and post-anchor recoverability validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long-term episodic memory for OpenClaw with append-only hash-chained local layers, daily dream-cycle consolidation, AES-GCM encrypted Algorand anchoring, and post-anchor recoverability validation.
 
-## Publisher: <br>
-[pitertxus](https://clawhub.ai/user/pitertxus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pitertxus](https://clawhub.ai/user/pitertxus)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to capture episodic memory, consolidate recurring patterns, encrypt daily memory payloads, anchor them to Algorand, validate recoverability, and reconstruct memory for a selected date. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to an Algorand anchoring wallet and an AES note key. <br>
-Mitigation: Use a dedicated low-balance wallet, keep secrets in protected environment variables, and avoid reusing a main operations wallet. <br>
-Risk: Local fallback secret files can expose wallet or key material if filesystem permissions are weak. <br>
-Mitigation: Prefer environment variables; if fallback files are used for local development, secure the .secrets directory and never commit it. <br>
-Risk: Encrypted memory written on-chain is effectively permanent if the note key is later exposed. <br>
-Mitigation: Protect the AES note key as sensitive long-term material and anchor only encrypted payloads. <br>
-Risk: Recovery claims can be misleading if validation fails or is skipped. <br>
-Mitigation: Treat pensieve_validate failures as blocking and rely on recovery claims only when validation returns ok=true. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to capture episodic memory, consolidate recurring patterns, encrypt daily memory events, anchor them to Algorand, validate recoverability, and recover anchored memory for a selected date.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pitertxus/openclaw-memory-pensieve-algorand) <br>
-- [Architecture](references/architecture.md) <br>
-- [Hardening v2.1 policy](references/hardening-v21.md) <br>
-- [Ops runbook](references/ops-runbook.md) <br>
-- [Security & prerequisites](references/security-prereqs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [JSON MCP tool responses, JSONL memory files, and Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Anchoring may submit encrypted Algorand transactions when wallet, key, and network configuration are provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: Recovery validation can overstate whether memory is truly recoverable from the blockchain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not treat ok=true validation as proof of disaster recovery unless confirmed on-chain retrieval is required and succeeds.
+
+Risk: The local MCP server has access to a wallet mnemonic, an AES encryption key, and OpenClaw memory files.
+
+Mitigation: Use a dedicated low-balance wallet, isolate the workspace and secrets, prefer environment variables, and apply restrictive permissions to any local secret fallback files.
+
+Risk: Unpinned dependencies can change behavior across installs.
+
+Mitigation: Pin and review mcp, algosdk, and cryptography versions before deploying the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pitertxus/skills/openclaw-memory-pensieve-algorand)
+- [Architecture](artifact/references/architecture.md)
+- [Hardening v2.1 policy](artifact/references/hardening-v21.md)
+- [Ops runbook](artifact/references/ops-runbook.md)
+- [Security and prerequisites](artifact/references/security-prereqs.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with JSON configuration, shell commands, MCP tool calls, MCP tool result JSON, and local JSONL files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write append-only memory JSONL files, recovered JSONL files, local anchor records, and Algorand anchoring transactions when configured with wallet credentials.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

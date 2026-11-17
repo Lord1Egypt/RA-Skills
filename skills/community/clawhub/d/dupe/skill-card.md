@@ -1,38 +1,53 @@
-## Description: <br>
-Uses dupe.com APIs to find similar products for a product or image URL provided by the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses dupe.com APIs in order to find similar products for the product found in the input URL given by the user.
 
-## Publisher: <br>
-[crisanmm](https://clawhub.ai/user/crisanmm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[crisanmm](https://clawhub.ai/user/crisanmm)
 
-## Use Case: <br>
-External users and shopping assistants use this skill to look up visually or functionally similar products from a product page URL or direct image URL. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User-provided product or image URLs are sent to dupe.com. <br>
-Mitigation: Use public shopping or image links only, and avoid signed URLs, internal or localhost links, private CDN links, or URLs containing tokens or sensitive query parameters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Dupe release page](https://clawhub.ai/crisanmm/dupe) <br>
-- [dupe.com agent-skill API endpoint](https://api.dupe.com/api/dupes/agent-skill) <br>
+## Use Case:
 
+External users and shopping assistants use this skill to find similar products from a product page URL or direct image URL through dupe.com.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and summarized product-match results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns product matches with title, price, store, and link; optional result limit defaults to 7 and may be capped at 20 for image URL searches.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends product or image URLs to dupe.com, which may expose private, internal, signed, or token-bearing URLs.
+
+Mitigation: Use only public product or image URLs and avoid submitting private or token-bearing URLs.
+
+Risk: The shell-command instructions may mishandle user-supplied URLs in a way that allows command injection.
+
+Mitigation: Do not run the curl snippets with literal text substitution; construct a safely serialized HTTP request.
+
+## Reference(s):
+
+- [Dupe API endpoint](https://api.dupe.com/api/dupes/agent-skill)
+- [ClawHub skill page](https://clawhub.ai/crisanmm/skills/dupe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown with curl command examples and formatted product-match results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns product titles, prices, stores, and links from the dupe.com matches array.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

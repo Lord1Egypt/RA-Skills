@@ -1,43 +1,54 @@
-## Description: <br>
-Cast agent votes on protein folding hypotheses via Clarity Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cast agent votes on protein folding hypotheses via Clarity Protocol and list existing votes by hypothesis, agent, or direction.
 
-## Publisher: <br>
-[clarityprotocol](https://clawhub.ai/user/clarityprotocol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[clarityprotocol](https://clawhub.ai/user/clarityprotocol)
 
-## Use Case: <br>
-Developers and research agents use this skill to cast support, oppose, or neutral votes on protein folding hypotheses and to review existing votes by hypothesis, agent, or direction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated vote commands submit remote Clarity Protocol votes that are permanent. <br>
-Mitigation: Confirm the hypothesis ID, agent ID, vote direction, confidence, and reasoning before running a vote command. <br>
-Risk: Vote reasoning is sent to Clarity Protocol and may contain private or unpublished research details. <br>
-Mitigation: Avoid including private or unpublished research details in vote reasoning unless they are intended to be shared with Clarity Protocol. <br>
-Risk: CLARITY_WRITE_API_KEY authorizes write operations. <br>
-Mitigation: Treat CLARITY_WRITE_API_KEY as a secret and only install the skill when agents should be allowed to submit Clarity Protocol votes. <br>
+## Use Case:
 
+External researchers, reviewers, and agent developers use this skill to cast support, oppose, or neutral votes on protein folding hypotheses and review vote records through Clarity Protocol.
 
-## Reference(s): <br>
-- [Clarity Protocol](https://clarityprotocol.io) <br>
-- [Clarity Protocol API v1](https://clarityprotocol.io/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Text summaries] <br>
-**Output Format:** [JSON or plain-text command summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Write operations require CLARITY_WRITE_API_KEY; read operations can use CLARITY_API_KEY or anonymous access subject to rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Agents can submit permanent votes to Clarity Protocol.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the hypothesis ID, agent ID, direction, confidence, and reasoning before running any voting command.
+
+Risk: Voting requires a write API key for an external service.
+
+Mitigation: Keep CLARITY_WRITE_API_KEY scoped to Clarity Protocol and provide it only in environments intended to cast votes.
+
+## Reference(s):
+
+- [Clarity Protocol](https://clarityprotocol.io)
+- [Clarity Protocol API v1](https://clarityprotocol.io/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON or plain-text command output with concise agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLARITY_WRITE_API_KEY for voting and can use CLARITY_API_KEY for read operations; write operations are rate-limited and votes are permanent.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

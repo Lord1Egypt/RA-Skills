@@ -1,0 +1,4 @@
+interface:
+  display_name: "OData v4 Query"
+  short_description: "Discover and query any standards-based OData v4 service"
+  default_prompt: "Use $odata-query to inspect this OData v4 service and retrieve the requested data safely."

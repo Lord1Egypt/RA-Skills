@@ -1,0 +1,45 @@
+{
+ "_scene": "细胞因子水平分布对比（小提琴图）",
+ "_description": "细胞因子水平分布对比（小提琴图）（violin）。用模板自带 _command 一键渲染示例。",
+ "_chart_type": "violin",
+ "_command": "python3 scripts/gen_figure.py -t violin -d templates/14-cytokine-violin.json -o violin.pdf --theme glm --stats multi --verify",
+ "_caption_template": "图X | 三组患者 IL-6 水平分布差异显著（Kruskal-Wallis+Dunn 全两两标注）。",
+ "_note": "示例数字仅示意；小提琴展示原始值分布，样本量建议 ≥8/组",
+ "labels": [
+  "Healthy",
+  "Mild",
+  "Severe"
+ ],
+ "series": {
+  "Healthy": [
+   2.1,
+   3.4,
+   2.8,
+   4.1,
+   3.0,
+   2.5,
+   3.7,
+   2.9
+  ],
+  "Mild": [
+   8.2,
+   12.5,
+   9.8,
+   15.1,
+   11.0,
+   7.6,
+   13.8,
+   10.4
+  ],
+  "Severe": [
+   35.0,
+   52.3,
+   41.8,
+   68.9,
+   47.2,
+   29.5,
+   58.4,
+   44.1
+  ]
+ }
+}

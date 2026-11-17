@@ -1,39 +1,50 @@
-## Description: <br>
-Benchmark and compare agent prompts and evaluation results. Use when tuning strategies, evaluating outputs, or comparing configurations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Benchmark and compare agent prompts and evaluation results. Use when tuning strategies, evaluating outputs, or comparing configurations.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use Agent Learner to keep local records of prompt experiments, benchmarks, comparisons, evaluations, usage, cost, and optimization notes for later review and export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores user-entered prompts, notes, evaluation results, and history in plaintext on local disk. <br>
-Mitigation: Do not record API keys, customer data, confidential prompts, private model instructions, or sensitive evaluation results unless plaintext local storage, search, and export are acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to log, search, benchmark, compare, and export prompt, evaluation, cost, usage, and optimization records during agent experiments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/agent-learner) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text CLI output and exported JSON, CSV, or text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped plaintext logs and export files under the local agent-learner data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata) <br>
+Risk: Prompts, evaluations, cost notes, and related exports may be stored locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not log secrets, credentials, customer data, or proprietary prompts unless the machine and file permissions are controlled; treat exports as sensitive files.
+
+## Reference(s):
+
+- [Agent Learner on ClawHub](https://clawhub.ai/xueyetianya/skills/agent-learner)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, JSON, CSV]
+
+**Output Format:** [stdout text with optional exported json, csv, or txt files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists timestamped local records and writes exports to the agent-learner data directory.]
+
+## Skill Version(s):
+
+2.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

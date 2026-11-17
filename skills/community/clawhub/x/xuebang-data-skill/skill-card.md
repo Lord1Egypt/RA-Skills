@@ -1,42 +1,58 @@
-## Description: <br>
-查看学邦数据。用于登录学邦后台并读取首页今日经营数据与待办数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+登录学邦后台并读取首页今日经营数据与待办数据，整理为简洁汇总。
 
-## Publisher: <br>
-[chuanSir123](https://clawhub.ai/user/chuanSir123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chuansir123](https://clawhub.ai/user/chuansir123)
 
-## Use Case: <br>
-Employees or operators with authorized Xuebang EDU.BOSS access use this skill to sign in, read today's business metrics and pending items, and receive a concise operational summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a Xuebang backend username and password and saves them in a workspace note by default. <br>
-Mitigation: Use a least-privilege account, tell the skill not to save the password when appropriate, and remove credentials from `workspace/TOOLS.md` after use. <br>
-Risk: The skill reads business operating metrics and pending-work data from an authenticated backend session. <br>
-Mitigation: Run it only for authorized users and review the generated summary before sharing it outside the intended audience. <br>
+## Use Case:
 
+Authorized Xuebang or EDU.BOSS users use this skill to sign in with their own credentials and retrieve same-day business metrics and pending-task counts from the dashboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chuanSir123/xuebang-data-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/chuanSir123) <br>
-- [Xuebang EDU.BOSS login](https://boss.xuebangsoft.net/eduboss/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary with tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Missing metrics are marked as not read, and passwords should not be repeated in output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill defaults to saving EDU.BOSS credentials in a local workspace note file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revise the skill to keep credentials session-only by default, or use a dedicated secret store with explicit opt-in consent, deletion guidance, and clear protection details.
+
+Risk: Broad triggers could invoke the skill for requests that are not clearly Xuebang or EDU.BOSS related.
+
+Mitigation: Narrow activation triggers to Xuebang and EDU.BOSS-specific requests before installation.
+
+Risk: Declared tool permissions may not fully align with file access implied by credential storage.
+
+Mitigation: Align declared permissions with any required file access, or remove local credential-file storage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chuansir123/skills/xuebang-data-skill)
+- [Xuebang EDU.BOSS login page](https://boss.xuebangsoft.net/eduboss/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summary with tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses "未读取到" for missing fields and avoids reproducing full passwords.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

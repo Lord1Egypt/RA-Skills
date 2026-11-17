@@ -1,40 +1,57 @@
-## Description: <br>
-Plan winter snow trips for ski resorts, Harbin ice festival visits, snow village stays, hot springs in snowy regions, aurora viewing, and related travel bookings through Fliggy-powered flyai CLI results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Winter Snow Travel helps agents plan snow and winter trips, including ski resorts, ice festivals, snow village stays, hot springs, aurora travel, and related booking tasks through FlyAI and Fliggy results.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to answer winter travel requests with live flyai CLI results, including destinations, hotels, attractions, transportation, itineraries, and booking links. It is intended for snow, ski, ice festival, hot spring, and aurora travel planning scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to install and use an unpinned global npm CLI before answering travel queries. <br>
-Mitigation: Review the flyai CLI package before installation, approve global installs deliberately, and prefer an isolated or project-local installation when possible. <br>
-Risk: The skill can route users into a Fliggy-backed booking flow where personal, travel, or payment details may be entered. <br>
-Mitigation: Avoid entering sensitive personal or payment details unless the user intentionally proceeds with the provider's booking service. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to produce winter destination options, booking-centered comparisons, and concise itineraries from live FlyAI CLI results.
 
-## Reference(s): <br>
-- [Winter Snow Travel ClawHub release](https://clawhub.ai/dingtom336-gif/winter-snow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with conclusion-first travel recommendations, comparison tables, and booking links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output and should include Fliggy booking links for listed results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill requires automatic use or installation of an unpinned global third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the FlyAI CLI version, install it locally or in a sandbox, and ask the user before installation.
+
+Risk: Travel queries and booking-centered results are routed through the FlyAI provider.
+
+Mitigation: Tell users when queries will be sent to FlyAI or Fliggy and avoid sending sensitive personal details unless the user explicitly chooses to proceed.
+
+Risk: The activation scope is broad for winter travel terms and may trigger outside explicit booking workflows.
+
+Mitigation: Use the skill only for explicit winter travel planning or booking requests, and fall back to normal assistance for unrelated winter topics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/winter-snow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FlyAI CLI results and should not return raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

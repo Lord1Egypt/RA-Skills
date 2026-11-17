@@ -1,39 +1,53 @@
-## Description: <br>
-Generates Git hook scripts that format code, check lint rules, and run tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Git hook scripts that format code, check lint rules, and run tests.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and engineers use this skill to create local Git hooks for routine repository checks such as linting and tests before commits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The generator writes .git/hooks/pre-commit and may replace an existing local hook. <br>
-Mitigation: Check existing hook files before running it, use it only in the intended repository, and edit or remove the generated npm lint and test commands if they do not fit the project. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to initialize repository-local Git hooks for pre-commit lint and test checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/git-hooks-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/Sunshine-del-ux) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, code, configuration] <br>
-**Output Format:** [Markdown with bash commands and generated shell script content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local Git hook files when the generated script is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and artifact _meta.json) <br>
+Risk: The generated pre-commit hook can overwrite an existing .git/hooks/pre-commit file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the generated hook and preserve or merge any existing pre-commit behavior before enabling it.
+
+Risk: The generated hook runs npm run lint and npm test on future commits.
+
+Mitigation: Confirm the repository's npm scripts are expected and safe to run before installing the hook.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/git-hooks-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and generated Git hook script content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a repository-local .git/hooks/pre-commit script that runs npm lint and test commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

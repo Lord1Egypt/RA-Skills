@@ -1,42 +1,54 @@
-## Description: <br>
-在工作日检查日报是否已提交，未提交时提醒并@快腿鹿。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+On workdays, checks whether today's daily report exists and contains substantive content, then outputs a reminder mentioning the configured recipient if it is missing or incomplete.
 
-## Publisher: <br>
-[bounding-elk](https://clawhub.ai/user/bounding-elk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bounding-elk](https://clawhub.ai/user/bounding-elk)
 
-## Use Case: <br>
-Employees and team operators use this skill to check whether the current workday's daily report exists and contains meaningful content. When the report is missing or incomplete, it emits a reminder that mentions the designated teammate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate recurring reminders on a cron schedule. <br>
-Mitigation: Review the schedule before enabling it and remove the cron entry when reminders are no longer needed. <br>
-Risk: The disclosed daily-report path may not match every environment. <br>
-Mitigation: Install only when /data/reports/daily/YYYY-MM-DD.md is the intended report location or adjust the deployment environment accordingly. <br>
-Risk: The reminder mentions a specific teammate handle. <br>
-Mitigation: Confirm that tagging 快腿鹿 is appropriate for the team before enabling automated reminders. <br>
+## Use Case:
 
+Employees and team operations agents use this skill to check a configured daily-report file path on weekdays and remind the responsible person when the report is absent, empty, or placeholder-only.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bounding-elk/report-reminder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text reminder responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May output a fixed reminder mention or a fixed confirmation message based on report-file checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The configured daily-report path may not match the installing workspace's report location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm or update /data/reports/daily/YYYY-MM-DD.md before scheduling reminders.
+
+Risk: Scheduled reminders may mention the wrong person or use language that is not appropriate for the team.
+
+Mitigation: Review the mention target and localize the reminder text before enabling a recurring schedule.
+
+## Reference(s):
+
+- [README.md](README.md)
+- [ClawHub skill page](https://clawhub.ai/bounding-elk/skills/report-reminder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and plain reminder text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No automatic report content generation; reminder output is limited to the configured missing-or-incomplete report condition.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

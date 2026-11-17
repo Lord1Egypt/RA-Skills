@@ -5,7 +5,7 @@
 # Exits 0 (optionally with modified JSON) to allow; exits 1 to block.
 set -euo pipefail
 
-SENTINEL_API_URL="${SENTINEL_API_URL:-https://sentinel.ircnet.us}"
+SENTINEL_API_URL="${SENTINEL_API_URL:-https://api.sentinelaifirewall.com}"
 SENTINEL_KEY="${SENTINEL_KEY:-}"
 SENTINEL_TIER="${SENTINEL_TIER:-standard}"
 

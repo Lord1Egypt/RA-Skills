@@ -1,0 +1,2 @@
+schema_version,platform,event_type,claim_id,artist_or_channel,date_received,matched_asset_title,claimed_owner,match_start,match_end,action_applied,monetization_impact,dispute_stage,stage_entered_date,channel_active_strikes,sibling_claims_count,notes
+0.9,youtube,content_id_claim,EXAMPLE-ID-001,Artist Name / Channel,2026-08-20,Track Title,Claimant Name,00:00:12,00:01:03,monetize,revenue_to_claimant,none,,0,14,paste one row per claim; leave unknowns blank; never invent values

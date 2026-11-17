@@ -1,45 +1,58 @@
-## Description: <br>
-Provides Federal Reserve policy, interest-rate, inflation, and Fed Chair speech summaries as compact tables for agent chat or file output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produces markdown summaries of Federal Reserve policy, interest rates, inflation metrics, and Fed speech notes using a bundled Python tracker.
 
-## Publisher: <br>
-[dimaschand29](https://clawhub.ai/user/dimaschand29) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dimaschand29](https://clawhub.ai/user/dimaschand29)
 
-## Use Case: <br>
-Developers, analysts, and agent users can run this skill to generate a concise Federal Reserve policy tracker in chat or save the output for review. It is best used as a formatted reporting aid, with economic freshness and source claims verified before decision-making. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports that the skill misrepresents static hardcoded economic data as current Federal Reserve tracking. <br>
-Mitigation: Treat generated economic outputs as placeholder or demonstration content until the publisher fetches current official data and clearly labels source freshness. <br>
-Risk: Users may rely on stale or unsupported economic values for decisions. <br>
-Mitigation: Verify reported rates, inflation values, speeches, and dates against Federal Reserve and BLS sources before operational or financial use. <br>
+## Use Case:
 
+Developers and analysts can use this skill to generate a local Federal Reserve policy summary for review in chat or console workflows. Outputs should be checked against authoritative public sources before use in economic, financial, or operational decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dimaschand29/fed-agent) <br>
-- [Federal Reserve FOMC Statements](https://www.federalreserve.gov/monetarypolicy/fomc.htm) <br>
-- [Federal Reserve Money Market Resources](https://www.federalreserve.gov/financialservices/moneymarket/index.htm) <br>
-- [BLS CPI Data](https://www.bls.gov/cpi/inflatedata.htm) <br>
-- [BLS Employment Data](https://www.bls.gov/emp/) <br>
-- [Federal Reserve Speeches](https://www.federalreserve.gov/speeches/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown table printed to console or saved to a file; artifact documentation also describes JSON output options.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs economic-policy summaries derived from the skill artifact; users should verify data freshness against official sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Security evidence reports that the skill presents static sample values as live Federal Reserve tracking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated economic data as unverified until checked against Federal Reserve and BLS sources.
+
+Risk: Documentation describes output options such as JSON, file saving, and data switches that are not implemented in the bundled script.
+
+Mitigation: Review the artifact behavior before deployment and do not depend on undocumented command-line behavior without testing it.
+
+## Reference(s):
+
+- [Fed Agent ClawHub page](https://clawhub.ai/dimaschand29/skills/fed-agent)
+- [Federal Reserve FOMC statements](https://www.federalreserve.gov/monetarypolicy/fomc.htm)
+- [Federal Reserve money markets](https://www.federalreserve.gov/financialservices/moneymarket/index.htm)
+- [BLS CPI inflation data](https://www.bls.gov/cpi/inflatedata.htm)
+- [BLS employment data](https://www.bls.gov/emp/)
+- [Federal Reserve speeches](https://www.federalreserve.gov/speeches/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown table with console status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bundled static sample values; verify freshness and accuracy before relying on the output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

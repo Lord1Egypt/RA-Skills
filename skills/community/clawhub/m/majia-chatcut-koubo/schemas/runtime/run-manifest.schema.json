@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/run-manifest.schema.json",
+  "title": "Recoverable one-click run manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "runId", "stage", "status", "lastSafeStage", "project", "profile", "sourceAssets", "sampleBinding", "approvals", "checkpoints", "reconciliations", "lastSafeAction", "blockedReason", "failureCounts", "capability", "createdAt", "updatedAt"],
+  "properties": {
+    "$schema": {"const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/run-manifest.schema.json"},
+    "schemaVersion": {"const": "majia.koubo.run.v1"},
+    "runId": {"type": "string", "pattern": "^run-[a-z0-9-]+$"},
+    "stage": {"$ref": "#/$defs/stage"},
+    "status": {"enum": ["active", "waiting_external", "waiting_user_approval", "blocked", "review_ready", "exported"]},
+    "lastSafeStage": {"$ref": "#/$defs/stage"},
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["projectRef", "timelineRef", "timelineRevision"],
+      "properties": {
+        "projectRef": {"type": ["string", "null"], "pattern": "^logical:[a-z0-9-]+$"},
+        "timelineRef": {"type": ["string", "null"], "pattern": "^logical:[a-z0-9-]+$"},
+        "timelineRevision": {"type": ["string", "null"], "pattern": "^rev[-_][A-Za-z0-9._-]+$"}
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "fingerprint"],
+      "properties": {
+        "id": {"enum": ["balanced-stable", "tight-short", "trust-longform", "screen-demo"]},
+        "version": {"const": "1.0.0"},
+        "fingerprint": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "briefRef": {"type": ["string", "null"], "pattern": "^[a-z0-9][a-z0-9._-]*(?:/[a-z0-9][a-z0-9._-]*)*$"},
+    "sourceInventoryRef": {"type": ["string", "null"], "pattern": "^[a-z0-9][a-z0-9._-]*(?:/[a-z0-9][a-z0-9._-]*)*$"},
+    "sourceAssets": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^logical:[a-z0-9-]+$"}},
+    "sampleBinding": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fingerprint", "timelineRevision", "scope", "createdAt"],
+          "properties": {
+            "fingerprint": {"$ref": "#/$defs/hash"},
+            "timelineRevision": {"type": "string", "pattern": "^rev[-_][A-Za-z0-9._-]+$"},
+            "scope": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^logical:[a-z0-9-]+$"}},
+            "createdAt": {"type": "string", "format": "date-time"}
+          }
+        }
+      ]
+    },
+    "approvals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["approvalRef", "kind", "status", "fingerprints", "scope", "recordedAt"],
+        "properties": {
+          "approvalRef": {"type": "string", "pattern": "^logical:[a-z0-9-]+$"},
+          "kind": {"enum": ["sample", "decision", "enhancement", "final-review", "export"]},
+          "status": {"enum": ["pending", "approved", "rejected", "stale"]},
+          "fingerprints": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["plan", "style", "layout", "captions", "timelineRevision", "sample"],
+            "properties": {
+              "plan": {"$ref": "#/$defs/hash"},
+              "style": {"$ref": "#/$defs/hash"},
+              "layout": {"$ref": "#/$defs/hash"},
+              "captions": {"$ref": "#/$defs/hash"},
+              "timelineRevision": {"type": "string", "pattern": "^rev[-_][A-Za-z0-9._-]+$"},
+              "sample": {"$ref": "#/$defs/hash"}
+            }
+          },
+          "scope": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^logical:[a-z0-9-]+$"}},
+          "recordedAt": {"type": "string", "format": "date-time"}
+        }
+      }
+    },
+    "checkpoints": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^cp-[a-z0-9-]+$"}},
+    "reconciliations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["blockerCode", "outcome", "evidenceRefs", "checkpointId", "observedRevision", "recordedAt"],
+        "properties": {
+          "blockerCode": {"type": "string", "pattern": "^[A-Z0-9_]+$"},
+          "outcome": {"enum": ["authenticated", "context-resolved", "transcript-ready", "risk-reviewed", "privacy-verified", "compensated", "changes-reviewed", "unchanged", "committed"]},
+          "evidenceRefs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^logical:[a-z0-9-]+$"}},
+          "checkpointId": {"type": ["string", "null"], "pattern": "^cp-[a-z0-9-]+$"},
+          "observedRevision": {"type": ["string", "null"], "pattern": "^rev[-_][A-Za-z0-9._-]+$"},
+          "recordedAt": {"type": "string", "format": "date-time"}
+        }
+      }
+    },
+    "lastSafeAction": {"type": "string", "minLength": 1, "maxLength": 120},
+    "blockedReason": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["code", "message", "resumeStage"],
+          "properties": {
+            "code": {"type": "string", "pattern": "^[A-Z0-9_]+$"},
+            "message": {"type": "string", "minLength": 1, "maxLength": 240},
+            "resumeStage": {"$ref": "#/$defs/stage"}
+          }
+        }
+      ]
+    },
+    "failureCounts": {"type": "object", "additionalProperties": false, "patternProperties": {"^[A-Z0-9_]+$": {"type": "integer", "minimum": 1, "maximum": 3}}},
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "buildFingerprint", "toolSchemaFingerprint", "observedAt"],
+      "properties": {
+        "status": {"enum": ["unverified", "current", "stale", "blocked"]},
+        "buildFingerprint": {"type": ["string", "null"], "maxLength": 160},
+        "toolSchemaFingerprint": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+        "observedAt": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "createdAt": {"type": "string", "format": "date-time"},
+    "updatedAt": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "stage": {"enum": ["preflight", "brief_ready", "project_ready", "transcript_ready", "edit_plan_ready", "sample_ready", "revision_requested", "sample_approved", "full_aroll_applied", "captions_audio_ready", "enhancements_ready", "verified", "review_ready", "exported"]},
+    "hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {
+      "if": {"required": ["status"], "properties": {"status": {"const": "blocked"}}},
+      "then": {"properties": {"blockedReason": {"type": "object"}}},
+      "else": {"properties": {"blockedReason": {"type": "null"}}}
+    },
+    {
+      "if": {"required": ["stage", "status"], "properties": {"stage": {"const": "sample_ready"}, "status": {"not": {"const": "blocked"}}}},
+      "then": {"properties": {"status": {"const": "waiting_user_approval"}, "sampleBinding": {"type": "object"}}}
+    },
+    {
+      "if": {"required": ["status"], "properties": {"status": {"const": "waiting_user_approval"}}},
+      "then": {"properties": {"stage": {"const": "sample_ready"}, "sampleBinding": {"type": "object"}}}
+    },
+    {
+      "if": {"required": ["stage"], "properties": {"stage": {"const": "review_ready"}}},
+      "then": {"properties": {"status": {"enum": ["review_ready", "blocked"]}}}
+    },
+    {
+      "if": {"required": ["stage"], "properties": {"stage": {"const": "exported"}}},
+      "then": {"properties": {"status": {"enum": ["exported", "blocked"]}}}
+    },
+    {
+      "if": {
+        "required": ["stage", "status"],
+        "properties": {
+          "stage": {"enum": ["sample_approved", "full_aroll_applied", "captions_audio_ready", "enhancements_ready", "verified", "review_ready", "exported"]},
+          "status": {"not": {"const": "blocked"}}
+        }
+      },
+      "then": {"properties": {"approvals": {"type": "array", "contains": {"type": "object", "required": ["kind", "status"], "properties": {"kind": {"const": "sample"}, "status": {"const": "approved"}}}}}}
+    },
+    {
+      "if": {"properties": {"stage": {"const": "exported"}}},
+      "then": {"properties": {"approvals": {"type": "array", "contains": {"type": "object", "required": ["kind", "status"], "properties": {"kind": {"const": "export"}, "status": {"const": "approved"}}}}}}
+    }
+  ]
+}

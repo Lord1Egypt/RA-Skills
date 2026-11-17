@@ -1,0 +1,148 @@
+'''
+40获取期权数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+get_option_subject_position-取期权标的持仓
+用法： get_option_subject_position(accountID)
+
+释义： 取期权标的持仓
+
+参数：
+
+accountID：string,账号
+返回： list,list中放的是CLockPosition,通过dir(pythonobj)可返回某个对象的属性列表
+
+示例：
+
+
+data=get_option_subject_position('880399990383')
+print(len(data));
+forobjindata:
+    print(obj.m_strInstrumentName,obj.m_lockVol,obj.m_coveredVol);
+get_comb_option-取期权组合持仓
+用法： get_comb_option(accountID)
+
+释义： 取期权组合持仓
+
+参数：
+
+accountID：string,账号
+返回： list,list中放的是CStkOptCombPositionDetail ,通过dir(pythonobj)可返回某个对象的属性列表
+
+示例：
+
+
+obj_list=get_comb_option('880399990383')
+print(len(obj_list));
+forobjinobj_list:
+    print(obj.m_strCombCodeName,obj.m_strCombID,obj.m_nVolume,obj.m_nFrozenVolume)
+get_unclosed_compacts-获取未了结负债合约明细
+用法： get_unclosed_compacts(accountID,accountType)
+
+释义： 获取未了结负债合约明细
+
+参数：
+
+accountID：str，资金账号
+accountType：str，账号类型，这里应该填'CREDIT'
+返回：
+
+list([ CStkUnclosedCompacts, ... ]) 负债列表，CStkUnclosedCompacts属性如下：
+
+字段名称	类型	说明
+m_strAccountID	string	账号ID
+m_nBrokerType	int	账号类型
+1-期货账号
+2-股票账号
+3-信用账号
+5-期货期权账号
+6-股票期权账号
+7-沪港通账号
+11-深港通账号
+m_strExchangeID	string	市场
+m_strInstrumentID	string	证券代码
+m_eCompactType	int	合约类型
+32-不限制
+48-融资
+49-融券
+m_eCashgroupProp	int	头寸来源
+32-不限制
+48-普通头寸
+49-专项头寸
+m_nOpenDate	int	开仓日期(如'20201231')
+m_nBusinessVol	int	合约证券数量
+m_nRealCompactVol	int	未还合约数量
+m_nRetEndDate	int	到期日(如'20201231')
+m_dBusinessBalance	float	合约金额
+m_dBusinessFare	float	合约息费
+m_dRealCompactBalance	float	未还合约金额
+m_dRealCompactFare	float	未还合约息费
+m_dRepaidFare	float	已还息费
+m_dRepaidBalance	float	已还金额
+m_strCompactId	string	合约编号
+m_strEntrustNo	string	委托编号
+m_nRepayPriority	int	偿还优先级
+m_strPositionStr	string	定位串
+m_eCompactRenewalStatus	int	合约展期状态
+48-可申请
+49-已申请
+50-审批通过
+51-审批不通过
+52-不可申请
+53-已执行
+54-已取消
+m_nDeferTimes	int	展期次数
+示例：
+
+
+get_unclosed_compacts('6000000248', 'CREDIT')
+get_closed_compacts-获取已了结负债合约明细
+用法： get_closed_compacts(accountID,accountType)
+
+释义： 获取已了结负债合约明细
+
+参数：
+
+accountID：str，资金账号
+accountType：str，账号类型，这里应该填'CREDIT'
+返回：
+
+list([ CStkUnclosedCompacts, ... ]) 负债列表，CStkUnclosedCompacts属性如下：
+
+字段名	类型	描述
+m_strAccountID	string	账号ID
+m_nBrokerType	int	账号类型
+1-期货账号
+2-股票账号
+3-信用账号
+5-期货期权账号
+6-股票期权账号
+7-沪港通账号
+11-深港通账号
+m_strExchangeID	string	市场
+m_strInstrumentID	string	证券代码
+m_eCompactType	int	合约类型
+32-不限制
+48-融资
+49-融券
+m_eCashgroupProp	int	头寸来源
+32-不限制
+48-普通头寸
+49-专项头寸
+m_nOpenDate	int	开仓日期(如'20201231')
+m_nBusinessVol	int	合约证券数量
+m_nRetEndDate	int	到期日(如'20201231')
+m_nDateClear	int	了结日期(如'20201231')
+m_nEntrustVol	int	委托数量
+m_dEntrustBalance	float	委托金额
+m_dBusinessBalance	float	合约金额
+m_dBusinessFare	float	合约息费
+m_dRepaidFare	float	已还息费
+m_dRepaidBalance	float	已还金额
+m_strCompactId	string	合约编号
+m_strEntrustNo	string	委托编号
+m_strPositionStr	string	定位串
+示例：
+
+
+get_closed_compacts('6000000248', 'CREDIT')

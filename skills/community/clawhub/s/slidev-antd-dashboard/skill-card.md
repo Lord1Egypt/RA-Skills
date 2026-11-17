@@ -1,45 +1,59 @@
-## Description: <br>
-Build dashboard and admin-UI slides in Slidev using ant-design-vue (the Vue 3 implementation of Ant Design). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build dashboard and admin-UI slides in Slidev using ant-design-vue, with setup guidance, dashboard composition rules, navigation patterns, reusable Vue/CSS assets, and copy-paste example slides.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Developers and presentation authors use this skill to create Slidev dashboard and admin-console mockups with ant-design-vue components, theming, layout rules, navigation patterns, charts, and copy-paste example slides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to add npm dependencies and copy Vue, TypeScript, and CSS assets into a Slidev project. <br>
-Mitigation: Install it only in an intended Slidev project and review copied setup files before customizing them. <br>
-Risk: Using React-only Ant Design packages or global reset.css can break Slidev dashboard rendering. <br>
-Mitigation: Use ant-design-vue and the documented scoped theme provider; avoid global reset.css imports. <br>
+## Use Case:
 
+Developers and presentation authors use this skill to build polished dashboard or admin-console mockups inside Slidev decks. It helps agents install ant-design-vue, apply theme and layout assets, select dashboard components, and generate realistic slides for analytics, tables, forms, and navigation-heavy interfaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/junwugit/skills/slidev-antd-dashboard) <br>
-- [Setup: ant-design-vue in Slidev](artifact/references/setup.md) <br>
-- [ant-design-vue components - dashboard reference](artifact/references/components.md) <br>
-- [Dashboard composition rules](artifact/references/dashboard-rules.md) <br>
-- [Dashboard navigation and menus](artifact/references/navigation.md) <br>
-- [Example dashboard slides](artifact/examples/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Vue/TypeScript snippets, CSS, and copy-paste Slidev examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Slidev setup guidance and reusable dashboard slide assets for ant-design-vue projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may add npm frontend dependencies and copy Vue/CSS templates into a Slidev project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in Slidev projects where those dependencies and templates are acceptable, and review copied files before running the deck.
+
+Risk: Generated dashboard slides can contain misleading mock metrics or interface states if placeholders are left in place.
+
+Mitigation: Review labels, values, statuses, and chart data before presenting or sharing generated slides.
+
+## Reference(s):
+
+- [Slidev Ant Design setup](references/setup.md)
+- [ant-design-vue components dashboard reference](references/components.md)
+- [Dashboard composition rules](references/dashboard-rules.md)
+- [Navigation and menu design](references/navigation.md)
+- [Example dashboard slides](examples/README.md)
+- [ClawHub skill page](https://clawhub.ai/junwugit/skills/slidev-antd-dashboard)
+- [Publisher profile](https://clawhub.ai/user/junwugit)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Vue, TypeScript, CSS, YAML, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Slidev dashboard slide content, setup edits, reusable component templates, and implementation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

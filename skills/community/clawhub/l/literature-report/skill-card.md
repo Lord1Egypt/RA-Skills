@@ -1,45 +1,68 @@
-## Description: <br>
-Automates literature monitoring by retrieving recent journal and PubMed papers, using an LLM to filter and summarize them, and preparing bilingual reports for Feishu delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates literature reports by retrieving recent papers from RSS and PubMed sources, using an LLM to filter and summarize them bilingually, and optionally preparing notifications for Feishu.
 
-## Publisher: <br>
-[ZJUZhiyuCai](https://clawhub.ai/user/ZJUZhiyuCai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zjuzhiyucai](https://clawhub.ai/user/zjuzhiyucai)
 
-## Use Case: <br>
-Researchers and developers use this skill to monitor selected research areas, collect recent papers from configured sources, generate bilingual summaries and key findings, and schedule recurring literature reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores an LLM API key locally and sends paper metadata plus the configured research topic to the selected LLM provider. <br>
-Mitigation: Use a virtual environment, keep config.yaml out of source control, verify base_url before running, and avoid sensitive unpublished topics unless the provider is approved. <br>
-Risk: Feishu delivery is documented as incomplete and currently prints messages rather than sending a real notification. <br>
-Mitigation: Treat Feishu support as a placeholder, verify delivery behavior before relying on scheduled reports, and review generated reports locally. <br>
+## Use Case:
 
+Researchers, students, and technical teams use this skill to monitor recent papers in configured research areas, filter them with LLM assistance, and generate concise bilingual literature updates. It can be run manually or scheduled for recurring reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZJUZhiyuCai/literature-report) <br>
-- [Publisher profile](https://clawhub.ai/user/ZJUZhiyuCai) <br>
-- [OpenAI platform](https://platform.openai.com) <br>
-- [Anthropic console](https://console.anthropic.com) <br>
-- [SiliconFlow cloud](https://cloud.siliconflow.cn) <br>
-- [PubMed paper links](https://pubmed.ncbi.nlm.nih.gov/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When the included scripts are run, they can create local JSON, text, and PDF report files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: package.json, artifact documentation, server release metadata) <br>
+Risk: Paper titles, abstracts, and research-focus text may be sent to the configured LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS base_url, avoid submitting sensitive unpublished material, and choose an LLM provider acceptable for the intended data.
+
+Risk: The local config.yaml may contain an LLM API key and optional Feishu user identifier.
+
+Mitigation: Keep config.yaml out of source control, restrict file access, and prefer limited-spend or scoped API credentials.
+
+Risk: Scheduled execution can repeatedly trigger network requests and LLM usage.
+
+Mitigation: Review cron entries before enabling daily runs, validate the configuration first, and monitor provider costs or rate limits.
+
+Risk: Installation adds Python dependencies to the active environment.
+
+Mitigation: Install in a virtual environment and review dependency installation before running install.sh.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zjuzhiyucai/skills/literature-report)
+- [README.md](README.md)
+- [GUIDE.md](GUIDE.md)
+- [OpenAI Platform](https://platform.openai.com)
+- [Anthropic Console](https://console.anthropic.com)
+- [SiliconFlow Cloud](https://cloud.siliconflow.cn)
+- [PubMed E-utilities](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi)
+- [Nature RSS](https://www.nature.com/nature.rss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration snippets; generated reports are saved as text or JSON and can optionally be converted to PDF.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access, a configured LLM API key, and optional Feishu target; scheduled runs may create recurring API usage.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

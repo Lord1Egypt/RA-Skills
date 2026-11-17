@@ -1,41 +1,59 @@
-## Description: <br>
-Animate static images into dynamic AI-generated videos with realistic motion using Media.io OpenAPI and an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Animate static images into dynamic AI-generated videos using Media.io OpenAPI and a Media.io API key.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-Developers and content automation teams use this skill to route agent requests to Media.io APIs for checking credits, submitting image-to-video generation jobs, and retrieving task results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Media.io API credentials are required for use. <br>
-Mitigation: Store the API key in the agent runtime secret mechanism and avoid exposing it in prompts, logs, or generated examples. <br>
-Risk: Image-to-video generation requests may consume Media.io credits and produce externally hosted synthetic media outputs. <br>
-Mitigation: Confirm generation parameters before submitting jobs and review returned results before publishing or downstream reuse. <br>
+## Use Case:
 
+Developers and agents use this skill to call Media.io OpenAPI for image-to-video generation, task result retrieval, and account credit checks.
 
-## Reference(s): <br>
-- [Media.io OpenAPI Documentation](https://platform.media.io/docs/) <br>
-- [Bundled Media.io API Definitions](artifact/scripts/c_api_doc_detail.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance, Configuration] <br>
-**Output Format:** [JSON API responses and concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Media.io API key supplied through API_KEY or an explicit api_key parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact _meta.json) <br>
+Risk: Prompts, image URLs, task IDs, and credit checks are sent to Media.io.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content appropriate to send to Media.io and review the service terms before submitting sensitive material.
+
+Risk: Generation calls may consume Media.io account credits.
+
+Mitigation: Check credits before generation and use an account or key with appropriate spending controls.
+
+Risk: A leaked Media.io API key could allow unauthorized API usage.
+
+Mitigation: Store API_KEY in a secret manager or environment variable and avoid exposing it in prompts, logs, or shared files.
+
+## Reference(s):
+
+- [Media.io OpenAPI Documentation](https://platform.media.io/docs/)
+- [ClawHub Skill Page](https://clawhub.ai/wondershare-boop/skills/mediaio-image-to-video-api)
+- [Publisher Profile](https://clawhub.ai/user/wondershare-boop)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, JSON, Configuration, Guidance]
+
+**Output Format:** [JSON responses with concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Media.io API key and sends generation requests to Media.io.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

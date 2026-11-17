@@ -1,0 +1,178 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "estado.json de un carrusel del radar",
+  "description": "Vive en entregables/carruseles/AAAA-MM-DD-<slug>/estado.json. Se escribe ANTES de mandar cada mensaje.",
+  "type": "object",
+  "required": [
+    "paso",
+    "creado",
+    "tema",
+    "ficha",
+    "guion",
+    "caption",
+    "slides_png",
+    "gasto_usd",
+    "vueltas_revision",
+    "post_url"
+  ],
+  "properties": {
+    "paso": {
+      "enum": [
+        "esperando_ok_guion",
+        "esperando_ok_slides",
+        "esperando_ok_no_quedo",
+        "publicando",
+        "publicado",
+        "entregado_a_mano",
+        "descartado"
+      ]
+    },
+    "creado": {
+      "type": "string",
+      "description": "ISO 8601 con zona de USER.md"
+    },
+    "actualizado": {
+      "type": "string"
+    },
+    "ensayo": {
+      "type": "boolean",
+      "description": "true = no se llama a PUBLISH"
+    },
+    "tema": {
+      "type": "object",
+      "required": [
+        "titulo",
+        "por_que",
+        "fuente"
+      ],
+      "properties": {
+        "titulo": {
+          "type": "string"
+        },
+        "por_que": {
+          "type": "string"
+        },
+        "fuente": {
+          "type": "string"
+        },
+        "radar": {
+          "type": "string",
+          "description": "ruta del informe en informes/ o «pedido por la usuaria»"
+        }
+      }
+    },
+    "ficha": {
+      "type": "object",
+      "required": [
+        "id",
+        "por_que",
+        "motor"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "F01…F20 o G01…"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "por_que": {
+          "type": "string"
+        },
+        "motor": {
+          "enum": [
+            "plantilla:split",
+            "plantilla:papel",
+            "plantilla:datos",
+            "plantilla:garabato",
+            "plantilla:tier",
+            "plantilla:mapa",
+            "html-libre"
+          ]
+        }
+      }
+    },
+    "guion": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "required": [
+          "slide",
+          "texto"
+        ],
+        "properties": {
+          "slide": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "texto": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "caption": {
+      "type": "string"
+    },
+    "slides_png": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "gasto_usd": {
+      "type": "number",
+      "minimum": 0
+    },
+    "vueltas_revision": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2
+    },
+    "no_quedo": {
+      "type": "object",
+      "description": "Solo en esperando_ok_no_quedo: la slide que no quedó y tu propuesta",
+      "properties": {
+        "slide": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "por_que": {
+          "type": "string"
+        },
+        "propuesta": {
+          "type": "string"
+        }
+      }
+    },
+    "contenedores_ig": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "ids de los contenedores hijos, en orden; se guardan en cuanto Composio los devuelve"
+    },
+    "contenedor_padre": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "id del contenedor CAROUSEL; se guarda ANTES de llamar a PUBLISH"
+    },
+    "media_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "id que devuelve PUBLISH"
+    },
+    "post_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

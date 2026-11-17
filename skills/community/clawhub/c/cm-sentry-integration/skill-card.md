@@ -1,44 +1,58 @@
-## Description: <br>
-Sentry error tracking - list, triage, and resolve issues; manage releases and source maps via CLI and REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sentry error tracking - list, triage, and resolve issues; manage releases and source maps via CLI and REST API.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to let an agent inspect Sentry errors, triage issue details, and prepare CLI or REST API actions for releases, source map uploads, deploy records, and issue state changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive Sentry event data, including stack traces, breadcrumbs, and issue details. <br>
-Mitigation: Use least-privilege Sentry tokens scoped to the required organization and project, fetch full event data only when needed, and redact sensitive output before sharing. <br>
-Risk: The skill includes commands that can change production issue state, assignments, ignores, bulk updates, release finalization, deploy records, and source-map uploads. <br>
-Mitigation: Require explicit human confirmation before executing any state-changing CLI command or REST API request. <br>
-Risk: Token-backed API and CLI access may affect production Sentry projects if environment variables point at the wrong organization or project. <br>
-Mitigation: Verify SENTRY_ORG and SENTRY_PROJECT before each action and prefer project-specific tokens over broad account tokens. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect Sentry errors, triage issue severity, manage releases, upload source maps, and propose Sentry CLI or REST API actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/cm-sentry-integration) <br>
-- [Sentry REST API Base URL](https://sentry.io/api/0) <br>
-- [sentry-cli requirement](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and REST API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include token-backed Sentry CLI commands, curl requests, issue triage notes, release management steps, and source map upload guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes commands and API calls that can resolve, ignore, bulk-change issues, finalize releases, record deploys, or upload source maps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before running any state-changing Sentry command or API request.
+
+Risk: The skill documents an unverified pip install path for sentry-cli.
+
+Mitigation: Prefer the official, provenance-checked Sentry CLI distribution and use the pip option only after independent trust review.
+
+Risk: Sentry credentials may grant access to issue, event, release, or organization data.
+
+Mitigation: Use a narrowly scoped token limited to the minimum Sentry permissions needed for the requested task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/cm-sentry-integration)
+- [Sentry REST API base URL](https://sentry.io/api/0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown with inline bash commands and REST API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include state-changing Sentry operations that require user review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

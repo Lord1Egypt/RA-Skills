@@ -1,0 +1,145 @@
+part: CC1312R
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "TI SimpleLink CC1312R \u2014 Sub-1 GHz Wireless MCU (Ultra-Low Power)"
+main_page: https://www.ti.com/product/CC1312R
+datasheet_path_expected: datasheets/cc1312r.pdf
+datasheet_source_url: https://www.ti.com/lit/ds/symlink/cc1312r.pdf
+created_at: '2026-06-30T10:24:00+08:00'
+specs:
+  family: SimpleLink Sub-1 GHz Wireless
+  cores:
+  - Arm Cortex-M4F @ 48 MHz
+  eembc_coremark: 148
+  memory:
+    flash: 352 KB (in-system programmable)
+    rom: 256 KB (protocols + library)
+    cache_sram: 8 KB
+    sram: 80 KB ultra-low leakage (parity-protected)
+    sensor_controller_sram: 4 KB
+  wireless:
+    sub_1ghz_only:
+      bands_mhz:
+      - 143-176
+      - 287-351
+      - 359-439
+      - 431-527
+      - 861-1054
+      - 1076-1315
+      modulation:
+      - (G)MSK
+      - 2(G)FSK
+      - 4(G)FSK
+      - ASK
+      - OOK
+      rx_sensitivity_dbm:
+        long_range_mode: -121
+        at_50kbps: -110
+      tx_power_max_dbm: 14
+      output_power_temperature_compensated: true
+    protocols_in_rom:
+    - IEEE 802.15.4g
+    - 6LoWPAN
+    - MIOTY
+    - Wireless M-Bus
+    - Wi-SUN
+    - KNX RF
+    - Amazon Sidewalk
+    - Proprietary systems
+    - SimpleLink TI 15.4 stack (Sub-1 GHz)
+    - Dynamic multiprotocol manager (DMM) driver
+    regulatory:
+    - ETSI EN 300 220 Receiver Category 1.5 and 2
+    - EN 303 131
+    - EN 303 204 (Europe)
+    - FCC CFR47 Part 15
+    - ARIB STD-T108
+  peripherals:
+    gpio: 30
+    timers: 4x 32-bit or 8x 16-bit GP
+    adc_12bit: 200 ksamples/s, 8 channels
+    comparators: 2 (1x continuous, 1x ultra-low power, internal ref DAC)
+    programmable_current_source: true
+    uart: 2
+    ssi_spi: 2
+    i2c: true
+    i2s: true
+    rtc: true
+    dac_8bit: true
+    capacitive_sensing: yes (up to 8 channels)
+    temp_battery_monitor: true
+  power:
+    supply_voltage_v_min: 1.8
+    supply_voltage_v_max: 3.8
+    active_rx_ma_3v6_868mhz: 5.8
+    active_tx_14dbm_ma_868mhz: 24.9
+    active_mcu_48mhz_coremark_ma: 2.9
+    active_mcu_ua_per_mhz: 60
+    sensor_controller_2mhz_infinite_loop_ua: 30.1
+    sensor_controller_24mhz_infinite_loop_ua: 808
+    standby_ua_rtc_on: 0.85
+    shutdown_na_wakeup_external: 150
+  external:
+    buck_dcdc_converter: on-chip
+    tcxo: supported
+  security:
+    features:
+    - Secure Boot
+    - Secure Debug
+    - Secure Firmware/Software Update (OTA)
+    - Device attestation
+    - Anti-counterfeit
+    crypto_accelerators:
+    - AES (128/256)
+    - ECC
+    - RSA
+    - SHA-2 (up to SHA-512)
+    - TRNG
+  debug:
+  - 2-pin cJTAG
+  - JTAG
+  os:
+  - TI-RTOS
+  - FreeRTOS
+  - RTOS
+  - IEEE 802.15.4 MAC in ROM
+  package:
+    type: VQFN (RGZ)
+    pins: 48
+    dim_mm: 7x7
+    area_mm2: 49
+    gpio: 30
+    rohs: true
+  dev_tools:
+    launchpad: CC1312R LaunchPad Development Kit
+    sdk: SimpleLink CC13x2 and CC26x2 SDK
+    radio_studio: SmartRF Studio
+    sensing_studio: Sensor Controller Studio
+  applications:
+  - AMI / smart meter (Wi-SUN)
+  - Building automation (KNX RF)
+  - Long-range Sub-1 GHz IoT sensors (precision agriculture, oil/gas)
+  - Wireless alarm systems (PIR, smoke)
+  - Asset tracking with Wi-SUN mesh
+  - Amazon Sidewalk bridges
+unverified:
+- exact TX ramp-up time
+- exact OTA image transfer time
+- "exact operating temperature range (specified as -40 to +105 \xB0C in spec block)"
+- exact surge / EMC performance
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from ti.com CC1312R product page via Firecrawl (284,613 bytes raw)."
+- 'Family differentiator vs CC1310 (existing yaml): CC1310 is older gen with smaller flash/RAM; CC1312R is 352 KB flash +
+  80 KB SRAM + 150 nA shutdown + multi-band support + DMM.'
+- "Family differentiator vs CC1352P (existing yaml round 2): CC1352P is multi-band (Sub-1 + 2.4 GHz) with integrated PA (+20\
+  \ dBm); CC1312R is Sub-1 GHz only without PA (+14 dBm), but more ultra-low-power (150 nA shutdown vs 1.0 \xB5A standby on\
+  \ CC1352P)."
+- 'Cross-reference: comparable to NXP KW31Z (BLE 4.2 wireless MCU) in same ultra-low-power tier; CC1312R wins on range/sensitivity
+  for Sub-1 GHz only.'
+- 'Use case: km-range Sub-1 GHz sensor nodes (utility metering, building automation, precision agriculture).'
+- 'Verified 2026-07-01 via pdfplumber against cc1312r.pdf: 35/37 spec fields matched (95%). Source: ti.com/lit/ds/symlink/<pn>.pdf
+  (vendor-direct download, no auth required).'
+extracted_at: '2026-06-30T10:24:00+08:00'
+extraction_method: firecrawl-extract (keyed) of ti.com product page + manual enrich
+extraction_source: references/semiconductor-vendor/TI/firecrawl-snapshots/CC1312R-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/TI/firecrawl-snapshots/CC1312R-family_raw.md
+extraction_credits_used: 1

@@ -1,47 +1,62 @@
-## Description: <br>
-Audience Of One helps an agent rewrite or diagnose AI-like writing by restoring three concrete coordinates: speaker, audience, and why the text matters now. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audience Of One helps agents diagnose and rewrite Chinese AI-like writing by restoring three concrete coordinates: speaker, audience, and purpose.
 
-## Publisher: <br>
-[damomhd](https://clawhub.ai/user/damomhd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[damomhd](https://clawhub.ai/user/damomhd)
 
-## Use Case: <br>
-Writers, editors, marketers, and product or engineering teams use this skill to make drafts, posts, scripts, reports, technical documents, emails, and similar text feel addressed to a specific reader while preserving facts and technical details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Style rewriting can alter meaning, factual details, technical terms, or responsibility if applied too aggressively. <br>
-Mitigation: Review factual details, numbers, dates, names, commands, configuration, interfaces, and technical terminology after rewriting; preserve system or specification voice when appropriate. <br>
-Risk: Missing speaker, audience, or purpose may lead to invented context if the source text does not provide enough material. <br>
-Mitigation: Use placeholders and ask the author for concrete material when the original does not support a rewrite; do not fabricate experiences, numbers, citations, or provenance. <br>
-Risk: The skill can be misused to misrepresent authorship or make synthetic text appear personally written. <br>
-Mitigation: Use the skill only on text the user is allowed to edit, and avoid using it to conceal authorship or create misleading personal claims. <br>
+## Use Case:
 
+Writers, editors, and agents use this skill to diagnose and revise Chinese drafts for public posts, scripts, reports, PRDs, technical documentation, and email. It is intended for style and audience-fit work while preserving facts and asking for missing source material when the draft does not support a concrete rewrite.
 
-## Reference(s): <br>
-- [Server-resolved GitHub repository](https://github.com/DamomHd/audience-of-one) <br>
-- [ClawHub skill page](https://clawhub.ai/damomhd/audience-of-one) <br>
-- [Coordinates Diagnostic](references/coordinates-diagnostic.md) <br>
-- [Scenarios](references/scenarios.md) <br>
-- [Examples](references/examples.md) <br>
-- [Evaluation Samples](references/evals.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with rewritten text, coordinate diagnostics, deletion suggestions, placeholders, or concise review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for missing source material when the original text lacks enough evidence to fill speaker, audience, or purpose; long texts may receive a suggested deletion list rather than silent compression.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Broad writing triggers can overlap with other writing or editing skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation phrases when installing alongside similar writing skills and route fact-checking, translation, or code/log work to more appropriate tools.
+
+Risk: A rewrite can introduce unsupported speaker, audience, or purpose details if the original text lacks evidence.
+
+Mitigation: Use placeholders or ask the author for missing facts instead of inventing details; preserve names, dates, numbers, terms, commands, and responsibility assignments.
+
+Risk: Readers could mistake style rewriting for factual validation.
+
+Mitigation: Treat outputs as writing guidance or revised prose only, and verify factual claims against source material before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/damomhd/skills/audience-of-one)
+- [Server-resolved GitHub provenance](https://github.com/DamomHd/audience-of-one)
+- [Coordinate diagnostic table](references/coordinates-diagnostic.md)
+- [Scenario coordinate guide](references/scenarios.md)
+- [Rewrite examples](references/examples.md)
+- [Evaluation samples](references/evals.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text rewrite and diagnostic feedback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a rewritten draft, coordinate diagnosis, placeholder-shaped rewrite guidance, suggested deletion list for long drafts, and brief preservation notes for high-risk factual or technical text.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

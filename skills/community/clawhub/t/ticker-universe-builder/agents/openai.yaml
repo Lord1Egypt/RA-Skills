@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ticker Universe Builder"
+  short_description: "Build and maintain auditable TradingView ticker universes."
+  default_prompt: "Build or maintain a Light, Medium, Heavy, or Max ticker universe for any registered market -- US, China A-shares, Japan, India, Hong Kong, Korea, UK, Taiwan, Germany, France, Canada, Australia, Brazil or Crypto."

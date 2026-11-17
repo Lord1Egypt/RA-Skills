@@ -1,41 +1,53 @@
-## Description: <br>
-Manage West.cn DNS records by adding, modifying, or deleting A, CNAME, MX, TXT, and AAAA records through the West.cn API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages West.cn DNS records by adding, modifying, and deleting A, CNAME, MX, TXT, and AAAA entries through the West.cn API.
 
-## Publisher: <br>
-[missKivin](https://clawhub.ai/user/missKivin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[misskivin](https://clawhub.ai/user/misskivin)
 
-## Use Case: <br>
-Developers and site operators use this skill to let an agent manage live West.cn DNS records for domains they administer. It is suited for controlled DNS maintenance workflows where add, modify, and delete operations are reviewed before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can directly change or delete live DNS records using West.cn API credentials. <br>
-Mitigation: Use least-privilege API credentials where available, verify every domain and record before modify or delete actions, and keep a rollback plan or DNS backup. <br>
-Risk: The API password is provided to the agent at runtime and could be exposed through prompts, logs, or configuration files. <br>
-Mitigation: Keep the API password out of prompts, logs, and stored configuration, and rotate credentials if exposure is suspected. <br>
+## Use Case:
 
+Developers and DNS operators use this skill to manage live West.cn domain records from an agent workflow. It is intended for adding, updating, or deleting DNS records when the operator supplies West.cn API credentials and target record details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/missKivin/west-dns-manager) <br>
-- [West.cn domain API endpoint](https://api.west.cn/api/v2/domain/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON response with success, message, data, and error fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns standardized operation status and API response data for DNS record changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill metadata) <br>
+Risk: The skill can modify or delete live DNS records using sensitive API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped DNS API credentials where supported, confirm every modify or delete action against the intended domain and record, and record current DNS values before changes so they can be rolled back.
+
+Risk: Credentials supplied to the skill could be exposed through prompts, logs, or mishandled runtime inputs.
+
+Mitigation: Keep West.cn usernames and API passwords out of prompts and logs, and pass them only through the platform's intended secret or configuration path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/misskivin/skills/west-dns-manager)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API calls]
+
+**Output Format:** [JSON object with success, message, data, and error fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires West.cn username and API password inputs; modify and delete actions can change live DNS records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

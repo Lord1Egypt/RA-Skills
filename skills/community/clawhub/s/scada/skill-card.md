@@ -1,43 +1,58 @@
-## Description: <br>
-Supervisory control and data acquisition manager. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scada provides shell commands for a local file-based record manager presented as a supervisory control and data acquisition manager.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and operators can use this skill as a local CLI helper to add, list, search, remove, export, and summarize simple timestamped entries. Do not use it for real SCADA monitoring, device control, safety workflows, or operational assurance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is advertised as SCADA industrial-control management, but the security evidence describes it as a simple local log manager. <br>
-Mitigation: Use it only as a local entry/log helper; do not rely on it for monitoring, device control, safety workflows, or operational assurance. <br>
-Risk: Entries and exports may contain sensitive operational details. <br>
-Mitigation: Avoid storing secrets or sensitive operational information, and review JSONL or CSV exports before sharing them. <br>
-Risk: Removal is immediate and local exports write files to the current working directory. <br>
-Mitigation: Confirm entry numbers before removal and verify export destination and contents after running export commands. <br>
+## Use Case:
 
+Developers and operators can use this skill to run local CLI commands that add, list, search, remove, export, and summarize records stored under a configurable data directory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/scada) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, configuration] <br>
-**Output Format:** [Structured stdout text with local JSONL or CSV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores data under ~/.scada by default; SCADA_DIR can set a different local data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill is labeled as a SCADA tool, but security evidence identifies it as a local notes/configuration tool rather than an industrial SCADA integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use it to control or monitor industrial systems; review the commands as local record-management utilities only.
+
+Risk: Security evidence reports unsafe shell input handling that can lead to command execution.
+
+Mitigation: Review before installing, avoid untrusted config/search/export input, and fix command construction and escaping before relying on the skill.
+
+Risk: CSV and JSONL exports may contain unescaped user-provided values.
+
+Mitigation: Inspect exported files before opening them in spreadsheet tools or downstream automation.
+
+## Reference(s):
+
+- [Scada Skill Page](https://clawhub.ai/xueyetianya/skills/scada)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Plain text command output, JSONL data, and optional JSON or CSV export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores data in ~/.scada/ by default or in SCADA_DIR when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

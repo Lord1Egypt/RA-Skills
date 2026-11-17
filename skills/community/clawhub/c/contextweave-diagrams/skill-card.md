@@ -1,41 +1,53 @@
-## Description: <br>
-Contextweave Diagrams turns complex text, code, system architecture, business processes, and knowledge-base content into structured diagram-generation requests for a configured ContextWeave backend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Contextweave Diagrams helps agents transform complex text, architecture notes, business processes, mind maps, and knowledge-base content into structured diagram-generation requests for ContextWeave.
 
-## Publisher: <br>
-[qhyw99](https://clawhub.ai/user/qhyw99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qhyw99](https://clawhub.ai/user/qhyw99)
 
-## Use Case: <br>
-Developers, analysts, and technical writers use this skill to convert complex requirements, architecture notes, workflows, and knowledge-base text into structured diagram requests. It is useful when the agent should clarify terminology, relationships, hierarchy, and narrative flow before requesting a diagram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagram requests can include confidential documents, private code, or sensitive business data that is sent to the configured ContextWeave backend. <br>
-Mitigation: Use the skill only with a trusted backend and acceptable privacy and retention practices; avoid sensitive inputs unless those practices are approved. <br>
-Risk: A shared or overprivileged API key could broaden exposure if the configured backend or runtime environment is misused. <br>
-Mitigation: Prefer a dedicated ContextWeave API key and provide credentials only through the explicit required environment variable. <br>
+## Use Case:
 
+Developers, analysts, and operations teams use this skill to convert complex requirements, system logic, or long-form knowledge into structured diagram requests and returned generation results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qhyw99/contextweave-diagrams) <br>
-- [Publisher profile](https://clawhub.ai/user/qhyw99) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Single JSON object with execution status, session information, result links, and error details when applicable.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a request file and call a configured ContextWeave backend using Node and explicit environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.5 (source: server release evidence) <br>
+Risk: The skill sends the current diagram request to a configured ContextWeave backend, which may expose sensitive document content if users submit confidential material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the backend is trusted and that its privacy and retention terms are acceptable before using confidential or regulated inputs.
+
+Risk: The skill creates request files in the current workspace and attempts a Node-based generation command during normal use.
+
+Mitigation: Review generated request files and run the skill in a workspace where those files and command execution are expected.
+
+## Reference(s):
+
+- [Contextweave Diagrams on ClawHub](https://clawhub.ai/qhyw99/skills/contextweave-diagrams)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Single JSON object with request-file path, execution status, session identifier, result fields, and error details when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node, CONTEXTWEAVE_MCP_API_KEY, and CONTEXTWEAVE_API_URL; request files are created in the current workspace before backend generation.]
+
+## Skill Version(s):
+
+0.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

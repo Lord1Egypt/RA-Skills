@@ -14,7 +14,7 @@ DEFAULT_IMAGE_QUALITY = "high"
 def require_api_key() -> str:
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
-        raise RuntimeError("缺少 OPENAI_API_KEY。请先 export OPENAI_API_KEY='你的 OpenAI API Key'")
+        raise RuntimeError("缺少 OPENAI_API_KEY 环境变量，请在运行前完成配置")
     return api_key
 
 

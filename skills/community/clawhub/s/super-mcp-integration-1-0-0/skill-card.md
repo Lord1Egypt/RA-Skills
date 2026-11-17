@@ -1,46 +1,63 @@
-## Description: <br>
-Connects OpenClaw agents to configured Model Context Protocol servers so they can discover and call external tools through a unified mcp tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super MCP Integration connects OpenClaw agents to configured Model Context Protocol servers so they can discover available tools and call them through a unified mcp interface.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure OpenClaw agents for MCP-based tool discovery and execution across external services such as legal search, databases, weather services, and other APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connected MCP servers may expose broad external tool access, including tools that read sensitive data or perform state-changing actions. <br>
-Mitigation: Install only with trusted MCP servers, restrict access to the mcp tool, prefer read-only or least-privilege server capabilities, and require user confirmation for sensitive actions. <br>
-Risk: MCP configuration, tool arguments, tool responses, or diagnostics may contain secrets or sensitive operational data. <br>
-Mitigation: Use HTTPS where available, keep dependencies patched, and redact configuration files and logs before sharing diagnostics. <br>
+## Use Case:
 
+Developers and OpenClaw administrators use this skill to configure agent access to trusted MCP servers, inspect available remote tools, validate tool parameters, and execute supported tools for workflows such as legal search, database queries, and weather lookups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-mcp-integration-1-0-0) <br>
-- [README](README.md) <br>
-- [API Reference](docs/API.md) <br>
-- [Configuration Guide](docs/CONFIGURATION.md) <br>
-- [Usage Examples](docs/EXAMPLES.md) <br>
-- [Real Working Example: kr-legal-search](docs/REAL_EXAMPLE_KR_LEGAL.md) <br>
-- [Troubleshooting Guide](docs/TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples, tool-call examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for discovering MCP tools with action=list and invoking configured MCP server tools with action=call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: A single approved mcp tool can invoke many externally supplied tools from connected MCP servers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict the mcp tool to trusted or administrative agents and require review or confirmation before using state-changing, account, messaging, filesystem, database, or similar tools.
+
+Risk: Untrusted or misconfigured MCP server endpoints can expose agents to unsafe or misleading external capabilities.
+
+Mitigation: Connect only to MCP servers you control or trust, prefer HTTPS endpoints, and install the skill only in trusted workspaces.
+
+Risk: Configuration, URLs, or diagnostic reports may expose credentials or sensitive environment details.
+
+Mitigation: Avoid URL-embedded credentials and manually redact configuration and logs before sharing diagnostic reports.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/subaru0573/skills/super-mcp-integration-1-0-0)
+- [README](README.md)
+- [API Reference](docs/API.md)
+- [Configuration Guide](docs/CONFIGURATION.md)
+- [Usage Examples](docs/EXAMPLES.md)
+- [Real Working Example: kr-legal-search](docs/REAL_EXAMPLE_KR_LEGAL.md)
+- [Troubleshooting Guide](docs/TROUBLESHOOTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON examples, shell commands, and tool-call patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides use of a unified mcp tool with list and call actions; actual remote tool outputs depend on the connected MCP servers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

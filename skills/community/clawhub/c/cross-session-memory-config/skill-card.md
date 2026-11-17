@@ -1,40 +1,53 @@
-## Description: <br>
-Configures OpenClaw cross-session memory rules by adding shared long-term memory guidance to SOUL.md and AGENTS.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures OpenClaw cross-session memory rules by adding memory-sharing guidance to SOUL.md and AGENTS.md when group and private chat memories should interoperate.
 
-## Publisher: <br>
-[richardcoder849](https://clawhub.ai/user/richardcoder849) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richardcoder849](https://clawhub.ai/user/richardcoder849)
 
-## Use Case: <br>
-OpenClaw users and administrators use this skill when they intentionally want group chat and private chat sessions to share durable memory through global memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared memory rules can cause group chat and private chat context, including sensitive decisions or personal data, to be written to global memory files. <br>
-Mitigation: Install only where cross-session sharing is intended, review the inserted rules first, and avoid use where private or group memories must remain separated. <br>
-Risk: The setup script persistently changes core OpenClaw behavior by creating or appending rules in SOUL.md and AGENTS.md. <br>
-Mitigation: Back up SOUL.md and AGENTS.md before running the script, then inspect the added sections after execution. <br>
+## Use Case:
 
+OpenClaw users and administrators use this skill after a new installation or on request to configure persistent memory sharing between group chats and private chats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/richardcoder849/cross-session-memory-config) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an idempotent setup script that appends missing memory-sharing rules to SOUL.md and AGENTS.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill persistently changes core OpenClaw instruction files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the planned SOUL.md and AGENTS.md changes before installation, and make backups before running the setup script.
+
+Risk: The skill broadly shares group-chat and private-chat long-term memory across future OpenClaw sessions.
+
+Mitigation: Use it only where group participants and private users have consented to shared persistent memory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richardcoder849/skills/cross-session-memory-config)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and configuration file changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append memory-sharing rules to SOUL.md and AGENTS.md through the provided setup script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

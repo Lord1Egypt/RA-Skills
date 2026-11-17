@@ -1,43 +1,64 @@
-## Description: <br>
-Converts requested text into speech through the SkillBoss API Hub TTS service, with support for voice, language, speed, pitch, volume, format, and subtitle options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts text to speech through the SkillBoss API Hub TTS service, with options for voice, language, speed, pitch, volume, output files, and subtitles.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-Users and agent operators use this skill to turn requested text, summaries, or messages into audio for accessibility, multitasking, and voice-output workflows. It also supports customized voice, language, prosody, output format, and subtitle settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requested text is sent to an external SkillBoss/HeyBoss TTS service and may include private content. <br>
-Mitigation: Install only if the service is trusted for the text being spoken, avoid sending sensitive content when possible, and clean up generated files that contain private information. <br>
-Risk: The skill requires SKILLBOSS_API_KEY, and an exposed key could allow unauthorized service use. <br>
-Mitigation: Use a scoped API key, provide it through the environment, keep it out of committed files and shared shell history, and rotate it if exposed. <br>
-Risk: Generated audio or subtitle files can retain spoken content on disk. <br>
-Mitigation: Store outputs only in intended locations and delete temporary audio or subtitle files when they are no longer needed. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate spoken audio from text for accessibility, multitasking, voice notes, summaries, and customized text-to-speech workflows.
 
-## Reference(s): <br>
-- [node-edge-tts Reference](references/node_edge_tts_guide.md) <br>
-- [Voice testing](https://tts.travisvn.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Audio files, JSON, Shell commands, Configuration] <br>
-**Output Format:** [MEDIA path or MP3 audio file, with optional JSON subtitle file and CLI/configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and internet access; generated audio and subtitle files may need cleanup when they contain private content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Text submitted for conversion may be sent to the external SkillBoss/HeyBossAI TTS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with text that is acceptable to share with that service, and avoid sensitive or regulated content unless the deployment has approved that data flow.
+
+Risk: The required SKILLBOSS_API_KEY could be exposed through logs, shell history, or shared environments.
+
+Mitigation: Store the key in a secret manager or protected environment variable, avoid echoing it in shared shells, and rotate it if exposure is suspected.
+
+Risk: Generated audio files and TTS configuration can persist on disk.
+
+Mitigation: Clean generated audio files after use and review stored configuration, especially on shared machines.
+
+Risk: Dependency installation behavior may be difficult to review when using unpinned examples or stale lockfile entries.
+
+Mitigation: Use a locked dependency install, avoid unpinned npx examples, and review or remove stale node-edge-tts lockfile entries before deployment.
+
+## Reference(s):
+
+- [Node Edge TTS Guide](references/node_edge_tts_guide.md)
+- [Voice Testing](https://tts.travisvn.com/)
+- [ClawHub Skill Page](https://clawhub.ai/quincygunter/skills/qui-edge-tts)
+- [Publisher Profile](https://clawhub.ai/user/quincygunter)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Audio files with markdown and inline shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can persist TTS configuration and generated audio files; requires SKILLBOSS_API_KEY and internet access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata; artifact package metadata reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

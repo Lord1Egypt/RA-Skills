@@ -1,44 +1,55 @@
-## Description: <br>
-Generate safer OpenClaw configuration baselines and audit existing config files for exposure, missing controls, and secret hygiene issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate safer OpenClaw configuration baselines and audit existing config files for exposure, missing controls, and secret hygiene issues.
 
-## Publisher: <br>
-[mike007jd](https://clawhub.ai/user/mike007jd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike007jd](https://clawhub.ai/user/mike007jd)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate reviewable OpenClaw JSON baseline configurations and audit existing OpenClaw-style configuration files before rollout or after change review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit output can reveal sensitive configuration paths or secret-like value locations. <br>
-Mitigation: Run audits only on configurations intended for review and keep audit reports private. <br>
-Risk: Generated baselines are starter configurations and do not enforce runtime policy. <br>
-Mitigation: Review generated JSON before replacing production configuration and pair it with normal deployment controls. <br>
-Risk: The tool reads and writes local configuration files as part of its normal workflow. <br>
-Mitigation: Use explicit input and output paths in a controlled workspace. <br>
+## Use Case:
 
+Developers and platform engineers use Baseline Kit to generate reviewable OpenClaw configuration JSON and audit existing OpenClaw configs before rollout or after configuration changes.
 
-## Reference(s): <br>
-- [Baseline Kit ClawHub Release Page](https://clawhub.ai/mike007jd/baseline-kit) <br>
-- [Baseline Kit README](README.md) <br>
-- [Baseline Kit Skill Definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI examples; generated artifacts are JSON configuration files and JSON or table audit reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; reads and writes local OpenClaw configuration JSON files] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Generated configuration may not match a team's exact runtime policy or threat model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated JSON before use and treat the output as a starting baseline rather than a complete configuration management system.
+
+Risk: Auditing a configuration can reveal paths to secret-like fields in command output.
+
+Mitigation: Run audits in a trusted local environment and avoid sharing audit output until sensitive paths and values have been reviewed.
+
+## Reference(s):
+
+- [Baseline Kit on ClawHub](https://clawhub.ai/mike007jd/skills/baseline-kit)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [configuration, text, markdown, shell commands, guidance]
+
+**Output Format:** [JSON files and Markdown or plain-text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated profiles include development, team, enterprise, and airgapped variants; audit findings include severity, evidence path, recommendation, and compliance tags.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

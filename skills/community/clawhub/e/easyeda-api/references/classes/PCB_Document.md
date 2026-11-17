@@ -1,16 +1,16 @@
 # PCB\_Document class
 
-PCB &amp; 封装 / 文档操作类
+PCB &amp; footprint / document operation class
 
 ## Signature
 
 ```typescript
-declare class PCB_Document 
+class PCB_Document
 ```
 
 ## Remarks
 
-对设计文档总体进行的操作
+Operations performed on the design document as a whole
 
 ## Methods
 
@@ -18,268 +18,288 @@ declare class PCB_Document
 
 Method
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Description
 
-
 </th></tr></thead>
 <tbody><tr><td>
 
+[autoLayout()](./PCB_Document.md)
+
+</td><td>
+
+</td><td>
+
+**_(BETA)_** Auto layout
+
+</td></tr>
+<tr><td>
+
+[autoRouting(props)](./PCB_Document.md)
+
+</td><td>
+
+</td><td>
+
+**_(BETA)_** Auto routing
+
+</td></tr>
+<tr><td>
+
+[clearRouting(type)](./PCB_Document.md)
+
+</td><td>
+
+</td><td>
+
+**_(BETA)_** Clear routing
+
+</td></tr>
+<tr><td>
+
 [convertCanvasOriginToDataOrigin(x, y)](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-输入画布坐标返回该坐标对应的数据坐标
-
+Input a canvas coordinate and return the data coordinate corresponding to that coordinate
 
 </td></tr>
 <tr><td>
 
 [convertDataOriginToCanvasOrigin(x, y)](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-输入数据坐标返回该坐标对应的画布坐标
-
+Input a data coordinate and return the canvas coordinate corresponding to that coordinate
 
 </td></tr>
 <tr><td>
 
 [getCalculatingRatlineStatus()](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-获取当前飞线计算功能状态
-
+Get the current ratline calculation function status
 
 </td></tr>
 <tr><td>
 
 [getCanvasOrigin()](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
+Get the offset coordinate of the canvas origin relative to the data origin
+
+</td></tr>
+<tr><td>
+
+[getCanvasUpdateCalculationStatus()](./PCB_Document.md)
 
 </td><td>
 
-获取画布原点相对于数据原点的偏移坐标
+</td><td>
 
+**_(BETA)_** Query the current canvas update calculation status
 
 </td></tr>
 <tr><td>
 
 [getCurrentFilterConfiguration()](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取当前画布过滤器配置
-
+**_(BETA)_** Get Current canvas filter configuration
 
 </td></tr>
 <tr><td>
 
 [getPrimitiveAtPoint(x, y)](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取坐标点的图元
-
+**_(BETA)_** Get The primitive at the coordinate point
 
 </td></tr>
 <tr><td>
 
 [getPrimitivesInRegion(left, right, top, bottom, leftToRight)](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 获取区域内所有图元
-
+**_(BETA)_** Get All primitives in the region
 
 </td></tr>
 <tr><td>
 
 [importAutoLayoutJsonFile(autoLayoutFile)](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 导入自动布局文件（JSON）
-
+**_(BETA)_** Import auto layout file (JSON)
 
 </td></tr>
 <tr><td>
 
 [importAutoRouteJsonFile(autoRouteFile)](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 导入自动布线文件（JSON）
-
+**_(BETA)_** Import auto routing file (JSON)
 
 </td></tr>
 <tr><td>
 
 [importAutoRouteSesFile(autoRouteFile)](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 导入自动布线文件（SES）
-
+**_(BETA)_** Import auto routing file (SES)
 
 </td></tr>
 <tr><td>
 
 [importChanges(uuid)](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-从原理图导入变更
-
+Import changes from the schematic
 
 </td></tr>
 <tr><td>
 
 [navigateToCoordinates(x, y)](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-定位到画布坐标
-
+Locate to canvas coordinate
 
 </td></tr>
 <tr><td>
 
 [navigateToRegion(left, right, top, bottom)](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 定位到画布区域
-
+**_(BETA)_** Locate to canvas region
 
 </td></tr>
 <tr><td>
 
-[save(uuid)](./PCB_Document.md)
-
-
-</td><td>
-
+[save()](./PCB_Document.md)
 
 </td><td>
 
-保存文档
+</td><td>
 
+Save Document
 
 </td></tr>
 <tr><td>
 
 [setCanvasOrigin(offsetX, offsetY)](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-设置画布原点相对于数据原点的偏移坐标
-
+Set the offset coordinate of the canvas origin relative to the data origin
 
 </td></tr>
 <tr><td>
 
 [startCalculatingRatline()](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
+Start the ratline calculation function
+
+</td></tr>
+<tr><td>
+
+[startCanvasUpdateCalculation()](./PCB_Document.md)
 
 </td><td>
 
-启动飞线计算功能
+</td><td>
 
+**_(BETA)_** Start canvas update calculation
 
 </td></tr>
 <tr><td>
 
 [stopCalculatingRatline()](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
+Stop the ratline calculation function
+
+</td></tr>
+<tr><td>
+
+[stopCanvasUpdateCalculation()](./PCB_Document.md)
 
 </td><td>
 
-停止飞线计算功能
+</td><td>
 
+**_(BETA)_** Stop canvas update calculation
+
+</td></tr>
+<tr><td>
+
+[triggerCanvasUpdateCalculation()](./PCB_Document.md)
+
+</td><td>
+
+</td><td>
+
+**_(BETA)_** Trigger a canvas update calculation
 
 </td></tr>
 <tr><td>
 
 [zoomToBoardOutline()](./PCB_Document.md)
 
+</td><td>
 
 </td><td>
 
-
-</td><td>
-
-**_(BETA)_** 缩放到板框（适应板框）
-
+**_(BETA)_** Zoom to the board outline (fit the board outline)
 
 </td></tr>
 </tbody></table>
@@ -288,19 +308,42 @@ Description
 
 ## 方法详情
 
-### convertcanvasorigintodataorigin
+### autolayout
 
-# PCB\_Document.convertCanvasOriginToDataOrigin() method
+# PCB\_Document.autoLayout() method
 
-输入画布坐标返回该坐标对应的数据坐标
+> This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Auto layout
 
 ## Signature
 
 ```typescript
-convertCanvasOriginToDataOrigin(x: number, y: number): Promise<{
-        x: number;
-        y: number;
-    }>;
+function autoLayout(): Promise<IPCB_AutoLayoutResult>;
+```
+
+## Returns
+
+Promise&lt;[IPCB\_AutoLayoutResult](../interfaces/IPCB_AutoLayoutResult.md)<!-- -->&gt;
+
+Auto layout result
+
+## Remarks
+
+ADD since EDA v3.2.162
+
+### autorouting
+
+# PCB\_Document.autoRouting() method
+
+> This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Auto routing
+
+## Signature
+
+```typescript
+function autoRouting(props?: IPCB_AutoRoutingProps): Promise<IPCB_AutoRoutingResult>;
 ```
 
 ## Parameters
@@ -309,73 +352,197 @@ convertCanvasOriginToDataOrigin(x: number, y: number): Promise<{
 
 Parameter
 
-
 </th><th>
 
 Type
-
 
 </th><th>
 
 Description
 
+</th></tr></thead>
+<tbody><tr><td>
+
+props
+
+</td><td>
+
+[IPCB\_AutoRoutingProps](../interfaces/IPCB_AutoRoutingProps.md)
+
+</td><td>
+
+_(Optional)_ Auto routing parameter
+
+</td></tr>
+</tbody></table>
+
+## Returns
+
+Promise&lt;[IPCB\_AutoRoutingResult](../interfaces/IPCB_AutoRoutingResult.md)<!-- -->&gt;
+
+Auto routing result
+
+## Remarks
+
+If no parameters are passed in, auto routing will be performed for all unrouted nets ADD since EDA v3.2.162
+
+## Example
+
+```javascript
+// 对所有未布线的网络进行自动布线
+const result = await eda.pcb_Document.autoRouting();
+console.log(`布线完成：${result.routedNets}/${result.totalNets}`);
+
+// 指定网络进行自动布线，并忽略部分网络
+const result = await eda.pcb_Document.autoRouting({
+    nets: ['VCC', 'GND', 'SDA', 'SCL'],
+    ignoreNets: ['NC'],
+    cornerStyle: EPCB_AutoRoutingCornerStyle.DEGREE_45,
+    optimization: EPCB_AutoRoutingOptimization.COMPLETION,
+});
+```
+
+### clearrouting
+
+# PCB\_Document.clearRouting() method
+
+> This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Clear routing
+
+## Signature
+
+```typescript
+function clearRouting(type?: 'all' | 'net' | 'connection'): Promise<boolean>;
+```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+</th><th>
+
+Type
+
+</th><th>
+
+Description
+
+</th></tr></thead>
+<tbody><tr><td>
+
+type
+
+</td><td>
+
+'all' \| 'net' \| 'connection'
+
+</td><td>
+
+_(Optional)_ Clear type. If you need to specify a clear type, select the specified primitive in advance
+
+</td></tr>
+</tbody></table>
+
+## Returns
+
+Promise&lt;boolean&gt;
+
+### convertcanvasorigintodataorigin
+
+# PCB\_Document.convertCanvasOriginToDataOrigin() method
+
+Input a canvas coordinate and return the data coordinate corresponding to that coordinate
+
+## Signature
+
+```typescript
+function convertCanvasOriginToDataOrigin(x: number, y: number): Promise<{ x: number; y: number }>;
+```
+
+## Parameters
+
+<table><thead><tr><th>
+
+Parameter
+
+</th><th>
+
+Type
+
+</th><th>
+
+Description
 
 </th></tr></thead>
 <tbody><tr><td>
 
 x
 
-
 </td><td>
 
 number
 
-
 </td><td>
-
 
 </td></tr>
 <tr><td>
 
 y
 
-
 </td><td>
 
 number
 
-
 </td><td>
-
 
 </td></tr>
 </tbody></table>
 
-
-
 ## Returns
 
-Promise&lt;{ x: number; y: number; }&gt;
+Promise&lt;{ x: number; y: number }&gt;
 
-数据原点坐标
+Data origin coordinate
 
 ## Remarks
 
-嘉立创 EDA 前端显示的坐标均为画布原点；嘉立创 EDA API 使用的均为数据原点；在创建 PCB 时，默认画布原点等于数据原点
+The coordinates displayed on the EasyEDA front end are all relative to the canvas origin; the EasyEDA API uses the data origin; when creating a PCB, the default canvas origin equals the data origin
+
+## Example
+
+```javascript
+// 1. 创建测试 PCB 并打开（文档级 API 作用于当前激活的 PCB）
+const pcbUuid = await eda.dmt_Pcb.createPcb();
+await new Promise(r => setTimeout(r, 1500));
+await eda.dmt_EditorControl.openDocument(pcbUuid);
+await new Promise(r => setTimeout(r, 1000));
+
+// 2. 换算画布坐标 (300, 400)。新建 PCB 画布原点与数据原点重合，换算值不变
+const before = await eda.pcb_Document.convertCanvasOriginToDataOrigin(300, 400);
+console.log('before:', JSON.stringify(before));
+
+// 3. 设置画布原点偏移后再换算同一坐标，观察映射随之变化
+await eda.pcb_Document.setCanvasOrigin(50, 100);
+const after = await eda.pcb_Document.convertCanvasOriginToDataOrigin(300, 400);
+console.log('after:', JSON.stringify(after));
+
+// 4. 清理测试 PCB（偏移随文档一起删除）
+await eda.dmt_Pcb.deletePcb(pcbUuid);
+```
 
 ### convertdataorigintocanvasorigin
 
 # PCB\_Document.convertDataOriginToCanvasOrigin() method
 
-输入数据坐标返回该坐标对应的画布坐标
+Input a data coordinate and return the canvas coordinate corresponding to that coordinate
 
 ## Signature
 
 ```typescript
-convertDataOriginToCanvasOrigin(x: number, y: number): Promise<{
-        x: number;
-        y: number;
-    }>;
+function convertDataOriginToCanvasOrigin(x: number, y: number): Promise<{ x: number; y: number }>;
 ```
 
 ## Parameters
@@ -384,114 +551,152 @@ convertDataOriginToCanvasOrigin(x: number, y: number): Promise<{
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 x
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-数据原点 X
-
+Data origin X
 
 </td></tr>
 <tr><td>
 
 y
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-数据原点 Y
-
+Data origin Y
 
 </td></tr>
 </tbody></table>
 
-
-
 ## Returns
 
-Promise&lt;{ x: number; y: number; }&gt;
+Promise&lt;{ x: number; y: number }&gt;
 
-画布原点坐标
+Canvas origin coordinate
 
 ## Remarks
 
-嘉立创 EDA 前端显示的坐标均为画布原点；嘉立创 EDA API 使用的均为数据原点；在创建 PCB 时，默认画布原点等于数据原点
+The coordinates displayed on the EasyEDA front end are all relative to the canvas origin; the EasyEDA API uses the data origin; when creating a PCB, the default canvas origin equals the data origin
+
+## Example
+
+```javascript
+// 1. 创建测试 PCB 并打开（文档级 API 作用于当前激活的 PCB）
+const pcbUuid = await eda.dmt_Pcb.createPcb();
+await new Promise(r => setTimeout(r, 1500));
+await eda.dmt_EditorControl.openDocument(pcbUuid);
+await new Promise(r => setTimeout(r, 1000));
+
+// 2. 换算数据坐标 (300, 400)。新建 PCB 画布原点与数据原点重合，换算值不变
+const before = await eda.pcb_Document.convertDataOriginToCanvasOrigin(300, 400);
+console.log('before:', JSON.stringify(before));
+
+// 3. 设置画布原点偏移后再换算同一坐标，观察映射随之变化
+await eda.pcb_Document.setCanvasOrigin(50, 100);
+const after = await eda.pcb_Document.convertDataOriginToCanvasOrigin(300, 400);
+console.log('after:', JSON.stringify(after));
+
+// 4. 清理测试 PCB（偏移随文档一起删除）
+await eda.dmt_Pcb.deletePcb(pcbUuid);
+```
 
 ### getcalculatingratlinestatus
 
 # PCB\_Document.getCalculatingRatlineStatus() method
 
-获取当前飞线计算功能状态
+> Warning: This API is now obsolete.
+>
+> since EDA v4.2
+
+Get the current ratline calculation function status
 
 ## Signature
 
 ```typescript
-getCalculatingRatlineStatus(): Promise<EPCB_DocumentRatlineCalculatingActiveStatus>;
+function getCalculatingRatlineStatus(): Promise<
+	EPCB_DocumentRatlineCalculatingActiveStatus | undefined
+>;
 ```
-
 
 ## Returns
 
-Promise&lt;[EPCB\_DocumentRatlineCalculatingActiveStatus](../enums/EPCB_DocumentRatlineCalculatingActiveStatus.md)<!-- -->&gt;
+Promise&lt;[EPCB\_DocumentRatlineCalculatingActiveStatus](../enums/EPCB_DocumentRatlineCalculatingActiveStatus.md) \| undefined&gt;
 
-功能状态
+Function state
 
 ### getcanvasorigin
 
 # PCB\_Document.getCanvasOrigin() method
 
-获取画布原点相对于数据原点的偏移坐标
+Get the offset coordinate of the canvas origin relative to the data origin
 
 ## Signature
 
 ```typescript
-getCanvasOrigin(): Promise<{
-        offsetX: number;
-        offsetY: number;
-    }>;
+function getCanvasOrigin(): Promise<{ offsetX: number; offsetY: number }>;
 ```
-
 
 ## Returns
 
-Promise&lt;{ offsetX: number; offsetY: number; }&gt;
+Promise&lt;{ offsetX: number; offsetY: number }&gt;
 
-画布原点相对于数据原点的偏移坐标
+The offset coordinate of the canvas origin relative to the data origin
 
 ## Remarks
 
-嘉立创 EDA 专业版前端显示的坐标均为画布原点；
+The coordinates displayed on the EasyEDA Pro front end are all relative to the canvas origin;
 
-嘉立创 EDA 专业版 API 使用的均为数据原点；
+The EasyEDA Pro API uses the data origin;
 
-如果返回的数据为 `{ canvasOriginOffsetX: 100, canvasOriginOffsetY: 200 }`<!-- -->， 则代表画布原点在数据原点的向右 100 单位且向上 200 单位的位置；
+If the returned data is `{ canvasOriginOffsetX: 100, canvasOriginOffsetY: 200 }`<!-- -->, it means the canvas origin is at a position 100 units to the right and 200 units up from the data origin;
 
-此处的单位为数据层面单位，在跨度上等同于画布层面的 mil
+The units here are data-level units, which are equivalent to mil on the canvas level in span
+
+### getcanvasupdatecalculationstatus
+
+# PCB\_Document.getCanvasUpdateCalculationStatus() method
+
+> This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Query the current canvas update calculation status
+
+## Signature
+
+```typescript
+function getCanvasUpdateCalculationStatus(): Promise<
+	EPCB_DocumentCanvasUpdateCalculationActiveStatus | undefined
+>;
+```
+
+## Returns
+
+Promise&lt;[EPCB\_DocumentCanvasUpdateCalculationActiveStatus](../enums/EPCB_DocumentCanvasUpdateCalculationActiveStatus.md) \| undefined&gt;
+
+Canvas update calculation function status
+
+## Remarks
+
+Canvas update calculation includes canvas render updates, property panel updates, etc. ADD since EDA v4.2
 
 ### getcurrentfilterconfiguration
 
@@ -499,22 +704,19 @@ Promise&lt;{ offsetX: number; offsetY: number; }&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取当前画布过滤器配置
+Get Current canvas filter configuration
 
 ## Signature
 
 ```typescript
-getCurrentFilterConfiguration(): Promise<{
-        [key: string]: any;
-    } | undefined>;
+function getCurrentFilterConfiguration(): Promise<Record<string, any> | undefined>;
 ```
-
 
 ## Returns
 
-Promise&lt;{ \[key: string\]: any; } \| undefined&gt;
+Promise&lt;Record&lt;string, any&gt; \| undefined&gt;
 
-当前画布过滤器配置，`undefined` 为获取失败
+Current canvas filter configuration; `undefined` indicates that the retrieval failed
 
 ### getprimitiveatpoint
 
@@ -522,12 +724,12 @@ Promise&lt;{ \[key: string\]: any; } \| undefined&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取坐标点的图元
+Get The primitive at the coordinate point
 
 ## Signature
 
 ```typescript
-getPrimitiveAtPoint(x: number, y: number): Promise<IPCB_Primitive | undefined>;
+function getPrimitiveAtPoint(x: number, y: number): Promise<IPCB_Primitive | undefined>;
 ```
 
 ## Parameters
@@ -536,63 +738,78 @@ getPrimitiveAtPoint(x: number, y: number): Promise<IPCB_Primitive | undefined>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 x
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-坐标点 X
-
+Coordinate point X
 
 </td></tr>
 <tr><td>
 
 y
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-坐标点 Y
-
+Coordinate point Y
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;[IPCB\_Primitive](../interfaces/IPCB_Primitive.md) \| undefined&gt;
 
-坐标点的图元，如若坐标点无法找到图元，将返回 `undefined`
+The primitive at the coordinate point. If no primitive can be found at the coordinate point, `undefined` will be returned
 
 ## Remarks
 
-本操作和前端鼠标点击操作类似，将会获取指定坐标点上的图元
+This operation is similar to clicking with the mouse on the front end; it will get the primitive at the specified coordinate point
+
+## Example
+
+```javascript
+// 1. 创建测试 PCB 并打开
+const pcbUuid = await eda.dmt_Pcb.createPcb();
+await new Promise(r => setTimeout(r, 1500));
+await eda.dmt_EditorControl.openDocument(pcbUuid);
+await new Promise(r => setTimeout(r, 1000));
+
+// 2. 在 (500, 500) 放一个测试焊盘作为拾取目标
+const pad = await eda.pcb_PrimitivePad.create(1, '1', 500, 500, 0, ['ELLIPSE', 60, 60], '', null, 0, 0, 0, false, 0);
+const padId = pad.getState_PrimitiveId();
+
+// 3. 拾取焊盘中心点，返回该焊盘图元
+const hit = await eda.pcb_Document.getPrimitiveAtPoint(500, 500);
+console.log('hitPrimitiveId:', hit.getState_PrimitiveId());
+
+// 4. 拾取空白坐标点，返回 undefined
+const miss = await eda.pcb_Document.getPrimitiveAtPoint(90000, 90000);
+console.log('空白坐标点：', miss === undefined ? '未找到图元' : '找到图元');
+
+// 5. 清理测试图元和测试 PCB
+await eda.pcb_PrimitivePad.delete([padId]);
+await eda.dmt_Pcb.deletePcb(pcbUuid);
+```
 
 ### getprimitivesinregion
 
@@ -600,12 +817,18 @@ Promise&lt;[IPCB\_Primitive](../interfaces/IPCB_Primitive.md) \| undefined&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-获取区域内所有图元
+Get All primitives in the region
 
 ## Signature
 
 ```typescript
-getPrimitivesInRegion(left: number, right: number, top: number, bottom: number, leftToRight?: boolean): Promise<Array<IPCB_Primitive>>;
+function getPrimitivesInRegion(
+	left: number,
+	right: number,
+	top: number,
+	bottom: number,
+	leftToRight?: boolean,
+): Promise<Array<IPCB_Primitive>>;
 ```
 
 ## Parameters
@@ -614,107 +837,113 @@ getPrimitivesInRegion(left: number, right: number, top: number, bottom: number, 
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 left
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-矩形框第一 X 坐标
-
+First X coordinate of the rectangle
 
 </td></tr>
 <tr><td>
 
 right
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-矩形框第二 X 坐标
-
+Second X coordinate of the rectangle
 
 </td></tr>
 <tr><td>
 
 top
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-矩形框第一 Y 坐标
-
+First Y coordinate of the rectangle
 
 </td></tr>
 <tr><td>
 
 bottom
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-矩形框第二 Y 坐标
-
+Second Y coordinate of the rectangle
 
 </td></tr>
 <tr><td>
 
 leftToRight
 
-
 </td><td>
 
 boolean
 
-
 </td><td>
 
-_(Optional)_ 是否仅获取完全框选的图元，`false` 则触碰即获取
-
+_(Optional)_ Whether to only get primitives that are fully enclosed by the box selection. If `false`<!-- -->, primitives touched by the selection are also obtained
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;Array&lt;[IPCB\_Primitive](../interfaces/IPCB_Primitive.md)<!-- -->&gt;&gt;
 
-区域内所有图元
+All primitives in the region
+
+## Example
+
+```javascript
+// 1. 创建测试 PCB 并打开
+const pcbUuid = await eda.dmt_Pcb.createPcb();
+await new Promise(r => setTimeout(r, 1500));
+await eda.dmt_EditorControl.openDocument(pcbUuid);
+await new Promise(r => setTimeout(r, 1000));
+
+// 2. 放两个测试焊盘：一个在 (500, 500)，一个在 (3000, 3000)
+const padA = await eda.pcb_PrimitivePad.create(1, '1', 500, 500, 0, ['ELLIPSE', 60, 60], '', null, 0, 0, 0, false, 0);
+const padB = await eda.pcb_PrimitivePad.create(1, '2', 3000, 3000, 0, ['ELLIPSE', 60, 60], '', null, 0, 0, 0, false, 0);
+
+// 3. 小区域 (0,1000,1000,0) 只盖住第一个焊盘
+const small = await eda.pcb_Document.getPrimitivesInRegion(0, 1000, 1000, 0);
+console.log('smallRegionCount:', small.length);
+
+// 4. 大区域 (0,4000,4000,0) 盖住两个焊盘，完全框选模式
+const big = await eda.pcb_Document.getPrimitivesInRegion(0, 4000, 4000, 0, true);
+console.log('bigRegionCount:', big.length);
+
+// 5. 清理测试图元和测试 PCB
+await eda.pcb_PrimitivePad.delete([padA.getState_PrimitiveId(), padB.getState_PrimitiveId()]);
+await eda.dmt_Pcb.deletePcb(pcbUuid);
+```
 
 ### importautolayoutjsonfile
 
@@ -722,12 +951,12 @@ Promise&lt;Array&lt;[IPCB\_Primitive](../interfaces/IPCB_Primitive.md)<!-- -->&g
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-导入自动布局文件（JSON）
+Import auto layout file (JSON)
 
 ## Signature
 
 ```typescript
-importAutoLayoutJsonFile(autoLayoutFile: File): Promise<boolean>;
+function importAutoLayoutJsonFile(autoLayoutFile: File): Promise<boolean>;
 ```
 
 ## Parameters
@@ -736,47 +965,59 @@ importAutoLayoutJsonFile(autoLayoutFile: File): Promise<boolean>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 autoLayoutFile
 
-
 </td><td>
 
 File
 
-
 </td><td>
 
-欲导入的 JSON 文件
-
+The JSON file to import
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-导入操作是否成功
+Whether the import operation is successful
 
 ## Remarks
 
-可以使用  读入文件
+You can use  to read in a file
+
+## Example
+
+```javascript
+// 1. 创建测试 PCB 并打开（导入作用于当前激活的 PCB）
+const pcbUuid = await eda.dmt_Pcb.createPcb();
+await new Promise(r => setTimeout(r, 1500));
+await eda.dmt_EditorControl.openDocument(pcbUuid);
+await new Promise(r => setTimeout(r, 1000));
+
+// 2. 构造布局 JSON 文件对象（真实场景：readFileFromFileSystem 读取外部导出的文件）
+const layoutFile = new File([JSON.stringify({})], 'auto-layout.json', { type: 'application/json' });
+
+// 3. 导入自动布局文件
+const imported = await eda.pcb_Document.importAutoLayoutJsonFile(layoutFile);
+console.log('imported:', imported);
+
+// 4. 清理测试 PCB
+await eda.dmt_Pcb.deletePcb(pcbUuid);
+```
 
 ### importautoroutejsonfile
 
@@ -784,12 +1025,12 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-导入自动布线文件（JSON）
+Import auto routing file (JSON)
 
 ## Signature
 
 ```typescript
-importAutoRouteJsonFile(autoRouteFile: File): Promise<boolean>;
+function importAutoRouteJsonFile(autoRouteFile: File): Promise<boolean>;
 ```
 
 ## Parameters
@@ -798,47 +1039,59 @@ importAutoRouteJsonFile(autoRouteFile: File): Promise<boolean>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 autoRouteFile
 
-
 </td><td>
 
 File
 
-
 </td><td>
 
-欲导入的 JSON 文件
-
+The JSON file to import
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-导入操作是否成功
+Whether the import operation is successful
 
 ## Remarks
 
-可以使用  读入文件
+You can use  to read in a file
+
+## Example
+
+```javascript
+// 1. 创建测试 PCB 并打开（导入作用于当前激活的 PCB）
+const pcbUuid = await eda.dmt_Pcb.createPcb();
+await new Promise(r => setTimeout(r, 1500));
+await eda.dmt_EditorControl.openDocument(pcbUuid);
+await new Promise(r => setTimeout(r, 1000));
+
+// 2. 构造布线 JSON 文件对象（真实场景：readFileFromFileSystem 读取外部导出的文件）
+const routeFile = new File([JSON.stringify({})], 'auto-route.json', { type: 'application/json' });
+
+// 3. 导入自动布线文件
+const imported = await eda.pcb_Document.importAutoRouteJsonFile(routeFile);
+console.log('imported:', imported);
+
+// 4. 清理测试 PCB
+await eda.dmt_Pcb.deletePcb(pcbUuid);
+```
 
 ### importautoroutesesfile
 
@@ -846,12 +1099,12 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-导入自动布线文件（SES）
+Import auto routing file (SES)
 
 ## Signature
 
 ```typescript
-importAutoRouteSesFile(autoRouteFile: File): Promise<boolean>;
+function importAutoRouteSesFile(autoRouteFile: File): Promise<boolean>;
 ```
 
 ## Parameters
@@ -860,58 +1113,50 @@ importAutoRouteSesFile(autoRouteFile: File): Promise<boolean>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 autoRouteFile
 
-
 </td><td>
 
 File
 
-
 </td><td>
 
-欲导入的 SES 文件
-
+The SES file to import
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-导入操作是否成功
+Whether the import operation is successful
 
 ## Remarks
 
-可以使用  读入文件
+You can use  to read in a file
 
 ### importchanges
 
 # PCB\_Document.importChanges() method
 
-从原理图导入变更
+Import changes from the schematic
 
 ## Signature
 
 ```typescript
-importChanges(uuid?: string): Promise<boolean>;
+function importChanges(uuid?: string): Promise<boolean>;
 ```
 
 ## Parameters
@@ -920,54 +1165,73 @@ importChanges(uuid?: string): Promise<boolean>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 uuid
 
-
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 原理图 UUID，默认为关联在同一个 Board 下的原理图
-
+_(Optional)_ Schematic UUID. By default, the schematic associated with the same Board is used
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-导入操作是否成功，导入失败或未传入原理图 UUID 的游离 PCB 将返回 `false`
+Whether the import operation was successful. If the import fails or the free PCB has no schematic UUID passed in, `false` is returned
+
+## Example
+
+```javascript
+// 1. 创建测试原理图和测试 PCB
+const schUuid = await eda.dmt_Schematic.createSchematic();
+await new Promise(r => setTimeout(r, 1500));
+const pcbUuid = await eda.dmt_Pcb.createPcb();
+await new Promise(r => setTimeout(r, 1500));
+
+// 2. 创建板子把原理图与 PCB 关联起来（返回板子名称）
+const boardName = await eda.dmt_Board.createBoard(schUuid, pcbUuid);
+await new Promise(r => setTimeout(r, 1500));
+console.log('boardName:', boardName);
+
+// 3. 打开 PCB 并从关联原理图导入变更
+await eda.dmt_EditorControl.openDocument(pcbUuid);
+await new Promise(r => setTimeout(r, 1000));
+const imported = await eda.pcb_Document.importChanges();
+console.log('imported:', imported);
+
+// 4. 清理：删板子、删 PCB、删原理图
+await eda.dmt_Board.deleteBoard(boardName);
+await new Promise(r => setTimeout(r, 1000));
+await eda.dmt_Pcb.deletePcb(pcbUuid);
+await eda.dmt_Schematic.deleteSchematic(schUuid);
+```
 
 ### navigatetocoordinates
 
 # PCB\_Document.navigateToCoordinates() method
 
-定位到画布坐标
+Locate to canvas coordinate
 
 ## Signature
 
 ```typescript
-navigateToCoordinates(x: number, y: number): Promise<boolean>;
+function navigateToCoordinates(x: number, y: number): Promise<boolean>;
 ```
 
 ## Parameters
@@ -976,67 +1240,73 @@ navigateToCoordinates(x: number, y: number): Promise<boolean>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 x
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-坐标 X
-
+X coordinate
 
 </td></tr>
 <tr><td>
 
 y
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-坐标 Y
-
+Y coordinate
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-操作是否成功
+Whether the operation is successful
 
 ## Remarks
 
-本接口在前端画布上定位到指定的数据层面坐标；
+This API positions on the front-end canvas to the specified data-level coordinate;
 
-如果希望在进行本操作时前端画布坐标能与传入数据一致， 建议调用 [PCB\_Document.setCanvasOrigin()](./PCB_Document.md) 方法并设置偏移量为零；
+If you want the front-end canvas coordinate to be consistent with the passed-in data during this operation, it is recommended to call the [PCB\_Document.setCanvasOrigin()](./PCB_Document.md) method and set the offset to zero;
 
-此处的单位为数据层面单位，在跨度上等同于画布层面的 mil
+The units here are data-level units, which are equivalent to mil on the canvas level in span
+
+## Example
+
+```javascript
+// 1. 创建测试 PCB 并打开（视口操作作用于当前激活的 PCB）
+const pcbUuid = await eda.dmt_Pcb.createPcb();
+await new Promise(r => setTimeout(r, 1500));
+await eda.dmt_EditorControl.openDocument(pcbUuid);
+await new Promise(r => setTimeout(r, 1000));
+
+// 2. 定位到数据坐标 (1000, 800)
+const navigated = await eda.pcb_Document.navigateToCoordinates(1000, 800);
+console.log('navigated:', navigated);
+
+// 3. 清理测试 PCB
+await eda.dmt_Pcb.deletePcb(pcbUuid);
+```
 
 ### navigatetoregion
 
@@ -1044,12 +1314,17 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-定位到画布区域
+Locate to canvas region
 
 ## Signature
 
 ```typescript
-navigateToRegion(left: number, right: number, top: number, bottom: number): Promise<boolean>;
+function navigateToRegion(
+	left: number,
+	right: number,
+	top: number,
+	bottom: number,
+): Promise<boolean>;
 ```
 
 ## Parameters
@@ -1058,166 +1333,147 @@ navigateToRegion(left: number, right: number, top: number, bottom: number): Prom
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 left
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-矩形框第一 X 坐标
-
+First X coordinate of the rectangle
 
 </td></tr>
 <tr><td>
 
 right
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-矩形框第二 X 坐标
-
+Second X coordinate of the rectangle
 
 </td></tr>
 <tr><td>
 
 top
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-矩形框第一 Y 坐标
-
+First Y coordinate of the rectangle
 
 </td></tr>
 <tr><td>
 
 bottom
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-矩形框第二 Y 坐标
-
+Second Y coordinate of the rectangle
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-操作是否成功
+Whether the operation is successful
 
 ## Remarks
 
-本接口在前端画布上定位到指定的区域，区域数据为相对于数据原点的偏移；
+This API positions on the front-end canvas to the specified region. The region data is an offset relative to the data origin;
 
-例如：传入数据为 `{left: 0, right: 60, top: 100, bottom: -20}` =<!-- -->&gt; `navigateToRegion(0, 60, 100, -20)`<!-- -->， 则画布将会定位到以 `[30, 40]` 为中心的，`x` 轴方向长度为 `60`<!-- -->，`y` 轴方向长度为 `120` 的矩形范围；
+For example: the passed-in data is `{left: 0, right: 60, top: 100, bottom: -20}` =<!-- -->&gt; `navigateToRegion(0, 60, 100, -20)`<!-- -->, then the canvas will be positioned to a rectangular range centered at `[30, 40]` with a length of `60` in the x-axis direction and `120` in the y-axis direction;
 
-本接口不进行缩放操作，但会生成指示定位中心及表示区域范围的矩形框；
+This API does not perform zooming, but it will generate a rectangle frame indicating the positioning center and the region range;
 
-此处的单位为数据层面单位，在跨度上等同于画布层面的 mil
+The units here are data-level units, which are equivalent to mil on the canvas level in span
+
+## Example
+
+```javascript
+// 1. 创建测试 PCB 并打开（视口操作作用于当前激活的 PCB）
+const pcbUuid = await eda.dmt_Pcb.createPcb();
+await new Promise(r => setTimeout(r, 1500));
+await eda.dmt_EditorControl.openDocument(pcbUuid);
+await new Promise(r => setTimeout(r, 1000));
+
+// 2. 定位到矩形区域：X 从 0 到 2000，Y 从 2000 到 0（视口将以中心 (1000,1000) 呈现）
+const navigated = await eda.pcb_Document.navigateToRegion(0, 2000, 2000, 0);
+console.log('navigated:', navigated);
+
+// 3. 清理测试 PCB
+await eda.dmt_Pcb.deletePcb(pcbUuid);
+```
 
 ### save
 
 # PCB\_Document.save() method
 
-保存文档
+Save Document
 
 ## Signature
 
 ```typescript
-save(uuid: string): Promise<boolean>;
+function save(): Promise<boolean>;
 ```
-
-## Parameters
-
-<table><thead><tr><th>
-
-Parameter
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-uuid
-
-
-</td><td>
-
-string
-
-
-</td><td>
-
-
-</td></tr>
-</tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-保存操作是否成功，保存失败、上传失败等错误均返回 `false`
+Whether the save operation was successful. Errors such as save failure and upload failure all return `false`
+
+## Example
+
+```javascript
+// 1. 创建测试 PCB 并打开（保存作用于当前激活的 PCB）
+const pcbUuid = await eda.dmt_Pcb.createPcb();
+await new Promise(r => setTimeout(r, 1500));
+await eda.dmt_EditorControl.openDocument(pcbUuid);
+await new Promise(r => setTimeout(r, 1000));
+
+// 2. 保存当前 PCB
+const saved = await eda.pcb_Document.save();
+console.log('saved:', saved);
+
+// 3. 清理测试 PCB
+await eda.dmt_Pcb.deletePcb(pcbUuid);
+```
 
 ### setcanvasorigin
 
 # PCB\_Document.setCanvasOrigin() method
 
-设置画布原点相对于数据原点的偏移坐标
+Set the offset coordinate of the canvas origin relative to the data origin
 
 ## Signature
 
 ```typescript
-setCanvasOrigin(offsetX: number, offsetY: number): Promise<boolean>;
+function setCanvasOrigin(offsetX: number, offsetY: number): Promise<boolean>;
 ```
 
 ## Parameters
@@ -1226,111 +1482,239 @@ setCanvasOrigin(offsetX: number, offsetY: number): Promise<boolean>;
 
 Parameter
 
-
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 offsetX
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-画布原点相对于数据原点的 X 坐标偏移
-
+X coordinate offset of the canvas origin relative to the data origin
 
 </td></tr>
 <tr><td>
 
 offsetY
 
-
 </td><td>
 
 number
 
-
 </td><td>
 
-画布原点相对于数据原点的 Y 坐标偏移
-
+Y coordinate offset of the canvas origin relative to the data origin
 
 </td></tr>
 </tbody></table>
-
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-操作是否成功
+Whether the operation is successful
 
 ## Remarks
 
-嘉立创 EDA 专业版前端显示的坐标均为画布原点；
+The coordinates displayed on the EasyEDA Pro front end are all relative to the canvas origin;
 
-嘉立创 EDA 专业版 API 使用的均为数据原点；
+The EasyEDA Pro API uses the data origin;
 
-如果希望在 API 操作时前端画布坐标能与数据一致， 建议调用本方法并设置偏移量为零， 即 `setCanvasOrigin(0, 0)`<!-- -->；
+If you want the front-end canvas coordinate to be consistent with the data during API operations, it is recommended to call this method and set the offset to zero, i.e. `setCanvasOrigin(0, 0)`<!-- -->;
 
-此处的单位为数据层面单位，在跨度上等同于画布层面的 mil
+The units here are data-level units, which are equivalent to mil on the canvas level in span
+
+## Example
+
+```javascript
+// 1. 创建测试 PCB 并打开（原点设置作用于当前激活的 PCB）
+const pcbUuid = await eda.dmt_Pcb.createPcb();
+await new Promise(r => setTimeout(r, 1500));
+await eda.dmt_EditorControl.openDocument(pcbUuid);
+await new Promise(r => setTimeout(r, 1000));
+
+// 2. 设置画布原点偏移为 (50, 100)
+const set = await eda.pcb_Document.setCanvasOrigin(50, 100);
+console.log('set:', set);
+
+// 3. 读回偏移验证已生效
+const origin = await eda.pcb_Document.getCanvasOrigin();
+console.log('origin:', JSON.stringify(origin));
+
+// 4. 清理测试 PCB（偏移随文档一起删除）
+await eda.dmt_Pcb.deletePcb(pcbUuid);
+```
 
 ### startcalculatingratline
 
 # PCB\_Document.startCalculatingRatline() method
 
-启动飞线计算功能
+> Warning: This API is now obsolete.
+>
+> since EDA v4.2
+
+Start the ratline calculation function
 
 ## Signature
 
 ```typescript
-startCalculatingRatline(): Promise<boolean>;
+function startCalculatingRatline(): Promise<boolean>;
 ```
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-操作是否成功
+Whether the operation is successful
 
 ## Remarks
 
-在启动时将会触发一次飞线计算
+A ratline calculation will be triggered when starting
+
+## Example
+
+```javascript
+// 1. 创建测试 PCB 并打开（飞线开关作用于当前激活的 PCB）
+const pcbUuid = await eda.dmt_Pcb.createPcb();
+await new Promise(r => setTimeout(r, 1500));
+await eda.dmt_EditorControl.openDocument(pcbUuid);
+await new Promise(r => setTimeout(r, 1000));
+
+// 2. 启动飞线计算
+const started = await eda.pcb_Document.startCalculatingRatline();
+console.log('started:', started);
+
+// 3. 清理测试 PCB
+await eda.dmt_Pcb.deletePcb(pcbUuid);
+```
+
+### startcanvasupdatecalculation
+
+# PCB\_Document.startCanvasUpdateCalculation() method
+
+> This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Start canvas update calculation
+
+## Signature
+
+```typescript
+function startCanvasUpdateCalculation(): Promise<boolean>;
+```
+
+## Returns
+
+Promise&lt;boolean&gt;
+
+Whether the operation is successful
+
+## Remarks
+
+Canvas update calculation includes canvas render updates, property panel updates, etc.
+
+If you do not understand the meaning of this switch, do not call this API for any operation ADD since EDA v4.2
 
 ### stopcalculatingratline
 
 # PCB\_Document.stopCalculatingRatline() method
 
-停止飞线计算功能
+> Warning: This API is now obsolete.
+>
+> since EDA v4.2
+
+Stop the ratline calculation function
 
 ## Signature
 
 ```typescript
-stopCalculatingRatline(): Promise<boolean>;
+function stopCalculatingRatline(): Promise<boolean>;
 ```
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-操作是否成功
+Whether the operation is successful
+
+## Example
+
+```javascript
+// 1. 创建测试 PCB 并打开（飞线开关作用于当前激活的 PCB）
+const pcbUuid = await eda.dmt_Pcb.createPcb();
+await new Promise(r => setTimeout(r, 1500));
+await eda.dmt_EditorControl.openDocument(pcbUuid);
+await new Promise(r => setTimeout(r, 1000));
+
+// 2. 停止飞线计算
+const stopped = await eda.pcb_Document.stopCalculatingRatline();
+console.log('stopped:', stopped);
+
+// 3. 清理测试 PCB
+await eda.dmt_Pcb.deletePcb(pcbUuid);
+```
+
+### stopcanvasupdatecalculation
+
+# PCB\_Document.stopCanvasUpdateCalculation() method
+
+> This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Stop canvas update calculation
+
+## Signature
+
+```typescript
+function stopCanvasUpdateCalculation(): Promise<boolean>;
+```
+
+## Returns
+
+Promise&lt;boolean&gt;
+
+Whether the operation is successful
+
+## Remarks
+
+Canvas update calculation includes canvas render updates, property panel updates, etc.
+
+If you do not understand the meaning of this switch, do not call this API for any operation ADD since EDA v4.2
+
+### triggercanvasupdatecalculation
+
+# PCB\_Document.triggerCanvasUpdateCalculation() method
+
+> This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
+
+Trigger a canvas update calculation
+
+## Signature
+
+```typescript
+function triggerCanvasUpdateCalculation(): Promise<boolean>;
+```
+
+## Returns
+
+Promise&lt;boolean&gt;
+
+Whether the operation is successful
+
+## Remarks
+
+Canvas update calculation includes canvas render updates, property panel updates, etc.
+
+If you do not understand the meaning of this switch, do not call this API for any operation ADD since EDA v4.2
 
 ### zoomtoboardoutline
 
@@ -1338,17 +1722,33 @@ Promise&lt;boolean&gt;
 
 > This API is provided as a beta preview for developers and may change based on feedback that we receive. Do not use this API in a production environment.
 
-缩放到板框（适应板框）
+Zoom to the board outline (fit the board outline)
 
 ## Signature
 
 ```typescript
-zoomToBoardOutline(): Promise<boolean>;
+function zoomToBoardOutline(): Promise<boolean>;
 ```
-
 
 ## Returns
 
 Promise&lt;boolean&gt;
 
-操作是否成功
+Whether the operation is successful
+
+## Example
+
+```javascript
+// 1. 创建测试 PCB 并打开（视口操作作用于当前激活的 PCB）
+const pcbUuid = await eda.dmt_Pcb.createPcb();
+await new Promise(r => setTimeout(r, 1500));
+await eda.dmt_EditorControl.openDocument(pcbUuid);
+await new Promise(r => setTimeout(r, 1000));
+
+// 2. 缩放到板框
+const zoomed = await eda.pcb_Document.zoomToBoardOutline();
+console.log('zoomed:', zoomed);
+
+// 3. 清理测试 PCB
+await eda.dmt_Pcb.deletePcb(pcbUuid);
+```

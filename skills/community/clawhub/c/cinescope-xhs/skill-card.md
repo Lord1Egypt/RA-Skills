@@ -1,46 +1,62 @@
-## Description: <br>
-CineScope XHS evaluates movie reception by collecting multi-source evidence, applying six-dimensional analysis, and producing dynamically weighted ratings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CineScope XHS generates evidence-labeled movie review reports using multi-source search, six-dimension analysis, and dynamic scoring weights.
 
-## Publisher: <br>
-[seeu1688](https://clawhub.ai/user/seeu1688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seeu1688](https://clawhub.ai/user/seeu1688)
 
-## Use Case: <br>
-External users and developers use this skill to answer movie review, rating, and recommendation questions with source-backed platform score snapshots, six-dimensional analysis, and spoiler-aware guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad movie-review triggers may send movie-related queries to external search providers sooner than a user expects. <br>
-Mitigation: Avoid including private personal details in movie questions, use dedicated Tavily or Bocha API keys, and confirm search use in sensitive contexts. <br>
-Risk: Generated movie ratings can be misleading when platform data is sparse, very recent, or affected by review manipulation. <br>
-Mitigation: Preserve evidence levels, sample-size warnings, and date cutoffs, and recheck sources before relying on a recommendation. <br>
-Risk: HTML and JavaScript chart output may be inappropriate in restricted rendering environments. <br>
-Mitigation: Prefer Markdown or ASCII chart output when HTML or JavaScript rendering is not desired. <br>
+## Use Case:
 
+External users and agents use this skill to answer movie-rating, recommendation, and review-analysis requests. It collects movie review signals from professional, audience, and social sources, then produces a structured, spoiler-aware review with evidence levels, risk notes, and visual scoring.
 
-## Reference(s): <br>
-- [CineScope XHS ClawHub page](https://clawhub.ai/seeu1688/cinescope-xhs) <br>
-- [Tavily](https://tavily.com) <br>
-- [Bocha Open Platform](https://open.bochaai.com/) <br>
-- [Bocha Web Search API](https://api.bocha.cn/v1/web-search) <br>
-- [Chart.js CDN](https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Structured Markdown reports with optional Chart.js HTML, ASCII, or Markdown chart output and inline shell commands for API configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TAVILY_API_KEY for primary search and can use BOCHA_API_KEY as a fallback; reports include evidence levels, score snapshots, and spoiler-aware limitations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Movie titles and related query terms may be sent to external search providers such as Tavily and Bocha.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that external search exposure is acceptable, and avoid entering sensitive or confidential query terms.
+
+Risk: Generated HTML chart output can load Chart.js from a CDN.
+
+Mitigation: Prefer Markdown or ASCII chart output in sensitive environments, and open generated HTML only in trusted rendering contexts.
+
+Risk: Movie-review conclusions can be unstable for new, obscure, or socially volatile films.
+
+Mitigation: Preserve the skill's evidence grading, sample-size warnings, cutoff date, and re-review guidance in generated reports.
+
+## Reference(s):
+
+- [CineScope XHS ClawHub page](https://clawhub.ai/seeu1688/skills/cinescope-xhs)
+- [Publisher profile](https://clawhub.ai/user/seeu1688)
+- [Tavily](https://tavily.com)
+- [Bocha Open Platform](https://open.bochaai.com/)
+- [Bocha Web Search API](https://api.bocha.cn/v1/web-search)
+- [Chart.js CDN](https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with tables, optional HTML/JavaScript chart code, ASCII chart alternatives, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include evidence grades, platform score normalization, dynamic six-dimension scoring, spoiler-aware analysis, and explicit limitations for sparse or volatile data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact frontmatter, artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

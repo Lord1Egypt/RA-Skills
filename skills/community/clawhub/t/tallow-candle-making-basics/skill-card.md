@@ -1,40 +1,56 @@
-## Description: <br>
-Guides an agent through planning tallow candle batches, including recipe math, safety checklists, curing schedules, burn-test logs, inventory templates, and troubleshooting while the human performs all physical candle-making steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to plan tallow candle batches by calculating recipes, wick sizing, temperatures, timelines, logs, templates, and safety checklists while the human performs the physical candle-making steps.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to turn available animal fat and wick materials into planned candle batches for emergency, off-grid, or barter lighting. The agent supplies batch math, safety checklists, curing schedules, troubleshooting guidance, and inventory or trade templates while the user handles all hot-fat and open-flame work.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The installer command is unpinned, so users could install an unexpected package version or source.
+
+Mitigation: Install only from a trusted ClawHub/npm source, prefer a pinned or otherwise verified installer when available, and run without elevated privileges.
+
+Risk: The workflow involves hot fat and open flame, which can cause burns, smoke exposure, or fire if handled incorrectly.
+
+Mitigation: Follow the skill's safety notes, use appropriate ventilation and fire-suppression equipment, never leave melting fat unattended, and treat agent output as planning support rather than fire-safety judgment.
+
+Risk: Filesystem-enabled workflows may create or update local batch logs, dashboards, inventory trackers, and templates.
+
+Mitigation: Run the skill in an appropriate workspace and review created files before relying on or sharing them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to plan off-grid or small-batch tallow candle production from local animal fat, including batch sizing, timelines, safety protocol reminders, quality checks, and reusable logs. It is for human-supervised physical craft work, not automated handling of heat, fat, flame, or tools. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Hot animal fat, heat sources, and open flame can cause burns, smoke exposure, or fire. <br>
-Mitigation: Use only with a stable heat source, ventilation, fire suppression, adult supervision where needed, and direct human monitoring; stop work if smoke, light-headedness, or unsafe conditions occur. <br>
-Risk: Agent-generated craft guidance may be incomplete for a user's materials, local conditions, or fire-safety requirements. <br>
-Mitigation: Treat outputs as planning support, start with small test batches, review safety steps before each session, and follow local open-flame and animal-fat processing rules. <br>
+**Output Format:** [Markdown guidance with checklists, batch calculations, logs, templates, and inline shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/tallow-candle-making-basics) <br>
+**Other Properties Related to Output:** [May create or maintain local batch logs, inventory trackers, progress dashboards, curing reminders, and barter templates through filesystem-enabled agent workflows.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown instructions, checklists, recipe calculations, curing logs, inventory records, and barter templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include filesystem-maintained progress dashboards and reminders; no credential access or hidden code behavior is indicated by the security evidence.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

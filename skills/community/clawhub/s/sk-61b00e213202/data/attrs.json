@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "five_order": ["metal", "wood", "water", "fire", "earth"],
+  "attributes": {
+    "metal": { "name": "金", "sect": "锐金堂", "sect_line": "铸剑炼器，讲规矩，不养闲人" },
+    "wood":  { "name": "木", "sect": "青梧谷", "sect_line": "丹药灵植，慢工出细活" },
+    "water": { "name": "水", "sect": "沧浪门", "sect_line": "阵法符箓，藏得深" },
+    "fire":  { "name": "火", "sect": "丹霞顶", "sect_line": "火法炼丹，性子急" },
+    "earth": { "name": "土", "sect": "磐石堡", "sect_line": "防御矿脉，最能熬" }
+  },
+  "sheng_wo": { "metal": "earth", "wood": "water", "water": "metal", "fire": "wood", "earth": "fire" },
+  "ke_wo":    { "metal": "fire",  "wood": "metal", "water": "earth", "fire": "water", "earth": "wood" },
+  "sheng_ring": [["metal", "water"], ["water", "wood"], ["wood", "fire"], ["fire", "earth"], ["earth", "metal"]],
+  "ke_ring":    [["metal", "wood"], ["wood", "earth"], ["earth", "water"], ["water", "fire"], ["fire", "metal"]],
+  "mutations": {
+    "ice":  { "name": "冰", "pair": ["metal", "water"], "sect": "寒玉窟" },
+    "mist": { "name": "雾", "pair": ["water", "wood"],  "sect": "云隐坞" },
+    "wind": { "name": "风", "pair": ["wood", "fire"],   "sect": "风吟崖" },
+    "melt": { "name": "熔", "pair": ["fire", "earth"],  "sect": "熔金渊" },
+    "rock": { "name": "岩", "pair": ["earth", "metal"], "sect": "玄岩宗" }
+  },
+  "attr_verses": {
+    "metal": "金是锐的。你做事不留余地，一句话能切开一件事。\n只是这世上多数事，需要的不是切开，是慢慢焐。",
+    "wood":  "木是慢的。它不争一个春天，它争一百年。\n别人半年见不到结果就换路，\n你能在同一件事上磨三年，还觉得才刚开始。",
+    "water": "水是藏的。你从不把自己摆在明面上，\n但该你知道的事，你一件都不会漏。\n修仙界死得最快的，从来都是站在最亮处的那批人。",
+    "fire":  "火是急的。你想明白一件事的瞬间，人已经在做了。\n这性子成事快，坏事也快，\n好在你烧完就知道疼，疼过就记得住。",
+    "earth": "土是稳的。天塌下来你先吃饭，吃完饭再想办法。\n修仙界这一行，活得久比赢一次重要，\n而你天生就懂这个。",
+    "ice":   "冰是金与水挤出来的东西。锋利，但锋利得安静。\n你伤人从来不出声，等对方觉出疼，事情已经完了。",
+    "mist":  "雾是水与木养出来的东西。不争，不躲，就是让人看不透。\n看不透的人在修仙界活得长，刀都不知道该往哪落。",
+    "wind":  "风是木与火烧出来的东西。火借风的势，风借火的命。\n你一动，周围的人跟着动。\n这辈子别停下来，停下来就散了。",
+    "melt":  "熔是火与土压出来的东西。外面是石头，里面是岩浆。\n没人看得出你在烧，你也从来不打算让人看出来。",
+    "rock":  "岩是土与金长出来的东西。又硬又沉，打不动，也拖不走。\n修仙界常说的一句话：金山银山，不如自家一座山。"
+  }
+}

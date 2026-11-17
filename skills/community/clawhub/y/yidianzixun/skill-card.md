@@ -1,41 +1,58 @@
-## Description: <br>
-Yidianzixun helps agents organize public Yidian Zixun website information, including channel structures, topic entry points, help content, rules, and announcements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Registers the Yidian Zixun skill for organizing public news platform pages, channel entry points, content distribution information, help pages, and rules.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and content researchers use this skill to summarize public Yidian Zixun pages, map channels and topic entry points, and collect help or creator-support information without using private account data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests involving private accounts, personalized feeds, backend pages, or bypassing platform rules could exceed the skill's intended public-information scope. <br>
-Mitigation: Use only public pages and refuse login sessions, private account data, backend links, scraping-circumvention requests, and moderation or copyright bypass instructions. <br>
-Risk: News-site channels and topic pages can change quickly, making static summaries outdated. <br>
-Mitigation: Prefer current entry points and structure over broad static claims, and label time-sensitive summaries when appropriate. <br>
+## Use Case:
 
+External users and agent developers use this skill to summarize public Yidian Zixun homepage, channel, topic, help, rules, creator-support, and FAQ information. It is limited to publicly visible information and avoids account operations, private data, scraping abuse, content-audit circumvention, and backend actions.
 
-## Reference(s): <br>
-- [Yidian Zixun homepage](https://www.yidianzixun.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/yidianzixun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries and structured lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on publicly visible pages and avoids login-only, personalized, or private backend information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Use with logged-in sessions or private account data could expose information outside the skill's intended public-information scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on publicly visible pages and do not provide session cookies, credentials, personalized feeds, private account data, or backend access.
+
+Risk: Scraping-at-scale or content-reuse workflows could violate platform rules or copyright requirements.
+
+Mitigation: Use the skill for summarizing entry points, structure, help pages, and rules; avoid bulk content extraction, reuse, or circumvention guidance.
+
+Risk: News sections and topic pages change quickly, so static summaries may become stale.
+
+Mitigation: Prefer current links, section structure, and dated observations over durable claims about specific topics or rankings.
+
+## Reference(s):
+
+- [Yidian Zixun homepage](https://www.yidianzixun.com/)
+- [ClawHub Yidianzixun skill page](https://clawhub.ai/codenova58/skills/yidianzixun)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text summaries with links and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on current public entry points and structure; avoids static claims for fast-changing news sections.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

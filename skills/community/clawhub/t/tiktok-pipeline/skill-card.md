@@ -1,47 +1,63 @@
-## Description: <br>
-This skill helps agents use TikHub APIs to fetch Douyin, TikTok, and Bilibili data, download videos, extract audio, and transcribe Douyin videos with Whisper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects TikTok, Douyin, Bilibili, and related creator data through the TikHub API, with helpers for comments, user/video metadata, paid video downloads, audio extraction, and Whisper transcription.
 
-## Publisher: <br>
-[Kk-kingkong](https://clawhub.ai/user/Kk-kingkong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kk-kingkong](https://clawhub.ai/user/kk-kingkong)
 
-## Use Case: <br>
-Developers and creator-operations agents use this skill to automate TikHub-backed collection of video metadata, comments, user video lists, video downloads, audio extraction, and transcript generation. It is intended for workflows where the operator has a TikHub API key and authorization to collect or process the target content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CPU/background Whisper path can launch an unsafe shell command from user-controlled paths. <br>
-Mitigation: Prefer the mlx-whisper path or synchronous transcription path, and avoid the CPU/background path until command execution is fixed or file paths are tightly controlled. <br>
-Risk: The skill requires a TikHub API key and supports paid download endpoints. <br>
-Mitigation: Use an isolated environment, limit API-key exposure, avoid putting keys in shell history, monitor account balance, and confirm paid endpoint use before batch downloads. <br>
-Risk: Profile, follower, video, and comment collection can involve third-party data and platform policy obligations. <br>
-Mitigation: Collect only authorized data, keep batch limits narrow, and review legal, privacy, and platform terms before using profile, follower, or comment workflows. <br>
-Risk: Bulk API calls can hit rate limits or produce partial results. <br>
-Mitigation: Use delays between requests, cap batch sizes, check returned statuses, and retry only when appropriate. <br>
+## Use Case:
 
+Developers and content operations teams use this skill to collect creator platform data, download videos, extract audio, and generate transcripts for analysis workflows. It is intended for trusted TikHub API usage where the operator controls API credentials and local output handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Kk-kingkong/tiktok-pipeline) <br>
-- [Publisher profile](https://clawhub.ai/user/Kk-kingkong) <br>
-- [TikHub API documentation](https://api.tikhub.io/docs) <br>
-- [TikHub user console](https://user.tikhub.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON, files] <br>
-**Output Format:** [Markdown guidance with Python snippets, shell commands, JSON result files, downloaded media files, WAV audio files, and transcript text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a TikHub API key, network access to TikHub endpoints, ffmpeg for audio extraction, and Whisper or mlx-whisper for transcription.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The CPU/background Whisper transcription path has a high-impact command-injection flaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid the CPU/background Whisper path until shell=True is removed and command arguments are executed without shell interpolation.
+
+Risk: The skill can run background local transcription processes with limited user control.
+
+Mitigation: Run transcription in a supervised session, review process status and logs, and prefer the Apple GPU mlx-whisper path when available.
+
+Risk: Video download calls can use paid TikHub API endpoints and consume account balance.
+
+Mitigation: Check balance first, confirm each paid download workflow before execution, and use small batches with delays.
+
+Risk: Comments, user data, local media files, extracted audio, transcripts, identifiers, and URLs may be stored locally or sent to TikHub.
+
+Mitigation: Use only trusted links and files, handle outputs as potentially sensitive data, and confirm that collection complies with platform terms and applicable policy.
+
+## Reference(s):
+
+- [TikHub API Documentation](https://api.tikhub.io/docs)
+- [TikHub User Console](https://user.tikhub.io)
+- [ClawHub Skill Page](https://clawhub.ai/kk-kingkong/skills/tiktok-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python snippets, shell commands, JSON result files, downloaded media files, extracted audio, and transcript text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call external TikHub endpoints, consume paid API balance, write local media/comment/transcript files, and run local ffmpeg or Whisper transcription processes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-markmap - Render Markdown as interactive SVG mindmaps for converting Markdown documents, generating HTML files with the CLI, and navigating mindmap nodes in the browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+markmap - Render Markdown as interactive SVG mindmaps for converting Markdown documents into mindmaps, generating HTML files via CLI, and navigating mindmap nodes interactively in the browser.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers, engineers, and technical writers use this skill to turn Markdown outlines and documents into interactive SVG or HTML mindmaps with Markmap CLI and browser APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing Markmap packages, loading CDN assets, or starting a local development server can introduce dependency and content-trust risk. <br>
-Mitigation: Run npm installs, CDN-loading examples, and local dev servers only when you intend to use Markmap and trust the upstream packages and rendered Markdown content. <br>
+## Use Case:
 
+Developers and technical writers use this skill to ask an agent for Markmap CLI commands, browser/API examples, and configuration guidance that turn Markdown content into interactive SVG or HTML mindmaps.
 
-## Reference(s): <br>
-- [Architecture & Pipeline](references/architecture.md) <br>
-- [CLI](references/cli.md) <br>
-- [Type Reference & Common Utilities](references/common-api.md) <br>
-- [Plugin System](references/plugins.md) <br>
-- [Markmap Rendering](references/render.md) <br>
-- [Transformer + Frontmatter](references/transform.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of interactive SVG or HTML mindmap files through Markmap tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated CLI examples may install or run npm packages in the user's Node environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed npm and Markmap commands before execution, and use local project installation or isolated environments when appropriate.
+
+Risk: Generated browser examples may load Markmap assets from public CDNs.
+
+Mitigation: Use the documented offline mode or local asset configuration when external CDN loading is not acceptable.
+
+## Reference(s):
+
+- [Markmap Skill Page](https://clawhub.ai/openlark/skills/markmap)
+- [Transformer + Frontmatter](references/transform.md)
+- [Markmap Rendering](references/render.md)
+- [CLI](references/cli.md)
+- [Architecture & Pipeline](references/architecture.md)
+- [Type Reference & Common Utilities](references/common-api.md)
+- [Plugin System](references/plugins.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline TypeScript, HTML, YAML, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include npm install commands, Markmap CLI usage, browser API snippets, frontmatter options, plugin examples, and offline/CDN asset guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

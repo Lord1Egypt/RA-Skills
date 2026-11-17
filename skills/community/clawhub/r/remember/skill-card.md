@@ -1,41 +1,53 @@
-## Description: <br>
-Curates persistent memory by filtering what matters, organizing it by function, and pruning stale context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curate persistent memory that actually helps. Filter what matters, organize by function, decay what doesn't.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and agent users use this skill to decide what memory is worth retaining, organize memory files by retrieval function, resolve contradictions, and prune stale context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory may retain sensitive personal, business, health, financial, credential, or token information. <br>
-Mitigation: Review what the agent saves, use forget and never-remember controls, and avoid saving sensitive details unless retention is intentional. <br>
-Risk: Stale or incorrect memories can mislead future agent responses. <br>
-Mitigation: Record dates, source hints, and confidence; prune completed commitments, archive inactive contexts, and keep the newest higher-confidence memory when contradictions appear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Remember on ClawHub](https://clawhub.ai/ivangdavila/remember) <br>
-- [categories.md](artifact/categories.md) <br>
-- [consolidation.md](artifact/consolidation.md) <br>
+## Use Case:
 
+External users and developers use this skill to decide what information an agent should persist, how to organize memory files, and how to prune stale or misleading entries over time.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with memory file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; produces memory curation, organization, review, and pruning guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent memory can retain secrets, credentials, health details, or sensitive personal and business facts.
+
+Mitigation: Avoid storing sensitive information unless the user explicitly wants it remembered, and honor forget requests and privacy boundaries.
+
+Risk: Stale or incorrect memory can mislead future agent behavior.
+
+Mitigation: Apply the documented review, contradiction-resolution, and pruning process before relying on older memory.
+
+## Reference(s):
+
+- [Memory Categories](artifact/categories.md)
+- [Memory Consolidation Process](artifact/consolidation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with memory organization templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; guidance may be used to create or maintain persistent memory files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Provides multilingual querying and analysis of U.S. market policies, regulations, and investment environment using configurable data sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides multilingual scaffolded queries and sample analysis for U.S. market policy, regulations, and investment-environment topics.
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Business users and agents use this skill to query U.S. policy categories and generate investment-environment analysis in Simplified Chinese or U.S. English. Use it as research assistance, not as final financial, legal, or policy advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Policy, investment, or regulatory outputs could be mistaken for authoritative financial, legal, or policy advice. <br>
-Mitigation: Treat outputs as research assistance and verify material conclusions against official sources or qualified advisors before acting. <br>
-Risk: Configured data sources or API keys may expose sensitive business or personal information. <br>
-Mitigation: Use environment variables, least-privilege credentials, and bounded prompts; avoid embedding secrets in code or shared prompts. <br>
-Risk: Placeholder or stale data sources can produce incomplete or misleading policy analysis. <br>
-Mitigation: Configure trusted current data sources and review returned analysis before using it in business decisions. <br>
+## Use Case:
 
+Business users, analysts, and developers can use this skill as a multilingual starting point for querying U.S. policy categories and generating investment-environment summaries. Results should be checked against authoritative sources before regulatory, compliance, or investment decisions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/yezhaowang888-stack/usa-market-policy-2026) <br>
-- [DeepSeek](https://deepseek.com) <br>
-- [Huimai documentation](https://docs.huimai.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, analysis, configuration guidance] <br>
-**Output Format:** [Markdown or structured JavaScript objects depending on invocation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Simplified Chinese and U.S. English, configurable policy data sources, and cached query results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can be mistaken for live or authoritative U.S. policy analysis even though the evidence describes it as a scaffold.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as preliminary guidance and verify policy, regulatory, and investment claims against authoritative sources before acting.
+
+Risk: Configured data source or API key strings may appear in ordinary query results or cached outputs.
+
+Mitigation: Use non-sensitive source identifiers and environment-based secret handling; do not pass real API keys or sensitive endpoint strings through dataSources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/usa-market-policy-2026)
+- [Publisher profile](https://clawhub.ai/user/yezhaowang888-stack)
+- [DeepSeek](https://deepseek.com)
+- [Huimai documentation](https://docs.huimai.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Configuration]
+
+**Output Format:** [Plain text and JSON-like JavaScript objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports zh-CN and en-US language modes; policy data sources are caller-configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

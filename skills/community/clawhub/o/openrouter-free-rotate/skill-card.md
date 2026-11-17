@@ -1,42 +1,59 @@
-## Description: <br>
-Scans OpenRouter for zero-cost models, benchmarks and scores them by capability, and can update OpenClaw model configuration with selected free models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans OpenRouter for zero-cost models, benchmarks and scores them by capability, and can update OpenClaw configuration with the selected models.
 
-## Publisher: <br>
-[liligit1815](https://clawhub.ai/user/liligit1815) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liligit1815](https://clawhub.ai/user/liligit1815)
 
-## Use Case: <br>
-Developers and engineers use this skill to rotate OpenClaw's OpenRouter free-model configuration after scanning, testing, and ranking available zero-cost models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rewrite OpenClaw model configuration and optionally restart the gateway. <br>
-Mitigation: Run --scan or --no-update first, back up ~/.openclaw/openclaw.json and ~/.openclaw/agents/main/agent/models.json, and only use --restart with monitoring and rollback in place. <br>
-Risk: Passing an OpenRouter API key on the command line can expose it through shell history or process listings. <br>
-Mitigation: Prefer the OPENROUTER_API_KEY environment variable over --api-key. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to find, test, rank, and rotate free OpenRouter models for OpenClaw model routing. It can generate scan results and JSON reports, and can optionally apply the selected models to local OpenClaw configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liligit1815/openrouter-free-rotate) <br>
-- [OpenRouter API endpoint used by the skill](https://openrouter.ai/api/v1) <br>
-- [OpenClaw site referenced by API requests](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, json] <br>
-**Output Format:** [Markdown guidance with shell command examples, terminal status output, configuration file updates, and optional JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenRouter API key and can write OpenClaw configuration files when update mode is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill can persistently rewrite OpenClaw model configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with --scan or --no-update first, review the selected models, and back up OpenClaw configuration files before applying changes.
+
+Risk: API keys may be exposed if placed directly on command lines or in scheduled jobs.
+
+Mitigation: Use OPENROUTER_API_KEY from the environment rather than putting keys in shell history, process arguments, or cron entries.
+
+Risk: Using --restart or scheduled auto-rotation can disrupt local gateway routing.
+
+Mitigation: Avoid --restart and unattended rotation unless persistent routing changes and gateway reloads are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liligit1815/skills/openrouter-free-rotate)
+- [OpenRouter API](https://openrouter.ai/api/v1)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text, Markdown guidance, JSON reports, and OpenClaw configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a JSON report, cache model test results for one hour, and update OpenClaw model configuration when run without --scan or --no-update.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

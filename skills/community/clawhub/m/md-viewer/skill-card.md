@@ -1,48 +1,65 @@
-## Description: <br>
-Md Viewer helps an agent start a LAN-accessible, password-protected web viewer for local Markdown files, optimized for e-reader-friendly reading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Md Viewer helps an agent provide a LAN-accessible browser viewer for local Markdown files, optimized for comfortable reading on e-readers.
 
-## Publisher: <br>
-[hoangcongst](https://clawhub.ai/user/hoangcongst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hoangcongst](https://clawhub.ai/user/hoangcongst)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill when they want to view a local Markdown file directly in a browser from a device on the same Wi-Fi network instead of receiving an agent summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Markdown files may be reachable from other devices on the same local network when the server binds to a LAN address. <br>
-Mitigation: Use --localhost on untrusted networks, share links only with intended readers, and stop the server when finished. <br>
-Risk: Generated links, tokens, passwords, and authentication cookies can grant access to the viewer. <br>
-Mitigation: Treat generated links and passwords as secrets and avoid placing them in shared logs, tickets, or chat channels. <br>
-Risk: Viewed file paths are stored in local history by default. <br>
-Mitigation: Use --no-history when path privacy matters. <br>
-Risk: Sensitive Markdown documents could be exposed if a user chooses to serve them. <br>
-Mitigation: Avoid serving sensitive documents and review the target path before sharing a viewer link. <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to provide a browser link for viewing a local Markdown file directly, including from another device on the same trusted Wi-Fi network.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hoangcongst/md-viewer) <br>
-- [Python-Markdown](https://github.com/Python-Markdown/markdown) <br>
-- [Bleach](https://github.com/mozilla/bleach) <br>
-- [highlight.js](https://highlightjs.org/) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated LAN URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated URLs may include an access token and should be treated as secret.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and VERSION.md) <br>
+Risk: Local Markdown files may be exposed over the network by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on trusted networks and prefer --localhost unless LAN sharing is required.
+
+Risk: Reusable token URLs and long-lived cookies can grant continued access if shared too broadly.
+
+Mitigation: Do not distribute token URLs beyond intended viewers, and restart the server or use a new password when access should be revoked.
+
+Risk: Viewed file paths are persisted in history by default.
+
+Mitigation: Use --no-history for private files or when retaining local path history is undesirable.
+
+Risk: Security evidence flags unresolved authentication and path-validation concerns.
+
+Mitigation: Review before installing and avoid opening sensitive Markdown files until those issues are fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hoangcongst/skills/md-viewer)
+- [Python-Markdown](https://github.com/Python-Markdown/markdown)
+- [Bleach](https://github.com/mozilla/bleach)
+- [highlight.js](https://highlightjs.org/)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated local or LAN URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Starts a local HTTP server, generates password-protected Markdown viewer links, and may write local history unless disabled.]
+
+## Skill Version(s):
+
+1.0.2 (source: VERSION.md, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

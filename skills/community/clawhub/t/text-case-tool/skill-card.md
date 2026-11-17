@@ -1,41 +1,54 @@
-## Description: <br>
-Convert text between different cases: UPPER, lower, Title, Sentence, camelCase, PascalCase, snake_case, kebab-case, and CONSTANT_CASE. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert text between different cases: UPPER, lower, Title, Sentence, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers, writers, and data transformation workflows use this skill to convert supplied text among common programming and prose case formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unexpected credential prompts or external service access would be outside the reviewed behavior. <br>
-Mitigation: Use the skill only for local text formatting and do not provide credentials if a modified version asks for them. <br>
-Risk: Case conversion can alter identifiers, spacing, or capitalization in ways that change meaning in code or prose. <br>
-Mitigation: Review converted text before applying it to source files, configuration, or published content. <br>
+## Use Case:
 
+Developers and agents use this skill to convert supplied text between common programming and writing case formats.
 
-## Reference(s): <br>
-- [Text Case Tool on ClawHub](https://clawhub.ai/freedompixels/text-case-tool) <br>
-- [freedompixels publisher profile](https://clawhub.ai/user/freedompixels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local text transformations; no network access or credentials are expected in the reviewed artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: Supplied text may include sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide text that is appropriate to process in the local agent environment.
+
+Risk: Case conversion can change spelling, capitalization, or separators in ways that may not match every naming convention.
+
+Mitigation: Review transformed output before using it in source code, configuration, or published text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/text-case-tool)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with inline bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local Python text transformation; no API key or network access required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

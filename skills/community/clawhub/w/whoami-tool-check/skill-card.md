@@ -1,41 +1,48 @@
-## Description: <br>
-Whoami Tool Check helps an agent inspect local user identity and account context for access checks and audit workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identity verification utility -- validate current user against expected roles, check sudo access, and audit user capabilities.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and system operators use this skill to check the current execution identity and to reason about user access before running security-sensitive commands. Review the packaged behavior before relying on the broader audit claims.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill documentation advertises sudo, role, capability, audit, and JSON checks that the packaged script does not implement.
+
+Mitigation: Do not rely on the skill for access reviews or security audits unless those checks are implemented, tested, and reviewed before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and security reviewers use this skill to confirm the current local account identity and support access-audit checks before security-sensitive work. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Local identity and audit output can expose usernames, groups, home paths, shells, and sudo status. <br>
-Mitigation: Run the skill only in trusted sessions and avoid sharing raw audit output publicly. <br>
-Risk: The included executable behavior is minimal and may not provide every documented audit option in every environment. <br>
-Mitigation: Confirm available command options in the installed environment before relying on role, sudo, capability, user lookup, or JSON audit results. <br>
+**Output Format:** [Plain text username output with Markdown command examples in the skill documentation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/whoami-tool-check) <br>
-- [Publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+**Other Properties Related to Output:** [The included script prints the current username; advertised sudo, role, audit, and JSON modes are not implemented in the packaged script.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text or structured JSON for local identity and access audit results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally and reports account identity or audit context without network output.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

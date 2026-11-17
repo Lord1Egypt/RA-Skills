@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=64.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-skill-manager"
+version = "0.7.0"
+description = "Cross-platform skill management for domestic AI agent products"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "Albert", email = "albert@example.com"},
+]
+keywords = ["agent", "skill", "sync", "autoclaw", "kimi", "minimax", "workbuddy", "trae", "dumate"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS :: MacOS X",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+]
+
+[project.scripts]
+askill = "agent_skill_manager.controllers.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/albert/agent-skill-manager"
+Repository = "https://github.com/albert/agent-skill-manager"
+Documentation = "https://github.com/albert/agent-skill-manager#readme"
+
+[tool.setuptools]
+package-dir = {"agent_skill_manager" = "src"}
+packages = [
+    "agent_skill_manager",
+    "agent_skill_manager.config",
+    "agent_skill_manager.controllers",
+    "agent_skill_manager.models",
+    "agent_skill_manager.services",
+    "agent_skill_manager.utils",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

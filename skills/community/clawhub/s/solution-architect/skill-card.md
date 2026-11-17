@@ -1,46 +1,62 @@
-## Description: <br>
-Solution Architect provides Chinese-language business strategy frameworks for growth marketing, content upgrades, and platform growth, with tactics, implementation paths, and KPI guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solution Architect provides Chinese-language business solution frameworks for growth marketing, content upgrades, and platform growth, with tactics, implementation roadmaps, and KPI systems distilled from case-based materials.
 
-## Publisher: <br>
-[1126053051-lgtm](https://clawhub.ai/user/1126053051-lgtm) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1126053051-lgtm](https://clawhub.ai/user/1126053051-lgtm)
 
-## Use Case: <br>
-Business operators, growth teams, content teams, and platform teams use this skill to match a business problem or goal to a reusable strategy framework and review suggested tactics, timelines, and KPIs. Agents can use it as a local reference for Chinese-language solution planning and plan comparison. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-NC-SA-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Business examples, market claims, and KPI targets may be stale or too generic for a user's current market. <br>
-Mitigation: Verify current facts, local market conditions, and company-specific constraints before relying on recommendations. <br>
-Risk: The local CLI is configured without sandboxing in the artifact metadata. <br>
-Mitigation: Install only from a trusted publisher and review local inputs before execution, especially when using plan-comparison features. <br>
-Risk: Frameworks are advisory and may not fit a team's budget, staffing, or execution maturity. <br>
-Mitigation: Adapt the recommended tactics and timelines to available resources before implementation. <br>
+## Use Case:
 
+Business strategists, operators, marketers, content teams, and platform teams can use this skill to match a business problem or growth goal to one of three documented strategy frameworks. It can return framework details, recommended tactics, route maps, KPI targets, and gap-analysis guidance for an existing plan.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1126053051-lgtm/solution-architect) <br>
-- [README](artifact/README.md) <br>
-- [Growth Marketing Framework](artifact/solutions/growth-marketing/framework.md) <br>
-- [Content Upgrade Framework](artifact/solutions/content-upgrade/framework.md) <br>
-- [Platform Growth Framework](artifact/solutions/platform-growth/framework.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Chinese-language CLI text and Markdown reference material] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces framework matches, implementation guidance, KPI suggestions, and plan-comparison prompts; no network output is described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.yaml) <br>
+Risk: The security scan reports that the skill disables execution sandboxing even though it only needs local CLI behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, enable sandboxing where possible, and remove the unused PyYAML dependency if it is not needed.
+
+Risk: The included business frameworks may contain stale market assumptions or recommendations that conflict with data-source, licensing, privacy, or platform-terms requirements.
+
+Mitigation: Verify source data, rights, privacy obligations, platform terms, current market conditions, and team budget before implementing recommendations.
+
+Risk: The artifact documents non-commercial CC-BY-NC-SA terms while server evidence lists MIT-0.
+
+Mitigation: Confirm the authoritative license before any redistribution or commercial use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1126053051-lgtm/skills/solution-architect)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Growth Marketing Framework](artifact/solutions/growth-marketing/framework.md)
+- [Content Upgrade Framework](artifact/solutions/content-upgrade/framework.md)
+- [Platform Growth Framework](artifact/solutions/platform-growth/framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style CLI text with framework summaries, recommended tactics, route maps, KPI targets, and comparison guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; results depend on the bundled framework files and user-provided problem, goal, solution, or plan path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.yaml, released 2026-04-02)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -9,10 +9,19 @@ Usage:
     python3 site_audit.py https://example.com --summary
 Env (optional): PAGESPEED_API_KEY  (higher PageSpeed Insights quota)
 """
-import argparse, json, os, re, ssl, socket, sys, urllib.request, urllib.parse
+import argparse, json, os, re, sys, urllib.request, urllib.parse, urllib.error
 from datetime import datetime, timezone
 
+from security import (
+    HostResolutionError, SafetyError, connect_public_tls, die_safety, urlopen_probe,
+    validate_probe_url,
+)
+
 UA = "Mozilla/5.0 (compatible; DigitizerAudit/1.0)"
+# Ceiling on a response body. The audit parses the document head - title, meta,
+# generator, h1 - so truncating a huge page costs nothing, while reading one
+# unbounded lets any server it visits decide how much memory this process uses.
+MAX_BODY_BYTES = 5 * 1024 * 1024
 SECURITY_HEADERS = [
     "Strict-Transport-Security", "Content-Security-Policy", "X-Frame-Options",
     "X-Content-Type-Options", "Referrer-Policy",
@@ -84,16 +93,25 @@ def grade_pagespeed(score):
 # ---- fetching (network; not unit-tested) -----------------------------------
 def _get(url, method="GET", timeout=15):
     req = urllib.request.Request(url, method=method, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        body = r.read().decode("utf-8", "replace") if method == "GET" else ""
-        return r.getcode(), dict(r.headers), r.geturl(), body
+    try:
+        with urlopen_probe(req, timeout=timeout) as r:
+            body = r.read(MAX_BODY_BYTES).decode("utf-8", "replace") if method == "GET" else ""
+            return r.getcode(), dict(r.headers), r.geturl(), body
+    except urllib.error.HTTPError as e:
+        # An HTTP 4xx/5xx is a *reachable* server — return its status, headers,
+        # url and body so the status/header/SEO checks still run. Only DNS /
+        # timeout / connection-refused (URLError, socket errors) mean unreachable,
+        # and those propagate to the caller's generic except.
+        body = e.read(MAX_BODY_BYTES).decode("utf-8", "replace") if method == "GET" else ""
+        return e.code, dict(e.headers), e.geturl(), body
 
 
 def _ssl_notafter(host, port=443, timeout=10):
-    ctx = ssl.create_default_context()
-    with socket.create_connection((host, port), timeout=timeout) as sock:
-        with ctx.wrap_socket(sock, server_hostname=host) as ssock:
-            return ssock.getpeercert().get("notAfter")
+    # connect_public_tls validates and dials one address, so the certificate is
+    # read from the endpoint that was checked. Validating the name and then
+    # letting create_connection resolve it again is the rebinding gap.
+    with connect_public_tls(host, port=port, timeout=timeout) as ssock:
+        return ssock.getpeercert().get("notAfter")
 
 
 def _url_exists(url):
@@ -125,6 +143,13 @@ def audit(url, api_key=None):
 
     try:
         code, headers, final_url, html = _get(url)
+    except HostResolutionError as e:
+        # A name that does not resolve is an unreachable site, not a refusal.
+        add("reach", "reachable", str(e), "fail", "site did not respond")
+        return {"url": url, "reachable": False, "findings": findings}
+    except SafetyError as e:
+        add("reach", "blocked", str(e), "fail", "refused by the address safety rule")
+        return {"url": url, "reachable": False, "findings": findings}
     except Exception as e:
         add("reach", "reachable", str(e), "fail", "site did not respond")
         return {"url": url, "reachable": False, "findings": findings}
@@ -177,14 +202,16 @@ def audit(url, api_key=None):
 
 def _summary(result):
     lines = [f"# Quick audit — {result['url']}", ""]
-    if not result["reachable"]:
-        return "\n".join(lines + ["Site unreachable."])
     order = {"fail": 0, "warn": 1, "skipped": 2, "pass": 3}
     icon = {"pass": "🟢", "warn": "🟡", "fail": "🔴", "skipped": "⚪"}
+    rendered = []
     for f in sorted(result["findings"], key=lambda x: order.get(x["status"], 9)):
         note = f" — {f['note']}" if f["note"] else ""
-        lines.append(f"{icon.get(f['status'],'')} [{f['group']}] {f['check']}: {f['value']}{note}")
-    return "\n".join(lines)
+        rendered.append(f"{icon.get(f['status'],'')} [{f['group']}] {f['check']}: {f['value']}{note}")
+    # An unreachable result still carries a finding, and a refused address is not
+    # a connectivity failure: printing a flat "Site unreachable." for both would
+    # hide which address was blocked and why.
+    return "\n".join(lines + (rendered or ["Site unreachable."]))
 
 
 def main():
@@ -198,9 +225,20 @@ def main():
         print(json.dumps({"error": "URL required"}), file=sys.stderr); sys.exit(1)
     if not url.startswith(("http://", "https://")):
         url = "https://" + url
+    try:
+        validate_probe_url(url)
+    except HostResolutionError:
+        # Let audit() run and report it as unreachable in its JSON, the way it
+        # did before this URL was validated up front.
+        pass
+    except SafetyError as e:
+        die_safety(e)
     result = audit(url, api_key=os.getenv("PAGESPEED_API_KEY"))
     print(_summary(result) if a.summary else json.dumps(result, indent=2))
-    if result["reachable"] and any(f["status"] == "fail" for f in result["findings"]):
+    # Exit non-zero for a truly unreachable target (DNS/timeout/refused) OR any
+    # failing check — otherwise CI/automation would read an unreachable site as
+    # a false success.
+    if (not result["reachable"]) or any(f["status"] == "fail" for f in result["findings"]):
         sys.exit(2)
 
 

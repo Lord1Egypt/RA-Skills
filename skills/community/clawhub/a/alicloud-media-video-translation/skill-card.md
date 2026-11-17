@@ -1,38 +1,51 @@
-## Description: <br>
-Create and manage Alibaba Cloud IMS video translation jobs via OpenAPI for subtitle, voice, and face translation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage Alibaba Cloud IMS video translation jobs via OpenAPI, including subtitle, voice, face processing, status polling, and job management.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and media workflow operators use this skill to submit, poll, list, and manage Alibaba Cloud IMS video translation jobs that generate subtitles, translated speech, or face translation outputs. Use a dedicated least-privilege Alibaba Cloud key, confirm the region and OSS paths before submission, and review saved output files before sharing them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [IMS video translation parameter guide](references/fields.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/alicloud-media-video-translation) <br>
+Developers and media operations teams use this skill to submit Alibaba Cloud IMS video translation jobs, choose subtitle, voice, or face translation settings, poll job status, and manage job records.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, Files] <br>
-**Output Format:** [Markdown with inline shell commands and API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save artifacts, command outputs, and API response summaries under output/alicloud-media-video-translation/.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence; artifact frontmatter says 1.0.0) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The agent may receive Alibaba Cloud credentials that can create, inspect, or delete IMS media jobs and access related OSS or VOD resources.
+
+Mitigation: Use least-privilege Alibaba Cloud keys scoped to the required IMS, OSS, and VOD actions, and review any delete operation before execution.
+
+## Reference(s):
+
+- [IMS video translation parameter reference](artifact/references/fields.md)
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/alicloud-media-video-translation)
+- [ClawHub publisher profile](https://clawhub.ai/user/cinience)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown]
+
+**Output Format:** [Markdown guidance with API operation names, configuration fields, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize Alibaba Cloud API responses and evidence artifacts under the skill output directory.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

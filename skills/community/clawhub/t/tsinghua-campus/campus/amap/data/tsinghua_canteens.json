@@ -1,0 +1,287 @@
+{
+  "snapshot_date": "2026-09-11",
+  "snapshot_source": "清华大学饮食服务中心 (https://www.tsinghua.edu.cn/ysfwzx) — 官方页面 1007/1008/1009",
+  "snapshot_summary": "27 个饮食服务点（8 学生食堂 + 9 教工餐厅 + 10 特色餐厅），交叉信息研究院公开数据为 26 间，本快照含 27 项（其中'双清园'为 2021 新增）。",
+  "coordinate_source": "高德地图 POI（B0I1FPF7H9 等 ID 已核实），坐标为 GCJ-02 火星坐标系",
+  "data_expiry_hint": "清华食堂偶有更名/调整；建议每 6 个月跑一次 `campus-dining --refresh` 重新对齐官方数据。",
+  "canteens": [
+    {
+      "id": "tsinghua-canteen-zijingyuan",
+      "name": "清华大学紫荆园食堂",
+      "category": "学生食堂",
+      "phone": "62771600",
+      "address_hint": "清华大学东北角，紫荆学生公寓区内",
+      "location": "116.328676,40.011629",
+      "poi_name": "清华大学紫荆园餐厅",
+      "capacity_estimate": "3500+ ㎡，可容纳 3500 余人同时就餐"
+    },
+    {
+      "id": "tsinghua-canteen-taoliyuan",
+      "name": "清华大学桃李园食堂",
+      "category": "学生食堂",
+      "phone": "62771441",
+      "address_hint": "紫荆学生区",
+      "location": "116.326059,40.010939",
+      "poi_name": "清华大学桃李园餐厅",
+      "capacity_estimate": "9696 ㎡，四层（含地下一层），2004 年 8 月开始供餐"
+    },
+    {
+      "id": "tsinghua-canteen-qinfenyuan",
+      "name": "清华大学清芬园食堂",
+      "category": "学生食堂",
+      "phone": "62795854",
+      "address_hint": "学堂路和至善路交叉口东南侧",
+      "location": "116.328177,40.005680",
+      "poi_name": "清华大学清芬园",
+      "capacity_estimate": "约 8600 ㎡，四层，可容纳 1900 余人同时就餐",
+      "history": "1957 年 3 月始建（原名七食堂），2006 年更名"
+    },
+    {
+      "id": "tsinghua-canteen-tingtaoyuan",
+      "name": "清华大学听涛园食堂",
+      "category": "学生食堂",
+      "phone": "62782875",
+      "address_hint": "学堂路和至善路交汇处",
+      "location": "116.326997,40.006353",
+      "poi_name": "清华大学听涛园",
+      "capacity_estimate": "约 2000+ ㎡，两层，可容纳 1000 余人同时就餐",
+      "history": "1981 年 7 月落成（原名十食堂），2006 年更名"
+    },
+    {
+      "id": "tsinghua-canteen-rongyuan",
+      "name": "清华大学融园食堂",
+      "category": "学生食堂",
+      "phone": "62791139",
+      "address_hint": "清华大学五道口金融学院院内",
+      "location": "116.335780,39.993827",
+      "poi_name": "清华大学五道口金融学院融园餐厅",
+      "capacity_estimate": "1286 ㎡，两层",
+      "history": "2013 年 1 月 8 日成立"
+    },
+    {
+      "id": "tsinghua-canteen-dingxiangyuan",
+      "name": "清华大学丁香园食堂",
+      "category": "学生食堂",
+      "phone": "62782814",
+      "address_hint": "清华校内（具体位置见地图）",
+      "location": "116.327175,40.008134",
+      "poi_name": "清华大学丁香园",
+      "capacity_estimate": "1300 ㎡，可容纳 580 余人就餐",
+      "history": "1987 年 1 月落成（原名十四食堂）"
+    },
+    {
+      "id": "tsinghua-canteen-wenxinyuan",
+      "name": "清华大学闻馨园食堂",
+      "category": "学生食堂",
+      "phone": "62782430",
+      "address_hint": "观畴园食堂西南角",
+      "location": null,
+      "poi_name": null,
+      "capacity_estimate": "可同时容纳 100 余人就餐",
+      "history": "2001 年投入使用",
+      "note": "POI 在 amap 未收录；坐标待补（建议跑 `campus-dining --refresh` 后重新对齐）"
+    },
+    {
+      "id": "tsinghua-canteen-shuangqingyuan",
+      "name": "清华大学双清园食堂",
+      "category": "学生食堂",
+      "phone": "62921837",
+      "address_hint": "校外双清公寓周边（清华校外）",
+      "location": "116.340377,40.011082",
+      "poi_name": "清华大学双清园食堂",
+      "history": "2021 年 8 月 16 日营业",
+      "note": "位于清华大学校园外（双清公寓），面向校外学生/教师"
+    },
+    {
+      "id": "tsinghua-canteen-guandouyuan-faculty",
+      "name": "清华大学观畴园食堂",
+      "category": "教工餐厅",
+      "phone": "62782248",
+      "address_hint": "清华大学西大操场北侧",
+      "location": "116.322438,40.0069",
+      "poi_name": "清华大学观畴园(餐厅)",
+      "capacity_estimate": "13250 ㎡，三层，可同时容纳约 3000 人用餐",
+      "note": "教工主餐厅；是中餐、西餐、风味小吃为一体的综合性大食堂"
+    },
+    {
+      "id": "tsinghua-canteen-jiaoshi",
+      "name": "清华大学教师餐厅",
+      "category": "教工餐厅",
+      "phone": "62773215",
+      "address_hint": "清芬园食堂三层",
+      "location": null,
+      "history": "2016 年 3 月 21 日开业",
+      "note": "嵌在清芬园食堂三层内；amap 未单独 POI，参考清芬园坐标"
+    },
+    {
+      "id": "tsinghua-canteen-zhilanyuan",
+      "name": "清华大学芝兰园餐厅",
+      "category": "教工餐厅",
+      "phone": "62795226",
+      "address_hint": "紫荆公寓东北侧",
+      "location": "116.333359,40.010334",
+      "poi_name": "芝兰园餐厅",
+      "capacity_estimate": "2500 ㎡，两层，可同时容纳约 800 人就餐",
+      "note": "清真餐厅"
+    },
+    {
+      "id": "tsinghua-canteen-lanyuan",
+      "name": "清华大学澜园食堂",
+      "category": "教工餐厅",
+      "phone": "62773138",
+      "address_hint": "照澜院商业区（清华园社区购物中心二、三层）",
+      "location": "116.325267,39.998575",
+      "poi_name": "清华大学澜园教工餐厅",
+      "capacity_estimate": "3000 ㎡，两层"
+    },
+    {
+      "id": "tsinghua-canteen-yuyuan",
+      "name": "清华大学寓园食堂",
+      "category": "教工餐厅",
+      "phone": "62795535",
+      "address_hint": "清华大学西区家属区内",
+      "location": "116.319091,39.998357",
+      "poi_name": "寓园教工餐厅",
+      "history": "始建 1956 年，2018 年升级改造"
+    },
+    {
+      "id": "tsinghua-canteen-heyuan",
+      "name": "清华大学荷园食堂",
+      "category": "教工餐厅",
+      "phone": "62782487",
+      "address_hint": "清华大学荷花池畔",
+      "location": "116.321093,40.002773",
+      "poi_name": "清华大学荷园餐厅",
+      "history": "始建 1952 年（一员工），2000 年更名"
+    },
+    {
+      "id": "tsinghua-canteen-jiayuan",
+      "name": "清华大学家园食堂",
+      "category": "教工餐厅",
+      "phone": "62783258",
+      "address_hint": "清华大学西南小区内，清华附小南侧",
+      "location": "116.322336,39.994663",
+      "poi_name": "清华大学家园教工餐厅",
+      "capacity_estimate": "600 ㎡，可同时容纳 120 余人就餐"
+    },
+    {
+      "id": "tsinghua-canteen-beiyuan",
+      "name": "清华大学北园食堂",
+      "category": "教工餐厅",
+      "phone": "62781969",
+      "address_hint": "清华大学西北小区西北角（荷清路与中关村北大街交汇处，毗邻圆明园）",
+      "location": "116.318975,40.011842",
+      "poi_name": "清华大学北园教工餐厅",
+      "capacity_estimate": "可同时容纳 100 余人就餐"
+    },
+    {
+      "id": "tsinghua-canteen-nanyuan",
+      "name": "清华大学南园食堂",
+      "category": "教工餐厅",
+      "phone": "62795376",
+      "address_hint": "清华大学南楼小区南四楼西侧（洁华幼儿园南侧）",
+      "location": "116.327299,39.995864",
+      "poi_name": "清华大学南园餐厅"
+    },
+    {
+      "id": "tsinghua-rest-qingqing-kuaican",
+      "name": "清青快餐",
+      "category": "特色餐厅",
+      "phone": "62782865",
+      "address_hint": "清芬园食堂地下一层",
+      "location": "116.328179,40.005683",
+      "poi_name": "清华大学清青快餐厅",
+      "capacity_estimate": "约 340 ㎡，可容纳约 400 人同时就餐",
+      "note": "西式快餐"
+    },
+    {
+      "id": "tsinghua-rest-qingqing-xiuxian",
+      "name": "清青休闲",
+      "category": "特色餐厅",
+      "phone": "62771128",
+      "address_hint": "桃李园食堂地下一层",
+      "location": "116.326265,40.010808",
+      "poi_name": "清青休闲餐厅",
+      "note": "聊天、休闲、看书场所"
+    },
+    {
+      "id": "tsinghua-rest-qingqing-yonghe",
+      "name": "清青永和",
+      "category": "特色餐厅",
+      "phone": "62795890",
+      "address_hint": "观畴园食堂一层北侧",
+      "location": "116.322200,40.007121",
+      "poi_name": "清青永和快餐店",
+      "capacity_estimate": "可同时容纳 112 人就餐"
+    },
+    {
+      "id": "tsinghua-rest-qingqing-xiaohuoguo",
+      "name": "清青小火锅",
+      "category": "特色餐厅",
+      "phone": "62773578",
+      "address_hint": "芝兰园餐厅二层南侧",
+      "location": null,
+      "note": "amap POI 未收录；坐标待补"
+    },
+    {
+      "id": "tsinghua-rest-qingqing-pisa",
+      "name": "清青披萨",
+      "category": "特色餐厅",
+      "phone": "62772321",
+      "address_hint": "紫荆园食堂地下一层",
+      "location": "116.328691,40.011700",
+      "poi_name": "清华大学-清青披萨"
+    },
+    {
+      "id": "tsinghua-rest-qingqing-kafei",
+      "name": "清青咖啡",
+      "category": "特色餐厅",
+      "phone": "62783092",
+      "address_hint": "观畴园食堂一楼南侧",
+      "location": "116.322305,40.006660",
+      "poi_name": "清青咖啡",
+      "capacity_estimate": "约 267 ㎡，可同时容纳约 90 人用餐"
+    },
+    {
+      "id": "tsinghua-rest-qingqing-niula",
+      "name": "清青牛拉",
+      "category": "特色餐厅",
+      "phone": "62782875",
+      "address_hint": "听涛园食堂二层",
+      "location": "116.326640,40.006795",
+      "poi_name": "清青牛拉",
+      "capacity_estimate": "可同时容纳约 200 人就餐"
+    },
+    {
+      "id": "tsinghua-rest-mianbaofang",
+      "name": "面包坊",
+      "category": "特色餐厅",
+      "phone": "62795015",
+      "address_hint": "寓园食堂东侧",
+      "location": "116.319291,39.998513",
+      "poi_name": "水木麦原面包坊",
+      "note": "提供面包、蛋糕等"
+    },
+    {
+      "id": "tsinghua-rest-yushuyuan",
+      "name": "清华大学玉树园餐厅",
+      "category": "特色餐厅",
+      "phone": "62794076",
+      "address_hint": "清华大学紫荆公寓 18 号楼和 19 号楼之间",
+      "location": "116.331899,40.011774",
+      "poi_name": "玉树园餐厅",
+      "capacity_estimate": "约 2500 ㎡，两层"
+    },
+    {
+      "id": "tsinghua-rest-xichunyuan",
+      "name": "清华大学熙春园餐厅",
+      "category": "特色餐厅",
+      "phone": "62782529",
+      "address_hint": "工字厅西侧约 100 米",
+      "location": "116.321323,40.002051",
+      "poi_name": "清华大学熙春园餐厅",
+      "capacity_estimate": "约 500 ㎡，可同时容纳 210 人用餐",
+      "note": "原招待餐厅；典型徽派建筑"
+    }
+  ]
+}

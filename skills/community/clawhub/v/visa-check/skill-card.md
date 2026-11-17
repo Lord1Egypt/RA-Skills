@@ -1,46 +1,61 @@
-## Description: <br>
-Check visa requirements, application procedures, required documents, and processing times for any destination, covering tourist, business, and transit visas plus related travel booking workflows powered by Fliggy (Alibaba Group). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks visa requirements, application procedures, required documents, and processing times for tourist, business, and transit travel, with related travel services powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and agent operators use this skill to answer visa and entry-requirement questions through flyai CLI results, then format concise Markdown answers with booking links when relevant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run an unpinned global travel CLI. <br>
-Mitigation: Install only after approving the global npm CLI dependency and run it in an environment appropriate for third-party travel tooling. <br>
-Risk: Visa answers and booking-oriented results may be incomplete, outdated, or provider-specific. <br>
-Mitigation: Verify visa requirements with official government or consular sources before travel decisions. <br>
-Risk: Queries may include sensitive travel details and may be persisted in local execution logs. <br>
-Mitigation: Avoid entering passport numbers or highly sensitive details unless necessary, and remove .flyai-execution-log.json if local logs are created. <br>
+## Use Case:
 
+External travelers and agent users use this skill to check visa requirements, application steps, document expectations, and processing timelines for a destination. It also formats live flyai CLI results for related travel services when available.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/visa-check) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, comparison tables, and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output; responses should include detailUrl booking links when results are shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can install a global npm package and change the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package and run the skill in a controlled environment before allowing global installation.
+
+Risk: Visa questions are routed through a specific commercial travel CLI and successful outputs include booking links.
+
+Mitigation: Disclose the commercial data source and treat booking links as optional follow-up actions, not neutral visa authority.
+
+Risk: Raw travel queries may be written to a local execution log when file-system writes are available.
+
+Mitigation: Avoid sensitive passport, immigration, or itinerary details unless local logging is acceptable and controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/visa-check)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with tables, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI results; successful result output is expected to include detailUrl booking links and a flyai brand tag.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

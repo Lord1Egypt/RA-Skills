@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "catalog_version": "2026.07.18",
+  "verified_at": "2026-07-18",
+  "group_warning": "The model list reflects only the current API key group. Change the token group or enable automatic grouping in the ShowMeAI console when a desired model is unavailable.",
+  "models": [
+    {
+      "id": "gpt-image-2",
+      "label": "GPT Image 2",
+      "category": "image",
+      "operations": ["generate", "edit"],
+      "recommended": 2,
+      "params": {
+        "n": {"type": "integer", "minimum": 1, "maximum": 10, "default": 1, "basic": true},
+        "size": {"type": "string", "default": "auto", "basic": true},
+        "quality": {"type": "enum", "values": ["auto", "high", "medium", "low"], "default": "auto", "basic": true},
+        "output_format": {"type": "enum", "values": ["png", "jpeg", "webp"], "default": "png", "basic": true},
+        "background": {"type": "enum", "values": ["auto", "transparent", "opaque"], "default": "auto"},
+        "output_compression": {"type": "integer", "minimum": 1, "maximum": 100, "default": 100},
+        "moderation": {"type": "enum", "values": ["auto", "low"], "default": "auto"}
+      }
+    },
+    {
+      "id": "gemini-3-pro-image",
+      "aliases": ["nano-banana-pro"],
+      "label": "Gemini 3 Pro Image (Nano Banana Pro)",
+      "category": "image",
+      "operations": ["generate", "edit"],
+      "recommended": 3,
+      "params": {
+        "n": {"type": "integer", "minimum": 1, "maximum": 10, "default": 1, "basic": true},
+        "image_size": {"type": "enum", "values": ["1K", "2K", "4K"], "default": "1K", "basic": true},
+        "aspect_ratio": {"type": "enum", "values": ["1:1", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16", "16:9", "21:9"], "default": "1:1", "basic": true}
+      }
+    },
+    {
+      "id": "gemini-3.1-flash-image",
+      "aliases": ["nano-banana-2"],
+      "label": "Gemini 3.1 Flash Image (Nano Banana 2)",
+      "category": "image",
+      "operations": ["generate", "edit"],
+      "recommended": 1,
+      "params": {
+        "n": {"type": "integer", "minimum": 1, "maximum": 10, "default": 1, "basic": true},
+        "image_size": {"type": "enum", "values": ["0.5K", "1K", "2K", "4K"], "default": "1K", "basic": true},
+        "aspect_ratio": {"type": "enum", "values": ["1:1", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16", "16:9", "21:9"], "default": "1:1", "basic": true}
+      }
+    },
+    {"id": "nano-banana", "label": "Nano Banana", "category": "image", "operations": ["generate", "edit"], "params": {"n": {"type": "integer", "minimum": 1, "maximum": 10, "default": 1, "basic": true}, "size": {"type": "string", "default": "1:1", "basic": true}}},
+    {"id": "doubao-seedance-1-5-pro-251215", "label": "Seedance 1.5 Pro", "category": "video", "operations": ["text-to-video", "image-to-video", "first-last-frame"], "params": {"resolution": {"type": "enum", "values": ["480p", "720p", "1080p"], "default": "720p", "basic": true}, "ratio": {"type": "enum", "values": ["16:9", "4:3", "1:1", "3:4", "9:16", "21:9", "adaptive"], "default": "16:9", "basic": true}, "duration": {"type": "integer", "minimum": 2, "maximum": 12, "default": 5, "basic": true}, "generate_audio": {"type": "boolean", "default": false, "basic": true}, "draft": {"type": "boolean", "default": false}, "watermark": {"type": "boolean", "default": false}, "camera_fixed": {"type": "boolean", "default": false}, "seed": {"type": "integer", "minimum": 0, "maximum": 2147483647}}},
+    {"id": "Hunyuan3D-2", "label": "Hunyuan3D 2", "category": "3d", "task_api": true, "params": {"texture": {"type": "boolean", "default": true, "basic": true}, "num_inference_steps": {"type": "integer", "minimum": 2, "maximum": 50, "default": 5, "basic": true}, "octree_resolution": {"type": "integer", "minimum": 16, "maximum": 400, "default": 128, "basic": true}, "guidance_scale": {"type": "number", "minimum": 1, "maximum": 20, "default": 5}, "format": {"type": "enum", "values": ["glb", "stl"], "default": "glb", "basic": true}, "seed": {"type": "integer", "minimum": 0, "maximum": 10000000, "default": 1234}}},
+    {"id": "Hi3DGen", "label": "Hi3DGen", "category": "3d", "task_api": true, "params": {}},
+    {"id": "Step1X-3D", "label": "Step1X 3D", "category": "3d", "task_api": true, "params": {}},
+    {"id": "tts-1", "label": "OpenAI TTS 1", "category": "tts", "params": {"voice": {"type": "enum", "values": ["alloy", "echo", "fable", "onyx", "nova", "shimmer"], "default": "alloy", "basic": true}, "response_format": {"type": "enum", "values": ["mp3", "opus", "aac", "flac", "wav", "pcm"], "default": "mp3", "basic": true}, "speed": {"type": "number", "minimum": 0.25, "maximum": 4, "default": 1, "basic": true}}},
+    {"id": "tts-1-hd", "label": "OpenAI TTS 1 HD", "category": "tts", "params": {}},
+    {"id": "gemini-2.5-flash-preview-tts", "label": "Gemini 2.5 Flash TTS", "category": "tts", "params": {"voice": {"type": "string", "default": "leda", "basic": true}, "response_format": {"type": "enum", "values": ["mp3", "opus", "aac", "flac", "wav", "pcm"], "default": "wav", "basic": true}, "temperature": {"type": "number", "minimum": 0, "maximum": 2, "default": 1}}},
+    {"id": "gemini-2.5-pro-preview-tts", "label": "Gemini 2.5 Pro TTS", "category": "tts", "params": {}},
+    {"id": "qwen3-tts-flash", "label": "Qwen 3 TTS Flash", "category": "tts", "params": {"voice": {"type": "string", "default": "Cherry", "basic": true}}},
+    {"id": "whisper-1", "label": "Whisper 1", "category": "stt", "params": {}},
+    {"id": "whisper-large-v3-turbo", "label": "Whisper Large v3 Turbo", "category": "stt", "params": {}},
+    {"id": "chirp-crow", "label": "Suno v5 (chirp-crow)", "category": "music", "task_api": true, "params": {"mode": {"type": "enum", "values": ["inspiration", "custom", "continue"], "default": "inspiration", "basic": true}, "make_instrumental": {"type": "boolean", "default": false, "basic": true}}},
+    {"id": "chirp-auk", "label": "Suno v4.5", "category": "music", "task_api": true, "params": {}},
+    {"id": "pic-upscale", "label": "Image Upscale", "category": "image_tool", "task_api": true, "params": {"type": {"type": "enum", "values": ["clean", "face"], "default": "clean", "basic": true}, "scale_factor": {"type": "enum", "values": [1, 2, 4], "default": 2, "basic": true}}},
+    {"id": "pic-remove-bg", "label": "Background Removal", "category": "image_tool", "task_api": true, "params": {"type": {"type": "enum", "values": ["auto", "person", "object", "stamp"], "default": "auto", "basic": true}, "output_type": {"type": "enum", "values": [1, 2, 3], "default": 2}, "crop": {"type": "boolean", "default": false}, "format": {"type": "enum", "values": ["png", "jpg"], "default": "png", "basic": true}}}
+  ]
+}

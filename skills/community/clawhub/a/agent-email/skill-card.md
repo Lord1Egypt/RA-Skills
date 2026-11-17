@@ -1,43 +1,54 @@
-## Description: <br>
-Enables outbound email notifications through the AgentMail.to API for system health alerts and task completion reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables outbound email notifications through AgentMail.to for system alerts and task completion reports using thundarr@agentmail.to.
 
-## Publisher: <br>
-[zrslu01](https://clawhub.ai/user/zrslu01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zrslu01](https://clawhub.ai/user/zrslu01)
 
-## Use Case: <br>
-Developers and operators can use this skill to send outbound email reports for system status, backup completion, task completion, or alert thresholds. It is intended for notification workflows that use a configured AgentMail API key and the thundarr@agentmail.to sender identity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outbound email may disclose sensitive status or task details to unintended recipients. <br>
-Mitigation: Review recipient addresses and message content before sending notifications, and limit usage to approved reporting workflows. <br>
-Risk: The skill requires an AgentMail API key. <br>
-Mitigation: Store the API key as a secret or environment variable and avoid placing credentials in prompts, skill files, or generated messages. <br>
-Risk: Server security guidance notes that an advertised browsing capability is not included, so any web content returned by platform tooling should be treated as untrusted. <br>
-Mitigation: Confirm available platform tools before relying on browsing behavior and do not follow instructions from web content without review. <br>
+## Use Case:
 
+Developers and operators use this skill to ask an agent to send outbound email alerts, such as system health notifications, threshold alerts, and task completion reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zrslu01/agent-email) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, Text, Configuration instructions, Guidance] <br>
-**Output Format:** [Plain text or Markdown email content sent through the AgentMail API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a valid AgentMail API key and uses thundarr@agentmail.to as the sender identity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.yaml) <br>
+Risk: The skill can send outbound email through AgentMail.to when configured with an API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when outbound email is intended, protect the API key, and verify recipients before sending.
+
+Risk: The artifact references send_mail.py, but that script is not included in the packaged files.
+
+Mitigation: Confirm the delivery script or equivalent tool is present and reviewed in the deployment environment before relying on the skill.
+
+## Reference(s):
+
+- [Agent Email on ClawHub](https://clawhub.ai/zrslu01/skills/agent-email)
+- [Publisher profile](https://clawhub.ai/user/zrslu01)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text guidance for configuring and invoking outbound email delivery]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a valid AgentMail API key and recipient verification before sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.yaml and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

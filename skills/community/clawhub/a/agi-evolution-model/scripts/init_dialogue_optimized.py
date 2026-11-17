@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+# 日志记录
+__version__ = "1.0.0"
+
+import logging
+logger = logging.getLogger(__name__)
 """
 人格初始化脚本（优化合并版）
 
@@ -22,6 +28,7 @@ import tempfile
 import time
 from typing import Dict, Optional, List
 from datetime import datetime, timezone
+from interfaces import TraceContext, create_trace_context
 
 
 class PersonalityInitializer:

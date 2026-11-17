@@ -1,43 +1,55 @@
-## Description: <br>
-Finds orphaned files, unused components, and dead code in projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds orphaned files, unused components, and dead code in projects.
 
-## Publisher: <br>
-[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999)
 
-## Use Case: <br>
-Developers and engineers use this skill to scan front-end TypeScript and JavaScript projects for orphaned files, unused components, dead utility functions, and unregistered routes before cleanup or refactoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Heuristic dead-code findings may be false positives for dynamic imports, convention-based routes, feature flags, public assets, or test-only references. <br>
-Mitigation: Review the report manually, prioritize high-confidence items, and run project builds and tests before removing files. <br>
-Risk: An optional generated cleanup script can remove files when executed. <br>
-Mitigation: Run cleanup on a branch, inspect every command in the script, and use git history to preserve rollback options. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect front-end TypeScript and JavaScript projects for orphaned files, unused components, uncalled utilities, and route, style, or asset references that may be safe to remove.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangzhiming1999/find-orphans) <br>
-- [Repository](https://github.com/wangzhiming1999/oliver-skill) <br>
-- [Skill homepage](https://github.com/wangzhiming1999/oliver-skill/tree/main/skills/find-orphans) <br>
-- [Support issues](https://github.com/wangzhiming1999/oliver-skill/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown report with optional bash cleanup script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Heuristic static analysis output that should be reviewed before any cleanup is applied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and clawhub.json) <br>
+Risk: Static cleanup analysis can misclassify files that are referenced through dynamic imports, convention-based routes, feature flags, tests, service workers, or public assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat findings as heuristic, review every proposed orphan manually, and run the project build and tests before committing removals.
+
+Risk: A generated deletion script can remove project files if executed without review.
+
+Mitigation: Generate deletion scripts only after explicit user confirmation, inspect each command, and perform cleanup on a version-controlled branch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangzhiming1999/skills/find-orphans)
+- [Artifact repository URL](https://github.com/wangzhiming1999/oliver-skill)
+- [Artifact homepage URL](https://github.com/wangzhiming1999/oliver-skill/tree/main/skills/find-orphans)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown cleanup report with an optional bash deletion script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deletion scripts are generated only after explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-Generate professional LaTeX documents from templates. Supports academic papers (IEEE/ACM), Chinese thesis (CTeX), CVs (moderncv), and custom templates. Auto-compile to PDF. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional LaTeX documents from templates, including IEEE and ACM academic papers, CTeX Chinese thesis formats, moderncv resumes, and custom templates with optional PDF compilation.
 
-## Publisher: <br>
-[alicepub](https://clawhub.ai/user/alicepub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alicepub](https://clawhub.ai/user/alicepub)
 
-## Use Case: <br>
-Developers, researchers, students, and document authors use this skill to turn structured content into LaTeX source and compiled PDFs for academic papers, Chinese theses and reports, CVs, resumes, and custom template-based documents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated or user-provided LaTeX content and custom class or style templates are compiled locally. <br>
-Mitigation: Review generated .tex content before compiling important or sensitive documents, use only trusted .cls and .sty templates, and sandbox LaTeX received from untrusted sources. <br>
-Risk: PDF generation depends on a local TeX installation and its installed packages, fonts, and security updates. <br>
-Mitigation: Keep the TeX distribution current and confirm required packages and fonts are installed before relying on compiled output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alicepub/latex-writer) <br>
+## Use Case:
 
+Developers, researchers, students, and technical writers use this skill to turn structured content into publication-ready LaTeX source and PDFs for academic papers, Chinese thesis documents, reports, and resumes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance, LaTeX source code, and generated .tex/.pdf files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local TeX distribution such as TeX Live or MiKTeX with xelatex for PDF compilation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill compiles user-controlled document content locally without enough escaping or sandboxing.
+
+Mitigation: Use trusted content unless compilation is isolated, require explicit confirmation before PDF compilation, validate metadata and bibliography fields, and compile in a restricted sandbox without access to secrets, home directories, or unrelated workspace files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alicepub/skills/latex-writer)
+- [Publisher profile](https://clawhub.ai/user/alicepub)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Files, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with LaTeX source, JSON content structures, and generated .tex/.pdf files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.10+ and a local TeX distribution such as TeX Live or MiKTeX with xelatex; PDF compilation should be confirmed and sandboxed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

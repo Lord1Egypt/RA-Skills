@@ -1,47 +1,61 @@
-## Description: <br>
-Generate a weekly AI report with OpenClaw top skills, official announcements, industry news, and capped paper ratio in Markdown format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a weekly AI report with OpenClaw top skills, official announcements, industry news, open-source updates, and a capped research-paper ratio in Markdown format.
 
-## Publisher: <br>
-[Matilda-Grifin](https://clawhub.ai/user/Matilda-Grifin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[matilda-grifin](https://clawhub.ai/user/matilda-grifin)
 
-## Use Case: <br>
-Developers, researchers, and operations teams use this skill to generate a weekly Chinese Markdown digest of AI announcements, industry news, papers, open-source activity, and OpenClaw leaderboard items from configured public sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public AI news sources and the OpenClaw leaderboard, so configured source URLs affect what content enters the report. <br>
-Mitigation: Review sources.json before use and keep sources limited to trusted public feeds. <br>
-Risk: When --use-llm is enabled, report inputs are sent to the configured LLM provider. <br>
-Mitigation: Use a dedicated API key with limits and verify OPENAI_BASE_URL, Ark settings, and LLM_ALLOWED_HOSTS before running. <br>
-Risk: Relaxing endpoint controls can route traffic to untrusted services or weaken transport security. <br>
-Mitigation: Avoid --allow-insecure-ssl, --allow-custom-llm-endpoint, and webhook sending unless the target HTTPS endpoint is intentionally trusted. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to generate a traceable weekly AI digest from configured news, RSS, research, open-source, and OpenClaw leaderboard sources. It is useful when a user needs a structured Markdown report with source links, publish dates, and optional LLM-generated Chinese analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Matilda-Grifin/ai-news-weekly-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/Matilda-Grifin) <br>
-- [Skill definition](artifact/skill.md) <br>
-- [Project README](artifact/README.md) <br>
-- [Configured news sources](artifact/sources.json) <br>
-- [Example weekly report](artifact/daily_docs/ai_weekly_20260323.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown report written to daily_docs/ai_weekly_YYYYMMDD.md, with optional webhook notification text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default window is 168 hours; paper items are capped by --max-paper-ratio; source links and publication dates are preserved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The skill can fetch configured RSS/news sources and follow article links that may include untrusted web content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted sources only and review generated reports before sharing them.
+
+Risk: Selected fetched excerpts and report content may be sent to the configured LLM provider when LLM generation is enabled.
+
+Mitigation: Provide API keys through protected environment injection and run only with approved LLM endpoints.
+
+Risk: Relaxing endpoint or transport controls can increase exposure to unsafe destinations or insecure connections.
+
+Mitigation: Avoid --allow-insecure-ssl and --allow-custom-llm-endpoint unless necessary, and extend LLM_ALLOWED_HOSTS only for trusted hosts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/matilda-grifin/skills/ai-news-weekly-agent)
+- [Publisher Profile](https://clawhub.ai/user/matilda-grifin)
+- [Source Feed Configuration](sources.json)
+- [Project Overview](README.md)
+- [Sample Weekly Report](daily_docs/ai_weekly_20260323.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report written to daily_docs/ai_weekly_YYYYMMDD.md, with source links, publish dates, summaries, and optional webhook notification text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report defaults to a 168-hour window, caps research papers at 20 percent by default, preserves source attribution, and records fetch errors in the generated Markdown.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

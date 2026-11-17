@@ -1,41 +1,56 @@
-## Description: <br>
-Helps agents search, book, list, and cancel Playtomic padel court reservations through the padel-tui terminal CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent guide users through Playtomic padel court search, booking, active match listing, cancellation, and padel-tui installation workflows from a terminal.
 
-## Publisher: <br>
-[philipp-eisen](https://clawhub.ai/user/philipp-eisen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[philipp-eisen](https://clawhub.ai/user/philipp-eisen)
 
-## Use Case: <br>
-External users and developers use this skill to automate Playtomic padel court workflows from a terminal, including availability search, booking, active match listing, and cancellation after explicit confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can install or run an external CLI. <br>
-Mitigation: Ask for explicit approval before installation and use the existing local binary when installation is declined. <br>
-Risk: Authentication creates a local session file. <br>
-Mitigation: Use only the interactive terminal login flow and keep the local session file private. <br>
-Risk: Booking or cancellation commands can affect real reservations. <br>
-Mitigation: Confirm venue, time, duration, player count, or match ID before running booking or cancellation commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Installation Reference](references/INSTALLATION.md) <br>
+## Use Case:
 
+External users and developers use this skill to operate the padel-tui CLI for Playtomic court discovery, reservation, active match review, and cancellation while preserving explicit user approval for installation and booking actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands that install, authenticate, book, or cancel should be presented for explicit user confirmation before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation guidance depends on trusting upstream padel-tui package or binary sources.
+
+Mitigation: Confirm padel-tui is the intended tool, prefer an official versioned source, and avoid sudo during installation.
+
+Risk: Local Playtomic session material is sensitive.
+
+Mitigation: Treat the session file as private and avoid exposing or sharing its contents.
+
+Risk: Booking and cancellation commands can reserve or cancel courts.
+
+Mitigation: Confirm venue, court, time, duration, player count, and match ID before running book or match-cancel commands.
+
+## Reference(s):
+
+- [Installation Reference](references/INSTALLATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require user confirmation before installation, booking, or cancellation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

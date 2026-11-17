@@ -1,42 +1,57 @@
-## Description: <br>
-Steuert Deskbird ueber Telegram mit sicherem Auth-Handling, Discovery und Parkplatz-Status/Reservierung. Verwende diesen Skill, wenn ein OpenClaw-Agent Deskbird-Aufgaben ausfuehren oder eine wiederkehrende Cron-Session dafuer anlegen/aktualisieren soll, inklusive Rueckfrage zum Rhythmus und Reauth bei abgelaufener Auth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Steuert Deskbird ueber Telegram mit sicherem Auth-Handling, Discovery und Parkplatz-Status/Reservierung.
 
-## Publisher: <br>
-[geby85](https://clawhub.ai/user/geby85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[geby85](https://clawhub.ai/user/geby85)
 
-## Use Case: <br>
-Employees and automation operators use this skill to check Deskbird authentication, discover workspace and parking availability, report status through Telegram, and optionally create a recurring OpenClaw cron session for cautious Deskbird monitoring or parking reservation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle live Deskbird session credentials through Telegram and authenticated local tooling. <br>
-Mitigation: Install only where the bot, logs, and storage path are trusted; prefer local or scoped authentication and rotate or revoke Deskbird/Firebase credentials when the skill is no longer used. <br>
-Risk: Recurring automation can retain Deskbird account authority and perform booking-related actions. <br>
-Mitigation: Review each cron prompt before enabling it, keep safe mode active, avoid aggressive retries, and start booking workflows with dry-run before allowing a real reservation. <br>
-Risk: Broad authenticated API debugging commands may expose or replay sensitive account data if misused. <br>
-Mitigation: Use the documented auth-check, auth-refresh, discovery, parking-status, and parking-book-first flows for normal operation, and reserve capture, probe, replay, or pairing flows for deliberate debugging. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cron Session Prompt Template](artifact/references/cron-session-template.md) <br>
-- [Deskbird-Automator ClawHub Release](https://clawhub.ai/geby85/deskbird-automator) <br>
+## Use Case:
 
+Employees or workplace operations users can ask an OpenClaw agent to check Deskbird availability, summarize bookable resources, and optionally create or update a recurring cron session for parking monitoring or booking. The skill is intended for cautious Deskbird automation with explicit reauthentication handling before API actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-capable CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update an OpenClaw cron session prompt and may call local Deskbird CLI commands that return table or JSON output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.7 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles raw Deskbird session credentials and can store credentials for recurring use.
+
+Mitigation: Review the credential flow before installation, avoid sending live Authorization headers, cookies, or refresh tokens through Telegram when possible, and restrict the env file to owner-only permissions.
+
+Risk: Broad request replay and probe tooling can send stored credentials outside Deskbird if misused.
+
+Mitigation: Do not use probe or replay with stored credentials or untrusted capture files; keep safe mode enabled and limit API calls to the documented Deskbird workflows.
+
+Risk: Automated cron runs can perform parking bookings if rules are too broad.
+
+Mitigation: Keep booking rules narrow, require discovery before booking, use dry-run checks where available, and stop cron runs cleanly when reauthentication is required.
+
+## Reference(s):
+
+- [Cron Session Prompt Template](references/cron-session-template.md)
+- [Deskbird-Automator ClawHub Release](https://clawhub.ai/geby85/skills/deskbird-automator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status summaries with inline shell commands and JSON-capable CLI outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs normally include auth status, checked dates or zones, availability findings, and whether a booking was made or skipped.]
+
+## Skill Version(s):
+
+1.1.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

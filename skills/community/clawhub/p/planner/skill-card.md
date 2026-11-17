@@ -1,39 +1,50 @@
-## Description: <br>
-Local-first planning engine for trips, weeks, launches, projects, schedules, and structured decision-making. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first planning engine for trips, weeks, launches, projects, schedules, and structured decision-making.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-External users and agent operators use this skill to turn goals, trips, launches, projects, weekly priorities, and decisions into structured plans with constraints, phases, milestones, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Planning details are saved locally on the machine. <br>
-Mitigation: Avoid storing secrets or highly sensitive personal information, and review or delete the planner JSON files when local retention is no longer desired. <br>
+## Use Case:
 
+Employees, external users, and agents use Planner to turn goals into structured plans for trips, weeks, launches, projects, schedules, and decisions. It helps capture constraints, phases, milestones, next steps, and notes while keeping planning data local.
 
-## Reference(s): <br>
-- [Planner Philosophy](references/philosophy.md) <br>
-- [ClawHub Planner Release](https://clawhub.ai/AGIstack/planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, JSON files, guidance] <br>
-**Output Format:** [Plain text command output and locally stored JSON plan records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores plan data locally under ~/.openclaw/workspace/memory/planner when its scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.json and server release evidence) <br>
+Risk: Plans are saved locally across sessions and may contain personal schedules, travel details, deadlines, or decision context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or highly sensitive personal details, and periodically review or delete the local planner JSON files when retention matters.
+
+## Reference(s):
+
+- [Planner Philosophy](references/philosophy.md)
+- [ClawHub Planner Skill](https://clawhub.ai/agistack/skills/planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and command-line text output backed by local JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores user-created plans locally under ~/.openclaw/workspace/memory/planner/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

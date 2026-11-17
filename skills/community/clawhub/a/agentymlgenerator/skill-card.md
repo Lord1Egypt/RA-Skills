@@ -1,40 +1,58 @@
-## Description: <br>
-Generates Dify 1.3.1-compatible Agent workflow YAML from business requirements, SOPs, or workflow descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Dify 1.3.1 workflow YAML from business requirements, SOPs, or workflow descriptions.
 
-## Publisher: <br>
-[kevsimba](https://clawhub.ai/user/kevsimba) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevsimba](https://clawhub.ai/user/kevsimba)
 
-## Use Case: <br>
-Developers and workflow builders use this skill to convert business process descriptions or SOPs into Dify 1.3.1 workflow or advanced-chat YAML that can be reviewed and imported into Dify. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential SOPs or operational process details into the agent. <br>
-Mitigation: Use only content approved for the target agent environment and redact sensitive operational details when possible. <br>
-Risk: Generated YAML may encode an incorrect workflow or unsuitable automation behavior. <br>
-Mitigation: Review the generated YAML before importing it into Dify and test it with representative inputs. <br>
+## Use Case:
 
+Developers, workflow builders, and operations teams use this skill to convert SOPs or business process descriptions into Dify workflow or advanced-chat YAML for import into Dify 1.3.1.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kevsimba/agentymlgenerator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with a workflow summary, YAML code block, and import guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [YAML is intended for Dify 1.3.1 import after human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated YAML may not match the intended workflow or Dify import requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test generated YAML before importing it into Dify 1.3.1.
+
+Risk: Business requirements or SOPs may contain sensitive information supplied to the agent.
+
+Mitigation: Review sensitive inputs before use and avoid submitting secrets or restricted business documents without approval.
+
+Risk: The skill may activate broadly and has inconsistent output-format instructions.
+
+Mitigation: Confirm that the user requested Dify workflow YAML and check that the final response contains the expected summary, YAML block, and import guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kevsimba/skills/agentymlgenerator)
+- [ClawHub publisher profile](https://clawhub.ai/user/kevsimba)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with a brief workflow summary, a fenced YAML code block, and import guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Dify 1.3.1-compatible workflow YAML using internal YAML version 0.2.0.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

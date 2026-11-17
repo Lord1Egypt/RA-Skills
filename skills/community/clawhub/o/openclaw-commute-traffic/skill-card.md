@@ -1,44 +1,58 @@
-## Description: <br>
-Check real-time traffic conditions for a route between two locations using TomTom. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check real-time traffic conditions for a route between two locations using TomTom.
 
-## Publisher: <br>
-[Xavjer](https://clawhub.ai/user/Xavjer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xavjer](https://clawhub.ai/user/xavjer)
 
-## Use Case: <br>
-External users ask an agent for current commute conditions, travel time, traffic delay, route alternatives, and whether to leave now for a supplied origin and destination. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Route origins and destinations are sent to TomTom and may reveal sensitive home, work, or travel patterns. <br>
-Mitigation: Confirm origin and destination before lookup when the request is vague, and avoid using remembered private locations without explicit user confirmation. <br>
-Risk: User-provided locations may be unsafe if interpolated directly into a shell command. <br>
-Mitigation: Invoke the traffic helper with safely separated arguments, not by concatenating raw user text into a shell command string. <br>
-Risk: Traffic results can fail or become unavailable because of missing credentials, TomTom errors, rate limits, or vague locations. <br>
-Mitigation: Check that TOMTOM_API_KEY is configured, relay helper errors plainly, and ask for more specific locations when geocoding fails. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Commute Traffic ClawHub listing](https://clawhub.ai/Xavjer/openclaw-commute-traffic) <br>
-- [Xavjer publisher profile](https://clawhub.ai/user/Xavjer) <br>
-- [TomTom Developer Portal](https://developer.tomtom.com) <br>
-- [TomTom API Response Reference](references/tomtom-api-response.md) <br>
+## Use Case:
 
+External users and agent operators use this skill to check live driving conditions, commute time, route alternatives, and whether to leave now for an origin-destination pair.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [JSON from the helper script summarized as concise natural-language traffic guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOMTOM_API_KEY and user-provided origin and destination values.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Route origins and destinations are sent to TomTom for geocoding and traffic lookup.
+
+Mitigation: Install only when sharing route locations with TomTom is acceptable, and avoid submitting sensitive personal locations unless necessary.
+
+Risk: The skill prose describes any route, but the script geocoding request is hardcoded with countrySet=CH.
+
+Mitigation: Treat results as Switzerland-biased and ask for more specific locations or coordinates when routes outside Switzerland are needed.
+
+Risk: The helper script requires a TomTom API key.
+
+Mitigation: Provide TOMTOM_API_KEY through the configured environment or secret mechanism and rotate the key if it is exposed.
+
+## Reference(s):
+
+- [TomTom API Response Reference](references/tomtom-api-response.md)
+- [TomTom Developer Portal](https://developer.tomtom.com)
+- [Commute Traffic on ClawHub](https://clawhub.ai/xavjer/skills/openclaw-commute-traffic)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON from the traffic-check script plus concise user-facing traffic guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and TOMTOM_API_KEY; geocoding is biased to Switzerland by countrySet=CH.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter); release metadata version 0.1.0
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

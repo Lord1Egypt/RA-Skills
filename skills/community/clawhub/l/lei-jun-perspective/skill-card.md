@@ -1,40 +1,49 @@
-## Description: <br>
-This skill frames product, business, and strategy questions through a Lei Jun-style perspective focused on value, ecosystem leverage, focus, word of mouth, and rapid iteration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents answer product, business, and strategy questions through a Lei Jun-inspired lens focused on value, focus, word of mouth, ecosystem leverage, and rapid iteration.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Developers, founders, product managers, and business strategists use this skill to analyze product strategy, investment opportunities, positioning, and user experience from a Lei Jun-style decision framework. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona may activate on broad product-strategy language even when the user did not explicitly request a Lei Jun-style perspective. <br>
-Mitigation: Use clear prompts when requesting or avoiding this perspective, and review the response as persona-framed business guidance rather than neutral analysis. <br>
+## Use Case:
 
+Developers and agent users use this skill when they want product, startup, business, or strategy guidance framed through Lei Jun's public business philosophy. It is most relevant when a user explicitly asks for a Lei Jun perspective or asks about focus, trends, word of mouth, extreme product quality, rapid iteration, or customer value.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiejianjun000/lei-jun-perspective) <br>
-- [Publisher Profile](https://clawhub.ai/user/xiejianjun000) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown or plain text conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persona-framed business and product analysis; it does not produce files, shell commands, or configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill may activate on broad startup or product-strategy terms where a Lei Jun perspective was not intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask explicitly for or against the Lei Jun perspective when precision matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/lei-jun-perspective)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text strategic guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only perspective skill; security evidence reports no code execution or data access.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence; target metadata agrees)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

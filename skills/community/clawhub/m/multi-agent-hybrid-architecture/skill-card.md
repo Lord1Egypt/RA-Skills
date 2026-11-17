@@ -1,46 +1,65 @@
-## Description: <br>
-OpenClaw 多 Agent 协作架构 - 混合层级 + 物理隔离 + 逻辑隔离的完美组合 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw 多 Agent 协作架构 - 混合层级 + 物理隔离 + 逻辑隔离的完美组合
 
-## Publisher: <br>
-[Zoopools](https://clawhub.ai/user/Zoopools) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zoopools](https://clawhub.ai/user/zoopools)
 
-## Use Case: <br>
-OpenClaw users and agent builders use this skill to route tasks between coordinator and media agents, define role boundaries, and apply SOUL.md templates for multi-agent collaboration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The media agent is granted broad baoyu-* tool and public-posting authority. <br>
-Mitigation: Narrow the media agent's permissions to the tools needed for the deployment and require explicit confirmation before any public post. <br>
-Risk: Persistent memory duties could retain sensitive task details without clear deletion rules. <br>
-Mitigation: Define what may be written to memory files, exclude sensitive information, and document how records can be deleted. <br>
-Risk: Applying SOUL.md templates can overwrite existing local agent behavior. <br>
-Mitigation: Back up and diff existing SOUL.md files before installing or merging the templates. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up a multi-agent workflow with separate writer and media roles, task routing, review expectations, and troubleshooting guidance. It is intended for coordinating creative generation and social-media publishing tasks while keeping role responsibilities explicit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zoopools/multi-agent-hybrid-architecture) <br>
-- [Publisher profile](https://clawhub.ai/user/Zoopools) <br>
-- [Architecture guide](docs/architecture.md) <br>
-- [Task flow guide](docs/task-flow.md) <br>
-- [Troubleshooting guide](docs/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces role-routing guidance, SOUL.md templates, and configuration-check instructions for an OpenClaw multi-agent setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: The skill persistently changes agent behavior through SOUL.md templates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and manually merge the templates into existing SOUL.md files instead of overwriting local behavior without review.
+
+Risk: The media role may perform public posting or broad third-party tool use without clear confirmation gates.
+
+Mitigation: Add explicit approval gates before social-media posting or third-party tool invocation.
+
+Risk: Wildcard baoyu-* authorization can allow more tools than the reviewer intended.
+
+Mitigation: Replace wildcard authorization with an explicit, reviewed list of allowed skills and pin dependent skills where possible.
+
+Risk: Task memory guidance may store user task data without a clear retention boundary.
+
+Mitigation: Define what task data may be stored, where it is stored, and how users can delete it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zoopools/skills/multi-agent-hybrid-architecture)
+- [Architecture guide](docs/architecture.md)
+- [Task flow guide](docs/task-flow.md)
+- [Troubleshooting guide](docs/troubleshooting.md)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell command examples and configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes SOUL.md role templates and a bash configuration-check script.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

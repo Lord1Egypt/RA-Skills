@@ -1,0 +1,615 @@
+[
+  {
+    "method": "POST",
+    "path": "/rms/data/api/v1/chain/dishes_report_loss/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "long",
+        "required": true,
+        "description": "组织机构"
+      },
+      {
+        "name": "idstartDate",
+        "type": "long",
+        "required": true,
+        "description": "开始时间时间戳（按营业日期），单位毫秒，闭区间"
+      },
+      {
+        "name": "endDate",
+        "type": "long",
+        "required": true,
+        "description": "结束时间时间戳（按营业日期），单位毫秒，闭区间"
+      },
+      {
+        "name": "pageNo",
+        "type": "int",
+        "required": true,
+        "description": "页数"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": true,
+        "description": "页行数：默认20行"
+      },
+      {
+        "name": "orderBy",
+        "type": "string",
+        "required": true,
+        "description": "排序字段"
+      },
+      {
+        "name": "reportLossCntdesc",
+        "type": "boolean",
+        "required": true,
+        "description": "是否倒序：不勾选-false 勾选-truetrue"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "items",
+        "type": "array<string>",
+        "description": "菜品报损列表poiIdint门店ID600264608poiNamestring门店名称TWOSOME途尚咖啡（望京浦项店）cityNamestring城市北京市dishIdlong菜品SPU128379325dishNamestring菜品名称腊味蒸dishSpecstring菜品规格大份dishUnitNamestring菜品单位份dishCateNamestring菜品大类荤菜（总部）secondCateNamestring菜品小类荤菜reportLossCntint报损数量5reportLossAmtdouble报损金额140.00reportLossReasonstring报损原因制作错误"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"page\": [\n      {\n        \"pageNo\": 1,\n        \"pageSize\": 1,\n        \"totalCount\": 1,\n        \"totalPageSize\": 1\n      }\n    ],\n    \"items\": [\n      \"example\"\n    ],\n    \"poiId\": 600264608,\n    \"poiName\": \"TWOSOME途尚咖啡（望京浦项店）\",\n    \"cityName\": \"北京市\",\n    \"dishId\": 128379325,\n    \"dishName\": \"腊味蒸\",\n    \"dishSpec\": \"大份\",\n    \"dishUnitName\": \"份\",\n    \"dishCateName\": \"荤菜（总部）\",\n    \"secondCateName\": \"荤菜\",\n    \"reportLossCnt\": 5,\n    \"reportLossAmt\": 140.0,\n    \"reportLossReason\": \"制作错误\"\n  }\n}",
+    "title": "集团-菜品报损汇总数据接口-美团技术服务合作中心",
+    "api_path": "/rms/data/api/v1/chain/dishes_report_loss/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-data-api-v1-chain-dishes_report_loss-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/data/api/v1/poi/business_receipt/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "门店或部门机构ID"
+      },
+      {
+        "name": "startDate",
+        "type": "long",
+        "required": true,
+        "description": "起始日期的时间戳"
+      },
+      {
+        "name": "endDate",
+        "type": "long",
+        "required": true,
+        "description": "结束日期的时间戳，日期范围最大跨度31天"
+      },
+      {
+        "name": "pageNo",
+        "type": "int",
+        "required": true,
+        "description": "分页参数-第几页"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": true,
+        "description": "分页参数-每页数据条数"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"page\": {\n      \"pageNo\": 1,\n      \"pageSize\": 20,\n      \"totalCount\": 33,\n      \"totalPageSize\": 2\n    },\n    \"items\": [\n      {\n        \"poiName\": \"测试门店\",\n        \"merchantNo\": 5000001,\n        \"dateKey\": \"2020/12/01\",\n        \"businessType\": 1,\n        \"businessName\": \"营业收入\",\n        \"firstCategoryCode\": \"01\",\n        \"firstCategoryName\": \"现金\",\n        \"secondCategoryName\": \"人民币\",\n        \"payAmt\": 10000,\n        \"secondCategoryCode\": \"0101\",\n        \"payType\": 7,\n        \"isSecondMode\": 1,\n        \"orgId\": 729084,\n        \"poiId\": 600319103\n      }\n    ]\n  }\n}",
+    "title": "门店-营业收款统计-美团技术服务合作中心",
+    "api_path": "/rms/data/api/v1/poi/business_receipt/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-data-api-v1-poi-business_receipt-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/data/api/v1/poi/dish_sale/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "long",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "startDate",
+        "type": "long",
+        "required": true,
+        "description": "起始日期的时间戳"
+      },
+      {
+        "name": "endDate",
+        "type": "long",
+        "required": true,
+        "description": "结束日期的时间戳，日期范围最大跨度31天"
+      },
+      {
+        "name": "pageNo",
+        "type": "int",
+        "required": true,
+        "description": "分页参数-第几页"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": true,
+        "description": "分页参数-每页数据条数"
+      },
+      {
+        "name": "fedIsAloneSale",
+        "type": "boolean",
+        "required": false,
+        "description": "是否加料统计"
+      },
+      {
+        "name": "periodType",
+        "type": "int",
+        "required": false,
+        "description": "时段统计方式, 1-按下单时间计算15分钟销售数据；2-按结账时间计算15分钟销售数据；0-不按照时段查询销售数据"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"items\": [\n      {\n        \"poiName\": \"测试门店\",\n        \"merchantNo\": 5000001,\n        \"orderTypeName\": \"店内销售\",\n        \"dishCateName\": \"大类A\",\n        \"secondCateName\": \"小类1\",\n        \"dishId\": 70000001,\n        \"dishName\": \"小炒肉\",\n        \"dishSpec\": \"大份\",\n        \"dishUnitName\": \"份\",\n        \"dishSaleCnt\": 3,\n        \"dishSaleAmt\": 308000,\n        \"dishCmpgnAmt\": 3000,\n        \"dishIncomeAmt\": 305000,\n        \"taxAmt\": 1000,\n        \"noTaxIncomeAmt\": 304000,\n        \"skuId\": 70000001,\n        \"dishRelstionSpuId\": 70000002,\n        \"dishRelstionSkuId\": 70000003,\n        \"timePeriod\": \"16:45-17:00\"\n      }\n    ],\n    \"page\": {\n      \"pageNo\": 1,\n      \"pageSize\": 20,\n      \"totalCount\": 33,\n      \"totalPageSize\": 2\n    }\n  }\n}",
+    "title": "门店-菜品销售统计-美团技术服务合作中心",
+    "api_path": "/rms/data/api/v1/poi/dish_sale/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-data-api-v1-poi-dish_sale-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/data/api/v1/poi/dishes_report_loss/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "long",
+        "required": true,
+        "description": "门店"
+      },
+      {
+        "name": "orgIdstartDate",
+        "type": "long",
+        "required": true,
+        "description": "开始时间时间戳（按营业日期），单位毫秒，闭区间"
+      },
+      {
+        "name": "endDate",
+        "type": "long",
+        "required": true,
+        "description": "结束时间时间戳（按营业日期），单位毫秒，闭区间"
+      },
+      {
+        "name": "pageNo",
+        "type": "int",
+        "required": true,
+        "description": "页数"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": true,
+        "description": "页行数：默认20行"
+      },
+      {
+        "name": "orderBy",
+        "type": "string",
+        "required": true,
+        "description": "排序字段"
+      },
+      {
+        "name": "reportLossCntdesc",
+        "type": "boolean",
+        "required": true,
+        "description": "是否倒序：不勾选-false 勾选-truetrue"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "items",
+        "type": "array<Items>",
+        "description": "菜品报损统计列表"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"page\": [\n      {\n        \"pageNo\": 1,\n        \"pageSize\": 10,\n        \"totalCount\": 100,\n        \"totalPageSize\": 10\n      }\n    ],\n    \"items\": [\n      {\n        \"dishId\": 128379325,\n        \"dishName\": \"腊味蒸\",\n        \"dishSpec\": \"大份\",\n        \"dishUnitName\": \"份\",\n        \"dishCateName\": \"荤菜（总部）\",\n        \"secondCateName\": \"荤菜\",\n        \"reportLossCnt\": 5,\n        \"reportLossAmt\": 140.0,\n        \"reportLossReason\": \"制作错误\"\n      }\n    ]\n  }\n}",
+    "title": "门店-菜品报损汇总数据接口-美团技术服务合作中心",
+    "api_path": "/rms/data/api/v1/poi/dishes_report_loss/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-data-api-v1-poi-dishes_report_loss-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/data/api/v1/poi/income_discount/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "startDate",
+        "type": "long",
+        "required": true,
+        "description": "开始日期的时间戳"
+      },
+      {
+        "name": "endDate",
+        "type": "long",
+        "required": true,
+        "description": "结束日期的时间戳，日期范围最大跨度31天"
+      },
+      {
+        "name": "pageNo",
+        "type": "int",
+        "required": true,
+        "description": "分页参数-第几页"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": true,
+        "description": "分页参数-每页数据条数"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"page\": {\n      \"pageNo\": 1,\n      \"pageSize\": 20,\n      \"totalCount\": 33,\n      \"totalPageSize\": 2\n    },\n    \"items\": [\n      {\n        \"poiId\": 60002101,\n        \"poiName\": \"测试门店\",\n        \"merchantNo\": 5000001,\n        \"dateKey\": \"2020/12/01\",\n        \"firstCheckoutMethod\": \"现金\",\n        \"secondCheckoutMethod\": \"人民币\",\n        \"firstCategoryCode\": \"01\",\n        \"orgId\": 729084,\n        \"secondCategoryCode\": \"0101\",\n        \"discountCode\": 0,\n        \"incomeCode\": 1,\n        \"actualIncomeAmt\": 10000,\n        \"totalAmt\": 10000,\n        \"discountAmt\": 10000,\n        \"payType\": 7,\n        \"usedTimesPos\": 1,\n        \"usedTimesNeg\": 1\n      }\n    ]\n  }\n}",
+    "title": "美团技术服务合作中心",
+    "api_path": "/rms/data/api/v1/poi/income_discount/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-data-api-v1-poi-income_discount-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/data/api/v1/poi/pay_stlmnt/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "long",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "startDate",
+        "type": "long",
+        "required": true,
+        "description": "起始日期的时间戳"
+      },
+      {
+        "name": "endDate",
+        "type": "long",
+        "required": true,
+        "description": "结束日期的时间戳，日期范围最大跨度31天"
+      },
+      {
+        "name": "pageNo",
+        "type": "int",
+        "required": true,
+        "description": "分页参数-第几页"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": true,
+        "description": "分页参数-每页数据条数"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":\"123456789\",\n\"data\":{\n  \"page\": {\n    \"pageNo\": 1,\n    \"pageSize\": 20,\n    \"totalPageSize\": 2,\n    \"totalCount\": 33\n  },\n  \"items\": [\n    {\n      \"buySettle\": 10000,\n      \"poiName\": \"测试门店\",\n      \"VIPSettle\": 10000,\n      \"bankSettle\": 10000,\n      \"totalSettleFee\": 10000,\n      \"remainSettle\": 10000,\n      \"shopSettle\": 10000,\n      \"frontSettle\": 10000,\n      \"totalInSettleAmt\": 10000,\n      \"creditSettle\": 10000,\n      \"totalFee\": 10000,\n      \"mobileSettle\": 10000,\n      \"totalPoundageFee\": 10000,\n      \"dateKey\": \"2020/12/01\",\n      \"posSettle\": 10000,\n      \"totalActFee\": 10000,\n      \"totalOutSettleAmt totalOutSettleAmt\": 10000,\n      \"codeSettle\": 10000,\n      \"merchantNo\": 5000001\n    }\n  ]\n}",
+    "title": "门店-支付结算统计-美团技术服务合作中心",
+    "api_path": "/rms/data/api/v1/poi/pay_stlmnt/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-data-api-v1-poi-pay_stlmnt-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/data/api/v1/poi/rms_znb_biz_cmpgn/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构"
+      },
+      {
+        "name": "id32456stlmntDatekey",
+        "type": "int",
+        "required": true,
+        "description": "结算日期"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":123,\n\"data\":{\n  \"resultJson\": \"[{     \\\"stlmntDatekey\\\":20200208        //结算日     \\\"fisrtCategoryCmpgnName\\\":\\\"店内促销\\\",//优惠一级分类名称     \\\"secondCategoryCmpgnName\\\":\\\"整单8折\\\", //   优惠二级分类名称      \\\"cmpgnId\\\":\\\"100001\\\", //   优惠id       \\\"cmpgnName\\\":\\\"全场8折\\\",     //优惠名称     \\\"cmpgnAmt\\\":100,         //优惠金额(分) }]\"\n}",
+    "title": "门店-查询每日店内优惠构成-美团技术服务合作中心",
+    "api_path": "/rms/data/api/v1/poi/rms_znb_biz_cmpgn/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-data-api-v1-poi-rms_znb_biz_cmpgn-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/data/api/v1/poi/rms_znb_biz_instore/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构"
+      },
+      {
+        "name": "id32456stlmntDatekey",
+        "type": "int",
+        "required": true,
+        "description": "营业日期"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":123,\n\"data\":{\n  \"resultJson\": \"[{     \\\"stlmntDatekey\\\":20200101,        // 结算日期     \\\"instoreOrderCnt\\\":5,             //店内订单量     \\\"instoreBizAmt\\\":100,             //店内营业额     \\\"instoreDiscountAmt\\\":100,        //店内优惠金额     \\\"instoreBizIncomeAmt\\\":100,       //店内营业收入     \\\"instoreServiceFeeAmt\\\":100,      //店内服务费（折前）     \\\"instoreServiceFeeIncomeAmt\\\":100 //店内服务费收入（折后） }]\"\n}",
+    "title": "门店-查询门店每日店内营收数据-美团技术服务合作中心",
+    "api_path": "/rms/data/api/v1/poi/rms_znb_biz_instore/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-data-api-v1-poi-rms_znb_biz_instore-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/data/api/v1/poi/rms_znb_biz_pay/query",
+    "request_params": [
+      {
+        "name": "stlmntDatekey",
+        "type": "int",
+        "required": true,
+        "description": "结算日期"
+      },
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构ID"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":123,\n\"data\":{\n  \"resultJson\": \"[{     \\\"stlmntDatekey\\\":20200208        //结算日     \\\"fisrtCategoryPayModeId\\\":7,     //  一级支付方式id     \\\"fisrtCategoryPayModeName\\\":\\\"在线支付\\\",//一级支付方式名称     \\\"secondCategoryPayModeId\\\":8,// 二级支付方式id     \\\"secondCategoryPayModeName\\\":\\\"扫码支付-微信\\\", //   二级支付方式名称          \\\"incomeAmt\\\":123,         //收入金额（分）     \\\"businessType\\\":1      //1正常消费 2挂帐 3订金 }]\"\n}",
+    "title": "门店-查询店内每日收入构成数据-美团技术服务合作中心",
+    "api_path": "/rms/data/api/v1/poi/rms_znb_biz_pay/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-data-api-v1-poi-rms_znb_biz_pay-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/data/api/v1/poi/rms_znb_biz_wm/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构"
+      },
+      {
+        "name": "id1234stlmntDatekey",
+        "type": "int",
+        "required": true,
+        "description": "结算日期"
+      },
+      {
+        "name": "wmType",
+        "type": "int",
+        "required": true,
+        "description": "外卖类型：0-全部外卖、1-美团、2-饿了么、3-抖音，4-keeta"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"resultJson\": \"[{     \\\"stlmntDatekey\\\":20200101,   // 结算日期     \\\"wmOrderCnt\\\":5,       //外卖订单量     \\\"wmBizAmt\\\":100,       //外卖营业额     \\\"wmDiscountAmt\\\":100,  //外卖优惠金额     \\\"wmStlmntAmt\\\":100,    //外卖预计收入（减部分退款）     \\\"wmFoodboxFeeAmt\\\":100, //外卖餐盒费     \\\"wmPartRefundAmt\\\":100  //外卖部分退款金额 }]\"\n  }\n}",
+    "title": "门店-查询门店每日外卖营收数据-美团技术服务合作中心",
+    "api_path": "/rms/data/api/v1/poi/rms_znb_biz_wm/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-data-api-v1-poi-rms_znb_biz_wm-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/data/api/v1/poi/rms_znb_crm_asset/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构"
+      },
+      {
+        "name": "id32456beginDateKey",
+        "type": "int",
+        "required": true,
+        "description": "开始日期，格式"
+      },
+      {
+        "name": "yyyyMMdd20200130endDateKey",
+        "type": "int",
+        "required": true,
+        "description": "结束日期，格式yyyyMMdd"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":123,\n\"data\":{\n  \"resultJson\": \"[{     \\\"stlmntDatekey\\\":20191026 //结算日日期，格式yyyyMMdd     \\\"paymentId\\\":1,       //支付方式id     \\\"paymentName\\\":\\\"现金\\\",       //支付方式名称     \\\"actualAssetAmt\\\":100,  //实际充值金额     \\\"grantAssetAmt\\\":100, //充值赠送金额     \\\"refundcardActualAssetAmt\\\":100, // 退款金额     \\\"opencardDepositAmt\\\":100,  //开卡押金     \\\"refundcardDepositAmt\\\":100  //退卡押金 }]\"\n}",
+    "title": "门店-查询每日会员储值金额变动-美团技术服务合作中心",
+    "api_path": "/rms/data/api/v1/poi/rms_znb_crm_asset/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-data-api-v1-poi-rms_znb_crm_asset-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/data/api/v1/poi/rms_znb_instore_sku_cate_sale/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构"
+      },
+      {
+        "name": "id36158stlmntDatekey",
+        "type": "int",
+        "required": true,
+        "description": "营业日期"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":123,\n\"data\":{\n  \"resultJson\": \"[{  \\\"stlmntDatekey\\\":20200101,   // 结算日期     \\\"dishCateId\\\": 10749843 ,     //菜品一级分类id     \\\"dishCateName\\\": \\\"热菜\\\",         //菜品一级分类名称     \\\"secondCateId\\\": 10749844 ,   //菜品二级分类id     \\\"secondCateName\\\": \\\"加菜菜\\\" ,    //菜品二级分类名称     \\\"dishSaleAmt\\\" : 12312,      //菜品原价金额     \\\"dishIncomeAmt\\\": 11012,     //菜品收入金额     \\\"dishCmpgnAmt\\\" : 1300,        //菜品优惠金额 }]\"\n}",
+    "title": "门店-查询每日店内菜品分类营收-美团技术服务合作中心",
+    "api_path": "/rms/data/api/v1/poi/rms_znb_instore_sku_cate_sale/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-data-api-v1-poi-rms_znb_instore_sku_cate_sale-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/data/api/v1/poi/rms_znb_wm_sku_cate_sale/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构"
+      },
+      {
+        "name": "id36245stlmntDatekey",
+        "type": "int",
+        "required": true,
+        "description": "营业日期"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":123,\n\"data\":{\n  \"resultJson\": \"[{  \\\"stlmntDatekey\\\":20200101,   // 结算日期     \\\"dishCateId\\\": 10749843 ,     //菜品一级分类id     \\\"dishCateName\\\": \\\"热菜\\\",         //菜品一级分类名称     \\\"secondCateId\\\": 10749844 ,   //菜品二级分类id     \\\"secondCateName\\\": \\\"加菜菜\\\" ,    //菜品二级分类名称     \\\"dishSaleAmt\\\" : 12312,      //菜品原价金额     \\\"dishIncomeAmt\\\": 11012,     //菜品收入金额     \\\"dishCmpgnAmt\\\" : 1300,        //菜品优惠金额 }]\"\n}",
+    "title": "门店-查询每日外卖菜品分类营收-美团技术服务合作中心",
+    "api_path": "/rms/data/api/v1/poi/rms_znb_wm_sku_cate_sale/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-data-api-v1-poi-rms_znb_wm_sku_cate_sale-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/data/api/v1/poi/sale_type/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "long",
+        "required": true,
+        "description": "机构ID"
+      },
+      {
+        "name": "startDate",
+        "type": "long",
+        "required": true,
+        "description": "起始日期的时间戳"
+      },
+      {
+        "name": "endDate",
+        "type": "long",
+        "required": true,
+        "description": "结束日期的时间戳，日期范围最大跨度31天"
+      },
+      {
+        "name": "pageNo",
+        "type": "int",
+        "required": true,
+        "description": "分页参数-第几页"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": true,
+        "description": "分页参数-每页数据条数"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n\"code\":\"OP_SUCCESS\",\n\"msg\":\"成功\",\n\"traceId\":\"123\",\n\"data\":{\n  \"page\": {\n    \"pageNo\": 1,\n    \"pageSize\": 20,\n    \"totalPageSize\": 2,\n    \"totalCount\": 33\n  },\n  \"items\": [\n    {\n      \"saletypename\": \"菜品销售\",\n      \"notaxincomeamt\": 8000,\n      \"cmpgnamt\": 1000,\n      \"poiName\": \"测试门店\",\n      \"saleamt\": 10000,\n      \"dateKey\": \"2020/12/01\",\n      \"incomeamt\": 9000,\n      \"taxamt\": 1000,\n      \"merchantNo\": 5000001\n    }\n  ]\n}",
+    "title": "门店-销售品项统计-美团技术服务合作中心",
+    "api_path": "/rms/data/api/v1/poi/sale_type/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-data-api-v1-poi-sale_type-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/data/api/v1/poi/settlement_method/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "long",
+        "required": true,
+        "description": "组织机构id"
+      }
+    ],
+    "response_params": [
+      {
+        "name": "disCount",
+        "type": "array<DisCount>",
+        "description": "优惠方式结果"
+      }
+    ],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"disCount\": [\n      {\n        \"cmpgnMode\": \"1\",\n        \"cmpgnModeName\": \"手动折扣\",\n        \"cmpgnType\": \"3\",\n        \"cmpgnTypeName\": \"免单\"\n      }\n    ]\n  }\n}",
+    "title": "门店-优惠方式查询接口-美团技术服务合作中心",
+    "api_path": "/rms/data/api/v1/poi/settlement_method/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-data-api-v1-poi-settlement_method-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/solution/api/v1/chain/analyse/pay_wallet_settle/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构ID场景1：查询所有门店数据传总部的orgId查询2：查询某个门店数据传单店"
+      },
+      {
+        "name": "orgIdpageNo",
+        "type": "int",
+        "required": false,
+        "description": "分页索引，从1开始算"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": false,
+        "description": "分页大小"
+      },
+      {
+        "name": "startBillDate",
+        "type": "string",
+        "required": true,
+        "description": "起始账单日期2022-01-"
+      },
+      {
+        "name": "endBillDate",
+        "type": "string",
+        "required": true,
+        "description": "终止账单日期2022-01-"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"pageNo\": 1,\n    \"pageSize\": 1,\n    \"totalCount\": 1000,\n    \"items\": [\n      {\n        \"orgId\": 1,\n        \"merchantNo\": \"example\",\n        \"poiName\": \"example\",\n        \"settleTime\": \"example\",\n        \"totalFee\": 1000,\n        \"businessTypeName\": \"example\",\n        \"businessInfo\": \"example\",\n        \"tradeNo\": \"example\",\n        \"outOrderId\": \"example\",\n        \"refundNo\": \"example\",\n        \"platformNo\": \"example\",\n        \"merchantId\": \"example\",\n        \"orgCode\": 1000\n      }\n    ]\n  }\n}",
+    "title": "根据给定条件查询美团钱包结算明细-美团技术服务合作中心",
+    "api_path": "/rms/solution/api/v1/chain/analyse/pay_wallet_settle/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-solution-api-v1-chain-analyse-pay_wallet_settle-query"
+  },
+  {
+    "method": "POST",
+    "path": "/rms/solution/api/v1/poi/analyse/pay_wallet_settle/query",
+    "request_params": [
+      {
+        "name": "orgId",
+        "type": "int",
+        "required": true,
+        "description": "组织机构ID 查询某个门店数据传单店"
+      },
+      {
+        "name": "orgIdpageNo",
+        "type": "int",
+        "required": false,
+        "description": "分页索引，从1开始算"
+      },
+      {
+        "name": "pageSize",
+        "type": "int",
+        "required": false,
+        "description": "分页大小"
+      },
+      {
+        "name": "startBillDate",
+        "type": "string",
+        "required": true,
+        "description": "起始账单日期2022-01-"
+      },
+      {
+        "name": "endBillDate",
+        "type": "string",
+        "required": true,
+        "description": "终止账单日期2022-01-"
+      }
+    ],
+    "response_params": [],
+    "response_example": "{\n  \"code\": \"OP_SUCCESS\",\n  \"msg\": \"成功\",\n  \"traceId\": \"8531422235710213256\",\n  \"data\": {\n    \"pageNo\": 1,\n    \"pageSize\": 1,\n    \"totalCount\": 1000,\n    \"items\": [\n      {\n        \"orgId\": 1,\n        \"merchantNo\": \"example\",\n        \"poiName\": \"example\",\n        \"settleTime\": \"example\",\n        \"totalFee\": 1000,\n        \"businessTypeName\": \"example\",\n        \"businessInfo\": \"example\",\n        \"tradeNo\": \"example\",\n        \"outOrderId\": \"example\",\n        \"refundNo\": \"example\",\n        \"platformNo\": \"example\",\n        \"merchantId\": \"example\",\n        \"orgCode\": 1000\n      }\n    ]\n  }\n}",
+    "title": "根据给定条件查询美团钱包结算明细(门店视角)-美团技术服务合作中心",
+    "api_path": "/rms/solution/api/v1/poi/analyse/pay_wallet_settle/query",
+    "doc_url": "https://developer.meituan.com/docs/api/rms-solution-api-v1-poi-analyse-pay_wallet_settle-query"
+  }
+]

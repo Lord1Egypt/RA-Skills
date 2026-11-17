@@ -1,41 +1,63 @@
-## Description: <br>
-A novelty roleplay mode that intentionally makes an agent respond with rigid, literal, overly detailed, and socially detached behavior when explicitly activated. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+ASD is a roleplay mode that makes an agent intentionally less efficient by emphasizing literal interpretation, rigid routines, deep focus on details, and socially detached interaction patterns.
 
-## Publisher: <br>
-[liigoqi](https://clawhub.ai/user/liigoqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liigoqi](https://clawhub.ai/user/liigoqi)
 
-## Use Case: <br>
-External users can use this skill only when they deliberately want a novelty performance-art roleplay mode that degrades normal agent reliability. It is not suitable for serious coding, security, medical, legal, financial, business, or time-sensitive work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally degrades agent reliability and may produce overly rigid, literal, or unnecessarily detailed responses. <br>
-Mitigation: Use only for deliberate novelty roleplay, and avoid serious coding, security, medical, legal, financial, business, or time-sensitive workflows. <br>
-Risk: The artifact instructs the agent to let this mode override other skill instructions, which can interfere with normal task handling. <br>
-Mitigation: Revise or constrain the skill before deployment so activation requires explicit confirmation and users have a clear way to exit the mode. <br>
+## Use Case:
 
+External ClawHub users can use this skill when they intentionally want a non-productive roleplay mode that changes an agent's interaction style. It is not suitable for work, safety-sensitive tasks, accessibility-sensitive contexts, or sessions where reliable skill control is required.
 
-## Reference(s): <br>
-- [Server-resolved GitHub source](https://github.com/liigoQi/defficiency-skills/tree/main/asd) <br>
-- [ClawHub skill page](https://clawhub.ai/liigoqi/skills/asd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Natural-language agent responses, usually Markdown and task-specific code or shell snippets when the user's task calls for them] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable files or tool integrations are included; behavior is controlled by prompt instructions in SKILL.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill intentionally makes the agent less responsive and less reliable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for deliberate non-productive roleplay sessions, and avoid it for work or safety-sensitive tasks.
+
+Risk: The skill attempts to override instructions from other skills.
+
+Mitigation: Do not combine it with sessions where other skills need reliable control; remove the instruction-priority override before broader use.
+
+Risk: The artifact does not define an immediate deactivation command.
+
+Mitigation: Add a clear, immediate deactivation command before relying on the skill in mixed-purpose sessions.
+
+Risk: The skill uses disability-based degradation framing.
+
+Mitigation: Revise the framing to avoid disability-based degradation language while preserving any intended roleplay boundaries.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/liigoQi/defficiency-skills/tree/main/asd)
+- [ClawHub skill page](https://clawhub.ai/liigoqi/skills/asd)
+- [Publisher profile](https://clawhub.ai/user/liigoqi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Natural-language agent responses, often with Markdown, code snippets, and shell commands when the underlying task calls for them.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill intentionally slows or redirects normal agent behavior and may reduce responsiveness, reliability, and task completion quality.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

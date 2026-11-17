@@ -1,45 +1,53 @@
-## Description: <br>
-Use this skill when a team, DAO, or builder wants to deploy USDC from a stablecoin treasury into LI.FI Earn vaults under explicit treasury policy limits, prepare a Composer deposit, and produce a receipt-token execution report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a team, DAO, or builder wants to deploy USDC from a stablecoin treasury into LI.FI Earn vaults under explicit treasury policy limits, prepare a Composer deposit, and produce a receipt-token execution report.
 
-## Publisher: <br>
-[richard7463](https://clawhub.ai/user/richard7463) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richard7463](https://clawhub.ai/user/richard7463)
 
-## Use Case: <br>
-External teams, DAOs, and builders use this skill to apply treasury policy before deploying USDC into LI.FI Earn vaults. It helps produce policy check results, Composer deposit preparation details, and a post-execution receipt-token report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet approvals or Composer transactions may move treasury funds if signed without review. <br>
-Mitigation: Review every vault choice, quote, approval, and transaction in the connected wallet before signing. <br>
-Risk: The skill calls a local StableOps backend for plan and quote preparation. <br>
-Mitigation: Install and use the skill only when the local StableOps backend is trusted. <br>
-Risk: Implicit invocation could run the treasury workflow when the user did not intend to use it. <br>
-Mitigation: Disable implicit invocation if treasury actions should run only after explicit StableOps requests. <br>
-Risk: Private keys or seed phrases could be exposed if entered into an agent conversation. <br>
-Mitigation: Never paste private keys or seed phrases into the agent; use a wallet for signing. <br>
+## Use Case:
 
+External teams, DAOs, builders, and developers use this skill to apply treasury policy limits before selecting a LI.FI Earn vault, preparing a Composer deposit, and producing an execution report.
 
-## Reference(s): <br>
-- [StableOps Treasury ClawHub release](https://clawhub.ai/richard7463/stableops-lifi-treasury) <br>
-- [richard7463 publisher profile](https://clawhub.ai/user/richard7463) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes policy decisions, vault details, Composer quote preparation, transaction hash, and receipt-token explanation; wallet approvals and transactions require user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: A user could approve a treasury transaction whose vault, chain, amount, or receipt-token details do not match the treasury policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the policy checks and Composer quote carefully, and do not approve or sign unless all details match the treasury rules.
+
+Risk: Live LI.FI Earn discovery may be unavailable and the skill may rely on seeded examples.
+
+Mitigation: Confirm whether the output is based on live discovery or seeded examples before using a vault recommendation for execution.
+
+## Reference(s):
+
+- [StableOps Treasury on ClawHub](https://clawhub.ai/richard7463/skills/stableops-lifi-treasury)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and treasury execution report fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include policy checks, vault details, Composer quote guidance, transaction hash, and receipt-token explanation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

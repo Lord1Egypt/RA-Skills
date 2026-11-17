@@ -1,40 +1,53 @@
-## Description: <br>
-Use SQLite correctly with proper concurrency, pragmas, and type handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use SQLite correctly with proper concurrency, pragmas, and type handling.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a compact SQLite reference for concurrency, pragmas, transactions, backups, schema changes, indexing, and type-handling decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: SQLite maintenance, schema, backup, and deletion examples can affect user-selected databases when applied directly. <br>
-Mitigation: Review commands before use, confirm the target database, and back up data before applying VACUUM, ALTER TABLE, backup, DELETE, or DROP guidance. <br>
-Risk: The skill is a concise reference and may omit project-specific operational constraints such as workload volume, concurrency needs, and SQLite version differences. <br>
-Mitigation: Check the local SQLite version and validate concurrency, backup, and migration behavior in a staging database before production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub SQLite release page](https://clawhub.ai/ivangdavila/sqlite) <br>
-- [ClawHub publisher profile: ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+Developers and engineers use this skill as a concise SQLite reference for concurrency, pragmas, type handling, schema changes, backups, indexing, transactions, and common operational mistakes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline SQL and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable skill code is included.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated SQLite commands or maintenance guidance can affect real database files, especially VACUUM, backups, schema migration, or transaction changes.
+
+Mitigation: Review commands before running them, test against a copy or backup, and confirm the operation is appropriate for the target database.
+
+Risk: SQLite concurrency, WAL, and backup behavior can cause data loss or corruption if operational details are applied incorrectly.
+
+Mitigation: Follow the skill's guidance for WAL files, busy timeouts, transaction boundaries, and SQLite backup mechanisms before changing production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/sqlite)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline SQLite shell commands, SQL snippets, and PRAGMA examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the sqlite3 binary when command examples are used; supports linux, darwin, and win32 according to ClawHub metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "ChatGPT Image Handoff"
+  short_description: "Recover fact-safe generated images into checked local assets"
+  default_prompt: "Use $chatgpt-image-handoff to route this image batch with strict readable-text boundaries and resume local QA."

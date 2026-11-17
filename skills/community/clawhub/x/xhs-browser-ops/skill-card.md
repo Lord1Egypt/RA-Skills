@@ -1,43 +1,53 @@
-## Description: <br>
-xhs Agent helps operators plan Xiaohongshu posts, generate copy and titles, prepare covers, save drafts or publish after confirmation, interact with comments, and review visible creator metrics through the official creator site. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+xhs 全流程助手，覆盖小红书内容策划、文案与标题生成、封面制作、笔记发布及日常运营管理。适用于写笔记、生成标题/封面、发布或保存草稿、站内搜索、评论互动（点赞/收藏/回复）等小红书相关任务。支持从内容创作到发布执行的一站式流程；封面 AI 生图可选配置 GEMINI_API_KEY、IMG_API_KEY 或 HUNYUAN_API_KEY。
 
-## Publisher: <br>
-[YIKAILucas](https://clawhub.ai/user/YIKAILucas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yikailucas](https://clawhub.ai/user/yikailucas)
 
-## Use Case: <br>
-External creators, social media operators, and agents can use this skill to draft and manage Xiaohongshu content, save drafts, publish only after explicit confirmation, reply to comments or messages, and review visible creator dashboard metrics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can act through a logged-in Xiaohongshu creator account and may affect public or private account state. <br>
-Mitigation: Require explicit approval before every account action, including replies, messages, likes, favorites, draft saves, and publishing; keep publish confirmation in the current chat turn. <br>
-Risk: Optional image-generation API keys may expose external provider access if configured unnecessarily. <br>
-Mitigation: Configure GEMINI_API_KEY, IMG_API_KEY, or HUNYUAN_API_KEY only when the corresponding image-generation provider is intentionally used. <br>
-Risk: Login, CAPTCHA, SMS, or platform risk controls may block automated browser workflows. <br>
-Mitigation: Pause for the user to complete required platform checks and do not attempt to bypass Xiaohongshu account protections. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/YIKAILucas/xhs-browser-ops) <br>
-- [Xiaohongshu creator site](https://creator.xiaohongshu.com) <br>
-- [Post Templates](references/post-templates.md) <br>
+## Use Case:
 
+Creators, operators, and agents use this skill to plan Xiaohongshu content, create titles and bodies, prepare optional cover images, save drafts, publish after explicit confirmation, reply to comments or messages, and check visible dashboard metrics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown result summaries with action, account, mode, status, details, and next step.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require optional image-generation API keys; publishing requires explicit confirmation in the current chat turn.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automate actions in a user's Xiaohongshu account.
+
+Mitigation: Review drafts and replies before sending, and keep publish confirmation explicit in the current chat turn.
+
+Risk: Optional cover-image generation may require external API keys.
+
+Mitigation: Provide GEMINI_API_KEY, IMG_API_KEY, or HUNYUAN_API_KEY only when optional image generation is intended.
+
+## Reference(s):
+
+- [Xiaohongshu Creator Site](https://creator.xiaohongshu.com)
+- [Post Templates](references/post-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown result summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include action, account, title, mode, result status, details, and next step.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

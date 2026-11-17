@@ -1,0 +1,30 @@
+{
+  "name": "jep-primitive-skills",
+  "version": "2.0.0",
+  "description": "Construct explicitly unsigned J/D/T/V event drafts.",
+  "author": "Cognitive Emergence Lab <yuqiang@humanjudgment.org>",
+  "license": "MIT",
+  "protocol": "JEP",
+  "entrypoint": "skill.api:app",
+  "host_targets": [
+    "mcp",
+    "api",
+    "python"
+  ],
+  "dependencies": [
+    "requirements.txt (exact versions and hashes)"
+  ],
+  "tags": [
+    "jep",
+    "primitive",
+    "judge",
+    "delegate",
+    "terminate",
+    "verify",
+    "atomic",
+    "grammar"
+  ],
+  "environment_variables": [
+    "JEP_CLIENTS"
+  ]
+}

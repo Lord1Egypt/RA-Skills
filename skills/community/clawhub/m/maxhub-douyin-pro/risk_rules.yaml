@@ -1,0 +1,120 @@
+# 风险检测规则 - douyin-pro
+# 供 agent 模式匹配用户请求和端点标志，触发定向合规提醒
+# 本文件为 douyin-pro 专属定制版本，修改此文件即可更新该 skill 的风险检测逻辑
+
+version: 1.0.0
+platform: douyin-pro
+platform_warning: "抖音对未授权数据访问可能采取封号、诉讼等法律行动"
+
+# 风险类别定义
+risk_categories:
+
+  # Cookie/Session/Token 凭证使用
+  cookie_usage:
+    description: "用户请求涉及 cookie 或 session 凭证"
+    keywords:
+      - cookie
+      - session
+      - 登录凭证
+      - token
+      - 凭证
+      - 登录态
+      - msToken
+      - ttwid
+      - passport_csrf_token
+      - passport_uid
+    endpoint_flags:
+      - cookie_warning
+      - cookie_required
+    reminder: |
+      ⚠️ 风险提醒：Cookie/凭证使用
+      此操作需要使用 cookie 或登录凭证。请确认：
+      - 使用的是您本人的账号凭证
+      - 不使用他人账号的 cookie 或 session
+      - 了解凭证可能被滥用的风险
+      输入"同意"继续。
+
+  # 批量操作
+  batch_operation:
+    description: "用户请求涉及批量数据采集"
+    keywords:
+      - 批量
+      - 全部
+      - 所有
+      - 循环
+      - 批次
+      - 大规模
+      - 批量提取
+      - 全量
+      - 遍历
+    endpoint_flags: []
+    reminder: |
+      ⚠️ 风险提醒：批量操作
+      此请求涉及批量数据采集。请确认：
+      - 遵循最小必要原则，不采集超出使用目的的数据
+      - 不用于批量注册、刷量等违规场景
+      - 已评估平台服务条款的限制
+      输入"同意"继续。
+
+  # 个人信息查询
+  personal_data:
+    description: "用户请求涉及个人信息（粉丝/关注/画像/联系方式等）"
+    keywords:
+      - 粉丝列表
+      - 关注列表
+      - 用户画像
+      - 联系方式
+      - 社交关系
+      - 手机号
+      - 邮箱
+      - 通信录
+      - 粉丝画像
+      - 受众画像
+      - 个人信息
+      - 隐私数据
+      - sec_user_id
+      - uid
+      - 加密ID
+      - 星图达人
+    endpoint_flags: []
+    reminder: |
+      ⚠️ 风险提醒：个人信息查询
+      此请求涉及个人信息（粉丝/关注/画像/联系方式等）。请确认：
+      - 遵循《个人信息保护法》最小必要原则
+      - 不存储、不传播查询到的个人信息
+      - 尊重数据主体的被遗忘权
+      输入"同意"继续。
+
+  # 写入操作
+  write_operation:
+    description: "端点为写入/非幂等操作"
+    keywords: []
+    endpoint_flags:
+      - write_operation: true
+      - requires_user_confirmation: true
+    reminder: |
+      ⚠️ 风险提醒：写入操作
+      此操作为写入/非幂等操作，可能产生副作用。请确认：
+      - 已确认操作参数正确
+      - 了解操作不可撤销
+      - 操作符合平台服务条款
+      输入"同意"继续。
+
+# 确认措辞规则
+confirmation:
+  accepted:
+    - 同意
+    - 确认
+    - 我已阅读并同意
+    - 我同意
+    - 确认同意
+  rejected:
+    - 嗯
+    - ok
+    - 行
+    - 好的
+    - 可以
+    - 嗯嗯
+    - 好
+    - yes
+  ambiguous_prompt: "请使用明确措辞确认（如输入'同意'），以确保您已阅读并理解合规条款。"

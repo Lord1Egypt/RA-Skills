@@ -1,0 +1,319 @@
+/* default theme — AlphaVault Site look (Google Material).
+ *
+ * Ported from the AlphaVault site's siteCss(): Google Sans typography, the
+ * Google colour palette (g-blue/red/yellow/green/purple/teal), Material
+ * elevation + radii, white report card on a #F8F9FA surface, section dots and
+ * g-blue-soft callouts.
+ *
+ * Every CSS variable and class name the renderer's chart JS / decorations /
+ * markdown engine rely on is preserved — only values and component styling
+ * change. A-share colour convention is kept: up/positive = red (--neg),
+ * down/negative = green (--pos). */
+:root {
+  color-scheme: light;
+
+  /* Google Material palette */
+  --g-blue: #1a73e8;   --g-blue-soft: #e8f0fe;
+  --g-red: #ea4335;    --g-red-soft: #fce8e6;
+  --g-yellow: #f9ab00; --g-yellow-soft: #fef7e0; --g-amber-ink: #b06b00;
+  --g-green: #1e8e3e;  --g-green-soft: #e6f4ea;
+  --g-purple: #9334e6; --g-purple-soft: #f3e8fd;
+  --g-teal: #12b5cb;   --g-teal-soft: #e1f5f8; --g-teal-ink: #0b7c8c;
+
+  /* surfaces / ink / lines */
+  --bg: #f8f9fa;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --surface-2: #f8f9fa;
+  --surface-3: #f1f3f4;
+  --tint: #f1f3f4;
+  --ink-1: #202124;
+  --ink-2: #3c4043;
+  --ink-3: #5f6368;
+  --ink-4: #9aa0a6;
+  --muted: #5f6368;
+  --text-tertiary: #80868b;
+  --line-1: #dadce0;
+  --line-2: #e8eaed;
+
+  /* semantic aliases used by chart JS + decorations (names are a contract) */
+  --accent: var(--g-blue);
+  --accent-ink: #0b57d0;
+  --accent-soft: var(--g-blue-soft);
+  --accent-hair: #c2d7f7;
+  --pos: var(--g-green);
+  --pos-soft: var(--g-green-soft);
+  --neg: var(--g-red);
+  --neg-soft: var(--g-red-soft);
+  --warn: var(--g-amber-ink);
+  --warn-soft: var(--g-yellow-soft);
+  --violet: var(--g-purple);
+  --orange: var(--g-yellow);
+  --cyan: var(--g-teal);
+  --blue: var(--accent);
+  --green: var(--pos);
+  --red: var(--neg);
+  --purple: var(--violet);
+  --yellow: var(--warn);
+
+  /* type */
+  --font-sans: "Google Sans", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* radii + elevation (Material) */
+  --r-xs: 4px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --pill: 999px;
+  --shadow-1: 0 1px 2px 0 rgba(60, 64, 67, 0.10), 0 1px 3px 1px rgba(60, 64, 67, 0.06);
+  --shadow-2: 0 1px 3px 0 rgba(60, 64, 67, 0.14), 0 4px 8px 3px rgba(60, 64, 67, 0.08);
+  --shadow-card: var(--shadow-1);
+  --shadow-hover: var(--shadow-2);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--bg); }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink-1);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+td, th, code, pre { font-variant-numeric: tabular-nums; }
+a { color: var(--g-blue); text-decoration: none; overflow-wrap: anywhere; }
+a:hover { text-decoration: underline; }
+
+.page {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 0 auto 80px;
+  padding-top: 28px;
+}
+
+/* slim page header above the report card (brand-like) */
+.doc-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 4px 4px 16px;
+  margin-bottom: 16px;
+}
+.doc-head .dh-title {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink-1);
+  letter-spacing: 0.2px;
+}
+.doc-head .dh-title::before {
+  content: "";
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--g-blue);
+  box-shadow: 11px 0 0 -1px var(--g-red), 0 11px 0 -1px var(--g-yellow), 11px 11px 0 -1px var(--g-green);
+  margin-right: 9px;
+}
+.doc-head .dh-meta { font-family: var(--font-mono); font-size: 12px; color: var(--muted); letter-spacing: 0.02em; }
+
+/* the report itself: a white Material card on the grey surface */
+.report {
+  background: var(--surface);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-1);
+  padding: min(5vw, 44px);
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.report h1, .report h2, .report h3, .report h4 { font-family: var(--font-sans); color: var(--ink-1); text-wrap: pretty; line-height: 1.3; }
+.report h1 { font-size: 30px; font-weight: 700; margin: 0 0 18px; }
+.report h2 {
+  font-size: 22px; font-weight: 500; margin: 40px 0 16px; line-height: 1.3;
+  padding-bottom: 8px; border-bottom: 1px solid var(--line-2);
+  display: flex; align-items: center; gap: 10px;
+}
+.report h2::before {
+  content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--g-blue);
+}
+/* base UI rotates data-idx across the Google palette */
+.report h2[data-idx="0"]::before { background: var(--g-blue); }
+.report h2[data-idx="1"]::before { background: var(--g-purple); }
+.report h2[data-idx="2"]::before { background: var(--g-teal); }
+.report h2[data-idx="3"]::before { background: var(--g-red); }
+.report h2[data-idx="4"]::before { background: var(--g-green); }
+.report h2[data-idx="5"]::before { background: var(--g-yellow); }
+.report h2 .sec-num {
+  display: inline-block; font-family: var(--font-mono); color: var(--muted);
+  font-weight: 500; font-size: 14px; margin-right: 4px; font-variant-numeric: tabular-nums;
+}
+.report > h1:first-child, .report > h2:first-child { margin-top: 0; }
+.report > h2:first-child { border-top: none; }
+
+.report h3 { font-size: 18px; font-weight: 500; margin: 28px 0 12px; }
+.report h4 { font-size: 15px; font-weight: 500; margin: 20px 0 10px; color: var(--ink-2); }
+.report p { margin: 12px 0; color: var(--ink-2); font-size: 15px; line-height: 1.8; text-wrap: pretty; }
+.report ul { margin: 12px 0 12px 4px; padding-left: 22px; color: var(--ink-2); }
+.report li { margin: 6px 0; font-size: 15px; line-height: 1.75; }
+
+.report blockquote {
+  margin: 18px 0; padding: 11px 16px;
+  border-left: 3px solid var(--g-blue);
+  background: var(--g-blue-soft);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  color: var(--ink-2); font-size: 14.5px;
+}
+
+/* callout — Material highlight card (amber default, blue insight) */
+.callout {
+  position: relative; color: var(--g-amber-ink);
+  background: var(--g-yellow-soft);
+  border: 1px solid #f7d774; border-left: 4px solid var(--g-yellow); border-radius: var(--r-md);
+  padding: 13px 18px 13px 44px; margin: 20px 0; font-weight: 500; font-size: 14px; line-height: 1.75;
+}
+.callout::before {
+  content: ""; position: absolute; left: 16px; top: 16px; width: 16px; height: 16px;
+  border-radius: 50%; background: var(--g-yellow); box-shadow: 0 0 0 4px rgba(249, 171, 0, 0.18);
+}
+.callout::after {
+  content: ""; position: absolute; left: 22.5px; top: 21px; width: 3px; height: 3px;
+  border-radius: 50%; background: #fff; box-shadow: 0 4px 0 -0.5px #fff;
+}
+.callout.insight {
+  color: var(--ink-1); background: var(--g-blue-soft);
+  border: 1px solid var(--accent-hair); border-left: 4px solid var(--g-blue);
+}
+.callout.insight::before { background: var(--g-blue); box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.16); }
+
+/* tables */
+.table-wrap {
+  overflow-x: auto; margin: 16px 0 24px; border: 1px solid var(--line-2);
+  border-radius: var(--r-md); background: var(--surface);
+}
+table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 640px; background: var(--surface); font-size: 13.5px; }
+th, td { padding: 9px 12px; border-bottom: 1px solid var(--line-2); vertical-align: middle; color: var(--ink-2); line-height: 1.55; }
+th {
+  background: var(--surface-2); font-weight: 500; color: var(--muted);
+  font-size: 12px; text-align: left; white-space: nowrap;
+  position: sticky; top: 0; z-index: 1; border-bottom: 1px solid var(--line-1);
+}
+th.align-right, td.align-right { text-align: right; }
+th.align-center, td.align-center { text-align: center; }
+td.align-right { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--ink-1); }
+td .num-pos { color: var(--neg); font-weight: 500; }   /* A股惯例: 涨/正 = 红 */
+td .num-neg { color: var(--pos); font-weight: 500; }   /* 跌/负 = 绿 */
+td .stars { color: var(--g-yellow); letter-spacing: 2px; font-size: 13px; }
+td .stars.dim { color: #dadce0; }
+td .pill {
+  display: inline-block; padding: 2px 10px; border-radius: var(--pill); font-size: 12px; font-weight: 500;
+  line-height: 1.6; background: var(--g-blue-soft); color: var(--g-blue); border: 1px solid transparent;
+}
+td .pill.pos { background: var(--g-green-soft); color: var(--g-green); }
+td .pill.neg { background: var(--g-red-soft); color: var(--g-red); }
+td .pill.warn { background: var(--g-yellow-soft); color: var(--g-amber-ink); }
+td .pill.violet { background: var(--g-purple-soft); color: var(--g-purple); }
+tbody td:first-child { color: var(--ink-1); font-weight: 500; }
+tbody tr:hover td { background: var(--surface-2); }
+tr:last-child td { border-bottom: none; }
+
+code { background: var(--surface-3); border-radius: var(--r-xs); padding: 1px 6px; color: var(--accent-ink); font-family: var(--font-mono); font-size: 0.92em; }
+pre { overflow-x: auto; background: #202124; color: #f8f9fa; border-radius: var(--r-md); padding: 16px 18px; margin: 16px 0; font-family: var(--font-mono); font-size: 13px; line-height: 1.65; }
+mark { background: var(--g-yellow-soft); padding: 1px 4px; border-radius: var(--r-xs); }
+
+/* charts */
+.chart-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 16px 0 8px; }
+.chart-card { background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--r-md); box-shadow: var(--shadow-1); padding: 14px 16px 12px; transition: box-shadow 0.14s ease, border-color 0.14s ease; }
+.chart-card:hover { box-shadow: var(--shadow-2); border-color: var(--line-1); }
+.chart-title { font-size: 13px; font-weight: 500; margin: 0 0 4px; color: var(--ink-2); }
+.chart-subtitle { color: var(--muted); font-size: 12px; margin-bottom: 6px; font-family: var(--font-mono); }
+.chart-card svg { display: block; width: 100%; height: auto; overflow: visible; }
+.metric-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 16px 0 8px; }
+.metric-card { background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--r-md); box-shadow: var(--shadow-1); padding: 14px 16px 13px; }
+.metric-title { color: var(--muted); font-size: 12px; font-weight: 500; margin-bottom: 5px; }
+.metric-value { font-family: var(--font-mono); font-size: 24px; line-height: 1.2; color: var(--ink-1); }
+.metric-value.pos, .bar-value.pos { color: var(--neg); fill: var(--neg); }
+.metric-value.neg, .bar-value.neg { color: var(--pos); fill: var(--pos); }
+.metric-sub { color: var(--muted); font-size: 12px; line-height: 1.6; margin-top: 5px; }
+.bar-pos { fill: var(--neg); }
+.bar-neg { fill: var(--pos); }
+.bar-fill { opacity: 0.82; }
+
+/* candlestick / k-line */
+.kline-card { background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--r-md); box-shadow: var(--shadow-1); padding: 14px 16px 12px; margin: 10px 0 16px; position: relative; }
+.kline-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 10px 0 16px; }
+.stock-kline-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 12px 0 28px; }
+.kline-grid .kline-card { margin: 0; min-width: 0; }
+.stock-kline-grid .kline-card { margin: 0; min-width: 0; padding: 14px 12px 12px; }
+.kline-card svg { display: block; width: 100%; height: auto; overflow: visible; }
+.kline-candle-up { fill: var(--neg); stroke: var(--neg); }
+.kline-candle-down { fill: var(--pos); stroke: var(--pos); }
+.amount-bar-up { fill: rgba(234, 67, 53, 0.42); }
+.amount-bar-down { fill: rgba(30, 142, 62, 0.42); }
+.kline-wick { stroke-width: 1; }
+.ma-line { fill: none; stroke-width: 1.4; stroke-linejoin: round; stroke-linecap: round; }
+.axis, .grid-line { stroke: var(--line-2); stroke-width: 1; }
+.series-line { fill: none; stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--muted); font-size: 12px; margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--line-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); }
+.legend span::before { content: ""; display: inline-block; width: 8px; height: 2px; border-radius: 1px; background: var(--legend-color); }
+
+/* valuation band markers */
+.band-box { fill: var(--accent-soft); }
+.band-median { stroke: var(--ink-3); stroke-width: 1.5; }
+.band-current { fill: var(--orange); stroke: #fff; stroke-width: 1.5; }
+
+/* hero summary card (一句话结论 / 核心判断) — Material elevated highlight */
+.summary-card {
+  position: relative;
+  background: var(--surface);
+  color: var(--ink-1);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-2);
+  padding: 24px 28px 22px; margin: 4px 0 32px; overflow: hidden;
+}
+.summary-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--g-blue) 0%, var(--g-purple) 36%, var(--g-yellow) 72%, var(--g-red) 100%);
+}
+.summary-card .summary-label {
+  font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g-blue);
+  font-weight: 500; margin: 0 0 12px; display: inline-flex; align-items: center; gap: 9px;
+  font-family: var(--font-sans);
+}
+.summary-card .summary-label::before {
+  content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--g-blue);
+  box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.16);
+}
+.summary-card .summary-body { font-size: 15.5px; line-height: 1.85; color: var(--ink-1); margin: 0 0 8px; text-wrap: pretty; }
+.summary-card .summary-body:last-child { margin-bottom: 0; }
+.summary-card .summary-body .num-pos { color: var(--neg); font-weight: 600; }
+.summary-card .summary-body .num-neg { color: var(--pos); font-weight: 600; }
+.summary-card .summary-body .kw {
+  color: var(--ink-1); font-weight: 600;
+  background: linear-gradient(180deg, transparent 62%, var(--g-yellow-soft) 62%);
+  padding: 0 1px;
+}
+
+@media (max-width: 1024px) { .chart-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 900px) {
+  .page { width: calc(100vw - 24px); padding-top: 20px; margin-bottom: 56px; }
+  .report { padding: 22px 18px; }
+  .chart-grid { grid-template-columns: 1fr; gap: 14px; }
+  .metric-grid { grid-template-columns: 1fr; gap: 14px; }
+  .kline-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .stock-kline-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .kline-card { padding: 12px 10px 10px; }
+  .report h2 { font-size: 19px; margin-top: 32px; }
+  .report h3 { font-size: 16px; }
+  table { min-width: 520px; }
+}

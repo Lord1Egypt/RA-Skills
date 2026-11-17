@@ -1,49 +1,69 @@
-## Description: <br>
-Unified web search and deep research suite that routes ordinary queries to a deep search layer using Exa, Tavily, and Grok, while retaining legacy Tavily, Exa, and Google merged search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified Search Suite routes agent web lookups through deep multi-source search, legacy merged search, thread tracing, URL-to-Markdown extraction, and MinerU document parsing.
 
-## Publisher: <br>
-[ccmxigua](https://clawhub.ai/user/ccmxigua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ccmxigua](https://clawhub.ai/user/ccmxigua)
 
-## Use Case: <br>
-Developers and engineers use this skill to run multi-provider web search, deep research, issue or thread tracing, and URL-to-Markdown extraction from an agent workflow. It is intended for lookup, fact-checking, source gathering, and document extraction tasks that can tolerate external search and parsing providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries, snippets, URLs, and documents may be sent to external search or parsing providers. <br>
-Mitigation: Use only non-confidential inputs unless provider routing and data handling have been reviewed for the deployment. <br>
-Risk: Local credentials, including GitHub and search-provider tokens, may be read from the environment or OpenClaw credential files. <br>
-Mitigation: Run with scoped credentials in an isolated environment and remove tokens that are not required for the selected workflow. <br>
-Risk: Extraction workflows can create local artifacts containing fetched or parsed content. <br>
-Mitigation: Review and clean generated workspaces or caches after processing sensitive URLs or documents. <br>
+## Use Case:
 
+Developers and agents use this skill for current web research, fact checking, issue and PR thread tracing, and converting web pages or documents into traceable Markdown outputs.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ccmxigua/unified-search-suite) <br>
-- [Report template](references/report-template.md) <br>
-- [Vendored OpenClaw search skills README](vendor/openclaw-search-skills/README.md) <br>
-- [Vendored OpenClaw search skills English docs](vendor/openclaw-search-skills/docs/README_EN.md) <br>
-- [Search intent guide](vendor/openclaw-search-skills/search-layer/references/intent-guide.md) <br>
-- [Content extraction heuristics](vendor/openclaw-search-skills/content-extract/references/heuristics.md) <br>
-- [MinerU API docs](https://mineru.net/apiManage/docs) <br>
-- [MinerU output files](https://opendatalab.github.io/MinerU/reference/output_files/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON summaries, shell command output, and extracted files depending on the selected search or extraction flow] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source URLs, local artifact paths, extracted Markdown, consensus findings, uncertainty notes, and recommended next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill contacts multiple third-party search, model, and extraction APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain enabled providers and credentials before deployment, and run the skill behind network egress controls when handling sensitive work.
+
+Risk: The skill can fetch arbitrary URLs from the user's machine network context.
+
+Mitigation: Avoid internal-only URLs, secrets, private documents, and regulated data unless access and outbound destinations are explicitly controlled.
+
+Risk: The skill writes extracted documents and parsing outputs to the local OpenClaw workspace.
+
+Mitigation: Review workspace retention and cleanup practices before using the skill with confidential or regulated content.
+
+Risk: The skill may use local GitHub credentials automatically to improve issue and pull request fetching.
+
+Mitigation: Use scoped tokens or disable credential availability when fetching untrusted or unnecessary repository content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ccmxigua/skills/unified-search-suite)
+- [Unified Search report template](artifact/references/report-template.md)
+- [Search intent guide](artifact/vendor/openclaw-search-skills/search-layer/references/intent-guide.md)
+- [Authority domains reference](artifact/vendor/openclaw-search-skills/search-layer/references/authority-domains.json)
+- [Content extraction heuristics](artifact/vendor/openclaw-search-skills/content-extract/references/heuristics.md)
+- [Content extraction domain whitelist](artifact/vendor/openclaw-search-skills/content-extract/references/domain-whitelist.md)
+- [MinerU API docs](https://mineru.net/apiManage/docs)
+- [MinerU output files](https://opendatalab.github.io/MinerU/reference/output_files/)
+- [OpenClaw runtime](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON result contracts, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source links, extracted document paths, consensus findings, uncertainty, and next-step guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

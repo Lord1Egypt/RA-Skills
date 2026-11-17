@@ -1,0 +1,30 @@
+{
+  "name": "@ava/openclaw-skill",
+  "version": "0.4.0",
+  "private": true,
+  "description": "OpenClaw skill-pack for Ava: put a coding agent under a capital mandate, gated below the model, ending in a receipt that states what it can prove",
+  "type": "module",
+  "bin": {
+    "ava-openclaw": "./scripts/ava.mjs"
+  },
+  "scripts": {
+    "ava": "node ./scripts/ava.mjs",
+    "test": "node --test ./scripts/ava.test.mjs",
+    "typecheck": "node -e \"console.log('openclaw-skill: pure JS, no tsc')\""
+  },
+  "keywords": [
+    "openclaw",
+    "ava",
+    "defi",
+    "mcp",
+    "agent",
+    "trading",
+    "mandate",
+    "receipts",
+    "testnet"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "license": "MIT"
+}

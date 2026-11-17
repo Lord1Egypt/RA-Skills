@@ -1,41 +1,61 @@
-## Description: <br>
-Integrate OpenClaw with Xerolite - IBKR for querying the Xerolite API, placing orders, searching contracts, and fetching portfolio data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate OpenClaw with Xerolite - IBKR. Use when: querying Xerolite API, placing orders, searching contracts, fetching portfolio.
 
-## Publisher: <br>
-[xero-flex](https://clawhub.ai/user/xero-flex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xero-flex](https://clawhub.ai/user/xero-flex)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to connect an agent to a Xerolite/IBKR setup for contract lookup, portfolio inspection, and order placement through the Xerolite REST API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent submit real brokerage orders through a Xerolite/IBKR trading setup without a built-in confirmation or dry-run safeguard. <br>
-Mitigation: Prefer paper trading or a least-privileged key, verify XEROLITE_API_URL points to localhost or another trusted host, and require explicit user confirmation before order placement. <br>
-Risk: The skill requires a sensitive XEROLITE_AGENTIC_API_KEY for agentic endpoints. <br>
-Mitigation: Provide the key through a protected environment variable or explicit secret handling, and avoid exposing it in shared command history or logs. <br>
+## Use Case:
 
+External developers and traders use this skill to let an OpenClaw agent call the Xerolite REST API for order placement, contract search, and portfolio inspection.
 
-## Reference(s): <br>
-- [Xerolite REST API Reference](references/API.md) <br>
-- [Xerolite](https://www.xeroflex.com/xerolite/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Command-line requests and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and XEROLITE_AGENTIC_API_KEY; XEROLITE_API_URL may be set to choose the Xerolite host.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: Live order commands can execute trades through a connected Interactive Brokers account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human confirmation or a paper-trading workflow before any live order command.
+
+Risk: A Xerolite agentic API key can authorize trading endpoints.
+
+Mitigation: Use a tightly scoped credential, prefer environment-variable injection, and avoid passing the key with --api-key where it may enter shell history.
+
+Risk: A custom API URL can direct commands to an unintended or untrusted service.
+
+Mitigation: Use localhost or HTTPS-only trusted endpoints for XEROLITE_API_URL.
+
+## Reference(s):
+
+- [Xerolite REST API Reference](references/API.md)
+- [Xerolite product page](https://www.xeroflex.com/xerolite/)
+- [TradingView](https://www.tradingview.com/)
+- [Interactive Brokers](https://www.interactivebrokers.com/)
+- [ClawHub skill page](https://clawhub.ai/xero-flex/skills/xerolite)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and XEROLITE_AGENTIC_API_KEY; command output is the HTTP status and API response body.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

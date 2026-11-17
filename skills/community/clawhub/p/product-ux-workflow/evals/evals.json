@@ -1,0 +1,32 @@
+{
+  "skill_name": "product-ux-workflow",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "从零规划一个研发团队的任务看板工具，梳理产品 UX 流程。",
+      "expected_output": "End-to-end macro product UX lifecycle documentation covering requirements, user scenarios, IA, wireframes, and handoff.",
+      "files": [],
+      "expectations": [
+        "Defines product goals and measurable business/usability success criteria (Stage 1)",
+        "Maps full user journey including Happy Path, branch decisions, and edge paths (Stage 2)",
+        "Establishes clear tree-structured Information Architecture (Stage 2)",
+        "Outlines low-fidelity wireframe layout before visual styling (Stage 2)",
+        "Includes design system token/component alignment and developer handoff package structure (Stage 3 & 4)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Design the end-to-end UX workflow and wireframe architecture for a mobile habit-tracking application.",
+      "expected_output": "Four-stage product design workflow optimizing mobile habit creation, streak visualization, and responsive touch layout.",
+      "files": [],
+      "expectations": [
+        "Conducts user context analysis (one-handed mobile usage, habit trigger points)",
+        "Produces step-by-step user flow from onboarding to core daily habit check-in",
+        "Enforces wireframe verification before high-fidelity visual design",
+        "Specifies mobile responsive layout and touch target conventions",
+        "Includes design rationale and decision documentation for developer handoff"
+      ]
+    }
+  ]
+}
+

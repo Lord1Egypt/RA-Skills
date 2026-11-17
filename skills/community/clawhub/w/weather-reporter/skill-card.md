@@ -1,44 +1,59 @@
-## Description: <br>
-Generates weather report images for a chosen city with weather charts, AI-generated background art, and concise weather tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weather Reporter generates a detailed weather report image for a requested city using wttr.in weather data, chart rendering, AI-generated background imagery, and short AI weather tips.
 
-## Publisher: <br>
-[zyt64](https://clawhub.ai/user/zyt64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zyt64](https://clawhub.ai/user/zyt64)
 
-## Use Case: <br>
-Developers and agents use this skill to run a Python weather-report generator for cities worldwide. It produces a visual weather summary with temperature, precipitation, humidity, wind, sunrise/sunset, moon phase, UV index, and short AI-generated tips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends city and weather-derived data to wttr.in, ZhipuAI, and the configured OpenAI-compatible LLM provider. <br>
-Mitigation: Install only when those external data flows are acceptable for the intended use case. <br>
-Risk: API keys are stored in config.json for ZhipuAI and the configured LLM provider. <br>
-Mitigation: Keep config.json private and do not commit or share real API keys. <br>
-Risk: The tool deletes and overwrites fixed PNG filenames such as 1.png, bg.png, make.png, and output.png. <br>
-Mitigation: Run it in a dedicated folder so unrelated image files are not overwritten or removed. <br>
+## Use Case:
 
+Developers and agent users can use this skill to generate a city-specific weather briefing image with charts, daily conditions, and concise weather tips. It is suited for automated report generation where external weather and AI services are acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zyt64/weather-reporter) <br>
-- [wttr.in weather data service](https://wttr.in/) <br>
-- [Zhipu AI platform](https://open.bigmodel.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Images, Shell commands, Configuration] <br>
-**Output Format:** [PNG image file plus command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes output.png and temporary PNG files in the working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may delete or overwrite common image filenames in the current working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a dedicated folder or virtual environment and keep unrelated image files outside that directory.
+
+Risk: The skill uses external weather and AI services, so city names, weather data, prompts, and generated image requests may be sent to configured providers.
+
+Mitigation: Review provider settings before use and avoid submitting sensitive locations or confidential context.
+
+Risk: config.json stores API credentials needed for the AI services.
+
+Mitigation: Treat config.json as sensitive, avoid committing it, and rotate credentials if they are exposed.
+
+## Reference(s):
+
+- [ClawHub Weather Reporter release page](https://clawhub.ai/zyt64/skills/weather-reporter)
+- [wttr.in weather data service](https://wttr.in/)
+- [Zhipu AI platform](https://open.bigmodel.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [files, text, configuration, shell commands, guidance]
+
+**Output Format:** [PNG image file with console status text and configuration-driven API usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates output.png and temporary image files in the working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

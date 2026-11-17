@@ -1,39 +1,56 @@
-## Description: <br>
-Create and list Notion tasks in a single database via Notion API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and list Notion tasks in a single database via Notion API. Use when the user asks to add tasks, list today tasks, or capture quick todos in Notion from chat.
 
-## Publisher: <br>
-[luciorenovato](https://clawhub.ai/user/luciorenovato) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[luciorenovato](https://clawhub.ai/user/luciorenovato)
 
-## Use Case: <br>
-Notion users and assistants configured with a Notion integration use this skill to add tasks, list today's tasks, search task text, and resolve task database aliases from chat. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Notion integration token that can access configured databases. <br>
-Mitigation: Share the Notion integration only with intended task databases, keep NOTION_DATABASE_MAP limited, and rotate or revoke the token if exposed. <br>
-Risk: Task text, dates, times, and locations are sent to Notion and stored in configured databases. <br>
-Mitigation: Avoid capturing secrets or highly sensitive information as task content, and review entries before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Notion API endpoint](https://api.notion.com/v1) <br>
+## Use Case:
 
+External users and developers use this skill to capture, list, and search task records in configured Notion databases from an agent chat workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text and JSON returned from shell command execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NOTION_TOKEN and either NOTION_DATABASE_MAP or NOTION_DATABASE_ID.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read from and write to multiple configured Notion databases, including sensitive databases if the user maps them.
+
+Mitigation: Use a least-privilege Notion integration and map only the specific task databases intended for this workflow.
+
+Risk: Notion tokens, database identifiers, and task details may be exposed through local process arguments or environment inspection on shared systems.
+
+Mitigation: Run the skill only in trusted local environments and avoid passing sensitive task details where other local users or tooling can inspect process state.
+
+Risk: Adding, querying, and listing tasks contacts Notion and sends task data to the Notion API.
+
+Mitigation: Confirm that task content is appropriate for Notion before using add, today, query, or next commands.
+
+## Reference(s):
+
+- [Notion API](https://api.notion.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Notion API responses for task creation, daily task listing, text search, upcoming task lookup, and alias listing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

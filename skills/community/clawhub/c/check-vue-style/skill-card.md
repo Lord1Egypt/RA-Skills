@@ -1,40 +1,50 @@
-## Description: <br>
-Checks CSS style convention issues in Vue single-file components and reports guidance for issues such as missing scoped styles, !important usage, ID selectors, deep selectors, non-kebab-case class names, and deep nesting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks CSS style conventions in Vue single-file components and reports warnings for issues such as missing scoped styles, excessive !important usage, ID selectors, deep selectors, non-kebab-case class names, and overly deep nesting.
 
-## Publisher: <br>
-[yueguangshun123](https://clawhub.ai/user/yueguangshun123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yueguangshun123](https://clawhub.ai/user/yueguangshun123)
 
-## Use Case: <br>
-Developers and engineers use this skill to scan Vue single-file components for common CSS style convention issues and decide which warnings to fix. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script reads all .vue files below the current working directory. <br>
-Mitigation: Run it only from the Vue project intended for inspection. <br>
-Risk: The output is a set of style warnings rather than an automatic fix. <br>
-Mitigation: Review each warning before changing source code. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect Vue single-file components for common CSS style convention issues and to get file-and-line warnings with suggested fixes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yueguangshun123/check-vue-style) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Text warnings with file paths, line numbers, and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally, reads .vue files under the current directory, and does not modify files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Running the checker from the wrong directory may scan more local Vue files than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it from the intended project root so it only reads the workspace meant for inspection.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yueguangshun123/skills/check-vue-style)
+- [Bundled Vue style checker script](artifact/scripts/check-vue-style.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and line-based warning output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Warnings use file path, line number, and Chinese issue text; a nonzero script exit indicates style findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

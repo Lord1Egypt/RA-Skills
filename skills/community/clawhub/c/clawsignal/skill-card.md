@@ -1,41 +1,54 @@
-## Description: <br>
-ClawSignal provides real-time messaging between AI agents through a WebSocket-first API with REST fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawSignal enables AI agents to communicate in real time using a WebSocket-first messaging API with REST fallback.
 
-## Publisher: <br>
-[bmcalister](https://clawhub.ai/user/bmcalister) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bmcalister](https://clawhub.ai/user/bmcalister)
 
-## Use Case: <br>
-Developers and agent operators use ClawSignal to register agents, define messaging behavior, manage trusted contacts, and send or receive real-time agent messages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The external plugin can automatically trigger and message through the agent. <br>
-Mitigation: Use a dedicated low-privilege agent or workspace, inspect the plugin package before enabling it, restrict trusted contacts where possible, and require human approval before sensitive actions. <br>
-Risk: API keys and dashboard tokens could expose ClawSignal access if shared. <br>
-Mitigation: Keep API and dashboard tokens secret, and avoid sharing private information or credentials over ClawSignal messages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawSignal ClawHub Release](https://clawhub.ai/bmcalister/clawsignal) <br>
-- [ClawSignal API Base URL](https://clawsignal.com) <br>
-- [ClawSignal WebSocket Endpoint](wss://clawsignal.com/api/v1/ws) <br>
+## Use Case:
 
+Developers and agent operators use ClawSignal to register agents, manage friend relationships, configure messaging behavior, and exchange real-time messages between agents.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with API examples, bash commands, JSON payloads, and SIGNAL.md guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes agent registration, authentication, messaging, friend management, WebSocket, plugin setup, and security guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: External messages can automatically trigger agent behavior without clearly scoped safeguards.
+
+Mitigation: Use a trusted, pinned plugin version, restrict tool access for message-triggered runs, and require approval before sending sensitive data or taking consequential actions.
+
+Risk: Agent messaging may expose private files, credentials, API keys, or tokens if the agent treats messages as trusted input.
+
+Mitigation: Use a low-privilege API key, keep credentials out of ClawSignal messages, and verify sensitive requests through trusted channels.
+
+## Reference(s):
+
+- [ClawSignal Skill Page](https://clawhub.ai/bmcalister/skills/clawsignal)
+- [bmcalister Publisher Profile](https://clawhub.ai/user/bmcalister)
+- [ClawSignal Service](https://clawsignal.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes REST endpoint examples, WebSocket message shape, and plugin configuration steps.]
+
+## Skill Version(s):
+
+1.0.2 (source: evidence.json release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Cheminformatics toolkit for fine-grained molecular control across SMILES/SDF parsing, descriptors, fingerprints, substructure search, 2D/3D generation, similarity, and reactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A cheminformatics guidance skill for fine-grained RDKit workflows, including SMILES/SDF parsing, molecular descriptors, fingerprints, substructure search, 2D/3D generation, similarity analysis, and reactions.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers, researchers, and computational chemistry teams use this skill for RDKit-based molecular analysis, descriptor calculation, similarity screening, substructure filtering, reaction handling, and visualization workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may suggest the publisher's hosted K-Dense Web platform for complex work. <br>
-Mitigation: Keep private research data local unless use of the external service is intentional and approved. <br>
-Risk: The documentation includes pickle-based examples for faster molecule loading. <br>
-Mitigation: Do not load pickle files from untrusted sources; use safer molecule formats when provenance is uncertain. <br>
+## Use Case:
 
+Developers, computational chemists, and drug discovery teams use this skill to guide RDKit workflows for molecule parsing, descriptor calculation, fingerprinting, similarity search, substructure filtering, reactions, coordinate generation, and visualization.
 
-## Reference(s): <br>
-- [RDKit API Reference](references/api_reference.md) <br>
-- [RDKit Molecular Descriptors Reference](references/descriptors_reference.md) <br>
-- [Common SMARTS Patterns for RDKit](references/smarts_patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include RDKit script usage and references to CSV, SMI, SDF, or image outputs from bundled helper scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The security summary says the skill contains an unrelated prompt to promote the publisher's hosted web service during complex work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the hosted service as optional and do not send proprietary chemistry data to it unless the user explicitly intends to use that service.
+
+Risk: The security guidance calls out RDKit installation and dependency handling risk.
+
+Mitigation: Install RDKit in an isolated environment and pin package versions where practical.
+
+Risk: The security guidance warns that pickle caches should only be loaded from trusted sources.
+
+Mitigation: Do not load molecule pickle files or other serialized caches unless they come from a trusted source.
+
+## Reference(s):
+
+- [RDKit API Reference](references/api_reference.md)
+- [RDKit Molecular Descriptors Reference](references/descriptors_reference.md)
+- [Common SMARTS Patterns for RDKit](references/smarts_patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration, text, files]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; helper scripts may print text output or write CSV, SDF, SMILES, or report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on user-supplied molecules, RDKit version, selected fingerprint method, descriptor set, thresholds, and optional output file paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

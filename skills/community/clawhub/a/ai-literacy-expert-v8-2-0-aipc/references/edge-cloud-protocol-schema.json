@@ -1,0 +1,386 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-literacy-expert-v7/schemas/edge-cloud-protocol-schema.json",
+  "title": "Edge-Cloud Protocol v1.0 - 端云协同协议",
+  "description": "V7 端云协同协议的完整 JSON Schema 定义，覆盖请求结构（6 段）、响应结构、错误响应结构。",
+  "version": "1.0.0",
+
+  "$defs": {
+    "TaskType": {
+      "type": "string",
+      "description": "任务类型",
+      "enum": [
+        "pedagogy_recommendation",
+        "courseware_design",
+        "learning_path_planning",
+        "assessment_analysis",
+        "content_creation",
+        "cross_skill_linkage"
+      ]
+    },
+    "DecisionType": {
+      "type": "string",
+      "description": "决策类型",
+      "enum": ["creative", "analytical", "educational", "strategic"]
+    },
+    "DataClassification": {
+      "type": "string",
+      "description": "数据分类",
+      "enum": ["anonymous", "internal", "confidential", "restricted"]
+    },
+    "AlertLevel": {
+      "type": "string",
+      "description": "预算告警级别",
+      "enum": ["none", "warning_50", "warning_80", "critical_100"]
+    }
+  },
+
+  "Request": {
+    "type": "object",
+    "description": "端云协同协议请求结构（6 段）",
+    "required": [
+      "protocol_version",
+      "request_id",
+      "timestamp",
+      "source",
+      "intent",
+      "abstract",
+      "request",
+      "callback"
+    ],
+    "properties": {
+      "protocol_version": {
+        "type": "string",
+        "description": "协议版本号",
+        "const": "1.0"
+      },
+      "request_id": {
+        "type": "string",
+        "description": "请求唯一 ID（UUID v4）",
+        "format": "uuid"
+      },
+      "timestamp": {
+        "type": "string",
+        "description": "ISO 8601 时间戳",
+        "format": "date-time"
+      },
+      "source": {
+        "type": "string",
+        "description": "发起方标识",
+        "examples": ["edge-ai-pc"]
+      },
+      "intent": {
+        "type": "string",
+        "description": "意图描述（人类可读）",
+        "maxLength": 500
+      },
+      "abstract": {
+        "type": "object",
+        "description": "抽象元数据段 —— 上传到云端的核心数据（< 10KB）",
+        "required": [
+          "task_type",
+          "context",
+          "abstract_data",
+          "pii_detected",
+          "data_classification"
+        ],
+        "properties": {
+          "task_type": {
+            "$ref": "#/$defs/TaskType"
+          },
+          "context": {
+            "type": "string",
+            "description": "上下文描述",
+            "maxLength": 200
+          },
+          "abstract_data": {
+            "type": "object",
+            "description": "抽象元数据（必须 < 10KB）",
+            "maxProperties": 100
+          },
+          "pii_detected": {
+            "type": "boolean",
+            "description": "PII 检测结果，必须为 false 才允许上传"
+          },
+          "data_classification": {
+            "$ref": "#/$defs/DataClassification"
+          }
+        },
+        "additionalProperties": false
+      },
+      "request": {
+        "type": "object",
+        "description": "请求约束段",
+        "required": ["decision_type", "max_tokens", "max_cost_usd"],
+        "properties": {
+          "decision_type": {
+            "$ref": "#/$defs/DecisionType"
+          },
+          "max_tokens": {
+            "type": "integer",
+            "description": "最大生成 token 数",
+            "minimum": 1,
+            "maximum": 8192
+          },
+          "max_cost_usd": {
+            "type": "number",
+            "description": "单次请求最大成本（美元）",
+            "minimum": 0,
+            "exclusiveMaximum": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "callback": {
+        "type": "object",
+        "description": "回调执行段",
+        "required": ["edge_execution", "save_to_local"],
+        "properties": {
+          "edge_execution": {
+            "type": "boolean",
+            "description": "是否在端侧执行（必须为 true）",
+            "const": true
+          },
+          "save_to_local": {
+            "type": "boolean",
+            "description": "是否保存到本地"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "additionalProperties": false
+  },
+
+  "Response": {
+    "type": "object",
+    "description": "端云协同协议响应结构",
+    "required": [
+      "protocol_version",
+      "request_id",
+      "timestamp",
+      "status"
+    ],
+    "properties": {
+      "protocol_version": {
+        "type": "string",
+        "description": "协议版本号",
+        "const": "1.0"
+      },
+      "request_id": {
+        "type": "string",
+        "description": "对应请求的唯一 ID",
+        "format": "uuid"
+      },
+      "timestamp": {
+        "type": "string",
+        "description": "响应时间戳（ISO 8601）",
+        "format": "date-time"
+      },
+      "status": {
+        "type": "string",
+        "description": "响应状态",
+        "enum": ["success", "partial", "error"]
+      },
+      "decision": {
+        "type": "object",
+        "description": "决策结果（仅 status=success 时存在）",
+        "required": ["type", "content"],
+        "properties": {
+          "type": {
+            "$ref": "#/$defs/DecisionType"
+          },
+          "content": {
+            "type": "string",
+            "description": "决策内容（人类可读文本）"
+          },
+          "structured": {
+            "type": "object",
+            "description": "结构化决策数据"
+          }
+        },
+        "additionalProperties": false
+      },
+      "usage": {
+        "type": "object",
+        "description": "资源使用统计",
+        "required": ["prompt_tokens", "completion_tokens", "total_tokens", "cost_usd"],
+        "properties": {
+          "prompt_tokens": {
+            "type": "integer",
+            "description": "输入 token 数",
+            "minimum": 0
+          },
+          "completion_tokens": {
+            "type": "integer",
+            "description": "输出 token 数",
+            "minimum": 0
+          },
+          "total_tokens": {
+            "type": "integer",
+            "description": "总 token 数",
+            "minimum": 0
+          },
+          "cost_usd": {
+            "type": "number",
+            "description": "本次请求实际成本（美元）",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      },
+      "cumulative_cost_usd": {
+        "type": "number",
+        "description": "当月累计成本（美元）",
+        "minimum": 0
+      },
+      "audit": {
+        "type": "object",
+        "description": "审计信息",
+        "required": ["zup_id", "abstract_data_size_bytes", "pii_detected"],
+        "properties": {
+          "zup_id": {
+            "type": "string",
+            "description": "零上传证明 ID"
+          },
+          "abstract_data_size_bytes": {
+            "type": "integer",
+            "description": "abstract_data 大小（字节）",
+            "minimum": 0,
+            "maximum": 10240
+          },
+          "pii_detected": {
+            "type": "boolean",
+            "description": "PII 检测结果"
+          }
+        },
+        "additionalProperties": false
+      },
+      "pii_audit": {
+        "type": "object",
+        "description": "PII 漏检审计信息",
+        "required": [
+          "audit_triggered",
+          "audit_method",
+          "pii_found",
+          "action_taken"
+        ],
+        "properties": {
+          "audit_triggered": {
+            "type": "boolean",
+            "description": "是否触发了 PII 抽样审计"
+          },
+          "audit_method": {
+            "type": "string",
+            "description": "审计方法",
+            "enum": ["random_sampling_5pct"]
+          },
+          "pii_found": {
+            "type": "boolean",
+            "description": "审计中是否发现 PII"
+          },
+          "pii_types_found": {
+            "type": "array",
+            "description": "发现的 PII 类型列表",
+            "items": { "type": "string" }
+          },
+          "action_taken": {
+            "type": "string",
+            "description": "采取的动作",
+            "enum": ["none", "revoke_and_quarantine"]
+          },
+          "circuit_breaker_activated": {
+            "type": "boolean",
+            "description": "是否触发了熔断"
+          },
+          "quarantine_duration_minutes": {
+            "type": "integer",
+            "description": "隔离时长（分钟）",
+            "minimum": 0
+          },
+          "admin_notified": {
+            "type": "boolean",
+            "description": "是否已通知管理员"
+          },
+          "forensic_log_id": {
+            "type": ["string", "null"],
+            "description": "取证日志 ID"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "additionalProperties": false
+  },
+
+  "ErrorResponse": {
+    "type": "object",
+    "description": "端云协同协议错误响应结构",
+    "required": [
+      "protocol_version",
+      "request_id",
+      "timestamp",
+      "status",
+      "error"
+    ],
+    "properties": {
+      "protocol_version": {
+        "type": "string",
+        "description": "协议版本号",
+        "const": "1.0"
+      },
+      "request_id": {
+        "type": "string",
+        "description": "对应请求的唯一 ID",
+        "format": "uuid"
+      },
+      "timestamp": {
+        "type": "string",
+        "description": "错误响应时间戳（ISO 8601）",
+        "format": "date-time"
+      },
+      "status": {
+        "type": "string",
+        "const": "error",
+        "description": "固定为 error"
+      },
+      "error": {
+        "type": "object",
+        "description": "错误详情",
+        "required": ["code", "message"],
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "错误码",
+            "enum": [
+              "E001", "E002", "E003", "E004",
+              "E101", "E102", "E103",
+              "E201", "E202"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "错误描述（人类可读）"
+          },
+          "suggestion": {
+            "type": "string",
+            "description": "处理建议"
+          },
+          "retry_after_seconds": {
+            "type": "integer",
+            "description": "建议重试等待时间（秒）",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      },
+      "degradation_level": {
+        "type": "integer",
+        "description": "当前降级级别（1-5）",
+        "minimum": 1,
+        "maximum": 5
+      }
+    },
+    "additionalProperties": false
+  }
+}

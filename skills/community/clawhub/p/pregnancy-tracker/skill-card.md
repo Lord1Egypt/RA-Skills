@@ -1,41 +1,56 @@
-## Description: <br>
-Track pregnancy journey with weekly updates, symptom logging, and milestone countdowns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track pregnancy journey with weekly updates, symptom logging, and milestone countdowns
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill to track pregnancy milestones, due date status, symptoms, mood, physical changes, and appointments in a supportive journal. It is informational and should not be used as medical advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may enter sensitive pregnancy symptoms, appointments, due dates, or other health details without clear storage, sync, retention, or deletion guarantees. <br>
-Mitigation: Confirm where data is stored, whether it syncs off-device, how long it is retained, and how it can be deleted before entering sensitive health information. <br>
-Risk: The artifact contains conflicting privacy claims about cross-device sync and local-only storage. <br>
-Mitigation: Treat privacy behavior as unresolved until platform behavior is verified, and present privacy claims conservatively to users. <br>
-Risk: Pregnancy guidance could be mistaken for medical advice. <br>
-Mitigation: Keep responses informational and direct users to a healthcare provider for medical concerns, medication questions, abnormal symptoms, or urgent issues. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhillin8/pregnancy-tracker) <br>
+## Use Case:
 
+External users use this skill to track pregnancy week updates, symptoms, mood, milestones, due-date countdowns, and appointments. It is informational and supportive, not a substitute for healthcare provider guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversational guidance and structured journal-style summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pregnancy week updates, due date countdowns, symptom logs, appointment reminders, and supportive informational summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may record sensitive pregnancy status, symptoms, appointments, lab results, or clinician questions.
+
+Mitigation: Review host-app privacy, retention, sync, and deletion controls before use; avoid entering sensitive data unless the platform separately guarantees acceptable handling.
+
+Risk: The artifact says data syncs across devices while also saying all data stays local, creating unclear privacy expectations.
+
+Mitigation: Treat local-only storage as unverified unless confirmed by platform controls, and make user-facing privacy claims match the actual storage and sync behavior.
+
+Risk: Pregnancy guidance may be mistaken for medical advice.
+
+Mitigation: Keep outputs informational and direct users to consult a healthcare provider for medical concerns, medications, abnormal symptoms, lab results, or clinical decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhillin8/skills/pregnancy-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include week-by-week pregnancy updates, symptom journal entries, appointment reminders, due-date countdowns, and supportive informational guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

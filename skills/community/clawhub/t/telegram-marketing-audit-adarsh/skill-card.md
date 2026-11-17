@@ -1,40 +1,56 @@
-## Description: <br>
-Handles the Telegram /marketing_audit command by running a marketing audit for an Instagram handle or website domain and returning the report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handles the Telegram /marketing_audit command by running a marketing audit on an Instagram handle or website domain and returning the report.
 
-## Publisher: <br>
-[AdarshVMore](https://clawhub.ai/user/AdarshVMore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adarshvmore](https://clawhub.ai/user/adarshvmore)
 
-## Use Case: <br>
-Telegram bot operators and marketing teams use this skill to trigger a marketing audit from chat and receive the generated report without leaving Telegram. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Audit reports and possible backend error text may be visible in Telegram chats. <br>
-Mitigation: Enable the command only in intended chats and review report and error visibility before deployment. <br>
-Risk: The skill depends on a separate marketing-orchestrator skill and collector API keys for the actual audit work. <br>
-Mitigation: Review the dependent skill and confirm required API keys are configured before enabling the command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AdarshVMore/telegram-marketing-audit-adarsh) <br>
-- [Publisher profile](https://clawhub.ai/user/AdarshVMore) <br>
+## Use Case:
 
+Telegram bot operators and marketing teams use this skill to invoke a marketing audit from Telegram using an Instagram handle, website domain, or both, then receive a Markdown report.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Telegram chat replies with Markdown report content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a separate marketing-orchestrator skill and configured collector API keys to produce the final audit report.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Raw downstream error messages may be returned to Telegram users.
+
+Mitigation: Return a generic failure message in chat and keep detailed exception information in private logs.
+
+Risk: The Telegram command could be invoked by unintended users if chat or user permissions are too broad.
+
+Mitigation: Confirm who can invoke the command before installation and restrict access to authorized chats or users.
+
+Risk: Collector credentials may be over-provisioned for the audit being run.
+
+Mitigation: Configure only the downstream collector API keys actually needed for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adarshvmore/skills/telegram-marketing-audit-adarsh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Telegram replies containing status text and a Markdown audit report.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured marketing-orchestrator skill and the collector API keys needed for the requested audit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

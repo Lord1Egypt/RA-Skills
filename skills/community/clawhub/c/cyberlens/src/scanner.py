@@ -91,7 +91,7 @@ class SecurityScanner:
         self,
         timeout: float = 30.0,
         max_redirects: int = 5,
-        user_agent: str = "CyberLens-Skill/1.1.1",
+        user_agent: str = "CyberLens-Skill/1.2.2",
     ):
         self.timeout = timeout
         self.max_redirects = max_redirects

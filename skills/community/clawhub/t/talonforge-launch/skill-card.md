@@ -1,41 +1,54 @@
-## Description: <br>
-Guides an agent through a bilingual startup launch blitz by generating platform-specific listings, submission links, launch checklists, tracking tables, and follow-up monitoring prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates bilingual launch materials, submission checklists, tracking tables, and follow-up guidance for launching a product across 21 startup platforms.
 
-## Publisher: <br>
-[casperzinou](https://clawhub.ai/user/casperzinou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casperzinou](https://clawhub.ai/user/casperzinou)
 
-## Use Case: <br>
-Founders, marketers, and launch operators use this skill to prepare and coordinate product submissions across startup directories and social channels, including English and Arabic launch assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can drive public submissions and monitoring on third-party platforms before the user has clearly approved the launch activity. <br>
-Mitigation: Require explicit user approval before any submission or monitoring step and confirm that the launch is ready to be publicized. <br>
-Risk: Launch copy and platform-specific claims may expose confidential product, customer, financial, or strategy details. <br>
-Mitigation: Review generated listings and posts before use, and avoid providing confidential details unless they are appropriate to share with the listed third-party platforms. <br>
+## Use Case:
 
+Founders, launch teams, and marketing operators use this skill to prepare platform-specific launch copy, direct submission links, and launch-day tracking for an AI or software product. It also provides post-launch monitoring prompts and follow-up recommendations after 24 hours, 48 hours, and 7 days.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/casperzinou/talonforge-launch) <br>
-- [TalonForge homepage](https://talonforge.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown checklists, tracking tables, platform-specific listing copy, submission URLs, and follow-up recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied product details, category, competitors, pricing, URL, tagline, and launch date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill asks an agent to submit launch information publicly across many platforms, which can expose confidential or premature product details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require draft review before any submission and approve each platform submission separately.
+
+Risk: Post-launch monitoring can become open-ended if limits are not set.
+
+Mitigation: Set explicit monitoring windows and reporting cadence before launch execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/casperzinou/skills/talonforge-launch)
+- [TalonForge homepage](https://talonforge.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with platform-specific listing copy, launch checklist items, tracker tables, and follow-up guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual English and Arabic launch copy may be produced when applicable.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version, artifact/package.json, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

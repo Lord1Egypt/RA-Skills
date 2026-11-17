@@ -1,43 +1,53 @@
-## Description: <br>
-Wyckoff Diagnose analyzes Chinese A-share stock codes with Wyckoff phase detection, volume profile levels, scoring, ratings, and left-side accumulation or right-side trend perspectives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wyckoff Diagnose analyzes Chinese A-share stock codes and produces stock diagnosis reports with Wyckoff phase, volume-profile levels, scores, ratings, and action suggestions for right-side trend and left-side accumulation views.
 
-## Publisher: <br>
-[dxarch1980](https://clawhub.ai/user/dxarch1980) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxarch1980](https://clawhub.ai/user/dxarch1980)
 
-## Use Case: <br>
-External users and agents use this skill to generate technical stock-analysis reports for 6-digit A-share codes, including Wyckoff phase, volume profile support and resistance levels, ratings, and operational guidance. The output should be treated as informational analysis rather than investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock codes may be sent to multiple external data providers, including an undocumented non-HTTPS endpoint. <br>
-Mitigation: Review data-provider behavior before installation and prefer a version that discloses all providers and uses HTTPS endpoints. <br>
-Risk: The skill uses an embedded credential for market-data access. <br>
-Mitigation: Prefer a version that removes embedded credentials and requires users to provide their own API token explicitly. <br>
-Risk: Generated reports include buy/sell-style guidance that can be mistaken for investment advice. <br>
-Mitigation: Treat reports as informational technical analysis and require human financial review before trading decisions. <br>
+## Use Case:
 
+External users and developers use this skill to generate stock-analysis reports for six-digit Chinese A-share symbols, either one at a time or in batch. The reports summarize Wyckoff phase, volume-profile price levels, right-side trend and left-side accumulation scores, ratings, signals, and suggested actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dxarch1980/wyckoff-diagnose) <br>
-- [Publisher profile](https://clawhub.ai/user/dxarch1980) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown-style stock diagnosis report with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include market-data-derived ratings, key price levels, green and red flags, and buy/sell-style guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Market-data requests may be routed through an undisclosed plaintext custom server with an embedded token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the provider and endpoint before installation; prefer a version that documents providers, uses HTTPS, and loads credentials from user-controlled configuration.
+
+Risk: Generated stock-analysis reports can be incorrect or misleading if market data is incomplete, stale, or unavailable.
+
+Mitigation: Treat outputs as reference material rather than investment advice, and compare conclusions against authoritative market data before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dxarch1980/skills/wyckoff-diagnose)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style plain text report with optional shell command invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a six-digit Chinese A-share stock code or a batch file of stock codes and live market-data access.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,6 @@
+# User data (contains personal info)
+data/*.json
+data/weekly_reports/
+
+# Keep directory structure
+!data/.gitkeep

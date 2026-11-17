@@ -1,42 +1,58 @@
-## Description: <br>
-Reorient a Telegram chat after a session reset by reading a project's STATUS.md and sending a project-specific context injection message through the Telegram Bot API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reorients Telegram chats after session resets by reading project STATUS.md details and sending project-specific group, direct-message, or new-room welcome context through the Telegram Bot API.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers and project operators use this skill to restore context in Telegram project rooms, direct messages, and newly created collaborator rooms after a reset or onboarding event. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Context may be sent to the wrong Telegram chat if chat_id or room mappings are incorrect. <br>
-Mitigation: Confirm each chat_id and project-room mapping before sending context injection messages. <br>
-Risk: Project status text may contain sensitive details that would be posted to Telegram or written to local logs. <br>
-Mitigation: Keep secrets out of STATUS.md and review resume points and blockers before injection. <br>
-Risk: The Telegram bot token can grant unintended sending access if it is over-privileged or exposed. <br>
-Mitigation: Use a least-privileged bot token, store it securely, and avoid logging or hardcoding the token. <br>
+## Use Case:
 
+Developers and project operators use this skill to restore scoped project context in Telegram rooms or direct messages after transcript clears, room creation, or collaborator onboarding.
 
-## Reference(s): <br>
-- [Session Context Injector on ClawHub](https://clawhub.ai/nissan/session-context-injector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [HTML-formatted Telegram message text, Markdown log entries, and implementation guidance with Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Messages must fit Telegram's 4096-character limit and use HTML parse mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, changelog, server release evidence) <br>
+Risk: Project STATUS.md content may be sent to externally supplied Telegram chats without strong destination validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify chat IDs independently and use an allowlist before sending context injection messages.
+
+Risk: Sensitive project, customer, or secret data in STATUS.md may be exposed through Telegram messages.
+
+Mitigation: Keep secrets and customer data out of STATUS.md sections used by the skill, and add preview and redaction before production use.
+
+Risk: Unescaped HTML content from project status text may affect Telegram message rendering.
+
+Mitigation: Escape status-derived text before inserting it into HTML parse-mode messages.
+
+## Reference(s):
+
+- [Session Context Injector on ClawHub](https://clawhub.ai/nissan/skills/session-context-injector)
+- [Telegram Bot API sendMessage endpoint](https://api.telegram.org/bot{bot_token}/sendMessage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with Python code snippets and HTML-formatted Telegram message text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TELEGRAM_BOT_TOKEN; generated Telegram messages should stay within Telegram's 4096-character message limit.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and changelog, released 2026-04-03)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

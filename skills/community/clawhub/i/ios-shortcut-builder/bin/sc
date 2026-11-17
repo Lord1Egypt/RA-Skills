@@ -1,0 +1,413 @@
+#!/usr/bin/env python3
+"""sc — iOS 快捷指令生成器命令行。
+
+  sc setup                      检查并安装依赖
+  sc init                       生成签名证书（每台机器一次）
+  sc adopt 链接或文件            从一个快捷指令里取 CA 名并建证书
+  sc catalog [--group 组] [--grep 词] [--json]
+  sc build recipe.json [-o out/X.shortcut] [--no-sign] [--json]
+  sc verify X.shortcut
+  sc doctor
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import platform
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "lib"))
+
+CERT_DIR = Path(os.environ.get("SC_CERT_DIR") or (ROOT / "certs")).expanduser()
+SIGN_BIN = ROOT / "bin" / "shortcut-sign"
+
+# 依赖缺失不该甩一屏 traceback，所以延后到 main 里统一提示
+try:
+    from compile import Compiler, RecipeError, load_recipe, REGISTRY  # noqa: E402
+    from shortcut_file import (cert_cn, extract_chain, kind,  # noqa: E402
+                               materialize, own_ca, workflow_name)
+    DEP_ERR = None
+except ImportError as _exc:  # pragma: no cover - 只在裸机上触发
+    DEP_ERR = _exc
+
+
+def _sign_usable() -> tuple[bool, str]:
+    """签名器是预编译的 Linux x86-64 二进制，先确认它在这台机器上真能跑。
+
+    不是所有用户都在 Linux 上，也不是所有 Linux 都能跑（musl / ARM / 老 OpenSSL）。
+    与其让 subprocess 抛一个看不懂的 Exec format error，不如提前说清楚。
+    """
+    if not SIGN_BIN.is_file():
+        return False, "签名器文件缺失（bin/shortcut-sign 不存在）"
+    if sys.platform != "linux":
+        return False, (f"签名器只有 Linux x86-64 版，当前系统是 {sys.platform}。"
+                       "macOS / Windows 上无法签名")
+    if platform.machine().lower() not in ("x86_64", "amd64"):
+        return False, f"签名器只有 x86-64 版，当前架构是 {platform.machine()}"
+    try:
+        r = subprocess.run(["ldd", str(SIGN_BIN)], capture_output=True, text=True, timeout=10)
+    except (OSError, subprocess.SubprocessError):
+        return True, "ok（无法用 ldd 预检，直接尝试）"
+    if r.returncode == 0:
+        missing = [ln.split("=>")[0].strip()
+                   for ln in r.stdout.splitlines() if "not found" in ln]
+        if missing:
+            return False, "缺运行库：" + "、".join(missing) + "（ubuntu: apt install libplist-2.0-4）"
+    return True, "ok"
+
+
+def _safe_cn(s: str) -> str:
+    """证书名里不能有会破坏 -subj 的字符。"""
+    s = re.sub(r'[/,=+<>#;\\"\n\t]+', " ", s or "")
+    s = re.sub(r"\s+", " ", s).strip()
+    return s[:40] or "我的快捷指令CA"
+
+
+def _local_ca_der():
+    """本机 CA 证书的 DER；没有就返回 None。"""
+    crt = CERT_DIR / "ca.crt"
+    if not crt.is_file():
+        return None
+    r = subprocess.run(["openssl", "x509", "-in", str(crt), "-outform", "DER"],
+                       capture_output=True)
+    return r.stdout or None
+
+
+def cmd_adopt(args):
+    path, share_name, err = materialize(args.sample)
+    if err:
+        print(f"✗ {err}", file=sys.stderr)
+        return 2
+
+    chain = extract_chain(path)
+    local = _local_ca_der()
+
+    if chain:
+        print(f"样本：{path.name}（已签名，链上 {len(chain)} 张证书）")
+        for i, der in enumerate(chain, 1):
+            print(f"  [{i}] {cert_cn(der)}")
+
+        if local and local in chain:
+            print("\n✓ 同一张证书：样本用的就是本机这套 CA（字节完全一致）。")
+            print("  直接 build 就行 —— 手机早就信任它了，不用再装任何东西。")
+            return 0
+    else:
+        print(f"样本：{path.name}（{'未签名' if kind(path) == 'unsigned' else '未签名/无证书'}）")
+
+    # 到这儿说明本机已有证书、且和样本对不上（或样本压根没证书）
+    if local and not args.force:
+        if chain:
+            print("\n✗ 样本是另一套证书签的，和本机这套不是同一张。")
+        else:
+            print("\n✗ 本机已经有证书了，不会覆盖。")
+        print("  · 想继续用本机这张：什么都不用做，直接 build")
+        print("    （手机要装一次 certs/ca.mobileconfig，如果还没装过）")
+        print("  · 想换成样本那个名字重建：加 --force，会覆盖本机证书")
+        print("    （旧证书签过的文件仍在已装旧 CA 的手机上有效，新文件要装新 CA）")
+        return 2
+
+    # 走到这里 = 本机没有证书，或用户明确 --force
+    ca_der = own_ca(chain) if chain else None
+    if ca_der:
+        ca = _safe_cn(cert_cn(ca_der))
+        print(f"\n沿用它的 CA 名：{ca}")
+    else:
+        base = share_name or workflow_name(path) or path.stem
+        ca = _safe_cn(f"{base} CA")
+        why = "苹果官方签的名，里面没有你自己的 CA" if chain else "不含证书（iCloud 分享出来都是未签名件）"
+        print(f"\n这个文件{why}。按名字给你起一个：{ca}")
+
+    if args.cn:
+        ca = _safe_cn(args.cn)
+        print(f"按你指定的名字：{ca}")
+
+    if chain:
+        print("\n注意：证书是公钥，私钥不会跟着 .shortcut 文件走。")
+        print("      拿不到私钥就签不了名，所以只能在本机新建一套（名字可以一样，证书是新的）。")
+        print("      手机端需要装一次新的 certs/ca.mobileconfig。")
+    else:
+        print("\n手机端需要装一次 certs/ca.mobileconfig，之后所有文件直接导入。")
+
+    if args.dry_run:
+        print(f"\n[dry-run] 将执行：scripts/gen-certs.sh --cn \"{ca}\"")
+        return 0
+    rc = subprocess.call(["bash", str(ROOT / "scripts" / "gen-certs.sh"), "--cn", ca],
+                         env=_cert_env())
+    if rc == 0:
+        print(f"\n下一步：把 {CERT_DIR / 'ca.mobileconfig'} 发到 iPhone，"
+              "Safari 打开 → 安装 → 设置里开「完全信任」")
+    return rc
+
+
+def _cert_env():
+    """把证书目录透传给 gen-certs.sh，两边必须认同一个位置。"""
+    return {**os.environ, "CERT_DIR": str(CERT_DIR)}
+
+
+def cmd_init(args):
+    return subprocess.call(["bash", str(ROOT / "scripts" / "gen-certs.sh"),
+                            "--cn", args.cn], env=_cert_env())
+
+
+def cmd_catalog(args):
+    reg = json.loads(REGISTRY.read_text(encoding="utf-8"))
+    acts = reg["actions"]
+    if args.group:
+        acts = [a for a in acts if args.group in a["group"]]
+    if args.grep:
+        q = args.grep.lower()
+        acts = [a for a in acts
+                if q in a["alias"].lower() or q in a["zh"] or q in a["doc"].lower()]
+    if args.json:
+        print(json.dumps(acts, ensure_ascii=False, indent=2))
+        return 0
+    if not acts:
+        who = args.grep or args.group or ""
+        print(f"没有匹配「{who}」的动作。用 `sc catalog` 看全部 {len(reg['actions'])} 个，"
+              f"或 `sc catalog --json` 出全量。")
+        return 0
+    for g in reg["groups"]:
+        rows = [a for a in acts if a["group"] == g]
+        if not rows:
+            continue
+        print(f"\n【{g}】")
+        for a in rows:
+            ps = " ".join(a["params"]) or "（无参数）"
+            flag = " ⚠" + a["notes"] if a.get("notes") else ""
+            print(f"  {a['alias']:<14} {a['zh']:<8} {a['doc']}{flag}")
+            print(f"  {'':<14} 参数：{ps}")
+    print(f"\n共 {len(acts)} 个动作。变量：{{clipboard}} {{now}} {{input}} {{prev}} "
+          f"{{battery}} {{location}} {{repeat_item}}")
+    return 0
+
+
+def cmd_build(args):
+    try:
+        recipe = load_recipe(Path(args.recipe))
+        out = Path(args.out) if args.out else ROOT / "out" / f"{recipe.get('name', 'Shortcut')}.shortcut"
+        comp = Compiler()
+        rep = comp.build(recipe, out)
+    except RecipeError as e:
+        print(f"✗ 配方有问题：\n{e}", file=sys.stderr)
+        return 2
+    except Exception as e:  # 动作实现的缺陷不该甩一屏栈给使用者
+        import os
+        import traceback
+        if os.environ.get("SC_DEBUG"):
+            traceback.print_exc()
+        print(f"✗ 生成时内部出错：{type(e).__name__}: {e}", file=sys.stderr)
+        print("  这不是配方写法的问题，是某个动作的实现有缺陷。"
+              "把配方内容和这行报错一起反馈。", file=sys.stderr)
+        print("  想看完整堆栈：SC_DEBUG=1 再跑一次。", file=sys.stderr)
+        return 5
+
+    if rep["actions"] == 0:
+        print("✗ 配方里没有任何动作（steps 是空的）", file=sys.stderr)
+        return 2
+    if not rep["balanced"] or not rep["canonical"]:
+        print(f"✗ 生成结果没通过结构自检：{rep}", file=sys.stderr)
+        return 3
+
+    signed = None
+    if args.no_sign:
+        rep["warnings"].append("指定了 --no-sign，产物未签名，iPhone 不会接受导入")
+    elif not (CERT_DIR / "key.bin").is_file():
+        rep["warnings"].append("没有证书，跳过签名（先跑 `sc init`）")
+    else:
+        usable, why = _sign_usable()
+        if not usable:
+            rep["warnings"].append(f"签名不可用（{why}），产物未签名，iPhone 会拒绝导入")
+            print(f"  ⚠ 签名不可用：{why}", file=sys.stderr)
+            print("    → 换 Linux x86-64 环境，或看 README「平台支持」", file=sys.stderr)
+        else:
+            signed = out.with_name(out.stem + "-signed.shortcut")
+            r = subprocess.run(["bash", str(ROOT / "scripts" / "sign.sh"),
+                                str(out), str(signed), "--check"],
+                               capture_output=True, text=True, env=_cert_env())
+            if r.returncode != 0:
+                print(r.stdout, r.stderr, file=sys.stderr)
+                print("✗ 签名失败，未签名文件保留在 " + str(out), file=sys.stderr)
+                return 4
+            print(r.stdout.strip())
+
+    rep["signed"] = str(signed) if signed else None
+    if args.json:
+        print(json.dumps(rep, ensure_ascii=False, indent=2))
+    else:
+        print(f"✓ {rep['name']}：{rep['actions']} 个动作，控制流 {rep['control_flow']}")
+        for w in rep["warnings"]:
+            print(f"  ⚠ {w}")
+        print(f"  未签名：{out}")
+        if signed:
+            print(f"  可导入：{signed}   ← 发这个给手机")
+    return 0
+
+
+def cmd_verify(args):
+    p = Path(args.file)
+    if not p.is_file():
+        print(f"✗ 文件不存在：{p}", file=sys.stderr)
+        return 2
+    r = subprocess.run(["bash", str(ROOT / "scripts" / "sign.sh"), "--verify-only", str(p)],
+                       capture_output=True, text=True, env=_cert_env())
+    msg = "\n".join(x.strip() for x in (r.stdout, r.stderr) if x.strip())
+    print(msg)
+    return r.returncode
+
+
+def cmd_setup(args):
+    """把依赖装齐。装不上的地方给确切命令，不假装成功。"""
+    import os
+    import shutil
+
+    fail = 0
+    print("依赖安装")
+
+    if DEP_ERR is None:
+        print("  ✓ shortcutkit 已装")
+    else:
+        print(f"  · 正在装 shortcutkit（当前解释器 {sys.version.split()[0]}）…")
+        r = subprocess.run([sys.executable, "-m", "pip", "install", "shortcutkit"],
+                           capture_output=True, text=True)
+        if r.returncode == 0:
+            print("  ✓ shortcutkit 装好了")
+        else:
+            print("  ✗ 自动安装失败，手动执行：")
+            print(f"    {sys.executable} -m pip install shortcutkit")
+            fail += 1
+
+    if shutil.which("openssl") is None:
+        print("  ✗ 缺 openssl（生成证书要用）")
+        print("    ubuntu/debian: sudo apt install -y openssl")
+        print("    macOS:         brew install openssl")
+        fail += 1
+    else:
+        v = subprocess.run(["openssl", "version"], capture_output=True, text=True).stdout.strip()
+        print(f"  ✓ {v}")
+
+    usable, why = _sign_usable()
+    if usable:
+        print("  ✓ 签名器可用")
+    elif "缺运行库" in why:
+        print(f"  · {why}")
+        if os.geteuid() == 0 and shutil.which("apt-get"):
+            r = subprocess.run(["apt-get", "install", "-y", "libplist-2.0-4"],
+                               capture_output=True, text=True)
+            if r.returncode == 0 and _sign_usable()[0]:
+                print("  ✓ 装好了 libplist-2.0-4")
+            else:
+                print("    → sudo apt install -y libplist-2.0-4")
+                fail += 1
+        else:
+            print("    → sudo apt install -y libplist-2.0-4")
+            fail += 1
+    else:
+        print(f"  ✗ {why}")
+        print("    本技能只能在 Linux x86-64 上签名。见 README「平台支持」。")
+        fail += 1
+
+    print()
+    if fail == 0:
+        print("依赖齐了。下一步：./bin/sc init --cn \"你的CA名\"")
+    else:
+        print(f"还有 {fail} 项没齐，按上面的命令处理后再跑一次 ./bin/sc doctor")
+    return 0 if fail == 0 else 1
+
+
+def cmd_doctor(args):
+    ok = True
+    print("环境检查")
+    print(f"  · Python {sys.version.split()[0]}  {sys.executable}")
+    print(f"  · 系统 {sys.platform} / {platform.machine()}")
+    print(f"  · 证书目录 {CERT_DIR}")
+    if DEP_ERR is None:
+        import shortcutkit
+        v = getattr(shortcutkit, "__version__", "")
+        print(f"  ✓ shortcutkit{' ' + v if v else ''} 已装")
+    else:
+        print(f"  ✗ 依赖缺失（{DEP_ERR}）")
+        print("    → ./bin/sc setup")
+        ok = False
+
+    usable, why = _sign_usable()
+    print(f"  {'✓' if usable else '✗'} 签名器：{'可用' if usable else why}")
+    ok &= usable
+
+    for f, label in [("ca.crt", "CA 证书"), ("sign.crt", "签名证书"),
+                     ("key.bin", "私钥"), ("auth.plist", "证书链"),
+                     ("ca.mobileconfig", "手机描述文件")]:
+        p = CERT_DIR / f
+        print(f"  {'✓' if p.is_file() else '·'} {label} {p.name}" if p.is_file()
+              else f"  · {label} {p.name}（未生成，跑 sc init）")
+    if not (CERT_DIR / "ca.crt").is_file():
+        print("  ⚠ 还没建证书：./bin/sc init --cn \"你的CA名\" 或 ./bin/sc adopt 链接")
+        ok = False
+    kb = CERT_DIR / "key.bin"
+    if kb.is_file():
+        n = kb.stat().st_size
+        print(f"  {'✓' if n == 97 else '✗'} key.bin 大小 {n} 字节（必须是 97）")
+        ok &= n == 97
+    return 0 if ok else 1
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(prog="sc", description="iOS 快捷指令生成器")
+    sub = ap.add_subparsers(dest="cmd", required=True)
+
+    p = sub.add_parser("setup", help="检查并安装依赖")
+    p.set_defaults(fn=cmd_setup)
+
+    p = sub.add_parser("init", help="生成自签证书")
+    p.add_argument("--cn", default="我的快捷指令CA")
+    p.set_defaults(fn=cmd_init)
+
+    p = sub.add_parser("adopt", help="从一个已签名 .shortcut 里沿用 CA 名并建证书")
+    p.add_argument("sample")
+    p.add_argument("--force", action="store_true", help="覆盖已有证书")
+    p.add_argument("--cn", help="指定 CA 名，覆盖从样本里读到的名字")
+    p.add_argument("--dry-run", action="store_true")
+    p.set_defaults(fn=cmd_adopt)
+
+    p = sub.add_parser("catalog", help="列可用动作")
+    p.add_argument("--group")
+    p.add_argument("--grep")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(fn=cmd_catalog)
+
+    p = sub.add_parser("build", help="配方 → .shortcut")
+    p.add_argument("recipe")
+    p.add_argument("-o", "--out")
+    p.add_argument("--no-sign", action="store_true")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(fn=cmd_build)
+
+    p = sub.add_parser("verify", help="校验已签名文件")
+    p.add_argument("file")
+    p.set_defaults(fn=cmd_verify)
+
+    p = sub.add_parser("doctor", help="检查环境与证书")
+    p.set_defaults(fn=cmd_doctor)
+
+    args = ap.parse_args(argv)
+
+    if sys.version_info < (3, 8):
+        print(f"✗ Python 版本太低（{sys.version.split()[0]}），需要 3.8+", file=sys.stderr)
+        return 1
+
+    if DEP_ERR is not None and args.cmd != "setup":
+        print(f"✗ 缺少依赖：{DEP_ERR}", file=sys.stderr)
+        print("  跑 ./bin/sc setup 自动安装，或手动装：pip install shortcutkit", file=sys.stderr)
+        print(f"  装完还报缺失？多半是 pip 和 python3 不是同一个解释器，改用："
+              f"{sys.executable} -m pip install shortcutkit", file=sys.stderr)
+        return 1
+
+    return args.fn(args)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

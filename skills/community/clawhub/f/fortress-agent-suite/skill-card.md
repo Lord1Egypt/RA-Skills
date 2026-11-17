@@ -1,45 +1,54 @@
-## Description: <br>
-Fortress Agent Suite provides self-healing, health monitoring, automated maintenance, and LLM model management for OpenClaw agents in production. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fortress Agent Suite provides self-healing, health monitoring, automated maintenance, proactive hardening, and model management for OpenClaw deployments.
 
-## Publisher: <br>
-[kienphan91](https://clawhub.ai/user/kienphan91) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kienphan91](https://clawhub.ai/user/kienphan91)
 
-## Use Case: <br>
-Developers and operators managing OpenClaw deployments use this skill to install and operate monitoring, backup, recovery, workspace maintenance, and model-provider management helpers on trusted hosts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist as scheduled root-level maintenance jobs. <br>
-Mitigation: Install only on a dedicated trusted OpenClaw host, review cron entries before enabling them, and document removal and rollback steps. <br>
-Risk: Maintenance scripts can change system and workspace state, including gateway restarts, log deletion, cache dropping, and broad Git commits. <br>
-Mitigation: Review each script before deployment, run with the least operational scope practical, and verify backups and commits do not capture secrets. <br>
-Risk: The self-improver and notification paths can install other skills or send operational details externally. <br>
-Mitigation: Review or disable self_improver.py and Telegram notification configuration unless those behaviors are explicitly required. <br>
+## Use Case:
 
+Developers and operators use this skill to add scheduled recovery, monitoring, backup, workspace integrity checks, and LLM provider configuration management to OpenClaw deployments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kienphan91/fortress-agent-suite) <br>
-- [Publisher profile](https://clawhub.ai/user/kienphan91) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact installation guide](artifact/INSTALL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for agent-side maintenance tasks; no structured API response is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Persistent root-level scheduled automation can modify OpenClaw configuration, restart services, and alter workspace state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted, isolated OpenClaw environment after reviewing every scheduled job and script; do not use shared systems or production hosts unless recurring root-level control is acceptable.
+
+Risk: Automatic rollback, Git commits, gateway restarts, outbound Telegram notifications, and automatic skill installation can change state or disclose operational information with weak user control.
+
+Mitigation: Remove auto-skill installation and cron self-repair before use, replace shell-based commands, add an uninstall path, and keep backups outside any Git repository.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kienphan91/skills/fortress-agent-suite)
+- [Publisher profile](https://clawhub.ai/user/kienphan91)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration details, and operational code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance and configuration-oriented changes for OpenClaw environments; no structured API response contract is declared.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

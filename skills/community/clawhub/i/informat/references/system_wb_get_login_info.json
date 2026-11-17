@@ -1,0 +1,11 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_wb_get_login_info",
+		"description": "Get my login information, including current logged-in user info and system configuration",
+		"parameters": {
+			"type": "object",
+      		"properties": {}
+		}
+	}
+}

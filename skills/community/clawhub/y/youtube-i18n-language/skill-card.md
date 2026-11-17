@@ -1,43 +1,61 @@
-## Description: <br>
-Manage YouTube i18n languages by guiding an agent to list available internationalization languages with the yutu CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage YouTube i18n languages by helping agents list available internationalization languages with the yutu CLI.
 
-## Publisher: <br>
-[OpenWaygate](https://clawhub.ai/user/OpenWaygate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openwaygate](https://clawhub.ai/user/openwaygate)
 
-## Use Case: <br>
-External developers and YouTube API users can use this skill to list supported YouTube internationalization languages and prepare the yutu CLI authentication needed to run that command. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: YouTube OAuth credential and token files are sensitive local secrets. <br>
-Mitigation: Keep client_secret.json and youtube.token.json private, out of repositories and shared folders; revoke or rotate tokens if either file is exposed. <br>
-Risk: The skill relies on the third-party yutu CLI and requires YouTube API access. <br>
-Mitigation: Install only if you trust the yutu CLI package and are comfortable granting it YouTube API access. <br>
+## Use Case:
 
+Developers and operators use this skill to prepare YouTube API credentials and ask an agent for commands to list YouTube internationalization languages through yutu.
 
-## Reference(s): <br>
-- [I18n Language List](references/i18nLanguage-list.md) <br>
-- [Yutu Setup Guide](references/setup.md) <br>
-- [yutu GitHub repository](https://github.com/eat-pray-ai/yutu) <br>
-- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and CLI flag tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include yutu CLI commands, setup steps, and output-format guidance for table, JSON, or YAML command results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.10.7-dev (source: server evidence release.version) <br>
+Risk: Installing a mutable third-party yutu CLI package could expose users to unreviewed package changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package and publisher before installing, prefer a pinned version or verified release, and scan updates before deployment.
+
+Risk: OAuth client secrets and cached YouTube tokens can grant account access if exposed.
+
+Mitigation: Keep client_secret.json and youtube.token.json out of source control and shared folders, use narrow OAuth scopes, and revoke or rotate tokens if exposed.
+
+Risk: Enabling optional YouTube APIs can broaden account and project access beyond the language-listing task.
+
+Mitigation: Enable only the YouTube APIs needed for the intended workflow and remove optional APIs when they are not required.
+
+## Reference(s):
+
+- [I18n Language List](references/i18nLanguage-list.md)
+- [Yutu Setup Guide](references/setup.md)
+- [yutu project](https://github.com/eat-pray-ai/yutu)
+- [yutu releases](https://github.com/eat-pray-ai/yutu/releases/latest)
+- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/overview)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference yutu command flags and required local credential or token files.]
+
+## Skill Version(s):
+
+0.10.7-dev (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,1825 @@
+{
+  "version": "2.0.0",
+  "schema": "dual-segment(v2.0)",
+  "updated": "2026-09-11",
+  "description": "双源合并唯一真源：white_list(py 87条迁移) + kb_sources(json 29条)。credibility/weight/tier 互推为 TASK4 临时映射，待权重归一化定稿覆盖。",
+  "white_list": [
+    {
+      "domain": "csm.org.cn",
+      "name": "中国金属学会",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 25,
+      "patterns": [
+        "csm.org.cn",
+        "金属学会"
+      ]
+    },
+    {
+      "domain": "sac.gov.cn",
+      "name": "国家标准化管理委员会",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 30,
+      "patterns": [
+        "sac.gov.cn",
+        "GB "
+      ]
+    },
+    {
+      "domain": "astm.org",
+      "name": "ASTM International",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 25,
+      "patterns": [
+        "astm.org"
+      ]
+    },
+    {
+      "domain": "iso.org",
+      "name": "ISO",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 25,
+      "patterns": [
+        "iso.org"
+      ]
+    },
+    {
+      "domain": "scholar.google.com",
+      "name": "Google Scholar",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 20,
+      "patterns": [
+        "scholar.google.com"
+      ]
+    },
+    {
+      "domain": "cnki.net",
+      "name": "知网",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 20,
+      "patterns": [
+        "cnki.net"
+      ]
+    },
+    {
+      "domain": "sciencedirect.com",
+      "name": "ScienceDirect",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 25,
+      "patterns": [
+        "sciencedirect.com"
+      ]
+    },
+    {
+      "domain": "ieeexplore.ieee.org",
+      "name": "IEEE Xplore",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 22,
+      "patterns": [
+        "ieeexplore.ieee.org"
+      ]
+    },
+    {
+      "domain": "link.springer.com",
+      "name": "SpringerLink",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 22,
+      "patterns": [
+        "link.springer.com"
+      ]
+    },
+    {
+      "domain": "researchgate.net",
+      "name": "ResearchGate",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 18,
+      "patterns": [
+        "researchgate.net"
+      ]
+    },
+    {
+      "domain": "arxiv.org",
+      "name": "arXiv",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 25,
+      "patterns": [
+        "arxiv.org"
+      ]
+    },
+    {
+      "domain": "github.com",
+      "name": "GitHub",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 20,
+      "patterns": [
+        "github.com"
+      ]
+    },
+    {
+      "domain": "huggingface.co",
+      "name": "Hugging Face",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 20,
+      "patterns": [
+        "huggingface.co"
+      ]
+    },
+    {
+      "domain": "zhihu.com",
+      "name": "知乎",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 15,
+      "patterns": [
+        "zhihu.com"
+      ]
+    },
+    {
+      "domain": "csdn.net",
+      "name": "CSDN",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 66,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 10,
+      "patterns": [
+        "csdn.net"
+      ]
+    },
+    {
+      "domain": "cnblogs.com",
+      "name": "博客园",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 66,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 10,
+      "patterns": [
+        "cnblogs.com"
+      ]
+    },
+    {
+      "domain": "juejin.cn",
+      "name": "掘金",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 66,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 10,
+      "patterns": [
+        "juejin.cn"
+      ]
+    },
+    {
+      "domain": "infoq.com",
+      "name": "InfoQ",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 15,
+      "patterns": [
+        "infoq.com",
+        "infoq.cn"
+      ]
+    },
+    {
+      "domain": "geekbang.org",
+      "name": "极客时间",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 66,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 12,
+      "patterns": [
+        "geekbang.org",
+        "time.geekbang"
+      ]
+    },
+    {
+      "domain": "qbitai.com",
+      "name": "量子位",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 15,
+      "patterns": [
+        "qbitai.com"
+      ]
+    },
+    {
+      "domain": "jiqizhixin.com",
+      "name": "机器之心",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 15,
+      "patterns": [
+        "jiqizhixin.com"
+      ]
+    },
+    {
+      "domain": "36kr.com",
+      "name": "36氪",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 15,
+      "patterns": [
+        "36kr.com"
+      ]
+    },
+    {
+      "domain": "developer.aliyun.com",
+      "name": "阿里云开发者",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 15,
+      "patterns": [
+        "developer.aliyun.com"
+      ]
+    },
+    {
+      "domain": "cloud.tencent.com",
+      "name": "腾讯云开发者",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 15,
+      "patterns": [
+        "cloud.tencent.com"
+      ]
+    },
+    {
+      "domain": "developer.baidu.com",
+      "name": "百度开发者",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 66,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 12,
+      "patterns": [
+        "developer.baidu.com"
+      ]
+    },
+    {
+      "domain": "stats.gov.cn",
+      "name": "国家统计局",
+      "domain_key": "market-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 30,
+      "patterns": [
+        "stats.gov.cn"
+      ]
+    },
+    {
+      "domain": "statista.com",
+      "name": "Statista",
+      "domain_key": "market-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 25,
+      "patterns": [
+        "statista.com"
+      ]
+    },
+    {
+      "domain": "questmobile.com.cn",
+      "name": "QuestMobile",
+      "domain_key": "market-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 20,
+      "patterns": [
+        "questmobile.com.cn"
+      ]
+    },
+    {
+      "domain": "csrc.gov.cn",
+      "name": "中国证监会",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 30,
+      "patterns": [
+        "csrc.gov.cn"
+      ]
+    },
+    {
+      "domain": "sse.com.cn",
+      "name": "上海证券交易所",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 30,
+      "patterns": [
+        "sse.com.cn"
+      ]
+    },
+    {
+      "domain": "szse.cn",
+      "name": "深圳证券交易所",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 30,
+      "patterns": [
+        "szse.cn"
+      ]
+    },
+    {
+      "domain": "wind.com.cn",
+      "name": "Wind",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 25,
+      "patterns": [
+        "wind.com.cn"
+      ]
+    },
+    {
+      "domain": "bloomberg.com",
+      "name": "Bloomberg",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 25,
+      "patterns": [
+        "bloomberg.com"
+      ]
+    },
+    {
+      "domain": "10jqka.com.cn",
+      "name": "同花顺",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 20,
+      "patterns": [
+        "10jqka.com.cn"
+      ]
+    },
+    {
+      "domain": "eastmoney.com",
+      "name": "东方财富",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 20,
+      "patterns": [
+        "eastmoney.com"
+      ]
+    },
+    {
+      "domain": "cninfo.com.cn",
+      "name": "巨潮资讯",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 25,
+      "patterns": [
+        "cninfo.com.cn"
+      ]
+    },
+    {
+      "domain": "stcn.com",
+      "name": "证券时报",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 18,
+      "patterns": [
+        "stcn.com"
+      ]
+    },
+    {
+      "domain": "cs.com.cn",
+      "name": "中国证券网",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 18,
+      "patterns": [
+        "cs.com.cn",
+        "cnstock"
+      ]
+    },
+    {
+      "domain": "gov.cn",
+      "name": "国务院",
+      "domain_key": "policy-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 30,
+      "patterns": [
+        "gov.cn"
+      ]
+    },
+    {
+      "domain": "npc.gov.cn",
+      "name": "国家法律法规数据库",
+      "domain_key": "policy-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 30,
+      "patterns": [
+        "npc.gov.cn",
+        "flk.npc.gov.cn"
+      ]
+    },
+    {
+      "domain": "miit.gov.cn",
+      "name": "工信部",
+      "domain_key": "policy-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 25,
+      "patterns": [
+        "miit.gov.cn"
+      ]
+    },
+    {
+      "domain": "cbirc.gov.cn",
+      "name": "银保监会",
+      "domain_key": "policy-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 25,
+      "patterns": [
+        "cbirc.gov.cn"
+      ]
+    },
+    {
+      "domain": "csrc.gov.cn",
+      "name": "证监会",
+      "domain_key": "policy-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 25,
+      "patterns": [
+        "csrc.gov.cn"
+      ]
+    },
+    {
+      "domain": "pattern:docs",
+      "name": "公司官方文档",
+      "domain_key": "competitor-intel",
+      "topics": [],
+      "credibility": 82,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 20,
+      "patterns": [
+        "docs.",
+        "/docs/"
+      ]
+    },
+    {
+      "domain": "theverge.com",
+      "name": "The Verge",
+      "domain_key": "competitor-intel",
+      "topics": [],
+      "credibility": 82,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 20,
+      "patterns": [
+        "theverge.com"
+      ]
+    },
+    {
+      "domain": "techcrunch.com",
+      "name": "TechCrunch",
+      "domain_key": "competitor-intel",
+      "topics": [],
+      "credibility": 82,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 20,
+      "patterns": [
+        "techcrunch.com"
+      ]
+    },
+    {
+      "domain": "wikipedia.org",
+      "name": "Wikipedia",
+      "domain_key": "general",
+      "topics": [],
+      "credibility": 74,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 15,
+      "patterns": [
+        "wikipedia.org"
+      ]
+    },
+    {
+      "domain": "britannica.com",
+      "name": "Britannica",
+      "domain_key": "general",
+      "topics": [],
+      "credibility": 82,
+      "type": "官方权威源",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 20,
+      "patterns": [
+        "britannica.com"
+      ]
+    },
+    {
+      "domain": "baosteel.com",
+      "name": "宝钢",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": [
+        "baosteel.com"
+      ]
+    },
+    {
+      "domain": "shougang.com.cn",
+      "name": "首钢",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 15,
+      "patterns": [
+        "shougang.com.cn"
+      ]
+    },
+    {
+      "domain": "hbisco.com",
+      "name": "河钢",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 15,
+      "patterns": [
+        "hbisco.com"
+      ]
+    },
+    {
+      "domain": "arcelormittal.com",
+      "name": "ArcelorMittal",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": [
+        "arcelormittal.com"
+      ]
+    },
+    {
+      "domain": "posco.co.kr",
+      "name": "Posco",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": [
+        "posco.co.kr"
+      ]
+    },
+    {
+      "domain": "sms-group.com",
+      "name": "SMS group",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 18,
+      "patterns": [
+        "sms-group.com"
+      ]
+    },
+    {
+      "domain": "andritz.com",
+      "name": "Andritz",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 18,
+      "patterns": [
+        "andritz.com"
+      ]
+    },
+    {
+      "domain": "mhi.com",
+      "name": "Mitsubishi-Hitachi",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 15,
+      "patterns": [
+        "mhi.com"
+      ]
+    },
+    {
+      "domain": "aist.org",
+      "name": "AIST",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 15,
+      "patterns": [
+        "aist.org"
+      ]
+    },
+    {
+      "domain": "mpif.org",
+      "name": "MPIF",
+      "domain_key": "tech-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 15,
+      "patterns": [
+        "mpif.org"
+      ]
+    },
+    {
+      "domain": "iresearch.com.cn",
+      "name": "艾瑞咨询",
+      "domain_key": "market-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": [
+        "iresearch.com.cn"
+      ]
+    },
+    {
+      "domain": "analysys.cn",
+      "name": "易观分析",
+      "domain_key": "market-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 18,
+      "patterns": [
+        "analysys.cn"
+      ]
+    },
+    {
+      "domain": "mckinsey.com",
+      "name": "麦肯锡",
+      "domain_key": "market-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 22,
+      "patterns": [
+        "mckinsey.com"
+      ]
+    },
+    {
+      "domain": "bcg.com",
+      "name": "BCG",
+      "domain_key": "market-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 22,
+      "patterns": [
+        "bcg.com"
+      ]
+    },
+    {
+      "domain": "bain.com",
+      "name": "贝恩",
+      "domain_key": "market-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 22,
+      "patterns": [
+        "bain.com"
+      ]
+    },
+    {
+      "domain": "deloitte.com",
+      "name": "Deloitte",
+      "domain_key": "market-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": [
+        "deloitte.com"
+      ]
+    },
+    {
+      "domain": "cicc.com.cn",
+      "name": "中金",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 22,
+      "patterns": [
+        "cicc.com.cn"
+      ]
+    },
+    {
+      "domain": "cs.com.cn",
+      "name": "中信证券",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 22,
+      "patterns": [
+        "cs.com.cn"
+      ]
+    },
+    {
+      "domain": "cmschina.com.cn",
+      "name": "招商证券",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": [
+        "cmschina.com.cn"
+      ]
+    },
+    {
+      "domain": "htsec.com",
+      "name": "海通证券",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": [
+        "htsec.com"
+      ]
+    },
+    {
+      "domain": "htsc.com.cn",
+      "name": "华泰证券",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": [
+        "htsc.com.cn"
+      ]
+    },
+    {
+      "domain": "goldmansachs.com",
+      "name": "Goldman Sachs",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 22,
+      "patterns": [
+        "goldmansachs.com"
+      ]
+    },
+    {
+      "domain": "morganstanley.com",
+      "name": "Morgan Stanley",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 22,
+      "patterns": [
+        "morganstanley.com"
+      ]
+    },
+    {
+      "domain": "pattern:",
+      "name": "公司公告/年报",
+      "domain_key": "finance-research",
+      "topics": [],
+      "credibility": 90,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 25,
+      "patterns": [
+        "公告",
+        "annual report",
+        "年报"
+      ]
+    },
+    {
+      "domain": "peopleapp.com",
+      "name": "人民日报",
+      "domain_key": "policy-research",
+      "topics": [],
+      "credibility": 82,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": [
+        "peopleapp.com",
+        "rmrb"
+      ]
+    },
+    {
+      "domain": "ce.cn",
+      "name": "经济日报",
+      "domain_key": "policy-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 18,
+      "patterns": [
+        "jjw",
+        "ce.cn"
+      ]
+    },
+    {
+      "domain": "pattern:study-times",
+      "name": "学习时报",
+      "domain_key": "policy-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 18,
+      "patterns": [
+        "study times"
+      ]
+    },
+    {
+      "domain": "chinalawsociety.com",
+      "name": "中国法学会",
+      "domain_key": "policy-research",
+      "topics": [],
+      "credibility": 74,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 15,
+      "patterns": [
+        "chinalawsociety.com"
+      ]
+    },
+    {
+      "domain": "reddit.com",
+      "name": "Reddit",
+      "domain_key": "competitor-intel",
+      "topics": [],
+      "credibility": 74,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 18,
+      "patterns": [
+        "reddit.com"
+      ]
+    },
+    {
+      "domain": "okjike.com",
+      "name": "即刻",
+      "domain_key": "competitor-intel",
+      "topics": [],
+      "credibility": 74,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 15,
+      "patterns": [
+        "okjike.com"
+      ]
+    },
+    {
+      "domain": "v2ex.com",
+      "name": "V2EX",
+      "domain_key": "competitor-intel",
+      "topics": [],
+      "credibility": 74,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 15,
+      "patterns": [
+        "v2ex.com"
+      ]
+    },
+    {
+      "domain": "geekpark.net",
+      "name": "极客公园",
+      "domain_key": "competitor-intel",
+      "topics": [],
+      "credibility": 74,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 18,
+      "patterns": [
+        "geekpark.net"
+      ]
+    },
+    {
+      "domain": "ifeng.com",
+      "name": "爱范儿",
+      "domain_key": "competitor-intel",
+      "topics": [],
+      "credibility": 74,
+      "type": "行业头部",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 15,
+      "patterns": [
+        "ifeng.com"
+      ]
+    },
+    {
+      "domain": "huxiu.com",
+      "name": "虎嗅",
+      "domain_key": "general",
+      "topics": [],
+      "credibility": 66,
+      "type": "一般可信",
+      "access": "web",
+      "verified": true,
+      "tier": 3,
+      "weight": 10,
+      "patterns": [
+        "huxiu.com"
+      ]
+    },
+    {
+      "domain": "tmtpost.com",
+      "name": "钛媒体",
+      "domain_key": "general",
+      "topics": [],
+      "credibility": 66,
+      "type": "一般可信",
+      "access": "web",
+      "verified": true,
+      "tier": 3,
+      "weight": 10,
+      "patterns": [
+        "tmtpost.com"
+      ]
+    },
+    {
+      "domain": "yicai.com",
+      "name": "第一财经",
+      "domain_key": "general",
+      "topics": [],
+      "credibility": 66,
+      "type": "一般可信",
+      "access": "web",
+      "verified": true,
+      "tier": 3,
+      "weight": 12,
+      "patterns": [
+        "yicai.com"
+      ]
+    },
+    {
+      "domain": "caixin.com",
+      "name": "财新",
+      "domain_key": "general",
+      "topics": [],
+      "credibility": 74,
+      "type": "一般可信",
+      "access": "web",
+      "verified": true,
+      "tier": 3,
+      "weight": 15,
+      "patterns": [
+        "caixin.com"
+      ]
+    }
+  ],
+  "kb_sources": [
+    {
+      "domain": "ccia.xin",
+      "name": "中国复合材料工业协会",
+      "topics": [
+        "复合材料",
+        "碳纤维",
+        "预浸料",
+        "玻璃纤维",
+        "芳纶"
+      ],
+      "credibility": 95,
+      "type": "行业协会",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 28,
+      "patterns": []
+    },
+    {
+      "domain": "bjhgyjs.cn",
+      "name": "北京中科光析检测技术研究所",
+      "topics": [
+        "材料检测",
+        "预浸料",
+        "复合材料",
+        "碳纤维",
+        "检测标准"
+      ],
+      "credibility": 85,
+      "type": "检测机构",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 28,
+      "patterns": []
+    },
+    {
+      "domain": "jssea.cn",
+      "name": "江苏省表面工程行业协会",
+      "topics": [
+        "表面处理",
+        "电镀",
+        "镀镍",
+        "镀锌",
+        "可焊性"
+      ],
+      "credibility": 80,
+      "type": "行业协会",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "998pcb.com",
+      "name": "998电路集团-PCB技术站",
+      "topics": [
+        "PCB",
+        "电路板",
+        "沉镍金",
+        "ENIG",
+        "焊接",
+        "表面处理"
+      ],
+      "credibility": 75,
+      "type": "行业技术门户",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "jiepei.com",
+      "name": "捷配PCB智造",
+      "topics": [
+        "PCB",
+        "焊接",
+        "SMT",
+        "失效分析",
+        "可焊性"
+      ],
+      "credibility": 80,
+      "type": "企业技术博客",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "eepw.com.cn",
+      "name": "电子工程世界",
+      "topics": [
+        "电子工程",
+        "焊接",
+        "PCB",
+        "半导体",
+        "封装"
+      ],
+      "credibility": 80,
+      "type": "专业媒体",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "antpedia.com",
+      "name": "分析测试百科网",
+      "topics": [
+        "标准",
+        "检测",
+        "GB",
+        "ASTM",
+        "ISO",
+        "分析测试",
+        "实验室"
+      ],
+      "credibility": 80,
+      "type": "行业门户",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "zoomlion.com",
+      "name": "中联重科官网",
+      "topics": [
+        "工程机械",
+        "起重机械",
+        "混凝土机械",
+        "矿山机械",
+        "农业机械",
+        "人形机器人"
+      ],
+      "credibility": 85,
+      "type": "企业官网",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 28,
+      "patterns": []
+    },
+    {
+      "domain": "cncma.org",
+      "name": "中国工程机械工业协会",
+      "topics": [
+        "工程机械",
+        "行业数据",
+        "政策",
+        "标准"
+      ],
+      "credibility": 95,
+      "type": "行业协会",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 28,
+      "patterns": []
+    },
+    {
+      "domain": "kinghelm.com.cn",
+      "name": "金航标电子",
+      "topics": [
+        "连接器",
+        "排针",
+        "排母",
+        "PIN针",
+        "接插件"
+      ],
+      "credibility": 75,
+      "type": "企业官网",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "hbtgcarbon.com",
+      "name": "河北碳谷碳纤维",
+      "topics": [
+        "碳纤维",
+        "预浸料",
+        "复合材料",
+        "检测标准"
+      ],
+      "credibility": 80,
+      "type": "企业官网",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "bjytest.com",
+      "name": "北检检测技术研究院",
+      "topics": [
+        "检测",
+        "碳纤维",
+        "挥发份",
+        "树脂含量",
+        "材料测试"
+      ],
+      "credibility": 80,
+      "type": "检测机构",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "reyaguan66.com",
+      "name": "山东鑫泰鑫-热压罐",
+      "topics": [
+        "热压罐",
+        "复合材料",
+        "碳纤维",
+        "固化",
+        "成型工艺"
+      ],
+      "credibility": 80,
+      "type": "设备厂商",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "eastmoney.com",
+      "name": "东方财富网",
+      "topics": [
+        "股票",
+        "行情",
+        "基金",
+        "财经",
+        "资讯",
+        "上市公司"
+      ],
+      "credibility": 80,
+      "type": "专业财经媒体",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "sina.com.cn",
+      "name": "新浪财经",
+      "topics": [
+        "财经",
+        "股票",
+        "基金",
+        "宏观",
+        "行情"
+      ],
+      "credibility": 78,
+      "type": "综合门户-财经",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "cls.cn",
+      "name": "财联社",
+      "topics": [
+        "证券",
+        "快讯",
+        "市场",
+        "机构",
+        "投资"
+      ],
+      "credibility": 85,
+      "type": "专业财经媒体",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 28,
+      "patterns": []
+    },
+    {
+      "domain": "thepaper.cn",
+      "name": "澎湃新闻",
+      "topics": [
+        "财经",
+        "宏观",
+        "政策",
+        "新闻",
+        "调查"
+      ],
+      "credibility": 82,
+      "type": "主流媒体",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "gelonghui.com",
+      "name": "格隆汇",
+      "topics": [
+        "港股",
+        "美股",
+        "上市公司",
+        "财经",
+        "投资"
+      ],
+      "credibility": 80,
+      "type": "港股财经媒体",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "xueqiu.com",
+      "name": "雪球",
+      "topics": [
+        "股票",
+        "基金",
+        "投资",
+        "估值",
+        "行情"
+      ],
+      "credibility": 80,
+      "type": "投资社区",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "199it.com",
+      "name": "199IT互联网数据资讯",
+      "topics": [
+        "市场数据",
+        "行业报告",
+        "用户研究",
+        "互联网",
+        "消费"
+      ],
+      "credibility": 80,
+      "type": "数据资讯",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "iimedia.cn",
+      "name": "艾媒咨询",
+      "topics": [
+        "市场调研",
+        "行业报告",
+        "消费",
+        "用户画像",
+        "市场规模"
+      ],
+      "credibility": 78,
+      "type": "咨询机构",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "36kr.com",
+      "name": "36氪",
+      "topics": [
+        "行业",
+        "市场",
+        "创业",
+        "新经济",
+        "报告",
+        "科技"
+      ],
+      "credibility": 80,
+      "type": "科技媒体",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "ifeng.com",
+      "name": "凤凰网",
+      "topics": [
+        "政策",
+        "时事",
+        "财经",
+        "新闻",
+        "社会"
+      ],
+      "credibility": 75,
+      "type": "综合门户",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "163.com",
+      "name": "网易",
+      "topics": [
+        "政策",
+        "新闻",
+        "财经",
+        "时事",
+        "科技"
+      ],
+      "credibility": 75,
+      "type": "综合门户",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "csdn.net",
+      "name": "CSDN",
+      "topics": [
+        "编程",
+        "开发",
+        "开源",
+        "算法",
+        "代码",
+        "架构"
+      ],
+      "credibility": 75,
+      "type": "技术社区",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "cnblogs.com",
+      "name": "博客园",
+      "topics": [
+        "技术",
+        "编程",
+        "开源",
+        "架构",
+        "开发"
+      ],
+      "credibility": 75,
+      "type": "技术博客",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "qcc.com",
+      "name": "企查查",
+      "topics": [
+        "企业",
+        "工商",
+        "股东",
+        "竞品",
+        "公司",
+        "融资"
+      ],
+      "credibility": 85,
+      "type": "企业信息平台",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 28,
+      "patterns": []
+    },
+    {
+      "domain": "qixin.com",
+      "name": "企信宝",
+      "topics": [
+        "企业",
+        "工商",
+        "信用",
+        "公司",
+        "股东"
+      ],
+      "credibility": 82,
+      "type": "企业信息平台",
+      "access": "web",
+      "verified": true,
+      "tier": 2,
+      "weight": 20,
+      "patterns": []
+    },
+    {
+      "domain": "tianyancha.com",
+      "name": "天眼查",
+      "topics": [
+        "企业",
+        "工商",
+        "股东",
+        "竞品",
+        "股权",
+        "公司"
+      ],
+      "credibility": 85,
+      "type": "企业信息平台",
+      "access": "web",
+      "verified": true,
+      "tier": 1,
+      "weight": 28,
+      "patterns": []
+    }
+  ]
+}

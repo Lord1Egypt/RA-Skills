@@ -1,0 +1,44 @@
+# SkillHub / ClawHub 发布清单（WorkBuddy 开放平台）
+# 提交前请核对以下字段，尤其是 slug / category / license / author。
+name: story-comic-creator
+slug: story-comic-creator
+version: 1.5.0
+title: 往事漫画 · 故事连环画生成器
+description: >-
+  将故事/小说/回忆录等文字内容制作成专业连环画（单文件 HTML + 图片）。
+  内置 8 阶段工作流：需求确认 → 剧本创作 → 角色资产设定 → 角色锚定 →
+  批量生图 → HTML 组装 → 压缩发布 → 迭代修改；支持多宫格、气泡对白、
+  心理活动、旁白栏、音效字、分集结构，以及写实水彩画风与角色一致性锚定。
+  v1.5 新增画风控制体系：风格参考图（强制第一步）、固定风格锚定块 + 负面约束块、
+  含角色画格双重参考（风格参考图 + 三视图）、最小验证、JPG 强制、HTML 冗余清理、
+  发布版只复制被引用的文件。生图逻辑平台无关，统一映射文生图 / 参考图生图。
+author: 沉淀自《我藏了整个青春的人》《岁月不忘，我那位温柔又执拗的二叔》连环画项目
+category: 内容创作
+tags:
+  - 连环画
+  - 漫画
+  - 回忆录
+  - 故事
+  - 小说改编
+  - 水彩画风
+  - 写实水彩
+  - 漫画生成
+  - 故事漫画
+  - HTML
+  - 图像生成
+  - 分镜
+  - 个人回忆
+  - AI绘画
+license: MIT
+trigger_words:
+  - 把我的故事做成漫画
+  - 生成连环画
+  - 做个小人书
+  - 故事转漫画
+  - 往事漫画
+  - 回忆录漫画
+allowed-tools:
+  - ImageGen
+  - Bash
+homepage: ""
+repository: ""

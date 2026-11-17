@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/pathway-atlas/schemas/planning-session.schema.json",
+  "title": "Recoverable planning session snapshot",
+  "$comment": "Runtime additionally checks canonical ordering, aligned outcome metadata, exact task partition, session digest, and live typed-receipt replay before any comparable-year skip.",
+  "x-semantic-validator": {
+    "locator": "scripts.planning_session.PlanningSession.from_dict",
+    "flat_locator": "planning_session.PlanningSession.from_dict",
+    "checks": ["canonical_sorted_arrays", "aligned_outcome_metadata", "fixed_provenance_digests", "typed_receipt_replay", "finite_preflight_degradation_codes", "exact_expected_task_partition", "stage_reachability", "transition_revision_floor", "session_digest"]
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "session_id", "revision", "stage", "profile_digest",
+    "preflight_digest", "preflight_degradation_codes", "query_plan_digest", "expected_task_ids",
+    "completed_task_ids", "completed_artifact_digests",
+    "completed_provenance_digests", "completed_usable_flags", "completed_receipt_digests", "unavailable_task_ids",
+    "unavailable_reason_codes", "evidence_manifest_hash", "evidence_receipt_digest",
+    "calculation_digest", "calculation_receipt_digest", "report_digest",
+    "publication_receipt_digest", "session_digest"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "session_id": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+    "revision": {"type": "integer", "minimum": 0, "maximum": 99999999},
+    "stage": {"enum": ["intake", "profile_confirmed", "preflight_complete", "query_plan_ready", "research_in_progress", "evidence_finalized", "calculation_complete", "report_published"]},
+    "profile_digest": {"$ref": "#/$defs/digest"},
+    "preflight_digest": {"$ref": "#/$defs/optionalDigest"},
+    "preflight_degradation_codes": {"type": "array", "uniqueItems": true, "x-canonical-order": "ascending", "items": {"$ref": "#/$defs/preflightDegradation"}},
+    "query_plan_digest": {"$ref": "#/$defs/optionalDigest"},
+    "expected_task_ids": {"$ref": "#/$defs/taskIds", "x-canonical-order": "ascending"},
+    "completed_task_ids": {"$ref": "#/$defs/taskIds", "x-canonical-order": "ascending"},
+    "completed_artifact_digests": {"type": "array", "items": {"$ref": "#/$defs/digest"}},
+    "completed_provenance_digests": {"type": "array", "items": {"$ref": "#/$defs/digest"}},
+    "completed_usable_flags": {"type": "array", "items": {"type": "boolean"}},
+    "completed_receipt_digests": {"type": "array", "items": {"$ref": "#/$defs/optionalDigest"}},
+    "unavailable_task_ids": {"$ref": "#/$defs/taskIds", "x-canonical-order": "ascending"},
+    "unavailable_reason_codes": {"type": "array", "items": {"$ref": "#/$defs/unavailableReason"}},
+    "evidence_manifest_hash": {"$ref": "#/$defs/optionalDigest"},
+    "evidence_receipt_digest": {"$ref": "#/$defs/optionalDigest"},
+    "calculation_digest": {"$ref": "#/$defs/optionalDigest"},
+    "calculation_receipt_digest": {"$ref": "#/$defs/optionalDigest"},
+    "report_digest": {"$ref": "#/$defs/optionalDigest"},
+    "publication_receipt_digest": {"$ref": "#/$defs/optionalDigest"},
+    "session_digest": {"$ref": "#/$defs/digest"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"stage": {"const": "intake"}}, "required": ["stage"]},
+      "then": {"properties": {"revision": {"const": 0}, "preflight_digest": {"type": "null"}, "preflight_degradation_codes": {"maxItems": 0}, "query_plan_digest": {"type": "null"}, "evidence_manifest_hash": {"type": "null"}, "calculation_digest": {"type": "null"}, "report_digest": {"type": "null"}, "expected_task_ids": {"maxItems": 0}, "completed_task_ids": {"maxItems": 0}, "completed_artifact_digests": {"maxItems": 0}, "completed_provenance_digests": {"maxItems": 0}, "completed_usable_flags": {"maxItems": 0}, "completed_receipt_digests": {"maxItems": 0}, "unavailable_task_ids": {"maxItems": 0}, "unavailable_reason_codes": {"maxItems": 0}}}
+    },
+    {
+      "if": {"properties": {"stage": {"const": "profile_confirmed"}}, "required": ["stage"]},
+      "then": {"properties": {"revision": {"minimum": 1}, "preflight_digest": {"type": "null"}, "preflight_degradation_codes": {"maxItems": 0}, "query_plan_digest": {"type": "null"}, "evidence_manifest_hash": {"type": "null"}, "calculation_digest": {"type": "null"}, "report_digest": {"type": "null"}, "expected_task_ids": {"maxItems": 0}, "completed_task_ids": {"maxItems": 0}, "completed_artifact_digests": {"maxItems": 0}, "completed_provenance_digests": {"maxItems": 0}, "completed_usable_flags": {"maxItems": 0}, "completed_receipt_digests": {"maxItems": 0}, "unavailable_task_ids": {"maxItems": 0}, "unavailable_reason_codes": {"maxItems": 0}}}
+    },
+    {
+      "if": {"properties": {"stage": {"const": "preflight_complete"}}, "required": ["stage"]},
+      "then": {"properties": {"revision": {"minimum": 2}, "preflight_digest": {"$ref": "#/$defs/digest"}, "query_plan_digest": {"type": "null"}, "evidence_manifest_hash": {"type": "null"}, "calculation_digest": {"type": "null"}, "report_digest": {"type": "null"}, "expected_task_ids": {"maxItems": 0}, "completed_task_ids": {"maxItems": 0}, "completed_artifact_digests": {"maxItems": 0}, "completed_provenance_digests": {"maxItems": 0}, "completed_usable_flags": {"maxItems": 0}, "completed_receipt_digests": {"maxItems": 0}, "unavailable_task_ids": {"maxItems": 0}, "unavailable_reason_codes": {"maxItems": 0}}}
+    },
+    {
+      "if": {"properties": {"stage": {"const": "query_plan_ready"}}, "required": ["stage"]},
+      "then": {"properties": {"revision": {"minimum": 3}, "preflight_digest": {"$ref": "#/$defs/digest"}, "query_plan_digest": {"$ref": "#/$defs/digest"}, "evidence_manifest_hash": {"type": "null"}, "calculation_digest": {"type": "null"}, "report_digest": {"type": "null"}, "expected_task_ids": {"minItems": 1}, "completed_task_ids": {"maxItems": 0}, "completed_artifact_digests": {"maxItems": 0}, "completed_provenance_digests": {"maxItems": 0}, "completed_usable_flags": {"maxItems": 0}, "completed_receipt_digests": {"maxItems": 0}, "unavailable_task_ids": {"maxItems": 0}, "unavailable_reason_codes": {"maxItems": 0}}}
+    },
+    {
+      "if": {"properties": {"stage": {"const": "research_in_progress"}}, "required": ["stage"]},
+      "then": {"properties": {"revision": {"minimum": 4}, "preflight_digest": {"$ref": "#/$defs/digest"}, "query_plan_digest": {"$ref": "#/$defs/digest"}, "evidence_manifest_hash": {"type": "null"}, "calculation_digest": {"type": "null"}, "report_digest": {"type": "null"}, "expected_task_ids": {"minItems": 1}}, "anyOf": [{"properties": {"completed_task_ids": {"minItems": 1}, "completed_artifact_digests": {"minItems": 1}, "completed_provenance_digests": {"minItems": 1}, "completed_usable_flags": {"minItems": 1}, "completed_receipt_digests": {"minItems": 1}}}, {"properties": {"unavailable_task_ids": {"minItems": 1}, "unavailable_reason_codes": {"minItems": 1}}}]}
+    },
+    {
+      "if": {"properties": {"stage": {"enum": ["evidence_finalized", "calculation_complete", "report_published"]}}, "required": ["stage"]},
+      "then": {"properties": {"preflight_digest": {"$ref": "#/$defs/digest"}, "query_plan_digest": {"$ref": "#/$defs/digest"}, "evidence_manifest_hash": {"$ref": "#/$defs/digest"}, "expected_task_ids": {"minItems": 1}, "completed_receipt_digests": {"type": "array", "items": {"$ref": "#/$defs/digest"}}}, "anyOf": [{"properties": {"completed_task_ids": {"minItems": 1}, "completed_artifact_digests": {"minItems": 1}, "completed_provenance_digests": {"minItems": 1}, "completed_usable_flags": {"minItems": 1}, "completed_receipt_digests": {"minItems": 1}}}, {"properties": {"unavailable_task_ids": {"minItems": 1}, "unavailable_reason_codes": {"minItems": 1}}}]}
+    },
+    {
+      "if": {"properties": {"stage": {"const": "evidence_finalized"}}, "required": ["stage"]},
+      "then": {"properties": {"revision": {"minimum": 5}, "evidence_manifest_hash": {"$ref": "#/$defs/digest"}, "calculation_digest": {"type": "null"}, "report_digest": {"type": "null"}}}
+    },
+    {
+      "if": {"properties": {"stage": {"const": "calculation_complete"}}, "required": ["stage"]},
+      "then": {"properties": {"revision": {"minimum": 6}, "calculation_digest": {"$ref": "#/$defs/digest"}, "report_digest": {"type": "null"}}}
+    },
+    {
+      "if": {"properties": {"stage": {"const": "report_published"}}, "required": ["stage"]},
+      "then": {"properties": {"revision": {"minimum": 7}, "report_digest": {"$ref": "#/$defs/digest"}}}
+    },
+    {
+      "if": {"properties": {"stage": {"enum": ["intake", "profile_confirmed", "preflight_complete", "query_plan_ready", "research_in_progress"]}}, "required": ["stage"]},
+      "then": {"properties": {"evidence_receipt_digest": {"type": "null"}}},
+      "else": {"properties": {"evidence_receipt_digest": {"$ref": "#/$defs/digest"}}}
+    },
+    {
+      "if": {"properties": {"stage": {"enum": ["intake", "profile_confirmed", "preflight_complete", "query_plan_ready", "research_in_progress", "evidence_finalized"]}}, "required": ["stage"]},
+      "then": {"properties": {"calculation_receipt_digest": {"type": "null"}}},
+      "else": {"properties": {"calculation_receipt_digest": {"$ref": "#/$defs/digest"}}}
+    },
+    {
+      "if": {"properties": {"stage": {"enum": ["intake", "profile_confirmed", "preflight_complete", "query_plan_ready", "research_in_progress", "evidence_finalized", "calculation_complete"]}}, "required": ["stage"]},
+      "then": {"properties": {"publication_receipt_digest": {"type": "null"}}},
+      "else": {"properties": {"publication_receipt_digest": {"$ref": "#/$defs/digest"}}}
+    }
+  ],
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "optionalDigest": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/digest"}]},
+    "preflightDegradation": {"enum": ["missing_browse", "missing_docx", "missing_openpyxl", "missing_pdfplumber", "missing_search", "missing_vision", "unsupported_python"]},
+    "taskIds": {"type": "array", "uniqueItems": true, "x-canonical-order": "ascending", "items": {"type": "string", "pattern": "^[a-z][a-z0-9-]*:[0-9a-f]{24}$"}},
+    "unavailableReason": {"enum": ["current_year_not_published", "source_threshold_not_met", "source_conflict", "network_unavailable", "capability_unavailable", "newer_comparable_year_accepted"]}
+  }
+}

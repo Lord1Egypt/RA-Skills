@@ -1,0 +1,27 @@
+﻿{
+  "openclaw_paths": {
+    "home": "~/.openclaw",
+    "gateway_config": "~/.openclaw/openclaw.json",
+    "agent_configs": "~/.openclaw/agents",
+    "skills_dirs": ["~/.openclaw/plugin-skills", "~/.openclaw/skills", "~/.agents/skills"],
+    "logs_dir": "~/.openclaw/logs",
+    "state_dir": "~/.openclaw/state"
+  },
+  "env_scan_roots": ["~/.openclaw"],
+  "checks": {
+    "secrets_scan": true,
+    "config_validation": true,
+    "permissions_audit": true,
+    "network_exposure": true,
+    "crypto_hygiene": true,
+    "supply_chain": true,
+    "session_hygiene": true
+  },
+  "exclusions": { "paths": [], "patterns": [] },
+  "limits": { "max_files": 20000, "max_file_mb": 2, "max_depth": 8 },
+  "output": {
+    "report_path": "./security-audit-report.json",
+    "html_report": "./security-audit-report.html",
+    "redact_home": true
+  }
+}

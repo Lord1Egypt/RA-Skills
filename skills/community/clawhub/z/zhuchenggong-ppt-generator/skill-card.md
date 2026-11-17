@@ -1,42 +1,59 @@
-## Description: <br>
-根据用户提供的主题或大纲，生成适用于分享、介绍、课件等场景的PPT文件并保存到本地。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates PPT files from a user-provided topic or outline using Tongyi Qianwen, Kimi Slides, or a local-outline fallback.
 
-## Publisher: <br>
-[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design)
 
-## Use Case: <br>
-用户和内容创作者使用该技能从主题或大纲快速生成演示文稿，适用于经验分享、产品介绍和课程课件等常见PPT场景。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Presentation topics or outlines may be sent to Tongyi Qianwen or Kimi during generation. <br>
-Mitigation: Use the skill only when those providers are acceptable for the content, and avoid confidential or regulated material unless approved for that use. <br>
-Risk: The workflow may require a logged-in browser session and local download prompts. <br>
-Mitigation: Watch login and download prompts while it runs, and use a local browser when the sandbox browser cannot complete the workflow. <br>
+## Use Case:
 
+External users and agents use this skill to turn a topic or outline into a presentation for experience sharing, product introductions, courseware, or other quick PPT creation tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/zhuchenggong-ppt-generator) <br>
-- [Tongyi Qianwen](https://tongyi.aliyun.com/qianwen/) <br>
-- [Kimi Slides](https://kimi.com/slides) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Guidance] <br>
-**Output Format:** [Local presentation file with a brief Markdown status message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated PPT, PDF, or long-image export is saved locally and the user is told the file location.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: PPT topics or outlines may be shared with Tongyi Qianwen or Kimi when those service paths are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is comfortable sharing the content with the selected provider before submission.
+
+Risk: Generated files are saved locally and may expose presentation content on shared machines.
+
+Mitigation: Confirm the download location and filename before saving or sharing the generated PPT.
+
+Risk: Browser-based generation depends on third-party login and may not work in a sandbox browser.
+
+Mitigation: Use the user's local browser login flow or provide outline content as a fallback when automated generation is unavailable.
+
+## Reference(s):
+
+- [Tongyi Qianwen](https://tongyi.aliyun.com/qianwen/)
+- [Kimi Slides](https://kimi.com/slides)
+- [ClawHub Skill Page](https://clawhub.ai/zhuchenggong19851114-design/skills/zhuchenggong-ppt-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Guidance]
+
+**Output Format:** [PPT, PDF, or image file output with Markdown status updates or fallback outline text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files are saved locally and the agent should report the file location.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

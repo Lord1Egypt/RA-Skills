@@ -1,47 +1,64 @@
-## Description: <br>
-Discover and call remote schema-exposed interfaces with UXC. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover and call remote schema-exposed interfaces with UXC. Use when an agent or skill needs to list operations, inspect operation schemas, and execute OpenAPI, GraphQL, gRPC, MCP, or JSON-RPC calls via one CLI contract.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agent builders use this skill to discover remote schema-exposed operations, inspect their inputs, and execute OpenAPI, GraphQL, gRPC, MCP, or JSON-RPC calls through a consistent UXC CLI workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send agent data to arbitrary external services through remote API calls. <br>
-Mitigation: Use only trusted endpoints, inspect schemas before execution, and require explicit approval before calls that write data, change accounts, post publicly, or perform business or financial actions. <br>
-Risk: Credential-backed API links and auth bindings may persist beyond a single task. <br>
-Mitigation: Use least-privilege credentials, prefer header-based authentication where possible, and periodically review and prune persistent UXC links and auth bindings. <br>
+## Use Case:
 
+Developers and engineers use this skill to discover remote schema-exposed APIs, inspect operation schemas, and issue structured calls across OpenAPI, GraphQL, gRPC, MCP, and JSON-RPC endpoints from agent workflows.
 
-## Reference(s): <br>
-- [UXC Skill Page](https://clawhub.ai/jolestar/uxc) <br>
-- [UXC Installation](https://github.com/holon-run/uxc#installation) <br>
-- [Authentication Configuration Guide](references/auth-configuration.md) <br>
-- [OAuth And Binding](references/oauth-and-binding.md) <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
-- [Protocol Cheatsheet](references/protocol-cheatsheet.md) <br>
-- [Error Handling](references/error-handling.md) <br>
-- [Public Endpoints](references/public-endpoints.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON envelope expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default runtime output is a machine-readable JSON envelope with ok, kind, data, error, and related metadata fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Calling untrusted remote endpoints can send prompt or payload data outside the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only endpoints you trust, keep payloads minimal, and avoid sending secrets or local context unless required.
+
+Risk: Credential configuration can expose or misapply API keys, OAuth tokens, or signing material.
+
+Mitigation: Prefer environment variables or managed secret sources, verify credential bindings before live calls, and start with read-only operations.
+
+Risk: Installing the UXC CLI from an unpinned or unaudited source can introduce supply-chain risk.
+
+Mitigation: Prefer a trusted package manager or pinned release and review install scripts before running them.
+
+## Reference(s):
+
+- [ClawHub UXC skill page](https://clawhub.ai/jolestar/skills/uxc)
+- [UXC README installation section](https://github.com/holon-run/uxc#installation)
+- [Usage Patterns](references/usage-patterns.md)
+- [Protocol Cheatsheet](references/protocol-cheatsheet.md)
+- [Public Endpoints](references/public-endpoints.md)
+- [Authentication Configuration Guide](references/auth-configuration.md)
+- [OAuth And Binding](references/oauth-and-binding.md)
+- [Error Handling](references/error-handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON envelope fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default runtime output is a JSON envelope with ok, kind, data, error, and meta fields; automation should parse stdout JSON.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

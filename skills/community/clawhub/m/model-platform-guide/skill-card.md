@@ -1,61 +1,76 @@
-## Description: <br>
-查询主流大模型开放平台的 API 文档入口与精简调用要点，适用于月之暗面 Kimi、阿里云百炼、硅基流动、DeepSeek、OpenRouter 等平台，用于回答鉴权方式、base URL、OpenAI 兼容调用、聊天补全、模型名、常见差异、多平台对比与文档入口。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides concise, link-first guidance for API documentation, authentication, base URLs, OpenAI-compatible calls, model names, platform differences, comparisons, and integration examples across major model platforms such as Kimi, DashScope, SiliconFlow, DeepSeek, and OpenRouter.
 
-## Publisher: <br>
-[huixiaheyu](https://clawhub.ai/user/huixiaheyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huixiaheyu](https://clawhub.ai/user/huixiaheyu)
 
-## Use Case: <br>
-Developers and engineers use this skill to find official API documentation, authentication details, base URLs, OpenAI-compatible migration notes, and minimal examples for major model platforms. It is also useful for comparing platform capabilities and drafting concise integration guides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated examples may call external model-platform APIs and send prompts or other input to third-party services. <br>
-Mitigation: Use test prompts first, keep API keys out of source code, and confirm each provider's privacy and retention policies before using real data. <br>
-Risk: Model names, prices, preview states, and feature support can change quickly. <br>
-Mitigation: Verify current capabilities, pricing, and deprecation status against official provider documentation before relying on guidance. <br>
-Risk: Copied API examples can expose sensitive credentials if keys are hard-coded or checked into repositories. <br>
-Mitigation: Use environment variables or a secrets manager, avoid committing credentials, and rotate any key that may have been exposed. <br>
+## Use Case:
 
+Developers and engineers use this skill to find current model-platform API documentation, compare provider-specific authentication and base URL requirements, and draft concise integration examples. It is especially useful for OpenAI-compatible migration, provider selection, and capability checks that require official documentation links.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/huixiaheyu/model-platform-guide) <br>
-- [Reference index](references/index.md) <br>
-- [Capability matrix](references/capability-matrix.md) <br>
-- [Platform comparison](references/comparison.md) <br>
-- [Live check policy](references/live-check-policy.md) <br>
-- [Model, search, and embeddings checklist](references/model-search-embedding-checklist.md) <br>
-- [OpenAI migration template](references/openai-migration.md) <br>
-- [Python recipes](references/python-recipes.md) <br>
-- [Node.js recipes](references/nodejs-recipes.md) <br>
-- [curl recipes](references/curl-recipes.md) <br>
-- [Moonshot / Kimi reference](references/moonshot.md) <br>
-- [Aliyun Bailian / DashScope reference](references/aliyun-bailian.md) <br>
-- [SiliconFlow reference](references/siliconflow.md) <br>
-- [DeepSeek reference](references/deepseek.md) <br>
-- [OpenRouter reference](references/openrouter.md) <br>
-- [BigModel reference](references/bigmodel.md) <br>
-- [Volcengine Ark reference](references/ark.md) <br>
-- [Tencent Hunyuan reference](references/hunyuan.md) <br>
-- [Baidu Qianfan reference](references/qianfan.md) <br>
-- [MiniMax reference](references/minimax.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include official documentation links, API base URLs, environment variable names, minimal request examples, migration notes, and comparison tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated curl, Python, or Node.js examples can send prompts and request data to third-party model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination provider is approved for the use case and avoid sending secrets, regulated data, or private user content unless that provider is authorized.
+
+Risk: Model availability, prices, preview status, rate limits, and feature support can change quickly.
+
+Mitigation: Use the skill's live-check policy and verify current provider documentation before making claims about latest models or capabilities.
+
+Risk: OpenAI-compatible integrations can fail when the API key, base URL, endpoint path, or model name is copied for the wrong provider.
+
+Mitigation: Review provider-specific authentication, base URL, endpoint, and model-name requirements before running generated examples.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huixiaheyu/skills/model-platform-guide)
+- [Document Entry Index](references/index.md)
+- [Dynamic Verification Policy](references/live-check-policy.md)
+- [Model, Search, and Embeddings Checklist](references/model-search-embedding-checklist.md)
+- [Platform Capability Matrix](references/capability-matrix.md)
+- [Platform Comparison](references/comparison.md)
+- [Python Recipes](references/python-recipes.md)
+- [Node.js Recipes](references/nodejs-recipes.md)
+- [curl Recipes](references/curl-recipes.md)
+- [OpenAI Migration Template](references/openai-migration.md)
+- [Moonshot / Kimi Documentation](https://platform.kimi.com/docs/overview.md)
+- [Alibaba Cloud Model Studio API Reference](https://help.aliyun.com/zh/model-studio/qwen-api-reference/)
+- [SiliconFlow Documentation](https://docs.siliconflow.cn/)
+- [DeepSeek API Documentation](https://api-docs.deepseek.com/)
+- [OpenRouter Documentation](https://openrouter.ai/docs)
+- [BigModel Documentation](https://docs.bigmodel.cn/)
+- [Volcengine Ark Documentation](https://www.volcengine.com/docs/82379)
+- [Tencent Hunyuan Documentation](https://cloud.tencent.com/document/product/1729)
+- [Baidu Qianfan Documentation](https://cloud.baidu.com/doc/qianfan/index.html)
+- [MiniMax Documentation](https://platform.minimaxi.com/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with links, tables, inline code, and short Python, Node.js, or curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend live verification against official provider documentation for model lists, prices, rate limits, preview status, and fast-changing capabilities.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

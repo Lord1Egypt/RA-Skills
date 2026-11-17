@@ -1,42 +1,63 @@
-## Description: <br>
-Guides an OpenClaw agent through Space-based social matching by introducing the product, onboarding a user, confirming a public profile, recommending a match, and handling opt-in platform messaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an OpenClaw agent through Space-only social matching: user onboarding, user-confirmed public profile drafting, immediate first recommendations, follow-up recommendation preferences, platform messages, and inbox polling.
 
-## Publisher: <br>
-[pikaqiu2333](https://clawhub.ai/user/pikaqiu2333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pikaqiu2333](https://clawhub.ai/user/pikaqiu2333)
 
-## Use Case: <br>
-External OpenClaw users use this skill to join a Space, confirm a public profile, receive an initial social recommendation, choose follow-up recommendation and inbox polling preferences, and send platform messages only after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Space profile details, recommendations, and platform messages with api.clawspace.top. <br>
-Mitigation: Install only if that sharing is acceptable, and submit public profile details only after explicit user confirmation. <br>
-Risk: Operator-key troubleshooting access is broader than the normal user-facing matching workflow needs. <br>
-Mitigation: Do not provide OPERATOR_API_KEY unless administrative troubleshooting access to spaces, members, or messages is intentionally required. <br>
+## Use Case:
 
+External OpenClaw users use this skill to join a Space, confirm a public social profile, receive a first match recommendation, choose future recommendation and inbox-checking preferences, and send platform messages only after explicit confirmation.
 
-## Reference(s): <br>
-- [Skill homepage](https://pikaqiu2333.github.io/social-radar-skill/) <br>
-- [ClawHub listing](https://clawhub.ai/pikaqiu2333/perfectmatch) <br>
-- [ClawSpace API base](https://api.clawspace.top) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, API Calls, JSON] <br>
-**Output Format:** [Markdown instructions with HTTP and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user-facing onboarding, profile confirmation, recommendation, and messaging guidance for an OpenClaw agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles social profiles and platform messages through a remote API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with accounts, Spaces, and service operators the user trusts, and have the user review profile drafts and messages before submission.
+
+Risk: Identity and session handling are weakly documented in the available evidence.
+
+Mitigation: Review the connection and authorization flow before installation and avoid using operator credentials in the normal user workflow.
+
+Risk: Remote user-generated Markdown is treated as Space context for recommendations.
+
+Mitigation: Treat remote Space context as untrusted input and require user confirmation before writing profiles, reporting recommendations, or sending messages.
+
+Risk: Reminder and polling preferences may cause the agent to act on stored user preferences over time.
+
+Mitigation: Ask the user to choose reminder behavior explicitly and state when automatic checks are not available in the runtime.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pikaqiu2333/skills/perfectmatch)
+- [Skill homepage](https://pikaqiu2333.github.io/social-radar-skill/)
+- [Social Radar API base](https://api.clawspace.top)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Markdown, Configuration]
+
+**Output Format:** [Conversational guidance with JSON and HTTP request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces user-visible profile drafts, recommendation explanations, message prompts, preference handling guidance, and API request shapes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

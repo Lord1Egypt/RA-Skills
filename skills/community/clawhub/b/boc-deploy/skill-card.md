@@ -1,43 +1,54 @@
-## Description: <br>
-BOC Deploy helps an agent prepare a BOC container platform deployment, generate config.yaml, run bocctl, monitor progress, and verify Kubernetes node and pod status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates BOC container platform deployment by generating deployment configuration, running bocctl install commands, monitoring progress, and validating node and pod status.
 
-## Publisher: <br>
-[hongruiji](https://clawhub.ai/user/hongruiji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongruiji](https://clawhub.ai/user/hongruiji)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to deploy BOC container platform environments from planned node, VIP, SSH, CNI, and Kubernetes version inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests root SSH access and credentials for deployment targets. <br>
-Mitigation: Review the generated config.yaml before use, prefer SSH keys or temporary credentials over passwords, and remove or protect credential-bearing files after deployment. <br>
-Risk: The skill can start broad BOC and Kubernetes infrastructure changes through bocctl. <br>
-Mitigation: Confirm every target IP, node role, VIP, CNI setting, and Kubernetes version before allowing the agent to run deployment commands. <br>
-Risk: Deployment runs in the background and may expose sensitive details through logs or transcripts. <br>
-Mitigation: Monitor the background job, restrict log sharing, and avoid exposing credentials in logs, prompts, or agent transcripts. <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to deploy a BOC container platform from planned node, network, Kubernetes, and credential inputs. It helps generate config.yaml, launch the bocctl installation, monitor deployment logs, and check Kubernetes readiness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hongruiji/boc-deploy) <br>
-- [Publisher profile](https://clawhub.ai/user/hongruiji) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated config.yaml content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include deployment status, log excerpts, and Kubernetes validation results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release metadata; _meta.json lists 1.0.0) <br>
+Risk: Root SSH passwords and generated deployment configuration may expose reusable infrastructure credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege deployment account where supported, avoid reusable root passwords, protect generated config files with mode 600, keep credentials out of logs and support bundles, and rotate any exposed credentials.
+
+Risk: The skill launches long-running infrastructure deployment changes that may be difficult to interrupt or roll back.
+
+Mitigation: Review the generated configuration before execution, confirm rollback or cancellation steps, monitor the background install, and remove local and remote configuration copies after deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hongruiji/skills/boc-deploy)
+- [Publisher profile](https://clawhub.ai/user/hongruiji)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with configuration details, shell commands, deployment status, log excerpts, and validation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces deployment guidance and status summaries for long-running infrastructure changes.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

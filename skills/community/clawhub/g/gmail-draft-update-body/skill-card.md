@@ -1,39 +1,53 @@
-## Description: <br>
-Atomic node skill to update the body text of an existing Gmail draft. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to update the body text of an existing Gmail draft.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Agents use this skill when they need to update only the body text of an existing Gmail draft through the local Gmail CLI workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill updates an existing Gmail draft body and may replace text in the wrong draft or account if inputs are incorrect. <br>
-Mitigation: Confirm the target draft ID, Gmail account, and final body text before execution, then review the draft before any separate send action. <br>
+## Use Case:
 
+Developers and agents use this skill when an existing Gmail draft's body text needs to be replaced or updated through the native Gmail CLI workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/gmail-draft-update-body) <br>
-- [Publisher profile](https://clawhub.ai/user/zvirb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON confirmation from the Gmail CLI command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local gog CLI and a valid target Gmail draft ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Dynamic draft IDs or body text can be interpreted as shell syntax if passed through a command string.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use shell-free argument passing for gog, validate draft IDs, and avoid untrusted draft content unless literal argument handling is guaranteed.
+
+Risk: The skill edits an existing Gmail draft and may overwrite the intended body if the wrong draft ID is supplied.
+
+Mitigation: Confirm the target draft ID before execution and verify that the JSON response shows the expected draft update.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zvirb/skills/gmail-draft-update-body)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON]
+
+**Output Format:** [JSON confirmation from the Gmail CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog CLI and retries up to 3 times when the update is not confirmed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

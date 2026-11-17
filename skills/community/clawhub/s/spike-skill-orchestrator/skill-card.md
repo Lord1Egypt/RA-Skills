@@ -1,44 +1,55 @@
-## Description: <br>
-Adaptive local skill scheduler for OpenClaw that helps an agent decide when to suggest installed skill combinations for multi-step or cross-domain tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adaptive local skill scheduler for OpenClaw that helps an agent decide when to use one or more installed skills for multi-step or cross-domain tasks.
 
-## Publisher: <br>
-[spikesubingrui-design](https://clawhub.ai/user/spikesubingrui-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spikesubingrui-design](https://clawhub.ai/user/spikesubingrui-design)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route complex user requests toward relevant local skills or skill combinations before proceeding with the task. It is intended for OpenClaw workflows where the agent can inspect local skill registries, propose routing options, and record routing decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Raw user task text may be written to a persistent local routing log. <br>
-Mitigation: Do not use the skill with secrets, credentials, personal data, or private business context unless logging is disabled or redacted. <br>
-Risk: The scripts use fixed local workspace paths, which can cause routing or logging to target an unintended location. <br>
-Mitigation: Review and adjust local paths before use, especially on shared machines or non-default OpenClaw installations. <br>
-Risk: Routing suggestions can steer an agent toward unnecessary or unsuitable skills. <br>
-Mitigation: Treat suggestions as advisory, limit the number of loaded skills, and honor user rejection without repeated prompts. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route multi-step or cross-domain OpenClaw tasks to relevant installed skills, ask before combining skills when needed, and record routing outcomes for feedback.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/spikesubingrui-design/spike-skill-orchestrator) <br>
-- [Publisher Profile](https://clawhub.ai/user/spikesubingrui-design) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, JSON, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-formatted routing results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed skill names, skill combinations, acceptance mode, and local routing-log entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: Persistent routing logs may save full task text, including secrets, personal data, proprietary code, or sensitive business context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with sensitive task text unless logging is removed, minimized, redacted, or made explicitly opt-in with retention and deletion controls.
+
+Risk: The helper scripts read and write fixed local workspace paths, which may not match the installing user's intended storage location.
+
+Mitigation: Review and configure local paths before use, and run the skill only in a workspace where those reads and writes are expected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spikesubingrui-design/skills/spike-skill-orchestrator)
+- [Artifact README](artifact/README.md)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, JSON, text]
+
+**Output Format:** [Text or Markdown guidance with optional shell commands and JSON helper output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ranked skill candidates, skill-combination suggestions, and concise rationale for whether to ask, directly use a skill, or skip orchestration.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

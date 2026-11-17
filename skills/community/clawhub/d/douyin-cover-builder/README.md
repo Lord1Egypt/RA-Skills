@@ -1,5 +1,7 @@
 # Douyin Cover Builder（抖音封面生成器）
 
+当前版本：**v3.1.3** — 修正默认竖版 3:4，并增加实际出图尺寸校验规则。详见 [更新日志](CHANGELOG.md)。
+
 - 这是一个面向中文创作者的 OpenClaw Skill，输入主题与人物气质后，会输出可直接用于生图模型的高质量提示词与创意说明。  
   This OpenClaw skill helps Chinese creators generate high-quality image prompts and art direction notes for Douyin covers.
 
@@ -30,7 +32,9 @@
 1. 主题（Topic）
 2. 关键点（Key Points，可选）
 3. 右下角人物气质/姿势（Pose & Vibe）
-4. 画幅（竖版 or 横版 4:3）
+4. 画幅（竖版 3:4 或横版 4:3；均指宽:高；不写默认严格竖版 3:4）
+
+用户明确指定的比例或尺寸优先，例如 1080×1080 使用 1:1。只指定方向时，竖版建议 1080×1440，横版建议 1440×1080。实际出图后须读取文件宽高，按 [SKILL.md 的画幅规则](SKILL.md#画幅规则生成提示词前先确定) 校验，不能仅凭提示词中写了“严格”就认定通过。
 
 > 推荐上传人物照片，以保持同一人脸一致性。  
 > Uploading a portrait is recommended for consistent identity.
@@ -52,7 +56,7 @@
 - 主题：龙虾机器人 5分钟写一个微信
 - 关键点：使用龙虾机器人作为核心主视觉，突出“5分钟写完”的效率感与自动化能力
 - 人物气质/姿势：右下角我本人，抱头惊讶的表情（震惊但兴奋）
-- 画幅：竖版 严格 4:3
+- 画幅：竖版，严格宽:高 = 3:4，例如 1080×1440 像素
 
 ## 文件结构 Project Structure
 

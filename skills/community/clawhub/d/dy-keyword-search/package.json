@@ -1,0 +1,10 @@
+{
+  "name": "dy-search",
+  "version": "1.0.0",
+  "private": true,
+  "description": "抖音搜索视频采集 Skill CLI (关键词搜索, 按接口返回批次计费: 约20条=5点, 按实采结算退差)",
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

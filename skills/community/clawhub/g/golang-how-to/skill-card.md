@@ -1,44 +1,58 @@
-## Description: <br>
-Golang How To helps AI coding agents choose and load relevant Go skills for coding, review, debugging, setup, disambiguation, and project configuration tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Golang How To routes Go coding, review, debugging, setup, package lookup, and configuration tasks to the most relevant Go skills from samber/cc-skills-golang.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineers use this skill to route Go-related agent tasks to the most relevant Go skills, including related secondary skills for testing, security, performance, API work, and project setup. It can also guide configuration of project agent files so selected Go skills are loaded for future Go work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configure mode can change future Go-related agent behavior by adding always-loaded skills to project agent configuration files. <br>
-Mitigation: Review the target files and selected skills before accepting configure-mode edits, and keep the always-loaded list limited to skills the project actually requires. <br>
-Risk: Automatic loading of related Go skills may add prompt overhead or introduce guidance that is broader than the immediate task. <br>
-Mitigation: Review the selected primary and secondary skills for fit, especially when disambiguating overlapping areas such as performance, troubleshooting, safety, and security. <br>
+## Use Case:
 
+Developers and engineers working on Go projects use this skill to select the right Go guidance for coding, review, debugging, project setup, package lookup, and code navigation. In configure mode, it can also help set project agent configuration so Go work loads the intended skills consistently.
 
-## Reference(s): <br>
-- [Golang skills catalog by category](references/by-category.md) <br>
-- [Competing clusters disambiguation](references/disambiguation.md) <br>
-- [Configure mode project config workflow](references/project-config.md) <br>
-- [ClawHub skill page](https://clawhub.ai/samber/golang-how-to) <br>
-- [Project homepage from skill metadata](https://github.com/samber/cc-skills-golang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with optional shell commands and configuration edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to load multiple Go skills for one task; configure mode can add a Required Go skills block to supported project agent files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can direct agents to modify persistent project agent configuration files, which may cause future sessions to auto-load Go skills without the user's intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review exact diffs before allowing changes to CLAUDE.md, AGENTS.md, GEMINI.md, Cursor rules, or Copilot instructions, and only keep them when that future behavior is wanted.
+
+Risk: The install metadata uses gopls@latest, which can change over time.
+
+Mitigation: Pin a known gopls version for reproducible setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/golang-how-to)
+- [Publisher profile: samber](https://clawhub.ai/user/samber)
+- [Project homepage](https://github.com/samber/cc-skills-golang)
+- [Golang skills catalog by category](artifact/references/by-category.md)
+- [Competing clusters disambiguation](artifact/references/disambiguation.md)
+- [Configure mode project config](artifact/references/project-config.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with code, shell command, and configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires go, git, and gopls for full Go navigation and refactoring support.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

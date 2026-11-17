@@ -1,0 +1,27 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:驱动因素树单因子(运算符徽章 + 因子盒三层信息)—— 原型 37
+  参数:
+    {{OP}}          运算符:= × + -(第一个因子前用 =,其后用 ×)
+    {{OP_X}}        徽章左 = 前一个盒右缘 + 20(徽章 w60)
+    {{X}}           因子盒左(3 因子:560 / 1020 / 1460,盒宽 360)
+    {{ACCENT}}      左条色:**可动**因子用 var(--brand-primary);不可动用 var(--border-medium)
+    {{NAME}}        因子名        {{VALUE}} {{UNIT}}  当前值 + 单位
+    {{VALUE_COLOR}} 可动因子用 var(--brand-primary),其余 var(--charcoal)
+    {{HEADROOM}}    **可动空间**(如"同业中位 42% · 可动 11pp" / "已近渠道上限 · 难动")
+  盒 y=480 h200;运算符徽章 y=560 h40(单行居中写法:line-height = 盒高)
+  ⚠️ **三层信息缺一不可**:名 / 当前值 / 可动空间。
+     第三层是这个原型的价值所在 —— 没有它就只是一个算式,不是决策依据。
+  ⚠️ 页面底部必须另配**敏感度结论条**("每提升 1pp → 结果 +X"),
+     否则这页无法支撑决策(见原型 37 骨架末段)。
+  纪律: **只有"可动"的那一个因子**用主色(左条 + 数值),其余灰(高亮 ≤1 处);
+        ❌ 每因子一色、❌ 因子盒四面阴影、❌ 把不能动的因子也标高亮
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:{{OP_X}}px;top:560px;width:60px;height:40px;text-align:center;">
+  <div style="font-size:36px;font-weight:700;color:var(--text-tertiary);line-height:40px;">{{OP}}</div>
+</div>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:{{X}}px;top:480px;width:360px;height:200px;background:var(--card-bg);border-left:3px solid {{ACCENT}};"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:{{TEXT_X}}px;top:512px;width:300px;">
+  <div style="font-size:24px;font-weight:600;line-height:1.3;color:var(--text-secondary);">{{NAME}}</div>
+  <div class="num" style="font-size:44px;font-weight:800;line-height:1.1;color:{{VALUE_COLOR}};margin-top:8px;">{{VALUE}}<span style="font-size:22px;font-weight:600;">{{UNIT}}</span></div>
+  <div style="font-size:20px;line-height:1.35;color:var(--text-tertiary);margin-top:8px;">{{HEADROOM}}</div>
+</div>

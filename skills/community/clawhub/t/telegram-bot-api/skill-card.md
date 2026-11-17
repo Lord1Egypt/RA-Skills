@@ -1,48 +1,69 @@
-## Description: <br>
-Build Telegram bots with correct API calls, message formatting, keyboards, and webhook setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build Telegram bots with correct API calls, message formatting, keyboards, and webhook setup.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and automation builders use this skill to create and operate Telegram bots, including Bot API requests, message formatting, keyboards, media handling, and webhook or polling setup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Telegram bot tokens and bot-sent data are sensitive and are included in Bot API requests. <br>
-Mitigation: Use test bots first, keep ~/telegram-bot-api/ private, avoid plaintext production tokens where possible, and rotate any token that is exposed. <br>
-Risk: Bot actions such as sending media, changing webhooks, deleting messages, banning users, requesting contact or location data, or using drop_pending_updates can affect users or discard updates. <br>
-Mitigation: Review these commands before execution and confirm the target bot, chat, webhook URL, and update-handling behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/telegram-bot-api) <br>
-- [Skill Homepage](https://clawic.com/skills/telegram-bot-api) <br>
-- [Setup Process](setup.md) <br>
-- [All API Methods](methods.md) <br>
-- [Message Formatting](formatting.md) <br>
-- [Keyboards and Buttons](keyboards.md) <br>
-- [Webhooks and Polling](webhooks.md) <br>
-- [Media Handling](media.md) <br>
-- [Error Codes](errors.md) <br>
-- [Memory Template](memory-template.md) <br>
+## Use Case:
 
+Developers and automation builders use this skill to create and operate Telegram bots, including sending messages, handling updates, configuring keyboards, working with media, and choosing webhook or polling patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline shell commands, JSON examples, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local bot configuration files under ~/telegram-bot-api/ and curl requests to the Telegram Bot API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Telegram bot tokens may be stored in local Markdown configuration files or exposed in logs, messages, or webhook URLs.
+
+Mitigation: Store tokens in environment variables, an OS keychain, or a secret manager; never display tokens to users; avoid putting tokens in webhook URLs.
+
+Risk: Webhook handlers can accept spoofed requests if they do not verify Telegram's secret-token header.
+
+Mitigation: Set a webhook secret token and validate the X-Telegram-Bot-Api-Secret-Token header for every webhook request.
+
+Risk: Full update payload logging can capture message content, contacts, locations, media metadata, or other user data.
+
+Mitigation: Redact sensitive payload fields, minimize logs, and define consent and retention rules before collecting personal data.
+
+Risk: Unreviewed generated API calls can send messages, media, or commands to Telegram chats using the configured bot token.
+
+Mitigation: Review generated requests and target chat IDs before execution, and test with a low-privilege bot or private chat first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/telegram-bot-api)
+- [Clawic skill homepage](https://clawic.com/skills/telegram-bot-api)
+- [Telegram Bot API endpoint pattern](https://api.telegram.org/bot{TOKEN}/{METHOD})
+- [Setup guidance](artifact/setup.md)
+- [API methods](artifact/methods.md)
+- [Message formatting](artifact/formatting.md)
+- [Keyboards and buttons](artifact/keyboards.md)
+- [Webhooks and polling](artifact/webhooks.md)
+- [Media handling](artifact/media.md)
+- [Error codes](artifact/errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API examples, JSON payloads, shell commands, and configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Telegram Bot API calls and local bot configuration guidance; users should protect bot tokens and review requests before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

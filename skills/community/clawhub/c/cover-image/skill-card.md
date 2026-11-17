@@ -1,44 +1,69 @@
-## Description: <br>
-Generate article cover images with structured dimensions and bundled generation tooling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate article cover images with structured dimensions and bundled generation tooling.
 
-## Publisher: <br>
-[632657122](https://clawhub.ai/user/632657122) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[632657122](https://clawhub.ai/user/632657122)
 
-## Use Case: <br>
-Developers, writers, and content teams use this skill to turn article or blog topics into cover-image briefs, prompts, batch files, and generated banner-style images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner reports under-disclosed upload and network behavior for reference images and generation metadata. <br>
-Mitigation: Use only public or intended-to-upload reference images, and avoid optional web search or webhook features unless they are specifically needed. <br>
-Risk: The skill requires an image-generation API key and may persist it when setup is explicitly run with persistence enabled. <br>
-Mitigation: Prefer providing IMAGE_GEN_API_KEY through the environment or a protected secret store instead of saving it to a project .env file. <br>
+## Use Case:
 
+Developers and content creators use this skill to turn article, blog, newsletter, or banner concepts into structured cover-image prompts, generation batches, image files, and compressed delivery assets.
 
-## Reference(s): <br>
-- [Cover Image Dimensions](references/dimensions.md) <br>
-- [Prompt Template](references/prompt-template.md) <br>
-- [WeryAI Platform Notes](scripts/vendor/shared-image-generation/references/weryai-platform.md) <br>
-- [WeryAI Text-to-Image API](https://docs.weryai.com/api-reference/image-generation/submit-text-to-image-task) <br>
-- [WeryAI Image-to-Image API](https://docs.weryai.com/api-reference/image-generation/submit-image-to-image-task) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown prompts, JSON batch configuration, shell commands, and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IMAGE_GEN_API_KEY and local Node/npm with bun or npx; writes generated images and optional configuration under .image-skills/cover-image.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: The skill requires a WeryAI API key and may persist it in local configuration if setup is run with key persistence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment variables, avoid shared or source-controlled configuration directories, and only persist the key when the user explicitly approves.
+
+Risk: Reference-image handling has review-worthy local-file behavior according to the security evidence.
+
+Mitigation: Use only intentional reference images and treat local reference paths as uploadable to WeryAI until the documentation and runtime are reconciled.
+
+Risk: The skill runs local Node/Bun tooling and sends generation requests to the WeryAI gateway.
+
+Mitigation: Review the skill before installation, run it in a trusted workspace, and install only when WeryAI network access is acceptable.
+
+Risk: Bearer-token forwarding to result URLs could expose credentials if result URLs are not trusted.
+
+Mitigation: Review result download behavior before use and avoid forwarding bearer tokens to untrusted URLs.
+
+## Reference(s):
+
+- [Cover Image Dimensions](references/dimensions.md)
+- [Prompt Template](references/prompt-template.md)
+- [WeryAI Gateway Alignment Notes](scripts/vendor/shared-image-generation/references/weryai-platform.md)
+- [First-Time Setup](scripts/vendor/shared-image-generation/references/config/first-time-setup.md)
+- [Style Presets](scripts/vendor/shared-image-generation/references/style-presets.md)
+- [WeryAI API Introduction](https://docs.weryai.com/en)
+- [WeryAI Text-to-Image API](https://docs.weryai.com/api-reference/image-generation/submit-text-to-image-task)
+- [WeryAI Image-to-Image API](https://docs.weryai.com/api-reference/image-generation/submit-image-to-image-task)
+- [WeryAI Task Status API](https://docs.weryai.com/api-reference/tasks/query-task-details)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, JSON batch files, prompt files, generated image files, and compressed image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses IMAGE_GEN_API_KEY for WeryAI gateway requests and writes project or user configuration plus cover-image output files.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

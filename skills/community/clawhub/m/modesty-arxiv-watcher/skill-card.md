@@ -1,41 +1,55 @@
-## Description: <br>
-Search and summarize papers from ArXiv when the user asks for the latest research, specific topics on ArXiv, or a daily summary of AI papers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and summarize papers from ArXiv. Use when the user asks for the latest research, specific topics on ArXiv, or a daily summary of AI papers.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-External users, researchers, and developers use this skill to find recent ArXiv papers by topic, author, category, or paper ID, summarize abstracts, and keep a local research log of discussed papers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to ArXiv when the skill queries the ArXiv API. <br>
-Mitigation: Avoid confidential or sensitive research topics in queries unless sharing them with ArXiv is acceptable. <br>
-Risk: Discussed papers and summaries are persistently appended to memory/RESEARCH_LOG.md. <br>
-Mitigation: Review, redact, or clear the research log when working with sensitive projects or before sharing the workspace. <br>
+## Use Case:
 
+Developers, researchers, and research analysts use this skill to find recent ArXiv papers by topic, author, or category and receive concise summaries with links for follow-up reading.
 
-## Reference(s): <br>
-- [Complete setup guide](https://skillboss.co/skill.md) <br>
-- [ArXiv API query endpoint](https://export.arxiv.org/api/query?search_query=all:$QUERY&start=0&max_results=$COUNT&sortBy=submittedDate&sortOrder=descending) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files] <br>
-**Output Format:** [Markdown summaries with ArXiv links and a persistent research-log entry] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the ArXiv API and records discussed papers in memory/RESEARCH_LOG.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may persist paper titles, authors, links, and summaries to memory/RESEARCH_LOG.md, which can expose sensitive research interests over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent not to write memory for sensitive topics, or review and delete memory/RESEARCH_LOG.md after use.
+
+Risk: The ArXiv search script accepts a raw query string and result count for an outbound API request.
+
+Mitigation: Use URL-encoded queries and keep result counts bounded before running the script in automated workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-arxiv-watcher)
+- [Complete setup guide](https://skillboss.co/skill.md)
+- [ArXiv API query endpoint](https://export.arxiv.org/api/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with paper metadata and links; XML results are fetched from the ArXiv API for parsing.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append discussed paper metadata and summaries to memory/RESEARCH_LOG.md for long-term tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

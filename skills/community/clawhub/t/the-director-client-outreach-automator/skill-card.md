@@ -1,40 +1,53 @@
-## Description: <br>
-Generates personalized multi-touch cold outreach sequences for businesses based on industry, pain points, and channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized cold outreach sequences for businesses based on industry and pain points.
 
-## Publisher: <br>
-[di5cip1e](https://clawhub.ai/user/di5cip1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[di5cip1e](https://clawhub.ai/user/di5cip1e)
 
-## Use Case: <br>
-Sales and business development users use this skill to draft email sequences, LinkedIn messages, and call scripts tailored to a target industry and business pain points. Generated outreach should be reviewed before use for accuracy, truthfulness, and channel compliance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach may include inaccurate, exaggerated, or misleading personalization or social proof. <br>
-Mitigation: Verify all claims, examples, business details, and social proof before sending messages. <br>
-Risk: Cold outreach can trigger legal or platform compliance requirements for email, LinkedIn, calling, telemarketing, and do-not-call rules. <br>
-Mitigation: Use only lawfully obtained contact data, include required opt-out or unsubscribe language when applicable, and follow the rules for each outreach channel. <br>
+## Use Case:
 
+Sales and business development users use this skill to draft personalized multi-touch outreach sequences, including emails, LinkedIn messages, and call scripts for prospects in a target industry.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/di5cip1e/the-director-client-outreach-automator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown templates for email, LinkedIn, and call-script outreach] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes personalization placeholders such as recipient name, company, industry, pain point, city, and landing page link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact SKILL.md metadata) <br>
+Risk: Cold outreach may be inappropriate or noncompliant with applicable email, platform, consent, or suppression-list requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for appropriate outreach, confirm consent and suppression-list handling, and review each campaign against applicable rules before sending.
+
+Risk: Generated pain points, personalization, statistics, or social proof may be inaccurate or misleading if used without review.
+
+Mitigation: Verify claims, examples, and personalization details against reliable business records before sending messages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/di5cip1e/skills/the-director-client-outreach-automator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with outreach templates and placeholder tokens]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes editable personalization tokens such as {{first_name}}, {{company_name}}, {{industry}}, and {{specific_pain_point}}.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact Metadata section)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

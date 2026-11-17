@@ -1,42 +1,62 @@
-## Description: <br>
-Analyzes Amazon market tracks from a seed keyword by scraping SERPs, expanding related keywords, scoring competition and demand, and returning a go/no-go entry recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes an Amazon niche from a seed keyword by scraping SERP data, expanding related keywords, scoring competition intensity, estimating demand, and producing a go/no-go recommendation with entry strategy.
 
-## Publisher: <br>
-[linbeihanda](https://clawhub.ai/user/linbeihanda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linbeihanda](https://clawhub.ai/user/linbeihanda)
 
-## Use Case: <br>
-External marketplace operators, product researchers, and developers use this skill to evaluate whether an Amazon niche is worth entering, based on SERP results, keyword expansion, competition scoring, demand signals, and entry-angle recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can make external scraping and MCP-backed analytics requests using configured service credentials. <br>
-Mitigation: Invoke it only with an explicit Amazon seed keyword, confirm available tool scope, and review credentials and external-request permissions before use. <br>
-Risk: Keyword volume, trend, and listing-quality depth may be incomplete when optional SellerSprite, ClickHouse, or amazon-listing-judge tools are unavailable. <br>
-Mitigation: Treat omitted or inferred sections as lower-confidence and review source labels before relying on the recommendation. <br>
-Risk: The skill may infer market demand or related keywords from SERP titles and visible marketplace signals. <br>
-Mitigation: Validate go/no-go decisions against independent market data and current marketplace conditions. <br>
+## Use Case:
 
+External sellers, ecommerce operators, and market analysts use this skill to evaluate an Amazon product niche from a seed keyword, compare SERP competition and demand signals, and decide whether to enter the track.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linbeihanda/amazon-serp-analysis) <br>
+### Deployment Geography for Use:
 
+Global; the workflow evidence focuses on Amazon.com and US marketplace data.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with tables, scores, source labels, and recommendation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Labels data as scraper, SellerSprite, ClickHouse, or inferred when those sources are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata; artifact frontmatter lists 1.0.1) <br>
+Risk: The workflow sends Amazon search URLs and keywords to a configured scraper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for approved market-analysis queries and require confirmation before scraping ambiguous or sensitive keywords.
+
+Risk: Optional marketplace and database tools can expose broader data access than the analysis requires.
+
+Mitigation: Scope ClickHouse and marketplace credentials to read-only access and the minimum datasets needed for the niche analysis.
+
+Risk: The workflow may run a local listing-grader script using ASIN input.
+
+Mitigation: Validate ASINs as exactly ten alphanumeric characters before script execution.
+
+Risk: Go/no-go market recommendations can be misleading when based on incomplete scraper results or inferred keyword expansion.
+
+Mitigation: Keep source labels in the output, call out omitted unavailable tools, and review conclusions before using them for investment decisions.
+
+## Reference(s):
+
+- [Amazon Serp Analysis on ClawHub](https://clawhub.ai/linbeihanda/skills/amazon-serp-analysis)
+- [linbeihanda ClawHub Profile](https://clawhub.ai/user/linbeihanda)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with tables, labeled data sources, scoring, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes SERP and product metrics, competition scoring, demand estimates, entry-angle candidates, go/no-go verdict, and data source labels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

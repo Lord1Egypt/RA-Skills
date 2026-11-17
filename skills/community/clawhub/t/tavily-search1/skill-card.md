@@ -1,42 +1,54 @@
-## Description: <br>
-AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents.
 
-## Publisher: <br>
-[cp33333333333](https://clawhub.ai/user/cp33333333333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp33333333333](https://clawhub.ai/user/cp33333333333)
 
-## Use Case: <br>
-Developers and external users use this skill to run Tavily-backed web search, news search, and URL content extraction from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and submitted URLs are sent to Tavily, including any sensitive or internal information included by the user. <br>
-Mitigation: Avoid submitting internal, localhost, private, or sensitive URLs and queries unless sharing them with Tavily is acceptable. <br>
-Risk: The skill requires a Tavily API key and sends requests to an external API provider. <br>
-Mitigation: Use a dedicated Tavily API key where possible and manage it through the TAVILY_API_KEY environment variable. <br>
-Risk: Search and extracted content may be incomplete, stale, or affected by Tavily result ranking. <br>
-Mitigation: Review returned sources and verify important facts against authoritative references before relying on the output. <br>
+## Use Case:
 
+Developers and agents use this skill to run Tavily-powered web searches, retrieve concise source summaries, and extract clean content from provided URLs for research and current-events workflows.
 
-## Reference(s): <br>
-- [Tavily](https://tavily.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Markdown text with answers, source lists, extracted URL content, or failed URL notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search supports result count up to 20, basic or advanced depth, general or news topics, and optional news date filtering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Search queries and provided URLs are sent to Tavily under the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when Tavily is approved for the data being searched or extracted.
+
+Risk: Private intranet links, token-bearing URLs, or confidential research targets may disclose sensitive information to an external service.
+
+Mitigation: Avoid submitting those URLs or queries unless they have been cleared for Tavily processing.
+
+## Reference(s):
+
+- [Tavily](https://tavily.com)
+- [ClawHub skill page](https://clawhub.ai/cp33333333333/skills/tavily-search1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with answer sections, source lists, URLs, snippets, and extracted page content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TAVILY_API_KEY; search result count is capped at 20.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

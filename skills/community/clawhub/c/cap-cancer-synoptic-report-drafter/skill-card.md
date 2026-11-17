@@ -1,42 +1,60 @@
-## Description: <br>
-Helps surgical pathologists, pathology trainees, pathology assistants, and LIS report-builders draft CAP Cancer Protocol-conformant synoptic cancer reports with protocol selection, Required Data Elements, AJCC 8th Edition pTNM staging, biomarker fields, and attending review labeling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a surgical pathologist, pathology fellow, pathology assistant, or LIS report-builder needs to draft a CAP Cancer Protocol-conformant synoptic report covering protocol selection, Required Data Elements, AJCC 8th pTNM staging, biomarker fields, and attending review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-External pathology professionals and LIS report-builders use this skill to prepare draft CAP-style synoptic cancer report text for attending pathologist review and electronic sign-out workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft pathology report text may be clinically incomplete, inconsistent, or wrong if source case details are missing or ambiguous. <br>
-Mitigation: Treat every output as a draft and require attending pathologist review before LIS sign-out or clinical release. <br>
-Risk: Case inputs may contain patient identifiers or other protected health information. <br>
-Mitigation: Use the minimum necessary case details and an accession number only; avoid patient name, MRN, DOB, and other direct identifiers in the working draft. <br>
-Risk: Using the wrong CAP protocol version can make a synoptic report nonconformant. <br>
-Mitigation: Confirm the applicable protocol version against the institution's LIS/CAP materials before drafting Required Data Elements. <br>
+## Use Case:
 
+Surgical pathology and LIS users use this skill to draft CAP Cancer Protocol-conformant synoptic cancer report packets from specimen, gross, microscopic, and ancillary-study inputs. The output is a draft for attending pathologist review and electronic sign-out in the laboratory information system.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/cap-cancer-synoptic-report-drafter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft pathology report packet with synoptic report text, comment block, final diagnosis line, open questions, and evidence index.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft only; requires attending pathologist review before clinical use or release.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence and changelog, released 2026-05-28) <br>
+Risk: A draft report could be mistaken for a signed diagnosis, staging decision, biomarker release, or patient-facing communication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only as a drafting aid for qualified pathology or LIS personnel, and require attending pathologist review and LIS sign-out before clinical use.
+
+Risk: Using the wrong CAP protocol version or leaving Required Data Elements unresolved could produce a nonconformant synoptic report.
+
+Mitigation: Confirm the applicable CAP protocol version from the LIS or CAP source before drafting, keep Required Data Elements in protocol order, and resolve OPEN, PENDING, or DISCORDANT items before release.
+
+Risk: Protected health information could be included in the working draft if users paste patient identifiers.
+
+Mitigation: Use accession number only in the working draft and exclude patient name, MRN, date of birth, and other PHI until final sign-out inside the LIS.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/archlab-space/skills/cap-cancer-synoptic-report-drafter)
+- [Skill README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown draft synoptic pathology packet with structured report sections and open-question markers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft output is labeled for attending pathologist review and LIS sign-out; unresolved fields may be marked OPEN, PENDING, or DISCORDANT.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 ---
 name: booksearch-api
-description: Search Amazon KDP books on the BeyondBSR public API, retrieve BSR (Best Sellers Rank) history for a single book, and explore the Amazon category taxonomy (browse nodes) for any supported marketplace. Each book-search result now ships its full root → leaf category ancestor chain(s) inline, so the skill can aggregate market-opportunity reports by macro/sub category without follow-up calls. Use this skill whenever the user wants to discover, filter, or research self-published or traditionally published books on Amazon by BSR, category, keyword, royalty range, rating, reviews, publication date, binding type, or marketplace (currently only the US and FR Amazon marketplaces are populated with data — more coming soon); when the user wants the BSR timeline of a specific ASIN over the last N days; when the user wants to look up Amazon category codes (browse node IDs), walk the category tree (children, ancestors/breadcrumb), or search categories by name to use as filters in book search; or when the user wants to group/aggregate search results by macro category (e.g. "how many Personal Finance opportunities, broken down by sub-category?"). Typical intents include KDP niche research, low-competition book discovery, sales estimation, royalty/revenue projection, competitor analysis, paperback/hardcover filtering, bulk listing of books matching numeric/textual criteria, single-ASIN BSR history charts, resolving a human-readable category name (e.g. "manga", "self-help") into the Amazon `catId` to pass to `categoryIds` in book search, and producing category-grouped market-opportunity summaries from a single search response. Do not use for price-history timelines, review/rating timelines, or account/user data — only book search, BSR history, and category browsing are exposed.
+description: Search Amazon KDP books on the BeyondBSR public API, retrieve the BSR (Best Sellers Rank) history of a single book, and explore the Amazon category taxonomy (browse nodes). Only the US marketplace is active; FR is temporarily disabled. Book-search results include full root-to-leaf category chains, so reports can be grouped by macro category or niche without follow-up calls. Use when the user wants to find or filter self-published or traditionally published books by BSR, category, keyword, royalty, rating, reviews, publication date or binding; do KDP niche research, low-competition discovery, sales or royalty estimates, or competitor analysis; chart the BSR timeline of an ASIN; resolve a category name into a `catId` for `categoryIds`, walk the category tree, or search categories by name; or produce category-grouped market-opportunity summaries. Do not use for price-history timelines, review or rating timelines, or account data.
 metadata:
   clawdbot:
     requires:
@@ -26,9 +26,9 @@ Programmatic search over the BeyondBSR book catalogue, BSR history retrieval for
 
 Use it when the user asks to:
 
-- Find books matching numeric filters: BSR range, rating, reviews count, royalty, page count age, publication recency.
+- Find books matching numeric filters: BSR range, rating, reviews count, royalty, months since publication.
 - Discover niches by keyword inclusion/exclusion or Amazon category IDs.
-- Filter by marketplace (currently US / Amazon.com and FR / Amazon.fr only).
+- Filter by marketplace (currently US / Amazon.com only; FR / Amazon.fr is temporarily disabled).
 - Distinguish self-publishers from traditional publishers.
 - Estimate sales (daily / weekly / monthly / quarterly) and revenue per copy.
 - Compare BSR averages across multiple time windows (7d / 30d / 90d / 180d / 365d).
@@ -59,16 +59,15 @@ X-API-Key: $BOOKSEARCH_API_KEY
 
 ## Marketplace domains
 
-**At this time only two marketplaces are populated with data: the United States (`domainId=1`) and France (`domainId=4`).** Additional marketplaces are planned but not yet available.
+**At this time only one marketplace is active: the United States (`domainId=1`).** France (`domainId=4`) is temporarily disabled: its data is no longer refreshed, so do not use it for analysis. Additional marketplaces are planned but not yet available.
 
-Map natural-language marketplace references (e.g. "the US store", "Amazon.com", "amazon francia", "Amazon.fr") to `domainId` using this table:
+Map natural-language marketplace references (e.g. "the US store", "Amazon.com") to `domainId` using this table:
 
 | domainId | locale | country | name          |
 |----------|--------|---------|---------------|
 | 1        | com    | US      | United States |
-| 4        | fr     | FR      | France        |
 
-The validator technically accepts `domainId` `1–12`, but **only `1` (US) and `4` (FR) return data right now**. If the user asks for any other marketplace (UK, Germany, Italy, Spain, Canada, Japan, etc.), tell them it is not currently supported — coming soon. Do not invent domain IDs.
+The validator technically accepts `domainId` `1–12`, but **only `1` (US) is supported right now**: other IDs may still return old rows, which must not be treated as current. If the user asks for France, tell them it is temporarily disabled. If they ask for any other marketplace (UK, Germany, Italy, Spain, Canada, Japan, etc.), tell them it is not currently supported — coming soon. Do not invent domain IDs.
 
 ## Request schema
 
@@ -78,16 +77,16 @@ All fields are optional except `domainId`. Enums accept either the string name (
 
 | Field      | Type | Constraint                  |
 |------------|------|-----------------------------|
-| `domainId` | int  | US (`1`) or FR (`4`) — the only marketplaces with data (validator allows 1–12). |
+| `domainId` | int  | US (`1`) — the only active marketplace (validator allows 1–12). |
 
 ### BSR filters
 
 | Field      | Type        | Default   | Notes                                                                       |
 |------------|-------------|-----------|-----------------------------------------------------------------------------|
-| `bsrType`  | enum        | `Weekly`  | `Historical(-1)`, `Current(0)`, `Weekly(7)`, `Days30(8)`, `Days90(9)`, `Days180(10)`, `Days365(11)` |
+| `bsrType`  | enum        | `Weekly`  | `Historical(-1)`, `Weekly(7)`, `Days30(30)`, `Days90(90)`, `Days180(180)`, `Days365(365)`. `Current(0)` is rejected with `400`: read `bsrCurrent` from the response instead. |
 | `bsrMin`   | int?        | 1         | ≥ 1                                                                         |
 | `bsrMax`   | int?        | 100000    | ≥ 1, `bsrMin ≤ bsrMax`                                                      |
-| `bsrYear`  | short?      | null      | 2000–(current year + 1). Required together with `bsrMonth`. Use only with `bsrType=Historical`. |
+| `bsrYear`  | short?      | null      | 2000–(current year + 1). Required together with `bsrMonth`. Use only with `bsrType=Historical`, which returns `400` without both fields. |
 | `bsrMonth` | short?      | null      | 1–12. Required together with `bsrYear`.                                     |
 
 ### Product filters
@@ -95,7 +94,7 @@ All fields are optional except `domainId`. Enums accept either the string name (
 | Field              | Type    | Default     | Notes                                              |
 |--------------------|---------|-------------|----------------------------------------------------|
 | `bindingType`      | enum?   | null (all)  | `All`, `Paperback`, `Hardcover`                    |
-| `publisherType`    | enum?   | `All`       | `All`, `SelfPublishersOnly`, `PublishersOnly`      |
+| `publisherType`    | enum?   | `All`       | `All`, `SelfPublishersOnly`, `PublishersOnly`. `SelfPublishersOnly` matches only the publisher names "Independently published" and "CreateSpace", so self-publishers using their own imprint count as `PublishersOnly`. See "Aggregating results by category" before using it in niche research. |
 | `interiorType`     | enum?   | `BlackWhite`| `BlackWhite`, `FullColor`                          |
 | `vatType`          | enum?   | `Reduced`   | `Reduced`, `Standard`                              |
 | `includePreOrders` | bool?   | `false`     | —                                                  |
@@ -124,7 +123,7 @@ All fields are optional except `domainId`. Enums accept either the string name (
 |-------------------|----------|---------|-------------------------------------------------------------|
 | `includeKeywords` | string[] | null    | ≤ 25 items, each ≤ 100 chars, non-empty. **Each element is matched as a literal contiguous substring** (case-insensitive) against title, publisher and authors. Multiple elements are combined with **OR**. Pass multi-word phrases as a single element (`["small business taxes"]`), NOT as separate tokens (`["small","business","taxes"]`) — the latter would match any book containing just one of those words. |
 | `excludeKeywords` | string[] | null    | ≤ 25 items, each ≤ 100 chars, non-empty. Same matching semantics as `includeKeywords`: each element is a literal contiguous substring; books matching **any** element on title, publisher or authors are excluded. |
-| `categoryIds`     | long[]   | null    | ≤ 100 items, each > 0 (Amazon BrowseNode IDs). **Subtree-expanded**: passing a non-leaf node (e.g. depth-2 "Quick & Easy", `catId=17`) returns every book tagged with any descendant leaf — you do not need to enumerate leaves yourself. Pass any node from `/categories`, `/categories/search`, `/categories/children`, or `/categories/ancestors`. Mixing leaves and parents in one call is allowed (logical OR across the union of the expanded sets). Stale / unknown `catId`s collapse to no overlap and are silently dropped, not an error. |
+| `categoryIds`     | long[]   | null    | ≤ 100 items, each > 0 (Amazon BrowseNode IDs). **Subtree-expanded**: passing a non-leaf node (e.g. depth-3 "Quick & Easy", `catId=4257`) returns every book tagged with any descendant leaf — you do not need to enumerate leaves yourself. Pass any node from `/categories`, `/categories/search`, `/categories/children`, or `/categories/ancestors`. Mixing leaves and parents in one call is allowed (logical OR across the union of the expanded sets). Stale / unknown `catId`s collapse to no overlap and are silently dropped, not an error. |
 | `excludeFiction`  | bool?    | `true`  | When `true` (default), filters out fiction books — i.e. books whose categories all roll up to depth-2 ancestors flagged as fiction (Literature & Fiction, Romance, Mystery, Sci-Fi, Children's Books, Teen/YA, etc.) under the local Books root for the requested marketplace. A book is kept if **at least one** of its categories has a depth-2 ancestor flagged as non-fiction. Set `false` to include fiction. **Auto-disabled** when `categoryIds` is non-empty: explicit category intent overrides the fiction filter, otherwise passing a fiction category with the default would silently return zero results. |
 
 ### Pagination
@@ -147,7 +146,7 @@ All fields are optional except `domainId`. Enums accept either the string name (
 
 ```json
 {
-  "domainId": 4,
+  "domainId": 1,
   "bsrType": "Days90",
   "bsrMin": 1,
   "bsrMax": 50000,
@@ -163,7 +162,7 @@ All fields are optional except `domainId`. Enums accept either the string name (
   "includePreOrders": false,
   "includeKeywords": ["journal", "notebook"],
   "excludeKeywords": ["coloring"],
-  "categoryIds": [266162, 3248921],
+  "categoryIds": [16926923011, 4742],
   "excludeFiction": false,
   "limit": 50,
   "offset": 0
@@ -177,7 +176,7 @@ curl -X POST "https://api.beyondbsr.com/api/v1/books/search" \
   -H "Content-Type: application/json" \
   -H "X-API-Key: $BOOKSEARCH_API_KEY" \
   -d '{
-    "domainId": 4,
+    "domainId": 1,
     "bsrType": "Days90",
     "bsrMax": 50000,
     "bindingType": "Paperback",
@@ -194,7 +193,7 @@ curl -X POST "https://api.beyondbsr.com/api/v1/books/search" \
 | Field           | Type    | Notes                                                              |
 |-----------------|---------|--------------------------------------------------------------------|
 | `returnedCount` | int     | Items in **this page**. NOT a total-match count (no total exposed).|
-| `limit`         | int     | Effective limit applied (capped at 300).                           |
+| `limit`         | int     | Effective limit applied. Values outside 1–300 return `400`.        |
 | `offset`        | int     | Effective offset applied.                                          |
 | `results`       | array   | `BookSearchResultDto[]`. Empty if no match.                        |
 
@@ -214,11 +213,11 @@ curl -X POST "https://api.beyondbsr.com/api/v1/books/search" \
 | `reviews`            | int      | Total reviews.                                                                         |
 | `bsr`                | int      | **The column matching the requested `bsrType`** — i.e. the value filtered/sorted on.   |
 | `bsrCurrent`         | int?     | Latest snapshot BSR, regardless of `bsrType`.                                          |
-| `avgBsr7d`           | int?     | Always populated.                                                                      |
-| `avgBsr30d`          | int?     | Always populated.                                                                      |
-| `avgBsr90d`          | int?     | Always populated.                                                                      |
-| `avgBsr180d`         | int?     | Always populated.                                                                      |
-| `avgBsr365d`         | int?     | Always populated.                                                                      |
+| `avgBsr7d`           | int?     | Average BSR over the last 7 days. `null` if the book has no BSR data in that window.   |
+| `avgBsr30d`          | int?     | Same, over 30 days.                                                                    |
+| `avgBsr90d`          | int?     | Same, over 90 days.                                                                    |
+| `avgBsr180d`         | int?     | Same, over 180 days.                                                                   |
+| `avgBsr365d`         | int?     | Same, over 365 days.                                                                   |
 | `pageCount`          | int?     | —                                                                                      |
 | `priceCents`         | int?     | List price (MSRP) in cents.                                                            |
 | `dailyEstimate`      | decimal  | Estimated copies/day from BSR model.                                                   |
@@ -232,13 +231,14 @@ curl -X POST "https://api.beyondbsr.com/api/v1/books/search" \
 | `trim/spineWidthMm`  | int?     | Trim/spine measurements.                                                               |
 | `categories`         | long[]   | Raw leaf Amazon `cat_id`s the book is tagged with (verbatim from the database). Preserves original tag order. May be empty for books still being enriched. |
 | `categoryPaths`      | `Array<Array<{catId:long,name:string,depth:int}>>` | One inner array per entry in `categories`, each is the full root → leaf ancestor chain sorted by `depth` ascending. Use this to aggregate / group books by macro or sub category in a single round-trip without calling `/categories/ancestors` per leaf. |
-| `subcategoryRanks`   | `Array<{catId:long,rank:int,name:string}>` | Per-category Best Sellers Rank of the book inside each subcategory it is listed in (Amazon's "#1 in <category>" data). `catId` is the Amazon browse node, `rank` is the position within that node, `name` is the localised category label. Ordered as returned by Amazon (best/most-specific first). May be empty `[]` for books not yet enriched. Distinct from the top-level `bsr`/`bsrCurrent`, which are the overall Books-store rank. |
-| `frequentlyBoughtTogether` | `string[]` | ASINs of products Amazon surfaces as frequently bought together with this book. Use for competitor / cross-sell discovery (feed each ASIN back into `bsr-history` or a `includeKeywords`/`asin`-targeted search). May be empty `[]`. Not every book has this data — populated for a subset of titles. |
+| `subcategoryRanks`   | `Array<{catId:long,rank:int,name:string}>` | Per-category Best Sellers Rank of the book inside each subcategory it is listed in (Amazon's "#1 in <category>" data). `catId` is the Amazon browse node, `rank` is the position within that node, `name` is the localised category label. Ordered by `rank` ascending (strongest subcategory first); the root category is excluded. May be empty `[]` for books not yet enriched. Distinct from the top-level `bsr`/`bsrCurrent`, which are the overall Books-store rank. **Do not use it to group books into niches**: books of the same niche are scattered across many sibling nodes. Use `categoryPaths` instead. |
+| `frequentlyBoughtTogether` | `string[]` | ASINs of products Amazon surfaces as frequently bought together with this book. Use for competitor / cross-sell discovery: feed each ASIN into `bsr-history`. `POST /books/search` has no ASIN filter, and keywords match only title, publisher and authors. May be empty `[]`. Not every book has this data — populated for a subset of titles. |
 
 **Important caveats**
 
 - All royalty and revenue fields are in **cents** — divide by 100 before showing currency.
 - `bsr` ≠ `bsrCurrent`. `bsr` is whatever column was chosen by `bsrType`; `bsrCurrent` is always the latest snapshot.
+- `avgBsrXd` is `null` when the book has no BSR data in that window, typically because it left the tracked catalogue. Do not read `null` as a bad rank or as zero, and do not assume a value exists: books with only older data may have `avgBsr365d` but not `avgBsr7d`.
 - In `bsrType=Historical` mode, the `avgBsrXd` averages come from the current snapshot table while `bsr` itself is the historical month value — there is a documented temporal asymmetry inside the same response. Mention this if the user is doing a strict historical analysis.
 - `categoryPaths.length === categories.length` for a healthy dataset. If a leaf `cat_id` has been deleted upstream after the book was indexed, the corresponding inner array is silently dropped (never null) — so `categoryPaths.length` may be ≤ `categories.length`. The `categories` array always reflects the original tag set.
 - Both `categories` and `categoryPaths` may be **empty arrays `[]`** (never `null`) for books still being enriched or whose taxonomy snapshot hasn't propagated yet. Aggregation code must skip these books rather than fail on missing chains.
@@ -252,10 +252,23 @@ Each `categoryPaths` inner array is sorted by `depth` ascending. The taxonomy un
 | 0 | Books root | `Books` | `Libri` |
 | 1 | Container shell | `Subjects` | `Categorie` |
 | 2 | **Top-level subject** ("macro") | `Self-Help`, `Cookbooks, Food & Wine`, `Crafts, Hobbies & Home` | `Cucina, casa e giardinaggio` |
-| 3 | **Sub-category** | `Crafts & Hobbies`, `Christian Books & Bibles` | — |
-| 4-5 | **Niche / micro-niche** (KDP-relevant) | `Coloring Books for Grown-Ups`, `Bible Study & Reference` | — |
+| 3 | **Sub-category** (usually too broad for a niche) | `Crafts & Hobbies`, `Christian Books & Bibles`, `Antiques & Collectibles` | — |
+| 4 | **Niche** (default grouping level, KDP-relevant) | `Coloring Books for Grown-Ups`, `Bible Study & Reference`, `Word Search`, `Coins & Medals` | — |
+| 5+ | **Micro-niche / leaf** (usually too fragmented to group on) | `World Coins`, `General` | — |
 
-To produce a market-opportunity report, group on the **`catId` at the desired depth**, not the `name` (names are locale-dependent; `catId` is stable). For KDP niche research the interesting depths are **3 and 4**: depth 2 is usually too broad (e.g. "Crafts & Hobbies" alone covers thousands of books), while depth 3-4 isolates real nicchie ("Coloring Books for Grown-Ups", "Word Search", "Christian Living").
+To produce a market-opportunity report, group on the **`catId` at the desired depth**, not the `name` (names are locale-dependent; `catId` is stable). For KDP niche research, **group on depth 4 by default and fall back to depth 3 only when a chain stops there**.
+
+Example from the US tree: `Books > Subjects > Crafts, Hobbies & Home > Antiques & Collectibles > Coins & Medals > General`.
+
+- Depth 3 is too broad: `Antiques & Collectibles` has about 214k products, so coin books disappear among autographs, jewelry and stamps.
+- Depth 4 is the niche: `Coins & Medals` has about 9.6k products and holds all the coin books in one group.
+- Depth 5 and `subcategoryRanks` are too fragmented: the same books split across many nodes, and each one can fall below a minimum-books threshold.
+
+Rules for niche reports:
+
+- `General` also exists as a node name at depth 4 (e.g. `Antiques & Collectibles > General`, about 66k products). It is a catch-all, not a niche, so always show niche names with their parent, as the pattern below does.
+- Do not use `publisherType=SelfPublishersOnly` to decide whether a niche exists: it drops self-publishers with their own imprint and can push a real niche below a minimum-books threshold. Search with `publisherType=All`, group first, then classify publishers per niche from the `publisher` field.
+- Depth 4 is a default, not a guarantee: check the result when a niche looks too broad or too thin.
 
 Pattern — nested macro → sub-niche histogram with revenue rollup, from one search response:
 
@@ -269,7 +282,8 @@ for (const book of response.results) {
 
   for (const chain of book.categoryPaths) {        // may be [] for un-enriched books
     const macro = chain.find(n => n.depth === 2);
-    const niche = chain.find(n => n.depth === 3) ?? chain.find(n => n.depth === 4);
+    const niche = chain.find(n => n.depth === 4) ?? chain.find(n => n.depth === 3);
+    const parent = niche && chain.find(n => n.depth === niche.depth - 1);
     if (!macro) continue;
 
     if (!seenMacros.has(macro.catId)) {
@@ -281,7 +295,7 @@ for (const book of response.results) {
     if (niche && !seenNiches.has(niche.catId)) {
       seenNiches.add(niche.catId);
       const m = report.get(macro.catId);
-      const n = m.subniches.get(niche.catId) ?? { name: niche.name, books: 0, monthlyRevCents: 0 };
+      const n = m.subniches.get(niche.catId) ?? { name: `${parent.name} > ${niche.name}`, books: 0, monthlyRevCents: 0 };
       n.books++;
       // pick whichever revenue field matches the user's interior/VAT context
       n.monthlyRevCents += book.monthlyRevenueBlackReducedVatCents ?? 0;
@@ -297,20 +311,20 @@ Sample fragment of a result with two categories (US, depth-1 is always `Subjects
 {
   "asin": "1234567890",
   "title": "Quick Weeknight Dinners",
-  "categories": [4259, 9876],
+  "categories": [4259, 4613],
   "categoryPaths": [
     [
       { "catId": 283155, "name": "Books",                "depth": 0 },
       { "catId": 1000,   "name": "Subjects",             "depth": 1 },
       { "catId": 6,      "name": "Cookbooks, Food & Wine","depth": 2 },
-      { "catId": 17,     "name": "Quick & Easy",         "depth": 3 },
+      { "catId": 4257,   "name": "Quick & Easy",         "depth": 3 },
       { "catId": 4259,   "name": "General",              "depth": 4 }
     ],
     [
       { "catId": 283155, "name": "Books",                       "depth": 0 },
       { "catId": 1000,   "name": "Subjects",                    "depth": 1 },
       { "catId": 10,     "name": "Health, Fitness & Dieting",   "depth": 2 },
-      { "catId": 9876,   "name": "Diet & Weight Loss",          "depth": 3 }
+      { "catId": 4613,   "name": "Diets & Weight Loss",         "depth": 3 }
     ]
   ]
 }
@@ -339,7 +353,7 @@ If the user has filter criteria but no specific ASIN, use `POST /search` first, 
 
 | Param      | In    | Type   | Required | Constraint                                                                 |
 |------------|-------|--------|----------|----------------------------------------------------------------------------|
-| `domainId` | path  | int    | yes      | US (`1`) or FR (`4`) — see Marketplace domains table (validator allows 1–12). |
+| `domainId` | path  | int    | yes      | US (`1`) — see Marketplace domains table (validator allows 1–12). |
 | `asin`     | path  | string | yes      | Exactly 10 chars, regex `^[A-Z0-9]{10}$` (uppercase letters / digits only). |
 | `days`     | query | int?   | no       | 1–365. Default `365`. Window is `[now - days, now]` UTC.                   |
 
@@ -416,9 +430,9 @@ The four endpoints under `/api/v1/categories` expose the Amazon taxonomy (browse
 ### Use cases
 
 - **Resolve a name → `catId`** to pass into `POST /books/search` `categoryIds`. Example: user asks for "manga" books on US → call `/categories/search?domainId=1&q=manga` to get candidate cat_ids, then feed the chosen ones into `categoryIds`.
-- **Top-level book categories** of a marketplace (e.g. "list the main Books categories on Amazon.fr"): `GET /categories?domainId=4&depth=2`.
+- **Top-level book categories** of a marketplace (e.g. "list the main Books categories on Amazon.com"): `GET /categories?domainId=1&depth=2`.
 - **Walk down the tree** from a known node (e.g. "what's under Cookbooks?"): `GET /categories/children?domainId=1&catId=6`.
-- **Walk up the tree / breadcrumb** for a leaf node (e.g. "where does cat 4142740011 sit?"): `GET /categories/ancestors?domainId=1&catId=4142740011` → returns root → … → node, ordered by depth.
+- **Walk up the tree / breadcrumb** for a leaf node (e.g. "where does cat 11160395011 sit?"): `GET /categories/ancestors?domainId=1&catId=11160395011` → returns root → … → node, ordered by depth.
 
 ### Shared response object — `CategoryBrowseNodeDto`
 
@@ -441,7 +455,7 @@ GET /api/v1/categories?domainId={..}&depth={0..5}&includeFiction={true|false}
 
 | Param            | Type  | Default | Notes                                                                                                                                  |
 |------------------|-------|---------|----------------------------------------------------------------------------------------------------------------------------------------|
-| `domainId`       | int   | —       | Required. Marketplace ID (1-12, but only `1` US and `4` FR return data).                                                                |
+| `domainId`       | int   | —       | Required. Marketplace ID (1-12, but only `1` US is supported).                                                                          |
 | `depth`          | int?  | 2       | Hierarchy level. 0 = root. 2 = top-level book categories ("Self-Help", "Cookbooks…", etc.). Allowed 0-5.                               |
 | `includeFiction` | bool? | `false` | Whether to include nodes flagged as fiction (Literature & Fiction, Romance, Sci-Fi, Children's Books, Teen/YA, Comics, etc.).          |
 
@@ -592,7 +606,7 @@ curl -H "X-API-Key: $BOOKSEARCH_API_KEY" \
 | 200  | OK (may be empty list) | `BookSearchApiResponse`                    | Parse `results`. Empty array = no matches, not an error.                      |
 | 400  | Validation failed      | `ValidationProblemDetails` (RFC 7807)      | Read the `errors` map, fix the body, do not retry blindly. Surface the issue. |
 | 401  | Auth failed            | empty + `WWW-Authenticate: ApiKey realm="BeyondBSR"` | Stop. Report misconfigured `BOOKSEARCH_API_KEY`. Do not retry.       |
-| 429  | Rate limit exceeded    | `"Rate limit exceeded. Please try again later."` + `Retry-After` header | Honour `Retry-After`. Back off. Do not hammer the endpoint. |
+| 429  | Rate limit exceeded    | `ProblemDetails` JSON (`detail`: "Rate limit exceeded. Please try again later.") + `Retry-After` header | Honour `Retry-After`. Back off. Do not hammer the endpoint. |
 | 500  | Unhandled server error | `ProblemDetails` JSON                      | Retry once after a few seconds. If it persists, escalate to the user.         |
 
 ### Example 400 body

@@ -1,42 +1,53 @@
-## Description: <br>
-基于《周易》的完整占卜系统，支持铜钱起卦 + 八字排盘 + 综合解读 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于《周易》的完整占卜系统，支持铜钱起卦 + 八字排盘 + 综合解读
 
-## Publisher: <br>
-[ahao2001](https://clawhub.ai/user/ahao2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahao2001](https://clawhub.ai/user/ahao2001)
 
-## Use Case: <br>
-External users and developers use this skill to run local I Ching divination and optional BaZi analysis for learning or entertainment. It supports command-line, interactive, and JSON output modes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional birth details can be sensitive if entered on shared machines or saved through redirected JSON output. <br>
-Mitigation: Use non-sensitive or test data on shared systems, and save JSON reports only when you intend to retain that information. <br>
-Risk: Divination and BaZi results could be mistaken for professional decision advice. <br>
-Mitigation: Treat output as entertainment or study material and make important decisions using appropriate personal, professional, or domain-specific judgment. <br>
+## Use Case:
 
+External users can run this Chinese-language local command-line skill for educational or entertainment ZhouYi divination, BaZi charting, five-elements analysis, and combined interpretations based on a question and optional birth details.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ahao2001/zhouyi-divin) <br>
-- [README](README.md) <br>
-- [Installation and usage guide](INSTALL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style command-line reports with optional JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Python 3.8+ and no third-party dependencies; optional birth details are processed locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: Personal questions and birth details may appear in terminal output, shell history, or saved JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal information, review redirected output before sharing it, and manage shell history or generated files according to local privacy requirements.
+
+Risk: Divination and BaZi interpretations could be mistaken for professional or deterministic advice.
+
+Mitigation: Use results for learning and entertainment, and rely on qualified professional guidance and personal judgment for important health, financial, legal, or life decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahao2001/skills/zhouyi-divin)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [Terminal text report or JSON object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes inputs locally and can include the user's question, birth details, hexagram data, BaZi report, and interpretation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

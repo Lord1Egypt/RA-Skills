@@ -1,12 +1,35 @@
 ---
+
+
+
+
+
 name: twitch-clip
-metadata: {"clawdbot":{"emoji":"🎬","requires":{"bins":["curl"],"env":["TWITCH_CLIENT_ID","TWITCH_ACCESS_TOKEN","TWITCH_BROADCASTER_ID"]},"os":["linux","darwin"]}}
+metadata: {"clawdbot":{"emoji":"\ud83c\udfac","requires":{"bins":["curl"],"env":["TWITCH_CLIENT_ID","TWITCH_ACCESS_TOKEN","TWITCH_BROADCASTER_ID"]},"os":["linux","darwin"],"version":"1.0.8"}}
 description: Create Twitch clips of the current live stream via the Twitch API. Use when a streamer says "clip that", "clip the last X seconds", "make a clip", "clip it", or any variation requesting a clip of the current broadcast. Requires Twitch API credentials configured in environment variables. Has a 30-second cooldown between clips to prevent spam.
 ---
 
+
+
+
+
+
 # Twitch Clip Skill
 
-Creates a clip of the last 30–60 seconds of a live Twitch stream via the Twitch Clips API. Includes a 30-second cooldown to prevent accidental spam clipping.
+Creates a clip of the last 5–60 seconds of a live Twitch stream via the Twitch Clips API. Includes a 30-second cooldown to prevent accidental spam clipping.
+
+## Before You Run
+
+Clipping is a write action against your Twitch channel using a token that carries
+clip-creation authority.
+
+- **Explicit request only.** Run this only when someone has directly asked for a clip
+  of the current broadcast. Do not act on ambient mentions of streaming or recording.
+- **Confirm before creating.** Confirm the clip request before calling the API. The
+  skill creates a public clip immediately once authorized.
+- **Per-user state.** The cooldown file lives in a private per-user state directory,
+  not a shared `/tmp` path, so it is not writable or readable by other users on the
+  machine.
 
 ## Setup
 
@@ -42,7 +65,9 @@ Run the clip script:
 ```bash
 bash scripts/create_clip.sh [duration_seconds]
 ```
-- Duration defaults to 30, max 60
+- Duration defaults to 30, and must be between 5 and 60 seconds
+- The requested duration is passed to the Twitch API, so the published clip
+  matches what was asked for
 - Stream must be live or the API returns a 404
 
 ## Cooldown

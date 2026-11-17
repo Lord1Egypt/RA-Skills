@@ -1,44 +1,59 @@
-## Description: <br>
-Generates content drafts by analyzing reference URLs, extracting reusable writing patterns, collecting user context, creating a meta-prompt, and producing draft variations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates new content drafts by analyzing reference URLs, extracting content patterns, gathering user context, creating a meta-prompt, and producing multiple draft variations.
 
-## Publisher: <br>
-[vincentchan](https://clawhub.ai/user/vincentchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vincentchan](https://clawhub.ai/user/vincentchan)
 
-## Use Case: <br>
-External users, developers, and content teams use this skill to model new articles, posts, or tweets after selected reference examples. It guides an agent through URL collection, content analysis, context gathering, meta-prompt creation, and generation of three draft variations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow fetches user-provided URLs, which could expose private, internal, signed, or tokenized links to the agent runtime or external fetch services. <br>
-Mitigation: Use public reference links only and avoid submitting private, internal, signed, or tokenized URLs. <br>
-Risk: Generated markdown files may contain confidential strategy, positioning, or draft content supplied during the context interview. <br>
-Mitigation: Review generated files before sharing them and delete local artifacts that contain sensitive material. <br>
-Risk: Twitter/X references may be transformed to FxTwitter API URLs, so users should expect those references to be fetched through that service. <br>
-Mitigation: Do not provide Twitter/X links unless use of FxTwitter for retrieval is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Content Deconstructor](references/content-deconstructor.md) <br>
-- [Content Anatomy Generator](references/content-anatomy-generator.md) <br>
-- [Content Context Generator](references/content-context-generator.md) <br>
-- [Meta Prompt Generator](references/meta-prompt-generator.md) <br>
+## Use Case:
 
+External users, content creators, marketers, and developers use this skill to turn high-performing reference content into reusable anatomy guides, context questions, meta-prompts, and draft content variations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown files and conversational Markdown responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces timestamped markdown artifacts for content breakdowns, anatomy guides, context requirements, meta-prompts, and final content drafts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send user-provided reference URLs to external web services, including routing Twitter/X links through api.fxtwitter.com.
+
+Mitigation: Use only public reference URLs that are acceptable to share with external services.
+
+Risk: Fetched reference content may contain untrusted or misleading material.
+
+Mitigation: Treat fetched content as source material only and review generated drafts before publishing or reuse.
+
+Risk: The security scan verdict is suspicious because outbound network behavior is understated.
+
+Mitigation: Review the skill before installing and confirm its URL-fetching behavior fits the intended environment.
+
+## Reference(s):
+
+- [Content Deconstructor](references/content-deconstructor.md)
+- [Content Anatomy Generator](references/content-anatomy-generator.md)
+- [Content Context Generator](references/content-context-generator.md)
+- [Meta Prompt Generator](references/meta-prompt-generator.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown files containing content breakdowns, anatomy guides, context questions, meta-prompts, and draft variations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates timestamped workflow artifacts and exactly 3 draft variations per requested content type.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

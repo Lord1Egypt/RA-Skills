@@ -1,44 +1,61 @@
-## Description: <br>
-V19 Causal Auditor helps analyze agent decision chains, identify causal conflicts, and produce prioritized audit recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+V19 Causal Auditor automatically analyzes decision trails, detects causal conflicts, and generates audit recommendations.
 
-## Publisher: <br>
-[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234)
 
-## Use Case: <br>
-Developers and agent operators use this skill to review decision traces, spot causal inconsistencies, and draft remediation guidance before relying on an automated decision workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends decision context to an external governance endpoint and includes a public key for that service. <br>
-Mitigation: Avoid sending sensitive business, user, incident, or credential data, and require explicit user approval before any remote submission. <br>
-Risk: The described workflow includes automatic arbitration, registration, and permanent audit-chain writes without enough detail about user control or privacy. <br>
-Mitigation: Review the service behavior before use and require explicit approval before arbitration, registration, or immutable audit actions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run causal audits over agent decision records, identify contradictory or incomplete causal chains, and receive prioritized remediation suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuyanfeng1234/v19-causal-auditor) <br>
-- [V19 Trust Manifesto](https://clawhub.com/skills/v19-trust-manifesto) <br>
-- [V19 Causal Dependency Analyzer](https://clawhub.com/skills/v19-causal-dependency-analyzer) <br>
-- [V19 Early Causal Graph Debugger](https://clawhub.com/skills/v19-early-causal-graph-debugger) <br>
-- [V19 Certified Agent Workflow](https://clawhub.com/skills/v19-certified-agent-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls] <br>
-**Output Format:** [Markdown guidance with inline bash and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call an external governance service when the user chooses to execute the provided examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill directs users to submit decision-audit data and agent identity to an unverified temporary-looking external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted test data until the service operator, endpoint stability, retention terms, and deletion terms are verified.
+
+Risk: Credential guidance is weak and includes a public experience key in the artifact.
+
+Mitigation: Use per-user scoped credentials, rotate keys regularly, and avoid sharing production credentials in prompts, logs, or public documentation.
+
+Risk: Audit results depend on the referenced remote service being trustworthy and available.
+
+Mitigation: Review outputs before acting on them, and prefer an owner-controlled endpoint for production or commercial workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liuyanfeng1234/skills/v19-causal-auditor)
+- [V19 Trust Manifesto](https://clawhub.com/skills/v19-trust-manifesto)
+- [V19 Causal Dependency Analyzer](https://clawhub.com/skills/v19-causal-dependency-analyzer)
+- [V19 Early Causal Graph Debugger](https://clawhub.com/skills/v19-early-causal-graph-debugger)
+- [V19 Certified Agent Workflow](https://clawhub.com/skills/v19-certified-agent-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with curl command examples and JSON request payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns decision path annotations, highlighted causal anomalies, conflict scoring, and prioritized audit recommendations when the referenced service responds.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

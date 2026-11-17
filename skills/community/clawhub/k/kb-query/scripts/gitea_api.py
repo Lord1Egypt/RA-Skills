@@ -1,51 +1,84 @@
-from __future__ import annotations
-
-import base64
+﻿import base64
+import json
 import os
-from urllib.parse import quote
+import urllib.error
+import urllib.parse
+import urllib.request
 
-import requests
-
-
-GITEA_URL = os.getenv("GITEA_URL", "").rstrip("/")
-ADMIN_TOKEN = os.getenv("GITEA_ADMIN_TOKEN", "")
+from utils import sha256_text
 
 
-class GiteaError(RuntimeError):
-    pass
+class GiteaClient:
+    def __init__(self, payload=None):
+        platform = (payload or {}).get("platform") or {}
+        team = (payload or {}).get("team") or {}
+        self.url = (platform.get("giteaUrl") or os.getenv("GITEA_URL") or "").rstrip("/")
+        self.token = os.getenv("GITEA_BOT_TOKEN") or ""
+        self.owner = platform.get("giteaOwner") or os.getenv("GITEA_ORG") or os.getenv("GITEA_BOT_USERNAME") or ""
+        self.repo = team.get("kbRepo") or os.getenv("TEAM_KB_REPO") or "team-kb"
+        self.dry_run = not (self.url and self.token and self.owner and self.repo)
+        self.last_commit = "dry-run"
 
+    def read_text(self, path):
+        if self.dry_run:
+            return ""
+        try:
+            response = self._request("GET", f"/repos/{self._q(self.owner)}/{self._q(self.repo)}/contents/{self._path(path)}")
+        except urllib.error.HTTPError as exc:
+            if exc.code == 404:
+                return ""
+            raise
+        content = response.get("content") or ""
+        return base64.b64decode(content).decode("utf-8", errors="replace") if content else ""
 
-def _headers() -> dict[str, str]:
-    return {"Authorization": f"token {ADMIN_TOKEN}", "Accept": "application/json"}
+    def exists(self, path):
+        if self.dry_run:
+            return False
+        try:
+            self._request("GET", f"/repos/{self._q(self.owner)}/{self._q(self.repo)}/contents/{self._path(path)}")
+            return True
+        except urllib.error.HTTPError as exc:
+            if exc.code == 404:
+                return False
+            raise
 
+    def upsert_text(self, path, content, message):
+        if self.dry_run:
+            self.last_commit = "dry-run-" + sha256_text(path + content)[:12]
+            return {"path": path, "commit": self.last_commit}
+        sha = self._existing_sha(path)
+        payload = {"message": message, "content": base64.b64encode(content.encode("utf-8")).decode("ascii")}
+        if sha:
+            payload["sha"] = sha
+        response = self._request("PUT", f"/repos/{self._q(self.owner)}/{self._q(self.repo)}/contents/{self._path(path)}", payload)
+        commit = response.get("commit") or {}
+        self.last_commit = commit.get("id") or commit.get("sha") or "unknown"
+        return {"path": path, "commit": self.last_commit}
 
-def _repo(owner: str, repo: str) -> str:
-    return f"{quote(owner, safe='')}/{quote(repo, safe='')}"
+    def _existing_sha(self, path):
+        try:
+            existing = self._request("GET", f"/repos/{self._q(self.owner)}/{self._q(self.repo)}/contents/{self._path(path)}")
+            return existing.get("sha")
+        except urllib.error.HTTPError as exc:
+            if exc.code == 404:
+                return None
+            raise
 
+    def _request(self, method, endpoint, body=None):
+        data = None
+        headers = {"Authorization": f"token {self.token}", "Accept": "application/json"}
+        if body is not None:
+            data = json.dumps(body).encode("utf-8")
+            headers["Content-Type"] = "application/json"
+        request = urllib.request.Request(self.url + "/api/v1" + endpoint, data=data, headers=headers, method=method)
+        with urllib.request.urlopen(request, timeout=60) as response:
+            raw = response.read().decode("utf-8")
+            return json.loads(raw) if raw else {}
 
-def _path(path: str) -> str:
-    return "/".join(quote(part, safe="") for part in path.split("/") if part)
+    @staticmethod
+    def _q(value):
+        return urllib.parse.quote(str(value), safe="")
 
-
-def api(method: str, path: str, *, ok=(200, 201, 204)) -> object:
-    if not GITEA_URL or not ADMIN_TOKEN:
-        raise GiteaError("GITEA_URL and GITEA_ADMIN_TOKEN are required")
-    response = requests.request(method, f"{GITEA_URL}{path}", headers=_headers(), timeout=60)
-    if response.status_code not in ok:
-        raise GiteaError(f"Gitea {method} {path} failed: {response.status_code} {response.text[:500]}")
-    if not response.text:
-        return {}
-    return response.json()
-
-
-def read_text(owner: str, repo: str, path: str) -> str:
-    data = api("GET", f"/api/v1/repos/{_repo(owner, repo)}/contents/{_path(path)}?ref=main")
-    content = str(data.get("content", "")).replace("\n", "")
-    return base64.b64decode(content).decode("utf-8")
-
-
-def list_tree(owner: str, repo: str) -> list[dict]:
-    branch = api("GET", f"/api/v1/repos/{_repo(owner, repo)}/branches/main")
-    sha = branch["commit"]["id"]
-    data = api("GET", f"/api/v1/repos/{_repo(owner, repo)}/git/trees/{quote(sha, safe='')}?recursive=true")
-    return data.get("tree", [])
+    @staticmethod
+    def _path(value):
+        return urllib.parse.quote(str(value).replace("\\", "/"), safe="/")

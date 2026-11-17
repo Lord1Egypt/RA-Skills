@@ -1,45 +1,51 @@
-## Description: <br>
-Analyzes aquatic pet videos or video URLs with a remote API to identify fish health indicators, potential disease signs, care guidance, and historical report links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes videos of aquarium pets to assess visible health indicators and produce a structured health report with potential issues and care suggestions.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-External users and aquarium caretakers use this skill to submit aquatic pet videos or URLs for health analysis covering scales, fins, body color, activity level, possible diseases, and care recommendations. Agents can also use it to retrieve cloud-hosted historical health reports associated with the current account identity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports that the skill sends aquarium videos or URLs, account-linked identifiers, and report-history requests to LifeEmergence services. <br>
-Mitigation: Use only media and URLs appropriate for third-party processing, and review the provider's data handling and retention claims before deployment. <br>
-Risk: The security review reports automatic identity creation or reuse and local storage of session tokens. <br>
-Mitigation: Run in an isolated environment, restrict local file access for token storage, and clear stored credentials when the skill is no longer needed. <br>
-Risk: The skill produces health analysis for aquatic pets and is not a substitute for professional veterinary diagnosis. <br>
-Mitigation: Present outputs as advisory screening information and route serious or uncertain health concerns to a qualified aquatic veterinarian. <br>
+## Use Case:
 
+Aquarium owners can submit a local video or video URL to receive an assessment of visible fish or aquatic pet health indicators, potential issues, and care suggestions. The report is for reference and does not replace a professional veterinarian's diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-aquarium-analysis) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [API reference](references/api_doc.md) <br>
-- [Analysis API reference](skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON analysis results, report links, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports local video files, remote video URLs, fish-type selection, basic/standard/JSON detail modes, and optional output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and frontmatter) <br>
+Risk: The security assessment is suspicious and partial, citing undeclared account and history behavior, identity and video data handling, and analysis that may continue despite an export-only option.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Follow the security guidance: consider avoiding installation until export-only behavior, account creation and data storage, identity transmission, video upload disclosure, and the history trigger are clarified; the scan notes that a referenced local path was missing.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-aquarium-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API reference](references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown, Guidance]
+
+**Output Format:** [Structured health report in text or JSON, with report links; history results can be presented as a Markdown list.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include potential health findings and care suggestions. The skill describes its results as reference information, not a substitute for professional veterinary diagnosis.]
+
+## Skill Version(s):
+
+1.0.19 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

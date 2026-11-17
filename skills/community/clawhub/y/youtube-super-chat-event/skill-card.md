@@ -1,44 +1,60 @@
-## Description: <br>
-Manage YouTube Super Chat events by helping an agent list Super Chat events for a channel through the yutu CLI, with setup and installation guidance for first-time users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage YouTube Super Chat events by listing Super Chat events for a channel through the yutu CLI.
 
-## Publisher: <br>
-[OpenWaygate](https://clawhub.ai/user/OpenWaygate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openwaygate](https://clawhub.ai/user/openwaygate)
 
-## Use Case: <br>
-External users and developers use this skill to install and configure yutu, authenticate with YouTube API OAuth credentials, and list YouTube Super Chat events for a channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on OAuth client secrets, cached YouTube tokens, and YUTU_* credential values that can grant access to the selected YouTube account if exposed. <br>
-Mitigation: Keep client_secret.json, youtube.token.json, and YUTU_* credential values private, do not commit them to source control, and revoke or rotate OAuth access if either file is exposed. <br>
-Risk: The skill depends on the third-party yutu CLI to access YouTube APIs. <br>
-Mitigation: Install only if you trust the yutu CLI and are comfortable granting it access to the selected YouTube account. <br>
+## Use Case:
 
+External users and developers use this skill to prepare yutu authentication and list YouTube Super Chat events for a channel.
 
-## Reference(s): <br>
-- [Yutu Setup Guide](references/setup.md) <br>
-- [Super Chat Event List](references/superChatEvent-list.md) <br>
-- [yutu project homepage](https://github.com/eat-pray-ai/yutu) <br>
-- [yutu README](https://github.com/eat-pray-ai/yutu#readme) <br>
-- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include yutu command flags and OAuth configuration file names.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.10.7-dev (source: release evidence) <br>
+Risk: The yutu CLI installation may introduce supply-chain risk if installed without a pinned or verified version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install yutu only from trusted sources and prefer a pinned or verified version where possible.
+
+Risk: OAuth client secrets and cached YouTube tokens can expose account access if mishandled.
+
+Mitigation: Keep client_secret.json and youtube.token.json private and avoid sharing them in prompts, logs, or repositories.
+
+Risk: YouTube OAuth access may grant more permission than needed for listing Super Chat events.
+
+Mitigation: Grant only the YouTube permissions needed for the intended listing workflow.
+
+## Reference(s):
+
+- [Yutu Setup Guide](references/setup.md)
+- [Super Chat Event List](references/superChatEvent-list.md)
+- [yutu project homepage](https://github.com/eat-pray-ai/yutu)
+- [ClawHub skill page](https://clawhub.ai/openwaygate/skills/youtube-super-chat-event)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose yutu commands that return table, JSON, or YAML output depending on selected CLI flags.]
+
+## Skill Version(s):
+
+0.10.7-dev (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Generates structured A-share stock review reports for midday or full-day analysis, including scoring, technical analysis, fundamentals, market context, strategy notes, risk disclosures, and optional charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured A-share stock review reports for midday and full-day analysis, including multidimensional scoring, technical analysis, fundamentals, market context, strategy sections, and risk notices.
 
-## Publisher: <br>
-[MartinYan623](https://clawhub.ai/user/MartinYan623) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[martinyan623](https://clawhub.ai/user/martinyan623)
 
-## Use Case: <br>
-Developers and analysts use this skill to generate local Markdown A-share stock review reports for a named stock code, report type, and date. The reports follow a standardized structure for scoring, market analysis, strategy notes, and risk disclosures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local stock-analysis report and chart files in the OpenClaw workspace. <br>
-Mitigation: Use ordinary stock names and codes, avoid path-like names, and review generated file paths before relying on the output. <br>
-Risk: Generated reports may include buy, sell, position, or strategy suggestions. <br>
-Mitigation: Treat all generated market guidance as informational only and review it with appropriate financial judgment before acting. <br>
-Risk: Reports rely on public market data that may be delayed, incomplete, or inaccurate. <br>
-Mitigation: Verify important prices, fundamentals, and market signals against official or trusted market data sources. <br>
+## Use Case:
 
+External users and analysts use this skill to draft A-share midday or full-day review reports for a named stock and trading date. It is intended to structure analysis and reminders, not to provide verified investment advice.
 
-## Reference(s): <br>
-- [Stock Report Generator on ClawHub](https://clawhub.ai/MartinYan623/stock-report-generator) <br>
-- [Scoring Guide](references/scoring_guide.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report files with optional PNG chart files and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local report files in the OpenClaw workspace; full-day reports may include a matplotlib radar chart.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact _meta.json, and changelog released 2026-03-22) <br>
+Risk: Generated reports may be mistaken for verified investment advice or current market analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational drafts, keep the disclaimer, and independently verify market data and conclusions before acting.
+
+Risk: The included CLI can write files using user-provided stock names and dates.
+
+Mitigation: Use trusted inputs only or sanitize stock names and dates before running the script; verify output paths stay inside the intended reports folder.
+
+Risk: The generator can produce sample reports when real data tools are unavailable or not connected.
+
+Mitigation: Clearly label sample-data outputs and connect or verify real market-data sources before relying on a report.
+
+## Reference(s):
+
+- [Scoring Guide](references/scoring_guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/martinyan623/skills/stock-report-generator)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, shell commands, guidance]
+
+**Output Format:** [Markdown reports with optional PNG radar chart files and command-line status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports are named by stock name, report type, and date; full-day reports may add a radar chart.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, _meta.json, CHANGELOG released 2026-03-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

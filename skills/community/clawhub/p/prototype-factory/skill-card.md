@@ -1,41 +1,59 @@
-## Description: <br>
-High-fidelity interactive prototype production (Flutter, SwiftUI, React) with motion, stock assets, and pitch-ready handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prototype Factory guides agents through high-fidelity interactive prototype production in Flutter, SwiftUI, or React, including UX blueprinting, visual language, motion, media, validation, and pitch-ready handoff.
 
-## Publisher: <br>
-[Ndabuddah](https://clawhub.ai/user/Ndabuddah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ndabuddah](https://clawhub.ai/user/ndabuddah)
 
-## Use Case: <br>
-Developers and product teams use this skill to plan, build, polish, validate, and hand off demo-ready product prototypes across Flutter, SwiftUI, and React workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prototype work may introduce third-party packages, stock media, paid fonts, or external APIs. <br>
-Mitigation: Review package choices and asset licenses, document attributions and costs, and keep dependency setup visible in the handoff materials. <br>
-Risk: Demo README files, videos, or handoff archives may accidentally expose real credentials or sensitive data. <br>
-Mitigation: Use dummy credentials, provide .env.example placeholders, and keep secrets out of demos and archived handoff files. <br>
+## Use Case:
 
+Developers, designers, and product teams use this skill to turn app and demo requests into polished prototypes with structured intake, scaffolding guidance, visual defaults, validation, and handoff materials.
 
-## Reference(s): <br>
-- [Design Language Snapshot](references/design-language.md) <br>
-- [Prototype Handoff Checklist](references/handoff-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, file paths, and implementation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce prototype project files, README content, screenshots, demo notes, and handoff artifacts when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Package installation and project scaffolding may introduce unreviewed third-party dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run installation commands in an isolated project environment and review generated lockfiles and dependency manifests before reuse.
+
+Risk: The default Flutter stack and neon design language may not match the intended platform or brand.
+
+Mitigation: Confirm target stack, branding, platform, and constraints during intake before scaffolding or applying visual defaults.
+
+Risk: Prototype work may involve media assets, API stubs, or environment files.
+
+Mitigation: Record asset licenses, use dummy secrets in .env.example, and avoid exposing unnecessary credentials.
+
+## Reference(s):
+
+- [Design Language Snapshot](artifact/references/design-language.md)
+- [Prototype Handoff Checklist](artifact/references/handoff-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/ndabuddah/skills/prototype-factory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, implementation steps, QA checks, and handoff checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces project scaffolding recommendations, design-system guidance, validation steps, and delivery notes for prototype work.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

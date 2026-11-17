@@ -1,38 +1,58 @@
-## Description: <br>
-Discover what two sources agree on - find the signal in the noise. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover what two sources agree on - find the signal in the noise.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External users and developers use Pattern Finder to compare two related text sources and identify shared principles, source-specific ideas, and next steps without choosing a winner. Users should provide only source material they are comfortable processing with their configured agent model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/live-neon/skills/tree/main/pbd/pattern-finder) <br>
-- [ClawHub skill page](https://clawhub.ai/leegitw/pattern-finder) <br>
+External users, developers, and analysts use this skill to compare two related text sources or extractions and identify shared principles, unique points, and divergences without choosing a winner.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown narrative with optional structured JSON comparison output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only analysis; no external APIs, command execution, persistence, or file writes are evidenced.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Broad comparison requests may include more source text than the user intended to analyze.
+
+Mitigation: Provide only the two sources intended for comparison and keep sensitive material within the agent environment's configured trust boundary.
+
+Risk: Shared patterns can be mistaken for proof of truth or correctness.
+
+Mitigation: Treat N=2 agreement as evidence of overlap, then use domain review or additional sources before relying on the conclusion.
+
+Risk: Cloud-hosted agent models may process supplied source text as part of normal agent operation.
+
+Mitigation: Use an agent runtime and model provider approved for the sensitivity of the compared sources.
+
+## Reference(s):
+
+- [Pattern Finder ClawHub Page](https://clawhub.ai/leegitw/skills/pattern-finder)
+- [Project Homepage](https://github.com/live-neon/skills/tree/main/pbd/pattern-finder)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown narrative with optional structured JSON comparison output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Compares two user-provided sources and may include shared patterns, source-specific findings, divergence analysis, next steps, and share text for high-confidence matches.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

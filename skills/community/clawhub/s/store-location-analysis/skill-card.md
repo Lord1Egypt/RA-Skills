@@ -1,43 +1,60 @@
-## Description: <br>
-开店选址分析根据目标地址和业态调用高德地图数据，评估周边设施、交通、人群画像、消费环境和竞品情况，并生成交互式 HTML 选址报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes store-location suitability using Amap geocoding, POI, traffic, and competitor data, then generates an interactive HTML report with scoring, charts, comparisons, and recommendations.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and agents use this skill to evaluate whether a proposed address is suitable for a retail, restaurant, or service business. The skill asks for an address, store type, and optional radius, then produces a scored location assessment and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML reports can embed unescaped user-provided or map-provider data, which may allow script injection when the report is opened in a browser. <br>
-Mitigation: Open generated reports only from trusted input and trusted provider data, and prefer a version that HTML-escapes displayed fields and safely JSON-encodes data used in scripts. <br>
-Risk: Passing the Amap API key as a command-line argument can expose the key through shell history or process listings. <br>
-Mitigation: Set AMAP_KEY as an environment variable and avoid putting the key directly on the command line. <br>
+## Use Case:
 
+External users and business operators use this skill to evaluate whether a candidate address is suitable for a planned store type. The agent gathers required inputs, runs Amap-backed analysis, and produces a structured JSON result plus an interactive HTML location-analysis report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/store-location-analysis) <br>
-- [高德地图 API 配置指南](references/api_config.md) <br>
-- [高德开放平台 Web 服务 Key](https://console.amap.com/dev/key/app) <br>
-- [高德地图 Web 服务 API endpoint](https://restapi.amap.com/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions, shell commands, JSON analysis data, and an interactive HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AMAP_KEY environment variable or command-line API key; generated reports should be opened only when input and provider data are trusted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Analyzed addresses and store types are sent to Amap during geocoding, POI, and traffic lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those location details with Amap is acceptable, and avoid submitting sensitive private addresses or confidential expansion plans.
+
+Risk: Generated HTML reports are active documents and may execute untrusted content when built from untrusted JSON, user inputs, or API data.
+
+Mitigation: Open only reports produced from trusted inputs and data, preferably in a non-sensitive browser session; use a fixed version that escapes HTML and JavaScript values.
+
+Risk: The report loads Chart.js from an external CDN.
+
+Mitigation: Bundle Chart.js locally or use integrity-pinned dependencies before deploying the skill in controlled or enterprise environments.
+
+## Reference(s):
+
+- [API configuration guide](references/api_config.md)
+- [Amap Web Service API key setup](https://console.amap.com/dev/key/app)
+- [Amap Web Service API endpoint](https://restapi.amap.com/v3)
+- [Baidu Maps heat map fallback reference](https://map.baidu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON, HTML files]
+
+**Output Format:** [Markdown guidance with shell commands, JSON analysis output, and an interactive HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an Amap Web Service API key supplied through AMAP_KEY or a command-line argument.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

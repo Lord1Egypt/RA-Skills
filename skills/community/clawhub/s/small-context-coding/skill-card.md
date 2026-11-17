@@ -1,46 +1,56 @@
-## Description: <br>
-Efficient coding workflow for small-context models working on medium or large codebases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Efficient coding workflow for small-context models working on medium or large codebases. Use when the user wants to develop, debug, refactor, or analyze code with limited context windows, when tasks should be split into smaller verified steps, when sub-agents may help isolate work, or when long coding sessions need plan files, checkpoints, and strict context discipline.
 
-## Publisher: <br>
-[ambitioncn](https://clawhub.ai/user/ambitioncn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ambitioncn](https://clawhub.ai/user/ambitioncn)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to structure coding, debugging, refactoring, and analysis work when context is limited. It guides the agent to keep concise file-based state, split work into small verified steps, and use sub-agents only for bounded subproblems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can create persistent notes in the repository that may contain private task details. <br>
-Mitigation: Confirm the notes location before use and keep generated notes out of version control when they contain sensitive information. <br>
-Risk: Helper scripts may create files or run local workflow checks in the workspace. <br>
-Mitigation: Require explicit user approval before setup commands, helper scripts, or file modifications are run. <br>
-Risk: The activation scope is broad for general coding work. <br>
-Mitigation: Use the skill only for coding tasks that benefit from file-based planning, checkpointing, or bounded sub-agent delegation. <br>
+## Use Case:
 
+Developers and coding agents use this skill to manage medium or large software tasks with limited context by keeping plans, todos, checkpoints, and verification choices in local files. It also helps split isolated investigation, implementation, or test work into concise sub-agent briefs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ambitioncn/small-context-coding) <br>
-- [Usage Guide](references/usage-guide.md) <br>
-- [Sub-agent Patterns](references/subagent-patterns.md) <br>
-- [Templates](references/templates.md) <br>
-- [Verification Defaults](references/verification-defaults.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated note or brief files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create persistent task notes and sub-agent brief files in the user's repository when the agent follows the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The helper scripts can create planning notes and sub-agent brief files inside a target repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the scripts only in repositories where notes/<task-slug>/ files are acceptable, and review generated notes before relying on them.
+
+Risk: Sub-agent briefs may narrow the scope too much or omit important project context.
+
+Mitigation: Review each generated brief for scope, verification command, and remaining risks before delegating work.
+
+## Reference(s):
+
+- [Usage Guide](references/usage-guide.md)
+- [Verification Defaults](references/verification-defaults.md)
+- [Sub-agent Patterns](references/subagent-patterns.md)
+- [Templates](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated Markdown note files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local notes/<task-slug>/ planning files and notes/<task-slug>/subagents/*.brief.md files when helper scripts are run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

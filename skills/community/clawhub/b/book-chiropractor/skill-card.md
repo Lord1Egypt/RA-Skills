@@ -1,40 +1,53 @@
-## Description: <br>
-Book chiropractor services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book chiropractor services through Lokuli MCP for users who need to find and book chiropractor appointments.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for chiropractors, check appointment availability, and create bookings through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Creating a booking can send personal contact details and appointment choices to an external booking service. <br>
-Mitigation: Confirm the provider, service, time slot, customer name, email, and phone number with the user before calling the booking tool. <br>
-Risk: The skill helps book chiropractor appointments and should not be treated as medical advice. <br>
-Mitigation: Use it only for search, availability, and booking assistance, and leave medical decisions to the user and qualified professionals. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-chiropractor) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users use this skill to search for chiropractor providers, check appointment availability, and create bookings through Lokuli's MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance, Configuration] <br>
-**Output Format:** [Markdown and JSON-RPC tool call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lokuli MCP search, availability, and booking tools; booking requests may include customer name, email, and phone number.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Booking activity can reveal personal contact details and health-related appointment preferences to an external booking provider.
+
+Mitigation: Confirm the booking provider, appointment time, and exact customer contact details before creating a booking through Lokuli.
+
+Risk: The skill can initiate an external appointment booking action.
+
+Mitigation: Require explicit user confirmation before calling the create_booking tool.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+- [Book Chiropractor ClawHub page](https://clawhub.ai/edwardrodriguez703-design/skills/book-chiropractor)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Guidance, Configuration]
+
+**Output Format:** [Markdown with JSON-RPC tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Lokuli MCP over SSE with JSON-RPC calls for search, availability checks, and booking creation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

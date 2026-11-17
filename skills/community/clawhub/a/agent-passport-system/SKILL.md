@@ -1,6 +1,6 @@
 ---
 name: agent-passport-system
-description: "Enforcement and accountability layer for AI agents. Bring your own identity (did:key, did:web, SPIFFE, OAuth, did:aps). Gateway enforcement boundary, monotonic narrowing, cascade revocation, spending controls, data lifecycle, observation governance (telemetry scopes, derivation rights, behavioral memory). Use when agents need scoped delegation, trust scoring, constraint enforcement, or cryptographic audit trails. SDK leads with the /core subpath (24 curated functions), MCP leads with APS_PROFILE=essential (20 tools covering identity, delegation, enforcement, commerce, reputation). 3,791 tests. 8 framework adapters: Stripe, Composio, IBAC/Cedar, LangChain, CrewAI, MCP, A2A, Gonka. Full surface area (107 modules, 150 MCP tools) still available under APS_PROFILE=full and the root import. SDK 2.6.0 on npm adds evidentiary type safety primitives (claim/evidence registry, claim verifier, contestation cascade) on top of Wave 1 accountability (action, authority-boundary, custody, contestability, bundle), Instruction Provenance Receipt, and bilateral receipts via in-toto Decision Receipt v0.1 predicate."
+description: "Enforcement and accountability layer for AI agents. Bring your own identity (did:key, did:web, SPIFFE, OAuth, did:aps). Gateway enforcement boundary, monotonic narrowing, cascade revocation, spending controls, data lifecycle, observation governance (telemetry scopes, derivation rights, behavioral memory). Use when agents need scoped delegation, trust scoring, constraint enforcement, or cryptographic audit trails. SDK leads with the /core subpath (24 curated functions), MCP offers APS_PROFILE=essential (28 tools covering identity, delegation, enforcement, commerce, reputation). 6,289 tests in the 8.0.0 release. 8 framework adapters: Stripe, Composio, IBAC/Cedar, LangChain, CrewAI, MCP, A2A, Gonka. Full surface area (107 modules, 154 MCP tools) is available under APS_PROFILE=full, the MCP default, and through the root import. SDK 8.1.1 and MCP 8.1.1 are current on npm, Python 4.3.0 on PyPI, Rust 0.3.0 on crates.io, Go v0.7.0. The 3.3.1 release added Delegated Action Evidence: bilateral pair reconciliation with five mismatch classes, verifier-side revocation observation receipts under a stated freshness contract, Merkle-rooted evidence bundles with a per-axis claim-state report (verify-bundle), spec 4.1 action_ref canonicalization validated by cross-language vectors, and jurisdiction selection records that surface pack conflicts, on top of evidentiary type safety, Wave 1 accountability, Instruction Provenance Receipt, and bilateral receipts."
 metadata:
   clawdbot:
     emoji: "🔑"
@@ -37,8 +37,10 @@ metadata:
 
 ```bash
 npm install agent-passport-system        # SDK: /core subpath is the curated default
-npm install agent-passport-system-mcp    # MCP server: APS_PROFILE=essential is the default
-go get github.com/aeoess/agent-passport-go@v0.2.0-alpha.1   # Go SDK, byte-parity subset (passport, delegation, attribution, completion, in-toto, values)
+npm install agent-passport-system-mcp    # MCP server, all 154 tools by default, APS_PROFILE=essential for 28
+go get github.com/aeoess/agent-passport-go@v0.7.0   # Go SDK, byte-parity subset (passport, delegation, attribution, completion, in-toto, values)
+pip install agent-passport-system==4.3.0             # Python SDK
+cargo add agent-passport-system@0.3.0                # Rust SDK, library crate agent_passport
 ```
 
 Minimal SDK import (lead with the curated essentials):
@@ -50,7 +52,7 @@ import {
 } from 'agent-passport-system/core'
 ```
 
-Minimal MCP install (essential profile is the default; `APS_PROFILE=full` for all 150 tools):
+MCP install (the default `full` profile has all 154 tools, and `APS_PROFILE=essential` gives 28):
 
 ```bash
 npx agent-passport-system-mcp
@@ -92,12 +94,12 @@ npx agent-passport prove --beneficiary alice
 
 Output: Merkle root + inclusion proofs. 100K receipts provable with ~17 hashes.
 
-## MCP tools (150 total on v3.2.1)
+## MCP tools (152 total)
 
 Setup: `npx agent-passport-system-mcp setup` (auto-configures Claude Desktop + Cursor)
 
-**Identity & trust (12 tools):**
-generate_keys, identify, issue_passport, verify_issuer, verify_passport, create_principal, endorse_agent, get_passport_grade, list_issuance_records, get_behavioral_sequence, verify_endorsement, revoke_endorsement
+**Identity & trust (11 tools):**
+generate_keys, identify, issue_passport, verify_issuer, create_principal, endorse_agent, get_passport_grade, list_issuance_records, get_behavioral_sequence, verify_endorsement, revoke_endorsement
 
 **Delegation & revocation (5):**
 create_delegation, verify_delegation, revoke_delegation, sub_delegate, create_v2_delegation
@@ -146,7 +148,7 @@ import {
 | IBAC/Cedar | `governIBACIntent()` | Cedar/OPA policy tuples |
 | A2A | `passportToA2ACard()` | Agent Card ↔ passport bridge |
 | Stripe | `governMPPPayment()` | Stripe agent payments |
-| Composio | `governComposioAction()` | 250+ tool integrations |
+| Composio | `governComposioAction()` | catalog of 250+ tool targets (subject to the upstream Composio registry and local configuration) |
 | Gonka | `governGonkaInference()` | Decentralized GPU compute |
 
 ## Programmatic API
@@ -161,6 +163,23 @@ import {
   createIssuanceContext, // → IssuanceContext with evidence + assessment
 } from 'agent-passport-system'
 ```
+
+## Composition-check receipt (CompositionCheckV0)
+
+A chain of individually rule-legal delegations can compose to a globally-unsafe target that per-hop monotonic narrowing cannot detect (each delegation narrows scope correctly, but the composed chain routes to an unsafe aggregate). The SDK carries proof that an external attestor ran a composition-hazard check; detection of the hazards is private gateway intelligence and is not in the SDK.
+
+```typescript
+import { CompositionCheckV0 } from 'agent-passport-system'
+
+const result = CompositionCheckV0.verifyCompositionCheck(receipt, context)
+// verifies the anchor: signature, binding to (chain_hash, action_ref, context_hash),
+// freshness, attestor trust. Surfaces independence_is_second_anchor corroborated from the
+// caller's trust context, never the receipt's self-declaration.
+```
+
+The verifier checks the anchor, not the composition. It evaluates no policy and emits no aggregate `safe` verdict: a per-check `pass` means only that the named attestor reported pass for the named profile over the bound context, never global safety. `gateway_self` is always weak (one trust domain); only a context-corroborated `independent_registered` attestor is a second anchor, mirroring how RAP-v0 gates its strong claim on `domains >= 2`. Conformance vectors in `conformance/composition-check/v0/`.
+
+`traceBeneficiary().verified` is a real cryptographic check: true only when the receipt signature verifies at the chain tail and every delegation hop passes `verifyDelegation`. The separate `resolved` field carries lookup-success semantics (the lineage maps to known records) without making a cryptographic claim.
 
 ## Passport grades (attestation architecture)
 
@@ -177,18 +196,20 @@ Grade travels with the passport. Any consumer reads it without understanding sco
 
 - **Enforcement and accountability layer**: bring your own identity, gateway does the rest
 - **SDK `/core` subpath**: 24 curated functions for 90% of integrations
-- **MCP `essential` profile**: 20 tools by default (identity, delegation, enforcement, commerce, reputation)
+- **MCP `essential` profile**: 28 tools with `APS_PROFILE=essential` (identity, delegation, enforcement, commerce, reputation)
 - **Policy eval <2ms**, 403 ops/sec, 14 constraint dimensions
-- **3,791 tests** including 50 adversarial attack scenarios
+- **6,289 tests in the 8.0.0 release**, including 38 adversarial scenarios. These are a developer-authored internal evaluation, not an independent red-team or neutral third-party adversarial harness.
 - **Zero heavy dependencies**: Node.js crypto + uuid only
 - **Apache-2.0** license
-- *Full surface area: 107 modules, 150 MCP tools, available under `APS_PROFILE=full` and the root `agent-passport-system` import.*
+- *Full surface area: 107 modules, 154 MCP tools, available under `APS_PROFILE=full` (the MCP default) and the root `agent-passport-system` import.*
 
 ## Links
 
 - npm: https://www.npmjs.com/package/agent-passport-system
 - MCP: https://www.npmjs.com/package/agent-passport-system-mcp
 - PyPI: https://pypi.org/project/agent-passport-system/
+- crates.io: https://crates.io/crates/agent-passport-system
+- Go: https://pkg.go.dev/github.com/aeoess/agent-passport-go
 - GitHub: https://github.com/aeoess/agent-passport-system
-- Docs: https://aeoess.com/llms-full.txt
+- Docs: https://agent-passport.org/llms-full.txt
 - Paper: https://doi.org/10.5281/zenodo.18749779

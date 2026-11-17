@@ -7,7 +7,7 @@ description: Convert academic papers into structured Chinese reading reports wit
 
 将学术论文转化为结构化的中文阅读报告。输入方式（`reader/`）与输出格式（`writer/`）独立解耦，详见末尾目录结构。
 
-> **Python 约定**：`{PYTHON}` = macOS 用 `/Library/Developer/CommandLineTools/usr/bin/python3`，其他环境用 `python3`。
+> **脚本运行时**：`reader/` 输入处理与 HTML / Markdown writer 构建脚本用 `python3`；Word (.docx) writer 构建脚本用 `node`。环境相关的路径 / 依赖细节在各 writer 文档的"已知陷阱"里单独说明。
 
 ---
 
@@ -95,6 +95,7 @@ curl -sI "https://arxiv.org/html/{ARXIV_ID}" | head -1
 
 - **HTML 输出** → [writer/html.md](writer/html.md)
 - **Markdown 输出** → [writer/markdown.md](writer/markdown.md)
+- **Word (.docx) 输出** → [writer/docx.md](writer/docx.md)
 
 每份 writer 文档包含完整的：图片处理 / 数学公式 / 表格 / 模板路径 / 文件命名 / 写作风格 / 校验清单 / 已知陷阱。
 
@@ -138,7 +139,9 @@ paper-report/
 │   ├── html.md                 # 输出格式：HTML（9 节）
 │   ├── html-template.html      # HTML 报告模板（含 MathJax）
 │   ├── markdown.md             # 输出格式：Markdown（9 节）
-│   └── markdown-template.md    # Markdown 报告模板
+│   ├── markdown-template.md    # Markdown 报告模板
+│   ├── docx.md                 # 输出格式：Word (.docx)（9 节）
+│   └── docx-template.js        # docx-js 构建器库 + 自检示例
 └── scripts/
     ├── pdf_to_images.py
     ├── crop_figures.py

@@ -1,45 +1,57 @@
-## Description: <br>
-Türkiye'de şirketlerin tutması gereken yasal defterler, e-defter uygulaması, defter tasdik tarihleri, belge arşivleme kuralları, personel özlük dosyaları ve çalışan dokümanı gereklilikleri hakkında rehberlik sağlar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents answering questions about Turkish company legal books, e-defter obligations, defter notarization timelines, document archiving, employee personnel files, worker types, and required documents.
 
-## Publisher: <br>
-[ayhanagirgol](https://clawhub.ai/user/ayhanagirgol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayhanagirgol](https://clawhub.ai/user/ayhanagirgol)
 
-## Use Case: <br>
-External users, founders, company managers, accounting teams, and advisors use this skill to answer Turkey-specific questions about required company books, e-defter, notarization timing, archiving practices, personnel files, and mandatory worker documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Turkey <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Evidence security guidance says installation should be limited to cases where the assistant is expected to control Ziniao Browser through a local ZClaw bridge. <br>
-Mitigation: Install only in environments where that local browser-control behavior is intended and approved. <br>
-Risk: Evidence security guidance says ZCLAW_API_KEY should be treated like a credential. <br>
-Mitigation: Store the key securely, avoid sharing it in prompts or logs, and rotate it if exposure is suspected. <br>
-Risk: Evidence security guidance says the skill may read page content, click or type in browser stores, take screenshots, run in-page JavaScript, and write files to Downloads when asked. <br>
-Mitigation: Review requested browser actions before execution and avoid using the skill on sensitive pages unless the user explicitly authorizes that access. <br>
+## Use Case:
 
+External users and business operators use this skill to get concise guidance on Turkish statutory company books, e-defter handling, retention practices, and employee-document requirements. Agents should treat the guidance as informational and recommend professional verification for current legal, tax, SGK, and e-defter obligations.
 
-## Reference(s): <br>
-- [Yasal Defterler Tr on ClawHub](https://clawhub.ai/ayhanagirgol/yasal-defterler-tr) <br>
-- [8 Yasal Defter ve Hangi Şirketler İçin Zorunlu](references/defter_listesi.md) <br>
-- [Defter Tasdik Tarihleri, E-Defter ve Belge Arşivleme](references/tasdik_ve_arsiv.md) <br>
-- [Çalışan Türleri ve Zorunlu Dokümanlar](references/calisanlar_dokumanlari.md) <br>
+### Deployment Geography for Use:
 
+Turkey
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should stay within the artifact's Turkey-specific legal books, archiving, and employee documentation reference material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Turkish legal, tax, SGK, and e-defter requirements can change after the reference content is published.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational and verify current obligations with an accountant, lawyer, or authoritative Turkish government source before relying on them.
+
+Risk: An agent may present compliance guidance as definitive legal advice.
+
+Mitigation: Frame responses as general guidance, cite the relevant bundled reference topic, and recommend professional review for decisions with legal or financial consequences.
+
+## Reference(s):
+
+- [8 Yasal Defter ve Hangi Sirketler Icin Zorunlu](references/defter_listesi.md)
+- [Defter Tasdik Tarihleri, E-Defter ve Belge Arsivleme](references/tasdik_ve_arsiv.md)
+- [Calisan Turleri ve Zorunlu Dokumanlar](references/calisanlar_dokumanlari.md)
+- [ClawHub Skill Page](https://clawhub.ai/ayhanagirgol/skills/yasal-defterler-tr)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ayhanagirgol)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise text or Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; answers should be grounded in the bundled markdown reference files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

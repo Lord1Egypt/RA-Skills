@@ -1,46 +1,58 @@
-## Description: <br>
-AgenticMail gives AI agents email, SMS, persistent storage, and multi-agent coordination tools with setup and security guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgenticMail provides email, SMS, persistent storage, and multi-agent coordination tools for AI agents.
 
-## Publisher: <br>
-[ope-olatunji](https://clawhub.ai/user/ope-olatunji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ope-olatunji](https://clawhub.ai/user/ope-olatunji)
 
-## Use Case: <br>
-Developers and agent users use AgenticMail to give agents managed mailboxes, SMS access, persistent storage, and task delegation for workflows that need communication or coordination. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send email and SMS, read mailboxes, coordinate agents, and manage persistent storage. <br>
-Mitigation: Install only for workflows that need real communication and storage capabilities, and require explicit human approval before sending messages or deleting data. <br>
-Risk: Master-key operations can create or delete accounts, change gateway or domain settings, and support payment-related setup. <br>
-Mitigation: Use an agent-scoped key for routine work, avoid exposing the master key to agents, and protect ~/.agenticmail/config.json. <br>
-Risk: Database storage actions, including raw SQL and destructive table operations, can expose or alter persistent data. <br>
-Mitigation: Review raw SQL, import/export, drop, truncate, and deletion operations before execution and limit access to approved data. <br>
-Risk: SMS and OTP access can expose verification codes or other sensitive account messages. <br>
-Mitigation: Require explicit human approval before retrieving, using, or forwarding SMS verification codes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ope-olatunji/agenticmail) <br>
-- [AgenticMail API Reference](references/api-reference.md) <br>
-- [AgenticMail Configuration](references/configuration.md) <br>
-- [AgenticMail Project Homepage](https://github.com/agenticmail/agenticmail) <br>
+## Use Case:
 
+Developers and external users can use this skill to let AI agents send, receive, search, and manage email and SMS, coordinate tasks with other agents, and store persistent agent data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tool-call outputs, JSON status/results, and shell/config snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some operations require an agent-scoped API key; administrative operations require a master key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.5.50 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can give agents broad authority over mail, SMS, storage, account administration, Docker setup, credentials, persistence, and external communications.
+
+Mitigation: Install only when those capabilities are intended, review setup and Docker Compose sources before execution, and require confirmation before sending external messages or deleting mail, accounts, domains, or stored data.
+
+Risk: Master keys and generated configuration files can enable administrative actions if exposed or overused.
+
+Mitigation: Prefer least-privilege agent keys, avoid using a master key for routine agent operations, and protect generated configuration files.
+
+Risk: Runtime package setup can change behavior if dependencies are not pinned.
+
+Mitigation: Pin npm and MCP packages before deployment and review updates before applying them.
+
+## Reference(s):
+
+- [AgenticMail Configuration](references/configuration.md)
+- [AgenticMail API Reference](references/api-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/ope-olatunji/skills/agenticmail)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown with inline commands, JSON configuration, and API request details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce operational actions for mail, SMS, storage, account administration, and agent coordination.]
+
+## Skill Version(s):
+
+0.5.50 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

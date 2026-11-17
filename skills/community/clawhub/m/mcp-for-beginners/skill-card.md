@@ -1,41 +1,55 @@
-## Description: <br>
-Introduces developers to Model Context Protocol concepts and practical MCP workflow patterns through multi-language examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MCP for Beginners guides developers through Microsoft's Model Context Protocol course using .NET, Java, TypeScript, JavaScript, Rust, and Python examples.
 
-## Publisher: <br>
-[codeman840425-del](https://clawhub.ai/user/codeman840425-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codeman840425-del](https://clawhub.ai/user/codeman840425-del)
 
-## Use Case: <br>
-Developers and engineers use this skill as a learning reference for getting started with Model Context Protocol, comparing .NET, Java, TypeScript, JavaScript, Rust, and Python examples, and understanding how to integrate MCP into modular AI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External repository commands or dependencies may change after this skill version was published. <br>
-Mitigation: Review commands and dependencies from the linked GitHub repository before running them. <br>
-Risk: The Discord community link leads to an external service outside the skill artifact. <br>
-Mitigation: Join the external community only if it matches the user's support and privacy expectations. <br>
+## Use Case:
 
+Developers use this skill to learn MCP concepts, architecture, integration patterns, and service orchestration through a structured beginner course with multi-language examples.
 
-## Reference(s): <br>
-- [MCP for Beginners homepage](https://github.com/microsoft/mcp-for-beginners) <br>
-- [ClawHub skill page](https://clawhub.ai/codeman840425-del/mcp-for-beginners) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with external links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact contains learning guidance and links to external course and community resources; it does not bundle executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The skill directs users to clone an external GitHub repository and join an external Discord community.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review external destinations and apply organizational policy before cloning repositories or joining community links.
+
+Risk: The skill instructions are primarily in Chinese, which may cause misunderstanding for readers who do not read Chinese.
+
+Mitigation: Use a reliable translation or a competent reviewer before following the quick-start commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codeman840425-del/skills/mcp-for-beginners)
+- [MCP for Beginners GitHub Repository](https://github.com/microsoft/mcp-for-beginners)
+- [Discord Community](https://discord.gg/nTYy5BXMWG)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with inline shell commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Directs users to external GitHub and Discord resources.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

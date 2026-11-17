@@ -1,45 +1,58 @@
-## Description: <br>
-Manage Git worktrees for isolated parallel development, including creating, listing, switching, cleaning up worktrees, and using isolated branches for concurrent reviews or feature work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Git worktrees for isolated parallel development, including creating, listing, switching, and cleaning up worktrees for concurrent reviews or feature work.
 
-## Publisher: <br>
-[iliaal](https://clawhub.ai/user/iliaal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iliaal](https://clawhub.ai/user/iliaal)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to manage Git worktrees for isolated code reviews, feature branches, and parallel development without repeatedly cloning or stashing changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool can duplicate local .env files, including sensitive tokens, into each created worktree. <br>
-Mitigation: Inspect existing .env files before running create or copy-env, and avoid using the skill on repositories where secrets should not be copied into worktrees. <br>
-Risk: The cleanup command can force-remove inactive worktrees. <br>
-Mitigation: Manually check inactive worktrees for uncommitted or unpushed work before approving cleanup. <br>
-Risk: The tool changes local Git state by creating branches, checking out base branches, pulling from origin, and adding or removing worktrees. <br>
-Mitigation: Run it only in repositories where local Git state changes are expected, and review the target branch and worktree list before create or cleanup operations. <br>
+## Use Case:
 
+Developers use this tool to create, inspect, switch among, and clean up isolated Git worktrees for parallel feature work and code review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/iliaal/compound-eng-git-worktree) <br>
-- [Workflow Examples](references/workflow-examples.md) <br>
-- [Troubleshooting and Technical Details](references/troubleshooting.md) <br>
-- [Worktree Manager Script](scripts/worktree-manager.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to run a bundled shell script that changes local Git worktree state and copies environment files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.5 (source: server release evidence) <br>
+Risk: Creating a worktree from a trusted base can copy .env files into it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --no-env for untrusted bases and review copied environment files before using the new worktree.
+
+Risk: Setup may install dependencies or run project-specific setup actions.
+
+Mitigation: Inspect the base repository and follow the skill's trust-specific setup guidance before running installs.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/iliaal/skills/compound-eng-git-worktree)
+- [Workflow examples](artifact/references/workflow-examples.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+- [Worktree integration](artifact/references/worktree-integration.md)
+- [Commit ownership](artifact/references/commit-ownership.md)
+- [Hooks and local excludes](artifact/references/hooks-and-excludes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Git worktree lifecycle instructions and safety guidance.]
+
+## Skill Version(s):
+
+5.1.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

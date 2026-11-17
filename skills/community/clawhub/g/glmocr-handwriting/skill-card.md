@@ -1,44 +1,55 @@
-## Description: <br>
-Official skill for recognizing handwritten text from images and PDFs using the ZhiPu GLM-OCR API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Official skill for recognizing handwritten text from images using ZhiPu GLM-OCR API.
 
-## Publisher: <br>
-[jaredforreal](https://clawhub.ai/user/jaredforreal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaredforreal](https://clawhub.ai/user/jaredforreal)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to extract handwritten text from notes, letters, documents, formulas, labels, annotations, and mixed handwritten or printed content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images and PDFs selected for OCR are sent to ZhiPu's GLM-OCR service. <br>
-Mitigation: Use the skill only for documents that are acceptable to process with ZhiPu, and avoid highly sensitive personal, legal, medical, financial, or confidential materials unless that provider relationship is approved. <br>
-Risk: The skill requires a ZHIPU_API_KEY credential. <br>
-Mitigation: Store the key in the configured environment and avoid exposing it in prompts, files, logs, or shared outputs. <br>
-Risk: Including raw upstream responses may expose extra service-returned details during debugging. <br>
-Mitigation: Keep raw responses disabled unless explicitly needed, and review any saved result JSON before sharing it. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to extract handwritten text from images, PDFs, or remote file URLs and convert handwritten or mixed handwritten/printed content into editable text.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jaredforreal/glmocr-handwriting) <br>
-- [GLM-OCR Handwriting Skill Homepage](https://github.com/zai-org/GLM-OCR/tree/main/skills/glmocr-handwriting) <br>
-- [ZhiPu Layout Parsing API Documentation](https://docs.bigmodel.cn/api-reference/%E6%A8%A1%E5%9E%8B-api/%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON from the CLI with extracted Markdown text; agent-facing responses are concise Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save result JSON to a file; raw upstream response is omitted unless explicitly requested or needed for debugging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Selected images, PDFs, or remote file URLs are sent to ZhiPu's OCR service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when external OCR processing is acceptable for the document's privacy, data handling, and compliance requirements.
+
+Risk: The skill requires a ZHIPU_API_KEY for authentication.
+
+Mitigation: Provide the key through the configured environment variable and avoid exposing it in prompts, shared files, logs, or saved OCR output.
+
+## Reference(s):
+
+- [Skill homepage](https://github.com/zai-org/GLM-OCR/tree/main/skills/glmocr-handwriting)
+- [ZhiPu Layout Parsing API documentation](https://docs.bigmodel.cn/api-reference/%E6%A8%A1%E5%9E%8B-api/%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90)
+- [ZhiPu API keys](https://bigmodel.cn/usercenter/proj-mgmt/apikeys)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON result containing extracted Markdown text, layout details, source metadata, and errors; the agent presents the extracted text in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write result JSON to a file and can include the raw upstream API response only when requested with --include-raw.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

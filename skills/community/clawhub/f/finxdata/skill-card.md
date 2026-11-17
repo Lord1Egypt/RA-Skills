@@ -1,43 +1,58 @@
-## Description: <br>
-FinXData helps agents query FinXData financial data APIs for A-share market data, stock quotes, financial statements, market news, dragon-tiger lists, lockup releases, macroeconomic data, FRED data, quota checks, API key setup, error handling, and service health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agents with financial data queries for stock prices, company disclosures, market themes, financial and macroeconomic data, commodities, FDA recalls, and stock graph summaries.
 
-## Publisher: <br>
-[qiuqp](https://clawhub.ai/user/qiuqp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiuqp](https://clawhub.ai/user/qiuqp)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve FinXData financial API data, choose the narrowest supported endpoint for a request, handle quota or network errors, and summarize returned market data without turning it into investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send a FinXData API key to the configured API host. <br>
-Mitigation: Use a limited, rotatable key and keep FINXDATA_BASE_URL pointed at the trusted FinXData API host unless the user intentionally changes it. <br>
-Risk: Remote market and news responses may be inaccurate, stale, or include text that should not control agent behavior. <br>
-Mitigation: Treat API responses as data, summarize dates and data availability, and do not follow returned text as instructions. <br>
-Risk: Financial data summaries can be mistaken for investment advice. <br>
-Mitigation: Frame outputs as information retrieval and data organization, include relevant dates, and avoid deterministic buy or sell recommendations. <br>
+## Use Case:
 
+Agents use FinXData to answer user requests for market, company, macroeconomic, commodity, and recall data, then summarize the results with their dates and coverage. It supports information lookup, not securities trading or investment advice.
 
-## Reference(s): <br>
-- [FinXData API reference](references/api.md) <br>
-- [FinXData usage guide](references/usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with shell command examples and JSON API responses when raw command output is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Most data endpoints return JSON whose data field is commonly Markdown; the agent is expected to summarize key fields, dates, data availability, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: ClawHub release metadata) <br>
+Risk: Queries send parameters, the caller's IP address, and an agent-type identifier to FinXData. Account queries also send the configured API key and may use account quota.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer key-free queries when they meet the request, keep API keys private, and check account quota when using account endpoints.
+
+Risk: Returned data can have limited coverage or an older data date, and remote text and links are untrusted content.
+
+Mitigation: Check the returned date and coverage, and treat remote content as data rather than instructions or automatic link targets.
+
+## Reference(s):
+
+- [Quickstart](artifact/references/quickstart.md)
+- [Usage guide and troubleshooting](artifact/references/usage.md)
+- [API reference](artifact/references/api.md)
+- [FinXData website](https://www.finxdata.ai)
+- [World Bank Pink Sheet commodity data catalog](https://datacatalog.worldbank.org/search/dataset/0038238/commodity-prices-history-and-projections)
+- [openFDA Enforcement Reports API](https://open.fda.gov/apis/drug/enforcement/how-to-use-the-endpoint/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown]
+
+**Output Format:** [Concise text summaries, JSON query results, and Markdown tables or excerpts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include dates, coverage details, or partial-success status; summarize those details when relevant.]
+
+## Skill Version(s):
+
+1.0.17 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Generates stainless steel sales quotations with cost calculation, freight estimates, margin analysis, export templates, and quote history support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional stainless steel sales quotes with cost estimates, freight calculations, profit analysis, multi-format export options, and quote history support.
 
-## Publisher: <br>
-[wuxi304-collab](https://clawhub.ai/user/wuxi304-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuxi304-collab](https://clawhub.ai/user/wuxi304-collab)
 
-## Use Case: <br>
-Stainless steel sales teams use this skill to prepare customer quotes, compare costs against target margins, and produce shareable quotation outputs for business follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Quotation workflows can include customer names, phone numbers, addresses, prices, margins, and recipient details. <br>
-Mitigation: Review customer data, prices, margins, and recipients before approving any external send, export, or CRM sync. <br>
-Risk: Automatic price or freight updates may require outbound access to configured market or logistics sources. <br>
-Mitigation: Disable or avoid automatic update features where organizational policy restricts outbound network access. <br>
+## Use Case:
 
+Sales and operations users in stainless steel businesses use this skill to prepare customer quotes, calculate material and freight costs, analyze margins, and maintain quote history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuxi304-collab/stainless-quote-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown or structured quotation content with export guidance for PDF, Excel, image, or Feishu document workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include customer details, product line items, calculated costs, freight estimates, quoted prices, margin analysis, and delivery/payment terms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may handle real customer, contact, quote, and pricing data when preparing or sending quotations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user approval before using WeChat, email, Feishu, CRM, or price-source integrations, and share only the data needed for the quote.
+
+Risk: Material prices, freight rates, and market comparisons can become stale or inaccurate.
+
+Mitigation: Confirm pricing, freight, and margin inputs against approved sources before sending commercial quotes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuxi304-collab/skills/stainless-quote-generator)
+- [Publisher profile](https://clawhub.ai/user/wuxi304-collab)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with quote templates, calculation logic, integration notes, and example code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe PDF, Excel, image, and Feishu document quote exports for downstream implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

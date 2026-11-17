@@ -20,24 +20,28 @@ import subprocess
 import sys
 import os
 import importlib.metadata
-from packaging import version as pkg_version
 from logger_manager import LoggerManager
 logger = LoggerManager.setup_logger(logger_name="claw-windows-automator")
 
 def fix_setuptools_for_legacy_packages():
     """专门为老项目（使用 pkg_resources 的 setup.py）修复 setuptools 版本"""
-    logger.info("🔧 正在修复 setuptools 版本（兼容旧 GitHub 包构建）...")
     try:
+        # 先强制修复损坏的 packaging 包（关键！解决无RECORD文件报错）
         subprocess.check_call([
             sys.executable, "-m", "pip", "install",
-            "--quiet", "--force-reinstall", "setuptools<=81.2.0", "wheel"
+            "--verbose", "--ignore-installed", "--no-deps", "packaging==26.1"
+        ])
+        # 再安装兼容的 setuptools + wheel
+        subprocess.check_call([
+            sys.executable, "-m", "pip", "install",
+            "--verbose", "--force-reinstall", "setuptools<=81.2.0", "wheel"
         ])
         logger.info("✅ setuptools 已切换到兼容版本 (<=81.2.0)")
     except Exception as e:
-        logger.info(f"⚠️ setuptools 修复失败: {e}（可忽略，继续尝试安装）")
-
+        logger.info(f"⚠️ setuptools 修复失败: {e}（可忽略，继续尝试安装）")    
 # ==================== 在文件最开头调用 ====================
 fix_setuptools_for_legacy_packages()
+from packaging import version as pkg_version
 import pkg_resources  # 用于更鲁棒的版本比较
 from config import SKILL_ROOT
 
@@ -131,14 +135,8 @@ def _install_package(spec: str, check_name: str, fallback_zip: str = None):
         sys.executable, "-m", "pip", "install",
         "--upgrade",
         spec,
-        "--quiet"
+        "--verbose"
     ]
-    
-    # git+、http、zip 等特殊安装方式不使用清华镜像，避免冲突
-    # if any(keyword in spec for keyword in ["git+", "://", ".zip", ".whl"]):
-    #     cmd = [c for c in cmd if c != "-i" and not str(c).startswith("https://pypi.tuna")]
-    # else:
-    #     cmd.extend(["-i", "https://pypi.tuna.tsinghua.edu.cn/simple"])
 
     # git+、http、.zip、.whl 等特殊安装方式不使用清华镜像，避免源冲突或构建问题
     if any(keyword in spec.lower() for keyword in ["git+", "://", ".zip", ".whl"]):
@@ -170,7 +168,7 @@ def _install_package(spec: str, check_name: str, fallback_zip: str = None):
                 try:
                     cmd_fallback = [
                         sys.executable, "-m", "pip", "install",
-                        "--upgrade", fallback_zip, "--quiet"
+                        "--upgrade", fallback_zip, "--verbose"
                     ]
                     subprocess.check_call(cmd_fallback)
                     logger.info(f"✅ 使用本地包 {fallback_zip} 安装成功！")
@@ -291,7 +289,7 @@ def pip_v(pkg: str, version: str = None):
             sys.executable, "-m", "pip", "install",
             install_str,
             "-i", "https://pypi.tuna.tsinghua.edu.cn/simple",
-            "--quiet"
+            "--verbose"
         ])
         logger.info(f"✅ {pkg} 安装完成！")
         

@@ -1,11 +1,11 @@
 ---
 name: oo-tidb
-description: "TiDB Cloud (pingcap.com). Use this skill for ANY TiDB Cloud request — reading, creating, and updating data. Whenever a task involves TiDB Cloud, use this skill instead of calling the API directly."
+description: "TiDB Cloud (pingcap.com). Use this skill for ANY TiDB Cloud request — searching and reading data. Whenever a task involves TiDB Cloud, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "TiDB Cloud"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["tidb"]
   icon: "https://static.oomol.com/logo/third-party/tidb.svg"
 ---
@@ -41,7 +41,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_branch` — Fetch one TiDB Cloud Starter or Essential branch by branch ID.
 - `get_cluster` — Fetch one TiDB Cloud Starter, Essential, or Dedicated cluster by ID.
 - `get_export` — Fetch one TiDB Cloud Starter or Essential export task.
-- `get_import` — Fetch one TiDB Cloud Starter, Essential, or Dedicated import task. [write]
+- `get_import` — Fetch one TiDB Cloud Starter, Essential, or Dedicated import task.
 - `get_node_spec` — Fetch one TiDB Cloud Dedicated node spec by region, component type, and key.
 - `get_region` — Fetch one TiDB Cloud Dedicated region by region ID.
 - `list_api_keys` — List TiDB Cloud API keys visible to the connected organization API key.
@@ -84,11 +84,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — TiDB Cloud is not connected, or the connection expired or lacks a scope. Connect once (auth type: custom credential) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=tidb
+  https://console.oomol.com/connections/tidb
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - TiDB Cloud homepage: https://www.pingcap.com/tidb/cloud/
+- API documentation: https://docs.pingcap.com/api/tidb-cloud-api-v1beta1/

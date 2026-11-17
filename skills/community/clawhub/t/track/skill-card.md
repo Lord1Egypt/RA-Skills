@@ -1,40 +1,54 @@
-## Description: <br>
-Habit, goal, and progress tracking system with visual progress and accountability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track helps agents log habit completions and maintain local progress records for personal accountability.
 
-## Publisher: <br>
-[ProjectSnowWork](https://clawhub.ai/user/ProjectSnowWork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[projectsnowwork](https://clawhub.ai/user/projectsnowwork)
 
-## Use Case: <br>
-Users and agents use this skill to track daily habits, goal progress, streaks, trends, and accountability reminders while keeping tracking data local. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Habit and goal history may contain personal information retained in local JSON files. <br>
-Mitigation: Install only when local retention is acceptable, and review or delete memory/track when the history is no longer needed. <br>
-Risk: The skill description lists multiple tracking helpers, but this artifact includes only the habit logging script. <br>
-Mitigation: Confirm available scripts before relying on goal, trend, streak, creation, or export workflows. <br>
+## Use Case:
 
+External users and their agents use this skill to record habit completions and keep local progress history. The included implementation writes habit entries to a local tracking file for later review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ProjectSnowWork/track) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and local JSON tracking records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores habit and goal history locally under memory/track; this release includes the habit logging helper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill records personal habit data in persistent local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for clear user confirmation before logging habits or goals, and remind users that they control local retention and deletion.
+
+Risk: The skill description advertises goal, trend, streak, and export workflows that are not fully included in the package.
+
+Mitigation: Limit agent behavior to supported artifact capabilities unless additional scripts or references are supplied.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/projectsnowwork/skills/track)
+- [Publisher profile](https://clawhub.ai/user/projectsnowwork)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and local JSON file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates persistent local habit records under the agent workspace memory path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

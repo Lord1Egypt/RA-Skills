@@ -1,41 +1,54 @@
-## Description: <br>
-Searches Knowledge Planet for a specified keyword, switches to all joined communities, topic results, and newest sorting, then returns structured search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Knowledge Planet for a keyword, switches to joined-group topic results sorted by newest, and returns structured search results.
 
-## Publisher: <br>
-[BarryYJJ](https://clawhub.ai/user/BarryYJJ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[barryyjj](https://clawhub.ai/user/barryyjj)
 
-## Use Case: <br>
-Agents use this skill to search Knowledge Planet content across the user's joined communities and return concise, structured results sorted by recency. It is intended for users who need the agent to find topic posts without exposing intermediate browser automation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a logged-in openclaw browser session, so search results can reflect Knowledge Planet content available to that account. <br>
-Mitigation: Use a separate browser profile or account when access should be limited. <br>
-Risk: The search workflow depends on Knowledge Planet page structure, tabs, sorting controls, and login state. <br>
-Mitigation: Confirm login state and selected search filters before relying on returned results. <br>
+## Use Case:
 
+Agents use this skill to answer user requests that require searching joined Knowledge Planet communities for recent topic posts matching specific keywords.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BarryYJJ/zsxq-search) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/BarryYJJ) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text summaries of search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns only final search results; no intermediate navigation, tab selection, screenshot confirmation, or sorting steps are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Searches may return private or paid content from Knowledge Planet communities available through the logged-in browser profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrow keywords or current-group search when broad cross-community retrieval is not appropriate.
+
+Risk: The skill depends on an active logged-in browser session for Knowledge Planet.
+
+Mitigation: If the session has expired or redirects to login, pause and ask the user to restore the browser login before retrying.
+
+## Reference(s):
+
+- [Zsxq Search on ClawHub](https://clawhub.ai/barryyjj/skills/zsxq-search)
+- [Knowledge Planet web app](https://wx.zsxq.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text search-result summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are summarized without exposing intermediate browser-navigation steps.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

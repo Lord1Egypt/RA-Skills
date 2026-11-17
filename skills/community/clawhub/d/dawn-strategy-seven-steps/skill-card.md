@@ -1,42 +1,51 @@
-## Description: <br>
-OW Strategy 7 Step (大恩营销策划七步法) is a real-estate marketing strategy planning skill that guides project positioning, brand communication, and campaign planning through a seven-step methodology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OW Strategy 7 Step (大恩营销策划七步法) guides agents through a seven-step real estate marketing strategy process from challenge definition through market analysis, positioning, story construction, and communication planning.
 
-## Publisher: <br>
-[qutongyuan](https://clawhub.ai/user/qutongyuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qutongyuan](https://clawhub.ai/user/qutongyuan)
 
-## Use Case: <br>
-Marketing strategists, real-estate teams, and agent users use this skill to structure a complete real-estate marketing plan from challenge definition through market analysis, positioning, storyline, and communication schedule. It can also produce local project templates and Markdown planning reports through its helper script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad marketing phrasing. <br>
-Mitigation: Use explicit real-estate marketing planning requests when invoking the skill and review generated strategy content before use. <br>
-Risk: The helper script stores project files by project name in a local state directory. <br>
-Mitigation: Use simple project names without slashes or absolute paths, as recommended by the security guidance. <br>
+## Use Case:
 
+Marketing strategists, real estate teams, and agents use this skill to structure real estate project positioning, brand communication, and marketing plans using the Dawn Strategy seven-step framework.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qutongyuan/dawn-strategy-seven-steps) <br>
-- [七步法详细操作指南](references/detailed-guide.md) <br>
-- [营销策划方案模板](references/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance, Markdown planning templates, and JSON-backed local project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 for the optional local helper script; generated project state is stored locally under the skill state directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: server release metadata) <br>
+Risk: The optional Python helper can read or overwrite JSON files outside its intended project folder if given a crafted project name.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use simple trusted project names without path separators, drive prefixes, or '..', and review the helper before running it on shared or sensitive systems.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qutongyuan/skills/dawn-strategy-seven-steps)
+- [Seven-Step Detailed Guide](artifact/references/detailed-guide.md)
+- [Marketing Plan Template](artifact/references/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text, Files]
+
+**Output Format:** [Markdown guidance, marketing plan templates, and JSON project state from the optional Python helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 only when using the optional helper script.]
+
+## Skill Version(s):
+
+1.2.3 (source: server release metadata; artifact frontmatter is 1.2.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

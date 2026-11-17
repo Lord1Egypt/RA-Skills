@@ -1,46 +1,57 @@
-## Description: <br>
-Raccoon PPT creates new presentation decks from a natural-language topic through the PPT OpenAPI and can continue or check an existing PPT generation task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Raccoon PPT Skill creates full presentation decks from a natural-language topic through the PPT OpenAPI, and supports continuing or checking existing generation tasks.
 
-## Publisher: <br>
-[raccoon-office](https://clawhub.ai/user/raccoon-office) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raccoon-office](https://clawhub.ai/user/raccoon-office)
 
-## Use Case: <br>
-Employees, external users, and agents use this skill to create a complete PPT deck from a topic, collect required presentation parameters, continue service follow-up questions, and return the final download link or failure reason. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Presentation prompts and generated content are sent to a remote PPT generation API. <br>
-Mitigation: Use only with content approved for that service; avoid confidential, regulated, investor, or internal material unless the service is approved for that data. <br>
-Risk: Local output files may retain prompts, task records, or download links after generation. <br>
-Mitigation: Periodically delete saved output files when prompts or links should not remain on disk. <br>
-Risk: The skill depends on a bearer token and a remote service, so failed authentication or service errors can interrupt generation. <br>
-Mitigation: Confirm RACCOON_API_TOKEN is set, keep the token private, and retry or report user-friendly service errors when the API cannot complete the task. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create a new full PPT deck from a topic, collect the minimum presentation parameters, continue a service-side follow-up question, and return the final download link when generation succeeds.
 
-## Reference(s): <br>
-- [Raccoon PPT Skill on ClawHub](https://clawhub.ai/raccoon-office/raccoon-ppt-skill) <br>
-- [raccoon-office Publisher Profile](https://clawhub.ai/user/raccoon-office) <br>
-- [Raccoon Homepage](https://xiaohuanxiong.com) <br>
-- [PPT OpenAPI Skill Reference](references/API_REFERENCE.md) <br>
-- [API Cheatsheet](references/CHEATSHEET.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Text or Markdown guidance with shell commands, task status messages, download links, and generated PPT files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 plus RACCOON_API_TOKEN; RACCOON_API_HOST is optional and defaults to the Raccoon service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill can send the API token and presentation content to a configurable remote PPT service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted RACCOON_API_HOST, prefer the default service, keep the token in environment variables, and avoid submitting confidential business, customer, personal, or financial material unless remote processing is acceptable.
+
+Risk: Job details, topics, and download links can be stored locally in plaintext state files.
+
+Mitigation: Periodically clear the skill output/jobs state and registry files when they may contain sensitive topics or download links.
+
+## Reference(s):
+
+- [Raccoon PPT Skill on ClawHub](https://clawhub.ai/raccoon-office/skills/raccoon-ppt-skill)
+- [Publisher profile](https://clawhub.ai/user/raccoon-office)
+- [Raccoon PPT service homepage](https://xiaohuanxiong.com)
+- [PPT OpenAPI Skill Reference](references/API_REFERENCE.md)
+- [PPT OpenAPI Cheatsheet](references/CHEATSHEET.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, user-facing status messages, and final PPT download links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and RACCOON_API_TOKEN; RACCOON_API_HOST is optional and defaults to the service homepage.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

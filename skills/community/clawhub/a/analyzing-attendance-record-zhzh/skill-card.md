@@ -1,42 +1,59 @@
-## Description: <br>
-Analyze the weekly attendance records of employees at Zhuihui Branch and generate an attendance report in docx format with an xlsx detailed supplement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze weekly attendance records for employees at Zhuihui Branch from XLSX data and prepare attendance report outputs.
 
-## Publisher: <br>
-[wang2y](https://clawhub.ai/user/wang2y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wang2y](https://clawhub.ai/user/wang2y)
 
-## Use Case: <br>
-Employees and operations teams use this skill to analyze Zhuihui Branch attendance spreadsheets, apply branch-specific attendance rules, and prepare weekly attendance summaries with detailed supporting data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated JSON, DOCX, and XLSX outputs can contain sensitive employee attendance details. <br>
-Mitigation: Install and run only when authorized to process the records, choose approved private output paths, review the documented exclusion and department-mapping rules, and delete generated reports when no longer needed. <br>
-Risk: Branch schedules, holiday handling, and employee exclusion rules can change and may affect report accuracy. <br>
-Mitigation: Review the documented attendance rules and mappings against the current reporting period before relying on generated summaries. <br>
+## Use Case:
 
+Branch operations and administrative users use this skill to analyze Zhuihui Branch weekly attendance spreadsheets, apply branch-specific schedule rules, and produce report-ready attendance metrics.
 
-## Reference(s): <br>
-- [Special Attendance Analysis Rules](references/special-attendance-analysis-rules.md) <br>
-- [Example: Weekly Attendance Analysis](examples/example-usage.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wang2y/analyzing-attendance-record-zhzh) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance and generated attendance report artifacts such as DOCX and XLSX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May process employee attendance records and produce sensitive report files that require approved private storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The advertised DOCX/XLSX report outputs do not match the bundled script, which writes JSON attendance analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm expected deliverables before use and verify or add a rendering step when DOCX reports or XLSX supplements are required.
+
+Risk: Attendance records can contain sensitive employee information.
+
+Mitigation: Review data handling requirements before installing or running the skill, and keep generated JSON, DOCX, or XLSX files in approved storage.
+
+Risk: Dependency installation from an unpinned or untrusted source can introduce supply-chain variance.
+
+Mitigation: Install dependencies from a pinned requirements file or a trusted internal package source.
+
+## Reference(s):
+
+- [Special Attendance Analysis Rules](artifact/references/special-attendance-analysis-rules.md)
+- [Example Weekly Attendance Analysis](artifact/examples/example-usage.md)
+- [ClawHub Skill Release](https://clawhub.ai/wang2y/skills/analyzing-attendance-record-zhzh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and structured JSON attendance analysis output; artifact documentation also describes DOCX and XLSX report deliverables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XLSX attendance input with the documented Zhuihui Branch column structure. Confirm the desired final report artifacts because the bundled script writes JSON analysis data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

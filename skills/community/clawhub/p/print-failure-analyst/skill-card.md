@@ -1,42 +1,59 @@
-## Description: <br>
-Diagnose 3D print failures from symptoms or images, recommend slicer setting fixes, and log or analyze recurring print problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses 3D print failures from symptoms or images, recommends slicer setting fixes, and helps users log and analyze recurring print problems.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-Makers, 3D printing operators, and support engineers use this skill to diagnose failed prints, choose slicer setting changes, record failures, and review recurring printer or material patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local failure logs and saved reports can contain printer names, materials, slicer settings, descriptions, fixes, and notes. <br>
-Mitigation: Avoid entering sensitive personal or business details unless local retention is acceptable, and delete or redact logs and reports when they are no longer needed. <br>
-Risk: Suggested slicer changes may not match every printer, filament, or operating environment. <br>
-Mitigation: Apply recommendations as starting points, verify them against the printer and material in use, and test changes incrementally. <br>
+## Use Case:
 
+External users, makers, and 3D printing operators use this skill to diagnose failed prints, compare symptoms against common failure modes, apply slicer setting fixes, and track recurring printer or material problems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/newageinvestments25-byte/print-failure-analyst) <br>
-- [3D Print Failure Types](references/failure-types.md) <br>
-- [Slicer Setting Fixes](references/slicer-fixes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional structured JSON diagnostics and local markdown reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local failure logs and saved report files when the user requests logging or reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Failure logs and generated reports can contain sensitive printer, material, business, customer, location, or troubleshooting details supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering private details in descriptions or notes, and review logs and reports before sharing them.
+
+Risk: Report output paths are user-selected and could overwrite unrelated files.
+
+Mitigation: Choose report output paths deliberately and inspect existing files before writing a report.
+
+Risk: Diagnosis and slicer recommendations may be inaccurate for a specific printer, material, firmware, or environmental condition.
+
+Mitigation: Treat recommendations as starting points, make small controlled changes, and verify settings against the printer and filament manufacturer's guidance.
+
+## Reference(s):
+
+- [3D Print Failure Types](references/failure-types.md)
+- [Slicer Setting Fixes by Failure Type](references/slicer-fixes.md)
+- [ClawHub Skill Page](https://clawhub.ai/newageinvestments25-byte/skills/print-failure-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown or plain-text diagnostic guidance, optional JSON diagnostic output, and optional Markdown reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local failure log and write user-selected Markdown report files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

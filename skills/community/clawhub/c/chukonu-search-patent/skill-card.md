@@ -1,41 +1,55 @@
-## Description: <br>
-Searches China (CNIPA) and Europe (EPO) patent databases through the Chukonu remote MCP server with fielded Boolean search, record retrieval, OAuth login, read-only access, and enforced pagination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches China CNIPA and Europe EPO patent records through the Chukonu remote MCP server, with read-only OAuth access, fielded patent queries, pagination, and retrieval of bibliographic records, claims, and descriptions.
 
-## Publisher: <br>
-[stevenybw](https://clawhub.ai/user/stevenybw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenybw](https://clawhub.ai/user/stevenybw)
 
-## Use Case: <br>
-Developers, patent analysts, and IP researchers use this skill to search CNIPA and EPO patent records, filter by structured patent fields, retrieve bibliographic data and claims, and check service quota. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The remote MCP server requires OAuth and stores access through the host environment. <br>
-Mitigation: Install only when this patent-search access is intended, use the least-privilege account available, and re-run OAuth login only when authorization has expired. <br>
-Risk: Patent searches and claims retrieval are quota controlled and paginated. <br>
-Mitigation: Check usage before long runs, respect returned cursors, and stop or narrow searches when quota is near exhaustion. <br>
+## Use Case:
 
+Developers and patent-search agents use this skill to connect OpenClaw to the Chukonu MCP service, search CNIPA and EPO patent datasets, apply structured filters, and retrieve individual patent records or claims.
 
-## Reference(s): <br>
-- [Chukonu MCP server](https://search.houdutech.cn/mcp/) <br>
-- [ClawHub skill page](https://clawhub.ai/stevenybw/chukonu-search-patent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and MCP tool-call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only remote MCP queries; OAuth login required; paginated search and claims retrieval; quota can be checked with usage().] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill requires OAuth authentication with the Chukonu remote MCP service and sends patent search queries to that external provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the provider is acceptable for the intended patent-search workload before installation or use.
+
+Risk: External service quota limits or temporary availability issues can interrupt long patent-search runs.
+
+Mitigation: Check usage before extended searches, respect quota responses, and retry later when the service reports upstream unavailability.
+
+## Reference(s):
+
+- [Chukonu MCP server](https://search.houdutech.cn/mcp/)
+- [ClawHub skill page](https://clawhub.ai/stevenybw/skills/chukonu-search-patent)
+- [Publisher profile](https://clawhub.ai/user/stevenybw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, tool-call examples, and patent search result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only MCP workflow; OAuth login is required and result pagination is enforced.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

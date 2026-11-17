@@ -261,10 +261,9 @@ def get_config() -> dict[str, Any]:
         ('SERPER_API_KEY', None),
         ('OPENROUTER_API_KEY', None),
         ('PARALLEL_API_KEY', None),
-        ('XQUIK_API_KEY', None),
         ('FROM_BROWSER', None),
         ('SETUP_COMPLETE', None),
-        ('INCLUDE_SOURCES', ''),
+        ('INCLUDE_SOURCES', None),
     ]
 
     for key, default in keys:
@@ -279,8 +278,6 @@ def get_config() -> dict[str, Any]:
         config['_CONFIG_SOURCE'] = 'env_only'
 
     # Extract browser credentials if configured
-    browser_creds = extract_browser_credentials(config)
-    for key, value in browser_creds.items():
         if not config.get(key):
             config[key] = value
             config[f"_{key}_SOURCE"] = "browser"
@@ -288,65 +285,6 @@ def get_config() -> dict[str, Any]:
     return config
 
 
-# ---------------------------------------------------------------------------
-# Browser cookie extraction
-# ---------------------------------------------------------------------------
-
-COOKIE_DOMAINS: dict[str, dict[str, Any]] = {
-    "x": {
-        "domain": ".x.com",
-        "cookies": ["auth_token", "ct0"],
-        "mapping": {"auth_token": "AUTH_TOKEN", "ct0": "CT0"},
-    },
-    "truthsocial": {
-        "domain": ".truthsocial.com",
-        "cookies": ["_session_id"],
-        "mapping": {"_session_id": "TRUTHSOCIAL_TOKEN"},
-    },
-}
-
-
-def extract_browser_credentials(config: dict[str, Any]) -> dict[str, str]:
-    """Extract auth cookies from local browsers.
-
-    Default behavior (FROM_BROWSER unset): tries Firefox and Safari only.
-    These read local files silently with no system dialogs.  Chrome is
-    skipped because ``security find-generic-password`` triggers a macOS
-    Keychain prompt that cannot be reliably suppressed.
-
-    Set ``FROM_BROWSER=auto`` to also try Chrome (accepts the dialog),
-    or ``FROM_BROWSER=off`` to disable extraction entirely.
-    """
-    from_browser = (config.get("FROM_BROWSER") or "").strip().lower()
-    if from_browser == "off":
-        return {}
-    try:
-        from . import cookie_extract
-    except ImportError:
-        return {}
-    # Determine which browsers to try
-    if from_browser in ("firefox", "chrome", "safari"):
-        browsers = [from_browser]
-    elif from_browser == "auto":
-        browsers = ["firefox", "safari", "chrome"]
-    else:
-        # Default: silent browsers only (no Keychain dialog)
-        browsers = ["firefox", "safari"]
-    extracted: dict[str, str] = {}
-    for _service, spec in COOKIE_DOMAINS.items():
-        if all(config.get(env_key) for env_key in spec["mapping"].values()):
-            continue
-        for browser in browsers:
-            try:
-                cookies = cookie_extract.extract_cookies(browser, spec["domain"], spec["cookies"])
-            except Exception:
-                continue
-            if cookies:
-                for cookie_name, env_key in spec["mapping"].items():
-                    if cookie_name in cookies and not config.get(env_key):
-                        extracted[env_key] = cookies[cookie_name]
-                break  # Found cookies for this service, stop trying browsers
-    return extracted
 
 
 def get_x_source_with_method(config: dict[str, Any]) -> tuple[str | None, str]:
@@ -356,10 +294,6 @@ def get_x_source_with_method(config: dict[str, Any]) -> tuple[str | None, str]:
     if config.get("AUTH_TOKEN") and config.get("CT0"):
         method = config.get("_AUTH_TOKEN_SOURCE", "env")
         return "bird", method
-    # Fall back to xurl CLI (official X API v2, OAuth2, free developer app)
-    from . import xurl_x
-    if xurl_x.is_available():
-        return "xurl", "oauth2"
     return None, "none"
 
 
@@ -393,10 +327,9 @@ def get_reddit_source(config: dict[str, Any]) -> str | None:
 def get_x_source(config: dict[str, Any]) -> str | None:
     """Determine the best available explicit X/Twitter source.
 
-    Priority: explicit backend pin, then xAI, then Bird with explicit cookies.
+    Priority: explicit backend pin, then xAI, then Bird with explicit credentials.
 
-    Browser-cookie probing is intentionally not used here. Automatic Keychain
-    access causes popups during normal pipeline runs. Bird is only considered
+        access causes popups during normal pipeline runs. Bird is only considered
     available when AUTH_TOKEN and CT0 are present explicitly.
 
     Args:
@@ -405,7 +338,6 @@ def get_x_source(config: dict[str, Any]) -> str | None:
     Returns:
         'bird' if Bird is installed and explicit cookies are configured,
         'xai' if XAI_API_KEY is configured,
-        'xurl' if xurl CLI is installed and authenticated,
         None if no X source available.
     """
     # Import here to avoid circular dependency
@@ -426,11 +358,6 @@ def get_x_source(config: dict[str, Any]) -> str | None:
     if has_bird_creds and bird_x.is_bird_installed():
         return 'bird'
 
-    # Fall back to xurl CLI (official X API v2, OAuth2, free developer app)
-    from . import xurl_x
-    if xurl_x.is_available():
-        return 'xurl'
-
     return None
 
 
@@ -449,18 +376,6 @@ def is_youtube_comments_available(config: dict[str, Any]) -> bool:
         return False
     include = _parse_include_sources(config)
     return 'youtube_comments' in include
-
-
-def is_tiktok_comments_available(config: dict[str, Any]) -> bool:
-    """Check if TikTok comment enrichment is available.
-
-    Requires SCRAPECREATORS_API_KEY AND tiktok_comments in INCLUDE_SOURCES.
-    Mirrors the youtube_comments opt-in pattern.
-    """
-    if not config.get('SCRAPECREATORS_API_KEY'):
-        return False
-    include = _parse_include_sources(config)
-    return 'tiktok_comments' in include
 
 
 def is_youtube_sc_available(config: dict[str, Any]) -> bool:
@@ -601,8 +516,6 @@ def get_x_source_status(config: dict[str, Any]) -> dict[str, Any]:
     """
     from . import bird_x
 
-    if config.get('AUTH_TOKEN') and config.get('CT0'):
-        bird_x.set_credentials(config.get('AUTH_TOKEN'), config.get('CT0'))
     bird_status = bird_x.get_bird_status()
     xai_available = bool(config.get('XAI_API_KEY'))
 
@@ -612,18 +525,14 @@ def get_x_source_status(config: dict[str, Any]) -> dict[str, Any]:
     elif xai_available:
         source = 'xai'
     else:
-        # Fall back to xurl CLI
-        from . import xurl_x as _xurl_check
-        source = 'xurl' if _xurl_check.is_available() else None
+        source = None
 
-    from . import xurl_x as _xurl_x
     return {
         "source": source,
         "bird_installed": bird_status["installed"],
         "bird_authenticated": bird_status["authenticated"],
         "bird_username": bird_status["username"],
         "xai_available": xai_available,
-        "xurl_available": _xurl_x.is_available(),
         "can_install_bird": bird_status["can_install"],
     }
 
@@ -642,17 +551,3 @@ def is_pinterest_available(config: dict[str, Any]) -> bool:
 def get_pinterest_token(config: dict[str, Any]) -> str:
     """Get Pinterest API token (same ScrapeCreators key as TikTok/Instagram)."""
     return config.get('SCRAPECREATORS_API_KEY') or ''
-
-
-# Xquik
-def is_xquik_available(config: dict[str, Any]) -> bool:
-    """Check if Xquik X search source is available.
-
-    Requires XQUIK_API_KEY (API key from xquik.com).
-    """
-    return bool(config.get('XQUIK_API_KEY'))
-
-
-def get_xquik_token(config: dict[str, Any]) -> str:
-    """Get Xquik API key."""
-    return config.get('XQUIK_API_KEY') or ''

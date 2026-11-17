@@ -1,42 +1,66 @@
-## Description: <br>
-Web Monitor helps agents set up and manage local web-page monitors for content changes, price drops, stock availability, custom conditions, visual diffs, price comparisons, and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor web pages for content changes, price drops, stock availability, and custom conditions, including change summaries, visual diffs, templates, JavaScript rendering, and webhooks.
 
-## Publisher: <br>
-[jakes420](https://clawhub.ai/user/jakes420) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jakes420](https://clawhub.ai/user/jakes420)
 
-## Use Case: <br>
-Developers, operators, and external users use this skill to watch URLs for page changes, price drops, restocks, and custom text or price conditions, then review status, history, reports, visual diffs, or configured webhook alerts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Monitored URLs and page snapshots are stored locally under ~/.web-monitor. <br>
-Mitigation: Monitor only URLs appropriate for local storage, set WEB_MONITOR_DIR when isolation is needed, and remove monitors or stored snapshots that are no longer required. <br>
-Risk: Configured webhooks send monitored URLs and change details to external endpoints. <br>
-Mitigation: Use trusted webhook destinations and avoid webhook alerts for pages or changes that contain sensitive information. <br>
-Risk: Debug and feedback output can include local system details or prior feedback text. <br>
-Mitigation: Review debug and feedback output before sharing it outside the local environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Web Monitor Examples](artifact/references/examples.md) <br>
-- [ClawHub Listing](https://clawhub.ai/jakes420/web-monitor-pro) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to create and manage local web monitors for price, stock, and content changes, then check dashboards, diffs, reports, and webhook notifications.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, files, guidance] <br>
-**Output Format:** [CLI text, JSON exports and imports, Markdown-style guidance, HTML diffs, and local monitor configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores monitor configuration, snapshots, screenshots, feedback logs, and generated console or diff files under ~/.web-monitor unless WEB_MONITOR_DIR is set; configured webhooks send JSON event payloads.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.5.0 (source: server release metadata, skill frontmatter, and monitor.py VERSION) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unvalidated monitor imports or configurations may introduce unsafe URLs, webhooks, or unexpected local state.
+
+Mitigation: Use only trusted monitor JSON and review imported monitors before running checks.
+
+Risk: Monitoring local, private, or internal URLs can expose sensitive network or page data through stored snapshots, reports, or webhooks.
+
+Mitigation: Restrict monitors to intended public URLs and avoid local, private, or internal resources.
+
+Risk: Webhook destinations receive event payloads that may contain sensitive page, price, or availability details.
+
+Mitigation: Use trusted webhook endpoints and review payload sensitivity before enabling notifications.
+
+Risk: Optional browser or Cloudflare engines add dependency and execution surface beyond the default curl path.
+
+Mitigation: Enable optional engines only in a virtual environment with reviewed and pinned dependencies.
+
+Risk: Generated dashboard and diff files write local HTML derived from monitored page content.
+
+Mitigation: Open generated HTML only from trusted monitor content and review outputs before sharing them.
+
+## Reference(s):
+
+- [Web Monitor Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/jakes420/skills/web-monitor-pro)
+- [Publisher Profile](https://clawhub.ai/user/jakes420)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with CLI commands, JSON exports/imports, generated HTML diffs, and dashboard/report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores monitor data, snapshots, screenshots, and generated dashboard files under the configured local web-monitor directory.]
+
+## Skill Version(s):
+
+3.5.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

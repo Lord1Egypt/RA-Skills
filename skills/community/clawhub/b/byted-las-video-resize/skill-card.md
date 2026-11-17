@@ -1,47 +1,60 @@
-## Description: <br>
-Resizes and scales video resolution using Volcengine LAS with GPU NVENC encoding, configurable dimension bounds, aspect-ratio handling, async submit-poll execution, and batch workflow support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resizes, scales, and adjusts video resolution and dimensions with GPU-accelerated NVENC encoding through Volcengine LAS, including batch-oriented async submit and poll workflows.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and media workflow operators use this skill to resize, upscale, downscale, transcode, or batch-process videos through Volcengine LAS. It guides users through credential checks, price estimation, LAS task submission, polling, and result presentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with execution configured for supported Volcengine LAS regions such as cn-beijing and cn-shanghai. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Environment setup can install or update remote SDK code before execution. <br>
-Mitigation: Review, pin, or disable the automatic SDK install/update step before installing or running the skill. <br>
-Risk: The workflow requires LAS credentials and may use TOS credentials when downloading outputs from TOS. <br>
-Mitigation: Use scoped, temporary credentials and avoid processing sensitive videos unless cloud processing is approved. <br>
-Risk: Output filenames or prefixes can overwrite existing TOS objects. <br>
-Mitigation: Use unique output directories, filenames, or prefixes for each run and batch. <br>
-Risk: A bundled result helper is for unrelated ASR/transcript output rather than video-resize output. <br>
-Mitigation: Ignore, remove, or correct that helper before relying on generated result Markdown. <br>
+## Use Case:
 
+Developers and video workflow operators use this skill to resize, upscale, downscale, compress, or re-encode videos through Volcengine LAS while preserving or changing aspect ratio constraints. It guides local or TOS-hosted inputs through credential checks, price estimation, task submission, polling, and result presentation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/volcengine-skills/byted-las-video-resize) <br>
-- [las_video_resize API Reference](references/api.md) <br>
-- [Pricing Reference](references/prices.md) <br>
-- [Volcengine LAS Pricing](https://www.volcengine.com/docs/6492/1544808) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include LAS task IDs, TOS output paths, output video details, and pricing disclaimers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill sends video inputs, task metadata, and output locations to Volcengine LAS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for videos and task data that are approved for Volcengine LAS processing, and confirm credential and TOS bucket scope before execution.
+
+Risk: The environment initialization flow can create a virtual environment and install an SDK wheel from a remote URL.
+
+Mitigation: Run the skill in a restricted workspace and pin or independently verify the SDK package before allowing installation.
+
+Risk: The security summary notes unsafe or mismatched helper scripts.
+
+Mitigation: Review helper scripts before installation or execution, especially result generation, polling, and environment initialization behavior.
+
+## Reference(s):
+
+- [las_video_resize API Reference](artifact/references/api.md)
+- [Pricing Information](artifact/references/prices.md)
+- [Volcengine LAS Pricing](https://www.volcengine.com/docs/6492/1544808)
+- [ClawHub Skill Page](https://clawhub.ai/volcengine-skills/skills/byted-las-video-resize)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include data.json templates, lasutil commands, task IDs, polling status, output video paths, estimated pricing, and local result paths.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

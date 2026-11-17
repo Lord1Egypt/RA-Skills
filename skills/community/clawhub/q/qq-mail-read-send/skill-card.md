@@ -1,42 +1,63 @@
-## Description: <br>
-Reads and sends QQ Mail messages using IMAP for mailbox access and SMTP for outbound mail, with guidance for credential setup, message parsing, and common mail filtering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads and sends QQ Mail messages using IMAP for mailbox access and SMTP for outbound email, with guidance for authorization-code credentials and multi-encoding message parsing.
 
-## Publisher: <br>
-[openclawzhangchong](https://clawhub.ai/user/openclawzhangchong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openclawzhangchong](https://clawhub.ai/user/openclawzhangchong)
 
-## Use Case: <br>
-External users and developers use this skill to configure QQ Mail access, inspect recent or filtered mailbox contents, parse message text, and send outbound email through QQ Mail with an authorization code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read private QQ Mail messages and send real outbound email. <br>
-Mitigation: Grant access only to the intended mailbox, keep mail searches narrow, and require explicit user review before sending any email. <br>
-Risk: The credential loader uses an inconsistent hard-coded path instead of the documented user-scoped secrets file. <br>
-Mitigation: Update the loader to use the documented secrets file or explicit environment variables, and protect the authorization-code file with owner-only permissions. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent inspect recent QQ Mail messages, search or filter mailbox content, and send simple text emails through QQ Mail after credentials are configured.
 
-## Reference(s): <br>
-- [QQ Mail IMAP/SMTP authorization help](https://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256) <br>
-- [Sending Email Reference](references/message-sending.md) <br>
-- [ClawHub skill page](https://clawhub.ai/openclawzhangchong/qq-mail-read-send) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and bash examples, plus plain-text email status or mailbox summaries when used by an agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QQ Mail credentials through MAIL_USER and MAIL_PASS or the documented user-scoped secrets file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill handles QQ Mail credentials and mailbox access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated QQ Mail authorization code, store it with owner-only permissions, and never commit or share the credential file.
+
+Risk: Outbound email sending can disclose information or send unintended messages.
+
+Mitigation: Require explicit user confirmation before sending and verify recipients, subject, body, cc, and bcc before SMTP submission.
+
+Risk: The artifact shows inconsistent credential paths between the documentation and Python sender module.
+
+Mitigation: Verify the active credential path before use and align the script configuration with the documented secrets file.
+
+Risk: Mailbox reads may expose private email content beyond the user's intended scope.
+
+Mitigation: Confirm the requested mailbox scope and filters before reading, searching, summarizing, or displaying email content.
+
+## Reference(s):
+
+- [QQ Mail IMAP/SMTP Help](https://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256)
+- [Message Sending Reference](references/message-sending.md)
+- [ClawHub Skill Page](https://clawhub.ai/openclawzhangchong/skills/qq-mail-read-send)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Text]
+
+**Output Format:** [Markdown with Python and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MAIL_USER and MAIL_PASS credentials and may perform mailbox reads or outbound email sends when the agent follows the skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

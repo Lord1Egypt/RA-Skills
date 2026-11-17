@@ -16,7 +16,7 @@
 ### describe-service (Service Details)
 
 ```bash
-aliyun eas describe-service --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Key fields**:
@@ -50,18 +50,18 @@ aliyun eas describe-service --cluster-id $CLUSTER_ID --service-name $SERVICE --u
 ### list-services (Service List)
 
 ```bash
-aliyun eas list-services --cluster-id $CLUSTER_ID --user-agent AlibabaCloud-Agent-Skills
+aliyun eas list-services --cluster-id $CLUSTER_ID --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Common filters**:
 
 ```bash
 # Filter failed services
-aliyun eas list-services --cluster-id $CLUSTER_ID --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas list-services --cluster-id $CLUSTER_ID --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | \
   jq '.Services[] | select(.Status == "Failed")'
 
 # Filter services by resource group
-aliyun eas list-services --cluster-id $CLUSTER_ID --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas list-services --cluster-id $CLUSTER_ID --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | \
   jq '.Services[] | select(.ResourceId == "eas-r-xxx")'
 ```
 
@@ -70,7 +70,7 @@ aliyun eas list-services --cluster-id $CLUSTER_ID --user-agent AlibabaCloud-Agen
 ### describe-service-endpoints (Service Endpoints)
 
 ```bash
-aliyun eas describe-service-endpoints --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service-endpoints --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Response fields**:
@@ -89,19 +89,19 @@ aliyun eas describe-service-endpoints --cluster-id $CLUSTER_ID --service-name $S
 
 ```bash
 # Basic query
-aliyun eas describe-service-log --cluster-id $CLUSTER_ID --service-name $SERVICE --limit 100 --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service-log --cluster-id $CLUSTER_ID --service-name $SERVICE --limit 100 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 
 # Keyword filtering
 aliyun eas describe-service-log --cluster-id $CLUSTER_ID --service-name $SERVICE \
-  --keyword "error" --limit 50 --user-agent AlibabaCloud-Agent-Skills
+  --keyword "error" --limit 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 
 # Time range
 aliyun eas describe-service-log --cluster-id $CLUSTER_ID --service-name $SERVICE \
-  --start-time "2026-03-19T00:00:00Z" --end-time "2026-03-19T23:59:59Z" --user-agent AlibabaCloud-Agent-Skills
+  --start-time "2026-03-19T00:00:00Z" --end-time "2026-03-19T23:59:59Z" --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 
 # Specific instance
 aliyun eas describe-service-log --cluster-id $CLUSTER_ID --service-name $SERVICE \
-  --instance-id i-xxx --limit 50 --user-agent AlibabaCloud-Agent-Skills
+  --instance-id i-xxx --limit 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Parameter descriptions**:
@@ -121,7 +121,7 @@ aliyun eas describe-service-log --cluster-id $CLUSTER_ID --service-name $SERVICE
 ### describe-service-event (Service Events)
 
 ```bash
-aliyun eas describe-service-event --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service-event --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Key fields**:
@@ -158,7 +158,7 @@ aliyun eas describe-service-event --cluster-id $CLUSTER_ID --service-name $SERVI
 ### list-service-instances (Instance List)
 
 ```bash
-aliyun eas list-service-instances --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills
+aliyun eas list-service-instances --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Response fields**:
@@ -191,10 +191,10 @@ aliyun eas list-service-instances --cluster-id $CLUSTER_ID --service-name $SERVI
 
 ```bash
 # Step 1: Get instance name
-INSTANCE_NAME=$(aliyun eas list-service-instances --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills | jq -r '.Instances[0].InstanceName')
+INSTANCE_NAME=$(aliyun eas list-service-instances --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | jq -r '.Instances[0].InstanceName')
 
 # Step 2: List containers
-aliyun eas list-service-containers --cluster-id $CLUSTER_ID --service-name $SERVICE --instance-name "$INSTANCE_NAME" --user-agent AlibabaCloud-Agent-Skills
+aliyun eas list-service-containers --cluster-id $CLUSTER_ID --service-name $SERVICE --instance-name "$INSTANCE_NAME" --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Key fields**:
@@ -213,7 +213,7 @@ aliyun eas list-service-containers --cluster-id $CLUSTER_ID --service-name $SERV
 ### describe-service-diagnosis (Service Diagnosis)
 
 ```bash
-aliyun eas describe-service-diagnosis --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-service-diagnosis --cluster-id $CLUSTER_ID --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Diagnosis items**:
@@ -231,7 +231,7 @@ aliyun eas describe-service-diagnosis --cluster-id $CLUSTER_ID --service-name $S
 
 ```bash
 aliyun eas describe-service-instance-diagnosis --cluster-id $CLUSTER_ID \
-  --service-name $SERVICE --instance-id i-xxx --user-agent AlibabaCloud-Agent-Skills
+  --service-name $SERVICE --instance-id i-xxx --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ---
@@ -241,7 +241,7 @@ aliyun eas describe-service-instance-diagnosis --cluster-id $CLUSTER_ID \
 ### describe-resource (Resource Group Details)
 
 ```bash
-aliyun eas describe-resource --cluster-id $CLUSTER_ID --resource-id eas-r-xxx --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-resource --cluster-id $CLUSTER_ID --resource-id eas-r-xxx --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Key fields**:
@@ -259,7 +259,7 @@ aliyun eas describe-resource --cluster-id $CLUSTER_ID --resource-id eas-r-xxx --
 ### list-resources (Resource Group List)
 
 ```bash
-aliyun eas list-resources --cluster-id $CLUSTER_ID --user-agent AlibabaCloud-Agent-Skills
+aliyun eas list-resources --cluster-id $CLUSTER_ID --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ---
@@ -269,9 +269,9 @@ aliyun eas list-resources --cluster-id $CLUSTER_ID --user-agent AlibabaCloud-Age
 ### describe-gateway (Gateway Details)
 
 ```bash
-aliyun eas describe-gateway --cluster-id $CLUSTER_ID --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-gateway --cluster-id $CLUSTER_ID --gateway-id gw-xxx --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 # or
-aliyun eas describe-gateway --cluster-id $CLUSTER_ID --gateway-name my-gateway --user-agent AlibabaCloud-Agent-Skills
+aliyun eas describe-gateway --cluster-id $CLUSTER_ID --gateway-name my-gateway --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Key fields**:
@@ -287,7 +287,7 @@ aliyun eas describe-gateway --cluster-id $CLUSTER_ID --gateway-name my-gateway -
 ### list-gateways (Gateway List)
 
 ```bash
-aliyun eas list-gateways --cluster-id $CLUSTER_ID --user-agent AlibabaCloud-Agent-Skills
+aliyun eas list-gateways --cluster-id $CLUSTER_ID --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ---
@@ -314,9 +314,9 @@ alias di='aliyun eas list-service-instances --cluster-id $CLUSTER_ID --service-n
 alias dd='aliyun eas describe-service-diagnosis --cluster-id $CLUSTER_ID --service-name'
 
 # Usage examples
-ds $SERVICE --user-agent AlibabaCloud-Agent-Skills | jq '{Status, RunningInstance, TotalInstance}'
-dl $SERVICE --keyword "error" --limit 20 --user-agent AlibabaCloud-Agent-Skills
-de $SERVICE --user-agent AlibabaCloud-Agent-Skills | jq '.Events[-5:]'
-di $SERVICE --user-agent AlibabaCloud-Agent-Skills | jq '.Instances[].Status'
-dd $SERVICE --user-agent AlibabaCloud-Agent-Skills | jq '.DiagnosisItems[]'
+ds $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | jq '{Status, RunningInstance, TotalInstance}'
+dl $SERVICE --keyword "error" --limit 20 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
+de $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | jq '.Events[-5:]'
+di $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | jq '.Instances[].Status'
+dd $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | jq '.DiagnosisItems[]'
 ```

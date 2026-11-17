@@ -1,38 +1,58 @@
-## Description: <br>
-Analyze text for manipulation patterns such as urgency, false authority, social proof, FUD, grandiosity, dominance assertions, us-vs-them framing, and emotional manipulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes text for manipulation patterns including urgency, false authority, social proof, FUD, grandiosity, dominance assertions, us-vs-them framing, and emotional manipulation.
 
-## Publisher: <br>
-[claudio-prime](https://clawhub.ai/user/claudio-prime) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[claudio-prime](https://clawhub.ai/user/claudio-prime)
 
-## Use Case: <br>
-Agents, developers, and other users use this skill to review messages, social posts, or text files for common manipulation-pattern signals before deciding how much skepticism to apply. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Keyword matching can produce false positives or miss subtle manipulation that does not use obvious phrases. <br>
-Mitigation: Treat the report as a rough signal and combine it with human judgment, context, and other review methods. <br>
-Risk: The script reads user-provided text or local files selected at runtime. <br>
-Mitigation: Run it only on text or files you intend to analyze, and avoid providing sensitive content unless local analysis is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Agents, developers, and security-minded reviewers use this skill to evaluate suspicious messages, social posts, or other text for common influence tactics before deciding how much skepticism to apply.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text CLI report with scores, flags, and matched patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads stdin or a local text file and does not require network access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The detector is heuristic and may produce false positives, so a flagged passage is not proof of manipulation.
+
+Mitigation: Use the report as a prompt for additional scrutiny and corroborate findings with contextual human review.
+
+Risk: Keyword-based matching can miss sophisticated manipulation that avoids obvious phrases.
+
+Mitigation: Treat a low score as limited evidence and continue applying independent judgment for high-impact decisions.
+
+Risk: The skill analyzes user-supplied local text, which may include sensitive content.
+
+Mitigation: Run it only on text appropriate for the local environment; the security summary reports no network access or persistence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/claudio-prime/skills/manipulation-detector)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Human-readable CLI report with score, severity label, triggered flags, matched phrases, and cautionary notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads user-provided text from stdin or a local file; security evidence reports no network access or persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

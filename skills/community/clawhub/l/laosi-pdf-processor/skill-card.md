@@ -1,43 +1,58 @@
-## Description: <br>
-Processes PDFs by extracting text, recognizing tables, merging documents, splitting pages, and reading metadata with a pure Python implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes PDFs for text extraction, table recognition, document merging, page splitting, metadata reading, and password-protected files using a Python implementation.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers, operators, and document-heavy teams use this skill to extract PDF text and metadata, merge reports, split documents into pages, and process batches of local PDF files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local PDFs selected by the user and may handle sensitive document content. <br>
-Mitigation: Use it only on PDFs approved for agent processing, and avoid highly sensitive files unless the workflow has appropriate access controls. <br>
-Risk: The skill can create merged or split output files on disk. <br>
-Mitigation: Review output paths before execution and keep generated PDFs in an approved working directory. <br>
-Risk: The skill may keep a local pdf_jobs.json log containing job metadata and short text previews. <br>
-Mitigation: Remove or disable the log for sensitive workflows, or periodically delete it after processing. <br>
+## Use Case:
 
+Developers and document automation users can use this skill to extract text and metadata from PDFs, split or merge documents, and manage batch PDF processing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-pdf-processor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/534422530) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python code examples and structured result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local merged or split PDF files and a pdf_jobs.json log with job metadata and short text previews.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter, hub.json, server release evidence) <br>
+Risk: Processed PDFs may leave snippets or metadata in a persistent job log.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive PDFs unless the job log is removed, disabled, or access-controlled.
+
+Risk: Large or complex PDFs can consume excessive resources during parsing.
+
+Mitigation: Use bounded file-size and page-count limits before processing files.
+
+Risk: PDF parsing dependencies can introduce supply-chain or parser risk.
+
+Mitigation: Install dependencies in an isolated environment with pinned versions and review the code before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-pdf-processor)
+- [Publisher profile](https://clawhub.ai/user/534422530)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and JSON-like operation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create PDF output files and a local PDF job log when the generated implementation is used.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

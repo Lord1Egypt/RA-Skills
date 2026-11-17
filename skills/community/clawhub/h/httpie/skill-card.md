@@ -1,43 +1,63 @@
-## Description: <br>
-HTTPie command-line HTTP client guidance for API testing, request debugging, authentication, sessions, uploads, downloads, and formatted responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTTPie helps agents install and use the HTTPie command-line client to build, execute, debug, and troubleshoot HTTP requests.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-Developers and engineers use this skill to construct, review, and run HTTPie commands for REST API testing, debugging, authentication, file transfer, proxy configuration, and session-based workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to install packages, run live HTTP requests, and execute credential-bearing commands. <br>
-Mitigation: Require explicit confirmation before package installs, bootstrap commands, live requests, uploads, downloads, or any request containing credentials. <br>
-Risk: Authentication tokens, passwords, cookies, and saved HTTPie sessions may be exposed through command history, verbose logs, or session files. <br>
-Mitigation: Use environment variables or interactive prompts for real secrets, avoid verbose logging with tokens, inspect session files, and clear saved sessions when finished. <br>
-Risk: Proxy changes or TLS verification changes can alter request routing or weaken transport security. <br>
-Mitigation: Require user approval before proxy configuration changes or TLS verification changes, especially when using certificate bypass options. <br>
+## Use Case:
 
+Developers and API practitioners use this skill to construct HTTPie commands for REST API debugging, authentication, file transfer, formatted response inspection, session handling, and troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cn-big-cabbage/httpie) <br>
-- [HTTPie homepage](https://httpie.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include HTTP request examples, troubleshooting steps, installation commands, credential-handling guidance, and session-management instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: evidence release and skill frontmatter) <br>
+Risk: The skill may propose installation commands or mutable binary downloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, prefer user-scoped or pinned installations, and avoid curl-to-shell patterns.
+
+Risk: HTTP requests can expose credentials, tokens, cookies, or sensitive request data.
+
+Mitigation: Do not place real secrets directly in commands; use safer secret handling and redact tokens from shared output.
+
+Risk: Persistent HTTPie sessions can store authentication material on disk.
+
+Mitigation: Treat HTTPie session files as sensitive credentials and avoid storing production secrets in reusable sessions.
+
+Risk: Disabling TLS verification can hide certificate or interception problems.
+
+Mitigation: Keep TLS verification enabled except in isolated testing and prefer explicit CA configuration for trusted internal services.
+
+## Reference(s):
+
+- [HTTPie homepage](https://httpie.io)
+- [HTTPie CLI documentation](https://httpie.io/docs/cli)
+- [ClawHub skill page](https://clawhub.ai/cn-big-cabbage/skills/httpie)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTPie command examples and troubleshooting steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose network requests, installation commands, authentication headers, session usage, and file upload or download commands for user review.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

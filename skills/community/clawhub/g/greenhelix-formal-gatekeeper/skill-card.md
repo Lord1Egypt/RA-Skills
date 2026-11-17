@@ -1,44 +1,59 @@
-## Description: <br>
-Build a formal verification proxy for OpenClaw agents with Z3 SMT solver integration, safety invariant engines, plan-to-logic translation, proof caching, and x402 payment hooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Formal Gatekeeper: Z3-Verified Safety for Autonomous Agent Plans. Build a formal verification proxy for OpenClaw agents: Z3 SMT solver integration, safety invariant engines, plan-to-logic translation, proof caching, and x402 payment hooks. Includes detailed Python code examples for system, economic, and network safety proofs.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and engineers use this guide to design a formal verification gatekeeper for autonomous agent plans, especially actions involving filesystem, network, commerce, and payment safety constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide discusses API keys, wallet addresses, and signing keys that become sensitive if readers implement the examples. <br>
-Mitigation: Treat all referenced credentials as sensitive, store them in an appropriate secret manager or environment configuration, and avoid committing them to source control. <br>
-Risk: The examples include x402 payment hooks and wallet-enabled workflows that can incur charges when adapted for real deployments. <br>
-Mitigation: Start in the sandbox or free mode and set explicit payment caps before enabling paid verification calls. <br>
-Risk: Proof caching can retain prior plans or policies longer than intended when implemented from the guide. <br>
-Mitigation: Review cache retention and purge behavior before deploying an implementation with production agent data. <br>
+## Use Case:
 
+Developers and engineers use this guide to design an OpenClaw-compatible formal verification gatekeeper for autonomous agent plans, including safety invariants, plan-to-logic translation, proof caching, and payment hooks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-formal-gatekeeper) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [Agent Production Hardening Guide](https://clawhub.ai/skills/greenhelix-agent-production-hardening) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guide with Python examples, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable educational guide; examples reference GreenHelix credentials and payment-related configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release and frontmatter) <br>
+Risk: Readers may provide real API keys or signing keys while trying the guide.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use placeholders or sandbox-only credentials while reading and testing, and add strong secret-handling guidance before deployment.
+
+Risk: The illustrative gatekeeper code includes fail-open approval paths that could give false protection if copied into production.
+
+Mitigation: Treat the examples as review-required and change parser failures to deny or require manual review before production use.
+
+Risk: Hostname and IP validation may be incomplete if runtime enforcement is not added.
+
+Mitigation: Enforce hostname resolution and IP whitelist validation at runtime before deploying network controls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mirni/skills/greenhelix-formal-gatekeeper)
+- [GreenHelix Sandbox](https://sandbox.greenhelix.net)
+- [Agent Production Hardening Guide](https://clawhub.ai/skills/greenhelix-agent-production-hardening)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guide with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guide content; examples require security review and hardening before production deployment.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

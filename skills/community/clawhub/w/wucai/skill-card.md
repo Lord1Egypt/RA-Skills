@@ -1,45 +1,60 @@
-## Description: <br>
-WuCai lets an agent search, summarize, and manage a user's WuCai highlights, annotations, clipped articles, and diary entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WuCai lets an AI agent retrieve, summarize, and manage a user's WuCai web highlights, annotations, clipped articles, article notes, and diary entries through the WuCai API.
 
-## Publisher: <br>
-[makediff](https://clawhub.ai/user/makediff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[makediff](https://clawhub.ai/user/makediff)
 
-## Use Case: <br>
-Developers and end users use this skill to connect an agent to WuCai so it can retrieve recent highlights, search private notes, answer questions from saved web content, manage article status, and append diary entries when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with CN, EU, and US region selection and physically isolated data stores. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive WuCai OpenClaw token that can access private highlights, notes, clippings, and diary data. <br>
-Mitigation: Use a dedicated revocable token, store it in platform secret storage when available, and avoid sharing it in ordinary chat. <br>
-Risk: Selecting the wrong CN, EU, or US region can connect the agent to the wrong isolated WuCai data store or make expected data unavailable. <br>
-Mitigation: Confirm WUCAI_REGION before use and match user-facing links and instructions to the selected region. <br>
-Risk: Write actions can append diary entries, update article notes, change article status, or move articles to trash. <br>
-Mitigation: Ask for confirmation before write or trash actions and summarize the target record and intended change before executing. <br>
+## Use Case:
 
+External users and developers use this skill to connect an AI agent to their WuCai personal knowledge base for searching highlights and articles, reviewing recent diary or clipping activity, answering questions from saved web context, and managing note or article state.
 
-## Reference(s): <br>
-- [WuCai documentation](https://doc.wucai.site) <br>
-- [WuCai global site](https://wucainote.com) <br>
-- [WuCai API details](references/api-details.md) <br>
-- [WuCai ClawHub listing](https://clawhub.ai/makediff/wucai) <br>
+### Deployment Geography for Use:
 
+Global, with WuCai account data isolated by the configured CN, EU, or US region.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Agent-facing text or Markdown, shell command invocations, and JSON API responses from the WuCai helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WUCAI_API_TOKEN and optionally WUCAI_REGION; list and search requests are constrained to a maximum 14-day range.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-26.3.37 (source: server release and package.json) <br>
+Risk: A live WUCAI_API_TOKEN could be exposed if pasted into chat or stored insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the token in a protected environment or secret setting, avoid pasting it into chat, and rotate it if exposure is suspected.
+
+Risk: The skill can update notes, append diary entries, change article statuses, and trash articles in a private knowledge base.
+
+Mitigation: Require explicit user confirmation before allowing any write, status-change, or trash action.
+
+Risk: Installing from a mutable raw URL can change the reviewed code path later.
+
+Mitigation: Prefer the ClawHub release or a pinned version when installing.
+
+## Reference(s):
+
+- [WuCai API Reference](references/api-details.md)
+- [WuCai Documentation](https://doc.wucai.site)
+- [WuCai Global Site](https://wucainote.com)
+- [ClawHub WuCai Skill Page](https://clawhub.ai/makediff/skills/wucai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown or plain text responses, with shell command invocations and JSON-backed API results when needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WUCAI_API_TOKEN and can use WUCAI_REGION to select the CN, EU, or US WuCai region.]
+
+## Skill Version(s):
+
+26.3.37 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

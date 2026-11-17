@@ -1,41 +1,54 @@
-## Description: <br>
-Verifier helps agents evaluate claims, sources, screenshots, profiles, offers, and suspicious messages by scoring evidence quality, consistency, risk, missing evidence, confidence, and recommended next verification steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trust and evidence verification engine for claims, sources, screenshots, profiles, offers, and suspicious messages.
 
-## Publisher: <br>
-[ProjectSnowWork](https://clawhub.ai/user/ProjectSnowWork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[projectsnowwork](https://clawhub.ai/user/projectsnowwork)
 
-## Use Case: <br>
-External users and agents use Verifier to turn claims, suspicious messages, offers, screenshots, profiles, and sources into structured local cases. The skill supports review workflows that produce verdicts, confidence levels, risk notes, missing-evidence guidance, and next verification steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Verifier stores user-entered claims, messages, profile details, offers, and screenshot-derived text in a local cases file. <br>
-Mitigation: Avoid entering secrets or highly sensitive material unless local retention is acceptable, and clear local storage according to workspace policy when review is complete. <br>
-Risk: Scores depend on the claim and evidence supplied to the skill; the scripts do not browse the web, inspect images directly, or fetch remote content. <br>
-Mitigation: Provide source context, extracted screenshot text, and supporting or contradicting evidence before relying on a verdict. <br>
+## Use Case:
 
+Developers and end users use Verifier to capture local verification cases, score provided evidence, and receive a verdict, confidence level, risk notes, missing-evidence guidance, and a recommended next verification step.
 
-## Reference(s): <br>
-- [Verifier Philosophy](references/philosophy.md) <br>
-- [ClawHub Verifier release page](https://clawhub.ai/ProjectSnowWork/verifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI examples and structured JSON scoring output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local filesystem storage for case records; no external packages are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill advertises broad trust judgments while using simple rule-based scoring rather than independent verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as triage guidance, and require original-source evidence plus human review before consequential decisions.
+
+Risk: Verification cases may contain sensitive details and are stored locally in plaintext without enforced private permissions.
+
+Mitigation: Do not store passwords, tokens, private keys, or unnecessary personal details, and use a host where the OpenClaw memory directory is private to the user account.
+
+## Reference(s):
+
+- [Verifier Philosophy](references/philosophy.md)
+- [ClawHub Skill Page](https://clawhub.ai/projectsnowwork/skills/verifier)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional JSON output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local verification cases under ~/.openclaw/workspace/memory/verifier/cases.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

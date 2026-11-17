@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7efwb6whhm372443tpnrjysd8293rg",
-  "slug": "agent-builder-ollieb89",
+  "slug": "agent-builder",
   "version": "1.1.0",
-  "publishedAt": 1772689661119
+  "files": [
+    "SKILL.md",
+    "references/*",
+    "scripts/*"
+  ],
+  "origin": null
 }

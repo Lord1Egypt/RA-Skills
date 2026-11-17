@@ -1,47 +1,62 @@
-## Description: <br>
-Local full-text search for OpenClaw memory recall using MeiliSearch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local full-text search for OpenClaw memory recall using MeiliSearch. Self-hosted.
 
-## Publisher: <br>
-[enjuguna](https://clawhub.ai/user/enjuguna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enjuguna](https://clawhub.ai/user/enjuguna)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to index local memory files, query them through MeiliSearch, and optionally distill recent facts into MEMORY.md. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer uses sudo to create a persistent MeiliSearch systemd service and adds an hourly cron job. <br>
-Mitigation: Review install.sh before installation and install only on systems where persistent local indexing is acceptable. <br>
-Risk: The skill indexes OpenClaw MEMORY.md and daily memory notes into MeiliSearch. <br>
-Mitigation: Keep MEILI_HOST bound to a trusted local endpoint and verify that sensitive memory content is excluded before relying on the index. <br>
-Risk: The installer prints a generated MeiliSearch master key and configures scripts to use it. <br>
-Mitigation: Protect or rotate the printed master key after installation and store active credentials only in the workspace .env file. <br>
-Risk: Distillation can append extracted facts to MEMORY.md when run with --apply. <br>
-Mitigation: Run distillation in dry-run mode first and manually inspect the proposed facts before using --apply. <br>
-Risk: A full reindex deletes and recreates the MeiliSearch indexes. <br>
-Mitigation: Use the --full operation only with the explicit --force flag after confirming index recreation is intended. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to search local memory files, maintain tiered MeiliSearch indexes, and optionally distill recent daily notes into MEMORY.md.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [ClawHub release page](https://clawhub.ai/enjuguna/meili-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions, shell command output, and JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output includes query metadata, matched filters, tiers searched, result counts, and ranked memory results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: The installer asks for broad system authority to install MeiliSearch and manage a system service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before running it and prefer a user-level service or verified package installation path.
+
+Risk: The skill creates persistent background indexing jobs.
+
+Mitigation: Require explicit opt-in for cron jobs and document how to inspect, disable, or remove scheduled tasks.
+
+Risk: Private memory content can be sent to any configured MEILI_HOST.
+
+Mitigation: Validate that MEILI_HOST is a trusted local endpoint before indexing or searching memory content.
+
+Risk: Configuration loading executes the workspace .env file as shell input.
+
+Mitigation: Use non-executing environment parsing and restrict file permissions on configuration containing MEILI_KEY.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/enjuguna/skills/meili-memory)
+- [Publisher profile](https://clawhub.ai/user/enjuguna)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON search results, Markdown memory updates, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can update MeiliSearch indexes and append distilled facts to MEMORY.md when explicitly applied.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,32 @@
+[
+ {
+  "file": "frame-01-4.1s.jpg",
+  "time": 4.09,
+  "score": 466.8
+ },
+ {
+  "file": "frame-02-7.4s.jpg",
+  "time": 7.36,
+  "score": 472.3
+ },
+ {
+  "file": "frame-03-8.7s.jpg",
+  "time": 8.67,
+  "score": 367.0
+ },
+ {
+  "file": "frame-04-10.0s.jpg",
+  "time": 9.98,
+  "score": 75.3
+ },
+ {
+  "file": "frame-05-12.6s.jpg",
+  "time": 12.59,
+  "score": 392.2
+ },
+ {
+  "file": "frame-06-14.6s.jpg",
+  "time": 14.55,
+  "score": 570.6
+ }
+]

@@ -1,40 +1,49 @@
-## Description: <br>
-Provides embedded development guidance for ARM Cortex-M and RISC-V systems, with focus on Rust embedded-hal drivers, FreeRTOS, async frameworks, peripheral drivers, low-power design, and hardware debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for ARM Cortex-M and RISC-V embedded development, including Rust embedded-hal drivers, FreeRTOS patterns, async frameworks, peripheral drivers, low-power design, debugging, and MCU selection references.
 
-## Publisher: <br>
-[viewway](https://clawhub.ai/user/viewway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viewway](https://clawhub.ai/user/viewway)
 
-## Use Case: <br>
-Developers and embedded engineers use this skill as a reference for selecting Cortex-M or RISC-V platforms, building Rust or FreeRTOS firmware, configuring peripherals, debugging hardware, and preparing embedded CI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example flashing or debugging commands could modify firmware or device state on a connected board. <br>
-Mitigation: Run commands only on authorized hardware after confirming the chip name, target path, debug probe, and intended firmware image. <br>
-Risk: Embedded configuration examples may not match a specific board's memory map, clock tree, peripheral wiring, or safety constraints. <br>
-Mitigation: Review examples against the target datasheet, board schematic, linker script, and project safety requirements before applying them. <br>
+## Use Case:
 
+Developers and embedded engineers use this skill as a Chinese-language reference for planning and implementing ARM Cortex-M and RISC-V firmware, including Rust embedded setup, RTOS design, peripheral drivers, low-power behavior, debugging workflows, and MCU selection.
 
-## Reference(s): <br>
-- [ClawHub Embedded ARM Development release](https://clawhub.ai/viewway/embedded-arm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with C, Rust, TOML, YAML, shell command, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; commands are examples to review against the target chip and authorized hardware before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Firmware, flashing, debugging, and memory-access examples may modify device flash or memory if adapted and run on hardware.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat code blocks as illustrative and review flash address bounds, alignment, page coverage, write verification, power-loss safety, and MPU permissions before execution.
+
+## Reference(s):
+
+- [Embedded ARM Development on ClawHub](https://clawhub.ai/viewway/skills/embedded-arm)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with C, Rust, TOML, YAML, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reference content with hardware-specific examples]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

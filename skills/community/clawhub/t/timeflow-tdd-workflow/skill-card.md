@@ -1,41 +1,54 @@
-## Description: <br>
-Test-Driven Development workflow principles. RED-GREEN-REFACTOR cycle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test-Driven Development workflow principles. RED-GREEN-REFACTOR cycle.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to guide agents through TDD: write failing tests, implement minimal passing code, and refactor while keeping tests green. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide code edits and shell commands in a repository. <br>
-Mitigation: Use it on a branch, review generated tests and implementation changes, and approve shell commands or commits deliberately. <br>
-Risk: TDD guidance can encode an incorrect requirement if the initial failing test is wrong. <br>
-Mitigation: Review each test against the intended behavior before relying on implementation or refactoring steps. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to structure test-driven development work around the red, green, and refactor cycle, including test prioritization and anti-pattern avoidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soponcd/timeflow-tdd-workflow) <br>
-- [Skill homepage](https://github.com/soponcd/timeflow-skills/tree/main/teams/skills/tdd-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with optional code, test, and shell-command proposals.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated tests, code changes, and shell commands before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide edits, shell commands, and commits during TDD work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep file changes, command execution, and git commits under normal project-level user review and approval.
+
+Risk: TDD guidance may be applied mechanically without confirming the intended behavior.
+
+Mitigation: Review proposed tests against the requirement before using them as the implementation specification.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/soponcd/skills/timeflow-tdd-workflow)
+- [Publisher Profile](https://clawhub.ai/user/soponcd)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance, optionally including code snippets and shell commands when applying TDD in a repository.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text guidance for planning and executing tests, implementation, refactoring, and project-level commits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

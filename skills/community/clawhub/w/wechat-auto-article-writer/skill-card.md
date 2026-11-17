@@ -1,47 +1,60 @@
-## Description: <br>
-写作、改写、拟纲或优化微信公众号文章和微信推文，重点提升标题、摘要、开头、结构、中文语感、信息密度和结尾动作，同时保持事实准确与账号信任。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents plan, draft, rewrite, and polish Simplified Chinese WeChat public-account articles with stronger headlines, structure, information density, factual caution, and platform-aware editorial quality.
 
-## Publisher: <br>
-[zacktian89](https://clawhub.ai/user/zacktian89) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zacktian89](https://clawhub.ai/user/zacktian89)
 
-## Use Case: <br>
-Writers, editors, and content operators use this skill to plan, draft, rewrite, and polish WeChat public account articles and posts. It focuses on article promise, title options, outline confirmation, structure, Chinese style, information density, review checks, and publication trust. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Published WeChat articles may contain incorrect facts, dates, policy claims, or medical, legal, or financial statements. <br>
-Mitigation: Verify those claims before publication and keep unresolved items marked for review instead of presenting them as settled facts. <br>
-Risk: Article images may have rights, attribution, timing, subject, or context issues. <br>
-Mitigation: Confirm image rights, source context, captions, and relevance before using images in a published article. <br>
+## Use Case:
 
+External creators, editors, and operators use this skill to develop or revise WeChat public-account articles, including outlines, headline options, summaries, openings, section structure, copy polishing, and final review. It is especially suited to Chinese-language article planning and editing where title promises, factual boundaries, and account trust matter.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zacktian89/wechat-auto-article-writer) <br>
-- [Writing Workflow](references/writing-workflow.md) <br>
-- [Article Types](references/article-types.md) <br>
-- [Headline Patterns](references/headline-patterns.md) <br>
-- [Length Guidelines](references/length-guidelines.md) <br>
-- [Platform Guardrails](references/platform-guardrails.md) <br>
-- [Image Research](references/image-research.md) <br>
-- [Review Checklist](references/review-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text, usually in Simplified Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include article goals, title options, outlines, draft copy, revision notes, fact-check markers, and image candidate notes depending on the writing task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can help draft factual, policy, medical, legal, financial, or current-event content that may be wrong or outdated if source material is not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify sources before publishing and label unresolved time-sensitive, policy, data, medical, legal, or financial claims as unverified.
+
+Risk: WeChat-specific editorial guidance may improve presentation without guaranteeing that an article meets the publisher's standards or platform expectations.
+
+Mitigation: Use the review checklist and platform guardrails before publication, especially for title promises, factual boundaries, and account trust.
+
+## Reference(s):
+
+- [Writing Workflow](artifact/references/writing-workflow.md)
+- [Article Types](artifact/references/article-types.md)
+- [Headline Patterns](artifact/references/headline-patterns.md)
+- [Length Guidelines](artifact/references/length-guidelines.md)
+- [Platform Guardrails](artifact/references/platform-guardrails.md)
+- [Review Checklist](artifact/references/review-checklist.md)
+- [Image Research](artifact/references/image-research.md)
+- [ClawHub Skill Page](https://clawhub.ai/zacktian89/skills/wechat-auto-article-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text in Simplified Chinese, with article outlines, headline options, draft copy, revision notes, and review checklists as appropriate.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not execute code, handle credentials, persist data, or automatically publish content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

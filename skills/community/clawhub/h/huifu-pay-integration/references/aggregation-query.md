@@ -22,7 +22,7 @@
 
 | 场景 | 接口 |
 | --- | --- |
-| 交易查询 | `v4/trade/payment/scanpay/query` 或对应查询接口 |
+| 交易查询 | `v4/trade/payment/scanpay/query` |
 | 交易关单 | `v2/trade/payment/scanpay/close` |
 | 关单查询 | `v2/trade/payment/scanpay/closequery` |
 | 对账单查询 | `v2/trade/check/filequery` |
@@ -87,3 +87,12 @@
 
 - 要退款：读 `references/aggregation-refund.md`
 - 还没完成初始化：回到 `references/aggregation-base.md`
+
+## 按需分册
+
+| 文件 | 内容 |
+|-----|------|
+| `references/aggregation-query-payment-query.md` | 聚合交易查询（含完整字段、扩展参数与勘误） |
+| `references/aggregation-query-trade-close.md` | 聚合交易关单（含 webhook、返回码与勘误） |
+| `references/aggregation-query-close-query.md` | 关单查询（含状态判定与原交易定位限制） |
+| `references/aggregation-query-reconciliation.md` | 对账单查询（请求字段名固定使用 `file_date`、`bill_type`） |

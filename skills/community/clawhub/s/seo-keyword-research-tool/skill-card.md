@@ -1,44 +1,57 @@
-## Description: <br>
-Automatically fetches YouTube video subtitles and prepares concise summaries for users who need key points from talks, lectures, interviews, or other public videos with captions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically fetch YouTube video subtitles and generate concise summaries for public videos with available captions.
 
-## Publisher: <br>
-[potatosolo](https://clawhub.ai/user/potatosolo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[potatosolo](https://clawhub.ai/user/potatosolo)
 
-## Use Case: <br>
-External users, researchers, students, and content curators use this skill to fetch public YouTube captions, format transcript text, and generate structured summaries with executive summaries, key points, and optional detailed notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The marketplace display name suggests SEO keyword research, but the artifact implements YouTube transcript fetching and summarization. <br>
-Mitigation: Install and use this release only when a YouTube transcript summarization helper is intended. <br>
-Risk: Fetched video captions are untrusted content and may contain text that attempts to steer an agent away from the user's task. <br>
-Mitigation: Treat captions as content to summarize, not instructions to execute or follow. <br>
-Risk: The Python dependency is specified as a minimum version rather than a pinned version. <br>
-Mitigation: Install dependencies from trusted package sources and consider pinning youtube-transcript-api before deployment. <br>
+## Use Case:
 
+External users, researchers, students, and content curators use this skill to retrieve public YouTube captions and turn long videos into concise summaries, key points, or notes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/potatosolo/seo-keyword-research-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/potatosolo) <br>
-- [Reference Documentation for Youtube Summary](references/api_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries, plain text transcripts, Python helper code, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include executive summaries, bullet-point key points, detailed notes, formatted transcript chunks, and language-specific caption output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill fetches captions from public YouTube videos through youtube-transcript-api, so dependency or service behavior can affect results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment and pin youtube-transcript-api to a reviewed version before production use.
+
+Risk: Fetched captions and generated summaries may contain sensitive or unwanted local working data if saved.
+
+Mitigation: Treat transcripts and summaries as local working data and save files only when persistence is explicitly intended.
+
+Risk: Auto-generated captions and AI summaries can omit, mishear, or over-compress important details.
+
+Mitigation: Review important summaries against the source transcript or video before relying on them.
+
+## Reference(s):
+
+- [Reference Documentation for Youtube Summary](references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries and plain text transcript output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include executive summaries, key points, optional detailed notes, transcript chunks, or saved text/Markdown files when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

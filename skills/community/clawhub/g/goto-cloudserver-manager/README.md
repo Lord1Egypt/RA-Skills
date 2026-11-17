@@ -382,7 +382,7 @@ goto-cloudserver-manager（Skill 入口 · 策略检查 · 路由分发）
 
 ## 开发阶段
 
-**当前版本：v1.0.4**
+**当前版本：v1.0.6**
 
 - ✅ 阿里云 + Windows Server + SQL Server + Ubuntu MVP
 - ✅ 完整 Linux 支持（MySQL / PostgreSQL / Redis）
@@ -390,6 +390,13 @@ goto-cloudserver-manager（Skill 入口 · 策略检查 · 路由分发）
 - ✅ 腾讯云轻量应用服务器（Lighthouse + TAT + 实例级防火墙）
 - ✅ 华为云（ECS API + SSH fallback）
 - ✅ 产品化（运维计划模板、巡检日报）
+- 🐛 v1.0.5：修复 `providers/tencent/tat.py` 的 `get_command_result` 用了不存在的
+  `DescribeInvocationTasksRequest.InvocationId` 字段，导致腾讯云 TAT 通道下发的命令
+  永远查不到执行结果（应使用 `Filters` + `invocation-id` 过滤键）；同时补全 SKILL.md
+  的 `supported_os` 清单（新增 Windows Server 2012 R2/2016/2025、更多主流 Linux 发行版
+  及三家云厂商各自的默认镜像）。
+- 🐛 v1.0.6：修正 ClawHub 上的展示名称（发布 1.0.5 时漏传 `--name`，被误用本地文件夹名
+  "Goto Cloudserver Manager 已完成" 当了展示名，现已改回 "Goto Cloudserver Manager"）。
 
 > GotoBot 推送集成暂未实现（仓库内无可对接的 GotoBot API/Webhook 规范）。`PolicyEngine` 抛出的 `ConfirmationRequiredError.plan` 已提供结构化数据，留给 OpenClaw / GotoBot 自行对接。
 

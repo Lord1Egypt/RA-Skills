@@ -1,43 +1,62 @@
-## Description: <br>
-Email API for AI agents. Send and receive emails programmatically via ClawMail. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email API for AI agents. Send and receive emails programmatically via ClawMail.
 
-## Publisher: <br>
-[heyarviind](https://clawhub.ai/user/heyarviind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[heyarviind](https://clawhub.ai/user/heyarviind)
 
-## Use Case: <br>
-Developers and agent builders use this skill to give agents a dedicated ClawMail inbox, poll and read email threads, and send plain text or HTML messages through the ClawMail API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup flow downloads and runs an unpinned remote setup script. <br>
-Mitigation: Review the setup script before execution, or ask the publisher for checksums or a packaged installer. <br>
-Risk: The skill stores mailbox credentials in ~/.clawmail/config.json and can access mailbox content and outbound email. <br>
-Mitigation: Protect the local config file, use a dedicated inbox, and install only when the ClawMail service is trusted. <br>
-Risk: Inbound email content can influence agent behavior or cause unintended replies. <br>
-Mitigation: Validate trusted senders before processing messages and confirm recipients and message content before sending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/heyarviind/clawmail) <br>
-- [ClawMail Website](https://clawmail.cc) <br>
-- [ClawMail API Documentation](https://clawmail.cc/docs) <br>
+## Use Case:
 
+Developers and AI agent builders use Claw Mail to configure a dedicated ClawMail inbox, poll for inbound messages, send email, and inspect email threads through the ClawMail API.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with bash, JSON, curl, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to use ClawMail API endpoints and local configuration; the skill itself does not produce standalone executable software.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup flow asks users to run a remote Python script.
+
+Mitigation: Review and verify the setup script source and contents before running it.
+
+Risk: ClawMail sends email content and metadata through a third-party service.
+
+Mitigation: Use the skill only for data that is appropriate to process through ClawMail.
+
+Risk: Mailbox credentials are stored in ~/.clawmail/config.json.
+
+Mitigation: Treat the config file as a secret, restrict file permissions, keep it out of repositories and logs, and rotate or remove credentials when no longer needed.
+
+Risk: Inbound email content can carry prompt-injection attempts.
+
+Mitigation: Validate senders before processing message content and ignore messages from untrusted addresses.
+
+## Reference(s):
+
+- [ClawMail Website](https://clawmail.cc)
+- [ClawMail API Documentation](https://clawmail.cc/docs)
+- [ClawHub Skill Page](https://clawhub.ai/heyarviind/skills/clawmail)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline JSON, Python, HTTP, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ClawMail inbox ID and X-System-ID credential for API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

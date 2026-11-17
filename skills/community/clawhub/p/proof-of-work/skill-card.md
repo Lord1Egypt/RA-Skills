@@ -1,43 +1,61 @@
-## Description: <br>
-Automates verification that AI agents truly completed tasks by checking output files, system states, and logs for expected results and activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates verification that AI agents completed claimed tasks by checking expected files, system state, logs, and configurable quality gates.
 
-## Publisher: <br>
-[kgapol](https://clawhub.ai/user/kgapol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kgapol](https://clawhub.ai/user/kgapol)
 
-## Use Case: <br>
-Developers and operators use this skill to verify agent deliverables before downstream work depends on them. It is suited for CI, cron, and operational checks that validate expected files, content markers, logs, and configured output paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Verification paths or logs may include sensitive agent outputs. <br>
-Mitigation: Keep check paths limited to intended agent output folders and review log contents before retaining or sharing them. <br>
-Risk: Remote install snippets can obscure what is executed during setup. <br>
-Mitigation: Install from the bundled files and review the shell scripts before running them. <br>
-Risk: Optional AI quality checks may send file content to the configured Ollama or model runtime. <br>
-Mitigation: Use --ai-check only for files that are appropriate for the configured local model workflow. <br>
+## Use Case:
 
+Developers and operators use this skill to verify agent task outputs before downstream automation depends on them. It is suited for CI, scheduled monitoring, and manual checks where file content, freshness, logs, or process state must match an agent's completion claim.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kgapol/proof-of-work) <br>
-- [Trust AI Stack on ClawMart](https://www.shopclawmart.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text reports] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled shell workflow can produce pass/fail text output, check logs, and generated reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review found unsafe installation guidance in the documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the scripts and use the local install command from SKILL.md instead of the README curl-to-bash installer.
+
+Risk: Continuous watch mode can be under-scoped when scheduled directly.
+
+Mitigation: Review the configured paths and avoid scheduling watch directly in cron until the monitoring behavior is validated for the target workspace.
+
+Risk: Optional AI quality checks may send file excerpts to the configured Ollama environment.
+
+Mitigation: Do not enable --ai-check on sensitive files unless that local AI environment and data handling are acceptable.
+
+Risk: The security guidance says placeholder and AI verdict handling bugs prevent strict reliance as a completion gate.
+
+Mitigation: Use results as a review aid until those issues are fixed, and keep a human or independent automated check for critical completions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kgapol/skills/proof-of-work)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text output and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns shell exit codes for pass, failure, configuration error, and missing file or directory outcomes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

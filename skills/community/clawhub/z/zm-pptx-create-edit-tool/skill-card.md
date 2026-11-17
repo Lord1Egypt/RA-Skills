@@ -1,41 +1,61 @@
-## Description: <br>
-ZM PPTX 创建与编辑工具 helps agents create, inspect, and edit Microsoft PowerPoint/PPTX decks, including layouts, templates, placeholders, notes, charts, and basic visual QA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZM PPTX 创建与编辑工具 guides agents through creating, inspecting, and editing Microsoft PowerPoint PPTX decks, including layout and template mapping, placeholders, notes, charts, and visual QA.
 
-## Publisher: <br>
-[jerryxn](https://clawhub.ai/user/jerryxn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerryxn](https://clawhub.ai/user/jerryxn)
 
-## Use Case: <br>
-Agents and presentation authors use this skill when a task requires creating, checking, or editing PPTX decks while preserving template structure, layout fidelity, notes, comments, charts, and final visual quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read or modify user-provided presentation files, including notes, comments, media, templates, and charts. <br>
-Mitigation: Review generated or edited decks before formal use, and verify affected slides, notes, comments, media, templates, and charts. <br>
-Risk: Layout, placeholder, font, image, or chart changes can make a deck look correct in text inspection but fail visually. <br>
-Mitigation: Open, parse, or render the resulting PPTX and perform a visual QA pass before delivery. <br>
+## Use Case:
 
+Developers, analysts, and presentation-producing agents use this skill when a PPTX deck is the main deliverable and slide layout, template fidelity, notes, comments, charts, extraction, editing, or visual QA matter. It helps the agent inventory the deck, map content to actual placeholders, preserve the deck's visual language, and verify the final file before delivery.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/jerryxn/skills/zm-pptx-create-edit-tool) <br>
-- [Skill homepage](https://clawic.com/skills/zm-pptx-create-edit-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown instructions and status summaries, with PPTX files created or modified when the agent executes the workflow] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Final responses should use PASS, NEEDS_REVISION, or BLOCKED and explain the result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The agent may overwrite or edit the wrong presentation file if input and output paths are ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm input and output PPTX paths before work begins and keep backups of important decks.
+
+Risk: A deck can pass command or text extraction checks while still containing clipped text, overlap, weak contrast, or leftover placeholders.
+
+Mitigation: Render, open, or visually inspect the actual deck output and perform at least one fix-and-verify cycle before delivery.
+
+Risk: Generated slides may include unverified branding, logos, QR codes, data screenshots, or chart semantics.
+
+Mitigation: Use only provided or verified assets and review generated slides visually before delivery.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jerryxn/skills/zm-pptx-create-edit-tool)
+- [Skill Homepage](https://clawic.com/skills/zm-pptx-create-edit-tool)
+- [AI Readiness Checklist](checklists/ai_readiness_checklist.md)
+- [Minimum Required Fields](templates/minimum_required_fields.md)
+- [Subagent Execution Prompt](templates/subagent_execution_prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Files]
+
+**Output Format:** [Markdown status summaries, optional code or shell commands, and generated or modified PPTX files when the agent performs deck work.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Final status should be PASS, NEEDS_REVISION, or BLOCKED, with visual or parsing verification for deck outputs.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact SKILL.md frontmatter reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

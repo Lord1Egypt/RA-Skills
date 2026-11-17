@@ -1,0 +1,28 @@
+{
+  "profile": "aimegeo-schema-markup/1.0.0",
+  "local_valid": false,
+  "errors": [
+    {
+      "code": "required_field",
+      "path": "/@graph/1/mainEntity/0/acceptedAnswer",
+      "message": "Question needs acceptedAnswer in this local profile."
+    }
+  ],
+  "warnings": [],
+  "counts": {
+    "typed_nodes": 3,
+    "root_entities": 2
+  },
+  "content_check": {
+    "status": "not_run",
+    "checked_fields": 0,
+    "matched_fields": 0,
+    "checked_faq_pairs": 0,
+    "matched_faq_pairs": 0,
+    "scope": "Literal text and FAQ answer placement only; URLs, numbers, dates and factual truth require source review."
+  },
+  "google_rich_results": {
+    "status": "not_run"
+  },
+  "scope": "Local profile, not a full JSON-LD processor or Schema.org vocabulary validator."
+}

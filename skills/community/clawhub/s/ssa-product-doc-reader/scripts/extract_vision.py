@@ -204,7 +204,7 @@ def _call_openrouter(images_b64: list[str], model: str) -> dict:
 
     api_key = os.environ.get("OPENROUTER_API_KEY", "")
     if not api_key:
-        api_key = "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"
+        api_key = "REDACTED-SECRET"
 
     content = [{"type": "text", "text": EXTRACTION_PROMPT}]
     for img_b64 in images_b64:

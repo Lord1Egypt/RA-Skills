@@ -1,0 +1,8 @@
+interface:
+  display_name: 视频人物参考卡
+  short_description: 将授权角色资料整理成跨镜头可复用的人物外观、服装与动作约束卡
+  default_prompt: 请根据我提供的授权角色参考图描述、故事和造型限制，输出一份可跨镜头复用的视频人物参考卡；如资料缺失，请先列出缺失字段，不要编造。
+  icon_small: assets/icon-512.png
+  icon_large: assets/icon-512.png
+policy:
+  allow_implicit_invocation: true

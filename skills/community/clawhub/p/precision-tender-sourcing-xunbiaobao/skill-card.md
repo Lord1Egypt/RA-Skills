@@ -1,45 +1,58 @@
-## Description: <br>
-精准寻标与获客引擎-寻标宝，当用户需要通过招投标数据进行客户拓展、寻找潜在采购单位或分析企业上下游时调用，重点调用企业合作客户及供应商查询接口，输出清晰的获客目标列表。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+精准寻标与获客引擎-寻标宝，当用户需要通过招投标数据进行客户拓展、寻找潜在采购单位或分析企业上下游时调用，重点调用企业合作客户及供应商查询接口，输出清晰的获客目标列表。
 
-## Publisher: <br>
-[liu-jiapeng](https://clawhub.ai/user/liu-jiapeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liu-jiapeng](https://clawhub.ai/user/liu-jiapeng)
 
-## Use Case: <br>
-Sales, procurement, and business-development users use this skill to search Chinese tender notices, identify likely buyers or suppliers, analyze company bid activity, and summarize market opportunities from Zhiliaobiaoxun/Xunbiaobao data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Procurement queries, company names, bid URLs, and filters are sent to an external Zhiliaobiaoxun/Xunbiaobao API using the configured API key. <br>
-Mitigation: Use only an intended ZLBX_API_KEY, avoid confidential strategy or sensitive personal data in prompts, and confirm that sharing each query with the external service is acceptable. <br>
-Risk: Returned results can include business contact data and company matching may affect downstream analysis. <br>
-Mitigation: Use contact information only for lawful and appropriate business purposes, and confirm company matches before broad outreach or high-impact decisions. <br>
+## Use Case:
 
+External business-development and market-research users can search tender notices and company relationships to build prospect lists and identify potential buyers, suppliers, and partners.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liu-jiapeng/precision-tender-sourcing-xunbiaobao) <br>
-- [Zhiliaobiaoxun API endpoint](https://mcp-server.zhiliaobiaoxun.com/api_v2/{工具名}) <br>
-- [Xunbiaobao API key setup](https://ai.zhiliaobiaoxun.com/?ch=s29) <br>
-- [Bid search API reference](references/api-search.md) <br>
-- [Company analysis API reference](references/api-company.md) <br>
-- [Market analysis API reference](references/api-market.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration guidance] <br>
-**Output Format:** [Markdown summaries with JSON request examples and structured result lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZLBX_API_KEY and sends user queries to the Zhiliaobiaoxun/Xunbiaobao API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server-resolved release evidence) <br>
+Risk: Device-registration privacy assurances and account-registration or recovery instructions are flagged for review; provider-side retention and deletion of device fingerprints are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the registration flow before installation, use a manually obtained API key to avoid hardware-derived identification when preferred, require explicit confirmation before changing an existing account or key, and ask the publisher to reconcile the privacy and recovery guidance.
+
+Risk: Data queries consume account credits, and temporary login links grant account access.
+
+Mitigation: Check credit usage before data queries and treat generated login links as sensitive account-access credentials.
+
+## Reference(s):
+
+- [Tender search API reference](artifact/references/api-search.md)
+- [Company data API reference](artifact/references/api-company.md)
+- [Company registry API reference](artifact/references/api-registry.md)
+- [Market analysis API reference](artifact/references/api-market.md)
+- [Account API reference](artifact/references/api-account.md)
+- [Device registration and account recovery guidance](artifact/references/auto-register.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis]
+
+**Output Format:** [Markdown tables and concise textual summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZLBX_API_KEY. Data queries may consume account credits.]
+
+## Skill Version(s):
+
+2.0.8 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

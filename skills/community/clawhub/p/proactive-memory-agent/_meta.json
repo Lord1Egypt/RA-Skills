@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn759x1cnhbssgagb3j55aqq9s83846y",
-  "slug": "proactive-memory-agent",
+  "name": "proactive-memory-agent",
   "version": "1.0.1",
-  "publishedAt": 1774326193722
+  "description": "Ultimate memory optimization combining WAL, Working Buffer, context budgeting, and memory tiering. 60-70% context reduction with zero information loss.",
+  "description_zh": "AI智能体终极记忆优化系统。整合WAL预写协议、工作缓冲区、三级记忆架构、上下文预算分区和学习记录系统。实现60-70%上下文占用降低，零信息丢失保障。",
+  "source": "integrated",
+  "components": [
+    "proactive-agent",
+    "context-budgeting",
+    "memory-tiering"
+  ],
+  "author": "@silaszhu",
+  "tags": ["memory", "optimization", "context", "WAL", "proactive", "tiering", "budgeting", "openclaw"]
 }

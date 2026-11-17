@@ -1,42 +1,63 @@
-## Description: <br>
-Bootstrap a multi-agent software project from idea to agent team design, task management, repository setup, CI/CD, and Discord notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstrap a multi-agent software project from idea to running CI/CD.
 
-## Publisher: <br>
-[ckouder](https://clawhub.ai/user/ckouder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckouder](https://clawhub.ai/user/ckouder)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to turn a new project idea into a coordinated multi-agent workflow with task tracking, GitHub repository setup, TDD-oriented CI/CD, ADRs, and notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead agents to create persistent project automation and change repository, CI/CD, Discord, or multi-agent configuration. <br>
-Mitigation: Review every generated agent config and external change before running it, use least-privilege agent tool profiles, and require explicit approval before creating repositories, changing branch rules, adding workflows, posting webhooks, spawning agents, or enabling recurring checks. <br>
-Risk: GitHub tokens, Discord webhooks, and notification content may expose credentials or sensitive project information if handled carelessly. <br>
-Mitigation: Narrow GitHub tokens to the intended repository, protect Discord webhooks, and avoid sending sensitive commit text or private project details to Discord notifications. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to plan a new multi-agent project, define agent roles, initialize task management, and set up GitHub CI/CD with Discord notifications.
 
-## Reference(s): <br>
-- [Taskboard CLI Setup](references/taskboard-setup.md) <br>
-- [CI/CD Templates](references/ci-cd-templates.md) <br>
-- [ClawHub release page](https://clawhub.ai/ckouder/project-bootstrap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON, YAML, shell command, and code snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May also guide creation of taskboard files, agent configuration, GitHub workflows, ADRs, and notification setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may guide agents to create GitHub repositories, change rulesets, configure webhooks, or alter CI/CD behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before repository, branch protection, webhook, or CI/CD changes are executed.
+
+Risk: Generated agent configurations may grant broad tool access.
+
+Mitigation: Review generated agent profiles and reduce tool permissions to the least privilege needed for each role.
+
+Risk: Discord notifications can expose task, commit, author, or project details.
+
+Mitigation: Use private Discord channels and minimize notification payloads before enabling webhooks.
+
+Risk: Unpinned third-party GitHub Actions can introduce supply-chain risk.
+
+Mitigation: Pin third-party GitHub Actions to reviewed commit SHAs and require human approval on protected branches.
+
+## Reference(s):
+
+- [Project Bootstrap on ClawHub](https://clawhub.ai/ckouder/skills/project-bootstrap)
+- [Taskboard CLI Setup](references/taskboard-setup.md)
+- [CI/CD Templates](references/ci-cd-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JSON, YAML, shell commands, and Python CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose repository, CI/CD, Discord, taskboard, and agent configuration changes for review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

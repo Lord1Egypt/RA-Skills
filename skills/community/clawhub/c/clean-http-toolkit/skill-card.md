@@ -1,42 +1,63 @@
-## Description: <br>
-Clean HTTP Toolkit lets agents make HTTP requests, download files with checksum verification, extract common web page content, and run small local HTTP test servers using Python standard-library scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Python 3 HTTP toolkit that helps agents fetch URLs, send REST requests, download files with checksum verification, extract page content, and run local static or JSON echo test servers.
 
-## Publisher: <br>
-[gopendrasharma89-tech](https://clawhub.ai/user/gopendrasharma89-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gopendrasharma89-tech](https://clawhub.ai/user/gopendrasharma89-tech)
 
-## Use Case: <br>
-Developers and AI agents use this skill to fetch URLs, call HTTP APIs, download files with checksum verification, extract page text or metadata, and run local HTTP test servers without adding third-party Python dependencies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Skipping TLS verification can hide certificate or interception problems when using the opt-in insecure mode. <br>
-Mitigation: Use the default TLS verification path; reserve insecure mode for controlled testing only. <br>
-Risk: Bearer tokens, basic credentials, or mutating HTTP methods can expose secrets or change remote systems. <br>
-Mitigation: Use least-privileged credentials, avoid logging secrets, and review target URLs and methods before execution. <br>
-Risk: Binding the local server to public interfaces can expose served files or echoed request data. <br>
-Mitigation: Keep the default localhost binding unless exposure is intentional, and limit served directories and request counts. <br>
+## Use Case:
 
+Developers and agents use this skill to make HTTP requests, inspect or extract web content, download artifacts, and run local mock endpoints without adding third-party Python dependencies.
 
-## Reference(s): <br>
-- [Clean HTTP Toolkit on ClawHub](https://clawhub.ai/gopendrasharma89-tech/clean-http-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, files, shell commands, configuration] <br>
-**Output Format:** [Command-line output, JSON summaries, downloaded files, extracted page data, and local HTTP responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and uses Python standard-library networking utilities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: Agents can make arbitrary HTTP requests and may send bearer tokens, basic auth credentials, cookies, or sensitive headers to untrusted or redirected hosts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted URLs, avoid credentials with untrusted URLs, and disable redirects or manually verify redirect targets before sending credentials.
+
+Risk: The toolkit can read from and write to user-specified local paths for request bodies, outputs, and downloads.
+
+Mitigation: Use workspace-scoped paths and review source and destination paths before running file operations.
+
+Risk: The local server can expose files or request data if it is bound beyond localhost.
+
+Mitigation: Keep the default 127.0.0.1 binding unless exposure is intentional and the served content has been reviewed.
+
+## Reference(s):
+
+- [Clean HTTP Toolkit on ClawHub](https://clawhub.ai/gopendrasharma89-tech/clean-http-toolkit)
+- [Clean HTTP Toolkit skill page](https://clawhub.ai/gopendrasharma89-tech/skills/clean-http-toolkit)
+- [Publisher profile](https://clawhub.ai/user/gopendrasharma89-tech)
+- [clean-text-toolkit](https://clawhub.ai/gopendrasharma89-tech/clean-text-toolkit)
+- [clean-json-toolkit](https://clawhub.ai/gopendrasharma89-tech/clean-json-toolkit)
+- [clean-log-toolkit](https://clawhub.ai/gopendrasharma89-tech/clean-log-toolkit)
+- [clean-csv-toolkit](https://clawhub.ai/gopendrasharma89-tech/clean-csv-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; runtime scripts can emit plain text, JSON, HTTP response bodies, or downloaded files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports bounded retries, optional checksum verification for downloads, optional status-only output, and local static or JSON echo server modes.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

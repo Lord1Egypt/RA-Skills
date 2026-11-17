@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "haola-pe": {
+      "type": "streamable-http",
+      "url": "https://ai.ihaola.com.cn/api/mcp/haola-pe",
+      "timeout": 30000
+    }
+  }
+}

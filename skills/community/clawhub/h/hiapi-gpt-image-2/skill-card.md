@@ -1,46 +1,61 @@
-## Description: <br>
-HiAPI GPT Image 2 helps an agent generate or edit images through HiAPI's GPT Image 2 family, using text prompts, optional public reference image URLs, model selection, aspect ratios, and resolution settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate or edit images with HiAPI's GPT Image 2 family through the HiAPI unified async task API.
 
-## Publisher: <br>
-[hiapiai](https://clawhub.ai/user/hiapiai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hiapiai](https://clawhub.ai/user/hiapiai)
 
-## Use Case: <br>
-Use this skill when an agent needs to create text-to-image outputs or image-to-image edits with HiAPI GPT Image 2 models, save generated image files, return image URLs, or guide users through HiAPI API key, billing, rate-limit, and safety-policy errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to the user's HiAPI account terms, local laws, and organizational policy for sending prompts and reference image URLs to a third-party image generation service. <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends image prompts and any reference image URLs to HiAPI under the user's account. <br>
-Mitigation: Install and run it only when users are comfortable sharing that content with HiAPI, keep the API key in the environment, and avoid printing credentials in logs or final answers. <br>
-Risk: Changing the HiAPI base URL can redirect prompts and credentials to a different endpoint. <br>
-Mitigation: Keep HIAPI_BASE_URL at the default unless the user intentionally trusts another endpoint. <br>
-Risk: Generated image tasks may fail because of missing or invalid credentials, insufficient balance, rate limits, content policy blocks, or missing image output. <br>
-Mitigation: Use the skill's built-in error guidance to report the status and next action, and do not invent an image result when the API call fails. <br>
+## Use Case:
 
+Developers and external agent users use this skill to generate or edit images with HiAPI's GPT Image 2 model family from natural-language prompts and optional reference image URLs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hiapiai/hiapi-gpt-image-2) <br>
-- [HiAPI Publisher Profile](https://clawhub.ai/user/hiapiai) <br>
-- [HiAPI Documentation](https://docs.hiapi.ai) <br>
-- [HiAPI API Key Registration](https://www.hiapi.ai/en/register) <br>
-- [HiAPI Pricing](https://www.hiapi.ai/en/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Agent instructions and CLI-generated JSON describing saved image file paths or returned image URLs.] <br>
-**Output Parameters:** [Prompt, model, optional input image URLs for image-to-image models, aspect ratio, resolution, output directory, and HiAPI configuration through environment variables.] <br>
-**Other Properties Related to Output:** [Requires Node.js 18 or newer, a HiAPI API key, and usually a paid HiAPI account; successful data URI images are saved under outputs/ while remote image URLs are returned directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 <br>
+Risk: Installer and update workflows can run code from unpinned GitHub sources or place files in custom agent skill directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a pinned commit or signed release, and avoid untrusted custom target paths or AGENT_SKILLS_DIR values.
+
+Risk: A configurable API host can expose the HiAPI API key to an endpoint outside the normal service path.
+
+Mitigation: Keep HIAPI_BASE_URL at https://api.hiapi.ai unless the alternate endpoint is fully controlled and trusted.
+
+Risk: Printed update commands may ask the user to run additional package installation commands.
+
+Mitigation: Treat printed update commands as untrusted until independently verified.
+
+## Reference(s):
+
+- [HiAPI GPT Image 2 API](references/api.md)
+- [Output Handling](references/output.md)
+- [HiAPI Docs](https://docs.hiapi.ai)
+- [Awesome GPT Image 2 Prompts](https://github.com/HiAPIAI/awesome-gpt-image-2-prompts)
+- [ClawHub Skill Page](https://clawhub.ai/hiapiai/skills/hiapi-gpt-image-2)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Guidance]
+
+**Output Format:** [JSON containing task metadata and generated image file paths or remote URLs; failures return concise text guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HIAPI_API_KEY; local data URI outputs are saved under outputs/ unless saving is disabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

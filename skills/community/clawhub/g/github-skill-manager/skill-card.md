@@ -1,42 +1,53 @@
-## Description: <br>
-Helps an agent manage local skill installation, update checks, updates, and uninstall actions for skills sourced from GitHub repositories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage agent skills sourced from GitHub repositories, including installation, update checks, updates, uninstallation, and REGISTRY.yaml tracking.
 
-## Publisher: <br>
-[qvshuo](https://clawhub.ai/user/qvshuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qvshuo](https://clawhub.ai/user/qvshuo)
 
-## Use Case: <br>
-Developers and agent users use this skill to install, register, check, update, and uninstall local skills from GitHub repositories while tracking source metadata in REGISTRY.yaml. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to install, update, or remove local skills. <br>
-Mitigation: Require explicit confirmation before uninstalling or bulk-updating skills, and avoid overwriting existing directories except during an intentional update. <br>
-Risk: Installing or updating unfamiliar GitHub skills can introduce unreviewed behavior into the local agent environment. <br>
-Mitigation: Verify the owner, repo, branch, and path before use, and inspect unfamiliar skills before deployment. <br>
-Risk: GitHub operations depend on an authenticated gh CLI session. <br>
-Mitigation: Use a least-privileged GitHub login where possible and check authentication status before running GitHub API operations. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage GitHub-hosted skills, check for updates, apply updates, uninstall skills, and maintain REGISTRY.yaml records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qvshuo/github-skill-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with status tables, inline shell commands, and YAML registry entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local skill file changes and REGISTRY.yaml updates when the agent executes the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can install, update, or delete persistent agent skills from mutable GitHub sources without enough validation or review controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review this skill before installing, use it only with trusted repositories, and prefer immutable commit references.
+
+Risk: Unattended broad updates or unclear skill names and paths could modify or remove unintended local skills.
+
+Mitigation: Avoid unattended broad updates and confirm exact skill names and paths before update or uninstall actions.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/qvshuo/skills/github-skill-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with tables and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in persistent skill files and REGISTRY.yaml changes when executed by an agent.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

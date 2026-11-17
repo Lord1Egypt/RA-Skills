@@ -1,46 +1,65 @@
-## Description: <br>
-Automate lead capture in Supabase with Make.com email workflows, manage lead status, conversations, and track auto-reply delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates lead capture in Supabase with Make.com email workflows, lead status management, conversation logging, and auto-reply tracking.
 
-## Publisher: <br>
-[big-roman123](https://clawhub.ai/user/big-roman123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[big-roman123](https://clawhub.ai/user/big-roman123)
 
-## Use Case: <br>
-Sales, support, and automation agents use this skill to capture lead details, store conversation history in Supabase, trigger Make.com auto-reply workflows, and monitor lead status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Supabase service-role key, which grants high-impact database access if exposed. <br>
-Mitigation: Store the key only server-side, isolate the Supabase project for this workflow, and rotate the key immediately if exposure is suspected. <br>
-Risk: Lead records and conversation content can include personal contact information and sales context. <br>
-Mitigation: Confirm user consent and organization data-handling requirements before storing or using lead details for automated replies. <br>
-Risk: The package exposes a deleteLead capability and other database actions that can change or remove lead data. <br>
-Mitigation: Review or remove high-impact actions before deployment and restrict execution to the intended organization boundary. <br>
-Risk: The security review flagged the release as suspicious because full database credentials and high-impact actions are under-documented. <br>
-Mitigation: Install only in a tightly isolated Supabase project and verify organization isolation before production use. <br>
+## Use Case:
 
+Developers and sales automation teams use this skill to let agents create, retrieve, list, update, and delete CRM leads, log conversations, and monitor automated first-reply delivery through a Supabase-backed workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/big-roman123/leadklick) <br>
-- [README](artifact/README.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Configuration] <br>
-**Output Format:** [JSON objects with lead records, conversation records, automation status, and operation results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Supabase project URL, Supabase service-role key, organization UUID, and optional default priority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, skill.json, SKILL.md) <br>
+Risk: The skill requests a highly privileged Supabase service role key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the credential model before installation and prefer a least-privilege server-side API or restricted database role.
+
+Risk: Lead and conversation records can contain personal or sensitive business data.
+
+Mitigation: Define privacy, consent, redaction, and retention rules before storing lead conversations.
+
+Risk: Data access depends on organization scoping and may be under-scoped if the database or API role is configured incorrectly.
+
+Mitigation: Add and verify organization scoping on every read and write path, and confirm Supabase RLS policies enforce the same boundary.
+
+Risk: The skill exposes destructive lead deletion behavior.
+
+Mitigation: Document deletion behavior and require explicit confirmation before deleting lead records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/big-roman123/skills/leadklick)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [Lead schema](schemas/lead.json)
+- [Conversation schema](schemas/conversation.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and TypeScript examples with JSON configuration and response objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces lead IDs, status values, conversation IDs, counts, automation status, and Supabase-backed CRM records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata, package.json, README.md, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

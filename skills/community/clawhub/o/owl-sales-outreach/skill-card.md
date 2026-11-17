@@ -1,37 +1,52 @@
-## Description: <br>
-Create personalized sales outreach messages including cold emails, LinkedIn messages, and follow-up sequences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create personalized sales outreach messages including cold emails, LinkedIn messages, and follow-up sequences.
 
-## Publisher: <br>
-[btizzy](https://clawhub.ai/user/btizzy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[btizzy](https://clawhub.ai/user/btizzy)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Sales and go-to-market teams use this skill to draft short, personalized cold emails, LinkedIn messages, and follow-up sequences for B2B outreach.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated outreach may be inaccurate, non-compliant with applicable laws, or inconsistent with platform rules.
+
+Mitigation: Review all generated messages for factual accuracy, legal compliance, and platform policy fit before sending.
+
+Risk: Sales outreach may omit appropriate opt-out handling or use language that recipients perceive as disrespectful.
+
+Mitigation: Add respectful opt-out language and check tone before using the generated copy in campaigns.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Sales and growth teams use this skill to draft short, personalized cold emails, LinkedIn outreach, and follow-up sequences for B2B prospects. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach may contain inaccurate claims or fail to meet consent, platform, or anti-spam requirements. <br>
-Mitigation: Review each message for accuracy, recipient consent, platform rules, and applicable anti-spam requirements before sending. <br>
+**Output Format:** [Markdown or plain text outreach copy and sequence guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Generated outreach should be reviewed before sending for accuracy, legal compliance, platform rules, and respectful opt-out handling.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with outreach templates and sequence guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces sales copy and messaging guidance; no code, shell commands, account access, or persistent state.] <br>
+1.0.0 (source: release evidence and frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

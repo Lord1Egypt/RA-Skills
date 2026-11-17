@@ -1,41 +1,57 @@
-## Description: <br>
-Coordinates multi-perspective code and design reviews across configurable cognitive modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get multiple perspectives on your work \u2014 coordinate reviews across cognitive modes.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Developers and engineers use this skill to select review approaches, coordinate technical and creative review perspectives, and apply quality gates to implementation, architecture, documentation, or security-sensitive work. It produces review findings and gate results that can be saved under the workspace review directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository diffs and target files may contain sensitive work-in-progress content that configured reviewer tools can inspect. <br>
-Mitigation: Use the skill only in trusted workspaces, and use no-yolo or fallback-disabling options when broad nested reviewer access or external reviewer CLIs should not handle diff content. <br>
-Risk: Quality gates may run local test commands from configuration. <br>
-Mitigation: Review .openclaw/review-orchestrator.yaml or .claude/review-orchestrator.yaml before running gates, and keep configured test commands limited to expected project checks. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to select a review approach, run multi-perspective or cognitive reviews, and gate staged work with configurable quality checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leegitw/review-orchestrator) <br>
-- [Publisher profile](https://clawhub.ai/user/leegitw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and structured text with example commands, review findings, and quality gate results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write review outputs under docs/reviews/ and uses optional local configuration from .openclaw/review-orchestrator.yaml or .claude/review-orchestrator.yaml.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: server release metadata and release changelog) <br>
+Risk: The quality-gate feature can run a test command from workspace configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review .openclaw/review-orchestrator.yaml and .claude/review-orchestrator.yaml before using /ro gate, especially in untrusted repositories.
+
+Risk: Review outputs may capture sensitive implementation details from the target workspace.
+
+Mitigation: Inspect generated files under docs/reviews/ before sharing them outside the workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leegitw/skills/review-orchestrator)
+- [Publisher Profile](https://clawhub.ai/user/leegitw)
+- [OpenClaw Configuration](.openclaw/review-orchestrator.yaml)
+- [Claude Configuration](.claude/review-orchestrator.yaml)
+- [Review Output Workspace](docs/reviews/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports and structured review or quality-gate summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write review findings and gate results under docs/reviews/.]
+
+## Skill Version(s):
+
+1.5.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

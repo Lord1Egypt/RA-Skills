@@ -1,40 +1,53 @@
-## Description: <br>
-Wealth management and financial advisory tools: client reviews, financial planning, portfolio analysis, and client reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wealth management and financial advisory tools: client reviews, financial planning, portfolio analysis, and client reporting.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-External financial advisors and wealth management teams use this skill to prepare client reviews, build financial plans, analyze portfolios, generate reports, identify rebalancing opportunities, and review tax-loss harvesting candidates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases could start sensitive financial planning or review workflows too easily. <br>
-Mitigation: Use explicit prompts, confirm the client or household scope before sharing data, and limit access to only the financial records needed for the task. <br>
-Risk: Generated financial analysis, rebalancing suggestions, or tax-loss harvesting guidance may be incomplete or unsuitable without professional review. <br>
-Mitigation: Treat outputs as drafts for qualified review and verify assumptions, client constraints, account data, tax details, and compliance requirements before use. <br>
+## Use Case:
 
+Financial advisors and wealth-management teams use this skill to prepare client reviews, financial plans, portfolio-rebalance proposals, tax-loss-harvesting scans, and client-facing reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/financial-wealth-management) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, analysis] <br>
-**Output Format:** [Markdown and structured advisory workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce client-facing report drafts, portfolio analysis summaries, planning assumptions, rebalancing suggestions, and tax-loss harvesting review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and package.json) <br>
+Risk: The skill may process sensitive financial, household, portfolio, and planning details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with appropriate data-handling controls and confirm before looking up client records or using sensitive account information.
+
+Risk: Financial projections, rebalancing trades, and tax-loss-harvesting suggestions may be incomplete or unsuitable without professional review.
+
+Mitigation: Require qualified human review before sharing client-facing advice, implementing trades, or acting on tax-related recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/financial-wealth-management)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports, planning workflows, analysis summaries, and recommendation drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve sensitive financial and household details supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Advanced Human Writing & AI Humanizer"
+  short_description: "AI text humanizer for de-AI writing, natural rewriting, fiction editing, and novel continuity"
+  default_prompt: "Use $human-writing-skills with only the relevant modules to humanize or write natural prose while preserving facts, useful ambiguity, character voice, scene continuity, rewrite meaning, world rules, and supplied-source boundaries."

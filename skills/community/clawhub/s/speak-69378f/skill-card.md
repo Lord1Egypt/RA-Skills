@@ -1,41 +1,56 @@
-## Description: <br>
-Provides an OpenCode workflow for learning and applying Speak-related techniques from referenced Douyin and Bilibili videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a lightweight workflow reference for learning and applying Speak-related techniques from Douyin and Bilibili video examples.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External OpenCode users can use this skill for step-by-step guidance when learning and applying Speak-related techniques from the referenced videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as "speak" or "SpeakNow" may activate the skill unintentionally. <br>
-Mitigation: Install only when this workflow is desired and narrow trigger phrases when maintaining or republishing the skill. <br>
+## Use Case:
 
+Developers and agent users use this skill as a concise reference for Speak-related workflows, examples, and trigger scenarios learned from short-form video sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/speak-69378f) <br>
-- [Bilibili: SPEAK[寄生兽]](https://www.bilibili.com/video/BV1rt411a7HR) <br>
-- [Bilibili: Speak 真的好用吗？超详尽开箱评比](https://www.bilibili.com/video/BV13iogBZEeD) <br>
-- [Bilibili: SpeakNow TV 爱的告白](https://www.bilibili.com/video/BV1CDsjegETm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; no code execution or privileged access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad activation phrases such as speak and Speak may trigger the skill unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrower trigger phrasing or confirm the user wants Speak-related workflow guidance before applying the skill.
+
+Risk: The skill summarizes techniques learned from external videos and may not reflect current product behavior.
+
+Mitigation: Treat the guidance as a lightweight reference and verify important Speak workflow details against current source material before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/speak-69378f)
+- [Bilibili: SPEAK[寄生兽]](https://www.bilibili.com/video/BV1rt411a7HR)
+- [Bilibili: Speak 真的好用吗？超详尽开箱评比｜真实使用心得 | 完整操作流程](https://www.bilibili.com/video/BV13iogBZEeD)
+- [Bilibili: 【SpeakNow TV】爱的告白 22首 无损全集 中英滚动字幕『Apple Music 在线听霉霉』](https://www.bilibili.com/video/BV1CDsjegETm)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill with no executable behavior or sensitive access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

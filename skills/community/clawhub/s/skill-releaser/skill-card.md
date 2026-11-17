@@ -1,42 +1,54 @@
-## Description: <br>
-Release skills to ClawhHub through the full publication pipeline: auto-scaffolding, OPSEC scan, dual review, force-push release, security scan verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Release skills to ClawHub through a publication pipeline covering scaffolding, OPSEC scanning, review, staging, publishing, and security scan verification.
 
-## Publisher: <br>
-[chunhualiao](https://clawhub.ai/user/chunhualiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chunhualiao](https://clawhub.ai/user/chunhualiao)
 
-## Use Case: <br>
-Developers and release maintainers use this skill to prepare, review, stage, publish, and verify ClawhHub skill releases from a completed SKILL.md. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release workflow can make repository and registry changes public, including force-push and visibility changes. <br>
-Mitigation: Review the exact staging directory and target repository before approval, use least-privilege GitHub and ClawhHub accounts, and require explicit approval before public release actions. <br>
-Risk: The authoritative security summary flags a flawed security gate and unpinned local tooling before publication. <br>
-Mitigation: Do not rely on the OPSEC gate alone until the fail-open bug and local helper provenance are fixed; independently verify credentials, target paths, and release contents before publishing. <br>
+## Use Case:
 
+Developers and release operators use this skill to prepare, validate, stage, review, publish, and verify agent skill releases on ClawHub.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/chunhualiao/skill-releaser) <br>
-- [README](artifact/README.md) <br>
-- [Release Validation Scripts](artifact/scripts/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command blocks and generated release files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates privileged git, gh, browser, filesystem, and clawhub CLI actions with explicit approval gates for public release steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: release evidence, SKILL.md frontmatter, skill.yml) <br>
+Risk: The skill can exercise high-impact release authority over GitHub and ClawHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the agent is meant to have release authority, narrow the trigger set, and require explicit confirmation before repo creation, first push, force push, visibility changes, and publish.
+
+Risk: Security evidence reports weak gating and flawed validation checks.
+
+Mitigation: Fix the validation scripts so checks fail closed and match the documented hard gates before relying on automated release decisions.
+
+## Reference(s):
+
+- [Skill Releaser on ClawHub](https://clawhub.ai/chunhualiao/skills/skill-releaser)
+- [Release pipeline validation scripts](scripts/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, generated release files, configuration, and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify skill release files and propose privileged GitHub and ClawHub commands when used with the required tools.]
+
+## Skill Version(s):
+
+1.5.0 (source: frontmatter, skill.yml, CHANGELOG, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

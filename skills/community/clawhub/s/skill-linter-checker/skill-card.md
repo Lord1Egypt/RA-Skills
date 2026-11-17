@@ -1,38 +1,54 @@
-## Description: <br>
-Analyzes and validates SKILL.md files for best practices, common issues, and improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and validate SKILL.md files for best practices, common issues, and improvement suggestions.
 
-## Publisher: <br>
-[mengbin92](https://clawhub.ai/user/mengbin92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mengbin92](https://clawhub.ai/user/mengbin92)
 
-## Use Case: <br>
-Developers and skill authors use this skill to review SKILL.md files, validate required frontmatter and content structure, and receive severity-ranked improvement suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Changing a SKILL.md can alter how another skill behaves. <br>
-Mitigation: Review any proposed edits before applying them. <br>
+## Use Case:
 
+Developers and skill authors use this skill to review SKILL.md files, identify frontmatter and content-quality issues, and receive structured improvement guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mengbin92/skill-linter-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown report with severity tables and optional SKILL.md rewrite] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes critical, warning, and informational findings with recommended actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill requests broad file-editing authority while reviewing SKILL.md files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only permissions for routine linting and enable edits only through an explicit user-confirmed remediation workflow.
+
+Risk: The skill may inspect untrusted skill content.
+
+Mitigation: Treat inspected skill content as untrusted data and review proposed changes before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mengbin92/skills/skill-linter-checker)
+- [ClawHub publisher profile](https://clawhub.ai/user/mengbin92)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis report with severity-labeled findings and recommended actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include an optional rewritten SKILL.md when significant improvements are needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

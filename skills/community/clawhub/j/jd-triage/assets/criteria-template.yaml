@@ -1,58 +1,136 @@
-# jd_criteria.md template
-# Field keys are English (machine-readable). Values follow the user's language.
-# This file is written to ~/.openclaw/workspace/jd_criteria.md by the jd-triage skill.
+# jd_criteria.md — schema v3
+#
+# Written to ~/.openclaw/workspace/jd_criteria.md by the jd-triage skill.
+# Field keys are English and machine-readable. Values are in whatever language
+# you wrote them in, and are never auto-translated.
+#
+# Hand-editing is expected and supported. The skill parses what it finds and
+# asks about anything malformed rather than overwriting it.
 
-schema_version: 1
-criteria_version: 1     # increments on every user-driven update (S1/S2/S5); used to flag old history entries
-last_updated: # ISO-8601 date, e.g. 2026-05-20
+schema_version: 3
+criteria_version: 1
+last_updated:                 # ISO-8601, e.g. 2026-07-25
 
-# History detail level for jd_history.md entries:
-#   minimal  — title, company, verdict, date only
-#   standard — + 6-axis stars, one-liner, triggered red lines (default)
-#   full     — + raw JD text + parsed fields (warning: may contain recruiter contact / private comp)
-history_detail: standard
+history_detail: standard      # minimal | standard | full
+                              #   minimal  — org, title, action, date
+                              #   standard — + both dimensions, scores, one-liner (default)
+                              #   full     — + raw JD text (may contain recruiter contact
+                              #              details or unposted comp; you are warned once)
 
-# ─────────────────────────────────────────────
-# Profile — who you are right now
-# ─────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────
+# Context — establishes the vocabulary for everything below.
+# Fill this first: it tells the skill which market conventions,
+# comp structures, and intensity signals apply to you.
+# ─────────────────────────────────────────────────────────────
+context:
+  role_family:                # free text, e.g. "product management",
+                              # "backend engineering", "brand design",
+                              # "clinical research", "policy"
+  market:                     # where you are looking, e.g. "Germany",
+                              # "US remote", "mainland China tech", "Japan"
+  languages: []               # languages you can work in, e.g. ["English", "German"]
+  comp_convention:            # how comp is normally quoted where you are looking:
+                              #   total          — one all-in number
+                              #   base_plus_var  — base + bonus and/or equity, quoted separately
+                              #   n_month        — annual = monthly × N (e.g. 13th/14th month)
+                              #   hourly | daily — contract / freelance
+  fx_rates: {}                # optional, only if you compare across currencies,
+                              # e.g. {USD_per_EUR: 1.08}. The skill will not
+                              # invent a rate; without one it flags the mismatch.
+
+# ─────────────────────────────────────────────────────────────
+# Profile — you, right now
+# ─────────────────────────────────────────────────────────────
 profile:
   years_of_experience:        # integer
-  current_title_company:      # free text, e.g. "PM @ Acme"
-  current_salary:             # number + currency, e.g. "30k CNY/month" or "120k USD/yr"
+  current_title_org:          # free text, e.g. "PM @ Acme"
+  current_comp:
+    amount:                   # number
+    currency:                 # ISO code, e.g. USD, EUR, CNY, JPY
+    period:                   # year | month | hour
+    basis:                    # total | base
+    notes:                    # anything the numbers do not capture,
+                              # e.g. "14 months", "+ RSU ~15%", "pre-tax"
 
-# ─────────────────────────────────────────────
-# Hard gates — any failure → ❌ OUT
-# ─────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────
+# Skills — the input to the Candidacy dimension.
+# Be honest about the split: `learning` items score half credit,
+# so inflating `mastered` only produces worse advice.
+# ─────────────────────────────────────────────────────────────
+skills:
+  mastered: []                # you could be interviewed on this today
+  learning: []                # actively building; half credit toward requirements
+  want_to_learn: []           # not started; used by `plan`, not by scoring
+
+# ─────────────────────────────────────────────────────────────
+# Target roles — archetypes you are aiming at. Drives `plan`.
+# ─────────────────────────────────────────────────────────────
+target_roles: []
+  # - id: short_slug
+  #   name: "Human-readable role name"
+  #   description: "What this role actually does, in your words"
+
+# ─────────────────────────────────────────────────────────────
+# Hard gates — a failure ends the evaluation (red lines are weighted)
+# ─────────────────────────────────────────────────────────────
 hard_gates:
-  salary_floor:               # number + currency; minimum acceptable
-  target_cities: []           # list, e.g. ["Beijing", "Remote"]
-  lifestyle_tier:             # one of: strict_9to5 | standard | crunch | always_on
-  hard_red_lines: []          # list of free-text dealbreakers, e.g.
-                              #   - "growth / 增长 / 转化 in core responsibilities"
-                              #   - "reports to growth head"
-                              #   - "K12 / 续报 / 焦虑型产品"
+  comp_floor:
+    amount:
+    currency:
+    period:                   # year | month | hour
+    basis:                    # total | base — compared like-for-like against the JD
+  locations: []               # e.g. ["Berlin", "Amsterdam"]
+  remote_ok:                  # yes | no | hybrid_only
+  intensity_tier:             # strict_hours | standard | high | always_on
+                              #   strict_hours — fixed hours, evenings and weekends off
+                              #   standard     — occasional crunch around releases
+                              #   high         — long hours normal, some weekends expected
+                              #   always_on    — on-call, cross-timezone, no clear boundary
+  red_lines: []               # matched semantically, then weighted by where it sits
+                              # in the JD. The `why` is what makes cross-language and
+                              # reworded matches work — do not omit it.
+  # - pattern: "revenue ownership"
+  #   why: "I do not want a quota; it changes what the job optimizes for"
+  # - pattern: "on-call rotation"
+  #   why: "health reasons, non-negotiable"
 
-# ─────────────────────────────────────────────
-# Soft axes — scored 1–5 against each JD
-# ─────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────
+# Soft axes — scored 1-5 per JD, combined using axis_weights
+# ─────────────────────────────────────────────────────────────
 soft_axes:
-  target_title_keywords: []   # list, e.g. ["Agent PM", "AI Product", "Developer Tools PM"]
-  target_industries: []       # list, e.g. ["AI", "DevTools", "Creative Tools"]
+  target_title_keywords: []   # titles you want to see in the header
+  target_domains: []          # what the org does, e.g. ["developer tools",
+                              # "public health", "climate hardware"]
 
-  company_type_preferences:   # map of type → 1-5
-    foreign_company:          # 外企
-    model_company:            # 模型公司 (Anthropic, Moonshot, MiniMax, etc.)
-    domestic_big_tech:        # 民营大厂
-    mid_size:
-    startup:
+  org_traits: []              # replaces fixed company-type/size enums: describe
+                              # traits in your own words and weight them 1-5
+                              # (1 = actively avoid, 5 = strongly prefer)
+  # - trait: "research lab with a shipping product"
+  #   weight: 5
+  # - trait: "private-equity owned"
+  #   weight: 1
+  # - trait: "under 50 people"
+  #   weight: 2
 
-  company_size_preferences:   # map of size bucket → 1-5
-    under_50:
-    "50_to_500":
-    "500_to_5000":
-    over_5000:
+  vibe_anchors_positive: []   # organizations, teams, or products you admire.
+                              # `why` is mandatory and load-bearing: it is what
+                              # lets the skill reason about an org it has never
+                              # heard of, and what keeps it from inventing a
+                              # reputation for one it has.
+  # - name: "Linear"
+  #   why: "restraint — a clear product opinion, no feature-count race"
 
-  vibe_anchors_positive: []   # 3-5 companies/products you'd love to work at
-                              # e.g. ["Notion", "Linear", "Duolingo", "Stripe"]
-  vibe_anchors_negative: []   # 3-5 companies/products you'd reject
-                              # e.g. ["Zuoyebang", "TAL Education"]
+  vibe_anchors_negative: []   # same shape; energy you actively avoid
+  # - name: "<a place you left>"
+  #   why: "manufactured urgency, metrics used as a loyalty test"
+
+# ─────────────────────────────────────────────────────────────
+# Axis weights — must sum to 100. Axes with insufficient
+# information drop out and the rest are renormalized.
+# ─────────────────────────────────────────────────────────────
+axis_weights:
+  role_fit: 25
+  domain_fit: 20
+  org_fit: 15
+  vibe_fit: 25
+  comp_fit: 15

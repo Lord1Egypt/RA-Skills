@@ -1,40 +1,53 @@
-## Description: <br>
-基于千家品牌指数系统 9.0 开源模型，量化评估展会与研讨会的参与价值和效果，并生成展前研判或展后标准化报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于千家品牌指数开源模型，量化评估展会与研讨会的参与价值与效果，提供展前研判和展后标准化报告。
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Marketing, brand, and event teams use this skill to evaluate whether to join an exhibition or seminar before committing budget, then score participation after the event using submitted booth, speaking, and activity data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ROI analysis may involve sensitive event budgets, revenue estimates, customer leads, or business assumptions. <br>
-Mitigation: Share only information approved for agent processing, and redact confidential financial or customer details when possible. <br>
-Risk: Pre-event research and model-assigned scoring weights can be incomplete or subjective. <br>
-Mitigation: Use the report as decision support and verify event reputation, attendance claims, costs, and scoring assumptions before making budget decisions. <br>
+## Use Case:
 
+Marketing, brand, and business development teams use this skill to evaluate whether exhibitions or seminars merit participation and to turn post-event participation data into a standardized ROI score and brand strategy report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spacesq/s2-event-roi-evaluator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown event ROI report with quantitative scoring and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires event name, evaluation mode, and relevant participation inputs such as booth count, speaking time, costs, revenue, or assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Pre-event research may expose sensitive event plans or planned participation details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the user's preferred language and confirm before researching sensitive event names, plans, or competitive context.
+
+Risk: Quantitative scores can be misleading if event tier, booth weight, speaking duration, or other inputs are incomplete or subjective.
+
+Mitigation: State scoring assumptions, request concrete event data where available, and preserve the documented 10-point cap.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-event-roi-evaluator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown event ROI report with quantitative scoring, event profiling, and brand strategy recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-facing report structure; exhibition and seminar scores are capped at 10.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

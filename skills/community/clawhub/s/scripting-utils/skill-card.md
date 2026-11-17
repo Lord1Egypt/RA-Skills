@@ -1,52 +1,66 @@
-## Description: <br>
-Scripting Utils helps agents validate, lint, generate, convert, and troubleshoot scripts across Bash, sh, Python, Perl/Raku, PowerShell, JavaScript, Tcl, IRC bot frameworks, system management, and JSON/WebSearch workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scripting Utils helps agents validate, lint, generate, and convert scripts across common scripting languages, IRC bot frameworks, system-management commands, and JSON/API response workflows.
 
-## Publisher: <br>
-[kikikari](https://clawhub.ai/user/kikikari) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kikikari](https://clawhub.ai/user/kikikari)
 
-## Use Case: <br>
-Developers and operators use this skill to validate and lint scripts, look up IRC bot command syntax, produce system-management command guidance for Ubuntu and CentOS, and validate JSON or API responses. It is most useful when an agent needs concise scripting guidance, command examples, or compatibility checks across multiple scripting languages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local validation paths may run scripting language tools or interpreters against supplied files. <br>
-Mitigation: Validate only trusted scripts or run validation in a sandboxed environment with constrained filesystem and network access. <br>
-Risk: System-management guidance may produce package, service, firewall, or user-management commands that can affect a host if executed. <br>
-Mitigation: Review generated commands, prefer dry-run workflows where available, and execute with the least privilege needed. <br>
-Risk: The JSON/WebSearch helper relies on an external ../json-utils dependency. <br>
-Mitigation: Verify the dependency source, version, and integrity before enabling the integration. <br>
-Risk: Bundled IRC bot references describe applet and code-execution patterns that are high risk in shared bot environments. <br>
-Mitigation: Treat IRC bot execution guidance as admin-only material for trusted environments and avoid exposing it to untrusted users. <br>
+## Use Case:
 
+Developers and engineers use this skill to draft, validate, lint, and convert scripts across Bash, sh, Python, Perl, Raku, PowerShell, JavaScript, and Tcl; it also supports IRC bot command syntax, Ubuntu/CentOS command generation, and JSON/API response validation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kikikari/scripting-utils) <br>
-- [pbot project](https://github.com/pragma-/pbot) <br>
-- [Limnoria documentation](https://docs.limnoria.net/) <br>
-- [Eggdrop documentation](https://docs.eggheads.org/) <br>
-- [PowerShell About documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about?view=powershell-7.6) <br>
-- [pbot Applets reference](references/pbot/Applets.md) <br>
-- [pbot Commands reference](references/pbot/Commands.md) <br>
-- [Raku language reference](references/raku/language.html) <br>
-- [Tcl reference](references/tcl/index.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code, command examples, and validation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated system-management commands and validation findings that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill can validate user-supplied code and may execute language tooling against files supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run validation only on trusted files or inside a disposable sandbox, and review validation output before relying on it.
+
+Risk: The skill can generate package, service, firewall, and user-management commands that may require elevated privileges.
+
+Mitigation: Manually review generated commands and arguments, and do not run them with elevated privileges unless every input is trusted.
+
+Risk: WebSearch and paste-style examples can expose secrets or private code if used with sensitive inputs.
+
+Mitigation: Avoid sending credentials, private source, or confidential API responses through WebSearch-related workflows.
+
+## Reference(s):
+
+- [Scripting Utils Skill Page](https://clawhub.ai/kikikari/skills/scripting-utils)
+- [pbot](https://github.com/pragma-/pbot)
+- [Limnoria Documentation](https://docs.limnoria.net/)
+- [Eggdrop Documentation](https://docs.eggheads.org/)
+- [PowerShell About](references/powershell/about.html)
+- [Raku Documentation](references/raku/index.html)
+- [Tcl Documentation](references/tcl/index.html)
+- [pbot Applets](references/pbot/Applets.md)
+- [pbot Commands](references/pbot/Commands.md)
+- [Eggdrop First Script](references/eggdrop/firstscript.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline code, shell commands, JSON snippets, and generated script templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include validation errors, lint warnings, command syntax, generated system-management commands, and JSON schema guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

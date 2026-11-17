@@ -1,40 +1,54 @@
-## Description: <br>
-Validates OpenClaw configuration patches or openclaw.json files locally before config changes and returns specific field-level error details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates OpenClaw configuration patches or openclaw.json files locally against a JSON Schema and reports specific field-level errors before configuration changes are submitted.
 
-## Publisher: <br>
-[halfmoon82](https://clawhub.ai/user/halfmoon82) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[halfmoon82](https://clawhub.ai/user/halfmoon82)
 
-## Use Case: <br>
-Developers and operators use this skill to preflight OpenClaw configuration patches or full openclaw.json files before applying changes, reducing vague validation failures by surfacing concrete schema and field-format errors. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The validator may query the OpenClaw gateway and cache the retrieved schema locally. <br>
-Mitigation: Run it only in an environment where the local OpenClaw CLI is trusted and schema caching under the OpenClaw workspace is acceptable. <br>
-Risk: Without jsonschema installed, validation falls back to basic hard-coded checks. <br>
-Mitigation: Install jsonschema from a trusted package source when full JSON Schema validation is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Config Preflight Validator on ClawHub](https://clawhub.ai/halfmoon82/config-preflight-validator) <br>
-- [Publisher profile: halfmoon82](https://clawhub.ai/user/halfmoon82) <br>
+## Use Case:
 
+Developers and engineers use this skill to preflight OpenClaw configuration patches or full openclaw.json files before applying changes. It helps surface concrete schema or field-format errors instead of vague validation failures.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and plain-text validation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch the OpenClaw configuration schema through the local OpenClaw CLI and cache it under the user's OpenClaw workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Validation may be incomplete when jsonschema is unavailable or no live or cached schema can be loaded.
+
+Mitigation: Install jsonschema, refresh the schema cache before important configuration changes, and treat fallback checks as basic validation only.
+
+Risk: The helper invokes the local OpenClaw CLI to fetch schema data and caches that schema under the user's home directory.
+
+Mitigation: Run it only in a trusted OpenClaw environment and review local cache location and permissions if configuration data is sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/halfmoon82/skills/config-preflight-validator)
+- [SKILL.md](artifact/SKILL.md)
+- [config-preflight-validator.py](artifact/scripts/config-preflight-validator.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text and terminal output with validation errors or pass/fail status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May cache schema data under the user's OpenClaw workspace and may fall back to limited built-in checks when jsonschema or schema data is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

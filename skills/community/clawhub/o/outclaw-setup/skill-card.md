@@ -1,45 +1,65 @@
-## Description: <br>
-OutClaw Setup helps an agent inventory and connect outreach channels, capture user and organization profile context, and learn per-channel writing style for downstream OutClaw workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Outclaw Setup helps an agent inventory outreach plugins, connect outreach channels, capture user and organization profile knowledge, and prepare per-channel writing style setup.
 
-## Publisher: <br>
-[milstan](https://clawhub.ai/user/milstan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[milstan](https://clawhub.ai/user/milstan)
 
-## Use Case: <br>
-External users and agent operators use this skill to set up OutClaw outreach prerequisites: plugin inventory, account connections, local profile and organization context, style learning, and final setup verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow handles OAuth connections and sensitive outreach credentials. <br>
-Mitigation: Approve only the channels needed, review OAuth scopes and third-party plugin publishers, and avoid sharing callback URLs in untrusted chats. <br>
-Risk: The skill persists personal profile, company context, memory, style, and optional schedule entries for later outreach use. <br>
-Mitigation: Review saved KB, memory, style, and cron entries after setup and remove anything that should not be reused. <br>
-Risk: Generated outreach setup guidance may connect external communication tools that can affect future messages. <br>
-Mitigation: Verify final channel status and keep human approval gates for outreach plans before contacting prospects. <br>
+## Use Case:
 
+External users and developers use this skill to prepare an OutClaw outreach workspace by checking available tools, connecting communication channels, capturing user and company context, and handing off style learning before outreach planning.
 
-## Reference(s): <br>
-- [Inventory Check](references/inventory-check.md) <br>
-- [Plugin Connection Flows](references/plugin-connect.md) <br>
-- [User Profile Capture](references/user-profile.md) <br>
-- [OutClaw Homepage](https://github.com/leadbay/outclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and setup status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local knowledge-base pages, memory entries, style files, plugin authentication state, and optional cron configuration during execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata; artifact frontmatter reports 2.1.33) <br>
+Risk: The skill can connect business communication accounts and install third-party outreach plugins with broad authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve each integration separately, verify plugin source and requested permissions before authentication, and keep skipped channels disabled.
+
+Risk: The skill stores user profile, organization context, setup state, plugin status, and fetched website content locally.
+
+Mitigation: Review retained files for sensitive content, restrict workspace access, and remove local profile or raw website captures that should not persist.
+
+Risk: OAuth callback URLs or credentials shared through chat can expose authentication material.
+
+Mitigation: Use transport-aware OAuth links, avoid pasting full callback URLs when possible, and verify connection status after authentication instead.
+
+Risk: Optional recurring prospecting jobs can repeatedly access lead and outreach tooling after setup.
+
+Mitigation: Enable schedules only with explicit user approval, document the cadence, and keep generated outreach queued for review rather than automatic sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/milstan/skills/outclaw-setup)
+- [OutClaw homepage](https://github.com/leadbay/outclaw)
+- [Inventory check](references/inventory-check.md)
+- [Plugin connection flows](references/plugin-connect.md)
+- [Capturing the user's profile into kb/me/](references/user-profile.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, status summaries, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup state, local knowledge-base entries, plugin setup logs, and channel style-learning handoff guidance when used by an agent.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

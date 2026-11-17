@@ -1,40 +1,59 @@
-## Description: <br>
-Use this skill when an estate planning attorney, trust officer, or paralegal needs to convert a client intake into a DRAFT estate-plan design memo before any documents are drafted. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an estate planning attorney, trust officer, or paralegal needs to convert a client intake into a DRAFT estate-plan design memo before any documents are drafted, producing document-set recommendations, asset-titling moves, fiduciary nominations, estate/GST/portability flags, and open-questions lists for attorney review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Estate planning attorneys, trust officers, paralegals, and supervised law students use this skill to turn structured client intake into an attorney-facing draft design memo before estate planning documents are drafted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Client family, asset, tax, beneficiary, and document details may be sensitive. <br>
-Mitigation: Treat client information as confidential and avoid entering unnecessary SSNs, account numbers, or other avoidable identifiers. <br>
-Risk: Estate planning recommendations can be wrong if state-law, tax, exemption, or existing-document assumptions are stale or incomplete. <br>
-Mitigation: Use only for attorney-supervised estate-planning work and have a licensed estate-planning attorney verify all state-law and tax assumptions before relying on the memo. <br>
+## Use Case:
 
+Estate planning attorneys, trust officers, paralegals, and supervised law students use this skill to turn structured client intake into a draft design memo before estate-planning documents are drafted.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/estate-plan-design-memo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown draft estate-plan design memo with tables, evidence matrix, tax flags, and open questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Attorney-facing draft only; requires licensed estate-planning attorney review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence and changelog, released 2026-05-28) <br>
+Risk: Draft estate-planning guidance could be mistaken for final legal or tax advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only under supervision of a licensed estate-planning professional and keep the DRAFT attorney-review notice on outputs.
+
+Risk: Current legal, tax, and jurisdictional figures may be incomplete or stale.
+
+Mitigation: Require attorney-supplied federal exemption and GST figures, disclose jurisdictional assumptions, and independently verify current law before drafting documents.
+
+Risk: Client confidential information may be over-shared during intake.
+
+Mitigation: Avoid unnecessary SSNs, account numbers, and other identifiers; summarize sensitive facts instead of quoting them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/archlab-space/skills/estate-plan-design-memo)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Draft attorney-facing Markdown memo with structured tables and open-question lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires attorney-supplied intake, jurisdictional assumptions, and current tax figures; does not draft operative legal document language.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

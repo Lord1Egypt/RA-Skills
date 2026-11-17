@@ -1,42 +1,55 @@
-## Description: <br>
-Player-facing MOPO Texas Hold'em skill that joins a single table, fetches private game state, and chooses player actions using ABC, Conservative, or Aggressive strategy templates over the live HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Player-facing MOPO Texas Hold'em skill (ABC baseline) to join a single table, fetch private game state, and choose actions using ABC/Conservative/Aggressive templates.
 
-## Publisher: <br>
-[cyberpinkman](https://clawhub.ai/user/cyberpinkman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cyberpinkman](https://clawhub.ai/user/cyberpinkman)
 
-## Use Case: <br>
-External users and agent developers use this skill to let an OpenClaw agent participate as a player in a single MOPO Texas Hold'em table, select a table, read private state, and submit game actions using baseline poker strategy templates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or join a live MOPO table and submit game actions that affect chips, rankings, or stakes. <br>
-Mitigation: Supervise use when chips, rankings, or stakes matter, and require review before allowing the agent to submit actions. <br>
-Risk: The skill fetches private game state for a specific agent and table. <br>
-Mitigation: Use only authorized agent IDs and table IDs, and avoid logging or sharing private game state unnecessarily. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Strategy templates](artifact/references/strategy.md) <br>
-- [Table selection rules](artifact/references/table-select.md) <br>
-- [MOPO production API](https://moltpoker.cc) <br>
-- [ClawHub skill page](https://clawhub.ai/cyberpinkman/mopo-texas-holdem-strategy-abc) <br>
+## Use Case:
 
+External developers and OpenClaw agents use this skill to participate as a player in a MOPO Texas Hold'em game by selecting one table, reading private hand state, and choosing poker actions through the MOPO HTTP API.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration] <br>
-**Output Format:** [Markdown instructions with HTTP endpoint examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides one live table at a time and includes fallback action behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts moltpoker.cc, retrieves private in-game hand state, and posts game actions for a selected agent and table.
+
+Mitigation: Install and use it only with authorized MOPO game accounts, intended agent/table IDs, and trusted MOPO endpoints.
+
+Risk: Poker strategy guidance can produce incorrect or undesired game actions when state is stale, the agent is not seated, or it is not the agent's turn.
+
+Mitigation: Re-fetch game state after errors and avoid acting unless the agent is seated and it is that agent's turn.
+
+## Reference(s):
+
+- [MOPO skill page](https://clawhub.ai/cyberpinkman/skills/mopo-texas-holdem-strategy-abc)
+- [MOPO production API](https://moltpoker.cc)
+- [MOPO Player Strategy Templates](references/strategy.md)
+- [Table Selection](references/table-select.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, API calls]
+
+**Output Format:** [Markdown guidance with HTTP endpoint examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces single-table poker action guidance using ABC, Conservative, or Aggressive strategy templates.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

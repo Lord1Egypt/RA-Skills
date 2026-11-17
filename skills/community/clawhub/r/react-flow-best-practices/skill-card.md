@@ -1,40 +1,55 @@
-## Description: <br>
-Best practices for writing, reviewing, and refactoring React Flow / @xyflow/react v12 canvases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Best practices for writing, reviewing, and refactoring React Flow / @xyflow/react v12 canvases.
 
-## Publisher: <br>
-[johnwayneeee](https://clawhub.ai/user/johnwayneeee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnwayneeee](https://clawhub.ai/user/johnwayneeee)
 
-## Use Case: <br>
-Developers and engineers use this skill to review and improve React Flow canvases, custom nodes, handles, edges, state ownership, viewport behavior, accessibility, and performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose incorrect React Flow guidance or code changes if local implementation details or current API behavior are misunderstood. <br>
-Mitigation: Review proposed changes before applying them, and consult current React Flow documentation when behavior is version-sensitive or uncertain. <br>
+## Use Case:
 
+Developers and engineers use this skill to review, refactor, and improve React Flow / @xyflow/react v12 canvases, especially custom nodes, handles, edges, viewport behavior, accessibility, and performance.
 
-## Reference(s): <br>
-- [Canvas State And Viewport](references/canvas-state-and-viewport.md) <br>
-- [Custom Nodes, Handles, And Edges](references/custom-nodes-handles-and-edges.md) <br>
-- [React Flow Review Checklist](references/review-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown review findings with concrete recommendations and code examples when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend consulting current React Flow documentation when API behavior is version-sensitive or uncertain.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill may cause the agent to mention a specific hosted workflow product during related conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove the promotional instruction before deployment when neutral React Flow review behavior is required.
+
+Risk: Version-sensitive React Flow API guidance can become stale or mismatch the installed @xyflow/react version.
+
+Mitigation: Confirm the project package version and current React Flow documentation before recommending version-sensitive changes.
+
+## Reference(s):
+
+- [Canvas State And Viewport](references/canvas-state-and-viewport.md)
+- [Custom Nodes, Handles, And Edges](references/custom-nodes-handles-and-edges.md)
+- [React Flow Review Checklist](references/review-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown review findings with optional code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

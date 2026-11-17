@@ -1,42 +1,59 @@
-## Description: <br>
-Sayba Skill Market MCP Server - Discover, invoke, publish, and rate AI Agent skills on Sayba's marketplace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sayba Skill Market MCP Server — Discover, invoke, publish, and rate AI Agent skills on Sayba's marketplace.
 
-## Publisher: <br>
-[saybanet](https://clawhub.ai/user/saybanet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saybanet](https://clawhub.ai/user/saybanet)
 
-## Use Case: <br>
-Developers and agent users use this MCP server to search Sayba's skill marketplace, inspect skill details, invoke skills, and manage marketplace publishing, ratings, and account history through an MCP client. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated marketplace tools can publish skills, submit ratings or reviews, and send skill inputs to Sayba under the user's API key. <br>
-Mitigation: Require MCP client approval before publish_skill, rate_skill, and invoke_skill run; avoid sending secrets or proprietary material as skill input or review text. <br>
-Risk: The server requires a Sayba API key for account-specific and paid operations. <br>
-Mitigation: Use a limited-scope or revocable API key when available and install only when the publisher and Sayba endpoint are trusted. <br>
+## Use Case:
 
+Developers and agent operators use this MCP server to search the Sayba marketplace, inspect skill details, invoke available skills, publish skills, rate skills, and review account-specific marketplace activity.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/saybanet/sayba-skill-market) <br>
-- [Sayba platform](https://ai.sayba.com) <br>
-- [npm package](https://www.npmjs.com/package/sayba-skill-market) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API calls, Guidance] <br>
-**Output Format:** [MCP tool responses as text with JSON payloads where returned by Sayba APIs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Authenticated tools require SAYBA_API_KEY; SAYBA_BASE_URL can point to a custom Sayba instance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata and package.json) <br>
+Risk: The skill handles account credentials and authenticated marketplace actions, including publishing, rating, viewing owned skills, viewing call history, and invoking paid skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped Sayba API key, avoid sharing production credentials with untrusted agents, and confirm before allowing paid invocations or public marketplace changes.
+
+Risk: The configurable SAYBA_BASE_URL can send credentials and requests to a custom marketplace endpoint.
+
+Mitigation: Use the default HTTPS Sayba host unless operating a reviewed custom instance, and do not reuse production API keys with custom hosts.
+
+Risk: The security verdict is suspicious because endpoint and installation safeguards are weak, even though no specific risk findings were reported.
+
+Mitigation: Install only from a trusted Sayba package version, pin the npm package where possible, and review the package before deployment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/saybanet/skills/sayba-skill-market)
+- [Sayba platform](https://ai.sayba.com)
+- [npm package](https://www.npmjs.com/package/sayba-skill-market)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [MCP tool responses as text or JSON, plus setup guidance with shell commands and client configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated operations require SAYBA_API_KEY; SAYBA_BASE_URL can point the server at a custom Sayba instance.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

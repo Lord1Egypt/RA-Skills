@@ -23,7 +23,7 @@ description: Extract media (videos, photos, GIFs, audio) from social media URLs 
 ## Command
 
 ```bash
-node /home/jarvis/.openclaw/workspace/skills/clip/extract.js <url> [options]
+node skills/clip/extract.js <url> [options]
 ```
 
 ### Options
@@ -46,16 +46,16 @@ node /home/jarvis/.openclaw/workspace/skills/clip/extract.js <url> [options]
 
 ```bash
 # Download media (fastest path)
-node /home/jarvis/.openclaw/workspace/skills/clip/extract.js "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+node skills/clip/extract.js "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 
 # Get title only (no download, instant)
-node /home/jarvis/.openclaw/workspace/skills/clip/extract.js "https://www.instagram.com/p/abc123/" --title
+node skills/clip/extract.js "https://www.instagram.com/p/abc123/" --title
 
 # Check what's in a URL before downloading
-node /home/jarvis/.openclaw/workspace/skills/clip/extract.js "https://www.tiktok.com/@user/video/123" --list-types
+node skills/clip/extract.js "https://www.tiktok.com/@user/video/123" --list-types
 
 # Show supported sites
-node /home/jarvis/.openclaw/workspace/skills/clip/extract.js --list-sites
+node skills/clip/extract.js --list-sites
 ```
 
 ## Supported Platforms

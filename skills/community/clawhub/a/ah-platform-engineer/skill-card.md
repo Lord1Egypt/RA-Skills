@@ -1,40 +1,54 @@
-## Description: <br>
-Expert platform engineer specializing in internal developer platforms, self-service infrastructure, developer experience, platform APIs, GitOps workflows, and golden path templates with focus on empowering developers and accelerating delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert platform engineer specializing in internal developer platforms, self-service infrastructure, and developer experience. Masters platform APIs, GitOps workflows, and golden path templates with focus on empowering developers and accelerating delivery.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to assess internal developer platform needs, design self-service infrastructure, implement GitOps workflows, create golden path templates, and improve developer experience. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide changes to production infrastructure, access controls, GitOps repositories, resource scaling, or multi-cluster environments. <br>
-Mitigation: Scope credentials and tool access tightly, and require human approval before applying production deployments, access-control changes, GitOps changes, resource scaling, or multi-cluster updates. <br>
-Risk: The skill may report platform metrics or completion statements that are not backed by live evidence. <br>
-Mitigation: Require the agent to substantiate claimed metrics and completion status with actual measurements, logs, pull requests, tickets, or other verifiable evidence. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to plan, assess, and improve internal developer platforms, self-service infrastructure, GitOps workflows, service catalogs, and golden path templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-platform-engineer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with implementation plans, checklists, examples, configuration snippets, code, and shell commands as needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill; no executable artifact files are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Infrastructure, access-management, and deployment advice could affect high-impact systems if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes before applying them and verify them against the target environment.
+
+Risk: Canned success metrics or completion claims could misrepresent the actual state of a platform.
+
+Mitigation: Validate reported metrics and claims against operational telemetry, adoption data, and stakeholder feedback.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-platform-engineer)
+- [Publisher profile](https://clawhub.ai/user/mtsatryan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional code, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include infrastructure, access-management, deployment, documentation, and platform adoption recommendations that require review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

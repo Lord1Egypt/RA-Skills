@@ -1,0 +1,20 @@
+<!--
+  flow-step.html — 流程步骤(chevron 预设几何 + 编号文字)
+  用法:复制到页面,横向排列多个步骤。每步宽 260-300px,间距 0(chevron 自带箭头形状)。
+  参数:
+    X / Y             — 步骤左上角位置
+    W / H             — 步骤尺寸(宽 260-300px,高 80-100px)
+    BG                — 背景色(变量名,如 var(--brand-dark-pale))
+    NUM               — 编号文字(如 ① / 1 / Step 1)
+    TITLE             — 步骤标题(如 数据采集)
+  z 序:chevron 底 z-index:1 → 文字 z-index:10
+  提示:多步排列时,X 递增 W(如 80→340→600),颜色渐变变化
+-->
+<div data-object="true" data-object-type="shape" data-shape="chevron"
+     style="position:absolute;left:{{X}};top:{{Y}};width:{{W}};height:{{H}};background:{{BG}};
+            box-shadow:0 4px 12px rgba(0,0,0,0.15);z-index:1;"></div>
+<div data-object="true" data-object-type="textbox"
+     style="position:absolute;left:calc({{X}} + 30px);top:calc({{Y}} + 20px);width:calc({{W}} - 60px);height:calc({{H}} - 40px);
+            font-size:24px;font-weight:700;color:var(--white);text-align:center;line-height:calc({{H}} - 40px);z-index:10;">
+  {{NUM}} {{TITLE}}
+</div>

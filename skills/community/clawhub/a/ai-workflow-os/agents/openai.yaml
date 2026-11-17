@@ -1,8 +1,6 @@
-name: ai-workflow-os
-version: 1.0.0
-display_name: AI Workflow Operating System / AI 工作流操作系统
-description: >
-  A bilingual AI workflow operating system for project lifecycle planning,
-  project memory, handoff, multi-source research intake, knowledge-base
-  governance, cross-source synthesis, and audit tracking.
-entrypoint: SKILL.md
+interface:
+  display_name: "AI Workflow OS"
+  short_description: "Route work across specialized AI workflows"
+  default_prompt: "Use $ai-workflow-os to route this multi-surface request to the smallest set of specialist skills, assign one owner per state surface, and return one coherent evidence-backed result."
+policy:
+  allow_implicit_invocation: true

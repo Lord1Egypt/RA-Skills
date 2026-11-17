@@ -1,42 +1,54 @@
-## Description: <br>
-Manage off-plan real estate investments with payment tracking, group buy equity, cash buffer simulation, investor sharing links, and ROI scenario modeling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage off-plan real estate investments with payment tracking, group buy equity, cash buffer simulation, investor sharing links, and ROI scenario modeling.
 
-## Publisher: <br>
-[Binkl69](https://clawhub.ai/user/Binkl69) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[binkl69](https://clawhub.ai/user/binkl69)
 
-## Use Case: <br>
-External investors, real estate agents, and developers use this skill to model Dubai off-plan property payment milestones, group buy ownership, admin cash buffer needs, and investor-facing reports. <br>
-
-### Deployment Geography for Use: <br>
-United Arab Emirates (Dubai) <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Config files and generated reports can contain private financial details about investors, contributions, properties, and payment timing. <br>
-Mitigation: Keep configs and reports private, scrub participant details before sharing, and share only investor-specific views when possible. <br>
-Risk: Financial calculations or scenario outputs may be incorrect, incomplete, or misleading if inputs are stale or assumptions do not match the deal terms. <br>
-Mitigation: Review outputs against source documents and current investment assumptions before using them for decisions or sharing them with investors. <br>
-Risk: The included Python scripts execute local calculations from user-provided JSON configs. <br>
-Mitigation: Run the scripts only with configs you trust and inspect unfamiliar configs before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Dubai Off-Plan Real Estate Standards (2026)](references/dubai_standards.md) <br>
-- [Equity Calculation Formulas](references/equity_formulas.md) <br>
+## Use Case:
 
+External users, real estate agents, and individual investors use this skill to model Dubai off-plan property payments, group-buy equity, cash buffer needs, and participant-facing reports.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands; scripts emit JSON funding forecasts and equity percentages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Python scripts run locally against user-provided investment configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global, with calculation assumptions and reference material focused on Dubai off-plan real estate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may process private investment amounts, ownership percentages, cash-pool status, and participant-specific reports.
+
+Mitigation: Use only data appropriate for local processing, avoid sharing full project data with unauthorized participants, and send investor-specific views only to intended recipients.
+
+Risk: Real estate calculations and simulations can be mistaken for legal, tax, or investment advice.
+
+Mitigation: Treat outputs as planning support, review assumptions and reports before sharing, and consult qualified professionals for legal, tax, or investment decisions.
+
+## Reference(s):
+
+- [Dubai Off-Plan Real Estate Standards](references/dubai_standards.md)
+- [Equity Calculation Formulas](references/equity_formulas.md)
+- [Real Estate Master ClawHub Release](https://clawhub.ai/binkl69/skills/re-master)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples, shell commands, and local script outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local Python scripts can generate funding forecasts and equity percentages from user-supplied investment data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

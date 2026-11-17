@@ -1,42 +1,55 @@
-## Description: <br>
-Enhanced Tavily web search for fact-checking and cross-verification, aligned with the official Tavily API and supporting time range, exact match, domain filtering, and finance-topic search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced Tavily web search for fact-checking and cross-verification, with support for time ranges, exact matching, domain filtering, finance search, images, raw content, and JSON output.
 
-## Publisher: <br>
-[kkkkane84727](https://clawhub.ai/user/kkkkane84727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kkkkane84727](https://clawhub.ai/user/kkkkane84727)
 
-## Use Case: <br>
-Developers and agent users use this skill to cross-check research results, validate cited facts for content production, and retrieve timely Tavily search results for news or finance queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and API-key-authenticated requests are sent to Tavily. <br>
-Mitigation: Install only when Tavily receiving search queries is acceptable, and avoid sending sensitive or confidential content in queries. <br>
-Risk: The script can read a Tavily API key from local fallback env files if TAVILY_API_KEY is not set. <br>
-Mitigation: Prefer setting TAVILY_API_KEY explicitly in the runtime environment and review local ~/.openclaw/.env or ~/.env usage before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to run Tavily searches that verify claims, current events, cited facts, and financial information. It is positioned as a fact-checking helper for cross-verification rather than a replacement for broader research workflows.
 
-## Reference(s): <br>
-- [Tavily](https://tavily.com) <br>
-- [Tavily Search API Reference](https://docs.tavily.com/documentation/api-reference/endpoint/search) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kkkkane84727/tavily-factcheck) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands] <br>
-**Output Format:** [Markdown search summaries by default, with optional raw JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results may include answer text, source URLs, relevance scores, optional image links, optional raw page markdown, response timing, and request metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The search script can fall back to reading TAVILY_API_KEY from ~/.openclaw/.env or ~/.env when the environment variable is not set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set TAVILY_API_KEY explicitly for the agent process and avoid storing unrelated secrets in generic home .env files.
+
+Risk: Queries and optional raw-content retrieval are sent to Tavily, which may be inappropriate for sensitive or proprietary topics.
+
+Mitigation: Use the skill only for queries that are acceptable to send to Tavily, and avoid enabling raw content unless the extra page text is needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kkkkane84727/skills/tavily-factcheck)
+- [Tavily API](https://tavily.com)
+- [Tavily Search API Reference](https://docs.tavily.com/documentation/api-reference/endpoint/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown search summaries by default, or raw JSON when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Tavily API key and can include answer text, source URLs, optional raw page content, optional image URLs, response timing, and request metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

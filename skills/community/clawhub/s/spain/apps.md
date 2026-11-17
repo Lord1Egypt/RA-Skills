@@ -1,165 +1,165 @@
 # Apps — Spain
 
-## Esenciales
+## Essentials
 
-| App | Para qué | Nota |
+| App | For what | Note |
 |-----|----------|------|
-| **Google Maps** | Navegación | Funciona bien, transporte público |
-| **Moovit** | Transporte público | Mejor para buses locales |
-| **WhatsApp** | Comunicación | TODO el mundo usa WhatsApp en España |
+| **Google Maps** | Navigation | Works well, public transport |
+| **Moovit** | Public transport | Better for local buses |
+| **WhatsApp** | Communication | EVERYONE uses WhatsApp in Spain |
 
-## Transporte
+## Transport
 
-### Trenes
-| App | Para qué |
+### Trains
+| App | For what |
 |-----|----------|
-| Renfe | Trenes nacionales, AVE |
-| OUIGO España | AVE low-cost |
-| Iryo | AVE competidor |
+| Renfe | National trains, AVE |
+| OUIGO España | Low-cost AVE |
+| Iryo | AVE competitor |
 
-**Tip:** Renfe tiene app pero web funciona mejor para reservas.
+**Tip:** Renfe has an app but the website works better for booking.
 
 ### Buses
-| App | Para qué |
+| App | For what |
 |-----|----------|
-| ALSA | Buses largo recorrido |
-| FlixBus | Europa y España |
-| Movelia | Comparador |
+| ALSA | Long-distance buses |
+| FlixBus | Europe and Spain |
+| Movelia | Comparison tool |
 
-### Urbano por Ciudad
-| Ciudad | App |
+### Urban Transit by City
+| City | App |
 |--------|-----|
 | Madrid | Madrid Metro, EMT Madrid |
 | Barcelona | TMB |
 | Valencia | EMT Valencia |
-| Sevilla | TUSSAM |
+| Seville | TUSSAM |
 | Bilbao | Bilbobus |
 
-### Taxis/VTC
-| App | Cobertura |
+### Taxis/Ride-hailing
+| App | Coverage |
 |-----|-----------|
-| FreeNow | Toda España (taxis) |
-| Cabify | Grandes ciudades |
-| Uber | Madrid, Barcelona, otras (limitado) |
-| Bolt | Algunas ciudades |
+| FreeNow | All of Spain (taxis) |
+| Cabify | Big cities |
+| Uber | Madrid, Barcelona, others (limited) |
+| Bolt | Some cities |
 | Pidetaxi | Taxis |
 
-## Comida y Restaurantes
+## Food and Restaurants
 
-| App | Para qué |
+| App | For what |
 |-----|----------|
-| **El Tenedor (TheFork)** | Reservas + descuentos |
-| **TripAdvisor** | Reviews, buscar sitios |
-| **Google Maps** | Reviews locales |
+| **El Tenedor (TheFork)** | Reservations + discounts |
+| **TripAdvisor** | Reviews, finding places |
+| **Google Maps** | Local reviews |
 | **Glovo** | Delivery |
 | **Just Eat** | Delivery |
-| **Uber Eats** | Delivery ciudades grandes |
+| **Uber Eats** | Delivery in big cities |
 
-**El Tenedor:** Muy usado. Descuentos 20-50% frecuentes. Reservar por app.
+**El Tenedor:** Widely used. 30-50% discounts common. Book through the app.
 
-## Dinero y Pagos
+## Money and Payments
 
-| App | Para qué |
+| App | For what |
 |-----|----------|
-| **Bizum** | Pagos entre personas |
-| **Revolut** | Sin comisiones cambio |
-| **Wise** | Transferencias internacionales |
-| **N26** | Cuenta sin comisiones |
+| **Bizum** | Person-to-person payments |
+| **Revolut** | No exchange fees |
+| **Wise** | International transfers |
+| **N26** | No-fee account |
 
-**Bizum:** Integrado en apps de bancos españoles. Si tienes cuenta española, úsalo. Si no, imposible.
+**Bizum:** Built into Spanish bank apps. If you have a Spanish account, use it. If not, impossible.
 
-## Idioma
+## Language
 
-| App | Para qué |
+| App | For what |
 |-----|----------|
-| Google Translate | Traducción, cámara |
-| DeepL | Traducciones calidad |
-| Duolingo | Aprender español |
+| Google Translate | Translation, camera |
+| DeepL | Quality translations |
+| Duolingo | Learn Spanish |
 
-**Offline:** Descarga idiomas para usar sin datos.
+**Offline:** Download languages to use without data.
 
-## Mapas Offline
+## Offline Maps
 
-| App | Para qué |
+| App | For what |
 |-----|----------|
-| Maps.me | Mapas offline completos |
-| Google Maps | Descargar zonas offline |
-| Organic Maps | Open source, sin anuncios |
+| Maps.me | Full offline maps |
+| Google Maps | Download areas offline |
+| Organic Maps | Open source, no ads |
 
-**Importante si:** Vas a zonas rurales sin cobertura (sierras, pueblos pequeños).
+**Important if:** You're going to rural areas with no coverage (mountain ranges, small villages).
 
-## Eventos y Ocio
+## Events and Leisure
 
-| App | Para qué |
+| App | For what |
 |-----|----------|
-| Fever | Eventos, experiencias |
-| Xceed | Discotecas, lista |
-| Meetup | Conocer gente, actividades |
-| Eventbrite | Conciertos, eventos |
+| Fever | Events, experiences |
+| Xceed | Clubs, guest lists |
+| Meetup | Meet people, activities |
+| Eventbrite | Concerts, events |
 
-## Alojamiento
+## Accommodation
 
-| App | Para qué |
+| App | For what |
 |-----|----------|
-| Booking | Hoteles, apartamentos |
-| Airbnb | Apartamentos |
+| Booking | Hotels, apartments |
+| Airbnb | Apartments |
 | Hostelworld | Hostels |
-| Paradores | Paradores oficiales |
+| Paradores | Official paradores |
 
-## Útiles Específicas
+## Specific Useful Apps
 
-### Gasolineras (Si Alquilas Coche)
-| App | Para qué |
+### Gas Stations (If You Rent a Car)
+| App | For what |
 |-----|----------|
-| Waze | Precio gasolina en ruta |
-| GasAll | Comparador precios |
+| Waze | Fuel price along the route |
+| GasAll | Price comparison |
 
-### Farmacias
-| App | Para qué |
+### Pharmacies
+| App | For what |
 |-----|----------|
-| Farmacias de guardia | 24h más cercana |
+| Farmacias de guardia | Nearest 24h pharmacy |
 
-### Playas
-| App | Para qué |
+### Beaches
+| App | For what |
 |-----|----------|
-| Playea | Info playas, banderas |
+| Playea | Beach info, flags |
 
-### Senderismo
-| App | Para qué |
+### Hiking
+| App | For what |
 |-----|----------|
-| Wikiloc | Rutas GPS |
-| AllTrails | Rutas, reviews |
-| Komoot | Planificador rutas |
+| Wikiloc | GPS routes |
+| AllTrails | Routes, reviews |
+| Komoot | Route planner |
 
-### Esquí
-| App | Para qué |
+### Skiing
+| App | For what |
 |-----|----------|
-| infonieve | Estado pistas España |
+| infonieve | Slope status in Spain |
 
-## Configuraciones Recomendadas
+## Recommended Setup
 
-1. **Google Maps:** Descargar mapas de ciudades que visitarás
-2. **WhatsApp:** Configurar como app mensajes principal
-3. **El Tenedor:** Crear cuenta antes de viajar
-4. **FreeNow:** Registrar tarjeta para pagar sin efectivo
-5. **Translate:** Descargar español offline
+1. **Google Maps:** Download maps of the cities you'll visit
+2. **WhatsApp:** Set as your main messaging app
+3. **El Tenedor:** Create an account before traveling
+4. **FreeNow:** Register a card to pay cashless
+5. **Translate:** Download Spanish offline
 
-## SIM / Datos
+## SIM / Data
 
-Si necesitas SIM española:
-- **Digi:** App para recargas (muy barato)
-- **Vodafone Yu:** App prepago
-- **Orange Prepago:** App gestión
+If you need a Spanish SIM:
+- **Digi:** App for top-ups (very cheap)
+- **Vodafone Yu:** Prepaid app
+- **Orange Prepago:** Management app
 
-**eSIM (antes de viajar):**
+**eSIM (before traveling):**
 - Holafly
 - Airalo
 - Ubigi
 
 ## Tips
 
-1. **No todo necesita app:** Muchos bares/restaurantes no están en apps
-2. **Efectivo backup:** Algunos sitios pequeños no aceptan tarjeta
-3. **FreeNow > Uber:** En muchas ciudades Uber limitado
-4. **Delivery domingos:** Puede ser difícil (muchos cerrados)
-5. **El Tenedor descuentos:** 30-50% real, vale la pena
+1. **Not everything needs an app:** Many bars/restaurants aren't on apps
+2. **Cash backup:** Some small places don't take cards
+3. **FreeNow > Uber:** In many cities Uber is limited
+4. **Delivery on Sundays:** Can be hard (many places closed)
+5. **El Tenedor discounts:** 30-50% real, worth it

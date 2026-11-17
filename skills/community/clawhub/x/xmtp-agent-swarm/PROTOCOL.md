@@ -178,6 +178,76 @@ Zero fees. The contract just holds and releases. No governance, no token, no DAO
 - XMTP uses the same address for messaging
 - No registration needed: any wallet can join the network
 
+## Negotiation Messages (v3.0)
+
+### Bid Counter
+Requestor counter-offers on a bid. Enables price negotiation without manual back-and-forth.
+```json
+{
+  "type": "bid_counter",
+  "taskId": "task-001",
+  "worker": "0xWorkerAddress",
+  "counterPrice": "3.50",
+  "message": "Can you do it for less? Simpler than it looks."
+}
+```
+
+### Bid Withdraw
+Worker withdraws a bid (e.g., found better work, or after counter-offer rejection).
+```json
+{
+  "type": "bid_withdraw",
+  "taskId": "task-001",
+  "worker": "0xWorkerAddress"
+}
+```
+
+### Subtask Delegation
+Worker delegates a subtask to the board for subcontracting. The original escrow stays between requestor and primary worker — subcontracting is the worker's risk.
+```json
+{
+  "type": "subtask_delegation",
+  "parentTaskId": "task-001",
+  "subtaskId": "sub-002",
+  "delegatedListingId": "taREDACTED-SECRET",
+  "worker": "0xPrimaryWorkerAddress"
+}
+```
+
+## Input Limits (v3.0)
+
+All protocol messages are validated against these limits:
+- Max message size: 100KB
+- Max title: 200 characters
+- Max description: 5,000 characters
+- Max result payload: 50KB
+- Max skills per message: 20
+- Max skill name length: 50 characters (alphanumeric + hyphens only)
+- Max task ID length: 100 characters
+- Bid prices: must be positive numbers
+
+Messages exceeding these limits are rejected by `parseMessage()`.
+
+## Milestone Escrow (v3.0)
+
+TaskEscrowV3 supports multi-phase payments:
+
+1. Requestor creates milestone escrow with N milestones (amounts + deadlines)
+2. Total USDC locked upfront
+3. Each milestone can be independently released, disputed, or refunded
+4. Deadlines must be ascending (milestone N+1 after milestone N)
+5. Maximum 20 milestones per task
+
+## Worker Staking (v3.0)
+
+Workers can stake USDC to signal quality commitment:
+
+1. Worker deposits USDC stake
+2. Stake locked when bidding on a task
+3. Successful completion + verification → stake returned
+4. Ghost/fail → stake forfeited to requestor
+5. Emergency withdrawal available with 30-day cooldown
+
 ## Environment
 
 - XMTP `dev` environment for testing

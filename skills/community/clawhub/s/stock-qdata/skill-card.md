@@ -1,43 +1,58 @@
-## Description: <br>
-Downloads and locally stores multi-period A-share historical market data through a configured QMT trading terminal, with natural-language task parsing and an optional localhost monitoring UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads local A-share historical market data through a configured QMT trading terminal, with Chinese natural-language commands, CLI parameters, CSV output, and an optional localhost monitoring dashboard.
 
-## Publisher: <br>
-[diudiuhuang](https://clawhub.ai/user/diudiuhuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diudiuhuang](https://clawhub.ai/user/diudiuhuang)
 
-## Use Case: <br>
-Developers and quantitative trading users use this skill to run QMT-backed A-share historical data downloads, either from Chinese natural-language requests or explicit command-line parameters. It supports background execution and a localhost web UI for progress monitoring and task control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect QMT or output-path configuration can launch the wrong local executable or write data to an unexpected directory. <br>
-Mitigation: Review config.json before execution and confirm qmt_path and base_path point to the intended QMT installation and data directory. <br>
-Risk: Historical market-data downloads may create or overwrite large CSV files. <br>
-Mitigation: Use a dedicated data directory, keep backups when needed, and choose bounded days and batch-size settings. <br>
-Risk: The localhost web UI controls download jobs on the machine where the skill runs. <br>
-Mitigation: Keep the UI bound to 127.0.0.1 and use it only on a trusted machine. <br>
+## Use Case:
 
+External users and developers who operate QMT use this skill to download A-share stock and index K-line history into local CSV files for later analysis or trading-data workflows. It is intended for environments where QMT is already installed, configured, logged in, and allowed to fetch market data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diudiuhuang/stock-qdata) <br>
-- [Publisher profile](https://clawhub.ai/user/diudiuhuang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with command examples and CSV file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local CSV market-data files under the configured data directory and can launch a localhost monitoring interface.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The local web dashboard can start, stop, and reconfigure data downloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the dashboard bound to localhost and do not expose the Flask/Socket.IO service on a network.
+
+Risk: The release depends on QMT, xtquant, Python packages, and bundled or fallback frontend assets.
+
+Mitigation: Verify the QMT installation, xtquant source, external resource files, and dependency versions before production use.
+
+Risk: Downloads write market data to configured local paths and may overwrite or merge CSV files.
+
+Mitigation: Review config.json paths and keep backups or a test output directory before running large download jobs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diudiuhuang/skills/stock-qdata)
+- [ClawHub publisher profile](https://clawhub.ai/user/diudiuhuang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Console text, local CSV files, JSON API responses, and a localhost web dashboard]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local QMT/xtquant access, configured output paths, stock and index list CSV files, and optional web controls for starting, pausing, resuming, and stopping downloads.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

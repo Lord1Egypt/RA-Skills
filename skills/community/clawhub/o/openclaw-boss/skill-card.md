@@ -1,44 +1,58 @@
-## Description: <br>
-Openclaw Boss analyzes local OpenClaw memories, profile files, and conversation history to generate strict, humorous personal profile and performance-style reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Boss generates blunt, humorous self-reflection and user-profile reports from OpenClaw memories, user information, session history, and prior reports.
 
-## Publisher: <br>
-[winston-wwzhen](https://clawhub.ai/user/winston-wwzhen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[winston-wwzhen](https://clawhub.ai/user/winston-wwzhen)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to review personal work patterns, technical strengths, safety posture, and growth areas from local OpenClaw history. It supports ad hoc self-analysis plus weekly or monthly profile reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads private OpenClaw memories, profile files, session history, prior reports, and related local memory tooling. <br>
-Mitigation: Install and run only in a trusted local environment; review the files it can access before use. <br>
-Risk: Scheduled reports may rely on onload or cron behavior that repeatedly processes personal data. <br>
-Mitigation: Verify whether any .onload or cron entry is created, prefer user-level scheduling, and remove scheduled jobs that are not needed. <br>
-Risk: Generated reports may contain sensitive personal details and inferred traits. <br>
-Mitigation: Review report contents before sharing or publishing them. <br>
+## Use Case:
 
+OpenClaw users use this skill to generate daily, weekly, or monthly self-reflection reports that summarize personality traits, technical capability, security awareness, efficiency, historical score changes, and growth suggestions.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/winston-wwzhen/openclaw-boss) <br>
-- [Analysis Dimensions](references/analysis-dimensions.md) <br>
-- [Security Notes](SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with ASCII score cards and inline shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local report files and print full personal profile reports to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.2.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill reads long-term memory, user profile files, memory files, session metadata, prior reports, and memory database content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted workspace, review the configured data access before use, and test in a sandbox when handling sensitive personal or work data.
+
+Risk: Scheduled report generation can create persistent weekly and monthly jobs that run with root-level cron configuration.
+
+Mitigation: Verify or remove the missing .onload hook before installation, disable root cron scheduling when it is not needed, and prefer manual report generation for tighter control.
+
+Risk: Generated reports may include personal information or secrets and the skill behavior asks the agent to forward full reports into chat.
+
+Mitigation: Review and redact generated reports before forwarding or sharing them, and avoid sending full unredacted reports into chat when sensitive data may be present.
+
+## Reference(s):
+
+- [Analysis Dimensions](references/analysis-dimensions.md)
+- [Openclaw Boss on ClawHub](https://clawhub.ai/winston-wwzhen/skills/openclaw-boss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with optional ASCII score cards and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write local daily, weekly, or monthly report files and print the generated report to stdout.]
+
+## Skill Version(s):
+
+5.2.0 (source: server release metadata and SKILL.md frontmatter; package.json reports 5.1.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

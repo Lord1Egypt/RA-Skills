@@ -1,42 +1,58 @@
-## Description: <br>
-Hiking Tracker helps record hiking routes, analyze elevation, provide safety reminders, and surface weather alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+登山追踪 - 路线记录、海拔分析、安全提醒
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-External users and agents use this skill to record hikes, inspect elevation changes, request safety reminders, and prepare weather-aware hiking summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather, trail safety, and emergency information may be incomplete, stale, or non-authoritative. <br>
-Mitigation: Verify weather, trail conditions, safety notices, and emergency guidance with authoritative local sources before acting. <br>
-Risk: The artifact metadata declares a curl binary requirement without a matching active implementation in the skill files. <br>
-Mitigation: Review requested binaries during installation and allow network-capable tools only for expected, user-approved hiking assistant workflows. <br>
+## Use Case:
 
+External users use this skill to track hiking routes, analyze elevation changes, receive safety and weather alerts, and generate trip statistics.
 
-## Reference(s): <br>
-- [Hiking Tracker ClawHub Release](https://clawhub.ai/kaising-openclaw1/hiking-tracker) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill is instruction-only and may refer to hiking route, elevation, safety, weather, and statistics workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The README uses a mutable npx install command with @latest.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and trusted ClawHub installer version before installing the skill.
+
+Risk: The skill content and examples are in Chinese and may not fit every user's locale or hiking workflow.
+
+Mitigation: Review the interface language, examples, and assumptions before relying on the guidance.
+
+Risk: Install commands can affect the local agent environment if run with elevated privileges.
+
+Mitigation: Run installation without elevated privileges unless the installer path has been independently trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/skills/hiking-tracker)
+- [Publisher profile](https://clawhub.ai/user/kaising-openclaw1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language hiking examples and command guidance]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Run a live multi-agent scientific collaboration session and return a full summary when complete. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a live multi-agent scientific collaboration session and return a full summary when complete. Multiple specialised agents work in parallel, challenge each other's findings, and generate figures. Results and figures are saved to disk and a summary is returned to chat.
 
-## Publisher: <br>
-[fwang108](https://clawhub.ai/user/fwang108) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fwang108](https://clawhub.ai/user/fwang108)
 
-## Use Case: <br>
-Researchers, scientists, and developers use this skill to run a local ScienceClaw multi-agent investigation on a scientific topic, collect competing findings, and receive a structured synthesis with generated figures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs the user's local ScienceClaw installation and depends on ANTHROPIC_API_KEY. <br>
-Mitigation: Run it only in trusted workspaces with a trusted ScienceClaw install and an API key intended for this use. <br>
-Risk: Workspace memory may add sensitive project context to the research topic. <br>
-Mitigation: Review memory.md before execution and remove sensitive context that should not be sent to the underlying model. <br>
-Risk: Generated summaries and figures remain on disk under run_exports. <br>
-Mitigation: Review, retain, or delete the output directory according to the workspace's data handling needs. <br>
+## Use Case:
 
+Developers and researchers use this skill to run a parallel scientific investigation with multiple agents, then review the resulting findings, agreements, challenges, figures, and saved output paths.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fwang108/scienceclaw-watch) <br>
-- [Publisher profile](https://clawhub.ai/user/fwang108) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown summary with file paths and JSON-backed session results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves session_summary.json and generated figures under a timestamped run_exports/watch_* directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Workspace memory context may add sensitive or unapproved project details to the research topic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or disable the memory.md context step unless the user explicitly approves the exact context being added.
+
+Risk: Topic text used in shell command templates can be unsafe if raw user input is interpolated.
+
+Mitigation: Pass the topic as a structured argument or safely escaped value, and use the skill only with trusted topics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fwang108/skills/scienceclaw-watch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown summary with shell command guidance and saved result file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save session summaries and generated figures under a timestamped run_exports directory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "NEG-01",
+    "group": "negative",
+    "desc": "纯文本 - 不是视频链接",
+    "input": "帮我解释一下什么是均线金叉",
+    "reason": "不需要转录，应命中 BG 吴江或其他通用技能"
+  },
+  {
+    "id": "NEG-02",
+    "group": "negative",
+    "desc": "非视频链接",
+    "input": "https://www.baidu.com/s?wd=均线金叉",
+    "reason": "搜索链接，不是视频平台 URL"
+  },
+  {
+    "id": "NEG-03",
+    "group": "negative",
+    "desc": "已处理视频（应命中缓存）",
+    "input": "BV1ZQ4y1D74s",
+    "reason": "院长专栏 BVID，应返回 cached 不重新转录"
+  },
+  {
+    "id": "NEG-04",
+    "group": "negative",
+    "desc": "数学计算",
+    "input": "2+2等于几？",
+    "reason": "简单查询，不应走完整管线"
+  },
+  {
+    "id": "NEG-05",
+    "group": "negative",
+    "desc": "URL 格式错误",
+    "input": "b23.tv/这是测试",
+    "reason": "格式不正确的链接，应提示无效 URL"
+  }
+]

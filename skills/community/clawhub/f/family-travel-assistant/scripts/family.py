@@ -9,7 +9,8 @@ import re
 
 # ==================== 代理配置 ====================
 
-SCF_FLIGGY_URL = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
+# 途牛代理（替代原途牛景点搜索）
+SCF_TUNIU_POI_URL = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
 SCF_TUNIU_URL = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
 GAODE_PROXY = "https://gaode-proxy-jerspxcked.cn-hangzhou.fcapp.run"
 PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
@@ -120,12 +121,12 @@ AGE_TIPS = {
 
 # 亲子友好景点类型
 FAMILY_FRIENDLY_TYPES = {
-    "主题乐园": {"飞猪category": "主题乐园", "适合年龄": "3岁+", "特点": "互动性强，适合全家"},
-    "动物园/海洋馆": {"飞猪category": "动物园", "适合年龄": "1岁+", "特点": "观赏性强，教育意义"},
-    "自然公园": {"飞猪category": "公园园林", "适合年龄": "0岁+", "特点": "空间大，推车友好"},
-    "科技馆/博物馆": {"飞猪category": "博物馆", "适合年龄": "5岁+", "特点": "寓教于乐，室内不受天气影响"},
-    "水上乐园": {"飞猪category": "水上乐园", "适合年龄": "3岁+", "特点": "夏日首选，注意防晒"},
-    "农庄/采摘": {"飞猪category": "农家乐", "适合年龄": "2岁+", "特点": "亲近自然，体验式"},
+    "主题乐园": {"途牛category": "主题乐园", "适合年龄": "3岁+", "特点": "互动性强，适合全家"},
+    "动物园/海洋馆": {"途牛category": "动物园", "适合年龄": "1岁+", "特点": "观赏性强，教育意义"},
+    "自然公园": {"途牛category": "公园园林", "适合年龄": "0岁+", "特点": "空间大，推车友好"},
+    "科技馆/博物馆": {"途牛category": "博物馆", "适合年龄": "5岁+", "特点": "寓教于乐，室内不受天气影响"},
+    "水上乐园": {"途牛category": "水上乐园", "适合年龄": "3岁+", "特点": "夏日首选，注意防晒"},
+    "农庄/采摘": {"途牛category": "农家乐", "适合年龄": "2岁+", "特点": "亲近自然，体验式"},
 }
 
 
@@ -202,20 +203,20 @@ def cmd_attractions(params):
         else:
             search_keyword = f"{city}主题乐园"
 
-    # 飞猪POI搜索
-    fliggy_data = http_post(SCF_FLIGGY_URL, {
-        "type": "search_poi",
-        "params": {"keyword": search_keyword, "city": city}
+    # 途牛景点搜索
+    tuniu_data = http_post(SCF_TUNIU_POI_URL, {
+        "type": "tuniu_ticket_query",
+        "params": {"scenic_name": city}
     })
 
-    pois = fliggy_data.get("data", {}).get("itemList", [])
+    pois = tuniu_data.get("data", {}).get("itemList", [])
 
     # 如果默认搜索结果少，补充搜索
     if len(pois) < 3 and not keyword:
         extra_keywords = ["海洋馆", "动物园", "儿童乐园"]
         for ek in extra_keywords:
-            extra_data = http_post(SCF_FLIGGY_URL, {
-                "type": "search_poi",
+            extra_data = http_post(SCF_TUNIU_POI_URL, {
+                "type": "tuniu_ticket_query",
                 "params": {"keyword": f"{city}{ek}", "city": city}
             })
             extra_pois = extra_data.get("data", {}).get("itemList", [])

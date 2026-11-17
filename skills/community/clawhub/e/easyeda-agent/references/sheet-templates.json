@@ -8,14 +8,16 @@
     "RUNTIME AUTHORITY is the Go table `sheetTemplates` in internal/app/cmd_sch_sheet.go and the CLI",
     "`easyeda sch sheet-geometry --json`. This JSON is the human/skill-readable mirror — keep the two in",
     "sync. Planners should CALL the CLI (it tags provenance + warnings), not read these numbers directly.",
+    "Editing THIS file does NOT change runtime behavior — to change a template, change the Go table",
+    "(cmd_sch_sheet.go) first, then mirror it here.",
     "",
-    "Coordinate note: the title block sits in the BOTTOM-RIGHT corner of the bbox space returned by",
-    "getPrimitivesBBox (larger y is lower on the page), so the carved rect anchors to the high-x/high-y",
+    "Coordinate note: the schematic canvas is y-UP and the title block sits in the BOTTOM-RIGHT corner",
+    "of the bbox space returned by getPrimitivesBBox, so the carved rect anchors to the high-x/low-y",
     "corner of the sheet bbox. widthFrac/heightFrac are fractions of the sheet width/height."
   ],
   "defaultTitleBlockRatio": {
-    "widthFrac": 0.22,
-    "heightFrac": 0.14,
+    "widthFrac": 0.6,
+    "heightFrac": 0.24,
     "corner": "bottom-right",
     "note": "Applied as a FALLBACK when no template matches; provenance downgrades to 'fallback-ratio' + a warning."
   },
@@ -24,7 +26,7 @@
       "name": "a-series-landscape",
       "aspect": 1.414,
       "aspectTol": 0.06,
-      "titleBlock": { "widthFrac": 0.22, "heightFrac": 0.14, "corner": "bottom-right" },
+      "titleBlock": { "widthFrac": 0.6, "heightFrac": 0.24, "corner": "bottom-right" },
       "note": "A0..A4 landscape share the same √2 aspect; EasyEDA's default drawing-symbol_a4 is landscape A-series."
     },
     {

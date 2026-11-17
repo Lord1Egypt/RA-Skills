@@ -1,41 +1,52 @@
-## Description: <br>
-Atomic node skill to update a Google Calendar event using the gog CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to update a Google Calendar event using the gog CLI.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zvirb](https://clawhub.ai/user/zvirb)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill when an existing Google Calendar event needs to be modified or rescheduled through the gog CLI.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Calendar updates can modify the wrong event or calendar if identifiers, titles, or times are incorrect.
+
+Mitigation: Review the target calendar, event ID, summary, and time range before executing the update.
+
+Risk: Untrusted event text interpolated into shell commands can create command-safety issues.
+
+Mitigation: Pass arguments safely and avoid constructing shell commands from untrusted text.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill when an existing Google Calendar event needs to be modified or rescheduled through the local gog CLI. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify real Google Calendar events through the authenticated gog CLI account. <br>
-Mitigation: Confirm the intended Google account, calendarId, eventId, and proposed event changes before running update commands. <br>
-Risk: A wrong event identifier or time range can reschedule the wrong calendar entry. <br>
-Mitigation: Ask the agent to present the exact command and event fields for review before important updates. <br>
+**Output Format:** [JSON confirmation from the gog CLI]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/google-calendar-update-event) <br>
-- [Publisher profile](https://clawhub.ai/user/zvirb) <br>
+**Other Properties Related to Output:** [Requires the gog binary and authenticated Google Calendar access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples and JSON command/output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local gog CLI and Google Calendar authentication for the intended account.] <br>
+1.0.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

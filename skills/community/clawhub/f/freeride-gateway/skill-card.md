@@ -1,47 +1,63 @@
-## Description: <br>
-FreeRide Gateway helps agents detect and configure a local OpenAI-compatible gateway that routes chat completion requests across configured free-tier AI providers with failover. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FreeRide Gateway helps an agent detect and use a local OpenAI-compatible FreeRide gateway to route chat-completion workloads across configured free-tier providers with failover.
 
-## Publisher: <br>
-[shaivpidadi](https://clawhub.ai/user/shaivpidadi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaivpidadi](https://clawhub.ai/user/shaivpidadi)
 
-## Use Case: <br>
-Developers and agent operators use this skill to check whether FreeRide is running, point OpenAI-compatible clients at the local gateway, discover available models, and troubleshoot provider or key failover. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential-checking guidance can expose provider API keys if full environment variable values are printed. <br>
-Mitigation: Use redacted presence checks and avoid commands that print full provider environment variables. <br>
-Risk: The skill points to an unpinned remote curl-to-shell installer. <br>
-Mitigation: Prefer PyPI or source installation with pinned versions and hashes before running setup commands. <br>
-Risk: Telemetry is described as enabled by default. <br>
-Mitigation: Review the telemetry disclosure and consider disabling telemetry before first use. <br>
-Risk: Bind, auto, and watcher commands can change agent configuration or run background behavior. <br>
-Mitigation: Require explicit user approval before running those commands and review the resulting configuration changes. <br>
+## Use Case:
 
+Developers and agents use this skill to configure OpenAI-compatible clients against a local FreeRide gateway, discover models, diagnose provider and key failures, and understand failover and telemetry behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shaivpidadi/freeride-gateway) <br>
-- [Publisher profile](https://clawhub.ai/user/shaivpidadi) <br>
-- [FreeRide PyPI project](https://pypi.org/project/freeride-gateway/) <br>
-- [FreeRide GitHub repository listed by the skill](https://github.com/Shaivpidadi/FreeRideV3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, bash commands, configuration snippets, and troubleshooting steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct agents to inspect local services, environment variables, and provider configuration; credential values should be redacted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill recommends installing via a remote shell script, which can execute unverified code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the installer or use a verifiable package before running installation commands.
+
+Risk: Troubleshooting commands can expose provider API keys if environment variables are printed directly.
+
+Mitigation: Redact secrets before sharing command output or logs.
+
+Risk: Telemetry is enabled by default and sends installation and usage metadata hourly.
+
+Mitigation: Turn telemetry off when installation or usage metadata should not be sent.
+
+Risk: AI prompts routed through FreeRide may be sent to configured external providers.
+
+Mitigation: Confirm the configured providers are acceptable for the data being processed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaivpidadi/skills/freeride-gateway)
+- [Publisher profile](https://clawhub.ai/user/shaivpidadi)
+- [FreeRide Gateway on PyPI](https://pypi.org/project/freeride-gateway/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, code snippets, configuration examples, and troubleshooting tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may involve routing prompts through external configured providers and handling provider failover.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Search for jobs across LinkedIn, Indeed, Glassdoor, ZipRecruiter, Google Jobs, Bayt, Naukri, and BDJobs using the JobSpy MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for jobs across LinkedIn, Indeed, Glassdoor, ZipRecruiter, Google Jobs, Bayt, Naukri, and BDJobs using the JobSpy MCP server.
 
-## Publisher: <br>
-[Amoghpurohit](https://clawhub.ai/user/Amoghpurohit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amoghpurohit](https://clawhub.ai/user/amoghpurohit)
 
-## Use Case: <br>
-External job seekers, recruiters, and agents use this skill to search and compare job listings across multiple job boards with filters for role, location, salary, recency, job type, remote status, and easy-apply options. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Job-search terms, locations, and filters may be sent to external job sites through the JobSpy MCP server. <br>
-Mitigation: Avoid including sensitive personal details in searches and use only job criteria that are appropriate to share with external services. <br>
-Risk: The referenced JobSpy MCP server and its dependencies run locally in the user's agent environment. <br>
-Mitigation: Install and run the server in a virtual environment, review its configuration, and keep dependencies scoped to the job-search workflow. <br>
-Risk: Large or repeated searches can trigger job-board rate limits or timeouts. <br>
-Mitigation: Keep result counts reasonable, start with smaller searches, paginate when needed, and prefer more reliable sources such as Indeed before expanding to stricter platforms. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [JobSpy MCP Server](https://github.com/chinpeerapat/jobspy-mcp-server.git) <br>
-- [Example MCP Calls](artifact/example_calls.md) <br>
+## Use Case:
 
+External users and developers use this skill to search, filter, and compare job listings across supported job boards through a configured JobSpy MCP server.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes MCP tool names and structured job-search parameters; search results depend on external job-board availability and rate limits.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Job searches query third-party job sites and can expose personal job-search criteria.
+
+Mitigation: Use only the search details needed for the task and avoid sensitive personal information unless necessary.
+
+Risk: The skill relies on externally installed MCP software and packages.
+
+Mitigation: Install and run the MCP server in a virtual environment or container, and prefer pinned package versions or a reviewed commit.
+
+Risk: Proxy use and third-party job-site access can affect privacy expectations and site-term compliance.
+
+Mitigation: Review proxy configuration, privacy expectations, and applicable job-site terms before using those access paths.
+
+## Reference(s):
+
+- [JobSpy MCP server repository](https://github.com/chinpeerapat/jobspy-mcp-server.git)
+- [Example MCP calls](artifact/example_calls.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks; MCP job-search responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results may include job titles, companies, job URLs, locations, salary data, posting dates, platform details, and error guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,63 @@
-## Description: <br>
-Governs how traffic agents operate Meta Ads with safety, approval standards, change auditability, and clear limits for the brijr/meta-mcp server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Governa como agentes de trafego operam Meta Ads com seguranca, padrao de aprovacao, auditoria de mudancas e limites claros para o MCP brijr/meta-mcp.
 
-## Publisher: <br>
-[moskoweb](https://clawhub.ai/user/moskoweb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moskoweb](https://clawhub.ai/user/moskoweb)
 
-## Use Case: <br>
-Developers, marketers, and operations teams use this skill to govern Meta Ads account work through brijr/meta-mcp. It helps agents classify actions, request approval when needed, preserve audit records, and avoid unsafe campaign, tracking, billing, permission, or deletion changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent could make Meta Ads changes that affect spend, delivery, tracking, or campaign structure. <br>
-Mitigation: Apply the approval matrix: keep new campaigns paused, cap autonomous budget increases at 10% per 24 hours, require approval for structural or tracking changes, and record an audit entry after execution. <br>
-Risk: An agent could exceed the intended operational scope or attempt sensitive account administration. <br>
-Mitigation: Use only explicitly listed brijr/meta-mcp tools, keep deletion, billing, permissions, and business settings out of scope, and configure least-privileged Meta Ads credentials. <br>
-Risk: Weak or suspect tracking could lead to overconfident recommendations. <br>
-Mitigation: Check account setup and tracking before execution, lower diagnostic confidence when signals conflict, and prefer controlled experiments with a defined review window. <br>
+## Use Case:
 
+Traffic operations teams and agent developers use this skill to govern Meta Ads work through brijr/meta-mcp with approval gates, change limits, and audit-ready response structure.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/moskoweb/traffic-ops-governance) <br>
-- [Operating Principles](references/operating-principles.md) <br>
-- [Approval Matrix](references/approval-matrix.md) <br>
-- [Change Policy](references/change-policy.md) <br>
-- [Naming Conventions](references/naming-conventions.md) <br>
-- [Safety Checklists](references/safety-checklists.md) <br>
-- [brijr/meta-mcp Tool Policy](references/brijr-meta-mcp-tool-policy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown response sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured operational guidance with context, observed facts, hypotheses, recommended action, approval status, and post-change audit notes when execution occurs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: No-approval budget changes and pause or resume actions can affect live ad delivery and spend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the autonomous action limits before use, especially the 10% budget increase cap, 24-hour window, and conditions for stable assets.
+
+Risk: Incorrect tracking or incomplete account context can reduce confidence in operational recommendations.
+
+Mitigation: Confirm ad account, business objective, analysis window, tracking reliability, and review deadline before execution.
+
+Risk: Structural Meta Ads changes can combine multiple variables and make results hard to interpret.
+
+Mitigation: Require explicit approval for objective, tracking, audience, architecture, activation, and budget changes above the documented limits.
+
+## Reference(s):
+
+- [Operating Principles](artifact/references/operating-principles.md)
+- [Approval Matrix](artifact/references/approval-matrix.md)
+- [Change Policy](artifact/references/change-policy.md)
+- [Naming Conventions](artifact/references/naming-conventions.md)
+- [Safety Checklists](artifact/references/safety-checklists.md)
+- [brijr/meta-mcp Tool Policy](artifact/references/brijr-meta-mcp-tool-policy.md)
+- [ClawHub Skill Page](https://clawhub.ai/moskoweb/skills/traffic-ops-governance)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with structured sections and optional tool-use or command recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses separate context, observed facts, hypotheses, recommended action, approval status, and post-change audit details when execution occurs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

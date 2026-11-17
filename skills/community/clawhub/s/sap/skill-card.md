@@ -1,50 +1,67 @@
-## Description: <br>
-The published artifact describes CreditClaw-powered Amazon shopping for agents using guardrailed wallets, owner approval, and order tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The release artifacts describe CreditClaw workflows for agent shopping, checkout, payment collection, spending guardrails, owner approval, and wallet management.
 
-## Publisher: <br>
-[jononovo](https://clawhub.ai/user/jononovo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jononovo](https://clawhub.ai/user/jononovo)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent register with CreditClaw, check spending permissions, request purchases, collect payments, and manage payment rails under owner-defined approval rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real-money purchasing, selling, and wallet actions can move funds or charge payment instruments. <br>
-Mitigation: Use the strictest approval mode, avoid broad auto-approval rules, and review each transaction before allowing funds to move. <br>
-Risk: A leaked CREDITCLAW_API_KEY could allow unauthorized spending or collection activity. <br>
-Mitigation: Store the API key in a secrets manager and only send it to CreditClaw API endpoints. <br>
-Risk: Downloaded card or decrypt artifacts, webhook payloads, buyer PII, and transaction logs may expose sensitive data. <br>
-Mitigation: Review or sandbox artifacts before execution and confirm retention and deletion behavior for local files, payloads, PII, and logs. <br>
+## Use Case:
 
+External users and developers use this skill to give an agent guidance for CreditClaw registration, wallet status checks, spending controls, checkout pages, invoices, top-ups, and purchase flows. The artifacts center on real-money commerce workflows that require owner approval and payment guardrails.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jononovo/sap) <br>
-- [CreditClaw homepage](https://creditclaw.com) <br>
-- [CreditClaw Amazon skill](https://creditclaw.com/amazon/skill.md) <br>
-- [CreditClaw Amazon skill metadata](https://creditclaw.com/amazon/skill.json) <br>
-- [Checkout guide](https://creditclaw.com/amazon/checkout.md) <br>
-- [Encrypted card guide](https://creditclaw.com/amazon/encrypted-card.md) <br>
-- [Spending permissions guide](https://creditclaw.com/amazon/spending.md) <br>
-- [Wallet management guide](https://creditclaw.com/amazon/management.md) <br>
-- [Stripe x402 wallet guide](https://creditclaw.com/amazon/stripe-x402-wallet.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with curl examples, JSON request and response examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY for authenticated CreditClaw API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata); artifact metadata reports 2.3.0 <br>
+Risk: The skill handles real spending and payment-card data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep per-purchase approval enabled, use low spending limits, and configure merchant or domain allowlists before authorizing purchases.
+
+Risk: The artifacts describe server-supplied checkout instructions and remotely delivered decryption code.
+
+Mitigation: Avoid running remotely delivered scripts automatically, and require local user approval plus fixed checkout policy before following payment or decryption steps.
+
+Risk: The CREDITCLAW_API_KEY can authorize wallet and spending actions.
+
+Mitigation: Store the key in a secrets manager and send it only to CreditClaw API endpoints.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/jononovo/skills/sap)
+- [CreditClaw homepage](https://creditclaw.com)
+- [CreditClaw Amazon skill guide](https://creditclaw.com/amazon/skill.md)
+- [CreditClaw checkout guide](https://creditclaw.com/amazon/checkout.md)
+- [CreditClaw encrypted card guide](https://creditclaw.com/amazon/encrypted-card.md)
+- [CreditClaw spending guide](https://creditclaw.com/amazon/spending.md)
+- [CreditClaw wallet management guide](https://creditclaw.com/amazon/management.md)
+- [CreditClaw Stripe x402 wallet guide](https://creditclaw.com/amazon/stripe-x402-wallet.md)
+- [CreditClaw heartbeat guide](https://creditclaw.com/amazon/heartbeat.md)
+- [CreditClaw Crossmint wallet guide](https://creditclaw.com/amazon/crossmint-wallet.md)
+- [CreditClaw skill metadata](https://creditclaw.com/amazon/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON API examples, and endpoint references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY and human-configured spending approvals or guardrails for payment workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata claims creditclaw-amazon 2.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

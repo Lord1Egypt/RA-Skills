@@ -1,12 +1,12 @@
 # AnySearch MCP Server
 
-Unified real-time search MCP server supporting general web search, vertical domain search (23 domains), parallel batch search, and full-page URL content extraction.
+Unified real-time search MCP server supporting general web search, vertical domain search, parallel batch search, and full-page URL content extraction.
 
 ## Features
 
 - **General Web Search** — open-ended natural language queries
-- **Vertical Domain Search** — structured queries across 23 domains (finance, academic, security, legal, code, etc.)
-- **Parallel Batch Search** — up to 5 independent queries in one call
+- **Vertical Domain Search** — structured queries across finance, academic, security, legal, code, and more
+- **Parallel Batch Search** — execute multiple independent queries in one call
 - **URL Content Extraction** — fetch and extract full page content as Markdown
 - **Anonymous Access** — works without an API key (with lower rate limits)
 
@@ -14,9 +14,61 @@ Unified real-time search MCP server supporting general web search, vertical doma
 
 An API key is **optional but recommended**. Without a key, all features still work via anonymous access with lower rate limits.
 
+### Register for an API Key (Recommended)
+
+The agent can register the user and obtain an API key in a **single call** — no verification code, no manual signup. Ask the user for a **real email address**: it becomes the account username, and a randomly generated password is emailed to it.
+
+```bash
+curl -s -X POST "https://api.anysearch.com/v1/auth/email/register" \
+  -H "Content-Type: application/json" \
+  -d '{"email": "you@example.com"}'
+```
+
+Success response (`code: 0`) returns the account info and a one-time plaintext API key:
+
+```json
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "username": "you@example.com",
+    "email": "you@example.com",
+    "login_url": "https://www.anysearch.com/login",
+    "api_key": {
+      "id": "key_xxxxxxxx",
+      "key": "as_sk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "key_prefix": "as_sk_xxxxxx...",
+      "name": "default",
+      "rate_limit": 100,
+      "quota_limit": 0,
+      "expires_at": null,
+      "created_at": "2026-06-23T10:23:00Z"
+    }
+  }
+}
+```
+
+On success the agent MUST:
+
+1. Put `data.api_key.key` into the MCP server config as the `Authorization: Bearer <key>` value (and/or set `ANYSEARCH_API_KEY`) — it is shown only once (it can also be retrieved later from the dashboard).
+2. Tell the user their username (= email), the `login_url`, and that a **random password has been emailed to that address**.
+3. Relay this note to the user: *A verification email has been sent to your inbox. If you don't see it within a few minutes, please check your spam or junk folder. You may need to mark it as "Not Spam" to ensure future emails arrive correctly.*
+
+Error handling (always `code: -1` on error; branch on the `message` string):
+
+| message                           | what to do                                                                                          |
+| --------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `Invalid email address.`          | ask the user to re-enter the email                                                                  |
+| `email_already_registered`        | email is taken — tell the user to sign in at `login_url`; do **not** retry                          |
+| contains `Rate limited`           | read retry seconds from message (e.g. `"Rate limited, retry after 300 seconds."`), wait, then retry |
+| starts with `Key creation failed.` | account created but key failed — extract the email and URL from the message (`"Key creation failed. Your account <email> was created; sign in at <url>."`) and tell the user to sign in there to create a key manually |
+| `Internal server error.`          | retry later or fall back to anonymous                                                               |
+
+> The email **must be real and reachable** — the password is delivered there. There is **no verification code** in this flow; the agent only ever asks for an email.
+
 ### Get an API Key
 
-Visit https://anysearch.com/console/api-keys to create a free API key.
+Alternatively, visit https://anysearch.com/console/api-keys to create a free API key.
 
 ### Key Priority
 
@@ -52,21 +104,58 @@ AnySearch MCP server **natively supports Streamable HTTP** transport (MCP spec 2
 
 For agents that support the Streamable HTTP transport (MCP spec 2025-03-26+):
 
-**OpenCode** (`~/.opencode/config.json` or project `opencode.json`):
+**OpenCode** (v1.x+ / v0.1.x+):
+
+Config file location depends on your OpenCode version. Run `opencode -v` to check.
+
+| Version | Global Config Path | Project Config Path |
+|---------|-------------------|-------------------|
+| **1.x+** (current) | `~/.config/opencode/opencode.json` | `opencode.json` or `.opencode/opencode.json` |
+| **0.1.x ~ 0.15.x** | `~/.config/opencode/opencode.json` | `opencode.json` |
+| **0.0.x** (legacy Go) | `~/.opencode.json` | `.opencode.json` |
+
+> **Windows**: Replace `~/.config/opencode/` with `%USERPROFILE%\.config\opencode\`.
+
+For v1.x+ and v0.1.x+ (MCP key: `mcp`):
 
 ```json
 {
+  "$schema": "https://opencode.ai/config.json",
   "mcp": {
     "anysearch": {
-      "type": "streamable-http",
+      "type": "remote",
       "url": "https://api.anysearch.com/mcp",
+      "enabled": true,
       "headers": {
-        "Authorization": "Bearer ${ANYSEARCH_API_KEY}"
+        "Authorization": "Bearer ${ANYSEARCH_API_KEY}",
+        "X-Anysearch-Client": "mcp/1.0.0"
       }
     }
   }
 }
 ```
+
+<details>
+<summary>Legacy Go version (0.0.x) — MCP key: <code>mcpServers</code></summary>
+
+```json
+{
+  "mcpServers": {
+    "anysearch": {
+      "type": "sse",
+      "url": "https://api.anysearch.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${ANYSEARCH_API_KEY}",
+        "X-Anysearch-Client": "mcp/1.0.0"
+      }
+    }
+  }
+}
+```
+
+> The legacy Go version does not support Streamable HTTP natively. Use SSE or stdio via proxy instead.
+
+</details>
 
 **Claude Desktop** (2025.6+, `claude_desktop_config.json`):
 
@@ -77,14 +166,15 @@ For agents that support the Streamable HTTP transport (MCP spec 2025-03-26+):
       "type": "streamable-http",
       "url": "https://api.anysearch.com/mcp",
       "headers": {
-        "Authorization": "Bearer ${ANYSEARCH_API_KEY}"
+        "Authorization": "Bearer ${ANYSEARCH_API_KEY}",
+        "X-Anysearch-Client": "mcp/1.0.0"
       }
     }
   }
 }
 ```
 
-> Without an API key, omit the `headers` section. The server will use anonymous access automatically.
+> Without an API key, drop only the `Authorization` line but **keep** `X-Anysearch-Client`. The server will use anonymous access automatically.
 
 ### stdio (Via Proxy)
 
@@ -106,6 +196,8 @@ For agents that only support stdio transport. Two proxy options:
         "mcp-remote",
         "https://api.anysearch.com/mcp",
         "--header",
+        "X-Anysearch-Client: mcp/1.0.0",
+        "--header",
         "Authorization: Bearer ${ANYSEARCH_API_KEY}"
       ]
     }
@@ -126,6 +218,8 @@ For agents that only support stdio transport. Two proxy options:
         "mcp-remote",
         "https://api.anysearch.com/mcp",
         "--header",
+        "X-Anysearch-Client: mcp/1.0.0",
+        "--header",
         "Authorization: Bearer ${ANYSEARCH_API_KEY}"
       ]
     }
@@ -145,6 +239,8 @@ For agents that only support stdio transport. Two proxy options:
         "mcp-remote",
         "https://api.anysearch.com/mcp",
         "--header",
+        "X-Anysearch-Client: mcp/1.0.0",
+        "--header",
         "Authorization: Bearer ${ANYSEARCH_API_KEY}"
       ]
     }
@@ -152,7 +248,7 @@ For agents that only support stdio transport. Two proxy options:
 }
 ```
 
-> Without an API key, omit the `"--header"` and `"Authorization: Bearer ..."` args.
+> Without an API key, omit only the `"Authorization: Bearer ..."` `--header` pair; **keep** the `X-Anysearch-Client` `--header`.
 
 #### Option B: supergateway
 
@@ -170,6 +266,8 @@ For agents that only support stdio transport. Two proxy options:
         "supergateway",
         "--streamableHttp",
         "https://api.anysearch.com/mcp",
+        "--header",
+        "X-Anysearch-Client: mcp/1.0.0",
         "--oauth2Bearer",
         "${ANYSEARCH_API_KEY}"
       ]
@@ -191,6 +289,7 @@ npx -y supergateway \
   --streamableHttp https://api.anysearch.com/mcp \
   --outputTransport sse \
   --port 8000 \
+  --header "X-Anysearch-Client: mcp/1.0.0" \
   --oauth2Bearer <your_api_key>
 ```
 
@@ -229,7 +328,7 @@ Then configure your agent:
 
 | Agent | Transport | Config Location | Needs Proxy? | Proxy Tool |
 |-------|-----------|----------------|-------------|------------|
-| OpenCode | Streamable HTTP | `opencode.json` | No | — |
+| OpenCode (v1.x+) | Streamable HTTP | `~/.config/opencode/opencode.json` or project `opencode.json` | No | — |
 | Claude Desktop (2025.6+) | Streamable HTTP | `claude_desktop_config.json` | No | — |
 | Claude Desktop (legacy) | stdio | `claude_desktop_config.json` | Yes | `mcp-remote` |
 | Cursor | SSE | `.cursor/mcp.json` | Yes | `supergateway` |
@@ -245,29 +344,26 @@ Execute a search query — general or vertical domain.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `query` | string | Yes | Search query. For vertical search, follow the `query_format` from `list_domains` |
-| `domain` | string | No | Vertical domain (e.g. `finance`, `academic`, `security`) |
-| `sub_domain` | string | No | Sub-domain routing key (e.g. `finance.us_stock`). Required for vertical search |
-| `sub_domain_params` | object | No | Extra params per sub_domain schema |
-| `content_types` | string[] | No | Filter: `web`, `news`, `code`, `doc`, `academic`, `data`, `image`, `video`, `audio` |
-| `zone` | string | No | `cn` or `intl`. Required when sub_domain marks `zone=CN` |
-| `max_results` | integer | No | 1–100, default 10 |
-| `freshness` | string | No | `day`, `week`, `month`, `year` |
+| `query` | string | Yes | Natural language search query. ONE intent per call |
+| `domain` | string | No | Vertical domain (e.g. `finance`, `academic`, `security`). Must come from `get_sub_domains` enum |
+| `sub_domain` | string | No | Sub-domain routing key (e.g. `finance.us_stock`). Must come from `get_sub_domains` output |
+| `sub_domain_params` | object | No | Structured params from `get_sub_domains` params column. NEVER invent values |
+| `max_results` | integer | No | 1–10, default 10 |
 
-### `list_domains`
+### `get_sub_domains`
 
-Query the vertical domain directory. **Must be called before vertical search** to discover available sub_domains and their query formats.
+Query the vertical domain directory. **Required before any search that uses a domain** — returns valid sub_domains and their parameter schemas.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `domain` | string | One of | Single domain to query |
-| `domains` | string[] | One of | Batch up to 5 domains |
+| `domains` | string[] | One of | Batch up to 5 domains (preferred — covers more ground) |
 
-Returns a Markdown table: `sub_domain | description | query_format | params_schema | zone`
+Returns a Markdown table: `sub_domain | description | params`
 
 ### `batch_search`
 
-Execute 2–5 independent search queries in parallel. Single failure does not block others.
+Execute 1–5 independent search queries in parallel. Single failure does not block others.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
@@ -280,71 +376,3 @@ Fetch full page content from a URL and return as Markdown. Truncated at 50,000 c
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `url` | string | Yes | Target URL (`http://` or `https://`) |
-
-## Decision Flow
-
-```
-User query
-  |
-  +-- Has structured identifiers? (Stock:/CVE:/DOI:/IATA:/patent etc.)
-  |     YES -> 1) list_domains -> discover sub_domain & query_format
-  |             2) search with domain + sub_domain + zone
-  |
-  +-- Multiple independent intents?
-  |     YES -> batch_search
-  |
-  +-- Need deeper content than snippets?
-  |     YES -> extract the URL
-  |
-  +-- Otherwise -> search (general)
-```
-
-## Vertical Search Constraints
-
-Before vertical search, you **must** call `list_domains` for the target domain and follow:
-
-1. **`query_format`** — exact format for the query string (e.g. raw ticker, not natural language)
-2. **`params_schema`** — JSON schema for optional extra parameters
-3. **`zone`** — if `CN`, you must set `zone: "cn"` in the search call
-4. **`sub_domain` selection** — match user intent to the best sub_domain description
-
-## Supported Domains
-
-`code` `tech` `fashion` `travel` `home` `ecommerce` `gaming` `film` `music` `finance` `academic` `legal` `business` `ip` `security` `education` `health` `religion` `geo` `environment` `energy` `ugc`
-
-## Examples
-
-### General search
-
-```json
-{ "query": "quantum computing breakthroughs 2025", "max_results": 5, "freshness": "month" }
-```
-
-### Vertical search (stock)
-
-```json
-{ "query": "AAPL", "domain": "finance", "sub_domain": "finance.us_stock", "max_results": 5 }
-```
-
-### Batch search
-
-```json
-{
-  "queries": [
-    { "query": "AAPL", "domain": "finance", "sub_domain": "finance.us_stock" },
-    { "query": "python async http client", "domain": "code", "sub_domain": "code.general" }
-  ]
-}
-```
-
-### Extract URL
-
-```json
-{ "url": "https://en.wikipedia.org/wiki/Quantum_computing" }
-```
-
-## Security Notes
-
-- Search queries, extracted URLs, and API keys are sent to `https://api.anysearch.com`
-- Do not use for queries containing sensitive information (passwords, personal data, trade secrets) unless you trust the provider
-- Avoid pasting API keys directly in chat — use environment variables or `.env` files

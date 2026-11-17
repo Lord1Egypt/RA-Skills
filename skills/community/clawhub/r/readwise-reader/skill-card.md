@@ -1,42 +1,60 @@
-## Description: <br>
-Interact with Readwise Reader library to list, create, update, and delete documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with a Readwise Reader library to list, create, update, and delete documents.
 
-## Publisher: <br>
-[xinthink](https://clawhub.ai/user/xinthink) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xinthink](https://clawhub.ai/user/xinthink)
 
-## Use Case: <br>
-Developers, knowledge workers, and agents use this skill to manage a Readwise Reader library, including listing saved items, saving new URLs or content, updating metadata, archiving documents, deleting documents, and listing tags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires READWISE_ACCESS_TOKEN to access a user's Readwise Reader library. <br>
-Mitigation: Keep the token private, avoid committing or sharing .env files, and prefer shell/session secrets or a secret manager. <br>
-Risk: Update and delete actions can modify or remove Reader documents. <br>
-Mitigation: Review document IDs and payloads before execution, use dry-run options where available, and avoid delete --confirm unless deletion is intentional. <br>
+## Use Case:
 
+External users and developers use this skill to manage saved articles and reading lists in Readwise Reader, including querying content, saving new documents, updating metadata, bulk editing items, deleting documents, and listing tags.
 
-## Reference(s): <br>
-- [Readwise Reader on ClawHub](https://clawhub.ai/xinthink/readwise-reader) <br>
-- [Reader Scripts Usage Guide](references/usage-guide.md) <br>
-- [Readwise Access Token](https://readwise.io/access_token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON payloads; scripts return JSON or JSON Lines.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python, pip, and READWISE_ACCESS_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.3 (source: server release evidence) <br>
+Risk: The skill requires a Readwise access token that can read and modify the user's Reader library.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is acceptable, keep READWISE_ACCESS_TOKEN private, and prefer an isolated environment for dependency installation.
+
+Risk: Update, bulk update, and delete commands can change or remove Reader documents.
+
+Mitigation: Review JSON payloads and document IDs before execution, use dry-run support where available, and avoid --confirm until the intended deletions are verified.
+
+Risk: Dependency versions are not fully pinned in the artifact.
+
+Mitigation: Use a virtual environment and consider pinning dependencies before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xinthink/skills/readwise-reader)
+- [Usage guide](references/usage-guide.md)
+- [Readwise access token page](https://readwise.io/access_token)
+- [Project homepage](https://github.com/xinthink/reader-mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON payload examples; scripts return JSON or JSON Lines.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python, pip, and READWISE_ACCESS_TOKEN; some scripts can write JSON or JSON Lines to output files.]
+
+## Skill Version(s):
+
+0.2.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

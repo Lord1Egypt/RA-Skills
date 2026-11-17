@@ -1,41 +1,53 @@
-## Description: <br>
-从抖音链接提取完整文案并生成Word文件。支持视频和图文笔记，保持原文案完整，不总结或改写。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从抖音链接提取视频或图文笔记的完整文案，并生成保留原文结构的 Word 文件。
 
-## Publisher: <br>
-[csak47mu](https://clawhub.ai/user/csak47mu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[csak47mu](https://clawhub.ai/user/csak47mu)
 
-## Use Case: <br>
-External users and content operators use this skill to extract complete caption text from user-provided Douyin links and receive the original text in a generated Word document. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches user-provided Douyin pages and processes their content into a local temporary Word file. <br>
-Mitigation: Use only links whose content may be fetched and returned through the chat, and avoid sensitive or private links unless that processing is acceptable. <br>
-Risk: The bundled script suggests installing python-docx with --break-system-packages if the dependency is missing. <br>
-Mitigation: Install python-docx in a normal virtual environment before running the skill. <br>
+## Use Case:
 
+External users and agents use this skill when a user provides a Douyin short link or share text and asks to extract the original copy into a Word document without summarization or rewriting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/csak47mu/douyin-text-grab) <br>
-- [Publisher profile](https://clawhub.ai/user/csak47mu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated DOCX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local temporary Word documents from user-provided Douyin content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Untrusted Douyin titles, author names, or full post text may be placed into shell command arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass scraped values through non-shell argument arrays, stdin, or temporary files rather than interpolating them into quoted command strings.
+
+Risk: The skill accesses Douyin links and creates or sends DOCX files.
+
+Mitigation: Review before installing and use only in environments where external Douyin access and DOCX file creation are expected.
+
+## Reference(s):
+
+- [ClawHub skill page for douyin-text-grab](https://clawhub.ai/csak47mu/skills/douyin-text-grab)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and DOCX file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates DOCX files from extracted Douyin text; requires python-docx for the helper script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

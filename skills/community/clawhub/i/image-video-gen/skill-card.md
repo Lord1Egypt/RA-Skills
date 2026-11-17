@@ -1,45 +1,66 @@
-## Description: <br>
-Generates AI images and videos through the AI Artist/DeepSop API from text prompts and optional reference media, then polls asynchronously until the task completes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI images and videos through the AI Artist API from text prompts and optional reference media, then polls asynchronous jobs until completion.
 
-## Publisher: <br>
-[kukuoai](https://clawhub.ai/user/kukuoai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kukuoai](https://clawhub.ai/user/kukuoai)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn image or video generation requests into AI Artist API calls, including model selection, optional reference-media upload, cost checks, and result delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected reference images, videos, or audio are sent to AI Artist/DeepSop. <br>
-Mitigation: Avoid sensitive media unless the external upload is acceptable for the use case, and review AI Artist/DeepSop terms before deployment. <br>
-Risk: The skill requires a sensitive AI_ARTIST_TOKEN and can consume paid generation credits. <br>
-Mitigation: Use a revocable API key, keep it out of source control, monitor credit usage, and rely on the built-in cost check or dry-run flow before submitting jobs. <br>
-Risk: If FEISHU_WEBHOOK_URL is configured, prompts and generated links may be forwarded to that webhook. <br>
-Mitigation: Leave the webhook unset unless the destination is trusted and intended for these results. <br>
+## Use Case:
 
+Developers and agent users use this skill to create images or videos from prompts, upload local reference media for generation workflows, and return generated media as URLs, Markdown, JSON, or downloaded files.
 
-## Reference(s): <br>
-- [AI Artist API Detailed Documentation](references/api.md) <br>
-- [Chat Integration Examples](references/chat-integration.md) <br>
-- [Feishu Image Sending Guide](references/feishu-integration.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kukuoai/image-video-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional URL, JSON, Markdown image, or downloaded-file outputs from the generation script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AI_ARTIST_TOKEN API key; may upload selected reference media to AI Artist/DeepSop; progress is logged separately from final script output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Prompts and reference images or videos are sent to AI Artist for generation and upload workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only media and prompts that are appropriate to share with the provider, and confirm retention and sharing terms before using private or sensitive content.
+
+Risk: Optional Feishu webhook notifications can post prompts and generated result links to a configured workspace.
+
+Mitigation: Set FEISHU_WEBHOOK_URL only in environments where that disclosure is intended, and avoid shared shells or shared configuration files for private work.
+
+Risk: The AI_ARTIST_TOKEN grants API access and may need rotation if exposed in logs or shared environments.
+
+Mitigation: Store the token in a private environment variable or protected .env file, avoid printing it, and rotate it after any suspected exposure.
+
+Risk: The download option retrieves provider-returned media URLs without validating URL destination or download size.
+
+Mitigation: Use --download only for trusted generation results, review output locations, and avoid running downloads in sensitive network environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kukuoai/skills/image-video-gen)
+- [AI Artist API reference](references/api.md)
+- [Chat integration reference](references/chat-integration.md)
+- [Feishu integration reference](references/feishu-integration.md)
+- [AI Artist login](https://ai.deepsop.com/login?source=2)
+- [AI Artist registration](https://ai.deepsop.com/register?source=2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus generated media URLs, one-line JSON, Markdown image links, or local file paths from the helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call external AI Artist endpoints, upload reference media, poll job status, optionally download returned media, and optionally send Feishu webhook notifications.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

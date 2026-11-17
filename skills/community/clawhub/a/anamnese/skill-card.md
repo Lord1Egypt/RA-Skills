@@ -1,42 +1,56 @@
-## Description: <br>
-Anamnese is a cloud-persistent memory and productivity skill that guides an agent to load user context, save useful facts, moments, notes, tasks, goals, and self-learning notes across conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anamnese gives an agent an always-on persistent memory and productivity workflow for storing, retrieving, and managing personal facts, moments, notes, tasks, goals, and agent learnings across sessions.
 
-## Publisher: <br>
-[markoBel3](https://clawhub.ai/user/markoBel3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[markobel3](https://clawhub.ai/user/markobel3)
 
-## Use Case: <br>
-External users and their agents use Anamnese to maintain persistent personal context, tasks, goals, and assistant-specific learnings across sessions. It is intended for agents that should proactively capture meaningful user information and retrieve it in later conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Always-on capture can store broad personal and sensitive details in cloud-persistent memory. <br>
-Mitigation: Enable the skill only when persistent memory is intended, confirm pause, review, delete, and export controls, and avoid storing health, financial, identity, location, relationship, or confidential work details unless explicitly chosen. <br>
-Risk: Silent proactive saving may preserve information the user did not expect to keep long term. <br>
-Mitigation: Search before saving, keep entries selective and useful for future sessions, and regularly review, update, or delete stored memories and notes. <br>
+## Use Case:
 
+External users install Anamnese so their agent can maintain cross-session context, remember preferences and corrections, and manage personal tasks, goals, and notes. The skill is useful when the user wants a persistent cloud memory layer that follows them across conversations.
 
-## Reference(s): <br>
-- [Memory Management Reference](references/memory-management.md) <br>
-- [Task Management Reference](references/task-management.md) <br>
-- [Self-Review Reference](references/self-review.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Text, Configuration] <br>
-**Output Format:** [Markdown instructions with tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts the agent to manage memories, notes, tasks, goals, and self-learning records through available memory tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Sensitive personal, health, relationship, task, goal, and behavioral details may be saved persistently without a separate confirmation each time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when an always-on cloud memory layer is desired, and review available controls to inspect, edit, delete, export, or disable stored memories before relying on it.
+
+Risk: Persisted memories and agent learnings may become outdated, duplicated, or overly broad over time.
+
+Mitigation: Search before saving, update existing records where possible, and periodically audit or consolidate saved AI-client notes.
+
+## Reference(s):
+
+- [Anamnese ClawHub skill page](https://clawhub.ai/markobel3/skills/anamnese)
+- [Memory Management Reference](references/memory-management.md)
+- [Task Management Reference](references/task-management.md)
+- [Self-Review Reference](references/self-review.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, API Calls, Persistent records]
+
+**Output Format:** [Natural-language guidance plus structured memory, note, task, and goal tool requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write persistent cloud memory and task data across conversations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

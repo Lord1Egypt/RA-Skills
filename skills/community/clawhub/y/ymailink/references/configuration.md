@@ -291,7 +291,7 @@ The AI features (`ymailink ai short-summary`, `summary`, `rapid-reply`) require 
 
 ```toml
 [ai]
-api-key = "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+api-key = "REDACTED-SECRET"
 # base-url = "https://ai.ymailink.com"   # optional, this is the default
 # model = "auto"                          # optional, this is the default
 ```

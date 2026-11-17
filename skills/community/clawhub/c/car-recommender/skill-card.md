@@ -1,39 +1,53 @@
-## Description: <br>
-An intelligent car-buying advisor that helps users choose suitable vehicles by budget, brand, vehicle type, energy type, and popularity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Car Recommender is a Chinese-language car shopping assistant that helps users compare vehicles and get recommendations by budget, brand, vehicle type, and energy type.
 
-## Publisher: <br>
-[939951954](https://clawhub.ai/user/939951954) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[939951954](https://clawhub.ai/user/939951954)
 
-## Use Case: <br>
-External car shoppers use this conversational advisor to narrow vehicle choices by budget, usage needs, brand, vehicle class, and energy type. It supports recommendation, comparison, and ranking-style guidance before users verify current market details with official sources or local dealers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate unintentionally on broad Chinese car-related trigger words. <br>
-Mitigation: Use it for car-shopping conversations and narrow or disable invocation where broad triggers cause unwanted activation. <br>
-Risk: Vehicle prices, incentives, sales rankings, and safety details can become outdated. <br>
-Mitigation: Verify important purchase details with official brand sources or local dealers before making decisions. <br>
+## Use Case:
 
+External users can use this agent as a Chinese-language car buying advisor to narrow vehicle options, compare models, and request recommendations based on budget, intended use, brand, body style, and energy type.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted conversational recommendations, comparisons, rankings, and follow-up questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes price caveats and asks at most two follow-up questions when user requirements are incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Risk: Vehicle prices, sales rankings, and model details may be outdated or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as advisory and verify current information with official sources or local dealers before making a purchase decision.
+
+Risk: Broad car- or budget-related phrases may trigger the assistant in contexts where a purchase recommendation is not intended.
+
+Mitigation: Confirm the user's purchase intent and key constraints before providing specific vehicle recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/939951954/skills/car-recommender)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with structured recommendation entries and follow-up questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations may include vehicle names, reference price ranges, advantages, disadvantages, and reminders to verify current prices and details with official sources or local dealers.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata, released 2026-03-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

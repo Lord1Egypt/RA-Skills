@@ -1,42 +1,55 @@
-## Description: <br>
-Knowledge graph operations via Graphiti API. Search facts, add episodes, and extract entities/relationships. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge graph operations via Graphiti API. Search facts, add episodes, and extract entities/relationships.
 
-## Publisher: <br>
-[emasoudy](https://clawhub.ai/user/emasoudy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[emasoudy](https://clawhub.ai/user/emasoudy)
 
-## Use Case: <br>
-Developers and agents use this skill to search a Graphiti knowledge graph and add new episodes or memories through the Graphiti REST API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can add persistent entries to a Graphiti knowledge graph. <br>
-Mitigation: Avoid storing secrets or untrusted content as memories, and review additions before using the knowledge graph as shared context. <br>
-Risk: The agent sends search and memory-write requests to the configured Graphiti endpoint. <br>
-Mitigation: Verify the Graphiti endpoint before use and prefer Clawdbot configuration for selecting the service URL. <br>
+## Use Case:
 
+Developers and agent users use this skill to search a Graphiti-backed knowledge graph for relevant facts and add new episodes or memories through the Graphiti REST API.
 
-## Reference(s): <br>
-- [Graphiti project](https://github.com/getzep/graphiti) <br>
-- [Graphiti skill page](https://clawhub.ai/emasoudy/graphiti) <br>
-- [Environment discovery helper](references/env-check.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a reachable Graphiti service backed by Neo4j and Qdrant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Documented shell command templates can execute unintended local commands when user-supplied query or memory text contains shell syntax.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before execution and replace hand-written JSON curl payloads with jq-generated JSON or another structured request method.
+
+Risk: Search terms and added memories are sent to the configured Graphiti server, and added memories are persisted there.
+
+Mitigation: Use only a trusted Graphiti server and avoid submitting secrets or sensitive data unless the deployment is approved for that data.
+
+## Reference(s):
+
+- [Graphiti project](https://github.com/getzep/graphiti)
+- [Graphiti Skill on ClawHub](https://clawhub.ai/emasoudy/skills/graphiti)
+- [env-check.sh](references/env-check.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with shell command templates and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a reachable Graphiti service plus Neo4j and Qdrant backing services.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

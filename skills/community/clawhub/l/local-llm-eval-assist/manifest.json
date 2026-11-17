@@ -1,0 +1,9 @@
+{
+  "name": "local-llm-eval-assist",
+  "normalizedName": "local-llm-eval-assist",
+  "description": "本地 LLM 自评辅助，用于回答「自己给自己打分会不会虚高」「评估怎么省积分」这类问题。用 Ollama 单次调用给「自评 / 打分 / 评估」场景先跑一版机器分，再人工校准，抵御 Goodhart 效应与乐观偏差。按真实参照法把基线分、机器分、校准分三数同记录，任何最终分数都挂得出来源与偏差量。适用能力指数自评、进化周中期 / 终期评估、学习效果打分、任何\"给自己的产出打分\"场景。本地运行、成本近零、可追溯。触发词：自评、打分、评估校准、能力指数、机器分、人工校准、乐观偏差、Goodhart、本地评分、省积分评估、local LLM eval。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺衡(Krites)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

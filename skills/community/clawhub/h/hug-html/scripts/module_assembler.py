@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """
+from _paths import DATA_DIR
 module_assembler.py — 组件式模块组装引擎 v3.0.0
 
 原子组件(6种) + 组合引擎 + 3级约束(fill/fit/clip) + 8方向位置
@@ -18,7 +19,6 @@ from typing import Optional
 # R-12 审计锚点
 DEFAULT_DATA_DIR_RAW = "skills/.standardization/hug-html/data/"
 SKILL_DIR = Path(__file__).parent.parent
-DATA_DIR = SKILL_DIR.parent / ".standardization" / "hug-html" / "data"
 
 # ══════════════════════════════════════════════════════
 # 约束模式

@@ -1,0 +1,14 @@
+{
+  "doc": "table.FCStd",
+  "new": true,
+  "steps": [
+    {"op": "set_params", "values": {"top_t": 3}},
+    {"op": "box", "name": "Top", "length": 120, "width": 80, "height": "=Params.top_t", "position": [0, 0, 72],
+     "comment": "positions are literal numbers; expressions are supported on dimensions"},
+    {"op": "cylinder", "name": "Leg", "radius": 2.5, "height": 72.5, "position": [6, 6, 0]},
+    {"op": "grid_array", "name": "Legs", "target": "Leg", "count_x": 2, "count_y": 2, "step_x": 108, "step_y": 68, "fuse": false},
+    {"op": "fuse", "name": "Table", "objects": ["Top", "Legs"], "expect": {"bbox_size": [120, 80, 75], "solids": 1}},
+    {"op": "fillet", "name": "TableRounded", "target": "Table", "radius": 1, "edges": "face(>Z)"},
+    {"op": "export", "filename": "table.step"}
+  ]
+}

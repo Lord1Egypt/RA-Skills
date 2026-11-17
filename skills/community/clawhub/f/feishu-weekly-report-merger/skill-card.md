@@ -1,41 +1,58 @@
-## Description: <br>
-Merges multiple Feishu weekly report documents by reading authorized source documents, preserving original text and formatting, concatenating content by the fixed Part1 through Part5 sections, and creating a new Feishu cloud document. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Merges multiple Feishu weekly report documents by preserving the original Markdown content, grouping it under Part1-Part5 sections in source order, and creating a new Feishu cloud document.
 
-## Publisher: <br>
-[ganguagua](https://clawhub.ai/user/ganguagua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ganguagua](https://clawhub.ai/user/ganguagua)
 
-## Use Case: <br>
-Employees and team leads use this skill to combine several Feishu weekly reports into one month-labeled Feishu cloud document while preserving each contributor's original wording and document formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Temporary files can contain full weekly report text. <br>
-Mitigation: Remove /tmp/merge_doc_*.md files after the merge and avoid running the skill where other users can read those files. <br>
-Risk: The merged Feishu document may expose source report content if sharing permissions are too broad. <br>
-Mitigation: Confirm the source documents before execution and check the new document's sharing permissions before distributing it. <br>
+## Use Case:
 
+Employees and operations teams use this skill to combine multiple Feishu weekly reports into one structured document while retaining each contributor's original text and formatting.
 
-## Reference(s): <br>
-- [Chapter Parsing Reference](references/chapter_parsing.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ganguagua/feishu-weekly-report-merger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, Files] <br>
-**Output Format:** [Markdown content for a newly created Feishu document, with shell commands for the merge script and temporary Markdown files as intermediate inputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves source text and Feishu Markdown tags; creates /tmp/merge_doc_*.md temporary files that should be removed after merging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Potentially sensitive Feishu report contents are written to predictable plaintext files in /tmp.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private per-run temporary directory or in-memory processing, and remove only files created by the skill.
+
+Risk: The skill can create a new Feishu document from fetched report contents.
+
+Mitigation: Require explicit weekly-report merge intent and confirm the destination and title before creating the document.
+
+Risk: The merged output may reformat section structure in ways that are not fully disclosed to users.
+
+Mitigation: Disclose that the merge normalizes Part1-Part5 section headers and inserts contributor sections before execution.
+
+## Reference(s):
+
+- [Chapter Parsing Reference](references/chapter_parsing.md)
+- [ClawHub Skill Page](https://clawhub.ai/ganguagua/skills/feishu-weekly-report-merger)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown content for a newly created Feishu document, with supporting shell commands and Feishu tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves source document order and Feishu Markdown formatting where the merge script supports it.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

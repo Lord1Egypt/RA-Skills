@@ -1,44 +1,58 @@
-## Description: <br>
-Byted Market Insight Agent helps agents retrieve Volcengine market-insight tasks, AI-filtered public content, and business lead data for brand monitoring, competitor tracking, trend analysis, and opportunity research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Byted Market Insight Agent lets agents call Volcengine market-insight services to list monitoring tasks, pull AI-filtered public content, and query AI-generated business leads.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to access Volcengine market-insight data for brand sentiment monitoring, competitive intelligence, topic trend analysis, monitored-task retrieval, and AI-generated sales lead review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can look for Volcengine and Gateway credentials in shell startup files and local persisted auth state. <br>
-Mitigation: Install only from a trusted publisher, use least-privileged credentials, and protect or remove persist/auth.json when access is no longer needed. <br>
-Risk: The skill can make external API calls to market-insight providers using configured credentials. <br>
-Mitigation: Review requested tasks and date ranges before execution, and monitor API usage under the connected account. <br>
-Risk: The skill may attempt to install the Volcengine SDK during use. <br>
-Mitigation: Disable automatic package installation with MARKET_INSIGHT_AUTO_PIP=0 when dependency changes should be controlled manually. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve brand, competitor, topic, and industry monitoring data from Volcengine market-insight services, then use the returned results for market analysis and lead discovery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volcengine-skills/byted-market-insight-agent) <br>
-- [Usage and integration guide](references/usage.md) <br>
-- [API differences](references/api-diff.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON-compatible API responses with concise setup and credential guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can return paginated market insight tasks, filtered public content, parsed lead details, and credential prompts when required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles Volcengine or Gateway credentials and market-insight data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where granting that credential and data access is acceptable, and prefer explicit environment variables or a secure secret store.
+
+Risk: Automatic dependency installation can change the runtime environment.
+
+Mitigation: Disable automatic pip installation unless the dependency source and package version are approved.
+
+Risk: A custom Gateway URL could send requests and credentials to an untrusted destination.
+
+Mitigation: Use a custom Gateway URL only after verifying and trusting the destination.
+
+## Reference(s):
+
+- [Usage and Integration Guide](references/usage.md)
+- [API Differences](references/api-diff.md)
+
+## Skill Output:
+
+**Output Type(s):** [json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON API results and Markdown guidance with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns monitoring task lists, filtered post records, pagination tokens, and structured lead records.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

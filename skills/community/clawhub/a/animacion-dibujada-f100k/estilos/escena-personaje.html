@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Escena con personaje y rubro</title>
+<style>
+  html,body{margin:0;background:#141210;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ====================== LO QUE PUEDES CAMBIAR ======================
+// La escena de los CORTOS: tu personaje dentro del lugar de tu rubro, con los objetos del rubro y un globo.
+// La FICHA la escribe Claude MIRANDO la foto de la persona (ver personajes/). Objeto aquí mismo o ruta a un .json.
+const FICHA = {
+  "nombre": "Don Chuy, el pastelero", "tipo": "humano",
+  "pelo": { "color": "#3a2a24", "largo": "corto", "estilo": "flequillo" },
+  "piel": "#c98d68", "ojos": "#2a1a14", "labios": "#a2584f",
+  "ropa": { "arriba": "#f6f3ec", "tipo_arriba": "filipina", "abajo": "#2f3448", "tipo_abajo": "pantalon", "zapatos": "#1f1f24" },
+  "accesorios": ["gorro-chef", "delantal", "lentes"]
+};
+const RUBRO = 'pasteleria';          // pasteleria | psicologo | dentista | restaurante | nutricionista | tienda-ropa | inmobiliario | makeup | fitness | centro-estetico | joyeria | veterinaria | generico
+const ESTILO = 'vector';             // 'vector' | 'pixel' (personaje, escenario y objetos en el mismo estilo)
+const LUGAR = 'izq';                 // dónde queda parada: 'izq' | 'centro' | 'der' (el primer «caminar» la trae hasta ahí)
+// Lo que hace, en orden. accion: quieto, caminar, saludar, señalar, saltar, hablar, festejar, pensar, presentar, contar.
+// Opcional en cada una: expresion ('feliz' | 'sorpresa' | 'duda' | 'triste' | 'guiño'), n (hasta cuánto cuenta «contar»).
+const ACCIONES = [
+  { accion: 'caminar', dur: 1.1 },
+  { accion: 'hablar', dur: 2.2 },
+  { accion: 'señalar', dur: 1.4 },
+];
+const FRASE = 'si yo llevara la cuenta de una pastelería';   // globo desde el primer «hablar» ('' = sin globo)
+// Objetos del kit que aparecen (nombres: ver objetosDisponibles()). en = segundo en que salen.
+const OBJETOS = [
+  { nombre: 'pastel-pisos', en: 2.2, lado: 'der', tam: 430 },
+  { nombre: 'cupcake', en: 2.6, lado: 'der-atras', tam: 200 },
+];
+const TAMANO = 820;                  // alto del personaje en px (en celular, menos de 700 se ve chico)
+// ===================================================================
+const W = 1080, H = 1920, FPS = 30;
+const INICIOS = []; { let a = 0; for (const x of ACCIONES) { INICIOS.push(a); a += x.dur; } }
+const FIN_ACCIONES = ACCIONES.reduce((a, x) => a + x.dur, 0);
+const DUR = +(Math.max(FIN_ACCIONES, ...OBJETOS.map(o => o.en + .8)) + 1.2).toFixed(2);
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script src="../nucleo/personaje.js"></script>
+<script src="../nucleo/objetos.js"></script>
+<script src="../nucleo/kits/pasteleria.js"></script>
+<script src="../nucleo/kits/psicologo.js"></script>
+<script src="../nucleo/kits/dentista.js"></script>
+<script src="../nucleo/kits/restaurante.js"></script>
+<script src="../nucleo/kits/nutricionista.js"></script>
+<script src="../nucleo/kits/tienda-ropa.js"></script>
+<script src="../nucleo/kits/inmobiliario.js"></script>
+<script src="../nucleo/kits/makeup.js"></script>
+<script src="../nucleo/kits/fitness.js"></script>
+<script src="../nucleo/kits/centro-estetico.js"></script>
+<script src="../nucleo/kits/joyeria.js"></script>
+<script src="../nucleo/kits/veterinaria.js"></script>
+<script>
+// ANATOMIA: estilizada — personaje de explainer (mitones redondos), dibujado por personaje.js
+const KIT = kitDe(RUBRO);
+let PJ = null;
+window.LISTO = (typeof FICHA === 'string' ? cargarJSON(FICHA) : Promise.resolve(FICHA))
+  .then(f => { PJ = crearPersonaje(f, { estilo: ESTILO, alto: TAMANO }); });
+
+const PIES_Y = PISO_Y + 90;                      // los pies pisan el piso del escenario, con profundidad
+const X_LUGAR = { izq: 330, centro: W / 2, der: W - 330 }[LUGAR] ?? 330;
+const X_OBJ = { der: 790, izq: 270, centro: W / 2, 'der-atras': 930, 'izq-atras': 150 };
+
+function accionEn(t) { let i = 0; for (let k = 0; k < ACCIONES.length; k++) if (t >= INICIOS[k]) i = k; return { i, accion: ACCIONES[i].accion, t: Math.max(0, t - INICIOS[i]) }; }
+function posicionX(t) {
+  const k = ACCIONES.findIndex(a => a.accion === 'caminar'); if (k < 0) return X_LUGAR;
+  const desde = LUGAR === 'der' ? W + 280 : -280;
+  return lerp(desde, X_LUGAR, prog(t, INICIOS[k], INICIOS[k] + ACCIONES[k].dur));
+}
+
+function objetos(t, atras) {
+  for (const o of OBJETOS) {
+    if (/atras/.test(o.lado) !== atras || t < o.en) continue;
+    const x = X_OBJ[o.lado] ?? X_OBJ.der, y = PIES_Y - (atras ? 70 : 0);
+    dibujarObjeto(o.nombre, x, y, o.tam || 360, { t: t - o.en, estilo: ESTILO, anim: 'aparece' });
+  }
+}
+
+function globo(t) {
+  const k = ACCIONES.findIndex(a => a.accion === 'hablar'); if (k < 0 || !FRASE) return;
+  const e = back(prog(t, INICIOS[k], INICIOS[k] + .35)); if (e <= 0) return;
+  // el globo nunca tapa la cabeza: si no cabe entre la zona segura y la cabeza, la letra se achica
+  const cabeza = PIES_Y - (PJ.alto || TAMANO) * 1.1 - 30, x = 120, y = 270, w = 840;
+  let aj = null; for (let tam = 80; tam >= 40; tam -= 4) { aj = autoajuste(FRASE, LETRA_LIMPIA, 800, 760, 3, tam, 40); if (y + aj.rs.length * aj.size * 1.18 + 84 + 40 <= cabeza) break; }
+  const alto = aj.rs.length * aj.size * 1.18 + 84;
+  const cola = [clamp(posicionX(t), 200, W - 200), Math.max(y + alto + 30, Math.min(y + alto + 110, cabeza))];
+  ctx.save(); ctx.translate(cola[0], cola[1]); ctx.scale(e, e); ctx.translate(-cola[0], -cola[1]);
+  if (ESTILO === 'pixel') {
+    const px = PJ.tamPixel || 10;
+    ctx.fillStyle = '#1d1a24'; ctx.fillRect(x - px, y - px, w + 2 * px, alto + 2 * px);
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(x, y, w, alto);
+    for (let i = 0; i < 5; i++) { ctx.fillStyle = '#1d1a24'; ctx.fillRect(cola[0] - 30 + i * px, y + alto + i * px, (6 - i) * px, px); }
+  } else {
+    ctx.beginPath(); ctx.roundRect(x, y, w, alto, 40);
+    ctx.moveTo(cola[0] - 40, y + alto - 2); ctx.lineTo(cola[0], cola[1]); ctx.lineTo(cola[0] + 30, y + alto - 2);
+    ctx.fillStyle = '#ffffff'; ctx.fill(); ctx.lineWidth = 6; ctx.strokeStyle = '#1d1a24'; ctx.stroke();
+  }
+  ctx.font = aj.font; ctx.fillStyle = '#1d1a24'; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  aj.rs.forEach((r, i) => ctx.fillText(r, W / 2, y + 44 + i * aj.size * 1.18));
+  ctx.restore();
+}
+
+arrancar(frame => {
+  const t = frame / FPS;
+  BOIL = Math.floor(frame / 4);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.imageSmoothingEnabled = true;
+  if (!PJ) return;
+  escenario(KIT.escenario, t, { estilo: ESTILO, paleta: KIT.paleta });
+  objetos(t, true);
+  // camina DE PERFIL a la velocidad real (los pies no patinan) y al llegar gira de frente
+  const a = t >= FIN_ACCIONES ? { accion: 'quieto', t: 0, i: ACCIONES.length - 1 } : accionEn(t);
+  const A = ACCIONES[a.i], kCam = ACCIONES.findIndex(x => x.accion === 'caminar');
+  const desde = LUGAR === 'der' ? W + 280 : -280;
+  const mira = kCam >= 0 ? (X_LUGAR >= desde ? 1 : -1) * (a.accion === 'caminar' ? 1 : 1) : 1;
+  const velocidad = a.accion === 'caminar' ? Math.abs(X_LUGAR - desde) / ACCIONES[a.i].dur : 0;
+  const desdePerfil = t < FIN_ACCIONES && a.i > 0 && ACCIONES[a.i - 1].accion === 'caminar' && a.accion !== 'caminar';   // al final, quieta y DE FRENTE
+  PJ.dibujar(ctx, posicionX(t), PIES_Y, { accion: a.accion, t: a.t, mira: a.accion === 'caminar' ? mira : 1, velocidad, desdePerfil, expresion: A.expresion, n: A.n });
+  objetos(t, false);
+  globo(t);
+});
+</script>
+</body>
+</html>

@@ -1,39 +1,48 @@
-## Description: <br>
-Build, optimize, and operate production Next.js applications with guidance for architecture, data fetching, caching, rendering, testing, deployment, and observability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, optimize, and operate production Next.js applications with guidance for architecture, data fetching, caching, rendering, testing, deployment, performance, and security.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan, implement, audit, and harden production Next.js applications. It provides practical patterns for routing, server/client boundaries, caching, authentication, performance, testing, CI/CD, deployment, and monitoring. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Authentication, deployment, CI/CD, or audit guidance could be applied too broadly or copied without project-specific validation. <br>
-Mitigation: Ask the agent for an implementation plan first, constrain the target files and environments, and review generated code and commands before execution. <br>
-Risk: The middleware authentication example may not be sufficient for a production application's exact session, authorization, and route-protection requirements. <br>
-Mitigation: Treat the middleware example as a starting point and adapt it to the application's authentication provider, authorization model, and tested protected-route behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-nextjs-production) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to plan, audit, and implement production-grade Next.js applications across architecture, caching, security, testing, deployment, and operations.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code blocks and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; generated code, commands, and deployment changes should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The authentication middleware example can leave protected pages unprotected if copied without robust session validation.
+
+Mitigation: Review authentication changes before use; require verified sessions through Auth.js, a trusted session store, or signed-token validation, and add tests for protected routes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-nextjs-production)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include checklists, decision matrices, project structure recommendations, configuration snippets, and implementation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

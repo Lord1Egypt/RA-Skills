@@ -1,43 +1,53 @@
-## Description: <br>
-Downloads a public Douyin video without a watermark from a user-provided link, saves it locally, uploads it to cloud storage, and returns a share link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads public Douyin videos without watermarks, saves them locally, uploads them to cloud storage, and returns a share link.
 
-## Publisher: <br>
-[alexliu9921](https://clawhub.ai/user/alexliu9921) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexliu9921](https://clawhub.ai/user/alexliu9921)
 
-## Use Case: <br>
-External users and agents use this skill to turn a Douyin video link into a locally downloaded MP4 and a temporary cloud share link for saving or sharing permitted media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save and share copies of Douyin videos. <br>
-Mitigation: Use it only for media the user has permission to download, save, and share. <br>
-Risk: Downloaded files are written under /tmp and uploaded to a cloud link with temporary retention. <br>
-Mitigation: Clean up local files and shared cloud copies when the content should no longer be accessible. <br>
-Risk: The workflow depends on a user-provided media URL and remote video availability. <br>
-Mitigation: Confirm the link is the intended public Douyin video before running the download and upload steps. <br>
+## Use Case:
 
+External users and agent operators use this skill to parse a Douyin video link, download the corresponding watermark-free public video, upload it to cloud storage, and return a temporary sharing link.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexliu9921/alexliutkdownload) <br>
-- [Publisher profile](https://clawhub.ai/user/alexliu9921) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Plain text and Markdown guidance with shell commands, a local MP4 path, and a cloud share link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates /tmp/douyin_<video_id>.mp4 and returns a cloud link that the skill notes is retained for about 30 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Requested Douyin videos are downloaded to /tmp and uploaded to cloud storage for about 30 days.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for public or non-sensitive videos and confirm the user is comfortable with temporary cloud storage.
+
+Risk: Unvalidated or unexpectedly large video downloads can create privacy, storage, or reliability issues.
+
+Mitigation: Maintainers should consider explicit confirmation, URL allowlisting, and file-size limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexliu9921/skills/alexliutkdownload)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Markdown-style status text with shell command execution and a downloaded MP4 file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads requested videos to /tmp and returns a cloud-storage share link when upload succeeds.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

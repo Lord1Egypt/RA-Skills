@@ -1,43 +1,58 @@
-## Description: <br>
-Generates anatomy quiz questions for medical education, with selectable anatomical regions, difficulty labels, answers, explanations, and clinical notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate interactive anatomy quizzes for medical education with multiple question types, difficulty levels, and anatomical regions, supporting gross anatomy, neuroanatomy, and clinical correlations for self-assessment and exam preparation.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External learners, medical students, and teaching assistants use this skill to generate supplemental anatomy self-assessment questions, study quizzes, and classroom practice material. It should support, not replace, faculty-reviewed anatomy resources, atlases, and lab instruction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation advertises adaptive learning, image quizzes, and progress tracking that are not implemented in the provided code. <br>
-Mitigation: Treat the release as a local static quiz generator unless those missing features are added and reviewed. <br>
-Risk: Generated educational content may contain anatomy inaccuracies or omit current terminology. <br>
-Mitigation: Review quiz content against faculty-approved anatomy references before using it for assessment or instruction. <br>
-Risk: The CLI can write output to a user-specified file path. <br>
-Mitigation: Choose output paths deliberately and review commands before execution. <br>
+## Use Case:
 
+External medical students, teaching assistants, and educators use this skill to generate anatomy self-assessment quizzes, practical exam practice, and clinical-correlation study materials. It is supplemental study support and is not a substitute for anatomy texts, faculty review, or cadaver lab instruction.
 
-## Reference(s): <br>
-- [Anatomy Quiz Master References](artifact/references/guidelines.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/AIPOCH-AI/anatomy-quiz-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands] <br>
-**Output Format:** [JSON or plain text quiz content, with Markdown usage guidance and inline shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print generated questions to stdout or write JSON quiz output to a user-specified file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The dependency manifest lists Python standard-library module names and can cause failed or misleading dependency installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove requirements.txt before installation; run the quiz script with the standard Python library unless valid third-party dependencies are later added.
+
+Risk: The command-line output option can overwrite an existing writable file path.
+
+Mitigation: Use --output only inside a dedicated workspace directory and choose a new filename for generated quiz files.
+
+Risk: Generated anatomy questions may contain educational or clinical inaccuracies if used without subject-matter review.
+
+Mitigation: Have anatomy faculty or qualified clinical reviewers verify question content, answer keys, and explanations before use in instruction or assessment.
+
+## Reference(s):
+
+- [Anatomy Quiz Master reference guidelines](references/guidelines.md)
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/anatomy-quiz-master)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON or plain text quiz content, with Markdown and shell examples in the skill guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print quiz output to stdout or write it to a user-specified output file.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+  echo "Usage: $0 payload.json" >&2
+  exit 2
+fi
+
+: "${POYO_API_KEY:?POYO_API_KEY is required}"
+
+curl --fail-with-body --request POST \
+  --url "https://api.poyo.ai/v1/messages" \
+  --header "x-api-key: ${POYO_API_KEY}" \
+  --header "anthropic-version: 2023-06-01" \
+  --header "Content-Type: application/json" \
+  --data @"$1"

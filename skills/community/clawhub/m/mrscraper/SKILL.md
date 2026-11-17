@@ -1,7 +1,7 @@
 ---
 name: mrscraper
-description: Run AI-powered, unblockable web scraping, data extraction with natural language via the MrScraper API
-tags: [scraping, data-extraction, web-crawling, stealth-browser, web-automation]
+description: Read web pages, search the web, and run AI scrapers with natural-language instructions through the MrScraper API
+tags: [web-scraping, web-search, data-extraction, web-crawling, web-automation]
 
 homepage: https://mrscraper.com/
 vendor: MrScraper
@@ -12,18 +12,19 @@ primary_credential: MRSCRAPER_API_TOKEN
 
 metadata: {"openclaw":{"requires":{"env":["MRSCRAPER_API_TOKEN"]},"primaryEnv":"MRSCRAPER_API_TOKEN"}}
 
-network: {"allowed_hosts":["api.mrscraper.com","api.app.mrscraper.com","sync.scraper.mrscraper.com"]}
+network: {"allowed_hosts":["api.mrscraper.com","api.app.mrscraper.com"]}
 ---
 
 # MrScraper
 
-Run AI-powered, unblockable web scraping, data extraction with natural language via the MrScraper API
+Read web pages, search the web, and run AI scrapers with natural-language instructions through the MrScraper API
 
 ## Actions
 
 This skill supports:
 
-- Opening blocked pages through unblocker (stealth browser + IP rotation)
+- Reading public web pages as HTML through the Scraper API, with automatic browser rendering
+- Searching the web for ranked results
 - Starting AI scraper runs from natural-language instructions
 - Rerunning existing scraper configurations on one or multiple URLs
 - Running manual workflow-based reruns
@@ -33,7 +34,7 @@ This skill is API-only and does not depend on bundled local scripts.
 
 ## Base URLs
 
-- Unblocker API: `https://api.mrscraper.com`
+- Scraper API (pages and web search): `https://api.mrscraper.com`
 - Platform API: `https://api.app.mrscraper.com`
 
 ## Authentication
@@ -68,7 +69,6 @@ Security rule:
 Notes from the auth docs:
 
 - The API key works for all V3 Platform endpoints.
-- The same key can be used for endpoints on `sync.scraper.mrscraper.com`.
 - For access to endpoints on other hosts, contact `support@mrscraper.com`.
 
 ## Install and Runtime
@@ -86,13 +86,13 @@ Notes from the auth docs:
 
 ## Endpoints
 
-### 1. Unblocker
+### 1. Scraper API (read a page)
 
 - Method: `GET`
 - URL: `https://api.mrscraper.com`
 - Auth: `x-api-token` header
 
-Opens a target URL through stealth browsing and IP rotation, then returns HTML. Use this when direct access is blocked by captcha or anti-bot protections.
+Loads a public page and returns its HTML. Browser rendering starts automatically when the page needs JavaScript.
 
 #### Query parameters:
 
@@ -106,7 +106,7 @@ Opens a target URL through stealth browsing and IP rotation, then returns HTML. 
 #### Request example:
 
 ```bash
-curl --location 'https://api.mrscraper.com?timeout=120&geoCode=SG&url=https%3A%2F%2Fwww.lazada.sg%2Fproducts%2Fpdp-i111650098-s23209659764.html&blockResources=false' \
+curl --location 'https://api.mrscraper.com?timeout=120&geoCode=SG&url=https%3A%2F%2Fwww.scrapethissite.com%2Fpages%2Fsimple%2F&blockResources=false' \
   -H "x-api-token: <MRSCRAPER_API_TOKEN>"
 ```
 
@@ -123,9 +123,64 @@ curl --location 'https://api.mrscraper.com?timeout=120&geoCode=SG&url=https%3A%2
 #### Notes:
 
 - Prefer explicit `geoCode` and practical timeouts for repeatable behavior.
-- Only pass cookies when session-specific content is required.
+- Use it for publicly accessible pages; it does not sign in to websites.
 
-### 2. Create AI Scraper
+### 2. Web Search
+
+- Method: `POST`
+- URL: `https://api.mrscraper.com`
+- Auth: `x-api-token` header
+
+Searches the web and returns a ranked list of results.
+
+#### Payload parameters:
+
+| Field        | Type     | Required | Default | Description                                            |
+| ------------ | -------- | -------- | ------- | ------------------------------------------------------ |
+| `action`     | `string` | Yes      | —       | Always `websearch`                                     |
+| `query`      | `string` | Yes      | —       | Search query text                                      |
+| `country`    | `string` | No       | `us`    | Two-letter country code for the results                |
+| `numResults` | `number` | No       | 10      | Number of results, from 10 to 100; fewer may come back |
+
+#### Request example:
+
+```bash
+curl -X POST "https://api.mrscraper.com" \
+  -H "x-api-token: <MRSCRAPER_API_TOKEN>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "websearch",
+    "query": "web scraping api",
+    "country": "us",
+    "numResults": 10
+  }'
+```
+
+#### Response example:
+
+```json
+{
+  "success": true,
+  "message": "Search completed",
+  "data": [
+    {
+      "rank": 1,
+      "title": "Web Scraping API | MrScraper",
+      "url": "https://mrscraper.com/",
+      "description": "Extract structured data from any website with AI.",
+      "source": "MrScraper"
+    }
+  ],
+  "tokenUsage": 1
+}
+```
+
+#### Notes:
+
+- Results are in `data`, ordered by `rank`.
+- Read the pages you select with the Scraper API (section 1).
+
+### 3. Create AI Scraper
 
 - Method: `POST`
 - Host: `https://api.app.mrscraper.com`
@@ -200,7 +255,7 @@ curl -X POST "https://api.app.mrscraper.com/api/v1/scrapers-ai" \
 - Choose agent type correctly as each agent is specialized for specified use cases. Use `general` for most standard web scraping tasks. The go to agent if the user doesn't specify or the connected LLM is not confident about the type of page. But mostly used for scraping product page, but handles any type of page very well as well. Use `listing` for scraping listing pages like product listings, job listings, etc. Choose this if the connected LLM can confidently identify whether the given URL is a listing page. Use `map` for crawling and getting all subdomain or subpages of a website. Choose this if the user specifies that the given URL is a website and not a specific page. For `map` agent type, there is a special args that can be used to configure the scraping process.
 - For the `map` agent, you can use special arguments to control crawling:<br>`maxDepth` (lower values 1–2 for focused scraping, max 3 recommended),<br>`maxPages` (limits total pages regardless of depth),<br>`limit` (caps total records extracted),<br>and `includePatterns`/`excludePatterns` (regex patterns separated by `||` to specify which URLs to crawl or skip, e.g., `*/products/*||*/blog/*` or `*/cart/*||*.pdf`).<br>If `includePatterns` is an empty string, all URLs are included. If `excludePatterns` is an empty string, no URLs are excluded.
 
-### 3. Rerun AI Scraper
+### 4. Rerun AI Scraper
 
 - Method: `POST`
 - Host: `https://api.app.mrscraper.com`
@@ -270,7 +325,7 @@ curl -X POST "https://api.app.mrscraper.com/api/v1/scrapers-ai-rerun" \
 }
 ```
 
-### 4. Bulk Rerun AI Scraper
+### 5. Bulk Rerun AI Scraper
 
 - Method: `POST`
 - Host: `https://api.app.mrscraper.com`
@@ -315,7 +370,7 @@ curl -X POST "https://api.app.mrscraper.com/api/v1/scrapers-ai-rerun/bulk" \
 }
 ```
 
-### 5. Rerun Manual Scraper
+### 6. Rerun Manual Scraper
 
 - Method: `POST`
 - Host: `https://api.app.mrscraper.com`
@@ -404,7 +459,7 @@ curl -X POST "https://api.app.mrscraper.com/api/v1/scrapers-manual-rerun" \
 }
 ```
 
-### 6. Bulk Rerun Manual Scraper
+### 7. Bulk Rerun Manual Scraper
 
 - Method: `POST`
 - Host: `https://api.app.mrscraper.com`
@@ -449,7 +504,7 @@ curl -X POST "https://api.app.mrscraper.com/api/v1/scrapers-manual-rerun/bulk" \
 }
 ```
 
-### 7. Fetch Results
+### 8. Fetch Results
 
 - Method: `GET`
 - Host: `https://api.app.mrscraper.com`
@@ -518,7 +573,7 @@ curl -X GET "https://api.app.mrscraper.com/api/v1/results?sortField=updatedAt&so
 }
 ```
 
-### 8. Fetch Detailed Result by ID
+### 9. Fetch Detailed Result by ID
 
 - Method: `GET`
 - Host: `https://api.app.mrscraper.com`

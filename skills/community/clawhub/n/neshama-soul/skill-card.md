@@ -1,45 +1,60 @@
-## Description: <br>
-Adds an OCEAN-based personality, emotional response, and persistent preference layer for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Neshama Soul Openclaw gives an AI agent a persistent personality, emotion-aware response style, and user preference memory based on OCEAN and Valence-Arousal models.
 
-## Publisher: <br>
-[neshama-ai](https://clawhub.ai/user/neshama-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neshama-ai](https://clawhub.ai/user/neshama-ai)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to give an agent a persistent personality, emotional tone, and remembered coding preferences across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist user preferences and technical decisions in local markdown files. <br>
-Mitigation: Require user confirmation before writing to USER.md or SOUL.md, and periodically review or delete stored preferences. <br>
-Risk: API-backed features can send message context to an external provider. <br>
-Mitigation: Disable API-backed features for sensitive work and avoid sending secrets, proprietary code, or regulated data to the provider. <br>
-Risk: The release includes a public beta API key and API usage limits. <br>
-Mitigation: Use a personal key for production workflows, review credential handling, and rely on local fallback configuration when the API is unavailable or rate-limited. <br>
+## Use Case:
 
+Developers and external users can install this skill to add persistent persona, user preference memory, and emotion-aware response guidance to an OpenClaw agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neshama-ai/neshama-soul) <br>
-- [Neshama website](https://neshama.pw) <br>
-- [SoulCraft](https://neshama.pw/soulcraft) <br>
-- [Neshama API documentation](https://api.neshama.pw/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance, API Calls] <br>
-**Output Format:** [Markdown guidance with JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist user preferences in local markdown files and may call the Neshama Soul API when API-backed features are enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Persistent profile files can influence future sessions in ways the user may not expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated profile files before use, keep reset and delete controls available, and do not allow profile updates without clear user consent.
+
+Risk: Some messages may be sent to api.neshama.pw when the external API path is used.
+
+Mitigation: Use local-only behavior for confidential work, avoid sending secrets or sensitive project data, and require explicit consent before external API use.
+
+Risk: The artifact claims not to upload certain data while also describing external API use.
+
+Mitigation: Treat the privacy behavior as unresolved until the publisher provides clear data minimization, consent, and retention terms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neshama-ai/skills/neshama-soul)
+- [Neshama website](https://neshama.pw)
+- [SoulCraft](https://neshama.pw/soulcraft)
+- [Neshama Soul API docs](https://api.neshama.pw/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance, shell commands]
+
+**Output Format:** [Markdown text with optional shell commands and configuration file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local soul configuration files and may use an external API when enabled by the skill behavior.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Automates E-Pai-Ke restaurant reservation workflows, including login, shop search, wait-status checks, bookings, and cancellations for Kura Sushi and other restaurants that use E-Pai-Ke. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent use e-pai-ke.com (E-Pai-Ke) to manage restaurant login, search, queue status checks, bookings, and reservation cancellations for restaurants such as Kura Sushi.
 
-## Publisher: <br>
-[dabendan2](https://clawhub.ai/user/dabendan2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dabendan2](https://clawhub.ai/user/dabendan2)
 
-## Use Case: <br>
-External users and agents use this skill to manage E-Pai-Ke restaurant reservations: signing in, finding stores, checking wait status, making bookings, and cancelling reservations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent access to an E-Pai-Ke account and authority to make or cancel live reservations. <br>
-Mitigation: Require the agent to display the restaurant, date, time, party size, and reservation record, then wait for explicit user approval before any final booking or cancellation confirmation. <br>
-Risk: Account credentials may be needed for login and could be exposed if stored in plaintext notes. <br>
-Mitigation: Avoid plaintext credential storage and provide credentials only through a controlled secret or interactive login flow. <br>
+## Use Case:
 
+External users with E-Pai-Ke accounts use this skill to check restaurant queue status and manage reservations. It is intended for agent-assisted booking workflows where the user confirms exact restaurant, time, party size, and cancellation details.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dabendan2/kura-booking) <br>
-- [E-Pai-Ke](https://e-pai-ke.com/) <br>
-- [E-Pai-Ke Reservations](https://e-pai-ke.com/reservationA) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands] <br>
-**Output Format:** [Markdown with inline JavaScript and shell-command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct an agent to use browser automation or Playwright for account login, booking, status checks, and cancellation workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may use saved E-Pai-Ke login credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep credentials out of plain notes where possible and avoid screenshots or logs during login.
+
+Risk: Reservation booking or cancellation could proceed with the wrong details.
+
+Mitigation: Require explicit confirmation of restaurant, date, time, party size, and cancellation target before the agent completes the action.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/dabendan2/skills/kura-booking)
+- [E-Pai-Ke website](https://e-pai-ke.com/)
+- [E-Pai-Ke reservation management](https://e-pai-ke.com/reservationA)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline JavaScript and shell-oriented automation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide browser or Playwright actions for booking, queue checks, login, and cancellation workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

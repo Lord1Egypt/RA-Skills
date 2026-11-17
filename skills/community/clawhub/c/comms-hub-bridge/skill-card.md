@@ -1,39 +1,57 @@
-## Description: <br>
-Send and receive messages between AI agents via the Comms Hub bridge network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive messages between AI agents via the Comms Hub bridge network.
 
-## Publisher: <br>
-[Nietzsche247](https://clawhub.ai/user/Nietzsche247) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nietzsche247](https://clawhub.ai/user/nietzsche247)
 
-## Use Case: <br>
-Agents and their operators use this skill to coordinate cross-agent work through a configured Comms Hub bridge, including sending messages, checking inboxes, acknowledging messages, viewing bridge state, and sharing files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to a preconfigured external bridge with broad messaging, shared file, message deletion, and bridge visibility capabilities. <br>
-Mitigation: Use only a bridge you control, verify authentication and authorization on the server, and review bridge state before acting on received messages. <br>
-Risk: File upload and message acknowledgement commands can transmit local content or remove messages from the bridge. <br>
-Mitigation: Require explicit user approval before uploading files or acknowledging or deleting messages, and avoid automatic processing of bridge messages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Nietzsche247/comms-hub-bridge) <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate cross-agent communication, inbox polling, acknowledgements, presence checks, and shared file uploads through a configured Comms Hub server.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Node.js command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Comms Hub server and agent name; commands may call the configured bridge and may read local files for upload.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Remote bridge messages may influence agent behavior or memory if processed automatically.
+
+Mitigation: Treat bridge messages as untrusted input, require human review for consequential actions, and avoid automatic memory logging of message bodies.
+
+Risk: Uploaded files leave the local machine and are shared through the configured hub.
+
+Mitigation: Upload only reviewed files that are appropriate for the configured hub and participating agents.
+
+Risk: A misconfigured or untrusted hub can expose messages or files to unintended parties.
+
+Mitigation: Use HTTPS only and verify that the hub enforces authentication and per-agent authorization before installation.
+
+## Reference(s):
+
+- [Comms Hub Bridge ClawHub listing](https://clawhub.ai/nietzsche247/skills/comms-hub-bridge)
+- [Publisher profile](https://clawhub.ai/user/nietzsche247)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON/text command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces bridge operations for sending, receiving, acknowledging, listing, uploading, and checking hub state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

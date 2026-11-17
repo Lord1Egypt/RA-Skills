@@ -1,43 +1,58 @@
-## Description: <br>
-Complete Polygon agent toolkit for session-based smart contract wallets, token operations, ERC-8004 on-chain identity and reputation, and x402 micropayments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Polygon agent toolkit for creating session-based smart contract wallets, performing token operations, registering ERC-8004 identity and reputation, and using x402 micropayments through a CLI.
 
-## Publisher: <br>
-[JamesLawton](https://clawhub.ai/user/JamesLawton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jameslawton](https://clawhub.ai/user/jameslawton)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure and operate Polygon Agent Kit workflows, including wallet setup, session permissions, funding, token transfers, swaps, deposits, ERC-8004 registration, and x402 payments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow can auto-run external tunneling software and open a temporary public callback tunnel. <br>
-Mitigation: Install only after reviewing and trusting the upstream code, pin or review the commit before use, and verify the complete approval URL before sharing it with the user. <br>
-Risk: The workflow manages sensitive wallet session material, private keys, access keys, and encrypted session blobs. <br>
-Mitigation: Use minimal wallet balances and tight session limits, never share private keys or session blobs in chats or logs, and delete temporary session files after import. <br>
-Risk: On-chain write operations can transfer tokens, approve sessions, register agents, or execute deposits when broadcast. <br>
-Mitigation: Keep dry-run previews as the default, require explicit --broadcast for writes, and verify recipient, amount, chain, contract, and session permissions before broadcasting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Polygon Agents SDK on ClawHub](https://clawhub.ai/JamesLawton/polygon-agents-sdk) <br>
-- [Polygon Agent Kit repository](https://github.com/0xPolygon/polygon-agent-kit) <br>
-- [Polygon Agent Connector](https://agentconnect.polygon.technology/) <br>
+## Use Case:
 
+Developers and agent builders use this skill to configure Polygon smart contract wallets, manage wallet sessions, fund accounts, execute token operations, register on-chain agent identity, and handle x402 payments.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, environment variables, CLI flags, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes wallet approval, funding, transaction, troubleshooting, and security-handling instructions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide use of CLI wallet sessions with high-impact spending authority.
+
+Mitigation: Set narrow session limits, use dry-runs before broadcast, and review each transaction path before execution.
+
+Risk: The release has supply-chain and network exposure from an unpinned global install and automatic cloudflared tunnel binary download.
+
+Mitigation: Prefer a pinned and audited version, avoid global installs where practical, and review the cloudflared download and tunnel behavior before wallet creation.
+
+Risk: Sensitive wallet session material may be stored locally or in temporary files.
+
+Mitigation: Protect the local wallet directory, keep approval URLs unmodified, and remove temporary session files immediately after use.
+
+## Reference(s):
+
+- [Polygon Agent Kit repository](https://github.com/0xPolygon/polygon-agent-kit)
+- [Sequence ecosystem connector](https://agentconnect.polygon.technology/)
+- [ClawHub skill page](https://clawhub.ai/jameslawton/skills/polygon-agents-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and command tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance includes dry-run-first transaction posture, environment setup, wallet approval flows, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

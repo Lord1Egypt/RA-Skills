@@ -1,49 +1,68 @@
-## Description: <br>
-Helps an agent design and build Feishu Bitable systems from business requirements, including table architecture, field configuration, views, automation workflows, dashboards, permissions, testing, and handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents design, build, automate, and hand off Feishu Bitable systems from business requirements, including table schemas, fields, views, workflows, dashboards, permissions, and supporting documentation.
 
-## Publisher: <br>
-[664624249](https://clawhub.ai/user/664624249) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[664624249](https://clawhub.ai/user/664624249)
 
-## Use Case: <br>
-Business operators, builders, and developers use this skill to turn CRM, project management, inventory, task tracking, data collection, and custom workflow requirements into Feishu Bitable app designs and configuration steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automations or outbound HTTP and webhook actions may expose business or personal data outside Feishu. <br>
-Mitigation: Before enabling automations, review outbound endpoints, AI inputs, and the fields included in each action. <br>
-Risk: Broad robot edit permissions may remain after setup or maintenance. <br>
-Mitigation: Reduce robot edit access after handoff and confirm ownership and field-level permissions with the user. <br>
-Risk: Generated table, permission, or automation plans may not match the organization's operating controls. <br>
-Mitigation: Review delete actions, permission scopes, and workflow behavior before deploying to production data. <br>
+## Use Case:
 
+Developers, operations teams, and business system builders use this skill to turn CRM, project management, inventory, task tracking, and data-collection requirements into Feishu Bitable app structures, automations, dashboards, and handoff materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/664624249/feishu-bitable-builder) <br>
-- [Feishu Bitable field types reference](references/field-types.md) <br>
-- [Feishu Bitable view types guide](references/view-types.md) <br>
-- [Feishu Bitable automation and workflows](references/automation.md) <br>
-- [Feishu Bitable dashboard design](references/dashboard.md) <br>
-- [Feishu Bitable functions guide](references/functions.md) <br>
-- [Feishu Bitable best practices](references/best-practices.md) <br>
-- [Feishu Bitable scenarios](references/scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions, API Calls] <br>
-**Output Format:** [Markdown with inline tool command examples and configuration checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Feishu Bitable app structure, table schemas, field definitions, view plans, automation rules, dashboard recommendations, permission guidance, and delivery checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact SKILL.md) <br>
+Risk: The skill can guide an agent to build or modify Feishu Bitable systems with tenant, app, user, and permission changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target Feishu tenant, app, users, and exact permission changes before execution.
+
+Risk: The source asks the bot to retain edit access after handoff.
+
+Mitigation: Remove bot edit access after delivery unless time-limited support access is explicitly approved.
+
+Risk: Automations may delete data, approve purchases, send customer messages, or export data outside Feishu.
+
+Mitigation: Review high-impact automations before activation and limit payloads to the necessary fields.
+
+Risk: Bitable systems may contain sensitive business, customer, or operational data.
+
+Mitigation: Use least-privilege access, field-level permissions, backups, audit logs, and export review for sensitive data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/664624249/skills/feishu-bitable-builder)
+- [Feishu Bitable field type reference](references/field-types.md)
+- [Feishu Bitable view type guide](references/view-types.md)
+- [Feishu Bitable automation and workflow guide](references/automation.md)
+- [Feishu Bitable dashboard design guide](references/dashboard.md)
+- [Feishu Bitable function guide](references/functions.md)
+- [Feishu Bitable best practices](references/best-practices.md)
+- [Feishu Bitable application scenarios](references/scenarios.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, API Calls, Markdown, Code]
+
+**Output Format:** [Markdown with structured checklists, API/tool call examples, and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Feishu app, table, field, view, automation, permission, dashboard, and handoff specifications.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md body)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

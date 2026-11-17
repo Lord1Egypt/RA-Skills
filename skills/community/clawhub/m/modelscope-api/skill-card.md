@@ -1,44 +1,62 @@
-## Description: <br>
-Modelscope Api helps agents search, query, and download ModelScope models, datasets, skills, MCP server configurations, and Studio resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ModelScope Api helps agents search, query, and download ModelScope models, datasets, skills, MCP servers, and Studio resources, with account-changing actions requiring explicit user confirmation.
 
-## Publisher: <br>
-[chenghd511](https://clawhub.ai/user/chenghd511) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenghd511](https://clawhub.ai/user/chenghd511)
 
-## Use Case: <br>
-Developers and agent users use this skill to work with ModelScope catalog APIs, find models, datasets, skills, and MCP servers, and retrieve commands or configuration needed for downloads and client setup. Operations that change remote resources, install components, or handle secrets should be reviewed and explicitly approved before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ModelScope API tokens and other credentials may be exposed if pasted into shared chats or logged shell commands. <br>
-Mitigation: Use a least-privilege MODELSCOPE_API_TOKEN environment variable and avoid sharing real tokens in chat transcripts or command history. <br>
-Risk: Install, MCP configuration, deploy, delete, or secret-changing actions can modify local or remote resources. <br>
-Mitigation: Review the exact target and command, then require explicit user approval before executing any change operation. <br>
+## Use Case:
 
+Developers and engineers use this skill to discover ModelScope assets, retrieve MCP server configuration, and produce API, SDK, CLI, and token-setup guidance. It can support downloads and Studio account operations when the user supplies appropriate credentials and explicitly confirms account-changing actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenghd511/modelscope-api) <br>
-- [Publisher profile](https://clawhub.ai/user/chenghd511) <br>
-- [Project homepage](https://github.com/Chenghd511/modelscope-api-skill) <br>
-- [Support issues](https://github.com/Chenghd511/modelscope-api-skill/issues) <br>
-- [ModelScope access token page](https://www.modelscope.cn/my/overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON, Python, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ModelScope API response summaries, MCP client configuration, and token setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and artifact metadata) <br>
+Risk: ModelScope install commands may run unreviewed code, including curl-to-bash patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install commands and source packages before execution; avoid curl-to-bash installers when a reviewable package-manager or SDK path is available.
+
+Risk: ModelScope tokens can be exposed through shell history, Git URLs, logs, or copied command examples.
+
+Mitigation: Use least-privilege, short-lived tokens through environment variables and avoid embedding real tokens in commands, Git remotes, files, or chat history.
+
+Risk: Studio deploy, delete, secret, and related management operations can change account resources.
+
+Mitigation: Require explicit confirmation for each account-changing operation and verify the target owner, repository, and operation before proposing or running it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenghd511/skills/modelscope-api)
+- [Publisher profile](https://clawhub.ai/user/chenghd511)
+- [Project homepage from release metadata](https://github.com/Chenghd511/modelscope-api-skill)
+- [Project support from release metadata](https://github.com/Chenghd511/modelscope-api-skill/issues)
+- [ModelScope OpenAPI document](https://modelscope.cn/.well-known/openapi.json)
+- [ModelScope access token page](https://www.modelscope.cn/my/overview)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON snippets, Python examples, shell commands, and configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ModelScope API responses or proposed commands; account-changing actions require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata, SKILL.md frontmatter, clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

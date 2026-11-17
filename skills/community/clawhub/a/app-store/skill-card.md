@@ -1,41 +1,53 @@
-## Description: <br>
-Publish and manage iOS and Android apps with account setup, submission workflows, review compliance, and rejection handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish and manage iOS and Android apps with account setup, submission workflows, review compliance, and rejection handling.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and release managers use this skill to prepare, submit, automate, test, and manage iOS and Android app releases through App Store Connect and Google Play Console. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automation examples involve app-store credentials, signing material, and production release controls. <br>
-Mitigation: Keep credentials in a secret manager, use least-privilege Apple and Google roles, avoid committing signing material, and require human approval before production releases. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [App Store skill page](https://clawhub.ai/ivangdavila/app-store) <br>
-- [CI/CD & Automation](automation.md) <br>
-- [Testing & Beta Distribution](testing.md) <br>
-- [App Store Connect API apps endpoint](https://api.appstoreconnect.apple.com/v1/apps) <br>
-- [Google Play Android Publisher OAuth scope](https://www.googleapis.com/auth/androidpublisher) <br>
+## Use Case:
 
+Developers and release managers use this skill to prepare iOS and Android app store submissions, manage beta testing tracks, handle review feedback, and plan CI/CD release automation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with checklists, tables, and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; automation examples require review before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Copied release automation commands can publish or alter production mobile apps.
+
+Mitigation: Require manual approval gates for release lanes before using the automation examples.
+
+Risk: App Store Connect and Google Play credentials are sensitive and are referenced in automation workflows.
+
+Mitigation: Store credentials only in protected CI secrets and do not commit certificates, private keys, or service account files.
+
+## Reference(s):
+
+- [CI/CD & Automation](automation.md)
+- [Testing & Beta Distribution](testing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with checklists, tables, and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no tools or MCP integrations detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

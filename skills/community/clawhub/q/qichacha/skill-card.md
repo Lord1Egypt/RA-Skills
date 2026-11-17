@@ -1,43 +1,61 @@
-## Description: <br>
-根据公司名称查询企业基本信息、知识产权（专利/商标/著作权），数据来源企查查、天眼查等。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据公司名称查询企业基本信息、知识产权（专利/商标/著作权），数据来源企查查、天眼查等。
 
-## Publisher: <br>
-[bigxiaoxin](https://clawhub.ai/user/bigxiaoxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bigxiaoxin](https://clawhub.ai/user/bigxiaoxin)
 
-## Use Case: <br>
-External users and agents use this skill to look up Chinese company registration details and intellectual-property signals from a company name. Outputs should be treated as search-derived summaries until checked against the linked source pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Company details and intellectual-property fields may be search-derived, stale, or incomplete. <br>
-Mitigation: Treat the report as a lead-generation summary and verify each field against the linked source pages before business, legal, or compliance use. <br>
-Risk: The security review reports an undisclosed lookup provider and possible embedded API key. <br>
-Mitigation: Require publisher disclosure of the lookup provider, remove and rotate embedded credentials, and review the skill before installation. <br>
+## Use Case:
 
+External users and agents use this skill to look up public Chinese company information and intellectual-property summaries by company name, then review source links for fuller records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bigxiaoxin/qichacha) <br>
-- [企查查 search](https://www.qcc.com/web/search) <br>
-- [天眼查 search](https://www.tianyancha.com/search) <br>
-- [爱企查 search](https://www.aiqicha.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Console text report with company fields, intellectual-property sections, and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a company name as input; extracted fields may be incomplete or delayed because they come from public search results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Company names and related investigative interests are sent to Tavily, which is not disclosed in the skill documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose Tavily as a lookup service and avoid sensitive searches until that data flow is acceptable to the user or organization.
+
+Risk: The skill contains an embedded Tavily API key.
+
+Mitigation: Remove the embedded key, rotate it, and require users to provide their own credential through a runtime secret or environment variable.
+
+Risk: The security guidance calls out an unused dependency and HTTP package sources.
+
+Mitigation: Remove unused dependencies and use HTTPS package sources before treating the skill as a normal low-risk lookup skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bigxiaoxin/skills/qichacha)
+- [Qichacha search](https://www.qcc.com/web/search)
+- [Tianyancha search](https://www.tianyancha.com/search)
+- [AiQicha search](https://www.aiqicha.com/search)
+- [Tavily Search API endpoint](https://api.tavily.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text with sectioned company information and source URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Networked lookup results depend on Tavily search responses and public data availability.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence; artifact package metadata says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

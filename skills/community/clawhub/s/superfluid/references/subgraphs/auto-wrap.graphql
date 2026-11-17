@@ -1,0 +1,186 @@
+##################
+# Event Entities #
+##################
+"""
+Event: An interface which is shared by all
+event entities and contains basic transaction
+data.
+"""
+interface Event {
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for accounts that were impacted by the event.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+}
+
+type AddedApprovedStrategyEvent implements Event @entity(immutable: true) {
+ # Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for strategy.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+
+# AddedApprovedStrategyEvent Specific Properties #
+strategy: Bytes!
+}
+
+
+type RemovedApprovedStrategyEvent implements Event @entity(immutable: true) {
+ # Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for strategy.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+
+# RemovedApprovedStrategyEvent Specific Properties #
+strategy: Bytes!
+}
+
+
+type LimitsChangedEvent implements Event @entity(immutable: true) {
+ # Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for manager.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+
+# LimitsChangedEvent Specific Properties #
+upperLimit: BigInt!
+lowerLimit: BigInt!
+}
+
+type WrapExecutedEvent implements Event @entity(immutable: true) {
+# Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the hex id.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt!
+
+# WrapExecutedEvent Specific Properties #
+amount: BigInt!
+wrapScheduleId: Bytes!
+}
+
+type WrapScheduleCreatedEvent implements Event @entity(immutable: true) {
+# Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for superToken, liquidityToken, strategy and account.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+
+# WrapScheduleCreatedEvent Specific Properties #
+account: Bytes!
+superToken: Bytes!
+strategy: Bytes!
+liquidityToken: Bytes!
+expiry: BigInt!
+lowerLimit: BigInt
+upperLimit: BigInt
+wrapScheduleId: Bytes!
+}
+
+type WrapScheduleDeletedEvent implements Event @entity(immutable: true) {
+# Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for account, strategy, liquidityToken and superToken.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+
+# WrapScheduleDeletedEvent Specific Properties #
+account: Bytes!
+strategy: Bytes!
+superToken: Bytes!
+	liquidityToken: Bytes!
+wrapScheduleId: Bytes!
+}
+
+type WrapSchedule @entity(immutable: false) {
+id: String!
+wrapScheduleId: Bytes!
+deletedAt: BigInt
+createdAt: BigInt
+createdBlockNumber: BigInt!
+updatedBlockNumber: BigInt!
+updatedAt: BigInt
+expiredAt: BigInt
+strategy: Bytes!
+manager: Bytes!
+account: Bytes!
+liquidityToken: Bytes!
+superToken: Bytes!
+lowerLimit: BigInt
+upperLimit: BigInt
+lastExecutedAt: BigInt
+amount: BigInt
+isActive: Boolean
+events: [Event!]!
+}
+
+type UserTokenLiquidityToken @entity(immutable: false) {
+id: String!
+currentWrapSchedule: WrapSchedule
+}

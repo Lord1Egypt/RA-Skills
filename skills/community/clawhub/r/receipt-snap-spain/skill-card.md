@@ -1,45 +1,56 @@
-## Description: <br>
-Processes receipt photos and PDFs, extracts vendor, date, amount, and currency, converts expenses to EUR, uploads receipts to Google Drive, and logs them to Google Sheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Receipt Snap processes receipt photos, PDFs, and text descriptions by extracting expense details, converting non-EUR amounts, saving receipt files to Google Drive, and logging rows to Google Sheets.
 
-## Publisher: <br>
-[marinhobot](https://clawhub.ai/user/marinhobot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marinhobot](https://clawhub.ai/user/marinhobot)
 
-## Use Case: <br>
-External users, freelancers, and small businesses in Spain use this skill to turn receipt photos, PDFs, or text descriptions into EUR-normalized expense records, Drive copies, and quarterly summaries for tax-accountant workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Spain <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Receipt images and expense metadata may contain sensitive financial or personal information. <br>
-Mitigation: Use a dedicated private Google Drive folder and Google Sheet, authenticate gog yourself, and review receipts for sensitive information before processing. <br>
-Risk: Local CSV logs can expose expense metadata if stored in shared, synced, or committed directories. <br>
-Mitigation: Set RECEIPT_LOG_FILE outside shared or committed paths and keep receipt logs excluded from source control. <br>
-Risk: Uploads and sheet appends create copies of receipt data on Google services. <br>
-Mitigation: Confirm the Google account, Drive folder ID, and Sheet ID before running upload or logging commands. <br>
+## Use Case:
 
+External users such as freelancers and small businesses in Spain use this skill to organize expense receipts for tax reporting. It helps an agent collect receipt data, convert currencies, upload receipt files, maintain a Google Sheets log, and prepare quarterly summaries.
 
-## Reference(s): <br>
-- [Receipt Snap ClawHub page](https://clawhub.ai/marinhobot/receipt-snap-spain) <br>
-- [marinhobot ClawHub publisher profile](https://clawhub.ai/user/marinhobot) <br>
-- [gog CLI](https://github.com/faradayhq/gog) <br>
-- [Open Exchange Rate API endpoint used by the skill](https://open.er-api.com/v6/latest/{currency}) <br>
+### Deployment Geography for Use:
 
+Spain
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration steps, and receipt-processing confirmations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When executed, the bundled Python script may create or update Google Drive files, Google Sheet rows, and a local CSV receipt log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata and _meta.json) <br>
+Risk: Receipt files and expense metadata are stored in user-configured Google Drive, Google Sheets, and a local CSV log.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted gog-authenticated Google account, verify the configured folder and sheet IDs, and protect or disable the local log on shared machines.
+
+Risk: Receipt extraction, categorization, and quarterly summaries may be incomplete or incorrect for tax filing.
+
+Mitigation: Review extracted vendor, date, amount, currency, category, and summary totals before sharing records with a tax accountant.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marinhobot/skills/receipt-snap-spain)
+- [Publisher profile](https://clawhub.ai/user/marinhobot)
+- [gog CLI](https://github.com/faradayhq/gog)
+- [Exchange rate API endpoint](https://open.er-api.com/v6/latest/{currency})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CSV/Google Sheets row data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local CSV receipt logs and Google Drive/Sheets records when the user runs the helper script with configured credentials.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

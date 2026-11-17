@@ -1,45 +1,59 @@
-## Description: <br>
-Write safe C avoiding memory corruption, buffer overflows, and undefined behavior traps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write safe C avoiding memory corruption, buffer overflows, and undefined behavior traps.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this reference skill when asking agents for C guidance that avoids memory-management, pointer, string, integer, macro, and undefined-behavior mistakes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated C guidance can still include unsafe string handling or memory-management mistakes if applied without review. <br>
-Mitigation: Review generated C carefully, especially string handling, and prefer size-aware patterns with explicit null termination. <br>
-Risk: This skill is a compact reference and may not cover project-specific compiler, platform, or coding-standard requirements. <br>
-Mitigation: Validate recommendations against the target codebase, compiler diagnostics, tests, and applicable C standards before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/c) <br>
-- [Memory Management Traps](memory.md) <br>
-- [Pointer Traps](pointers.md) <br>
-- [String Traps](strings.md) <br>
-- [Type Traps](types.md) <br>
-- [Preprocessor Traps](preprocessor.md) <br>
-- [Undefined Behavior Traps](undefined.md) <br>
+## Use Case:
 
+Developers and engineers use this skill as a concise reference for avoiding common C memory, pointer, string, type, preprocessor, and undefined behavior mistakes.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with inline C examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference guidance; no hidden execution, data access, or persistence was found in security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill provides concise C safety guidance that may not cover every compiler, platform, library, or portability nuance.
+
+Mitigation: Treat the output as a quick reference and review decisions against project coding standards, compiler diagnostics, sanitizers, and authoritative C documentation before relying on them in production.
+
+Risk: Applying brief guidance without review could leave memory safety or undefined behavior issues unresolved in real code.
+
+Mitigation: Use the guidance alongside code review, static analysis, dynamic analysis, and tests for the affected C code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/c)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Memory Management Traps](artifact/memory.md)
+- [Pointer Traps](artifact/pointers.md)
+- [String Traps](artifact/strings.md)
+- [Type Traps](artifact/types.md)
+- [Preprocessor Traps](artifact/preprocessor.md)
+- [Undefined Behavior Traps](artifact/undefined.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown reference guidance with inline C examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise safety guidance; does not execute code or access external data.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

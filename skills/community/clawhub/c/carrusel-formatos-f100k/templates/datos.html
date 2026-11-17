@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>datos · carrusel-formatos-f100k</title>
+<!-- Fichas F17 (tier list), F18 (comparación con cifras) y F19 (mapa visual). Cada slide elige su tipo. -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=DM+Serif+Display&family=Oswald:wght@500;600&display=block" rel="stylesheet">
+<style>
+  :root {
+    --sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+    --cond: 'Oswald', 'Arial Narrow', Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #111; font-family: var(--sans); }
+  .slide { width: 1080px; height: 1350px; position: relative; overflow: hidden; margin: 0 0 24px; }
+  .caja { position: absolute; overflow: hidden; display: flex; flex-direction: column; }
+  .firma { position: absolute; left: 0; right: 0; bottom: 34px; text-align: center; font: 500 24px var(--sans); }
+
+  /* ── TIER LIST (F17) ───────────────────────────────────── */
+  .tier { background: #fff; color: #111; }
+  .tier .titulo { left: 60px; right: 60px; top: 50px; height: 190px; justify-content: center; text-align: center; font: 800 76px/1.05 var(--sans); letter-spacing: -.02em; }
+  .tier .tabla { position: absolute; left: 40px; right: 40px; top: 260px; bottom: 90px; display: flex; flex-direction: column; border-top: 3px solid #111; }
+  .tier .fila { flex: 1; display: flex; border-bottom: 3px solid #111; min-height: 0; }
+  .tier .nivel { width: 210px; flex: none; color: #111; padding: 18px 18px; display: flex; flex-direction: column; gap: 8px; }
+  .tier .letra { width: 58px; height: 58px; border-radius: 12px; background: #111; color: #fff; font: 900 38px/58px var(--sans); text-align: center; }
+  .tier .etq { font: 700 26px/1.15 var(--sans); overflow: hidden; }
+  .tier .items { flex: 1; display: flex; gap: 18px; padding: 16px 18px; min-width: 0; }
+  .tier .item { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+  .tier .mini { flex: 1; min-height: 0; border-radius: 12px; background: #e9e9e9; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; font: 800 44px var(--sans); color: rgba(0,0,0,.35); }
+  .tier .mini img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .tier .nombre { height: 58px; font: 600 24px/1.2 var(--sans); overflow: hidden; }
+  .tier .nombre::before { content: '● '; color: var(--c); }
+  .tier .firma { color: #777; }
+
+  /* ── COMPARACIÓN CON CIFRAS (F18) ──────────────────────── */
+  .cifras { background: #0b0b0b; color: #efe6d2; }
+  .cifras .fondo-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cifras .titulo { left: 60px; right: 60px; top: 60px; height: 250px; justify-content: center; text-align: center; font: 400 104px/.98 var(--serif); text-transform: uppercase; letter-spacing: .01em; }
+  .cifras .sub { left: 60px; right: 60px; top: 318px; height: 60px; justify-content: center; align-items: center; font: 600 40px var(--cond); color: #ef6b2a; text-transform: uppercase; letter-spacing: .06em; flex-direction: row; gap: 22px; }
+  .cifras .sub::before, .cifras .sub::after { content: ''; flex: 1; max-width: 120px; height: 3px; background: #ef6b2a; }
+  .cifras .nota { position: absolute; left: 0; right: 0; top: 392px; text-align: center; font: 400 24px var(--sans); color: #bdb5a4; }
+  .cifras .columnas { position: absolute; left: 50px; right: 50px; top: 460px; bottom: 60px; display: flex; gap: 20px; align-items: flex-end; }
+  .cifras .col { flex: 1; min-width: 0; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: stretch; }
+  .cifras .valor { font: 600 50px/1 var(--cond); color: #f0a24a; text-align: left; margin: 0 0 12px 4px; white-space: nowrap; }
+  .cifras .valor small { font-size: .55em; margin-left: 3px; }
+  .cifras .barra { border-radius: 10px 10px 4px 4px; background: linear-gradient(180deg, #e7b77b, #9c5a2c); box-shadow: inset -10px 0 18px rgba(0,0,0,.25); }
+  .cifras.con-fondo .barra { background: transparent; box-shadow: none; }
+  .cifras .nombre { height: 92px; margin-top: 16px; font: 600 26px/1.15 var(--cond); text-transform: uppercase; text-align: center; color: #efe6d2; overflow: hidden; }
+  .cifras .firma { color: #8f8878; bottom: 18px; }
+
+  /* ── MAPA (F19) ────────────────────────────────────────── */
+  .mapa { background: #e4e4e2; color: #151515; }
+  .mapa svg.lineas { position: absolute; inset: 0; width: 1080px; height: 1350px; pointer-events: none; }
+  .mapa .centro { position: absolute; left: 300px; top: 555px; width: 480px; height: 240px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden;
+    font: 800 104px/1 var(--sans); letter-spacing: -.03em; }
+  .mapa .centro small { display: block; font: 600 40px/1.1 var(--sans); letter-spacing: 0; margin-bottom: 4px; }
+  .mapa .rama { position: absolute; width: 220px; height: 118px; display: flex; flex-direction: column; justify-content: center; overflow: hidden; font: 500 27px/1.15 var(--sans); }
+  .mapa .rama .nota { font-size: .66em; color: #555; margin-top: 3px; }
+  .mapa .rama.arr, .mapa .rama.aba { width: 170px; }
+  .mapa .rama.izq { text-align: right; } .mapa .rama.der { text-align: left; } .mapa .rama.arr, .mapa .rama.aba { text-align: center; }
+  .mapa .firma { color: #444; font-size: 22px; letter-spacing: .12em; }
+
+  /* ── CIERRE ─────────────────────────────────────────────── */
+  .cierre { background: #0b0b0b; color: #fff; }
+  .cierre .texto { left: 90px; right: 90px; top: 380px; height: 420px; justify-content: center; text-align: center; font: 800 120px/1 var(--sans); text-transform: uppercase; letter-spacing: -.02em; }
+  .cierre .sub { left: 120px; right: 120px; top: 820px; height: 200px; justify-content: flex-start; text-align: center; font: 500 44px/1.25 var(--sans); color: #d8d8d8; }
+  .cierre .firma { color: #999; }
+</style>
+</head>
+<body>
+<div id="carrusel"></div>
+<script>
+window.SPEC = /*__SPEC__*/null;
+/*__COMUN__*/
+
+const COLOR_NIVEL = { S: '#ef4444', A: '#f97316', B: '#facc15', C: '#22c55e', D: '#60a5fa' };
+
+function tier(s, spec) {
+  return `<section class="slide tier">
+    <div class="caja titulo" data-fit><div>${md(s.titulo)}</div></div>
+    <div class="tabla">${s.filas.map(f => `
+      <div class="fila" style="--c:${COLOR_NIVEL[f.nivel] || '#999'}">
+        <div class="nivel" style="background:${COLOR_NIVEL[f.nivel] || '#999'}"><div class="letra">${esc(f.nivel)}</div><div class="etq">${md(f.etiqueta || '')}</div></div>
+        <div class="items">${f.items.map(it => `<div class="item">
+          <div class="mini">${it.img ? `<img src="${esc(it.img)}">` : esc((it.nombre || '?').slice(0, 1))}</div>
+          <div class="nombre">${md(it.nombre)}</div></div>`).join('')}</div>
+      </div>`).join('')}</div>
+    ${spec.handle ? `<div class="firma">${esc(spec.handle)}</div>` : ''}
+  </section>`;
+}
+
+function cifras(s, spec) {
+  const max = Math.max(...s.items.map(x => Number(x.valor)));
+  const fondo = s.fondo;
+  return `<section class="slide cifras ${fondo ? 'con-fondo' : ''}">
+    ${fondo ? `<img class="fondo-img" src="${esc(fondo)}">` : ''}
+    <div class="caja titulo" data-fit><div>${md(s.titulo)}</div></div>
+    ${s.sub ? `<div class="caja sub" data-fit><span>${md(s.sub)}</span></div>` : ''}
+    ${s.nota ? `<div class="nota">${md(s.nota)}</div>` : ''}
+    <div class="columnas">${s.items.map(x => `<div class="col">
+      <div class="valor">${esc(x.valor)}<small>${esc(x.unidad || '')}</small></div>
+      <div class="barra" style="height:${Math.max(4, (Number(x.valor) / max) * 62)}%"></div>
+      <div class="nombre" data-fit data-min="0.6">${md(x.nombre)}</div></div>`).join('')}</div>
+    ${spec.handle ? `<div class="firma">${esc(spec.handle)}</div>` : ''}
+  </section>`;
+}
+
+// Reparte las ramas en 4 lados (arriba, derecha, abajo, izquierda) en sentido horario
+function ladosMapa(n) {
+  const arr = Math.min(3, Math.ceil(n / 4)), aba = Math.min(3, Math.floor(n / 4));
+  const resto = n - arr - aba;
+  const der = Math.ceil(resto / 2), izq = resto - der;
+  return { arr, der, aba, izq };
+}
+
+function mapa(s, spec) {
+  const L = ladosMapa(s.ramas.length);
+  const pos = [];
+  const repartir = (k, a, b) => Array.from({ length: k }, (_, i) => a + (b - a) * (k === 1 ? .5 : i / (k - 1)));
+  repartir(L.arr, 350, 730).forEach(x => pos.push({ lado: 'arr', x: x - 85, y: 180 }));
+  repartir(L.der, 430, 920).forEach(y => pos.push({ lado: 'der', x: 840, y: y - 59 }));
+  repartir(L.aba, 730, 350).forEach(x => pos.push({ lado: 'aba', x: x - 85, y: 1130 }));
+  repartir(L.izq, 920, 430).forEach(y => pos.push({ lado: 'izq', x: 20, y: y - 59 }));
+  const partes = String(s.centro).split('|');
+  return `<section class="slide mapa">
+    <svg class="lineas"></svg>
+    <div class="centro" data-fit>${partes.length > 1 ? `<small>${md(partes[0])}</small><div>${md(partes[1])}</div>` : `<div>${md(partes[0])}</div>`}</div>
+    ${s.ramas.map((r, i) => `<div class="rama ${pos[i].lado}" data-fit data-lado="${pos[i].lado}" style="left:${pos[i].x}px;top:${pos[i].y}px">
+      <div>${md(r.texto)}</div>${r.nota ? `<div class="nota">${md(r.nota)}</div>` : ''}</div>`).join('')}
+    ${spec.handle ? `<div class="firma">${esc(spec.handle)}</div>` : ''}
+  </section>`;
+}
+
+function cierre(s, spec) {
+  return `<section class="slide cierre">
+    <div class="caja texto" data-fit><div>${md(s.texto)}</div></div>
+    ${s.sub ? `<div class="caja sub" data-fit><div>${md(s.sub)}</div></div>` : ''}
+    ${spec.handle ? `<div class="firma">${esc(spec.handle)}</div>` : ''}
+  </section>`;
+}
+
+function pintar(spec, cont) {
+  const tipos = { tier, cifras, mapa, cierre };
+  cont.innerHTML = spec.slides.map(s => (tipos[s.tipo] || cierre)(s, spec)).join('');
+}
+
+// Líneas del mapa en ángulo recto: cada lado tiene un tronco paralelo al centro
+function despues() {
+  document.querySelectorAll('.slide.mapa').forEach(sl => {
+    const R = el => { const a = el.getBoundingClientRect(), b = sl.getBoundingClientRect(); return { l: a.left - b.left, t: a.top - b.top, r: a.right - b.left, b: a.bottom - b.top, cx: (a.left + a.right) / 2 - b.left, cy: (a.top + a.bottom) / 2 - b.top }; };
+    const c = R(sl.querySelector('.centro'));
+    const seg = [];
+    const ramas = [...sl.querySelectorAll('.rama')].map(el => ({ lado: el.dataset.lado, r: R(el) }));
+    const G = 36;
+    for (const lado of ['arr', 'der', 'aba', 'izq']) {
+      const rs = ramas.filter(x => x.lado === lado);
+      if (!rs.length) continue;
+      if (lado === 'izq' || lado === 'der') {
+        const tx = lado === 'izq' ? c.l - G : c.r + G;
+        rs.forEach(x => seg.push([lado === 'izq' ? x.r.r + 10 : x.r.l - 10, x.r.cy, tx, x.r.cy]));
+        const ys = rs.map(x => x.r.cy).concat([c.cy]);
+        seg.push([tx, Math.min(...ys), tx, Math.max(...ys)]);
+        seg.push([tx, c.cy, lado === 'izq' ? c.l : c.r, c.cy]);
+      } else {
+        const ty = lado === 'arr' ? c.t - G : c.b + G;
+        rs.forEach(x => seg.push([x.r.cx, lado === 'arr' ? x.r.b + 6 : x.r.t - 6, x.r.cx, ty]));
+        const xs = rs.map(x => x.r.cx).concat([c.cx]);
+        seg.push([Math.min(...xs), ty, Math.max(...xs), ty]);
+        seg.push([c.cx, ty, c.cx, lado === 'arr' ? c.t : c.b]);
+      }
+    }
+    sl.querySelector('svg.lineas').innerHTML = seg.map(([a, b, x, y]) => `<line x1="${a}" y1="${b}" x2="${x}" y2="${y}" stroke="#1a1a1a" stroke-width="2"/>`).join('');
+  });
+}
+
+arrancar({ pintar, familias: ['Inter', 'DM Serif Display', 'Oswald'], despues });
+</script>
+</body>
+</html>

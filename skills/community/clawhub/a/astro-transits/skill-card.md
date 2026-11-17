@@ -1,42 +1,54 @@
-## Description: <br>
-Astrological transit calculator with natal chart support. Daily transits, weekly forecasts, void-of-course Moon, aspects, stations, and ingresses. Uses Swiss Ephemeris. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Astrological transit calculator with natal chart support. Daily transits, weekly forecasts, void-of-course Moon, aspects, stations, and ingresses. Uses Swiss Ephemeris.
 
-## Publisher: <br>
-[mizukaizen](https://clawhub.ai/user/mizukaizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mizukaizen](https://clawhub.ai/user/mizukaizen)
 
-## Use Case: <br>
-External users and agents use this skill to calculate local astrological transit reports, natal chart JSON, weekly forecasts, and void-of-course Moon checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Natal chart files can contain birth date, time, timezone, and location coordinates. <br>
-Mitigation: Keep saved chart JSON files private and avoid sharing them in prompts, logs, or public repositories. <br>
-Risk: Installing Python dependencies directly into a shared environment can affect other projects. <br>
-Mitigation: Install pyswisseph in a virtual environment before running the scripts. <br>
-Risk: The natal chart save path can overwrite an existing file. <br>
-Mitigation: Choose --save paths deliberately and avoid paths used by unrelated files. <br>
+## Use Case:
 
+External users and developers use this skill to generate local astrological transit context from natal chart data, including daily and weekly forecasts, Moon phase, void-of-course status, stations, and ingresses.
 
-## Reference(s): <br>
-- [Astro Transits ClawHub listing](https://clawhub.ai/mizukaizen/astro-transits) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown instructions with shell commands; scripts emit JSON and plain-text transit reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with python3 and pyswisseph; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Saved natal chart JSON contains birth date, birth time, timezone, and location coordinates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store generated chart files in an appropriate local location and avoid sharing them unless intended.
+
+Risk: The skill requires installing the `pyswisseph` Python package before use.
+
+Mitigation: Install dependencies in a virtual environment and consider pinning the package version before deployment.
+
+## Reference(s):
+
+- [Astro Transits on ClawHub](https://clawhub.ai/mizukaizen/skills/astro-transits)
+- [Homepage listed in skill metadata](https://github.com/mizukaizen/openclaw-skills-public)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell command examples plus JSON and plain-text script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs local Python scripts; generated natal chart files include birth date, time, timezone, and location coordinates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

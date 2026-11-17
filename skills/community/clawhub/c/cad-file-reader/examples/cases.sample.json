@@ -1,0 +1,28 @@
+{
+  "schema": "cad-real-dwg-regression/v1",
+  "title": "真图回归清单样例（脱敏模板）",
+  "note": "复制本文件后，把 path 换成本地真图介质路径；本样例不含任何真实公司路径/图号。清单放在技能包之外，发布内容不得包含真图路径。",
+  "cases": [
+    {
+      "id": "electrical_site_a",
+      "name": "电气专业样例图",
+      "path": "/本地介质/图纸/电气样例.dwg",
+      "kind": "electrical",
+      "expect": {"drawing_types": 1, "systems": 1}
+    },
+    {
+      "id": "structural_site_a",
+      "name": "结构专业样例图",
+      "path": "/本地介质/图纸/结构样例.dwg",
+      "kind": "structural",
+      "expect": {"drawing_types": 1, "members": 1}
+    },
+    {
+      "id": "site_plan_a",
+      "name": "总图场地样例图",
+      "path": "/本地介质/图纸/总图场地样例.dwg",
+      "kind": "site",
+      "expect": {"drawing_types": 1, "site_geometry": 1}
+    }
+  ]
+}

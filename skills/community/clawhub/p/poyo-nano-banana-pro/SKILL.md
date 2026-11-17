@@ -1,10 +1,16 @@
 ---
 name: poyo-nano-banana-pro
 description: Nano Banana Pro image generation and editing on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `nano-banana-pro`, `nano-banana-pro-edit`, text-to-image, image editing, multi-reference image workflows, output format control, and 1K/2K/4K output.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/image-series/nano-banana-2","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/nano-banana-2-api","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Nano Banana Pro Image Generation and Editing
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/nano-banana-2-api>
+- API docs: <https://docs.poyo.ai/api-manual/image-series/nano-banana-2>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill for Nano Banana Pro jobs on PoYo. It covers text-to-image generation, image editing, multi-reference workflows, output format control, and higher-resolution output through PoYo's async generation API.
 

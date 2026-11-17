@@ -1,50 +1,64 @@
-## Description: <br>
-Transcribe, diarise, translate, post-process, and structure audio/video with AssemblyAI for speaker-aware transcripts, subtitles, Markdown, normalized JSON, and downstream agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes, diarises, translates, post-processes, and structures audio/video with AssemblyAI into agent-friendly Markdown, JSON, subtitle, and bundle outputs.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers and agents use this skill to run audio or video transcription workflows that need AssemblyAI-specific capabilities such as model routing, language detection, speaker diarisation, translation, structured extraction, and reusable transcript exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive audio, video, transcripts, prompts, schemas, and API keys may pass through the SkillBoss/HeyBossAI service path. <br>
-Mitigation: Install only when that service path is approved; test with non-sensitive content first and avoid confidential or regulated recordings unless approved. <br>
-Risk: Transcript bundles and sidecar exports can write sensitive transcript artifacts to disk. <br>
-Mitigation: Review output locations such as --bundle-dir and --out, restrict access to generated files, and remove unneeded artifacts after review. <br>
-Risk: The CLI includes a delete command that removes remote transcript data. <br>
-Mitigation: Only allow delete when the user explicitly intends to remove the remote transcript. <br>
+## Use Case:
 
+Developers and agents use this skill to run AssemblyAI-specific transcription workflows for local files or media URLs, including speaker labels, speaker naming, language detection, translation, structured extraction, and reusable transcript exports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-audio-transcribe) <br>
-- [AssemblyAI documentation](https://www.assemblyai.com/docs) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
-- [Capabilities reference](references/capabilities.md) <br>
-- [Workflow recipes](references/workflows.md) <br>
-- [Output formats](references/output-formats.md) <br>
-- [Speaker mapping reference](references/speaker-mapping.md) <br>
-- [LLM Gateway notes](references/llm-gateway.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown transcripts, normalized agent JSON, raw JSON, bundle manifests, subtitles, paragraph/sentence text, and CLI command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bundle mode can write multiple sidecar files; speaker-aware formatting and schema-based LLM extraction are supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact metadata reports 2.0.0) <br>
+Risk: Sensitive recordings, media URLs, transcript text, prompts, and schemas may be sent through the SkillBoss/HeyBoss API hub and AssemblyAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved media and prompts; avoid confidential, regulated, or consent-sensitive recordings unless that processing path is approved.
+
+Risk: The skill documentation may read like direct AssemblyAI processing while server security evidence flags an additional API hub processing path.
+
+Mitigation: Review the processing path before installation and disclose or approve the external services involved before use.
+
+Risk: Custom base URLs can redirect audio, transcript, prompt, or schema data to an untrusted destination.
+
+Mitigation: Pass custom base URLs only when the destination is explicitly trusted and approved for the data being processed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-audio-transcribe)
+- [AssemblyAI documentation](https://www.assemblyai.com/docs)
+- [AssemblyAI capabilities reference](references/capabilities.md)
+- [Workflow recipes](references/workflows.md)
+- [Output formats](references/output-formats.md)
+- [Speaker mapping reference](references/speaker-mapping.md)
+- [LLM Gateway notes](references/llm-gateway.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands; generated artifacts may include Markdown transcripts, normalized agent JSON, raw JSON, text, SRT, VTT, and manifest files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, internet access, and SKILLBOSS_API_KEY; bundle mode writes multiple transcript sidecar files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

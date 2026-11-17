@@ -1,7 +1,7 @@
 ---
-name: openclaw-continuous-learning
-slug: openclaw-continuous-learning
-version: 1.2.1
+name: continue-learning
+slug: continue-learning
+version: 1.3.2
 description: |
   Instinct-based learning system for OpenClaw. Analyzes sessions, detects patterns, creates atomic learnings with confidence scoring, and suggests optimizations for self-evolution.
   
@@ -208,21 +208,43 @@ Track error patterns:
 Build error-handling instincts
 ```
 
+## Security & Privacy
+
+1. **Scoped analysis (opt-in).** `analyze.mjs` does not silently scan every agent. It analyses
+   only sessions of an agent you explicitly name with `--agent <name>`, or all agents only when
+   you pass `--all`. Running it with no scope refuses.
+2. **Redaction.** Any session-derived text stored (error snippets, evidence) is secret-redacted
+   and control/Unicode-stripped before persistence. Tokens, API keys, private-key blocks, long
+   hex, and URI credentials become `[REDACTED]`.
+3. **Retention caps.** Learning is bounded: instincts capped at the most recent 200, evidence
+   capped at 10 per instinct, patterns capped at the last 50 analysis runs. Nothing is retained
+   unbounded.
+4. **Deletion control.** Run `node scripts/analyze.mjs prune` to delete all stored instincts,
+   patterns, and optimizations at any time.
+5. **No raw transcripts.** Full session text is never persisted. Only aggregated counts and
+   redacted snippets are stored. Suggestions require your approval to apply — nothing
+   auto-modifies your agent.
+
 ## Quick Start
 
 ```bash
-# Analyze sessions (reads agent .jsonl files from ~/.openclaw/agents/)
-cd ~/.openclaw/workspace/skills/openclaw-continuous-learning
-node scripts/analyze.mjs
+# Analyze sessions for ONE explicit agent (opt-in scoping)
+cd ~/.openclaw/workspace/skills/continue-learning
+node scripts/analyze.mjs --agent <agent-name>
 
-# List learned instincts
+# Explicitly analyze all agents
+node scripts/analyze.mjs --all
+
+# List learned instincts / optimizations / patterns (no scope needed)
 node scripts/analyze.mjs instincts
-
-# Show optimizations
 node scripts/analyze.mjs list
+node scripts/analyze.mjs patterns
 
-# Show error patterns
-node scripts/analyze.mjs errors
+# Show redacted error patterns (scoped)
+node scripts/analyze.mjs errors --agent <agent-name>
+
+# Delete all stored learning data
+node scripts/analyze.mjs prune
 ```
 
 ## Setup

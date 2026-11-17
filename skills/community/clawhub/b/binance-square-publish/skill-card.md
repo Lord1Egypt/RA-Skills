@@ -1,41 +1,62 @@
-## Description: <br>
-Publishes plain-text posts and generated daily Web3, AI, and macro news briefings to Binance Square using a user-provided Square OpenAPI key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes plain text posts to Binance Square and can generate a daily Web3, AI, and macro news brief for posting.
 
-## Publisher: <br>
-[RenYuKe-CN](https://clawhub.ai/user/RenYuKe-CN) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renyuke-cn](https://clawhub.ai/user/renyuke-cn)
 
-## Use Case: <br>
-Agents and social media operators use this skill to prepare and publish Binance Square text posts, token-tagged commentary, and daily news briefings. It is intended for workflows where the user supplies their own Square OpenAPI key and reviews the final content before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Binance Square API key with public posting authority. <br>
-Mitigation: Store the key as a secret, use only a key you are comfortable granting posting authority to, and avoid exposing the full key in prompts or logs. <br>
-Risk: Generated or scheduled posts may publish public content before the user has reviewed it. <br>
-Mitigation: Require the agent to show the exact final post and wait for explicit user confirmation before publishing to Binance Square. <br>
+## Use Case:
 
+External users and developers use this skill to publish configured text posts, market commentary, and generated daily news briefs to Binance Square under their own Binance Square identity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RenYuKe-CN/binance-square-publish) <br>
-- [Binance Square OpenAPI](https://www.binance.com/zh-CN/square/openapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and shell command examples; successful posting returns a Binance Square post URL.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports plain-text posts with token and topic tags; artifact guidance recommends keeping content under 2000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence and frontmatter) <br>
+Risk: The skill can publish public content under the user's Binance Square identity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that publishing authority is intended, and review generated posts before publication.
+
+Risk: The skill asks users to configure a live Binance Square OpenAPI key.
+
+Mitigation: Use a dedicated least-privilege API key, keep it out of tracked or shared files, mask it in outputs, and rotate it if exposure is suspected.
+
+Risk: Scheduled posting can publish unattended public posts.
+
+Mitigation: Enable cron posting only after accepting unattended publication risk, and prefer a review step for generated news briefs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renyuke-cn/skills/binance-square-publish)
+- [Binance Square OpenAPI](https://www.binance.com/zh-CN/square/openapi)
+- [Binance Square content posting endpoint](https://www.binance.com/bapi/composite/v1/public/pgc/openApi/content/add)
+- [6551 Web3 hot news API](https://ai.6551.io/open/free_hot?category=web3)
+- [6551 AI hot news API](https://ai.6551.io/open/free_hot?category=ai)
+- [6551 macro hot news API](https://ai.6551.io/open/free_hot?category=macro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline JSON, YAML, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces plain text Binance Square post content and post links after successful publication.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

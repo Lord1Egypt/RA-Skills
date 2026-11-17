@@ -1,46 +1,61 @@
-## Description: <br>
-Step-by-step plumbing fixes for common household problems without calling a plumber, including clogged sinks or toilets, running toilets, dripping faucets, and minor leaks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Step-by-step plumbing fixes for common household problems without calling a plumber, for clogged sinks or toilets, running toilets, dripping faucets, and minor leaks.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-Homeowners, renters, and household helpers use this skill to diagnose common fixture-level plumbing issues, follow low-tool repair steps, and decide when the problem should be escalated to a licensed professional. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store local household plumbing notes such as shut-off locations and repair history. <br>
-Mitigation: Only provide details you are comfortable keeping in the agent's state, and review or clear saved state when the information is no longer needed. <br>
-Risk: DIY repair advice can be inappropriate for emergencies, regulated work, or issues beyond fixture-level repairs. <br>
-Mitigation: Treat the guidance as general help and call a licensed professional for gas lines, supply lines, main pipes, structural work, wall or ceiling leaks, electrical hazards, or unresolved problems. <br>
-Risk: Incorrect repairs can worsen water damage or create unsafe conditions. <br>
-Mitigation: Turn off the relevant water supply before repairs, stop after failed attempts, and escalate to a plumber when the skill's stop criteria apply. <br>
+## Use Case:
 
+External users and household occupants use this skill to diagnose common fixture-level plumbing problems and follow cautious DIY repair steps. It also helps users decide when to stop and call a licensed professional.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/basic-plumbing-troubleshooting) <br>
-- [This Old House plumbing guides](https://www.thisoldhouse.com/plumbing) <br>
-- [Family Handyman plumbing guides](https://www.familyhandyman.com/list/plumbing-repair/) <br>
-- [EPA WaterSense](https://www.epa.gov/watersense) <br>
-- [Community Action Partnership](https://communityactionpartnership.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, step-by-step procedures, and YAML state or automation trigger examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist local household plumbing notes such as shut-off locations, active issue status, methods tried, and repair history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Users may rely on DIY guidance for plumbing emergencies, gas issues, electrical-adjacent water, main-line backups, or work requiring permits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Route emergencies, gas-related issues, water near electrical components, multiple-fixture backups, and supply-line, main-pipe, or structural work to licensed professionals or emergency services.
+
+Risk: Persisted shut-off locations and repair notes may reveal household details a user does not want stored.
+
+Mitigation: Only persist shut-off locations and repair history that the user is comfortable storing, and allow the user to omit sensitive details.
+
+Risk: Incorrect repair attempts can worsen leaks, damage pipes, or create unsafe working conditions.
+
+Mitigation: Start by locating shut-off valves, avoid chemical drain cleaners, stop after failed attempts, and call a plumber when the skill's stop criteria are met.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/howtousehumans/skills/basic-plumbing-troubleshooting)
+- [This Old House plumbing guides](https://www.thisoldhouse.com)
+- [Family Handyman DIY plumbing library](https://www.familyhandyman.com)
+- [EPA WaterSense](https://www.epa.gov/watersense)
+- [Community Action Partnership](https://communityactionpartnership.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with checklists, repair steps, and YAML state examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist shut-off locations, active issue notes, methods tried, and repair history when the agent supports state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

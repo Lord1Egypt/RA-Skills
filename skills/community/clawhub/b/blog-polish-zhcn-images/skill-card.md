@@ -1,41 +1,57 @@
-## Description: <br>
-Polish a technical blog draft into a 1000-1200 word, 4-5 section Simplified Chinese article, preserve technical terms and code, and generate consistent hero and per-section image prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polish a technical blog draft into an 800-1000 word, 3-4 section zh-CN article, preserve technical terms/code, and generate consistent hero and per-section image prompts when the user asks to polish and translate a blog with images.
 
-## Publisher: <br>
-[j3ffyang](https://clawhub.ai/user/j3ffyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j3ffyang](https://clawhub.ai/user/j3ffyang)
 
-## Use Case: <br>
-Writers, developer advocates, and technical content teams use this skill to polish an existing technical blog draft, translate it into Simplified Chinese, preserve technical accuracy, and package matching image prompts for publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a local draft path that may contain sensitive or unpublished content. <br>
-Mitigation: Confirm the draft path before running the skill and avoid using drafts that contain secrets or confidential material. <br>
-Risk: The skill writes polished Markdown and image prompt outputs to a local directory. <br>
-Mitigation: Choose an output directory where generated publication files can be safely created and reviewed before sharing. <br>
+## Use Case:
 
+External users, developers, and technical writers use this skill to turn a draft technical blog into a polished Simplified Chinese Markdown article with matching image prompts while preserving code and technical terms.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/j3ffyang/blog-polish-zhcn-images) <br>
-- [Publisher Profile](https://clawhub.ai/user/j3ffyang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown file plus JSON-style structured paths and image prompt lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include a polished markdown path, intended or generated image paths, and single-line prompts for the hero and section images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: frontmatter and server release evidence) <br>
+Risk: The security summary says the executable workflow may create a simulated result rather than a genuinely polished zh-CN article.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated Markdown against the original draft and verify translation quality before publishing.
+
+Risk: Drafts and polished outputs are saved under ~/.openclaw by default, which may retain sensitive content locally.
+
+Mitigation: Use a non-sensitive output directory for private drafts or remove generated files after review.
+
+Risk: The artifact can return intended image filenames and prompts without actually generating image files.
+
+Mitigation: Confirm referenced image files exist, or run a separate image-generation step before treating the package as complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/j3ffyang/skills/blog-polish-zhcn-images)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration]
+
+**Output Format:** [JSON containing output paths and image prompt arrays, with Markdown content written to disk]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output is under ~/.openclaw/workspace/contentPolished; image paths may be intended filenames when image generation is unavailable.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

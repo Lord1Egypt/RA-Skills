@@ -1,7 +1,7 @@
 ---
 name: chestertons-fence
 description: "Activate when: someone says 'let's just remove this', 'why do we still have this rule?', 'this seems useless/outdated', 'nobody knows why this is here', new leadership restructuring without knowing the history, a developer deleting code whose purpose isn't documented, a regulator repealing a law without tracing its origin.
-  Do NOT activate when: the fence's history is fully documented and the documented purpose is confirmed obsolete (investigation already done); the reformer is the original builder and the rationale is fully understood."
+  Do NOT activate when: the fence's history is fully documented and the documented purpose is confirmed obsolete (investigation already done); the reformer is the original builder and the rationale is fully understood. More: deciqai.com/c/chestertons-fence"
 ---
 
 # Chesterton's Fence
@@ -10,7 +10,7 @@ description: "Activate when: someone says 'let's just remove this', 'why do we s
 
 Before removing a rule, process, code path, or institution — you must understand why it was put there. Only when you can articulate the original purpose are you qualified to decide whether it still applies. Three components: (1) "I can't see the purpose" is evidence about you, not the fence; (2) investigation is mandatory, not optional; (3) demonstrated understanding is the prerequisite for change.
 
-Composes with [`survivorship-bias`](../survivorship-bias/SKILL.md), [`second-order-thinking`](../second-order-thinking/SKILL.md), [`feedback-loops`](../feedback-loops/SKILL.md), [`first-principles`](../first-principles/SKILL.md).
+Composes with `survivorship-bias`, `second-order-thinking`, `feedback-loops`, `first-principles`.
 
 ## When to Use
 
@@ -19,6 +19,7 @@ Composes with [`survivorship-bias`](../survivorship-bias/SKILL.md), [`second-ord
 - A developer "cleaning up" code whose purpose isn't documented
 - A regulator or legislator repealing existing protections
 - Someone says "why is this here?", "let's just remove this", "this seems useless"
+- An AI-assisted rewrite/refactor proposes deleting an "ugly" guardrail, edge-case branch, validation, or manual review gate the model calls redundant
 
 **Not when:** fence history is fully documented and purpose is confirmed obsolete; reformer is the original builder with full rationale understood.
 
@@ -60,7 +61,9 @@ Decision: Remove/Modify/Keep/Replace — reasoning
 Docs: updated fence docs / removal note / monitoring owner + rebuild criteria
 ```
 
-*→ Method in Action: [Chesterton 1929 and the Modern Software / Regulatory Application](examples/chesterton-1929-and-the-modern-software-regulatory-application.md)*
+*→ Method in Action: [Chesterton 1929 and the Modern Software / Regulatory Application](examples/chesterton-1929-and-the-modern-software-regulatory-application.md) · [The 1958 Great Sparrow Campaign](examples/1958-great-sparrow-campaign-and-the-ecological-fence.md)*
+
+*→ 2026 lens: [The AI-Rewrite Wave and the Guardrails That Encoded Hard-Won Knowledge (2024–2026)](examples/ai-rewrite-wave-deleting-guardrails-2024-2026.md)*
 
 ## Pack: Application Patterns by Domain
 
@@ -116,4 +119,6 @@ Docs: updated fence docs / removal note / monitoring owner + rebuild criteria
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/chestertons-fence** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/chestertons-fence.json*

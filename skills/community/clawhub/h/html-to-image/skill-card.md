@@ -1,38 +1,56 @@
-## Description: <br>
-Takes a URL, HTML file path, or raw HTML code and generates a printable image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Takes a URL, HTML file path, or raw HTML code and generates a printable image.
 
-## Publisher: <br>
-[upwell](https://clawhub.ai/user/upwell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[upwell](https://clawhub.ai/user/upwell)
 
-## Use Case: <br>
-Developers and content workflows can use this skill to render a URL, local HTML file, or raw HTML snippet into an image for previews, documentation, review, or printable output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Rendering user-provided URLs, local files, or HTML can expose external content or local file contents during capture. <br>
-Mitigation: Use trusted sources, review the requested input path or URL before execution, and inspect the generated image before relying on it. <br>
-Risk: The security evidence reports a clean verdict but still advises review before using workflows that can make real local or authorized remote changes. <br>
-Mitigation: Run the skill in an appropriate workspace and review outputs before sharing, publishing, or using them in downstream workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and agents use this skill to render a URL, local HTML file, or raw HTML string into a printable image with configurable format, viewport width, and full-page capture.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON] <br>
-**Output Format:** [JSON metadata with an image file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates PNG, JPEG, or WebP output using the requested viewport width and optional full-page capture.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The shell wrapper can be abused to run arbitrary commands when given untrusted format or source inputs.
+
+Mitigation: Validate source_type, source_content, and format before execution, and avoid using the skill with untrusted URLs, HTML, file paths, or format values until input handling is hardened.
+
+Risk: The skill downloads an unpinned browser tool at runtime.
+
+Mitigation: Pin or vendor agent-browser before deployment so runtime behavior is reproducible and reviewable.
+
+Risk: Rendering URLs, local files, or raw HTML may involve network access and temporary or output file handling.
+
+Mitigation: Document network access, temporary-file behavior, and output-directory behavior before broad use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/upwell/skills/html-to-image)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON]
+
+**Output Format:** [JSON object with the generated image path and metadata; image file output in PNG, JPEG, or WebP]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes output path, file size, image format, and source type.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

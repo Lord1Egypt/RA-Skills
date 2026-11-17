@@ -1,45 +1,56 @@
-## Description: <br>
-Install, update, and monitor E.x.O. tools such as jasper-recall, hopeIDS, context compaction, OpenClaw plugins, and health checks from one installer workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, update, and monitor E.x.O. tools, manage OpenClaw plugins, and run health checks with a single command.
 
-## Publisher: <br>
-[emberDesire](https://clawhub.ai/user/emberDesire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[emberdesire](https://clawhub.ai/user/emberdesire)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install E.x.O. command-line tools and plugins, check their health, apply updates, and prepare optional OpenClaw cron monitoring. It is most useful when managing several E.x.O. ecosystem packages from one agent-assisted workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to install or update npm packages and run package setup commands. <br>
-Mitigation: Ask for explicit user approval before running `exo install --all`, installing individual packages, or running `exo update`; install only trusted E.x.O. packages. <br>
-Risk: Internal clone operations require GitHub access and may fetch private repositories and install their dependencies. <br>
-Mitigation: Confirm repository access and intent before running `exo internal clone`, then review the cloned projects and dependency install behavior before use. <br>
-Risk: Cron setup can add recurring OpenClaw health-check behavior with optional Telegram reporting. <br>
-Mitigation: Review the generated cron payload and notification behavior before adding it to OpenClaw cron. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install and update E.x.O. ecosystem packages, check tool health, and prepare OpenClaw plugin or cron integrations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emberDesire/exo-installer) <br>
-- [npm package](https://www.npmjs.com/package/exo-installer) <br>
-- [E.x.O. product documentation](https://exohaven.com/products) <br>
-- [GitHub repository link disclosed in artifact](https://github.com/E-x-O-Entertainment-Studios-Inc/exo-installer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON health-check output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose global npm installs, package updates, GitHub clone commands, OpenClaw cron configuration, and health-check summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.1 (source: server release metadata and package.json) <br>
+Risk: The installer can run mutable remote npm, npx, and GitHub code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher and referenced packages are trusted; prefer pinned versions or an isolated environment, and review packages before using --all or update.
+
+Risk: The skill can persistently change OpenClaw-related tooling and propose cron integration.
+
+Mitigation: Avoid elevated privileges and inspect OpenClaw extension or cron changes before enabling them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/emberdesire/skills/exo-installer)
+- [exo-installer GitHub repository](https://github.com/E-x-O-Entertainment-Studios-Inc/exo-installer)
+- [exo-installer npm package](https://www.npmjs.com/package/exo-installer)
+- [E.x.O. products documentation](https://exohaven.com/products)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include health-check summaries, install or update commands, package status, and OpenClaw cron setup guidance.]
+
+## Skill Version(s):
+
+0.4.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

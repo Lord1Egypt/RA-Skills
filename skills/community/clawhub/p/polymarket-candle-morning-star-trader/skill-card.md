@@ -1,44 +1,59 @@
-## Description: <br>
-Trades crypto "Up or Down" 5-minute interval markets on Polymarket by detecting Morning Star and Evening Star candlestick reversal patterns, with conviction scaled by lag distance from the expected reversal price. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades crypto "Up or Down" 5-minute interval markets on Polymarket by detecting Morning Star and Evening Star candlestick reversal patterns and sizing trades from the apparent lag in the next interval.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External developers and trading operators can use this skill to run a paper-by-default Polymarket strategy that scans crypto 5-minute interval markets for Morning Star and Evening Star reversal patterns. Live trading is available only when explicitly enabled and requires careful limit setting because it can place real-money trades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real-money Polymarket trades using a Simmer trading API key. <br>
-Mitigation: Run in paper mode first, keep limits small, and enable --live only after reviewing trader.py and the configured trading parameters. <br>
-Risk: The evidence security summary says some advertised volume and concurrent-position safeguards are not fully enforced by the visible code. <br>
-Mitigation: Treat configured limits as controls that need manual verification, monitor orders, and avoid unattended scheduling until safeguards are confirmed. <br>
-Risk: SIMMER_API_KEY grants trading authority and is a high-value credential. <br>
-Mitigation: Store the key securely, scope or rotate it where supported, and avoid exposing it in logs or shared environments. <br>
+## Use Case:
 
+External users and agent builders use this skill to scan Polymarket crypto interval markets for Morning Star and Evening Star reversal patterns, then produce paper trades by default or live orders when explicitly enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-candle-morning-star-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Console logs and Simmer trading API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to paper trading unless --live is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: ClawHub release evidence) <br>
+Risk: Live trading can place real USDC orders while some promised risk controls are not fully enforced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper trading unless live-risk controls have been reviewed, fixed, and backed by external trading limits.
+
+Risk: The required SIMMER_API_KEY grants trading authority.
+
+Mitigation: Use a narrowly scoped key, protect it as a high-value credential, and rotate it if exposure is suspected.
+
+Risk: The skill depends on the external simmer-sdk package for market access and order placement.
+
+Mitigation: Pin simmer-sdk to a reviewed version before enabling live trading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-candle-morning-star-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command-line examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces trading decisions through the Simmer SDK; default execution mode is paper trading unless live mode is explicitly selected.]
+
+## Skill Version(s):
+
+0.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

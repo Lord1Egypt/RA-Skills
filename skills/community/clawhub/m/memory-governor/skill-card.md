@@ -1,48 +1,69 @@
-## Description: <br>
-Memory governance kernel for AI agents that complements the OpenClaw 2026.6.x memory stack (Dreaming, Active Memory, Memory Wiki, People Wiki, Skill Workshop / Workboard) with explicit correction staging, target-class routing, compiled-surface boundaries, scope/privacy rules, and safer manual hardening rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory governance kernel for AI agents that complements the OpenClaw 2026.6.x memory stack (Dreaming, Active Memory, Memory Wiki, People Wiki, Skill Workshop / Workboard) with explicit correction staging, target-class routing, compiled-surface boundaries, scope/privacy rules, and safer manual hardening rules.
 
-## Publisher: <br>
-[sakenw](https://clawhub.ai/user/sakenw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sakenw](https://clawhub.ai/user/sakenw)
 
-## Use Case: <br>
-Developers and engineers use this skill to govern agent memory capture, routing, promotion, exclusion, adapter boundaries, and scoped-memory handling in hosts with multiple memory layers or memory-writing skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Memory-routing rules may cause sensitive or short-lived information to be stored in local memory paths if the host maps targets too broadly. <br>
-Mitigation: Decide permitted adapter paths before integration, exclude secrets and sensitive personal data, and require scoped entries for project, chat, or agent-specific memory. <br>
-Risk: Temporary state can become permanent if working buffers, proactive state, imported insights, or learning candidates are promoted without review. <br>
-Mitigation: Use the retention guidance, candidate review flow, and host checker before hardening content into durable memory, reusable lessons, system rules, or tool rules. <br>
+## Use Case:
 
+Developers and agent-system maintainers use this skill to define a shared memory contract for deciding what should be remembered, where it should be routed, and when it should be promoted or excluded. It is most useful in hosts with multiple memory layers, memory-writing skills, optional adapters, or OpenClaw runtime memory surfaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sakenw/memory-governor) <br>
-- [Publisher profile](https://clawhub.ai/user/sakenw) <br>
-- [Memory routing](references/memory-routing.md) <br>
-- [Promotion rules](references/promotion-rules.md) <br>
-- [Exclusions](references/exclusions.md) <br>
-- [Adapters](references/adapters.md) <br>
-- [Compiled surfaces](references/compiled-surfaces.md) <br>
-- [Installation integration](references/installation-integration.md) <br>
-- [Host checker](references/host-checker.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with reference documents, Python helpers, shell scripts, and host configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces memory-governance decisions and integration artifacts for local host-controlled memory paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.2 (source: frontmatter, CHANGELOG, release evidence) <br>
+Risk: The skill can influence persistent agent memory when a host deliberately integrates it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review integrations with AGENTS.md, other skills, long-term memory files, and host manifests before relying on the governance contract.
+
+Risk: Sensitive, scoped, or short-lived information could be captured too broadly if host memory rules are applied carelessly.
+
+Mitigation: Keep secrets out of memory, apply the exclusion rules, record scope at capture time, and review compiled memory surfaces for scope widening.
+
+Risk: Unverified corrections or imported content could harden into durable guidance too early.
+
+Mitigation: Stage low-confidence items in learning_candidates and require manual review before promotion to reusable lessons, system rules, or tool rules.
+
+Risk: A host may appear integrated while required memory targets, fallbacks, or writer contracts are incomplete.
+
+Mitigation: Run the host checker and treat the skill as validated only after the relevant checks pass or warnings are consciously accepted.
+
+## Reference(s):
+
+- [SKILL.md](SKILL.md)
+- [README.md](README.md)
+- [Memory routing](references/memory-routing.md)
+- [Promotion rules](references/promotion-rules.md)
+- [Exclusions](references/exclusions.md)
+- [Compiled surfaces](references/compiled-surfaces.md)
+- [Installation and integration](references/installation-integration.md)
+- [Host checker](references/host-checker.md)
+- [Adapters](references/adapters.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optional host-checking, frontmatter-validation, candidate-review, and generic-host bootstrap scripts; it does not automatically modify host files.]
+
+## Skill Version(s):
+
+0.3.2 (source: frontmatter, VERSION, changelog released 2026-06-23, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

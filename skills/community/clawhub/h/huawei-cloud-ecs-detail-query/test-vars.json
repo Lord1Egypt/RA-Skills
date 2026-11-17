@@ -1,0 +1,29 @@
+{
+  "tests": [
+    {
+      "name": "capability-list",
+      "description": "查看 capability 列表",
+      "command": "--help"
+    },
+    {
+      "name": "list-servers",
+      "description": "列出 ECS 实例（默认区域 cn-north-4）",
+      "command": "list --region=cn-north-4 --limit=5"
+    },
+    {
+      "name": "list-servers-with-name",
+      "description": "按名称过滤 ECS 实例",
+      "command": "list --region=cn-north-4 --limit=10 --name=blog"
+    },
+    {
+      "name": "show-server",
+      "description": "查询单个 ECS 实例详情（需替换为真实实例 ID）",
+      "command": "show --server-id=d4c5865c-b3a5-4f36-9071-ec10e74eef59 --region=cn-north-4"
+    },
+    {
+      "name": "show-server-invalid-id",
+      "description": "查询不存在的 ECS 实例",
+      "command": "show --server-id=00000000-0000-0000-0000-000000000000 --region=cn-north-4"
+    }
+  ]
+}

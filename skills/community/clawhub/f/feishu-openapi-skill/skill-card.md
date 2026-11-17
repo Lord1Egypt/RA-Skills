@@ -1,43 +1,60 @@
-## Description: <br>
-Operate Feishu or Lark IM APIs through UXC with a curated OpenAPI schema, tenant-token bearer auth, and chat/message guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Feishu or Lark IM APIs through UXC with a curated OpenAPI schema, tenant-token bearer auth, and chat/message guardrails.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and run Feishu or Lark IM chat lookup, message read, message send, reply, upload, user lookup, and bot event intake workflows through UXC. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read chats and messages, resolve users, send messages, reply to messages, and upload files through a Feishu or Lark bot app. <br>
-Mitigation: Use least-privilege app permissions and require human confirmation before sends, replies, uploads, or other write operations. <br>
-Risk: Credentials and subscription sinks can expose tenant access or captured inbound messages if handled carelessly. <br>
-Mitigation: Store secrets in environment-backed credential storage, avoid inline secrets in shell commands, and protect or rotate files that capture inbound events. <br>
+## Use Case:
 
+Developers and operators use this skill to discover and execute Feishu or Lark IM operations through UXC for chat lookup, member lookup, message history reads, user lookup, message sends and replies, file uploads, and bot-visible inbound message intake.
 
-## Reference(s): <br>
-- [Usage patterns](references/usage-patterns.md) <br>
-- [Curated OpenAPI schema](references/feishu-im.openapi.json) <br>
-- [Feishu Open Platform docs](https://open.feishu.cn/document/) <br>
-- [Lark Open Platform docs](https://open.larksuite.com/document/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs guide authenticated UXC calls and may lead an agent to read chats, send messages, upload files, or store inbound event records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Mutable remote schema URLs can change the tenant-authenticated actions exposed after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the bundled schema in references/feishu-im.openapi.json or a commit-pinned schema URL before installation.
+
+Risk: Message sends, replies, uploads, contact lookups, and long-running subscriptions can affect tenant data or send content externally.
+
+Mitigation: Limit Feishu or Lark app scopes to intended chats, users, files, and message actions, keep secrets in environment-backed credentials, verify auth bindings, and require explicit confirmation before these operations.
+
+Risk: File uploads depend on local path inputs and multipart/form-data behavior.
+
+Mitigation: Review file paths and upload intent before executing image or file upload commands.
+
+## Reference(s):
+
+- [Usage patterns](references/usage-patterns.md)
+- [Curated OpenAPI schema](references/feishu-im.openapi.json)
+- [Feishu Open Platform docs](https://open.feishu.cn/document/)
+- [Lark Open Platform docs](https://open.larksuite.com/document/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires tenant-scoped Feishu or Lark credentials and local file paths for multipart uploads.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, created 2026-03-19T12:11:00Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

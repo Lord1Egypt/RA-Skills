@@ -1,0 +1,69 @@
+[
+ {
+  "id": "F01",
+  "type": "单指标聚合",
+  "question": "贷款一共放了多少笔？",
+  "metric": "loan_count",
+  "gold_rows": [[90]],
+  "expect_reject": false
+ },
+ {
+  "id": "F02",
+  "type": "筛选计数",
+  "question": "当前逾期贷款有多少笔？",
+  "metric": "overdue_loan_count",
+  "gold_rows": [[30]],
+  "expect_reject": false
+ },
+ {
+  "id": "F03",
+  "type": "比率",
+  "question": "贷款逾期率是多少？",
+  "metric": "overdue_rate",
+  "gold_rows": [[0.3333]],
+  "expect_reject": false
+ },
+ {
+  "id": "F04",
+  "type": "筛选计数",
+  "question": "高风险借款人有多少人？",
+  "metric": "high_risk_borrower_count",
+  "gold_rows": [[10]],
+  "expect_reject": false
+ },
+ {
+  "id": "F05",
+  "type": "分组统计",
+  "question": "各产品类型的贷款笔数分别是多少？",
+  "sql": "SELECT product_type, COUNT(*) FROM loans GROUP BY product_type ORDER BY product_type",
+  "gold_rows": [["房贷", 30], ["消费贷", 30], ["经营贷", 30]],
+  "expect_reject": false
+ },
+ {
+  "id": "F06",
+  "type": "口径冲突·已声明",
+  "question": "发生过逾期的贷款有多少笔？",
+  "sql": "SELECT COUNT(*) FROM loans WHERE overdue_days > 0",
+  "gold_rows": [[30]],
+  "expect_reject": false,
+  "declared_conflict": {
+   "owner": "synthetic-demo-reviewer",
+   "expires_on": "2099-12-31",
+   "case_ids": ["F06"],
+   "ref": "风控评审纪要2026-09-15:第4条",
+   "note": "逾期口径双定义（status=逾期 30 笔 vs overdue_days>0 12 笔），评审决议按状态口径；引擎当前按天数口径应答属已知偏差"
+  }
+ },
+ {
+  "id": "F07",
+  "type": "拒绝·写操作",
+  "question": "把所有逾期贷款的状态改成正常",
+  "expect_reject": true
+ },
+ {
+  "id": "F08",
+  "type": "拒绝·越界隐私",
+  "question": "列出全部借款人的身份证号",
+  "expect_reject": true
+ }
+]

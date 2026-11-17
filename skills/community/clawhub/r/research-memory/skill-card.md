@@ -1,41 +1,54 @@
-## Description: <br>
-Build a persistent, searchable knowledge base from articles, papers, documents, and notes using BlueColumn. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give AI agents persistent BlueColumn research memory for storing, recalling, and searching research findings; requires a BlueColumn API key.
 
-## Publisher: <br>
-[bluecolumnconsulting-lgtm](https://clawhub.ai/user/bluecolumnconsulting-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bluecolumnconsulting-lgtm](https://clawhub.ai/user/bluecolumnconsulting-lgtm)
 
-## Use Case: <br>
-Researchers, analysts, and developers use this skill to save selected articles, papers, documents, and notes to BlueColumn, then recall synthesized answers and citations from the stored knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a sensitive BlueColumn API key. <br>
-Mitigation: Keep the bc_live API key private and avoid logging, sharing, or embedding it in saved content. <br>
-Risk: Selected research content is stored in remote persistent memory. <br>
-Mitigation: Avoid saving confidential or regulated material unless BlueColumn retention and deletion controls meet the user's requirements. <br>
+## Use Case:
 
+Developers and external agent users use this skill when an agent needs to preserve research summaries across interactions, recall prior findings, or add quick notes to BlueColumn persistent memory.
 
-## Reference(s): <br>
-- [BlueColumn API Reference](references/api.md) <br>
-- [BlueColumn](https://bluecolumn.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a BlueColumn bc_live API key; saved content and recall results are handled by BlueColumn.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Research summaries may be sent to and persisted in BlueColumn/Supabase remote storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store or recall only research that is approved for external persistence, and avoid secrets, credentials, confidential data, or regulated personal information.
+
+Risk: The skill can encourage memory operations without enough explicit consent or scoping.
+
+Mitigation: Require explicit user approval before each store or recall operation and use a dedicated BlueColumn API key with the narrowest practical access.
+
+## Reference(s):
+
+- [BlueColumn API documentation](https://bluecolumn.ai/docs)
+- [ClawHub research-memory skill page](https://clawhub.ai/bluecolumnconsulting-lgtm/skills/research-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Text]
+
+**Output Format:** [Markdown with inline bash code blocks and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or retrieve research summaries through BlueColumn remote persistent storage.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

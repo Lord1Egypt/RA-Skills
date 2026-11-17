@@ -94,7 +94,7 @@
   },
   "77:68": {
     "inputs": {
-      "value": 1920
+      "value": 1024
     },
     "class_type": "PrimitiveInt",
     "_meta": {
@@ -103,7 +103,7 @@
   },
   "77:69": {
     "inputs": {
-      "value": 1080
+      "value": 1024
     },
     "class_type": "PrimitiveInt",
     "_meta": {
@@ -169,7 +169,7 @@
   },
   "77:62": {
     "inputs": {
-      "steps": 25,
+      "steps": 5,
       "width": [
         "77:68",
         0

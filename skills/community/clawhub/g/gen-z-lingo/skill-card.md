@@ -1,43 +1,54 @@
-## Description: <br>
-Helps agents understand, translate, explain, audit, and write Gen Z slang and youth internet language with context-appropriate tone and safety guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill whenever the user asks to understand, translate, explain, audit, or write Gen Z slang/lingo, youth internet language, TikTok/Twitter-style phrasing, meme-coded phrases, or age/audience-appropriate casual messaging.
 
-## Publisher: <br>
-[aaronfaby](https://clawhub.ai/user/aaronfaby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronfaby](https://clawhub.ai/user/aaronfaby)
 
-## Use Case: <br>
-Agents use this skill to decode slang, rewrite messages with restrained Gen Z flavor, translate slang into plain or professional English, and audit casual language for school, workplace, parent, or social settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Slang changes quickly and can vary by community, platform, and setting. <br>
-Mitigation: Treat the included slang reference as a dated snapshot and present uncertain or region-specific meanings cautiously. <br>
-Risk: Some terms can be sexual, objectifying, profane, violent, bullying, or inappropriate in school and workplace contexts. <br>
-Mitigation: Flag risky terms plainly, avoid intensifying the user's message, and offer safer alternatives tailored to the setting. <br>
-Risk: The broad trigger can activate for casual-writing requests near slang topics. <br>
-Mitigation: Confirm the user's intent and default to light, context-sensitive slang rather than dense or performative rewrites. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to decode Gen Z slang, rewrite messages with restrained Gen Z flavor, translate slang into plain or professional English, and audit youth or internet language for school, workplace, parent, or social settings.
 
-## Reference(s): <br>
-- [zslang.com Gen Z Slang Snapshot 2026](references/zslang-2026.md) <br>
-- [ClawHub skill page](https://clawhub.ai/aaronfaby/gen-z-lingo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with explanations, rewrites, term notes, appropriateness audits, and safer alternatives.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, persistence, or external data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Slang meanings can shift quickly and vary by community, region, and platform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the bundled 2026 slang reference as a snapshot and review sensitive school, workplace, or youth-facing uses for current context and tone.
+
+Risk: Some slang can be sexual, objectifying, profane, violent, bullying, or inappropriate for school and workplace contexts.
+
+Mitigation: Use the skill's appropriateness audit guidance, flag risky terms plainly, and offer safer alternatives before using the language in those settings.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/aaronfaby/skills/gen-z-lingo)
+- [zslang.com Gen Z Slang Snapshot - 2026](artifact/references/zslang-2026.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text explanations, rewrites, notes, and appropriateness audits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include term notes, tone labels, safety guidance, safer rewrites, and context-specific alternatives.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

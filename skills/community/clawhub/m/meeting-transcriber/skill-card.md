@@ -1,43 +1,58 @@
-## Description: <br>
-Meeting Transcriber provides Chinese real-time meeting transcription with microphone capture, FunASR speech recognition, voice activity detection, automatic punctuation, saved transcript files, and environment checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meeting Transcriber provides real-time Chinese meeting transcription with microphone capture, voice activity detection, punctuation, transcript saving, and environment checks.
 
-## Publisher: <br>
-[chinapjs](https://clawhub.ai/user/chinapjs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinapjs](https://clawhub.ai/user/chinapjs)
 
-## Use Case: <br>
-Users who run OpenClaw on a local Windows workstation use this skill to start and stop Chinese meeting transcription, check the required Conda audio environment, and find saved meeting records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill records microphone audio and may print or save sensitive meeting content locally. <br>
-Mitigation: Get consent from meeting participants before use, avoid recording restricted conversations, and review saved transcripts before sharing or retaining them. <br>
-Risk: The skill depends on a local Windows Conda setup and an external D:\dev\python\voiceFunAsr transcription script. <br>
-Mitigation: Install only on trusted local machines, verify the external transcription script before running it, and confirm the audioProject Conda environment uses expected packages. <br>
-Risk: The setup helper can create ~/.openclaw configuration and local support files. <br>
-Mitigation: Run setup only when configuration changes are expected and review generated or modified files afterward. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to capture Chinese meeting audio, run local FunASR transcription, and manage saved meeting transcript files.
 
-## Reference(s): <br>
-- [Meeting Transcriber on ClawHub](https://clawhub.ai/chinapjs/meeting-transcriber) <br>
-- [FunASR project](https://github.com/alibaba-damo-academy/FunASR) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal and OpenClaw text output with command suggestions, environment status, file paths, and saved transcript references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Transcripts are saved locally under the configured meeting_records directory when the external transcription script runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The core transcription path depends on an unaudited local script outside the packaged artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the local transcription script before installation or execution.
+
+Risk: Environment setup can create or modify local Conda and OpenClaw configuration files.
+
+Mitigation: Run setup only after reviewing the files and paths it creates or changes.
+
+Risk: Meeting audio and generated transcripts can contain sensitive participant information.
+
+Mitigation: Get participant consent before recording and store transcript files according to the user's data handling policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chinapjs/skills/meeting-transcriber)
+- [FunASR project](https://github.com/alibaba-damo-academy/FunASR)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text with command examples and saved transcript files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs in a Windows Conda environment and saves meeting transcripts as local text files.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release, artifact metadata, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

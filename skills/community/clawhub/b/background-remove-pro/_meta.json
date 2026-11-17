@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn78gtvscyas8xfjhqjf6sj8x1831j1y",
-  "slug": "background-remove-pro",
+  "name": "bg-remove",
   "version": "1.0.0",
-  "publishedAt": 1773741390763
+  "description": "图片智能去背景工具，使用 AI 模型自动识别并移除图片背景",
+  "author": "OpenClaw",
+  "tags": ["image", "background", "remove", "ai", "rembg", "抠图"],
+  "trigger": ["去背景", "移除背景", "图片去背景", "抠图", "去除图片背景", "透明背景", "bg-remove", "remove background"],
+  "commands": ["/bg-remove"],
+  "runtime": "script",
+  "script": {
+    "type": "python",
+    "path": "scripts/bg-remove.py"
+  },
+  "dependencies": {
+    "pip": ["rembg", "pillow"]
+  },
+  "permissions": ["file:read", "file:write"],
+  "platform": "all"
 }

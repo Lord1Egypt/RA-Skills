@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import test from 'node:test';
+import { pathToFileURL } from 'node:url';
 
 const skillRoot = resolve(import.meta.dirname, '..');
 
@@ -91,33 +92,192 @@ test('wizard supports back navigation in menus and connector setup', () => {
   assert.match(wizard, /if \(result === 'back'\)\s+continue/);
 });
 
-test('unchanged unhealthy connectors are retried until an external alert is delivered', () => {
+test('connector and source incidents transition independently with per-channel retry receipts', () => {
   const runner = readFileSync(join(skillRoot, 'scripts/openclaw-growth-runner.mjs'), 'utf8');
 
-  assert.match(runner, /previousExternallyDeliveredFingerprint !== fingerprint/);
-  assert.match(runner, /activeIncidentFingerprint = fingerprint/);
-  assert.match(runner, /lastExternalAlertedFingerprint = fingerprint/);
-  assert.match(runner, /hasSuccessfulExternalDelivery\(deliveries\)/);
+  assert.match(runner, /CONNECTOR_NOTIFICATION_STATE_VERSION = 2/);
+  assert.match(runner, /CONNECTOR_PROBE_INCIDENT_KEY = 'connectorProbe'/);
+  assert.match(runner, /SOURCE_COLLECTION_INCIDENT_KEY = 'sourceCollection'/);
+  assert.match(runner, /function transitionConnectorNotificationIncident/);
+  assert.match(runner, /status: unchanged \? 'ongoing' : 'new'/);
+  assert.match(runner, /status: 'recovered'/);
+  assert.match(runner, /function pendingConnectorIncidentChannelKeys/);
+  assert.match(runner, /lastNotificationReceipts/);
+  assert.match(runner, /receipts\[key\]\?\.sent !== true/);
+  assert.match(runner, /onlyChannelKeys: pendingChannelKeys/);
   assert.match(runner, /connector_health_unchanged/);
-  assert.match(runner, /persisted unhealthy state is not a new event/);
-  assert.match(runner, /alertTriggered \? 'CONNECTOR_HEALTH_ALERT' : 'HEARTBEAT_OK'/);
-  assert.doesNotMatch(runner, /isDue\(healthState\.lastAlertedAt, intervalMinutes\)/);
+  assert.match(runner, /socialOutput: notificationTriggered/);
+  assert.match(runner, /'CONNECTOR_HEALTH_RECOVERED'/);
+  assert.match(runner, /'CONNECTOR_HEALTH_ALERT'/);
+  assert.match(runner, /: 'HEARTBEAT_OK'/);
+
+  const validation = spawnSync(
+    process.execPath,
+    [
+      join(skillRoot, 'scripts/openclaw-growth-runner.mjs'),
+      '--validate-notification-state',
+    ],
+    {
+      cwd: skillRoot,
+      encoding: 'utf8',
+    },
+  );
+  assert.equal(validation.status, 0, validation.stderr || validation.stdout);
+  const result = JSON.parse(validation.stdout);
+  assert.equal(result.ok, true);
+  assert.equal(result.version, 2);
+  assert.deepEqual(result.transitions, ['new', 'ongoing', 'recovered']);
+  assert.deepEqual(result.independentIncidentKeys, ['connectorProbe', 'sourceCollection']);
+  assert.equal(
+    result.retryPolicy,
+    'per-channel until every configured delivery succeeds',
+  );
 });
 
-test('notification delivery fallbacks are merged with explicit channels', () => {
+test('notification channel identity uses the transport target and explicit disables suppress fallbacks', () => {
   const runner = readFileSync(join(skillRoot, 'scripts/openclaw-growth-runner.mjs'), 'utf8');
   const wizard = readFileSync(join(skillRoot, 'scripts/openclaw-growth-wizard.mjs'), 'utf8');
 
   assert.match(runner, /function mergeNotificationChannelsWithDeliveries/);
   assert.match(runner, /getDeliveryNotificationChannels\(config, 'connectorHealth'\)/);
   assert.match(runner, /getDeliveryNotificationChannels\(config, 'growthRun'\)/);
-  assert.match(runner, /if \(type === 'command'\)\s+return `command:\$\{channel\?\.label \|\| channel\?\.command \|\| 'command'\}`/);
+  const keyFunction = runner.slice(
+    runner.indexOf('function notificationChannelKey'),
+    runner.indexOf('function notificationChannelHasExplicitIdentity'),
+  );
+  assert.match(
+    keyFunction,
+    /openclaw-chat:path-\$\{sha256\(`\$\{markdownPath\}\|\$\{jsonPath\}`\)\.slice\(0, 16\)\}/,
+  );
+  assert.match(
+    keyFunction,
+    /slack:target-\$\{sha256\(target\)\.slice\(0, 16\)\}/,
+  );
+  assert.match(
+    keyFunction,
+    /webhook:target-\$\{sha256\(`\$\{target\}\|\$\{method\}\|\$\{headers\}`\)\.slice\(0, 16\)\}/,
+  );
+  assert.match(keyFunction, /process\.env\[envName\] \|\| `env:\$\{envName\}`/);
+  assert.match(
+    keyFunction,
+    /discord:command-\$\{sha256\(String\(channel\?\.command \|\| ''\)\.trim\(\)\)\.slice\(0, 16\)\}/,
+  );
+  assert.match(
+    keyFunction,
+    /command:\$\{sha256\(String\(channel\?\.command \|\| ''\)\.trim\(\)\)\.slice\(0, 16\)\}/,
+  );
+  assert.doesNotMatch(keyFunction, /openclaw-chat:\$\{markdownPath/);
+  assert.doesNotMatch(keyFunction, /discord:\$\{String\(channel\?\.command/);
+  assert.doesNotMatch(keyFunction, /command:\$\{String\(channel\?\.command/);
+  assert.doesNotMatch(keyFunction, /label/);
+  assert.match(runner, /function notificationChannelHasExplicitIdentity/);
+  assert.match(runner, /const disabledKeys = new Set/);
+  assert.match(runner, /const disabledTypes = new Set/);
+  assert.match(runner, /seen\.has\(key\)/);
+  assert.match(runner, /disabledKeys\.has\(key\)/);
+  assert.match(runner, /disabledTypes\.has\(type\)/);
   assert.match(runner, /deliveries\.command\?\.enabled/);
   assert.match(runner, /external: false/);
   assert.match(runner, /Alert written locally, but no external notification channel configured/);
   assert.doesNotMatch(runner, /if \(configuredChannels\.length > 0\)\s*return configuredChannels/);
   assert.doesNotMatch(runner, /discord-openclaw-bridge/);
   assert.doesNotMatch(wizard, /discord-openclaw-bridge/);
+});
+
+test('failed growth deliveries retain their snapshot and retry only pending channels', () => {
+  const runner = readFileSync(join(skillRoot, 'scripts/openclaw-growth-runner.mjs'), 'utf8');
+
+  assert.match(runner, /function pendingGrowthRunChannelKeys/);
+  assert.match(runner, /function markGrowthRunNotificationState/);
+  assert.match(runner, /allChannelsSent/);
+  assert.match(runner, /snapshot: allChannelsSent \? null : snapshot/);
+  assert.match(runner, /async function retryPendingGrowthRunNotification/);
+  assert.match(runner, /previous\.allChannelsSent === true/);
+  assert.match(runner, /onlyChannelKeys: pendingChannelKeys/);
+  assert.match(runner, /appendSchedulerProof\('growth_notification_retry'/);
+  assert.match(
+    runner,
+    /const stateAfterGrowthNotificationRetry\s*=\s*await retryPendingGrowthRunNotification/,
+  );
+});
+
+test('social notifications render structured channel payloads without raw host diagnostics', async () => {
+  const notificationUxPath = join(
+    skillRoot,
+    'scripts/openclaw-notification-ux.mjs',
+  );
+  const notificationUx = await import(pathToFileURL(notificationUxPath).href);
+  const rawDiagnostic =
+    'Source collection failed during scheduled run: command analyticscli feedback summary --format json --since 2026-06-30; {"error":"boom"} /home/lo/data/openclaw/config.json';
+  const notification = {
+    schema: 'analyticscli.social-notification',
+    version: 1,
+    kind: 'source_collection',
+    state: 'new',
+    severity: 'warning',
+    title: 'Data collection degraded',
+    summary: 'One source needs attention.',
+    impact: 'This analysis may be incomplete.',
+    items: [
+      {
+        id: 'feedback',
+        label: notificationUx.humanizeNotificationIdentifier('feedback'),
+        status: 'Partial',
+        summary: notificationUx.humanizeConnectorDiagnostic(rawDiagnostic),
+        action: 'Check the source credentials in the host terminal.',
+        occurredAt: '2026-08-04T22:00:20.000Z',
+      },
+    ],
+    nextStep: 'Review the affected source.',
+    automation: 'Growth Engineer retries automatically.',
+    generatedAt: '2026-07-23T10:00:00.000Z',
+    fingerprint: 'fixture',
+    timeZone: 'Europe/Berlin',
+  };
+
+  const markdown = notificationUx.renderSocialNotificationMarkdown(notification);
+  const discord = notificationUx.buildDiscordSocialPayload(notification);
+  const slack = notificationUx.buildSlackSocialPayload(notification);
+  const combined = `${markdown}\n${JSON.stringify(discord)}\n${JSON.stringify(slack)}`;
+
+  assert.match(markdown, /\*\*Impact:\*\*/);
+  assert.match(markdown, /\*\*Next:\*\*/);
+  assert.match(markdown, /\*\*Automation:\*\*/);
+  assert.match(markdown, /Last seen: 05\/08\/2026, 00:00:20 CEST/);
+  assert.match(JSON.stringify(discord), /Last seen/);
+  assert.match(JSON.stringify(slack), /Last seen/);
+  assert.equal(discord.embeds.length, 1);
+  assert.ok(discord.embeds[0].fields.length >= 1);
+  assert.ok(slack.blocks.length >= 2);
+  assert.doesNotMatch(combined, /analyticscli feedback summary/);
+  assert.doesNotMatch(combined, /\/home\/lo\//);
+  assert.doesNotMatch(combined, /\{"error":"boom"\}/);
+
+  const runner = readFileSync(join(skillRoot, 'scripts/openclaw-growth-runner.mjs'), 'utf8');
+  assert.match(runner, /summary: humanizeConnectorDiagnostic\(entry\?\.detail\)/);
+  assert.match(runner, /message = renderSocialNotificationMarkdown\(socialNotification\)/);
+  assert.match(runner, /buildSlackSocialPayload\(notification\)/);
+  assert.match(runner, /buildDiscordSocialPayload\(notification\)/);
+  assert.match(runner, /notification: socialNotificationSummary\(notification\)/);
+});
+
+test('the runtime is the single delivery owner and guards state with a lock plus atomic writes', () => {
+  const runner = readFileSync(join(skillRoot, 'scripts/openclaw-growth-runner.mjs'), 'utf8');
+  const cli = readFileSync(
+    resolve(skillRoot, '../../packages/growth-engineer/src/index.ts'),
+    'utf8',
+  );
+
+  assert.match(cli, /const deliveryResult = await inspectRuntimeDeliveryResult/);
+  assert.doesNotMatch(cli, /deliverArtifacts/);
+  assert.match(runner, /async function writeJsonAtomic/);
+  assert.match(runner, /await fs\.rename\(temporaryPath, filePath\)/);
+  assert.match(runner, /async function acquireRunnerLock/);
+  assert.match(runner, /await fs\.open\(lockPath, 'wx'\)/);
+  assert.match(runner, /async function runOnceWithLock/);
+  assert.match(runner, /appendSchedulerProof\('runner_skipped_lock_held'/);
+  assert.match(runner, /finally\s*\{\s*await lock\.release\(\)/);
+  assert.doesNotMatch(runner, /await runOnce\(configPath, statePath\);\s*return;/);
 });
 
 test('discord deliveries use embeds and hide successful message ids from state details', () => {
@@ -130,7 +290,7 @@ test('discord deliveries use embeds and hide successful message ids from state d
   assert.match(runner, /buildDiscordConnectorHealthPayload/);
   assert.match(runner, /buildDiscordGrowthRunPayload/);
   assert.match(runner, /OPENCLAW_DISCORD_DELIVERY_FORMAT: 'embed'/);
-  assert.match(runner, /detail: result\.ok \? 'sent'/);
+  assert.match(runner, /detail: result\.ok\s*\?\s*'sent'/);
   assert.match(bridge, /normalizeEmbedPayload/);
   assert.match(bridge, /structuredTextToEmbedPayload/);
   assert.match(bridge, /buildStructuredOpenClawDailyPayload/);
@@ -201,21 +361,31 @@ test('due growth cadences still run and log, but suppress social delivery when f
   assert.match(runner, /issue set unchanged; external growth notification suppressed/);
   assert.match(runner, /externalGrowthNotification: 'suppressed_unchanged_issue_set'/);
   assert.match(runner, /issueSetChangedOrExplicitlyAllowed/);
-  assert.match(runner, /lastGrowthRunNotifications: await deliverGrowthRunSummary/);
+  assert.match(runner, /const shouldDeliverGrowthRunNotification/);
+  assert.match(
+    runner,
+    /shouldDeliverGrowthRunNotification\s*\?\s*await deliverGrowthRunSummary/,
+  );
+  assert.match(runner, /clean operational run; social notification suppressed/);
+  assert.match(runner, /lastGrowthRunNotifications: growthRunNotificationDeliveries/);
 });
 
-test('short operational findings are deduped per issue per day unless events spike', () => {
+test('short operational findings stay deduped across days unless events spike', () => {
   const runner = readFileSync(join(skillRoot, 'scripts/openclaw-growth-runner.mjs'), 'utf8');
 
   assert.match(runner, /DEFAULT_DAILY_ISSUE_EVENT_GROWTH_MULTIPLIER = 2/);
   assert.match(runner, /DEFAULT_DAILY_ISSUE_EVENT_GROWTH_MIN_DELTA = 10/);
+  assert.match(runner, /DEFAULT_DAILY_ISSUE_HISTORY_RETENTION_DAYS = 365/);
   assert.match(runner, /function applyDailyIssueDedupe/);
   assert.match(runner, /function buildDailyIssueKey/);
   assert.match(runner, /function issueEventCount/);
   assert.match(runner, /isDrasticDailyIssueEventGrowth/);
+  assert.match(runner, /function pruneDailyIssueHistory/);
+  assert.doesNotMatch(runner, /dailyIssueReports\?\.date === date/);
   assert.match(runner, /skippedReason: 'daily_issue_dedupe'/);
   assert.match(runner, /externalGrowthNotification: 'suppressed_daily_issue_dedupe'/);
-  assert.match(runner, /Suppressed today: \$\{suppressedIssueCount\} previously reported finding\(s\)\./);
+  assert.match(runner, /suppressed_issue_count/);
+  assert.match(runner, /previously reported \$\{suppressedIssueCount === 1 \? 'finding was' : 'findings were'\} omitted/);
   assert.doesNotMatch(runner, /dailyIssueDedupe\.suppressedCount === 0/);
 });
 
@@ -318,7 +488,12 @@ test('required analytics transient fetch failures degrade without failing repeat
     assert.equal(second.status, 0, second.stderr || second.stdout);
 
     const state = JSON.parse(readFileSync(statePath, 'utf8'));
-    assert.equal(state.connectorHealth.lastStatusOk, false);
+    assert.equal(state.connectorHealth.sourceCollectionLastStatusOk, false);
+    assert.equal(state.connectorHealth.incidents?.sourceCollection?.status, 'ongoing');
+    assert.equal(
+      state.connectorHealth.incidents?.connectorProbe?.activeFingerprint,
+      null,
+    );
     assert.equal(state.lastSourceFailures?.[0]?.key, 'analytics');
     assert.match(state.lastSourceFailures?.[0]?.detail || '', /transient network error persisted after retry/);
 
@@ -403,6 +578,8 @@ test('Sentry exporter retries retryable API failures before surfacing the error'
   assert.match(exporter, /environment=\$\{account\.environment\}/);
   assert.match(exporter, /withAccountTargetError\(error, account, 'Sentry issue fetch'\)/);
   assert.match(exporter, /withAccountTargetError\(error, account, 'Sentry project discovery'\)/);
+  assert.match(exporter, /function buildRecentIssueQuery/);
+  assert.match(exporter, /`lastSeen:-\$\{normalizedLast\}`/);
 });
 
 test('Sentry exporter keeps transient provider failures out of connector-health alerts', () => {
@@ -422,19 +599,18 @@ test('Sentry exporter keeps transient provider failures out of connector-health 
   assert.doesNotMatch(exporter, /throw withAccountTargetError\(error, account, 'Sentry project discovery'\)/);
 });
 
-test('short operational growth notifications stay compact', () => {
+test('short operational growth notifications use the channel-neutral social model', () => {
   const runner = readFileSync(join(skillRoot, 'scripts/openclaw-growth-runner.mjs'), 'utf8');
 
-  assert.match(runner, /function truncateMessageText/);
-  assert.match(runner, /function groupIssuesByProject/);
-  assert.match(runner, /function issueSourceUrl/);
-  assert.match(runner, /OpenClaw healthcheck/);
-  assert.match(runner, /OpenClaw daily/);
-  assert.match(runner, /Top by project:/);
-  assert.match(runner, /formatIssueSummaryLine/);
-  assert.match(runner, /Action: external alert only\./);
-  assert.doesNotMatch(runner, /Sources: \$\{sourceNames\}/);
-  assert.doesNotMatch(runner, /Action: alert\/handoff only; GitHub auto-create is disabled or unavailable\./);
+  assert.match(runner, /function buildGrowthSocialNotification/);
+  assert.match(runner, /schema: 'analyticscli\.social-notification'/);
+  assert.match(runner, /title: growthNotificationTitle\(activeCadences, issueCount\)/);
+  assert.match(runner, /impact: issueCount > 0/);
+  assert.match(runner, /nextStep: issueCount > 0/);
+  assert.match(runner, /automation: createdGitHubArtifact/);
+  assert.match(runner, /const message = renderSocialNotificationMarkdown\(notification\)/);
+  assert.doesNotMatch(runner, /Action: external alert only\./);
+  assert.doesNotMatch(runner, /Top by project:/);
 });
 
 test('Sentry connector setup cannot report success with disabled or placeholder-only config', () => {
@@ -651,20 +827,20 @@ test('optional source collection failures become connector-health incidents', ()
   assert.match(runner, /new or changed source-collection connector incident/);
 });
 
-test('connector health alerts include direct repair commands without broad menu detours', () => {
+test('connector health social copy gives a safe host-terminal action without exposing repair commands', () => {
   const runner = readFileSync(join(skillRoot, 'scripts/openclaw-growth-runner.mjs'), 'utf8');
   const wizard = readFileSync(join(skillRoot, 'scripts/openclaw-growth-wizard.mjs'), 'utf8');
 
-  assert.match(runner, /OpenClaw connector health: \$\{unhealthyConnectors\.length\} issue/);
-  assert.ok(runner.includes('Fix: \\`${command}\\`'));
-  assert.match(runner, /SENTRY_AUTH_TOKEN missing for source collection/);
-  assert.doesNotMatch(runner, /lines\.push\('  Account targets:'\)/);
+  assert.match(runner, /function connectorNotificationAction/);
+  assert.match(runner, /Check the \$\{connector\} credentials or source setup in the host terminal/);
+  assert.match(runner, /Complete the \$\{connector\} connector setup in the host terminal/);
+  assert.match(runner, /summary: humanizeConnectorDiagnostic\(entry\?\.detail\)/);
+  assert.match(runner, /action: connectorNotificationAction\(entry, incident\.kind\)/);
   assert.match(runner, /npx -y @analyticscli\/growth-engineer wizard/);
   assert.match(runner, /--connectors \$\{quote\(connector\)\}/);
   assert.doesNotMatch(runner, /nodeRuntimeScriptCommand\('openclaw-growth-wizard\.mjs'\)/);
   assert.doesNotMatch(runner, /ASC web-auth only/);
   assert.doesNotMatch(runner, /asc web auth login/);
-  assert.match(runner, /Secrets stay in the host terminal or secret store/);
   assert.match(wizard, /requestedConnectors\.length > 0\s+\? orderConnectors\(requestedConnectors\)/);
   assert.doesNotMatch(wizard, /requestedConnectors\.length > 0\s+\? orderConnectors\(\[\.\.\.new Set\(\[\.\.\.requestedConnectors, \.\.\.existingFixes\]\)\]\)/);
   assert.match(wizard, /return isConnectorLocallyConfigured\(key\) \|\| status !== 'not_connected'/);

@@ -1,0 +1,10 @@
+# Installing the prerequisite on request
+
+Use this reference only when the user asks to install or upgrade `vwsd`. A missing binary during another task is not an installation request.
+
+1. Use the canonical project, https://github.com/nano-harness/virtual-workspace. Identify the exact version or full commit to review. Do not execute a mutable installer URL, download a `latest` binary, or treat HTTPS alone as publisher verification.
+2. Prefer a release whose platform, publisher signature/provenance, and digest can be verified. Obtain the expected digest through a trusted publisher channel; a checksum fetched from the same untrusted location alone is insufficient. If that evidence is unavailable, explain the limitation and offer source review/build instead. Do not claim a release or signature exists without checking.
+3. For a source build, obtain a fresh checkout in a dedicated directory, inspect the pinned revision and its `Cargo.toml`, `Cargo.lock`, `build.rs`, dependency sources, and repository Cargo configuration. Building Rust executes build scripts and procedural macros; it is not a security sandbox. Resolve any unapproved code-execution step before building.
+4. After the exact revision and build are approved, check out that full commit detached, confirm `git rev-parse HEAD` matches, and run `cargo build --release --locked`. `--locked` prevents dependency re-resolution but is not a security scan. Run the project's validation before recommending the result for destructive operations.
+5. Use the reviewed executable from its build location, or copy it only to the installation path the user approved. Check for an existing file before replacement. Do not request root privileges or edit shell startup files automatically. Do not remove OS quarantine attributes, disable security checks, or re-sign an unverified binary to make it run.
+6. Report the source revision, binary path, verification performed, and remaining limitations. Use `vwsd --version` and `--help` to confirm compatibility. Do not run self-update or install background jobs.

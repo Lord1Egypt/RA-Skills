@@ -1,46 +1,63 @@
-## Description: <br>
-Guides agents through complex application development, CI/CD, and DevOps workflows using staged checklists, validation commands, monitoring templates, and rollback practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+步步为营 helps agents structure complex application development, CI/CD, and DevOps work with staged checklists, shell helpers, and monitoring templates.
 
-## Publisher: <br>
-[smxtx](https://clawhub.ai/user/smxtx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smxtx](https://clawhub.ai/user/smxtx)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to plan, implement, test, release, monitor, and troubleshoot application changes with structured checklists and helper commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may suggest or run build, deployment, canary, rollback, health-check, or log-inspection commands without enough production scoping. <br>
-Mitigation: Review the git diff, package scripts, Docker target, Kubernetes context, namespace, environment, and production authorization before execution. <br>
-Risk: The bundled DevOps workflow can affect live services when applied to production or shared infrastructure. <br>
-Mitigation: Use the skill as a checklist and script bundle; require explicit user confirmation before deployment, rollback, or environment inspection steps. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and verify complex application delivery work, including scoped code changes, testing, builds, CI/CD release steps, rollback planning, and monitoring setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smxtx/bu-bu-wei-ying) <br>
-- [Publisher profile](https://clawhub.ai/user/smxtx) <br>
-- [README](README.md) <br>
-- [English skill definition](SKILL-en.md) <br>
-- [Automation checklist script](scripts/checklist.sh) <br>
-- [Grafana alert template](templates/grafana-alerts.json) <br>
-- [Datadog alert template](templates/datadog-alerts.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes checklist commands and Grafana/Datadog alert templates; execution should remain user-authorized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: High-impact build, dependency, deployment, rollback, and health-check actions can affect local projects or target environments if run without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each command before execution, run in a disposable or least-privileged environment, and verify the target project or deployment environment before build, release, or rollback actions.
+
+Risk: Dependency commands such as npm install and npx can execute project-controlled code in untrusted projects.
+
+Mitigation: Avoid dependency installation and npx execution on untrusted projects, or run them inside an isolated environment with least privilege.
+
+Risk: Health checks can probe arbitrary hosts if parameters are supplied without validation.
+
+Mitigation: Restrict health checks to known safe hosts and confirm host, port, and path values before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smxtx/skills/bu-bu-wei-ying)
+- [Publisher profile](https://clawhub.ai/user/smxtx)
+- [README](artifact/README.md)
+- [English skill definition](artifact/SKILL-en.md)
+- [Automation checklist script](artifact/scripts/checklist.sh)
+- [Grafana alert template](artifact/templates/grafana-alerts.json)
+- [Datadog alert template](artifact/templates/datadog-alerts.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON monitoring templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes executable DevOps helper commands and monitoring configuration templates; review commands before use.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

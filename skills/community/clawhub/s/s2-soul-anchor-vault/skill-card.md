@@ -1,43 +1,59 @@
-## Description: <br>
-S2 Soul Anchor Vault provides a local encrypted agent-state vault bound to a user-supplied identity hash and location string, with an identity registry and reversible quarantine on location mismatch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+S2 Soul Anchor Vault manages local encrypted agent persona and memory state bound to a user-supplied identity hash and LBS coordinate string, with metadata quarantine on coordinate mismatch.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add experimental local encrypted memory storage, spatial identity registration, and vault lifecycle guidance to OpenClaw-style agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Release security evidence flags conflicting documentation about silent data capture, location and identity security claims, and destructive wipe behavior. <br>
-Mitigation: Treat the skill as experimental local vault code, avoid storing sensitive conversations, and confirm that the current release uses reversible quarantine before use. <br>
-Risk: The artifact can write local state under s2_consciousness_data and s2_avatar_data. <br>
-Mitigation: Test in an isolated workspace and keep backups before exercising registration, wake, hibernation, or quarantine behavior. <br>
-Risk: The server release evidence and package metadata disagree on the license identifier. <br>
-Mitigation: Confirm the authoritative release terms with the publisher before reuse, redistribution, or commercial deployment. <br>
+## Use Case:
 
+Developers and agent builders can use this skill to create and manage local encrypted persona and memory state for agents that need local hibernation, wake, and quarantine flows. Operators should review persistence and recovery behavior before using it with sensitive private memories.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/spacesq/s2-soul-anchor-vault) <br>
-- [S2 Soul Lifecycle Whitepaper](docs/S2-Soul-Lifecycle-Whitepaper.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local vault lifecycle guidance and Python usage patterns; runtime behavior may create files under s2_consciousness_data and s2_avatar_data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence, package.json, CHANGELOG) <br>
+Risk: The skill persists sensitive identity, persona, and memory data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review storage paths and avoid real private agent memories until users have clear controls for what is stored, recovered, and deleted.
+
+Risk: Security evidence flags weak authorization, lockout, persistence, and recovery design concerns.
+
+Mitigation: Validate key derivation, write authentication, lockout behavior, and recovery procedures before production use.
+
+Risk: Security evidence notes inconsistent lifecycle documentation around how data is protected and handled.
+
+Mitigation: Reconcile documentation with code behavior and treat biometric or background-hook claims as user-supplied identity hashes or manual/API integrations unless separately implemented.
+
+## Reference(s):
+
+- [S2 Soul Anchor Vault README](README.md)
+- [S2 Silicon Soul Lifecycle & Holographic Flow Protocol](docs/S2-Soul-Lifecycle-Whitepaper.md)
+- [ClawHub Skill Page](https://clawhub.ai/spacesq/skills/s2-soul-anchor-vault)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime behavior may create local encrypted state, registry, and metadata files.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata, package.json, CHANGELOG released 2026-04-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

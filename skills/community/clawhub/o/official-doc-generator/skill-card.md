@@ -1,44 +1,57 @@
-## Description: <br>
-Generates and formats formal official documents such as meeting minutes, speeches, discussion outlines, and work reports using GB/T 9704-2012-style formatting, official-language style guidance, template tooling, sensitive-word checks, and local Python document-processing scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and formats formal organizational documents such as meeting minutes, speeches, discussion outlines, and work reports using GB/T 9704-2012-style formatting, template tooling, and compliance checks.
 
-## Publisher: <br>
-[leaproud](https://clawhub.ai/user/leaproud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leaproud](https://clawhub.ai/user/leaproud)
 
-## Use Case: <br>
-Developers and document authors use this skill to generate, format, validate, and revise formal official or organizational documents in Word-compatible formats. It is intended for workflows that need standardized layout, official-language phrasing, sensitive-word checks, and local revision tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local document generation and revision-history files can contain confidential official or business content. <br>
-Mitigation: Use a controlled output folder, disable enhanced revision history with --no-history when appropriate, and review generated data, history, and template files before sharing or archiving the workspace. <br>
-Risk: The skill runs local Python document-processing scripts and dependencies that write files and manage templates. <br>
-Mitigation: Install and run it only in an environment where local Python scripts and document-processing dependencies are acceptable, and review templates and configuration before use. <br>
+## Use Case:
 
+Employees, external users, and document authors use this skill to draft, format, validate, and export formal organizational documents. It is most relevant when users need structured document types, standard formatting, template management, sensitive-word checks, or revision history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leaproud/official-doc-generator) <br>
-- [GB/T 9704-2012 formatting reference](artifact/references/gb_t_9704_2012_standard.md) <br>
-- [Official language style guide](artifact/references/official_language_style.md) <br>
-- [Document type specification](artifact/references/document_types_specification.md) <br>
-- [Sensitive words and checking rules](artifact/references/sensitive_words_list.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance, JSON configuration, Python command examples, and generated Word-compatible document files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local output documents, revision-history files, templates, and validation reports in user-selected directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata; artifact _meta.json reports 1.0.1) <br>
+Risk: Local document and template operations can overwrite or delete Word documents outside the intended template folder when unsafe names or paths are supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a dedicated working folder, review output paths before execution, and reject template names with path separators, absolute paths, or `..`.
+
+Risk: Compliance or sensitive-word suggestions may alter factual meaning or policy-sensitive wording.
+
+Mitigation: Manually review proposed wording changes before using generated documents in formal workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leaproud/skills/official-doc-generator)
+- [GB/T 9704-2012 Format Reference](artifact/references/gb_t_9704_2012_standard.md)
+- [Official Language Style Guide](artifact/references/official_language_style.md)
+- [Document Types Specification](artifact/references/document_types_specification.md)
+- [Sensitive Words List](artifact/references/sensitive_words_list.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance, JSON configuration, Python/shell examples, Word document files, and text or JSON validation reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate .docx documents, validation reports, sensitive-word check reports, template metadata, and revision history files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

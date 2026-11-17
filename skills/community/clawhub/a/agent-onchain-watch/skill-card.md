@@ -1,41 +1,63 @@
-## Description: <br>
-Monitors Ethereum wallet and contract activity, detects simple risk flags, and summarizes balances, transactions, and ERC-20 token transfers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors wallet and contract on-chain activity and summarizes balances, transactions, token transfers, and risk flags.
 
-## Publisher: <br>
-[jinu4you](https://clawhub.ai/user/jinu4you) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[jinu4you](https://clawhub.ai/user/jinu4you)
 
-## Use Case: <br>
-Developers and external users can monitor an Ethereum address with Etherscan-backed balance, transaction, and token-transfer checks, then receive risk flags and a short LLM-generated Markdown summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses and transaction context may be sent to Etherscan and configured LLM providers. <br>
-Mitigation: Use only with wallet metadata that is acceptable to share with those services, and treat transaction context as potentially sensitive. <br>
-Risk: Running npm start launches a sample monitoring job automatically. <br>
-Mitigation: Review the configured payload and logs before running in shared or production environments. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor Ethereum wallet or contract activity, inspect balances and recent transfers, and receive a concise risk-oriented summary.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jinu4you/agent-onchain-watch) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Analysis] <br>
-**Output Format:** [JSON job result containing wallet data, risk flags, and a short Markdown summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Ethereum address input and API keys for live Etherscan and LLM-provider calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: package.json and server release metadata) <br>
+Risk: The skill can silently return mock blockchain data when the Etherscan API key is missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a valid ETHERSCAN_API_KEY for real monitoring, or clearly label and isolate mock-mode output before use.
+
+Risk: Unsupported or unmapped chains can be mislabeled in output.
+
+Mitigation: Reject unsupported chain values or map each supported chain to the correct upstream chain identifier.
+
+Risk: Wallet and transaction context may be shared with outbound LLM providers.
+
+Mitigation: Document outbound LLM data sharing and configure provider use according to the deployment's privacy requirements.
+
+Risk: Dependencies were not reported as audited by the security evidence.
+
+Mitigation: Audit dependencies before installation or production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinu4you/skills/agent-onchain-watch)
+- [Etherscan API endpoint](https://api.etherscan.io/v2/api)
+- [Groq OpenAI-compatible API endpoint](https://api.groq.com/openai/v1)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Text]
+
+**Output Format:** [JSON job result containing wallet balance, transactions, token transfers, risk flags, and a Korean Markdown summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an address input; optional chain and event_types values control the query scope.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

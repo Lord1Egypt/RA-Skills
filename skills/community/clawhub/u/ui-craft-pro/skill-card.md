@@ -1,45 +1,58 @@
-## Description: <br>
-Design, refine, and implement better UI for websites, dashboards, apps, landing pages, and components using a local design knowledge base and a code-first implementation workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UI Craft Pro helps agents design, refine, and implement UI for websites, dashboards, apps, landing pages, and components using a local design knowledge base and code-first workflow.
 
-## Publisher: <br>
-[AiraEliteAgent](https://clawhub.ai/user/AiraEliteAgent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[airaeliteagent](https://clawhub.ai/user/airaeliteagent)
 
-## Use Case: <br>
-Developers and designers use this skill to choose a UI direction, generate project-specific design systems, translate those decisions into interface code, and review the result for coherence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated UI recommendations may be visually plausible but mismatched to brand, audience, accessibility, or inclusivity needs. <br>
-Mitigation: Review generated visual direction, contrast, copy, and component behavior before using the output in production. <br>
-Risk: When persistence is explicitly requested, the skill can write design-system Markdown files into the working project. <br>
-Mitigation: Run persistence only in the intended project directory and review file diffs before adopting the generated design-system files. <br>
+## Use Case:
 
+Developers, designers, and UI-building agents use this skill to choose an appropriate visual direction, generate or infer a design system, translate that system into interface code, and review whether the result remains coherent and non-generic.
 
-## Reference(s): <br>
-- [Anti-Generic UI Review](references/anti-generic-review.md) <br>
-- [Design System Teardown Checklist](references/design-system-teardown-checklist.md) <br>
-- [Implementation Patterns](references/implementation-patterns.md) <br>
-- [Product Archetypes](references/product-archetypes.md) <br>
-- [Review Checklist](references/review-checklist.md) <br>
-- [Style Cloning Playbook](references/style-cloning-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, and plain text CLI output; optional persisted Markdown design-system files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local CSV-backed recommendations and can create design-system/MASTER.md plus page override files when persistence is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata) <br>
+Risk: The optional save workflow can overwrite Markdown files outside its intended design-system folder when crafted names or paths are supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted project and page names, choose trusted output directories, and review containment and overwrite behavior before using persistence.
+
+Risk: Generated UI guidance can still produce mismatched, generic, inaccessible, or low-contrast interfaces if applied without review.
+
+Mitigation: Apply the included implementation patterns and review checklist, then manually verify hierarchy, component consistency, readability, focus states, mobile behavior, and reduced-motion handling.
+
+## Reference(s):
+
+- [Implementation Patterns](references/implementation-patterns.md)
+- [Review Checklist](references/review-checklist.md)
+- [Product Archetypes](references/product-archetypes.md)
+- [Anti-Generic UI Review](references/anti-generic-review.md)
+- [Design System Teardown Checklist](references/design-system-teardown-checklist.md)
+- [Style Cloning Playbook](references/style-cloning-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON output and generated design-system Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally persist design-system Markdown files when the save workflow is used.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

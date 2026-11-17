@@ -1,43 +1,59 @@
-## Description: <br>
-Perform private, high-quality web searches using DuckDuckGo's Instant Answer API with fallback to top links and summaries without requiring API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform private, high-quality web searches using DuckDuckGo's Instant Answer API with fallback to top links and snippets without requiring API keys.
 
-## Publisher: <br>
-[IanWChoi](https://clawhub.ai/user/IanWChoi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ianwchoi](https://clawhub.ai/user/ianwchoi)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run privacy-minded web lookups, retrieve top DuckDuckGo results, and summarize result snippets when no paid search API is available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to DuckDuckGo. <br>
-Mitigation: Avoid including sensitive private data in search queries. <br>
-Risk: Returned snippets and links are untrusted web content. <br>
-Mitigation: Verify important claims against reliable sources before relying on results. <br>
-Risk: Node and npm dependency installation may be required before use. <br>
-Mitigation: Install dependencies through the declared package files and review dependency changes before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Usage Examples](references/usage_examples.md) <br>
-- [DuckDuckGo Instant Answer API endpoint](https://api.duckduckgo.com/) <br>
-- [DuckDuckGo HTML search endpoint](https://duckduckgo.com/html/) <br>
+## Use Case:
 
+Developers and agents use this skill to run quick DuckDuckGo web searches, return concise summaries and top links, and avoid paid search API keys when privacy-friendly search is acceptable.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [JSON object containing the query, summary, up to 5 result links, source, and notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results and snippets come from DuckDuckGo and should be treated as untrusted web content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search terms are sent to DuckDuckGo.
+
+Mitigation: Avoid queries containing secrets, credentials, private customer data, or internal prompts.
+
+Risk: Dependency ranges may permit compatible updates during install.
+
+Mitigation: Use locked installs such as npm ci and review lockfile changes before deployment.
+
+Risk: Search results and snippets can be stale, incomplete, or misleading.
+
+Mitigation: Review source links before acting on returned information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ianwchoi/skills/duckduckgo-websearch)
+- [Usage examples](references/usage_examples.md)
+- [DuckDuckGo Instant Answer API endpoint](https://api.duckduckgo.com/)
+- [DuckDuckGo HTML search endpoint](https://duckduckgo.com/html/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON search result object with query, summary, links, source, and notes fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to 5 links with titles and snippets; summaries may be empty when DuckDuckGo has no instant answer.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact _meta.json says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

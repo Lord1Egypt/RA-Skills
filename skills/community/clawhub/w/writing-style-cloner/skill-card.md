@@ -1,40 +1,55 @@
-## Description: <br>
-Antonia的个人写作风格克隆器，用于将语音转录稿或草稿改写为符合 Antonia 写作风格的中文自媒体文章。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Antonia的个人写作风格克隆器。将语音转录稿或草稿直接改写为符合Antonia写作风格的自媒体文章。
 
-## Publisher: <br>
-[antonia-sz](https://clawhub.ai/user/antonia-sz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antonia-sz](https://clawhub.ai/user/antonia-sz)
 
-## Use Case: <br>
-Writers, content creators, and agents use this skill to rewrite Chinese voice transcripts or drafts into Antonia-style self-media articles. It is intended for experience sharing, personal growth reflections, study methods, workplace notes, reading notes, and draft polishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may apply Antonia's Chinese self-media style when a neutral, academic, legal, business, or non-Chinese writing style is needed. <br>
-Mitigation: Use it only for Chinese drafts that should intentionally match this disclosed personal style; otherwise choose a narrower writing skill or explicitly instruct the agent not to use this style. <br>
+## Use Case:
 
+External users and content creators use this skill to rewrite Chinese transcripts or drafts into Antonia's personal social-media article style while preserving the source material's core information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/antonia-sz/writing-style-cloner) <br>
-- [口语转书面语规则](references/oral-to-written.md) <br>
-- [写作风格分析维度详解](references/style-dimensions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown article draft in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include headings, numbered sections, lists, tables, and light emoji according to the documented style profile.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill imitates a named person's writing style, which may be inappropriate without rights or consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when you have appropriate rights or consent to use Antonia's personal style.
+
+Risk: Broad trigger phrases can apply this specific voice to ordinary writing or speech-to-prose requests unintentionally.
+
+Mitigation: Narrow trigger phrases or require explicit user confirmation before applying the Antonia style.
+
+## Reference(s):
+
+- [Writing Style Cloner on ClawHub](https://clawhub.ai/antonia-sz/skills/writing-style-cloner)
+- [口语转书面语规则](references/oral-to-written.md)
+- [写作风格分析维度详解](references/style-dimensions.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown article draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese long-form social-media article structure with headings, lists, optional tables, and light emoji usage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

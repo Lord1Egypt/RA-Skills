@@ -1,43 +1,52 @@
-## Description: <br>
-Guides optimization of HTML title tags for search engines and SERP display. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides optimization of HTML title tags, page titles, and SERP titles for search visibility, display length, and click-through performance.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External SEO practitioners, content teams, and developers use this skill to draft and assess page title tags for target keywords, brand fit, language-specific display length, and SERP click-through performance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for broad page-title or search-headline wording when the user intended a different SEO task.
+
+Mitigation: Confirm whether the request is about title tags, meta descriptions, structured data, or another SEO surface before applying the guidance.
+
+Risk: The skill may read local project context files for brand voice and keyword context when those files are present.
+
+Mitigation: Use it in projects where those context files are appropriate for the agent to read, or remove sensitive material before invocation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, developers, and SEO practitioners use this skill to draft and assess page title tags with language-aware length guidance, keyword placement, uniqueness, and SERP click-through considerations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Title recommendations can be misleading if project context, target keywords, page intent, or locale are stale or incorrect. <br>
-Mitigation: Review recommendations against current page content, brand guidance, target query, and locale before publishing. <br>
-Risk: The skill may use existing project context files for brand voice and keywords. <br>
-Mitigation: Confirm those context files are appropriate to share with the active agent workflow and do not contain outdated or sensitive SEO strategy. <br>
-Risk: Google Search Console analysis is mentioned as a related optimization path but depends on a separate related skill or integration. <br>
-Mitigation: Use verified Search Console data only when the relevant integration is available and authorized. <br>
+**Output Format:** [Markdown guidance with recommended title tags, character counts, and alternatives when useful]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/title-tag) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
+**Other Properties Related to Output:** [May include language-specific length guidance and optional A/B testing alternatives.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with recommended title text, character counts, and alternatives when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference existing project context files for brand voice and target keywords when available.] <br>
+1.4.0 (source: SKILL.md frontmatter metadata and release evidence)
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter and server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

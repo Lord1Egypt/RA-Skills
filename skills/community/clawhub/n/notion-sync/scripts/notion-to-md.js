@@ -12,6 +12,7 @@ const {
   normalizeId,
   getAllBlocks,
   blocksToMarkdown,
+  extractTitle,
   stripTokenArg,
   hasJsonFlag,
   log,
@@ -26,15 +27,20 @@ async function getPage(pageId) {
   return notionRequest(`/v1/pages/${encodeURIComponent(id)}`, 'GET');
 }
 
+function extractPageTitle(page) {
+  return extractTitle(page).replace(/^\(Untitled\)$/, 'Untitled');
+}
+
 async function main() {
   const args = stripTokenArg(process.argv.slice(2));
+  const isHelp = args.includes('--help');
 
-  if (args.length < 1 || args[0] === '--help') {
-    console.log('Usage: notion-to-md.js <page-id> [output-file] [--json] [--allow-unsafe-paths]');
+  if (isHelp || args.length < 1) {
+    console.log('Usage: notion-to-md.js <page-id> [output-file] [--json] [--allow-write-path <exact-path>]');
     console.log('');
     console.log('Example:');
     console.log('  notion-to-md.js "abc123..." newsletter.md --json');
-    process.exit(args[0] === '--help' ? 0 : 1);
+    process.exit(isHelp ? 0 : 1);
   }
 
   const pageId = normalizeId(args[0]);
@@ -53,7 +59,7 @@ async function main() {
 
   try {
     const page = await getPage(pageId);
-    const title = page.properties?.title?.title?.[0]?.plain_text || 'Untitled';
+    const title = extractPageTitle(page);
 
     const blocks = await getAllBlocks(pageId);
     const markdown = blocksToMarkdown(blocks);
@@ -97,5 +103,12 @@ if (require.main === module) {
 } else {
   // Re-export utilities for backwards compatibility (v1.0.x)
   // Prefer importing from notion-utils.js directly for new code
-  module.exports = { getPage, main, getAllBlocks, blocksToMarkdown, normalizeId };
+  module.exports = {
+    getPage,
+    main,
+    extractPageTitle,
+    getAllBlocks,
+    blocksToMarkdown,
+    normalizeId,
+  };
 }

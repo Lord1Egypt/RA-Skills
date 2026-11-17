@@ -1,40 +1,53 @@
-## Description: <br>
-Clean up stale or unwanted subagent sessions from the OpenClaw webchat sidebar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clean up stale or unwanted subagent sessions from the OpenClaw webchat sidebar.
 
-## Publisher: <br>
-[saybanet](https://clawhub.ai/user/saybanet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saybanet](https://clawhub.ai/user/saybanet)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to preview and remove stale or unwanted subagent entries from local OpenClaw session indexes so the webchat sidebar reflects current sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Editing OpenClaw session sidebar indexes can remove session history the user intended to keep. <br>
-Mitigation: Run with --dry-run first and back up sessions.json before applying cleanup. <br>
-Risk: The --all option removes every matching subagent session entry, not only stale entries. <br>
-Mitigation: Use --all only when intentionally clearing all matching subagent entries, and use --agent to narrow the target when appropriate. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to remove stale or unwanted subagent session entries from local sessions.json indexes so the webchat sidebar reflects current sessions.
 
-## Reference(s): <br>
-- [Sayba Session Cleanup on ClawHub](https://clawhub.ai/saybanet/sayba-session-cleanup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dry-run, all-session cleanup, and target-agent command variants.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Cleanup changes local OpenClaw session indexes and can remove all subagent sidebar entries when --all is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run --dry-run first, consider backing up ~/.openclaw/agents, use --agent for scoped cleanup, and reserve --all for intentional full subagent cleanup.
+
+Risk: Users may think cleanup failed if the sidebar still shows old entries immediately after editing sessions.json.
+
+Mitigation: Restart the OpenClaw gateway and refresh the webchat page after cleanup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/saybanet/skills/sayba-session-cleanup)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend dry-run mode, scoped agent cleanup, and gateway restart after cleanup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

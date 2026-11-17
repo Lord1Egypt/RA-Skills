@@ -1,45 +1,62 @@
-## Description: <br>
-Build and operate a privacy-preserving household information system for AI agents and assistants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Family OS helps an AI agent initialize and maintain a private local household workspace for plans, projects, decisions, reminders, records, and long-term family workflows.
 
-## Publisher: <br>
-[living-hi](https://clawhub.ai/user/living-hi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[living-hi](https://clawhub.ai/user/living-hi)
 
-## Use Case: <br>
-External users and household operators use this skill to initialize and maintain a private local workspace for family facts, plans, projects, decisions, reminders, risks, reviews, and long-term development paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill maintains a persistent local household record that may include sensitive family information in local plaintext files. <br>
-Mitigation: Choose a private workspace path, review ~/.family-os/config.yaml, and avoid storing credentials, ID numbers, medical results, or detailed child, legal, or financial records unless local plaintext storage is acceptable. <br>
-Risk: Automatic updates can write sensitive household information without an additional review step when privacy settings allow it. <br>
-Mitigation: Disable auto_update or require confirmation for sensitive writes, especially for identity, medical, financial, legal, address, credential, and detailed child information. <br>
+## Use Case:
 
+External users and their AI agents use this skill to create and operate a local household knowledge base for family logistics, finance, health, education, legal/admin records, decisions, and recurring reviews. It is intended for private workspace management, not for storing household data inside the skill package.
 
-## Reference(s): <br>
-- [Privacy Model](references/privacy-model.md) <br>
-- [Workspace Structure](references/workspace-structure.md) <br>
-- [Update Rules](references/update-rules.md) <br>
-- [Workflows](references/workflows.md) <br>
-- [Household Development Path Framework](references/development-path-framework.md) <br>
-- [Templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files, local workspace files, shell command output, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores user household data in the configured local workspace rather than the skill package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill can create a persistent local household database containing highly sensitive family, financial, health, legal, and administrative information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private workspace path, keep the data local unless the user explicitly requests otherwise, and restrict filesystem permissions so other local users cannot read the workspace.
+
+Risk: Auto-update behavior may record sensitive details before the user has reviewed them if configured too broadly.
+
+Mitigation: Keep aREDACTED-SECRET enabled and review updates involving identity documents, medical details, account credentials, exact addresses, legal disputes, large asset details, or child-identifying information.
+
+Risk: Initialization with archive-existing can move legacy material inside the selected workspace.
+
+Mitigation: Confirm the intended workspace path before initialization and inspect the generated archive before migrating summaries back into active files.
+
+## Reference(s):
+
+- [Privacy Model](references/privacy-model.md)
+- [Workspace Structure](references/workspace-structure.md)
+- [Update Rules](references/update-rules.md)
+- [Workflows](references/workflows.md)
+- [Household Development Path Framework](references/development-path-framework.md)
+- [Templates](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, YAML configuration, shell command output, and concise agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates a private local workspace; can initialize templates, write configuration, report workspace status, and archive existing workspace material when requested.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

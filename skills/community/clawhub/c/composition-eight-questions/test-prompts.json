@@ -1,0 +1,52 @@
+{
+  "skill": "composition-eight-questions",
+  "version": "0.1.0",
+  "source_book": "纽约摄影学院摄影教程 — 美国纽约摄影学院",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "怎么构图才能让照片更有冲击力？",
+      "expected_behavior": "调用 composition-eight-questions，系统讲解八种突出重点技术",
+      "notes": "正面场景：构图提升"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "主体不够突出怎么办？",
+      "expected_behavior": "调用 composition-eight-questions，用八问法系统检查",
+      "notes": "正面场景：主体突出"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "how to use leading lines and framing in composition?",
+      "expected_behavior": "调用 composition-eight-questions，讲解会聚线条和搭画框技术",
+      "notes": "正面场景：具体构图技术"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "这张照片的主题是什么？",
+      "expected_behavior": "不应调用 composition-eight-questions，应调用 photo-three-principles 或 universal-theme",
+      "notes": "跨 skill 混淆诱饵：主题评价问题"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "三分法是什么？",
+      "expected_behavior": "纯知识查询，不应调用方法论 skill",
+      "notes": "诱饵：术语解释"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "拍照时应该把主体放在画面中间还是旁边？",
+      "expected_behavior": "边界模糊——这是八问之一（布局问题），可以调用但问题较简单",
+      "notes": "边界：简单构图问题"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。"
+}

@@ -1,46 +1,57 @@
-## Description: <br>
-Professional AI Trading Mentor. Master price action, technical analysis, and risk management logic. Companion logic model for the Day Trading Investor Course. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional AI Trading Mentor. Master price action, technical analysis, and risk management logic. Companion logic model for the Day Trading Investor Course.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-External users use this skill for trading education, technical-analysis explanations, position-sizing calculations, risk-management discipline, and theoretical strategy audits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake educational trading discussion for licensed financial advice. <br>
-Mitigation: Treat responses as educational support only and independently review trading decisions with appropriate professional advice. <br>
-Risk: Users may disclose brokerage credentials, API keys, or account details even though the skill does not require them. <br>
-Mitigation: Do not provide account credentials, brokerage logins, API keys, or sensitive financial data. <br>
-Risk: Companion app links may appear when users ask for practice, charts, or tutorials. <br>
-Mitigation: Review any external link before opening it and use companion resources only when relevant to the request. <br>
+## Use Case:
 
+External users and developers use this skill for educational trading-analysis assistance, including technical indicator explanations, risk-management calculations, and theoretical strategy audits. It is intended to help users reason about market mechanics and trading discipline, not to provide guaranteed investment outcomes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/abe-day-trading-investor-pro) <br>
-- [Project homepage](https://github.com/yoavfael/day-trading-skill) <br>
-- [Day Trading Investor Course for Windows](https://apps.microsoft.com/detail/9pmz3bpbmg1t) <br>
-- [Day Trading Investor Course for iOS](https://apps.apple.com/app/apple-store/id1531323309?pt=120261526&ct=ClawHub_DayTrading_Agent&mt=8) <br>
-- [Day Trading Investor Course for Android](https://play.google.com/store/apps/details?id=academehub.day_trading_daytrade_course) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational trading explanations, risk calculations, and strategy feedback; no code execution, persistence, credentials, or brokerage access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter: 1.2.1) <br>
+Risk: Trading-analysis outputs could be mistaken for guaranteed investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for education only, independently verify trading plans, and avoid risking money based solely on generated output.
+
+Risk: Position sizing, stop-loss, or strategy-audit responses may be incorrect or incomplete for a user's financial situation.
+
+Mitigation: Review calculations and assumptions before use, and consult qualified financial guidance where appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/abe-day-trading-investor-pro)
+- [Server metadata homepage](https://github.com/yoavfael/day-trading-skill)
+- [Day Trading Investor Course for Windows](https://apps.microsoft.com/detail/9pmz3bpbmg1t)
+- [Day Trading Investor Course for iOS](https://apps.apple.com/app/apple-store/id1531323309?pt=120261526&ct=ClawHub_DayTrading_Agent&mt=8)
+- [Day Trading Investor Course for Android](https://play.google.com/store/apps/details?id=academehub.day_trading_daytrade_course)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown responses with explanatory prose, risk-management guidance, and occasional calculations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill; no executable, credential, persistence, or data-access behavior is identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 1.2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

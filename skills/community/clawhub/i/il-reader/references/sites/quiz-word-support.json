@@ -1,0 +1,1335 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-word-support",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:08:54.856Z",
+  "entry": {
+    "url": "https://support.microsoft.com/zh-cn/word",
+    "final_url": "https://support.microsoft.com/zh-cn/word/",
+    "title": "Word 帮助和学习 | Microsoft Support",
+    "status": "accessible",
+    "http_status": null,
+    "checked_at": "2026-10-09T09:08:54.856Z",
+    "identity": {
+      "declared_name": "Microsoft Word 官方支持",
+      "hostname": "support.microsoft.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "技术资源和培训",
+        "href": "https://learn.microsoft.com/microsoft-365/",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "All Microsoft expand to see list of Microsoft products and services",
+      "label": "",
+      "aria_label": "All Microsoft expand to see list of Microsoft products and services",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "All Microsoft expand to see list of Microsoft products and services",
+        "exact": true
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "关闭搜索",
+      "label": "",
+      "aria_label": "关闭搜索",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "关闭搜索",
+        "exact": true
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "查看更多菜单选项",
+      "label": "",
+      "aria_label": "查看更多菜单选项",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "查看更多菜单选项",
+        "exact": true
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "查看更多菜单选项",
+      "label": "",
+      "aria_label": "查看更多菜单选项",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "查看更多菜单选项",
+        "exact": true
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "支持",
+      "label": "",
+      "aria_label": "支持",
+      "placeholder": null,
+      "name": null,
+      "id": "uhfCatLogoButton",
+      "css": "#uhfCatLogoButton",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#uhfCatLogoButton"
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "产品",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "c-shellmenu_2",
+      "css": "#c-shellmenu_2",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#c-shellmenu_2"
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "设备",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "c-shellmenu_11",
+      "css": "#c-shellmenu_11",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#c-shellmenu_11"
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "资源",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "c-shellmenu_20",
+      "css": "#c-shellmenu_20",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#c-shellmenu_20"
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "更多",
+      "label": "",
+      "aria_label": "更多",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "更多",
+        "exact": true
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "所有 Microsoft",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "所有 Microsoft",
+        "exact": true
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "软件",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "uhf-navbtn-shellmenu_36-button",
+      "css": "#uhf-navbtn-shellmenu_36-button",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#uhf-navbtn-shellmenu_36-button"
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "PC 和设备",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "uhf-navbtn-shellmenu_43-button",
+      "css": "#uhf-navbtn-shellmenu_43-button",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#uhf-navbtn-shellmenu_43-button"
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "娱乐",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "uhf-navbtn-shellmenu_47-button",
+      "css": "#uhf-navbtn-shellmenu_47-button",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#uhf-navbtn-shellmenu_47-button"
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "企业",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "uhf-navbtn-shellmenu_50-button",
+      "css": "#uhf-navbtn-shellmenu_50-button",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#uhf-navbtn-shellmenu_50-button"
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "开发人员与 IT",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "uhf-navbtn-shellmenu_58-button",
+      "css": "#uhf-navbtn-shellmenu_58-button",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#uhf-navbtn-shellmenu_58-button"
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "其他",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "uhf-navbtn-shellmenu_66-button",
+      "css": "#uhf-navbtn-shellmenu_66-button",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#uhf-navbtn-shellmenu_66-button"
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "input",
+      "type": "search",
+      "text": "已展开搜索",
+      "label": "",
+      "aria_label": "已展开搜索",
+      "placeholder": "搜索帮助",
+      "name": "query",
+      "id": "cli_shellHeaderSearchInput",
+      "css": "#cli_shellHeaderSearchInput",
+      "role": null,
+      "form_action": "https://support.microsoft.com/zh-cn/Search/results",
+      "locator": {
+        "css": "#cli_shellHeaderSearchInput"
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "搜索帮助",
+      "label": "",
+      "aria_label": "搜索帮助",
+      "placeholder": null,
+      "name": null,
+      "id": "search",
+      "css": "#search",
+      "role": null,
+      "form_action": "https://support.microsoft.com/zh-cn/Search/results",
+      "locator": {
+        "css": "#search"
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "取消 搜索",
+      "label": "",
+      "aria_label": "取消 搜索",
+      "placeholder": null,
+      "name": null,
+      "id": "cancel-search",
+      "css": "#cancel-search",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#cancel-search"
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "是",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "buttonYes",
+      "id": "",
+      "css": "button[name=\"buttonYes\"]",
+      "role": null,
+      "form_action": "javascript:void(0);",
+      "locator": {
+        "css": "button[name=\"buttonYes\"]"
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "否",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "buttonNo",
+      "id": "",
+      "css": "button[name=\"buttonNo\"]",
+      "role": null,
+      "form_action": "javascript:void(0);",
+      "locator": {
+        "css": "button[name=\"buttonNo\"]"
+      },
+      "observed_url": "https://support.microsoft.com/zh-cn/word/",
+      "observed_at": "2026-10-09T09:08:50.854Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-word-support:record-lookup",
+      "source_id": "quiz-word-support",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://support.microsoft.com/zh-cn/word/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "All Microsoft expand to see list of Microsoft products and services",
+          "label": "",
+          "aria_label": "All Microsoft expand to see list of Microsoft products and services",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "All Microsoft expand to see list of Microsoft products and services",
+            "exact": true
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "关闭搜索",
+          "label": "",
+          "aria_label": "关闭搜索",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "关闭搜索",
+            "exact": true
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "查看更多菜单选项",
+          "label": "",
+          "aria_label": "查看更多菜单选项",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "查看更多菜单选项",
+            "exact": true
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "查看更多菜单选项",
+          "label": "",
+          "aria_label": "查看更多菜单选项",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "查看更多菜单选项",
+            "exact": true
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "支持",
+          "label": "",
+          "aria_label": "支持",
+          "placeholder": null,
+          "name": null,
+          "id": "uhfCatLogoButton",
+          "css": "#uhfCatLogoButton",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#uhfCatLogoButton"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "产品",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "c-shellmenu_2",
+          "css": "#c-shellmenu_2",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#c-shellmenu_2"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "设备",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "c-shellmenu_11",
+          "css": "#c-shellmenu_11",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#c-shellmenu_11"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "资源",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "c-shellmenu_20",
+          "css": "#c-shellmenu_20",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#c-shellmenu_20"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "更多",
+          "label": "",
+          "aria_label": "更多",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "更多",
+            "exact": true
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "所有 Microsoft",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "所有 Microsoft",
+            "exact": true
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "软件",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "uhf-navbtn-shellmenu_36-button",
+          "css": "#uhf-navbtn-shellmenu_36-button",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#uhf-navbtn-shellmenu_36-button"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "PC 和设备",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "uhf-navbtn-shellmenu_43-button",
+          "css": "#uhf-navbtn-shellmenu_43-button",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#uhf-navbtn-shellmenu_43-button"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "娱乐",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "uhf-navbtn-shellmenu_47-button",
+          "css": "#uhf-navbtn-shellmenu_47-button",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#uhf-navbtn-shellmenu_47-button"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "企业",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "uhf-navbtn-shellmenu_50-button",
+          "css": "#uhf-navbtn-shellmenu_50-button",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#uhf-navbtn-shellmenu_50-button"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "开发人员与 IT",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "uhf-navbtn-shellmenu_58-button",
+          "css": "#uhf-navbtn-shellmenu_58-button",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#uhf-navbtn-shellmenu_58-button"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "其他",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "uhf-navbtn-shellmenu_66-button",
+          "css": "#uhf-navbtn-shellmenu_66-button",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#uhf-navbtn-shellmenu_66-button"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "已展开搜索",
+          "label": "",
+          "aria_label": "已展开搜索",
+          "placeholder": "搜索帮助",
+          "name": "query",
+          "id": "cli_shellHeaderSearchInput",
+          "css": "#cli_shellHeaderSearchInput",
+          "role": null,
+          "form_action": "https://support.microsoft.com/zh-cn/Search/results",
+          "locator": {
+            "css": "#cli_shellHeaderSearchInput"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "搜索帮助",
+          "label": "",
+          "aria_label": "搜索帮助",
+          "placeholder": null,
+          "name": null,
+          "id": "search",
+          "css": "#search",
+          "role": null,
+          "form_action": "https://support.microsoft.com/zh-cn/Search/results",
+          "locator": {
+            "css": "#search"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "取消 搜索",
+          "label": "",
+          "aria_label": "取消 搜索",
+          "placeholder": null,
+          "name": null,
+          "id": "cancel-search",
+          "css": "#cancel-search",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#cancel-search"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "是",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "buttonYes",
+          "id": "",
+          "css": "button[name=\"buttonYes\"]",
+          "role": null,
+          "form_action": "javascript:void(0);",
+          "locator": {
+            "css": "button[name=\"buttonYes\"]"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "否",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "buttonNo",
+          "id": "",
+          "css": "button[name=\"buttonNo\"]",
+          "role": null,
+          "form_action": "javascript:void(0);",
+          "locator": {
+            "css": "button[name=\"buttonNo\"]"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "quiz-word-support:product-capability",
+      "source_id": "quiz-word-support",
+      "task_kind": "product-capability",
+      "status": "entry_observed",
+      "parameters": [
+        "product",
+        "client_platform",
+        "feature",
+        "menu_or_setting"
+      ],
+      "instructions": [
+        "先确认网页版/桌面版/插件的具体产品和版本，再打开本题功能菜单或官方帮助读取选项；不提交生成、付费或个人信息。"
+      ],
+      "transitions": {},
+      "entry_url": "https://support.microsoft.com/zh-cn/word/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "All Microsoft expand to see list of Microsoft products and services",
+          "label": "",
+          "aria_label": "All Microsoft expand to see list of Microsoft products and services",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "All Microsoft expand to see list of Microsoft products and services",
+            "exact": true
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "关闭搜索",
+          "label": "",
+          "aria_label": "关闭搜索",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "关闭搜索",
+            "exact": true
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "查看更多菜单选项",
+          "label": "",
+          "aria_label": "查看更多菜单选项",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "查看更多菜单选项",
+            "exact": true
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "查看更多菜单选项",
+          "label": "",
+          "aria_label": "查看更多菜单选项",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "查看更多菜单选项",
+            "exact": true
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "支持",
+          "label": "",
+          "aria_label": "支持",
+          "placeholder": null,
+          "name": null,
+          "id": "uhfCatLogoButton",
+          "css": "#uhfCatLogoButton",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#uhfCatLogoButton"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "产品",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "c-shellmenu_2",
+          "css": "#c-shellmenu_2",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#c-shellmenu_2"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "设备",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "c-shellmenu_11",
+          "css": "#c-shellmenu_11",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#c-shellmenu_11"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "资源",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "c-shellmenu_20",
+          "css": "#c-shellmenu_20",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#c-shellmenu_20"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "更多",
+          "label": "",
+          "aria_label": "更多",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "更多",
+            "exact": true
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "所有 Microsoft",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "所有 Microsoft",
+            "exact": true
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "软件",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "uhf-navbtn-shellmenu_36-button",
+          "css": "#uhf-navbtn-shellmenu_36-button",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#uhf-navbtn-shellmenu_36-button"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "PC 和设备",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "uhf-navbtn-shellmenu_43-button",
+          "css": "#uhf-navbtn-shellmenu_43-button",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#uhf-navbtn-shellmenu_43-button"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "娱乐",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "uhf-navbtn-shellmenu_47-button",
+          "css": "#uhf-navbtn-shellmenu_47-button",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#uhf-navbtn-shellmenu_47-button"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "企业",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "uhf-navbtn-shellmenu_50-button",
+          "css": "#uhf-navbtn-shellmenu_50-button",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#uhf-navbtn-shellmenu_50-button"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "开发人员与 IT",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "uhf-navbtn-shellmenu_58-button",
+          "css": "#uhf-navbtn-shellmenu_58-button",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#uhf-navbtn-shellmenu_58-button"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "其他",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "uhf-navbtn-shellmenu_66-button",
+          "css": "#uhf-navbtn-shellmenu_66-button",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#uhf-navbtn-shellmenu_66-button"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "已展开搜索",
+          "label": "",
+          "aria_label": "已展开搜索",
+          "placeholder": "搜索帮助",
+          "name": "query",
+          "id": "cli_shellHeaderSearchInput",
+          "css": "#cli_shellHeaderSearchInput",
+          "role": null,
+          "form_action": "https://support.microsoft.com/zh-cn/Search/results",
+          "locator": {
+            "css": "#cli_shellHeaderSearchInput"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "搜索帮助",
+          "label": "",
+          "aria_label": "搜索帮助",
+          "placeholder": null,
+          "name": null,
+          "id": "search",
+          "css": "#search",
+          "role": null,
+          "form_action": "https://support.microsoft.com/zh-cn/Search/results",
+          "locator": {
+            "css": "#search"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "取消 搜索",
+          "label": "",
+          "aria_label": "取消 搜索",
+          "placeholder": null,
+          "name": null,
+          "id": "cancel-search",
+          "css": "#cancel-search",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#cancel-search"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "是",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "buttonYes",
+          "id": "",
+          "css": "button[name=\"buttonYes\"]",
+          "role": null,
+          "form_action": "javascript:void(0);",
+          "locator": {
+            "css": "button[name=\"buttonYes\"]"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "否",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "buttonNo",
+          "id": "",
+          "css": "button[name=\"buttonNo\"]",
+          "role": null,
+          "form_action": "javascript:void(0);",
+          "locator": {
+            "css": "button[name=\"buttonNo\"]"
+          },
+          "observed_url": "https://support.microsoft.com/zh-cn/word/",
+          "observed_at": "2026-10-09T09:08:50.854Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "network_error",
+      "attempt": 1,
+      "detail": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://support.microsoft.com/zh-cn/word\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [],
+    "example_ids": [
+      "2025-M45-Q1",
+      "2026-M45-Q1",
+      "PT1-Q44",
+      "KH-Q018",
+      "KH-Q079"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:08:54.856Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-word-support-partial.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-word-support-partial.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

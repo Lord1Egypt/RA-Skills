@@ -1,43 +1,53 @@
-## Description: <br>
-Disease CEA Auto helps an agent draft disease-specific pharmacoeconomic analyses by selecting representative therapies, collecting clinical and cost parameters, modeling Markov or decision-tree cost effectiveness, ranking treatments by NMB, and producing Python code plus a scientific report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Disease CEA Auto designs Markov or decision-tree pharmacoeconomic evaluations for a specified disease, searches for current treatments and model parameters, calculates ICER and NMB using China's latest GDP-per-capita WTP threshold, and outputs runnable Python plus a bilingual scientific report.
 
-## Publisher: <br>
-[tlb1201](https://clawhub.ai/user/tlb1201) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tlb1201](https://clawhub.ai/user/tlb1201)
 
-## Use Case: <br>
-External users, developers, and health-economics analysts use this skill to prepare China-oriented cost-effectiveness analyses for a specified disease, including model structure, evidence tables, ICER/NMB calculations, sensitivity analysis, charts, Python code, and a bilingual scientific report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clinical, cost, utility, and GDP inputs are gathered from web sources and may be outdated, incomplete, extrapolated, or inappropriate for the target population. <br>
-Mitigation: Verify every cited input against current authoritative sources and have a qualified clinical or health-economics expert review assumptions before relying on outputs. <br>
-Risk: Generated ICER, NMB, sensitivity-analysis, and ranking results may be misleading if the model structure or parameters do not match the disease context. <br>
-Mitigation: Review the selected Markov, decision-tree, or hybrid model, comparator, time horizon, discounting, and sensitivity-analysis ranges before using the report for policy or commercial decisions. <br>
-Risk: The workflow is not intended to process private patient data. <br>
-Mitigation: Use only de-identified, aggregate, or public evidence inputs and avoid entering protected health information or other private patient data. <br>
+## Use Case:
 
+Developers, health economics analysts, and policy researchers use this skill to draft China-centered, bilingual cost-effectiveness comparisons across treatments for a specified disease. It is suited for generating candidate models, code, and reports that require source verification before clinical, policy, or purchasing use.
 
-## Reference(s): <br>
-- [Model Parameter Reference Guide](artifact/references/model_params.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tlb1201/disease-cea-auto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown report with Python code blocks, tables, citations, and generated chart files when the code is run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese/English content; outputs are intended for expert review before decision-making.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Outputs depend on live web sources, treatment choices, cost data, and modeling assumptions that may be incomplete, outdated, or jurisdiction-specific.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify citations, drug costs, clinical guidelines, GDP threshold values, and all assumptions against authoritative sources before relying on results.
+
+Risk: Generated cost-effectiveness conclusions could be misused for clinical, policy, or purchasing decisions without domain review.
+
+Mitigation: Require review by qualified health economics and clinical stakeholders, and inspect sensitivity analyses before applying conclusions.
+
+## Reference(s):
+
+- [Model Parameter Reference Guide](artifact/references/model_params.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Bilingual Markdown report with Python code, CEA tables, and optional generated chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include web-cited treatment parameters, ICER/NMB rankings, one-way sensitivity analysis, and Python-generated cost-effectiveness plane and NMB bar chart outputs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,156 @@
+<!doctype html>
+<!--
+  A WHOLE SCREEN, not a component gallery.
+
+  `references/kitchen-sink.html` shows every component rendered correctly; `references/starter.html`
+  shows the correct `<head>`. This file is the missing middle: one real integration settings screen,
+  composed, in the order and with the spacing the marketplace designs use. Open it in a browser —
+  add `?theme=dark` for the dark build — and copy the structure rather than re-deriving it.
+
+  The service here is invented ("Deskly", a helpdesk). Every class is the bundle's;
+  `references/check-classes.sh --app-prefix app- examples/settings-screen.html` reports clean.
+
+  What this screen is showing, each one a rule from SKILL.md:
+
+    Step 4  ONE `.panel` flush to the frame IS the layout. Nothing wraps it: no margin, no padding,
+            no max-width, no centring — the host frame is already inset and already sized (796px
+            for marketplace settings; a widget window is another size, which is exactly why the
+            app declares none).
+            `.panel-body`'s own 24px is the only inset on the page.
+    Step 4  Controls cap individually (`.app-form-mw`, 364px) on the `.form-group` wrapper — never a
+            width on the `.form-control`, never a cap on the panel. The mapping rows below DON'T
+            cap: their columns need the room, which is why the cap is per control and not per form.
+    Step 2  Restraint. Two glyphs on the whole screen, both in the *Repeating rows* house pattern:
+            `icon-trash` in an icon-only `.btn-icon`, `icon-plus-add` on the add link. The section
+            labels, the switcher row and both buttons in the footer are plain text.
+            One primary button (`Save`); Cancel and Disconnect are `.btn-link`.
+            One signal for the connected state — the status dot alone, no label repeating it.
+    Step 5  Theme is an INPUT: read `?theme=` once at boot, swap which `<link>` is live, mirror it as
+            `ma-light`/`ma-dark` on `<html>`. No switcher anywhere in the UI.
+    Step 0  Load order: CDN bundle → tokens.css → bundle-fixes.css → app CSS last. The two copied
+            files are what paint `body` and declare `color-scheme`, so this page needs neither.
+
+  App CSS is in a `<style>` block at the end of the head for the sake of a single openable file. In
+  a real app it is `app.css`, and it stays this short: one rule, carrying the measurement it exists
+  for. A growing app stylesheet means a bundle class was missed.
+-->
+<html lang="en" class="ma-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deskly — SendPulse</title>
+
+    <link id="sp-theme-light" rel="stylesheet"
+      href="https://cdn.sendpulse.com/dist/css/sp-marketplace-app-ui.min.css?force=light" />
+    <link id="sp-theme-dark" rel="stylesheet" media="not all"
+      href="https://cdn.sendpulse.com/dist/css/sp-marketplace-app-ui.min.css?force=dark" />
+
+    <link rel="stylesheet" href="../references/tokens.css" />
+    <link rel="stylesheet" href="../references/bundle-fixes.css" />
+
+    <script>
+      // Identical to references/starter.html. The host passes ?theme=dark on this app's URL; the
+      // app reads it and stops. Runs before render so there is no flash.
+      (function () {
+        var dark = new URLSearchParams(location.search).get("theme") === "dark";
+        document.getElementById("sp-theme-light").media = dark ? "not all" : "all";
+        document.getElementById("sp-theme-dark").media = dark ? "all" : "not all";
+        document.documentElement.classList.toggle("ma-dark", dark);
+        document.documentElement.classList.toggle("ma-light", !dark);
+      })();
+    </script>
+
+    <style>
+      /* app.css — the design's control width (Step 4). The bundle ships no 364px class, so this is
+         one named wrapper; `.width-limit-xnarrow` is 420px, the next size up. */
+      .app-form-mw { max-width: 364px; }
+    </style>
+  </head>
+
+  <body>
+    <!-- Nothing out here. The app fills the rectangle the marketplace hands it. -->
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h2>Deskly</h2>
+        <p class="text-muted spacing-bottom-lg">
+          Create Deskly tickets from SendPulse forms and keep their status in sync.
+        </p>
+
+        <!-- Connected account. The dot is the whole state signal (`.badge-status` is a 10×10px dot
+             and text inside it overflows — see references/gaps.md), so the label sits beside it. -->
+        <div class="form-group spacing-bottom-lg">
+          <label class="control-label">Account</label>
+          <div class="d-flex align-items-center gap-5">
+            <span class="form-control-static">acme.deskly.com</span>
+            <span class="badge-status badge-status-success" aria-label="Connected"></span>
+            <a class="btn btn-link" href="#">Disconnect</a>
+          </div>
+        </div>
+
+        <!-- A capped control: label, control, help text, one wrapper, one max-width. -->
+        <div class="form-group app-form-mw spacing-bottom-lg">
+          <label class="control-label" for="queue">Default queue</label>
+          <select class="form-control" id="queue">
+            <option>Support</option>
+            <option>Billing</option>
+            <option>Onboarding</option>
+          </select>
+          <span class="help-block">New tickets land here unless a rule says otherwise.</span>
+        </div>
+
+        <!-- A whole feature on/off is a switcher, right-aligned by `.switcher-flex-holder`, with a
+             bold label and one description line on the left. A sub-option would be a `.checkbox`.
+             The input + empty label + `for`/`id` order is not negotiable: the track and knob are
+             drawn by `.switcher-toggle + label` and its `:after`. -->
+        <div class="switcher-flex-holder spacing-bottom-lg">
+          <div>
+            <strong>Two-way sync</strong>
+            <div class="text-muted">Closing a ticket in Deskly closes it in SendPulse too.</div>
+          </div>
+          <div class="switcher">
+            <input class="switcher-toggle" id="two-way" type="checkbox" checked />
+            <label for="two-way" aria-label="Two-way sync"></label>
+          </div>
+        </div>
+
+        <!-- Repeating rows: full width on purpose, the two glyphs the house pattern allows, and an
+             `aria-label` naming each row on the icon-only remove button. `.dashed` goes on a span
+             round the text alone — on the button it would run under the glyph too. -->
+        <label class="control-label">Field mapping</label>
+        <div class="d-flex align-items-center gap-5 spacing-bottom-sm">
+          <select class="form-control" aria-label="SendPulse field 1">
+            <option>Email</option>
+          </select>
+          <span class="text-muted">to</span>
+          <select class="form-control" aria-label="Deskly field 1">
+            <option>Requester email</option>
+          </select>
+          <button class="btn btn-icon" type="button" aria-label="Remove mapping 1">
+            <i class="sp-icon icon-trash" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="d-flex align-items-center gap-5 spacing-bottom-sm">
+          <select class="form-control" aria-label="SendPulse field 2">
+            <option>Phone</option>
+          </select>
+          <span class="text-muted">to</span>
+          <select class="form-control" aria-label="Deskly field 2">
+            <option>Requester phone</option>
+          </select>
+          <button class="btn btn-icon" type="button" aria-label="Remove mapping 2">
+            <i class="sp-icon icon-trash" aria-hidden="true"></i>
+          </button>
+        </div>
+        <button class="btn btn-link" type="button">
+          <i class="sp-icon icon-plus-add" aria-hidden="true"></i>
+          <span class="dashed">Add mapping</span>
+        </button>
+      </div>
+
+      <div class="panel-footer">
+        <button class="btn btn-primary" type="button">Save</button>
+        <button class="btn btn-link" type="button">Cancel</button>
+      </div>
+    </div>
+  </body>
+</html>

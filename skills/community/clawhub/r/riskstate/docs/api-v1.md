@@ -232,8 +232,14 @@ Binance returns HTTP 451 from Netlify servers. Current CoinGlass tier lacks cert
 |-------|--------------|--------|---------------------|
 | Funding | OKX or BYBIT fallback | Live data via cascading fallback chain. Neutral default (0) only if all fallbacks fail | Dashboard gets real data from browser-side Binance |
 | Open Interest | OKX or BYBIT fallback | Live data via cascading fallback chain. Affects squeeze detection and OI z-score | Dashboard gets real data from browser-side Binance |
-| MVRV | ESTIMATED (~price/$36K) | Accurate to ±5%. Affects cycle phase near thresholds | Dashboard gets real MVRV from blockchain.info |
+| MVRV | ESTIMATED (~price/$53K realized, env-overridable) | Accurate to ±5%. Affects cycle phase near thresholds | Dashboard gets real MVRV from blockchain.info |
 | DXY | LIVE (Frankfurter EUR/USD proxy) | Same formula as dashboard. Affects detectRegime + macro scoring | Dashboard uses same Frankfurter proxy via market-data.js |
+
+### Known Scoring Divergence (disclosed 2026-06-11)
+
+**CVD acceleration (server-side) uses a signed-mean denominator that can overstate "extreme acceleration" in choppy markets.** The dashboard and visualizer were fixed in `score_v3.2` (2026-05-19) to use a magnitude (absolute-mean) denominator; the server-side mirror of this signal — feeding the API's whale-pressure score, the tactical volume component, and Telegram whale alerts — deliberately retains the previous formula until `score_v4`, because changing it alters scoring output and the scoring freeze (until 2026-11-19) prohibits that outside the escape-valve protocol.
+
+Practical impact: in range-bound/alternating-flow conditions the API's whale and tactical-volume readings can register a false "extreme" that the dashboard does not. Snapshot telemetry (v6.5 `shadow_v4.cvd_accel`, June 2026) measures the live divergence per 4h snapshot; the fix ships as part of `score_v4` (V4-6 in `specs/institutional-roadmap-2026H2.md`). Composite, policy level, and `max_size_fraction` are affected only through the whale/volume contributions (≤10% weight each within their layers).
 
 ### API vs Dashboard Classification Alignment (v1.2.0, Mar 19 2026)
 

@@ -1,42 +1,57 @@
-## Description: <br>
-Turns a Kindle, phone, tablet, or secondary browser screen into a Claude Code status monitor that shows hook-driven states such as thinking, running tools, waiting for confirmation, and done. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kindle Claude Monitor helps developers turn a Kindle, phone, tablet, or spare display into a Claude Code status monitor for session state and confirmation prompts.
 
-## Publisher: <br>
-[heavenchenggong](https://clawhub.ai/user/heavenchenggong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heavenchenggong](https://clawhub.ai/user/heavenchenggong)
 
-## Use Case: <br>
-Developers who use Claude Code can use this skill to route local hook events into a browser-readable status dashboard for a nearby Kindle or spare screen, so they can notice tool activity and confirmation waits without watching the terminal continuously. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local monitor can expose Claude Code workflow data to devices that can reach the monitor port on the local network. <br>
-Mitigation: Install only on a trusted private network and limit network access to devices that should see Claude Code status data. <br>
-Risk: The skill installs persistent Claude Code hooks and a launchd service that can log hook activity locally. <br>
-Mitigation: Review hook changes and the service before installation, and remove them with the uninstall script when monitoring is no longer needed. <br>
-Risk: Changing firewall settings to make the dashboard reachable can increase local network exposure. <br>
-Mitigation: Avoid disabling firewall protections unless necessary, and prefer a restricted trusted network when using a secondary display. <br>
+## Use Case:
 
+Developers using Claude Code on macOS use this skill to set up a local status dashboard on a Kindle, phone, tablet, or spare display. The monitor helps them notice when sessions are thinking, running tools, waiting for confirmation, or done.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/heavenchenggong/kindle-claude-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation, operation, troubleshooting, and uninstall guidance for a local status dashboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The monitor exposes unauthenticated Claude activity data and state controls on the local network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on a trusted LAN, avoid router port forwarding, and consider adding authentication or binding the event receiver to localhost.
+
+Risk: The skill installs persistent Claude Code hooks and a launchd service.
+
+Mitigation: Review the hook changes before installing and remove the hooks and service when the monitor is no longer needed.
+
+Risk: The runtime can retain hook event history in ~/.claude/kindle-monitor/events.jsonl.
+
+Mitigation: Delete the event log after uninstalling if hook history should not be retained.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/heavenchenggong/skills/kindle-claude-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local monitor URLs and macOS setup steps.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

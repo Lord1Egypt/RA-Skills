@@ -1,41 +1,54 @@
-## Description: <br>
-Test and rank affiliate offer angles before outreach or content production. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test and rank affiliate offer angles before outreach or content production. Use when the user needs to compare multiple positioning angles for the same product and choose the one most likely to convert without overpromising.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Affiliate marketers, creator operators, and ecommerce teams use this skill to compare positioning angles for the same product, rank the most promising options, and plan the next test without inventing proof or overpromising. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may recommend messaging that overstates product proof, shipping terms, policy details, or expected results. <br>
-Mitigation: Use truthful product facts and proof assets, lower confidence when evidence is weak, and review wording before publishing affiliate content. <br>
-Risk: Business use may be constrained by noncommercial license language present in the artifact. <br>
-Mitigation: Confirm the governing published license before commercial deployment and obtain separate commercial rights if the artifact license controls. <br>
+## Use Case:
 
+External affiliate marketers, creator operators, and ecommerce teams use this skill to compare offer positioning angles for a product, rank the strongest options, identify claim risks, and plan the next test sequence before producing outreach or content.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Leooooooow/affiliate-offer-angle-tester) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with an input quality check, angle score table, top-three recommendations, risk notes, and next test sequence] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranks candidate affiliate offer angles and includes confidence, rationale, claim-risk notes, and wording cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Affiliate angle recommendations may include unsupported product, shipping, policy, or performance claims if the input facts are weak or inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only supplied facts and proof assets, lower confidence when evidence is weak, and independently verify claims, shipping terms, platform policies, and compliance-sensitive wording before publication.
+
+Risk: Conversion-focused angle testing can drift into overpromising or manipulative urgency.
+
+Mitigation: Keep the risk-notes step, flag claim and overpromise risk, and avoid misleading promises or fabricated proof.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/affiliate-offer-angle-tester)
+- [Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with an input quality check, angle score table, top recommendations, risk notes, and next test sequence]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses supplied product facts, audience segment, candidate angles, proof assets, constraints, and channel context; lowers confidence when evidence is weak.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

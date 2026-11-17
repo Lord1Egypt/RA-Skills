@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn72xkqdwwgmaygq9fmfqdy7p982k28h",
-  "slug": "news-insight-writer",
+  "name": "news-insight-writer",
   "version": "1.0.0",
-  "publishedAt": 1776007210577
+  "description": "实时资讯观点博客写作助手。输入一个技术新闻链接或主题，输出深度、有观点、带真实引用和截图的公众号/博客文章。",
+  "author": "user",
+  "tags": ["writing", "blog", "wechat", "news", "insight", "opinion"],
+  "created": "2026-04-12"
 }

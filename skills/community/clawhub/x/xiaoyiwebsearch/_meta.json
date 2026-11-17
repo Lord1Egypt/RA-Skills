@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn7d6ybyaczcj2pr8xpmswe5s187edjm",
-  "slug": "xiaoyiwebsearch",
-  "version": "1.0.0",
-  "publishedAt": 1779787351225
+  "schema": "exec",
+  "bin": "search.js",
+  "env": []
 }

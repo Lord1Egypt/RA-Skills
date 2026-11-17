@@ -1,0 +1,63 @@
+{
+  "name": "lygo-context-guard",
+  "displayName": "LYGO Context Guard",
+  "version": "1.0.0",
+  "description": "Pre-flight token budget, secret redaction, and deterministic context compaction for AI agents. Save tokens. Stop secret leaks into context. Pure local.",
+  "slug": "lygo-context-guard",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-context-guard",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-context-guard",
+  "signature": "Delta9Phi963-CONTEXT-GUARD-v1.0.0",
+  "tags": [
+    "latest",
+    "lygo",
+    "tokens",
+    "context",
+    "budget",
+    "compress",
+    "redact",
+    "security",
+    "openclaw",
+    "cost-save",
+    "preflight",
+    "delta9"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "estimate": "scripts/context_guard.py estimate",
+    "redact": "scripts/context_guard.py redact",
+    "compact": "scripts/context_guard.py compact",
+    "budget": "scripts/context_guard.py budget",
+    "toolpack": "scripts/context_guard.py toolpack",
+    "preflight": "scripts/context_guard.py preflight",
+    "demo": "scripts/context_guard.py demo",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "🛡️",
+    "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-context-guard",
+    "requires": {
+      "anyBins": ["python", "python3"]
+    },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": false,
+    "subprocess": false,
+    "shell": false,
+    "filesystem": {
+      "read": "optional user --file",
+      "write": "skill state/ with --i-consent only"
+    },
+    "publish": false
+  },
+  "security": {
+    "local_first": true,
+    "no_auto_publish": true,
+    "no_subprocess": true,
+    "no_network": true,
+    "consent_required_for_writes": true,
+    "version": "1.0.0"
+  }
+}

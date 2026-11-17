@@ -1,44 +1,59 @@
-## Description: <br>
-小红书分析 - 热门笔记发现、关键词监控、趋势分析（Instagram 中国版） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Xiaohongshu analysis for popular note discovery, keyword monitoring, trend analysis, and creator research.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-External users and developers use this skill to guide Xiaohongshu trend research, keyword monitoring, and creator or brand analysis with manual web review or carefully reviewed third-party tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses third-party scraping and packet-capture approaches for a platform without a public API. <br>
-Mitigation: Review linked tools separately, pin a known-safe commit when possible, run them in a sandbox or disposable environment, and keep collection low-rate and compliant with platform rules. <br>
-Risk: Packet capture or reverse engineering can create legal, privacy, account, and credential exposure. <br>
-Mitigation: Avoid those techniques unless the operator understands and accepts the risks, and do not expose credentials or personal data during analysis. <br>
+## Use Case:
 
+Content creators, marketers, and researchers use this skill to analyze Xiaohongshu topics, monitor keywords, compare competing notes, identify KOLs, and understand content trends.
 
-## Reference(s): <br>
-- [Xiaohongshu Explore](https://www.xiaohongshu.com/explore) <br>
-- [Xiaohongshu Search](https://www.xiaohongshu.com/search_result) <br>
-- [XiaohongshuSpider](https://github.com/Big-Buffer/XiaohongshuSpider) <br>
-- [xiaohongshu-spider](https://github.com/63can/xiaohongshu-spider) <br>
-- [Nanji](https://www.nanji.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with reference links and example shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may point to third-party crawler tooling that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: External scraper code may change or contain unsafe behavior when cloned and run without pinning or integrity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scraper before execution, pin it to a trusted commit, and run it in a fresh virtual environment or container.
+
+Risk: Scraping, packet capture, or automated access may create account, platform policy, or privacy compliance risk.
+
+Mitigation: Confirm that collection methods comply with Xiaohongshu rules and applicable privacy obligations, and avoid exposing browser profiles or credentials.
+
+## Reference(s):
+
+- [Xiaohongshu CN skill page](https://clawhub.ai/guohongbin-git/skills/xiaohongshu-cn)
+- [Xiaohongshu Explore](https://www.xiaohongshu.com/explore)
+- [Xiaohongshu Search](https://www.xiaohongshu.com/search_result)
+- [XiaohongshuSpider](https://github.com/Big-Buffer/XiaohongshuSpider)
+- [xiaohongshu-spider reference](https://github.com/lonngxiang/xiaohongshu-spider)
+- [xiaohongshu-spider Selenium reference](https://github.com/63can/xiaohongshu-spider)
+- [Nanji](https://www.nanji.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with tables and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include external scraper and third-party tool references for user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

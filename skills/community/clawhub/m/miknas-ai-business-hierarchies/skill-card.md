@@ -1,44 +1,65 @@
-## Description: <br>
-Build and operate autonomous AI businesses using hierarchical agent systems with CEO, Manager, Supervisor, and Worker agents, daily tracking, auto-optimization, and self-healing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and operate autonomous AI businesses using hierarchical agent systems with folder-based company structures, daily tracking, auto-optimization, and self-healing capabilities.
 
-## Publisher: <br>
-[miknasbh-stack](https://clawhub.ai/user/miknasbh-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miknasbh-stack](https://clawhub.ai/user/miknasbh-stack)
 
-## Use Case: <br>
-Founders, operators, and agent builders use this skill to design folder-based AI company structures, spawn CEO, manager, supervisor, and worker agents, and set up daily reporting for business operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent autonomous business agents and scheduled reporting may operate beyond intended boundaries. <br>
-Mitigation: Inspect generated cron entries before enabling them and keep approval gates for outreach, sales, HR, accounting, onboarding, and actions that change real business data or contact real people. <br>
-Risk: Business reports and agent session history may contain sensitive operational information. <br>
-Mitigation: Avoid placing credentials or confidential records in agent sessions, and control access to generated reports and business folders. <br>
-Risk: Setup scripts create local business folders, reporting scripts, and cron jobs. <br>
-Mitigation: Review the generated files and scheduled jobs before relying on them, and remove or update the crontab entries when the business workflow changes. <br>
+## Use Case:
 
+External users and developers use this skill to plan and operate AI-managed business structures with CEO, manager, supervisor, and worker agents. It provides templates, shell setup flows, and reporting automation for department-based business operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miknasbh-stack/miknas-ai-business-hierarchies) <br>
-- [README](artifact/README.md) <br>
-- [Business template](artifact/assets/business-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes folder structures, agent role prompts, setup commands, reporting scripts, and scheduled report configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Persistent automation can run business-agent reporting on a schedule and may continue after the user has forgotten it is installed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect generated cron entries before installation, run with a low-privilege account, and periodically review or remove scheduled jobs that are no longer needed.
+
+Risk: Generated daily reports may store sensitive agent conversation history or business data.
+
+Mitigation: Store reports in access-controlled locations, avoid capturing secrets or regulated data, and review report contents before sharing.
+
+Risk: The skill encourages agents to perform outreach, financial, HR, payroll, and operational tasks that can affect real people or live business systems.
+
+Mitigation: Require explicit human approval and audit logs before agents send outreach, change finances, handle HR or payroll, or modify production systems.
+
+Risk: Weak business-name validation may allow unsafe paths or confusing cron entries.
+
+Mitigation: Restrict business names to simple letters, numbers, and hyphens before running setup scripts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/miknasbh-stack/skills/miknas-ai-business-hierarchies)
+- [README](artifact/README.md)
+- [Strategic Layer Template](artifact/assets/business-template.md)
+- [Business Setup Script](artifact/scripts/setup-business.sh)
+- [Daily Reporting Setup Script](artifact/scripts/setup-daily-reporting.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, generated folder structures, cron configuration, and business strategy templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local business directories, strategy files, reporting scripts, and scheduled cron entries when users run the provided scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,10 +2,103 @@
 
 All notable changes to this skill will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/2.0.0/),
 and this skill adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.5.0] - 2026-11-05
+
+### Changed
+- Version targets: Vite 8.3.6, plugin-react 6.2.1, React 19.3.1, Tailwind 4.3.4, Biome 2.6.5, Vitest 5.1.0, Hono 4.13.16, shadcn CLI 4.23.0, cn 0.5.2; now tracking @rolldown/plugin-babel and @hono/node-server.
+- Hono v5 is a release candidate (`hono@next`); hono.md gains a "Preparing for v5" checklist.
+- Biome 2.6: top-level `tailwind.stylesheet`, Tailwind domain needs tailwindcss >= 4, `useSortedClasses` renamed `useTailwindSortedClasses`, `noTailwindRawColors` allows black/white by default.
+- plugin-react 6.2: `oxc-transform-react` peer is now `>=0.152.0 <0.157.0`; `@rolldown/plugin-babel` `parallel` breaks with `reactCompilerPreset()`.
+- Vitest 5.1: trace view is stable with a `mode` option (default `'failure-only'`).
+- Canonical tsconfig is now `tsconfig.app.json` in a solution layout.
+
+### Added
+- Typecheck gate: Vite never type-checks; `tsc -b` with a solution-style tsconfig, plus a `check` / `check:ci` scripts layout with `biome ci --error-on-warnings`.
+- Biome 2.6 surface (`biome inspect`, Markdown/SCSS/YAML, JS plugins preview, new Tailwind rules); Vitest 5.1 `--since-last-run`, `--last-failed`, `coverage.ignoreNode`; TS 7.1 beta specifics; shadcn `info`/`view`/`build` and agent skill; `@hono/cli`; Tailwind `@source inline()` and `@reference`.
+- Testing patterns: `importOriginal` partial mocks, `vi.hoisted`, hook block bodies, import-time env, pinned clocks, environment splits, suite hygiene, fast affected-test gates.
+- Zod v4 `z.union` key-stripping footgun; shadcn `from "cn"` and DialogContent overflow troubleshooting; Hono RPC type-sharing guidance; pnpm dependency-bump practice.
+
+### Fixed
+- Class-based dark mode: `@custom-variant dark` added to the canonical CSS; shadcn's Vite ThemeProvider replaces the next-themes advice.
+- Biome `!**/dir` ancestor-matching gotcha marked fixed in 2.6.3; TS `target` default wording.
+
+### Security
+- React 19.3.0 and earlier: RSC RCE GHSA-xqc2-xf4c-x3h3 (critical) and DoS GHSA-h3gv-c5rc-p453, fixed in 19.3.1.
+- Hono < 4.13.16: GHSA-4m76-xfj5-7975, GHSA-h7mg-cq63-vhpq, GHSA-4h7h-rv7c-7m2v, GHSA-3gg2-335m-rxc6, GHSA-46wx-v44x-9hh2; @hono/node-server < 2.1.6: GHSA-jpvv-r467-5p4w, GHSA-7v5p-43qr-wch5, GHSA-qv5m-9pm6-hqp3.
+- Vitest: GHSA-p458-7748-mcp3 (`@vitest/ui`/`@vitest/browser` < 5.0.5), GHSA-qxg6-89mg-rqv8 and GHSA-xp26-3454-mjgp (`@vitest/mocker` v4 < 4.1.12).
+
+Verified against: vite@8.3.6, @vitejs/plugin-react@6.2.1, @rolldown/plugin-babel@0.3.0, react@19.3.1, tailwindcss@4.3.4, @biomejs/biome@2.6.5, vitest@5.1.0, hono@4.13.16, @hono/node-server@2.1.6, shadcn@4.23.0, cn@0.5.2
+
+## [0.4.1] - 2026-11-05
+
+### Removed
+
+- Per-skill `LICENSE.txt`: ClawHub licenses every published skill MIT-0.
+
+## [0.4.0] - 2026-10-06
+
+### Changed
+- **Breaking:** TypeScript target moved to 7.0 (GA); typescript.md rewritten around TS 7 with a 6.0 compat path (`@typescript/typescript6` alias pair for typescript-eslint and other API consumers; Vue/Astro/Svelte/MDX stay on 6.0).
+- **Breaking:** Vitest target moved to 5.0 (requires Vite >= 6.4, Node >= 22.12); vitest.md covers the v4->v5 migration (clearMocks default, projects inherit by default, `.vitest/` output dir, unawaited async assertions fail, strict browser locators).
+- React 19.3: `<ViewTransition>`/`addTransitionType` now stable, Fragment refs, `use(browser())`.
+- shadcn CLI 4.21: Base UI is the default base, React Aria added, Sera style, `cn` package replaces clsx+tailwind-merge in `lib/utils`; `--pointer` description corrected.
+- Hono 4.13: `hono/<adapter>` imports deprecated in favor of `@hono/<runtime>` packages; v5 in development; Node >= 20 with `@hono/node-server@2`; zod-openapi 415 on mismatched Content-Type.
+- Vite 8.2/8.3: `codeSplitting` replaces deprecated `advancedChunks`; `resolve.tsconfigPaths` caveat corrected (it does follow references); `devtools` option; ESM config `"type": "module"` warning.
+- Version targets refreshed across SKILL.md and references; effective Node floor for the stack is 22.12.
+
+### Added
+- plugin-react 6.1 experimental native React Compiler (`react({ compiler: true })`).
+- Biome: Tailwind domain rules, `useReactCompiler`, ancestor-matching `!**/` exclusion gotcha.
+- Vitest: mocking basics, `vitest doctor`/`fsModuleCache`, test-speed guidance.
+- Hono: QUERY method, Method Not Allowed and Mount middleware, `hono/dev`, Vite `server.cors: false` seam.
+
+### Fixed
+- Canonical tsconfig: `"types": ["vite/client"]` (`types: []` broke CSS side-effect imports and `import.meta.env`).
+- Biome: domains never enable nursery rules - `noFloatingPromises` and friends must be enabled individually.
+- Tailwind: invalid `mask-linear-to-b` example; Vite `build.target` list missing `ios16.4`; stray tool-call markup at the end of hono.md.
+
+### Security
+- Vitest 4.1.9 affected by GHSA-p63j-vcc4-9vmv (critical) and GHSA-82fw-gwwq-j7x9; React 19.2.0-19.2.7 RSC by GHSA-wx67-qw84-cm4g; Hono < 4.13.11 by 9 advisories, `@hono/node-server` < 2.1.3 by GHSA-rmxm-3fg6-px4f.
+
+Verified against: vite@8.3.3, @vitejs/plugin-react@6.1.2, react@19.3.0, typescript@7.0.2, tailwindcss@4.3.3, @biomejs/biome@2.5.15, vitest@5.0.3, hono@4.13.13, shadcn@4.21.3, cn@0.4.0
+
+## [0.3.5] - 2026-09-09
+
+### Changed
+- Description condensed to fit the repo's 250-character limit.
+
+## [0.3.4] - 2026-08-21
+
+### Changed
+
+- Declared ClawHub browse categories (`development`) and topics in `metadata`, so the release pipeline publishes them instead of leaving the skill in the `other` category.
+
+### Removed
+
+- `skill-card.md`. The ClawHub CLI strips a root `skill-card.md` from every publish and the registry generates its own card, so the authored file never reached ClawHub.
+
+## [0.3.3] - 2026-08-07
+
+### Changed
+
+- Trimmed the frontmatter description to what-plus-when; dropped the trailing 20-term trigger-keyword sentence.
+
+## [0.3.2] - 2026-07-22
+
+### Added
+
+- skill-card.md release record following NVIDIA's skill-card format
+- metadata.openclaw block (emoji, homepage) for ClawHub display
+
+## [0.3.1] - 2026-07-10
+
+### Changed
+- CHANGELOG preamble pinned to Keep a Changelog 2.0.0 (format unchanged; KaC 2.0.0 keeps existing changelogs valid).
 
 ## [0.3.0] - 2026-07-01
 

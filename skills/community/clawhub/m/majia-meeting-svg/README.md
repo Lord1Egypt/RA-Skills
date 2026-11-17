@@ -1,8 +1,9 @@
 # majia-meeting-svg
 
+[![Skill Version](https://img.shields.io/badge/skill-v1.1.13-blue)](./SKILL.md)
 [![skills.sh](https://skills.sh/b/maojiebc/majia-meeting-svg)](https://skills.sh/maojiebc/majia-meeting-svg)
 
-> **SVG 会议纪要卡片 · 马甲实战版**
+> **会议纪要卡片 · 马甲实战版**
 
 一个 Claude Code Skill：把会议逐字稿变成一张手机端可直接转发的 SVG 会议纪要卡片，并自动生成 PNG 方便在微信/钉钉/飞书等 IM 中直接发送。
 
@@ -54,6 +55,14 @@ git clone https://github.com/maojiebc/majia-meeting-svg.git ~/.claude/skills/maj
 - 提示条标注风险和关键决定
 - 圆角、留白、手机优先
 
+## 📋 版本记录
+
+- **v1.1.13**（2026-07-28）：修复 SkillHub 历史显示名，统一为「会议纪要卡片 · 马甲实战版」；功能、slug 与安装命令不变。
+- **v1.1.12**（2026-07-23）：对外展示名去掉「SVG」技术词前缀，统一品牌标题。
+- **v1.1.11**（2026-05-21）：效果预览换成完整 PNG，并补充功能说明与示例入口。
+
+完整变更历史见 [GitHub Releases](https://github.com/maojiebc/majia-meeting-svg/releases)。
+
 ## 👤 作者 / 联系
 
 **马甲（@maojiebc）** · 超级马甲
@@ -67,7 +76,7 @@ git clone https://github.com/maojiebc/majia-meeting-svg.git ~/.claude/skills/maj
 | 🪝 ClawHub | [clawhub.ai/p/maojiebc](https://clawhub.ai/p/maojiebc) |
 | 🐦 X | [@maojiebc](https://x.com/maojiebc) |
 | 📕 小红书 | [超级马甲](https://xhslink.com/m/4fQMJeHHWKC) |
-| 📰 微信公众号 | **超级马甲** |
+| 📰 微信公众号 | [超级马甲](https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzY5NzIzODk2NA==#wechat_redirect) |
 
 > 这份 skill 是 14 年用户运营 + 一线协同实战沉淀出来的，问题/合作随时聊。
 

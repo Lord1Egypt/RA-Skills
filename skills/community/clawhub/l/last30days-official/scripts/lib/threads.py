@@ -9,9 +9,10 @@ API docs: https://scrapecreators.com/docs
 
 import math
 import re
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
-from . import dates, http, log
+from . import http, log
 from .relevance import token_overlap_relevance as _compute_relevance
 
 SCRAPECREATORS_BASE = "https://api.scrapecreators.com/v1/threads"
@@ -26,6 +27,14 @@ DEPTH_CONFIG = {
 
 def _log(msg: str):
     log.source_log("Threads", msg)
+
+
+def _sc_headers(token: str) -> Dict[str, str]:
+    """Build ScrapeCreators request headers."""
+    return {
+        "x-api-key": token,
+        "Content-Type": "application/json",
+    }
 
 
 def _extract_core_subject(topic: str) -> str:
@@ -43,17 +52,29 @@ def _extract_core_subject(topic: str) -> str:
 def _parse_date(item: Dict[str, Any]) -> Optional[str]:
     """Parse date from Threads item to YYYY-MM-DD.
 
-    Tries common timestamp fields in order: taken_at and create_time
-    (unix timestamps in Meta APIs), then created_at, published_at, and
-    date (ISO 8601 strings). dates.parse_date() handles both.
+    Tries common timestamp fields: taken_at (unix), created_at (ISO),
+    and falls back to any date-like string field.
     """
-    for key in ("taken_at", "create_time", "created_at", "published_at", "date"):
+    # Unix timestamp (taken_at is common in Meta APIs)
+    for key in ("taken_at", "create_time"):
+        ts = item.get(key)
+        if ts:
+            try:
+                from . import dates
+                return dates.timestamp_to_date(int(ts))
+            except (ValueError, TypeError):
+                pass
+
+    # ISO 8601 string
+    for key in ("created_at", "published_at", "date"):
         val = item.get(key)
-        if val is None:
-            continue
-        dt = dates.parse_date(str(val))
-        if dt:
-            return dt.strftime("%Y-%m-%d")
+        if val and isinstance(val, str):
+            try:
+                dt = datetime.fromisoformat(val.replace("Z", "+00:00"))
+                return dt.strftime("%Y-%m-%d")
+            except (ValueError, TypeError):
+                pass
+
     return None
 
 
@@ -162,7 +183,7 @@ def search_threads(
             from urllib.parse import urlencode
             params = urlencode({"keyword": core_topic})
             url = f"{SCRAPECREATORS_BASE}/search?{params}"
-            headers = http.scrapecreators_headers(token)
+            headers = _sc_headers(token)
             headers["User-Agent"] = http.USER_AGENT
             data = http.get(url, headers=headers, timeout=30, retries=2)
         except Exception as e:
@@ -173,7 +194,7 @@ def search_threads(
             resp = _requests.get(
                 f"{SCRAPECREATORS_BASE}/search",
                 params={"keyword": core_topic},
-                headers=http.scrapecreators_headers(token),
+                headers=_sc_headers(token),
                 timeout=30,
             )
             resp.raise_for_status()

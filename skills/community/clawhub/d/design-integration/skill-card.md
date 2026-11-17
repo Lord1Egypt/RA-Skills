@@ -1,43 +1,58 @@
-## Description: <br>
-Design a Uniswap integration architecture for projects that need recommendations on integration method, architecture patterns, dependencies, and security considerations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design a Uniswap integration architecture for projects that need recommendations on integration method, architecture patterns, dependencies, and security considerations.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and engineers use this skill to create tailored Uniswap integration blueprints for apps, bots, agents, or protocols. It helps choose between Trading API, SDKs, direct contracts, and V4 hooks while documenting architecture, dependencies, security considerations, and implementation order. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts or repository context may contain secrets or sensitive project details. <br>
-Mitigation: Remove secrets from prompts and context before using the skill. <br>
-Risk: The skill can propose edits or implementation steps that may be incorrect for a specific codebase or chain environment. <br>
-Mitigation: Review proposed file edits, architecture choices, and security guidance before applying them. <br>
-Risk: Server-resolved provenance is unavailable for this version. <br>
-Mitigation: Prefer the ClawHub install path or a pinned source revision when provenance matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wpank/design-integration) <br>
-- [Skill Specification](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to plan Uniswap integrations for apps, bots, agents, backends, and DeFi protocols. It produces a tailored architecture blueprint covering API, SDK, or contract integration choices, dependencies, security considerations, and implementation order.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration, Code] <br>
-**Output Format:** [Structured Markdown integration blueprint] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Blueprints include method recommendation, rationale, architecture, dependencies, security considerations, implementation order, and complexity assessment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requests Write and Edit permissions even though its documented workflow is advisory and delegates architecture planning.
+
+Mitigation: Deny or remove Write and Edit permissions when using the skill on private repositories unless a reviewed workflow explicitly requires file changes.
+
+Risk: The documented remote install commands may resolve mutable content over time.
+
+Mitigation: Install from a reviewed, pinned revision where possible and re-review the artifact before deployment.
+
+Risk: Architecture blueprints can include incorrect integration choices or security guidance if project requirements are incomplete or conflicting.
+
+Mitigation: Review the generated blueprint against project requirements, supported chains, Uniswap documentation, and internal security standards before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/design-integration)
+- [Skill specification](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown blueprint with structured sections and optional code or command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailored to the requested project type, functionality, environment, chains, and scale.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Deep first-principles analysis of any topic, decision, strategy, or assumption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep first-principles analysis of any topic, decision, strategy, or assumption.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-Employees, external users, developers, and decision makers use this skill to challenge assumptions, decompose inherited thinking, and rebuild analysis from testable ground truths for topics such as strategy, investment theses, product choices, and career decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate for broad analysis prompts and may produce factual, financial, strategic, or career conclusions that are incomplete or wrong. <br>
-Mitigation: Verify important conclusions with authoritative sources and domain experts before acting on them. <br>
-Risk: First-principles framing can overstate confidence when available evidence is thin or assumptions are not fully sourced. <br>
-Mitigation: Require explicit source audits, falsifiable ground-truth claims, and clear uncertainty notes for high-impact decisions. <br>
+## Use Case:
 
+Employees, external users, developers, and decision makers use this skill to decompose assumptions, identify what is provably true, and rebuild analysis from ground-truth claims for strategy, product, career, investment, or other complex decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawdiri-ai/davinci-first-principles) <br>
-- [Publisher profile](https://clawhub.ai/user/clawdiri-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured into analysis phases with numbered assumptions and classifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only reasoning output; no code execution, data access, persistence, or privileges requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Broad trigger wording may activate the skill for general analysis requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure activation narrowly or review automatic invocation behavior so users can opt into first-principles analysis.
+
+Risk: Structured reasoning output may still be incorrect or overconfident for consequential decisions.
+
+Mitigation: Require human review and external evidence checks before acting on business, investment, career, or other high-impact recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawdiri-ai/skills/davinci-first-principles)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured phase headers, numbered assumptions, classifications, and decision guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only structured reasoning output; no code execution, data access, or tool calls are required by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

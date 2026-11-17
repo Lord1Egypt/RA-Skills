@@ -1,40 +1,52 @@
-## Description: <br>
-A weather lookup skill that extracts a city and requested time from the user, fetches weather information from the web, and returns a concise forecast-style summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent answer weather requests for a specified city by gathering public weather information and returning temperature, conditions, humidity, wind, and a brief practical tip.
 
-## Publisher: <br>
-[Gyifei](https://clawhub.ai/user/Gyifei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gyifei](https://clawhub.ai/user/gyifei)
 
-## Use Case: <br>
-External users and agents use this skill to answer weather questions for a specified city and time. It is intended for everyday weather lookup responses that include temperature, conditions, humidity, wind, and a short practical tip. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: City and requested time may be sent to an external weather website during lookup. <br>
-Mitigation: Use a trusted weather source and avoid sending sensitive location details when ordinary city-level weather is sufficient. <br>
-Risk: Weather responses can be inaccurate, stale, or vary by source. <br>
-Mitigation: Check the source, timestamp, and city before acting on weather-sensitive plans. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Gyifei/weather-query-ll) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Gyifei) <br>
+## Use Case:
 
+External users and agents use this skill to answer city-specific weather questions. It extracts the city and requested time, fetches public weather information, formats the core conditions, and asks a follow-up question when the city is missing.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text or Markdown weather summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include city, requested time, Celsius temperature, weather condition, humidity, wind, and a short weather tip; prompts for a city when missing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Weather information fetched from public webpages may be incomplete, stale, or vary by source.
+
+Mitigation: Prefer current, reputable weather sources and include the requested city and time in the response so users can spot mismatches.
+
+Risk: The artifact is written in Chinese and may answer in Chinese even when a user expects another language.
+
+Mitigation: Adapt the response language to the user's preference when deploying in multilingual environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gyifei/skills/weather-query-ll)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text weather summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes city and time, temperature in Celsius by default, weather condition, humidity, wind, and a short weather tip.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

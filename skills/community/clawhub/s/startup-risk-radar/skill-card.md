@@ -1,41 +1,59 @@
-## Description: <br>
-Evaluates startup ideas, business models, and product strategies against seven startup failure antipatterns using structured red-flag scoring and mitigation recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates startup ideas, business models, and product strategies against seven failure antipatterns using bundled startup failure-pattern references.
 
-## Publisher: <br>
-[Conn-Ho](https://clawhub.ai/user/Conn-Ho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[conn-ho](https://clawhub.ai/user/conn-ho)
 
-## Use Case: <br>
-Founders, product leaders, investors, and startup advisors use this skill to evaluate startup ideas, business models, product strategies, competitive positioning, unit economics, regulatory exposure, and likely failure cascades before committing more resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be applied broadly to startup and product-strategy conversations, where users could over-rely on its framework. <br>
-Mitigation: Treat outputs as advisory business-risk framing and review conclusions with appropriate investment, legal, financial, or domain experts before acting. <br>
-Risk: The framework can surface regulatory, unit-economics, and market-risk concerns that require current external facts. <br>
-Mitigation: Validate claims, assumptions, and market or regulatory facts against current authoritative sources before using the assessment for decisions. <br>
+## Use Case:
 
+External users, founders, product leaders, investors, and startup advisors use this skill to assess startup ideas, business models, product strategies, unit economics, competitive positioning, and likely failure cascades.
 
-## Reference(s): <br>
-- [The 7 Startup Failure Antipatterns - Detailed Reference](references/antipatterns.md) <br>
-- [Antipattern Chain Reactions](references/chain-reactions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown risk assessment with scorecard, primary risk, cascade risk, red flags, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory business-risk framing; does not execute code, access credentials, or persist data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The framework's statistics and named source are advisory and not independently verified in the server evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify source data and assumptions before using the output for investment, fundraising, product, or operating decisions.
+
+Risk: The skill may activate for broad startup, product, unit-economics, or business-model discussions.
+
+Mitigation: Confirm the user wants failure-pattern critique before applying the scorecard to general business planning conversations.
+
+Risk: Recommendations about regulatory exposure, unit economics, competition, or fundraising can affect high-stakes business decisions.
+
+Mitigation: Treat outputs as decision support and review them with current market data and qualified legal, financial, or domain experts where relevant.
+
+## Reference(s):
+
+- [The 7 Startup Failure Antipatterns](references/antipatterns.md)
+- [Antipattern Chain Reactions](references/chain-reactions.md)
+- [ClawHub skill page](https://clawhub.ai/conn-ho/skills/startup-risk-radar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown startup risk assessment with an antipattern scorecard, primary risk, cascade risk, red flags, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory analysis based on bundled markdown references; no code execution, credential access, persistence, or external tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

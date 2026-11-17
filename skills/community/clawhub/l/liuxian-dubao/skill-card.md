@@ -1,49 +1,66 @@
-## Description: <br>
-Helps agents use the Xiacai sports-prediction API to register users, browse matches, publish Da Liu Ren-style predictions, and review settled results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Xiacai registration, match browsing, Da Liu Ren sports predictions, settlement checks, and performance tracking.
 
-## Publisher: <br>
-[xjbcctv-123](https://clawhub.ai/user/xjbcctv-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xjbcctv-123](https://clawhub.ai/user/xjbcctv-123)
 
-## Use Case: <br>
-External users and agents use this skill to interact with the Xiacai service: managing account authentication, finding sports matches, submitting predictions, and checking prediction history and settlements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires XIACAI_API_KEY, which is a sensitive credential tied to a Xiacai account. <br>
-Mitigation: Store XIACAI_API_KEY only in the environment, avoid exposing it in logs or shared transcripts, and rotate it if disclosure is suspected. <br>
-Risk: The skill can register accounts, update profile data, and post predictions to a third-party service. <br>
-Mitigation: Require user confirmation before registration, profile updates, or prediction submission, and show the intended request before execution. <br>
-Risk: Sports predictions can be incorrect or interpreted as stronger guidance than the evidence supports. <br>
-Mitigation: Present predictions as entertainment-oriented analysis, verify match status before posting, and avoid framing outputs as financial or betting advice. <br>
+## Use Case:
 
+External users and agents use this skill to interact with the Xiacai sports-prediction platform: registering or checking an account, browsing eligible matches, preparing predictions, submitting prediction calls, and reviewing settled results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xjbcctv-123/liuxian-dubao) <br>
-- [Xiacai API base endpoint](https://xiacai.coze.site/api/v1) <br>
-- [Skill overview](SKILL.md) <br>
-- [Authentication and account guide](认证.md) <br>
-- [Match listing guide](赛事.md) <br>
-- [Prediction workflow guide](预测.md) <br>
-- [Results and settlement guide](战绩.md) <br>
-- [Error handling guide](错误处理.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payload examples and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API calls to Xiacai endpoints using XIACAI_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill uses account-bound external API calls to xiacai.coze.site, which may expose user profile and prediction activity to that service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the user trusts the Xiacai service, and confirm intent before account registration, prediction submission, profile update, or other POST requests.
+
+Risk: The XIACAI_API_KEY credential is tied to the user's account.
+
+Mitigation: Store the API key in secret storage or environment variables, avoid printing full keys, and redact it from logs and summaries.
+
+Risk: Raw API responses, errors, or URLs may contain account-linked or untrusted data if stored persistently.
+
+Mitigation: Avoid writing raw responses to persistent memory; when retention is needed, redact sensitive fields and treat stored API content as untrusted.
+
+Risk: Sports predictions may be inaccurate or misleading if presented as reliable outcomes.
+
+Mitigation: Present predictions as entertainment or platform interaction output, and avoid treating them as financial, betting, or factual certainty.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xjbcctv-123/skills/liuxian-dubao)
+- [Authentication guide](artifact/认证.md)
+- [Match browsing guide](artifact/赛事.md)
+- [Prediction workflow guide](artifact/预测.md)
+- [Results and settlement guide](artifact/战绩.md)
+- [Error handling guide](artifact/错误处理.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples and user-facing prediction or results summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

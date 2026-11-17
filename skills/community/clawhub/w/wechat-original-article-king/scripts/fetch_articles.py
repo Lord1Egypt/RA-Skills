@@ -25,6 +25,10 @@ import urllib.error
 from datetime import datetime, timedelta
 
 
+# ==================== 数据源标识 ====================
+
+SOURCE = "公众号文章原创之王-ClawHub"
+
 # ==================== 分类映射 ====================
 
 CATEGORY_MAPPING = {
@@ -40,7 +44,6 @@ CATEGORY_MAPPING = {
     "体育娱乐": ["体育", "娱乐", "运动", "明星", "电影", "音乐", "综艺", "体育赛事"],
     "美容美体": ["美容", "美体", "护肤", "减肥", "瘦身", "美容护肤", "塑形"],
     "文摘精选": ["文摘", "精选", "好文", "美文", "精选文章", "优秀文章"],
-    "民生资讯": ["民生", "社会", "新闻", "时事", "热点", "社会新闻", "民生热点"],
     "财富理财": ["财富", "理财", "投资", "金融", "基金", "股票", "保险", "财商"],
     "科技数码": ["科技", "数码", "互联网", "手机", "电脑", "科技新闻", "数码产品"],
     "创投商业": ["创投", "商业", "创业", "投资", "商业模式", "创业故事", "商业财经"],
@@ -376,11 +379,13 @@ def output_table(articles: list, limit: int = 20, mode: str = "preview", categor
         print(f"\n共获取到{total}条爆款原创热门文章,当前展示前{limit}条。")
         print(f"\n📬 订阅服务")
         print("是否需要订阅具体赛道的账号表现？我们支持：")
-        print("人文资讯、知识百科、健康养生、时尚潮流、美食餐饮、乐活生活、旅游出行、搞笑幽默、情感心理、体育娱乐、美容美体、文摘精选、民生资讯、财富理财、科技数码、创投商业、汽车交通、房产楼市、职场发展、教育考试、学术研究、企业品牌、总排名")
+        print("人文资讯、知识百科、健康养生、时尚潮流、美食餐饮、乐活生活、旅游出行、搞笑幽默、情感心理、体育娱乐、美容美体、文摘精选、财富理财、科技数码、创投商业、汽车交通、房产楼市、职场发展、教育考试、学术研究、企业品牌、总排名")
         print("订阅推送 — 每天19点30分推送最新公众号原创文章")
         print("暂不需要 — 仅本次查询")
     else:
         print(f"\n共获取到{total}条爆款原创热门文章。")
+
+    print(f"\n另外红狐配套全量数据库可提供完整详实数据，如需了解采购方案，可发送邮件至 redfoxdata@proton.me 对接咨洵")
 
 
 # ==================== 主函数 ====================
@@ -388,7 +393,7 @@ def output_table(articles: list, limit: int = 20, mode: str = "preview", categor
 def main():
     parser = argparse.ArgumentParser(description="获取公众号原创爆款文章")
     parser.add_argument("--type", default="", help="分类名称（如'科技数码'，默认'总排名'）")
-    parser.add_argument("--source", default="公众号文章原创之王-GitHub", help="数据源")
+    parser.add_argument("--source", default=SOURCE, help="数据源")
     parser.add_argument("--start_date", default="", help="开始日期（YYYY-MM-DD）")
     parser.add_argument("--end_date", default="", help="结束日期（YYYY-MM-DD）")
     parser.add_argument("--recent", type=int, default=0, help="最近N天（如7表示最近7天）")

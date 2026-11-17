@@ -1,50 +1,67 @@
-## Description: <br>
-Automates job search and application workflows across LinkedIn, Indeed, Glassdoor, ZipRecruiter, and Wellfound, with SkillBoss API Hub support for compatibility analysis and cover letter generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates job search, job-fit analysis, cover-letter generation, form filling, application submission, and application tracking across major job platforms.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External users and job seekers use this skill to search job platforms, compare matches, generate application materials, fill forms, and track application attempts with optional manual confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive applicant data, credentials, resumes, and job profile details. <br>
-Mitigation: Provide only the minimum applicant data needed and store profiles, credentials, and generated logs securely. <br>
-Risk: Automated submissions can send applications before the user has reviewed job fit or generated materials. <br>
-Mitigation: Keep dry-run mode and per-application confirmation enabled until the user has reviewed each application. <br>
-Risk: Generated resumes, cover letters, and screening answers may be inaccurate or misleading. <br>
-Mitigation: Review every generated resume, cover letter, and screening answer before submission. <br>
-Risk: Automation that bypasses CAPTCHA or platform controls can create compliance and account-risk issues. <br>
-Mitigation: Do not use CAPTCHA-bypass automation and respect platform terms, rate limits, and manual checkpoints. <br>
+## Use Case:
 
+External users and developers use this skill to search for matching jobs, generate application materials, prepare profile configuration, and optionally submit applications with dry-run or confirmation safeguards.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/marjoriebroad/qui-job-auto-apply) <br>
-- [SkillBoss Job Auto Apply](https://skillboss.co/skills/job-auto-apply) <br>
-- [Job Platform Integration Reference](artifact/platform_integration.md) <br>
-- [LinkedIn Jobs API Documentation](https://developer.linkedin.com/docs/v2/jobs) <br>
-- [Indeed API Documentation](https://opensource.indeedeng.io/api-documentation/) <br>
-- [Glassdoor Developer Documentation](https://www.glassdoor.com/developer/index.htm) <br>
-- [Wellfound Documentation](https://docs.wellfound.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples, shell commands, JSON configuration, generated application text, and application result JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and may use a local applicant profile containing sensitive personal data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata) <br>
+Risk: Sensitive applicant profile data, resumes, job details, and generated application materials may be sent to an external AI provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with informed consent, restrict access to profile files, avoid unnecessary personal data, and review provider data-handling terms before use.
+
+Risk: Automated submissions can create incorrect, low-quality, or unintended job applications.
+
+Mitigation: Keep dry-run and manual confirmation enabled, set daily limits, use high match thresholds, and review every application before submission.
+
+Risk: Job platform automation may conflict with platform terms or trigger anti-abuse controls.
+
+Mitigation: Prefer official APIs, respect platform rate limits, avoid captcha or proxy bypass guidance, and do not run unattended submission workflows.
+
+Risk: Security evidence flags inconsistent implementation, domains, and safety controls.
+
+Mitigation: Treat the package as a prototype and perform manual code, dependency, and network-review checks before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marjoriebroad/skills/qui-job-auto-apply)
+- [SkillBoss Job Auto Apply Page](https://skillboss.co/skills/job-auto-apply)
+- [Job Platform Integration Reference](artifact/platform_integration.md)
+- [LinkedIn Jobs API Documentation](https://developer.linkedin.com/docs/v2/jobs)
+- [Indeed API Documentation](https://opensource.indeedeng.io/api-documentation/)
+- [Glassdoor Developer Documentation](https://www.glassdoor.com/developer/index.htm)
+- [Wellfound Documentation](https://docs.wellfound.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python code examples, JSON configuration, and text application materials.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce application logs and application_results.json when the bundled script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

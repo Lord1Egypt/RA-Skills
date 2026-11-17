@@ -1,41 +1,57 @@
-## Description: <br>
-Local image processing toolkit for format conversion, compression, resizing, batch jobs, and image-to-PDF. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local image processing toolkit for format conversion, compression, resizing, batch jobs, and image-to-PDF for local image files.
 
-## Publisher: <br>
-[wangziiiiii](https://clawhub.ai/user/wangziiiiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangziiiiii](https://clawhub.ai/user/wangziiiiii)
 
-## Use Case: <br>
-Developers and external users use this skill to run local Python image-processing workflows for format conversion, compression, resizing, batch directory jobs, and image-to-PDF conversion. It is not intended for OCR, text extraction, semantic image understanding, or pixel-perfect design editing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running local Python image tools and third-party packages can affect files in the selected workspace. <br>
-Mitigation: Install dependencies in a virtual environment, review selected input paths, and run commands from the skill directory. <br>
-Risk: Recursive batches and overwrite mode can change many image files or replace existing outputs. <br>
-Mitigation: Use --dry-run before large batches and avoid --overwrite unless backups are available. <br>
-Risk: Documentation includes unrelated automotive links that are not needed for image processing. <br>
-Mitigation: Use only the local image-processing scripts and ignore unrelated external links for this workflow. <br>
+## Use Case:
 
+Developers and other users can use this skill to run local Python image-processing commands for converting image formats, compressing files, resizing single images or directories, batch-processing folders, and creating PDFs from images.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python script guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local file-processing instructions and commands for scripts that write converted, compressed, resized, batched image files, or PDFs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Unrelated third-party site recommendations could steer an agent outside the image-processing purpose of the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove the related-sites section before installation and keep agent use focused on local image-processing tasks.
+
+Risk: Batch image processing can write many output files or replace existing files when overwrite behavior is enabled.
+
+Mitigation: Use --dry-run first, set an explicit --out-dir, and use --overwrite only when replacing files is intended.
+
+Risk: Processing unintended files may expose or alter local image content outside the user's intended scope.
+
+Mitigation: Run the scripts only on local image files the user intends to process and constrain directory jobs with explicit input paths and filters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangziiiiii/skills/wangziiiii)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides local file-processing scripts that can write image and PDF files; batch jobs report success, failure, and total counts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

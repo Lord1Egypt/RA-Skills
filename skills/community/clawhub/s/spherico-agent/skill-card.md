@@ -1,42 +1,55 @@
-## Description: <br>
-End-to-end Bitnow network API workflows for AI agents. Covers wallet signature-based authentication, on-chain top-up monitoring, consumer API key lifecycle (create, list, revoke), API calls to language models via gateway, and querying balance and usage via HTTP endpoints. Use to help users automate or debug Bitnow network operations by direct API interaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides end-to-end Bitnow network API workflows for wallet signature authentication, on-chain top-up verification, consumer API key lifecycle management, model gateway calls, and balance or usage queries.
 
-## Publisher: <br>
-[Viyozc](https://clawhub.ai/user/Viyozc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viyozc](https://clawhub.ai/user/viyozc)
 
-## Use Case: <br>
-Developers and operators use this skill to generate API-focused Bitnow workflows for wallet authentication, deposits, API key management, model inference, usage review, and provider setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports sensitive Bitnow API operations where session tokens, API keys, wallet signatures, provider auth values, or full HTTP responses could be exposed if pasted into agent chats, logs, or scripts. <br>
-Mitigation: Use placeholders, environment variables, or a secret manager, and redact tokens, keys, signatures, provider auth values, wallet-sensitive data, and unneeded response fields before sharing. <br>
-Risk: The workflows include fund transfers, token allowances, parent-account links, supplier registration, and GPU endpoint updates that can change balances, account relationships, or provider configuration. <br>
-Mitigation: Independently verify the official gateway, chain ID, token address, deposit contract, and target account details, then manually confirm each account-changing or funds-related action before execution. <br>
+## Use Case:
 
+Developers and operators use this skill to generate concrete, API-first guidance for Bitnow onboarding, wallet authentication, balance top-ups, API key administration, model calls, and usage troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Viyozc/spherico-agent) <br>
-- [Bitnow test gateway](https://gateway-test.bitnow.ai) <br>
-- [Base Sepolia RPC](https://sepolia.base.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with curl commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses placeholders for gateway URLs, wallet addresses, session tokens, API keys, signatures, and provider credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Risk: The skill can guide actions involving wallet funds and on-chain deposits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a verified Bitnow gateway and independently confirm the blockchain network, token address, and contract address before approving or depositing funds.
+
+Risk: The workflows may expose reusable credentials, session tokens, API keys, wallet signatures, or upstream provider secrets in prompts or shared outputs.
+
+Mitigation: Redact tokens, API keys, signatures, and provider credentials before sharing logs or responses, and avoid supplier/provider workflows unless explicitly authorized.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/viyozc/skills/spherico-agent)
+- [Bitnow gateway test API](https://gateway-test.bitnow.ai)
+- [Base Sepolia RPC endpoint](https://sepolia.base.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include curl commands, request bodies, endpoint placeholders, and troubleshooting steps.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

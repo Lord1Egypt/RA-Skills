@@ -1,42 +1,54 @@
-## Description: <br>
-Calls the xAI Grok API through a LeonAI proxy for text chat, reasoning, image generation and editing, and video generation using an OpenAI-compatible interface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls Grok-compatible APIs through the LeonAI proxy for chat, reasoning, image generation, image editing, and video generation using OpenAI-compatible request patterns.
 
-## Publisher: <br>
-[lygjoey](https://clawhub.ai/user/lygjoey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lygjoey](https://clawhub.ai/user/lygjoey)
 
-## Use Case: <br>
-Developers and agent users use this skill to send prompts and media generation requests to Grok models through a configured LeonAI proxy, including chat, reasoning, image, and video workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, media requests, and the Grok API key are sent to the configured LeonAI proxy or GROK_BASE_URL endpoint. <br>
-Mitigation: Install only if the proxy and endpoint are trusted, use a dedicated revocable key, and avoid sending secrets, personal data, or regulated information. <br>
-Risk: API use can consume quota or incur billing through the configured Grok-compatible service. <br>
-Mitigation: Monitor usage and billing limits, and keep the API key scoped and revocable. <br>
-Risk: Image generation examples expose an option to enable NSFW output. <br>
-Mitigation: Disable NSFW generation unless the deployment policy permits it and review generated media before use or sharing. <br>
+## Use Case:
 
+Developers and agent users use this skill to route explicit Grok requests through a LeonAI proxy for text chat, reasoning, image generation or editing, video generation, and model listing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lygjoey/grok-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash examples and CLI or API responses as text, JSON, and media URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GROK_API_KEY and uses GROK_BASE_URL, defaulting to a LeonAI proxy; generated image and video URLs may expire.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts and API credentials are sent to the LeonAI proxy rather than directly to xAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the proxy and its data handling are trusted, avoid secrets or regulated data in prompts, and use explicit Grok commands to prevent unintended external calls.
+
+Risk: The artifact includes an example that can enable NSFW image generation.
+
+Mitigation: Review and disable or avoid the NSFW option unless it is appropriate for the deployment context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lygjoey/skills/grok-api)
+- [Publisher profile](https://clawhub.ai/user/lygjoey)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and Python CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return generated media URLs, JSON API responses, model lists, and token usage summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

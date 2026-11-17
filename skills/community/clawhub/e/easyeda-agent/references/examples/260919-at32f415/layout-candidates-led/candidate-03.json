@@ -1,0 +1,532 @@
+{
+  "id": "candidate-03",
+  "variant": "edge(bottom)-align(USB1-600.00)-rotate(0.00)-pin-gap(8.00)",
+  "module": "rgb-led",
+  "strategy": "edge",
+  "placements": [
+    {
+      "ref": "C1",
+      "primitiveId": "22f277398c0ecfab",
+      "xMil": 902.4928,
+      "yMil": 209.4675,
+      "rotationDeg": 0,
+      "layer": 1,
+      "bbox": {
+        "minX": 842.7718,
+        "minY": 176.5135,
+        "maxX": 962.2178,
+        "maxY": 242.4245
+      },
+      "pads": [
+        {
+          "primitiveId": "22f277398c0ecfabe14",
+          "padNumber": "2",
+          "net": "GND",
+          "layer": 1,
+          "x": 930.0928,
+          "y": 209.4675,
+          "width": 31.5,
+          "height": 35.4
+        },
+        {
+          "primitiveId": "22f277398c0ecfabe15",
+          "padNumber": "1",
+          "net": "+5V",
+          "layer": 1,
+          "x": 874.8928,
+          "y": 209.4675,
+          "width": 31.5,
+          "height": 35.4
+        }
+      ]
+    },
+    {
+      "ref": "C2",
+      "primitiveId": "cec45de180b7a7c9",
+      "xMil": 566.3032,
+      "yMil": 302.446,
+      "rotationDeg": 90,
+      "layer": 1,
+      "bbox": {
+        "minX": 533.3462,
+        "minY": 242.725,
+        "maxX": 599.2572,
+        "maxY": 362.171
+      },
+      "pads": [
+        {
+          "primitiveId": "cec45de180b7a7c9e14",
+          "padNumber": "2",
+          "net": "GND",
+          "layer": 1,
+          "x": 566.3032,
+          "y": 330.046,
+          "width": 35.4,
+          "height": 31.5,
+          "rotation": 90
+        },
+        {
+          "primitiveId": "cec45de180b7a7c9e15",
+          "padNumber": "1",
+          "net": "+5V",
+          "layer": 1,
+          "x": 566.3032,
+          "y": 274.846,
+          "width": 35.4,
+          "height": 31.5,
+          "rotation": 90
+        }
+      ]
+    },
+    {
+      "ref": "LED1",
+      "primitiveId": "02b2c694a8cf42d0",
+      "xMil": 664.7033,
+      "yMil": 123.43,
+      "rotationDeg": 0,
+      "layer": 1,
+      "bbox": {
+        "minX": 507.3443,
+        "minY": 20,
+        "maxX": 792.6558,
+        "maxY": 234.725
+      },
+      "pads": [
+        {
+          "primitiveId": "02b2c694a8cf42d0e20",
+          "padNumber": "1",
+          "net": "+5V",
+          "layer": 1,
+          "x": 566.3032,
+          "y": 188.43,
+          "width": 59.1,
+          "height": 39.4
+        },
+        {
+          "primitiveId": "02b2c694a8cf42d0e21",
+          "padNumber": "2",
+          "net": "",
+          "layer": 1,
+          "x": 566.3032,
+          "y": 58.43,
+          "width": 59.1,
+          "height": 39.4
+        },
+        {
+          "primitiveId": "02b2c694a8cf42d0e22",
+          "padNumber": "3",
+          "net": "GND",
+          "layer": 1,
+          "x": 763.1033,
+          "y": 58.43,
+          "width": 59.1,
+          "height": 39.4
+        },
+        {
+          "primitiveId": "02b2c694a8cf42d0e23",
+          "padNumber": "4",
+          "net": "RGB_DATA",
+          "layer": 1,
+          "x": 763.1033,
+          "y": 188.43,
+          "width": 59.1,
+          "height": 39.4
+        }
+      ]
+    },
+    {
+      "ref": "R3",
+      "primitiveId": "75d029eec947c506",
+      "xMil": 900.3028,
+      "yMil": 346.0675,
+      "rotationDeg": 180,
+      "layer": 1,
+      "bbox": {
+        "minX": 842.7718,
+        "minY": 317.0595,
+        "maxX": 957.8338,
+        "maxY": 375.0755
+      },
+      "pads": [
+        {
+          "primitiveId": "75d029eec947c506e7",
+          "padNumber": "2",
+          "net": "RGB_BUF_IN",
+          "layer": 1,
+          "x": 870.6028,
+          "y": 346.0675,
+          "width": 31.8,
+          "height": 34,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "75d029eec947c506e8",
+          "padNumber": "1",
+          "net": "PA8",
+          "layer": 1,
+          "x": 930.0028,
+          "y": 346.0675,
+          "width": 31.8,
+          "height": 34,
+          "rotation": 180
+        }
+      ]
+    },
+    {
+      "ref": "U1",
+      "primitiveId": "4dca0d373fbfbf99",
+      "xMil": 788.7033,
+      "yMil": 302.7675,
+      "rotationDeg": 90,
+      "layer": 1,
+      "bbox": {
+        "minX": 747.3678,
+        "minY": 242.725,
+        "maxX": 834.7718,
+        "maxY": 368.119
+      },
+      "pads": [
+        {
+          "primitiveId": "4dca0d373fbfbf99e4",
+          "padNumber": "1",
+          "net": "GND",
+          "layer": 1,
+          "x": 814.3033,
+          "y": 346.0675,
+          "width": 13.8,
+          "height": 33.5,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "4dca0d373fbfbf99e5",
+          "padNumber": "2",
+          "net": "RGB_BUF_IN",
+          "layer": 1,
+          "x": 788.7033,
+          "y": 346.0675,
+          "width": 13.8,
+          "height": 33.5,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "4dca0d373fbfbf99e6",
+          "padNumber": "3",
+          "net": "GND",
+          "layer": 1,
+          "x": 763.1033,
+          "y": 346.0675,
+          "width": 13.8,
+          "height": 33.5,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "4dca0d373fbfbf99e7",
+          "padNumber": "4",
+          "net": "RGB_DATA",
+          "layer": 1,
+          "x": 763.1033,
+          "y": 259.4675,
+          "width": 13.8,
+          "height": 33.5,
+          "rotation": 180
+        },
+        {
+          "primitiveId": "4dca0d373fbfbf99e8",
+          "padNumber": "5",
+          "net": "+5V",
+          "layer": 1,
+          "x": 814.3033,
+          "y": 259.4675,
+          "width": 13.8,
+          "height": 33.5,
+          "rotation": 180
+        }
+      ]
+    }
+  ],
+  "measurements": {
+    "moduleBounds": {
+      "minX": 507.3443,
+      "minY": 20,
+      "maxX": 962.2178,
+      "maxY": 375.0755
+    },
+    "moduleWidthMil": 454.8735,
+    "moduleHeightMil": 355.0755,
+    "minInternalGapMil": 8,
+    "closestInternalGap": {
+      "from": "C2",
+      "to": "LED1",
+      "distanceMil": 8
+    },
+    "minExternalComponentGapMil": 35.6755,
+    "closestExternalComponentGap": {
+      "from": "R3",
+      "to": "U3",
+      "distanceMil": 35.6755
+    },
+    "minKeepoutGapMil": 35.6755,
+    "closestKeepoutGap": {
+      "from": "R3",
+      "to": "U3-LCD-measured-footprint-bbox",
+      "distanceMil": 35.6755
+    },
+    "pinDistances": [
+      {
+        "member": "U1",
+        "memberPad": "4",
+        "owner": "LED1",
+        "ownerPad": "4",
+        "net": "RGB_DATA",
+        "distanceMil": 71.0375,
+        "source": "原理图.pdf 第1页：U1.4→LED1.4"
+      },
+      {
+        "member": "C2",
+        "memberPad": "1",
+        "owner": "LED1",
+        "ownerPad": "1",
+        "net": "+5V",
+        "distanceMil": 86.416,
+        "source": "原理图.pdf 第1页：C2服务LED1.1"
+      },
+      {
+        "member": "C1",
+        "memberPad": "1",
+        "owner": "U1",
+        "ownerPad": "5",
+        "net": "+5V",
+        "distanceMil": 78.5563,
+        "source": "原理图.pdf 第1页：C1服务U1.5"
+      },
+      {
+        "member": "R3",
+        "memberPad": "2",
+        "owner": "U1",
+        "ownerPad": "2",
+        "net": "RGB_BUF_IN",
+        "distanceMil": 81.8995,
+        "source": "原理图.pdf 第1页：R3.2→U1.2"
+      }
+    ],
+    "edgeDistances": [
+      {
+        "ref": "C1",
+        "nearestEdge": "bottom",
+        "distanceMil": 176.5135,
+        "source": "polygon"
+      },
+      {
+        "ref": "C2",
+        "nearestEdge": "bottom",
+        "distanceMil": 242.725,
+        "source": "polygon"
+      },
+      {
+        "ref": "LED1",
+        "nearestEdge": "bottom",
+        "distanceMil": 20,
+        "source": "polygon"
+      },
+      {
+        "ref": "R3",
+        "nearestEdge": "bottom",
+        "distanceMil": 317.0595,
+        "source": "polygon"
+      },
+      {
+        "ref": "U1",
+        "nearestEdge": "bottom",
+        "distanceMil": 242.725,
+        "source": "polygon"
+      }
+    ],
+    "relations": [
+      {
+        "kind": "near",
+        "from": "LED1",
+        "to": "USB1",
+        "distanceMil": 605.2813,
+        "source": "考试说明.pdf 第4页"
+      },
+      {
+        "kind": "far",
+        "from": "LED1",
+        "to": "R10",
+        "distanceMil": 1757.2721,
+        "source": "考试说明.pdf 第4页"
+      },
+      {
+        "kind": "far",
+        "from": "LED1",
+        "to": "R11",
+        "distanceMil": 1712.8078,
+        "source": "考试说明.pdf 第4页"
+      },
+      {
+        "kind": "far",
+        "from": "LED1",
+        "to": "C11",
+        "distanceMil": 1809.3958,
+        "source": "考试说明.pdf 第4页"
+      }
+    ],
+    "limitations": [
+      "15 routed line(s) exist; copper geometry was not checked"
+    ]
+  },
+  "actions": [
+    {
+      "id": "place-C1",
+      "action": "pcb.component.modify",
+      "payload": {
+        "patch": {
+          "rotation": 0,
+          "x": 902.4928,
+          "y": 209.4675
+        },
+        "primitiveId": "22f277398c0ecfab"
+      }
+    },
+    {
+      "id": "place-C2",
+      "action": "pcb.component.modify",
+      "payload": {
+        "patch": {
+          "rotation": 90,
+          "x": 566.3032,
+          "y": 302.446
+        },
+        "primitiveId": "cec45de180b7a7c9"
+      }
+    },
+    {
+      "id": "place-LED1",
+      "action": "pcb.component.modify",
+      "payload": {
+        "patch": {
+          "rotation": 0,
+          "x": 664.7033,
+          "y": 123.43
+        },
+        "primitiveId": "02b2c694a8cf42d0"
+      }
+    },
+    {
+      "id": "place-R3",
+      "action": "pcb.component.modify",
+      "payload": {
+        "patch": {
+          "rotation": 180,
+          "x": 900.3028,
+          "y": 346.0675
+        },
+        "primitiveId": "75d029eec947c506"
+      }
+    },
+    {
+      "id": "place-U1",
+      "action": "pcb.component.modify",
+      "payload": {
+        "patch": {
+          "rotation": 90,
+          "x": 788.7033,
+          "y": 302.7675
+        },
+        "primitiveId": "4dca0d373fbfbf99"
+      }
+    },
+    {
+      "id": "save",
+      "action": "pcb.save",
+      "payload": {}
+    }
+  ],
+  "apply": {
+    "version": 1,
+    "meta": {
+      "name": "rgb-led candidate-03",
+      "description": "Generated by easyeda pcb layout-plan; footprint-anchor coordinates; boardSha256=8c90926484f3d408a406c7bc4c2713d3ad8c358106873865afbeec3873cbed09; layoutSha256=5dfa6b15ca572b89e394c349d6b4d0cac8eb2540e2c783c18b55cc9fb6538d8e; hashSemantic=sha256(raw-file-bytes)",
+      "project": "ceshi",
+      "doc": "2e719e9419653c72"
+    },
+    "defaults": {},
+    "steps": [
+      {
+        "id": "place-C1",
+        "name": "place C1",
+        "action": "pcb.component.modify",
+        "payload": {
+          "patch": {
+            "rotation": 0,
+            "x": 902.4928,
+            "y": 209.4675
+          },
+          "primitiveId": "22f277398c0ecfab"
+        }
+      },
+      {
+        "id": "place-C2",
+        "name": "place C2",
+        "action": "pcb.component.modify",
+        "payload": {
+          "patch": {
+            "rotation": 90,
+            "x": 566.3032,
+            "y": 302.446
+          },
+          "primitiveId": "cec45de180b7a7c9"
+        }
+      },
+      {
+        "id": "place-LED1",
+        "name": "place LED1",
+        "action": "pcb.component.modify",
+        "payload": {
+          "patch": {
+            "rotation": 0,
+            "x": 664.7033,
+            "y": 123.43
+          },
+          "primitiveId": "02b2c694a8cf42d0"
+        }
+      },
+      {
+        "id": "place-R3",
+        "name": "place R3",
+        "action": "pcb.component.modify",
+        "payload": {
+          "patch": {
+            "rotation": 180,
+            "x": 900.3028,
+            "y": 346.0675
+          },
+          "primitiveId": "75d029eec947c506"
+        }
+      },
+      {
+        "id": "place-U1",
+        "name": "place U1",
+        "action": "pcb.component.modify",
+        "payload": {
+          "patch": {
+            "rotation": 90,
+            "x": 788.7033,
+            "y": 302.7675
+          },
+          "primitiveId": "4dca0d373fbfbf99"
+        }
+      },
+      {
+        "id": "save",
+        "name": "save PCB checkpoint",
+        "action": "pcb.save"
+      }
+    ]
+  },
+  "files": {
+    "apply": "candidate-03.apply.json",
+    "candidate": "candidate-03.json",
+    "preview": "candidate-03.svg"
+  }
+}

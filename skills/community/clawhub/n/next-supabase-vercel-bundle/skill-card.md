@@ -1,46 +1,66 @@
-## Description: <br>
-Orchestrates the full-stack Next.js, Supabase, and Vercel development cycle by scaffolding projects, generating executable SQL migrations, guiding configuration, and supporting Vercel deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Next.js, Supabase, and Vercel project setup by scaffolding files, generating SQL migration guidance, and invoking local development or deployment commands.
 
-## Publisher: <br>
-[studio-hakke](https://clawhub.ai/user/studio-hakke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[studio-hakke](https://clawhub.ai/user/studio-hakke)
 
-## Use Case: <br>
-Developers and engineers use this skill to create and configure a Next.js application with Supabase database, authentication, storage, and Vercel deployment workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local scaffolding, package installation, build, and Vercel deployment commands from the current project context. <br>
-Mitigation: Run it only in a trusted project directory and verify the active Vercel account and linked project before deployment. <br>
-Risk: Weak input validation around project names and command arguments could lead to unintended local command behavior. <br>
-Mitigation: Use simple project names and numeric ports, and review generated commands or files before committing or deploying. <br>
-Risk: Supabase service role keys are high privilege and may be exposed if copied into logs, screenshots, client code, or a repository. <br>
-Mitigation: Keep SUPABASE_SERVICE_KEY server-only, avoid committing environment files, and rotate the key if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/studio-hakke/next-supabase-vercel-bundle) <br>
-- [Publisher profile](https://clawhub.ai/user/studio-hakke) <br>
-- [Supabase SQL editor](https://supabase.com/dashboard/project/_/sql/new) <br>
-- [Supabase API settings](https://supabase.com/dashboard/project/_/settings/api) <br>
-- [Vercel dashboard](https://vercel.com/dashboard) <br>
+## Use Case:
 
+Developers use this skill to create and configure a Next.js application with Supabase database, authentication, storage, and Vercel deployment workflows. It is suited for fast project setup, prototyping, and guided deployment preparation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, generated project files, SQL migrations, and configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local project files, run npm and Vercel commands, and print setup or deployment guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill performs project setup, deployment preparation, SQL generation, and credential-dependent workflows that are too powerful for automatic trust.
+
+Mitigation: Review before installing or running, and use it only in a disposable or constrained project environment.
+
+Risk: Generated SQL can affect Supabase database, authentication, storage, and row-level security behavior.
+
+Mitigation: Inspect generated SQL before running it in Supabase and apply changes manually with the least privileges needed.
+
+Risk: Untrusted project names, ports, migration names, or bucket names may influence generated files or shell commands.
+
+Mitigation: Avoid untrusted inputs and review generated commands and files before execution.
+
+Risk: A Supabase service-role key can grant broad server-side access if placed in the generated environment file.
+
+Mitigation: Do not add a real service-role key unless a specific server-only operation requires it, and rotate credentials if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/studio-hakke/skills/next-supabase-vercel-bundle)
+- [Supabase API Settings](https://supabase.com/dashboard/project/_/settings/api)
+- [Supabase SQL Editor](https://supabase.com/dashboard/project/_/sql/new)
+- [Supabase Auth Providers](https://supabase.com/dashboard/project/_/auth/providers)
+- [Supabase Storage Buckets](https://supabase.com/dashboard/project/_/storage/buckets)
+- [Supabase Storage Policies](https://supabase.com/dashboard/project/_/storage/policies)
+- [Vercel Dashboard](https://vercel.com/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, generated project files, and SQL migration files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify local project files and invoke npm, npx, git, Supabase, and Vercel CLI workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Shop helps individual shoppers find, compare, buy, gift, reorder, and track products across the Shop catalog and connected order history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shop across millions of stores: find products or look for matching offers for items found elsewhere. Find nearby stores, build carts, and track your orders. Use the shop CLI to ask a store questions, check out with Shop Pay, track delivery, access Shop account data and spend permissions, and get buyer approval and payment credentials for purchases an agent makes using a browser.
 
-## Publisher: <br>
-[shopify](https://clawhub.ai/user/shopify) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shopify](https://clawhub.ai/user/shopify)
 
-## Use Case: <br>
-External individual shoppers use this skill to have an agent search the Shop catalog, compare products, create checkouts, track orders, start returns, and reorder items. The skill is intended for personal shopping workflows with explicit user confirmation before purchases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Shop homepage](https://shop.app) <br>
-- [ClawHub Shop skill listing](https://clawhub.ai/shopify/skills/shop) <br>
-- [Catalog MCP reference](references/catalog-mcp.md) <br>
-- [Direct API reference](references/direct-api.md) <br>
-- [Safety, security, and legal reference](references/safety.md) <br>
-- [Personal agents usage limits](https://help.shop.app/en/shop/shopping/personal-agents) <br>
-- [Shopify UCP agent profile](https://shopify.dev/ucp/agent-profiles/2026-04-08/valid-with-capabilities.json) <br>
+External shoppers use this skill to find and compare products, locate stores, ask merchants questions, and manage carts, checkouts, and Shop account or order information. It helps an agent present recommendations with their source details and follow the documented buyer approval steps for purchases.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown product messages with command and API guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product images, product links, checkout links, order information, and safety prompts; purchase completion requires explicit user confirmation.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Image searches may transmit a user's image to Shop without a clear disclosure.
+
+Mitigation: Tell the user before sending an image and get confirmation; offer a text search when they prefer not to share an image.
+
+Risk: The security scan was partial because some referenced paths were unresolved.
+
+Mitigation: Review the unresolved references before relying on the scan's benign verdict.
+
+## Reference(s):
+
+- [Catalog reference](references/catalog.md)
+- [CLI reference](references/cli.md)
+- [Transactions reference](references/transactions.md)
+- [Shop setup instructions](https://shop.com/SKILL.md)
+- [Shop ClawHub release](https://clawhub.ai/shopify/skills/shop)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Conversational text or Markdown, with product links and optional CLI command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations retain returned seller, product, option, price, currency, and source-link details; purchase steps include buyer review and approval guidance.]
+
+## Skill Version(s):
+
+1.3.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

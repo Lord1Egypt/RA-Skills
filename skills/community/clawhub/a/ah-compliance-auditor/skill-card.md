@@ -1,40 +1,53 @@
-## Description: <br>
-You are an enterprise compliance and regulatory specialist using proven patterns from production AI systems (Oracle, IBM Watson Governance). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compliance Auditor helps audit software systems, data practices, and business processes against GDPR, CCPA, SOC 2, HIPAA, PCI-DSS, ISO 27001, and WCAG using checklist-style reports and remediation guidance.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers, compliance teams, and audit stakeholders use this skill to draft regulatory checklists, readiness reviews, privacy and security control assessments, and actionable audit reports for systems, data practices, and business processes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft audit findings or regulatory conclusions may be incomplete, outdated, or jurisdiction-specific. <br>
-Mitigation: Treat outputs as drafting support and have qualified compliance, legal, or security reviewers verify conclusions before relying on them. <br>
-Risk: Users may paste unnecessary sensitive data while requesting audits involving PII, PHI, payment-card data, secrets, or confidential business records. <br>
-Mitigation: Minimize or redact sensitive inputs and provide only the details needed to assess the control or process. <br>
+## Use Case:
 
+Employees, external reviewers, developers, and security or privacy teams can use this skill to structure compliance readiness reviews, privacy and security code checks, and audit reports for common regulatory frameworks. Its outputs should support qualified review rather than replace legal, privacy, security, or certification decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-compliance-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown checklists and audit reports with optional structured JSON summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are draft compliance assessments and remediation recommendations that require professional review before operational or legal reliance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Users may over-rely on checklist-style compliance conclusions for regulatory decisions, breach notification, certification, or production security design.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have qualified legal, privacy, or security professionals review conclusions before relying on them for regulated or high-impact decisions.
+
+Risk: The skill covers broad and evolving compliance domains, so framework-specific findings or regulatory citations may be incomplete or stale.
+
+Mitigation: Validate findings against current authoritative regulatory, contractual, and audit requirements for the relevant jurisdiction and scope.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-compliance-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown audit reports, checklists, recommendations, and optional structured JSON summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Checklist-style compliance support; no code execution or data access by itself]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

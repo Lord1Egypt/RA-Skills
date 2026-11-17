@@ -1,44 +1,54 @@
-## Description: <br>
-Extract images from PDF files with three modes: original quality, 800x800 standard output, and compressed files under 50KB for social sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract images from PDF files with three modes: original quality, 800x800 web-ready images, and compressed images under 50KB for social sharing.
 
-## Publisher: <br>
-[jnbno1163](https://clawhub.ai/user/jnbno1163) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jnbno1163](https://clawhub.ai/user/jnbno1163)
 
-## Use Case: <br>
-External users, developers, and business operators use this skill to extract product or marketing images from PDF catalogs and prepare them for print, e-commerce, websites, or social media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF images can contain sensitive or private information and are written to the configured output folder. <br>
-Mitigation: Test on non-sensitive PDFs first and use private documents only when the user is comfortable with extracted images being saved locally. <br>
-Risk: The scripts use hard-coded input and output folders by default. <br>
-Mitigation: Edit the configured PDF and output folders before running the extraction scripts. <br>
-Risk: Installing dependencies directly into a shared Python environment can affect other projects. <br>
-Mitigation: Install PyMuPDF and Pillow in a virtual environment. <br>
+## Use Case:
 
+Developers and content operators use this skill to extract images from local PDF catalogs, marketing files, or other PDF documents and prepare them for print, e-commerce, websites, or social media.
 
-## Reference(s): <br>
-- [Configuration Parameters](references/config.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jnbno1163/pdf-image-extractor) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/jnbno1163) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown instructions with inline shell commands and Python script references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local image files in per-PDF output folders when the referenced scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local PDF processing can act on unintended documents if the configured input folder is too broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Edit the configured PDF and output folders before running so only intended local documents are processed.
+
+Risk: Image extraction depends on PyMuPDF and Pillow packages installed in the runtime environment.
+
+Mitigation: Install the skill in a dedicated virtual environment and consider pinning PyMuPDF and Pillow to reviewed versions.
+
+## Reference(s):
+
+- [Configuration reference](artifact/references/config.md)
+- [ClawHub skill page](https://clawhub.ai/jnbno1163/skills/pdf-image-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and Python script references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides local PyMuPDF and Pillow scripts that write extracted image files to configured output folders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Fetches Legion Hardware ASR transcripts after intent clarification and produces outreach insight reports from transcript text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses a loan-outreach recording request, clarifies the time range and analysis focus, fetches ASR transcript records, and guides generation of a transcript-grounded outreach insight report.
 
-## Publisher: <br>
-[legionspace-hackathon](https://clawhub.ai/user/legionspace-hackathon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[legionspace-hackathon](https://clawhub.ai/user/legionspace-hackathon)
 
-## Use Case: <br>
-Sales, operations, and customer outreach teams use this skill to summarize completed ASR recordings, confirm the intended time window and analysis focus, and generate transcript-grounded outreach reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetched transcripts, script stdout, and generated reports may contain sensitive business or customer information. <br>
-Mitigation: Run the skill only in approved environments and handle transcript-derived outputs as sensitive data. <br>
-Risk: A JWT or Legion API endpoint configured for the wrong environment could expose data or send requests to an unintended service. <br>
-Mitigation: Provide the auth token through the intended Authorization or environment channel, verify the endpoint before use, and avoid untrusted LEGION_HARDWARE_BASE_URL values. <br>
-Risk: Ambiguous user requests could lead to analysis over an unintended time window or focus area. <br>
-Mitigation: Use the built-in intent parsing and clarification flow before fetching recordings; apply defaults only after confirmation or explicit default acceptance. <br>
+## Use Case:
 
+External business and operations users use this skill to request ASR transcript analysis for loan outreach recordings. The skill clarifies ambiguous time windows or analysis dimensions before transcript retrieval and supports default ten-dimension outreach reporting or a user-selected focus.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/legionspace-hackathon/legion-loan-outreach-insight) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON script output plus Markdown or text report content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is a report page; users can request text-only or custom export-oriented delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bearer tokens, tenant identifiers, and transcript records are handled with too little scoping or protection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add endpoint allowlisting, HTTPS, tenant binding, transcript and field minimization, and bounded redacted error logging before installation.
+
+Risk: Use with real customer or employee recordings could expose sensitive transcript data before required controls are in place.
+
+Mitigation: Do not use real customer or employee recordings until the controls listed in the security guidance have been implemented and reviewed.
+
+Risk: The packaged scripts are reported to contain a JavaScript syntax error in parse-time-range.mjs, so the skill does not run as packaged.
+
+Mitigation: Fix and validate parse-time-range.mjs before relying on the skill in any workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/legionspace-hackathon/skills/legion-loan-outreach-insight)
+- [Publisher profile](https://clawhub.ai/user/legionspace-hackathon)
+- [Insight report template](templates/insight-report-page.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [JSON from helper scripts and Markdown or plain-text report content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports should be grounded only in ASR transcript text and may include clarification questions before data retrieval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

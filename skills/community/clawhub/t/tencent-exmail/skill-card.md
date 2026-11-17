@@ -1,49 +1,62 @@
-## Description: <br>
-Tencent Exmail lets an agent read, search, send, move, and monitor Tencent Exmail messages over SSL-protected IMAP and SMTP, including attachment upload and download. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tencent Exmail skill for sending, reading, searching, downloading attachments, moving messages, and monitoring new mail through IMAP/SMTP over SSL.
 
-## Publisher: <br>
-[nopassword2000](https://clawhub.ai/user/nopassword2000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nopassword2000](https://clawhub.ai/user/nopassword2000)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to automate Tencent Exmail workflows such as checking inboxes, searching messages, sending mail with attachments, downloading attachments, marking or moving messages, and monitoring new mail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, send, modify, and monitor Tencent Exmail messages when configured with account credentials. <br>
-Mitigation: Install it only for intended Tencent Exmail accounts, prefer a client-specific authorization code, and limit access to the local environment configuration containing EXMAIL_ADDRESS and EXMAIL_PASSWORD. <br>
-Risk: Email-sending actions can send messages to unintended recipients or include unintended attachments. <br>
-Mitigation: Verify recipients, subject, body, and attachment paths before running send commands. <br>
-Risk: Downloaded attachments and new-mail hook files can contain sensitive mailbox data. <br>
-Mitigation: Store downloaded files and hook-file JSON records in protected locations and remove them when no longer needed. <br>
-Risk: A background watcher can continue monitoring the mailbox after the immediate task is complete. <br>
-Mitigation: Stop the watcher when it is no longer needed and review any hook file it writes. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent work with a Tencent Enterprise Mail account, including composing messages, reading inbox content, searching folders, downloading attachments, and watching for new mail.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nopassword2000/tencent-exmail) <br>
-- [Tencent Exmail server configuration](references/server-config.md) <br>
-- [Tencent Exmail troubleshooting](references/troubleshooting.md) <br>
-- [Tencent Exmail](https://exmail.qq.com) <br>
-- [Tencent Exmail Help](https://exmail.qq.com/help) <br>
-- [Tencent Exmail Service Center](http://service.exmail.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce mailbox summaries, message details, send confirmations, attachment download paths, and hook-file JSON records for new mail notifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read, send, mark, move, and monitor email in the connected Tencent Exmail account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an account appropriate for agent access, review send and move actions before execution, and confirm mailbox changes match user intent.
+
+Risk: Mailbox credentials are required through EXMAIL_ADDRESS and EXMAIL_PASSWORD.
+
+Mitigation: Prefer an app-specific authorization code and keep credentials out of logs, shared files, and source control.
+
+Risk: Downloaded attachments and hook-file records may contain private mailbox data.
+
+Mitigation: Write attachments and hook files only to private directories that the user controls, and clean them up when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nopassword2000/skills/tencent-exmail)
+- [Publisher profile](https://clawhub.ai/user/nopassword2000)
+- [Tencent Exmail](https://exmail.qq.com)
+- [Tencent Exmail help](https://exmail.qq.com/help)
+- [Server configuration reference](references/server-config.md)
+- [Troubleshooting reference](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands, terminal text, and optional JSON hook-file records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, the imapclient package for IMAP IDLE monitoring, and EXMAIL_ADDRESS plus EXMAIL_PASSWORD environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

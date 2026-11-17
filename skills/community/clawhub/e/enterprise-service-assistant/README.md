@@ -1,6 +1,6 @@
-# 🏢 企服助手 Agent
+# 🏢 企服助手 Skill
 
-> 专业的园区企业服务智能助手
+> 专业的园区企业服务智能助手（完全自包含版 v2.0.0）
 
 ---
 
@@ -12,30 +12,31 @@
 - 💰 **费用催缴** — 监控逾期、分级提醒、跟进记录
 - 🔧 **工单分派** — 自动分派、SLA监控、超时升级
 - 📦 **库存监控** — 水位监控、补货提醒、出入库管理
-- 📝 **续租预警** — 提前3个月标记、生成续租方案
+- 📝 **续租预警** — 提前预警、生成续租方案
 - 🤝 **C+服务** — 需求挖掘、服务匹配、资源调度
 - 📋 **走访管理** — 计划生成、任务提醒、记录归档
-- 📈 **KPI报告** — 自动生成、企微推送、趋势分析
+- 📈 **KPI报告** — 自动生成、趋势分析
 
 ---
 
 ## 快速安装
 
-### 方法一：QClaw App 直接导入
+### 方式一：WorkBuddy 一键安装（推荐）
 
-1. 打开 QClaw App
-2. 进入「Agent 管理」页面
-3. 点击「导入 Agent」
-4. 输入分享码或上传配置包
+在 WorkBuddy 对话框中输入：
 
-### 方法二：手动安装
+```
+@WorkBuddy 安装技能 enterprise-service-assistant
+```
 
-1. 将 `workspace-enterprise-service` 文件夹复制到：
+### 方式二：手动安装
+
+1. 将 `enterprise-service-assistant` 文件夹复制到：
    ```
-   ~/.qclaw/workspace-enterprise-service/
+   ~/.workbuddy/skills/enterprise-service-assistant/
    ```
 
-2. 在 QClaw 中创建新的 Agent，指向该工作空间
+2. 重启 WorkBuddy 会话
 
 3. 首次启动时，按照引导完成配置
 
@@ -90,61 +91,71 @@
 ## 文件结构
 
 ```
-workspace-enterprise-service/
-├── AGENTS.md              ← 通用配置
+enterprise-service-assistant/
+├── SKILL.md                ← 技能说明和触发词
+├── AGENTS.md               ← 通用配置
 ├── SOUL.md                 ← 人格设定
 ├── IDENTITY.md             ← 身份设定
 ├── TOOLS.md                ← 工具说明
-├── AGENT.json              ← Agent 元数据
-├── USER.md                 ← 个人信息（独立）
-├── MEMORY.md               ← 长期记忆（独立）
-├── knowledge/              ← 项目知识库
-│   ├── PROJECT_KB.md       ← 你的项目配置（核心）
+├── AGENT.json              ← 技能元数据
+├── scripts/                ← 📂 核心业务逻辑（Python脚本）
+│   ├── data_manager.py
+│   ├── fee_calculator.py
+│   ├── contract_renewal.py
+│   ├── visit_manager.py
+│   └── ...（共22个脚本）
+├── knowledge/              ← 📂 项目知识库
+│   ├── PROJECT_KB.md       ← 你的项目配置（核心！）
 │   ├── TEMPLATE.md         ← 配置模板
-│   └── ONBOARDING.md       ← 首次引导
-└── memory/                 ← 每日记忆
+│   ├── ONBOARDING.md       ← 首次引导
+│   ├── INSTALL.md          ← 安装指南
+│   └── HOW_TO_SHARE.md     ← 分享指南
+└── README.md               ← 本文件
 ```
 
 **关键区分**：
-- 通用文件 → 不需要修改
-- 项目知识库 → 你维护的部分
-- 个人文件 → 每个用户独立
+- 通用文件（SKILL.md, AGENTS.md 等） → 随 Skill 分享，不需要修改
+- 项目知识库（knowledge/） → 每个用户独立，包含你的项目数据配置
 
 ---
 
-## 技能清单
+## 依赖技能
 
-企服助手内置以下技能：
+企服助手核心逻辑已完全自包含（`scripts/` 目录），以下技能为可选增强：
 
 | 技能 | 用途 |
 |------|------|
-| `qclaw-cron-skill` | 定时任务和提醒 |
-| `online-search` | 网络搜索 |
-| `docx` | Word 文档处理 |
-| `pdf` | PDF 文档处理 |
-| `xlsx` | Excel 表格处理 |
-| `tencent-docs` | 腾讯文档管理 |
-| `mcporter` | MCP 工具调用 |
-| `xbrowser` | 网页浏览和自动化 |
+| `docx` | Word 文档处理（可选） |
+| `pdf` | PDF 文档处理（可选） |
+| `xlsx` | Excel 表格处理（可选） |
+| `tencent-docs` | 腾讯文档 MCP 工具（可选） |
+| `online-search` | 联网搜索（可选） |
+| `agent-browser` | 浏览器自动化（可选） |
 
 ---
 
 ## 常见问题
 
 ### Q: 我的 Excel 格式和模板不一样怎么办？
-A: 在 `PROJECT_KB.md` 中描述你的工作表结构即可，Agent 会自动适配。
+A: 在 `PROJECT_KB.md` 中描述你的工作表结构即可，助手会自动适配。
 
 ### Q: 可以不用企微通知吗？
 A: 可以。通知渠道是可选的，没有 Webhook 也能使用查询功能。
 
 ### Q: 数据安全吗？
-A: 所有数据都在你的本地电脑上，不会上传到云端。Agent 只读取你指定的文件。
+A: 所有数据都在你的本地电脑上，不会上传到云端。助手只读取你指定的文件。
+
+### Q: 如何分享给其他同事？
+A: 参考 `knowledge/HOW_TO_SHARE.md`，将技能包文件夹打包分享即可。
 
 ---
 
 ## 技术支持
 
-如有问题，请查阅 `knowledge/ONBOARDING.md` 或联系分享者。
+如有问题，请查阅：
+- `knowledge/ONBOARDING.md` — 新用户引导
+- `knowledge/INSTALL.md` — 安装指南
+- `knowledge/HOW_TO_SHARE.md` — 分享指南
 
 ---
 

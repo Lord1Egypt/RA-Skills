@@ -1,43 +1,60 @@
-## Description: <br>
-Release Note Localizer converts release notes into Chinese, English, customer-facing, and technical versions while keeping terminology consistent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Release Note Localizer converts release notes into Chinese, English, customer-facing, and technical variants while keeping terminology consistent.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Documentation, localization, release, and customer-communication teams use this skill to turn raw release notes and terminology requirements into reviewable multilingual Markdown drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Localized release notes may be inappropriate for sensitive legal contracts or professional legal translation. <br>
-Mitigation: Use the skill for product and technical release-note content, and route legal or contractual material to qualified legal and translation review. <br>
-Risk: Inputs may contain confidential roadmap details, customer data, or other sensitive release material. <br>
-Mitigation: Review and sanitize input before use, and prefer dry-run/stdout or a deliberate output path for generated files. <br>
-Risk: Incomplete source notes can lead to uncertain terminology or misleading localized wording. <br>
-Mitigation: Keep the generated terms-to-confirm section in the review workflow and require human approval before publication. <br>
+## Use Case:
 
+Documentation, release, and localization teams use this skill to turn release-note input and terminology requirements into reviewable localized drafts, audience-specific variants, glossaries, and terms needing confirmation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/52YuanChangXing/release-note-localizer) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown by default, with optional JSON from the local helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured sections include glossary, Chinese version, English version, customer version, technical version, and terms to confirm.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The support script may behave more like a restructuring and audit helper than a full localization engine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat script output as a draft or report, then review terminology, tone, and completeness before relying on it.
+
+Risk: Pointing the script at broad local directories may include unintended local file content in generated reports.
+
+Mitigation: Run it only on intended, non-sensitive release-note inputs and redact sensitive material before processing.
+
+Risk: Sensitive contracts or legal translation requests may require professional review beyond this skill's scope.
+
+Mitigation: Use the skill for product and technical release-note drafts, and route legal or contract language to qualified translators or counsel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/release-note-localizer)
+- [Skill specification](resources/spec.json)
+- [Output template](resources/template.md)
+- [Smoke test](tests/smoke-test.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown, with optional JSON output from the local helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended as reviewable drafts and checklists; users should confirm terminology and sensitive content before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

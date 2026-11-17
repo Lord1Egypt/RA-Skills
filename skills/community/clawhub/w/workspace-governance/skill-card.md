@@ -1,46 +1,61 @@
-## Description: <br>
-A methodology-first workspace governance skill for AI agents that focuses on principles, decision framework, and safe execution patterns instead of fixed directory templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A methodology-first workspace governance skill for AI agents focused on principles, decision framework, and safe execution patterns instead of fixed directory templates.
 
-## Publisher: <br>
-[mars2003](https://clawhub.ai/user/mars2003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mars2003](https://clawhub.ai/user/mars2003)
 
-## Use Case: <br>
-Developers, engineers, and agent operators use this skill to plan workspace cleanup, auditing, archiving, and project setup with clear boundaries, rollback checkpoints, and confirmation gates before risky file operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated cleanup plans may include moves or deletes that affect user files. <br>
-Mitigation: Review the dry-run plan before approving file operations, and require explicit confirmation for delete and bulk-move actions. <br>
-Risk: Using a broad workspace root can expose more files than intended to scanning or governance actions. <br>
-Mitigation: Confirm the intended workspace boundary first, and avoid broad roots such as a home directory unless that scope is intentional. <br>
-Risk: Ambiguous files can be misclassified when the agent lacks enough context. <br>
-Mitigation: Mark ambiguous items as pending user decisions and block non-interactive execution instead of auto-approving changes. <br>
+## Use Case:
 
+Developers, engineers, and agent operators use this skill to audit, organize, archive, or initialize workspaces with clear boundaries, dry-run planning, user confirmation, and rollback-oriented execution.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mars2003/workspace-governance) <br>
-- [Governance Manual](references/Governance-Manual.md) <br>
-- [Chinese Governance Manual](references/治理手册.zh-CN.md) <br>
-- [Minimal Governance Run Example](examples/minimal-governance-run.md) <br>
-- [Interoperability Tools](tools/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown plans, tables, logs, configuration snippets, and shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dry-run plans, pending-decision lists, rollback checkpoints, and governance logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Platform profiles may allow extension or skill installation and updates beyond the workspace-cleanup purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the OpenClaw and Hermes adaptation profiles before installation and require explicit confirmation for extension or skill install/update actions.
+
+Risk: External directory management can expand the operational boundary of workspace cleanup.
+
+Mitigation: Disable external directory management unless the user specifically needs it, and define workspace_root before scanning or changing files.
+
+Risk: Workspace organization can move, archive, or delete user files if applied too broadly.
+
+Mitigation: Use the documented dry-run plan, protected file patterns, immutable directories, explicit confirmation gates, and checkpoint logs before destructive or bulk actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mars2003/skills/workspace-governance)
+- [Governance Manual](references/Governance-Manual.md)
+- [Chinese Governance Manual](references/治理手册.zh-CN.md)
+- [Minimal Governance Run Example](examples/minimal-governance-run.md)
+- [Interoperability Capability Matrix](tools/interop-capabilities.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown plans, tables, blocked-status summaries, shell commands, configuration snippets, and JSON-style log records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dry-run plans, pending decisions, checkpoints, rollback references, and governance logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Security-camera video annotation skill that extracts representative frames, guides visual analysis, validates structured annotations, and builds VL fine-tuning dataset.jsonl files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-camera video annotation skill for extracting key frames, analyzing scene content, producing structured environment/person/behavior/risk annotations, and generating VL fine-tuning data in dataset.jsonl format.
 
-## Publisher: <br>
-[aowind](https://clawhub.ai/user/aowind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aowind](https://clawhub.ai/user/aowind)
 
-## Use Case: <br>
-Developers and dataset annotators use this skill to turn authorized security-camera videos into structured labels and VL model training records. It supports frame extraction, per-video JSON annotation, label and risk-level validation, and dataset.jsonl generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security-camera footage and extracted frames may contain sensitive personal data. <br>
-Mitigation: Process only footage you are authorized to use, and review or redact frames, annotations, and dataset.jsonl before training, sharing, or long-term storage. <br>
-Risk: Frame extraction and dataset generation write output files and may overwrite previous results. <br>
-Mitigation: Run the skill with a dedicated video folder and dedicated output directory, and review target paths before executing the scripts. <br>
-Risk: Frame extraction depends on local ffmpeg and ffprobe binaries. <br>
-Mitigation: Use trusted ffmpeg and ffprobe binaries in a controlled environment. <br>
+## Use Case:
 
+Developers and dataset builders use this skill to turn security-camera videos into structured VL model fine-tuning records. It supports frame extraction, per-video scene annotation, risk labeling, and dataset.jsonl assembly.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aowind/sjht-cam-anno) <br>
-- [System prompt template](references/system-prompt.md) <br>
-- [Labels and risk reference](references/labels-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON examples; scripts produce manifest.json and dataset.jsonl files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated records include a shared system prompt, assistant annotation JSON, and video path references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Security-camera videos, extracted frames, and generated training records may contain sensitive information about people, children, elderly persons, homes, or workplaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for intended datasets, review input and output directories before running it, and handle generated files according to the data owner's privacy and retention requirements.
+
+Risk: The local workflow creates frame images and dataset files in user-selected output locations.
+
+Mitigation: Confirm output paths before execution and inspect generated manifests and dataset records before sharing or using them for fine-tuning.
+
+## Reference(s):
+
+- [System Prompt Template](references/system-prompt.md)
+- [Labels and Risk Level Reference](references/labels-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/aowind/skills/sjht-cam-anno)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON/JSONL file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces frame images, manifest.json, structured annotations, and dataset.jsonl records for video-based VL fine-tuning workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

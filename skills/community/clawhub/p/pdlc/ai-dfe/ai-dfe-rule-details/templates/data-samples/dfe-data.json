@@ -1,0 +1,37 @@
+{
+  "$schema": ".kiro/pdlc/ai-dfe-rule-details/data-schema/dfe-data.schema.json",
+  "$schemaVersion": "1.0.0",
+  "$generatedBy": "AI-DFE",
+  "$generatedOn": "2026-06-22T12:00:00Z",
+  "$family": "pdlc",
+  "$package": "AI-DFE",
+  "data": {
+    "status": "complete",
+    "isMaster": false,
+    "masterFamily": null,
+    "lastFullPass": "2026-06-22T12:00:00Z",
+    "packages": [
+      {
+        "package": "ai-pilc",
+        "schemaVersion": "1.0.0",
+        "outputFile": "pdlc-ws/data/pilc-data.json",
+        "lastGenerated": "2026-06-22T12:00:00Z",
+        "status": "fresh"
+      }
+    ],
+    "demands": [
+      {
+        "name": "dashboard-data",
+        "consumer": "AIFLC-PDLC-Dashboard",
+        "outputFile": "pdlc-ws/data/dashboard-data.json",
+        "lastGenerated": "2026-06-22T12:00:00Z"
+      }
+    ],
+    "counts": {
+      "packagesDiscovered": 11,
+      "dataFiles": 13,
+      "demands": 2,
+      "historySnapshots": 0
+    }
+  }
+}

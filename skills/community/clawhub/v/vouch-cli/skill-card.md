@@ -1,44 +1,59 @@
-## Description: <br>
-Vouch signs, verifies, and manages cryptographic identity for AI agents using the Vouch CLI on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vouch helps agents use the Vouch CLI on Base to create identity, sign and verify EIP-712 messages, send and receive verified messages, manage delegations and allowlists, and publish or discover agent endpoints.
 
-## Publisher: <br>
-[jackpmorgan](https://clawhub.ai/user/jackpmorgan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jackpmorgan](https://clawhub.ai/user/jackpmorgan)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install and operate the Vouch CLI for identity onboarding, message signing and verification, agent discovery, endpoint publishing, allowlists, and account management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents through workflows that affect keys, identity state, message handling, deployments, billing, and account configuration. <br>
-Mitigation: Require explicit user approval before delegation, publishing, deployment, revocation, reset, teardown, billing/account-changing, or receiver-handler actions. <br>
-Risk: The install path depends on the vouch.directory installer and the local Vouch CLI environment. <br>
-Mitigation: Install only when the publisher and installer are trusted; inspect or verify the installer first and prefer a test network during evaluation. <br>
-Risk: Wallet, API, and OpenAI credentials may be exposed through shell history, logs, or command output. <br>
-Mitigation: Keep secrets out of prompts, shell history, logs, and shared transcripts; use environment-specific secret handling where available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jackpmorgan/vouch-cli) <br>
-- [Vouch Website](https://vouch.directory) <br>
-- [Vouch Documentation](https://vouch.directory/docs) <br>
-- [Vouch Guides](https://vouch.directory/guides) <br>
+## Use Case:
 
+Developers and shell-capable agent operators use this skill to configure Vouch CLI workflows for agent identity, signed messaging, verification, endpoint publishing, account usage, and trust controls.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the vouch binary on PATH and jq for JSON processing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs installation through a remote curl-to-bash script.
+
+Mitigation: Do not let an agent run the installer automatically; inspect and verify the installer first or use a verified package source.
+
+Risk: API keys and wallet private keys may be exposed if placed directly in command lines, prompts, shell history, or logs.
+
+Mitigation: Use approved secret-handling mechanisms and avoid entering real API keys or wallet private keys directly in agent-issued commands.
+
+Risk: Reset, teardown, delegation, publishing, OAuth linking, local server startup, and generated agent projects can materially affect identity, access, or deployed behavior.
+
+Mitigation: Require explicit user approval before these actions, review generated projects before use, and prefer scoped, short-lived delegations and allowlists.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackpmorgan/skills/vouch-cli)
+- [Vouch website](https://vouch.directory)
+- [Vouch documentation](https://vouch.directory/docs)
+- [Vouch guides](https://vouch.directory/guides)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the vouch binary on PATH and jq for JSON processing.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence release metadata; artifact frontmatter metadata says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

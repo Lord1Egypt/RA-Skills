@@ -1,38 +1,49 @@
-## Description: <br>
-Thumbnail Designer helps agents create and evaluate high-converting YouTube thumbnails, social media graphics, and visual content using thumbnail psychology, design systems, text overlays, color strategy, and A/B testing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Thumbnail Designer helps create high-converting YouTube thumbnails, social media graphics, and visual content through thumbnail psychology, layout, text overlay, color strategy, A/B testing, templates, and AI generation prompts.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Creators, marketers, and design teams use this skill to plan, critique, and produce thumbnail concepts, layouts, visual prompts, and testing guidance for video and social media content. Review outputs for brand fit and to avoid misleading high-CTR visual tactics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Thumbnail Designer Code Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/ah-thumbnail-designer) <br>
+Creators, marketers, and design-focused agents use this skill to plan, critique, and generate thumbnail concepts, layouts, color strategies, text overlays, A/B test variants, and image-generation prompts for video and social media graphics.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with design recommendations, workflow steps, prompts, and TypeScript-style examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill with no executable behavior, credential use, persistence, or hidden system access according to security evidence.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Thumbnail concepts or generated visuals could conflict with platform rules, copyright, brand requirements, or truthful representation.
+
+Mitigation: Review generated designs against platform policies, rights clearance, brand guidelines, and factual accuracy before publication.
+
+## Reference(s):
+
+- [Thumbnail Designer examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with TypeScript examples and prompt templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces design recommendations, workflow steps, A/B testing guidance, reusable template patterns, and AI image-generation prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

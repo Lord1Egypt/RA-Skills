@@ -1,46 +1,61 @@
-## Description: <br>
-Humanize AI-generated text by detecting common LLM writing patterns, scoring text with vocabulary and statistical signals, and suggesting more natural rewrites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Humanize AI-generated text by detecting common LLM writing patterns, analyzing statistical style signals, and suggesting rewrites that sound natural, specific, and human.
 
-## Publisher: <br>
-[sp012lk](https://clawhub.ai/user/sp012lk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sp012lk](https://clawhub.ai/user/sp012lk)
 
-## Use Case: <br>
-External users, developers, and writing-focused agents use this skill to review drafts for AI-like patterns, generate scores and reports, and produce concrete humanization suggestions or safer mechanical rewrites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI-writing scores are heuristic and may be overconfident. <br>
-Mitigation: Use scores as editing signals, not as sole evidence for academic, employment, moderation, compliance, or authorship decisions. <br>
-Risk: Humanization rewrites may remove useful factual caveats or limitation disclosures. <br>
-Mitigation: Review rewritten text and preserve factual limitations, uncertainty, and source context when they matter. <br>
-Risk: Always-on prompt templates can create persistent style influence across unrelated work. <br>
-Mitigation: Enable always-on behavior only when the agent is intentionally expected to write in this style. <br>
+## Use Case:
 
+External users, developers, and writing editors use this skill to detect AI-sounding patterns in drafts, receive analysis reports or suggestions, and rewrite text while preserving the core meaning and intended tone.
 
-## Reference(s): <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [Copyleaks stylometric research](https://arxiv.org/abs/2503.01659) <br>
-- [Pattern reference](references/patterns.md) <br>
-- [AI vocabulary reference](references/ai-vocabulary.md) <br>
-- [Humanizer style guide](references/style-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text, Markdown reports, JSON analysis, and suggested rewrite guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores text from 0-100, lists detected patterns and statistics, and can propose or apply safe mechanical fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can be used to misrepresent who wrote a piece of text or to hide AI assistance where disclosure is required.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for editing clarity and removing boilerplate, and follow academic integrity, employment, platform, legal, or disclosure rules that apply to the writing.
+
+Risk: Always-on rewriting guidance can change shared agents' writing behavior without users realizing style rewriting is active.
+
+Mitigation: Enable always-on use only in contexts where users are told that writing may be rewritten for human-like style.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sp012lk/skills/ai-humanizer-bak)
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [Copyleaks stylometric fingerprint research](https://arxiv.org/abs/2503.01659)
+- [blader/humanizer reference project](https://github.com/blader/humanizer)
+- [OpenClaw](https://github.com/nichochar/openclaw)
+- [Pattern documentation](references/patterns.md)
+- [AI vocabulary reference](references/ai-vocabulary.md)
+- [Style guide reference](references/style-guide.md)
+- [Examples](docs/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Plain text rewrites, markdown reports, and optional JSON analysis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline text analysis; may provide auto-fix suggestions when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

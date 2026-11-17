@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "units": "mil",
+  "coordinateSemantic": "footprint-anchor",
+  "minGapMil": 6,
+  "apply": {
+    "project": "ceshi",
+    "doc": "2e719e9419653c72"
+  },
+  "modules": [
+    {
+      "id": "can-decoupling",
+      "strategy": "pin-satellites",
+      "anchorRef": "U5",
+      "members": [
+        {
+          "ref": "U5",
+          "fixedAxes": [
+            "x",
+            "y",
+            "rotation"
+          ],
+          "allowedRotationsDeg": [
+            0
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "C13",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "C12",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        }
+      ],
+      "search": {
+        "gapsMil": [
+          8,
+          20,
+          40
+        ]
+      },
+      "pinAssignments": [
+        {
+          "memberRef": "C13",
+          "memberPad": "1",
+          "memberPadPrimitiveId": "5e7771b59fae170fe15",
+          "ownerRef": "U5",
+          "ownerPad": "3",
+          "ownerPadPrimitiveId": "6f2bfd9dd5162850e27",
+          "side": "bottom",
+          "source": "原理图.pdf 第1页：C13 100nF服务U5.3 VCC，作为近端小电容"
+        },
+        {
+          "memberRef": "C12",
+          "memberPad": "1",
+          "memberPadPrimitiveId": "8b94ad8f223ac406e16",
+          "ownerRef": "C13",
+          "ownerPad": "1",
+          "ownerPadPrimitiveId": "5e7771b59fae170fe15",
+          "side": "bottom",
+          "source": "考试说明.pdf 第4页：C12 10uF位于C13外侧，保持先大后小的供电布局次序"
+        }
+      ],
+      "copperPolicy": "ignore"
+    }
+  ]
+}

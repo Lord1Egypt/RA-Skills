@@ -1,42 +1,55 @@
-## Description: <br>
-Automatically extracts ZIP-packaged skills and installs them into WSL2 and Windows desktop skill folders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically extracts ZIP-packaged skills and installs them to WSL2 and a Windows desktop skills folder.
 
-## Publisher: <br>
-[Aetik-yue](https://clawhub.ai/user/Aetik-yue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aetik-yue](https://clawhub.ai/user/aetik-yue)
 
-## Use Case: <br>
-Developers and OpenClaw users use Done to install ZIP-packaged skills into a WSL2 OpenClaw workspace and copy a backup to a Windows desktop skills folder. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can replace existing OpenClaw skills during installation. <br>
-Mitigation: Keep backups of installed skills and review the target skill name before allowing replacement. <br>
-Risk: A ZIP package with an unsafe skill name may write outside the intended skill area. <br>
-Mitigation: Inspect the archive's SKILL.md before installation and only install ZIP files from trusted sources. <br>
-Risk: The Windows desktop backup path is hard-coded for a specific user path. <br>
-Mitigation: Use only on systems where that path is appropriate or adjust the path before running. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install ZIP-packaged skills into WSL2 and a Windows desktop backup location with progress reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Aetik-yue/done) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, files, guidance] <br>
-**Output Format:** [Markdown-style progress messages with filesystem paths and status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installs files into local WSL2 and Windows desktop skill directories and may overwrite existing skill folders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The installer can overwrite or delete unintended folders when given a crafted skill ZIP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only trusted ZIP packages, review the package SKILL.md before installation, and prefer a version that validates skill names, rejects path traversal, uses unique temporary directories, and asks before overwrite or deletion.
+
+Risk: Existing skill folders are overwritten during installation.
+
+Mitigation: Back up existing skill folders or require explicit confirmation before replacing an installed skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aetik-yue/skills/done)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text progress updates with command-oriented installation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, overwrite, and delete local skill directories during installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

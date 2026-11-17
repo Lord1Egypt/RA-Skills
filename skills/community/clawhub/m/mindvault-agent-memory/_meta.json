@@ -1,0 +1,84 @@
+{
+  "name": "mindvault",
+  "slug": "mindvault",
+  "display_name": "MindVault 思维永生",
+  "version": "1.2.6",
+  "date": "2026-09-29",
+  "category": "memory",
+  "platforms": [
+    "openclaw",
+    "autoclaw",
+    "marvis",
+    "workbuddy",
+    "cherrystudio",
+    "coze"
+  ],
+  "tested_date": "2026-09-18",
+  "tested_rounds": "5000+",
+  "tested_evidence": {
+    "archive_sample": "15.1MB / 69 jsonl / 13930 lines",
+    "index_scale": "68 files / 14949 entries / 951 rounds",
+    "stats_latency_sec": 0.07,
+    "jsonl_to_md": "0.11s per shard -> 174KB / 2095 lines",
+    "os": "macOS 15.8",
+    "python": "python3 (stdlib only)"
+  },
+  "pricing": {
+    "mode": "free",
+    "free": "免费：archive_index 支持 stats/pending；jsonl_to_md 仅 minimal 模式；archive_export 三模归档+增量合并全量开放；更多命令对照表见https://www.jinengpu.chat/mindvault-detail.html；DRAS-V 协议 + 三层架构完整可用",
+    "note": "v1.2.2 = 原 v1.1.4 重制版（版本命名规则调整：赞赏版 patch 以 .1 结尾、公开免费版以 .2 结尾）= v1.1.3 基础版 + 双文档联动断裂修复：新增六维核账校验脚本 scripts/snapshot_sync_check.py（纯标准库，免费开放，不加锁）、Layer 3 增补「双文档联动与核账校验」规范、故障排查补 2 条；脚本功能边界不变；赞赏版见 https://www.jinengpu.chat/mindvault-detail.html",
+    "price": "1.99元（一次买断，长期有效）",
+    "paid": "https://www.jinengpu.chat/mindvault-detail.html"
+  },
+  "dependencies": {
+    "python": "3.10+",
+    "sqlite3": "系统内置"
+  },
+  "keywords": {
+    "zh": [
+      "长期记忆管理",
+      "记忆备份",
+      "失忆",
+      "记忆",
+      "对话备份",
+      "对话归档",
+      "Agent 长期记忆",
+      "上下文恢复",
+      "项目快照",
+      "规则萃取",
+      "记忆系统",
+      "数据主权",
+      "DRAS-V",
+      "思考流程",
+      "自检循环",
+      "多Agent",
+      "数据资产",
+      "跨平台迁移"
+    ],
+    "en": [
+      "forget",
+      "memory management",
+      "long-term memory",
+      "memory",
+      "mindvault",
+      "conversation-archiver",
+      "longterm-memory",
+      "memory-evolution",
+      "project-snapshot",
+      "context-recovery",
+      "rule-extraction",
+      "DRAS-V",
+      "thinking-protocol",
+      "self-check-loop",
+      "data-sovereignty",
+      "multi-agent"
+    ]
+  },
+  "links": {
+    "github": "https://github.com/zhouxin121/mindvault",
+    "clawhub": "https://clawhub.ai/zhouxin121/mindvault-agent-memory",
+    "skillhub": "https://skillhub.cn",
+    "paid": "https://www.jinengpu.chat/mindvault-detail.html"
+  },
+  "description": "Agent 记忆与长期记忆管理：对话备份归档成本地 JSONL，防 AI 失忆——换电脑、换会话都不丢记忆；从历史萃取规则生成快照，支持 Claude Code / WorkBuddy / OpenClaw 等本地框架，纯标准库"
+}

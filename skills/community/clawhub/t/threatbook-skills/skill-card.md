@@ -1,48 +1,59 @@
-## Description: <br>
-ThreatBook Skills integrates with ThreatBook threat intelligence APIs to upload files for analysis, query file reputation and antivirus detections, check IP reputation, and detect compromise indicators for domains or IP addresses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates the ThreatBook threat intelligence API so agents can upload suspicious files, query file hash and multi-engine reports, check IP reputation, and assess domain or IP compromise signals.
 
-## Publisher: <br>
-[Moxin1044](https://clawhub.ai/user/Moxin1044) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moxin1044](https://clawhub.ai/user/moxin1044)
 
-## Use Case: <br>
-Security analysts, incident responders, and security engineers use this skill to query ThreatBook intelligence during investigation of suspicious files, hashes, IP addresses, domains, and possible compromise indicators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected files, hashes, IP addresses, domains, and API credentials may be sent to ThreatBook during use. <br>
-Mitigation: Use the skill only when ThreatBook's online service is intended; prefer hash lookups when possible and upload files only when authorized to share their contents. <br>
-Risk: API keys can be exposed if placed in shell history, command logs, or shared transcripts. <br>
-Mitigation: Store THREATBOOK_API_KEY in environment or secret configuration and avoid passing credentials directly on command lines. <br>
-Risk: Threat intelligence verdicts can be incomplete, stale, or context-dependent. <br>
-Mitigation: Treat returned reputation and detection results as investigation inputs and corroborate them with internal telemetry before remediation or blocking decisions. <br>
+## Use Case:
 
+Security analysts, incident responders, and developers use this skill to call ThreatBook services for suspicious file analysis, file hash reputation, multi-engine detection, IP reputation, and domain or IP compromise checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Moxin1044/threatbook-skills) <br>
-- [ThreatBook account and API key portal](https://x.threatbook.cn) <br>
-- [ThreatBook file upload API documentation](https://x.threatbook.com/v5/apiDocs#/file/upload) <br>
-- [ThreatBook file report API documentation](https://x.threatbook.com/v5/apiDocs#/file/report) <br>
-- [ThreatBook multi-engine report API documentation](https://x.threatbook.com/v5/apiDocs#/file/report_multiengines) <br>
-- [ThreatBook IP reputation API documentation](https://x.threatbook.com/v5/apiDocs#/ip/reputation) <br>
-- [ThreatBook DNS compromise API documentation](https://x.threatbook.com/v5/apiDocs#/scene/dns) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ThreatBook API key and network access to ThreatBook services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Selected file contents, hashes, domains, and IP addresses may be sent to ThreatBook during normal use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for data that is approved for third-party threat-intelligence analysis and review ThreatBook handling requirements before uploading files.
+
+Risk: The IP reputation script exposes the API key through command-line and URL parameters.
+
+Mitigation: Fix the script to read THREATBOOK_API_KEY and avoid placing the key in URLs before using it with a real key; rotate any key previously passed through --api_key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moxin1044/skills/threatbook-skills)
+- [ThreatBook portal](https://x.threatbook.cn)
+- [ThreatBook file upload API documentation](https://x.threatbook.com/v5/apiDocs#/file/upload)
+- [ThreatBook file report API documentation](https://x.threatbook.com/v5/apiDocs#/file/report)
+- [ThreatBook multi-engine report API documentation](https://x.threatbook.com/v5/apiDocs#/file/report_multiengines)
+- [ThreatBook IP reputation API documentation](https://x.threatbook.com/v5/apiDocs#/ip/reputation)
+- [ThreatBook DNS compromise API documentation](https://x.threatbook.com/v5/apiDocs#/scene/dns)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Console text with full JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a ThreatBook API key and may send selected file contents, hashes, domains, and IP addresses to ThreatBook.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

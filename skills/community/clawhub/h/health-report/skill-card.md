@@ -1,40 +1,53 @@
-## Description: <br>
-Generate structured health summary reports from user-provided health data including vitals, symptoms, medications, and lifestyle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured health summary reports from user-provided vitals, symptoms, medications, and lifestyle data for personal tracking or doctor visits.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
 
-## Use Case: <br>
-External users use this skill to turn their own health details into a structured report for personal tracking or preparation for a clinician visit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive user-provided health information. <br>
-Mitigation: Review generated reports for accuracy, remove unnecessary details, and share them only through trusted channels with intended recipients such as clinicians. <br>
-Risk: A generated health summary may be incomplete or misleading if source data is inaccurate or missing. <br>
-Mitigation: Treat the report as an organizational aid, verify important details against source records, and seek clinician review for medical concerns. <br>
+## Use Case:
 
+External users use this skill to turn their own health data into a structured report for personal tracking or preparation for a doctor visit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiwenbing/health-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown health summary report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report organizes user-provided vitals, medications, symptoms, lifestyle factors, trend notes, and items that may warrant medical attention.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Generated reports may contain sensitive health details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the report, remove unnecessary details, and share or export it only to a destination the user explicitly chooses.
+
+Risk: Health summaries may be incomplete or misleading if the source data is incomplete or interpreted too broadly.
+
+Mitigation: Review the report before relying on it and use it as preparation for clinician discussion rather than as a diagnosis.
+
+## Reference(s):
+
+- [ClawHub Health Report skill page](https://clawhub.ai/jiwenbing/skills/health-report)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style structured report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Organized sections for vitals, medications, symptoms, lifestyle, and notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

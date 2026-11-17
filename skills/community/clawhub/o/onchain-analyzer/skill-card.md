@@ -1,40 +1,54 @@
-## Description: <br>
-Onchain Analyzer is a static reference skill that provides plain-text notes for blockchain and on-chain analysis concepts, formulas, regulations, risks, instruments, strategies, glossary terms, and due diligence checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Onchain Analyzer is a static reference helper for blockchain and on-chain analysis concepts, formulas, regulations, risks, instruments, strategies, glossary terms, and checklists.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers, blockchain practitioners, and analysts use this skill as a quick reference for on-chain analysis terminology, formulas, regulatory topics, risk categories, tools, strategies, and review checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes regulatory, strategy, and financial reference content that could be mistaken for live legal, compliance, trading, or investment advice. <br>
-Mitigation: Use the output as general background material only, and verify decisions with current authoritative sources and qualified professionals before acting. <br>
+## Use Case:
 
+Developers, analysts, and external users can use this skill to retrieve concise static reference material for on-chain analysis workflows. Its financial, risk, and regulatory text should be treated as generic reference content rather than current professional advice.
 
-## Reference(s): <br>
-- [Onchain Analyzer on ClawHub](https://clawhub.ai/bytesagain-lab/onchain-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain-lab) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain-text reference documentation with Markdown headings, lists, tables, and checklists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static heredoc output; no API keys, credentials, network access, file access, or account access are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill includes broad regulatory, financial, and risk reference text that may be generic or stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat this content as orientation only and verify regulatory, financial, or compliance decisions against current authoritative sources and qualified professionals.
+
+Risk: Its broad description may activate it for general on-chain or blockchain reference requests.
+
+Mitigation: Confirm that the requested task is a static reference lookup before relying on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/onchain-analyzer)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static heredoc content; no API keys, credentials, network access, hidden access, or persistence indicated by the supplied evidence.]
+
+## Skill Version(s):
+
+4.0.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

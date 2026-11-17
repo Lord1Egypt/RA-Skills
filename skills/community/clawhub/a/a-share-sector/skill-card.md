@@ -1,45 +1,59 @@
-## Description: <br>
-Queries A-share industry, concept, and regional sector performance and capital flow for realtime or historical dates using EastMoney data through akshare. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Share Sector helps agents query A-share industry, concept, and regional sector performance, capital flow, and constituent-stock details for realtime or specified historical dates using EastMoney data via akshare.
 
-## Publisher: <br>
-[yituwangpeng](https://clawhub.ai/user/yituwangpeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yituwangpeng](https://clawhub.ai/user/yituwangpeng)
 
-## Use Case: <br>
-External users and market analysts use this skill to retrieve A-share sector rankings, fund-flow leaderboards, and constituent-stock tables for current or historical dates. It supports research-style market summaries and does not provide investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Runtime dependency installation may fetch unreviewed or newer package versions. <br>
-Mitigation: Preinstall reviewed, pinned versions of akshare and pandas in managed environments, and disable runtime installation if policy requires controlled dependencies. <br>
-Risk: The script removes proxy environment variables for its own process, which may bypass expected network routing controls. <br>
-Mitigation: Run the skill in a network-controlled environment and confirm EastMoney access policy before use. <br>
-Risk: Market data from public third-party interfaces may be delayed, unavailable, or incomplete on non-trading days. <br>
-Mitigation: Present source and date context with outputs, treat results as research reference only, and avoid using the skill as investment advice. <br>
+## Use Case:
 
+Developers and market-analysis users use this skill to answer A-share sector questions by running the bundled query script and summarizing sector rankings, capital-flow leaderboards, and constituent-stock tables. It is intended for research reference and market-data reporting, not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yituwangpeng/skills/a-share-sector) <br>
-- [EastMoney market data](https://quote.eastmoney.com/) <br>
-- [AkShare documentation](https://akshare.akfamily.xyz/) <br>
-- [AkShare GitHub repository](https://github.com/akfamily/akshare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown tables with concise narrative summaries and disclaimer text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses network calls to EastMoney through akshare; historical queries can be slow and concurrent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can automatically install unpinned Python packages into the active environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it in an isolated virtual environment, review dependency versions first, and pin packages for managed deployments.
+
+Risk: The query script removes proxy-related environment variables before making market-data requests.
+
+Mitigation: Review or remove the proxy-clearing behavior when enterprise proxy, monitoring, or package-mirror controls are required.
+
+Risk: The skill makes direct outbound requests to public market-data interfaces that may be delayed, unavailable, or changed upstream.
+
+Mitigation: Run it only where outbound data access is approved, treat results as reference data, and keep the non-investment-advice disclaimer with user-facing summaries.
+
+## Reference(s):
+
+- [EastMoney](https://quote.eastmoney.com/)
+- [akshare GitHub Repository](https://github.com/akfamily/akshare)
+- [akshare Documentation](https://akshare.akfamily.xyz/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown tables with concise narrative summaries and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes market-data source and non-investment-advice disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

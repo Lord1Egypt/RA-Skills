@@ -82,6 +82,8 @@ k8s-aiops events [-n <ns>]
 ## Diagnostics & MCP
 
 ```bash
+k8s-aiops diagnose pod-health [-n <ns>] [-l <selector>]  # RCA: crashloop/imagepull/OOM/unschedulable/restarts (read-only)
+k8s-aiops diagnose workload-readiness [-n <ns>]          # RCA: ready<desired / stuck rollouts (read-only)
 k8s-aiops doctor [--skip-auth]    # check config + cluster reachability
 k8s-aiops mcp                     # start the MCP server over stdio
 ```

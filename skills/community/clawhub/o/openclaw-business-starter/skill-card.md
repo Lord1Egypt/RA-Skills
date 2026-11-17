@@ -1,43 +1,58 @@
-## Description: <br>
-Provides OpenClaw agents with workflows, memory structure, setup automation, and scheduled reviews for autonomous business operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OpenClaw agents with workflows, memory structure, and automation for autonomous AI business operations and daily reviews.
 
-## Publisher: <br>
-[tara-quinn-ai](https://clawhub.ai/user/tara-quinn-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tara-quinn-ai](https://clawhub.ai/user/tara-quinn-ai)
 
-## Use Case: <br>
-OpenClaw users and agent operators use this skill to bootstrap a business-operations workspace with PARA memory, daily review routines, heartbeat monitoring, and security-oriented operating instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup process can create or overwrite local OpenClaw workspace files and install ongoing scheduled jobs. <br>
-Mitigation: Back up ~/.openclaw/workspace, review generated files, and test in a disposable workspace before installing into a live agent environment. <br>
-Risk: Broad operating instructions and scheduled jobs may act on private channels or operational state without enough safeguards. <br>
-Mitigation: Review or disable cron jobs and require approval for outbound messages, code pushes, financial actions, and memory or instruction changes. <br>
-Risk: The artifact contains environment-specific assumptions about names, channels, and authority boundaries. <br>
-Mitigation: Replace all Tara/Kalin assumptions and configure authenticated channels, timezone, identity files, and decision limits for the target environment. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to bootstrap an autonomous business-agent workspace with PARA memory folders, daily review prompts, heartbeat guidance, and scheduled memory consolidation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tara-quinn-ai/openclaw-business-starter) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown templates, shell commands, and workspace configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installs workspace files and scheduled review jobs; review generated instructions before enabling routine automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The setup script can overwrite core workspace identity, policy, heartbeat, tool, and memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only into a fresh or backed-up OpenClaw workspace and review the generated files before restarting the gateway.
+
+Risk: The bundled operating templates contain hardcoded Tara/Kalin-specific command identities and authority assumptions.
+
+Mitigation: Replace the user, bot, and authenticated-channel rules in AGENTS.md, SOUL.md, USER.md, and related templates before enabling the agent.
+
+Risk: The skill creates scheduled morning review and nightly memory consolidation jobs that write to workspace memory.
+
+Mitigation: Disable or edit the cron jobs if automatic briefings, memory consolidation, or QMD indexing are not desired.
+
+## Reference(s):
+
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/tara-quinn-ai/skills/openclaw-business-starter)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, setup shell commands, workspace template files, and scheduled job instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Installs and updates local OpenClaw workspace files and cron jobs when the setup script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

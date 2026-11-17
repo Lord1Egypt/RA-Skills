@@ -1,0 +1,19 @@
+name: bid-rejection-experience
+slug: bid-rejection-experience
+display_name: 投标否决经验问答
+emoji: "🚫"
+version: 1.0.3
+version_stage: stable
+author: "一线评标专家&ChesaraM"
+license: MIT-0
+agent_created: true
+description: '投标否决/废标经验问答技能。已关联公开知识库「招标投标专家否决汇集」，即装即用。当用户询问投标否决原因、废标案例分析、否决风险预警、"什么情况会被废标"、"否决投标常见问题"、"投标被拒怎么办"时触发。不适用于一般性招标文件解读、投标文件编制、数据采集。'
+changelog:
+  - "1.0.0: 初版发布，纯问答技能（已移除采集模式），关联公开知识库「招标投标专家否决汇集」"
+  - "1.0.1: 吸收外部提示词评析优化——风险等级量化定义、模糊问题澄清、多轮追问处理、关键词拆解策略与层级限制、条件渲染柔性降级、工具调用改为自然语言描述、范围外拒答模板、署名格式规范化、删除冗余 FAQ"
+  - "1.0.2: 填入真实运行标识——知识库 ID 改为 7463496212028405，明确 MCP 工具名 search_knowledge / fetch_media_content"
+  - "1.0.3: 还原 IMA 真实知识库 ID（jl1DePFQImyYDNznOF9pqzus-uPhTwWSe1PfBIMEed8=，即「招标投标专家否决汇集」）；上版的 7463496212028405 仅为举例，予以撤回。MCP 工具名 search_knowledge / fetch_media_content 保留"
+feedback:
+  channel: github
+  account: "项目仓库 Issues（GitHub）"
+  note: "使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈"

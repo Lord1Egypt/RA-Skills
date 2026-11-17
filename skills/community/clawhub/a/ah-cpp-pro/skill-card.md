@@ -1,39 +1,53 @@
-## Description: <br>
-Expert C++ developer specializing in modern C++20/23, systems programming, and high-performance computing. Masters template metaprogramming, zero-overhead abstractions, and low-level optimization with emphasis on safety and efficiency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert C++ developer specializing in modern C++20/23, systems programming, and high-performance computing. Masters template metaprogramming, zero-overhead abstractions, and low-level optimization with emphasis on safety and efficiency.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze, implement, optimize, and verify modern C++20/23 projects, including systems programming, build configuration, memory safety, concurrency, and performance work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect broad C++ project structure, build configuration, compiler flags, and source patterns. <br>
-Mitigation: Use it only on repositories that are appropriate for agent inspection. <br>
-Risk: Proposed code, build-system, or optimization changes may be incorrect or unsafe for a specific target platform. <br>
-Mitigation: Review proposed changes before applying them and require compiler, sanitizer, test, and benchmark evidence before relying on safety or performance claims. <br>
+## Use Case:
 
+Developers and engineers use this skill to get agent assistance with modern C++20/23 systems programming, build review, performance optimization, memory-safety practices, and quality verification.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose C++ source changes, build-system changes, static-analysis commands, sanitizer and test runs, and benchmark checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may suggest or run standard C++ build, analysis, and test tools after inspecting project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed shell commands before execution and run them in the intended project workspace with appropriate permissions.
+
+Risk: Low-level C++ performance, memory, and concurrency changes can introduce undefined behavior or platform-specific regressions.
+
+Mitigation: Validate changes with compiler warnings, clang-tidy, sanitizers, static analysis, tests, and profiling before release.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/mtsatryan/skills/ah-cpp-pro)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with code blocks and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include C++ implementation guidance, build and analysis commands, configuration suggestions, review findings, and verification steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

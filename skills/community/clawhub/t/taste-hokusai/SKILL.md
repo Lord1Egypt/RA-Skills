@@ -2,6 +2,9 @@
 
 > The old man mad about drawing who reinvented the relationship between the human and the natural — Hokusai's Great Wave is not a painting of the sea but a painting of the sea's indifference to human scale.
 
+> **Try it first →** [Live Demo — no account needed](https://inspiredhub.ai/demo)
+
+
 ## Overview
 | Property | Value |
 |----------|-------|
@@ -68,3 +71,23 @@ Brands that position themselves against the infinite — the human endeavor that
 
 ---
 *Distilled by InspiredHub Taste Engine from 10 works in the collection, anchored by The Great Wave off Kanagawa and the Thirty-six Views of Mount Fuji series.*
+
+---
+
+---
+
+## Explore on InspiredHub
+
+- **[See this public Taste Skill in practice](https://inspiredhub.ai/demo)** — a source-aware comparison using the public Skill.
+- **[Use this public Skill as an optional Personal Taste Brief reference](https://inspiredhub.ai/personal-taste-brief#clawhub/taste-hokusai)** — add it only if you choose, then edit or remove it in your own working Brief.
+
+A public cultural Skill is not a diagnosis of your taste. Opening the Brief does not create a profile, save a draft, synchronize an agent, or send ClawHub account, installation, or download data to InspiredHub.
+
+*Powered by [InspiredHub](https://inspiredhub.ai/) — public cultural references and private, user-controlled working Briefs.*
+
+
+---
+
+Using this in a real project?
+We'd love to see what you're building.
+Drop us a note: contact@inspiredhub.ai

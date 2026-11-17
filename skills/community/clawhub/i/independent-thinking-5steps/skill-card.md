@@ -1,40 +1,57 @@
-## Description: <br>
-Guides agents through a five-step independent thinking workflow for architecture discussions, troubleshooting, retrospectives, decisions, and uncertain knowledge checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+独立思考五部曲 guides agents through a five-step self-validation workflow for architecture discussion, debugging, retrospectives, decisions, and uncertain knowledge.
 
-## Publisher: <br>
-[markma84](https://clawhub.ai/user/markma84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[markma84](https://clawhub.ai/user/markma84)
 
-## Use Case: <br>
-Agents and developers use this skill to structure deeper reasoning before responding or acting in architecture discussions, troubleshooting, retrospectives, decisions, and uncertain knowledge work. The workflow emphasizes self-checks against local vector and wiki knowledge before action and during review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents toward broad private-memory lookup and mandatory wiki persistence without clear user control. <br>
-Mitigation: Install only when the local vector script and wiki/vector stores are trusted, and require explicit user approval for vector searches and wiki writes. <br>
-Risk: The skill tells agents to disable the system Memory Search and rely on a dedicated local vector system. <br>
-Mitigation: Review and edit this behavior before deployment so memory controls, storage location, retention, deletion, and review procedures are documented. <br>
+## Use Case:
 
+Developers and agent users can use this skill to structure deeper thinking before acting on architecture, troubleshooting, retrospective, decision, or uncertain-knowledge tasks. The workflow emphasizes retrieving prior experience, checking conclusions against a wiki, and closing the loop by saving review conclusions for future use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/markma84/independent-thinking-5steps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires access to the referenced local vector script and wiki/vector stores when the workflow is followed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.0 (source: server release metadata) <br>
+Risk: The workflow requires an unaudited local vector-search script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and trusting the local script, and confirm what task context will be sent to it.
+
+Risk: The workflow disables platform memory search in favor of a custom vector and wiki backend.
+
+Mitigation: Prefer deployments that keep platform memory controls intact or document why the custom backend is required.
+
+Risk: The workflow saves review conclusions into a persistent wiki without clear user control.
+
+Mitigation: Ask before writing to persistent knowledge stores and provide a way to inspect or remove saved conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/markma84/skills/independent-thinking-5steps)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or text guidance with inline shell commands and checklist-style review notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on a local vector-search script and wiki-backed knowledge checks when the triggering task warrants the full workflow.]
+
+## Skill Version(s):
+
+5.0.0 (source: server release evidence and skill body release note)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

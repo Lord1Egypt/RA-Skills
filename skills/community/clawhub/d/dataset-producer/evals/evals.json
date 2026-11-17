@@ -1,0 +1,23 @@
+{
+  "skill_name": "dataset-producer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have a JSONL file at /home/z/my-project/upload/qa_pairs.jsonl with about 800 rows, each like {\"question\": \"...\", \"context\": \"...\", \"answer\": \"...\"}. Package it as a HuggingFace dataset with a 90/10 train/test split under cc-by-4.0 so I can fine-tune on it.",
+      "expected_output": "A complete dataset directory with sharded parquet (train-00000-of-0000N.parquet naming), README.md with valid YAML frontmatter (license, language, task_categories, configs, dataset_info with num_examples per split), LICENSE file, create_dataset.py provenance script, passing smoke_test.py. The SQuAD-style or instruction-style schema is chosen and declared explicitly.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Build me a 4-way multiple-choice benchmark called chem-bench from these 120 questions I exported from our quiz platform (CSV: question,option_a,option_b,option_c,option_d,correct_letter). Make sure the answer options stay balanced across a train/test split and the Hub viewer shows the answer as a dropdown.",
+      "expected_output": "benchmark-mcq features spec with ClassLabel answer; CSV cells type-coerced; stratified split on the ClassLabel so A/B/C/D balance is preserved across splits; README YAML declares answer as class_label (not string) so the Viewer renders a dropdown; validation run including ClassLabel balance check; complete packaged dataset passing smoke test.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Convert our support-chat export (a folder of JSON files, each a multi-turn conversation between customer and agent) into a dataset my team can use for DPO preference training. Give each row the prompt plus chosen and rejected agent responses — we already marked the better reply with a 'preferred' flag.",
+      "expected_output": "preference-dpo schema (prompt, chosen: [{role, content}], rejected: [{role, content}], score fields if ratings exist); the message-list form (not flat strings); chosen/rejected share the same prompt prefix; score_chosen > score_rejected invariant validated; YAML dataset_info renders chosen/rejected as list of structs; full four-artifact packaging.",
+      "files": []
+    }
+  ]
+}

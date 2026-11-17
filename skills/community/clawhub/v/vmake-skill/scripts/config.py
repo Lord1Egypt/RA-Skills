@@ -1,12 +1,19 @@
 import os
 
+# V2 config and consume requests use the same gateway.
 WAPI_ENDPOINT = "wapi-skill.vmake.ai"
 
 # GID cache (persistent on disk, no TTL in this skill)
 GID_CACHE_FILE = "~/.cache/vmake/gid_cache.json"
 
-VERSION = "v1.3.0"
-USER_AGENT = f"action-web-skill-{VERSION}"
+VERSION = "v2.0.0"
+# USER_AGENT_NAME identifies this branded Skill distribution in HTTP requests.
+# Domestic distributions only need to replace this value.
+USER_AGENT_NAME = "vmake-skill"
+USER_AGENT = f"{USER_AGENT_NAME}-{VERSION}"
+
+# Config schemas this Skill can parse, in preference order.
+SUPPORTED_SCHEMAS = ("v2", "v1")
 
 # HTTP(S) input download (run-task --input URL and resolve-input --url); overridable via env.
 URL_DOWNLOAD_MAX_BYTES_DEFAULT = 100 * 1024 * 1024

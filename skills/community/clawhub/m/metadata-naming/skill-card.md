@@ -1,38 +1,50 @@
-## Description: <br>
-Define, apply, or review a reusable metadata-based filename standard for files, folders, inventories, archives, and generated catalogs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Define, apply, or review a reusable metadata-based filename standard for files, folders, inventories, archives, and generated catalogs.
 
-## Publisher: <br>
-[luw2007](https://clawhub.ai/user/luw2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luw2007](https://clawhub.ai/user/luw2007)
 
-## Use Case: <br>
-Developers, maintainers, and documentation authors use this skill to define or review filename conventions for repositories, skills, inventories, snapshots, archives, reports, and long-lived records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying a naming plan to important files without review could create confusing or disruptive filename changes. <br>
-Mitigation: Review any proposed bulk rename plan before applying it, especially for shared, synced, archived, or canonical files. <br>
+## Use Case:
 
+Developers, maintainers, and documentation authors use this skill to choose consistent metadata-based names for files, folders, inventories, archives, generated catalogs, snapshots, and long-lived records.
 
-## Reference(s): <br>
-- [Metadata Naming Standard](references/standard.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown text with filename templates, naming rules, and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; the skill does not perform file renames or execute automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Strict naming rules may over-normalize localized or human-readable filenames into ASCII slugs with no spaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the relaxed mode when preserving localized, mixed-language, or human-managed names matters more than script portability.
+
+## Reference(s):
+
+- [Metadata Naming Standard](references/standard.md)
+- [ClawHub Skill Page](https://clawhub.ai/luw2007/skills/metadata-naming)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with naming patterns and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; no executable behavior.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

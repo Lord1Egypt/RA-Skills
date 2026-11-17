@@ -22,7 +22,7 @@ Apply targeted fixes to the target Skill based on the fix checklist from skill-r
 
 ## 核心原则 / Core Principles
 
-**不主动执行，必须询问用户。** / **Never act without asking.**
+**不主动执行——每一步都先问用户。** / **Never act unprompted: ask the user before every step.**
 
 每一条修复在执行前，必须：
 1. 告诉用户要改什么 / Tell the user what will change
@@ -153,7 +153,7 @@ Step 5 输出完成后，提示用户：
 
 - **绝不主动修改** — 每条必须经用户确认 / Never modify without confirmation
 - **只修清单里的内容** — 不擅自扩大范围 / Only fix what's in the checklist
-- **中英双语同步** — 修中文必须同步修英文 / Keep bilingual in sync
+- **中英双语同步（仅当该 skill 本身是双语时）** — 修中文必须同步修英文；单语 skill 只维护其原有语言 / If the target skill is bilingual, keep both languages in sync; monolingual skills keep their original language only
 - **不动 frontmatter** — 除非清单明确指出 / Don't touch frontmatter unless specified
 - **每条可回退** — 用户说"不对"则撤销上一条 / Every change is revertible
 - **依赖优先** — 有依赖关系的修复按顺序执行 / Respect dependency order
@@ -161,9 +161,9 @@ Step 5 输出完成后，提示用户：
 
 ## 反模式 / Anti-patterns
 
-- ❌ 不问就改 / Modifying without asking
+- ❌ 不问就改 / Making changes the user never approved
 - ❌ 改着改着扩大范围 / Scope creeping during fixes
-- ❌ 只改中文不改英文 / Fixing Chinese but not English
+- ❌ 只改中文不改英文 / Fixing the Chinese half but leaving English stale
 - ❌ 改完后不验证 / Not verifying after fixes
 - ❌ 忽略依赖关系乱改 / Ignoring dependencies
 - ❌ 跳过 High 风险的单独确认 / Not individually confirming high-risk fixes

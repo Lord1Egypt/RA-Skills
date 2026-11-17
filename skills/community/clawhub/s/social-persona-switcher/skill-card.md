@@ -1,39 +1,53 @@
-## Description: <br>
-Rewrites a user's sentence into five exaggerated Chinese or English social-persona styles for humorous chat, comment, and social-media use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites a user-provided sentence into five humorous Chinese or English social persona styles: simp, cold, green tea, CEO, and sarcastic.
 
-## Publisher: <br>
-[SwiftUIs](https://clawhub.ai/user/SwiftUIs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[swiftuis](https://clawhub.ai/user/swiftuis)
 
-## Use Case: <br>
-External users and creators use this skill to turn ordinary Chinese or English sentences into shareable humorous persona rewrites for chats, comments, and social posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Entertainment-oriented persona rewrites can be exaggerated or inappropriate for sensitive conversations. <br>
-Mitigation: Review generated text before posting or sending it, especially in personal, professional, or high-context conversations. <br>
+## Use Case:
 
+Social media users and content creators use this skill to convert short chat, comment, refusal, confession, or complaint text into shareable humorous persona variants in Chinese or English.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SwiftUIs/social-persona-switcher) <br>
-- [Publisher profile](https://clawhub.ai/user/SwiftUIs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style labeled persona rewrites] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs the original sentence, five persona variants, and a short playful closing line.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: The skill may activate on ordinary sentences more often than a narrowly invoked skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it intentionally for rewriting tasks and confirm that persona variants are wanted before transforming unrelated text.
+
+Risk: Sarcastic, manipulative, or exaggerated persona styles can be unsuitable for public posts or direct messages.
+
+Mitigation: Review and soften generated text before posting or sending it, especially in sensitive conversations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/swiftuis/skills/social-persona-switcher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted persona rewrites]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains the input language where possible and normally returns five labeled persona variants plus a short closing line.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

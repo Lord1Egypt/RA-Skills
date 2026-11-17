@@ -1,41 +1,50 @@
-## Description: <br>
-Theta reference tool. Use when working with theta in finance contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Theta is a finance reference tool for theta concepts, formulas, regulations, risks, instruments, strategies, glossary terms, and due diligence checklists.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users and finance practitioners use Theta as a lightweight command-line reference for finance theta concepts, formulas, regulatory considerations, risks, instruments, strategies, glossary terms, and due-diligence checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Static finance reference content can be incomplete or outdated for a user's jurisdiction, institution, or current market conditions. <br>
-Mitigation: Use it as a quick reference only, and verify financial, legal, regulatory, and compliance decisions against authoritative current sources. <br>
-Risk: The generated guidance is not personalized financial advice. <br>
-Mitigation: Do not rely on the output for investment, legal, tax, or compliance decisions without qualified review. <br>
+## Use Case:
 
+Developers, analysts, and finance practitioners use this skill for quick offline reference material when working with theta-related finance concepts, calculations, risks, regulatory topics, instruments, strategies, and checklists.
 
-## Reference(s): <br>
-- [Theta Skill Page](https://clawhub.ai/bytesagain3/theta) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static finance reference content; not personalized financial, legal, or regulatory advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill provides generic static finance and regulatory guidance that may be outdated or incomplete for trading, compliance, or legal decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify any trading, compliance, or legal decision against current authoritative sources before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/theta)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static offline reference content; evidence reports no private data access or system modification.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

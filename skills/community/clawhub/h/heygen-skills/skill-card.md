@@ -1,51 +1,70 @@
-## Description: <br>
-Create HeyGen avatar videos via the v3 Video Agent pipeline, including avatar resolution, aspect ratio correction, prompt engineering, and voice selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create HeyGen avatar videos through the v3 Video Agent pipeline, with avatar resolution, aspect ratio correction, prompt engineering, and voice selection guidance.
 
-## Publisher: <br>
-[eve-builds](https://clawhub.ai/user/eve-builds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eve-builds](https://clawhub.ai/user/eve-builds)
 
-## Use Case: <br>
-Developers and agent users use this skill to create HeyGen avatar identities and personalized avatar videos through HeyGen MCP, CLI, or OpenClaw plugin workflows. It helps agents gather missing context, prepare scripts and prompts, select avatars and voices, and return finished HeyGen video links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles identity media, avatar creation, voice selection, and remote uploads to HeyGen. <br>
-Mitigation: Use it only for faces, voices, and documents the user is authorized to upload, and avoid third-party likenesses or confidential materials unless the user accepts sending them to HeyGen. <br>
-Risk: The skill requires HeyGen credentials or OAuth access and can trigger paid video or avatar actions. <br>
-Mitigation: Prefer MCP/OAuth or a scoped API key for the intended HeyGen account, and review billing and account permissions before generating videos. <br>
-Risk: The skill may persist local avatar identity files and a generation log. <br>
-Mitigation: Periodically delete AVATAR files and heygen-video-log.jsonl when the user no longer wants local identity state or generation history retained. <br>
-Risk: Installation paths can involve a remote CLI installer. <br>
-Mitigation: Inspect the installer before running it and install only in environments where the HeyGen CLI and API access are approved. <br>
+## Use Case:
 
+Developers, operators, and content teams use this skill with coding agents to set up HeyGen access, create reusable avatars or digital twins, and generate personalized avatar videos for updates, outreach, announcements, and explainers.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/eve-builds/heygen-skills) <br>
-- [HeyGen API quick start](https://developers.heygen.com/docs/quick-start) <br>
-- [HeyGen CLI](https://developers.heygen.com/cli) <br>
-- [HeyGen MCP remote docs](https://developers.heygen.com/docs/mcp-remote) <br>
-- [OpenClaw HeyGen plugin](https://github.com/heygen-com/openclaw-plugin-heygen) <br>
-- [Asset routing reference](references/asset-routing.md) <br>
-- [Avatar discovery reference](references/avatar-discovery.md) <br>
-- [Troubleshooting reference](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local AVATAR files, append a video generation log, and return HeyGen video links when configured with user-authorized HeyGen access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: server release metadata and frontmatter) <br>
+Risk: Broad agent-led install instructions can give an agent too much authority over cloning, setup, authentication, and verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each install command before execution and prefer manual or stepwise installation for production environments.
+
+Risk: API keys may be exposed if stored in global shell profiles, committed project files, or shared agent sessions.
+
+Mitigation: Prefer MCP OAuth when possible, keep HEYGEN_API_KEY scoped to the session or a protected secret store, and never commit local environment files.
+
+Risk: One-line remote installers and plugins can introduce supply-chain risk.
+
+Mitigation: Verify the installer and plugin source, pin versions where supported, and review plugin permissions before enabling video generation.
+
+Risk: User photos, identity files, PDFs, and other media may be uploaded to HeyGen during avatar or video creation.
+
+Mitigation: Require explicit approval for each raw file or photo upload and use only assets the user intentionally provides for generation.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/eve-builds/skills/heygen-skills)
+- [HeyGen API Quick Start](https://developers.heygen.com/docs/quick-start)
+- [HeyGen CLI](https://developers.heygen.com/cli)
+- [HeyGen MCP Remote Docs](https://developers.heygen.com/docs/mcp-remote)
+- [OpenClaw HeyGen Plugin](https://github.com/heygen-com/openclaw-plugin-heygen)
+- [Avatar Discovery](artifact/references/avatar-discovery.md)
+- [Prompt Craft](artifact/references/prompt-craft.md)
+- [Frame Check](artifact/references/frame-check.md)
+- [Asset Routing](artifact/references/asset-routing.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON snippets, and local state files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create AVATAR-<NAME>.md and heygen-video-log.jsonl files and may upload user-approved media to HeyGen through MCP, CLI, or an OpenClaw plugin.]
+
+## Skill Version(s):
+
+2.2.1 (source: server release metadata, SKILL.md frontmatter, changelog released 2026-04-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

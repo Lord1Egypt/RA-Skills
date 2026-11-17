@@ -1,39 +1,55 @@
-## Description: <br>
-Helps non-technical users create their own Skills through natural conversation, ending with a ready-to-use SKILL.md file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps non-technical users create ready-to-use SKILL.md files through a guided natural-language conversation.
 
-## Publisher: <br>
-[shuita666](https://clawhub.ai/user/shuita666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shuita666](https://clawhub.ai/user/shuita666)
 
-## Use Case: <br>
-External users use this skill to turn recurring preferences, workflows, or response patterns into custom agent Skills through a guided conversation. It helps gather trigger phrases, behavioral rules, off-limits behavior, and output expectations before producing a SKILL.md. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Skills can shape future agent behavior and may preserve broad triggers or sensitive examples if installed without review. <br>
-Mitigation: Before installing any generated Skill, read the full SKILL.md, narrow broad trigger phrases, remove private or sensitive examples, and confirm the behavior matches the intended use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shuita666/skills-builder) <br>
-- [Skill Trigger Test Phrases](artifact/preview_test.md) <br>
-- [Skill Quality Checklist](artifact/quality_checklist.md) <br>
+## Use Case:
 
+External users, employees, and developers use this skill to turn repeated preferences, workflows, or response patterns into custom agent Skills without needing technical knowledge.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Conversational guidance and Markdown SKILL.md content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a generated SKILL.md, a short installation note, and suggested trigger tests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated Skills may preserve sensitive details from prior conversation or encode unsafe off-limits rules.
+
+Mitigation: Review trigger phrases, behavioral rules, off-limits rules, and any extracted conversation text before installing or sharing generated Skills.
+
+Risk: A generated Skill could suppress important safety warnings or produce misleading guidance if its rules are too broad.
+
+Mitigation: Scan and test each generated Skill before deployment, then revise unclear or overbroad rules.
+
+## Reference(s):
+
+- [Skill Trigger Test Phrases](artifact/preview_test.md)
+- [Skill Quality Checklist](artifact/quality_checklist.md)
+- [ClawHub Skills Builder Release](https://clawhub.ai/shuita666/skills/skills-builder)
+- [Publisher Profile](https://clawhub.ai/user/shuita666)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with a generated SKILL.md file and testing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a silently applied quality checklist and optional trigger-test guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

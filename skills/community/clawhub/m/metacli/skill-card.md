@@ -1,42 +1,57 @@
-## Description: <br>
-Meta Marketing CLI for authentication lifecycle, Graph API requests, campaign/ad/adset writes, insights reporting, and Instagram publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meta Marketing CLI for authentication lifecycle, Graph API requests, campaign/ad/adset writes, insights reporting, and Instagram publishing.
 
-## Publisher: <br>
-[bilalbayram](https://clawhub.ai/user/bilalbayram) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bilalbayram](https://clawhub.ai/user/bilalbayram)
 
-## Use Case: <br>
-Developers and operators use this skill to run Meta ads and Instagram workflows from terminal commands, including authentication setup, account and campaign operations, reporting, and publishing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Meta Ads or Instagram write commands can change campaigns, budgets, publishing state, or account data. <br>
-Mitigation: Require explicit approval before campaign, budget, delete, or publishing commands; prefer dry runs and schema sync before writes. <br>
-Risk: OAuth app secrets, access tokens, and redirect tunnels are sensitive and can expose account access if mishandled. <br>
-Mitigation: Use a dedicated low-privilege Meta app and profile, keep OAuth tunnels short-lived, protect secrets and tokens, and redact them from command output. <br>
-Risk: Installing the upstream CLI at a floating latest version can introduce unreviewed behavior changes. <br>
-Mitigation: Pin or review the upstream CLI version before installation in managed environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub metacli page](https://clawhub.ai/bilalbayram/metacli) <br>
-- [metacli project homepage](https://github.com/bilalbayram/metacli) <br>
+## Use Case:
 
+Developers, marketers, and operators use this skill to run Meta ads, Graph API, insights, OAuth setup, and Instagram publishing workflows from terminal commands while keeping a human involved for sensitive authentication and spend-changing actions.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should preserve fail-closed behavior, use machine-readable output where appropriate, and redact secrets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs an unpinned third-party CLI that can handle Meta app secrets and OAuth tokens.
+
+Mitigation: Install only after reviewing the upstream source, prefer a pinned reviewed version or commit, and use least-privilege Meta scopes.
+
+Risk: The skill can perform account-changing actions, including campaign creation, budget changes, and Instagram publishing.
+
+Mitigation: Keep campaigns paused until reviewed, require explicit confirmation for spend-affecting changes, and confirm public posts before execution.
+
+Risk: Commands may include sensitive values such as app secrets, access tokens, redirect URIs, account IDs, or media publishing inputs.
+
+Mitigation: Do not echo secrets in logs or shared outputs, and validate required IDs, redirect URIs, paths, and payload fields before running commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bilalbayram/skills/metacli)
+- [metacli GitHub repository](https://github.com/bilalbayram/metacli)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide JSON or JSONL output from the underlying CLI for automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

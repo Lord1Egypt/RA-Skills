@@ -1,41 +1,58 @@
-## Description: <br>
-Checks and updates locally installed AI agent skills from git worktrees or .skill-lock.json lock files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks and updates locally installed skills from git worktrees or .skill-lock.json lockfiles across common AI coding tool directories.
 
-## Publisher: <br>
-[viccwang](https://clawhub.ai/user/viccwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viccwang](https://clawhub.ai/user/viccwang)
 
-## Use Case: <br>
-Developers and teams maintaining local agent skill installations use this skill to check status, identify safe updates, and update git or lock-file based skills across supported AI coding environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect and update local skill installations, including broad default search paths, which can change future agent behavior. <br>
-Mitigation: Run check first, constrain scope with --path and --source, review repositories and lockfile sources before updating, and avoid broad global updates unless intended. <br>
-Risk: Lock-file based updates can replace local skill folders. <br>
-Mitigation: Use the built-in backup behavior, review reported sources and hashes, and confirm that local content has not drifted before applying updates. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect local skill installations, identify available updates, and apply safe updates across supported agent tooling directories.
 
-## Reference(s): <br>
-- [Artifact README](README.md) <br>
-- [ClawHub release page](https://clawhub.ai/viccwang/cross-platform-skill-updater) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports local skill status and can guide scoped updates for git and lock-file based installations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Update mode can replace local agent skill files from lockfile paths and sources that may not be sufficiently validated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run check first on an explicit --path, inspect each reported source and path, and avoid update on lockfiles you did not create or trust.
+
+Risk: Default scanning can inspect common project and user-level skill directories.
+
+Mitigation: Use --path to limit scope when reviewing or updating a specific provider root.
+
+Risk: The security verdict is suspicious due to review-worthy replacement behavior.
+
+Mitigation: Review and scan the skill before deployment, and add path-containment and source-validation safeguards before trusting broad update workflows.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/viccwang/skills/cross-platform-skill-updater)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional structured JSON status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May scan project and user-level skill directories; update mode can replace local skill files when checks pass.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

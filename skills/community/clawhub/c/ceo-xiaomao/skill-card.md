@@ -1,43 +1,58 @@
-## Description: <br>
-CEO小茂聚合技能包。用于外贸 CEO/业务负责人场景：协调汇报、Google Maps 商务联系人收集、OneABC 模型调用、邮件发送、WhatsApp 消息发送、WhatsApp 会话助理，并支持一键初始化模板文件。适用于想安装后快速搭建一套可配置业务工作流的人。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CEO小茂聚合技能包。用于外贸 CEO/业务负责人场景：协调汇报、Google Maps 商务联系人收集、OneABC 模型调用、邮件发送、WhatsApp 消息发送、WhatsApp 会话助理，并支持一键初始化模板文件。适用于想安装后快速搭建一套可配置业务工作流的人。
 
-## Publisher: <br>
-[xingfan0828](https://clawhub.ai/user/xingfan0828) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xingfan0828](https://clawhub.ai/user/xingfan0828)
 
-## Use Case: <br>
-External business operators and sales teams use this skill to set up a configurable foreign-trade outreach workflow for lead collection, email and WhatsApp dispatch, customer follow-up, and CEO-style progress reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated outreach can send messages, attachments, or replies to real contacts. <br>
-Mitigation: Use a small approved contact list, review templates and product files, and enable batch sending or auto-reply only after operator approval. <br>
-Risk: The skill retains customer, contact, state, notification, and message log data in workspace files. <br>
-Mitigation: Run it in a controlled workspace, limit file access, and review or purge generated contact and log files according to business policy. <br>
-Risk: External service and agent calls require credentials and can expose business or customer content to the configured services. <br>
-Mitigation: Use dedicated revocable credentials and confirm the configured OpenClaw agent permissions before running live workflows. <br>
+## Use Case:
 
+External business owners, trade operators, and sales teams use this skill to coordinate foreign-trade workflows, source leads, prepare outreach, send email or WhatsApp messages, and initialize configurable workspace templates.
 
-## Reference(s): <br>
-- [CEO小茂 Coordination Method](artifact/references/coordination-method.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xingfan0828/ceo-xiaomao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and generated workspace files when scripts are executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local template files, CSV logs, and outbound message or API side effects when the bundled scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.2 (source: server-resolved release metadata) <br>
+Risk: The skill can automatically monitor WhatsApp chats and retain customer or intent data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing, test with non-production accounts and recipients, confirm customer consent for monitoring and retention, and restrict workspace file permissions.
+
+Risk: The skill can send messages and files automatically to customers or leads.
+
+Mitigation: Review recipient lists, templates, and product assets before dispatch; keep pacing conservative; and disable or supervise auto-discovery, unconditional catalog sending, and unattended auto-reply loops until patched.
+
+Risk: The skill can fetch and process media from external URLs.
+
+Mitigation: Use only trusted HTTPS provider endpoints and patch or disable unvalidated media downloads before running the auto-reply loop unattended.
+
+## Reference(s):
+
+- [CEO小茂 Coordination Method](artifact/references/coordination-method.md)
+- [ClawHub skill page](https://clawhub.ai/xingfan0828/skills/ceo-xiaomao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, generated JSON and CSV configuration files, and script output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initialize workspace templates, write logs, and produce customer outreach or management summaries when configured and executed.]
+
+## Skill Version(s):
+
+1.8.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

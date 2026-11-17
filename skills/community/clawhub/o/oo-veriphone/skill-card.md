@@ -1,44 +1,54 @@
-## Description: <br>
-Veriphone. Use this skill for ANY Veriphone request - searching and reading data, and use this skill instead of calling the API directly whenever a task involves Veriphone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Veriphone. Use this skill for ANY Veriphone request — searching and reading data. Whenever a task involves Veriphone, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Veriphone through an OOMOL-connected account, including checking verification credits and validating phone numbers with carrier and region details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes Veriphone requests through OOMOL as an intermediary. <br>
-Mitigation: Install only when the user accepts OOMOL-mediated Veriphone access and intends to use the connected account. <br>
-Risk: The setup fallback includes shell-based CLI installer commands. <br>
-Mitigation: Review OOMOL's official installation instructions and installer contents before running the commands. <br>
-Risk: Veriphone connection, credential, or billing state can block requested actions. <br>
-Mitigation: Confirm account connection and billing actions are intended before resolving connection errors or payment stops. <br>
+## Use Case:
 
+Developers use this skill through their OOMOL-connected account to check phone-number validity and retrieve carrier and region details, or to view account verification credits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-veriphone) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing request payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Setup may execute unverified downloaded code and make broader, persistent changes to agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified CLI release separately; set OO_SKILLS_SYNC_DISABLED=1 when only Veriphone access is needed.
+
+Risk: Phone numbers are sent to OOMOL and Veriphone for verification.
+
+Mitigation: Submit only phone numbers you are authorized to share with OOMOL and Veriphone.
+
+## Reference(s):
+
+- [Veriphone API documentation](https://veriphone.io/docs)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON connector responses with concise natural-language summaries; shell commands for action invocation and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Phone verification results may include validity, carrier, and region data; credit queries return an account credit summary.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

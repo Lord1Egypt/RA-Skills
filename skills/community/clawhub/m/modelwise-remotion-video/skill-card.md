@@ -1,41 +1,56 @@
-## Description: <br>
-Creates Remotion-based animated videos using reusable React animation components, scene transitions, and product, title, and data visualization templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Remotion-based animated demo videos with reusable React animation components, scene transitions, video templates, and aspect-ratio presets.
 
-## Publisher: <br>
-[deerleo](https://clawhub.ai/user/deerleo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deerleo](https://clawhub.ai/user/deerleo)
 
-## Use Case: <br>
-Developers and content teams use this skill to create, preview, and render animated videos with Remotion, React, and TypeScript. It provides reusable animation components, video templates, and common commands for studio preview and MP4 rendering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Third-party npm dependencies and bundled JavaScript may run local development tooling. <br>
-Mitigation: Review package.json and package-lock.json before installation, run in a separate project folder or container when possible, and start Remotion Studio from a shell without unrelated API keys or secrets. <br>
-Risk: Generated video code or templates may produce incorrect, inaccessible, or platform-mismatched output. <br>
-Mitigation: Preview compositions in Remotion Studio, run TypeScript checks, verify contrast and timing, and render test videos before publishing. <br>
+## Use Case:
 
+Developers and content automation teams use this skill to create React and Remotion video compositions for product demos, title sequences, data visualizations, and animated social or presentation formats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deerleo/modelwise-remotion-video) <br>
-- [Remotion audio buffer data URL documentation](https://remotion.dev/docs/audio-buffer-to-data-url) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify Remotion React components, composition registrations, video presets, and render commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and package.json) <br>
+Risk: Installing dependencies and running Remotion can pull npm packages and start local services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated project or container and review or regenerate the lockfile against an approved npm registry before installation.
+
+Risk: Unpinned npx commands and Remotion Studio/runtime behavior may modify project files or contact external services.
+
+Mitigation: Prefer locally installed pinned binaries, review commands before execution, and restrict network or filesystem access where possible.
+
+## Reference(s):
+
+- [Remotion Video Skill Instructions](instructions.md)
+- [Basic Usage Example](examples/basic-usage.md)
+- [Title Animation Example](examples/title-animation.md)
+- [Product Demo Example Data](examples/product-demo.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and TSX code snippets, JSON configuration examples, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or modify Remotion project files and commands to preview or render videos.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

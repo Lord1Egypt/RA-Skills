@@ -1,44 +1,54 @@
-## Description: <br>
-Detects weak cryptography patterns in Python, JavaScript/TypeScript, Go, Java, and PHP source code and provides local audit output with CI fail-gate commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Phy Crypto Audit scans Python, JavaScript/TypeScript, Go, Java, and PHP source code for weak cryptography patterns aligned to OWASP A02:2021, including weak password hashing, insecure randomness, hardcoded keys or IVs, risky algorithms, weak JWT secrets, low password-hashing work factors, and deprecated TLS versions.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and security engineers use this skill to create and run a local weak-cryptography audit helper against source code before merging or releasing changes. It is suited for finding common OWASP A02 cryptographic failures and surfacing remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit reports may expose sensitive source paths or code lines from the scanned project. <br>
-Mitigation: Scan only intended local source paths and avoid sharing generated reports publicly. <br>
-Risk: Running a helper script that differs from the code shown in the skill could produce unexpected behavior. <br>
-Mitigation: Confirm the local crypto_audit.py script was created from the skill-provided code before execution. <br>
-Risk: Static pattern matching can miss issues or produce false positives in context-heavy cryptographic code. <br>
-Mitigation: Review findings manually and use them as triage input alongside normal security review. <br>
+## Use Case:
 
+Developers and security engineers use this skill to add a local static-analysis scanner for weak cryptography in application source and to produce CI-friendly findings with remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-crypto-audit) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [PHY041 ClawHub profile](https://clawhub.ai/user/PHY041) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code and shell command snippets; generated audit reports are plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local static-analysis helper; CI mode can exit nonzero when critical or high findings are present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and artifact metadata) <br>
+Risk: The local scanner reads source paths provided by the user and may print matching lines that contain secrets or sensitive implementation details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on intended local paths and handle generated reports as sensitive security output.
+
+Risk: Results are heuristic, with documented coverage and severity caveats, so findings may be incomplete or require context-specific review.
+
+Mitigation: Review findings manually before using them as a merge blocker or compliance signal, and tune CI usage to the team's risk tolerance.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-crypto-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Python code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local scanner output may include file paths, matching source lines, severity labels, CWE mappings, suggested fixes, and CI exit behavior.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Extends Feishu document workflows with image download URL retrieval and OCR guidance using Tesseract with the OpenClaw Feishu plugin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extends the OpenClaw Feishu document tool with image download URL retrieval and a manual Tesseract OCR workflow.
 
-## Publisher: <br>
-[xing2xian](https://clawhub.ai/user/xing2xian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xing2xian](https://clawhub.ai/user/xing2xian)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to retrieve temporary image URLs from Feishu document image blocks, then run OCR on captured images with Tesseract. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release asks users to persistently patch the built-in OpenClaw Feishu plugin. <br>
-Mitigation: Back up original plugin files, review that only the intended get_image schema and implementation are added, and test in a controlled environment before normal use. <br>
-Risk: Returned image URLs, browser screenshots, and OCR output can expose sensitive Feishu document data. <br>
-Mitigation: Keep Feishu app permissions minimal, restrict document access, avoid sharing temporary URLs, and treat screenshots and OCR text as sensitive data. <br>
-Risk: The security summary notes broader document-management schema than the public description explains. <br>
-Mitigation: Review the full included schema and confirm enabled Feishu actions match the intended deployment scope before installing. <br>
+## Use Case:
 
+Developers and operators use this skill to retrieve temporary image download URLs from Feishu documents and run OCR on captured images when Feishu document images need to be inspected as text.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xing2xian/feishu-doc-extended) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [CHANGELOG](references/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with TypeScript snippets, shell commands, and JSON tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Feishu plugin, Tesseract OCR, Feishu app permissions, and handling of temporary image URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, package.json, and CHANGELOG; released 2026-03-12) <br>
+Risk: The skill asks users to persistently modify the built-in Feishu plugin and restart the OpenClaw gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the plugin changes before applying them, keep a revert path, and only restart the gateway after confirming the modified plugin behavior is expected.
+
+Risk: Returned image URLs, screenshots, and OCR text can expose sensitive Feishu document content.
+
+Mitigation: Treat those artifacts as sensitive data, avoid sharing or logging them, and refresh expired temporary URLs only when needed.
+
+Risk: The bundled Feishu schema may be broader than the documented image-download behavior and could confuse reviewers or installers.
+
+Mitigation: Scope installation and review to the documented get_image behavior, or separate the broader schema changes before deployment.
+
+Risk: OCR results can be incomplete or inaccurate when source images are unclear.
+
+Mitigation: Verify important OCR output against the original image and prefer high-resolution screenshots.
+
+## Reference(s):
+
+- [Feishu Open Platform](https://open.feishu.cn)
+- [ClawHub skill page](https://clawhub.ai/xing2xian/skills/feishu-doc-extended)
+- [Changelog](references/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples, TypeScript snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The Feishu image URL returned by the modified tool is temporary; OCR quality depends on the captured image quality and local Tesseract setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, package.json, changelog released 2026-03-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

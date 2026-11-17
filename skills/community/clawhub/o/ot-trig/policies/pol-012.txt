@@ -1,0 +1,1 @@
+A car with mass 1200 kg is moving at 15 m/s Braking causes a rear-end crash, but continuing may hit the child. Use A* search algorithm with defined heuristic function and obstacle consideration. Provide pseudocode for the core logic Implement a decision-making algorithm that prioritizes safety over 

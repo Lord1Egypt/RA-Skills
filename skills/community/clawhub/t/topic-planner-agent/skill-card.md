@@ -1,41 +1,54 @@
-## Description: <br>
-Topic Planner Agent helps writers and content-planning agents evaluate novel topics, score market opportunities, design selling points and hooks, and produce structured planning documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language topic planning agent for web-novel creators that generates candidate story topics, scores market opportunity and ROI, designs selling points and opening hooks, defines creative constraints, and produces structured planning documents.
 
-## Publisher: <br>
-[ouyang198000](https://clawhub.ai/user/ouyang198000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ouyang198000](https://clawhub.ai/user/ouyang198000)
 
-## Use Case: <br>
-Writers, editors, and fiction-production agents use this skill to turn market observations into ranked novel concepts, platform-specific hooks, pacing outlines, and creation constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market scores, ROI estimates, and platform-fit recommendations may be unreliable when the input market data is stale or incomplete. <br>
-Mitigation: Require cited market inputs and preserve the skill's confidence rating before using a topic recommendation for production planning. <br>
-Risk: Generated fiction briefs could drift into illegal, political, explicit, or excessively violent content categories. <br>
-Mitigation: Apply the skill's stated content boundaries and review final planning documents before handing them to a writing agent. <br>
+## Use Case:
 
+External web-novel creators and agent builders use this skill to turn market observations into ranked story-topic plans with platform positioning, hooks, outline pacing, and content constraints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ouyang198000/topic-planner-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/ouyang198000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown planning document with scoring tables, selling points, opening hooks, pacing outline, constraints, and competitor positioning] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only planning skill; the artifact describes no code execution, credential use, background behavior, or external tool access, and the security evidence reports a clean verdict with no risk findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Topic plans and market scores may be misleading if the upstream market observations are incomplete or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the data used for each recommendation and require confidence ratings before using a plan for production decisions.
+
+Risk: Generated web-novel concepts could include content that violates legal, platform, or community standards.
+
+Mitigation: Apply the skill's stated content boundaries and review final concepts against the target platform's rules before publication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ouyang198000/skills/topic-planner-agent)
+- [Publisher Profile](https://clawhub.ai/user/ouyang198000)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Guidance]
+
+**Output Format:** [Structured Markdown planning document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese-language topic plans with scoring, confidence ratings, selling points, hooks, character notes, pacing outline, constraints, and competitor positioning.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

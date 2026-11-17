@@ -1,0 +1,6 @@
+interface:
+  display_name: "Virtual Workspace Manager"
+  short_description: "Manage vwsd workspaces with scoped changes and cleanup checks"
+  default_prompt: "Use $vws-helper to set up a virtual workspace for these repositories."
+policy:
+  allow_implicit_invocation: false

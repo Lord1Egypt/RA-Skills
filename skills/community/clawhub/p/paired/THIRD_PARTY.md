@@ -16,7 +16,7 @@ paired uses or depends on the following open-source projects. Every component li
 * Project: https://github.com/idiap/coqui-ai-TTS (active fork after Coqui shutdown)
 * License: Apache-2.0
 * Used for: 24kHz voice cloning when VoxCPM2 unavailable
-* Cited in source: `skill/engines/xtts.Dockerfile`
+* Cited in source: `skill/engines/xtts.Dockerfile.txt`
 
 ### piper — generic neural TTS fallback
 * Project: https://github.com/rhasspy/piper

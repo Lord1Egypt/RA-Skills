@@ -1,0 +1,65 @@
+{
+  "n": 638,
+  "n_base": 312,
+  "auroc": null,
+  "tpr@fpr1%": null,
+  "thr@fpr1%": null,
+  "tpr@fpr5%": null,
+  "thr@fpr5%": null,
+  "thresholds": {
+    "medium": 63.7,
+    "high": 74.9
+  },
+  "human_fpr@med": 0.0,
+  "human_fpr@high": 0.0,
+  "per_model": {
+    "deepseek-v4": {
+      "n": 40,
+      "mean": 55.2,
+      "tpr@thr5%": null
+    },
+    "deepseek-v4.1": {
+      "n": 28,
+      "mean": 55.3,
+      "tpr@thr5%": null
+    },
+    "glm-5.3": {
+      "n": 36,
+      "mean": 55.1,
+      "tpr@thr5%": null
+    },
+    "kimi-k2.7": {
+      "n": 34,
+      "mean": 60.4,
+      "tpr@thr5%": null
+    },
+    "kimi-k3": {
+      "n": 40,
+      "mean": 56.3,
+      "tpr@thr5%": null
+    },
+    "kimi-k3-p4": {
+      "n": 35,
+      "mean": 54.7,
+      "tpr@thr5%": null
+    },
+    "minimax-m3": {
+      "n": 37,
+      "mean": 54.7,
+      "tpr@thr5%": null
+    },
+    "qwen3.7-max-p4": {
+      "n": 27,
+      "mean": 53.6,
+      "tpr@thr5%": null
+    },
+    "qwen3.8": {
+      "n": 35,
+      "mean": 54.6,
+      "tpr@thr5%": null
+    }
+  },
+  "auroc_by_len": {},
+  "engine": "current",
+  "tag": "gen2026"
+}

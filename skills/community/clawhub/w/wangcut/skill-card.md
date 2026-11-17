@@ -1,43 +1,60 @@
-## Description: <br>
-秦丝旺剪 - AI智能视频剪辑 integrates with the QinSilk Wangcut API so agents can create AI video editing tasks, check task status, and download completed videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates with the QinSi Wangcut API so an agent can create AI video-editing tasks, check task status and details, and download completed videos.
 
-## Publisher: <br>
-[HuangJT](https://clawhub.ai/user/HuangJT) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangjt](https://clawhub.ai/user/huangjt)
 
-## Use Case: <br>
-Developers and end users working in Claude Code or OpenClaw use this skill to automate QinSilk Wangcut video creation from scripts, manage recent task queues, inspect task details, and download finished videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow may ask users to provide a Wangcut account password in chat and stores account credentials in a local config.ini file. <br>
-Mitigation: Use a limited Wangcut account, avoid sensitive or reused passwords, and keep config.ini out of shared workspaces and version control. <br>
-Risk: Credentials and video task content are sent to the configured Wangcut API base URL. <br>
-Mitigation: Verify the API base URL before logging in and review the video content and account choice before running automation. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to a configured Wangcut account, create short-form video-editing tasks from scripts, monitor completion, inspect task metadata, and download generated videos.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HuangJT/wangcut) <br>
-- [Installation Guide](artifact/docs/INSTALL.md) <br>
-- [QinSilk Wangcut](https://cloud.qinsilk.com) <br>
-- [OpenClaw Skills documentation](https://docs.openclaw.ai/tools/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, API Calls, Configuration instructions, Files] <br>
-**Output Format:** [Markdown with Python code snippets, configuration examples, task identifiers, URLs, and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update config.ini and download generated video files to the configured download directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Wangcut account credentials may be entered in chat and stored in a persistent config.ini file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manual configuration in a private location, restrict file permissions, avoid committing or sharing config.ini, and rotate the password if exposure is possible.
+
+Risk: Changing the configured API base URL could send credentials and task data to an untrusted endpoint.
+
+Mitigation: Keep the default Wangcut HTTPS API URL unless the custom endpoint is fully trusted and reviewed.
+
+Risk: Generated videos and downloaded task outputs may contain user-provided content or sensitive media.
+
+Mitigation: Store downloads in an appropriate local directory, avoid committing downloads, and review generated media before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangjt/skills/wangcut)
+- [秦丝旺剪官网](https://cloud.qinsilk.com)
+- [OpenClaw Skills documentation](https://docs.openclaw.ai/tools/skills)
+- [Installation guide](artifact/docs/INSTALL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown responses with Python or shell snippets, configuration values, task IDs, task summaries, URLs, and local video file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update config.ini and may download generated MP4 files to a local downloads directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

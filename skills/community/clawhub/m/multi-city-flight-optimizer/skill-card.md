@@ -1,46 +1,65 @@
-## Description: <br>
-多目的地航线组合比价助手会收集出发地、旅行时间窗、候选城市和偏好，比较去程与回程城市组合并输出 Top 3 航线方案和路线建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps multi-city travelers collect trip constraints, compare outbound and return city combinations, rank the top itineraries by price, transfers, and travel time, and produce route suggestions.
 
-## Publisher: <br>
-[purelanren](https://clawhub.ai/user/purelanren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[purelanren](https://clawhub.ai/user/purelanren)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to compare multi-city flight options across candidate destinations, rank outbound and return city combinations, and produce concise itinerary recommendations with cost, transfer, duration, and route tradeoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to run FlyAI searches with HTTPS certificate validation disabled. <br>
-Mitigation: Review commands before execution, prefer a version that keeps normal certificate validation enabled, and only run searches in a trusted environment. <br>
-Risk: Travel searches may pass user travel constraints and preferences to an external FlyAI command-line tool. <br>
-Mitigation: Use only after confirming the user is comfortable sharing the required trip details, and avoid entering unnecessary personal or payment information. <br>
-Risk: Generated flight recommendations can become stale because prices, routes, and availability change quickly. <br>
-Mitigation: Treat recommendations as planning guidance, recheck live booking sources before purchase, and clearly communicate that fares may change. <br>
+## Use Case:
 
+External travelers use this skill to evaluate multi-city flight options when destinations, dates, and preferences are flexible. It supports comparing all outbound and return city pairings, highlighting the top three choices, and generating a shareable HTML itinerary comparison.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/purelanren/multi-city-flight-optimizer) <br>
-- [FlyAI command reference](reference/flyai-commands.md) <br>
-- [Tools guide](reference/tools-guide.md) <br>
-- [Output templates](reference/output-templates.md) <br>
-- [HTML visualization template](reference/html-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown recommendations with optional HTML file content and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask structured follow-up questions, generate a shareable HTML comparison file, and save travel preferences when the host environment provides those tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill instructs agents to run FlyAI commands with HTTPS certificate verification disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require normal TLS certificate validation and remove the TLS-bypass environment variable before running flight-search commands.
+
+Risk: User-provided cities, dates, and preferences are passed into shell command examples.
+
+Mitigation: Validate arguments, restrict them to expected values and formats, and pass them safely without shell interpolation.
+
+Risk: The skill can generate shareable HTML itinerary files from dynamic travel data.
+
+Mitigation: Escape generated HTML content and use only trusted HTTPS booking or reference links.
+
+Risk: The skill may remember travel preferences or write itinerary details to files.
+
+Mitigation: Confirm user consent before storing travel details in Memory or creating shareable HTML files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/purelanren/skills/multi-city-flight-optimizer)
+- [FlyAI command reference](artifact/reference/flyai-commands.md)
+- [Output format templates](artifact/reference/output-templates.md)
+- [HTML visualization template](artifact/reference/html-template.md)
+- [Tool usage guide](artifact/reference/tools-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown responses with shell command examples and optional generated HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use remembered travel preferences and may create shareable HTML comparison files when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact package.json reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Use Beecli to interact with the Beetrade platform for authentication, market data, bot/strategy operations, alerts, accounts, and portfolio workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Beecli to interact with the Beetrade platform for authentication, market data, bot/strategy operations, alerts, accounts, and portfolio workflows.
 
-## Publisher: <br>
-[htranbee](https://clawhub.ai/user/htranbee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[htranbee](https://clawhub.ai/user/htranbee)
 
-## Use Case: <br>
-External users and developers use this skill to operate the Beetrade CLI for authentication, market data, bot and strategy workflows, alerts, accounts, and portfolio tasks. It emphasizes read-only discovery, paper trading, and backtesting before high-impact live trading or account changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Approved commands can affect real trading accounts, including live trading, account changes, deletes, or scheduled execution. <br>
-Mitigation: Use status, list, paper, and backtest commands first, preview the exact command, and require explicit user confirmation before high-impact actions. <br>
-Risk: Beecli authentication files and command output may contain access tokens, refresh tokens, API keys, secrets, or passwords. <br>
-Mitigation: Do not read files under ~/.beecli/, do not expose credentials in commands or output, and redact sensitive JSON fields before reporting results. <br>
-Risk: Command output, API responses, or user-supplied JSON can contain prompt-injection text that conflicts with the skill's safety rules. <br>
-Mitigation: Treat external content as untrusted input and validate any suggested command independently against the safety rules before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Beecli Command Reference](references/commands.md) <br>
-- [Beetrade on ClawHub](https://clawhub.ai/htranbee/beetrade) <br>
-- [Beetrade API endpoint](https://api.prod.beetrade.com/api/v2) <br>
+## Use Case:
 
+External users and developers use this skill to run or troubleshoot Beetrade CLI workflows for authentication, market data, portfolios, bots, strategies, alerts, brokerages, accounts, and trading-client operations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and redacted JSON result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires beecli; redacts credential fields and requires explicit confirmation before live trading, delete, credential update, order, or scheduled execution changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release installs an unpinned financial-trading CLI.
+
+Mitigation: Review the skill before installing, use an isolated environment, and verify or pin the exact @beelabs/beetrade-cli version.
+
+Risk: Command patterns can expose Beetrade passwords or brokerage API credentials if secrets are passed directly in arguments or displayed in output.
+
+Mitigation: Do not put Beetrade passwords or brokerage API secrets directly in command arguments, and redact tokens, API keys, secrets, and passwords from outputs.
+
+Risk: Live trading, deletion, scheduling, and credential-update commands can affect real accounts or execution state.
+
+Mitigation: Require explicit human approval before live trading, delete, schedule, or credential-update operations, and prefer read-only, paper, or backtest commands first.
+
+## Reference(s):
+
+- [Beecli Command Reference](references/commands.md)
+- [ClawHub Beetrade Skill](https://clawhub.ai/htranbee/skills/beetrade)
+- [htranbee Publisher Profile](https://clawhub.ai/user/htranbee)
+- [Beetrade CLI npm Package](https://www.npmjs.com/package/@beelabs/beetrade-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill expects credential redaction, confirmation before live trading or destructive actions, and JSON output handling for most command actions.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

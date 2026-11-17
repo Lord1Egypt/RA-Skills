@@ -1,34 +1,34 @@
 ---
 name: fec-browser-storage
-description: Use when choosing, implementing, or reviewing browser storage such as localStorage, sessionStorage, IndexedDB, cookies, client persistence, offline data, secure storage, or cleanup strategy; Chinese triggers include 浏览器存储, 客户端持久化.
+description: Use when choosing, implementing, or reviewing browser storage such as localStorage, sessionStorage, IndexedDB, cookies, client persistence, offline data, secure storage, or cleanup strategy; Chinese triggers include browser storage, client persistence.
 ---
 
-# 浏览器存储
+# Browser storage
 
 ## Purpose
 
-根据数据大小、安全要求和生命周期选择合适的客户端存储方案。
+Choose the appropriate client storage solution based on data size, security requirements, and lifecycle.
 
 ## Procedure
 
-1. 先判断数据敏感度、体积、生命周期、是否需要跨 Tab、是否需要随请求发送。
-2. 小量非敏感偏好用 localStorage；Tab 级临时数据用 sessionStorage；大量结构化数据或离线缓存用 IndexedDB；认证态优先 httpOnly cookie。
-3. 封装统一 key 前缀、JSON parse/stringify、异常处理、过期清理和 quota 兜底。
-4. 敏感数据按安全规则处理，不把明文 token、密码、信用卡信息放进可被 JS 读取的存储。
-5. 审查隐私模式、存储配额、清理策略和跨浏览器兼容性。
+1. First determine the data sensitivity, volume, life cycle, whether it needs to be spread across tabs, and whether it needs to be sent with the request.
+2. Use localStorage for a small amount of non-sensitive preferences; use sessionStorage for tab-level temporary data; use IndexedDB for large amounts of structured data or offline caching; prioritize httpOnly cookies for authentication status.
+3. Encapsulate unified key prefix, JSON parse/stringify, exception handling, expiration cleanup and quota protection.
+4. Sensitive data is processed according to security rules, and plain text tokens, passwords, and credit card information are not put into storage that can be read by JS.
+5. Review privacy mode, storage quotas, sanitization policies, and cross-browser compatibility.
 
-## Detailed References
+## Detailed reference
 
-涉及存储选型表、localStorage/sessionStorage 封装、IndexedDB 示例、Cookie 辅助方法和敏感数据规则时，加载 [references/storage-patterns.md](references/storage-patterns.md)。
+Load [references/storage-patterns.md](references/storage-patterns.md) when it comes to storage selection tables, localStorage/sessionStorage wrappers, IndexedDB examples, cookie helpers, and sensitive data rules.
 
 ## Constraints
 
-- localStorage/sessionStorage 是同步 API，大数据读写会阻塞主线程。
-- 除 httpOnly cookie 外，客户端存储都可被 XSS 读取。
-- Cookie 每次请求自动携带，不适合大数据。
-- IndexedDB 配额和隐私模式行为有浏览器差异。
-- URL 中不要传 token 或敏感数据。
+- localStorage/sessionStorage is a synchronous API, and big data reading and writing will block the main thread.
+- Except for httpOnly cookies, client-side storage can be read by XSS.
+- Cookies are automatically carried with each request and are not suitable for big data.
+- There are browser differences in IndexedDB quota and privacy mode behavior.
+- Do not pass token or sensitive data in the URL.
 
 ## Expected Output
 
-产出统一的 storage/cookie/db 封装，key 有命名空间，数据有过期或清理策略，敏感数据只进入合适的安全边界。
+Produce a unified storage/cookie/db package, the key has a namespace, the data has an expiration or cleanup policy, and sensitive data only enters the appropriate security boundary.

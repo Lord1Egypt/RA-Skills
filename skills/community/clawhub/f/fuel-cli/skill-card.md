@@ -1,44 +1,63 @@
-## Description: <br>
-UK fuel prices CLI - find nearby stations by postcode or coordinates, get station details, ranked by price/distance/freshness, and agent-friendly JSON envelopes with `--output <path>` for field projection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fuel CLI helps agents check UK petrol and diesel prices, find nearby stations by postcode or coordinates, inspect station details, and request structured JSON or projected fields.
 
-## Publisher: <br>
-[shan8851](https://clawhub.ai/user/shan8851) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shan8851](https://clawhub.ai/user/shan8851)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent install and operate the `fuel` CLI for UK petrol and diesel price lookups, nearby station search, station detail retrieval, and structured result projection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Kingdom <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth-style Fuel Finder credentials and a sensitive client secret for live data refreshes. <br>
-Mitigation: Keep `FUEL_FINDER_CLIENT_SECRET` out of source control and provide it through a secure environment or credential store. <br>
-Risk: The skill installs and invokes the third-party npm package `@shan8851/fuel-cli` globally. <br>
-Mitigation: Verify the npm package and source before installation, and install only when the agent is expected to perform UK fuel-price lookups. <br>
-Risk: Fuel-price data can be stale, missing timestamps, or affected by excluded test stations. <br>
-Mitigation: Review the skill's data-quality advisories, freshness counts, and excluded test-station counts before relying on ranked results. <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to run the Fuel CLI for UK station search, fuel-price comparison, station lookup, and structured fuel-price data retrieval.
 
-## Reference(s): <br>
-- [Fuel CLI homepage](https://fuel-cli.xyz) <br>
-- [UK Fuel Finder service](https://www.fuel-finder.service.gov.uk) <br>
-- [Fuel CLI on ClawHub](https://clawhub.ai/shan8851/fuel-cli) <br>
+### Deployment Geography for Use:
 
+United Kingdom
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON field examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to produce text or JSON CLI output, including success and error envelopes and optional field projections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill relies on an unpinned global npm CLI, so the installed command may change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package before installing and prefer a pinned version or local install where possible.
+
+Risk: Live data access requires Fuel Finder OAuth credentials.
+
+Mitigation: Store FUEL_FINDER_CLIENT_ID and FUEL_FINDER_CLIENT_SECRET securely outside committed files.
+
+Risk: Setting FUEL_FINDER_BASE_URL to an untrusted endpoint could expose requests or credentials.
+
+Mitigation: Only set FUEL_FINDER_BASE_URL to a trusted HTTPS Fuel Finder endpoint.
+
+Risk: Cached or stale price data could lead to outdated fuel-price decisions.
+
+Mitigation: Check data.quality.advisories and freshnessCounts, and use refresh behavior when current prices matter.
+
+## Reference(s):
+
+- [Fuel CLI homepage](https://fuel-cli.xyz)
+- [UK Fuel Finder service](https://www.fuel-finder.service.gov.uk)
+- [ClawHub skill page](https://clawhub.ai/shan8851/skills/fuel-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON envelope examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports TTY text output, piped JSON output, field projection with --output <path>, structured error envelopes, and data-quality advisories.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

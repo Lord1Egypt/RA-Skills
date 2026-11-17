@@ -1,38 +1,49 @@
-## Description: <br>
-飞书任务管理增强版 helps an agent create, query, update, complete, and organize Feishu tasks, task lists, subtasks, comments, and recurring tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Feishu task-management guidance for creating, querying, updating, completing, commenting on, and organizing tasks and task lists.
 
-## Publisher: <br>
-[ramlee77](https://clawhub.ai/user/ramlee77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ramlee77](https://clawhub.ai/user/ramlee77)
 
-## Use Case: <br>
-Employees and teams that use Feishu can ask an agent to create, inspect, update, complete, and organize task work across task lists, subtasks, comments, due dates, assignees, and recurring tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, complete, and comment on Feishu tasks, and its activation wording is broad. <br>
-Mitigation: Confirm the target task or list, assignees, due dates, completion state, and comment text before approving changes. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through Feishu task and task-list workflows, including create, list, update, complete, subtask, comment, recurring-task, batch-operation, statistics, and report actions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ramlee77/feishu-task-plus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, JSON] <br>
-**Output Format:** [Markdown guidance with JSON parameter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May lead an agent to create or modify Feishu task records through connected task tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Broad task-related activation wording could lead an agent to create, update, complete, or comment on Feishu tasks when the user's intent is ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the planned Feishu task action and target identifiers before allowing task mutations, especially for broad task-management requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ramlee77/skills/feishu-task-plus)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown with JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes required Feishu task identifiers, timestamp formats, action names, and example request payloads.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

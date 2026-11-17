@@ -18,10 +18,7 @@ def analyze_dependencies(issues):
         if issue.has_no_blockers(issues):
             independent.append(issue)
         else:
-            dependent.append({
-                'issue': issue,
-                'blocked_by': issue.get_blockers(issues)
-            })
+            dependent.append({"issue": issue, "blocked_by": issue.get_blockers(issues)})
 
     return independent, dependent
 ```
@@ -86,7 +83,7 @@ After task breakdown, classify each task's risk tier using `leyline:risk-classif
 - [ ] T015 [US2] [R:RED] Add user migration in migrations/002_add_users.py
 ```
 
-Tasks without `[R:TIER]` markers default to GREEN. Markers are additive — existing task formats remain valid without them.
+Tasks without `[R:TIER]` markers default to GREEN. Markers are additive: existing task formats remain valid without them.
 
 ## Next Phase
 

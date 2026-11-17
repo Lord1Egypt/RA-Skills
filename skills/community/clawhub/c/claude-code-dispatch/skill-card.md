@@ -1,43 +1,57 @@
-## Description: <br>
-Invoke Claude Code CLI as a subprocess for coding tasks that require file access, editing, and shell execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Invoke Claude Code CLI as a subprocess for coding tasks that require file access, editing, and shell execution.
 
-## Publisher: <br>
-[EZPeasyDave](https://clawhub.ai/user/EZPeasyDave) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ezpeasydave](https://clawhub.ai/user/ezpeasydave)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to delegate repository work, code review, debugging, build/test execution, and file edits to Claude Code CLI when local filesystem and shell access are required. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates coding work to a non-interactive external agent with local repository access. <br>
-Mitigation: Use the narrowest working directory that can complete the task and review changes before deployment. <br>
-Risk: Allowed shell tools can enable broad filesystem or command execution. <br>
-Mitigation: Keep the allowed tool list minimal and avoid Bash unless the task explicitly requires builds, tests, or git operations. <br>
-Risk: Claude Code inherits environment variables that may include unrelated secrets. <br>
-Mitigation: Run with a clean environment and exclude credentials that are not needed for the delegated task. <br>
+## Use Case:
 
+Developers and coding agents use this skill to delegate local coding tasks to an authenticated Claude Code CLI when work requires file access, file editing, shell command execution, tests, code review, or multi-file debugging.
 
-## Reference(s): <br>
-- [Claude Code Dispatch on ClawHub](https://clawhub.ai/EZPeasyDave/claude-code-dispatch) <br>
-- [EZPeasyDave publisher profile](https://clawhub.ai/user/EZPeasyDave) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured text with status, model, cost, duration, and result fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results longer than 2000 characters are truncated at a line boundary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Delegating local coding tasks can expose project data and local environment secrets to Claude Code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill from an environment with only the credentials needed for the task, avoid passing secrets in prompts, and prefer read-only tool access for review work.
+
+Risk: Broad filesystem or shell access can modify files or execute commands beyond the intended task.
+
+Mitigation: Use the narrowest Claude Code tool preset that works and pre-authorize only the required tools in Claude Code settings.
+
+Risk: Unpinned CLI dependencies can affect reproducibility across installs.
+
+Mitigation: Pin or separately manage the Claude Code dependency when reproducible installs matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ezpeasydave/skills/claude-code-dispatch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text structured summary with status, model, cost, duration, and result fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results longer than 2000 characters are truncated at a line boundary.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

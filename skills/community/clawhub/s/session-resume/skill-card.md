@@ -1,42 +1,58 @@
-## Description: <br>
-Session Resume helps OpenClaw agents recover interrupted long-running tasks by reading a local checkpoint file, reporting saved progress, and waiting for user confirmation before continuing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session Resume helps OpenClaw agents recover interrupted long-running tasks by reading a local `.task-state.json` checkpoint, reporting saved progress, and waiting for user confirmation before continuing.
 
-## Publisher: <br>
-[wavmson](https://clawhub.ai/user/wavmson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wavmson](https://clawhub.ai/user/wavmson)
 
-## Use Case: <br>
-Developers and OpenClaw agent users use this skill to preserve progress for multi-step tasks across gateway restarts, session interruptions, compaction, or network disconnects. The skill is intended to restore only explicitly saved task state and report pending work before execution resumes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The checkpoint file can contain sensitive task context such as API keys, passwords, private keys, customer data, or deployment details. <br>
-Mitigation: Avoid writing secrets or sensitive deployment information to ~/.openclaw/workspace-main/.task-state.json, and review or delete the file after sensitive work, especially on shared machines. <br>
-Risk: A stale checkpoint could cause the agent to resume work the user no longer wants. <br>
-Mitigation: Report the saved task state first and wait for explicit user confirmation before continuing, then delete the checkpoint when the task is complete or abandoned. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to checkpoint multi-step agent tasks, recover saved task state after interruptions, and decide whether to continue or abandon the recovered task.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wavmson/session-resume) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown recovery reports and JSON checkpoint state guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local .task-state.json checkpoint file and waits for user confirmation before resuming work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent local checkpoints can expose raw task context if `.task-state.json` is synced, committed, shared, or readable by unintended users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in protected workspaces, keep `.task-state.json` out of sync and version control, and restrict local file permissions.
+
+Risk: Saved task context may include passwords, API keys, private keys, incident details, customer data, or sensitive command output.
+
+Mitigation: Avoid using the skill for sensitive tasks unless it is updated to redact secrets before saving checkpoints.
+
+Risk: Stale or forged checkpoint state could cause an agent to resume from misleading progress information.
+
+Mitigation: Validate checkpoint provenance, expire stale checkpoints, report recovered state to the user, and wait for confirmation before continuing.
+
+## Reference(s):
+
+- [Session Resume Skill Page](https://clawhub.ai/wavmson/skills/session-resume)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown recovery reports with JSON task-state examples and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read, update, or remove a local `.task-state.json` checkpoint as part of the agent workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Monitor blogs and RSS feeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor blogs and RSS feeds.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and content operators use this skill to monitor blogs and RSS feeds and receive agent guidance for feed-related workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises broad tool use, including shell commands and local file reads or writes. <br>
-Mitigation: Use explicit feed URLs and require user confirmation before running shell commands or writing local files. <br>
-Risk: The artifact notes that the skill requires integration with a Blog Watcher service or application. <br>
-Mitigation: Confirm the intended Blog Watcher integration and access configuration before relying on monitoring results. <br>
+## Use Case:
 
+Developers and other agent users use this skill to monitor blogs and RSS feeds and receive help coordinating blog-watcher tasks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/terry-blogwatcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch web content and propose local file operations when the host agent grants those tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill exposes broad command execution and file-writing capabilities without clear operating limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before shell commands or local file writes and review proposed changes before execution.
+
+Risk: The instructions are sparse and do not define approved blog or RSS sources or storage paths.
+
+Mitigation: Clarify allowed sources, destinations, and storage paths before using the skill in a workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/terry-blogwatcher)
+- [ClawHub publisher profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose web, shell, read, and write actions; users should review commands and file writes before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

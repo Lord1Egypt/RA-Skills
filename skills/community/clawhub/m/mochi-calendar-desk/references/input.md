@@ -1,0 +1,3 @@
+# JSON actions
+
+Actions import(file), agenda(from,to), conflicts(from,to), create(title,start,end,location optional,description optional,uid optional,output default exports/event.ics), remote-list(profile), pull(profile,remote), push(profile,remote,file,etag optional), remote-delete(profile,remote,etag). from/to/start/end are ISO timestamps with offsets. Agenda range<=366 days, ICS resource<=5MiB, occurrences<=10000. All files are workspace-relative. DAV profile external private JSON {url:https collection URL,username,passwordEnv}. remote is a collection-relative decoded path. No redirects or cross-origin resources. Local .mochilab/calendar-desk stores imported resources; repeated import of the same source replaces that source's cache.

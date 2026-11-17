@@ -1,45 +1,64 @@
-## Description: <br>
-Collects AI news, validates stage1 JSON, publishes KeplerJAI bulletins, and generates a final summary for an agent workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects AI news, validates stage1 JSON, publishes KeplerJAI bulletins, and formats a final summary for an agent workspace.
 
-## Publisher: <br>
-[renjicode](https://clawhub.ai/user/renjicode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renjicode](https://clawhub.ai/user/renjicode)
 
-## Use Case: <br>
-Developers and operators managing KeplerJAI bulletin workflows use this skill to collect AI-news candidates, validate structured JSON, publish seven bulletins through the KeplerJAI API, and produce a final review message. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically create live KeplerJAI website posts using account credentials without a clear confirmation gate. <br>
-Mitigation: Install only for controlled KeplerJAI accounts, prefer a scoped API token, review payloads before live posting, and enable cron only when recurring autonomous publication is intended. <br>
-Risk: The workflow requires sensitive credentials for KeplerJAI publication. <br>
-Mitigation: Provide credentials through environment variables, avoid storing tokens in skill files, and prefer scoped API tokens over cookies. <br>
+## Use Case:
 
+External publishers and operators use this skill to gather AI news candidates, publish seven KeplerJAI bulletin entries through the KeplerJAI API, and produce a final text summary for review or sharing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/renjicode/keplerjai-bulletin-publish) <br>
-- [Publisher profile](https://clawhub.ai/user/renjicode) <br>
-- [README](artifact/README.md) <br>
-- [Cron setup](artifact/CRON_SETUP.md) <br>
-- [NewsNow AI feed](https://www.newsnow.co.uk/h/Science/AI?type=ln) <br>
-- [KeplerJAI bulletin API](https://www.keplerjai.com/api/content/bulletin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Plain text summaries, JSON files, and markdown or shell-command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes workspace artifacts such as stage1-output.txt, stage1-output.normalized.json, publish-result.json, final-message.txt, and pipeline.log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can make live authenticated KeplerJAI bulletin posts without confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation or dry-run review before production posting, especially for scheduled or automated runs.
+
+Risk: Endpoint, header, and TLS override controls can weaken request boundaries.
+
+Mitigation: Restrict execution to the real KeplerJAI HTTPS endpoint and remove or disable --insecure and arbitrary endpoint/header overrides before deployment.
+
+Risk: The skill depends on bearer tokens or cookies for authenticated publishing.
+
+Mitigation: Use narrowly scoped credentials from environment variables and avoid storing credentials in skill files or logs.
+
+Risk: Implicit invocation and scheduled execution can publish content under the user's account at the wrong time or workspace.
+
+Mitigation: Avoid implicit invocation for publish runs and bind scheduled tasks to the intended owner workspace with auditable pipeline logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renjicode/skills/keplerjai-bulletin-publish)
+- [NewsNow AI news source](https://www.newsnow.co.uk/h/Science/AI?type=ln)
+- [KeplerJAI bulletin API](https://www.keplerjai.com/api/content/bulletin)
+- [KeplerJAI bulletin frontend](https://www.keplerjai.com/bulletin?id=<bulletin_id>)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text final summary, JSON intermediate files, and shell-command/configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes stage artifacts such as stage1-output.txt, stage1-output.normalized.json, publish-result.json, final-message.txt, and pipeline.log in the agent workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

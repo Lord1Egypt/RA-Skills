@@ -1,43 +1,53 @@
-## Description: <br>
-A reasoning and coaching skill that helps agents investigate why an existing rule, process, code path, or institution exists before recommending removal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through investigating the purpose and current value of a rule, process, code path, or institution before deciding whether to remove, modify, keep, or replace it.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Developers, operators, policy reviewers, and organizational decision makers use this skill when a rule, process, code path, or practice is proposed for removal. It guides the agent to identify the fence, investigate its origin, judge whether the original problem still applies, and document a remove, modify, keep, or replace decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may slow or challenge removal proposals even when stakeholders are under time pressure. <br>
-Mitigation: Use the skill to document the investigation path and decision criteria, then proceed once the original purpose and current applicability are explicit. <br>
-Risk: If history is unavailable, a confident removal recommendation could miss a load-bearing purpose. <br>
-Mitigation: Prefer a small reversible experiment with monitoring, removal notes, and rebuild criteria when the original rationale cannot be recovered. <br>
+## Use Case:
 
+Developers, organizational leaders, and policy teams use this skill to investigate the origin and current function of an existing safeguard before deciding whether to change it, then document the reasoning and follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deciqai/skills/chestertons-fence) <br>
-- [Sources - chestertons-fence](artifact/references/sources.md) <br>
-- [Method in Action: Chesterton 1929 and the Modern Software / Regulatory Application](artifact/examples/chesterton-1929-and-the-modern-software-regulatory-application.md) <br>
-- [deciqAI](https://deciqai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and structured investigation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask step-by-step questions before producing a final investigation summary and decision record.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: An investigation may suggest documentation or test changes beyond the intended project scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes and keep them within the project's intended scope.
+
+## Reference(s):
+
+- [Primary sources cited by the skill](references/sources.md)
+- [Chesterton's Fence skill page](https://clawhub.ai/deciqai/skills/chestertons-fence)
+- [Publisher's skill guidance](https://www.deciqai.com/c/chestertons-fence)
+- [Machine-readable skill metadata](https://www.deciqai.com/s/chestertons-fence.json)
+- [Source repository linked by the skill](https://github.com/deciqAI/knowledge-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis]
+
+**Output Format:** [Markdown with investigative questions and a structured decision summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [A stepwise investigation followed by a documented decision and follow-up.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

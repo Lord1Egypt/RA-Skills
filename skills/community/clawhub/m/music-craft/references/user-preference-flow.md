@@ -144,11 +144,11 @@ Ask: nothing. Translate the poem into structured lyrics with section tags, build
 
 > "Take this Beyoncé track and turn it into reggaeton."
 
-This is a cover / style transfer. Route by priority: use `music-craft-minimax`
-for fast cloud cover, mashup, or advanced analysis; use ACE-Step in this skill
-only if the user explicitly accepts a local, slower cover/repaint experiment.
+This is a cover / style transfer. Default to the local ACE-Step cover/repaint
+route in this skill and say it is slower and experimental. MiniMax music
+generation is no longer available.
 
-Default response: **"That needs fast cover / style transfer from reference audio. Use `music-craft-minimax` for the cloud path, or I can try the slower local ACE-Step cover experiment if you prefer no cloud."**
+Default response: **"That needs cover / style transfer from reference audio. I can try it locally with ACE-Step; it is slower and experimental. MiniMax's cloud cover is no longer available."**
 
 ## Edge Cases
 

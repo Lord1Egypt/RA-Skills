@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/approval-decision-2.0.json",
+  "title": "Omni E-commerce Approval Decision",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "approval_id", "action_id", "run_id", "client_scope", "state", "actor", "source_reference", "decided_at", "expires_at", "request_sha256", "policy_sha256", "object_sha256", "credential_sha256", "snapshot_sha256"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "approval_decision"},
+    "contract_name": {"const": "omni-ecom.approval-decision"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.approval-decision@1.0"], "current_execution_authority": false}},
+    "approval_id": {"type": "string", "minLength": 1},
+    "action_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "client_scope": {"type": "string", "minLength": 1},
+    "state": {"enum": ["approved", "rejected"]},
+    "actor": {"type": "string", "minLength": 1},
+    "source_reference": {"type": "string", "minLength": 1},
+    "decided_at": {"type": "string", "minLength": 1},
+    "expires_at": {"type": "string", "minLength": 1},
+    "request_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "policy_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "object_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "credential_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "snapshot_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

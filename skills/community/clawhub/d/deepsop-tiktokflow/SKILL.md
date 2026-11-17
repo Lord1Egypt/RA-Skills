@@ -29,7 +29,7 @@ description: TikTok 视频 AI 生成与发布技能（数字员工 Toby）。用
 3. 配置环境变量：
 
 ```
-DEEPSOP_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxx
+DEEPSOP_API_KEY=REDACTED-SECRET
 ```
 
 > 所有 API 请求头需携带：`x-api-key: $DEEPSOP_API_KEY`

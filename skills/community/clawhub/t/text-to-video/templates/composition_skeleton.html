@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<style>
+/* ---------- 字体声明（必填）---------- */
+@font-face { font-family: "Noto Serif SC"; src: url("fonts/noto-serif-sc-600.woff") format("woff"); font-weight: 600; font-display: block; }
+@font-face { font-family: "PingFang SC"; src: local("PingFang SC"); font-display: block; }
+@font-face { font-family: "Hiragino Sans GB"; src: local("Hiragino Sans GB"); font-display: block; }
+@font-face { font-family: "Songti SC"; src: local("Songti SC"); font-display: block; }
+
+/* ---------- 主题色板（按 plan §5 调整）---------- */
+:root {
+  --bg: #F2EDF7;
+  --text: #2A1F3D;
+  --accent-0: #6B5BBA;
+  --accent-1: #9B5BA8;
+  --accent-2: #6B9B8B;
+  --accent-3: #B5895B;
+  --accent-4: #5B89B5;
+  --ink-soft: rgba(42,31,61,0.55);
+  --font-serif: "Noto Serif SC", "Songti SC", "STSong", serif;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
+  background: var(--bg);
+  font-family: var(--font-serif);
+}
+
+/* ---------- 画幅 1080×1920 竖屏；横屏改 1920×1080 ---------- */
+#stage {
+  position: relative; width: 100%; height: 100%;
+  overflow: hidden; background: var(--bg);
+}
+
+/* 底视频（如果使用实拍口播作 PIP 或全屏底）*/
+#bg-video {
+  position: absolute; left: 0; top: 0;
+  width: 1080px; height: 1920px;
+  overflow: hidden; z-index: 5;
+}
+
+/* 卡片层（z-index 10，在视频之上）*/
+.card-host {
+  position: absolute; pointer-events: none;
+  overflow: hidden; z-index: 10;
+  visibility: hidden; opacity: 0;  /* 初始隐藏，GSAP 控制 */
+}
+</style>
+</head>
+<body>
+<div id="stage" data-composition-id="main" data-start="0" data-duration="66" data-width="1080" data-height="1920">
+
+  <!-- 1. 视频底层（如有；Rule 3: 必须是 root 直系）-->
+  <video id="bg-video" class="video-wrapper" src="input-video.mp4" muted playsinline
+         data-start="0" data-duration="66" data-track-index="1"></video>
+
+  <!-- 2. 音轨（TTS 产出；Rule 3: 必须是 root 直系）-->
+  <audio id="voice" src="audio.mp3" data-start="0" data-duration="66" data-track-index="0"></audio>
+
+  <!-- 3. 卡片层：每个场景一个 card-host clip -->
+  <!--
+    <div class="card-host clip" data-card-id="card-01"
+         data-start="0" data-duration="8" data-track-index="2"
+         style="left:0;top:0;width:1080px;height:1920px;">
+      <div class="card" data-card-id="card-01">
+        <div class="root">
+          ...（按 plan §2 画面建议写 DOM）...
+        </div>
+      </div>
+    </div>
+  -->
+
+  <!-- 4. GSAP 时间线（同步构建 + 注册到 window.__timelines）-->
+  <script src="gsap.min.js"></script>
+  <script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+
+  // 工具函数
+  function enter(id, t) {
+    tl.set(`.card-host[data-card-id="${id}"]`, { visibility: "visible" }, t);
+    tl.fromTo(`.card-host[data-card-id="${id}"]`,
+      { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, t);
+  }
+  function exit(id, tEnd) {
+    tl.to(`.card-host[data-card-id="${id}"]`,
+      { opacity: 0, duration: 0.3, ease: "power2.in" }, tEnd - 0.3);
+    tl.set(`.card-host[data-card-id="${id}"]`, { visibility: "hidden" }, tEnd);
+  }
+  function rise(sel, t, d = 0.5) {
+    tl.fromTo(sel, { opacity: 0, y: 34 },
+      { opacity: 1, y: 0, duration: d, ease: "power2.out" }, t);
+  }
+
+  // ====== 按 plan §2 排时间线（示例 3 场景）======
+  // card-01: 0 ~ 7.6s
+  enter("card-01", 0.0);
+  rise("#c01-kicker", 0.2);
+  rise("#c01-title", 0.5);
+  exit("card-01", 7.6);
+
+  // card-02: 7.7 ~ 13.2s
+  enter("card-02", 7.7);
+  rise("#c02-kicker", 7.9);
+  rise("#c02-title", 8.1);
+  // ...
+  exit("card-02", 13.2);
+
+  // card-03: 13.4 ~ 18.4s
+  enter("card-03", 13.4);
+  // ...
+  exit("card-03", 18.4);
+
+  // ====== 注册到 hyperframes timeline ======
+  window.__timelines["main"] = tl;
+  </script>
+</div>
+</body>
+</html>

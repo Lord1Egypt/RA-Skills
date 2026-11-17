@@ -1,44 +1,55 @@
-## Description: <br>
-Enterprise-grade automated operations for Xianyu stores with full lifecycle management, confirmation safeguards, and intelligent decision engine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise-grade automated operations for Xianyu stores with full lifecycle management, confirmation safeguards, and an intelligent decision engine.
 
-## Publisher: <br>
-[crab-xieyujin](https://clawhub.ai/user/crab-xieyujin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crab-xieyujin](https://clawhub.ai/user/crab-xieyujin)
 
-## Use Case: <br>
-Store operators and agents use this skill to manage Xianyu listings, pricing, order workflows, and daily operation plans through automated workflows with confirmations for higher-impact actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for sensitive Xianyu store authority. <br>
-Mitigation: Use a dedicated low-permission Xianyu application key, keep credentials in environment variables or a secret manager, and revoke keys when the skill is no longer trusted. <br>
-Risk: Advertised automation safety caps are not clearly enforced in the provided code. <br>
-Mitigation: Keep semi-automatic mode enabled, require confirmation for listing, order, price, and shipping writes, and verify dependent skills before deployment. <br>
-Risk: Automated listing, pricing, or order actions can affect store performance and compliance. <br>
-Mitigation: Start with dry-run or semi-automatic workflows, monitor operation logs for anomalies, and review platform-rule compliance before enabling broader automation. <br>
+## Use Case:
 
+External sellers, store operators, and developers use this skill to configure and automate Xianyu store operations such as product lifecycle management, pricing strategy, order workflows, and monitoring.
 
-## Reference(s): <br>
-- [Goofish/Xianyu homepage](https://www.goofish.pro) <br>
-- [ClawHub skill page](https://clawhub.ai/crab-xieyujin/xianyu-automation-skill) <br>
-- [ClawHub source listing](https://clawhub.com/skills/xianyu-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, API calls, configuration, guidance] <br>
-**Output Format:** [Python code, structured result dictionaries, and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XIAN_YU_APP_KEY and XIAN_YU_APP_SECRET plus Python and dependent Xianyu skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill automates account-changing Xianyu store operations while advertised safety limits and success reporting are not fully enforced by the included code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing, keep manual approval or dry-run controls at the dependency layer, and avoid unattended production use until limits and reporting are enforced and tested.
+
+Risk: Automation requires Xianyu application credentials and can affect live store products, prices, or orders through dependent skills.
+
+Mitigation: Use a dedicated low-permission Xianyu key, store secrets outside the skill, rotate credentials regularly, and monitor operation logs for unexpected changes.
+
+## Reference(s):
+
+- [Goofish / Xianyu Open Platform](https://www.goofish.pro)
+- [ClawHub Source Listing](https://clawhub.com/skills/xianyu-automation)
+- [ClawHub Skill Page](https://clawhub.ai/crab-xieyujin/skills/xianyu-automation-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with Python-oriented automation examples and configuration requirements]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XIAN_YU_APP_KEY and XIAN_YU_APP_SECRET; depends on xianyu-api-client-skill and xianyu-product-manager-skill.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

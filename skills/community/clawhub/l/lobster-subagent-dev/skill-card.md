@@ -1,41 +1,58 @@
-## Description: <br>
-Subagent-driven development. Dispatch fresh subagent per task with 2-stage review (spec + quality). Cost-aware model routing. From Superpowers by Jesse Vincent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Subagent-driven development. Dispatch fresh subagent per task with 2-stage review (spec + quality). Cost-aware model routing. From Superpowers by Jesse Vincent.
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to structure implementation work around fresh subagents, separate specification review, separate code quality review, and final test verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can lead to code changes, test runs, model usage, and commits. <br>
-Mitigation: Review diffs and require approval for commits or high-impact commands before applying changes. <br>
-Risk: Subagent handoffs and reviews can still produce incorrect or misleading development guidance. <br>
-Mitigation: Keep the separate specification review, code quality review, and full test suite verification before considering work complete. <br>
+## Use Case:
 
+Developers use this skill to coordinate subagent-driven software development by dispatching a fresh subagent for each planned task, then requiring specification and quality reviews before completion. The workflow is intended for development tasks where the agent may create or review code, run tests, and make commits when directed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangxiaofei860208-source/lobster-subagent-dev) <br>
-- [Superpowers project inspiration](https://github.com/obra/superpowers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown workflow guidance with task, review, testing, and command recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide repository edits, tests, model routing, and commits; no hidden code or credential access reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The workflow can lead an agent to change code or make commits when applied to a development plan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only for intended development work; review planned changes, run the relevant tests, and confirm commits are desired.
+
+Risk: A subagent may produce incomplete work if it receives too little task context.
+
+Mitigation: Provide the exact task requirements and necessary file context, and re-dispatch when the agent reports that it needs more context.
+
+Risk: Skipping the staged reviews could allow incorrect or low-quality implementation work to proceed.
+
+Mitigation: Require the specification review to pass before quality review, resolve open review issues, and run the full test suite after all tasks complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaofei860208-source/skills/lobster-subagent-dev)
+- [Superpowers project](https://github.com/obra/superpowers)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Markdown guidance with workflow steps, routing tables, and review criteria]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to create task tracking, code changes, tests, reviews, and commits when applied to a development plan.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Use DeepSeek V4 Flash and Pro from the command line for one-shot Q&A, thinking mode, and multi-turn chat through an OpenAI-compatible API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use DeepSeek V4 Flash and Pro from the command line for one-shot Q&A, thinking mode, and multi-turn chat through an OpenAI-compatible API.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-Developers and engineers use this skill to call DeepSeek V4 Flash or Pro from a terminal for Q&A, writing, coding, summaries, reasoning tasks, and multi-turn chat. It is useful when an agent needs practical shell commands and guidance for using DeepSeek's OpenAI-compatible API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, system prompts, and chat history are sent to DeepSeek's external API. <br>
-Mitigation: Use the skill only for data approved for DeepSeek API processing, and avoid confidential or regulated data unless that use is explicitly approved. <br>
-Risk: The skill requires the sensitive DEEPSEEK_API_KEY credential. <br>
-Mitigation: Keep the key private, store it in an appropriate local secret or environment mechanism, and avoid exposing it in shared shell history, logs, or support transcripts. <br>
+## Use Case:
 
+Developers and external users use this skill to call DeepSeek V4 Flash or Pro from a terminal for Q&A, writing, coding, summaries, reasoning, and multi-turn chat. It is useful when an agent needs practical command examples, model selection guidance, or configuration steps for DeepSeek API access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiajiaoy/deepseek-v4) <br>
-- [DeepSeek API documentation](https://api-docs.deepseek.com) <br>
-- [DeepSeek API keys](https://platform.deepseek.com/api_keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text and streamed terminal output with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses DEEPSEEK_API_KEY and may stream model output from DeepSeek's external API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Prompts, system prompts, and chat history are sent to DeepSeek's remote API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, regulated data, or sensitive internal content unless this use is approved.
+
+Risk: The one-shot and chat scripts depend on the OpenAI Python SDK at runtime.
+
+Mitigation: Pin the SDK dependency or run the scripts in a constrained environment for stronger supply-chain hygiene.
+
+## Reference(s):
+
+- [ClawHub Deepseek V4 Skill](https://clawhub.ai/jiajiaoy/skills/deepseek-v4)
+- [DeepSeek API Documentation](https://api-docs.deepseek.com)
+- [DeepSeek API Keys](https://platform.deepseek.com/api_keys)
+- [DeepSeek Platform](https://platform.deepseek.com)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and streamed text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and DEEPSEEK_API_KEY; prompts, system prompts, and chat history are sent to DeepSeek's remote API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,64 @@
-## Description: <br>
-Build or operate a chief-of-staff style communications layer that merges multiple inboxes and chat sources into one prioritized digest with follow-up memory, decision tracking, recommendations, alerts, and a strict no-send boundary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build or operate a chief-of-staff style communications layer that merges multiple inboxes and chat sources into one prioritized digest with follow-up memory, decision tracking, recommendations, alerts, and a strict no-send boundary.
 
-## Publisher: <br>
-[heyalerio](https://clawhub.ai/user/heyalerio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heyalerio](https://clawhub.ai/user/heyalerio)
 
-## Use Case: <br>
-Employees and external users use this skill to consolidate email, chat, messaging, and local notes into a prioritized operating queue with follow-up and decision memory. It supports digesting, recommendations, alerts, and approval-gated external steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may review private inbox, chat, messaging, and local-note content. <br>
-Mitigation: Only provide sources the user is comfortable having summarized, and treat local notes as context rather than approved external-sharing material. <br>
-Risk: Recommended next steps or alerts may be wrong when communications context is incomplete or ambiguous. <br>
-Mitigation: Keep recommendations concise, include uncertainty when useful, and use source gaps to identify missing context before acting. <br>
-Risk: Draft creation, account changes, bookings, spending, form submissions, or message sending could affect external systems. <br>
-Mitigation: Require explicit approval before any external action or state mutation, and escalate when scope, approval, policy, or reversibility is unclear. <br>
+## Use Case:
 
+External users and agents use this skill to turn email, chat, messaging, and local notes into one prioritized operating queue with reply needs, pending decisions, follow-ups, low-signal items, and source gaps.
 
-## Reference(s): <br>
-- [Operating Model](references/operating-model.md) <br>
-- [Registries](references/registries.md) <br>
-- [Persistent Memory](references/persistent-memory.md) <br>
-- [Recommendations And Alerts](references/recommendations-and-alerts.md) <br>
-- [Source Heuristics](references/source-heuristics.md) <br>
-- [Local Context](references/local-context.md) <br>
-- [Safety](references/safety.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown digest with prioritized sections, concise ledgers, recommendations, alerts, and source gaps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [External actions such as sending messages, changing account state, booking, spending, or submitting forms require explicit approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: The skill may process sensitive inbox, chat, and local-note content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with sources the user intends to expose to the agent and avoid sharing local notes externally unless explicitly approved.
+
+Risk: Recommended next steps could lead to external communication, account changes, bookings, forms, spending, or other mutations.
+
+Mitigation: Keep the explicit approval boundary for sending messages, changing accounts, spending money, mutating external systems, or confirming real-world actions.
+
+Risk: Unread state or incomplete context can cause over-prioritization or misleading urgency.
+
+Mitigation: Treat unread state as weak evidence, include source gaps, use confidence where useful, and escalate when policy, scope, approval, or reversibility is unclear.
+
+## Reference(s):
+
+- [Executive OS ClawHub page](https://clawhub.ai/heyalerio/skills/executive-os-clean)
+- [Operating Model](artifact/references/operating-model.md)
+- [Registries](artifact/references/registries.md)
+- [Persistent Memory](artifact/references/persistent-memory.md)
+- [Recommendations And Alerts](artifact/references/recommendations-and-alerts.md)
+- [Safety](artifact/references/safety.md)
+- [Source Heuristics](artifact/references/source-heuristics.md)
+- [Local Context](artifact/references/local-context.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown digest with concise sections, recommended next steps, and optional follow-up or decision ledger entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external messages, posts, sends, or system mutations without explicit approval.]
+
+## Skill Version(s):
+
+0.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

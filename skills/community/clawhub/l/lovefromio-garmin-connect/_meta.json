@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7ctkm6wpdn2rrdpbndrp7d2s81w3hb",
+  "ownerId": "kn7c0sy4fbf4n92n3nm242axc1800bgk",
   "slug": "lovefromio-garmin-connect",
-  "version": "1.0.2",
-  "publishedAt": 1777255507605
+  "version": "1.0.1",
+  "publishedAt": 1769535574161,
+  "forkOf": "rayleigh3105/garmin-connect@1.0.0"
 }

@@ -1,38 +1,53 @@
-## Description: <br>
-Send a workflow request to ComfyUI and return image results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send a workflow request to ComfyUI and return image results.
 
-## Publisher: <br>
-[Xtopher86](https://clawhub.ai/user/Xtopher86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xtopher86](https://clawhub.ai/user/xtopher86)
 
-## Use Case: <br>
-Developers and creators use this skill to submit ComfyUI workflows to a trusted ComfyUI server and receive JSON image results for agent-driven image generation workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends workflow content and optional Basic Auth credentials to the configured ComfyUI server over HTTP. <br>
-Mitigation: Use only ComfyUI servers you control or trust, set COMFYUI_HOST and COMFYUI_PORT explicitly, avoid reused passwords, and prefer a trusted local network, VPN, or HTTPS reverse proxy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Xtopher86/comfyui-request) <br>
-- [Publisher profile](https://clawhub.ai/user/Xtopher86) <br>
+## Use Case:
 
+Developers and creators use this skill to submit ComfyUI workflow JSON to a configured ComfyUI server and receive generated image results.
 
-## Skill Output: <br>
-**Output Type(s):** [json, text, configuration] <br>
-**Output Format:** [JSON object containing success status, prompt ID, image metadata, and image URLs; error responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses COMFYUI_HOST, COMFYUI_PORT, and optional COMFYUI_USER and COMFYUI_PASS configuration; supports timeout, polling interval, and first-image options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: ComfyUI credentials and workflow contents may be sent over unencrypted HTTP.
+
+Mitigation: Use localhost or an isolated private network, and avoid basic authentication unless the service is protected by a trusted TLS proxy or the skill is updated to support HTTPS and reject plaintext authenticated requests.
+
+Risk: The skill depends on a user-configured ComfyUI network path.
+
+Mitigation: Install only when the configured ComfyUI endpoint is trusted and reachable from the runtime environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xtopher86/skills/comfyui-request)
+- [ClawHub publisher profile](https://clawhub.ai/user/xtopher86)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON response with success status, prompt identifiers, image metadata, and image URLs or error details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a reachable ComfyUI server and workflow JSON input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

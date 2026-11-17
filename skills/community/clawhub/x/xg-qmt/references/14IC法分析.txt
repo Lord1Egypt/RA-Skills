@@ -1,0 +1,23 @@
+#encoding:gbk
+'''
+14IC法分析
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+import pandas as pd
+import numpy as np
+
+def init(ContextInfo):
+	ContextInfo.number = 0
+	ContextInfo.accID = 'test'
+def handlebar(ContextInfo):
+	if ContextInfo.number == 0:
+		VOL20 = pd.read_csv('C:/Users/QZM/Desktop/finally/VOL20.csv',index_col=[0])
+		returns=pd.read_csv('C:/Users/QZM/Desktop/duoyinzi/returns.csv',index_col=[0])
+		VOL20 = VOL20.loc['20171211':'20181108']
+		returns = returns.loc['20171212':'20181109']
+		IC = pd.Series([0.]*len(VOL20.index),index=VOL20.index)
+		for i in range(len(VOL20.index)):
+			IC[VOL20.index[i]]= (VOL20.iloc[i]).corr(returns.iloc[i])
+		print(IC,IC.mean(),IC.std(),len(IC[IC>0]))
+		IC.to_csv('C:/Users/QZM/Desktop/finally/IC.csv')
+	ContextInfo.number += 1

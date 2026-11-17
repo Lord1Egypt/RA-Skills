@@ -1,44 +1,57 @@
-## Description: <br>
-Analyze YouTube workflows with JustOneAPI, including video Details and channel Videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze YouTube workflows with JustOneAPI, including video Details and channel Videos.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve API-backed YouTube video details and channel video lists through JustOneAPI when a user provides identifiers such as videoId or channelId. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent as a URL query parameter, which can be captured in command lines, request URLs, logs, screenshots, or process history. <br>
-Mitigation: Use a low-scope or easily rotated token, avoid exposing command lines or URLs, and rotate the token if it may have been captured. <br>
-Risk: The skill sends YouTube lookup requests and the API token to JustOneAPI. <br>
-Mitigation: Install only if you trust JustOneAPI with the requested YouTube lookup data and credential handling. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve YouTube video details or channel video lists through JustOneAPI when they can provide required identifiers such as videoId or channelId.
 
-## Reference(s): <br>
-- [ClawHub YouTube API skill page](https://clawhub.ai/justoneapi/justoneapi-youtube) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_youtube&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_youtube&utm_content=project_link) <br>
-- [YouTube operations](artifact/generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and user-provided YouTube identifiers; backend errors include payload details and the operation ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The JustOneAPI token can be exposed through command-line arguments and URL query logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped token, avoid recording command lines or request URLs in shared logs, and rotate the token if it may have been captured in shell history, traces, or monitoring systems.
+
+Risk: Authenticated YouTube lookups depend on user-supplied identifiers and can return data outside the intended scope if identifiers are wrong.
+
+Mitigation: Ask for missing required parameters, do not invent videoId or channelId values, and echo the selected identifiers in the response so the request scope is explicit.
+
+## Reference(s):
+
+- [YouTube operations](generated/operations.md)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_youtube&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_youtube&utm_content=project_link)
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-youtube)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain-language Markdown response with selected YouTube fields and optional formatted JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should include the selected operation ID, user-provided scope such as videoId or channelId, and backend error payloads when a request fails.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

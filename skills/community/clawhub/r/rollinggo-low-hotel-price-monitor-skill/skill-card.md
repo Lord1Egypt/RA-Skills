@@ -1,45 +1,55 @@
-## Description: <br>
-A RollingGo hotel price monitoring, search, and booking-guidance skill that helps an agent compare current hotel rates, evaluate cancellation flexibility, recommend hotels to watch, and hand off structured price-watch requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RollingGo Hotel Booking helps agents search hotels, compare room options and live prices, guide OAuth login, create confirmed hotel reservations after user approval, and return order or payment status.
 
-## Publisher: <br>
-[rollinggo-ai](https://clawhub.ai/user/rollinggo-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rollinggo-ai](https://clawhub.ai/user/rollinggo-ai)
 
-## Use Case: <br>
-For travel-planning agents that need to help users monitor hotel prices, assess whether an existing booking is worth watching, search and narrow hotel options, explain cancellation and price context, and produce a host-agent-ready hotel price watch request after the user chooses a specific hotel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to RollingGo service availability and any local travel, privacy, and booking rules that apply to the user and destination. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RollingGo API key exposure through commands, logs, or shared transcripts. <br>
-Mitigation: Set RollingGo_API_KEY as an environment variable and avoid placing the key directly in reusable commands or user-visible output. <br>
-Risk: Hotel searches and watch lists may reveal travel dates, destinations, booking context, and notification preferences to the RollingGo CLI/service or host agent. <br>
-Mitigation: Use the skill only for hotels the user explicitly wants monitored, and avoid retaining watch state beyond the host agent's required reminder workflow. <br>
-Risk: A price-watch recommendation could be mistaken for a guaranteed future discount or a completed booking action. <br>
-Mitigation: Present current price and cancellation information as guidance only, avoid promises about future prices, and provide booking links for the user to complete directly. <br>
+## Use Case:
 
+External users and agents use this skill to search and compare hotels, inspect room prices and cancellation policies, and create hotel bookings only after explicit user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rollinggo-ai/rollinggo-low-hotel-price-monitor-skill) <br>
-- [RollingGo publisher profile](https://clawhub.ai/user/rollinggo-ai) <br>
-- [RollingGo homepage](https://mcp.agentichotel.cn) <br>
-- [RollingGo API key application](https://mcp.agentichotel.cn/apply) <br>
+### Deployment Geography for Use:
 
+China-focused release with global hotel inventory coverage.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational guidance, Markdown recommendation tables, RollingGo CLI command guidance, and structured JSON handoff objects for hotel price-watch creation.] <br>
-**Output Parameters:** [Hotel name or ID, city or area, check-in and check-out dates, stay length, guest and room counts, room type, booked price, current price, currency, cancellation deadline, booking platform, notification preference, watch reason, trigger rule, and missing-field notes when known.] <br>
-**Other Properties Related to Output:** [Requires RollingGo_API_KEY and a RollingGo-capable runtime such as rollinggo, npx/node, or uvx/uv. The skill does not book hotels directly; the host agent handles state storage, recurring checks, price comparison, reminders, and cross-session continuity. Unknown fields are represented as null in the handoff JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 <br>
+Risk: Installer and update flows use mutable latest packages or executable downloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if RollingGo is trusted, and prefer a pinned, verified release or platform-managed install before sensitive use.
+
+Risk: The skill can create payable hotel reservations and process personal booking data such as name and email.
+
+Mitigation: Review booking details, price, cancellation policy, and contact information carefully, and require explicit user confirmation before order creation.
+
+## Reference(s):
+
+- [CLI command parameter reference](artifact/references/cli-params.md)
+- [ClawHub skill page](https://clawhub.ai/rollinggo-ai/skills/rollinggo-hotel-skill-cn-new)
+- [RollingGo Hotel CLI release downloads](https://github.com/RollingGo-AI/oauth-hotel-cli/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown hotel cards and order summaries, with shell commands for the agent to execute.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before price locking or creating a payable reservation.]
+
+## Skill Version(s):
+
+1.1.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

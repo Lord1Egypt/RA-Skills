@@ -1,41 +1,59 @@
-## Description: <br>
-Build practical beauty routines with skincare basics, makeup strategy, and hair care plans tailored to skin type, budget, and schedule. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build practical beauty routines with skincare basics, makeup strategy, and hair care plans tailored to skin type, budget, and schedule.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill for practical skincare, makeup, haircare, and grooming guidance tailored to profile, budget, schedule, and event context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local memory may retain beauty profile, routine, budget, or preference details in ~/beauty/. <br>
-Mitigation: Ask for explicit approval before writing memory and save only durable details the user is comfortable retaining locally. <br>
-Risk: Beauty routine guidance can be mistaken for medical advice when reactions, swelling, persistent pain, or severe breakouts are present. <br>
-Mitigation: Keep recommendations conservative, include patch testing for new products, and direct users to licensed medical care for red-flag symptoms. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Beauty Release](https://clawhub.ai/ivangdavila/beauty) <br>
-- [Publisher Profile: ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
-- [Beauty Skill Homepage](https://clawic.com/skills/beauty) <br>
+## Use Case:
 
+External users and agents use this skill to build practical skincare, makeup, haircare, and grooming routines adapted to skin and hair profile, budget, schedule, and event context.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands for local setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; optional local memory notes are created only after user approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may retain beauty preferences and routine context locally under ~/beauty when the user approves memory.
+
+Mitigation: Ask for explicit confirmation before writing memory, avoid saving medical diagnoses or sensitive identifiers, and review or delete ~/beauty/memory.md when retained context is no longer wanted.
+
+Risk: Beauty recommendations can be unsafe when treated as medical advice or when several active products are changed at once.
+
+Mitigation: Use patch tests, introduce one new variable at a time, stop on burning, swelling, or persistent redness, and recommend licensed medical care for persistent, painful, scarring, or severe reactions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/beauty)
+- [Beauty Skill Homepage](https://clawic.com/skills/beauty)
+- [Setup](setup.md)
+- [Safety and Hygiene Guardrails](safety.md)
+- [Memory Template](memory-template.md)
+- [Universal Beauty Frameworks](frameworks.md)
+- [Routine Templates](routines.md)
+- [Product Selection Rules](products.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only output; optional local memory is used only with explicit user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

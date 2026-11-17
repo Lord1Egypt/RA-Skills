@@ -1,41 +1,59 @@
-## Description: <br>
-Helps a VC associate, principal, or partner turn deal notes, deck contents, and diligence summaries into an Investment Committee memo with an evidence-vs-assertion matrix, kill-criteria checklist, and recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a VC associate, principal, or partner needs to turn deal notes, deck contents, and diligence summaries into an Investment Committee memo.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-VC deal team members use this skill to prepare first-look, full IC, or update memos from supplied deal materials while preserving source tags, open questions, kill criteria, and a Pass/Track/Diligence/Term-sheet recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential founder, deal, or data-room material may be exposed if pasted without redaction. <br>
-Mitigation: Redact highly sensitive material where possible and keep founder material within the drafting flow. <br>
-Risk: The memo may contain incorrect or misleading claims when user-supplied inputs are incomplete or unsourced. <br>
-Mitigation: Treat the memo as a draft, verify every sourced claim before sharing, and keep missing metrics as Unknown open questions. <br>
-Risk: Readers may mistake the generated recommendation for investment advice. <br>
-Mitigation: Use the required DRAFT label and deal-lead verification, and rely on the skill's restriction against investment advice or outcome prediction. <br>
+## Use Case:
 
+VC associates, principals, and partners use this skill to turn deal notes, deck contents, and diligence summaries into a draft investment committee memo with source-tagged claims, open questions, kill criteria, and a Pass, Track, Diligence, or Term-sheet recommendation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown draft memo with tables and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a DRAFT verification label, source-tagged claims, an evidence matrix, open questions, kill criteria, and restricted recommendation labels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata and CHANGELOG, released 2026-05-28) <br>
+Risk: Users may paste confidential founder or data-room material into an unapproved workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved workspaces for confidential data and redact trade secrets before pasting, consistent with the security guidance.
+
+Risk: The draft memo may be mistaken for investment advice or verified diligence.
+
+Mitigation: Keep the DRAFT - DEAL LEAD MUST VERIFY label and require every claim or metric to cite a supplied source or be marked Unknown.
+
+Risk: Currency or fiscal-calendar assumptions can make financial statements ambiguous.
+
+Mitigation: Ask users to specify any non-USD currency or non-calendar fiscal year; otherwise rely on the documented defaults.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/investment-committee-memo)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown draft memo with an evidence matrix, kill criteria checklist, open questions, and recommendation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafts are labeled DRAFT - DEAL LEAD MUST VERIFY; metrics without supplied sources are marked Unknown.]
+
+## Skill Version(s):
+
+0.1.2 (source: evidence.release.version and artifact CHANGELOG, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

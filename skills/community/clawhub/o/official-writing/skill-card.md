@@ -1,38 +1,54 @@
-## Description: <br>
-党政机关公文写作技能 - 提供国家标准格式规范、各类公文模板、写作技巧。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese Party and government official-document writing guidance, including GB/T 9704-2012 format notes, common templates, and drafting tips.
 
-## Publisher: <br>
-[Zsdadad](https://clawhub.ai/user/Zsdadad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zsdadad](https://clawhub.ai/user/zsdadad)
 
-## Use Case: <br>
-Employees and external users writing Chinese official documents use this skill for GB/T 9704-2012 formatting guidance, common document templates, and writing checks for notices, reports, speeches, news releases, and related materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated official documents may contain factual mistakes, outdated formatting assumptions, or content that does not match local policy requirements. <br>
-Mitigation: Review generated documents for factual accuracy, current formatting rules, and local policy requirements before use. <br>
+## Use Case:
 
+External users and employees drafting Chinese PRC-style official documents can use this skill for format guidance, reusable templates, and writing checks for notices, reports, speeches, news releases, and similar materials.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/openclaw/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with Chinese official-document templates and formatting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or external access required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Users may apply Chinese PRC-specific official-document guidance to other languages, jurisdictions, or organizations with different rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended jurisdiction and organization style guide before relying on the generated format or wording.
+
+Risk: Official-document drafts can still contain incorrect, incomplete, or outdated format guidance.
+
+Mitigation: Review final documents against current official standards and internal review requirements before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zsdadad/skills/official-writing)
+- [OpenClaw skills homepage](https://github.com/openclaw/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with document templates and formatting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focused on Chinese PRC-style official-document conventions and templates.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

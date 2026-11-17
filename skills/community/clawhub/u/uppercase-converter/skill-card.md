@@ -1,38 +1,48 @@
-## Description: <br>
-Convert English lowercase letters to uppercase using a bundled Python script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts English lowercase letters to uppercase using a bundled Python script.
 
-## Publisher: <br>
-[jennyli2022](https://clawhub.ai/user/jennyli2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jennyli2022](https://clawhub.ai/user/jennyli2022)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, agents, and end users use this skill to convert supplied text or piped file contents to ASCII uppercase while leaving digits, punctuation, whitespace, and non-English characters unchanged.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: User-requested file rewrites can overwrite existing content if converted output is written back to the same path.
+
+Mitigation: Confirm the intended file change before writing back; otherwise return stdout or write to a new file.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and general users can use this skill when they need an agent to convert supplied text, piped input, or file contents from lowercase ASCII English letters to uppercase. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process text from command-line arguments, standard input, or user-selected files, including sensitive content. <br>
-Mitigation: Use it only on text the user is authorized to transform and review any requested file write before replacing existing content. <br>
+**Output Format:** [Plain text result, with Markdown guidance when command usage is shown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jennyli2022/uppercase-converter) <br>
+**Other Properties Related to Output:** [Only ASCII a-z letters are converted; other characters pass through unchanged.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Plain text result returned from stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Only ASCII a-z letters are converted; digits, punctuation, whitespace, and non-English characters are preserved.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

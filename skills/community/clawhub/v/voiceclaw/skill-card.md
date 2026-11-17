@@ -1,42 +1,61 @@
-## Description: <br>
-VoiceClaw lets OpenClaw agents transcribe inbound audio with local Whisper and generate spoken replies with local Piper TTS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VoiceClaw lets OpenClaw agents transcribe inbound audio with local Whisper and synthesize voice replies with local Piper TTS without cloud APIs.
 
-## Publisher: <br>
-[Asif2BD](https://clawhub.ai/user/Asif2BD) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[asif2bd](https://clawhub.ai/user/asif2bd)
 
-## Use Case: <br>
-Developers and agent operators use VoiceClaw to add local speech-to-text and text-to-speech behavior to OpenClaw agents. It is intended for voice messages, audio attachments, spoken replies, and workflows where text responses should also be synthesized as audio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive recordings could be exposed if the local environment or installed voice tooling is not actually operating offline. <br>
-Mitigation: Confirm the installed scripts and required binaries remain local-only before processing sensitive audio. <br>
-Risk: Missing or misconfigured local binaries or model files can prevent transcription or speech synthesis. <br>
-Mitigation: Verify whisper, piper, ffmpeg, WHISPER_MODEL, and VOICECLAW_VOICES_DIR before deployment. <br>
+## Use Case:
 
+Developers and agent operators use VoiceClaw to add local speech-to-text and text-to-speech workflows to OpenClaw agents, especially when inbound voice messages should receive both an audio reply and a text transcript. The skill is intended for systems where Whisper, Piper, ffmpeg, and the required local model files are managed on the host.
 
-## Reference(s): <br>
-- [VoiceClaw ClawHub Page](https://clawhub.ai/Asif2BD/voiceclaw) <br>
-- [whisper.cpp](https://github.com/ggerganov/whisper.cpp) <br>
-- [Piper TTS](https://github.com/rhasspy/piper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Audio files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text transcript, WAV audio path, and Markdown guidance with bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local whisper, piper, ffmpeg, Whisper model files, and Piper voice models.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Local model and binary setup can introduce supply-chain risk if dependencies are downloaded without verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted sources, pin versions, and verify checksums for Whisper, Piper, ffmpeg, and model files before deployment.
+
+Risk: Temporary audio files may be exposed or collide on shared machines because runtime paths are written under /tmp.
+
+Mitigation: Run the skill as an unprivileged user and update temporary file handling to use mktemp or a private runtime directory before shared-host use.
+
+Risk: Speech models can mis-transcribe adversarial, noisy, or ambiguous audio and affect downstream agent responses.
+
+Mitigation: Show the transcript in text replies and have the agent confirm important spoken instructions before acting on them.
+
+## Reference(s):
+
+- [ClawHub VoiceClaw Skill Page](https://clawhub.ai/asif2bd/skills/voiceclaw)
+- [OpenClaw](https://openclaw.ai)
+- [whisper.cpp](https://github.com/ggerganov/whisper.cpp)
+- [Piper TTS](https://github.com/rhasspy/piper)
+- [Whisper ggml-base.en.bin Model](https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands; runtime scripts produce transcript text and WAV file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local whisper, piper, ffmpeg, Whisper model, and Piper voice model files; no operational network calls are declared.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

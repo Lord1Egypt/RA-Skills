@@ -1,7 +1,7 @@
 ---
 name: git-platform
 description: Detects git forge (GitHub/GitLab/Bitbucket) and maps CLI commands cross-platform
-version: 1.9.8
+version: 1.10.3
 triggers:
   - git
   - platform
@@ -16,19 +16,7 @@ source: claude-night-market
 source_plugin: leyline
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Overview](#overview)
-- [When to Use](#when-to-use)
-- [Platform Detection](#platform-detection)
-- [Quick Command Reference](#quick-command-reference)
-- [Terminology](#terminology)
-- [Integration Pattern](#integration-pattern)
-- [Detailed Resources](#detailed-resources)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Git Platform Detection & Command Mapping
@@ -129,6 +117,6 @@ Use the detected platform CLI (check session context for `git_platform`):
 
 ## Exit Criteria
 
-- Platform detected (or explicitly unknown)
-- Correct CLI tool used for all forge operations
-- Platform-appropriate terminology in user-facing output
+- [ ] Platform detected (or explicitly unknown)
+- [ ] Correct CLI tool used for all forge operations
+- [ ] Platform-appropriate terminology in user-facing output

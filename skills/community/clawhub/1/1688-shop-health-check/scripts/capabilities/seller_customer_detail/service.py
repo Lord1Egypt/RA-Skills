@@ -16,6 +16,7 @@ def get_top_old_customers(
     order: str = "desc",
     page: int = 1,
     page_size: int = 50,
+    login_id: str = None,
 ) -> dict:
     """获取头部老客户明细（商家身份由 AK 自动识别）
 
@@ -26,6 +27,7 @@ def get_top_old_customers(
         order:      排序方向 desc/asc
         page:       页码
         page_size:  每页数量
+        login_id:   店铺登录 ID，传入时通过 NEWTON_SHOP_LOGIN_ID 指定查询店铺
 
     Returns:
         API 响应 data 字段，包含头部老客户明细列表
@@ -37,14 +39,17 @@ def get_top_old_customers(
     if order not in VALID_ORDER:
         raise ValueError(f"order 必须为 desc/asc 之一，当前值: {order}")
 
-    data = api_post("/api/seller_customer_detail/1.0.0", {
+    payload = {
         "dateType": date_type,
         "buyerType": buyer_type,
         "orderBy": order_by,
         "order": order,
         "page": str(page),
         "pageSize": str(page_size),
-    })
+    }
+    if login_id:
+        payload["NEWTON_SHOP_LOGIN_ID"] = login_id
+    data = api_post("/api/alibaba.1688.seller.customer.detail/1.0.0", payload)
 
     if not isinstance(data, dict):
         raise ServiceError("格式异常，请稍后重试")

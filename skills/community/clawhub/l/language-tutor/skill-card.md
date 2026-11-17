@@ -1,44 +1,60 @@
-## Description: <br>
-Create language learning audio with SenseAudio TTS, including pronunciation drills, bilingual lessons, slowed speech practice, and dialogue exercises. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create language learning audio with SenseAudio TTS, including pronunciation drills, bilingual lessons, slowed speech practice, and dialogue exercises.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-External users and developers use this skill to generate language-learning audio, pronunciation drills, bilingual lessons, slowed listening practice, dialogue exercises, and companion study notes through SenseAudio TTS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a SenseAudio API key and can call external TTS endpoints. <br>
-Mitigation: Read credentials only from SENSEAUDIO_API_KEY, send them only in the Authorization header, and avoid logging or saving secrets. <br>
-Risk: Generated lesson files and manifests can expose sensitive learner text or troubleshooting identifiers. <br>
-Mitigation: Use deterministic local filenames, review transcripts before sharing, and include trace IDs only when needed for troubleshooting. <br>
-Risk: Audio composition may fail or produce incorrect output when local audio dependencies are missing. <br>
-Mitigation: Use pydub and an audio backend only when available; otherwise emit individual audio clips and a Markdown manifest. <br>
+## Use Case:
 
+External users, educators, and developers use this skill to generate pronunciation drills, bilingual lessons, slowed listening practice, dialogue exercises, audio clips, and companion study notes through SenseAudio TTS.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/scikkk/language-tutor) <br>
-- [SenseAudio Homepage](https://senseaudio.cn) <br>
-- [SenseAudio API Key Page](https://senseaudio.cn/platform/api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, audio files, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets, JSON API payloads, file manifests, and generated audio file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SENSEAUDIO_API_KEY and python3; optional local audio merging depends on pydub and an audio backend such as ffmpeg.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter is 1.0.0) <br>
+Risk: Lesson text is sent to SenseAudio's external TTS API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content appropriate for SenseAudio processing and disclose this provider data flow to users.
+
+Risk: The helper process requires access to SENSEAUDIO_API_KEY.
+
+Mitigation: Run the skill in a limited environment, keep the key in the environment only, and avoid logging or saving credentials.
+
+Risk: Runtime behavior depends on local Python packages and optional audio tooling such as ffmpeg.
+
+Mitigation: Pin or review requests and pydub versions before use, and fall back to separate audio files when merge tooling is unavailable.
+
+## Reference(s):
+
+- [Language Tutor on ClawHub](https://clawhub.ai/scikkk/skills/language-tutor)
+- [SenseAudio homepage](https://senseaudio.cn)
+- [SenseAudio API key page](https://senseaudio.cn/platform/api-key)
+- [SenseAudio TTS endpoint](https://api.senseaudio.cn/v1/t2a_v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with Python examples, configuration notes, and manifests for generated audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce individual MP3 clips, merged lesson audio when local audio tooling is available, and companion study notes.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

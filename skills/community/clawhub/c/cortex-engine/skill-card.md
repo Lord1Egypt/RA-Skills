@@ -1,42 +1,59 @@
-## Description: <br>
-Persistent cognitive memory for AI agents to query, record, review, and consolidate knowledge across sessions with spreading activation, FSRS scheduling, and NLI contradiction detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent cognitive memory for AI agents -- query, record, review, and consolidate knowledge across sessions with spreading activation, FSRS scheduling, and NLI contradiction detection.
 
-## Publisher: <br>
-[idapixl](https://clawhub.ai/user/idapixl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fozikio](https://clawhub.ai/user/fozikio)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure agents to query, record, review, and consolidate local memory across sessions with a cortex-engine MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may persist secrets, credentials, personal data, or confidential project details in local memory. <br>
-Mitigation: Avoid storing sensitive data, and periodically review or prune stored memories. <br>
-Risk: The skill depends on a separately installed cortex-engine npm package and MCP server. <br>
-Mitigation: Verify the package and provided integrity checksum before running the MCP server. <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect agents to a local persistent-memory MCP service for querying prior knowledge, recording facts and questions, tracking work across sessions, and producing memory-grounded reviews.
 
-## Reference(s): <br>
-- [Cortex Engine on ClawHub](https://clawhub.ai/idapixl/cortex-engine) <br>
-- [cortex-engine npm package](https://www.npmjs.com/package/cortex-engine) <br>
-- [cortex-engine source repository](https://github.com/Fozikio/cortex-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline tool-call and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; relies on a separately installed local cortex-engine MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill installs and relies on a changing third-party local service package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the @fozikio/cortex-engine package before installation and prefer a reviewed pinned version or local locked install when possible.
+
+Risk: Observations, beliefs, operational notes, and consolidations persist across agent sessions.
+
+Mitigation: Avoid storing secrets unless intentional, and periodically review or prune persisted memory contents.
+
+Risk: The local memory service may access local resources while running.
+
+Mitigation: Run the service with the least local access practical.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fozikio/skills/cortex-engine)
+- [@fozikio/cortex-engine npm package](https://www.npmjs.com/package/@fozikio/cortex-engine)
+- [Cortex Engine project](https://github.com/Fozikio/cortex-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with inline tool examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides use of a local MCP memory service and may produce structured review notes grounded in stored memory.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Analyze media files with MediaInfo CLI and compare behavior with ffprobe. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze media files with MediaInfo CLI and compare behavior with ffprobe. Use when inspecting container/codec metadata, extracting width/height/duration/bitrate, troubleshooting files that ffprobe cannot parse, or classifying media by orientation (landscape/portrait).
 
-## Publisher: <br>
-[KarlZhu-ZXC](https://clawhub.ai/user/KarlZhu-ZXC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[karlzhu-zxc](https://clawhub.ai/user/karlzhu-zxc)
 
-## Use Case: <br>
-Developers and engineers use this skill to install MediaInfo without root access, inspect media container and codec metadata, troubleshoot files that ffprobe cannot parse, and classify video orientation from width, height, and rotation metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install workflow downloads and builds MediaInfo source code from mediaarea.net, so replacing the source URL or using an unverified archive can introduce supply-chain risk. <br>
-Mitigation: Run the installer without root privileges, avoid overriding MEDIAINFO_URL unless the replacement source is trusted, and verify the upstream archive when possible. <br>
+## Use Case:
 
+Developers and engineers use this skill to install and run MediaInfo locally, inspect media container and codec metadata, compare results with ffprobe, and classify media orientation from width, height, and rotation fields.
 
-## Reference(s): <br>
-- [ClawHub media-info release](https://clawhub.ai/KarlZhu-ZXC/media-info) <br>
-- [MediaInfo CLI source archive used by the installer](https://mediaarea.net/download/binary/mediainfo/0.7.94/MediaInfo_CLI_0.7.94_GNU_FromSource.tar.bz2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional MediaInfo plain-text or JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the inspected media file and the locally built MediaInfo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The installer downloads and runs third-party build code without integrity verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run installation only in a contained environment, pin and verify the source archive with checksum or signature validation, and avoid exposing credentials or sensitive files.
+
+Risk: MEDIAINFO_URL can override the download source.
+
+Mitigation: Use MEDIAINFO_URL only with a trusted archive source and validate the archive before running the build.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/karlzhu-zxc/skills/media-info)
+- [MediaInfo CLI source archive](https://mediaarea.net/download/binary/mediainfo/0.7.94/MediaInfo_CLI_0.7.94_GNU_FromSource.tar.bz2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and MediaInfo plain-text or JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local vendor and temporary test files when the bundled install or smoke-test scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

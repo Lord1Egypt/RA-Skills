@@ -1,41 +1,57 @@
-## Description: <br>
-Generates local Kokoro-ONNX text-to-speech audio for iMessage voice replies and prepares BlueBubbles send parameters for native inline voice bubbles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+iMessage Voice Reply generates local Kokoro-ONNX TTS audio and sends it through BlueBubbles as native iMessage voice bubbles.
 
-## Publisher: <br>
-[bolander72](https://clawhub.ai/user/bolander72) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bolander72](https://clawhub.ai/user/bolander72)
 
-## Use Case: <br>
-External users and developers use this skill to reply to iMessage voice messages with locally generated spoken responses through BlueBubbles. It is intended for cases where a voice response is explicitly requested or matches the sender's voice-message format. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated voice replies can be sent to the wrong recipient or contain unintended content. <br>
-Mitigation: Review the recipient, generated audio content, and BlueBubbles send payload before sending. <br>
-Risk: Setup downloads unpinned Python packages and Kokoro model files. <br>
-Mitigation: Install in an isolated environment and review package/model sources before use in sensitive environments. <br>
-Risk: Native iMessage voice bubbles depend on macOS afconvert and BlueBubbles configuration. <br>
-Mitigation: Confirm BlueBubbles is configured and test the expected CAF/Opus output path before relying on the skill for routine replies. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bolander72/imessage-voice-reply) <br>
+## Use Case:
 
+OpenClaw users use this skill to reply with audio when a user sends a voice message or explicitly asks for a voice response. It helps an agent generate local TTS audio, prepare it in an iMessage-friendly format, and send it through a configured BlueBubbles channel.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, JSON, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON message payloads; generated runtime output is an audio file path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce CAF/Opus audio on macOS or MP3 via ffmpeg fallback; requires BlueBubbles for sending.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup flow installs Python packages and caches Kokoro model files locally.
+
+Mitigation: Review or pin dependencies before installation and run setup in the skill's isolated virtual environment.
+
+Risk: Temporary text or audio files may contain message content.
+
+Mitigation: Use private mktemp-created directories for sensitive replies and remove temporary text and audio files after use.
+
+Risk: The skill can send generated audio as an iMessage attachment through BlueBubbles.
+
+Mitigation: Review the recipient target and required voice-message parameters before sending, and include a text reply for accessibility.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bolander72/skills/imessage-voice-reply)
+- [ClawHub publisher profile](https://clawhub.ai/user/bolander72)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local audio generation commands and BlueBubbles attachment parameters for agent use.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,69 @@
-## Description: <br>
-CLI skill for Telegram to sync chats, search messages, filter keywords, and monitor groups from the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI skill for Telegram to sync chats, search messages, filter keywords, and monitor groups from the terminal.
 
-## Publisher: <br>
-[jackwener](https://clawhub.ai/user/jackwener) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[jackwener](https://clawhub.ai/user/jackwener)
 
-## Use Case: <br>
-Developers, operators, and AI agents use this skill to authenticate with a user-controlled Telegram account, refresh a local Telegram message cache, search or filter chat history, export results, monitor new messages, and explicitly send Telegram messages from the terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a local CLI with access to the user's Telegram account and can store chat contents on disk. <br>
-Mitigation: Install only for trusted local environments, protect the data and session directory, avoid shared machines, and avoid exposing session files or cached messages in agent logs. <br>
-Risk: Exports and machine-readable command output may contain private Telegram message content. <br>
-Mitigation: Review exported files and agent transcripts before sharing them, and limit exports to the minimum chat and time window needed. <br>
-Risk: `tg send` sends a real outbound Telegram message and `tg purge -y` irreversibly deletes the local cached copy. <br>
-Mitigation: Require explicit user confirmation for send and purge operations, and treat purge as local-cache deletion rather than Telegram-side deletion. <br>
+## Use Case:
 
+Developers and AI agents use this skill to operate a Telegram CLI for local-first chat sync, search, filtering, export, monitoring, and carefully confirmed message sending from the terminal.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackwener/tg-cli) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jackwener) <br>
-- [Structured Output Schema](artifact/SCHEMA.md) <br>
-- [PyPI package](https://pypi.org/project/kabi-tg-cli/) <br>
-- [Telegram app credentials](https://my.telegram.org/apps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Text, YAML, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands; CLI command output may be rich text, YAML, JSON, or exported text/YAML/JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Machine-readable CLI output uses a shared success/error envelope documented in SCHEMA.md; non-TTY stdout defaults to YAML.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.1 (source: release evidence, pyproject.toml, CHANGELOG) <br>
+Risk: The skill can give an agent broad access to a personal Telegram account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Telegram account or narrowly scoped chats where possible, and install only when that account access is acceptable.
+
+Risk: Telegram API credentials and the Telethon session can function like account credentials.
+
+Mitigation: Protect TG_API_ID, TG_API_HASH, and session files as secrets, and keep the local data directory private.
+
+Risk: The skill locally caches private chat data.
+
+Mitigation: Restrict filesystem access to the cache, prefer structured YAML or JSON output for reviewable agent use, and purge cached data when it is no longer needed.
+
+Risk: The skill can send real Telegram messages.
+
+Mitigation: Require manual confirmation before allowing an agent to run any tg send command.
+
+Risk: Persistent listening or scheduled refresh can keep collecting new messages.
+
+Mitigation: Avoid tg listen --persist and scheduler-based refresh unless continuous collection is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackwener/skills/tg-cli)
+- [Publisher profile](https://clawhub.ai/user/jackwener)
+- [Structured output schema](artifact/SCHEMA.md)
+- [PyPI package](https://pypi.org/project/kabi-tg-cli/)
+- [Telegram app credentials](https://my.telegram.org/apps)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional YAML or JSON command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Machine-readable command output uses the envelope documented in SCHEMA.md; non-TTY stdout defaults to YAML.]
+
+## Skill Version(s):
+
+0.4.1 (source: server release, changelog, pyproject.toml; SKILL.md frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

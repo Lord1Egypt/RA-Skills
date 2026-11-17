@@ -1,46 +1,64 @@
-## Description: <br>
-Search, read, analyze, and automate Xiaohongshu (小红书) content via CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, read, analyze, and automate Xiaohongshu (小红书) content via CLI.
 
-## Publisher: <br>
-[saybanet](https://clawhub.ai/user/saybanet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saybanet](https://clawhub.ai/user/saybanet)
 
-## Use Case: <br>
-Developers, operators, and content teams use this skill to research Xiaohongshu topics, analyze creators and viral posts, manage comments and collections, and render markdown into Xiaohongshu-ready image cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package accesses Xiaohongshu browser session cookies and may expose or misuse an authenticated account if run in the wrong browser profile. <br>
-Mitigation: Use a dedicated browser profile for Xiaohongshu, avoid manual cookie strings in chat or shell history, and run `redbook whoami` before account actions. <br>
-Risk: Comment, reply, batch-reply, collect, uncollect, and post commands can perform real actions on the user's Xiaohongshu account. <br>
-Mitigation: Preview batch operations with `--dry-run`, review generated content before execution, and keep account-changing commands under human approval. <br>
-Risk: The npm install path modifies the local Claude skills directory automatically. <br>
-Mitigation: Install only in an environment where this persistence is expected, and review the created Claude skill link after installation. <br>
-Risk: Xiaohongshu automation may trigger anti-bot controls, captcha, or account safety checks. <br>
-Mitigation: Use conservative request rates, respect dry-run and delay controls, and stop rather than retrying when captcha or verification appears. <br>
+## Use Case:
 
+External content operators, marketers, and developers use this skill to direct agents through Xiaohongshu topic research, creator analysis, comment operations, content planning, card rendering, and optional account actions through the redbook CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/saybanet/sayba-redbook) <br>
-- [Publisher profile](https://clawhub.ai/user/saybanet) <br>
-- [Project homepage](https://github.com/lucasygu/redbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and CLI-oriented guidance with optional JSON-producing shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Xiaohongshu analysis tables, reply plans, content templates, and local PNG card-rendering instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The tool uses an active Xiaohongshu browser session and can perform account actions such as posting, commenting, collecting, and batch replies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for accounts where this access is acceptable, avoid pasting cookies into chats or shell history, and manually review posting and reply commands before execution.
+
+Risk: Batch replies and other automation can trigger platform risk controls or create unwanted public interactions.
+
+Mitigation: Run dry-run previews first, keep human approval in the loop, use the documented delay and batch limits, and stop on captcha or verification prompts.
+
+Risk: Installation can modify local agent skill state by creating or replacing the redbook Claude skill path.
+
+Mitigation: Review the existing local skill path before installation and install in an environment where changing that path is acceptable.
+
+Risk: The release evidence reports a suspicious security verdict due to cookie handling, install-time behavior, and anti-detection automation guidance.
+
+Mitigation: Treat deployment as requiring review, scan the package before use, and start with read-only commands such as whoami, search, and read before enabling write actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/saybanet/skills/sayba-redbook)
+- [Publisher profile](https://clawhub.ai/user/saybanet)
+- [Project homepage from ClawHub metadata](https://github.com/lucasygu/redbook)
+- [Research task notes](docs/research-task-1789.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Use --json when parsing CLI output programmatically; render workflows can produce Xiaohongshu-ready PNG card files.]
+
+## Skill Version(s):
+
+0.5.0 (source: server release and SKILL.md frontmatter; package.json reports 0.5.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

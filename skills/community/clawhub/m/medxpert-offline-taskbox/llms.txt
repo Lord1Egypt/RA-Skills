@@ -1,0 +1,37 @@
+# medxpert-offline-taskbox
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`；人类看 `README.md`。
+
+## Purpose / 一句话定位
+
+AI API costs burning you? Run LLMs on low-spec machines — dispatch tasks by day, local models finish them for free at night, even offline. MedXpert Cross-Machine Taskbox: WorkBuddy x DSH (DeepSeek Harness) x local Ollama three-tier collaboration. Batch/repeat/document/sensitive tasks cost zero cloud credits; only complex reasoning goes to the cloud. L1-L5 tiered routing (code-level: add auto-tags + route query), auto-retry on failure, sync-package merge across two machines, zombie-proof resume. Pure Python, zero dependencies, run as-is — old PCs can be execution nodes. API price hikes? Not your problem. Keywords: 跨机任务箱, 断网续跑, 离线任务队列, Ollama, 省算力, 任务路由, 低配电脑跑大模型
+
+AI API costs burning you? Run LLMs on low-spec machines — dispatch tasks by day, local models finish them for free at night, even offline. MedXpert Cross-Machine Taskbox: WorkBuddy x DSH (DeepSeek Harness) x local Ollama three-tier collaboration. Batch/repeat/document/sensitive tasks cost zero cloud credits; only complex reasoning goes to the cloud. L1-L5 tiered routing (code-level: add auto-tags + route query), auto-retry on failure, sync-package merge across two machines, zombie-proof resume. Pure Python, zero dependencies, so an old laptop works fine as an execution node. AI 任务太烧钱？低配电脑也能跑大模型——白天派活，晚上回家让本地模型免费跑完，断网也不停。MedXpert 跨机任务箱：WorkBuddy×DSH（DeepSeek Harness）×本地 Ollama 三级协同，批量/重复/文档/敏感任务零云端消耗，复杂推理才上云端。L1-L5 分级路由已代码级实现（add 自动打标 + route 查询）、失败自动重试、同步包双机合并、防僵尸续跑，纯 Python 零依赖即下即用，旧电脑也能当执行节点。模型 API 涨价？跟它无关。省积分、断网续跑、离线任务队列、任务路由与成本控制都找它。
+
+## When to use / 什么时候用
+
+- 这批文档批量跑太费积分了
+- 晚上让本地模型接着跑行不行
+- 笔记本配置低，能当执行节点吗
+- 断网了任务还能继续吗
+- 哪些任务该走本地，哪些上云
+- 两台机器的任务结果怎么合到一起
+
+## Key files / 关键文件
+
+- [SKILL.md](SKILL.md) — 主说明书（frontmatter + 触发条件 + 执行步骤）
+- [README.md](README.md) — 人类总览
+- [LICENSE.md](LICENSE.md) — 分层许可（代码层 MIT／理论与文本保留权利）
+
+## Boundaries / 边界
+
+- 本技能只处理上面写的场景；不覆盖同领域其它技能的职责范围。
+- 输出不含未经验证的事实性断言；需要证据时给出出处。理论根基：LGD 三律（有籍 Recorded · 有证 Evidenced · 有门禁 Gated）。
+
+## Ecosystem / 生态入口
+
+- 生态总入口 / hub: https://zhaoxinghua09-cell.github.io/lgd-hub/
+- 理论正本 / theory: https://github.com/zhaoxinghua09-cell/LGD
+- 形式化论文 / paper: https://doi.org/10.5281/zenodo.22456647
+- 协议与参考实现 / protocol: https://github.com/zhaoxinghua09-cell/uibc-core
+- 全部已发布技能 / all skills: https://github.com/zhaoxinghua09-cell/agent-skills

@@ -1,46 +1,64 @@
-## Description: <br>
-语雀知识库双向同步技能，支持将本地 Word、Excel、Markdown、HTML、文本和 zip 文件导入语雀，也支持将语雀文档下载为本地 Markdown 文件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+语雀连接器 helps agents synchronize Yuque knowledge bases with local files by importing common document formats and downloading Yuque documents as local Markdown.
 
-## Publisher: <br>
-[jiuwu2495](https://clawhub.ai/user/jiuwu2495) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiuwu2495](https://clawhub.ai/user/jiuwu2495)
 
-## Use Case: <br>
-Developers, knowledge workers, and external users with Yuque accounts use this skill to move documents between local files and Yuque knowledge bases. It supports bulk import, document download, search, directory management, update workflows, and synchronization checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests a Yuque token with read and write account access. <br>
-Mitigation: Use the least-privileged token Yuque supports, avoid pasting long-lived secrets into ordinary chat, and rotate the token if it may have been exposed. <br>
-Risk: The skill can modify local MCP configuration. <br>
-Mitigation: Review any ~/.workbuddy/mcp.json change before applying it and keep the generated backup for rollback. <br>
-Risk: Bulk synchronization can create, update, or download many documents at once. <br>
-Mitigation: Confirm target knowledge bases and document lists before bulk operations, and keep local or Yuque backups when replacing existing content. <br>
+## Use Case:
 
+External users, developers, and content teams use this skill to move documents between local workspaces and Yuque knowledge bases, including bulk imports, downloads, directory organization, search, and updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiuwu2495/yuque-connector) <br>
-- [Publisher profile](https://clawhub.ai/user/jiuwu2495) <br>
-- [yuque-mcp server repository](https://github.com/yuque/yuque-mcp-server) <br>
-- [Yuque API base](https://www.yuque.com/api/v2) <br>
-- [Yuque token settings](https://www.yuque.com/settings/tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, API calls, shell commands, configuration] <br>
-**Output Format:** [Markdown responses, Yuque document links, local Markdown files, JSON configuration snippets, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Yuque documents, download Yuque content to local files, and modify local MCP configuration when the user configures the connector.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill asks users to provide a read/write Yuque token and stores it in local MCP configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Yuque token when possible, avoid long-lived tokens in chat, and rotate or revoke tokens after use.
+
+Risk: The skill rewrites shared MCP configuration at ~/.workbuddy/mcp.json.
+
+Mitigation: Inspect the configuration change before use, keep file permissions restricted, and retain backups only where they do not expose secrets.
+
+Risk: The skill runs an unpinned npm connector for Yuque MCP access.
+
+Mitigation: Prefer a pinned, reviewed yuque-mcp version before installing or running the connector in sensitive environments.
+
+Risk: Bulk import, update, and download operations can affect many Yuque documents.
+
+Mitigation: Confirm repository IDs, document scopes, and synchronization direction before bulk actions, especially when write access is enabled.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiuwu2495/skills/yuque-connector)
+- [Yuque MCP Server](https://github.com/yuque/yuque-mcp-server)
+- [Yuque API v2](https://www.yuque.com/api/v2)
+- [Yuque Token Settings](https://www.yuque.com/settings/tokens)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and text responses with file paths, Yuque document links, JSON configuration snippets, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local Markdown files, Yuque document links, MCP configuration guidance, and retry or recovery steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

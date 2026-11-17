@@ -1,0 +1,14 @@
+{
+  "scope": "Replace with the actual surface and user journey",
+  "iteration": 1,
+  "reviewer": "Replace with the actual reviewer or self-review method",
+  "independent": false,
+  "checks": [
+    { "id": "intent", "status": "unverified", "evidence": ["TODO: current request and actual deliverable"] },
+    { "id": "task_flow", "status": "unverified", "evidence": ["TODO: inputs, actions and observed domain results"] },
+    { "id": "visual", "status": "unverified", "evidence": ["TODO: actual rendering, viewport and concrete observations"] },
+    { "id": "preservation", "status": "unverified", "evidence": ["TODO: preserved data, capabilities and return path"] },
+    { "id": "platform", "status": "unverified", "evidence": ["TODO: platform and operations actually checked"] },
+    { "id": "claims", "status": "unverified", "evidence": ["TODO: implemented, tested and unverified boundaries"] }
+  ]
+}

@@ -1,4 +1,4 @@
-# Canvas、Three.js 与 R3F 模式
+# Canvas, Three.js and R3F mode
 
 ## Canvas 2D
 
@@ -14,7 +14,7 @@ ctx.arc(100, 100, 30, 0, Math.PI * 2);
 ctx.fill();
 ```
 
-## 动画循环
+## Animation loop
 
 ```ts
 let animationId = 0;
@@ -30,7 +30,7 @@ animate();
 return () => cancelAnimationFrame(animationId);
 ```
 
-## Three.js 基础场景
+## Three.js basic scenario
 
 ```ts
 const scene = new THREE.Scene();
@@ -47,7 +47,7 @@ scene.add(cube);
 ## React Three Fiber
 
 ```tsx
-<Canvas camera={{ position: [0, 0, 5], fov: 75 }} role="img" aria-label="3D 产品预览">
+<Canvas camera={{ position: [0, 0, 5], fov: 75 }} role="img" aria-label="3D Product Preview">
   <ambientLight intensity={0.5} />
   <directionalLight position={[5, 5, 5]} />
   <mesh>
@@ -58,10 +58,10 @@ scene.add(cube);
 </Canvas>
 ```
 
-## 性能与清理
+## Performance and cleanup
 
-- 纹理尽量压缩并限制尺寸，常规上限先按 2048px 评估。
-- 重复几何体用 `InstancedMesh`。
-- 不需要持续重绘时暂停 animation loop。
-- 卸载时释放 geometry、material、texture、renderer、controls。
-- ResizeObserver 更新相机 aspect 和 renderer size。
+- Textures are compressed as much as possible and the size is limited. The normal upper limit is first evaluated at 2048px.
+- Use `InstancedMesh` for repeated geometry.
+- Pause animation loop when continuous redrawing is not required.
+- Release geometry, material, texture, renderer, and controls when uninstalling.
+- ResizeObserver updates camera aspect and renderer size.

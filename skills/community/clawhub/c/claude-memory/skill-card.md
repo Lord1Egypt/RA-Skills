@@ -1,43 +1,51 @@
-## Description: <br>
-Structured memory system for OpenClaw agents with a 4-type classification, layered memory files, write rules, and heartbeat maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured memory system for OpenClaw agents that sets up long-term memory files, feedback capture, topic notes, and heartbeat maintenance rules.
 
-## Publisher: <br>
-[kaiji-z](https://clawhub.ai/user/kaiji-z) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiji-z](https://clawhub.ai/user/kaiji-z)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to set up and maintain a structured persistent memory system for OpenClaw agents. It provides templates, write rules, reference guidance, and a setup script for long-term memory, feedback, topic notes, and heartbeat maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can retain personal information, secrets, or sensitive third-party data longer than intended. <br>
-Mitigation: Install only in a private workspace where persistent memory is desired, avoid saving secrets or sensitive third-party data, and review memory files regularly. <br>
-Risk: Loading MEMORY.md in shared or group-chat contexts can expose private user context. <br>
-Mitigation: Follow the skill guidance to load MEMORY.md only in direct sessions and keep shared contexts from reading private memory files. <br>
-Risk: The setup script creates memory files in the provided workspace path, which could place persistent notes in an unintended location. <br>
-Mitigation: Run the initializer only against the intended private workspace and review the generated files before relying on them. <br>
+## Use Case:
 
+Developers and agent operators use Claude Memory to initialize and maintain a local long-term memory structure for OpenClaw agents, including feedback, daily notes, and topic files.
 
-## Reference(s): <br>
-- [AGENTS.md memory rules](references/agents-rules.md) <br>
-- [Encoding notes](references/encoding-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated local Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes templates for MEMORY.md, memory/feedback.md, daily notes, and memory/topics/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill is designed to create persistent local memory files that may retain personal, regulated, or confidential information if users choose to save it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review MEMORY.md, memory/feedback.md, and daily notes periodically, and avoid saving sensitive information unless retention is intentional.
+
+## Reference(s):
+
+- [AGENTS.md Memory Rules](references/agents-rules.md)
+- [Encoding Notes](references/encoding-notes.md)
+- [ClawHub Skill Page](https://clawhub.ai/kaiji-z/skills/claude-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and Python setup script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local MEMORY.md, memory/feedback.md, daily notes, and memory/topics files when the setup script is run.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

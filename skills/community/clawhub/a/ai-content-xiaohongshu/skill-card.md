@@ -1,41 +1,58 @@
-## Description: <br>
-AI Content - Xiaohongshu Content Production helps an agent support Xiaohongshu and WeChat content workflows across collection, material organization, topic discovery, drafting, card-image prompt support, and publishing-plan guidance. <br>
+## Description:
 
-This skill is for research and development only. <br>
+This skill helps agents plan and produce Xiaohongshu and WeChat content workflows, including topic discovery, article drafts, card-image prompt suggestions, and publishing schedules.
 
-## Publisher: <br>
-[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-Personal Use Only License v1.0 <br>
+## Publisher:
 
+[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo)
 
-## Use Case: <br>
-Content creators, operators, and developers use this skill to plan and produce Xiaohongshu notes and WeChat articles. It can provide topic direction, article structures, platform-style copy, cover/card-image prompts, and weekly or monthly publishing calendars. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Personal Use Only License v1.0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow uses external sources and AI providers and may require sensitive provider credentials. <br>
-Mitigation: Run only after reviewing the referenced local app and its dependencies, use limited-scope AI-provider keys, and avoid adding private or internal sources unless intended. <br>
-Risk: Generated topics, copy, and images can be inaccurate, misleading, off-brand, or unsuitable for publication. <br>
-Mitigation: Manually review all generated content, prompts, and publishing plans before posting or scheduling. <br>
+## Use Case:
 
+Individual creators and developers use this skill to structure Xiaohongshu or WeChat content production, from collecting material and prioritizing topics to drafting copy, planning card images, and organizing a publishing calendar.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zmy1006-sudo/ai-content-xiaohongshu) <br>
-- [CheeMao/ai-content repository referenced as inspiration](https://github.com/CheeMao/ai-content) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with prose, lists, prompts, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include content calendars, image-generation prompts, and setup/configuration steps; generated content should be reviewed before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Setup instructions ask users to run an unpinned external project with Docker and npm.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream repository, Docker Compose file, npm scripts, dependency lockfiles, and container images, then pin a reviewed commit or release before running it.
+
+Risk: Administrator credentials, API keys, or account-connected publishing credentials may be exposed or stored during setup and use.
+
+Mitigation: Use an isolated development environment, avoid putting administrator passwords on the command line, and do not add real API keys or publishing credentials until data handling is understood.
+
+Risk: Generated social content or publishing plans may be inaccurate, misleading, or unsuitable for publication.
+
+Mitigation: Human-review generated topics, copy, image prompts, and schedules before publishing or sharing them externally.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/zmy1006-sudo/skills/ai-content-xiaohongshu)
+- [CheeMao ai-content project reference](https://github.com/CheeMao/ai-content)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with prompts, outlines, schedules, and setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include topic priorities, article structures, Xiaohongshu copy, image prompt suggestions, and publishing plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

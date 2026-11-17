@@ -1,0 +1,7 @@
+interface:
+  display_name: "Life Book Generator"
+  short_description: "创建并领取 Life Book 完整报告任务"
+  brand_color: "#2F6F73"
+  default_prompt: "Use $life-book-generator to create a Life Book full-report task and retrieve the result when ready."
+policy:
+  allow_implicit_invocation: true

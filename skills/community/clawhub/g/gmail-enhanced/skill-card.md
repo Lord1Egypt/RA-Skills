@@ -1,45 +1,64 @@
-## Description: <br>
-Enhanced Gmail integration with advanced features including label management, attachment handling, advanced search, email parsing, and automated email processing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced Gmail integration with advanced features including label management, attachment handling, advanced search, email parsing, and automated email processing workflows.
 
-## Publisher: <br>
-[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen)
 
-## Use Case: <br>
-Developers and automation users can use this skill to connect an agent to Gmail for searching messages, managing labels, downloading attachments, parsing email content, and sending or auto-replying to email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send email and modify mailbox state through broad Gmail scopes. <br>
-Mitigation: Grant access only to accounts where this automation is acceptable, review auto-reply and bulk-processing rules before running them, and avoid using broad queries for destructive mailbox changes. <br>
-Risk: OAuth token files provide continuing access to the mailbox if exposed. <br>
-Mitigation: Store credentials and token files in protected locations, restrict filesystem access, and revoke or rotate tokens if they may have been exposed. <br>
-Risk: Downloaded attachments may be unsafe or may overwrite files with matching names in the download directory. <br>
-Mitigation: Treat downloaded attachments as untrusted, use a contained download directory, scan files before opening them, and review filename handling before unattended use. <br>
+## Use Case:
 
+Developers and automation users use Gmail Enhanced to interact with Gmail accounts for search, labels, attachments, message parsing, sending, and rule-based processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jason-aka-chen/gmail-enhanced) <br>
-- [Gmail API documentation](https://developers.google.com/gmail/api) <br>
-- [Google Cloud Console](https://console.cloud.google.com) <br>
-- [Gmail API Python quickstart](https://developers.google.com/gmail/api/quickstart/python) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, API Calls, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [Python module usage, Gmail API calls, downloaded attachment files, and structured text or JSON-like dictionaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Google OAuth credentials and Gmail API scopes for read, send, labels, and modify access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill requests Gmail scopes that can read, send, modify messages, and manage labels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Google OAuth client and grant only the Gmail scopes required for the intended workflow.
+
+Risk: OAuth credential and token files are persisted on disk.
+
+Mitigation: Store credential and token files outside shared folders and repositories with file permissions limited to the local user.
+
+Risk: Attachment downloads can write mailbox-provided filenames to local paths.
+
+Mitigation: Add filename validation, overwrite protection, and a trusted download directory before enabling attachment downloads.
+
+Risk: Auto-reply and message-processing rules can send or modify email based on mailbox input.
+
+Mitigation: Require confirmation, narrow search queries, and rate limits before running automated reply or bulk-processing rules.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jason-aka-chen/skills/gmail-enhanced)
+- [Gmail API Documentation](https://developers.google.com/gmail/api)
+- [Google Cloud Console](https://console.cloud.google.com)
+- [Gmail API Python Quickstart](https://developers.google.com/gmail/api/quickstart/python)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Gmail API workflow guidance and Python client usage examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

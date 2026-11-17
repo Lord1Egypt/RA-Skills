@@ -1,0 +1,11 @@
+# 抛硬币频率逼近概率——现代化重构版（统一命名 + 重抛/重置按钮）
+nMax = Slider(10, 2000, 10)
+SetValue(nMax, 500)
+coins = Sequence(Random(0, 1), k, 1, nMax)
+heads = Sum(coins)
+freq = heads / nMax
+txtFreq = Text("n = " + nMax + "，频率 = " + freq + "，理论 0.5", (-2.9, 2.4), true, true)
+btnFlip = Button("重新抛掷")
+btnResetC = Button("重置")
+SetCoords(btnFlip, 420, 70)
+SetCoords(btnResetC, 420, 120)

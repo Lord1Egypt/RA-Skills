@@ -1,42 +1,53 @@
-## Description: <br>
-Austrian public transport (VOR AnachB) for all of Austria. Query real-time departures, search stations/stops, plan routes between locations, and check service disruptions. Use when asking about Austrian trains, buses, trams, metro (U-Bahn), or directions involving public transport in Austria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Austrian public transport (VOR AnachB) skill for querying real-time departures, searching stations and stops, planning routes, and checking service disruptions across Austria.
 
-## Publisher: <br>
-[manmal](https://clawhub.ai/user/manmal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[manmal](https://clawhub.ai/user/manmal)
 
-## Use Case: <br>
-External users and agents use this skill to look up Austrian public transport stations, real-time departures, routes, and current service disruptions. It is useful for travel planning involving Austrian trains, buses, trams, metro service, and cross-border routes covered by the underlying transit API. <br>
-
-### Deployment Geography for Use: <br>
-Global; transit lookups and route planning are focused on Austria. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Station names or other arguments containing quotes or unexpected characters can produce malformed API requests. <br>
-Mitigation: Use ordinary station names, station IDs, and small numeric counts; prefer JSON-safe request construction before production deployment. <br>
-Risk: Large numeric counts can create oversized transit API requests or responses. <br>
-Mitigation: Keep result counts small and appropriate for a single lookup. <br>
-Risk: The skill depends on a disclosed external transit API for live results. <br>
-Mitigation: Treat returned departures, routes, and disruptions as live transit data that may vary with API availability and provider updates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/manmal/a-nach-b) <br>
-- [VOR AnachB HAFAS API Endpoint](https://vao.demo.hafas.de/gate) <br>
+## Use Case:
 
+External users and agents use this skill to answer Austrian public transport questions, including finding stops, checking real-time departures, planning routes between stations, and reviewing service disruptions.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance] <br>
-**Output Format:** [JSON responses from shell scripts with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; results depend on the live transit API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Austria
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Untrusted web or chat input could be passed into shell scripts without robust validation.
+
+Mitigation: Prefer normal station IDs and small numeric counts; add input validation, JSON-safe request construction, request timeouts, and result limits before exposing the scripts to untrusted inputs.
+
+Risk: Live transit lookups depend on an external HAFAS endpoint and time-sensitive real-time data.
+
+Mitigation: Treat results as current lookup guidance and verify critical journeys against an official transit source before travel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/manmal/skills/a-nach-b)
+- [VOR AnachB HAFAS API endpoint](https://vao.demo.hafas.de/gate)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, JSON, Guidance]
+
+**Output Format:** [JSON responses from bash scripts, with concise command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live public-transport results depend on upstream HAFAS availability and real-time data quality.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

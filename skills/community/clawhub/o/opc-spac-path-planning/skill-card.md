@@ -1,51 +1,66 @@
-## Description: <br>
-SPAC资本路径规划工具，为技术成果转化提供SPAC上市路径方案，是股权合作机制姊妹篇 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SPAC资本路径规划工具，为技术成果转化提供SPAC上市路径方案，是股权合作机制姊妹篇。
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External founders, operators, and business planners use this skill to evaluate OPC/SPV project maturity, compare Hong Kong 18C, SPAC, and traditional main-board listing paths, and prepare finance, legal, timeline, and risk planning artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SPAC and listing plans can be incomplete or misleading if treated as professional legal, financial, tax, or investment advice. <br>
-Mitigation: Review outputs with qualified legal, financial, tax, and business advisors before sharing them with lawyers, banks, investors, or making capital-market decisions. <br>
-Risk: The skill may handle sensitive SPV, governance, financial, and legal data. <br>
-Mitigation: Provide only the minimum necessary data, run the skill in a dedicated folder, and apply privacy review before distributing reports. <br>
-Risk: The skill discloses file generation or regeneration behavior. <br>
-Mitigation: Inspect generated or regenerated Markdown files before relying on them or committing them to a workspace. <br>
+## Use Case:
 
+External founders, operators, and agent users can use this skill to draft SPV-to-company-to-listing path plans, compare Hong Kong 18C, SPAC, and traditional main-board options, and organize finance, legal, governance, and timing checklists for professional review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/golngod/opc-spac-path-planning) <br>
-- [三阶段演进模型](references/01-三阶段演进模型.md) <br>
-- [香港18C章上市](references/02-香港18C章上市.md) <br>
-- [香港SPAC上市](references/03-香港SPAC上市.md) <br>
-- [传统主板上市对比](references/04-传统主板上市对比.md) <br>
-- [财务合规准备清单](references/05-财务合规准备清单.md) <br>
-- [法律合规准备清单](references/06-法律合规准备清单.md) <br>
-- [时间节点倒推表](references/07-时间节点倒推表.md) <br>
-- [与SPV体系对接](references/08-与SPV体系对接.md) <br>
-- [风险与应对](references/09-风险与应对.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown planning reports, checklists, comparison matrices, and file-generation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate or regenerate local Markdown planning files; review business, legal, and financial content before sharing or relying on it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill may handle sensitive SPV, governance, revenue, equity-allocation, legal, and tax planning information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before sharing inputs or outputs, and avoid including unnecessary confidential data in generated plans.
+
+Risk: Generated legal, tax, filing, equity-conversion, and shareholder-document content may be incomplete or unsuitable for a specific jurisdiction or transaction.
+
+Mitigation: Treat outputs as drafts and route them to qualified legal, tax, finance, and securities professionals before use.
+
+Risk: The skill may create or regenerate planning files, which can overwrite or introduce unreviewed capital-planning documents.
+
+Mitigation: Ask for approval before file writes, preserve existing user files, and review generated documents before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/opc-spac-path-planning)
+- [三阶段演进模型](references/01-三阶段演进模型.md)
+- [香港18C章上市 — 特专科技公司完整指南](references/02-香港18C章上市.md)
+- [香港SPAC上市 — 规则、流程与优缺点](references/03-香港SPAC上市.md)
+- [传统主板上市对比 — 三种上市路径选择矩阵](references/04-传统主板上市对比.md)
+- [财务合规准备清单 — 上市前3年整改计划](references/05-财务合规准备清单.md)
+- [法律合规准备清单 — 股权架构、IP、合规、VIE](references/06-法律合规准备清单.md)
+- [时间节点倒推表 — 3-4年上市完整时间表](references/07-时间节点倒推表.md)
+- [与SPV体系对接 — 贡献权重到上市股份的折算链条](references/08-与SPV体系对接.md)
+- [风险与应对 — 政策、税务、稀释、合规风险](references/09-风险与应对.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown planning guidance, checklists, comparison tables, and draft report sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or regenerate planning documents from user-supplied SPV, governance, revenue, legal, tax, and equity-allocation inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

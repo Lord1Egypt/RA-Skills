@@ -1,47 +1,60 @@
-## Description: <br>
-Delegates longer user-facing text generation to Upstage Solar Pro3 while keeping the primary model responsible for planning and tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegates longer user-facing text generation to Upstage Solar Pro3 while keeping the primary model for planning and tool calls.
 
-## Publisher: <br>
-[upstage-deployment](https://clawhub.ai/user/upstage-deployment) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[upstage-deployment](https://clawhub.ai/user/upstage-deployment)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route long explanations, reports, summaries, and other user-facing drafts to Upstage Solar Pro3 while retaining the primary model for planning and tool orchestration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Long prompts, reports, summaries, or chat context may be sent to Upstage or OpenRouter during delegation. <br>
-Mitigation: Use the skill only for content appropriate to share with the selected provider, and avoid delegating sensitive data unless that provider use is approved. <br>
-Risk: Provider API keys are required for Upstage or OpenRouter access. <br>
-Mitigation: Use dedicated provider keys with spending limits where possible, and keep real keys out of shared repositories, logs, screenshots, and generated configuration examples. <br>
-Risk: Saved delegated outputs may remain on local disk when the skill writes files. <br>
-Mitigation: Prefer inline responses for normal chat output, and save files only to approved paths with appropriate cleanup for sensitive content. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route long explanations, reports, summaries, and drafts to Upstage Solar Pro3 while retaining primary-model planning and tool orchestration.
 
-## Reference(s): <br>
-- [Solar Delegation Setup Guide](references/setup-guide.md) <br>
-- [Upstage API endpoint](https://api.upstage.ai/v1) <br>
-- [Upstage console](https://console.upstage.ai) <br>
-- [OpenRouter Solar Pro3 model reference](https://openrouter.ai/upstage/solar-pro-3) <br>
-- [ClawHub skill page](https://clawhub.ai/upstage-deployment/upstage-solar-delegation) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/upstage-deployment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks, configuration examples, and optional plain text or markdown files for delegated outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Delegation is controlled by enabled sessions and an estimated output-token threshold; delegated model outputs are passed through as-is.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Long-form prompts and context may be sent to Upstage or OpenRouter during delegation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable delegation only for sessions whose users understand the external provider route, and avoid use with private, regulated, customer, or multi-user chat content unless reviewed.
+
+Risk: Broad delegation policy changes can affect shared or sensitive sessions.
+
+Mitigation: Keep output-token thresholds conservative, use per-session enablement, and restrict who can change persistent delegation policy.
+
+Risk: Provider API keys could be exposed if stored in checked-in configuration files.
+
+Mitigation: Store Upstage and OpenRouter keys in environment variables or a secrets manager.
+
+## Reference(s):
+
+- [Solar Delegation Setup Guide](references/setup-guide.md)
+- [OpenRouter Solar Pro3 Model Reference](https://openrouter.ai/upstage/solar-pro-3)
+- [Upstage Console](https://console.upstage.ai)
+- [ClawHub Skill Release](https://clawhub.ai/upstage-deployment/skills/upstage-solar-delegation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional code, shell command, and configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write markdown or text files when the user asks for saved output; otherwise returns delegated text inline.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

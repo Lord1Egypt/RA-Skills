@@ -1,40 +1,65 @@
-## Description: <br>
-Control smart home devices configured in Smart Plus APP. Use when you need to: (1) Query devices and scenes (lights, AC, switches), (2) Control device power (turn on/off), (3) Control air conditioner (temperature, mode), (4) Trigger smart scenes. Requires MXCHIP_OAUTH_TOKEN environment variable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mxchip Smart Control lets agents query and control Smart Plus smart-home devices, air conditioners, and scenes through the MXCHIP MCP service.
 
-## Publisher: <br>
-[mxchipyun](https://clawhub.ai/user/mxchipyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mxchipyun](https://clawhub.ai/user/mxchipyun)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent list and control Smart Plus smart-home devices, adjust air conditioners, and trigger configured automation scenes. Because these actions affect real devices, workflows should list targets first and require explicit user confirmation before control operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mxchipyun/mxchip-smart-control) <br>
-- [Mxchip Smart Control API Reference](references/api_reference.md) <br>
-- [Mxchip MCP Client SDK](scripts/mxchip_mcp_client.py) <br>
-- [MXCHIP Official Website](https://www.mxchip.com/) <br>
+External users and developers use this skill to let an agent query Smart Plus devices and scenes, turn supported devices on or off, adjust air-conditioner settings, and trigger configured automation scenes.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [JSON-RPC requests and JSON responses, with Markdown guidance, shell snippets, and Python examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MXCHIP_OAUTH_TOKEN. Store the token as a secret and require explicit user confirmation before device control, air-conditioner changes, or scene triggers.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.2 (source: skill.json, README.md, server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill can immediately control physical smart-home devices and scenes.
+
+Mitigation: Require explicit user confirmation before turning devices on or off, changing air-conditioner settings, or triggering scenes.
+
+Risk: The MXCHIP_OAUTH_TOKEN credential grants access to Smart Plus devices.
+
+Mitigation: Keep the token secret, store it only in the environment or an approved secret store, and rotate it if exposed.
+
+Risk: The token-bearing client accepts a custom base URL.
+
+Mitigation: Use the official MXCHIP endpoint unless an alternate endpoint has been independently validated.
+
+Risk: The dependency declaration is not pinned to an exact version.
+
+Mitigation: Prefer a pinned dependency set before production deployment.
+
+## Reference(s):
+
+- [Mxchip Smart Control API Reference](references/api_reference.md)
+- [MXCHIP Official Website](https://www.mxchip.com/)
+- [MXCHIP OAuth Token Endpoint](https://app.api.cloud.mxchip.com:2443/oauth2/mcp/oauth)
+- [MXCHIP MCP Endpoint](https://app.api.cloud.mxchip.com:2443/mcp)
+- [ClawHub Skill Listing](https://clawhub.ai/mxchipyun/skills/mxchip-smart-control)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses JSON-RPC 2.0 over HTTP and requires MXCHIP_OAUTH_TOKEN for authenticated API calls.]
+
+## Skill Version(s):
+
+1.0.2 (source: skill.json, README.md, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

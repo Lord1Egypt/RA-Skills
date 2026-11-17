@@ -1,47 +1,61 @@
-## Description: <br>
-OpenClaw-native PDF/document processing skill for Nutrient DWS for OpenClaw users who need PDF conversion, OCR, text/table extraction, PII redaction, watermarking, digital signatures, and API credit checks via built-in nutrient_* tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw-native document processing skill for Nutrient DWS that supports PDF conversion, OCR, text and table extraction, redaction, watermarking, digital signatures, and API credit checks through built-in nutrient_* tools.
 
-## Publisher: <br>
-[zhouhuihui008](https://clawhub.ai/user/zhouhuihui008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouhuihui008](https://clawhub.ai/user/zhouhuihui008)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to process PDFs and other documents through Nutrient DWS from OpenClaw conversations. It supports conversion, OCR, extraction, redaction, watermarking, signing, and API credit checks when third-party document processing is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents or extracted document content are sent to Nutrient DWS for processing. <br>
-Mitigation: Use the skill only when third-party processing is acceptable, start with non-sensitive sample files, and confirm Nutrient's security and privacy documentation against organizational requirements. <br>
-Risk: Redactions, signatures, and other modified document outputs may be relied on before review. <br>
-Mitigation: Manually verify redacted, signed, watermarked, converted, and extracted outputs before using them in production workflows. <br>
-Risk: API credentials are required for the OpenClaw plugin configuration. <br>
-Mitigation: Use a scoped API key where possible and avoid placing production credentials in shared examples or logs. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to process documents in OpenClaw conversations with Nutrient DWS tools for conversion, extraction, OCR, redaction, signing, watermarking, and credit checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouhuihui008/nutrient-openclaw-1-2-5) <br>
-- [Nutrient API](https://www.nutrient.io/api/) <br>
-- [Nutrient Processor API security](https://www.nutrient.io/api/documentation/security) <br>
-- [Nutrient Processor API](https://www.nutrient.io/api/processor-api/) <br>
-- [Nutrient OpenClaw repository](https://github.com/PSPDFKit-labs/nutrient-openclaw) <br>
-- [Nutrient OpenClaw npm package](https://www.npmjs.com/package/@nutrient-sdk/nutrient-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and YAML configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke Nutrient OpenClaw tools that send selected files or extracted document content to Nutrient DWS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Selected documents or extracted content are sent to Nutrient DWS for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when third-party document processing is acceptable, and confirm Nutrient retention, privacy, and security terms before using sensitive or regulated documents.
+
+Risk: The skill requires a Nutrient API key in OpenClaw plugin configuration.
+
+Mitigation: Use a dedicated revocable API key and rotate it if exposure is suspected.
+
+Risk: The install flow does not pin the npm package version in the available evidence.
+
+Mitigation: Prefer a pinned, reviewed package version when OpenClaw supports version pinning.
+
+## Reference(s):
+
+- [Nutrient API](https://www.nutrient.io/api/)
+- [Nutrient Processor API Security Documentation](https://www.nutrient.io/api/documentation/security)
+- [Nutrient Processor API](https://www.nutrient.io/api/processor-api/)
+- [Nutrient OpenClaw Repository](https://github.com/PSPDFKit-labs/nutrient-openclaw)
+- [Nutrient OpenClaw npm Package](https://www.npmjs.com/package/@nutrient-sdk/nutrient-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, YAML configuration snippets, and document-processing outputs from Nutrient tools.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Nutrient API key configured in OpenClaw.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

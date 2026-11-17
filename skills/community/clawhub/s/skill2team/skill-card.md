@@ -1,48 +1,58 @@
-## Description: <br>
-Design profile-based agent teams from skills, workflows, prompts, tools, or briefs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design profile-based agent teams from skills, workflows, prompts, tools, or briefs.
 
-## Publisher: <br>
-[c-narcissus](https://clawhub.ai/user/c-narcissus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c-narcissus](https://clawhub.ai/user/c-narcissus)
 
-## Use Case: <br>
-Developers and agent builders use Skill2Team to convert complex skills, workflows, prompts, tools, scripts, SOPs, or briefs into compact profile-based agent team designs and, when requested, Codex package artifacts. It supports design and package workflows with explicit architecture maps, orchestration maps, quality gates, human-interaction preservation, and runtime handoff guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated package-end registration prompts or helper scripts may change Codex agent configuration. <br>
-Mitigation: Inspect generated manifests and .codex/config.toml changes before registration, then run smoke tests before treating a generated team as runnable. <br>
-Risk: Generated team packages can accidentally include secrets, private files, or unintended local resources. <br>
-Mitigation: Review local-resource manifests and generated package contents before sharing or deploying artifacts. <br>
-Risk: Agent-team proposals may contain incorrect or misleading design guidance. <br>
-Mitigation: Use the skill's design/package quality gates and independent review before deployment. <br>
+## Use Case:
 
+Developers and teams use Skill2Team to convert complex skills, workflows, prompts, tools, scripts, documentation, SOPs, or natural-language briefs into profile-based agent team designs and Codex package artifacts.
 
-## Reference(s): <br>
-- [Skill2Team ClawHub Skill Page](https://clawhub.ai/c-narcissus/skills/skill2team) <br>
-- [Agent Architecture and Workflow Method](references/agent-architecture-and-workflow-method.md) <br>
-- [Workflow-Aligned Orchestration](references/workflow-aligned-orchestration.md) <br>
-- [Package Workflow](references/package-workflow.md) <br>
-- [Output Contracts](references/output-contracts.md) <br>
-- [Team Usage Guide](references/team-usage-guide.md) <br>
-- [Risk Governance](references/risk-governance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, JSON, TOML, prompt templates, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Codex package artifacts, manifests, configuration snippets, design archives, quality gates, and follow-up prompts depending on the selected delivery path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.2 (source: frontmatter and server release metadata) <br>
+Risk: Codex package and registration helpers can persist new agents and configuration changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect generated .codex/agents TOML, .codex/config.toml changes, registry manifests, and package manifests before registration or use.
+
+Risk: Untrusted source text and local file paths can create security exposure during package generation.
+
+Mitigation: Avoid bundle mode for untrusted source roots until path containment and symlink handling are fixed, and inspect bundled source-resources before running generated packages.
+
+## Reference(s):
+
+- [ClawHub Skill2Team page](https://clawhub.ai/c-narcissus/skills/skill2team)
+- [Product Positioning](artifact/references/product-positioning.md)
+- [Output Contracts](artifact/references/output-contracts.md)
+- [Platform Adapters](artifact/references/platform-adapters.md)
+- [Risk Governance](artifact/references/risk-governance.md)
+- [Context Loading Policy](artifact/references/context-loading-policy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports plus JSON, TOML, ZIP, and prompt-template files for Codex package delivery]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Design output can include architecture maps, workflow orchestration maps, conformance gates, package manifests, agent profiles, Codex TOML files, and follow-up prompt templates.]
+
+## Skill Version(s):
+
+1.9.2 (source: SKILL.md frontmatter metadata and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

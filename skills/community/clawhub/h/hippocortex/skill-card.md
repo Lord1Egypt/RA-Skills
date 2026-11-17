@@ -1,41 +1,60 @@
-## Description: <br>
-Provides an OpenClaw agent with persistent long-term memory by automatically remembering and recalling conversations, facts, and preferences across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gives an OpenClaw agent persistent long-term memory powered by Hippocortex so it can remember and recall conversations, facts, preferences, and procedures across sessions.
 
-## Publisher: <br>
-[vmaiops-alt](https://clawhub.ai/user/vmaiops-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vmaiops-alt](https://clawhub.ai/user/vmaiops-alt)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add persistent Hippocortex memory to OpenClaw agents, including recall before responses and capture after memorable exchanges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation-derived data may be sent to and persisted by Hippocortex with broad automatic triggers. <br>
-Mitigation: Install only when persistent memory is intended, avoid storing secrets or regulated information, and review provider controls for inspecting or deleting memories. <br>
-Risk: A plaintext workspace configuration file can contain the Hippocortex API key and base URL. <br>
-Mitigation: Prefer environment variables for credentials and verify the configured base URL before use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add persistent memory to an agent, including recalling prior conversations and storing useful facts, preferences, procedures, and project context across sessions.
 
-## Reference(s): <br>
-- [Hippocortex Setup Guide](references/setup-guide.md) <br>
-- [ClawHub release page](https://clawhub.ai/vmaiops-alt/hippocortex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Hippocortex API requests for memory synthesis, capture, and compilation; memory use should not block normal responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.2 (source: server release evidence; artifact _meta.json reports 1.0.0) <br>
+Risk: Conversation-derived queries, selected exchanges, and extracted facts may be sent to and retained by an external persistent memory service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data handling is acceptable; avoid storing secrets or regulated data in conversations and review available memory controls before using it for sensitive work.
+
+Risk: A misconfigured or untrusted base URL can route memory content to the wrong endpoint.
+
+Mitigation: Verify HIPPOCORTEX_BASE_URL or the .hippocortex.json baseUrl before enabling the skill, and prefer a trusted cloud or self-hosted endpoint.
+
+Risk: Local .hippocortex.json files can contain API keys and session configuration.
+
+Mitigation: Prefer environment variables where possible, use a dedicated low-privilege API key, and protect or exclude .hippocortex.json from sharing and source control.
+
+## Reference(s):
+
+- [Hippocortex Setup Guide](references/setup-guide.md)
+- [Hippocortex dashboard](https://dashboard.hippocortex.dev)
+- [Hippocortex API endpoint](https://api.hippocortex.dev)
+- [ClawHub skill page](https://clawhub.ai/vmaiops-alt/skills/hippocortex)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides the agent to issue memory API calls and use retrieved memory as supporting context; memory failures should not block normal responses.]
+
+## Skill Version(s):
+
+2.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

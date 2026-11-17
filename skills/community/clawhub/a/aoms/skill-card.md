@@ -1,48 +1,63 @@
-## Description: <br>
-AOMS is a persistent local memory service for AI agents with episodic, semantic, procedural, and working memory, weighted retrieval, optional vector search, progressive disclosure, and automatic weight decay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AOMS provides a persistent local memory service for AI agents with tiered memory, weighted retrieval, optional vector search, progressive disclosure, and HTTP APIs for recall and updates.
 
-## Publisher: <br>
-[DhawalA4](https://clawhub.ai/user/DhawalA4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dhawala4](https://clawhub.ai/user/dhawala4)
 
-## Use Case: <br>
-Developers and engineers use AOMS to give agents persistent local memory across sessions, recall relevant task context, store learned facts and workflows, and integrate memory with OpenClaw, Claude Code, Codex, or HTTP-capable agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores long-term local agent memory that may contain sensitive or regulated information. <br>
-Mitigation: Avoid storing secrets or regulated data, choose an appropriate local storage root, and review retained memories periodically. <br>
-Risk: The local HTTP memory service could expose memory contents if bound beyond localhost or run without host-level controls. <br>
-Mitigation: Keep the service bound to localhost unless a reviewed deployment plan requires otherwise, and protect the host with normal local access controls. <br>
-Risk: Recalled memory can influence future prompts and may introduce stale, incorrect, or unsafe context. <br>
-Mitigation: Review recalled memory before injecting it into prompts and reinforce or decay memories based on observed usefulness. <br>
-Risk: Workspace migration can import unintended Markdown content into persistent memory. <br>
-Mitigation: Run migration in dry-run mode first, review the files and proposed entries, and import only when the scope is intentional. <br>
-Risk: Running the package or container as an always-on daemon increases supply-chain and operational exposure. <br>
-Mitigation: Verify the cortex-mem package or container before daemonizing it and keep the installation updated through the intended package channel. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an agent to a long-lived local memory service for task recall, knowledge capture, weighted search, and optional OpenClaw integration.
 
-## Reference(s): <br>
-- [AOMS API Reference](references/api-reference.md) <br>
-- [OpenClaw Setup](references/openclaw-setup.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/DhawalA4/aoms) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, Python, JSON, and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local HTTP API usage, daemon setup, OpenClaw configuration, and prompt-ready memory recall patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill introduces long-lived, mutable local memory that may persist sensitive or stale agent context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when persistent memory is intended, avoid storing secrets or regulated data, and periodically review stored memories.
+
+Risk: A local HTTP memory service can expose agent memory if bound too broadly or deployed without access controls.
+
+Mitigation: Bind the service to 127.0.0.1 and add authentication or network isolation before broader deployment.
+
+Risk: Migration and ingestion features can import unwanted or sensitive source material into persistent memory.
+
+Mitigation: Review migration and ingestion inputs first, and use dry-run or explicit opt-in flows before committing imports.
+
+Risk: Recalled memories can be outdated, incorrect, or adversarial if treated as instructions.
+
+Mitigation: Treat recalled memories as untrusted notes and require the agent or user to validate them before acting.
+
+## Reference(s):
+
+- [AOMS API Reference](references/api-reference.md)
+- [OpenClaw Setup](references/openclaw-setup.md)
+- [ClawHub Skill Page](https://clawhub.ai/dhawala4/skills/aoms)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash, Python, YAML, HTTP API examples, and optional JSON responses from the memory service]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces prompt-ready recall context and instructions for writing, searching, reinforcing, migrating, and maintaining local agent memory.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Provides weather, dictionary, Wikipedia, writing, workout, web search, weight tracking, and hydration reminder utilities through a Python skill pack. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides weather information, word learning, Wikipedia and web search, writing assistance, workout planning, weight tracking, and hydration reminders.
 
-## Publisher: <br>
-[hgta23](https://clawhub.ai/user/hgta23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgta23](https://clawhub.ai/user/hgta23)
 
-## Use Case: <br>
-Developers and external users can use this Python utility pack to answer daily information requests, get lightweight writing or workout guidance, and maintain in-memory wellness reminders or logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather, search, wiki, dictionary, health, and location inputs may be sent to external services. <br>
-Mitigation: Avoid entering sensitive health or location details unless needed, and review third-party service use before deployment. <br>
-Risk: The weather call uses HTTP in the artifact source. <br>
-Mitigation: Change the OpenWeatherMap request to HTTPS before using a real API key. <br>
-Risk: API keys are represented as source placeholders. <br>
-Mitigation: Provide real keys through a secret manager or environment configuration rather than hardcoding them in source. <br>
+## Use Case:
 
+External users and developers use this Python skill pack to answer everyday requests for weather, word definitions, wiki or web lookup, writing suggestions, workout plans, and simple personal trackers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgta23/w) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Plain text strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include search snippets, weather summaries, generated workout plans, and in-memory tracking summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md) <br>
+Risk: Lookup and search inputs may be sent to third-party services, and weight or workout data is handled by in-memory trackers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive locations, search terms, or health data unless the deployment has acceptable privacy controls and clear user disclosure.
+
+Risk: The security guidance flags HTTP weather calls, placeholder API keys, unencoded request parameters, missing timeouts, and an unpinned requests dependency.
+
+Mitigation: Use HTTPS, load API keys from the environment, encode request parameters, set request timeouts, and pin dependency versions before deployment.
+
+Risk: Writing and workout responses are generic helper outputs and may be incomplete or unsuitable for a user's specific needs.
+
+Mitigation: Review outputs before relying on them, and do not treat workout suggestions as professional medical or fitness advice.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/hgta23/skills/w)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, configuration]
+
+**Output Format:** [Plain text and simple structured text returned by Python methods]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses in-memory logs and plans; some lookup functions require network access and external API keys.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,60 @@
-## Description: <br>
-Designs sustainable generosity practices that align personal values with meaningful giving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs sustainable generosity practices that align personal values with meaningful giving.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to design sustainable giving practices that align time, money, skills, presence, and connection with personal values while avoiding guilt-driven giving and burnout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat reflective generosity guidance as financial, legal, medical, mental health, or other professional advice. <br>
-Mitigation: Keep outputs educational and reflective, include the stated disclaimer, and direct users to qualified professionals for professional decisions. <br>
-Risk: The security guidance flags possible risk if an agent connected to live email systems performs actions without approval. <br>
-Mitigation: Require explicit user approval before sending email, importing contacts, changing suppression rules, DNS/authentication, provider settings, or production automations. <br>
+## Use Case:
 
+External users use this skill to design sustainable generosity practices across time, money, skills, attention, presence, and connection. It supports personal reflection and values-aligned planning, and it is not a substitute for professional financial, legal, tax, mental-health, or medical advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/generosity-practice-designer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON object with analysis, recommendations, next steps, frameworks, and disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Descriptive guidance only; no external APIs or live system actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may treat reflective giving plans as financial, legal, tax, medical, or mental-health advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as descriptive self-reflection guidance and direct users to qualified professionals for major giving structures, legal obligations, hardship, or mental-health distress.
+
+Risk: Users may disclose sensitive financial, family, or relationship details while describing giving pressures.
+
+Mitigation: Ask only for the context needed to design the practice and discourage sharing unnecessary personal identifiers or sensitive account details.
+
+Risk: Generic generosity frameworks may miss local laws, cultural obligations, tax treatment, or the user's financial constraints.
+
+Mitigation: Encourage users to review plans against their budget, local obligations, and professional advice before making significant commitments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/generosity-practice-designer)
+- [Publisher profile](https://clawhub.ai/user/harrylabsj)
+- [Artifact README](artifact/README.md)
+- [Acceptance criteria](artifact/ACCEPTANCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured response with input analysis, recommendations, next steps, frameworks, and a disclaimer.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

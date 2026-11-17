@@ -1,36 +1,51 @@
-## Description: <br>
-Commander (cEDH) Live-Beratung - Banlist, Tutor-Targets, Mana-Rechnung, Combo-Lines <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cedh Advisor provides German Commander (cEDH) live play advice covering banlist checks, tutor targets, mana calculation, and combo lines.
 
-## Publisher: <br>
-[Mcben90](https://clawhub.ai/user/Mcben90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mcben90](https://clawhub.ai/user/mcben90)
 
-## Use Case: <br>
-External cEDH players use this skill for fast Commander gameplay advice, including banlist-aware card recommendations, tutor-target selection, mana counting, board analysis, and combo-line prioritization. Users should verify current banlist details against an official source before relying on gameplay recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mcben90/cedh-advisor) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown or concise natural-language game advice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include recommended cards, tutor targets, mana calculations, combo lines, and requests for missing board or hand context.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+External Magic: The Gathering Commander players use this skill for concise German cEDH gameplay guidance during live games, including legality checks, tutor decisions, mana counting, and deck-specific combo planning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Card legality advice can become stale as Commander banlists change.
+
+Mitigation: Check current Commander banlist information before relying on card recommendations.
+
+Risk: The skill references local deck files and databases that may contain personal gameplay data.
+
+Mitigation: Grant access only to the local files or databases the agent is intended to use.
+
+## Reference(s):
+
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Text]
+
+**Output Format:** [Markdown or concise plain text recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

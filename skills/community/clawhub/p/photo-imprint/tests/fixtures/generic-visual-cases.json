@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "sample_style_contract": {
+    "mark_edge_quality": ["dry broken contour with visible substrate tooth"],
+    "negative_space_rules": ["leave unmarked interiors where the source is open"],
+    "fill_tonal_rules": ["no unintended full-field tonal haze"],
+    "background_cleanliness": ["empty background matches the shared paper master"],
+    "frame_border_policy": "forbid accidental plate frames and crop-edge rectangles",
+    "abstraction_level": "summarize secondary detail while preserving the source-specific spatial read",
+    "generated_page_is_style_reference": false
+  },
+  "pages": [
+    {
+      "page": 1,
+      "case": "open-sky cloud study",
+      "thumbnail_read": "open sky and cloud contours",
+      "primary": "clouds",
+      "required": ["clean background", "border forbidden"],
+      "forbidden_inventions": ["frame around the sky"]
+    },
+    {
+      "page": 2,
+      "case": "courtyard tree",
+      "thumbnail_read": "one central tree inside a courtyard",
+      "primary": "central tree",
+      "required": ["surrounding shrubs", "ground plane", "courtyard depth"],
+      "forbidden_inventions": ["generic forest panorama"]
+    },
+    {
+      "page": 3,
+      "case": "glass facade",
+      "thumbnail_read": "transparent undulating facade",
+      "primary": "glass material and entrance volume",
+      "required": ["trees secondary only"],
+      "forbidden_inventions": ["opaque solid wall"]
+    },
+    {
+      "page": 4,
+      "case": "high-altitude city",
+      "thumbnail_read": "bird's-eye compressed city",
+      "primary": "high-altitude depth",
+      "required": ["buildings summarized", "major roads retained but simplified"],
+      "forbidden_inventions": ["invented transport lines"]
+    }
+  ],
+  "revision_examples": [
+    {"page": 4, "domain": "page-content", "operation": "retain_but_simplify", "target": "major roads", "instruction": "keep fewer, wider directional lines"},
+    {"page": 3, "domain": "page-content", "operation": "add_as_secondary", "target": "trees", "instruction": "decorate without competing with the facade"},
+    {"page": 1, "domain": "page-content", "operation": "remove", "target": "accidental frame", "instruction": "remove only the frame"},
+    {"page": 2, "domain": "page-content", "operation": "preserve_unchanged", "target": "courtyard depth", "instruction": "do not flatten the context"}
+  ]
+}

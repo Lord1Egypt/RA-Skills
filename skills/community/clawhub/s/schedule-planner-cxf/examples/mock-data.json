@@ -2,7 +2,6 @@
   "tripType": "出差",
   "destination": "杭州",
   "duration": "2026-06-15 至 2026-06-17（2 晚 3 天）",
-  "passenger": "张明（模拟数据）",
   "segments": [
     {
       "type": "train",
@@ -12,8 +11,7 @@
       "date": "2026-06-15",
       "price": 73,
       "seat": "二等座",
-      "duration": "1小时",
-      "orderId": "MOCK-ORDER-TRAIN-001"
+      "duration": "1小时"
     },
     {
       "type": "hotel",
@@ -23,8 +21,7 @@
       "checkIn": "2026-06-15 14:00后",
       "checkOut": "2026-06-17 12:00前",
       "nights": 2,
-      "price": 497,
-      "orderId": "MOCK-ORDER-HOTEL-001"
+      "price": 497
     },
     {
       "type": "train",
@@ -34,8 +31,7 @@
       "date": "2026-06-17",
       "price": 73,
       "seat": "二等座",
-      "duration": "1小时",
-      "orderId": "MOCK-ORDER-TRAIN-002"
+      "duration": "1小时"
     }
   ],
   "dailyPlan": [
@@ -80,5 +76,7 @@
     "酒店距阿里巴巴西溪园区步行约10分钟",
     "本行程为模拟演示数据，不涉及真实预订"
   ],
-  "paymentUrl": "https://m.tuniu.com/u/order?page=1&filter=0-0-1"
+  "mock": true,
+  "language": "zh-CN",
+  "platformUrl": "https://www.tuniu.com/"
 }

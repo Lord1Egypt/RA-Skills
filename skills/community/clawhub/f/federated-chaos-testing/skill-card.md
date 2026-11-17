@@ -1,41 +1,53 @@
-## Description: <br>
-Guides developers through chaos testing for federated learning systems by injecting noise, node dropout, data poisoning, and communication delays to evaluate model robustness and fault tolerance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simulates faults in federated learning systems by injecting noise, dropout, data poisoning, and delays to evaluate model robustness and fault tolerance.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to plan authorized chaos tests for federated learning systems, evaluate how node failures or malicious updates affect global model quality, and design more fault-tolerant training protocols. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fault injection and poisoning simulations can disrupt production or third-party federated learning systems if applied without authorization. <br>
-Mitigation: Use the skill only in authorized test environments and review proposed experiments before running them. <br>
-Risk: The guidance is conceptual, so metrics and thresholds may not directly fit every federated learning system. <br>
-Mitigation: Validate baselines, fault assumptions, and robustness thresholds against the target system before relying on results. <br>
+## Use Case:
 
+Developers and ML engineers use this skill to plan federated-learning chaos tests that simulate faulty updates, node dropout, data skew, data poisoning, and network delay so they can assess robustness and fault tolerance.
 
-## Reference(s): <br>
-- [Federated Chaos Testing skill source](artifact/SKILL.md) <br>
-- [ClawHub release page](https://clawhub.ai/kingofzhao/federated-chaos-testing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no code, installers, credentials, persistence, or hidden access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill discusses simulating faults and data poisoning for defensive robustness testing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in controlled, authorized federated-learning test environments rather than against production or third-party systems.
+
+Risk: The skill content is Chinese-language guidance.
+
+Mitigation: Install and use it only when Chinese-language guidance is acceptable for the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kingofzhao/skills/federated-chaos-testing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with bullet lists and a FERI formula]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code or shell execution; Chinese-language guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

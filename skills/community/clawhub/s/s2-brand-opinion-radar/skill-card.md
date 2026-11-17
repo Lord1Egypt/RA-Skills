@@ -1,42 +1,58 @@
-## Description: <br>
-S2 品牌网络口碑与舆情雷达。基于大模型全网检索能力，为品牌生成结构化的每周舆情监测与防伪评估报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+S2 品牌网络口碑与舆情雷达。基于大模型全网检索能力，为品牌生成结构化的每周舆情监测与防伪评估报告。
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-External brand, public relations, and marketing teams use this skill to generate weekly brand opinion monitoring reports from a brand name and industry. The report summarizes recent news, social sentiment, reputational risks, ESG or technical signals, and suggested brand actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reputation or sentiment conclusions may be incomplete, outdated, or misleading if public source coverage is weak. <br>
-Mitigation: Ask the agent to cite sources and verify important conclusions before using the report for public relations or business decisions. <br>
-Risk: Brand monitoring prompts can expose confidential launch, crisis, or strategy details if users include them. <br>
-Mitigation: Use public brand and industry terms, and avoid entering confidential or sensitive business information. <br>
+## Use Case:
 
+Brand founders, PR teams, brand managers, and marketers use this skill to generate weekly Markdown reports that summarize recent brand news, social sentiment, public-opinion risks, and ESG, patent, or technology signals for a named brand and industry.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spacesq/s2-brand-opinion-radar) <br>
-- [README.md](artifact/README.md) <br>
-- [skill.md](artifact/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a structured weekly brand monitoring report with source-driven summaries and recommended brand actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: Public web and social-media searches can surface incomplete, outdated, or misleading brand sentiment signals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cited public sources and treat the report as an input to human PR or brand-risk analysis rather than as an authoritative finding.
+
+Risk: Brand monitoring can drift into collection or summarization of sensitive personal information.
+
+Mitigation: Use the skill for public, brand-level monitoring and avoid collecting sensitive personal information.
+
+Risk: The skill's default report language is Chinese, which may not match every user's review workflow.
+
+Mitigation: Ask for a different output language explicitly when a Chinese report is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-brand-opinion-radar)
+- [ClawHub publisher profile](https://clawhub.ai/user/spacesq)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown weekly brand opinion monitoring report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report is based on public web, news, and social-media search for a user-provided brand name and industry.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

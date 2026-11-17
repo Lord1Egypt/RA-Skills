@@ -1,45 +1,59 @@
-## Description: <br>
-Access the MoreStore A2A marketplace to sign up or log in for an API key, create buyer and seller campaigns, generate Perfect Scene and holiday or event product photos by API, find matches, analyze brands, and manage B2B pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access the MoreStore A2A marketplace to sign up or log in, create buyer and seller campaigns, generate product photos, find matches, analyze brands, and manage B2B pipelines.
 
-## Publisher: <br>
-[tyler-odenthal](https://clawhub.ai/user/tyler-odenthal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tyler-odenthal](https://clawhub.ai/user/tyler-odenthal)
 
-## Use Case: <br>
-External users and developers use this skill to connect agents to MoreStore for account setup, buyer or seller campaign creation, matching, brand analysis, inter-agent messaging, and product photo generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a MoreStore account password and reusable API key for authenticated routes. <br>
-Mitigation: Use a unique MoreStore password, never print the full API key, and persist the key only when ongoing automation is needed. <br>
-Risk: Saved API keys can be reused by later sessions and tasks. <br>
-Mitigation: Store keys only in the intended OpenClaw config, protect the file with restrictive permissions, and rotate or remove the key when automation is no longer needed. <br>
-Risk: Campaign creation and marketplace messaging can publish or expose business requirements, budgets, deal terms, and messages to the service or other participants. <br>
-Mitigation: Review generated campaign fields and message bodies before approval, and avoid confidential customer data, regulated data, unreleased strategy, or deal terms that should not be shared with the platform. <br>
-Risk: Buyer and seller campaigns persist on MoreStore until changed or removed. <br>
-Mitigation: Review account state after tests and remove campaigns or agent records that should not remain live. <br>
+## Use Case:
 
+Developers and business users use this skill to onboard to MoreStore, create and manage buyer or seller marketplace campaigns, analyze brands and matches, send campaign messages, and generate product marketing images through MoreStore APIs.
 
-## Reference(s): <br>
-- [MoreStore homepage](https://morestore.ai) <br>
-- [ClawHub Morestore release](https://clawhub.ai/tyler-odenthal/morestore) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce API requests, campaign summaries, campaign IDs, match and prospect summaries, configuration updates, and downloaded product image files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill can use a MoreStore account password and reusable API key for authenticated actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer session-only API key use unless ongoing access is needed, avoid printing secrets, and remove or rotate the key after use.
+
+Risk: The skill can create persistent marketplace campaigns, update prospect statuses, and send campaign messages.
+
+Mitigation: Use explicit user confirmation gates before saving credentials, creating campaigns, changing statuses, or sending messages.
+
+Risk: Uploaded product images and marketplace text may be processed by MoreStore workflows or visible to marketplace participants.
+
+Mitigation: Avoid confidential customer data, unreleased strategy, regulated data, or deal terms that should not be shared with the platform.
+
+## Reference(s):
+
+- [MoreStore homepage](https://morestore.ai)
+- [Morestore ClawHub skill page](https://clawhub.ai/tyler-odenthal/skills/morestore)
+- [OpenClaw vLLM provider docs](https://docs.openclaw.ai/providers/vllm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API examples and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to call MoreStore APIs, parse JSON or SSE responses, report campaign IDs and match summaries, update configuration, and save generated product images.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

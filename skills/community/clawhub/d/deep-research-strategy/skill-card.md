@@ -1,38 +1,51 @@
-## Description: <br>
-AI agent for deep research strategy tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent for deep research strategy tasks.
 
-## Publisher: <br>
-[realRoc](https://clawhub.ai/user/realRoc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[realroc](https://clawhub.ai/user/realroc)
 
-## Use Case: <br>
-Researchers, analysts, and agent builders use this skill to plan complex research work, verify core entities, decompose the request into several orthogonal search tasks, and synthesize returned reports and logs into a final research handoff. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Research queries and returned reports or logs may include confidential topics, private documents, credentials, or sensitive business data. <br>
-Mitigation: Use this skill only when sharing those queries and outputs with the available search agents and final result is acceptable; avoid sensitive inputs otherwise. <br>
-Risk: The final handoff preserves all returned research reports and logs, which can carry irrelevant or low-confidence source material. <br>
-Mitigation: Review returned reports, logs, and cited sources before relying on the synthesized research output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and research-oriented agents use this skill to plan complex research requests, verify core entities, delegate orthogonal search tasks to specialist sub-agents, and synthesize returned research materials.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill requires broad research orchestration and forwarding of all generated reports and logs.
+
+Mitigation: Use it only in environments where report contents and logs can be reviewed before sharing or persistence.
+
+Risk: External search delegation can expose confidential attachments, secrets, private URLs, or sensitive business data.
+
+Mitigation: Avoid sensitive inputs unless the host environment provides explicit review, redaction, and approval controls.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown research summaries with task delegation instructions and attached research reports or logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates one round of parallel research delegation and preserves returned reports and logs for the final result.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown instructions, task assignments, research summaries, and attachment handoff guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce parallel tool-call instructions and synthesized research reports.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

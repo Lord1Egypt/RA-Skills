@@ -1,40 +1,53 @@
-## Description: <br>
-对用户提出的具体话题/课题/行业进行深度调研，输出结构化报告。结合多智能体并行搜索（借鉴女娲Nuwa）和克制调用原则（借鉴AutoGLM DeepResearch），先展示中间发现再决策。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+对用户提出的具体话题/课题/行业进行深度调研，输出结构化报告。结合多智能体并行搜索（借鉴女娲Nuwa）和克制调用原则（借鉴AutoGLM DeepResearch），先展示中间发现再决策。
 
-## Publisher: <br>
-[realpda](https://clawhub.ai/user/realpda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realpda](https://clawhub.ai/user/realpda)
 
-## Use Case: <br>
-External users and employees use this skill to guide deep research on a specific topic, market, industry, or question. The skill structures the work into scoped research dimensions, interim findings, source review, synthesis, and actionable recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research outputs can be incomplete, outdated, or overly dependent on weak sources if the agent stops before checking enough evidence. <br>
-Mitigation: Use the skill's interim findings, source weighting, citation requirements, and quality self-check before treating conclusions as decision support. <br>
-Risk: The workflow may require browsing or delegated search across external sources selected during use. <br>
-Mitigation: Review source choices, avoid excluded low-reliability platforms, and confirm important claims against authoritative sources before acting on the report. <br>
+## Use Case:
 
+External users and employees use this skill to research a specific topic, industry, market, or policy question and receive a sourced structured report. The workflow emphasizes interim findings, restrained search depth, credible sources, balanced analysis, and actionable recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/realpda/deep-topic-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown research reports with interim finding summaries, cited source lists, and actionable recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include research scope confirmation, 2-4 search dimensions, source quality notes, risk/challenge analysis, and optional Obsidian note content when requested by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Obsidian export can write to a user-provided note path without enough clarity about create, append, or overwrite behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before using the Obsidian option, require an exact note path and confirm whether the agent will create, append to, or overwrite the file.
+
+Risk: Research reports can mislead users if weak sources, missing evidence, or one-sided findings are treated as final conclusions.
+
+Mitigation: Use the workflow's interim findings, source weighting, citation requirements, balanced opportunity-and-risk analysis, and final self-check before relying on the report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realpda/skills/deep-topic-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research report with cited references and optional Obsidian note output when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes interim finding summaries before final report generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

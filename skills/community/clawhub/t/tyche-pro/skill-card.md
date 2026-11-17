@@ -1,42 +1,57 @@
-## Description: <br>
-Tyche Pro — Invoice & Fortune Engine generates professional PDF-ready invoices, tracks multi-currency payments, applies tax and late fee calculations, sends tiered reminder emails, and exports a full revenue analytics dashboard from a CSV. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates invoice and revenue reporting from CSV data, including multi-currency tracking, tax and late-fee calculations, reminder email drafts, project grouping, aged receivables, and analytics exports.
 
-## Publisher: <br>
-[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway)
 
-## Use Case: <br>
-Freelancers, small businesses, and billing operators use this skill to generate invoice reports, track outstanding payments, calculate taxes and late fees, and review receivables analytics from a local CSV workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles financial invoice and payment data and writes local report files. <br>
-Mitigation: Run it from a private working directory and keep generated Markdown and CSV reports out of shared, synced, or source-controlled folders unless that sharing is intentional. <br>
-Risk: The skill requires an external license purchase flow and a LICENSE_KEY value. <br>
-Mitigation: Install only when the publisher and purchase flow are trusted, and store the license key in an environment variable rather than in source files or shared documentation. <br>
-Risk: The setup installs the PyPI rich dependency before running the workflow. <br>
-Mitigation: Use a trusted Python environment and review dependency installation policy before running the install command. <br>
+## Use Case:
 
+Freelancers, small businesses, and billing operations users use this skill to turn invoice CSV data into local invoice status reporting, payment reminder drafts, aged receivables, project revenue grouping, and analytics exports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/occupythemilkyway/tyche-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands, Python code, console tables, generated Markdown report, and generated CSV analytics file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a LICENSE_KEY environment variable and may read invoice data from INVOICES_FILE; generated report and analytics files are written locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release metadata) <br>
+Risk: The security summary flags setup and export behavior for review before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, use a virtual environment rather than the provided system-level pip command, and avoid running setup as an administrator.
+
+Risk: Generated reports and analytics CSVs can contain sensitive billing data.
+
+Mitigation: Store generated files only in a private folder and handle exported CSVs as sensitive billing records.
+
+Risk: Invoice data from untrusted sources can flow into generated reports and exports.
+
+Mitigation: Open exports only from invoice data you control or have reviewed.
+
+## Reference(s):
+
+- [Tyche Pro ClawHub page](https://clawhub.ai/occupythemilkyway/skills/tyche-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash and Python code blocks; generated Markdown report and CSV analytics export]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LICENSE_KEY; optional invoice CSV and billing environment variables; runs locally and writes dated report and analytics files.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Add educational comments to the file specified, or prompt asking for file to comment if one is not provided. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add educational comments to the file specified, or prompt asking for file to comment if one is not provided.
 
-## Publisher: <br>
-[boleyn](https://clawhub.ai/user/boleyn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boleyn](https://clawhub.ai/user/boleyn)
 
-## Use Case: <br>
-Developers and educators use this skill to add explanatory comments to code files as learning resources while preserving file structure, encoding, and build correctness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can add many comments to files and may make unintended edits if applied to the wrong target. <br>
-Mitigation: Use it only on files intended for modification, keep files under version control, and review the resulting diff before accepting changes. <br>
-Risk: Optional reference URLs can influence generated educational comments. <br>
-Mitigation: Provide only trusted reference URLs in the Fetch List. <br>
+## Use Case:
 
+Developers and learners use this skill to add explanatory comments to selected code files while preserving formatting, encoding, and build correctness. It is intended to turn existing code into a clearer learning resource for different experience levels.
 
-## Reference(s): <br>
-- [PEP 263 - Defining Python Source Code Encodings](https://peps.python.org/pep-0263/) <br>
-- [ClawHub skill page](https://clawhub.ai/boleyn/add-educational-comments) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance and modified code comments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May add many educational comment lines while preserving the target file's encoding, end-of-line style, and syntax.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may substantially increase the length of selected code files and reduce readability in files where additional comments are not desired.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated diff before keeping changes and apply the skill only to files where educational commentary is useful.
+
+Risk: Added comments could accidentally affect generated output, formatting-sensitive files, or language-specific syntax if not validated.
+
+Mitigation: Run the relevant formatter, syntax check, or test suite after comment insertion, especially for files with strict encoding or indentation rules.
+
+## Reference(s):
+
+- [PEP 263 - Defining Python Source Code Encodings](https://peps.python.org/pep-0263/)
+- [ClawHub Skill Page](https://clawhub.ai/boleyn/skills/add-educational-comments)
+- [Publisher Profile](https://clawhub.ai/user/boleyn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance and edited code comments in the target file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May substantially increase file length by adding educational comments; users should review resulting diffs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

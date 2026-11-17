@@ -1,39 +1,51 @@
-## Description: <br>
-Manage Apple Calendar events via AppleScript, with artifact-backed support for adding events using smart date parsing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Apple Calendar events via AppleScript, with current scripts focused on adding events using relative or explicit dates.
 
-## Publisher: <br>
-[CryptoL0rd](https://clawhub.ai/user/CryptoL0rd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cryptol0rd](https://clawhub.ai/user/cryptol0rd)
 
-## Use Case: <br>
-External users and developers on macOS use this skill to add Apple Calendar events with relative or explicit dates through OpenClaw-managed shell commands and AppleScript automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can write events to a local Apple Calendar once macOS automation permission is granted. <br>
-Mitigation: Review the calendar name, event title, dates, and times before executing generated commands, and grant Calendar automation permission only for trusted use. <br>
-Risk: The artifact references an add_event.scpt implementation that is not included in the supplied artifact files. <br>
-Mitigation: Inspect and verify any separately supplied add_event.scpt before using it with Calendar automation permissions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Apple Calendar Manager on ClawHub](https://clawhub.ai/CryptoL0rd/apple-calendar-manager) <br>
+## Use Case:
+
+External users and developers on macOS use this skill to add Apple Calendar events from relative dates or explicit date/time values through agent-guided shell and AppleScript commands.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The package appears incomplete because the add_event.scpt helper referenced by the skill is not included.
+
+Mitigation: Confirm the missing script is supplied from a trusted source before installation and test on a non-critical calendar.
+
+Risk: Running the add-event command can create real Apple Calendar entries and may prompt macOS for Calendar automation permission.
+
+Mitigation: Review event details before execution and authorize Calendar automation only for trusted agent workflows.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local macOS Calendar automation commands that require user-granted Calendar automation permission.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Shell commands, Guidance, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, Apple Calendar access, and Calendar automation authorization.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

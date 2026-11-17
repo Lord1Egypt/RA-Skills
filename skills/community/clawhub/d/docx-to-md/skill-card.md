@@ -1,37 +1,57 @@
-## Description: <br>
-Converts Word (.docx) documents to Markdown and extracts embedded images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Word .docx documents to Markdown and extracts embedded images into a local output directory.
 
-## Publisher: <br>
-[ooliuhao](https://clawhub.ai/user/ooliuhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ooliuhao](https://clawhub.ai/user/ooliuhao)
 
-## Use Case: <br>
-Developers, technical writers, and content maintainers use this skill to convert .docx files into Markdown while saving embedded images for reuse. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A specially crafted DOCX file could cause local files to be moved outside the intended output area. <br>
-Mitigation: Review or patch the script before using it on untrusted DOCX files; normalize and validate archive member paths and keep writes inside the chosen output directory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ooliuhao/docx-to-md) <br>
+## Use Case:
 
+Developers and technical writers use this skill to convert Word documents into Markdown while preserving headings, lists, tables, and embedded images as local files.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands] <br>
-**Output Format:** [Markdown files, extracted image files, and terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.7+ and python-docx; accepts an input .docx path and optional output directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The converter writes Markdown and extracted image files to disk.
+
+Mitigation: Use a new or empty output directory and review generated files before relying on them.
+
+Risk: Untrusted or very large DOCX files can create ordinary local file-handling risk during conversion.
+
+Mitigation: Process trusted files in a controlled workspace and avoid running the converter on untrusted or unexpectedly large documents.
+
+Risk: The user-facing documentation and runtime messages are in Chinese.
+
+Mitigation: Have a reviewer who can read the messages confirm usage and error output before deployment in another language environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ooliuhao/skills/docx-to-md)
+- [Publisher profile](https://clawhub.ai/user/ooliuhao)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown files, extracted image files, and Python or CLI invocation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes output to a specified directory or a default document-named output folder; requires Python 3.7+ and python-docx.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

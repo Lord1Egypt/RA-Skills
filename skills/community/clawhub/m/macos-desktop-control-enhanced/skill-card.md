@@ -1,42 +1,57 @@
-## Description: <br>
-macOS Desktop Control Enhanced provides system-wide desktop automation on macOS, including screenshot capture, process management, clipboard operations, system information, application control, and direct mouse, keyboard, and screen interaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+macOS Desktop Control Enhanced provides system-wide desktop automation on macOS, including screenshot capture, process management, clipboard operations, system information, application control, and direct mouse, keyboard, and screen interaction.
 
-## Publisher: <br>
-[pry520okgpt](https://clawhub.ai/user/pry520okgpt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pry520okgpt](https://clawhub.ai/user/pry520okgpt)
 
-## Use Case: <br>
-Developers and automation users use this skill to let an agent query or control a macOS desktop, including screenshots, clipboard actions, application focus, process management, mouse input, and keyboard input. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can capture screen contents, read or write clipboard data, type text, click, focus apps, and terminate processes, which can expose sensitive data or disrupt active work. <br>
-Mitigation: Require explicit user approval before desktop-control actions, avoid use around passwords, private messages, terminals, admin prompts, and unsaved work, and review proposed coordinates, text, app identifiers, and process targets before execution. <br>
-Risk: The skill's broad macOS automation surface can perform unintended actions if inputs are wrong or generated without enough context. <br>
-Mitigation: Prefer narrow, task-specific commands, confirm destructive actions such as process termination, and run in a controlled desktop session when possible. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to control and query macOS desktops for testing, data collection, accessibility workflows, and local system automation.
 
-## Reference(s): <br>
-- [macOS Desktop Control Enhanced API Reference](references/api_reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/pry520okgpt/macos-desktop-control-enhanced) <br>
-- [Publisher profile](https://clawhub.ai/user/pry520okgpt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown, Python code, shell commands, and plain-text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify local desktop state through screenshots, clipboard updates, app control, mouse actions, keyboard actions, and process termination.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can capture visible screen content and read or overwrite clipboard data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in controlled macOS sessions with explicit user-directed commands, and review captured or clipboard data before sharing it.
+
+Risk: The skill can type, click, focus applications, terminate processes, and otherwise affect the active desktop.
+
+Mitigation: Validate coordinates, bundle identifiers, process identifiers, and text inputs before execution, especially when values come from web pages, files, clipboard contents, or model output.
+
+Risk: The security verdict flags the release as suspicious because sensitive and destructive desktop actions lack sufficient scoping, safeguards, or input validation.
+
+Mitigation: Review the skill before installing and restrict use to trusted workflows where a human can supervise desktop-control effects.
+
+## Reference(s):
+
+- [macOS Desktop Control Enhanced API Reference](references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with inline Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce screenshot file paths, process metadata, clipboard text, system information, and desktop-control actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

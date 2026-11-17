@@ -1,45 +1,60 @@
-## Description: <br>
-Aistro provides astrology consultation workflows for chat Q&A and personalized natal, prediction, synastry, and moon phase reports using local calculation scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aistro provides professional astrology consultation, personalized horoscope guidance, and report generation for natal charts, daily predictions, synastry compatibility, and moon phase readings.
 
-## Publisher: <br>
-[lban2049](https://clawhub.ai/user/lban2049) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lban2049](https://clawhub.ai/user/lban2049)
 
-## Use Case: <br>
-External users use this skill for astrology Q&A and personalized horoscope, birth chart, compatibility, and lunar influence readings. The agent collects birth details when needed and uses the included local scripts to calculate chart placements, moon phases, and deterministic report scores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for birth date, birth time, and birth place, which can be personal information. <br>
-Mitigation: Only provide birth details you are comfortable sharing, and do not provide another person's birth details without permission or a legitimate reason. <br>
-Risk: The skill may install and run local Node dependencies for astrology calculations. <br>
-Mitigation: Review the bundled scripts and dependency manifest before deployment, and allow npm installation only in environments where local script execution is acceptable. <br>
-Risk: Astrology readings and scores may be interpreted as advice despite being entertainment-oriented guidance. <br>
-Mitigation: Treat reports as interpretive guidance rather than factual, medical, legal, financial, or safety-critical advice. <br>
+## Use Case:
 
+External users can use Aistro to ask astrology questions and generate personalized reports based on birth details, target dates, compatibility inputs, and moon phase calculations.
 
-## Reference(s): <br>
-- [Natal Chart Report](references/natal-report.md) <br>
-- [Horoscope Prediction Report](references/predict-report.md) <br>
-- [Synastry Compatibility Report](references/synastry-report.md) <br>
-- [Moon Phase Report](references/moon-phase-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Conversational text and Markdown reports, with local shell commands used for JSON-producing astrology calculations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include overview-first reports, expandable detail sections, tables, scores, and same-language responses based on the user's input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: The skill asks for birth date, birth time, birth place, and, for synastry, another person's birth details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask only for details needed for the requested report, avoid entering another person's birth details without permission, and treat birth information as sensitive chat context.
+
+Risk: The skill may run npm install for local calculation scripts.
+
+Mitigation: Review the packaged dependencies and lockfile before installation when strict reproducibility or dependency review is required.
+
+Risk: Personalized astrology output can be mistaken for professional life, health, relationship, or financial advice.
+
+Mitigation: Frame readings as reflective astrology guidance and avoid presenting them as a substitute for qualified professional advice.
+
+## Reference(s):
+
+- [Natal Chart Report](references/natal-report.md)
+- [Horoscope Prediction Report](references/predict-report.md)
+- [Synastry Report](references/synastry-report.md)
+- [Moon Phase Report](references/moon-phase-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Conversational text and Markdown reports with inline shell commands for local astrology calculation scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require birth date, birth time, birth place, target date, and second-person birth details for synastry; outputs in the user's language.]
+
+## Skill Version(s):
+
+0.1.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

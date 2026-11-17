@@ -1,44 +1,51 @@
-## Description: <br>
-AI-driven weekly learning review skill that turns authorized weekly study activity into evidence-based summaries, growth signals, and focused next-step guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+把一周零散的学习记录整理成有结论、有证据、有下一步的周报，并带学生做一次自我复盘。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students, parents, and learning-support agents use this skill to generate weekly study reviews from approved learning records. It produces student-facing and family-sharing reports that emphasize concrete progress, weak points, reflection prompts, and one prioritized action for the next week. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weekly reviews may summarize sensitive learning records or emotional-state signals. <br>
-Mitigation: Use the skill only with clear student and parent understanding of the included data sources, and confirm before sharing summaries outside the immediate review context. <br>
-Risk: Family-sharing reports can increase pressure if weak points or anxiety signals are presented without support. <br>
-Mitigation: Use the skill's supportive family-sharing framing: present objective signals with constructive action cards and avoid alarm-only language. <br>
-Risk: Monthly-report handoff may expose more information than needed. <br>
-Mitigation: Pass only the approved weekly-summary fields needed by the monthly-report coordinator and ask for confirmation before handoff. <br>
+## Use Case:
 
+Students use this skill to turn a week's learning activity into an evidence-based review and choose one priority for the next week. Younger students use a shorter guided reflection; a family version requires the student's authorization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-weekly-review) <br>
-- [Publisher profile](https://clawhub.ai/user/qizhitang) <br>
-- [Review report template](artifact/references/review-report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown learning review reports with concise action guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports student self-use and family-sharing report variants when the user approves the relevant data use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release; artifact frontmatter lists 1.1.1) <br>
+Risk: The scan flags a monthly-summary handoff in a report template that conflicts with the documented consent boundary and could expose student information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the template against the skill's consent rules before use, and ensure any sharing or handoff is limited to information the student has authorized for that purpose.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/qizhitang/skills/xiaozhi-weekly-review)
+- [Review report template](references/review-report-template.md)
+- [Handoff protocol schema](shared/handover-protocol.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown weekly report or conversational reflection]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content depends on available learning records and the student's age band; recommendations focus on one next-week priority.]
+
+## Skill Version(s):
+
+2.12.7 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

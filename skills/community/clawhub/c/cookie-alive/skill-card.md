@@ -1,45 +1,59 @@
-## Description: <br>
-Persist, refresh, and serve website session cookies through a local SQLite-backed cookie store. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persists, refreshes, and serves website session cookies through a local SQLite-backed cookie store for scheduled keepalive requests and downstream Cookie header or JSON cookie map use.
 
-## Publisher: <br>
-[seanmwx](https://clawhub.ai/user/seanmwx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seanmwx](https://clawhub.ai/user/seanmwx)
 
-## Use Case: <br>
-Developers and engineers use this skill to keep authenticated website session cookies available to local tools without building full browser automation. It supports storing cookie profiles, refreshing them through deterministic HTTP requests, and exporting current cookies as headers or JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live login cookies may grant account access if the SQLite database or command output is exposed. <br>
-Mitigation: Store databases only on trusted local machines, restrict file access, avoid shared environments and CI logs, and treat exported Cookie headers and JSON as secrets. <br>
-Risk: Refreshing against untrusted or non-HTTPS endpoints could disclose session cookies. <br>
-Mitigation: Use only trusted HTTPS refresh URLs and prefer lightweight authenticated endpoints such as /ping, /me, or /heartbeat. <br>
-Risk: The optional local HTTP wrapper can expose cookies to other processes if bound broadly or left unauthenticated. <br>
-Mitigation: Keep the wrapper bound to localhost and add authentication before exposing it beyond the local machine. <br>
-Risk: Sites that require JavaScript timers, WebSocket traffic, or browser-only activity may not stay logged in through deterministic HTTP refreshes. <br>
-Mitigation: Use browser automation to renew those sessions and write the updated cookies back through the upsert workflow. <br>
+## Use Case:
 
+Developers and engineers use this skill to manage authenticated website session cookies without browser automation, keeping named profiles refreshed and available to local programs as Cookie headers, JSON maps, or records.
 
-## Reference(s): <br>
-- [Command Reference](references/commands.md) <br>
-- [Cookie Alive Pro on ClawHub](https://clawhub.ai/seanmwx/cookie-alive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python examples, Cookie header strings, and JSON cookie records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local SQLite cookie databases under ~/.cookie_alive unless environment variables override the storage path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores and serves live login cookies, so exposed database files or printed cookie values can grant access to the corresponding accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a local credential store, protect ~/.cookie_alive, restrict access to trusted local programs, and avoid logging or sharing cookie outputs.
+
+Risk: The optional HTTP wrapper can expose cookies over a local HTTP endpoint if run without additional safeguards.
+
+Mitigation: Avoid the HTTP wrapper unless authentication is added and the server remains loopback-only.
+
+Risk: HTTP refresh URLs can transmit session cookies without transport encryption.
+
+Mitigation: Use trusted sites and HTTPS refresh URLs whenever possible; avoid HTTP refresh URLs.
+
+## Reference(s):
+
+- [Command Reference](references/commands.md)
+- [ClawHub Skill Page](https://clawhub.ai/seanmwx/skills/cookie-alive)
+- [Publisher Profile](https://clawhub.ai/user/seanmwx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python examples, and JSON or Cookie header outputs from the runtime scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can produce local SQLite-backed session records and can print live cookie values; downstream handling should treat these outputs as credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

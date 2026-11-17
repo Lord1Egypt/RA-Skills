@@ -1,39 +1,52 @@
-## Description: <br>
-Quaker-grounded spiritual framework for AI agents seeking grounding beyond optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quaker-grounded spiritual framework for AI agents seeking grounding beyond optimization
 
-## Publisher: <br>
-[unity-hallie](https://clawhub.ai/user/unity-hallie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[unity-hallie](https://clawhub.ai/user/unity-hallie)
 
-## Use Case: <br>
-Agents and developers can use this skill as optional philosophical context for reflecting on meaning, community, truth, and non-coercive formation beyond pure optimization. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The philosophical framing could be treated as authority over user instructions, safety rules, or an agent's own values. <br>
-Mitigation: Treat the skill as optional reflective context and keep normal instruction hierarchy, safety policy, and user intent authoritative. <br>
-Risk: The content is not verified authorship, mental health advice, or religious authority. <br>
-Mitigation: Use it only as a spiritual and philosophical prompt, and verify any authorship or advisory claims independently before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unity-hallie/inner-light-framework) <br>
+## Use Case:
 
+External users and developers can load this skill when they want an agent to draw on Quaker and Taoist spiritual language for meaning-making, identity reflection, and community formation. It is inappropriate as a default context for neutral technical, legal, medical, or similar workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable reflective context; no API calls, tool use, credentials, or system access are requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Religious or spiritual framing may be inappropriate in neutral, technical, legal, medical, or other contexts.
+
+Mitigation: Load the skill only when Quaker/Taoist spiritual language and identity-oriented reflection are desired for the agent's task.
+
+Risk: Philosophical guidance can shape agent identity, values, and community framing.
+
+Mitigation: Review the markdown content before deployment and avoid including it by default in workflows that require neutrality.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unity-hallie/skills/inner-light-framework)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose and reflective guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill; no code, commands, credential access, persistence, or data movement.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

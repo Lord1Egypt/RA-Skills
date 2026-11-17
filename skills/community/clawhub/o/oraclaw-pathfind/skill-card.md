@@ -1,41 +1,59 @@
-## Description: <br>
-A* pathfinding and task sequencing for AI agents. Find the optimal path through workflows, dependencies, and decision trees. K-shortest paths via Yen's algorithm. Cost/time/risk breakdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A* pathfinding and task sequencing for AI agents that find optimal paths through workflows, dependencies, and decision trees with K-shortest path alternatives and cost, time, and risk breakdowns.
 
-## Publisher: <br>
-[whatsonyourmind](https://clawhub.ai/user/whatsonyourmind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whatsonyourmind](https://clawhub.ai/user/whatsonyourmind)
 
-## Use Case: <br>
-Developers and external agents use this skill to plan optimal routes through task graphs, dependency networks, and decision trees while comparing cost, time, risk, and alternative paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an Oraclaw API key and uses an external paid pathfinding service. <br>
-Mitigation: Install only when external Oraclaw service use is intended, use a scoped API key if available, and monitor usage and billing. <br>
-Risk: Pathfinding inputs may disclose confidential project names, dependency structures, cost figures, or risk details to the external service. <br>
-Mitigation: Avoid sending confidential workflow details unless Oraclaw's data handling terms are acceptable for the use case. <br>
+## Use Case:
 
+Developers and agent builders use this skill to route through task graphs, dependency networks, and decision trees when optimizing for cost, time, risk, or alternative execution paths.
 
-## Reference(s): <br>
-- [Oraclaw Pathfind homepage](https://oraclaw.dev/pathfind) <br>
-- [ClawHub skill page](https://clawhub.ai/whatsonyourmind/oraclaw-pathfind) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API Calls, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and pathfinding result descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces optimal-path guidance, cost/time/risk breakdowns, and K alternative route descriptions through an external paid Oraclaw service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill requires an OraClaw API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a revocable key, store it only in the intended environment variable, and rotate it if access is no longer needed.
+
+Risk: Workflow graph data is sent to the external OraClaw service.
+
+Mitigation: Minimize pathfinding inputs and avoid including unnecessary sensitive business details in nodes, edges, or labels.
+
+Risk: Pathfinding results depend on caller-provided graph structure, non-negative edge costs, and risk values.
+
+Mitigation: Validate graph inputs before use and review returned routes before relying on them for execution planning.
+
+## Reference(s):
+
+- [OraClaw Pathfind homepage](https://oraclaw.dev/pathfind)
+- [ClawHub skill page](https://clawhub.ai/whatsonyourmind/skills/oraclaw-pathfind)
+- [ClawHub publisher profile](https://clawhub.ai/user/whatsonyourmind)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured pathfinding results and cost, time, risk, and alternate-route summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ORACLAW_API_KEY and sends workflow graph inputs to the external OraClaw service.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

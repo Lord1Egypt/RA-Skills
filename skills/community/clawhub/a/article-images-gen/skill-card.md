@@ -1,41 +1,57 @@
-## Description: <br>
-Generates hand-drawn, minimalist illustrations for Markdown articles or direct prompts using opencli Gemini with Grok fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates hand-drawn, minimalist illustrations for articles and can add the generated image references back into the article Markdown.
 
-## Publisher: <br>
-[redisread](https://clawhub.ai/user/redisread) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redisread](https://clawhub.ai/user/redisread)
 
-## Use Case: <br>
-External users and developers use this skill to analyze Markdown articles, create illustration outlines and prompt files, generate 16:9 hand-drawn images, and insert image references into the source article. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted article or prompt text can become local shell command execution through opencli command strings. <br>
-Mitigation: Install only for trusted article and prompt files until opencli calls use argument-array execution. <br>
-Risk: The article workflow rewrites source Markdown files in place. <br>
-Mitigation: Keep articles under version control or backed up, and review generated edits before publishing. <br>
+## Use Case:
 
+Developers, writers, and content teams use this skill to generate hand-drawn article illustrations, prompt files, an outline, and Markdown image references for long-form content.
 
-## Reference(s): <br>
-- [article-images-gen homepage](https://github.com/victor-skills/tree/main/skills/article-images-gen) <br>
-- [ClawHub skill page](https://clawhub.ai/redisread/article-images-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands] <br>
-**Output Format:** [PNG image files, Markdown outline and prompt files, and updated Markdown article content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated assets under /tmp/imageGen by default, uses 16:9 landscape images, and creates an article backup before rewriting the article.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter states 2.0.0) <br>
+Risk: Article text may be sent to Gemini or Grok through browser automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content approved for those services and avoid sensitive, confidential, or regulated article text unless an appropriate data-handling review has been completed.
+
+Risk: The skill automatically edits article files after generating images.
+
+Mitigation: Run it on trusted article paths, keep and review the generated backups, and inspect the Markdown diff before publishing.
+
+Risk: Server security evidence reports unsafe shell command construction.
+
+Mitigation: Prefer a fixed release that replaces shell interpolation with argument-array process execution before broad installation.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/victor-skills/tree/main/skills/article-images-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands; generated PNG files, prompt Markdown files, an outline Markdown file, and edited article Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses 16:9 image generation, writes outputs under /tmp/imageGen by default, and may insert image references into the source article.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

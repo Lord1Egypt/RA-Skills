@@ -1,41 +1,57 @@
-## Description: <br>
-MiniMax MMX helps agents use the MMX CLI for MiniMax multimodal tasks including image, video, speech, music, vision, search, and text chat workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax MMX helps agents use the MMX CLI to access MiniMax multimodal capabilities, including image generation, video generation, speech synthesis, music creation, image understanding, web search, and text chat.
 
-## Publisher: <br>
-[clx20000410](https://clawhub.ai/user/clx20000410) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clx20000410](https://clawhub.ai/user/clx20000410)
 
-## Use Case: <br>
-Developers and agents use this skill to run MiniMax MMX CLI commands for generating media, describing images, querying search, checking quota, and managing authentication. It is intended for workflows where an agent needs concise command guidance and JSON-oriented CLI output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, files, images, and search queries may be transmitted to MiniMax through the MMX CLI. <br>
-Mitigation: Avoid sending secrets, private documents, regulated data, or sensitive images unless the user has approved that third-party transmission. <br>
-Risk: The workflow depends on the external MiniMax MMX CLI package and account credentials. <br>
-Mitigation: Install the CLI only from trusted sources, verify account setup before use, and prefer a limited-scope API key. <br>
+## Use Case:
 
+Developers and agents use this skill to invoke MiniMax's MMX CLI for multimodal generation, analysis, search, and chat tasks from shell commands.
 
-## Reference(s): <br>
-- [MMX-CLI Detailed Command Reference](references/commands.md) <br>
-- [ClawHub MiniMax MMX Release Page](https://clawhub.ai/clx20000410/minimax-mmx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and command reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands commonly request quiet JSON output for easier agent parsing; generated media and downloaded task results may be written as files by the MMX CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to install an unpinned global npm CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the mmx-cli package and MiniMax service are trusted, and prefer a pinned or local install.
+
+Risk: Command-line or chat-based API key entry can expose credentials through shell history, logs, or agent transcripts.
+
+Mitigation: Avoid entering API keys directly in command lines or agent chats; use a safer local authentication flow or secret handling mechanism when available.
+
+Risk: Prompts, images, search queries, and generated media requests are sent to an external provider.
+
+Mitigation: Do not send confidential prompts, images, or queries unless sharing them with the MiniMax service is intended and approved.
+
+## Reference(s):
+
+- [MMX-CLI detailed command reference](references/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash command examples and JSON-oriented CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may produce JSON responses and generated media files through the external MiniMax service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

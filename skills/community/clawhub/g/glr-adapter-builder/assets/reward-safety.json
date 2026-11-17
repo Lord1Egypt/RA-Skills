@@ -1,0 +1,11 @@
+{
+  "schema_version": "glr.reward-safety.v1",
+  "outcome_signal": "outcome",
+  "shaping_signals": [
+    "progress"
+  ],
+  "max_positive_shaping_per_step": 1,
+  "max_positive_shaping_per_episode": 10,
+  "failure_episode_maximum": 0,
+  "require_terminal_outcome": true
+}

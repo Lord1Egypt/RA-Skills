@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "id": 4,
+      "type": "CheckpointLoaderSimple",
+      "inputs": [
+        { "name": "ckpt_name", "value": "sdxl_base.safetensors" }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "EmptyLatentImage",
+      "inputs": [
+        { "name": "width", "value": 1024 },
+        { "name": "height", "value": 1024 },
+        { "name": "batch_size", "value": 1 }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "CLIPTextEncode",
+      "inputs": [
+        { "name": "clip", "link": 0, "slot": 0 },
+        { "name": "text", "value": "a cyberpunk street vendor, full body, center composition, detailed mechanical arm, glowing neon signs, wet asphalt reflections, rainy night market, cinematic lighting, photorealistic, masterpiece" }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "CLIPTextEncode",
+      "inputs": [
+        { "name": "clip", "link": 1, "slot": 0 },
+        { "name": "text", "value": "worst quality, low quality, blurry, deformed, extra fingers, bad anatomy, watermark, text, logo, jpeg artifacts" }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "KSampler",
+      "inputs": [
+        { "name": "model", "link": 5, "slot": 0 },
+        { "name": "positive", "link": 2, "slot": 0 },
+        { "name": "negative", "link": 3, "slot": 0 },
+        { "name": "latent_image", "link": 4, "slot": 0 },
+        { "name": "seed", "value": 1234567890 },
+        { "name": "steps", "value": 28 },
+        { "name": "cfg", "value": 6.0 },
+        { "name": "sampler_name", "value": "euler" },
+        { "name": "scheduler", "value": "normal" },
+        { "name": "denoise", "value": 1.0 }
+      ]
+    },
+    {
+      "id": 8,
+      "type": "VAEDecode",
+      "inputs": [
+        { "name": "samples", "link": 6, "slot": 0 },
+        { "name": "vae", "link": 7, "slot": 0 }
+      ]
+    },
+    {
+      "id": 9,
+      "type": "SaveImage",
+      "inputs": [
+        { "name": "images", "link": 8, "slot": 0 },
+        { "name": "filename_prefix", "value": "text2image" }
+      ]
+    }
+  ],
+  "links": [
+    [0, 4, 0, 6, 0, "CLIP"],
+    [1, 4, 1, 7, 0, "CLIP"],
+    [2, 6, 0, 3, 0, "CONDITIONING"],
+    [3, 7, 0, 3, 1, "CONDITIONING"],
+    [4, 5, 0, 3, 2, "LATENT"],
+    [5, 4, 0, 3, 3, "MODEL"],
+    [6, 3, 0, 8, 0, "LATENT"],
+    [7, 4, 2, 8, 1, "VAE"],
+    [8, 8, 0, 9, 0, "IMAGE"]
+  ]
+}

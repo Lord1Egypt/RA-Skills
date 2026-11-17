@@ -1,6 +1,43 @@
 {
-  "ownerId": "kn7824yf4srh3akes6axhmqf5n81q7dh",
-  "slug": "fb-inbox-forward",
-  "version": "1.0.10",
-  "publishedAt": 1772355098908
+    "ownerId":  "kn7824yf4srh3akes6axhmqf5n81q7dh",
+    "slug":  "fb-inbox-forward",
+    "version":  "1.0.10",
+    "publishedAt":  "2026-03-01T08:51:19Z",
+    "requiredEnvVars":  [
+
+                        ],
+    "requiredConfigPaths":  [
+                                "~/.config/fb-page/credentials.json",
+                                "~/.config/fb-inbox-forward/config.json"
+                            ],
+    "primaryCredential":  {
+                              "type":  "file",
+                              "path":  "~/.config/fb-page/credentials.json",
+                              "fields":  [
+                                             "FB_PAGE_TOKEN",
+                                             "FB_PAGE_ID"
+                                         ],
+                              "sensitive":  true,
+                              "notes":  "Credentials read fresh from disk at runtime — never embedded as literals in any script. All runtime files permission-restricted. Logs contain sender name and conv ID only."
+                          },
+    "persistence":  {
+                        "type":  "background-process",
+                        "code":  "inline",
+                        "optional":  true,
+                        "description":  "Polls Facebook Page conversations every POLL_INTERVAL_SEC seconds (default 15). Transmits: sender name + full message text + conv ID to NOTIFY_CHANNEL/NOTIFY_TARGET via openclaw message send. Message text goes to the channel destination only — never written to disk. Logs record sender name and conv ID only. Worker stored at ~/.config/fb-inbox-forward/worker.ps1 with restricted permissions. Credentials read fresh from disk at runtime — no tokens embedded as literals. Never starts autonomously — opt-in only."
+                    },
+    "requires":  {
+                     "binaries":  [
+                                      "openclaw"
+                                  ],
+                     "anyBinaries":  [
+                                         "powershell",
+                                         "pwsh"
+                                     ],
+                     "os":  [
+                                "windows",
+                                "macos",
+                                "linux"
+                            ]
+                 }
 }

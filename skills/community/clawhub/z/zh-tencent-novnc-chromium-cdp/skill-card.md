@@ -1,46 +1,60 @@
-## Description: <br>
-Deploys or connects to a visible browser session using Linux noVNC with Chromium and CDP, or Windows Edge/Chrome CDP, so an agent and user can share browser control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an agent workflow for deploying or attaching to a visible browser using noVNC, Chromium, and CDP on Linux, or Edge/Chrome CDP on Windows, so users and agents can share browser state during web automation and manual verification steps.
 
-## Publisher: <br>
-[kangleizhui](https://clawhub.ai/user/kangleizhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kangleizhui](https://clawhub.ai/user/kangleizhui)
 
-## Use Case: <br>
-Developers and operators use this skill to set up a shared visible browser for web automation tasks where an agent may need the user to handle login, QR-code, CAPTCHA, slider, or other verification steps. It is most useful for workflows that need a real browser view instead of pure API calls or a hidden headless browser. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill deploys a remotely controllable browser and exposes a noVNC access surface. <br>
-Mitigation: Install it only on a machine dedicated to remote browser automation and restrict noVNC access by IP, VPN, or SSH tunnel where possible. <br>
-Risk: The security evidence notes that the skill asks for SSH passwords during setup fallback flows. <br>
-Mitigation: Do not share SSH passwords in chat; prefer running privileged setup yourself, using passwordless sudo, or using a temporary key that can be revoked after installation. <br>
-Risk: A public CDP debugging port could allow browser takeover. <br>
-Mitigation: Keep CDP bound to localhost, do not expose port 9223 publicly, and restrict any exceptional remote debugging access to trusted networks only. <br>
-Risk: Persistent services and browser sessions may retain credentials or browsing state after use. <br>
-Mitigation: Remove the systemd services, rotate temporary credentials, and clear or discard the dedicated browser profile when the automation task is finished. <br>
+## Use Case:
 
+Developers and operators use this skill to set up a remote, visible browser that an agent can control through CDP while a human handles login, CAPTCHA, slider, or other verification steps. It is aimed at web automation workflows that need a shared visual browser session rather than headless-only execution.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/kangleizhui/skills/zh-tencent-novnc-chromium-cdp) <br>
-- [Publisher profile](https://clawhub.ai/user/kangleizhui) <br>
-- [noVNC project](https://github.com/novnc/noVNC) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell, PowerShell, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment steps, browser-control snippets, environment checks, status checks, and user-facing completion guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.45 (source: server release evidence, created 2026-06-27) <br>
+Risk: The skill requests broad root-level control to install packages, write service files, and configure persistent browser services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable or dedicated host, review commands before execution, avoid blanket passwordless sudo, and remove any temporary elevated access after deployment.
+
+Risk: A noVNC endpoint can expose an interactive browser session if reachable by unauthorized users.
+
+Mitigation: Keep noVNC off the public Internet unless protected by an SSH tunnel, VPN, TLS, strong access control, and firewall source restrictions.
+
+Risk: Persistent remote access services may remain available after the automation task is complete.
+
+Mitigation: Disable and remove noVNC, VNC, Chromium/CDP, and related system services when finished.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kangleizhui/skills/zh-tencent-novnc-chromium-cdp)
+- [Publisher profile](https://clawhub.ai/user/kangleizhui)
+- [noVNC project](https://github.com/novnc/noVNC.git)
+- [Google Chrome Linux package](https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational instructions for browser deployment, CDP connection checks, status reporting, and screenshots.]
+
+## Skill Version(s):
+
+1.0.45 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

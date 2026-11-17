@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosocanvas.local/schemas/review-session-0.1.json",
+  "title": "MoSoCanvas Review Session 0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "artifact_ref", "reviewer_id", "reviewer_kind", "generation_context_id", "review_context_id", "prompt_hidden", "source_hidden", "started_at", "committed_at"],
+  "properties": {
+    "schema": { "const": "moso.review-session/0.1" },
+    "id": { "type": "string", "minLength": 1 },
+    "artifact_ref": { "type": "string", "minLength": 1 },
+    "reviewer_id": { "type": "string", "minLength": 1 },
+    "reviewer_kind": { "enum": ["fresh-context-agent", "different-model", "human"] },
+    "generation_context_id": { "type": "string", "minLength": 1 },
+    "review_context_id": { "type": "string", "minLength": 1 },
+    "prompt_hidden": { "const": true },
+    "source_hidden": { "const": true },
+    "started_at": { "type": "string", "format": "date-time" },
+    "committed_at": { "type": "string", "format": "date-time" }
+  }
+}

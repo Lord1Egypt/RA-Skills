@@ -1,42 +1,56 @@
-## Description: <br>
-Structured security and quality audit framework for AI agent skills. Teaches you what to check before installing any skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured security and quality audit framework for AI agent skills. Teaches you what to check before installing any skill.
 
-## Publisher: <br>
-[enawareness](https://clawhub.ai/user/enawareness) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enawareness](https://clawhub.ai/user/enawareness)
 
-## Use Case: <br>
-Developers, security reviewers, and agent users use this skill to guide pre-install reviews of ClawHub and MCP skills across identity, permissions, behavior, credential handling, side effects, and dependency risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security guidance describes sensitive, purpose-aligned browser automation and API-key configuration in the release evidence. <br>
-Mitigation: Install only when you trust the referenced bridge, keep any API key secret, and review high-impact browser actions before applying them. <br>
-Risk: This skill provides a review framework rather than a deterministic scanner or sandbox. <br>
-Mitigation: Use its report as a structured checklist and manually review high-privilege skill source files before installing them. <br>
+## Use Case:
 
+Developers, security reviewers, and agent users use this skill to guide manual review of ClawHub and MCP skills before installation, covering identity, permissions, behavior, credentials, persistence, and supply-chain concerns.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/enawareness/skill-audit-framework) <br>
-- [Snyk ToxicSkills research](https://snyk.io/blog/toxicskills-malicious-ai-agent-skills-clawhub/) <br>
-- [Koi ClawHavoc incident report](https://www.koi.ai/blog/clawhavoc-341-malicious-clawedbot-skills-found-by-the-bot-they-were-targeting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown audit report with PASS/WARN/FAIL verdicts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a six-domain review checklist and flagged-item recommendations; does not execute or sandbox target skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server evidence release.version) <br>
+Risk: Audit verdicts may be treated as a guarantee of safety.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill's PASS/WARN/FAIL output as review guidance and inspect high-privilege or sensitive skills directly before installation.
+
+Risk: The skill reads and summarizes skill files during audits, which may expose sensitive content if the reviewed files contain secrets.
+
+Mitigation: Review files in an appropriate workspace and avoid placing secrets in skill artifacts.
+
+## Reference(s):
+
+- [Declared Project Homepage](https://github.com/ENAwareness/skill-auditor)
+- [Snyk ToxicSkills Research](https://snyk.io/blog/toxicskills-malicious-ai-agent-skills-clawhub/)
+- [Koi ClawHavoc Report](https://www.koi.ai/blog/clawhavoc-341-malicious-clawedbot-skills-found-by-the-bot-they-were-targeting)
+- [ClawHub Skill Page](https://clawhub.ai/enawareness/skills/skill-audit-framework)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown audit report with PASS/WARN/FAIL verdicts and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only guidance; no executable code, credential requests, or tool calls are included in the artifact.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

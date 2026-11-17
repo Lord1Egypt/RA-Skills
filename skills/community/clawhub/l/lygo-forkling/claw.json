@@ -1,0 +1,33 @@
+{
+  "name": "lygo-forkling",
+  "displayName": "LYGO Forkling",
+  "version": "1.0.0",
+  "description": "Test champion that self-builds a local lattice fork under parent CHAMPION_LYRA. Task loop, claim-gated generations, dry-run Star Chart propose. No live ingest. No git push.",
+  "slug": "lygo-forkling",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-forkling",
+  "clawhub": "https://clawhub.ai/deepseekoracle/lygo-forkling",
+  "signature": "Delta9Phi963-FORKLING-v1.0.0",
+  "tags": ["latest", "lygo", "agent", "champion", "fork", "autonomy", "test", "openclaw"],
+  "entry": "SKILL.md",
+  "scripts": {
+    "birth": "scripts/forkling.py birth",
+    "tick": "scripts/forkling.py tick",
+    "loop": "scripts/forkling.py loop",
+    "status": "scripts/forkling.py status",
+    "propose": "scripts/forkling.py propose",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "⑂",
+    "requires": { "anyBins": ["python", "python3"] },
+    "os": ["windows", "macos", "linux"]
+  },
+  "security": {
+    "no_subprocess": true,
+    "no_auto_publish": true,
+    "live_star_chart": false,
+    "consent_writes": true
+  }
+}

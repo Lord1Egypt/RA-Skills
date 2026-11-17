@@ -1,40 +1,57 @@
-## Description: <br>
-Detect and tightly annotate tower-crane hook outlines in similar construction-site monitoring images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and tightly annotate tower-crane hook outlines in similar construction-site monitoring images. Use when Codex needs to batch-process `.png`, `.jpg`, or `.jpeg` images from a stable camera view, locate the hook from bright metal pixels inside a known search region, export annotated copies, and produce reusable coordinates or polygon metadata for follow-up QA.
 
-## Publisher: <br>
-[genlk](https://clawhub.ai/user/genlk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[genlk](https://clawhub.ai/user/genlk)
 
-## Use Case: <br>
-Developers and site-monitoring teams use this skill to batch-process stable construction-camera images, outline tower-crane hooks with a strict polygon, and export annotated images plus coordinate metadata for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The quick-start commands reference a local PowerShell script that is not included in the provided artifact. <br>
-Mitigation: Confirm the script exists, inspect it before execution, and run it only against image folders you choose. <br>
-Risk: Using ExecutionPolicy Bypass can run untrusted PowerShell code if the script source has not been verified. <br>
-Mitigation: Avoid ExecutionPolicy Bypass for unreviewed scripts and follow local PowerShell execution policies. <br>
+## Use Case:
 
+Developers and site-monitoring teams use this skill to batch-process construction-site images from a stable camera view, outline crane hooks with a strict polygon, and export annotated images plus coordinate metadata for QA.
 
-## Reference(s): <br>
-- [Profile Tuning](references/profile-tuning.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with PowerShell command examples and JSON profile guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The underlying workflow writes annotated images, optional debug ROI crops, and a manifest JSON when the referenced annotation script is present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The documented annotation command references a missing PowerShell script, so the executable behavior cannot be verified from the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Supply the script from a trusted source and review it before installation or execution.
+
+Risk: The quick-start commands bypass PowerShell execution policy.
+
+Mitigation: Prefer commands that do not bypass execution policy, and run only reviewed scripts.
+
+Risk: Batch processing could run against unintended image folders or output locations.
+
+Mitigation: Run first on a sample image, then use explicit input and output paths for the intended image set.
+
+## Reference(s):
+
+- [Profile Tuning](references/profile-tuning.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, JSON]
+
+**Output Format:** [Markdown guidance with PowerShell commands; annotated image files and manifest JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include annotated images, optional debug ROI crops, and a manifest with bounding boxes, polygon points, and status records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

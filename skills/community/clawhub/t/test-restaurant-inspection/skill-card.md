@@ -1,45 +1,60 @@
-## Description: <br>
-Automates restaurant AI inspections by managing an Ezviz intelligent agent, capturing device snapshots, and analyzing food safety, hygiene, and compliance conditions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates restaurant inspections by using Ezviz devices to capture camera images, manage a restaurant-focused Ezviz AI agent, and analyze the images for food safety, hygiene, and compliance signals.
 
-## Publisher: <br>
-[wsygcn](https://clawhub.ai/user/wsygcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wsygcn](https://clawhub.ai/user/wsygcn)
 
-## Use Case: <br>
-Restaurant operators, compliance teams, and developers use this skill to run automated inspections over authorized Ezviz camera devices and review structured AI analysis of food safety, hygiene, staff practices, and compliance signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Camera snapshots and device identifiers are sent to Ezviz services for capture and AI analysis. <br>
-Mitigation: Run only with authorization to inspect the configured cameras and confirm applicable workplace privacy, compliance, and data handling requirements before use. <br>
-Risk: Ezviz app credentials grant access to device capture and agent operations. <br>
-Mitigation: Use least-privilege Ezviz credentials, prefer environment variables over command-line secrets, avoid main account credentials, and rotate credentials regularly. <br>
-Risk: The skill may create or reuse an Ezviz restaurant intelligent agent during execution. <br>
-Mitigation: Review any created or selected Ezviz agent and ensure the account has sufficient quota and appropriate permissions before running the inspection workflow. <br>
+## Use Case:
 
+External operators and developers use this skill to run automated AI-assisted restaurant inspections across one or more Ezviz camera devices. It supports food safety, hygiene, staff compliance, audit, and multi-site monitoring workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wsygcn/test-restaurant-inspection) <br>
-- [Ezviz token API documentation](https://open.ys7.com/help/81) <br>
-- [Ezviz device capture API documentation](https://open.ys7.com/help/687) <br>
-- [Ezviz AI analysis API documentation](https://open.ys7.com/help/5006) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Console logs with JSON-formatted inspection analysis and a plain-text inspection summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Ezviz app credentials and one or more device serials; uses a default 60 second analysis timeout and a 4 second delay between device captures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses Ezviz API credentials that can capture camera images and create or use Ezviz AI agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials in environment variables or a secrets manager, use least-privilege Ezviz credentials, and rotate credentials regularly.
+
+Risk: Restaurant camera imagery and device identifiers are sent to Ezviz services for AI analysis.
+
+Mitigation: Confirm privacy, consent, and compliance obligations before use, and run the skill only against authorized devices and locations.
+
+Risk: Automatic agent management may create a restaurant-focused Ezviz AI agent when no matching agent exists.
+
+Mitigation: Confirm account permissions and agent quotas before deployment, and review created agents during operational rollout.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wsygcn/skills/test-restaurant-inspection)
+- [Ezviz token API documentation](https://open.ys7.com/help/81)
+- [Ezviz device capture API documentation](https://open.ys7.com/help/687)
+- [Ezviz AI analysis API documentation](https://open.ys7.com/help/5006)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Console text with JSON analysis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Ezviz app credentials and one or more Ezviz device serials; captured images are sent to Ezviz services for analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

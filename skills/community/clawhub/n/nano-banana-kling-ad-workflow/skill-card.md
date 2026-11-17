@@ -1,41 +1,58 @@
-## Description: <br>
-Recreate low-budget AI video ad workflows using Nano Banana image generation plus Kling 3.0 video synthesis with dialogue, including prompt design, scene planning, cost control, and export handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recreate low-budget AI video ad workflows using Nano Banana image generation plus Kling 3.0 video synthesis with dialogue, including prompt design, scene planning, cost control, and export handoff.
 
-## Publisher: <br>
-[gracelungu](https://clawhub.ai/user/gracelungu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gracelungu](https://clawhub.ai/user/gracelungu)
 
-## Use Case: <br>
-External creators, marketers, and production teams use this skill to plan short AI-assisted video ads with shot lists, image prompts, Kling animation prompts, cost tracking, and export handoff notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may share confidential brand plans, customer data, unreleased campaign details, or proprietary images with external generation tools used in the workflow. <br>
-Mitigation: Avoid entering sensitive or proprietary material unless the user is comfortable with the data handling terms of those external tools. <br>
-Risk: Generated ad concepts and prompts may produce misleading, low-quality, or off-brand outputs if accepted without review. <br>
-Mitigation: Review generated shot lists, prompts, clips, captions, and final exports before publication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gracelungu/nano-banana-kling-ad-workflow) <br>
-- [Source notes](references/source-notes.md) <br>
-- [X source post by @thedeoncardoza](https://x.com/thedeoncardoza/status/2020198376797794634) <br>
+## Use Case:
 
+External marketers, creators, and operators use this skill to plan short AI video ads, write shot-level prompts, animate selected stills, and summarize generation cost and export decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklist with shot lists, prompts, generation logs, export summaries, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or credential access; outputs may reference external image and video generation tools.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may upload product, voice, likeness, or brand assets to third-party AI services without sufficient rights.
+
+Mitigation: Confirm usage rights and approval for all assets before generating media.
+
+Risk: Media generation credits can be consumed quickly during variations and revisions.
+
+Mitigation: Set a credit budget before generation and limit variations, shot count, and revision passes.
+
+Risk: AI-generated ad scenes can drift in identity, motion, or visual quality.
+
+Mitigation: Use stable identity anchors, subtle motion prompts, and a final review pass before export.
+
+## Reference(s):
+
+- [Source Notes](references/source-notes.md)
+- [Deon Cardoza X Post](https://x.com/thedeoncardoza/status/2020198376797794634)
+- [ClawHub Skill Page](https://clawhub.ai/gracelungu/skills/nano-banana-kling-ad-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown checklist with shot list, prompt set, generation and edit log, export summary, and next-iteration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable commands; guidance may involve user-directed uploads to third-party media generation services.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,6 @@
+interface:
+  display_name: 小说开篇钩子改稿
+  short_description: 保留设定与事件，输出三种节奏开篇改稿、定位理由和推荐版本
+  default_prompt: 请贴出中文小说开篇，并说明必须保留的人物设定或核心事件；我会给出三种节奏改稿、可定位理由和推荐版本。
+policy:
+  allow_implicit_invocation: true

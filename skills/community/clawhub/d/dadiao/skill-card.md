@@ -1,48 +1,56 @@
-## Description: <br>
-Simulates clearly labeled thought-leader personas for multi-role debate, single-person opinion prompts, and meeting commentary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language strategy discussion skill that simulates labeled viewpoints from selected public figures for discussion reports, single-person opinions, and meeting feedback.
 
-## Publisher: <br>
-[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu)
 
-## Use Case: <br>
-Employees, external users, and agents use this skill to generate structured, labeled persona-simulation reports for strategic discussion, rapid viewpoint exploration, and meeting feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona-simulation output could be mistaken for real quotes, endorsements, or current views of named people. <br>
-Mitigation: Keep the visible simulation labels in every relevant output and do not present generated content as an authentic statement from a real person. <br>
-Risk: Public or commercial reuse of named-person simulations may create legal, publicity-rights, or reputational risk. <br>
-Mitigation: Use legal review before public or promotional reuse and keep the skill's stated disclaimers with generated reports. <br>
-Risk: Meeting notes, customer information, employee data, or unreleased strategy could be exposed if pasted into prompts. <br>
-Mitigation: Avoid confidential or personal data unless organizational policy permits that use and the target agent environment is approved for it. <br>
-Risk: New persona creation may rely on web search or user-provided background that is incomplete or not current. <br>
-Mitigation: Ask the agent to confirm before web searching or creating a new persona, and review the resulting persona card before relying on it. <br>
+## Use Case:
 
+External users and internal teams use this skill to run Chinese-language simulated strategy discussions, request a labeled viewpoint from one selected figure, or obtain meeting feedback from multiple simulated personas. It is intended for internal research and strategy support where outputs remain clearly marked as AI simulations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chaoliuzhu/dadiao) <br>
-- [Publisher profile](https://clawhub.ai/user/chaoliuzhu) <br>
-- [README.md](README.md) <br>
-- [AI Native strategy guide](guides/ai-native-strategy.md) <br>
-- [Industry background guide](guides/industry-background.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown reports with labeled persona-simulation sections; optional shell command prompts for discussion setup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve visible persona-simulation labels and legal or confidentiality cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release evidence) <br>
+Risk: Simulated viewpoints from named public figures could be mistaken for real statements or unauthorized endorsements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs clearly labeled as simulations, do not publish them as real statements, and do not imply authorization from the named individuals.
+
+Risk: Discussion and meeting modes may involve sensitive strategy or meeting notes.
+
+Mitigation: Avoid providing confidential information unless the user accepts that the assistant will process it, and confirm before any web search on sensitive topics.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chaoliuzhu/skills/dadiao)
+- [README.md](artifact/README.md)
+- [AI Native Strategy Guide](artifact/guides/ai-native-strategy.md)
+- [Industry Background Guide](artifact/guides/industry-background.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown reports and Chinese-language text with optional shell command usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should label simulated viewpoints and include legal-compliance notices when representing named public figures.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

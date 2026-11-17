@@ -1,47 +1,56 @@
-## Description: <br>
-Instructions and authentication code for building headless BaaS applications with Zion.app (functorz.com). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instructions and authentication code for building headless BaaS applications with Zion.app (functorz.com). Use when integrating Zion backend features like GraphQL, actionflows, AI agents, binary assets, and payments.
 
-## Publisher: <br>
-[timqin-m](https://clawhub.ai/user/timqin-m) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timqin-m](https://clawhub.ai/user/timqin-m)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect agent workflows to Zion.app projects as a headless backend, including schema lookup, GraphQL queries and mutations, subscriptions, and project runtime token setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plaintext Zion credentials can expose developer, admin, or user tokens if .zion/credentials.yaml is committed, shared, or left readable in a shared workspace. <br>
-Mitigation: Add .zion/credentials.yaml to .gitignore, restrict file permissions, avoid shared machines and workspaces, and rotate tokens after use. <br>
-Risk: Runtime admin tokens can execute live backend queries, mutations, subscriptions, and production administrative actions. <br>
-Mitigation: Install only for Zion projects you own or administer, require explicit review before mutations or production actions, and use least-privilege roles for routine checks. <br>
-Risk: Email/password CLI authentication can expose account credentials through shell history, process listings, or recorded terminal sessions. <br>
-Mitigation: Prefer OAuth login, avoid passing passwords on shared machines, and rotate tokens or credentials after sensitive sessions. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect custom frontend applications or agent workflows to Zion.app as a headless backend. It supports authentication, runtime token retrieval, project schema lookup, GraphQL queries and mutations, subscriptions, and credential persistence for Zion projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/timqin-m/zion-baas-skill) <br>
-- [Zion.app](https://www.functorz.com) <br>
-- [Zion runtime GraphQL endpoint pattern](https://zion-app.functorz.com/zero/{projectExId}/api/graphql-v2) <br>
-- [Zion subscription endpoint pattern](wss://zion-app.functorz.com/zero/{projectExId}/api/graphql-subscription) <br>
-- [Zion Meta API](https://zionbackend.functorz.com/api/graphql) <br>
-- [Zion authentication](https://auth.functorz.com/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline GraphQL, shell command examples, JSON output, and YAML credential configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes CLI scripts that can write .zion/credentials.yaml and execute authenticated Zion GraphQL operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill administers a Zion backend using developer tokens and runtime admin tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer OAuth authentication, avoid admin tokens unless the requested backend change is explicit and intended, and rotate tokens if exposed.
+
+Risk: Credentials are persisted in .zion/credentials.yaml.
+
+Mitigation: Keep the credentials file out of source control and backups, restrict its permissions, and review it before sharing project files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/timqin-m/skills/zion-baas-skill)
+- [Functorz / Zion.app](https://www.functorz.com)
+- [Zion runtime GraphQL API](https://zion-app.functorz.com/zero/{projectExId}/api/graphql-v2)
+- [Zion Meta API](https://zionbackend.functorz.com/api/graphql)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown guidance with GraphQL examples, JSON results, YAML credential configuration, and CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update .zion/credentials.yaml through bundled CLI scripts and emit GraphQL query results or subscription events.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

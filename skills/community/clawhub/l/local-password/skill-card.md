@@ -1,38 +1,49 @@
-## Description: <br>
-Generates secure random passwords locally and checks password strength with entropy and crack-time estimates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate secure random passwords and check password strength with configurable length, character types, entropy estimates, and local-only operation.
 
-## Publisher: <br>
-[alone86136](https://clawhub.ai/user/alone86136) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alone86136](https://clawhub.ai/user/alone86136)
 
-## Use Case: <br>
-Developers and other users use this skill to generate local passwords with configurable length and character sets, or to estimate the strength of a password before relying on it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Passwords checked through the documented command-line argument form may be visible in local shell history or process listings. <br>
-Mitigation: Avoid checking valuable existing passwords with the command-line argument form; use it for test passwords or adapt the checker to read from a hidden prompt or stdin. <br>
+## Use Case:
 
+External users and developers can use this skill to ask an agent for local password generation commands or password-strength checking guidance without relying on network services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alone86136/local-password) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated passwords and strength checks run locally using Python standard library scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Checking a real password through a command-line argument can expose it locally through shell history or process listings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the checker only with throwaway examples until it is changed to read from a hidden prompt or standard input, and do not pass real passwords on the command line.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alone86136/skills/local-password)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated passwords, entropy estimates, and crack-time estimates produced by local Python scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

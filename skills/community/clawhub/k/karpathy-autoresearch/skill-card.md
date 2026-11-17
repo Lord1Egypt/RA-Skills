@@ -1,45 +1,59 @@
-## Description: <br>
-Autonomously optimize any OpenClaw skill by running it repeatedly, scoring outputs against binary evals, mutating the prompt, and keeping improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomously optimizes prompts, strategy configurations, and other mutable files by running evaluation loops that score changes and keep only improvements.
 
-## Publisher: <br>
-[Alannjaf](https://clawhub.ai/user/Alannjaf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alannjaf](https://clawhub.ai/user/alannjaf)
 
-## Use Case: <br>
-Developers and skill authors use this skill to run repeated mutation, evaluation, and keep-or-revert loops against a measurable prompt, configuration, strategy, or template. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit files and change repository history while running optimization experiments. <br>
-Mitigation: Run it in a disposable clone or clean branch, name the exact mutable file, and review diffs before keeping or publishing results. <br>
-Risk: The skill can run shell evaluation commands supplied for scoring. <br>
-Mitigation: Use only evaluator commands you wrote or trust, and keep secrets and production configuration out of the workdir. <br>
-Risk: Autonomous prompt or strategy changes can optimize for a narrow evaluator and introduce misleading or brittle guidance. <br>
-Mitigation: Review accepted mutations manually and validate results against representative holdout cases before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to iteratively improve prompts, skill instructions, strategy configs, and other measurable artifacts against a numeric evaluation function. It is intended for optimization workflows where each experiment can be evaluated, kept, reverted, and summarized.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Alannjaf/karpathy-autoresearch) <br>
-- [Gold Trading Strategy Optimization Case Study](references/gold-results.md) <br>
-- [YouTube Shorts Script Optimization Case Study](references/youtube-results.md) <br>
-- [Karpathy Autoresearch Pattern](https://x.com/karpathy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, code snippets, and experiment summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write files, run evaluator commands, create git commits, revert unsuccessful mutations, and produce an autoresearch log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The optimization loop may edit or stage unintended project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a disposable clone or dedicated branch and approve the exact mutable file before starting.
+
+Risk: Evaluation commands can execute arbitrary shell code.
+
+Mitigation: Use only trusted, reviewed eval commands and avoid untrusted eval strings.
+
+Risk: Git commits and reverts can change project history or hide unrelated changes.
+
+Mitigation: Check the worktree before each run and confirm that secrets or unrelated files cannot be staged.
+
+## Reference(s):
+
+- [Gold Trading Strategy Optimization Case Study](references/gold-results.md)
+- [YouTube Shorts Script Optimization Case Study](references/youtube-results.md)
+- [Karpathy Autoresearch Reference](https://x.com/karpathy)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify files, run evaluation commands, make git commits, revert failed experiments, and produce an experiment summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

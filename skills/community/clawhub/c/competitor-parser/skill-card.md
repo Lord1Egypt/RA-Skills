@@ -1,43 +1,57 @@
-## Description: <br>
-Automates collection and analysis of robotics competitor data, then helps summarize competitors, pricing, ratings, locations, and report files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates collection and analysis of robotics competitor data from Google Search, map and social sources, and a local knowledge base.
 
-## Publisher: <br>
-[larthe](https://clawhub.ai/user/larthe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[larthe](https://clawhub.ai/user/larthe)
 
-## Use Case: <br>
-Business analysts, operators, and developers use this skill to run a competitor-scraping workflow and ask an agent for ranked competitor summaries, pricing comparisons, location analysis, and report delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow includes external sharing to a hardcoded Telegram target. <br>
-Mitigation: Replace or remove the Telegram target before sending reports, and review CSV output for confidential notes or business intelligence. <br>
-Risk: The setup guidance includes privileged system package installation. <br>
-Mitigation: Run any sudo apt-get dependency installation manually only in an environment where those system changes are acceptable. <br>
-Risk: The skill references a local competitors_scraper.py file that is not included in the artifact evidence. <br>
-Mitigation: Verify that competitors_scraper.py is present and trusted in the workspace before executing the workflow. <br>
+## Use Case:
 
+Operators, market analysts, and developers use this skill to run a competitor scraper, inspect JSON and CSV outputs, and summarize competitor ratings, prices, locations, and source notes for robotics businesses.
 
-## Reference(s): <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/larthe/competitor-parser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and references to JSON and CSV report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected report artifacts are competitors_data.json and competitors_data.csv when the referenced scraper runs successfully.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on an unbundled local competitors_scraper.py script at a referenced workspace path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect and trust the local script before running the skill, and confirm the path points to the intended workspace file.
+
+Risk: The artifact includes a hard-coded Telegram recipient for report delivery.
+
+Mitigation: Replace the target with a recipient you control and confirm before sending any report externally.
+
+Risk: The artifact suggests a sudo browser-install command for fuller scraping support.
+
+Mitigation: Avoid the privileged install command unless an administrator has intentionally approved that host change.
+
+## Reference(s):
+
+- [Competitor Parser on ClawHub](https://clawhub.ai/larthe/skills/competitor-parser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON/CSV output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce competitors_data.json and competitors_data.csv when the referenced local scraper exists and runs successfully.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

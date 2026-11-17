@@ -1,40 +1,58 @@
-## Description: <br>
-Automates GitHub contribution workflows by helping agents find good first issues, analyze projects, prepare branches, implement fixes, and submit pull requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate GitHub contributions by finding good first issues, analyzing projects, forking, implementing fixes, and submitting pull requests efficiently.
 
-## Publisher: <br>
-[Thatgfsj](https://clawhub.ai/user/Thatgfsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thatgfsj](https://clawhub.ai/user/thatgfsj)
 
-## Use Case: <br>
-Developers and agent operators use this skill to streamline routine open-source contribution workflows, from issue discovery through pull request drafting and submission, while keeping licensing and project guidelines visible. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may require broad GitHub write authority through GitHub CLI or API credentials. <br>
-Mitigation: Use a least-privilege GitHub credential, avoid broad repo scope where possible, and require human approval before publishing comments, pushes, API calls, or pull requests. <br>
-Risk: The daily cron workflow could repeatedly act on GitHub without clear consent or disable guidance. <br>
-Mitigation: Do not enable recurring automation unless it is limited to read-only discovery or drafting and has an explicit manual review step before publication. <br>
+## Use Case:
 
+Developers and engineers use this skill to find suitable open-source issues, plan contributions, and run GitHub workflows for forking, branching, implementing, testing, and submitting pull requests. It can also guide optional recurring contribution searches when the user explicitly wants scheduled activity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Thatgfsj/github-pr-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, GitHub CLI and API examples, issue comments, commit messages, and pull request descriptions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose GitHub actions under the user's account; comments, pushes, API calls, and pull requests should remain subject to manual review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may guide an agent to use the user's GitHub identity to fork repositories, push branches, and create pull requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a GitHub token with only the permissions needed for the intended repositories and review proposed GitHub operations before execution.
+
+Risk: The optional cron workflow can create recurring account activity.
+
+Mitigation: Enable scheduled activity only after explicit user approval, document how to inspect or remove the schedule, and periodically review whether it is still needed.
+
+Risk: Broad cleanup guidance could affect unrelated local work if run from the wrong directory.
+
+Mitigation: Run the skill in a dedicated workspace and review cleanup commands before allowing deletion or file-removal steps.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/thatgfsj/skills/github-pr-automation)
+- [Publisher Profile](https://clawhub.ai/user/thatgfsj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, issue comments, commit messages, PR descriptions, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include GitHub CLI commands, GitHub API calls, local git commands, candidate issue recommendations, and optional cron configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

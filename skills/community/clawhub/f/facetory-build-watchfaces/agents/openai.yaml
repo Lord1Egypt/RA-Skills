@@ -1,0 +1,11 @@
+interface:
+  display_name: "Facetory 表盘开发"
+  short_description: "通过 Facetory MCP 安全开发、验证并导出小米表盘"
+  default_prompt: "使用 $facetory-build-watchfaces 连接 Facetory MCP，检查当前项目并继续开发表盘。"
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "facetory"
+      description: "Facetory 应用内置的表盘编辑 MCP 服务"
+      transport: "streamable_http"
+      url: "http://127.0.0.1:39093/mcp"

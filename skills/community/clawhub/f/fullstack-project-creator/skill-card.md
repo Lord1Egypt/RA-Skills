@@ -1,40 +1,53 @@
-## Description: <br>
-Create standardized Java Spring Boot + Vue3 full-stack project structure <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create standardized Java Spring Boot + Vue3 full-stack project structure
 
-## Publisher: <br>
-[superchao9](https://clawhub.ai/user/superchao9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[superchao9](https://clawhub.ai/user/superchao9)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold standardized full-stack applications with a Spring Boot backend, Vue 3 frontend, database scripts, Docker files, and project documentation after confirming project requirements and destination path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes scaffolded project files to the local filesystem. <br>
-Mitigation: Review the destination path before generation and prefer a new or empty folder. <br>
-Risk: Permission-change guidance may involve administrator privileges, chmod, or chown. <br>
-Mitigation: Apply permission changes only after reviewing the target folder and using the least broad access needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to create standardized full-stack project scaffolds with Java Spring Boot backend, Vue 3 frontend, database scripts, Docker files, and project documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/superchao9/fullstack-project-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with generated project files, code, configuration snippets, and startup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write files to a user-selected local destination after path confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can generate many files in a user-selected directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Generate projects inside a directory the user already owns, such as a normal workspace under the user's home directory.
+
+Risk: The artifact includes permission-repair guidance that may encourage broad folder permissions or administrator/root-level execution.
+
+Mitigation: Review permission guidance before use and avoid running the agent with administrator/root privileges or granting broad full-control permissions to generic user groups.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/superchao9/skills/fullstack-project-creator)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance plus generated project files and configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs project path, directory tree, startup steps, and main file descriptions after generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

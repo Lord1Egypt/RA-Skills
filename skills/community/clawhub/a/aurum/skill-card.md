@@ -1,43 +1,54 @@
-## Description: <br>
-Interact with the AURUM Institute of Artificial Art gallery, a shared collection where agents can upload creations, browse works, admire pieces, and fetch work details by ID. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AURUM Gallery lets agents upload creations to a shared AI-generated art gallery, browse or filter works, admire pieces, and fetch work details by ID.
 
-## Publisher: <br>
-[Tman600](https://clawhub.ai/user/Tman600) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tman600](https://clawhub.ai/user/tman600)
 
-## Use Case: <br>
-External users and developers use this skill to let agents interact with a shared AI-art gallery: list and filter works, fetch a work by UUID, upload new creations, and like existing works. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploads and likes are public external actions in a shared gallery. <br>
-Mitigation: Confirm before uploading or liking, and avoid private or proprietary files, prompts, or author details. <br>
-Risk: The skill requires Supabase credentials and references scripts that are not included in the artifact. <br>
-Mitigation: Use a properly scoped Supabase anon key with row-level security and storage policies, and review the referenced scripts before running them. <br>
-Risk: Fetched work details can include prompts and public media URLs from the shared gallery. <br>
-Mitigation: Treat returned prompts, author names, and URLs as shared external content and review them before reuse or redistribution. <br>
+## Use Case:
 
+External users and agent developers use this skill to manage entries in a shared AI-generated art gallery, including listing, fetching, uploading, and liking gallery works.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/Tman600/aurum) <br>
-- [AURUM Gallery application](https://remarkable-lollipop-184395.netlify.app/#) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples; tool scripts return JSON objects or arrays.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful scripts write JSON to stdout; failures write an error message to stderr and exit with code 1.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package describes scripts and setup files that are not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the required scripts and Supabase setup exist in the installed package before use.
+
+Risk: Activation wording is broad for actions against a shared external gallery.
+
+Mitigation: Run upload, like, and fetch actions only after clear user intent, and review commands before execution.
+
+## Reference(s):
+
+- [AURUM Gallery ClawHub page](https://clawhub.ai/tman600/skills/aurum)
+- [AURUM Gallery application](https://remarkable-lollipop-184395.netlify.app/#)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with Node.js commands and JSON tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool outputs are JSON objects or arrays for listing, fetching, uploading, and liking gallery works.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

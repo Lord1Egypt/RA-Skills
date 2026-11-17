@@ -1,0 +1,21 @@
+# OCR-loop venv for this skill, and for the three that depend on it.
+#
+# Install (one-time, shared):
+#   python3 -m venv ~/.openclaw/workspace/.venv-adb
+#   ~/.openclaw/workspace/.venv-adb/bin/pip install -r requirements-adb.txt
+#
+# From a dependent skill, the same file is $BASE/requirements-adb.txt — which is
+# why you install this skill first: it carries the pins.
+#
+# Pinned deliberately. An unpinned `pip install` resolves "latest" at install
+# time, so the code that actually runs is whatever PyPI happened to serve that
+# day and can change under you (ClawHub review [T08]). These are the versions
+# the OCR loop was verified against.
+#
+# Deliberately small — uiautomator2 + RapidOCR only. ocr_bridge.py drives the
+# phone with no Appium and no funasr, and on a Raspberry Pi this venv shares the
+# machine with other workloads.
+uiautomator2==3.7.0
+rapidocr-onnxruntime==1.2.3
+opencv-python==5.0.0.93
+onnxruntime==1.29.0

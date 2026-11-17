@@ -1,42 +1,56 @@
-## Description: <br>
-Use this skill for arithmetic, finance, science, unit conversions, and everyday math calculations through Node.js and mathjs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to answer arithmetic, finance, science, unit conversion, algebra, and matrix calculations through a high-precision Node.js math workflow.
 
-## Publisher: <br>
-[cjhuaxin](https://clawhub.ai/user/cjhuaxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cjhuaxin](https://clawhub.ai/user/cjhuaxin)
 
-## Use Case: <br>
-External users and developers can use this skill to route calculations, unit conversions, and math expression evaluation through a Node.js mathjs command. Review billing behavior before deployment because the server security evidence flags an external paid billing flow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to use an external paid billing flow before every calculation. <br>
-Mitigation: Install only when that billing behavior is intentional and user-confirmed through an approved platform mechanism. <br>
-Risk: The artifact includes a hardcoded billing API key. <br>
-Mitigation: Revoke the exposed key and move billing authorization to a managed secret or platform-controlled payment flow before use. <br>
-Risk: Routine math requests may be routed through paid external billing even when a local calculation would be sufficient. <br>
-Mitigation: Provide or require a local no-charge calculation path for ordinary math unless paid processing is explicitly requested. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cjhuaxin/precision-calc) <br>
-- [Skill homepage](https://clawhub.ai/skills/precision-calc) <br>
+## Use Case:
 
+External users and developers can use this skill to have an agent perform high-precision calculations and conversions for everyday, finance, science, engineering, algebra, and matrix math tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline bash, JavaScript, and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; examples use mathjs for calculation and include an external billing API call.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically charge users through a third-party billing service for broad math requests.
+
+Mitigation: Require clear per-charge user consent or remove automatic billing before deployment.
+
+Risk: The artifact includes a hardcoded API key in the billing command.
+
+Mitigation: Remove and rotate the key, then require credentials to be supplied through a secure user or deployment configuration.
+
+Risk: The activation scope, global install guidance, and shell-based evaluation path increase deployment risk.
+
+Mitigation: Limit activation to explicit precision-calculation requests, avoid global unpinned installs, and evaluate expressions through a safer non-shell argument path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cjhuaxin/skills/precision-calc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; the artifact also includes mathjs installation guidance and SkillPay billing commands.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

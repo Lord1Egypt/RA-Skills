@@ -1,39 +1,53 @@
-## Description: <br>
-Generates structured PPTX presentations from outlines using four built-in visual styles and consistent slide layout formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax PPT generates structured .pptx presentations from an outline with four built-in visual template styles and automated alignment, rounded corners, shadows, and spacing.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Employees, educators, and business users use this skill to turn an outline into a structured presentation for reports, academic talks, business proposals, training material, or product launches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Presentation prompts and generated slides may include sensitive business, academic, or personal content. <br>
-Mitigation: Review slide content before sharing and avoid including confidential information unless the workspace and downstream tools are approved for that data. <br>
-Risk: Future versions could add scripts, network access, API keys, or broader file permissions that change the current low-risk posture. <br>
-Mitigation: Re-review and rescan new versions before installation or deployment. <br>
+## Use Case:
 
+External users and developers use this skill to generate polished presentation decks for work reports, academic talks, business proposals, training materials, and product launches.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Guidance] <br>
-**Output Format:** [PPTX presentation files with optional Markdown slide outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports 4:3 and 16:9 layouts with business, tech, academic, and creative visual styles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated presentation content may contain errors or inappropriate material for the intended audience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated slides before sharing or presenting them.
+
+Risk: The artifact is a Chinese-language presentation-generation helper, which may affect reviewer understanding in non-Chinese workflows.
+
+Mitigation: Have a Chinese-capable reviewer check the generated content and source skill behavior before deployment.
+
+## Reference(s):
+
+- [MiniMax PPT ClawHub skill page](https://clawhub.ai/smseow001/skills/minimax-ppt-slides)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Guidance]
+
+**Output Format:** [PPTX presentation file with a structured Markdown-style outline]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports 4:3 and 16:9 aspect ratios with cover, catalog, content, summary, and image-placeholder slide structures.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

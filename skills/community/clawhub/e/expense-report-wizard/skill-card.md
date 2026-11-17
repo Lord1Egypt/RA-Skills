@@ -1,44 +1,59 @@
-## Description: <br>
-Expense Report Wizard helps agents organize business travel reimbursement materials by extracting invoice data, grouping expenses, reconstructing itineraries, generating reimbursement reports, and checking policy-based compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expense Report Wizard helps agents organize China mainland business travel reimbursement materials by extracting invoice data, categorizing expenses, rebuilding itineraries, generating reimbursement reports, and running policy-based compliance checks.
 
-## Publisher: <br>
-[sheyuy](https://clawhub.ai/user/sheyuy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheyuy](https://clawhub.ai/user/sheyuy)
 
-## Use Case: <br>
-Employees and finance operations teams use this skill to prepare business travel reimbursement packages from invoice photos, local folders, or text descriptions. It is intended to produce organized expense records, itinerary logs, reimbursement forms, and compliance review notes for human review before submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive reimbursement data, including invoices, company names, local invoice folders, and finance policy text. <br>
-Mitigation: Use it only with reimbursement materials the user is comfortable sharing with the assistant, and review generated reports before finance submission. <br>
-Risk: Connected OCR, online document, calendar, or enterprise messaging integrations may process business expense data outside the chat environment. <br>
-Mitigation: Review and authorize each connected integration before enabling enhanced OCR, document export, schedule lookup, or notification workflows. <br>
-Risk: OCR extraction, compliance checks, and tax-related summaries can be incomplete or incorrect, especially when company policy or invoice details are missing. <br>
-Mitigation: Require human review, ask users to provide finance policy for threshold checks, and avoid treating the skill as final approval, invoice authenticity verification, or tax advice. <br>
+## Use Case:
 
+Employees use this skill to turn invoice photos, local invoice folders, or text lists into organized travel reimbursement materials, itinerary logs, reimbursement forms, and preliminary compliance findings. Finance and operations reviewers can use the outputs as a structured draft, while final approval, tax treatment, and invoice authenticity checks remain outside the skill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sheyuy/expense-report-wizard) <br>
-- [Source repository from server-resolved provenance](https://github.com/Sheyuy/expense-report-wizard) <br>
-- [Publisher profile](https://clawhub.ai/user/sheyuy) <br>
+### Deployment Geography for Use:
 
+Global use for workflows involving China mainland invoice formats
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, tables, structured text, CSV-style exports, shell command examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include reimbursement reports, itinerary logs, compliance summaries, file-renaming previews, and optional export instructions; financial thresholds depend on user-provided policy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The security evidence says the skill may process sensitive reimbursement data through connected external services without clear per-action consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local-only processing unless the user intentionally approves OCR uploads, online document export, meeting lookup, or notifications.
+
+Risk: Folder and archive processing can expose unrelated files if the selected directory contains more than the intended reimbursement documents.
+
+Mitigation: Use a dedicated folder containing only the invoices for the reimbursement and review archive contents before processing.
+
+Risk: Tencent Cloud secrets or other service credentials could be exposed through chat, logs, screenshots, or shell history.
+
+Mitigation: Keep credentials out of chat and shared logs, and use environment handling that avoids displaying secret values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sheyuy/skills/expense-report-wizard)
+- [Source repository from server-resolved provenance](https://github.com/Sheyuy/expense-report-wizard)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, CSV, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown tables, structured text, CSV-ready exports, and inline shell/configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include invoice classifications, itinerary logs, reimbursement forms, compliance summaries, file-renaming previews, and optional online document export guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter: 1.0.6)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

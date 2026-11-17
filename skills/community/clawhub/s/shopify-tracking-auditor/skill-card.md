@@ -1,43 +1,58 @@
-## Description: <br>
-Audit Shopify tracking integrity across UTM, pixel, CAPI, and checkout events to detect attribution leaks. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Audit Shopify tracking integrity across UTM, pixel, CAPI, and checkout events to detect attribution leaks.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0; server evidence lists MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Performance marketers, ecommerce operators, and analytics teams use this skill to inspect Shopify event evidence, pixel/CAPI configuration notes, UTM samples, and checkout flow maps for attribution gaps that can distort ROAS and conversion reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit inputs may include customer PII, secrets, API tokens, or unrelated Shopify store data. <br>
-Mitigation: Provide only the tracking samples and configuration details needed for the audit, and redact customer PII, secrets, API tokens, and unrelated store data. <br>
-Risk: The audit report could confuse tracking collection failures with real performance changes if evidence is incomplete. <br>
-Mitigation: Tie findings to concrete event evidence, mark assumptions when full logs are unavailable, and validate recommended fixes before changing production tracking or campaign decisions. <br>
-Risk: The artifact license text states non-commercial CC BY-NC-SA terms while server evidence lists MIT-0. <br>
-Mitigation: Confirm the applicable license terms with the publisher before commercial reuse or redistribution. <br>
+## Use Case:
 
+Performance marketers, ecommerce operators, and analytics teams use this skill to review Shopify event samples, pixel or CAPI configuration notes, UTM examples, and checkout flow maps for attribution leaks and tracking gaps.
 
-## Reference(s): <br>
-- [Shopify Tracking Auditor release page](https://clawhub.ai/Leooooooow/shopify-tracking-auditor) <br>
-- [Output template](artifact/references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, analysis] <br>
-**Output Format:** [Markdown report with an executive summary, prioritized actions, evidence table, and 7-day execution plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings should be tied to concrete event evidence, with assumptions marked when complete logs are unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Event samples and configuration notes can include sensitive customer, order, advertising, or tracking data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide sanitized samples and omit credentials, customer identifiers, raw order data, and other unnecessary sensitive fields.
+
+Risk: Incomplete event logs or checkout flow information can lead to unsupported conclusions about attribution leaks.
+
+Mitigation: Tie findings to concrete event evidence and mark assumptions when full logs are unavailable.
+
+Risk: The artifact states non-commercial license terms that may affect business use.
+
+Mitigation: Review the license terms and obtain separate commercial permission before business deployment when required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/shopify-tracking-auditor)
+- [Output template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown audit report with prioritized actions, evidence table, and 7-day execution plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings should be tied to concrete event evidence and assumptions should be marked when full logs are unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

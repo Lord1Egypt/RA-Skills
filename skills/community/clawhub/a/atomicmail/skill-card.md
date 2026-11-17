@@ -1,47 +1,58 @@
-## Description: <br>
-Read and write email through Atomic Mail from an AI agent, including inbox registration, mailbox listing, email fetches, and sending mail through JMAP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and write email through the Atomic Mail from an AI agent. Handles proof-of-work authentication and JMAP so the agent thinks in JMAP method calls. Use when the user asks to register an email inbox, list mailboxes, fetch or send email, or schedule meetings by email (calendar invitations).
 
-## Publisher: <br>
-[atomicmail](https://clawhub.ai/user/atomicmail) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atomicmail](https://clawhub.ai/user/atomicmail)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent operate a dedicated Atomic Mail inbox: register or restore account credentials, read and triage messages, send replies, and run JMAP batches or presets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent ongoing mailbox read/write access and the ability to send outbound email. <br>
-Mitigation: Use a dedicated Atomic Mail account and confirm recipients, message content, and attachments before allowing the agent to send mail. <br>
-Risk: Credentials and JWT bearer tokens are persisted on disk. <br>
-Mitigation: Keep the configured credentials directory private, do not commit credential files, and use separate credential directories for separate inboxes. <br>
-Risk: Scheduled inbox polling can repeatedly expose mailbox contents to an agent. <br>
-Mitigation: Review the scheduled job prompt and cadence, ensure it runs as a full agent turn, and avoid raw CLI-only cron jobs. <br>
-Risk: Attachment upload can expose local file contents. <br>
-Mitigation: Attach only files the operator explicitly selected and review attachment paths before sending. <br>
+## Use Case:
 
+External users and developers use this skill to manage an Atomic Mail inbox, including reading, searching, sending, and replying to email, handling attachments, and managing calendar invitations. It can also support operator-selected inbox checks on a recurring schedule.
 
-## Reference(s): <br>
-- [Atomic Mail homepage](https://atomicmail.ai) <br>
-- [OpenClaw cron jobs](https://docs.openclaw.ai/automation/cron-jobs) <br>
-- [Hermes cron documentation](https://hermes-agent.nousresearch.com/docs/user-guide/features/cron) <br>
-- [Atomic Mail ClawHub skill page](https://clawhub.ai/atomicmail/skills/atomicmail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON/JMAP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke a bundled Node CLI that reads or writes Atomic Mail credentials, JWT files, mailbox data, outbound messages, and attachments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.23 (source: server release evidence and skill frontmatter) <br>
+Risk: The scan flags an unpinned install command and unclear tool scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Wait for the publisher to clarify required access and provide a pinned install version, then review the requested commands and tools before installation.
+
+Risk: Recurring inbox checks may expose private messages to unattended agent runs.
+
+Mitigation: Choose whether checks should be on demand or scheduled. For scheduled runs, use the host runtime's scheduler with a read-only task and a narrow tool allowlist, and treat message contents as untrusted data.
+
+Risk: The scan guidance says attribution data use is unclear.
+
+Mitigation: Ask the publisher to explain what attribution data is used and how before installation.
+
+## Reference(s):
+
+- [Atomic Mail](https://atomicmail.ai)
+- [Atomic Mail on ClawHub](https://clawhub.ai/atomicmail/skills/atomicmail)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration instructions]
+
+**Output Format:** [Email and inbox summaries, JSON API responses, and command or configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can access or change email and calendar data when invoked; recurring inbox checks depend on an operator-selected schedule.]
+
+## Skill Version(s):
+
+0.3.34 (source: ClawHub release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

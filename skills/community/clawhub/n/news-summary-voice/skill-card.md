@@ -1,46 +1,69 @@
-## Description: <br>
-News Summary Voice helps an agent fetch public RSS news sources, summarize current events, and optionally prepare voice briefing commands across macOS, Linux, and Windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+News Summary Voice helps agents collect RSS news sources, draft multilingual news briefings, and optionally prepare text-to-speech playback across macOS, Linux, and Windows.
 
-## Publisher: <br>
-[realorange1994](https://clawhub.ai/user/realorange1994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realorange1994](https://clawhub.ai/user/realorange1994)
 
-## Use Case: <br>
-External users and agents use this skill to assemble multilingual daily news briefings from selected public RSS sources. It supports text summaries and optional voice playback or TTS-oriented commands for routine news updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RSS sources can be unavailable, stale, restricted by region, or different from the user's trusted news sources. <br>
-Mitigation: Verify the feed list before relying on a briefing and prefer sources the user has explicitly requested or approved. <br>
-Risk: Voice generation or external TTS services may expose sensitive or private text if used with confidential content. <br>
-Mitigation: Avoid sending sensitive text to external TTS services and use local speech tools when privacy requirements apply. <br>
-Risk: Scheduled news briefings can run unexpectedly if enabled outside the skill. <br>
-Mitigation: Enable scheduled execution only through an explicit scheduler that the user can review, pause, and disable. <br>
+## Use Case:
 
+External users and developers use this skill to gather current news from selected RSS feeds, summarize it into a briefing, and optionally produce or play a spoken version.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/realorange1994/news-summary-voice) <br>
-- [BBC World RSS feed](https://feeds.bbci.co.uk/news/world/rss.xml) <br>
-- [Reuters World News feed](https://www.reutersagency.com/feed/?best-topics=world-news) <br>
-- [NPR News RSS feed](https://feeds.npr.org/1001/rss.xml) <br>
-- [Hacker News RSS feed](https://news.ycombinator.com/rss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown briefing with links, summaries, source attribution, and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional voice playback or TTS generation steps depending on the user's platform and request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Some listed RSS feeds may be questionable, insecure, or misidentified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace questionable or HTTP feeds with verified HTTPS first-party sources before installing or running the skill.
+
+Risk: RSS feed content can include untrusted or sensitive news text that may be summarized or spoken aloud.
+
+Mitigation: Treat feed content as untrusted text, require confirmation for broad news or voice requests, and review sensitive news before voice broadcast.
+
+Risk: The optional audio flow downloads remote media to /tmp before playback.
+
+Mitigation: Avoid that pattern unless it is hardened with trusted media URLs, safe temporary-file handling, and cleanup.
+
+Risk: Linux setup examples include sudo package installation commands.
+
+Mitigation: Run package installs only manually after reviewing the packages and installation source.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/realorange1994/skills/news-summary-voice)
+- [BBC World RSS](https://feeds.bbci.co.uk/news/world/rss.xml)
+- [Reuters World RSS](https://www.reutersagency.com/feed/?best-topics=world-news)
+- [NPR News RSS](https://feeds.npr.org/1001/rss.xml)
+- [Al Jazeera RSS](https://www.aljazeera.com/xml/rss/all.xml)
+- [The Guardian World RSS](https://www.theguardian.com/world/rss)
+- [Hacker News RSS](https://news.ycombinator.com/rss)
+- [TechCrunch RSS](https://techcrunch.com/feed/)
+- [Ars Technica RSS](https://feeds.arstechnica.com/arstechnica/index)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown briefing with optional shell and PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include RSS source links and optional text-to-speech or audio playback steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

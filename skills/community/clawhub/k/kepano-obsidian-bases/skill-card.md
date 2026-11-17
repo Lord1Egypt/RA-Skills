@@ -1,45 +1,57 @@
-## Description: <br>
-Create and edit Obsidian Bases (.base files) with views, filters, formulas, and summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and edit Obsidian Bases (.base files) with views, filters, formulas, and summaries.
 
-## Publisher: <br>
-[hoyaryyj](https://clawhub.ai/user/hoyaryyj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hoyaryyj](https://clawhub.ai/user/hoyaryyj)
 
-## Use Case: <br>
-Obsidian users, knowledge workers, and workflow builders use this skill to create or revise `.base` files that organize vault notes into database-like views. It helps define YAML filters, formulas, summaries, properties, and table, card, list, or map views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated YAML, formulas, file paths, or HTML-rendering formulas may be incorrect or unsuitable for a user's vault. <br>
-Mitigation: Review generated `.base` content, formulas, file paths, and any HTML-rendering formula before using it in Obsidian. <br>
-Risk: Sharing full vault context may expose unnecessary note content. <br>
-Mitigation: Share only the notes, properties, or `.base` files needed for the task. <br>
+## Use Case:
 
+Developers and Obsidian users use this skill to create, edit, and validate Obsidian `.base` YAML files that present notes as database-like views with filters, formulas, summaries, and table, card, list, or map layouts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hoyaryyj/kepano-obsidian-bases) <br>
-- [Bases Syntax](https://help.obsidian.md/bases/syntax) <br>
-- [Bases Functions](https://help.obsidian.md/bases/functions) <br>
-- [Bases Views](https://help.obsidian.md/bases/views) <br>
-- [Formulas](https://help.obsidian.md/formulas) <br>
-- [Complete Functions Reference](artifact/references/FUNCTIONS_REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with YAML examples and Obsidian Bases formula snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local `.base` file guidance and YAML content for review before use in Obsidian.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated `.base` files can surface note metadata from an Obsidian vault through filters and displayed properties.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated `.base` files before use, especially filters and displayed properties.
+
+Risk: Incorrect YAML, formulas, or property references can cause Obsidian Bases to render incorrectly or fail validation.
+
+Mitigation: Validate YAML syntax, confirm formulas and referenced properties exist, and test the `.base` file in Obsidian.
+
+## Reference(s):
+
+- [Complete Functions Reference](references/FUNCTIONS_REFERENCE.md)
+- [Obsidian Bases Syntax](https://help.obsidian.md/bases/syntax)
+- [Obsidian Bases Functions](https://help.obsidian.md/bases/functions)
+- [Obsidian Bases Views](https://help.obsidian.md/bases/views)
+- [Obsidian Formulas](https://help.obsidian.md/formulas)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with YAML examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local Obsidian `.base` YAML content and review guidance; users should validate generated YAML in Obsidian before relying on it.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

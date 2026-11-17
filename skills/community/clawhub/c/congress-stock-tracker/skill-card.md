@@ -1,45 +1,64 @@
-## Description: <br>
-Tracks public U.S. congressional stock trades, highlights concentrated buying and anomaly signals, and helps relate trading activity to committee and policy context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks public U.S. congressional stock trade disclosures, highlights concentrated buying and anomaly signals, and helps agents relate trade patterns to committees, legislation, and regulatory events.
 
-## Publisher: <br>
-[goatdeesign](https://clawhub.ai/user/goatdeesign) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goatdeesign](https://clawhub.ai/user/goatdeesign)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to fetch public congressional stock-trade data and generate structured reports on holdings concentration, unusual trading patterns, and possible policy context. Outputs should be treated as research leads and not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public congressional trade disclosures can be delayed or incomplete, so results may not reflect current holdings or exact transaction values. <br>
-Mitigation: Disclose the reporting delay, verify important records against public sources, and avoid treating the output as real-time market data. <br>
-Risk: Anomaly and policy-catalyst interpretations may be incorrect or overstated if used as financial conclusions. <br>
-Mitigation: Present interpretations as research leads, include the non-investment-advice disclaimer, and independently verify material conclusions. <br>
-Risk: The skill fetches public web data and can write local output files when a path is selected. <br>
-Mitigation: Run it only in an environment where outbound public-data requests and local report-file creation are acceptable. <br>
+## Use Case:
 
+External users and agents use this skill to fetch public U.S. congressional trade disclosures, filter them by politician, ticker, chamber, transaction type, or amount, and produce structured research reports with concentration and anomaly analysis.
 
-## Reference(s): <br>
-- [Analysis Framework](references/analysis_framework.md) <br>
-- [Committee Industry Map](references/committee_industry_map.md) <br>
-- [Capitol Trades](https://www.capitoltrades.com/trades) <br>
-- [ClawHub Skill Page](https://clawhub.ai/goatdeesign/congress-stock-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, CSV, Shell commands, Analysis] <br>
-**Output Format:** [Markdown reports with structured tables; optional JSON or CSV from the data-fetch script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write report or data files locally when an output path is selected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Market analysis could be mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as research only and include the required non-investment-advice disclaimer.
+
+Risk: Congressional trading disclosures can lag and are not real-time.
+
+Mitigation: Tell readers that public disclosures may be delayed by up to 45 days before drawing conclusions.
+
+Risk: The skill fetches public web data and can write JSON or CSV files to requested paths.
+
+Mitigation: Review command arguments and choose output paths deliberately before execution.
+
+Risk: Public data sources or website structures may change and cause incomplete or failed fetches.
+
+Mitigation: Treat empty or failed fetch results as source availability issues and verify important findings against public disclosures.
+
+## Reference(s):
+
+- [Congressional trade analysis framework](references/analysis_framework.md)
+- [Congressional committee and industry map](references/committee_industry_map.md)
+- [Capitol Trades public trade data](https://www.capitoltrades.com/trades)
+- [ClawHub skill page](https://clawhub.ai/goatdeesign/skills/congress-stock-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, CSV, shell commands, guidance]
+
+**Output Format:** [Markdown research reports with tables, plus JSON or CSV data from the fetch script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save JSON or CSV files to user-selected paths; reports should include disclosure-delay and non-investment-advice disclaimers.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

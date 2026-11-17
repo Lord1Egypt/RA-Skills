@@ -1,42 +1,54 @@
-## Description: <br>
-A Chinese-language trade journal and psychology coaching skill that analyzes user-provided trade records, compares plans with execution, identifies behavioral trading mistakes, and produces reflective coaching rather than investment advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Journal Coach reviews user-supplied trading records to calculate performance metrics, compare plans with execution, and provide reflective psychology and discipline coaching.
 
-## Publisher: <br>
-[georgetao730](https://clawhub.ai/user/georgetao730) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[georgetao730](https://clawhub.ai/user/georgetao730)
 
-## Use Case: <br>
-External users and traders use this skill after trading sessions, drawdowns, winning streaks, or periodic reviews to examine trade records, execution discipline, risk behavior, and emotional patterns. It requires user-provided trade data and should be treated as coaching and reflection, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users could mistake coaching output for investment advice. <br>
-Mitigation: Treat reports as reflective coaching only and make independent trading decisions. <br>
-Risk: Trade records may contain sensitive financial details. <br>
-Mitigation: Share only the trades needed for the review and do not provide broker credentials, API keys, or account-changing access. <br>
-Risk: Incomplete or inaccurate trade data can produce misleading conclusions. <br>
-Mitigation: Provide complete records with entry, exit, position size, plan, and emotional context before relying on the review. <br>
+## Use Case:
 
+External users can use this skill after trading activity to review journal entries, measure win rate and profit/loss ratio, identify execution gaps, and receive discipline-focused coaching. The output is reflective coaching based on local, user-supplied records and is not investment advice or a trading signal.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/georgetao730/trade-journal-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown report with metrics tables, execution-gap findings, psychology coaching, action steps, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided trade records; output is reflective coaching and does not place trades or access broker accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact _meta.json, and artifact changelog) <br>
+Risk: Users could treat reflective trade-journal analysis as investment advice or a trading signal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame outputs as coaching based on user-supplied records and preserve the artifact disclaimer that analysis is for reference only and not investment advice.
+
+Risk: Incomplete or inaccurate trade records can lead to misleading performance and discipline analysis.
+
+Mitigation: Ask users for complete buy and sell prices, timing, position size, trading plan, stop, target, profit/loss, and emotion before drawing conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/georgetao730/skills/trade-journal-coach)
+- [Publisher profile](https://clawhub.ai/user/georgetao730)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with tables, bullets, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local, user-supplied trade records; security evidence reports no network access, credential use, persistence, or account-changing actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact _meta.json, and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

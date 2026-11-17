@@ -1,0 +1,58 @@
+# starter pack · 银行信贷风控
+# 来源：mocks/finance 合成场景提炼
+# 本体段为声明式事实清单；投影示例见 mocks/ 与 references/contract.md。
+pack:
+  id: finance
+  name: 银行信贷风控
+  version: '0.1'
+  source: mocks/finance 合成场景提炼
+  aligns:
+  - schema.org/LoanOrCredit
+  - FIBO 可对齐
+  usage: python scripts/guide_model.py init --model partial.yaml --scope scope.yaml
+    --session session.json --pack starter_packs/finance.yaml
+ontology:
+  entities:
+  - name: 贷款
+    cn: 贷款
+    attributes:
+    - name: 金额
+      value_type: number
+      unit: 元
+    - name: 状态
+      value_type: enum
+      values:
+      - 正常
+      - 逾期
+      - 结清
+    uid: ent_loan
+    evidence:
+      source: owner_confirmed
+  - name: 借款人
+    cn: 借款人
+    attributes:
+    - name: 风险等级
+      value_type: enum
+      values:
+      - 低
+      - 中
+      - 高
+    uid: ent_borrower
+    evidence:
+      source: user_provided
+  - name: 担保人
+    cn: 担保人
+    unprojected_reason: 担保台账未结构化，仅业务声明
+    uid: ent_guarantor
+    evidence:
+      source: model_inferred
+  relations:
+  - from: 借款人
+    to: 贷款
+    predicate: 申请
+    mapping: equi_key
+  - from: 担保人
+    to: 贷款
+    predicate: 担保
+    mapping: weak
+    note: 依赖人工台账，不可自动 join

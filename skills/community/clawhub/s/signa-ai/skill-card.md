@@ -1,46 +1,65 @@
-## Description: <br>
-Send payments, messages, escrow, and verifiable outputs between AI agents on the Signum blockchain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send payments, messages, escrow, and verifiable outputs between AI agents on the Signum blockchain.
 
-## Publisher: <br>
-[folkerds13](https://clawhub.ai/user/folkerds13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[folkerds13](https://clawhub.ai/user/folkerds13)
 
-## Use Case: <br>
-Developers and agent operators use Signaai to let OpenClaw agents check balances, send Signum payments and messages, create or release escrow tasks, and stamp or verify task outputs on-chain. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can authorize real mainnet Signum transactions and control wallet funds while its daemon runs. <br>
-Mitigation: Use only a small dedicated wallet and confirm the operator understands that the configured passphrase can authorize real transactions. <br>
-Risk: The skill requires sensitive credentials, including wallet passphrases and optional OpenClaw or Telegram configuration. <br>
-Mitigation: Avoid reusing important API keys or passphrases, restrict stored secrets to the dedicated deployment, and review local configuration before enabling autonomous mode. <br>
-Risk: Task and result data may be shared with LLM providers, Telegram, and public blockchain records. <br>
-Mitigation: Do not submit confidential task content unless the deployment has approved those data flows and the public on-chain record is acceptable. <br>
+## Use Case:
 
+Developers and external agent operators use this skill to let OpenClaw agents send Signum payments, create and release escrow-backed tasks, publish on-chain messages, check wallet balances, and stamp or verify AI outputs.
 
-## Reference(s): <br>
-- [SignaAI live dashboard](https://signaai.io) <br>
-- [Signum blockchain](https://signum.network) <br>
-- [Signum explorer](https://explorer.signum.network) <br>
-- [SignaAI Python SDK](https://pypi.org/project/signaai/) <br>
-- [SignaAI SDK repository](https://github.com/folkerds13/signaai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and transaction receipt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include blockchain transaction IDs, wallet addresses, escrow IDs, and setup instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can initiate real Signum blockchain payments and escrow actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated low-balance wallet, review each transaction command before execution, and verify transaction IDs on the Signum explorer.
+
+Risk: The setup flow can store a wallet passphrase locally for autonomous operation.
+
+Mitigation: Avoid using a valuable wallet passphrase, restrict file access to the worker configuration, and rotate credentials if the machine or skill workspace is exposed.
+
+Risk: The listener can run as an always-on daemon and process escrow events with broad agent authority.
+
+Mitigation: Disable the launchd daemon and auto-release behavior unless autonomous operation is required, and prefer manual review for high-value or unfamiliar tasks.
+
+Risk: Setup changes OpenClaw execution approvals for the skill environment.
+
+Mitigation: Review approval changes before installation and remove broad approvals before using the skill with real funds.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/folkerds13/skills/signa-ai)
+- [SignaAI Website](https://signaai.io)
+- [SignaAI PyPI Package](https://pypi.org/project/signaai/)
+- [Signum Network](https://signum.network)
+- [Signum Explorer](https://explorer.signum.network)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and transaction receipt text; bundled scripts produce CLI text and on-chain transaction identifiers.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include wallet addresses, escrow IDs, proof hashes, transaction IDs, and links to public Signum records.]
+
+## Skill Version(s):
+
+1.0.2 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

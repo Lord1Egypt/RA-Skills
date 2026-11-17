@@ -1,0 +1,4 @@
+interface:
+  display_name: "TokenLab Native Endpoints"
+  short_description: "Use TokenLab provider-native API routes"
+  default_prompt: "Use $tokenlab-native-endpoints to implement this request with the correct TokenLab native endpoint."

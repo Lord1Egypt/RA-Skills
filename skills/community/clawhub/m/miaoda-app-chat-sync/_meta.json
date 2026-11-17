@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn7f154fhy5znb711h262z12f985p4xv",
+  "ownerId": "jx772ycgd59xn48gszfdzp4fmx85sq6d",
   "slug": "miaoda-app-chat-sync",
-  "version": "3.2.1",
-  "publishedAt": 1777559616689
+  "version": "3.2.0",
+  "publishedAt": 1745851829,
+  "env": {
+    "GITHUB_TOKEN": {
+      "description": "GitHub Personal Access Token for private repository access",
+      "required": false,
+      "scope": "repo (read-only)"
+    }
+  }
 }

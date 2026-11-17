@@ -1,0 +1,9 @@
+{
+  "name": "continuous-test-review-loop",
+  "normalizedName": "continuous-test-review-loop",
+  "description": "把「不断测试 → 复盘 → 改进 → 复测」做成常态化机制，用于回答「方案上线后怎么持续验证」「怎么让团队养成复盘节奏」这类问题。固定测试清单、复盘模板、改进闭环，每轮报告自动入方案池，让方案在持续实测中迭代打磨。每轮测试记录与改进决策按证据链审计留痕，结论按真实参照法挂实测数据，不靠感觉判断\"是不是变好了\"。适用方案落地后需长期验证优化、或要建立「测试—复盘—改进」节奏的场景。触发词：持续测试、复盘、改进、打磨、实际运行测试、验证方案、迭代循环、测试闭环、回归复测、review loop、continuous testing。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺衡(Krites)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

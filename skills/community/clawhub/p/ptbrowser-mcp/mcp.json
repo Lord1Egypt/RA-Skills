@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "ptbrowser": {
+      "command": "node",
+      "args": [
+        "${PTBROWSER_RUNTIME_DIR}/scripts/ptbrowser-mcp.js"
+      ]
+    }
+  }
+}

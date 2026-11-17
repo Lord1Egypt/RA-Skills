@@ -1,46 +1,60 @@
-## Description: <br>
-Person-driven roleplay agent using actor-direction principles to build emotionally intelligent personas, run scene-based interactions, and generate natural dialogue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Roleplay Agent helps writers build actor-direction personas, run scene-based roleplay interactions, and generate natural dialogue from each character's want, obstacle, and moment-before context.
 
-## Publisher: <br>
-[defineagain](https://clawhub.ai/user/defineagain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[defineagain](https://clawhub.ai/user/defineagain)
 
-## Use Case: <br>
-Writers, roleplay users, and creative agents use this skill to define scene-driven personas, generate in-character dialogue, set up emotionally grounded scenes, and record character arc notes after debriefs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or update local roleplay memory and persona files that may contain sensitive scene material. <br>
-Mitigation: Require explicit user confirmation before any memory or persona update, and avoid using the skill for highly sensitive personal material. <br>
-Risk: The artifact contains anti-safety wording around difficult roleplay material. <br>
-Mitigation: Treat those statements as creative-writing posture only; platform rules, user boundaries, and applicable safety policies remain authoritative. <br>
-Risk: Local file paths used by helper scripts are under-scoped and may not match the installing environment. <br>
-Mitigation: Review script paths before execution and limit file access to the intended persona and memory directories. <br>
+## Use Case:
 
+External users and creative writers use the skill to create persona-driven roleplay scenes, generate dialogue from wants and obstacles, and preserve arc notes for later sessions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/defineagain/roleplay-agent) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [SOUL.md](artifact/SOUL.md) <br>
-- [Beat Writing Format](artifact/assets/beat_format.md) <br>
-- [Persona Template](artifact/personas/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown dialogue, persona templates, scene setup prompts, and arc log notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local persona memory files when the user approves debrief logging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Roleplay notes and arc logs may persist sensitive creative or personal material in local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in workspaces where persistent roleplay notes are acceptable, and ask for explicit user consent before writing arc logs or updating persona files.
+
+Risk: Helper scripts accept persona names or file paths with weak boundaries.
+
+Mitigation: Avoid untrusted persona names or file paths until path validation is tightened.
+
+Risk: The artifact contains language that may weaken safety and content boundaries during difficult roleplay scenes.
+
+Mitigation: Keep all writing guidance subordinate to applicable safety, consent, and content boundaries.
+
+## Reference(s):
+
+- [Roleplay Agent release page](https://clawhub.ai/defineagain/skills/roleplay-agent)
+- [Beat Writing Format](assets/beat_format.md)
+- [Persona Template](personas/template.md)
+- [Example Persona: Eve](personas/example_eve.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown dialogue, persona definitions, scene setup prompts, arc notes, and helper script commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update persona and arc-log files when the user consents.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

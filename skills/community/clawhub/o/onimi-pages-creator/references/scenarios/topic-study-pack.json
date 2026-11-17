@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "sceneKey": "topic-study-pack",
+  "version": "1.0.0",
+  "kind": "page",
+  "audience": "study",
+  "license": "MIT-0",
+  "minimumCreatorVersion": "0.2.0",
+  "artifactProtocolVersion": 1,
+  "dataModes": [
+    "local",
+    "controlled-cloud"
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "专题学习包",
+      "goal": "用概念关系、例子和资料索引帮助理解一个专题。",
+      "optionalInputs": [
+        {
+          "key": "topic",
+          "question": "想学哪个主题，范围到哪里？"
+        },
+        {
+          "key": "level",
+          "question": "目前的基础与希望达到的深度是什么？"
+        },
+        {
+          "key": "sources",
+          "question": "是否有教材、文章或课堂资料？"
+        },
+        {
+          "key": "time",
+          "question": "可投入多少时间，偏好哪些学习方式？"
+        }
+      ],
+      "sections": [
+        "学习目标",
+        "概念地图",
+        "分层讲解与例子",
+        "易混淆点",
+        "资料索引与回顾"
+      ],
+      "qualityChecks": [
+        "优先可阅读的解释与示意图，每个概念连接一个具体例子。",
+        "术语筛选、章节跳转和展开答案服务理解，不能只有装饰性按钮。",
+        "区分已核实教材内容、推导和类比；缺少资料时标明待核查来源。"
+      ],
+      "missingInformationPolicy": "所有问题均可跳过；使用已有资料，显式列出影响结果的假设，未知事实保留待确认。"
+    },
+    "en": {
+      "title": "Topic study pack",
+      "goal": "Explain a topic through concepts, worked examples and a source index.",
+      "optionalInputs": [
+        {
+          "key": "topic",
+          "question": "What topic and scope should the pack cover?"
+        },
+        {
+          "key": "level",
+          "question": "What is the starting level and desired depth?"
+        },
+        {
+          "key": "sources",
+          "question": "Are textbooks, articles or class materials available?"
+        },
+        {
+          "key": "time",
+          "question": "How much time is available and which learning formats work best?"
+        }
+      ],
+      "sections": [
+        "Learning goals",
+        "Concept map",
+        "Layered explanations and examples",
+        "Common confusions",
+        "Source index and recap"
+      ],
+      "qualityChecks": [
+        "Pair readable explanations or diagrams with a concrete example for each concept.",
+        "Term filters, chapter links and answer reveals must support comprehension.",
+        "Distinguish verified material, derivations and analogies; mark sources that need checking."
+      ],
+      "missingInformationPolicy": "All questions may be skipped. Use known material, state consequential assumptions, and leave unknown facts unresolved."
+    }
+  }
+}

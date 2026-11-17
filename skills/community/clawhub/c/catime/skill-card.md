@@ -1,42 +1,58 @@
-## Description: <br>
-Fetch and send AI-generated hourly cat images. Every hour a unique cat artwork is born via Google Gemini. Use when user asks for a cat picture, wants to browse the cat gallery, or requests the latest AI-generated cat image to be sent to them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches AI-generated hourly cat images and helps agents send selected images with captions and metadata.
 
-## Publisher: <br>
-[yazelin](https://clawhub.ai/user/yazelin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yazelin](https://clawhub.ai/user/yazelin)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve recent or requested AI-generated cat images, parse the CLI output, and send an image URL with optional caption metadata to the user. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external Python package catime and a CLI install step. <br>
-Mitigation: Install in an isolated Python environment and invoke the skill only when the user explicitly asks to fetch or send cat images. <br>
-Risk: The gallery requires network access to retrieve public GitHub-hosted image metadata and image URLs. <br>
-Mitigation: If retrieval fails, tell the user that the gallery requires internet access and retry only when connectivity is available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yazelin/catime) <br>
-- [Publisher profile](https://clawhub.ai/user/yazelin) <br>
-- [catime GitHub repository](https://github.com/yazelin/catime) <br>
-- [catime gallery](https://yazelin.github.io/catime/) <br>
+## Use Case:
 
+External users and agents use this skill to retrieve the latest, date-specific, numbered, or random AI-generated cat image and prepare it for delivery with a caption and metadata.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and message payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces public image URLs and optional metadata such as cat number, timestamp, model, prompt, and story when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to install and run an unpinned external Python package.
+
+Mitigation: Install catime only in an isolated environment, pin a reviewed package version with hashes, and require explicit approval before installation.
+
+Risk: The workflow expects outbound access to public GitHub-hosted image files.
+
+Mitigation: Run it only where outbound GitHub access is allowed and avoid using it in environments that must remain offline.
+
+Risk: Generated captions or stories may include Chinese text from the upstream image metadata.
+
+Mitigation: Review or translate captions before sending them when the recipient expects another language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yazelin/skills/catime)
+- [catime gallery](https://yazelin.github.io/catime/)
+- [catime project link from artifact](https://github.com/yazelin/catime)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON/YAML message payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes image URLs, captions, and optional cat metadata when available.]
+
+## Skill Version(s):
+
+0.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

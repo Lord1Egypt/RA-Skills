@@ -1,40 +1,53 @@
-## Description: <br>
-Builds real-time collaboration apps with whiteboard, live code editing, chat, CRDT sync, and presence indicators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build real-time collaborative applications with shared whiteboards, live code editing, chat, CRDT synchronization, and presence indicators.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and teams use this skill to plan or build realtime collaboration experiences such as shared whiteboards, pair-programming editors, chat, collaborative documents, and live dashboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact references create-collab.sh and dev.sh, but those scripts are not included in the release evidence. <br>
-Mitigation: Inspect any create-collab.sh or dev.sh script obtained separately before running it. <br>
-Risk: Realtime collaboration apps may require Node.js 18+ and Redis services to run locally. <br>
-Mitigation: Confirm the local environment and service configuration before installing dependencies or starting the app. <br>
+## Use Case:
 
+Developers and teams use this skill to create real-time collaboration apps for shared whiteboarding, pair programming, collaborative documents, and live dashboards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/realtime-collab-app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with code, shell command, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; review any generated app code and setup scripts before running them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/_meta.json) <br>
+Risk: The skill is a lightweight starter prompt and references helper scripts that are not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or create the helper scripts before running any generated setup commands.
+
+Risk: Implemented real-time collaboration apps may expose network services, Redis, shared document state, and user content.
+
+Mitigation: Review service configuration, access controls, data handling, and deployment settings before using generated applications with real users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/realtime-collab-app)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides starter commands and requirements for Node.js 18+ and Redis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

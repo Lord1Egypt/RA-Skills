@@ -1,0 +1,7 @@
+{
+  "private_key": "REPLACE_WITH_BASE58_ENCODED_64_BYTE_SOLANA_KEYPAIR",
+  "rpc_url": "https://api.mainnet-beta.solana.com",
+  "accepted_custodial_recipient": "REPLACE_AFTER_INDEPENDENT_VERIFICATION",
+  "trusted_stock_mints": {},
+  "max_offer_raw_by_mint": {}
+}

@@ -1,9 +1,8 @@
 {
   "name": "beckmann-knowledge-graph",
-  "version": "2.1.0",
-  "description": "A structured knowledge graph that acts as a cognitive lens for AI agents  enabling paradox resolution, reasoning about open scientific questions, and high-complexity future forecasting.",
-  "main": "graph.json",
-  "skill": "SKILL.md",
+  "version": "4.1.1",
+  "description": "A structured knowledge graph that acts as a cognitive lens for AI agents enabling paradox resolution, reasoning about open scientific questions, and high-complexity future forecasting.",
+  "main": "SKILL.md",
   "keywords": [
     "knowledge-graph",
     "reasoning",
@@ -14,40 +13,54 @@
     "predictive-brain-theory",
     "ai-safety",
     "simulation",
-    "stock trading",
+    "stock-trading",
     "philosophy-of-science"
   ],
   "author": {
     "name": "Beckmann"
   },
   "license": "MIT",
-  "engines": {
-    "node": ">=18.0.0"
-  },
+  
   "files": [
     "SKILL.md",
-    "graph.json",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md",
+    "Results-and-Tools/graph_overview.json",
+    "Results-and-Tools/UNDERSTANDING-REPORT.md",
+    "Results-and-Tools/graph_Part_1_of_4_summary.md",
+    "Results-and-Tools/graph_Part_2_of_4_summary.md",
+    "Results-and-Tools/graph_Part_3_of_4_summary.md",
+    "Results-and-Tools/graph_Part_4_of_4_summary.md",
+    "Results-and-Tools/graph_Part_1_of_4.json",
+    "Results-and-Tools/graph_Part_2_of_4.json",
+    "Results-and-Tools/graph_Part_3_of_4.json",
+    "Results-and-Tools/graph_Part_4_of_4.json"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/matthiasbeckmann987-spec/beckmann-knowledge-graph.git"
+  "tools": {
+    "description": "Helper tools for maintaining and regenerating the graph data. Not required for skill usage.",
+    "files": [
+      "Results-and-Tools/graph.json",
+      "Results-and-Tools/Knowledge-Graph-Splitter.html",
+      "Results-and-Tools/Graph-Overview-Generator.html"
+    ]
   },
+  
   "clawhub": {
     "skill": "SKILL.md",
-    "graph": "graph.json",
-    "version": "2.1.0",
+    "entry": "Results-and-Tools/graph_overview.json",
+    "version": "4.1.1",
     "compatibility": [
-      "claude-sonnet-4-20250514",
-      "claude-opus-4-20250514",
-      "ChatGTP"
+      "claude",
+      "chatgpt",
+      "gemini",
+      "meta-ai"
     ],
     "domains": [
       "epistemology",
       "paradox-resolution",
       "future-forecasting",
       "ai-safety",
-      "stock trading",
+      "stock-trading",
       "strategic-reasoning"
     ]
   }

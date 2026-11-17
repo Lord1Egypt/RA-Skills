@@ -1,45 +1,64 @@
-## Description: <br>
-Manage a self-hosted Trello-like WeKan board via `wekancli`, including creating, moving, and archiving cards, lists, and boards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a self-hosted Trello-like WeKan board through `wekancli`, including creating, moving, archiving, restoring, and deleting boards, lists, cards, comments, and checklist items.
 
-## Publisher: <br>
-[manman1104](https://clawhub.ai/user/manman1104) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manman1104](https://clawhub.ai/user/manman1104)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate a configured WeKan instance through `wekancli` for board, list, card, checklist, and comment workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change board data using the WeKan account or token provided to the agent. <br>
-Mitigation: Use a least-privileged or agent-specific WeKan account and confirm create, edit, archive, or delete-related actions before execution. <br>
-Risk: Login output and WEKAN_TOKEN grant access to the configured WeKan instance. <br>
-Mitigation: Treat tokens and login output as sensitive secrets and avoid exposing them in shared transcripts, logs, or rendered task summaries. <br>
-Risk: Some actions, including listing users and delete APIs, may require admin privileges or permanently affect board data. <br>
-Mitigation: Avoid admin tokens unless necessary, prefer archiving over deletion, and verify role requirements before running privileged commands. <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to manage tasks on a self-hosted WeKan server from a configured command-line session. It is suited for board, list, card, comment, and checklist workflows, not GitHub issues or simple reminders.
 
-## Reference(s): <br>
-- [WeKan CLI Reference](artifact/references/cli-examples.md) <br>
-- [WeKan CLI Skill Installation Notes](artifact/references/user-install.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/manman1104/ces) <br>
-- [Wekan CLI package source](https://github.com/madsmith/wekan_cli.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include WeKan identifiers and JSON CLI output; requires WEKAN_URL and WEKAN_TOKEN for authenticated actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill installs an unpinned executable from a mutable GitHub repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the CLI dependency to a reviewed commit or release before production use.
+
+Risk: The skill uses an authenticated WeKan token with write access to board data.
+
+Mitigation: Use a dedicated least-privileged WeKan account and avoid admin tokens unless the requested operation requires them.
+
+Risk: Board, list, and card operations can move, archive, restore, or delete work items.
+
+Mitigation: Confirm target board, list, card, and checklist IDs before executing write operations, and prefer archive over delete when recovery may be needed.
+
+Risk: Login can print access tokens that may be exposed in chat or logs.
+
+Mitigation: Avoid displaying tokens after login and keep `WEKAN_TOKEN` out of shared transcripts and logs.
+
+## Reference(s):
+
+- [WeKan CLI Reference](references/cli-examples.md)
+- [WeKan CLI Skill Installation Notes](references/user-install.md)
+- [ClawHub skill page](https://clawhub.ai/manman1104/skills/ces)
+- [WeKan CLI install package](https://github.com/madsmith/wekan_cli.git)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON CLI output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose authenticated WeKan CLI operations that read or change board data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

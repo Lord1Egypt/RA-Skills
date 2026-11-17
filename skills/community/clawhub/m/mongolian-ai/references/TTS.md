@@ -1,25 +1,13 @@
-# TTS
+# 文字转语音
 
-路由：[INTERFACE-ROUTING.md](./INTERFACE-ROUTING.md)。
+POST https://ai-skills.open-idea.net/api/v1/mongolian-ai/tts
 
-默认 **`POST /tts/async/`**；极短可 **`POST /tts/`**。**禁用** `POST /tts/stream`。
+请求为 JSON，必填 `text` 与 `lang`：规范语言码支持 `mn-Cyrl`（西里尔蒙古文）、`mn-Mong`（传统蒙古文）、`zh-Hans`（中文）和 `en`（英文），并兼容 `mn`、`mw`、`zh` 别名。文本最多 600 字。可选 `voice`、`speed` 和 `sampleRate`；语速为 0.5–2，采样率支持 8000、16000、22050、44100、48000。音色支持 Kore、Puck、Zephyr、Charon、Fenrir、Aoede、Leda、Orus、Iapetus、Sulafat、Achird、Achernar。
 
-**调用前**向用户列齐 12 音色：`Kore · Puck · Zephyr · Charon · Fenrir · Aoede · Leda · Orus · Iapetus · Sulafat · Achird · Achernar`。未选按下表；默认不报 `speed`；要快/慢用 **1.2 / 0.8**。`text` 与用户正文须**逐字**一致。异步：`POST /tts/async/` → 约 3～5s 轮询 `GET /tts/async/{jobId}/` 至 `done`，`audioBase64` 解码为 WAV。
+成功返回 `data.audio_base64` 和 `data.mime_type`。客户端应严格按 `mime_type` 解码并保存为 WAV、MP3 或 OGG，不要把 Base64 文本直接展示给用户。接口按合成字符计费，必须发送唯一 `Idempotency-Key`。
 
+文件型隐私规则同样适用于同步 TTS：成功重放只返回 `source: tts`、`replayed: true`、`content_retained: false` 和原请求编号，不再次返回音频，也不重复扣费。
 
-| 音色 | 性别 | 音调 | 特征描述 | 适用场景 |
-|------|------|------|----------|----------|
-| **Kore** | 女 | 中高音 | 充满活力的年轻女声，自信热情，清晰明亮，富有感染力 | 活泼广告、年轻受众教程、动画角色配音 |
-| **Puck** | 男 | 中音 | 清晰直接的男声，自信亲切，有"邻家男孩"的随和感，值得信赖 | 教程视频、非正式企业沟通、友好产品演示 |
-| **Zephyr** | 女 | 中音 | 活泼明亮的女声，积极向上，充满青春活力，极具吸引力 | 活泼广告、儿童内容、友好语音导航 |
-| **Charon** | 男 | 中低音 | 流畅的对话式男声，沉稳自信，温和权威，值得信赖 | 播客旁白、讲解视频、企业沟通 |
-| **Fenrir** | 男 | 中音 | 友好清晰的男声，对话式风格，自然流畅，引人入胜 | 讲解视频、播客、在线学习内容 |
-| **Aoede** | 女 | 中音 | 清晰的对话式女声，聪慧而有深度，适合长时间聆听 | 播客主持、在线学习、信息类内容旁白 |
-| **Leda** | 女 | 中低音 | 沉稳专业的女声，传达权威与冷静，措辞精准，成熟可靠 | 企业培训、严肃旁白、正式公告 |
-| **Orus** | 男 | 低音 | 成熟深沉的男声，传达深思与经验，沉稳权威，节奏从容 | 纪录片旁白、有声书、智者角色配音 |
-| **Iapetus** | 男 | 中音 | 友好随和的男声，有"普通人"的亲切感，适合非正式沟通 | 非正式教程、视频博客、对话式营销 |
-| **Sulafat** | 女 | 中音 | 温暖自信的女声，有说服力且表达清晰，智慧而友好 | 企业旁白、在线学习、说服性营销 |
-| **Achird** | 女 | 中高音 | 年轻活泼的女声，略带气息感，好奇而友好，适合当代内容 | 年轻受众学习模块、应用教程、青年角色配音 |
-| **Achernar** | 男 | 中音 | 清晰友好的男声，热情而不过度，亲切自然 | 讲解视频、友好企业旁白、播客开场 |
+异步使用 POST /api/v1/mongolian-ai/tts/async，字段与同步相同，但 text 最多 3000 字。202 返回 id/status/progress/message/request_id/billing/result，提交时预留余额，按合成字符结算。使用同一个 Idempotency-Key 重试原提交，不创建第二个付费任务。
 
-`lang` · `speed` · Host/curl 示例：[HTTP-REQUESTS.md](./HTTP-REQUESTS.md)（TTS 节）。交付与计费 [SKILL.md](../SKILL.md)。
+每 3 秒 GET /api/v1/mongolian-ai/tts/async/{id}，completed/failed 后停止。完成后使用产品 Authorization 下载 result.audio_url（GET /api/v1/mongolian-ai/tts/async/{id}/audio）；此地址不是公共分享链接。音频按用户隔离，响应 private, no-store，过期返回 410；不要把密钥放到 URL。播放或下载不会重复合成或扣费。不要把任务输入或音频 Base64 写入日志。

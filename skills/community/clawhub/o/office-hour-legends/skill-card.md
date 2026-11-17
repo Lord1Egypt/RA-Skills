@@ -1,46 +1,65 @@
-## Description: <br>
-Office Hour Legends runs YC-style office hours and transcript reviews by loading a selected founder or operator persona and guiding the agent through focused startup or builder feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Office Hour Legends runs YC-style office-hours sessions through selected partner or alumni personas, with optional Fathom transcript review for timestamped pitch, investor-call, or customer-conversation feedback.
 
-## Publisher: <br>
-[prodigalson](https://clawhub.ai/user/prodigalson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[prodigalson](https://clawhub.ai/user/prodigalson)
 
-## Use Case: <br>
-Founders, builders, and startup operators use this skill to run simulated YC-style office hours, sharpen startup ideas, review pitches or meeting transcripts, and produce concise next-step guidance or session notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access Fathom meeting metadata and full transcripts after a meeting is selected. <br>
-Mitigation: Use transcript review only for meetings where participants consent and where the operator is comfortable exposing the transcript to the agent session. <br>
-Risk: Full mode may save derived session notes or transcript review notes locally without a strong retention gate. <br>
-Mitigation: Prefer no-save or manual-save handling for sensitive calls, and review or remove generated notes after the session. <br>
-Risk: Optional Bookface research and credential-backed integrations may expose private-source context or require additional credentials. <br>
-Mitigation: Review Bookface availability, Fathom credential setup, and any private-source research behavior before enabling those optional paths. <br>
+## Use Case:
 
+External founders and builders use this skill to run simulated YC-style office hours, pressure-test startup ideas, and review pitch or customer-call transcripts with persona-guided feedback.
 
-## Reference(s): <br>
-- [Office Hour Legends ClawHub listing](https://clawhub.ai/prodigalson/office-hour-legends) <br>
-- [Claude Code skills documentation](https://code.claude.com/docs/en/skills) <br>
-- [Bookface Search optional integration](https://github.com/voska/bookface-search) <br>
-- [HN CLI optional integration](https://github.com/voska/hn-cli) <br>
-- [Fathom settings for API key setup](https://fathom.video/settings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational text and Markdown notes with optional timestamped transcript feedback and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch Fathom meeting metadata and transcripts when configured, and may save local Markdown session notes in full mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can process sensitive meeting transcripts and private forum content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use transcript review only for meetings the user is allowed to process, avoid committing or syncing saved session documents, and treat private-forum excerpts as sensitive.
+
+Risk: Server security evidence reports a local code-injection issue in the Fathom recording-ID path.
+
+Mitigation: Do not enable the Fathom transcript script with untrusted recording IDs until the path is fixed or constrained to trusted numeric IDs.
+
+Risk: The optional Bookface integration depends on a third-party script that may handle YC credentials and cached sessions.
+
+Mitigation: Review and pin the third-party script before use, and handle any YC credentials or cached sessions according to the user's access policy.
+
+Risk: Persona-guided coaching can sound authoritative while still being simulated advice.
+
+Mitigation: Do not present outputs as statements from the named people; review recommendations before using them for business decisions.
+
+## Reference(s):
+
+- [Office Hour Legends on ClawHub](https://clawhub.ai/prodigalson/skills/office-hour-legends)
+- [Claude Code Skills Documentation](https://code.claude.com/docs/en/skills)
+- [Optional Bookface Integration](https://github.com/voska/bookface-search)
+- [Optional Hacker News CLI Integration](https://github.com/voska/hn-cli)
+- [Fathom](https://fathom.video)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown conversation output with optional saved Markdown session documents and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local persona files, use optional Fathom, Bookface, or Hacker News integrations, and write session documents in full mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

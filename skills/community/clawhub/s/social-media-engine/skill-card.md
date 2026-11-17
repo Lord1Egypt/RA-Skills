@@ -1,44 +1,67 @@
-## Description: <br>
-Automated social media manager that plans, writes, schedules, and analyzes content across X/Twitter, LinkedIn, Instagram, TikTok, Facebook, and Pinterest, with Buffer or Postiz scheduling support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated social media manager that helps plan, write, schedule, and analyze content across X/Twitter, LinkedIn, Instagram, TikTok, Facebook, and Pinterest using Buffer or Postiz.
 
-## Publisher: <br>
-[Batsirai](https://clawhub.ai/user/Batsirai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[batsirai](https://clawhub.ai/user/batsirai)
 
-## Use Case: <br>
-External users and social media operators use this skill to plan content calendars, draft platform-specific posts, queue or schedule approved posts, review analytics, and prepare engagement replies for connected social channels. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Connected Buffer or Postiz credentials can give the skill authority to queue, schedule, or publish real social posts. <br>
-Mitigation: Use a dedicated .env file with only the intended social-media API keys, prefer draft mode for first runs, and require final human confirmation before queueing, scheduling, or publishing. <br>
-Risk: The security review notes that the skill's safety claims and examples do not consistently make live posting behavior clear. <br>
-Mitigation: Review the exact account, channel, post content, and scheduled time before executing generated scheduling commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Batsirai/social-media-engine) <br>
-- [Buffer Setup Guide](tools/buffer-setup.md) <br>
-- [Postiz Setup Guide](tools/postiz-setup.md) <br>
-- [Content Calendar Template](templates/content-calendar.md) <br>
-- [Postiz Documentation](https://docs.postiz.com) <br>
-- [Postiz Application Repository](https://github.com/gitroomhq/postiz-app) <br>
+## Use Case:
 
+External users, marketers, founders, and developers use this skill to create social media calendars, draft platform-specific posts, schedule approved content, review basic analytics, and prepare engagement replies.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include content calendars, post drafts, reply drafts, scheduling commands, analytics summaries, and setup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can publish, queue, or schedule posts through connected social accounts.
+
+Mitigation: Use draft mode by default, require explicit human approval before live publishing, and verify the target account, platform, content, and scheduled time before running posting commands.
+
+Risk: Buffer, Postiz, and social OAuth credentials can grant access to post through user accounts.
+
+Mitigation: Use test accounts or least-privilege keys where possible, store secrets outside shared files, rotate keys after evaluation, and avoid exposing .env files.
+
+Risk: The self-hosted Postiz setup includes a curl-to-shell Docker installation pattern and depends on correct service URL configuration.
+
+Mitigation: Review Docker's official installation guidance before running installer commands, prefer HTTPS Postiz URLs, and avoid remote HTTP Postiz endpoints.
+
+Risk: Generated posts or engagement replies could be off-brand, misleading, or inappropriate for sensitive interactions.
+
+Mitigation: Review drafts manually and route controversial topics, complaints, political content, or business inquiries to a human before posting or replying.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/batsirai/skills/social-media-engine)
+- [Publisher profile](https://clawhub.ai/user/batsirai)
+- [Postiz documentation](https://docs.postiz.com)
+- [Postiz GitHub repository](https://github.com/gitroomhq/postiz-app)
+- [Buffer API settings](https://publish.buffer.com/settings/api)
+- [Content calendar template](artifact/templates/content-calendar.md)
+- [Buffer setup guide](artifact/tools/buffer-setup.md)
+- [Postiz setup guide](artifact/tools/postiz-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, content tables, post drafts, setup guidance, and status summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Buffer or Postiz APIs when configured with posting credentials and explicit scheduling inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Guides OpenClaw users through setting up HeyCube's personal profile memory service, including API-key configuration, local SQLite storage, and helper skills for retrieving and updating profile data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw users through installing HeyCube personal profile memory by setting an API key, deploying a local SQLite helper, and installing trigger skills for profile retrieval and updates.
 
-## Publisher: <br>
-[MMMMMMTL](https://clawhub.ai/user/MMMMMMTL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mmmmmmtl](https://clawhub.ai/user/mmmmmmtl)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to install a HeyCube memory workflow that stores structured profile data locally and loads or updates it through explicit phrase-triggered helper skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local profile data may contain sensitive personal information. <br>
-Mitigation: Avoid storing highly sensitive details, periodically review the SQLite profile data, and remove the helper skills or create .heycube-off when the memory workflow is no longer wanted. <br>
-Risk: HeyCube API calls use an API key and send redacted conversation summaries to the HeyCube service. <br>
-Mitigation: Use a revocable API key through HEYCUBE_API_KEY and ensure summaries remain redacted before API calls. <br>
-Risk: Setup copies helper skills and scripts into the user's workspace and agent skill directory. <br>
-Mitigation: Review the proposed file copies, TOOLS.md changes, and npm dependency installation before executing each setup step. <br>
+## Use Case:
 
+External users and developers use this skill to configure HeyCube as a personal memory service for OpenClaw. After setup, explicit trigger phrases can load relevant local profile context or save sanitized conversation-derived updates to a local SQLite profile store.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MMMMMMTL/heycube) <br>
-- [HeyCube service](https://heifangti.com) <br>
-- [HeyCube API endpoint](https://heifangti.com/api/api/v1/heifangti/agent/analyze) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown instructions with inline shell commands, JSON examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation for setup steps; helper behavior uses redacted summaries, a revocable API key, and local SQLite profile data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sanitized conversation summaries are sent to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit trigger phrases, review outbound summaries before sending, and avoid including sensitive personal details.
+
+Risk: Structured personal profile data persists locally in SQLite.
+
+Mitigation: Keep the database in a controlled workspace, avoid storing sensitive data, and add clear delete and export controls before regular use.
+
+Risk: Remote API responses can steer later extraction and local profile updates.
+
+Mitigation: Review returned dimensions and extraction prompts before writing local profile data, and skip updates when responses are unexpected.
+
+Risk: The Node dependency is declared without a lockfile.
+
+Mitigation: Pin dependencies with a lockfile before installation in a regular-use environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mmmmmmtl/skills/heycube)
+- [HeyCube Service](https://heifangti.com)
+- [HeyCube API Base URL](https://heifangti.com/api/api/v1/heifangti)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown setup guidance with inline shell commands, JSON examples, and file-copy instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces stepwise installation and operation guidance for a local SQLite profile helper and HeyCube trigger skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

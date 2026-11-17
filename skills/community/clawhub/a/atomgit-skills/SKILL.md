@@ -1,6 +1,6 @@
 ---
 name: atomgit
-description: "Use this skill when the user explicitly mentions AtomGit or atomgit.com, or needs to inspect or change AtomGit repositories, pull requests, issues, branches, releases, tags, permissions, organizations, enterprises, kanban boards, webhooks, or AIHub features through the AtomGit MCP server."
+description: "Use this skill when the user explicitly mentions AtomGit or atomgit.com, or needs to inspect or change AtomGit repositories, pull requests, issues, branches, releases, tags, permissions, organizations, enterprises, kanban boards, CI workflows (Actions), discussions, webhooks, or AIHub features through the AtomGit MCP server."
 homepage: https://atomgit.com/zkxw2008/AtomGit-Skills
 metadata: {"openclaw":{"homepage":"https://atomgit.com/zkxw2008/AtomGit-Skills","requires":{"env":["ATOMGIT_TOKEN"]},"primaryEnv":"ATOMGIT_TOKEN"}}
 ---
@@ -71,6 +71,10 @@ Some runtimes add extra namespace wrappers around MCP tools. Always use the exac
   [references/enterprises.md](references/enterprises.md)
 - Kanban:
   [references/kanban.md](references/kanban.md)
+- Actions (CI workflows, runs, logs, artifacts, runners):
+  [references/actions.md](references/actions.md)
+- Discussions:
+  [references/discussions.md](references/discussions.md)
 - Webhooks:
   [references/webhooks.md](references/webhooks.md)
 - Search:

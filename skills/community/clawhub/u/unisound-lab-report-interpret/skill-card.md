@@ -1,41 +1,57 @@
-## Description: <br>
-Interprets basic lab-report and ECG text, identifies abnormal indicators, explains clinical significance, flags critical values, and returns structured JSON plus a natural-language summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interprets basic laboratory and diagnostic report text, identifies abnormal indicators, and returns clinical significance plus follow-up suggestions as JSON and a natural-language summary.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Primary-care and community clinicians use this skill as clinical decision support for reviewing lab reports and ECG descriptions. It helps summarize abnormal findings and follow-up suggestions, while leaving diagnosis and treatment decisions to licensed clinicians. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive lab-report contents are sent to a configured remote API, and the security evidence notes that code does not perform de-identification despite privacy claims. <br>
-Mitigation: Remove names, IDs, phone numbers, addresses, and other identifiers before use, verify the provider and base URL, and use the output only as clinical decision support. <br>
-Risk: Generated clinical interpretations may be incomplete or misleading if report text, reference ranges, or patient context are missing. <br>
-Mitigation: Have a licensed clinician review the JSON findings, urgency flags, and follow-up suggestions before relying on them for patient care. <br>
+## Use Case:
 
+Community clinic and primary care clinicians use this skill to get auxiliary interpretations of blood, biochemical, urine, coagulation, thyroid, and ECG report text. Its output is for clinician review and should not be treated as a final diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-lab-report-interpret) <br>
-- [Configured remote model API](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON followed by a natural-language summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write the interpreted report to a file when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reports may contain patient identifiers or sensitive clinical data that are sent to the configured model endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually de-identify reports before use and review endpoint trust before sending real patient data.
+
+Risk: Generated interpretations may be incomplete, incorrect, or unsuitable for diagnosis.
+
+Mitigation: Require clinician review before using results for patient care or follow-up decisions.
+
+Risk: Saving outputs to disk can persist sensitive interpretations outside the agent session.
+
+Mitigation: Use secure output locations and apply local retention and access controls for generated files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-lab-report-interpret)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON plus natural-language summary in Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write interpreted results to a user-selected output file.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

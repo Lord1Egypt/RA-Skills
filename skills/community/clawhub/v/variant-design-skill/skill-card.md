@@ -1,59 +1,69 @@
-## Description: <br>
-Generates three distinct UI design variations from a prompt using scenario-specific references, design system guidance, quality gates, and HTML or React export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates three distinct UI design variations from a prompt using scenario-specific references and the Impeccable design system, then supports iteration, critique, token extraction, and export to HTML or React.
 
-## Publisher: <br>
-[YuqingNicole](https://clawhub.ai/user/YuqingNicole) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuqingnicole](https://clawhub.ai/user/yuqingnicole)
 
-## Use Case: <br>
-Designers, developers, and product teams use this skill to turn UI or product prompts into three divergent interface directions, iterate through variation actions, critique design quality, and export working HTML or React. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad natural-language triggers may cause the skill to activate during ordinary design discussions in auto-routing environments. <br>
-Mitigation: Prefer explicit invocation or routing rules when using this skill in shared or automated agent environments. <br>
-Risk: Generated files may include inferred project design context in comments or output. <br>
-Mitigation: Review generated files before committing, publishing, or sharing them outside the intended project context. <br>
+## Use Case:
 
+Developers and designers use this skill to generate divergent, working UI directions for dashboards, landing pages, mobile apps, editorial pages, e-commerce flows, education tools, and creative interfaces, then refine or export the chosen direction.
 
-## Reference(s): <br>
-- [Variant Design Skill page](https://clawhub.ai/YuqingNicole/variant-design-skill) <br>
-- [Publisher profile: YuqingNicole](https://clawhub.ai/user/YuqingNicole) <br>
-- [Variant design community](https://variant.com) <br>
-- [Claude Code Skills](https://claude.ai/code) <br>
-- [Impeccable design system](https://github.com/tychografie/impeccable) <br>
-- [Dashboard & Analytics Reference](references/dashboard.md) <br>
-- [Editorial & Journalism Reference](references/editorial.md) <br>
-- [SaaS & Landing Page Reference](references/saas.md) <br>
-- [E-commerce & Consumer Apps Reference](references/ecommerce.md) <br>
-- [Education & Learning Apps Reference](references/education.md) <br>
-- [Creative Tools & Generative Art Reference](references/creative.md) <br>
-- [Mobile App Reference](references/mobile.md) <br>
-- [Universal Color Palettes](references/palettes.md) <br>
-- [Typography](references/design-system/typography.md) <br>
-- [Color & Contrast](references/design-system/color-and-contrast.md) <br>
-- [Spatial Design](references/design-system/spatial-design.md) <br>
-- [Motion Design](references/design-system/motion-design.md) <br>
-- [Interaction Design](references/design-system/interaction-design.md) <br>
-- [Responsive Design](references/design-system/responsive-design.md) <br>
-- [UX Writing](references/design-system/ux-writing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with HTML, React, CSS, JSON, or Tailwind configuration snippets as requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates three labeled variations by default; may include critique, alternate views, or design tokens depending on the requested action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill may read nearby project files to infer brand and UI context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the files used for context and confirm generated design-context comments before retaining them.
+
+Risk: Generated UI code may include external font imports or design choices that are not production-ready.
+
+Mitigation: Review generated code, external font imports, accessibility behavior, and responsive states before production use.
+
+## Reference(s):
+
+- [Variant design community](https://variant.com)
+- [Impeccable design system](https://github.com/tychografie/impeccable)
+- [Dashboard reference](references/dashboard.md)
+- [Editorial reference](references/editorial.md)
+- [SaaS reference](references/saas.md)
+- [E-commerce reference](references/ecommerce.md)
+- [Education reference](references/education.md)
+- [Creative reference](references/creative.md)
+- [Mobile reference](references/mobile.md)
+- [Palette reference](references/palettes.md)
+- [Typography reference](references/design-system/typography.md)
+- [Color and contrast reference](references/design-system/color-and-contrast.md)
+- [Spatial design reference](references/design-system/spatial-design.md)
+- [Motion design reference](references/design-system/motion-design.md)
+- [Interaction design reference](references/design-system/interaction-design.md)
+- [Responsive design reference](references/design-system/responsive-design.md)
+- [UX writing reference](references/design-system/ux-writing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with HTML or React code blocks and optional CSS, JSON, or Tailwind token snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include three labeled visual directions, iteration actions, critiques, alternate views, and design tokens.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

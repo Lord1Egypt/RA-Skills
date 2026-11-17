@@ -1,38 +1,49 @@
-## Description: <br>
-Test, match, extract, replace, explain, and validate regular expressions from the command line with named common patterns and zero external dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test, match, extract, replace, explain, and validate regular expressions from the command line with 25+ named common patterns and zero external dependencies.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers and agents use this skill for local regex work: testing patterns, finding matches, replacing text, validating syntax, explaining regex elements, and using built-in patterns for common data formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: File input and regex matches can print source text, matched text, and captured groups into the terminal or agent transcript. <br>
-Mitigation: Use file input only with files intended for inspection, and review match output before sharing or storing it. <br>
+## Use Case:
 
+Developers and engineers use this skill to build, test, debug, explain, and validate regular expressions, including common named patterns for emails, URLs, IP addresses, phone numbers, dates, UUIDs, and related text formats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Johnnywang2001/regex-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Python standard-library regex processing and supports text, file, or stdin input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The tool can read and print content from any file path explicitly passed with --file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on intended files and avoid sensitive paths unless that content is meant to be searched and displayed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnnywang2001/skills/regex-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The findall command can emit structured JSON with match text, offsets, and captured groups; other commands emit terminal text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

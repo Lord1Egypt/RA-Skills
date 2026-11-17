@@ -1,42 +1,55 @@
-## Description: <br>
-Publishes Markdown or HTML to a shareable dochost.io page and returns the hosted URL to the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish Markdown or HTML to a clean, shareable dochost.io link and hand the URL back to the user.
 
-## Publisher: <br>
-[zyli5313](https://clawhub.ai/user/zyli5313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zyli5313](https://clawhub.ai/user/zyli5313)
 
-## Use Case: <br>
-Developers and agent users use this skill to publish generated documents, reports, README content, or HTML pages to a dochost.io link for sharing. It is useful when an assistant needs to turn finished content into a hosted page and return the resulting URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing sends selected Markdown or HTML to dochost.io and creates a public or unlisted web page. <br>
-Mitigation: Review and redact sensitive content before publishing, and do not include secrets, tokens, private keys, or confidential material in the page body. <br>
-Risk: The skill requires a dochost API key for authenticated publishing. <br>
-Mitigation: Provide the key through the DOCHOST_API_KEY environment variable and avoid placing it in published content, command logs, or shared documents. <br>
+## Use Case:
 
+Developers and agents use this skill to publish generated Markdown or HTML documents, reports, README content, or pages to a shareable dochost.io URL.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zyli5313/dochost-publish) <br>
-- [dochost](https://dochost.io) <br>
-- [dochost MCP API Endpoint](https://dochost.io/api/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with JSON-RPC and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a dochost.io URL; may include expiration timing and an edit token from the publish response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Selected Markdown or HTML is published to a public or unlisted dochost.io URL and may expose secrets, confidential drafts, private keys, or sensitive customer data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact content before publishing and only use the skill for material that is acceptable to share at the resulting URL.
+
+Risk: The skill requires a dochost.io API key for authenticated publishing.
+
+Mitigation: Use a dedicated API key when possible and avoid embedding credentials in published content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zyli5313/skills/dochost-publish)
+- [dochost.io](https://dochost.io)
+- [dochost MCP API endpoint](https://dochost.io/api/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, API calls, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a public or unlisted dochost.io URL and may return an expiration time or edit token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

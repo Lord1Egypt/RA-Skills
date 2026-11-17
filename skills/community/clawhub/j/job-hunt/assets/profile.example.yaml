@@ -1,0 +1,108 @@
+# Canonical career profile. Single source of truth. Renderers read this.
+# All fields optional except meta.name and contact.email.
+meta:
+  name: "Jane Doe"
+  # target_market: the specific country/market — it drives CV conventions
+  # (length, photo, personal data, terminology). Clusters (see cv-craft.md §2):
+  #   Cluster 1 Anglophone — us | ca | uk | ie | au | nz
+  #   Cluster 2 EU/EEA     — nl | de | fr | be | es | it | se | dk | no | fi | ...
+  #   Cluster 3 E/SE Asia  — cn | jp | kr | sg | my | th
+  #   other                — anything else (conservative default style)
+  target_market: "nl"
+  # language: the CV's language. Cluster 1 → en (ca: en/fr). Clusters 2 & 3 →
+  # English OR the official local language. Built-in headings: en, nl, de, fr,
+  # es, it, zh, ja, ko. For any other language (e.g. th), also set `headings`.
+  # CJK (zh/ja/ko) renders in every format incl. PDF (XeLaTeX/xeCJK auto-path).
+  language: "en"             # en | nl | de | fr | es | it | zh | ja | ko | th | ...
+  # headings: optional. Override/extend section labels. Keys: summary, experience,
+  # education, skills, projects, publications, awards, certifications,
+  # achievements, board, volunteer. Example (Korean): {experience: "경력"}.
+  # cjk_font: optional. Pin a CJK font for the PDF (else a fallback chain is tried).
+  # photo: optional path to a photo image. Shown only for markets that expect one;
+  # the renderer ignores it for Cluster-1 (US/CA/UK/IE/AU/NZ) targets.
+  headline: "Machine Learning Engineer"   # optional one-liner under name
+  # section_order: optional. Controls the order of body sections. Omit it and
+  # the renderer picks a sensible default: a current PhD/researcher or a current
+  # student with no work history leads with Education; everyone else leads with
+  # Experience. Set it explicitly to take control — e.g. an academic CV that
+  # should surface publications early. Listing a subset only reorders those;
+  # any section with real content still renders (order sequences, it never hides).
+  # section_order: ["summary", "education", "experience", "publications", "skills", "projects"]
+contact:
+  email: "jane@example.com"
+  phone: "+31 6 1234 5678"
+  location: "Leiden, Netherlands"
+  # personal: optional key→value data for the header (DOB, nationality, hometown,
+  # marital status). Normal in much of the EU/Asia; the renderer suppresses it for
+  # Cluster-1 (US/UK/...) targets. Collect honestly — never invent these.
+  # personal: {date_of_birth: "1992-05-01", nationality: "Dutch"}
+  # Links render with a friendly label (e.g. "LinkedIn", "Google Scholar"),
+  # hyperlinked to the URL — never the raw URL as visible text. The key supplies
+  # the label for known services (scholar, github, linkedin, orcid, website,
+  # portfolio, ...). For anything else, give the value as {label, url} to name it.
+  links:
+    linkedin: "linkedin.com/in/janedoe"
+    github: "github.com/janedoe"
+    scholar: "scholar.google.com/citations?user=ABC123"
+    portfolio: {label: "Portfolio", url: "janedoe.dev"}   # explicit-label form
+# Experience = roles you held at an organisation (employer, lab, internship):
+# each has a title, an org, and dates. Bullets describe what you did in that role.
+experience:
+  - title: "ML Engineer"
+    org: "Acme BV"
+    location: "Amsterdam"
+    start: "2023-01"
+    end: "present"
+    bullets:
+      - "Quantified, action-led achievement bullet."
+education:
+  - degree: "MSc Computer Science"
+    institution: "Leiden University"
+    location: "Leiden"
+    start: "2021"
+    end: "2023"
+    details: "Thesis on X; GPA 8.5/10."
+# Skills group KEYS render verbatim as the on-CV label (only the first letter is
+# auto-capitalized), so write them in the casing you want to see — keep acronyms
+# upper ("ML/AI", "Programming Languages"), not "ml/ai". Each value MUST be a
+# list, even with one item (`["Python"]`, not `"Python"`).
+skills:
+  Technical: ["Python", "PyTorch"]
+  Tools: ["Docker", "Git"]
+  Languages: ["English (native)", "Dutch (B1)"]
+  Soft: ["Communication"]
+# Projects = standalone work NOT tied to an employment role: thesis, coursework,
+# hackathons, open-source, competitions, side projects. Work you did *inside* a
+# job belongs as bullets under that job, not duplicated here — a Projects section
+# that restates the day job reads as padding. Keep this for genuinely independent,
+# relevant work; drop it entirely if it adds nothing for the target role.
+projects:
+  - name: "Project X"
+    role: "Lead"
+    description: "One-line description."
+    links: ["github.com/janedoe/x"]   # bare URL → labelled by host ("GitHub")
+publications: []     # free-form strings
+awards: []
+certifications: []
+# achievements / board: mainly for senior/executive CVs (render as "Selected
+# Achievements" and "Board & Advisory"). Promote them via meta.section_order.
+achievements: []     # e.g. ["Grew ARR from $42M to $148M in 4 years"]
+board: []            # e.g. ["Advisory board member, TechForward (2020–present)"]
+volunteer: []
+extras:
+  photo: false       # EU/NL CVs sometimes include a photo
+
+# jp: Japan rirekisho (履歴書) fields — only needed when rendering a Japanese
+# rirekisho form for a traditional employer (see references/rirekisho.md).
+# All optional and all user-supplied personal data — never invented.
+# jp:
+#   name_furigana:    "やまだ たろう"
+#   date_of_birth:    "1995-04-12"
+#   age:              "31"            # model computes from DOB + today's date
+#   gender:           ""             # commonly omitted now; include only if the user wants
+#   address:          "東京都新宿区1-1-1"
+#   address_furigana: "とうきょうと しんじゅくく…"
+#   photo_path:       ""             # headshot image; placeholder box if empty
+#   date:             "2026年6月6日"  # "as of" date on the form
+#   motivation:       "志望の動機 …"
+#   personal_request: "本人希望記入欄 …"

@@ -1,0 +1,21 @@
+# Account Research Brief - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+deal_name: ""
+account: ""
+deal_stage: ""
+close_date: ""
+champion_name: ""
+champion_role: ""
+the_ask: ""
+trigger: ""
+why_now: ""
+key_facts:
+  - fact: ""
+    source_url: ""
+    checked_date: ""
+risks:
+  - ""
+open_questions:
+  - ""
+next_step: ""
+last_verified: ""

@@ -1,50 +1,55 @@
-## Description: <br>
-Debugs a live WeChat Mini Program runtime through the system `vince-mp` JSON CLI, using one persistent session for page data, element query/tap, scan, console, doctor, and log-correlation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides live WeChat Mini Program debugging through a persistent vince-mp CLI session, including runtime inspection, UI actions, diagnostics, and log correlation.
 
-## Publisher: <br>
-[vincentjiang06](https://clawhub.ai/user/vincentjiang06) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincentjiang06](https://clawhub.ai/user/vincentjiang06)
 
-## Use Case: <br>
-Developers and reviewers use this skill to connect an agent to WeChat DevTools, inspect live Mini Program state, act on runtime elements by uid, run diagnostics, and correlate frontend errors with backend logs. It is intended for WeChat Mini Program runtime debugging, not generic browser automation or source-only edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over a live WeChat Mini Program runtime. <br>
-Mitigation: Install only when live runtime debugging is intended, prefer dev or test environments, and require explicit user intent for navigation, mutation, media, network, or mocking actions. <br>
-Risk: The skill depends on the separate system `vince-mp` CLI. <br>
-Mitigation: Use only a trusted installed `vince-mp` CLI and verify actions with the CLI's structured JSON evidence. <br>
-Risk: Backend log access may expose production or administrative data. <br>
-Mitigation: Confirm before production log access, avoid broad admin tokens, and report request-id log evidence narrowly. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect and troubleshoot a running WeChat Mini Program, interact with its UI, diagnose connection issues, and correlate client behavior with backend error logs.
 
-## Reference(s): <br>
-- [Skill specification](artifact/SKILL.md) <br>
-- [Runtime protocol](artifact/rules/runtime-protocol.md) <br>
-- [UI element workflow](artifact/rules/ui-element-workflow.md) <br>
-- [CLI contract](artifact/references/cli-contract.md) <br>
-- [Skyline media](artifact/references/skyline-media.md) <br>
-- [Evidence and failures](artifact/references/evidence-and-failures.md) <br>
-- [Release manifest](artifact/assets/release-manifest.json) <br>
-- [Metric plan](artifact/assets/metric-plan.json) <br>
-- [ClawHub skill page](https://clawhub.ai/vincentjiang06/skills/mp-cli-sup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Analysis] <br>
-**Output Format:** [Markdown with inline shell commands and JSON evidence summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are expected to be verified against JSON CLI output; file outputs require explicit paths under the workspace root.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and CHANGELOG.md) <br>
+Risk: Live runtime and backend log access can expose sensitive application or user data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a trusted local vince-mp CLI, restrict access to its local state if needed, and obtain action-specific approval before production access.
+
+Risk: Admin tokens may be exposed if pasted into chat or supplied on command lines.
+
+Mitigation: Set the token privately in the agent's launch environment; never paste it into chat or pass it as a CLI argument.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/vincentjiang06/skills/mp-cli-sup)
+- [CLI contract](references/cli-contract.md)
+- [Runtime protocol](rules/runtime-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Analysis]
+
+**Output Format:** [Text and Markdown with CLI commands and diagnostic findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI operations return JSON evidence; actions may require user authorization.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata, skill frontmatter, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

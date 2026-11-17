@@ -1,42 +1,55 @@
-## Description: <br>
-Triggered when the user wants to install or deploy KaiwuDB (kwdb, kaiwudb). Helps users complete script-based deployment of KaiwuDB clusters, including configuration file modification, installation command execution, cluster initialization, and status checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triggered when the user wants to install or deploy KaiwuDB (kwdb, kaiwudb). Helps users complete script-based deployment of KaiwuDB clusters, including configuration file modification, installation command execution, cluster initialization, and status checks.
 
-## Publisher: <br>
-[kwdb](https://clawhub.ai/user/kwdb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kwdb](https://clawhub.ai/user/kwdb)
 
-## Use Case: <br>
-Developers and database administrators use this skill to plan and execute user-confirmed KaiwuDB deployments on Linux hosts. It guides single-node and cluster installation, deployment configuration, installation command execution, initialization, status checks, and failure reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide privileged KaiwuDB deployment changes on a target host. <br>
-Mitigation: Use it only on intended hosts, require an explicit maintenance window and backup for production systems, and review sudo, systemctl, and deploy.sh commands before execution. <br>
-Risk: Incorrect installation parameters can affect ports, data directories, security mode, or cluster connectivity. <br>
-Mitigation: Confirm every generated deploy.cfg value and the installation package path before running deployment commands; do not rely on guessed defaults. <br>
+## Use Case:
 
+Developers and database operators use this skill to prepare, configure, install, initialize, and check KaiwuDB deployments on Linux hosts or clusters.
 
-## Reference(s): <br>
-- [KWDB Install Deploy on ClawHub](https://clawhub.ai/kwdb/kwdb-install-deploy) <br>
-- [KaiwuDB Script Deployment Guide](references/installation_guide.md) <br>
-- [KaiwuDB Common Issues and Solutions](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before applying installation parameters or running privileged deployment commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: A user-supplied KaiwuDB archive may execute installer code with administrative access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the archive with an official signature or checksum and inspect or stage extracted files before allowing the agent to run installation commands.
+
+Risk: The deployment workflow can use sudo, docker group access, passwordless SSH, and service auto-start across cluster nodes.
+
+Mitigation: Use a dedicated least-privilege deployment account where possible, confirm each node and setting with the operator, and require approval before install, cluster initialization, or auto-start commands.
+
+## Reference(s):
+
+- [KaiwuDB Script Deployment Guide](references/installation_guide.md)
+- [KaiwuDB Common Issues and Solutions](references/troubleshooting.md)
+- [KWDB Install Deploy on ClawHub](https://clawhub.ai/kwdb/skills/kwdb-install-deploy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation of installation package path, deployment mode, node addresses, ports, security mode, and other deployment settings before execution.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

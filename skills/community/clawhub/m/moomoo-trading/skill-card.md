@@ -1,46 +1,67 @@
-## Description: <br>
-Use OpenD-backed moomoo/Futu scripts for quotes, K-lines, price alerts, portfolio/account checks, and stock order execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use OpenD-backed moomoo/Futu scripts for quotes, K-lines, price alerts, portfolio/account checks, and stock order execution.
 
-## Publisher: <br>
-[bobbythebot2008-beep](https://clawhub.ai/user/bobbythebot2008-beep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bobbythebot2008-beep](https://clawhub.ai/user/bobbythebot2008-beep)
 
-## Use Case: <br>
-Developers and trading automation users use this skill to operate moomoo/Futu OpenD workflows for market data, simulated trading, portfolio review, and explicitly confirmed live stock orders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live trading can place, modify, or cancel real-money stock orders when a user explicitly selects the real environment. <br>
-Mitigation: Keep simulated mode for routine use, and require users to verify ticker, quantity, price, market, account, --env real, and --confirm before live order actions. <br>
-Risk: The live-trading unlock password is sensitive and enables account mutation through OpenD. <br>
-Mitigation: Expose MOOMOO_UNLOCK_PASSWORD only in sessions where live trading is needed, and never place the raw trading password directly on a command line. <br>
-Risk: Incorrect market, account, entitlement, or OpenD connection state can cause failed or unintended trading and portfolio actions. <br>
-Mitigation: Run the setup check, confirm OpenD login and permissions, and use explicit market or account selectors before acting on orders or account data. <br>
+## Use Case:
 
+External users and developers use this skill to query moomoo/Futu market data, inspect account and portfolio state, monitor price thresholds, and place or manage stock orders through an OpenD gateway.
 
-## Reference(s): <br>
-- [API Reference](references/api-reference.md) <br>
-- [Setup Guide](references/setup-guide.md) <br>
-- [Futu OpenAPI Documentation](https://openapi.futunn.com/futu-api-doc/en/) <br>
-- [moomoo OpenAPI Documentation](https://openapi.moomoo.com/moomoo-api-doc/en/) <br>
-- [moomoo OpenAPI Download](https://www.moomoo.com/download/OpenAPI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces OpenD-backed command guidance and script output; live trading requires explicit confirmation and an unlock password environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release version) <br>
+Risk: Live trading can place, modify, or cancel real securities orders when explicitly invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use simulated trading by default, require explicit live-trading confirmation, and verify account, ticker, quantity, price, and market before any real order action.
+
+Risk: A live-trading unlock password can be sent to any configured OpenD host.
+
+Mitigation: Keep live trading pointed at a trusted local OpenD instance and avoid remote host values unless they are protected by a secure authenticated tunnel.
+
+Risk: Setup and account checks may expose financial account identifiers.
+
+Mitigation: Do not share setup_check.py output or account-query output in public channels, issue trackers, or logs.
+
+Risk: The live-trading unlock password is sensitive credential material.
+
+Mitigation: Store it only in an environment variable, avoid putting it on the command line, and protect the environment where the skill runs.
+
+## Reference(s):
+
+- [Futu / moomoo OpenAPI Reference](references/api-reference.md)
+- [moomoo / Futu OpenD Setup Guide](references/setup-guide.md)
+- [Futu OpenAPI Documentation](https://openapi.futunn.com/futu-api-doc/en/)
+- [moomoo OpenAPI Documentation](https://openapi.moomoo.com/moomoo-api-doc/en/)
+- [moomoo OpenAPI Download](https://www.moomoo.com/download/OpenAPI)
+- [ClawHub Skill Page](https://clawhub.ai/bobbythebot2008-beep/skills/moomoo-trading)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/bobbythebot2008-beep)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke OpenD-backed quote, portfolio, watchlist, and trade scripts when the user has configured the local SDK and gateway.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

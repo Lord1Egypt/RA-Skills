@@ -1,44 +1,54 @@
-## Description: <br>
-SurrealFS virtual filesystem for AI agents. Rust core + Python agent (Pydantic AI). Persistent file operations backed by SurrealDB. Part of the surreal-skills collection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SurrealFS virtual filesystem for AI agents. Rust core + Python agent (Pydantic AI). Persistent file operations backed by SurrealDB. Part of the surreal-skills collection.
 
-## Publisher: <br>
-[24601](https://clawhub.ai/user/24601) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[24601](https://clawhub.ai/user/24601)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate a persistent, queryable virtual filesystem for AI agent sessions, hierarchical document storage, shared SurrealDB-backed workspaces, and content search across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote SurrealDB use can involve credentials and persistent storage. <br>
-Mitigation: Use dedicated least-privilege SurrealDB credentials scoped to the intended namespace and database. <br>
-Risk: The Python agent can expose an HTTP server. <br>
-Mitigation: Keep the server bound to localhost unless authentication, TLS, and network isolation are configured. <br>
-Risk: Telemetry may transmit operational data. <br>
-Mitigation: Disable or audit Logfire telemetry before using the skill with sensitive data. <br>
-Risk: Pipe commands can execute host-side commands when prompts, URLs, or paths are influenced by untrusted input. <br>
-Mitigation: Sandbox the runtime or forbid pipe commands for untrusted inputs. <br>
+## Use Case:
 
+Developers and engineers use this skill to give agents a persistent, queryable virtual filesystem backed by SurrealDB for durable workspace storage, content search, and shared file operations across sessions.
 
-## Reference(s): <br>
-- [SurrealFS upstream repository](https://github.com/surrealdb/surrealfs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include SurrealDB connection settings, local HTTP server setup, filesystem command examples, and security cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: release metadata; artifact frontmatter reports 1.0.4) <br>
+Risk: The documented host command execution feature can run pipe source commands on the host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and test in an isolated development environment, allow only trusted command inputs, and review commands before execution.
+
+Risk: Remote SurrealDB access, local HTTP serving, and telemetry can expose credentials or sensitive workspace data if configured carelessly.
+
+Mitigation: Use least-privilege SurrealDB credentials, avoid command-line passwords for real secrets, keep HTTP binding private unless protected by authentication and TLS, and disable or audit telemetry for sensitive data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/24601/skills/surrealfs)
+- [SurrealFS upstream repository](https://github.com/surrealdb/surrealfs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown or plain text with inline code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include virtual filesystem operation results, setup guidance, and configuration values for SurrealDB-backed storage.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

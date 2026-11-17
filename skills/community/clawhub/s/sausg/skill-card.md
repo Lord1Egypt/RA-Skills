@@ -1,41 +1,53 @@
-## Description: <br>
-Automates SAUSG structural analysis workflows, including opening SAUSG modules, running structural calculations, and reading calculation results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SAUSG（结构通用分析与设计软件）自动计算与操作工具。用于弹塑性计算、非线性分析、动力时程分析、隔震减震设计、钢结构分析等。当用户提及 SAUSG、SAUSAGE、OpenSAUSG、SAUSGDelta、SAUSGJG、SAUSGPI、SAUSGZeta 等相关软件，或要求进行弹塑性计算、读取计算结果时使用此技能。
 
-## Publisher: <br>
-[jiasu1017-beep](https://clawhub.ai/user/jiasu1017-beep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiasu1017-beep](https://clawhub.ai/user/jiasu1017-beep)
 
-## Use Case: <br>
-Structural engineers and developers use this skill to operate local SAUSG installations, run nonlinear or dynamic structural calculations, and summarize key model result files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The calculation workflow can delete old result files and result folders in the selected model directory by default. <br>
-Mitigation: Back up project folders first and use --no-cleanup unless cleanup is intended. <br>
-Risk: The scripts start local SAUSG executables with user-provided model and installation paths. <br>
-Mitigation: Install only in trusted local SAUSG environments and avoid untrusted model or SAUSG paths. <br>
+## Use Case:
 
+Developers and structural engineering users use this skill to open SAUSG models, run sequential structural analysis calculations, and read key calculation outputs from local SAUSG result files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiasu1017-beep/sausg) <br>
-- [SAUSG product page](https://product.pkpm.cn/productDetails?productId=56) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and text analysis summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May start local SAUSG executables, inspect model result files, and delete prior result files unless run with --no-cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can launch local SAUSG executables from installation paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted SAUSG installations and prefer explicitly passing the expected SAUSG directory.
+
+Risk: Default calculation cleanup can delete broad sets of existing SAUSG project result files.
+
+Mitigation: Use --no-cleanup when preserving prior outputs matters, and keep backups or verify the directory contains only disposable SAUSG artifacts before cleanup.
+
+## Reference(s):
+
+- [SAUSG product page](https://product.pkpm.cn/productDetails?productId=56)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May launch local SAUSG executables and may summarize structural calculation results from local files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Agent Mail helps an agent send, receive, manage, and thread email through the AgentMail API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+邮件智能处理。使用 AgentMail API 收发邮件。
 
-## Publisher: <br>
-[fhbillwer](https://clawhub.ai/user/fhbillwer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fhbillwer](https://clawhub.ai/user/fhbillwer)
 
-## Use Case: <br>
-Agents and users use this skill to manage email workflows through AgentMail, including sending messages, checking inboxes, handling attachments, and organizing message threads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured AgentMail account and API access may expose inbox contents or allow messages to be sent from the account. <br>
-Mitigation: Verify ownership of fhbillwer@agentmail.to, confirm API key permissions, and require review before sending messages or making mailbox changes. <br>
-Risk: Email contents and attachments may include confidential data and may be stored locally. <br>
-Mitigation: Review retention and deletion procedures for /workspace/data/emails/ before using the skill with sensitive mail. <br>
+## Use Case:
 
+External users use this skill to send and receive email through AgentMail, manage mailboxes, handle attachments, and work with email conversation threads.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fhbillwer/ws-agent-mail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text responses with email workflow instructions and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May result in mailbox actions, attachment handling, and local email data stored under /workspace/data/emails/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may handle private or business email and persist mailbox activity under /workspace/data/emails/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation, confirm whose AgentMail account and API key it uses, when it may read inbox contents or attachments, whether it asks before sending mail, and how saved email data can be reviewed or deleted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fhbillwer/skills/ws-agent-mail)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, Files]
+
+**Output Format:** [Markdown or text responses with email actions and mailbox results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read, send, receive, and persist email data under /workspace/data/emails/ when configured with AgentMail access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

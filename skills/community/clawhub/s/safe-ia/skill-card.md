@@ -1,41 +1,59 @@
-## Description: <br>
-Monitoreo de cambios en herramientas de IA — alertas de ToS, políticas de privacidad y riesgos para tu negocio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe IA monitors changes to AI tool terms, privacy policies, and usage conditions, then reports business risk in Spanish.
 
-## Publisher: <br>
-[tutebravo](https://clawhub.ai/user/tutebravo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tutebravo](https://clawhub.ai/user/tutebravo)
 
-## Use Case: <br>
-External users, founders, startups, and business teams use this Spanish-language agent to monitor AI-tool terms, privacy-policy changes, and business risk signals. It produces risk reports, weekly change summaries, tool comparisons, and profile-aware guidance while noting that it does not replace formal legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and reuses personal and business profile details across conversations without clear retention, opt-out, or deletion controls. <br>
-Mitigation: Install only when profile memory is acceptable, avoid sharing sensitive or regulated data, and confirm how memory can be viewed, edited, deleted, or disabled. <br>
-Risk: The skill monitors legal and policy changes but explicitly does not provide formal legal advice. <br>
-Mitigation: Use outputs as business-risk triage and consult qualified legal counsel before making critical compliance decisions. <br>
+## Use Case:
 
+External users such as entrepreneurs, startups, and companies use this skill to monitor AI platform policy changes, assess risk levels, and receive practical next actions. It supports weekly summaries, tool-specific reports, usage-risk analysis, historical trend checks, and comparisons between AI tools.
 
-## Reference(s): <br>
-- [Safe IA homepage](https://safe-ia.com) <br>
-- [ClawHub skill page](https://clawhub.ai/tutebravo/safe-ia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Spanish Markdown-style reports and command responses with risk levels, summaries, comparisons, and recommended actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses web search for current policy information and memory for user profile personalization when available] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence; artifact frontmatter reports 2.1.0) <br>
+Risk: The skill stores user profile details such as name, industry, tools, jurisdiction, and data-processing context for personalization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when profile memory is acceptable, and avoid sharing sensitive business or personal details that are not needed for the analysis.
+
+Risk: The skill adds recurring promotional links to safe-ia.com in responses.
+
+Mitigation: Review generated responses before forwarding them externally and remove promotional content when it is not appropriate.
+
+Risk: The skill references service keys for a personalized mode.
+
+Mitigation: Do not enter service keys unless the publisher and external service are trusted and the key handling is understood.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tutebravo/skills/safe-ia)
+- [Safe IA homepage](https://safe-ia.com)
+- [Publisher profile](https://clawhub.ai/user/tutebravo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Spanish Markdown reports and command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include risk levels, business impact summaries, concrete recommended actions, and optional profile-based personalization.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence; artifact frontmatter and claw.json report 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

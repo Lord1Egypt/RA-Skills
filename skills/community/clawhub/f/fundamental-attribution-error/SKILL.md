@@ -1,6 +1,6 @@
 ---
 name: fundamental-attribution-error
-description: "Activate when: someone says 'they're just like that,' an employee is being blamed for underperformance without examining their situation, a post-mortem is focusing on who screwed up, customer churn is being written off as 'not the right fit,' or someone asks 'why did they do that?' with a character-based answer. Do NOT activate when: the behavior forms a documented pattern across many genuinely different situations (dispositional inference is warranted); situational analysis is being used as a shield to excuse behavior that warrants accountability."
+description: "Activate when: someone says 'they're just like that,' an employee is being blamed for underperformance without examining their situation, a post-mortem is focusing on who screwed up, customer churn is being written off as 'not the right fit,' or someone asks 'why did they do that?' with a character-based answer. Do NOT activate when: the behavior forms a documented pattern across many genuinely different situations (dispositional inference is warranted); situational analysis is being used as a shield to excuse behavior that warrants accountability. More: deciqai.com/c/fundamental-attribution-error"
 ---
 
 # Fundamental Attribution Error
@@ -9,7 +9,7 @@ description: "Activate when: someone says 'they're just like that,' an employee 
 
 The **fundamental attribution error (FAE)** is the systematic tendency to over-weight character factors and under-weight situational factors when explaining others' behavior — while reversing this for your own behavior (actor-observer asymmetry). Coined by Lee Ross (1977), grounded in Jones & Harris's 1967 Castro study. The bias is automatic (System 1); situational correction requires deliberate effort (System 2).
 
-Composes with [`hanlons-razor`](../hanlons-razor/SKILL.md), [`survivorship-bias`](../survivorship-bias/SKILL.md), [`critical-thinking`](../critical-thinking/SKILL.md), [`dual-system-thinking`](../dual-system-thinking/SKILL.md), [`narrative-fallacy`](../narrative-fallacy/SKILL.md).
+Composes with `hanlons-razor`, `survivorship-bias`, `critical-thinking`, `dual-system-thinking`, `narrative-fallacy`.
 
 ## When to Use
 
@@ -117,4 +117,6 @@ FAE is automatic (System 1); correction is effortful (System 2). Build situation
 - [ ] Re-evaluation point scheduled
 
 ---
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/fundamental-attribution-error** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/fundamental-attribution-error.json*

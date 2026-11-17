@@ -1,44 +1,57 @@
-## Description: <br>
-Access Credit Karma transaction data via MCP for transaction syncing, spending analysis, merchant and category summaries, account summaries, and local financial-data queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Credit Karma transaction data through an MCP server for syncing, querying, and analyzing personal finance data.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-External users and developers use this skill to configure an agent for Credit Karma transaction access, sync data into a local SQLite database, and answer explicit personal-finance questions about spending, merchants, categories, accounts, and transaction history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to expose live Credit Karma session cookies. <br>
-Mitigation: Treat CK_COOKIES and copied Cookie headers like passwords, avoid storing them in plain .env files when possible, and use the skill only for explicit Credit Karma requests. <br>
-Risk: The skill syncs private transaction data into a local SQLite database. <br>
-Mitigation: Confirm where the SQLite database is written, restrict local file access, and remove stored data when it is no longer needed. <br>
+## Use Case:
 
+Developers and end users connect an agent to a local Credit Karma MCP server to sync transaction data, review account summaries, and analyze spending by category, merchant, date, or SQL query.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chrischall/creditkarma-mcp) <br>
-- [creditkarma-mcp npm package](https://www.npmjs.com/package/creditkarma-mcp) <br>
-- [creditkarma-mcp source link from skill docs](https://github.com/chrischall/creditkarma-mcp) <br>
-- [fetchproxy extension](https://github.com/chrischall/fetchproxy) <br>
-- [Credit Karma](https://www.creditkarma.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, SQL queries, MCP tool calls] <br>
-**Output Format:** [Markdown with JSON, bash, SQL, and MCP tool examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing setup and usage guidance for accessing sensitive Credit Karma financial data through a registered MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.4 (source: server release metadata) <br>
+Risk: The skill requires Credit Karma session access and synced financial data may be exposed to the MCP server or related extension.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the package and extension, use a pinned audited version, and remove stored cookies and the local SQLite database when no longer needed.
+
+Risk: Cookie headers or MCP environment configuration can leak account session access if committed or backed up.
+
+Mitigation: Keep CK_COOKIES, .env files, and MCP configuration containing cookies out of source control and backups.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chrischall/skills/creditkarma-mcp)
+- [creditkarma-mcp npm Package](https://www.npmjs.com/package/creditkarma-mcp)
+- [creditkarma-mcp Source Repository](https://github.com/chrischall/creditkarma-mcp)
+- [fetchproxy Extension](https://github.com/chrischall/fetchproxy)
+- [Credit Karma](https://www.creditkarma.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, SQL queries, Guidance]
+
+**Output Format:** [Markdown with JSON, bash, and SQL code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP tool names, configuration snippets, and read-only SQL examples for local transaction analysis.]
+
+## Skill Version(s):
+
+2.2.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,66 @@
-## Description: <br>
-Verfi helps agents guide TCPA consent verification for lead generation, including consent capture on web forms, pre-contact lead checks, session claim management, proof retrieval, API authentication, SDK setup, and create-to-proof workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verfi helps agents add TCPA consent capture to lead-generation forms, verify lead consent through the Verfi API, manage consent sessions, and retrieve proof for disputes.
 
-## Publisher: <br>
-[poncho-punch](https://clawhub.ai/user/poncho-punch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[poncho-punch](https://clawhub.ai/user/poncho-punch)
 
-## Use Case: <br>
-Developers and lead-generation teams use this skill to add Verfi consent capture to web forms, verify TCPA consent before contacting leads, claim sessions for retention, and retrieve proof for audits or disputes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The SDK records form interactions, device details, hashed PII, and consent signals, which can affect privacy and compliance obligations. <br>
-Mitigation: Confirm Verfi's legal basis, privacy notices, and data-processing terms before adding the SDK to production forms. <br>
-Risk: Secret API keys can search sessions, retrieve proof, and mutate consent-record retention when granted broad scopes. <br>
-Mitigation: Keep secret keys server-side, grant only the minimum required scopes, and require confirmation before claim, unclaim, or expiration-update actions. <br>
-Risk: The documented MCP server receives a Verfi API key and can expose API actions to an agent runtime. <br>
-Mitigation: Review the MCP package and tenant authorization model before providing an API key, and use it only in trusted agent environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Verfi Skill Page](https://clawhub.ai/poncho-punch/verfi) <br>
-- [Verfi API Reference](references/api-reference.md) <br>
-- [Proof Data Schema](references/proof-schema.md) <br>
-- [Verfi SDK Reference](references/sdk-reference.md) <br>
-- [Verfi Dashboard](https://app.verfi.io) <br>
-- [Verfi OpenAPI Spec](https://api.verfi.io/.well-known/openapi.json) <br>
+## Use Case:
 
+Developers, lead-generation teams, and compliance operators use this skill to instrument consent capture, verify lead consent before contact, claim sessions for retention, and retrieve machine-readable proof for disputes or audits.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with API examples, JSON snippets, shell commands, and configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include consent-verification workflow steps, API request examples, SDK setup snippets, and MCP server configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The integration enables broad form-activity recording.
+
+Mitigation: Review Verfi's privacy, consent, retention, and tenant-access controls; provide explicit user notice and legally appropriate consent before recording; deploy the SDK only on required forms.
+
+Risk: Secret-key powered API and MCP usage can expose sensitive tenant capabilities if keys are over-scoped or long-lived.
+
+Mitigation: Use narrowly scoped, rotatable secret keys and grant only the session permissions required for the workflow.
+
+Risk: The MCP example uses an unpinned npx package, which creates supply-chain exposure in production.
+
+Mitigation: Pin and verify the MCP package and run it in a restricted environment before production use.
+
+Risk: Client-side SDK loading can be altered if script integrity or deployment controls are weak.
+
+Mitigation: Use CSP or integrity and version controls where possible, and monitor SDK deployment against approved pages and versions.
+
+## Reference(s):
+
+- [Verfi API Reference](references/api-reference.md)
+- [Proof Data Schema](references/proof-schema.md)
+- [Verfi SDK Reference](references/sdk-reference.md)
+- [Verfi Dashboard](https://app.verfi.io)
+- [Verfi OpenAPI Spec](https://api.verfi.io/.well-known/openapi.json)
+- [ClawHub Skill Page](https://clawhub.ai/poncho-punch/skills/verfi)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/poncho-punch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include API calls, SDK snippets, proof checks, MCP configuration, and compliance workflow steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

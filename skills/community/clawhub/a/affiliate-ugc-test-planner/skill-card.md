@@ -1,44 +1,58 @@
-## Description: <br>
-Plans compliant affiliate UGC test campaigns from a product or niche into disclosure-safe hooks, content briefs, platform routing, cost assumptions, metrics, and kill criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans compliant affiliate UGC test campaigns from a product or niche into disclosure-safe hooks, short-form video briefs, carousel briefs, platform routing, cost assumptions, test metrics, and kill criteria.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-External creators, affiliate marketers, and content planners use this skill to turn an affiliate product or niche into a small compliant UGC content test with disclosures, briefs, platform routing, metrics, and stop criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Affiliate, platform, and regulated-product rules may change or vary by product and traffic source. <br>
-Mitigation: Verify current platform policies, affiliate-network rules, disclosure requirements, and product evidence before publishing content. <br>
-Risk: AI-generated UGC can mislead viewers if it implies real customer experience, income results, health outcomes, or testimonials without evidence. <br>
-Mitigation: Use the skill's disclosure, evidence-review, and cautious-copy guardrails; do not fabricate personal experience or guaranteed outcomes. <br>
-Risk: The declared Python requirement appears unnecessary for this markdown-only release. <br>
-Mitigation: Treat Python as optional unless a future version adds executable behavior, and inspect install requirements before running commands. <br>
+## Use Case:
 
+External marketers and creators use this skill to plan small affiliate UGC content tests across platforms while checking disclosures, claim risks, product evidence, costs, metrics, and stop criteria.
 
-## Reference(s): <br>
-- [Source Evidence](references/source-evidence.md) <br>
-- [Reference video](https://www.youtube.com/watch?v=EYZKlJmFUXw) <br>
-- [ClawHub skill page](https://clawhub.ai/zack-dev-cm/affiliate-ugc-test-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with tables and structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Starts directly with the deliverable and includes offer fit, compliance flags, hook matrix, video briefs, carousel brief, platform plan, cost risk, test metrics, and kill criteria.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Affiliate, platform, health, finance, legal, or testimonial claims may be inaccurate or non-compliant if published without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review claims, disclosures, and product evidence before publishing generated campaign plans.
+
+Risk: AI-generated UGC can imply real personal experience or customer testimonials.
+
+Mitigation: Avoid fabricated personal results, disclose or phrase generated actors as demonstrations, and require evidence for regulated claims.
+
+Risk: Creative-generation tools or paid plans can burn credits during testing.
+
+Mitigation: Use a minimum viable creative set and stop rules before scaling generation volume.
+
+## Reference(s):
+
+- [Source Evidence](references/source-evidence.md)
+- [Source video](https://www.youtube.com/watch?v=EYZKlJmFUXw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown sections and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes offer fit, compliance flags, hook matrix, video briefs, carousel brief, platform plan, cost risk, test metrics, and kill criteria.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

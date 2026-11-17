@@ -1,0 +1,65 @@
+# 千题千境 PPT skill — 童趣版 6 页提示词（单 block 一键复制版）
+
+# ==================== 通用参数 ====================
+# aspect: landscape 16:9, 1280x720
+# style: cute children's picture book style, flat cartoon vector, very rounded shapes, picture-book illustration, soft drop shadows
+# background: warm cream white #FFFCF7
+# palette: orange #FF9F45 / yellow #FFCD3C / green #88D8B0 / blue #6FC2E8 / purple #B39DDB
+# text-color: deep grey #2C3E50
+# decorations: scattered cute flat icons in all four corners (stars, hearts, balloons, candies, small clouds)
+# suffix-append: Flat cartoon vector, very rounded shapes, candy colors, picture-book illustration feel, soft drop shadows, generous whitespace, child-friendly, professional presentation slide.
+
+# ==================== Page 1 — 封面 ====================
+# [English]
+A cute children's picture book style PowerPoint cover slide, landscape 16:9, 1280x720. Background warm cream white #FFFCF7. Center top: three cartoon balloons in orange #FF9F45, yellow #FFCD3C, green #88D8B0, with a wrapped candy and small purple #B39DDB stars. Center: a large very rounded pill shape filled with bright orange #FF9F45 containing the bold Chinese title "千题千境" in cute rounded typography, with smaller English subtitle "PPT Skill" in blue #6FC2E8 directly below. Below: a single line "不同题目，呈现不同的境界" in dark grey #2C3E50. Bottom-right corner: "2026.09 · HR Ops". All four corners decorated with cute flat icons.
+
+# [中文版]
+童趣绘本风 PPT 封面，横版 16:9。奶白底 #FFFCF7。顶部三个卡通气球（橙 #FF9F45 / 黄 #FFCD3C / 绿 #88D8B0）+ 糖果 + 紫色 #B39DDB 小五角星。中央大圆角橙色药丸包裹粗体标题"千题千境"，下方蓝色 #6FC2E8 副标题"PPT Skill"，再下方深灰一行"不同题目，呈现不同的境界"。右下角小字"2026.09 · HR Ops"。四角散布星/心/气球/云朵。扁平矢量、糖果色、绘本感。
+
+# ==================== Page 2 — 它是什么 ====================
+# [English]
+A cute children's picture book style PowerPoint content slide, landscape 16:9, 1280x720. Background warm cream white #FFFCF7. Top-left bold title "01 · 它是什么" in deep grey #2C3E50. Center: two side-by-side very rounded cards with large radius. Left card: pale pink #FFD1DC fill with a small flat cartoon child avatar (round head, simple smile) in orange at top, header "千人千面" in deep grey bold, two-line subtitle "为每个用户 / 定制专属体验" in dark grey. Right card: pale sky blue #C7E9FB fill with a small flat cartoon child avatar in blue, header "千题千境" in deep grey bold, two-line subtitle "为每种任务 / 定制专属形态" in dark grey. Below the cards: a dark grey line "同样的输入 → 形态各异的 PPT" with a yellow sparkle icon, then "不靠模板堆砌，靠方法生成". All four corners decorated with cute flat icons.
+
+# [中文版]
+童趣绘本风 PPT 内容页，横版 16:9。奶白底 #FFFCF7。左上标题"01 · 它是什么"深灰。中间两大圆角卡片（左粉 #FFD1DC 右天蓝 #C7E9FB），各带圆头小人头像；左卡"千人千面 / 为每个用户 定制专属体验"，右卡"千题千境 / 为每种任务 定制专属形态"。下方深灰两行："同样的输入 → 形态各异的 PPT"+"不靠模板堆砌，靠方法生成"。四角散布星/心/气球/糖果。扁平矢量、糖果色、绘本感。
+
+# ==================== Page 3 — 它能做什么 ====================
+# [English]
+A cute children's picture book style PowerPoint content slide, landscape 16:9, 1280x720. Background warm cream white #FFFCF7. Top-left bold title "02 · 它能做什么" in deep grey #2C3E50. Center: four horizontally arranged very rounded cards with colored top accent stripes, each with a small flat cartoon icon at top-left, a large bold number, a title, and two lines of small description. Card 1: orange stripe + magnifier icon + "01" + "场景识别". Card 2: yellow stripe + notebook icon + "02" + "结构建议". Card 3: green stripe + eye icon + "03" + "终稿预览". Card 4: purple stripe + pencil icon + "04" + "可编辑成稿". Bottom-left: "✦ 输入：需求文字 + 基本素材". Bottom-right: "▶ 输出：5 步走完，拿走可改的 PPTX". All four corners decorated with cute flat icons.
+
+# [中文版]
+童趣绘本风 PPT 内容页，横版 16:9。奶白底 #FFFCF7。左上标题"02 · 它能做什么"。中间四张大圆角卡（顶部色带+专属 icon）：橙 #FF9F45+放大镜+01 场景识别；黄 #FFCD3C+笔记本+02 结构建议；绿 #88D8B0+眼睛+03 终稿预览；紫 #B39DDB+铅笔+04 可编辑成稿。每卡两行描述。底部左侧"输入：需求文字 + 基本素材"，右侧"输出：5 步走完，拿走可改的 PPTX"。四角散布可爱图标。扁平矢量、糖果色、绘本感。
+
+# ==================== Page 4 — 你说了算 ====================
+# [English]
+A cute children's picture book style PowerPoint content slide, landscape 16:9, 1280x720. Background warm cream white #FFFCF7. Top-left bold title "03 · 你说了算" in deep grey #2C3E50. Three vertically stacked rounded sections. Section 1 "风格选择": six small rounded tag buttons with icons — "活泼" smile, "商务" briefcase, "教学" chalkboard, "科技" chip, "极简" leaf, "童趣" balloon. The "童趣" tag is highlighted in orange #FF9F45 fill with white text; other tags pale fill with dark grey text. Section 2 "元素选择": four items with checkboxes — "图标 ✓" "人物贴图 ✓" "数据图表 ☐" "纯文字 ☐". Section 3 "配色选择": five circular color swatches in a row (orange, yellow, green, blue, purple) with label "糖果撞色" below. All four corners decorated with cute flat icons.
+
+# [中文版]
+童趣绘本风 PPT 内容页，横版 16:9。奶白底 #FFFCF7。左上标题"03 · 你说了算"。三组选项：(1) 风格选择：六个圆角标签各带 icon（活泼笑脸/商务公文包/教学黑板/科技芯片/极简叶子/童趣气球），童趣高亮橙 #FF9F45；(2) 元素选择：四个勾选项（图标✓ 人物贴图✓ 数据图表□ 纯文字□）；(3) 配色选择：五个色圆（橙黄绿蓝紫）+ 标签"糖果撞色"。四角散布可爱图标。扁平矢量、糖果色、绘本感。
+
+# ==================== Page 5 — 它怎么用 ====================
+# [English]
+A cute children's picture book style PowerPoint content slide, landscape 16:9, 1280x720. Background warm cream white #FFFCF7. Top-left bold title "04 · 它怎么用" in deep grey #2C3E50. Center: horizontal flowchart of four large very-rounded circles connected by chunky deep grey arrows. Circle 1 orange + white inbox icon + white "1" + dark grey label "需求+素材". Circle 2 yellow + white notebook icon + white "2" + label "结构确认". Circle 3 green + white pencil icon + white "3" + label "ASCII 草图". Circle 4 blue + white eye icon + white "4" + label "终稿预览". Below: centered rounded purple #B39DDB pill containing white sparkle icon and white text "5 · 最终可编辑 PPT". Bottom: "关键：每一步都有用户确认动作" in dark grey. All four corners decorated with cute flat icons.
+
+# [中文版]
+童趣绘本风 PPT 内容页，横版 16:9。奶白底 #FFFCF7。左上标题"04 · 它怎么用"。中间横向流程：四个大圆（橙 #FF9F45 / 黄 #FFCD3C / 绿 #88D8B0 / 蓝 #6FC2E8）由深灰粗箭头连接，每圆顶部白色 icon + 大白色数字 + 圆下深灰标签（需求+素材 / 结构确认 / ASCII 草图 / 终稿预览）。下方居中紫色 #B39DDB 药丸"5 · 最终可编辑 PPT"。底部"关键：每一步都有用户确认动作"。四角散布可爱图标。扁平矢量、糖果色、绘本感。
+
+# ==================== Page 6 — 开始使用 ====================
+# [English]
+A cute children's picture book style PowerPoint closing slide, landscape 16:9, 1280x720. Background warm cream white #FFFCF7. Top-left bold title "05 · 开始使用" in deep grey #2C3E50. Center: three numbered action lines, each starting with a colorful flat cartoon round icon and a dark rounded pill text. Line 1: orange balloon icon + "给我一个标题 + 你的素材". Line 2: green notebook icon + "我按 5 步推进，每步等你确认". Line 3: purple gift box icon + "5 步后，你拿到的不是 PNG，是能改的 PPTX". Below: large rounded orange #FF9F45 button with white play icon and bold white text "开始对话 →". Bottom: small grey text "适用：内训分享 / 制度说明 / 项目汇报 / 培训材料". All four corners decorated with cute flat icons (balloons, stars, hearts, clouds, candies).
+
+# [中文版]
+童趣绘本风 PPT 收尾页，横版 16:9。奶白底 #FFFCF7。左上标题"05 · 开始使用"。三行行动（各带圆形彩色 icon：橙气球/绿笔记本/紫礼物盒）+ 深色圆角胶囊文字。下方大圆角橙色 #FF9F45 CTA 按钮"▶ 开始对话 →"。底部小灰字"适用：内训分享 / 制度说明 / 项目汇报 / 培训材料"。四角散布气球/星/心/云朵/糖果。扁平矢量、糖果色、绘本感。
+
+# ==================== 拿图回来时的标准 ====================
+# aspect: 16:9，1920x1080 或 1280x720
+# filenames:
+#     p1_cover.png
+#     p2_what.png
+#     p3_capability.png
+#     p4_you.png
+#     p5_flow.png
+#     p6_start.png
+# folder: c:\Users\kenzj\WorkBuddy\20260912200310\sample3\
+# no-bg-removal: keep as-is
+# notify: "6 张样图已就绪 → 开出 PPT"

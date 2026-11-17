@@ -1,41 +1,53 @@
-## Description: <br>
-Connect Claude to external apps like Gmail, Slack, GitHub so users can send emails, create issues, post messages, and take actions in external services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect Claude to external apps like Gmail, Slack, GitHub. Use this skill when the user wants to send emails, create issues, post messages, or take actions in external services.
 
-## Publisher: <br>
-[sohamganatra](https://clawhub.ai/user/sohamganatra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sohamganatra](https://clawhub.ai/user/sohamganatra)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to install and configure Composio Tool Router so Claude can operate connected services such as email, chat, developer, docs, and data apps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill routes users into a broad third-party integration that can perform real actions across external accounts. <br>
-Mitigation: Review Composio and app-level OAuth practices, start with limited or test accounts, and grant the narrowest scopes available. <br>
-Risk: Connected services may send, post, create, update, or delete data if the agent is allowed to proceed unchecked. <br>
-Mitigation: Require explicit confirmation before any send, post, create, update, or delete action and know how to revoke both Composio and app-level access. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Connect Apps on ClawHub](https://clawhub.ai/sohamganatra/connect-apps) <br>
-- [sohamganatra ClawHub profile](https://clawhub.ai/user/sohamganatra) <br>
-- [Composio Platform](https://platform.composio.dev/?utm_source=Github&utm_content=AwesomeSkills) <br>
+## Use Case:
 
+External users and developers use this skill to connect Claude Code to third-party apps through Composio Tool Router and request actions such as sending email, creating issues, posting messages, and updating documents.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and example prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides setup of a third-party integration that can execute actions in connected external accounts after authorization.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install and authorize a broad third-party tool that can perform real actions in connected apps.
+
+Mitigation: Install only if the user trusts the composio-toolrouter plugin source, use narrow OAuth scopes where available, and confirm each live action before execution.
+
+Risk: Connected-app actions can affect external services such as email, Slack, GitHub, and Notion.
+
+Mitigation: Review the target app, recipient or destination, and action content before execution, and know how to revoke the API key and app authorizations.
+
+## Reference(s):
+
+- [Composio Platform](https://platform.composio.dev/?utm_source=Github&utm_content=AwesomeSkills)
+- [ClawHub Skill Page](https://clawhub.ai/sohamganatra/skills/connect-apps)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide live actions in connected external apps after user authorization.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Agent2RSS helps agents manage RSS channels and publish content to RSS feeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent2RSS client for managing RSS channels and publishing agent-produced content to RSS feeds.
 
-## Publisher: <br>
-[yaotutu](https://clawhub.ai/user/yaotutu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yaotutu](https://clawhub.ai/user/yaotutu)
 
-## Use Case: <br>
-Developers and agent users use this skill to initialize Agent2RSS configuration, create and manage RSS channels, and publish markdown or JSON content to an RSS feed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Channel tokens may be exposed through examples, configuration, logs, or dry-run output. <br>
-Mitigation: Review output before sharing it, keep the local config file private, and rotate any token copied from examples or exposed in logs. <br>
-Risk: Publishing actions send content to the configured Agent2RSS server. <br>
-Mitigation: Verify the serverUrl before upload or publish actions and avoid sending sensitive drafts to untrusted services. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agent2RSS API examples](references/api-examples.md) <br>
-- [ClawHub listing](https://clawhub.ai/yaotutu/agent2rss) <br>
-- [Agent2RSS project](https://github.com/yaotutu/agent2rss) <br>
+## Use Case:
 
+Developers and content automation agents use this skill to initialize Agent2RSS configuration, create and manage channels, and publish Markdown files or JSON posts into RSS feeds.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call a configured Agent2RSS server and may print dry-run request details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Channel bearer tokens are stored in the local config file and can authorize publishing to configured channels.
+
+Mitigation: Treat the config file as sensitive, keep file permissions restricted, and do not commit or share it.
+
+Risk: Remote http:// endpoints can expose credentials and content in transit.
+
+Mitigation: Use only trusted HTTPS Agent2RSS servers and avoid remote HTTP endpoints.
+
+Risk: Dry-run output can reveal real channel tokens or private content if used with production data.
+
+Mitigation: Do not run DRY_RUN with real channel tokens or private content, and sanitize logs before sharing.
+
+## Reference(s):
+
+- [Agent2RSS API examples](artifact/references/api-examples.md)
+- [ClawHub skill page](https://clawhub.ai/yaotutu/skills/agent2rss)
+- [Agent2RSS project homepage](https://github.com/yaotutu/agent2rss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command guidance for a Bash helper that uses curl and jq to manage channels and publish content.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

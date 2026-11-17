@@ -1,50 +1,67 @@
-## Description: <br>
-Simple text-to-speech skill using MiniMax Voice API. Converts text to audio with customizable voice selection. Use for generating speech audio from text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple text-to-speech skill using MiniMax Voice API. Converts text to audio with customizable voice selection. Use for generating speech audio from text.
 
-## Publisher: <br>
-[BLUE-coconut](https://clawhub.ai/user/BLUE-coconut) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blue-coconut](https://clawhub.ai/user/blue-coconut)
 
-## Use Case: <br>
-Developers and content creators use this skill to generate speech audio from text with selectable MiniMax voices and to manage voice cloning, designed voices, and local audio conversion workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected text, text files, and voice samples may be sent to MiniMax's third-party API. <br>
-Mitigation: Use only content allowed by MiniMax terms and local policy; avoid confidential material unless that use is approved. <br>
-Risk: Voice cloning can misuse voices without permission. <br>
-Mitigation: Clone only voices the user owns or has explicit permission to use. <br>
-Risk: Audio generation, conversion, and merge commands write to user-supplied output paths. <br>
-Mitigation: Verify output paths before running commands and keep backups of source media. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BLUE-coconut/mm-easy-voice) <br>
-- [Getting Started](reference/getting-started.md) <br>
-- [MiniMax Voice Catalog](reference/voice_catalog.md) <br>
-- [Voice Management Guide](reference/voice-guide.md) <br>
-- [Audio Processing Guide](reference/audio-guide.md) <br>
-- [Troubleshooting](reference/troubleshooting.md) <br>
-- [MiniMax Speech T2A HTTP API](https://platform.minimaxi.com/docs/api-reference/speech-t2a-http) <br>
-- [MiniMax Voice Cloning API](https://platform.minimaxi.com/docs/api-reference/voice-cloning-clone) <br>
-- [MiniMax Voice Design API](https://platform.minimaxi.com/docs/api-reference/voice-design-design) <br>
-- [FFmpeg download](https://ffmpeg.org/download.html) <br>
+## Use Case:
 
+Developers and creators use this skill to generate speech audio from text with MiniMax voices, including segment-based multi-voice workflows, custom voice cloning or design, and FFmpeg-based audio merging/conversion.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration instructions, Guidance, Files] <br>
-**Output Format:** [Markdown with inline bash commands and file paths; CLI commands can produce audio files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_VOICE_API_KEY; FFmpeg is optional for merging and conversion.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: TTS text and selected voice samples may be uploaded to MiniMax during synthesis, async TTS, voice cloning, or voice design.
+
+Mitigation: Use the skill only with content approved for MiniMax processing, avoid regulated or confidential input unless authorized, and clone only voices the operator has permission to use.
+
+Risk: The MiniMax API endpoint can be redirected through MINIMAX_API_BASE, which could expose API keys and content to another host.
+
+Mitigation: Keep MINIMAX_API_BASE unset or explicitly pinned to the official MiniMax origin before running the skill, and use a least-privilege API key.
+
+Risk: Voice deletion helpers can remove custom cloned or designed voices from the connected MiniMax account.
+
+Mitigation: Review any workflow that calls custom-voice deletion functions before allowing autonomous execution.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/blue-coconut/skills/mm-easy-voice)
+- [Getting Started](reference/getting-started.md)
+- [Audio Processing Guide](reference/audio-guide.md)
+- [Voice Management Guide](reference/voice-guide.md)
+- [Troubleshooting](reference/troubleshooting.md)
+- [MiniMax Voice Catalog](reference/voice_catalog.md)
+- [MiniMax async TTS create API](https://platform.minimaxi.com/docs/api-reference/speech-t2a-async-create)
+- [MiniMax async TTS query API](https://platform.minimaxi.com/docs/api-reference/speech-t2a-async-query)
+- [MiniMax voice cloning upload API](https://platform.minimaxi.com/docs/api-reference/voice-cloning-uploadcloneaudio)
+- [MiniMax voice cloning API](https://platform.minimaxi.com/docs/api-reference/voice-cloning-clone)
+- [MiniMax voice management API](https://platform.minimaxi.com/docs/api-reference/voice-management-get)
+- [FFmpeg downloads](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python CLI/API usage; generated workflows may write audio files such as MP3, WAV, FLAC, or PCM.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a MiniMax voice API key; FFmpeg is optional for merge, conversion, and audio processing workflows.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

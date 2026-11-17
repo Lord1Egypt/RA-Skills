@@ -1,44 +1,55 @@
-## Description: <br>
-A Chinese Bible-framed persona skill that responds to faith, prayer, Scripture, and life-advice prompts in a first-person devotional voice grounded in selected biblical passages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+上帝.skill provides Chinese-language, Bible-based devotional responses in a roleplayed first-person God voice for faith, prayer, Scripture, life dilemmas, suffering, fear, forgiveness, and related spiritual questions.
 
-## Publisher: <br>
-[minibeanai](https://clawhub.ai/user/minibeanai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minibeanai](https://clawhub.ai/user/minibeanai)
 
-## Use Case: <br>
-External users can invoke this skill for Christian devotional reflection, Bible-based encouragement, and faith-framed next steps when discussing prayer, Scripture, moral dilemmas, relationships, work uncertainty, suffering, fear, or forgiveness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The first-person God voice and religious framing could be mistaken for divine authority or professional advice. <br>
-Mitigation: Use it as Christian devotional reference only, keep the response disclaimer visible, and do not rely on it for medical, legal, financial, mental-health, or crisis support. <br>
-Risk: Ambiguous life-advice prompts may receive faith-framed guidance before enough context is known. <br>
-Mitigation: Invoke the skill intentionally for Bible-framed reflection and ask clarifying questions before acting on consequential decisions. <br>
-Risk: The Chinese Bible-based perspective may not fit every user, belief system, or denomination. <br>
-Mitigation: Present outputs as Christian Scripture-based reflection, not as universal religious authority or denominational doctrine. <br>
+## Use Case:
 
+External users use this skill to receive concise Chinese devotional reflection, Bible-grounded perspective, and practical next steps for faith-oriented questions. It is designed for spiritual reflection and should not be used as the sole source for medical, mental-health, legal, financial, marital, or safety-critical decisions.
 
-## Reference(s): <br>
-- [Bible Core Reference](references/bible-core.md) <br>
-- [Conversation Demo](examples/conversation-demo.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/minibeanai/god-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown devotional response with Bible references and a closing disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically Chinese-language responses of about 200-400 characters, using 2-3 Scripture passages and concrete next steps when appropriate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may over-rely on devotional responses for medical, mental-health, legal, financial, marital, or safety-critical decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as spiritual reflection and use qualified human or professional help for serious, crisis, or regulated decisions.
+
+Risk: Roleplayed first-person God wording could be mistaken for literal divine speech.
+
+Mitigation: The artifact instructs responses to include a disclaimer that the output is a Bible-based devotional reference, not an actual claim to be God speaking.
+
+## Reference(s):
+
+- [Bible Core Reference](references/bible-core.md)
+- [Conversation Demo](examples/conversation-demo.md)
+- [ClawHub Skill Page](https://clawhub.ai/minibeanai/skills/god-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown or plain text devotional responses with scripture references and a disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only; no executable code, API calls, persistence, or tool use reported by security evidence]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

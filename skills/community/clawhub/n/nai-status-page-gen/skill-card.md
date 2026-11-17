@@ -1,42 +1,62 @@
-## Description: <br>
-Generate a dark-themed static HTML status page summarizing health checks, ping, SSL certificates, and uptime for self-hosted services from a JSON config. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a lightweight static HTML status page for self-hosted services that checks health endpoints, ping, SSL certificates, and uptime history, then outputs a self-contained dark-theme HTML file that can be served locally or pushed to a GitHub Gist.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-Developers, operators, and homelab administrators use this skill to configure service checks and generate a local or published status page for monitored self-hosted services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitoring unintended hosts can create unnecessary network traffic or expose internal service names. <br>
-Mitigation: Review the service list before running checks and include only hosts the user intends to monitor. <br>
-Risk: A published status page can reveal service names, URLs, status history, and certificate details. <br>
-Mitigation: Publish the generated page only when those details are safe to share. <br>
-Risk: Scheduled checks can continue running in the background after setup. <br>
-Mitigation: Enable cron or LaunchAgent scheduling only when recurring checks are desired and document how to remove the schedule. <br>
+## Use Case:
 
+Developers and operators use this skill to configure health checks for self-hosted services, generate uptime and certificate status data, and publish a lightweight static status page.
 
-## Reference(s): <br>
-- [Setup Guide](references/setup-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and generated HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local JSON check results, uptime history, and a self-contained static HTML status page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Recurring health checks can create persistent network traffic to configured services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit checks to services you own or administer, set an appropriate schedule, and document how to disable the cron or LaunchAgent job.
+
+Risk: Publishing the status page publicly can reveal service names, endpoints, availability, and operational patterns.
+
+Mitigation: Prefer local or private hosting for internal services, and review generated content before using public Gist or other public hosting.
+
+Risk: Shared /tmp paths in examples can be overwritten or read by other local users on multi-user systems.
+
+Mitigation: Use per-user private output paths with restrictive permissions for check results and certificate data.
+
+Risk: Running scheduled checks with elevated privileges can broaden the impact of compromised configuration or scripts.
+
+Mitigation: Run the scheduler as an unprivileged user and keep the skill directory and service configuration writable only by trusted users.
+
+## Reference(s):
+
+- [status-page-gen Setup Guide](references/setup-guide.md)
+- [ClawHub skill release page](https://clawhub.ai/newageinvestments25-byte/skills/nai-status-page-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and generated HTML status-page files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact scripts can write JSON check results, uptime history, and a self-contained HTML page.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Analyze value creation and growth positioning. Use for competitive analysis, strategic positioning, and understanding where value is generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze value creation and growth positioning. Use for competitive analysis, strategic positioning, and understanding where value is generated.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-Business strategists, portfolio leaders, and analysts use this skill to compare business units by value creation and growth, then identify portfolio balance, investment priorities, and action plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Strategic or financial outputs may be misleading when assumptions, margins, growth rates, or business context are incomplete. <br>
-Mitigation: Verify assumptions and metrics against trusted business data before using the analysis for decisions. <br>
-Risk: Business-unit details and portfolio data may be confidential when shared in an agent conversation. <br>
-Mitigation: Use sanitized or approved business data when confidentiality requirements apply. <br>
+## Use Case:
 
+Business strategists, operators, and analysts use this skill to evaluate business units by value creation and growth, assess portfolio balance, and develop strategic actions for investment, turnaround, harvesting, or growth.
 
-## Reference(s): <br>
-- [Growth Spread Matrix on ClawHub](https://clawhub.ai/linuszz/growth-spread-matrix) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown with tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces business unit analysis, portfolio balance, strategic analysis, and action planning sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad triggers may activate the skill for general competitive or value-analysis requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when a Growth Spread Matrix analysis is intended, and review outputs for relevance before relying on them.
+
+Risk: Strategic conclusions may be misleading if margin, growth, or industry benchmark inputs are incomplete or outdated.
+
+Mitigation: Validate business inputs and benchmark assumptions before using the analysis for resource allocation or portfolio decisions.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/linuszz/skills/growth-spread-matrix)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown with structured tables and action-plan sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a portfolio matrix analysis, quadrant summaries, strategic observations, movement strategies, and action planning guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

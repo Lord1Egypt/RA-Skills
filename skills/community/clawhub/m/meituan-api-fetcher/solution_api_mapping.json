@@ -1,0 +1,57 @@
+{
+  "三方交易接口白皮书": [
+    "/rms/pos/api/v1/poi/tables/query",
+    "/rms/pos/api/v2/poi/goods/query"
+  ],
+  "接口对接流程": [
+    "/rms/base/api/v1/thirdparty/appauth",
+    "/rms/base/v1/auth/resources/get"
+  ],
+  "堂食扫码点餐": [
+    "/rms/base/v1/auth/resources/poi/get",
+    "/rms/pos/api/v1/chain/combo/query",
+    "/rms/pos/api/v1/poi/combo/query"
+  ],
+  "第三方会员CRM对接": [
+    "/rms/base/v1/auth/resources/poi/get"
+  ],
+  "第三方供应链对接": [
+    "/rms/data/api/v1/poi/dish_sale/query",
+    "/rms/pos/api/v1/chain/method/query",
+    "/rms/pos/api/v1/chain/specs/query",
+    "/rms/pos/api/v1/chain/wm/category/query",
+    "/rms/pos/api/v1/chain/wm/goods/query",
+    "/rms/pos/api/v1/poi/combo/query",
+    "/rms/pos/api/v1/poi/depart/query",
+    "/rms/pos/api/v1/poi/method/group/query",
+    "/rms/pos/api/v1/poi/orders/waimai/ele/query",
+    "/rms/pos/api/v1/poi/orders/waimai/mt/query",
+    "/rms/pos/api/v1/poi/orders/waimai/self/query",
+    "/rms/pos/api/v1/poi/query",
+    "/rms/pos/api/v1/poi/specs/query",
+    "/rms/pos/api/v2/chain/category/query",
+    "/rms/pos/api/v2/poi/goods/query",
+    "/rms/pos/api/v2/poi/goods/wmgoods/category/query",
+    "/rms/pos/api/v2/poi/goods/wmgoods/query",
+    "/rms/pos/api/v2/poi/orders/ids/query",
+    "/rms/pos/api/v2/poi/orders/instore/query"
+  ],
+  "第三方财务对接": [
+    "/rms/base/v1/auth/resources/poi/get",
+    "/rms/data/api/v1/poi/business_receipt/query",
+    "/rms/data/api/v1/poi/dish_sale/query",
+    "/rms/data/api/v1/poi/income_discount/query",
+    "/rms/data/api/v1/poi/sale_type/query",
+    "/rms/data/api/v1/poi/settlement_method/query",
+    "/rms/deposit/api/v1/poi/records/query",
+    "/rms/pos/api/v1/chain/wm/category/query",
+    "/rms/pos/api/v1/chain/wm/goods/query",
+    "/rms/pos/api/v1/poi/onaccount/bills/query",
+    "/rms/pos/api/v1/poi/onaccount/subjects/query",
+    "/rms/pos/api/v1/poi/query",
+    "/rms/pos/api/v2/chain/category/query",
+    "/rms/pos/api/v2/poi/goods/query",
+    "/rms/pos/api/v2/poi/goods/wmgoods/category/query",
+    "/rms/pos/api/v2/poi/goods/wmgoods/query"
+  ]
+}

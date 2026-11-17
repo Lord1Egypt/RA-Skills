@@ -1,43 +1,54 @@
-## Description: <br>
-Web search via Tavily API for OpenClaw agents when the user asks to search the web, look up sources, or find links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Tavily API to return compact web search results with titles, URLs, snippets, and optional short answer summaries for OpenClaw agents.
 
-## Publisher: <br>
-[lym20220107](https://clawhub.ai/user/lym20220107) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lym20220107](https://clawhub.ai/user/lym20220107)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to retrieve concise web search results with titles, URLs, snippets, and optional short answers. It is useful when a built-in Brave-style web search is unavailable or when Tavily-backed search is preferred. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to AISA/Tavily, which can expose sensitive prompts or project details to an external provider. <br>
-Mitigation: Use the skill only when that provider relationship is approved, and avoid sending secrets, private customer data, or confidential project details in search queries. <br>
-Risk: The skill requires an API key from the environment or ~/.openclaw/.env. <br>
-Mitigation: Provide the key through approved secret-management practices and avoid committing local environment files or API keys to shared repositories. <br>
-Risk: Web search results may be incomplete, outdated, or misleading. <br>
-Mitigation: Review returned URLs and snippets before relying on them, and fetch or verify full source pages when accuracy matters. <br>
+## Use Case:
 
+Developers and OpenClaw agents use this skill when web search is requested and Brave web_search is unavailable or undesired. It returns small result sets from Tavily so agents can cite URLs, inspect snippets, or include a short answer summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lym20220107/lym-tavily-search) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON or Markdown search results with query, title, URL, snippet or content, and optional answer fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to five results, supports basic or advanced search depth, and clamps max results to 1-10.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill needs a Tavily API key and can read it from TAVILY_API_KEY or ~/.openclaw/.env.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide the key through the environment or a secret manager when possible, and restrict access to any local .env file that contains the key.
+
+Risk: Search queries and the Tavily API key are sent to Tavily during normal operation.
+
+Mitigation: Use the skill only for queries appropriate to send to Tavily, and avoid submitting confidential or regulated data unless approved for that service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lym20220107/skills/lym-tavily-search)
+- [Tavily Search API endpoint](https://api.tavily.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON or Markdown search results with title, URL, snippet, and optional answer fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Result count is clamped to 1-10; images and raw page content are not requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

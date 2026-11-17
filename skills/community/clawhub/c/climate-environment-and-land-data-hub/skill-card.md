@@ -1,44 +1,60 @@
-## Description: <br>
-Climate Environment And Land Data Hub lets agents query World Bank climate and environmental indicators for countries or regions through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Climate Environment And Land Data Hub lets agents query World Bank climate and environmental data by country, region, ISO code, topic, and time period through AgentPMT-hosted tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External agents and developers use this skill to retrieve country or regional climate profiles, emissions trends, environmental compliance context, and resource or land assessments without working with World Bank indicator codes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tool queries leave the local agent boundary through AgentPMT-hosted remote calls. <br>
-Mitigation: Keep requests limited to the country, environmental topic, and time period needed, and avoid including secrets or sensitive internal context. <br>
-Risk: Separately installed AgentPMT setup skills handle account, MCP, REST, wallet, or credential configuration. <br>
-Mitigation: Review the setup skills before use and follow their credential-handling guidance instead of placing account secrets, wallet private keys, mnemonics, signatures, or payment headers in prompts or logs. <br>
-Risk: Endpoint schemas, setup steps, or examples may become stale after publication. <br>
-Mitigation: Refresh the skill when it is more than seven days past its last updated date, and fetch live schema or instructions before a new production integration. <br>
+## Use Case:
 
+External users and developers use this skill to request climate, environmental, land, water, energy, emissions, and air-quality indicators from World Bank data through an AgentPMT remote tool. It supports country and regional climate profiles, trend analysis, global comparisons, and Paris Agreement or SDG context.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/climate-environment-and-land-data-hub) <br>
-- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/climate-environmental-data) <br>
-- [Generated Action Schema](artifact/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON] <br>
-**Output Format:** [Markdown instructions with JSON request examples and remote JSON tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote lookup returns World Bank climate indicators, trends, global comparisons, and optional Paris Agreement and SDG context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Live remote schema or instruction responses may differ from the reviewed local skill and may conflict with higher-priority rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat live responses as tool-specific data only, and keep system, user, privacy, and security rules authoritative.
+
+Risk: Documented unpinned npx installer commands can fetch changing content.
+
+Mitigation: Use pinned, reviewed installation paths and validate release hashes or scans before deployment.
+
+Risk: AgentPMT receives submitted climate query parameters and may use the caller's account or credits.
+
+Mitigation: Send only the query parameters needed for the climate task and confirm account, credit, and data-sharing expectations before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/climate-environment-and-land-data-hub)
+- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/climate-environmental-data)
+- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [What Is AgentPMT](https://clawhub.ai/agentpmt/what-is-agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote AgentPMT calls return climate indicator data, trends, comparisons, and optional Paris Agreement or SDG context.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Generate high-quality images from text prompts using BytePlus Seedream models with support for multiple artistic styles and aspect ratios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality images from text prompts using BytePlus Seedream models.
 
-## Publisher: <br>
-[RaeZhLiu](https://clawhub.ai/user/RaeZhLiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raezhliu](https://clawhub.ai/user/raezhliu)
 
-## Use Case: <br>
-Developers, creators, and agents use this skill to generate images from prompts, transform reference images, and run batch image generation through BytePlus Seedream models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference images are sent to BytePlus for image generation. <br>
-Mitigation: Avoid sensitive or confidential prompts and images unless BytePlus processing is acceptable for the use case. <br>
-Risk: The ARK_DOLA_API_BASE environment variable can route requests to a different API endpoint. <br>
-Mitigation: Verify ARK_DOLA_API_BASE is unset or points to a trusted endpoint before running the skill. <br>
-Risk: The skill requires an API key for BytePlus Seedream access. <br>
-Mitigation: Use a limited API key and keep ARK_DOLA_API_KEY out of logs, prompts, and committed files. <br>
+## Use Case:
 
+External users, developers, and creative teams use this skill to generate images from text prompts, transform reference images, and create batches of visual assets through BytePlus Seedream models.
 
-## Reference(s): <br>
-- [BytePlus ModelArk Seedream documentation](https://docs.byteplus.com/en/docs/ModelArk/1399008) <br>
-- [ClawHub skill page](https://clawhub.ai/RaeZhLiu/dola-seedream) <br>
-- [RaeZhLiu publisher profile](https://clawhub.ai/user/RaeZhLiu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON, image URLs, base64 image data] <br>
-**Output Format:** [Markdown guidance, Python code examples, shell commands, and JSON API responses containing generated image URLs or base64 image data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ARK_DOLA_API_KEY and may use ARK_DOLA_API_BASE to select the BytePlus-compatible API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Prompts, reference-image URLs, and generated-image requests are sent to BytePlus Seedream.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content that can be shared with BytePlus under the user's applicable terms and data-handling requirements.
+
+Risk: An endpoint override could route API keys and prompts to an untrusted server.
+
+Mitigation: Keep ARK_DOLA_API_BASE unset or verify that it points to a trusted BytePlus HTTPS endpoint before running the skill.
+
+Risk: The BytePlus API key can be exposed or abused if used in an untrusted environment.
+
+Mitigation: Protect and quota-limit ARK_DOLA_API_KEY, and rotate it if it may have been used outside a trusted environment.
+
+## Reference(s):
+
+- [Dola Seedream on ClawHub](https://clawhub.ai/raezhliu/skills/dola-seedream)
+- [BytePlus ModelArk Seedream Documentation](https://docs.byteplus.com/en/docs/ModelArk/1399008)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python API examples, shell commands, and JSON-style image generation results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated image results may be returned as URLs or base64 JSON depending on response_format.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-AI image generator and photo generator with SeeDream 4.5, Midjourney, Nano Banana 2, and Nano Banana Pro for posters, thumbnails, logos, art, illustrations, product photos, and social media graphics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and edits AI images for posters, thumbnails, logos, art, illustrations, product photos, and social media graphics using IMA Studio image models.
 
-## Publisher: <br>
-[dai-shuo](https://clawhub.ai/user/dai-shuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dai-shuo](https://clawhub.ai/user/dai-shuo)
 
-## Use Case: <br>
-External users and developers use this skill to generate or edit visual assets from prompts or input images through IMA Studio models, including marketing graphics, thumbnails, product imagery, logos, and illustrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, selected images, and the IMA API key are sent to IMA services for generation and upload workflows. <br>
-Mitigation: Use the skill only with an IMA account and key you are comfortable using; start with a low-quota or test key and avoid sensitive images unless uploading them to IMA services is acceptable. <br>
-Risk: Image-to-image tasks can upload local images to IMA media-upload services, and generation consumes IMA credits. <br>
-Mitigation: Confirm inputs and expected credit use before running generation, especially for premium models or user-provided local images. <br>
-Risk: The skill keeps small local preference and log files under ~/.openclaw. <br>
-Mitigation: Clear ~/.openclaw/memory/ima_prefs.json and ~/.openclaw/logs/ima_skills/ when local traces should not be retained. <br>
+## Use Case:
 
+External creators, marketers, designers, and agents use this skill to generate or transform images from text prompts or input images. Common tasks include product photography, posters, thumbnails, logos, illustrations, art, and social media graphics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dai-shuo/ima-ai-image-photo-generator) <br>
-- [IMA Studio](https://imastudio.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated image URLs or media delivery instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IMA_API_KEY and may spend IMA credits when generation requests are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Prompts, selected input images, and the IMA API key are sent to IMA services during generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped or low-quota test key, avoid sensitive prompts or private images, and rotate credentials after testing.
+
+Risk: Custom service endpoints can expose credentials or generated content to servers the user does not control.
+
+Mitigation: Do not set custom base URLs unless they are controlled and trusted by the user.
+
+Risk: Model preferences and generation logs may be stored under ~/.openclaw.
+
+Mitigation: Review or clear ~/.openclaw logs and preferences after use when working with sensitive projects.
+
+## Reference(s):
+
+- [IMA Studio](https://imastudio.com)
+- [ClawHub Skill Page](https://clawhub.ai/dai-shuo/skills/ima-ai-image-photo-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON result handling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces generation guidance for agents and image-result URLs from IMA services; requires IMA_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -25,17 +25,29 @@
 
 选择原则：器械不足时优先全身或上下分化；时间充裕且器械齐全可考虑更高频分化。
 
-### 3. 动作选择（数据库驱动）
-从 free-exercise-db 选动作，**禁止凭记忆编造动作名**：
+### 3. 动作选择（数据库驱动 — 强制工具调用）
+从 free-exercise-db 选动作，**禁止凭记忆编造动作名**。**每次生成计划都必须实际调用数据库查询脚本**，不允许仅凭记忆或App报告中的动作名直接使用。
+
+**强制流程（不可跳过）：**
+1. 先用 `--name` 模式模糊匹配候选动作
+2. 如果匹配结果为空或名称不完全一致，必须用 `--name` 换关键词重查
+3. 确认精确匹配后，使用查询结果中的精确 `name` 字段作为 exerciseName
+4. 计划中**所有**动作名都必须经过此流程
 
 ```bash
-# 按肌群+器械查询可用动作
-python scripts/query_exercises.py --muscle chest --equipment dumbbell
-# 按发力类型查询
-python scripts/query_exercises.py --force push --equipment dumbbell
+# 脚本路径（注意不在scripts/根目录，而在skill目录下）
+python skills/kaiji-fitness-coach/scripts/query_exercises.py --name "候选动作名" --format json
+# 按肌群+器械查询可用动作列表（--muscle/--equipment组合在部分数据库有null值时会报错，优先用--name）
+python skills/kaiji-fitness-coach/scripts/query_exercises.py --name "Row" --format json
 ```
 
+⚠️ **已知限制：**
+- `--muscle` + `--equipment` 组合查询在数据库有 null equipment 值时会报 AttributeError，优先用 `--name` 模糊匹配
+- 输出编码在 PowerShell 下有乱码问题，用 `--format json` 或 `cmd /c` 包裹解决
+- 如果数据库中不存在某个动作（如标准哑铃深蹲），说明该动作不在数据库中，保留合理常用名但标注说明
+
 选择原则：
+- **动作轮换**：与上一周期相比，替换 1-2 个辅助/孤立动作为数据库中的新动作（同肌群、同动作模式），主力复合动作保持稳定。替换前先查数据库确认新动作存在且器械匹配，并在计划备注中标注新增/替换的动作
 - 每个训练日先排复合动作（mechanic=compound），再排孤立动作
 - 每个大肌群1-2个复合动作 + 1个孤立动作
 - 小肌群（二头、三头、小腿等）1-2个动作
@@ -58,12 +70,38 @@ python scripts/query_exercises.py --force push --equipment dumbbell
 4. 尊重恢复状态：🔴今日刚练的肌群不排当天，⚠️的排后面
 5. 应用用户画像中的目标/经验/设备/重点肌群
 
-### 6. 计划校验（生成后必做）
-- [ ] 每个exerciseName与数据库匹配（逐个查`--id`）
+### 6. 计划校验（生成后必做 — 强制工具调用）
+**本步骤不可仅凭肉眼检查，必须实际调用数据库验证每个动作名：**
+
+```bash
+# 单个验证（调试或 ≤4 个动作时）
+python skills/kaiji-fitness-coach/scripts/query_exercises.py --name "动作名" --format json
+```
+
+**批量验证（5+ 动作时必须用，2026-08-16 实测 18 动作一次通过，比逐个查询快 10 倍+）：**
+写临时脚本到 workspace `temp/`，用 subprocess 循环调用查询脚本，一次 exec 输出全部动作的状态表：
+
+```python
+# temp/verify_plan_names.py 核心结构
+import json, subprocess, sys
+SCRIPT = r"C:\...\skills\kaiji-fitness-coach\scripts\query_exercises.py"  # 绝对路径
+for name in NAMES:  # 所有待验证 exerciseName
+    p = subprocess.run([sys.executable, SCRIPT, "--name", name, "--format", "json"],
+                       capture_output=True, text=True, encoding="utf-8", errors="replace")
+    data = json.loads(p.stdout)
+    # 汇总输出: EXACT(精确匹配) / PARTIAL:近似名 / NOT_FOUND
+```
+
+⚠️ **Windows/KaijiBot 环境注意**：exec preflight 会拒绝 `cd && python ...` 链式调用（报 "complex interpreter invocation detected"）。必须用脚本**绝对路径**直接调用：`python "C:\...\query_exercises.py" --name "..." --format json`。批量脚本内部用 `sys.executable` + 绝对路径不受此限制。
+
+- [ ] **每个 exerciseName 必须在数据库中精确匹配**（用 `--name` 查询，确认返回结果中有完全一致的名字）
+- [ ] **不匹配的动作必须替换为数据库中的标准名**，不能保留未验证的名字
 - [ ] 总组数合理：每肌群每周10-20组
 - [ ] 推拉平衡：push日和pull日数量大致对等
 - [ ] 无重复动作出现在同一计划中
 - [ ] 应用用户私人约束（如有）
+
+⚠️ 如果校验发现动作名不匹配，修正后重新保存JSON文件，再输出给用户。
 
 ### 7. 输出格式
 

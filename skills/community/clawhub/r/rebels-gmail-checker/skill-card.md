@@ -1,42 +1,60 @@
-## Description: <br>
-Check Gmail for unread inbox emails, filtered by priority, and output a brief digest sorted by HIGH, MEDIUM, and LOW priority while skipping marketing, promotions, social, and update categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check Gmail for unread inbox emails, filtered by priority, and output a brief digest sorted as HIGH, MEDIUM, or LOW while skipping promotions, social, updates, and forums.
 
-## Publisher: <br>
-[99rebels](https://clawhub.ai/user/99rebels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[99rebels](https://clawhub.ai/user/99rebels)
 
-## Use Case: <br>
-External users and agent operators use this skill to check unread Gmail messages, filter out noisy categories, and receive a prioritized inbox digest. It can also guide first-time setup for Google OAuth credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires read-only Gmail OAuth access and stores OAuth credentials locally. <br>
-Mitigation: Grant access only when email checking is intended, run setup on a trusted machine, and keep <DATA_DIR>/gmail.json private. <br>
-Risk: OAuth client secrets and refresh tokens could be exposed if pasted into chat, logs, or shared files. <br>
-Mitigation: Avoid pasting OAuth secrets into chat or logs and store credential files in the configured private data directory. <br>
+## Use Case:
 
+External users and agent operators use this skill to check recent unread Gmail inbox messages and receive a concise priority-ranked digest. It is useful for inbox summaries, new-mail checks, and filtering out low-value Gmail categories.
 
-## Reference(s): <br>
-- [Gmail Setup Guide](references/setup.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/99rebels/rebels-gmail-checker) <br>
-- [Google Cloud Console](https://console.cloud.google.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text digest or structured JSON, with setup guidance and shell commands when credentials are missing.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Unread messages are filtered by configurable labels and sorted by HIGH, MEDIUM, and LOW priority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release metadata) <br>
+Risk: The skill requires read-only Gmail OAuth access and stores a local refresh token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private SKILL_DATA_DIR or operating-system credential store, keep the token file private, and revoke the Google OAuth grant when the skill is no longer needed.
+
+Risk: OAuth client secrets could be exposed if entered into chat or an untrusted session.
+
+Mitigation: Enter OAuth client secrets only in a local, trusted terminal and do not paste them into agent chat.
+
+Risk: The release was flagged for review because it handles private email with weak disclosure around secrets.
+
+Mitigation: Review the setup flow and security guidance before installation, and grant access only if read-only Gmail access is acceptable.
+
+## Reference(s):
+
+- [Gmail Setup Guide](references/setup.md)
+- [ClawHub Skill Page](https://clawhub.ai/99rebels/skills/rebels-gmail-checker)
+- [Publisher Profile](https://clawhub.ai/user/99rebels)
+- [Google Cloud Console](https://console.cloud.google.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text or JSON email digest, with setup guidance in Markdown and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Digest entries include sender, subject, date, and priority; default lookback is 24 hours and can be configured.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

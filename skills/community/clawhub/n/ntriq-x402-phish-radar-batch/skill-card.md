@@ -1,43 +1,60 @@
-## Description: <br>
-Batch phishing detection for up to 500 URLs or domains. Flat $9.00 USDC via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch phishing detection for up to 500 URLs or domains with flat $9.00 USDC payment via x402.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-External users and developers use this skill to submit batches of URLs or domains to a paid phishing-scan API and receive per-target risk levels and visit/block recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid requests can spend USDC through the x402 payment flow. <br>
-Mitigation: Confirm paid requests before sending them and use wallet limits appropriate for the expected scan volume. <br>
-Risk: Submitted URLs or domains may reveal private investigations, internal systems, or sensitive targets to the provider. <br>
-Mitigation: Avoid submitting private internal URLs or sensitive investigation targets unless the provider is trusted with that data. <br>
+## Use Case:
 
+Developers and security teams use this skill to submit batches of URLs or domains to an external phishing-check service and receive risk levels and recommendations for each target.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ntriq-gh/ntriq-x402-phish-radar-batch) <br>
-- [Ntriq homepage](https://x402.ntriq.co.kr) <br>
-- [Phish Radar Batch API endpoint](https://x402.ntriq.co.kr/phish-radar-batch) <br>
-- [x402 protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, Guidance] <br>
-**Output Format:** [JSON response with per-target phishing risk levels and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts up to 500 URLs or domains per paid request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill sends submitted URLs or domains to the publisher's external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit private internal URLs or domains unless sharing them with the publisher is acceptable for the user's environment.
+
+Risk: The skill requires authorization of a disclosed USDC payment before using the service.
+
+Mitigation: Confirm the flat $9.00 USDC price, x402 payment header, and Base mainnet payment context before making requests.
+
+Risk: Automated phishing classifications can affect blocking, avoidance, or investigation decisions.
+
+Mitigation: Review high-impact results before taking irreversible enforcement action.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/ntriq-gh/skills/ntriq-x402-phish-radar-batch)
+- [Publisher profile](https://clawhub.ai/user/ntriq-gh)
+- [Ntriq x402 homepage](https://x402.ntriq.co.kr)
+- [x402 protocol](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown with inline HTTP, bash, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent to call a paid external API that returns per-target JSON phishing risk levels and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

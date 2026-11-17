@@ -55,16 +55,12 @@ GEMINI_CONFIG = ServiceConfig(
     auth_method="api_key",
     auth_env_var="GEMINI_API_KEY",
     auth_check_cmd="gemini auth status",
-    quota_limits={
-        "rpm": 60,
-        "tpm": 1000000,
-        "daily": 1000
-    },
-    models=["gemini-2.5-flash-exp", "gemini-2.5-pro-exp"],
-    default_model="gemini-2.5-flash-exp",
+    quota_limits={"rpm": 60, "tpm": 1000000, "daily": 1000},
+    models=["gemini-3.8-flash", "gemini-3.1-pro-preview"],
+    default_model="gemini-3.8-flash",
     max_context=1000000,
     health_check_cmd="gemini 'ping'",
-    timeout_seconds=60
+    timeout_seconds=60,
 )
 ```
 
@@ -77,14 +73,10 @@ QWEN_CONFIG = ServiceConfig(
     command_template="qwen -p '{prompt}' {files}",
     auth_method="api_key",
     auth_env_var="QWEN_API_KEY",
-    quota_limits={
-        "rpm": 120,
-        "tpm": 2000000,
-        "daily": 2000
-    },
-    models=["qwen-turbo", "qwen-max"],
-    default_model="qwen-turbo",
-    max_context=100000
+    quota_limits={"rpm": 120, "tpm": 2000000, "daily": 2000},
+    models=["qwen3.8-flash", "qwen3.8-max"],
+    default_model="qwen3.8-flash",
+    max_context=100000,
 )
 ```
 

@@ -1,40 +1,56 @@
-## Description: <br>
-UI/UX CraftKit provides searchable UI/UX design guidance for web and mobile agents, including design patterns, color palettes, typography, accessibility, charts, and stack-specific recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UI/UX CraftKit provides searchable UI/UX design intelligence for web and mobile interfaces, including styles, color palettes, font pairings, product recommendations, UX guidelines, chart guidance, and stack-specific implementation notes.
 
-## Publisher: <br>
-[hardikamal](https://clawhub.ai/user/hardikamal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hardikamal](https://clawhub.ai/user/hardikamal)
 
-## Use Case: <br>
-Developers and AI coding assistants use this skill to search ranked UI/UX reference data, generate design-system recommendations, and review interface work for accessibility, responsiveness, and visual consistency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes executable local helper scripts for search and design-system generation. <br>
-Mitigation: Install from a trusted release, review commands before running them, and treat script execution as local code execution. <br>
-Risk: Persistent design-system generation can write or overwrite local Markdown files. <br>
-Mitigation: Use persistence only intentionally, keep project, output, and page names under user control, and review generated files before relying on them. <br>
+## Use Case:
 
+Developers, designers, and AI coding assistants use this skill to retrieve ranked UI/UX recommendations while planning, building, reviewing, or improving web and mobile interfaces. It is suited for interface structure, visual design decisions, accessibility checks, typography, color systems, charts, responsive behavior, and design-system generation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hardikamal/ui-ux-craft-kit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, code, configuration, guidance] <br>
-**Output Format:** [Markdown or text search results, optional JSON, and optional design-system Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local design-system Markdown files when persistence is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Using --persist can create or overwrite Markdown design-system files, including outside the intended folder when paths are crafted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep output paths inside the current project, avoid untrusted project or page names, and review generated files before treating them as authoritative instructions.
+
+Risk: Design recommendations may be incomplete or mismatched for a specific product, audience, accessibility requirement, or brand system.
+
+Mitigation: Use the skill output as design guidance, then validate contrast, keyboard access, responsive behavior, and product-specific requirements during implementation review.
+
+## Reference(s):
+
+- [UI/UX CraftKit README](artifact/README.md)
+- [UI/UX CraftKit Skill Instructions](artifact/SKILL.md)
+- [ClawHub Skill Page](https://clawhub.ai/hardikamal/skills/ui-ux-craft-kit)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/hardikamal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or ASCII text, with optional persisted Markdown design-system files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are ranked from bundled CSV data. Optional persistence can create or overwrite Markdown files under a design-system directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact manifest lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

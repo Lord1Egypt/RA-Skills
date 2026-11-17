@@ -1,43 +1,58 @@
-## Description: <br>
-Convert pitch deck PPT (.pptx) or PDF (.pdf) into beautiful, responsive, self-contained HTML presentations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PPTX or PDF pitch decks into responsive, self-contained HTML presentations for browser-based sharing.
 
-## Publisher: <br>
-[wulaosiji](https://clawhub.ai/user/wulaosiji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wulaosiji](https://clawhub.ai/user/wulaosiji)
 
-## Use Case: <br>
-External users, founders, and developers use this skill to convert existing PPTX or PDF pitch decks into shareable, offline-ready HTML presentations for browser, email, QR code, or mobile viewing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML can contain all extracted text and images from the source deck. <br>
-Mitigation: Convert only decks the user is allowed to redistribute, and review generated HTML before emailing, hosting, or sharing it. <br>
-Risk: A chosen output path can overwrite an existing HTML file. <br>
-Mitigation: Choose output paths deliberately and check for existing files before conversion. <br>
-Risk: Python dependencies are required to parse PPTX and PDF files. <br>
-Mitigation: Install dependencies in a virtual environment before running the converter. <br>
+## Use Case:
 
+Developers, founders, and operators use this skill to convert existing pitch decks or PDFs into a single offline-ready HTML presentation with navigation, fullscreen, mobile, and print support.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/wulaosiji/deck-web-converter) <br>
-- [UniqueClub](https://uniqueclub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and a generated self-contained HTML file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one offline-ready HTML presentation from a PPTX or PDF input, with inline CSS, JavaScript, and embedded images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: The custom color option can inject active script into generated HTML.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted color values, prefer the default color until validation is added, and review generated HTML before sharing or hosting it.
+
+Risk: Generated presentations contain the source deck's text and images.
+
+Mitigation: Treat generated HTML as confidential when the input deck is confidential, and avoid hosting it on authenticated or sensitive origins.
+
+Risk: Runtime dependencies are installed from Python package indexes.
+
+Mitigation: Install dependencies in a virtual environment and prefer pinned, reviewed versions.
+
+## Reference(s):
+
+- [Deck Web Converter ClawHub Listing](https://clawhub.ai/wulaosiji/skills/deck-web-converter)
+- [UniqueClub](https://uniqueclub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell commands that produce a self-contained HTML file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML may contain the original deck's confidential text and images.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

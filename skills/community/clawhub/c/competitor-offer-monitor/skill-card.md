@@ -1,41 +1,59 @@
-## Description: <br>
-Monitor major competitors' discounting and promotional moves, diagnose whether those moves plausibly caused a sudden drop in your own conversion rate, and design price-power responses including price-match and value-defense playbooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors competitor discounts and promotional offers, evaluates whether they plausibly explain conversion-rate drops, and produces disciplined price-match or value-defense response playbooks.
 
-## Publisher: <br>
-[rijoyai](https://clawhub.ai/user/rijoyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-Commerce, growth, and pricing teams use this skill to investigate conversion or checkout drops that may be connected to competitor discounts, price matching, promo calendar clashes, or marketplace price divergence. It produces a structured diagnostic with timeline alignment, alternative hypotheses, a response matrix, margin guardrails, and measurement guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing or promotion changes based on incomplete evidence could reduce margin or misattribute a conversion drop. <br>
-Mitigation: Verify internal causes such as site incidents, tracking changes, stockouts, payment failures, and traffic mix before changing prices. <br>
-Risk: Price matching, MAP, or channel-pricing decisions may require business or legal approval. <br>
-Mitigation: Involve business or legal owners for binding pricing decisions, MAP constraints, and channel-conflict questions. <br>
+## Use Case:
 
+Commerce, ecommerce, pricing, and growth teams use this skill to investigate conversion or checkout drops where competitor discounting, price gaps, promotional calendars, or price-match policies may be involved. It helps structure timelines, competing hypotheses, response matrices, guardrails, and measurement plans before committing margin.
 
-## Reference(s): <br>
-- [Competitor offer and price-power playbook](references/offer_monitor_playbook.md) <br>
-- [ClawHub skill page](https://clawhub.ai/rijoyai/competitor-offer-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown advisory report with a structured response matrix] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, minimum data checklists, decision rules, guardrails, and measurement plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may process or reason about sensitive commercial information such as margins, MAP rules, inventory, conversion metrics, and competitor pricing observations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only necessary business data with the agent and keep margin, channel, and conversion details within approved internal workflows.
+
+Risk: Pricing, MAP, and price-match recommendations can affect margin, channel relationships, or legal obligations.
+
+Mitigation: Validate final actions with internal finance, channel, and legal stakeholders before changing public pricing or policy.
+
+Risk: Competitor promotions can be incorrectly blamed for conversion declines when other factors such as creative fatigue, stock issues, site incidents, seasonality, or traffic mix are responsible.
+
+Mitigation: Use timeline alignment, segmentation, holdouts where available, and alternative hypotheses before committing margin to a promotional response.
+
+## Reference(s):
+
+- [Competitor offer and price-power playbook](artifact/references/offer_monitor_playbook.md)
+- [ClawHub skill page](https://clawhub.ai/rijoyai/skills/competitor-offer-monitor)
+- [Publisher profile](https://clawhub.ai/user/rijoyai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured tables, checklists, and concise prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Strategy-focused advisory output; no executable code is required by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

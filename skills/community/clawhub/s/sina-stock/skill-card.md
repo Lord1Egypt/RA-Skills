@@ -1,42 +1,54 @@
-## Description: <br>
-Fetches real-time China A-share stock and market-index quotes from the Sina Finance API without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sina Stock helps agents retrieve real-time China A-share index and stock quote data from the Sina Finance API without an API key.
 
-## Publisher: <br>
-[Sunnyfo](https://clawhub.ai/user/Sunnyfo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunnyfo](https://clawhub.ai/user/sunnyfo)
 
-## Use Case: <br>
-Developers and analysts use this skill to query A-share indices and individual stock codes, then receive current price, change, volume, turnover, and related quote fields as text or JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Queried stock codes are sent to Sina Finance. <br>
-Mitigation: Use only intended public stock or index codes, and avoid entering account identifiers, private notes, or unrelated sensitive data as stock-code input. <br>
-Risk: Quote data may be delayed, unavailable outside trading hours, or unsuitable as investment advice. <br>
-Mitigation: Treat results as informational market data and verify important decisions against an authoritative financial source. <br>
+## Use Case:
 
+Developers, analysts, and external users can use this skill to query China A-share market indices or individual stock quotes and receive current price, change, volume, turnover, and related quote fields. It is useful for quick market checks, watchlist monitoring, and simple data collection through a CLI workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Sunnyfo/sina-stock) <br>
-- [Sunnyfo publisher profile](https://clawhub.ai/user/Sunnyfo) <br>
-- [Sina Finance](https://finance.sina.com.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime output is plain text, simplified text, or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stock codes are supplied as comma-separated or space-separated command arguments; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Queried A-share stock codes are sent to Sina Finance over the network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where outbound requests to Sina Finance are approved, and avoid it in restricted, regulated, or air-gapped environments unless that egress is authorized.
+
+Risk: Market quote data may be delayed, unavailable outside trading hours, or unsuitable as investment advice.
+
+Mitigation: Treat results as informational quote data, verify important decisions against authoritative financial sources, and do not rely on the skill for investment recommendations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sunnyfo/skills/sina-stock)
+- [Sina Finance](https://finance.sina.com.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text, JSON, or simplified text from CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires outbound network access to Sina Finance; no API key is required.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

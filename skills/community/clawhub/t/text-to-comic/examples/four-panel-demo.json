@@ -1,0 +1,152 @@
+{
+  "story_id": "comic_ci_lockfile_demo",
+  "visual_form": "comic",
+  "format": "4-panel",
+  "genre": "comedy",
+  "language": "zh-CN",
+  "style_id": "slice-of-life-color",
+  "aspect_ratio": "4:5",
+  "source_summary": "一个程序员以为 CI 挂了是环境问题，最后发现是自己忘了提交 lockfile。",
+  "target_audience": "software teams",
+  "character_bible": [
+    {
+      "character_id": "char_xiaochen",
+      "name": "小陈",
+      "appearance": {
+        "age_presentation": "young adult",
+        "hair": "short black hair",
+        "face": "round face",
+        "eyewear": "round glasses",
+        "outfit": "blue hoodie",
+        "accent_color": "blue",
+        "build": "slim",
+        "vibe": "slightly anxious but earnest"
+      },
+      "must_keep": [
+        "short black hair",
+        "round glasses",
+        "slim",
+        "blue hoodie"
+      ]
+    }
+  ],
+  "panels": [
+    {
+      "panel_id": 1,
+      "narrative_role": "setup",
+      "shot": "medium",
+      "scene": "office desk with laptop showing a red CI failure screen",
+      "scene_tag": "INDOOR_OFFICE",
+      "action": "小陈盯着构建失败页面，表情困惑。",
+      "emotion": "confused",
+      "dialogue": [
+        {
+          "speaker": "小陈",
+          "text": "怎么又挂了？",
+          "language": "zh-CN"
+        }
+      ],
+      "caption": "周一早上，CI 先给你一个下马威。",
+      "must_include": [
+        "laptop screen glow",
+        "blue hoodie",
+        "round glasses"
+      ],
+      "avoid": [
+        "extra coworkers",
+        "busy background"
+      ],
+      "visual_priority": "character reaction",
+      "text_budget": 12
+    },
+    {
+      "panel_id": 2,
+      "narrative_role": "build",
+      "shot": "wide",
+      "scene": "small team chat window and terminal logs floating around the desk scene",
+      "scene_tag": "INDOOR_OFFICE",
+      "action": "小陈一边查日志，一边怀疑是不是测试环境炸了。",
+      "emotion": "tense",
+      "dialogue": [
+        {
+          "speaker": "小陈",
+          "text": "是不是测试环境又抽风？",
+          "language": "zh-CN"
+        }
+      ],
+      "caption": "先怀疑网络，再怀疑平台，再怀疑人生。",
+      "must_include": [
+        "terminal logs",
+        "chat window hint"
+      ],
+      "avoid": [
+        "too many tiny unreadable UI elements"
+      ],
+      "visual_priority": "debug chaos",
+      "text_budget": 16,
+      "continuity_from_panel": 1
+    },
+    {
+      "panel_id": 3,
+      "narrative_role": "twist",
+      "shot": "close-up",
+      "scene": "git diff window revealing a missing lockfile",
+      "scene_tag": "INDOOR_OFFICE",
+      "action": "小陈突然发现变更列表里少了 lockfile，瞳孔地震。",
+      "emotion": "shocked",
+      "dialogue": [
+        {
+          "speaker": "小陈",
+          "text": "等等，我 lockfile 没提交？",
+          "language": "zh-CN"
+        }
+      ],
+      "caption": "真正的 bug，往往离你最近。",
+      "must_include": [
+        "git diff clue",
+        "surprised face"
+      ],
+      "avoid": [
+        "extra characters",
+        "overly complex code blocks"
+      ],
+      "visual_priority": "revelation",
+      "text_budget": 18,
+      "continuity_from_panel": 2
+    },
+    {
+      "panel_id": 4,
+      "narrative_role": "payoff",
+      "shot": "medium",
+      "scene": "same desk, build passing in green after the fix",
+      "scene_tag": "INDOOR_OFFICE",
+      "action": "小陈尴尬又释然地笑着，重新提交后构建通过。",
+      "emotion": "relieved",
+      "dialogue": [
+        {
+          "speaker": "小陈",
+          "text": "原来是我自己。",
+          "language": "zh-CN"
+        }
+      ],
+      "caption": "CI 没针对你，只是它记性比你好。",
+      "must_include": [
+        "green success status",
+        "same blue hoodie",
+        "gentle embarrassed smile"
+      ],
+      "avoid": [
+        "dramatic crowd celebration"
+      ],
+      "visual_priority": "comic payoff",
+      "text_budget": 10,
+      "continuity_from_panel": 3
+    }
+  ],
+  "assembly": {
+    "layout": "2x2",
+    "gutter_px": 24,
+    "caption_mode": "below-panel",
+    "background": "#FAF8F5"
+  }
+}

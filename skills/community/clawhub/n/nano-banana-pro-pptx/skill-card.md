@@ -1,42 +1,54 @@
-## Description: <br>
-Generates PowerPoint presentations from a topic prompt by using Gemini to plan each slide and create full-bleed slide images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate PowerPoint presentations with AI images using Gemini. Each slide is a full-bleed image. Use for creating visual presentations, slideshows, or image-based decks from a topic prompt. Requires --slides N.
 
-## Publisher: <br>
-[jinpeng](https://clawhub.ai/user/jinpeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinpeng](https://clawhub.ai/user/jinpeng)
 
-## Use Case: <br>
-Developers and presentation creators use this skill to generate visual PowerPoint decks from a topic prompt, with Gemini producing the slide outline and image-based slide designs. It is suited for drafts at 1K resolution and final decks at 2K or 4K when higher image quality is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gemini API keys are sensitive credentials. <br>
-Mitigation: Provide the key through a trusted environment variable or secure runtime secret, and avoid exposing it in shared chat transcripts, logs, or checked-in files. <br>
-Risk: Presentation prompts and generated content are sent to Gemini or to the configured custom API endpoint. <br>
-Mitigation: Use only trusted Gemini endpoints and avoid confidential or regulated content unless that endpoint is approved for the data. <br>
-Risk: The script creates a local output directory containing intermediate slide plans, image prompts, request logs, PNG images, and the final PPTX. <br>
-Mitigation: Review the output folder before sharing, and remove intermediate files when they are no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to create image-based PowerPoint decks from a topic prompt, with Gemini generating both the slide narrative and full-bleed slide images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jinpeng/nano-banana-pro-pptx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with a bash command; local PPTX, PNG, JSON, and log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Gemini API key, accepts an optional custom Gemini base URL, supports 1-50 slides, and creates a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Presentation prompts and generated slide content are sent to Gemini or the configured proxy endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential material unless external processing is approved, and use an approved endpoint and credential handling process.
+
+Risk: Runtime dependencies and local output files can affect supply-chain reproducibility and data handling.
+
+Mitigation: Run the skill in an isolated environment with pinned dependencies when reproducibility matters, and review generated .pptx, image, JSON, and log files before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinpeng/skills/nano-banana-pro-pptx)
+- [Publisher profile](https://clawhub.ai/user/jinpeng)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions]
+
+**Output Format:** [PowerPoint .pptx files with generated PNG slide images, JSON planning artifacts, and request logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Gemini API key; supports 1 to 50 slides and 1K, 2K, or 4K image resolution.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

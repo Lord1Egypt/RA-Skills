@@ -1,41 +1,54 @@
-## Description: <br>
-Ethical web data extraction with robots exclusion protocol adherence, throttled scraping requests, and privacy-compliant handling ("Scrape responsibly!"). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ethical web data extraction with robots exclusion protocol adherence, throttled scraping requests, and privacy-compliant handling ("Scrape responsibly!").
 
-## Publisher: <br>
-[10OSS](https://clawhub.ai/user/10OSS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[10oss](https://clawhub.ai/user/10oss)
 
-## Use Case: <br>
-Developers and agents use Skrape to plan responsible web data extraction, including checking access rules, preferring official APIs, throttling requests, and limiting retention of personal or copyrighted data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The sample robots.txt checker can allow scraping when robots.txt cannot be evaluated conclusively. <br>
-Mitigation: Review robots.txt and site terms manually, prefer official APIs, and change the checker to fail closed when evaluation is inconclusive. <br>
-Risk: Scraping can collect personal data, authenticated content, or sensitive URLs that should not be stored or logged. <br>
-Mitigation: Avoid authenticated or personal data unless clearly permitted, limit retention, and redact sensitive URLs from logs. <br>
+## Use Case:
 
+Developers and agents use Skrape to plan and produce responsible web-scraping guidance, JavaScript implementation patterns, throttled request handling, audit logging, and data-stewardship checks before extracting public web data.
 
-## Reference(s): <br>
-- [Skrape skill instructions](artifact/SKILL.md) <br>
-- [Implementation patterns](artifact/code.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code] <br>
-**Output Format:** [Markdown with JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only release; sample scraping code should be reviewed before use on real sites.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The included robots.txt verification pattern can permit scraping when permission was not actually verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the code as guidance, replace the robots.txt checker with a maintained RFC-compliant parser, and fail closed or require explicit user approval when verification is unknown.
+
+Risk: Web scraping can create legal, privacy, or platform-terms exposure when applied to restricted, personal, or copyrighted content.
+
+Mitigation: Review robots.txt, terms of service, available APIs, data classification, and applicable privacy obligations for each target before collecting or retaining data.
+
+## Reference(s):
+
+- [Skrape ClawHub Skill Page](https://clawhub.ai/10oss/skills/skrape)
+- [Implementation Patterns](artifact/code.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript code blocks and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include compliance checks, throttling and backoff patterns, audit logging suggestions, and data-handling cautions.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

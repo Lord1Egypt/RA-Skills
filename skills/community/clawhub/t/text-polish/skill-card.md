@@ -1,39 +1,56 @@
-## Description: <br>
-Polishes Chinese text by correcting typos, improving expression, fixing semantic inconsistencies, and keeping style consistent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polishes and proofreads Chinese text by correcting typos, improving expression, fixing semantic inconsistencies, and keeping style consistent.
 
-## Publisher: <br>
-[liujw0214](https://clawhub.ai/user/liujw0214) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liujw0214](https://clawhub.ai/user/liujw0214)
 
-## Use Case: <br>
-External users and employees use this skill to polish Chinese emails, documents, reports, messages, translated text, and meeting notes while preserving the original meaning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liujw0214/text-polish) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+Writers, students, and professionals use this skill to proofread and polish Chinese emails, documents, reports, messages, translated text, and meeting notes while preserving the original meaning.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with polished content and optional change notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves the original meaning; review polished output before sending important text.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Broad requests such as "check this text" may invoke the skill during ordinary editing tasks.
+
+Mitigation: Review important edits before sending or publishing, especially when the request was broad or ambiguous.
+
+Risk: Proofreading and polishing can unintentionally shift nuance in sensitive text.
+
+Mitigation: Compare the polished version against the original and reject changes that alter the intended meaning or add unsupported information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liujw0214/skills/text-polish)
+- [README.md](artifact/README.md)
+- [English Listing](artifact/LISTING_EN.md)
+- [Chinese Listing](artifact/LISTING_ZH.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown with an optional modification summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves the user's intended meaning and may include concise change notes when useful.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

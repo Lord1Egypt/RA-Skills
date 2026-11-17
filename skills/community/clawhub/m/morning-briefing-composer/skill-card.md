@@ -1,41 +1,59 @@
-## Description: <br>
-Aggregates weather, game updates, and concert data into a daily markdown briefing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates weather, game updates, and concert data into a daily markdown briefing.
 
-## Publisher: <br>
-[PatFitzner](https://clawhub.ai/user/PatFitzner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patfitzner](https://clawhub.ai/user/patfitzner)
 
-## Use Case: <br>
-External users use this skill to compose a local daily briefing from configured weather, game update, and concert data sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured weather location is sent to wttr.in when weather is enabled. <br>
-Mitigation: Review ~/.openclaw/config/morning-briefing.json before use and disable weather or change the location if that disclosure is not acceptable. <br>
-Risk: Configured upstream data files and jq templates can influence markdown that is later presented verbatim to the user. <br>
-Mitigation: Use trusted data files and templates, and review source configuration before relying on the generated briefing. <br>
+## Use Case:
 
+OpenClaw users use this skill to compose a daily briefing from weather, game updates, and concert data, then present the generated markdown briefing verbatim.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PatFitzner/morning-briefing-composer) <br>
-- [Publisher profile](https://clawhub.ai/user/PatFitzner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown file with shell command output path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a composed briefing to artifact-local data/briefing.md and instructs the agent to present the generated markdown verbatim.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The configured weather location is sent to wttr.in when weather is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable weather in the configuration or use a non-sensitive location if location disclosure is a concern.
+
+Risk: External briefing content is displayed exactly as generated.
+
+Mitigation: Treat links and instructions in generated briefings as untrusted and review content before acting on it.
+
+Risk: Routine use depends on external content and transport behavior.
+
+Mitigation: Prefer HTTPS and validation before relying on the generated briefing in regular workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/patfitzner/skills/morning-briefing-composer)
+- [Publisher Profile](https://clawhub.ai/user/patfitzner)
+- [wttr.in Weather Service](https://wttr.in/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown briefing file plus shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated briefing should be presented verbatim; configuration controls weather, source enablement, and filtering.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

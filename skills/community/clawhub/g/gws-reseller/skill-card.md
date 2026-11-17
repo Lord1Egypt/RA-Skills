@@ -1,43 +1,55 @@
-## Description: <br>
-Google Workspace Reseller: Manage Workspace subscriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace Reseller: Manage Workspace subscriptions.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Google Workspace reseller administrators and operators use this skill to inspect and manage reseller customers, notification watches, and subscriptions through the gws CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward Google Workspace reseller actions that affect customer billing, subscriptions, transfers, paid service starts, suspensions, and cancellations. <br>
-Mitigation: Require explicit human approval before create, update, suspend, cancel, transfer, plan, seat, renewal, or paid-service actions. <br>
-Risk: Misconfigured credentials or scopes could expose unintended reseller customers or subscriptions. <br>
-Mitigation: Verify the gws CLI and shared authentication setup, and restrict credentials to the intended reseller account and scopes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/googleworkspace-bot/gws-reseller) <br>
-- [Google Workspace Reseller API: Manage Customers](https://developers.google.com/workspace/admin/reseller/v1/how-tos/manage_customers) <br>
-- [Google Workspace Reseller API: Manage Subscriptions](https://developers.google.com/workspace/admin/reseller/v1/how-tos/manage_subscriptions) <br>
-- [Google Workspace Reseller API: Customers Insert Reference](https://developers.google.com/workspace/admin/reseller/v1/reference/customers/insert.html) <br>
-- [Google Workspace Admin Help: Verify Your Domain](https://support.google.com/a/answer/9122284) <br>
+## Use Case:
 
+Developers and administrators use this skill to inspect Google Workspace Reseller CLI resources and run customer, subscription, and reseller notification operations.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and CLI method guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses gws reseller help and schema discovery before API operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill documents commands that can change paid customer subscriptions.
+
+Mitigation: Use tightly scoped Google Workspace reseller credentials and confirm the customer ID, subscription ID, requested change, and expected service or billing impact before destructive or billing-affecting calls.
+
+Risk: The skill depends on external Google Workspace reseller authentication and the gws CLI being configured correctly.
+
+Mitigation: Review the shared Google Workspace authentication guidance and inspect each method with gws schema before building parameters for account or subscription changes.
+
+## Reference(s):
+
+- [Google Workspace Reseller API: Manage customers](https://developers.google.com/workspace/admin/reseller/v1/how-tos/manage_customers)
+- [Google Workspace Reseller API: Manage subscriptions](https://developers.google.com/workspace/admin/reseller/v1/how-tos/manage_subscriptions)
+- [Google Workspace Reseller API: Order a new customer account](https://developers.google.com/workspace/admin/reseller/v1/reference/customers/insert.html)
+- [Google Workspace Admin Help: Verify your domain](https://support.google.com/a/answer/9122284)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI and prior Google Workspace reseller authentication.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Security scanner for OpenClaw skills that detects malicious backdoors, suspicious code patterns, data exfiltration risks, and security vulnerabilities in Python, JavaScript, and Shell code, then provides a security score and installation recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security scanner for OpenClaw skills that detects malicious backdoors, suspicious code patterns, data exfiltration risks, and security vulnerabilities in Python, JavaScript, and Shell code.
 
-## Publisher: <br>
-[CookieMikeLiu](https://clawhub.ai/user/CookieMikeLiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cookiemikeliu](https://clawhub.ai/user/cookiemikeliu)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to statically scan OpenClaw skills before installation, update, or audit, then review findings, scores, verdicts, and installation recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated reports can include snippets from scanned files. <br>
-Mitigation: Review reports before sharing them and scan only the skill folders intended for review. <br>
-Risk: Static scanner findings can require human judgment, including false positives or missed behavior outside the covered rules. <br>
-Mitigation: Inspect flagged code, compare behavior with the skill documentation, and use strict mode for untrusted sources. <br>
-Risk: Untrusted skill archives may contain files that should not be unpacked directly into a trusted workspace. <br>
-Mitigation: Use sandboxed copies or temporary directories when scanning untrusted .skill archives. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Security Scanner Detection Rules Reference](references/rules-reference.md) <br>
+## Use Case:
 
+Developers and engineers use this skill when installing, updating, or auditing OpenClaw skills to run static checks for risky code patterns and produce reviewable security reports.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Terminal summaries plus JSON or Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes indicate PASS or REVIEW, WARNING, and REJECT outcomes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Scan results can overstate how complete the review was, including PASS results.
+
+Mitigation: Treat scanner output as triage, manually inspect unsupported files, and confirm flagged behavior matches the skill documentation before installation.
+
+Risk: The install guard handles untrusted .skill archives unsafely and archive limits and temporary-directory cleanup are not evidenced.
+
+Mitigation: Run scans only on skill copies in disposable directories, avoid elevated privileges, and be careful scanning .skill archives until archive limits and cleanup are added.
+
+## Reference(s):
+
+- [Security Scanner - Detection Rules Reference](references/rules-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and generated text, JSON, or Markdown scan reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include verdict, security score, risk distribution, findings, file locations, snippets, recommendations, and exit codes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

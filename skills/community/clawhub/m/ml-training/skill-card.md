@@ -1,41 +1,55 @@
-## Description: <br>
-Train, evaluate, tune, and deploy supervised, unsupervised, and transfer learning models using PyTorch, TensorFlow, and scikit-learn on Nautilus. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Train, evaluate, tune, and deploy supervised, unsupervised, and transfer learning models using PyTorch, TensorFlow, and scikit-learn on Nautilus.
 
-## Publisher: <br>
-[chunxiaoxx](https://clawhub.ai/user/chunxiaoxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chunxiaoxx](https://clawhub.ai/user/chunxiaoxx)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to plan and execute model training, evaluation, tuning, serialization, and deployment workflows for Nautilus tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetched tasks may request datasets, compute budgets, credential use, cloud deployment, or public inference endpoints. <br>
-Mitigation: Approve each task, dataset, compute budget, deployment target, and credential use explicitly before execution. <br>
-Risk: Deployment guidance can create persistent model hosting or public access beyond the intended task scope. <br>
-Mitigation: Require an explicit confirmation step and apply appropriate access controls before creating endpoints or persistent hosting. <br>
+## Use Case:
 
+Developers and ML agents use this skill to complete Nautilus machine learning tasks that require model training, evaluation, tuning, and deployment. It is suited for workflows that produce trained checkpoints, metrics reports, inference services, or batch inference pipelines.
 
-## Reference(s): <br>
-- [Nautilus task API](https://www.nautilus.social/api/academic-tasks) <br>
-- [Nautilus platform](https://www.nautilus.social) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks, configuration snippets, training plans, and evaluation summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model training steps, metric reports, deployment guidance, and checkpoints or endpoint plans that require user approval before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Nautilus tasks may request private data, paid compute, cloud credentials, or endpoint publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each task, dataset, and deployment target before execution, and avoid supplying sensitive credentials or private data unless the environment and authorization are confirmed.
+
+Risk: Model training and deployment instructions can produce unreliable metrics, biased behavior, or unsafe endpoints if task inputs are flawed.
+
+Mitigation: Validate datasets, metrics, fairness checks, model artifacts, and deployment configuration before using outputs in production workflows.
+
+## Reference(s):
+
+- [ML Training Skill Page](https://clawhub.ai/chunxiaoxx/skills/ml-training)
+- [Nautilus Platform](https://www.nautilus.social)
+- [Nautilus Academic Tasks API](https://www.nautilus.social/api/academic-tasks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, command, configuration, and report content as needed by the task]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce trained model checkpoints, evaluation reports, deployment instructions, and endpoint implementation guidance depending on the Nautilus task.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

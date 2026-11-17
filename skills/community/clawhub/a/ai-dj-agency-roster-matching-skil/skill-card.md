@@ -1,43 +1,60 @@
-## Description: <br>
-Run the AI DJ Agency pipeline - onboard DJs into the roster and match event organisers with qualified talent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run the AI DJ Agency pipeline to onboard DJs into a local roster and match event organisers with qualified talent.
 
-## Publisher: <br>
-[blockchain-records](https://clawhub.ai/user/blockchain-records) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blockchain-records](https://clawhub.ai/user/blockchain-records)
 
-## Use Case: <br>
-External event organisers use this skill to collect event briefs and find rostered DJs by location, genre, DJ type, and budget. DJs use the intake flow to consent to being recorded in a local roster for booking outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The roster stores DJ names, locations, availability, fee ranges, and contact handles locally. <br>
-Mitigation: Collect only consented contact details, keep the roster private or encrypted, and avoid committing it unless that is intended. <br>
-Risk: City and country lookups may be sent to Nominatim for geocoding. <br>
-Mitigation: Use the matcher only when external geocoding is acceptable, and review whether location lookup disclosure is needed for the deployment. <br>
-Risk: The skill requires replies to include social and Discord calls to action. <br>
-Mitigation: Remove or adapt the calls to action if they do not fit the operator's communications policy or user expectations. <br>
+## Use Case:
 
+External DJs use the skill to submit roster profiles with booking contact details. Event organisers use it to find rostered DJs filtered by location, genre, DJ type, and budget.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blockchain-records/ai-dj-agency-roster-matching-skil) <br>
-- [Nominatim geocoding endpoint](https://nominatim.openstreetmap.org/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Files] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON candidate output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper creates and reads local roster and geocache JSON files under data/ when commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: DJ names, locations, availability, fee ranges, notes, and contact handles are stored locally in plaintext JSON.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect contact data only with consent, keep the data directory local or encrypted, avoid committing roster data unless sharing is intentional, and define retention and deletion controls before production use.
+
+Risk: City and country data may be sent to an external geocoding service during add and match workflows.
+
+Mitigation: Disclose the geocoding lookup to users, allow operation without geocoding when needed, and confirm that location data sharing is acceptable for the deployment.
+
+Risk: The skill instructs agents to append promotional X and Discord links to every interaction.
+
+Mitigation: Review and adapt the closing message so promotional links are appropriate, disclosed, and compliant with the deployment context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blockchain-records/skills/ai-dj-agency-roster-matching-skil)
+- [Skill instructions](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Nominatim geocoding service](https://nominatim.openstreetmap.org/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and JSON candidate data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local plaintext JSON files for roster and geocache data.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

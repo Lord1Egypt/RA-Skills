@@ -1,44 +1,61 @@
-## Description: <br>
-Searches, reviews, and installs skills from skill4agent.com using CLI commands or HTTPS API calls, with Chinese-language support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search, read, and install skills from the skill4agent online skill library, with Chinese-language support.
 
-## Publisher: <br>
-[osulivan](https://clawhub.ai/user/osulivan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[osulivan](https://clawhub.ai/user/osulivan)
 
-## Use Case: <br>
-Developers and agent users use this skill to find relevant skills, inspect their details, and install selected skills from skill4agent.com. It supports CLI-based workflows through npx and direct HTTPS API workflows when Node.js is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide installation of remote skills that persist locally and may affect future agent sessions. <br>
-Mitigation: Install only trusted skills, review skill details before installation, and inspect any script warnings before allowing installation. <br>
-Risk: Candidate skills may include scripts or sensitive code flagged by skill4agent metadata. <br>
-Mitigation: Require user approval before installing flagged skills and recheck the reported script locations after installation. <br>
+## Use Case:
 
+Developers and agents use this skill to discover relevant online skills, inspect skill details, and install selected skills through the skill4agent CLI or HTTPS API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/osulivan/skill4agent-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/osulivan) <br>
-- [skill4agent source site](https://www.skill4agent.com) <br>
-- [skill4agent npm package](https://www.npmjs.com/package/skill4agent) <br>
-- [skill4agent API](https://skill4agent.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, API URLs, and JSON-oriented result handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce skill search summaries, candidate recommendations, installation commands, and security-review guidance for downloaded skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Mutable npm execution and remote downloads can change behavior between reviews.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed skill4agent CLI version and inspect downloaded skills before activation.
+
+Risk: Installer workflows may be run in projects or shells that expose sensitive credentials.
+
+Mitigation: Run search, read, and install commands from a low-privilege environment without sensitive credentials or private project files.
+
+Risk: The skill depends on the skill4agent online service and downloaded third-party skill content.
+
+Mitigation: Review returned skill metadata, script safety fields, and downloaded files before recommending or activating an installed skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/osulivan/skills/skill4agent-cn)
+- [Publisher profile](https://clawhub.ai/user/osulivan)
+- [skill4agent website](https://www.skill4agent.com)
+- [skill4agent npm package](https://www.npmjs.com/package/skill4agent)
+- [skill4agent API](https://skill4agent.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and API URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference JSON responses from skill4agent search/read APIs; installation can create local skill files when executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Generate paid ecommerce ad copy in batch with SkillPay billing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates five paid, platform-adapted ecommerce ad copies from product details after a SkillPay billing check.
 
-## Publisher: <br>
-[wingogx](https://clawhub.ai/user/wingogx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wingogx](https://clawhub.ai/user/wingogx)
 
-## Use Case: <br>
-External users and ecommerce operators use this skill to generate five platform-adapted ad copy variants from a product name, selling points, and target audience after a SkillPay charge. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Each successful run may charge 0.10 USDT through SkillPay. <br>
-Mitigation: Use the skill only when the user intends to run a paid generation and clearly account for the charge before execution. <br>
-Risk: The billing request sends user ID, product name, and target audience to the configured SkillPay endpoint. <br>
-Mitigation: Keep endpoint variables pointed only at trusted SkillPay URLs and avoid submitting sensitive product or audience data unless that sharing is acceptable. <br>
-Risk: A SkillPay API key may be used for authorization. <br>
-Mitigation: Store SKILLPAY_API_KEY only in environment variables and do not print or hardcode the token. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SkillPay API Contract](references/skillpay-api-contract.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wingogx/ecommerce-ad-copy-generator) <br>
+## Use Case:
 
+External ecommerce operators and developers can use this skill to generate ready-to-use Facebook, Google, and TikTok ad copy from a product name, selling points, and target audience. It is intended for paid workflows that require structured JSON output and billing failure handling.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Structured JSON containing pricing status, validated input, and five ad copy objects with platform, headline, body, and CTA fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns validation and billing error objects when input is invalid, billing fails, or balance is insufficient.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Billing checks may approve paid generation without verified payment.
+
+Mitigation: Review before installing in a paid workflow and require an explicit successful billing response with a transaction id before generation.
+
+Risk: The billing endpoint and token handling are under-scoped for use with SKILLPAY_API_KEY.
+
+Mitigation: Restrict the billing endpoint to the expected SkillPay service and keep API keys in environment variables.
+
+Risk: Generated copy appears scoped to Chinese-language output unless locale behavior is expanded or documented.
+
+Mitigation: Confirm the target locale before use and add locale controls if non-Chinese ad copy is required.
+
+## Reference(s):
+
+- [SkillPay API Contract](references/skillpay-api-contract.md)
+- [ClawHub Skill Page](https://clawhub.ai/wingogx/skills/ecommerce-ad-copy-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [Structured JSON with generated ad copy, pricing metadata, and billing or validation error fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful runs return exactly five ad copy items across Facebook, Google, and TikTok.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

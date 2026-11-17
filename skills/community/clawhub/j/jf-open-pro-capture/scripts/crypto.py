@@ -167,11 +167,11 @@ def generate_signature(uuid: str, app_key: str, app_secret: str,
 
 # 测试
 if __name__ == "__main__":
-    uuid = "uuidxxxx"
-    app_key = "appkeyxxxx"
-    app_secret = "90f8bc17be2a425db6068c749dee4f5d"
-    time_millis = "00000011645153792342"
-    move_card = 2
+    uuid = "your-uuid-here"
+    app_key = "your-appkey-here"
+    app_secret = "your-secret-here"
+    time_millis = "your-time-millis"
+    move_card = "your-movecard-here"
     
     signature = generate_signature(uuid, app_key, app_secret, time_millis, move_card)
     

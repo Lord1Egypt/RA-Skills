@@ -1,41 +1,56 @@
-## Description: <br>
-Run agent-browser and Chrome inside Vercel Sandbox microVMs for browser automation from any Vercel-deployed app. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run agent-browser + Chrome inside Vercel Sandbox microVMs for browser automation from any Vercel-deployed app.
 
-## Publisher: <br>
-[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to run browser automation from Vercel-deployed applications, including screenshots, accessibility snapshots, multi-step workflows, and scheduled browser tasks in ephemeral Vercel Sandbox VMs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Installing browser automation dependencies and Chromium in sandbox snapshots can introduce supply-chain and runtime dependency risk.
+
+Mitigation: Pin package versions, use a lockfile or controlled snapshot build, and rebuild snapshots through a reviewed release process.
+
+Risk: Browser automation can submit forms, authenticate to sites, or run recurring jobs against third-party services.
+
+Mitigation: Require explicit user approval before form submission, site authentication, or scheduled recurring automation.
+
+Risk: Vercel tokens and project identifiers may be used for local development or explicit sandbox authentication.
+
+Mitigation: Keep Vercel tokens scoped, store credentials in managed environment variables, and avoid exposing them in logs or generated output.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers use this skill to add browser automation to Vercel-deployed applications without bundling Chrome into the app itself. It helps with screenshots, accessibility snapshots, multi-step browser workflows, scheduled checks, and reusable sandbox setup. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Remote browser automation can submit forms, navigate authenticated sites, or change account state if used without review. <br>
-Mitigation: Restrict target sites and require confirmation before submitting forms or taking actions that alter account state. <br>
-Risk: Vercel credentials, browser sessions, or other secrets could be exposed through client-side code, logs, or reusable sandbox snapshots. <br>
-Mitigation: Keep credentials server-side, avoid logging secrets, and do not save private sessions or secrets into reusable sandbox snapshots. <br>
-Risk: Unpinned browser automation dependencies or snapshot contents can change behavior between runs. <br>
-Mitigation: Pin production dependencies and rebuild snapshots through a reviewed release process. <br>
+**Output Format:** [Markdown guidance with TypeScript, shell, JSON, and environment variable examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include browser automation setup steps, sandbox snapshot guidance, authentication variables, and framework-specific integration notes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with TypeScript, JSON, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes environment variable guidance for Vercel credentials and optional sandbox snapshot IDs.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

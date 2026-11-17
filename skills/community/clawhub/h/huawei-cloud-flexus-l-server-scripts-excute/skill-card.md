@@ -1,45 +1,60 @@
-## Description: <br>
-Based on Huawei Cloud COC (Cloud Operations Center) APIs for script management and remote execution, this skill supports creating Shell, Python, and Bat scripts and batch execution on target host instances via UniAgent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Huawei Cloud COC scripts and run Shell, Python, or Bat scripts across Flexus L instances.
 
-## Publisher: <br>
-[huaweiclouddev](https://clawhub.ai/user/huaweiclouddev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaweicloudskill](https://clawhub.ai/user/huaweicloudskill)
 
-## Use Case: <br>
-Developers and cloud operations engineers use this skill to create, list, execute, and query Huawei Cloud COC scripts for Flexus L instances. It is suited to batch operations, deployment, health checks, log collection, and emergency operational response where remote execution is intentionally authorized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables high-impact cloud script execution, including root-level execution on target instances. <br>
-Mitigation: Use a dedicated least-privilege Huawei Cloud identity, verify target instance IDs and script UUIDs manually, and require out-of-band confirmation before production or root-level execution. <br>
-Risk: Credential handling through chat or command-line arguments can expose AK, SK, or security token values. <br>
-Mitigation: Prefer environment variables or a managed secrets mechanism, avoid placing real credentials in conversation or command history, use temporary credentials where possible, and rotate keys regularly. <br>
-Risk: Weak scoping of regions, instances, or permissions can cause scripts to run against unintended infrastructure. <br>
-Mitigation: Constrain IAM permissions to the documented COC actions, limit allowed regions and instances operationally, and test scripts on a single non-production instance before batch execution. <br>
+## Use Case:
 
+Cloud operators and developers use the skill to create, inspect, list, and delete COC scripts, then run selected scripts across Huawei Cloud Flexus L instances.
 
-## Reference(s): <br>
-- [IAM Policy Configuration](references/iam-policies.md) <br>
-- [Project Dependencies Configuration](scripts/pyproject.toml) <br>
-- [Huawei Cloud COC SDK package](https://pypi.org/project/huaweicloudsdkcoc/) <br>
-- [ClawHub skill page](https://clawhub.ai/huaweiclouddev/huawei-cloud-flexus-l-server-scripts-excute) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Huawei Cloud COC credentials and may return script IDs, execution task IDs, status text, and error details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.4 (source: server release metadata) <br>
+Risk: The skill may select the most recently created script automatically and can execute it on target servers using root by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit script selection, inspect its contents and target instances, and use a less privileged execution account where possible.
+
+Risk: The bundled smoke test requires access keys as command-line arguments and creates a cloud script.
+
+Mitigation: Use environment variables or secure input for credentials, disclose the cloud mutation before running the smoke test, and remove test scripts afterward.
+
+Risk: Resolved dependency versions and live IAM restrictions remain unverified.
+
+Mitigation: Review dependency versions and confirm that the credentials are limited to the intended instances and operations before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huaweicloudskill/skills/huawei-cloud-flexus-l-server-scripts-excute)
+- [IAM Policies](artifact/references/iam-policies.md)
+- [Verification Method](artifact/references/verification-method.md)
+- [Acceptance Criteria](artifact/references/acceptance-criteria.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-A Tencent Maps development assistant for WebService API usage, geocoding, route planning, map SDK integration, and WeChat Mini Program map workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tencent Map helps agents use Tencent Maps WebService APIs for geocoding, place search, route planning, IP location, and WeChat Mini-Program LBS integration guidance.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers use this skill as a Tencent Maps reference for integrating location services, building geocoding and route planning calls, and configuring WeChat Mini Program map components. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tencent Maps API keys or SK signing secrets could be exposed if examples are copied directly into client-side production code. <br>
-Mitigation: Keep secrets server-side where possible, restrict API keys, enable SK signing or domain allowlists, and review example code before production use. <br>
-Risk: Untrusted SDK downloads could introduce supply-chain risk. <br>
-Mitigation: Download Tencent Maps SDK files only from official Tencent sources before adding them to an application. <br>
-Risk: Location, IP address, or routing requests may send real user location data to Tencent Maps. <br>
-Mitigation: Review privacy and legal requirements before sending production user location or IP data to Tencent Maps APIs. <br>
-Risk: High request volume may exceed Tencent Maps quota or rate limits described by the skill. <br>
-Mitigation: Use batch endpoints where appropriate, add throttling, and handle Tencent Maps error responses in application code. <br>
+## Use Case:
 
+Developers and agents use this skill to query Tencent Maps WebService endpoints, troubleshoot WeChat Mini-Program location-service integrations, and avoid common Tencent coordinate-order and key-configuration mistakes.
 
-## Reference(s): <br>
-- [ClawHub Tencent Map skill page](https://clawhub.ai/zhangifonly/tencent-map) <br>
-- [Tencent Maps API base URL](https://apis.map.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with API examples, JavaScript snippets, configuration notes, and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reference guidance only; it does not include executable bundled code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and skill frontmatter) <br>
+Risk: Map queries, route endpoints, IP addresses, or location inputs may be sent to Tencent's apis.map.qq.com service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those locations with Tencent is acceptable, and avoid sensitive locations unless that third-party data sharing has been approved.
+
+Risk: The bundled CLI requires a Tencent Maps WebService API key through QQMAP_KEY.
+
+Mitigation: Provide only an appropriate Tencent Maps key, keep it out of committed files and chat transcripts, and rotate it if it is exposed.
+
+Risk: Tencent uses lat,lng coordinate order, which can be confused with lng,lat conventions from other map providers.
+
+Mitigation: Check coordinate order before routing or geocoding workflows, especially when migrating data from another map platform.
+
+## Reference(s):
+
+- [Tencent Maps WebService API endpoint](https://apis.map.qq.com)
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/tencent-map)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhangifonly)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses from the bundled CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Tencent's apis.map.qq.com service when the agent runs the bundled CLI with QQMAP_KEY.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

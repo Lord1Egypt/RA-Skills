@@ -1,44 +1,65 @@
-## Description: <br>
-Coordinates five specialized agents to develop, backtest, deploy, package, and iterate OKX OnchainOS on-chain trading strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Okx Strategy Factory coordinates a five-agent pipeline to develop, backtest, deploy, publish, and iterate OKX OnchainOS on-chain trading strategies.
 
-## Publisher: <br>
-[SynthThoughts](https://clawhub.ai/user/SynthThoughts) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[synththoughts](https://clawhub.ai/user/synththoughts)
 
-## Use Case: <br>
-Developers use this skill to coordinate an agent team that turns trading ideas into on-chain strategy code, backtest artifacts, deployment steps, packaged skills, and post-live iteration reports. It is intended for OKX OnchainOS strategy workflows with explicit gates before live deployment and optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward live wallet, token approval, swap, transfer, contract-call, VPS deployment, and GitHub release actions. <br>
-Mitigation: Require explicit user approval before any production deployment, release publication, token approval, swap, transfer, or contract-call action; start with dry-runs or test funds. <br>
-Risk: Trading credentials and wallet access may be exposed or over-scoped if handled casually. <br>
-Mitigation: Keep credentials in scoped environment variables or a secret manager, prefer read-only or limited keys where possible, and avoid logging secrets. <br>
-Risk: Automated strategy changes can cause financial loss if backtests, risk limits, or user approvals are bypassed. <br>
-Mitigation: Enforce the documented backtest, risk-profile, dry-run, rollback, and user-confirmation gates before live execution or iteration. <br>
+## Use Case:
 
+Developers use this skill to coordinate specialist agents that turn a trading idea into strategy code, configuration, risk controls, backtest reports, deployment actions, and release packaging. It is intended for OKX OnchainOS workflows that need strict phase gates across development, validation, production deployment, publishing, and post-live review.
 
-## Reference(s): <br>
-- [onchainos CLI interface reference](artifact/references/api-interfaces.md) <br>
-- [Risk profile schema](artifact/references/risk-schema.json) <br>
-- [Strategy lessons reference](artifact/references/strategy-lessons.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with generated code, JSON configuration, shell commands, reports, and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create strategy workspaces, backtest outputs, deployment state, and packaged skill files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release evidence; artifact metadata reports 2.0.0) <br>
+Risk: The skill can guide live on-chain trading using OKX credentials and wallet signing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated workspace, least-privilege OKX keys, a limited test wallet, and explicit human confirmation before any signing or funded-wallet action.
+
+Risk: The workflow can deploy strategy processes to a VPS and publish releases to GitHub.
+
+Mitigation: Require manual approval before production deployment, git push, tag creation, or GitHub release, and verify rollback and health-check results before continuing.
+
+Risk: Generated strategy skills and reference files may be treated as authoritative by downstream agents.
+
+Mitigation: Audit generated skills, configuration, risk profiles, and reference files before installation or reuse.
+
+Risk: Installer and runtime dependencies can change over time.
+
+Mitigation: Pin installer versions and validate OnchainOS CLI compatibility in dry-run mode before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/synththoughts/skills/okx-strategy-factory)
+- [README](artifact/README.md)
+- [onchainos CLI interface reference](artifact/references/api-interfaces.md)
+- [Risk profile schema](artifact/references/risk-schema.json)
+- [Strategy lessons reference](artifact/references/strategy-lessons.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with generated files, JSON configuration, code, reports, and shell command proposals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are organized by strategy name and version with gate-driven state tracking.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

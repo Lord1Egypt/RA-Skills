@@ -1,40 +1,54 @@
-## Description: <br>
-Integracion con MemPalace para gestion de memoria semantica persistente, including search, add, and knowledge graph queries for memories stored in a MemPalace palace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MemPalace provides persistent semantic memory management for searching, adding, and querying memories stored in a ChromaDB-backed palace.
 
-## Publisher: <br>
-[anderotxoa](https://clawhub.ai/user/anderotxoa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderotxoa](https://clawhub.ai/user/anderotxoa)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect and manage persistent semantic memory stored in a local MemPalace palace. It supports semantic search, writing new memories, checking palace status, and querying knowledge graph relationships. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Server security review reports a suspicious full-access nested Codex review default in the included materials. <br>
-Mitigation: Review the skill before installation and use the documented --no-yolo or equivalent setting unless full authority is intentional. <br>
+## Use Case:
 
+Developers and agent operators use this skill to maintain local persistent memory, retrieve semantically similar stored content, inspect palace status, and query knowledge graph facts.
 
-## Reference(s): <br>
-- [MemPalace MCP Tools Reference](references/mcp_tools.md) <br>
-- [ClawHub skill page](https://clawhub.ai/anderotxoa/mempalace-ander) <br>
-- [Publisher profile](https://clawhub.ai/user/anderotxoa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helper scripts print JSON results or errors for MemPalace operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Stored memories may include sensitive or proprietary content that is retained locally over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when persistent local retention is intended, and avoid storing secrets, credentials, private user data, or proprietary material unless retention is approved.
+
+Risk: Search, diary, and knowledge graph results may surface verbatim stored content.
+
+Mitigation: Review retrieved results before sharing or reusing them outside the local agent workflow.
+
+## Reference(s):
+
+- [MemPalace MCP Tools Reference](references/mcp_tools.md)
+- [ClawHub Skill Page](https://clawhub.ai/anderotxoa/skills/mempalace-ander)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts read and write local ChromaDB-backed memory at the configured palace path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

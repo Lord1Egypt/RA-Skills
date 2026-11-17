@@ -1,49 +1,59 @@
-## Description: <br>
-Generate draft articles, outlines, and editorial content matching a distinctive analytical, skeptical voice with sharp critical commentary, conversational tone, and strategic humor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate draft articles, outlines, and editorial content matching a distinctive analytical, skeptical voice with sharp critical commentary, conversational tone, and strategic humor.
 
-## Publisher: <br>
-[TomsTools11](https://clawhub.ai/user/TomsTools11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tomstools11](https://clawhub.ai/user/tomstools11)
 
-## Use Case: <br>
-External users, employees, and content teams use this skill to draft critical technology articles, outlines, social posts, and research-backed opinion pieces in a skeptical but fair editorial voice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated criticism may contain unsupported factual claims or misleading interpretations. <br>
-Mitigation: Review drafts against the user's evidence and require credible sources for major claims before publication. <br>
-Risk: Critical articles can create reputational, legal, or tone risks when discussing companies, products, or individuals. <br>
-Mitigation: Check final copy for fairness, sourcing, authorship permission, and appropriate handling of counterarguments before publishing. <br>
-Risk: The skill is designed to emulate a distinctive editorial voice and may be used with named-person style constraints. <br>
-Mitigation: Confirm the user has permission to use the requested voice or revise the draft into an original house style. <br>
+## Use Case:
 
+External writers, strategists, and content creators use this skill to draft skeptical but fair articles, outlines, social threads, quick takes, and research-backed opinion pieces about AI, technology, business models, and industry dynamics.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/TomsTools11/critical-article-writer) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [Quick Reference Guide](artifact/QUICK_REFERENCE.md) <br>
-- [Voice and Tone Checklists](artifact/instructions/voice-tone-checklists.md) <br>
-- [Outline Templates](artifact/instructions/outline-templates.md) <br>
-- [Opening Lines Reference](artifact/instructions/opening-lines-reference.md) <br>
-- [Common Scenarios and Prompt Examples](artifact/instructions/common-scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text drafts, outlines, threads, quick takes, and editorial guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on user-provided topic, audience, evidence, target length, and requested content type.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated drafts may contain pointed criticism that is inaccurate, insufficiently sourced, or unfairly phrased.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide concrete evidence in the prompt and review each output for accuracy, sourcing, balance, and fair treatment of companies or people before publication.
+
+Risk: The skill's persuasive voice may make unsupported assumptions sound more confident than the available evidence supports.
+
+Mitigation: Keep claims tied to supplied data, preserve uncertainty where evidence is incomplete, and require citations or source placeholders for major factual claims.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tomstools11/skills/critical-article-writer)
+- [README](artifact/README.md)
+- [Quick Reference Guide](artifact/QUICK_REFERENCE.md)
+- [Outline Templates](artifact/instructions/outline-templates.md)
+- [Common Scenarios & Prompt Examples](artifact/instructions/common-scenarios.md)
+- [Opening Lines Reference Library](artifact/instructions/opening-lines-reference.md)
+- [Voice & Tone Checklists](artifact/instructions/voice-tone-checklists.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text with structured outlines, articles, social threads, quick takes, checklists, and source placeholders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include article lengths, post counts, tone constraints, hashtags, and citation placeholders supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

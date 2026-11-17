@@ -1,44 +1,65 @@
-## Description: <br>
-Rune is a 64-skill mesh for AI coding assistants that routes code tasks through specialized workflow, quality, deployment, documentation, and extension skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rune is a 67-skill mesh for AI coding assistants that routes coding, review, deployment, security, documentation, and project-state workflows through connected specialist skills.
 
-## Publisher: <br>
-[nhadaututtheky](https://clawhub.ai/user/nhadaututtheky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nhadaututtheky](https://clawhub.ai/user/nhadaututtheky)
 
-## Use Case: <br>
-Developers and engineering teams use Rune to route coding, review, testing, deployment, documentation, refactoring, and project-scaffolding work through a coordinated set of specialized agent skills. It is intended as a broad workflow layer for software projects rather than a single-purpose helper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad workflow routing can perform high-impact software actions such as commits, pushes, releases, dependency upgrades, and deploys. <br>
-Mitigation: Require explicit human confirmation before any repository write, release, dependency change, production deploy, or outbound publication. <br>
-Risk: Persistent project and cross-session memory can capture sensitive repository, customer, incident, security, or financial context. <br>
-Mitigation: Review persistence paths before use, disable memory capture for sensitive workspaces, and avoid installing it on repositories with confidential data unless the relevant skills have been audited. <br>
-Risk: Some workflows may need credentials, OAuth tokens, wallets, or purchase-capable integrations. <br>
-Mitigation: Use least-privilege credentials, keep secrets out of prompts and generated files, and require manual approval for spending, wallet, or external account operations. <br>
+## Use Case:
 
+Developers and engineering teams use Rune to coordinate AI-assisted software work across implementation, planning, review, testing, deployment, security checks, documentation, and session continuity. It is most relevant when a coding assistant needs structured routing among many task-specific workflows.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/nhadaututtheky/rune-kit) <br>
-- [Rune documentation](https://rune-kit.github.io/rune) <br>
-- [Rune guides](https://rune-kit.github.io/rune/guides) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, configuration, and generated or modified project files depending on the selected skill.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some workflows may write persistent project state, generated artifacts, commits, deployment instructions, reports, or skill-specific outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.18.1 (source: server evidence and openclaw.plugin.json) <br>
+Risk: The skill mesh can exert broad always-on influence over how an agent routes and performs coding sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the routing skill and enable only the workflows needed for the repository before relying on it for sensitive work.
+
+Risk: Auto-onboarding and session-continuity behavior can write persistent project files such as CLAUDE.md and .rune state.
+
+Mitigation: Inspect generated project-state files, keep them under normal code review, and disable or remove persistence behavior where project policy does not allow it.
+
+Risk: Memory and session capture can preserve project decisions, progress, or workflow preferences beyond a single interaction.
+
+Mitigation: Avoid installing or invoking memory-related workflows on confidential repositories unless retention, access, and review expectations are clear.
+
+Risk: The npm install path shown in artifact evidence uses npx without a pinned package version.
+
+Mitigation: Pin package versions or install from a reviewed, checksummed release source before use in controlled environments.
+
+## Reference(s):
+
+- [ClawHub Rune Skill Page](https://clawhub.ai/nhadaututtheky/skills/rune-kit)
+- [Artifact README](artifact/README.md)
+- [Skill Index](artifact/skills/skill-index.json)
+- [Rune Documentation](https://rune-kit.github.io/rune)
+- [Rune Guides](https://rune-kit.github.io/rune/guides)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, command suggestions, file-change plans, and generated project-state or configuration files when invoked by an agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include routed workflow decisions, implementation steps, review findings, verification reports, and persistent project notes.]
+
+## Skill Version(s):
+
+2.32.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

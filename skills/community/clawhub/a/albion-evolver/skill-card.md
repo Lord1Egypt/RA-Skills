@@ -1,39 +1,56 @@
-## Description: <br>
-Albion Evolver helps AI agents on constrained hardware analyze runtime logs and dream cycles, propose validated minimal code improvements, apply them with git versioning, and roll back regressions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A self-evolution engine for AI agents running on constrained hardware that analyzes runtime logs and dream cycles to propose, validate, and apply code improvements.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to help an agent inspect its runtime logs, identify concrete failures, propose minimal fixes, validate them, and apply code changes with git-backed rollback.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is designed to read and modify workspace files, run git and python3, create commits, and keep an improvement log.
+
+Mitigation: Run it only in a disposable or explicitly selected repository, review proposed changes before accepting them, and verify rollback behavior before using it on important code.
+
+Risk: The security review flags the autonomous write and rollback workflow as broad without a clear user approval boundary.
+
+Mitigation: Require explicit approval before file writes, command execution, and commits, and keep repository permissions scoped to the intended workspace.
+
+Risk: The security guidance warns against use around private logs or credentials when network-backed review is involved.
+
+Mitigation: Remove secrets from runtime logs, avoid private or credential-bearing workspaces, and use independent approval controls for any external review flow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use Albion Evolver to support self-improvement workflows for agents running in constrained environments by generating minimal code-change proposals, validation steps, commits, and rollback actions from runtime evidence. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Code, Shell commands, Files, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can actively modify repositories, create commits, roll back changes, and run self-improvement cycles without tight scope if installed with broad permissions. <br>
-Mitigation: Use it first in a disposable or well-backed-up workspace, review diffs before accepting changes, and require explicit approval before writes, commits, rollbacks, network calls, or self-modifying runs. <br>
-Risk: Generated code changes may introduce regressions or incorrect behavior despite automated checks. <br>
-Mitigation: Keep the artifact's syntax checks, sandbox tests, peer review gates, score comparison, and rollback process enabled, and perform human review before relying on the changes. <br>
+**Output Format:** [Markdown guidance with FIND/REPLACE patches, code edits, shell commands, git commits, and JSON improvement logs]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Limits each improvement cycle to small code changes and records attempted, rejected, and applied improvements.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with FIND/REPLACE snippets, validation notes, git commands, and JSON log updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify workspace files and create git commits when allowed; changes are intended to be limited to three lines per cycle.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

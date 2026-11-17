@@ -1,43 +1,56 @@
-## Description: <br>
-Automatically identify diagram code blocks (Mermaid/Graphviz/PlantUML) in Markdown documents, render them as images, and replace them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically identify diagram code blocks (Mermaid/Graphviz/PlantUML) in Markdown documents, render them as images, and replace them.
 
-## Publisher: <br>
-[fireium](https://clawhub.ai/user/fireium) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fireium](https://clawhub.ai/user/fireium)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert Mermaid, Graphviz, and PlantUML code blocks in Markdown into embedded diagram images for documentation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fallback online rendering can send diagram source to third-party services. <br>
-Mitigation: Install local Mermaid and PlantUML renderers before processing Markdown that may contain private architecture, hostnames, business logic, or secrets. <br>
-Risk: The default workflow can modify the input Markdown file. <br>
-Mitigation: Use version control, backups, or an explicit output path before running the skill. <br>
-Risk: PlantUML local rendering depends on a jar path from PLANTUML_JAR. <br>
-Mitigation: Set PLANTUML_JAR only to a trusted PlantUML jar and install dependencies in an isolated environment. <br>
+## Use Case:
 
+Developers and technical writers use this skill to convert Mermaid, Graphviz, and PlantUML code blocks in Markdown into embedded diagram images while optionally preserving the source diagram code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fireium/markdown-diagram-renderer) <br>
-- [Graphviz downloads](https://graphviz.org/download/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, JSON] <br>
-**Output Format:** [Markdown with inline Base64 image data and JSON execution status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can overwrite the input Markdown by default; use an explicit output path when preserving the original file is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Diagram contents can be sent to external rendering services when local renderers are unavailable, including PlantUML over plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local renderers for confidential documents and avoid processing credentials, private architecture, network topology, or other sensitive diagram content with network fallback enabled.
+
+Risk: Default processing can overwrite the input Markdown file.
+
+Mitigation: Use an explicit output file or a backup workflow before running the skill on important documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fireium/skills/markdown-diagram-renderer)
+- [Graphviz downloads](https://graphviz.org/download/)
+- [Mermaid rendering service](https://mermaid.ink/)
+- [PlantUML rendering service](http://www.plantuml.com/plantuml/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, JSON]
+
+**Output Format:** [Markdown files with inline Base64 PNG or SVG image links, plus JSON execution status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can preserve original diagram source as Markdown comments; defaults may overwrite the input file when no output path is provided.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

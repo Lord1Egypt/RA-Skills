@@ -1,39 +1,58 @@
-## Description: <br>
-AI music generation powered by CellCog for creating royalty-free instrumental and vocal tracks from music prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI music generation powered by CellCog. Original instrumental and vocal tracks, 5 seconds to 10 minutes. Cinematic scores, background tracks, podcast intros, game soundtracks, ambient soundscapes, jingles, lo-fi beats, orchestral compositions, songs with lyrics. Royalty-free.
 
-## Publisher: <br>
-[nitishgargiitd](https://clawhub.ai/user/nitishgargiitd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellcog](https://clawhub.ai/user/cellcog)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to create original music for videos, podcasts, games, ads, apps, jingles, ambient tracks, and songs with vocals. It supports simple prompts and more precise composition plans when exact timing matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a CellCog API key and sends music prompts to CellCog. <br>
-Mitigation: Use it only with a trusted CellCog account, keep CELLCOG_API_KEY out of shared logs and prompts, and avoid submitting secrets, regulated content, or sensitive business plans unless approved under CellCog's terms. <br>
+## Use Case:
 
+Developers and creators use this skill to have an agent generate original instrumental or vocal music for videos, podcasts, games, advertisements, and other projects.
 
-## Reference(s): <br>
-- [Music Cog on ClawHub](https://clawhub.ai/nitishgargiitd/music-cog) <br>
-- [CellCog](https://cellcog.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python code examples and prompt guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent instructions for CellCog music generation; generated music is described by the CellCog service as MP3 output at 44.1kHz and 128kbps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: release evidence) <br>
+Risk: Prompts and lyrics are shared with CellCog when requesting music generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only prompts and lyrics you are comfortable sharing with the service.
+
+Risk: The skill requires an API key and external software; external dependency implementations were not audited.
+
+Mitigation: Protect CELLCOG_API_KEY and review the required base skill and package versions before installing.
+
+Risk: OpenClaw use can trigger a background completion notification, and service use may incur costs or be subject to usage terms.
+
+Mitigation: Understand the completion notifier and check CellCog costs and usage terms before use.
+
+## Reference(s):
+
+- [CellCog](https://cellcog.ai)
+- [Music Generation on ClawHub](https://clawhub.ai/cellcog/skills/music-generation-cellcog)
+
+## Skill Output:
+
+**Output Type(s):** [Audio files, Guidance]
+
+**Output Format:** [MP3 audio tracks and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tracks are 5 seconds to 10 minutes; MP3 at 44.1 kHz and 128 kbps.]
+
+## Skill Version(s):
+
+1.0.16 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

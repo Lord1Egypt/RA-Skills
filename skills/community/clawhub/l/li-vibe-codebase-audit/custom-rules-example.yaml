@@ -1,0 +1,260 @@
+# Custom Security Rules for Vibe Audit
+# Define your own security patterns and checks
+
+# Rule metadata
+metadata:
+  version: "1.0"
+  author: "Your Team"
+  description: "Custom security rules for project-specific requirements"
+
+# Custom rules definition
+rules:
+  # Rule 1: Prevent usage of dangerous functions
+  - id: CUSTOM_001
+    name: "Dangerous Function Usage"
+    description: "Detect usage of eval, exec, or similar dangerous functions"
+    severity: high
+    enabled: true
+    languages:
+      - python
+      - javascript
+      - typescript
+    patterns:
+      - pattern: "eval\\s*\\("
+        message: "eval() function can execute arbitrary code and lead to code injection"
+        recommendation: "Use JSON.parse() for parsing JSON data or implement a safe alternative"
+      
+      - pattern: "exec\\s*\\("
+        message: "exec() function can execute arbitrary code"
+        recommendation: "Use subprocess module with proper escaping if command execution is necessary"
+      
+      - pattern: "Function\\s*\\("
+        message: "Function constructor can create functions from strings, similar to eval"
+        recommendation: "Avoid dynamic code generation. Use static functions instead"
+
+  # Rule 2: Check for hardcoded IPs
+  - id: CUSTOM_002
+    name: "Hardcoded IP Address"
+    description: "Detect hardcoded IP addresses that might expose internal infrastructure"
+    severity: medium
+    enabled: true
+    languages:
+      - all
+    patterns:
+      - pattern: "\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b"
+        message: "Hardcoded IP address detected"
+        recommendation: "Use environment variables or configuration files for IP addresses"
+    exceptions:
+      - "127.0.0.1"
+      - "0.0.0.0"
+      - "255.255.255.255"
+      - "localhost"
+
+  # Rule 3: Check for debug prints
+  - id: CUSTOM_003
+    name: "Debug Print Statements"
+    description: "Detect debug print statements that should be removed before production"
+    severity: low
+    enabled: true
+    languages:
+      - python
+      - javascript
+      - typescript
+    patterns:
+      - pattern: "print\\s*\\("
+        message: "Print statement found - consider removing for production"
+        recommendation: "Use proper logging framework or remove debug prints"
+      
+      - pattern: "console\\.log\\s*\\("
+        message: "console.log found - consider removing for production"
+        recommendation: "Use proper logging framework or remove debug logs"
+
+  # Rule 4: SQL injection patterns
+  - id: CUSTOM_004
+    name: "Potential SQL Injection"
+    description: "Detect patterns that might lead to SQL injection vulnerabilities"
+    severity: critical
+    enabled: true
+    languages:
+      - python
+      - java
+      - php
+      - javascript
+    patterns:
+      - pattern: "execute\\s*\\([^)]*\\+"
+        message: "String concatenation in SQL query - potential SQL injection"
+        recommendation: "Use parameterized queries or prepared statements"
+      
+      - pattern: "cursor\\.execute\\s*\\(.*%.*%"
+        message: "String formatting in SQL query - verify it's using proper escaping"
+        recommendation: "Use parameterized queries: cursor.execute('SELECT * FROM users WHERE id = %s', (user_id,))"
+      
+      - pattern: "\\.format\\s*\\(.*SELECT"
+        message: "String formatting with SELECT - potential SQL injection"
+        recommendation: "Never use string formatting for SQL queries"
+
+  # Rule 5: Weak random number generation
+  - id: CUSTOM_005
+    name: "Weak Random Number Generator"
+    description: "Detect usage of non-cryptographic random for security purposes"
+    severity: high
+    enabled: true
+    languages:
+      - python
+      - javascript
+    patterns:
+      - pattern: "random\\.random\\(\\)"
+        message: "random.random() is not cryptographically secure"
+        recommendation: "Use secrets module for security-sensitive random generation"
+        context: "Check if used for passwords, tokens, or security keys"
+      
+      - pattern: "Math\\.random\\(\\)"
+        message: "Math.random() is not cryptographically secure"
+        recommendation: "Use crypto.getRandomValues() for security-sensitive operations"
+
+  # Rule 6: Password in variable names
+  - id: CUSTOM_006
+    name: "Password in Variable Name"
+    description: "Detect variables with 'password' in the name that might be hardcoded"
+    severity: critical
+    enabled: true
+    languages:
+      - all
+    patterns:
+      - pattern: "(password|passwd|pwd)\\s*=\\s*[\"'](?![\"']{2})[^\"']+[\"']"
+        message: "Hardcoded password detected"
+        recommendation: "Use environment variables or secure secret management"
+
+  # Rule 7: CORS wildcard
+  - id: CUSTOM_007
+    name: "CORS Wildcard Configuration"
+    description: "Detect overly permissive CORS configurations"
+    severity: high
+    enabled: true
+    languages:
+      - python
+      - javascript
+      - java
+      - go
+    patterns:
+      - pattern: "Access-Control-Allow-Origin\\s*:\\s*\\*"
+        message: "CORS set to wildcard - allows any origin"
+        recommendation: "Restrict to specific domains: ['https://yourdomain.com']"
+      
+      - pattern: "cors\\(.*origin.*\\*"
+        message: "CORS origin set to wildcard"
+        recommendation: "Specify allowed origins explicitly"
+
+  # Rule 8: Disabled SSL verification
+  - id: CUSTOM_008
+    name: "SSL Verification Disabled"
+    description: "Detect disabled SSL certificate verification"
+    severity: critical
+    enabled: true
+    languages:
+      - python
+      - javascript
+      - java
+    patterns:
+      - pattern: "verify\\s*=\\s*False"
+        message: "SSL verification disabled in requests"
+        recommendation: "Enable SSL verification for production"
+      
+      - pattern: "rejectUnauthorized\\s*:\\s*false"
+        message: "SSL certificate validation disabled"
+        recommendation: "Enable certificate validation for production"
+
+  # Rule 9: AWS credentials pattern
+  - id: CUSTOM_009
+    name: "AWS Credentials Pattern"
+    description: "Detect AWS access key and secret key patterns"
+    severity: critical
+    enabled: true
+    languages:
+      - all
+    patterns:
+      - pattern: "AKIA[0-9A-Z]{16}"
+        message: "AWS Access Key ID detected"
+        recommendation: "Use IAM roles or environment variables, never hardcode keys"
+      
+      - pattern: "[A-Za-z0-9/+=]{40}"
+        context: "aws_secret"
+        message: "Potential AWS Secret Access Key"
+        recommendation: "Verify this is not a hardcoded secret"
+
+  # Rule 10: JWT secret hardcoded
+  - id: CUSTOM_010
+    name: "JWT Secret Hardcoded"
+    description: "Detect hardcoded JWT secrets"
+    severity: critical
+    enabled: true
+    languages:
+      - javascript
+      - python
+      - java
+    patterns:
+      - pattern: "jwt_secret\\s*=\\s*[\"'][^\"']+[\"']"
+        message: "Hardcoded JWT secret"
+        recommendation: "Use environment variable for JWT secret"
+
+# Rule groups for easy management
+groups:
+  security_critical:
+    description: "Critical security issues that must be fixed"
+    rules:
+      - CUSTOM_004
+      - CUSTOM_006
+      - CUSTOM_008
+      - CUSTOM_009
+      - CUSTOM_010
+  
+  security_high:
+    description: "High priority security issues"
+    rules:
+      - CUSTOM_001
+      - CUSTOM_005
+      - CUSTOM_007
+  
+  code_quality:
+    description: "Code quality improvements"
+    rules:
+      - CUSTOM_002
+      - CUSTOM_003
+
+# Exceptions and whitelisting
+exceptions:
+  # Files to skip for certain rules
+  files:
+    - "**/test/**": [CUSTOM_003]  # Allow debug prints in test files
+    - "**/__pycache__/**": ["*"]   # Skip all rules for cache
+  
+  # Code patterns to whitelist
+  patterns:
+    - "# nosec"     # Skip next line
+    - "# noqa"      # Skip next line (flake8 style)
+    - "# audit-ignore"  # Custom ignore marker
+
+# Configuration for specific projects
+project_specific:
+  # Web application rules
+  web_app:
+    rules:
+      - CUSTOM_001
+      - CUSTOM_004
+      - CUSTOM_007
+      - CUSTOM_008
+  
+  # API service rules
+  api_service:
+    rules:
+      - CUSTOM_001
+      - CUSTOM_004
+      - CUSTOM_006
+      - CUSTOM_008
+  
+  # Library/package rules
+  library:
+    rules:
+      - CUSTOM_001
+      - CUSTOM_003
+      - CUSTOM_004

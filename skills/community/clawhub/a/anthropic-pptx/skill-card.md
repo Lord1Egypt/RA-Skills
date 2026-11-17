@@ -1,43 +1,60 @@
-## Description: <br>
-Anthropic PPTX helps agents create, inspect, edit, and QA PowerPoint presentations using guided workflows, PPTX generation references, and Office archive utilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents read, create, edit, validate, and visually QA PowerPoint presentations using PPTX workflows, design guidance, and supporting Office document scripts.
 
-## Publisher: <br>
-[liberalchang](https://clawhub.ai/user/liberalchang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[liberalchang](https://clawhub.ai/user/liberalchang)
 
-## Use Case: <br>
-Developers and agent users use this skill when a task involves .pptx files, including extracting presentation content, editing template-based decks, creating new decks, converting slides for visual QA, and validating final output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports suspicious posture because the skill bundles broader Office document mutation workflows beyond normal presentation guidance. <br>
-Mitigation: Install only after reviewing the included workflows, and use the skill on copies of documents rather than originals. <br>
-Risk: The security guidance warns that the LibreOffice helper can compile and preload native code from temporary storage, which is higher risk on shared systems. <br>
-Mitigation: Run the skill in an isolated workspace or container, avoid sensitive files unless reviewed, and be cautious on shared hosts. <br>
+## Use Case:
 
+Developers, analysts, and presentation authors use this skill to inspect, edit, build, and quality-check PowerPoint decks from templates or from scratch.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liberalchang/anthropic-pptx) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Editing Presentations](artifact/editing.md) <br>
-- [PptxGenJS Tutorial](artifact/pptxgenjs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation or mutation of PPTX and related Office archive files; review generated documents before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses local execution patterns while handling Office presentation files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands before execution and use an isolated workspace or container for untrusted presentations.
+
+Risk: The skill documentation includes mutable global package installation guidance.
+
+Mitigation: Prefer project-local or sandboxed dependency installation and pin versions where practical.
+
+Risk: The trigger is broad for any PPTX-related task, and the bundle includes Office document helpers beyond PPTX.
+
+Mitigation: Limit use to intended presentation workflows and review requested file operations before applying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liberalchang/skills/anthropic-pptx)
+- [PPTX skill instructions](artifact/SKILL.md)
+- [Editing presentations guide](artifact/editing.md)
+- [PptxGenJS tutorial](artifact/pptxgenjs.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell commands, plus generated or edited PPTX files when the agent applies the workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local Office document artifacts and image or PDF previews during QA workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

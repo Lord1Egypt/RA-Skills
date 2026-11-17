@@ -1,41 +1,54 @@
-## Description: <br>
-Generates brand-quality product photos and campaign visuals through the Higgsfield CLI with guided mode selection and short pre-generation questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates brand-quality product photos and paid-social visuals through the Higgsfield CLI with mode-specific prompt enhancement and image URL delivery.
 
-## Publisher: <br>
-[higgsfield](https://clawhub.ai/user/higgsfield) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[higgsfield](https://clawhub.ai/user/higgsfield)
 
-## Use Case: <br>
-External creators, marketers, ecommerce teams, and agents use this skill to choose a product-visual mode, collect a few missing creative details, run the Higgsfield product photoshoot command, and return generated image URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and run a third-party CLI through Bash. <br>
-Mitigation: Review the displayed commands before execution and authenticate only with an account appropriate for the requested image-generation task. <br>
-Risk: Generated product imagery may not match the intended product, brand constraints, or advertising requirements. <br>
-Mitigation: Use the skill's pre-generation questions to provide product references, usage channel, count, style, and brand constraints, then review generated images before publication. <br>
+## Use Case:
 
+External brand, ecommerce, and marketing teams use this skill to turn product photos or product descriptions into studio, lifestyle, banner, carousel, ad, virtual try-on, conceptual, or restyled visual outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/higgsfield/higgsfield-product-photoshoot) <br>
-- [Higgsfield CLI install script](https://raw.githubusercontent.com/higgsfield-ai/cli/main/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text, Image URLs] <br>
-**Output Format:** [Short Markdown list of generated image URLs, with brief failure status only when a job fails] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Asks at most four short pre-generation questions, runs polling silently, and avoids returning JSON, IDs, internal model names, or enhanced prompt text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bootstrap step may execute an unverified live GitHub installer before other skill actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer installing the Higgsfield CLI from a pinned or verified release and review what the installer changes before use.
+
+Risk: Local product images passed with --image are uploaded to Higgsfield for generation.
+
+Mitigation: Use only product images approved for upload to Higgsfield and avoid sensitive, private, or unreleased assets unless that processing is authorized.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/higgsfield/skills/higgsfield-product-photoshoot)
+- [Higgsfield CLI installer](https://raw.githubusercontent.com/higgsfield-ai/cli/main/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands]
+
+**Output Format:** [Markdown list of generated image URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Final responses are expected to contain only generated image URLs; local product images supplied with --image may be uploaded to Higgsfield for generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter declares 0.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Response speed optimizer - implements reply-first-then-process, parallel tool calls, and memory file caching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Response speed optimizer - implements reply-first-then-process, parallel tool calls, and memory file caching.
 
-## Publisher: <br>
-[opendolph](https://clawhub.ai/user/opendolph) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[opendolph](https://clawhub.ai/user/opendolph)
 
-## Use Case: <br>
-Developers and agent operators use this skill to reduce perceived response latency by acknowledging requests quickly, running independent work in parallel, and caching workspace memory/state files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill caches local agent memory and state files in the workspace, which may retain sensitive context. <br>
-Mitigation: Install only in workspaces where this caching is acceptable, and use an opt-in setup with a clear way to clear or disable the cache. <br>
-Risk: The skill includes a helper for executing shell commands in parallel, which can run broad local commands if exposed without review. <br>
-Mitigation: Review or remove the shell-command helper before use, and limit execution to trusted commands and workspaces. <br>
+## Use Case:
 
+Developers and agent operators use this skill to reduce perceived response latency through immediate acknowledgments, parallel execution of independent work, and cached access to selected workspace memory files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/opendolph/fast-response-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples and command-line usage snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes optional Node.js helper scripts for cache management and parallel task execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: The skill may copy sensitive agent and user memory files into a predictable plaintext cache.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted, sandboxed workspaces and narrow or protect the cache before use.
+
+Risk: The bundled parallel executor exports a helper that can run arbitrary shell commands.
+
+Mitigation: Remove or restrict the shell-command executor unless the workspace and callers are fully trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/opendolph/skills/fast-response-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown guidance with JavaScript examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes cache refresh, status, and timestamp-management commands; cache contents are truncated to 5000 characters per file by the provided cache manager.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

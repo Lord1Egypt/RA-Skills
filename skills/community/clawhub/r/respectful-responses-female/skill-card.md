@@ -1,37 +1,49 @@
-## Description: <br>
-Respond to women respectfully using appropriate feminine language and treating them as independent adults. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Respond to women respectfully using appropriate feminine language and treating them as independent adults.
 
-## Publisher: <br>
-[kimoamer](https://clawhub.ai/user/kimoamer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kimoamer](https://clawhub.ai/user/kimoamer)
 
-## Use Case: <br>
-External users and agents use this skill to guide responses about women or female-identifying users with respectful, adult-oriented wording and appropriate feminine pronouns when preferences are clear or context supports them. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may encourage the assistant to infer gender from ambiguous context. <br>
-Mitigation: Prefer explicit pronoun or address preferences when possible, and avoid assigning gender when context is unclear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kimoamer/respectful-responses-female) <br>
+## Use Case:
 
+External users can use this skill to guide an agent toward respectful, supportive responses when a user identifies as a woman or when a conversation involves women or female-specific experiences.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only style guidance; no files, commands, or code are produced.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may encourage gender-specific responses based on ambiguous context.
+
+Mitigation: Prefer explicit pronoun or tone preferences and avoid inferring gender when context is unclear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kimoamer/skills/respectful-responses-female)
+- [Publisher profile](https://clawhub.ai/user/kimoamer)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Natural-language responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; output is communication-style guidance applied in agent responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

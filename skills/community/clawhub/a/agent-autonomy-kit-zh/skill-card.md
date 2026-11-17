@@ -1,45 +1,57 @@
-## Description: <br>
-Stop waiting for prompts. Keep working. (Chinese localized version) <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps configure AI agents to use task queues, proactive heartbeats, and scheduled OpenClaw runs for autonomous work.
 
-## Publisher: <br>
-[ayakolin](https://clawhub.ai/user/ayakolin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayakolin](https://clawhub.ai/user/ayakolin)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up task queues, heartbeat routines, and scheduled work patterns that let an agent continue approved work between human prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages unattended scheduled agent work without clear limits on what the agent may change or do. <br>
-Mitigation: Use it only when scheduled autonomous work is intended, keep the task queue limited to approved low-risk tasks, and require human approval for code changes, deployments, purchases, deletions, public posts, credential use, and agent spawning. <br>
-Risk: Cron and heartbeat automation can continue work when a human is not actively supervising the session. <br>
-Mitigation: Keep logs private, review scheduled jobs before enabling them, and document how to pause or remove the automation before deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to set up task queues, heartbeat routines, and OpenClaw schedules so agents can keep making progress between human prompts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ayakolin/agent-autonomy-kit-zh) <br>
-- [Publisher Profile](https://clawhub.ai/user/ayakolin) <br>
-- [Declared Homepage](https://github.com/itskai-dev/agent-autonomy-kit) <br>
-- [README](README.md) <br>
-- [Heartbeat Template](templates/HEARTBEAT.md) <br>
-- [Queue Template](templates/QUEUE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance and reusable queue and heartbeat templates; it does not provide executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The skill promotes unattended autonomous work through persistent cron runs and mutable task queues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in controlled workspaces where autonomous file edits, token spend, team-channel posts, and scheduled OpenClaw runs are acceptable.
+
+Risk: Scheduled runs may continue without enough scope, approval, or stop controls.
+
+Mitigation: Before enabling cron examples, add explicit task approval, restrict writable paths and tools, define resource and time limits, and document how to list, disable, and remove schedules.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ayakolin/skills/agent-autonomy-kit-zh)
+- [Skill Homepage](https://github.com/itskai-dev/agent-autonomy-kit)
+- [Agent Autonomy Kit Repository](https://github.com/reflectt/agent-autonomy-kit)
+- [Agent Memory Kit](https://github.com/reflectt/agent-memory-kit)
+- [Agent Team Kit](https://github.com/reflectt/agent-team-kit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON5-style configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes QUEUE.md and HEARTBEAT.md templates for agent work tracking.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence; artifact frontmatter reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

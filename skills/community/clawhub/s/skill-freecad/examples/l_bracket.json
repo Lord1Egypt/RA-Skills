@@ -1,0 +1,15 @@
+{
+  "doc": "l_bracket.FCStd",
+  "new": true,
+  "steps": [
+    {"op": "extrude", "name": "Profile", "plane": "XZ", "height": 30,
+     "points": [[0, 0], [60, 0], [60, 5], [5, 5], [5, 40], [0, 40]]},
+    {"op": "cylinder", "name": "BaseHole", "radius": 2.5, "height": 9, "position": [38, 15, -2]},
+    {"op": "cylinder", "name": "WallHole", "radius": 2.5, "height": 9, "position": [-2, 15, 25], "direction": [1, 0, 0]},
+    {"op": "cut", "name": "Drilled", "base": "Profile", "tools": ["BaseHole", "WallHole"]},
+    {"op": "chamfer", "name": "Bracket", "target": "Drilled", "size": 1, "edges": ">Z",
+     "expect": {"bbox_size": [60, 30, 40], "solids": 1}},
+    {"op": "check", "target": "Bracket", "expect": {"bbox_min": [0, 0, 0]}},
+    {"op": "export", "filename": "l_bracket.step"}
+  ]
+}

@@ -1,42 +1,59 @@
-## Description: <br>
-Configuration backup, drift detection, and golden config validation across Cisco IOS-XE/NX-OS, Juniper JunOS, and Arista EOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides configuration backup, drift detection, and golden config validation for Cisco IOS-XE/NX-OS, Juniper JunOS, and Arista EOS network environments.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Network engineers and operations teams use this skill to collect device configurations, compare running and saved state, detect drift against golden baselines, validate compliance patterns, and plan remediation for Cisco, Juniper, and Arista environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some procedures can modify network device state, including configuration archival, rollback, and configuration replacement. <br>
-Mitigation: Run write operations only with explicit authorization, appropriate privileges, and a maintenance window; use the skill's read-only assessment steps when change approval is not in place. <br>
-Risk: Incorrect drift interpretation or remediation commands could disrupt routing, switching, security, or management-plane behavior. <br>
-Mitigation: Review diffs by section, confirm change-ticket context and device vendor syntax, and validate against a current backup or golden baseline before applying remediation. <br>
+## Use Case:
 
+Network operations engineers use this skill to audit device configuration state, compare running and startup configurations, validate golden baselines, and plan remediation for drift or compliance findings.
 
-## Reference(s): <br>
-- [Configuration Management CLI Reference](references/cli-reference.md) <br>
-- [Drift Detection Methodology](references/drift-detection.md) <br>
-- [Config Management ClawHub Release](https://clawhub.ai/vahagn-madatyan/config-management) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, configuration snippets, tables, and report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes read-only assessment guidance and explicitly marked write-operation guidance for archival, rollback, and configuration replacement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Sensitive device configurations may be exported over plaintext TFTP or FTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer SCP or local encrypted storage for configuration archives, and use TFTP or FTP only on isolated management networks with explicit risk acceptance.
+
+Risk: Rollback, config replace, save, and archival procedures can modify production network device state.
+
+Mitigation: Require operator authorization, maintenance-window confirmation, and human review before executing any write operation.
+
+Risk: Drift remediation guidance may be incorrect if the baseline, device role, or change authorization context is wrong.
+
+Mitigation: Validate golden baselines, check change tickets, and re-run read-only collection and comparison steps after remediation.
+
+## Reference(s):
+
+- [Configuration Management CLI Reference](references/cli-reference.md)
+- [Drift Detection Methodology](references/drift-detection.md)
+- [Config Management Skill Page](https://clawhub.ai/vahagn-madatyan/skills/config-management)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell command blocks and structured report guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes read-only assessment steps and human-reviewed write-operation guidance for archival, rollback, config replace, and save operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

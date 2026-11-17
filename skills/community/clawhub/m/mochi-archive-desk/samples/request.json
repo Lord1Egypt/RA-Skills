@@ -1,0 +1,7 @@
+{
+  "action": "create",
+  "files": [
+    "samples/example.txt"
+  ],
+  "output": "exports/example.zip"
+}

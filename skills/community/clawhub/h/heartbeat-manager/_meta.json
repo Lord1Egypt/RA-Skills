@@ -1,6 +1,85 @@
 {
-  "ownerId": "kn7bzry45xwmzhdnmqngcgrtph81snfr",
-  "slug": "heartbeat-manager",
-  "version": "1.2.0",
-  "publishedAt": 1772067721642
+  "name": "heartbeat-manager",
+  "version": "1.1.0",
+  "display_name": "Heartbeat Manager",
+  "description": "Agent 心跳管理系统：自动检查任务状态、未来事件7天预警（Canvas/FSP自动同步）、智能超时分析、日报/周报、健康度评分。支持 Chrome 浏览器自动同步。",
+  "author": "Eva Agent",
+  "license": "MIT",
+  "keywords": ["heartbeat", "monitoring", "task-management", "alert", "email", "upcoming-events", "canvas", "fsp", "browser-sync"],
+  "category": "system",
+  "platform": "openclaw",
+  "min_openclaw_version": "0.1.0",
+  "python_version": ">=3.10",
+  "dependencies": [
+    "pyyaml>=6.0",
+    "jinja2>=3.1",
+    "python-dotenv>=1.0",
+    "requests>=2.28"
+  ],
+
+  "credentials": {
+    "required": false,
+    "note": "邮件功能需自行配置 Gmail App Password。Canvas/FSP 监控需对应 API token（可选，不配置时跳过但不删除现有数据）。所有凭证填入 config/.env，不会上传或共享。"
+  },
+
+  "side_effects": {
+    "file_writes": [
+      "workspace/MASTER.md — 每次心跳自动更新（主控表状态）",
+      "workspace/state.json — 心跳运行状态持久化",
+      "workspace/daily.md — 每日 00:00 重置",
+      "workspace/upcoming.md — Canvas+FSP 同步后更新（未来事件）",
+      "logs/heartbeat.log — 运行日志追加"
+    ],
+    "subprocess": {
+      "declared": true,
+      "commands": ["git add", "git commit", "git push", "git status", "git rev-parse"],
+      "shell_injection_risk": "low",
+      "mitigation": "所有 subprocess.run 调用使用参数列表，禁止 shell=True；git 功能默认关闭（git.enabled: false）",
+      "enabled_by_default": false
+    },
+    "network": [
+      "IMAP 读取邮件（需配置凭证，未配置时静默跳过）",
+      "SMTP 发送告警/日报/周报（需配置凭证，未配置时静默跳过）",
+      "Canvas REST API 获取作业截止日期（需 CANVAS_API_TOKEN，未配置时跳过）",
+      "FSP API 获取飞行预约（需 FSP_API_TOKEN+FSP_OPERATOR_ID，未配置时跳过）",
+      "HTTP GET 127.0.0.1:18792 检测 Chrome 扩展 relay 是否在线（本地检测，无外网请求）",
+      "Git push 至远程仓库（默认关闭，需 git.enabled=true 且 git.auto_push=true）"
+    ],
+    "note": "所有网络功能均可独立禁用。Canvas/FSP 同步在未配置 token 时安全跳过，不影响已有数据。"
+  },
+
+  "new_in_v1_1_0": {
+    "upcoming_events": "workspace/upcoming.md 四分区格式（FUTURE/MANUAL/DONE/OVERDUE），7天内事件🔴🟡🔵分级预警",
+    "site_monitor": "tools/site_monitor.py 整合 Canvas LMS + FSP 自动同步，未配置 token 时安全跳过不删数据",
+    "browser_sync": "每次 beat 检测 Chrome 扩展 relay（127.0.0.1:18792），在线则自动同步并在 daily.md 打勾",
+    "daily_template": "每日例行任务模板新增 📡 同步 Canvas + FSP 日程任务"
+  },
+
+  "setup_required": true,
+  "setup_steps": [
+    "cp config/.env.example config/.env",
+    "编辑 config/.env，填入 EMAIL_SENDER / EMAIL_APP_PASSWORD / EMAIL_RECIPIENTS",
+    "（可选）填入 CANVAS_API_TOKEN 启用 Canvas 作业同步",
+    "（可选）填入 FSP_API_TOKEN + FSP_OPERATOR_ID 启用 FSP 飞行预约同步",
+    "编辑 config/settings.yaml，按需调整配置",
+    "python tools/heartbeat_run.py status  # 验证配置"
+  ],
+
+  "entry_point": "tools/heartbeat_run.py",
+  "commands": {
+    "beat":   { "description": "执行一次心跳检查", "usage": "python tools/heartbeat_run.py beat" },
+    "reset":  { "description": "每日重置 + 发送日报", "usage": "python tools/heartbeat_run.py reset" },
+    "weekly": { "description": "生成并发送周报", "usage": "python tools/heartbeat_run.py weekly" },
+    "status": { "description": "查看当前状态摘要", "usage": "python tools/heartbeat_run.py status" }
+  },
+
+  "cron": {
+    "heartbeat":    { "schedule": "*/30 * * * *", "command": "python tools/heartbeat_run.py beat",   "description": "每30分钟心跳" },
+    "daily_reset":  { "schedule": "0 0 * * *",    "command": "python tools/heartbeat_run.py reset",  "description": "每天0点重置+日报" },
+    "weekly_report":{ "schedule": "59 23 * * 0",  "command": "python tools/heartbeat_run.py weekly", "description": "每周日23:59周报" }
+  },
+
+  "repository": "https://clawhub.com/heartbeat-manager",
+  "created": "2026-02-25",
+  "updated": "2026-02-25"
 }

@@ -1,43 +1,61 @@
-## Description: <br>
-Analyzes GitHub repositories for project metadata, technology stack signals, license posture, and deployment options, then generates a local Markdown report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub Analyzer analyzes GitHub repositories for technology stack, license compliance, deployment options, and open-source dependency due diligence.
 
-## Publisher: <br>
-[hkysj](https://clawhub.ai/user/hkysj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hkysj](https://clawhub.ai/user/hkysj)
 
-## Use Case: <br>
-Developers and engineers use this skill to review public GitHub repositories for technical fit, open-source license considerations, and deployment planning during dependency evaluation or project due diligence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The shell script contacts GitHub and writes Markdown reports to the local filesystem. <br>
-Mitigation: Run it only in environments where outbound GitHub API access and local report creation are acceptable, and choose the output directory intentionally. <br>
-Risk: Generated reports may include README excerpts or deployment commands from the analyzed repository. <br>
-Mitigation: Treat repository-provided content as untrusted and review commands or excerpts before acting on them. <br>
-Risk: License and deployment recommendations are heuristic summaries and may not cover all project-specific obligations. <br>
-Mitigation: Verify license terms and deployment steps against authoritative repository documentation and appropriate legal or engineering review. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze public GitHub repositories, generate local Markdown evaluation reports, and support technology selection, license review, and deployment planning.
 
-## Reference(s): <br>
-- [Open-source license reference](references/licenses.md) <br>
-- [ClawHub skill page](https://clawhub.ai/hkysj/hkysj-github-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Analysis, Files, Guidance] <br>
-**Output Format:** [Markdown report with tables and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reports to a user-selected output directory, defaulting to ~/Desktop/github-reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata; artifact frontmatter reports 1.0.2) <br>
+Risk: The skill contacts GitHub for repositories the user asks it to analyze.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for repositories you are comfortable querying through GitHub's public endpoints.
+
+Risk: Generated reports include repository descriptions and README excerpts that may contain untrusted content.
+
+Mitigation: Review report content before feeding it back into an AI agent or opening it in a renderer that allows active HTML.
+
+Risk: License guidance is summarized and may not capture all obligations for a repository.
+
+Mitigation: Confirm license terms against the repository's authoritative license text and seek legal review for business-critical use.
+
+## Reference(s):
+
+- [Open-source license reference](references/licenses.md)
+- [GitHub repository API](https://api.github.com/repos/$REPO)
+- [GitHub repository contents API](https://api.github.com/repos/$REPO/contents)
+- [ClawHub skill page](https://clawhub.ai/hkysj/skills/hkysj-github-analyzer)
+- [Publisher profile](https://clawhub.ai/user/hkysj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report saved locally plus terminal summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; contacts GitHub for the repository requested by the user.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

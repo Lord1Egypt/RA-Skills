@@ -1,0 +1,5 @@
+interface:
+  display_name: "Marp Slide Expert"
+  short_description: "Marp / marpit slide syntax, layout, and asset prep"
+policy:
+  allow_implicit_invocation: true

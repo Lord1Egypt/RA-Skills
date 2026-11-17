@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>{{书名}}·方法论卡片书</title>
+<meta name="description" content="{{书名}}方法论卡片书：左右翻阅的卡片式工具书，每一主题一张卡。单文件响应式 HTML。" />
+<style>
+  :root{
+    --paper:#f4ead2;
+    --paper-2:#efe2c4;
+    --paper-3:#e9dab8;
+    --ink:#2b2620;
+    --ink-soft:#5d5246;
+    --ink-faint:#8a7c68;
+    --line:#d8c6a0;
+    --line-soft:#e4d6b6;
+    --accent:#9c4a3c;      /* 赭石红 */
+    --accent-2:#3f6b54;    /* 墨绿 */
+    --accent-3:#2f4858;    /* 藏青 */
+    --accent-4:#b08434;    /* 金棕 */
+    --accent-5:#6b4a6e;    /* 绛紫 */
+    --serif:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong","SimSun",serif;
+    --sans:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong","SimSun",serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{margin:0;font-family:var(--serif);color:var(--ink);background:var(--paper);
+    line-height:1.8;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    display:flex;flex-direction:column;overflow:hidden;
+    min-height:100vh;min-height:100dvh;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .progress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent-4));z-index:80;}
+
+  /* 顶栏（常驻表头，内容在其下方，不会遮挡） */
+  .topbar{position:relative;z-index:30;display:flex;align-items:center;gap:14px;padding:10px clamp(14px,4vw,40px);
+    background:rgba(244,234,210,.9);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);flex:0 0 auto;}
+  .topbar .seal{width:30px;height:30px;flex:0 0 auto;border-radius:6px;background:var(--accent);color:#f4ead2;
+    display:grid;place-items:center;font-weight:700;font-size:15px;box-shadow:0 2px 6px rgba(0,0,0,.18);}
+  .topbar h1{font-family:var(--serif);font-size:clamp(14px,2.2vw,18px);margin:0;letter-spacing:.03em;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .topbar nav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  .topbar nav > a{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);text-decoration:none;
+    padding:4px 11px;border-radius:20px;border:1px solid transparent;white-space:nowrap;}
+  .topbar nav > a:hover{background:var(--paper-3);border-color:var(--line);color:var(--ink);}
+
+  /* 导航栏目录下拉 */
+  .nav-drop{position:relative;display:flex;}
+  .nav-drop-btn{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);background:none;border:none;cursor:pointer;
+    padding:4px 11px;border-radius:20px;border:1px solid transparent;white-space:nowrap;display:flex;align-items:center;gap:5px;}
+  .nav-drop-btn:hover,.nav-drop.open .nav-drop-btn{background:var(--paper-3);border-color:var(--line);color:var(--ink);}
+  .nav-drop-btn .arw{transition:transform .18s ease;font-size:10px;}
+  .nav-drop.open .nav-drop-btn .arw{transform:rotate(180deg);}
+  .nav-drop-panel{position:absolute;top:calc(100% + 8px);right:0;min-width:212px;max-height:74vh;overflow-y:auto;
+    background:#fbf4e1;border:1px solid var(--line);border-radius:12px;box-shadow:0 16px 38px -12px rgba(60,40,20,.55);
+    padding:8px;display:none;z-index:60;}
+  .nav-drop.open .nav-drop-panel{display:block;}
+  .nav-drop-panel a{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:14px;color:var(--ink);
+    text-decoration:none;padding:7px 10px;border-radius:8px;white-space:nowrap;}
+  .nav-drop-panel a .nb{flex:0 0 auto;width:23px;height:23px;border-radius:50%;background:var(--accent-3);color:#f4ead2;
+    font-family:var(--serif);font-weight:800;display:grid;place-items:center;font-size:11px;}
+  .nav-drop-panel a:nth-child(3n+1) .nb{background:var(--accent);}
+  .nav-drop-panel a:nth-child(3n+2) .nb{background:var(--accent-2);}
+  .nav-drop-panel a:nth-child(3n+3) .nb{background:var(--accent-4);}
+  .nav-drop-panel a:hover{background:var(--paper-3);}
+
+  /* 翻页书 */
+  .book{flex:1 1 auto;position:relative;z-index:1;overflow:hidden;}
+  .track{display:flex;height:100%;}
+  .page{flex:0 0 100%;height:100%;overflow-y:auto;display:flex;align-items:center;align-items: safe center;justify-content:center;
+    padding:clamp(20px,4vw,44px);-webkit-overflow-scrolling:touch;}
+  .sheet{position:relative;width:100%;max-width:780px;background:#fbf4e1;border:1px solid var(--line-soft);
+    border-radius:16px;padding:clamp(22px,4vw,40px);
+    box-shadow:0 1px 1px rgba(60,40,20,.10),0 6px 16px -6px rgba(60,40,20,.28),0 22px 48px -22px rgba(60,40,20,.42),inset 0 1px 0 rgba(255,255,255,.65);}
+  .sheet.wide{max-width:980px;}
+
+  /* 左右翻阅按钮（边缘悬浮，绝不同时在基类写 left+right） */
+  .flip{position:fixed;top:50%;transform:translateY(-50%);z-index:45;width:46px;height:46px;border-radius:50%;
+    border:1px solid var(--line);background:rgba(251,244,225,.86);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+    color:var(--accent);font-size:20px;line-height:1;cursor:pointer;display:grid;place-items:center;
+    box-shadow:0 6px 18px -8px rgba(60,40,20,.55);transition:background .15s,opacity .15s,transform .15s;}
+  .flip:hover{background:#fbf4e1;transform:translateY(-50%) scale(1.06);}
+  .flip:active{transform:translateY(-50%) scale(.96);}
+  .flip.prev{left:14px;}
+  .flip.next{right:14px;}
+  .flip:disabled{opacity:.28;cursor:default;box-shadow:none;transform:translateY(-50%);}
+
+  .ribbon{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:13px;font-weight:600;
+    letter-spacing:.12em;color:#fff;padding:7px 18px 7px 14px;border-radius:6px 20px 20px 6px;margin-bottom:18px;
+    box-shadow:0 5px 14px -6px rgba(0,0,0,.45);}
+  .ribbon::before{content:"";width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.85);}
+  .ribbon.r1{background:var(--accent);}
+  .ribbon.r2{background:var(--accent-4);}
+  .ribbon.r3{background:var(--accent-3);}
+  .ribbon.r4{background:var(--accent-2);}
+  h3.sec-title{font-family:var(--serif);font-size:clamp(21px,3.4vw,30px);margin:0 0 6px;font-weight:800;letter-spacing:.02em;}
+  .sec-sub{font-family:var(--sans);color:var(--ink-faint);font-size:13.5px;margin:0 0 22px;}
+
+  /* 使用方法 */
+  .howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;}
+  .howto .h{background:var(--paper);border:1px solid var(--line-soft);border-radius:10px;padding:16px 18px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.5);}
+  .howto .h .n{font-family:var(--sans);font-weight:800;color:var(--accent);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .howto .h .t{font-family:var(--serif);font-size:15.5px;color:var(--ink);}
+
+  /* 目录页 */
+  .index-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+  .idx{display:flex;gap:12px;align-items:flex-start;text-decoration:none;background:var(--paper);
+    border:1px solid var(--line-soft);border-radius:10px;padding:13px 15px;transition:.15s;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.5);}
+  .idx:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 18px -12px rgba(60,40,20,.5);}
+  .idx .b{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--accent-3);color:#f4ead2;
+    font-family:var(--serif);font-weight:800;display:grid;place-items:center;font-size:15px;}
+  .idx:nth-child(3n+1) .b{background:var(--accent);}
+  .idx:nth-child(3n+2) .b{background:var(--accent-2);}
+  .idx .meta .nm{font-family:var(--serif);font-size:16px;font-weight:800;color:var(--ink);line-height:1.3;}
+  .idx .meta .ds{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);margin-top:3px;line-height:1.5;}
+
+  /* 卡片 */
+  .card .head{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+  .card .badge{flex:0 0 auto;width:48px;height:48px;border-radius:50%;background:#fff;border:3px solid var(--accent);
+    color:var(--accent);font-family:var(--serif);font-weight:800;display:grid;place-items:center;font-size:19px;
+    box-shadow:0 3px 8px -3px rgba(60,40,20,.4);}
+  .card.c2 .badge{border-color:var(--accent-2);color:var(--accent-2);}
+  .card.c3 .badge{border-color:var(--accent-4);color:var(--accent-4);}
+  .card .head .nm{font-family:var(--serif);font-size:clamp(20px,3vw,26px);font-weight:800;color:var(--ink);line-height:1.25;}
+  .card .thesis{font-family:var(--serif);font-size:16px;color:var(--ink);background:var(--paper-2);
+    border-left:4px solid var(--accent-4);padding:11px 15px;border-radius:0 8px 8px 0;margin-bottom:14px;line-height:1.7;}
+  .card .quote{font-family:var(--serif);font-style:italic;color:var(--accent);font-size:14.5px;margin:0 0 18px;}
+  .card .quote .src{font-style:normal;color:var(--ink-faint);font-family:var(--sans);font-size:12px;margin-left:6px;}
+  .scn{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:16px;}
+  .scn .s{background:var(--paper);border:1px solid var(--line-soft);border-radius:10px;padding:13px 15px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.5);}
+  .scn .s .lab{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.08em;color:var(--accent-3);
+    margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+  .scn .s .lab::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent-3);}
+  .scn .s .tx{font-family:var(--sans);font-size:13.3px;color:var(--ink-soft);line-height:1.65;}
+    .steps{margin-top:16px;background:rgba(0,0,0,.03);border-left:3px solid var(--accent,currentColor);padding:10px 14px;border-radius:8px;text-align:left;}
+  .steps .lab{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:1px;color:var(--accent,currentColor);margin-bottom:6px;}
+  .steps ol.st{margin:0;padding-left:20px;font-size:14px;line-height:1.75;color:var(--ink,inherit);}
+  .avoid{margin-top:12px;background:rgba(180,60,40,.06);border-left:3px solid #b23a2e;padding:10px 14px;border-radius:8px;text-align:left;}
+  .avoid .lab{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:1px;color:#b23a2e;margin-bottom:4px;}
+  .avoid .tx{font-size:14px;line-height:1.75;color:var(--ink,inherit);}
+.back{font-family:var(--sans);font-size:12.5px;}
+  .back a{color:var(--accent);text-decoration:none;border:1px solid var(--line);padding:4px 12px;border-radius:20px;}
+  .back a:hover{background:var(--paper-3);}
+
+  /* 封面页（在线图 + 渐变蒙版；断网降级为深色条纹底） */
+  .page-cover{background-color:#2c2018;
+    background-image:
+      linear-gradient(to bottom,rgba(28,20,14,.30) 0%,rgba(28,20,14,.52) 50%,rgba(22,15,10,.92) 100%),
+      url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1800&q=80"),
+      repeating-linear-gradient(90deg,#3a2a1c 0 6px,#332419 6px 12px);
+    background-size:cover,cover,auto;background-position:center,center,center;background-repeat:no-repeat;color:#f6efdc;}
+  .page-cover::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 120%,rgba(0,0,0,.5),transparent 60%);pointer-events:none;}
+  .cover-inner{position:relative;z-index:2;text-align:center;max-width:760px;padding:clamp(20px,6vw,60px);}
+  .cover-inner .tag{display:inline-block;font-family:var(--sans);font-size:12px;letter-spacing:.4em;text-transform:uppercase;
+    color:#e7c98f;border:1px solid rgba(231,201,143,.5);padding:6px 16px;border-radius:30px;margin-bottom:22px;}
+  .cover-inner h2{font-family:var(--serif);font-weight:800;font-size:clamp(34px,7.5vw,68px);line-height:1.06;margin:0 0 16px;
+    text-shadow:0 3px 18px rgba(0,0,0,.55);letter-spacing:.02em;}
+  .cover-inner p.lede{font-family:var(--serif);font-size:clamp(15px,2.4vw,21px);margin:0 auto;color:#f0e4c6;max-width:600px;
+    text-shadow:0 2px 10px rgba(0,0,0,.5);}
+  .cover-inner .by{margin-top:26px;font-family:var(--sans);font-size:13px;color:#e7c98f;letter-spacing:.08em;}
+  .cover-inner .start{margin-top:30px;font-family:var(--sans);font-size:13px;color:#cdbf9f;}
+  .cover-inner .start b{color:#e7c98f;}
+
+  /* 封底页 */
+  .page-back{background:linear-gradient(160deg,#2f2620,#44301f);color:#f0e4c6;}
+  .back-inner{width:100%;max-width:780px;text-align:left;padding:clamp(20px,5vw,40px);}
+  .page-back .ribbon{background:#e7c98f;color:#3a2a1c;}
+  .page-back h3.sec-title{color:#f6efdc;}
+  .page-back .sec-sub{color:#cdbf9f;}
+  .bc-box{background:rgba(255,255,255,.06);border:1px solid rgba(231,201,143,.3);border-radius:12px;
+    padding:20px 22px;font-family:var(--sans);font-size:14px;line-height:1.8;color:#ece0c4;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.08);}
+  .bc-box b{color:#e7c98f;}
+  .bc-key{display:inline-block;margin-top:12px;font-family:var(--sans);font-size:13px;background:#e7c98f;color:#3a2a1c;
+    padding:6px 14px;border-radius:20px;font-weight:700;}
+  .bc-note{font-family:var(--sans);font-size:12px;color:#b7a888;margin-top:14px;}
+
+  @media(max-width:680px){
+    .topbar nav > a{display:none;}
+    .topbar h1{font-size:13px;}
+    .nav-drop-btn{font-size:13px;}
+    .flip{width:38px;height:38px;font-size:17px;}
+    .flip.prev{left:8px;}
+    .flip.next{right:8px;}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<div class="topbar">
+  <div class="seal">{{书印单字}}</div>
+  <h1>《{{书名}}》方法论卡片书</h1>
+  <nav>
+    <a href="#cover">封面</a>
+    <div class="nav-drop" id="navDrop">
+      <button class="nav-drop-btn" id="navDropBtn" aria-haspopup="true" aria-expanded="false">目录 <span class="arw">▾</span></button>
+      <div class="nav-drop-panel">
+        <!-- 以下 12 项与目录页、主题卡 id 一一对应；增减卡片时三者同步 -->
+        <a href="#c01"><span class="nb">01</span>{{主题一}}</a>
+        <a href="#c02"><span class="nb">02</span>{{主题二}}</a>
+        <a href="#c03"><span class="nb">03</span>{{主题三}}</a>
+        <a href="#c04"><span class="nb">04</span>{{主题四}}</a>
+        <a href="#c05"><span class="nb">05</span>{{主题五}}</a>
+        <a href="#c06"><span class="nb">06</span>{{主题六}}</a>
+        <a href="#c07"><span class="nb">07</span>{{主题七}}</a>
+        <a href="#c08"><span class="nb">08</span>{{主题八}}</a>
+        <a href="#c09"><span class="nb">09</span>{{主题九}}</a>
+        <a href="#c10"><span class="nb">10</span>{{主题十}}</a>
+        <a href="#c11"><span class="nb">11</span>{{主题十一}}</a>
+        <a href="#c12"><span class="nb">12</span>{{主题十二}}</a>
+      </div>
+    </div>
+    <a href="#back">封底</a>
+  </nav>
+</div>
+
+<div class="book">
+  <div class="track" id="track">
+
+    <!-- 0 封面 -->
+    <section class="page page-cover" id="cover">
+      <div class="cover-inner">
+        <span class="tag">POCKET BOOK · 方法论工具书</span>
+        <h2>《{{书名}}》<br/>方法论卡片书</h2>
+        <p class="lede">{{一句话总览：把本书核心方法论拆成 N 张可左右翻阅的卡片。}}</p>
+        <div class="by">编者 · 方法论视角读书整理 ｜ {{文章跨度/年代}}</div>
+        <div class="start">从顶部「目录」选主题，<b>立即跳转</b>到对应卡片</div>
+      </div>
+    </section>
+
+    <!-- 1 使用方法 -->
+    <section class="page" id="howto">
+      <article class="sheet wide">
+        <span class="ribbon r1">使用方法 · HOW TO USE</span>
+        <h3 class="sec-title">这是一本"遇事翻一翻"的书</h3>
+        <p class="sec-sub">不是从头读到尾，而是带着处境来查卡片。从顶部「目录」点主题，立即翻到那一张。</p>
+        <div class="howto">
+          <div class="h"><div class="n">STEP 01</div><div class="t">{{遇到卡点：信息不全/资源劣势/局面复杂。}}</div></div>
+          <div class="h"><div class="n">STEP 02</div><div class="t">{{从顶部"目录"挑一张对应的卡片主题。}}</div></div>
+          <div class="h"><div class="n">STEP 03</div><div class="t">{{看"核心命题 + 原文"，再读 3 个现实场景。}}</div></div>
+          <div class="h"><div class="n">STEP 04</div><div class="t">{{把场景里的动作，套进你当下的具体决策。}}</div></div>
+        </div>
+      </article>
+    </section>
+
+    <!-- 2 目录页 -->
+    <section class="page" id="page-index">
+      <article class="sheet wide">
+        <span class="ribbon r2">目录 · INDEX</span>
+        <h3 class="sec-title">{{N}} 张方法论卡片</h3>
+        <p class="sec-sub">点击任意一张，立即翻到该卡；卡片底部可"返回目录"。</p>
+        <div class="index-grid">
+          <a class="idx" href="#c01"><div class="b">01</div><div class="meta"><div class="nm">{{主题一}}</div><div class="ds">{{一句描述}}</div></div></a>
+          <a class="idx" href="#c02"><div class="b">02</div><div class="meta"><div class="nm">{{主题二}}</div><div class="ds">{{一句描述}}</div></div></a>
+          <a class="idx" href="#c03"><div class="b">03</div><div class="meta"><div class="nm">{{主题三}}</div><div class="ds">{{一句描述}}</div></div></a>
+          <a class="idx" href="#c04"><div class="b">04</div><div class="meta"><div class="nm">{{主题四}}</div><div class="ds">{{一句描述}}</div></div></a>
+          <a class="idx" href="#c05"><div class="b">05</div><div class="meta"><div class="nm">{{主题五}}</div><div class="ds">{{一句描述}}</div></div></a>
+          <a class="idx" href="#c06"><div class="b">06</div><div class="meta"><div class="nm">{{主题六}}</div><div class="ds">{{一句描述}}</div></div></a>
+          <a class="idx" href="#c07"><div class="b">07</div><div class="meta"><div class="nm">{{主题七}}</div><div class="ds">{{一句描述}}</div></div></a>
+          <a class="idx" href="#c08"><div class="b">08</div><div class="meta"><div class="nm">{{主题八}}</div><div class="ds">{{一句描述}}</div></div></a>
+          <a class="idx" href="#c09"><div class="b">09</div><div class="meta"><div class="nm">{{主题九}}</div><div class="ds">{{一句描述}}</div></div></a>
+          <a class="idx" href="#c10"><div class="b">10</div><div class="meta"><div class="nm">{{主题十}}</div><div class="ds">{{一句描述}}</div></div></a>
+          <a class="idx" href="#c11"><div class="b">11</div><div class="meta"><div class="nm">{{主题十一}}</div><div class="ds">{{一句描述}}</div></div></a>
+          <a class="idx" href="#c12"><div class="b">12</div><div class="meta"><div class="nm">{{主题十二}}</div><div class="ds">{{一句描述}}</div></div></a>
+        </div>
+      </article>
+    </section>
+
+    <!-- 3~N+2 主题卡片 -->
+    <!-- ===== 复制下面整段 <section> 可增加一张卡；id 改为 cNN，badge/card 类按 c1/c2/c3 循环，并在目录页与导航下拉同步 ===== -->
+    <section class="page" id="c01"><article class="sheet card c1">
+      <div class="head"><div class="badge">01</div><div class="nm">{{主题一}}</div></div>
+      <div class="thesis">{{核心命题：一句话讲清这一方法论的主张。}}</div>
+      <div class="quote">"{{原文引用}}"<span class="src">——{{出处}}</span></div>
+      <div class="scn">
+        <div class="s"><div class="lab">工作与决策</div><div class="tx">{{现实场景一}}</div></div>
+        <div class="s"><div class="lab">团队与管理</div><div class="tx">{{现实场景二}}</div></div>
+        <div class="s"><div class="lab">个人成长</div><div class="tx">{{现实场景三}}</div></div>
+      </div>
+      <div class="back"><a href="#page-index">↑ 返回目录</a></div>
+    </article></section>
+
+    <section class="page" id="c02"><article class="sheet card c2">
+      <div class="head"><div class="badge">02</div><div class="nm">{{主题二}}</div></div>
+      <div class="thesis">{{核心命题}}</div>
+      <div class="quote">"{{原文引用}}"<span class="src">——{{出处}}</span></div>
+      <div class="scn">
+        <div class="s"><div class="lab">工作与决策</div><div class="tx">{{现实场景一}}</div></div>
+        <div class="s"><div class="lab">团队与管理</div><div class="tx">{{现实场景二}}</div></div>
+        <div class="s"><div class="lab">个人成长</div><div class="tx">{{现实场景三}}</div></div>
+      </div>
+      <div class="back"><a href="#page-index">↑ 返回目录</a></div>
+    </article></section>
+
+    <section class="page" id="c03"><article class="sheet card c3">
+      <div class="head"><div class="badge">03</div><div class="nm">{{主题三}}</div></div>
+      <div class="thesis">{{核心命题}}</div>
+      <div class="quote">"{{原文引用}}"<span class="src">——{{出处}}</span></div>
+      <div class="scn">
+        <div class="s"><div class="lab">工作与决策</div><div class="tx">{{现实场景一}}</div></div>
+        <div class="s"><div class="lab">团队与管理</div><div class="tx">{{现实场景二}}</div></div>
+        <div class="s"><div class="lab">个人成长</div><div class="tx">{{现实场景三}}</div></div>
+      </div>
+      <div class="back"><a href="#page-index">↑ 返回目录</a></div>
+    </article></section>
+
+    <section class="page" id="c04"><article class="sheet card c1">
+      <div class="head"><div class="badge">04</div><div class="nm">{{主题四}}</div></div>
+      <div class="thesis">{{核心命题}}</div>
+      <div class="quote">"{{原文引用}}"<span class="src">——{{出处}}</span></div>
+      <div class="scn">
+        <div class="s"><div class="lab">工作与决策</div><div class="tx">{{现实场景一}}</div></div>
+        <div class="s"><div class="lab">团队与管理</div><div class="tx">{{现实场景二}}</div></div>
+        <div class="s"><div class="lab">个人成长</div><div class="tx">{{现实场景三}}</div></div>
+      </div>
+      <div class="back"><a href="#page-index">↑ 返回目录</a></div>
+    </article></section>
+
+    <section class="page" id="c05"><article class="sheet card c2">
+      <div class="head"><div class="badge">05</div><div class="nm">{{主题五}}</div></div>
+      <div class="thesis">{{核心命题}}</div>
+      <div class="quote">"{{原文引用}}"<span class="src">——{{出处}}</span></div>
+      <div class="scn">
+        <div class="s"><div class="lab">工作与决策</div><div class="tx">{{现实场景一}}</div></div>
+        <div class="s"><div class="lab">团队与管理</div><div class="tx">{{现实场景二}}</div></div>
+        <div class="s"><div class="lab">个人成长</div><div class="tx">{{现实场景三}}</div></div>
+      </div>
+      <div class="back"><a href="#page-index">↑ 返回目录</a></div>
+    </article></section>
+
+    <section class="page" id="c06"><article class="sheet card c3">
+      <div class="head"><div class="badge">06</div><div class="nm">{{主题六}}</div></div>
+      <div class="thesis">{{核心命题}}</div>
+      <div class="quote">"{{原文引用}}"<span class="src">——{{出处}}</span></div>
+      <div class="scn">
+        <div class="s"><div class="lab">工作与决策</div><div class="tx">{{现实场景一}}</div></div>
+        <div class="s"><div class="lab">团队与管理</div><div class="tx">{{现实场景二}}</div></div>
+        <div class="s"><div class="lab">个人成长</div><div class="tx">{{现实场景三}}</div></div>
+      </div>
+      <div class="back"><a href="#page-index">↑ 返回目录</a></div>
+    </article></section>
+
+    <section class="page" id="c07"><article class="sheet card c1">
+      <div class="head"><div class="badge">07</div><div class="nm">{{主题七}}</div></div>
+      <div class="thesis">{{核心命题}}</div>
+      <div class="quote">"{{原文引用}}"<span class="src">——{{出处}}</span></div>
+      <div class="scn">
+        <div class="s"><div class="lab">工作与决策</div><div class="tx">{{现实场景一}}</div></div>
+        <div class="s"><div class="lab">团队与管理</div><div class="tx">{{现实场景二}}</div></div>
+        <div class="s"><div class="lab">个人成长</div><div class="tx">{{现实场景三}}</div></div>
+      </div>
+      <div class="back"><a href="#page-index">↑ 返回目录</a></div>
+    </article></section>
+
+    <section class="page" id="c08"><article class="sheet card c2">
+      <div class="head"><div class="badge">08</div><div class="nm">{{主题八}}</div></div>
+      <div class="thesis">{{核心命题}}</div>
+      <div class="quote">"{{原文引用}}"<span class="src">——{{出处}}</span></div>
+      <div class="scn">
+        <div class="s"><div class="lab">工作与决策</div><div class="tx">{{现实场景一}}</div></div>
+        <div class="s"><div class="lab">团队与管理</div><div class="tx">{{现实场景二}}</div></div>
+        <div class="s"><div class="lab">个人成长</div><div class="tx">{{现实场景三}}</div></div>
+      </div>
+      <div class="back"><a href="#page-index">↑ 返回目录</a></div>
+    </article></section>
+
+    <section class="page" id="c09"><article class="sheet card c3">
+      <div class="head"><div class="badge">09</div><div class="nm">{{主题九}}</div></div>
+      <div class="thesis">{{核心命题}}</div>
+      <div class="quote">"{{原文引用}}"<span class="src">——{{出处}}</span></div>
+      <div class="scn">
+        <div class="s"><div class="lab">工作与决策</div><div class="tx">{{现实场景一}}</div></div>
+        <div class="s"><div class="lab">团队与管理</div><div class="tx">{{现实场景二}}</div></div>
+        <div class="s"><div class="lab">个人成长</div><div class="tx">{{现实场景三}}</div></div>
+      </div>
+      <div class="back"><a href="#page-index">↑ 返回目录</a></div>
+    </article></section>
+
+    <section class="page" id="c10"><article class="sheet card c1">
+      <div class="head"><div class="badge">10</div><div class="nm">{{主题十}}</div></div>
+      <div class="thesis">{{核心命题}}</div>
+      <div class="quote">"{{原文引用}}"<span class="src">——{{出处}}</span></div>
+      <div class="scn">
+        <div class="s"><div class="lab">工作与决策</div><div class="tx">{{现实场景一}}</div></div>
+        <div class="s"><div class="lab">团队与管理</div><div class="tx">{{现实场景二}}</div></div>
+        <div class="s"><div class="lab">个人成长</div><div class="tx">{{现实场景三}}</div></div>
+      </div>
+      <div class="back"><a href="#page-index">↑ 返回目录</a></div>
+    </article></section>
+
+    <section class="page" id="c11"><article class="sheet card c2">
+      <div class="head"><div class="badge">11</div><div class="nm">{{主题十一}}</div></div>
+      <div class="thesis">{{核心命题}}</div>
+      <div class="quote">"{{原文引用}}"<span class="src">——{{出处}}</span></div>
+      <div class="scn">
+        <div class="s"><div class="lab">工作与决策</div><div class="tx">{{现实场景一}}</div></div>
+        <div class="s"><div class="lab">团队与管理</div><div class="tx">{{现实场景二}}</div></div>
+        <div class="s"><div class="lab">个人成长</div><div class="tx">{{现实场景三}}</div></div>
+      </div>
+      <div class="back"><a href="#page-index">↑ 返回目录</a></div>
+    </article></section>
+
+    <section class="page" id="c12"><article class="sheet card c3">
+      <div class="head"><div class="badge">12</div><div class="nm">{{主题十二}}</div></div>
+      <div class="thesis">{{核心命题}}</div>
+      <div class="quote">"{{原文引用}}"<span class="src">——{{出处}}</span></div>
+      <div class="scn">
+        <div class="s"><div class="lab">工作与决策</div><div class="tx">{{现实场景一}}</div></div>
+        <div class="s"><div class="lab">团队与管理</div><div class="tx">{{现实场景二}}</div></div>
+        <div class="s"><div class="lab">个人成长</div><div class="tx">{{现实场景三}}</div></div>
+      </div>
+      <div class="back"><a href="#page-index">↑ 返回目录</a></div>
+    </article></section>
+
+    <!-- N+3 封底 -->
+    <section class="page page-back" id="back">
+      <div class="back-inner">
+        <span class="ribbon">封底 · COLOPHON</span>
+        <h3 class="sec-title">把方法论，带在身上</h3>
+        <p class="sec-sub">这是一本可以"随身翻"的战略工具书。</p>
+        <div class="bc-box">
+          关注公众号 <b>{{公众号名}}</b>，回复关键词 <b>{{【关键词】}}</b> 获取：
+          <br/>· 本卡片书的<b>可打印 PDF 版</b>（A6 裁切，随身带）
+          <br/>· <b>读者社群</b>入口，一起把经典方法论用起来
+          <br/><span class="bc-key">关键词：{{关键词}}</span>
+          <div class="bc-note">※ 以上公众号名、关键词与引流话术为占位示例，请按你实际的运营账号与私域入口替换。</div>
+        </div>
+        <footer style="padding-left:0;padding-right:0;max-width:none;text-align:left;margin-top:18px;">
+          <div style="font-family:var(--serif);color:#cdbf9f;font-size:13px;font-weight:700;margin-bottom:6px;">关于这份卡片书</div>
+          本页为<b style="color:#cdbf9f">方法论视角下的个人读书整理</b>，非官方版本；篇目与原文表述以权威出版版本为准。金句摘录仅供学习参考，引用请核对原书。<br/>
+          设计：米色纸感 · 衬线标题 · 书签色带 · 左右翻阅卡片书 · 单文件响应式 HTML。
+        </footer>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<button class="flip prev" id="flipPrev" aria-label="上一页">‹</button>
+<button class="flip next" id="flipNext" aria-label="下一页">›</button>
+
+<script>
+  var track=document.getElementById('track');
+  var pages=Array.prototype.slice.call(track.querySelectorAll('.page'));
+  var total=pages.length;
+  var cur=0;
+  var bar=document.getElementById('progress');
+  var prevBtn=document.getElementById('flipPrev');
+  var nextBtn=document.getElementById('flipNext');
+
+  function updateBtns(){
+    prevBtn.disabled=cur<=0;
+    nextBtn.disabled=cur>=total-1;
+  }
+
+  function go(i){
+    cur=Math.max(0,Math.min(total-1,i));
+    track.style.transform='translateX('+(-cur*100)+'%)';
+    bar.style.width=(total>1?(cur/(total-1)*100):0)+'%';
+    updateBtns();
+  }
+
+  /* 键盘 ← → 直接跳页（无滑动动画） */
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){go(cur+1);}
+    else if(e.key==='ArrowLeft'){go(cur-1);}
+  });
+
+  /* 左右翻阅按钮：直接跳到上一页 / 下一页（无滑动动画） */
+  prevBtn.addEventListener('click',function(){go(cur-1);});
+  nextBtn.addEventListener('click',function(){go(cur+1);});
+
+  /* 触摸滑动翻页（区分横向滑动与纵向滚动，无滑动动画） */
+  var sx=0,sy=0;
+  track.addEventListener('touchstart',function(e){
+    sx=e.touches[0].clientX;sy=e.touches[0].clientY;
+  },{passive:true});
+  track.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+    if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)){
+      if(dx<0){go(cur+1);}else{go(cur-1);}
+    }
+  },{passive:true});
+
+  /* 导航栏目录下拉 */
+  var drop=document.getElementById('navDrop');
+  var dropBtn=document.getElementById('navDropBtn');
+  dropBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    var open=drop.classList.toggle('open');
+    dropBtn.setAttribute('aria-expanded',open?'true':'false');
+  });
+  document.addEventListener('click',function(e){
+    if(!drop.contains(e.target)){drop.classList.remove('open');dropBtn.setAttribute('aria-expanded','false');}
+  });
+  drop.querySelectorAll('.nav-drop-panel a').forEach(function(a){
+    a.addEventListener('click',function(){drop.classList.remove('open');dropBtn.setAttribute('aria-expanded','false');});
+  });
+
+  /* 所有 #锚点链接 → 立即跳到对应页（无动画） */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var id=a.getAttribute('href').slice(1);
+      var el=document.getElementById(id);
+      if(el){
+        e.preventDefault();
+        var idx=pages.indexOf(el);
+        if(idx>=0){go(idx);}
+      }
+    });
+  });
+
+  go(0);
+</script>
+</body>
+</html>

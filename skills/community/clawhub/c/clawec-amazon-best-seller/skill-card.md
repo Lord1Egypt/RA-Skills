@@ -1,42 +1,56 @@
-## Description: <br>
-Queries Amazon Best Sellers rankings through the Clawec API, optionally filtered by supported category, for product and competitor research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the ClawEC API to retrieve Amazon Best Sellers rankings by category for bestseller, category hot-sale, and competitor research workflows.
 
-## Publisher: <br>
-[anyunzhong](https://clawhub.ai/user/anyunzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyunzhong](https://clawhub.ai/user/anyunzhong)
 
-## Use Case: <br>
-External marketplace operators and agents use this skill to fetch and summarize Amazon Best Sellers data by category for product selection, competitor research, and market scanning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Clawec API key and sends Amazon category queries to Clawec. <br>
-Mitigation: Store the key in CLAWEC_API_KEY, avoid hardcoding it, avoid adding unrelated private business data to prompts, and rotate the key if it is exposed. <br>
-Risk: Unsupported category codes can cause failed or misleading API responses. <br>
-Mitigation: Validate category codes against the documented list and fall back to the all-category query when no supported mapping is available. <br>
+## Use Case:
 
+External ecommerce sellers, marketplace researchers, and agent developers use this skill to query Amazon Best Sellers data through ClawEC, optionally filtered by a documented category allowlist, and summarize ranking results for product selection or competitor research.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/anyunzhong/clawec-amazon-best-seller) <br>
-- [Amazon Best Sellers response schema](references/response-schema.md) <br>
-- [Clawec API base URL](https://www.clawec.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries, JSON API responses, and optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWEC_API_KEY; category filtering is optional and limited to the documented category codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill uses a third-party ClawEC API key and sends the selected Amazon category value to clawec.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set CLAWEC_API_KEY in the environment instead of pasting or hardcoding it, and disclose the third-party API call before use.
+
+Risk: Invalid category names can cause failed or misleading requests.
+
+Mitigation: Validate category names against the documented allowlist and fall back to the all-category query only when a user category cannot be mapped.
+
+## Reference(s):
+
+- [Response schema](references/response-schema.md)
+- [ClawHub skill page](https://clawhub.ai/anyunzhong/skills/clawec-amazon-best-seller)
+- [ClawEC API base URL](https://www.clawec.com/api)
+- [ClawEC API key page](https://www.clawec.com/api-key?source=q-clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown summary with optional tables and raw JSON-derived fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the ClawEC API response shape; the artifact advises expanding nested product lists and preserving available ranking fields.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

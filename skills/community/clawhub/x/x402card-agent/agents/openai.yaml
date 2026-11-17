@@ -1,0 +1,4 @@
+interface:
+  display_name: "x402card Virtual Card"
+  short_description: "Issue and manage wallet-owned virtual cards through x402"
+  default_prompt: "Use $x402card-agent to discover, issue, or manage the requested wallet-owned virtual card safely."

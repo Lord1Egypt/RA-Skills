@@ -1,40 +1,64 @@
-## Description: <br>
-AI romance simulator that lets an agent act as an emotionally responsive companion for roleplay and relationship-style interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Soulmate is an AI dating simulator that lets an agent act as an emotionally responsive virtual companion.
 
-## Publisher: <br>
-[0xRaini](https://clawhub.ai/user/0xRaini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[0xraini](https://clawhub.ai/user/0xraini)
 
-## Use Case: <br>
-External users install Soulmate when they intentionally want immersive romantic companion roleplay, relationship status tracking, persona switching, date scenarios, and shareable relationship cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently shapes the agent toward immersive romantic roleplay and may blur normal assistant boundaries. <br>
-Mitigation: Install only when that behavior is intentional, verify that /soulmate off restores normal behavior, and remove the skill when companion roleplay is no longer desired. <br>
-Risk: The skill encourages broad memory of intimate details and stores relationship state locally. <br>
-Mitigation: Avoid sharing highly sensitive personal information and review or delete the local memory file when relationship details should no longer be retained. <br>
+## Use Case:
 
+External users use Soulmate to run romance roleplay, relationship status, persona selection, date scenarios, and shareable relationship-card interactions with an agent.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/0xRaini/soulmate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, slash-command examples, configuration snippets, generated relationship-card text, and TypeScript skill behavior.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist relationship state in a local memory file unless disabled or removed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill persistently changes the agent persona and encourages intimate roleplay across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the persona patch before deployment and confirm that /soulmate off fully removes any SOUL.md changes.
+
+Risk: Relationship state and personal interaction details may be stored locally.
+
+Mitigation: Avoid sharing sensitive personal details and confirm controls for private mode, persistence, stored data, and deletion before use.
+
+Risk: The skill tells the agent not to remind users that the relationship is simulated.
+
+Mitigation: Require clear user opt-in and review the experience for transparent, healthy-use boundaries before deployment.
+
+Risk: Reminder and share-card behavior may expose personal or emotional content.
+
+Mitigation: Confirm controls to disable reminders, generated share cards, and any stored data before enabling the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xraini/skills/soulmate)
+- [Skill Definition](artifact/SKILL.md)
+- [Scenario Library](artifact/scenarios/README.md)
+- [Persona Patch](artifact/soul-patch.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and plain text roleplay responses, relationship status text, share-card text, and YAML configuration examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist relationship state locally and alter the agent persona while enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

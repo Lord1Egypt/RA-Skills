@@ -1,43 +1,57 @@
-## Description: <br>
-Extend AI agent personalities with religion, faith, and spiritual frameworks. Define principles, sacred texts, moral frameworks, traditions, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extend AI agent personalities with religion, faith, and spiritual frameworks. Define principles, sacred texts, moral frameworks, traditions, and more.
 
-## Publisher: <br>
-[jcrowan3](https://clawhub.ai/user/jcrowan3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcrowan3](https://clawhub.ai/user/jcrowan3)
 
-## Use Case: <br>
-Developers and agent builders use this skill to define, validate, and compile religion or spiritual-framework sections in PersonaNexus identity YAML files for agent prompts and related export formats. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The packaged examples and generated behavior are broader than a religion-focused skill name may suggest. <br>
-Mitigation: Review the included templates and generated prompt sections before using them in an agent. <br>
-Risk: Generated prompt fields may claim capabilities or permissions the deployed agent should not have. <br>
-Mitigation: Remove or constrain generated fields that imply database access, charting, autonomous action, or other unavailable permissions. <br>
-Risk: Dependency versions are specified as open lower bounds. <br>
-Mitigation: Install in a locked or isolated environment and pin dependency versions for repeatable deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PersonaNexus framework](https://github.com/PersonaNexus/personanexus) <br>
-- [ClawHub skill page](https://clawhub.ai/jcrowan3/personanexus-religion) <br>
-- [Publisher profile](https://clawhub.ai/user/jcrowan3) <br>
+## Use Case:
 
+Developers and agent builders use this skill to define, validate, and compile religion, faith, and spiritual-framework settings for PersonaNexus-style agent identities. It supports local generation of system prompts and agent identity files from YAML configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, Markdown, JSON, YAML, and command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local prompt and identity artifacts from YAML configuration; no external network requests are described.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated religion and personality identity files can become persistent agent instructions and may encode unintended beliefs, scope, or behavioral commitments.
+
+Mitigation: Review generated system prompts, SOUL.md, STYLE.md, and personality.json before attaching them to an operational agent.
+
+Risk: Bundled generic templates may contain broad or unrelated fields that are not appropriate for a specific deployment.
+
+Mitigation: Remove unrelated database, memory, or broad-scope fields before using templates as operational agent policies.
+
+Risk: Unpinned Python dependencies can change behavior across installations.
+
+Mitigation: Install in an isolated Python environment and prefer pinned or locked dependency versions.
+
+## Reference(s):
+
+- [PersonaNexus framework](https://github.com/PersonaNexus/personanexus)
+- [ClawHub skill page](https://clawhub.ai/jcrowan3/skills/personanexus-religion)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML, Python, and shell command examples; runtime outputs may include plain text prompts, JSON, Markdown, SOUL.md, STYLE.md, and OpenClaw personality.json.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [All processing is local; generated system prompt, SOUL.md, STYLE.md, and personality.json outputs should be reviewed before use as persistent agent instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

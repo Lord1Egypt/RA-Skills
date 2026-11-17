@@ -1,41 +1,53 @@
-## Description: <br>
-Convert text to speech audio files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert text to speech audio files. Use when user needs to create audio from text, generate voiceovers, create podcasts, or convert articles to audio.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and agents use this skill to convert supplied text into speech audio files for voiceovers, podcasts, article narration, and multilingual audio generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text may be sent to the gTTS external provider when that backend is used. <br>
-Mitigation: Avoid confidential input unless the user accepts the external provider boundary. <br>
-Risk: The output file path is user-controlled. <br>
-Mitigation: Review the requested output path before running the command. <br>
+## Use Case:
 
+Developers and content creators use this skill to convert supplied text into speech audio files for voiceovers, podcasts, articles, and multilingual audio workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/dinghaibin-text-to-speech) <br>
-- [Publisher Profile](https://clawhub.ai/user/dinghaibin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with command examples and generated audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an audio file at the requested output path when the local text-to-speech backend is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Submitted text may be sent to an external text-to-speech provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the text before conversion and avoid confidential, regulated, personal, or secret content unless an acceptable backend and data-handling path are verified.
+
+Risk: The skill writes audio files to user-selected output paths.
+
+Mitigation: Keep output paths inside a trusted working directory and review generated files before sharing or publishing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/skills/dinghaibin-text-to-speech)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write MP3 output files to a user-specified path; macOS fallback may write AIFF output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

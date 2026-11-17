@@ -1,0 +1,20 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_codestudio_list_files",
+		"description": "List all current source file paths (flat relative paths) of the AICodeStudio module. List before editing to see the structure.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "AICodeStudio module id returned by _codestudio_create_module."
+				}
+			},
+			"required": [
+				"moduleId"
+			],
+			"additionalProperties": false
+		}
+	}
+}

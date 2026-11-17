@@ -1,7 +1,7 @@
 #!/bin/bash
 # Meta Skill Extraction Helper
-# Creates a new skill from a meta learning entry
-# Usage: ./extract-skill.sh <skill-name> [--dry-run]
+# Dry-run by default. Writes SKILL.md only with --write after an explicit user request.
+# Usage: ./extract-skill.sh <skill-name> [--write]
 
 set -e
 
@@ -16,22 +16,20 @@ usage() {
     cat << EOF
 Usage: $(basename "$0") <skill-name> [options]
 
-Create a new meta skill from an infrastructure learning entry.
-
-Meta-skills are special: they modify the infrastructure that all other skills
-depend on. Extra care in testing is required — always verify in a fresh session.
+Preview (default) or write a meta skill scaffold. Hooks never invoke this script.
 
 Arguments:
   skill-name     Name of the skill (lowercase, hyphens for spaces)
 
 Options:
-  --dry-run      Show what would be created without creating files
+  --dry-run      Show what would be created without creating files (default)
+  --write        Write SKILL.md under the output directory (requires explicit user request)
   --output-dir   Relative output directory under current path (default: ./skills)
   -h, --help     Show this help message
 
 Examples:
   $(basename "$0") prompt-file-compression
-  $(basename "$0") hook-error-handling --dry-run
+  $(basename "$0") hook-error-handling --write
   $(basename "$0") rule-deduplication --output-dir ./skills/meta
 
 The skill will be created in: \$SKILLS_DIR/<skill-name>/
@@ -51,12 +49,16 @@ log_error() {
 }
 
 SKILL_NAME=""
-DRY_RUN=false
+DRY_RUN=true
 
 while [[ $# -gt 0 ]]; do
     case $1 in
         --dry-run)
             DRY_RUN=true
+            shift
+            ;;
+        --write)
+            DRY_RUN=false
             shift
             ;;
         --output-dir)
@@ -132,7 +134,7 @@ if [ "$DRY_RUN" = true ]; then
     echo "---"
     cat << TEMPLATE
 name: $SKILL_NAME
-description: "[TODO: Describe the agent infrastructure pattern, prompt file fix, or hook improvement this skill addresses]"
+description: "[TODO: Describe the agent infrastructure pattern, prompt file fix, or hook improvement this skill addresses. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers).]"
 ---
 
 # $(echo "$SKILL_NAME" | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) tolower(substr($i,2))}1')
@@ -203,7 +205,7 @@ mkdir -p "$SKILL_PATH"
 cat > "$SKILL_PATH/SKILL.md" << TEMPLATE
 ---
 name: $SKILL_NAME
-description: "[TODO: Describe the agent infrastructure pattern, prompt file fix, or hook improvement this skill addresses]"
+description: "[TODO: Describe the agent infrastructure pattern, prompt file fix, or hook improvement this skill addresses. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers).]"
 ---
 
 # $(echo "$SKILL_NAME" | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) tolower(substr($i,2))}1')

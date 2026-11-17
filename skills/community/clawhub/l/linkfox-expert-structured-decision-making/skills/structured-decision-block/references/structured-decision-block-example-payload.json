@@ -1,0 +1,156 @@
+{
+  "version": "0.2",
+  "metadata": {
+    "scenario": "niche-analysis",
+    "scenario_id": "pet-water-fountain-us-20260805",
+    "upstream_skill": "amazon-niche-radar",
+    "run_id": "run_20260805_143022",
+    "timestamp": "2026-08-05T14:30:22Z",
+    "platform": "amazon",
+    "site": "US"
+  },
+  "business_context": {
+    "risk_preference": "稳健",
+    "primary_goal": "利润优先",
+    "weights": {
+      "market_potential": 18,
+      "competition": 18,
+      "entry_barrier": 15,
+      "profitability": 28,
+      "trend_momentum": 12,
+      "risk": 9
+    },
+    "hard_constraints": [
+      "净利润率 >= 25%",
+      "CR3 < 55%"
+    ],
+    "soft_preferences": [
+      "偏好有真实增长信号",
+      "可接受中等等级进入门槛"
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "market_growth",
+      "name": "市场增长潜力",
+      "value": 38,
+      "unit": "% YoY",
+      "score": 8.2,
+      "weight": 18.0,
+      "thresholds": {
+        "green": ">30% 且 年搜索量 >20万",
+        "yellow": "15-30%",
+        "red": "<15%"
+      },
+      "evidence": [
+        {
+          "text": "Google Trends 年度均值增长 52%",
+          "source": "linkfox-google-trend-get-trend-by-keys",
+          "step": "S3.5"
+        },
+        {
+          "text": "ABA 26周排名改善 31%",
+          "source": "linkfox-aba-intelligent-query",
+          "step": "S3.4"
+        }
+      ],
+      "potential_reversals": [
+        "Google Trends 或 ABA 最近8周连续恶化 >15%",
+        "竞争品牌突然加大投放导致自然流量被挤压"
+      ],
+      "importance": "high"
+    },
+    {
+      "id": "competition_cr3",
+      "name": "竞争集中度 (CR3)",
+      "value": 42,
+      "unit": "%",
+      "score": 6.8,
+      "weight": 18.0,
+      "thresholds": {
+        "green": "<30%",
+        "yellow": "30-50%",
+        "red": ">50%"
+      },
+      "evidence": [
+        {
+          "text": "前台搜索 3 页 + 卖家精灵类目统计聚合",
+          "source": "amazon-search + sellersprite-market-statistics",
+          "step": "S3.2 + S3.3"
+        }
+      ],
+      "potential_reversals": [
+        "CR3 快速升至 55%+（新强势品牌进入）"
+      ]
+    },
+    {
+      "id": "new_product_friendly",
+      "name": "新品友好度",
+      "value": 18,
+      "unit": "% 成功率",
+      "score": 7.9,
+      "weight": 15.0,
+      "evidence": [
+        {
+          "text": "极目 niche 新品成功率 18%，新品均销高于类目均值",
+          "source": "linkfox-jiimore-get-niche-info-by-keyword",
+          "step": "S2-B"
+        }
+      ],
+      "potential_reversals": [
+        "新品上架后 3 个月内成功率掉到 8% 以下"
+      ]
+    },
+    {
+      "id": "profitability_zero_ad",
+      "name": "利润空间（零广告策略）",
+      "value": 28.5,
+      "unit": "% 净利润率",
+      "score": 8.7,
+      "weight": 28.0,
+      "thresholds": {
+        "green": ">=25%",
+        "yellow": "18-25%",
+        "red": "<18%"
+      },
+      "evidence": [
+        {
+          "text": "Top ASIN Keepa 正常 Buybox 价 + 11 项成本核算（含 1688 货源）",
+          "source": "linkfox-keepa-product-series + linkfox-1688-search-by-image",
+          "step": "S6.4"
+        }
+      ],
+      "potential_reversals": [
+        "真实 FBA 费用或退货率比模型高 30%+",
+        "1688 实际起批量 >= 当前预估 2 倍且无更优货源"
+      ],
+      "importance": "high"
+    }
+  ],
+  "key_aggregates": {
+    "cr3": 42,
+    "cr5": 58,
+    "top_asin_net_profit_rate_zero_ad": 28.5,
+    "new_product_success_rate": 18,
+    "overall_market_score_from_upstream": 79
+  },
+  "key_risks": [
+    {
+      "text": "头部品牌集中度中等偏高，易受广告挤压",
+      "severity": "medium",
+      "source": "jiimore + sellersprite + 前台搜索"
+    }
+  ],
+  "positive_signals": [
+    "真实社媒趋势验证已触发且找到驱动因素",
+    "存在明显价格甜蜜区 + 低分高销量竞品痛点"
+  ],
+  "upstream_limitations": [
+    "ABA 数据为周维度",
+    "1688 货源匹配仍需用户二次验证起批量与质量",
+    "前台搜索样本为 3 页（~150 非广告商品）"
+  ],
+  "raw_data_refs": {
+    "report_path": "/root/linkfox/data/reports/niche-pet-water-fountain-20260805.html"
+  }
+}

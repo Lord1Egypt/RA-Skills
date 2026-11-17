@@ -1,42 +1,54 @@
-## Description: <br>
-Create, list, and manage macOS Calendar events via AppleScript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, list, and manage macOS Calendar events via AppleScript for reminders, meetings, deadlines, recurring events, and other Apple Calendar tasks on macOS.
 
-## Publisher: <br>
-[lucaperret](https://clawhub.ai/user/lucaperret) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lucaperret](https://clawhub.ai/user/lucaperret)
 
-## Use Case: <br>
-External users and developers use this skill to translate scheduling requests into validated macOS Calendar actions, including listing calendars and creating one-time or recurring events with reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create events in configured macOS calendars. <br>
-Mitigation: List calendars first and confirm the calendar, date, time, alarm, and recurrence before creating an event. <br>
-Risk: Event titles are saved in a local action log. <br>
-Mitigation: Avoid highly sensitive event titles when local logs may be exposed through backups or other local access. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to let an agent list writable macOS calendars and create Apple Calendar events from structured scheduling details.
 
-## Reference(s): <br>
-- [iCal Recurrence Rules](references/recurrence.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lucaperret/macos-calendar) <br>
-- [Project homepage](https://github.com/lucaperret/agent-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS Calendar.app, osascript, and python3; creates events through local AppleScript and writes a local action log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can create real Apple Calendar events and alerts on the user's Mac.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review ambiguous scheduling requests and confirm the calendar, date, time, recurrence, and alarm details before running event creation.
+
+Risk: Event titles and calendar names are written to a local action log, and Calendar.app may open when the helper runs.
+
+Mitigation: Avoid putting highly sensitive details in event titles when local logging is a concern, and make users aware that Calendar.app may launch.
+
+## Reference(s):
+
+- [iCal Recurrence Rules](references/recurrence.md)
+- [Project homepage](https://github.com/lucaperret/agent-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces commands and structured event fields for local macOS Calendar automation.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

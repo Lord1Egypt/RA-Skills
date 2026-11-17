@@ -1,40 +1,57 @@
-## Description: <br>
-多平台自动回复技能，支持抖音、小红书、微信公众号、飞书四大平台，提供关键词匹配、AI回复生成、评论/私信/用户咨询的自动应答策略。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates platform-specific Chinese auto-reply guidance, keyword reply rules, and message templates for Douyin, Xiaohongshu, WeChat Official Accounts, and Feishu.
 
-## Publisher: <br>
-[ncsimok](https://clawhub.ai/user/ncsimok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncsimok](https://clawhub.ai/user/ncsimok)
 
-## Use Case: <br>
-Marketing, operations, and customer-support users use this skill to draft and configure auto-reply rules for Douyin, Xiaohongshu, WeChat Official Accounts, and Feishu. It helps produce platform-specific reply copy, keyword mappings, and response workflows for comments, private messages, and customer inquiries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated replies may be inaccurate, make unverified service claims, violate platform rules, or request personal contact details or addresses. <br>
-Mitigation: Review replies before posting them to live accounts and align them with current platform policies, truthful offers, and privacy requirements. <br>
-Risk: The skill provides templates and a helper script rather than live account controls or policy enforcement. <br>
-Mitigation: Treat generated rules as drafts, test them in the target platform, and approve final wording before enabling automation. <br>
+## Use Case:
 
+Marketing, operations, and customer support teams use this skill to draft and organize keyword-based replies, private-message scripts, and platform-specific response formats for sports service inquiries across Chinese social and collaboration channels.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ncsimok/doorstep-auto-reply) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, JSON configuration examples, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are templates and suggestions for review before use in live accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generic keyword triggers or sales copy may create inaccurate, overly broad, or platform-sensitive customer-facing replies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow trigger terms, check platform policy requirements, and manually review generated copy before publishing it to real customer channels.
+
+Risk: The release describes automation and AI generation more broadly than the included template and helper script implement.
+
+Mitigation: Use it as a template library and reply-format helper unless it has been integrated with a reviewed automation workflow.
+
+Risk: The helper script is illustrative and may need adjustment before direct execution in production workflows.
+
+Mitigation: Test helper commands in a non-production environment and verify script dependencies and outputs before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ncsimok/skills/doorstep-auto-reply)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reply copy, keyword mappings, platform-specific formatting tips, and configuration templates for agent review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

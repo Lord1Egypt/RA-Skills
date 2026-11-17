@@ -1,42 +1,57 @@
-## Description: <br>
-Transcribe audio files (WAV/MP3/M4A/FLAC) to timestamped text using SenseVoice-Small + FSMN-VAD, with single-file and batch modes for VAD-anchored per-segment timestamps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes WAV, MP3, M4A, and FLAC audio to timestamped text using SenseVoice-Small with FSMN-VAD, supporting single-file and batch daylog workflows with VAD-anchored segment timestamps.
 
-## Publisher: <br>
-[ylongw](https://clawhub.ai/user/ylongw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ylongw](https://clawhub.ai/user/ylongw)
 
-## Use Case: <br>
-Developers and agent users use this skill to transcribe speech recordings into timestamped text, either one file at a time or across daylog batches. It is especially oriented toward Chinese audio transcription with SenseVoice-Small and FSMN-VAD timestamp anchoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Batch re-transcription with --force-dates can replace existing transcript outputs. <br>
-Mitigation: Run --dry-run first and use --force-dates only for dates that should be regenerated. <br>
-Risk: Optional Discord webhook notifications share progress metadata such as dates, counts, and possible failure filenames with the configured endpoint. <br>
-Mitigation: Provide a Discord webhook only when sharing that metadata externally is acceptable. <br>
-Risk: First use installs Python ML dependencies and downloads transcription and VAD models. <br>
-Mitigation: Install in the documented virtual environment and proceed only if the dependency and model downloads are acceptable for the target system. <br>
+## Use Case:
 
+Developers and external users use this skill to transcribe speech recordings into timestamped text files, including batch processing of daylog audio grouped by recording date. It is especially oriented toward Mandarin/Chinese audio workflows that need VAD-anchored timestamps.
 
-## Reference(s): <br>
-- [SenseVoice Transcribe on ClawHub](https://clawhub.ai/ylongw/sensevoice-transcribe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with shell commands and timestamped text transcript files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Batch mode can write transcript files, progress JSON, and optional Discord webhook notifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security review notes that optional flags can delete or overwrite user-controlled paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in a constrained working directory, preview with dry-run where possible, avoid --force-dates unless date arguments are trusted, and avoid pointing --progress-file at existing important files.
+
+Risk: The security review notes that the Discord webhook option can send filenames, dates, status, and error details to an arbitrary endpoint.
+
+Mitigation: Use --discord-webhook only with trusted endpoints and only when sending those job details is acceptable.
+
+Risk: The security guidance recommends caution around dependency and model downloads.
+
+Mitigation: Prefer pinned dependencies and a sandboxed environment for model downloads and transcription runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ylongw/skills/sensevoice-transcribe)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration]
+
+**Output Format:** [Timestamped transcript text files, progress JSON when configured, and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transcripts use one timestamped segment per line, generally around 15-second granularity when VAD timestamps are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

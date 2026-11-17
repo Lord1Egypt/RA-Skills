@@ -1,42 +1,57 @@
-## Description: <br>
-Evaluates new partnership or revenue-channel opportunities with a four-dimension scoring method for technical barrier, market demand, competitive moat, and revenue potential. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate new revenue channels by scoring technical difficulty, market demand, competition barriers, and revenue potential to guide prioritization decisions.
 
-## Publisher: <br>
-[gdp6539](https://clawhub.ai/user/gdp6539) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gdp6539](https://clawhub.ai/user/gdp6539)
 
-## Use Case: <br>
-Business users, product teams, and agents use this skill to quickly assess whether a proposed partnership or revenue channel is worth prioritizing. It produces a structured score and decision recommendation for partnership, channel, ROI, or feasibility questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad questions about whether something is worth doing, which can make the score appear more general than the partnership, revenue-channel, or ROI context supports. <br>
-Mitigation: Confirm that the request is a partnership, revenue-channel, or ROI evaluation before relying on the recommendation. <br>
-Risk: A simple numeric score can overstate certainty for business decisions with incomplete market or revenue evidence. <br>
-Mitigation: Treat the generated report as decision-support guidance and review assumptions before acting on the recommendation. <br>
+## Use Case:
 
+Business and strategy users use this skill to compare potential revenue channels with a four-dimension score and receive a concise go, caution, or abandon recommendation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gdp6539/partnership-priority-evaluator) <br>
-- [Framework Reference](references/framework.md) <br>
-- [Evaluation Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Code] <br>
-**Output Format:** [Markdown evaluation report with scored dimensions and a decision recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses four 1-5 dimension scores and an average-score threshold for the recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill documentation) <br>
+Risk: The skill provides lightweight business-channel prioritization and may produce misleading recommendations if input assumptions are weak.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify market, revenue, competition, and implementation assumptions before using the score for financial or partnership decisions.
+
+Risk: Documentation and recommendation labels are in Chinese, which can lead to misunderstanding for users who do not read Chinese.
+
+Mitigation: Use a reviewer or translation workflow so users understand the scoring dimensions, thresholds, and recommendation labels.
+
+## Reference(s):
+
+- [Skill Instructions](SKILL.md)
+- [Usage Guide](README.md)
+- [Four-Dimension Evaluation Framework](references/framework.md)
+- [Evaluation Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/gdp6539/skills/partnership-priority-evaluator)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance, code]
+
+**Output Format:** [Markdown evaluation report with numeric scores and a recommendation label]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses four 1-5 scores and averages them into a priority recommendation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

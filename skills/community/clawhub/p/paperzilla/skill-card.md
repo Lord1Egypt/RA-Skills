@@ -1,43 +1,52 @@
-## Description: <br>
-Use the Paperzilla CLI (pz) to browse research projects and feeds, inspect canonical papers and project recommendations, leave feedback, export JSON, and generate Atom feed URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Paperzilla CLI (pz) to browse research projects and feeds, inspect canonical papers and project recommendations, leave feedback, export JSON, and generate Atom feed URLs.
 
-## Publisher: <br>
-[pors](https://clawhub.ai/user/pors) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pors](https://clawhub.ai/user/pors)
 
-## Use Case: <br>
-Developers, researchers, and external users use this skill to operate Paperzilla from an agent session: browsing project feeds, inspecting canonical papers and project-specific recommendations, exporting structured JSON, and managing recommendation feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to authenticate with Paperzilla and run project-specific feedback commands. <br>
-Mitigation: Use the intended account only and require confirmation before running `pz feedback` commands. <br>
-Risk: `pz feed ... --atom` can expose a personal feed URL. <br>
-Mitigation: Treat Atom feed URLs like secrets and avoid sharing them outside trusted contexts. <br>
-Risk: The skill depends on an external `pz` binary and Paperzilla service behavior. <br>
-Mitigation: Install the CLI only from trusted Paperzilla sources and verify commands before execution. <br>
+## Use Case:
 
+Developers, researchers, and research operations users use this skill to run the Paperzilla CLI for browsing project feeds, inspecting canonical papers and project recommendations, recording feedback, exporting structured JSON, and generating Atom feed URLs.
 
-## Reference(s): <br>
-- [Paperzilla CLI documentation](https://docs.paperzilla.ai/guides/cli) <br>
-- [Paperzilla CLI quickstart](https://docs.paperzilla.ai/guides/cli-getting-started) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill directs agents to prefer --json for structured Paperzilla CLI output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: frontmatter and release evidence) <br>
+Risk: Linux install and update steps use a latest release download and system-wide installation path that users should review before execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the Paperzilla release source is trusted; prefer Homebrew or Scoop where appropriate, or use a pinned release with checksum or signature verification and a user-owned bin directory.
+
+## Reference(s):
+
+- [Paperzilla CLI Docs](https://docs.paperzilla.ai/guides/cli)
+- [Paperzilla CLI Quickstart](https://docs.paperzilla.ai/guides/cli-getting-started)
+- [Paperzilla Skill Page](https://clawhub.ai/pors/skills/paperzilla)
+- [Paperzilla CLI Repository](https://github.com/paperzilla-ai/pz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance prefers structured JSON output from pz when an agent needs machine-readable results.]
+
+## Skill Version(s):
+
+0.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

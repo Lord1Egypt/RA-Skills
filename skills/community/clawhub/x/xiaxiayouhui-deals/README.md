@@ -1,14 +1,10 @@
-<p align="center">
-  <img src="https://xiaxiayouhui.xyz/skill-cover.png" alt="虾虾优惠 Skill" width="720">
-</p>
-
 # 虾虾优惠 · 全网比价 + 神券助手
 
 > 🛒 **price-compare · coupon-finder · shopping-deals**
-> 输入商品名 → 跨拼多多 / 京东 / 淘宝 / 苏宁 / 唯品会 / 抖音 6 大电商比价 + 找隐藏券 + 今日好价 + 本地生活优惠
+> 输入商品名 → 跨拼多多 / 京东 / 淘宝 / 苏宁 / 唯品会 / 抖音 6 大电商比价 + 找隐藏券 + 今日好价 + 美团饿了么外卖红包
 
 ![License](https://img.shields.io/badge/license-MIT-blue)
-![Version](https://img.shields.io/badge/version-1.6.2-green)
+![Version](https://img.shields.io/badge/version-1.6.1-green)
 ![Platforms](https://img.shields.io/badge/平台-6电商+本地生活-orange)
 ![Status](https://img.shields.io/badge/状态-stable-brightgreen)
 ![Free](https://img.shields.io/badge/价格-永久免费-success)
@@ -53,10 +49,10 @@ https://item.jd.com/100012345678.html  ← 直接粘贴商品链接
 
 - **跨 6 大平台比价**：一句话查拼多多 / 京东 / 淘宝 / 天猫 / 苏宁 / 唯品会 / 抖音 同款商品券后价
 - **领隐藏优惠券**：自动找出商品页看不到的隐藏神券、店铺券、满减券、大额券、新人券
-- **粘贴链接秒查**：拼多多商品链接直接解析当前价 + 隐藏券（其他平台逐步适配中）
+- **粘贴链接秒查**：商品链接 / 淘口令 / 京东口令 直接解析当前价 + 隐藏券
 - **今日好价**：今日新史低、平史低、大牌特价、限时秒杀
 - **品类速查**：数码 / 美妆 / 服饰 / 家居 / 食品 / 母婴 / 运动 / 图书 共 8 个品类
-- **本地生活优惠**：外卖红包 + 电影票 + 奶茶咖啡 + 酒店打车 + 团购优惠
+- **本地生活神券**：美团 / 饿了么 外卖红包 + 电影票 + 奶茶咖啡 + 酒店打车 + 团购优惠
 
 ---
 
@@ -126,7 +122,7 @@ https://item.jd.com/100012345678.html  ← 直接粘贴商品链接
 
 ## 🔍 也能用这些关键词找到本 Skill
 
-**中文**：比价 · 全网比价 · 全网最低价 · 优惠券 · 神券 · 隐藏券 · 大牌特价 · 史低 · 新史低 · 平史低 · 秒杀 · 限时优惠 · 今日好价 · 折扣 · 省钱 · 购物 · 网购 · 该不该买 · 这个值不值 · 哪里便宜 · 怎么省钱 · 拼多多优惠券 · 京东优惠券 · 淘宝优惠券 · 天猫优惠券 · 苏宁优惠券 · 唯品会优惠券 · 抖音优惠券 · 外卖券 · 外卖红包 · 电影票 · 团购 · 奶茶券 · 咖啡券 · 酒店券 · 打车券 · 本地生活 · 链接解析 · 拼多多口令
+**中文**：比价 · 全网比价 · 全网最低价 · 优惠券 · 神券 · 隐藏券 · 大牌特价 · 史低 · 新史低 · 平史低 · 秒杀 · 限时优惠 · 今日好价 · 折扣 · 省钱 · 购物 · 网购 · 该不该买 · 这个值不值 · 哪里便宜 · 怎么省钱 · 拼多多优惠券 · 京东优惠券 · 淘宝优惠券 · 天猫优惠券 · 苏宁优惠券 · 唯品会优惠券 · 抖音优惠券 · 美团优惠券 · 饿了么优惠券 · 外卖券 · 外卖红包 · 电影票 · 团购 · 奶茶券 · 咖啡券 · 酒店券 · 打车券 · 本地生活 · 链接解析 · 淘口令 · 京东口令 · 拼多多口令
 
 **English**: price compare / price comparison / coupon / coupon finder / shopping assistant / shopping deals / discount / discount finder / deal hunter / e-commerce / china e-commerce / online shopping / pdd / jd / taobao / tmall / suning / vipshop / vip / douyin / meituan / eleme / waimai / takeaway / hidden coupon / promotion code / shopping bot / chinese shopping / haitao
 

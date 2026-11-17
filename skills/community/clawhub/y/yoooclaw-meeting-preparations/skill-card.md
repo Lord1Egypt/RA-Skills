@@ -1,41 +1,59 @@
-## Description: <br>
-Creates a concise pre-meeting briefing by summarizing recent phone notifications and, when useful, recent web search results around the meeting topic and relevant people. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps users prepare for meetings by generating a concise briefing from recent phone notifications and, when relevant, recent web search results about the meeting topic and people of interest.
 
-## Publisher: <br>
-[vivalavida-say-hi](https://clawhub.ai/user/vivalavida-say-hi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vivalavida-say-hi](https://clawhub.ai/user/vivalavida-say-hi)
 
-## Use Case: <br>
-Employees and external users use this skill before meetings to quickly gather relevant recent context, organize it by topic, and identify points worth raising during the meeting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may search recent phone notifications, which can expose sensitive meeting, personal, or organizational context. <br>
-Mitigation: Confirm the people, topics, applications, and dates that are in scope before use, and avoid using unrelated notification content in the briefing. <br>
-Risk: The skill can install or use the byted-web-search dependency for recent external context. <br>
-Mitigation: Approve the dependency source and environment change before installation, or run the skill in notification-only mode when web search is not trusted. <br>
+## Use Case:
 
+Employees and external users can use this skill shortly before a meeting to consolidate relevant recent notifications and public updates into an overview, key findings, and suggested discussion points.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vivalavida-say-hi/yoooclaw-meeting-preparations) <br>
-- [byted-web-search dependency source](https://skills.volces.com/skills/bytedance/agentkit-samples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown briefing in conversation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May degrade to notification-only briefing when web search is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill searches recent phone notifications, which may expose sensitive personal or business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only where notification access is approved, and review generated briefings before sharing them outside the meeting context.
+
+Risk: The skill may attempt to install an unpinned web-search dependency automatically if the dependency is missing.
+
+Mitigation: Preinstall or approve the web-search dependency through a controlled process before use, or run the skill in a mode where web search is unavailable and clearly disclosed.
+
+Risk: The briefing may combine notification content and web results into concise conclusions that omit context.
+
+Mitigation: Treat the output as meeting preparation guidance and verify important claims against the underlying notifications or search sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vivalavida-say-hi/skills/yoooclaw-meeting-preparations)
+- [Publisher profile](https://clawhub.ai/user/vivalavida-say-hi)
+- [byted-web-search dependency source](https://skills.volces.com/skills/bytedance/agentkit-samples)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown briefing in conversation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The briefing is organized as meeting topic, global overview, key findings by theme, and suggested points to watch.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

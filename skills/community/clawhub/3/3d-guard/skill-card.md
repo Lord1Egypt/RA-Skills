@@ -1,42 +1,60 @@
-## Description: <br>
-Audits STL, OBJ, and 3MF model files for file integrity, metadata completeness, print-size fit, copyright indicators, and sensitive-content risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+3D模型审计技能，用于检查STL、OBJ、3MF等3D模型文件的合规性，包括文件完整性、版权风险、敏感内容和打印尺寸检查。
 
-## Publisher: <br>
-[kuihuar](https://clawhub.ai/user/kuihuar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kuihuar](https://clawhub.ai/user/kuihuar)
 
-## Use Case: <br>
-Developers, makers, and reviewers use this skill to assess 3D model files before printing, sharing, or reuse. It guides checks for model validity, required metadata, dimensional fit, copyright/IP signals, and politically sensitive or inappropriate content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated checks are narrower than the broad 3D audit workflow and may miss geometry, metadata, copyright, or sensitive-content issues. <br>
-Mitigation: Treat results as advisory and independently verify 3MF geometry, metadata completeness, and legal or content decisions before important use. <br>
-Risk: The artifact includes a publish script that can publish the skill package if run intentionally. <br>
-Mitigation: Do not run publish.sh unless you intend to publish this skill package from the current environment. <br>
+## Use Case:
 
+Developers, makers, and reviewers use this skill to audit 3D model files before printing, sharing, or commercial use. It helps structure checks for file validity, required metadata, print dimensions, copyright risk, and sensitive content.
 
-## Reference(s): <br>
-- [Copyright Guidelines](references/copyright-guidelines.md) <br>
-- [Printer Specifications](references/printer-specs.md) <br>
-- [Sensitive Content Guidance](references/sensitive-content.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code] <br>
-**Output Format:** [Markdown audit guidance with inline shell commands and optional JSON outputs from local validation scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory review results; important geometry, legal, and content decisions require independent verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill may overstate audit coverage for legal, content-safety, or printer-readiness decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as an advisory checklist and manually review copyright, sensitive-content, and print-readiness conclusions before acting.
+
+Risk: Fragile parsers may mislead or disrupt users handling untrusted 3D model files.
+
+Mitigation: Run validation on untrusted files with resource limits and inspect script output before relying on it.
+
+Risk: The included publishing script can publish the skill to ClawHub.
+
+Mitigation: Do not run publish.sh unless publication is intended and release metadata has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kuihuar/skills/3d-guard)
+- [Copyright guidelines](artifact/references/copyright-guidelines.md)
+- [Printer specifications](artifact/references/printer-specs.md)
+- [Sensitive content reference](artifact/references/sensitive-content.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown audit guidance with JSON validation results and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helper scripts emit JSON for model and metadata validation; final audit conclusions require user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

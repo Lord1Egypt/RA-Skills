@@ -1,39 +1,55 @@
-## Description: <br>
-Creates Feishu calendar events and optional Feishu video meetings through the Feishu Calendar API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Feishu calendar events and video meetings through the Feishu Calendar API, automatically associating events with Feishu video meetings.
 
-## Publisher: <br>
-[sangy12](https://clawhub.ai/user/sangy12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sangy12](https://clawhub.ai/user/sangy12)
 
-## Use Case: <br>
-People using Feishu can ask an agent to prepare calendar event API calls, choose required and optional fields from user input, and create meetings with Feishu video conferencing when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Feishu user token to create real calendar events and video meetings. <br>
-Mitigation: Keep the token private, restrict access to the token file, and avoid printing the token in logs or chat. <br>
-Risk: Incorrect meeting details could create an unintended calendar event or video meeting. <br>
-Mitigation: Review the calendar ID, title, time, and video-meeting setting before sending the API request. <br>
+## Use Case:
 
+Agents use this skill to help users create scheduled Feishu calendar meetings with titles, start and end times, optional descriptions or locations, and an associated Feishu video meeting link.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance, API Calls] <br>
-**Output Format:** [Markdown with inline bash, Python, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Feishu calendar IDs, OAuth token handling steps, timestamps, request payloads, and meeting links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill describes storing Feishu OAuth tokens in a plaintext Markdown file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a keychain or secret store for Feishu tokens, restrict token scopes, and revoke or rotate tokens if the workspace file may have been exposed.
+
+Risk: Feishu calendar event titles, descriptions, and locations can contain sensitive business or personal information.
+
+Mitigation: Review event content before sending API requests and avoid including sensitive details unless they are required for the meeting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sangy12/skills/feishu-calendar-meeting)
+- [Publisher profile](https://clawhub.ai/user/sangy12)
+- [Feishu Calendar API calendars endpoint](https://open.feishu.cn/open-apis/calendar/v4/calendars)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell, JSON, and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include OAuth setup steps, Feishu API request payloads, timestamp calculation guidance, and response summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

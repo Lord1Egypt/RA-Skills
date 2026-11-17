@@ -1,43 +1,60 @@
-## Description: <br>
-HumanLike Memory / Human-Like Memory is a persistent AI agent memory system for long-term memory search, recall, and save. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HumanLike Memory / Human-Like Memory is a persistent AI agent memory system for long-term memory search, recall, and save. It helps agents store facts, preferences, and decisions and keep context across sessions for conversation continuity.
 
-## Publisher: <br>
-[humanlike2026](https://clawhub.ai/user/humanlike2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[humanlike2026](https://clawhub.ai/user/humanlike2026)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to let an agent explicitly search, recall, and save long-term memory when prior context, user preferences, decisions, or reusable procedures are relevant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Recall and save commands send queries, message content, user identifiers, and agent identifiers to a configured remote memory service. <br>
-Mitigation: Use the skill only with a trusted endpoint, review the service privacy policy, and avoid saving secrets, tokens, private command output, or sensitive tool results. <br>
-Risk: The skill requires a sensitive API key for the remote memory service. <br>
-Mitigation: Store the API key through OpenClaw configuration or explicit environment injection; do not hard-code it in prompts, scripts, or shared files. <br>
-Risk: Optional auto-save and tool-call capture can preserve more conversation or tool-result context than intended. <br>
-Mitigation: Disable HUMAN_LIKE_MEM_AUTO_SAVE_ENABLED or HUMAN_LIKE_MEM_CAPTURE_TOOL_CALLS unless those behaviors are explicitly needed, and prefer explicit saves for sensitive workflows. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to let an agent explicitly recall, search, and save long-term memory when prior context, durable preferences, or confirmed decisions are useful. It is intended for smart-triggered memory workflows rather than every-turn background recall or saving.
 
-## Reference(s): <br>
-- [Human-Like Memory Service](https://plugin.human-like.me) <br>
-- [ClawHub Skill Page](https://clawhub.ai/humanlike2026/humanlike-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and JSON from Node.js CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include recalled memory snippets, save confirmations, and configuration status; remote requests require HUMAN_LIKE_MEM_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata and skill.json) <br>
+Risk: The skill can send memory queries and saved conversation context to a configured remote Human-Like Memory service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when remote memory storage is acceptable, and send only content intended for storage.
+
+Risk: Saved content may include broad conversation context or tool data when capture is enabled.
+
+Mitigation: Disable tool-call capture unless it is explicitly needed, avoid saving secrets or raw tool output, and review stored memories periodically.
+
+Risk: Recalled memories may contain stale or untrusted historical context.
+
+Mitigation: Treat recalled memory as context for review rather than as authoritative instructions.
+
+## Reference(s):
+
+- [Human-Like Memory homepage](https://plugin.human-like.me)
+- [Human-Like Memory privacy policy](https://plugin.human-like.me/privacy)
+- [ClawHub skill page](https://clawhub.ai/humanlike2026/skills/humanlike-memory)
+- [ClawHub source listing](https://clawhub.ai/humanlike2026/humanlike-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include recalled memory summaries, save confirmations, configuration status, and error guidance.]
+
+## Skill Version(s):
+
+1.0.12 (source: ClawHub release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

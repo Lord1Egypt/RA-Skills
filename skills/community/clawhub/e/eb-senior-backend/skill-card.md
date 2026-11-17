@@ -1,41 +1,59 @@
-## Description: <br>
-Production-grade backend development guidance for implementing APIs, database schemas, authentication, and server-side logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production-grade backend development for implementing APIs, database schemas, authentication, and server-side logic.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement production-grade backend services, including API endpoints, validation, authentication, database schemas, migrations, and service-layer logic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may trigger the skill on general backend terms or common framework imports. <br>
-Mitigation: Confirm the task is actually backend implementation work before applying the guidance. <br>
-Risk: Generated API, authentication, database, or migration code could affect production security or data integrity. <br>
-Mitigation: Review, test, and scan generated changes before applying them to a real project. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to implement backend APIs, database schemas, validation, authentication, error handling, and production-oriented server patterns.
 
-## Reference(s): <br>
-- [Backend Patterns Reference](artifact/references/backend-patterns.md) <br>
-- [Database Patterns Reference](artifact/references/database-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include backend code, database schema examples, migration commands, API route patterns, and security guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Examples could lead agents to generate backend code that mishandles password persistence or responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated authentication and user-response code to ensure passwords are hashed, secrets are never returned, and sensitive fields are excluded from API responses.
+
+Risk: Rate limiting examples that rely on raw X-Forwarded-For values can be spoofed or misapplied in production.
+
+Mitigation: Use trusted proxy configuration and deployment-aware client identity handling before applying rate limits.
+
+Risk: Unpinned npx migration commands can execute unexpected tooling versions.
+
+Mitigation: Use lockfile-pinned local tooling and reviewed migration workflows for production database changes.
+
+## Reference(s):
+
+- [Backend Patterns Reference](references/backend-patterns.md)
+- [Database Patterns Reference](references/database-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/emersonbraun/skills/eb-senior-backend)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

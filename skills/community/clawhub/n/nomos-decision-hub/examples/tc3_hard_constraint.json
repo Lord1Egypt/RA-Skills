@@ -1,0 +1,20 @@
+{
+  "objective": "TC3 Hard-constraint filtering test: one alternative violates a hard constraint and must be marked ineligible.",
+  "decision_owner": {"owner": "TestRunner", "role": "tester", "source": "test", "authorization_ref": "TC3"},
+  "time_horizon": "1 month",
+  "evaluation_as_of": "2026-10-07T00:00:00Z",
+  "evaluation_mode": "weighted",
+  "criteria": [
+    {"id": "K1", "name": "score", "metric": "score", "weight": "1.0", "scoring_rule": "higher_is_better", "min_value": "0", "max_value": "1", "responsibility": {"owner": "TestRunner", "role": "owner", "source": "test", "authorization_ref": "TC3"}}
+  ],
+  "constraints": [
+    {"id": "C1", "name": "must be safe", "kind": "hard", "metric": "is_safe", "operator": "eq", "expected": true, "responsibility": {"owner": "TestRunner", "role": "owner", "source": "test", "authorization_ref": "TC3"}}
+  ],
+  "assumptions": [],
+  "alternatives": [
+    {"id": "S1", "name": "safe alternative", "description": "passes hard constraint", "metrics": {"score": 0.7, "is_safe": true}, "required_assumptions": [], "evidence_ids": []},
+    {"id": "S2", "name": "unsafe alternative", "description": "violates hard constraint - must be ineligible", "metrics": {"score": 0.95, "is_safe": false}, "required_assumptions": [], "evidence_ids": []}
+  ],
+  "evidence": [],
+  "metadata": {"language": "en", "test_case": "TC3_hard_constraint"}
+}

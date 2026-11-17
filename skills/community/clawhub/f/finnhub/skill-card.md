@@ -1,41 +1,54 @@
-## Description: <br>
-Access Finnhub API for real-time stock quotes, company news, market data, financial statements, and trading signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Finnhub API for real-time stock quotes, company news, market data, financial statements, and trading signals.
 
-## Publisher: <br>
-[matthewxfz3](https://clawhub.ai/user/matthewxfz3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[matthewxfz3](https://clawhub.ai/user/matthewxfz3)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to configure Finnhub API access and compose requests for quotes, company news, market data, financial statements, earnings data, SEC filing search, and trading indicators. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Finnhub API key, and exposed tokens or unmonitored use can create account, quota, or cost risk. <br>
-Mitigation: Use an appropriately scoped key, store it in environment configuration, monitor usage and costs, and avoid sharing logs or URLs that include the token. <br>
-Risk: Some Finnhub endpoints, market data, or trading indicators may be tier-limited, rate-limited, delayed, or unavailable for a given account. <br>
-Mitigation: Check the Finnhub plan and endpoint availability before relying on responses, and treat market data or signals as inputs for review rather than final trading instructions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Finnhub](https://finnhub.io) <br>
-- [Finnhub API base URL](https://finnhub.io/api/v1) <br>
-- [ClawHub Finnhub skill release](https://clawhub.ai/matthewxfz3/finnhub) <br>
+## Use Case:
 
+Developers and market-data users use this skill to configure Finnhub API access and request quotes, company news, financial statements, earnings data, market indicators, SEC filing search, and trading signal data.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON configuration examples and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a FINNHUB_API_KEY for Finnhub requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Finnhub API keys can be exposed when tokenized request URLs are copied into logs, telemetry, support tickets, or command output.
+
+Mitigation: Use a restricted Finnhub key where possible, store it with owner-only permissions, avoid pasting expanded URLs, and rotate the key if exposure is suspected.
+
+Risk: Some Finnhub endpoints require paid tiers or are subject to rate limits, which can lead to failed or incomplete requests.
+
+Mitigation: Confirm the account tier and endpoint limits before relying on generated requests, and handle rate-limit or subscription errors explicitly.
+
+## Reference(s):
+
+- [Finnhub](https://finnhub.io)
+- [Finnhub API base URL](https://finnhub.io/api/v1)
+- [ClawHub skill page](https://clawhub.ai/matthewxfz3/skills/finnhub)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FINNHUB_API_KEY for live Finnhub requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Weights Polymarket copy trading by portfolio concentration, using high-concentration whale positions to boost trade sizing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weights copytrading by portfolio concentration -- a whale committing 30% of capital to one market signals far more conviction than 2% spread across many. Copies high-concentration positions with proportionally boosted sizing.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External agents and developers use this skill to analyze Polymarket trader portfolios, identify high-concentration whale positions, and paper-trade or explicitly live-trade aligned signals with configurable risk limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can place real Polymarket trades when run with --live and a valid Simmer API key. <br>
-Mitigation: Start in paper mode, keep position limits low, review logs and signals before using --live, and revoke or restrict the API key when the skill is no longer in use. <br>
-Risk: The workflow depends on external leaderboard and market data APIs, so stale data or weak market-title matches can produce incorrect trade candidates. <br>
-Mitigation: Review matched markets, volume, spread, days-to-resolution gates, and trade logs before enabling live execution. <br>
-Risk: Copy-trading concentrated whale positions can still follow losing, crowded, or manipulated markets. <br>
-Mitigation: Tune concentration thresholds and YES/NO conviction bands, keep per-position exposure capped, and monitor aggregate open positions. <br>
+## Use Case:
 
+External users and developers use this skill to analyze Polymarket whale portfolios, identify high-concentration positions, and paper-trade or explicitly live-trade conviction-weighted copy signals with configurable safeguards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-copy-size-conviction-trader) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/diagnostikon) <br>
-- [predicting.top leaderboard API](https://predicting.top/api/leaderboard) <br>
-- [Polymarket data API](https://data-api.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, trade orders, configuration] <br>
-**Output Format:** [Plain text run logs plus Simmer trade requests and signal metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live trading requires --live and SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Live trading can place real Polymarket orders, and server evidence reports that live-trading safeguards can fail open.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep paper mode unless live trading is intentional and understood; use a tightly scoped SIMMER_API_KEY with server-side spending and position limits.
+
+Risk: The sensitive trading dependency is not pinned.
+
+Mitigation: Prefer or require a release that pins simmer-sdk before using live mode.
+
+Risk: Portfolio state may not be verified before trading.
+
+Mitigation: Prefer behavior that fails closed when portfolio state cannot be verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-copy-size-conviction-trader)
+- [predicting.top leaderboard API](https://predicting.top/api/leaderboard)
+- [Polymarket data API](https://data-api.polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls]
+
+**Output Format:** [Console text with optional trade API requests and configuration through environment variables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; defaults to paper mode unless run with --live.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

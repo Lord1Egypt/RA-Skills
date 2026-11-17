@@ -1,45 +1,63 @@
-## Description: <br>
-Serious relationship match progress for your human: phase updates, question relay, and outcome summaries via the official agent API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Serious relationship match progress for your human: phase updates, question relay, and outcome summaries via the official agent API.
 
-## Publisher: <br>
-[thesamething](https://clawhub.ai/user/thesamething) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thesamething](https://clawhub.ai/user/thesamething)
 
-## Use Case: <br>
-External users and their agents use this skill to monitor serious matchmaking progress, relay pending questions to the human, submit only the human's answers, and summarize relationship phase updates or outcomes through the AILove Agent API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The AILove service key is sensitive and could allow another party to impersonate the human if leaked. <br>
-Mitigation: Store AILOVE_API_KEY in an environment variable or secret store, send it only to https://heerweiyi.cc/api/v1/agent/*, and rotate or revoke the key if the environment changes. <br>
-Risk: Scheduled updates can disclose relationship progress or match status to the wrong destination channel. <br>
-Mitigation: Verify the target channel before enabling cron and update or disable scheduled jobs when the channel or agent environment changes. <br>
-Risk: Submitting fabricated or paraphrased answers could misrepresent the human in the relationship workflow. <br>
-Mitigation: Relay pending questions to the human and submit only the human's verbatim answer through the documented answer endpoint. <br>
+## Use Case:
 
+External users and their agents use this skill to monitor serious relationship matching progress, relay pending questions for human answers, submit those answers verbatim, and summarize match outcomes or next steps.
 
-## Reference(s): <br>
-- [Zhaoduixiang on ClawHub](https://clawhub.ai/thesamething/zhaoduixiang) <br>
-- [Publisher profile](https://clawhub.ai/user/thesamething) <br>
-- [AILove homepage](https://heerweiyi.cc) <br>
-- [AILove Agent API base](https://heerweiyi.cc/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash, text, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses AILOVE_API_KEY and includes optional scheduled morning and evening update commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.2 (source: server release metadata and skill frontmatter) <br>
+Risk: Sensitive relationship status may be posted to unintended recipients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use direct or private channels, avoid group channels for private updates, and confirm the channel target before scheduling recurring jobs.
+
+Risk: Stored API credentials could be exposed or sent to an untrusted domain.
+
+Mitigation: Prefer an environment variable or managed secret store over credentials.json, restrict local credential file permissions, and send the key only to https://heerweiyi.cc/api/v1/agent/*.
+
+Risk: Recurring unattended checks can continue after the user no longer wants relationship updates.
+
+Mitigation: Add an expiry or removal process for cron jobs and review scheduled jobs periodically.
+
+Risk: The agent may submit an answer that is not the human's own response.
+
+Mitigation: Relay pending questions to the human and confirm every submitted answer is the human's verbatim wording.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/thesamething/skills/zhaoduixiang)
+- [AILove Homepage](https://heerweiyi.cc)
+- [AILove Agent API Base](https://heerweiyi.cc/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown guidance with inline shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce scheduled relationship status summaries; requires AILOVE_API_KEY for API access.]
+
+## Skill Version(s):
+
+1.4.2 (source: SKILL.md frontmatter, claw.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

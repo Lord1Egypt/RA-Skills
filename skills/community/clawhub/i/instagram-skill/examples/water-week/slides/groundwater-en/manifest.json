@@ -1,0 +1,17 @@
+{
+  "slides": 1,
+  "size": "1080x1350",
+  "ratio": "4:5",
+  "files": [
+    {
+      "path": "slide-01.jpg",
+      "bytes": 89596,
+      "type": "stat",
+      "alt": "55% of the water under our feet is salty, not fresh. USGS: 12.87 of 23.4 million cubic km of groundwater is saline.",
+      "text": "55% of the water under our feet is salty, not fresh"
+    }
+  ],
+  "contactSheet": "contact-sheet.png",
+  "coverGrid": "cover-grid.png",
+  "warnings": []
+}

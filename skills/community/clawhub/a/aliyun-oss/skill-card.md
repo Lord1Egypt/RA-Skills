@@ -1,42 +1,58 @@
-## Description: <br>
-Aliyun OSS file upload tool for secure, efficient file uploads and temporary link generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+阿里云OSS文件上传工具 - 安全、高效的文件上传和临时链接生成
 
-## Publisher: <br>
-[jixsonwang](https://clawhub.ai/user/jixsonwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jixsonwang](https://clawhub.ai/user/jixsonwang)
 
-## Use Case: <br>
-Developers and agents use this skill to upload local files to Aliyun OSS, batch upload files, search bucket objects by filename, and return temporary access links for shared workflow outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads local files to an Aliyun OSS bucket and can expose sensitive data if pointed at the wrong file or bucket path. <br>
-Mitigation: Review upload targets before execution and use bucket prefixes and permissions that match the intended data-sharing scope. <br>
-Risk: The skill uses Aliyun OSS access credentials stored in /root/.openclaw/aliyun-oss-config.json. <br>
-Mitigation: Use a dedicated least-privilege RAM user, protect the config file, rotate keys regularly, and avoid broad ListObjects permissions where possible. <br>
-Risk: Shared URLs may provide unintended access if public-read mode or non-temporary links are used. <br>
-Mitigation: Avoid public-read mode for sensitive files and verify that shared links are presigned and temporary before sending them. <br>
+## Use Case:
 
+Developers and agents use this skill to upload selected local files to Aliyun OSS, create object paths, search by filename, and return temporary or standard access URLs for sharing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jixsonwang/aliyun-oss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with command examples, JSON configuration, OSS object paths, and URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return presigned temporary URLs, standard OSS URLs, upload status, file metadata, and error messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can upload arbitrary readable local files to Aliyun OSS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict the agent to explicit user-selected files or approved workspace paths before upload.
+
+Risk: Long-lived AK/SK credentials in the config file can expose the bucket if mishandled.
+
+Mitigation: Use a tightly scoped Aliyun RAM user or STS credentials, protect the config file with strict permissions, and rotate credentials.
+
+Risk: Public-read object ACLs or shared URLs can expose uploaded content beyond the intended audience.
+
+Mitigation: Avoid public-read ACLs by default and use short-lived access URLs only when sharing is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jixsonwang/skills/aliyun-oss)
+- [Publisher profile](https://clawhub.ai/user/jixsonwang)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Plain text status messages and JSON-like upload or search results containing OSS object paths and URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include presigned URLs, standard object URLs, file sizes, and error details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

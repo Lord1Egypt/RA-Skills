@@ -1,38 +1,53 @@
-## Description: <br>
-Clean up stale OpenClaw session files. Keep the current main session and all group chat sessions; move everything else to a backup directory. Use when performing periodic maintenance, heartbeat cleanup, or when the user asks to clean up sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clean up stale OpenClaw session files. Keep the current main session and all group chat sessions; move everything else to a backup directory. Use when performing periodic maintenance, heartbeat cleanup, or when the user asks to clean up sessions.
 
-## Publisher: <br>
-[guoqunabc](https://clawhub.ai/user/guoqunabc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guoqunabc](https://clawhub.ai/user/guoqunabc)
 
-## Use Case: <br>
-Developers and operators use this skill to archive stale OpenClaw session transcripts while preserving the current main session and group chat sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the cleanup without review may move session transcripts that are still needed for history or auditability. <br>
-Mitigation: Run bash scripts/clean-sessions.sh --dry-run first, review the files that would move, and keep the backup directory when session history matters. <br>
+## Use Case:
 
+Developers and operators maintaining OpenClaw installations use this skill to move stale session transcript files into a recoverable backup directory while keeping the active main session and group chat sessions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/guoqunabc/session-cleaner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script supports a --dry-run mode before moving session files to backup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The cleanup script may classify the wrong session file as stale because it uses heuristics to identify the active main session and group chat sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill with --dry-run first and review the listed files before allowing any move operation.
+
+Risk: Moved session transcripts may be difficult to recover if backup filenames collide or a needed transcript is moved unexpectedly.
+
+Mitigation: Keep a separate backup of important session transcripts before cleanup and inspect the backup directory after execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guoqunabc/skills/session-cleaner)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline bash command usage and terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports a dry-run mode before moving files to backup.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

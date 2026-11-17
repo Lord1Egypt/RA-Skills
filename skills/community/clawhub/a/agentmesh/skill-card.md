@@ -1,44 +1,60 @@
-## Description: <br>
-AgentMesh provides encrypted, authenticated messaging between AI agents using cryptographic identities, local or TCP hubs, and optional persistent keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentMesh provides encrypted, authenticated messaging between AI agents through local or TCP hubs using cryptographic identities and routed envelopes.
 
-## Publisher: <br>
-[cerbug45](https://clawhub.ai/user/cerbug45) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cerbug45](https://clawhub.ai/user/cerbug45)
 
-## Use Case: <br>
-Developers and engineers use AgentMesh to add encrypted message routing, peer discovery, and persistent agent identities to Python-based agent systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Network mode may be exposed too broadly and lacks clear transport and authentication safeguards for the security claims it makes. <br>
-Mitigation: Use local mode for experiments; for network mode, bind to localhost or a private interface and place the hub behind firewall or VPN controls. <br>
-Risk: Public internet exposure could allow unwanted access to the hub service. <br>
-Mitigation: Avoid exposing the hub directly to the public internet and restrict network access to trusted hosts. <br>
-Risk: Peer identity or persistent key handling mistakes can weaken message trust. <br>
-Mitigation: Verify peer fingerprints out of band and protect persistent key files with restrictive permissions or secret storage. <br>
+## Use Case:
 
+Developers and engineers use AgentMesh to add local or networked message exchange between AI agents while keeping payloads encrypted from the hub. It supports agent identity, peer discovery, persistent keys, and example workflows for multi-agent and LLM-agent pipelines.
 
-## Reference(s): <br>
-- [ClawHub AgentMesh skill page](https://clawhub.ai/cerbug45/agentmesh) <br>
-- [README](artifact/README.md) <br>
-- [Full usage guide](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces implementation guidance and runnable Python examples for local and networked agent messaging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Security claims may overstate the implementation's guarantees for hostile networks or production-grade forward secrecy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cryptographic design before sensitive use and do not rely on it for hostile-network security without further hardening.
+
+Risk: Network hub deployments can expose routing and public-key discovery services over TCP.
+
+Mitigation: Use LocalHub where possible, bind NetworkHubServer to localhost or private networks, and add firewalling and authenticated transport before exposing it.
+
+Risk: Persistent key files contain long-lived private key material.
+
+Mitigation: Store key files outside source control with restrictive filesystem permissions and treat them as secrets.
+
+## Reference(s):
+
+- [AgentMesh ClawHub page](https://clawhub.ai/cerbug45/skills/agentmesh)
+- [Publisher profile](https://clawhub.ai/user/cerbug45)
+- [README](README.md)
+- [SKILL.md](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers local hubs, TCP hub setup, persistent key files, and API usage patterns.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

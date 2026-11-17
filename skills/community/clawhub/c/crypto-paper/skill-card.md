@@ -1,42 +1,55 @@
-## Description: <br>
-Researches, analyzes, and summarizes cryptocurrency whitepapers and research papers with structured checks for tokenomics, team, technology, risks, and investment memos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research, analyze, and summarize cryptocurrency whitepapers and research papers, applying a structured checklist for tokenomics, team, technology, risks, reports, and investment memos.
 
-## Publisher: <br>
-[skunnyo](https://clawhub.ai/user/skunnyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skunnyo](https://clawhub.ai/user/skunnyo)
 
-## Use Case: <br>
-External crypto researchers, analysts, and developers use this skill to source public project materials and produce structured whitepaper summaries, tokenomics audits, comparisons, and informational investment-style memos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment-style scores, allocation suggestions, or buy/hold/sell recommendations may be mistaken for professional financial advice. <br>
-Mitigation: Treat all recommendations as informational analysis only and verify sources independently before making investment decisions. <br>
-Risk: Report quality depends on the accuracy and freshness of public crypto project materials selected for analysis. <br>
-Mitigation: Prefer official project whitepapers and documentation, and independently confirm tokenomics, team, roadmap, and audit claims. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to source cryptocurrency whitepapers, apply a due-diligence checklist, and produce structured summaries, tokenomics audits, comparisons, and investment memo drafts.
 
-## Reference(s): <br>
-- [Crypto Whitepaper Checklist](references/whitepaper-checklist.md) <br>
-- [Report Template](assets/report-template.md) <br>
-- [ClawHub release page](https://clawhub.ai/skunnyo/crypto-paper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports with summaries, tables, scores, risk notes, and investment-style memo sections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include source summaries, tokenomics snapshots, bull and bear cases, scores, and buy/hold/sell-style recommendations for informational review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Investment scores, allocation suggestions, and buy/hold/sell language may be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as research prompts only and add independent risk, jurisdiction, portfolio, and due-diligence checks before acting.
+
+Risk: Whitepaper summaries or project comparisons may omit context or reproduce misleading claims from public source material.
+
+Mitigation: Review source papers, verify key claims against official project documentation and independent evidence, and document unresolved assumptions in the final report.
+
+## Reference(s):
+
+- [Crypto Whitepaper Checklist](references/whitepaper-checklist.md)
+- [Report Template](assets/report-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/skunnyo/skills/crypto-paper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown reports, tables, summaries, audit notes, comparison matrices, and memo drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include qualitative scores, risk notes, tokenomics breakdowns, and buy/hold/sell-style recommendation prompts that require user due diligence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

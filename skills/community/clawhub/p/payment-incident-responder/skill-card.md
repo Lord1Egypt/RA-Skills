@@ -1,45 +1,60 @@
-## Description: <br>
-Coordinate payment incident response with structured triage, blast-radius assessment, mitigation actions, stakeholder communication, reconciliation recovery, and postmortem tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinate payment incident response with structured triage, blast-radius assessment, mitigation actions, stakeholder communication, reconciliation recovery, and postmortem tracking.
 
-## Publisher: <br>
-[anugotta](https://clawhub.ai/user/anugotta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anugotta](https://clawhub.ai/user/anugotta)
 
-## Use Case: <br>
-Payment operations, engineering, support, and incident response teams use this skill to triage payment incidents, coordinate containment and communications, recover correctness through reconciliation, and prepare postmortems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment-system changes may be harmful if treated as automatic authority. <br>
-Mitigation: Use the skill as a checklist and communication aid with authorized incident responders and human review before pausing payment flows, rolling back systems, repairing data, or declaring resolution. <br>
-Risk: Incorrect or premature customer communication can create confusion during payment incidents. <br>
-Mitigation: Use approved customer messaging, timestamp decisions in the incident log, and confirm metrics plus correctness checks before communicating resolution. <br>
+## Use Case:
 
+Incident commanders, engineering leads, communications owners, and reconciliation owners use this skill to coordinate payment incident triage, containment, stakeholder updates, recovery checks, and postmortem follow-up.
 
-## Reference(s): <br>
-- [Incident playbook](artifact/incident-playbook.md) <br>
-- [Setup](artifact/setup.md) <br>
-- [Validation checklist](artifact/validation-checklist.md) <br>
-- [Communication templates](artifact/comms-templates.md) <br>
-- [Postmortem template](artifact/postmortem-template.md) <br>
-- [RBI Master Directions](https://www.rbi.org.in/scripts/BS_ViewMasDirections.aspx?id=12898) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown checklist and incident update guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not execute payment actions or access payment systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Operators may treat incident-response guidance as authority for payment, refund, legal, compliance, or public communication decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an authorized incident commander and appropriate legal, compliance, or communications reviewers to approve containment actions and customer-facing messages before execution or publication.
+
+Risk: Premature resolution messaging or unsafe retry behavior can worsen customer impact or create duplicate charges.
+
+Mitigation: Verify payment metrics, customer-facing correctness, queue or webhook recovery, and reconciliation status before declaring resolution or retrying payment flows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anugotta/skills/payment-incident-responder)
+- [Publisher Profile](https://clawhub.ai/user/anugotta)
+- [RBI Master Directions](https://www.rbi.org.in/scripts/BS_ViewMasDirections.aspx?id=12898)
+- [Setup](artifact/setup.md)
+- [Incident Playbook](artifact/incident-playbook.md)
+- [Communication Templates](artifact/comms-templates.md)
+- [Validation Checklist](artifact/validation-checklist.md)
+- [Postmortem Template](artifact/postmortem-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown checklist and incident update text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes severity and phase, top immediate actions, customer impact summary, next update owner and time, and reconciliation correctness checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

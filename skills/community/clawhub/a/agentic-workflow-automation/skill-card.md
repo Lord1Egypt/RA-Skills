@@ -1,40 +1,58 @@
-## Description: <br>
-Generates reusable multi-step agent workflow blueprints for trigger/action orchestration, deterministic workflow definitions, and automation handoff artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate reusable multi-step agent workflow blueprints for trigger/action orchestration, deterministic workflow definitions, and automation handoff artifacts.
 
-## Publisher: <br>
-[0x-Professor](https://clawhub.ai/user/0x-Professor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0x-professor](https://clawhub.ai/user/0x-professor)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to define ordered workflow blueprints with triggers, step contracts, dependencies, and fallback behavior for handoff to automation platforms or internal orchestrators. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bundled script reads a user-selected JSON file and writes blueprint output files, and the security guidance notes that --dry-run should not be relied on to prevent file creation or overwrites. <br>
-Mitigation: Test with a temporary or dedicated output path and review the chosen input and output locations before running the script. <br>
-Risk: Generated workflow blueprints can encode incorrect step ordering, vague contracts, or weak fallback behavior if the input is underspecified. <br>
-Mitigation: Review each generated step for a single purpose, explicit ordering, and clear on-failure behavior before using the blueprint in an automation platform. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Workflow Blueprint Guide](references/workflow-blueprint-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/0x-Professor/agentic-workflow-automation) <br>
+## Use Case:
 
+Developers and automation engineers use this skill to define reusable workflow blueprints with triggers, ordered steps, dependencies, and fallback behavior for handoff to tools such as n8n or internal orchestrators.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON, Markdown, or CSV blueprint files with concise agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads an optional JSON input file up to 1 MiB and writes the selected output artifact path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The dry-run option should not be relied on to prevent filesystem changes.
+
+Mitigation: Use temporary, non-sensitive output paths when testing and verify generated files before moving them into a project.
+
+Risk: User-supplied output paths could write to unintended or sensitive locations.
+
+Mitigation: Choose explicit output paths in safe working directories and avoid overwriting existing sensitive files.
+
+Risk: CSV output from untrusted input can be unsafe to open directly in spreadsheet software.
+
+Mitigation: Review or sanitize generated CSV fields before opening or sharing CSV files derived from external input.
+
+## Reference(s):
+
+- [Workflow Blueprint Guide](artifact/references/workflow-blueprint-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/0x-professor/skills/agentic-workflow-automation)
+- [Publisher Profile](https://clawhub.ai/user/0x-professor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [JSON, Markdown, or CSV workflow blueprint artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normalizes workflow name, trigger, ordered steps, step type, and fallback behavior; JSON input is capped at 1 MiB.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

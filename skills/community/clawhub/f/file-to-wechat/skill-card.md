@@ -1,45 +1,59 @@
-## Description: <br>
-Converts files such as PDFs, Word documents, spreadsheets, slides, images, audio, and web pages into Markdown, generates WeChat-compatible HTML and a cover image, and uploads the result to a WeChat Official Account draft box. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts files such as PDF, Word, Excel, PowerPoint, images, audio, and web pages into Markdown, generates WeChat-compatible article HTML, creates a cover image, and publishes the result to a WeChat Official Account draft box.
 
-## Publisher: <br>
-[lutongsuo](https://clawhub.ai/user/lutongsuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lutongsuo](https://clawhub.ai/user/lutongsuo)
 
-## Use Case: <br>
-Developers, content operators, and WeChat Official Account publishers use this skill to turn source files or URLs into styled WeChat articles and create draft posts for review in the WeChat platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read broad user-selected files and generate derivative article content. <br>
-Mitigation: Use it only with files intended for publication, avoid sensitive documents unless publication is deliberate, and review generated Markdown, HTML, and cover images before continuing. <br>
-Risk: The skill can upload generated content to a WeChat Official Account draft box using account credentials without a clear consent checkpoint in the artifact workflow. <br>
-Mitigation: Confirm the target account and publication intent before upload, keep credentials in environment variables, and review the resulting draft in WeChat before publishing. <br>
-Risk: Cloud fallback conversion can send document content to an external Markdown conversion service. <br>
-Mitigation: Prefer local MarkItDown conversion for private documents and use the cloud fallback only when the user accepts external processing. <br>
-Risk: Runtime dependency installation may change the execution environment. <br>
-Mitigation: Preinstall and review required Python packages before running the workflow. <br>
+## Use Case:
 
+Content creators, operators, and developers use this skill to turn common document, media, and web inputs into draft WeChat Official Account articles for review and publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lutongsuo/skills/file-to-wechat) <br>
-- [WeChat Official Accounts Platform](https://mp.weixin.qq.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline Python and shell commands, plus generated Markdown, HTML, image, and WeChat draft artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires selected source-file access, WeChat Official Account credentials, local Python dependencies, and the anything-to-wechat companion skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill reads user-selected documents and can upload derived content to WeChat using Official Account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with documents intended for publication, keep account credentials in environment variables, and review the generated draft in WeChat before publishing.
+
+Risk: The security summary notes that the skill can send content to external services and has cloud fallback behavior.
+
+Mitigation: Prefer local conversion and keep cloud fallbacks disabled unless the user explicitly approves sending content to the external conversion service.
+
+Risk: The security summary notes unpinned runtime package installation.
+
+Mitigation: Install dependencies in a pinned, pre-reviewed Python environment before running the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lutongsuo/skills/file-to-wechat)
+- [Publisher Profile](https://clawhub.ai/user/lutongsuo)
+- [WeChat Official Accounts Platform](https://mp.weixin.qq.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown instructions, shell commands, generated Markdown files, WeChat-compatible HTML, cover image files, and WeChat draft publication status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read user-selected files, generate derived article assets, and use WeChat Official Account credentials to upload drafts.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

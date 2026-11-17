@@ -1,0 +1,8 @@
+interface:
+  display_name: "AI短剧制作工作流 v1.5"
+  short_description: "从剧本、分镜到Seedance生成与交付的全链路"
+  brand_color: "#C44B2B"
+  default_prompt: "Use $ai-short-drama-production to take this concept from script and retention design through shot manifests, Seedance task generation, explicit paid submission, polling, download, post-production, validation, and delivery."
+
+policy:
+  allow_implicit_invocation: true

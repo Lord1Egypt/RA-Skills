@@ -1,42 +1,55 @@
-## Description: <br>
-Provides Chinese-language product requirements analysis skills and workflows for requirement discovery, structured analysis, prioritization, and PRD output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Product Requirement Analysis provides a Chinese-language product requirements toolkit covering discovery, analysis, prioritization, and PRD output workflows.
 
-## Publisher: <br>
-[ken0122](https://clawhub.ai/user/ken0122) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ken0122](https://clawhub.ai/user/ken0122)
 
-## Use Case: <br>
-Product managers, sales engineers, and requirements analysts use this skill pack to structure product discovery, customer research, prioritization, user stories, epics, pricing analysis, and PRD development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may enter confidential customer research, stakeholder details, technical stack information, or financial metrics while using the templates. <br>
-Mitigation: Use only authorized data, prefer anonymized or role-based examples, and avoid regulated or confidential information in unapproved environments. <br>
-Risk: Prioritization, pricing, ROI, and PRD recommendations can be misleading when inputs are incomplete or unvalidated. <br>
-Mitigation: Review outputs with product, finance, technical, and stakeholder owners before using them for roadmap, pricing, or delivery decisions. <br>
+## Use Case:
 
+Product managers, requirements analysts, presales engineers, and project leads use this skill pack to structure product discovery, customer research, prioritization, user stories, and PRD creation.
 
-## Reference(s): <br>
-- [Product Requirement Analysis release page](https://clawhub.ai/ken0122/requirement-analysis-system) <br>
-- [Publisher profile](https://clawhub.ai/user/ken0122) <br>
-- [Package overview](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown templates and structured analysis reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include PRDs, user stories, customer journey maps, problem statements, prioritization analyses, pricing analyses, and related product-management guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled setup script can overwrite installed OpenClaw skill files under a root-owned path without confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target directory, back up existing skills, and run the script only as a non-root user when replacement is intended.
+
+Risk: The workflows may collect stakeholder, customer, or pricing information during requirements analysis.
+
+Mitigation: Avoid entering unnecessary personal stakeholder data or sensitive financial details, and review outputs before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ken0122/skills/requirement-analysis-system)
+- [Requirement Analysis Skills overview](artifact/SKILL.md)
+- [Skill template](artifact/skill-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documents, structured templates, workflow prompts, and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language component skills and workflows for product requirements analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

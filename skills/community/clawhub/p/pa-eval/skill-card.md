@@ -1,41 +1,53 @@
-## Description: <br>
-Evaluate PA performance through structured scoring, owner feedback analysis, and behavioral benchmarking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate PA performance through structured scoring, owner feedback analysis, and behavioral benchmarking for weekly and monthly reviews, response quality assessment, and improvement planning.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Personal-assistant owners and operators use this skill to run weekly or monthly PA performance reviews, log owner feedback, score behavior across defined dimensions, and identify improvement actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring assistant-performance tracking and automatic feedback logging may occur without clear user control. <br>
-Mitigation: Before enabling the skill, confirm the run schedule, storage location, disablement process, and how saved evaluations can be inspected or deleted. <br>
-Risk: Performance evaluations may contain sensitive feedback, corrections, complaints, and task history. <br>
-Mitigation: Limit access to saved evaluation files and review generated reports before sharing them outside the intended owner/operator workflow. <br>
+## Use Case:
 
+Personal assistants and their owners use this skill to score PA execution, accuracy, speed, proactivity, communication, memory, tool use, and judgment. It supports weekly self-evaluations, owner-feedback follow-up, monthly reporting, and behavior benchmarking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/netanel-abergel/pa-eval) <br>
-- [Publisher profile](https://clawhub.ai/user/netanel-abergel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown templates, scoring tables, action lists, and optional bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces weekly and monthly performance evaluations, feedback logs, benchmark results, and recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Automatic persistent logging can record sensitive feedback and behavioral judgments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with explicit schedules and consent, and periodically review or delete .learnings/eval records that contain sensitive feedback.
+
+Risk: Automated scoring may overstate performance patterns if owner feedback is incomplete or ambiguous.
+
+Mitigation: Review generated scores and notes before using them for decisions, especially after corrections or complaints.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/netanel-abergel/skills/pa-eval)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Analysis, Guidance]
+
+**Output Format:** [Markdown templates and reports with optional shell commands for local file creation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local evaluation notes under a .learnings/eval path when the file-creation workflow is used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Search, evaluate security, and install OpenClaw skills. Helps your human find the right skills safely. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, evaluate security, and install OpenClaw skills. Helps your human find the right skills safely.
 
-## Publisher: <br>
-[0xmythril](https://clawhub.ai/user/0xmythril) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xmythril](https://clawhub.ai/user/0xmythril)
 
-## Use Case: <br>
-Developers and agent users use this skill to find OpenClaw skills, evaluate security and community signals, and fetch installable skill files with safety checks before adding them to an agent environment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch and install remote skill files into an agent environment. <br>
-Mitigation: Review the exact skill name, source, security flags, and full file list before allowing installation. <br>
-Risk: Fetched files could be written outside the intended skill directory if paths are not checked. <br>
-Mitigation: Confirm every file path stays inside the intended skills directory before writing files. <br>
-Risk: High or critical risk skills may be installable only through explicit override flows. <br>
-Mitigation: Require explicit user acknowledgement before using risky install overrides. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xmythril/clawdtm-advisor) <br>
-- [ClawdTM homepage](https://clawdtm.com) <br>
-- [ClawdTM API base](https://clawdtm.com/api/v1) <br>
-- [Advisor skill definition](https://clawdtm.com/api/advisor/skill.md) <br>
-- [Advisor skill metadata](https://clawdtm.com/api/advisor/skill.json) <br>
+## Use Case:
 
+Developers and agent users use this skill to search OpenClaw skills, review security and community signals, and install selected skills with risk-aware defaults.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl command examples, JSON response examples, and installation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Security risk context should be shown before any fetched skill files are installed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can cause an agent to download and activate remote skill files, which may affect future agent sessions.
+
+Mitigation: Use it only when the ClawdTM service is trusted and review the returned file list, paths, contents, and security context before activation.
+
+Risk: Automated installation may reduce local validation and user control over what is written into the skills directory.
+
+Mitigation: Prefer manual review before writing files locally and require explicit confirmation before installing medium, high, critical, or unscanned skills.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xmythril/skills/clawdtm-advisor)
+- [ClawdTM Homepage](https://clawdtm.com)
+- [ClawdTM API Base](https://clawdtm.com/api/v1)
+- [Advisor Skill File](https://clawdtm.com/api/advisor/skill.md)
+- [Advisor Metadata](https://clawdtm.com/api/advisor/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON excerpts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include remote skill file paths, security summaries, installation recommendations, and restart guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

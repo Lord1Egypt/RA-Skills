@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "kind": "role_topology_module",
+  "source": {
+    "kind": "live_schematic_readback",
+    "containsProjectIdentity": false,
+    "containsOriginalReferenceDesign": false,
+    "evidence": [
+      "official manufacture netlist",
+      "LCSC device identity resolver"
+    ]
+  },
+  "module": {
+    "id": "lib.usbc_debug_device",
+    "title": "USB-C 原生 USB 调试接口",
+    "maturity": "topology_ready",
+    "parts": [
+      {
+        "role": "USB",
+        "lcsc": "C2765186",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "45fb1c7fbc5b42ebbb9f47d092c4f3dc",
+          "name": "TYPE-C 16PIN 2MD(073)"
+        },
+        "footprint": "USB-C-SMD_TYPE-C-16PIN-2MD-073",
+        "pins": [
+          {
+            "number": "A1B12",
+            "name": "GND",
+            "net": "port.GND"
+          },
+          {
+            "number": "A4B9",
+            "name": "VBUS",
+            "net": "port.VBUS"
+          },
+          {
+            "number": "B8",
+            "name": "SBU2",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "A5",
+            "name": "CC1",
+            "net": "internal.02"
+          },
+          {
+            "number": "B7",
+            "name": "Dn2",
+            "net": "port.USB_DM_CONNECTOR"
+          },
+          {
+            "number": "A6",
+            "name": "Dp1",
+            "net": "port.USB_DP_CONNECTOR"
+          },
+          {
+            "number": "A7",
+            "name": "Dn1",
+            "net": "port.USB_DM_CONNECTOR"
+          },
+          {
+            "number": "B6",
+            "name": "Dp2",
+            "net": "port.USB_DP_CONNECTOR"
+          },
+          {
+            "number": "A8",
+            "name": "SBU1",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "B5",
+            "name": "CC2",
+            "net": "internal.01"
+          },
+          {
+            "number": "B4A9",
+            "name": "VBUS",
+            "net": "port.VBUS"
+          },
+          {
+            "number": "B1A12",
+            "name": "GND",
+            "net": "port.GND"
+          },
+          {
+            "number": "14",
+            "name": "EH",
+            "net": "port.GND"
+          },
+          {
+            "number": "13",
+            "name": "EH",
+            "net": "port.GND"
+          }
+        ]
+      },
+      {
+        "role": "CC1",
+        "lcsc": "C23186",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "b5d09b57bc354a60b86d6a6308651647",
+          "name": "0603WAF5101T5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.GND"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "internal.01"
+          }
+        ]
+      },
+      {
+        "role": "CC2",
+        "lcsc": "C23186",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "b5d09b57bc354a60b86d6a6308651647",
+          "name": "0603WAF5101T5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.GND"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "internal.02"
+          }
+        ]
+      },
+      {
+        "role": "DM_SER",
+        "lcsc": "C23345",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "dc350a4449fc446cb76492694e54aa4c",
+          "name": "0603WAF220JT5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.USB_DM_DEVICE"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.USB_DM_CONNECTOR"
+          }
+        ]
+      },
+      {
+        "role": "DP_SER",
+        "lcsc": "C23345",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "dc350a4449fc446cb76492694e54aa4c",
+          "name": "0603WAF220JT5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.USB_DP_DEVICE"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.USB_DP_CONNECTOR"
+          }
+        ]
+      }
+    ],
+    "nets": [
+      {
+        "id": "port.USB_DM_DEVICE",
+        "members": [
+          "DM_SER.2"
+        ],
+        "port": "USB_DM_DEVICE"
+      },
+      {
+        "id": "port.USB_DP_DEVICE",
+        "members": [
+          "DP_SER.2"
+        ],
+        "port": "USB_DP_DEVICE"
+      },
+      {
+        "id": "internal.01",
+        "members": [
+          "CC1.1",
+          "USB.B5"
+        ]
+      },
+      {
+        "id": "internal.02",
+        "members": [
+          "CC2.1",
+          "USB.A5"
+        ]
+      },
+      {
+        "id": "port.GND",
+        "members": [
+          "CC1.2",
+          "CC2.2",
+          "USB.13",
+          "USB.14",
+          "USB.A1B12",
+          "USB.B1A12"
+        ],
+        "port": "GND"
+      },
+      {
+        "id": "port.USB_DP_CONNECTOR",
+        "members": [
+          "DP_SER.1",
+          "USB.A6",
+          "USB.B6"
+        ],
+        "port": "USB_DP_CONNECTOR"
+      },
+      {
+        "id": "port.USB_DM_CONNECTOR",
+        "members": [
+          "DM_SER.1",
+          "USB.A7",
+          "USB.B7"
+        ],
+        "port": "USB_DM_CONNECTOR"
+      },
+      {
+        "id": "port.VBUS",
+        "members": [
+          "USB.A4B9",
+          "USB.B4A9"
+        ],
+        "port": "VBUS"
+      }
+    ],
+    "verification": {
+      "pinNetReadback": "passed",
+      "deviceIdentityResolution": "passed",
+      "geometry": "not_captured",
+      "pcb": "not_tested",
+      "bringup": "not_tested"
+    }
+  }
+}

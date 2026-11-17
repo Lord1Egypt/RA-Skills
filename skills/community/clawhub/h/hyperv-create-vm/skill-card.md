@@ -1,47 +1,65 @@
-## Description: <br>
-Create Ubuntu 24.04 VMs on Windows Hyper-V from cloud images with cloud-init, including sparse VHDX handling, Hyper-V network configuration, permissions, Secure Boot settings, and Docker Compose v2 setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Ubuntu 24.04 VMs on Windows Hyper-V from cloud images with cloud-init, including sparse VHDX handling, hv_netvsc network configuration, permissions, Secure Boot settings, Docker Compose v2 installation, and SSH access.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solomonneas](https://clawhub.ai/user/solomonneas)
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to create Docker-ready Ubuntu virtual machines on Windows Hyper-V hosts. It is intended for fresh VM provisioning where SSH access, cloud-init configuration, and Hyper-V administrator actions are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Administrator-level Hyper-V actions can change or remove infrastructure on the target host. <br>
-Mitigation: Manually confirm the host, VM name, VHDX path, and command intent before execution, especially before any destroy operation. <br>
-Risk: VM password handling can expose credentials in chat logs, shell history, or process lists. <br>
-Mitigation: Prefer SSH keys or a throwaway credential, pass passwords through VM_PASSWORD or stdin, and avoid returning passwords in final chat output. <br>
-Risk: The release evidence notes missing bundled PowerShell scripts referenced by the skill text. <br>
-Mitigation: Do not substitute unreviewed replacement PowerShell scripts; review any host-side script before running it with elevated privileges. <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to create a fresh Docker-ready Ubuntu VM on a Windows Hyper-V host. It is intended as base infrastructure for later application deployment skills or other Docker-based workloads.
 
-## Reference(s): <br>
-- [Hyper-V VM creation defaults](references/defaults.md) <br>
-- [Hyper-V VM creation gotchas](references/gotchas.md) <br>
-- [Ubuntu 24.04 cloud image](https://cloud-images.ubuntu.com/releases/24.04/release/ubuntu-24.04-server-cloudimg-amd64.img) <br>
-- [Docker Compose v2.32.4 binary](https://github.com/docker/compose/releases/download/v2.32.4/docker-compose-linux-x86_64) <br>
-- [ClawHub skill page](https://clawhub.ai/solomonneas/hyperv-create-vm) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/solomonneas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline bash, PowerShell, and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces VM creation steps and return values such as VM name, IP address, SSH target, and Docker readiness.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill can expose sensitive VM credentials through returned connection details or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide passwords through environment variables or stdin, prefer explicit SSH public keys, avoid returning or logging passwords, and rotate generated credentials after provisioning.
+
+Risk: The provisioning path requires high-privilege Hyper-V administration and changes VM disk permissions.
+
+Mitigation: Review and harden scripts before use, run only on trusted Hyper-V hosts, use explicit VM names from a safe character set, and reduce the deploy user's privileges where possible.
+
+Risk: The skill downloads VM images and Docker Compose binaries during provisioning.
+
+Mitigation: Use approved pinned versions and verify downloaded images and binaries before creating or trusting the VM.
+
+Risk: The security evidence flags template-injection and path-handling concerns.
+
+Mitigation: Restrict user-supplied VM names and paths to a safe character set and treat created VMs as administrative infrastructure until those issues are fixed.
+
+## Reference(s):
+
+- [Defaults: Hyper-V VM Creation](artifact/references/defaults.md)
+- [Gotchas: Hyper-V VM Creation](artifact/references/gotchas.md)
+- [Ubuntu 24.04 LTS cloud image](https://cloud-images.ubuntu.com/releases/24.04/release/ubuntu-24.04-server-cloudimg-amd64.img)
+- [Docker Compose v2.32.4 binary](https://github.com/docker/compose/releases/download/v2.32.4/docker-compose-linux-x86_64)
+- [ClawHub skill page](https://clawhub.ai/solomonneas/skills/hyperv-create-vm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell, PowerShell, and YAML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces cloud-init configuration, host provisioning commands, verification commands, and VM connection details.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact frontmatter declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

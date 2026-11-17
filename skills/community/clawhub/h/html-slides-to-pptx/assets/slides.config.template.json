@@ -1,0 +1,15 @@
+{
+  "design": {
+    "tier": "presentation",
+    "minBodyPx": 14,
+    "fillThreshold": 0.85,
+    "airyPages": [],
+    "formProfile": "balanced",
+    "hedgePages": []
+  },
+  "master": {
+    "pageNumbers": true,
+    "footer": "",
+    "footerColor": "999999"
+  }
+}

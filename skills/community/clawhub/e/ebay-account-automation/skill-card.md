@@ -1,45 +1,69 @@
-## Description: <br>
-Run eBay seller account activity cycles through ADS Power by searching, browsing, favoriting, and adding items to cart on a rotating schedule. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run eBay seller account activity cycles via ADS Power: search, browse, favorite, and cart actions on a rotating schedule.
 
-## Publisher: <br>
-[powerzzjohn](https://clawhub.ai/user/powerzzjohn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[powerzzjohn](https://clawhub.ai/user/powerzzjohn)
 
-## Use Case: <br>
-Developers and operators use this skill to run scheduled ADS Power browser sessions for eBay seller accounts, rotating accounts and performing search, browse, watchlist, and cart actions. Use only with accounts the operator owns or is explicitly authorized to manage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates live marketplace account behavior, including watchlist and cart actions, which may affect account state or marketplace standing. <br>
-Mitigation: Run it only on accounts the operator owns or is explicitly authorized to manage, and review marketplace rules before enabling account-state-changing actions. <br>
-Risk: ADS Power API credentials are required to operate the automation. <br>
-Mitigation: Store ADS Power credentials outside source control using local configuration or environment variables, and rotate exposed keys. <br>
-Risk: The security verdict identifies insufficient guardrails for a marketplace account workflow. <br>
-Mitigation: Review the scripts before installation, start with the quick test, and disable watchlist or cart behavior unless there is explicit account-level approval. <br>
+## Use Case:
 
+External marketplace operators use this skill to run scheduled ADS Power browser sessions that rotate through eBay seller accounts and perform search, browsing, favorite, and cart actions. It is intended for accounts the operator owns or is authorized to manage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/powerzzjohn/ebay-account-automation) <br>
-- [Publisher profile](https://clawhub.ai/user/powerzzjohn) <br>
-- [Metadata homepage](https://github.com/yourrepo/ebay-account-automation) <br>
-- [Artifact README](artifact/references/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with JavaScript configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces runnable Node.js automation guidance and scripts that require ADS Power Local API access and an ADS Power API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and scripts/package.json) <br>
+Risk: The skill can change marketplace state across multiple browser profiles by favoriting items and adding items to carts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against accounts you own or are authorized to operate, and review eBay and marketplace rules before scheduling automation.
+
+Risk: Scheduled browser automation may affect every ADS Power profile returned by the local API if the operating environment is not constrained.
+
+Mitigation: Use a dedicated ADS Power group or account allowlist before deployment.
+
+Risk: The ADS Power API key is required for execution and could be exposed if stored in source control.
+
+Mitigation: Keep ADS_API_KEY outside source control, preferably in local configuration or environment variables.
+
+Risk: Selector diagnostics and browser automation may fail or behave unexpectedly when eBay page structure changes.
+
+Mitigation: Run selector diagnostics in a controlled test account and fix diagnostic cleanup before production use.
+
+Risk: Unpinned dependencies can change automation behavior across installs.
+
+Mitigation: Pin dependencies with a lockfile before operational use.
+
+## Reference(s):
+
+- [Skill documentation](artifact/references/README.md)
+- [ADS Power Local API documentation](https://localapi-doc-zh.adspower.net/)
+- [eBay website](https://www.ebay.com)
+- [Project homepage](https://github.com/yourrepo/ebay-account-automation)
+- [ClawHub skill page](https://clawhub.ai/powerzzjohn/skills/ebay-account-automation)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and JavaScript configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructions and runnable Node.js scripts for ADS Power and eBay browser automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence and scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

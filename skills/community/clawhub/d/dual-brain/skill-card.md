@@ -1,47 +1,64 @@
-## Description: <br>
-Dual-Brain runs a background daemon that generates short second-opinion perspectives from a secondary LLM provider for OpenClaw agent messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generates and saves alternative perspectives from a secondary LLM for every user message to enhance reasoning and response quality.
 
-## Publisher: <br>
-[Dannydvm](https://clawhub.ai/user/Dannydvm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dannydvm](https://clawhub.ai/user/dannydvm)
 
-## Use Case: <br>
-Agent developers use this skill to give OpenClaw agents a secondary model perspective before responding. It is intended for workflows where a short alternative view can help surface missing angles, validation points, or reasoning risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Agent conversation content and local memory context may be sent to the selected secondary LLM provider. <br>
-Mitigation: Use a local provider such as Ollama for sensitive work and avoid enabling external providers for confidential sessions. <br>
-Risk: The daemon stores configuration and generated perspectives locally, including API keys when non-local providers are configured. <br>
-Mitigation: Restrict permissions on ~/.dual-brain/config.json and review local perspective files before sharing the machine or workspace. <br>
-Risk: The skill can install a persistent background service through launchd or systemd. <br>
-Mitigation: Review the generated service configuration before enabling background persistence and stop or uninstall the service when it is no longer needed. <br>
-Risk: Automatically generated secondary perspectives may be incomplete, stale, or misleading. <br>
-Mitigation: Treat perspectives as advisory input and have the primary agent synthesize and verify them before using them in a response. <br>
+## Use Case:
 
+Developers and agent operators use Dual-Brain to run a secondary LLM that watches OpenClaw user messages, writes short per-agent perspective files, and lets the primary agent consider those notes before responding.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Dannydvm/dual-brain) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [QUICKSTART.md](QUICKSTART.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown perspective files and CLI guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Perspectives are written as latest-per-agent Markdown files under the configured local perspectives directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Risk: The daemon may send conversation excerpts, and optional memory context, to a configured external LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local Ollama for sensitive workflows, review provider data handling before using remote providers, and configure ownerIds narrowly.
+
+Risk: The tool can run as a persistent background service that watches agent conversation files.
+
+Mitigation: Run it in foreground first, review the watched scope and configuration, and install a system service only when persistent operation is needed.
+
+Risk: API keys may be stored in plaintext configuration.
+
+Mitigation: Protect the configuration file with restrictive permissions, avoid unnecessary remote-provider keys, and rotate keys if the file is exposed.
+
+Risk: Generated perspective files can contain incorrect or misleading advice.
+
+Mitigation: Treat perspectives as untrusted suggestions and require the primary agent or user to evaluate them before acting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dannydvm/skills/dual-brain)
+- [README](README.md)
+- [Quick Start Guide](QUICKSTART.md)
+- [Agent Skill Instructions](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown perspective files with shell command and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces short per-agent latest-perspective files and CLI guidance; default perspective length is controlled by maxTokens.]
+
+## Skill Version(s):
+
+0.1.1 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

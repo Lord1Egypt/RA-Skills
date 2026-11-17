@@ -9,7 +9,7 @@ Template for creating skills extracted from robotics learnings. Copy and customi
 ```markdown
 ---
 name: skill-name-here
-description: "Concise description of the robotics failure mode, autonomy pattern, or engineering workflow this skill addresses. Include trigger conditions."
+description: "Concise description of the robotics failure mode, autonomy pattern, or engineering workflow this skill addresses. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
@@ -80,12 +80,17 @@ For simple robotics skills that do not need all sections:
 ```markdown
 ---
 name: skill-name-here
-description: "What robotics failure mode this addresses and when to apply it."
+description: "What robotics failure mode this addresses and when to apply it. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
 
 [Failure summary in one sentence]
+
+## Triggers
+- Include when: [narrow, testable conditions]
+- Exclude when: [out-of-scope cases; never empty or catch-all matchers]
+
 
 ## Symptoms
 
@@ -134,7 +139,7 @@ Before creating a skill from a robotics learning:
 - [ ] Telemetry and timestamps are synchronized
 - [ ] Area tag and category are accurate
 - [ ] Name follows conventions
-- [ ] Description includes trigger conditions
+- [ ] Description includes narrow, testable trigger conditions and explicit exclusions
 
 After creating:
 

@@ -1,45 +1,59 @@
-## Description: <br>
-Reliable agent-to-agent communication protocol for transferring large payloads via shared files with pointer references and secret code verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reliable agent-to-agent communication protocol for transferring large payloads via shared files with pointer references and secret code verification.
 
-## Publisher: <br>
-[extraterrest](https://clawhub.ai/user/extraterrest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[extraterrest](https://clawhub.ai/user/extraterrest)
 
-## Use Case: <br>
-Developers and agent operators use AgentRelay to pass large inter-agent payloads through shared files while sending compact pointer messages and completion confirmations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad automatic triggers may cause agents to process relay messages that were not intentionally authorized. <br>
-Mitigation: Use exact structured AgentRelay triggers only with trusted agents and require clear sender authorization before acting on a relay event. <br>
-Risk: Insufficiently constrained event IDs or file pointers can create unsafe file access patterns. <br>
-Mitigation: Validate event IDs and pointers strictly before receiving, updating, verifying, or cleaning relay files. <br>
-Risk: Relay storage, logs, registry entries, and secrets may retain sensitive payload metadata. <br>
-Mitigation: Run in a low-privilege environment, document retention and privacy handling, and use receiver-controlled deletion or cleanup for expired events. <br>
+## Use Case:
 
+Developers and agents use AgentRelay to pass large inter-agent payloads by storing content in shared files and sending short AgentRelay CSV pointers with completion verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/extraterrest/agentrelay) <br>
-- [ClawHub manifest](artifact/clawhub.json) <br>
-- [README](artifact/README.md) <br>
-- [Release notes](artifact/RELEASE_NOTES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces compact AgentRelay CSV pointer messages and JSON command output when its helper scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release evidence and clawhub.json) <br>
+Risk: Relay inputs may access paths outside the intended storage area.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted AgentRelay messages until event IDs and pointers are validated and storage-directory containment is enforced.
+
+Risk: Verification secrets are stored in plaintext and may be logged or returned.
+
+Mitigation: Use non-sensitive payloads, avoid sharing relay secrets in logs, and replace the six-character secret with a cryptographic token before handling sensitive workflows.
+
+Risk: Automatic handling from untrusted message text can trigger unintended file operations.
+
+Mitigation: Review the sender and message before execution, and avoid enabling automatic handling for untrusted AgentRelay prefixes.
+
+## Reference(s):
+
+- [AgentRelay ClawHub skill page](https://clawhub.ai/extraterrest/skills/agentrelay)
+- [AgentRelay documentation](https://docs.openclaw.ai/skills/agentrelay)
+- [ClawHub publisher profile](https://clawhub.ai/user/extraterrest)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline Python and shell examples; runtime commands emit JSON and CSV text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates shared relay files, registry records, and transaction logs under the configured OpenClaw data directory.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

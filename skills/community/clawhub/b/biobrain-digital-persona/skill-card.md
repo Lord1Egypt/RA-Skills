@@ -1,45 +1,60 @@
-## Description: <br>
-Creates structured, clearly labeled digital persona files for deceased figures by distilling personality, appearance, mannerisms, voice, language style, and emotional response patterns from appropriate source material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Digital Persona helps agents create structured digital persona files for deceased or historical figures, covering personality, appearance, gestures, expressions, voice, language style, and emotion-driven behavior.
 
-## Publisher: <br>
-[ygq19901001](https://clawhub.ai/user/ygq19901001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ygq19901001](https://clawhub.ai/user/ygq19901001)
 
-## Use Case: <br>
-Developers, writers, and agent builders use this skill to research public and appropriate sources, then produce persona files that model a deceased figure's behavioral patterns for labeled agent conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated personas can create ethical impersonation risk if presented as the real person or as an endorsement. <br>
-Mitigation: Require personas to be clearly labeled as fictionalized or analytical and do not present outputs as the real person or as endorsements. <br>
-Risk: Persona creation can expose private or non-consensual details if inappropriate sources are used. <br>
-Mitigation: Use public and appropriate sources, avoid private or non-consensual details, and review generated persona files before deployment. <br>
-Risk: An agent could switch into a persona mode without clear user intent. <br>
-Mitigation: Require explicit user intent before entering persona mode and provide clear exit conditions. <br>
+## Use Case:
 
+Developers and creators use this skill to research, structure, and iterate persona files that simulate the behavioral patterns, communication style, and emotional responses of deceased or historical figures. Outputs should be treated as interpretive roleplay rather than authentic reconstructions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ygq19901001/skills/biobrain-digital-persona) <br>
-- [Server-resolved GitHub provenance](https://github.com/Ygq19901001/biobrain-digital-persona) <br>
-- [Digital persona template](references/persona-template.md) <br>
-- [Steve Jobs persona example](references/examples/jobs-soul.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown persona files and structured guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; expected outputs include SOUL.md and persona-data.md persona files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata; artifact frontmatter reports 1.0.1) <br>
+Risk: Generated personas can be mistaken for authentic reconstructions or used for deceptive impersonation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as interpretive roleplay or simulation, avoid deceptive impersonation, and clearly label generated personas.
+
+Risk: Personas of private-family subjects or poorly sourced individuals can create privacy, consent, or reputational harm.
+
+Mitigation: Use well-sourced public or historical subjects, avoid private-family subjects, and remove unsourced claims.
+
+Risk: The workflow is markdown-only but asks agents to research and synthesize sensitive personal traits.
+
+Mitigation: Review generated SOUL.md and persona-data.md files before use, especially for sourcing quality, consent, and harmful claims.
+
+## Reference(s):
+
+- [Persona Template](references/persona-template.md)
+- [Steve Jobs Digital Persona Example](references/examples/jobs-soul.md)
+- [Server-Resolved GitHub Repository](https://github.com/Ygq19901001/biobrain-digital-persona)
+- [ClawHub Skill Page](https://clawhub.ai/ygq19901001/skills/biobrain-digital-persona)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown persona files, typically SOUL.md and persona-data.md]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language workflow; persona outputs should be reviewed for sourcing, consent, and impersonation risk.]
+
+## Skill Version(s):
+
+0.1.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

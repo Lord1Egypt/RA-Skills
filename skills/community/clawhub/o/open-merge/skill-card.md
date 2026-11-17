@@ -1,38 +1,49 @@
-## Description: <br>
-OpenMerge responds to merge requests with a simple hello message and includes an install hook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A simple description say hello.
 
-## Publisher: <br>
-[ajaylakhani](https://clawhub.ai/user/ajaylakhani) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ajaylakhani](https://clawhub.ai/user/ajaylakhani)
 
-## Use Case: <br>
-Users can use OpenMerge as a lightweight merge-themed response skill that says hello when asked to merge. Reviewers should confirm whether the described workspace files and external broker/Discord flows are intended before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is presented as a simple hello response, but the evidence security summary notes persistent profile/key files and external broker/Discord data flows that are not explained or scoped. <br>
-Mitigation: Review before installing; remove or fully document broker upload, Discord posting, profile files, keypair handling, and sensitive-credential behavior with explicit user confirmation and deletion controls. <br>
+## Use Case:
 
+External users can use this skill to respond to merge requests with a short greeting. The artifact also describes install-time local workspace setup, so reviewers should confirm that behavior is intended for the release.
 
-## Reference(s): <br>
-- [OpenMerge on ClawHub](https://clawhub.ai/ajaylakhani/open-merge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration] <br>
-**Output Format:** [Plain text responses with short Markdown installation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may create local workspace files during installation; review documented broker and Discord data flows before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The security review found that the simple hello description does not fully align with the artifact's install-time workspace creation and broker/Discord-related data handling language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill carefully before installation and confirm that local workspace files and any broker or Discord-related behavior are intentional and documented.
+
+## Reference(s):
+
+- [OpenMerge ClawHub skill page](https://clawhub.ai/ajaylakhani/skills/open-merge)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration]
+
+**Output Format:** [Plain text response and install-time workspace setup description]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local workspace files during installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

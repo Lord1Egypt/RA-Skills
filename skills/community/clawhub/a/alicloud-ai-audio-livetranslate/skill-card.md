@@ -1,39 +1,51 @@
-## Description: <br>
-Use when live speech translation is needed with Alibaba Cloud Model Studio Qwen LiveTranslate models, including bilingual meetings, realtime interpretation, and speech-to-speech or speech-to-text translation flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when live speech translation is needed with Alibaba Cloud Model Studio Qwen LiveTranslate models, including bilingual meetings, realtime interpretation, and speech-to-speech or speech-to-text translation flows.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare Alibaba Cloud Qwen LiveTranslate request payloads for bilingual meetings, live subtitles, realtime interpretation, and translated call-center captions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved outputs may contain private meeting, call, subtitle, or business transcript content. <br>
-Mitigation: Confirm that audio may be processed by Alibaba Cloud, redact sensitive content when possible, and delete or protect saved payloads and summaries. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare Alibaba Cloud Qwen LiveTranslate requests for bilingual meetings, live subtitles, realtime interpretation, and translated call-center captions.
 
-## Reference(s): <br>
-- [Alibaba Cloud Qwen LiveTranslate documentation](https://help.aliyun.com/document_detail/2976526.html) <br>
-- [Alibaba Cloud Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save request payloads and response summaries under output/alicloud-ai-audio-livetranslate/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Saved translation payloads and response summaries may contain private speech or business content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep output files in a controlled location, review them before sharing, and delete them when they are no longer needed.
+
+## Reference(s):
+
+- [Sources](references/sources.md)
+- [Alibaba Cloud Model Studio LiveTranslate documentation](https://help.aliyun.com/document_detail/2976526.html)
+- [Alibaba Cloud Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request payload files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes scoped request payloads and response summaries under output/alicloud-ai-audio-livetranslate/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

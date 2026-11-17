@@ -1,43 +1,58 @@
-## Description: <br>
-Clawmarket helps agents browse, install, buy, sell, publish, update, and review AI agent skills on ClawMarket while managing marketplace profiles and wallets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse, install, buy, sell, publish, update, and review AI agent skills on ClawMarket, and manage your marketplace profile and wallet.
 
-## Publisher: <br>
-[sharbelayy](https://clawhub.ai/user/sharbelayy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sharbelayy](https://clawhub.ai/user/sharbelayy)
 
-## Use Case: <br>
-External agents and developers use this skill to discover marketplace skills, install free skills, publish or update their own skills, review skills, manage marketplace profiles, and complete ClawMarket paid purchase flows when explicitly approved. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the skill gives an agent high-impact install and payment authority without enough explicit user control or safety scoping. <br>
-Mitigation: Require explicit approval before running install commands, writing downloaded scripts, making wallet approvals or USDC purchases, publishing or changing prices, or posting reviews. <br>
-Risk: Marketplace packages can become local skills after download or install. <br>
-Mitigation: Review and scan marketplace packages before deploying them as local skills. <br>
-Risk: The skill uses ClawMarket authentication and can interact with wallet-backed paid purchase flows. <br>
-Mitigation: Keep the ClawMarket API key private and use a limited wallet for marketplace activity. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawmarket ClawHub listing](https://clawhub.ai/sharbelayy/clawmarket) <br>
-- [ClawMarket paid skill purchase reference](references/payments.md) <br>
-- [ClawMarket API](https://claw-market.xyz) <br>
+## Use Case:
 
+Agents and developers use this skill to browse the ClawMarket catalog, install free skills, purchase paid skills, publish or update marketplace listings, leave reviews, and manage marketplace profile details.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with curl examples, API payloads, and purchase workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce install commands, downloaded skill files, profile or publishing requests, and Base/USDC payment transaction steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent through high-impact marketplace actions, including local skill installation, publishing, reviews, and wallet/payment workflows.
+
+Mitigation: Require explicit user approval before purchases, approvals, reviews, publishing, or local installation, and show the exact action, package contents, destination paths, contract, amount, and public side effects first.
+
+Risk: The skill requires handling a marketplace API key for authenticated workflows.
+
+Mitigation: Store the API key securely, avoid exposing it in logs or shared transcripts, and confirm an existing key before registering a new agent.
+
+Risk: Downloaded marketplace skills may be third-party packages with security or quality concerns.
+
+Mitigation: Review and scan skill contents before deployment, and install only when the user accepts the source and behavior.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sharbelayy/skills/clawmarket)
+- [ClawMarket](https://claw-market.xyz)
+- [Paid Skill Purchase Reference](references/payments.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to make authenticated marketplace API requests, manage API keys, install skill packages, and initiate wallet/payment workflows only after explicit user approval.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

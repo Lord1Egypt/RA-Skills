@@ -1,42 +1,54 @@
-## Description: <br>
-Send email through SMTP providers such as 126, QQ, Sina, or Aliyun Mail using an SMTP authorization code or mailbox password. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send email through SMTP providers such as 126, QQ, Sina, or Aliyun Mail using an SMTP authorization code or mailbox password.
 
-## Publisher: <br>
-[seanmwx](https://clawhub.ai/user/seanmwx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seanmwx](https://clawhub.ai/user/seanmwx)
 
-## Use Case: <br>
-Developers and other users use this skill to configure SMTP settings, validate them with a dry run, and send simple test emails through supported or custom providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fallback SMTP configuration can connect to an unintended provider or use mismatched credentials when settings are incomplete. <br>
-Mitigation: Run `scripts/send_email.py --dry-run` first and confirm the resolved provider, host, username, sender, recipient, subject, and body before sending. <br>
-Risk: SMTP credentials and message contents may be disclosed to the configured mail provider or recipient. <br>
-Mitigation: Prefer provider-issued SMTP or app passwords, avoid primary mailbox passwords where possible, and do not send sensitive content unless that disclosure is intended. <br>
-Risk: Non-126 providers can be misconfigured if the minimal `.env` values are used without explicit connection settings. <br>
-Mitigation: For non-126 or custom providers, explicitly set `SMTP_HOST`, `SMTP_PORT`, `SMTP_USE_SSL`, and `SMTP_USERNAME`. <br>
+## Use Case:
 
+Developers and Codex users use this skill to configure SMTP provider settings, validate email configuration with a dry run, and send simple test emails through supported mailbox providers.
 
-## Reference(s): <br>
-- [SMTP provider notes](references/providers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with dotenv configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute a Python SMTP script that sends email when not run in dry-run mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: SMTP credentials could be placed in the public skill file's embedded configuration block.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep real credentials out of `SKILL.md`; use an untracked local env file or a proper secret store.
+
+Risk: A real email send could expose content to the wrong recipient or fail because the provider expects an app-specific SMTP authorization code.
+
+Mitigation: Run dry-run validation first, confirm sender and recipient values, and use provider-issued app-specific SMTP authorization codes where available.
+
+## Reference(s):
+
+- [SMTP Providers](references/providers.md)
+- [ClawHub skill page](https://clawhub.ai/seanmwx/skills/email-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dry-run validation steps and a real SMTP send command after sender, recipient, subject, body, and secret handling are confirmed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

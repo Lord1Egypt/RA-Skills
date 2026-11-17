@@ -1,0 +1,5 @@
+.humanize-skill/
+.omx/
+__pycache__/
+*.pyc
+*.egg-info/

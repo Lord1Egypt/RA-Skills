@@ -1,45 +1,62 @@
-## Description: <br>
-Provides OpenClaw access instructions for stock quant chart generation, stock market Q&A, natural-language AI stock screening, and WebSocket real-time monitoring signal notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+stockClaw-yingyan helps agents use OpenClaw stock APIs to return quantitative chart links, A-share market analysis, natural-language stock screening results, limit-up stock lists, and WebSocket monitor signal updates.
 
-## Publisher: <br>
-[woshixihongtu-cyber](https://clawhub.ai/user/woshixihongtu-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[woshixihongtu-cyber](https://clawhub.ai/user/woshixihongtu-cyber)
 
-## Use Case: <br>
-External ClawHub users and developers use this skill to connect an agent to Yingyan/OpenClaw stock APIs for charts, market analysis, natural-language stock searches, limit-up lists, and real-time monitoring signal notifications. The skill also guides users through local credential configuration required for authenticated HTTP and WebSocket access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores local API credentials and sends them to the provider during authenticated requests. <br>
-Mitigation: Use dedicated limited-scope keys, avoid pasting production secrets into chat, keep config.json out of source control and backups, rotate exposed keys, and prefer environment variables or a secure secret store when possible. <br>
-Risk: Financial data and signal outputs may be incorrect, stale, or unsuitable for a user's investment situation. <br>
-Mitigation: Treat chart, market analysis, stock search, and monitoring outputs as informational; review source data and apply independent judgment before taking financial action. <br>
+## Use Case:
 
+External ClawHub users and developers use this skill to connect an agent to Yingyan/OpenClaw stock endpoints for chart generation, market Q&A, natural-language stock screening, limit-up stock lists, and real-time monitor signals. It requires user-provided OpenClaw credentials for HTTP requests and a separate monitor key for WebSocket subscriptions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/woshixihongtu-cyber/stockclaw-yingyan) <br>
-- [Publisher profile](https://clawhub.ai/user/woshixihongtu-cyber) <br>
-- [Yingyan Quant site](https://yingyan.chatface.com/) <br>
-- [OpenClaw API reference](reference.md) <br>
-- [OpenClaw examples](examples.md) <br>
-- [OpenAPI specification](openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with structured stock tables, chart image links, JSON API payloads, and WebSocket connection guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [HTTP stock search results are capped at 20 rows with fixed fields; WebSocket monitoring returns real-time signal-change notifications when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release evidence and artifact manifest) <br>
+Risk: API keys are stored in local config.json and may be exposed if the file is committed, uploaded, or shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use limited or disposable keys where possible, keep config.json private after credentials are added, and avoid sharing logs that include keys or full WebSocket URLs.
+
+Risk: Some market analysis prompt content may be supplied by the remote service.
+
+Mitigation: Review the skill before installation and independently verify stock analysis; present outputs as non-advisory analysis rather than investment instructions.
+
+Risk: WebSocket monitoring uses a separate monitor API key that can be confused with the HTTP OpenClaw key.
+
+Mitigation: Keep HTTP and monitor credentials separate, validate the intended key before connecting, and avoid exposing full monitor URLs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/woshixihongtu-cyber/skills/stockclaw-yingyan)
+- [API Reference](artifact/reference.md)
+- [Examples](artifact/examples.md)
+- [OpenAPI Specification](artifact/openapi.json)
+- [Yingyan OpenClaw Service](https://yingyan.chatface.com/)
+- [OpenClaw Demo Page](https://yingyan.chatface.com/web/openclaw_demo.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and structured JSON-derived text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include image URLs or rendered Markdown, stock tables, market analysis sections, credential setup prompts, and real-time signal summaries.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

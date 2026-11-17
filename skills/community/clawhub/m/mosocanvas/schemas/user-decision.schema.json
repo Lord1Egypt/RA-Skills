@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosocanvas.local/schemas/user-decision-0.1.json",
+  "title": "MoSoCanvas User Decision 0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "task_id", "artifact_ref", "decision", "decided_at", "actor"],
+  "properties": {
+    "schema": { "const": "moso.user-decision/0.1" },
+    "id": { "type": "string", "minLength": 1 },
+    "task_id": { "type": "string", "minLength": 1 },
+    "artifact_ref": { "type": "string", "minLength": 1 },
+    "decision": { "enum": ["accepted", "accepted-with-tradeoff", "rejected"] },
+    "decided_at": { "type": "string", "format": "date-time" },
+    "actor": { "const": "user" },
+    "known_tradeoffs": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "authority_event_ref": { "type": "string", "minLength": 1 }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "decision": { "const": "accepted-with-tradeoff" } } },
+      "then": { "required": ["known_tradeoffs"] }
+    }
+  ]
+}

@@ -1,41 +1,55 @@
-## Description: <br>
-Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration.
 
-## Publisher: <br>
-[zhao202404](https://clawhub.ai/user/zhao202404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[zhao202404](https://clawhub.ai/user/zhao202404)
 
-## Use Case: <br>
-Developers and creative technologists use this skill to define an algorithmic art philosophy and turn it into reproducible p5.js generative art with interactive parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML may contact cdnjs and Google Fonts when opened. <br>
-Mitigation: Vendor p5.js and font assets locally or allow-list those external dependencies before use in sensitive or offline environments. <br>
-Risk: Generated browser artifacts contain executable HTML and JavaScript. <br>
-Mitigation: Review and scan generated HTML before sharing or deployment, and test it in a sandboxed browser context. <br>
+## Use Case:
 
+Developers and creative practitioners use this skill to create an algorithmic art philosophy and express it as reproducible, interactive p5.js generative art.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhao202404/excel-skill) <br>
-- [p5.js runtime CDN used by viewer template](https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown philosophy plus a self-contained HTML artifact with inline JavaScript] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML uses seeded randomness for reproducible variations and may load p5.js and fonts from third-party CDNs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated browser artifacts may load p5.js and fonts from external CDNs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML before sharing or deployment, and replace external CDN dependencies with approved local or pinned assets when required.
+
+Risk: Generated outputs may preserve Anthropic-styled branding from the viewer template.
+
+Mitigation: Review or remove the branding before publishing or sharing outputs unless appropriate permission exists.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhao202404/skills/excel-skill)
+- [Publisher profile](https://clawhub.ai/user/zhao202404)
+- [p5.js CDN reference](https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code]
+
+**Output Format:** [Markdown philosophy plus self-contained HTML and JavaScript]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated art uses seeded randomness and interactive controls for reproducible variation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

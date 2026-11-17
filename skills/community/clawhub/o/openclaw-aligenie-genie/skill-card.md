@@ -1,44 +1,60 @@
-## Description: <br>
-OpenClaw Aligenie Genie lets an OpenClaw agent communicate bidirectionally with Tmall Genie through a configured cloud server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Agent uses a cloud server to communicate bidirectionally with Tmall Genie, including receiving messages, configuring the connection, and handling commands sent from Tmall Genie to OpenClaw.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect OpenClaw agents with Tmall Genie, configure the cloud bridge, register agents, poll for Genie requests, and submit replies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can route Tmall Genie messages and related metadata through a configured cloud server. <br>
-Mitigation: Install only when you control and can review the server side, and document what message data is processed by the bridge. <br>
-Risk: The release evidence warns that the setup may expose a sensitive agent-control service. <br>
-Mitigation: Use HTTPS, restrict firewall access to trusted sources or a VPN, protect API keys, rotate keys when needed, and avoid plaintext key files. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to connect an OpenClaw agent with a self-managed Aligenie/Tmall Genie relay service, register agents, poll for user requests, and submit voice-assistant replies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axelhu/openclaw-aligenie-genie) <br>
-- [Technical specification](artifact/SPEC.md) <br>
-- [Deployment guide](artifact/DEPLOY.md) <br>
-- [OpenClaw Aligenie client](artifact/genie_client.py) <br>
-- [SQLite JDBC releases](https://github.com/xerial/sqlite-jdbc/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python, shell, PowerShell, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Aligenie server URL, API key, and agent ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: The deployment examples show public plain-HTTP endpoints for a relay service that uses API keys and device or agent management operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted self-managed server behind HTTPS, restrict firewall access, and avoid sending real credentials to the documented plain-HTTP examples.
+
+Risk: The deployment guide includes an Administrator scheduled task from C:\temp and management endpoints that can create or delete devices, agents, and keys.
+
+Mitigation: Run the service with least privilege, store it outside temporary directories, scope API keys narrowly, and confirm server-side permissions before enabling management endpoints.
+
+Risk: The deployment flow depends on manually downloaded server dependencies.
+
+Mitigation: Pin and verify downloaded dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/axelhu/skills/openclaw-aligenie-genie)
+- [Technical specification](SPEC.md)
+- [Deployment guide](DEPLOY.md)
+- [SQLite JDBC releases](https://github.com/xerial/sqlite-jdbc/releases)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes environment variables, API key usage patterns, deployment commands, and a Python client for polling and submitting results.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

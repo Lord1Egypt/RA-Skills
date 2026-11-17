@@ -1,39 +1,48 @@
-## Description: <br>
-PLS Copy Editing is intended to help agents improve text clarity, grammar, punctuation, and style in drafts before publication or submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhances text clarity, grammar, punctuation, and style in documents, ideal for polishing drafts before publication or submission.
 
-## Publisher: <br>
-[mattvalenta](https://clawhub.ai/user/mattvalenta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mattvalenta](https://clawhub.ai/user/mattvalenta)
 
-## Use Case: <br>
-Employees, external authors, and developers can use this skill to request copy-editing assistance for written drafts. The current artifact appears to be placeholder scaffolding, so its scope should be completed before relying on it for real copy-editing workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact is an unfinished copy-editing skill template, so it may be poorly scoped or not useful for real work. <br>
-Mitigation: Complete the skill with clear copy-editing scope, supported document types, and out-of-scope cases before relying on it. <br>
-Risk: Placeholder instructions may lead an agent to infer behavior that the released skill does not define. <br>
-Mitigation: Review agent outputs manually and replace placeholder sections with concrete workflow guidance before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mattvalenta/pls-copy-editing) <br>
+## Use Case:
 
+Writers, editors, and other external users use this skill to polish draft text for clarity, grammar, punctuation, and style before publication or submission. The current artifact appears unfinished, so reviewers should confirm the intended editing boundaries before installation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text copy-editing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, references, or assets are included in the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact is an unfinished copy-editing template with unclear triggers and editing boundaries.
+
+Mitigation: Complete the skill with a clear copy-editing purpose, concrete invocation scenarios, exclusions, and review expectations before installation.
+
+## Reference(s):
+
+- [PLS Copy Editing ClawHub Page](https://clawhub.ai/mattvalenta/skills/pls-copy-editing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text editing suggestions and revised prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, references, or assets are included in the current artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

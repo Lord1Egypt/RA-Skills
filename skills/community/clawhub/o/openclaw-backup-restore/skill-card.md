@@ -1,40 +1,53 @@
-## Description: <br>
-Backup and restore OpenClaw configuration, agents, sessions, and workspace to and from a private Git repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup and restore OpenClaw configuration, agents, sessions, and workspace to/from a private Git repository.
 
-## Publisher: <br>
-[DarinRowe](https://clawhub.ai/user/DarinRowe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darinrowe](https://clawhub.ai/user/darinrowe)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to manually back up local OpenClaw state to a trusted private Git repository, migrate a setup to another machine, or restore a previous OpenClaw state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup may copy sensitive OpenClaw state, including configuration, sessions, memory, and workspace data, into the configured Git repository. <br>
-Mitigation: Use only a trusted private repository, verify the repository URL before running the scripts, and add explicit exclusions or encryption for secrets and session material. <br>
-Risk: Restore pulls repository contents into the live OpenClaw directory and then runs local package installation and OpenClaw repair commands. <br>
-Mitigation: Restore only from a repository and commit you trust, inspect the backup diff before restoring, and avoid running restore from unreviewed branches or remotes. <br>
+## Use Case:
 
+OpenClaw users and administrators use this skill to manually back up OpenClaw state to a private Git repository, migrate to a new machine, or restore a previous environment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DarinRowe/openclaw-backup-restore) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and script execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces backup and restore actions that read OpenClaw configuration and operate on local OpenClaw state through Git, rsync, npm, and OpenClaw CLI commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Backups can upload broad OpenClaw state, which may include secrets or private conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a private repository you fully control, review exclusions before backup, and add secret filtering or client-side encryption for safer use.
+
+Risk: Restore can copy remote repository content into the live OpenClaw environment and run follow-up commands.
+
+Mitigation: Restore only from a trusted repository, preview diffs first, prefer restoring into a staging directory, and gate automatic dependency installation and doctor repair commands.
+
+## Reference(s):
+
+- [OpenClaw Backup & Restore on ClawHub](https://clawhub.ai/darinrowe/skills/openclaw-backup-restore)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and operational steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces backup and restore instructions that may execute local shell scripts against OpenClaw state.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

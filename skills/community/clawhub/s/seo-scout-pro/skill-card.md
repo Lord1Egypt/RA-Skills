@@ -1,41 +1,59 @@
-## Description: <br>
-Website submit page discovery and form analysis tool that scouts websites to find submission forms, detect authentication requirements, identify CAPTCHAs, and map form fields for automated or manual submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Seo Scout Pro helps agents discover website submit pages, analyze form fields, detect authentication and CAPTCHA requirements, and prepare automated or manual backlink submissions.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External marketers, SEO operators, and developers use this skill to scout websites for submission pages, map form fields, and plan manual or automated directory submissions. It is intended for authorized scouting and manual review before any submission workflow is used. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes stealth browser guidance, anti-detection configuration, Cloudflare bypass-style analysis, and automated third-party submission templates. <br>
-Mitigation: Use it only for authorized scouting and manual review on sites you control or have permission to test; treat protected or challenge-gated sites as manual-only unless authorization is explicit. <br>
-Risk: The artifact includes weak credential-handling advice for submission accounts. <br>
-Mitigation: Do not store real credentials in plain configuration files; use isolated accounts and an appropriate secrets mechanism when credentials are required. <br>
+## Use Case:
 
+Marketing teams, SEO operators, and developers use this skill to scout directory and listing sites before submitting a product or website. It supports submit-page discovery, form mapping, authentication and CAPTCHA checks, adapter scaffolding, and manual submission planning.
 
-## Reference(s): <br>
-- [Seo Scout Pro ClawHub Release](https://clawhub.ai/xueyetianya/seo-scout-pro) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes scouting checklists, command examples, form-analysis guidance, and adapter boilerplate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may guide agents toward automated backlink submissions and stealth browser behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on sites where you have permission, avoid bypassing bot defenses, and prefer manual submission where site rules or access controls are unclear.
+
+Risk: The artifact describes storing login credentials in configuration files for authenticated workflows.
+
+Mitigation: Do not store passwords in project config files; use secure secret storage or manual login flows for authenticated submissions.
+
+Risk: Automated form discovery can produce incomplete or misleading results on protected, JavaScript-heavy, or CAPTCHA-gated sites.
+
+Mitigation: Manually review findings before submission and treat protected or CAPTCHA-gated workflows as manual-only unless authorization and site rules clearly allow automation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/skills/seo-scout-pro)
+- [Publisher Profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command-oriented guidance, form-analysis examples, adapter boilerplate, and manual submission checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

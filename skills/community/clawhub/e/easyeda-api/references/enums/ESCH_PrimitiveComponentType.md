@@ -1,11 +1,11 @@
 # ESCH\_PrimitiveComponentType enum
 
-器件类型
+Device type
 
 ## Signature
 
 ```typescript
-declare enum ESCH_PrimitiveComponentType$1 
+enum ESCH_PrimitiveComponentType
 ```
 
 ## Enumeration Members
@@ -14,128 +14,112 @@ declare enum ESCH_PrimitiveComponentType$1
 
 Member
 
-
 </th><th>
 
 Value
-
 
 </th><th>
 
 Description
 
-
 </th></tr></thead>
 <tbody><tr><td>
 
+CBB\_SYMBOL
+
+</td><td>
+
+`'block_symbol'`
+
+</td><td>
+
+</td></tr>
+<tr><td>
+
 COMPONENT
 
+</td><td>
+
+`'part'`
 
 </td><td>
 
-`"part"`
+</td></tr>
+<tr><td>
 
+DIFFERENTIAL\_PAIRS\_FLAG
 
 </td><td>
 
-元件
+`'diffPairsFlag'`
 
+</td><td>
 
 </td></tr>
 <tr><td>
 
 DRAWING
 
-
 </td><td>
 
-`"sheet"`
-
+`'sheet'`
 
 </td><td>
-
-图纸
-
 
 </td></tr>
 <tr><td>
 
 NET\_FLAG
 
-
 </td><td>
 
-`"netflag"`
-
-
-</td><td>
-
-网络标识
-
-
-</td></tr>
-<tr><td>
-
-NET\_LABEL
-
+`'netflag'`
 
 </td><td>
-
-`"netlabel"`
-
-
-</td><td>
-
-网络标签
-
 
 </td></tr>
 <tr><td>
 
 NET\_PORT
 
-
 </td><td>
 
-`"netport"`
-
+`'netport'`
 
 </td><td>
-
-网络端口
-
 
 </td></tr>
 <tr><td>
 
 NON\_ELECTRICAL\_FLAG
 
+</td><td>
+
+`'nonElectrical_symbol'`
 
 </td><td>
 
-`"nonElectrical_symbol"`
+</td></tr>
+<tr><td>
 
+OFF\_PAGE\_CONNECTOR
 
 </td><td>
 
-无电气标识
+`'offPageConnector'`
 
+</td><td>
 
 </td></tr>
 <tr><td>
 
 SHORT\_CIRCUIT\_FLAG
 
-
 </td><td>
 
-`"short_symbol"`
-
+`'short_symbol'`
 
 </td><td>
-
-短接标识
-
 
 </td></tr>
 </tbody></table>

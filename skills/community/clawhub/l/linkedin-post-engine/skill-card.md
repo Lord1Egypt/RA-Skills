@@ -1,42 +1,53 @@
-## Description: <br>
-Write high-performing, persuasive, and authentic LinkedIn posts across professional niches using hook options, post structures, proof-first writing, and LinkedIn-specific formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LinkedIn Post Engine helps agents draft persuasive, authentic LinkedIn posts across professional niches using hook frameworks, post structures, proof-first writing, and LinkedIn-specific formatting.
 
-## Publisher: <br>
-[bdseerden](https://clawhub.ai/user/bdseerden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bdseerden](https://clawhub.ai/user/bdseerden)
 
-## Use Case: <br>
-Employees, creators, founders, marketers, recruiters, and other professionals use this skill to draft LinkedIn posts, founder updates, case studies, hiring posts, launch posts, carousels-by-text, and adaptations of X/Twitter ideas. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may include inaccurate claims, unverified proof points, or content that does not match the user's brand voice. <br>
-Mitigation: Review and edit drafts for factual accuracy, authenticity, proof, and brand fit before publishing. <br>
-Risk: Engagement-focused drafting guidance can encourage overstatement or misleading persuasion if used without review. <br>
-Mitigation: Keep claims realistic, avoid inventing outcomes or credentials, and replace placeholders with verified values. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LinkedIn Post Formats](references/post-formats.md) <br>
-- [LinkedIn](https://www.linkedin.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bdseerden/linkedin-post-engine) <br>
-- [Publisher Profile](https://clawhub.ai/user/bdseerden) <br>
+## Use Case:
 
+External professionals, creators, founders, recruiters, marketers, and operators use this skill to turn raw ideas, updates, case studies, hiring needs, launch notes, and thought-leadership prompts into polished LinkedIn content.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output includes hook options, one full post, one spicier variant, and first-comment ideas; optional variants can include short, long, carousel, X/Twitter, NL, EN, or mixed-language formats.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated posts may include unverified metrics, client references, credentials, or outcome claims.
+
+Mitigation: Review claims before posting and replace placeholders or inferred details with verified facts.
+
+Risk: Persuasive content may overstate certainty or omit practical tradeoffs.
+
+Mitigation: Keep proof signals, constraints, and tradeoffs visible so the final post remains credible.
+
+## Reference(s):
+
+- [LinkedIn Post Formats](artifact/references/post-formats.md)
+- [LinkedIn](https://www.linkedin.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-ready LinkedIn post drafts with hook options, variants, and first-comment ideas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include short and long variants, NL/EN variants, X/Twitter adaptations, or carousel text outlines when requested.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-Provides Claude Code and related agent-harness workflows for coding agents, including agents, slash commands, skills, hooks, rules, and setup guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides performance optimization guides and best practices for Claude AI agents, including CLI tools and Anthropic API integration details.
 
-## Publisher: <br>
-[npjameszheng1125-netizen](https://clawhub.ai/user/npjameszheng1125-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[npjameszheng1125-netizen](https://clawhub.ai/user/npjameszheng1125-netizen)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to install or adapt a broad toolkit of agents, commands, hooks, rules, and skill guidance for Claude Code-compatible software development workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes broad persistent hooks and high-impact agent instructions beyond a simple guide. <br>
-Mitigation: Review and trim hooks, commands, and agent instructions before enabling them in sensitive repositories. <br>
-Risk: Continuous-learning workflows may log local tool inputs, outputs, or project context. <br>
-Mitigation: Avoid enabling continuous-learning features on sensitive projects unless local logging is acceptable. <br>
-Risk: Some workflows coordinate external model commands or high-impact communication automation. <br>
-Mitigation: Review external-model usage and remove or modify the chief-of-staff git push behavior before using it with private communications. <br>
+## Use Case:
 
+Developers and AI-agent users use this skill as a Claude Code toolkit and knowledge base for agent performance optimization, CLI workflows, hooks, commands, MCP configuration, security scanning, and Anthropic API integration guidance.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/npjameszheng1125-netizen/everything-claude-code) <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline commands, configuration snippets, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include instructions for installing or modifying local agent, hook, command, rules, and skill files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The toolkit can auto-load hooks, persist local session and tool observations, and influence future agent sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and disable wildcard observation plus SessionStart and SessionEnd hooks unless local memory capture is explicitly desired.
+
+Risk: Optional installers and MCP server configurations may run third-party code or expand the agent's tool surface.
+
+Mitigation: Avoid curl-to-bash installation, pin MCP packages before enabling them, and enable only the MCP servers needed for the project.
+
+Risk: Configured MCP servers may require API credentials or other sensitive tokens.
+
+Mitigation: Use narrowly scoped API tokens and keep credentials outside committed configuration files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/npjameszheng1125-netizen/skills/everything-claude-code)
+- [Root Skill Definition](artifact/SKILL.md)
+- [Everything Claude Code README](artifact/README.md)
+- [Hooks Guide](artifact/hooks/README.md)
+- [MCP Server Configurations](artifact/mcp-configs/mcp-servers.json)
+- [Security Scan Skill](artifact/skills/security-scan/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code blocks and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes agent, command, hook, MCP, rule, and skill configuration content for Claude Code and related agent harnesses.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

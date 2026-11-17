@@ -5,8 +5,8 @@ This module captures the patterns that consistently score above
 score below 50. The best practices are distilled from evaluating
 the corpus of skills shipped in this repo and tracking which
 shapes survive contact with real users. For the full evaluation
-rubric, see `evaluation-criteria.md`. For the authoring process
-itself, see `Skill(abstract:skill-authoring)`.
+rubric, see the Resources section in `SKILL.md`. For the authoring
+process itself, see `Skill(abstract:skill-authoring)`.
 
 ## The headline finding
 
@@ -100,8 +100,7 @@ without them by 20+ points on average. The presence of test
 artifacts predicts:
 
 - The author thought about failure modes before writing.
-- The skill addresses a documented problem, not an imagined
-  one.
+- The skill addresses a documented problem.
 - Future maintainers can re-run the tests after edits.
 
 The auditor does not currently grade test artifacts directly
@@ -125,23 +124,29 @@ plugins/<plugin>/skills/<skill>/tests/
 Each file contains the dispatch prompt verbatim, the response
 verbatim, and a notes section listing failures observed.
 
-## Practice 4: directive language, no hedges
+## Practice 4: state a claim at its real strength
 
-The auditor flags hedging language ("consider," "might want
-to," "you can") as a quality issue. High-scoring skills use
-imperative or declarative forms.
+The auditor flags a statement whose grammar does not match
+what it is. Both directions are defects. "Consider validating
+input" hides a trust boundary behind a suggestion, and "You
+must always extract a helper on the second use" gives an order
+where the repository merely has a preference.
 
-| Hedge (low score) | Directive (high score) |
-|-------------------|------------------------|
-| "Consider adding validation" | "Add input validation" |
-| "You might want to test this" | "Run the test scenarios" |
-| "It would be good to use..." | "Use..." |
-| "Try to keep it under 500 lines" | "Keep it under 500 lines" |
+| Statement | Strength it earns |
+|-----------|-------------------|
+| "Never commit a credential" | Invariant: unrecoverable if wrong |
+| "Use rg; grep if unavailable" | Default: a pick among defensible options |
+| "The auth boundary is in `session.py`" | Map: a local fact, no order at all |
 
-The reason is behavioral. Claude treats "consider" as
-optional. Optional requirements get skipped under pressure.
-See the `anti-rationalization` module of the `skill-authoring`
-skill (under `plugins/abstract/`) for the full pattern.
+Most of a skill belongs in the third row. Raising everything
+to "must" reads as rigor and costs accuracy, because a
+constraint applied where it does not fit fails silently: the
+instruction was followed.
+
+`../../skill-authoring/modules/persuasion-principles.md` states
+the budget, and `../../../shared-modules/skill-selection-judgment.md`
+records why the older advice here, which was to escalate phrasing
+until the model complied, was retired.
 
 ## Practice 5: concrete commands in Quick Start
 
@@ -156,7 +161,7 @@ the tests") score worse than skills with literal commands
 
 \`\`\`bash
 python plugins/abstract/scripts/skills_auditor.py \
-  --skill plugins/<plugin>/skills/<skill>/SKILL.md
+  plugins/<plugin>/skills
 \`\`\`
 
 The output is a list of issues with line numbers.
@@ -173,8 +178,8 @@ Run the auditor against your skill to identify issues.
 The bad form forces the reader to figure out where the
 auditor lives. The good form is copy-pasteable.
 
-The auditor flags this as the "cargo cult anti-pattern." See
-`evaluation-criteria.md` for the full check.
+The auditor flags this as the "cargo cult anti-pattern." The full
+check is in the rubric listed under Resources in `SKILL.md`.
 
 ## Practice 6: cross-references use `plugin:skill` form
 
@@ -275,22 +280,21 @@ These are the patterns that consistently score below 50.
 
 When auditing an existing skill, run through the eight
 practices above and the anti-pattern table. Each violation
-maps to a specific improvement. The improvement-suggester
+maps to a specific improvement. The improvement suggester
 script (`plugins/abstract/scripts/improvement_suggester.py`)
 ranks issues by impact:
 
 ```bash
 python plugins/abstract/scripts/improvement_suggester.py \
-  --skill plugins/<plugin>/skills/<skill>/SKILL.md
+  plugins/<plugin>/skills/<skill>/SKILL.md
 ```
 
 The output is a prioritized list. Fix the highest-impact
 items first.
 
 When authoring a new skill, treat the eight practices as a
-pre-flight checklist. The
-`plugins/abstract/skills/skills-eval/modules/authoring-checklist.md`
-module provides the form.
+pre-flight checklist. The checklist module listed under Resources in
+`SKILL.md` provides the form.
 
 ## Verification
 
@@ -299,18 +303,17 @@ To confirm a skill follows these practices:
 ```bash
 # Score against the full rubric
 python plugins/abstract/scripts/skills_auditor.py \
-  --skill plugins/<plugin>/skills/<skill>/SKILL.md
+  plugins/<plugin>/skills
 
 # Check compliance with project standards
 python plugins/abstract/scripts/compliance_checker.py \
-  --skill plugins/<plugin>/skills/<skill>/SKILL.md
+  plugins/<plugin>/skills/<skill>
 ```
 
 A score above 85 indicates the practices are mostly applied.
 A score below 70 means at least three of the practices are
-violated; the auditor output names which.
+violated. The auditor output names which.
 
-Cross-reference: see `evaluation-criteria.md` for the full
-scoring rubric, `Skill(abstract:skill-authoring)` for the
-authoring methodology, and `authoring-checklist.md` for the
-quick-reference form of these practices.
+Cross-reference: the Resources section in `SKILL.md` lists the full
+scoring rubric and the quick-reference form of these practices. See
+`Skill(abstract:skill-authoring)` for the authoring methodology.

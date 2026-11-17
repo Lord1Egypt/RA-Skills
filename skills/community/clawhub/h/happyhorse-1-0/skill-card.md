@@ -1,44 +1,61 @@
-## Description: <br>
-HappyHorse 1.0 generates text-to-video outputs through the RunComfy CLI, including native 1080p video, synchronized audio, and multi-shot character-consistency guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HappyHorse 1.0 on RunComfy helps an agent guide text-to-video generation through the RunComfy CLI, including prompt shaping, supported parameters, invocation examples, and operational limits.
 
-## Publisher: <br>
-[kalvinrv](https://clawhub.ai/user/kalvinrv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[permew](https://clawhub.ai/user/permew)
 
-## Use Case: <br>
-Developers and creators use this skill to generate short HappyHorse 1.0 text-to-video clips through RunComfy, including prompt guidance, CLI invocation patterns, and output download handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires RunComfy account credentials through login state or RUNCOMFY_TOKEN. <br>
-Mitigation: Install only if you trust RunComfy, keep RUNCOMFY_TOKEN out of shared environments, and use the official RunComfy CLI package. <br>
-Risk: Generated media is downloaded to a user-selected output directory. <br>
-Mitigation: Choose output directories intentionally and avoid shared or sensitive locations for generated files. <br>
+## Use Case:
 
+External creators and developers use this skill to generate short HappyHorse 1.0 text-to-video clips through RunComfy, with guidance for prompts, aspect ratios, duration, resolution, watermark settings, and reproducible seeds.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kalvinrv/happyhorse-1-0) <br>
-- [RunComfy](https://www.runcomfy.com) <br>
-- [RunComfy CLI Documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=happyhorse-1-0) <br>
-- [HappyHorse 1.0 Text-to-Video](https://www.runcomfy.com/models/happyhorse/happyhorse-1-0/text-to-video?utm_source=clawhub&utm_medium=skill&utm_campaign=happyhorse-1-0) <br>
-- [RunComfy CLI Troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=happyhorse-1-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON input snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a text prompt plus optional aspect ratio, resolution, duration, seed, watermark, and output directory parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Risk: RunComfy authentication tokens are required for normal use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped RunComfy token and prefer environment-based credentials in CI or containers.
+
+Risk: Prompts and generated results are sent to and retrieved from RunComfy.
+
+Mitigation: Avoid submitting sensitive content unless RunComfy account terms and data-handling expectations fit the use case.
+
+Risk: The skill depends on the RunComfy CLI package and network service availability.
+
+Mitigation: Consider using a pinned or project-local @runcomfy/cli version and verify the package source before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/permew/skills/happyhorse-1-0)
+- [RunComfy](https://www.runcomfy.com)
+- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=happyhorse-1-0)
+- [HappyHorse 1.0 text-to-video](https://www.runcomfy.com/models/happyhorse/happyhorse-1-0/text-to-video?utm_source=clawhub&utm_medium=skill&utm_campaign=happyhorse-1-0)
+- [RunComfy CLI troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=happyhorse-1-0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers RunComfy CLI inputs, prompt patterns, operational limits, and generated video output handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

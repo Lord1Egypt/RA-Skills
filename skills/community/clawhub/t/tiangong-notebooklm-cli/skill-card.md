@@ -1,40 +1,52 @@
-## Description: <br>
-NotebookLM CLI wrapper via `node {baseDir}/scripts/notebooklm.mjs`. Use for auth, notebooks, chat, sources, notes, sharing, research, and artifact generation/download. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NotebookLM CLI wrapper via `node {baseDir}/scripts/notebooklm.mjs` for auth, notebooks, chat, sources, notes, sharing, research, and artifact generation/download.
 
-## Publisher: <br>
-[Fadeloo](https://clawhub.ai/user/Fadeloo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fadeloo](https://clawhub.ai/user/fadeloo)
 
-## Use Case: <br>
-Developers and agents use this skill to operate NotebookLM through an installed CLI for authentication, notebook management, chat, source handling, notes, sharing, research, and artifact generation or download. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a user's logged-in NotebookLM account through an external CLI. <br>
-Mitigation: Install only when the external NotebookLM CLI is trusted and the intended account access is acceptable. <br>
-Risk: Commands can delete content, export artifacts, change collaborators, enable public sharing, change language settings, or bypass prompts with `--yes`. <br>
-Mitigation: Require explicit confirmation before destructive, sharing, export, collaborator, language-change, or `--yes` commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [NotebookLM CLI command catalog](references/cli-commands.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Fadeloo/tiangong-notebooklm-cli) <br>
+## Use Case:
 
+Developers and operators use this skill to run NotebookLM CLI workflows from an agent, including notebook management, chat, source handling, notes, sharing, research, and artifact generation.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown, JSON, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; wrapped CLI commands may emit text, JSON, or downloaded files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, the notebooklm CLI on PATH, and an authenticated NotebookLM session.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Authenticated deletion, sharing, public access, export, and import commands can affect notebooks or expose content.
+
+Mitigation: Verify notebook IDs, recipients, permissions, and account scope before running those commands.
+
+Risk: NotebookLM notebooks may contain private, regulated, or business-sensitive material.
+
+Mitigation: Review the skill before installing and avoid processing sensitive material unless the account and workflow are approved for that data.
+
+## Reference(s):
+
+- [NotebookLM CLI command catalog](references/cli-commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands execute through the local NotebookLM CLI and may produce files when artifact download or export commands are used.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

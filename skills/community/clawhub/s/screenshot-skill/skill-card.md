@@ -1,40 +1,56 @@
-## Description: <br>
-Capture screenshots on Windows using mss and Pillow, including full-screen, region, and multi-monitor capture with output as a PIL Image, PNG file, or base64 string. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture screenshots on Windows using mss and Pillow, including full-screen, region, and multi-monitor capture with output as a PIL Image, PNG or JPEG file, or base64 string.
 
-## Publisher: <br>
-[sunrddd-a11y](https://clawhub.ai/user/sunrddd-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sunrddd-a11y](https://clawhub.ai/user/sunrddd-a11y)
 
-## Use Case: <br>
-Developers and automation users use this skill to capture local screen content, inspect monitor dimensions, save screenshots, or prepare base64 image payloads for vision workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Screenshots may capture private windows, credentials, customer data, or other sensitive local content. <br>
-Mitigation: Review the visible screen before capture, prefer region capture over full-screen capture, and close or crop out private windows. <br>
-Risk: Saved screenshots and base64 image strings may persist sensitive data or be sent to external APIs. <br>
-Mitigation: Delete saved screenshots when no longer needed and send base64 output externally only after reviewing the image contents. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Screenshot Capture API Reference](reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/sunrddd-a11y/screenshot-skill) <br>
+## Use Case:
 
+Developers and agents use this skill to capture Windows desktop screenshots, screen metadata, selected regions, or base64 image data for automation and vision-model workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Files, Configuration] <br>
-**Output Format:** [Markdown guidance, Python examples, shell commands, PNG or JPEG image files, and base64 strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can output monitor information as JSON through the CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can capture passwords, chats, customer data, financial data, internal documents, or other visible desktop content.
+
+Mitigation: Close sensitive windows before capture and prefer region capture to limit the visible area.
+
+Risk: Base64 screenshot output can expose screen contents if printed to logs or copied into unintended systems.
+
+Mitigation: Avoid logging base64 screenshots and send image data only to intended, approved vision workflows.
+
+Risk: The skill depends on local screenshot libraries that run with access to the user's desktop session.
+
+Mitigation: Install in a virtual environment with reviewed, pinned versions of mss and Pillow.
+
+## Reference(s):
+
+- [Screenshot Capture API Reference](artifact/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; the included script can produce image files, PIL Image objects, JSON monitor information, or base64 image strings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Screenshot outputs may contain sensitive desktop data and should be reviewed before saving, logging, or sending to vision APIs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

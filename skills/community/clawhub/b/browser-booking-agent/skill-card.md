@@ -1,41 +1,57 @@
-## Description: <br>
-Execute booking/search flows via browser automation with verification artifacts. Use for reservation forms, availability checks, and capture of proof (screenshots/confirmation IDs). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute booking/search flows via browser automation with verification artifacts for reservation forms, availability checks, and proof capture such as screenshots and confirmation IDs.
 
-## Publisher: <br>
-[austineyapp](https://clawhub.ai/user/austineyapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[austineyapp](https://clawhub.ai/user/austineyapp)
 
-## Use Case: <br>
-External users and agents use this skill to complete reservation, booking, or availability-search workflows in a browser and return proof such as screenshots, confirmation IDs, and concise completion status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate on booking forms where accidental payment submission or final reservation changes may have real-world consequences. <br>
-Mitigation: Require explicit user approval before submitting payment or finalizing any transaction. <br>
-Risk: Captcha, login, or two-factor authentication can block automation or require sensitive user action. <br>
-Mitigation: Stop the automated flow and request user action when captcha, login, or two-factor authentication is encountered. <br>
-Risk: Booking results may be disputed or hard to audit without captured evidence. <br>
-Mitigation: Preserve verification artifacts for critical steps, including page URL, key entered parameters, visible price, cancellation terms, confirmation reference, and screenshot paths. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Verification Checklist](references/verification-checklist.md) <br>
+## Use Case:
 
+External users and agents use this skill to complete browser-based booking or search workflows, capture verification evidence, and return a concise completed, blocked, or needs-user-input status.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown status summary with verification details and artifact paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include screenshot paths, confirmation numbers, entered booking parameters, prices, cancellation terms, and blocked or needs-user-input status.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent could reach a payment or final submission step during a booking flow.
+
+Mitigation: Require explicit user approval before payment or final submission, and have the user verify the final details before proceeding.
+
+Risk: The booking workflow may encounter login, captcha, or 2FA controls.
+
+Mitigation: Stop at login, captcha, or 2FA prompts and request user action instead of attempting to bypass access controls.
+
+Risk: Incorrect booking details could be entered or submitted.
+
+Mitigation: Collect only the task details needed, preserve verification evidence, and report key parameters, prices, cancellation terms, confirmation IDs, and screenshot paths.
+
+## Reference(s):
+
+- [Verification Checklist](references/verification-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/austineyapp/skills/browser-booking-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Concise Markdown status with verification details and screenshot paths when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include completed, blocked, or needs-user-input status; confirmation IDs; prices; cancellation terms; and evidence paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

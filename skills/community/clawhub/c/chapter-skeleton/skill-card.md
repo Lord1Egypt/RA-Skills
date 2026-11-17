@@ -1,41 +1,55 @@
-## Description: <br>
-Builds a retrieval-informed chapter-level outline skeleton from taxonomy or scope hints before detailed subsection decomposition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds a retrieval-informed chapter-level outline skeleton from taxonomy and scope hints before stable H3 decomposition.
 
-## Publisher: <br>
-[WILLOSCAR](https://clawhub.ai/user/WILLOSCAR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willoscar](https://clawhub.ai/user/willoscar)
 
-## Use Case: <br>
-Developers and writing agents use this skill to stabilize chapter-level intent for literature-survey or paper-writing workspaces before mapping H3 or subsection structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled pipeline and report-generation artifacts may steer broader workflows if an OpenClaw environment indexes them. <br>
-Mitigation: Review package contents before installing, and limit activation to the chapter-skeleton helper unless the broader pipelines are intentionally enabled. <br>
-Risk: The helper writes outline/chapter_skeleton.yml from taxonomy and scope hints, which may influence later outline and drafting stages. <br>
-Mitigation: Run it only in the intended workspace and review the generated YAML before using it to drive subsection planning or writing. <br>
+## Use Case:
 
+Developers and research-writing agents use this skill to create `outline/chapter_skeleton.yml` from `outline/taxonomy.yml` and optional `GOAL.md`, stabilizing chapter intent before H3 or subsection decomposition.
 
-## Reference(s): <br>
-- [Chapter Skeleton overview](artifact/references/overview.md) <br>
-- [ClawHub release page](https://clawhub.ai/WILLOSCAR/chapter-skeleton) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, text] <br>
-**Output Format:** [YAML file at outline/chapter_skeleton.yml] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One record per core chapter with id, title, rationale, seed_topics, and target_h3_count; existing non-placeholder output is preserved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter declares 0.1.0) <br>
+Risk: The bundle includes broader research-pipeline machinery beyond the stated chapter-skeleton task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installed files before use and enable only the chapter-skeleton workflow needed for trusted workspaces.
+
+Risk: The script path surface should be confined to workspace-relative inputs and the documented chapter skeleton output.
+
+Mitigation: Run the script only against intended workspaces, keep inputs and outputs workspace-relative, and verify writes are limited to `outline/chapter_skeleton.yml`.
+
+## Reference(s):
+
+- [Chapter Skeleton Overview](artifact/references/overview.md)
+- [Output Contract](artifact/assets/output_contract.json)
+- [ClawHub Skill Page](https://clawhub.ai/willoscar/skills/chapter-skeleton)
+
+## Skill Output:
+
+**Output Type(s):** [configuration, shell commands, guidance]
+
+**Output Format:** [YAML file with concise execution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one chapter record per core topic with id, title, rationale, seed_topics, and target_h3_count; preserves existing non-placeholder output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter version is 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

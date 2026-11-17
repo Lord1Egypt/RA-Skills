@@ -1,44 +1,55 @@
-## Description: <br>
-Ask Data helps an agent answer natural-language questions about local Excel spreadsheets by reading user-approved files, generating data queries, and returning tables, visualizations, and insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ask Data helps agents answer Chinese natural-language questions by reading user-approved Excel files, converting requests into data queries, and returning structured results, visualizations, and insights.
 
-## Publisher: <br>
-[15028191702](https://clawhub.ai/user/15028191702) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[15028191702](https://clawhub.ai/user/15028191702)
 
-## Use Case: <br>
-Analysts, operators, and business users can use this skill to ask Chinese natural-language questions about local Excel files, inspect sheet structure, run filtered or aggregated queries, and receive concise result reports with follow-up analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local Excel files selected by the user, which may contain sensitive or unnecessary data. <br>
-Mitigation: Confirm file paths before use and avoid running it on spreadsheets containing data that is not needed for the question. <br>
-Risk: Large spreadsheets can be slow or resource-intensive to inspect and query. <br>
-Mitigation: Prefer smaller extracts for exploratory questions and warn users when files exceed the documented large-file threshold. <br>
-Risk: Generated analysis can be misleading if the requested column names, date ranges, or aggregations do not match the workbook. <br>
-Mitigation: Show the interpreted query, sheet, filters, and aggregation choices before presenting conclusions. <br>
+## Use Case:
 
+Developers and analysts use this skill to let an agent inspect Excel workbook structure after user confirmation, translate Chinese data questions into query JSON, execute local tabular analysis, and summarize the results.
 
-## Reference(s): <br>
-- [Query examples](references/query-examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/15028191702/ask-data) <br>
-- [Publisher profile](https://clawhub.ai/user/15028191702) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with JSON query snippets, shell command examples, tables, chart descriptions, and concise data insights.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads only user-selected Excel files and returns local analysis results without modifying the source spreadsheet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill reads local Excel files selected by the user, and workbook samples or query results may be exposed back to the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with files the user explicitly approves, and avoid workbooks containing sensitive rows when showing sample data or results to the agent would be inappropriate.
+
+Risk: Very large or untrusted workbooks may be slow or may trigger parsing errors during local analysis.
+
+Mitigation: Prefer trusted, reasonably sized workbooks and warn users before processing very large files.
+
+## Reference(s):
+
+- [Data Query Examples](references/query-examples.md)
+- [ClawHub skill page](https://clawhub.ai/15028191702/skills/ask-data)
+- [Publisher profile](https://clawhub.ai/user/15028191702)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with JSON query specifications and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tabular results, chart recommendations, data insights, and structured JSON returned by helper scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

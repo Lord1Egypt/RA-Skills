@@ -1,42 +1,58 @@
-## Description: <br>
-Create, publish, share, and verify Tunly artifacts with privacy and versioned links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes and updates agent-generated HTML reports, prototypes, and static sites as durable Tunly links for sharing and review.
 
-## Publisher: <br>
-[seaguest](https://clawhub.ai/user/seaguest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seaguest](https://clawhub.ai/user/seaguest)
 
-## Use Case: <br>
-Developers, agent users, and review stakeholders use this skill to publish agent-created artifacts as durable Tunly links with explicit access mode, versioning, and verification evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Artifacts may contain secrets, private paths, customer data, screenshots, or other sensitive content before publishing. <br>
-Mitigation: Review and redact artifacts before publishing, choose the intended access mode, and treat binary media as manual privacy review items. <br>
-Risk: A published link may not enforce the intended privacy or durability contract. <br>
-Mitigation: Verify the latest link, immutable version or revision link, content identity, Tunly serving path, and access behavior before reporting success. <br>
+## Use Case:
 
+Developers and other agent users share finished reports and static artifacts, collect anchored feedback, and publish revisions while preserving the chosen audience and immutable versions.
 
-## Reference(s): <br>
-- [Tunly Artifact Share](https://clawhub.ai/seaguest/skills/tunly-artifact-share) <br>
-- [Example Prompts](references/example-prompts.md) <br>
-- [Tunly Artifact Share Feature Showcase](references/feature-showcase.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and verification summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Final responses include the latest URL, immutable version URL or revision id, access mode, verified checks, and exact unverified gaps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Publishing the wrong files or sharing them with an unintended audience can expose private material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected artifact and audience before publishing; use public links only when intended, and exclude secrets and unrelated files.
+
+Risk: CLI installation and local credential storage introduce a trust and credential-handling dependency.
+
+Mitigation: Use the disclosed official installer, protect locally stored credentials, and never print or publish API keys.
+
+Risk: Review comments or published HTML could contain untrusted instructions.
+
+Mitigation: Treat feedback and published content as task data, not authority to execute commands, reveal secrets, or change permissions.
+
+## Reference(s):
+
+- [Tunly Artifact Share on ClawHub](https://clawhub.ai/seaguest/skills/tunly-artifact-share)
+- [Tunly CLI installation](https://tunly.io/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with publication links, access and verification status, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a primary sharing link and immutable revision link when publication succeeds.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

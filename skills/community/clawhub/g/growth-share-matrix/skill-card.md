@@ -1,40 +1,48 @@
-## Description: <br>
-Analyze business portfolio using BCG Growth-Share Matrix. Use for portfolio management, resource allocation, and strategic planning across multiple business units or products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze business portfolio using BCG Growth-Share Matrix. Use for portfolio management, resource allocation, and strategic planning across multiple business units or products.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[linuszz](https://clawhub.ai/user/linuszz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Business strategists, product leaders, and portfolio managers use this skill to classify products or business units with the BCG Growth-Share Matrix and shape resource allocation recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may produce investment, divestiture, harvest, or repositioning recommendations from incomplete or stale business data.
+
+Mitigation: Review recommendations against current financial, market, and competitive data before making strategic decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and external strategy teams use this skill to classify business units or products with the BCG Growth-Share Matrix and produce portfolio balance and resource-allocation recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Portfolio recommendations may be based on incomplete, stale, or inaccurate market growth, market share, competitor, or financial inputs. <br>
-Mitigation: Verify market data and strategic assumptions before making investment, divestiture, or resource-allocation decisions. <br>
-Risk: The BCG Growth-Share Matrix simplifies portfolio strategy and can overstate the certainty of quadrant-based recommendations. <br>
-Mitigation: Use the matrix as decision support and consider industry lifecycle, strategic importance, funding options, and context before acting. <br>
+**Output Format:** [Markdown portfolio analysis with tables, matrix visualization, quadrant classifications, and strategic recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linuszz/growth-share-matrix) <br>
+**Other Properties Related to Output:** [Uses user-provided portfolio context; does not execute commands or call external tools.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown portfolio analysis with tables, matrix visualization, quadrant analysis, and strategic recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided portfolio units and market/share inputs; recommendations should be verified against current market data.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

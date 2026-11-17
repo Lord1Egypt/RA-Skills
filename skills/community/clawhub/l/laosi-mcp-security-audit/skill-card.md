@@ -1,41 +1,50 @@
-## Description: <br>
-Performs MCP server and skill security audits that scan local project files for vulnerability, malware, and compliance patterns, then report findings with remediation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs comprehensive security audits on MCP servers including vulnerability scans, malware detection, compliance checks, and detailed remediation reports.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and security engineers use this skill to inspect MCP server or skill directories for suspicious code patterns, hardcoded credentials, broad network bindings, and logging practices that may expose sensitive data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit reads files in the user-selected target directory and may inspect configuration or .env-style files that contain sensitive credentials. <br>
-Mitigation: Run it only against specific project folders that need review, avoid broad personal directories, and treat generated findings as sensitive until reviewed. <br>
-Risk: Pattern-based security findings can be incomplete or require human judgment before remediation. <br>
-Mitigation: Review findings before acting on them and use this tool alongside established security review or CI checks. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to scan MCP server or skill directories for vulnerable patterns, suspicious code, compliance issues, and remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-mcp-security-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/534422530) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [CLI text report or JSON audit report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes score, grade, severity summary, finding locations, and remediation recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The scanner reads source and configuration files under the directory selected by the user, which may include sensitive project data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against the specific MCP server or skill folder intended for audit, not a home directory or unrelated private workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-mcp-security-audit)
+- [Publisher profile](https://clawhub.ai/user/534422530)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON reports and human-readable terminal summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes severity counts, score, grade, detailed findings, and prioritized recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

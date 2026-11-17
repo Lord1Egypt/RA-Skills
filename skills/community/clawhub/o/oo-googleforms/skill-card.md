@@ -1,43 +1,56 @@
-## Description: <br>
-Operates Google Forms through OOMOL's googleforms connector and oo CLI for reading, creating, and updating forms and responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Google Forms through an OOMOL-connected account to read, create, and update forms and responses.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent inspect Google Forms schemas, read form data and responses, create forms, and apply form updates through an OOMOL-connected Google Forms account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: State-changing Google Forms actions can create forms, batch update forms, or change publish and response-acceptance settings. <br>
-Mitigation: Confirm the exact write payload and intended effect with the user before running actions tagged as write. <br>
-Risk: OOMOL setup or login commands can initiate account access changes when run unnecessarily. <br>
-Mitigation: Run installer, login, or connection steps only when a command fails with the matching setup or authentication error. <br>
+## Use Case:
 
+External users and developers can inspect forms and responses, create forms, and update forms through a connected Google Forms account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-googleforms) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Google Forms homepage](https://workspace.google.com/products/forms/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before action payload construction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Setup can execute unverified software whose documented behavior includes installing additional persistent agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI installation separately, consider disabling automatic skill synchronization, and connect only the Google Forms permissions needed.
+
+Risk: Form write actions can change or publish form data and settings.
+
+Mitigation: Review the exact payload and effect with the user before running a write action, and retain confirmation for changes.
+
+## Reference(s):
+
+- [OO CLI](https://github.com/oomol-lab/oo-cli)
+- [OO CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [Google Forms](https://workspace.google.com/products/forms/)
+- [Google Forms API reference](https://developers.google.com/workspace/forms/api/reference/rest)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON payloads; structured connector responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output depends on the selected Google Forms action.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

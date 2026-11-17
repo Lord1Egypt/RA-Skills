@@ -1,41 +1,54 @@
-## Description: <br>
-AI news aggregation and heat-ranking tool that collects recent AI product launches, research papers, industry updates, funding news, open-source project updates, community trends, and popular AI tools or agents, then outputs Chinese summaries with source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI News Collector guides an agent to collect, cross-check, rank, and summarize current AI news in Chinese with source links.
 
-## Publisher: <br>
-[desmond56](https://clawhub.ai/user/desmond56) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[desmond56](https://clawhub.ai/user/desmond56)
 
-## Use Case: <br>
-External users and analysts use this skill to collect current AI news across newsletters, community forums, product announcements, funding reports, research updates, and policy sources. It is intended for Chinese-language AI news briefings sorted by estimated heat and backed by source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: News summaries may repeat inaccurate, stale, or incomplete claims from third-party public sources. <br>
-Mitigation: Verify important claims against the cited source links before relying on them. <br>
-Risk: The skill is expected to perform multiple public web searches and fetch third-party pages. <br>
-Mitigation: Use it only where web browsing is permitted, and avoid including private or sensitive information in news queries. <br>
+## Use Case:
 
+External users use this skill to ask an agent for current AI-sector news. It directs multilingual searches, source cross-checking, deduplication, heat ranking, and Chinese digest output with links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/desmond56/ai-news-collector) <br>
-- [AI news source list](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown Chinese news brief with ranked sections and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically produces 15-25 deduplicated AI news items sorted by heat, with search coverage and update metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Current-news collection can surface incorrect, duplicated, promotional, or paywalled reporting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Cross-check high-heat items across multiple sources, merge duplicates, prefer authoritative sources, and label inaccessible subscription material.
+
+Risk: The workflow asks the agent to open public news, community, newsletter, and social-source pages.
+
+Mitigation: Review source links before relying on them and avoid entering credentials or private information into third-party pages.
+
+## Reference(s):
+
+- [Recommended AI news sources](artifact/references/sources.md)
+- [ClawHub skill page](https://clawhub.ai/desmond56/skills/ai-news-collector)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown Chinese news digest with ranked items and source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Ranks 15-25 deduplicated news items by heat and reports search coverage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

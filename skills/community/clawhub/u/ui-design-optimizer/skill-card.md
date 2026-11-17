@@ -1,45 +1,54 @@
-## Description: <br>
-Generate practical UI design systems and starter pages using local style/color/typography datasets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate practical UI design systems and starter pages using local style/color/typography datasets.
 
-## Publisher: <br>
-[Dalomeve](https://clawhub.ai/user/Dalomeve) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dalomeve](https://clawhub.ai/user/dalomeve)
 
-## Use Case: <br>
-Developers, designers, and product teams use this skill to plan landing pages or dashboards, select style, color, and typography choices from bundled datasets, and generate starter UI files when implementation is requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate or overwrite starter UI files when implementation is requested. <br>
-Mitigation: Specify the intended output folder before generation and confirm overwrites before allowing file changes. <br>
-Risk: The artifact references a PowerShell helper, but the scanned file list does not include that script. <br>
-Mitigation: Do not run any PowerShell helper unless the actual script is present and reviewed. <br>
-Risk: Generated UI guidance can still be incorrect or mismatched to product needs even when the scan verdict is clean. <br>
-Mitigation: Review generated design tokens, accessibility choices, and file paths before using the output in a project. <br>
+## Use Case:
 
+Developers and design-focused agents use this skill to select UI style, color, typography, and layout patterns for landing pages or dashboards, then produce buildable design specs and starter HTML/CSS when requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Dalomeve/ui-design-optimizer) <br>
-- [Dalomeve publisher profile](https://clawhub.ai/user/Dalomeve) <br>
-- [UI-UX Pro Max source credit](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) <br>
-- [UI-UX Pro Max website](https://uupm.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown design specifications with optional HTML/CSS files and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include selected dataset rows or slugs and generated file paths when implementation is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence and package.json) <br>
+Risk: The documented PowerShell helper uses ExecutionPolicy Bypass, and the server security summary says the helper script is missing from the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, and do not run the helper unless the actual script is included, reviewed, and invoked from a trusted package path without ExecutionPolicy Bypass.
+
+Risk: Generated starter UI files may be treated as production-ready without confirming accessibility and token application.
+
+Mitigation: Review generated files, verify WCAG-oriented contrast, confirm stylesheet references, and check that selected style, color, and typography tokens are reflected in CSS variables.
+
+## Reference(s):
+
+- [Ui Design Optimizer on ClawHub](https://clawhub.ai/dalomeve/skills/ui-design-optimizer)
+- [Dalomeve publisher profile](https://clawhub.ai/user/dalomeve)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown design specification with optional HTML/CSS starter files and file-path evidence]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected dataset row slugs, design tokens, interaction rules, and verification notes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>你以为没用，其实对猫咪巨健康的东西‼️ · 小红书笔记解析</title>
+<style>
+  :root {
+    --bg: oklch(0.975 0.005 90);
+    --surface: #fff;
+    --text: oklch(0.18 0.01 90);
+    --text-secondary: oklch(0.42 0.01 90);
+    --text-muted: oklch(0.58 0.01 90);
+    --accent: oklch(0.55 0.20 25);
+    --accent-light: oklch(0.70 0.14 28);
+    --accent-bg: oklch(0.93 0.05 28);
+    --border: oklch(0.88 0.01 85);
+    --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.06);
+    --shadow-md: 0 4px 16px oklch(0 0 0 / 0.08);
+    --shadow-lg: 0 8px 32px oklch(0 0 0 / 0.10);
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background:var(--bg); color:var(--text);
+    line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .container { max-width:880px; margin:0 auto; padding:0 24px; }
+
+  .hero { text-align:center; padding:80px 0 40px; }
+  .hero-badge { display:inline-flex; align-items:center; gap:8px; padding:6px 18px; border-radius:999px; background:oklch(0.94 0.02 30 / 0.5); border:1px solid oklch(0.85 0.06 30 / 0.3); font-size:13px; color:var(--accent); font-weight:500; letter-spacing:0.5px; margin-bottom:28px; }
+  .hero-badge .dot { width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .hero h1 { font-family:'PingFang SC', 'Noto Serif CJK SC', serif; font-size:clamp(1.6rem, 4.5vw, 2.6rem); font-weight:900; line-height:1.3; letter-spacing:0.03em; margin-bottom:16px; }
+  .hero-meta { font-size:13px; color:var(--text-muted); display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:20px; }
+
+  .stats-bar { display:flex; justify-content:center; gap:28px; padding:16px 0; }
+  .stat { display:flex; align-items:center; gap:6px; }
+  .stat-icon { font-size:16px; }
+  .stat-num { font-weight:700; font-size:15px; color:var(--text); }
+  .stat-label { font-size:11px; color:var(--text-muted); }
+
+  .gallery { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:12px; margin-bottom:56px; }
+  .gallery-item { position:relative; cursor:pointer; }
+  .gallery-item .gallery-img { width:100%; border-radius:var(--radius-md); box-shadow:var(--shadow-sm); border:1px solid var(--border); transition:transform 0.2s, box-shadow 0.2s; display:block; }
+  .gallery-item:hover .gallery-img { transform:scale(1.02); box-shadow:var(--shadow-lg); }
+  .gallery-failed { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:200px; border-radius:var(--radius-md); border:2px dashed var(--border); background:oklch(0.95 0.005 90); }
+  .gallery-placeholder { text-align:center; color:var(--text-muted); font-size:2rem; line-height:1.5; }
+  .gallery-placeholder span { font-size:0.8rem; }
+  .gallery-url { font-size:0.7rem; color:var(--text-muted); word-break:break-all; padding:8px; text-align:center; }
+  .gallery-count { font-size:0.8rem; color:var(--text-muted); margin-left:auto; padding:2px 10px; background:var(--accent-bg); border-radius:20px; }
+  .gallery-count.failed { color:var(--accent); }
+  .lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center; }
+  .lightbox.show { display:flex; }
+  .lightbox-content { position:relative; max-width:90vw; max-height:90vh; }
+  .lightbox-content img { max-width:90vw; max-height:90vh; border-radius:8px; }
+  .lightbox-close { position:absolute; top:-40px; right:0; background:none; border:none; color:#fff; font-size:2rem; cursor:pointer; }
+  .lightbox-prev, .lightbox-next { position:absolute; top:50%; transform:translateY(-50%); background:none; border:none; color:#fff; font-size:3rem; cursor:pointer; padding:16px; opacity:0.7; }
+  .lightbox-prev { left:-60px; } .lightbox-next { right:-60px; }
+  .lightbox-prev:hover, .lightbox-next:hover { opacity:1; }
+
+  .summary-card { background:var(--surface); border-radius:var(--radius-lg); padding:48px 40px; margin:0 0 56px; box-shadow:var(--shadow-lg); border:1px solid var(--border); position:relative; overflow:hidden; }
+  .summary-card::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:linear-gradient(180deg,var(--accent),var(--accent-light)); border-radius:4px 0 0 4px; }
+  .summary-card .label { font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:var(--accent); font-weight:600; margin-bottom:16px; }
+  .summary-card .big-text { font-family:'PingFang SC', 'Noto Serif CJK SC', serif; font-size:clamp(1.15rem, 2.2vw, 1.45rem); font-weight:600; color:var(--text); line-height:1.9; }
+  .summary-card .big-text em { font-style:normal; color:var(--accent); font-weight:700; }
+
+  .quotes-section { margin-bottom:64px; }
+  .section-head { display:flex; align-items:center; gap:12px; margin-bottom:28px; }
+  .section-head .icon { width:32px; height:32px; border-radius:8px; background:var(--accent-bg); display:flex; align-items:center; justify-content:center; font-size:16px; }
+  .section-head h2 { font-family:'PingFang SC', 'Noto Serif CJK SC', serif; font-size:1.4rem; font-weight:700; color:var(--text); }
+
+  .visual-section { margin-bottom:64px; }
+  .visual-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  .visual-card { background:var(--surface); border-radius:var(--radius-md); padding:28px 24px; box-shadow:var(--shadow-md); border:1px solid var(--border); transition:transform 0.2s ease,box-shadow 0.2s ease; }
+  .visual-card:hover { transform:translateY(-2px); box-shadow:var(--shadow-lg); }
+  .visual-card .vc-label { font-size:12px; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); font-weight:600; margin-bottom:10px; }
+  .visual-card .vc-body { font-size:0.88rem; color:var(--text-secondary); line-height:1.8; }
+
+  .capsule-quotes { display:flex; flex-direction:column; gap:16px; }
+  .capsule-quote { display:flex; gap:12px; align-items:flex-start; padding:16px 20px; background:oklch(0.97 0.005 88); border-radius:var(--radius-sm); }
+  .capsule-quote .cq-mark { font-family:'PingFang SC', 'Noto Serif CJK SC', serif; font-size:2rem; font-weight:900; color:var(--accent-bg); line-height:0.8; flex-shrink:0; }
+  .capsule-quote .cq-text { font-family:'PingFang SC', 'Noto Serif CJK SC', serif; font-size:1rem; font-weight:600; color:var(--text); line-height:1.7; }
+
+  .bookshelf-section { margin-bottom:64px; }
+  .capsule-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .capsule { background:var(--surface); border-radius:var(--radius-md); padding:24px 20px; box-shadow:var(--shadow-sm); border:1px solid var(--border); cursor:pointer; transition:all 0.25s ease; }
+  .capsule:hover { box-shadow:var(--shadow-md); transform:translateY(-1px); border-color:var(--accent-light); }
+  .capsule .cap-icon { font-size:1.6rem; margin-bottom:12px; display:block; }
+  .capsule .cap-title { font-family:'PingFang SC', 'Noto Serif CJK SC', serif; font-size:0.95rem; font-weight:700; color:var(--text); margin-bottom:4px; }
+  .capsule .cap-sub { font-size:12px; color:var(--text-muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+
+  .capsule-detail { display:none; margin-top:16px; background:var(--surface); border-radius:var(--radius-lg); padding:40px 36px; box-shadow:var(--shadow-lg); border:1px solid var(--border); position:relative; animation:slideUp 0.3s ease; }
+  .capsule-detail.active { display:block; }
+  @keyframes slideUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+  .capsule-detail .close-btn { position:absolute; top:16px; right:20px; width:36px; height:36px; border-radius:50%; border:1px solid var(--border); background:var(--surface); cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center; color:var(--text-muted); transition:all 0.2s; }
+  .capsule-detail .close-btn:hover { background:oklch(0.94 0.005 85); color:var(--text); }
+  .capsule-detail .detail-title { font-family:'PingFang SC', 'Noto Serif CJK SC', serif; font-size:1.3rem; font-weight:700; color:var(--text); margin-bottom:24px; padding-right:40px; }
+
+  .points-list { display:flex; flex-direction:column; gap:20px; }
+  .point-item { display:flex; gap:16px; align-items:flex-start; }
+  .point-item .point-num { flex-shrink:0; width:36px; height:36px; border-radius:10px; background:var(--accent-bg); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; color:var(--accent); }
+  .point-item .point-content h4 { font-size:0.95rem; font-weight:700; color:var(--text); margin-bottom:4px; }
+  .point-item .point-content p { font-size:0.85rem; color:var(--text-secondary); line-height:1.7; }
+
+  .struct-list { display:flex; flex-direction:column; gap:16px; }
+  .struct-item { display:flex; gap:16px; align-items:baseline; }
+  .struct-item .struct-label { flex-shrink:0; font-weight:700; font-size:0.88rem; color:var(--accent); min-width:80px; }
+  .struct-item .struct-content { font-size:0.9rem; color:var(--text-secondary); line-height:1.7; }
+
+  .judge-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+  .judge-mini { padding:20px; background:oklch(0.97 0.005 88); border-radius:var(--radius-sm); }
+  .judge-mini .jm-label { font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); font-weight:600; margin-bottom:8px; }
+  .judge-mini .jm-title { font-weight:700; font-size:0.9rem; margin-bottom:6px; color:var(--text); }
+  .judge-mini .jm-desc { font-size:0.82rem; color:var(--text-secondary); line-height:1.7; }
+
+  .highlight-list { display:flex; flex-direction:column; gap:1px; background:var(--border); border-radius:var(--radius-sm); overflow:hidden; }
+  .highlight-item { display:grid; grid-template-columns:44px 1fr auto; align-items:center; gap:16px; padding:14px 18px; background:var(--surface); }
+  .highlight-item .hl-rank { font-family:'PingFang SC', 'Noto Serif CJK SC', serif; font-size:1.5rem; font-weight:900; color:var(--accent-light); text-align:center; }
+  .highlight-item .hl-rank.top3 { color:var(--accent); }
+  .highlight-item .hl-name { font-weight:700; font-size:0.9rem; color:var(--text); }
+  .highlight-item .hl-desc { font-size:0.82rem; color:var(--text-secondary); margin-top:2px; }
+  .highlight-item .hl-tag { font-size:11px; padding:3px 10px; border-radius:999px; background:oklch(0.95 0.005 90); color:var(--text-muted); white-space:nowrap; }
+
+  .footer { text-align:center; padding:48px 0; border-top:1px solid var(--border); margin-top:32px; color:var(--text-muted); font-size:13px; line-height:1.8; }
+
+  @media (max-width:640px) {
+    .summary-card { padding:32px 24px; }
+    .capsule-grid { grid-template-columns:repeat(2,1fr); }
+    .capsule-detail { padding:28px 20px; }
+    .hero { padding:48px 0 32px; }
+    .visual-grid { grid-template-columns:1fr; }
+    .stats-bar { gap:16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<header class="hero">
+  <div class="hero-badge"><span class="dot"></span>小红书笔记 · 品牌解析</div>
+  <h1>你以为没用，其实对猫咪巨健康的东西‼️</h1>
+  <div class="hero-meta"><span>@虎虎喵</span><span>图文笔记</span><span>2026.07.03</span></div>
+<div class="stats-bar"><span class="stat"><span class="stat-icon">&#128077;</span><span class="stat-num">3710</span><span class="stat-label">赞</span></span><span class="stat"><span class="stat-icon">&#11088;</span><span class="stat-num">3010</span><span class="stat-label">收藏</span></span><span class="stat"><span class="stat-icon">&#128172;</span><span class="stat-num">139</span><span class="stat-label">评论</span></span><span class="stat"><span class="stat-icon">&#128279;</span><span class="stat-num">799</span><span class="stat-label">分享</span></span></div></header>
+<section class="quotes-section">
+  <div class="section-head">
+    <div class="icon">&#128247;</div>
+    <h2>笔记图片</h2>
+    <span class="gallery-count">5 张图片</span>
+  </div>
+  <div class="gallery">
+    <div class="gallery-item" data-idx="0">
+      <div class="gallery-failed"><div class="gallery-failed-icon">&#128247;</div><div class="gallery-failed-text">[示例图片 — 完整版含 base64 内嵌图片]</div></div>
+    </div>
+    <div class="gallery-item" data-idx="1">
+      <div class="gallery-failed"><div class="gallery-failed-icon">&#128247;</div><div class="gallery-failed-text">[示例图片 — 完整版含 base64 内嵌图片]</div></div>
+    </div>
+    <div class="gallery-item" data-idx="2">
+      <div class="gallery-failed"><div class="gallery-failed-icon">&#128247;</div><div class="gallery-failed-text">[示例图片 — 完整版含 base64 内嵌图片]</div></div>
+    </div>
+    <div class="gallery-item" data-idx="3">
+      <div class="gallery-failed"><div class="gallery-failed-icon">&#128247;</div><div class="gallery-failed-text">[示例图片 — 完整版含 base64 内嵌图片]</div></div>
+    </div>
+    <div class="gallery-item" data-idx="4">
+      <div class="gallery-failed"><div class="gallery-failed-icon">&#128247;</div><div class="gallery-failed-text">[示例图片 — 完整版含 base64 内嵌图片]</div></div>
+    </div>
+  </div>
+
+  <div id="xhs-lightbox" class="lightbox" onclick="this.classList.remove('show')">
+    <div class="lightbox-content">
+      <img id="xhs-lightbox-img" src="" />
+      <button class="lightbox-close" onclick="document.getElementById('xhs-lightbox').classList.remove('show')">&times;</button>
+      <button class="lightbox-prev" onclick="xhsLightboxNav(-1)">&#8249;</button>
+      <button class="lightbox-next" onclick="xhsLightboxNav(1)">&#8250;</button>
+    </div>
+  </div>
+  <script>
+    var xhsImages=[],xhsIdx=0;
+    document.querySelectorAll('.gallery-item').forEach(function(el){
+      var img=el.querySelector('.gallery-img');
+      if(img){xhsImages.push(img.src);el.addEventListener('click',function(){
+        xhsIdx=parseInt(el.dataset.idx||0);
+        document.getElementById('xhs-lightbox-img').src=img.src;
+        document.getElementById('xhs-lightbox').classList.add('show');
+      });}
+    });
+    function xhsLightboxNav(d){xhsIdx=(xhsIdx+d+xhsImages.length)%xhsImages.length;
+      document.getElementById('xhs-lightbox-img').src=xhsImages[xhsIdx];}
+    document.addEventListener('keydown',function(e){
+      var lb=document.getElementById('xhs-lightbox');
+      if(!lb.classList.contains('show'))return;
+      if(e.key==='ArrowLeft')xhsLightboxNav(-1);
+      if(e.key==='ArrowRight')xhsLightboxNav(1);
+      if(e.key==='Escape')lb.classList.remove('show');
+    });
+  </script>
+</section>
+<div class="summary-card">
+  <div class="label">一句话总结</div>
+  <p class="big-text">这篇笔记用<em>反差标题</em>打破「营养品才有效」的认知惯性，用<em>7种家常食材+避雷清单</em>构建「平价食补&gt;昂贵补品」的信息价值，最后用<em>可爱猫咪图+喂食提醒</em>收尾，降低收藏后吃灰的概率。整篇是典型的「科普教育+情绪共鸣」双驱动图文。</p>
+</div>
+<section class="visual-section">
+  <div class="section-head">
+    <div class="icon">&#127912;</div>
+    <h2>视觉策略分析</h2>
+  </div>
+  <div class="visual-grid">
+    <div class="visual-card">
+      <div class="vc-label">封面策略</div>
+      <div class="vc-body">米色底+黑橙撞色标题，视觉干净不花哨。封面把全篇最有冲击力的标题直接放顶部，中间用「熟蛋黄」实物图作为钩子——它不是放猫咪而是放食材，立刻点明「食物主题」。底部用「1. 熟蛋黄→」制造「这是系列第1条」的暗示，引导读者向右滑动。整体信息层级：标题抓认知冲突→食材图建立真实感→编号引导继续看。</div>
+    </div>
+    <div class="visual-card">
+      <div class="vc-label">图片节奏</div>
+      <div class="vc-body">5页固定模板：P1封面抓眼球，P2-P4每页讲2种食材（共6种），P5讲第7种食材+重要提醒。节奏非常均匀，没有信息过载页，也没有空页。每页结构完全一致：标题横幅→2个食材卡片→食材实景图→底部水印。这种「可预期的重复」让读者翻起来很轻松，收藏意愿更强。</div>
+    </div>
+    <div class="visual-card">
+      <div class="vc-label">图文配合</div>
+      <div class="vc-body">左侧文字、右侧圆形食材图，文字承担「功效+喂食方法」，图片承担「真实感+食欲刺激」。圆形裁切让食物看起来更有食欲，也统一了视觉样式。P5的提醒区用一个可爱猫咪大头照替代食材图，打破前面4页的单调，同时用萌感降低「注意事项」的压迫感。</div>
+    </div>
+    <div class="visual-card">
+      <div class="vc-label">视觉风格</div>
+      <div class="vc-body">整体走「手绘感科普」路线：米色温暖底色、橙色毛笔刷标题横幅、蓝色序号、橙色重点句、粉色虚线分隔符。字体层级清晰：标题&gt;序号&gt;正文&gt;提醒。没有复杂插画，全靠真实食物摄影+文字排版完成。作者水印@虎虎喵放在每页右下角，低调但持续曝光。</div>
+    </div>
+    <div class="visual-card">
+      <div class="vc-label">品牌植入</div>
+      <div class="vc-body">这篇是纯科普无带货，品牌植入体现在「作者IP」而非产品上。每页水印强化@虎虎喵的专业养猫人设。对于品牌方而言，这种「不挂车」的科普内容更容易获得平台推荐，适合作为前置教育内容；如果要做产品植入，可以在P5的「重要喂食提醒」后自然带出品牌主粮/辅食，但要保持克制。</div>
+    </div>
+  </div>
+</section>
+<section class="bookshelf-section">
+  <div class="section-head">
+    <div class="icon">&#128218;</div>
+    <h2>深度解析：点击查看详情</h2>
+  </div>
+  <div class="capsule-grid">
+    <div class="capsule" data-cid="content">
+      <span class="cap-icon">📝</span>
+      <div class="cap-title">内容拆解</div>
+      <div class="cap-sub">标题/开头/正文/结尾</div>
+    </div>
+    <div class="capsule" data-cid="quotes">
+      <span class="cap-icon">💬</span>
+      <div class="cap-title">金句摘录</div>
+      <div class="cap-sub">笔记中的关键句</div>
+    </div>
+    <div class="capsule" data-cid="data">
+      <span class="cap-icon">📊</span>
+      <div class="cap-title">数据与标签</div>
+      <div class="cap-sub">互动/标签/选题</div>
+    </div>
+    <div class="capsule" data-cid="brand">
+      <span class="cap-icon">💡</span>
+      <div class="cap-title">品牌可复用</div>
+      <div class="cap-sub">模板/差异化/注意</div>
+    </div>
+  </div>
+  <div class="capsule-detail" id="detail-content">
+    <button class="close-btn" type="button">&times;</button>
+    <div class="detail-title">内容结构拆解</div>
+  <div class="struct-list">
+    <div class="struct-item">
+      <div class="struct-label">标题策略</div>
+      <div class="struct-content">「你以为没用，其实对猫咪巨健康的东西‼️」——用「你以为…其实…」制造认知反转，「巨健康」带口语化情绪，感叹号+emoji增强紧迫感。没有直接说7种食物，保留悬念。</div>
+    </div>
+    <div class="struct-item">
+      <div class="struct-label">开头钩子</div>
+      <div class="struct-content">正文开头直接点出痛点：「只会傻傻给猫咪喂干粮」「食补比很多营养品都靠谱」。先否定常见行为，再给希望，让新手猫主人立刻对号入座。</div>
+    </div>
+    <div class="struct-item">
+      <div class="struct-label">正文结构</div>
+      <div class="struct-content">7种辅食分两大部分：前6种分两页（每页2种），第7种+重要提醒合并一页。每条辅食都用「功效+喂食方法」结构，信息密度高但格式统一，降低阅读负担。</div>
+    </div>
+    <div class="struct-item">
+      <div class="struct-label">结尾引导</div>
+      <div class="struct-content">结尾用「⚠️重要喂食提醒」替代直接号召互动，给出「不加盐油、只能当辅食、不能替代主粮」3个实用建议。最后用「新手宝子们码住！」软性号召收藏评论。</div>
+    </div>
+  </div>
+  </div>
+  <div class="capsule-detail" id="detail-quotes">
+    <button class="close-btn" type="button">&times;</button>
+    <div class="detail-title">金句摘录</div>
+  <div class="capsule-quotes">
+    <div class="capsule-quote">
+      <span class="cq-mark">&ldquo;</span>
+      <span class="cq-text">食补比很多营养品都靠谱！</span>
+    </div>
+    <div class="capsule-quote">
+      <span class="cq-mark">&ldquo;</span>
+      <span class="cq-text">养猫不用盲目买昂贵补品，家常食材科学喂养，猫咪体质越来越好。</span>
+    </div>
+    <div class="capsule-quote">
+      <span class="cq-mark">&ldquo;</span>
+      <span class="cq-text">这几种食材不加盐、油、调味品，蒸煮即可，且只能当作辅食。</span>
+    </div>
+  </div>
+  </div>
+  <div class="capsule-detail" id="detail-data">
+    <button class="close-btn" type="button">&times;</button>
+    <div class="detail-title">数据与标签分析</div>
+  <div class="judge-grid">
+    <div class="judge-mini">
+      <div class="jm-label">互动数据</div>
+      <div class="jm-title">收藏接近点赞</div>
+      <div class="jm-desc">3710赞 vs 3010收藏，收藏率极高。说明内容被读者当作「养猫参考手册」保存，符合科普清单类内容的特征。分享799次也说明内容有社交传播价值。</div>
+    </div>
+    <div class="judge-mini">
+      <div class="jm-label">标签策略</div>
+      <div class="jm-title">全品类覆盖</div>
+      <div class="jm-desc">#猫咪健康 #新手养猫 #科学养猫 覆盖大流量搜索池；#猫咪冷知识 #养猫的好处 #如何让猫咪健康的长胖 覆盖具体痛点；#我的养宠经验 切中经验分享型流量。标签组合兼顾搜索和推荐。</div>
+    </div>
+    <div class="judge-mini">
+      <div class="jm-label">选题判断</div>
+      <div class="jm-title">低成本科普种草</div>
+      <div class="jm-desc">选题属于「平价替代+科普教育」类型。用家常食材替代昂贵营养品，天然具备「省钱」情绪点，容易获得新手养猫人群共鸣。适合宠物食品/用品品牌做前置教育内容。</div>
+    </div>
+  </div>
+  </div>
+  <div class="capsule-detail" id="detail-brand">
+    <button class="close-btn" type="button">&times;</button>
+    <div class="detail-title">品牌可复用洞察</div>
+  <div class="points-list">
+    <div class="point-item">
+      <div class="point-num">01</div>
+      <div class="point-content">
+        <h4>可复用模板</h4>
+        <p>「认知反差标题→痛点开场→N个清单项（功效+方法）→避雷/提醒收尾」。这个结构可以复用到任何「平价替代」「常见误区」「XX件事」类选题。视觉上也对应：封面→清单页→提醒页。</p>
+      </div>
+    </div>
+    <div class="point-item">
+      <div class="point-num">02</div>
+      <div class="point-content">
+        <h4>差异化建议</h4>
+        <p>品牌方做同类内容：1.封面可以用「你以为没用」+自家产品食材的对比图；2.清单项中加入「搭配自家产品的喂养方案」；3.提醒页自然带出品牌质检/成分优势，但不要硬广。</p>
+      </div>
+    </div>
+    <div class="point-item">
+      <div class="point-num">03</div>
+      <div class="point-content">
+        <h4>注意事项</h4>
+        <p>1.宠物食品内容避免「治疗」「治愈」等医疗用语；2.食材功效表述要留有余地，避免绝对化（如「一定」「绝对」）；3.如果涉及产品，必须标注「仅作辅食，不能替代主粮」。</p>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p style="font-weight:600;color:var(--text)">xiaohongshu-note-parser</p>
+  <p style="font-size:12px;margin-top:2px">丢一条小红书笔记链接，还你一份结构化品牌分析</p>
+</footer>
+</div>
+
+<script>
+var activeCapsule = null;
+document.addEventListener('click', function(e) {
+  var cap = e.target.closest('[data-cid]');
+  if (cap) {
+    var cid = cap.getAttribute('data-cid');
+    if (activeCapsule) activeCapsule.classList.remove('active');
+    var detail = document.getElementById('detail-' + cid);
+    if (detail) {
+      detail.classList.add('active');
+      detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      activeCapsule = detail;
+    }
+    return;
+  }
+  var closeBtn = e.target.closest('.close-btn');
+  if (closeBtn) {
+    if (activeCapsule) { activeCapsule.classList.remove('active'); activeCapsule = null; }
+    return;
+  }
+});
+</script>
+</body>
+</html>

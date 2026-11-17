@@ -1,43 +1,52 @@
-## Description: <br>
-Builds a Product Hunt launch timeline and strategy for founders preparing for or optimizing a Product Hunt launch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds a Product Hunt launch timeline and strategy for founders planning, preparing for, or optimizing a Product Hunt launch.
 
-## Publisher: <br>
-[C0ldSmi1e](https://clawhub.ai/user/C0ldSmi1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c0ldsmi1e](https://clawhub.ai/user/c0ldsmi1e)
 
-## Use Case: <br>
-Founders, marketers, and launch teams use this skill to turn product details, audience context, launch timing, and hunter plans into a Product Hunt launch plan with preparation steps, launch-day actions, and follow-up guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach, email, and social templates may be too generic, spammy, or mismatched to the product's audience. <br>
-Mitigation: Review and tailor generated copy before public use so it reflects the product accurately and avoids spam-like behavior. <br>
-Risk: Launch recommendations may become outdated or may not match current Product Hunt rules and expectations. <br>
-Mitigation: Confirm current Product Hunt guidance before launch day and adjust the plan where platform rules or norms differ. <br>
+## Use Case:
 
+Founders and product teams use this skill to prepare a Product Hunt launch plan, including discovery questions, pre-launch preparation, launch week tasks, launch day outreach, and post-launch follow-up.
 
-## Reference(s): <br>
-- [How to rank #1 on Product Hunt](https://tibo-maker.notion.site/Ultimate-guide-on-how-to-rank-1-on-Product-Hunt-589c000cd56f4baf9c64988a52eb4b4e) <br>
-- [How to successfully launch on Product Hunt](https://www.lennysnewsletter.com/p/how-to-successfully-launch-on-product) <br>
-- [Product Hunt launch step-by-step guide and templates](https://genesysgrowth.com/resources/product-hunt-launch-step-by-step-guide) <br>
-- [Product Hunt Launch Workbook](https://olenabomko.notion.site/Product-Hunt-Launch-Workbook-2bebf9c31de98158ba98e164f0bdc1a1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown launch plan with discovery questions, timelines, checklists, and outreach templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tailored to the user's product, target audience, existing community, prior launch history, launch date, and hunter status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated outreach or social copy may be inaccurate, overstate claims, or be unsuitable for the product's audience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit generated copy before sending or posting it.
+
+## Reference(s):
+
+- [How to rank #1 on Product Hunt](https://tibo-maker.notion.site/Ultimate-guide-on-how-to-rank-1-on-Product-Hunt-589c000cd56f4baf9c64988a52eb4b4e)
+- [How to successfully launch on Product Hunt](https://www.lennysnewsletter.com/p/how-to-successfully-launch-on-product)
+- [Product Hunt launch step-by-step guide + templates](https://genesysgrowth.com/resources/product-hunt-launch-step-by-step-guide)
+- [Product Hunt Launch Workbook](https://olenabomko.notion.site/Product-Hunt-Launch-Workbook-2bebf9c31de98158ba98e164f0bdc1a1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured launch planning sections, templates, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill asks discovery questions before generating a tailored plan.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

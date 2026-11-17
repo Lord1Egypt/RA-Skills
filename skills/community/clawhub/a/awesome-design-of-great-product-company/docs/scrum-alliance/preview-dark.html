@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrum Alliance Design System — Dark Mode</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --sa-deep-blue: #182340;
+      --sa-medium-blue: #375EDF;
+      --sa-light-blue: #A4D5EB;
+      --sa-orange: #FA9449;
+      --sa-silver-grey: #D1D3D9;
+      --sa-pale-blue-1: #D7DFF9;
+      --sa-pale-blue-2: #DBEEF7;
+      --sa-pale-orange: #FEE4D2;
+      --sa-off-white: #F3F3F3;
+      --sa-dark-grey: #535353;
+      --sa-mid-grey: #A7A7A7;
+      --sa-white: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Source Sans Pro', 'Segoe UI', sans-serif;
+      color: var(--sa-dark-grey);
+      background-color: var(--sa-deep-blue);
+      font-size: 17px;
+      line-height: 1.6;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 48px 24px; }
+    h1 { font-size: 48px; font-weight: 700; color: var(--sa-white); margin-bottom: 8px; }
+    h2 { font-size: 32px; font-weight: 700; color: var(--sa-white); margin: 48px 0 24px; }
+    h3 { font-size: 24px; font-weight: 600; color: var(--sa-light-blue); margin: 32px 0 16px; }
+    .subtitle { font-size: 20px; color: var(--sa-silver-grey); margin-bottom: 48px; }
+    .section { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 32px; margin-bottom: 32px; border: 1px solid rgba(255,255,255,0.1); }
+    .section-title { font-size: 14px; font-weight: 600; color: var(--sa-light-blue); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+    /* Color Swatches */
+    .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+    .color-swatch { border-radius: 8px; overflow: hidden; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
+    .swatch-color { height: 80px; }
+    .swatch-info { padding: 12px; }
+    .swatch-name { font-size: 14px; font-weight: 600; color: var(--sa-white); }
+    .swatch-hex { font-size: 13px; color: var(--sa-silver-grey); font-family: monospace; }
+
+    /* Typography */
+    .type-sample { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .type-sample:last-child { border-bottom: none; }
+    .type-label { font-size: 12px; color: var(--sa-mid-grey); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    .type-display { font-size: 60px; font-weight: 700; color: var(--sa-white); line-height: 1.1; }
+    .type-h1 { font-size: 36px; font-weight: 700; color: var(--sa-white); }
+    .type-h2 { font-size: 28px; font-weight: 700; color: var(--sa-white); }
+    .type-h3 { font-size: 22px; font-weight: 400; color: var(--sa-white); }
+    .type-h4 { font-size: 18px; font-weight: 400; color: var(--sa-light-blue); }
+    .type-body-lg { font-size: 20px; color: var(--sa-silver-grey); }
+    .type-body { font-size: 17px; color: var(--sa-silver-grey); }
+    .type-body-sm { font-size: 15px; color: var(--sa-mid-grey); }
+    .type-caption { font-size: 13px; color: var(--sa-mid-grey); }
+    .font-bold { font-weight: 700; }
+    .font-medium { font-weight: 600; }
+
+    /* Buttons */
+    .btn-grid { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+    .sa-btn {
+      display: inline-block;
+      font-weight: 400;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      border: 1px solid transparent;
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      border-radius: 0.25rem;
+      transition: all 0.15s ease-in-out;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .sa-btn-deep { background-color: var(--sa-deep-blue); color: var(--sa-white); border-color: var(--sa-deep-blue); }
+    .sa-btn-deep:hover { background-color: #2a3a5f; }
+    .sa-btn-primary { background-color: var(--sa-medium-blue); color: var(--sa-white); border-color: var(--sa-medium-blue); }
+    .sa-btn-primary:hover { background-color: #4a6fe8; }
+    .sa-btn-accent { background-color: var(--sa-orange); color: var(--sa-white); border-color: var(--sa-orange); }
+    .sa-btn-accent:hover { background-color: #e88530; }
+    .sa-btn-secondary { border-color: var(--sa-white); color: var(--sa-white); background-color: transparent; }
+    .sa-btn-secondary:hover { background-color: var(--sa-white); color: var(--sa-deep-blue); }
+    .light-bg { background-color: var(--sa-white); padding: 24px; border-radius: 8px; margin-top: 16px; display: inline-block; }
+    .btn-label { font-size: 13px; color: var(--sa-mid-grey); margin-top: 12px; }
+
+    /* Links */
+    .link-grid { display: flex; gap: 24px; flex-wrap: wrap; }
+    .sa-link-primary { color: var(--sa-light-blue); text-decoration: none; font-weight: 600; }
+    .sa-link-primary:hover, .sa-link-primary:visited { color: var(--sa-orange); }
+    .sa-link-secondary { color: var(--sa-white); text-decoration: none; font-weight: 600; }
+    .sa-link-secondary:hover, .sa-link-secondary:visited { color: var(--sa-light-blue); }
+
+    /* Cards */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    .sa-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 4px; padding: 24px; }
+    .sa-card-header { color: var(--sa-white); font-size: 22px; font-weight: 700; margin-bottom: 16px; }
+    .sa-card-body { font-size: 15px; color: var(--sa-silver-grey); line-height: 1.6; }
+    .sa-card.warm { background: rgba(250, 148, 73, 0.15); border-left: 4px solid var(--sa-orange); border-radius: 0 4px 4px 0; }
+    .sa-card.info { background: rgba(55, 94, 223, 0.15); border-left: 4px solid var(--sa-medium-blue); border-radius: 0 4px 4px 0; }
+    .sa-card.success { background: rgba(52, 178, 51, 0.15); border-left: 4px solid #34B233; border-radius: 0 4px 4px 0; }
+
+    /* Badges */
+    .badge-grid { display: flex; gap: 12px; flex-wrap: wrap; }
+    .sa-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .sa-badge-primary { background: var(--sa-deep-blue); color: var(--sa-white); }
+    .sa-badge-blue { background: var(--sa-medium-blue); color: var(--sa-white); }
+    .sa-badge-light { background: var(--sa-light-blue); color: var(--sa-deep-blue); }
+    .sa-badge-orange { background: var(--sa-orange); color: var(--sa-white); }
+    .sa-badge-outline { background: transparent; border: 1px solid var(--sa-light-blue); color: var(--sa-light-blue); }
+
+    /* Spacing */
+    .spacing-row { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+    .spacing-block { background: var(--sa-medium-blue); opacity: 0.6; border-radius: 2px; }
+    .spacing-label { font-size: 12px; color: var(--sa-mid-grey); margin-top: 8px; text-align: center; min-width: 40px; }
+
+    /* Radius */
+    .radius-grid { display: flex; gap: 16px; flex-wrap: wrap; }
+    .radius-box { width: 60px; height: 60px; background: var(--sa-medium-blue); display: flex; align-items: center; justify-content: center; color: var(--sa-white); font-size: 12px; }
+
+    /* Icons */
+    .icon-grid { display: flex; gap: 16px; flex-wrap: wrap; font-size: 24px; color: var(--sa-light-blue); }
+    .icon-box { width: 48px; height: 48px; background: rgba(255,255,255,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+
+    /* Elevation */
+    .elevation-grid { display: flex; gap: 24px; flex-wrap: wrap; }
+    .elevation-card { background: rgba(255,255,255,0.05); padding: 24px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); }
+    .elevation-1 { border: 1px solid rgba(255,255,255,0.15); }
+    .elevation-2 { border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+
+    /* Forms */
+    .form-grid { display: grid; gap: 16px; max-width: 400px; }
+    .form-input { width: 100%; padding: 10px 12px; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; font-size: 15px; font-family: inherit; color: var(--sa-white); background: rgba(255,255,255,0.05); transition: border-color 0.15s; }
+    .form-input:focus { outline: none; border-color: var(--sa-medium-blue); }
+    .form-input::placeholder { color: var(--sa-mid-grey); }
+    .form-label { font-size: 14px; font-weight: 600; color: var(--sa-white); margin-bottom: 6px; display: block; }
+
+    /* Divider */
+    .sa-divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 24px 0; }
+    .sa-divider-accent { border: none; border-top: 3px solid var(--sa-medium-blue); margin: 24px 0; }
+
+    /* Checklists */
+    .checklist { list-style: none; }
+    .checklist li { padding: 8px 0; display: flex; align-items: flex-start; gap: 12px; }
+    .checklist li i { color: #34B233; margin-top: 2px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Scrum Alliance</h1>
+    <p class="subtitle">Design System — Dark Mode Preview</p>
+
+    <!-- Colors -->
+    <div class="section">
+      <div class="section-title">Primary Colors</div>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-color" style="background: #182340;"></div>
+          <div class="swatch-info"><div class="swatch-name">Deep Blue</div><div class="swatch-hex">#182340</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background: #375EDF;"></div>
+          <div class="swatch-info"><div class="swatch-name">Medium Blue</div><div class="swatch-hex">#375EDF</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background: #A4D5EB;"></div>
+          <div class="swatch-info"><div class="swatch-name">Light Blue</div><div class="swatch-hex">#A4D5EB</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background: #FA9449;"></div>
+          <div class="swatch-info"><div class="swatch-name">Orange</div><div class="swatch-hex">#FA9449</div></div>
+        </div>
+      </div>
+
+      <h3>Secondary Colors</h3>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-color" style="background: #D1D3D9;"></div>
+          <div class="swatch-info"><div class="swatch-name">Silver Grey</div><div class="swatch-hex">#D1D3D9</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background: #D7DFF9;"></div>
+          <div class="swatch-info"><div class="swatch-name">Pale Blue 1</div><div class="swatch-hex">#D7DFF9</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background: #DBEEF7;"></div>
+          <div class="swatch-info"><div class="swatch-name">Pale Blue 2</div><div class="swatch-hex">#DBEEF7</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background: #FEE4D2;"></div>
+          <div class="swatch-info"><div class="swatch-name">Pale Orange</div><div class="swatch-hex">#FEE4D2</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background: #F3F3F3;"></div>
+          <div class="swatch-info"><div class="swatch-name">Off-White</div><div class="swatch-hex">#F3F3F3</div></div>
+        </div>
+      </div>
+
+      <h3>Neutrals</h3>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-color" style="background: #535353; border: 1px solid rgba(255,255,255,0.2);"></div>
+          <div class="swatch-info"><div class="swatch-name">Dark Grey</div><div class="swatch-hex">#535353</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background: #A7A7A7;"></div>
+          <div class="swatch-info"><div class="swatch-name">Mid Grey</div><div class="swatch-hex">#A7A7A7</div></div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background: #FFFFFF; border: 1px solid rgba(255,255,255,0.2);"></div>
+          <div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typography -->
+    <div class="section">
+      <div class="section-title">Typography</div>
+      <div class="type-sample">
+        <div class="type-label">H1 Display — 60px Bold</div>
+        <div class="type-display">Scrum Alliance</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-label">H2 Page — 36px Bold</div>
+        <div class="type-h1">Certified ScrumMaster</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-label">H3 Large — 28px Bold</div>
+        <div class="type-h2">Agile Transformation</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-label">H4 Medium — 22px Regular</div>
+        <div class="type-h3">Course Overview</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-label">H5 Small — 18px Regular</div>
+        <div class="type-h4">Learning Objectives</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-label">Body Large — 20px</div>
+        <div class="type-body-lg">Professional Scrum training for teams and organizations worldwide.</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-label">Body Medium — 17px</div>
+        <div class="type-body">Scrum Alliance is the premier organization for Scrum education and certification.</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-label">Body Small — 15px</div>
+        <div class="type-body-sm">Explore our courses and certifications to advance your career.</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-label">Caption — 13px</div>
+        <div class="type-caption">Version 2.0 — Last updated May 2026</div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="section">
+      <div class="section-title">Buttons</div>
+      <div class="btn-grid">
+        <div>
+          <button class="sa-btn sa-btn-deep">Deep Blue</button>
+          <div class="btn-label">Deep Blue (#182340)</div>
+        </div>
+        <div>
+          <button class="sa-btn sa-btn-primary">Medium Blue</button>
+          <div class="btn-label">Medium Blue (#375EDF)</div>
+        </div>
+        <div>
+          <button class="sa-btn sa-btn-accent">Orange CTA</button>
+          <div class="btn-label">Orange Accent (#FA9449)</div>
+        </div>
+        <div>
+          <button class="sa-btn sa-btn-secondary">Ghost</button>
+          <div class="btn-label">Ghost Button</div>
+        </div>
+      </div>
+      <h3 style="margin-top: 32px;">On Light Background</h3>
+      <div class="light-bg">
+        <button class="sa-btn sa-btn-accent">CTA on Light</button>
+      </div>
+    </div>
+
+    <!-- Links -->
+    <div class="section">
+      <div class="section-title">Links</div>
+      <div class="link-grid">
+        <a href="#" class="sa-link-primary">Primary Link <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#" class="sa-link-secondary">Secondary Link <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="section">
+      <div class="section-title">Cards</div>
+      <div class="card-grid">
+        <div class="sa-card">
+          <div class="sa-card-header">Standard Card</div>
+          <div class="sa-card-body">Scrum Alliance card with subtle border on dark background.</div>
+        </div>
+        <div class="sa-card info">
+          <div class="sa-card-header">Blue Card</div>
+          <div class="sa-card-body">Use for informational content with blue accent.</div>
+        </div>
+        <div class="sa-card warm">
+          <div class="sa-card-header">Orange Card</div>
+          <div class="sa-card-body">Use for warnings and attention-needed content.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Badges -->
+    <div class="section">
+      <div class="section-title">Badges</div>
+      <div class="badge-grid">
+        <span class="sa-badge sa-badge-primary">Deep Blue</span>
+        <span class="sa-badge sa-badge-blue">Medium Blue</span>
+        <span class="sa-badge sa-badge-light">Light Blue</span>
+        <span class="sa-badge sa-badge-orange">Orange</span>
+        <span class="sa-badge sa-badge-outline">Outline</span>
+      </div>
+    </div>
+
+    <!-- Spacing -->
+    <div class="section">
+      <div class="section-title">Spacing Scale</div>
+      <div class="spacing-row">
+        <div><div class="spacing-block" style="width: 6px; height: 40px;"></div><div class="spacing-label">6px</div></div>
+        <div><div class="spacing-block" style="width: 8px; height: 40px;"></div><div class="spacing-label">8px</div></div>
+        <div><div class="spacing-block" style="width: 16px; height: 40px;"></div><div class="spacing-label">16px</div></div>
+        <div><div class="spacing-block" style="width: 24px; height: 40px;"></div><div class="spacing-label">24px</div></div>
+        <div><div class="spacing-block" style="width: 36px; height: 40px;"></div><div class="spacing-label">36px</div></div>
+        <div><div class="spacing-block" style="width: 60px; height: 40px;"></div><div class="spacing-label">60px</div></div>
+        <div><div class="spacing-block" style="width: 80px; height: 40px;"></div><div class="spacing-label">80px</div></div>
+      </div>
+    </div>
+
+    <!-- Radius -->
+    <div class="section">
+      <div class="section-title">Border Radius</div>
+      <div class="radius-grid">
+        <div class="radius-box" style="border-radius: 0;">0</div>
+        <div class="radius-box" style="border-radius: 4px;">4px</div>
+        <div class="radius-box" style="border-radius: 8px;">8px</div>
+        <div class="radius-box" style="border-radius: 20px;">20px</div>
+      </div>
+    </div>
+
+    <!-- Icons -->
+    <div class="section">
+      <div class="section-title">Icons (Font Awesome)</div>
+      <div class="icon-grid">
+        <div class="icon-box"><i class="fa-solid fa-check"></i></div>
+        <div class="icon-box"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="icon-box"><i class="fa-solid fa-users"></i></div>
+        <div class="icon-box"><i class="fa-solid fa-certificate"></i></div>
+        <div class="icon-box"><i class="fa-solid fa-star"></i></div>
+      </div>
+    </div>
+
+    <!-- Elevation -->
+    <div class="section">
+      <div class="section-title">Elevation</div>
+      <div class="elevation-grid">
+        <div class="elevation-card elevation-1">
+          <strong>Level 1</strong><br><span style="color: var(--sa-silver-grey);">Border only</span>
+        </div>
+        <div class="elevation-card elevation-2">
+          <strong>Level 2</strong><br><span style="color: var(--sa-silver-grey);">Border + Shadow</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forms -->
+    <div class="section">
+      <div class="section-title">Form Elements</div>
+      <div class="form-grid">
+        <div>
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" placeholder="trainer@company.com">
+        </div>
+        <div>
+          <label class="form-label">Search</label>
+          <input type="search" class="form-input" placeholder="Search courses...">
+        </div>
+      </div>
+    </div>
+
+    <!-- Dividers -->
+    <div class="section">
+      <div class="section-title">Dividers</div>
+      <div class="sa-divider"></div>
+      <div class="sa-divider-accent"></div>
+    </div>
+
+    <!-- Checklist -->
+    <div class="section">
+      <div class="section-title">Design Checklist</div>
+      <ul class="checklist">
+        <li><i class="fa-solid fa-check"></i> Main color uses #182340 (Deep Blue)</li>
+        <li><i class="fa-solid fa-check"></i> Secondary uses #375EDF (Medium Blue)</li>
+        <li><i class="fa-solid fa-check"></i> Orange #FA9449 as accent, not dominant</li>
+        <li><i class="fa-solid fa-check"></i> Background uses #F3F3F3 (Off-White)</li>
+        <li><i class="fa-solid fa-check"></i> Button radius is 4px (0.25rem)</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

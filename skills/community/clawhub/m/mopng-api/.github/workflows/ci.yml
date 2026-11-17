@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v4
+        with:
+          version: "0.5.x"
+      - name: Sync dev deps
+        run: uv sync --frozen
+      - name: Pytest
+        run: uv run pytest tests/ -v
+      - name: Bandit
+        run: uv run bandit -r scripts -ll

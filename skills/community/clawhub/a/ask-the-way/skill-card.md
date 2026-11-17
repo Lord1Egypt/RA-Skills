@@ -1,41 +1,54 @@
-## Description: <br>
-Ask The Way uses Dao De Jing passages to reframe modern decisions, stress, and mental blocks into bilingual passages, modern interpretation, and three actionable insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tap into Dao De Jing wisdom for modern decisions, stress, or mental blocks by matching a concern to a relevant passage and returning bilingual interpretation with three actionable insights.
 
-## Publisher: <br>
-[aeroic-w](https://clawhub.ai/user/aeroic-w) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aeroic-w](https://clawhub.ai/user/aeroic-w)
 
-## Use Case: <br>
-External users use this skill as a reflective writing and decision-framing aid for career dilemmas, leadership questions, creative blocks, interpersonal friction, and perspective shifts. It is not intended for factual lookup, calculation, or professional legal, medical, or financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat reflective philosophical output as factual research or professional advice. <br>
-Mitigation: Use the output as perspective only, and consult qualified sources or professionals for legal, medical, financial, factual, or high-stakes decisions. <br>
-Risk: Dao De Jing chapter matching and interpretation can be suggestive or one of several valid readings. <br>
-Mitigation: Review whether the passage fits the concern, rephrase and retry when it does not, and treat insights as prompts rather than commands. <br>
+## Use Case:
 
+External users use this skill to reframe career dilemmas, leadership questions, creative blocks, interpersonal friction, and life uncertainty through Dao De Jing passages and practical reflection prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aeroic-w/ask-the-way) <br>
-- [Publisher profile](https://clawhub.ai/user/aeroic-w) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with bilingual passages, modern interpretation, actionable insights, and a perspective shift] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only reflective guidance; no tool calls, data access, persistence, or real-time lookup evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat reflective Dao De Jing interpretations as factual answers or professional advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Position outputs as heuristic reflection only, and direct users to authoritative sources or qualified professionals for factual, legal, medical, financial, or urgent decisions.
+
+Risk: Bilingual passages and interpretations may be read as definitive translations of an ambiguous classical text.
+
+Mitigation: Present interpretations as one practical reading among many and encourage users to rephrase, compare perspectives, or consult primary scholarship when precision matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aeroic-w/skills/ask-the-way)
+- [Publisher profile](https://clawhub.ai/user/aeroic-w)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with bilingual passages, modern interpretation, actionable insights, and reflection prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Classical Chinese, modern Chinese, and English translations; intended for reflective guidance rather than factual lookup or professional advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

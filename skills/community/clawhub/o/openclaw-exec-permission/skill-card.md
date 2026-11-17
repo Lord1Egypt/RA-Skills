@@ -1,40 +1,58 @@
-## Description: <br>
-Guides agents through OpenClaw exec security, approval, and allowlist configuration for command execution permissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw users through configuring tools.exec security, approval behavior, and allowlist settings for command execution permissions.
 
-## Publisher: <br>
-[embracex1998](https://clawhub.ai/user/embracex1998) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[embracex1998](https://clawhub.ai/user/embracex1998)
 
-## Use Case: <br>
-Developers and operators use this skill to understand and adjust OpenClaw exec security, approval behavior, and command allowlists for agent command execution environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Following full access and approval-off guidance can disable OpenClaw command restrictions and approval prompts. <br>
-Mitigation: Use the skill only when intentionally changing exec safeguards; prefer allowlist with approvals on shared, production, or sensitive machines. <br>
-Risk: Direct configuration edits can persist unsafe exec settings until they are changed back. <br>
-Mitigation: Review the exact configuration change, keep a rollback plan, and restart the gateway only after confirming the intended settings. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to understand exec permission modes, configure allowlists, and recover from denied command execution when protected settings must be changed manually.
 
-## Reference(s): <br>
-- [OpenClaw Exec Permission on ClawHub](https://clawhub.ai/embracex1998/openclaw-exec-permission) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; it does not execute commands by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The guidance can disable command restrictions and approval prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use full exec with approvals off only for tightly controlled, temporary maintenance on a dedicated machine.
+
+Risk: Manual changes to protected exec settings can leave a system in a broad-permission state.
+
+Mitigation: Restore allowlist mode with approval after maintenance and restart the gateway so the safer configuration takes effect.
+
+Risk: Installing the skill may normalize bypassing protected configuration paths.
+
+Mitigation: Review the skill before deployment and install it only where operators explicitly need exec security configuration guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/embracex1998/skills/openclaw-exec-permission)
+- [ClawHub publisher profile](https://clawhub.ai/user/embracex1998)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes security posture recommendations for OpenClaw exec settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

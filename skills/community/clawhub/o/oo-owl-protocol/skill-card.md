@@ -1,44 +1,55 @@
-## Description: <br>
-Operates Owl Protocol through an OOMOL-connected account to read project information, retrieve token metadata, and patch token metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Owl Protocol projects and token metadata through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Owl Protocol data through the OOMOL oo CLI, including reading project summaries, retrieving token metadata, and preparing confirmed metadata updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to an OOMOL-connected Owl Protocol account. <br>
-Mitigation: Install and use it only when the agent is intended to operate that connected Owl Protocol account. <br>
-Risk: The patch_project_token action changes token metadata. <br>
-Mitigation: Review the exact payload and intended effect with the user before running write actions. <br>
-Risk: The optional first-time setup can run an external CLI installer. <br>
-Mitigation: Avoid the installer unless the oo CLI is needed and the OOMOL installer is trusted in the execution environment. <br>
+## Use Case:
 
+Developers and project operators can inspect an Owl Protocol project, read token metadata, and patch a token's metadata through their connected account.
 
-## Reference(s): <br>
-- [ClawHub Owl Protocol Skill](https://clawhub.ai/oomol/oo-owl-protocol) <br>
-- [Owl Protocol Homepage](https://owlprotocol.xyz) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands use the OOMOL oo CLI and return JSON responses from Owl Protocol connector actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: The required CLI may persistently add skills to other agents during startup, an effect not explained in the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI setup and set OO_SKILLS_SYNC_DISABLED=1 before invoking oo if you do not want that synchronization.
+
+Risk: OOMOL mediates account access and receives action payloads.
+
+Mitigation: Use a narrowly scoped Owl Protocol connection and confirm each metadata change.
+
+## Reference(s):
+
+- [Owl Protocol](https://owlprotocol.xyz)
+- [Owl Protocol API quickstart](https://docs.owlprotocol.xyz/quickstart)
+- [oo CLI command controls](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [Shell commands with JSON inputs and project or token data returned by Owl Protocol]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads return service data; token metadata changes require confirmation of the exact payload and effect.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

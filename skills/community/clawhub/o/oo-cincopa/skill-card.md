@@ -1,44 +1,59 @@
-## Description: <br>
-Cincopa (cincopa.com). Use this skill for ANY Cincopa request - searching and reading data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cincopa (cincopa.com). Use this skill for ANY Cincopa request — searching and reading data. Whenever a task involves Cincopa, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect Cincopa account data through an OOMOL-connected account, including assets, galleries, gallery items, and asset tag clouds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected Cincopa account and uses OOMOL as an intermediary for read access. <br>
-Mitigation: Use it only with accounts and data that are approved for access through OOMOL, and review the OOMOL connection before use. <br>
-Risk: The setup path includes remote shell installer commands for the oo CLI. <br>
-Mitigation: Review OOMOL's official installation guidance before running an installer, and avoid executing remote shell commands blindly. <br>
-Risk: Connector payloads may become stale if action schemas change. <br>
-Mitigation: Inspect the live Cincopa connector schema before constructing each payload. <br>
+## Use Case:
 
+External users and developers use the skill to search and read assets, galleries, tags, and gallery items in a Cincopa account connected through OOMOL.
 
-## Reference(s): <br>
-- [Cincopa homepage](https://www.cincopa.com/) <br>
-- [OOMOL oo CLI repository](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON connector payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill instructs agents to inspect the live connector schema before running read-only Cincopa actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The first-time setup commands download and execute an installer, and the installer and hosted connector implementation were not verified in the supplied evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup steps, use a verified fixed CLI release, and require approval before installing it locally.
+
+Risk: Automatic skill synchronization could let Cincopa-related requests change other agent skills.
+
+Mitigation: Consider disabling automatic skill synchronization.
+
+Risk: Connecting Cincopa entrusts credentials and requested account access to OOMOL.
+
+Mitigation: Review the requested access and connect only when you are comfortable entrusting that access to OOMOL.
+
+## Reference(s):
+
+- [Cincopa API documentation](https://developer.cincopa.com/apis)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Cincopa](https://www.cincopa.com/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only connector actions; returned data is provided as JSON.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

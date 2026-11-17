@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0",
+  "meta": {
+    "title": "名词表",
+    "intro": "点一下正文里带虚线的词，就会告诉你那是什么。",
+    "scope_note": "题干和选项里的词条不做堂口类标注，免得还没答完就先被剧透。",
+    "empty": "当前配置没有配套的词条文件，正文不做标注。"
+  },
+  "terms": [
+    {"term": "择堂冠", "gloss": "就是你现在戴着说话的这一顶。新人由它决定去哪个堂。", "house": false},
+    {"term": "堂口", "gloss": "回音塔把新人分成四个堂，各住各的，一整年比积分。", "house": false},
+    {"term": "回音塔", "gloss": "这所学校的主塔。塔上那口钟比谁都老。", "house": false},
+    {"term": "立堂者", "gloss": "几百年前定下四个堂口规矩的那批人。", "house": false},
+    {"term": "信物", "gloss": "立堂者留下的一样东西，是那个堂口的象征。", "house": false},
+    {"term": "堂徽走兽", "gloss": "绣在堂口旗子和制服上的那只动物。", "house": false},
+    {"term": "常驻旧影", "gloss": "留在塔里没走的那道影子，每个堂口有一位。", "house": false},
+    {"term": "入堂口处", "gloss": "进自己堂口起居处的地方，通常要说暗语或者解开一道谜语。", "house": false},
+    {"term": "谜语", "gloss": "有些入口不认暗语，只认答案，答不上就进不去。", "house": false},
+    {"term": "门环", "gloss": "会出谜语的铜环，答对了门才开。", "house": false},
+    {"term": "木桶", "gloss": "敲对了那一只，桶后的通道才会让开。", "house": false},
+    {"term": "焰炉堂", "gloss": "四堂之一，由炉主·砚立下。", "house": true},
+    {"term": "深流堂", "gloss": "四堂之一，由引渠者·泠立下。", "house": true},
+    {"term": "高风堂", "gloss": "四堂之一，由观星者·阿聿立下。", "house": true},
+    {"term": "沃土堂", "gloss": "四堂之一，由播种者·禾立下。", "house": true},
+    {"term": "炉主", "gloss": "几百年前立堂的四个人之一。", "house": true},
+    {"term": "引渠者", "gloss": "几百年前立堂的四个人之一。", "house": true},
+    {"term": "观星者", "gloss": "几百年前立堂的四个人之一。", "house": true},
+    {"term": "播种者", "gloss": "几百年前立堂的四个人之一。", "house": true},
+    {"term": "提灯的守夜人", "gloss": "焰炉堂的常驻旧影，夜里提着灯在走廊上走。", "house": true},
+    {"term": "溺钟之女", "gloss": "深流堂的常驻旧影，和那口沉进水里的钟有关。", "house": true},
+    {"term": "无名的学徒", "gloss": "高风堂的常驻旧影，没人记得他叫什么。", "house": true},
+    {"term": "守仓人", "gloss": "沃土堂的常驻旧影，管着粮仓的钥匙。", "house": true},
+    {"term": "铁砧", "gloss": "焰炉堂立堂者留下的信物。", "house": true},
+    {"term": "罗盘", "gloss": "深流堂立堂者留下的信物。", "house": true},
+    {"term": "星盘", "gloss": "高风堂立堂者留下的信物。", "house": true},
+    {"term": "陶罐", "gloss": "沃土堂立堂者留下的信物。", "house": true}
+  ]
+}

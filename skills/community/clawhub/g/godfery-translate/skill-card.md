@@ -1,41 +1,54 @@
-## Description: <br>
-Translate text accurately while preserving formatting, handling plural and gender rules, and adapting tone and cultural context for the target locale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate text accurately while preserving formatting, handling plural and gender rules, and adapting tone and cultural context for the target locale.
 
-## Publisher: <br>
-[godferylindsay](https://clawhub.ai/user/godferylindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-External users, developers, and content teams use this skill to translate text while keeping code blocks, placeholders, markdown, structured data, terminology, tone, and locale-specific conventions intact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Translations involving legal, medical, financial, confidential, or other high-stakes content may be inaccurate or inappropriate if accepted without review. <br>
-Mitigation: Have a qualified reviewer verify meaning, terminology, tone, and locale-specific formatting before use. <br>
-Risk: The README links to an external setup guide outside the bundled artifact. <br>
-Mitigation: Verify the destination and trustworthiness of the external setup-guide link before following any instructions. <br>
+## Use Case:
 
+External users and content teams use this skill to translate user-facing, business, technical, or structured text while preserving formatting and adapting wording to the target locale.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/godferylindsay/godfery-translate) <br>
-- [Complete setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and translated text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves code blocks, placeholders, markup, JSON/XML structure, terminology, tone, and locale conventions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: Translated legal, business, or user-facing text may be misleading if locale, formality, unit conversion, or currency/date formatting expectations are unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the user to specify target language, locale, desired formality, and whether units, currency, and date formats should be converted.
+
+Risk: Formatting-sensitive content can be damaged if code blocks, placeholders, markup, or structured keys are translated.
+
+Mitigation: Preserve code, placeholders, markup, URLs, identifiers, and structured keys exactly unless the user explicitly asks to change them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/godferylindsay/skills/godfery-translate)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text translation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves code blocks, placeholders, markup, and structured formats where the user asks for translation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn77ja0kg4zej4hkdqr3g9qs1980576b",
-  "slug": "agent-brain",
-  "version": "1.0.10",
-  "publishedAt": 1771358695972
+  "name": "agent-brain",
+  "description": "Local-first persistent memory for AI agents with SQLite storage, hybrid retrieval, orchestrated message loop, conflict checks, corrections, and optional SuperMemory mirroring.",
+  "homepage": "https://github.com/alexdobri/agent-brain",
+  "metadata": {
+    "openclaw": {
+      "emoji": "🧠",
+      "disable-model-invocation": false,
+      "user-invocable": true
+    },
+    "env": {
+      "AGENT_BRAIN_SUPERMEMORY_SYNC": "auto",
+      "AGENT_BRAIN_PII_MODE": "strict"
+    }
+  }
 }

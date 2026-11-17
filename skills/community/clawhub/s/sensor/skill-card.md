@@ -1,41 +1,54 @@
-## Description: <br>
-Sensor is a terminal utility for locally logging, reviewing, searching, and exporting sensor-related notes and activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record, search, summarize, and export local IoT sensor-related entries from a terminal.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, operators, and field users can use Sensor to record sensor readings, device status notes, telemetry observations, and local activity history. It should be treated as a local note logger rather than a real sensor polling, conversion, connectivity, or analysis system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is described as sensor management, but security evidence says it behaves as a local free-form logger with command conflicts, so documented actions may not perform real polling, conversion, connectivity checks, or analysis. <br>
-Mitigation: Use it only for local sensor-note logging, and verify command behavior plus export or status output before relying on results. <br>
-Risk: User-provided notes are persisted locally under ~/.local/share/sensor/. <br>
-Mitigation: Avoid entering secrets, credentials, private network details, or sensitive infrastructure information unless persistent local storage in that directory is acceptable. <br>
+## Use Case:
 
+Developers, field operators, and support teams can use this skill to keep local timestamped notes about sensor readings, device status, telemetry observations, configurations, reports, and exports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ckchzh/sensor) <br>
-- [Publisher Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Terminal text with local log and export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local data under ~/.local/share/sensor/ unless the runtime environment changes the data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Users may mistake the skill for real IoT polling, connectivity checking, conversion, or telemetry analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as a local sensor note logger and verify device state, conversions, and analysis with dedicated IoT tooling before relying on results.
+
+Risk: Sensor notes, hostnames, credentials, or incident details entered into commands may be persisted in durable local files.
+
+Mitigation: Avoid entering secrets or sensitive operational details unless local persistence under the configured data directory is acceptable.
+
+## Reference(s):
+
+- [Sensor ClawHub skill page](https://clawhub.ai/ckchzh/skills/sensor)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown guidance with shell command examples; the installed script also writes local JSON, CSV, and text exports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are local terminal responses and files under the configured sensor data directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

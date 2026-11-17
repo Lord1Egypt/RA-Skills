@@ -1,41 +1,54 @@
-## Description: <br>
-Pull upcoming calendar events, generate agendas, prepare briefing docs, surface relevant context. Never walk into a meeting unprepared. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates meeting briefs from upcoming calendar events and agent-accessible context, including agendas, relevant background, prep checklists, time budgets, and follow-up items.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Employees and external users ask their agent to prepare concise meeting briefs from accessible calendar events and related workspace context. The skill helps generate agendas, surface relevant notes, list preparation items, and track follow-ups before meetings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting briefs may include sensitive calendar, attendee, email, note, or document context available to the agent. <br>
-Mitigation: Specify the exact event and allowed sources, exclude email or documents when unnecessary, and review the generated brief before sharing it. <br>
-Risk: Locally stored meeting briefs may retain sensitive information after preparation. <br>
-Mitigation: Delete or secure locally stored outputs that should not be retained. <br>
+## Use Case:
 
+Employees and professionals use this skill to prepare for meetings by turning calendar events and related agent-accessible notes, emails, and documents into concise briefing material. It helps surface context, propose agendas, identify prep tasks, and track follow-up items before or after a meeting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TheShadowRose/meeting-prep-sr) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown meeting brief with agenda, context notes, and prep checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses calendar events and optional local workspace context already available to the agent platform; no separate OAuth setup or credentials are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad meeting-prep requests may cause the agent to pull unrelated calendar, email, note, or document context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the exact meeting and source boundaries before invoking the skill, and avoid open-ended requests that grant wider context than needed.
+
+Risk: Generated meeting briefs may include incomplete or stale context from the accessible materials.
+
+Mitigation: Review the brief against the source event and key documents before relying on agenda items, prep tasks, or follow-up recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/meeting-prep-sr)
+- [ClawHub publisher profile](https://clawhub.ai/user/theshadowrose)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style meeting brief with agenda items, context bullets, prep checklist, and follow-up notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on the agent platform's existing authorized calendar and file-access context; no separate OAuth setup is described.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter; release created 2026-03-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

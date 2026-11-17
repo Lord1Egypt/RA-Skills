@@ -1,42 +1,60 @@
-## Description: <br>
-Parses WeChat public-account articles, extracts title, author, publication time, body text, and image links, and can optionally save extracted article data to files or a Feishu Bitable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses WeChat public account articles to extract title, author, publication time, body content, image links, and optional Feishu table exports.
 
-## Publisher: <br>
-[reknottycat](https://clawhub.ai/user/reknottycat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reknottycat](https://clawhub.ai/user/reknottycat)
 
-## Use Case: <br>
-Developers and agent users use this skill to extract readable content and metadata from WeChat article URLs for review, summarization, archival, or optional Feishu Bitable collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional Feishu saver can automatically change the target table schema. <br>
-Mitigation: Review the saver script before use and run it against a dedicated low-privilege Feishu app and test table first. <br>
-Risk: The optional Feishu saver can delete blank rows from the configured table. <br>
-Mitigation: Back up important table data and disable or manually approve blank-row deletion before using it on production tables. <br>
+## Use Case:
 
+External users and developers use this skill to parse WeChat article URLs, inspect extracted article metadata and text, and optionally save the results as local files or Feishu Bitable records.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/reknottycat/wechat-article-parser-local) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
-- [Feishu Bitable create record API](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/bitable-v1/app-table-record/create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, API calls, shell commands, configuration] <br>
-**Output Format:** [Console text and optional JSON files; Feishu saver writes records through the Feishu Bitable API.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Article output may include title, author, publish time, extracted body text, word count, image count, image URLs, source URL, and parse timestamp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The Feishu save path can fetch arbitrary URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or internal URLs and review the URL before running the save command.
+
+Risk: Saving to Feishu uploads article title, URL, summary, body content, source, and timestamp to an external table.
+
+Mitigation: Use a dedicated Feishu table with least-privilege app credentials and treat saved article content as externally shared data.
+
+Risk: The Feishu integration can create fields and delete blank rows in the configured table.
+
+Mitigation: Consider removing or disabling automatic field creation and blank-row deletion before using the skill on important tables.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/reknottycat/skills/wechat-article-parser-local)
+- [Publisher profile](https://clawhub.ai/user/reknottycat)
+- [Feishu Open Platform](https://open.feishu.cn)
+- [Feishu Bitable record creation API](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/bitable-v1/app-table-record/create)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Console text, Markdown guidance, JSON article records, and Feishu Bitable records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save parsed article data to local JSON/TXT files or upload title, URL, summary, body content, source, and timestamp to a configured Feishu table.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

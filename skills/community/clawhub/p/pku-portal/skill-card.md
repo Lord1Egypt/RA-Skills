@@ -1,40 +1,57 @@
-## Description: <br>
-Portal helps agents use the PKU campus information portal CLI for free-classroom lookup, academic calendar lookup, network-fee status checks, low-balance monitoring, and user-approved recharge flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Portal helps agents use the PKU campus portal CLI to query free classrooms and academic calendars, check network-fee status, recharge balances, and monitor low balances.
 
-## Publisher: <br>
-[wjsoj](https://clawhub.ai/user/wjsoj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjsoj](https://clawhub.ai/user/wjsoj)
 
-## Use Case: <br>
-External users and agents use this skill to query PKU campus portal information, inspect network-fee balance and sessions, monitor low balance, and prepare recharge commands with explicit user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use PKU ITS credentials and stored portal sessions. <br>
-Mitigation: Treat credentials and files under ~/.config/info/portal/ as sensitive, and clear stored sessions when they are no longer needed. <br>
-Risk: The skill can start a real network-fee recharge flow. <br>
-Mitigation: Require explicit user approval of the recharge amount and payment method before running any recharge command. <br>
+## Use Case:
 
+Developers and PKU campus users use this skill to operate the Portal CLI for classroom availability, academic calendar lookup, network-fee status, recharges, and low-balance monitoring. Netfee commands require the user's PKU network credentials and should be used only on trusted hosts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wjsoj/pku-portal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide commands that access PKU portal services, use stored credentials, or initiate user-approved network-fee recharge flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Netfee recharge commands can initiate payment flows and display payment QR codes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm recharge amounts and payment method before execution, and require user approval before scanning or completing payment.
+
+Risk: Netfee commands use PKU network credentials and persist session data under ~/.config/info/portal/ with keyring entries.
+
+Mitigation: Use the skill only on trusted hosts, avoid shared machines, and clear or protect stored portal session and keyring data after use.
+
+Risk: Calendar parsing is best-effort and may fail if the PKU simso Vue bundle structure changes.
+
+Mitigation: Treat calendar output as operational guidance, and verify important dates against the official campus calendar when accuracy is critical.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wjsoj/skills/pku-portal)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI command examples for querying campus data, checking balances, recharging network fees, and monitoring low balances.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

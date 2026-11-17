@@ -30,6 +30,8 @@ def _infer_service(action: str, service: Optional[str]) -> Optional[str]:
         "ListJobDefinitions",
     ]:
         return "emr"
+    if action == "GetMetricData":
+        return "cloudmonitor"
     if action == "CreateOrderInOneStep":
         return "las"
     return None
@@ -46,6 +48,8 @@ def _infer_version(action: str, version: Optional[str]) -> str:
         "ListJobDefinitions",
     ]:
         return "2024-06-13"
+    if action == "GetMetricData":
+        return "2018-01-01"
     if action == "CreateOrderInOneStep":
         return "2024-04-30"
     return "2024-03-25"

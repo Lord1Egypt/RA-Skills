@@ -1,44 +1,59 @@
-## Description: <br>
-Configure HTTP-to-HTTPS redirects on Alibaba Cloud ALB, including inspecting the current listener and rule setup, creating missing HTTP or HTTPS listeners, and adding a redirect rule that forces HTTP requests to HTTPS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures HTTP-to-HTTPS redirects on Alibaba Cloud ALB by inspecting listener and rule state, creating missing HTTP or HTTPS listeners, and adding redirect rules.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to inspect Alibaba Cloud ALB listeners, rules, certificates, and server groups, then configure HTTP-to-HTTPS redirects for an existing load balancer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ALB rule, listener, and server-group changes can reroute or block live service traffic. <br>
-Mitigation: Use least-privilege RAM permissions, verify every resource ID, inspect existing listener and rule state, and run dry-run modes before write operations. <br>
-Risk: Temporary or self-signed certificates can weaken production HTTPS handling if left attached. <br>
-Mitigation: Use self-signed certificates only for testing, capture the current certificate before replacement, restore it after testing, and delete temporary uploaded certificates. <br>
-Risk: Alibaba Cloud credentials are required for account-level changes. <br>
-Mitigation: Use a preconfigured CLI profile or environment credentials, check status with credential-safe commands, and avoid printing or collecting access keys in the agent session. <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to audit an Alibaba Cloud ALB configuration and enforce HTTPS by guiding listener, rule, certificate, and server group changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/alibabacloud-network-alb-http-to-https) <br>
-- [Aliyun CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [RAM Permissions](references/ram-policies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash command sequences and references to bundled shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Script outputs may include plain text, JSON when --json is used, dry-run results, or files written through --output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1-beta.2 (source: ClawHub release evidence) <br>
+Risk: Mutable remote installers and plugin updates can change what runs between executions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and control Aliyun CLI and plugin installation yourself; prefer verified, pinned CLI and plugin versions and avoid unverified latest downloads.
+
+Risk: TLS private key material may be handled by the certificate helper workflow.
+
+Mitigation: Do not use the bundled certificate helpers with production private keys unless the key-handling issues are fixed or otherwise mitigated.
+
+Risk: The workflow performs cloud read-write actions against ALB and Certificate Management Service resources.
+
+Mitigation: Use least-privilege RAM permissions and grant only the documented ALB and CAS actions needed for the run.
+
+## Reference(s):
+
+- [RAM Permissions](references/ram-policies.md)
+- [Aliyun CLI Installation Guide](references/cli-installation-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-network-alb-http-to-https)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single response stream; some workflows may create or update ALB listeners, rules, server groups, or uploaded certificates.]
+
+## Skill Version(s):
+
+0.0.1-beta.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

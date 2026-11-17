@@ -1,41 +1,54 @@
-## Description: <br>
-Coaches freelancers on improving Upwork and similar marketplace proposals, diagnosing weak bid funnels, refining pricing and scope, and deciding which jobs are worth bidding on. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coach freelancers on writing and improving Upwork-style proposals, diagnosing weak bid funnels, choosing worthwhile jobs, and planning pricing and client acquisition improvements.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-External freelancers and freelance teams use this skill to diagnose low proposal response rates, rewrite job-specific proposals, audit profile and job-selection issues, and plan pricing or pipeline improvements for Upwork-style marketplaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace-policy guidance, especially for moving clients off-platform or using paid marketplace features, can become outdated or differ by platform. <br>
-Mitigation: Verify current Upwork or other marketplace rules before acting on client migration, connects, paid features, or pricing guidance. <br>
-Risk: Proposal, pricing, and pipeline advice is business coaching and cannot guarantee interviews, hires, reviews, or income. <br>
-Mitigation: Use the recommendations as decision support, compare them with actual account metrics, and adjust based on current client responses and platform rules. <br>
+## Use Case:
 
+External freelancers use this skill to improve proposal quality, assess whether jobs are worth bidding on, tune pricing, and build a healthier freelance sales pipeline. It can produce proposal rewrites, profile audit advice, job filter recommendations, rate guidance, and a 30-day action plan.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/charlie-morrison/upwork-proposal-coach) <br>
-- [Publisher profile](https://clawhub.ai/user/charlie-morrison) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured coaching sections and paste-ready proposal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pipeline diagnosis, profile audit notes, rewritten proposals, job-filter recommendations, rate guidance, a 30-day plan, and off-platform path guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate on broad freelancing or pricing phrases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants freelance proposal coaching before applying platform-specific advice.
+
+Risk: Platform policy, ranking, or off-platform client guidance may become outdated or incomplete.
+
+Mitigation: Independently verify current marketplace policies and terms before acting on platform or off-platform migration advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/upwork-proposal-coach)
+- [Publisher profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown coaching response with proposal rewrites, diagnostics, checklists, and action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include paste-ready proposal copy, rate guidance, job filters, and off-platform client acquisition advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

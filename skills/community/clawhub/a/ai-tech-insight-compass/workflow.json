@@ -1,0 +1,115 @@
+{
+  "name": "ai-tech-insight-compass",
+  "version": "1.0.0",
+  "displayName": "AI科技洞察罗盘",
+  "description": "每日自动采集AI前沿动态、GitHub热门项目，生成3000-5000字技术深度文章并发布",
+  "category": "AI",
+  "triggers": ["AI资讯", "科技洞察", "技术日报", "每日科技", "科技趋势"],
+  "skills": [
+    {
+      "name": "brave-search",
+      "path": "skills/brave-search",
+      "role": "信息采集",
+      "input": "技术关键词（由用户指定或默认当月AI热点）",
+      "output": "搜索结果摘要 + 页面内容"
+    },
+    {
+      "name": "github",
+      "path": "skills/github",
+      "role": "趋势验证",
+      "input": "技术方向关键词",
+      "output": "GitHub Trending仓库列表、star数、相关技术栈"
+    },
+    {
+      "name": "summarize",
+      "path": "skills/summarize",
+      "role": "洞察提炼",
+      "input": "搜索结果 + GitHub数据",
+      "output": "结构化技术洞察：核心突破、原理、代码、趋势"
+    },
+    {
+      "name": "tech-article-pro",
+      "path": "skills/tech-article-pro",
+      "role": "内容生成",
+      "input": "结构化技术洞察",
+      "output": "3000-5000字技术深度文章"
+    }
+  ],
+  "workflow": {
+    "name": "AI Tech Insight Daily Workflow",
+    "stages": [
+      {
+        "id": 1,
+        "name": "信息采集",
+        "skill": "brave-search",
+        "duration": "5-8分钟",
+        "tasks": [
+          "搜索AI大模型最新进展",
+          "搜索具体技术方向论文",
+          "搜索arXiv最新AI论文"
+        ]
+      },
+      {
+        "id": 2,
+        "name": "趋势验证",
+        "skill": "github",
+        "duration": "3-5分钟",
+        "tasks": [
+          "查询GitHub Trending AI仓库",
+          "获取仓库star数和描述",
+          "验证技术趋势真实性"
+        ]
+      },
+      {
+        "id": 3,
+        "name": "洞察提炼",
+        "skill": "summarize",
+        "duration": "3-5分钟",
+        "tasks": [
+          "聚合多源信息",
+          "提炼核心技术突破点",
+          "识别关键技术标签"
+        ]
+      },
+      {
+        "id": 4,
+        "name": "文章生成",
+        "skill": "tech-article-pro",
+        "duration": "15-20分钟",
+        "tasks": [
+          "选取最值得深入的技术角度",
+          "撰写技术原理分析",
+          "编写≥4处代码示例",
+          "输出技术趋势判断"
+        ]
+      },
+      {
+        "id": 5,
+        "name": "发布归档",
+        "skill": "local",
+        "duration": "2-3分钟",
+        "tasks": [
+          "保存到 /root/articles/{date}/tech-insight-daily.md",
+          "POST到公众号API（可选）",
+          "创建飞书文档归档（可选）"
+        ]
+      }
+    ]
+  },
+  "output": {
+    "article": {
+      "format": "markdown",
+      "wordCount": "3000-5000字",
+      "codeExamples": "≥4处，每处≥10行",
+      "techTags": "≥5个精确技术标签",
+      "techRatio": "≥70%"
+    },
+    "files": [
+      "/root/articles/{date}/tech-insight-daily.md"
+    ]
+  },
+  "dependencies": {
+    "required": ["brave-search", "github", "tech-article-pro"],
+    "optional": ["summarize"]
+  }
+}

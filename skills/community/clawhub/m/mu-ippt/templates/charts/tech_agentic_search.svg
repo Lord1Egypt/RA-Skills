@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    Agentic Search 架构模板
+    流程：Query → Planner → [Search/Calc/Code] → Synthesizer
+    占位符说明：
+      {{BG_COLOR}} {{TEXT_COLOR}} {{TITLE_COLOR}} {{SUBTITLE_COLOR}}
+      {{ACCENT_COLOR}} {{ACCENT2_COLOR}} {{ACCENT3_COLOR}} {{BORDER_COLOR}}
+      {{NODE_FILL}} {{NODE_STROKE}} {{ARROW_COLOR}} {{FONT_FAMILY}}
+
+    语义形状：Agent/编排器=六边形，工具/函数=带⚙的矩形，
+    LLM=双边框圆角矩形⚡，用户=圆形+身体路径，决策=菱形
+    LLM 生成时参考此结构，自由增减工具节点。
+  -->
+
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ARROW_COLOR}}"/>
+    </marker>
+    <marker id="arrow-feedback" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ACCENT3_COLOR}}"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="450" y="38" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="20" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- ====== 用户输入 ====== -->
+  <circle cx="65" cy="200" r="18" fill="{{ACCENT_COLOR}}" fill-opacity="0.15"
+          stroke="{{ACCENT_COLOR}}" stroke-width="2"/>
+  <circle cx="65" cy="193" r="6" fill="none" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <path d="M 53 209 Q 65 220 77 209" fill="none" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="65" y="235" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">{{USER_LABEL}}</text>
+
+  <!-- User → Planner -->
+  <line x1="85" y1="200" x2="138" y2="200" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="112" y="193" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT_COLOR}}">{{QUERY_LABEL}}</text>
+
+  <!-- ====== Planner（六边形 = Agent/编排器） ====== -->
+  <polygon points="210,165 270,165 295,200 270,235 210,235 185,200"
+           fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="240" y="195" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TEXT_COLOR}}">{{PLANNER}}</text>
+  <text x="240" y="212" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{PLANNER_DESC}}</text>
+
+  <!-- ====== 决策节点（菱形） ====== -->
+  <polygon points="370,200 410,175 450,200 410,225"
+           fill="{{ACCENT2_COLOR}}" fill-opacity="0.15" stroke="{{ACCENT2_COLOR}}" stroke-width="2"/>
+  <text x="410" y="204" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{TEXT_COLOR}}">{{DECISION}}</text>
+
+  <!-- Planner → Decision -->
+  <line x1="295" y1="200" x2="368" y2="200" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="332" y="193" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="8" fill="{{ACCENT_COLOR}}">plan</text>
+
+  <!-- ====== 工具区域框 ====== -->
+  <rect x="470" y="65" width="230" height="310" rx="10"
+        fill="{{ACCENT3_COLOR}}" fill-opacity="0.05" stroke="{{BORDER_COLOR}}" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="585" y="85" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{ACCENT3_COLOR}}">{{TOOLS_ZONE}}</text>
+
+  <!-- Tool 1: Search（⚙ 矩形） -->
+  <rect x="495" y="95" width="180" height="48" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="585" y="116" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">⚙ {{TOOL_1}}</text>
+  <text x="585" y="133" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{TOOL_1_DESC}}</text>
+
+  <!-- Tool 2: Calculator（⚙ 矩形） -->
+  <rect x="495" y="160" width="180" height="48" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="585" y="181" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">⚙ {{TOOL_2}}</text>
+  <text x="585" y="198" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{TOOL_2_DESC}}</text>
+
+  <!-- Tool 3: Code Interpreter（⚙ 矩形） -->
+  <rect x="495" y="225" width="180" height="48" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="585" y="246" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">⚙ {{TOOL_3}}</text>
+  <text x="585" y="263" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{TOOL_3_DESC}}</text>
+
+  <!-- Tool 4: 额外工具槽 -->
+  <rect x="495" y="290" width="180" height="48" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{BORDER_COLOR}}" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="585" y="318" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{SUBTITLE_COLOR}}">⚙ {{TOOL_4}}</text>
+
+  <!-- Decision → Tools（分支箭头） -->
+  <line x1="450" y1="188" x2="493" y2="119" stroke="{{ARROW_COLOR}}" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="450" y1="200" x2="493" y2="184" stroke="{{ARROW_COLOR}}" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="450" y1="212" x2="493" y2="249" stroke="{{ARROW_COLOR}}" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ====== 反馈循环（工具 → Planner，曲线箭头） ====== -->
+  <path d="M 495 330 Q 400 380 295 215" fill="none"
+        stroke="{{ACCENT3_COLOR}}" stroke-width="1.5" marker-end="url(#arrow-feedback)"/>
+  <text x="380" y="340" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{ACCENT3_COLOR}}">{{FEEDBACK_LABEL}}</text>
+
+  <!-- ====== Synthesizer（双边框圆角矩形 = LLM ⚡） ====== -->
+  <rect x="730" y="165" width="140" height="70" rx="12"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="735" y="170" width="130" height="60" rx="9"
+        fill="none" stroke="{{ACCENT_COLOR}}" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="800" y="195" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TEXT_COLOR}}">⚡ {{SYNTHESIZER}}</text>
+  <text x="800" y="215" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{SYNTHESIZER_DESC}}</text>
+
+  <!-- Tools → Synthesizer -->
+  <line x1="675" y1="119" x2="728" y2="185" stroke="{{ARROW_COLOR}}" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="675" y1="184" x2="728" y2="195" stroke="{{ARROW_COLOR}}" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="675" y1="249" x2="728" y2="210" stroke="{{ARROW_COLOR}}" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Synthesizer → Response -->
+  <rect x="755" y="280" width="120" height="40" rx="20"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.15" stroke="{{ACCENT_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="815" y="305" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{RESPONSE}}</text>
+  <line x1="800" y1="235" x2="810" y2="278" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ====== 图例 ====== -->
+  <rect x="20" y="400" width="350" height="85" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="35" y="418" font-family="{{FONT_FAMILY}}"
+        font-size="10" font-weight="bold" fill="{{TITLE_COLOR}}">图例 Legend</text>
+
+  <!-- Agent 六边形 -->
+  <polygon points="35,432 50,432 57,438 50,444 35,444 28,438"
+           fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="68" y="442" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">Agent/编排器</text>
+
+  <!-- 工具矩形 -->
+  <rect x="140" y="430" width="22" height="14" rx="3"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="1"/>
+  <text x="170" y="442" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">⚙ 工具/函数</text>
+
+  <!-- LLM -->
+  <rect x="248" y="430" width="22" height="14" rx="5"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <rect x="250" y="432" width="18" height="10" rx="4" fill="none"
+        stroke="{{ACCENT_COLOR}}" stroke-width="0.5"/>
+  <text x="278" y="442" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">⚡ LLM</text>
+
+  <!-- 主数据流 -->
+  <line x1="28" y1="464" x2="58" y2="464" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="68" y="468" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">主数据流</text>
+
+  <!-- 反馈循环 -->
+  <path d="M 148 464 Q 158 458 168 464" fill="none"
+        stroke="{{ACCENT3_COLOR}}" stroke-width="1.5" marker-end="url(#arrow-feedback)"/>
+  <text x="178" y="468" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">反馈/迭代</text>
+
+  <!-- 决策 -->
+  <polygon points="268,464 278,458 288,464 278,470"
+           fill="{{ACCENT2_COLOR}}" fill-opacity="0.3" stroke="{{ACCENT2_COLOR}}" stroke-width="1"/>
+  <text x="298" y="468" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">决策路由</text>
+</svg>

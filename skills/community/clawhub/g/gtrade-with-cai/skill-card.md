@@ -1,44 +1,60 @@
-## Description: <br>
-Trade gTrade perpetuals via CAI using market lookup, preflight checks, trade placement, order status, and hosted enrollment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade gTrade perps via CAI using defi_markets, defi_preflight, defi_trade, defi_order_status, and hosted /act enrollment; requires platform or full API scope.
 
-## Publisher: <br>
-[bernardtai](https://clawhub.ai/user/bernardtai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bernardtai](https://clawhub.ai/user/bernardtai)
 
-## Use Case: <br>
-Developers and trading operators use this skill to guide an agent through CAI enrollment, gTrade market discovery, preflight validation, live trade placement, order status checks, and close flows on supported chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to place or close live leveraged crypto-perpetual trades. <br>
-Mitigation: Require explicit user confirmation for every live trade or close action and enforce predefined notional and leverage limits. <br>
-Risk: A CAI API key with platform or full scope can grant meaningful trading authority. <br>
-Mitigation: Store CAI_API_KEY only in the agent secret store, use the narrowest available scope, and avoid exposing the secret in prompts or logs. <br>
-Risk: Hosted CAI enrollment can enable automated trading for the user. <br>
-Mitigation: Have the user complete enrollment directly and never confirm enrollment on the user's behalf. <br>
+## Use Case:
 
+External users and agents use this skill to prepare, place, monitor, and close gTrade perpetual positions through CAI after platform enablement and hosted enrollment.
 
-## Reference(s): <br>
-- [CAI Skill Reference](https://cai.com/skill.md) <br>
-- [CAI Tools Manifest](https://cai.com/specs/cai-tools.manifest.json) <br>
-- [CAI Developers](https://cai.com/developers.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and API/action parameter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CAI_API_KEY with platform or full scope; live trade and close actions should require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.17 (source: SKILL.md metadata and server release evidence) <br>
+Risk: The skill can place or close leveraged gTrade perpetual positions using live custodial funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation for each order or close action and verify preflight and order details before calling defi_trade.
+
+Risk: Broad CAI API scopes increase the impact of misuse or credential exposure.
+
+Mitigation: Use the narrowest CAI API scope available, store CAI_API_KEY in secrets, and revoke or disable platform automation when it is no longer needed.
+
+Risk: Enrollment or readiness gaps can block live trading or create incorrect assumptions about automation status.
+
+Mitigation: Check platform_readiness and require the user to complete hosted /act enrollment before trading; do not confirm enrollment on the user's behalf.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bernardtai/skills/gtrade-with-cai)
+- [CAI canonical skill reference](https://cai.com/skill.md)
+- [CAI tools manifest](https://cai.com/specs/cai-tools.manifest.json)
+- [CAI developers](https://cai.com/developers.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline JSON and bash snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.17 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

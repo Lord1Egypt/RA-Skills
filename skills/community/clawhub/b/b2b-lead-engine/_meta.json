@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7fjn6m2r70wr8hrm0zy2fs6s84ghek",
-  "slug": "b2b-lead-engine",
+  "id": 378623320146011,
   "version": "1.0.0",
-  "publishedAt": 1775724147415
+  "name": "b2b-lead-engine",
+  "updated_at": 1773991849534,
+  "platform": "minimax"
 }

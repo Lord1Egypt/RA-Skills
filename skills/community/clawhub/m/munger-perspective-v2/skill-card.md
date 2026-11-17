@@ -1,45 +1,60 @@
-## Description: <br>
-A Chinese-language Munger-inspired reasoning persona that helps users examine investment, business, and decision questions through mental models such as inversion, circle of competence, incentive analysis, and cognitive-bias checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language reasoning persona that applies Charlie Munger-inspired mental models to investment decisions, cognitive-bias checks, inversion, and cross-disciplinary analysis.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users and employees can use this skill as a Chinese-language thinking partner for investment decision review, cognitive-bias checks, cross-disciplinary analysis, inversion exercises, and identifying incentive or Lollapalooza-style risk patterns. It is a public-material-based simulation of a viewpoint and should not be treated as Charlie Munger's own advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-trust the persona as Charlie Munger's actual view or as professional investment advice. <br>
-Mitigation: Make clear that outputs are a simulation based on public material and verify high-stakes investment or business decisions against current facts and qualified professional advice. <br>
-Risk: The skill may provide outdated or overconfident judgments for fast-moving domains such as technology, AI, crypto, or policy-sensitive markets. <br>
-Mitigation: Treat these areas as outside or near the edge of the persona's reliable scope and require current evidence before acting. <br>
+## Use Case:
 
+External users can invoke this skill for Munger-inspired perspective taking, investment decision review, cognitive-bias checks, inversion exercises, and cross-disciplinary reasoning. Outputs should be treated as educational perspective, not personal financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/munger-perspective-v2) <br>
-- [Primary skill artifact](artifact/SKILL.md) <br>
-- [Full skill artifact](artifact/SKILL-full.md) <br>
-- [Classic works matrix](artifact/CLASSIC_WORKS.md) <br>
-- [Connection matrix](artifact/CONNECTIONS.md) <br>
-- [Verification tests](artifact/VERIFICATION_TESTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language Markdown responses in a roleplay advisory style] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no code execution, network access, credential handling, file access, or privileged actions requested by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server-resolved release evidence) <br>
+Risk: Investment-oriented outputs may be mistaken for personal financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational perspective and require independent review by qualified financial professionals before acting.
+
+Risk: The skill can speak as Charlie Munger in first person and may provide only limited ongoing disclosure that it is a role-play persona.
+
+Mitigation: Disclose the persona framing at activation and explicitly exit the role when neutral assistance is needed.
+
+Risk: The persona may be blunt or low-empathy in situations that require emotional sensitivity.
+
+Mitigation: Avoid using the skill for sensitive interpersonal, medical, legal, or crisis-support conversations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/munger-perspective-v2)
+- [CLASSIC_WORKS.md](artifact/CLASSIC_WORKS.md)
+- [CONNECTIONS.md](artifact/CONNECTIONS.md)
+- [VERIFICATION_TESTS.md](artifact/VERIFICATION_TESTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language persona responses may continue in character until the user exits the role.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

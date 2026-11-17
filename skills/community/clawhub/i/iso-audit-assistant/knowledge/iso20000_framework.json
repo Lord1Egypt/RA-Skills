@@ -1,0 +1,353 @@
+{
+  "standard": "ISO 20000-1:2018",
+  "title": "Information technology — Service management — Part 1: Service management system requirements",
+  "chinese_title": "信息技术 — 服务管理 — 第1部分：服务管理体系要求",
+  "clauses": [
+    {
+      "clause": "4",
+      "title": "Context of the organization",
+      "chinese_title": "组织环境",
+      "requirements": [
+        "4.1 Understanding the organization and its context",
+        "4.2 Understanding the needs and expectations of interested parties",
+        "4.3 Determining the scope of the service management system",
+        "4.4 Service management system"
+      ]
+    },
+    {
+      "clause": "5",
+      "title": "Leadership",
+      "chinese_title": "领导作用",
+      "requirements": [
+        "5.1 Leadership and commitment",
+        "5.2 Policy",
+        "5.3 Organizational roles, responsibilities and authorities"
+      ]
+    },
+    {
+      "clause": "6",
+      "title": "Planning",
+      "chinese_title": "策划",
+      "requirements": [
+        "6.1 Actions to address risks and opportunities",
+        "6.2 Service management objectives and planning to achieve them"
+      ]
+    },
+    {
+      "clause": "7",
+      "title": "Support",
+      "chinese_title": "支持",
+      "requirements": [
+        "7.1 Resources",
+        "7.2 Competence",
+        "7.3 Awareness",
+        "7.4 Communication",
+        "7.5 Documented information"
+      ]
+    },
+    {
+      "clause": "8",
+      "title": "Operation",
+      "chinese_title": "运行",
+      "subclauses": [
+        {
+          "clause": "8.1",
+          "title": "Operational planning and control",
+          "chinese_title": "运行策划和控制"
+        },
+        {
+          "clause": "8.2",
+          "title": "Service portfolio",
+          "chinese_title": "服务组合",
+          "requirements": [
+            "8.2.1 Service portfolio management",
+            "8.2.2 Service catalogue management",
+            "8.2.3 Service lifecycle related party management"
+          ]
+        },
+        {
+          "clause": "8.3",
+          "title": "Relationship and agreement",
+          "chinese_title": "关系与协议",
+          "requirements": [
+            "8.3.1 Business relationship management",
+            "8.3.2 Service level management",
+            "8.3.3 Supplier management"
+          ]
+        },
+        {
+          "clause": "8.4",
+          "title": "Resolution and fulfillment",
+          "chinese_title": "解决与交付",
+          "requirements": [
+            "8.4.1 Incident and service request management",
+            "8.4.2 Problem management",
+            "8.4.3 Request fulfillment"
+          ]
+        },
+        {
+          "clause": "8.5",
+          "title": "Service assurance",
+          "chinese_title": "服务保证",
+          "requirements": [
+            "8.5.1 Service delivery management",
+            "8.5.2 Availability management",
+            "8.5.3 Service continuity management",
+            "8.5.4 Information security management"
+          ]
+        }
+      ]
+    },
+    {
+      "clause": "9",
+      "title": "Performance evaluation",
+      "chinese_title": "绩效评价",
+      "requirements": [
+        "9.1 Monitoring, measurement, analysis and evaluation",
+        "9.2 Internal audit",
+        "9.3 Management review",
+        "9.4 Service reporting"
+      ]
+    },
+    {
+      "clause": "10",
+      "title": "Improvement",
+      "chinese_title": "改进",
+      "requirements": [
+        "10.1 Nonconformity and corrective action",
+        "10.2 Continual improvement"
+      ]
+    }
+  ],
+  "high_voltage_lines": [
+    {
+      "name": "Change grading & timing",
+      "chinese_name": "变更分级与时效",
+      "description": "Check if 'general change' vs 'major change' is distinguished; major changes must execute during 00:00-06:00 window.",
+      "chinese_description": "检查是否区分'一般变更'与'重大变更'；重大变更必须在凌晨00:00-06:00窗口执行。",
+      "related_clauses": ["8.5.1", "8.2.3"]
+    },
+    {
+      "name": "Incident & fault handling",
+      "chinese_name": "事件与故障处理",
+      "description": "Define Incident = 'fault'; establish 1-3 level grading; implement 'restore service first, then find root cause' principle.",
+      "chinese_description": "将Incident定义为'故障'；建立1-3级分级标准；贯彻'先恢复业务，后查找根因'的原则。",
+      "related_clauses": ["8.4.1", "8.4.2"]
+    },
+    {
+      "name": "RACI responsibilities",
+      "chinese_name": "归口管理职责",
+      "description": "Clear segregation of system owner, service quality supervision, and procurement/comprehensive departments.",
+      "chinese_description": "明确体系归口部门、服务质量监督部门、采购/综合部门的三方分离。",
+      "related_clauses": ["5.3", "8.3.1", "8.3.3"]
+    },
+    {
+      "name": "Supplier risk management",
+      "chinese_name": "供应商风险管理",
+      "description": "Prohibit single supplier from fully responsible for single service/component.",
+      "chinese_description": "提出'禁止单一供应商全权负责单一服务/组件'的要求。",
+      "related_clauses": ["8.2.3", "8.3.3"]
+    }
+  ],
+  "required_procedures": [
+    {
+      "id": "ISO20000-IT-SM-001",
+      "name": "公司环境分析控制程序",
+      "chinese_name": "公司环境分析控制程序",
+      "clause": "4",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-002",
+      "name": "风险和机遇控制程序",
+      "chinese_name": "风险和机遇控制程序",
+      "clause": "6.1",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-003",
+      "name": "信息安全管理程序",
+      "chinese_name": "信息安全管理程序",
+      "clause": "8.5.4",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-004",
+      "name": "服务交付管理程序",
+      "chinese_name": "服务交付管理程序",
+      "clause": "8.5.1",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-005",
+      "name": "服务策划管理程序",
+      "chinese_name": "服务策划管理程序",
+      "clause": "8.1",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-006",
+      "name": "成文信息控制程序",
+      "chinese_name": "成文信息控制程序",
+      "clause": "7.5",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-007",
+      "name": "服务目录管理程序",
+      "chinese_name": "服务目录管理程序",
+      "clause": "8.2.2",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-008",
+      "name": "IT服务资产管理程序",
+      "chinese_name": "IT服务资产管理程序",
+      "clause": "8.5.1",
+      "priority": "medium"
+    },
+    {
+      "id": "ISO20000-IT-SM-009",
+      "name": "配置管理程序",
+      "chinese_name": "配置管理程序",
+      "clause": "8.5.1",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-010",
+      "name": "业务关系管理程序",
+      "chinese_name": "业务关系管理程序",
+      "clause": "8.3.1",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-011",
+      "name": "服务级别管理程序",
+      "chinese_name": "服务级别管理程序",
+      "clause": "8.3.2",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-012",
+      "name": "供应商管理控制程序",
+      "chinese_name": "供应商管理控制程序",
+      "clause": "8.3.3",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-013",
+      "name": "预算管理程序",
+      "chinese_name": "预算管理程序",
+      "clause": "7.1",
+      "priority": "medium"
+    },
+    {
+      "id": "ISO20000-IT-SM-014",
+      "name": "需求管理程序",
+      "chinese_name": "需求管理程序",
+      "clause": "8.2.1",
+      "priority": "medium"
+    },
+    {
+      "id": "ISO20000-IT-SM-015",
+      "name": "能力管理程序",
+      "chinese_name": "能力管理程序",
+      "clause": "8.5.1",
+      "priority": "medium"
+    },
+    {
+      "id": "ISO20000-IT-SM-016",
+      "name": "变更管理程序",
+      "chinese_name": "变更管理程序",
+      "clause": "8.5.1",
+      "priority": "high",
+      "high_voltage_check": "change_grading"
+    },
+    {
+      "id": "ISO20000-IT-SM-017",
+      "name": "服务设计构建与转换管理程序",
+      "chinese_name": "服务设计构建与转换管理程序",
+      "clause": "8.2.1",
+      "priority": "medium"
+    },
+    {
+      "id": "ISO20000-IT-SM-018",
+      "name": "发布管理程序",
+      "chinese_name": "发布管理程序",
+      "clause": "8.5.1",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-019",
+      "name": "事件和服务请求管理程序",
+      "chinese_name": "事件和服务请求管理程序",
+      "clause": "8.4.1",
+      "priority": "high",
+      "high_voltage_check": "incident_handling"
+    },
+    {
+      "id": "ISO20000-IT-SM-020",
+      "name": "问题管理程序",
+      "chinese_name": "问题管理程序",
+      "clause": "8.4.2",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-021",
+      "name": "可用性管理程序",
+      "chinese_name": "可用性管理程序",
+      "clause": "8.5.2",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-022",
+      "name": "连续性管理程序",
+      "chinese_name": "连续性管理程序",
+      "clause": "8.5.3",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-023",
+      "name": "人力资源控制程序",
+      "chinese_name": "人力资源控制程序",
+      "clause": "7.2",
+      "priority": "medium"
+    },
+    {
+      "id": "ISO20000-IT-SM-024",
+      "name": "内审管理控制程序",
+      "chinese_name": "内审管理控制程序",
+      "clause": "9.2",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-025",
+      "name": "管理评审控制程序",
+      "chinese_name": "管理评审控制程序",
+      "clause": "9.3",
+      "priority": "high"
+    },
+    {
+      "id": "ISO20000-IT-SM-026",
+      "name": "服务报告管理程序",
+      "chinese_name": "服务报告管理程序",
+      "clause": "9.4",
+      "priority": "high",
+      "high_voltage_check": "sla_reporting"
+    },
+    {
+      "id": "ISO20000-IT-SM-027",
+      "name": "服务改进管理程序",
+      "chinese_name": "服务改进管理程序",
+      "clause": "10.2",
+      "priority": "medium"
+    },
+    {
+      "id": "ISO20000-IT-SM-028",
+      "name": "纠正措施管理程序",
+      "chinese_name": "纠正措施管理程序",
+      "clause": "10.1",
+      "priority": "high"
+    }
+  ]
+}

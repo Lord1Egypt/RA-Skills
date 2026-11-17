@@ -1,43 +1,55 @@
-## Description: <br>
-Download PhotoPlus / 谱时图片直播 albums from a URL or activity ID; use to inspect metadata, filter date tabs, save JSON, or write caption/GPS metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download PhotoPlus live albums from a URL or activity ID, inspect metadata, filter date tabs, save JSON, and write caption or GPS metadata.
 
-## Publisher: <br>
-[helloene](https://clawhub.ai/user/helloene) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[helloene](https://clawhub.ai/user/helloene)
 
-## Use Case: <br>
-External users and developers use this skill to archive PhotoPlus live album images they are authorized to download, inspect album metadata, select date tabs, and save JSON or photo metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The wrapper can fetch and run mutable third-party code from the upstream downloader. <br>
-Mitigation: Use a pinned, reviewed local copy of the upstream downloader with --repo-dir when possible instead of fetching the live main branch. <br>
-Risk: The wrapper can install Python packages without pinning or verification when --install-deps is used. <br>
-Mitigation: Run --dry-run first and avoid --install-deps unless the execution environment permits package installation and the dependencies have been reviewed. <br>
-Risk: Album downloads may contain photos or metadata the user is not authorized to store. <br>
-Mitigation: Use the skill only for albums the user owns or has permission to archive, and inspect metadata or run a small --count test before large downloads. <br>
+## Use Case:
 
+External users and developers use this skill to download or inspect public PhotoPlus album contents when they have permission to store the photos. It helps agents prepare the wrapper command, choose metadata options, and report the output folder.
 
-## Reference(s): <br>
-- [Upstream Project Notes](references/upstream-project.md) <br>
-- [helloene/live-album-downloader](https://github.com/helloene/live-album-downloader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and file output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can download image files, write JSON sidecars, and write EXIF/IPTC metadata through the upstream PhotoPlus downloader.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can run mutable third-party downloader code and install unpinned Python packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a disposable or constrained environment, avoid --install-deps in shared Python environments, and prefer a vetted local checkout pinned to the documented commit or another trusted commit.
+
+Risk: The skill downloads album contents that may belong to another party.
+
+Mitigation: Confirm the user has permission to download and store the album contents before running the downloader.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/helloene/skills/photoplus-album-downloader)
+- [Upstream project homepage](https://github.com/helloene/live-album-downloader)
+- [Upstream project notes](artifact/references/upstream-project.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and output paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe generated local photo folders, JSON metadata sidecars, and EXIF/IPTC metadata options.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

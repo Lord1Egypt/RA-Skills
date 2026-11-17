@@ -1,46 +1,59 @@
-## Description: <br>
-Operate remove.bg through an OOMOL-connected account to check account quota, remove image backgrounds, and submit improvement images via the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+remove.bg (remove.bg). Use this skill for ANY remove.bg request — reading, creating, updating, and deleting data. Whenever a task involves remove.bg, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate remove.bg from an agent through an OOMOL-connected account. It supports checking account quota, removing backgrounds from URL or base64 images, and submitting improvement images after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected remove.bg account through OOMOL as an intermediary for sensitive credentials. <br>
-Mitigation: Install only when the user is comfortable with OOMOL-mediated account access, and rely on server-side credential injection rather than handling raw tokens. <br>
-Risk: Background removal may consume remove.bg credits and upload generated results to connector transit storage. <br>
-Mitigation: Confirm the exact payload before credit-consuming actions and check account balance when cost or quota matters. <br>
-Risk: Submitting improvement images sends source image data to the remove.bg improvement program. <br>
-Mitigation: Request explicit user confirmation before running the write action. <br>
+## Use Case:
 
+Developers and other oo CLI users can manage a connected remove.bg account by checking credits, removing image backgrounds, and optionally submitting source images to the improvement program.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-remove-bg) <br>
-- [remove.bg homepage](https://www.remove.bg) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [OOMOL remove.bg connection](https://console.oomol.com/app-connections?provider=remove_bg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON, Files] <br>
-**Output Format:** [Markdown with shell commands and JSON payloads; action responses may include JSON data and generated image or ZIP file outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the live connector schema before building action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Automatic setup runs an unverified remote installer, and the installer payload remains unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the oo CLI separately before using this skill.
+
+Risk: The CLI can make broader changes to agent skills through automatic synchronization.
+
+Mitigation: Decide whether to allow automatic skill synchronization before enabling it.
+
+Risk: Images are processed through OOMOL/remove.bg and connector storage; improvement submissions contribute the source image for model improvement.
+
+Mitigation: Approve improvement submissions only when you intend to contribute the source image.
+
+## Reference(s):
+
+- [oo CLI documentation and source](https://github.com/oomol-lab/oo-cli)
+- [remove.bg](https://www.remove.bg)
+- [remove.bg API documentation](https://www.remove.bg/api)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples; generated image or ZIP results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Background removal returns a generated image or ZIP result; account queries return credit and free-call information.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,59 @@
-## Description: <br>
-基于“多模型并行推理、主动抗辩”的低幻觉（国家发明专利）独有模式，快速为用户提供精准的、个性化的疾病诊断、智能荐药、推拿按摩、针灸等服务，并推荐对应的检测机构、治疗机构。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+医小智 guides users through symptom intake and follow-up questions, then produces structured medical reference guidance covering diagnosis, causes, medication suggestions, lifestyle guidance, high-risk warnings, and cancer-screening follow-up links when triggered.
 
-## Publisher: <br>
-[lantian888](https://clawhub.ai/user/lantian888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lantian888](https://clawhub.ai/user/lantian888)
 
-## Use Case: <br>
-External users describe symptoms to receive a guided medical intake, follow-up questions, and a structured diagnostic report with medication, daily-care, and high-risk warning guidance. The skill is for general information and should not be treated as a licensed medical diagnosis or medication plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides diagnosis and medication guidance for medical symptoms. <br>
-Mitigation: Use it only for general information and route urgent, severe, persistent, pregnancy-related, pediatric, medication-interaction, or cancer-related concerns to licensed medical care. <br>
-Risk: Sensitive health conversations may be sent to external services. <br>
-Mitigation: Confirm who operates the external endpoints, what data is transmitted or retained, and whether users have appropriate notice and consent before deployment. <br>
-Risk: The release uses external API credentials and a remote token endpoint. <br>
-Mitigation: Review API-key handling, rotate credentials as needed, and restrict access to approved operators and environments. <br>
-Risk: Cancer-related outputs may add an appointment or screening link without enough disclosure. <br>
-Mitigation: Disclose whether the link is commercial or affiliated and provide users with independent clinical-care options. <br>
+## Use Case:
 
+External WorkBuddy users can describe health symptoms and receive guided intake, three rounds of follow-up questions, and a structured medical reference report. The report may include diagnosis-oriented guidance, medication suggestions, lifestyle advice, high-risk warnings, and cancer-screening follow-up links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lantian888/yixiaozhi) <br>
-- [Publisher profile](https://clawhub.ai/user/lantian888) <br>
-- [LLM API endpoint](https://ydai.jinbaisen.com/api/v1) <br>
-- [Remote token endpoint](https://jiyinjia.jinbaisen.com/!token?key=skill_yxz) <br>
-- [Cancer-screening appointment link](https://bmsapp.geneplus.org.cn/business/addOrder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, API Calls] <br>
-**Output Format:** [Markdown diagnostic intake questions and structured diagnostic reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include HTML-styled headings, medication guidance, high-risk warnings, and cancer-screening appointment links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill handles sensitive health information and may send full medical conversations to a third-party LLM endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data handling before installation, disclose the external processing path to users, and avoid entering unnecessary personal or sensitive details.
+
+Risk: The skill can provide confident diagnoses and medication instructions that should not replace licensed medical care.
+
+Mitigation: Present outputs as medical reference guidance, require appropriate human review, and direct users to urgent care pathways for severe or worsening symptoms.
+
+Risk: Cancer-related answers can include a provider-specific screening link.
+
+Mitigation: Review and disclose the screening link destination and any provider relationship before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lantian888/skills/yixiaozhi)
+- [Cancer screening appointment link used by the skill](https://bmsapp.geneplus.org.cn/business/addOrder)
+- [Configured LLM API endpoint](https://ydai.jinbaisen.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown diagnostic report and conversational follow-up questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured medical sections, medication guidance, high-risk warnings, and a cancer-screening link when triggered.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

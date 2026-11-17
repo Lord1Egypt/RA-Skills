@@ -1,45 +1,68 @@
-## Description: <br>
-Use when auditing and remediating an OpenClaw Linux host with a nightly 23:00 security run. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when auditing and remediating an OpenClaw Linux host with a nightly 23:00 security run, covering firewall status, fail2ban bans, SSH hardening, listening ports, Docker allowlisting, disk usage, failed login attempts, automatic security package updates, VirusTotal browser-based checks, and cron installation.
 
-## Publisher: <br>
-[scorpion7slayer](https://clawhub.ai/user/scorpion7slayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scorpion7slayer](https://clawhub.ai/user/scorpion7slayer)
 
-## Use Case: <br>
-Developers and operators use this skill to audit and harden an OpenClaw Linux host, schedule nightly checks, and guide remediation for firewall, SSH, Docker, updates, disk, login, and VirusTotal review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent privileged system changes automatically. <br>
-Mitigation: Install it only on the intended OpenClaw Linux host, review or pin the npm package, inspect the configuration, and run an initial pass with auto-remediation disabled when possible. <br>
-Risk: SSH hardening can lock out administrators if key access, firewall rules, or the new SSH port are wrong. <br>
-Mitigation: Verify key-based access and recovery access before changing SSH settings, allow the target port in the firewall, and test the new login from a second terminal before removing legacy access. <br>
-Risk: Docker allowlist enforcement, unexpected-port blocking, disk cleanup, or service changes can disrupt running workloads. <br>
-Mitigation: Review expected ports, allowed containers, and cleanup settings before strict enforcement; treat Docker and disk cleanup controls as service-impacting. <br>
-Risk: VirusTotal file uploads may disclose samples outside the organization. <br>
-Mitigation: Prefer hash-based public report review and upload files only after explicit user approval. <br>
+## Use Case:
 
+Developers and operators use this skill to audit and remediate OpenClaw Linux hosts and to schedule repeatable nightly security checks at 23:00.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/scorpion7slayer/nxtsecure-openclaw) <br>
-- [OpenClaw Homepage](https://openclaw.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include privileged remediation commands, cron setup, and browser-assisted VirusTotal review steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: ClawHub release evidence) <br>
+Risk: Privileged remediation may alter firewall, SSH, package update, Docker, or disk cleanup behavior on the host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configuration and run in audit-only mode first; avoid root execution until the scripts and settings are trusted.
+
+Risk: SSH hardening can lock users out if key-based access on the new port is not confirmed before disabling legacy access.
+
+Mitigation: Confirm key-based SSH login from a second session before allowing SSH changes or removing temporary access.
+
+Risk: The nightly cron entry creates persistent scheduled execution and log output.
+
+Mitigation: Inspect the cron line and log path before enabling the 23:00 nightly run.
+
+Risk: Browser-based VirusTotal file review may disclose uploaded samples outside the organization.
+
+Mitigation: Use existing public reports first and upload files only after explicit user approval.
+
+Risk: Installing the npm CLI globally may pull an unexpected version.
+
+Mitigation: Pin and verify the npm CLI version before installation or execution.
+
+## Reference(s):
+
+- [OpenClaw homepage](https://openclaw.ai/)
+- [NxtSecure-openclaw ClawHub page](https://clawhub.ai/scorpion7slayer/skills/nxtsecure-openclaw)
+- [VirusTotal URL review](https://www.virustotal.com/gui/home/url)
+- [VirusTotal file review](https://www.virustotal.com/gui/home/upload)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include host audit findings, remediation steps, cron setup guidance, and VirusTotal browser review instructions.]
+
+## Skill Version(s):
+
+0.1.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

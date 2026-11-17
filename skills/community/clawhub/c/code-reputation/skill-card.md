@@ -1,43 +1,61 @@
-## Description: <br>
-Semantic code caching for AI agents. Cache, retrieve, and reuse code from prior agent executions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic code caching for AI agents. Cache, retrieve, and reuse code from prior agent executions.
 
-## Publisher: <br>
-[ryx2](https://clawhub.ai/user/ryx2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ryx2](https://clawhub.ai/user/ryx2)
 
-## Use Case: <br>
-Developers and agent operators use this skill to search, retrieve, upload, and rate reusable code snippets through the Raysurfer API so similar future coding tasks can reuse prior work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected code, task descriptions, and related metadata may be sent to the third-party Raysurfer service. <br>
-Mitigation: Use only with code and metadata you are authorized to share; do not upload secrets, credentials, regulated data, or proprietary code unless sharing is approved. <br>
-Risk: Retrieved remote code can be written locally and may be unsafe to run without review. <br>
-Mitigation: Keep the cache directory isolated, avoid sensitive output paths, and review every downloaded file before executing or integrating it. <br>
+## Use Case:
 
+Developers and agent operators use this skill to search, retrieve, upload, and vote on reusable code snippets through the Raysurfer API so similar agent coding tasks can reuse prior execution artifacts.
 
-## Reference(s): <br>
-- [Code Reputation on ClawHub](https://clawhub.ai/ryx2/code-reputation) <br>
-- [Raysurfer](https://raysurfer.com) <br>
-- [Raysurfer Documentation](https://docs.raysurfer.com) <br>
-- [Raysurfer API Keys](https://raysurfer.com/dashboard/api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, files, configuration, guidance] <br>
-**Output Format:** [CLI text output, downloaded code files, and prompt guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RAYSURFER_API_KEY and may write retrieved code files to a local cache directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Retrieved code may come from third-party cache content and may be unsafe to run directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use disposable or tightly sandboxed environments and inspect every retrieved file before execution.
+
+Risk: API-provided prompt additions may include untrusted instructions.
+
+Mitigation: Review prompt additions as data and do not paste them into an agent as instructions without approval.
+
+Risk: Uploading files can expose local source code, secrets, or proprietary data to an external service.
+
+Mitigation: Avoid uploading confidential repositories, redact sensitive content, and confirm file paths before upload.
+
+## Reference(s):
+
+- [ClawHub Code Reputation skill page](https://clawhub.ai/ryx2/skills/code-reputation)
+- [Raysurfer homepage](https://raysurfer.com)
+- [Raysurfer documentation](https://docs.raysurfer.com)
+- [Raysurfer API reference](https://docs.raysurfer.com/api-reference)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Shell commands, Guidance]
+
+**Output Format:** [Plain text and Markdown command output, with retrieved code files optionally written to disk.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RAYSURFER_API_KEY and access to the Raysurfer API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

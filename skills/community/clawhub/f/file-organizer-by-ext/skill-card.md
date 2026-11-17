@@ -1,40 +1,53 @@
-## Description: <br>
-Organizes files in a selected directory by moving them into folders named after their file extensions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes files into folders based on their extensions to help clean up a directory.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers and end users can use this skill to clean up local folders by grouping files into extension-named subfolders. It is suited for quick directory organization tasks such as sorting downloads or desktop files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill moves files immediately and can disrupt paths or workflows in the selected directory. <br>
-Mitigation: Run it first on a copy or non-critical folder and use it only on directories intended for reorganization. <br>
-Risk: Files without extensions are also moved into a generated no_ext folder. <br>
-Mitigation: Review the target directory before running the organizer so extensionless files are expected. <br>
+## Use Case:
 
+Developers and general users can use this skill to organize a selected local directory by moving files into extension-named folders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/file-organizer-by-ext) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local file-moving guidance and command-line usage for organizing directory contents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: The tool rearranges files in the directory where it is run and may disrupt existing organization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test it on a non-critical folder first and keep backups for files that cannot be lost.
+
+Risk: Running it in directories with important existing extension folders may create confusing or unwanted file moves.
+
+Mitigation: Avoid running it in important directories until the expected folder layout has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/skills/file-organizer-by-ext)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code]
+
+**Output Format:** [Markdown guidance with shell command examples and local Python behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local command-line guidance; the bundled tool moves files in place.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

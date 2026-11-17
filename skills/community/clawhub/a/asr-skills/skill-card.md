@@ -1,43 +1,55 @@
-## Description: <br>
-Provides local audio and video transcription with speaker diarization using FunASR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides local ASR transcription with speaker diarization using FunASR.
 
-## Publisher: <br>
-[lgwanai](https://clawhub.ai/user/lgwanai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgwanai](https://clawhub.ai/user/lgwanai)
 
-## Use Case: <br>
-Developers, creators, and operations teams use this skill to transcribe local audio or video files, generate timestamped subtitles or captions, and identify speakers while keeping media processing local. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First use may download third-party ASR models or dependencies. <br>
-Mitigation: Install only in environments where those downloads are acceptable, and verify or pin the ASR package and model sources before use on sensitive media. <br>
-Risk: Asynchronous transcription starts a background worker process. <br>
-Mitigation: Use async mode deliberately, monitor task status, and prefer synchronous execution when background processing is not desired. <br>
-Risk: Task history can retain local media filenames, paths, and output locations in .asr_skill/tasks.json. <br>
-Mitigation: Delete .asr_skill/tasks.json or manage that directory according to local data-retention requirements. <br>
+## Use Case:
 
+Developers, engineers, and media teams use this skill to transcribe audio or video files, identify speakers, and generate timestamped text, subtitle, JSON, or Markdown outputs with local processing.
 
-## Reference(s): <br>
-- [Output Format Specifications](references/output-formats.md) <br>
-- [ClawHub release page](https://clawhub.ai/lgwanai/asr-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, subtitle files, shell commands, guidance] <br>
-**Output Format:** [TXT, JSON, SRT, ASS/SSA, or Markdown transcription output with timestamps and speaker labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return task-status JSON for asynchronous transcription jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security review reports that the package is not self-contained and relies on a missing local asr_skill Python package resolved from a broad ancestor path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in an isolated environment where the asr_skill dependency is pinned, reviewed, and trusted before processing media.
+
+Risk: Asynchronous runs store task metadata in a weakly scoped persistent file, which may retain media paths and processing status.
+
+Mitigation: Avoid sensitive media until task-state storage and cleanup are tightened, and remove task metadata after use when appropriate.
+
+## Reference(s):
+
+- [Output Format Specifications](references/output-formats.md)
+- [ClawHub skill page](https://clawhub.ai/lgwanai/skills/asr-skills)
+- [Publisher profile](https://clawhub.ai/user/lgwanai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, JSON, SRT, ASS/SSA, Markdown, Python snippets, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include timestamps, speaker labels, confidence scores, word-level details, overlap markers, styled subtitle metadata, and task status JSON for asynchronous runs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

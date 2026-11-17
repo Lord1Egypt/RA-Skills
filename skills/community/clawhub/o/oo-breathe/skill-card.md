@@ -1,43 +1,57 @@
-## Description: <br>
-Breathe (breathehr.com). Use this skill for Breathe requests that search or read account, employee, department, and location data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Breathe (breathehr.com). Use this skill for ANY Breathe request — searching and reading data. Whenever a task involves Breathe, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Employees, operators, and agents use this skill to inspect Breathe HR data through the OOMOL `breathe` connector. It supports read-oriented account, employee, department, and location lookups while requiring schema inspection before building connector payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents a read-oriented workflow, but the connected account and connector may have broader authority than the listed read actions. <br>
-Mitigation: Review available Breathe actions and account permissions before installation, and use an account whose Breathe permissions match the intended agent tasks. <br>
-Risk: Future or newly available write, delete, or administrative actions could modify HR data if run without review. <br>
-Mitigation: Require explicit user confirmation for any write, delete, or administrative change, including the exact target, payload, and expected effect. <br>
+## Use Case:
 
+People using an OOMOL-connected Breathe account can ask an agent to retrieve account details, employee records, departments, and locations through Breathe read actions.
 
-## Reference(s): <br>
-- [Breathe homepage](https://www.breathehr.com/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-breathe) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke `oo connector schema` and `oo connector run` commands that return JSON from Breathe.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill metadata) <br>
+Risk: Setup can run unverified software with broader effects on the agent's installed skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the CLI separately before use. Use the documented OO_SKILLS_SYNC_DISABLED setting to prevent automatic skill synchronization when appropriate.
+
+Risk: The connected Breathe account can expose employee data to OOMOL.
+
+Mitigation: Connect only the intended Breathe account and consider OOMOL's access to employee data.
+
+## Reference(s):
+
+- [Breathe skill release](https://clawhub.ai/oomol/skills/oo-breathe)
+- [Breathe homepage](https://www.breathehr.com/)
+- [Breathe API documentation](https://developer.breathehr.com/)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Guidance]
+
+**Output Format:** [JSON data with natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Breathe account, employee, department, and location information.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

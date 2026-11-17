@@ -1,43 +1,54 @@
-## Description: <br>
-Mev is a command-line helper for recording, listing, searching, removing, and exporting MEV-related local entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze mev operations. Use when you need to understand mev mechanisms, evaluate protocol security, or reference on-chain concepts.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and blockchain or security practitioners can use this skill as a local note store for MEV-related entries, including status checks, adding entries, listing, searching, removing, exporting, statistics, and simple configuration. It should not be treated as an automated MEV analysis or protocol-security assessment tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises MEV and security analysis, but the security evidence describes it as a local data-management tool. <br>
-Mitigation: Use it for local note management only, and verify MEV or protocol-security conclusions with appropriate analysis tools and human review. <br>
-Risk: Entries may contain sensitive wallet, trading strategy, or incident-response details and are stored locally under ~/.mev unless MEV_DIR is changed. <br>
-Mitigation: Avoid storing secrets or sensitive operational details, set MEV_DIR deliberately, and protect or clear the data directory according to local policy. <br>
-Risk: The export command can copy stored entries into the current directory, and remove can delete local entries. <br>
-Mitigation: Review the target directory and stored data before export or removal, and keep backups when entries need to be retained. <br>
+## Use Case:
 
+Developers and blockchain practitioners can use this skill's CLI-style workflow to store, search, export, and inspect local notes related to MEV concepts. It should not be relied on for protocol-security decisions.
 
-## Reference(s): <br>
-- [Mev on ClawHub](https://clawhub.ai/bytesagain1/mev) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [CLI text output with JSONL or CSV export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores entries under MEV_DIR, defaulting to ~/.mev, and export can write mev-export.json or mev-export.csv in the current directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill claims MEV and protocol-security analysis capability, while the inspected implementation is a local entry manager.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review it as a note/config/export utility and do not rely on it for protocol-security decisions.
+
+Risk: The script can create local data under ~/.mev or MEV_DIR, delete entries, and export unescaped data.
+
+Mitigation: Run it only in a trusted workspace, review stored data before sharing exports, and confirm delete targets before using remove.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/mev)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local data, configuration, and export files under the configured MEV data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

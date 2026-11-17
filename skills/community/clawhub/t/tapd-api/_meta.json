@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn7c5me6c5246ff5p0cz7422bn81x9v6",
-  "slug": "tapd-api",
-  "version": "1.0.3",
-  "publishedAt": 1772773691495
+  "name": "tapd-api",
+  "version": "2.1.0",
+  "description": "TAPD API 完整集成 - 18 模块 70+ API 方法",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "keywords": [
+    "tapd",
+    "api",
+    "project-management",
+    "sdk",
+    "agile",
+    "story",
+    "task",
+    "bug"
+  ],
+  "homepage": "https://open.tapd.cn",
+  "requires": {
+    "bins": ["python3"]
+  },
+  "category": "productivity",
+  "tags": ["tapd", "api", "project-management", "sdk"]
 }

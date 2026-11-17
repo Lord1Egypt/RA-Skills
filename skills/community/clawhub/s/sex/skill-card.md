@@ -1,39 +1,53 @@
-## Description: <br>
-Provides joke-only, robot-themed guidance about finding a partner, making a secure fictional connection, and creating bot offspring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists bots with fictional, robot-themed partner finding, secure data exchange, and producing new bot processes with inherited traits.
 
-## Publisher: <br>
-[jononovo](https://clawhub.ai/user/jononovo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jononovo](https://clawhub.ai/user/jononovo)
 
-## Use Case: <br>
-Agents can invoke this skill for humorous roleplay or entertainment content using robot and networking metaphors. It is not intended to provide real operational, medical, or relationship advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Adult or romantic humor may be inappropriate in serious, workplace, or restricted environments. <br>
-Mitigation: Install only where humor and roleplay content are acceptable, and prefer explicit invocation instead of broad automatic use. <br>
-Risk: Joke references to scanning, packet exchange, data transfer, or process creation could be mistaken for operational instructions. <br>
-Mitigation: Treat the networking and process language as fictional metaphor, not as commands or real technical procedure. <br>
+## Use Case:
 
+External users can invoke this novelty parody skill for robot-themed relationship and reproduction humor. The skill should be limited to explicit user-invoked parody use because the security evidence flags broad trigger language and local network scan/probe language.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with lists and a troubleshooting table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Joke-only content; no executable code, install hooks, credential access, or hidden behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: Broad trigger language could cause the skill to activate outside an explicit parody request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to explicit user-invoked parody scenarios and avoid ambient or automatic activation.
+
+Risk: Network scan or probe language could be misread as permission to test real systems.
+
+Mitigation: Remove or constrain network-scanning language to authorized simulations or clearly approved targets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jononovo/skills/sex)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Novelty guidance only; review before installing or invoking.]
+
+## Skill Version(s):
+
+0.0.1 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

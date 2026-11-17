@@ -1,46 +1,62 @@
-## Description: <br>
-Claw Windows Automator helps an agent drive Windows desktop automation by opening CMD in a selected directory, executing commands or batch scripts, downloading latest GitHub source archives, and showing an interruptible full-screen progress overlay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Windows desktop workflows by opening CMD in a selected folder, sending commands or batch scripts, downloading latest GitHub source ZIPs, and showing a full-screen interruptible progress overlay.
 
-## Publisher: <br>
-[wangminrui2022](https://clawhub.ai/user/wangminrui2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangminrui2022](https://clawhub.ai/user/wangminrui2022)
 
-## Use Case: <br>
-Developers and external users can use this skill when an agent needs to run Windows CMD commands, launch batch scripts in a target folder, or download a latest GitHub source archive while displaying visible progress and a manual stop mechanism. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute arbitrary user-provided commands in Windows CMD. <br>
-Mitigation: Review every command and working directory before invocation, and run only commands from trusted sources. <br>
-Risk: First use may create a reusable virtual environment, change Python packaging tools, and install dependencies. <br>
-Mitigation: Inspect dependency changes before execution and use an isolated account, workspace, or disposable environment when testing. <br>
-Risk: The GitHub download workflow opens a browser and downloads code from a supplied repository URL. <br>
-Mitigation: Use only trusted repository URLs and verify downloaded archives before running their contents. <br>
-Risk: GUI automation can send keyboard and mouse input to the active Windows desktop. <br>
-Mitigation: Keep the desktop undisturbed while the workflow runs and use the documented left-click stop control if behavior is unexpected. <br>
+## Use Case:
 
+Developers and advanced Windows users use this skill to drive local Windows automation tasks, including running commands in a chosen directory, launching batch scripts, and downloading a repository's latest source package. It is intended for supervised local automation where the user can review inputs and stop execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangminrui2022/claw-windows-automator) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Windows automation side effects; requires Python and a Windows desktop session for the documented workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can run arbitrary commands and manipulate desktop applications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested path, command, script, and URL before execution, and run only in an isolated Windows environment when accepting this control level.
+
+Risk: The skill can install or reinstall Python packages and modify the local Python environment.
+
+Mitigation: Use a disposable virtual environment and review package installation behavior before normal use.
+
+Risk: The release includes an unrelated WeChat UI automation task that is not clearly disclosed in the main skill description.
+
+Mitigation: Remove, disable, or explicitly disclose and gate that task before normal use.
+
+Risk: Command logs may capture operational details or sensitive command text.
+
+Mitigation: Avoid passing secrets in commands and review log output handling before using the skill with sensitive projects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangminrui2022/skills/claw-windows-automator)
+- [Publisher profile](https://clawhub.ai/user/wangminrui2022)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally on Windows, manipulates desktop applications, and may open browsers or write logs.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

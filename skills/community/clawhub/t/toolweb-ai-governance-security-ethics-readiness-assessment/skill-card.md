@@ -1,42 +1,52 @@
-## Description: <br>
-Assess organizational maturity across AI Governance, Security, and Ethics & Compliance domains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess organizational maturity across AI Governance, Security, and Ethics & Compliance domains.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security, compliance, AI governance, and enterprise architecture teams use this skill to submit AI governance, security, and ethics readiness data to an external assessment API and receive maturity scores, findings, and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment inputs may include sensitive governance, security, compliance, or organizational readiness details. <br>
-Mitigation: Use pseudonymous session IDs, omit userId unless needed, and avoid submitting secrets, credentials, customer data, detailed vulnerabilities, or confidential control gaps unless the provider's privacy and retention practices are acceptable. <br>
-Risk: The skill relies on an external ToolWeb service for assessment processing. <br>
-Mitigation: Install and use only if sending selected readiness details to ToolWeb is appropriate for the organization and use case. <br>
+## Use Case:
 
+Security teams, compliance officers, AI/ML leads, chief data officers, CISOs, and enterprise architects use this skill to submit AI governance, security, and ethics readiness evidence to ToolWeb and receive maturity scores, findings, and recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-ai-governance-security-ethics-readiness-assessment) <br>
-- [ToolWeb API Route](https://api.toolweb.in/compliance/ai-governance-security-ethics) <br>
-- [ToolWeb API Docs](https://api.toolweb.in:8172/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API Calls, text, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with JSON API request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an external ToolWeb assessment service and may return maturity scores, findings, and recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and OpenAPI info.version) <br>
+Risk: Users may submit sensitive organizational security, governance, and compliance posture data to a third-party assessment service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only assessment content approved for external processing, remove unnecessary identifiers and confidential control details, and review ToolWeb's privacy, retention, and contractual terms before internal use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-ai-governance-security-ethics-readiness-assessment)
+- [ToolWeb API Docs](https://api.toolweb.in:8172/docs)
+- [ToolWeb AI GSE API Route](https://api.toolweb.in/compliance/ai-governance-security-ethics)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON API responses with concise Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Assessment results include pillar-level maturity scores, findings, overall readiness, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,64 @@
-## Description: <br>
-QWeather China provides localized China weather service through the QWeather API, including current conditions, forecasts, life indices, air quality, and weather alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides localized China weather information through the QWeather API, including current conditions, forecasts, life indices, air quality, and weather alerts.
 
-## Publisher: <br>
-[uni-huang](https://clawhub.ai/user/uni-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uni-huang](https://clawhub.ai/user/uni-huang)
 
-## Use Case: <br>
-External users and agents use this skill to answer China-focused weather questions, including current conditions, multi-day forecasts, air quality, life indices, and weather-based guidance such as umbrella or clothing suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill needs a QWeather JWT private key and sends requested or default city information to QWeather. <br>
-Mitigation: Use a dedicated QWeather key stored outside shared application keys, restrict the private key file permissions, and only configure default locations that users are comfortable sending to QWeather. <br>
-Risk: Some artifact configuration references .openclaw private-key paths instead of the dedicated QWeather key path. <br>
-Mitigation: Remove or ignore those entries before use and configure QWEATHER_PRIVATE_KEY_PATH to a dedicated file such as ~/.config/qweather/private.pem. <br>
-Risk: Developer-side file rewriting artifacts are included in the release. <br>
-Mitigation: Do not run fix_encoding.py as part of normal installation, and review scripts before executing them in a production or shared environment. <br>
-Risk: Authentication errors or debug output could expose sensitive context in shared environments. <br>
-Mitigation: Avoid sharing raw auth error output or logs, and run the skill with environment-scoped credentials. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent answer China-focused weather questions, including current weather, forecasts, air quality, life indices, and practical weather guidance. It can also be used from the command line after QWeather credentials and cache settings are configured.
 
-## Reference(s): <br>
-- [QWeather China on ClawHub](https://clawhub.ai/uni-huang/qweather-china) <br>
-- [QWeather Developer Portal](https://dev.qweather.com/) <br>
-- [QWeather Documentation](https://dev.qweather.com/docs/) <br>
-- [QWeather City Resource](https://dev.qweather.com/docs/resource/city/) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text weather responses, with setup guidance and shell commands where needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QWeather API credentials, may read a local private key, may cache weather responses locally, and sends requested or default city information to QWeather.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill handles a QWeather signing key and reads credential-related configuration paths, which could expose credentials if misconfigured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated QWeather private key stored under ~/.config/qweather/private.pem with restrictive permissions, and avoid printing credential-related environment values in errors.
+
+Risk: A stale .openclaw private-key path remains in openclaw_config.yaml.
+
+Mitigation: Remove or replace the stale .openclaw key path before installing the skill in a sensitive environment.
+
+Risk: If QWEATHER_API_HOST is not constrained, signed requests could be sent to an unapproved host.
+
+Mitigation: Validate QWEATHER_API_HOST against approved qweatherapi.com hosts before sending JWT-authenticated requests.
+
+Risk: Dependencies may be installed without a pinned lock file.
+
+Mitigation: Install dependencies from a pinned lock file or an isolated virtual environment.
+
+## Reference(s):
+
+- [QWeather China on ClawHub](https://clawhub.ai/uni-huang/skills/qweather-china)
+- [QWeather Developer Portal](https://dev.qweather.com/)
+- [QWeather Documentation](https://dev.qweather.com/docs/)
+- [QWeather City Resources](https://dev.qweather.com/docs/resource/city/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-style natural-language weather responses with optional shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses QWeather API results and local cache when configured.]
+
+## Skill Version(s):
+
+1.2.2 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

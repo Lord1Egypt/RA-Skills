@@ -1,42 +1,61 @@
-## Description: <br>
-Moderate text, images, and video using Vettly's content moderation API via MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moderate text, images, and video using Vettly's content moderation API via MCP server.
 
-## Publisher: <br>
-[code-with-brian](https://clawhub.ai/user/code-with-brian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[code-with-brian](https://clawhub.ai/user/code-with-brian)
 
-## Use Case: <br>
-Developers and moderators use this skill to check user-generated text, image, and video content against Vettly moderation policies, validate policy YAML, review moderation decisions, and monitor usage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external MCP package and Vettly as the moderation provider. <br>
-Mitigation: Confirm the @vettly/mcp package and provider are approved for the deployment environment, and consider pinning a known-good package version. <br>
-Risk: Moderation requests may send text, media URLs, or policy-related data to Vettly. <br>
-Mitigation: Do not submit secrets, regulated personal data, or private signed media URLs unless the organization has approved Vettly for that data. <br>
-Risk: The skill requires a VETTLY_API_KEY environment variable. <br>
-Mitigation: Use the least-privileged Vettly API key available and keep it out of prompts, logs, and checked-in configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Vettly](https://vettly.dev) <br>
-- [ClawHub Skill Page](https://clawhub.ai/code-with-brian/content-moderation) <br>
+## Use Case:
 
+Developers and content operations teams use this skill to moderate user-generated text, image, and video content against Vettly policies, validate policy YAML, audit recent moderation decisions, and monitor usage.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown or structured text summarizing MCP tool results, policy validation findings, usage statistics, and recent moderation decisions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Vettly MCP server, npx, and VETTLY_API_KEY.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Moderated content is sent to an external Vettly service.
+
+Mitigation: Use the skill only for content approved for Vettly processing, and avoid passing secrets or regulated data unless that processing is authorized.
+
+Risk: The MCP setup runs an unpinned npm package.
+
+Mitigation: Confirm trust in @vettly/mcp before installation and pin a reviewed package version where possible.
+
+Risk: Recent moderation decisions may contain sensitive moderation data.
+
+Mitigation: Limit access to decision-review outputs and handle them as potentially sensitive operational records.
+
+Risk: The integration requires a Vettly API key.
+
+Mitigation: Use a dedicated, revocable API key and rotate it if the skill configuration or environment is exposed.
+
+## Reference(s):
+
+- [Vettly](https://vettly.dev)
+- [ClawHub Content Moderation](https://clawhub.ai/code-with-brian/skills/content-moderation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown with JSON configuration snippets and tool-result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include moderation assessments, policy validation results, usage summaries, and recent decision reviews.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

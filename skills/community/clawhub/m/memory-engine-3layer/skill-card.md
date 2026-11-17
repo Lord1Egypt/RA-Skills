@@ -1,48 +1,60 @@
-## Description: <br>
-Memory Engine gives OpenClaw agents persistent, capacity-managed local memory with daily logs, long-term and user profile stores, search, session extraction, cron and watcher maintenance, snapshots, and backup or restore workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Engine helps OpenClaw agents preserve, search, maintain, back up, and restore persistent memory across sessions with capacity controls, snapshots, and background health checks.
 
-## Publisher: <br>
-[zacko2o](https://clawhub.ai/user/zacko2o) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zacko2o](https://clawhub.ai/user/zacko2o)
 
-## Use Case: <br>
-Developers and external OpenClaw users use Memory Engine to persist, search, and maintain agent memory across sessions. It supports daily logs, long-term memory, user preferences, session recovery, health checks, capacity checks, and local search indexing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local capture can store sensitive session content, durable memory, and user profile data. <br>
-Mitigation: Enable the skill only when persistent memory is intended, review generated memory files, avoid storing secrets, and keep workspace file permissions appropriate. <br>
-Risk: GitHub backup can move private memory and configuration data to a remote repository, and token-bearing remote URLs can expose credentials. <br>
-Mitigation: Use only a private, intentionally selected repository, avoid embedding tokens in remote URLs, and inspect what git will commit before backup. <br>
-Risk: Cron and watcher processes can continue running in the background and perform memory extraction, indexing, snapshots, and backup attempts. <br>
-Mitigation: Review installed crontab entries, watcher process state, and logs; disable the cron or watcher if background maintenance is not desired. <br>
-Risk: Restore can reintroduce configuration, installed skills, rule files, personality files, and scheduled tasks from a backup. <br>
-Mitigation: Treat restore as an administrative action and review restored openclaw.json, skills, rule or personality files, and crontab before applying them. <br>
+## Use Case:
 
+Developers using OpenClaw use this skill to create, retrieve, maintain, compact, back up, and restore durable agent memory while controlling memory growth.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zacko2o/memory-engine-3layer) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Changelog](artifact/CHANGELOG.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
-- [OpenClaw Project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown and JSON summaries, local Markdown memory files, SQLite search artifacts, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and reads local OpenClaw workspace memory files; search results are truncated snippets with file citations; backup and restore may use git when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.0.0 (source: evidence release metadata and CHANGELOG, released 2026-04-17) <br>
+Risk: Persistent memory and active session monitoring can retain sensitive conversation data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where persistent memory is expected; keep memory files and backups private, and remove cron or watcher setup when background monitoring is not desired.
+
+Risk: Backup and restore operations can expose or overwrite OpenClaw workspace data.
+
+Mitigation: Avoid token-in-URL Git remotes, use narrowly scoped private repositories, and restore only from repositories you have personally verified.
+
+Risk: Hourly cron and watcher processes run outside active agent turns.
+
+Mitigation: Review cron entries before enabling, monitor memory logs, and disable cron if continuous background execution is not acceptable.
+
+## Reference(s):
+
+- [Memory Engine on ClawHub](https://clawhub.ai/zacko2o/skills/memory-engine-3layer)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Full documentation](SKILL.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with shell commands, JSON status output, configuration snippets, and local memory files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces and maintains local OpenClaw memory files, SQLite search indexes, snapshots, cron logs, and optional Git backups.]
+
+## Skill Version(s):
+
+6.0.0 (source: server release metadata and changelog, released 2026-04-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Helps agents plan, review, implement, audit, and improve responsive email templates, component systems, dark-mode behavior, accessibility, and design-to-email handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when Codex, Hermes, OpenClaw, Claude Code, Cowork, or another AI agent needs to plan, review, implement, audit, or improve email work focused on responsive email design, component systems, dark-mode behavior, and accessibility checks.
 
-## Publisher: <br>
-[polnikale](https://clawhub.ai/user/polnikale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[polnikale](https://clawhub.ai/user/polnikale)
 
-## Use Case: <br>
-Developers, designers, ESP operators, and agents use this skill to audit or improve email templates, modules, and handoffs with concrete rendering, accessibility, and approval-gate guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations or edits could affect live email sends, contacts, DNS/authentication, suppression lists, migrations, or production automations. <br>
-Mitigation: Keep the skill's explicit approval gates in place and require user approval before any live-system action. <br>
-Risk: Email templates can render poorly across clients because of Outlook tables, Gmail clipping, dark-mode inversions, unsupported CSS, webfont fallbacks, and image blocking. <br>
-Mitigation: Use the operating checklist to document responsive behavior, dark-mode contrast, image alt text, clipping risk, CSS support risk, and fallback behavior before release. <br>
+## Use Case:
 
+Developers, designers, and email operators use this skill to audit, plan, and improve responsive email templates, module systems, dark-mode behavior, accessibility, and design handoff workflows.
 
-## Reference(s): <br>
-- [Email Design Skill on ClawHub](https://clawhub.ai/polnikale/emaildesignskill) <br>
-- [Email Design Skill Operating Checklist](references/operating-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance, QA tables, implementation notes, and code diffs when source is provided] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit approval before live sends, contact imports, DNS or authentication changes, suppression edits, provider migrations, destructive cleanup, or production automation changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: Email-system changes can affect live recipients, authentication, suppressions, migrations, or production automations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before live sends, contact imports, suppression-list edits, DNS/authentication changes, provider migrations, or production automation edits.
+
+Risk: Email design guidance may miss client-specific rendering issues such as Outlook table behavior, Gmail clipping, dark-mode inversions, unsupported CSS, webfont fallbacks, or image blocking.
+
+Mitigation: Use the operating checklist to document client risk, responsive behavior, accessibility checks, and fallback behavior before implementation.
+
+## Reference(s):
+
+- [Email Design Skill Operating Checklist](references/operating-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/polnikale/skills/emaildesignskill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with audits, QA tables, accessibility notes, implementation diffs, module specs, and handoff checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit approval before live sends, contact imports, DNS/authentication changes, suppression-list edits, provider migrations, or production automation changes.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

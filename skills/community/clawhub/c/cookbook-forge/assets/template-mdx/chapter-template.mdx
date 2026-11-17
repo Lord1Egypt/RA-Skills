@@ -1,0 +1,177 @@
+---
+title: "第 N 章 <章节标题>"
+chapter: N
+slug: "chNN-<slug>"
+wordCountTarget: 4000
+status: "draft"
+references:
+  - "<source-1>"
+---
+
+<div className="callout chapteroutline">
+
+#### 📘 本章地图
+
+本章在全书中的位置：<链接到全景图章，并说明为什么需要这一章，读者学完能做什么>。
+
+- [N.1 <小节标题>](#n1-小节标题)
+- [N.2 <小节标题>](#n2-小节标题)
+- [N.3 Recipes](#n3-recipes)
+- [N.4 常见陷阱](#n4-常见陷阱)
+- [N.5 要点总结](#n5-要点总结)
+- [N.6 延伸阅读](#n6-延伸阅读)
+
+</div>
+
+## N.1 <小节标题>
+
+<原理部分：解释为什么需要这个概念/机制，它解决什么问题，背后的设计思想是什么。用通俗语言引入，再逐步深入技术细节。>
+
+<实用部分：给出最小可运行示例，代码带中文注释。必要时配表格对比参数、返回值、配置项。>
+
+| 参数 | 类型 | 默认值 | 说明 |
+|---|---|---|---|
+| `name` | string | - | 必填，名称 |
+| `opts` | object | `{}` | 可选配置 |
+
+```python
+# file: examples/quickstart.py
+# 描述：演示 <功能> 的最小用法
+import xxx
+
+# 1) 初始化客户端
+client = xxx.Client(api_key="...")  # 从环境变量读取更安全
+
+# 2) 调用核心方法
+result = client.do_something(
+    name="demo",
+    opts={"timeout": 30},  # 30 秒超时
+)
+
+# 3) 处理返回值
+print(result.data)
+```
+
+<图示：架构/流程/时序，用 mermaid/plantuml/drawio/excalidraw，必须有编号与标题，且在正文中引用（"如图 N-1 所示"）。>
+
+图 N-1 <图标题>
+
+```mermaid
+flowchart LR
+    A[用户] --> B[客户端]
+    B --> C[服务端]
+```
+
+<解释段落：说明图中每个节点的职责、数据流向、关键交互。>
+
+## N.2 <小节标题>
+
+<继续按"原理 → 实用 → 表格 → 图 → 解释"的节奏写>
+
+## N.3 Recipes
+
+<div className="callout recipe">
+
+#### 🍳 Recipe N-1：<任务名>
+
+**Problem**：<要解决的具体问题，适用场景>
+
+**Solution**：
+
+```python
+# 关键代码，带中文注释
+```
+
+**Discussion**：<解释为什么这样做、背后原理、关键参数含义、可能的变体>
+
+**See Also**：[相关小节](#n1-小节标题) / [其他章](./chXX-xxx.mdx)
+
+</div>
+
+<div className="callout recipe">
+
+#### 🍳 Recipe N-2：<任务名>
+
+...
+</div>
+
+## N.4 常见陷阱
+
+<div className="callout pitfall">
+
+#### ⚠️ 陷阱 1：<一句话描述>
+
+<现象、根因、正确做法、规避方式>
+
+#### ⚠️ 陷阱 2：<一句话描述>
+
+...
+</div>
+
+## N.5 要点总结
+
+<div className="callout keypoints">
+
+#### ✅ 核心要点
+
+- 要点 1：<一句话>
+- 要点 2：<一句话>
+- 要点 3：<一句话>
+- 要点 4：<一句话>
+
+</div>
+
+## N.6 延伸阅读
+
+- 本书其他章节：[<第 X 章>](./chXX-xxx.mdx)、[<第 Y 章>](./chYY-yyy.mdx)
+- 官方文档：<链接>
+- 相关论文/博客：<链接>
+
+---
+
+**本章参考文献**
+
+1. <作者>. 《<标题>》. <来源>, <年份/日期>. <URL>
+
+---
+
+#### 📐 数学公式书写约定
+
+- 行内公式：`$E=mc^2$`（紧挨着文字，不留空格）。
+- 块级公式：`$$` 必须**独占一行**，公式内部不要有空行，例如：
+
+  ```mdx
+  $$
+  \int_0^1 f(x)\,dx = F(1) - F(0)
+  $$
+  ```
+
+  Nextra KaTeX、EPUB CSS、LaTeX 三个转换器都按此约定识别块级公式。
+- 公式后紧跟解释段落，避免"裸公式"无说明。
+
+#### 🧭 Mermaid 书写约定
+
+- **缩进规则（重要）**：mermaid 代码块内，`mindmap` 下的 `root((...))` **必须顶格写**（不缩进），子节点用 2 空格缩进。错误写法（root 缩进 2+ 空格）会被 Markdown 解析器当作列表续行，换行被吞掉，导致 "Parse error ... Expecting SPACELINE"。
+
+  ✅ 正确：
+  ```mermaid
+  mindmap
+  root((主题))
+    分类一
+      id1["@retry(times=N)"]
+      id2["@cache 60s"]
+    分类二
+      id3[节点文本]
+  ```
+
+  ❌ 错误（root 缩进 2 空格）：
+  ```mermaid
+  mindmap
+    root((主题))      ← 这会被 MDX 当成 list，所有换行被合并
+      分类一
+  ```
+
+- **mindmap 节点**：节点文本不要直接出现 `(` `)`（会被解析为圆角矩形语法）。如果必须包含括号（如函数调用、参数签名），请用 `id["文本"]` 显式包裹（id 要唯一，不可重复使用 `id`）。
+- **flowchart/sequenceDiagram** 等其他图无此缩进限制，但节点文本若含 `(` `)` `[` `]` 建议也用双引号包裹以避免歧义。
+- EPUB 版本无法运行 mermaid JS，转换器会自动把 mermaid 代码块降级为"图表占位符"div，所以关键信息请在正文中用文字复述。
+

@@ -1,44 +1,63 @@
-## Description: <br>
-Bimiyun Search lets an agent query the Bimiyun web-search API and return LLM-friendly results in Markdown or JSON, with safe search enabled by default. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bimiyun Search lets an agent query the Bimiyun web search API and return LLM-friendly results as Markdown or JSON.
 
-## Publisher: <br>
-[bimiyun888](https://clawhub.ai/user/bimiyun888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bimiyun888](https://clawhub.ai/user/bimiyun888)
 
-## Use Case: <br>
-External users and developers use this skill to run web searches through Bimiyun from an agent workflow and receive concise search results for research, news lookup, or general information retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and the configured API key are sent to Bimiyun. <br>
-Mitigation: Use the skill only when sending those queries to Bimiyun is acceptable, and avoid searching secrets, private internal data, or sensitive personal information. <br>
-Risk: A local .env file may contain BIMIYUN_API_KEY. <br>
-Mitigation: Keep .env files out of version control and rotate the key if it is exposed. <br>
-Risk: BIMIYUN_ENDPOINT can change the destination that receives search requests. <br>
-Mitigation: Set BIMIYUN_ENDPOINT only when the destination is trusted. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill when an agent needs to search the web through Bimiyun and return readable or structured results. It supports language, result count, safe search, search mode, and output format options.
 
-## Reference(s): <br>
-- [Bimiyun website](https://bimiyun.com) <br>
-- [ClawHub skill page](https://clawhub.ai/bimiyun888/bimiyun-search) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/bimiyun888) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown search-result list or raw JSON object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BIMIYUN_API_KEY; supports language, result-count, safe-search, fulltext/snippet mode, and output-format options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries are transmitted to Bimiyun.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit sensitive or confidential queries, and install the skill only in environments where sending search terms to Bimiyun is acceptable.
+
+Risk: Supplying the API key on the command line can expose it through shell history or process listings.
+
+Mitigation: Provide BIMIYUN_API_KEY through a trusted secret store or environment variable instead of using --api-key.
+
+Risk: BIMIYUN_ENDPOINT can redirect requests and expose the API key to another destination.
+
+Mitigation: Leave BIMIYUN_ENDPOINT unset unless the alternate endpoint is fully trusted and intended.
+
+Risk: Broad search-trigger language can cause the skill to be invoked more often than intended.
+
+Mitigation: Use explicit invocation or review agent routing rules before deploying the skill in sensitive workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bimiyun888/skills/bimiyun-search)
+- [Bimiyun website](https://bimiyun.com)
+- [Bimiyun web search API endpoint](https://search.bimiyun.com/api/web)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Markdown or JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BIMIYUN_API_KEY; supports 1-10 results, optional language selection, safe search, and fulltext or snippet mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

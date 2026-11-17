@@ -1,0 +1,66 @@
+{
+  "slides": 8,
+  "size": "1080x1350",
+  "ratio": "4:5",
+  "files": [
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/tweet-cards/out/slide-01.jpg",
+      "bytes": 81059,
+      "type": "cover",
+      "alt": "Cover card: your habit app is lying to you about Tuesday.",
+      "text": "Your habit app is lying to you about Tuesday."
+    },
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/tweet-cards/out/slide-02.jpg",
+      "bytes": 105429,
+      "type": "tweet",
+      "alt": "Card 1: one missed day didn't erase your progress; the counter reset, not you.",
+      "text": "Lie 1: one missed day erased your progress. A streak at zero says a month of work is gone. It isn't. The counter reset, not you."
+    },
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/tweet-cards/out/slide-03.jpg",
+      "bytes": 92391,
+      "type": "tweet",
+      "alt": "Card 2: a red X doesn't mean failure; look at the week, not the gap.",
+      "text": "Lie 2: a red X means you failed. A missed day is information, not an error. Look at the week, not the gap."
+    },
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/tweet-cards/out/slide-04.jpg",
+      "bytes": 97089,
+      "type": "tweet",
+      "alt": "Card 3: twelve habits on day one is a plan to quit; start with one.",
+      "text": "Lie 3: more habits means more progress. Twelve habits on day one is a plan to quit by Friday. Start with one."
+    },
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/tweet-cards/out/slide-05.jpg",
+      "bytes": 100113,
+      "type": "tweet",
+      "alt": "Card 4: a daily view hides the trend; five out of seven is a good week.",
+      "text": "Lie 4: today is the only day that counts. A daily view hides the trend. Five good days out of seven is a good week."
+    },
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/tweet-cards/out/slide-06.jpg",
+      "bytes": 87040,
+      "type": "tweet",
+      "alt": "Card 5: guilt notifications work until you mute them.",
+      "text": "Lie 5: guilt is good motivation. \"Don't break your streak!\" at 11pm works right up until you mute it."
+    },
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/tweet-cards/out/slide-07.jpg",
+      "bytes": 87454,
+      "type": "tweet",
+      "alt": "Card 6: the goal is still doing it in March; consistent beats perfect.",
+      "text": "Lie 6: a perfect week is the goal. The goal is still doing it in March. Consistent beats perfect."
+    },
+    {
+      "path": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/tweet-cards/out/slide-08.jpg",
+      "bytes": 66166,
+      "type": "tweet",
+      "alt": "Closing card: send this to someone who deleted a habit app out of guilt.",
+      "text": "Send this to someone who deleted a habit app out of guilt."
+    }
+  ],
+  "contactSheet": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/tweet-cards/out/contact-sheet.png",
+  "coverGrid": "/Users/fheijdenrijk/testing/instagram-carousel-skill/skills/instagram-carousel-skill/examples/tweet-cards/out/cover-grid.png",
+  "warnings": []
+}

@@ -1,43 +1,62 @@
-## Description: <br>
-Migrates a Dialogflow CX v3beta1 agent to Google Customer Engagement Suite Conversational Agents format, producing CES agent JSON, golden evaluation CSV, entity type JSON, and a migration report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full production-grade migration of a Dialogflow CX agent (v3beta1) to Google Customer Engagement Suite (CES) Conversational Agents, including flows, pages, intents, entity types, webhooks, test cases, retry logic, dry-run mode, and a migration report.
 
-## Publisher: <br>
-[yash-kavaiya](https://clawhub.ai/user/yash-kavaiya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yash-kavaiya](https://clawhub.ai/user/yash-kavaiya)
 
-## Use Case: <br>
-Developers and migration engineers use this skill to convert authorized Dialogflow CX agents into CES Conversational Agents assets, then review and import the generated files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated migration files can contain sensitive Dialogflow CX agent configuration, webhook endpoints, routing phrases, and evaluation content. <br>
-Mitigation: Store generated files securely, limit sharing, and review outputs before importing them into CES. <br>
-Risk: Running the migration requires access to the target GCP project and Dialogflow CX agent. <br>
-Mitigation: Run only with authorized least-privilege credentials and use --dry-run before generating files. <br>
-Risk: Migrated webhook URLs, authentication, consent language, and broad routing phrases may need adjustment before production use. <br>
-Mitigation: Review webhook endpoints, authentication settings, consent language, and routing phrases before importing or deploying the CES agent. <br>
+## Use Case:
 
+Developers and migration engineers use this skill to convert Dialogflow CX agents into CES Conversational Agents assets, including an importable agent JSON, golden evaluation CSV, exported entity types, and a migration report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yash-kavaiya/dialogflow-cx-to-ces-migration) <br>
-- [CES Console](https://ces.cloud.google.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; generated artifacts are JSON, CSV, and Markdown files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces ces_agent.json, golden_evals.csv, entity_types.json, and migration_report.md; supports dry-run preview before writing files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated CES instructions may carry over prompt-injection text or unsuitable behavior from the source Dialogflow CX agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated instruction in ces_agent.json before importing the agent into CES.
+
+Risk: Migrated webhook tools may reference endpoints or authentication settings that are not appropriate for the target CES environment.
+
+Mitigation: Confirm each webhook endpoint and authentication setting before production use.
+
+Risk: Running the migration requires Google Cloud access to the source Dialogflow CX agent.
+
+Mitigation: Run in an isolated environment using the minimum GCP permissions needed to read the source agent.
+
+Risk: Unpinned Python dependencies can change behavior across migration runs.
+
+Mitigation: Pin dependencies for production migration workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yash-kavaiya/skills/dialogflow-cx-to-ces-migration)
+- [CES Console](https://ces.cloud.google.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands plus generated JSON, CSV, and Markdown migration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces ces_agent.json, golden_evals.csv, entity_types.json, and migration_report.md; supports dry-run mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

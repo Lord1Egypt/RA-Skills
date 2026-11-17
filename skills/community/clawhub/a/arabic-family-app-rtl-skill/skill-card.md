@@ -1,40 +1,53 @@
-## Description: <br>
-Review Arabic-first family and mobile apps for RTL layout, bilingual copy, onboarding, approval flows, and safe local-first defaults. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review Arabic-first family and mobile apps for RTL layout, bilingual copy, onboarding, approval flows, and safe local-first defaults.
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-Developers, designers, and product reviewers use this skill to evaluate Arabic-first family or community app screens and flows for RTL layout, bilingual copy, onboarding clarity, admin approval behavior, privacy, and safe local or demo defaults. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private family data, credentials, OTPs, or production configuration could be exposed if supplied as review input. <br>
-Mitigation: Use redacted screenshots, route paths, or pasted UI text, and do not share secrets, live family data, private keys, or production database credentials. <br>
-Risk: Recommendations for backend sync, migrations, production writes, kids features, chat, or payments could affect sensitive family workflows if applied without review. <br>
-Mitigation: Keep changes small and reviewable, preserve local or demo fallbacks, and require explicit approval before backend migrations, publishing, data uploads, or sensitive feature activation. <br>
+## Use Case:
 
+Developers, designers, and product teams use this skill to review Arabic-first family or community apps for RTL layout, bilingual copy, onboarding, approval flows, privacy, and safe local-first defaults.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/arabic-family-app-rtl-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, code] <br>
-**Output Format:** [Concise Markdown review or coding-agent handoff with status, findings, Arabic/RTL notes, privacy notes, and next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scoped implementation guidance and verification commands; does not require secrets or production backend access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence and artifact metadata) <br>
+Risk: Users may share private family data, secrets, production credentials, or live backend access during localization or privacy review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid real family data, secrets, production credentials, and live backend access unless there is a clear reason and explicit controls are in place.
+
+Risk: Generated review guidance could lead to unsafe backend, kids, chat, payment, migration, publishing, or data-upload changes if applied without approval.
+
+Mitigation: Keep changes small and reviewable, require explicit approval for sensitive features or production operations, and run an appropriate verification command before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullah944/skills/arabic-family-app-rtl-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown review with concise status, findings, Arabic/RTL notes, privacy/backend notes, and next step guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or hidden system access; output may include a coding-agent handoff template when requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

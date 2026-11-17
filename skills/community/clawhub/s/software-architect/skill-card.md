@@ -1,37 +1,48 @@
-## Description: <br>
-Design scalable systems with sound trade-offs, clear boundaries, and maintainable patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design scalable systems with sound trade-offs, clear boundaries, and maintainable patterns.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and software teams use this skill as architecture guidance for system design, component boundaries, scalability, reliability, security, documentation, and technical decision communication. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Architecture advice may be too general for a specific product, threat model, budget, or operational environment. <br>
-Mitigation: Apply project-specific review for security, reliability, cost, and operational trade-offs before adopting recommendations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/software-architect) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to guide software architecture discussions, review system boundaries, and evaluate design trade-offs for scalable, maintainable systems.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory output only; no code execution or external tool access is described in the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can influence architecture recommendations with concise heuristics that may not fit every system context.
+
+Mitigation: Review recommendations against the target system's requirements, constraints, operational history, and security posture before adopting them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/software-architect)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tools, credentials, data access, persistence, or code execution requested by the inspected artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

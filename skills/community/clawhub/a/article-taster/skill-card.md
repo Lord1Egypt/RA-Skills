@@ -1,43 +1,61 @@
-## Description: <br>
-Analyzes Chinese articles for quality, genre, originality, AI-generation signals, and reading value. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Article Taster evaluates Chinese articles for quality, article type, AI-generation signals, originality exemptions, and reading value.
 
-## Publisher: <br>
-[forealmy](https://clawhub.ai/user/forealmy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[forealmy](https://clawhub.ai/user/forealmy)
 
-## Use Case: <br>
-Readers, writers, and editors use Article Taster to assess article quality, classify technical articles, essays, novels, or other writing, and receive concise reading recommendations. It is especially oriented toward Chinese-language content and spoiler-aware novel analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI-generation and originality scores are heuristic and may be overconfident or use wording that readers find inappropriate. <br>
-Mitigation: Treat scores as advisory, review conclusions before relying on them, and replace insulting labels before broader production use. <br>
-Risk: Python dependencies are declared with broad version ranges. <br>
-Mitigation: Install in an isolated environment and pin dependency versions for repeatable production deployments. <br>
-Risk: Future remote LLM-assisted modes could expose private drafts if enabled without clear consent. <br>
-Mitigation: Use local analysis for sensitive text and enable any remote LLM assistance only after confirming where article content is sent. <br>
+## Use Case:
 
+Developers, writers, editors, and external users can use this skill to triage Chinese articles before reading or publishing. It classifies articles, scores quality dimensions, highlights AI-writing signals, preserves spoiler-free novel analysis, and returns reading recommendations.
 
-## Reference(s): <br>
-- [Article Taster on ClawHub](https://clawhub.ai/forealmy/article-taster) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [JSON report and Markdown summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scores, article-type classification, AI-generation heuristics, originality signals, and reading advice for user-selected article content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Heuristic AI and originality labels may be unreliable or overconfident.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat scores and labels as screening signals, not proof; keep human review in any consequential reading, publishing, or moderation workflow.
+
+Risk: Large or untrusted article inputs can create reliability or hardening concerns.
+
+Mitigation: Limit input size and run the skill in a controlled environment when exposing it to untrusted users.
+
+Risk: Dependency behavior can change over time.
+
+Mitigation: Pin and review Python dependencies before deployment.
+
+Risk: Future external LLM scoring could transmit article text outside the local environment.
+
+Mitigation: Enable any external LLM scoring only after clear disclosure and explicit approval for article text transmission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/forealmy/skills/article-taster)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [JSON report and Markdown summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes article type, confidence, quality scores, AI-generation probability, originality label, reading advice, and optional spoiler-free detail.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

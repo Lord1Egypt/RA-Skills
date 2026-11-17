@@ -1,0 +1,455 @@
+{
+  "version": 7,
+  "_version_note": "Bumped whenever a word, a phrase, or a pattern changes, so a published measurement can name the catalogue that produced it. scan.py --json echoes it, PROOF.md's header quotes it, and scripts/validate.py fails when the two disagree. Numbers measured against one version mean nothing against another.",
+  "_comment": "Tiered vocabulary and pattern regexes for scan.py. Edit freely; scan.py reads this at runtime. Word entries are matched case-insensitively on word boundaries and cover the listed inflections.",
+
+  "tier1": [
+    "delve", "delves", "delved", "delving",
+    "tapestry", "tapestries", "realm", "realms", "beacon",
+    "paradigm", "paradigms", "embark", "embarks", "embarked", "embarking",
+    "robust", "comprehensive", "cutting-edge", "state-of-the-art",
+    "meticulous", "meticulously", "seamless", "seamlessly",
+    "pivotal", "underscore", "underscores", "underscored", "underscoring",
+    "nestled", "vibrant", "bustling", "thriving",
+    "showcase", "showcases", "showcased", "showcasing",
+    "intricate", "intricacies", "ever-evolving", "enduring", "daunting",
+    "holistic", "holistically", "actionable", "impactful", "learnings",
+    "synergy", "synergies", "interplay", "multifaceted",
+    "game-changer", "game-changing",
+    "thought-leader", "thought-leadership"
+  ],
+
+  "tier1_phrases": [
+    "delve into", "deep dive", "dive into", "deep-dive",
+    "testament to", "at its core", "best practices",
+    "thought leader", "thought leadership",
+    "the future looks bright", "only time will tell",
+    "marking a pivotal moment", "stands as a testament",
+    "rich tapestry", "in the realm of", "harness the power of",
+    "embark on a journey", "evolving landscape", "ever-evolving landscape",
+    "indelible mark", "deeply rooted", "paradigm shift",
+    "push the boundaries", "pushing the boundaries", "paving the way",
+    "unlocking the power", "move the needle", "low-hanging fruit",
+    "hit differently", "hits different"
+  ],
+
+  "clarity": [
+    "utilize", "utilizes", "utilized", "utilizing",
+    "commence", "commences", "commenced",
+    "ascertain", "ascertains", "ascertained",
+    "endeavor", "endeavors", "endeavour",
+    "boasts", "boasting"
+  ],
+
+  "clarity_phrases": [
+    "in order to", "due to the fact that", "at this point in time",
+    "in the event that", "has the ability to", "have the ability to",
+    "it is important to note that", "it's important to note that",
+    "it is worth noting that", "it's worth noting that",
+    "serves as", "serve as", "made a decision", "make a decision",
+    "with regard to", "in terms of"
+  ],
+
+  "tier2": [
+    "harness", "harnesses", "harnessing",
+    "navigate", "navigating", "foster", "fosters", "fostering",
+    "elevate", "elevates", "elevating", "unleash", "unleashes", "unleashing",
+    "streamline", "streamlines", "streamlining",
+    "empower", "empowers", "empowering",
+    "bolster", "bolsters", "bolstering", "spearhead", "spearheads",
+    "resonate", "resonates", "resonating",
+    "revolutionize", "revolutionizes", "revolutionizing",
+    "facilitate", "facilitates", "facilitating",
+    "underpin", "underpins", "underpinning", "underpinnings",
+    "nuanced", "crucial", "crucially", "ecosystem", "ecosystems",
+    "myriad", "plethora", "encompass", "encompasses", "encompassing",
+    "catalyze", "catalyzes", "reimagine", "reimagining",
+    "galvanize", "augment", "augments", "cultivate", "cultivates", "cultivating",
+    "illuminate", "illuminates", "illuminating", "elucidate", "juxtapose",
+    "transformative", "transformation", "cornerstone", "paramount",
+    "poised", "burgeoning", "nascent", "quintessential", "overarching",
+    "leverage", "leverages", "leveraged", "leveraging",
+    "landscape", "landscapes",
+    "unpack", "unpacks", "unpacking", "complexities",
+    "embrace", "embraces", "embracing",
+    "symphony", "kaleidoscope", "watershed",
+    "quietly", "seam", "seams", "survived"
+  ],
+
+  "_tier3_note": "Ordinary words, scored only at density. Nothing here may also appear in tier1: a word in both yields a P1 finding and inflates the density that produces a second one. Nothing here may be a top-200 English word either, which is why 'key' was removed: it dominated the count, and the phrase worth catching ('key turning point') is already a pattern regex.",
+  "tier3": [
+    "significant", "significantly", "innovative", "innovation",
+    "effective", "effectively", "dynamic", "dynamics",
+    "scalable", "scalability", "compelling", "unprecedented",
+    "exceptional", "exceptionally", "remarkable", "remarkably",
+    "sophisticated", "instrumental", "world-class", "best-in-class",
+    "verbatim", "vital", "essential"
+  ],
+
+  "technical_exempt": [
+    "robust", "comprehensive", "seamless", "seamlessly", "ecosystem",
+    "ecosystems", "leverage", "leverages", "leveraged", "leveraging",
+    "facilitate", "facilitates", "underpin", "underpins",
+    "streamline", "streamlines", "scalable", "scalability",
+    "dynamic", "dynamics"
+  ],
+
+  "_academic_exempt_note": "Added to technical_exempt, never instead of it, for the register whose partial cells name it. Three words, and the list is short because it was cut down by measurement rather than assembled by intuition: see docs/academic-corpus/. Each survivor carries a technical sense in a paper that it does not carry in a blog post, which is the test. `paradigm` is Kuhn's and the experimental psychologist's. `transformation` is the statistician's. Rejected despite firing: `holistic`, 11 hits in fewer than two of nineteen papers, which is one author's habit rather than a register fact; `crucial`, in six papers and still an intensifier that means the same thing everywhere; `significant` and `effective`, which were on the list because a synthetic sample fired tier3-density on them and no real paper fires that rule at all.",
+  "academic_exempt": [
+    "paradigm", "paradigms", "transformation"
+  ],
+
+  "patterns": [
+    {
+      "id": "chatbot-artifact",
+      "label": "Chatbot artifact",
+      "band": "fingerprint",
+      "priority": "P0",
+      "rx": "(?i)\\b(would you like me to|want me to (give|show|continue)|should i continue|here is a comprehensive|(?:certainly|of course)!|absolutely[!,]\\s+here)"
+    },
+    {
+      "id": "sycophancy",
+      "label": "Sycophantic tone",
+      "band": "fingerprint",
+      "priority": "P0",
+      "rx": "(?i)\\b(great question|excellent point|that's a (great|really insightful|fantastic)|you're absolutely right|what a (great|fantastic))\\b"
+    },
+    {
+      "id": "cutoff-disclaimer",
+      "label": "Cutoff disclaimer",
+      "band": "fingerprint",
+      "priority": "P0",
+      "rx": "(?i)(as of my (last|latest) (training|update|knowledge)|up to my last training|i don't have access to real-?time|while specific details (about|are)|details are (limited|scarce) in (readily )?available sources)"
+    },
+    {
+      "id": "speculative-gapfill",
+      "label": "Speculative gap-filling",
+      "band": "fingerprint",
+      "priority": "P0",
+      "rx": "(?i)(maintains a (relatively )?low (public )?profile|keeps? (personal )?details private|prefers to stay out of the spotlight|it is believed that|appears to have (studied|worked|begun))"
+    },
+    {
+      "id": "citation-leak",
+      "label": "Chat citation markup leak",
+      "band": "fingerprint",
+      "priority": "P0",
+      "rx": "(cite\\w*turn\\d+\\w*|contentReference\\[oaicite:|oai_citation|\\[attached_file:\\d+\\]|grok_card)",
+      "_scan_raw_note": "Checked against the raw text, like curly-quote and hidden unicode. None of these markers has an honest use in any span: they are residue from a copy out of a chat window, which is a fact about how the file was produced rather than about what it says, and the quoted-example exemption is about content. A pasted transcript lands in a block quote or a fence more often than in running prose, which is exactly where the exemption used to hide it. The cost is that a document cataloguing these markers scores a P0 on each one, which references/patterns.md does on purpose and PROOF.md publishes.",
+      "scan_raw": true
+    },
+    {
+      "id": "ai-utm",
+      "label": "AI tracking parameter",
+      "band": "fingerprint",
+      "priority": "P0",
+      "rx": "(?i)(utm_source=(chatgpt|openai|copilot|claude|perplexity|gemini)[a-z.]*|referrer=grok\\.com)"
+    },
+    {
+      "id": "placeholder",
+      "label": "Unfilled placeholder",
+      "band": "fingerprint",
+      "priority": "P0",
+      "rx": "(\\[(?:Your|YOUR|Insert|INSERT|Add|ADD|Enter|Describe|Specify|Choose|TODO|TBD)\\b[^\\]\\n]{0,60}\\](?![(\\[])|\\b\\d{4}-XX-XX\\b|<!--\\s*(add|fill in|todo|insert)[^>]*-->)",
+      "_rx_note": "Two narrowings, both from false positives measured on the trending-README corpus. The keyword needs a word boundary, or `Add` matches `[Address book]`. And a bracket followed by `(` or `[` is a markdown link label, not an unfilled placeholder: `[Your name here](https://...)` is a sponsor slot somebody filled in, and three corpus READMEs were failed by it.",
+      "_scan_raw_note": "Unlike citation-leak, this one is scored against the exempted copy. `[Your API key]` inside a fence is a template doing its job, and a P0 on it would fail every README that shows a config file. The tradeoff is that a genuinely unfilled placeholder inside a fence goes unreported."
+    },
+    {
+      "id": "vague-attribution",
+      "label": "Vague attribution",
+      "band": "fingerprint",
+      "priority": "P0",
+      "rx": "(?i)\\b(experts (believe|agree|say|argue)|studies (show|suggest|indicate)|research (shows|suggests|indicates)|industry (reports|leaders)|observers have|many argue|it is widely (regarded|believed|considered)|some critics argue|analysts agree|independent testing confirms|third-?party benchmarks show)(?![^.!?]{0,240}?(\\[\\d|\\((?-i:[A-Z])[a-z]+[^)\\n]{0,40}?\\b(19|20)\\d\\d))",
+      "_rx_note": "The trailing lookahead is the one narrowing, and it is scoped to the sentence rather than to a character window. `studies show` with a source named after it is an attribution, not a vague one, so the rule stands down when a citation marker arrives before the sentence ends. Measured over the 19-paper academic corpus, the marker sits 55 to 170 characters past the phrase and never inside 40, which is why a fixed short window suppresses nothing. Two marker shapes, because the plugin ships both kinds of citation style: a numeric bracket (`[16,83]`) and an author-year parenthesis (`(Smith et al., 2020)`). The author-year half needs a real surname, `(?-i:[A-Z])[a-z]+`, with the case sensitivity restored against this pattern's global `(?i)`, or `(Q1 2024 data)` reads as a source. Sentence scope is `[^.!?]`, so a decimal or an `e.g.` ends the window early and the rule keeps reporting, which is the safe direction for a P0."
+    },
+    {
+      "id": "significance-inflation",
+      "label": "Significance inflation",
+      "band": "craft",
+      "priority": "P0",
+      "rx": "(?i)(stands as a (testament|reminder)|serves as a (testament|reminder)|marks? a (pivotal|defining|watershed) (moment|point)|plays? a (vital|crucial|pivotal|significant|key) role|underscor\\w+ (its|the) (importance|significance)|solidif\\w+ its position|reflects? a broader (shift|trend|movement)|represents? a (major|significant) (shift|step)|setting the stage for|key turning point|leaves? an indelible mark)"
+    },
+    {
+      "id": "negation-runway",
+      "label": "Negation runway",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)((it'?s|this|that|the \\w+) (is )?not (just|merely|only|simply) (about )?[^.;!?\\n]{2,60}[,;] (it'?s|but|they'?re|rather)|not (just|merely|only) [^.;!?\\n]{2,50} but( also)? |isn'?t (just |merely |only |simply )(the |a |about )?[^.;!?\\n]{2,50}\\.\\s+(it'?s|the real|what|that'?s)|the question isn'?t)"
+    },
+    {
+      "id": "rule-of-three-no",
+      "label": "Tricolon with 'no'",
+      "band": "craft",
+      "priority": "P0",
+      "rx": "(?i),\\s*no (guessing|surprises|wasted (motion|time)|hassle|setup|config(uration)?|fuss|magic)\\s*[.!?]"
+    },
+    {
+      "id": "consequence-tacking",
+      "label": "Consequence tacking (-ing participle)",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i),\\s+(highlighting|underscoring|emphasizing|reflecting|symbolizing|showcasing|fostering|cultivating|ensuring|contributing to|encompassing|marking|signaling|cementing|solidifying)\\b"
+    },
+    {
+      "id": "significance-inflation-p1",
+      "label": "Significance inflation (mild)",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)\\b(this (represents|symbolizes|signals|speaks to) a (broader|larger|wider)|it speaks to a larger|the decision symbolizes)"
+    },
+    {
+      "id": "inanimate-action",
+      "label": "Inanimate subject with active verb",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)\\b(the (decision|consensus|answer|solution|pattern) emerges|the (culture|conversation|narrative|market|industry) (shifts|moves|rewards|demands|decides)|the data tells us|a complaint becomes|the complaint becomes)"
+    },
+    {
+      "id": "promotional",
+      "label": "Promotional language",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)\\b(nestled (in|within|among)|in the heart of|boasts a|breathtaking|must-visit|stunning (natural|views|architecture)|rich (cultural )?heritage|renowned for its|a vibrant hub)"
+    },
+    {
+      "id": "throat-clearing",
+      "label": "Throat-clearing opener",
+      "band": "fingerprint",
+      "priority": "P1",
+      "rx": "(?im)(^|[.!?]\\s+|\\n)\\s*(here'?s the thing|here'?s what i mean|let me be clear|i'?ll be honest|the uncomfortable truth is|real talk[:,]|let'?s be honest|honestly\\?|look,\\s+[a-z]|can we talk about|it turns out that)"
+    },
+    {
+      "id": "contrastive-framing",
+      "label": "Contrastive framing / setup",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)(far from (being )?(just |merely )?\\w+,|it'?s not just [^,\\n]+, it'?s|what seems like [^,\\n]+ is actually|where [^,\\n]+ was once [^,\\n]+, it is now)"
+    },
+    {
+      "id": "reveal-setup",
+      "label": "Theatrical reveal setup",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)(this is the part most people (skip|miss)|what most people get wrong|here'?s what nobody (tells|says)|the part (everyone|most people) miss(es)?|nobody('?s| is) (naming|talking about)|the insight everyone'?s missing)"
+    },
+    {
+      "id": "conversational-transition",
+      "label": "Conversational transition",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)(the (catch|kicker|best part|result|twist)\\?|but here'?s the kicker|plot twist:|spoiler:|here'?s where it gets (interesting|clever|weird))"
+    },
+    {
+      "id": "signposting",
+      "label": "Signposting / let's construction",
+      "band": "fingerprint",
+      "priority": "P1",
+      "rx": "(?i)\\b(let'?s (dive|explore|break this down|take a look|examine|unpack)|without further ado|in this (article|post|piece),? (we|i) (will|'ll)|now let'?s look at|the rest of this (essay|post|article)|as we'?ll see)"
+    },
+    {
+      "id": "reasoning-artifact",
+      "label": "Reasoning-chain artifact",
+      "band": "fingerprint",
+      "priority": "P1",
+      "rx": "(?i)(let me think (step by step|through this)|breaking this down|to approach this systematically|here'?s my thought process|first,? let'?s consider|working through this logically|let me (check|verify|confirm)|now let'?s (check|verify)|i'll start by)"
+    },
+    {
+      "id": "acknowledgment-loop",
+      "label": "Acknowledgment loop",
+      "band": "fingerprint",
+      "priority": "P1",
+      "rx": "(?i)\\b(you'?re asking about|to answer your question|the question of whether you)\\b"
+    },
+    {
+      "id": "confidence-calibration",
+      "label": "Confidence calibration",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)\\b(it'?s worth noting|it is worth noting|worth mentioning|notably,|interestingly,|surprisingly,|importantly,|undoubtedly|without a doubt|make no mistake|the real question is|the truth is,|fundamentally,|the heart of the matter)"
+    },
+    {
+      "id": "self-labeling",
+      "label": "Self-labeling significance",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)(that (last|third|second|first) (move|one|bullet|part|point) is the|this is the (interesting|real|clever|contrarian) (part|one|bit)|the last bit is the)"
+    },
+    {
+      "id": "emotional-flatline",
+      "label": "Emotional flatline",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)(what surprised me most|i was (fascinated|excited) to (discover|learn)|what struck me was|the most interesting part|interesting (part|thing|aspect) (of the project )?(here )?:)"
+    },
+    {
+      "id": "lingering-attention",
+      "label": "Lingering-attention claim",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)(the (line|quote|idea) i keep coming back to|i can'?t stop thinking about|still thinking about this|rattling around in my head)"
+    },
+    {
+      "id": "narrated-candor",
+      "label": "Narrated candor",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)\\b(i would rather flag|i'?d rather flag|i want to be upfront|to be fully transparent|rather than bury this|being honest about the limitations)\\b"
+    },
+    {
+      "id": "rhetorical-question",
+      "label": "Rhetorical question opener",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?im)^\\s*(but )?(what (does this mean|if i told you|about)|so why should you care|what'?s next\\?|think about it:)"
+    },
+    {
+      "id": "speculative-opener",
+      "label": "Speculative scenario opener",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)\\b(imagine a world where|picture a future in which|envision a world where|imagine if every)"
+    },
+    {
+      "id": "aphorism-formula",
+      "label": "Aphorism formula",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)\\b(is the (language|currency|architecture|grammar|physics) of|becomes a trap|is not a tool but a)"
+    },
+    {
+      "id": "vague-declarative",
+      "label": "Vague declarative",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)\\b(the (reasons|implications|consequences|stakes) are (structural|significant|real|high|clear)|this is the deepest problem)"
+    },
+    {
+      "id": "generic-conclusion",
+      "label": "Generic conclusion",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)\\b(in conclusion|to summari[sz]e|in summary,|the future looks bright|exciting times (lie )?ahead|only time will tell|one thing is certain|as we move forward|at the end of the day|the bottom line is)"
+    },
+    {
+      "id": "future-narrative",
+      "label": "Generic future-narrative closer",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)(may|could|will|is poised to) become one of the most \\w+ (narratives|stories|trends|themes|chapters|movements|forces)"
+    },
+    {
+      "id": "social-cta",
+      "label": "Social endorsement closer",
+      "band": "fingerprint",
+      "priority": "P1",
+      "rx": "(?i)(this one'?s? (is )?(worth your time|a must-read)|do yourself a favor and read|you won'?t want to miss|don'?t sleep on this|bookmark this|thank me later|save this for later)"
+    },
+    {
+      "id": "hedge-stack",
+      "label": "Hedge-stacked prediction",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)\\b(could potentially|may eventually|might ultimately|could arguably|might possibly|may potentially|could conceivably)"
+    },
+    {
+      "id": "real-inflation",
+      "label": "Real/actual inflation",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)\\b(genuine (utility|value|insight|improvement)|real (tokenomics|utility|product-market fit)|actual (sustainability|utility)|true product-market fit)"
+    },
+    {
+      "id": "false-concession",
+      "label": "False concession",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)\\b(while [^.;!?\\n]{3,50} is impressive,|although [^.;!?\\n]{3,50} has made strides,|despite (its|these) (challenges|headwinds)[^.;!?\\n]{0,40}(continues to|remains) (thrive|resilient|strong))"
+    },
+    {
+      "id": "formulaic-challenges",
+      "label": "Formulaic challenges section",
+      "band": "craft",
+      "priority": "P1",
+      "_rx_note": "Matches the formula patterns.md section 45 names, not the words in it. A bare `faces challenges` is an ordinary English sentence: \"the team faces challenges next quarter\" is a fact, and a P1 that fires on it is the false positive references/false-positives.md warns about. `despite these challenges` and `continues to thrive` were branches here and had the same problem: \"despite these challenges, we shipped late\" is a sentence anybody writes, and each fired on its own because this is an alternation and never was the pairing this note used to claim. The pairing has its own rule, false-concession, which requires both halves within one sentence. What is left here is the one phrase that is formulaic alone, plus two forms anchored to a real heading, because \"the future outlook is uncertain\" in running prose is a financial report, not slop.",
+      "rx": "(?im)(faces (?:several |a number of )?challenges typical of|^#{1,6}\\s*challenges and (?:future prospects|legacy)\\b|^#{1,6}\\s*future outlook\\b)"
+    },
+    {
+      "id": "novelty-inflation",
+      "label": "Novelty inflation",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)\\b((he|she|they) (introduced|coined) (a|the) (term|phrase)|a (concept|failure mode|problem) nobody('?s| is) (naming|talking about)|what nobody tells you about)"
+    },
+    {
+      "id": "template-breadth",
+      "label": "False-breadth template",
+      "band": "craft",
+      "priority": "P1",
+      "rx": "(?i)(whether you'?re an? [^,\\n]{2,40} or an? |i recently had the pleasure of|a \\w+ step (towards|forward for) )"
+    },
+    {
+      "id": "transition-stack",
+      "label": "AI transition",
+      "band": "craft",
+      "priority": "P2",
+      "rx": "(?im)(^|\\n)\\s*(moreover|furthermore|additionally|that being said|in today'?s|in an era where|when it comes to)\\b"
+    },
+    {
+      "id": "inline-header-bullet",
+      "label": "Inline-header bullet",
+      "band": "craft",
+      "priority": "P2",
+      "rx": "(?m)^\\s*[-*]\\s+\\*\\*[^*\\n]{2,40}\\*\\*\\s*:"
+    },
+    {
+      "id": "list-label-period",
+      "label": "List-label period",
+      "band": "craft",
+      "priority": "P2",
+      "rx": "(?m)^\\s*[-*]\\s+\\*\\*[A-Z][^*\\n]{1,40}\\.\\*\\*\\s"
+    },
+    {
+      "id": "emoji-heading",
+      "label": "Emoji in heading",
+      "band": "craft",
+      "priority": "P2",
+      "rx": "(?m)^#{1,6}.*[\\U0001F300-\\U0001FAFF\\u2600-\\u27BF]"
+    },
+    {
+      "id": "curly-quote",
+      "label": "Curly quotation mark (weak)",
+      "band": "fingerprint",
+      "priority": "P2",
+      "rx": "[\\u201C\\u201D]",
+      "_scan_raw_note": "Checked against the raw text, like hidden unicode. The quoted-example exemption blanks a curly-quoted span including its quote marks, so scoring this one on the exempted copy leaves it able to fire only on an unpaired quote. Typography is a production artifact, not content, and the exemption is about content.",
+      "scan_raw": true
+    },
+    {
+      "id": "double-hyphen-dash",
+      "label": "Double-hyphen em dash substitute",
+      "band": "craft",
+      "priority": "P2",
+      "rx": "\\s--\\s"
+    },
+    {
+      "id": "boilerplate-phrase",
+      "label": "Boilerplate phrase",
+      "band": "craft",
+      "priority": "P2",
+      "rx": "(?i)\\b(emerging (sector|space|category)|the (integration|intersection) of|community-driven|long-term sustainability|user engagement|designed for long-term)"
+    },
+    {
+      "id": "diff-anchored",
+      "label": "Diff-anchored writing",
+      "band": "craft",
+      "priority": "P2",
+      "rx": "(?i)\\b(was added to replace|this (function|method|class) was (added|changed|updated) to|previously,? (this|the) (code|function|approach))"
+    },
+    {
+      "id": "load-bearing",
+      "label": "Load-bearing (metaphorical)",
+      "band": "fingerprint",
+      "priority": "P1",
+      "rx": "(?i)(?<![\\w-])load[- ]bearing(?![\\w-])(?!\\s+(?:wall|beam|joist|girder)s?\\b)"
+    }
+  ]
+}

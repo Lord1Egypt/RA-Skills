@@ -1,42 +1,54 @@
-## Description: <br>
-Write Storybook stories for a component's meaningful user-facing states with minimal, readable fixtures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Storybook stories for a component's meaningful user-facing states with minimal, readable fixtures.
 
-## Publisher: <br>
-[ritual](https://clawhub.ai/user/ritual) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ritual](https://clawhub.ai/user/ritual)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to create realistic Storybook stories for meaningful component states, with concise fixtures and verification steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to edit local Storybook files. <br>
-Mitigation: Review proposed story changes and run the project's Storybook, interaction tests, or visual diff before accepting them. <br>
-Risk: The skill can optionally suggest knowledge capture or Ritual Cloud setup. <br>
-Mitigation: Only approve knowledge-note writes, global npm installation, or Ritual Cloud setup when that external workflow is intended. <br>
+## Use Case:
 
+Developers and engineers use this skill to create focused Storybook stories for meaningful component states, with readable fixtures and verification steps that match the local project's conventions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ritual/generate-storybook-story) <br>
-- [Ritual homepage](https://ritual.work) <br>
-- [Open Knowledge Format overview](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Storybook code, fixture notes, rationale, and verification commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or edit local Storybook files; optional knowledge notes require user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The optional Ritual Cloud upgrade asks users to install and run a CLI, which is a normal supply-chain and workspace-access decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the standalone workflow when cloud context is not needed; if upgrading, prefer a pinned local CLI install and review CLI access before running init or status.
+
+Risk: Generated Storybook stories can be misleading if component states, fixtures, or project conventions are inferred incorrectly.
+
+Mitigation: Review stories against existing Storybook conventions and verify with Storybook, relevant interaction tests, and visual diff tooling when available.
+
+## Reference(s):
+
+- [Generate Storybook Story on ClawHub](https://clawhub.ai/ritual/skills/generate-storybook-story)
+- [Ritual homepage](https://ritual.work)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Storybook code snippets, fixture notes, rationale, and verification commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optional interaction or play test guidance when component behavior and project conventions support it.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

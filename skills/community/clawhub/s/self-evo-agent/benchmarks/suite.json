@@ -33,7 +33,7 @@
       ]
     },
     {
-      "id": "post-task-diagnosis-and-training",
+      "id": "post-taREDACTED-SECRET",
       "title": "Post-task diagnosis and training unit generation",
       "prompt": "Use $self-evolving-agent after this incident: I edited a release command by guessing a flag name, the user corrected me, and I now realize I skipped validating the tool contract. Produce the post-task diagnosis, capability update, and a training unit if warranted.",
       "criteria": [

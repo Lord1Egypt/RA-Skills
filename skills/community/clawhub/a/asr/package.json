@@ -1,0 +1,14 @@
+{
+  "name": "clawhub-asr",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.10.0",
+  "engines": { "node": ">=22" },
+  "scripts": { "test": "node --test test/*.test.mjs" },
+  "dependencies": {
+    "@x402/core": "2.28.0",
+    "@x402/evm": "2.28.0",
+    "@x402/extensions": "2.28.0"
+  },
+  "devDependencies": { "viem": "2.57.7" }
+}

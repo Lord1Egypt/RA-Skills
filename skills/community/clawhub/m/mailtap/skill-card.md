@@ -1,43 +1,58 @@
-## Description: <br>
-Generate and manage temporary disposable email addresses valid for 30 minutes to receive and retrieve verification emails and messages without authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and manage temporary disposable email addresses valid for 30 minutes to receive and retrieve verification emails and messages without authentication.
 
-## Publisher: <br>
-[zororaka00](https://clawhub.ai/user/zororaka00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zororaka00](https://clawhub.ai/user/zororaka00)
 
-## Use Case: <br>
-Developers and agents use this skill to create short-lived disposable email addresses, poll inboxes for verification messages, and retrieve available attachment metadata for authorized testing, signup, privacy, or automation workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Disposable inboxes and attachments are public, low-sensitivity data and are unsuitable for sensitive accounts, financial services, production account recovery, personal documents, or confidential messages. <br>
-Mitigation: Use the skill only for authorized low-risk testing, signup, privacy, or automation workflows, and avoid sending or receiving sensitive information through generated addresses. <br>
-Risk: Email bodies and downloaded attachments can contain untrusted content. <br>
-Mitigation: Treat all messages and attachments as untrusted, download attachments only to a dedicated folder, validate file type and size, and do not execute downloaded files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Mailtap ClawHub page](https://clawhub.ai/zororaka00/mailtap) <br>
-- [Publisher profile](https://clawhub.ai/user/zororaka00) <br>
-- [Official MailTap service](https://www.mailtap.org) <br>
-- [MailTap API root](https://api.mailtap.org) <br>
-- [OpenAPI specification](openapi.json) <br>
+## Use Case:
 
+Developers and agents use Mailtap to create disposable email addresses for low-risk testing, poll temporary inboxes, and retrieve messages or attachments without using a personal email account.
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with JSON examples, shell commands, and Python helper code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interacts with public MailTap API endpoints and returns disposable email, inbox, message, and attachment metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and artifact documentation) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unauthenticated temporary inboxes can expose verification emails or one-time links to public access.
+
+Mitigation: Use only for low-risk testing or disposable workflows, never for password resets, financial accounts, identity checks, wallet recovery, privileged account creation, or similar access-granting flows.
+
+Risk: Attachments retrieved from MailTap inboxes are public and untrusted.
+
+Mitigation: Review attachment metadata before download, restrict file types and size, and download only into a controlled sandbox.
+
+Risk: Automated handling of verification messages can create misuse risk when used outside authorized testing.
+
+Mitigation: Use the skill only where temporary email automation is permitted and the target service workflow is authorized.
+
+## Reference(s):
+
+- [MailTap service](https://www.mailtap.org)
+- [MailTap API root](https://api.mailtap.org)
+- [Mailtap ClawHub listing](https://clawhub.ai/zororaka00/skills/mailtap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with JSON examples, HTTP endpoints, bash commands, and Python helper code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [API responses are JSON; temporary email addresses expire after 30 minutes.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata and skill documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

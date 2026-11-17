@@ -1,38 +1,58 @@
-## Description: <br>
-记录思考火花与沉淀的系统。用于用户想要记录临时思考、想法、灵感火花，或者将思考整理沉淀为有条理的内容时触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records spontaneous thoughts, ideas, and inspiration sparks, then helps organize them into structured thinking artifacts.
 
-## Publisher: <br>
-[tianyn1990](https://clawhub.ai/user/tianyn1990) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianyn1990](https://clawhub.ai/user/tianyn1990)
 
-## Use Case: <br>
-External users and developers use this skill to capture spontaneous thoughts, refine them into structured notes, tag and prioritize them, and connect them to related articles, projects, or long-term memory candidates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist private ideas, journal-like content, business plans, or confidential drafts as local JSON records. <br>
-Mitigation: Use it only when persistent local note storage is intended, and review or remove collection/思考火花.json when those records should not be retained. <br>
+## Use Case:
 
+Individuals and agent users use this skill to capture brief thoughts, refine them into more polished notes, tag and prioritize them, and link them to related articles, projects, or long-term memory candidates.
 
-## Reference(s): <br>
-- [Thinking Spark on ClawHub](https://clawhub.ai/tianyn1990/thinking-spark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, list, and update local JSON thought records when the bundled scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Thought records may contain private or sensitive personal notes stored in a local JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep ~/.openclaw/workspace/collection private and restrict access to the stored JSON file.
+
+Risk: Concurrent create or update commands may overwrite or race on the local JSON store.
+
+Mitigation: Avoid running spark creation and update commands concurrently, or add locked writes before multi-user or automated use.
+
+Risk: Default file creation may not enforce restrictive file permissions.
+
+Mitigation: Harden deployments to create the spark data file with 0600 permissions when sensitive notes are expected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianyn1990/skills/thinking-spark)
+- [Publisher profile](https://clawhub.ai/user/tianyn1990)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with command examples and local JSON records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates, lists, and updates local thought records in a JSON file.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

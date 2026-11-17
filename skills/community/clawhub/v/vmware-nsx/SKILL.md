@@ -1,34 +1,39 @@
 ---
 name: vmware-nsx
 description: >
-  Use this skill whenever the user needs to manage VMware NSX networking — segments, gateways, NAT, routing, and IP pools.
-  Directly handles: create/manage network segments, configure Tier-0/Tier-1 gateways, set up NAT rules, manage static routes, configure IP pools, check transport node and edge cluster health.
-  Always use this skill for "create segment", "set up gateway", "create NAT rule", "check network health", "troubleshoot connectivity", or any NSX/networking/segment task.
-  Do NOT use for DFW firewall rules or security groups (use vmware-nsx-security), VM lifecycle (use vmware-aiops), or AVI/ALB load balancing (use vmware-avi).
-  For multi-step workflows use vmware-pilot.
+  Use for VMware NSX/NSX-T networking: segments, Tier-0/Tier-1 gateways, NAT, BGP, static routes, IP
+  pools, fabric inventory, health and connectivity diagnostics. Trigger on "create segment",
+  "configure gateway", "add NAT rule", "check NSX health" or NSX network troubleshooting. Supporting
+  commands configure the local MCP client; default stdio is local, and opt-in authenticated HTTPS
+  opens a listener. For DFW/security groups use vmware-nsx-security, vSphere port groups/VMkernel
+  adapters or VM lifecycle vmware-aiops, AVI/ALB vmware-avi, and multi-step workflows vmware-pilot. Do
+  not use for networking outside NSX.
 installer:
   kind: uv
   package: vmware-nsx-mgmt
 allowed-tools:
   - Bash
-metadata: {"openclaw":{"requires":{"env":["VMWARE_NSX_CONFIG"],"bins":["vmware-nsx"],"config":["~/.vmware-nsx/config.yaml","~/.vmware-nsx/.env"]},"optional":{"env":["VMWARE_<TARGET>_PASSWORD"],"bins":["vmware-policy"]},"primaryEnv":"VMWARE_NSX_CONFIG","homepage":"https://github.com/zw008/VMware-NSX","emoji":"🌐","os":["macos","linux"]}}
+metadata: {"openclaw":{"requires":{"anyBins":["vmware-nsx","uvx"]},"optional":{"env":["VMWARE_NSX_CONFIG","VMWARE_NSX_<TARGET>_PASSWORD","VMWARE_NSX_<TARGET>_USERNAME","VMWARE_AUDIT_APPROVED_BY"],"bins":["vmware-policy"]},"homepage":"https://github.com/vmware-skills/VMware-NSX","emoji":"🌐","os":["macos","linux"]}}
 compatibility: >
   vmware-policy auto-installed as Python dependency (provides @vmware_tool decorator and audit logging). All write operations audited to ~/.vmware/audit.db.
-  Credentials: Each NSX Manager target requires a per-target password env var in ~/.vmware-nsx/.env following the pattern VMWARE_<TARGET_NAME_UPPER>_PASSWORD. Also supports certificate-based auth. Passwords are never logged or echoed.
-  Destructive operations: Segment/gateway/NAT delete require double confirmation + --dry-run. Segment delete checks for connected ports, gateway delete checks for connected segments.
-  No webhooks, no outbound network calls, no guest operations. Local only: stdio MCP + NSX Policy API (HTTPS 443).
-  SSL bypass: verify_ssl is on by default; false option for self-signed certs in lab environments only.
+  Credentials: Each NSX Manager target requires a per-target password env var in ~/.vmware-nsx/.env following the pattern VMWARE_NSX_<TARGET_NAME_UPPER>_PASSWORD. Username/password session auth only (client-certificate auth is not implemented). Passwords are never logged or echoed.
+  Write operations: CLI write commands require double confirmation and support --dry-run. The five MCP delete tools preview by default — without confirm=True they return the blast radius and change nothing, and confirm=True is refused while a blocker remains (attached ports, Tier-1 dependents, allocated IPs) or a read failed. Other MCP write tools execute when called and are audit-logged, so the agent must call them only on the user's explicit request; ~/.vmware/rules.yaml deny rules can block them per environment.
+  VMWARE_AUDIT_APPROVED_BY is an optional attestation recorded in the audit row; it is not a gate and does not carry credentials.
+  No webhooks or guest operations; outbound API calls go to the configured NSX Manager. Default stdio is local; optional authenticated HTTPS opens a listener. NSX calls go only to the configured NSX API (HTTPS 443).
+  SSL bypass: verify_ssl is on by default; trust a private CA via the SSL_CERT_FILE env var; verify_ssl false only for isolated labs with self-signed certs.
   Transitive dependencies: Only vmware-policy (audit/policy). No post-install scripts or background services.
 ---
 
 # VMware NSX
 
-> **Disclaimer**: This is a community-maintained open-source project and is **not affiliated with, endorsed by, or sponsored by VMware, Inc. or Broadcom Inc.** "VMware" and "NSX" are trademarks of Broadcom. Source code is publicly auditable at [github.com/zw008/VMware-NSX](https://github.com/zw008/VMware-NSX) under the MIT license.
+> Self-test: [guide](https://github.com/vmware-skills/marketplace/blob/main/MODEL_FIT_SELF_TEST.md).
 
-VMware NSX networking management — 32 MCP tools for segments, gateways, NAT, routing, and IPAM.
+> **Disclaimer**: This is a community-maintained open-source project and is **not affiliated with, endorsed by, or sponsored by VMware, Inc. or Broadcom Inc.** "VMware" and "NSX" are trademarks of Broadcom. Source code is publicly auditable at [github.com/vmware-skills/VMware-NSX](https://github.com/vmware-skills/VMware-NSX) under the MIT license.
+
+VMware NSX networking management — 33 MCP tools for segments, gateways, NAT, routing, and IPAM.
 
 > Domain-focused networking skill for NSX-T / NSX 4.x Policy API.
-> **Companion skills**: [vmware-nsx-security](https://github.com/zw008/VMware-NSX-Security) (DFW/firewall), [vmware-aiops](https://github.com/zw008/VMware-AIops) (VM lifecycle), [vmware-monitor](https://github.com/zw008/VMware-Monitor) (read-only monitoring), [vmware-storage](https://github.com/zw008/VMware-Storage) (iSCSI/vSAN), [vmware-vks](https://github.com/zw008/VMware-VKS) (Tanzu Kubernetes), [vmware-aria](https://github.com/zw008/VMware-Aria) (metrics/alerts/capacity), [vmware-avi](https://github.com/zw008/VMware-AVI) (AVI/ALB/AKO), [vmware-harden](https://github.com/zw008/VMware-Harden) (compliance baselines).
+> **Companion skills**: [vmware-nsx-security](https://github.com/vmware-skills/VMware-NSX-Security) (DFW/firewall), [vmware-aiops](https://github.com/vmware-skills/VMware-AIops) (VM lifecycle), [vmware-monitor](https://github.com/vmware-skills/VMware-Monitor) (read-only monitoring), [vmware-storage](https://github.com/vmware-skills/VMware-Storage) (iSCSI/vSAN), [vmware-vks](https://github.com/vmware-skills/VMware-VKS) (Tanzu Kubernetes), [vmware-aria](https://github.com/vmware-skills/VMware-Aria) (metrics/alerts/capacity), [vmware-avi](https://github.com/vmware-skills/VMware-AVI) (AVI/ALB/AKO), [vmware-harden](https://github.com/vmware-skills/VMware-Harden) (compliance baselines).
 > | [vmware-pilot](../vmware-pilot/SKILL.md) (workflow orchestration) | [vmware-policy](../vmware-policy/SKILL.md) (audit/policy)
 
 ## What This Skill Does
@@ -50,7 +55,7 @@ VMware NSX networking management — 32 MCP tools for segments, gateways, NAT, r
 ## Quick Install
 
 ```bash
-uv tool install vmware-nsx-mgmt
+uv tool install vmware-nsx-mgmt==1.15.3
 vmware-nsx init      # guided setup: writes config + .env (chmod 600, password grep-safe), then verifies
 vmware-nsx doctor
 ```
@@ -66,8 +71,11 @@ vmware-nsx doctor
 - Find which segment a VM is connected to
 - Troubleshoot logical port status
 
+Use it only when the request is explicitly about NSX (NSX-T / NSX 4.x, NSX Manager). **Writes only on request**: call a create/update/delete tool, NAT/route/IP-pool change, or Tier-0 BGP change only when the user has explicitly asked for that specific change — never as a side step of a read, health check, or troubleshooting task. Diagnose with read tools first and propose the change instead.
+
 **Use companion skills for**:
 - Distributed firewall, security groups, DFW rules, IDS/IPS → `vmware-nsx-security`
+- vSphere distributed port groups, host VMkernel adapters → `vmware-aiops`
 - VM lifecycle, deployment, guest ops → `vmware-aiops`
 - vSphere inventory, health, alarms, events → `vmware-monitor`
 - Storage: iSCSI, vSAN, datastores → `vmware-storage`
@@ -82,6 +90,7 @@ vmware-nsx doctor
 | NSX security: DFW rules, security groups, IDS/IPS | **vmware-nsx-security** |
 | Read-only vSphere monitoring, alarms, events | **vmware-monitor** |
 | VM lifecycle, deployment, guest ops | **vmware-aiops** |
+| vSphere distributed port groups, host VMkernel adapters | **vmware-aiops** |
 | Storage: iSCSI, vSAN, datastores | **vmware-storage** |
 | Tanzu Kubernetes (vSphere 8.x+) | **vmware-vks** |
 | Aria Ops: metrics, alerts, capacity planning | **vmware-aria** |
@@ -135,16 +144,7 @@ vmware-nsx doctor
 
 ### Multi-Target Operations
 
-All commands accept `--target <name>` to operate against a specific NSX Manager from your config:
-
-```bash
-# Default target (first in config.yaml)
-vmware-nsx inventory list-segments
-
-# Specific target
-vmware-nsx inventory list-segments --target nsx-prod
-vmware-nsx health alarms --target nsx-lab
-```
+All commands accept `--target <name>` to operate against a specific NSX Manager from your config (default: the first target in config.yaml), e.g. `vmware-nsx inventory list-segments --target nsx-prod`.
 
 ## Usage Mode
 
@@ -164,7 +164,7 @@ All MCP tools accept an optional `target` parameter to select which NSX Manager 
 | | `get_segment` | Read | Get segment details including ports and subnet config |
 | | `create_segment` | Write | Create overlay or VLAN segment with subnet and gateway |
 | | `update_segment` | Write | Update segment properties (name, subnets, gateway link) |
-| | `delete_segment` | Write | Delete a segment (warns on connected ports) |
+| | `delete_segment` | Write | Delete a segment; refuses (listing port ids) while ports are attached |
 | Tier-0 GW | `list_tier0_gateways` | Read | List Tier-0 gateways with HA mode and transit subnets |
 | | `get_tier0_gateway` | Read | Get Tier-0 details: HA mode, failover, transit subnets |
 | | `get_bgp_neighbors` | Read | List BGP neighbor sessions with state, ASN, prefixes |
@@ -173,7 +173,7 @@ All MCP tools accept an optional `target` parameter to select which NSX Manager 
 | | `get_tier1_gateway` | Read | Get Tier-1 details: Tier-0 link, route advertisement |
 | | `create_tier1_gateway` | Write | Create Tier-1 gateway with edge cluster and Tier-0 link |
 | | `update_tier1_gateway` | Write | Update Tier-1 properties (route advertisement, Tier-0 link) |
-| | `delete_tier1_gateway` | Write | Delete a Tier-1 gateway (removes default locale-service first) |
+| | `delete_tier1_gateway` | Write | Delete a Tier-1 gateway; refuses (listing blocking ids) while segments, NAT rules, routes, interfaces or VPN / DNS / LB services remain |
 | NAT | `list_nat_rules` | Read | List NAT rules on a Tier-1 gateway |
 | | `create_nat_rule` | Write | Create SNAT/DNAT/reflexive NAT rule on a gateway |
 | | `delete_nat_rule` | Write | Delete a NAT rule |
@@ -183,7 +183,7 @@ All MCP tools accept an optional `target` parameter to select which NSX Manager 
 | IP Pools | `list_ip_pools` | Read | List IP pools with usage summary |
 | | `get_ip_pool_usage` | Read | Show allocation usage for a pool |
 | | `create_ip_pool` | Write | Create a new IP address pool with allocation ranges |
-| | `delete_ip_pool` | Write | Permanently delete an IP address pool |
+| | `delete_ip_pool` | Write | Permanently delete an IP address pool; refuses while IPs are allocated |
 | Fabric | `list_transport_zones` | Read | List transport zones with type (OVERLAY/VLAN) |
 | | `list_transport_nodes` | Read | List transport nodes with node type and status |
 | | `list_edge_clusters` | Read | List edge clusters with member count and deployment type |
@@ -194,7 +194,15 @@ All MCP tools accept an optional `target` parameter to select which NSX Manager 
 | Troubleshoot | `get_logical_port_status` | Read | Realized state of all ports on a segment |
 | | `get_segment_port_for_vm` | Read | Find which segment a VM is connected to by display name |
 
-**Read/write split**: 20 tools are read-only, 12 modify state. Write tools require explicit parameters and are audit-logged. Dry-run preview (`--dry-run`) is a CLI feature; MCP write tools execute directly.
+Write tools require explicit parameters and are audit-logged. The five `delete_*` tools preview by default: without `confirm=True` they return `blast_radius` (what would be removed, `blockers`, `unmeasured`) and change nothing. Show it to the user and pass `confirm=True` only after they decide; it is refused while a blocker remains or a read failed. Other MCP write tools execute directly — call one only after the user has explicitly asked for that change.
+
+### List results are envelopes — read `truncated` before you summarise
+
+Every list-returning tool above returns `{items, returned, limit, total, truncated, hint}`, not a bare array. Rows live under `items`: empty `items` with `truncated: false` means the query genuinely matched nothing — report that, not a tool failure. `truncated: true` means `items` is not the whole collection — never call it complete. It does **not** mean more rows can be fetched: it stays true on the last page. Page with `next_offset`, stopping when it is `null`; `hint` says which situation you are in. Field semantics, `total` sourcing, and an example payload: `references/capabilities.md`.
+
+## Local & Small Models
+
+Running with local or small models? See [`references/agent-guardrails.md`](references/agent-guardrails.md) for explicit operating rules that keep tool calls reliable.
 
 ## CLI Quick Reference
 
@@ -217,16 +225,16 @@ vmware-nsx networking list-static-routes <tier1-id>
 vmware-nsx networking list-ip-pools
 vmware-nsx networking ip-pool-usage <pool-id>
 
-# Segment management (write)
-vmware-nsx segment create <id> --name <name> --tz <tz-path> [--vlan '100' | '100-200'] [--subnet <gw-cidr>] [--dry-run]
-vmware-nsx segment update <id> [--name <name>] [--subnet <gw-cidr>] [--dry-run]
+# Segment management (write; full option lists in references/cli-reference.md)
+vmware-nsx segment create <id> --name <name> --tz <tz-path> [--vlan|--subnet] [--dry-run]
+vmware-nsx segment update <id> [--name|--subnet] [--dry-run]
 vmware-nsx segment delete <id> [--dry-run]
 
 # Gateway management (write)
-vmware-nsx gateway create-tier1 <id> --name <name> [--tier0 <t0-path>] [--edge-cluster <ec-path>] [--dry-run]
-vmware-nsx gateway update-tier1 <id> [--name <name>] [--tier0 <t0-path>] [--advertise <types>] [--dry-run]
+vmware-nsx gateway create-tier1 <id> --name <name> [--tier0|--edge-cluster] [--dry-run]
+vmware-nsx gateway update-tier1 <id> [--name|--tier0|--advertise] [--dry-run]
 vmware-nsx gateway delete-tier1 <id> [--dry-run]
-vmware-nsx gateway configure-tier0-bgp <tier0-id> --local-as <asn> [--ecmp/--no-ecmp] [--dry-run]
+vmware-nsx gateway configure-tier0-bgp <tier0-id> --local-as <asn> [--ecmp] [--dry-run]
 
 # NAT (write)
 vmware-nsx nat create-rule --tier1 <id> --rule-id <id> --action SNAT --source <cidr> --translated <ip> [--dry-run]
@@ -237,7 +245,7 @@ vmware-nsx route create-static --tier1 <id> --route-id <id> --network <cidr> --n
 vmware-nsx route delete-static --tier1 <id> --route-id <id> [--dry-run]
 
 # IP pools (write)
-vmware-nsx ip-pool create <pool-id> --name <name> --start <ip> --end <ip> --cidr <cidr> [--gateway <ip>] [--dry-run]
+vmware-nsx ip-pool create <pool-id> --name <name> --start <ip> --end <ip> --cidr <cidr> [--dry-run]
 
 # Health & Troubleshooting (read-only)
 vmware-nsx health alarms [--severity CRITICAL]
@@ -281,16 +289,16 @@ A transport node in degraded state has partial connectivity. Steps:
 
 ### "Password not found" error
 
-The password environment variable is missing. Variable names follow the pattern `VMWARE_<TARGET_NAME_UPPER>_PASSWORD` where hyphens become underscores. Example: target `nsx-prod` needs `VMWARE_NSX_PROD_PASSWORD`. Check your `~/.vmware-nsx/.env` file.
+The password environment variable is missing. Variable names follow the pattern `VMWARE_NSX_<TARGET_NAME_UPPER>_PASSWORD` where hyphens become underscores. Example: target `nsx-prod` needs `VMWARE_NSX_NSX_PROD_PASSWORD`. Check your `~/.vmware-nsx/.env` file.
 
 ## Safety
 
-- **Read-heavy**: 20 of 32 tools are read-only (list, get, status, health, troubleshoot)
+- **Read-heavy**: 20 of 33 tools are read-only (list, get, status, health, troubleshoot)
 - **Audit logging**: All operations logged to `~/.vmware/audit.db` (SQLite WAL, via vmware-policy) with timestamp, user, target, operation, parameters, and result
 - **Double confirmation**: CLI write commands require two separate confirmation prompts before executing
-- **Dry-run mode**: All CLI write commands support `--dry-run` to preview API calls without executing (MCP write tools execute directly and are audit-logged)
-- **Dependency checks**: Segment delete checks for connected ports; gateway delete checks for connected segments; prevents accidental cascade failures
-- **Input validation**: CIDR networks validated, IP addresses checked, gateway existence verified before NAT/route operations
+- **Dry-run mode**: All CLI write commands support `--dry-run` to preview API calls without executing (MCP deletes preview unless `confirm=True`; other MCP writes execute directly and are audit-logged)
+- **Dependency checks**: Segment delete refuses while ports are attached. Tier-1 delete first checks (read-only) for attached or Tier-1-scoped segments, NAT rules, static routes, service interfaces, extra locale-services, IPsec / L2 VPN services, a DNS forwarder and attached LB services; while any remain it refuses, deletes nothing and lists their ids (`--dry-run` runs the same check). Only a clean gateway has its default locale-service removed and is then deleted. IP pool delete (MCP) refuses while addresses are allocated
+- **Input validation**: resource IDs restricted to letters, digits, `-` and `_`; NAT action checked against the allowed set; required fields checked (translated address for SNAT/DNAT/REFLEXIVE, CIDR + ranges per IP-pool subnet). CIDR/IP syntax and gateway existence are not checked client-side — they are left to NSX Manager's own API validation
 - **Prompt injection defense**: NSX object names returned from the API are sanitized via `_sanitize()` — strips control characters, truncates to 500 chars
 - **Credential safety**: Passwords loaded only from environment variables (`.env` file), never from `config.yaml`
 - **No firewall operations**: Cannot create, modify, or delete DFW rules, security groups, or IDS/IPS policies — that scope belongs to `vmware-nsx-security`
@@ -298,15 +306,8 @@ The password environment variable is missing. Variable names follow the pattern 
 ## Setup
 
 ```bash
-uv tool install vmware-nsx-mgmt
-mkdir -p ~/.vmware-nsx
-cp config.example.yaml ~/.vmware-nsx/config.yaml
-# Edit config.yaml with your NSX Manager targets
-
-# Add to ~/.vmware-nsx/.env (create if missing, chmod 600):
-# VMWARE_NSX_PROD_PASSWORD=<your-password>
-chmod 600 ~/.vmware-nsx/.env
-
+uv tool install vmware-nsx-mgmt==1.15.3
+vmware-nsx init      # writes ~/.vmware-nsx/config.yaml + .env (chmod 600), then verifies
 vmware-nsx doctor
 ```
 
@@ -328,8 +329,6 @@ NSX Manager
 Segments / Gateways / NAT / Routes / IP Pools / Transport Nodes
 ```
 
-The MCP server uses stdio transport (local only, no network listener). Connections to NSX Manager use HTTPS on port 443.
-
 ## Audit & Safety
 
 All operations are automatically audited via vmware-policy (`@vmware_tool` decorator):
@@ -343,4 +342,4 @@ vmware-policy is automatically installed as a dependency — no manual setup nee
 
 ## License
 
-MIT — [github.com/zw008/VMware-NSX](https://github.com/zw008/VMware-NSX)
+MIT — [github.com/vmware-skills/VMware-NSX](https://github.com/vmware-skills/VMware-NSX)

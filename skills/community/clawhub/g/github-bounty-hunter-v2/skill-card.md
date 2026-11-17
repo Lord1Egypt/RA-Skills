@@ -1,40 +1,58 @@
-## Description: <br>
-Automatically search for low-competition GitHub bounty tasks and generate a concise report with bounty details and estimated difficulty. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically search for low-competition GitHub bounty tasks with fewer than five comments and generate a report with details and estimated difficulty.
 
-## Publisher: <br>
-[santosparra651-arch](https://clawhub.ai/user/santosparra651-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[santosparra651-arch](https://clawhub.ai/user/santosparra651-arch)
 
-## Use Case: <br>
-Developers and bounty hunters use this skill to find open GitHub issues labeled as bounties with low comment counts, then review a sorted report before choosing tasks to pursue. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The listing name and CLI/package name differ slightly, which could lead users to install an unintended package. <br>
-Mitigation: Confirm the ClawHub listing, publisher handle, and package command before installation or execution. <br>
-Risk: The skill contacts GitHub's public API when run and depends on returned issue metadata. <br>
-Mitigation: Run it in an environment where GitHub API access is expected, and review the generated issue links before acting on the report. <br>
+## Use Case:
 
+Developers and bounty hunters use this skill to find less-crowded open GitHub issues labeled as bounties, sorted by comment count with basic difficulty estimates.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/santosparra651-arch/github-bounty-hunter-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text report with issue titles, URLs, comment counts, and estimated difficulty] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Contacts GitHub's public API when executed; authenticated GitHub access may improve rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Installing or running through an unpinned npx command can execute a package version that has not been reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned package version or a reviewed local install path before running the tool.
+
+Risk: The skill contacts GitHub's API and prints public issue results, so usage may be affected by network access and GitHub API rate limits.
+
+Mitigation: Run it in an environment approved for external GitHub API calls and use authentication only when higher rate limits are needed.
+
+Risk: Difficulty labels are heuristic estimates based on issue title keywords.
+
+Mitigation: Review the linked issue details before selecting or prioritizing a bounty task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/santosparra651-arch/skills/github-bounty-hunter-v2)
+- [GitHub Search API endpoint](https://api.github.com/search/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain-text CLI report with issue titles, URLs, comment counts, and difficulty labels.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default maximum comment count is five and can be changed with one CLI argument.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

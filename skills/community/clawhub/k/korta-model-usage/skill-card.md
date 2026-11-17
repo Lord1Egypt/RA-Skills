@@ -1,41 +1,54 @@
-## Description: <br>
-Use CodexBar CLI local cost usage to summarize per-model usage for Codex or Claude, including the current most recent model or a full model breakdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes per-model Codex or Claude usage costs from local CodexBar cost JSON, including current-model and all-model breakdowns.
 
-## Publisher: <br>
-[landercortazarromero](https://clawhub.ai/user/landercortazarromero) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[landercortazarromero](https://clawhub.ai/user/landercortazarromero)
 
-## Use Case: <br>
-Developers and engineers use this skill to summarize local CodexBar cost logs by model for Codex or Claude. It supports a current-model view, all-model cost breakdowns, and text or JSON output from CLI, file, or stdin input. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CodexBar usage logs and generated summaries may reveal private model usage and cost information. <br>
-Mitigation: Run the skill only in environments where local usage and cost data can be viewed, and avoid sharing generated summaries outside the intended audience. <br>
-Risk: The skill depends on CodexBar and its Homebrew tap for the default local cost collection path. <br>
-Mitigation: Install only if the CodexBar CLI and tap are acceptable for the environment; otherwise provide reviewed JSON through the file or stdin input path. <br>
+## Use Case:
 
+Developers and engineers use this skill to summarize CodexBar local cost output by current model or by all models for Codex and Claude usage. It supports reviewing existing CodexBar JSON from the CLI, a file, or stdin.
 
-## Reference(s): <br>
-- [CodexBar CLI quick ref](references/codexbar-cli.md) <br>
-- [Korta Model Usage on ClawHub](https://clawhub.ai/landercortazarromero/korta-model-usage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, plus text or JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cost-only per-model summaries; token counts are not split by model in CodexBar output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on CodexBar reading local Codex or Claude usage logs to compute cost summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only where local usage-log access is acceptable.
+
+Risk: The workflow requires a third-party CodexBar Homebrew cask dependency.
+
+Mitigation: Review the CodexBar cask source before installing when that dependency is not already trusted.
+
+## Reference(s):
+
+- [CodexBar CLI quick ref](artifact/references/codexbar-cli.md)
+- [Korta Model Usage ClawHub page](https://clawhub.ai/landercortazarromero/skills/korta-model-usage)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Text, JSON]
+
+**Output Format:** [Markdown guidance with bash commands; the bundled script emits plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports provider, mode, model, input, days, format, and pretty-print options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

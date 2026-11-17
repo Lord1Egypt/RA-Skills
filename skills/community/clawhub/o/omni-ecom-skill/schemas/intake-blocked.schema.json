@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/intake-blocked-2.0.json",
+  "title": "Omni E-commerce Zero-input Terminal Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "run_id", "client_scope", "team_version", "status", "reason_code", "report_generated", "formal_delivery_completed", "artifacts", "next_action", "checked_at"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "intake_blocked_receipt"},
+    "contract_name": {"const": "omni-ecom.intake-blocked"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.intake-blocked@1.0"], "current_completion_authority": false}},
+    "run_id": {"type": "string", "minLength": 3},
+    "client_scope": {"type": "string", "minLength": 1},
+    "team_version": {"type": "string", "minLength": 1},
+    "status": {"const": "closed_without_report_data_required"},
+    "reason_code": {"const": "no_supported_files"},
+    "report_generated": {"const": false},
+    "formal_delivery_completed": {"const": false},
+    "artifacts": {"type": "array", "minItems": 2, "maxItems": 2},
+    "next_action": {"type": "string", "minLength": 1},
+    "checked_at": {"type": "string", "minLength": 8}
+  }
+}

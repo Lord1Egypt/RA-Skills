@@ -1,41 +1,61 @@
-## Description: <br>
-Controls Xiaomi Home devices over the local network with miiocli, including status checks, power toggles, and MIOT property updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Xiaomi Home devices over a local LAN with miiocli, including status checks, power toggles, and MIOT property updates for supported smart-home devices.
 
-## Publisher: <br>
-[yiqiezhenxi](https://clawhub.ai/user/yiqiezhenxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yiqiezhenxi](https://clawhub.ai/user/yiqiezhenxi)
 
-## Use Case: <br>
-Developers and smart-home operators use this skill to map natural-language requests to miiocli commands for Xiaomi Home devices on a local network. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change real Xiaomi device states. <br>
-Mitigation: Review generated commands before execution and limit use to intended devices and actions. <br>
-Risk: Xiaomi account credentials, device IPs, and device tokens are sensitive. <br>
-Mitigation: Keep credentials and tokens private, avoid shared chats or public files, and store real device inventories only in access-controlled locations. <br>
-Risk: The referenced token extractor script was not included in the inspected artifact. <br>
-Mitigation: Inspect any token_extractor.py source before running it and install it only from a trusted source. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yiqiezhenxi/xiaomi-home-skill) <br>
+## Use Case:
 
+External users and developers use this skill to translate natural-language Xiaomi smart-home requests into miiocli commands for local LAN device control.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and MIOT command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may require miiocli, local device IPs, and Xiaomi device tokens.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Xiaomi device tokens can grant local control of smart-home devices if exposed.
+
+Mitigation: Store tokens in a dedicated secrets mechanism outside shared Markdown files, repositories, and chat logs.
+
+Risk: The advertised token extractor is not included in the artifact supplied for review.
+
+Mitigation: Do not rely on the extractor until the actual script is supplied and reviewed.
+
+Risk: The install command uses an unpinned dependency path and a dependency-version fix.
+
+Mitigation: Review and pin install dependencies before using the skill.
+
+Risk: Commands can control heaters, smart plugs, rice cookers, and similar appliances.
+
+Mitigation: Use extra care with appliance-control commands and confirm target devices before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yiqiezhenxi/skills/xiaomi-home-skill)
+- [Publisher Profile](https://clawhub.ai/user/yiqiezhenxi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may include local device IP addresses, Xiaomi tokens, and MIOT property identifiers supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,59 @@
-## Description: <br>
-A hybrid quantitative finance skill that compares classical SLSQP, quantum-inspired QUBO simulated annealing, and YAND-MVSK portfolio optimizers on the same return panel and visualizes solver disagreement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A hybrid quantitative finance skill that compares classical SLSQP, quantum-inspired QUBO simulated annealing, and YAND-MVSK portfolio optimizers on the same return panel.
 
-## Publisher: <br>
-[0x2hacks](https://clawhub.ai/user/0x2hacks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0x2hacks](https://clawhub.ai/user/0x2hacks)
 
-## Use Case: <br>
-Developers and quantitative researchers use this skill to load synthetic or user-supplied return data, run three portfolio optimization approaches side by side, and inspect generated diagnostics before relying on any result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Portfolio outputs may be mistaken for financial advice. <br>
-Mitigation: Treat outputs as research aids and have a qualified reviewer evaluate assumptions, data quality, and suitability before any investment decision. <br>
-Risk: User CSV files may contain data the user did not intend to analyze with this local workflow. <br>
-Mitigation: Only provide CSV files intended for local analysis and review the input columns and date rows before running the pipeline. <br>
-Risk: Optimization and simulated annealing results may be difficult to reproduce across dependency versions or stochastic runs. <br>
-Mitigation: Pin dependencies and record run parameters when reproducible research or auditability matters. <br>
+## Use Case:
 
+Developers and quantitative researchers use this skill to run and compare classical, QUBO-based, and YAND-MVSK portfolio optimization workflows on synthetic or CSV return data. It helps inspect solver agreement, energy landscapes, efficient-frontier behavior, and higher-moment portfolio diagnostics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0x2hacks/quantum-portfolio-yand) <br>
-- [README](README.md) <br>
-- [Portfolio optimization patterns](references/patterns.md) <br>
-- [Sharp edges and failure modes](references/sharp_edges.md) <br>
-- [Validation rules](references/validations.md) <br>
-- [Synthetic demo guide](examples/demo_synthetic.md) <br>
-- [Yau's Affine Normal Descent](https://arxiv.org/abs/2603.28448) <br>
-- [YAND-MVSK portfolio optimization](https://arxiv.org/abs/2604.25378) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, plus local script outputs such as JSON summaries and PNG figures.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with synthetic data or a user-provided CSV of daily returns; generated figures are written under assets/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Dependency and input-size controls are research-grade rather than hardened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment, prefer pinned or locked dependency versions, and add resource limits before processing untrusted or very large CSV files.
+
+Risk: Running the pipeline can create or overwrite generated PNG outputs under assets/.
+
+Mitigation: Run it in a workspace where generated figure overwrites are acceptable, or preserve existing assets before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0x2hacks/skills/quantum-portfolio-yand)
+- [README](README.md)
+- [Patterns reference](references/patterns.md)
+- [Sharp edges reference](references/sharp_edges.md)
+- [Validations reference](references/validations.md)
+- [Yau's Affine Normal Descent: Algorithmic Framework and Convergence Analysis](https://arxiv.org/abs/2603.28448)
+- [Yau's Affine-Normal Descent for Large-Scale Unrestricted Higher-Moment Portfolio Optimization](https://arxiv.org/abs/2604.25378)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; local Python scripts emit JSON summaries and PNG figures.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pipeline runs may create or overwrite generated PNG files under assets/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

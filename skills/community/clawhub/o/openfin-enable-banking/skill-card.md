@@ -1,46 +1,56 @@
-## Description: <br>
-PSD2 Open Banking integration via Enable Banking API for onboarding DACH bank connections, fetching balances and transactions, and renewing sessions for tax advisory automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects DACH bank accounts through the Enable Banking API so an agent can onboard mandants, fetch balances and transactions, and renew sessions for tax advisory automation.
 
-## Publisher: <br>
-[ppronobis](https://clawhub.ai/user/ppronobis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ppronobis](https://clawhub.ai/user/ppronobis)
 
-## Use Case: <br>
-Developers and tax-advisory automation teams use this skill to connect client bank accounts through Enable Banking, manage mandant sessions, and retrieve structured balance and transaction data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Germany and Austria <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live bank authorization and stored financial records. <br>
-Mitigation: Install only for intended Enable Banking account access and protect or periodically delete config.json, private keys, mandanten, pending_callbacks, and data outputs. <br>
-Risk: Callback handling can expose authorization codes if deployed with weak transport or broad network access. <br>
-Mitigation: Restrict the callback server to localhost or a trusted HTTPS reverse proxy, and avoid HTTP mode for real use. <br>
-Risk: Authorization links may grant sensitive access if sent to the wrong recipient. <br>
-Mitigation: Share authorization URLs only through channels where recipient control has been verified. <br>
-Risk: Unpinned dependency ranges can change the runtime security profile. <br>
-Mitigation: Pin reviewed dependency versions before production deployment. <br>
+## Use Case:
 
+Developers and finance or tax automation teams use this skill to connect German and Austrian bank accounts, retrieve structured account data, and maintain Enable Banking sessions across multiple mandants.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ppronobis/openfin-enable-banking) <br>
-- [Enable Banking API reference](https://enablebanking.com/docs/api/reference/) <br>
-- [Bundled Enable Banking API quick reference](references/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Germany and Austria
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON data outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetch operations write structured account, balance, transaction, mandant, and callback files locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The callback server and local storage flow could expose sensitive financial data if run in an untrusted or publicly exposed environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a trusted environment, avoid public exposure of the callback server unless state validation and path handling are reviewed, and protect stored mandant and data JSON files as sensitive financial records.
+
+Risk: Authorization links and callback codes can grant access to bank session setup if mishandled.
+
+Mitigation: Do not forward authorization links through casual messaging channels; use controlled channels and prefer manual code handling when appropriate.
+
+## Reference(s):
+
+- [Enable Banking API Quick Reference](references/api-reference.md)
+- [Enable Banking API Reference](https://enablebanking.com/docs/api/reference/)
+- [ClawHub Skill Page](https://clawhub.ai/ppronobis/skills/openfin-enable-banking)
+- [Publisher Profile](https://clawhub.ai/user/ppronobis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with bash commands and structured JSON data outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts can write mandant session records, pending callback codes, and fetched account data as local JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

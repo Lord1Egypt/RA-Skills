@@ -1,37 +1,48 @@
-## Description: <br>
-Enables agents running in WSL2 on Windows 11 to speak text through Windows built-in TTS using powershell.exe and System.Speech. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Windows TTS (WSL2) lets agents play spoken text through Windows 11 built-in System.Speech voices from WSL by invoking powershell.exe.
 
-## Publisher: <br>
-[547895019](https://clawhub.ai/user/547895019) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[547895019](https://clawhub.ai/user/547895019)
 
-## Use Case: <br>
-Developers and agent users in WSL2 use this skill to play assistant output directly through Windows speakers, especially for Chinese speech or when generated TTS audio files are silent or unusable. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Crafted spoken text or options may be interpreted as Windows PowerShell commands. <br>
-Mitigation: Install and use only with trusted text and options; avoid reading untrusted, quoted, copied, or code-like content until the speech script is hardened with typed PowerShell parameters or safe stdin handling plus rate and volume validation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/547895019/windows-tts-wsl2) <br>
+## Use Case:
 
+Developers and agent users use this skill when they need direct text-to-speech playback from WSL2 through the Windows default audio output, especially for Chinese voice prompts or environments where built-in TTS output is silent or unusable.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Directly plays speech through the Windows default audio output and does not return an audio file path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Crafted text, voice, rate, or volume values may execute unintended PowerShell commands on the Windows side.
+
+Mitigation: Review inputs before use, use the skill only with trusted text and options, and prefer a safer implementation that passes values as data and validates numeric ranges before invoking PowerShell.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/547895019/skills/windows-tts-wsl2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill triggers direct Windows audio playback and does not return an audio file path.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence, created 2026-02-15T10:59:41Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

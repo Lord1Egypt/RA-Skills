@@ -1,45 +1,61 @@
-## Description: <br>
-Manage the full lifecycle of Alibaba Cloud EMR Serverless StarRocks instances, including creation, scaling, configuration, maintenance, and diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage the full lifecycle of Alibaba Cloud EMR Serverless StarRocks instances, including creation, scaling, configuration, maintenance, and diagnosis.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-SREs, operations engineers, and architects use this skill to manage Alibaba Cloud EMR Serverless StarRocks instances through guided aliyun CLI workflows. It supports instance creation, status checks, scaling, configuration changes, restarts, and diagnostics, but not SQL authoring, data import/export, query tuning, or non-StarRocks products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide high-impact cloud provisioning and management actions that may affect cost, availability, or configuration. <br>
-Mitigation: Review proposed actions before execution, require confirmation for paid resource creation and restart, scale, or configuration changes, and use least-privilege Alibaba Cloud RAM roles. <br>
-Risk: Prompts, commands, logs, or shared documentation could expose access keys, passwords, or other operational secrets. <br>
-Mitigation: Do not paste real passwords or access keys into prompts or logs; source secrets securely and mask sensitive values in outputs. <br>
+## Use Case:
 
+External developers, SREs, operations engineers, and architects use this skill to manage Alibaba Cloud EMR Serverless StarRocks instances through the aliyun CLI. It focuses on instance lifecycle, capacity, configuration, maintenance, and diagnostics rather than SQL authoring, data import/export, query tuning, or unrelated Alibaba Cloud products.
 
-## Reference(s): <br>
-- [API Parameter Reference](references/api-reference.md) <br>
-- [Quick Start: Create Your First StarRocks Instance from Scratch](references/getting-started.md) <br>
-- [Instance Full Lifecycle: Plan to Create to Manage](references/instance-lifecycle.md) <br>
-- [Daily Operations: Configuration, Maintenance, SSL, Billing, Gateway](references/operations.md) <br>
-- [RAM Permission Policy Reference](references/ram-policies.md) <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/alibabacloud-emr-starrocks-manage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are intended for Alibaba Cloud CLI environments with configured credentials and appropriate RAM permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: Cloud creation, scaling, restart, modification, and diagnostic operations can change live resources or incur cost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Alibaba Cloud profile and confirm the account, region, VPC, payment type, and expected cost before executing write operations.
+
+Risk: Administrator passwords placed directly in command text can be exposed through shell history, logs, or shared transcripts.
+
+Mitigation: Prefer secure secret input or temporary-file workflows when supported, mask sensitive output, and rotate credentials if example passwords were used.
+
+Risk: The security summary says the skill overstates some lifecycle capabilities.
+
+Mitigation: Treat scale, restart, modify, and diagnostic requests cautiously and verify the intended operation against current Alibaba Cloud API behavior before execution.
+
+## Reference(s):
+
+- [Quick Start: Create Your First StarRocks Instance from Scratch](references/getting-started.md)
+- [RAM Permission Policy Reference](references/ram-policies.md)
+- [Instance Full Lifecycle: Plan -> Create -> Manage](references/instance-lifecycle.md)
+- [Daily Operations: Configuration, Maintenance, SSL, Billing, Gateway](references/operations.md)
+- [API Parameter Reference](references/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured Alibaba Cloud CLI credentials; generated commands can affect cloud resources and costs.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

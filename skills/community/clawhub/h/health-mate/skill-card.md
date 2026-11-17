@@ -1,44 +1,58 @@
-## Description: <br>
-Executable OpenClaw health-report skill with Chinese, English, and Japanese report flows. It reads Markdown logs only from an explicitly configured MEMORY_DIR, writes reports and logs locally, can create a commented project-local config/.env template during setup, sanitizes local-LLM stdout before AI commentary is embedded into reports, separates monthly disease mode from balanced/fat-loss lifestyle mode, and only performs Tavily, webhook, or font-download network activity when the corresponding runtime options are configured. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Health Mate is an executable OpenClaw health-report skill that reads Markdown health logs from an explicitly configured MEMORY_DIR and generates localized daily, weekly, and monthly reports with optional Tavily, webhook, public PDF, or font-download behavior only when configured.
 
-## Publisher: <br>
-[tankeito](https://clawhub.ai/user/tankeito) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tankeito](https://clawhub.ai/user/tankeito)
 
-## Use Case: <br>
-External users and agent operators use Health Mate to turn structured local health logs into localized daily, weekly, and monthly PDF health reports with scoring, trend charts, reminders, and optional delivery integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted report text can become local Python code in scheduled shell-runner delivery flows. <br>
-Mitigation: Avoid scheduled shell-runner delivery until the heredoc interpolation issue is fixed, and review generated report text before enabling automated delivery. <br>
-Risk: Sensitive health data may be read from MEMORY_DIR and written into local reports, logs, web-published directories, or external webhook messages. <br>
-Mitigation: Keep MEMORY_DIR narrowly scoped, keep config/.env private, and leave web publishing and webhook settings unset unless those flows are intentional. <br>
-Risk: Optional external services can transmit health-report content when configured. <br>
-Mitigation: Set Tavily, webhook, REPORT_WEB_DIR, REPORT_BASE_URL, and runtime font-download settings only after reviewing the intended data flow. <br>
+## Use Case:
 
+External users and developers use this skill to generate structured health-management summaries from local Markdown logs. It supports daily, weekly, and monthly localized reporting for wellness tracking, diet and hydration review, fitness habits, and configured chronic-condition monitoring.
 
-## Reference(s): <br>
-- [ClawHub Health Mate listing](https://clawhub.ai/tankeito/health-mate) <br>
-- [Project homepage](https://github.com/tankeito/Health-Mate) <br>
-- [User configuration example](artifact/config/user_config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and executable local report files, including PDF reports and optional delivery messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads configured local Markdown health logs, writes reports and logs locally, and uses optional network integrations only when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.4 (source: server evidence, SKILL.md frontmatter, artifact metadata, changelog) <br>
+Risk: Shell runners handle report and config text unsafely enough to require review before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or avoid the shell runner scripts until heredoc handling and .env loading are fixed; prefer reviewed direct Python entry points where appropriate.
+
+Risk: Health report data may leave the local machine when webhook, Telegram, Tavily, public PDF publishing, or runtime font download options are enabled.
+
+Mitigation: Leave those credentials and publishing settings unset unless the data transfer is intended, and review generated reports before sharing links or notifications.
+
+Risk: Project-local config/.env can contain secrets and sensitive local paths.
+
+Mitigation: Keep config/.env owner-only, include only keys the skill should read, and re-check MEMORY_DIR, report preferences, webhook, Tavily, and publishing settings after upgrades or reinstalls.
+
+## Reference(s):
+
+- [Health Mate ClawHub listing](https://clawhub.ai/tankeito/skills/health-mate)
+- [Health Mate project homepage](https://github.com/tankeito/Health-Mate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Localized Markdown and text report content, generated PDF files, local logs, and configuration-guided command workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces daily, weekly, and monthly health reports from local memory files; optional delivery, retrieval, public PDF publishing, and runtime font download depend on configured environment variables.]
+
+## Skill Version(s):
+
+1.5.4 (source: server release metadata, SKILL.md frontmatter, and changelog released 2026-04-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

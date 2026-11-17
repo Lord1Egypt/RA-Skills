@@ -1,37 +1,47 @@
-## Description: <br>
-Plan and scope a Minimum Viable Product for a solopreneur. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan and scope a Minimum Viable Product for a solopreneur, including feature prioritization, build-vs-buy decisions, launch criteria, and post-launch learning loops.
 
-## Publisher: <br>
-[JK-0001](https://clawhub.ai/user/JK-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-0001](https://clawhub.ai/user/jk-0001)
 
-## Use Case: <br>
-Solopreneurs and product builders use this skill to define an MVP hypothesis, cut nonessential features, choose build-vs-buy approaches, set launch criteria, and plan post-launch learning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill's 'fake it' MVP examples could be misread as permission to mislead users about manual processes or product capabilities. <br>
-Mitigation: Treat those examples as business planning advice and be transparent when manual processes affect trust, privacy, pricing, or product claims. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JK-0001/mvp-planning) <br>
+## Use Case:
+
+External solopreneurs and product builders use this skill to define the smallest launchable product that tests a business hypothesis, cuts nonessential features, and sets measurable launch and learning criteria.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may trigger on broad product-planning phrases and provide MVP scoping guidance when the user's intent is more general.
+
+Mitigation: Confirm the user is planning a first launch or MVP before applying the full scoping framework.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with checklists, decision frameworks, and scope templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution, credentials, or system access requested.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown planning guidance with templates, checklists, and decision frameworks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only guidance; no code execution, data access, persistence, or account actions are performed.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

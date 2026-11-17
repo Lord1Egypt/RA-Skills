@@ -1,46 +1,55 @@
-## Description: <br>
-通过 MCP 协议操作小红书平台，支持内容发布、搜索、互动等完整功能 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Model Context Protocol to help an agent operate Xiaohongshu for publishing, search, recommendations, comments, likes, favorites, and login checks.
 
-## Publisher: <br>
-[sipingme](https://clawhub.ai/user/sipingme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sipingme](https://clawhub.ai/user/sipingme)
 
-## Use Case: <br>
-Developers and external users use this skill to connect an agent to a Xiaohongshu MCP server for account login, publishing posts or videos, searching content, reading details, and performing user-approved interactions such as comments, likes, and favorites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a real Xiaohongshu account through an external MCP server and browser automation. <br>
-Mitigation: Use only with accounts and actions the user explicitly authorizes, and require manual confirmation before publishing, commenting, liking, favoriting, or changing visibility. <br>
-Risk: Reusable login cookies are stored locally and could allow account access if exposed. <br>
-Mitigation: Store `cookies.json` outside shared directories and protect it with restrictive file permissions such as `chmod 600`. <br>
-Risk: The quick-start documentation recommends a remote `curl | bash` installer. <br>
-Mitigation: Inspect, pin, or manually install the repository before running installation commands. <br>
+## Use Case:
 
+Developers and external users use this skill to configure an agent to operate a Xiaohongshu account through an MCP server for content publishing, content search, recommendations, and engagement actions after login confirmation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sipingme/xiaohongshu-mcp-node-skill) <br>
-- [Project GitHub](https://github.com/sipingme/xiaohongshu-mcp-node-skill) <br>
-- [xiaohongshu-mcp-node core library](https://github.com/sipingme/xiaohongshu-mcp-node) <br>
-- [Quick Start Guide](references/quick-start.md) <br>
-- [FAQ](references/faq.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples, shell commands, and MCP configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce command examples and user-facing workflow guidance for browser automation against a logged-in Xiaohongshu account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The quick-start path recommends a remote shell installer, and the security evidence calls out installer review needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer first or use manual, pinned installation steps instead of piping a remote script to bash.
+
+Risk: The skill automates real Xiaohongshu account actions and relies on a local cookie file.
+
+Mitigation: Treat the cookie file as a login credential, keep it private, and require explicit preview and confirmation before publish, comment, like, or favorite actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sipingme/skills/xiaohongshu-mcp-node-skill)
+- [Quick Start Guide](artifact/references/quick-start.md)
+- [FAQ](artifact/references/faq.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON examples, and MCP action descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command and tool results are typically JSON; account-changing actions should be previewed and confirmed before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Deep UX writing workflow for voice, clarity, error and empty states, forms, accessibility of text, localization hooks, and collaboration with design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep UX writing workflow for voice, clarity, error and empty states, forms, accessibility of text, localization hooks, and collaboration with design.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-Product teams, designers, writers, and developers use this skill to review and improve UI copy across voice and tone, clarity, error recovery, forms, accessibility, localization, and design collaboration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive product material may be shared during UX writing review, including customer, billing, security, health, or internal business information. <br>
-Mitigation: Share only screenshots, metrics, and product text appropriate for the task, and route sensitive or regulated copy through the relevant review process. <br>
-Risk: UX copy recommendations may accidentally create misleading product behavior, disclose security-sensitive account information, or conflict with legal requirements. <br>
-Mitigation: Review proposed copy with product, engineering, security, and legal stakeholders before deploying it in sensitive flows. <br>
+## Use Case:
 
+Designers, product teams, and developers use this skill to review and improve UI copy across product voice, clarity, errors, empty states, forms, accessibility, localization, and design collaboration.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mikeclaw007/ux-writing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance, checklists, and review recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only UX writing guidance; no executable code, persistence, credential use, or hidden system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Users may provide sensitive support tickets, metrics, screenshots, or regulated content as context for copy review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the context needed for UX writing review, redact personal or confidential details, and use legal or security review for regulated flows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/ux-writing)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown prose with workflow stages, checklists, and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or tool calls; output depends on user-provided UI copy, screenshots, and product context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

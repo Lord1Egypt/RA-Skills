@@ -1,42 +1,57 @@
-## Description: <br>
-Control Huawei HiLink USB LTE modems via their local REST API to send and read SMS, check signal and status, manage SIM PIN state, query prepaid balance, and inspect connection information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Huawei HiLink USB LTE modems via their local REST API for SMS, signal and status checks, SIM PIN handling, prepaid balance queries, and connection monitoring.
 
-## Publisher: <br>
-[And0r-](https://clawhub.ai/user/And0r-) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[and0r](https://clawhub.ai/user/and0r)
 
-## Use Case: <br>
-Developers and operators managing local Huawei HiLink USB LTE modems use this skill to configure connectivity and run modem tasks such as SMS, signal checks, SIM PIN handling, USSD balance queries, and device status inspection. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send or delete SMS and run USSD requests through a local HiLink modem. <br>
-Mitigation: Review the target number, message body, SMS index, and USSD operation before allowing SMS send, SMS delete, or balance commands to run. <br>
-Risk: A saved SIM PIN in the HiLink config could unlock modem access if the config file is exposed. <br>
-Mitigation: Avoid storing HILINK_PIN unless unattended unlock is required, and restrict ~/.config/hilink/config so only the intended user can read it. <br>
-Risk: The helper can use sudo network commands and alter the LTE interface state. <br>
-Mitigation: Review sudo network actions before execution and keep the LTE interface configured without a default route or DNS that could override the main network. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [HiLink API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/And0r-/hilink-lte) <br>
+## Use Case:
 
+Developers and operators use this skill to manage Huawei HiLink USB LTE modems connected to systems they control. It helps with SMS operations, LTE signal and network checks, SIM PIN entry or status checks, prepaid balance queries, and modem network setup.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that interact with a local modem and network interface.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The helper script can affect modem state, including sending or deleting SMS messages and changing SIM PIN-related settings.
+
+Mitigation: Use the skill only with modems you control, review commands before execution, and avoid SMS delete or PIN-changing operations unless those changes are intended.
+
+Risk: SIM PINs and modem configuration can be exposed if stored in weakly protected config files or passed through command lines or agent transcripts.
+
+Mitigation: Avoid storing SIM PINs in the config file when possible, avoid placing real PINs in prompts or shell history, and restrict config file permissions.
+
+Risk: The security review found that crafted inputs or a modified config file could make the script run unintended commands or change modem data.
+
+Mitigation: Review and fix the script before routine use, keep configuration files trusted and permission-restricted, and scan changes before deployment.
+
+## Reference(s):
+
+- [HiLink API Reference](artifact/references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/and0r/skills/hilink-lte)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and plain-text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include modem status, signal values, SMS content, SIM state, device information, and setup guidance for local HiLink modem access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

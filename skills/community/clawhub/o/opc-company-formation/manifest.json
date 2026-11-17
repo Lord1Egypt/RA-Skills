@@ -1,0 +1,24 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "opc-company-formation",
+  "version": "2.1.1",
+  "author": "注册老炮@MedXpert",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T15:48:12.991388+00:00",
+  "timestamp_local": "2026-08-27T23:48:12.991398",
+  "package_fingerprint_sha256": "632e308f6a2990c1eb353bbe587d307dbcba3c43b8966ee8755e9274438c3199",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "5416746360f13e79761cd77b2a7655ff5446803e513f206e31e93a7abd3091ac"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "d314f5c38645a27e1010be74672f9874852932fc6a614b1d5ce89ec9b7a88d2e"
+    },
+    {
+      "path": "安全审计报告.md",
+      "sha256": "bd6fbbf1acc0b57fa6220ecffc12a751a18cdc436a60793feb3014af34a21694"
+    }
+  ]
+}

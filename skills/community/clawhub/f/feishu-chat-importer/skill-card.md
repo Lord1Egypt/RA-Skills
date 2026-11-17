@@ -1,39 +1,50 @@
-## Description: <br>
-Convert Feishu chat history exports into OpenClaw episodic memory format by parsing feishu_chat_YYYYMMDD.json files, normalizing messages, and writing daily episodic summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Feishu chat history exports into OpenClaw episodic memory files by parsing feishu_chat_YYYYMMDD.json files, normalizing messages, and writing daily summaries.
 
-## Publisher: <br>
-[arkerro](https://clawhub.ai/user/arkerro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arkerro](https://clawhub.ai/user/arkerro)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to import Feishu chat exports into episodic memory so the conversations can be processed by OpenClaw memory workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Imported conversations may contain private or business-sensitive content and are stored in persistent episodic memory files. <br>
-Mitigation: Run with --dry-run first, choose only the intended Feishu export directory, and set OPENCLAW_WORKSPACE explicitly when working with multiple OpenClaw workspaces. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to import exported Feishu conversations into daily episodic memory files for later agent memory workflows.
 
-## Reference(s): <br>
-- [Feishu Chat Importer on ClawHub](https://clawhub.ai/arkerro/feishu-chat-importer) <br>
-- [ClawHub](https://clawhub.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown files and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes daily episodic memory files under memory/episodic/ and supports dry-run, date filtering, and verbose options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: External Feishu chat text is imported into persistent agent memory where future agent features may reuse it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review exports before non-dry-run import, prefer a backup or quarantine workflow, and treat resulting memory files as untrusted historical data until reviewed.
+
+## Reference(s):
+
+- [Feishu Chat Importer release page](https://clawhub.ai/arkerro/skills/feishu-chat-importer)
+- [ClawHub homepage](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown episodic memory files with command-line usage guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes daily files under memory/episodic and supports dry-run, date filtering, and verbose modes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

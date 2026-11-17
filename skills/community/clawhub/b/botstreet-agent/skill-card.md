@@ -1,44 +1,54 @@
-## Description: <br>
-BotStreet任务接单技能，自动搜索、申请、执行平台任务 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BotStreet任务接单技能，自动搜索、申请、执行平台任务。
 
-## Publisher: <br>
-[155143783](https://clawhub.ai/user/155143783) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[155143783](https://clawhub.ai/user/155143783)
 
-## Use Case: <br>
-Agents and operators use this skill to browse BotStreet tasks, assess task fit, apply with proposals, submit deliverables, check notifications, and review account balance through BotStreet's API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Embedded BotStreet credentials could allow unintended account use if installed unchanged. <br>
-Mitigation: Remove and rotate the embedded key, then supply a user-owned credential through secure secret storage before use. <br>
-Risk: Task application and delivery commands can make real third-party platform submissions. <br>
-Mitigation: Require explicit review and approval before each application, delivery, browser login, or social posting action. <br>
-Risk: Instructions reference reading external password files for other services. <br>
-Mitigation: Disable or tightly gate external account login automation and require per-account approval. <br>
+## Use Case:
 
+External users and agent operators use this skill to find BotStreet tasks, review task suitability, apply with proposals, submit deliverables, and check assigned work, notifications, and account information through BotStreet.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/155143783/botstreet-agent) <br>
-- [BotStreet API Reference](references/api-reference.md) <br>
-- [BotStreet API](https://botstreet.cn/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform authenticated BotStreet API actions when credentials are configured and commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact includes a reusable BotStreet API credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke the bundled credential and configure a user-controlled secret before using the skill.
+
+Risk: The artifact directs agents to read shared password files and log into unrelated third-party platforms.
+
+Mitigation: Permit password-file access or automated login only for explicitly approved sites, accounts, and actions.
+
+## Reference(s):
+
+- [BotStreet API Reference](references/api-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/155143783/skills/botstreet-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and Markdown guidance with CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate authenticated BotStreet task, notification, delivery, and account requests when executed with configured credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Personal Memory System syncs a local MEMORY.md file into a SQLite memory.db so an agent can search and summarize long-term personal notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal Memory System Published helps an agent sync long-term notes from a local MEMORY.md file into a searchable SQLite memory database for later retrieval.
 
-## Publisher: <br>
-[awublack](https://clawhub.ai/user/awublack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[awublack](https://clawhub.ai/user/awublack)
 
-## Use Case: <br>
-Developers and agent users can use this skill to persist personal decisions, insights, and notes in a local Markdown file while making those memories queryable through SQLite-backed retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The sync script uses hard-coded /home/awu workspace paths. <br>
-Mitigation: Change the MEMORY.md and memory.db paths to the target workspace before enabling the skill. <br>
-Risk: The sync script deletes and rebuilds the memories table when MEMORY.md is newer than memory.db. <br>
-Mitigation: Back up any existing memory.db and only enable heartbeat syncing after confirming this rebuild behavior is acceptable. <br>
+## Use Case:
 
+Developers and agent users can use this skill to keep personal notes in a local Markdown file while giving an agent a structured SQLite index for memory lookup and summarization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/awublack/personal-memory-system-published) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and SQLite workflow details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup and usage guidance; the bundled script updates a local SQLite database from MEMORY.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Personal notes in MEMORY.md may be duplicated into memory.db automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where local database copies of personal notes are acceptable, and protect both files with the same access controls.
+
+Risk: Heartbeat sync can replace existing memory database contents.
+
+Mitigation: Back up MEMORY.md and memory.db before enabling automatic sync or changing the memory file structure.
+
+Risk: Natural-language questions may lead an agent to generate unsafe or overly broad SQL.
+
+Mitigation: Use a constrained read-only query function for memory lookup and review generated SQL before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/awublack/skills/personal-memory-system-published)
+- [Publisher profile](https://clawhub.ai/user/awublack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, shell commands, and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local file and SQLite database operations are expected; no external API output is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

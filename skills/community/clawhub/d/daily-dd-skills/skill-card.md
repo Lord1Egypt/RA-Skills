@@ -1,42 +1,58 @@
-## Description: <br>
-钉钉日报自动提交工具 - 定时自动提交工作日报到钉钉日志系统，适用于每日工作汇报自动化、定时提交日报、钉钉日志集成等场景，并支持 Python 导入和命令行两种方式使用，可自定义接收人列表和定时任务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates scheduled or manual submission of daily work reports to DingTalk logs with configurable recipients and DingTalk application credentials.
 
-## Publisher: <br>
-[519989179](https://clawhub.ai/user/519989179) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[519989179](https://clawhub.ai/user/519989179)
 
-## Use Case: <br>
-Employees and developers use this skill to automate DingTalk daily report submission, including preparing report content, configuring recipients, and setting up scheduled or manual submission workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic report submission can send work content to DingTalk recipients without further review. <br>
-Mitigation: Confirm the recipient list and report content source before enabling scheduled submission. <br>
-Risk: DingTalk AppKey and AppSecret values may be exposed if configuration files are shared. <br>
-Mitigation: Keep DingTalk credentials out of shared files and replace placeholder values with locally managed secrets. <br>
-Risk: The artifact describes submit_log.py and cron setup, but those implementation files are not included for review. <br>
-Mitigation: Inspect the actual submit_log.py and cron configuration before installation or execution. <br>
+## Use Case:
 
+Employees and team operators use this skill to automate recurring DingTalk daily-report submission, including scheduled submission, manual submission, and configurable recipient lists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/519989179/daily-dd-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python, JSON, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes DingTalk application credential placeholders, receiver configuration examples, and cron scheduling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog dated 2026-03-12) <br>
+Risk: The skill can send work-log content to configured DingTalk recipients on a schedule.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm DingTalk recipients, app credentials, and cron schedule before installation or use.
+
+Risk: Submitted local work text may be cleared after submission.
+
+Mitigation: Confirm whether submitted work text is archived elsewhere before enabling automatic clearing.
+
+Risk: The reviewed artifact is documentation-only and does not include the referenced script or config files.
+
+Mitigation: Review and scan any implementation files separately before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/519989179/skills/daily-dd-skills)
+- [Publisher profile](https://clawhub.ai/user/519989179)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with Python, shell, JSON configuration examples, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only artifact; referenced script and configuration files are not included in the reviewed artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and user changelog, released 2026-03-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

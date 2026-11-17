@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+import os
+import sys
+
+
+def main():
+    bin_dir = os.path.dirname(os.path.realpath(__file__))
+    script_path = os.path.join(bin_dir, "..", "scripts", "image_forge.py")
+    os.execv(sys.executable, [sys.executable, script_path] + sys.argv[1:])
+
+
+if __name__ == "__main__":
+    main()

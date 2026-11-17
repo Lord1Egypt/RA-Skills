@@ -1,0 +1,588 @@
+#!/usr/bin/env python3
+"""Spex - Spec-Driven Development CLI tool."""
+
+import argparse
+import re
+import sys
+from pathlib import Path
+
+# Add scripts/ to sys.path for sibling imports.
+_scripts_dir = Path(__file__).resolve().parent
+sys.path.insert(0, str(_scripts_dir))
+
+from cli import ArgumentParser  # noqa: E402
+
+_skill_dir = _scripts_dir.parent
+
+GROUPED_HELP = """\
+Commands (run directly):
+  archive [-n] [--name <name>]
+              Archive completed specs (--dry-run to preview)
+  config [get] [--all] [var ...]
+                Show spex configuration variables
+  init          Initialize spex environment
+  list [--archives] [--all-projects]
+                List specs with progress
+  merge [name]
+                Merge a spex branch back to target (alias: submit)
+  open          Open spec directory in file browser
+  show [name]   Show detailed spec information (-l for brief)
+
+Commands (LLM skill only — invoked via /spex, not directly):
+  apply       Apply all steps of a spec (or apply-one-step for single step)
+  create      Create a new spec
+  modify      Modify an existing spec
+
+Internal commands (used by skill):
+  apply-helper <subcommand>
+                Helper utilities for applying specs
+                (precheck, post-action)
+  create-helper <subcommand>
+                Helper utilities for spec creation
+                (precheck, prepare-spec)
+  meta-helper <spec_name> [key] [value] [--stdin]
+                Get or set key/value in meta.json
+  prompt <template> [--name <name>] [-o <file>]
+                Render a Jinja2 template with metadata
+  run-hook <hook_name> --event-type <type> --name <name>
+                Execute a hook script with event data
+  review-helper --name <name> <subcmd>
+                Operate on per-step review files (init, append, edit,
+                bump-round, status, show, next)
+  todo-helper [--name <name> | --todo-file <path>] [--xml] <subcmd>
+                Operate on todo files (validate, append, edit, remove,
+                show, xml2json, json2xml)"""
+
+
+def _run_list(argv=None):
+    """Run the list command."""
+    import list as spex_list
+
+    spex_list.main(argv)
+
+
+def _run_archive(argv=None):
+    """Run the archive command."""
+    import archive
+
+    archive.main(argv)
+
+
+def _run_show(argv=None):
+    """Show detailed spec information."""
+    import show as spex_show
+
+    spex_show.main(argv)
+
+
+def _run_open(argv=None):
+    """Open a spec directory in the system file browser."""
+    import open as spex_open
+
+    spex_open.main(argv)
+
+
+_CONFIG_USAGE = """\
+Usage: spex config [get] [--all] [var ...]
+
+Show spex configuration variables.
+
+Options:
+  --all         Show all variables (default when no names given)
+  -h, --help    Show this help message and exit
+"""
+
+
+_CONFIG_SECTIONS = [
+    ("Git", "kv", ["branch", "remote_url", "user_name", "user_email"]),
+    ("Paths", "kv", ["cwd", "top_workdir", "main_worktree", "spex_root"]),
+    ("Config", "kv", [
+        "spex_root", "branch_management", "main_branch_name", "submit_method",
+    ]),
+    ("Config Files", "list", "spex_tomls"),
+    ("Spex Roots", "list", "spex_roots"),
+]
+
+
+def _section_header(name, width=50):
+    """Return a section header line like '── Name ──────...'."""
+    pad = width - len(name) - 4  # 4 = "── " + " "
+    return "── " + name + " " + "─" * max(pad, 3)
+
+
+def _format_value(value):
+    """Format a config value for display."""
+    if value is None or value == "":
+        return ""
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    return str(value)
+
+
+def _build_config_sections(ctx):
+    """Build list of (name, kind, entries) tuples from ProjectContext.
+
+    For "kv" sections, entries is a list of (key, value) tuples.
+    For "list" sections, entries is a list of items.
+    """
+    # Attribute lookup for Git and Paths sections
+    attr_map = {
+        "branch": ctx.branch,
+        "remote_url": ctx.remote_url,
+        "user_name": ctx.user_name,
+        "user_email": ctx.user_email,
+        "cwd": ctx.cwd,
+        "top_workdir": ctx.top_workdir,
+        "main_worktree": ctx.main_worktree,
+        "spex_root": ctx.spex_root,
+    }
+
+    sections = []
+    for name, kind, keys in _CONFIG_SECTIONS:
+        if kind == "kv":
+            entries = []
+            for key in keys:
+                if name == "Config":
+                    value = ctx.config.get(key)
+                else:
+                    value = attr_map.get(key)
+                entries.append((key, value))
+            sections.append((name, "kv", entries))
+        else:  # list
+            items = getattr(ctx, keys)
+            sections.append((name, "list", list(items)))
+    return sections
+
+
+def _print_config_sections(sections, requested=None):
+    """Print config sections in formatted output.
+
+    Args:
+        sections: List of (name, kind, entries) tuples.
+        requested: List of variable names to show, or None for all.
+    """
+    use_color = sys.stdout.isatty()
+
+    if requested:
+        # Build variable name mapping: var_name -> (section_name, kind, key/None)
+        var_map = {}
+        for sec_name, kind, keys in _CONFIG_SECTIONS:
+            if kind == "kv":
+                for key in keys:
+                    if sec_name == "Config":
+                        var_map[f"config.{key}"] = (sec_name, "kv", key)
+                    else:
+                        var_map[key] = (sec_name, "kv", key)
+            else:  # list
+                var_map[keys] = (sec_name, "list", None)
+
+        unknown = [n for n in requested if n not in var_map]
+        if unknown:
+            for name in unknown:
+                print(f"Error: unknown variable '{name}'",
+                      file=sys.stderr)
+            sys.exit(1)
+
+        # Collect matching kv entries and list sections
+        kv_entries = []
+        list_sections = []
+        for var_name in requested:
+            sec_name, kind, key = var_map[var_name]
+            if kind == "kv":
+                # Find the value from sections
+                for sn, sk, entries in sections:
+                    if sn == sec_name and sk == "kv":
+                        for k, v in entries:
+                            if k == key:
+                                kv_entries.append((k, v))
+                                break
+                        break
+            else:  # list
+                for sn, sk, entries in sections:
+                    if sn == sec_name and sk == "list":
+                        list_sections.append((sec_name, entries))
+                        break
+
+        # Print kv entries with aligned keys
+        if kv_entries:
+            max_key = max(len(k) for k, _ in kv_entries)
+            for key, value in kv_entries:
+                formatted = _format_value(value)
+                label = key.ljust(max_key)
+                if use_color:
+                    print(f"  \033[2;36m{label}\033[0m = {formatted}")
+                else:
+                    print(f"  {label} = {formatted}")
+
+        # Print list sections
+        for sec_name, items in list_sections:
+            if use_color:
+                print(f"\033[1m{_section_header(sec_name)}\033[0m")
+            else:
+                print(_section_header(sec_name))
+            for item in items:
+                print(f"  {item}")
+        return
+
+    # Full output: print all sections
+    first = True
+    for sec_name, kind, entries in sections:
+        if not first:
+            print()
+        first = False
+
+        if use_color:
+            print(f"\033[1m{_section_header(sec_name)}\033[0m")
+        else:
+            print(_section_header(sec_name))
+
+        if kind == "kv":
+            max_key = max((len(k) for k, _ in entries), default=0)
+            for key, value in entries:
+                formatted = _format_value(value)
+                label = key.ljust(max_key)
+                if use_color:
+                    print(f"  \033[2;36m{label}\033[0m = {formatted}")
+                else:
+                    print(f"  {label} = {formatted}")
+        else:  # list
+            for item in entries:
+                print(f"  {item}")
+
+
+def _run_config(argv=None):
+    """Show spex configuration variables."""
+    import config as spex_config
+
+    if argv is None:
+        argv = []
+
+    # Strip "get" subcommand if present
+    if argv and argv[0] == "get":
+        argv = argv[1:]
+
+    parser = ArgumentParser(prog="spex config", usage=_CONFIG_USAGE)
+    parser.add_argument("--all", action="store_true")
+    parser.add_argument("names", nargs="*")
+    args = parser.parse(argv)
+
+    ctx = spex_config.get_project_context()
+    sections = _build_config_sections(ctx)
+
+    if args.names:
+        requested = [n.replace("-", "_") for n in args.names]
+    else:
+        requested = None
+
+    _print_config_sections(sections, requested)
+
+
+def _run_prompt(argv=None):
+    """Render a Jinja2 template with metadata."""
+    import prompt
+
+    prompt.main(argv)
+
+
+def _run_meta_helper(argv=None):
+    """Get or set key/value in meta.json."""
+    import meta_helper
+
+    meta_helper.main(argv)
+
+
+def _run_create_helper(argv=None):
+    """Route create-helper subcommand."""
+    import create_helper
+
+    create_helper.main(argv)
+
+
+def _run_apply_helper(argv=None):
+    """Route apply-helper subcommand."""
+    import apply_helper
+
+    apply_helper.main(argv)
+
+
+_MERGE_USAGE = """\
+Usage: spex merge [name] [--no-archive] [-n/--dry-run]
+
+Merge a spex branch back to target.
+
+Positional arguments:
+  name            Spec name
+
+Options:
+  --no-archive    Skip automatic archiving after successful merge
+  -n, --dry-run   Preview merge without executing
+  -h, --help      Show this help message and exit
+"""
+
+
+def _run_merge(argv=None):
+    """Route merge subcommand."""
+    import merge
+
+    parser = ArgumentParser(prog="spex merge", usage=_MERGE_USAGE)
+    parser.add_argument("name", nargs="?", default="")
+    parser.add_argument("--no-archive", action="store_true")
+    parser.add_argument("-n", "--dry-run", action="store_true")
+    args = parser.parse(argv)
+
+    submit_args = []
+    if args.name:
+        submit_args.append(args.name)
+    if args.no_archive:
+        submit_args.append("--no-archive")
+    if args.dry_run:
+        submit_args.append("--dry-run")
+    merge.cli_submit(submit_args, command="merge")
+
+
+def _run_submit(argv=None):
+    """Route submit subcommand (alias of merge with different hook event)."""
+    import merge
+
+    parser = ArgumentParser(prog="spex submit", usage=_MERGE_USAGE)
+    parser.add_argument("name", nargs="?", default="")
+    parser.add_argument("--no-archive", action="store_true")
+    parser.add_argument("-n", "--dry-run", action="store_true")
+    args = parser.parse(argv)
+
+    submit_args = []
+    if args.name:
+        submit_args.append(args.name)
+    if args.no_archive:
+        submit_args.append("--no-archive")
+    if args.dry_run:
+        submit_args.append("--dry-run")
+    merge.cli_submit(submit_args, command="submit")
+
+
+def _run_todo_helper(argv=None):
+    """Route todo-helper subcommands."""
+    import todo_helper
+
+    todo_helper.main(argv)
+
+
+def _run_review_helper(argv=None):
+    """Route review-helper subcommands."""
+    import review_helper
+
+    review_helper.main(argv)
+
+
+def _get_version():
+    """Extract version from SKILL.md front-matter metadata."""
+    skill_md = _skill_dir / "SKILL.md"
+    if not skill_md.is_file():
+        return "unknown"
+    content = skill_md.read_text(encoding="utf-8")
+    match = re.match(r"^---\s*\n(.*?)\n---\s*\n", content, re.DOTALL)
+    if not match:
+        return "unknown"
+    for line in match.group(1).splitlines():
+        m = re.match(r"\s*version:\s*(.+)", line)
+        if m:
+            return m.group(1).strip().strip("\"'")
+    return "unknown"
+
+
+def _run_init(argv=None):
+    """Initialize spex environment."""
+    import init
+
+    init.main(argv)
+
+
+_RUN_HOOK_USAGE = """\
+Usage: spex run-hook <hook_name> --event-type <type> --name <name>
+       --json-payload '{"key": "value"}'
+
+Execute a hook script with event data.
+
+Options:
+  --event-type <type>   Event type (required)
+  --name <name>         Spec name
+  --json-payload <json> JSON payload string
+  --workdir <path>      Working directory
+  -h, --help            Show this help message and exit
+"""
+
+
+def _run_hook(argv=None):
+    """Execute a hook script with event data."""
+    import json
+
+    import hooks
+
+    parser = ArgumentParser(prog="spex run-hook", usage=_RUN_HOOK_USAGE)
+    parser.add_argument("hook_name")
+    parser.add_argument("--event-type")
+    parser.add_argument("--name")
+    parser.add_argument("--json-payload")
+    parser.add_argument("--workdir")
+    args = parser.parse(argv)
+
+    if not args.event_type:
+        from common import logger
+        logger.error("Error: --event-type is required")
+        sys.exit(1)
+
+    payload = json.loads(args.json_payload or "{}")
+    if args.name:
+        payload = {**payload, "spec_name": args.name}
+    event_data = hooks._build_event_data(args.event_type, payload,
+                                         args.workdir)
+    hooks.run_hook(args.hook_name, event_data, args.workdir)
+
+
+def _run_version(argv=None):
+    """Run the version command."""
+    import version
+
+    if argv:
+        version.main(argv)
+    else:
+        print(f"spex {_get_version()}")
+
+
+def _make_llm_error_handler(name):
+    """Create a handler for LLM-only commands."""
+    def handler(argv=None):
+        print(
+            f"Error: 'spex {name}' requires an AI coding agent. "
+            f"Run '/spex {name}' in Claude Code or equivalent.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+    return handler
+
+
+# -- Command registries ---------------------------------------------------
+
+_CLI_COMMANDS = [
+    ("archive", _run_archive),
+    ("config", _run_config),
+    ("init", _run_init),
+    ("list", _run_list),
+    ("merge", _run_merge),
+    ("submit", _run_submit),
+    ("open", _run_open),
+    ("show", _run_show),
+]
+
+_LLM_COMMAND_NAMES = ["apply", "create", "modify", "new"]
+
+_INTERNAL_COMMANDS = [
+    ("apply-helper", _run_apply_helper),
+    ("create-helper", _run_create_helper),
+    ("meta-helper", _run_meta_helper),
+    ("prompt", _run_prompt),
+    ("run-hook", _run_hook),
+    ("review-helper", _run_review_helper),
+    ("todo-helper", _run_todo_helper),
+    ("version", _run_version),
+]
+
+_ALL_COMMANDS = (
+    {name for name, _ in _CLI_COMMANDS}
+    | set(_LLM_COMMAND_NAMES)
+    | {name for name, _ in _INTERNAL_COMMANDS}
+)
+
+
+def _build_parser():
+    """Build the main argument parser with grouped help."""
+    parser = argparse.ArgumentParser(
+        prog="spex",
+        usage="spex <command>",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=GROUPED_HELP,
+        allow_abbrev=False,
+    )
+    parser.add_argument(
+        "--version", "-V",
+        action="version",
+        version=f"spex {_get_version()}",
+        help="Show version and exit",
+    )
+    parser.add_argument(
+        "-d", "--debug",
+        action="store_true",
+        default=False,
+        help="Enable debug output",
+    )
+
+    subs = parser.add_subparsers(dest="command")
+
+    for name, func in _CLI_COMMANDS:
+        p = subs.add_parser(name, add_help=False)
+        p.set_defaults(func=func)
+
+    for name in _LLM_COMMAND_NAMES:
+        p = subs.add_parser(name, add_help=False)
+        p.set_defaults(func=_make_llm_error_handler(name))
+
+    for name, func in _INTERNAL_COMMANDS:
+        p = subs.add_parser(name, add_help=False)
+        p.set_defaults(func=func)
+
+    # Hide the default subparser listing from help output; the grouped
+    # command descriptions are shown via the epilog instead.
+    for ag in parser._action_groups:
+        ag._group_actions = [
+            a for a in ag._group_actions
+            if not isinstance(a, argparse._SubParsersAction)
+        ]
+
+    return parser
+
+
+def main(argv=None):
+    """CLI entry point."""
+    if argv is None:
+        argv = sys.argv[1:]
+
+    from common import logger, setup_logging
+    from debug_log import debug_enabled, resolve_debug_log_path, trace_command
+
+    argv = list(argv)
+    full_argv = ["spex", *argv]
+    enabled = debug_enabled(full_argv)
+    setup_logging(verbose=enabled)
+
+    parser = _build_parser()
+
+    # Normalize subcommand: underscores -> hyphens (for display-name
+    # matching).  Also pre-check for unknown commands so we can produce
+    # the same error format as before (argparse would exit with code 2).
+    for i, arg in enumerate(argv):
+        if not arg.startswith("-"):
+            argv[i] = arg.replace("_", "-")
+            if argv[i] not in _ALL_COMMANDS:
+                logger.error("Unknown command: %s\n", argv[i])
+                parser.print_help(sys.stderr)
+                sys.exit(1)
+            break
+
+    args, remaining = parser.parse_known_args(argv)
+
+    if args.command is None:
+        parser.print_help(sys.stderr)
+        sys.exit(0)
+
+    if enabled:
+        log_path = resolve_debug_log_path(full_argv)
+        if log_path is not None:
+            with trace_command(log_path, full_argv):
+                args.func(remaining)
+            return
+
+    args.func(remaining)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,42 +1,54 @@
-## Description: <br>
-Extract summaries, answers, or structured data from any URL, PDF, or raw text. Auto-detects mode from task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize a specific document through AIProx (aiprox.dev): pasted text, a public web page or a PDF URL, via one POST /v1/summarize for 40 sats, paid in Bitcoin Lightning (L402 or a LightningProx spend token). Returns a summary and key points. Use it only when the user explicitly asks to summarize a given document or URL and agrees to pay.
 
-## Publisher: <br>
-[unixlamadev-spec](https://clawhub.ai/user/unixlamadev-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unixlamadev-spec](https://clawhub.ai/user/unixlamadev-spec)
 
-## Use Case: <br>
-External users, researchers, and developers use Doc Miner to summarize long documents, answer questions about document contents, and extract entities, dates, or numeric facts from URLs, PDFs, webpages, or pasted text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided URLs, documents, or pasted text are sent to AIProx and downstream analysis providers. <br>
-Mitigation: Avoid submitting confidential, regulated, or internal-only material unless AIProx terms, retention promises, and provider handling meet the user's requirements. <br>
-Risk: The AIPROX_SPEND_TOKEN environment variable is used for paid API access. <br>
-Mitigation: Use a spend token with appropriate limits and keep it out of prompts, shared logs, and committed files. <br>
+## Use Case:
 
+External users can ask an agent to summarize a specific pasted text, public webpage, or PDF and receive a summary with key points. The agent confirms the 40-sat charge before making the paid request.
 
-## Reference(s): <br>
-- [AIProx](https://aiprox.dev) <br>
-- [AIProx orchestration API](https://aiprox.dev/api/orchestrate) <br>
-- [Doc Miner on ClawHub](https://clawhub.ai/unixlamadev-spec/doc-miner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON responses with summary, Q&A, or extraction fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Mode-specific fields may include summary, key_points, word_count, answer, context, confidence, entities, dates, numbers, and source_type.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Pasted text or document URLs are sent to AIProx and its model service; provider retention and refund enforcement are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only material you are comfortable sending, and exclude secrets and personal information.
+
+Risk: Each call costs 40 sats, and a LightningProx spend token is a bearer payment credential.
+
+Mitigation: Approve the stated charge first, and use a minimally funded token or pay each invoice yourself.
+
+## Reference(s):
+
+- [AIProx documentation](https://aiprox.dev/docs.html)
+- [AIProx summarize endpoint](https://aiprox.dev/v1/summarize)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Analysis]
+
+**Output Format:** [Summary text with a list of key points]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One document per request; pasted text is limited to 20,000 characters.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, changelog, released 2026-11-05)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

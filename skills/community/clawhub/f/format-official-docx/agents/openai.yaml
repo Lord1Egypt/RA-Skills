@@ -1,0 +1,4 @@
+interface:
+  display_name: "党政公文格式化"
+  short_description: "将文字或 Word 转为规范党政机关公文格式"
+  default_prompt: "Use $format-official-docx to convert this text into a properly formatted official Word document."

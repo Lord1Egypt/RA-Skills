@@ -1,46 +1,58 @@
-## Description: <br>
-$0 test-time scaling with online learning. Classify, generate, and verify using free model ensembles. Models self-select via ELO scoring and A/B testing from deployment data, with 13 NIM models and an optional Copilot backend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+$0 test-time scaling with online learning. Classify, generate, and verify using free model ensembles. Models self-select via ELO scoring and A/B testing from deployment data, with NVIDIA NIM models and optional Copilot integration.
 
-## Publisher: <br>
-[isotrivial](https://clawhub.ai/user/isotrivial) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[isotrivial](https://clawhub.ai/user/isotrivial)
 
-## Use Case: <br>
-Developers and engineers use this skill to route classification, generation, verification, batch evaluation, health checks, and model-panel evolution through free NVIDIA NIM model ensembles, with optional GitHub Copilot-backed models for selected workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and context may be sent to NVIDIA NIM and, when Copilot aliases or hybrid audit workflows are used, to GitHub Copilot. <br>
-Mitigation: Review provider policies before use and avoid submitting secrets, regulated data, or sensitive customer content unless that data path is approved. <br>
-Risk: The optional Copilot backend can reuse local OpenClaw or GitHub credential files. <br>
-Mitigation: Use Copilot-backed models only in environments where local credential reuse is acceptable, and isolate or remove Copilot token files after use when required. <br>
-Risk: ELO and feedback features store recent inference history and feedback metadata in local cache files. <br>
-Mitigation: Configure an isolated FREE_SCALING_STATE_DIR for sensitive workflows and clear the free-scaling cache after use when retention is not desired. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add ensemble-based classification, generation, verification, model health checks, and online model selection around NVIDIA NIM free-tier models. It is suited for workflows such as code review, content moderation, fact-checking, summarization, CI gates, and agent self-evaluation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/isotrivial/free-scaling) <br>
-- [NVIDIA Build](https://build.nvidia.com) <br>
-- [Source repository mentioned in artifact](https://github.com/isotrivial/free-scaling.git) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; runtime APIs can return text, JSON-like result objects, and status dictionaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external NVIDIA NIM endpoints and optional GitHub Copilot endpoints; local ELO and feedback state may be written under the configured free-scaling cache directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Prompts and context may be sent to NVIDIA NIM and, when optional Copilot paths are enabled, GitHub Copilot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data approved for those providers, and disable or avoid Copilot and audit features unless provider use and logging are acceptable.
+
+Risk: The security evidence reports that the skill can reuse local GitHub/Copilot credentials.
+
+Mitigation: Review the local OpenClaw credential environment before use, restrict credentials to the intended workspace, and avoid Copilot model aliases unless that credential use is expected.
+
+Risk: Online learning and feedback features can retain prompt-derived model votes and feedback state locally.
+
+Mitigation: Set a controlled FREE_SCALING_STATE_DIR for sensitive runs, review retained state files, and clear local cache state when retention is not appropriate.
+
+## Reference(s):
+
+- [Free Scaling ClawHub page](https://clawhub.ai/isotrivial/skills/free-scaling)
+- [NVIDIA NIM build catalog](https://build.nvidia.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with Python and shell examples; runtime calls may return text labels, generated text, dataclass-style results, or JSON from CLI commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include model votes, confidence, latency, health status, generated candidates, judge votes, and ELO or feedback state summaries.]
+
+## Skill Version(s):
+
+3.3.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

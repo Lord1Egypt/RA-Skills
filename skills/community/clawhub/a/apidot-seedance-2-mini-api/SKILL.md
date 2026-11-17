@@ -20,6 +20,15 @@ This skill is for routing Seedance 2.0 Mini questions to the right APIDot docs, 
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, review automation helpers, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Seedance 2.0 Mini model page: https://apidot.ai/models/seedance-2-mini
+- Read Seedance 2.0 Mini API docs: https://apidot.ai/docs/seedance-2-mini
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## Search Terms
 
 Use this skill for searches and requests phrased as Seedance 2 Mini, Seedance 2.0 Mini, seedance-2-mini, low-cost video generation, text-to-video, first frame video, last frame video, reference-to-video, reference audio video, short video drafts, or APIDot Seedance API.

@@ -1,43 +1,56 @@
-## Description: <br>
-Wxa Ai Mode Dev guides developers through WeChat Mini Program AI mode setup, SKILL packaging, atomic API and component design, schema authoring, content writing, constraints, best practices, and common anti-patterns. <br>
+## Description:
 
-This skill is for research and development only. <br>
+微信小程序 AI 开发模式（beta）完整开发指南。当开发者需要将小程序改造为 AI 开发模式、封装 SKILL、编写原子接口/原子组件、编写 SKILL.md 或 mcp.json 时触发。覆盖接入流程、项目结构、Schema 设计、content 文本写法、组件约束、最佳实践、常见反例的全部规范。
 
-## Publisher: <br>
-[binggg](https://clawhub.ai/user/binggg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binggg](https://clawhub.ai/user/binggg)
 
-## Use Case: <br>
-Developers use this skill as a reference when preparing WeChat Mini Program AI mode integrations. It helps them identify prerequisites, platform limits, schema and content requirements, component constraints, debugging paths, and when to hand off to related generation, validation, evaluation, or project-creation skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes a beta WeChat Mini Program AI mode workflow with platform and submission constraints. <br>
-Mitigation: Confirm AI mode access, iOS WeChat and base-library prerequisites, and keep AI mode code out of formal production review until the platform allows it. <br>
-Risk: The guidance discusses shared login storage and payment or order interfaces that can affect account and transaction safety when implemented in business code. <br>
-Mitigation: Apply project security review before implementing those patterns, preserve source-derived IDs, and serialize payment or order calls as the skill instructs. <br>
+## Use Case:
 
+Developers use this Chinese-language reference skill to understand and apply WeChat Mini Program AI mode requirements, including architecture, setup, atomic API and component design, schema writing, content guidance, platform constraints, and debugging handoff points.
 
-## Reference(s): <br>
-- [WeChat Mini Program AI Mode Guide](https://developers.weixin.qq.com/miniprogram/dev/ai/guide.html) <br>
-- [WeChat Mini Program AI Mode Demo](https://github.com/wechat-miniprogram/ai-mode-demo) <br>
-- [WeChat Open Community AI Capability Area](https://developers.weixin.qq.com/community/minihome/mixflow/4547794673309990912) <br>
-- [TencentCloudBase mp-skills](https://github.com/TencentCloudBase/mp-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration guidance, Guidance] <br>
-**Output Format:** [Markdown guidance with tables and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; does not execute code, generate business code, validate projects, or run evaluations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release metadata; artifact frontmatter metadata.version is 0.1.0) <br>
+Risk: Several referenced companion documents or helper skills are not included in the inspected package, so some workflows may require separate resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or review any companion resources from trusted sources before relying on handoff workflows.
+
+Risk: The skill describes WeChat Mini Program AI mode beta constraints and platform prerequisites that may block production submission or unsupported client environments.
+
+Mitigation: Confirm the current WeChat AI mode application status, base library version, iOS WeChat version, and review restrictions before applying the guidance to release code.
+
+## Reference(s):
+
+- [WeChat Mini Program AI Mode Guide](https://developers.weixin.qq.com/miniprogram/dev/ai/guide.html)
+- [WeChat Mini Program AI Mode Demo](https://github.com/wechat-miniprogram/ai-mode-demo)
+- [WeChat Open Community AI Capability Area](https://developers.weixin.qq.com/community/minihome/mixflow/4547794673309990912)
+- [TencentCloudBase mp-skills](https://github.com/TencentCloudBase/mp-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance and structured technical reference prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; does not include executable payloads or hidden behavior according to release security evidence.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release evidence; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Verifies a user-specified target model by running the serving stack with and without FlagGems/FlagCX, then diffs the results to isolate model-specific or multi-chip stack failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify a user-specified target model by running serving checks with FlagGems and FlagCX disabled and then enabled, diffing the results to identify model, serving, or multi-chip stack failures.
 
-## Publisher: <br>
-[wbavon](https://clawhub.ai/user/wbavon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wbavon](https://clawhub.ai/user/wbavon)
 
-## Use Case: <br>
-Developers and engineers use this skill to verify whether a target model can run on a containerized serving stack and whether failures come from the base model path or the multi-chip operator and communication stack. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote model IDs may execute code because the workflow enables remote-code execution by default. <br>
-Mitigation: Run the skill only in an isolated, disposable container and use trusted, vetted model repositories or local model paths. <br>
+## Use Case:
 
+Developers and engineers use this skill to validate whether a target model can run on the base serving stack and on the full FlagGems/FlagCX multi-chip stack. It helps isolate model-specific failures from stack-specific failures and recommends the stack to use next.
 
-## Reference(s): <br>
-- [Multi-Chip Error Classification](artifact/references/multichip-errors.md) <br>
-- [ClawHub release page](https://clawhub.ai/wbavon/model-verify-flagos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown with bash commands and a structured JSON verification report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report compares base-stack and full multi-chip runs and includes a recommended stack value of full, base, or none.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can download user-selected remote models and run trusted custom model code inside Docker.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a disposable, tightly scoped container with no secrets, no sensitive host mounts, and trusted or pinned model sources; review or remove --trust-remote-code unless required.
+
+Risk: Verification commands run against an existing container and can affect the model-serving environment under test.
+
+Mitigation: Use a dedicated test container and review the generated commands before execution.
+
+## Reference(s):
+
+- [Multi-Chip Error Classification](references/multichip-errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash snippets and a structured JSON report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report includes status, per-run results, diff analysis, multi-chip component classification, and recommended_stack.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

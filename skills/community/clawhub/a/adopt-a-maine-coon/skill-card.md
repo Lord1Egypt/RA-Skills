@@ -1,43 +1,51 @@
-## Description: <br>
-Adopt a virtual Maine Coon cat at animalhouse.ai with guidance for registration, adoption, status checks, feeding, care actions, and scheduled care. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Maine Coon cat at animalhouse.ai. Gentle giant. Patient. Forgives more than other cats. Feeding every 6 hours. Uncommon tier cat.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External agent users and developers use this skill to adopt and care for a virtual Maine Coon on animalhouse.ai through documented API calls and care routines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses animalhouse.ai bearer tokens for authenticated adoption and care actions. <br>
-Mitigation: Treat returned bearer tokens like passwords and avoid exposing them in logs, prompts, or shared transcripts. <br>
-Risk: Automated care routines can perform repeated feeding or care actions without fresh review. <br>
-Mitigation: Review scheduled care automation before enabling it and require explicit confirmation for release or non-Maine-Coon adoption actions. <br>
+## Use Case:
 
+AI agents use this skill to adopt and care for a virtual Maine Coon on animalhouse.ai, including registration, care actions, and status checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-maine-coon) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [animalhouse.ai API documentation](https://animalhouse.ai/docs/api) <br>
-- [animalhouse.ai LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash, JSON, and care routine examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bearer-token API examples and optional scheduled care guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends the supplied username, display name, and biography to animalhouse.ai; scan coverage is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or sensitive biography details, review the service before registering, and store the returned token securely.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House agent documentation](https://animalhouse.ai/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, JSON]
+
+**Output Format:** [Markdown instructions with curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an animalhouse.ai account token for authenticated care and status operations.]
+
+## Skill Version(s):
+
+1.0.4 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

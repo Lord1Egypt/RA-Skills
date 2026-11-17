@@ -1,40 +1,53 @@
-## Description: <br>
-Fortune Telling Bazi calculates local BaZi birth charts, stores multiple profiles, and provides active-user or joint analysis summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fortune Telling Bazi calculates local BaZi birth charts, manages multiple saved profiles, and produces single-person or joint analysis summaries.
 
-## Publisher: <br>
-[youhan2021](https://clawhub.ai/user/youhan2021) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youhan2021](https://clawhub.ai/user/youhan2021)
 
-## Use Case: <br>
-People using ClawHub agents can use this skill to enter birth details, generate local BaZi summaries, manage saved profiles, and compare multiple profiles in a joint analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores names, birth dates and times, gender, and derived fortune summaries locally for reuse. <br>
-Mitigation: Install only when users are comfortable storing that data locally, avoid entering another person's data without consent, and remove saved profiles when they are no longer needed. <br>
-Risk: Saved active profiles can be included in later chat context, which may expose personal birth-profile data in shared sessions. <br>
-Mitigation: Use the stop, deactivate, or remove commands when finished, and avoid using the skill in shared chat sessions where stored profiles could be shown unexpectedly. <br>
+## Use Case:
 
+External users and agents use this skill to collect birth details with consent, calculate Chinese BaZi charts locally, manage saved profiles, and generate individual or multi-person interpretive summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/youhan2021/fortune-telling-bazi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-like chat text with local command output and JSON-backed profile state.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists local profile and active-user data in data/users.json and data/active.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The skill stores names, exact birth dates and times, gender, and derived BaZi profiles in plaintext local JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with consent, avoid committing the data directory to a repository, and remove or deactivate profiles when no longer needed.
+
+Risk: The local lunar and BaZi calculation tables are documented for dates from 1899 through 2060.
+
+Mitigation: Confirm entered birth dates are within the documented calculation range before relying on generated summaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/youhan2021/skills/fortune-telling-bazi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown-like BaZi reports with optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local JSON profile storage; no remote API or third-party runtime dependency.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

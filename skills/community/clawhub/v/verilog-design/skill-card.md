@@ -1,41 +1,57 @@
-## Description: <br>
-Design, implement, and verify Verilog/SystemVerilog modules with spec-driven development, self-checking testbenches, and automated simulation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs, implements, and verifies Verilog/SystemVerilog modules using spec-driven development, self-checking testbenches, static slang checks, simulator workflows, and VCD waveform analysis.
 
-## Publisher: <br>
-[billchen1020](https://clawhub.ai/user/billchen1020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billchen1020](https://clawhub.ai/user/billchen1020)
 
-## Use Case: <br>
-Developers and hardware engineers use this skill to turn digital design requirements into Verilog/SystemVerilog modules, self-checking testbenches, simulation commands, and waveform-analysis guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HDL or testbenches may contain incorrect logic or local command execution through Verilog system tasks. <br>
-Mitigation: Review generated modules and testbenches before simulation, with particular attention to any $system calls. <br>
-Risk: Simulation and waveform analysis rely on local EDA tools and Python dependencies. <br>
-Mitigation: Install and run simulator and Python dependencies in a controlled environment. <br>
+## Use Case:
 
+Developers and hardware engineers use this skill to create Verilog/SystemVerilog modules, write design specs and testbenches, run available local simulators, and analyze VCD waveforms during verification.
 
-## Reference(s): <br>
-- [VCD Waveform Analysis with Python](references/vcd-analysis.md) <br>
-- [ClawHub release page](https://clawhub.ai/billchen1020/verilog-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with Verilog/SystemVerilog code blocks, shell commands, and diagnostic guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create workspace HDL, testbench, simulation log, VVP, and VCD files when the agent follows the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Local simulator commands can execute installed EDA tools and create design, testbench, log, and waveform files in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run verification in an isolated project workspace and review generated files and simulator commands before execution.
+
+Risk: The VCD analysis helper depends on the third-party Python package vcdvcd.
+
+Mitigation: Install dependencies in a virtual environment and pin or review vcdvcd before using the skill in CI or sensitive workspaces.
+
+Risk: The waveform analysis scripts are built for VCD and do not support FSDB waveform files.
+
+Mitigation: Configure testbenches to emit VCD with $dumpfile and $dumpvars before using the analysis workflow.
+
+## Reference(s):
+
+- [VCD Waveform Analysis with Python](references/vcd-analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Verilog/SystemVerilog code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create design specs, Verilog/SystemVerilog source files, self-checking testbenches, simulation logs, VVP files, and VCD waveforms in the user's workspace.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

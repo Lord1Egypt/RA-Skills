@@ -1,41 +1,53 @@
-## Description: <br>
-Drafts WeChat public account articles for emotional hooks, short-drama promotions, and other social content formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese WeChat-style article drafts for emotional viral posts, short-drama promotions, and other social media content.
 
-## Publisher: <br>
-[amaxclaw](https://clawhub.ai/user/amaxclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amaxclaw](https://clawhub.ai/user/amaxclaw)
 
-## Use Case: <br>
-External users and content creators use this skill to draft WeChat public account articles, titles, body copy, formatting suggestions, calls to action, and image recommendations for manual review before posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated WeChat content may be inaccurate, insufficiently original, noncompliant with platform rules, sensitive, or off-tone. <br>
-Mitigation: Review and edit all generated text for accuracy, originality, platform compliance, sensitive content, and tone before manually posting it to any public account. <br>
-Risk: The skill title and source text suggest automatic posting, but the release security summary says it contains no mechanism to publish, persist, or access accounts. <br>
-Mitigation: Use the skill only as a drafting aid and rely on a separate reviewed publishing process for any public release. <br>
+## Use Case:
 
+Content creators, marketers, and agents use this skill to draft WeChat public-account articles with titles, body copy, formatting suggestions, calls to action, and image suggestions. It is intended for drafting and content preparation, not unattended publication.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/amaxclaw/wechat-auto-post) <br>
-- [references/README.md](references/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown article drafts with titles, body copy, formatting suggestions, calls to action, and image guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Intended as a drafting aid; generated content should be reviewed for accuracy, originality, platform compliance, sensitive content, and tone before manual posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill name suggests auto-posting, but the inspected artifact drafts and outputs content rather than publishing it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated draft manually and publish only through an approved human-controlled workflow.
+
+Risk: Generated social media content may be inaccurate, policy-sensitive, or unsuitable for publication.
+
+Mitigation: Check facts, sensitive-topic handling, formatting, and typos before posting.
+
+## Reference(s):
+
+- [Wechat Auto Post reference README](artifact/references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown article draft with title, body copy, formatting, call to action, and image suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets 1500-3000 Chinese characters or words as directed by the source skill; content should be reviewed before publishing.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

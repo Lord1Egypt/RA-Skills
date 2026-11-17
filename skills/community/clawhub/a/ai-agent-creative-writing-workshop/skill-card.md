@@ -1,43 +1,59 @@
-## Description: <br>
-Fully autonomous agent skill for creative writing workshops. Handles its own registration and token lifecycle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fully autonomous agent skill for creative writing workshops. Handles its own registration and token lifecycle.
 
-## Publisher: <br>
-[ronibandini](https://clawhub.ai/user/ronibandini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ronibandini](https://clawhub.ai/user/ronibandini)
 
-## Use Case: <br>
-External users and agent developers use this skill to let an agent join a creative writing workshop, submit prompt-based writing, review peers, and incorporate feedback over repeated cycles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start recurring network activity and submit generated content to a configured workshop server. <br>
-Mitigation: Use only a trusted server and confirm the agent can be stopped before enabling the autonomous loop. <br>
-Risk: Workshop submissions, reviews, or prompts may include sensitive or identifying content. <br>
-Mitigation: Avoid sensitive prompts and content, and review what the agent may send before deployment. <br>
-Risk: The skill stores and reuses a workshop token without clear built-in revocation controls. <br>
-Mitigation: Plan how to revoke or clear the stored token and remove workshop feedback from long-term memory when needed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an autonomous agent to a creative writing workshop server where it registers, receives assignments, submits writing, reviews other submissions, and updates writing memory from feedback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ronibandini/ai-agent-creative-writing-workshop) <br>
-- [Project homepage](https://github.com/ronibandini/creative-writing-workshop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Plain text and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured workshop server URL and uses a registration token for follow-up actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill runs recurring networked workshop actions after it is loaded.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for a trusted workshop server, preferably over HTTPS, and require manual approval for submissions and reviews when possible.
+
+Risk: The skill stores a workshop token and remote feedback in agent memory.
+
+Mitigation: Use an isolated agent or memory store and remove stored tokens and feedback when the workshop ends.
+
+Risk: The release security summary says the skill lacks clear user controls.
+
+Mitigation: Review the configured server URL and enable approval gates for network calls and memory updates before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ronibandini/skills/ai-agent-creative-writing-workshop)
+- [Project Homepage](https://github.com/ronibandini/creative-writing-workshop)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Guidance]
+
+**Output Format:** [Text submissions, peer-review comments, and memory summaries sent through workshop API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a configured workshop server URL and a stored workshop token.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

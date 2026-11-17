@@ -1,42 +1,56 @@
-## Description: <br>
-Turn a target keyword or query into a search-informed content outline with likely subtopics, questions, and comparison angles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns a target keyword or query into a search-informed content outline with likely subtopics, questions, comparison angles, freshness notes, and content brief guidance.
 
-## Publisher: <br>
-[xujfcn](https://clawhub.ai/user/xujfcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xujfcn](https://clawhub.ai/user/xujfcn)
 
-## Use Case: <br>
-Developers, content strategists, and SEO teams use this skill to classify search intent and produce structured outlines, FAQs, comparison angles, and freshness notes for articles, SEO briefs, and landing-page drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outlines may include stale pricing, model, or version-sensitive assumptions. <br>
-Mitigation: Review and update freshness notes and factual claims before publishing. <br>
-Risk: API keys may be needed when using an OpenAI-compatible runtime. <br>
-Mitigation: Configure Crazyrouter or OpenAI-compatible API keys only through trusted secret-management processes. <br>
+## Use Case:
 
+Content strategists, SEO practitioners, marketers, and developers use this skill to turn a keyword or query into a practical outline for SEO briefs, blog planning, landing-page drafting, and article optimization.
 
-## Reference(s): <br>
-- [SERP Pattern Checklist](references/serp-pattern-checklist.md) <br>
-- [Outline Schema](references/outline-schema.md) <br>
-- [Crazyrouter](https://crazyrouter.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown outline with labeled sections for intent, audience, H1, H2 outline, FAQs, comparison angles, freshness notes, and brief notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [OpenAI-compatible runtime guidance is included; outputs should be reviewed before publishing, especially for current pricing or version-sensitive topics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: release metadata) <br>
+Risk: Users may copy the Crazyrouter API example without deliberately choosing their own provider and credential handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review runtime provider settings and API key handling before using the example.
+
+Risk: Search-informed outlines may include stale or weakly justified sections for year-sensitive, pricing, or model-comparison topics.
+
+Mitigation: Validate freshness-sensitive recommendations against current sources before drafting or publishing content.
+
+## Reference(s):
+
+- [SERP Pattern Checklist](references/serp-pattern-checklist.md)
+- [Outline Schema](references/outline-schema.md)
+- [Crazyrouter](https://crazyrouter.com)
+- [Crazyrouter OpenAI-compatible API endpoint](https://crazyrouter.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown outline with intent, audience, H1, H2 sections, FAQ ideas, comparison angles, freshness notes, and content brief notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured sections for content planning and optimization]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence, artifact metadata, and catalog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

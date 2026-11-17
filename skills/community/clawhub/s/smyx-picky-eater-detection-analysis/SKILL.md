@@ -1,7 +1,7 @@
 ---
 name: "smyx-picky-eater-detection-analysis"
 description: "Triggers when a user provides a video of a pet feeding bowl area for analysis; supports local video uploads or network URLs to call server-side APIs for picky-eater behavior detection, identifying behaviors such as pushing kibble out of the bowl, picking only treats/freeze-dried bites, or sniffing then leaving without eating; records frequency and outputs feeding-adjustment suggestions to prevent malnutrition. Application scenarios: smart pet feeders, pet boarding centers, pet hospital inpatient wards. | 当用户提供宠物食盆区域视频时，触发本技能进行选择性拒食行为识别；支持通过上传本地视频或网络视频URL，调用服务端API识别宠物把主粮拨出食盆、只挑拣零食/冻干、嗅闻后离开等挑食行为，记录发生频率，连续异常时输出喂养调整建议，预防营养不均衡（不诊断疾病）。应用场景：智能喂食器、宠物寄养中心、宠物医院住院部。"
-version: "1.0.3"
+version: "1.0.17"
 license: "MIT-0"
 ---
 

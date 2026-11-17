@@ -1,43 +1,58 @@
-## Description: <br>
-Guides OpenClaw agents in operating a ScrapeFun server through dedicated authenticated OpenClaw-facing APIs, with narrow fallback rules for generic ScrapeFun endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when OpenClaw needs to operate a scrapefun server through dedicated OpenClaw-facing APIs, preferring /api/openclaw/* query and download endpoints while limiting generic scrapefun API fallbacks to documented cases.
 
-## Publisher: <br>
-[HaoweiLi97](https://clawhub.ai/user/HaoweiLi97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haoweili97](https://clawhub.ai/user/haoweili97)
 
-## Use Case: <br>
-Developers and operators use this skill to let an OpenClaw agent list ScrapeFun library entries, inspect media state, prepare and submit downloads, confirm landed files, finalize imports, and request scans while reporting endpoint or permission blockers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide authenticated actions that submit downloads, finalize imports, or trigger scans, which can change media library state. <br>
-Mitigation: Use a least-privilege OpenClaw access key and review requests before executing state-changing download, import, or scan workflows. <br>
-Risk: The artifact permits admin login as a fallback authentication path. <br>
-Mitigation: Prefer the OpenClaw access key path and use admin login only when necessary. <br>
-Risk: Endpoint or permission mismatches can cause the agent to use an unintended workflow if fallback behavior is treated too broadly. <br>
-Mitigation: Follow the documented OpenClaw endpoint order, stop on missing permissions, and use only the explicitly allowed fallback endpoints. <br>
+## Use Case:
 
+Developers and operators use this skill to manage a local scrapefun/OpenClaw server through authenticated operational APIs for library lookup, media state checks, download submission, landed-file confirmation, import finalization, and explicit library scans.
 
-## Reference(s): <br>
-- [ScrapeFun API Reference](references/api.md) <br>
-- [ClawHub ScrapeFun Release](https://clawhub.ai/HaoweiLi97/scrapefun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API Calls, configuration] <br>
-**Output Format:** [Markdown with endpoint names, auth methods, required permissions, payload shapes, and returned results or blockers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include HTTP request details and JSON payload examples for authenticated ScrapeFun operations] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: A broadly scoped OpenClaw access key could allow media download, import, or library-scan state changes beyond the intended workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an access key limited to the documented permissions and review requests that require download_submit, import_finalize, or library_scan before execution.
+
+Risk: Running the skill against an untrusted or uncontrolled scrapefun/OpenClaw server could expose credentials or alter an unexpected media library.
+
+Mitigation: Install and use the skill only with a scrapefun/OpenClaw server the operator controls.
+
+Risk: Legacy fallback endpoints can behave differently from the dedicated OpenClaw API surface.
+
+Mitigation: Prefer /api/openclaw/* endpoints and use generic scrapefun APIs only for the documented narrow fallback cases.
+
+## Reference(s):
+
+- [API Reference](references/api.md)
+- [ScrapeFun skill page](https://clawhub.ai/haoweili97/skills/scrapefun)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with endpoint, permission, payload, and result or blocker details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Functional responses only; outputs may include authentication method, API endpoint, required permission, payload shape, returned result, and exact blocker.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

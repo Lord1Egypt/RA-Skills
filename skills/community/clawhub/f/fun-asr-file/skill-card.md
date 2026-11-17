@@ -1,41 +1,54 @@
-## Description: <br>
-Transcribes local audio files with Alibaba Cloud DashScope FunASR using non-streaming speech-to-text and local file handling optimized for common audio formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes local audio files with Alibaba Cloud DashScope FunASR using non-streaming speech recognition optimized for batch file transcription.
 
-## Publisher: <br>
-[chenggongdu](https://clawhub.ai/user/chenggongdu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenggongdu](https://clawhub.ai/user/chenggongdu)
 
-## Use Case: <br>
-Developers and agent users use this skill to transcribe user-selected local audio files, including common formats such as WAV, MP3, M4A, FLAC, and OGG. It is suited to batch or file-based speech-to-text workflows where selected audio may be sent to Alibaba Cloud DashScope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected audio files are sent to Alibaba Cloud DashScope for transcription. <br>
-Mitigation: Use only audio the user is authorized to transcribe, avoid sensitive recordings unless approved, and disclose the external service dependency before use. <br>
-Risk: The skill depends on a DashScope API key and third-party Python dependencies. <br>
-Mitigation: Use a dedicated, rotatable DASHSCOPE_API_KEY and install dependencies from trusted package sources. <br>
+## Use Case:
 
+Developers and agents use this skill to transcribe local audio files such as wav, mp3, m4a, flac, and ogg recordings through Alibaba Cloud DashScope. It is suited to explicit user-requested batch transcription workflows, including downloaded audio that the user is allowed to process.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chenggongdu/fun-asr-file) <br>
-- [Publisher Profile](https://clawhub.ai/user/chenggongdu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text transcript output with Markdown usage guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY; FFmpeg is recommended for local audio conversion to 16 kHz mono WAV.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Audio content is sent to Alibaba Cloud DashScope for transcription.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for audio the user is allowed to send to DashScope, and ask for explicit confirmation before transcribing sensitive recordings.
+
+Risk: The skill depends on the DashScope Python SDK and optional FFmpeg audio preprocessing.
+
+Mitigation: Install it in a controlled Python environment and pin or review the DashScope SDK version before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenggongdu/skills/fun-asr-file)
+- [Publisher profile](https://clawhub.ai/user/chenggongdu)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text transcription output with Markdown guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY and may require FFmpeg preprocessing to 16 kHz mono wav audio.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

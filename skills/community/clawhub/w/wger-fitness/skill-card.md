@@ -1,42 +1,60 @@
-## Description: <br>
-Manage and track gym workouts, routines, nutrition, and progress using the wger API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage gym routines and fitness tracking in wger via API for viewing, editing, creating workouts, logs, nutrition plans, and progress analysis.
 
-## Publisher: <br>
-[0xjaspreet](https://clawhub.ai/user/0xjaspreet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xjaspreet](https://clawhub.ai/user/0xjaspreet)
 
-## Use Case: <br>
-Developers and agents use this skill to view, create, update, and report fitness, workout, nutrition, and progress data in a wger account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad read and write access to sensitive fitness and nutrition records. <br>
-Mitigation: Install only when the agent should access the user's wger account, keep WGER_TOKEN private, and require explicit confirmation before create, update, or sync actions. <br>
-Risk: The self-host example uses local-test defaults such as a simple database password and an unpinned Docker image. <br>
-Mitigation: Change the Docker password, pin the image version, and use private networking such as a VPN before using the self-host setup beyond local testing. <br>
+## Use Case:
 
+External users and developers use this skill to manage wger fitness data through API calls, including workout routines, workout logs, nutrition entries, goals, and progress reports.
 
-## Reference(s): <br>
-- [wger API documentation](https://wger.readthedocs.io/en/latest/api.html) <br>
-- [wger API endpoints reference](references/api_endpoints.md) <br>
-- [Self-host wger](references/selfhost.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python script usage, and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the wger API with the user's WGER_TOKEN and may read or write account fitness data when the agent executes the suggested commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: release evidence) <br>
+Risk: The skill uses an API token that can read and modify sensitive fitness data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a token scoped to the intended wger instance, keep it in the environment, and avoid pasting it into prompts or shared logs.
+
+Risk: POST and PATCH examples can change workout, nutrition, and goal records.
+
+Mitigation: Require explicit approval before running write actions or automation that performs write actions.
+
+Risk: The self-hosting example includes local-testing defaults that are unsuitable for durable deployments.
+
+Mitigation: Change the database password, pin container image versions, and secure access before using the Docker setup beyond local testing.
+
+## Reference(s):
+
+- [wger API Endpoints Reference](references/api_endpoints.md)
+- [Self-Host wger (Docker)](references/selfhost.md)
+- [wger API Documentation](https://wger.readthedocs.io/en/latest/api.html)
+- [ClawHub skill page](https://clawhub.ai/0xjaspreet/skills/wger-fitness)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API examples, shell commands, Python script usage, and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read or modify wger fitness data when the user supplies an API token and approves API write actions.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

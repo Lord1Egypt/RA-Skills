@@ -9,7 +9,7 @@ Template for creating legal skills extracted from learnings and legal issues. Co
 ```markdown
 ---
 name: skill-name-here
-description: "Concise description of the legal skill and when to use it. Include trigger conditions."
+description: "Concise description of the legal skill and when to use it. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
@@ -75,12 +75,17 @@ For simple legal skills:
 ```markdown
 ---
 name: skill-name-here
-description: "What this legal skill does and when to use it."
+description: "What this legal skill does, when to use it, and when not to. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
 
 [Legal problem statement in one sentence]
+
+## Triggers
+- Include when: [narrow, testable conditions]
+- Exclude when: [out-of-scope cases; never empty or catch-all matchers]
+
 
 ## Recommended Action
 
@@ -95,17 +100,24 @@ description: "What this legal skill does and when to use it."
 
 ## Template with Scripts
 
+If the skill includes scripts, document narrowly scoped, testable conditions for when each script may run, plus exclusions. Do not imply always-on automation.
+
 For legal skills that include automation helpers:
 
 ```markdown
 ---
 name: skill-name-here
-description: "What this legal skill does and when to use it."
+description: "What this legal skill does, when to use it, and when not to. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
 
 [Introduction]
+
+## Triggers
+- Include when: [narrow, testable conditions]
+- Exclude when: [out-of-scope cases; never empty or catch-all matchers]
+
 
 ## Quick Reference
 

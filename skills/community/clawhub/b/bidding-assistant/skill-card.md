@@ -1,50 +1,72 @@
-## Description: <br>
-Collects bidding and procurement notices for Yannan High-tech Zone and Yancheng Economic Development Zone, filters target-region projects, generates daily or monthly PDF reports, and can push reports to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动采集盐南高新区、经开区招投标信息，并支持区域筛选、去重存储、PDF日报/月报生成和飞书推送。
 
-## Publisher: <br>
-[xzc13815555922](https://clawhub.ai/user/xzc13815555922) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xzc13815555922](https://clawhub.ai/user/xzc13815555922)
 
-## Use Case: <br>
-Operations staff and agents use this skill to monitor Yancheng-area bidding sources, collect and deduplicate matching projects, prepare PDF daily or monthly summaries, and deliver reports through Feishu when configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended scheduled collection and delivery can send collected reports outside the local environment. <br>
-Mitigation: Disable cron or scheduled Feishu delivery until the workflow is tested and approved for the target workspace. <br>
-Risk: Feishu credentials and recipient identifiers can expose reports or enable unwanted messaging if mishandled. <br>
-Mitigation: Use a dedicated least-privilege Feishu bot, store secrets in a protected secret store, and verify exact chat or user IDs before sending. <br>
-Risk: Crawler behavior may interact with external sites in ways that require authorization or policy review. <br>
-Mitigation: Confirm permission for the target sources and avoid proxy or anti-bot bypass behavior without authorization. <br>
+## Use Case:
 
+Developers and operations teams use this skill to monitor Jiangsu Yancheng bidding sources for Yannan High-tech Zone and Economic Development Zone projects, run collection jobs, store deduplicated results locally, generate daily or monthly PDF reports, and send reports to Feishu.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xzc13815555922/bidding-assistant) <br>
-- [PDF report generation and Feishu delivery guide](references/PDF报告生成与飞书推送使用指南.md) <br>
-- [PDF report layout guide](references/PDF报告排版说明.md) <br>
-- [PDF display optimization guide](references/PDF显示优化说明.md) <br>
-- [Website configuration reference](references/website-config.md) <br>
-- [Sufu workflow reference](references/sufu-workflow.md) <br>
-- [OpenClaw browser relay guide](references/openclaw-browser-relay-guide.md) <br>
-- [Feishu enterprise app configuration guide](references/飞书企业自建应用配置指南.md) <br>
-- [Feishu delivery configuration guide](references/飞书推送配置说明.md) <br>
+### Deployment Geography for Use:
 
+China, focused on Yancheng, Jiangsu bidding sources
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash and Python snippets; PDF reports and Feishu messages when the bundled scripts are executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local SQLite and PDF files and may send collected reports externally when Feishu delivery is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Automated Feishu delivery can share bidding reports with unintended groups or users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all Feishu destination IDs and permissions before running or scheduling report pushes.
+
+Risk: Feishu credentials and webhook URLs can be exposed through shell startup files, committed .env files, or shared configuration.
+
+Mitigation: Store secrets only in approved local or managed secret stores and keep them out of source control and shell profiles.
+
+Risk: Scheduled jobs can repeatedly scrape sites, generate files, and push reports without operator review.
+
+Mitigation: Disable scheduled execution by default and enable it only after confirming collection scope, recipients, and retention needs.
+
+Risk: Browser Relay deployment can expose browser-control capability if left unauthenticated or reachable from untrusted networks.
+
+Mitigation: Deploy Browser Relay only when required, pin the image or package, require authentication, and bind it to a trusted interface.
+
+Risk: The skill stores scraped bidding data locally, which can create data retention and access-control concerns.
+
+Mitigation: Confirm that the listed bidding sources may be collected for the intended use and apply local access controls and retention rules to the SQLite database and generated PDFs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xzc13815555922/skills/bidding-assistant)
+- [Publisher profile](https://clawhub.ai/user/xzc13815555922)
+- [Website configuration](references/website-config.md)
+- [PDF report generation and Feishu push guide](references/PDF报告生成与飞书推送使用指南.md)
+- [Feishu enterprise app configuration guide](references/飞书企业自建应用配置指南.md)
+- [Feishu push configuration](references/飞书推送配置说明.md)
+- [OpenClaw Browser Relay configuration guide](references/openclaw-browser-relay-guide.md)
+- [Sufu interactive collection workflow](references/sufu-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python snippets; bundled scripts can create PDF report files, local SQLite records, and Feishu messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on configured bidding sites, local database paths, Feishu credentials, and optional scheduling.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Drafts structured customer case studies from customer success details and exports them as Markdown, HTML, or PDF. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Packages customer success information into structured case studies with a background, challenge, solution, and results template, then exports Markdown, HTML, or PDF.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashiming](https://clawhub.ai/user/dashiming)
 
-## Use Case: <br>
-External users and sales or marketing teams use this skill to turn customer success inputs into structured case-study drafts and export files for review or sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer case studies may contain confidential business or customer details. <br>
-Mitigation: Review and redact generated content before sharing outside the intended audience. <br>
-Risk: Generated Markdown, HTML, and PDF files are saved locally. <br>
-Mitigation: Confirm output paths and file contents before distributing or archiving files. <br>
+## Use Case:
 
+External users and developers use this skill to turn customer success details into structured case-study narratives and export them for sales, marketing, or customer-story workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dashiming/pans-case-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown case-study drafts with optional HTML or PDF export commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated case files locally; PDF export requires optional Python dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: PDF export from untrusted Markdown may trigger local or network resource access during rendering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Export only trusted Markdown, or run exports in a sandbox without sensitive local files or unrestricted network access.
+
+Risk: HTML export preserves raw markup from input files.
+
+Mitigation: Sanitize untrusted Markdown before HTML export and review generated HTML before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dashiming/skills/pans-case-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown case-study drafts, HTML/PDF exports, and CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated case-study files may be written under the user's local case directory; HTML and PDF export should be limited to trusted Markdown.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

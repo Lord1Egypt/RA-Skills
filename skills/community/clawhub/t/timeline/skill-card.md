@@ -1,39 +1,57 @@
-## Description: <br>
-Log dated events and facts to a queryable personal timeline for remembering events, medical notes, family moments, and milestones without cluttering a calendar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log dated events and facts to a queryable personal timeline.
 
-## Publisher: <br>
-[levineam](https://clawhub.ai/user/levineam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[levineam](https://clawhub.ai/user/levineam)
 
-## Use Case: <br>
-Individuals and agent users use this skill to log personal events, milestones, medical notes, and other dated facts into a local Markdown timeline, then search or list those entries later. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Timeline entries are saved as plaintext in the user's local vault and may include sensitive personal, family, or medical details. <br>
-Mitigation: Set VAULT_PATH to the intended private vault location and avoid logging sensitive details unless the user wants them retained and searchable by local tools, backups, or other users with access. <br>
+## Use Case:
 
+People using ClawHub agents can record dated personal facts, family moments, milestones, and medical events without placing them on a calendar. They can later search or list those timeline entries by text, date, or tag.
 
-## Reference(s): <br>
-- [Timeline Skill on ClawHub](https://clawhub.ai/levineam/timeline) <br>
-- [Publisher profile](https://clawhub.ai/user/levineam) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown timeline entries and command-line text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes dated entries to a local Timeline.md file under VAULT_PATH or the script default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The shell script has input-handling flaws that could allow crafted entries or options to run local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix the script before installing, especially validation and quoting for event text, dates, tags, times, and --limit.
+
+Risk: Timeline entries can contain persistent sensitive personal, family, or medical details.
+
+Mitigation: Treat the configured vault and Timeline.md as sensitive storage, restrict access, and avoid logging unnecessary private details.
+
+Risk: Broad timeline triggers may capture information the user did not intend to store.
+
+Mitigation: Prefer explicit write commands such as "add to timeline" before recording an entry.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/levineam/skills/timeline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown timeline entries and plain-text command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and searches a persistent Timeline.md file in the configured vault.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

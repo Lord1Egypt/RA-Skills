@@ -1,0 +1,4 @@
+{
+  "_comment": "企服助手企微推送 Webhook 配置。复制本文件到 ~/.workbuddy/config/enterprise-service-assistant/wecom_webhook.json 并填入真实 key。真实 key 仅存本机，不写入 skill 包。",
+  "webhook_url": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=YOUR_WEBHOOK_KEY"
+}

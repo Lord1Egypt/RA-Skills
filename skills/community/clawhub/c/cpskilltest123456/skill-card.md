@@ -1,40 +1,53 @@
-## Description: <br>
-Publishes long-form Xiaohongshu notes through the web creator platform when the user asks to publish or write a Xiaohongshu long-form post. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides an agent through publishing long-form Xiaohongshu posts in the web creator platform.
 
-## Publisher: <br>
-[blockcloud](https://clawhub.ai/user/blockcloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blockcloud](https://clawhub.ai/user/blockcloud)
 
-## Use Case: <br>
-External users and agents use this skill to operate a logged-in Xiaohongshu creator session for drafting, formatting, and publishing long-form notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make accidental public posting too easy when used in a logged-in Xiaohongshu publishing session. <br>
-Mitigation: Require manual review of the prepared note and an explicit final confirmation before anything is posted publicly. <br>
-Risk: The workflow depends on operating an authenticated Xiaohongshu creator session in a live browser. <br>
-Mitigation: Use only with an intended account and review the active session, title, body, template, and destination before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Xiaohongshu Creator Publish Page](https://creator.xiaohongshu.com/publish/publish?source=official) <br>
-- [ClawHub Skill Page](https://clawhub.ai/blockcloud/cpskilltest123456) <br>
+## Use Case:
 
+External users and social media operators use this skill to have an agent enter title and body content, apply formatting, choose a template, and publish long-form Xiaohongshu notes.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Markdown instructions for browser-based publishing steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires manual review and explicit final confirmation before public posting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can operate a real Xiaohongshu publishing flow and may click the publish button.
+
+Mitigation: Require explicit final user confirmation before the agent clicks publish.
+
+Risk: Drafting-style requests may activate the skill even when the user does not intend to publish.
+
+Mitigation: Use the skill only when the user clearly asks to publish to Xiaohongshu, and confirm intent before starting the publish flow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/blockcloud/skills/cpskilltest123456)
+- [Xiaohongshu Creator Publishing Page](https://creator.xiaohongshu.com/publish/publish?source=official)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Markdown instructions for browser interaction]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May publish real Xiaohongshu content when followed in an authenticated browser session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

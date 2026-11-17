@@ -1,43 +1,62 @@
-## Description: <br>
-Manage background coding agents in tmux sessions. Spawn Claude Code or other agents, check progress, get results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage background coding agents in tmux sessions. Spawn Claude Code or other agents, check progress, get results.
 
-## Publisher: <br>
-[cuba6112](https://clawhub.ai/user/cuba6112) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cuba6112](https://clawhub.ai/user/cuba6112)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to launch, monitor, and collect work from coding agents running in persistent tmux sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent tmux-managed coding agents can run commands and change files with broad local authority. <br>
-Mitigation: Use a disposable branch or sandbox, avoid sensitive repositories and secrets, monitor sessions with status.sh or tmux ls, and kill sessions when finished. <br>
-Risk: Cloud agent sessions may use authenticated third-party CLIs and API credits. <br>
-Mitigation: Verify which cloud CLIs are logged in before spawning sessions and choose local Ollama-backed agents when API spend or external processing is not intended. <br>
-Risk: Untrusted task text can steer autonomous agents toward unwanted commands or edits. <br>
-Mitigation: Review task prompts before launching agents and inspect generated changes before merging or deploying them. <br>
+## Use Case:
 
+Developers and engineers use this skill to start, monitor, inspect, and manage coding agents running in persistent tmux sessions for background implementation, refactoring, research, documentation, and test-writing tasks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cuba6112/tmux-agents) <br>
-- [Skill Homepage](https://clawdhub.com/skills/tmux-agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [Markdown with shell commands and terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces tmux session commands and status text for background coding-agent workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The launcher can start coding agents with unattended high-impact control over the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use disposable or tightly scoped workspaces, prefer interactive modes unless unattended edits are intentional, and review agent changes before relying on them.
+
+Risk: Shell input handling may be unsafe when session names, agent names, or task text come from untrusted sources.
+
+Mitigation: Avoid untrusted task text and use only trusted session and agent identifiers when spawning sessions.
+
+Risk: Cloud agent variants may send prompts, code, and task context to external providers.
+
+Mitigation: Avoid sending sensitive data to cloud agents unless provider use is approved; choose local Ollama variants when local execution is required.
+
+Risk: Persistent tmux sessions can continue running after the user leaves the workflow.
+
+Mitigation: Check active sessions and kill tmux sessions when work is finished.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cuba6112/skills/tmux-agents)
+- [Skill homepage](https://clawdhub.com/skills/tmux-agents)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires tmux; local agent variants require Ollama setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

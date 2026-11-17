@@ -1,45 +1,66 @@
-## Description: <br>
-Local speech-to-text using faster-whisper. 4-6x faster than OpenAI Whisper with identical accuracy; GPU acceleration enables ~20x realtime transcription. SRT/VTT/TTML/CSV subtitles, speaker diarization, URL/YouTube input, batch processing with ETA, transcript search, chapter detection, per-file language map. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local speech-to-text using faster-whisper. 4-6x faster than OpenAI Whisper with identical accuracy; GPU acceleration enables ~20x realtime transcription. SRT/VTT/TTML/CSV subtitles, speaker diarization, URL/YouTube input, batch processing with ETA, transcript search, chapter detection, per-file language map.
 
-## Publisher: <br>
-[ThePlasmak](https://clawhub.ai/user/ThePlasmak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[theplasmak](https://clawhub.ai/user/theplasmak)
 
-## Use Case: <br>
-Developers, operators, and content teams use this skill to transcribe local audio or video, generate subtitle files, search transcripts, translate speech to English, and process batches of recordings without relying on a hosted transcription API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: URL and RSS inputs can download remote media through yt-dlp. <br>
-Mitigation: Use URL or RSS transcription only for media the user intends to fetch, and verify optional download tooling before running the command. <br>
-Risk: Optional Hugging Face tokens may be used for private or gated models and diarization. <br>
-Mitigation: Prefer cached tokens and avoid pasting tokens into shared logs, transcripts, or command histories. <br>
-Risk: Transcript outputs can overwrite files, and generated HTML reports from untrusted audio or filenames carry the HTML escaping concern noted by the security evidence. <br>
-Mitigation: Choose output paths carefully and avoid opening HTML transcript reports generated from untrusted inputs until the escaping issue is fixed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [faster-whisper GitHub](https://github.com/SYSTRAN/faster-whisper) <br>
-- [Distil-Whisper Paper](https://arxiv.org/abs/2311.00430) <br>
-- [Hugging Face faster-whisper Models](https://huggingface.co/collections/Systran/faster-whisper) <br>
-- [pyannote.audio](https://github.com/pyannote/pyannote-audio) <br>
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) <br>
+## Use Case:
 
+Developers, engineers, and external users use this skill to run local speech-to-text workflows for audio, video, podcasts, subtitles, speaker diarization, transcript search, translation, and batch transcription.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, file path summaries, and concise transcript or result text when appropriate.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can direct an agent to create transcript, subtitle, CSV, JSON, HTML, speaker-audio, chapter, and stats files; long structured outputs should be written to files and summarized for the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.5.1 (source: SKILL.md frontmatter, skill.json, server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can fetch arbitrary network media and contact external media sites.
+
+Mitigation: Use only trusted URLs and avoid private RSS feeds or sensitive media URLs unless the execution environment is isolated.
+
+Risk: Diarization and model access can involve Hugging Face credentials.
+
+Mitigation: Prefer cached credentials, avoid passing tokens directly on the command line, and restrict token scope and filesystem access.
+
+Risk: Setup and update paths can install or upgrade unpinned dependencies and optional Docker images.
+
+Mitigation: Review dependencies before installation, pin versions where required, and run setup in a controlled environment.
+
+Risk: Generated HTML transcripts from untrusted audio may carry content-handling risk.
+
+Mitigation: Sanitize generated HTML before opening or sharing it when the source media is untrusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theplasmak/skills/faster-whisper)
+- [Declared skill homepage](https://github.com/ThePlasmak/faster-whisper)
+- [faster-whisper](https://github.com/SYSTRAN/faster-whisper)
+- [Distil-Whisper paper](https://arxiv.org/abs/2311.00430)
+- [SYSTRAN faster-whisper models](https://huggingface.co/collections/Systran/faster-whisper)
+- [pyannote.audio](https://github.com/pyannote/pyannote-audio)
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated transcript, subtitle, JSON, CSV, HTML, or statistics files depending on requested flags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may be streamed to the user for short text results or written to files for subtitles, structured data, HTML, multi-format exports, and batch workflows.]
+
+## Skill Version(s):
+
+1.5.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

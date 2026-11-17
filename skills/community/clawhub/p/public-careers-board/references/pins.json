@@ -1,0 +1,26 @@
+{
+  "schema": "public-careers-board.pins.v1",
+  "merchantRepository": "epistemedeus/x402-url-extractor",
+  "merchantCommit": "2fde825d6f6ede84ee3d959e5ccf0f99c35eca8c",
+  "recipeUrl": "https://agents.samedaydesk.com/recipes/careers-board-cold",
+  "gistId": "a8f74ed84b4ece624209be1dab745a30",
+  "revision": "7d01bfb09c530430933dec1f07c5c0b8517cffa8",
+  "license": "MIT",
+  "files": [
+    {
+      "path": "recipe/boards.mjs",
+      "bytes": 21701,
+      "sha256": "d062c790660979b38a6ca4fa2bb85850cd710d06bca83ac4a029a5a32f8a3308"
+    },
+    {
+      "path": "recipe/boards.public.test.mjs",
+      "bytes": 4702,
+      "sha256": "5a0539e3752c726b2bfa5c2dd2cc5b1afc2c6430c7e6c54eae0c83cd215e715f"
+    },
+    {
+      "path": "recipe/PUBLIC-RECIPE.md",
+      "bytes": 2966,
+      "sha256": "dfc3580a135056a59cea36d1962bd15e94dcbf72018618a042569e4a4097bd8b"
+    }
+  ]
+}

@@ -1,43 +1,54 @@
-## Description: <br>
-Play live chess on ChessWithClaw as Black against the user, connecting by invite URL or game ID and responding in real time with moves, thoughts, and chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Play live chess on ChessWithClaw as Black against a human user, using the game API to poll board state, choose legal moves, and send chat or thinking updates.
 
-## Publisher: <br>
-[alightttt](https://clawhub.ai/user/alightttt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alightttt](https://clawhub.ai/user/alightttt)
 
-## Use Case: <br>
-External users and agents use this skill to play a live ChessWithClaw game where the agent connects as Black, polls board state, selects legal moves, and exchanges in-game thoughts and chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The third-party chess service receives the agent's game chat, thoughts, moves, name header, and invite token. <br>
-Mitigation: Install only when this data sharing is acceptable, and keep chat and thoughts limited to chess or current-session context. <br>
-Risk: The skill encourages personalization that may draw on prior conversations or unrelated local context. <br>
-Mitigation: Restrict personalization to chess-only or current-session facts, and do not inspect unrelated files or prior conversations for gameplay. <br>
-Risk: The skill uses persistent local files and background workers under /tmp/cwc. <br>
-Mitigation: Clean up /tmp/cwc and stop game workers after play, and avoid retaining post-game user-profile notes unless explicitly desired. <br>
+## Use Case:
 
+External users and agent operators use this skill to let an agent join a ChessWithClaw invite, play as Black, respond to the human player's moves, and keep the game session active. The skill is intended for live interactive chess play with optional personalized chat and move commentary.
 
-## Reference(s): <br>
-- [ChessWithClaw](https://chesswithclaw.vercel.app) <br>
-- [ClawHub skill page](https://clawhub.ai/alightttt/skills/play-chess) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with API examples, bash commands, Python snippets, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces game-loop guidance for connecting to an external chess service, sending API calls, writing temporary helper files, and managing local background workers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.29 (source: server release evidence) <br>
+Risk: The external chess service may receive game chat, agent name, invite token, move thoughts, and any personal context included by the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, get consent before personalization, and keep personal context minimal and relevant to the game.
+
+Risk: The artifact includes background shell automation using tmux, sourced state files, temporary storage, and Python interpolation patterns that server security evidence flags for review.
+
+Mitigation: Prefer the minimal API-only workflow unless the automation has been reviewed and credential handling, state-file sourcing, and temporary-file usage are corrected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alightttt/skills/play-chess)
+- [ChessWithClaw homepage](https://chesswithclaw.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with HTTP examples and bash/Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational instructions for connecting to a game, polling state, submitting moves, sending chat, maintaining heartbeat, and troubleshooting session continuity.]
+
+## Skill Version(s):
+
+1.0.29 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

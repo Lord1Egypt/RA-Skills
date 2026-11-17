@@ -1,0 +1,34 @@
+{
+  "name": "webclaw3",
+  "version": "2.0.0",
+  "description": "Browser automation & web scraping for AI agents — drives your own logged-in Chrome, then distills a successful run into a free, deterministic skill you can rerun daily.",
+  "type": "module",
+  "main": "scripts/relay.mjs",
+  "bin": {
+    "webclaw3": "scripts/webclaw3.mjs"
+  },
+  "scripts": {
+    "start": "node scripts/start-relay.mjs",
+    "cdp-start": "node scripts/start-cdp-proxy.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "browser-automation",
+    "web-scraping",
+    "web-crawler",
+    "data-extraction",
+    "agent-skill",
+    "claude-skill",
+    "ai-agent",
+    "chrome-extension",
+    "logged-in-session",
+    "playwright-alternative",
+    "chrome",
+    "extension",
+    "relay",
+    "cdp"
+  ],
+  "license": "MIT"
+}

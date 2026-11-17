@@ -1,41 +1,49 @@
-## Description: <br>
-Pre-landing PR review that analyzes diffs against the base branch for SQL safety, LLM trust boundaries, conditional side effects, scope drift, missing requirements, and other structural issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-landing PR review that analyzes diffs against the base branch for SQL safety, LLM trust boundary violations, conditional side effects, scope drift, missing requirements, and other structural issues.
 
-## Publisher: <br>
-[loocor](https://clawhub.ai/user/loocor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loocor](https://clawhub.ai/user/loocor)
 
-## Use Case: <br>
-Developers and engineers use this skill before landing a pull request to review branch diffs, detect structural or safety issues, identify scope drift or missing requirements, and apply clear fixes when appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can directly edit code while reviewing a pull request. <br>
-Mitigation: Use it on a clean branch and inspect the resulting git diff before committing or pushing. <br>
-Risk: The skill relies on local checklist files and optional external review flows. <br>
-Mitigation: Verify referenced checklist files are present and trusted, and decline optional Codex/browser review unless sharing the relevant context is acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill before landing a pull request to inspect branch diffs, identify structural risks, and apply or request fixes for review findings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loocor/gstack-review) <br>
-- [Publisher profile: loocor](https://clawhub.ai/user/loocor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown review report with inline shell commands and optional code edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify the working tree for auto-fixable findings and may ask batched follow-up questions for judgment-based fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can directly edit workspace files during a review flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use review-only mode or require explicit approval before fixes on important branches, then inspect the resulting diff carefully.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loocor/skills/gstack-review)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured review findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include direct workspace edits for auto-fixable findings and batched user questions for judgment-based fixes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

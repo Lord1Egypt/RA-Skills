@@ -1,41 +1,58 @@
-## Description: <br>
-Generates ultra-high-resolution PNG/JPEG screenshots from HTML content or webpages using Playwright headless Chromium. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate ultra-high-resolution PNG or JPEG screenshots from HTML files or URLs using Playwright headless Chromium.
 
-## Publisher: <br>
-[wujiaming88](https://clawhub.ai/user/wujiaming88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wujiaming88](https://clawhub.ai/user/wujiaming88)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to render HTML mockups, dashboards, data visualizations, infographics, and webpage previews into legible high-resolution images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rendering untrusted or sensitive webpages can execute page JavaScript and make network requests in the execution environment. <br>
-Mitigation: Render trusted content when possible, isolate the browser environment for untrusted pages, and avoid sensitive logged-in pages unless that execution and network behavior is acceptable. <br>
-Risk: The screenshot workflow depends on Playwright and Chromium being available in the runtime. <br>
-Mitigation: Install Playwright and Chromium before use or run the skill in an environment where those dependencies are already provided. <br>
+## Use Case:
 
+Developers and agents use this skill to render readable screenshots of webpages, UI mockups, dashboards, data visualizations, and other text-heavy HTML content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wujiaming88/web-render-screenshot) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/wujiaming88) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated PNG/JPEG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default behavior uses a 1920x1080 viewport, 4x device scale factor, full-page capture, and PNG output unless configured otherwise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The helper can open arbitrary HTTP, HTTPS, and file URLs in Chromium.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted HTML and trusted URLs, preferably in an isolated browser or container with network restrictions.
+
+Risk: Rendering untrusted pages can expose private networks, local admin consoles, metadata services, or sensitive local files.
+
+Mitigation: Review inputs before execution and avoid running the skill in environments with access to sensitive local files or internal services.
+
+Risk: Browser and Playwright dependency behavior can change over time.
+
+Mitigation: Pin Playwright dependencies when adopting the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wujiaming88/skills/web-render-screenshot)
+- [Publisher profile](https://clawhub.ai/user/wujiaming88)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for creating HTML and invoking the bundled screenshot script; the script writes PNG or JPEG image files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

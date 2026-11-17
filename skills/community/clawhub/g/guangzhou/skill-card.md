@@ -1,38 +1,49 @@
-## Description: <br>
-Provides information on Guangzhou attractions, cuisine, culture, transportation, weather, and travel tips for visitors and trip planners. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides detailed information on Guangzhou's attractions, cuisine, culture, transportation, weather, and travel tips for visitors and planners.
 
-## Publisher: <br>
-[58](https://clawhub.ai/user/58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[58](https://clawhub.ai/user/58)
 
-## Use Case: <br>
-Visitors, travel planners, and agents assisting them use this skill to answer questions about Guangzhou attractions, dining, culture, history, transportation, accommodations, safety, and seasonal travel planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel details can become outdated or vary by season, venue, and local conditions. <br>
-Mitigation: Verify opening hours, prices, weather, transport routes, visa requirements, and safety conditions with current official or local sources before relying on them. <br>
+## Use Case:
 
+External users and travel planners use this skill to learn about Guangzhou, plan visits, compare attractions and food options, and get practical city navigation guidance.
 
-## Reference(s): <br>
-- [ClawHub Guangzhou City Guide Skill](https://clawhub.ai/58/guangzhou) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, file edits, install hooks, or credential access indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and artifact frontmatter) <br>
+Risk: Travel details such as opening hours, ticket prices, routes, weather, and safety guidance may become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify time-sensitive trip information against current official or local sources before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/58/skills/guangzhou)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise Markdown or plain-language travel guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static city guide content; time-sensitive travel details should be verified against current sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

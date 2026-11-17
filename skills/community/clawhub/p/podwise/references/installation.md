@@ -1,80 +1,76 @@
 ---
 name: podwise-installation
-description: "Instructions for installing and configuring the Podwise CLI. Load this when the user needs to set up Podwise for the first time or troubleshoot their installation."
+description: "Instructions for connecting the Podwise MCP server. Load this when the Podwise tools are unavailable, unauthenticated, or the user needs to set up Podwise for the first time."
 ---
 
-## Installation
+# Podwise MCP Setup
 
-#### Homebrew (macOS)
+Podwise runs as a remote MCP server at:
 
-```bash
-brew tap hardhackerlabs/podwise-tap
-brew install podwise
+```
+https://mcp.podwise.ai/mcp
 ```
 
-#### Automatic Script
+It authenticates with **OAuth 2.0** — no API key or token is stored anywhere.
 
-Run the following command to install the latest version of `podwise`:
+## If you installed the plugin
 
-```bash
-curl -sL https://raw.githubusercontent.com/hardhackerlabs/podwise-cli/main/install.sh | sh
-```
+The plugin bundles the MCP configuration. When you enable it, the host starts the server automatically. On first use you are prompted to authorize in your browser. Nothing else is required.
 
-#### Manual (Binary)
+## If you did not install the plugin (skills only)
 
-1. Download the latest binary for your OS and architecture from [GitHub Releases](https://github.com/hardhackerlabs/podwise-cli/releases).
-2. Unpack the archive (e.g., `tar -xzf podwise_linux_amd64.tar.gz`).
-3. Move the `podwise` binary to a directory in your PATH, for example:
-   ```bash
-   mv podwise /usr/local/bin/
-   ```
-4. Make sure it's executable: `chmod +x /usr/local/bin/podwise`.
+Add the server to your MCP configuration, then authorize when prompted.
 
-#### From Source
-
-If you have Go installed, you can build and install the binary directly from the source:
+**Claude Code** (`claude mcp add`):
 
 ```bash
-git clone https://github.com/hardhackerlabs/podwise-cli.git
-cd podwise-cli
-go build -o podwise .
-# Move the binary to a directory in your PATH, e.g.,
-mv podwise /usr/local/bin/
+claude mcp add --transport http podwise https://mcp.podwise.ai/mcp
 ```
 
-## Configuration
+**JSON configuration** (`.mcp.json`, `~/.claude.json`, opencode, Cursor, etc.):
 
-Authorize the CLI in your browser and let it save the API key automatically:
-
-```bash
-# Open the browser authorization flow
-podwise auth
-
-# Verify connection
-podwise config show
+```json
+{
+  "mcpServers": {
+    "podwise": {
+      "type": "http",
+      "url": "https://mcp.podwise.ai/mcp"
+    }
+  }
+}
 ```
 
-If you already have an API key, you can still set it manually:
+Do **not** add an `Authorization` header — leave authentication to the OAuth flow. If a stale header is present and the server rejects it, remove the header so the host falls back to OAuth.
 
-```bash
-podwise config set api_key your-sk-xxxx
+**Codex** (`~/.codex/config.toml`):
+
+```toml
+[mcp_servers.podwise]
+url = "https://mcp.podwise.ai/mcp"
 ```
 
-The configuration is stored at `~/.config/podwise/config.toml`.
+## Verify the connection
 
-## Quick Verification
+Call `get_me`. A healthy connection returns the account email, plan, and remaining AI processing credits.
 
-Run:
+If the tools are missing or `get_me` fails, the server is not connected or not authorized — fix that before running any workflow.
 
-```bash
-podwise --help
-podwise config show
-```
+## OAuth troubleshooting
 
-If the install is healthy, `podwise --help` should print command usage and `podwise config show` should display the config path and API key status.
+- **Browser does not open**: copy the printed authorization URL and open it manually.
+- **Authorize again / revoke**: use the host's MCP menu (for Claude Code, `/mcp`).
+- **Remote / SSH / headless machines**: Claude Code's native HTTP MCP OAuth uses a loopback (`localhost`) callback, which cannot complete when the browser runs on a different machine than Claude Code. Bridge the remote server through a local stdio proxy instead:
 
-## Troubleshooting
+  ```bash
+  npx -y mcp-remote https://mcp.podwise.ai/mcp
+  ```
 
-- If `podwise --help` fails, ensure the installation path is in your `$PATH`
-- If API key is invalid, re-run `podwise config set api-key` with a fresh key from podwise.ai
-- For full documentation, visit [docs.podwise.ai](https://docs.podwise.ai)
+  Configure this command as a stdio MCP server, then authorize through the proxy.
+
+## Plans and limits
+
+- Some capabilities require a **Podwise Pro or Enterprise** plan. If a tool returns a plan-required error, relay the upgrade link to the user; do not retry.
+- `ask_podwise` counts against the **Ask quota**.
+- `process_episode`, `complete_audio_upload`, and audio processing consume **AI processing credits** (based on duration).
+
+For full product documentation, visit [docs.podwise.ai](https://docs.podwise.ai).

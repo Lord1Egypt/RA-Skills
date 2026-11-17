@@ -1,42 +1,56 @@
-## Description: <br>
-IP address geolocation and network information lookup for Chinese and international IPs, IPv4, IPv6, and domain names using public endpoints without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China Ip looks up geographic location, ISP, network details, and proxy or hosting indicators for Chinese and international IP addresses, IPv6 addresses, and domain names using public lookup endpoints without an API key.
 
-## Publisher: <br>
-[ToBeWin](https://clawhub.ai/user/ToBeWin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to identify an IP address or domain's approximate location, ISP, ASN, organization, and likely proxy, mobile, or hosting status during troubleshooting or traffic review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: IP addresses or domains submitted for lookup are sent to public IP-information services, and the primary ip-api.com path uses HTTP. <br>
-Mitigation: Avoid sensitive internal hostnames or confidential investigation targets, and prefer the HTTPS ipinfo.io path when confidentiality matters. <br>
-Risk: Geolocation and proxy or hosting flags are database-backed estimates and may be inaccurate. <br>
-Mitigation: Treat results as operational signals rather than definitive identity or physical-location evidence. <br>
+## Use Case:
 
+Developers, operators, and support teams use this skill to investigate IP addresses or domains, summarize location and network ownership, identify likely private or reserved addresses, and flag proxy, VPN, mobile, or hosting indicators.
 
-## Reference(s): <br>
-- [ClawHub China Ip skill page](https://clawhub.ai/ToBeWin/china-ip) <br>
-- [ip-api.com JSON endpoint](http://ip-api.com/json/{IP}?lang=zh-CN&fields=status,message,country,regionName,city,isp,org,as,query,mobile,proxy,hosting) <br>
-- [ipinfo.io JSON endpoint](https://ipinfo.io/{IP}/json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style formatted lookup summaries with optional inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize single IP, batch IP, domain, or local public IP lookup results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Lookup values may be unsafe if untrusted IP addresses or domains are interpolated into shell command strings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate each lookup value as an IP address or safe hostname and pass it to curl as a literal argument rather than through shell string interpolation.
+
+Risk: The primary ip-api.com lookup path uses plain HTTP, which can expose non-sensitive lookup values or be modified in transit.
+
+Mitigation: Prefer the HTTPS ipinfo.io path when possible and avoid using the skill for sensitive IP or domain lookups.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/china-ip)
+- [ip-api.com JSON endpoint](http://ip-api.com/json/{IP}?lang=zh-CN&fields=status,message,country,regionName,city,isp,org,as,query,mobile,proxy,hosting)
+- [ip-api.com batch endpoint](http://ip-api.com/batch?lang=zh-CN)
+- [ipinfo.io JSON endpoint](https://ipinfo.io/{IP}/json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-formatted lookup summaries with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call public IP lookup APIs with curl, fall back to offline IP segment heuristics, and summarize results for single or batch lookups.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

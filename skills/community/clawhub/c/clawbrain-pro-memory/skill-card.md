@@ -1,42 +1,59 @@
-## Description: <br>
-ClawBrain Memory gives an OpenClaw agent structured long-term memory across conversations, including conversation recall, source-labeled summaries, long-dialogue preservation, and real-time identity updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawBrain Memory gives OpenClaw agents long-term memory across conversations, with source-aware recall, identity updates, and transparent degradation when memory access is unavailable.
 
-## Publisher: <br>
-[michaelfeng](https://clawhub.ai/user/michaelfeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaelfeng](https://clawhub.ai/user/michaelfeng)
 
-## Use Case: <br>
-OpenClaw users install this skill to help an agent retain and retrieve prior conversations, user preferences, identity changes, and important decisions across sessions. It is intended for users who want persistent memory with visible source labeling and a dashboard for memory review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables broad long-term retention and reprocessing of conversation details without clear storage, access, retention, consent, or deletion limits in the submitted artifact. <br>
-Mitigation: Review where memories are stored, who can access them, how long they remain, and how to review or delete them before installation; avoid sharing secrets or sensitive data until those controls are understood. <br>
-Risk: Automatically summarized or reorganized memories may affect future agent responses if outdated or incorrect information is retained. <br>
-Mitigation: Use the dashboard and source labeling to review remembered content, distinguish original statements from summaries, and correct or remove stale identity or preference information. <br>
+## Use Case:
 
+External OpenClaw users install this skill to help agents remember prior conversations, user preferences, important decisions, and profile changes across sessions. It is intended for long-running assistant workflows where source-aware memory recall and memory-management transparency are important.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/michaelfeng/clawbrain-pro-memory) <br>
-- [ClawBrain dashboard](https://clawbrain.dev/dashboard) <br>
-- [ClawBrain website](https://clawbrain.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Natural language responses and memory summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include quoted source statements and AI-generated summaries when recalling stored memories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Conversation-derived memories may persist sensitive, personal, business, legal, medical, or confidential information across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where persistent memory is appropriate, and confirm that users know how to inspect, correct, delete, disable, and control the memory store.
+
+Risk: Automatically updated profile or identity facts may become stale, overbroad, or incorrect.
+
+Mitigation: Review recalled identity facts during use and correct, archive, or remove outdated details when a user's role or preferences change.
+
+Risk: The evidence does not describe clear consent limits or retention boundaries for stored memories.
+
+Mitigation: Avoid using the skill for regulated or confidential topics unless retention, consent, deletion, and access-control expectations are documented and acceptable.
+
+## Reference(s):
+
+- [ClawBrain Memory on ClawHub](https://clawhub.ai/michaelfeng/skills/clawbrain-pro-memory)
+- [ClawBrain Dashboard](https://clawbrain.dev/dashboard)
+- [ClawBrain](https://clawbrain.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recalled user statements, AI-generated summaries, memory-source labels, and memory-service availability notices.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

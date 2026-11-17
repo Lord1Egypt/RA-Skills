@@ -1,43 +1,54 @@
-## Description: <br>
-Auto Skill Evolver helps agents propose, review, and apply improvements to local skill files from execution traces and feedback, with status and approval flows for chat-driven use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Skill Evolver helps agents propose, review, and apply improvements to other skills using execution traces, feedback, local OpenClaw runs, and approval-gated file updates.
 
-## Publisher: <br>
-[YSSHI-FPGA](https://clawhub.ai/user/YSSHI-FPGA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ysshi-fpga](https://clawhub.ai/user/ysshi-fpga)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to iteratively improve local agent skills from execution traces and feedback while keeping proposed edits reviewable before application. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run user-chosen local training commands and modify skill files after approval. <br>
-Mitigation: Use it in a development workspace, review the full diff before applying changes, and require explicit approval before edits are applied. <br>
-Risk: Trace and feedback files may contain credentials or sensitive private data. <br>
-Mitigation: Avoid placing secrets in traces or feedback, and keep optimization artifacts in restricted local workspaces. <br>
-Risk: A broad writable scope could allow proposals to target unintended skill files. <br>
-Mitigation: Restrict writable targets with --allowed-skill-roots and keep self-targeting disabled unless performing controlled maintenance. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to iterate on agent skill files from traces and feedback, inspect proposed changes, and apply approved updates in local development workflows.
 
-## Reference(s): <br>
-- [Auto Skill Evolver on ClawHub](https://clawhub.ai/YSSHI-FPGA/auto-skill-evolver) <br>
-- [YSSHI-FPGA publisher profile](https://clawhub.ai/user/YSSHI-FPGA) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown and JSON with command-line output and proposed file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Proposal artifacts, diffs, status payloads, approval hashes, and update reports may be generated during skill evolution workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: frontmatter and release evidence) <br>
+Risk: Broad local command and file-changing power can modify skills or run user-defined agent tasks in the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated development environment, target only narrow skill directories, and review diffs before approval.
+
+Risk: Approval, restore, and command execution functions could be misused if exposed to untrusted input.
+
+Mitigation: Keep approval tokens and restore actions under trusted operator control; prefer interactive or hash-based approval and constrained writable roots.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ysshi-fpga/skills/auto-skill-evolver)
+- [ClawHub publisher profile](https://clawhub.ai/user/ysshi-fpga)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON status events, unified diffs, and local file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local openclaw-cli and explicit review or approval before applying proposals.]
+
+## Skill Version(s):
+
+1.5.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

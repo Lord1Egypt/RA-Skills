@@ -1,44 +1,55 @@
-## Description: <br>
-Searches the ClawHub Skills marketplace to help agents find and discover OpenClaw community skills by keyword and sorting criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches the ClawHub Skills marketplace to help agents find OpenClaw community skills by keyword and sort order.
 
-## Publisher: <br>
-[mahongting](https://clawhub.ai/user/mahongting) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mahongting](https://clawhub.ai/user/mahongting)
 
-## Use Case: <br>
-Developers, agent users, and skill marketplace users use this skill to search ClawHub Skills, inspect candidate skill metadata, and generate commands for API-based discovery or optional installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a ClawHub API token for authenticated marketplace requests. <br>
-Mitigation: Store CLAWHUB_TOKEN in an environment variable or secret store, and avoid pasting the token into chat or source files. <br>
-Risk: Search results may lead users to install or run third-party skills. <br>
-Mitigation: Review and scan any discovered skill before installation or execution. <br>
-Risk: Marketplace API calls can fail because of missing credentials, access issues, or rate limits. <br>
-Mitigation: Check token availability and handle failed or limited API responses before relying on search results. <br>
+## Use Case:
 
+Developers and agent users use this skill to search the ClawHub Skills marketplace, compare results by popularity or recency, and identify skills to inspect or install.
 
-## Reference(s): <br>
-- [Clawhub Search skill page](https://clawhub.ai/mahongting/clawhub-search) <br>
-- [ClawHub Skills API](https://clawhub.ai/api/v1/skills) <br>
-- [ClawHub Skills marketplace](https://clawhub.ai/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CLAWHUB_TOKEN from the environment for authenticated ClawHub API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The install example uses an unpinned ClawHub CLI command that can change the local skill environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned and reviewed CLI version, inspect the selected skill before installation, and run installs in an isolated environment.
+
+Risk: The skill requires a ClawHub API token for authenticated search requests.
+
+Mitigation: Store the token in CLAWHUB_TOKEN, avoid embedding token values in commands or documents, and run the skill without unrelated secrets in the environment.
+
+## Reference(s):
+
+- [ClawHub Search skill page](https://clawhub.ai/mahongting/skills/clawhub-search)
+- [ClawHub Skills API](https://clawhub.ai/api/v1/skills)
+- [ClawHub Skills marketplace](https://clawhub.ai/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown guidance with inline bash and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a CLAWHUB_TOKEN environment variable and works with JSON responses from the ClawHub Skills API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

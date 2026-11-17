@@ -1,54 +1,67 @@
-## Description: <br>
-Image Fetch Toolkit helps agents search, fetch, and curate online images for papers, news, stock photography, products, scientific illustrations, social media, and academic figure composition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and fetch images from the internet for any purpose - paper figures, news photos, stock images, product photos, scientific illustrations, social media images, and more.
 
-## Publisher: <br>
-[newtontech](https://clawhub.ai/user/newtontech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newtontech](https://clawhub.ai/user/newtontech)
 
-## Use Case: <br>
-Developers, researchers, and content creators use this skill to guide agents through online image search, API-based image retrieval, licensing checks, attribution, and academic figure assembly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Third-party image, news, academic, social, and search APIs may receive sensitive query terms. <br>
-Mitigation: Avoid confidential or regulated search terms and use only providers approved for the user's environment. <br>
-Risk: API keys and access tokens are needed for several providers. <br>
-Mitigation: Configure only the keys required for the task, store them in environment variables or approved secret stores, and rotate any exposed credentials. <br>
-Risk: Fetched images may carry license, attribution, platform terms, or reuse restrictions. <br>
-Mitigation: Check image licenses, creator attribution requirements, and provider terms before using images in publications, products, or commercial work. <br>
-Risk: Optional external tools and MCP servers may introduce additional operational or supply-chain risk. <br>
-Mitigation: Review optional tools before installation and install only the integrations needed for the workflow. <br>
+## Use Case:
 
+Developers, researchers, content creators, and agents use this skill to find, retrieve, evaluate, and compose images for papers, presentations, blog posts, product research, news workflows, and scientific figures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/newtontech/image-fetch-toolkit) <br>
-- [Unsplash API documentation](https://unsplash.com/developers) <br>
-- [Pexels API documentation](https://www.pexels.com/api/) <br>
-- [Pixabay API documentation](https://pixabay.com/api/docs/) <br>
-- [Flickr API documentation](https://www.flickr.com/services/apps/) <br>
-- [Google Custom Search documentation](https://developers.google.com/custom-search) <br>
-- [Bing Image Search API](https://www.microsoft.com/en-us/bing/apis/bing-image-search-api) <br>
-- [Semantic Scholar API](https://api.semanticscholar.org/graph/v1/paper/search) <br>
-- [arXiv API](http://export.arxiv.org/api/query) <br>
-- [PubMed Central Open Access API](https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi) <br>
-- [Wikimedia Commons API](https://commons.wikimedia.org/w/api.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, API examples, configuration notes, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require user-supplied API keys and manual review of fetched image licenses, attribution, and provider terms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release evidence) <br>
+Risk: Image and research queries sent to external providers may disclose confidential project names, private URLs, unreleased research topics, or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive query content unless the user explicitly approves sharing it with the selected provider.
+
+Risk: Optional npx or uv MCP and image-generation commands may introduce supply-chain or environment exposure if run without review.
+
+Mitigation: Pin and review package versions, isolate the execution environment, and expose only the specific API key required.
+
+Risk: Fetched images can carry license, attribution, or terms-of-service obligations that are unsuitable for the intended publication or commercial use.
+
+Mitigation: Check the source license and attribution requirements before reuse, and prefer public-domain or clearly licensed assets when possible.
+
+## Reference(s):
+
+- [Image Fetch Toolkit on ClawHub](https://clawhub.ai/newtontech/skills/image-fetch-toolkit)
+- [Unsplash API Documentation](https://unsplash.com/developers)
+- [Pexels API Documentation](https://www.pexels.com/api/)
+- [Pixabay API Documentation](https://pixabay.com/api/docs/)
+- [Flickr API App Documentation](https://www.flickr.com/services/apps/)
+- [Google Custom Search Documentation](https://developers.google.com/custom-search)
+- [Bing Image Search API](https://www.microsoft.com/en-us/bing/apis/bing-image-search-api)
+- [Paper Search MCP](https://github.com/openags/paper-search-mcp)
+- [NewsAPI](https://newsapi.org)
+- [GNews API](https://gnews.io)
+- [Wikimedia Commons API](https://commons.wikimedia.org/w/api.php)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with inline shell commands, API examples, and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require external API keys and provider-specific licensing or attribution review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

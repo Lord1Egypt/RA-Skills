@@ -1,43 +1,54 @@
-## Description: <br>
-Search podcasts, browse episodes, and fetch podcast transcripts from Podfetcher using the bundled Node.js CLI, SDK, or MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search podcasts, browse episodes, and fetch podcast transcripts from Podfetcher using the bundled Node.js CLI, SDK, or MCP server.
 
-## Publisher: <br>
-[FloHiwg](https://clawhub.ai/user/FloHiwg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flohiwg](https://clawhub.ai/user/flohiwg)
 
-## Use Case: <br>
-Developers and external agent users use this skill to search podcast shows, inspect episode catalogs, and retrieve transcripts through a CLI, SDK, or MCP server backed by Podfetcher. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Podfetcher API keys could be exposed through command history, shared configuration, or inline command flags. <br>
-Mitigation: Prefer PODFETCHER_API_KEY or a secret manager, and avoid putting real keys in shared configs or command history. <br>
-Risk: Changing the default API base URL can send podcast queries, transcript requests, and API keys to another endpoint. <br>
-Mitigation: Keep the default Podfetcher API URL unless the alternate endpoint is intentionally trusted. <br>
-Risk: Transcript fetching may consume quota or create billing impact. <br>
-Mitigation: Have agents ask before fetching transcripts when quota or billing matters. <br>
+## Use Case:
 
+Developers and agent users use this skill to search podcast shows, inspect episode catalogs, and retrieve transcripts from Podfetcher through a CLI, SDK, or MCP server.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FloHiwg/podfetcher-tools) <br>
-- [Podfetcher homepage](https://podfetcher.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Plain text or JSON podcast search results, episode lists, and transcript content, with Markdown setup guidance in the skill documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PODFETCHER_API_KEY; transcript fetching can optionally poll until the transcript is ready.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.1 (source: frontmatter, package.json, server release evidence) <br>
+Risk: Podcast searches, show IDs, episode IDs, transcript requests, and API credentials are sent to Podfetcher or to the configured endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use PODFETCHER_API_KEY through a protected environment or secret manager, avoid passing keys with --api-key or checked-in MCP config, and rotate any exposed key.
+
+Risk: Custom base URLs can direct API-key-authenticated requests to an unintended or untrusted service.
+
+Mitigation: Only set PODFETCHER_BASE_URL or --base-url for trusted HTTPS endpoints and keep the default production endpoint for normal use.
+
+## Reference(s):
+
+- [Podfetcher](https://podfetcher.com)
+- [Podfetcher Tools on ClawHub](https://clawhub.ai/flohiwg/skills/podfetcher-tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and JSON examples; CLI and MCP operations return text or JSON payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 20+ and a Podfetcher API key; transcript fetches may return queued processing status unless waiting is enabled.]
+
+## Skill Version(s):
+
+0.5.1 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

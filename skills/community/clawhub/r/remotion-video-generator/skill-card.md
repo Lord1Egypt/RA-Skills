@@ -1,47 +1,66 @@
-## Description: <br>
-AI video production workflow using Remotion for creating polished motion graphics videos, short films, commercials, product demos, social media videos, and animated explainers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI video production workflow using Remotion. Use when creating videos, short films, commercials, or motion graphics. Triggers on requests to make promotional videos, product demos, social media videos, animated explainers, or any programmatic video content. Produces polished motion graphics, not slideshows.
 
-## Publisher: <br>
-[zendenho7](https://clawhub.ai/user/zendenho7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zendenho7](https://clawhub.ai/user/zendenho7)
 
-## Use Case: <br>
-Developers and creative agents use this skill to plan, scaffold, preview, iterate on, and render Remotion-based motion graphics videos such as promotional videos, product demos, social media clips, commercials, and animated explainers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose a local Remotion Studio through a public Cloudflare tunnel. <br>
-Mitigation: Use the tunnel only when public preview access is intended, share the URL selectively, and stop the tunnel and dev server when preview work is finished. <br>
-Risk: The scraping helper should not be used with private, internal, sensitive, or unusual URLs. <br>
-Mitigation: Use only public, non-sensitive brand URLs for scraping and review extracted content before reusing it in generated video projects. <br>
-Risk: The server security review reports that the scraping helper can run unsafe input as code. <br>
-Mitigation: Review the script before installation or execution, avoid untrusted URL inputs, and run it in a constrained workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zendenho7/remotion-video-generator) <br>
-- [Superskills - Video Generator (Remotion)](https://superskills.vibecode.run/) <br>
-- [Remotion documentation](https://www.remotion.dev/) <br>
-- [Scrapling](https://github.com/D4Vinci/Scrapling) <br>
-- [React documentation](https://react.dev/) <br>
-- [Video Components](references/components.md) <br>
-- [Composition Patterns](references/composition-patterns.md) <br>
+## Use Case:
 
+Developers and content teams use this skill to create programmatic motion graphics videos, including promotional videos, product demos, short films, social media clips, animated explainers, and commercials. It helps agents scaffold Remotion projects, gather brand assets, build scenes, preview work, iterate, and render final video files.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript, JSON, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Remotion project files and final video artifacts when executed by an agent with the required local tools.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A crafted URL passed to the scraping helper could trigger code execution due to unsafe input handling.
+
+Mitigation: Review or patch the helper script before use, validate and quote user-supplied URLs, and require explicit approval before running scraping commands.
+
+Risk: The workflow can scrape user-specified websites, download remote assets, and use third-party screenshot services.
+
+Mitigation: Confirm that scraping and asset downloads are authorized for the target site, inspect downloaded assets before use, and avoid third-party screenshot services unless the user approves them.
+
+Risk: The workflow can expose a local Remotion Studio to the public internet through a tunnel.
+
+Mitigation: Use local preview by default and require explicit user approval before starting any public tunnel.
+
+Risk: The workflow installs npm and pip packages without pinned versions.
+
+Mitigation: Pin dependencies, review generated package files, and run installation in an isolated workspace.
+
+## Reference(s):
+
+- [Remotion](https://www.remotion.dev/)
+- [Scrapling](https://github.com/D4Vinci/Scrapling)
+- [React](https://react.dev/)
+- [Superskills - Video Generator (Remotion)](https://superskills.vibecode.run/)
+- [Video Components](references/components.md)
+- [Composition Patterns](references/composition-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/zendenho7/skills/remotion-video-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash, JSON, Python, and TypeScript/TSX code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce project files, Remotion source code, package configuration, preview commands, and render commands when used by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

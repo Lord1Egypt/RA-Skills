@@ -1,50 +1,66 @@
-## Description: <br>
-Provides SkillBoss API guidance for chat, image, video, audio, search, scraping, document, email, and SMS capabilities, with a stated goal of capturing learnings for agent improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, and corrections to enable continuous improvement, and provides access to 50+ models for image generation, video generation, text-to-speech, speech-to-text, music, chat, web search, document parsing, email, and SMS.
 
-## Publisher: <br>
-[QuincyGunter](https://clawhub.ai/user/QuincyGunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-Developers and agents use this skill to access SkillBoss-hosted model and tool endpoints through documented shell commands and JSON payloads. It is suited for workflows that need multi-provider model calls, generated media, search, scraping, document processing, email, or SMS actions from an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent access to a broad API gateway that includes email, SMS, OTP, scraping, and document-processing actions. <br>
-Mitigation: Use a limited SkillBoss API key where possible and require explicit user approval before email, SMS, OTP, scraping, or document-processing calls. <br>
-Risk: Requests may send confidential documents, personal data, prompts, or media to external provider chains. <br>
-Mitigation: Avoid confidential or personal data unless the provider chain is trusted and the user has approved the disclosure. <br>
-Risk: The release is presented as a self-improving-agent skill but primarily behaves as a broad SkillBoss API gateway. <br>
-Mitigation: Install it only when broad SkillBoss gateway access is intended, and review the action scope before deployment. <br>
+## Use Case:
 
+Developers and agent users can use this skill to route agent tasks through SkillBoss for chat, media generation, transcription, search, document processing, email, SMS, embeddings, and presentation generation. It is also positioned as a way to capture learnings, errors, and corrections for continuous improvement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QuincyGunter/self-improve-agent) <br>
-- [SkillBoss API base URL](https://api.heybossai.com/v1) <br>
-- [SkillBoss API key signup](https://www.skillboss.co) <br>
-- [Chat model reference](artifact/chat-models.md) <br>
-- [Image model reference](artifact/image-models.md) <br>
-- [Video model reference](artifact/video-models.md) <br>
-- [Audio model reference](artifact/audio-models.md) <br>
-- [Search and scraping model reference](artifact/search-models.md) <br>
-- [Tool model reference](artifact/tools-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Files] <br>
-**Output Format:** [Markdown guidance with bash/curl examples and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; API responses may include text, URLs, binary media, or generated files depending on the selected model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send prompts, files, emails, and SMS through a third-party SkillBoss API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that API access is intended, and require separate controls for confidential data, private documents, internal URLs, recipients, approvals, billing, and retention.
+
+Risk: The artifact includes run.mjs examples that depend on a local executable not defined by the artifact.
+
+Mitigation: Do not run those examples unless the executable is trusted and understood; prefer the explicit curl examples when reviewing behavior.
+
+Risk: Smart routing can auto-select models and providers for a task.
+
+Mitigation: Review task type, inputs, provider choice, and expected cost or data handling before allowing unattended use.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/quincygunter/skills/self-improve-agent)
+- [SkillBoss API base URL](https://api.heybossai.com/v1)
+- [SkillBoss models endpoint](https://api.heybossai.com/v1/models)
+- [SkillBoss website](https://www.skillboss.co)
+- [Chat Models](artifact/chat-models.md)
+- [Image Models](artifact/image-models.md)
+- [Audio Models](artifact/audio-models.md)
+- [Search & Scraping Models](artifact/search-models.md)
+- [Tool Models](artifact/tools-models.md)
+- [Video Models](artifact/video-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; generated API calls may return text, JSON, file URLs, audio, images, video, email, or SMS-related results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

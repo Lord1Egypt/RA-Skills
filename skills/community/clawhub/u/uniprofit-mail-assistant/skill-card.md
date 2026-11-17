@@ -1,43 +1,61 @@
-## Description: <br>
-Send emails through the UniProfit OpenClaw-compatible API with a user-created `mail_send` API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send emails through the UniProfit OpenClaw-compatible API with a user-created `mail_send` API key for already-approved email delivery through a verified UniProfit mail account.
 
-## Publisher: <br>
-[xieziqing](https://clawhub.ai/user/xieziqing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xieziqing](https://clawhub.ai/user/xieziqing)
 
-## Use Case: <br>
-External users and agent operators use this skill to deliver already-approved email content through a verified UniProfit mail account. It is for actual email delivery only after sender, recipient, subject, and final body are known. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real email content and recipient details are sent to the configured UniProfit endpoint. <br>
-Mitigation: Use an HTTPS UniProfit API base URL that the operator trusts and confirm the recipient and final body before sending. <br>
-Risk: A broad or untrusted mail credential could allow unintended email delivery. <br>
-Mitigation: Use a scoped `mail_send` key and validate that it is configured for the intended UniProfit mail account before delivery. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill when they need an agent to deliver already-approved email content through a verified UniProfit mail account and report the confirmed send status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xieziqing/uniprofit-mail-assistant) <br>
-- [API Reference](references/api.md) <br>
-- [Mail Constraints](references/mail-constraints.md) <br>
-- [Error Handling](references/error-handling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown or plain text status with optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports recipient, send status, and record or message id when the UniProfit API returns them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The configured UniProfit API base URL receives the mail_send key and email message contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with a trusted HTTPS UniProfit API base URL and verify that the environment configuration points to the intended service before use.
+
+Risk: Email delivery is an external action that can expose incorrect recipients, sender accounts, or unapproved content.
+
+Mitigation: Confirm actual delivery intent, sender account, recipient, subject, and final body before sending; report success only after API confirmation.
+
+Risk: Command-line arguments and logs may expose confidential email bodies or credential-adjacent operational details.
+
+Mitigation: Avoid putting confidential content into command lines or logs, and treat UNIPROFIT_MAIL_SEND_KEY as a live credential.
+
+## Reference(s):
+
+- [API Reference](references/api.md)
+- [Error Handling](references/error-handling.md)
+- [Mail Constraints](references/mail-constraints.md)
+- [ClawHub Skill Page](https://clawhub.ai/xieziqing/skills/uniprofit-mail-assistant)
+- [Publisher Profile](https://clawhub.ai/user/xieziqing)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional shell command usage and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports recipient, send status, and record or message identifiers when the API confirms delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

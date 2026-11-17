@@ -1,7 +1,7 @@
 ---
 name: x-poster
-description: Post to X (Twitter) using the OpenTweet API. Create tweets, schedule posts, publish threads, upload media, run an evergreen queue, search inspiration tweets, repurpose them with AI, and read engagement-weighted analytics — all autonomously.
-version: 1.4.0
+description: Post to X (Twitter), Bluesky and LinkedIn using the OpenTweet API. Create posts, cross-post the same content to all three networks in one call, schedule posts, publish threads, write and schedule long-form X Articles from markdown, upload media, run an evergreen queue, search inspiration tweets, repurpose them with AI, run AI-qualified DM outreach campaigns with human-approved sending, and read engagement-weighted analytics, all autonomously.
+version: 1.7.0
 homepage: https://opentweet.io/features/openclaw-twitter-posting
 user-invocable: true
 metadata: {"openclaw":{"requires":{"env":["OPENTWEET_API_KEY"]},"primaryEnv":"OPENTWEET_API_KEY"}}
@@ -9,7 +9,7 @@ metadata: {"openclaw":{"requires":{"env":["OPENTWEET_API_KEY"]},"primaryEnv":"OP
 
 # OpenTweet X Poster
 
-You can post to X (Twitter) using the OpenTweet REST API. All requests go to `https://opentweet.io` with the user's API key.
+You can post to X (Twitter), Bluesky and LinkedIn using the OpenTweet REST API. All requests go to `https://opentweet.io` with the user's API key.
 
 ## Authentication
 
@@ -50,6 +50,87 @@ Add `x_account_id` to any POST/PUT body or GET query parameter to target a speci
 
 When `x_account_id` is omitted, the primary account is used. Single-account users never need to specify it.
 
+## Cross-Posting (X, Bluesky and LinkedIn)
+
+OpenTweet can publish the same content to X, Bluesky and LinkedIn. Every post-creating endpoint takes an optional `platforms` array, and every post response carries a per-network `results` array.
+
+### Check cross-posting state first
+```
+GET https://opentweet.io/api/v1/cross-posting
+```
+Returns which networks are connected, which can actually publish right now, whether auto cross-post is on, and where a post that omits `platforms` would go:
+```json
+{
+  "auto_cross_post": false,
+  "default_targets": ["x"],
+  "deliverable_targets": ["x"],
+  "platforms": [
+    { "platform": "x", "connected": true, "usable": true,
+      "accounts": [{ "account_id": "...", "handle": "handle", "display_name": "Name", "is_primary": true }],
+      "limits": { "max_text_length": 280, "text_unit": "weighted", "max_images": 4 } },
+    { "platform": "bluesky", "connected": true, "usable": false, "needs_reconnect": true,
+      "accounts": [...], "limits": {...} },
+    { "platform": "linkedin", "connected": true, "usable": true,
+      "accounts": [...],
+      "limits": { "max_text_length": 3000, "text_unit": "codeunit", "max_images": 20, "max_videos": 0 } }
+  ]
+}
+```
+Read these two together before posting whenever the user has not said which network they mean:
+- `default_targets` is what a post that omits `platforms` is ATTEMPTED on.
+- `deliverable_targets` is the subset that will actually LAND, filtered to networks with a usable account.
+
+Anything in `default_targets` but not in `deliverable_targets` is going to fail. That is deliberate: an unusable network stays in the attempt so the failure is recorded in `results`, instead of being quietly dropped and letting the post roll up as a clean success nobody questions. Reading only `default_targets` would have you tell the user their post goes to X and Bluesky while the Bluesky authorisation is dead. Say which networks will land and which are expected to fail.
+
+`connected` and `usable` are DIFFERENT questions and you must not conflate them:
+- `connected` only means an account row exists.
+- `usable` means OpenTweet believes it can publish there right now.
+
+A user whose Bluesky authorisation died is `connected: true, usable: false, needs_reconnect: true`. Telling them "Bluesky is connected" would be misleading. Say it needs reconnecting at https://opentweet.io/settings, and do not promise a publish that is going to fail. Targeting a network with `usable: false` comes back as a `failed` or `skipped` entry in `results`. The same applies to a LinkedIn account whose 60-day sign-in has lapsed.
+
+### Targeting networks explicitly
+```
+POST https://opentweet.io/api/v1/posts
+Body: { "text": "Shipped it.", "publish_now": true, "platforms": ["x", "bluesky", "linkedin"] }
+```
+`platforms` accepts any non-empty subset of `"x"`, `"bluesky"` and `"linkedin"`, so `["bluesky"]` posts to Bluesky only and `["x", "linkedin"]` skips Bluesky. Unknown ids are dropped. An explicit list is ALWAYS honoured exactly, whatever the auto cross-post setting says.
+
+For bulk creates, `platforms` works per post inside the `posts` array and also at the top level as a default for the whole batch.
+
+### What omitting `platforms` means
+Leaving `platforms` out is NOT the same as sending `["x"]`. An unspecified post follows the user's server-side auto cross-post setting:
+- Auto cross-post ON: the post goes to EVERY connected network.
+- Auto cross-post OFF: the post goes to the single default network.
+
+If the user asked for X only, send `"platforms": ["x"]`. Do not rely on the omission, because on an account with auto cross-post on that also posts to Bluesky and LinkedIn.
+
+### Reading per-network results
+Post responses include `results`, one entry per network the post was sent to:
+```json
+"results": [
+  { "platform": "x", "status": "published", "url": "https://x.com/handle/status/123" },
+  { "platform": "bluesky", "status": "skipped", "skip_reason": "No Bluesky account connected" },
+  { "platform": "linkedin", "status": "published", "post_id": "urn:li:share:7300000000000000000",
+    "url": "https://www.linkedin.com/feed/update/urn:li:share:7300000000000000000/" }
+]
+```
+`status` is `"published"`, `"failed"`, or `"skipped"`.
+- `skipped` is NOT a failure. The post went out, one target was dropped, and `skip_reason` says why. Read `skip_reason` under both spellings: `skip_reason` and `skipReason`.
+- `failed` carries `error` with the network's rejection reason.
+- Report the outcome per network. A post that published on X and failed on Bluesky is a partial success, never a clean success. Give the user the `url` from each published entry.
+
+Character limits differ: X allows 280 (up to 25,000 with X Premium), Bluesky caps at 300 graphemes, LinkedIn allows 3,000 characters (an emoji counts as 2). Text that fits X can still be rejected by Bluesky, which comes back as a `failed` entry for Bluesky while X publishes fine.
+
+### LinkedIn
+- Personal profile only. Company Pages are not supported.
+- 3,000 characters, counted in code units, so an emoji counts as 2.
+- A thread goes to LinkedIn as ONE post, with the parts joined by a blank line.
+- Video is not supported. A post with video comes back as a `skipped` LinkedIn entry with a `skip_reason`. Up to 20 images work.
+- Hashtags and mentions publish as plain text.
+- No LinkedIn analytics. Auto-retweet and communities are X only.
+- In `results`, LinkedIn's `post_id` is a URN like `urn:li:share:7300000000000000000` and `url` is `https://www.linkedin.com/feed/update/<urn>/`.
+- The account is connected in the web dashboard (Settings > Accounts > Connect LinkedIn), not through the API. The sign-in lasts 60 days, then needs a one-click reconnect; until then `GET /api/v1/cross-posting` shows LinkedIn as `usable: false, needs_reconnect: true`.
+
 ## Post Management
 
 ### Create a tweet
@@ -57,14 +138,14 @@ When `x_account_id` is omitted, the primary account is used. Single-account user
 POST https://opentweet.io/api/v1/posts
 Body: { "text": "Your tweet text" }
 ```
-Optionally add `"scheduled_date": "2026-05-01T10:00:00Z"` to schedule it (requires active subscription, date must be in the future).
+Optionally add `"scheduled_date": "2026-05-01T10:00:00Z"` to schedule it (requires active subscription, date must be in the future). Add `"platforms": ["x", "bluesky", "linkedin"]` (or any subset) to pin which networks it goes to. See Cross-Posting above for what happens when you leave `platforms` out.
 
 ### Create and publish immediately (one step)
 ```
 POST https://opentweet.io/api/v1/posts
 Body: { "text": "Hello from the API!", "publish_now": true }
 ```
-Creates the post AND publishes to X in one request. Cannot combine with `scheduled_date` or bulk posts. Response includes `status: "posted"`, `x_post_id`, and `url` (the real X post URL) on success.
+Creates the post AND publishes in one request. Cannot combine with `scheduled_date` or bulk posts. Response includes `status: "posted"`, `x_post_id`, and `url` (the real X post URL) on success, plus a `results` array with the outcome for every network it went to. Add `"platforms": ["x", "bluesky", "linkedin"]` to publish to all three at once.
 
 ### Create a tweet with media
 ```
@@ -162,7 +243,7 @@ The date must be in the future. Use ISO 8601 format.
 ```
 POST https://opentweet.io/api/v1/posts/{id}/publish
 ```
-No body needed. Posts to X right now. Response includes `status: "posted"`, `x_post_id`, and `url` (the real X post URL).
+No body needed. Publishes right now to the networks the post was created with, or to whatever auto cross-post resolves to if it was created without `platforms`. Response includes `status: "posted"`, `x_post_id`, `url` (the real X post URL), and a `results` array with the per-network outcome.
 
 ### Batch schedule (up to 50 posts)
 ```
@@ -272,6 +353,114 @@ Returns one of:
 - `{ "job_id": "...", "status": "failed", "error": "..." }` — generation failed
 
 Typical generation time: 1–3 minutes. Poll every 10 seconds.
+
+## X Articles (Long-Form Posts)
+
+Write and publish long-form X Articles from markdown. OpenTweet converts markdown to X's rich-text article format at publish time: `#`/`##`/`###` headings, **bold**, *italic*, ~~strikethrough~~, links, bullet/numbered lists, `>` quotes, inline images via `![caption](url)` (uploaded to X automatically), a cover image, and embedded posts (an x.com status URL on its own line). Fenced code blocks are preserved as plain text.
+
+Requires an active paid subscription (not trial). The connected X account must have X Premium (any tier since January 2026) to publish Articles — if not, publishing fails and `failed_reason` carries X's exact error.
+
+Article statuses: `draft`, `scheduled`, `publishing`, `published`, `failed`.
+
+### Create an article (draft, scheduled, or publish now)
+```
+POST https://opentweet.io/api/v1/articles
+Body: {
+  "title": "How We Grew to 10k Users",
+  "content_markdown": "# The short version\n\nWe shipped **every week**...",
+  "cover_image_url": "https://url-from-upload-endpoint",
+  "scheduled_date": "2026-07-15T14:00:00Z"
+}
+```
+- `title` and `content_markdown` are required.
+- `scheduled_date` schedules it; `"publish_now": true` publishes immediately (mutually exclusive with `scheduled_date`).
+- Omit both to save a draft.
+- Optional `x_account_id` for multi-account users.
+
+Returns 201 with the article object. A published article includes `article_url` (the live X link) and `x_post_id`.
+
+### List articles
+```
+GET https://opentweet.io/api/v1/articles?status=scheduled&page=1&limit=20
+```
+Status filter options: `draft`, `scheduled`, `publishing`, `published`, `failed`.
+
+### Get / update / delete an article
+```
+GET    https://opentweet.io/api/v1/articles/{id}
+PUT    https://opentweet.io/api/v1/articles/{id}    # body: any of title, content_markdown, cover_image_url, scheduled_date, x_account_id
+DELETE https://opentweet.io/api/v1/articles/{id}
+```
+Published articles cannot be edited. Set `scheduled_date` to `null` to unschedule back to draft. Updating a failed article resets it to draft/scheduled.
+
+### Publish an article immediately
+```
+POST https://opentweet.io/api/v1/articles/{id}/publish
+```
+No body needed. Returns the article with `status: "published"` and `article_url`, or 502 with `code: "publish_failed"` and X's error in `failed_reason`.
+
+## DM Campaigns (AI Lead Outreach)
+
+Run outreach campaigns that find qualified X profiles, qualify them with AI, draft a personalized DM for each, and send only after a human approves. This is not a mass messenger: sending is human-in-the-loop, drip-scheduled, rate-limited, and honors opt-outs. Available on the Advanced and Agency plans only (403 on Pro). Requires a paid API key (not the free taste key).
+
+How a campaign flows: you create it with an ideal-customer description and one or more lead sources, discovery finds and AI-qualifies candidates into leads, you review and approve the drafted messages, then the sender drips approved DMs from the connected X account within the campaign's caps. Replies are tracked and tagged, and opt-outs are auto-suppressed. Actual sending is gated server-side and paced, so approving a lead queues it, it does not fire instantly.
+
+### Create a campaign
+```
+POST https://opentweet.io/api/v1/dm-campaigns
+Body: {
+  "name": "Shopify founders Q3",
+  "x_account_id": "account_id_here",
+  "sources": [
+    { "type": "search", "value": "shopify analytics", "max_candidates": 500 },
+    { "type": "followers_of", "value": "somecompetitor", "max_candidates": 500 },
+    { "type": "tweet_engagers", "value": "https://x.com/user/status/123", "max_candidates": 300 },
+    { "type": "own_followers", "value": "", "max_candidates": 500 }
+  ],
+  "icp_prompt": "Shopify store owners or ecommerce founders, 200-20k followers, English, active in the last 2 weeks, complaining about ad costs or analytics. Not agencies.",
+  "score_threshold": 60,
+  "message_brief": { "offer": "a $29/mo analytics tool for Shopify", "tone": "casual", "cta": "worth a look?", "follow_up_enabled": false },
+  "limits": { "dms_per_day": 25, "active_hours_start": 9, "active_hours_end": 18, "timezone": "America/New_York" },
+  "accept_policy": true
+}
+```
+`accept_policy` must be `true` (it records acceptance of X's acceptable-use terms; the connected account bears the outreach risk). Returns `{ "campaign": {...} }`. Source types: `search` (keyword query), `followers_of` (a handle), `tweet_engagers` (a tweet URL), `own_followers`.
+
+### List campaigns
+```
+GET https://opentweet.io/api/v1/dm-campaigns
+```
+Returns `{ "campaigns": [...] }`, each with a `stats` funnel (found, qualified, approved, sent, replied).
+
+### Get a campaign (with stats)
+```
+GET https://opentweet.io/api/v1/dm-campaigns/{id}
+```
+
+### Start discovery
+```
+POST https://opentweet.io/api/v1/dm-campaigns/{id}/discover
+```
+Sets the campaign to `discovering` and returns immediately. Discovery and AI qualification run in the background, then the campaign moves to `reviewing` with leads ready. Poll the campaign until its status is `reviewing`.
+
+### List leads (the review queue)
+```
+GET https://opentweet.io/api/v1/dm-campaigns/{id}/leads?state=qualified&page=1
+```
+State filter includes `qualified` (awaiting approval), `approved`, `sent`, `replied`, `skipped`. Each lead has a `score`, a `reason`, an `angle_hook`, and a drafted `final_message`.
+
+### Approve or skip a lead
+```
+PATCH https://opentweet.io/api/v1/dm-campaigns/{id}/leads/{leadId}
+Body: { "action": "approve", "final_message": "optional edited message" }
+```
+`action` is `approve` (queues the drafted or provided message for drip sending), `skip`, or `edit` (change the draft without approving). Approving does NOT send immediately; the sender paces it within the campaign's daily cap and active hours.
+
+### Read replies (inbox)
+```
+GET https://opentweet.io/api/v1/dm-campaigns/{id}/inbox
+```
+Returns `{ "conversations": [{ "lead": {...}, "reply_tag": "interested|question|not_interested|opt_out", "events": [...] }] }`. Opt-outs are auto-added to the do-not-contact list.
 
 ## Evergreen Queue
 
@@ -433,6 +622,21 @@ Pulls the user's recent published tweets from X, computes engagement-weighted wi
 3. Poll `GET /api/v1/generate/video/{job_id}` every 10 seconds until `status` is `"completed"` — get the `url`
 4. `POST /api/v1/posts` with `{ "text": "...", "media_urls": ["<url from step 3>"], "publish_now": true }`
 
+**Write and schedule a long-form X Article:**
+1. `GET /api/v1/me` — check `subscription.has_access` is true (articles need a paid plan)
+2. Optional cover: `POST /api/v1/upload` with an image — get back a URL
+3. `POST /api/v1/articles` with `{ "title": "...", "content_markdown": "# ...", "cover_image_url": "<url>", "scheduled_date": "2026-07-15T14:00:00Z" }`
+4. Confirm the response has `status: "scheduled"` and show the user the article `id`
+5. After publish time, `GET /api/v1/articles/{id}` — `article_url` is the live X link
+
+**Run a DM outreach campaign (human-approved):**
+1. `GET /api/v1/me` — confirm the plan is Advanced or Agency (DM Campaigns return 403 otherwise)
+2. `POST /api/v1/dm-campaigns` with the ICP, sources, message brief, limits, and `accept_policy: true`
+3. `POST /api/v1/dm-campaigns/{id}/discover`, then poll `GET /api/v1/dm-campaigns/{id}` until status is `reviewing`
+4. `GET /api/v1/dm-campaigns/{id}/leads?state=qualified` — show the user the qualified leads and their drafted messages
+5. Only after the user approves specific leads: `PATCH .../leads/{leadId}` with `action: approve`. Never auto-approve every lead.
+6. `GET /api/v1/dm-campaigns/{id}/inbox` later to read replies
+
 **Find inspiration and repurpose it:**
 1. `GET /api/v1/inspiration/search?q=...&min_likes=500` — pick a tweet
 2. `POST /api/v1/inspiration/repurpose` with `tweet_text`, `tweet_author`, `save_as_draft: true`
@@ -458,6 +662,13 @@ Pulls the user's recent published tweets from X, computes engagement-weighted wi
 - Post IDs are always 24-character MongoDB ObjectIds (e.g. "507f1f77bcf86cd799439011"), never short strings.
 - Every post response includes a `status` field: "draft", "scheduled", "posted", or "failed".
 - Published posts include a `url` field with the real X post URL. Always use this URL — never construct your own.
+- Omitting `platforms` does NOT mean "X only". It hands targeting to the user's auto cross-post setting. Send `"platforms": ["x"]` when the user asked for X only.
+- An explicit `platforms` list is always honoured exactly, even when auto cross-post is on.
+- Read the `results` array before reporting an outcome. A `skipped` entry is not a failure, a `failed` entry is, and a post can be published on one network and failed on another.
+- Call `GET /api/v1/cross-posting` when you need to know where an unspecified post will land, or when the user asks what they are connected to. `default_targets` is what gets attempted, `deliverable_targets` is what actually lands, and the difference between them is a set of expected failures you should mention up front.
+- On `GET /api/v1/cross-posting`, `connected` and `usable` are different. Never report a `connected: true, usable: false` network as working; it needs reconnecting first.
+- Bluesky caps posts at 300 characters, below X's 280-plus-Premium ceiling on longer text. Check the shortest limit among the targeted networks before sending.
+- LinkedIn allows 3,000 characters (an emoji counts as 2), takes a thread as ONE post, skips posts with video, and has no analytics. See the LinkedIn subsection under Cross-Posting.
 - To verify a post was published, check: `status` is "posted" AND `url` is present.
 - To verify a post was scheduled, check: `status` is "scheduled" AND `scheduled_date` is present in the response.
 - Tweet max length: 280 characters (per tweet in a thread).
@@ -471,6 +682,8 @@ Pulls the user's recent published tweets from X, computes engagement-weighted wi
 - URL-containing posts have a separate, plan-based daily cap. A 429 with a `urlLimit` payload means the post was saved as a draft instead of published.
 - Tweet engagement analytics require the Advanced plan (returns 403 on Pro).
 - Evergreen queue is not available during trial.
+- X Articles require a paid plan (not trial) AND X Premium (any tier) on the publishing X account. A 502 with `code: "publish_failed"` carries X's exact rejection reason.
+- Article content is markdown. Do not send DraftJS or HTML — OpenTweet handles the rich-text conversion.
 - `auto_retweet_offset_minutes` must be 1–10080 (up to 7 days) when `auto_retweet_enabled` is true.
 - 403 = no subscription / X not connected, 429 = rate limit, daily post limit, URL post cap, or evergreen pool full.
 - Check response status codes: 201=created, 200=success, 4xx=client error, 5xx=server error.
@@ -482,6 +695,7 @@ Pulls the user's recent published tweets from X, computes engagement-weighted wi
 ### Confirm before publishing
 - Before calling `/publish` or using `publish_now: true`, always tell the user which post(s) you are about to publish and ask for confirmation.
 - Show the tweet text (truncated if long) and the post ID so the user can verify.
+- The same applies to articles: before `POST /api/v1/articles/{id}/publish` or `publish_now: true` on an article, show the user the title and ask for confirmation. A published article cannot be edited.
 
 ### Scheduled posts ≠ ready to publish
 - If a post has a `scheduled_date` in the future, it is meant to be published at that time by the scheduler — not right now.
@@ -500,6 +714,11 @@ Pulls the user's recent published tweets from X, computes engagement-weighted wi
 ### Don't loop publish calls
 - Never loop through a list of posts calling `/publish` on each one without explicit user approval for the full list.
 - If the user asks to "publish all my drafts" or similar, list them first and get confirmation.
+
+### DM campaigns are opt-in outreach, not a blaster
+- Never approve DM leads in bulk without the user reviewing them. Show the qualified leads and their drafted messages, and only approve the specific ones the user picks.
+- X prohibits unsolicited automated bulk DMs. Keep the daily caps conservative, never try to bypass the pacing, and respect that approving a lead queues it for a drip send rather than firing immediately.
+- Opt-outs and negative replies are auto-suppressed. Do not re-add or re-contact a suppressed profile.
 
 ### AI-generated content needs a review pass
 - Before saving repurposed tweets as auto-scheduled posts, show the user the AI output and let them edit. The repurpose endpoint already saves to drafts by default — keep `save_as_draft: true` unless the user has reviewed.

@@ -1,47 +1,54 @@
-## Description: <br>
-Checks Chinese advertising copy for prohibited advertising-law terms, false-advertising language, platform-specific rule concerns, risk levels, and suggested revisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adlaw Checker reviews Chinese advertising copy for Ad Law risk terms, false-advertising phrases, platform-specific rules, and suggested rewrites.
 
-## Publisher: <br>
-[eric060](https://clawhub.ai/user/eric060) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eric060](https://clawhub.ai/user/eric060)
 
-## Use Case: <br>
-Developers, marketers, and content operators use this skill to review Chinese advertising copy for risky claims before publication. It returns detected terms, risk assessment, compliance scores, suggested replacements, and revised copy drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compliance output may be mistaken for legal advice. <br>
-Mitigation: Treat results as review assistance and have important commercial copy reviewed by qualified legal or compliance staff. <br>
-Risk: Advertising rules, platform policies, and forbidden-word lists can become stale. <br>
-Mitigation: Update the word lists and platform-specific rules regularly before relying on the skill for publication workflows. <br>
-Risk: CLI use with file inputs can expose unintended local files if paths are chosen carelessly. <br>
-Mitigation: Use normal caution with file paths passed to the command-line checker and review generated reports before sharing them. <br>
+## Use Case:
 
+Marketers, copywriters, and agents use this skill to screen Chinese advertising copy before publication and receive risk findings, compliance scores, rewrite suggestions, and platform-specific cautions. Its output should support, not replace, human review for important advertising claims.
 
-## Reference(s): <br>
-- [Adlaw Checker on ClawHub](https://clawhub.ai/eric060/adlaw-checker) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.zh-CN.md](artifact/README.zh-CN.md) <br>
-- [中华人民共和国广告法](http://www.gov.cn/gongbao/content/2015/content_2893774.htm) <br>
-- [小红书社区规范](https://www.xiaohongshu.com/community_guidelines) <br>
-- [微信公众号运营规范](https://mp.weixin.qq.com/cgi-bin/announce?action=getannouncement) <br>
+### Deployment Geography for Use:
 
+Global, for Chinese-language advertising workflows that need Chinese advertising-law screening.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance and JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes violation lists, risk levels, compliance scores, suggested replacements, and compliant copy drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact SKILL.md) <br>
+Risk: The checker is a rough keyword tool and may miss context, current legal requirements, or jurisdiction-specific interpretation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for preliminary screening only and require manual legal or compliance review for important advertising copy.
+
+Risk: The documented dependency installation step may introduce unnecessary or unpinned packages into the runtime environment.
+
+Mitigation: Install in an isolated environment and remove or pin dependencies that are not required for the local checker workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eric060/skills/adlaw-checker)
+- [Advertising Law reference](http://www.gov.cn/gongbao/content/2015/content_2893774.htm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON check results, and Python or shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can emit per-text or batch violation lists, risk levels, compliance scores, suggestions, timestamps, and rewritten copy.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

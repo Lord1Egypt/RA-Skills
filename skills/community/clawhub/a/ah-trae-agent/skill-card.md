@@ -1,41 +1,54 @@
-## Description: <br>
-Trae Agent helps agents analyze large repositories, plan multi-file code changes, and validate results using repository indexing and ensemble search strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trae Agent helps repository-level code agents analyze large codebases, combine keyword, semantic, and structural search strategies, plan multi-file edits, and validate code changes.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and coding agents use this skill for repository-level code understanding, navigation, multi-file editing, refactoring, and validation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository-level editing and command validation can modify multiple files or run commands with unintended effects. <br>
-Mitigation: Keep requests narrow, use version control, review diffs before accepting changes, and run validation in an isolated workspace when repositories are untrusted. <br>
-Risk: Repository indexing can expose secrets, private files, or sensitive project context. <br>
-Mitigation: Exclude secrets and private paths from indexing workflows and avoid using the skill on sensitive repositories without appropriate isolation. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to understand repositories, find relevant code across large codebases, plan safe edit sequences, and report validation results for create, fix, refactor, test, understand, and modify tasks.
 
-## Reference(s): <br>
-- [Trae Agent examples](references/examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-trae-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with summaries, plans, code snippets, command suggestions, validation results, and final status notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task understanding, search results, edit plans, execution logs, validation results, and final metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill describes broad repository editing and command-execution workflows without clear built-in user-control boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted repositories, require explicit approval before edits or shell commands, and run validation in a sandbox without secrets.
+
+Risk: Generated edit plans or validation commands could be incorrect or unsafe for a target repository.
+
+Mitigation: Review proposed code changes and commands before applying them, and rely on project-specific tests, linting, and type checks before deployment.
+
+## Reference(s):
+
+- [Trae Agent Code Examples](artifact/references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-trae-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with structured summaries, search results, edit plans, execution logs, validation results, and status metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed code edits and validation commands that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

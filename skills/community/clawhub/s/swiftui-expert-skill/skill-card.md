@@ -1,41 +1,50 @@
-## Description: <br>
-Write, review, or improve SwiftUI code following best practices for state management, view composition, performance, modern APIs, Swift concurrency, and iOS 26+ Liquid Glass adoption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write, review, or improve SwiftUI code following best practices for state management, view composition, performance, modern APIs, Swift concurrency, and iOS 26+ Liquid Glass adoption.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers and engineers use this skill to build, review, refactor, and improve SwiftUI features using current SwiftUI patterns, Swift concurrency practices, performance guidance, and platform-aware Liquid Glass adoption. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SwiftUI guidance or code may contain incorrect recommendations or assumptions for a specific app. <br>
-Mitigation: Review and test generated SwiftUI code before relying on it in production. <br>
-Risk: iOS 26+ Liquid Glass guidance may not match the deployment target or available SDKs. <br>
-Mitigation: Check platform availability, gate newer APIs with fallbacks, and verify assumptions against the target build environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to build new SwiftUI features, refactor existing views, and review code quality against modern SwiftUI, Swift concurrency, performance, animation, navigation, and Liquid Glass guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/soponcd/swiftui-expert-skill) <br>
-- [Skill Homepage](https://github.com/soponcd/timeflow-skills/tree/main/teams/skills/swiftui-expert-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with Swift and SwiftUI code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no tools, API keys, or privileged access are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can influence how an agent edits application code, and referenced supplemental files are not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed SwiftUI changes against project requirements, platform availability, and current Apple documentation before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soponcd/skills/swiftui-expert-skill)
+- [Skill homepage](https://github.com/soponcd/timeflow-skills/tree/main/teams/skills/swiftui-expert-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with Swift and shell code blocks when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory guidance for SwiftUI implementation and review; no executable package code is included.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Trello"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["trello"]
   icon: "https://static.oomol.com/logo/third-party/trello.svg"
 ---
@@ -42,8 +42,8 @@ Each action is listed below with a one-line description; actions that change sta
 - `add_card_label` — Add a Trello label to a card. [write]
 - `add_card_member` — Assign a Trello member to a card. [write]
 - `add_checkitem` — Add a check item to a Trello checklist. [write]
-- `archive_card` — Archive a Trello card. [write]
-- `archive_list` — Archive a Trello list. [write]
+- `archive_card` — Archive a Trello card. [destructive]
+- `archive_list` — Archive a Trello list. [destructive]
 - `create_board` — Create a Trello board. [write]
 - `create_card` — Create a Trello card in a list. [write]
 - `create_checklist` — Create a Trello checklist on a card. [write]
@@ -95,11 +95,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Trello is not connected, or the connection expired or lacks a scope. Connect once (auth type: custom credential) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=trello
+  https://console.oomol.com/connections/trello
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Trello homepage: https://trello.com
+- API documentation: https://developer.atlassian.com/cloud/trello/rest/

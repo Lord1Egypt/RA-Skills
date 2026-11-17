@@ -1,43 +1,62 @@
-## Description: <br>
-AI image and video generation via Vydra.ai API. Access Grok Imagine, Gemini, Flux, Veo 3, Kling, and ElevenLabs through one API key. Agents can self-register and generate images automatically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI image and video generation via Vydra.ai API. Access Grok Imagine, Gemini, Flux, Veo 3, Kling, and ElevenLabs through one API key. Agents can self-register and generate images automatically.
 
-## Publisher: <br>
-[ShoafSystems](https://clawhub.ai/user/ShoafSystems) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shoafsystems](https://clawhub.ai/user/shoafsystems)
 
-## Use Case: <br>
-Developers and agents use this skill to configure Vydra API access, generate images, videos, and voice output, check credits, and route paid media-generation requests through supported model endpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use paid external media-generation APIs and consume credits. <br>
-Mitigation: Use a dedicated API key, monitor credit usage, and require explicit approval before registration, buying credits, or high-cost video generation. <br>
-Risk: Prompts, media URLs, and generated media may be sent to or retrieved from an external service. <br>
-Mitigation: Review prompts and media URLs before use, avoid sensitive inputs, and require approval before posting generated media publicly. <br>
-Risk: API credentials could be exposed if stored or transmitted carelessly. <br>
-Mitigation: Prefer environment variables or a secret manager, restrict credential-file permissions, and send Vydra API keys only to vydra.ai endpoints. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Vydra API Documentation](references/api-docs.md) <br>
-- [Vydra](https://vydra.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ShoafSystems/image-and-video-generation-vydra) <br>
+## Use Case:
 
+Developers and agents use this skill to call the Vydra API for image generation, video generation, image editing, voice synthesis, credit checks, and billing-related workflows. It is intended for users who already have or can obtain a Vydra API key and are comfortable sending prompts, media URLs, and account details to Vydra.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, text] <br>
-**Output Format:** [Markdown with inline bash, JSON, and HTTP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance assumes a VYDRA_API_KEY environment variable or equivalent secret-managed API key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send prompts, media URLs, account details, and billing email addresses to Vydra.
+
+Mitigation: Review requests before sending them and avoid including confidential, regulated, or unnecessary personal data.
+
+Risk: Documented workflows can create accounts, initiate billing, buy credits, or spend paid credits with a Vydra API key.
+
+Mitigation: Require explicit human approval for registration, billing, credit purchase, and high-cost generation actions.
+
+Risk: The artifact documents storing a paid API key in a plaintext credentials file.
+
+Mitigation: Prefer the VYDRA_API_KEY environment variable or a managed secret store, and restrict access to any local credential files.
+
+Risk: The artifact suggests fetching a live remote skill.md that can change after review.
+
+Mitigation: Do not treat live remote skill content as trusted instructions unless it has been separately reviewed for the intended release.
+
+## Reference(s):
+
+- [Vydra API Documentation](references/api-docs.md)
+- [Vydra Homepage](https://vydra.ai)
+- [ClawHub Skill Page](https://clawhub.ai/shoafsystems/skills/image-and-video-generation-vydra)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, markdown]
+
+**Output Format:** [Markdown with inline bash, JSON, and HTTP examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce prompts and API request examples that spend Vydra credits or initiate account and billing flows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

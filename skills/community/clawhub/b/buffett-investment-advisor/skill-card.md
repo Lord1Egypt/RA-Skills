@@ -1,41 +1,57 @@
-## Description: <br>
-巴菲特投资咨询师 - 基于巴菲特70年致股东信炼化的投资顾问，擅长价值投资、护城河分析、内在价值评估、复利思维 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+巴菲特投资咨询师 - 基于巴菲特70年致股东信炼化的投资顾问，擅长价值投资、护城河分析、内在价值评估、复利思维
 
-## Publisher: <br>
-[wanghui-carizon](https://clawhub.ai/user/wanghui-carizon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanghui-carizon](https://clawhub.ai/user/wanghui-carizon)
 
-## Use Case: <br>
-External users use this skill to get Buffett-style educational investment analysis, including value investing concepts, moat assessment, intrinsic value estimation, and risk framing. It is not professional financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment analysis could be mistaken for professional financial advice. <br>
-Mitigation: Use outputs for education only, verify market data independently, and consult qualified financial advice before making investment decisions. <br>
-Risk: Company facts, market prices, or valuation inputs may be stale or incomplete. <br>
-Mitigation: Check current primary sources and update assumptions before relying on any valuation or recommendation. <br>
+## Use Case:
 
+External users and agents use this Chinese-language skill to apply Buffett-style value-investing concepts, including moat analysis, intrinsic value assessment, management evaluation, and long-term compounding frameworks. Its output should be treated as investment education and analytical guidance, not personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wanghui-carizon/buffett-investment-advisor) <br>
-- [巴菲特致股东信知识库](https://buffett-letters-eir.pages.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with optional Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational investment framing; does not fetch or verify live market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Financial-education output may be mistaken for personalized investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present responses as educational investing frameworks and avoid individualized buy, sell, or hold directives.
+
+Risk: Market prices, company fundamentals, and macro conditions may be stale or absent from the skill context.
+
+Mitigation: Verify current market data and issuer information independently before using the analysis.
+
+Risk: The skill is Chinese-language by default and may not match every deployment audience.
+
+Mitigation: Set language expectations during deployment and request translation or localization when needed.
+
+## Reference(s):
+
+- [巴菲特致股东信知识库](https://buffett-letters-eir.pages.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown or plain text with optional illustrative Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language by default; financial-education oriented.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

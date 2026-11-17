@@ -1,38 +1,47 @@
-## Description: <br>
-Audit Node.js HTTP servers and web apps for security vulnerabilities. Checks OWASP Top 10, CORS, auth bypass, XSS, path traversal, hardcoded secrets, missing headers, rate limiting, and input validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit Node.js HTTP servers and web apps for security vulnerabilities, including OWASP Top 10 issues, CORS, auth bypass, XSS, path traversal, hardcoded secrets, missing headers, rate limiting, and input validation.
 
-## Publisher: <br>
-[npfaerber](https://clawhub.ai/user/npfaerber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[npfaerber](https://clawhub.ai/user/npfaerber)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Node.js HTTP servers and web applications before deployment or after changes, with a checklist for common web security risks and a structured audit report format. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Audit results may contain sensitive project details, vulnerability descriptions, file paths, or discovered secrets. <br>
-Mitigation: Review and redact generated findings before sharing them outside the authorized review team. <br>
-Risk: The checklist can surface issues in codebases the user is not authorized to inspect. <br>
-Mitigation: Use the skill only on systems and repositories where the reviewer has explicit authorization. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and engineers use this skill to review Node.js HTTP servers and web applications before deployment or after changes. It provides a structured checklist for common web security issues and an example audit report format.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may inspect application source and suggest commands such as grep or npm audit during a security review.
+
+Mitigation: Review suggested commands before running them and avoid exposing private source code, secrets, or sensitive audit findings outside the intended review environment.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown security audit report with checklist findings and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensitive file paths, vulnerability details, or discovered secrets; review and redact before sharing.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown checklist with inline shell commands and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces security audit findings organized by severity.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

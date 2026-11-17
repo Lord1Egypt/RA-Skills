@@ -1,46 +1,56 @@
-## Description: <br>
-Run a unified SEO and GEO audit for a website, page, or domain that combines technical findings, content quality, trust signals, and AI citation readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a unified SEO and GEO audit for a website, page, or domain that combines technical findings, content quality, trust signals, and AI citation readiness.
 
-## Publisher: <br>
-[GEO-SEO](https://clawhub.ai/user/GEO-SEO) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geo-seo](https://clawhub.ai/user/geo-seo)
 
-## Use Case: <br>
-External teams, founders, agencies, SEO operators, and AI-search growth teams use this skill to turn public website evidence into a prioritized SEO and GEO audit. It supports homepage, site, and domain visibility reviews with executive, operator, or specialist reporting modes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Findings can be incomplete when the user has not provided private analytics, Search Console, server logs, or proprietary crawl data. <br>
-Mitigation: Clearly separate observed public evidence from unverified inputs and mark unavailable data as Not verified. <br>
-Risk: Search enrichment may send queries or target context to a third-party search-results provider when SERPAPI_API_KEY is configured. <br>
-Mitigation: Only provide SERPAPI_API_KEY when third-party enrichment is intended; otherwise run from direct page and site observations. <br>
-Risk: Broad crawl scopes can overreach the intended review area or consume unnecessary runtime. <br>
-Mitigation: Set a clear target URL or domain and a reasonable crawl cap before running the audit. <br>
+## Use Case:
 
+External SEO operators, founders, agencies, and growth teams use this skill to evaluate a public website or domain across technical SEO, content quality, trust, entity authority, off-site visibility, and AI search readiness. It produces a prioritized audit that separates observed evidence from assessment and marks unavailable private data as not verified.
 
-## Reference(s): <br>
-- [Scoring Framework](references/scoring-framework.md) <br>
-- [Operator and Specialist Output Template](references/output-template.md) <br>
-- [Chinese Executive Output Template](references/output-template-zh-boss.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/GEO-SEO/seo-geo-audit) <br>
-- [Dageno.ai](https://dageno.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit report with an executive summary, observed findings, assessments, priorities, and validation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports boss, operator, and specialist report modes; marks unavailable private inputs as Not verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The audit may overstate certainty when private analytics, Search Console, server logs, backlink data, or AI citation monitoring are unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Separate observed evidence from assessment and mark missing inputs as Not verified.
+
+Risk: Optional search enrichment can send target queries or public-site context to a third-party search provider.
+
+Mitigation: Configure SERPAPI_API_KEY only when search-result enrichment is intended and approved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/geo-seo/skills/seo-geo-audit)
+- [Scoring Framework](artifact/references/scoring-framework.md)
+- [Operator Output Template](artifact/references/output-template.md)
+- [Chinese Boss Output Template](artifact/references/output-template-zh-boss.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown audit report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports boss, operator, and specialist report modes; missing private analytics, Search Console, crawl logs, backlink data, and AI citation monitoring are marked Not verified.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

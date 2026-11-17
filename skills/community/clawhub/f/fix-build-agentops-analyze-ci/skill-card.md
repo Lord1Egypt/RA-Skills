@@ -1,42 +1,52 @@
-## Description: <br>
-Analyze failed GitHub Action jobs for a pull request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze failed GitHub Action jobs for a pull request.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wu-uk](https://clawhub.ai/user/wu-uk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and CI maintainers use this skill to inspect failed GitHub Actions jobs for a pull request or job URL and summarize root causes, error messages, affected tests, and relevant log snippets.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill accesses GitHub Actions logs and may surface sensitive information from CI output.
+
+Mitigation: Use a least-privilege GitHub token, avoid debug output in shared logs, and treat returned log snippets as potentially sensitive.
+
+Risk: The skill analyzes CI failures with Claude, so summaries may omit or misstate details from the underlying logs.
+
+Mitigation: Review the cited error messages, test names, and relevant log snippets before acting on the analysis.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect failed GitHub Actions jobs for a pull request or job URL and summarize the likely failure cause, relevant errors, test names, and log excerpts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use GitHub credentials while analyzing CI failures. <br>
-Mitigation: Use the least-privilege GitHub token that can access the target pull request or job logs. <br>
-Risk: CI logs may contain secrets or sensitive data and may be sent to Claude for analysis. <br>
-Mitigation: Avoid running the skill on sensitive logs unless sharing that content with Claude is acceptable. <br>
-Risk: Debug mode can expose token and cost details. <br>
-Mitigation: Use `--debug` only when those details are needed for troubleshooting. <br>
+**Output Format:** [Concise markdown analysis with relevant log snippets and command-oriented usage guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/fix-build-agentops-analyze-ci) <br>
+**Other Properties Related to Output:** [May include CI failure summaries, root-cause notes, error messages, test names, and selected GitHub Actions log excerpts.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Concise text or Markdown failure analysis with relevant log snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include root cause, error messages, test names, and CI log excerpts.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

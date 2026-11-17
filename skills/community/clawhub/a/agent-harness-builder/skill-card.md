@@ -1,44 +1,61 @@
-## Description: <br>
-Builds a complete multi-agent orchestration harness for an OpenClaw or similar agentic system, including orchestrator roles, specialist tiers, context-routing rules, model assignment, memory limits, communication channels, and implementation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds a multi-agent orchestration harness for OpenClaw or similar systems, including an orchestrator spec, agent tiers, routing rules, model assignment, memory limits, communication channels, and implementation guidance.
 
-## Publisher: <br>
-[plbirrell](https://clawhub.ai/user/plbirrell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[plbirrell](https://clawhub.ai/user/plbirrell)
 
-## Use Case: <br>
-Developers and operators use this skill to design, document, and hand off a coordinated fleet of AI agents with clear routing, memory, model, and communication rules. It is best suited for multi-agent systems large enough to need an orchestrator and tiered specialist roles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a real organization's agent roster, Slack channel patterns, memory layout, and operational setup in its templates. <br>
-Mitigation: Replace the Decade Strategy, Tori, Paul, Slack, memory, and roster examples with sanitized placeholders or the user's own approved details before use. <br>
-Risk: The skill includes high-impact setup guidance for editing OpenClaw configuration, checking Slack tokens, and installing or running a gateway service. <br>
-Mitigation: Review commands and configuration changes before execution, test in a controlled workspace, and confirm token handling and service installation steps match the user's environment. <br>
+## Use Case:
 
+Developers and operators use this skill to design and hand off a documented agent-fleet orchestration setup. It is suited to teams that need an orchestrator, agent roster, routing rules, context controls, communication channels, and implementation steps for a multi-agent workspace.
 
-## Reference(s): <br>
-- [Read This First Template](references/read-this-first-template.md) <br>
-- [Harness Architecture Template](references/architecture-template.md) <br>
-- [Agent Profiles Template](references/agent-profiles-template.md) <br>
-- [System Prompt Template](references/system-prompt-template.md) <br>
-- [Implementation Guide Template](references/implementation-guide-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown document set with structured profiles, system prompts, configuration examples, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces five handoff-oriented documents unless the user requests a subset.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Shared context and agent memory templates can expose broad client or business information to more agents than necessary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Partition shared memory by project or sensitivity, keep context narrowly scoped, and review generated files before deployment.
+
+Risk: Slack tokens, logs, gateway services, and scheduled jobs require operational review before use.
+
+Mitigation: Treat tokens and logs as secrets, rotate credentials on a schedule, and require explicit approval before enabling background services or cron workflows.
+
+Risk: Generated orchestration guidance may create brittle routing, excessive context sharing, or inappropriate escalation paths if copied without adaptation.
+
+Mitigation: Adapt the templates to the actual agent roster, tools, authority boundaries, and sensitive-decision rules before handing them to an orchestrator.
+
+## Reference(s):
+
+- [Read This First Template](references/read-this-first-template.md)
+- [Harness Architecture Template](references/architecture-template.md)
+- [Agent Profiles Template](references/agent-profiles-template.md)
+- [System Prompt Template](references/system-prompt-template.md)
+- [Implementation Guide Template](references/implementation-guide-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown document set with configuration snippets and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces five handoff-oriented documents unless the user asks for a subset.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

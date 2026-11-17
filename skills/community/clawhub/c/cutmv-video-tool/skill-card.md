@@ -1,43 +1,58 @@
-## Description: <br>
-A video processing skill for OpenClaw that uses FFmpeg to cut, convert, compress, inspect, watermark, subtitle, and extract video or audio assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform video and audio cutting, format conversion, compression, frame and audio extraction, audio replacement, text watermarking, and subtitle embedding using FFmpeg.
 
-## Publisher: <br>
-[QiaoTuCodes](https://clawhub.ai/user/QiaoTuCodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qiaotucodes](https://clawhub.ai/user/qiaotucodes)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare media files for workflows such as messaging-size compression, segment extraction, format conversion, screenshot extraction, audio replacement, watermarking, and subtitle embedding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted media metadata, subtitle files, or FFmpeg filter inputs could trigger unsafe behavior. <br>
-Mitigation: Review before installing and avoid untrusted media or subtitle/style inputs until unsafe evaluation is removed and FFmpeg filter values are escaped. <br>
-Risk: Video processing commands may overwrite existing output files unexpectedly. <br>
-Mitigation: Require explicit confirmation before overwriting files and choose output paths that do not replace important assets. <br>
+## Use Case:
 
+Developers and media workflow users can use this skill to prepare, inspect, and transform local video or audio files for messaging, platform compatibility, screenshots, watermarks, subtitles, or smaller file sizes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QiaoTuCodes/cutmv-video-tool) <br>
-- [QiaoTuCodes publisher profile](https://clawhub.ai/user/QiaoTuCodes) <br>
-- [FFmpeg downloads](https://ffmpeg.org/download.html) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Code] <br>
-**Output Format:** [Processed media files with JSON status objects and Python or CLI invocation examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FFmpeg and ffprobe on PATH; media operations may overwrite existing output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review reports that one metadata path can evaluate ffprobe frame-rate output as Python code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid running the info command on untrusted media until frame-rate parsing is replaced with safe numeric parsing.
+
+Risk: The security review reports that output files can be overwritten by default.
+
+Mitigation: Choose output paths carefully and avoid pointing commands at files that must be preserved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiaotucodes/skills/cutmv-video-tool)
+- [Publisher profile](https://clawhub.ai/user/qiaotucodes)
+- [FFmpeg](https://ffmpeg.org/)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Code]
+
+**Output Format:** [Generated media files, JSON status objects, Python API return values, and CLI output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FFmpeg in PATH and reads from and writes to user-selected local media paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

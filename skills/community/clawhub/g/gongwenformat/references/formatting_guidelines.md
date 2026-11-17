@@ -25,7 +25,7 @@ This file summarizes the requirements extracted from `公文标准格式.doc` (`
 
 ## 3. Header (`版头`)
 
-- Optional sequence number `份号`: 6-digit Arabic numerals, top-left first line
+- Optional sequence number `份号`: 6-digit `3号` Arabic numerals, top-left first line
 - Optional secret level / retention period: top-left second line
 - Optional urgency: arranged below in order `份号 -> 密级和保密期限 -> 紧急程度`
 - Issuing authority mark:
@@ -34,9 +34,11 @@ This file summarizes the requirements extracted from `公文标准格式.doc` (`
   - usually `发文机关全称/简称 + 文件`
 - Document number (`发文字号`):
   - centered, two lines below issuing authority mark
+  - default font `3号仿宋`
   - year uses full-width hex brackets `〔〕`
-  - sequence number does not use leading zero
+  - sequence number omits the word `第` and drops leading zeros (write `1`, not `第1` or `01`)
   - ends with `号`
+  - for upward reports (`上行文`), it is left-aligned one character from the left edge, on the same line as the last signatory
 - Signatory (`签发人`) for upward reports:
   - same line as document number
   - right side, one character space from right
@@ -49,21 +51,19 @@ This file summarizes the requirements extracted from `公文标准格式.doc` (`
 
 ### Title
 
-- two lines below the red separator line (if present in header)
+- two lines below the header red separator line (`7.2.7`)
 - centered
 - use trapezoid or diamond-like balanced line breaks for multi-line titles
 - font: `2号小标宋`
 
-### Red Separator Line (in body)
-
-- If main recipient (`主送机关`) exists: insert a red separator line immediately below the title
-- If no main recipient: leave two blank lines below the title (no red line)
+> Note: GB/T 9704-2012 places exactly **one** red separator line in a standard document — the header line 4 mm below the document number (`7.2.7`). There is **no** red line between the title and the recipient/body, and no rule about leaving blank lines in place of one. The only other red rules are the letter format's red double lines (see section 7).
 
 ### Main recipient (`主送机关`)
 
 - one line below title
-- left aligned, top grid
+- left aligned, top grid (`顶格`); wrapped lines stay top grid
 - ends with a full-width colon `：`
+- if the recipient list is so long the first page cannot show body text, move it to the footer record (`版记`) per `7.4.2`
 
 ### Main text (`正文`)
 
@@ -87,6 +87,7 @@ This file summarizes the requirements extracted from `公文标准格式.doc` (`
 - left indent: two characters
 - format: `附件：...`
 - multiple attachments use Arabic numbering, for example `附件：1. XXX`
+- no punctuation after the attachment name; wrapped lines align to the first character of the name
 
 ## 5. Signature, Date, Seal
 
@@ -144,8 +145,8 @@ This file summarizes the requirements extracted from `公文标准格式.doc` (`
 
 - use `4号半角宋体` Arabic numerals
 - format: `— 1 —` (em-dash + page number + em-dash)
-- positioned below the core text area bottom edge
-- single pages right aligned, double pages left aligned
+- positioned below the core text area bottom edge; the dash line sits `7 mm` below that edge
+- single pages right aligned (`居右空一字`), double pages left aligned (`居左空一字`)
 - blank pages before the footer record page do not show page numbers
 - attachments bound with body use continuous pagination
 

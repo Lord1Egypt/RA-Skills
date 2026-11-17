@@ -1,0 +1,66 @@
+{
+  "target_asin": "B0DK8HFY4Y",
+  "product_type": "standard",
+  "search_date": "2026-08-07",
+  "direct_competitors": [
+    {
+      "asin": "B09Q8QJXH5",
+      "brand": "AiMoonsa",
+      "price": 33.99,
+      "bsr": 1743,
+      "reviews": 10414,
+      "conv_rate": 8.76,
+      "score": 3.80,
+      "scores": {"bsr": 5, "reviews": 1, "conv": 5, "price": 5, "overlap": 4, "launch": 1},
+      "overlap_ratio": 0.92
+    },
+    {
+      "asin": "B0CH9WWWHN",
+      "brand": "AGPTEK",
+      "price": 29.99,
+      "bsr": 2693,
+      "reviews": 3304,
+      "conv_rate": 4.83,
+      "score": 3.75,
+      "scores": {"bsr": 4, "reviews": 1, "conv": 5, "price": 5, "overlap": 5, "launch": 3},
+      "overlap_ratio": 0.95
+    },
+    {
+      "asin": "B0DFCLRVPP",
+      "brand": "AGPTEK",
+      "price": 37.99,
+      "bsr": 767,
+      "reviews": 2813,
+      "conv_rate": 4.09,
+      "score": 3.70,
+      "scores": {"bsr": 4, "reviews": 1, "conv": 5, "price": 4, "overlap": 5, "launch": 4},
+      "overlap_ratio": 0.95
+    },
+    {
+      "asin": "B0CZ8Y79N6",
+      "brand": "RUIZU",
+      "price": 35.99,
+      "bsr": 4756,
+      "reviews": 5136,
+      "conv_rate": 2.59,
+      "score": 3.60,
+      "scores": {"bsr": 3, "reviews": 1, "conv": 5, "price": 5, "overlap": 4, "launch": 4},
+      "overlap_ratio": 0.88
+    }
+  ],
+  "rising_stars": [],
+  "benchmarks": [
+    {
+      "asin": "B0DFCLRVPP",
+      "brand": "AGPTEK",
+      "price": 37.99,
+      "bsr": 767,
+      "reviews": 2813,
+      "score": 3.50,
+      "scores": {"bsr": 3, "reviews": 4, "sales": 1, "aba": 5, "price": 5},
+      "leads": ["评论4.0x", "ABA 109词", "BSR领先61%"],
+      "note": "准标杆(未达3.5分门槛,取最高分)"
+    }
+  ],
+  "summary": {"total": 5, "direct": 4, "rising": 0, "benchmark": 1}
+}

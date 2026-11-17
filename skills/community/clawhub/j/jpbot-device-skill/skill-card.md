@@ -1,41 +1,53 @@
-## Description: <br>
-This markdown-only placeholder skill is intended for vehicle information prompts, but its documented brand and capability wording are inconsistent and it currently returns a fixed testing message. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handles Chinese-language vehicle information queries for Jinpeng smart tricycles; this release is a testing placeholder that returns a fixed in-progress message.
 
-## Publisher: <br>
-[zhangyang-1](https://clawhub.ai/user/zhangyang-1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangyang-1](https://clawhub.ai/user/zhangyang-1)
 
-## Use Case: <br>
-External users evaluating this ClawHub release can use it only as a test placeholder for planned vehicle status, location, battery, mileage, diagnostics, and configuration prompts. It should not be relied on for live vehicle telemetry, location, settings, or troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release describes vehicle telemetry and configuration use cases, but the authoritative security evidence identifies it as a markdown-only placeholder with no executable vehicle integration. <br>
-Mitigation: Install only with the expectation that this is a test placeholder, and do not rely on it for vehicle status, location, settings, or diagnostics until the publisher clarifies implemented behavior. <br>
-Risk: Vehicle brand and capability wording is inconsistent across the server summary and artifact text. <br>
-Mitigation: Confirm the intended vehicle brand and whether listed telemetry or configuration functions are planned or implemented before using the skill in a workflow. <br>
+## Use Case:
 
+Agents serving vehicle users can use this skill to recognize Jinpeng smart tricycle status, battery, location, mileage, ride trajectory, troubleshooting, and parameter-configuration intents. In this version, the skill only tells users that testing is in progress.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangyang-1/jpbot-device-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangyang-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text fixed response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a fixed Chinese testing message; no executable behavior is present in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Future versions that connect to vehicles, change speed limits, access location or trajectory data, or export ride data could affect user privacy or vehicle safety.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review updated security evidence before installing future versions, and require explicit authorization plus confirmation controls for sensitive or state-changing vehicle actions.
+
+Risk: The artifact lists vehicle diagnostics and configuration scenarios, but this version only provides a testing placeholder response.
+
+Mitigation: Do not rely on this release for live vehicle diagnostics, configuration, location lookup, or ride-data export.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangyang-1/skills/jpbot-device-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text or Markdown response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fixed testing response; no code, shell commands, or configuration changes are produced.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

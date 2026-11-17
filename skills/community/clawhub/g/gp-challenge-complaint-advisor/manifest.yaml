@@ -1,0 +1,8 @@
+name: gp-challenge-complaint-advisor
+author: "一线评标专家&ChesaraM"
+version: "1.0.1"
+description: 政府采购质疑投诉参谋（GP Challenge & Complaint Advisor）——基于 IMA 可用知识库（政府采购投诉AI知识库 等）的质疑/投诉参谋、质检与轻起草工具。
+feedback:
+  channel: github
+  account: "一线评标专家&ChesaraM"
+  note: "使用问题、误报反馈、实务建议，欢迎通过项目仓库提交 Issue 反馈"

@@ -1,43 +1,59 @@
-## Description: <br>
-BrainRepo helps an agent capture, organize, and retrieve a personal markdown knowledge repository using PARA and Zettelkasten patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BrainRepo helps an agent create and maintain a personal Markdown knowledge repository using PARA and Zettelkasten patterns for capture, organization, review, and retrieval.
 
-## Publisher: <br>
-[codezz](https://clawhub.ai/user/codezz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codezz](https://clawhub.ai/user/codezz)
 
-## Use Case: <br>
-Individuals and teams use BrainRepo to let an AI agent create and maintain a local markdown knowledge base for notes, projects, people, tasks, journals, and reference material. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores personal knowledge and notes in a local markdown repository, which may include sensitive information if the user captures it. <br>
-Mitigation: Do not store secrets or highly sensitive personal details casually, and review captured content before syncing or sharing the repository. <br>
-Risk: Daily and weekly cleanup workflows can move or delete notes during agent-assisted processing. <br>
-Mitigation: Review proposed file changes before deletion, archiving, cleanup, or commit operations. <br>
-Risk: Optional Git synchronization can publish the repository to the wrong remote or an unintended public location. <br>
-Mitigation: Verify any Git remote is private and correct before allowing git push. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [BrainRepo release page](https://clawhub.ai/codezz/brainrepo) <br>
-- [BrainRepo Structure Guide](references/structure.md) <br>
-- [BrainRepo Workflows](references/workflows.md) <br>
+## Use Case:
 
+External users and developers use this skill to have an agent initialize and manage a plain-text second brain at ~/Documents/brainrepo/, including quick captures, project and area notes, people records, daily and weekly reviews, and knowledge retrieval.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown notes and instructions with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local markdown files under ~/Documents/brainrepo/ when used by an agent with filesystem access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores broad personal knowledge as plain-text Markdown files and can include sensitive personal, relationship, health, credential, or project information.
+
+Mitigation: Use it only for information appropriate for plain-text storage, avoid secrets and high-risk personal data, and add a separate encryption and review process for sensitive content.
+
+Risk: The skill can create, delete, commit, and push files in ~/Documents/brainrepo/, which may expose private notes if Git sync is configured incorrectly.
+
+Mitigation: Review generated file changes before Git commits or pushes, and confirm any remote repository is private and intended.
+
+Risk: The fixed storage path and automatic onboarding behavior provide weak user controls around where personal data is created and managed.
+
+Mitigation: Confirm the fixed brainrepo location before first use and periodically audit the repository contents and permissions.
+
+## Reference(s):
+
+- [BrainRepo ClawHub skill page](https://clawhub.ai/codezz/skills/brainrepo)
+- [Structure Guide](references/structure.md)
+- [Workflows](references/workflows.md)
+- [Templates](assets/templates/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with file paths, templates, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and update Markdown files in a local Git-backed knowledge repository.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

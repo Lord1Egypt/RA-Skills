@@ -1,41 +1,48 @@
-## Description: <br>
-Create distinctive, production-grade frontend interfaces with high design quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create distinctive, production-grade frontend interfaces with high design quality.
 
-## Publisher: <br>
-[mutsunico](https://clawhub.ai/user/mutsunico) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mutsunico](https://clawhub.ai/user/mutsunico)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and design-focused agents use this skill to generate polished frontend pages, components, and applications with a clear aesthetic direction.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may steer agents toward bold aesthetic choices that conflict with an existing design system or brand rules.
+
+Mitigation: Review generated interfaces against project design tokens, accessibility standards, and brand guidelines before merging.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and design-focused agents use this skill when building web components, pages, or applications that need distinctive, polished frontend implementation rather than generic visual patterns. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill strongly influences visual design choices and may push bold aesthetics that do not fit every product context. <br>
-Mitigation: Review generated interfaces for brand fit, accessibility, usability, and stakeholder requirements before release. <br>
-Risk: Generated frontend code can include incorrect, incomplete, or unsuitable implementation details. <br>
-Mitigation: Run normal code review, linting, accessibility checks, and browser testing before deployment. <br>
-Risk: Publisher and version metadata should be confirmed because the security guidance notes that metadata is not perfectly consistent. <br>
-Mitigation: Confirm the publisher handle, release version, and license terms against ClawHub release metadata before publication. <br>
+**Output Format:** [Markdown guidance with frontend code and implementation notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Outputs depend on the user's request and target frontend stack.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code] <br>
-**Output Format:** [Markdown guidance and frontend implementation code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces design direction and working frontend code in technologies such as HTML, CSS, JavaScript, React, or Vue.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata version 0.1.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

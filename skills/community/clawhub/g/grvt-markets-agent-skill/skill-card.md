@@ -1,47 +1,58 @@
-## Description: <br>
-Trade on GRVT (Gravity Markets) derivatives exchange via the grvt-cli tool for market data, account review, order management, transfers, withdrawals, leverage changes, and trade history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade on GRVT (Gravity Markets) derivatives exchange via the grvt-cli tool for market data, account review, order management, leverage changes, transfers, and withdrawals.
 
-## Publisher: <br>
-[madeinusmate](https://clawhub.ai/user/madeinusmate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[madeinusmate](https://clawhub.ai/user/madeinusmate)
 
-## Use Case: <br>
-External users and developers use this skill to operate the grvt-cli for GRVT derivatives market analysis, account monitoring, order placement, and fund management. It is suited to agents that need command guidance for authenticated crypto derivatives workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through crypto derivatives trades, transfers, withdrawals, leverage changes, and stored private-key workflows. <br>
-Mitigation: Prefer testnet, avoid large balances or production private keys, and require explicit user approval for each live trade, transfer, withdrawal, leverage change, or secret-bearing config export. <br>
-Risk: The underlying CLI stores API keys, private keys, and session cookies on disk. <br>
-Mitigation: Use trusted machines only, keep keys out of shell history, rotate or clear credentials after use, and verify secrets are redacted before sharing config output. <br>
-Risk: The artifact states that the CLI is a community project with no formal security audit or official GRVT support. <br>
-Mitigation: Inform users of the disclaimer before use, review commands before execution, and use dry-run or confirmation prompts for write operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Config and Auth Commands](artifact/references/commands-config.md) <br>
-- [Market Data Commands](artifact/references/commands-market.md) <br>
-- [Trading Commands](artifact/references/commands-trade.md) <br>
-- [Account Commands](artifact/references/commands-account.md) <br>
-- [Fund Management Commands](artifact/references/commands-funds.md) <br>
-- [Error Handling and Troubleshooting](artifact/references/errors.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/madeinusmate/grvt-markets-agent-skill) <br>
+## Use Case:
 
+External users and developers use this skill to operate the GRVT CLI for crypto derivatives trading workflows, including market analysis, portfolio checks, order placement and cancellation, leverage management, transfers, and withdrawals.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON, NDJSON, table, or raw CLI output format guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use an unaudited CLI with live exchange credentials, private-key signing, fund movement, withdrawals, and confirmation bypasses.
+
+Mitigation: Use testnet or low-value accounts, avoid production funds unless the exact CLI version has been audited, and prefer restricted credentials that cannot withdraw assets.
+
+Risk: Passing real API keys or private keys as command-line arguments can expose credentials, and --yes can bypass confirmations for trading or fund-moving commands.
+
+Mitigation: Do not pass real API keys or private keys as command-line arguments, require explicit user acknowledgement before risky actions, avoid --yes on trading or fund-moving commands, and use dry-run previews where available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/madeinusmate/skills/grvt-markets-agent-skill)
+- [Config & Auth Commands](references/commands-config.md)
+- [Market Data Commands](references/commands-market.md)
+- [Trading Commands](references/commands-trade.md)
+- [Account Commands](references/commands-account.md)
+- [Fund Management Commands](references/commands-funds.md)
+- [Error Codes and Troubleshooting](references/errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI output formats including table, JSON, NDJSON, and raw API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that authenticate to GRVT, sign requests, place or cancel orders, transfer funds, or withdraw assets when explicitly authorized.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

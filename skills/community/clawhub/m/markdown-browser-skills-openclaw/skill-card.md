@@ -1,39 +1,52 @@
-## Description: <br>
-Markdown Browser post-processes OpenClaw web_fetch results with Content-Signal policy decisions, URL privacy redaction, optional markdown normalization, and a stable output schema. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wrapper skill for OpenClaw web_fetch results. Use when you need MECE post-processing on fetched pages: policy decision from Content-Signal, privacy redaction, optional markdown normalization fallback, and stable output schema without re-implementing network fetch.
 
-## Publisher: <br>
-[johnortegahyc](https://clawhub.ai/user/johnortegahyc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johnortegahyc](https://clawhub.ai/user/johnortegahyc)
 
-## Use Case: <br>
-Developers and agent builders use this skill to process existing OpenClaw web_fetch payloads before downstream agent logic. It helps normalize markdown or HTML content, interpret Content-Signal headers, estimate tokens, and redact source URL details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The CLI can read a user-specified input file path. <br>
-Mitigation: Review the input path before execution and provide only the intended web_fetch JSON payload. <br>
-Risk: Content-Signal headers may be absent or incomplete. <br>
-Mitigation: Treat unknown policy values as needing review before using fetched content in downstream agent logic. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/johnortegahyc/markdown-browser-skills-openclaw) <br>
+## Use Case:
 
+Developers and agents use this skill to post-process OpenClaw web_fetch results into a stable object with normalized content, Content-Signal policy handling, URL redaction, token estimates, status, and fallback metadata.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON object from the wrapper tool, with Markdown or text content and status metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes content, format, token_estimate, content_signal, policy_action, source_url, status_code, and fallback_used fields.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill processes fetched page content and runs a local Node.js script.
+
+Mitigation: Review fetched content before downstream use and run the script only in an environment approved for local Node execution.
+
+Risk: The npm dependency is declared as a version range, so installs may resolve to different package versions over time.
+
+Mitigation: Install from a reviewed lockfile or pin the turndown dependency before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/johnortegahyc/skills/markdown-browser-skills-openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON object with normalized content, policy action, redacted source URL, status code, token estimate, and fallback flag.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes existing web_fetch payloads and does not perform direct network fetching during normal operation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

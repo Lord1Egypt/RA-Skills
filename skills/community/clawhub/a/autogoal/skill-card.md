@@ -1,46 +1,63 @@
-## Description: <br>
-Autogoal automates ongoing progress on user-defined long-term goals with periodic check-ins, adaptive strategies, and progress reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates ongoing progress on user-defined long-term goals with periodic check-ins, adaptive strategies, and progress reporting.
 
-## Publisher: <br>
-[brandongraves08](https://clawhub.ai/user/brandongraves08) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brandongraves08](https://clawhub.ai/user/brandongraves08)
 
-## Use Case: <br>
-External users and agent operators use this skill to turn open-ended goals into recurring check-ins that evaluate progress, take one concrete action, update strategy, and report status. It is suited to long-running operational or financial goals where progress is tracked over repeated agent turns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring autonomous check-ins can lead an agent to take broad real-world actions with weak scoping. <br>
-Mitigation: Inspect each generated cron payload, restrict allowed tools and actions, and require explicit user confirmation before enabling actions that change accounts, post externally, delete data, buy, sell, or otherwise create irreversible effects. <br>
-Risk: Financial and trading goals can influence decisions with real monetary consequences. <br>
-Mitigation: Start financial goals in paper or simulation mode, configure risk rules such as position limits and drawdown caps, and require explicit approval before any live trading or account changes. <br>
-Risk: The bundled goal registry contains sample active financial goals that may not match a new user's intent. <br>
-Mitigation: Review and remove or archive bundled active goals before scheduling check-ins in a new environment. <br>
-Risk: Long-running goals can keep executing after they are no longer useful or safe. <br>
-Mitigation: Close, pause, disable, or remove the associated cron job when a goal is completed, abandoned, blocked, or no longer authorized. <br>
+## Use Case:
 
+External users and developers use Autogoal to turn open-ended long-term objectives into recurring agent check-ins that evaluate progress, take concrete actions, adapt strategy, and report status.
 
-## Reference(s): <br>
-- [Goal Lifecycle Patterns](references/goal-lifecycle.md) <br>
-- [Planning Depth & Strategy Reference](references/planning-depth.md) <br>
-- [Autogoal on ClawHub](https://clawhub.ai/brandongraves08/autogoal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON cron payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces recurring check-in prompts, goal registry updates, progress reports, and cron configuration for agent execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Recurring autonomous check-ins can continue acting after the user has lost context or after the goal is no longer appropriate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation for each cron job, set expiration and cleanup rules, and review scheduled payloads before enabling them.
+
+Risk: Scheduled runs may have broader tool authority than the goal requires.
+
+Mitigation: Restrict scheduled check-ins to read-only or narrowly allowed tools and require human approval before irreversible external actions.
+
+Risk: Financial goals can lead to harmful live trading or market actions.
+
+Mitigation: Use paper or simulation mode by default, configure risk rules, and avoid live financial actions without explicit human approval.
+
+Risk: Stored goal text and strategy notes may include untrusted or stale instructions.
+
+Mitigation: Treat stored goal content as untrusted data and revalidate instructions, permissions, and user intent during check-ins.
+
+## Reference(s):
+
+- [Autogoal ClawHub Page](https://clawhub.ai/brandongraves08/skills/autogoal)
+- [Goal Lifecycle Patterns](references/goal-lifecycle.md)
+- [Planning Depth & Strategy Reference](references/planning-depth.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON cron configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes progress reports, strategy updates, goal lifecycle commands, and recurring check-in configuration.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

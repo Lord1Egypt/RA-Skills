@@ -1,40 +1,55 @@
-## Description: <br>
-交互式图表转PNG/JPG/SVG图片，支持批量导出和多尺寸预设。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+交互式图表转PNG/JPG/SVG图片，支持批量导出和多尺寸预设
 
-## Publisher: <br>
-[wwbwin](https://clawhub.ai/user/wwbwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwbwin](https://clawhub.ai/user/wwbwin)
 
-## Use Case: <br>
-Developers, analysts, and content creators use this skill to turn trusted chart HTML, SVG, or Canvas code into downloadable PNG, JPG, or SVG assets for presentations, documents, social sharing, printing, and archiving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rendering untrusted HTML, SVG, or JavaScript may execute active browser content. <br>
-Mitigation: Use the skill only with chart code from trusted sources, or render untrusted content in a sandboxed environment before exporting images. <br>
+## Use Case:
 
+Developers, analysts, and content creators use this skill to convert interactive chart, table, SVG, or Canvas content into static image assets for presentations, documents, social sharing, printing, and archival workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwbwin/skills/chart-to-image) <br>
-- [Publisher profile](https://clawhub.ai/user/wwbwin) <br>
-- [Project homepage](https://github.com/wwbwin/clawhub-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Code, Markdown] <br>
-**Output Format:** [Markdown guidance with HTML and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports PNG, JPG, SVG, batch export, social-size, presentation, and print-ready presets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Pasted HTML, SVG, or Canvas JavaScript can include untrusted scripts or active content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only use trusted chart markup, or render untrusted inputs in an isolated browser context before exporting images.
+
+Risk: Chart markup may contain secrets, private data, or sensitive labels that become embedded in exported images.
+
+Mitigation: Review and redact source markup and generated images before sharing, publishing, or archiving them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wwbwin/skills/chart-to-image)
+- [Publisher Profile](https://clawhub.ai/user/wwbwin)
+- [Project Homepage](https://github.com/wwbwin/clawhub-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, JSON pattern, and browser-export instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides generation of single-file HTML chart exporters and related PNG, JPG, SVG, batch, presentation, social-size, and print-ready presets.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

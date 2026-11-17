@@ -1,42 +1,51 @@
-## Description: <br>
-Scholarly literature and bibliographic databases: OpenAlex, Crossref, Europe PMC, PubMed, DOAJ, DBLP, and Semantic Scholar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scholarly literature and bibliographic databases: OpenAlex, Crossref, Europe PMC, PubMed, DOAJ, DBLP, and Semantic Scholar.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Researchers, developers, and agents use this skill to search public scholarly metadata, inspect bibliographic records, and query academic service agents through Pilot Protocol. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries are sent through Pilot Protocol service agents and may be visible to the pilotctl binary, daemon, or service-agent network. <br>
-Mitigation: Use the skill for public scholarly metadata searches only, and avoid confidential, unpublished, or sensitive research queries. <br>
-Risk: The skill depends on a running Pilot Protocol daemon, network 9 membership, and reachable service agents. <br>
-Mitigation: Confirm pilotctl is installed, the daemon is running, the daemon has joined network 9, and the target agent contract has been checked with /help before use. <br>
+## Use Case:
 
+External researchers, academic analysts, librarians, and developers use this skill to discover scholarly metadata, bibliographic records, and citation, funder, and institution graph data through Pilot Protocol service agents.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-service-agents-academic) <br>
-- [Pilot Skills Catalog](https://teoslayer.github.io/pilot-skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses pilotctl to request agent help, structured data, summaries, and inbox responses from public academic metadata agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Research queries or identifiers may be sent to external academic agents and a summary provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted Pilot Protocol daemons and networks, and avoid submitting confidential research queries or private identifiers unless that sharing is acceptable.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-academic)
+- [Pilot Skills Catalog](https://teoslayer.github.io/pilot-skills/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl on PATH, a running Pilot Protocol daemon joined to network 9, and the list-agents directory agent reachable on the overlay.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

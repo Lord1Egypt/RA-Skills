@@ -1,35 +1,52 @@
-## Description: <br>
-Implements SEO best practices for npm packages, GitHub repos, and AI skills to improve discoverability using keyword-rich descriptions and metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements SEO best practices for npm packages, GitHub repositories, and AI skills to improve discoverability with keyword-rich descriptions and metadata.
 
-## Publisher: <br>
-[NextFrontierBuilds](https://clawhub.ai/user/NextFrontierBuilds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nextfrontierbuilds](https://clawhub.ai/user/nextfrontierbuilds)
 
-## Use Case: <br>
-Developers and package publishers use this skill to audit and improve npm package, GitHub repository, and ClawHub skill metadata, descriptions, tags, badges, and README structure for better discoverability. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and example metadata snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only SEO guidance; review generated badges, links, and claims before public publishing.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact SKILL.md) <br>
+Developers, maintainers, and publishers use this skill to improve package, repository, and AI skill discoverability before publishing or when auditing existing metadata and README content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Keyword, compatibility, or 'Works With' recommendations could overstate a package's actual capabilities.
+
+Mitigation: Review generated descriptions, tags, README sections, and compatibility claims for factual accuracy before publishing.
+
+Risk: Marketing-oriented SEO edits could make metadata less relevant to the package or repository content.
+
+Mitigation: Keep only keywords and badges that directly match the package, repository, or skill being released.
+
+## Reference(s):
+
+- [Package SEO on ClawHub](https://clawhub.ai/nextfrontierbuilds/skills/package-seo)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with checklists, tables, and example metadata snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; recommendations should be reviewed for factual package claims before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

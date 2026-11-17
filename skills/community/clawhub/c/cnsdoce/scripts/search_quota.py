@@ -284,12 +284,13 @@ class SQLiteQuotaSearcher:
         :param source: 数据来源过滤（如 '价格取定表(2026)'）
         """
         sql = """
-            SELECT orig_id, 编码, 名称, 规格型号, 单位,
-                   含税单价, 除税单价, 增值税率,
-                   含税单价_202602, 含税单价_202603, 取定价,
-                   数据来源, 备注, 适用专业
+            SELECT orig_id, 编码, 材料名称 AS 名称, 规格型号, 单位,
+                   含税价 AS 含税单价, 除税价 AS 除税单价, 税率 AS 增值税率,
+                   材料价格_202602 AS 含税单价_202602, 材料价格_202603 AS 含税单价_202603,
+                   材料价格 AS 取定价,
+                   数据来源, 备注, 专业分类 AS 适用专业
             FROM materials
-            WHERE 名称 LIKE ?
+            WHERE 材料名称 LIKE ?
         """
         params = [f"%{keyword}%"]
 
@@ -323,28 +324,29 @@ class SQLiteQuotaSearcher:
         outer_d = dn_map.get(target_dn, 0)
 
         # 构建搜索条件
-        conditions = ["名称 LIKE ?"]
+        conditions = ["材料名称 LIKE ?"]
         params = [f"%DN{target_dn}%"]
 
         if outer_d:
-            conditions.append("名称 LIKE ?")
+            conditions.append("材料名称 LIKE ?")
             params.append(f"%D{outer_d}%")
-            conditions.append("名称 LIKE ?")
+            conditions.append("材料名称 LIKE ?")
             params.append(f"%φ{outer_d}%")
-            conditions.append("名称 LIKE ?")
+            conditions.append("材料名称 LIKE ?")
             params.append(f"%Φ{outer_d}%")
 
         if keyword:
-            conditions.append("名称 LIKE ?")
+            conditions.append("材料名称 LIKE ?")
             params.append(f"%{keyword}%")
 
         where_clause = " OR ".join(conditions)
 
         sql = f"""
-            SELECT orig_id, 编码, 名称, 规格型号, 单位,
-                   含税单价, 除税单价, 增值税率,
-                   含税单价_202602, 含税单价_202603, 取定价,
-                   数据来源, 备注, 适用专业
+            SELECT orig_id, 编码, 材料名称 AS 名称, 规格型号, 单位,
+                   含税价 AS 含税单价, 除税价 AS 除税单价, 税率 AS 增值税率,
+                   材料价格_202602 AS 含税单价_202602, 材料价格_202603 AS 含税单价_202603,
+                   材料价格 AS 取定价,
+                   数据来源, 备注, 专业分类 AS 适用专业
             FROM materials
             WHERE ({where_clause})
             LIMIT ?

@@ -1,41 +1,53 @@
-## Description: <br>
-Measure information entropy and redundancy in agent group communications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Measure information entropy and redundancy in agent group communications.
 
-## Publisher: <br>
-[roamer-remote](https://clawhub.ai/user/roamer-remote) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roamer-remote](https://clawhub.ai/user/roamer-remote)
 
-## Use Case: <br>
-Developers and engineers use this skill to quantify communication efficiency, redundancy, mutual information, and knowledge overlap across multi-agent systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent message categories or topic labels passed into reports may contain sensitive operational information. <br>
-Mitigation: Minimize, anonymize, or aggregate input labels before analysis, especially when sharing generated reports. <br>
-Risk: Metric interpretation depends on the quality and consistency of user-provided categories, topics, and paired message arrays. <br>
-Mitigation: Review category definitions and input alignment before using entropy or redundancy scores to make decisions about multi-agent system health. <br>
+## Use Case:
 
+Developers and engineers use this skill to quantify entropy, redundancy, mutual information, and knowledge overlap in multi-agent communications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/roamer-remote/agent-entropy-meter) <br>
-- [Publisher profile](https://clawhub.ai/user/roamer-remote) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [JavaScript API results and human-readable text reports with ASCII bar charts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Computes entropy, redundancy, mutual information, and knowledge-overlap metrics from user-provided agent message categories and topics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server-resolved release metadata) <br>
+Risk: Malformed or unusual input may crash a report or produce incorrect overlap metrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs before using them for operational decisions and test the skill with representative message categories and topic sets before deployment.
+
+Risk: Untrusted category names may trigger robustness issues until Set-handling and prototype-key bugs are fixed.
+
+Mitigation: Normalize or constrain category and topic names from untrusted sources before analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roamer-remote/skills/agent-entropy-meter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance and JavaScript API output, including text reports with ASCII bar charts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local entropy, redundancy, mutual information, and knowledge-overlap metrics from provided message categories and topic sets.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

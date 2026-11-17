@@ -1,44 +1,58 @@
-## Description: <br>
-医生端临床科研 — 相似病例语义检索与可解释排序，锚点病例对候选池做类比推理辅助。 <br>
+## Description:
 
-This skill is for research and development only. <br>
+Supports clinical research similar-case retrieval by comparing a de-identified anchor case against candidate case summaries and producing semantic rankings with explanatory rationale.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Clinicians, researchers, educators, and developers use this skill to compare a de-identified anchor clinical case against user-provided candidate case summaries, rank similar cases, and produce research-oriented explanations. It is intended for clinical research, teaching, and methodology discussion, not diagnosis or treatment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users could submit identifiable patient data to the disclosed medical LLM endpoint. <br>
-Mitigation: Verify the endpoint and publisher, use approved de-identified inputs only, and confirm any required ethics or data-use approvals before running the skill. <br>
-Risk: The generated case ranking and explanation could be mistaken for diagnosis or treatment advice. <br>
-Mitigation: Treat the output as research and teaching assistance only, and require qualified clinical review before using any insight outside methodology discussion. <br>
-Risk: The required app key could grant broader access than the skill needs. <br>
-Mitigation: Use a least-privilege app key and rotate or revoke it according to local credential policy. <br>
+## Use Case:
 
+Clinical researchers, educators, and developers use this skill to compare a de-identified anchor case with a prepared candidate set, review similarity reasoning, and identify cohort or subgroup analysis ideas. Outputs are for research, teaching, or methodology discussion and are not diagnostic or treatment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-similar-case-retrieval) <br>
-- [Unisound-LLM publisher profile](https://clawhub.ai/user/unisound-llm) <br>
-- [Medical LLM API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Analysis, Guidance] <br>
-**Output Format:** [JSON object containing structured data and a Markdown explanation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranks user-supplied candidate cases, echoes lightweight case metadata, and includes research-focused caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: Case summaries are sent to a documented remote medical LLM endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only de-identified summaries unless the organization has approved that data flow for identifiable patient data.
+
+Risk: The API key is accepted directly as a command-line argument.
+
+Mitigation: Prefer a safer secret-handling method in deployment, such as an approved secret store or environment-mediated injection.
+
+Risk: The generated similarity ranking and explanation may be mistaken for clinical guidance.
+
+Mitigation: Use outputs for research, teaching, or methodology discussion only and keep human clinical review outside this skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-similar-case-retrieval)
+- [Hivoice medical LLM chat completions endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [JSON object with structured data and Markdown analysis text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes the anchor case, candidate count, top_k value, candidate IDs, and an AI-generated research disclaimer.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

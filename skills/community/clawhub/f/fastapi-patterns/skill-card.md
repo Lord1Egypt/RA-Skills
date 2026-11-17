@@ -1,43 +1,59 @@
-## Description: <br>
-Production FastAPI patterns with Pydantic v2, async endpoints, OAuth2/JWT, dependency injection, testing, and Kubernetes deployment <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production FastAPI patterns with Pydantic v2, async endpoints, OAuth2/JWT, dependency injection, testing, and Kubernetes deployment
 
-## Publisher: <br>
-[msruruguay](https://clawhub.ai/user/msruruguay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[msruruguay](https://clawhub.ai/user/msruruguay)
 
-## Use Case: <br>
-Developers and backend engineers use this skill as a reference for building, migrating, testing, and deploying production FastAPI services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example authentication code includes placeholder secrets. <br>
-Mitigation: Replace placeholder secrets with environment-managed secrets before using the pattern in a real service. <br>
-Risk: Framework-version guidance may become stale as FastAPI, Pydantic, and related tools change. <br>
-Mitigation: Verify version-specific details against current framework documentation before applying the guidance to production code. <br>
-Risk: Copying example code directly into a production service could introduce incorrect behavior for the target architecture. <br>
-Mitigation: Review and adapt generated or copied code for the application, dependency versions, and deployment environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [FastAPI Official Docs](https://fastapi.tiangolo.com/) <br>
-- [Pydantic v2 Migration Guide](https://docs.pydantic.dev/latest/migration/) <br>
-- [ClawHub skill page](https://clawhub.ai/msruruguay/fastapi-patterns) <br>
+## Use Case:
 
+Developers and engineers use this skill as FastAPI reference material for Pydantic v2 migration, endpoint design, authentication, testing, deployment, health checks, and performance patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; example code should be reviewed and adapted before production use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Example JWT configuration uses a placeholder secret that is unsafe for real services.
+
+Mitigation: Replace placeholder secrets with managed secrets, rotate them appropriately, and review authentication settings before deployment.
+
+Risk: Readiness endpoint examples may expose raw exception details if copied directly.
+
+Mitigation: Return sanitized health responses and log detailed errors server-side instead of sending exception text to clients.
+
+Risk: Example dependency and outbound HTTP patterns may be copied without project-specific review.
+
+Mitigation: Pin and audit dependencies, review outbound HTTP calls for sensitive data exposure, and adapt snippets to the service threat model.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/msruruguay/skills/fastapi-patterns)
+- [FastAPI Official Docs](https://fastapi.tiangolo.com/)
+- [Pydantic v2 Migration Guide](https://docs.pydantic.dev/latest/migration/)
+- [MidOS](https://midos.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline Python, Dockerfile, shell command, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only FastAPI reference material; snippets require review and hardening before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

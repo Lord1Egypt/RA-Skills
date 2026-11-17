@@ -1,40 +1,53 @@
-## Description: <br>
-Security-first skill vetting for AI agents before installing skills from ClawHub, GitHub, or other sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.
 
-## Publisher: <br>
-[blueworldmarketing](https://clawhub.ai/user/blueworldmarketing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blueworldmarketing](https://clawhub.ai/user/blueworldmarketing)
 
-## Use Case: <br>
-Developers, agent operators, and security reviewers use this skill to evaluate AI agent skills before installation by checking source trust, permissions, red flags, and risk level. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a checklist aid and may not catch every unsafe behavior in another skill. <br>
-Mitigation: Treat its output as guidance, then independently review and scan the target skill before installation. <br>
-Risk: The optional sample commands make network requests to GitHub when a user chooses to run them. <br>
-Mitigation: Run commands only against intended repositories and inspect URLs before execution. <br>
+## Use Case:
 
+Developers, engineers, and agent operators use this skill to review unknown or third-party skills before installation by checking source trust, code red flags, permission scope, and risk level.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blueworldmarketing/skill-vetter-bwm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown checklist and vetting report with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces review guidance only; sample commands are run by the user when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill may lead an agent to read files while inspecting a candidate skill package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Constrain file reads to the candidate skill package and supplied release evidence unless a human approves broader review scope.
+
+Risk: The skill may lead an agent to query GitHub repository metadata or raw content while vetting a source.
+
+Mitigation: Review proposed network calls before execution and allow only expected repository metadata or content endpoints for the skill being vetted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/blueworldmarketing/skills/skill-vetter-bwm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with checklist items and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes source review notes, permission scope, red flags, risk classification, and an install verdict.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,33 @@
 {
-  "ownerId": "kn717n6rva540brhmp3sy0knb982s9n8",
-  "slug": "pension-search-pro",
-  "version": "1.2.0",
-  "publishedAt": 1777193472738
+  "name": "pension-search-pro",
+  "version": "1.1.0",
+  "description": "企业年金智能查询技能 Pro。只查询企业年金，不关注职业年金。18 种调查渠道 + 多搜索引擎深度搜索，输出带来源链接和错误检查的标准化调查报告。",
+  "author": "OpenClaw User",
+  "homepage": "https://github.com/openclaw/openclaw",
+  "license": "MIT",
+  "tags": ["search", "pension", "enterprise", "investigation", "report", "pro"],
+  "category": "productivity",
+  "requires": {
+    "bins": ["curl", "jq"],
+    "env": {
+      "TAVILY_API_KEY": "推荐，Tavily 搜索 API",
+      "SEARXNG_URL": "可选，SearXNG 本地实例"
+    }
+  },
+  "triggers": [
+    "企业年金查询",
+    "有没有企业年金",
+    "查年金",
+    "企业福利调查",
+    "公司年金",
+    "五险一金查询",
+    "待遇调查",
+    "年金开户银行",
+    "年金受托人",
+    "年金托管人",
+    "单位性质查询"
+  ],
+  "emoji": "🏦",
+  "created_at": "2026-03-20",
+  "updated_at": "2026-03-20"
 }

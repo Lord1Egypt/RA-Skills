@@ -1,41 +1,58 @@
-## Description: <br>
-Compare database schemas across environments, generate migration scripts, and track schema evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare database schemas across environments, generate migration scripts, and track schema evolution.
 
-## Publisher: <br>
-[Derick001](https://clawhub.ai/user/Derick001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[derick001](https://clawhub.ai/user/derick001)
 
-## Use Case: <br>
-Developers, database engineers, and CI/CD maintainers use this skill to compare database schemas across environments, generate migration SQL, capture snapshots, and detect schema drift before changes reach production. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle database connection details for live schema comparisons. <br>
-Mitigation: Use environment variables or a secrets manager, avoid putting real passwords in command lines, and limit credentials to the minimum database privileges needed. <br>
-Risk: Generated migration SQL can include destructive or constraint-changing statements. <br>
-Mitigation: Inspect generated SQL for DROP, ALTER, and constraint changes; back up data; and apply migrations through the normal review and release process. <br>
+## Use Case:
 
+Developers and database engineers use this skill to compare SQL schema files, generate draft SQL or JSON migration outputs, and flag schema drift in automation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Derick001/database-schema-differ) <br>
-- [Derick001 publisher profile](https://clawhub.ai/user/Derick001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated artifacts may include SQL migration scripts, JSON reports, and HTML visual diffs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and database-specific dependencies; generated SQL should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Database credentials may be exposed when connection URLs with passwords are pasted into shell commands or stored in command history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer SQL files or secret-managed connection methods, and avoid placing real database passwords directly in command-line URLs.
+
+Risk: Generated migration scripts can be incomplete or unsafe for production databases.
+
+Mitigation: Manually inspect, test, and approve generated migrations in a non-production environment before applying them to any database.
+
+Risk: The release advertises live-database, visual diff, and history features that are unreliable or not fully implemented in this version.
+
+Mitigation: Verify behavior with disposable test inputs first and treat unsupported or unreliable commands as unavailable for production workflows.
+
+## Reference(s):
+
+- [Database Schema Differ README](artifact/README.md)
+- [ClawHub skill release](https://clawhub.ai/derick001/skills/database-schema-differ)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI output may include terminal text, JSON, SQL migration scripts, and generated files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write migration, snapshot, diff, or drift-check files when output flags are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

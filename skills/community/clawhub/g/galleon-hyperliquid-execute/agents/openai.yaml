@@ -1,0 +1,4 @@
+interface:
+  display_name: Hyperliquid Execution
+  short_description: Execute approved Hyperliquid actions once
+  default_prompt: Use $hyperliquid-execute to execute this reviewed ticket once and reconcile the exchange record.

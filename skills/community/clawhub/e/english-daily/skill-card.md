@@ -1,41 +1,56 @@
-## Description: <br>
-Daily English learning with spaced repetition - built-in A1-B2 word bank, new words daily, quiz mode (MCQ/fill-in/spelling), streak tracking, and level progression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily English learning with spaced repetition, a built-in A1-B2 word bank, daily new words, quiz modes, streak tracking, and level progression.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-English learners and agents supporting them use this skill to run daily vocabulary study, generate quizzes, track streaks and progress, and manage optional daily reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A local study profile records userId, name, level, streak, preferences, and word progress. <br>
-Mitigation: Use a non-sensitive userId on shared machines or shared channels, and treat the local data/users files as personal study data. <br>
-Risk: Enabling push reminders schedules recurring messages to the selected channel. <br>
-Mitigation: Review the reminder time and channel before enabling push, and use the status or off command to audit or disable reminders. <br>
+## Use Case:
 
+External learners use English Daily to practice vocabulary through daily word prompts, spaced repetition review, quiz sessions, streak tracking, and A1-B2 level progression.
 
-## Reference(s): <br>
-- [English Daily ClawHub page](https://clawhub.ai/jiajiaoy/english-daily) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands and JSON-like scheduler directives] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local study prompts, quiz content, progress summaries, and optional reminder configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and package.json) <br>
+Risk: Unchecked profile names or profile text can influence persistent MEMORY.md learning records and scheduled prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with trusted users or tighten validation for names and profile fields; reject markdown delimiters, newlines, quotes, backticks, and instruction-like profile content.
+
+Risk: The skill stores learning progress persistently in MEMORY.md and can configure optional scheduled OpenClaw reminders.
+
+Mitigation: Review the stored profile block and scheduled reminders before installation or use, and remove the relevant MEMORY.md profile block to clear learning data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiajiaoy/skills/english-daily)
+- [OpenClaw](https://openclaw.ai)
+- [README](README.md)
+- [Skill definition](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and MEMORY.md profile blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local learning prompts, quizzes, progress summaries, MEMORY.md update blocks, and optional OpenClaw reminder configuration.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence, package.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

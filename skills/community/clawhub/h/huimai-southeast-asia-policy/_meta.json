@@ -1,6 +1,26 @@
 {
-  "ownerId": "kn75q5p7wpr68hmqar9ywtejsx84cw1x",
-  "slug": "huimai-southeast-asia-policy",
-  "version": "2.0.0",
-  "publishedAt": 1777767601137
+  "name": "🌏 东南亚市场政策查询Skill",
+  "slug": "policy-sea",
+  "description": "基于惠迈智能体架构，提供东南亚主要国家的实时市场政策查询、法规分析及投资环境评估服务。",
+  "version": "1.1.0",
+  "author": "Huimai AI",
+  "email": "yezhaowang888@icloud.com",
+  "license": "MIT",
+  "tags": [
+    "trade",
+    "policy",
+    "sea",
+    "huimai",
+    "calibration"
+  ],
+  "lastUpdated": "2026-05-01",
+  "calibration": {
+    "levels": [
+      "quick",
+      "standard"
+    ],
+    "interval": 1800000,
+    "trustedMode": true
+  },
+  "warmMode": "default"
 }

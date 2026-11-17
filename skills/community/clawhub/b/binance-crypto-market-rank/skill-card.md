@@ -1,47 +1,58 @@
-## Description: <br>
-Provides crypto market rankings and leaderboards for trending tokens, Binance Alpha tokens, smart money inflows, meme tokens, and top trader PnL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto market rankings and leaderboards for trending tokens, Binance Alpha tokens, smart money inflows, meme token ranks, and top trader PnL leaderboards.
 
-## Publisher: <br>
-[dexploarer](https://clawhub.ai/user/dexploarer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dexploarer](https://clawhub.ai/user/dexploarer)
 
-## Use Case: <br>
-External analysts, developers, and agents use this skill to fetch and summarize public Binance Web3 ranking data for token discovery, market trend review, smart-money inflow checks, meme token ranking, and trader leaderboard analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market rankings may be mistaken for financial advice or stable investment recommendations. <br>
-Mitigation: Present results as live market data, cite the ranking type and timeframe, and avoid investment recommendations unless separately requested and verified. <br>
-Risk: The skill runs a local shell script that contacts public Binance Web3 APIs. <br>
-Mitigation: Review the script and network endpoints before deployment, use only public data, and do not provide credentials. <br>
-Risk: Publisher provenance is unavailable for this release. <br>
-Mitigation: Verify the dexploarer publisher profile and any claimed Binance affiliation before treating the release as official. <br>
+## Use Case:
 
+External users and developers use this skill to query Binance Web3 market ranking endpoints and summarize current token trends, social hype, smart money inflows, meme token ranks, and trader PnL leaderboards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dexploarer/binance-crypto-market-rank) <br>
-- [Publisher profile](https://clawhub.ai/user/dexploarer) <br>
-- [Binance Web3 unified token rank endpoint](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/unified/rank/list/ai) <br>
-- [Binance Web3 smart money inflow endpoint](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/tracker/wallet/token/inflow/rank/query/ai) <br>
-- [Binance Web3 meme rank endpoint](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/exclusive/rank/list/ai) <br>
-- [Binance Web3 trader leaderboard endpoint](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/market/leaderboard/query/ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [JSON from a shell script plus an agent-authored Markdown summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches live public market data from Binance Web3 endpoints; values may change over time and should not be treated as financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata version is 2.1) <br>
+Risk: The skill makes live requests to Binance Web3 and may surface fast-changing market ranking data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as informational, cite the query context, and avoid presenting rankings as financial advice.
+
+Risk: Leaderboard responses may include public wallet addresses, labels, balances, and trading performance.
+
+Mitigation: Share only the details needed for the user's ranking request and avoid unnecessary lookup or redistribution of public wallet leaderboard data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dexploarer/skills/binance-crypto-market-rank)
+- [Binance Web3 social hype leaderboard API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/social/hype/rank/leaderboard/ai)
+- [Binance Web3 unified token rank API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/unified/rank/list/ai)
+- [Binance Web3 smart money inflow rank API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/tracker/wallet/token/inflow/rank/query/ai)
+- [Binance Web3 meme rank API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/market/token/pulse/exclusive/rank/list/ai)
+- [Binance Web3 address PnL leaderboard API](https://web3.binance.com/bapi/defi/v1/public/wallet-direct/market/leaderboard/query/ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Markdown summary with JSON API results from shell execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live Binance Web3 responses may include token metrics, public wallet addresses, labels, balances, and trading performance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

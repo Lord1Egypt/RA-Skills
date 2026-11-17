@@ -1,46 +1,63 @@
-## Description: <br>
-Grades user-provided IELTS Writing or Speaking responses against local band-descriptor rubrics after confirming the prompt when needed, then returns band scores, evidence, limitations, and actionable improvement advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据用户提供的雅思写作或口语回答进行官方标准评分。使用前先联网检索并确认原始题目，再按本项目内评分标准逐维度打分、给出总分与可执行改进建议。适用于用户提到 IELTS/雅思、作文批改、口语评分、band 分数、Task 1/Task 2、speaking mock 等场景。
 
-## Publisher: <br>
-[yezaijun](https://clawhub.ai/user/yezaijun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezaijun](https://clawhub.ai/user/yezaijun)
 
-## Use Case: <br>
-External IELTS learners, tutors, and test-preparation workflows use this skill to assess IELTS Writing and Speaking responses with criterion-level scores, textual evidence, confidence notes, and prioritized improvement guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the release suspicious and describes behavior that may use powerful local or cloud CLIs and external reviewers. <br>
-Mitigation: Review the installed bundle before use and choose restrictive review-helper options unless full-access nested agents or external LLM review of diffs is intended. <br>
-Risk: IELTS Speaking pronunciation scoring has limited confidence when the user provides only text transcripts. <br>
-Mitigation: State the pronunciation limitation in the scoring output and lower confidence for that criterion unless audio evidence is available. <br>
-Risk: Writing scores can be misleading when the original prompt is incomplete or cannot be reliably verified. <br>
-Mitigation: Confirm the complete Writing prompt first, cite the adopted prompt version, and mark task-response confidence lower when prompt provenance remains uncertain. <br>
+## Use Case:
 
+External learners, tutors, and exam-preparation users use this skill to score IELTS Writing or Speaking responses against local official-style band descriptors. It returns evidence-backed criterion scores, an overall band estimate, confidence notes, and prioritized improvement guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yezaijun/ielts-grading) <br>
-- [IELTS writing scoring bands](https://www.chinaielts.org/prepare/understand-ielts-score/bands) <br>
-- [IELTS writing band descriptors](https://cdn.ielts.org/Guides/ielts-writing-band-descriptors.pdf) <br>
-- [IELTS speaking band descriptors](https://ielts.org/cdn/ielts-guides/ielts-speaking-band-descriptors.pdf) <br>
-- [IELTS scoring in detail](https://www.ielts.org/ielts-for-organisations/ielts-scoring-in-detail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown scoring report, usually in Chinese, with prompt confirmation, criterion scores, evidence, confidence, loss points, and improvement advice.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writing scores cover Task Achievement or Task Response, Coherence and Cohesion, Lexical Resource, and Grammatical Range and Accuracy; Speaking scores cover Fluency and Coherence, Lexical Resource, Grammatical Range and Accuracy, and Pronunciation with limited confidence when only transcripts are provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Writing prompt verification may expose personal identifiers, candidate numbers, or private exam-session details if they are included in search queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask users to omit private identifiers and offer a local-only or no-web rubric review when web verification is not needed.
+
+Risk: Speaking scores based only on transcripts cannot support high-confidence pronunciation assessment.
+
+Mitigation: State that pronunciation is low confidence when no audio is available and base the rest of the score on visible transcript evidence.
+
+Risk: Prompt-version conflicts or unverified remembered prompts can reduce confidence in task-response scoring.
+
+Mitigation: Report the adopted prompt version and sources when available; if no reliable prompt is found, grade against the user-provided version and lower the relevant confidence.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yezaijun/skills/ielts-grading)
+- [雅思写作评分标准](artifact/写作评分标准.md)
+- [雅思口语评分标准](artifact/口语评分标准.md)
+- [中国雅思官网计分说明](https://www.chinaielts.org/prepare/understand-ielts-score/bands)
+- [IELTS Writing Band Descriptors](https://cdn.ielts.org/Guides/ielts-writing-band-descriptors.pdf)
+- [IELTS Speaking Band Descriptors](https://ielts.org/cdn/ielts-guides/ielts-speaking-band-descriptors.pdf)
+- [IELTS Scoring in Detail](https://www.ielts.org/ielts-for-organisations/ielts-scoring-in-detail)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown, usually in Chinese, with score breakdowns, evidence excerpts, confidence notes, and improvement suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source links for writing prompt verification and low-confidence notes when prompt, transcript, or audio evidence is incomplete.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

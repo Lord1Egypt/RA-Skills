@@ -1,41 +1,57 @@
-## Description: <br>
-Sync GOG game library, save files, and custom configs across devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync GOG game library, save files, and custom configs across devices.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Players and game-library maintainers use this skill to sync GOG libraries, save files, and selected custom configuration files across devices or remote storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rsync can overwrite files or copy data to an unintended remote destination. <br>
-Mitigation: Inspect sync.sh, replace placeholder user@remote destinations with a controlled host, and run a manual backup or rsync dry run before first use. <br>
-Risk: A broad GOG_CONFIG_DIR value could sync files outside the intended game configuration scope. <br>
-Mitigation: Keep GOG_CONFIG_DIR limited to game configuration folders before running sync-config. <br>
+## Use Case:
 
+External users and developers use GOG Sync to automate syncing a GOG library, save files, and selected game configuration files across devices and remote backup storage.
 
-## Reference(s): <br>
-- [GOG Sync ClawHub Release](https://clawhub.ai/terrycarter1985/gog-sync) <br>
-- [terrycarter1985 ClawHub Profile](https://clawhub.ai/user/terrycarter1985) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires rsync; gogrepo is optional for full library sync.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Save files and selected configuration files can be sent to the configured rsync destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set GOG_CONFIG_REMOTE only to a trusted host and review the destination before running sync or sync-config.
+
+Risk: sync-config can copy files from an unintended local directory if GOG_CONFIG_DIR is set incorrectly.
+
+Mitigation: Review GOG_CONFIG_DIR before execution and keep it scoped to the intended GOG configuration directory.
+
+Risk: The evidence notes a mismatch between gogrepo and gogrepoc dependency names.
+
+Mitigation: Verify which dependency is intended before installation or library sync use.
+
+## Reference(s):
+
+- [GOG Sync ClawHub Skill Page](https://clawhub.ai/terrycarter1985/skills/gog-sync)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text with shell command invocations, terminal status text, and environment variable settings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires rsync; optional library sync depends on the intended GOG repository tool being available.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

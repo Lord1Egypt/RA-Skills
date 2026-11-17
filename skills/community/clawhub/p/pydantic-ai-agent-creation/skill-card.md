@@ -1,37 +1,53 @@
-## Description: <br>
-Create PydanticAI agents with type-safe dependencies, structured outputs, and proper configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create PydanticAI agents with type-safe dependencies, structured outputs, and proper configuration.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill for guidance when creating PydanticAI agents, chat systems, and LLM integrations with typed dependencies, structured outputs, and model configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples may require provider credentials and may send prompts, dynamic instructions, dependencies, or outputs to external model providers. <br>
-Mitigation: Keep provider API keys in environment variables or a secret manager, avoid hardcoding credentials, and send only data intended to leave the local environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to create PydanticAI agents, configure model providers, add typed dependencies, produce structured outputs, and apply basic verification gates before using agents in production code.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no files, API calls, or shell commands are executed by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Prompts, dynamic instructions, and dependency context may expose sensitive user or business information to selected model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review provider logging, retention, and compliance settings, and avoid placing secrets or direct user identifiers in prompts or dynamic instructions.
+
+Risk: Agent examples may fail at runtime or produce invalid structured outputs if model settings, dependencies, or output schemas are misconfigured.
+
+Mitigation: Run the documented smoke, structured-output, and dependency verification gates before relying on an agent in production code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anderskev/skills/pydantic-ai-agent-creation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Python code examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no shell commands, scripts, tools, or credential handling are included in the artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

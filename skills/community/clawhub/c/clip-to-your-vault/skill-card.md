@@ -1,44 +1,59 @@
-## Description: <br>
-Universal web clipper for Obsidian Vault that saves content from X/Twitter, WeChat, Douyin, Xiaohongshu, GitHub, and generic web pages into local Markdown notes with media, tags, and wikilinks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal web clipper for Obsidian Vault that saves content from X/Twitter, WeChat, Douyin, Xiaohongshu, GitHub, and generic web pages when a user asks to clip or save a URL.
 
-## Publisher: <br>
-[zgissing](https://clawhub.ai/user/zgissing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zgissing](https://clawhub.ai/user/zgissing)
 
-## Use Case: <br>
-External users and developers who use Claude Code with Obsidian use this skill to clip selected URLs into a vault as Markdown notes with local media, frontmatter, tags, and wikilinks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected URLs and their images or videos are fetched and saved into the configured vault folder. <br>
-Mitigation: Use a narrow vault path and install only if saving selected URL content locally is acceptable. <br>
-Risk: Optional Douyin support depends on third-party downloader tooling and cookie-based workflows. <br>
-Mitigation: Review the downloader before enabling it and use a separate browser profile or account for cookie-based workflows. <br>
-Risk: Optional CDP browser support can access a browser session when enabled. <br>
-Mitigation: Keep CDP disabled unless needed and bind it only to a trusted localhost endpoint. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill in Claude Code to turn web URLs into organized Obsidian notes with frontmatter, local media, tags, and cross-platform wikilinks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zgissing/clip-to-your-vault) <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
-- [douyin-downloader](https://github.com/jiji262/douyin-downloader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes with YAML frontmatter, Obsidian wikilinks, and local media file references; may include shell commands for setup or fetching content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes clipped notes and downloaded media into user-configured vault directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can send full URLs to third-party services while fetching or parsing clipped content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review URLs before clipping and avoid private, tokenized, or sensitive links unless sharing them with those services is acceptable.
+
+Risk: Setup and optional handlers may use curl-to-bash, git clone, npm, pip, Playwright, or unpinned dependency installation paths.
+
+Mitigation: Inspect setup scripts and dependency manifests before execution, then pin or vendor dependencies for managed environments.
+
+Risk: The skill writes downloaded media and generated notes to the local Obsidian vault.
+
+Mitigation: Configure the vault and attachments paths carefully, keep overwrite confirmation enabled, and review generated files before syncing or publishing.
+
+## Reference(s):
+
+- [Clip to Your Vault on ClawHub](https://clawhub.ai/zgissing/skills/clip-to-your-vault)
+- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [douyin-downloader](https://github.com/jiji262/douyin-downloader)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes with YAML frontmatter, Obsidian wikilinks, local media files, and setup/configuration commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or overwrite files under the configured vault path after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

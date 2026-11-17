@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://text-to-comic/schemas/character-card.schema.json",
+  "title": "Character Card",
+  "description": "自定义角色卡。compile_prompt.py 与 validate_panel_plan.py 会自动加载 characters/cards/*.json，按 character_id 或 name 匹配分镜里的角色，并把 hard_anchors 补进 must_keep。",
+  "type": "object",
+  "oneOf": [
+    { "required": ["character"] },
+    { "required": ["character_id", "name", "appearance", "must_keep"] }
+  ],
+  "properties": {
+    "version": { "type": "string" },
+    "source_doc": { "type": "string", "description": "人类可读版的角色设定（md）路径" },
+    "reference_image": { "type": "string", "description": "参考图路径，首格渲染时提示带上" },
+    "notes": { "type": "string" },
+    "character": { "$ref": "#/$defs/character" },
+    "character_id": { "type": "string" },
+    "name": { "type": "string" },
+    "appearance": { "$ref": "#/$defs/appearance" },
+    "must_keep": { "$ref": "#/$defs/must_keep" },
+    "hard_anchors": {
+      "type": "array",
+      "description": "不写则从 appearance 的 hair / eyewear / build / face 自动推导",
+      "items": { "$ref": "#/$defs/anchor" }
+    }
+  },
+  "$defs": {
+    "character": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["character_id", "name", "appearance", "must_keep"],
+      "properties": {
+        "character_id": { "type": "string" },
+        "name": { "type": "string" },
+        "appearance": { "$ref": "#/$defs/appearance" },
+        "must_keep": { "$ref": "#/$defs/must_keep" }
+      }
+    },
+    "appearance": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "hair / eyewear / build / face 是跨格锚点来源；outfit / accent_color 可按场景替换",
+      "properties": {
+        "age_presentation": { "type": "string" },
+        "hair": { "type": "string" },
+        "face": { "type": "string" },
+        "eyewear": { "type": "string" },
+        "outfit": { "type": "string" },
+        "accent_color": { "type": "string" },
+        "build": { "type": "string" },
+        "vibe": { "type": "string" }
+      }
+    },
+    "must_keep": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "anchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "must_keep_value"],
+      "properties": {
+        "key": { "type": "string" },
+        "label_zh": { "type": "string" },
+        "must_keep_value": { "type": "string" },
+        "must_match": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

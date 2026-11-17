@@ -1,43 +1,57 @@
-## Description: <br>
-Automates email sending, receiving, analysis, auto-replies, classification, tracking, and template management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates email sending, receiving, classification, and analysis.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and operators can use this skill to plan or set up an email automation workflow for marketing, customer notifications, automatic replies, and mailbox management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk sending and auto-replies can send unintended, unwanted, or non-compliant email. <br>
-Mitigation: Require manual approval for sending and auto-replies, verify recipient consent, and confirm unsubscribe handling before use. <br>
-Risk: Mailbox access and tracking workflows can expose credentials, mailbox contents, templates, and engagement data. <br>
-Mitigation: Use a trusted pinned source, avoid broad or personal mailboxes, and confirm how credentials and tracking data are stored and deleted. <br>
-Risk: The security review flags unclear safeguards and unreviewed implementation for external code execution. <br>
-Mitigation: Review the implementation carefully before installing and limit credentials and runtime permissions to the minimum required. <br>
+## Use Case:
 
+External teams and developers can use this skill to support email marketing, customer notifications, automatic replies, mailbox classification, template management, and read/click tracking.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-email-automation) <br>
-- [Publisher Profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with setup guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May discuss mailbox access, SMTP/IMAP setup, templates, auto-replies, and tracking workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Unreviewed remote email-automation code may handle credentials, mailbox contents, and message data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external repository at a specific commit, inspect dependencies and credential storage, and test with non-production mailboxes before deployment.
+
+Risk: Bulk sending and auto-reply behavior can send unintended or excessive email.
+
+Mitigation: Require explicit confirmation before sending or auto-replying, use rate limits and recipient allowlists, and start in a contained test environment.
+
+Risk: Read and click tracking can create privacy and consent obligations.
+
+Mitigation: Confirm tracking consent, data retention, and applicable policy requirements before enabling tracking features.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-email-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with setup commands and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include email automation workflow guidance that should be reviewed before acting on bulk sending, mailbox access, auto-replies, or tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

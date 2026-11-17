@@ -1,42 +1,59 @@
-## Description: <br>
-Generate structured trade plans with entry, stop-loss, and take-profit levels based on technical and fundamental data from the Finskills API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structured trade plans with entry, stop-loss, and take-profit levels based on technical and fundamental data from the Finskills API.
 
-## Publisher: <br>
-[finskills](https://clawhub.ai/user/finskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[finskills](https://clawhub.ai/user/finskills)
 
-## Use Case: <br>
-External users and trading-focused agents use this skill to turn a stock or ETF idea into a structured trading plan with entries, stops, targets, position sizing, and thesis validation using Finskills market data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Finskills API key and may involve portfolio or trade details. <br>
-Mitigation: Use a dedicated API key, keep credentials out of shared prompts and logs, and avoid sharing unnecessary portfolio details. <br>
-Risk: Generated trade plans can be incorrect, incomplete, or unsuitable for the user's circumstances. <br>
-Mitigation: Independently verify market data, assumptions, position sizing, and risk controls before acting on any plan. <br>
+## Use Case:
 
+External traders and analysts use this skill to turn a stock or ETF idea into a structured trading plan with entry triggers, stop-loss levels, profit targets, position sizing, and monitoring checkpoints.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/finskills/finskills-trading-plan-generator) <br>
-- [Project homepage](https://github.com/finskills/trading-plan-generator) <br>
-- [Finskills API](https://finskills.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown trade plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY and user-provided trade context such as symbol, direction, account size, risk tolerance, and time horizon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill uses the Finskills service and requires storing a FINSKILLS_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if use of the Finskills service is acceptable, store the API key securely, and avoid sharing it in prompts or generated output.
+
+Risk: Trading-plan inputs can include sensitive personal financial details such as account size and risk tolerance.
+
+Mitigation: Share approximate account size or risk limits where possible and avoid unnecessary personal financial details.
+
+Risk: Generated trade plans may be incorrect, incomplete, or unsuitable for a user's financial situation.
+
+Mitigation: Treat outputs as educational analysis, verify market data and assumptions independently, and use personal judgment before trading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/finskills/skills/finskills-trading-plan-generator)
+- [Project homepage](https://github.com/finskills/trading-plan-generator)
+- [Finskills API service](https://finskills.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown trading plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY and user-provided trade context such as symbol, thesis, direction, account size or approximate risk limits, and time horizon.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

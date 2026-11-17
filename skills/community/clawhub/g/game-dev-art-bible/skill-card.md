@@ -1,40 +1,50 @@
-## Description: <br>
-Guides agents in creating a game art bible that defines visual style, color palettes, reference boards, technical art constraints, and pipeline requirements for consistent production assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visual identity specification for games that helps define style guides, color palettes, reference boards, technical art constraints, and pipeline requirements for consistent game art direction.
 
-## Publisher: <br>
-[toilanguyen2910](https://clawhub.ai/user/toilanguyen2910) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toilanguyen2910](https://clawhub.ai/user/toilanguyen2910)
 
-## Use Case: <br>
-Game developers, art directors, and game artists use this skill to turn visual direction decisions into a structured art bible. It helps document style rules, palette choices, character, environment, UI, technical, reference, and asset pipeline guidance for a game project. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: May trigger on generic style-guide or visual-identity requests. <br>
-Mitigation: Invoke it explicitly for game art bible, visual identity, or game art direction tasks when precision matters. <br>
-Risk: Example technical budgets and export settings may not match a project's target engine, platform, or performance goals. <br>
-Mitigation: Review generated constraints against the chosen engine, platform targets, and asset pipeline before using them as production standards. <br>
+## Use Case:
 
+Game developers, artists, and external creative teams use this skill to draft a structured art bible for game visual identity, including art direction, palettes, character and environment rules, UI art guidance, technical constraints, and asset pipeline notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/toilanguyen2910/skills/game-dev-art-bible) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown templates and structured prose guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include checklists, tables, prompts, naming conventions, export settings, and project-specific placeholders for game art teams to fill in.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: A broad style-guide trigger may invoke this skill for generic style-guide requests outside game art direction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the request is for game visual identity or art bible work before applying the skill's template.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/toilanguyen2910/skills/game-dev-art-bible)
+- [Publisher profile](https://clawhub.ai/user/toilanguyen2910)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown templates and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose file structure, naming conventions, asset export settings, and checklist-style review items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

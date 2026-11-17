@@ -1,43 +1,55 @@
-## Description: <br>
-Downloads webpage content with Google Chrome in headless mode and returns the HTML content with a basic summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads webpage content with a Google Chrome headless browser and returns the page HTML with a basic summary.
 
-## Publisher: <br>
-[24K-handsomer](https://clawhub.ai/user/24K-handsomer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[24k-handsomer](https://clawhub.ai/user/24k-handsomer)
 
-## Use Case: <br>
-Developers and OpenClaw users can use this skill to fetch a webpage through headless Chrome, inspect the returned HTML, and get a simple title, length, and paragraph-count summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may attempt to install Google Chrome, which can modify the host environment. <br>
-Mitigation: Install Chrome manually before use and run the skill without elevated privileges. <br>
-Risk: The skill runs user-supplied URLs in headless Chrome and can contact external, local, or internal network services. <br>
-Mitigation: Use trusted public URLs only; avoid localhost, internal services, cloud metadata addresses, signed-in pages, and untrusted URLs. <br>
-Risk: Downloaded HTML may contain sensitive page content if the supplied URL points to private or authenticated material. <br>
-Mitigation: Do not use the skill on sensitive pages, and review outputs before sharing or storing them. <br>
+## Use Case:
 
+Developers and agent users use this skill to fetch a supplied webpage URL through headless Chrome, inspect the returned HTML, and receive a short structural summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/24K-handsomer/webpage-reader-skill) <br>
-- [Google Chrome](https://www.google.com/chrome/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [JSON-like Python dictionary with success, message, content, and summary fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a URL input and Google Chrome; returns full HTML content plus a basic summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Risk: The skill can fetch arbitrary URLs with an unsandboxed browser during normal use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an isolated environment with no access to sensitive internal networks, metadata endpoints, or local services.
+
+Risk: The skill may attempt privileged system package installation when Chrome is missing.
+
+Mitigation: Preinstall Chrome through a trusted administrator process and avoid running the skill with sudo-capable privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/24k-handsomer/skills/webpage-reader-skill)
+- [Publisher profile](https://clawhub.ai/user/24k-handsomer)
+- [Google Chrome](https://www.google.com/chrome/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Python dictionary or command-line text containing success status, message, webpage HTML content, and summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts one URL string and may return full webpage HTML; runtime behavior depends on Chrome availability and network access.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

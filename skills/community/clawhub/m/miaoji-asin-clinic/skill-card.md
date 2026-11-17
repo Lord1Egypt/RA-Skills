@@ -1,45 +1,55 @@
-## Description: <br>
-Miaoji Asin Clinic helps Amazon sellers diagnose listing health across compliance, advertising, reviews, visuals, and content, then prioritize repair guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Miaoji Asin Clinic helps Amazon sellers diagnose listing health across compliance, advertising, reviews, visuals, and content, then prioritize repair actions.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External Amazon sellers and marketplace operators use this skill to score an ASIN listing, identify weak health dimensions, and receive prioritized repair recommendations and handoff templates for related optimization skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide more seller or customer data than the diagnostic requires. <br>
-Mitigation: Use summarized ASIN, advertising, review, image, and video metrics, and avoid credentials, private seller exports, or full customer records. <br>
-Risk: Generated listing repair guidance may be based on incomplete or estimated marketplace metrics. <br>
-Mitigation: Cross-check recommendations against Amazon Seller Central data and treat estimated fields as inputs for review before making listing changes. <br>
-Risk: Compliance and advertising recommendations may not reflect every current marketplace policy or campaign constraint. <br>
-Mitigation: Review proposed changes against current Amazon policy, account requirements, and campaign goals before applying them. <br>
+## Use Case:
 
+Amazon sellers and ecommerce operators use this skill to generate a five-dimension ASIN health report, identify the highest-priority listing issues, and receive guided repair templates for related specialist skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangm-a3/miaoji-asin-clinic) <br>
-- [Publisher profile](https://clawhub.ai/user/wangm-a3) <br>
-- [评分矩阵](references/diagnosis-matrix.md) <br>
-- [使用指南](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown diagnostic reports and optional JSON analysis output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes five-dimension scores, lifecycle-aware repair priority, recommended related skills, and input templates for follow-up remediation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: Review-analysis inputs can include customer names, order information, private seller notes, support records, or other sensitive customer data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Paste only the minimum public review text needed and remove sensitive customer or seller data before using review-analysis templates.
+
+Risk: The skill can estimate listing health when complete marketplace data is unavailable, so recommendations may be incomplete or imprecise.
+
+Mitigation: Cross-check scores and repair priorities against Amazon account data, current listing performance, and applicable marketplace policy before acting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/skills/miaoji-asin-clinic)
+- [README](artifact/README.md)
+- [ASIN Diagnosis Matrix](artifact/references/diagnosis-matrix.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown diagnostic reports and repair guidance; JSON health analysis from the local scoring script when used directly.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include estimated scores when seller data is incomplete; users should verify recommendations against current marketplace and account data.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

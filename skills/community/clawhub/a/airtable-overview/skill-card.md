@@ -1,38 +1,53 @@
-## Description: <br>
-Explains what Airtable is and how data is structured, including bases, tables, fields, records, views, automations, and interfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explains what Airtable is and how data is structured: bases, tables, fields, records, views, automations, and interfaces.
 
-## Publisher: <br>
-[clementhoang-at](https://clawhub.ai/user/clementhoang-at) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clementhoang-at](https://clawhub.ai/user/clementhoang-at)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to get a concise orientation to Airtable's data model and product concepts before discussing bases, tables, fields, records, views, automations, and interfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents Airtable concepts as informational guidance rather than verified official documentation. <br>
-Mitigation: Confirm details against Airtable sources before making operational decisions. <br>
+## Use Case:
 
+External users and agents use this skill to explain Airtable concepts and the Airtable data model at a high level. It is useful when a user needs context about bases, tables, fields, records, views, automations, and interfaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clementhoang-at/airtable-overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text explanatory guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, account access, API calls, credentials, or shell commands are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Users may expect the skill to connect to Airtable or modify workspace data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for reference and explanation; the release evidence says it does not connect to Airtable or perform workspace actions.
+
+Risk: The skill can provide conceptual Airtable guidance but may not reflect a user's exact workspace permissions or interface-only access.
+
+Mitigation: Confirm workspace-specific permissions and data access in Airtable before acting on the explanation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clementhoang-at/skills/airtable-overview)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference-only informational output; no Airtable connection or workspace actions are performed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

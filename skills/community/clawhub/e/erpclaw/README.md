@@ -10,8 +10,8 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/license-GPL--3.0-green" alt="License: GPL-3.0">
-  <!-- version badge is static; bump at each release publish -->
-  <img src="https://img.shields.io/badge/version-v4.8.0-0d9488" alt="Version v4.8.0">
+  <!-- version badge auto-synced by release/scripts/sync_facts.py (badge URL pattern) -->
+  <img src="https://img.shields.io/badge/version-v4.15.0-0d9488" alt="Version v4.15.0">
   <img src="https://img.shields.io/badge/OpenClaw-skill-14b8a6" alt="OpenClaw Skill">
   <img src="https://img.shields.io/badge/database-SQLite%20%7C%20PostgreSQL-0d9488" alt="SQLite or PostgreSQL">
   <a href="https://www.erpclaw.ai"><img src="https://img.shields.io/badge/website-erpclaw.ai-14b8a6" alt="Website erpclaw.ai"></a>
@@ -100,6 +100,39 @@ One install, one shared database, every major business function:
   your own machine. Your books never leave your infrastructure.
 - **$0 forever.** GPL v3, open source, no freemium tier, no per-seat pricing.
 
+## Runtimes
+
+ERPClaw runs on OpenClaw (primary). Experimental support for the Hermes Agent runtime.
+
+- **OpenClaw** (primary): `clawhub install erpclaw`. Everything above.
+- **Hermes Agent** (experimental, best-effort). Install from the tap:
+
+  ```bash
+  hermes skills tap add avansaber/hermes-skills
+  hermes skills install avansaber/hermes-skills/skills/erpclaw --force
+  export ERPCLAW_HOME=~/.hermes/erpclaw-home    # blank = ~/.openclaw/erpclaw
+  python3 ~/.hermes/skills/erpclaw/scripts/erpclaw-setup/db_query.py --action initialize-database
+  ```
+
+  `--force` acknowledges the Hermes security audit's "caution" rating: ERPClaw's
+  accounting engine runs local commands by design (every action is local Python
+  through a command router; nothing leaves your machine). Prefer no `--force`?
+  The manual install works identically:
+
+  ```bash
+  git clone https://github.com/avansaber/erpclaw ~/.hermes/skills/erp/erpclaw
+  export ERPCLAW_HOME=~/.hermes/erpclaw-home
+  python3 ~/.hermes/skills/erp/erpclaw/scripts/erpclaw-setup/db_query.py --action initialize-database
+  ```
+
+  Then talk to it (keep `ERPCLAW_HOME` exported):
+  `hermes chat -s erpclaw --yolo -q "Set up my company"`. Recommended:
+  `hermes curator pin erpclaw` so the skill stays exactly as installed.
+  Credential values never pass through the agent on any runtime: lookups return
+  existence plus a redacted preview only, and high-impact actions (restores,
+  credential changes, master-key operations) always require an explicit
+  confirmation flag.
+
 ### Built to be trusted with money
 
 - All financial amounts stored as TEXT (Python `Decimal`), never float
@@ -126,7 +159,7 @@ module-generation or auto-deploy code paths.
 
 <sub>Current build:
 <!-- SYNC:facts:start -->
-ERPClaw v4.11.0 | 46 modules (46 active + 0 preview) | 3,169 actions
+ERPClaw v4.15.0 | 46 modules (46 active + 0 preview) | 3,235 actions
 <!-- SYNC:facts:end -->
 </sub>
 

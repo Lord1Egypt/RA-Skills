@@ -1,41 +1,52 @@
-## Description: <br>
-Helps developers build Anthropic and Claude API integrations with appropriate SDK patterns for messages, streaming, tool use, files, and batches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents implement Anthropic or Claude API integrations, including Agent SDK patterns, tool use, streaming, files, and batches.
 
-## Publisher: <br>
-[wimi321](https://clawhub.ai/user/wimi321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wimi321](https://clawhub.ai/user/wimi321)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill when adding or reviewing Claude API and Anthropic SDK integrations in applications. It helps select an appropriate implementation pattern and produce SDK-specific guidance, code, configuration, and caveats.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may be applied to general LLM application design where Anthropic-specific guidance is not appropriate.
+
+Mitigation: Use it for Claude or Anthropic API and Agent SDK work, and confirm the requested SDK or API surface before applying recommendations.
+
+Risk: Fast-moving Claude API details such as model names, streaming behavior, tool use, files, or batch semantics may change after release.
+
+Mitigation: Check current official Anthropic documentation before relying on version-sensitive API details in implementation guidance.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill when implementing Claude API or Anthropic SDK features such as streaming, tool use, files, prompt caching, and batch jobs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated implementation guidance may be incomplete or outdated for fast-moving Claude API details. <br>
-Mitigation: Review generated code against official Anthropic documentation before deploying changes. <br>
-Risk: Claude API work may involve Anthropic API keys or other credentials in downstream projects. <br>
-Mitigation: Provide API keys only in trusted project environments and review any code that handles credentials. <br>
+**Output Format:** [Markdown with code snippets, commands, and implementation guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wimi321/claude-api-builder) <br>
-- [wimi321 publisher profile](https://clawhub.ai/user/wimi321) <br>
+**Other Properties Related to Output:** [May include SDK-specific caveats and reminders to check live documentation for fast-moving Claude API details.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with SDK-specific guidance and code or shell snippets when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on Anthropic and Claude API implementation patterns; may recommend checking live official documentation for fast-moving API details.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

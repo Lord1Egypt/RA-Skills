@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "skill": "kol-account-analysis",
+  "description": "达人账号深度分析执行轨迹契约。用于记录一次分析运行中各步骤的完成状态，供过程评测与改进。",
+  "steps": [
+    { "step_id": 1, "name": "定义任务与平台语境", "gates": ["task_definition_complete", "platform_calibrated"], "output": "task_definition" },
+    { "step_id": 2, "name": "采集与整理证据", "gates": ["work_list_complete", "comment_detail_matched", "data_source_noted"], "output": "evidence_set" },
+    { "step_id": 3, "name": "读作品", "gates": ["theme_list", "data_distribution", "lifecycle_stage"], "output": "works_analysis" },
+    { "step_id": 4, "name": "读评论", "gates": ["seven_dim_counts", "masking_signals", "trust_assets"], "output": "comments_analysis" },
+    { "step_id": 5, "name": "合作判断", "gates": ["five_questions", "collaboration_form", "risk_checklist", "evidence_boundary"], "output": "report" }
+  ],
+  "fields": {
+    "step_id": { "type": "int", "required": true },
+    "status": { "type": "enum", "values": ["done", "failed", "skipped"], "required": true },
+    "tokens": { "type": "int", "required": false },
+    "output_ref": { "type": "string", "required": false },
+    "note": { "type": "string", "required": false }
+  }
+}

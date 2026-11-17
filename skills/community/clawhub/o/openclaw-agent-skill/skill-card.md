@@ -1,44 +1,64 @@
-## Description: <br>
-OpenClaw Agent Skill helps agents answer OpenClaw setup, usage, troubleshooting, and development questions from bundled OpenClaw documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Agent Skill helps agents answer OpenClaw setup, configuration, deployment, CLI, channel, provider, plugin, and troubleshooting questions using bundled documentation from docs.openclaw.ai.
 
-## Publisher: <br>
-[brabaflow](https://clawhub.ai/user/brabaflow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brabaflow](https://clawhub.ai/user/brabaflow)
 
-## Use Case: <br>
-Developers and engineers use this skill to get OpenClaw guidance, exact CLI and configuration examples, and citations into the bundled docs for gateway, channel, provider, plugin, deployment, and troubleshooting tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled docs include high-impact setup, permission, persistence, and privacy examples that may affect local systems, chat channels, secrets, or backups if copied without review. <br>
-Mitigation: Review generated commands and configuration before use, inspect remote installer scripts, protect secrets and backups, and use least-privilege channel and gateway settings. <br>
-Risk: Approve-all permissions, heartbeat, memory, media upload, and auto-start proxy examples can broaden operational access when used in trusted environments without isolation. <br>
-Mitigation: Avoid approve-all modes unless isolated, restrict allowed senders and tools, and test persistent or remote-access features in a controlled environment before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to get grounded OpenClaw guidance, exact CLI commands, configuration examples, and troubleshooting steps from bundled documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brabaflow/openclaw-agent-skill) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai/) <br>
-- [OpenClaw quick start](https://docs.openclaw.ai/start/quickstart) <br>
-- [OpenClaw security documentation](https://docs.openclaw.ai/security) <br>
-- [OpenClaw CLI reference](https://docs.openclaw.ai/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with cited documentation sections and inline code blocks when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers should cite the relevant bundled OpenClaw documentation section and avoid guessing when the docs do not cover a topic.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can surface installer, deployment, repair, daemon, Tailscale, Node, and Docker commands that may change a host or expose services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review privileged commands before running them, avoid root unless necessary, and prefer dry-run or least-privilege setup paths when available.
+
+Risk: Some documented install or update flows run remote scripts directly without integrity checks.
+
+Mitigation: Download scripts first, inspect them, and verify publisher checksums or signatures when available before execution.
+
+Risk: OpenClaw setup and repair workflows can involve credentials, configuration files, channel tokens, and backups.
+
+Mitigation: Back up OpenClaw credentials and configuration before repair or update flows, and treat backups as production secrets.
+
+## Reference(s):
+
+- [OpenClaw Agent Skill on ClawHub](https://clawhub.ai/brabaflow/skills/openclaw-agent-skill)
+- [OpenClaw Documentation](https://docs.openclaw.ai/)
+- [OpenClaw Quick Start](https://docs.openclaw.ai/start/quickstart)
+- [OpenClaw Installation](https://docs.openclaw.ai/install)
+- [OpenClaw Gateway Security](https://docs.openclaw.ai/gateway/security)
+- [OpenClaw Gateway Sandboxing](https://docs.openclaw.ai/gateway/sandboxing)
+- [OpenClaw Tool Execution](https://docs.openclaw.ai/tools/exec)
+- [OpenClaw Threat Model](https://docs.openclaw.ai/security/THREAT-MODEL-ATLAS)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with citations and exact code or configuration blocks when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers are expected to cite the relevant bundled OpenClaw documentation section.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

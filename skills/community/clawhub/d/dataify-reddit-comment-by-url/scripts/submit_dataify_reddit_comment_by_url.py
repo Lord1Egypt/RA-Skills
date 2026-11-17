@@ -8,6 +8,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+TASK_RUNTIME_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "dataify-task-operations", "scripts"))
+if TASK_RUNTIME_DIR not in sys.path:
+    sys.path.insert(0, TASK_RUNTIME_DIR)
+from task_runtime import complete_task
+
 
 BUILDER_URL = "https://scraperapi.dataify.com/builder?platform=1"
 DASHBOARD_URL = "https://dashboard.dataify.com?utm_source=skill"
@@ -61,7 +66,7 @@ def normalize_file_name(value):
 
 def normalize_group(group):
     return {
-        "url": normalize_url(group.get("url", DEFAULT_URL)),
+        "url": normalize_url(group.get("url")),
         "days_back": normalize_non_negative_integer(group.get("days_back", DEFAULT_DAYS_BACK), "days_back"),
         "comment_limit": normalize_non_negative_integer(group.get("comment_limit", DEFAULT_COMMENT_LIMIT), "comment_limit"),
     }
@@ -85,7 +90,7 @@ def load_groups_from_json(raw):
 def build_groups(args):
     if args.params_json:
         return load_groups_from_json(args.params_json)
-    urls = args.url or [DEFAULT_URL]
+    urls = args.url or []
     return [
         normalize_group(
             {
@@ -147,29 +152,33 @@ def main():
 
     parser = argparse.ArgumentParser(description="Submit a Dataify Reddit comment by URL Builder task.")
     parser.add_argument("--url", action="append", help="Reddit URL. Repeat for multiple Reddit URLs.")
-    parser.add_argument("--days-back", default=DEFAULT_DAYS_BACK, help="Integer greater than or equal to 0. Default: 10.")
-    parser.add_argument("--comment-limit", default=DEFAULT_COMMENT_LIMIT, help="Integer greater than or equal to 0. Default: 5.")
+    parser.add_argument("--days-back", help="Integer greater than or equal to 0. Default: 10.")
+    parser.add_argument("--comment-limit", help="Integer greater than or equal to 0. Default: 5.")
     parser.add_argument("--file-name", default=DEFAULT_FILE_NAME, help="Builder file_name field. Default: {{TasksID}}.")
     parser.add_argument("--params-json", help="JSON array of Reddit comment parameter objects.")
-    parser.add_argument("--api-token", default=os.environ.get("DATAIFY_API_TOKEN"), help="Dataify token. Defaults to DATAIFY_API_TOKEN.")
+    parser.add_argument("--no-wait", action="store_true", help="Return after submission without waiting for the final result.")
+    parser.add_argument("--wait-timeout", type=float, default=600, help="Maximum final-result wait in seconds.")
     args = parser.parse_args()
+    api_token = os.environ.get("DATAIFY_API_TOKEN", "").strip()
 
-    if not args.api_token:
+    if not api_token:
         print(
-            "Missing Dataify API TOKEN. Enter your Dataify API TOKEN to continue. If you want to reuse it later, save it as DATAIFY_API_TOKEN. If you do not have one, log in at {} to get one.".format(LOGIN_URL),
+            "Missing Dataify API TOKEN. Enter your Dataify API TOKEN to continue. If you want to reuse it later, save it as DATAIFY_API_TOKEN. If you do not have one, log in at {} to get one. New accounts receive 50 free credits.".format(LOGIN_URL),
             file=sys.stderr,
         )
         return 2
 
     try:
         groups = build_groups(args)
+        if not groups:
+            raise ValueError("At least one business target is required.")
         file_name = normalize_file_name(args.file_name)
     except ValueError as exc:
         print(str(exc), file=sys.stderr)
         return 2
 
     try:
-        task_id, status = submit_builder(args.api_token, groups, file_name)
+        task_id, status = submit_builder(api_token, groups, file_name)
     except RuntimeError as exc:
         print(str(exc), file=sys.stderr)
         return 1
@@ -181,12 +190,19 @@ def main():
             "status": status,
             "parameters": groups,
             "file_name": file_name,
-            "dashboard_url": DASHBOARD_URL,
-            "message": "Task submitted. Visit {} to view results.".format(DASHBOARD_URL),
+            "message": "Task submitted. Continue monitoring the returned task_id.",
         },
         ensure_ascii=False,
         indent=2,
     ))
+    if not args.no_wait:
+        try:
+            final_result = complete_task(task_id, api_token, args.wait_timeout)
+        except RuntimeError as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        print(json.dumps(final_result, ensure_ascii=False, indent=2))
+
     return 0
 
 

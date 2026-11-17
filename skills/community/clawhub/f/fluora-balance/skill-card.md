@@ -1,42 +1,53 @@
-## Description: <br>
-Check USDC balance on Base Mainnet for your Fluora wallet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check USDC balance on Base Mainnet for your Fluora wallet.
 
-## Publisher: <br>
-[chetan-guevara](https://clawhub.ai/user/chetan-guevara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chetan-guevara](https://clawhub.ai/user/chetan-guevara)
 
-## Use Case: <br>
-External users and developers use this skill to check the USDC balance for a Fluora wallet configured in their local Fluora wallet file. The skill supports human-readable output and JSON output for programmatic parsing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill prints a wallet address and USDC balance, which may be sensitive if shared publicly. <br>
-Mitigation: Avoid posting terminal output or JSON output in public channels unless the wallet address and balance are intended to be disclosed. <br>
-Risk: The script installs and runs Node dependencies before querying Base Mainnet. <br>
-Mitigation: Run npm install only from the included scripts directory and use the provided lockfile. <br>
-Risk: Balance lookup depends on Base Mainnet RPC availability and the local Fluora wallet file. <br>
-Mitigation: Retry transient network failures and confirm ~/.fluora/wallets.json contains the expected USDC_BASE_MAINNET.address entry. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Fluora Balance on ClawHub](https://clawhub.ai/chetan-guevara/fluora-balance) <br>
-- [Base Mainnet RPC](https://mainnet.base.org) <br>
+## Use Case:
 
+External users and developers use this skill to check the USDC balance for a Fluora wallet configured on Base Mainnet.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text balance output with optional JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a local Fluora wallet address and queries Base Mainnet through ethers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads the local Fluora wallet metadata file and sends the wallet address to the Base public RPC endpoint for a read-only balance query.
+
+Mitigation: Use it only for Fluora/Base USDC balance checks and avoid running it where exposing the wallet address to a public RPC endpoint is unacceptable.
+
+Risk: Server security guidance notes a vulnerable transitive dependency caution.
+
+Mitigation: Keep the package lockfile in use and update the vulnerable transitive dependency when a fixed version is available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chetan-guevara/skills/fluora-balance)
+- [Base Mainnet RPC endpoint](https://mainnet.base.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text console output with optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports wallet address, formatted USDC balance, token symbol, and raw balance when JSON output is requested.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

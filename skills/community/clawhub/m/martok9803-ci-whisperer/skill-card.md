@@ -1,41 +1,57 @@
-## Description: <br>
-Analyze GitHub Actions failures, summarize failed logs, identify likely root causes, and propose minimal fixes using the GitHub CLI and GitHub API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze GitHub Actions failures and propose fixes using the GitHub CLI and GitHub API to fetch run metadata and logs, then produce a concise root-cause and next-steps report.
 
-## Publisher: <br>
-[martok9803](https://clawhub.ai/user/martok9803) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[martok9803](https://clawhub.ai/user/martok9803)
 
-## Use Case: <br>
-Developers and engineers use CI Whisperer to investigate failing GitHub Actions runs, understand the failing job or step, and receive concise fix options. When explicitly approved and write mode is enabled, it can help prepare a minimal PR fix. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses the local GitHub CLI identity to inspect workflow runs and logs. <br>
-Mitigation: Install only in environments where that local GitHub identity is appropriate for CI inspection, and authenticate with the GitHub CLI intentionally. <br>
-Risk: CI logs can contain sensitive data. <br>
-Mitigation: Review log excerpts before sharing or relying on them, and redact tokens, secrets, and other sensitive values. <br>
-Risk: Optional PR fix mode can create branches or pull requests. <br>
-Mitigation: Keep CI_WHISPERER_WRITE unset unless write behavior is desired, and require explicit user approval before creating a PR. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CI Whisperer configuration](references/config.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to triage failing GitHub Actions runs, summarize failed logs, identify likely root causes, and choose minimal fixes. It can also guide an opt-in PR fix workflow when explicitly requested and locally enabled.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with command snippets, short redacted log excerpts, and optional patch or PR guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default behavior is read-only; PR creation requires explicit user approval and CI_WHISPERER_WRITE=1.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The helper can print raw GitHub Actions failure logs from authenticated repositories, which may contain sensitive information.
+
+Mitigation: Review and redact log excerpts before sharing them outside the trusted session.
+
+Risk: PR creation can modify repositories if write mode is enabled and the user explicitly requests a fix.
+
+Mitigation: Keep the default read-only mode unless PR creation is intended, and set CI_WHISPERER_WRITE=1 only for sessions where that behavior is acceptable.
+
+Risk: The skill depends on an authenticated GitHub CLI session to read Actions runs and logs.
+
+Mitigation: Install only where use of authenticated GitHub CLI access for the target repositories is acceptable.
+
+## Reference(s):
+
+- [CI Whisperer configuration](references/config.md)
+- [ClawHub skill page](https://clawhub.ai/martok9803/skills/martok9803-ci-whisperer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with shell commands and optional patch or PR guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include short redacted CI log excerpts, ranked likely causes, minimal fix options, and confidence level.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

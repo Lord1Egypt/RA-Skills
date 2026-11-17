@@ -1,42 +1,54 @@
-## Description: <br>
-Converts server command text files into pytest test cases, generating one test file per input file and using a configurable test framework for execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts server test command TXT files into pytest test cases, generating one pytest file per input file with commands routed to R5-card or host-shell execution helpers.
 
-## Publisher: <br>
-[liuyun2025](https://clawhub.ai/user/liuyun2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuyun2025](https://clawhub.ai/user/liuyun2025)
 
-## Use Case: <br>
-Developers and test engineers use this skill to convert server or NIC command lists into pytest files for R5-card or host-shell test execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated pytest tests can run real server commands from input .txt files. <br>
-Mitigation: Review the input command files and generated test_*.py files before running pytest, and use only trusted command sources. <br>
-Risk: Generated tests depend on test_framework.py to execute commands against the intended environment. <br>
-Mitigation: Use a trusted test_framework.py implementation, avoid hardcoding real SSH passwords, and confirm target device settings before execution. <br>
-Risk: Generated output may replace existing test files in the configured output directory. <br>
-Mitigation: Run the converter only in a directory where overwriting generated tests is acceptable. <br>
+## Use Case:
 
+Developers and test engineers use this skill to convert batches of server or network-card command text files into pytest test files for controlled hardware or host test environments.
 
-## Reference(s): <br>
-- [Server Test Converter on ClawHub](https://clawhub.ai/liuyun2025/server-test-converter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Python pytest files with Markdown guidance and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates one pytest file per input .txt command file; generated tests depend on a trusted local test_framework.py configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: TXT command inputs become runnable pytest code that may execute on hosts or R5 devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted TXT files and filenames only, review generated pytest files before running them, and operate in a controlled test environment.
+
+Risk: Weak execution safeguards can allow unintended or destructive commands to reach real hosts or devices.
+
+Mitigation: Add command allowlists or destructive-command blocking before using the generated tests on real infrastructure.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liuyun2025/skills/server-test-converter)
+- [Publisher Profile](https://clawhub.ai/user/liuyun2025)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Generated Python pytest files and Markdown guidance with inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates one pytest file per input TXT file, deduplicates repeated commands, and requires environment-specific command execution helpers before tests are run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

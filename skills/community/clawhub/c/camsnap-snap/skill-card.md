@@ -1,39 +1,58 @@
-## Description: <br>
-Take webcam snapshots with path validation, safe resource handling, and flexible output options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Take webcam snapshots with path validation, safe resource handling, and flexible output options.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and external users can ask an agent to capture a webcam snapshot, choose an output directory or image path, and optionally configure the camera index. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access a local webcam and save captured images when invoked. <br>
-Mitigation: Install and run it only in environments where webcam capture is expected, and invoke it only for explicit snapshot requests. <br>
-Risk: Output path validation is not a strict filesystem sandbox. <br>
-Mitigation: Use explicit trusted output paths or directories and rely on caller-side filesystem controls for sandbox boundaries. <br>
+## Use Case:
 
+Developers and agents use Camsnap to capture local webcam images from the command line or Python code, with configurable camera selection and output location.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text] <br>
-**Output Format:** [Saved image file with a returned file path string or CLI status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, opencv-python, and webcam access; supported image extensions are .jpg, .jpeg, .png, .bmp, and .webp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can access a local webcam and save captured images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where webcam access and local image storage are expected and approved.
+
+Risk: The security scan reports that path protection is not enforced and output paths may save or overwrite files outside the expected folder.
+
+Mitigation: Avoid untrusted output_path or output_dir values, especially absolute paths or values containing '..'; prefer a dedicated snapshot directory.
+
+Risk: Existing files may be overwritten when a caller provides an output path.
+
+Mitigation: Use unique filenames or review the destination before execution when preserving existing files matters.
+
+## Reference(s):
+
+- [Camsnap on ClawHub](https://clawhub.ai/terrycarter1985/skills/camsnap-snap)
+- [Publisher profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill saves image files locally when webcam access is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

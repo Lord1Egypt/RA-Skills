@@ -1,6 +1,24 @@
 {
-  "ownerId": "kn77hm2gf92r6d8qk2ardqn9rs82n2t5",
+  "ownerId": "",
   "slug": "leadcontact",
-  "version": "1.0.5",
-  "publishedAt": 1773211454623
+  "version": "1.0.0",
+  "publishedAt": null,
+  "publisher": "WILLING TECH PTE. LTD.",
+  "homepage": "https://leadcontact.ai",
+  "privacyPolicy": "https://leadcontact.ai/zh-CN/privacy",
+  "repository": null,
+  "clawdbot": {
+    "emoji": "📞",
+    "requires": {
+      "bins": [],
+      "credentials": [
+        {
+          "name": "LEADCONTACT_API_TOKEN",
+          "description": "LeadContact API authentication token for accessing contact lookup services",
+          "required": true
+        }
+      ]
+    },
+    "os": ["linux", "darwin", "win32"]
+  }
 }

@@ -1,43 +1,54 @@
-## Description: <br>
-Runs local-only, fail-closed checks to detect and report data leaks, secrets, egress risks, and prompt injection risks before publishing or committing code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run local-only fail-closed security checks to detect and report data leaks, secrets, egress risks, and prompt injections before publishing or committing code.
 
-## Publisher: <br>
-[edmonddantesj](https://clawhub.ai/user/edmonddantesj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[edmonddantesj](https://clawhub.ai/user/edmonddantesj)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to run local repository checks before commits, publishing, or reviewing inbound text for secret, egress, allowlist, and prompt injection risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Scanning broad or sensitive workspaces can expose local file paths or report metadata. <br>
-Mitigation: Run it only on projects intended for scanning, narrow scope with --paths and --exclude, and keep generated reports private. <br>
-Risk: Allowlist and exclude patterns from untrusted repositories can hide files from review or cause slow scans. <br>
-Mitigation: Review allowlist and exclude patterns before use, especially for release checks or sensitive workspaces. <br>
-Risk: Detection-only checks can produce false positives or miss risks outside the bundled patterns. <br>
-Mitigation: Treat PASS, WARN, and BLOCK results as review inputs and update the rule files when project-specific risks are known. <br>
+## Use Case:
 
+Developers and engineers use this skill before commits, releases, or ClawHub publishing to scan local repositories, staged diffs, scripts, skills, and inbound text for accidental leakage, exposed credentials, unexpected egress patterns, and prompt-injection cues.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/edmonddantesj/aoi-openclaw-security-toolkit-core) <br>
-- [Security Policy (Core)](docs/SECURITY_POLICY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [CLI text or JSON output with optional Markdown report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses PASS, WARN, and BLOCK grades with exit codes 0, 1, and 2; generated reports omit excerpts to reduce secret leakage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: package.json, _meta.json, skill.js, integrity_manifest.json) <br>
+Risk: The skill reads local repositories and paths selected for scanning, and JSON output may include redacted snippets or suspicious URLs from local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against repositories or paths intended for review, and use explicit --paths and --exclude settings for sensitive workspaces.
+
+Risk: Pattern-based secret, egress, and prompt-injection scans can produce false positives or miss risks outside the configured rules.
+
+Mitigation: Review PASS/WARN/BLOCK findings manually and tune the rule files for the target repository before relying on the result for release decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/edmonddantesj/skills/aoi-openclaw-security-toolkit-core)
+- [Security Policy (Core)](docs/SECURITY_POLICY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [CLI PASS/WARN/BLOCK status, optional Markdown report, and optional JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are capped and secret excerpts are redacted or omitted from reports.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release evidence, package.json, _meta.json, integrity_manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

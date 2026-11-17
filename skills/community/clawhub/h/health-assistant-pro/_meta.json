@@ -1,6 +1,32 @@
 {
-  "ownerId": "kn79e7737znkq4877n6wc93wn58292v9",
-  "slug": "health-assistant-pro",
-  "version": "1.5.0",
-  "publishedAt": 1774593468388
+  "ownerId": "kn77v51abc0pz5zg2nzd7gpnrs80b477",
+  "slug": "health-assistant",
+  "version": "1.4.0",
+  "publishedAt": 1773232524043,
+  "lastModified": 1774591500000,
+  "changes": [
+    "v1.2.0: Added Health Report Analysis (Section 12)",
+    "v1.3.0: Added Supplement Recommendation System (Section 13)",
+    "v1.4.0: Added External API Integration (Section 14)",
+    "v1.4.0: Added Evidence Summaries for 6 common supplements (Section 15)",
+    "v1.4.0: Added ConsumerLab Test Results Summary (Section 16)",
+    "v1.4.0: Added Recommendation Engine (Section 17)"
+  ],
+  "apis": {
+    "examine": {
+      "status": "in_development",
+      "alternative": "https://apify.com/hanamira/examine-com-supplement-research",
+      "cost": "Pay-per-use"
+    },
+    "consumerlab": {
+      "status": "available",
+      "endpoint": "https://api.consumerlab.com/",
+      "cost": "Subscription required ($44/year)"
+    },
+    "pubmed": {
+      "status": "free",
+      "endpoint": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/",
+      "rate_limit": "3 requests/second"
+    }
+  }
 }

@@ -1,42 +1,54 @@
-## Description: <br>
-Simulates a Sergey Brin-style advisor for technology democratization, open culture, AI first-principles thinking, AGI strategy, and decision heuristics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language persona and mental-model skill that helps agents answer from a Sergey Brin-inspired perspective on technology democratization, open culture, failure-driven learning, AI first principles, and AGI strategy.
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-External users and developers can ask an agent to frame decisions or answer questions in a simulated Sergey Brin-style voice using the included mental models, heuristics, and examples. The skill is persona guidance only and should not be treated as statements from Sergey Brin, Google, or Alphabet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona responses may be mistaken for official statements from Sergey Brin, Google, or Alphabet. <br>
-Mitigation: Present responses as simulated style guidance and avoid attributing generated output to the real person or companies. <br>
-Risk: Quoted claims, future-looking assertions, and internal-memo references may be unsourced or unverified. <br>
-Mitigation: Independently verify factual claims before relying on them in business, technical, or public communications. <br>
-Risk: Work-intensity guidance in the artifact may be inappropriate as personal, health, or employment advice. <br>
-Mitigation: Treat work-hour framing as perspective for discussion only and apply independent judgment and applicable workplace policies. <br>
+## Use Case:
 
+Developers, operators, and agent builders can use this skill to add a Chinese-language Sergey Brin-inspired reasoning style, mental models, heuristics, and example responses to an assistant. It is best suited for educational roleplay, strategic analysis, and perspective-taking rather than verified biographical or current-event reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ruiyongwang/sergey-brin-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only persona output; no shell commands, file writes, credentials, persistence, or hidden execution behavior are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release evidence) <br>
+Risk: Users may mistake the stylized persona for statements from the real Sergey Brin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as educational roleplay or analysis and avoid representing them as verified statements from Sergey Brin.
+
+Risk: The skill includes current-event and biographical claims that may be incomplete or become outdated.
+
+Mitigation: Verify factual claims against authoritative sources before using them for decisions, publication, or professional advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruiyongwang/skills/sergey-brin-skill)
+- [Publisher profile](https://clawhub.ai/user/ruiyongwang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown guidance and persona-style responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, credential access, or hidden data flows identified by clawscan.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

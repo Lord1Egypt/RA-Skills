@@ -1,41 +1,56 @@
-## Description: <br>
-Kb Collector saves YouTube videos, URLs, and text to Obsidian with AI summarization, transcription, digest emails, and nightly research automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge Base Collector - save YouTube, URLs, text to Obsidian with AI summarization. Auto-transcribes videos, fetches pages, supports weekly/monthly digest emails and nightly research.
 
-## Publisher: <br>
-[arbiger](https://clawhub.ai/user/arbiger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arbiger](https://clawhub.ai/user/arbiger)
 
-## Use Case: <br>
-External users and developers use this skill to collect web pages, YouTube transcripts, and plain text into an Obsidian knowledge base, then generate digests or nightly AI trend research summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Digest and research scripts can email local vault-derived content when send options are enabled, including a hard-coded recipient in the digest script. <br>
-Mitigation: Review and edit the scripts before installing or running; replace recipients, vault paths, Gmail/gog authorization, and cron examples before using send options. <br>
-Risk: Fetched web pages, YouTube transcripts, and Tavily search results are saved into the user's vault and may contain untrusted or misleading content. <br>
-Mitigation: Treat collected pages, transcripts, and generated summaries as untrusted until reviewed; do not rely on them without source checking. <br>
-Risk: Nightly research requires an intentionally configured Tavily API key and may send external search queries. <br>
-Mitigation: Set TAVILY_API_KEY deliberately, review the topic list and external API behavior, and avoid scheduled runs until the configuration is correct. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/arbiger/kb-collector) <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to collect YouTube videos, web pages, and plain text into an Obsidian knowledge base, with optional transcription, summarization, digest generation, and nightly research automation.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown notes and digest text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Obsidian Markdown files and optional email digest content; local paths, recipients, and API keys must be configured before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can email local note metadata to a hard-coded external recipient.
+
+Mitigation: Do not use email features until the recipient is changed to an address you control and the message body has been previewed.
+
+Risk: The nightly research workflow can repeatedly run searches and send email in the background when scheduled with cron.
+
+Mitigation: Review cron configuration before enabling it, and run save-only mode first to inspect generated results.
+
+Risk: Running the collectors on private vaults or untrusted URLs can expose sensitive local notes or process untrusted web content.
+
+Mitigation: Avoid private vaults and untrusted URLs unless URL validation, private temporary files, and dependency pinning are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbiger/skills/kb-collector)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes, digest text, shell command examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save Markdown files to a local Obsidian vault and send digest email when send flags are used.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

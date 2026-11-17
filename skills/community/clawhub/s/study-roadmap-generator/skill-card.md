@@ -1,41 +1,58 @@
-## Description: <br>
-Generates structured Chinese study roadmaps from a learner's goal, current level, available time, and optional target direction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language structured study roadmaps from a learner's goal, current level, and available time, including phases, weekly plans, resources, common blockers, and daily pacing.
 
-## Publisher: <br>
-[seulkilu](https://clawhub.ai/user/seulkilu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seulkilu](https://clawhub.ai/user/seulkilu)
 
-## Use Case: <br>
-External users and developers use this skill to turn broad learning goals into structured Chinese roadmaps with learner profile, success criteria, staged plans, resources, common blockers, and adjustment guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may answer in Chinese even when the surrounding conversation is in another language. <br>
-Mitigation: Set the expected response language explicitly when using it in non-Chinese workflows. <br>
-Risk: The skill may activate for broad study-planning prompts. <br>
-Mitigation: Review activation behavior in the target agent and scope prompts when a generic planning response is preferred. <br>
+## Use Case:
 
+Learners and agents use this skill to turn broad study goals, current level, and time constraints into Chinese-language roadmaps with success criteria, phased plans, weekly schedules, resources, blockers, and adjustment notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seulkilu/study-roadmap-generator) <br>
-- [patterns.md](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Chinese structured roadmap text, with optional JSON output from the bundled script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Roadmaps follow a fixed six-section structure covering learner profile, success criteria, staged plan, recommended learning stack, common blockers, and dynamic adjustments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Broad activation wording may trigger the skill in general study-planning requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or narrow trigger phrasing before deployment in agents that support many planning workflows.
+
+Risk: The skill forces Chinese-language output, which may be unsuitable in multilingual workflows.
+
+Mitigation: Use it for Chinese-language roadmap workflows or localize the output-language rules before deployment.
+
+Risk: Generated learning resources and milestones may not match a learner's current constraints or external requirements.
+
+Mitigation: Have users verify resources, deadlines, and success criteria before relying on the roadmap.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seulkilu/skills/study-roadmap-generator)
+- [patterns.md](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Chinese plain text or Markdown-style tables; optional JSON from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Six-section roadmap structure covering learner profile, success criteria, phase plan, learning stack, common blockers, and dynamic adjustment notes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

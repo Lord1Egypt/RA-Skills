@@ -1,39 +1,47 @@
-## Description: <br>
-Grant helps individuals, nonprofits, startups, researchers, and small businesses find suitable grants, assess eligibility, draft applications, respond to feedback, and manage post-award compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete grant intelligence system for individuals, nonprofits, startups, researchers, and small businesses that helps find grants, assess eligibility, write applications, respond to reviewer feedback, and manage compliance.
 
-## Publisher: <br>
-[Duclawbot](https://clawhub.ai/user/Duclawbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[duclawbot](https://clawhub.ai/user/duclawbot)
 
-## Use Case: <br>
-External grant seekers and organizations use this skill to identify non-dilutive funding opportunities, evaluate eligibility and fit, structure reviewer-focused applications, plan budgets and timelines, and respond after submission. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Funding requirements, eligibility rules, and deadlines can change or be misread. <br>
-Mitigation: Verify each opportunity against official funder sources before deciding to apply or submitting materials. <br>
-Risk: Generated application text may include inaccurate claims or sensitive personal, financial, or business information. <br>
-Mitigation: Review, fact-check, and edit all generated application text before sharing it with funders, reviewers, or partners. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Grant release page](https://clawhub.ai/Duclawbot/grant) <br>
+## Use Case:
+
+External users and advisors use this skill to identify non-dilutive funding opportunities, evaluate fit, structure grant applications, draft reviewer-focused proposal content, and plan post-award reporting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for broad non-dilutive funding questions where that routing is not desired.
+
+Mitigation: Review the activation scope before deployment and narrow routing if the environment needs more specific grant-writing triggers.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with checklists, scoring rubrics, schedules, and structured application guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no code, credentials, persistence, privileged access, or external tool use indicated by the evidence.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or structured text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces grant strategy, eligibility analysis, proposal drafting guidance, checklists, reviewer-response guidance, and compliance planning content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Create detailed creative briefs for KOL and influencer partnerships covering product positioning, dos and don'ts, deliverables, and timeline expectations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create detailed creative briefs for KOL and influencer partnerships covering product positioning, dos and don'ts, deliverables, and timeline expectations.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketing teams, marketplace operators, and creator partnership managers use this skill to draft KOL and influencer campaign briefs for TikTok Shop affiliates, LIVE co-hosts, sponsored creators, and off-brand content correction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated creator briefs may include advertising, safety, certification, pricing, or performance claims that are not legally or factually substantiated. <br>
-Mitigation: Require documented substantiation and approved claim language before sending briefs to creators, especially for health, beauty, electronics, kids, food, supplements, pricing, or performance claims. <br>
-Risk: Users may mistake the drafted compliance guidance for legal or regulatory approval. <br>
-Mitigation: Treat the skill as a drafting aid and review final briefs against applicable platform, FTC, category, and brand requirements before use. <br>
+## Use Case:
 
+Marketing teams, creator managers, and ecommerce operators use this skill to draft campaign-ready briefs for TikTok Shop affiliates, LIVE co-hosts, and sponsored creators. It helps define positioning, deliverables, talking points, compliance constraints, compensation, rights, and timeline expectations.
 
-## Reference(s): <br>
-- [KOL Brief on ClawHub](https://clawhub.ai/leooooooow/kol-brief) <br>
-- [Output Template](artifact/output-template.md) <br>
-- [Positioning Angles Guide](artifact/positioning-angles-guide.md) <br>
-- [Compliance Claims Guide](artifact/compliance-claims-guide.md) <br>
-- [KOL Brief Quality Checklist](artifact/brief-quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown campaign brief with tables, lists, and checklist-style guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-facing creator brief content; does not execute code or call external tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Generated briefs may contain inaccurate legal, platform-policy, health, supplement, pricing, or usage-rights guidance if campaign inputs are incomplete or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each brief against current brand materials, platform rules, FTC disclosure expectations, campaign dates, and negotiated creator terms before use.
+
+Risk: The package may reference internal resource paths that differ from the packaged artifact layout.
+
+Mitigation: Confirm referenced template, guide, and checklist paths resolve in the installed skill before relying on them during brief generation.
+
+## Reference(s):
+
+- [Output Template - KOL Brief](output-template.md)
+- [Positioning Angles Guide](positioning-angles-guide.md)
+- [Compliance Claims Guide](compliance-claims-guide.md)
+- [KOL Brief Quality Checklist](brief-quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown brief with tables, checklists, and concise campaign guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for human review before delivery to creators, especially for legal, platform-policy, pricing, and usage-rights accuracy.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

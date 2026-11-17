@@ -1,4 +1,4 @@
-#!/home/guoxh/.openclaw/venv-clawd/bin/python
+#!/usr/bin/env python3
 """
 EXIF preservation utilities for photo editing.
 Reads EXIF from input, preserves through any processing pipeline.

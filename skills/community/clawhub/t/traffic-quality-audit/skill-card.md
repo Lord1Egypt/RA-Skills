@@ -1,43 +1,55 @@
-## Description: <br>
-Audit traffic quality beyond surface GA4 or Meta reports by mapping source and medium weight to behavioral depth, flagging likely invalid or low-intent clicks, and recommending budget cuts or exclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits GA4 and Meta traffic quality by comparing engagement depth with conversion paths, identifying likely invalid or low-intent traffic, and recommending budget cuts, pauses, exclusions, or reallocations.
 
-## Publisher: <br>
-[rijoyai](https://clawhub.ai/user/rijoyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External marketers, analysts, and commerce operators use this skill to audit GA4 and Meta traffic quality, compare engagement depth against conversion paths, and identify sources, campaigns, placements, or referrals to pause, cap, exclude, or monitor. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce forceful pause, cap, exclusion, or reallocation recommendations from incomplete analytics context. <br>
-Mitigation: Confirm GA4 and Meta data, attribution window, sample size, and business impact before changing budgets or placements. <br>
-Risk: Traffic-quality hypotheses may be mistaken when engagement, key-event, or attribution data is missing or misconfigured. <br>
-Mitigation: Treat recommendations as hypotheses and validate tracking definitions, date ranges, and conversion paths before acting. <br>
+## Use Case:
 
+External marketers, e-commerce operators, lead-generation teams, and analysts use this skill to audit traffic sources beyond surface ad metrics. It helps compare engagement and conversion-path quality, flag likely waste or invalid traffic, and produce actionable budget restraint recommendations.
 
-## Reference(s): <br>
-- [Traffic Quality Audit Skill](https://clawhub.ai/rijoyai/traffic-quality-audit) <br>
-- [Traffic Quality Playbook](references/traffic_quality_playbook.md) <br>
-- [Rijoy Brand Context](references/rijoy_brand_context.md) <br>
-- [Rijoy](https://www.rijoy.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown diagnostic tables, narrative analysis, and prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a source/medium comparison table, a dwell-time versus conversion-path section, and at least two shutoff or pause recommendations when in scope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may produce assertive ad budget pause, cut, or exclusion recommendations from incomplete or placeholder inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify recommendations against real GA4 and Meta data, aligned date ranges, and adequate sample sizes before changing campaign spend.
+
+Risk: Optional Rijoy mentions could be overused or mistaken for proof that a traffic source is high quality.
+
+Mitigation: Use Rijoy only for relevant Shopify loyalty, referral, or member-segmentation context, and confirm traffic quality through analytics data.
+
+## Reference(s):
+
+- [Traffic quality audit playbook](references/traffic_quality_playbook.md)
+- [Rijoy brand context for optional citations](references/rijoy_brand_context.md)
+- [Rijoy](https://www.rijoy.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown tables and concise prose recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes diagnostic comparison tables, dwell-time versus conversion-path analysis, and shutoff or pause recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

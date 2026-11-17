@@ -1,40 +1,53 @@
-## Description: <br>
-Helps agents plan, review, audit, and improve email workflows focused on workflow maps, lifecycle routing, trigger ownership, and operator-ready paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when Codex, Hermes, OpenClaw, Claude Code, Cowork, or another AI agent needs to plan, review, implement, audit, or improve email work focused on workflow maps, lifecycle routing, trigger ownership, and agent-readable operating paths.
 
-## Publisher: <br>
-[polnikale](https://clawhub.ai/user/polnikale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[polnikale](https://clawhub.ai/user/polnikale)
 
-## Use Case: <br>
-Developers, operators, and email teams use this skill to map lifecycle routes, review trigger logic, find routing collisions, and prepare QA-ready workflow changes before production action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email workflow recommendations may affect live sends, contact imports, suppression rules, DNS/authentication settings, or production automations if applied without review. <br>
-Mitigation: Keep the skill's approval gate in place and require explicit approval before any high-risk live-system action. <br>
-Risk: Email audits can involve customer or recipient data that is not necessary for planning. <br>
-Mitigation: Do not provide unnecessary customer data; use focused workflow details, examples, and platform exports only when needed for the review. <br>
+## Use Case:
 
+Developers, operators, and email teams use this skill to map, audit, and improve lifecycle email workflows with clear routing, QA checks, ownership, and approval gates.
 
-## Reference(s): <br>
-- [Email Workflow Skill Operating Checklist](references/operating-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown workflow maps, trigger inventories, routing diffs, handoff notes, collision audits, and QA plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit approval before live sends, contact imports, suppression changes, DNS/authentication work, or production automation edits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: Recommendations may affect live email sends, contact imports, DNS or authentication settings, suppression rules, or production automations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed live-system changes and require explicit user approval before execution.
+
+Risk: Workflow plans may create duplicate enrollment, message collisions, or bypassed suppression logic if applied without QA.
+
+Mitigation: Use trigger inventories, source-of-truth checks, collision audits, suppression checks, and operator-ready QA plans before deployment.
+
+## Reference(s):
+
+- [Email Workflow Skill Operating Checklist](references/operating-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with workflow maps, trigger inventories, routing diffs, handoff notes, collision audits, and QA plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit approval before live sends, contact imports, DNS or authentication changes, suppression edits, or production automation changes.]
+
+## Skill Version(s):
+
+0.1.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

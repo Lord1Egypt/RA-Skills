@@ -1,41 +1,55 @@
-## Description: <br>
-Tracks YouTube channel performance and analytics, including views, watch time, subscriber growth, engagement, and per-video metrics through a Boring MCP connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track YouTube channel performance and analytics, including views, watch time, subscriber growth, engagement, and per-video metrics.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-Creators, channel operators, and agents use this skill to answer YouTube analytics questions, compare channel and video performance, and summarize trends from connected read-only analytics data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP connector URL contains an embedded authentication token that can grant read-only access to YouTube analytics if exposed. <br>
-Mitigation: Treat the connector URL like a password, avoid sharing it publicly, and revoke or regenerate it in Boring settings if it is exposed. <br>
-Risk: The skill depends on a third-party Boring service to retrieve analytics data. <br>
-Mitigation: Install only if you trust Boring with read-only YouTube analytics access and review the connected account before use. <br>
+## Use Case:
 
+Creators, channel operators, and social media teams use this skill to inspect YouTube channel and video performance through Boring analytics tools. It helps summarize channel health, rank videos, compare trends, and explain common analytics errors.
 
-## Reference(s): <br>
-- [Youtube Performance on ClawHub](https://clawhub.ai/snoopyrain/youtube-performance) <br>
-- [Boring MCP connector documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries, tables, and tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only analytics data returned through the configured Boring MCP connector.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The MCP connector URL contains an embedded authentication token and functions like a read-only credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the MCP URL like a password, avoid sharing it in chats or screenshots, and revoke or regenerate it if exposed.
+
+Risk: Installing the skill grants Boring read-only access to YouTube analytics and account metadata.
+
+Mitigation: Install only when that access is acceptable for the channel, and review the connected account and token scope before use.
+
+## Reference(s):
+
+- [Boring MCP Connector documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html)
+- [Boring API documentation](https://boring-doc.aiagent-me.com)
+- [ClawHub skill page](https://clawhub.ai/snoopyrain/skills/youtube-performance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown summaries, tables, and tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include channel summaries, ranked video metrics, historical trend comparisons, and error-resolution guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

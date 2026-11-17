@@ -1,46 +1,58 @@
-## Description: <br>
-Git for your prompts. Track every change, diff versions, rollback mistakes, never lose a good prompt again. All local, zero dependencies, works offline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Git for your prompts. Track every change, diff versions, rollback mistakes, never lose a good prompt again. All local, zero dependencies, works offline.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers, prompt engineers, and AI users use Prompt Git to keep local version history for text prompts, compare revisions, roll back changes, search prompt libraries, and move prompt records through JSON or Markdown export/import workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt history is persisted locally and may include sensitive prompt content. <br>
-Mitigation: Avoid storing secrets unless local persistence is intended, and protect or back up the storage directory according to your environment. <br>
-Risk: Importing with overwrite can replace existing prompt history without an atomic rollback path. <br>
-Mitigation: Review imported JSON before use and back up important prompt history before running import --overwrite. <br>
-Risk: Concurrent writes to the same local repository can corrupt prompt history. <br>
-Mitigation: Avoid running multiple Prompt Git processes against the same repository at the same time. <br>
+## Use Case:
 
+Developers, prompt engineers, and other AI users use Prompt Git to save, diff, tag, search, export, import, and roll back text prompts in a local offline repository.
 
-## Reference(s): <br>
-- [Prompt Git on ClawHub](https://clawhub.ai/TheShadowRose/prompt-git) <br>
-- [TheShadowRose ClawHub profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [PromptGit README](README.md) <br>
-- [PromptGit Limitations](LIMITATIONS.md) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code references, shell command examples, JSON exports, Markdown exports, and text diffs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores prompt history locally, usually under ~/.promptgit; import/export workflows can read or write JSON and Markdown files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Poisoned shared, synced, or imported PromptGit repository metadata may expose local file contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing in those workflows, keep PromptGit repositories private, and import or sync only trusted repository metadata.
+
+Risk: Prompt history is stored as local JSON and text files and may contain sensitive prompts or regulated data.
+
+Mitigation: Avoid storing secrets or regulated data unless filesystem permissions, encryption, and access controls protect the storage directory.
+
+Risk: Overwrite, manual deletion, or concurrent PromptGit processes can cause data loss or repository corruption.
+
+Mitigation: Back up the repository before using overwrite or manual deletion workflows and avoid running multiple PromptGit commands against the same repository simultaneously.
+
+## Reference(s):
+
+- [Prompt Git ClawHub listing](https://clawhub.ai/theshadowrose/skills/prompt-git)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python code references, JSON configuration examples, and local file outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The documented workflow is local and offline, uses Python standard library scripts, and writes prompt history, exports, and markdown files on the user's filesystem.]
+
+## Skill Version(s):
+
+1.0.2 (source: server evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,61 @@
-## Description: <br>
-Local memory search for OpenClaw agents that runs a lightweight Node.js server to index local memory files and expose keyword search through a web UI and API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recall Local provides local memory search for OpenClaw agents by running a lightweight Node.js server that indexes ~/clawd/memory/, MEMORY.md, and WORKING.md, then exposes keyword search over them.
 
-## Publisher: <br>
-[wrentheai](https://clawhub.ai/user/wrentheai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wrentheai](https://clawhub.ai/user/wrentheai)
 
-## Use Case: <br>
-Developers and OpenClaw agent users use this skill to search past local memory, session history, daily logs, decisions, and resolved issues without relying on external services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive local agent memory may be exposed through an unauthenticated HTTP server. <br>
-Mitigation: Use the skill only when local memory search is intended, bind the listener to 127.0.0.1 where possible, and add access controls before exposing it beyond the local machine. <br>
-Risk: The server can be installed as a persistent login service. <br>
-Mitigation: Avoid loading the LaunchAgent unless persistent startup is intended, and review or remove the login item when the server is no longer needed. <br>
+## Use Case:
 
+Developers and agent users use Recall Local to set up and query a local index of OpenClaw memory files when they need to retrieve prior session history, decisions, fixes, or learned context.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and a local JSON HTTP API response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can start or check a local server and return search results from local memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Private agent memory may be exposed through an unauthenticated local web service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the service to 127.0.0.1, avoid LAN exposure by default, and require authentication before any network-accessible deployment.
+
+Risk: Search responses may expose sensitive memory content or absolute local file paths.
+
+Mitigation: Return only the minimum source metadata needed for users, avoid absolute file paths, and review results before sharing them outside the local machine.
+
+Risk: A persistent LaunchAgent can keep the service running after setup.
+
+Mitigation: Make auto-start an explicit optional step and document how to stop and uninstall the LaunchAgent.
+
+Risk: Empty searches can return recent memory chunks without a specific query.
+
+Mitigation: Reject empty searches or require an explicit user action before showing unfiltered memory content.
+
+## Reference(s):
+
+- [Recall Local skill page](https://clawhub.ai/wrentheai/skills/recall-local)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup, start, health-check, and search guidance for a local memory search service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

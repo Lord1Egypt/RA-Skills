@@ -1,49 +1,62 @@
-## Description: <br>
-Generates configurable technology news digests from RSS, Twitter/X, GitHub, Reddit, web search, and YouTube-over-RSS sources using quality scoring, deduplication, and multi-format delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate tech news digests with unified source model, quality scoring, and multi-format output.
 
-## Publisher: <br>
-[dinstein](https://clawhub.ai/user/dinstein) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinstein](https://clawhub.ai/user/dinstein)
 
-## Use Case: <br>
-Developers, operators, and content teams use this skill to collect, score, deduplicate, summarize, archive, and deliver daily or weekly technology news digests across configured topics and channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches many external sources and can use configured credentials for Twitter/X, web search, GitHub, and delivery channels. <br>
-Mitigation: Review configured sources and tokens before installation, use least-privilege credentials, and disable optional sources or credentials that are not needed. <br>
-Risk: Email, Discord, and PDF delivery can send generated digest content to third-party channels or recipients. <br>
-Mitigation: Confirm channel IDs, recipient addresses, templates, and schedules before enabling automated delivery. <br>
-Risk: Archived digests are written under the workspace and may retain prior report content for deduplication. <br>
-Mitigation: Verify archive retention and cleanup behavior match local data-handling expectations before scheduling recurring runs. <br>
-Risk: GitHub access can fall back to local gh CLI credentials when other GitHub credentials are unavailable. <br>
-Mitigation: Avoid enabling gh CLI fallback if the skill should not use the local GitHub session. <br>
+## Use Case:
 
+Developers and technical teams use this skill to collect, score, deduplicate, summarize, archive, and deliver recurring technology news digests across RSS, Twitter/X, GitHub, Reddit, and web search sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinstein/tech-news-digest) <br>
-- [Digest prompt template](artifact/references/digest-prompt.md) <br>
-- [Configuration schema](artifact/config/schema.json) <br>
-- [Discord output template](artifact/references/templates/discord.md) <br>
-- [Email output template](artifact/references/templates/email.md) <br>
-- [PDF output template](artifact/references/templates/pdf.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown digests, JSON pipeline outputs, optional HTML email and PDF report files, and shell command/configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Discord, email, Markdown, and PDF delivery paths; archives generated digests for deduplication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.16.0 (source: server release metadata, SKILL.md frontmatter, and changelog released 2026-03-26) <br>
+Risk: Scheduled shell workflows can repeatedly run the digest pipeline and deliver results outside the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every scheduled job, workspace path, channel ID, email address, and delivery destination before enabling automation.
+
+Risk: The skill can use API tokens and credential fallbacks for Twitter/X, web search, and GitHub.
+
+Mitigation: Use least-privilege tokens in a dedicated workspace and avoid GH_APP_KEY_FILE or gh CLI fallback unless those paths are required.
+
+Risk: Configurable source URLs and enrichment fetch external content that may be untrusted.
+
+Mitigation: Use trusted source configurations, disable enrichment for untrusted feeds, and do not import third-party source configs until private-network URL blocking and safer command construction are added.
+
+## Reference(s):
+
+- [Tech News Digest Source Repository](https://github.com/draco-agent/tech-news-digest)
+- [Digest Prompt Template](references/digest-prompt.md)
+- [Discord Output Template](references/templates/discord.md)
+- [Email Output Template](references/templates/email.md)
+- [PDF Output Template](references/templates/pdf.md)
+- [ClawHub Skill Page](https://clawhub.ai/dinstein/skills/tech-news-digest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, HTML email, PDF-oriented markdown, JSON pipeline data, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces quality-scored digest content, source-count metadata, archive files, optional email HTML, and optional PDF attachments.]
+
+## Skill Version(s):
+
+3.16.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

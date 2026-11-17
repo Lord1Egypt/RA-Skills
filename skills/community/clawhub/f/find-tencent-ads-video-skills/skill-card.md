@@ -1,38 +1,48 @@
-## Description: <br>
-This release contains a temporary removal notice for a Tencent Ads video-search skill and does not provide operational instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This release only provides a temporary removal notice for the Find Tencent Ads Video Skills package.
 
-## Publisher: <br>
-[jolinbaby](https://clawhub.ai/user/jolinbaby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jolinbaby](https://clawhub.ai/user/jolinbaby)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agents can use this version only to report that the skill is unavailable during upgrades. Users who need Tencent Ads video search should wait for a future release with functional behavior.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may expect Tencent Ads video search behavior that is not present in this release.
+
+Mitigation: Treat version 1.0.1 as a temporary unavailable release and wait for a future version before relying on it for Tencent Ads video search workflows.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents would use this skill to support Tencent Ads video discovery workflows, but version 1.0.1 is inactive and only announces that the skill has been temporarily removed for internal adjustments and optimization. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users expecting Tencent Ads video search capability may rely on a nonfunctional release. <br>
-Mitigation: Treat version 1.0.1 as inactive and re-review any future version if it adds code, external-service instructions, account access, browser/session use, or credential requirements. <br>
+**Output Format:** [Markdown notice]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jolinbaby/find-tencent-ads-video-skills) <br>
+**Other Properties Related to Output:** [No functional agent behavior is present in version 1.0.1.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Links] <br>
-**Output Format:** [Markdown notice in this version; search-result text and links when functional.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Version 1.0.1 has no operational instructions, code, or data access behavior.] <br>
+1.0.1 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

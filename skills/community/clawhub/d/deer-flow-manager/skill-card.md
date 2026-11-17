@@ -1,41 +1,63 @@
-## Description: <br>
-Deer Flow Manager guides an agent through installing, configuring, updating, uninstalling, and troubleshooting DeerFlow 2.0. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deer Flow Manager helps agents install, configure, update, uninstall, start, and troubleshoot DeerFlow 2.0.
 
-## Publisher: <br>
-[braveheartzjh](https://clawhub.ai/user/braveheartzjh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[braveheartzjh](https://clawhub.ai/user/braveheartzjh)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage a local DeerFlow 2.0 installation, including model setup, dependency checks, service startup, updates, removal, and common startup troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides real install, update, and uninstall commands that can change or remove a local DeerFlow directory. <br>
-Mitigation: Review commands before running them, confirm ~/deer-flow is the intended directory, and back up config.yaml, .env, logs, and custom changes before rebuilding or uninstalling. <br>
-Risk: Model setup may involve API keys or other sensitive credentials. <br>
-Mitigation: Keep API keys in environment variables or local secret storage, and avoid placing secrets in chat transcripts or source control. <br>
+## Use Case:
 
+Developers and operators use this skill to manage the DeerFlow 2.0 lifecycle, including setup, model configuration, updates, uninstallation, startup, and common troubleshooting.
 
-## Reference(s): <br>
-- [DeerFlow 2.0 command reference](references/deer-flow-commands.md) <br>
-- [DeerFlow upstream repository](https://github.com/bytedance/deer-flow.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command tables, file locations, and troubleshooting steps for local DeerFlow management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Installation and update steps can run high-impact commands or downloaded installer scripts with weak verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, prefer pinned DeerFlow releases or verified commits, and inspect downloaded installer scripts before running them.
+
+Risk: Privileged package installation and remote setup commands can expand the impact of a compromised or incorrect command.
+
+Mitigation: Avoid sudo -E for remote scripts and use the least privilege needed for package installation.
+
+Risk: Update and uninstall workflows can remove virtual environments, temporary files, or the DeerFlow install directory.
+
+Mitigation: Back up config.yaml, .env, and logs before update, cleanup, or uninstall steps.
+
+Risk: Model provider configuration can expose API keys if users paste secrets into chat or store them in broadly readable files.
+
+Mitigation: Do not paste raw API keys into chat, and store secrets in environment variables or files with restricted permissions.
+
+## Reference(s):
+
+- [DeerFlow command reference](references/deer-flow-commands.md)
+- [DeerFlow GitHub repository](https://github.com/bytedance/deer-flow.git)
+- [ClawHub skill page](https://clawhub.ai/braveheartzjh/skills/deer-flow-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands and YAML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command tables, file paths, service ports, and model configuration templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

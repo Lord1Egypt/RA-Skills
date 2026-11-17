@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ns:Reply xmlns:ns="http://www.promostandards.org/WSDL/InventoryService/1.0.0/">
+      <ns:productID>NOPE</ns:productID>
+      <ns:errorMessage>Invalid product identifier</ns:errorMessage>
+    </ns:Reply>
+  </soapenv:Body>
+</soapenv:Envelope>

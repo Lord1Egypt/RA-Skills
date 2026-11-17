@@ -1,42 +1,58 @@
-## Description: <br>
-Research competitors, analyze top-ranking content, and generate a fully SEO-optimized 2000+ word blog post with headings, FAQ, meta description, and internal linking suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research competitors, analyze top-ranking content, and generate a fully SEO-optimized 2000+ word blog post with headings, FAQ, meta description, and internal linking suggestions.
 
-## Publisher: <br>
-[dreamsarts](https://clawhub.ai/user/dreamsarts) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dreamsarts](https://clawhub.ai/user/dreamsarts)
 
-## Use Case: <br>
-Developers, marketers, and content teams use this skill to research search competitors and generate publication-ready SEO blog posts with metadata, headings, FAQ content, and internal-link suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a live Chrome session to browse Google search results and competitor sites from the user's machine. <br>
-Mitigation: Run it with an isolated Chrome profile or test account, and confirm that automated browsing is acceptable for the target environment. <br>
-Risk: The skill sends researched competitor context and the generated prompt to Gemini for content generation. <br>
-Mitigation: Avoid confidential campaign, client, or unpublished business data in prompts, and review generated articles before publishing. <br>
-Risk: The artifact references a hard-coded local .env path for the Gemini API key. <br>
-Mitigation: Provide a dedicated Gemini API key through a controlled environment variable or deployment secret instead of relying on a personal local path. <br>
+## Use Case:
 
+Developers, marketers, and content teams use this skill to research search results for a target keyword and generate a publication-ready SEO blog article in Markdown. It supports CLI and Python workflows with optional brand, location, tone, target word count, and research controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dreamsarts/openclaw-seo-content-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown article with YAML frontmatter, plus CLI and Python usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated articles can include title, meta description, target and secondary keywords, estimated word count, reading time, FAQ sections, and internal-link suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A hard-coded local .env path can cause unexpected secret loading behavior or installation failures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or change the hard-coded .env path and provide GEMINI_API_KEY explicitly in a dedicated project environment.
+
+Risk: The research phase connects to Chrome on localhost with an authenticated browser session.
+
+Mitigation: Use an isolated Chrome profile for remote debugging and avoid running the skill against a personal browsing session.
+
+Risk: Generated SEO articles may contain inaccurate, outdated, or unsuitable claims.
+
+Mitigation: Review generated articles for factual accuracy, originality, brand fit, and publication readiness before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dreamsarts/skills/openclaw-seo-content-engine)
+- [Publisher profile](https://clawhub.ai/user/dreamsarts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown article with YAML frontmatter, headings, FAQ, meta description, and internal link suggestions; output may be printed to stdout or saved to a file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated articles should be manually reviewed before publication; default target length is 2000+ words and the generator uses a maximum Gemini response size of 8192 tokens.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

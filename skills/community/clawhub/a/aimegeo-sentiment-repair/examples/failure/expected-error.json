@@ -1,0 +1,6 @@
+{
+  "status": "error",
+  "code": "evidence_required",
+  "field": "claims.C1.evidence",
+  "message": "判定缺少所需的当前或历史证据关系"
+}

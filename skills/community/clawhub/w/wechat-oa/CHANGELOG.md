@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-07-05
+
+### Changed
+- **架构重构**：项目从单文件 2600+ 行代码重构为模块化包结构 `wechat_oa/`
+- **转换逻辑外包**：MD→微信HTML 使用 `md2wxhtml` 库，HTML→微信HTML 使用 `premailer + bleach` 库
+- **Token 管理增强**：新增 `TokenManager` 类，支持 access_token 智能缓存，减少 API 调用
+- **路由模式统一**：新增 `@hybrid_route` 装饰器，消除 ~10 处重复的 direct/relay/hybrid 路由逻辑
+- **命令行框架升级**：从自建命令解析改为 `click` 框架
+- **摘要生成优化**：支持 Agent 驱动生成摘要（`--digest` 参数）+ 规则回退机制
+- **版本号跃升到 3.0.0**：标记重大架构重构完成
+
+### Added
+- **新包结构**：`wechat_oa/core/`、`wechat_oa/convert/`、`wechat_oa/api/`、`wechat_oa/features/`、`wechat_oa/cli/`
+- **`pyproject.toml`**：规范的依赖管理和包安装支持
+- **测试套件**：`tests/` 目录包含 8 个单元测试，覆盖配置、转换、功能模块
+- **`TokenManager`**：access_token 获取、缓存、自动刷新
+- **字符单位计算**：`count_wechat_units()` 正确处理中文/英文/Emoji 混合计数
+- **摘要验证**：`validate_digest()` 和 `truncate_digest()` 确保符合微信 API 限制
+
+### Removed
+- **去 AI 味功能**：`quaiwei_server.py` 及相关触发词
+- **正文配图生成**：`generate_infographic.py`（非核心功能，硬编码 Windows 路径）
+- **旧版主文件**：`wechat_push.py`、`relay_client.py`
+- **旧版测试文件**：`test_author_truncate.py`、`test_encoding_fix.py`、`test_new_author_truncate.py`
+- **内置 CSS**：`wechat_style.css`（转换逻辑外包后不再需要）
+- **scripts/ 目录**：早期原型脚本，功能已覆盖
+
+### Updated
+- **SKILL.md**：清理触发词，添加详细的摘要生成规范，更新命令示例
+- **config.example.json**：删除 `CLAUDE_API_KEY`、`ALIPAY_AI_PAY_SKILL_ID` 字段
+
 ## [2.0.0] - 2026-06-29
 
 ### Changed

@@ -1,43 +1,59 @@
-## Description: <br>
-Performs a comprehensive, portfolio-level risk analysis by calculating Value at Risk, max drawdown, correlation, historical stress tests, and concentration risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs a comprehensive, portfolio-level risk analysis by calculating Value at Risk, max drawdown, correlation, historical stress tests, beta, and concentration risk.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-External users and developers use this skill to evaluate equity portfolio risk from holdings data, including VaR, CVaR, drawdown, beta, stress-test, correlation, and concentration analysis. The outputs are intended as educational risk flags and portfolio review support, not trade recommendations or financial planning advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes private portfolio holdings and saves portfolio-derived reports locally. <br>
-Mitigation: Run it in a trusted environment, choose a secure output directory, and delete generated reports when they are no longer needed. <br>
-Risk: The skill depends on unpinned Python packages and queries Yahoo Finance for market data. <br>
-Mitigation: Install dependencies in an isolated environment that is acceptable for unpinned packages, and review downloaded data before relying on the analysis. <br>
-Risk: Generated action items could be mistaken for trade instructions. <br>
-Mitigation: Treat action items as educational risk flags and review them against the user's own investment policy or qualified financial advice before taking action. <br>
+## Use Case:
 
+External users and developers use this skill to analyze equity portfolio risk from holdings data, including VaR, CVaR, drawdown, stress-test exposure, correlation, beta, and concentration signals. The resulting reports support risk review and portfolio monitoring, not personalized financial advice.
 
-## Reference(s): <br>
-- [Risk Methodologies Reference](references/risk_methodologies.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/clawdiri-ai/einstein-research-portfolio-risk-dv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Natural language summary with generated Markdown and JSON portfolio risk reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided portfolio holdings and local Python dependencies; saves reports locally by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill handles sensitive portfolio holdings and writes detailed financial reports locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a private working directory, avoid shared or synced report folders, and limit access to generated reports.
+
+Risk: The security review flags under-disclosed investment action recommendations.
+
+Mitigation: Treat action items as informational risk analysis and review outputs with appropriate financial judgment before acting.
+
+Risk: The script depends on third-party market data and Python packages.
+
+Mitigation: Install dependencies in a virtual environment with pinned versions when possible and review fetched data quality before relying on results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawdiri-ai/skills/einstein-research-portfolio-risk-dv)
+- [Publisher profile](https://clawhub.ai/user/clawdiri-ai)
+- [Risk Methodologies Reference](references/risk_methodologies.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Natural-language guidance with Markdown reports, JSON report files, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates local portfolio risk reports from user-supplied holdings and Yahoo Finance market data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; source skill frontmatter declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

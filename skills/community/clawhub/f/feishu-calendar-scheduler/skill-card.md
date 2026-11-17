@@ -1,43 +1,67 @@
-## Description: <br>
-Helps OpenClaw users recommend meeting times, manage Feishu calendar events in batches, and generate meeting reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends Feishu meeting times, supports batch schedule management, and generates meeting reports for OpenClaw users.
 
-## Publisher: <br>
-[2389275723](https://clawhub.ai/user/2389275723) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2389275723](https://clawhub.ai/user/2389275723)
 
-## Use Case: <br>
-Employees and operations teams use this skill to find available meeting slots, coordinate Feishu calendar changes, and produce meeting utilization reports for enterprise scheduling workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Developer-only publishing and license-management tooling may expose credentials or perform broad upload behavior. <br>
-Mitigation: Review or remove scripts/api_publisher.py, scripts/license_manager.py, and other developer-only files before installation. <br>
-Risk: Bulk calendar operations could create, modify, cancel, or notify attendees for the wrong meetings. <br>
-Mitigation: Require explicit previews and user confirmation before any bulk calendar changes or attendee notifications. <br>
-Risk: Calendar data and report exports may include sensitive scheduling information. <br>
-Mitigation: Limit local caching and report exports to approved data, storage locations, and retention periods. <br>
+## Use Case:
 
+Employees and developers use this skill to automate Feishu calendar scheduling workflows, including meeting time recommendations, batch meeting management, and meeting-report generation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/2389275723/feishu-calendar-scheduler) <br>
-- [Feishu Calendar Scheduler Documentation](https://docs.clawhub.com/skills/feishu-calendar-scheduler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce meeting-time recommendations, batch scheduling instructions, report-generation commands, and local configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact package metadata) <br>
+Risk: Bundled publishing tooling includes hard-coded credential material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded token from the artifact and rotate any exposed ClawHub credential before use.
+
+Risk: Publishing tooling can upload broad sets of local skill files.
+
+Mitigation: Require explicit user confirmation and a file allowlist before any upload or publication action.
+
+Risk: Installation and helper scripts may be unsafe on machines with sensitive files.
+
+Mitigation: Review the scripts first and run installation only in an isolated environment or a least-privilege workspace.
+
+Risk: Bulk calendar actions can create, modify, or cancel meetings at scale.
+
+Mitigation: Preview affected events and require explicit confirmation before performing any bulk calendar operation.
+
+Risk: Artifact fixtures include real-looking license and user data.
+
+Mitigation: Remove fixture data from release packages or replace it with clearly synthetic examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2389275723/skills/feishu-calendar-scheduler)
+- [ClawHub documentation](https://docs.clawhub.com/skills/feishu-calendar-scheduler)
+- [ClawHub publisher profile](https://clawhub.ai/user/2389275723)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate calendar recommendations, command examples, configuration files, and report-export guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact package metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

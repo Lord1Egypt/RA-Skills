@@ -1,41 +1,54 @@
-## Description: <br>
-Generate images using a local SGLang-Diffusion server with an OpenAI-compatible image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images through a locally running SGLang-Diffusion server using its OpenAI-compatible image generation API.
 
-## Publisher: <br>
-[jiangyukunok](https://clawhub.ai/user/jiangyukunok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangyukunok](https://clawhub.ai/user/jiangyukunok)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate image files from text prompts through a local or trusted SGLang-Diffusion server. It supports common image-generation options such as size, negative prompts, denoising steps, guidance scale, seed, server URL, output path, and optional API key configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and optional credentials are sent to the configured SGLang-Diffusion server. <br>
-Mitigation: Use only a local or trusted server and prefer the SGLANG_DIFFUSION_API_KEY environment variable instead of passing API keys directly on the command line. <br>
-Risk: Generated image files are written to local storage. <br>
-Mitigation: Choose an appropriate output path and review generated files before sharing or retaining them. <br>
+## Use Case:
 
+Developers and image-generation users use this skill to ask an agent to create PNG images through a configured local SGLang-Diffusion server, with optional prompt, size, seed, denoising, guidance, output path, and API-key settings.
 
-## Reference(s): <br>
-- [SGLang Project](https://github.com/sgl-project/sglang) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jiangyukunok/sglang-diffusion) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and saved image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script writes a PNG image locally and prints a MEDIA path for supported chat providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can send prompts and optional API credentials to a user-selected SGLang-Diffusion server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the default localhost server or HTTPS for remote servers, and provide real API keys through environment variables or protected configuration instead of command-line arguments.
+
+Risk: The skill depends on an external local or remote image-generation service being available and compatible with the OpenAI-style images endpoint.
+
+Mitigation: Confirm the SGLang-Diffusion server is running and reachable before invoking the generator.
+
+## Reference(s):
+
+- [SGLang project](https://github.com/sgl-project/sglang)
+- [ClawHub skill page](https://clawhub.ai/jiangyukunok/skills/sglang-diffusion)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance and shell commands; generated image output is saved as a PNG file path with a MEDIA line.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a reachable SGLang-Diffusion server; defaults to localhost and timestamped PNG output in /tmp/.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

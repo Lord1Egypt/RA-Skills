@@ -1,41 +1,56 @@
-## Description: <br>
-Use Context Hub (chub) to fetch versioned API docs and skills before coding, then persist learnings with annotations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Context Hub (chub) to fetch versioned API docs/skills before coding, then persist learnings with annotations.
 
-## Publisher: <br>
-[victorlin-houzz](https://clawhub.ai/user/victorlin-houzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[victorlin-houzz](https://clawhub.ai/user/victorlin-houzz)
 
-## Use Case: <br>
-Developers and coding agents use this skill before implementing third-party API or SDK integrations where current documentation, version behavior, webhooks, streaming, auth, or schema details affect correctness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on the @aisuite/chub CLI and fetched documentation, which can affect implementation choices for high-impact integrations. <br>
-Mitigation: Install only if the CLI is trusted, review fetched references before high-impact changes, and use version targeting when SDK major versions differ. <br>
-Risk: Annotations and saved .context files could accidentally capture secrets, tokens, private customer data, or overly broad internal notes. <br>
-Mitigation: Keep annotations concise and non-sensitive, and review saved context files before committing or sharing them. <br>
+## Use Case:
 
+Developers and coding agents use this skill to fetch current API, SDK, and integration documentation before implementation, then capture concise annotations for reusable project knowledge.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/victorlin-houzz/context-hub-openclaw) <br>
-- [Context Hub repository](https://github.com/andrewyng/context-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the chub CLI; may save fetched references under .context and create concise annotations without secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill may install or rely on an unpinned Context Hub CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted Context Hub CLI source and consider pinning the package version in controlled environments.
+
+Risk: Annotations can send project-derived text to an external Context Hub.
+
+Mitigation: Review and sanitize annotations before use, excluding secrets, private code, customer data, internal URLs, request bodies, and environment-specific identifiers.
+
+## Reference(s):
+
+- [Context Hub GitHub Repository](https://github.com/andrewyng/context-hub)
+- [Context Hub CLI npm Package](https://www.npmjs.com/package/@aisuite/chub)
+- [ClawHub Skill Listing](https://clawhub.ai/victorlin-houzz/skills/context-hub-openclaw)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/victorlin-houzz)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference JSON output from chub commands and local project notes.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

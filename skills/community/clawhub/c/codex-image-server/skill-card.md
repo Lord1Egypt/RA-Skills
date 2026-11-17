@@ -1,43 +1,58 @@
-## Description: <br>
-Exposes local Codex image generation as a local HTTP API for apps such as Photoshop plugins, design tools, and internal image workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user wants to turn local Codex image_generation capability into a local HTTP image server for apps such as Photoshop plugins, design tools, or internal image workflows.
 
-## Publisher: <br>
-[catrefuse](https://clawhub.ai/user/catrefuse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[catrefuse](https://clawhub.ai/user/catrefuse)
 
-## Use Case: <br>
-Developers and engineers use this skill to add or validate a local Codex-backed image generation HTTP server for trusted desktop apps, design tools, or internal workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included server template exposes powerful local image-generation endpoints broadly. <br>
-Mitigation: Review before installing or copying the template, use it only in trusted projects, bind it to 127.0.0.1, add authentication, and restrict CORS to trusted origins. <br>
-Risk: Prompts or reference images can be sent to OpenAI automatically when the remote backend is selected by environment configuration. <br>
-Mitigation: Choose the backend explicitly and remove OPENAI_API_KEY from the environment unless remote processing is intended. <br>
-Risk: Serving generated files can expose absolute paths or unsafe image identifiers. <br>
-Mitigation: Avoid returning absolute paths and sanitize image IDs before serving files. <br>
+## Use Case:
 
+Developers and engineers use this skill to expose local Codex image generation through a local HTTP API for design tools, Photoshop plugins, and internal image workflows. It helps add health, capability, generation, image-file, cancellation, size-validation, and smoke-test behavior.
 
-## Reference(s): <br>
-- [HTTP Contract](references/http-contract.md) <br>
-- [Codex Image Server ClawHub Page](https://clawhub.ai/catrefuse/codex-image-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code, shell commands, configuration details, and HTTP contract references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local server routes, request and response shapes, validation checks, and smoke-test commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The server template can fall back to remote OpenAI image APIs when an OpenAI API key is present, which may send prompts and reference images outside the local Codex path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit backend choice and disable automatic OpenAI fallback unless remote OpenAI use is intended and approved.
+
+Risk: The generated HTTP server is intended for local use but keeps authentication optional and uses permissive CORS, which can expose generation and image-file routes if bound beyond loopback.
+
+Mitigation: Bind only to loopback unless protected, and add authentication plus an origin allowlist before exposing the server to other hosts.
+
+Risk: Generated and reference images may persist in output directories, and decoded image identifiers need strict validation before file serving.
+
+Mitigation: Restrict served files to the intended output directory, validate image IDs before path resolution, and define cleanup and retention for generated and reference images.
+
+## Reference(s):
+
+- [HTTP Contract](references/http-contract.md)
+- [ClawHub skill page](https://clawhub.ai/catrefuse/skills/codex-image-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Node.js HTTP server code, route contracts, smoke-test commands, and validation guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

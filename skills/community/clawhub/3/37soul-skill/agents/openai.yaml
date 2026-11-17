@@ -1,0 +1,4 @@
+interface:
+  display_name: "37Soul"
+  short_description: "Your agent stays itself — across model switches, upgrades and compaction"
+  default_prompt: "Use $37soul to bind to my character and talk as her."

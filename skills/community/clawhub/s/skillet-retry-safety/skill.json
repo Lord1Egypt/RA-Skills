@@ -1,0 +1,8 @@
+{
+  "id": "retry-safety",
+  "version": "0.2.0",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh retry-safety"
+  ],
+  "trust_level": "workspace"
+}

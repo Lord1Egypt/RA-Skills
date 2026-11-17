@@ -1,0 +1,75 @@
+{
+  "id": "domain-twitch",
+  "label": "Twitch — Live Streaming Platform",
+  "emoji": "📺",
+  "domain": "twitch.tv",
+  "description": "Twitch — live streaming platform. Video player with chat sidebar. React-based. Following directory, channel pages, chat. Login via email/phone + password + 2FA common.",
+  "source_patterns": [
+    "Browse directory: grid of live channels, card previews, scroll through categories",
+    "Channel page: video player (top/left) + chat sidebar (bottom/right). React SPA transitions 1-2s",
+    "Chat interaction: view scrolling messages, click input → 500-800ms think → type message → Enter to send",
+    "Follow/unfollow: click follow button, brief animation, no page reload",
+    "Clip creation: click clip button → 1-2s modal → trim → publish",
+    "Subscription flow: click subscribe → modal → select tier → payment confirm → 2FA if enabled",
+    "Login: email/phone → 1-3s → password → 2FA (TOTP/SMS, common for streamers)"
+  ],
+  "active_hours": {
+    "description": "Gaming/streaming hours — peaks afternoon, evening, late night",
+    "peak": [14, 17, 19, 23, 0],
+    "off_peak_min": 6
+  },
+  "typing": {
+    "wpm": { "min": 60, "max": 100 },
+    "profile": "fast_chat",
+    "think_prob": 0.008,
+    "think_ms": [200, 800],
+    "backspace_freq": 0.025,
+    "chat_speed_wpm": { "min": 80, "max": 120 },
+    "message_length_chars": { "min": 10, "max": 200 }
+  },
+  "scroll": {
+    "passes": 4,
+    "description": "Directory browse — grid grid-style scroll, fast passes through category rows. Chat auto-scroll — no manual scroll needed",
+    "speed_px_per_ms": { "min": 40, "max": 80 },
+    "pause_between_passes_ms": { "min": 800, "max": 2000 },
+    "depth_per_pass": { "min": 0.4, "max": 0.7 },
+    "infinite_scroll_detection": "div[data-test-selector='directory-grid'] > div count"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 1000, "max": 2500 },
+    "pre_click_pause_ms": { "min": 200, "max": 700 },
+    "inter_action_pause_ms": { "min": 400, "max": 1200 },
+    "post_modal_pause_ms": { "min": 1000, "max": 2000 }
+  },
+  "mouse": {
+    "speed": 1.3,
+    "curvature": 0.18,
+    "jitter": 0.28,
+    "description": "Moderate-fast — gaming audience accustomed to quick cursor movements"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "directory_grid": "div[data-test-selector='directory-grid']",
+      "channel_card": "a[data-test-selector='channel-card']",
+      "video_player": "video[data-a-target='video-player']",
+      "chat_container": "section[data-test-selector='chat-room-component']",
+      "chat_input": "textarea[data-a-target='chat-input']",
+      "follow_button": "button[data-a-target='follow-button']",
+      "login_form": "form[data-a-target='login-form']"
+    },
+    "requires_login": false,
+    "login": {
+      "pre_login_pause_ms": 2000,
+      "field_pause_ms": { "min": 400, "max": 1000 },
+      "post_login_wait_ms": { "min": 3000, "max": 6000 },
+      "has_2fa": true,
+      "tfa_methods": ["totp", "sms"]
+    },
+    "chat": {
+      "pre_type_pause_ms": { "min": 500, "max": 1200 },
+      "post_send_pause_ms": { "min": 800, "max": 2000 },
+      "auto_scroll_detection": "new-message indicator click"
+    },
+    "sequence_hint": "navigate directory → browse categories (3-4 passes) → click channel → wait player+chat → read chat → click input → type message → send | click follow | click clip → trim → publish"
+  }
+}

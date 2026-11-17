@@ -1,0 +1,13 @@
+{
+  "ownerId": "583963",
+  "slug": "use-case-miner",
+  "version": "1.5.3",
+  "workflow": "product",
+  "focus": "use_cases",
+  "outputTemplate": "ops_product",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ],
+  "releaseWave": 3
+}

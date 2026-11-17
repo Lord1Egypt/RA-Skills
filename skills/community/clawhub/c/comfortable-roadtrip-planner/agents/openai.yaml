@@ -1,0 +1,4 @@
+interface:
+  display_name: "Comfortable Roadtrip Planner"
+  short_description: "Comfort-first 自驾路书: HTML route maps, A/B/C stops, pregnancy-friendly pacing, weather, meals, calendar"
+  default_prompt: "Use $comfortable-roadtrip-planner to build a comfort-first road trip with an interactive HTML route map, flip-card stop details, swipeable stop photo galleries, Apple/Google/Amap/Baidu map choices, weather, meals, and calendar import."

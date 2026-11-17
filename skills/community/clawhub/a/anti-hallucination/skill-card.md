@@ -1,40 +1,54 @@
-## Description: <br>
-Prevents AI from fabricating facts by forcing source-based responses and uncertainty statements when records are missing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prevents AI from fabricating facts by requiring source-based responses: if a claim is not supported by records, the agent should say it is not sure instead of inventing details.
 
-## Publisher: <br>
-[yiping3](https://clawhub.ai/user/yiping3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yiping3](https://clawhub.ai/user/yiping3)
 
-## Use Case: <br>
-External users, teams, and developers use this skill to make AI assistants check available records before making factual claims, especially in client communication, customer support, research, investment analysis, and content workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make an assistant more cautious, leading to more refusals or uncertainty statements when records are missing. <br>
-Mitigation: Review strict mode, trigger phrase behavior, and expected source availability before deployment. <br>
-Risk: Optional deep-check behavior may cause the assistant to search files or the web more often than intended. <br>
-Mitigation: Keep check_depth set to basic unless web cross-verification is explicitly desired. <br>
+## Use Case:
 
+External users, developers, and teams use this skill to make an AI assistant check available records before making factual claims, cite sources when support exists, and decline or ask for clarification when support is missing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yiping3/anti-hallucination) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown or plain text responses with source references, uncertainty statements, or requests for clarification.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only behavior; no external scripts, API calls, or code execution are shipped in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad local-record checks could expose private memory, documents, or knowledge-base content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure an explicit source allowlist and confirm requester authorization before the agent inspects or cites local records.
+
+Risk: Source citations may reveal sensitive filesystem paths or internal document locations.
+
+Mitigation: Use approved citation formats and avoid exposing sensitive paths unless the environment and audience permit it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yiping3/skills/anti-hallucination)
+- [Publisher profile](https://clawhub.ai/user/yiping3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Plain text or Markdown with source citations, uncertainty statements, and optional JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed to make the agent cite approved records for supported claims and withhold unsupported factual assertions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

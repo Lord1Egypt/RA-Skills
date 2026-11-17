@@ -1,0 +1,27 @@
+{
+  "name": "chinese-trademark-search-skill",
+  "version": "1.2.0",
+  "private": false,
+  "type": "module",
+  "description": "OpenClaw / ClawHub skill for searching Chinese trademarks through a hosted platform API.",
+  "main": "scripts/cli.mjs",
+  "bin": {
+    "tm-search": "scripts/cli.mjs"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/lengqifeng/chinese-trademark-search-skill.git"
+  },
+  "keywords": ["trademark", "china", "search", "api", "openclaw", "cnipa"],
+  "author": "ZhengQu AI IP",
+  "license": "Apache-2.0",
+  "files": ["scripts/", "agents/", "*.md", "LICENSE", "NOTICE"],
+  "scripts": {
+    "lint": "node --check scripts/cli.mjs",
+    "test": "node --test scripts/cli.test.mjs",
+    "run": "node scripts/cli.mjs"
+  }
+}

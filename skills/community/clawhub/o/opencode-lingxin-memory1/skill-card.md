@@ -1,42 +1,61 @@
-## Description: <br>
-为 OpenCode AI 助手提供轻量级跨会话记忆持久化，面向灵芯派等低资源设备，并支持通过 Git 和 Gitee 同步备份。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为 OpenCode AI 助手提供轻量级记忆持久化，面向灵芯派等低资源设备保存跨会话上下文并支持 Gitee 同步。
 
-## Publisher: <br>
-[nmww](https://clawhub.ai/user/nmww) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nmww](https://clawhub.ai/user/nmww)
 
-## Use Case: <br>
-Developers and operators using OpenCode on SmartPi, ARM64, or other constrained Debian-style devices use this skill to preserve local assistant context, review prior work, and synchronize memory files to a configured Gitee repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local memory files may contain private chat context, host details, credentials, or other sensitive information that could be pushed to a remote Gitee repository. <br>
-Mitigation: Use a private repository, review memory files before synchronization, and avoid storing secrets or private chat content. <br>
-Risk: The security scan reports a plaintext credential exposure in the package. <br>
-Mitigation: Remove or rotate any plaintext credentials before installation or synchronization. <br>
+## Use Case:
 
+Developers using OpenCode on SmartPi, ARM64, Debian, or other low-resource devices use this skill to preserve local memory across sessions, restore recent context, and sync notes to a Git remote for backup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nmww/opencode-lingxin-memory1) <br>
-- [Project homepage](https://gitee.com/st_gitee_1/old-version-of-lingxin-sect) <br>
-- [Publisher profile](https://clawhub.ai/user/nmww) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory files and Git/Gitee synchronization steps for agent context persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The artifact includes plaintext device credentials and specific device details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the credentials, rotate them if they are real, and replace device-specific values with placeholders before use or publication.
+
+Risk: The sync script stages all changes and pushes memory contents to a configured Git remote.
+
+Mitigation: Keep the remote repository private, restrict what memory files are synced, and review contents for secrets, tokens, private project data, or personal information before running sync.sh.
+
+Risk: Memory files can preserve sensitive local context across sessions.
+
+Mitigation: Audit MEMORY.md, daily logs, and indexes before sharing or syncing, and avoid storing private credentials or personal information in the memory directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nmww/skills/opencode-lingxin-memory1)
+- [Publisher profile](https://clawhub.ai/user/nmww)
+- [Artifact homepage](https://gitee.com/st_gitee_1/old-version-of-lingxin-sect)
+- [Artifact README](artifact/README.md)
+- [Artifact skill description](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included scripts create and sync files under ~/.opencode-memory when run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

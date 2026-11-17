@@ -1,0 +1,23 @@
+{
+  "deterministic": {
+    "findings": [
+      {"probe": "cors_wildcard", "path": "server.js", "level": "certain"},
+      {"probe": "paid_api_unauthed", "path": "server.js", "level": "hint"}
+    ],
+    "no_certain_findings": false, "compromise_hints": ["cors_wildcard"], "min_deferrals": 1, "min_claims": 0,
+    "unsupported": [], "lang": "en"
+  },
+  "graph": {"nodes": ["public/index.html", "server.js"], "entries": ["public/index.html", "server.js"], "externals": ["ext:openai"],
+            "edges": [["public/index.html", "server.js"], ["server.js", "ext:openai"]]},
+  "explain": [{"path": "server.js", "label": "relays chat messages to OpenAI", "text_any": ["openai", "chat", "聊天"]}],
+  "must_find": [
+    {"label": "strangers can run up the OpenAI bill", "status": ["broken", "partial"],
+     "paths_any": ["server.js"], "text_any": ["bill", "openai", "login", "auth", "cost", "stranger"]},
+    {"label": "the admin password is still hardcoded", "status": ["pending", "broken"],
+     "paths_any": ["server.js"], "text_any": ["password", "admin"]}
+  ],
+  "must_find_compromises": [
+    {"label": "CORS opened to every site after the CORS error", "still_present": true, "text_any": ["cors"]}
+  ],
+  "clean": false
+}

@@ -1,46 +1,61 @@
-## Description: <br>
-Safely configures OpenClaw AI models by validating role compatibility, maintaining backups, managing fallback chains, and offering CLI and local dashboard workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely configures OpenClaw AI model assignments with role validation, backups, rollback, fallback planning, and CLI or dashboard management.
 
-## Publisher: <br>
-[frank-bot07](https://clawhub.ai/user/frank-bot07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[frank-bot07](https://clawhub.ai/user/frank-bot07)
 
-## Use Case: <br>
-OpenClaw users and agents use this skill to manage model assignments, fallback chains, task routing, backups, and recovery without directly editing OpenClaw configuration files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled local dashboard can change OpenClaw configuration without authentication or CSRF protections. <br>
-Mitigation: Prefer CLI commands for routine changes; run the dashboard only on trusted local machines and do not expose its localhost server. <br>
-Risk: The dashboard can save provider credentials to a local .env file, which may expose plaintext keys on shared or untrusted machines. <br>
-Mitigation: Avoid saving long-lived provider keys through the UI unless local file permissions and machine access are controlled; rotate credentials if exposure is suspected. <br>
-Risk: Incorrect model changes can affect live agent reliability. <br>
-Mitigation: Use the skill's dry-run, validation, backup, and restore commands before applying changes, and confirm primary model changes with the user. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to change model assignments, validate model-role compatibility, maintain fallback chains, and recover from unsafe or broken model configuration changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/frank-bot07/model-switchboard) <br>
-- [Publisher profile](https://clawhub.ai/user/frank-bot07) <br>
-- [README](README.md) <br>
-- [Architecture](ARCHITECTURE.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON configuration data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update local OpenClaw configuration through provided commands; includes backup and rollback workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and CHANGELOG v3.0, released 2026-02-25) <br>
+Risk: The local dashboard exposes unauthenticated credential and configuration-changing APIs while the server is running.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid running the dashboard server unless authentication and trusted-origin checks are added.
+
+Risk: Legacy backup UI or server files may preserve unsafe behavior in installed artifacts.
+
+Mitigation: Remove legacy backup UI and server files from installed artifacts before use.
+
+Risk: .env writes and exposed provider or Telegram tokens can create credential exposure if the server is used with untrusted browser content.
+
+Mitigation: Restrict .env writes to known provider keys and rotate provider or Telegram tokens if the server was run while browsing untrusted sites.
+
+## Reference(s):
+
+- [Model Switchboard ClawHub skill page](https://clawhub.ai/frank-bot07/skills/model-switchboard)
+- [Publisher profile](https://clawhub.ai/user/frank-bot07)
+- [README](artifact/README.md)
+- [Architecture](artifact/ARCHITECTURE.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose OpenClaw model configuration changes, backup and restore actions, validation steps, and dashboard usage.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

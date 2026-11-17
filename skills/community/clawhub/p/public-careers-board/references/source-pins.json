@@ -1,0 +1,32 @@
+{
+  "schema": "public-careers-board.source-pins.v1",
+  "parent": {
+    "repository": "epistemedeus/x402-data-gateway-skills",
+    "commit": "1fb31ed2814e84d5678f88278e6b9262110cdbab",
+    "recipePath": "recipe/boards.mjs",
+    "recipeSha256": "d062c790660979b38a6ca4fa2bb85850cd710d06bca83ac4a029a5a32f8a3308",
+    "reusedExport": "normalizeWorkday"
+  },
+  "source": {
+    "id": "magnite",
+    "tenant": "osv_rubicon",
+    "hostnameLabel": "osv-rubicon",
+    "siteId": "MagniteCareers",
+    "boardUrl": "https://osv-rubicon.wd5.myworkdayjobs.com/MagniteCareers",
+    "endpoint": "https://osv-rubicon.wd5.myworkdayjobs.com/wday/cxs/osv_rubicon/MagniteCareers/jobs",
+    "careersPage": "https://www.magnite.com/careers/",
+    "robotsUrl": "https://www.magnite.com/robots.txt"
+  },
+  "files": [
+    {
+      "path": "sources/magnite.mjs",
+      "bytes": 25447,
+      "sha256": "689af2d5da1c38b03adb0d68829583b3f2d3537edc8296e289c79201901fcc26"
+    },
+    {
+      "path": "sources/predicates.mjs",
+      "bytes": 3415,
+      "sha256": "b393d6ef5dc7eeba7289f3b4d6fd23cdc7ffc79bf74f8fd4bc7b7097d1282851"
+    }
+  ]
+}

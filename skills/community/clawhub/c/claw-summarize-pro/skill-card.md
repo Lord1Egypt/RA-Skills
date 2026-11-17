@@ -1,42 +1,54 @@
-## Description: <br>
-Summarize URLs or files with the summarize CLI, including web pages, PDFs, images, audio, and YouTube links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).
 
-## Publisher: <br>
-[williamwang-wh](https://clawhub.ai/user/williamwang-wh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[williamwang-wh](https://clawhub.ai/user/williamwang-wh)
 
-## Use Case: <br>
-Developers and other agent users use this skill to call the summarize CLI for concise summaries of URLs, local files, and media sources, with optional model and extraction settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local files, private URLs, or media may be sent to configured model or extraction providers. <br>
-Mitigation: Do not use the skill with confidential documents, secrets, private URLs, regulated data, or sensitive media unless external processing is acceptable. <br>
-Risk: The skill depends on a third-party Homebrew tap and the summarize CLI. <br>
-Mitigation: Install only when the publisher, tap, and CLI are trusted for the intended environment. <br>
+## Use Case:
 
+Developers and external users use this skill to have an agent run or configure the summarize CLI for concise summaries of web URLs, local files, PDFs, images, audio, and YouTube links.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/williamwang-wh/claw-summarize-pro) <br>
-- [Summarize CLI Homepage](https://summarize.sh) <br>
-- [Publisher Profile](https://clawhub.ai/user/williamwang-wh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON output from the CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports summary length, output token limits, extraction-only mode, JSON output, and optional provider configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill relies on a third-party Homebrew tap and summarize CLI that are not pinned in the release evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted sources and review the upstream CLI or tap before use when supply-chain assurance matters.
+
+Risk: Summarizing local files or protected content can expose sensitive information to configured model or extraction providers.
+
+Mitigation: Use narrowly scoped API keys and avoid processing highly sensitive files unless the provider and data handling path are acceptable.
+
+## Reference(s):
+
+- [Summarize homepage](https://summarize.sh)
+- [ClawHub skill page](https://clawhub.ai/williamwang-wh/skills/claw-summarize-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include model, summary length, token limit, extraction, and fallback service settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

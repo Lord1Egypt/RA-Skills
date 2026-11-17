@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools that covers intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance for Tidyup concepts and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools - covers intro, quickstart, patterns and more, with quick lookup for Tidyup concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill as a local reference helper for Tidyup-related devtools concepts, quickstarts, best practices, troubleshooting, performance, security, migration, and cheat sheet material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reference content is generic guidance rather than authoritative Tidyup documentation. <br>
-Mitigation: Treat output as a starting point and verify important operational or security decisions against authoritative project documentation. <br>
-Risk: The script reports version 2.0.1 while the skill metadata and release evidence identify version 2.0.2. <br>
-Mitigation: Confirm the installed script version before relying on version-specific behavior or release notes. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick reference for Tidyup-related devtools concepts, quickstart material, patterns, debugging, performance, security, migration, and cheatsheet guidance.
 
-## Reference(s): <br>
-- [Tidyup on ClawHub](https://clawhub.ai/xueyetianya/tidyup) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain-text and Markdown reference documentation from shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local reference output; no API keys, credentials, or network access indicated by evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Generic Tidyup reference text may not match a specific product, deployment, or organization policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as informational reference material and verify operational decisions against authoritative project documentation.
+
+Risk: The release and SKILL.md report version 2.0.2 while the bundled script declares version 2.0.1.
+
+Mitigation: Confirm version alignment before publishing, packaging, or relying on version output for inventory controls.
+
+## Reference(s):
+
+- [BytesAgain](https://bytesagain.com)
+- [Tidyup on ClawHub](https://clawhub.ai/xueyetianya/skills/tidyup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference output; no credentials, network access, or persistent state access reported by security evidence.]
+
+## Skill Version(s):
+
+2.0.2 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

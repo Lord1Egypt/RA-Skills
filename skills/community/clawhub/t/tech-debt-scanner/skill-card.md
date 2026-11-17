@@ -1,39 +1,52 @@
-## Description: <br>
-Scan codebases for technical debt — TODO/FIXME comments, deprecated APIs, complexity hotspots, outdated patterns, missing tests, large files — then prioritize with AI reasoning and generate remediation plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan codebases for technical debt, including TODO/FIXME comments, deprecated APIs, complexity hotspots, outdated patterns, missing tests, and large files, then prioritize findings with AI reasoning and generate remediation plans.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to audit codebases for technical debt, prioritize cleanup work before sprint planning, and generate actionable remediation reports.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Dependency health checks may contact package registries and disclose package names or local environment package information.
+
+Mitigation: Run dependency checks only where that network access is acceptable, and skip them in offline or restricted-network environments.
+
+Risk: Broad scans of large or sensitive repositories may surface more code context than intended.
+
+Mitigation: Scope scans to the relevant subdirectory when working in large or sensitive repositories.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to audit repositories for technical debt, complexity hotspots, stale patterns, dependency health issues, and test gaps before refactoring or sprint planning. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects repository contents, git metadata, and dependency metadata, which may expose sensitive project information to the agent session. <br>
-Mitigation: Run it only when a repository audit is intended and review the target scope before scanning. <br>
-Risk: Dependency checks may query package registries or other networked sources when allowed. <br>
-Mitigation: Review proposed commands before permitting networked dependency checks, especially in restricted environments. <br>
+**Output Format:** [Human-readable text or Markdown reports, with optional JSON-style structures and shell commands for static analysis workflows.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Can produce prioritized findings with severity, risk, effort, impact, remediation steps, and CI-oriented exit-code guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Human-readable text or Markdown reports, with optional structured JSON for CI/CD integration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include prioritized findings, severity, effort estimates, risk reasoning, remediation steps, metrics, and CI exit-code guidance.] <br>
+1.0.1 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

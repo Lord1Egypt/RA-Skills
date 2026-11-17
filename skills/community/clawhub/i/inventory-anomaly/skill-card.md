@@ -1,43 +1,59 @@
-## Description: <br>
-Inventory Anomaly helps agents generate a local inventory anomaly detection and demand forecasting system with Excel data handling, ARIMA-based forecasting, restock recommendations, and TXT reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a modular inventory anomaly detection and demand forecasting system that reads Excel inventory and order data, applies ARIMA forecasting and standard-deviation anomaly checks, and produces TXT replenishment reports.
 
-## Publisher: <br>
-[openclawvincent](https://clawhub.ai/user/openclawvincent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openclawvincent](https://clawhub.ai/user/openclawvincent)
 
-## Use Case: <br>
-Developers and operations teams can use this skill to scaffold a spare-parts inventory analytics project that reads Excel workbooks, detects stock and demand anomalies, forecasts short-term demand, and produces replenishment reports. It is aimed at manufacturing, retail, and spare-parts management workflows that need customizable local templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated project templates can write data/spare_parts.xlsx and output/report.txt in the target project. <br>
-Mitigation: Run in a dedicated project directory and back up any real inventory workbook before generating or updating data. <br>
-Risk: The generated project depends on pandas, numpy, statsmodels, and openpyxl. <br>
-Mitigation: Install dependencies in a virtual environment and pin reviewed versions for production use. <br>
+## Use Case:
 
+Developers and operations teams use this skill to scaffold a local inventory analysis project for spare-parts or retail stock monitoring. It helps create code for Excel-based data management, anomaly detection, demand forecasting, test data generation, and replenishment reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openclawvincent/inventory-anomaly) <br>
-- [Publisher profile](https://clawhub.ai/user/openclawvincent) <br>
-- [README.md](README.md) <br>
-- [requirements.txt](requirements.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code templates and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local project templates that read and write Excel workbooks and generate TXT reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The generated project reads and writes local inventory spreadsheets and reports, so live operational data could be overwritten or exposed through local files if run without workspace controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a project workspace, use copies of real inventory spreadsheets, and review local data/ and output/ paths before operational use.
+
+Risk: The dependency ranges are broad for normal data-science packages, which can make production behavior vary across environments.
+
+Mitigation: Pin reviewed versions of pandas, numpy, statsmodels, and openpyxl before operational deployment.
+
+Risk: The generated templates expect Chinese-language worksheet names, field labels, and reports by default.
+
+Mitigation: Confirm sheet names, report labels, and downstream consumers before using the generated system in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openclawvincent/skills/inventory-anomaly)
+- [Artifact README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code templates and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated projects use local Excel input files under data/ and write TXT reports under output/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

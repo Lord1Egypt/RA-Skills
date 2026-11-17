@@ -1,41 +1,58 @@
-## Description: <br>
-Looks up current weather, forecasts, alerts, and lifestyle indices for Chinese cities using city names or city codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取中国城市当前天气、未来预报、生活指数和气象预警查询辅助信息。
 
-## Publisher: <br>
-[libaoming](https://clawhub.ai/user/libaoming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[libaoming](https://clawhub.ai/user/libaoming)
 
-## Use Case: <br>
-External users and agents use this skill to answer weather questions for Chinese cities, including current conditions, tomorrow or weekly forecasts, alerts, and practical advice such as clothing or umbrella guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queried city names are sent to external weather services such as wttr.in, and to QWeather when the optional provider is configured. <br>
-Mitigation: Avoid sensitive private location details, and set QWEATHER_KEY only when intentionally using the optional weather provider. <br>
-Risk: Recent current-weather results are briefly cached under /tmp. <br>
-Mitigation: Treat /tmp/china-weather-cache as local query history and clear it when shared or sensitive environments require cleanup. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/libaoming/china-weather) <br>
-- [QWeather Developer Portal](https://dev.qweather.com) <br>
-- [wttr.in weather service](https://wttr.in) <br>
+## Use Case:
 
+External users and agents use this skill to answer weather questions for Chinese cities, including current conditions, tomorrow or weekly forecasts, lifestyle indices, and optional alert guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text terminal output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May make network requests to wttr.in or QWeather and cache recent current-weather results in /tmp for 10 minutes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs a local shell script and sends city names to external weather services.
+
+Mitigation: Review the script before installing and avoid submitting sensitive location queries.
+
+Risk: The security evidence reports unsecured request URLs for wttr.in weather lookups.
+
+Mitigation: Prefer or update to a version that uses HTTPS endpoints for network requests.
+
+Risk: Cached weather results are stored in a shared temporary directory.
+
+Mitigation: Use a private user-owned cache directory or clear the shared cache after use.
+
+## Reference(s):
+
+- [中国天气 skill page](https://clawhub.ai/libaoming/skills/china-weather)
+- [wttr.in weather service](https://wttr.in)
+- [QWeather developer platform](https://dev.qweather.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Weather results depend on external weather services, network availability, and optional QWEATHER_KEY configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

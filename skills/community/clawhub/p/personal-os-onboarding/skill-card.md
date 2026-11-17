@@ -1,40 +1,58 @@
-## Description: <br>
-Set up a Personal OS through a conversational interview that creates SOUL.md, USER.md, IDENTITY.md, AGENTS.md, and MEMORY.md for future agent sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up a Personal OS through a conversational onboarding flow that creates SOUL.md, USER.md, IDENTITY.md, AGENTS.md, and MEMORY.md as foundation files for future agent sessions.
 
-## Publisher: <br>
-[borodich](https://clawhub.ai/user/borodich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[borodich](https://clawhub.ai/user/borodich)
 
-## Use Case: <br>
-External users and developers use this skill to onboard a new personal agent workspace, capture working preferences, and create local foundation files that future sessions can read. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local plaintext files that may contain personal profile details and working preferences. <br>
-Mitigation: Run it only in a trusted workspace, review the generated SOUL.md, USER.md, IDENTITY.md, AGENTS.md, and MEMORY.md files, and redact sensitive information before reuse or sharing. <br>
-Risk: Broad trigger phrases such as setup or identity prompts could invoke onboarding when the user did not intend to create persistent local context. <br>
-Mitigation: Use an explicit setup command or clear onboarding request, and confirm before creating or replacing existing foundation files. <br>
+## Use Case:
 
+External users use this skill when setting up a new agent workspace for the first time. The skill interviews the user about identity, tools, communication preferences, and goals, then creates persistent Markdown files that future sessions can read.
 
-## Reference(s): <br>
-- [Onboarding on ClawHub](https://clawhub.ai/borodich/personal-os-onboarding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files with conversational text and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local profile and memory files after a guided interview; users should review and redact sensitive details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill stores personal details, workspace preferences, goals, and agent operating rules in persistent files that future sessions may read.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when persistent onboarding is intended, and review SOUL.md, USER.md, IDENTITY.md, AGENTS.md, and MEMORY.md before relying on them in later sessions.
+
+Risk: Generated AGENTS.md rules may change future agent behavior in the workspace.
+
+Mitigation: Inspect and edit or delete generated AGENTS.md rules that do not match the user's desired operating boundaries.
+
+Risk: The security evidence flags broad activation and limited upfront consent around persistent memory creation.
+
+Mitigation: Confirm consent before collecting sensitive personal information and avoid recording details the user does not want reused.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/borodich/skills/personal-os-onboarding)
+- [Publisher profile](https://clawhub.ai/user/borodich)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Conversational Markdown plus generated Markdown workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates SOUL.md, USER.md, IDENTITY.md, AGENTS.md, and MEMORY.md after collecting onboarding details.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

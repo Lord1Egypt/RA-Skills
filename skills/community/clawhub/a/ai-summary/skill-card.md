@@ -1,40 +1,52 @@
-## Description: <br>
-Save AI knowledge summary to knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save AI knowledge summary to knowledge base
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External users and developers use this skill to trigger an AI-summary capability and save the resulting knowledge summary to a local knowledge base. The artifact depends on local capability dispatcher files and should only be installed where that workflow is intended. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/ai-summary) <br>
-- [Bilibili summary-writing reference](https://www.bilibili.com/video/BV1ppP5zBEbY) <br>
-- [Bilibili summary-writing lesson](https://www.bilibili.com/video/BV1wR4y1t7UD) <br>
-- [Bilibili summary-tool reference](https://www.bilibili.com/video/BV1k2yAB9ELw) <br>
+Agent users use Ai Summary to save AI knowledge summaries into a knowledge base when the configured trigger phrase is invoked.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with a Python usage snippet] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill describes a trigger phrase, local dispatcher dependencies, and a capability function rather than shipping executable code.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Saved summaries may contain proprietary, personal, or confidential information.
+
+Mitigation: Confirm where the knowledge base stores summaries, who can access them, and how entries can be reviewed or deleted before saving sensitive content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/ai-summary)
+- [Bilibili: Summary Writing example](https://www.bilibili.com/video/BV1ppP5zBEbY)
+- [Bilibili: Summary Writing lesson](https://www.bilibili.com/video/BV1wR4y1t7UD)
+- [Bilibili: AWD tool summary demonstration](https://www.bilibili.com/video/BV1k2yAB9ELw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Saved knowledge summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill stores requested summaries in a knowledge base.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

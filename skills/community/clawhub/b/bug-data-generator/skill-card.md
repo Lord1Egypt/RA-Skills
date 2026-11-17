@@ -1,42 +1,53 @@
-## Description: <br>
-Generates a tool name and reviewable user-instruction list from a smart-home bug description, then can use the confirmed instructions to produce JSONL training data through data-generator. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a tool name and reviewable user instruction list from a bug description, then can hand confirmed instructions to data-generator for JSONL training data.
 
-## Publisher: <br>
-[HuaiBuer](https://clawhub.ai/user/HuaiBuer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaibuer](https://clawhub.ai/user/huaibuer)
 
-## Use Case: <br>
-Developers and data builders use this skill to turn smart-home assistant bug reports into candidate tool calls, user instruction variants, and JSONL training examples after human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated smart-home training examples may include real household, device, or scene names if supplied by the user. <br>
-Mitigation: Use synthetic or anonymized device and scene names unless real household data is explicitly approved for training use. <br>
-Risk: Incorrect generated instruction lists could produce misleading JSONL training data. <br>
-Mitigation: Review and edit generated instruction lists before confirming JSONL generation. <br>
-Risk: The skill can write generated instruction or JSONL files to user-selected paths and may depend on a companion data-generator skill. <br>
-Mitigation: Choose output paths deliberately and verify the companion data-generator skill is trusted before use. <br>
+## Use Case:
 
+Developers and dataset curators use this skill to turn bug reports about incorrect tool selection or behavior into candidate smart-home user instructions for review, then into JSONL training records after confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HuaiBuer/bug-data-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Text and JSON/JSONL examples with optional local output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reviewable instruction lists before JSONL generation; file output paths should be chosen deliberately.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: The documented workflow and bundled generator behavior conflict about whether JSONL is generated directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the prompt-list workflow for reviewed instruction generation, and inspect generated records before using them as training data.
+
+Risk: gen_bug_data.py imports executable Python from an unbundled local data-generator path.
+
+Mitigation: Run it only where the data-generator installation and output path are trusted; avoid shared or sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huaibuer/skills/bug-data-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, JSONL files, shell commands, guidance]
+
+**Output Format:** [Markdown-style text, JSON instruction payloads, and JSONL training records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write text, JSON, or JSONL files; gen_bug_data.py depends on a local data-generator helper path when available.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

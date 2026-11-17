@@ -1,0 +1,4 @@
+interface:
+  display_name: "卖家精灵ARI 亚马逊Amazon智能评论分析系统"
+  short_description: "采集并分析 Amazon 评论，生成可执行消费者洞察"
+  default_prompt: "使用 $amazon-review-intelligence-extractor 为一个 Amazon ASIN 一键生成 VOC 报告。"

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>A/B 对照 · flex 版</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{margin:0;padding:0;overflow:hidden;}
+  .slide-container{position:relative;width:1920px;height:1080px;overflow:hidden;background:#FAFAF7;font-family:"Noto Sans SC","Inter",sans-serif;}
+</style>
+</head>
+<body>
+<div class="slide-container">
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:80px;width:1720px;z-index:10;">
+    <div style="font-size:40px;font-weight:700;line-height:48px;color:#1A1A1A;">布局等价对照</div>
+  </div>
+
+  <!-- 三卡片:flex 容器(不标记,自身不可见)+ 卡片 data-object 为 flex 子级;
+       卡片内部文字为未标记流式子 div(随卡片 walk 递归提取)。与 ab-absolute.html 逐 prim 等价。 -->
+  <div style="position:absolute;left:100px;top:200px;width:1720px;display:flex;gap:20px;">
+    <div data-object="true" data-object-type="shape" style="width:560px;height:300px;background:#FFFFFF;border:1px solid #E5E7EB;border-radius:10px;z-index:1;padding:30px;">
+      <div style="font-size:24px;font-weight:700;line-height:30px;color:#1A1A1A;width:500px;">卡片标题一</div>
+      <div style="font-size:16px;font-weight:400;line-height:24px;color:#666666;width:500px;margin-top:16px;">正文描述第一行<br>正文描述第二行</div>
+    </div>
+    <div data-object="true" data-object-type="shape" style="width:560px;height:300px;background:#FFFFFF;border:1px solid #E5E7EB;border-radius:10px;z-index:1;padding:30px;">
+      <div style="font-size:24px;font-weight:700;line-height:30px;color:#1A1A1A;width:500px;">卡片标题二</div>
+      <div style="font-size:16px;font-weight:400;line-height:24px;color:#666666;width:500px;margin-top:16px;">正文描述第一行<br>正文描述第二行</div>
+    </div>
+    <div data-object="true" data-object-type="shape" style="width:560px;height:300px;background:#FFFFFF;border:1px solid #E5E7EB;border-radius:10px;z-index:1;padding:30px;">
+      <div style="font-size:24px;font-weight:700;line-height:30px;color:#1A1A1A;width:500px;">卡片标题三</div>
+      <div style="font-size:16px;font-weight:400;line-height:24px;color:#666666;width:500px;margin-top:16px;">正文描述第一行<br>正文描述第二行</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

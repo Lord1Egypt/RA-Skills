@@ -4,10 +4,15 @@ description: Real-time web search, autosuggest, and AI-powered answers using the
 license: MIT
 metadata:
   author: Broedkrummen
-  version: 4.2.0
+  version: 4.2.1
 ---
 
 # Brave API Search v4.2.0 — Significant Update
+
+## Native OpenClaw plugin
+
+The same four tools are now available as a native plugin: [Brave API Search plugin](https://clawhub.ai/plugins/brave-api-search-plugin). Install it with `openclaw plugins install clawhub:brave-api-search-plugin`. This skill remains available for existing users.
+
 
 Real-time web search, autosuggest, spellcheck, and AI-powered answers using the official Brave Search API. Four tools:
 - `brave_search` — web results with titles, URLs, descriptions, optional AI summary

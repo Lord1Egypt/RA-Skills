@@ -1,46 +1,66 @@
-## Description: <br>
-Comprehensive A-share and Hong Kong stock analysis toolkit for OpenClaw agents, covering technical indicators, multi-source market data, news aggregation, watchlists, and integrated reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive A-share and Hong Kong stock analysis toolkit for OpenClaw agents, including technical indicators, multi-source market data, news aggregation, watchlists, and integrated reports.
 
-## Publisher: <br>
-[oldairman](https://clawhub.ai/user/oldairman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oldairman](https://clawhub.ai/user/oldairman)
 
-## Use Case: <br>
-External users, developers, and OpenClaw agents use this skill to analyze Chinese A-share and Hong Kong stocks, generate technical summaries, search recent news, maintain watchlists, and produce market or research reports. Outputs are informational and should be reviewed before any investment decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock symbols, watchlists, and news queries may be sent to external finance or search services. <br>
-Mitigation: Use only in environments where those queries are acceptable to share, and review optional data-source or search integrations before enabling them. <br>
-Risk: Local watchlist, report, and analysis-log files can contain sensitive research history. <br>
-Mitigation: Store the skill in an appropriate workspace and clear local watchlist or analysis-log files when the research history should not persist. <br>
-Risk: Generated market signals and buy, hold, or sell language may be incomplete or misleading. <br>
-Mitigation: Treat outputs as informational analysis, verify source data and assumptions, and consult qualified financial advice before making investment decisions. <br>
+## Use Case:
 
+External users and developers use this skill to analyze Chinese A-share and Hong Kong stocks, generate technical summaries and market reports, search recent news, and maintain watchlists with alert-oriented signals. Outputs are informational and should not be treated as financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oldairman/xia-china-stock) <br>
-- [Publisher profile](https://clawhub.ai/user/oldairman) <br>
-- [Popular Chinese Stocks Reference](references/china-stocks.md) <br>
-- [Eastmoney](https://www.eastmoney.com) <br>
-- [Yahoo Finance](https://finance.yahoo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and tables, JSON summaries, and shell commands for running analysis scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local watchlist, report, or analysis-log files when users run the included scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search fallbacks may invoke locally discovered mcporter or Tavily tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and explicitly configure or disable those optional backends unless the local tools and their data handling are trusted.
+
+Risk: Stock symbols, company names, and search queries may be sent to external finance or search services.
+
+Mitigation: Avoid entering confidential portfolio data and run the skill only in environments where external market-data requests are acceptable.
+
+Risk: Watchlist and analysis files can retain stock-interest history on the local machine.
+
+Mitigation: Use an isolated environment and periodically review or remove local watchlist and analysis files when no longer needed.
+
+Risk: The skill produces market analysis and recommendation-style signals that may be incomplete or delayed.
+
+Mitigation: Treat outputs as informational, verify data against authoritative sources, and consult qualified financial advice before making investment decisions.
+
+## Reference(s):
+
+- [China Stocks Reference](artifact/references/china-stocks.md)
+- [ClawHub Skill Page](https://clawhub.ai/oldairman/skills/xia-china-stock)
+- [Eastmoney](https://www.eastmoney.com)
+- [Xueqiu](https://xueqiu.com)
+- [Yahoo Finance](https://finance.yahoo.com)
+- [Google Finance](https://www.google.com/finance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON from command-line analysis scripts, with shell command examples and report templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include technical indicators, quote data, news summaries, buy/hold/sell-style signals, watchlist alerts, and financial-risk disclaimers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

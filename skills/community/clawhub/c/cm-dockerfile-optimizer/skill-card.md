@@ -1,40 +1,54 @@
-## Description: <br>
-Optimize Dockerfiles for smaller images, faster builds, better security, and production readiness through multi-stage builds, layer caching, and vulnerability reduction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize Dockerfiles for smaller images, faster builds, better security, and production readiness - multi-stage builds, layer caching, vulnerability reduction.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to review Dockerfiles, reduce container image size, improve build caching, harden runtime configuration, and prepare containers for production deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Dockerfile changes can alter build behavior, runtime permissions, health checks, or base image compatibility. <br>
-Mitigation: Review base image swaps, non-root user changes, health checks, package pinning, and runtime configuration before applying changes to production. <br>
-Risk: Build secret handling recommendations may be applied incorrectly and expose sensitive values in image layers or logs. <br>
-Mitigation: Use BuildKit secret mounts or runtime environment injection, and inspect generated Dockerfiles for secrets in ARG, ENV, RUN, or copied files. <br>
+## Use Case:
 
+Developers and DevOps engineers use this skill to review Dockerfiles and receive optimization guidance for image size, build speed, layer caching, security hardening, and production readiness.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/cm-dockerfile-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with inline Dockerfile, shell command, and configuration examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include before-and-after size estimates, issue severity groupings, optimization recommendations, and sample Dockerfile output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated Dockerfile changes can alter runtime behavior, base image compatibility, file inclusion, or build caching semantics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed Dockerfile edits before applying them, especially base image changes, .dockerignore exclusions, cache mounts, and secret mount recommendations.
+
+Risk: Optimization estimates may not match the actual image size, layer count, or build time for a specific project.
+
+Mitigation: Rebuild and test the container image after applying recommendations, then verify size, security scan results, health checks, and application behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/cm-dockerfile-optimizer)
+- [Publisher profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown report with Dockerfile examples, shell commands, and configuration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include before-and-after estimates for image size, layer count, and build speed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

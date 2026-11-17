@@ -1,38 +1,51 @@
-## Description: <br>
-Deep research on any topic with structured analysis, source evaluation, and synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Researcher helps users produce structured research briefings, comparative analyses, literature reviews, trend analyses, and quick briefs with source evaluation and synthesis.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Founders, students, professionals, and other external users use this skill to research topics quickly through structured briefings, comparisons, literature reviews, trend analyses, and short practical summaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill links to an external paid context-pack website. <br>
-Mitigation: Review the external website separately before spending money or sharing information there. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AI Researcher on ClawHub](https://clawhub.ai/1kalin/ai-researcher) <br>
-- [External context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
+
+External users such as founders, students, and professionals use this skill to request structured research reports, option comparisons, literature reviews, trend analyses, and quick briefs on a topic.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad research requests can yield incomplete or misleading synthesis if topic boundaries or source expectations are unclear.
+
+Mitigation: Provide clear topic scope, required source expectations, and review important claims before acting on the output.
+
+Risk: Research output may mix facts, opinions, and speculation unless the user asks for explicit confidence handling.
+
+Mitigation: Use the skill's confidence levels, limitations, multiple perspectives, and next-research sections to separate established information from uncertain claims.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown research briefings, comparisons, reviews, trend analyses, or quick briefs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source evaluation, confidence levels, limitations, multiple perspectives, and suggested next research steps.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown reports, comparison tables, literature summaries, trend analyses, and short briefs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence labels, multiple perspectives, limitations, source suggestions, and next research steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

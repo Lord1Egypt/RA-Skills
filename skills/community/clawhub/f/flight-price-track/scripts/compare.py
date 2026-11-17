@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 flight-price-monitor: 机票价格监控与多平台比价
-通过SCF代理查询飞猪/途牛/RG实时机票价格
+通过SCF代理查询途牛/RG实时机票价格
 
 用法:
   python3 compare.py search --from "北京" --to "上海" --date 2026-07-01
@@ -27,9 +27,6 @@ import urllib.error
 # ============================================================
 
 PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
-
-# 代理地址
-SCF_FLIGGY_URL = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
 SCF_TUNIU_URL = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
 SCF_RG_URL = "https://1439498936-460a7b6oqn.ap-guangzhou.tencentscf.com"
 
@@ -364,63 +361,6 @@ def http_post(url, body, timeout=25):
 # 数据源查询
 # ============================================================
 
-def search_fliggy_flights(from_city, to_city, dep_date):
-    """飞猪机票搜索"""
-    try:
-        resp = http_post(SCF_FLIGGY_URL, {
-            "type": "search_flight",
-            "params": {
-                "origin": from_city,
-                "destination": to_city,
-                "depDate": dep_date,
-                "journeyType": 1,
-                "adultCount": 1,
-            },
-        })
-
-        data = resp.get("data", {})
-        items = data.get("itemList", [])
-
-        flights = []
-        for item in items:
-            journeys = item.get("journeys", [])
-            if not journeys:
-                continue
-            journey = journeys[0]
-            segments = journey.get("segments", [])
-            if not segments:
-                continue
-
-            seg = segments[0]
-            price_str = item.get("ticketPrice", "0")
-            try:
-                price = float(price_str)
-            except (ValueError, TypeError):
-                price = 0
-
-            airline_name = seg.get("marketingTransportName", "")
-            if "|" in airline_name:
-                airline_name = airline_name.split("|")[-1]
-
-            flight = {
-                "source": "飞猪",
-                "flight_no": seg.get("marketingTransportNo", ""),
-                "airline": airline_name,
-                "price": price,
-                "dep_time": seg.get("depDateTime", "")[11:16] if seg.get("depDateTime") else "",
-                "arr_time": seg.get("arrDateTime", "")[11:16] if seg.get("arrDateTime") else "",
-                "dep_airport": seg.get("depStationShortName", seg.get("depStationName", "")),
-                "arr_airport": seg.get("arrStationShortName", seg.get("arrStationName", "")),
-                "duration": journey.get("totalDuration", ""),
-                "url": item.get("jumpUrl", ""),
-                "cabin": seg.get("seatClassName", "经济舱"),
-            }
-            flights.append(flight)
-
-        return {"source": "飞猪", "flights": flights, "error": None}
-    except Exception as e:
-        return {"source": "飞猪", "flights": [], "error": str(e)}
-
 
 def search_tuniu_flights(from_city, to_city, dep_date):
     """途牛机票搜索"""
@@ -553,15 +493,12 @@ def cmd_search(args):
     dep_date = args.dep_date
 
     # 并行查询
-    fliggy_result = search_fliggy_flights(from_city, to_city, dep_date)
     tuniu_result = search_tuniu_flights(from_city, to_city, dep_date)
     rg_result = search_rg_flights(from_city, to_city, dep_date)
 
     # 合并航班
     all_flights = []
 
-    if fliggy_result.get("flights"):
-        all_flights.extend(fliggy_result["flights"])
 
     # 途牛去重
     if tuniu_result.get("flights"):
@@ -577,8 +514,8 @@ def cmd_search(args):
                 all_flights.append(tf)
                 existing_fns.add(fn)
 
-    # 按价格排序（佣金优先级：RG>飞猪>途牛）
-    commission_order = {"RG": 0, "飞猪": 1, "途牛": 2}
+    # 按价格排序（佣金优先级：RG>>途牛）
+    commission_order = {"RG": 0, "": 1, "途牛": 2}
     all_flights.sort(key=lambda x: (x.get("price", 99999) if x.get("price", 0) > 0 else 99999, commission_order.get(x.get("source", ""), 9)))
 
     # 取最低价生成价格状态分析
@@ -602,7 +539,6 @@ def cmd_search(args):
         "flights_count": len(all_flights),
         "flights": all_flights[:20],
         "sources": {
-            "飞猪": {"count": len(fliggy_result.get("flights", [])), "error": fliggy_result.get("error")},
             "途牛": {"count": len(tuniu_result.get("flights", [])), "error": tuniu_result.get("error")},
             "RG": {"count": len(rg_result.get("flights", [])), "error": rg_result.get("error")},
         },
@@ -620,37 +556,16 @@ def cmd_compare(args):
     from_city = args.from_city
     to_city = args.to_city
     dep_date = args.dep_date
-    flight_no = args.flight_no.strip().upper()
+    flight_no = args.flightNo.strip().upper()
 
     # 查所有平台
-    fliggy_result = search_fliggy_flights(from_city, to_city, dep_date)
     tuniu_result = search_tuniu_flights(from_city, to_city, dep_date)
     rg_result = search_rg_flights(from_city, to_city, dep_date)
 
     # 按航班号匹配
     results = []
 
-    # 飞猪匹配
-    fg_matched = match_flight_cross_platform(flight_no, fliggy_result.get("flights", []))
-    if fg_matched:
-        best = fg_matched[0]
-        results.append({
-            "source": "飞猪",
-            "matched": True,
-            "flight_no": best["flight_no"],
-            "airline": best["airline"],
-            "price": best["price"],
-            "dep_time": best["dep_time"],
-            "arr_time": best["arr_time"],
-            "dep_airport": best["dep_airport"],
-            "arr_airport": best["arr_airport"],
-            "duration": best["duration"],
-            "url": best.get("url", ""),
-            "cabin": best["cabin"],
-        })
-    else:
-        results.append({"source": "飞猪", "matched": False, "error": "未找到该航班"})
-
+    # 匹配
     # 途牛匹配
     tn_matched = match_flight_cross_platform(flight_no, tuniu_result.get("flights", []))
     if tn_matched:
@@ -695,7 +610,7 @@ def cmd_compare(args):
     # 按价格排序（佣金优先级同价时RG排前）
     priced = [r for r in results if r.get("matched") and r.get("price") and isinstance(r["price"], (int, float)) and r["price"] > 0]
     unpriced = [r for r in results if r not in priced]
-    commission_order = {"RG": 0, "飞猪": 1, "途牛": 2}
+    commission_order = {"RG": 0, "": 1, "途牛": 2}
     priced.sort(key=lambda x: (x["price"], commission_order.get(x.get("source", ""), 9)))
 
     all_sorted = priced + unpriced
@@ -730,7 +645,7 @@ def cmd_calendar(args):
     """低价日历（扫描多日价格）"""
     from_city = args.from_city
     to_city = args.to_city
-    start_date = args.start_date
+    start_date = args.startDate
     days = min(args.days, 30)
 
     calendar = []
@@ -742,8 +657,8 @@ def cmd_calendar(args):
         except ValueError:
             continue
 
-        # 查飞猪（速度快，数据全）
-        result = search_fliggy_flights(from_city, to_city, date_str)
+        # 查（速度快，数据全）
+        result = search_rg_flights(from_city, to_city, date_str)
         flights = result.get("flights", [])
 
         if flights:
@@ -821,12 +736,11 @@ def cmd_monitor(args):
     threshold = args.threshold or 10
 
     # 先查一次当前价格
-    fliggy_result = search_fliggy_flights(from_city, to_city, dep_date)
     tuniu_result = search_tuniu_flights(from_city, to_city, dep_date)
     rg_result = search_rg_flights(from_city, to_city, dep_date)
 
     all_flights = []
-    for r in [fliggy_result, tuniu_result, rg_result]:
+    for r in [tuniu_result, rg_result]:
         if r.get("flights"):
             all_flights.extend(r["flights"])
 
@@ -888,15 +802,15 @@ def main():
     compare_p.add_argument("--from", dest="from_city", required=True, help="出发城市")
     compare_p.add_argument("--to", dest="to_city", required=True, help="到达城市")
     compare_p.add_argument("--date", dest="dep_date", required=True, help="出发日期 YYYY-MM-DD")
-    compare_p.add_argument("--flight-no", dest="flight_no", required=True, help="航班号，如 CA1234")
+    compare_p.add_argument("--flightNo", dest="flightNo", required=True, help="航班号，如 CA1234")
     compare_p.add_argument("--target", type=int, default=None, help="目标价格")
-    compare_p.add_argument("--last-price", type=int, default=None, help="上次查询价格（用于对比变动）")
+    compare_p.add_argument("--lastPrice", type=int, default=None, help="上次查询价格（用于对比变动）")
 
     # calendar
     cal_p = subparsers.add_parser("calendar", help="低价日历")
     cal_p.add_argument("--from", dest="from_city", required=True, help="出发城市")
     cal_p.add_argument("--to", dest="to_city", required=True, help="到达城市")
-    cal_p.add_argument("--start-date", dest="start_date", required=True, help="起始日期 YYYY-MM-DD")
+    cal_p.add_argument("--startDate", dest="startDate", required=True, help="起始日期 YYYY-MM-DD")
     cal_p.add_argument("--days", type=int, default=14, help="扫描天数（最多30）")
 
     # monitor

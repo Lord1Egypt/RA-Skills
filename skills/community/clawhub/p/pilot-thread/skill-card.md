@@ -1,43 +1,54 @@
-## Description: <br>
-Threaded conversations with context tracking over the Pilot Protocol network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Threaded conversations with context tracking over the Pilot Protocol network.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agents use this skill to organize multi-turn Pilot Protocol conversations into topic-specific threads with replies, subscriptions, and message history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on shell commands that publish and subscribe to Pilot Protocol topics. <br>
-Mitigation: Review target hostnames, thread topics, and message payloads before running commands. <br>
-Risk: The skill depends on local Pilot Protocol tooling and daemon state. <br>
-Mitigation: Confirm pilotctl, jq, and the Pilot daemon are installed and trusted before using the workflow. <br>
-Risk: Server security guidance recommends using the release only in a trusted development context. <br>
-Mitigation: Install and run the skill only where the local tooling and authenticated environment are trusted. <br>
+## Use Case:
 
+Developers and agents use this skill to create, subscribe to, and reply within Pilot Protocol conversation threads when multi-turn context and message history need to stay organized by topic.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-thread) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilot-protocol, pilotctl on PATH, jq, and a running Pilot daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unsafe JSON construction in Bash command examples can expose users to command or payload injection when peer, subject, or message text is untrusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Serialize payloads with jq or another JSON encoder, and review command examples before installing or adapting the skill.
+
+Risk: The skill depends on a trusted Pilot Protocol setup and a running pilotctl daemon.
+
+Mitigation: Use the skill only in environments where the Pilot Protocol peer, daemon, and local pilotctl binary are trusted and maintained.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [Pilot Thread ClawHub listing](https://clawhub.ai/teoslayer/skills/pilot-thread)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses pilotctl JSON pub/sub commands and jq filters; requires pilotctl and jq on PATH.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact metadata version 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

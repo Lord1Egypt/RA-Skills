@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn720fdznv82a5ee83a3vate9983qb7w",
-  "slug": "bazi-fortune-analysis-maxclaw",
+  "id": 378623320146000,
   "version": "1.0.0",
-  "publishedAt": 1775822322029
+  "name": "bazi-fortune-analysis",
+  "updated_at": 1773990964530,
+  "platform": "minimax"
 }

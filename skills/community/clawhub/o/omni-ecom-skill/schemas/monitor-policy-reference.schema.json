@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/monitor-policy-reference-2.0.json",
+  "title": "Pinned cross-run monitor policy reference",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "store_id", "profile_path", "profile_sha256", "client_scope", "policy_id", "revision", "policy_sha256", "source_kind", "current_authority", "legacy_permissions_inherited"],
+  "properties": {
+    "schema_version": {"const": "2.0"}, "store_id": {"type": "string", "minLength": 1},
+    "profile_path": {"type": "string", "minLength": 1}, "profile_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "client_scope": {"type": "string", "minLength": 1}, "policy_id": {"type": "string", "minLength": 1},
+    "revision": {"type": "string", "minLength": 1}, "policy_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_kind": {"enum": ["native_v2", "legacy_v1"]}, "current_authority": {"type": "boolean"},
+    "legacy_permissions_inherited": {"const": false}
+  },
+  "allOf": [{"if": {"properties": {"source_kind": {"const": "legacy_v1"}}}, "then": {"properties": {"current_authority": {"const": false}}}}]
+}

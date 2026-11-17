@@ -1,41 +1,59 @@
-## Description: <br>
-小红书自动发布技能 - 支持图片搜索下载、自动上传发布一键完成 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书自动发布技能 - 支持图片搜索下载、自动上传发布一键完成
 
-## Publisher: <br>
-[richardx0319](https://clawhub.ai/user/richardx0319) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richardx0319](https://clawhub.ai/user/richardx0319)
 
-## Use Case: <br>
-External creators and agents use this skill on macOS to prepare Xiaohongshu posts, including image preparation, title and body entry, hashtags, and browser-based publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in Xiaohongshu publishing session and may proceed to public posting without a clear final approval checkpoint. <br>
-Mitigation: Require the agent to pause before the final publish click and show the target account, image source, title, body, hashtags, and final page state for explicit user approval. <br>
-Risk: Automatically downloaded or prepared images may not match the intended post topic or rights expectations. <br>
-Mitigation: Review the selected image source and final upload preview before authorizing publication. <br>
+## Use Case:
 
+Social media operators and content creators can use this skill to prepare Xiaohongshu note assets and guide a publishing workflow on macOS. The skill is intended for logged-in browser use where the user supplies or confirms the note topic, title, body, image, account, and final posting action.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/richardx0319/xiaohongshu-auto-publish-macos) <br>
-- [Xiaohongshu creator publish page](https://creator.xiaohongshu.com/publish/publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown instructions and terminal output with file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prepare image files on disk when the helper script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide public posting through a logged-in Xiaohongshu browser profile without clear final confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target account and require explicit final approval or draft-only behavior before publishing.
+
+Risk: Downloaded or selected images may be unsuitable for publication.
+
+Mitigation: Inspect or replace the image before upload and ensure it is appropriate for the intended post.
+
+Risk: Running the workflow with elevated privileges can increase the impact of local file or browser-profile mistakes.
+
+Mitigation: Run the skill without elevated privileges and review it before installing or executing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richardx0319/skills/xiaohongshu-auto-publish-macos)
+- [Xiaohongshu creator publishing page](https://creator.xiaohongshu.com/publish/publish)
+- [Picsum image source](https://picsum.photos/800/1000)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with browser workflow steps, Python script execution instructions, and posting content text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prepare an image file for upload and provide manual browser steps for completing publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

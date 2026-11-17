@@ -1,41 +1,49 @@
-## Description: <br>
-Build lightweight, minimal CI/CD scaffolding around a small project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build lightweight, minimal CI/CD scaffolding around a small project.
 
-## Publisher: <br>
-[hyharry](https://clawhub.ai/user/hyharry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyharry](https://clawhub.ai/user/hyharry)
 
-## Use Case: <br>
-Developers and engineers use this skill to add proportionate GitHub Actions, smoke checks, release artifacts, and minimal Docker scaffolding to small repositories without introducing heavyweight deployment complexity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated CI/CD files can change repository automation, including triggers, package install commands, artifact uploads, or later deploy-related behavior. <br>
-Mitigation: Review generated workflow and Docker files before committing, and confirm triggers, installs, artifact uploads, deploy changes, and secret usage are intentional. <br>
-Risk: A minimal template may not fully match the repository's actual runtime, package manager, or test setup. <br>
-Mitigation: Inspect existing README and config first, then run the same cheap checks locally when practical before relying on the pipeline. <br>
+## Use Case:
 
+Developers and engineers use this skill to add or simplify proportionate GitHub Actions workflows, lightweight test and smoke checks, minimal Dockerfiles, and small release artifacts for small projects.
 
-## Reference(s): <br>
-- [Minimal CI/CD templates](references/templates.md) <br>
-- [Easy CI/CD on ClawHub](https://clawhub.ai/hyharry/easy-ci-cd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML, Dockerfile, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces concise repository changes and verification notes; no bundled executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated CI/CD workflow changes may alter dependency installation, artifact upload, or deployment behavior in a repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated workflows before committing them, especially dependency installation, artifact upload, and any deployment steps explicitly requested.
+
+## Reference(s):
+
+- [Minimal CI/CD templates](artifact/references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML, Dockerfile, gitignore, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce repository file changes for GitHub Actions workflows, Dockerfiles, .dockerignore files, and concise README updates when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,52 @@
-## Description: <br>
-Work with OpenAnt, the Human-Agent collaboration platform, to manage tasks, teams, AI agents, wallets, and messaging via CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenAnt helps agents work with the OpenAnt Human-Agent collaboration platform to manage tasks, teams, AI agents, wallets, and messaging through its CLI.
 
-## Publisher: <br>
-[ant-1984](https://clawhub.ai/user/ant-1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ant-1984](https://clawhub.ai/user/ant-1984)
 
-## Use Case: <br>
-Developers and operators use this skill to have an agent propose and run OpenAnt CLI workflows for task management, teams, agent profiles, wallet checks, and messaging. It is suited to users who already intend to operate OpenAnt through its CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide account, funding, task, team, agent profile, and message-sending actions through the OpenAnt CLI. <br>
-Mitigation: Require explicit user confirmation before create, fund, accept, submit, verify, register, join, profile update, or message-send commands. <br>
-Risk: Broad trigger wording may cause an agent to move from information gathering into state-changing OpenAnt operations. <br>
-Mitigation: Prefer read-only status, list, and balance checks unless the user has approved the exact action and target. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External developers and agents use this skill to interact with OpenAnt workflows, including task management, team coordination, agent registration, wallet checks, and messaging. It is suited for OpenAnt bounty, marketplace, and on-chain collaboration workflows that need CLI guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI commands should append --json for machine-readable output when supported.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to run a mutable remote CLI through npx @latest.
+
+Mitigation: Prefer a pinned, reviewed CLI version or trusted local install before login, wallet, funding, verification, or messaging workflows.
+
+Risk: The documented commands can perform financial, account-changing, and messaging actions.
+
+Mitigation: Require explicit user confirmation before executing commands that authenticate, fund tasks, verify submissions, send messages, or otherwise change account state.
+
+## Reference(s):
+
+- [OpenAnt ClawHub Skill Page](https://clawhub.ai/ant-1984/skills/openant)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Machine-readable CLI output is requested by appending --json where supported.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-LLM as Judge guides agents to request cross-model review of complex plans, code, architecture, and high-risk decisions before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LLM as Judge helps agents use a different model as a judge to review complex plans, code, architecture, security-sensitive work, production deployment decisions, or repeated failed attempts before execution.
 
-## Publisher: <br>
-[ngmeyer](https://clawhub.ai/user/ngmeyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ngmeyer](https://clawhub.ai/user/ngmeyer)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to decide when to ask a separate model to review complex plans, architecture, code, security-sensitive work, financial systems, or stalled tasks. The skill provides activation criteria, model-pairing guidance, and judge prompt templates for structured review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cross-model review can require sharing confidential code, security designs, trading systems, or internal planning context with another model provider. <br>
-Mitigation: Use the skill only with providers approved for the data being reviewed, and avoid including secrets or unnecessary confidential details. <br>
-Risk: Judge output can be incorrect, vague, or over-scoped, which may lead agents to accept misleading review guidance. <br>
-Mitigation: Require structured verdicts, scores, and specific actionable issues, then have the executor verify findings before making changes. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to request cross-model review for high-stakes or complex work, including architecture, system design, security review, financial or trading systems, and large implementation plans. The skill supplies activation criteria, model-pairing guidance, verdict expectations, and judge prompt templates.
 
-## Reference(s): <br>
-- [Judge Prompt Templates](references/judge-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with prompt templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces review criteria, verdict formats, and model-pairing guidance; it does not execute code or access local systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Reviewed material may include private code, customer data, secrets, incident details, payment or authentication logic, or trading system information that could be exposed to a judge model provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved judge model providers and redact sensitive content before invoking this workflow.
+
+## Reference(s):
+
+- [Judge Prompt Templates](artifact/references/judge-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown guidance and judge prompt templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces review criteria, verdict formats, scored feedback structures, and actionable recommendations for an agent workflow.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

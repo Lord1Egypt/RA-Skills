@@ -1,42 +1,55 @@
-## Description: <br>
-Converts PDF and image documents to Markdown through CamScanner's document parsing service, preserving text, tables, and reading order for downstream agent use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PDF and image documents to Markdown using CamScanner's document parsing service.
 
-## Publisher: <br>
-[camscanner-ai](https://clawhub.ai/user/camscanner-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[camscanner-ai](https://clawhub.ai/user/camscanner-ai)
 
-## Use Case: <br>
-Developers, agents, and external users use this skill to turn user-provided PDFs or images into local Markdown files for review, extraction, or downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents are uploaded to CamScanner's servers for processing, which can expose confidential, regulated, or highly sensitive content to a third-party service. <br>
-Mitigation: Use only with documents suitable for CamScanner processing; avoid sensitive files unless the provider's handling and retention claims are approved, or use a local converter. <br>
-Risk: Converted Markdown may be incomplete or inaccurate for complex layouts, tables, or image-heavy documents. <br>
-Mitigation: Review the generated Markdown before relying on it for decisions, records, or downstream automation. <br>
+## Use Case:
 
+Developers and other agent users use this skill to turn user-selected PDFs and images into Markdown for downstream reading, extraction, and document understanding workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/camscanner-ai/camscanner-any2markdown-office) <br>
-- [CamScanner homepage](https://www.camscanner.com) <br>
-- [CamScanner conversion service](https://ai-tools.camscanner.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown file, with usage guidance expressed as shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; uploads selected source documents to CamScanner's ai-tools service for conversion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Selected documents are uploaded to CamScanner's servers for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents whose upload and stated retention behavior are acceptable; avoid highly confidential, regulated, or third-party-sensitive files unless approved.
+
+Risk: The workflow depends on external API availability and correct file-type handling.
+
+Mitigation: Check each upload, conversion, and download response before using the Markdown output.
+
+## Reference(s):
+
+- [CamScanner Homepage](https://www.camscanner.com)
+- [CamScanner AI Tools API](https://ai-tools.camscanner.com)
+- [ClawHub Skill Page](https://clawhub.ai/camscanner-ai/skills/camscanner-any2markdown-office)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and downloaded .md files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; uploads selected PDF or image files to CamScanner and downloads Markdown output.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

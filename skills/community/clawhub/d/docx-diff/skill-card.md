@@ -1,39 +1,53 @@
-## Description: <br>
-Compares two local Word .docx documents for text, image, and style changes, then generates highlighted DOCX, HTML, and plain-text diff reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares two local Word .docx files to identify text, image, and style changes, then generates highlighted Word, HTML, and plain-text diff reports.
 
-## Publisher: <br>
-[mypicko](https://clawhub.ai/user/mypicko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mypicko](https://clawhub.ai/user/mypicko)
 
-## Use Case: <br>
-Developers, editors, and document reviewers use this skill to compare two local .docx files and summarize changed paragraphs, images, and formatting without relying on an online comparison service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML, DOCX, and TXT reports may contain sensitive document text or embedded images. <br>
-Mitigation: Compare only documents the user intends to process, choose the output directory deliberately, and handle generated reports as sensitive files. <br>
-Risk: The skill requires installing the python-docx dependency before use. <br>
-Mitigation: Install dependencies in a trusted environment, preferably a virtual environment. <br>
+## Use Case:
 
+Document reviewers, project teams, and developers use this skill to compare two versions of a Word document locally and produce reviewable diff artifacts without relying on an online comparison service.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Analysis, Guidance] <br>
-**Output Format:** [Markdown summary plus generated DOCX, HTML, and TXT report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports may include document text and embedded images from the compared files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated reports may contain document text and embedded images from the compared DOCX files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on intended documents, store outputs in an appropriate project folder, and review reports before sharing them.
+
+Risk: The workflow installs and uses python-docx in the local Python environment.
+
+Mitigation: Use a project folder or virtual environment, and consider pinning python-docx before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mypicko/skills/docx-diff)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance plus generated DOCX, HTML, and plain-text reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script reads the two user-selected DOCX files and writes diff outputs to the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

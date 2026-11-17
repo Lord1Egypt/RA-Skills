@@ -1,40 +1,54 @@
-## Description: <br>
-Generate workplace safety audits, incident reports, hazard assessments, training matrices, and compliance programs aligned with OSHA standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates workplace safety audits, incident reports, hazard assessments, training matrices, job hazard analyses, and OSHA-aligned safety program drafts.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Safety managers, operations teams, and agents supporting small and mid-size workplaces use this skill to draft OSHA-oriented audits, incident investigations, safety programs, training matrices, and job hazard analyses for human review. <br>
-
-### Deployment Geography for Use: <br>
-United States <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated workplace safety or OSHA-related content may be incomplete or inaccurate for a specific worksite. <br>
-Mitigation: Treat outputs as drafts and have qualified safety or legal personnel review them before relying on them for compliance decisions. <br>
-Risk: Incident reports may include personal, medical, or confidential workplace details. <br>
-Mitigation: Share only necessary incident details with the agent and redact sensitive information where possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-workplace-safety) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Workplace operators, safety managers, and business teams use this skill to draft OSHA-aligned safety audits, incident investigation reports, hazard assessments, training matrices, and field-ready job hazard analyses.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown tables, bullet checklists, numbered procedures, and summary dashboards] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft workplace safety and OSHA-related documents that require qualified safety or legal review before reliance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+United States
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: OSHA and workplace safety outputs may be incomplete, outdated, or unsuitable for a specific site, incident, jurisdiction, or operational hazard.
+
+Mitigation: Review outputs against current regulations and qualified safety or legal guidance before operational use.
+
+Risk: Generated audits, incident reports, and action plans may omit site-specific facts or assign controls that are not practical for the workplace.
+
+Mitigation: Have responsible safety personnel verify facts, hazards, controls, owners, deadlines, and recordkeeping decisions before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-workplace-safety)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown with tables, checklists, procedures, and management summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include risk ratings, regulatory bases, corrective action owners, deadlines, cost estimates, and field-ready templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-余秋雨式文化散文写作技法，适用于文化随笔、旅行文学和历史人物散文创作，帮助 agents 组织文化反思、历史纵深、个体感悟和典雅凝练的中文表达。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文写作指导技能，帮助代理按照余秋雨式文化散文方法生成、修改或评估文化随笔、旅行文学和历史人物散文。
 
-## Publisher: <br>
-[bfchain2-hub](https://clawhub.ai/user/bfchain2-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bfchain2-hub](https://clawhub.ai/user/bfchain2-hub)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and writing agents use this skill to draft, revise, or critique Chinese cultural prose with scene-driven openings, historical framing, reflective narration, and concise philosophical endings.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may apply the skill outside its intended Chinese-language cultural prose scope.
+
+Mitigation: Use it for cultural prose, travel writing, historical-person essay work, and civilization-reflection themes; choose a different skill for bilingual, general-purpose, explanatory, or current-affairs writing.
+
+Risk: The artifact includes style formulas and literary examples that could lead to overly close imitation or reused wording.
+
+Mitigation: Use the guidance as analytical structure, transform wording into original prose, and review outputs for attribution, copyright, and author-style concerns before publication.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Writers, editors, and content agents use this skill to draft or revise Chinese cultural essays, travel prose, historical-person essays, and civilization-reflection themes with structured scene openings, historical narration, restrained emotion, and concise philosophical endings. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a style-imitation writing reference that includes literary examples. <br>
-Mitigation: Use it as technique guidance and review generated prose for originality, attribution needs, and fit for the intended publication context. <br>
+**Output Format:** [Markdown and Chinese prose guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bfchain2-hub/yu-qiuyu-writing) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Chinese-language writing guidance focused on cultural prose; not designed for bilingual or general-purpose writing.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose, formulas, tables, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese writing guidance and drafting patterns; it does not execute code, access data, or persist state.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

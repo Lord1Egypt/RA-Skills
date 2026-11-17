@@ -1,43 +1,57 @@
-## Description: <br>
-Generate Marp teaching slides from source content for teachers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Marp teaching slides from one or more source Markdown files, including course decks with AM Blue Course theming, presenter metadata, image handling, and unified synthesis across sources.
 
-## Publisher: <br>
-[hh23333](https://clawhub.ai/user/hh23333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hh23333](https://clawhub.ai/user/hh23333)
 
-## Use Case: <br>
-Teachers, course authors, and agents use this skill to turn one or more existing Markdown source files into a unified Marp slide deck. It plans the deck structure, applies the AM Blue Course theme and required slide conventions, preserves source-bounded content, and copies referenced images into the output folder. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent reads user-provided Markdown files and referenced images and writes a generated slide deck. <br>
-Mitigation: Use the skill only with source files and images the agent is allowed to read, and review the generated deck before sharing it. <br>
-Risk: Theme styling includes remote font and icon imports that may contact external services during rendering. <br>
-Mitigation: For sensitive or offline use, vendor those assets locally or remove the remote imports before rendering. <br>
+## Use Case:
 
+Educators, course authors, and presentation builders use this skill to convert source Markdown notes or folders into Marp-compatible teaching slide decks. It is intended for source-grounded deck synthesis with required theme, cover, table-of-contents, image-copying, and layout rules.
 
-## Reference(s): <br>
-- [Marp Slide Format Reference](artifact/references/marp-guide.md) <br>
-- [Slide Generation Rules](artifact/references/rules.md) <br>
-- [Awesome Marp](https://github.com/favourhong/Awesome-Marp) <br>
-- [Marp](https://marp.app/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, configuration, guidance] <br>
-**Output Format:** [Markdown slide deck with Marp YAML, theme directives, layout classes, and output-relative image links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create an output folder, copy referenced source images into an images/ directory, and relink image paths for the generated deck.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Rendered slides may contact external font or CSS providers through Marp theme assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Vendor remote CSS and font assets locally or disable outbound network access during rendering in sensitive or offline environments.
+
+Risk: Generated decks can be incomplete or misleading if source files are missing, stale, or internally inconsistent.
+
+Mitigation: Review the generated slide deck against the source Markdown, including table-of-contents links, copied images, section structure, and required Marp headers before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hh23333/skills/slide-generation)
+- [Slide Generation Rules](artifact/references/rules.md)
+- [Marp Guide](artifact/references/marp-guide.md)
+- [Marp for VS Code](https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode)
+- [Awesome Marp Template](https://github.com/favourhong/Awesome-Marp)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, configuration, guidance]
+
+**Output Format:** [Marp-compatible Markdown slide deck with YAML front matter, Marp class comments, and local image references.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content is constrained to user-provided source material; source images are copied and relinked into an output images/ folder.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

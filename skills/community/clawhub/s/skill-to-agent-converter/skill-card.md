@@ -1,45 +1,60 @@
-## Description: <br>
-Convert OpenClaw skills into properly configured agents with correct workspace setup, binding, and orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert OpenClaw skills into properly configured agents with correct workspace setup, binding, and orchestration.
 
-## Publisher: <br>
-[drafthead](https://clawhub.ai/user/drafthead) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drafthead](https://clawhub.ai/user/drafthead)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert OpenClaw skills into registered agents with workspace files, tool access, binding strategy, and session-spawn configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides users to create persistent agents and patch OpenClaw configuration. <br>
-Mitigation: Back up OpenClaw configuration and agent directories before applying changes, and define how created agents will be stopped, disabled, and deleted. <br>
-Risk: Configuration patches and generated agent files can overgrant tools or bind agents to the wrong workspace. <br>
-Mitigation: Inspect every config.patch payload, verify cwd and agentDir values, and grant only the tools each agent needs. <br>
-Risk: Cleanup steps may include destructive directory deletion. <br>
-Mitigation: Avoid copy-pasting rm -rf cleanup commands; prefer dry-runs or moving directories to backups first. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert OpenClaw skills into autonomous agents with workspace setup, identity and tool configuration, registration, and session spawning guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/drafthead/skill-to-agent-converter) <br>
-- [Usage Guide](references/usage-guide.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
-- [War Room Skill Conversion Example](references/war-room-example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose persistent OpenClaw agent workspaces, configuration patches, and session-spawn settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can guide persistent agent creation, OpenClaw agent configuration changes, and session spawning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a test workspace first, review proposed configuration changes before applying them, and confirm the affected agents list before restarting or spawning agents.
+
+Risk: Examples and generated workflows may expose session keys or agent memory if stored without access controls.
+
+Mitigation: Do not store session keys in plaintext, keep agent identity and memory files private, and use restrictive filesystem permissions.
+
+Risk: Cleanup examples may delete agent data if followed without review.
+
+Mitigation: Replace destructive cleanup commands with preview, quarantine, backup, or restore-based procedures.
+
+## Reference(s):
+
+- [Usage Guide](references/usage-guide.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [War Room Skill Conversion Example](references/war-room-example.md)
+- [ClawHub Skill Page](https://clawhub.ai/drafthead/skills/skill-to-agent-converter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent agent configuration changes and session-spawning commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

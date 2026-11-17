@@ -1,38 +1,57 @@
-## Description: <br>
-Generates minimalist geometric WeChat Mini Program TabBar icon PNGs for unselected and selected states, then updates app.json with the corresponding icon paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates minimalist geometric WeChat Mini Program TabBar icons with Python PIL and updates app.json with unselected and selected icon paths.
 
-## Publisher: <br>
-[flowstart](https://clawhub.ai/user/flowstart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flowstart](https://clawhub.ai/user/flowstart)
 
-## Use Case: <br>
-Developers building WeChat Mini Program projects use this skill to create consistent TabBar icons and wire those icons into the project's tabBar configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended to write icon files and change app.json in a WeChat Mini Program project. <br>
-Mitigation: Use it only in the intended project, keep version control or a backup, and review the generated images and app.json diff before committing. <br>
+## Use Case:
 
+Developers building WeChat Mini Programs use this skill to generate consistent 81x81 PNG TabBar icons, match icons to tab labels or page paths, and update the project's app.json tabBar configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flowstart/wx-tabbar-icons) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python/Pillow code and JSON configuration edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create 81x81 PNG files under images/ and update app.json when applied in a project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill edits project files, including app.json and generated assets under images/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target project path and app.json changes before accepting the edits.
+
+Risk: Pillow installation or version drift can affect reproducibility across environments.
+
+Mitigation: Install Pillow in a virtual environment with a pinned version when reproducible builds are required.
+
+Risk: Automatic tab label matching can choose an unintended icon for ambiguous tab names.
+
+Mitigation: Confirm unmatched or ambiguous tab mappings and inspect the generated TabBar icons before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flowstart/skills/wx-tabbar-icons)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline Python and shell command examples, plus generated PNG files and app.json configuration updates when executed by an agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates paired unselected and selected 81x81 PNG icons for each tab and writes iconPath and selectedIconPath entries into app.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

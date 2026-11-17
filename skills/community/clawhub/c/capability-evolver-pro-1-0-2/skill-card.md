@@ -1,41 +1,60 @@
-## Description: <br>
-Meta-skill for AI agent self-improvement that analyzes runtime logs to detect error patterns, regressions, and inefficiencies, then generates structured improvement proposals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capability Evolver Pro analyzes agent runtime logs to detect error patterns, regressions, and inefficiencies, then generates structured improvement proposals for reliability, diagnosis, and health assessment.
 
-## Publisher: <br>
-[jackey001-wq](https://clawhub.ai/user/jackey001-wq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackey001-wq](https://clawhub.ai/user/jackey001-wq)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect structured runtime logs, identify recurring failures or regressions, compute health scores, and produce prioritized improvement recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Runtime logs can contain secrets, personal data, tenant identifiers, or stack traces that should not be retained or shared unnecessarily. <br>
-Mitigation: Redact sensitive fields before passing logs to the skill, especially when using production or fleet logs. <br>
-Risk: Generated recommendations may be incomplete or unsuitable for a specific production environment. <br>
-Mitigation: Review recommendations before storing them, applying changes, or turning them into automated remediation tasks. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to analyze structured agent logs, diagnose recurring failures, assess system health, and generate prioritized improvement proposals for agent reliability workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackey001-wq/capability-evolver-pro-1-0-2) <br>
-- [Claw0x Capability Evolver](https://claw0x.com/skills/capability-evolver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON objects containing detected patterns, health scores, recommendations, evolution proposals, status details, or validation errors.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local deterministic processing; analyze and evolve actions require structured log entries, and outputs may include up to 50 patterns and 20 recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Production logs may contain tokens, credentials, personal data, or sensitive URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive values before analysis and avoid submitting logs that exceed the runtime's approved data-handling policy.
+
+Risk: Very large or malformed log batches may create reliability issues if the runtime does not enforce request size and schema limits.
+
+Mitigation: Apply request validation, schema checks, and batch-size limits before invoking analyze or evolve actions.
+
+Risk: Pattern-based recommendations can be incomplete or misleading when the log structure omits important operational context.
+
+Mitigation: Have engineers review recommendations before applying changes, especially for production incident response or automated improvement pipelines.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jackey001-wq/skills/capability-evolver-pro-1-0-2)
+- [Publisher Profile](https://clawhub.ai/user/jackey001-wq)
+- [Claw0x Capability Evolver Page](https://claw0x.com/skills/capability-evolver)
+- [Declared Project Link](https://github.com/kennyzir/capability-evolver)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [JSON results with diagnostic text, scores, patterns, recommendations, and proposal objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs vary by action: analyze returns patterns, health score, recommendations, and summary; evolve returns prioritized recommendations, risk assessment, and estimated improvement; status returns supported actions, strategies, and limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

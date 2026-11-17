@@ -1,0 +1,7 @@
+{
+  "schema": 2,
+  "scope": "account",
+  "name": "deplark",
+  "endpoint": "https://deplark.com",
+  "deploy_client_sha256": "3aee39743e066e7b5193e2f674a31742edff6d92cbfe2d0449990947623f75a7"
+}

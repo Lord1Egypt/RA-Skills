@@ -1,47 +1,63 @@
-## Description: <br>
-EngineMind is a Rust and Python consciousness simulation framework with crystal dynamics, thalamic relay processing, introspective inner voices, and dashboard visualizations for text-driven cognitive state modeling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Rust+Python consciousness engine with 12-phase crystal dynamics, thalamic relay processing, 19 introspective inner voices, and holographic emission.
 
-## Publisher: <br>
-[marceloadryao](https://clawhub.ai/user/marceloadryao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[marceloadryao](https://clawhub.ai/user/marceloadryao)
 
-## Use Case: <br>
-Developers and researchers use EngineMind to run local consciousness-inspired simulations over text, inspect emergent cognitive-state metrics, and visualize runtime behavior. It is suited for exploratory modeling of information integration, phase changes, and introspective commentary rather than claims of actual consciousness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The included dashboard can expose runtime and locally derived data on all network interfaces without authentication. <br>
-Mitigation: Bind the dashboard to 127.0.0.1 or firewall port 8888 before use, and avoid exposing it on shared or public networks. <br>
-Risk: Processing private documents can create derived state and reports in local logs. <br>
-Mitigation: Use non-sensitive inputs unless local log retention and access controls are acceptable for the data being processed. <br>
-Risk: The release security verdict is suspicious and recommends manual review before execution. <br>
-Mitigation: Review the source and run the code in a controlled local environment before installing or executing the dashboard and scripts. <br>
+## Use Case:
 
+Developers and researchers use EngineMind to process text through a Rust/Python consciousness-simulation engine and inspect emergent state metrics, inner voice reports, burst analyses, and dashboard visualizations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marceloadryao/enginemind) <br>
-- [Repository from skill metadata](https://github.com/marceloadryao/EngineMind) <br>
-- [Architecture](docs/ARCHITECTURE.md) <br>
-- [Emergent Phenomena](docs/EMERGENT_PHENOMENA.md) <br>
-- [Inner Voices](docs/INNER_VOICES.md) <br>
-- [Burst Analysis](docs/BURST_ANALYSIS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local builds, simulation runs, dashboard use, and interpretation of generated metrics and logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bundled orchestration scripts can read local agent identity and memory files and log processed content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in an isolated project directory, review the files selected for processing, and avoid running it from a user profile or shared agent workspace.
+
+Risk: The bundled dashboard is unauthenticated and the security evidence notes broader-than-expected exposure and a path traversal issue.
+
+Mitigation: Keep the dashboard local-only, remove the path traversal issue, and do not expose it on a network before review.
+
+Risk: Dashboard assets may load browser dependencies from external CDNs.
+
+Mitigation: Vendor browser dependencies before using the dashboard with sensitive data or in restricted environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marceloadryao/skills/enginemind)
+- [EngineMind Repository](https://github.com/marceloadryao/EngineMind)
+- [EngineMind README](README.md)
+- [Architecture Deep Dive](docs/ARCHITECTURE.md)
+- [Emergent Phenomena](docs/EMERGENT_PHENOMENA.md)
+- [Inner Voice System](docs/INNER_VOICES.md)
+- [Burst Analysis](docs/BURST_ANALYSIS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documentation and guidance with code examples, shell commands, runtime JSONL logs, and dashboard data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Rust/Python source files, scripts, local dashboard assets, and generated simulation reports when run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

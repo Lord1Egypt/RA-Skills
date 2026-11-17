@@ -1,58 +1,77 @@
-## Description: <br>
-Design, compare, research, and plan SDR projects for OpenClaw, including hardware and software selection, architecture choices, and implementation planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design, compare, research, and plan SDR projects for OpenClaw across hardware, software, platform, architecture, and implementation choices.
 
-## Publisher: <br>
-[dadud](https://clawhub.ai/user/dadud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dadud](https://clawhub.ai/user/dadud)
 
-## Use Case: <br>
-Developers and builders use this skill to choose SDR project stacks and translate them into OpenClaw-friendly designs with separated hardware, ingest, decoding, storage, API, and UI layers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SDR hardware or network receiver services may be exposed more broadly than intended. <br>
-Mitigation: Use least-privilege USB or device mappings, bind services to localhost or trusted interfaces, and require firewall, VPN, or authentication controls for remote access. <br>
-Risk: Radio traffic may be recorded, archived, rebroadcast, or published in ways that create legal, privacy, or policy issues. <br>
-Mitigation: Verify local law and privacy obligations before capturing, storing, sharing, or publishing radio traffic. <br>
-Risk: Example setup snippets may be followed without enough review for the user's host, hardware, or deployment model. <br>
-Mitigation: Review skill guidance before installing packages, changing device access, or applying runtime configuration. <br>
+## Use Case:
 
+Developers and technical operators use this skill to choose SDR project stacks, plan OpenClaw-friendly service layouts, compare SDR tools, and turn broad radio requirements into practical implementation plans.
 
-## Reference(s): <br>
-- [SDR Project Design](SKILL.md) <br>
-- [Architecture Patterns](references/architecture-patterns.md) <br>
-- [Browser Receiver](references/browser-receiver.md) <br>
-- [Common Failure Modes](references/common-failure-modes.md) <br>
-- [Dashboard UI Patterns](references/dashboard-ui-patterns.md) <br>
-- [Example Builds](references/example-builds.md) <br>
-- [General Desktop and Utility](references/general-desktop-and-utility.md) <br>
-- [Hardware Driver Integration](references/hardware-driver-integration.md) <br>
-- [Implementation Recipes](references/implementation-recipes.md) <br>
-- [OpenClaw Build Patterns](references/openclaw-build-patterns.md) <br>
-- [Platform Deployment](references/platform-deployment.md) <br>
-- [Project Intake](references/project-intake.md) <br>
-- [Project Landscape](references/project-landscape.md) <br>
-- [Reverse Engineering](references/reverse-engineering.md) <br>
-- [Satellite Weather](references/satellite-weather.md) <br>
-- [Scanner Public Safety](references/scanner-public-safety.md) <br>
-- [SDR Research Deep Dive](references/sdr-research-deep-dive.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with optional inline code blocks, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include architecture recommendations, implementation order, risk notes, and platform-specific setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may suggest privileged host or USB permission changes for SDR hardware.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer device-specific USB access, avoid broad or world-writable udev rules, and review any privileged changes before applying them.
+
+Risk: SDR services or browser receivers could be exposed beyond a trusted network.
+
+Mitigation: Bind services only to trusted interfaces and require authentication, tunnels, or equivalent access controls for remote use.
+
+Risk: Public-safety, sensor, meter, or other third-party radio traffic can raise legal, privacy, or policy concerns.
+
+Mitigation: Confirm local laws and privacy expectations before recording, archiving, summarizing, publishing, or sharing received traffic.
+
+Risk: Unpinned or unverified SDR dependencies and driver stacks can create reliability or supply-chain risk.
+
+Mitigation: Pin and verify dependencies, especially hardware drivers, decoder tools, and SDR service images.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dadud/skills/sdr-project-design)
+- [SDR Architecture Patterns](references/architecture-patterns.md)
+- [Browser Receiver SDR Projects](references/browser-receiver.md)
+- [Common Failure Modes in SDR Projects](references/common-failure-modes.md)
+- [SDR Dashboard / UI Patterns](references/dashboard-ui-patterns.md)
+- [Example SDR Builds in OpenClaw](references/example-builds.md)
+- [General Desktop / Utility SDR Projects](references/general-desktop-and-utility.md)
+- [SDR Hardware & Driver Integration Reference](references/hardware-driver-integration.md)
+- [SDR Implementation Recipes](references/implementation-recipes.md)
+- [OpenClaw Build Patterns for SDR Projects](references/openclaw-build-patterns.md)
+- [Cross-Platform SDR Deployment in OpenClaw](references/platform-deployment.md)
+- [SDR Project Intake](references/project-intake.md)
+- [SDR Project Landscape Index](references/project-landscape.md)
+- [Reverse Engineering / Signal Analysis SDR Projects](references/reverse-engineering.md)
+- [Satellite / Weather SDR Projects](references/satellite-weather.md)
+- [Scanner / Public Safety SDR Projects](references/scanner-public-safety.md)
+- [SDR Research Deep Dive](references/sdr-research-deep-dive.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with architecture summaries, implementation steps, inline code, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include best-fit stack recommendations, OpenClaw layout, layer responsibilities, build order, and likely pain points.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

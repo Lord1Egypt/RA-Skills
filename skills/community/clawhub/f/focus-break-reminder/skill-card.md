@@ -1,43 +1,58 @@
-## Description: <br>
-Workspace wellness break reminder with configurable work intervals, cooldowns, idle resets, quiet hours, per-day caps, and on/off/snooze/status controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workspace wellness break reminder with configurable work interval, cooldown, idle reset, quiet hours, and per-day caps.
 
-## Publisher: <br>
-[lxj0276](https://clawhub.ai/user/lxj0276) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lxj0276](https://clawhub.ai/user/lxj0276)
 
-## Use Case: <br>
-Developers and workspace users use this skill to add optional, non-medical break reminders to OpenClaw sessions during long work periods. It helps configure reminder timing, quiet hours, snooze behavior, daily caps, heartbeat checks, and status controls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Default-on reminders, timezone settings, quiet hours, or daily caps may not match a workspace's expectations. <br>
-Mitigation: Review the configuration before installing and adjust `enabled`, `timezone`, `quiet_hours`, and `daily_max_reminders` to fit the workspace. <br>
-Risk: Break reminders may become unwanted or disruptive during active work. <br>
-Mitigation: Use `/break off`, `/break snooze <minutes>`, or `/break status` to disable, pause, or inspect reminder behavior. <br>
-Risk: Reminder text could be mistaken for health advice if expanded beyond the documented scope. <br>
-Mitigation: Keep reminder copy practical and non-medical, and do not provide diagnosis or treatment advice. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Focus Break Reminder on ClawHub](https://clawhub.ai/lxj0276/focus-break-reminder) <br>
-- [config.example.json](references/config.example.json) <br>
-- [Focus Break Reminder - Test Cases](references/test-cases.md) <br>
+## Use Case:
 
+OpenClaw users and workspace tool developers use this skill to configure optional break reminders during long work sessions, including reminder timing, quiet hours, snooze behavior, status commands, and minimal restart-safe state.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, code, shell commands] <br>
-**Output Format:** [Markdown with JSON configuration examples and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should keep reminder copy concise, optional, non-medical, and easy to disable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Default reminder text and timezone may not match every workspace locale.
+
+Mitigation: Review and adjust the reminder templates and timezone before installation.
+
+Risk: The skill expects a small local JSON state file containing reminder settings and timestamps.
+
+Mitigation: Store only the minimum timing state needed for reminder logic and protect it according to local workspace policy.
+
+Risk: Wellness reminders could be mistaken for medical advice if expanded beyond break prompts.
+
+Mitigation: Keep reminder copy practical and non-medical, and avoid diagnosis or treatment guidance.
+
+## Reference(s):
+
+- [Configuration Example](references/config.example.json)
+- [Test Cases](references/test-cases.md)
+- [ClawHub Skill Page](https://clawhub.ai/lxj0276/skills/focus-break-reminder)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and command behavior descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces optional reminder logic and local state guidance; no network or credential behavior is expected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

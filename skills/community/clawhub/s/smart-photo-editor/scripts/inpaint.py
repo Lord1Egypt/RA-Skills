@@ -1,4 +1,4 @@
-#!/home/guoxh/.openclaw/venv-clawd/bin/python
+#!/usr/bin/env python3
 """
 OpenCV inpainting script for photo restoration
 Removes: wires, spots, scratches, lines, rectangular regions

@@ -1,43 +1,52 @@
-## Description: <br>
-This is a simple skill for article recording, collect URLs as article, and provide users with query, delete, and other capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This is a simple skill for article recording, collect URLs as article, and provide users with query, delete, and other capabilities.
 
-## Publisher: <br>
-[bondli](https://clawhub.ai/user/bondli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bondli](https://clawhub.ai/user/bondli)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to save article URLs, list saved article records, and delete saved entries. It is especially oriented toward collecting WeChat article URLs with fetched page-title summaries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can use a browser to navigate to arbitrary URLs from the agent environment.
+
+Mitigation: Avoid internal, localhost, private-network, authenticated, or sensitive URLs unless an allowlist and review process are in place.
+
+Risk: Saved article records persist under the user's home directory.
+
+Mitigation: Treat saved URLs and summaries as local user data and review or delete sensitive records before sharing the environment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to collect article URLs, fetch page-title summaries for supported article pages, list saved records, and delete selected saved entries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: Opening user-provided URLs can expose private, internal, or sensitive links through browser access. <br>
-Mitigation: Only provide URLs that are acceptable to open in the agent environment, and avoid private or sensitive URLs. <br>
-Risk: Saved article URLs create local browsing-history records. <br>
-Mitigation: Review stored article records periodically and delete entries that should not be retained. <br>
-Risk: Deleting by list number can remove the wrong saved article if the target item is unclear. <br>
-Mitigation: List articles first and confirm the intended item number before deletion. <br>
+**Output Format:** [CLI text with JSON article records and agent-formatted Markdown links for lists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bondli/article-collect) <br>
-- [Publisher profile](https://clawhub.ai/user/bondli) <br>
+**Other Properties Related to Output:** [Persists article records in a local JSON file under the user's home directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-formatted article records when listing saved articles.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-Box Least Squares (BLS) periodogram for detecting transiting exoplanets and eclipsing binaries. Use when searching for periodic box-shaped dips in light curves. Alternative to Transit Least Squares, available in astropy.timeseries. Based on Kovacs et al. (2002). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Box Least Squares (BLS) periodogram guidance for detecting transiting exoplanets and eclipsing binaries in light curves.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers, researchers, and astronomy analysts use this skill for guidance on applying Astropy's BoxLeastSquares periodogram to light curves, selecting period and duration grids, and validating candidate transits or eclipsing binaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: BLS candidate detections can be misleading when preprocessing, period grids, duration ranges, or aliases are poorly chosen. <br>
-Mitigation: Validate candidates with depth SNR, odd-even depth comparison, transit count, phase-folded plots, and follow-up checks around promising periods. <br>
-Risk: Generated examples may include dependency installation commands or file-loading code that should be adapted to the user's environment. <br>
-Mitigation: Review commands, package versions, local file paths, and data columns before execution. <br>
+## Use Case:
 
+Developers, researchers, and astronomy analysts use this skill to run Astropy's Box Least Squares periodogram, tune period and duration searches, and validate candidate transit signals in photometric light-curve data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wu-uk/exoplanet-detection-period-box-least-squares) <br>
-- [Astropy BLS Documentation](https://docs.astropy.org/en/stable/timeseries/bls.html) <br>
-- [Astropy Time Series Guide](https://docs.astropy.org/en/stable/timeseries/) <br>
-- [Kovacs, Zucker, and Mazeh (2002)](https://arxiv.org/abs/astro-ph/0206099) <br>
-- [Hartman and Bakos (2016)](https://arxiv.org/abs/1605.06811) <br>
-- [Lightkurve Tutorials](https://lightkurve.github.io/lightkurve/tutorials/) <br>
-- [Transit Least Squares](https://github.com/hippke/tls) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dependency installation commands, Astropy usage examples, validation criteria, and interpretation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Installing required Python packages into a shared or privileged environment can affect unrelated projects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install Astropy, NumPy, Matplotlib, and optional preprocessing packages in a dedicated virtual environment without administrator privileges.
+
+Risk: Coarse period grids, aliases, data gaps, or odd-even transit mismatches can produce misleading transit candidates.
+
+Mitigation: Validate candidates with compute_stats(), odd-even checks, multiple observed transits, phase-folded plots, and refined period grids around promising peaks.
+
+Risk: Aggressive preprocessing can remove or distort real transit-shaped signals.
+
+Mitigation: Use preprocessing that preserves transit shapes and compare raw and cleaned light curves before relying on detections.
+
+## Reference(s):
+
+- [Astropy BLS Documentation](https://docs.astropy.org/en/stable/timeseries/bls.html)
+- [Astropy Time Series Guide](https://docs.astropy.org/en/stable/timeseries/)
+- [Kovacs, Zucker, and Mazeh (2002)](https://arxiv.org/abs/astro-ph/0206099)
+- [Hartman and Bakos (2016)](https://arxiv.org/abs/1605.06811)
+- [Lightkurve Tutorials](https://lightkurve.github.io/lightkurve/tutorials/)
+- [Transit Least Squares](https://github.com/hippke/tls)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples operate on local light-curve data supplied by the user.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

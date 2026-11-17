@@ -1,44 +1,59 @@
-## Description: <br>
-Provides ISFJ-focused growth coaching with coach and advisor modes for boundary-setting, self-care, career or study direction, focus, and action bottlenecks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides ISFJ users through growth, career, learning, boundary-setting, self-care, and action-planning conversations using coaching and advisor modes.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users and agent operators use this skill to guide conversational ISFJ growth coaching, including reflective questions, concrete action plans, and follow-up prompts for personal development topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to retain personal coaching records, which can include sensitive personal context. <br>
-Mitigation: Use it only in environments with clear opt-in, review, and deletion controls; avoid sharing sensitive details unless those controls are available. <br>
-Risk: The artifact mixes ISFJ and INTP content, which can produce confusing or mismatched coaching guidance. <br>
-Mitigation: Review the skill before installation and verify that prompts, references, and examples consistently match the intended ISFJ use case. <br>
-Risk: Users may mistake personality coaching for professional mental-health, career, or medical advice. <br>
-Mitigation: Keep the skill framed as reflective coaching and route serious psychological or health concerns to qualified professionals. <br>
+## Use Case:
 
+External users who identify as ISFJ use this skill to explore growth, career, learning, focus, boundaries, and self-care concerns. The skill supports reflective coaching questions, direct advisor-style recommendations, and short action plans.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lj22503/lj22503-isfj-coach) <br>
-- [ISFJ traits reference](references/isfj-traits.md) <br>
-- [INTP insights reference](references/intp-insights.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational Markdown with questions, options, action steps, and short coaching summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output length is guided by the artifact: coach mode is concise and advisor mode provides bounded action steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release evidence) <br>
+Risk: Sensitive coaching records or user profiles could be retained without clear consent or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in before retaining coaching notes, make retained records inspectable, and provide a clear deletion path.
+
+Risk: Packaging and identity mismatches could cause users to install the wrong package or receive INTP-oriented material in an ISFJ coach.
+
+Mitigation: Align the README, install command, package metadata, tags, references, and displayed version with the ISFJ release before publication.
+
+Risk: Users may treat coaching responses as professional mental-health advice.
+
+Mitigation: Keep the non-clinical boundary visible and route serious psychological concerns to qualified professionals.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lj22503/skills/lj22503-isfj-coach)
+- [ISFJ Traits and Cognitive Functions](artifact/references/isfj-traits.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational Markdown with short coaching questions, recommendations, action steps, and risk notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coach mode targets short reflective replies; advisor mode targets concise plans with concrete next steps.]
+
+## Skill Version(s):
+
+1.8.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

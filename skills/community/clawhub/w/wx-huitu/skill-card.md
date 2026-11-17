@@ -1,41 +1,66 @@
-## Description: <br>
-Wx Huitu helps agents turn article or data descriptions into WeChat-ready PNG chart packs by profiling the data, recommending one of 18 chart layouts, generating HTML, and screenshotting the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wx Huitu helps agents turn WeChat article text or data descriptions into publication-ready PNG chart packages using chart recommendations, generated HTML, and Puppeteer screenshots.
 
-## Publisher: <br>
-[edwardwason](https://clawhub.ai/user/edwardwason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwardwason](https://clawhub.ai/user/edwardwason)
 
-## Use Case: <br>
-Content teams, editors, and data storytellers use this skill to convert article data or metric descriptions into static PNG charts for WeChat public-account articles, with chart-choice checks before generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated chart files may be uploaded to Feishu cloud storage as part of the standard delivery path without a clear per-task consent step. <br>
-Mitigation: Use a local-only workflow for sensitive drafts or require explicit confirmation before any cloud upload. <br>
+## Use Case:
 
+Content creators, analysts, and developers use this skill to extract chart-worthy data from WeChat article drafts or data descriptions, choose an appropriate C01-C18 chart layout, and produce PNG charts for article embedding.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/edwardwason/wx-huitu) <br>
-- [Workflow Reference](references/workflow.md) <br>
-- [Chart System Reference](references/chart-system.md) <br>
-- [Design Tokens Reference](references/design-tokens.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with generated HTML and PNG chart files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates fixed-size HTML/SVG chart assets, screenshots them to PNG, saves them locally, and may sync them to Feishu cloud storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The screenshot workflow launches Chrome or Edge through Puppeteer and disables the browser sandbox while rendering generated HTML.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and run chart rendering in a low-privilege or isolated environment when processing untrusted article content.
+
+Risk: Generated chart data can leave the local environment if Feishu cloud sync is enabled.
+
+Mitigation: Keep cloud sync off by default and enable it only after explicit user confirmation for content that is acceptable to upload.
+
+Risk: The workflow writes generated PNG and HTML files to local storage.
+
+Mitigation: Use a known output directory and review generated files before sharing or publishing them.
+
+Risk: The generated HTML loads Google Fonts over the network.
+
+Mitigation: Avoid rendering sensitive or restricted content unless network access is acceptable for the environment.
+
+## Reference(s):
+
+- [Skill Definition](SKILL.md)
+- [README](README.md)
+- [Workflow Reference](references/workflow.md)
+- [Chart System Reference](references/chart-system.md)
+- [Design Tokens Reference](references/design-tokens.md)
+- [ClawHub Skill Page](https://clawhub.ai/edwardwason/skills/wx-huitu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with generated HTML/CSS/SVG and PNG chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated chart files are saved locally; Feishu upload is optional and requires explicit user confirmation.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

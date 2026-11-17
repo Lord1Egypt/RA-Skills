@@ -1,40 +1,59 @@
-## Description: <br>
-Provides a framework for evaluating, pricing, packaging, and launching API products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps product teams, founders, and developers evaluate, price, package, and launch API products using asset audits, pricing models, readiness checks, unit economics, and go-to-market planning.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers, founders, and product teams use this skill to assess API assets, choose monetization models, plan launch readiness, and forecast API revenue. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Pricing benchmarks, revenue forecasts, and AfrexAI purchase links may be commercial guidance that is inaccurate or unsuitable for a user's market. <br>
-Mitigation: Verify benchmarks, forecasts, purchase decisions, and compliance assumptions independently before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-api-monetization) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Product managers, founders, and developers use this skill to assess whether APIs are commercially viable, select pricing and packaging models, prepare launch requirements, and forecast revenue.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown business guidance with checklists, tables, and calculation templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; users should validate pricing, compliance, and market assumptions independently.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API monetization plans can create legal, privacy, security, or compliance exposure when customer data, healthcare, financial, identity, or other regulated workflows are involved.
+
+Mitigation: Run legal, privacy, security, and compliance review before launching or monetizing an API.
+
+Risk: Pricing benchmarks, revenue forecasts, and readiness thresholds may not match a specific market, customer segment, or operating cost profile.
+
+Mitigation: Validate assumptions against current customer demand, infrastructure costs, support burden, and competitive pricing before committing to a launch plan.
+
+Risk: Linked external resources are optional third-party marketing links.
+
+Mitigation: Review external resources independently before relying on them or purchasing related materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-api-monetization)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with checklists, tables, pricing examples, formulas, and planning templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static business-advice content; users should validate legal, privacy, security, compliance, pricing, and market assumptions before launch.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

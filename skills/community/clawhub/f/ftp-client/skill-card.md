@@ -1,43 +1,57 @@
-## Description: <br>
-FTP/FTPS client skill that connects to FTP servers and performs file operations including list, upload, download, delete, move, copy, mkdir, and read. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FTP/FTPS client skill. Connect to FTP servers and perform file operations (list, upload, download, delete, move, copy, mkdir, read). Supports FTP and FTPS (explicit/implicit TLS).
 
-## Publisher: <br>
-[erayai](https://clawhub.ai/user/erayai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erayai](https://clawhub.ai/user/erayai)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect and manage files on configured FTP or FTPS servers. It is suited for agent-assisted remote file transfer and directory maintenance where the agent is trusted with scoped FTP credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent-accessible FTP operations can expose or alter remote server files. <br>
-Mitigation: Use a least-privilege FTP account scoped to the specific directory and data needed for the task. <br>
-Risk: Weak transport defaults may reduce confidentiality or server authenticity for FTP/FTPS connections. <br>
-Mitigation: Prefer FTPS and verify certificate validation externally or fix it before using sensitive credentials. <br>
-Risk: Upload, move, and delete operations can cause unintended remote data changes. <br>
-Mitigation: Review target paths and intended operations before executing destructive or write commands. <br>
+## Use Case:
 
+Developers and operators use this skill to connect an agent to FTP or FTPS servers and manage remote files, including listing, upload, download, delete, move, copy, directory creation, content reading, and file info checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/erayai/ftp-client) <br>
-- [Publisher profile](https://clawhub.ai/user/erayai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Files, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks and command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and FTP_CONNECTION; file transfer commands may read, write, move, copy, or delete remote FTP server content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Credentials and file contents may be exposed when plain FTP is used on untrusted networks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a least-privileged FTP account and prefer FTPS after confirming certificate validation is acceptable for the deployment.
+
+Risk: Remote delete and recursive directory operations can remove more data than intended.
+
+Mitigation: Confirm remote paths before delete or recursive operations and avoid broad paths for accounts with write access.
+
+Risk: Malformed connection values may reveal sensitive configuration in error output.
+
+Mitigation: Rotate credentials if malformed FTP_CONNECTION values may have been logged.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/erayai/skills/ftp-client)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and an FTP_CONNECTION environment variable.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

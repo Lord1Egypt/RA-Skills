@@ -11,42 +11,41 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and cloud security operators use this skill to query Alibaba Cloud WAF and SLS data, diagnose blocked requests or rules that are not taking effect, and receive console-only remediation steps for manual WAF configuration. <br>
+External users, developers, and cloud operations engineers use this skill to diagnose Alibaba Cloud WAF interceptions, inspect existing WAF rules and SLS logs, and receive manual console guidance without automated configuration changes. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill uses Alibaba Cloud credentials to query WAF and SLS data. <br>
-Mitigation: Use a constrained RAM user, review commands before execution, and avoid exposing credentials or credential files. <br>
-Risk: The security evidence notes local CLI configuration changes and plugin update or install commands despite the read-only diagnostic positioning. <br>
-Mitigation: Run in a controlled environment and explicitly review any Alibaba Cloud CLI AI-mode or plugin commands before allowing them. <br>
-Risk: Rule and log JSON may contain sensitive WAF or traffic details. <br>
-Mitigation: Avoid storing sensitive rule or log JSON in shared temporary paths and remove local diagnostic files when finished. <br>
-Risk: The package includes an unrelated translation script that can rewrite a skill file. <br>
-Mitigation: Remove the translation script from runtime packages when possible and restrict execution to the diagnostic script required for rule matching. <br>
+Risk: The skill uses cloud credentials and can access Alibaba Cloud WAF configuration and SLS logs. <br>
+Mitigation: Use a dedicated least-privilege RAM user or temporary credentials, do not paste secrets into chat, and confirm the active account and region before running commands. <br>
+Risk: Diagnostic rule and log files may contain sensitive WAF, traffic, or account information. <br>
+Mitigation: Treat saved diagnostic JSON as sensitive, keep it only as long as needed, and delete temporary files after the workflow. <br>
+Risk: Read-only diagnostics can still query production cloud resources and produce misleading results if credentials, regions, or logstore names are wrong. <br>
+Mitigation: Review each command before execution, use only documented read-only Describe/Get/SLS log queries, and verify the account, region, and User-Agent session value. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-waf-rule-management) <br>
-- [CLI guide](references/cli_guide.md) <br>
-- [CLI commands](references/cli_commands.md) <br>
-- [CLI traps](references/cli_traps.md) <br>
-- [WAF API reference](references/api_reference.md) <br>
-- [Security rules](references/security_rules.md) <br>
-- [RAM policies](references/ram-policies.md) <br>
-- [Configuration guide](references/configuration_guide.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-waf-rule-management) <br>
+- [WAF 3.0 OpenAPI Parameter Specification](references/api_reference.md) <br>
+- [WAF CLI Command Reference](references/cli_commands.md) <br>
+- [Alibaba Cloud CLI Operation Reference](references/cli_guide.md) <br>
+- [WAF CLI Traps Checklist](references/cli_traps.md) <br>
+- [WAF Configuration Guidance Details](references/configuration_guide.md) <br>
+- [Alibaba Cloud CLI Profile Configuration Guide](references/profile_setup_guide.md) <br>
+- [RAM Permission Statement](references/ram-policies.md) <br>
+- [Security Rules - Complete Prohibitions](references/security_rules.md) <br>
+- [WAF Skill Common Issues Troubleshooting](references/troubleshooting.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-language console steps] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
+**Output Format:** [Markdown with read-only shell commands and plain-language console guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only diagnostic flow; commands use Alibaba Cloud CLI and SLS with user-controlled credentials, and configuration changes are described for manual console completion.] <br>
+**Other Properties Related to Output:** [Outputs must remain text-only for configuration guidance and must not include executable write operations, generated scripts, or saved configuration files.] <br>
 
 ## Skill Version(s): <br>
-0.0.1-beta.1 (source: server release evidence) <br>
+0.0.1 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

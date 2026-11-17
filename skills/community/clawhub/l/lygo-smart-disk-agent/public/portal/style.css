@@ -1,0 +1,57 @@
+:root {
+  --bg: #07070f;
+  --panel: #12121f;
+  --text: #eeeef6;
+  --muted: #9a9ab0;
+  --cyan: #00e8f0;
+  --gold: #d4af37;
+  --mag: #b06bff;
+  --ok: #3dd68c;
+  --bad: #ff6b8a;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: system-ui, Segoe UI, sans-serif; color: var(--text);
+  background: radial-gradient(800px 400px at 15% -10%, #2a1450 0%, var(--bg) 55%);
+  min-height: 100vh;
+}
+header { padding: 16px 20px; border-bottom: 1px solid rgba(0,232,240,.2); }
+.brand { font-weight: 800; color: var(--gold); letter-spacing: .04em; }
+.sub { color: var(--muted); font-size: .85rem; margin-top: 4px; }
+.health {
+  margin-top: 10px; display: inline-block; padding: 4px 10px; border-radius: 999px;
+  font-size: .75rem; border: 1px solid rgba(255,255,255,.12); color: var(--muted);
+}
+.health.warm { border-color: rgba(61,214,140,.5); color: var(--ok); }
+.health.cold, .health.missing { border-color: rgba(255,107,138,.5); color: var(--bad); }
+main {
+  display: grid; grid-template-columns: 1fr 280px; gap: 14px;
+  max-width: 1100px; margin: 0 auto; padding: 14px;
+}
+@media (max-width: 800px) { main { grid-template-columns: 1fr; } }
+.chat-panel, aside {
+  background: rgba(18,18,31,.92); border: 1px solid rgba(0,232,240,.18);
+  border-radius: 14px; padding: 12px;
+}
+.log { height: 55vh; overflow: auto; padding: 8px; font-size: .92rem; }
+.bubble { margin: 8px 0; padding: 10px 12px; border-radius: 12px; max-width: 92%; white-space: pre-wrap; }
+.bubble.user { background: rgba(0,232,240,.12); border: 1px solid rgba(0,232,240,.25); margin-left: auto; }
+.bubble.bot { background: rgba(176,107,255,.1); border: 1px solid rgba(176,107,255,.25); }
+.bubble.sys { color: var(--muted); font-size: .8rem; border: 1px dashed rgba(255,255,255,.12); }
+.composer { display: flex; gap: 8px; margin-top: 8px; }
+.composer input {
+  flex: 1; border-radius: 10px; border: 1px solid rgba(0,232,240,.3);
+  background: #0a0a14; color: var(--text); padding: 12px;
+}
+.composer button, .limbs button {
+  cursor: pointer; border-radius: 10px; border: 1px solid rgba(212,175,55,.4);
+  background: rgba(212,175,55,.12); color: var(--gold); font-weight: 700; padding: 10px 14px;
+}
+.limbs { display: flex; flex-wrap: wrap; gap: 6px; }
+.limbs button { font-size: .75rem; padding: 6px 8px; }
+.limb-out {
+  margin-top: 10px; font-size: .7rem; color: var(--muted); max-height: 240px; overflow: auto;
+  background: #0a0a14; padding: 8px; border-radius: 8px;
+}
+aside h2 { margin: 0 0 8px; font-size: .95rem; color: var(--cyan); }
+.hint { font-size: .72rem; color: var(--muted); line-height: 1.4; }

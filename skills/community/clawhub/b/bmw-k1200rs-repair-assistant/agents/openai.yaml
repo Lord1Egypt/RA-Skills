@@ -1,0 +1,3 @@
+display_name: BMW K1200RS Repair Assistant
+short_description: Manual-backed BMW K1200RS repair help.
+default_prompt: Use BMW K1200RS Repair Assistant to diagnose an issue, plan safe checks, and cite the user-provided repair manual where available.

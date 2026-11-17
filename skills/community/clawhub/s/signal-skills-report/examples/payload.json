@@ -1,0 +1,49 @@
+{
+  "title": "Example report (hand-written payload)",
+  "eyebrow": "2 fictional shows, 5 episodes, hand-written example",
+  "headline": "Build CSV export first; the pricing complaint is one source so far",
+  "query": "What should we build next, based on what the shows say users want?",
+  "tiers": [
+    {
+      "label": "Ship next: raised independently more than once",
+      "name": "Do now",
+      "rank": 5,
+      "of": 5,
+      "color": "sig",
+      "items": [
+        {
+          "claim": "Users want to export their data to CSV",
+          "tag": "confirmed twice",
+          "tag_class": "sig",
+          "reasoning": "Raised by two different guests on two shows without prompting.",
+          "source": "Example Show A ep12; Example Show B ep4 (fictional)"
+        }
+      ]
+    },
+    {
+      "label": "Watch: one source, worth a second look",
+      "name": "Watch",
+      "rank": 2,
+      "of": 5,
+      "color": "mid",
+      "items": [
+        {
+          "claim": "Per-seat pricing is pushing small teams to a competitor",
+          "tag": "anecdotal",
+          "tag_class": "mid",
+          "reasoning": "One guest's story, no numbers; look for it in reviews before acting.",
+          "source": "Example Show A ep14 (fictional)"
+        },
+        {
+          "claim": "Offline mode will matter within a year",
+          "tag": "prediction, unresolved",
+          "tag_class": "alert",
+          "reasoning": "A falsifiable prediction; the ledger will mark it confirmed, failed or stale.",
+          "source": "Example Show B ep5 (fictional)"
+        }
+      ]
+    }
+  ],
+  "footer_left": "Hand-written payload, not from a run",
+  "footer_right": "plugins/signal-report/examples/payload.json"
+}

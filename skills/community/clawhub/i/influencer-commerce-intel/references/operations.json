@@ -1,0 +1,73 @@
+{
+  "tiktok_realtime_product_detail": {
+    "method": "GET",
+    "path": "/api/v1/tiktok/realtime/product/detail",
+    "summary": "实时采集-商品详情",
+    "tags": [
+      "tiktok"
+    ],
+    "required_query": [
+      "product_id",
+      "region"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "tiktok_user_shop_sale": {
+    "method": "GET",
+    "path": "/api/v1/tiktok/user/shop/sale",
+    "summary": "用户带货数据",
+    "tags": [
+      "tiktok"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "tiktok_user_shop_video_ad_list": {
+    "method": "GET",
+    "path": "/api/v1/tiktok/user/shop/video/ad/list",
+    "summary": "用户带货视频广告列表",
+    "tags": [
+      "tiktok"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "tiktok_user_shop_goods_list": {
+    "method": "GET",
+    "path": "/api/v1/tiktok/user/shop/goods/list",
+    "summary": "用户带货商品列表",
+    "tags": [
+      "tiktok"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "tiktok_user_shop_live_list": {
+    "method": "GET",
+    "path": "/api/v1/tiktok/user/shop/live/list",
+    "summary": "用户带货直播列表",
+    "tags": [
+      "tiktok"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  }
+}

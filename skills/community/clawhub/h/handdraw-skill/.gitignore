@@ -1,0 +1,6 @@
+node_modules/
+packages/*/dist/
+out/
+.hatch-pet-runs/
+.venv/
+.DS_Store

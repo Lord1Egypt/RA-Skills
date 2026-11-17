@@ -1,40 +1,53 @@
-## Description: <br>
-Ganesh Image Hosting API for image hosting. Use when user mentions "Ganesh", "upload image", "image hosting", or asks about image sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ganesh Image Hosting API for image hosting. Use when user mentions "Ganesh", "upload image", "image hosting", or asks about image sharing.
 
-## Publisher: <br>
-[davidbergman121](https://clawhub.ai/user/davidbergman121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidbergman121](https://clawhub.ai/user/davidbergman121)
 
-## Use Case: <br>
-External users and developers use this skill to work with Ganesh image hosting: uploading images, obtaining shareable URLs, and embedding hosted images in Markdown, articles, or documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images uploaded through Ganesh are sent to an external hosting service and may become shareable outside the user's current workspace. <br>
-Mitigation: Confirm the exact image before upload and avoid private or confidential images unless the user intends to share them through that service. <br>
-Risk: Ganesh API endpoints and parameters may change over time. <br>
-Mitigation: Verify the current Ganesh API documentation before sending data or relying on a specific endpoint. <br>
+## Use Case:
 
+Developers and content authors use this skill to upload images to Ganesh and obtain shareable URLs for articles, Markdown, documentation, or image sharing.
 
-## Reference(s): <br>
-- [Ganesh Official API Documentation](https://ishortn.ink/ganesh-official-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance for using the Ganesh API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include shareable image URLs after the agent helps the user use the external Ganesh hosting service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill sends users to mutable API instructions through a shortened URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the current Ganesh API destination and parameters before using generated guidance or uploading files.
+
+Risk: The skill may lead to images being uploaded to an external hosting service without clear consent handling.
+
+Mitigation: Use the skill only when the user explicitly intends to upload an image, and avoid sensitive or private images unless the hosting service's storage and sharing behavior is understood.
+
+## Reference(s):
+
+- [Ganesh Official API Documentation](https://ishortn.ink/ganesh-official-api)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, API calls]
+
+**Output Format:** [Markdown or text instructions with API usage details and shareable image URLs when an upload is performed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The linked API documentation changes frequently, so generated guidance should be checked against the current Ganesh documentation before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

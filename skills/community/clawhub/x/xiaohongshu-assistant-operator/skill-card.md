@@ -1,51 +1,61 @@
-## Description: <br>
-Automates daily Xiaohongshu content creation, publishing, marketing, and engagement for creator ID 4740535877 with strict persona and promotion controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates daily Xiaohongshu content creation, publishing, controlled promotion, and comment engagement for one specified creator account.
 
-## Publisher: <br>
-[a950701zz](https://clawhub.ai/user/a950701zz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[a950701zz](https://clawhub.ai/user/a950701zz)
 
-## Use Case: <br>
-External creators or authorized account operators use this skill to run a daily Xiaohongshu workflow for one named creator account, including topic selection, post drafting, publishing validation, and comment engagement. It is intended only for operators authorized to act on creator ID 4740535877. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a named Xiaohongshu account and publish public content. <br>
-Mitigation: Install and run it only when authorized to operate creator ID 4740535877. <br>
-Risk: Posts and comments may be published without explicit human approval. <br>
-Mitigation: Use draft or preview mode, or add approval before each post and comment. <br>
-Risk: Scheduled publishing and interaction cycles can continue without clear stop controls. <br>
-Mitigation: Set daily limits, keep the documented posting and interaction caps, and provide a stop mechanism before scheduled operation. <br>
-Risk: Separately supplied helper scripts could affect publishing behavior. <br>
-Mitigation: Review any helper script before execution and stop after a failed retry as described in the risk-control guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cold Start Strategy](references/cold-start-strategy.md) <br>
-- [Comment Reply Logic](references/comment-reply-logic.md) <br>
-- [Dynamic Adjustment Logic](references/dynamic-adjustment.md) <br>
-- [Marketing Control System](references/marketing-control.md) <br>
-- [Persona Template](references/persona-template.md) <br>
-- [Risk Control Rules](references/risk-control.md) <br>
-- [Schedule System](references/schedule-system.md) <br>
-- [Strict Publish Validation Protocol](references/strict-publish-validation.md) <br>
-- [Topic Decision Engine](references/topic-decision-engine.md) <br>
+## Use Case:
 
+Authorized account operators or creator assistants use this skill to plan, generate, publish, validate, and manage daily Xiaohongshu notes and replies for the named creator account.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and short-form post text with operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated posts are constrained to image-text mode, at most 400 characters each, with no more than 3 posts and 3 interaction cycles per day.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can publish and reply publicly for a specific Xiaohongshu account without explicit approval controls in the artifact.
+
+Mitigation: Use it only for an account you control or are authorized to operate, and require preview, approval, logging, rate limits, and an easy disable path before publishing or replying.
+
+Risk: Hard-coded creator mentions and promotion rules can create unwanted branding or marketing content.
+
+Mitigation: Review each generated post and reply before use, and add a control that can disable mandatory mentions or promotion for individual outputs.
+
+## Reference(s):
+
+- [Xiaohongshu Assistant Operator ClawHub Page](https://clawhub.ai/a950701zz/skills/xiaohongshu-assistant-operator)
+- [Cold Start Strategy](references/cold-start-strategy.md)
+- [Comment Reply Logic](references/comment-reply-logic.md)
+- [Dynamic Adjustment Logic](references/dynamic-adjustment.md)
+- [Marketing Control System](references/marketing-control.md)
+- [Persona Template](references/persona-template.md)
+- [Risk Control Rules](references/risk-control.md)
+- [Schedule System](references/schedule-system.md)
+- [Strict Publish Validation Protocol](references/strict-publish-validation.md)
+- [Topic Decision Engine](references/topic-decision-engine.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text and Markdown post drafts, reply drafts, operating decisions, and status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Artifact rules cap generated posts at 400 characters and limit default operation to up to 3 posts and 3 interaction cycles per day.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

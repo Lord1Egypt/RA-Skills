@@ -1,42 +1,64 @@
-## Description: <br>
-Agent Orchestrate is a quick reference for OpenClaw multi-agent orchestration patterns, including sub-agent spawning, parallel fan-out, pipelines, dependency trees, and supervision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent orchestration patterns for OpenClaw, including quick-reference guidance for spawning sub-agents, parallel work, and basic coordination.
 
-## Publisher: <br>
-[moltenbot000](https://clawhub.ai/user/moltenbot000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[moltenbot000](https://clawhub.ai/user/moltenbot000)
 
-## Use Case: <br>
-Developers and agent operators use this skill to choose and apply simple OpenClaw multi-agent coordination patterns for parallel research, sequential pipelines, dependency-managed work, and human checkpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Fan-out and synthesis patterns can expose secrets, credentials, personal data, or regulated material to additional sub-agents. <br>
-Mitigation: Scope each sub-agent prompt to the minimum necessary context and avoid delegating sensitive material unless it is required for the task. <br>
-Risk: Parallel or dependency-based workflows can produce partial, failed, or stale subtask results that affect final synthesis. <br>
-Mitigation: Use clear labels, timeouts, checkpoints, failure handling, and human review before relying on aggregated results. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan simple multi-agent workflows, including fan-out, pipeline, dependency-tree, human-checkpoint, and supervisor patterns.
 
-## Reference(s): <br>
-- [Fan-Out Pattern](references/fan-out.md) <br>
-- [Pipeline Pattern](references/pipeline.md) <br>
-- [Dependency Tree Pattern](references/dependency-tree.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides orchestration patterns, examples, and operational cautions rather than executable automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Prior agent results can be incorrect or untrusted when passed into later orchestration stages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review intermediate results before reuse and require human approval before sensitive changes or external sends.
+
+Risk: Spawned agents may receive broader tool access than a subtask requires.
+
+Mitigation: Limit available tools and scope each spawned agent to one clear task.
+
+Risk: State and checkpoint files can expose private task content or secrets.
+
+Mitigation: Avoid storing secrets or sensitive content in orchestration state, and restrict or remove checkpoint files when no longer needed.
+
+Risk: Long-running or stuck agents can consume unnecessary resources.
+
+Mitigation: Set timeouts, poll at reasonable intervals, and stop or retry failed agents deliberately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moltenbot000/skills/agent-orchestrate)
+- [Fan-Out Pattern](references/fan-out.md)
+- [Pipeline Pattern](references/pipeline.md)
+- [Dependency Tree Pattern](references/dependency-tree.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; examples should be adapted and reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,68 @@
-## Description: <br>
-Control Home Assistant smart home devices, lights, scenes, and automations via moltbot-ha CLI with configurable safety confirmations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Home Assistant smart home devices, lights, scenes, and automations via moltbot-ha CLI with configurable safety confirmations.
 
-## Publisher: <br>
-[iamvaleriofantozzi](https://clawhub.ai/user/iamvaleriofantozzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[iamvaleriofantozzi](https://clawhub.ai/user/iamvaleriofantozzi)
 
-## Use Case: <br>
-External users and smart-home developers use this skill to let an agent discover and control Home Assistant entities through the moltbot-ha CLI while preserving confirmation flows for critical devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent control smart-home devices, including devices that may affect physical safety or security. <br>
-Mitigation: Keep confirmation enabled for locks, alarms, garage doors, covers, scripts, and automations, and require explicit user approval before any forced critical action. <br>
-Risk: A broad Home Assistant token can grant more device access than the user intends. <br>
-Mitigation: Use a dedicated Home Assistant token where possible, keep HA_TOKEN out of files and logs, and configure allowed_entities and blocked_entities for sensitive devices. <br>
-Risk: The release depends on the external moltbot-ha CLI package. <br>
-Mitigation: Install only after verifying trust in the external package and publisher. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent discover and control Home Assistant entities through the moltbot-ha CLI while preserving confirmation steps for higher-risk smart-home actions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/iamvaleriofantozzi/moltbot-ha) <br>
-- [Home Assistant REST API documentation](https://developers.home-assistant.io/docs/api/rest/) <br>
-- [Moltbot documentation](https://docs.molt.bot/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference JSON output from the moltbot-ha CLI when users request programmatic state data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and CHANGELOG, released 2026-02-02) <br>
+Risk: The skill controls physical smart-home devices, including critical domains such as locks, alarms, covers, and garage doors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep safety level 3 or stronger, require explicit user confirmation before using --force, and configure blocked_entities for devices that should never be automated.
+
+Risk: The skill requires a long-lived Home Assistant access token.
+
+Mitigation: Use a dedicated least-privilege Home Assistant account or token, prefer HA_TOKEN over storing tokens in config files, and revoke or rotate the token if exposure is suspected.
+
+Risk: Plaintext HTTP examples can expose Home Assistant traffic outside a trusted local boundary.
+
+Mitigation: Prefer HTTPS or a trusted local-only network path, and avoid exposing Home Assistant control endpoints to untrusted networks.
+
+Risk: The install flow uses an external moltbot-ha package without a pinned version in the artifact instructions.
+
+Mitigation: Install only a reviewed and pinned release where possible, and review the package before granting access to Home Assistant credentials.
+
+Risk: Broad entity access can let an agent operate devices beyond the intended scope.
+
+Mitigation: Configure allowed_entities to limit access to approved Home Assistant entities and keep blocked_entities for high-impact devices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iamvaleriofantozzi/skills/moltbot-ha)
+- [Project homepage](https://github.com/iamvaleriofantozzi/moltbot-ha)
+- [Home Assistant REST API documentation](https://developers.home-assistant.io/docs/api/rest/)
+- [Moltbot documentation](https://docs.molt.bot/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Home Assistant entity names, JSON-capable CLI output, and confirmation guidance for critical actions.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and changelog, released 2026-02-02)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

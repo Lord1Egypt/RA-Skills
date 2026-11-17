@@ -1,42 +1,62 @@
-## Description: <br>
-Checks current electricity availability for a fixed Odesa address through the DTEK Odesa power outage website. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks current electricity availability for Odesa, vul. Chikalenka Yevhena, 43 through DTEK Odesa Electric Grids.
 
-## Publisher: <br>
-[kapishdima](https://clawhub.ai/user/kapishdima) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kapishdima](https://clawhub.ai/user/kapishdima)
 
-## Use Case: <br>
-External users can ask an agent whether power is currently available and, when reported by the source site, when service may be restored for the configured Odesa address. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill launches a local Node.js Playwright script with Chromium and contacts DTEK's public outage page. <br>
-Mitigation: Install only in environments where local browser automation and access to the DTEK public outage page are acceptable. <br>
-Risk: Responses may be shared in user-facing or professional settings and the source skill includes informal wording. <br>
-Mitigation: Review or edit the response wording before using the skill in shared, Ukrainian-language, or professional contexts. <br>
-Risk: The result applies to one fixed Odesa address and may not represent other locations. <br>
-Mitigation: Confirm that the configured address is the intended location before relying on the status. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [DTEK Odesa power outage page](https://www.dtek-oem.com.ua/ua/shutdowns) <br>
-- [ClawHub skill page](https://clawhub.ai/kapishdima/dtek-light) <br>
+## Use Case:
 
+Residents or agents assisting this Odesa address use the skill to check whether electricity is currently available and to summarize outage or restoration information.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and status-based response text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The local script returns JSON status values that the agent turns into a user-facing response.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Ukraine
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs local JavaScript and launches a browser to query DTEK for the disclosed address.
+
+Mitigation: Review the script before installation and run it only in an environment where this address lookup is acceptable.
+
+Risk: The documented invocation locates executable code by searching the agent's skills directory.
+
+Mitigation: Prefer invoking the bundled script through a fixed relative path.
+
+Risk: The Playwright dependency is mutable and no lockfile is present.
+
+Mitigation: Pin Playwright with a lockfile before operational use.
+
+Risk: Broad trigger phrases may run the check when the user did not intend to query the address.
+
+Mitigation: Use an explicit command or narrowly scoped prompt before running the check.
+
+## Reference(s):
+
+- [DTEK Odesa Electric Grids Shutdowns](https://www.dtek-oem.com.ua/ua/shutdowns)
+- [ClawHub Skill Page](https://clawhub.ai/kapishdima/skills/dtek-light)
+- [Publisher Profile](https://clawhub.ai/user/kapishdima)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with a local shell command and JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Playwright with Chromium and queries a fixed disclosed address.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

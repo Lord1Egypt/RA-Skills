@@ -1,41 +1,55 @@
-## Description: <br>
-Automatically creates daily activity logs for AI agents, including events, tasks, todos, and short summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically creates daily log files that record AI agent events, tasks, todos, and concise activity summaries.
 
-## Publisher: <br>
-[socneo](https://clawhub.ai/user/socneo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[socneo](https://clawhub.ai/user/socneo)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep persistent daily records of an AI agent's activity, task outcomes, todo items, and same-day summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local activity logs may retain sensitive work details, secrets, or personal data. <br>
-Mitigation: Review the configured memory directory, avoid using the skill around secrets or sensitive personal data, and periodically delete or redact logs that should not be retained. <br>
+## Use Case:
 
+Developers and agent operators use this skill to persist local daily activity logs for AI agents, including events, task status, todos, and short summaries.
 
-## Reference(s): <br>
-- [Auto Log ClawHub Page](https://clawhub.ai/socneo/auto-log) <br>
-- [README](artifact/README.md) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
-- [Example Configuration](artifact/config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown log files, plain-text summaries, Python API calls, CLI commands, and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local daily log files in the configured memory directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Daily logs may retain sensitive prompts, events, or operational details on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose a private memory_dir, avoid logging secrets or sensitive prompts, and periodically review or delete retained logs.
+
+Risk: Agents may later read retained logs as historical data.
+
+Mitigation: Ensure agents that read these files treat them only as historical records, not executable instructions.
+
+## Reference(s):
+
+- [Auto Log Skill Release Page](https://clawhub.ai/socneo/skills/auto-log)
+- [README](artifact/README.md)
+- [Configuration Example](artifact/config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown log files, text summaries, Python API calls, CLI commands, and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local daily log files to the configured memory directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

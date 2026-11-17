@@ -1,53 +1,61 @@
-## Description: <br>
-财税审计内容生成器 - 快速生成专业财税公众号文章，支持多种文章类型和主题 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+财税审计内容生成器，帮助用户生成适配微信公众号的财税、审计和政策解读文章、标题、大纲与配图建议。
 
-## Publisher: <br>
-[fengbabao0929](https://clawhub.ai/user/fengbabao0929) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fengbabao0929](https://clawhub.ai/user/fengbabao0929)
 
-## Use Case: <br>
-External creators, finance professionals, and tax or audit content teams use this skill to draft Chinese WeChat public account articles, outlines, title options, review notes, and related image selections for finance, tax, audit, policy, and risk topics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release bundles valuation and investment-advice workflows that may be regulated or unsuitable for general content automation. <br>
-Mitigation: Disable or exclude the valuation guides unless the deployment has qualified financial review, suitability controls, and clear user-facing disclaimers. <br>
-Risk: The command manifest uses absolute Windows paths that are unlikely to work unchanged in other environments. <br>
-Mitigation: Replace hard-coded paths with deployment-local paths before enabling slash commands. <br>
-Risk: The image generator includes an exposed Unsplash API key. <br>
-Mitigation: Remove the bundled key, rotate it if it was live, and inject image API credentials through a managed secret or environment variable. <br>
-Risk: Coze, WeChat, database, search, and document-conversion integrations can expose sensitive finance, tax, or client data. <br>
-Mitigation: Connect external services only after privacy review, data minimization, access controls, and approval for the specific data classes being processed. <br>
-Risk: Generated tax, audit, finance, and policy content may be outdated, incomplete, or misleading. <br>
-Mitigation: Require professional review against current authoritative sources before publication or client use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengbabao0929/financial-contant-writer) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Command manifest](artifact/finance-content-skill.json) <br>
-- [WeChat Finance Writer Coze Guide](artifact/wechat-finance-writer-coze.md) <br>
-- [Coze Complete Configuration Guide v4](artifact/finance-writer-coze-quickstart-v4.md) <br>
-- [Finance Valuation Agent Guide](artifact/finance-valuation-agent-guide.md) <br>
-- [Finance Valuation Coze Guide](artifact/finance-valuation-coze-guide.md) <br>
-- [Coze](https://www.coze.cn/) <br>
-- [ConvertAPI Markdown to Word endpoint](https://api.convertapi.com/Word/MdToWord) <br>
+## Use Case:
 
+External creators, finance and tax professionals, and operators use this skill to draft WeChat-ready finance, tax, audit, policy, risk, guide, tutorial, and industry-insight content. The package also includes configuration guidance for Coze bots and separate financial valuation workflows that should be reviewed before use.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text, with optional JSON command configuration and saved file metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language finance, tax, audit, policy, and risk content intended for WeChat public account workflows; generated professional content should be reviewed before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The package includes financial valuation and investment-recommendation workflows beyond the declared article-writing helper.
+
+Mitigation: Review and scope those workflows before enabling them, especially where outputs could be treated as financial advice.
+
+Risk: The package may collect or process company financial data, tax data, audit data, workbooks, or uploaded files.
+
+Mitigation: Avoid confidential client, tax, audit, or financial workbooks until third-party search, API, document-conversion, and storage behavior has been reviewed.
+
+Risk: The image helper contains an embedded Unsplash API key and downloads images from external services.
+
+Mitigation: Remove or rotate the embedded key and review outbound image download behavior before publishing or running the image feature.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fengbabao0929/skills/financial-contant-writer)
+- [Coze Platform](https://www.coze.cn/)
+- [Skill Definition](artifact/SKILL.md)
+- [Finance Content Command Configuration](artifact/finance-content-skill.json)
+- [WeChat Finance Writer Coze Guide](artifact/wechat-finance-writer-coze.md)
+- [Financial Valuation Coze Guide](artifact/finance-valuation-coze-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown articles, outlines, title lists, command output, JSON command configuration, and platform setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content may be saved to local files by commands that use save or output options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

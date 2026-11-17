@@ -1,42 +1,59 @@
-## Description: <br>
-Coordinate multiple sub-agents to collaboratively complete long-horizon software engineering tasks using the CAID (Centralized Asynchronous Isolated Delegation) paradigm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinate multiple sub-agents to collaboratively complete long-horizon software engineering tasks using the CAID (Centralized Asynchronous Isolated Delegation) paradigm.
 
-## Publisher: <br>
-[simoncatbot](https://clawhub.ai/user/simoncatbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simoncatbot](https://clawhub.ai/user/simoncatbot)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan, delegate, verify, and integrate long-horizon software engineering work across multiple isolated sub-agents. It is most relevant when a task has clear dependencies, parallelizable implementation units, and executable tests for integration review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow includes destructive git cleanup and reset examples that can remove local work if run in the wrong directory. <br>
-Mitigation: Confirm the current path and worktree target with git status before cleanup, and require explicit review before running git reset --hard or rm -rf. <br>
-Risk: The skill instructs agents to create and merge branches, install dependencies, run tests, push changes, and spawn sub-agents. <br>
-Mitigation: Use it only in repositories where those actions are authorized, and constrain spawned agents to assigned worktrees and target files. <br>
+## Use Case:
 
+Developers and software engineering agents use this skill to coordinate parallel work on long-horizon, multi-file tasks with dependency-aware delegation, isolated git worktrees, test-gated integration, and final review.
 
-## Reference(s): <br>
-- [CAID Multi-Agent Examples](references/examples.md) <br>
-- [async-swe-agents GitHub repository](https://github.com/JiayiGeng/async-swe-agents) <br>
-- [ClawHub skill page](https://clawhub.ai/simoncatbot/caid-multi-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON task assignments and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates branch-and-merge workflows, isolated git worktrees, sub-agent task delegation, verification commands, and final integration review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server evidence release.version) <br>
+Risk: Broad Git operations can alter repository history, push unintended changes, or remove worktree state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in a dedicated, backed-up repository; review staged diffs and remotes; and require explicit approval for pushes, hard resets, and deletion.
+
+Risk: Package installation and subagent execution can run code or commands outside the immediate review path.
+
+Mitigation: Use a sandboxed environment, validate worktree paths, and require explicit approval before package installation or subagent-driven command execution.
+
+Risk: Cleanup commands can delete files or expose sensitive untracked files if paths or credentials are mishandled.
+
+Mitigation: Validate cleanup targets, avoid exposing credentials, and keep sensitive untracked files out of repositories used with this skill.
+
+## Reference(s):
+
+- [CAID Multi-Agent Examples](references/examples.md)
+- [async-swe-agents GitHub repository](https://github.com/JiayiGeng/async-swe-agents)
+- [ClawHub skill page](https://clawhub.ai/simoncatbot/skills/caid-multi-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline JSON, bash, JavaScript, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces coordination plans, task assignments, verification commands, and integration guidance for agent workflows.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

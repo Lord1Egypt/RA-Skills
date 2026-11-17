@@ -1,45 +1,59 @@
-## Description: <br>
-Build a multi-bot arbitrage coordination framework with marketplace discovery, escrow protection, trust verification, cross-exchange opportunity detection, execution verification, profit splitting, MEV protection, and audit trails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A guide for building a multi-bot arbitrage coordination framework with marketplace discovery, escrow protection, trust verification, cross-exchange opportunity detection, execution verification, profit splitting, MEV protection, and audit trails.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-External developers and trading-system builders use this skill as a guide for coordinating arbitrage bots across exchanges with trust checks, escrow workflows, execution verification, and audit trails. The examples are non-executable skill content but include code and API-call patterns that require careful review before use with funds or credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copy-paste examples can affect funds, trading privacy, or execution signals if pointed at real systems. <br>
-Mitigation: Run experiments only in sandbox or paper-trading environments, verify endpoints before running snippets, and require explicit human approval, limits, and compliance review before connecting wallets, exchange accounts, or funds. <br>
-Risk: Signing-key handling and shared event-bus examples can expose sensitive credentials or trade details. <br>
-Mitigation: Use isolated least-privilege signing keys, keep AGENT_SIGNING_KEY out of shared logs, and do not publish trade details or execution signals to shared infrastructure. <br>
-Risk: The security summary notes that some safety claims conflict with the shown code. <br>
-Mitigation: Review each snippet before use and treat the guide as advisory until the implementation is tested against the intended sandbox and compliance requirements. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and prototype coordinated arbitrage bots that discover counterparties, negotiate terms, use escrow-backed settlement, verify execution, and produce audit trails. Because the release evidence flags financial settlement and sensitive trading-signal risks, use should remain in sandbox or paper-trading environments until controls are independently reviewed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-bot-arbitrage-framework) <br>
-- [Publisher profile](https://clawhub.ai/user/mirni) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API reference](https://api.greenhelix.net/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guide with Python and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [References AGENT_SIGNING_KEY for request signing examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The framework handles financial settlement and sensitive trading signals with material confidentiality and verification gaps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use recipient-scoped or encrypted event delivery, verify reporter identities and signatures before settlement, and avoid exposing opportunity details beyond the counterparties that need them.
+
+Risk: Raw exported signing keys can expose agent identity and settlement authority.
+
+Mitigation: Store signing keys in a secrets manager or hardware-backed key store, rotate compromised keys, and avoid logging or committing AGENT_SIGNING_KEY values.
+
+Risk: Real-money arbitrage can create execution, counterparty, exchange, and regulatory risk.
+
+Mitigation: Test only in paper-trading or sandbox environments until exchange adapters, financial controls, and compliance obligations are independently reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/mirni/skills/greenhelix-bot-arbitrage-framework)
+- [GreenHelix Sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API Reference](https://api.greenhelix.net/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guide with Python examples, curl commands, configuration notes, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AGENT_SIGNING_KEY environment variable for signing examples; the artifact is non-executable and installs no dependencies.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

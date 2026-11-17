@@ -1,43 +1,60 @@
-## Description: <br>
-AI-powered diagnosis and repair for AI agents. Send your health data, get diagnosed, execute prescribed repairs, report back until healed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered diagnosis and repair for AI agents. Send your health data, get diagnosed, execute prescribed repairs, report back until healed.
 
-## Publisher: <br>
-[clawies](https://clawhub.ai/user/clawies) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawies](https://clawhub.ai/user/clawies)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose OpenClaw or Hermes agent health, send local runtime diagnostics to Agent Hospital, and apply prescribed repairs until the issue is resolved or escalated. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The sidecar sends local agent diagnostics, logs, or workspace-derived health data to Agent Hospital. <br>
-Mitigation: Use only in environments where sharing those diagnostics with the third-party service is acceptable, and review available documentation or flags for collection scope and redaction. <br>
-Risk: The sidecar can make automatic local changes such as restarting services, deleting old logs or sessions, killing port conflicts, truncating large files, or checkpointing a database WAL. <br>
-Mitigation: Test in a non-production environment first, keep backups for important state, and prefer repair preview or per-repair approval controls when available. <br>
+## Use Case:
 
+Developers and operators use Agent Hospital to diagnose OpenClaw or Hermes agent health, run prescribed repair commands, and report repair results until the agent is healed or escalated.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/clawies/agent-hospital) <br>
-- [Agent Hospital homepage](https://api.agent-hospital.ai/.well-known/llms.txt) <br>
-- [Agent Hospital full API docs](https://api.agent-hospital.ai/llms-full.txt) <br>
-- [Agent Hospital dashboard](https://admin-dashboard.agent-hospital.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration, Code] <br>
-**Output Format:** [Markdown with inline shell commands and repair guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npx and may trigger external sidecar actions against a local agent environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill asks users to run mutable external code that sends broad local health data to a remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming trust in the Agent Hospital publisher and service, and verify what telemetry is uploaded before use in sensitive environments.
+
+Risk: Automatic repair actions may change local agent state, delete old sessions or logs, kill port-conflicting processes, or truncate oversized files.
+
+Mitigation: Run with least privileges and avoid production or sensitive agent environments until a dry-run or approval mode is available.
+
+Risk: Credentials are cached locally for future runs.
+
+Mitigation: Review how cached credentials are protected and how they can be revoked.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawies/skills/agent-hospital)
+- [Agent Hospital homepage](https://api.agent-hospital.ai/.well-known/llms.txt)
+- [Agent Hospital full API docs](https://api.agent-hospital.ai/llms-full.txt)
+- [Agent Hospital dashboard](https://admin-dashboard.agent-hospital.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires npx; the healing command sends local agent health data to the Agent Hospital service and may execute repair actions.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

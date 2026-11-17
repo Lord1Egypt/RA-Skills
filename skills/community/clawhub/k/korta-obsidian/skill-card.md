@@ -1,39 +1,58 @@
-## Description: <br>
-Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli.
 
-## Publisher: <br>
-[landercortazarromero](https://clawhub.ai/user/landercortazarromero) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[landercortazarromero](https://clawhub.ai/user/landercortazarromero)
 
-## Use Case: <br>
-Developers and Obsidian users use this skill to help an agent discover vaults, search notes, create Markdown notes, move or rename notes with link updates, and delete notes through obsidian-cli. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delete commands can remove notes from the active Obsidian vault if the vault or note path is wrong. <br>
-Mitigation: Verify the active vault and exact note path before deletion, and prefer archiving or backups for important notes. <br>
+## Use Case:
 
+Developers, engineers, and Obsidian users use this skill to discover vaults, search notes, create notes, and safely propose move, rename, or delete operations through obsidian-cli.
 
-## Reference(s): <br>
-- [Obsidian Help](https://help.obsidian.md) <br>
-- [Korta Obsidian on ClawHub](https://clawhub.ai/landercortazarromero/korta-obsidian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires obsidian-cli and an accessible local Obsidian vault.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requires installing obsidian-cli from a third-party Homebrew tap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the Homebrew tap is trusted and the required binary is appropriate for the environment.
+
+Risk: Move, rename, and delete commands can alter or remove notes in an Obsidian vault.
+
+Mitigation: Confirm the active vault and exact note path before execution, and keep backups or Obsidian sync/version history enabled.
+
+Risk: Multiple local vaults can cause commands to target the wrong vault if the vault path is guessed.
+
+Mitigation: Use obsidian-cli print-default or Obsidian's vault configuration to resolve the intended vault before acting.
+
+## Reference(s):
+
+- [Obsidian Help](https://help.obsidian.md)
+- [Korta Obsidian on ClawHub](https://clawhub.ai/landercortazarromero/skills/korta-obsidian)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local vault paths and obsidian-cli commands that modify Markdown notes when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

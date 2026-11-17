@@ -1,42 +1,56 @@
-## Description: <br>
-Call GET /api/weixin/get-article-detail/v1 for WeChat Official Accounts Article Details through JustOneAPI with articleUrl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/weixin/get-article-detail/v1 for WeChat Official Accounts Article Details through JustOneAPI with articleUrl.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch WeChat Official Accounts article details from JustOneAPI by articleUrl for archiving, research, and content analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a reusable JustOneAPI token in command arguments and request URLs, which can expose credentials through logs, shell history, process listings, or upstream request records. <br>
-Mitigation: Use only scoped, rotatable tokens in trusted environments; avoid logging command invocations; and prefer a future version that reads the token internally from the environment and sends it in an Authorization header. <br>
-Risk: Submitted article URLs are sent to JustOneAPI and may identify private or sensitive content. <br>
-Mitigation: Submit only article URLs that are appropriate to share with JustOneAPI and avoid private article URLs unless that disclosure is acceptable. <br>
+## Use Case:
 
+External developers and content analysts use this skill to retrieve WeChat Official Accounts article details, including body content, through JustOneAPI for article archiving, research, and content analysis.
 
-## Reference(s): <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weixin_get_article_detail&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weixin_get_article_detail&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON from the API response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JustOneAPI token and an articleUrl parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token can be exposed through process arguments, shell history, process telemetry, or URL query logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable token; avoid pasting token values into chat, screenshots, or logs; and rotate the token if exposure is suspected.
+
+Risk: The API call may have billing or permission impact when the token has broad account access.
+
+Mitigation: Review account permissions and billing limits before installation, and prefer a token dedicated to this endpoint or workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-weixin-get-article-detail)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weixin_get_article_detail&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weixin_get_article_detail&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown summary with endpoint details and raw JSON API response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and articleUrl; backend errors include the operation ID and backend payload when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

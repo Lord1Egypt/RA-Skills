@@ -1,143 +1,141 @@
-﻿<!--
-Copyright (c) 2026 杨鹏飞 / 微信公众号「叉车技术老炮」
-Licensed under CC BY-NC 4.0 + 附加条款 - 严禁商用 - 完整协议见 ../LICENSE.md
+<!--
+Copyright (c) 2026 Yang Pengfei / WeChat Official Account "Forklift Veteran"
+Licensed under the MIT License - See the complete license below
 -->
-# 授权协议 / License
+# License
 
-> 本文件是 forklift-expert Skill 包(以下简称"本作品")的授权协议。
-> 使用、复制、修改、分发本作品前,请仔细阅读本协议。
-
-## 协议组成
-
-本协议由两部分组成:
-1. **基础协议**:Creative Commons 署名-非商业 4.0 国际 (CC BY-NC 4.0)
-2. **附加条款**:作者专门为本作品增加的额外限制
-
-当两部分冲突时,**以附加条款为准**。
-
-## 一、基础协议摘要(CC BY-NC 4.0)
-
-完整 CC BY-NC 4.0 协议请见:
-- https://creativecommons.org/licenses/by-nc/4.0/legalcode.zh-Hans
-- 官方解释:https://creativecommons.org/licenses/by-nc/4.0/
-
-核心要点:
-- ✅ **共享** — 任何媒介复制、分发本作品
-- ✅ **演绎** — 修改、转换本作品,基于本作品进行再创作
-- ✅ **署名** — 需在显著位置标明原作者:**杨鹏飞**,公众号**叉车技术老炮**
-- ❌ **非商业** — 不得用于商业目的
-
-## 二、附加条款(本作品专属)
-
-### 第 1 条:商业使用禁令(强约束)
-
-**严禁**将本作品或其衍生作品用于任何商业用途,包括但不限于:
-
-1. **直接商业化**
-   - 将本 Skill 整体或部分内容出售、租赁
-   - 通过订阅、付费下载、付费 API 调用等方式提供本作品内容
-   - 包装为"专业版""企业版"等收费产品
-
-2. **嵌入商业产品**
-   - 将本作品内容集成到任何商业软件、SaaS、APP 中(免费或付费)
-   - 用于商业培训、付费课程、商业咨询报告
-   - 用于商业自媒体内容并通过该内容获利(广告、流量分成、带货等)
-
-3. **品牌混淆**
-   - 不得移除或修改本作品中的作者署名、版权声明、协议链接
-   - 不得将本作品署名为他人或匿名分发
-   - 不得将本作品冒充为"官方""权威""认证"内容
-   - 不得基于本作品创建竞争性产品(同样定位的工业 Skill)
-
-4. **数据滥用**
-   - 不得将本作品中的数据批量抓取后,用于训练商用 AI 模型
-   - 不得将本作品内容作为竞品分析材料的"免费素材"
-
-### 第 2 条:署名要求
-
-任何使用、引用、转载、再创作,均需满足:
-
-```
-显著位置标注:
-作者:杨鹏飞
-公众号:叉车技术老炮
-原文出处:微信公众号"叉车技术老炮"
-```
-
-如用于文章,建议格式:
-> "本文内容参考自杨鹏飞/叉车技术老炮维护的 forklift-expert Skill 包"
-
-### 第 3 条:派生作品
-
-- 允许基于本作品进行修改、扩展、衍生
-- 衍生作品**必须**采用本协议或更严格的协议
-- 衍生作品**必须**显著标注原作者
-
-### 第 4 条:法律救济
-
-违反本协议者,作者保留追究法律责任的权利,包括但不限于:
-- 要求停止侵权
-- 公开声明消除影响
-- 主张经济赔偿
-- 移交司法机关处理
-
-### 第 5 条:免责声明
-
-本作品"按现状"提供,作者不承诺:
-
-1. **准确性** — 内容可能存在技术错误、数据滞后、标准更新
-2. **完整性** — 不保证覆盖叉车行业的所有方面
-3. **适用性** — 不保证适用于特定场景或决策
-4. **可用性** — 不保证 Skill 不会失效或出错
-
-**使用本作品产生的任何直接或间接损失,作者不承担责任。**
-
-涉及:
-- 叉车采购决策
-- 维修操作
-- 安全事故
-- 法规合规
-- 商业纠纷
-
-请在使用前由专业人士审核。
-
-### 第 6 条:商用授权
-
-如需商用(违反第 1 条),必须事先获得作者书面授权。
-
-联系渠道:
-- 微信公众号:**叉车技术老炮** — 通过公众号留言或菜单获取联系方式
-
-### 第 7 条:协议变更
-
-作者保留随时更新本协议的权利。协议变更后:
-- 新版本仅适用于变更后发布的内容
-- 已在使用的版本沿用变更前的协议
-
-## 三、协议兼容性表
-
-| 场景 | 是否允许 | 条件 |
-|------|------|------|
-| 个人学习 | ✅ | 保留作者署名 |
-| 团队内部培训 | ✅ | 保留作者署名 + 不得收费 |
-| 自媒体引用 | ✅(免费内容) | 保留作者署名 + 不得通过该内容直接获利 |
-| 自媒体引用 | ❌(付费内容/打赏) | 需商用授权 |
-| 商业培训课程 | ❌ | 需商用授权 |
-| 商业咨询报告 | ❌ | 需商用授权 |
-| 商业软件集成 | ❌ | 需商用授权 |
-| 二手交易/出售 | ❌ | 需商用授权 |
-| 学术论文引用 | ✅ | 注明出处 |
-| 教学材料(非营利) | ✅ | 保留作者署名 |
-| 训练开源 AI 模型 | ✅ | 保留作者署名 + 衍生模型也需非商业 |
-| 训练商用 AI 模型 | ❌ | 需商用授权 |
-
-## 四、版本
-
-- 协议版本:v1.0
-- 发布日期:2026-06
-- 适用作品:forklift-expert Skill v2.1 及后续版本
+> This file contains the license for the `forklift-expert` Skill package (the "Work").
+> The Work is released under the **MIT License**, a permissive, business-friendly open-source license.
 
 ---
 
-> 本协议受中华人民共和国著作权法及相关法律保护。
-> 杨鹏飞 / 叉车技术老炮
+## 1. MIT License (English, Official Text)
+
+```
+MIT License
+
+Copyright (c) 2026 Yang Pengfei / WeChat Official Account "Forklift Veteran"
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+---
+
+## 2. Key Points of the MIT License
+
+### Permissions ✅
+
+| Activity | Description |
+|------|------|
+| Commercial use | Use the Work in commercial products, SaaS, or paid services |
+| Modification | Modify the source code, translate it, or extend its content |
+| Distribution | Copy and redistribute the Work or derivative works |
+| Private use | Use it internally within a company or in private projects |
+| Product integration | Integrate it into your software, app, or platform |
+| Sale | Sell copies of the Work or derivative products |
+| AI training | Train open-source or commercial AI models with it |
+
+### Only condition 📌
+
+- **Retain the copyright notice:** All copies or substantial portions must include the copyright notice above and this permission notice (that is, retain `Copyright (c) 2026 Yang Pengfei` and the full MIT License text).
+
+### No warranty or liability ⚠️
+
+- The author makes no warranty as to the **accuracy, completeness, suitability, or availability** of the Software.
+- The author is **not liable** for direct or indirect losses resulting from use of the Work.
+
+---
+
+## 3. Differences from the Former License (CC BY-NC-4.0 + Additional Terms)
+
+| Item | Former license | MIT (current) |
+|------|--------|----------|
+| Commercial use | ❌ Prohibited | ✅ Permitted |
+| Closed-source modifications | ❌ Must remain non-commercial | ✅ Permitted |
+| Integration into paid products | ❌ Permission required | ✅ Permitted |
+| Commercial AI training | ❌ Permission required | ✅ Permitted |
+| Only requirement | Attribution + non-commercial use | Retain the copyright notice |
+
+> The change applies **only to versions v2.3 and later**. Versions v2.2 and earlier remain under CC BY-NC-4.0 plus the additional terms.
+
+---
+
+## 4. License Compatibility Examples
+
+| Use case | Permitted? | Condition |
+|------|---------|------|
+| Personal study | ✅ | Retain the copyright notice |
+| Internal team use | ✅ | Retain the copyright notice |
+| Independent-media quotation | ✅ | Retain the copyright notice |
+| Commercial training course | ✅ | Retain the copyright notice |
+| Commercial software integration | ✅ | Retain the copyright notice |
+| Selling copies or derivatives | ✅ | Retain the copyright notice |
+| Training an open-source AI model | ✅ | Retain the copyright notice |
+| Training a commercial AI model | ✅ | Retain the copyright notice |
+| Closed-source redistribution after modification | ✅ | Retain the copyright notice |
+| Academic citation | ✅ | Cite the source |
+
+---
+
+## 5. Disclaimer
+
+The Work is provided "AS IS." The author makes no warranty regarding:
+
+1. **Accuracy** — Content may contain technical errors, outdated data, or standards that have since changed.
+2. **Completeness** — The Work does not necessarily cover every aspect of the forklift industry.
+3. **Suitability** — The Work is not guaranteed to be suitable for any particular situation or decision.
+4. **Availability** — The Skill is not guaranteed to remain available or error-free.
+
+**The author is not liable for direct or indirect losses resulting from use of the Work.**
+
+Have a qualified professional review the content before using it for:
+
+- Forklift procurement decisions
+- Repair work
+- Safety incidents
+- Regulatory compliance
+- Commercial disputes
+
+---
+
+## 6. Recommended Attribution (Optional)
+
+Although the MIT License requires only retention of the copyright notice, the author **strongly recommends** prominently crediting the original author in recognition of the original work:
+
+```
+Original author: Yang Pengfei
+WeChat Official Account: Forklift Veteran
+```
+
+Suggested attribution for articles:
+> "This article refers to the `forklift-expert` Skill package maintained by Yang Pengfei / Forklift Veteran."
+
+---
+
+## 7. Version
+
+- License version: v2.0 (MIT)
+- Release date: 2026-08
+- Applies to: `forklift-expert` Skill v2.3 and later (including v2.4)
+- Earlier versions (≤ v2.2): CC BY-NC-4.0 plus additional terms
+
+---
+
+> This license is protected under the Copyright Law of the People's Republic of China and related laws.
+> Yang Pengfei / Forklift Veteran

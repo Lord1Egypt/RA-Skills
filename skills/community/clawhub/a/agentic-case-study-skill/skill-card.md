@@ -1,49 +1,63 @@
-## Description: <br>
-Create CompleteTech LLC case studies, testimonials, and proof assets for completed agentic development engagements, including intake questionnaires, outcome interview guides, anonymized and named-client case studies, before/after workflow summaries, implementation stories, technical notes, risk/control summaries, approval-gate summaries, evaluation results, testimonial requests/drafts, proof libraries, sales one-pagers, website stories, LinkedIn posts, nurture emails, referral blurbs, portfolio entries, pitches, award submissions, press releases, quote approvals, and anonymization checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create CompleteTech LLC case studies, testimonials, and proof assets after agentic development delivery using verified, client-approved facts.
 
-## Publisher: <br>
-[completetech](https://clawhub.ai/user/completetech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[completetech](https://clawhub.ai/user/completetech)
 
-## Use Case: <br>
-External teams and developers use this skill after agentic development delivery to turn verified, client-approved outcomes into case studies, testimonials, proof libraries, approval checklists, sales assets, web content, and branded PDFs without exposing confidential details or inventing evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated case studies, testimonials, or sales assets may include sensitive, unapproved, or unverified client information supplied by the user. <br>
-Mitigation: Confirm client names, quotes, metrics, screenshots, system details, attribution, and approval status before sharing any generated Markdown, PDF, or PNG externally. <br>
-Risk: Draft proof assets may overstate outcomes if qualitative observations, measured metrics, and approval status are not kept separate. <br>
-Mitigation: Use the bundled positioning, lifecycle, decision-table, and approval-checklist references to label unknowns, avoid fabricated ROI or regulated-use claims, and mark missing facts as TBD or client approval required. <br>
-Risk: Rendered outputs may disclose confidential implementation details if anonymization is skipped. <br>
-Mitigation: Use anonymized or internal templates when public attribution is not approved, and remove unique client names, project names, system names, exact metrics, screenshots, and quotes unless approved. <br>
+## Use Case:
 
+Developers and CompleteTech delivery teams use this skill after agentic development engagements to turn verified, client-approved outcomes into case studies, testimonials, sales proof, approval checklists, and branded proof assets without exposing confidential details or inventing claims.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/completetech/agentic-case-study-skill) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/completetech) <br>
-- [Project Homepage](https://github.com/CompleteTech-LLC/agentic-case-study-skill) <br>
-- [Proof Positioning](references/proof-positioning.md) <br>
-- [Proof Asset Lifecycle](references/proof-lifecycle.md) <br>
-- [Proof Asset Catalog](references/proof-catalog.md) <br>
-- [Use Case Decision Table](references/use-case-decision-table.md) <br>
-- [Template Index](references/template-index.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown drafts, branded PDF or PNG artifacts, shell commands, and structured template variables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated proof assets are drafts that require verification of client facts, quotes, metrics, confidentiality constraints, and approval status before external use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Untrusted case-study metadata or variable values could produce misleading proof assets or expose confidential information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted title, subtitle, document-type, and template variable values; keep placeholders where facts or permissions are missing; and require approval before external use.
+
+Risk: Generated output paths could overwrite important local files.
+
+Mitigation: Run the renderer in a controlled workspace and choose output paths that cannot replace important files.
+
+Risk: Optional PNG preview generation depends on packages with dependency-risk signals.
+
+Mitigation: Avoid optional PNG generation until dependency advisories are resolved, or review the pinned packages before installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/completetech/skills/agentic-case-study-skill)
+- [Project Homepage](https://github.com/CompleteTech-LLC/agentic-case-study-skill)
+- [CompleteTech LLC Proof Positioning](references/proof-positioning.md)
+- [Proof Asset Use-Case Decision Table](references/use-case-decision-table.md)
+- [Proof Asset Lifecycle](references/proof-lifecycle.md)
+- [Near-Exhaustive Agentic Development Proof Asset Catalog](references/proof-catalog.md)
+- [Template Index](references/template-index.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown drafts, branded PDF files, and optional PNG previews]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rendered artifacts are drafts that require verified facts and approval before publication or external sharing.]
+
+## Skill Version(s):
+
+1.0.3 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

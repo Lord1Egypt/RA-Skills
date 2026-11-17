@@ -1,0 +1,13 @@
+{
+  "name": "calendario-actividades-skool-f100k",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Renderiza calendarios mensuales de actividades de comunidades Skool a PNG (estilo FÓRMULA 100K)",
+  "main": "render.js",
+  "scripts": {
+    "render": "node render.js"
+  },
+  "dependencies": {
+    "puppeteer-core": "^24.42.0"
+  }
+}

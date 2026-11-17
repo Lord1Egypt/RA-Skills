@@ -1,7 +1,7 @@
 ---
 name: tencentmap-jsapi-gl-skill
 description: 腾讯地图 JavaScript GL（JSAPIGL）开发指南。适用于地图应用或者工具的编写。在编写、审查或调试使用腾讯地图 API的代码时应运用此技能。适用于涉及地图初始化、覆盖物展示、图层控制、事件处理、控件交互、可视化渲染、地图工具、检索、路线规划、查地址、行政区划、ip定位、几何计算、三维模型展示、性能优化的任务。当用户提及 腾讯地图、 jsapi、jsapi-gl或相关地图开发需求时自动触发。
-version: 1.0.2
+version: 1.0.3
 metadata: { "openclaw": { "requires": { "bins": [""], "env": ["TMAP_JSAPI_KEY"] }, "primaryEnv": "TMAP_JSAPI_KEY" } }
 ---
 
@@ -63,12 +63,9 @@ metadata: { "openclaw": { "requires": { "bins": [""], "env": ["TMAP_JSAPI_KEY"] 
 
 ## 前置检查：API Key
 
-有 Key（env 变量 `TMAP_JSAPI_KEY` 或 `~/.tencentmap/tempkey.json`）直接使用；无 Key 时向用户输出以下选项：
+检查是否已有 Key（环境变量 `TMAP_JSAPI_KEY` 或 `~/.tencentmap/tempkey.json`）→ 有则直接使用
 
-> - **申请临时体验 Key（推荐）**：手机验证即可，14 天有效
-> - **前往官网注册正式 Key**：https://lbs.qq.com/dev/console/key/manage
-
-用户选择"申请临时 Key" → 读取 `tempkey-guide.md` 按其中步骤执行
+未检测到 Key → 读取 `tempkey-guide.md` 按其中步骤执行
 
 ## 工作流程
 

@@ -1,39 +1,50 @@
-## Description: <br>
-Split large files into smaller chunks with semantic boundary detection for JSON, Markdown, and TXT files while preserving natural boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+File Splitter splits large JSON, Markdown, and TXT files into smaller chunks at semantic boundaries while preserving source files and data integrity.
 
-## Publisher: <br>
-[expeditionhub](https://clawhub.ai/user/expeditionhub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[expeditionhub](https://clawhub.ai/user/expeditionhub)
 
-## Use Case: <br>
-Developers, data practitioners, and agent users use this skill to split large local JSON, Markdown, or text files into smaller chunks for downstream processing, analysis, or corpus preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes split output files to a local directory, so vague or mistaken folder selections can create unexpected files. <br>
-Mitigation: Use explicit input and output folders, prefer an empty output directory, and run with --dry-run before writing chunks. <br>
+## Use Case:
 
+Developers, data practitioners, and external users use this skill to split large files, chunk datasets, segment corpora, or prepare JSON, Markdown, and text files for processing and analysis.
 
-## Reference(s): <br>
-- [File Splitter on ClawHub](https://clawhub.ai/expeditionhub/file-splitter) <br>
-- [Publisher profile: expeditionhub](https://clawhub.ai/user/expeditionhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated output files are JSON, Markdown, or TXT chunks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The tool writes chunk files to the selected output directory and can preview planned writes with --dry-run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: Predictable chunk filenames can replace existing files in an unsafe or shared output folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a new or trusted output folder, run dry-run first, and avoid attacker-writable output directories.
+
+## Reference(s):
+
+- [File Splitter Skill Page](https://clawhub.ai/expeditionhub/skills/file-splitter)
+- [ExpeditionHub Publisher Profile](https://clawhub.ai/user/expeditionhub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and generated chunk files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces sequentially named JSON, Markdown, or TXT chunk files in a user-selected output folder; supports dry-run preview.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

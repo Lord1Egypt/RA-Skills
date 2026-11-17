@@ -1,37 +1,52 @@
-## Description: <br>
-Care frames a proactive health-intelligence protocol for maintaining and enhancing biological and cognitive assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Care describes an integrated, proactive health-intelligence layer for maintaining and enhancing biological and cognitive assets.
 
-## Publisher: <br>
-[AGImodel](https://clawhub.ai/user/AGImodel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agimodel](https://clawhub.ai/user/agimodel)
 
-## Use Case: <br>
-External users and developers use Care as a conceptual health-intelligence skill for reasoning about biometric telemetry, diagnostics, wellness intervention planning, longevity tracking, and ethical guardrails. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses health diagnostics, wellness interventions, pharmacy orchestration, and life-support integration, which could affect safety if treated as medical authority. <br>
-Mitigation: Use it only as advisory guidance; require qualified clinical review, explicit user consent, and independent validation before any medical, pharmacy, or life-support action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AGImodel/care) <br>
+## Use Case:
 
+External users may use Care as high-level guidance for an agent that discusses continuous biometric monitoring, health optimization, and consent-aware care workflows. Review carefully before any medical, pharmacy, emergency, or life-support use.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with a small structured code-style stack example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security scan says the skill describes broad AI-driven medical diagnostics and automated pharmacy actions without clear safety limits or user controls.
+
+Mitigation: Do not use it for diagnosis, medication decisions, pharmacy coordination, emergency care, or life-support-related actions unless separate human clinical oversight, explicit consent, privacy controls, and audited integrations are in place.
+
+Risk: The artifact describes processing biometric and health-related telemetry, which can involve sensitive personal data.
+
+Mitigation: Require explicit consent and privacy controls before processing biometric data, and review any deployment against applicable health-data handling requirements.
+
+## Reference(s):
+
+- [Care ClawHub skill page](https://clawhub.ai/agimodel/skills/care)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with structured sections and a configuration-style example block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tools, MCP servers, credential variables, or release-channel URLs were detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

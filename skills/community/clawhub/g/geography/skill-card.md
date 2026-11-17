@@ -1,37 +1,48 @@
-## Description: <br>
-Teach physical and human geography from map reading to spatial analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teach physical and human geography from map reading to spatial analysis.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External learners, students, teachers, and researchers use this skill for geography tutoring, map-reading support, and spatial analysis guidance across beginner through advanced levels. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Geography explanations may oversimplify contested borders, development framing, map projections, or scale-dependent spatial patterns. <br>
-Mitigation: Have the agent state scale, acknowledge uncertainty, and review sensitive geographic claims against trusted sources before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/geography) <br>
+## Use Case:
 
+Learners, teachers, and researchers use this skill for geography tutoring and spatial reasoning guidance across beginner, student, and advanced contexts.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown guidance and explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adapts explanations to the user's apparent geography knowledge level.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Geography guidance may be inaccurate or outdated when used for school, research, travel, or policy decisions.
+
+Mitigation: Verify factual claims against authoritative maps, datasets, or local sources before relying on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/geography)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text instructional guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapts explanations to the user's geography level and context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

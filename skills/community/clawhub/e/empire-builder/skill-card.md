@@ -1,47 +1,61 @@
-## Description: <br>
-Empire Builder helps agents work with SmartVault treasuries, leaderboards, boosters, distribution preparation and storage, burns, airdrops, and Clanker-backed Empire launches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Empire Builder AI skill for SmartVault treasuries, leaderboards, boosters, prepare-executeBatch-store distributions, burns, airdrops, and Clanker deploys.
 
-## Publisher: <br>
-[cryptorabble](https://clawhub.ai/user/cryptorabble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cryptorabble](https://clawhub.ai/user/cryptorabble)
 
-## Use Case: <br>
-Developers and operators use this skill to guide Empire Builder integrations that read Empire state, prepare and store treasury distributions, register burns and airdrops, configure boosters, and connect Clanker token deployments to Empire records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mainnet write flows can move treasury assets or persist distribution and burn records when signed and broadcast. <br>
-Mitigation: Use the skill only for intended live Base or Arbitrum workflows; manually verify chain ID, vault address, Empire ID, recipients, amounts, calldata, and transaction simulation before signing or broadcasting. <br>
-Risk: API keys and wallet-signing material are sensitive credentials. <br>
-Mitigation: Send API keys with x-api-key headers, avoid putting secrets in URLs, use narrowly scoped credentials, and keep signing authority limited to the required operator wallet. <br>
-Risk: Co-signers cannot replace the vault owner on the documented API distribution path. <br>
-Mitigation: Use the vault owner wallet for prepare-to-executeBatch integration flows, or use the official web-app UserOperation path when operating as a co-signer. <br>
+## Use Case:
 
+Developers and operators use this skill to guide Empire Builder integrations for treasury reads and controlled mainnet write workflows, including distributions, burns, airdrops, leaderboards, boosters, staking, and Clanker-linked Empire launches.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/cryptorabble/empire-builder) <br>
-- [Empire Builder Skill Guide](artifact/SKILL.md) <br>
-- [Empire Builder Homepage](https://empirebuilder.world/skill/SKILL.md) <br>
-- [HTTP API Reference](artifact/references/http-api.md) <br>
-- [End-to-End Workflows](artifact/references/workflows.md) <br>
-- [SmartVault Contract Reference](artifact/references/contracts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with HTTP payloads, curl examples, JavaScript or TypeScript snippets, and transaction checklists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include live-mainnet operation checks, API authentication notes, wallet-signing guidance, and route-specific request or response shapes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill guides live mainnet treasury and account-changing workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review before any signing or transaction broadcast, and confirm target chain, vault address, calldata, recipients, amounts, and mined receipts.
+
+Risk: Some signing guidance is weakly scoped and captured signatures may be reusable outside the operator's intended context.
+
+Mitigation: Use auditable messages with explicit action, empire identifier, timestamp, and nonce where supported, and treat signatures as sensitive credentials.
+
+Risk: The documented API includes an unnecessary privateKey field.
+
+Mitigation: Never send wallet private keys or seed material through Empire Builder API payloads or agent prompts.
+
+## Reference(s):
+
+- [Empire Builder skill homepage](https://empirebuilder.world/skill/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/cryptorabble/skills/empire-builder)
+- [HTTP API reference](references/http-api.md)
+- [End-to-end workflows](references/workflows.md)
+- [SmartVault contract reference](references/contracts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with API payloads, command examples, and code-oriented integration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include live mainnet API and transaction steps that require human review before signing or broadcast.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

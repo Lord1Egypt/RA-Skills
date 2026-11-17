@@ -1,40 +1,59 @@
-## Description: <br>
-Cuihua i18n Helper helps agents extract translatable strings, generate locale JSON files, check translation coverage, and guide batch translation workflows for modern web applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cuihua i18n Helper supports internationalization workflows by extracting translatable UI strings, generating locale JSON files, checking translation coverage, and guiding translation-provider use for modern web applications.
 
-## Publisher: <br>
-[supermario11](https://clawhub.ai/user/supermario11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[supermario11](https://clawhub.ai/user/supermario11)
 
-## Use Case: <br>
-Developers use this skill to internationalize React, Vue, Angular, Next.js, Nuxt.js, and JavaScript projects by extracting UI strings, creating locale files, checking translation completeness, and preparing translation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated locale files or proposed code changes may introduce incorrect strings, overwrite expected translation values, or leave untranslated content in target locales. <br>
-Mitigation: Run the skill on a branch or after committing current work, then review generated locale and code diffs before merging. <br>
-Risk: Batch translation workflows may send source strings to third-party translation providers. <br>
-Mitigation: Do not translate secrets, customer data, unreleased copy, or sensitive internal strings through external providers unless that data sharing is acceptable. <br>
+## Use Case:
 
+Developers and localization engineers use this skill to find hardcoded UI text, create and maintain locale files, and review missing or unused translations in JavaScript, React, Vue, Angular, and related web projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/supermario11/cuihua-i18n-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with JSON examples, shell commands, and generated locale JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write locale files under the configured locales path and propose framework i18n changes for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: The skill may read project UI source files and write locale JSON files during extraction or checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only from a clean working tree with explicit source and locales paths, then review generated file changes before committing.
+
+Risk: Project strings may be sent to third-party translation providers if cloud translation is enabled.
+
+Mitigation: Do not allow cloud translation for sensitive strings until the provider, credentials, and data-handling terms have been approved.
+
+Risk: The documentation claims broad AI translation capabilities that are not fully supported by the bundled helper script.
+
+Mitigation: Treat automated translation claims as requiring review and verify actual outputs against the generated locale files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/supermario11/skills/cuihua-i18n-helper)
+- [Publisher profile](https://clawhub.ai/user/supermario11)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, code examples, and locale JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; may read project UI source files and write locale JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

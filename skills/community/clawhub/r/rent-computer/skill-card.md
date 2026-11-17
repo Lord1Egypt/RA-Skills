@@ -1,44 +1,57 @@
-## Description: <br>
-Helps users request a rental computer when their current machine is underpowered or when they need access to a higher-performance computer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users request a computer rental when their computer lacks sufficient performance or they want to rent a high-performance computer.
 
-## Publisher: <br>
-[cyyinfo](https://clawhub.ai/user/cyyinfo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyyinfo](https://clawhub.ai/user/cyyinfo)
 
-## Use Case: <br>
-External users use this skill to view rental computer options and submit a rental request after providing shipping and contact details. It is intended for computer rental workflows involving high-performance computers, GPU servers, or AI workload needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill collects shipping address and phone or WeChat contact details for a rental application. <br>
-Mitigation: Require the agent to display the exact personal data, destination endpoint, and rental request before submission, then obtain explicit final confirmation. <br>
-Risk: Broad complaints about computer performance can lead into a rental order flow. <br>
-Mitigation: Confirm that the user wants to rent a computer before collecting personal details or submitting any request. <br>
-Risk: Rental details are retrieved from and submitted to an external service. <br>
-Mitigation: Install and use the skill only when the rental provider and the zhiweisoft.com endpoints are trusted. <br>
+## Use Case:
 
+External users use this skill to review rentable computer or GPU server options and submit a rental request with their address, contact method, and requirements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyyinfo/rent-computer) <br>
-- [Rental configuration endpoint](https://zhiweisoft.com/api/openclaw/link) <br>
-- [Rental application endpoint](https://zhiweisoft.com/api/openclaw/create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Markdown-style conversational text with JSON request payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Displays rental options, collects address and contact information, and submits a rental application to an external service after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The workflow can route vague performance complaints into a rental process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when the user explicitly asks to rent a computer, GPU server, or similar resource.
+
+Risk: The workflow collects and submits address and contact details without a clear final consent step.
+
+Mitigation: Before submission, show the destination service, address, contact method, and message, then ask the user to confirm.
+
+Risk: Users may include unrelated sensitive information in the rental message.
+
+Mitigation: Tell users their details will be sent to zhiweisoft.com and ask them to omit unrelated sensitive information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyyinfo/skills/rent-computer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text conversation with structured rental request details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May collect address, contact method, and rental requirements before submitting a request.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

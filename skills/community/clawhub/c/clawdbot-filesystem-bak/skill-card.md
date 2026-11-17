@@ -1,45 +1,67 @@
-## Description: <br>
-Advanced filesystem operations for Clawdbot, including listing, searching, batch processing, and directory analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawdbot Filesystem.Bak provides advanced filesystem operations for listing, searching, batch processing, copying, and directory analysis.
 
-## Publisher: <br>
-[choichuncj](https://clawhub.ai/user/choichuncj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[choichuncj](https://clawhub.ai/user/choichuncj)
 
-## Use Case: <br>
-Developers and agent users use this skill to inspect local directories, search file names or file contents, copy matching files, render directory trees, and summarize filesystem structure. It is suited to project maintenance, log review, content organization, and other workflows that need controlled local file access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The package requests broad local filesystem authority. <br>
-Mitigation: Grant access only to specific non-sensitive directories, prefer read-only or dry-run operation, and review proposed changes before applying them. <br>
-Risk: The release has inconsistent package evidence and limited verifiable implementation detail. <br>
-Mitigation: Verify the publisher and source before installing, and ensure the package includes the expected filesystem executable or source. <br>
-Risk: The artifact bundles a separate nano-pdf skill that may be outside the expected filesystem workflow. <br>
-Mitigation: Review the bundled nano-pdf skill separately or remove it before deployment if PDF editing is not required. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect directories, search filenames or file contents, copy matched files, render directory trees, and summarize filesystem structure within an allowed workspace.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/choichuncj/clawdbot-filesystem-bak) <br>
-- [Publisher profile](https://clawhub.ai/user/choichuncj) <br>
-- [Artifact README](README.md) <br>
-- [Artifact license](LICENSE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with command examples, tables, tree views, and JSON-style configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and local filesystem permissions; operations should be scoped to allowed non-sensitive directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad filesystem access and can guide read, search, copy, and analysis operations over local directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in a constrained workspace, grant the smallest necessary directory scope, and prefer read-only access where write or copy behavior is not required.
+
+Risk: The server security summary says the declared executable is missing.
+
+Mitigation: Confirm the executable exists and inspect its behavior before enabling the skill for agent use.
+
+Risk: The server security summary says some setup paths would run unpinned external tools.
+
+Mitigation: Pin external tool versions and review installation commands before running them.
+
+Risk: The artifact includes filesystem and PDF-related subskills that may create or modify local files.
+
+Mitigation: Review proposed file changes and generated PDFs before sharing or committing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/choichuncj/skills/clawdbot-filesystem-bak)
+- [ClawHub publisher profile](https://clawhub.ai/user/choichuncj)
+- [Clawdbot filesystem repository](https://github.com/gtrusler/clawdbot-filesystem)
+- [Model Context Protocol filesystem server](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem)
+- [Model Context Protocol documentation](https://modelcontextprotocol.io/)
+- [Model Context Protocol security best practices](https://modelcontextprotocol.io/docs/concepts/security)
+- [nano-pdf package](https://pypi.org/project/nano-pdf/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and filesystem operation outputs such as tables, lists, trees, and JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js according to server-resolved ClawHub metadata; filesystem access should be limited to intended workspaces.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; package.json reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

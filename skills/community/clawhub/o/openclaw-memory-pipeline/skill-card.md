@@ -1,48 +1,61 @@
-## Description: <br>
-Install, repair, and validate a persistent Markdown memory workflow for OpenClaw-style agents using structured memory files and recurring cron jobs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, repair, and validate a persistent memory workflow for OpenClaw-style agents using Markdown memory files plus recurring cron jobs.
 
-## Publisher: <br>
-[Maiusless](https://clawhub.ai/user/Maiusless) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maiusless](https://clawhub.ai/user/maiusless)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install, repair, and audit a local Markdown memory pipeline for OpenClaw-style agents. It helps define what should be remembered, initialize workspace memory files, create or review cron-based archive and summary jobs, and verify the pipeline is functioning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates persistent local memory across sessions, which can retain sensitive or unwanted information. <br>
-Mitigation: Review MEMORY.md and memory/ regularly, keep capture curated, and avoid storing secrets or sensitive personal data. <br>
-Risk: Recurring cron jobs can continue updating memory files after setup. <br>
-Mitigation: Confirm the workspace path before enabling jobs, check cron status during verification, and disable or remove the jobs when persistent memory is no longer wanted. <br>
-Risk: A noisy or overly broad memory policy can promote temporary details into long-term memory. <br>
-Mitigation: Use the concise memory rules, summarize instead of copying full transcripts, and reserve MEMORY.md for durable preferences, decisions, projects, and rules. <br>
+## Use Case:
 
+Developers and agent users use this skill to set up, audit, or repair a workspace memory pipeline that captures curated notes, archives them by date, summarizes important daily context, and promotes durable information into long-term memory.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Maiusless/openclaw-memory-pipeline) <br>
-- [Publisher Profile](https://clawhub.ai/user/Maiusless) <br>
-- [Directory Layout](references/directory-layout.md) <br>
-- [Memory Rules](references/memory-rules.md) <br>
-- [Cron Spec](references/cron-spec.md) <br>
-- [Verification](references/verification.md) <br>
-- [Migration and Repair](references/migration-and-repair.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python scripts and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local memory files and cron configuration guidance; verification scripts print human-readable pass, warn, and fail results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Silent recurring jobs can continue changing long-term memory after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm each job payload, schedule, timezone, workspace path, logging, and disable or removal process; prefer manual runs or visible logs until the workflow is trusted.
+
+Risk: Persistent memory files may retain sensitive conversation details or information that should not be remembered.
+
+Mitigation: Use the curated capture rules, avoid full transcript storage by default, and do not store sensitive conversations unless retention is acceptable to the user.
+
+Risk: Daily and weekly summarization can promote incorrect, duplicate, or short-lived information into durable memory.
+
+Mitigation: Verify file outcomes after test runs, keep summaries concise and factual, deduplicate entries, and promote only durable preferences, decisions, project context, and workflow rules.
+
+## Reference(s):
+
+- [Directory layout](artifact/references/directory-layout.md)
+- [Memory rules](artifact/references/memory-rules.md)
+- [Cron spec](artifact/references/cron-spec.md)
+- [Verification](artifact/references/verification.md)
+- [Migration and repair](artifact/references/migration-and-repair.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with file paths, command suggestions, and optional Python script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or verify workspace memory files and recurring cron-job configuration when the user requests installation or repair.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

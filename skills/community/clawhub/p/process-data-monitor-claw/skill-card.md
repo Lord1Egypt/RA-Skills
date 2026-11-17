@@ -1,45 +1,64 @@
-## Description: <br>
-Helps agents configure business process monitoring, anomaly thresholds, Feishu alert routing, and recurring operational reports for workflows such as fulfillment, inventory, payments, and data pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors end-to-end business process data, configures anomaly thresholds, sends alerts, and summarizes incidents for workflows such as fulfillment, inventory sync, payments, and data pipelines.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Developers and operations teams use this skill to turn natural-language monitoring requirements into structured data-source, rule, threshold, cooldown, and notification configurations. It also provides shell helpers for running a monitoring daemon and sending Feishu-based alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Continuous monitoring can access sensitive operational data and distribute alert content outside the source system. <br>
-Mitigation: Use dedicated read-only accounts, keep credentials and Feishu tokens in environment variables, and avoid placing secrets or sensitive data in alert messages. <br>
-Risk: Misconfigured alert routing can notify the wrong Feishu group or user and expose business incidents unnecessarily. <br>
-Mitigation: Confirm webhook destinations, bot tokens, recipient open IDs, and alert severity routing before enabling automated notifications. <br>
-Risk: The release declares crypto and purchasing-related capabilities that are not required for normal monitoring use. <br>
-Mitigation: Do not grant crypto or purchasing authority unless a separate reviewed workflow explicitly requires it. <br>
+## Use Case:
 
+Operations teams, developers, and data engineers use this skill to define monitoring objects, configure thresholds and data sources, route Feishu alerts, and generate incident summaries for business workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tujinsama/process-data-monitor-claw) <br>
-- [Alert rule templates](references/alert-rules.md) <br>
-- [Data source integration guide](references/data-sources.md) <br>
-- [Monitoring metrics library](references/metrics-library.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with YAML configuration examples and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference environment variables for database credentials, API tokens, Feishu webhooks, and bot tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The monitoring daemon may keep running in the background.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it under a low-privilege account, monitor its process lifecycle, and stop or supervise it with an approved process manager.
+
+Risk: Alert content may be sent to Feishu or configured webhooks.
+
+Mitigation: Avoid sensitive data in alert messages and restrict webhook or bot credentials to the intended recipients.
+
+Risk: Temporary PID, log, and cooldown files under /tmp may be unsafe for production use.
+
+Mitigation: Review or replace the temporary file handling before production deployment.
+
+Risk: Monitoring data sources can require operational credentials.
+
+Mitigation: Use dedicated read-only monitoring credentials and keep secrets in environment variables or an approved secrets manager.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tujinsama/skills/process-data-monitor-claw)
+- [Alert rules](references/alert-rules.md)
+- [Data sources](references/data-sources.md)
+- [Metrics library](references/metrics-library.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML configuration snippets and Bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include monitoring configuration, alert rules, and operational commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

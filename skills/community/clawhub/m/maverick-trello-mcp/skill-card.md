@@ -1,45 +1,56 @@
-## Description: <br>
-Search, read, and update Trello boards, lists, cards, checklists, members, and comments through a local MCP wrapper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with Trello boards, lists, cards, checklists, Inbox, and Planner through Atlassian's official hosted Trello MCP server.
 
-## Publisher: <br>
-[maverick](https://clawhub.ai/user/maverick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick](https://clawhub.ai/user/maverick)
 
-## Use Case: <br>
-Developers and agent users use this skill to inspect Trello boards and manage lists, cards, checklists, members, and comments from an MCP-compatible workflow. It is appropriate when the user asks to search, read, or make clearly authorized Trello task workflow updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Trello credentials and can read Trello board, list, card, checklist, member, and comment data. <br>
-Mitigation: Install it only with a Trello token scoped to the boards and actions the agent is intended to access. <br>
-Risk: Write tools can create, update, move, comment on, and otherwise change shared Trello cards. <br>
-Mitigation: Confirm clear user intent and read current board, list, or card state before invoking write tools. <br>
-Risk: The artifact installs mcporter without a pinned version by default. <br>
-Mitigation: Pin mcporter in environments that require strict supply-chain controls. <br>
+## Use Case:
 
+Trello users can ask the agent to inspect boards, organize lists and cards, manage checklists, and triage Inbox or Planner work through their authorized Atlassian account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maverick/maverick-trello-mcp) <br>
-- [mcporter](https://github.com/steipete/mcporter) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
-- [Trello API](https://api.trello.com/1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [JSON from MCP tool calls with concise text guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MAVERICK_TRELLO_MCP_ACCESS_TOKEN and MAVERICK_TRELLO_MCP_API_KEY; write operations may modify Trello board state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: release evidence) <br>
+Risk: The integration can access private Trello content and change shared workspace state under the connected account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Authorize only the workspaces and permissions needed, and require clear user intent before changes; inspect the current board, list, or card first.
+
+Risk: Setup writes supplied OAuth credentials to the local vault, and stale values can overwrite a rotated refresh token.
+
+Mitigation: Protect stored credentials and rerun setup only with fresh OAuth values. Revoke Trello access when the integration is no longer needed.
+
+## Reference(s):
+
+- [Trello MCP server overview and admin controls](https://github.com/atlassian/trello-mcp-server)
+- [Connect Trello to AI assistants](https://support.atlassian.com/trello/docs/connect-trello-to-ai-assistants-with-trello-mcp/)
+- [Atlassian Trello MCP usage guide](https://github.com/atlassian/trello-mcp-server/blob/45d274db85936fa23131b25ba41d61780891c37a/skills/trello-use/SKILL.md)
+- [mcporter configuration reference](https://github.com/openclaw/mcporter/blob/v0.11.1/docs/config.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, API Calls]
+
+**Output Format:** [Natural-language responses and Trello MCP tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool availability follows the live server catalog; actions can read Trello data or change shared board state.]
+
+## Skill Version(s):
+
+2.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

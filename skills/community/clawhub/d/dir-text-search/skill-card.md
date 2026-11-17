@@ -1,41 +1,54 @@
-## Description: <br>
-Searches for text or regex patterns recursively in directories and supported archive formats, including ZIP, RAR, TAR, and 7z. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches for text or regular expression patterns inside a directory, including recursively inside ZIP, RAR, TAR, and 7z archives.
 
-## Publisher: <br>
-[trylovecatch](https://clawhub.ai/user/trylovecatch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trylovecatch](https://clawhub.ai/user/trylovecatch)
 
-## Use Case: <br>
-Developers, support engineers, and operators use this skill to find strings or regex matches in logs, configuration files, source files, and compressed archives. It helps an agent run the bundled search script, locate the generated result file, and summarize matching files and lines for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Matched lines are copied into plaintext result files, which can expose secrets, credentials, or personal data found in searched files. <br>
-Mitigation: Run the search on specific folders, review the result file before sharing it, and delete generated results that contain sensitive content. <br>
-Risk: Broad searches can collect more local file content than intended. <br>
-Mitigation: Use a narrow target path and avoid scanning an entire home directory unless that scope is intentional. <br>
+## Use Case:
 
+Developers and engineers use this skill to locate strings or regular expression matches across local project files, logs, configuration files, and supported compressed archives. It helps summarize matching files and lines while saving detailed results to local output files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/trylovecatch/dir-text-search) <br>
-- [RARLAB UnRAR downloads](https://www.rarlab.com/rar_add.htm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and plaintext search result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results are written to timestamped plaintext files under search_results/ unless a different output directory is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Scanning untrusted archive collections can create local safety risks during extraction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run searches on untrusted archives in a restricted environment with storage limits.
+
+Risk: Matching content is saved to local result files and may include sensitive text from searched files.
+
+Mitigation: Choose an appropriate output directory and review or delete result files after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/trylovecatch/skills/dir-text-search)
+- [RARLab UnRAR download](https://www.rarlab.com/rar_add.htm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown summary with shell commands and local text result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes timestamped search result files under search_results/ or a user-specified output directory.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

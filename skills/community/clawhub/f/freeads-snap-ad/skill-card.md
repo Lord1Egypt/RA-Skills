@@ -1,47 +1,60 @@
-## Description: <br>
-AI advertising video generation skill that turns product photos into 8-second professional ad videos with music, slogan text, sound effects, camera movement, and an Atlas Cloud Veo 3.1 video URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FreeAds 随手拍广告 helps agents turn product photos into 8-second advertising videos with product recognition, storyboard and slogan planning, audio guidance, and an Atlas Cloud video URL.
 
-## Publisher: <br>
-[lipeng0820](https://clawhub.ai/user/lipeng0820) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lipeng0820](https://clawhub.ai/user/lipeng0820)
 
-## Use Case: <br>
-External users, marketers, and creators use this skill to transform product photos into short advertising videos, including product recognition, scene design, storyboard planning, slogan generation, prompt construction, and a generated video URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product photos, brand or logo assets, prompts, and generated videos are sent to Atlas Cloud or downstream model providers. <br>
-Mitigation: Use only approved assets, avoid confidential or regulated images unless authorized, and confirm that external processing is acceptable for the product content. <br>
-Risk: Video generation is paid and can consume API balance per request. <br>
-Mitigation: Use a dedicated low-balance API key where possible and confirm cost expectations before repeated generations. <br>
-Risk: The setup helper can save ATLASCLOUD_API_KEY permanently in shell configuration files. <br>
-Mitigation: Prefer session-scoped environment variables for sensitive use cases, or review shell configuration changes and rotate the key if exposure is suspected. <br>
+## Use Case:
 
+External users and marketers use this skill to generate short product-ad video workflows and final video URLs from product photos. The skill guides product recognition, scene design, storyboard creation, slogan generation, prompt review, and video generation through Atlas Cloud.
 
-## Reference(s): <br>
-- [Atlas Cloud API detailed documentation](artifact/references/atlas-cloud-api.md) <br>
-- [Brand protection best practices guide](artifact/references/brand-protection-guide.md) <br>
-- [Ad copy templates and examples](artifact/examples/ad-copy-templates.md) <br>
-- [Atlas Cloud](https://www.atlascloud.ai?ref=LJNA3T) <br>
-- [Atlas Cloud Console](https://console.atlascloud.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/lipeng0820/freeads-snap-ad) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with JSON blocks, prompts, setup commands, and generated video URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an 8-second video URL through Atlas Cloud and uses ATLASCLOUD_API_KEY for authenticated API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.7.0 (source: frontmatter and server release metadata) <br>
+Risk: The API-key setup script can modify shell startup files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid running scripts/setup-api-key.sh as-is; configure ATLASCLOUD_API_KEY manually for the current session or through a trusted secret manager.
+
+Risk: Product images, logos, unreleased marketing assets, and prompts may be sent to Atlas Cloud and model providers.
+
+Mitigation: Use only assets approved for those providers and avoid submitting confidential or unreleased material unless that data sharing is acceptable.
+
+Risk: Setup guidance includes a referral promotion.
+
+Mitigation: Review external service links and commercial terms before installing or funding provider accounts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lipeng0820/skills/freeads-snap-ad)
+- [Atlas Cloud API Reference](references/atlas-cloud-api.md)
+- [Brand Protection Guide](references/brand-protection-guide.md)
+- [Ad Copy Templates and Examples](examples/ad-copy-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with JSON blocks, English generation prompts, shell snippets, and a final video URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ATLASCLOUD_API_KEY; may send product images and prompts to Atlas Cloud and model providers; server metadata estimates $0.80-1.60 per video.]
+
+## Skill Version(s):
+
+3.7.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

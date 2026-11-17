@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<!--
+  ⚠️ 模板说明：这是 Snowflake Summit 2026 的成品 HTML，作为「视觉与结构示例」保留。
+
+  一、直接复用（不需改）
+    · 全部 CSS/inline 样式、固定导航、scroll reveal + nav active 脚本
+    · 阅读组件全套：.card .card-num .card-h / .lead / .pts .num / .pull .pull-lead
+      / .judg / .lim .lim-t / .note / .badges .badge(.b-ga .b-prev .b-arch)
+      / .flow .flow-step .flow-arrow / .swot .swot-col .swot-h
+    · 结构性组件：.verdict .takeaway-grid .fact-strip / .customer-grid / .comp-row
+      .cmp-table / .layer-stack / .q-item / .buyer-grid .buyer / .summary-hero .judgment .spa
+    · 架构层面的 8 段骨架（见下方 section 注释编号）
+
+  二、必须全部替换
+    · 厂商名/产品/数字/案例/洞察
+    · 第五(竞争)、第六(对买方的建议)、第七(行业延伸)段的具体分析框架
+      "数据重力论""Agent 治理七层生态"是 Snowflake 特定命题，做别家大会时丢掉，
+      从本次大会实际命题重新提炼。
+
+  三、版式契约（硬性，违反则读者采信错位）
+    · 每个板块条目一律走「判断句标题 + 导语 + 要点行」三段式，禁止 200 字以上裸段落
+    · .card-h 判断句需可独立读懂，不加句号
+    · 观察层不写产品数字，产品数字只出现在产品层
+    · 所有厂商/客户披露的性能与规模数字，必须在同段或同级位置标注来源属性
+      （vendor/customer-reported + 未经独立验证）
+
+  四、组件判据
+    · .pull 承载判断的单句；.judg 用于不依附卡片的独立判断行
+    · .lim 用于边界/风险/caveat；.note 用于小字注释（数据来源、口径说明）
+    · layer-stack 用于「层与层之间存在包含或依赖关系」的分层结构；
+      参与方是并列竞争关系时改用 .cmp-table 或 .swot
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Snowflake Summit 2026 · 深度专题报告</title>
+<style>
+  :root {
+    --bg: #f5f7fb;
+    --bg-2: #eef1f7;
+    --card: #ffffff;
+    --card-2: #f4f7fe;
+    --stroke: #dce1eb;
+    --stroke-2: #c5ccda;
+    --text: #151a2e;
+    --text-2: #323a50;
+    --muted: #5e667a;
+    --faint: #8a92a8;
+    --accent: #1a5cdb;
+    --accent-2: #5080ff;
+    --warm: #c45f0a;
+    --green: #047857;
+    --violet: #6b3fa0;
+    --cyan: #0891b2;
+    --pink: #b91c6b;
+    --grad: linear-gradient(135deg, #1a5cdb, #6b3fa0);
+    --grad-soft: linear-gradient(135deg, rgba(26,92,219,.06), rgba(107,63,160,.06));
+    --radius: 14px;
+    --radius-sm: 10px;
+    --maxw: 1100px;
+    --nav-h: 60px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{color:var(--accent);text-decoration:none}
+
+  /* Nav */
+  .nav{
+    position: fixed; top:0; left:0; right:0; height:var(--nav-h);
+    background: rgba(255,255,255,.85); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--stroke);
+    display: flex; align-items: center; gap: 12px; padding: 0 20px; z-index: 100;
+  }
+  .nav .brand{font-weight:700;font-size:14px;color:var(--text);white-space:nowrap}
+  .nav .brand small{color:var(--muted);font-weight:400;font-size:12px}
+  .nav-links{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{
+    font-size:12px;color:var(--muted);padding:6px 10px;border-radius:8px;
+    white-space:nowrap;transition:.2s;flex-shrink:0;
+  }
+  .nav-links a:hover{color:var(--text);background:var(--card-2)}
+  .nav-links a.active{color:var(--accent);background:rgba(37,99,235,.08);font-weight:600}
+
+  /* Container */
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+  /* Hero - compact */
+  .hero{
+    padding: calc(var(--nav-h) + 28px) 0 24px;
+    text-align: center;
+    background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--stroke);
+  }
+  .hero h1{
+    font-size: clamp(24px,3.4vw,38px);font-weight:800;
+    letter-spacing:-.02em;line-height:1.18;
+    background: var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero .sub{
+    margin-top: 10px; color: var(--muted); font-size: .98rem;
+  }
+  .hero .meta{
+    margin-top: 6px; color: var(--faint); font-size: .82rem;
+  }
+
+  /* Section */
+  section{padding:52px 0 30px;scroll-margin-top:76px}
+  section+section{border-top:1px solid var(--stroke);margin-top:0}
+  .sec-head{margin-bottom:22px}
+  .sec-no{font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.15em;margin-bottom:4px}
+  .sec-title{font-size:clamp(20px,2.8vw,30px);font-weight:700;line-height:1.25}
+  .sec-desc{color:var(--muted);font-size:14.5px;margin-top:6px;max-width:720px}
+
+  /* ===== 阅读组件：判断句 / 要点行 / 限定条 / 引述块 ===== */
+
+  /* 条目卡片：观察、产品、买方共用骨架 */
+  .card{
+    background:var(--card);border:1px solid var(--stroke);border-radius:var(--radius);
+    padding:20px 24px;margin-bottom:12px;
+  }
+  .card-num{
+    font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.14em;margin-bottom:6px;
+  }
+  /* 判断句标题：可独立读懂，不加句号 */
+  .card-h{
+    font-size:17px;font-weight:700;line-height:1.5;color:var(--text);
+    padding-left:13px;position:relative;margin-bottom:10px;
+  }
+  .card-h::before{
+    content:"";position:absolute;left:0;top:.24em;width:3px;height:1.02em;
+    background:var(--accent);border-radius:2px;
+  }
+  /* 导语：背景与事实，字重稍轻 */
+  .lead{font-size:14.5px;color:var(--text-2);line-height:1.85;margin-bottom:12px}
+  /* 要点行 */
+  .pts{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .pts li{
+    position:relative;padding-left:17px;font-size:14px;color:var(--text-2);line-height:1.8;
+  }
+  .pts li::before{
+    content:"";position:absolute;left:0;top:.66em;width:5px;height:5px;
+    border-radius:1px;background:var(--stroke-2);
+  }
+  .pts li.key::before{background:var(--accent)}
+  .pts li b,.pts li strong{color:var(--text);font-weight:600}
+  /* 数字强调 */
+  .num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--accent)}
+  /* 限定条：边界、风险、caveat */
+  .lim{
+    margin-top:12px;background:var(--card-2);border:1px solid var(--stroke);
+    border-left:3px solid var(--warm);border-radius:var(--radius-sm);
+    padding:11px 15px;font-size:13px;color:var(--text-2);line-height:1.72;
+  }
+  .lim .lim-t{font-size:10.5px;font-weight:700;color:var(--warm);letter-spacing:.08em;display:block;margin-bottom:3px}
+  /* 引述块：承担判断的单句 */
+  .pull{
+    margin-top:12px;background:var(--grad-soft);border:1px solid var(--stroke);
+    border-left:3px solid var(--accent);border-radius:var(--radius-sm);
+    padding:12px 16px;font-size:14px;color:var(--text);line-height:1.78;font-weight:500;
+  }
+  .pull strong{color:var(--accent)}
+  .pull.pull-lead{margin-top:0;font-size:15px}
+  /* 独立判断行：不依附卡片的判断句 */
+  .judg{
+    font-size:15px;font-weight:700;color:var(--text);line-height:1.55;
+    padding-left:13px;position:relative;margin:22px 0 6px;
+  }
+  .judg::before{
+    content:"";position:absolute;left:0;top:.22em;width:3px;height:1.05em;
+    background:var(--accent);border-radius:2px;
+  }
+  /* 小字注释 */
+  .note{font-size:12.5px;color:var(--faint);line-height:1.68;margin-top:10px}
+  .note strong{color:var(--muted);font-weight:600}
+
+  /* 状态徽标 */
+  .badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+  .badge{
+    font-size:10.5px;font-weight:700;letter-spacing:.04em;
+    padding:2px 8px;border-radius:20px;border:1px solid var(--stroke);
+    color:var(--muted);background:var(--card-2);white-space:nowrap;
+  }
+  .badge.b-ga{color:var(--green);border-color:rgba(4,120,87,.28);background:rgba(4,120,87,.07)}
+  .badge.b-prev{color:var(--warm);border-color:rgba(196,95,10,.28);background:rgba(196,95,10,.07)}
+  .badge.b-arch{color:var(--violet);border-color:rgba(107,63,160,.28);background:rgba(107,63,160,.07)}
+
+  /* 流程条 */
+  .flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px}
+  .flow-step{
+    font-size:12.5px;color:var(--text-2);background:var(--card-2);
+    border:1px solid var(--stroke);border-radius:6px;padding:6px 10px;line-height:1.5;
+  }
+  .flow-arrow{color:var(--stroke-2);font-size:12px}
+
+  /* 优势 / 风险 双列 */
+  .swot{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  .swot-col{background:var(--card);border:1px solid var(--stroke);border-radius:var(--radius-sm);padding:14px 18px}
+  .swot-col.pro{border-left:3px solid var(--green)}
+  .swot-col.con{border-left:3px solid var(--warm)}
+  .swot-h{font-size:11px;font-weight:700;letter-spacing:.08em;margin-bottom:8px}
+  .swot-col.pro .swot-h{color:var(--green)}
+  .swot-col.con .swot-h{color:var(--warm)}
+  .swot ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .swot li{position:relative;padding-left:15px;font-size:13px;color:var(--text-2);line-height:1.65}
+  .swot li::before{content:"";position:absolute;left:0;top:.62em;width:4px;height:4px;border-radius:1px;background:var(--stroke-2)}
+
+  /* Verdict card */
+  .verdict{
+    background: var(--grad-soft);
+    border: 1px solid var(--stroke);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 22px 26px;
+    margin-bottom: 16px;
+  }
+  .verdict p{font-size:15px;line-height:1.85;margin-bottom:10px}
+  .verdict p:last-child{margin-bottom:0}
+  .verdict strong{color:var(--accent)}
+
+  /* Fact strip */
+  .fact-strip{
+    display:flex;flex-wrap:wrap;gap:1px;margin-top:14px;
+    background:var(--stroke);border:1px solid var(--stroke);border-radius:var(--radius-sm);overflow:hidden;
+  }
+  .fact{
+    flex:1;min-width:150px;background:var(--card);padding:12px 16px;
+    display:flex;flex-direction:column;gap:3px;
+  }
+  .fact .fk{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.03em}
+  .fact .fv{font-size:13px;color:var(--text);font-weight:600}
+
+  /* Takeaways */
+  .takeaway-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;
+    margin-top:14px;
+  }
+  .takeaway{
+    background:var(--card);border:1px solid var(--stroke);border-radius:var(--radius-sm);
+    padding:14px 16px;
+  }
+  .takeaway .tn{font-size:11px;font-weight:700;color:var(--accent);margin-bottom:4px}
+  .takeaway p{font-size:13.5px;color:var(--text-2)}
+
+  /* Info box */
+  .info-box{
+    background:var(--card);border:1px solid var(--stroke);border-radius:var(--radius);
+    padding:20px 24px;margin-bottom:16px;
+  }
+  .info-box .label{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.08em;margin-bottom:8px}
+
+  details summary{font-size:13.5px;font-weight:600;color:var(--accent);cursor:pointer;padding:8px 0}
+  details summary:focus{outline:none}
+
+  /* Customer row */
+  .customer-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;
+    margin-top:14px;
+  }
+  .customer{
+    background:var(--card);border:1px solid var(--stroke);border-radius:var(--radius-sm);
+    padding:16px 18px;transition:border-color .2s,box-shadow .2s;
+  }
+  .customer:hover{border-color:var(--accent-2);box-shadow:0 2px 12px rgba(26,92,219,.08)}
+  .customer .cname{font-weight:700;font-size:14px;margin-bottom:4px}
+  .customer .cindustry{font-size:11px;color:var(--muted);margin-bottom:8px}
+  .customer .ctext{font-size:13px;color:var(--text-2);line-height:1.65}
+  .customer .cdata{font-size:13px;color:var(--green);margin-top:9px;font-weight:600;line-height:1.6}
+
+  /* Competition */
+  .comp-row{
+    background:var(--card);border:1px solid var(--stroke);border-radius:var(--radius);
+    padding:18px 22px;margin-bottom:12px;
+  }
+  .comp-row .cr-title{font-weight:700;font-size:15px;margin-bottom:8px}
+  .comp-row .cr-text{font-size:13.5px;color:var(--text-2);line-height:1.78}
+
+  /* Comparison table */
+  .cmp-wrap{overflow-x:auto;margin-top:12px}
+  .cmp-table{width:100%;border-collapse:collapse;font-size:13px;min-width:600px}
+  .cmp-table th{
+    background:var(--card-2);padding:10px 12px;text-align:left;border-bottom:2px solid var(--stroke);
+    font-weight:600;white-space:nowrap;color:var(--text-2);
+  }
+  .cmp-table td{padding:10px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2);vertical-align:top}
+
+  /* Layer stack */
+  .layer-stack{display:flex;flex-direction:column;gap:5px;margin-top:12px}
+  .layer{
+    background:var(--card);border:1px solid var(--stroke);border-left:3px solid var(--stroke-2);
+    border-radius:6px;padding:10px 14px;
+  }
+  .layer.active{border-left-color:var(--accent);background:var(--card-2)}
+  .layer .lname{font-weight:600;font-size:13.5px;margin-bottom:2px}
+  .layer .lplayers{font-size:12px;color:var(--muted)}
+  .layer .lbet{font-size:12px;color:var(--accent-2);margin-top:2px}
+
+  /* Question */
+  .q-item{
+    background:var(--card);border:1px solid var(--stroke);border-radius:var(--radius-sm);
+    padding:16px 18px;margin-bottom:10px;
+  }
+  .q-item .qnum{font-size:11px;font-weight:700;color:var(--warm);margin-bottom:5px}
+  .q-item .qh{font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px}
+  .q-item p{font-size:13.5px;color:var(--text-2);line-height:1.72}
+
+  /* Buyer cards */
+  .buyer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;margin-top:14px}
+  .buyer{
+    background:var(--card);border:1px solid var(--stroke);border-left:3px solid var(--accent);
+    border-radius:var(--radius-sm);padding:16px 18px;
+  }
+  .buyer .brole{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.06em;margin-bottom:9px}
+  .buyer .bjudg{
+    font-size:13.5px;color:var(--text);line-height:1.72;font-weight:500;
+    padding-bottom:9px;margin-bottom:9px;border-bottom:1px dashed var(--stroke);
+  }
+
+  /* Summary section */
+  .summary-hero{
+    background: var(--grad-soft);
+    border: 1px solid var(--stroke);
+    border-radius: var(--radius);
+    padding: 26px;
+    margin-top: 12px;
+  }
+  .summary-hero .big{
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--text-2);
+    margin-bottom: 14px;
+  }
+  .summary-hero .big strong{color: var(--accent)}
+  .judgment{
+    margin-top:14px;
+    display: grid; gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  .judgment .j-item{
+    background: var(--card);
+    border: 1px solid var(--stroke);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+  }
+  .judgment .j-item .j-period{
+    font-size: 11px; font-weight: 700; color: var(--accent);
+    letter-spacing: .04em; margin-bottom: 8px;
+  }
+  .judgment .j-item p{font-size: 12.5px; color: var(--text-2); line-height: 1.65; margin-bottom:7px}
+  .judgment .j-item .pts{gap:7px}
+  .judgment .j-item .pts li{font-size:12.5px;line-height:1.65}
+  .spa{
+    margin-top:16px;background:var(--card);border:1px solid var(--accent);
+    border-radius:var(--radius-sm);padding:16px 18px;
+  }
+  .spa .spa-label{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:6px}
+  .spa p{font-size:13.5px;color:var(--text-2);line-height:1.72}
+
+  /* Footer */
+  footer{
+    text-align:center;padding:32px 20px;
+    color:var(--faint);font-size:.82rem;
+    border-top:1px solid var(--stroke);margin-top:48px;
+  }
+
+  /* Responsive */
+  @media(max-width:768px){
+    .nav-links a{padding:4px 6px;font-size:10.5px}
+    .nav .brand{font-size:12px}
+    .nav .brand small{display:none}
+    .takeaway-grid{grid-template-columns:1fr 1fr}
+    .cmp-table{font-size:12px;min-width:480px}
+    .judgment{grid-template-columns:1fr}
+    .swot{grid-template-columns:1fr}
+    .card{padding:16px 17px}
+    .card-h{font-size:15.5px}
+    .lead,.pts li{font-size:13.5px}
+  }
+
+  /* Scroll reveal */
+  .reveal{opacity:0;transform:translateY(10px);transition:opacity .4s ease,transform .4s ease}
+  .reveal.in{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="brand">Snowflake Summit 2026 <small>· 深度专题报告</small></div>
+  <nav class="nav-links">
+    <a href="#judgment">判断</a>
+    <a href="#observations">观察</a>
+    <a href="#products">产品</a>
+    <a href="#cases">案例</a>
+    <a href="#competition">竞争</a>
+    <a href="#buyers">买方</a>
+    <a href="#industry">行业</a>
+    <a href="#summary">总结</a>
+  </nav>
+</div>
+
+<div class="hero">
+  <div class="container">
+    <h1>Snowflake Summit 2026<br/>从数据仓库到 Agent 运行时</h1>
+    <div class="sub">26+ 产品公告 · 六大领域 · 企业 AI 的赌注</div>
+    <div class="meta">2026年6月 · Data+AI Daily Brief</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 01 核心判断 -->
+  <section id="judgment">
+    <div class="sec-head">
+      <div class="sec-no">01</div>
+      <h2 class="sec-title">核心判断</h2>
+    </div>
+
+    <div class="verdict reveal">
+      <p>Snowflake Summit 2026 不是在卖产品更新，而是在<strong>重新定义“数据平台”的边界</strong>。26+ 项官方公告贯穿一条主线：当企业 AI 从“回答问题”走向“自主行动”，数据平台需要从存储与查询层升级为<strong>Agent 运行时</strong>，提供身份、上下文、治理和执行的全栈能力。</p>
+      <p>这个战略的前提是：<strong>模型是商品，数据是壁垒</strong>。如果这个前提成立，Snowflake 在 Agent 时代的卡位就是合理的。</p>
+    </div>
+
+    <div class="takeaway-grid">
+      <div class="takeaway reveal"><div class="tn">01</div><p>数据平台正在升级为<strong>AI 控制平面</strong></p></div>
+      <div class="takeaway reveal"><div class="tn">02</div><p>Agent 的核心能力来自<strong>企业上下文</strong></p></div>
+      <div class="takeaway reveal"><div class="tn">03</div><p>业务系统连接是 AI 落地的<strong>最后一公里</strong></p></div>
+      <div class="takeaway reveal"><div class="tn">04</div><p>治理、安全、权限是<strong>加速器</strong>，不是阻碍</p></div>
+    </div>
+
+    <div class="fact-strip reveal">
+      <div class="fact"><span class="fk">Summit</span><span class="fv">6/1–4 · 旧金山 · 2万+ 参会</span></div>
+      <div class="fact"><span class="fk">公告</span><span class="fv">26+ 项能力 · 6 大领域</span></div>
+      <div class="fact"><span class="fk">Q1 营收</span><span class="fv">$13.91 亿 · +33% YoY</span></div>
+      <div class="fact"><span class="fk">RPO</span><span class="fv">$92.1 亿 · +38% YoY</span></div>
+      <div class="fact"><span class="fk">财报后股价</span><span class="fv">单日 +37% · 自低点反弹约 60%</span></div>
+    </div>
+
+    <p class="note"><strong>数据来源说明：</strong>财务数字来自 Snowflake 官方财报；产品采用率、性能提升与准确率数字来自厂商披露或客户现场自述（vendor/customer-reported），未经独立基准测试验证，第三方无法复现。</p>
+  </section>
+
+  <!-- 02 具体观察 -->
+  <section id="observations">
+    <div class="sec-head">
+      <div class="sec-no">02</div>
+      <h2 class="sec-title">具体观察</h2>
+      <div class="sec-desc">从产品细节中提炼的五个关键观察</div>
+    </div>
+
+    <article class="card reveal">
+      <div class="card-num">观察 01</div>
+      <h3 class="card-h">企业 AI 被拆成了两条人群线，而不是一个产品</h3>
+      <p class="lead">一条服务“造工具的人”，即工程师和开发者，深入 IDE、CLI、Excel；一条服务“用工具的人”，即业务用户，扎进 Slack、移动端和 Web。两者共享同一套数据和治理底座，但界面彻底分化。</p>
+      <ul class="pts">
+        <li>更值得注意的是分发策略：AI 入口不再被收进一个集中的 Web 控制台，<b>而是嵌进用户原本就在的地方</b>。</li>
+        <li>这是一个“去中心化入口”的信号，谁占领了用户已有的工作流，谁就掌握了使用频次。</li>
+      </ul>
+      <div class="pull">产品线的分野，反映的是 Snowflake 对分发渠道的判断：入口的争夺不在自己的控制台里，而在别人的工作台上。</div>
+    </article>
+
+    <article class="card reveal">
+      <div class="card-num">观察 02</div>
+      <h3 class="card-h">上下文不是加分项，而是 Agent 可用性的生死线</h3>
+      <p class="lead">在企业场景里，通用模型脱离业务语义近乎瞎猜。“收入”在不同系统里的定义差异、口径冲突、隐含规则，模型一概不知。把企业语义层层注入后，结构化问题的回答质量从勉强可用跃升到可信赖。</p>
+      <ul class="pts">
+        <li>这条结论的战略含义是：当模型能力趋同，<b>谁掌握了企业语义，谁就掌握了 Agent 真正能不能用</b>。</li>
+        <li>而语义恰恰长在数据平台里，这是 Snowflake 把赌注押在数据层而非模型层的根本理由。</li>
+      </ul>
+    </article>
+
+    <article class="card reveal">
+      <div class="card-num">观察 03</div>
+      <h3 class="card-h">治理的对象，正在从“数据访问”变成“Agent 行为”</h3>
+      <p class="lead">过去治理回答“谁能看哪些数据”；当 Agent 拿到执行权，问题变成“哪个 Agent、基于什么、做了什么、能不能追溯”。</p>
+      <ul class="pts">
+        <li>给 Agent 独立身份而非继承部署者权限，是对这个新问题的正面回应，它承认自主软件代理不该套用为人类设计的安全模型。</li>
+        <li>这一步若成立，治理就从合规成本变成 <b>Agent 能否被批准上生产</b>的硬门槛。</li>
+        <li>硬门槛的另一面是护城河：它需要多年积累，无法靠一次发布补齐。</li>
+      </ul>
+    </article>
+
+    <article class="card reveal">
+      <div class="card-num">观察 04</div>
+      <h3 class="card-h">模型被有意识地商品化，壁垒被刻意推向数据</h3>
+      <p class="lead">同时原生支持多个主流模型家族、与 OpenAI 和 Anthropic 同台站队，传递的不是“我的模型最强”，而是“模型随便选，反正都在我的数据上跑”。</p>
+      <ul class="pts">
+        <li>客户不必在模型间选边，只需按工作负载挑选，<b>这恰恰削弱了模型作为差异点的意义</b>。</li>
+      </ul>
+      <div class="pull">当模型是可替换的商品，不可替换的就是<strong>数据的位置</strong>。这是整份发布最深的一层逻辑。</div>
+    </article>
+
+    <article class="card reveal">
+      <div class="card-num">观察 05</div>
+      <h3 class="card-h">“开放”是手段，“锁定”才是目的</h3>
+      <p class="lead">开源引擎、推动跨平台语义标准、绑定头部数据工具链，一系列动作看似在拆墙，实则在把自己变成生态的默认锚点。开放降低了客户的迁入摩擦和戒心，标准则让自己成为事实参照系。</p>
+      <ul class="pts">
+        <li>唯一的张力在于：高度依赖单一云的现实，与“中立多云平台”的叙事之间，还有距离需要弥合。</li>
+      </ul>
+    </article>
+  </section>
+
+  <!-- 03 产品全景 -->
+  <section id="products">
+    <div class="sec-head">
+      <div class="sec-no">03</div>
+      <h2 class="sec-title">产品全景</h2>
+      <div class="sec-desc">前述观察的事实支撑。Summit 发布了 26+ 项产品能力，以下五个战略级产品定义了 Snowflake 的路线方向，其余能力在末尾做紧凑收录。</div>
+    </div>
+
+    <article class="card reveal">
+      <div class="badges"><span class="badge b-ga">GA</span></div>
+      <h3 class="card-h">CoCo</h3>
+      <p class="lead">AI 驱动的开发者智能体。理解 Snowflake 环境中的表、角色和安全边界，贯穿数据与应用开发全生命周期。上线约 6 个月即积累 <span class="num">7,100+</span> 客户账户，是 Snowflake 历史上增长最快的产品。</p>
+      <ul class="pts">
+        <li>多端形态覆盖 Desktop、VS Code、CLI、Excel、Slackbot，<b>不强迫开发者切换到集中式 Web 控制台</b>，而是嵌入其已有工作流。</li>
+      </ul>
+    </article>
+
+    <article class="card reveal">
+      <div class="badges"><span class="badge b-ga">GA</span></div>
+      <h3 class="card-h">CoWork</h3>
+      <p class="lead">面向业务用户的 AI 工作空间，原 Snowflake Intelligence。Deep Research（多 Agent 协同）、Artifacts（交互式仪表板）、User Memory。季环比增长 <span class="num">2x</span>。MCP 连接器支持 Google Drive、Salesforce、Slack 等外部系统。</p>
+      <ul class="pts">
+        <li>CoCo 和 CoWork 共享底层数据与治理层，但交互界面完全分化，一个面向造工具的人，一个面向用工具的人。</li>
+      </ul>
+    </article>
+
+    <article class="card reveal">
+      <div class="badges"><span class="badge b-prev">Private Preview</span><span class="badge b-prev">随 Cortex AI 免费内置</span></div>
+      <h3 class="card-h">Cortex Sense</h3>
+      <p class="lead">运行时上下文引擎，自动为 Agent 组装数据结构、业务定义和操作知识。官方基准测试（结构化问题准确率）呈现一条清晰的上下文阶梯：</p>
+      <div class="flow">
+        <span class="flow-step">通用模型 <span class="num">24%</span></span><span class="flow-arrow">→</span>
+        <span class="flow-step">人工语义 <span class="num">47%</span></span><span class="flow-arrow">→</span>
+        <span class="flow-step">调优模型 <span class="num">73%</span></span><span class="flow-arrow">→</span>
+        <span class="flow-step">Cortex Sense 开箱即用 <span class="num">86%</span></span>
+      </div>
+      <ul class="pts" style="margin-top:12px">
+        <li>每一步都是企业上下文的层层叠加。随所有 Cortex AI 产品免费内置，<b>不是独立收费模块，而是底层能力</b>。</li>
+      </ul>
+      <div class="lim">
+        <span class="lim-t">口径待澄清</span>
+        厂商未公布测试题集难度、数据规模与语义覆盖度，四个数字不构成可直接横向比较的基准。
+      </div>
+    </article>
+
+    <article class="card reveal">
+      <div class="badges"><span class="badge b-arch">收购整合</span></div>
+      <h3 class="card-h">Natoma</h3>
+      <p class="lead">企业级 MCP 网关。Agent 连接外部系统（Slack、Salesforce、Jira 等）时，统一身份验证、策略执行和审计记录。治理从“数据访问控制”延伸到“AI 行为管理”，管理员在一个控制面管理所有 Agent 的系统权限。</p>
+      <ul class="pts">
+        <li>这是 Snowflake 对“跨系统真空”的回应：<b>Agent 的行为天然是跨系统的，但传统治理体系困在数据仓库内部</b>。</li>
+      </ul>
+    </article>
+
+    <article class="card reveal">
+      <div class="badges"><span class="badge b-prev">Alpha</span></div>
+      <h3 class="card-h">dbt Core v2.0 + Fivetran</h3>
+      <p class="lead">合并后的实体服务 <span class="num">10 万+</span> 数据团队。dbt Core v2.0 以 Apache 2.0 许可开源，解析速度提升 <span class="num">10 倍</span>。dbt State 可降低基础设施成本 <span class="num">30%+</span>。dbt Wizard 支持 AI 辅助模型编写。Agents Schema 开源标准，将仓库中的单一 schema 指定为 AI Agent 共享上下文层。</p>
+      <ul class="pts">
+        <li>加上 AWS 60 亿美元五年承诺和 OSI 规范（54 家厂商参与），Snowflake 的生态策略是“通过开放来锁定”。</li>
+      </ul>
+    </article>
+
+    <details style="margin-top:16px">
+      <summary>展开其余 11 项产品公告 ▾</summary>
+      <div style="border:1px solid var(--stroke);border-radius:var(--radius-sm);overflow:hidden;margin-top:8px">
+        <table style="width:100%;border-collapse:collapse;font-size:13px">
+          <tr style="background:var(--card-2)"><th style="padding:8px 12px;text-align:left;font-weight:600;border-bottom:1px solid var(--stroke);color:var(--text-2);width:180px">产品</th><th style="padding:8px 12px;text-align:left;font-weight:600;border-bottom:1px solid var(--stroke);color:var(--text-2)">定位</th><th style="padding:8px 12px;text-align:left;font-weight:600;border-bottom:1px solid var(--stroke);color:var(--text-2);width:110px">状态</th></tr>
+          <tr><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2);font-weight:600">CoCo Automations</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2)">自主任务执行、Cloud Agents、Skill Catalog。官方称 ADE-Bench 超越主流独立代码 AI 工具，节省 51% Token。</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--green)">GA</td></tr>
+          <tr><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2);font-weight:600">AI Agent Identity</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2)">Agent 独立加密身份，不继承用户凭证。基于 Agent 类型的 RBAC、完整审计追踪、动态数据脱敏。</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--green)">GA</td></tr>
+          <tr><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2);font-weight:600">Horizon Context</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2)">语义上下文三层：Collect→Enrich→Activate。BlackRock 已在生产中使用。</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--green)">GA</td></tr>
+          <tr><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2);font-weight:600">OSI 规范</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2)">跨平台语义模型交换标准。54 家厂商参与，包括 Atlan、Collibra、Databricks、BlackRock。</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--accent)">定稿</td></tr>
+          <tr><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2);font-weight:600">Cortex AISQL</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2)">LLM 语义嵌入 SQL 引擎。AI_FILTER / AI_JOIN / AI_CLASSIFY / AI_AGG。官方称过滤操作性能提升 70%。</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--warm)">Public Preview</td></tr>
+          <tr><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2);font-weight:600">Cortex Training</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2)">托管式微调与强化学习，训练数据不出平台。官方称同等 GPU 预算最高 2 倍效率。</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--warm)">Preview</td></tr>
+          <tr><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2);font-weight:600">Apache Iceberg v3</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2)">删除向量、行级血缘、variant 类型、默认值。Iceberg 已成为行业事实标准。</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--green)">GA</td></tr>
+          <tr><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2);font-weight:600">Snowflake Datastream</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2)">Kafka 兼容托管流服务，零代码变更接入现有生产者。</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--warm)">Preview</td></tr>
+          <tr><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2);font-weight:600">Standard Warehouse Gen 2</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2)">硬件与软件联合优化，官方称分析性能提升 2.1 倍，对所有客户默认启用。</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--green)">GA</td></tr>
+          <tr><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2);font-weight:600">模型开放</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--text-2)">7 个模型家族原生支持（Claude、GPT、Gemini、Llama、Mistral、DeepSeek、Grok）。</td><td style="padding:7px 12px;border-bottom:1px solid var(--stroke);color:var(--green)">GA</td></tr>
+          <tr><td style="padding:7px 12px;border-bottom:none;color:var(--text-2);font-weight:600">SnowConvert AI</td><td style="padding:7px 12px;border-bottom:none;color:var(--text-2)">自动化迁移平台，Oracle / Teradata / BigQuery 代码自动转换为 Snowflake 原生。官方称转换比传统方法快 2-3 倍。</td><td style="padding:7px 12px;border-bottom:none;color:var(--green)">GA</td></tr>
+        </table>
+      </div>
+    </details>
+
+    <h3 style="font-size:15px;font-weight:700;color:var(--text);margin:28px 0 4px">产品栈的分层</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Snowflake 把企业 AI 的落地拆成由下至上的四层，逐层补齐从“数据可用”到“Agent 可控”的距离。这类层与层之间存在包含关系的结构，用 layer-stack 呈现。</p>
+    <div class="layer-stack">
+      <div class="layer"><div class="lname">数据底座</div><div class="lplayers">Iceberg v3 · Datastream · Standard Warehouse Gen 2</div><div class="lbet">解决“数据能不能被稳定、廉价地读到与写入”。</div></div>
+      <div class="layer"><div class="lname">语义层</div><div class="lplayers">Horizon Context · OSI 规范 · Agents Schema</div><div class="lbet">解决“指标怎么定义、由谁定义”，把治理后的定义沉淀进平台。</div></div>
+      <div class="layer active"><div class="lname">上下文层</div><div class="lplayers">Cortex Sense · Semantic View</div><div class="lbet">解决“Agent 在运行时能拿到多少业务含义”。本届的加码重点。</div></div>
+      <div class="layer"><div class="lname">控制平面</div><div class="lplayers">Cortex AI Gateway · Agent Identity · Natoma</div><div class="lbet">解决“Agent 能做什么、花了多少、有据可查吗”，治理对象从数据访问转向 Agent 行为。</div></div>
+    </div>
+  </section>
+
+  <!-- 04 客户实证 -->
+  <section id="cases">
+    <div class="sec-head">
+      <div class="sec-no">04</div>
+      <h2 class="sec-title">客户实证</h2>
+      <div class="sec-desc">来自生产环境的真实案例。数字均为厂商或客户单方披露（vendor/customer-reported），未经独立验证。</div>
+    </div>
+
+    <div class="customer-grid">
+      <div class="customer reveal">
+        <div class="cname">Sanofi</div>
+        <div class="cindustry">制药 · 全球</div>
+        <div class="ctext">“Concierge for Field”，面向全球医药代表的 AI Agent。一次自然语言对话，Agent 在秒级生成完整拜访计划（医生处方历史、专业背景、历史互动、最新文献），自动邮件发送。同一平台已覆盖 R&amp;D、采购、IT、HR、现场销售。</div>
+        <div class="cdata">CDO 原话：我们花了多年建造复杂的数据管道，现在直接在 Snowflake 上构建 AI</div>
+      </div>
+      <div class="customer reveal">
+        <div class="cname">Thomson Reuters</div>
+        <div class="cindustry">法律与专业服务 · 全球</div>
+        <div class="ctext">Snowflake 上的企业 AI 平台。查询从数周缩短到 2 秒，从静态报告转向准实时洞察。在高监管环境下，Snowflake 的治理能力（Agent Identity、审计追踪、防泄露策略）是合作关键。</div>
+        <div class="cdata">查询从数周缩短至 2 秒 · 监管级可信 AI</div>
+      </div>
+      <div class="customer reveal">
+        <div class="cname">BlackRock</div>
+        <div class="cindustry">金融服务 · 全球</div>
+        <div class="ctext">使用 Horizon Context 确保 AI Agent 在“共享的企业真相定义”上运行。Aladdin 平台处理 1160 亿+ 数据点，生成 150 万+ 报告。“revenue”在每个系统里意味着完全一样的东西。</div>
+        <div class="cdata">1160 亿+ 数据点 · 150 万+ 报告</div>
+      </div>
+      <div class="customer reveal">
+        <div class="cname">Accenture</div>
+        <div class="cindustry">咨询与专业服务 · 全球</div>
+        <div class="ctext">75 万员工使用 Snowflake CoWork（原 Snowflake Intelligence），覆盖客户交付、内部知识管理和 AI 辅助决策。企业级 Agent 在大型专业服务组织中的规模化部署。</div>
+        <div class="cdata">75 万员工 · 专业服务行业最大 Agent 部署之一</div>
+      </div>
+      <div class="customer reveal">
+        <div class="cname">Under Armour</div>
+        <div class="cindustry">消费零售 · 全球</div>
+        <div class="ctext">AI 驱动的全渠道运营，从电商推荐到供应链预测，将零散的数据库架构统一到 Snowflake 之上。全球超过 100 万活跃专业人士使用其平台。</div>
+        <div class="cdata">100 万+ 活跃专业人士</div>
+      </div>
+    </div>
+
+    <div class="info-box reveal" style="margin-top:16px">
+      <div class="label">分析师注</div>
+      <ul class="pts">
+        <li>五个案例集中在制药、金融、咨询、零售四个行业，<b>共同特征是数据治理要求高、且多数为总部在欧美的跨国企业</b>。</li>
+        <li>案例中的效率数字缺少基线说明（原环境配置、数据规模、并发条件），买方在自建评估时以自有负载验证更为稳妥。</li>
+        <li>客户规模数字（75 万员工、100 万+ 用户）描述的是组织的总人数，不等于活跃 Agent 使用量，引用时需保留原始口径。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 05 竞争格局 -->
+  <section id="competition">
+    <div class="sec-head">
+      <div class="sec-no">05</div>
+      <h2 class="sec-title">竞争格局</h2>
+      <div class="sec-desc">三方的 Agent 平台之战：主场的对手与客场的不一样</div>
+    </div>
+
+    <p style="font-size:14px;color:var(--muted);margin-bottom:12px">6 月是企业数据平台的决战月，三场大会密集上演：Snowflake Summit、Microsoft Build、Databricks Data+AI Summit。</p>
+
+    <div class="cmp-wrap reveal">
+      <table class="cmp-table">
+        <tr><th></th><th>Snowflake Summit</th><th>Databricks D+AI</th><th>Microsoft Build</th></tr>
+        <tr><td><strong>时间</strong></td><td>6月1–4日</td><td>6月15–18日</td><td>6月2–3日</td></tr>
+        <tr><td><strong>核心定位</strong></td><td>数据仓库 → Agent 运行时</td><td>湖仓一体 → 模型+Agent</td><td>Windows/Azure → Agent 平台</td></tr>
+        <tr><td><strong>最强场景</strong></td><td>结构化数据 + 企业治理</td><td>ML 模型部署 + 数据工程</td><td>知识工作 + 开发者工具</td></tr>
+        <tr><td><strong>Agent 产品</strong></td><td>CoCo / CoWork</td><td>ai_query / Genie</td><td>Windows Agent Framework</td></tr>
+        <tr><td><strong>开放策略</strong></td><td>Iceberg v3 / OSI / Openflow</td><td>Delta Lake / Unity Catalog</td><td>相对封闭</td></tr>
+        <tr><td><strong>主场依赖</strong></td><td>结构化企业数据</td><td>ML 训练数据</td><td>办公协作数据</td></tr>
+      </table>
+    </div>
+
+    <div class="comp-row reveal" style="margin-top:16px">
+      <div class="cr-title">三方正在收敛</div>
+      <p class="cr-text">Snowflake 的赌注是数据仓库作为 Agent 运行时，最强场景是结构化数据且治理要求高的企业（金融、医疗、制药）。Databricks 赌湖仓加模型服务，最强场景是 ML 工作负载重的组织。微软赌 Windows 和 Azure 是 Agent 平台，最强场景是深度使用 M365 和 Azure 的组织。</p>
+    </div>
+
+    <div class="comp-row reveal">
+      <div class="cr-title">主加次的双边界格局</div>
+      <p class="cr-text">大多数大型企业不会三选一。合理的结果是：<strong>主边界</strong>为客户数据所在平台（对很多企业是 Snowflake），<strong>次边界</strong>为员工生产力平台（几乎一定是微软）。挑战在于避免同时押注多个主边界，那样最终没有任何一个 Agent 运行时被真正规模化。</p>
+    </div>
+
+    <div class="comp-row reveal">
+      <div class="cr-title">主场不等于客场：同一套叙事在不同市场的效力不同</div>
+      <p class="cr-text">三家在各自的主场都有明显优势：Snowflake 的主场是需要强治理的结构化数据，Databricks 的主场是 ML 原生工作负载，微软的主场是员工日常协作界面。<b>把主场战绩外推到客场是需要额外证据的</b>。Snowflake 的“数据重力”论点在欧美市场成立，是因为大量企业数据已经落在其平台内；在一个数据形态、合规约束与交付模式都不同的市场，同一论点需要重新验证。</p>
+    </div>
+
+    <div class="comp-row reveal">
+      <div class="cr-title">“数据重力”是三家共享的底层逻辑</div>
+      <p class="cr-text">“模型是商品、数据是壁垒”并非 Snowflake 独家主张。微软 Fabric、Databricks 走的是同一条路。三家的分歧不在要不要押注数据重力，<b>而在各自数据的形态不同</b>：Snowflake 是结构化企业数据，Databricks 是 ML 训练数据，微软是办公协作数据。谁的数据形态最贴近 Agent 的高频场景，谁的重力就最强。</p>
+    </div>
+
+    <div class="comp-row reveal">
+      <div class="cr-title">Snowflake 的独特优势与风险</div>
+      <div class="swot">
+        <div class="swot-col pro">
+          <div class="swot-h">优势</div>
+          <ul>
+            <li>治理能力为多年积累，不是一次性发布能补齐的</li>
+            <li>模型无关架构，降低客户的模型选边成本</li>
+            <li>13,900+ 客户形成的结构化数据重力</li>
+            <li>开放表格式与语义标准带来的生态号召力</li>
+          </ul>
+        </div>
+        <div class="swot-col con">
+          <div class="swot-h">风险</div>
+          <ul>
+            <li>约 70% 业务在 AWS 上，多云叙事落后于商业现实</li>
+            <li>Databricks 在 ML 与 AI 原生场景的增长势头</li>
+            <li>微软生产力生态，若 Agent 交互发生在 Office 与 Teams 内，Snowflake 可能被推到数据管道角色</li>
+            <li>多数新能力仍在 Preview，规模化时点未定</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 对买方的建议 -->
+  <section id="buyers">
+    <div class="sec-head">
+      <div class="sec-no">06</div>
+      <h2 class="sec-title">对买方的建议</h2>
+      <div class="sec-desc">按角色给可执行判断</div>
+    </div>
+
+    <div class="buyer-grid">
+      <div class="buyer reveal">
+        <div class="brole">数据平台负责人</div>
+        <div class="bjudg">把发布清单按成熟度分层再排期。GA、Preview、Alpha 三类能力的部署风险不同，按 Keynote 的叙事节奏做架构规划会踩空。</div>
+        <ul class="pts">
+          <li>语义层与上下文层的投入可以提前启动：定义对象是企业自己的业务规则，这部分资产与平台版本解耦，有残值。</li>
+          <li>同时确认 Semantic View 类对象的可携带性，即是否支持跨账户复制、能否供给平台外的 BI 工具，这决定了投入是资产还是沉没成本。</li>
+        </ul>
+      </div>
+      <div class="buyer reveal">
+        <div class="brole">AI 平台负责人</div>
+        <div class="bjudg">Agent 治理的评估重点在覆盖面。独立身份、策略执行、审计与预算控制只有在实际流量经过它们时才产生价值。</div>
+        <ul class="pts">
+          <li>采购前要求厂商说明既有自研 Agent 与第三方 Agent 的纳入方式，绕过控制层的调用会留下策略与审计缺口。</li>
+          <li>上下文层的收益（准确率提升、单次调用成本下降）被作为卖点呈现，但测试条件未披露，建议以自有高难度问题集复现一次。</li>
+        </ul>
+      </div>
+      <div class="buyer reveal">
+        <div class="brole">采购</div>
+        <div class="bjudg">合同层面确认三件事：</div>
+        <ul class="pts">
+          <li>Keynote 披露的性能与准确率数字是否接受以双方约定的基准做验收。</li>
+          <li>Preview 与 Alpha 能力的 GA 时点，以及未 GA 时的服务级别与退出条款。</li>
+          <li>收购整合型产品（如收购而来的网关）的路线承诺，避免因整合方向调整造成功能中断。</li>
+        </ul>
+        <ul class="pts" style="margin-top:9px">
+          <li>若涉及区域化部署，需单独确认区域功能差异清单与数据处理责任划分，这两项通常不出现在标准协议里。</li>
+        </ul>
+      </div>
+      <div class="buyer reveal">
+        <div class="brole">竞品厂商（含国内云厂商）</div>
+        <div class="bjudg">Snowflake 的强项是把治理与语义绑定进平台内，这既是差异化也是可攻击面：语义资产越绑定平台，客户对锁定的顾虑越重。</div>
+        <ul class="pts">
+          <li>可以在两个方向上找位置：一是语义资产的可迁移性叙事，二是私有化部署与本地合规适配的交付形态。</li>
+          <li>需要注意其模型开放与开放表格式的动作，会让“它不能用本地生态”这类简单对标失效，竞争点要落在交付形态与语义资产归属上。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 行业延伸 -->
+  <section id="industry">
+    <div class="sec-head">
+      <div class="sec-no">07</div>
+      <h2 class="sec-title">行业延伸</h2>
+      <div class="sec-desc">Agent 治理不是一家公司的事，多层生态正在重新划分权力</div>
+    </div>
+
+    <div class="pull pull-lead reveal">本届大会提出的行业级命题：<strong>治理的权力最终会沉淀在哪一层，而不是 Snowflake 会不会赢。</strong></div>
+    <p class="note" style="margin-bottom:14px">这句话的落点不在 Snowflake 一家身上，下面的分层结构由多家厂商共同构成，属于分析者视角的归纳，不代表 Snowflake 的自述架构。</p>
+
+    <div class="layer-stack">
+      <div class="layer"><div class="lname">监管层</div><div class="lplayers">NIST AI 100-4 · EU AI Act · ISO 42001</div><div class="lbet">最终会重新定义所有规则。NIST CAISI 于 2026 年 1 月启动 AI Agent Standards Initiative。</div></div>
+      <div class="layer"><div class="lname">身份层</div><div class="lplayers">Okta · CyberArk · Ping Identity</div><div class="lbet">Okta 于 2026 年 4 月 GA AI Agent 方案。身份认证是所有 Agent 调用的必经点。</div></div>
+      <div class="layer"><div class="lname">模型安全层</div><div class="lplayers">HiddenLayer · Cisco AI Defense · Palo Alto · Lakera</div><div class="lbet">数据平台跳过这一层。模型本身就是风险源，包括 prompt injection 与数据投毒。</div></div>
+      <div class="layer active"><div class="lname">数据平台层</div><div class="lplayers">Snowflake · Databricks · 三大云</div><div class="lbet">Snowflake 的赌注是：数据在哪，Agent 的上下文就在哪，治理沉淀在数据层。</div></div>
+      <div class="layer"><div class="lname">网关层</div><div class="lplayers">Kong · Apigee · Natoma (MCP)</div><div class="lbet">纵向整合（收购 Natoma）与行业横向标准化（API 网关原生支持 MCP）两条路线并行。</div></div>
+      <div class="layer"><div class="lname">应用层</div><div class="lplayers">Salesforce · ServiceNow · SAP · Workday</div><div class="lbet">Agent 行为真正发生的地方。</div></div>
+      <div class="layer"><div class="lname">可观测层</div><div class="lplayers">Arthur AI · Datadog · Splunk</div><div class="lbet">Agent 决策质量随时间下降时，谁来发警报？模型漂移检测是刚需。</div></div>
+    </div>
+
+    <p class="judg">现在最有力的两个候选是数据层和身份层，二者尚未出现被广泛接受的仲裁者。</p>
+
+    <h3 style="font-size:15px;font-weight:700;color:var(--text);margin:24px 0 12px">待验证的问题</h3>
+
+    <div class="q-item reveal">
+      <div class="qnum">问题 1</div>
+      <div class="qh">上下文阶梯的测试条件未披露</div>
+      <p>24% 到 86% 的提升幅度很大，但厂商未说明题集难度、数据规模、语义覆盖度和人工介入比例。这类数字的行业价值取决于可复现性，缺少条件的基准，其证据效力接近演示。</p>
+    </div>
+    <div class="q-item reveal">
+      <div class="qnum">问题 2</div>
+      <div class="qh">Natoma 的整合时间线未定</div>
+      <p>MCP 网关是 Agent 治理的关键补强，但收购刚刚完成。从签署到深度集成需要几个季度，直接决定控制平面的完整能力何时可用。</p>
+    </div>
+    <div class="q-item reveal">
+      <div class="qnum">问题 3</div>
+      <div class="qh">Agent 的经济模型尚未清晰</div>
+      <p>CoCo 7,100 用户、CoWork 环比 2x 是采用信号，但企业为 Agent 付多少钱、按什么计价，商业模型还没有完整答案。这是一个 2027 年才能回答的问题。</p>
+    </div>
+  </section>
+
+  <!-- 08 总结 -->
+  <section id="summary">
+    <div class="sec-head">
+      <div class="sec-no">08</div>
+      <h2 class="sec-title">总结</h2>
+    </div>
+
+    <div class="summary-hero reveal">
+      <p class="big">26 项产品公告、两个 Agent 产品线、一套治理层、一个生态标准，Summit 2026 用一周时间勾勒了 Snowflake 从数据仓库到 Agent 运行时的转型路线图。这条路线指向一个清晰的判断：<strong>数据平台竞争的下一个十年，将由谁能掌握企业 AI 的上下文、控制权和行动闭环来定义</strong>。</p>
+      <ul class="pts">
+        <li>但一张 Keynote 不等于一个市场，这套叙事能否兑现，取决于三个时间窗口内的实际验证。</li>
+        <li>叙事内部的一致性很高，从模型商品化到语义层加码，再到治理对象转向 Agent 行为，各段公告彼此支撑。</li>
+      </ul>
+      <div class="pull" style="margin-top:14px">真正的不确定性不在战略方向，而在执行节奏：多数关键能力仍处于 Preview 或早期 GA，<strong>控制平面何时具备生产级完整度，是这个故事的第一个验证点</strong>。</div>
+
+      <div class="judgment">
+        <div class="j-item">
+          <div class="j-period">短期 · 6–12 个月</div>
+          <ul class="pts">
+            <li>Summit 叙事与财报表现构成正向催化剂</li>
+            <li>2026 H2 的企业采用率是真正的验证点</li>
+          </ul>
+          <p style="margin-top:8px;color:var(--muted)">产品侧，Cortex AI Gateway 与 Cortex Sense 的 GA 时点是下一个可观测信号。</p>
+        </div>
+        <div class="j-item">
+          <div class="j-period">中期 · 12–24 个月</div>
+          <ul class="pts">
+            <li>竞争格局将决定性收窄，数据重力决定 Agent 运行的位置</li>
+            <li>Snowflake 在治理与结构化数据上有优势，Databricks 在 ML 原生与开源生态上势头更猛</li>
+            <li>语义层标准之争会分出方向：平台内对象路线与开放标准路线，哪一种被更多企业接受</li>
+          </ul>
+        </div>
+        <div class="j-item">
+          <div class="j-period">长期 · 24 个月以上</div>
+          <ul class="pts">
+            <li>如果模型继续商品化、治理成为企业 AI 部署的硬约束，Snowflake 的赌注成立</li>
+            <li>但最重要的一步不在 Snowflake 手里：Agent 需要真正成为企业运营的主流方式</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="spa">
+        <div class="spa-label">Strategic Planning Assumption</div>
+        <p>到 2028 年，企业级语义与上下文层将从数据平台的可选能力变为标配组件，<strong>置信度中等偏高</strong>；届时差异化的来源将从“是否具备语义层”转移到“语义资产的可移植性与跨平台消费能力”，该转移对买方有利、对平台厂商不利，<strong>置信度中等</strong>。</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div>Snowflake Summit 2026 · 深度专题报告</div>
+  <div style="margin-top:4px">基于 Snowflake Summit 2026 公开信息、Q1 FY2027 财报及多渠道行业分析（Futurum Group、Atlan、InfoQ 等）综合撰写</div>
+  <div style="margin-top:4px">所有厂商与客户披露的性能及规模数字均未经独立验证，引用时保留原始归属</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Nav active state
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+      });
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

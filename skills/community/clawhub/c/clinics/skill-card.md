@@ -1,43 +1,57 @@
-## Description: <br>
-Finds nearby clinics when a user asks for a clinic near them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby clinics. Invoke when user asks for a clinic near me.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users use this skill to request nearby clinic options for a provided location, radius, result limit, and optional filters such as open_now or min_rating. Integrators can use its standardized point-of-interest response shape for frontend or API workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Server security evidence marks the release suspicious and calls for review before installation. <br>
-Mitigation: Review the skill and its artifact before deployment; install it only when its documented nearby-clinic workflow matches the intended use. <br>
-Risk: The artifact handles precise user location values for clinic search. <br>
-Mitigation: Query only after user authorization, avoid retaining precise coordinates, and use coarse or grid-based location handling where feasible. <br>
-Risk: The artifact describes provider unavailability and rate-limit errors. <br>
-Mitigation: Handle PROVIDER_UNAVAILABLE and RATE_LIMITED responses explicitly, and use short-term caching for repeated location/category/radius requests. <br>
+## Use Case:
 
+External users invoke this skill to find nearby clinics from an authorized location, with optional radius, limit, and filters such as open_now, min_rating, or keywords.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/clinics) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/CodeKungfu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Structured point-of-interest response guidance with JSON-like inputs and outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns clinic search results using a fixed clinics category and documented error codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Location data can expose sensitive user whereabouts if requested or retained unnecessarily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request location only for a nearby clinic search and avoid retaining precise coordinates; use coarse or short-lived location handling where practical.
+
+Risk: Clinic information may be incomplete, outdated, or unsuitable for urgent medical decisions.
+
+Mitigation: Ask users to verify clinic details through a trusted source before relying on them for medical needs.
+
+Risk: External provider limits or outages may prevent complete nearby-clinic results.
+
+Mitigation: Surface clear provider and rate-limit errors, and use short-lived caching within service limits.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/clinics)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Structured nearby-clinic results with clear error guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-authorized location; supports radius, result limit, and optional filters.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

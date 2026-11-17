@@ -1,41 +1,59 @@
-## Description: <br>
-Study Tutor is a science-based learning assistant for diagnosis, guided teaching, practice, review, spaced repetition, and concise study notes under memory/{subject}-study.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Study Tutor is a science-based learning assistant for diagnosis, guided teaching, practice, review, spaced repetition, and concise study notes under memory/{subject}-study.md.
 
-## Publisher: <br>
-[jiangkaiqi2005](https://clawhub.ai/user/jiangkaiqi2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangkaiqi2005](https://clawhub.ai/user/jiangkaiqi2005)
 
-## Use Case: <br>
-Students, self-learners, and exam candidates use this skill to study topics, understand difficult concepts, review for exams, solve practice or homework problems with guidance, organize mistakes, and maintain concise learning progress notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may save a concise learning profile for continuity, which can retain study history if the user enables or permits it. <br>
-Mitigation: Install only if retained study notes are acceptable, avoid sharing sensitive personal details, and review or delete memory/{subject}-study.md when retained learning history is not wanted. <br>
-Risk: Tutoring responses can be misleading if the user provides incomplete materials, unclear exam scope, or asks for direct answers during restricted assessments. <br>
-Mitigation: Use user-provided materials for grounding, state uncertainty when materials are missing, guide with hints and practice before full answers, and refuse direct live-exam cheating while offering conceptual help. <br>
+## Use Case:
 
+Students and self-learners use this skill to learn concepts, review for exams, work through homework or practice problems, organize mistakes, and maintain concise study progress notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangkaiqi2005/study-tutor) <br>
-- [Publisher profile](https://clawhub.ai/user/jiangkaiqi2005) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Markdown responses and optional concise learning-profile notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update memory/{subject}-study.md only when useful for long-term study continuity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Optional learning profiles may retain study history, goals, weak points, mistakes, and review dates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive personal details in study materials or profiles, and review or delete memory/{subject}-study.md if retained study history is not desired.
+
+Risk: Tutoring from incomplete or unavailable materials can lead to provisional or incorrect study guidance.
+
+Mitigation: Prefer user-provided materials, state assumptions when materials are missing, and verify source-based facts with reliable references when needed.
+
+Risk: File and network access outside the learning task could expose unrelated user data.
+
+Mitigation: Read only user-provided or user-identified study materials, use web access only for learning-related verification or citations, and do not upload user files or profiles.
+
+## Reference(s):
+
+- [Study Tutor README](artifact/README.md)
+- [Study Tutor Chinese README](artifact/README-CN.md)
+- [ClawHub Skill Page](https://clawhub.ai/jiangkaiqi2005/skills/study-tutor)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Files]
+
+**Output Format:** [Markdown tutoring responses, check questions, practice prompts, study plans, and optional learning-profile notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update concise study notes at memory/{subject}-study.md when useful for long-term learning.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

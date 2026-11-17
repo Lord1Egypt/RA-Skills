@@ -12,7 +12,7 @@
  *   - 新增可观测性：_stats 计数器 + getStats() + resetStats()
  */
 
-const fs = require('fs');
+const fs = require('../../utils/safe-fs');
 const path = require('path');
 
 // ============================================================================
@@ -53,6 +53,8 @@ const ERROR_SUGGESTIONS = {
 /**
  * 创建标准化的错误结果
  */
+// [REFACTOR] TODO: _makeError (637行) — 建议拆分为独立子函数
+
 function _makeError(code, detail) {
   const info = ERROR_SUGGESTIONS[code] || ERROR_SUGGESTIONS[ErrorCode.UNKNOWN];
   return { error: true, code, detail, severity: info.severity, suggestion: info.suggestion };
@@ -168,7 +170,6 @@ class ChunkDetector {
         return parsed;
       }
     } catch (e) {
-      console.error('[ChunkDetector] Load idiom DB failed:', e.message);
       this._stats.errors[ErrorCode.DB_LOAD_FAILED] = (this._stats.errors[ErrorCode.DB_LOAD_FAILED] || 0) + 1;
     }
     return this.initializeDefaultIdiomDB();
@@ -191,7 +192,6 @@ class ChunkDetector {
       fs.writeFileSync(this.idiomFile, JSON.stringify(this.idiomDB, null, 2));
       return true;
     } catch (e) {
-      console.error('[ChunkDetector] Save failed:', e.message);
       this._stats.errors[ErrorCode.DB_SAVE_FAILED] = (this._stats.errors[ErrorCode.DB_SAVE_FAILED] || 0) + 1;
       return false;
     }

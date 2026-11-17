@@ -1,44 +1,62 @@
-## Description: <br>
-AI Stock Analyst helps agents fetch Chinese A-share market data, technical indicators, valuations, and news, then produce scored informational stock analysis reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered Chinese A-share stock analyst that fetches real-time market data, technical indicators, valuations, and news via AkShare, then generates scored investment analysis reports.
 
-## Publisher: <br>
-[chienchandler](https://clawhub.ai/user/chienchandler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chienchandler](https://clawhub.ai/user/chienchandler)
 
-## Use Case: <br>
-External users and developers use this skill to analyze Chinese A-share stocks, compare multiple stocks, review market or sector context, and generate concise scored reports for informational research. The skill is not intended to provide investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial analysis may be incomplete, stale, or misleading when market data, valuation data, or news sources are unavailable or delayed. <br>
-Mitigation: Clearly state missing data, keep the informational-use disclaimer, and require human review before using outputs for financial decisions. <br>
-Risk: The helper scripts contact external market and news services during use. <br>
-Mitigation: Review requested network access and avoid providing credentials or write permissions unless they match the user's intent. <br>
+## Use Case:
 
+External users and developers use this skill to research Chinese A-share stocks, compare stocks, review market or sector conditions, and generate informational scored analysis reports. It is intended for research support, not investment advice.
 
-## Reference(s): <br>
-- [Analysis Guide](references/analysis-guide.md) <br>
-- [Prompt Templates](references/prompt-templates.md) <br>
-- [Skill homepage](https://github.com/chienchandler/ai-stock-analyst) <br>
-- [AkShare](https://github.com/akfamily/akshare) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with optional JSON data from helper scripts and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include a numeric score, findings, technical and fundamental analysis, news context, risk factors, and an informational-use disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated stock scores and reports may be mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as informational research only, include the disclaimer, and require users to do their own review before making investment decisions.
+
+Risk: The skill contacts AkShare-backed sources, Sina Finance, EastMoney, and Xueqiu, and news content may be incomplete or manipulated.
+
+Mitigation: Tell users which data sources were used, call out missing data, and avoid treating news-driven signals as definitive.
+
+Risk: The AkShare dependency is not pinned to an exact version.
+
+Mitigation: Install and run the skill in an isolated Python environment and review dependency changes before operational use.
+
+## Reference(s):
+
+- [AI Stock Analyst on ClawHub](https://clawhub.ai/chienchandler/skills/ai-stock-analyst)
+- [Project homepage](https://github.com/chienchandler/ai-stock-analyst)
+- [A-Share Stock Analysis Guide](references/analysis-guide.md)
+- [Prompt Templates for Stock Analysis](references/prompt-templates.md)
+- [AkShare](https://github.com/akfamily/akshare)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis report with supporting JSON from local data-fetch scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a -5.00 to +5.00 score, key findings, technical analysis, fundamental analysis, news and sentiment, conclusion, and disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

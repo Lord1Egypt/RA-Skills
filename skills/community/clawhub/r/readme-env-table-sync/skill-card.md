@@ -1,39 +1,53 @@
-## Description: <br>
-Generate and sync a README environment-variable table from .env.example using marker blocks, with drift detection for CI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and sync a README environment-variable table from .env.example using marker blocks, with drift detection for CI.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and engineers use this skill to keep README environment-variable documentation aligned with an env template, detect drift in CI, and optionally update the marked README table. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Apply mode can modify the README file selected by environment variables. <br>
-Mitigation: Run the default report mode first, and set ENV_FILE and README_FILE to the intended repository paths before using SYNC_MODE=apply. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/readme-env-table-sync) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Sync script](artifact/scripts/sync-readme-env-table.sh) <br>
+## Use Case:
 
+Developers and engineers use this skill to keep README environment-variable documentation aligned with a project's env template and to detect documentation drift in CI.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown table updates, terminal summaries, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash and python3; report mode detects drift, apply mode updates the README marker block.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Apply mode rewrites the selected README marker block.
+
+Mitigation: Run the default report mode first and review generated README diffs before committing changes.
+
+Risk: Generated Markdown table content may reflect values from the selected env template.
+
+Mitigation: Keep ENV_FILE and README_FILE scoped to trusted project files, especially when env templates can be changed by untrusted contributors.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daniellummis/skills/readme-env-table-sync)
+- [ClawHub publisher profile](https://clawhub.ai/user/daniellummis)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown table updates and short command-line summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses report mode for drift detection and apply mode to rewrite the selected README marker block.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

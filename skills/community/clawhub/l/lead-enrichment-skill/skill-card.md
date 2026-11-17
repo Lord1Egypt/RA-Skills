@@ -1,45 +1,62 @@
-## Description: <br>
-Enriches a company or person lead from public-web signals before outreach, producing an ICP-fit verdict, key facts, red flags, and optional structured output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enriches a company or person lead from public-web signals before outreach, producing an ICP-fit verdict, key facts, red flags, and optional structured output.
 
-## Publisher: <br>
-[jernejcicorbin-hub](https://clawhub.ai/user/jernejcicorbin-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jernejcicorbin-hub](https://clawhub.ai/user/jernejcicorbin-hub)
 
-## Use Case: <br>
-Sales, marketing, and operations users use this skill to verify existing company or person leads, assess ICP fit, surface public evidence, and flag ambiguity before outreach or routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lead names, company details, targeting criteria, or similar prospecting data are sent to Prismfy during enrichment. <br>
-Mitigation: Use the skill only for data that is appropriate to share with Prismfy, and avoid submitting sensitive prospecting data unless that transfer is approved. <br>
-Risk: The setup examples show exporting the Prismfy API key in shell startup files. <br>
-Mitigation: Prefer a managed secrets mechanism when available, avoid committing shell configuration files containing credentials, and rotate the key if exposure is suspected. <br>
-Risk: The helper produces preliminary, keyword-scored public-web fit verdicts that can be incomplete or ambiguous. <br>
-Mitigation: Review high-value outreach decisions manually, use full query coverage for stronger verdicts, and preserve ambiguity when identity or fit evidence is weak. <br>
+## Use Case:
 
+Sales, growth, and lead-qualification users use this skill to verify a known company, domain, or person lead before outreach. It resolves identity, checks ICP fit and activity, surfaces disqualifiers, and keeps weak evidence marked as ambiguous.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jernejcicorbin-hub/lead-enrichment-skill) <br>
-- [Prismfy homepage](https://prismfy.io) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise markdown-style chat summaries with optional structured JSON report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PRISMFY_API_KEY plus curl and jq; sends lead and qualification queries to Prismfy and limits returned source URLs in the helper output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release, target metadata, and skill frontmatter) <br>
+Risk: Lead enrichment queries are sent to Prismfy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for leads whose query details are appropriate to send to Prismfy.
+
+Risk: PRISMFY_API_KEY can be exposed if stored persistently in shell startup files.
+
+Mitigation: Set the key only for the session or manage it through a dedicated secret manager.
+
+Risk: Custom Prismfy endpoint environment variables can redirect requests.
+
+Mitigation: Use custom endpoints only when the exact HTTPS host is trusted.
+
+Risk: Exported JSON reports may contain lead research details.
+
+Mitigation: Keep reports out of shared folders and source control.
+
+## Reference(s):
+
+- [Prismfy](https://prismfy.io)
+- [ClawHub skill page](https://clawhub.ai/jernejcicorbin-hub/skills/lead-enrichment-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Concise chat text or Markdown-style bullets, with optional structured JSON report files when export mode is requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PRISMFY_API_KEY, curl, and jq; uses Prismfy public-web search and can write an output file through --out.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

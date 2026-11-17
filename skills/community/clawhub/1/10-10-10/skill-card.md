@@ -1,43 +1,56 @@
-## Description: <br>
-Guides agents through the 10-10-10 decision framework so users can compare immediate, medium-term, and long-term consequences before committing to an action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides people facing consequential decisions through a 10-minute, 10-month, and 10-year reflection to clarify what may matter over time.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-People making non-trivial personal, career, relationship, or business decisions under emotional pressure use this skill with an agent to consider 10-minute, 10-month, and 10-year perspectives and choose a concrete next action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence personal, career, relationship, or business choices where poor guidance may have consequences. <br>
-Mitigation: Use it as a coaching aid that supports user judgment; consult qualified professionals for legal, financial, medical, or safety-critical decisions. <br>
-Risk: The framework may be applied to trivial or urgent decisions where extra deliberation is not useful. <br>
-Mitigation: Use it for non-trivial decisions with medium- or long-term consequences, and stop when all three time horizons return low-stakes answers. <br>
-Risk: Users may treat the three horizon answers as an automatic decision rather than decision input. <br>
-Mitigation: End with a specific action, timeline, and early signal while keeping final synthesis with the user. <br>
+## Use Case:
 
+People and AI assistants can use the exercise to think through personal, career, relationship, or business decisions with meaningful future consequences. It structures reflection across three time horizons and leaves the decision to the person making it.
 
-## Reference(s): <br>
-- [Primary sources](references/sources.md) <br>
-- [Method in Action: Suzy Welch, 1990s; Jeff Bezos, 1994](examples/suzy-welch-1990s-jeff-bezos-1994.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown coaching prompts and a structured decision summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive coaching flow may stop at WAIT points until the user responds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A person could treat the reflection framework as the sole basis for a consequential decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the exercise to surface perspectives while retaining control of the decision; gather more structural information when the long-term view is unclear.
+
+Risk: Saved examples could include private decision details.
+
+Mitigation: Omit private details from any saved examples.
+
+## Reference(s):
+
+- [Primary sources](artifact/references/sources.md)
+- [10-10-10 skill page](https://clawhub.ai/deciqai/skills/10-10-10)
+- [10-10-10 overview](https://www.deciqai.com/c/10-10-10)
+- [Machine-readable skill metadata](https://www.deciqai.com/s/10-10-10.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational reflection prompts and a structured Markdown decision summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailored to the decision and its 10-minute, 10-month, and 10-year horizons.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

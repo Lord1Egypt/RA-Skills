@@ -1,41 +1,58 @@
-## Description: <br>
-RedNote Publish Auto helps an agent draft Xiaohongshu or RedNote posts, generate Markdown card content, render image cards, and publish after user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Xiaohongshu/RedNote post copy from a user topic or source material, renders Markdown image cards, and publishes the post after explicit user confirmation.
 
-## Publisher: <br>
-[hhua007](https://clawhub.ai/user/hhua007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hhua007](https://clawhub.ai/user/hhua007)
 
-## Use Case: <br>
-External users and content creators use this skill to turn a topic or source material into RedNote-ready copy, card images, and a confirmed publishing action. Developers can also use its scripts to render Markdown cards and run the posting workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a reusable Xiaohongshu session cookie that can authorize account actions. <br>
-Mitigation: Use a dedicated account, keep the cookie out of shared repositories and remote services, and revoke or rotate the session after use. <br>
-Risk: The skill can publish public posts after confirmation. <br>
-Mitigation: Review every preview carefully before approving publication and avoid API mode unless the endpoint is local and trusted. <br>
+## Use Case:
 
+Content creators and social media operators use this skill to draft Xiaohongshu/RedNote posts, turn Markdown into 3:4 image cards, and publish only after the user approves the preview.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hhua007/rednote-publish-auto) <br>
-- [Xiaohongshu website](https://www.xiaohongshu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions, generated post text, rendered PNG image files, and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Publishing requires a Xiaohongshu session cookie and explicit user confirmation before posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill handles full Xiaohongshu account cookies that can authorize account actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Xiaohongshu account, keep cookies out of shared project directories, and rotate or revoke any cookie that may have been exposed.
+
+Risk: API publishing mode can send the account cookie to an API service.
+
+Mitigation: Use API mode only with a local or otherwise trusted API URL, and avoid remote or untrusted API endpoints.
+
+Risk: Rendering untrusted Markdown can expose the user to unsafe HTML or network-loading behavior.
+
+Mitigation: Render only trusted Markdown until HTML sanitization and network restrictions are added.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/hhua007/skills/rednote-publish-auto)
+- [Xiaohongshu](https://www.xiaohongshu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown drafts, rendered PNG image-card files, shell commands, and concise publishing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before publishing and depends on a valid Xiaohongshu session cookie.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

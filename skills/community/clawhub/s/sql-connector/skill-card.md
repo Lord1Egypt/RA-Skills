@@ -1,48 +1,60 @@
-## Description: <br>
-Generic SQL Server connectivity for OpenClaw agents, providing parameterized execute, query, and scalar APIs through pymssql with retry handling, connection pooling, and structured errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SQL Connector provides a sealed, retry-capable SQL Server connector for OpenClaw agents using pymssql, with parameterized execute, query, scalar, and ping APIs for local or cloud backends.
 
-## Publisher: <br>
-[oblio-falootin](https://clawhub.ai/user/oblio-falootin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oblio-falootin](https://clawhub.ai/user/oblio-falootin)
 
-## Use Case: <br>
-Developers and agents use this skill to connect to local or cloud SQL Server databases, run parameterized reads and writes, and build repository layers without shelling out to sqlcmd. It is most appropriate when the agent is intentionally allowed to access configured database backends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may receive broad SQL Server read/write power if database credentials are over-privileged or backend scope is weak. <br>
-Mitigation: Use a dedicated least-privilege account and prefer read-only credentials unless writes are explicitly required. <br>
-Risk: Credentials stored in .env files may be exposed through repositories or shared workspaces. <br>
-Mitigation: Keep .env files out of repositories and shared workspaces, and store only the credentials needed for the intended backend. <br>
-Risk: INSERT, UPDATE, DELETE, migration, or cross-backend copy operations can change or destroy database state. <br>
-Mitigation: Require human approval for write, migration, and cross-backend copy operations. <br>
-Risk: Unreviewed dependency updates can change SQL transport behavior. <br>
-Mitigation: Pin reviewed dependency versions before deployment. <br>
+## Use Case:
 
+Developers and agents use SQL Connector to add reliable SQL Server access without subprocess or sqlcmd dependencies. It supports parameterized reads and writes, scalar queries, connection health checks, retries, and local or cloud backend selection through environment configuration.
 
-## Reference(s): <br>
-- [SQL Connector ClawHub Page](https://clawhub.ai/oblio-falootin/sql-connector) <br>
-- [README](artifact/README.md) <br>
-- [Getting Started](artifact/GETTING_STARTED.md) <br>
-- [Skill Reference](artifact/SKILL_REFERENCE.md) <br>
-- [pymssql Documentation](https://pymssql.readthedocs.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell code examples plus configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SQL Server credentials and backend identifiers supplied through environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata; artifact documentation also references 2.1.0 and 2.1.0-alpha) <br>
+Risk: Agents using this skill can access and write to the configured SQL Server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for agents that need database access and configure a least-privileged database account instead of admin or production-wide credentials.
+
+Risk: Credential handling can expose sensitive .env values if users paste, print, or run broad diagnostics against SQL environment variables.
+
+Mitigation: Store .env securely, avoid printing SQL_* values, and do not use the documented grep SQL_ diagnostic with sensitive credentials.
+
+Risk: Automatic retry around write operations can affect sensitive or non-idempotent database workflows.
+
+Mitigation: Review the .env loading and write retry behavior before using the connector with sensitive or non-idempotent operations.
+
+## Reference(s):
+
+- [SQL Connector ClawHub Page](https://clawhub.ai/oblio-falootin/skills/sql-connector)
+- [Getting Started](artifact/GETTING_STARTED.md)
+- [Skill Reference](artifact/SKILL_REFERENCE.md)
+- [pymssql Documentation](https://pymssql.readthedocs.io/)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python, shell, and environment configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for SQL Server connectivity and expects credentials to be supplied through environment variables or compatible configuration.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Helps agents discover installable skills for a user's requested capability and guide search, selection, and optional installation with the Skills CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills when they ask for specialized capabilities or express interest in extending agent functionality.
 
-## Publisher: <br>
-[onlylingo9817-sys](https://clawhub.ai/user/onlylingo9817-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlylingo9817-sys](https://clawhub.ai/user/onlylingo9817-sys)
 
-## Use Case: <br>
-Developers and agent users use this skill to find relevant installable skills, compare presented options, and decide whether to install a skill for a recurring workflow or specialized task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can recommend installing third-party skills and includes examples that skip confirmation prompts. <br>
-Mitigation: Review the exact package source and publisher before installation, avoid skipping confirmations unless trusted, and prefer local or scoped installation for untrusted skills. <br>
-Risk: Installed skills can change agent behavior or introduce misleading guidance into future workflows. <br>
-Mitigation: Inspect the skill contents and available scan results before deployment, then keep only skills that are relevant to the intended task. <br>
+## Use Case:
 
+Developers and agent users use this skill to find relevant installable skills, present candidate skill options, and optionally install a selected skill with the Skills CLI.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/onlylingo9817-sys/find-skills-bak) <br>
-- [Skills directory](https://skills.sh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include skill names, install commands, search guidance, and links to relevant skill listings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may encourage global or unattended skill installation, which can permanently change the user's agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user confirmation before installing or updating skills, avoid skipped-confirmation installs by default, and review the selected skill source before adding it.
+
+Risk: Broad skill discovery can surface untrusted or unpinned packages.
+
+Mitigation: Prefer trusted publishers or pinned versions and verify the package source before executing installation commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/onlylingo9817-sys/skills/find-skills-bak)
+- [Skills directory](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses with Skills CLI commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that install or update skills; user confirmation is recommended before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

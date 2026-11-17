@@ -1,0 +1,14 @@
+interface:
+  display_name: "EpicTexting: Send SMS from Your AI Agent (Twilio)"
+  short_description: "Let your AI agent send text messages from your own Twilio number: one SMS or a personalised bulk text to up to 50 people, with delivery status."
+  icon_small: ./assets/icon.png
+  icon_large: ./assets/icon.png
+  brand_color: "#111111"
+  default_prompt: "Text +1 415 555 0134: running 10 minutes late, see you at 6:10."
+dependencies:
+  tools:
+    - type: mcp
+      value: epictexting
+      description: EpicTexting hosted MCP server (OAuth)
+      transport: streamable_http
+      url: https://www.epictexting.app/api/mcp/mcp

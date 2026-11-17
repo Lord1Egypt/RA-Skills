@@ -1,43 +1,57 @@
-## Description: <br>
-ToolDeck saves user-confirmed public tool and service URLs by scraping page details, categorizing them, and storing the resulting records in a personal JSON database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ToolDeck helps agents save and retrieve user-confirmed tool or service URLs by extracting details, categorizing entries, and storing them in a personal database.
 
-## Publisher: <br>
-[almohalhel1408](https://clawhub.ai/user/almohalhel1408) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[almohalhel1408](https://clawhub.ai/user/almohalhel1408)
 
-## Use Case: <br>
-External users and developers use ToolDeck to save, retrieve, and suggest tool or service records from explicitly provided public URLs in a personal database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests OAuth, purchase, and crypto capability tags that do not match the described bookmarker workflow. <br>
-Mitigation: Before installation, confirm the platform is not granting unnecessary OAuth, purchase, or crypto permissions. <br>
-Risk: Public URL scraping can capture sensitive content or identifiers if boundaries are not followed. <br>
-Mitigation: Scrape only explicitly provided public URLs, respect robots.txt, skip authenticated or private pages, and strip tracking parameters, OAuth tokens, API keys, and session IDs before saving. <br>
-Risk: Saved tool records persist in a local JSON database. <br>
-Mitigation: Only save entries after user confirmation and only for public tool pages the user is comfortable keeping locally. <br>
+## Use Case:
 
+External users and agent operators use ToolDeck to remember public tools or services they explicitly ask an agent to save, then retrieve saved entries by category, search, or full listing.
 
-## Reference(s): <br>
-- [ToolDeck ClawHub page](https://clawhub.ai/almohalhel1408/tooldeck) <br>
-- [database.json](references/database.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON, Text] <br>
-**Output Format:** [Markdown confirmation text plus structured JSON database entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before saving entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may fetch and store information from URLs, which can expose private, authenticated, paywalled, intranet, or token-bearing pages if used carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for public URLs that the user explicitly asks to save; skip authenticated, paywalled, CAPTCHA-protected, robots.txt-disallowed, private, intranet, personal-data, or token-bearing URLs.
+
+Risk: Saved URL records can retain sensitive query parameters or unnecessary tracking data.
+
+Mitigation: Strip OAuth tokens, API keys, session IDs, and tracking parameters such as utm_* or fbclid before saving.
+
+Risk: Automatically saved or suggested entries could surprise users or add unwanted data to the personal database.
+
+Mitigation: Confirm intent before scraping, save only after user confirmation, and provide tool suggestions only when explicitly requested.
+
+## Reference(s):
+
+- [ToolDeck database schema and seed data](references/database.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Plain text or Markdown responses with JSON-compatible database records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user intent and confirmation before saving entries.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

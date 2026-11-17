@@ -1,0 +1,258 @@
+[
+  {
+    "name": "eval",
+    "level": 4
+  },
+  {
+    "name": "Function",
+    "level": 4
+  },
+  {
+    "name": "new Function",
+    "level": 3
+  },
+  {
+    "name": "setTimeout",
+    "level": 3
+  },
+  {
+    "name": "setInterval",
+    "level": 3
+  },
+  {
+    "name": "document.write",
+    "level": 4
+  },
+  {
+    "name": "document.writeln",
+    "level": 4
+  },
+  {
+    "name": "innerHTML",
+    "level": 2
+  },
+  {
+    "name": "outerHTML",
+    "level": 2
+  },
+  {
+    "name": "insertAdjacentHTML",
+    "level": 2
+  },
+  {
+    "name": "with",
+    "level": 2
+  },
+  {
+    "name": "exec",
+    "level": 4
+  },
+  {
+    "name": "execSync",
+    "level": 4
+  },
+  {
+    "name": "execFile",
+    "level": 4
+  },
+  {
+    "name": "spawn",
+    "level": 3
+  },
+  {
+    "name": "spawnSync",
+    "level": 3
+  },
+  {
+    "name": "fork",
+    "level": 3
+  },
+  {
+    "name": "child_process",
+    "level": 3
+  },
+  {
+    "name": "child_process.exec",
+    "level": 4
+  },
+  {
+    "name": "child_process.spawn",
+    "level": 4
+  },
+  {
+    "name": "child_process.fork",
+    "level": 4
+  },
+  {
+    "name": "child_process.execFile",
+    "level": 4
+  },
+  {
+    "name": "require",
+    "level": 2
+  },
+  {
+    "name": "vm",
+    "level": 2
+  },
+  {
+    "name": "vm.runInThisContext",
+    "level": 3
+  },
+  {
+    "name": "vm.runInNewContext",
+    "level": 3
+  },
+  {
+    "name": "vm.runInContext",
+    "level": 3
+  },
+  {
+    "name": "new vm.Script",
+    "level": 3
+  },
+  {
+    "name": "fs.writeFile",
+    "level": 3
+  },
+  {
+    "name": "fs.writeFileSync",
+    "level": 3
+  },
+  {
+    "name": "fs.appendFile",
+    "level": 2
+  },
+  {
+    "name": "fs.appendFileSync",
+    "level": 2
+  },
+  {
+    "name": "fs.createWriteStream",
+    "level": 2
+  },
+  {
+    "name": "fs.write",
+    "level": 2
+  },
+  {
+    "name": "fs.unlink",
+    "level": 2
+  },
+  {
+    "name": "fs.rm",
+    "level": 2
+  },
+  {
+    "name": "fs.chmod",
+    "level": 2
+  },
+  {
+    "name": "fs.rename",
+    "level": 2
+  },
+  {
+    "name": "fs.readFile",
+    "level": 1
+  },
+  {
+    "name": "fs.readFileSync",
+    "level": 1
+  },
+  {
+    "name": "process.exit",
+    "level": 1
+  },
+  {
+    "name": "fetch",
+    "level": 1
+  },
+  {
+    "name": "XMLHttpRequest",
+    "level": 1
+  },
+  {
+    "name": "http.request",
+    "level": 2
+  },
+  {
+    "name": "https.request",
+    "level": 2
+  },
+  {
+    "name": "net.connect",
+    "level": 2
+  },
+  {
+    "name": "WebSocket",
+    "level": 1
+  },
+  {
+    "name": "sendBeacon",
+    "level": 1
+  },
+  {
+    "name": "postMessage",
+    "level": 1
+  },
+  {
+    "name": "navigator.sendBeacon",
+    "level": 1
+  },
+  {
+    "name": "location.href",
+    "level": 2
+  },
+  {
+    "name": "window.open",
+    "level": 2
+  },
+  {
+    "name": "Location.href",
+    "level": 2
+  },
+  {
+    "name": "document.cookie",
+    "level": 2
+  },
+  {
+    "name": "atob",
+    "level": 1
+  },
+  {
+    "name": "unescape",
+    "level": 1
+  },
+  {
+    "name": "decodeURIComponent",
+    "level": 1
+  },
+  {
+    "name": "getUserMedia",
+    "level": 3
+  },
+  {
+    "name": "getDisplayMedia",
+    "level": 3
+  },
+  {
+    "name": "MediaRecorder",
+    "level": 2
+  },
+  {
+    "name": "ImageCapture",
+    "level": 2
+  },
+  {
+    "name": "toDataURL",
+    "level": 2
+  },
+  {
+    "name": "clipboardData",
+    "level": 2
+  },
+  {
+    "name": "navigator.clipboard",
+    "level": 2
+  }
+]

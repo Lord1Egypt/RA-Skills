@@ -1,44 +1,64 @@
-## Description: <br>
-Yingzhong Smart Teacher Main is a bilingual K12 teaching assistant that helps teachers plan lessons, compose assignments, grade homework with OCR, analyze class performance, draft parent communications, and coordinate teaching resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A bilingual K12 teacher assistant for lesson planning, question generation, homework correction, academic analysis, parent communication, class management, MAIC classroom workflows, and ChinaTextbook-based teaching resources.
 
-## Publisher: <br>
-[simonstang](https://clawhub.ai/user/simonstang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonstang](https://clawhub.ai/user/simonstang)
 
-## Use Case: <br>
-K12 teachers can use this skill to prepare lessons, generate question sets, review homework, analyze student performance, manage class workflows, and draft communications for parents. It is most appropriate where a teacher remains responsible for reviewing outputs and controlling any student or parent data used with the agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended for K12 workflows that may involve student profiles, grades, parent communications, syncing, and backups. <br>
-Mitigation: Limit entered student and parent data, define consent and retention rules before use, and apply access controls for any saved or synchronized records. <br>
-Risk: Parent-message drafts, external downloads, and teaching-resource recommendations may be inaccurate, inappropriate, or unsuitable for a specific class context. <br>
-Mitigation: Require teacher review before sending parent communications, assigning generated materials, or relying on downloaded resources. <br>
-Risk: The security guidance calls out AI-detection-evasion behavior as a concern. <br>
-Mitigation: Avoid using the AIGC-detection-evasion features and keep generated student-facing content aligned with school academic-integrity policies. <br>
+## Use Case:
 
+Teachers and school staff use this agent to prepare lessons, generate assessments, correct homework, analyze class performance, draft parent communications, and organize classroom management workflows. The skill is intended for normal school operations with authorization and review for sensitive student, parent, academic, and emotional data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simonstang/yingzhong-smart-teacher-main) <br>
-- [Publisher profile](https://clawhub.ai/user/simonstang) <br>
-- [Tsinghua MAIC virtual classroom](https://open.maic.chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and structured teaching guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include lesson plans, grading feedback, student-analysis reports, parent-message drafts, question sets, and resource-search guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Sensitive student, parent, academic, and emotional data may be collected, persisted, synchronized, or shared too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with school authorization, explicit consent, role-based access, minimized collection, defined retention and deletion rules, and controlled backup and sync destinations.
+
+Risk: Parent communications and crisis-related messages may be sent without sufficient human review.
+
+Mitigation: Require teacher or school staff review and approval before any parent communication, crisis intervention wording, or external message is sent.
+
+Risk: Emotional profiling can create privacy, fairness, and overreach concerns in a school setting.
+
+Mitigation: Disable or minimize emotional profiling unless the school has a clear policy, consent basis, review process, and escalation path to qualified staff.
+
+Risk: Downloaded teaching materials or third-party documents may be unsafe, inaccurate, or unauthorized.
+
+Mitigation: Review document sources, scan files before use, and verify that downloaded materials are appropriate and permitted for the classroom.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simonstang/skills/yingzhong-smart-teacher-main)
+- [Tsinghua MAIC virtual classroom](https://open.maic.chat)
+- [artifact/README.md](artifact/README.md)
+- [artifact/SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown, structured teaching templates, reports, and document-oriented instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose lesson plans, worksheets, homework feedback, academic reports, parent messages, class records, and setup details for school workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter version 5.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

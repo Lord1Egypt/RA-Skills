@@ -1,0 +1,51 @@
+{
+  "name": "open-ga4",
+  "version": "0.2.1",
+  "description": "Open GA4: read-only, privacy-respecting Google Analytics 4 answers for an OpenClaw agent.",
+  "keywords": [
+    "openclaw",
+    "openclaw-skill",
+    "google-analytics",
+    "ga4",
+    "analytics",
+    "privacy"
+  ],
+  "license": "MIT-0",
+  "author": "Anatoli Iliev <anatoli@helphabit.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anatoli-iliev/open-ga4.git"
+  },
+  "homepage": "https://github.com/anatoli-iliev/open-ga4#readme",
+  "bugs": {
+    "url": "https://github.com/anatoli-iliev/open-ga4/issues"
+  },
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.3"
+  },
+  "files": [
+    "lib",
+    "SKILL.md",
+    "SETUP.md",
+    "README.md",
+    "PRIVACY.md",
+    "SECURITY.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build-lib.mjs",
+    "check": "npm run typecheck && npm test && npm run build",
+    "check:lib": "node scripts/build-lib.mjs --check",
+    "pretest": "npm run build",
+    "test": "vitest run --config ./vitest.config.ts",
+    "typecheck": "tsc -p tsconfig.check.json"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
+  }
+}

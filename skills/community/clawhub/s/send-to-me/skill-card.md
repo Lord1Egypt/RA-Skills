@@ -1,44 +1,60 @@
-## Description: <br>
-A WeCom message sender for sending messages, reports, notifications, and alerts with configurable sender and recipient fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends WeCom text messages for reports, notifications, and alerts, with support for sender labels and user, department, or tag recipients.
 
-## Publisher: <br>
-[xiaoqiangclub](https://clawhub.ai/user/xiaoqiangclub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoqiangclub](https://clawhub.ai/user/xiaoqiangclub)
 
-## Use Case: <br>
-Developers and operators use this skill to send WeCom text messages for task reports, job notifications, system alerts, daily summaries, and custom updates. It supports command-line use and Python function calls with recipient scoping by user, department, or tag. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default @all recipient can accidentally disclose message content or spam an entire WeCom organization. <br>
-Mitigation: Change the default recipient to scoped users, departments, or tags, and require explicit confirmation of message content and recipients before sending. <br>
-Risk: WeCom credentials and broad app permissions can expand impact if misconfigured or exposed. <br>
-Mitigation: Use a limited-permission WeCom app and keep CorpID, CorpSecret, and AgentID in protected environment or .env configuration that is not committed. <br>
-Risk: Sensitive reports may be sent to unintended recipients if recipient scoping is not enforced. <br>
-Mitigation: Do not use this skill for sensitive reports unless recipient scoping is enforced and reviewed before execution. <br>
+## Use Case:
 
+Developers and operators use this skill to send WeCom notifications from scripts, scheduled jobs, monitoring workflows, and reporting tasks. It can send simple text messages or formatted task reports, job updates, alerts, summaries, and custom messages.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiaoqiangclub/send-to-me) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaoqiangclub) <br>
-- [WeCom configuration tutorial](https://xiaoqiangclub.blog.csdn.net/article/details/144614019) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python snippets, and text message templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends text messages through WeCom when configured with a CorpID, CorpSecret, AgentID, and scoped recipients.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: WeCom application secrets may be exposed if passed through command-line arguments or logged automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment variables or a protected secret store, avoid the -k/--corp-secret option, and rotate the WeCom secret if it has been used in shell commands or logs.
+
+Risk: Messages may be sent broadly when the default recipient is @all.
+
+Mitigation: Set explicit touser, toparty, or totag values and use @all only when broad delivery is intended.
+
+Risk: The python-dotenv dependency affects how local configuration and secrets are loaded.
+
+Mitigation: Pin python-dotenv to a reviewed version before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoqiangclub/skills/send-to-me)
+- [WeCom configuration tutorial](https://xiaoqiangclub.blog.csdn.net/article/details/144614019)
+- [WeCom gettoken API endpoint](https://qyapi.weixin.qq.com/cgi-bin/gettoken)
+- [WeCom message send API endpoint](https://qyapi.weixin.qq.com/cgi-bin/message/send)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces WeCom text-message content and invocation guidance; message delivery depends on valid WeCom credentials and recipient configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

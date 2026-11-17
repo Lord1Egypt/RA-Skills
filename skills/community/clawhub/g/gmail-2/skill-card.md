@@ -1,41 +1,54 @@
-## Description: <br>
-Gmail email integration for reading, searching, sending, labeling, and managing messages through MorphixAI delegated Gmail API access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+[暂不可用] Gmail 邮件集成。收发邮件、搜索邮件、管理标签。通过 MorphixAI 代理安全访问 Gmail API。
 
-## Publisher: <br>
-[paul-leo](https://clawhub.ai/user/paul-leo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[paul-leo](https://clawhub.ai/user/paul-leo)
 
-## Use Case: <br>
-Users and agents use this skill to work with a linked Gmail account: inspect profile information, list and search messages, read message details, send plain-text email, list labels, mark messages as read, and move messages to trash. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates access to a user's Gmail account through MorphixAI, which can expose email contents and account actions if connected to the wrong account or used without review. <br>
-Mitigation: Install only if MorphixAI and the openclaw-morphixai plugin are trusted, link only the intended Gmail account, and review granted scopes before use. <br>
-Risk: The skill can send email or move messages to trash through Gmail actions. <br>
-Mitigation: Require clear user confirmation before sending messages or trashing email, and review action parameters before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Gmail skill page](https://clawhub.ai/paul-leo/gmail-2) <br>
-- [MorphixAI API keys](https://morphix.app/api-keys) <br>
-- [MorphixAI connections](https://morphix.app/connections) <br>
+## Use Case:
 
+OpenClaw users use this skill to read, search, send, mark, and trash Gmail messages through a linked MorphixAI Gmail connection.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown with shell commands and structured mx_gmail tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MORPHIXAI_API_KEY and a linked Gmail account; generated examples include Gmail actions such as list_messages, get_message, search_messages, send_mail, list_labels, mark_as_read, and trash_message.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can access sensitive Gmail content through an external MorphixAI plugin.
+
+Mitigation: Install only if the MorphixAI plugin is trusted, prefer a pinned or otherwise verified plugin version, and review Gmail scopes during account linking.
+
+Risk: The skill describes state-changing Gmail actions, including sending mail, marking messages read, and moving messages to trash.
+
+Mitigation: Require preview and confirmation before sending or trashing messages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paul-leo/skills/gmail-2)
+- [Morphix API keys](https://morphix.app/api-keys)
+- [Morphix connections](https://morphix.app/connections)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline tool examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MORPHIXAI_API_KEY and a linked Gmail account.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

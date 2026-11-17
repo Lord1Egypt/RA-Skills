@@ -1,40 +1,58 @@
-## Description: <br>
-Generates compliant investment advisory scripts and talk points for China wealth-management workflows, including stock and fund recommendations, market commentary, client objections, and communication templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates draft investment advisory scripts and client communication templates for China wealth management, including stock and fund discussions, market commentary, objection handling, and compliance review.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Securities brokers, wealth-management advisors, and relationship managers use this skill to draft client-facing advisory scripts, product recommendation language, market commentary, objection handling, and compliance-aware communication templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compliance-sensitive financial content could be used as client-facing advice without sufficient review. <br>
-Mitigation: Route recommendations, sales scripts, and market commentary through the user's firm compliance process before client use. <br>
-Risk: Generated investment language may not match a client's jurisdiction, risk profile, language preference, or product suitability. <br>
-Mitigation: Confirm jurisdiction, language preference, risk profile, and product suitability before using or adapting outputs. <br>
+## Use Case:
 
+China-based securities brokers, wealth advisors, and relationship managers use this skill to draft client-facing investment communication and compliance checklists. Treat outputs as drafts for review by appropriately qualified staff before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/security-rma-scripts) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown and template text with occasional code-style structured examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory communication templates and should be reviewed for jurisdiction, suitability, risk disclosure, and firm compliance before client use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and frontmatter) <br>
+Risk: The security review is incomplete, so its benign verdict does not rule out issues in the partially inspected component.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have an operator review the skill package and any included components before deployment.
+
+Risk: Draft investment communications may contain inaccurate, outdated, or unsuitable claims if used without review.
+
+Mitigation: Check claims against current official sources and product documents, confirm suitability and risk disclosures, and obtain qualified compliance review before client use.
+
+Risk: Client information shared while drafting could expose sensitive personal or financial data.
+
+Mitigation: Use only the minimum necessary information, replace identities with placeholders, and omit identifiers, account details, and full holdings.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/gechengling/skills/security-rma-scripts)
+- [Publisher profile](https://clawhub.ai/user/gechengling)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown scripts, templates, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft content uses placeholders; verify current rules, product information, suitability, and required risk disclosures before client use.]
+
+## Skill Version(s):
+
+3.0.4 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

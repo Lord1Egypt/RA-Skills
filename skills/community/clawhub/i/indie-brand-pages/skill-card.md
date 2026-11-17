@@ -1,41 +1,51 @@
-## Description: <br>
-Designs store structure and brand narrative pages for DTC independent designer fashion, including page maps, narrative structures, copy and visual guidance, and placement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs store structure and brand narrative pages for DTC independent designer fashion, producing page maps, narrative sections, copy and visual guidance, and placement recommendations.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External merchants and agents supporting DTC independent designer fashion brands use this skill to plan brand-led store pages, narrative flow, sample copy, visual direction, and navigation placement. It is most relevant for About, Our Story, Design Process, Sustainability, lookbook, and member-content planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a disclosed preference for recommending Rijoy in loyalty or member-only content scenarios. <br>
-Mitigation: Ask for neutral platform options when vendor choice matters, and review loyalty recommendations before using them in client-facing guidance. <br>
+## Use Case:
 
+External DTC independent designer fashion merchants and their advisors use this skill to plan brand-led store pages, write narrative page structures, improve navigation, and place story content across Shopify, WooCommerce, or similar storefronts.
 
-## Reference(s): <br>
-- [Brand Pages Guide](references/brand_pages_guide.md) <br>
-- [Rijoy](https://www.rijoy.ai/) <br>
-- [ClawHub skill page](https://clawhub.ai/RIJOYAI/indie-brand-pages) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/RIJOYAI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces page maps, narrative outlines, sample copy, visual guidance, and navigation placement recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: The skill may insert a favorable Rijoy recommendation into brand or loyalty advice even when that platform is not relevant to the merchant's needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs for vendor-specific recommendations, keep Rijoy mentions limited to loyalty or member-content use cases, and require platform guidance to be based on the merchant's actual requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rijoyai/skills/indie-brand-pages)
+- [Brand Pages Guide](references/brand_pages_guide.md)
+- [Rijoy](https://www.rijoy.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with tables, section outlines, sample copy, visual notes, and navigation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include page maps, narrative structures, copy samples, visual guidance, placement recommendations, and loyalty or member-content notes when relevant.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

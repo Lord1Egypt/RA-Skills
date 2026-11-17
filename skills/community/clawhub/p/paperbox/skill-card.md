@@ -1,43 +1,52 @@
-## Description: <br>
-Uploads self-contained HTML games, apps, or generative art to PaperBox and returns a shareable link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload AI-generated HTML games, apps, or generative art to PaperBox and return a shareable link.
 
-## Publisher: <br>
-[felixdaga](https://clawhub.ai/user/felixdaga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[felixdaga](https://clawhub.ai/user/felixdaga)
 
-## Use Case: <br>
-Developers and creators use this skill to publish AI-generated HTML games, apps, and generative art to PaperBox, then share the returned live URL with users. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload generated HTML to PaperBox without a clear final confirmation. <br>
-Mitigation: Require explicit user confirmation before upload and review the HTML for secrets or private content. <br>
-Risk: Published projects receive shareable links, so visibility, retention, and deletion expectations may affect sensitive work. <br>
-Mitigation: Check PaperBox visibility, retention, and deletion behavior before publishing private or commercial content. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to publish completed self-contained HTML games, apps, or generative art to PaperBox and send the resulting shareable URL back to the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/felixdaga/paperbox) <br>
-- [PaperBox](https://paperbox-beta.vercel.app) <br>
-- [PaperBox Games API](https://paperbox-beta.vercel.app/api/games) <br>
-- [PaperBox login](https://paperbox-beta.vercel.app/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Text response containing the shareable URL, with JSON parsed from the PaperBox API response.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a PaperBox API key and outbound network access; uploads complete HTML content to PaperBox.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: A completed HTML project could be uploaded to a public or shareable PaperBox page without sufficiently explicit user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants the specific project published before upload, and review the HTML for secrets, tokens, private customer data, proprietary code, or other sensitive content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/felixdaga/skills/paperbox)
+- [PaperBox homepage](https://paperbox-beta.vercel.app)
+- [PaperBox upload API](https://paperbox-beta.vercel.app/api/games)
+- [PaperBox login](https://paperbox-beta.vercel.app/login)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown text with an API request pattern and a returned shareable URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a PaperBox API key and outbound network access to upload the completed HTML project.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

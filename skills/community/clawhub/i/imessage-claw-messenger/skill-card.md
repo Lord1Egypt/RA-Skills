@@ -1,48 +1,65 @@
-## Description: <br>
-Connects OpenClaw agents to iMessage, RCS, and SMS through Claw Messenger's managed relay server using API key authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect OpenClaw agents to iMessage, RCS, and SMS without a Mac or phone using Claw Messenger's relay server and API key authentication.
 
-## Publisher: <br>
-[demegire](https://clawhub.ai/user/demegire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[demegire](https://clawhub.ai/user/demegire)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure OpenClaw agents for sending and receiving iMessage, RCS, and SMS messages without local Apple hardware or a phone. It is intended for messaging workflows that can tolerate a managed relay service and require careful handling of API keys, recipient policies, and billing exposure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a sensitive cm_live API key that authorizes messaging for the account. <br>
-Mitigation: Keep .openclaw.json out of version control, restrict access to the key, and rotate it from the Claw Messenger dashboard if exposed. <br>
-Risk: Messages and metadata pass through a third-party managed relay for delivery and billing. <br>
-Mitigation: Review Claw Messenger privacy and billing terms before use, and avoid sending data that is not appropriate for that relay path. <br>
-Risk: An agent with broad messaging access could send or respond to unintended recipients. <br>
-Mitigation: Use pairing or allowlist DM policies for sensitive accounts and test with limited recipients before production use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to connect agents to iMessage, RCS, and SMS through Claw Messenger, including setup, configuration, status checks, service switching, and inbound-message policy guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/demegire/imessage-claw-messenger) <br>
-- [Claw Messenger Homepage](https://clawmessenger.com) <br>
-- [Claw Messenger Docs](https://clawmessenger.com/docs) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [npm package](https://www.npmjs.com/package/@emotion-machine/claw-messenger) <br>
-- [Privacy Policy](https://clawmessenger.com/privacy) <br>
-- [Pricing](https://clawmessenger.com/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup steps, configuration fields, operational guidance, and agent-facing tool or command descriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Unpinned npm install instructions can expose users to supply-chain changes after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation and pin a specific reviewed version where possible.
+
+Risk: The cm_live API key authorizes messaging for the user's account.
+
+Mitigation: Keep the key out of version control, store it only in the local OpenClaw configuration, and rotate or revoke it from the dashboard when needed.
+
+Risk: Open inbound direct-message handling may allow unwanted senders to reach the agent.
+
+Mitigation: Use the pairing or allowlist DM policy unless open inbound messages are explicitly required.
+
+Risk: Message content and metadata pass through a managed relay service.
+
+Mitigation: Review the privacy policy and pricing terms before routing sensitive or high-volume messaging through the service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/demegire/skills/imessage-claw-messenger)
+- [Claw Messenger documentation](https://clawmessenger.com/docs)
+- [npm package](https://www.npmjs.com/package/@emotion-machine/claw-messenger)
+- [Claw Messenger privacy policy](https://clawmessenger.com/privacy)
+- [Claw Messenger pricing](https://clawmessenger.com/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API key handling, DM policy, service switching, and Claw Messenger relay configuration details.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Publish, submit, and verify local skills across public skill marketplaces, directories, and registries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish, submit, and verify local skills across public skill marketplaces, directories, and registries.
 
-## Publisher: <br>
-[zjsxply](https://clawhub.ai/user/zjsxply) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zjsxply](https://clawhub.ai/user/zjsxply)
 
-## Use Case: <br>
-Developers and release operators use this skill to inspect a local skill folder, prepare marketplace-ready metadata and review bundles, publish to supported directories, and verify public listing outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live publishing can submit skill content and contact details to public marketplaces. <br>
-Mitigation: Use dry-run and bundle review first, confirm the intended marketplace and repository scope, and run live submission only with explicit execution flags. <br>
-Risk: Skill files may contain secrets, proprietary content, or personal contact details that should not be published. <br>
-Mitigation: Review SKILL.md and generated marketplace payloads before submission; remove sensitive content and prefer a public contact address where a marketplace requires email. <br>
-Risk: Custom CLI binary flags or marketplace adapters may execute tools outside the normal reviewed path. <br>
-Mitigation: Pass custom CLI binary flags only when the executable is trusted and the generated dry-run output matches the intended operation. <br>
+## Use Case:
 
+Developers and release operators use this skill to prepare one local skill folder for public marketplace distribution, including readiness planning, review bundle generation, live submission where supported, and post-submit verification.
 
-## Reference(s): <br>
-- [Market Matrix](references/market-matrix.md) <br>
-- [Publish Playbook](references/publish-playbook.md) <br>
-- [Recon Playbook](references/recon-playbook.md) <br>
-- [Verification Playbook](references/verification-playbook.md) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/zjsxply/skill-market-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, generated files, JSON bundles, and marketplace payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform live marketplace submissions only when explicitly run with execution flags and required credentials or marketplace inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Live publish workflows submit skill data to public marketplaces and may expose metadata or create public listings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run inspect, plan, bundle, and dry-run publish first; use --execute only after reviewing the target marketplace, payload, repository scope, and verification path.
+
+Risk: Some workflows use unpinned or PATH-resolved command-line tools.
+
+Mitigation: Run from a minimal sandboxed environment, pin and trust the CLI path where possible, and avoid the skills.sh path unless the skills CLI is explicitly trusted.
+
+Risk: Marketplace submissions can ingest more than the intended single skill when repository or folder scoping is ambiguous.
+
+Mitigation: Use a dedicated public repository or mirror for the target skill and verify scope from submit responses, status APIs, or public listing pages.
+
+## Reference(s):
+
+- [Market Matrix](references/market-matrix.md)
+- [Publish Playbook](references/publish-playbook.md)
+- [Verification Playbook](references/verification-playbook.md)
+- [Recon Playbook](references/recon-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON payloads, shell commands, and generated bundle files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prepare marketplace-specific submission bundles and dry-run payloads before any live publish action.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

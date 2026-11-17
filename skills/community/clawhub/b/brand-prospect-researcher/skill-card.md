@@ -1,43 +1,58 @@
-## Description: <br>
-Find brands actively spending on influencer and creator campaigns, then produce a scored, prioritized prospect report with source-backed signals and available public contacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds brands actively spending on influencer and creator campaigns, then produces a scored and prioritized prospect list with available contacts.
 
-## Publisher: <br>
-[alexa853](https://clawhub.ai/user/alexa853) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexa853](https://clawhub.ai/user/alexa853)
 
-## Use Case: <br>
-Talent managers, creators, and brand partnership teams use this skill to identify brands with recent influencer-marketing spend signals, prioritize outreach, and collect public contact leads for review before pitching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prospect and contact details may be incomplete, outdated, or unsuitable for outreach without review. <br>
-Mitigation: Review the generated report before outreach and verify public contact details against the cited sources. <br>
-Risk: Research may involve LinkedIn or Instagram signals that are subject to platform terms and privacy obligations. <br>
-Mitigation: Use only public information, respect applicable platform terms, and avoid collecting or using non-public personal data. <br>
-Risk: Instagram verification is optional and may be skipped when the gram CLI is unavailable. <br>
-Mitigation: Treat skipped Instagram checks as a coverage limitation and rely on the report's methodology notes when interpreting scores. <br>
+## Use Case:
 
+External creators, talent managers, and brand partnership teams use this skill to identify brands with recent influencer-marketing spend signals and prioritize outreach prospects.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/alexa853/brand-prospect-researcher) <br>
-- [Publisher profile](https://clawhub.ai/user/alexa853) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with scored prospect tiers, source links, contact notes, methodology, and optional shell commands for Instagram checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report depends on available public web results and may note when Instagram verification or contact discovery was skipped.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Prospect reports may include publicly available professional contact details that are inappropriate for some outreach contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review contacts before use, avoid personal emails, and follow applicable privacy, anti-spam, and platform rules.
+
+Risk: Web research signals such as campaign mentions, job postings, and contacts can be stale or incomplete.
+
+Mitigation: Review source links and prioritize recent, corroborated signals before acting on outreach recommendations.
+
+Risk: Instagram campaign checks depend on the optional gram CLI and may be skipped when it is unavailable.
+
+Mitigation: Treat reports without Instagram verification as lower-confidence for social activity and rely on the included methodology notes.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/alexa853/skills/brand-prospect-researcher)
+- [Publisher profile](https://clawhub.ai/user/alexa853)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prospect report with scored brand tiers, source links, contacts when available, and methodology notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes configurable niche, prospect count, signal categories, geography focus, and timeframe.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

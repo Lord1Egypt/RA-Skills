@@ -32,7 +32,7 @@ This script performs the following:
 
 | Setting | Value |
 |---------|-------|
-| API Key | `sk-134d7a53ebab42e4ac5af93ea28e5f13` |
+| API Key | `REDACTED-SECRET` |
 | API Endpoint | `https://api.deepseek.com/chat/completions` |
 | Model | `deepseek-chat` |
 | Temperature | 0 (deterministic output) |

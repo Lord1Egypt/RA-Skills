@@ -34,7 +34,7 @@
 
 ```bash
 # 安装依赖
-pip install garminconnect
+pip install "garminconnect>=0.3.11"
 
 # 设置账号（推荐用环境变量，避免暴露在 shell 历史中）
 export GARMIN_EMAIL="你的邮箱@example.com"
@@ -51,7 +51,7 @@ python3 garmin_health.py --show
 
 ### 手动安装
 1. 复制 `garmin_health.py` 和 `SKILL.md` 到 OpenClaw skills 目录
-2. 安装 Python 依赖：`pip install garminconnect`
+2. 安装 Python 依赖：`pip install "garminconnect>=0.3.11"`
 3. 配置认证（见下方）
 
 ## 认证配置
@@ -118,6 +118,8 @@ python3 garmin_health.py --cn
 
 ### 首次登录与双重验证（MFA）
 首次运行时 Garmin 会触发 MFA 验证，你的账号注册邮箱会收到验证码，按提示输入即可。授权成功后 token 会缓存在 `~/.garminconnect/`，后续无需再次验证。
+
+`0.3.x` 使用原生认证，不能复用 `garminconnect 0.2.x` 的旧 Garth Token。从旧版升级时，预计需要重新进行一次交互式登录和 MFA 验证。
 
 ## 使用方法
 

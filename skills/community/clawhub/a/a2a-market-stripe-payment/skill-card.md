@@ -1,40 +1,54 @@
-## Description: <br>
-Integrates Stripe payment intents, capture flow, and webhook reconciliation for A2A order settlement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate Stripe payment intents, capture flow, and webhook reconciliation for A2A orders.
 
-## Publisher: <br>
-[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max)
 
-## Use Case: <br>
-Developers use this skill to design and implement Stripe payment authorization, capture, cancellation, refund paths, and webhook status propagation for A2A order lifecycles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment, fulfillment, cancellation, recovery, and reputation transitions can affect real users and business state if a runtime implementation is adopted without review. <br>
-Mitigation: Review the runtime implementation and tests before production use, with particular attention to payment state transitions and failure handling. <br>
-Risk: Stripe webhook and payment endpoints can produce duplicate or untrusted events if signatures, idempotency, or provider status mappings are incomplete. <br>
-Mitigation: Verify webhook signatures before parsing payloads, enforce idempotency keys for create and capture endpoints, and keep provider status mappings explicit and versioned. <br>
+## Use Case:
 
+Developers and engineers use this skill to add Stripe-backed authorization, capture, cancellation, refund-path planning, and webhook reconciliation to A2A order settlement flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luoqianchenguni-max/a2a-market-stripe-payment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with suggested file paths, API contracts, event mappings, and implementation guardrails] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill artifact; no hidden execution or data access was identified by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: Stripe payment actions can have financial impact if credentials, capture, refund, or cancellation behavior are used against live accounts without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm whether Stripe credentials are test or live, require explicit review before capture, refund, or cancel actions, and validate behavior before production use.
+
+Risk: Webhook handling can misstate payment or order status if signatures and duplicate event handling are not enforced.
+
+Mitigation: Keep webhook signature verification, idempotency keys, and explicit provider status mappings in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luoqianchenguni-max/skills/a2a-market-stripe-payment)
+- [Publisher profile](https://clawhub.ai/user/luoqianchenguni-max)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown guidance with code and project layout recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces payment integration contracts, webhook mapping guidance, guardrails, and suggested runtime code paths.]
+
+## Skill Version(s):
+
+0.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

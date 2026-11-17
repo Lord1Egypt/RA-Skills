@@ -1,38 +1,53 @@
-## Description: <br>
-Write Oracle SQL and PL/SQL with proper syntax, hints, and performance patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Oracle SQL and PL/SQL with proper syntax, hints, and performance patterns.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and database engineers use this skill for Oracle SQL and PL/SQL syntax guidance, query patterns, transaction handling, and performance-oriented examples. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL or PL/SQL could affect schema, transactions, locks, query plans, or dynamic SQL behavior when run against a real Oracle database. <br>
-Mitigation: Review generated SQL before execution, especially DDL, transaction, lock, hint, and dynamic SQL examples. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/oracle-db) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+Developers and database engineers use this skill for Oracle SQL and PL/SQL syntax help, performance patterns, transaction behavior, bind variables, hints, and common Oracle-specific traps.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands] <br>
-**Output Format:** [Markdown with inline SQL, PL/SQL, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference-only output; review generated SQL before execution against a real database.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may help draft SQL or PL/SQL that changes database state or production data.
+
+Mitigation: Review generated statements before execution, especially DDL, COMMIT, and statements run against production databases.
+
+Risk: Dynamic SQL can introduce injection vulnerabilities when untrusted input is concatenated into statements.
+
+Mitigation: Prefer bind variables and avoid concatenating untrusted input into dynamic SQL.
+
+## Reference(s):
+
+- [Oracle DB on ClawHub](https://clawhub.ai/ivangdavila/skills/oracle-db)
+- [Publisher profile: ivangdavila](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline SQL, PL/SQL, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May draft database-changing SQL; review statements before running them against production data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

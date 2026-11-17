@@ -1,47 +1,62 @@
-## Description: <br>
-Guides agents through structured research, debugging, verification, refinement, uncertainty analysis, and controlled iteration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through structured research, verification, debugging, Hidden NO detection, and budgeted refinement to produce stable, context-aware answers.
 
-## Publisher: <br>
-[satoshinclaude](https://clawhub.ai/user/satoshinclaude) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[satoshinclaude](https://clawhub.ai/user/satoshinclaude)
 
-## Use Case: <br>
-External users and developers use this skill to make an agent slow down for high-risk or complex reasoning tasks, compare evidence, debug assumptions, manage iteration budgets, and report remaining uncertainty before finalizing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary says the main loaded instructions do not clearly match the advertised Infinite Research purpose. <br>
-Mitigation: Review the loaded SKILL.md before installation and align it with the Infinite Research workflow before relying on the release. <br>
-Risk: The server security guidance notes broad reasoning workflow behavior that may influence many tasks. <br>
-Mitigation: Use the skill only for tasks where deeper verification is wanted, and narrow activation triggers before broad deployment. <br>
-Risk: The server security guidance notes memory-related behavior that may try to retain preferences or lessons. <br>
-Mitigation: Add explicit limits for memory behavior and review what information may be retained before enabling it. <br>
+## Use Case:
 
+External users and developers use this skill when a task needs deeper research, contradiction checking, uncertainty handling, and controlled refinement before a final answer is delivered.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/satoshinclaude/infiniteresearchloop) <br>
-- [Infinite Research + Hidden NO](artifact/Infinite Research + Hidden NO.md) <br>
-- [Infinite Research + Hidden NO Skill](artifact/Infinite Research + Hidden NO Skill.md) <br>
-- [Budget Management](artifact/budget_management.md) <br>
-- [Hidden NO Examples](artifact/hidden_no_examples.md) <br>
-- [Master Loop Checklist](artifact/master_loop_checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown response with result, key findings, remaining uncertainty, confidence, Hidden NO status, and TLDR sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concise confidence and uncertainty labels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact manifest) <br>
+Risk: The package advertises a research skill, but the primary runtime SKILL.md describes a broadly triggered skill-creation workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Correct the package so the manifest and SKILL.md describe the same purpose before deployment.
+
+Risk: The runtime trigger can redirect broad modification requests into skill creation or skill updates.
+
+Mitigation: Limit activation to explicit skill-creation or skill-update requests.
+
+Risk: The documented memory layer can preserve reusable lessons and validated insights, which may be inappropriate for sensitive or instruction-like content.
+
+Mitigation: Require clear consent for memory storage and exclude sensitive or instruction-like content.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/satoshinclaude/skills/infiniteresearchloop)
+- [Infinite Research + Hidden NO](artifact/Infinite Research + Hidden NO.md)
+- [Infinite Research + Hidden NO Skill](artifact/Infinite Research + Hidden NO Skill.md)
+- [Budget Management](artifact/budget_management.md)
+- [Hidden NO Examples](artifact/hidden_no_examples.md)
+- [Master Loop Checklist](artifact/master_loop_checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style response with Result, Key Findings, Remaining Uncertainty, Confidence, Hidden NO Status, and TLDR sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bounded internal research, debug, refinement, and speculative-assumption loops.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

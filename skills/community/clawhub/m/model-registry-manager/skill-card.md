@@ -1,46 +1,60 @@
-## Description: <br>
-Detect provider models, deduplicate them, remove unusable ones, register missing models into OpenClaw, and safely keep provider-native model ids/names during model catalog sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect provider models, deduplicate them, remove unusable ones, register missing models into OpenClaw, and safely keep provider-native model ids/names during model catalog sync.
 
-## Publisher: <br>
-[zqh2333](https://clawhub.ai/user/zqh2333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zqh2333](https://clawhub.ai/user/zqh2333)
 
-## Use Case: <br>
-Developers and operators use this skill to keep OpenClaw model catalogs aligned with provider model lists, remove unusable models, and validate registry changes before scheduling automated sync jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rewrite OpenClaw model configuration and remove unusable models from the registered catalog. <br>
-Mitigation: Run a dry-run sync first, back up ~/.openclaw/openclaw.json, and review proposed additions and removals before applying changes. <br>
-Risk: The sync and validation scripts use provider credentials to query model and chat-completions endpoints. <br>
-Mitigation: Install only in environments where the agent is allowed to access provider API keys, and limit credential scope where the provider supports it. <br>
-Risk: The recurring sync job can restart the OpenClaw gateway after updates. <br>
-Mitigation: Enable recurring sync and restart behavior only after one successful sync, one successful validation run, and confirmation that primary and fallback settings are correct. <br>
-Risk: The skill may write reusable operational notes to .learnings after debugging or corrections. <br>
-Mitigation: Disable or require approval for .learnings writes in workspaces that may contain sensitive information. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain OpenClaw model catalogs by discovering provider models, deduplicating model ids, validating usability, registering eligible models, and scheduling controlled registry refreshes.
 
-## Reference(s): <br>
-- [Model Sync Policy](references/model-sync-policy.md) <br>
-- [Model Sync Policy JSON](references/model-sync-policy.json) <br>
-- [API Failover Upgrade Notes](references/api-failover-upgrade.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown, code] <br>
-**Output Format:** [Markdown guidance with shell commands, JavaScript helper scripts, JSON policy, and generated sync or validation reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce OpenClaw configuration updates and model-registry reports after validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Persistent validation and recurring sync jobs can repeatedly act on the model registry after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve cron jobs explicitly, enable them only after one clean sync and validation run, and review the latest model-registry reports after scheduled runs.
+
+Risk: Provider API keys are used against configured provider base URLs during model discovery and probing.
+
+Mitigation: Use only trusted provider base URLs and scoped, revocable API keys in a controlled OpenClaw environment.
+
+Risk: Registry sync can overwrite live OpenClaw configuration and restart the gateway.
+
+Mitigation: Back up configuration first, review generated diffs and reports, validate before keeping changes, and require explicit approval for gateway restarts.
+
+## Reference(s):
+
+- [Model Sync Policy](artifact/references/model-sync-policy.md)
+- [Model Sync Policy JSON](artifact/references/model-sync-policy.json)
+- [API Failover Upgrade Notes](artifact/references/api-failover-upgrade.md)
+- [ClawHub Skill Page](https://clawhub.ai/zqh2333/skills/model-registry-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON/Markdown report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update OpenClaw configuration, write model-registry reports, and schedule recurring validation or sync jobs after a clean run.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

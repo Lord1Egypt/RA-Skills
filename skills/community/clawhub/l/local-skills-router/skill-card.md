@@ -1,38 +1,54 @@
-## Description: <br>
-Routes an agent to the most appropriate local downstream skill when a request may match overlapping skill clusters such as ACP/ACPX, Lark, WeChat, Xiaohongshu, or OpenCLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes ambiguous local skill requests to the most appropriate downstream skill before the agent reads and follows that skill's instructions.
 
-## Publisher: <br>
-[chaoyang78](https://clawhub.ai/user/chaoyang78) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoyang78](https://clawhub.ai/user/chaoyang78)
 
-## Use Case: <br>
-Developers and agent operators use this skill to choose the right local skill before executing tasks that overlap multiple specialized skill clusters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A downstream skill selected by the router may perform user-impacting actions such as posting content, logging into accounts, harness delegation, or CLI access. <br>
-Mitigation: Review the selected downstream skill before allowing those actions because that separate skill determines the actual permissions and user impact. <br>
+## Use Case:
 
+Agents and developers use this skill when a request could match multiple locally installed skills and the agent needs to choose the right downstream skill first. It is especially focused on high-overlap clusters such as ACP/ACPX harness workflows, Lark, WeChat/Official Accounts, Xiaohongshu, and OpenCLI.
 
-## Reference(s): <br>
-- [Local Skills Router on ClawHub](https://clawhub.ai/chaoyang78/local-skills-router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown routing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Selects a downstream skill; does not execute code or access data itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may route an agent toward downstream skills that perform account actions, publishing, posting, or harness delegation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review downstream skills separately before allowing account actions, publishing workflows, posting workflows, or harness delegation.
+
+Risk: Chinese-language routing guidance may be misunderstood by reviewers or operators who cannot read the source language.
+
+Mitigation: Have a qualified reviewer confirm the routing table and overlap rules before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chaoyang78/skills/local-skills-router)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/chaoyang78)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown routing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill itself provides routing guidance and does not bundle executable code, persistence, credentials, or hidden execution behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

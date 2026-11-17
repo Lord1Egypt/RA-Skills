@@ -1,44 +1,59 @@
-## Description: <br>
-Screens therapist or counselor profile information to assess professional competence, credentials, training, experience, ethics, red flags, and next-step questions for China and overseas contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Therapist Screener helps users assess therapist qualifications, training, experience, ethics, and professional focus to support therapist selection across Chinese and English contexts.
 
-## Publisher: <br>
-[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga)
 
-## Use Case: <br>
-External users use this skill to review therapist profile text or public profile pages before choosing whom to contact. The skill produces an advisory competence screening report and suggested follow-up questions, without diagnosing mental health conditions, providing therapy, guaranteeing outcomes, or replacing the user's judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users could mistake the screening report for medical, mental health, or emergency advice. <br>
-Mitigation: Keep the skill framed as an advisory checklist, preserve the disclaimer that it does not diagnose or provide therapy, and direct crisis or serious situations to qualified medical or emergency help. <br>
-Risk: Therapist credentials or profile claims could be stale, incomplete, or inaccurate. <br>
-Mitigation: Ask users to verify licenses and certifications through official registries and to provide public information or information they have permission to use. <br>
-Risk: The skill evaluates professional competence signals but cannot determine personal fit or guarantee consultation outcomes. <br>
-Mitigation: State that final selection remains with the user, recommend comparing multiple therapists, and suggest initial consultations to assess fit. <br>
+## Use Case:
 
+External users use this skill to screen therapist profiles and generate structured competence reports with red-flag checks and next-step questions. The skill supports decision-making only and does not provide therapy, diagnose conditions, guarantee outcomes, or replace the user's final choice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/therapist-screener) <br>
-- [China therapist qualification reference](references/china-qualifications.md) <br>
-- [Overseas mental health professional qualifications](references/overseas-qualifications.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured evaluation report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes credential, training, experience, ethics, professional focus, red-flag, question, next-step, and disclaimer sections; Chinese conversations use the China-oriented template and English conversations use the overseas-oriented template.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A therapist may practice in a jurisdiction that does not match the conversation language, leading to the wrong qualification checklist.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the therapist's practice location or licensing jurisdiction before relying on the evaluation.
+
+Risk: Users may over-treat a screening report as medical, legal, licensing, or treatment advice.
+
+Mitigation: Frame the report as decision-support only and preserve the skill's disclaimers that it does not diagnose, provide therapy, guarantee outcomes, or replace user judgment.
+
+Risk: Profile URLs may be incomplete or hard to parse, which can weaken the evaluation.
+
+Mitigation: Prefer pasted profile text when possible and verify credentials through official licensing or qualification sources.
+
+## Reference(s):
+
+- [China Therapist Qualification Reference](references/china-qualifications.md)
+- [Overseas Mental Health Professional Qualifications](references/overseas-qualifications.md)
+- [ClawHub Skill Page](https://clawhub.ai/zhuqingsonga/skills/therapist-screener)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured evaluation report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Language-aware Chinese or English report with qualification review, red-flag warnings, next-step questions, and disclaimers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

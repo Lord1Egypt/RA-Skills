@@ -29,7 +29,7 @@ teemtape init [--json]
 
 ## search
 
-Search the SEC symbol catalog. Does not require a watchlist token.
+Search the symbols catalog (US, NZX, ASX, NSE, …). Does not require a watchlist token. Rows include `exchange` and `currency`; a bare code may match several markets — never assume US.
 
 ```bash
 teemtape search [QUERY] [options] [--json]
@@ -40,6 +40,7 @@ Options:
   --limit <n>       Max results (default 20, max 100)
   --offset <n>      Skip first n matches (pagination)
   --sort <field>    ticker | title (default: ticker)
+  --exchange <code> Only one market (US, NZX, ASX, NSE, …; aliases like NASDAQ work)
 ```
 
 Combine `--symbol` and `--name` with AND logic. Positional `QUERY` matches either field.

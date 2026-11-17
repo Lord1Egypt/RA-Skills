@@ -1,0 +1,22 @@
+{
+  "events": [
+    {
+      "id": "one",
+      "payload": {
+        "n": 1
+      }
+    },
+    {
+      "id": "one",
+      "payload": {
+        "n": 1
+      }
+    },
+    {
+      "id": "two",
+      "payload": {
+        "n": 2
+      }
+    }
+  ]
+}

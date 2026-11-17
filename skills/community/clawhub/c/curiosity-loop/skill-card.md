@@ -1,45 +1,60 @@
-## Description: <br>
-Intrinsic curiosity-driven continuous learning: detect gaps between expected and actual results, treat them as curiosity signals, and update skills accordingly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intrinsic curiosity-driven continuous learning: detect gaps between expected and actual results, treat them as curiosity signals, and update skills accordingly.
 
-## Publisher: <br>
-[guiguid](https://clawhub.ai/user/guiguid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guiguid](https://clawhub.ai/user/guiguid)
 
-## Use Case: <br>
-Developers and agent operators use this skill to turn result deltas, repeated corrections, missing knowledge, and periodic scans into structured research, integration, and curriculum-building loops. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages persistent learning logs and long-term self-improvement records. <br>
-Mitigation: Review the delta log before use and avoid storing sensitive or unnecessary information in persistent records. <br>
-Risk: The skill can fetch configured external sources during knowledge scans. <br>
-Mitigation: Use only trusted scan sources and avoid background or cron scanning unless explicitly approved. <br>
-Risk: The skill may propose skill patches, new skills, or memory writes as part of integration. <br>
-Mitigation: Require manual approval and review for any skill patch, skill creation, or memory write. <br>
+## Use Case:
 
+Developers and agent operators use this skill to turn repeated gaps, failed outcomes, or missing knowledge into structured research, integration, and curriculum-building cycles. It is intended for agents that should maintain learning records, propose skill updates, and diversify problem-solving approaches over time.
 
-## Reference(s): <br>
-- [Curiosity Loop ClawHub listing](https://clawhub.ai/guiguid/curiosity-loop) <br>
-- [Key Concepts - Flowers Lab, INRIA](references/flowers-lab-concepts.md) <br>
-- [Flowers Lab, INRIA](https://www.robots.org/flowers-lab/) <br>
-- [Flowers INRIA YouTube channel](https://www.youtube.com/channel/UCrBNVs3u3mwlRsm2v3EKuXA) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose persistent delta logs, source scans, skill updates, or memory writes that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill directs agents to keep local learning records and may propose persistent memory writes or skill changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before memory writes, skill patching, or skill creation, and define a retention policy for local delta records.
+
+Risk: Periodic source scanning can introduce untrusted external content into the learning loop.
+
+Mitigation: Restrict scan sources to trusted allowlists and treat all fetched content as untrusted until reviewed.
+
+Risk: Scheduled scanning may persist or update learning state without adequate operator oversight.
+
+Mitigation: Avoid cron or other unattended scheduling until the storage path, review workflow, and retention policy are approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guiguid/skills/curiosity-loop)
+- [Key Concepts — Flowers Lab, INRIA](references/flowers-lab-concepts.md)
+- [Flowers Lab, INRIA](https://www.robots.org/flowers-lab/)
+- [Flowers INRIA YouTube channel](https://www.youtube.com/channel/UCrBNVs3u3mwlRsm2v3EKuXA)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON snippets and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local delta records, memory updates, skill patches, new skills, and optional source-scanning commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

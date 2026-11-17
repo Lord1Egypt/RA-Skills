@@ -1,46 +1,64 @@
-## Description: <br>
-Automated Linux server patching and Docker container updates. Use when the user asks to update, patch, or upgrade Linux servers, apply security updates, update Docker containers, check for system updates, or manage server maintenance across multiple hosts. Supports Ubuntu, Debian, RHEL, AlmaLinux, Rocky Linux, CentOS, Amazon Linux, and SUSE. Includes PatchMon integration for automatic host detection and intelligent Docker handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linux Patcher helps agents patch Linux servers and optionally update Docker containers over SSH, using PatchMon for automatic host detection when configured.
 
-## Publisher: <br>
-[JGM2025](https://clawhub.ai/user/JGM2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jgm2025](https://clawhub.ai/user/jgm2025)
 
-## Use Case: <br>
-Developers, system administrators, and infrastructure operators use this skill to preview and apply Linux package updates, Docker image refreshes, and container restarts across one or more SSH-accessible hosts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically modify multiple remote hosts and Docker containers using powerful credentials. <br>
-Mitigation: Start with dry-run on staging hosts, require explicit host scope and confirmation before applying updates, and schedule production use during maintenance windows. <br>
-Risk: Passwordless sudo and PatchMon credentials can increase impact if misconfigured or exposed. <br>
-Mitigation: Use restricted sudoers entries or controlled wrapper commands, protect SSH keys and PatchMon credentials, and keep credential files readable only by the intended user. <br>
-Risk: Docker updates can recreate containers and briefly interrupt services. <br>
-Mitigation: Make Docker updates opt-in for production when appropriate, use the skip-Docker mode for package-only patching, and verify container health after updates. <br>
-Risk: Several supported Linux distributions are documented as untested. <br>
-Mitigation: Test untested distributions in a non-production environment before broad rollout and verify package manager behavior after the first run. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to check and apply Linux package updates, run dry-run maintenance workflows, and optionally update Docker Compose workloads across one or more SSH-accessible hosts.
 
-## Reference(s): <br>
-- [PatchMon Integration Guide](references/patchmon-setup.md) <br>
-- [PatchMon Documentation](https://docs.patchmon.net) <br>
-- [PatchMon Repository](https://github.com/PatchMon/PatchMon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke SSH, package manager, Docker, and PatchMon-related commands when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release evidence) <br>
+Risk: The skill asks for broad production host access and passwordless sudo for patching and Docker commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before installation and grant sudo through narrow, audited wrappers or restricted command entries only.
+
+Risk: PatchMon credentials, sourced configuration files, hostnames, users, and paths may affect remote commands.
+
+Mitigation: Avoid sourcing generated or user-supplied configuration files without review, validate hostnames/users/paths, and keep credentials in a permissions-restricted file.
+
+Risk: Some documented workflows use unsafe transport or install patterns such as curl -k and curl piped to sudo bash.
+
+Mitigation: Remove curl -k usage, verify TLS certificates, and install PatchMon through reviewed packages or pinned, inspected scripts instead of piping downloads directly to sudo.
+
+Risk: Docker image pulls and container recreation can change running services and cause downtime.
+
+Mitigation: Keep Docker updates opt-in, use dry-run mode first, and schedule container updates during a maintenance window.
+
+## Reference(s):
+
+- [Linux Patcher ClawHub page](https://clawhub.ai/jgm2025/skills/linux-patcher)
+- [PatchMon Integration Guide](references/patchmon-setup.md)
+- [PatchMon GitHub repository](https://github.com/PatchMon/PatchMon)
+- [PatchMon documentation](https://docs.patchmon.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide dry-run checks, package patching, PatchMon queries, and optional Docker Compose update workflows.]
+
+## Skill Version(s):
+
+3.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

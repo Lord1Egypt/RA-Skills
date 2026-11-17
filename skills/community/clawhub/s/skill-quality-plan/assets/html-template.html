@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        /* ========== 基础样式 ========== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", "Helvetica Neue", Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #333;
+            background: #fff;
+        }
+
+        /* ========== 封面页 ========== */
+        .cover-page {
+            width: 210mm;
+            min-height: 297mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 4px solid #1a5276;
+            page-break-after: always;
+            position: relative;
+            padding: 60px 80px;
+        }
+        .cover-page::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #1a5276, #2980b9);
+        }
+        .cover-logo {
+            font-size: 18px;
+            color: #1a5276;
+            font-weight: bold;
+            margin-bottom: 80px;
+            letter-spacing: 2px;
+        }
+        .cover-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1a5276;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .cover-subtitle {
+            font-size: 22px;
+            color: #555;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        .cover-info {
+            width: 70%;
+            border-collapse: collapse;
+            margin-bottom: 60px;
+        }
+        .cover-info td {
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        .cover-info td:first-child {
+            width: 35%;
+            background: #f5f7fa;
+            font-weight: bold;
+            color: #1a5276;
+        }
+        .signature-table {
+            width: 70%;
+            border-collapse: collapse;
+            margin-top: 40px;
+        }
+        .signature-table th,
+        .signature-table td {
+            border: 1px solid #ddd;
+            padding: 14px 16px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .signature-table th {
+            background: #f5f7fa;
+            color: #1a5276;
+            font-weight: bold;
+        }
+        .signature-table td {
+            height: 50px;
+        }
+
+        /* ========== 页眉页脚 ========== */
+        .page-header {
+            display: none;
+            position: running(header);
+            width: 100%;
+            padding: 8px 40px;
+            border-bottom: 2px solid #1a5276;
+            font-size: 12px;
+            color: #666;
+        }
+        .page-header .header-left { float: left; }
+        .page-header .header-right { float: right; }
+
+        .page-footer {
+            display: none;
+            position: running(footer);
+            width: 100%;
+            padding: 8px 40px;
+            border-top: 1px solid #ddd;
+            font-size: 11px;
+            color: #999;
+        }
+        .page-footer .footer-left { float: left; }
+        .page-footer .footer-center { text-align: center; }
+        .page-footer .footer-right { float: right; }
+
+        /* ========== 目录 ========== */
+        .toc {
+            page-break-after: always;
+            padding: 60px 80px;
+        }
+        .toc h2 {
+            font-size: 24px;
+            color: #1a5276;
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #1a5276;
+        }
+        .toc-list {
+            list-style: none;
+            padding: 0;
+        }
+        .toc-list li {
+            padding: 6px 0;
+            border-bottom: 1px dotted #ddd;
+        }
+        .toc-list li a {
+            color: #333;
+            text-decoration: none;
+        }
+        .toc-list li a:hover {
+            color: #2980b9;
+        }
+        .toc-level-1 { font-weight: bold; font-size: 15px; margin-top: 12px; }
+        .toc-level-2 { padding-left: 24px; font-size: 14px; }
+        .toc-level-3 { padding-left: 48px; font-size: 13px; color: #666; }
+
+        /* ========== 正文 ========== */
+        .content {
+            padding: 40px 80px;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        .content h1 {
+            font-size: 24px;
+            color: #1a5276;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a5276;
+            page-break-after: avoid;
+        }
+        .content h2 {
+            font-size: 18px;
+            color: #2c3e50;
+            margin: 30px 0 15px 0;
+            padding-left: 12px;
+            border-left: 4px solid #2980b9;
+            page-break-after: avoid;
+        }
+        .content h3 {
+            font-size: 15px;
+            color: #34495e;
+            margin: 20px 0 10px 0;
+            page-break-after: avoid;
+        }
+        .content p {
+            margin: 10px 0;
+            text-align: justify;
+        }
+        .content ul, .content ol {
+            margin: 10px 0 10px 24px;
+        }
+        .content li {
+            margin: 4px 0;
+        }
+
+        /* ========== 表格 ========== */
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 13px;
+            page-break-inside: avoid;
+        }
+        .content table th {
+            background: #1a5276;
+            color: #fff;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        .content table td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+        }
+        .content table tr:nth-child(even) {
+            background: #f9fafb;
+        }
+        .content table tr:hover {
+            background: #eef3f7;
+        }
+
+        /* ========== 代码块 ========== */
+        .content pre {
+            background: #f5f7fa;
+            padding: 16px;
+            border-radius: 4px;
+            border-left: 4px solid #2980b9;
+            overflow-x: auto;
+            font-size: 13px;
+            margin: 12px 0;
+        }
+        .content code {
+            font-family: "Consolas", "Source Code Pro", monospace;
+        }
+
+        /* ========== 引用块 ========== */
+        .content blockquote {
+            border-left: 4px solid #2980b9;
+            padding: 12px 20px;
+            margin: 16px 0;
+            background: #f5f7fa;
+            color: #555;
+        }
+
+        /* ========== 分隔线 ========== */
+        .content hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 30px 0;
+        }
+
+        /* ========== 打印样式 ========== */
+        @media print {
+            body { font-size: 12pt; }
+            .cover-page { min-height: auto; height: 100vh; }
+            .page-header { display: block; }
+            .page-footer { display: block; }
+            .content { padding: 20px 40px; }
+            .toc { padding: 40px; }
+
+            @page {
+                size: A4;
+                margin: 20mm 15mm;
+                @top-center { content: element(header); }
+                @bottom-center { content: element(footer); }
+            }
+
+            .content h1, .content h2, .content h3 {
+                page-break-after: avoid;
+            }
+            .content table {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* ========== 屏幕上的页眉页脚模拟 ========== */
+        @media screen {
+            .content {
+                padding-top: 60px;
+            }
+            .doc-header-bar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 40px;
+                background: #f5f7fa;
+                border-bottom: 2px solid #1a5276;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 40px;
+                font-size: 12px;
+                color: #666;
+                z-index: 100;
+            }
+            .doc-footer-bar {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 32px;
+                background: #f5f7fa;
+                border-top: 1px solid #ddd;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 40px;
+                font-size: 11px;
+                color: #999;
+                z-index: 100;
+            }
+        }
+        @media print {
+            .doc-header-bar, .doc-footer-bar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 屏幕端页眉 -->
+    <div class="doc-header-bar">
+        <span>{{company}}</span>
+        <span>{{doc_number}} {{version}}</span>
+    </div>
+
+    <!-- 屏幕端页脚 -->
+    <div class="doc-footer-bar">
+        <span>内部文件</span>
+        <span id="screen-page">第 1 页</span>
+        <span>{{date}}</span>
+    </div>
+
+    <!-- 封面页 -->
+    <div class="cover-page">
+        <div class="cover-logo">{{company}}</div>
+        <div class="cover-title">{{title}}</div>
+        <div class="cover-subtitle">{{product_name}}</div>
+        <table class="cover-info">
+            <tr><td>文档编号</td><td>{{doc_number}}</td></tr>
+            <tr><td>版本号</td><td>{{version}}</td></tr>
+            <tr><td>产品名称</td><td>{{product_name}}</td></tr>
+            <tr><td>编制日期</td><td>{{date}}</td></tr>
+        </table>
+        <table class="signature-table">
+            <tr>
+                <th>编制</th>
+                <th>审核</th>
+                <th>批准</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>日期：</td>
+                <td>日期：</td>
+                <td>日期：</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 目录 -->
+    {{toc}}
+
+    <!-- 正文 -->
+    <div class="content" id="content">
+        {{content}}
+    </div>
+
+    <script>
+        // 屏幕端页码模拟
+        (function() {
+            var content = document.getElementById('content');
+            if (!content) return;
+            var height = content.offsetHeight;
+            var pages = Math.max(1, Math.ceil(height / (297 * 3.78 - 120)));
+            document.getElementById('screen-page').textContent = '共 ' + pages + ' 页';
+        })();
+
+        // 目录点击平滑滚动
+        document.querySelectorAll('.toc a').forEach(function(a) {
+            a.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

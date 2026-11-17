@@ -180,7 +180,7 @@
 
 #### 交互式引导创建（推荐）
 ```bash
-python scripts/vod_create_aigc_advanced_custom_element.py create --interactive
+python3 scripts/vod_create_aigc_advanced_custom_element.py create --interactive
 ```
 
 交互式引导会逐步提示输入：
@@ -194,7 +194,7 @@ python scripts/vod_create_aigc_advanced_custom_element.py create --interactive
 
 #### 创建多图主体（image_refer）
 ```bash
-python scripts/vod_create_aigc_advanced_custom_element.py create \
+python3 scripts/vod_create_aigc_advanced_custom_element.py create \
     --sub-app-id 1500046725 \
     --element-name "商品展示主体" \
     --element-description "用于电商商品展示的多图定制主体，支持换装和商品图生成" \
@@ -205,7 +205,7 @@ python scripts/vod_create_aigc_advanced_custom_element.py create \
 
 #### 创建视频角色主体（video_refer，绑定音色）
 ```bash
-python scripts/vod_create_aigc_advanced_custom_element.py create \
+python3 scripts/vod_create_aigc_advanced_custom_element.py create \
     --sub-app-id 1500046725 \
     --element-name "视频角色A" \
     --element-description "从参考视频中定制的角色主体，绑定专属音色，用于短视频生成" \
@@ -217,7 +217,7 @@ python scripts/vod_create_aigc_advanced_custom_element.py create \
 
 #### 创建视频角色主体（不绑定音色）
 ```bash
-python scripts/vod_create_aigc_advanced_custom_element.py create \
+python3 scripts/vod_create_aigc_advanced_custom_element.py create \
     --sub-app-id 1500046725 \
     --element-name "角色B" \
     --element-description "纯视觉角色主体，不绑定音色" \
@@ -227,7 +227,7 @@ python scripts/vod_create_aigc_advanced_custom_element.py create \
 
 #### 预览请求参数（不实际执行）
 ```bash
-python scripts/vod_create_aigc_advanced_custom_element.py create \
+python3 scripts/vod_create_aigc_advanced_custom_element.py create \
     --sub-app-id 1500046725 \
     --element-name "测试主体" \
     --element-description "测试用主体，验证参数格式" \
@@ -240,10 +240,10 @@ python scripts/vod_create_aigc_advanced_custom_element.py create \
 
 ```bash
 # 列表格式查看
-python scripts/vod_create_aigc_advanced_custom_element.py list
+python3 scripts/vod_create_aigc_advanced_custom_element.py list
 
 # JSON 格式查看（适合程序处理）
-python scripts/vod_create_aigc_advanced_custom_element.py list --json
+python3 scripts/vod_create_aigc_advanced_custom_element.py list --json
 ```
 
 #### 示例输出
@@ -269,7 +269,7 @@ python scripts/vod_create_aigc_advanced_custom_element.py list --json
 ### 高优先级任务创建
 
 ```bash
-python scripts/vod_create_aigc_advanced_custom_element.py create \
+python3 scripts/vod_create_aigc_advanced_custom_element.py create \
     --sub-app-id 1500046725 \
     --element-name "紧急主体" \
     --element-description "高优先级紧急创建的主体" \

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="endBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5B9BD5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E75B6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1280" height="720" fill="url(#endBgGrad)" />
+  <circle cx="150" cy="600" r="200" fill="#FFFFFF" fill-opacity="0.03" />
+  <circle cx="1100" cy="150" r="150" fill="#FFFFFF" fill-opacity="0.04" />
+  <text x="640" y="340" text-anchor="middle" font-family="Microsoft YaHei, SimHei, sans-serif" font-size="48" font-weight="bold" fill="#FFFFFF">感谢聆听</text>
+  <text x="640" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#FFFFFF" fill-opacity="0.7">Thank You</text>
+  <rect x="490" y="420" width="300" height="4" fill="#ED7D31" />
+  <text x="640" y="480" text-anchor="middle" font-family="Microsoft YaHei, sans-serif" font-size="18" fill="#FFFFFF" fill-opacity="0.8">{{CONTACT_INFO}}</text>
+  <text x="640" y="680" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#FFFFFF" fill-opacity="0.4">{{PAGE_NUM}}</text>
+</svg>

@@ -1,44 +1,62 @@
-## Description: <br>
-短视频下载器 - 支持抖音、小红书、快手、B站无水印视频下载。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+短视频下载器 — 支持抖音、小红书、快手、视频号、B站、YouTube、Instagram 等主流平台无水印视频下载，开箱即用。
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External users, content creators, and archivers use this skill to parse a supported short-video share link and download watermark-free video or image media locally. It is intended for one authorized URL at a time and requires a RedFox API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pasted links and related metadata are sent to RedFox for parsing. <br>
-Mitigation: Use only links you are authorized to download and avoid private or token-bearing share URLs. <br>
-Risk: The downloader may expose the RedFox API key to media download hosts when fetching returned media files. <br>
-Mitigation: Review or fix the downloader before installation so the RedFox API key is not sent to third-party media hosts. <br>
-Risk: The release under-explains privacy and rights risks for downloaded media. <br>
-Mitigation: Review applicable platform terms, copyright, and privacy requirements before downloading or reusing media. <br>
+## Use Case:
 
+Creators, editors, content collectors, operators, and researchers use this skill to parse supported short-video or image-post share links and save watermark-free local copies for editing, backup, or analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/redfox-data/video-downloader-redfox) <br>
-- [RedFoxHub API Key Settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFoxHub](https://redfox.hk?source=github) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; downloaded media files are written locally as MP4, JPG, or PNG files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY or an equivalent CLI/config-file API key; handles one share URL per run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Users may submit or download content they do not have permission to use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only links and content the user is authorized to download, and review applicable platform terms before use.
+
+Risk: Submitted URLs are sent to redfox.hk for parsing and may expose private or sensitive content links.
+
+Mitigation: Avoid submitting sensitive links and make the redfox.hk dependency clear before use.
+
+Risk: API keys can be exposed through command-line arguments, config files, logs, or output.
+
+Mitigation: Prefer REDFOX_API_KEY, avoid hardcoding or logging keys, and use a revocable key with limited value.
+
+Risk: Credential handling and download boundaries were flagged as review-worthy before installation.
+
+Mitigation: Review the skill before installing and avoid valuable personal API keys until the session header reuse and URL/download validation issues are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/video-downloader-redfox)
+- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and terminal status text; downloaded MP4, JPG, or PNG files are saved locally by the script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses one supported share link at a time and may require REDFOX_API_KEY for authenticated redfox.hk API access.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

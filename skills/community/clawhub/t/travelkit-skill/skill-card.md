@@ -1,47 +1,77 @@
-## Description: <br>
-TravelKit flight booking and management skill for flight search, pricing, real-time price verification, order creation, payment, cancellation, refund, change, itinerary download, and TravelKit MCP integration policy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TravelKit flight booking and management skill. Use for flight search, pricing, real-time price verification, order creation, payment, cancellation, refund, change, itinerary download, and TravelKit MCP integration policy.
 
-## Publisher: <br>
-[travelkit](https://clawhub.ai/user/travelkit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travelkit](https://clawhub.ai/user/travelkit)
 
-## Use Case: <br>
-External users and travel-service agents use this skill to search, price, book, pay for, cancel, refund, change, and retrieve information for TravelKit flight orders while following confirmation and output rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate real booking, payment, cancellation, refund, invoice, and change workflows. <br>
-Mitigation: Require explicit user confirmation before each write action, and verify price and order details before collecting passenger data or creating an order. <br>
-Risk: The skill depends on a sensitive platform-managed TravelKit API key. <br>
-Mitigation: Keep credentials managed by the host platform, avoid asking users to paste API keys in chat, and treat missing or invalid credentials as a platform configuration issue. <br>
-Risk: Users may misunderstand prices, policies, payment links, or confirmations if the default language is not appropriate. <br>
-Mitigation: Users who prefer another language should request it before reviewing prices, policies, payment links, or confirmations. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to search flights, verify live prices, create and manage flight orders, handle payments, cancellations, refunds, changes, invoices, and itinerary downloads through TravelKit.
 
-## Reference(s): <br>
-- [TravelKit Skill on ClawHub](https://clawhub.ai/travelkit/travelkit-skill) <br>
-- [TravelKit](https://www.travelkit.ai/) <br>
-- [TravelKit Flight Skill](SKILL.md) <br>
-- [Confirmation Rules](references/confirmation-rules.md) <br>
-- [Output Rules](references/output-rules.md) <br>
-- [TravelKit MCP Connection](references/mcp-connection.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, tool-call instructions] <br>
-**Output Format:** [Markdown and concise natural-language responses, usually in Simplified Chinese unless the user requests another language.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses TravelKit tool results as raw inputs, hides internal identifiers and credentials, and requires explicit confirmation before write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Travel, passenger, order, invoice, and payment-flow data may be sent to TravelKit MCP tools during normal use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for TravelKit flight workflows and rely on platform-managed credentials; do not ask users to paste API keys or secrets in chat.
+
+Risk: Flight order creation, payment, cancellation, refund, change, and invoice creation can affect real bookings or financial flows.
+
+Mitigation: Require explicit user confirmation for each write action, verify live price before collecting passenger details, and re-check order status before risky payment retries.
+
+Risk: Default consumer output is Simplified Chinese with CNY-oriented price presentation.
+
+Mitigation: Review locale expectations before deployment and switch language or locale only when the user or host context requires it.
+
+Risk: Tool results may include internal identifiers, raw JSON, credentials, or booking record fields that are not appropriate for normal users.
+
+Mitigation: Summarize results in user-facing language and omit internal fields, raw MCP responses, API keys, passenger IDs, segment IDs, solution IDs, order keys, and PNR values.
+
+## Reference(s):
+
+- [TravelKit](https://www.travelkit.ai/)
+- [confirmation-rules](references/confirmation-rules.md)
+- [flight-search](references/flight-search.md)
+- [flight-pricing](references/flight-pricing.md)
+- [flight-verify](references/flight-verify.md)
+- [flight-create-order](references/flight-create-order.md)
+- [flight-pay-order](references/flight-pay-order.md)
+- [flight-order-lookup](references/flight-order-lookup.md)
+- [flight-invoice](references/flight-invoice.md)
+- [flight-cancel](references/flight-cancel.md)
+- [flight-refund](references/flight-refund.md)
+- [flight-change](references/flight-change.md)
+- [flight-itinerary](references/flight-itinerary.md)
+- [mcp-connection](references/mcp-connection.md)
+- [output-rules](references/output-rules.md)
+- [hidden-fields](references/hidden-fields.md)
+- [tool-categories](references/tool-categories.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, API Calls]
+
+**Output Format:** [Simplified Chinese Markdown with structured flight, order, payment, refund, change, invoice, and itinerary summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Consumer replies default to Simplified Chinese and CNY pricing unless the user requests another language or locale.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

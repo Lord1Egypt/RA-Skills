@@ -1,0 +1,3 @@
+# Only needed for Tencent Docs API mode; official Tencent Cloud COS SDK.
+-r requirements-documents.txt
+cos-python-sdk-v5>=1.9,<2

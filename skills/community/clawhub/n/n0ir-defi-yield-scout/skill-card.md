@@ -1,45 +1,59 @@
-## Description: <br>
-Scans and compares USDC yield farming opportunities on Base and Arbitrum with APY rankings, vault migration breakeven analysis, historical trends, and protocol risk summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan and compare USDC yield farming options on Base and Arbitrum with APY rankings, breakeven analysis, historical trends, and protocol risk summaries.
 
-## Publisher: <br>
-[joaoolucas](https://clawhub.ai/user/joaoolucas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[joaoolucas](https://clawhub.ai/user/joaoolucas)
 
-## Use Case: <br>
-External users and DeFi analysts use this skill to compare USDC yield opportunities, review protocol risk context, inspect APY history, and estimate whether moving between vaults is worthwhile. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Yield, TVL, protocol risk, and APY history are informational estimates that can change quickly. <br>
-Mitigation: Run the tool for current data, treat APYs as point-in-time snapshots, and verify values independently before making allocation decisions. <br>
-Risk: The bundled Python script makes HTTPS requests to DeFiLlama and writes a temporary local cache. <br>
-Mitigation: Install only when this network access and short-lived cache behavior are acceptable in the target environment. <br>
-Risk: Breakeven calculations use approximate gas and bridge cost assumptions. <br>
-Mitigation: Check current transaction, bridge, and protocol costs before acting on a migration verdict. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Protocol Reference](references/protocols.md) <br>
-- [DeFiLlama Yields Pools API](https://yields.llama.fi/pools) <br>
-- [DeFiLlama Yields Chart API](https://yields.llama.fi/chart/{pool_id}) <br>
-- [n0ir](https://n0ir.ai) <br>
-- [ClawHub Release Page](https://clawhub.ai/joaoolucas/n0ir-defi-yield-scout) <br>
+## Use Case:
 
+External users and DeFi analysts use this skill to compare USDC yield opportunities across Base and Arbitrum, inspect protocol risk notes, evaluate APY history, and estimate whether a vault move may be worthwhile. Outputs are informational and should be verified before moving funds.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown tables and narrative guidance, with optional JSON from the CLI tool.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are based on live DeFiLlama data, cached locally for 15 minutes by the bundled script.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Yield results are advisory and can differ from current on-chain conditions.
+
+Mitigation: Verify pools, APYs, TVL, and protocol status on-chain or with the source protocol before moving funds.
+
+Risk: The local pool cache is a low-level integrity risk and may be stale or modified on shared systems.
+
+Mitigation: Treat cached results as temporary, refresh data before acting, and prefer a future version that stores cache files in a private per-user cache directory.
+
+Risk: Gas, bridge, and breakeven estimates are approximate.
+
+Mitigation: Check live gas, bridge fees, slippage, and withdrawal timing before migrating between vaults or chains.
+
+## Reference(s):
+
+- [Protocol Reference](references/protocols.md)
+- [DeFiLlama Yield Pools API](https://yields.llama.fi/pools)
+- [DeFiLlama Yield Chart API](https://yields.llama.fi/chart/{pool_id})
+- [n0ir](https://n0ir.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, json, guidance]
+
+**Output Format:** [Markdown summaries with tables and optional JSON output from CLI subcommands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public DeFiLlama yield data; pool data may be cached locally for 15 minutes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,60 @@
-## Description: <br>
-Build and maintain a persistent Logseq data architecture, based on the characteristics of bidirectional link technology, divided into three layers: raw data, index files, and rule files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and maintain a persistent Logseq data architecture, based on the characteristics of bidirectional link technology, divided into three layers: raw data, index files, and rule files.
 
-## Publisher: <br>
-[mesopodamia](https://clawhub.ai/user/mesopodamia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mesopodamia](https://clawhub.ai/user/mesopodamia)
 
-## Use Case: <br>
-External users and developers use this skill to organize a Logseq graph into raw material, index, and rule layers, then generate summaries, entity pages, concept pages, cross-references, query answers, and health-check reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can broadly scan and persistently change a user's Logseq note graph without clear approval boundaries. <br>
-Mitigation: Review before installing, use it first on a backed-up or test Logseq graph, specify exact folders and operation modes, and require a diff or explicit confirmation before writes. <br>
-Risk: Archived answers or web-search-filled data gaps may persist unwanted, unverified, or sensitive content into the knowledge base. <br>
-Mitigation: Disable answer archiving or web search unless intentionally needed, and review generated pages and citations before adding them to the graph. <br>
+## Use Case:
 
+External users and developers use this skill to organize a Logseq knowledge base into raw material, index, and rule layers; generate Markdown summaries, entity pages, concept pages, cross-references, and query answers; and run health checks on the resulting graph.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mesopodamia/logseq-article-archive) <br>
-- [Logseq Data Architecture Maintenance Rules](artifact/RULES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown pages, structured reports, cross-reference updates, and narrative guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Logseq pages, indexes, links, logs, summaries, and archived answers when the user authorizes writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill has broad authority to create and update persistent Logseq notes and indexes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it on a backed-up or version-controlled Logseq graph and require dry-run or read-only review before approving writes.
+
+Risk: Artifact behavior conflicts on whether raw source materials are immutable or may be modified.
+
+Mitigation: Keep raw source materials outside agent-writable paths or explicitly require user approval before any raw material edits.
+
+Risk: Archiving casual questions as pages can persist private or sensitive information in the knowledge base.
+
+Mitigation: Require confirmation before archiving answers and avoid saving private questions or source material unless the user explicitly approves.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mesopodamia/skills/logseq-article-archive)
+- [Publisher profile](https://clawhub.ai/user/mesopodamia)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Artifact maintenance rules](artifact/RULES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown pages, Logseq bidirectional links, structured reports, and prose guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Logseq index pages, summaries, entity pages, concept pages, comparison tables, health reports, and log entries.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

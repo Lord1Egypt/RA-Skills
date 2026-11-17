@@ -1,40 +1,53 @@
-## Description: <br>
-Add Umami self-hosted analytics to any website with adblocker-proof proxy. Covers: creating the website in Umami, setting up a same-domain proxy (Next.js, Astro/Vercel, Caddy, Nginx), and verifying tracking works. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add Umami self-hosted analytics to a website by creating the site in Umami, configuring a same-domain proxy for common web stacks, and verifying tracking.
 
-## Publisher: <br>
-[superWorldSavior](https://clawhub.ai/user/superWorldSavior) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[superworldsavior](https://clawhub.ai/user/superworldsavior)
 
-## Use Case: <br>
-Developers and engineers use this skill to add self-hosted Umami analytics to websites, configure a same-domain tracking proxy, and verify that pageview collection works after deployment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill teaches deploying and verifying analytics through a same-domain proxy that can bypass ad blockers. <br>
-Mitigation: Use only on sites you control, decide explicitly whether this tracking posture is acceptable, and update privacy notices plus consent or opt-out handling where required. <br>
-Risk: Setup commands require Umami admin credentials and bearer tokens. <br>
-Mitigation: Avoid pasting admin passwords or bearer tokens into shared shells, logs, screenshots, or persistent command histories. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/superWorldSavior/umami-setup) <br>
-- [Publisher Homepage](https://casys.ai) <br>
+## Use Case:
 
+Developers and site operators use this skill to add self-hosted Umami analytics to websites they control, including API setup, proxy configuration, and tracking verification across common deployment stacks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash, TypeScript, JSON, Caddyfile, Nginx, and HTML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only setup guidance; no files are generated directly by the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill helps configure analytics in a way that can bypass ad blockers.
+
+Mitigation: Use only on sites where analytics tracking, privacy notices, and consent handling are already approved.
+
+Risk: The setup examples include Umami admin credentials in an inline shell command.
+
+Mitigation: Prefer a no-echo prompt, scoped token, or safer credential flow, and clear temporary tokens after setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/superworldsavior/skills/umami-setup)
+- [CASYS homepage](https://casys.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes examples for Umami API calls and proxy rewrites for Next.js, Astro/Vercel, Caddy, and Nginx.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

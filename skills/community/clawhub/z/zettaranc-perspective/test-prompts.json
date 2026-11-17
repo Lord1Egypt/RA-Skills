@@ -1,0 +1,98 @@
+[
+  {
+    "id": "stock_analyze",
+    "category": "个股分析",
+    "prompt": "帮我看看 600519（茅台）现在能不能买",
+    "expected_behavior": "调用 zt analyze，输出评分+战法匹配+风险警告+免责声明",
+    "mode": "jnb",
+    "tags": ["analyze", "B1", "评分"]
+  },
+  {
+    "id": "concept_explain",
+    "category": "概念解释",
+    "prompt": "什么是少妇战法？",
+    "expected_behavior": "用 Z 哥口吻解释，引用 knowledge/trading-core.md，给案例",
+    "mode": "websearch",
+    "tags": ["概念", "少妇战法", "知识问答"]
+  },
+  {
+    "id": "screen_b1",
+    "category": "选股筛选",
+    "prompt": "现在能买什么？帮我找 B1 买点",
+    "expected_behavior": "调用 zt screen --strategy B1，输出候选列表+每只匹配理由",
+    "mode": "jnb",
+    "tags": ["screen", "B1", "选股"]
+  },
+  {
+    "id": "career_decision",
+    "category": "职业决策",
+    "prompt": "我该不该辞职全职炒股",
+    "expected_behavior": "用 Z 哥人生四圈框架回答，不给直接结论，追问具体情况",
+    "mode": "websearch",
+    "tags": ["职业", "人生决策", "四圈框架"]
+  },
+  {
+    "id": "backtest_shaofu",
+    "category": "策略回测",
+    "prompt": "回测一下万科A的少妇战法",
+    "expected_behavior": "调用 zt backtest shaofu 000002.SZ，输出胜率+收益+关键发现",
+    "mode": "jnb",
+    "tags": ["backtest", "少妇战法", "回测"]
+  },
+  {
+    "id": "position_diagnose",
+    "category": "持仓诊断",
+    "prompt": "我满仓了 000001，帮我诊断一下",
+    "expected_behavior": "先打断仓位（降到10%以内），再调用 zt diagnose",
+    "mode": "jnb",
+    "tags": ["diagnose", "仓位", "风险"]
+  },
+  {
+    "id": "sell_discipline",
+    "category": "卖出纪律",
+    "prompt": "什么时候卖？我总是卖飞",
+    "expected_behavior": "引用 S1/S2/S3 逃顶体系 + 防卖飞规则，用 Z 哥口吻",
+    "mode": "websearch",
+    "tags": ["卖出", "S1", "S2", "S3", "纪律"]
+  },
+  {
+    "id": "watchlist_scan",
+    "category": "自选股监控",
+    "prompt": "我的自选股今天怎么样",
+    "expected_behavior": "调用 zt watchlist scan --json，汇总信号",
+    "mode": "jnb",
+    "tags": ["watchlist", "监控", "信号"]
+  },
+  {
+    "id": "trade_record",
+    "category": "交易记录",
+    "prompt": "我今天 1800 买了 100 股茅台",
+    "expected_behavior": "调用 zt trade add，记录并确认",
+    "mode": "jnb",
+    "tags": ["trade", "记录", "交易"]
+  },
+  {
+    "id": "refuse_non_a_stock",
+    "category": "边界测试",
+    "prompt": "帮我分析一下特斯拉",
+    "expected_behavior": "明确说本 Skill 只覆盖 A 股，不分析美股",
+    "mode": "websearch",
+    "tags": ["边界", "美股", "拒绝"]
+  },
+  {
+    "id": "walk_forward_optimize",
+    "category": "参数寻优",
+    "prompt": "帮我优化一下少妇战法的参数",
+    "expected_behavior": "调用 zt simulate --walk-forward，输出最优参数组合+过拟合检测",
+    "mode": "jnb",
+    "tags": ["walk-forward", "优化", "参数"]
+  },
+  {
+    "id": "resonance_mode",
+    "category": "共振模式",
+    "prompt": "用共振模式帮我选股",
+    "expected_behavior": "调用 zt simulate --strategy-mode resonance，输出多战法共振信号",
+    "mode": "jnb",
+    "tags": ["resonance", "共振", "选股"]
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "supplier-feedback",
+  "workflow": "product",
+  "focus": "supplier",
+  "outputTemplate": "ops_product",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

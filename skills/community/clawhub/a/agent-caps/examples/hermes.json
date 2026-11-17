@@ -1,0 +1,10 @@
+{
+  "name": "Hermes",
+  "version": "1.0",
+  "capabilities": ["executive reasoning", "planning", "documentation", "coordination", "GitHub ops"],
+  "dependencies": ["Paperclip API", "git CLI", "OpenRouter"],
+  "memory_requirements": "256MB",
+  "tools": ["terminal", "file", "browser", "delegate", "cron", "skill"],
+  "api": "hermes_local / hermes_gateway",
+  "status": "active"
+}

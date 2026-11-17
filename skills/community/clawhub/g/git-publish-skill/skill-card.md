@@ -1,43 +1,58 @@
-## Description: <br>
-Publish the current project to a GitHub remote repository, including Git initialization, remote setup, automatic commits, and pushing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes the current project to a GitHub remote by resolving the repository URL, initializing Git when needed, committing local changes, and pushing the current branch.
 
-## Publisher: <br>
-[orbisz](https://clawhub.ai/user/orbisz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[orbisz](https://clawhub.ai/user/orbisz)
 
-## Use Case: <br>
-Developers and engineers use this skill to publish a local project to a GitHub repository from an agent session. It helps initialize Git when needed, configure or reuse a remote, commit pending changes, push the current branch, and remember repository mappings for later use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can stage all files, create commits, configure remotes, and push to GitHub, which may publish secrets or unrelated local changes. <br>
-Mitigation: Inspect git status and diffs before use, remove secrets or unrelated files, and confirm the remote URL before allowing commits or pushes. <br>
-Risk: The workflow offers force-push after non-fast-forward failures, which can overwrite remote history. <br>
-Mitigation: Use normal push first and approve force-push only when the remote history impact is understood and intentional. <br>
-Risk: The artifact includes persistent repository mapping and self-evolution diary/PR behavior that may record project paths or change skill behavior over time. <br>
-Mitigation: Review or remove repo-map persistence and the self-evolution section before deployment if persistent local path storage or self-modification is not desired. <br>
+## Use Case:
 
+Developers and engineers use this skill to publish a local project to a GitHub repository through an agent-assisted Git workflow. It is intended for repository initialization, remote setup, committing local changes, branch detection, pushing, and remembering project-to-repository mappings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/orbisz/git-publish-skill) <br>
-- [Repository mapping reference](references/repo-map.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with inline shell commands and commit-message text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify repository state by staging files, creating commits, setting remotes, pushing branches, and updating a local repo-map reference.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can stage, commit, and push broad local changes, which may publish secrets, private data, or unfinished work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect git status and diffs before execution, maintain a strict .gitignore, and avoid running it in repositories containing secrets, customer data, or sensitive work-in-progress.
+
+Risk: The skill can set or change the origin remote and may offer force push after push failures, which can publish to the wrong repository or overwrite remote history.
+
+Mitigation: Confirm the resolved remote URL, current branch, and push mode before allowing the agent to push or force push.
+
+Risk: The skill persists local project-to-repository mappings and includes self-evolution behavior that may write follow-up notes or propose changes beyond the publish task.
+
+Mitigation: Review or remove repo-map persistence and self-evolution behavior before use in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/orbisz/skills/git-publish-skill)
+- [repo-map.json](references/repo-map.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create Git commits, configure or change the origin remote, push branches, and update the repository mapping file when executed by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Save web articles from multiple sources to Obsidian with generated summaries, tags, local image copies, duplicate detection, and optional user notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save web articles from multiple sources to Obsidian with auto summaries, tags, local images, duplicate detection, and optional user notes.
 
-## Publisher: <br>
-[vlalamoon](https://clawhub.ai/user/vlalamoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vlalamoon](https://clawhub.ai/user/vlalamoon)
 
-## Use Case: <br>
-External users and developers use this skill to archive public web articles into an Obsidian vault as Markdown notes with summaries, tags, source metadata, localized images, and optional personal notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-supplied URLs may be fetched through a third-party reader service. <br>
-Mitigation: Use only public URLs that are acceptable to send to that service; avoid private, internal, authenticated, or sensitive links. <br>
-Risk: The skill uses anti-scraping fetch methods without clear upfront user controls. <br>
-Mitigation: Review target-site permissions and user intent before use, and add an explicit opt-in if stricter controls are required. <br>
-Risk: Fetched content and media are written into configured local Obsidian and attachment paths. <br>
-Mitigation: Confirm destination paths before running and review downloaded files, especially media size and source. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to convert web articles into Obsidian Markdown notes with summaries, tags, local images, duplicate detection, and optional personal notes.
 
-## Reference(s): <br>
-- [Save To Obsidian Publish on ClawHub](https://clawhub.ai/vlalamoon/save-to-obsidian-publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files with YAML frontmatter, local image assets, and terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured Obsidian article and attachment directories; records saved URLs to skip duplicates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: evidence.json release metadata and artifact/skill.json) <br>
+Risk: User-supplied article URLs, including query parameters, may be sent to a third-party reader service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public, non-sensitive URLs only, and remove or disable the Jina Reader fetch path before processing private, signed, intranet, or work-document links.
+
+Risk: The script fetches remote article pages and images without explicit network-scope controls.
+
+Mitigation: Review the target URLs and configured Obsidian output paths before execution, and run the skill only in an environment where outbound network access is acceptable.
+
+Risk: Downloaded remote images are written into the configured Obsidian attachments directory.
+
+Mitigation: Inspect the configured attachments path and use a dedicated vault or staging directory before syncing saved content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vlalamoon/skills/save-to-obsidian-publish)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown files with YAML frontmatter, generated summaries, tags, localized image links, and terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes article notes to the configured Obsidian directory, stores downloaded images under an attachments directory, and records saved URLs for duplicate detection.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

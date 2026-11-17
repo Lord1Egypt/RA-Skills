@@ -1,53 +1,66 @@
-## Description: <br>
-Use when the user asks for text-to-speech narration or voiceover, accessibility reads, audio prompts, or batch speech generation via the OpenAI Audio API; run the bundled CLI (`scripts/text_to_speech.py`) with built-in voices and require `OPENAI_API_KEY` for live calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks for text-to-speech narration or voiceover, accessibility reads, audio prompts, or batch speech generation via the OpenAI Audio API; run the bundled CLI (`scripts/text_to_speech.py`) with built-in voices and require `OPENAI_API_KEY` for live calls.
 
-## Publisher: <br>
-[patches429](https://clawhub.ai/user/patches429) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[patches429](https://clawhub.ai/user/patches429)
 
-## Use Case: <br>
-Developers and content teams use this skill to generate single or batch text-to-speech clips for narration, product demos, IVR prompts, accessibility reads, and audio prompts using the OpenAI Audio API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for speech generation is sent to OpenAI. <br>
-Mitigation: Avoid highly sensitive scripts unless that data flow is acceptable for the intended deployment. <br>
-Risk: Live generation uses a local OpenAI API key and account quota. <br>
-Mitigation: Require `OPENAI_API_KEY` to be set locally, never ask users to paste the key in chat, and use dry runs when checking command shape. <br>
-Risk: Relaxing network approvals globally can increase exposure in untrusted repositories. <br>
-Mitigation: Apply any network-approval relaxation only in trusted workspaces and prefer the current environment defaults when unsure. <br>
-Risk: Generated voices may be mistaken for human speech. <br>
-Mitigation: Provide a clear disclosure to end users that the voice is AI-generated. <br>
+## Use Case:
 
+Developers and content teams use this skill to generate narration, voiceover, IVR prompts, accessibility reads, and batch speech audio from text with consistent voice, pacing, and output settings.
 
-## Reference(s): <br>
-- [CLI reference](references/cli.md) <br>
-- [Audio Speech API quick reference](references/audio-api.md) <br>
-- [Voice direction patterns](references/voice-directions.md) <br>
-- [Instruction prompting best practices](references/prompting.md) <br>
-- [Sample prompts](references/sample-prompts.md) <br>
-- [Narration defaults](references/narration.md) <br>
-- [Voiceover defaults](references/voiceover.md) <br>
-- [IVR prompt defaults](references/ivr.md) <br>
-- [Accessibility read defaults](references/accessibility.md) <br>
-- [Codex network approvals and sandbox notes](references/codex-network.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated audio file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce mp3, wav, opus, aac, flac, or pcm audio files through the bundled CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can send provided text to the OpenAI Audio API during live speech generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with text approved for that API workflow, keep OPENAI_API_KEY local, and use dry-run mode when checking commands without a live call.
+
+Risk: The security evidence flags guidance that may encourage disabling Codex approval controls.
+
+Mitigation: Prefer approving the specific speech command instead of broadly disabling approval prompts or network safeguards.
+
+Risk: The security evidence flags a batch output path weakness.
+
+Mitigation: Treat batch JSONL as trusted input, avoid --force on untrusted batches, and review per-job output paths before running.
+
+## Reference(s):
+
+- [CLI Reference](references/cli.md)
+- [Audio Speech API Quick Reference](references/audio-api.md)
+- [Voice Directions](references/voice-directions.md)
+- [Prompting Best Practices](references/prompting.md)
+- [Sample Prompts](references/sample-prompts.md)
+- [Narration / Explainer Defaults](references/narration.md)
+- [Product Demo Voiceover Defaults](references/voiceover.md)
+- [IVR / Phone Prompt Defaults](references/ivr.md)
+- [Accessibility Read Defaults](references/accessibility.md)
+- [Codex Network Approvals / Sandbox Notes](references/codex-network.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENAI_API_KEY and network access for live OpenAI Audio API calls; dry-run mode avoids live calls.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

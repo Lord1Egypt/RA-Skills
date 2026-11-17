@@ -1,42 +1,58 @@
-## Description: <br>
-Fetches entries from the Solo Scope RSS feed, organizes them into 3-6 concise topic groups, writes a short core-value summary for each group, and returns a Markdown briefing with original titles and links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches the Solo Scope RSS feed, groups entries into 3-6 concise topics, writes short core-value summaries, and returns a Markdown briefing with original titles and URLs.
 
-## Publisher: <br>
-[shadowcz007](https://clawhub.ai/user/shadowcz007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shadowcz007](https://clawhub.ai/user/shadowcz007)
 
-## Use Case: <br>
-External users and operators use this skill to turn the Solo Scope RSS feed into an actionable daily Markdown briefing for solo founders and small teams. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts an external MixDAO RSS feed during normal use. <br>
-Mitigation: Install and run it only in environments where outbound access to that feed is acceptable. <br>
-Risk: RSS entries may contain external links or content that changes after the briefing is generated. <br>
-Mitigation: Review generated links and source items before opening links or acting on the briefing. <br>
-Risk: Writing the report to a project file may leave external-feed content in the workspace. <br>
-Mitigation: Prefer direct chat output unless a persisted project file is specifically needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Solo Scope RSS feed](https://www.mixdao.world/feed) <br>
-- [ClawHub skill listing](https://clawhub.ai/shadowcz007/mixlab-solo-scope) <br>
+## Use Case:
 
+External users and agents use this skill to turn the MIXDAO Solo Scope RSS feed into a concise daily briefing organized for solo founders and small teams.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown briefing with grouped links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Groups RSS items into 3-6 categories and keeps each category summary within 140 Chinese characters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad RSS-summary prompts could route to this skill when the user did not intend a Solo Scope briefing.
+
+Mitigation: Use strict skill routing or explicit trigger phrases such as Solo Scope, MIXLAB Solo Scope, mixdao feed, or RSS category briefing.
+
+Risk: Generated briefings may include the MIXLAB branding line from the template.
+
+Mitigation: Review the final Markdown before sharing externally and remove branding that is not appropriate for the use case.
+
+Risk: The briefing depends on one live RSS feed, so output quality depends on feed availability and feed item content.
+
+Mitigation: Confirm the source feed is reachable and check that retained titles and URLs match the RSS entries before relying on the summary.
+
+## Reference(s):
+
+- [Solo Scope RSS feed](https://www.mixdao.world/feed)
+- [ClawHub skill page](https://clawhub.ai/shadowcz007/skills/mixlab-solo-scope)
+- [Publisher profile](https://clawhub.ai/user/shadowcz007)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with grouped source links and short category summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each category summary is limited to 140 Chinese characters; entries retain original RSS titles and URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

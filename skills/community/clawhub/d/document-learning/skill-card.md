@@ -1,40 +1,54 @@
-## Description: <br>
-Helps an agent read PDF and text documents, track learning progress across sessions, resume from saved positions, and persist document-derived notes in long-term memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document Learning helps agents read PDF and text documents, track progress across sessions, resume work, and save document-derived summaries into long-term memory.
 
-## Publisher: <br>
-[yzqzuigao-ui](https://clawhub.ai/user/yzqzuigao-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yzqzuigao-ui](https://clawhub.ai/user/yzqzuigao-ui)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to turn large documents into resumable learning sessions with saved progress, summaries, and searchable memory notes. It is most useful for technical manuals, books, specifications, and other long-form reference material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document summaries, file paths, reading history, and progress data may persist locally in MEMORY.md, daily notes, and progress JSON files. <br>
-Mitigation: Use the skill only with documents suitable for local persistence, and review or delete generated memory and progress files when they contain confidential or personal information. <br>
+## Use Case:
 
+External users and developers use this skill to learn from large PDF or text documents over multiple sessions, keep per-document progress, and retrieve summaries or key concepts from memory later.
 
-## Reference(s): <br>
-- [Quick Start Guide](artifact/references/quick-start.md) <br>
-- [Memory Integration Guide](artifact/references/memory_integration.md) <br>
-- [ClawHub release page](https://clawhub.ai/yzqzuigao-ui/document-learning) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON progress files and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local MEMORY.md notes, dated memory entries, document progress JSON, and optional extracted-text JSON output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can persist summaries or notes derived from private, proprietary, regulated, or prompt-bearing documents into long-term memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with documents approved for persistent notes, review generated memory entries before reuse, and avoid or remove MEMORY.md and memory/YYYY-MM-DD.md entries when retention is not appropriate.
+
+Risk: Document-derived notes may lack confirmation, redaction, source labeling, or deletion controls.
+
+Mitigation: Require explicit user confirmation before retaining sensitive notes, label notes with source document names and page or chapter positions, redact sensitive details, and provide a clear deletion path for progress and memory files.
+
+## Reference(s):
+
+- [Memory Integration Guide](references/memory_integration.md)
+- [Quick Start Guide](references/quick-start.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, progress summaries, memory notes, JSON progress files, and optional extracted text files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write MEMORY.md, memory/YYYY-MM-DD.md, .document_learning_progress.json, .multi_doc_learning_progress.json, and user-specified extracted text outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

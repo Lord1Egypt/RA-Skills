@@ -9,9 +9,7 @@
   const SESSION_PICKER_FALLBACK_ENABLED = false;
   const LAYOUT_SYNC_ENABLED = true;
   const AVATAR_URL = '/assets/avatar2.png?v=2026-05-17b';
-  const TOOL_AVATAR_URL = '/assets/avatar1.png?v=2026-05-29d';
-  const HISTORY_AVATAR_URL = '/assets/history-avatar.png?v=2026-05-29d';
-  const TOOL_CONTENT_SELECTOR = '.chat-tool-msg-summary, .chat-tool-msg-collapse, .chat-tool-card';
+  const USER_AVATAR_URL = '/assets/header.png?v=2026-05-29-user-refresh';
   const NORMALIZE_MESSAGE_TIMELINE = false;
   if (!OVERLAY_RUNTIME_ENABLED) return;
   if (window[SCRIPT_FLAG]) return;
@@ -47,6 +45,7 @@
   function pickHost() {
     if (!HUD_ENABLED) return null;
     return (
+      document.querySelector('.shell--chat .content--workbench:has(.chat-main__conversation)') ||
       document.querySelector('.shell--chat .content.content--chat:has(> .content-header):has(> section.card.chat)') ||
       document.querySelector('.shell--chat .content.content--chat:has(section.card.chat)')
     );
@@ -100,6 +99,20 @@
   function syncChatLayoutMetrics() {
     if (!LAYOUT_SYNC_ENABLED) return;
 
+    // 2026.10.3 owns transcript geometry through a virtual viewport. Measure
+    // each pane's footer for portraits without changing native scroll sizing.
+    document.querySelectorAll('.content--workbench .chat-main__conversation').forEach((conversation) => {
+      const footer = conversation.querySelector(':scope > .chat-footer');
+      const composer = footer && queryChatComposer(footer);
+      if (!footer || !composer) return;
+      ensureFooterMetricsObserver();
+      observeFooterTarget(conversation);
+      observeFooterTarget(footer);
+      observeFooterTarget(composer);
+      const bottom = Math.max(0, conversation.getBoundingClientRect().bottom - composer.getBoundingClientRect().bottom);
+      setImportantStyleVar(conversation, '--oc-chat-composer-bottom', `${Math.round(bottom)}px`);
+    });
+
     const shell = document.querySelector('.shell--chat');
     const card = shell && shell.querySelector('section.card.chat');
     const composer = card && queryChatComposer(card);
@@ -133,6 +146,10 @@
   function queryChatComposer(card) {
     if (!(card instanceof Element)) return null;
     return (
+      card.querySelector(':scope > .agent-chat__composer-shell') ||
+      card.querySelector('.chat-footer > .agent-chat__composer-shell') ||
+      card.querySelector('.chat-main__conversation > .agent-chat__composer-shell') ||
+      card.querySelector('.chat-main > .agent-chat__composer-shell') ||
       card.querySelector('.chat-main > .agent-chat__input') ||
       card.querySelector(':scope > .agent-chat__input') ||
       card.querySelector('.agent-chat__input')
@@ -140,7 +157,10 @@
   }
 
   function isChatMainComposer(composer) {
-    return composer instanceof Element && composer.parentElement?.matches('.chat-main');
+    return (
+      composer instanceof Element &&
+      composer.parentElement?.matches('.chat-main, .chat-main__conversation')
+    );
   }
 
   function chatMainComposerBottom() {
@@ -424,62 +444,86 @@
     return node.matches('img.chat-avatar') && !!node.closest('.chat-group.assistant');
   }
 
-  function groupHasToolContent(node) {
-    return node instanceof Element && node.matches('.chat-group.assistant') && !!node.querySelector(TOOL_CONTENT_SELECTOR);
+  function stagePortraitUrl(kind) {
+    return kind === 'user' ? USER_AVATAR_URL : AVATAR_URL;
   }
 
-  function avatarUrlFor(node) {
-    const group = node.closest('.chat-group.assistant');
-    return groupHasToolContent(group) ? TOOL_AVATAR_URL : AVATAR_URL;
-  }
-
-  function patchAvatar(node) {
-    if (!isAssistantAvatarImage(node)) return;
-    const nextUrl = avatarUrlFor(node);
-    if (node.getAttribute('src') !== nextUrl) {
-      node.removeAttribute('srcset');
-      node.setAttribute('src', nextUrl);
-    }
-    // Let the theme CSS own portrait cropping so JS does not carry stale inline overrides.
-    node.style.removeProperty('object-fit');
-    node.style.removeProperty('object-position');
-    node.dataset.ocAvatarPatched = nextUrl === TOOL_AVATAR_URL ? 'tool' : 'assistant';
-  }
-
-  function avatarFillUrlFor(node) {
-    if (!(node instanceof Element)) return null;
-    if (node.matches('.chat-group.tool .chat-avatar, .chat-avatar.tool')) return TOOL_AVATAR_URL;
-    if (node.matches('.chat-group.other .chat-avatar')) return HISTORY_AVATAR_URL;
-    return null;
-  }
-
-  function patchDecorativeAvatar(node) {
-    if (!(node instanceof Element)) return;
-    const nextUrl = avatarFillUrlFor(node);
-    if (!nextUrl) return;
-
-    if (node instanceof HTMLImageElement) {
-      if (node.getAttribute('src') !== nextUrl) {
-        node.removeAttribute('srcset');
-        node.setAttribute('src', nextUrl);
-      }
-      node.dataset.ocAvatarPatched = nextUrl === TOOL_AVATAR_URL ? 'tool' : 'helper';
-      return;
+  function ensureStagePortrait(host, slot, kind) {
+    let portrait = host.querySelector(`:scope > [data-oc-stage-slot="${slot}"]`);
+    if (!(portrait instanceof HTMLElement)) {
+      portrait = document.createElement('div');
+      portrait.dataset.ocStageSlot = slot;
+      host.appendChild(portrait);
     }
 
-    let fill = node.querySelector(':scope > .oc-theme-avatar-raster');
+    const side = slot === 'right' ? 'right' : 'left';
+    const nextClass = `oc-theme-stage-portrait oc-theme-stage-portrait--${side} ${kind}`;
+    if (portrait.className !== nextClass) portrait.className = nextClass;
+    portrait.dataset.ocPortraitKind = kind;
+    portrait.setAttribute('aria-hidden', 'true');
+
+    let fill = portrait.querySelector(':scope > .oc-theme-avatar-raster');
     if (!(fill instanceof HTMLImageElement)) {
       fill = document.createElement('img');
       fill.className = 'oc-theme-avatar-raster';
       fill.alt = '';
       fill.setAttribute('aria-hidden', 'true');
-      node.appendChild(fill);
+      portrait.prepend(fill);
     }
-    if (fill.getAttribute('src') !== nextUrl) {
-      fill.removeAttribute('srcset');
-      fill.setAttribute('src', nextUrl);
+    const nextUrl = stagePortraitUrl(kind);
+    if (fill.getAttribute('src') !== nextUrl) fill.setAttribute('src', nextUrl);
+
+    portrait.querySelector(':scope > .oc-theme-portrait-nameplate')?.remove();
+  }
+
+  function ensureDirectChatStage(conversation) {
+    if (!(conversation instanceof HTMLElement)) return;
+    const directThread = conversation.querySelector(':scope > .chat-thread.chat-thread--direct')
+      || conversation.querySelector(':scope > .chat-thread-viewport > .chat-thread');
+    const composer = conversation.querySelector(':scope > .chat-footer > .agent-chat__composer-shell > .agent-chat__input');
+    let host = conversation.querySelector(':scope > .oc-theme-stage-portraits');
+
+    conversation
+      .querySelectorAll('.chat-avatar[data-oc-theme-generated-portrait="1"]')
+      .forEach((portrait) => portrait.remove());
+
+    if (!directThread || (conversation.closest('.content--workbench') && !composer)) {
+      if (host) host.remove();
+      return;
     }
-    node.dataset.ocAvatarPatched = nextUrl === TOOL_AVATAR_URL ? 'tool' : 'helper';
+
+    if (!(host instanceof HTMLElement)) {
+      host = document.createElement('div');
+      host.className = 'oc-theme-stage-portraits';
+      host.setAttribute('aria-hidden', 'true');
+      conversation.appendChild(host);
+    }
+    ensureStagePortrait(host, 'left', 'assistant');
+    ensureStagePortrait(host, 'right', 'user');
+  }
+
+  function syncDirectChatPortraits(root = document) {
+    if (!(root instanceof Document || root instanceof Element)) return;
+    const conversations = new Set();
+    if (root instanceof Element) {
+      if (root.matches('.chat-main__conversation')) conversations.add(root);
+      const owner = root.closest('.chat-main__conversation');
+      if (owner) conversations.add(owner);
+    }
+    root.querySelectorAll('.chat-main__conversation').forEach((node) => conversations.add(node));
+    conversations.forEach(ensureDirectChatStage);
+  }
+
+  function patchAvatar(node) {
+    if (!isAssistantAvatarImage(node)) return;
+    if (node.getAttribute('src') !== AVATAR_URL) {
+      node.removeAttribute('srcset');
+      node.setAttribute('src', AVATAR_URL);
+    }
+    // Let the theme CSS own portrait cropping so JS does not carry stale inline overrides.
+    node.style.removeProperty('object-fit');
+    node.style.removeProperty('object-position');
+    node.dataset.ocAvatarPatched = 'assistant';
   }
 
   function syncAssistantAvatars(root = document) {
@@ -489,20 +533,6 @@
     }
     if (!(root instanceof Document || root instanceof Element)) return;
     root.querySelectorAll('img').forEach(patchAvatar);
-  }
-
-  function syncDecorativeAvatars(root = document) {
-    if (root instanceof Element) {
-      patchDecorativeAvatar(root);
-      if (root.matches('.chat-group.tool, .chat-group.other')) {
-        const avatar = root.querySelector('.chat-avatar');
-        if (avatar) patchDecorativeAvatar(avatar);
-      }
-    }
-    if (!(root instanceof Document || root instanceof Element)) return;
-    root
-      .querySelectorAll('.chat-group.tool .chat-avatar, .chat-avatar.tool, .chat-group.other .chat-avatar')
-      .forEach(patchDecorativeAvatar);
   }
 
   function syncChatHeaderControls(root = document) {
@@ -1020,8 +1050,8 @@
   function boot() {
     const hasCanvas = ensureCanvas();
     if (AVATAR_PATCHING_ENABLED) {
+      syncDirectChatPortraits();
       syncAssistantAvatars();
-      syncDecorativeAvatars();
     }
     if (HEADER_SYNC_ENABLED) syncChatHeaderControls();
     if (QUOTA_BADGE_ENABLED) syncCodexQuotaBadge();
@@ -1043,7 +1073,6 @@
     const nextHost = pickHost();
     if (!nextHost) {
       clearCanvasHost();
-      return;
     }
     if (HUD_ENABLED && (!canvas || !canvas.isConnected || nextHost !== host)) {
       boot();
@@ -1054,8 +1083,8 @@
         continue;
       }
       if (AVATAR_PATCHING_ENABLED) {
+        mutation.addedNodes.forEach(syncDirectChatPortraits);
         mutation.addedNodes.forEach(syncAssistantAvatars);
-        mutation.addedNodes.forEach(syncDecorativeAvatars);
       }
       if (HEADER_SYNC_ENABLED) mutation.addedNodes.forEach(syncChatHeaderControls);
       if (QUOTA_BADGE_ENABLED) mutation.addedNodes.forEach(syncCodexQuotaBadge);

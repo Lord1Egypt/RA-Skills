@@ -1,6 +1,6 @@
 # k8s-aiops Capabilities
 
-51 MCP tools (37 read / 14 write). Every tool is wrapped with `@governed_tool`
+55 MCP tools (39 read / 16 write). Every tool is wrapped with `@governed_tool`
 (audit + policy + budget + risk-tier; undo where a clean inverse exists). Returns
 are high-signal summaries — `_get` / `_describe` tools add detail for a single object.
 
@@ -34,6 +34,9 @@ are high-signal summaries — `_get` / `_describe` tools add detail for a single
 | `cluster_info` | server version, node/ready/namespace counts | low |
 | `api_resources` | available API groups + versions | low |
 | `event_list` | type, reason, object, namespace, message, age | low |
+| `pod_health_rca` | worst-first findings: CrashLoopBackOff, image-pull, OOMKilled, unschedulable, high restarts (each cites the reason/count) | low |
+| `workload_readiness_rca` | worst-first findings: ready<desired, zero-ready outages, stuck rollouts (Deployment/StatefulSet/DaemonSet) | low |
+| `undo_list` | recorded reversible writes / not-yet-applied undo tokens | low |
 
 ## Write tools
 
@@ -52,6 +55,24 @@ are high-signal summaries — `_get` / `_describe` tools add detail for a single
 | `delete_namespace` | delete namespace + everything in it | **high** | none |
 | `cordon_node` / `uncordon_node` | toggle schedulability | medium | each other |
 | `drain_node` | cordon + evict pods (skips DaemonSet/mirror) | **high** | partial: `uncordon_node` |
+| `undo_apply` | execute a recorded inverse (itself governed, single-use, supports `dry_run`) | medium | n/a (is the undo) |
+
+### `delete_namespace` refusals
+
+Two targets are refused before anything is deleted, on the real call and on the
+`dry_run` preview alike (a preview never green-lights a delete that would be
+rejected):
+
+- **Control-plane namespaces** — `kube-system`, `kube-public`, `kube-node-lease`.
+  Deleting one takes CoreDNS, kube-proxy, the CNI and node heartbeats with it.
+  Pass `confirm=true` (CLI `--confirm`) to proceed deliberately, e.g. when
+  tearing a cluster down or clearing a namespace stuck `Terminating`.
+- **The namespace holding this target's own ServiceAccount credential** — that
+  delete revokes the credential it is running on, and `delete_namespace` has no
+  undo. **`confirm` does not override this one.** Re-run from a context whose
+  credential lives elsewhere. Only applies when the kubeconfig authenticates
+  with a ServiceAccount token; certificate and `exec` (EKS/GKE/AKS) credentials
+  are not namespace-bound, so the check stands down rather than guessing.
 
 ## Token-budget notes
 

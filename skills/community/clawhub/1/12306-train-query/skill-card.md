@@ -1,44 +1,59 @@
-## Description: <br>
-Queries 12306 train-ticket availability for a departure station, arrival station, and travel date. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries China Railway 12306 train ticket availability for a requested departure station, arrival station, and travel date.
 
-## Publisher: <br>
-[fuermos](https://clawhub.ai/user/fuermos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuermos](https://clawhub.ai/user/fuermos)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to check train availability between Chinese railway stations for a specified date. It helps surface train numbers, departure and arrival times, trip duration, and seat availability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script weakens HTTPS certificate validation for live 12306 requests. <br>
-Mitigation: Use only for low-sensitivity ticket-availability lookup until valid HTTPS certificate verification is required. <br>
-Risk: The script sends departure station, arrival station, and date to 12306. <br>
-Mitigation: Do not use the skill for account login, ticket purchasing, payment, or other sensitive account activity. <br>
-Risk: Redirect handling is not restricted to expected 12306 domains. <br>
-Mitigation: Review redirect behavior before relying on results, and restrict redirects to expected 12306 domains in a future update. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to look up available trains, departure and arrival times, durations, and seat availability between supported 12306 stations for a specified date. The evidence describes availability lookup, not ticket purchase or credential handling.
 
-## Reference(s): <br>
-- [12306 station name resource](https://kyfw.12306.cn/otn/resources/js/framework/station_name.js) <br>
-- [12306 left-ticket query endpoint](https://kyfw.12306.cn/otn/leftTicket/queryG) <br>
-- [ClawHub skill page](https://clawhub.ai/fuermos/12306-train-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text console output with train numbers, stations, departure and arrival times, duration, and seat availability.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires departure station, arrival station, and date inputs; defaults are provided by the script when arguments are omitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Live network requests disable HTTPS certificate validation, which can make ticket results and request data easier to tamper with.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat current output as untrusted and enable certificate validation before relying on results in production workflows.
+
+Risk: Redirects are followed without restricting the destination host or protocol.
+
+Mitigation: Constrain redirects to expected 12306 HTTPS hosts before operational use.
+
+Risk: The server security guidance says the current release should not be used for ticket purchasing or real login/session credentials.
+
+Mitigation: Use the skill only for availability lookup and do not provide real login, session, payment, or other sensitive credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fuermos/skills/12306-train-query)
+- [fuermos Publisher Profile](https://clawhub.ai/user/fuermos)
+- [China Railway 12306](https://www.12306.cn/mormhweb/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain terminal text with Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Displays train number, station names, departure and arrival times, trip duration, and seat availability when live 12306 data is returned.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

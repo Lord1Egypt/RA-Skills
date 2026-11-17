@@ -1,4 +1,4 @@
-# 前端性能优化
+# Front-end performance optimization
 
 Frontend performance workflow for Core Web Vitals, bundle size, rendering cost, memory leaks, network waterfalls, budgets, and evidence-based optimization.
 
@@ -6,12 +6,12 @@ Frontend performance workflow for Core Web Vitals, bundle size, rendering cost, 
 
 - ID: `fec-performance-optimization`
 - Category: `review-quality`
-- Version: `2.7.0`
+- Version: `2.9.0`
 - Source: `skills/fec-performance-optimization/SKILL.md`
 
 ## Description
 
-Use when diagnosing or improving frontend performance, Core Web Vitals, bundle size, runtime rendering cost, network waterfalls, memory leaks, long tasks, Lighthouse findings, or performance budgets; Chinese triggers include 性能优化, 页面卡顿, 首屏慢, 包体积, Web Vitals.
+Use when diagnosing or improving frontend performance, Core Web Vitals, bundle size, runtime rendering cost, network waterfalls, memory leaks, long tasks, Lighthouse findings, or performance budgets; Chinese triggers include performance optimization, page freeze, slow first screen, bundle volume, Web Vitals.
 
 ## Usage
 

@@ -23,6 +23,9 @@ try:
 except ImportError:
     HAS_QUESTIONARY = False
 
+from .channels import CHANNEL_DEFAULTS
+
+
 WELCOME = """
 ╔══════════════════════════════════════════════════════════════╗
 ║         Permission Vending Machine — Setup Wizard            ║
@@ -63,7 +66,7 @@ def check_sendblue() -> bool:
     """Check if sendblue CLI is installed and configured."""
     try:
         result = subprocess.run(
-            ["sendblue", "whoami"],
+            ["sendblue", "account"],
             capture_output=True,
             text=True,
             timeout=10,

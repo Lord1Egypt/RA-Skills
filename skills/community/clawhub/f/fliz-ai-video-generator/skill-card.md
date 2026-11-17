@@ -1,46 +1,66 @@
-## Description: <br>
-Complete integration guide for the Fliz REST API, an AI-powered video generation platform that transforms text content into professional videos with voiceovers, AI-generated images, and subtitles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fliz AI Video Generator helps agents integrate with the Fliz REST API to create, monitor, translate, duplicate, and automate AI-generated videos from text.
 
-## Publisher: <br>
-[jb-fliz](https://clawhub.ai/user/jb-fliz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jb-fliz](https://clawhub.ai/user/jb-fliz)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to integrate with the Fliz REST API, create videos from text, monitor generation status, translate or duplicate videos, and handle completion webhooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, source text, and video metadata are sent to the external Fliz API. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, avoid sensitive content in prompts, and review Fliz account and data-handling requirements before deployment. <br>
-Risk: The Fliz API key can grant access to create and manage video resources. <br>
-Mitigation: Keep the key in environment variables such as FLIZ_API_KEY, avoid committing credentials, and rotate exposed or unneeded keys. <br>
-Risk: The sample webhook handler is example code and records received payloads without production-grade controls. <br>
-Mitigation: Add authentication, HTTPS, payload validation, redaction, retention limits, and durable storage policies before deploying webhook handling. <br>
+## Use Case:
 
+Developers, engineers, and automation builders use this skill to connect agents and applications to Fliz for text-to-video creation, status polling, translations, duplication, resource listing, and webhook notifications.
 
-## Reference(s): <br>
-- [Fliz API Reference](references/api-reference.md) <br>
-- [Fliz API Enum Values](references/enums-values.md) <br>
-- [Fliz API Documentation](https://app.fliz.ai/api-docs) <br>
-- [Fliz Website](https://fliz.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jb-fliz/fliz-ai-video-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown guidance with JSON examples, shell commands, and Python, Node.js, cURL, and Flask code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Fliz API request payloads, polling guidance, webhook handling patterns, and generated video identifiers or URLs returned by the external Fliz API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Runnable examples can create billable Fliz resources or consume API quota.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, use a dedicated low-privilege Fliz API key, and run creation scripts only when video generation and quota use are intended.
+
+Risk: API keys may be exposed through command-line history or process listings when passed as arguments.
+
+Mitigation: Prefer the FLIZ_API_KEY environment variable and avoid pasting tokens into shared logs, shells, or scripts.
+
+Risk: Submitted text may be processed by the Fliz service and could include sensitive content.
+
+Mitigation: Do not submit confidential, regulated, or unpublished text unless approved for processing by Fliz.
+
+Risk: The webhook example can expose webhook payloads or debug history if deployed publicly without controls.
+
+Mitigation: Use webhook_handler.py as a local demo unless authentication, secured proxying, restricted routes, and limited data retention are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jb-fliz/skills/fliz-ai-video-generator)
+- [Fliz website](https://fliz.ai)
+- [Fliz API documentation](https://app.fliz.ai/api-docs)
+- [Fliz API keys](https://app.fliz.ai/api-keys)
+- [API Reference](references/api-reference.md)
+- [Enum Values](references/enums-values.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples, shell commands, and Python, JavaScript, cURL, and Flask code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose authenticated Fliz API calls and scripts that create videos, poll status, list resources, or receive webhook events.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

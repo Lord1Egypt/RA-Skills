@@ -1,41 +1,48 @@
-## Description: <br>
-Goal Tracker Pro helps users set goals, track progress, review analytics, and celebrate milestones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Goal Tracker Pro helps users set goals, track progress, celebrate milestones, and review goal-related analytics.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill to structure personal goals and generate goal-management commands for setting goals, updating progress, checking status, and recording milestones.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The README recommends an unpinned npx installer command.
+
+Mitigation: Review the installer source before running the command and prefer a pinned clawhub version when available.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can use this skill to plan personal or professional goals, update progress, inspect progress status, and mark milestones across health, finance, learning, career, and personal-growth goals. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Goal records can contain personal plans, health targets, finances, or other sensitive progress details. <br>
-Mitigation: Avoid entering sensitive data unless the user intends to track it, and review any goal content before sharing it outside the local workflow. <br>
-Risk: The package declares curl as a requirement even though the current instructions do not use it. <br>
-Mitigation: Install only when that dependency is acceptable, and review future versions before enabling network sharing or account-connected goal data. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/xiaoming-goal-tracker-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/kaising-openclaw1) <br>
+**Other Properties Related to Output:** [May include goal-management CLI commands and concise progress guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown guidance with example shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest goal-tracking CLI commands for the user to review before running.] <br>
+1.0.0 (source: server release metadata and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

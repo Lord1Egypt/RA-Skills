@@ -1,43 +1,53 @@
-## Description: <br>
-Corruption Burner guides agents to draft recurring Arabic educational publishing content about corruption from an Islamic ethics perspective, including scheduled topic missions and platform posting rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Corruption Burner is an Arabic Islamic-ethics publishing workflow for scheduled educational posts about root causes of corruption, action plans, and political-religious advocacy framing.
 
-## Publisher: <br>
-[m7madash](https://clawhub.ai/user/m7madash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[m7madash](https://clawhub.ai/user/m7madash)
 
-## Use Case: <br>
-External users and agents use this skill to plan and draft educational public posts about social corruption, religious ethics, and anti-corruption campaigns. Human operators should review and approve generated posts before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents recurring public-publishing instructions for incendiary political and religious mobilization without clear safety limits. <br>
-Mitigation: Require manual review and approval for every generated post before any public publication. <br>
-Risk: Generated content may solicit support for armed or undefined resistance groups or identify private people as traitors or collaborators. <br>
-Mitigation: Block content that supports armed groups, targets private individuals, or labels people as collaborators without a verified legal and editorial review process. <br>
-Risk: Automated publishing behavior can repeat or amplify high-risk conflict-related content. <br>
-Mitigation: Disable autonomous posting workflows and use the skill only for draft generation under rate limits and human editorial control. <br>
+## Use Case:
 
+External users can use this skill to guide an agent in drafting and scheduling Arabic educational advocacy posts about corruption from an Islamic religious perspective. Human review is important before any public post because the workflow includes strong political and religious directives.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/m7madash/corruption-burner) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/m7madash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and plain-text publishing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft mission structures, posting rules, and schedule-oriented guidance; no credentials or external tool references were detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release evidence) <br>
+Risk: Recurring public advocacy posts may publish political or religious claims that the operator has not reviewed or accepted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human review and approval before every post, especially before using platform credentials or publishing from organizational accounts.
+
+Risk: The workflow contains broad ideological directives and limited safety boundaries for audience, sourcing, and tone.
+
+Mitigation: Constrain each use to a defined audience and platform policy, verify sources and claims, and remove unsupported or inflammatory content before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/m7madash/skills/corruption-burner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown and plain text publishing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Human review recommended before publication; do not use for unattended posting without accepting account, audience, and content risks.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

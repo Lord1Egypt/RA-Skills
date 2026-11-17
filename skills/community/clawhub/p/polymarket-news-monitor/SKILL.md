@@ -75,7 +75,7 @@ python3 scripts/polymarket-monitor.py --min-importance 2
   "notification": {
     "enabled": true,
     "method": "webhook",
-    "webhook": "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+    "webhook": "REDACTED-SECRET"
   }
 }
 }

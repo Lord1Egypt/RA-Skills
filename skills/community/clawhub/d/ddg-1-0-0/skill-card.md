@@ -1,44 +1,56 @@
-## Description: <br>
-Use ddgr to run privacy-focused DuckDuckGo searches from the command line, including text results, site-specific searches, bangs, and JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use ddgr to run privacy-focused DuckDuckGo web searches from the terminal.
 
-## Publisher: <br>
-[shelehovnick1-spec](https://clawhub.ai/user/shelehovnick1-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shelehovnick1-spec](https://clawhub.ai/user/shelehovnick1-spec)
 
-## Use Case: <br>
-Developers, researchers, and terminal-focused users use this skill to ask an agent for ddgr installation help and command examples for web research, news lookup, documentation search, and quick facts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing ddgr with sudo or from source can execute code from an untrusted package source or repository. <br>
-Mitigation: Install ddgr only from a package source or repository the user trusts, and review commands before running them with elevated privileges. <br>
-Risk: Search queries are sent to a web service, and bangs or automatic browser opening may contact additional sites. <br>
-Mitigation: Avoid searching for passwords, tokens, private documents, or other secrets, and treat bangs and browser-opening commands as external site interactions. <br>
-Risk: Unsafe search mode can return results that normal safe-search settings would filter. <br>
-Mitigation: Use safe-search defaults unless the user explicitly asks to disable them and understands the content exposure tradeoff. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ddgr common usage patterns](references/usage-patterns.md) <br>
-- [ddgr GitHub project](https://github.com/jarun/ddgr) <br>
-- [DuckDuckGo](https://duckduckgo.com) <br>
-- [DuckDuckGo Bangs](https://duckduckgo.com/bang) <br>
+## Use Case:
 
+Developers and terminal-oriented users use this skill to install and run ddgr searches, including non-interactive, site-specific, time-filtered, JSON, and DuckDuckGo bang queries.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command option tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ddgr JSON-output command examples for scripted search workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and artifact/_meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Install instructions include root-level installation from unpinned third-party sources without verification guidance.
+
+Mitigation: Review the install path before use, prefer trusted OS packages or verified releases, and avoid running sudo make install from an unpinned clone.
+
+Risk: Interactive result selection or --ducky can open third-party pages in the browser.
+
+Mitigation: Review destination URLs before opening results and apply normal browser and endpoint safeguards for untrusted web pages.
+
+## Reference(s):
+
+- [Usage Patterns](references/usage-patterns.md)
+- [ddgr GitHub Repository](https://github.com/jarun/ddgr)
+- [DuckDuckGo](https://duckduckgo.com)
+- [DuckDuckGo Bangs](https://duckduckgo.com/bang)
+- [ClawHub Skill Page](https://clawhub.ai/shelehovnick1-spec/skills/ddg-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text, json]
+
+**Output Format:** [Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ddgr commands that produce plain text or JSON search results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Zhipu Web Search lets agents run web searches through Zhipu AI's web_search API using curl, with configurable engine, result count, recency, and intent options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zhipu Web Search provides cURL-based web search through Zhipu AI's dedicated web_search API with configurable engine, count, intent, and recency options.
 
-## Publisher: <br>
-[whyhit2005](https://clawhub.ai/user/whyhit2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whyhit2005](https://clawhub.ai/user/whyhit2005)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve current web information through a Zhipu API key, including searches with selected engines, result counts, recency filters, and optional intent recognition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Zhipu/BigModel under the configured Zhipu account. <br>
-Mitigation: Avoid secrets or confidential material in queries, use a revocable API key where possible, and rotate the key when the skill is no longer needed. <br>
-Risk: The script requires a ZHIPU_API_KEY environment variable and uses it in an Authorization header. <br>
-Mitigation: Store the API key in the runtime environment rather than in skill files, logs, prompts, or shared shell history. <br>
+## Use Case:
 
+Developers and agents use this skill to search current web information through Zhipu AI when they need configurable search engines, result counts, recency filters, or API-level JSON results.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/whyhit2005/zhipu-web-search) <br>
-- [Zhipu web_search API endpoint](https://open.bigmodel.cn/api/paas/v4/web_search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration instructions, JSON] <br>
-**Output Format:** [JSON responses from the Zhipu web_search API, with Markdown documentation and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and the ZHIPU_API_KEY environment variable; defaults to search_pro_quark with 20 results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: Search queries and request parameters are sent to Zhipu AI using the configured ZHIPU_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets, personal data, regulated data, and sensitive internal project names in search queries.
+
+Risk: The wrapper has input-validation and documentation gaps around engine, count, recency, and the advertised domain-filter feature.
+
+Mitigation: Validate allowed parameter values before use and either implement or remove domain-filter documentation for operational workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whyhit2005/skills/zhipu-web-search)
+- [Zhipu Web Search API endpoint](https://open.bigmodel.cn/api/paas/v4/web_search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash examples; API responses are JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZHIPU_API_KEY and curl; search queries and request parameters are sent to Zhipu AI.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

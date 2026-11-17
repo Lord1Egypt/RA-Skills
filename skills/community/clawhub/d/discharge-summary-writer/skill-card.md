@@ -1,45 +1,60 @@
-## Description: <br>
-Generates hospital discharge summaries from structured admission data, hospital course details, medications, and follow-up plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate hospital discharge summaries from admission data, hospital course, medications, and follow-up plans.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Clinical documentation teams and clinicians can use this skill to draft discharge summaries from structured inpatient records before physician review and institutional compliance checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated summaries may contain inaccurate diagnoses, medication details, dates, follow-up instructions, or language. <br>
-Mitigation: Treat generated summaries as drafts and verify all clinical content with a qualified clinician before use. <br>
-Risk: Patient data may be handled in local input and output files. <br>
-Mitigation: Install and run the skill only in environments approved for patient data and choose output paths carefully. <br>
-Risk: The script writes to the selected output path and can overwrite an existing file. <br>
-Mitigation: Review output paths before execution and keep backups or versioned destinations for clinical drafts. <br>
+## Use Case:
 
+Clinical documentation users and developers can use this skill to draft discharge summaries from structured inpatient data for physician review before inclusion in medical records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AIPOCH-AI/discharge-summary-writer) <br>
-- [Standard Discharge Summary Template](references/discharge_template.md) <br>
-- [Medical Terms](references/medical_terms.json) <br>
-- [Section Writing Guidelines](references/section_guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or JSON discharge-summary documents written to a local file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports standard, structured, and JSON output formats with zh/en language options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: Generated discharge summaries can contain incorrect or altered clinical content, especially when untrusted patient text is passed into the generator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated summary with a qualified clinician and verify medications, diagnoses, identifiers, dates, and follow-up instructions against official medical records.
+
+Risk: The script can overwrite arbitrary writable files through the output path.
+
+Mitigation: Run the skill in a sandbox or dedicated workspace and constrain output paths to approved locations.
+
+Risk: The language setting is unreliable until English rendering or explicit locale handling is fixed.
+
+Mitigation: Validate the rendered language and locale before use, and avoid relying on English output until locale handling is confirmed.
+
+## Reference(s):
+
+- [Standard Discharge Summary Template](references/discharge_template.md)
+- [Section Writing Guidelines](references/section_guidelines.md)
+- [Standardized Medical Terminology](references/medical_terms.json)
+- [Example Patient Data](references/example_patient.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown discharge summary, structured Markdown, or JSON file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires structured patient JSON input and clinician review before use; the local script writes the selected output file.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

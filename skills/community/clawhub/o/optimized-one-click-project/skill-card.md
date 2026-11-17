@@ -1,40 +1,57 @@
-## Description: <br>
-全自动项目生成和启动器 - 生成完整的Spring Boot + Vue3项目，包含前后端完整代码（RBAC+业务实体）、数据库初始化、编译启动、自动浏览器打开。支持完整CRUD（列表、查询、新增、修改、删除、查看）、多条件查询、状态下拉枚举、Redis配置、Swagger文档，使用JSON配置文件自定义参数。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and starts a configurable Spring Boot and Vue 3 CRUD application with RBAC scaffolding, database initialization, optional Redis and Swagger support, and browser launch.
 
-## Publisher: <br>
-[smallest-ming](https://clawhub.ai/user/smallest-ming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallest-ming](https://clawhub.ai/user/smallest-ming)
 
-## Use Case: <br>
-Developers use this skill to generate and start a Spring Boot and Vue 3 CRUD management application from a JSON configuration, including RBAC scaffolding, database initialization, and optional Redis and Swagger setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generator can automatically drop and recreate database tables. <br>
-Mitigation: Use it only for local development or a disposable sandbox, inspect init.sql first, use a restricted MySQL account, and back up data before running it. <br>
-Risk: The generated application includes insecure demo-style authentication and default passwords. <br>
-Mitigation: Change or remove the generated default-password authentication before exposing the app to any network. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate a full-stack administrative CRUD project from JSON configuration, including backend APIs, Vue management pages, database setup, and local startup commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smallest-ming/optimized-one-click-project) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with generated source and configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JSON project configuration and local Java, Maven, Node.js, npm, and MySQL-compatible environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated applications may include unsafe authentication, weak token handling, plaintext or default credentials, and unprotected data-changing APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden authentication, authorization, token handling, and credential storage before using generated applications with real users or data.
+
+Risk: Database initialization may reset or destructively modify local database state.
+
+Mitigation: Run only against disposable local databases until the SQL initialization behavior has been reviewed and adjusted.
+
+Risk: The skill can install dependencies and launch generated backend and frontend services automatically.
+
+Mitigation: Execute it in an isolated development environment, review generated commands and dependencies, and avoid exposing services until the application has been secured.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smallest-ming/skills/optimized-one-click-project)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates Spring Boot, Vue 3, SQL, Maven, and npm assets and may start local services.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

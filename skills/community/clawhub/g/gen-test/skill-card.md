@@ -1,43 +1,56 @@
-## Description: <br>
-Generates unit and E2E tests for existing projects by analyzing design documents and public function signatures, reviewing testability, producing test code, and reporting coverage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates unit and E2E tests for existing projects by analyzing design documents and public API signatures, reviewing testability, producing test code, and reporting coverage.
 
-## Publisher: <br>
-[fdingiit](https://clawhub.ai/user/fdingiit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fdingiit](https://clawhub.ai/user/fdingiit)
 
-## Use Case: <br>
-Developers and engineers use this skill to add tests to existing projects, assess API testability, and generate coverage reports with project-specific thresholds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package installation or project file edits can alter dependencies, test configuration, or build behavior. <br>
-Mitigation: Review proposed installation commands, generated files, and diffs before running or accepting changes. <br>
-Risk: Generated tests and coverage reports may reflect incomplete project understanding or inferred behavior. <br>
-Mitigation: Confirm the project understanding and testability reports at the skill's review checkpoints before proceeding to code generation. <br>
+## Use Case:
 
+Developers and engineers use this skill to add tests to existing projects, prioritize testable APIs, surface design issues that block reliable tests, and establish coverage baselines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fdingiit/gen-test) <br>
-- [coverage-recipes.md](coverage-recipes.md) <br>
-- [design-analysis-guide.md](design-analysis-guide.md) <br>
-- [testability-checklist.md](testability-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with generated test code, shell commands, and coverage summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose package installation, test configuration changes, Makefile targets, and generated unit or E2E test files after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may install and run unpinned third-party testing or coverage tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed install command, prefer pinned project-local dependencies resolved through the repository lockfile, and avoid global installs where possible.
+
+Risk: The skill may add reusable Makefile targets that affect future project workflows.
+
+Mitigation: Approve Makefile edits only after checking target names, command scope, and whether existing project targets already cover the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fdingiit/skills/gen-test)
+- [Coverage recipes](coverage-recipes.md)
+- [Design analysis guide](design-analysis-guide.md)
+- [Testability checklist](testability-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with code blocks, generated test files, coverage summaries, and optional Makefile targets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose dependency installation and reusable Makefile edits after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

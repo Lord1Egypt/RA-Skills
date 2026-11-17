@@ -1,0 +1,11 @@
+interface:
+  display_name: "SocQ Amazon Research"
+  short_description: "Collect and analyze public Amazon data"
+  default_prompt: "Use $socq-amazon-research to collect and analyze this public Amazon research request."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "socq"
+      description: "Hosted SocQ Amazon data tools"
+      transport: "streamable_http"
+      url: "https://api.socq.ai/mcp?platforms=amazon"

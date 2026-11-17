@@ -1,51 +1,63 @@
-## Description: <br>
-Analyzes stocks and cryptocurrencies using Yahoo Finance data, portfolio and watchlist tools, dividend checks, stock scoring, trend detection, and rumor scanning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze stocks and cryptocurrencies using Yahoo Finance data, including portfolio management, watchlists with alerts, dividend analysis, stock scoring, trend detection, and rumor or early-signal scanning.
 
-## Publisher: <br>
-[yinwuzhe](https://clawhub.ai/user/yinwuzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinwuzhe](https://clawhub.ai/user/yinwuzhe)
 
-## Use Case: <br>
-External users and developers use this skill to run stock and crypto analysis, compare tickers, track portfolios and watchlists, review dividends, scan market trends, and detect early rumor signals. Outputs are informational and should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional X/Twitter social scanning handles AUTH_TOKEN and CT0 session cookies and can expose broad local environment secrets to an external CLI. <br>
-Mitigation: Use stock analysis, portfolio, watchlist, and hot scanning with --no-social by default; avoid supplying X/Twitter session cookies unless necessary, restrict .env file permissions, and use a dedicated low-risk account when social scanning is needed. <br>
-Risk: BUY, HOLD, SELL, rumor, and impact-scoring outputs can be mistaken for trading advice. <br>
-Mitigation: Treat all outputs as informational, review source data independently, and consult a licensed financial advisor before making investment decisions. <br>
-Risk: Market, news, and social sources can lag, change format, be rate-limited, or return incomplete data. <br>
-Mitigation: Cross-check important results against primary sources and prefer fast or no-social modes when external feeds are unreliable. <br>
+## Use Case:
 
+External users and developers use this skill to generate stock, crypto, portfolio, watchlist, dividend, trend, and rumor analysis from finance and market data sources. Outputs are informational and should not be treated as financial advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yinwuzhe/skills/csig-skill-0625) <br>
-- [Publisher profile](https://clawhub.ai/user/yinwuzhe) <br>
-- [Skill README](artifact/README.md) <br>
-- [Usage Guide](artifact/docs/USAGE.md) <br>
-- [Hot Scanner Documentation](artifact/docs/HOT_SCANNER.md) <br>
-- [Architecture Documentation](artifact/docs/ARCHITECTURE.md) <br>
-- [Yahoo Finance](https://finance.yahoo.com) <br>
-- [CoinGecko](https://coingecko.com) <br>
-- [Google News](https://news.google.com) <br>
-- [bird CLI](https://github.com/steipete/bird) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text, Markdown guidance, JSON reports, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local portfolio, watchlist, cache, and optional .env-backed social-scanner state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence); artifact frontmatter reports 6.2.0 <br>
+Risk: Optional Twitter/X features may expose session cookies through the external bird CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scanners with social media disabled unless credentials can be isolated and the bird executable is trusted.
+
+Risk: Live browser session cookies stored near the skill can increase credential exposure.
+
+Mitigation: Do not place live browser session cookies in the skill directory, and avoid granting Full Disk Access.
+
+Risk: Unpinned or unreviewed dependencies can change the behavior of market-data scanners.
+
+Mitigation: Pin or review dependencies before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinwuzhe/skills/csig-skill-0625)
+- [Yahoo Finance](https://finance.yahoo.com)
+- [CoinGecko](https://coingecko.com)
+- [CNN Fear & Greed Index](https://money.cnn.com/data/fear-and-greed/)
+- [SEC EDGAR](https://www.sec.gov/edgar)
+- [Google News](https://news.google.com)
+- [X](https://x.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and console text with optional JSON output from scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local portfolio and watchlist JSON files under the user's skill data directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter reports 6.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

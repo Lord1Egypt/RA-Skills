@@ -1,0 +1,27 @@
+{
+  "skill": "ocas-multipass",
+  "version": "1.0.0",
+  "description": "Evaluation test cases for ocas-multipass",
+  "evals": [
+    {
+      "input": "Figure out how to convert a PDF to images using an API we don't have installed",
+      "expected_output": "Plans approaches, discovers tools via multipass.search, provisions identity if needed, executes task, returns result with replay script",
+      "description": "Missing tool resolution"
+    },
+    {
+      "input": "I need to scrape product data from a website that requires a browser",
+      "expected_output": "Uses multipass.run to find and use a browser-capable scraping tool within an isolated session",
+      "description": "Browser scraping task"
+    },
+    {
+      "input": "Can you check if the SendGrid API works for sending emails?",
+      "expected_output": "Searches for SendGrid tools, tests the API with a throwaway identity, and reports results without global installs",
+      "description": "API capability check"
+    },
+    {
+      "input": "List my recent Multipass sessions",
+      "expected_output": "Returns session list with manifest statuses (complete/partial/failed) and replay script availability",
+      "description": "Session history"
+    }
+  ]
+}

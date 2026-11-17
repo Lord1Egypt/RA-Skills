@@ -1,0 +1,1934 @@
+{
+  "schemaVersion": 1,
+  "kind": "example-catalog",
+  "exam": "260919-at32f415-learning-board",
+  "purpose": "机器可读教学索引；不是 easyeda apply playbook，也不是完成态 PCB 答案",
+  "status": "partial-live-verified",
+  "evidenceBoundary": [
+    "全部36项均保留题目/BOM/原理图来源；live-validation.json 只升级实际执行过的代表性步骤",
+    "未完成的布线、LCD封装实例绑定、丝印、泪滴与最终DRC继续保持 source-only/offline-verified；个人库副本region实证不外推到当前U3实例",
+    "命令字段只复用现有 typed CLI/action/apply；缺失能力标 planned/unsupported，不定义新执行语言或交互兜底"
+  ],
+  "sourceData": [
+    "source-manifest.json",
+    "bom-instances.json",
+    "source-connectivity.json",
+    "initial-placement.json",
+    "crystal-placement-live.json",
+    "crystal-route-live.json",
+    "crystal-guard-requirement.json",
+    "can-placement-iteration-live.json",
+    "can-route-live.json",
+    "usb-route-live.json",
+    "ldo-layout-candidate.json",
+    "ldo-route-live.json",
+    "live-validation.json",
+    "can-route-plan-negative.json",
+    "can-route-plan-negative-report.json",
+    "can-route-plan-pair-negative.json",
+    "can-route-plan-pair-negative-report.json",
+    "layout-after-led-mcu-live.json",
+    "layout-after-peripherals-live.json",
+    "layout-after-peripherals-tracks-live.json",
+    "layout-after-peripherals-lint-live.json",
+    "layout-after-browser-reopen-verification-live.json",
+    "schematic-u3-recovery-live.json",
+    "u3-existing-model-binding-live.json"
+  ],
+  "stepTemplates": {
+    "schematicCompare": {
+      "steps": [
+        "读取 bom-instances.json 与 source-connectivity.json",
+        "逐页读取真实器件、pins、connectivity 与 NC",
+        "按位号逐项比较并记录差异",
+        "运行 check/DRC，保存；需要持久化证据时重开回读"
+      ],
+      "commands": [
+        "easyeda sch read --page <PAGE> --project ceshi",
+        "easyeda sch connectivity --all-pages --project ceshi",
+        "easyeda sch check --page <PAGE> --project ceshi --json",
+        "easyeda sch drc --project ceshi --json",
+        "easyeda sch save --doc <PAGE> --project ceshi"
+      ]
+    },
+    "pcbReadback": {
+      "steps": [
+        "读取板框、层、器件 bbox/pads、网络和规则",
+        "从参数计算目标，不复制其他板绝对坐标",
+        "执行后读取实际对象与 findings",
+        "pcb save → bounded doc reload → readback；若对象不可读则停止写入，标 incomplete 并修复 typed reload/open"
+      ],
+      "commands": [
+        "easyeda pcb list --include-bbox --include-pads --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb layout-lint --doc <PCB_DOC_UUID> --project ceshi --json",
+        "easyeda pcb check --doc <PCB_DOC_UUID> --project ceshi --json",
+        "easyeda pcb drc --doc <PCB_DOC_UUID> --project ceshi --json",
+        "easyeda pcb save --doc <PCB_DOC_UUID> --project ceshi"
+      ]
+    },
+    "routeReadback": {
+      "steps": [
+        "读取焊盘、网络、铜层和实时规则",
+        "从焊盘端点规划层、宽度、过孔和转角",
+        "写入后按网读取 tracks/vias",
+        "重建铺铜并运行 check/DRC，保存重开"
+      ],
+      "commands": [
+        "easyeda pcb track-list --net <NET> --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb via-list --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb net-path --from <REF.PAD> --through <REF.PAD> --to <REF.PAD> --layer 1 --doc <PCB_DOC_UUID> --project ceshi --json",
+        "easyeda pcb pour-rebuild --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb check --doc <PCB_DOC_UUID> --project ceshi --json",
+        "easyeda pcb drc --doc <PCB_DOC_UUID> --project ceshi --json"
+      ]
+    }
+  },
+  "counts": {
+    "entries": 36,
+    "SCH": 10,
+    "PCB": 8,
+    "LAY": 6,
+    "RTE": 8,
+    "FIN": 4
+  },
+  "entries": [
+    {
+      "id": "SCH-01",
+      "source": [
+        "考试说明.pdf p1",
+        "物料清单.xlsx BOM!3:29"
+      ],
+      "problem": "展开 BOM 并核对 69 个唯一位号、商品号、符号与封装",
+      "startState": "题目 BOM 与待复现原理图均可读取",
+      "parameters": [
+        {
+          "name": "bomRows",
+          "value": 27,
+          "unit": "row",
+          "modifiable": false
+        },
+        {
+          "name": "instances",
+          "value": 69,
+          "unit": "component",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "schematicCompare"
+      },
+      "commands": {
+        "template": "schematicCompare"
+      },
+      "observations": [
+        "69 个位号一一存在；值、封装、商品号差异逐项列出"
+      ],
+      "rationale": "BOM 是器件身份基线，不能由图片或相似型号补料",
+      "knownErrorsAndFixes": [
+        {
+          "error": "把 27 行物料当成 27 个器件",
+          "fix": "使用 bom-instances.json 的 69 个实例逐件比对"
+        }
+      ],
+      "verificationStatus": "offline-verified",
+      "pending": [
+        "真实库 symbol/footprint/device 身份逐件回读"
+      ]
+    },
+    {
+      "id": "SCH-02",
+      "source": [
+        "考试说明.pdf p1"
+      ],
+      "problem": "保留考试工程命名与图签身份要求，并在 Demo 中使用脱敏替代值",
+      "startState": "目标原理图页和图签可读取；source-manifest.identityRequirements 已加载",
+      "parameters": [
+        {
+          "name": "sourceProjectNamePattern",
+          "value": "<CUSTOMER_ID>-AT32F415 学习板",
+          "unit": "text pattern",
+          "modifiable": false
+        },
+        {
+          "name": "sourceTitleblockDrawnBy",
+          "value": "<REAL_NAME>",
+          "unit": "text",
+          "modifiable": false
+        },
+        {
+          "name": "demoCustomerId",
+          "value": "Demo",
+          "unit": "text",
+          "modifiable": true
+        },
+        {
+          "name": "demoDrawnBy",
+          "value": "Demo",
+          "unit": "text",
+          "modifiable": true
+        },
+        {
+          "name": "excludeExamLogin",
+          "value": true,
+          "unit": "boolean",
+          "modifiable": false
+        }
+      ],
+      "steps": [
+        "读取 source-manifest 中的原要求与 Demo 替代映射",
+        "titleblock-get 读取真实字段 key，不猜“绘制”对应键名",
+        "用确认后的字段 key 写 <REAL_NAME> 或 Demo 替代值",
+        "再次 titleblock-get 并导图核对；工程/文档命名保留客户编号模式或 Demo 映射"
+      ],
+      "commands": [
+        "easyeda sch titleblock-get --doc <PAGE> --project ceshi",
+        "easyeda sch titleblock --data '{\"<DRAWN_BY_FIELD>\":{\"value\":\"Demo\"}}' --doc <PAGE> --project ceshi",
+        "easyeda sch titleblock-get --doc <PAGE> --project ceshi"
+      ],
+      "observations": [
+        "原题的客户编号/真实姓名要求仍在参数中；Demo 现场只写明确记录的脱敏替代值"
+      ],
+      "rationale": "身份字段是题目交付要求；Demo 可以脱敏，但不能从来源索引中删除原要求",
+      "knownErrorsAndFixes": [
+        {
+          "error": "把 Demo 写成原题唯一要求，或照抄考试登录/提交信息",
+          "fix": "分别保存 source pattern 与 demoSubstitutions，只写本次已选择的值"
+        },
+        {
+          "error": "未读取就猜 titleblock 字段 key",
+          "fix": "先 titleblock-get，再用回读的“绘制”字段 key 写入并复读"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "确认 Web 版 titleblock 字段 key，执行修改、保存重开并导图核对"
+      ]
+    },
+    {
+      "id": "SCH-03",
+      "source": [
+        "考试说明.pdf p1",
+        "原理图.pdf p1"
+      ],
+      "problem": "为 LED1 显示 3.7V~5.3V 工作电压属性",
+      "startState": "LED1 已按 BOM 选型并可读取属性",
+      "parameters": [
+        {
+          "name": "workingVoltage",
+          "value": "3.7V~5.3V",
+          "unit": "V range",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "schematicCompare"
+      },
+      "commands": {
+        "template": "schematicCompare"
+      },
+      "observations": [
+        "LED1 自定义/显示属性准确，器件值和型号未被覆盖"
+      ],
+      "rationale": "显示值与器件型号必须分离，防止属性同步改坏身份",
+      "knownErrorsAndFixes": [
+        {
+          "error": "把电压写进型号字段",
+          "fix": "写独立属性并回读 otherProperty 与官方导图"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "现场写入属性并保存重开"
+      ]
+    },
+    {
+      "id": "SCH-04",
+      "source": [
+        "考试说明.pdf p1",
+        "原理图.pdf p1"
+      ],
+      "problem": "复现 15 个功能区及题图连线表达",
+      "startState": "69 个实例与 source-connectivity.json 可读取",
+      "parameters": [
+        {
+          "name": "functionalZones",
+          "value": 15,
+          "unit": "zone",
+          "modifiable": false
+        },
+        {
+          "name": "layoutSource",
+          "value": "question PDF",
+          "unit": "document",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "schematicCompare"
+      },
+      "commands": {
+        "template": "schematicCompare"
+      },
+      "observations": [
+        "15 区成员、标题、器件、导线和标签与题图对应"
+      ],
+      "rationale": "本题要求复现题图，不默认套用旧 Z 字排版",
+      "knownErrorsAndFixes": [
+        {
+          "error": "用通用 Z 字布局覆盖题图模块关系",
+          "fix": "把题图分区作为参数输入，再计算和回读"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "15 区完整 compose/apply 与逐页几何回读"
+      ]
+    },
+    {
+      "id": "SCH-05",
+      "source": [
+        "考试说明.pdf p1",
+        "原理图.pdf p1"
+      ],
+      "problem": "保持网络标签、真实导线、NC 与连接关系一致",
+      "startState": "source-connectivity.json 已转录题图连接",
+      "parameters": [
+        {
+          "name": "explicitNC",
+          "value": 13,
+          "unit": "pin",
+          "modifiable": false
+        },
+        {
+          "name": "connectivitySource",
+          "value": "source-connectivity.json",
+          "unit": "file",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "schematicCompare"
+      },
+      "commands": {
+        "template": "schematicCompare"
+      },
+      "observations": [
+        "逐 pin 网络与 13 处明确 NC 一致；派生局部网名只改变名称不改变拓扑"
+      ],
+      "rationale": "同名标签、NC 和物理连线表达不同事实，必须分别比较",
+      "knownErrorsAndFixes": [
+        {
+          "error": "把空网自动改成 NC 或用同名标签掩盖断线",
+          "fix": "仅保留题图明确 NC，真实 pin/pad 映射不明时标未验证"
+        }
+      ],
+      "verificationStatus": "live-verified",
+      "pending": [],
+      "liveEvidence": "P1: 69件/233端子，220连接+13 NC，46网；与source-connectivity逐端点差异0，保存重开后回读"
+    },
+    {
+      "id": "SCH-06",
+      "source": [
+        "考试说明.pdf p1-2"
+      ],
+      "problem": "记录默认原理图规则、check findings 与官方 DRC",
+      "startState": "完整原理图已落图",
+      "parameters": [
+        {
+          "name": "drcRules",
+          "value": "default",
+          "unit": "rule set",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "schematicCompare"
+      },
+      "commands": {
+        "template": "schematicCompare"
+      },
+      "observations": [
+        "sch check 逐项 findings 与 SDK DRC 聚合分别保存"
+      ],
+      "rationale": "两个检查覆盖不同，不能用一个数字代替全部电气与呈现问题",
+      "knownErrorsAndFixes": [
+        {
+          "error": "只看 DRC=0 就称全部正确",
+          "fix": "同时保存 connectivity diff、check 和 DRC，缺测标 incomplete"
+        }
+      ],
+      "verificationStatus": "live-verified",
+      "pending": [],
+      "liveEvidence": "P1: 官方DRC 0；check电气项0，另有55个marker overlap和1个missing partition作为呈现待修事实"
+    },
+    {
+      "id": "SCH-07",
+      "source": [
+        "原理图.pdf p1 TYPE-C"
+      ],
+      "problem": "连接 USB-C 重复 D+/D- 脚与两个 CC 下拉",
+      "startState": "USB1、R1、R2 的真实 symbol pins 可读取",
+      "parameters": [
+        {
+          "name": "ccPullDown",
+          "value": 5.1,
+          "unit": "kΩ",
+          "modifiable": false
+        },
+        {
+          "name": "duplicatedDataPins",
+          "value": [
+            "A6/B6",
+            "A7/B7"
+          ],
+          "unit": "pin pair",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "schematicCompare"
+      },
+      "commands": {
+        "template": "schematicCompare"
+      },
+      "observations": [
+        "A6/B6 同属 USB_D+；A7/B7 同属 USB_D-；CC1/CC2 分别经 5.1kΩ 到 GND"
+      ],
+      "rationale": "只检查网名会漏掉重复焊盘中的单脚断线",
+      "knownErrorsAndFixes": [
+        {
+          "error": "只接 A6/A7，漏 B6/B7",
+          "fix": "逐脚黄金表比较四个数据脚和两个 CC 脚"
+        }
+      ],
+      "verificationStatus": "live-verified",
+      "pending": [],
+      "liveEvidence": "P1真实USB1符号脚和PCB焊盘均已回读，A6/B6与A7/B7逐脚匹配题图"
+    },
+    {
+      "id": "SCH-08",
+      "source": [
+        "原理图.pdf p1 USB转串口"
+      ],
+      "problem": "核对 CH340N V3/VCC 供电、去耦与 RTS NC",
+      "startState": "U4、C9、C10 已按 BOM 选型",
+      "parameters": [
+        {
+          "name": "supplyNet",
+          "value": "+3V3",
+          "unit": "net",
+          "modifiable": false
+        },
+        {
+          "name": "explicitNC",
+          "value": "U4.RTS",
+          "unit": "pin",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "schematicCompare"
+      },
+      "commands": {
+        "template": "schematicCompare"
+      },
+      "observations": [
+        "V3、VCC 和两只去耦逐脚正确；RTS 为明确 NC；TXD/RXD 对 PA9/PA10"
+      ],
+      "rationale": "CH340N 两个电源相关脚不能按名称合并推断",
+      "knownErrorsAndFixes": [
+        {
+          "error": "漏接 V3 或把 RTS 当未核实悬空",
+          "fix": "按真实符号引脚与题图逐项对照"
+        }
+      ],
+      "verificationStatus": "live-verified",
+      "pending": [],
+      "liveEvidence": "P1真实CH340N pins、V3/VCC去耦、RTS NC及PA9/PA10已逐端点对账"
+    },
+    {
+      "id": "SCH-09",
+      "source": [
+        "原理图.pdf p1 LDO-3V3",
+        "考试说明.pdf p4,p7-p8"
+      ],
+      "problem": "连接 AMS1117 VIN、VOUT/TAB 与四只输入输出电容",
+      "startState": "U2、C3-C6 已存在",
+      "parameters": [
+        {
+          "name": "inputNet",
+          "value": "+5V",
+          "unit": "net",
+          "modifiable": false
+        },
+        {
+          "name": "outputNet",
+          "value": "+3V3",
+          "unit": "net",
+          "modifiable": false
+        },
+        {
+          "name": "outputPins",
+          "value": [
+            "U2.2",
+            "U2.4"
+          ],
+          "unit": "pin",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "schematicCompare"
+      },
+      "commands": {
+        "template": "schematicCompare"
+      },
+      "observations": [
+        "U2.2/U2.4 均为 +3V3；C3/C4 输入，C5/C6 输出"
+      ],
+      "rationale": "TAB 是真实输出，漏接会造成 symbol 与 footprint 电气不一致",
+      "knownErrorsAndFixes": [
+        {
+          "error": "只接 U2.2，漏 U2.4/TAB",
+          "fix": "按 LDO 样例修源连接并重新生成"
+        }
+      ],
+      "verificationStatus": "live-verified",
+      "pending": [],
+      "referenceExample": "ldo-placement.md",
+      "liveEvidence": "P1真实U2 pins对账：2/4均为+3V3；C3/C4输入、C5/C6输出；PCB放置已保存刷新"
+    },
+    {
+      "id": "SCH-10",
+      "source": [
+        "原理图.pdf p1"
+      ],
+      "problem": "逐项核对晶振地脚、LCD/CAN NC、SD 上拉和 SWD 针脚顺序",
+      "startState": "相关模块器件均已选型且真实 pins 可读取",
+      "parameters": [
+        {
+          "name": "topics",
+          "value": [
+            "crystal-ground",
+            "LCD-NC",
+            "CAN-VREF-NC",
+            "SD-pullups",
+            "SWD-order"
+          ],
+          "unit": "check",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "schematicCompare"
+      },
+      "commands": {
+        "template": "schematicCompare"
+      },
+      "observations": [
+        "每项都有 pin→net/NC 证据；SWD 丝印顺序与实际针脚一致"
+      ],
+      "rationale": "这些都是聚合 DRC 容易漏掉的语义细节",
+      "knownErrorsAndFixes": [
+        {
+          "error": "用“模块有同名网”代替逐脚检查",
+          "fix": "拆成五项逐脚黄金表并分别回读"
+        }
+      ],
+      "verificationStatus": "live-verified",
+      "pending": [],
+      "liveEvidence": "晶振地脚、LCD/CAN NC、SD上拉、SWD针脚均包含在逐端点差异0的现场批次"
+    },
+    {
+      "id": "PCB-01",
+      "source": [
+        "考试说明.pdf p2,p5"
+      ],
+      "problem": "确认两层板叠层",
+      "startState": "目标 PCB 已创建",
+      "parameters": [
+        {
+          "name": "copperLayers",
+          "value": 2,
+          "unit": "layer",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "pcbReadback"
+      },
+      "commands": {
+        "template": "pcbReadback"
+      },
+      "observations": [
+        "pcb layers 只返回 TOP/BOTTOM 两个铜层，内层未启用"
+      ],
+      "rationale": "层数决定换层、plane 和回流做法，不能从默认值猜",
+      "knownErrorsAndFixes": [
+        {
+          "error": "把图层总数当铜层数",
+          "fix": "读取 layer type 并按铜层筛选"
+        }
+      ],
+      "verificationStatus": "live-verified",
+      "pending": [],
+      "liveEvidence": "PCB1_1真实层叠为TOP/BOTTOM两铜层"
+    },
+    {
+      "id": "PCB-02",
+      "source": [
+        "考试说明.pdf p2,p7"
+      ],
+      "problem": "设置 Track→Track 6mil 与信号默认/最小线宽 8mil",
+      "startState": "可导出当前完整 DRC rules；从 config get 核对样例规则名确实存在",
+      "parameters": [
+        {
+          "name": "trackClearance",
+          "value": 6,
+          "unit": "mil",
+          "modifiable": false
+        },
+        {
+          "name": "signalWidthDefault",
+          "value": 8,
+          "unit": "mil",
+          "modifiable": false
+        },
+        {
+          "name": "signalWidthMin",
+          "value": 8,
+          "unit": "mil",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "pcbReadback"
+      },
+      "commands": [
+        "easyeda pcb config get --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb config clearance --name copperThickness1oz --track-to-track 6 --dry-run --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb config clearance --name copperThickness1oz --track-to-track 6 --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb config track --name copperThickness1oz --min 8 --default 8 --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb config get --doc <PCB_DOC_UUID> --project ceshi"
+      ],
+      "observations": [
+        "保存重开后规则精确回读为题目值"
+      ],
+      "rationale": "按字段修改真实规则，保留未指定的间距矩阵格和其他字段；6mil 不适用于所有对象类型",
+      "knownErrorsAndFixes": [
+        {
+          "error": "只修改一项导致其他规则被默认覆盖",
+          "fix": "用 config get 保留原配置，经 config clearance/track 显式修改目标字段，回读并比较其他字段"
+        }
+      ],
+      "verificationStatus": "live-verified",
+      "pending": [],
+      "liveEvidence": "Web 3.2.203完整规则写入并整页刷新回读：间距6mil，信号默认/最小8mil；2026-09-20 后续 config 入口已 typed 写入、保存重载、幂等重放与恢复，详见 pcb-config.md",
+      "referenceExample": "../../pcb-config.md"
+    },
+    {
+      "id": "PCB-03",
+      "source": [
+        "考试说明.pdf p2,p7"
+      ],
+      "problem": "建立 PWR 规则和 PWR_Class 电源网成员",
+      "startState": "完整网表与 DRC rules 可读取；从 config get 核对样例规则名确实存在",
+      "parameters": [
+        {
+          "name": "powerWidthDefault",
+          "value": 20,
+          "unit": "mil",
+          "modifiable": false
+        },
+        {
+          "name": "powerWidthMin",
+          "value": 8,
+          "unit": "mil",
+          "modifiable": false
+        },
+        {
+          "name": "netClassName",
+          "value": "PWR_Class",
+          "unit": "name",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "pcbReadback"
+      },
+      "commands": [
+        "easyeda pcb config get --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb config track --name PWR --copy-from copperThickness1oz --min 8 --default 20 --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb net-class create --name PWR_Class --net +5V --net +3V3 --net GND --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb config bind --class PWR_Class --track-rule PWR --dry-run --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb config bind --class PWR_Class --track-rule PWR --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb config get --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb net-class list --doc <PCB_DOC_UUID> --project ceshi"
+      ],
+      "observations": [
+        "net-class list 返回 PWR_Class 与 +5V/+3V3/GND；drc-rules 回读 PWR 默认 20mil、最小 8mil 和对应 netRules 绑定"
+      ],
+      "rationale": "推导型线宽表不是编辑器持久化 net class",
+      "knownErrorsAndFixes": [
+        {
+          "error": "运行 pcb net-classes 后误认为已建类",
+          "fix": "用 singular net-class create/list 写入并回读"
+        },
+        {
+          "error": "只创建 PWR_Class 成员却未创建/绑定 PWR 规则",
+          "fix": "用 config track 建 PWR，再用 config bind 关联类及成员子项，回读规则值、成员和绑定"
+        }
+      ],
+      "verificationStatus": "live-verified",
+      "pending": [],
+      "liveEvidence": "PWR默认20mil/最小8mil；PWR_Class父子规则绑定+5V/+3V3/GND，整页刷新后保持；2026-09-20 后续 config 入口已 typed 写入、保存重载、幂等重放与恢复，详见 pcb-config.md",
+      "referenceExample": "../../pcb-config.md"
+    },
+    {
+      "id": "PCB-04",
+      "source": [
+        "考试说明.pdf p2,p7"
+      ],
+      "problem": "设置过孔最小外径/孔径 24/12mil",
+      "startState": "完整 DRC rules 可读取；从 config get 核对样例规则名确实存在",
+      "parameters": [
+        {
+          "name": "viaOuterMin",
+          "value": 24,
+          "unit": "mil",
+          "modifiable": false
+        },
+        {
+          "name": "viaHoleMin",
+          "value": 12,
+          "unit": "mil",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "pcbReadback"
+      },
+      "commands": [
+        "easyeda pcb config get --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb config via --name viaSize --min-outer 24 --min-hole 12 --dry-run --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb config via --name viaSize --min-outer 24 --min-hole 12 --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb config get --doc <PCB_DOC_UUID> --project ceshi"
+      ],
+      "observations": [
+        "规则回读显示 24/12mil，实际过孔不小于下限"
+      ],
+      "rationale": "钻孔和外径必须成对设置并由 DRC 约束",
+      "knownErrorsAndFixes": [
+        {
+          "error": "把孔径和外径写反",
+          "fix": "用 min-outer/min-hole 显式区分，先 dry-run 再写入、保存与回读；默认值和上限需容纳题定最小值"
+        }
+      ],
+      "verificationStatus": "live-verified",
+      "pending": [],
+      "liveEvidence": "过孔外径/孔径最小24/12mil，整页刷新后保持；2026-09-20 后续 config 入口已 typed 写入、保存重载、幂等重放与恢复，详见 pcb-config.md",
+      "referenceExample": "../../pcb-config.md"
+    },
+    {
+      "id": "PCB-05",
+      "source": [
+        "考试说明.pdf p2,p5"
+      ],
+      "problem": "建立 90×50mm、R3、10mil 真圆弧板框和左下显示原点",
+      "startState": "未布线目标 PCB 可修改板框",
+      "parameters": [
+        {
+          "name": "width",
+          "value": 90,
+          "unit": "mm",
+          "modifiable": false
+        },
+        {
+          "name": "height",
+          "value": 50,
+          "unit": "mm",
+          "modifiable": false
+        },
+        {
+          "name": "radius",
+          "value": 3,
+          "unit": "mm",
+          "modifiable": false
+        },
+        {
+          "name": "lineWidth",
+          "value": 0.254,
+          "unit": "mm",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "pcbReadback"
+      },
+      "commands": {
+        "template": "pcbReadback"
+      },
+      "observations": [
+        "centerline width/height、radius、sourceArcs/nativeArcs、lineWidth、locked 和 origin 均回读"
+      ],
+      "rationale": "rendered bbox 含描边，不能判断名义尺寸",
+      "knownErrorsAndFixes": [
+        {
+          "error": "用 bbox 得到 90.254×50.254mm 或用折线圆角",
+          "fix": "按 fixed-mechanics.md 使用 centerlineBBox 和 ARC source"
+        }
+      ],
+      "verificationStatus": "live-verified",
+      "pending": [],
+      "referenceExample": "fixed-mechanics.md",
+      "liveEvidence": "中心线90×50mm、R3、10mil、4原生圆弧、原点(0,0)、锁定，整页刷新回读"
+    },
+    {
+      "id": "PCB-06",
+      "source": [
+        "考试说明.pdf p2-p3"
+      ],
+      "problem": "放置并锁定四孔、U6 和 CARD1",
+      "startState": "板框已建立，目标实例有新鲜 bbox",
+      "parameters": [
+        {
+          "name": "placements",
+          "value": "source-manifest.fixedPlacementsMm",
+          "unit": "mm exam coordinate; coordinateSemantic is an explicit source parameter",
+          "modifiable": false
+        },
+        {
+          "name": "lockedRefs",
+          "value": [
+            "SCREW1",
+            "SCREW2",
+            "SCREW3",
+            "SCREW4",
+            "U6",
+            "CARD1"
+          ],
+          "unit": "reference",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "pcbReadback"
+      },
+      "commands": {
+        "template": "pcbReadback"
+      },
+      "observations": [
+        "读取显式 coordinateSemantic；再用 typed x/y、bbox、rotation、TOP layer 和 locked 核对六件"
+      ],
+      "rationale": "题面没有定义坐标基准时不得从界面猜测；本 Demo 显式采用 footprint-anchor，迁移时需来源或 typed 元数据证明",
+      "knownErrorsAndFixes": [
+        {
+          "error": "未做现场映射就假定题面坐标是 bbox center",
+          "fix": "语义缺失时标 unsupported；补 typed 元数据或来源参数后，再按语义选择 --patch 或 --center"
+        }
+      ],
+      "verificationStatus": "live-verified",
+      "pending": [],
+      "referenceExample": "fixed-mechanics.md",
+      "liveEvidence": "footprint anchor语义；四孔/U6/CARD1坐标、角度、锁定保存刷新后保持"
+    },
+    {
+      "id": "PCB-07",
+      "source": [
+        "考试说明.pdf p3"
+      ],
+      "problem": "固定 CN1 的 y=42mm、180°并保留 x 自由",
+      "startState": "CAN/ESD 通道尚未最终布局",
+      "parameters": [
+        {
+          "name": "y",
+          "value": 42,
+          "unit": "mm",
+          "modifiable": false
+        },
+        {
+          "name": "rotation",
+          "value": 180,
+          "unit": "degree",
+          "modifiable": false
+        },
+        {
+          "name": "x",
+          "value": null,
+          "unit": "mm",
+          "modifiable": true
+        }
+      ],
+      "steps": {
+        "template": "pcbReadback"
+      },
+      "commands": {
+        "template": "pcbReadback"
+      },
+      "observations": [
+        "读取显式 coordinateSemantic；再用 typed 回读核对 CN1 y/rotation，x 保留 CAN 关键路径计算来源"
+      ],
+      "rationale": "保留单轴自由度可避免提前堵塞 CAN 顶层路径",
+      "knownErrorsAndFixes": [
+        {
+          "error": "过早锁定 x",
+          "fix": "先旋转和设置 y，排 CAN/ESD 后求 x"
+        }
+      ],
+      "verificationStatus": "live-verified",
+      "pending": [],
+      "referenceExample": "fixed-mechanics.md",
+      "liveEvidence": "CN1保持x=69mm候选、y=42mm、180°；x仍为可迁移参数；rendered bbox例外已记录"
+    },
+    {
+      "id": "PCB-08",
+      "source": [
+        "考试说明.pdf p3"
+      ],
+      "problem": "在 LCD 封装轮廓内建立元件禁放区",
+      "startState": "U3 已正确绑定 C2890616、OLED-SMD_ST7735S 和既有 3D model；只缺封装内 no-components region",
+      "parameters": [
+        {
+          "name": "regionType",
+          "value": "component-keepout",
+          "unit": "region",
+          "modifiable": false
+        },
+        {
+          "name": "scope",
+          "value": "LCD outline",
+          "unit": "footprint bbox",
+          "modifiable": true
+        }
+      ],
+      "steps": {
+        "template": "pcbReadback"
+      },
+      "commands": [
+        "easyeda sch list --include-device-identity --doc <SCH_DOC_UUID> --project ceshi",
+        "easyeda lib device get --uuid <DEVICE_UUID> --library <LIBRARY_UUID> --project ceshi",
+        "easyeda lib footprint get --uuid <SOURCE_FOOTPRINT_UUID> --library <LIBRARY_UUID> --project ceshi",
+        "easyeda lib libraries --project ceshi",
+        "easyeda lib footprint region --help",
+        "easyeda pcb region-create --help",
+        "easyeda pcb region-list --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb region-delete --ids <REGION_ID> --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb drc --doc <PCB_DOC_UUID> --project ceshi"
+      ],
+      "observations": [
+        "只读回读确认 U3 已绑定 C2890616、OLED-SMD_ST7735S 与 3D model 55cc08024bd249a298d835f2dd067767；这些不是 Agent 绘制的",
+        "Agent 新增的唯一几何是未绑定个人库副本中的一个 no-components region；现有 source footprint 的原位保存尝试返回 partial",
+        "library list 证明 source library 0819f05c4eef4c71ace90d822a990e87 是不可写 systemLibraryUuid；sch/PCB U3 已通过 typed uniqueId 修复恢复为同一 gge60",
+        "现场负例：按 U3 bbox 创建普通 top-level no-components region 后，DRC 新增 1 个 Device to Prohibited Region，冲突对象是 region 与 U3 自身；已 typed 删除并保存重载，region=0、DRC恢复216",
+        "系统封装复制到当前工程库的带分类/不带分类两次 typed 调用均由宿主以 EDA_CALL_FAILED 拒绝，没有返回目标 UUID；组合能力标 unsupported 并在本 Demo 跳过"
+      ],
+      "rationale": "封装级禁元件区与铜禁布区不同；增加区域必须保持现有 device、footprint、3D model 关联不变",
+      "knownErrorsAndFixes": [
+        {
+          "error": "把“给既有 LCD 封装增加禁放区”误做成复制封装并重绑整个模型",
+          "fix": "先回读 device/footprint/3D model 与库类型；系统库在任何几何写入前拒绝。只有保持现有绑定的实例级/工程级 typed region 经现场验证后才可使用，否则保持 incomplete，不重绑。"
+        },
+        {
+          "error": "重绑定超时删除原 U3 后，继续把恢复后的原理图 import 到 PCB",
+          "fix": "参数化恢复原器件并保存重载；原理图/PCB uniqueId 不一致时禁止 PCB import-changes。现已 typed 恢复 U3 为同一 gge60 并完成保存重载对账。"
+        },
+        {
+          "error": "用普通板级 no-components region 覆盖 U3 外形，并把它当成实例/封装禁放区",
+          "fix": "先做 owner 自违规 DRC 负例；若 region 与 owner 器件互相报禁放冲突，立即 typed 删除并保存重载，不得忽略该 DRC。需要 owner-aware 实例能力。"
+        }
+      ],
+      "verificationStatus": "unsupported",
+      "pending": [
+        "未来若宿主/API 能力变化，先补齐并验证保持现有 U3 绑定的当前工程级 no-components region；当前 Demo 已明确跳过",
+        "恢复支持后保存回读 region，并确认 device、footprint、3D model 关联及 PCB U3 实例均未变化"
+      ],
+      "referenceExample": "layout-candidates.md",
+      "liveEvidence": "u3-existing-model-binding-live.json 证明模型绑定；u3-identity-reconcile-live.json 证明 sch/PCB U3 均为 gge60；u3-instance-region-negative-live.json 证明普通 top-level region 会让 U3 自身违规并完整回滚；live-validation.json 的 projectCopyNegative 证明工程库复制重复失败并记录 unsupported/skip 决定。个人库副本只证明 region 接口；当前实例禁放区仍未完成。"
+    },
+    {
+      "id": "LAY-01",
+      "source": [
+        "考试说明.pdf p3-p4"
+      ],
+      "problem": "安排按键等距及 USB/SWD/端子朝外",
+      "startState": "板框、固定件和接口 footprint 已知",
+      "parameters": [
+        {
+          "name": "buttonPitch",
+          "value": "equal",
+          "unit": "center spacing",
+          "modifiable": true
+        },
+        {
+          "name": "connectorFacing",
+          "value": "outward",
+          "unit": "direction",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "pcbReadback"
+      },
+      "commands": {
+        "template": "pcbReadback"
+      },
+      "observations": [
+        "按键中心间距相等；连接器开口/插拔走廊无同面阻挡"
+      ],
+      "rationale": "中心、开口面和 bbox 必须一起考虑",
+      "knownErrorsAndFixes": [
+        {
+          "error": "只贴板边但开口朝内",
+          "fix": "读 openings/bbox，按插拔方向放置并量走廊"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "真实 footprint opening 方向与局部图核对"
+      ]
+    },
+    {
+      "id": "LAY-02",
+      "source": [
+        "考试说明.pdf p4"
+      ],
+      "problem": "RGB 靠近 TYPE-C，光敏远离 RGB",
+      "startState": "USB1、LED1/U1、R10 的 bbox 已知",
+      "parameters": [
+        {
+          "name": "rgbRelation",
+          "value": "near USB",
+          "unit": "relative distance",
+          "modifiable": false
+        },
+        {
+          "name": "photoRelation",
+          "value": "far from RGB",
+          "unit": "relative distance",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "pcbReadback"
+      },
+      "commands": {
+        "template": "pcbReadback"
+      },
+      "observations": [
+        "两组距离关系在当前板尺寸下成立且不占用插拔通道"
+      ],
+      "rationale": "RGB 光会干扰光敏，关系需随板尺寸重算",
+      "knownErrorsAndFixes": [
+        {
+          "error": "复制另一块板的绝对坐标",
+          "fix": "用相对距离/分区参数重新求位置"
+        }
+      ],
+      "verificationStatus": "live-verified",
+      "pending": [],
+      "referenceExample": "layout-candidates.md",
+      "liveEvidence": "pcb layout-plan 选择并 typed apply LED candidate-01；保存和真实重载后 LED1 bbox 到圆角板框中心线20mil、到USB1锚点约556mil、到光敏R10约1739mil，模块内最小间隙8mil、到U3 LCD机械禁放代理35.6755mil；69件保持、仅五个RGB模块成员按候选变化"
+    },
+    {
+      "id": "LAY-03",
+      "source": [
+        "考试说明.pdf p4,p7"
+      ],
+      "problem": "布置 LDO 输入输出电容和顶层回流",
+      "startState": "U2/C3-C6 的 pads/bbox 已知",
+      "parameters": [
+        {
+          "name": "inputOrder",
+          "value": [
+            "C3 10uF",
+            "C4 100nF"
+          ],
+          "unit": "source→VIN",
+          "modifiable": false
+        },
+        {
+          "name": "outputOrder",
+          "value": [
+            "C5 10uF",
+            "C6 100nF"
+          ],
+          "unit": "VOUT→load",
+          "modifiable": true,
+          "basis": "本例候选供电焊盘触达顺序；电容仍并联。原题要求靠近输出端及顶层短地回路，没有唯一 PCB 走向答案。"
+        },
+        {
+          "name": "returnLayer",
+          "value": "TOP",
+          "unit": "layer",
+          "modifiable": false
+        },
+        {
+          "name": "secondPassCandidate",
+          "value": "ldo-layout-candidate.json",
+          "unit": "parameter file",
+          "modifiable": true,
+          "basis": "当前 Demo 已写入、保存重开并回读；迁移时仍必须用新鲜 bbox/pad 重新收敛"
+        },
+        {
+          "name": "liveRouteData",
+          "value": "ldo-route-live.json",
+          "unit": "parameter file",
+          "modifiable": true,
+          "basis": "当前封装与坐标下的局部铜实例；迁移时从语义路径重新计算 segments"
+        }
+      ],
+      "steps": {
+        "template": "pcbReadback"
+      },
+      "commands": {
+        "template": "pcbReadback"
+      },
+      "observations": [
+        "电容靠对应焊盘，+5V/+3V3 流向与顶层 GND 回流可追踪"
+      ],
+      "rationale": "相对焊盘和回路关系比器件中心距离更有意义",
+      "knownErrorsAndFixes": [
+        {
+          "error": "同网但电容在芯片另一侧或 GND 只靠底层铜",
+          "fix": "按 ldo-placement.md 从 pads 计算位置与路径"
+        }
+      ],
+      "verificationStatus": "live-verified",
+      "pending": [],
+      "referenceExample": "ldo-placement.md",
+      "liveEvidence": "第二轮五件相对布局与15段TOP/20mil局部铜已保存、typed reload并回读；0 via、0 overlap/outside/tight、0 dangling/floating/duplicate/acute/non-orthogonal/foreign-pad-overlap/clearance。pads/tracks/vias离线铜图找到C3→C4→U2.3、U2.2→U2.4→C5→C6及四只电容到U2.1的TOP路径；整板主干与最终DRC仍不在本条范围内。"
+    },
+    {
+      "id": "LAY-04",
+      "source": [
+        "考试说明.pdf p4,p7"
+      ],
+      "problem": "为 MCU 每个电源脚分配去耦并使电源先经过电容",
+      "startState": "U6 真实电源 pins 与 C14-C16 可读",
+      "parameters": [
+        {
+          "name": "decouplingOwnership",
+          "value": {
+            "C14": "U6.1 VDD",
+            "C15": "U6.5 VDDA",
+            "C16": "U6.17 VDD"
+          },
+          "unit": "cap→pin",
+          "modifiable": false
+        },
+        {
+          "name": "powerFlow",
+          "value": "source→cap→pin",
+          "unit": "topology",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "pcbReadback"
+      },
+      "commands": {
+        "template": "pcbReadback"
+      },
+      "observations": [
+        "pin→cap 所有权表完整；实际铜路径先到电容再到对应 pin"
+      ],
+      "rationale": "同网和距离不能证明去耦归属与电流路径",
+      "knownErrorsAndFixes": [
+        {
+          "error": "把三个电容放在 MCU 附近却对应错脚",
+          "fix": "按真实电源脚逐个分配并回读路径"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "完成 source→cap→对应 pin 的实际铜路径并回读；本条把布局和电流路径一起定义，不能只凭坐标升级"
+      ],
+      "referenceExample": "layout-candidates.md",
+      "liveEvidence": "布局子步骤已live-verified：pcb layout-plan按C14→U6.1、C15→U6.5、C16→U6.17选择8mil candidate-01并typed apply，保存重载后U6锁定且未移动，三只电容实际焊盘距离约75.7/123.0/52.1mil。相同的显式归属已迁移到CAN C13→U5.3/C12→C13、SD C19→CARD1.4/C18→C19、CH340N C9→U4.8/C10→U4.5及LCD C7→U3.10，并完成第二批保存重载；source→cap→pin铜路径尚未验证，所以整条状态不升级。"
+    },
+    {
+      "id": "LAY-05",
+      "source": [
+        "考试说明.pdf p4"
+      ],
+      "problem": "晶振靠 MCU 且不贴板边；蜂鸣器与背光驱动成组",
+      "startState": "相关器件 bbox/pads 已知",
+      "parameters": [
+        {
+          "name": "crystalRelation",
+          "value": "near OSC pins, away from edge",
+          "unit": "relative",
+          "modifiable": false
+        },
+        {
+          "name": "driverGroups",
+          "value": [
+            "buzzer",
+            "LCD backlight"
+          ],
+          "unit": "functional group",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "pcbReadback"
+      },
+      "commands": {
+        "template": "pcbReadback"
+      },
+      "observations": [
+        "晶振/负载电容形成紧凑区；驱动件随核心整体放置"
+      ],
+      "rationale": "关键小回路和驱动链拆散会增加线长与回流问题",
+      "knownErrorsAndFixes": [
+        {
+          "error": "只按位号排序散放外围",
+          "fix": "按 source-connectivity 的所有权与关键 pins 成组"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "蜂鸣器模块整体关系仍需按候选执行和保存重载；晶振与LCD背光布局子步骤已经完成"
+      ],
+      "referenceExample": "layout-candidates.md",
+      "liveEvidence": "晶振布局子步骤已live-verified：X1/C20/C21保存重开后焊盘左右次序正确且两条U6↔X1直连不再相交。LCD背光链R6/Q1/R4/R5已按逐脚关系选择candidate-01并保存重载，U3未移动；蜂鸣器仍未闭环，晶振/LCD实际铜、顶层包地和回流也不在这些布局子步骤范围内。"
+    },
+    {
+      "id": "LAY-06",
+      "source": [
+        "考试说明.pdf p4"
+      ],
+      "problem": "保证全件顶层、无重叠且合法位于板内/禁放区外",
+      "startState": "69 个器件已导入并有 bbox",
+      "parameters": [
+        {
+          "name": "assemblyLayer",
+          "value": "TOP",
+          "unit": "layer",
+          "modifiable": false
+        },
+        {
+          "name": "instanceCount",
+          "value": 69,
+          "unit": "component",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "pcbReadback"
+      },
+      "commands": {
+        "template": "pcbReadback"
+      },
+      "observations": [
+        "69 件 layer=TOP；真实 overlap=0；焊盘/本体满足板框与 LCD 禁放区"
+      ],
+      "rationale": "布局合法性需要对象级几何，不靠截图或总分",
+      "knownErrorsAndFixes": [
+        {
+          "error": "只看中心在板内，忽略 bbox 或 LCD keepout",
+          "fix": "结合 bbox、pads、outline points 和 region 检查"
+        }
+      ],
+      "verificationStatus": "offline-verified",
+      "pending": [
+        "完成个人库LCD component-keepout到当前U3原理图/PCB实例的安全绑定；消歧CN1 rendered bbox描边；12mil仅是原检查的建议阈值，按实际本体/装配空间与后续通道逐项判断"
+      ],
+      "referenceExample": "layout-candidates.md",
+      "liveEvidence": "第二批CAN/SD/USB-UART/LCD外围保存重载后仍为69件，恰好11件按候选变化，15段LDO铜不变；layout-lint为0 overlap/0 off-board/0 tight-at-6mil。用户重开浏览器后typed只读复核仍保持器件primitive集合、几何、板框和15段铜不变。个人库副本region已保存，但当前U3实例未绑定；因此本条仍不升级为live-verified。"
+    },
+    {
+      "id": "RTE-01",
+      "source": [
+        "考试说明.pdf p5"
+      ],
+      "problem": "从焊盘端部出线、窄焊盘缩颈并避免直角/锐角",
+      "startState": "焊盘几何和实时线宽规则已读取",
+      "parameters": [
+        {
+          "name": "signalWidth",
+          "value": 8,
+          "unit": "mil",
+          "modifiable": false
+        },
+        {
+          "name": "cornerAngles",
+          "value": [
+            45,
+            90
+          ],
+          "unit": "degree",
+          "modifiable": true
+        }
+      ],
+      "steps": {
+        "template": "routeReadback"
+      },
+      "commands": {
+        "template": "routeReadback"
+      },
+      "observations": [
+        "轨迹端点落在焊盘可连接区；线宽不超过窄焊盘；无不允许锐角"
+      ],
+      "rationale": "焊盘中心起线或过宽轨会影响制造和扇出",
+      "knownErrorsAndFixes": [
+        {
+          "error": "整段统一 20mil 穿出细焊盘",
+          "fix": "在短 neck 段使用允许最小宽度，再恢复目标宽度"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "在 ceshi 真实页面执行并完成 save → doc reload → readback"
+      ]
+    },
+    {
+      "id": "RTE-02",
+      "source": [
+        "考试说明.pdf p5,p8"
+      ],
+      "problem": "按电流区分电源主干、支路和过孔",
+      "startState": "PWR 规则和负载路径已明确",
+      "parameters": [
+        {
+          "name": "powerRuleDefaultWidth",
+          "value": 20,
+          "unit": "mil",
+          "modifiable": false,
+          "basis": "PWR 规则默认值；实际主干可按电流加粗，不表示所有电源铜固定20mil"
+        },
+        {
+          "name": "branchWidthMin",
+          "value": 8,
+          "unit": "mil",
+          "modifiable": false
+        },
+        {
+          "name": "viaOuterHoleMin",
+          "value": [
+            24,
+            12
+          ],
+          "unit": "mil",
+          "modifiable": false,
+          "basis": "外径/孔径下限，实际过孔可按载流与空间增大"
+        }
+      ],
+      "steps": {
+        "template": "routeReadback"
+      },
+      "commands": {
+        "template": "routeReadback"
+      },
+      "observations": [
+        "每段/过孔的网、宽、载流角色和流向可追踪"
+      ],
+      "rationale": "同一电源网不同段承担电流不同，不能只看网名",
+      "knownErrorsAndFixes": [
+        {
+          "error": "所有电源段都用最小线宽",
+          "fix": "按源头到负载累计电流分主干/支路并读回"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "在 ceshi 真实页面执行并完成 save → doc reload → readback"
+      ]
+    },
+    {
+      "id": "RTE-03",
+      "source": [
+        "考试说明.pdf p4-p5,p8",
+        "用户 2026-09-22 复核与参考图：受控 MCU 间距、短直信号、GND 护环、禁铺区和外围地孔"
+      ],
+      "problem": "晶振靠 MCU 但不贴压；OSC 信号短直；TOP GND 护环；TOP/BOTTOM no-pours；护环外侧 GND 过孔围栏",
+      "startState": "旧晶振铜已证明 TOP/8mil/0via 和持久化，但缺受控间距、GND 护环、双层禁铺区与外围地孔，已不再接受为最终设计",
+      "parameters": [
+        {
+          "name": "layer",
+          "value": "TOP",
+          "unit": "layer",
+          "modifiable": true,
+          "basis": "本例推荐策略；原题要求短直、避免底层，没有单列晶振绝对零过孔禁令。调整时须记录实际路径与回流理由。"
+        },
+        {
+          "name": "viaCount",
+          "value": 0,
+          "unit": "via per net",
+          "modifiable": true,
+          "basis": "本例推荐策略；原题要求短直、避免底层，没有单列晶振绝对零过孔禁令。调整时须记录实际路径与回流理由。"
+        },
+        {
+          "name": "pathStyle",
+          "value": "short/direct",
+          "unit": "geometry",
+          "modifiable": false
+        },
+        {
+          "name": "mcuGap",
+          "value": "derived from live pads/bbox/rules/guard width",
+          "unit": "mil",
+          "modifiable": true,
+          "basis": "靠近但保持可控间距；不从参考图复制常数"
+        },
+        {
+          "name": "groundGuard",
+          "value": "TOP GND perimeter track with minimum signal openings",
+          "unit": "geometry",
+          "modifiable": false
+        },
+        {
+          "name": "copperKeepout",
+          "value": "TOP+BOTTOM no-pours regions over derived sensitive envelope",
+          "unit": "region",
+          "modifiable": false
+        },
+        {
+          "name": "groundViaFence",
+          "value": "perimeter-only GND vias outside no-pours envelope",
+          "unit": "via set",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "routeReadback"
+      },
+      "commands": {
+        "template": "routeReadback"
+      },
+      "observations": [
+        "OSC_IN/OSC_OUT 轨迹层、长度、via 数与周边 GND 证据完整",
+        "GND 护环、TOP/BOTTOM no-pours regions、外围 GND 过孔围栏分别有对象级回读",
+        "pour-rebuild 后禁铺包络内没有 pour/fill 铜"
+      ],
+      "rationale": "晶振环路对寄生和回流敏感",
+      "knownErrorsAndFixes": [
+        {
+          "error": "绕远、贴板边，或把推荐 TOP/0via 误作考试硬阈值",
+          "fix": "按 OSC 脚次序重排 X1/C20/C21 并求短路径，优先顶层；以原题定性要求和实际回流评估"
+        },
+        {
+          "error": "只证明两条 OSC 连通就称晶振区通过",
+          "fix": "把器件、信号铜、GND 护环、双层 no-pours regions 和外围 GND 过孔围栏作为一个 crystal-guard 模块联合验收"
+        },
+        {
+          "error": "用 via-stitch 满矩形网格在晶振禁铺区内部打孔",
+          "fix": "使用 perimeter-only 的 pcb via-fence；孔放在护环外侧或禁铺边界之外，并按 live 规则回读/DRC"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "按 crystal-guard-requirement.json 重算完整模块并在现场保存重载",
+        "回读两条 OSC、有源 GND 护环、两层 no-pours regions、外围 GND 过孔和 pour-rebuild 后官方 DRC"
+      ],
+      "referenceExample": "critical-routing.md",
+      "requirementData": "crystal-guard-requirement.json",
+      "capabilityEvidence": "通用 pcb via-fence 已实现 perimeter-only 等距边界点、唯一角点、向外 margin、live 过孔规则与 dry-run；Go 单测和 CLI dry-run 已通过，现场写入仍待 crystal-guard 候选确认后执行",
+      "historicalLiveEvidence": "crystal-route-live.json：旧方案的两条有序路径已证明TOP/8mil/0via、基础几何、保存重载和锁定；用户复核后因缺GND护环、双层禁铺区、外围地孔且路径可继续缩短，降为最终设计负例"
+    },
+    {
+      "id": "RTE-04",
+      "source": [
+        "考试说明.pdf p5,p8"
+      ],
+      "problem": "USB_D+/D- 顶层无过孔，按类差分路径布线但不新增等长要求",
+      "startState": "USB1 到 U4 的真实网络/pads 已知",
+      "parameters": [
+        {
+          "name": "layer",
+          "value": "TOP",
+          "unit": "layer",
+          "modifiable": false
+        },
+        {
+          "name": "viaCount",
+          "value": 0,
+          "unit": "via per net",
+          "modifiable": false
+        },
+        {
+          "name": "equalLengthRequired",
+          "value": false,
+          "unit": "boolean",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "routeReadback"
+      },
+      "commands": {
+        "template": "routeReadback"
+      },
+      "observations": [
+        "两网同层、无 via、并行/间距合理；记录长度但不按未要求阈值判错"
+      ],
+      "rationale": "题目只要求类差分形态，擅加等长约束会改变评分目标",
+      "knownErrorsAndFixes": [
+        {
+          "error": "套用通用 USB 等长阈值",
+          "fix": "按题意回读层和 via，长度只作为观察值"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "在 ceshi 真实页面执行并完成 save → doc reload → readback"
+      ]
+    },
+    {
+      "id": "RTE-05",
+      "source": [
+        "考试说明.pdf p5,p8"
+      ],
+      "problem": "CANH/CANL 顶层无过孔，各先经 R12 对应焊盘再到 CN1；120Ω 仍跨接 H/L，ESD 靠端子",
+      "startState": "U5/D1/R12/CN1 网络拓扑已核对",
+      "parameters": [
+        {
+          "name": "termination",
+          "value": 120,
+          "unit": "Ω",
+          "modifiable": false
+        },
+        {
+          "name": "layer",
+          "value": "TOP",
+          "unit": "layer",
+          "modifiable": false
+        },
+        {
+          "name": "viaCount",
+          "value": 0,
+          "unit": "via per net",
+          "modifiable": false
+        },
+        {
+          "name": "requiredPadOrder",
+          "value": {
+            "CANH": [
+              "U5.7",
+              "R12.CANH pad",
+              "CN1.2"
+            ],
+            "CANL": [
+              "U5.6",
+              "R12.CANL pad",
+              "CN1.1"
+            ]
+          },
+          "unit": "ordered pads per net",
+          "modifiable": false,
+          "basis": "说明 p5,p8；R12 焊盘编号按实际网映射读取，不猜测"
+        }
+      ],
+      "steps": {
+        "template": "routeReadback"
+      },
+      "commands": {
+        "template": "routeReadback"
+      },
+      "observations": [
+        "H/L 实际铜路各先到 R12 对应焊盘再到 CN1；R12 跨两网，D1 靠 CN1 并短路径回地；两网层与 via 数符合要求",
+        "36段 v5 已满足有序 R12 节点、45°、6mil 和 0via 的离散检查；H支路仍从D1.1本体侧进入，未写入EDA。两路绝对长度和段数仅留在 historicalObservation，不参与拒绝判决。"
+      ],
+      "rationale": "终端和 ESD 的拓扑/位置职责不同，不能串接或远置",
+      "knownErrorsAndFixes": [
+        {
+          "error": "把 120Ω 串在线上或 ESD 靠收发器",
+          "fix": "先验证网表跨接，再量端子到 ESD 与走线路径"
+        },
+        {
+          "error": "只验证 R12 跨接，把 U5→D1→CN1 加 R12 支路当作完成题定路径",
+          "fix": "把每网 R12 焊盘列为必经节点，按实际铜验证先后；从焊盘末端出线，不横穿阻容焊盘中间"
+        }
+      ],
+      "verificationStatus": "offline-verified",
+      "pending": "CAN专用路由器扩张在本轮暂停；R12/D1当前位置方向由通用rigid零位移候选接受，实际有序铜路留到布线阶段。",
+      "referenceExample": "critical-routing.md",
+      "offlineEvidence": "旧统一6mil障碍简化模型保持 U5→D1→CN1 与 R12 跨接，但未验证 R12 必经顺序；CANL 长1422.4mil，仅作待修反例，不能代表题目路径已通过",
+      "livePlacementIteration": {
+        "status": "live-verified",
+        "outcome": "layout-pose-accepted-routing-negative-retained",
+        "data": "can-placement-iteration-live.json",
+        "verified": "D1/CN1 的 H/L 保护支路由约217/295mil改为约169/169mil；R12=(2630,1510)@0°、D1=(2791.5,1528.151)@270° 的当前位置由通用rigid候选接受；69件仍全TOP、0 overlap、0 off-board、0 tight-spacing；CANH/CANL仍为0 track/0 arc/0 via",
+        "rejected": "纯MST仍有两处H/L相交，R12 y=1488.8简单对齐会异网共线穿越；这些只作为实际布线反例，不再拒绝当前位置与方向",
+        "layoutCandidate": "layout-candidates-can-current-board/candidate-01.json"
+      },
+      "historicalObservation": {
+        "candidate": "can-route-plan-pair-negative.json",
+        "report": "can-route-plan-pair-negative-report.json",
+        "notExecuted": true,
+        "facts": {
+          "CANHMainMil": 606.0087,
+          "CANHMainSegments": 11,
+          "CANLMainMil": 1040.5245,
+          "CANLMainSegments": 21
+        },
+        "reason": "避障成功仍不代表两路布局关系合适；另有D1.1本体侧进入的真实几何错误。绝对长度和段数只用于复盘，不构成考试阈值。"
+      }
+    },
+    {
+      "id": "RTE-06",
+      "source": [
+        "考试说明.pdf p5,p8"
+      ],
+      "problem": "PA9/10、PA11/12、PA13/14 顶层且不换层",
+      "startState": "六条网络和端点 pads 可读",
+      "parameters": [
+        {
+          "name": "nets",
+          "value": [
+            "PA9",
+            "PA10",
+            "PA11",
+            "PA12",
+            "PA13",
+            "PA14"
+          ],
+          "unit": "net",
+          "modifiable": false
+        },
+        {
+          "name": "layer",
+          "value": "TOP",
+          "unit": "layer",
+          "modifiable": false
+        },
+        {
+          "name": "viaCount",
+          "value": 0,
+          "unit": "via per net",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "routeReadback"
+      },
+      "commands": {
+        "template": "routeReadback"
+      },
+      "observations": [
+        "逐网 layer=TOP、via count=0，端点全部连通"
+      ],
+      "rationale": "这些接口路径先决定相关芯片位置，避免后期被迫换层",
+      "knownErrorsAndFixes": [
+        {
+          "error": "只检查总 via 数",
+          "fix": "逐网过滤 tracks/vias 并记录端点"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "在 ceshi 真实页面执行并完成 save → doc reload → readback"
+      ]
+    },
+    {
+      "id": "RTE-07",
+      "source": [
+        "考试说明.pdf p5"
+      ],
+      "problem": "仅 U6 EP 使用散热过孔，普通焊盘禁止 via-in-pad",
+      "startState": "U6 EP 与普通 pads 可区分",
+      "parameters": [
+        {
+          "name": "thermalPad",
+          "value": "U6 EP",
+          "unit": "pad",
+          "modifiable": false
+        },
+        {
+          "name": "ordinaryViaInPadAllowed",
+          "value": false,
+          "unit": "boolean",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "routeReadback"
+      },
+      "commands": {
+        "template": "routeReadback"
+      },
+      "observations": [
+        "EP thermal vias 有 GND 归属；其他 pad center 无 via"
+      ],
+      "rationale": "散热焊盘和普通可焊焊盘的制造风险不同",
+      "knownErrorsAndFixes": [
+        {
+          "error": "把地扇孔直接放进普通 SMD pad",
+          "fix": "仅 EP 按封装/工艺布散热孔，其余 dog-bone 偏移"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "在 ceshi 真实页面执行并完成 save → doc reload → readback"
+      ]
+    },
+    {
+      "id": "RTE-08",
+      "source": [
+        "考试说明.pdf p5-p6,p8"
+      ],
+      "problem": "限制普通信号同网过孔并完成 GND 扇孔/缝合",
+      "startState": "信号 tracks、vias 与 GND 铜可读",
+      "parameters": [
+        {
+          "name": "signalViaMax",
+          "value": 2,
+          "unit": "via per net",
+          "modifiable": false
+        },
+        {
+          "name": "groundVias",
+          "value": "as required",
+          "unit": "count",
+          "modifiable": true
+        }
+      ],
+      "steps": {
+        "template": "routeReadback"
+      },
+      "commands": {
+        "template": "routeReadback"
+      },
+      "observations": [
+        "按信号网统计 via≤2；GND 扇孔/缝合形成回流，未混入普通信号上限"
+      ],
+      "rationale": "总 via 数不能区分信号换层与地回流用途",
+      "knownErrorsAndFixes": [
+        {
+          "error": "按整板总 via 数判定或让普通网超过 2",
+          "fix": "按网和用途分类统计并结合铜连通检查"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "在 ceshi 真实页面执行并完成 save → doc reload → readback"
+      ]
+    },
+    {
+      "id": "FIN-01",
+      "source": [
+        "考试说明.pdf p6,p8"
+      ],
+      "problem": "设置 Arial、≥45mil 顶层丝印、有限方向、接口提示和姓名/客户编号/学习板标识",
+      "startState": "布局完成且 silk 对象可读取",
+      "parameters": [
+        {
+          "name": "fontFamily",
+          "value": "Arial",
+          "unit": "font",
+          "modifiable": false
+        },
+        {
+          "name": "fontHeightMin",
+          "value": 45,
+          "unit": "mil",
+          "modifiable": false
+        },
+        {
+          "name": "layer",
+          "value": "TOP_SILK",
+          "unit": "layer",
+          "modifiable": false
+        },
+        {
+          "name": "directionCountMax",
+          "value": 2,
+          "unit": "direction",
+          "modifiable": false
+        },
+        {
+          "name": "sourceIdentitySilk",
+          "value": [
+            "<REAL_NAME>",
+            "<CUSTOMER_ID>",
+            "AT32F415 学习板"
+          ],
+          "unit": "three required texts",
+          "modifiable": false
+        },
+        {
+          "name": "demoIdentitySilk",
+          "value": [
+            "Demo",
+            "Demo",
+            "AT32F415 学习板"
+          ],
+          "unit": "three Demo texts",
+          "modifiable": true
+        }
+      ],
+      "steps": {
+        "template": "pcbReadback"
+      },
+      "commands": [
+        "easyeda pcb silk-add --text <REAL_NAME_OR_DEMO> --x <X1> --y <Y1> --font-family Arial --font-size 45 --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb silk-add --text <CUSTOMER_ID_OR_DEMO> --x <X2> --y <Y2> --font-family Arial --font-size 45 --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb silk-add --text \"AT32F415 学习板\" --x <X3> --y <Y3> --font-family Arial --font-size 45 --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb silk-set --ids <IDS> --font-family Arial --font-size 45 --doc <PCB_DOC_UUID> --project ceshi",
+        "easyeda pcb silk-list --doc <PCB_DOC_UUID> --project ceshi"
+      ],
+      "observations": [
+        "silk list 回传真实字体、字号、层、旋转；姓名/客户编号/学习板三项均存在；接口文字与实际针脚一致"
+      ],
+      "rationale": "丝印既要可制造也要与连接语义一致",
+      "knownErrorsAndFixes": [
+        {
+          "error": "只看截图字体相似或接口标注与针脚错位",
+          "fix": "silk-add/set 写字体并回读，按实际 pin 顺序生成文字"
+        },
+        {
+          "error": "遗漏 PCB 空白处的姓名、客户编号或 AT32F415 学习板任一标识",
+          "fix": "把三项作为独立丝印对象写入，并在 silk-list 中逐项对账"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "现场确定空白区，写入 Demo 身份三项丝印，save/reload/list"
+      ]
+    },
+    {
+      "id": "FIN-02",
+      "source": [
+        "考试说明.pdf p6,p8"
+      ],
+      "problem": "完成顶底层 GND 铜并保持完整回流",
+      "startState": "信号与电源关键路径已完成",
+      "parameters": [
+        {
+          "name": "net",
+          "value": "GND",
+          "unit": "net",
+          "modifiable": false
+        },
+        {
+          "name": "layers",
+          "value": [
+            "TOP",
+            "BOTTOM"
+          ],
+          "unit": "layer",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "routeReadback"
+      },
+      "commands": {
+        "template": "routeReadback"
+      },
+      "observations": [
+        "top/bottom pours 绑定 GND；孤岛、断头和连接错误有具体 findings"
+      ],
+      "rationale": "双面铜需要缝合与重建才能形成有效参考面",
+      "knownErrorsAndFixes": [
+        {
+          "error": "只创建 region/fill 或铺铜后不 rebuild",
+          "fix": "使用 net-bound pour、缝合孔、pour-rebuild 和 DRC"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "在 ceshi 真实页面执行并完成 save → doc reload → readback"
+      ]
+    },
+    {
+      "id": "FIN-03",
+      "source": [
+        "考试说明.pdf p6,p8"
+      ],
+      "problem": "添加真实泪滴后重建铺铜",
+      "startState": "所有走线与焊盘连接已完成",
+      "parameters": [
+        {
+          "name": "operation",
+          "value": "typed teardrop creation",
+          "unit": "capability",
+          "modifiable": false
+        },
+        {
+          "name": "rebuildAfter",
+          "value": true,
+          "unit": "boolean",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "routeReadback"
+      },
+      "commands": {
+        "template": "routeReadback"
+      },
+      "observations": [
+        "typed readback 证明真实 pad-to-track 泪滴存在；重铺铜后 DRC/连接未回退"
+      ],
+      "rationale": "当前 eda.* 无创建泪滴 API，走线圆角不是泪滴",
+      "knownErrorsAndFixes": [
+        {
+          "error": "用 pcb beautify 冒充泪滴或忘记重铺铜",
+          "fix": "保持 unsupported；先实现真实泪滴的 typed 创建和回读，再执行 pour-rebuild、check、DRC"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "实现并验证真实泪滴的 typed 创建/回读接口；禁止交互或手工补做"
+      ]
+    },
+    {
+      "id": "FIN-04",
+      "source": [
+        "考试说明.pdf p6,p8"
+      ],
+      "problem": "达到 100% 布通、无断头、DRC 无错误并保存重开",
+      "startState": "69 件布局、全部走线、铜、丝印和泪滴已完成",
+      "parameters": [
+        {
+          "name": "connectivity",
+          "value": 100,
+          "unit": "percent",
+          "modifiable": false
+        },
+        {
+          "name": "drcErrors",
+          "value": 0,
+          "unit": "error",
+          "modifiable": false
+        }
+      ],
+      "steps": {
+        "template": "routeReadback"
+      },
+      "commands": {
+        "template": "routeReadback"
+      },
+      "observations": [
+        "Connection Error=0；dangling/floating findings=0；题目相关 DRC error=0；重开后对象仍在"
+      ],
+      "rationale": "连接、DFM 检查、DRC 和持久化是不同证据，必须分别保留",
+      "knownErrorsAndFixes": [
+        {
+          "error": "只看命令成功或保存前截图",
+          "fix": "分开记录 connectivity/check/DRC/save/reload/readback"
+        }
+      ],
+      "verificationStatus": "source-only",
+      "pending": [
+        "完成整板后执行最终保存重开与独立验证"
+      ]
+    }
+  ],
+  "executionPolicy": {
+    "allowed": [
+      "easyeda Cobra subcommand",
+      "typed action",
+      "easyeda apply"
+    ],
+    "forbidden": [
+      "GUI/CUA",
+      "mouse/keyboard/canvas",
+      "property panel/project tree",
+      "manual design repair",
+      "debug.exec_js design mutation"
+    ],
+    "missingCapability": "mark planned/unsupported; implement and validate a typed interface before live mutation"
+  }
+}

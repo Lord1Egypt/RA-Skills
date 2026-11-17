@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>微信公众号排版参考模板 · Linear 冷工程风</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f0f0f3;
+    padding: 40px 16px;
+  }
+  .page-wrap { max-width: 680px; margin: 0 auto; }
+  .toolbar {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .toolbar h1 {
+    font-size: 18px; color: #1a1a2e; margin-bottom: 6px;
+  }
+  .toolbar p { font-size: 13px; color: #888; line-height: 1.6; }
+  .toolbar .legend {
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: #f5f6fa;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #5a5a6a;
+    line-height: 1.8;
+  }
+  .toolbar .legend strong { color: #5B6FED; }
+  .copy-btn {
+    display: inline-block; margin-top: 12px;
+    padding: 10px 24px; background: #5B6FED; color: #fff;
+    border: none; border-radius: 8px; font-size: 14px; cursor: pointer;
+    transition: background .2s;
+  }
+  .copy-btn:hover { background: #4755d4; }
+  .preview-label {
+    font-size: 12px; color: #aaa; text-transform: uppercase;
+    letter-spacing: 2px; margin-bottom: 12px; padding-left: 4px;
+  }
+  .wechat-content {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- 工具栏 -->
+  <div class="toolbar">
+    <h1>微信公众号排版参考模板</h1>
+    <p>Linear 冷工程风格 · 全内联样式 · 本模板展示全部排版组件的占位示例，替换文字即可复用</p>
+    <div class="legend">
+      <strong>使用说明：</strong>本模板不含具体文章内容，每个组件用占位文字标注用途。<br>
+      复制下方预览区内容 → 粘贴到公众号编辑器 → 替换文字为你自己的内容即可。
+    </div>
+    <button class="copy-btn" onclick="copyContent()">一键复制排版内容</button>
+  </div>
+
+  <div class="preview-label">— 预览区 —</div>
+
+  <!-- ==================== 正文内容开始 ==================== -->
+  <div class="wechat-content" id="wechat-content">
+
+    <!-- ===== 1. 主标题区 ===== -->
+    <section style="padding: 32px 6px 8px; text-align: center;">
+      <section style="display: inline-block; padding: 4px 16px; background: #5B6FED; border-radius: 20px; margin-bottom: 16px;">
+        <span style="font-size: 12px; color: #ffffff; letter-spacing: 2px; font-weight: 600;">分类标签</span>
+      </section>
+      <h1 style="font-size: 24px; font-weight: 700; color: #1a1a2e; line-height: 1.5; letter-spacing: 1px; margin: 0;">文章主标题写在这里</h1>
+      <section style="margin-top: 12px;">
+        <span style="font-size: 13px; color: #999;">副标题或一句话描述，补充说明标题</span>
+      </section>
+    </section>
+
+    <!-- ===== 2. 分割线（渐变） ===== -->
+    <section style="padding: 16px 6px;">
+      <section style="height: 1px; background: linear-gradient(to right, transparent, #5B6FED, transparent);"></section>
+    </section>
+
+    <!-- ===== 3. 导语引用块 ===== -->
+    <section style="padding: 8px 6px 20px;">
+      <section style="background: #f5f6fa; border-left: 3px solid #5B6FED; border-radius: 0 8px 8px 0; padding: 16px 20px;">
+        <p style="font-size: 15px; color: #333; line-height: 1.9; margin: 0;">
+          导语文字内容，用于文章开头的引言或摘要。简短概括全文核心观点，引导读者继续阅读。
+        </p>
+      </section>
+    </section>
+
+    <!-- ===== 4. 二级标题 ===== -->
+    <section style="padding: 24px 6px 12px;">
+      <section style="display: flex; align-items: center; gap: 10px;">
+        <section style="width: 6px; height: 22px; background: #5B6FED; border-radius: 3px; flex-shrink: 0;"></section>
+        <h2 style="font-size: 19px; font-weight: 700; color: #1a1a2e; margin: 0;">章节标题</h2>
+      </section>
+    </section>
+
+    <!-- ===== 6. 正文段落 ===== -->
+    <section style="padding: 4px 6px 12px;">
+      <p style="font-size: 15px; color: #333; line-height: 2; margin: 0; letter-spacing: 0.5px;">
+        正文段落内容。每段控制在3-5行以内，段与段之间留空行，让页面有呼吸感。行高2.0，字间距0.5px，适合手机端阅读。
+      </p>
+    </section>
+
+    <!-- ===== 7. 行内强调 ===== -->
+    <section style="padding: 4px 6px 12px;">
+      <p style="font-size: 15px; color: #333; line-height: 2; margin: 0; letter-spacing: 0.5px;">
+        正文中的关键术语可以用<span style="color: #5B6FED; font-weight: 600;">主色加粗</span>或<span style="display: inline-block; padding: 2px 8px; background: #f5f6fa; border-radius: 4px; font-size: 13px; color: #5B6FED; font-weight: 600;">高亮标签</span>来突出，增强信息密度。
+      </p>
+    </section>
+
+    <!-- ===== 8. 强调卡片（核心洞察） ===== -->
+    <section style="padding: 8px 6px 12px;">
+      <section style="background: linear-gradient(135deg, #764ba222, #5B6FED11); border: 1px solid #5B6FED33; border-radius: 10px; padding: 16px 20px;">
+        <p style="font-size: 15px; color: #1a1a2e; line-height: 1.9; margin: 0; font-weight: 500;">
+          <span style="color: #5B6FED; font-weight: 700;">核心洞察：</span>强调卡片用于突出文章中最重要的结论或观点，渐变背景吸引注意力。
+        </p>
+      </section>
+    </section>
+
+    <!-- ===== 5. 三级标题 ===== -->
+    <section style="padding: 20px 6px 8px;">
+      <section style="display: flex; align-items: center; gap: 8px;">
+        <section style="width: 20px; height: 20px; background: #5B6FED; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <span style="font-size: 12px; color: #fff; font-weight: 700;">1.1</span>
+        </section>
+        <h3 style="font-size: 17px; font-weight: 600; color: #1a1a2e; margin: 0;">小节标题</h3>
+      </section>
+    </section>
+
+    <!-- ===== 9. 无序列表（圆点风格） ===== -->
+    <section style="padding: 8px 6px 12px;">
+      <p style="font-size: 15px; color: #333; line-height: 1.9; margin: 0 0 10px;">无序列表标题（可选）：</p>
+      <section style="padding-left: 4px;">
+        <section style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;">
+          <section style="width: 8px; height: 8px; background: #5B6FED; border-radius: 50%; margin-top: 9px; flex-shrink: 0;"></section>
+          <p style="font-size: 15px; color: #333; line-height: 1.9; margin: 0;"><span style="font-weight: 600; color: #1a1a2e;">要点一：</span>圆点风格无序列表项</p>
+        </section>
+        <section style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;">
+          <section style="width: 8px; height: 8px; background: #5B6FED; border-radius: 50%; margin-top: 9px; flex-shrink: 0;"></section>
+          <p style="font-size: 15px; color: #333; line-height: 1.9; margin: 0;"><span style="font-weight: 600; color: #1a1a2e;">要点二：</span>每项之间间距10px</p>
+        </section>
+        <section style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;">
+          <section style="width: 8px; height: 8px; background: #5B6FED; border-radius: 50%; margin-top: 9px; flex-shrink: 0;"></section>
+          <p style="font-size: 15px; color: #333; line-height: 1.9; margin: 0;"><span style="font-weight: 600; color: #1a1a2e;">要点三：</span>关键词加粗突出</p>
+        </section>
+      </section>
+    </section>
+
+    <!-- ===== 10. 无序列表（箭头风格） ===== -->
+    <section style="padding: 8px 6px 12px;">
+      <section style="padding-left: 4px;">
+        <section style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;">
+          <section style="min-width: 16px; font-size: 14px; color: #5B6FED; line-height: 1.9; flex-shrink: 0;">▸</section>
+          <p style="font-size: 15px; color: #333; line-height: 1.9; margin: 0;"><span style="font-weight: 600; color: #1a1a2e;">箭头风格：</span>用于并列要点，比圆点更轻量</p>
+        </section>
+        <section style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;">
+          <section style="min-width: 16px; font-size: 14px; color: #5B6FED; line-height: 1.9; flex-shrink: 0;">▸</section>
+          <p style="font-size: 15px; color: #333; line-height: 1.9; margin: 0;"><span style="font-weight: 600; color: #1a1a2e;">适用场景：</span>步骤说明、特性列举</p>
+        </section>
+      </section>
+    </section>
+
+    <!-- ===== 11. 有序列表 ===== -->
+    <section style="padding: 8px 6px 12px;">
+      <p style="font-size: 15px; color: #333; line-height: 1.9; margin: 0 0 12px;">有序列表标题（可选）：</p>
+      <section style="padding-left: 4px;">
+        <section style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;">
+          <section style="min-width: 24px; height: 24px; background: #5B6FED; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <span style="font-size: 13px; color: #fff; font-weight: 700;">1</span>
+          </section>
+          <p style="font-size: 15px; color: #333; line-height: 1.9; margin: 0; padding-top: 2px;"><span style="font-weight: 600; color: #1a1a2e;">第一步：</span>有序列表项描述</p>
+        </section>
+        <section style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;">
+          <section style="min-width: 24px; height: 24px; background: #5B6FED; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <span style="font-size: 13px; color: #fff; font-weight: 700;">2</span>
+          </section>
+          <p style="font-size: 15px; color: #333; line-height: 1.9; margin: 0; padding-top: 2px;"><span style="font-weight: 600; color: #1a1a2e;">第二步：</span>编号方块自动递增</p>
+        </section>
+        <section style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;">
+          <section style="min-width: 24px; height: 24px; background: #5B6FED; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <span style="font-size: 13px; color: #fff; font-weight: 700;">3</span>
+          </section>
+          <p style="font-size: 15px; color: #333; line-height: 1.9; margin: 0; padding-top: 2px;"><span style="font-weight: 600; color: #1a1a2e;">第三步：</span>适用于步骤、排名场景</p>
+        </section>
+      </section>
+    </section>
+
+    <!-- ===== 12. 引用块（带来源） ===== -->
+    <section style="padding: 8px 6px 12px;">
+      <section style="background: #f5f6fa; border-left: 4px solid #5B6FED; border-radius: 0 10px 10px 0; padding: 20px 20px 20px 24px;">
+        <p style="font-size: 15px; color: #555; line-height: 1.9; margin: 0; font-style: italic;">
+          "引用文字内容。用于名人名言、报告引用或重要观点的突出展示。"
+        </p>
+        <p style="font-size: 13px; color: #999; line-height: 1.6; margin: 8px 0 0; text-align: right;">—— 来源署名</p>
+      </section>
+    </section>
+
+    <!-- ===== 13. 信息提示框 ===== -->
+    <section style="padding: 8px 6px 12px;">
+      <section style="display: flex; align-items: flex-start; gap: 12px; background: #f5f6fa; border-radius: 10px; padding: 14px 16px;">
+        <section style="min-width: 20px; font-size: 16px; line-height: 1.5;">💡</section>
+        <p style="font-size: 14px; color: #333; line-height: 1.85; margin: 0;">
+          <span style="font-weight: 700; color: #5B6FED;">提示：</span>信息提示框用于补充说明、知识扩展。浅蓝底色 + 灯泡图标。
+        </p>
+      </section>
+    </section>
+
+    <!-- ===== 14. 警告提示框 ===== -->
+    <section style="padding: 8px 6px 12px;">
+      <section style="display: flex; align-items: flex-start; gap: 12px; background: #fff8f0; border-radius: 10px; padding: 14px 16px;">
+        <section style="min-width: 20px; font-size: 16px; line-height: 1.5;">⚠️</section>
+        <p style="font-size: 14px; color: #6a5a4a; line-height: 1.85; margin: 0;">
+          <span style="font-weight: 700; color: #e8923c;">注意：</span>警告提示框用于注意事项、风险提示。橙色系固定配色，不随风格变化。
+        </p>
+      </section>
+    </section>
+
+    <!-- ===== 15. 数据高亮卡片 ===== -->
+    <section style="padding: 8px 6px 12px;">
+      <section style="background: linear-gradient(135deg, #5B6FED, #764ba2); border-radius: 12px; padding: 24px 20px; text-align: center;">
+        <p style="font-size: 36px; font-weight: 800; color: #fff; margin: 0; line-height: 1.2;">87.3%</p>
+        <p style="font-size: 14px; color: #ffffffcc; margin: 8px 0 0; line-height: 1.6;">数据说明文字，描述这个数字的含义</p>
+      </section>
+    </section>
+
+    <!-- ===== 16. 对比双栏 ===== -->
+    <section style="padding: 8px 6px 12px;">
+      <section style="display: flex; gap: 10px;">
+        <section style="flex: 1; background: #f5f6fa; border-radius: 10px; padding: 14px; text-align: center;">
+          <p style="font-size: 13px; color: #5B6FED; font-weight: 700; margin: 0 0 6px;">☁️ 左栏标题</p>
+          <p style="font-size: 12px; color: #666; line-height: 1.7; margin: 0;">特点一<br>特点二<br>特点三<br>特点四</p>
+        </section>
+        <section style="flex: 1; background: #f0fff4; border-radius: 10px; padding: 14px; text-align: center;">
+          <p style="font-size: 13px; color: #00a663; font-weight: 700; margin: 0 0 6px;">📱 右栏标题</p>
+          <p style="font-size: 12px; color: #666; line-height: 1.7; margin: 0;">特点一<br>特点二<br>特点三<br>特点四</p>
+        </section>
+      </section>
+    </section>
+
+    <!-- ===== 19. 代码块 ===== -->
+    <section style="padding: 4px 6px 12px;">
+      <section style="background: #1a1a2e; border-radius: 10px; padding: 16px 18px; overflow-x: auto;">
+        <section style="font-family: 'SF Mono', Monaco, Menlo, Consolas, monospace; font-size: 12.5px; color: #c8d3f5; line-height: 1.75; margin: 0;">
+          <span style="color: #6b7394">// 代码注释</span><br>
+          <span style="color: #c792ea">const</span> <span style="color: #82aaff">example</span> = <span style="color: #c3e88d">"hello"</span>;<br>
+          <span style="color: #c792ea">console</span>.log(example);
+        </section>
+      </section>
+    </section>
+
+    <!-- ===== 20. 表格 ===== -->
+    <section style="padding: 8px 6px 12px;">
+      <section style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+          <thead>
+            <tr>
+              <th style="padding: 8px 12px; color: #000; font-weight: 700; text-align: left; border: 1px solid #d0d0d0;">列标题</th>
+              <th style="padding: 8px 12px; color: #000; font-weight: 700; text-align: left; border: 1px solid #d0d0d0;">列标题</th>
+              <th style="padding: 8px 12px; color: #000; font-weight: 700; text-align: left; border: 1px solid #d0d0d0;">列标题</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="background: #f5f6fa; padding: 8px 12px; color: #1a1a2e; border: 1px solid #e0e0e0;">单元格</td>
+              <td style="background: #f5f6fa; padding: 8px 12px; color: #1a1a2e; border: 1px solid #e0e0e0;">单元格</td>
+              <td style="background: #f5f6fa; padding: 8px 12px; color: #1a1a2e; border: 1px solid #e0e0e0;">单元格</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 12px; color: #1a1a2e; border: 1px solid #e0e0e0;">单元格</td>
+              <td style="padding: 8px 12px; color: #1a1a2e; border: 1px solid #e0e0e0;">单元格</td>
+              <td style="padding: 8px 12px; color: #1a1a2e; border: 1px solid #e0e0e0;">单元格</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+
+    <!-- ===== 21. 进度条（能力画像/数据评估） ===== -->
+    <section style="padding: 8px 6px 12px;">
+      <section style="font-size: 15px; font-weight: 700; color: #1a1a2e; margin: 0 0 16px 0;">⚡ 能力评估</section>
+      <section style="display: flex; align-items: center; margin: 0 0 14px 0;">
+        <section style="width: 80px; font-size: 13px; color: #4a4a4a; text-align: right; margin: 0 8px 0 0; flex-shrink: 0;">优秀项</section>
+        <section style="flex: 1; height: 24px; background: #f0f0f5; border-radius: 100px; overflow: hidden;">
+          <section style="height: 24px; width: 95%; background: #10b981; border-radius: 100px; font-size: 11px; color: #fff; font-weight: 600; line-height: 24px; padding-left: 10px; overflow: hidden;">表现优异</section>
+        </section>
+        <section style="width: 72px; font-size: 13px; font-weight: 700; color: #10b981; text-align: left; margin: 0 0 0 8px; flex-shrink: 0;">95%</section>
+      </section>
+      <section style="display: flex; align-items: center; margin: 0 0 14px 0;">
+        <section style="width: 80px; font-size: 13px; color: #4a4a4a; text-align: right; margin: 0 8px 0 0; flex-shrink: 0;">良好项</section>
+        <section style="flex: 1; height: 24px; background: #f0f0f5; border-radius: 100px; overflow: hidden;">
+          <section style="height: 24px; width: 80%; background: #3b82f6; border-radius: 100px; font-size: 11px; color: #fff; font-weight: 600; line-height: 24px; padding-left: 10px; overflow: hidden;">表现良好</section>
+        </section>
+        <section style="width: 72px; font-size: 13px; font-weight: 700; color: #3b82f6; text-align: left; margin: 0 0 0 8px; flex-shrink: 0;">80%</section>
+      </section>
+      <section style="display: flex; align-items: center; margin: 0 0 14px 0;">
+        <section style="width: 80px; font-size: 13px; color: #4a4a4a; text-align: right; margin: 0 8px 0 0; flex-shrink: 0;">中等项</section>
+        <section style="flex: 1; height: 24px; background: #f0f0f5; border-radius: 100px; overflow: hidden;">
+          <section style="height: 24px; width: 60%; background: #f59e0b; border-radius: 100px; font-size: 11px; color: #fff; font-weight: 600; line-height: 24px; padding-left: 10px; overflow: hidden;">一般水平</section>
+        </section>
+        <section style="width: 72px; font-size: 13px; font-weight: 700; color: #f59e0b; text-align: left; margin: 0 0 0 8px; flex-shrink: 0;">60%</section>
+      </section>
+      <section style="display: flex; align-items: center; margin: 0 0 6px 0;">
+        <section style="width: 80px; font-size: 13px; color: #4a4a4a; text-align: right; margin: 0 8px 0 0; flex-shrink: 0;">短板项</section>
+        <section style="flex: 1; height: 24px; background: #f0f0f5; border-radius: 100px; overflow: hidden;">
+          <section style="height: 24px; width: 35%; background: #ef4444; border-radius: 100px; font-size: 11px; color: #fff; font-weight: 600; line-height: 24px; padding-left: 10px; overflow: hidden;">待改进</section>
+        </section>
+        <section style="width: 72px; font-size: 13px; font-weight: 700; color: #ef4444; text-align: left; margin: 0 0 0 8px; flex-shrink: 0;">35%</section>
+      </section>
+    </section>
+
+    <!-- ===== 17. 关键要点回顾 ===== -->
+    <section style="padding: 8px 6px 12px;">
+      <section style="background: #f5f6fa; border-radius: 10px; padding: 16px 20px;">
+        <p style="font-size: 14px; font-weight: 700; color: #1a1a2e; margin: 0 0 12px;">📌 关键要点回顾</p>
+        <section style="margin-bottom: 8px;">
+          <p style="font-size: 14px; color: #555; line-height: 1.8; margin: 0;"><span style="color: #5B6FED; font-weight: 700;">01</span> &nbsp; 要点回顾第一项</p>
+        </section>
+        <section style="margin-bottom: 8px;">
+          <p style="font-size: 14px; color: #555; line-height: 1.8; margin: 0;"><span style="color: #5B6FED; font-weight: 700;">02</span> &nbsp; 要点回顾第二项</p>
+        </section>
+        <section style="margin-bottom: 0;">
+          <p style="font-size: 14px; color: #555; line-height: 1.8; margin: 0;"><span style="color: #5B6FED; font-weight: 700;">03</span> &nbsp; 要点回顾第三项</p>
+        </section>
+      </section>
+    </section>
+
+    <!-- ===== 22. 信息卡片（宽表/长内容替代 · 每行一卡） ===== -->
+    <section style="padding:8px 6px 12px">
+      <p style="font-size:14px;font-weight:700;color:#5B6FED;margin:0 0 10px">▍信息卡片（宽表替代，每行一卡）</p>
+      <section style="background:#f5f6fa;border:1px solid #e6e8f0;border-radius:10px;padding:14px 16px;margin:0 0 10px">
+        <section style="display:flex;align-items:baseline;margin:0 0 10px">
+          <span style="font-size:15px;font-weight:700;color:#1a1a2e;margin:0 8px 0 0">行标题</span>
+          <span style="font-size:12px;color:#00a663;font-weight:600">✅ 评价标签</span>
+        </section>
+        <section style="display:flex;margin:0 0 6px">
+          <span style="width:64px;font-size:12px;color:#999;flex-shrink:0">列名A</span>
+          <span style="font-size:13px;color:#1a1a2e;flex:1">值A</span>
+        </section>
+        <section style="display:flex;margin:0">
+          <span style="width:64px;font-size:12px;color:#999;flex-shrink:0">列名B</span>
+          <span style="font-size:13px;color:#1a1a2e;flex:1">值B</span>
+        </section>
+      </section>
+      <section style="background:#f5f6fa;border:1px solid #e6e8f0;border-radius:10px;padding:14px 16px;margin:0 0 4px">
+        <section style="display:flex;align-items:baseline;margin:0 0 10px">
+          <span style="font-size:15px;font-weight:700;color:#1a1a2e;margin:0 8px 0 0">行标题</span>
+          <span style="font-size:12px;color:#e74c3c;font-weight:600">❌ 评价标签</span>
+        </section>
+        <section style="display:flex;margin:0 0 6px">
+          <span style="width:64px;font-size:12px;color:#999;flex-shrink:0">列名A</span>
+          <span style="font-size:13px;color:#1a1a2e;flex:1">值A</span>
+        </section>
+        <section style="display:flex;margin:0">
+          <span style="width:64px;font-size:12px;color:#999;flex-shrink:0">列名B</span>
+          <span style="font-size:13px;color:#1a1a2e;flex:1">值B</span>
+        </section>
+      </section>
+    </section>
+
+    <!-- ===== 23. 键值列表（2~3 列文字表替代） ===== -->
+    <section style="padding:8px 6px 12px">
+      <p style="font-size:14px;font-weight:700;color:#5B6FED;margin:0 0 10px">▍键值列表（2~3列文字表替代）</p>
+      <section style="border-left:3px solid #5B6FED;padding:2px 0 2px 14px">
+        <section style="margin:0 0 14px">
+          <p style="font-size:14px;font-weight:700;color:#1a1a2e;margin:0 0 4px">条目标题</p>
+          <p style="font-size:13px;color:#555;line-height:1.7;margin:0">说明文字内容</p>
+          <p style="font-size:12px;color:#999;line-height:1.6;margin:4px 0 0">方法：补充信息</p>
+        </section>
+        <section style="margin:0">
+          <p style="font-size:14px;font-weight:700;color:#1a1a2e;margin:0 0 4px">条目标题</p>
+          <p style="font-size:13px;color:#555;line-height:1.7;margin:0">说明文字内容</p>
+          <p style="font-size:12px;color:#999;line-height:1.6;margin:4px 0 0">方法：补充信息</p>
+        </section>
+      </section>
+    </section>
+
+    <!-- ===== 18. 底部版权区 ===== -->
+    <section style="padding: 24px 6px 32px;">
+      <section style="height: 1px; background: #e8e8e8; margin-bottom: 20px;"></section>
+      <section style="text-align: center;">
+        <p style="font-size: 13px; color: #999; line-height: 1.8; margin: 0;">
+          版权声明文字，注明转载要求或作者信息
+        </p>
+        <section style="margin-top: 12px;">
+          <span style="display: inline-block; padding: 4px 12px; background: #f5f6fa; border-radius: 20px; font-size: 12px; color: #5B6FED; font-weight: 600;">标签文字</span>
+        </section>
+      </section>
+    </section>
+
+  </div>
+  <!-- ==================== 正文内容结束 ==================== -->
+
+</div>
+
+<script>
+function copyContent() {
+  var content = document.getElementById('wechat-content');
+  var range = document.createRange();
+  range.selectNodeContents(content);
+  var selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
+  try {
+    document.execCommand('copy');
+    var btn = document.querySelector('.copy-btn');
+    var originalText = btn.textContent;
+    btn.textContent = '✓ 已复制，可粘贴到公众号编辑器';
+    btn.style.background = '#00a663';
+    setTimeout(function() {
+      btn.textContent = originalText;
+      btn.style.background = '#5B6FED';
+    }, 3000);
+  } catch (err) {
+    alert('复制失败，请手动选中预览区内容复制');
+  }
+  selection.removeAllRanges();
+}
+</script>
+</body>
+</html>

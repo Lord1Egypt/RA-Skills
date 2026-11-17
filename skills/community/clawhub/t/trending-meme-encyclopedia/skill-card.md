@@ -1,43 +1,56 @@
-## Description: <br>
-获取B站、抖音等平台当天的热门梗/迷因，追溯热梗来源、解释含义、整理相关视频素材，生成结构化的热梗百科文档。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取B站、抖音等平台当天的热门梗/迷因，追溯热梗来源、解释含义、整理相关视频素材，生成结构化的热梗百科文档。
 
-## Publisher: <br>
-[hwl1413520](https://clawhub.ai/user/hwl1413520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hwl1413520](https://clawhub.ai/user/hwl1413520)
 
-## Use Case: <br>
-Content researchers, creators, and social media teams use this skill to research Chinese internet memes across B站, 抖音, 微博, 小红书, and 知乎, trace origins, explain meanings, and produce structured meme encyclopedia notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on public web searches across fast-changing social platforms, so generated meme explanations or source attributions may be incomplete or stale. <br>
-Mitigation: Review cited sources and timestamps before publishing or relying on the generated encyclopedia content. <br>
-Risk: The installer modifies the user's skills directory and may overwrite an existing local copy after confirmation. <br>
-Mitigation: Run installation commands only in the intended user environment and review the target path before confirming overwrite prompts. <br>
+## Use Case:
 
+Content researchers, creators, and social media analysts use this skill to identify current Chinese internet memes, trace their sources, explain meanings, collect related media links, and produce structured encyclopedia-style documentation.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/hwl1413520/trending-meme-encyclopedia) <br>
-- [MEME_TYPES.md](references/MEME_TYPES.md) <br>
-- [SOURCE_TRACING.md](references/SOURCE_TRACING.md) <br>
-- [encyclopedia_template.md](assets/encyclopedia_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown research notes and structured encyclopedia entries, with optional shell commands for installation or local helper use] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source links, platform labels, heat ratings, timelines, usage examples, and related video references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The installer has unsafe path handling that could execute unintended Python code if a crafted install path is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install.sh before running it, prefer manual installation or the default detected skills directory from a trusted local path, and do not pass an install path supplied by someone else.
+
+Risk: Trending meme research depends on fast-changing public platform results and may produce stale or weakly sourced explanations.
+
+Mitigation: Record the collection time, cite source links where available, and verify meme origins before using the output in published work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hwl1413520/skills/trending-meme-encyclopedia)
+- [热梗类型分类详解](artifact/references/MEME_TYPES.md)
+- [来源追溯技巧](artifact/references/SOURCE_TRACING.md)
+- [百科模板](artifact/assets/encyclopedia_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown encyclopedia entries, research summaries, source-tracing notes, JSON exports, and optional shell or Python helper commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require web access to current platform results; outputs should cite collection time and source links where available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

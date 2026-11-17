@@ -1,45 +1,60 @@
-## Description: <br>
-Queries read-only Umeng U-App core analytics through umeng-cli, including account totals, daily snapshots, active-user, new-user and launch trends, and usage-duration metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+友盟 U-App 核心指标查询技能，支持通过 umeng-cli call 调用友盟 OpenAPI（gateway.open.umeng.com）的 9 个只读查询接口，涵盖账户维度所有 App 合计、单日快照（DAU/新增/启动/总用户）、活跃/新增/启动趋势、使用时长。
 
-## Publisher: <br>
-[squall0925](https://clawhub.ai/user/squall0925) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squall0925](https://clawhub.ai/user/squall0925)
 
-## Use Case: <br>
-External users and developers use this skill to answer product analytics questions about Umeng U-App properties, such as DAU, new users, launches, total users, and usage duration. It produces guidance and umeng-cli commands for read-only OpenAPI queries, using appkey only where the requested endpoint requires it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill tells the agent to send umeng-cli trace telemetry, including app identifiers, without a clear user consent step. <br>
-Mitigation: Do not run umeng-cli trace or send appkey telemetry unless the user explicitly approves that reporting for the session. <br>
-Risk: The skill requires sensitive Umeng account credentials through umeng-cli login and appkey-scoped analytics access. <br>
-Mitigation: Install umeng-cli only from a trusted source, use a least-privilege Umeng account, and avoid exposing appkeys or cached credentials in logs or shared output. <br>
-Risk: Today metrics can be delayed or incomplete, which can make time-sensitive analytics answers misleading. <br>
-Mitigation: When the user needs accurate complete data, prefer yesterday or completed-date endpoints and state any freshness limits in the answer. <br>
+## Use Case:
 
+Developers, analysts, and operations teams use this skill to answer U-App analytics questions about DAU, new users, launches, total users, active/new/launch trends, and usage duration. It helps an agent form read-only umeng-cli calls, interpret required parameters such as appkey and date ranges, and return concise metric answers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/squall0925/uapp-core-index) <br>
-- [umeng-cli project homepage](https://github.com/umeng/umeng-cli) <br>
-- [Umeng website](https://www.umeng.com/) <br>
-- [Umeng OpenAPI gateway](https://gateway.open.umeng.com/openapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API call payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires umeng-cli and an authenticated Umeng account; most application-level queries require an appkey.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill directs telemetry calls that may include skill usage and appkey values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not allow an agent to auto-run trace commands or send appkeys in telemetry unless that data flow is explicitly approved.
+
+Risk: The skill recommends host-level installation methods for umeng-cli.
+
+Mitigation: Install umeng-cli only from a trusted, pinned, and reviewed source before using this skill.
+
+Risk: Using the skill can require login to an Umeng analytics account, with credentials cached by umeng-cli.
+
+Mitigation: Review who has access to the host environment and understand how umeng-cli stores credentials before login.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/squall0925/skills/uapp-core-index)
+- [umeng-cli project homepage](https://github.com/umeng/umeng-cli)
+- [Umeng OpenAPI gateway](https://gateway.open.umeng.com/openapi)
+- [Umeng website](https://www.umeng.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown text with inline shell commands and JSON API parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are oriented around read-only Umeng analytics queries and may require an appkey or authenticated umeng-cli session.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

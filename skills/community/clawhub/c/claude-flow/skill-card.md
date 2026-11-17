@@ -1,48 +1,63 @@
-## Description: <br>
-Claude Flow helps agents install, configure, and use a Claude Code multi-agent orchestration platform for coordinated software engineering workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claude Flow helps Claude Code users orchestrate specialized agents for software engineering workflows, including coding, review, testing, architecture, documentation, and memory-assisted task reuse.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to set up Claude Flow or Ruflo in Claude Code, start specialist agents or swarms, and coordinate code implementation, review, security audit, testing, documentation, and troubleshooting tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review marks this release suspicious because it grants broad install and automation authority with limited scoping guidance. <br>
-Mitigation: Review the skill before installing it and enable MCP tools, hooks, memory, and automatic agent workflows only in projects where broad code-reading, code-writing, command execution, and local state changes are acceptable. <br>
-Risk: Installation instructions include a curl-to-bash path that can execute remote code. <br>
-Mitigation: Prefer npx or a pinned release, and inspect any installer script before running it. <br>
-Risk: The skill requires API credentials and shows workflows involving environment variables and .env files. <br>
-Mitigation: Protect API keys and .env files, avoid committing secrets, and provide credentials only in trusted local runtime configuration. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to install and configure Claude Flow/Ruflo in Claude Code, start specialist agents or multi-agent swarms, and route software engineering tasks such as implementation, review, testing, architecture, and documentation.
 
-## Reference(s): <br>
-- [Claude Flow ClawHub page](https://clawhub.ai/cn-big-cabbage/claude-flow) <br>
-- [Claude Flow homepage](https://github.com/ruvnet/claude-flow) <br>
-- [Claude Flow npm package](https://www.npmjs.com/package/claude-flow) <br>
-- [Installation guide](guides/01-installation.md) <br>
-- [Quickstart guide](guides/02-quickstart.md) <br>
-- [Advanced usage guide](guides/03-advanced-usage.md) <br>
-- [Troubleshooting guide](troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration snippets, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct agents to install packages, configure MCP servers, run local commands, and manage API-key-backed provider settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The install guidance includes one-line installer commands and mutable package references such as ruflo@latest.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installers before execution and prefer pinned, reviewed package versions for installation and MCP startup.
+
+Risk: The workflow requires API keys and can place credentials in shell or MCP configuration.
+
+Mitigation: Pass only required credentials and keep API keys out of shell history and plaintext configuration where possible.
+
+Risk: The skill registers a user-scoped MCP server and uses local vector memory that may persist workflow data.
+
+Mitigation: Understand how to remove the MCP registration and clear vector memory before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cn-big-cabbage/skills/claude-flow)
+- [Claude Flow homepage](https://github.com/ruvnet/claude-flow)
+- [npm package: claude-flow](https://www.npmjs.com/package/claude-flow)
+- [Installation guide](guides/01-installation.md)
+- [Quickstart guide](guides/02-quickstart.md)
+- [Advanced usage guide](guides/03-advanced-usage.md)
+- [Troubleshooting guide](troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing instructions for installing, configuring, orchestrating agents, and troubleshooting Claude Flow/Ruflo workflows.]
+
+## Skill Version(s):
+
+0.1.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

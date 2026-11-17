@@ -1,0 +1,20 @@
+{
+  "name": "se-semantic-graph",
+  "version": "0.3.0",
+  "display_name": "软件工程语义图谱",
+  "display_name_en": "Software Engineering Semantic Graph",
+  "description": "把项目全知识域（客户画像/需求/成本/架构/分层/模块运行逻辑/历史决策）落进 axolotl 图库，修 bug/加功能/重构时沿跨域语义边定向查询精确上下文，根治上下文爆炸与注意力分散。替代把整个项目塞进 prompt 硬扛。",
+  "description_zh": "把项目全知识域（客户画像/需求/成本/架构/分层/模块运行逻辑/历史决策）落进 axolotl 图库，修 bug/加功能/重构时沿跨域语义边定向查询精确上下文，根治上下文爆炸与注意力分散。",
+  "description_en": "Stores the full software-engineering knowledge space (customer persona / requirements / cost / architecture / layering / module runtime logic / historical decisions) into the axolotl graph database, and does directed traversal along cross-domain semantic edges to fetch exact context when fixing bugs, adding features, or refactoring — curing context explosion and attention scattering. Instead of cramming the whole project into the prompt.",
+  "visibility": "public",
+  "author": "Sai",
+  "license": "MIT",
+  "tags": ["software-engineering", "knowledge-graph", "semantic-graph", "context", "axolotl", "traceability", "coding-agent"],
+  "dependencies": [
+    {"name": "lobster-memory", "version": ">=0.2.0"}
+  ],
+  "repository": "",
+  "homepage": "",
+  "created_at": "2026-08-16",
+  "updated_at": "2026-08-16"
+}

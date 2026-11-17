@@ -1,46 +1,57 @@
-## Description: <br>
-Internal Comms Midea helps draft Midea Group internal communication documents, including weekly reports, project updates, incident reports, cross-department emails, FAQ answers, and general messages in Midea-style tone and formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts Midea Group-style internal communications, including weekly or monthly reports, project updates, incident reports, cross-department emails, FAQ answers, newsletters, and general internal messages.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Employees and internal communicators use this skill to draft structured Midea Group internal communications from user-provided or authorized internal context. It routes requests to templates for 3P weekly reports, project progress reports, incident or exception reports, cross-department collaboration emails, FAQ answers, and general internal messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts may include or summarize sensitive internal company information from chat, documents, email, or calendar context. <br>
-Mitigation: Grant only the access needed for the specific communication task and review drafts before sharing them. <br>
-Risk: Template-based drafts may state policy, project, incident, or FAQ details inaccurately if source context is incomplete or outdated. <br>
-Mitigation: Verify factual claims against authoritative internal sources and mark uncertain information before distribution. <br>
+## Use Case:
 
+Employees and internal communications teams use this skill to draft concise, structured Midea Group-style internal documents from provided context or approved enterprise sources. It routes common communication requests to templates for reports, newsletters, project updates, incidents, cross-department coordination, FAQs, and general messages.
 
-## Reference(s): <br>
-- [Internal Comms Midea on ClawHub](https://clawhub.ai/paudyyin/internal-comms-midea) <br>
-- [3P Weekly Report Template](artifact/examples/3p-weekly-report.md) <br>
-- [Project Update Template](artifact/examples/project_update.md) <br>
-- [Incident Report Template](artifact/examples/incident_report.md) <br>
-- [Cross-Department Email Template](artifact/examples/cross-dept-email.md) <br>
-- [FAQ Answers Template](artifact/examples/faq-answers.md) <br>
-- [General Communications Template](artifact/examples/general-comms.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown drafts using the selected internal communication template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafts should be reviewed before sharing, especially when they summarize internal company information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: The skill may ask the agent to search company email, chat, calendars, and documents broadly when drafting newsletters, FAQs, or weekly reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope enterprise searches to approved channels, folders, date ranges, and audiences before generation.
+
+Risk: Generated internal communications may include sensitive, stale, or misleading information if source context is not reviewed.
+
+Mitigation: Require human review, redaction, and source validation before sharing generated output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/internal-comms-midea)
+- [3P weekly report template](artifact/examples/3p-weekly-report.md)
+- [Company newsletter template](artifact/examples/company-newsletter.md)
+- [Project update template](artifact/examples/project_update.md)
+- [Incident report template](artifact/examples/incident_report.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text using the selected communication template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include structured sections, tables, placeholders for missing user-supplied details, and source links when available.]
+
+## Skill Version(s):
+
+1.1.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

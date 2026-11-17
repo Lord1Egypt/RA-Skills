@@ -1,46 +1,61 @@
-## Description: <br>
-Research AI startups, funding, and product announcements. Generates a structured intelligence report as a PDF. Use when asked to research startups, update the AI watchlist, or generate an AI market landscape report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Researches AI startups, funding, and product announcements, then generates a structured intelligence report as a PDF.
 
-## Publisher: <br>
-[hxy9243](https://clawhub.ai/user/hxy9243) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hxy9243](https://clawhub.ai/user/hxy9243)
 
-## Use Case: <br>
-Employees, external users, and analysts use this skill to research AI startups from a watchlist, synthesize company profiles and category-level market analysis, and produce a styled briefing report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run brew, apt-get, dnf, or pip commands to install report-rendering dependencies. <br>
-Mitigation: Review and approve dependency installation commands before execution. <br>
-Risk: The skill writes local research and report artifacts that may contain sensitive analysis. <br>
-Mitigation: Run it in a dedicated workspace and review generated files before sharing. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to research AI startup watchlists, synthesize company and category intelligence, and produce styled market briefing reports.
 
-## Reference(s): <br>
-- [Startup Researcher README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
-- [Company Research Prompt](prompts/company_research.md) <br>
-- [Market Analysis Prompt](prompts/market_analysis.md) <br>
-- [Report Compiler Prompt](prompts/report_compiler.md) <br>
-- [Startup Watchlist](watchlist.yaml) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hxy9243/startup-researcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports and local PDF briefing artifacts, with shell commands for Markdown-to-PDF rendering] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces company profiles, category analysis, a final Markdown draft, HTML conversion output, and a styled PDF report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release metadata and package.json) <br>
+Risk: The skill may ask the agent to install unpinned Python or system dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependency commands before execution, install packages manually in an isolated virtual environment or container, and pin dependency versions for production use.
+
+Risk: Generated reports may include a developer-controlled external attribution link.
+
+Mitigation: Review the generated report header and footer before publication and remove or override attribution links that are not appropriate for the deployment.
+
+Risk: Startup funding, valuation, product, and hiring details can be stale or incorrect if research sources are weak.
+
+Mitigation: Require citations from current primary or trusted sources and have a reviewer confirm high-impact claims before business use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hxy9243/skills/startup-researcher)
+- [README](artifact/README.md)
+- [Company Research Prompt](artifact/prompts/company_research.md)
+- [Market Analysis Prompt](artifact/prompts/market_analysis.md)
+- [Report Compiler Prompt](artifact/prompts/report_compiler.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report and PDF generation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write intermediate company profiles, final Markdown, HTML, and PDF files in the workspace.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,61 @@
-## Description: <br>
-Analyze music audio files to extract chord progressions, key signature, tempo, and song structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze music audio files to extract chord progressions, key signature, tempo, and song structure.
 
-## Publisher: <br>
-[ctwww](https://clawhub.ai/user/ctwww) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ctwww](https://clawhub.ai/user/ctwww)
 
-## Use Case: <br>
-Developers, musicians, and music-analysis users use this skill to analyze local audio files for key signature, tempo, chord progression, chord frequency, and basic song structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The analyzer runs local Python code and installs third-party audio-processing dependencies. <br>
-Mitigation: Install dependencies in a virtual environment and review package names before running pip. <br>
-Risk: The script analyzes a configured local audio path, so an unchanged path may target the wrong file or fail. <br>
-Mitigation: Edit the audio path before execution and confirm it points only to the intended audio file. <br>
-Risk: Chord and structure detection are approximate and can be less reliable for distorted, layered, or complex music. <br>
-Mitigation: Treat results as analysis guidance and use specialized transcription tools when professional accuracy is required. <br>
+## Use Case:
 
+Developers, musicians, and audio analysts use this skill to inspect local music files for approximate key, tempo, chord progression, chord frequency, and basic song sections.
 
-## Reference(s): <br>
-- [Chord Analyzer ClawHub Release](https://clawhub.ai/ctwww/chord-analyzer) <br>
-- [ctwww Publisher Profile](https://clawhub.ai/user/ctwww) <br>
-- [librosa Project](https://github.com/librosa/librosa) <br>
-- [Chordify](https://chordify.net) <br>
-- [Hookpad](https://www.hooktheory.com/hookpad) <br>
-- [MuseScore](https://musescore.org) <br>
-- [Capo](https://capoapp.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; the analyzer script prints text reports and returns Python dictionaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and local audio files; analysis quality depends on source audio clarity and musical complexity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Dependency hygiene and runtime reproducibility can vary because the skill requires Python audio-analysis packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a dedicated Python virtual environment and pin dependency versions before repeated or production use.
+
+Risk: The bundled analyzer contains a hardcoded local audio path that may fail or expose an unintended file path during execution.
+
+Mitigation: Review and edit the audio path before running the script.
+
+Risk: Console output is partly Chinese, which may reduce usability for readers expecting English output.
+
+Mitigation: Modify output strings or document expected localized console output before sharing results.
+
+## Reference(s):
+
+- [librosa](https://github.com/librosa/librosa)
+- [Chordify](https://chordify.net)
+- [Hookpad](https://www.hooktheory.com/hookpad)
+- [MuseScore](https://musescore.org)
+- [Capo](https://capoapp.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python snippets; the bundled analyzer prints text analysis results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces approximate local audio analysis including key, BPM, rhythm label, chord sequence, chord counts, and basic section grouping.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

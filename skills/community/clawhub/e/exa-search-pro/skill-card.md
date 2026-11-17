@@ -1,42 +1,54 @@
-## Description: <br>
-Advanced web search with precise date filtering and content type selection for academic papers, GitHub repositories, research content, and specific date ranges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced web search with precise date filtering, content type selection, neural or keyword search modes, and filters for research papers, GitHub repositories, news, PDFs, and related specialized content.
 
-## Publisher: <br>
-[kennyzir](https://clawhub.ai/user/kennyzir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kennyzir](https://clawhub.ai/user/kennyzir)
 
-## Use Case: <br>
-Developers and agents use this skill to send authenticated Exa search requests through Claw0x for research, competitive analysis, GitHub discovery, news lookup, and content discovery with date, search-type, domain, and category filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, filters, and API-key-authenticated requests are sent to Claw0x. <br>
-Mitigation: Use the skill only when Claw0x processing is acceptable, and avoid submitting secrets or confidential internal topics unless permitted. <br>
-Risk: Successful calls may consume paid Claw0x credits. <br>
-Mitigation: Use a revocable or spending-limited API key where possible and monitor usage. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add external search results to agents for academic research, GitHub discovery, news lookup, competitive analysis, and content discovery with precise date and content-type filters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kennyzir/exa-search-pro) <br>
-- [Claw0x](https://claw0x.com) <br>
-- [Claw0x skills](https://claw0x.com/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Text] <br>
-**Output Format:** [JSON search results with titles, URLs, dates, scores, optional text or highlights, and search metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAW0X_API_KEY; successful calls may use paid Claw0x credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search queries, filters, and requested result options are sent to Claw0x's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, regulated data, confidential internal research terms, or other sensitive information unless organizational policy permits that external use.
+
+Risk: Normal use may incur per-call charges for successful API responses.
+
+Mitigation: Configure and monitor API key usage and budget controls before deploying the skill in automated workflows.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/kennyzir/skills/exa-search-pro)
+- [Claw0x](https://claw0x.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Configuration instructions, Code, Guidance]
+
+**Output Format:** [JSON search results with titles, URLs, dates, authors, scores, optional text or highlights, and metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAW0X_API_KEY and sends search queries, filters, and result options to the Claw0x external API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,65 @@
-## Description: <br>
-Generates Xiaohongshu-style draft content and a local semi-automated HTML publishing page with copy, content switching, timing suggestions, and publish-status tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Xiaohongshu-style content drafts and a semi-automated local publishing page with copy, content switching, timing, and status-tracking controls.
 
-## Publisher: <br>
-[ShiXiangYu2](https://clawhub.ai/user/ShiXiangYu2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shixiangyu2](https://clawhub.ai/user/shixiangyu2)
 
-## Use Case: <br>
-Content creators, social media operators, and personal-brand builders use this skill to draft themed Xiaohongshu posts and manage a local publishing workflow with copy actions, scheduling suggestions, and status tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Xiaohongshu posts may contain inaccurate, unsuitable, or off-brand content if copied without review. <br>
-Mitigation: Review and edit generated posts before copying them to Xiaohongshu or publishing them elsewhere. <br>
-Risk: Broad activation phrases could trigger the workflow in contexts where content generation is not intended. <br>
-Mitigation: Use clear requests when invoking the skill and avoid relying on broad auto-activation phrases for sensitive workflows. <br>
-Risk: The generated browser page can leave publish-status history in LocalStorage. <br>
-Mitigation: Clear the browser LocalStorage for the generated page if local status history should not remain in the browser profile. <br>
-Risk: The bundled ClawHub publishing script can publish the skill through the user's ClawHub account. <br>
-Mitigation: Run publish_to_clawhub.sh only when intentionally publishing this skill through an authenticated ClawHub account. <br>
+## Use Case:
 
+Content creators, social media operators, and personal-brand builders use this skill to generate Xiaohongshu-style post drafts, organize them into a local publishing page, and manage copy, planned timing, and published status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ShiXiangYu2/xiaohongshu-hot-publish) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets, generated Xiaohongshu post text, and local HTML output files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated pages may store publish-status history in browser LocalStorage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; changelog released 2026-03-17) <br>
+Risk: Generated HTML can run unwanted browser code if crafted topic or brand text is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted topic and brand inputs, review generated pages before opening or sharing them, and fix HTML escaping before handling untrusted input.
+
+Risk: Generated HTML, generated JSON files, and browser-side publication state can persist locally.
+
+Mitigation: Store outputs only in intended locations, remove generated files when no longer needed, and clear local browser state for sensitive publishing workflows.
+
+Risk: The artifact lists python>=3.8 in requirements.txt even though interpreter versions are not installable packages.
+
+Mitigation: Remove python>=3.8 from requirements.txt and document the required Python interpreter version separately.
+
+Risk: Demo and test scripts may create example files and can open a browser after user prompts.
+
+Mitigation: Run demos and tests in a controlled workspace and review generated example files before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shixiangyu2/skills/xiaohongshu-hot-publish)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [ClawHub](https://clawhub.ai)
+- [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)
+- [Semantic Versioning](https://semver.org/lang/zh-CN/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell commands; generated artifacts are HTML and JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated pages may persist publication state locally in the browser and create companion JSON data files.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence and artifact/CHANGELOG.md, released 2026-03-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Joan Workflow guides agents through Joan workspace, pod, todo, plan, CLI, MCP, and context synchronization workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides workflow guidance for Joan's knowledge management system, including pods, todos, plans, workspace management, context sync, and related CLI commands.
 
-## Publisher: <br>
-[donny-son](https://clawhub.ai/user/donny-son) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[donny-son](https://clawhub.ai/user/donny-son)
 
-## Use Case: <br>
-Developers and AI agents use this skill to work with Joan's knowledge and task management system, including workspace initialization, pod authoring, todo and plan handling, MCP access, and local context generation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Push, update, archive, and context-generation workflows may affect shared Joan workspace knowledge or local context files. <br>
-Mitigation: Confirm the intended Joan account and workspace before use, and review generated CLAUDE.md content plus any pod, todo, or plan changes before pushing or archiving. <br>
-Risk: MCP pod retrieval and workspace context generation may expose shared workspace knowledge to the active agent session. <br>
-Mitigation: Retrieve only the intended workspace pods and verify that shared knowledge is appropriate for the current project and agent context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Joan MCP server](https://joan.land/mcp/joan) <br>
-- [ClawHub release page](https://clawhub.ai/donny-son/joan-workflow) <br>
+## Use Case:
 
+Developers and AI-assisted development teams use this skill to understand Joan workspace concepts and choose the right Joan CLI workflow for pods, todos, plans, context generation, and workspace synchronization.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Context generation can write Joan workspace information into local context files such as CLAUDE.md.
+
+Mitigation: Review tracked pods and generated context before using, committing, or sharing local context files.
+
+Risk: Push and synchronization commands can share local pod, todo, or plan changes with the Joan server.
+
+Mitigation: Confirm the intended workspace and tracked pods before running push or synchronization commands.
+
+## Reference(s):
+
+- [Joan MCP server](https://joan.land/mcp/joan)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; users should review local context files and tracked pods before sharing or syncing.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

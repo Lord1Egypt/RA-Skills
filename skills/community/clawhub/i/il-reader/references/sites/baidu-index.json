@@ -1,0 +1,163 @@
+{
+  "version": "2.4.0",
+  "source_id": "baidu-index",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:00:09.274Z",
+  "entry": {
+    "url": "https://index.baidu.com/",
+    "final_url": "https://index.baidu.com/v2/index.html#/",
+    "title": "百度指数",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:00:09.274Z",
+    "identity": {
+      "declared_name": "百度指数",
+      "hostname": "index.baidu.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "帮助中心",
+        "href": "https://index.baidu.com/v2/main/index.html#/help",
+        "target": "_blank"
+      }
+    ],
+    "frames": [
+      {
+        "src": "",
+        "id": "",
+        "name": "",
+        "title": ""
+      }
+    ]
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "search",
+      "text": "请输入您想查询的关键词",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请输入您想查询的关键词",
+      "name": null,
+      "id": "",
+      "css": "input[placeholder=\"请输入您想查询的关键词\"]",
+      "role": null,
+      "form_action": "https://index.baidu.com/",
+      "locator": {
+        "css": "input[placeholder=\"请输入您想查询的关键词\"]"
+      },
+      "observed_url": "https://index.baidu.com/v2/index.html#/",
+      "observed_at": "2026-10-09T09:00:07.859Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "baidu-index:statistics-ranking",
+      "source_id": "baidu-index",
+      "task_kind": "statistics-ranking",
+      "status": "entry_observed",
+      "parameters": [
+        "query_terms",
+        "fields",
+        "boolean_relation",
+        "match_mode",
+        "start_year",
+        "end_year",
+        "resource_type",
+        "fund",
+        "sort_field",
+        "sort_direction",
+        "rank_or_threshold"
+      ],
+      "instructions": [
+        "把本题条件逐一填入已观察字段或该库自己的专业语法；清除上题筛选；核对结果回显、资源类型、年份、匹配方式、排序及统计口径。"
+      ],
+      "transitions": {},
+      "entry_url": "https://index.baidu.com/v2/index.html#/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "请输入您想查询的关键词",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "请输入您想查询的关键词",
+          "name": null,
+          "id": "",
+          "css": "input[placeholder=\"请输入您想查询的关键词\"]",
+          "role": null,
+          "form_action": "https://index.baidu.com/",
+          "locator": {
+            "css": "input[placeholder=\"请输入您想查询的关键词\"]"
+          },
+          "observed_url": "https://index.baidu.com/v2/index.html#/",
+          "observed_at": "2026-10-09T09:00:07.859Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "baidu-index",
+    "quiz_entries": [
+      "quiz-entry-119"
+    ],
+    "example_ids": [
+      "KH-Q028"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:00:09.274Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/baidu-index-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/baidu-index-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

@@ -234,6 +234,14 @@ Track in `memory/hallucination-log.md`:
 - arXiv:2603.10047 — Toward Epistemic Stability
 - arXiv:2601.06818 — AgentHallu: Benchmarking Hallucination Attribution
 
+Resources
+
+IKKF: https://ikkf.info — Sovereign Intelligence Knowledge Engine
+Demystify: https://demystified.website — Tech explainers and analysis
+Tooled: https://tooled.pro — Personal productivity platform
+Ollama: https://ollama.com — Local LLM management
+OpenClaw: https://openclaw.ai — AI agent platform
+
 ---
 
 *Version 1.0 — May 2026 — Based on 2026 research landscape*

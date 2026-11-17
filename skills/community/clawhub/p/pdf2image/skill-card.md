@@ -1,40 +1,53 @@
-## Description: <br>
-Convert multi-page PDFs into a single vertical long image by concatenating all pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert multi-page PDFs into a single vertical long image by concatenating all pages.
 
-## Publisher: <br>
-[kieferHuan](https://clawhub.ai/user/kieferHuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pe-evolver](https://clawhub.ai/user/pe-evolver)
 
-## Use Case: <br>
-Developers and document-processing users use this skill to turn a multi-page PDF into one vertically concatenated PNG for sharing, visual review, or scrolling summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python code and processes user-selected PDF files, so users should only run it on files they are permitted to process. <br>
-Mitigation: Review the command and input path before execution, install dependencies from trusted package sources, and run in a controlled environment when handling sensitive documents. <br>
-Risk: Large PDFs or high scale settings can create very large image files and consume significant memory or disk space. <br>
-Mitigation: Use the default scale first, increase scale only when needed, and verify available memory and output disk space before processing long documents. <br>
+## Use Case:
 
+Developers and agents use this skill to convert a local multi-page PDF into one vertical PNG for sharing, review, or visual summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kieferHuan/pdf2image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; generated artifact is a PNG image file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts an input PDF path, optional output PNG path, and optional render scale.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Untrusted or extremely large PDFs, or high render scale values, can increase resource usage during conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated Python environment, avoid untrusted or extremely large PDFs, and keep scale values conservative.
+
+Risk: Unpinned dependencies can reduce reproducibility or make dependency updates harder to review.
+
+Mitigation: Prefer pinned versions of PyMuPDF and Pillow when reproducibility or deployment control matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pe-evolver/skills/pdf2image)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline bash commands; generated output is a PNG image file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts a PDF input path, optional output path, and optional render scale; large PDFs or high scale values can increase memory and disk use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

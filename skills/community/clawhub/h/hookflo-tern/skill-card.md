@@ -1,43 +1,56 @@
-## Description: <br>
-Provides webhook guidance for signature verification with Tern and no-code Hookflo alerting, logging, and troubleshooting for event-driven HTTP callbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents provide webhook guidance for verification, alerting, logging, troubleshooting, and event-driven HTTP callback architecture using Tern and Hookflo.
 
-## Publisher: <br>
-[Prateek32177](https://clawhub.ai/user/Prateek32177) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[prateek32177](https://clawhub.ai/user/prateek32177)
 
-## Use Case: <br>
-Developers and operators use this skill to implement, verify, debug, and monitor webhooks across services such as Stripe, GitHub, Clerk, Supabase, and custom HTTP callback providers. It can also guide no-code Hookflo setup for Slack or email notifications from webhook events. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Webhook payloads may contain sensitive customer, payment, or account data when forwarded to Hookflo, Slack, or email. <br>
-Mitigation: Confirm organizational approval before forwarding production payloads externally and minimize or redact sensitive fields where possible. <br>
-Risk: Webhook signing secrets or provider tokens could be exposed if pasted into chat, examples, or source code. <br>
-Mitigation: Store secrets in environment variables or platform secret stores and avoid sharing live secret values. <br>
-Risk: Incorrect body parsing or verification configuration can cause valid webhooks to fail or invalid requests to be accepted. <br>
-Mitigation: Use raw request bodies for HMAC verification, return HTTP 400 on failed verification, and test provider-specific signature settings before production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hookflo homepage](https://hookflo.com) <br>
-- [Tern source](https://github.com/Hookflo/tern) <br>
-- [ClawHub skill page](https://clawhub.ai/Prateek32177/hookflo-tern) <br>
+## Use Case:
 
+Developers and integration teams use this skill to implement and debug webhook receivers, verify signatures for providers such as Stripe, GitHub, Clerk, and Supabase, and configure Hookflo alerting or logging workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript examples, shell commands, and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; may reference optional environment variables for provider secrets and tokens.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Webhook forwarding examples may send complete payloads and incoming headers to a third-party service.
+
+Mitigation: Before using forwarding patterns, allowlist outbound headers, redact or minimize payload fields, require HTTPS, and confirm the Hookflo destination and data sharing are approved.
+
+Risk: Webhook payloads can contain secrets, regulated data, or sensitive customer and account events.
+
+Mitigation: Avoid forwarding sensitive events unless that sharing is explicitly intended and compliant with the deployment's data-handling requirements.
+
+## Reference(s):
+
+- [Hookflo homepage](https://hookflo.com)
+- [Tern source repository](https://github.com/Hookflo/tern)
+- [Tern documentation](https://tern.hookflo.com)
+- [Hookflo documentation](https://docs.hookflo.com)
+- [Hookflo Webhooks on ClawHub](https://clawhub.ai/prateek32177/skills/hookflo-tern)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with TypeScript, JavaScript, JSON, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference optional environment variables for provider webhook secrets and tokens.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Generates WAV speech from text and a natural-language voice-style instruction using MOSI Studio's moss-voice-generator model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MOSI Studio 指令式音色生成 skill that helps an agent generate speech by sending text and a natural-language voice-style description to MOSI Studio, then saving the returned audio as a WAV file.
 
-## Publisher: <br>
-[mkkb473](https://clawhub.ai/user/mkkb473) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mkkb473](https://clawhub.ai/user/mkkb473)
 
-## Use Case: <br>
-Developers and agent users use this skill to synthesize one-off spoken audio by describing both the text and desired voice style instead of selecting a preset voice ID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text and voice-style prompts are sent to MOSI Studio for processing. <br>
-Mitigation: Avoid sending confidential, personal, or regulated content unless MOSI Studio's handling terms are acceptable. <br>
-Risk: Passing the API key as a command-line argument can expose it through shell history or process listings. <br>
-Mitigation: Prefer providing MOSI_TTS_API_KEY through the environment. <br>
-Risk: Instruction-based voice generation can vary between runs and may not produce a stable brand voice. <br>
-Mitigation: Review generated audio before use and lower the temperature when a more conservative result is needed. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to create one-off or exploratory voice audio from written text without choosing a preset voice_id. It is suited for generating described voice styles and preparing WAV output for downstream delivery, including Feishu voice-bubble workflows when appropriate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mkkb473/moss-voice-generator) <br>
-- [MOSI Studio](https://studio.mosi.cn) <br>
-- [MOSI Studio speech API endpoint](https://studio.mosi.cn/api/v1/audio/speech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Configuration guidance] <br>
-**Output Format:** [WAV audio file with command-line status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MOSI_TTS_API_KEY and Unix tools curl, jq, and base64.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Text to be spoken and the voice-style description are sent to MOSI Studio for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive text or confidential voice-style descriptions unless MOSI Studio processing is approved for that data.
+
+Risk: Supplying the API key with --api-key can expose the credential through shell history or process listings.
+
+Mitigation: Set MOSI_TTS_API_KEY through the environment or a secret manager instead of passing the key on the command line.
+
+Risk: Generated audio may be forwarded into Feishu chats.
+
+Mitigation: Confirm the destination and intended recipients before sending generated audio into Feishu.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mkkb473/skills/moss-voice-generator)
+- [MOSI Studio](https://studio.mosi.cn)
+- [MOSI Studio Speech API](https://studio.mosi.cn/api/v1/audio/speech)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash commands; the script writes a WAV audio file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MOSI_TTS_API_KEY plus curl, jq, and base64. Default output is a 24 kHz WAV file at ~/.openclaw/workspace/voice_gen_output.wav unless an output path is supplied.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

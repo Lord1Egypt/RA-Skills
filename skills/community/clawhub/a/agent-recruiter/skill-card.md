@@ -1,43 +1,62 @@
-## Description: <br>
-Agent Recruiter creates, configures, and manages OpenClaw agents, including workspace files, credential-profile copies, Feishu routing bindings, and gateway restarts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Recruiter helps create, configure, and manage OpenClaw agents, including agent workspaces, identity files, Feishu group bindings, and gateway updates.
 
-## Publisher: <br>
-[JunChen19](https://clawhub.ai/user/JunChen19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junchen19](https://clawhub.ai/user/junchen19)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to create or customize persistent OpenClaw agents, bind them to Feishu groups, and generate their workspace identity and behavior files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently create OpenClaw agents, edit live routing, and restart Gateway. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json, review the planned agent and binding entries, and restart Gateway only after confirming the change. <br>
-Risk: The skill can copy credential-profile configuration into a new agent. <br>
-Mitigation: Inspect auth-profiles.json before and after copying, and limit the new agent to only the profiles required for its role. <br>
-Risk: Generated SOUL.md, identity, memory, and group-binding behavior can affect what the new agent sends and retains. <br>
-Mitigation: Review generated behavior files, verify the Feishu group ID, and avoid enabling group posting or memory logging until retention and message scope are understood. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to create or optimize agents, populate SOUL and IDENTITY templates, configure Feishu group routing, and prepare OpenClaw workspace files.
 
-## Reference(s): <br>
-- [agency-agents](https://github.com/msitarzewski/agency-agents) <br>
-- [Agent Recruiter ClawHub listing](https://clawhub.ai/JunChen19/agent-recruiter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create persistent OpenClaw agent files, copy credential profiles, update routing configuration, and restart Gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The recruitment script can copy another agent's authentication profile into a newly created agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not copy auth profiles by default; require explicit user approval and review credentials before installation or execution.
+
+Risk: The skill can change persistent OpenClaw routing and bind agents to Feishu groups.
+
+Mitigation: Validate agent IDs and group IDs, use user-approved routing values, and review openclaw.json changes before restarting the gateway.
+
+Risk: Generated maintenance agents may receive broad system powers without enough scoping.
+
+Mitigation: Limit new agents to report-only behavior unless a user explicitly approves each state-changing action.
+
+Risk: Inline JavaScript interpolation in the setup script can make configuration edits unsafe when inputs are not tightly controlled.
+
+Mitigation: Remove inline interpolation or strictly sanitize shell and JavaScript inputs before running the script.
+
+## Reference(s):
+
+- [Agent Recruiter on ClawHub](https://clawhub.ai/junchen19/skills/agent-recruiter)
+- [agency-agents template reference](https://github.com/msitarzewski/agency-agents)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash, JSON, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce OpenClaw agent workspace files and persistent routing configuration when its shell script is executed.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

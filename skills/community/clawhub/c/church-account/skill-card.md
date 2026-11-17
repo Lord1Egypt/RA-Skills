@@ -1,43 +1,56 @@
-## Description: <br>
-Automate tasks on churchofjesuschrist.org and LCR (Leader & Clerk Resources), including login, roster lookup, callings, member directory access, session management, and key church service URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates account workflows on churchofjesuschrist.org and LCR (Leader & Clerk Resources), including login, session reuse, service URLs, and account-related lookup or management tasks.
 
-## Publisher: <br>
-[nathan-deepmm](https://clawhub.ai/user/nathan-deepmm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nathan-deepmm](https://clawhub.ai/user/nathan-deepmm)
 
-## Use Case: <br>
-External authorized church account users and developers use this skill to generate guidance and code for automating authenticated LDS/LCR web workflows such as login, service navigation, and account/session handling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide automation of sensitive church account and LCR data access. <br>
-Mitigation: Use it only with explicit authorization for the relevant account and data, and manually approve every action that views or changes member, finance, temple, calling, or account information. <br>
-Risk: Saved browser storage state can contain authentication tokens. <br>
-Mitigation: Avoid shared or predictable storage locations, treat saved state as sensitive, and delete it after use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nathan-deepmm/church-account) <br>
-- [Publisher profile](https://clawhub.ai/user/nathan-deepmm) <br>
-- [LCR (Leader & Clerk Resources)](https://lcr.churchofjesuschrist.org) <br>
-- [Ward Directory](https://directory.churchofjesuschrist.org) <br>
-- [Church Account Settings](https://id.churchofjesuschrist.org/account) <br>
+## Use Case:
 
+External users or agents operating with authorization use this skill to guide Church Account and LCR website login, session reuse, and navigation for membership, calling, directory, finance, and related account workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include authentication and session-handling guidance for sensitive account workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill addresses sensitive church account and LCR workflows involving personal, membership, finance, or access-controlled records.
+
+Mitigation: Use only with accounts and church data the user is authorized to access, and confirm sensitive reads or changes before each action.
+
+Risk: The artifact includes stealth browsing guidance and a no-sandbox browser launch flag.
+
+Mitigation: Avoid stealth or detection-bypass techniques and remove the no-sandbox browser flag before use.
+
+Risk: The artifact describes storing reusable browser session state in a shared temporary path.
+
+Mitigation: Store session tokens only in user-controlled, access-restricted locations and delete them when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nathan-deepmm/skills/church-account)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline Python code blocks and reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include browser automation steps, credential handling notes, service URLs, and session reuse patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

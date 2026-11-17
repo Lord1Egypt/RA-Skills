@@ -1,45 +1,65 @@
-## Description: <br>
-ZM Image2PPT generates visual slide images, an HTML viewer, and a 16:9 PPTX deck from a Markdown outline or slides_plan.json. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZM Image2PPT 视觉幻灯片生成。用于根据 Markdown 大纲或 slides_plan.json 生成视觉化幻灯片图片、HTML viewer 和 16:9 PPTX；正式项目需配合 ZM PPT/Deck 正式生产流程使用。
 
-## Publisher: <br>
-[jerryxn](https://clawhub.ai/user/jerryxn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerryxn](https://clawhub.ai/user/jerryxn)
 
-## Use Case: <br>
-Developers, content creators, and presentation teams use this skill to turn Markdown outlines or slide-plan JSON into visual Chinese-language slide decks, previewable HTML viewers, and 16:9 PPTX files. It also supports optional template cloning for brand-aligned presentation production. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Slide text and template images may be sent to configured OpenAI-compatible model endpoints. <br>
-Mitigation: Avoid confidential source material unless the configured endpoints are approved for that data. <br>
-Risk: The skill handles API keys and vision service credentials. <br>
-Mitigation: Use platform secret storage or manually managed environment variables, and do not commit credentials into projects. <br>
-Risk: Optional Codex-backed image generation and Docker-based template rendering paths have broader local authority than the default workflow. <br>
-Mitigation: Use those paths only after reviewing the commands and confirming they fit the local execution environment. <br>
+## Use Case:
 
+Developers, designers, and presentation authors use this skill to turn a Markdown outline or slides_plan.json into visual slide images, an HTML viewer, and a 16:9 PPTX deck. It supports built-in visual styles and optional template cloning for project slide production workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jerryxn/skills/zm-image2-ppt-generator) <br>
-- [English README](docs/README.en.md) <br>
-- [Installation guide](docs/install.md) <br>
-- [OpenAI Images API guide](https://platform.openai.com/docs/guides/images) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown planning guidance, JSON slide plans, PNG slide images, an HTML viewer, and PPTX presentation files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured image-generation and optional vision endpoints; generated files are written under an outputs directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The security scan marks the release suspicious because optional automation and configuration paths should be reviewed before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust the publisher, review the skill before deployment, and use an isolated virtual environment for Python dependencies.
+
+Risk: Configured image or vision providers may receive slide content, template images, or related prompts.
+
+Mitigation: Use trusted providers and relay endpoints only, and avoid using proprietary templates with untrusted relay endpoints.
+
+Risk: The optional codex backend adds an automation path that is not recommended for untrusted slide content.
+
+Mitigation: Prefer the maintained scripts/generate_ppt.py path and avoid --backend codex for untrusted slide content.
+
+Risk: The skill writes generated outputs and caches under the caller's working directory.
+
+Mitigation: Run it in an appropriate project directory and review generated outputs, template renders, and caches before sharing or committing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jerryxn/skills/zm-image2-ppt-generator)
+- [OpenAI Images API guide](https://platform.openai.com/docs/guides/images)
+- [English README](docs/README.en.md)
+- [Installation guide](docs/install.md)
+- [AI readiness checklist](checklists/ai_readiness_checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated slide assets such as PNG images, HTML viewer files, JSON prompts, and PPTX decks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated artifacts are written under the caller's working directory, commonly outputs/<timestamp>/, with template render and analysis caches when template cloning is used.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-A tool to calculate the product of two or more numbers. Supports integers and decimals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A tool to calculate the product of two or more numbers. Supports integers and decimals.
 
-## Publisher: <br>
-[Super-max21](https://clawhub.ai/user/Super-max21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[super-max21](https://clawhub.ai/user/super-max21)
 
-## Use Case: <br>
-External users and developers use this skill to calculate products of two or more numbers and to provide educational multiplication guidance, examples, and exercises. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Floating-point arithmetic is not ideal for precision-sensitive decimal or very large integer multiplication. <br>
-Mitigation: Use this skill for basic multiplication and verify precision-sensitive results with exact decimal or integer arithmetic. <br>
+## Use Case:
 
+External users and agents use this skill to calculate products of two or more integer or decimal values and provide Chinese-language multiplication learning guidance, including tables, worked methods, exercises, and common error reminders.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/Super-max21/zyz-skill-multiplication-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance and plain-text numeric results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled Python calculator accepts multiply <num1> <num2> ... and returns floating-point results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill documentation is primarily Chinese-language, which may be unsuitable for English-only or multilingual deployments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install where Chinese-language multiplication guidance is acceptable, or add reviewed multilingual documentation before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/super-max21/skills/zyz-skill-multiplication-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown with numeric results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts two or more numeric values; the bundled command format is `multiply <num1> <num2> ...`.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

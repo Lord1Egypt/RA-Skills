@@ -1,39 +1,58 @@
-## Description: <br>
-Checks OpenClaw documentation and schema before editing OpenClaw configuration files so proposed changes use supported options and types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents validate OpenClaw configuration options against local documentation, schema lookup, and online docs before editing OpenClaw config files.
 
-## Publisher: <br>
-[leon2023happy](https://clawhub.ai/user/leon2023happy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leon2023happy](https://clawhub.ai/user/leon2023happy)
 
-## Use Case: <br>
-Developers and agents use this skill when modifying OpenClaw config files such as openclaw.json or config/*.json. It guides them to check local docs, schema definitions, and OpenClaw documentation before changing configuration values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A proposed OpenClaw configuration change may still be incorrect or incompatible if documentation or schema checks are skipped or stale. <br>
-Mitigation: Run the documented local docs and schema checks before editing, consult OpenClaw online documentation when local evidence is missing, and review final config changes before accepting them. <br>
+## Use Case:
 
+Developers and engineers use this skill when an agent is asked to modify OpenClaw configuration files such as openclaw.json or config/*.json. It guides the agent to confirm that each configuration option exists, is used correctly, and matches the expected type before making changes.
 
-## Reference(s): <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/leon2023happy/openclaw-cfg-safe-edit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration validation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; it does not define executable scripts or require credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agents may introduce invalid OpenClaw settings if configuration validation is skipped or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check local OpenClaw documentation and schema lookup before editing; use the online docs or changelog when local docs do not cover the option.
+
+Risk: The trigger scope covers broad OpenClaw configuration paths.
+
+Mitigation: Limit use to intended OpenClaw configuration files or tighten trigger wording for deployments that only permit specific config paths.
+
+Risk: The skill instructions are currently Chinese-only.
+
+Mitigation: Have operators who rely on the card review the Chinese instructions or provide an approved localized version before broad deployment.
+
+## Reference(s):
+
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/leon2023happy/skills/openclaw-cfg-safe-edit)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

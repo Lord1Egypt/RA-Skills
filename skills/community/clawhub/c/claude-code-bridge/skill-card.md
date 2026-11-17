@@ -1,45 +1,64 @@
-## Description: <br>
-Bridges OpenClaw messaging channels to a persistent Claude Code CLI session in tmux so users can start, stop, monitor, and interact with Claude Code from chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bridges OpenClaw chat channels such as QQ, Telegram, and WeChat to a persistent Claude Code CLI session running in tmux so users can start, monitor, control, and route messages to Claude Code from chat.
 
-## Publisher: <br>
-[ZLHad](https://clawhub.ai/user/ZLHad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlhad](https://clawhub.ai/user/zlhad)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate a local Claude Code CLI session from OpenClaw-connected chat channels, including selecting a working directory, using sandbox mode, forwarding slash commands, and responding to approval prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chat conversations can remotely control a persistent local Claude Code terminal session. <br>
-Mitigation: Install only for trusted chat channels and participants, prefer private chats, and stop sessions when work is finished. <br>
-Risk: Claude Code may request permission to read or write files or execute commands in the chosen working directory. <br>
-Mitigation: Review every approval prompt carefully, avoid persistent project-wide approvals unless needed, and use sandbox mode or low-sensitivity directories when possible. <br>
-Risk: History and terminal peek commands can expose sensitive terminal output. <br>
-Mitigation: Treat /cc history and /cc peek as sensitive operations and restrict access to chats where their output is appropriate. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to operate a local Claude Code terminal session from supported chat channels, including choosing a working directory, using sandbox mode, sending prompts, relaying slash commands, and handling approval prompts.
 
-## Reference(s): <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
-- [OpenClaw project](https://github.com/nicepkg/openclaw) <br>
-- [ClawHub skill page](https://clawhub.ai/ZLHad/claude-code-bridge) <br>
-- [Claude Code Bridge usage guide](references/usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands and terminal output excerpts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May truncate long Claude Code output and direct users to history or peek commands for more context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Chat users on connected channels can control a persistent local Claude Code terminal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted chat users, restrict bot access, prefer sandbox mode or a low-privilege account, and avoid sensitive working directories.
+
+Risk: Server security evidence reports a confirmed startup command-injection risk and session-collision concerns.
+
+Mitigation: Fix these issues before use in shared, remote, or multi-user environments.
+
+Risk: Peek and history commands can expose sensitive terminal or project output.
+
+Mitigation: Treat session output as sensitive and limit use to channels and users authorized to view the underlying project.
+
+Risk: Project-wide approvals can allow broader Claude Code actions than the user intended.
+
+Mitigation: Avoid persistent project approvals unless the requested action and working directory are fully understood.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/zlhad/skills/claude-code-bridge)
+- [Claude Code Bridge usage guide](references/usage.md)
+- [OpenClaw](https://github.com/nicepkg/openclaw)
+- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown relayed from a Claude Code terminal session, with command output and code blocks when produced by Claude Code.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include terminal history, approval choices, status text, and truncated long-session output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 0.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

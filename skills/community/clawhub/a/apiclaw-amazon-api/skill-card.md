@@ -1,47 +1,61 @@
-## Description: <br>
-APIClaw Amazon API helps agents look up Amazon commerce data across categories, market metrics, product search, competitor lookup, realtime ASIN detail, and AI review analysis using the APIClaw API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+APIClaw Amazon API helps agents answer APIClaw capability and integration questions for six Amazon commerce-data endpoints covering categories, markets, products, competitors, realtime product detail, and review analysis.
 
-## Publisher: <br>
-[christine-srp](https://clawhub.ai/user/christine-srp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[christine-srp](https://clawhub.ai/user/christine-srp)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to answer APIClaw capability questions, configure API access, and choose the correct APIClaw endpoint and fields for Amazon commerce data workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APIClaw receives the product, market, ASIN, and review queries submitted through API workflows that use this skill. <br>
-Mitigation: Install and use the skill only when APIClaw is trusted for those commerce-data queries. <br>
-Risk: The APICLAW_API_KEY can be exposed if copied into chats, files, logs, or shared snippets. <br>
-Mitigation: Store the key in the APICLAW_API_KEY environment variable and avoid pasting it into prompts or logs. <br>
-Risk: API calls can consume paid APIClaw credits. <br>
-Mitigation: Monitor API usage and remaining credits before running repeated or high-volume queries. <br>
-Risk: APIClaw endpoints return different field shapes, so assuming a shared response structure can produce incorrect guidance or analysis. <br>
-Mitigation: Check the endpoint-specific reference before using response fields such as price, BSR, sales, reviews, or sentiment. <br>
+## Use Case:
 
+Developers and external agent users use this skill to understand APIClaw's Amazon commerce-data endpoints, required API key setup, request shapes, response fields, credit use, and endpoint-specific quirks.
 
-## Reference(s): <br>
-- [APIClaw Amazon API release page](https://clawhub.ai/christine-srp/apiclaw-amazon-api) <br>
-- [APIClaw API Quick Reference](references/openapi-reference.md) <br>
-- [APIClaw API documentation](https://api.apiclaw.io/api-docs) <br>
-- [APIClaw OpenAPI specification](https://apiclaw.io/api/v1/openapi-spec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON examples, and endpoint field guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API setup steps, endpoint recommendations, request examples, response field notes, and credit usage guidance; the skill itself is reference guidance and does not execute API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: API queries and APICLAW_API_KEY are sent to APIClaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the key in the environment, avoid pasting it into logs or shared transcripts, and tell users when APIClaw will receive query data.
+
+Risk: API calls consume credits and are subject to rate limits.
+
+Mitigation: Check credit usage before large runs, monitor creditsConsumed and creditsRemaining, and throttle requests to stay within documented limits.
+
+Risk: Endpoint response fields differ, and some commerce metrics are estimates or delayed.
+
+Mitigation: Use the endpoint-specific field reference, surface uncertainty for lower-bound or delayed data, and avoid assuming fields are shared across endpoints.
+
+## Reference(s):
+
+- [APIClaw API Quick Reference](references/openapi-reference.md)
+- [APIClaw API Docs](https://api.apiclaw.io/api-docs)
+- [APIClaw Live OpenAPI Spec](https://apiclaw.io/api/v1/openapi-spec)
+- [APIClaw Website](https://apiclaw.io)
+- [APIClaw Pricing](https://apiclaw.io/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include endpoint-specific request examples, response field guidance, API-key setup instructions, credit-use notes, and caveats about endpoint differences.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

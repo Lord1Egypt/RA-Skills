@@ -1,48 +1,61 @@
-## Description: <br>
-GStack Pro turns an AI assistant into a structured virtual software engineering team with specialist roles for product planning, architecture, design review, code review, QA, shipping, retrospectives, and documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gstack Pro turns an AI assistant into a structured software engineering team with roles for product planning, architecture, design review, code review, QA, shipping, retrospectives, and release documentation.
 
-## Publisher: <br>
-[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to run structured product, architecture, review, QA, release, retrospective, and documentation workflows through OpenClaw subagents. It is most useful when planning a feature, preparing to ship, reviewing code, running browser QA, or reassessing product direction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: QA workflows can drive browser actions against live applications, including actions that submit forms or change data. <br>
-Mitigation: Run QA against staging or test accounts where possible, and manually approve browser actions that submit forms or modify data. <br>
-Risk: Shipping workflows can perform high-impact repository operations such as rebasing, version bumps, force-with-lease pushes, PR creation, or direct pushes. <br>
-Mitigation: Confirm the repository, branch ownership, clean working tree, test results, and PR target before allowing release commands. <br>
-Risk: Instruction-only review and planning outputs may contain incomplete or misleading guidance. <br>
-Mitigation: Review and scan the skill before deployment, and keep human approval in the loop for production changes. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to structure an AI-assisted development workflow across planning, architecture, design review, code review, browser QA, release, retrospectives, and documentation updates. It is suited to feature work, code review, QA runs, and release preparation.
 
-## Reference(s): <br>
-- [GStack](https://gstacks.org) <br>
-- [CEO product thinking SOP](references/plan-ceo.md) <br>
-- [Architecture review SOP](references/plan-eng.md) <br>
-- [Paranoid code review SOP](references/review.md) <br>
-- [Automated QA SOP](references/qa.md) <br>
-- [One-command ship SOP](references/ship.md) <br>
-- [Engineering retro SOP](references/retro.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with structured reports, checklists, JSON snippets, code examples, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include role-specific reports, QA health scores, review findings, release plans, and documentation updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The QA and shipping workflows can lead an agent to make code changes, drive a browser session, run git operations, and push branches with high impact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of the target URL, repository, branch, staged file list, staged diff, and every git push before running QA or shipping workflows.
+
+Risk: Running the ship workflow on protected branches or repositories with local secrets can expose sensitive data or create unwanted release changes.
+
+Mitigation: Avoid protected branches and sensitive repositories unless branch protections, review gates, and secret scanning are in place.
+
+## Reference(s):
+
+- [Gstack Pro Skill Page](https://clawhub.ai/zmy1006-sudo/skills/gstack-pro)
+- [Publisher Profile](https://clawhub.ai/user/zmy1006-sudo)
+- [GStack](https://gstacks.org)
+- [CEO Product Thinking SOP](references/plan-ceo.md)
+- [Architecture Review SOP](references/plan-eng.md)
+- [Automated QA SOP](references/qa.md)
+- [Engineering Retro SOP](references/retro.md)
+- [Paranoid Code Review SOP](references/review.md)
+- [One-Command Ship SOP](references/ship.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with code blocks, shell commands, checklists, tables, and structured JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Health Score reports, QA findings, release reports, review findings, architecture plans, and retrospective summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

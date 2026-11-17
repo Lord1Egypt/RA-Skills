@@ -1,43 +1,55 @@
-## Description: <br>
-Multi-language brain teaser interactive game supporting Chinese, English, and Japanese with automatic language detection, random questions, answer matching, hints, and no-repeat history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A multilingual brain teaser game skill that detects Chinese, English, or Japanese input and returns random riddles, hints, answer feedback, and session statistics.
 
-## Publisher: <br>
-[KickEGG](https://clawhub.ai/user/KickEGG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kickegg](https://clawhub.ai/user/kickegg)
 
-## Use Case: <br>
-External users and developers use this skill to run an interactive multilingual brain-teaser game, including starting sessions, answering questions, requesting hints, revealing answers, moving to the next question, and resetting history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may reuse existing Claude or OpenClaw configuration and send AI question-generation requests to model APIs when the local question pool runs low. <br>
-Mitigation: Use a dedicated BRAIN_TEASER_API_KEY or keep AI generation unavailable, and review any configured API endpoint before deployment. <br>
-Risk: Server security guidance identifies an offensive Chinese riddle in the bundled content. <br>
-Mitigation: Remove the offensive Chinese riddle before broad use. <br>
+## Use Case:
 
+External users and agent operators use this skill to run a multilingual brain teaser session with generated prompts, hints, answer checking, reveal actions, next-question flow, and local session history.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/KickEGG/brain-teaser-game) <br>
-- [Publisher Profile](https://clawhub.ai/user/KickEGG) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Python](https://www.python.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with command-line interaction output and optional JSON-based AI question generation responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes the current question, hints when requested, answer feedback, game statistics, and a session ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can automatically reuse credentials from Claude or OpenClaw configuration files when optional AI question generation is active.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in credentialed environments, and limit credential loading to BRAIN_TEASER_API_KEY or remove the fallback credential-loading paths.
+
+Risk: The security evidence reports avoidable local file-safety issues involving diagnostic configuration output and session ID path handling.
+
+Mitigation: Remove diagnostic configuration printing and fix session ID path handling before use in sensitive local environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kickegg/skills/brain-teaser-game)
+- [OpenClaw](https://openclaw.ai)
+- [Python](https://www.python.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown gameplay responses with questions, hints, answer feedback, explanations, statistics, and session IDs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local session and history files; optional AI-generated questions can be enabled with API configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Calculate and compare return on investment across influencer partnerships by tracking attribution from creator content to sales, including seeding costs, commissions, licensing fees, and assisted conversions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate and compare return on investment across influencer partnerships by tracking full attribution from creator content to actual sales, factoring in product seeding costs, commissions, content licensing fees, and assisted conversions.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce and marketing teams use this skill to evaluate creator partnerships, compare influencer profitability, and decide whether to renew, pause, or rebalance campaign spend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incomplete or platform-reported attribution data can lead to misleading ROI and renewal recommendations. <br>
-Mitigation: Verify orders, revenue, UTM traffic, discount-code usage, and assisted conversions against ecommerce and analytics systems before acting on the report. <br>
-Risk: Missing seeding, shipping, licensing, agency, or commission costs can overstate creator profitability. <br>
-Mitigation: Use the full cost tracker and checklist to capture total creator cost before comparing ROAS, CPA, and net profit. <br>
-Risk: Security review guidance notes that skill workflows should be run only with clear targets and reviewed before confirming writes. <br>
-Mitigation: Install and use the skill only from the trusted publisher profile, review generated recommendations before deployment, and confirm any proposed changes before applying them. <br>
+## Use Case:
 
+External ecommerce operators and marketing teams use this skill to evaluate influencer campaign profitability from backend-attributed orders, full creator costs, leakage adjustments, assisted conversions, and normalized comparison windows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leooooooow/influencer-roi) <br>
-- [Output Template](output-template.md) <br>
-- [Influencer Attribution Guide](attribution-guide.md) <br>
-- [Creator Cost Tracker](creator-cost-tracker.md) <br>
-- [Influencer ROI Analysis Quality Checklist](checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, tables, checklists, and calculation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided campaign, cost, margin, attribution, and conversion data; no code execution is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Campaign exports, order records, attribution paths, and creator financial terms may contain confidential business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the minimum data needed for the ROI report, redact unnecessary customer or contract details, and handle inputs according to internal data controls.
+
+Risk: Helper links in SKILL.md point to paths that do not match the packaged artifact layout.
+
+Mitigation: Use the packaged root-level helper files: output-template.md, attribution-guide.md, creator-cost-tracker.md, and checklist.md.
+
+Risk: ROI recommendations can be misleading if based on platform-reported conversions, incomplete costs, or unchecked discount-code leakage.
+
+Mitigation: Validate attribution against ecommerce backend data, include all creator costs, check coupon-site leakage, and review the quality checklist before acting on renewal or budget recommendations.
+
+## Reference(s):
+
+- [Influencer ROI on ClawHub](https://clawhub.ai/leooooooow/skills/influencer-roi)
+- [Influencer ROI Report Output Template](output-template.md)
+- [Influencer Attribution Guide](attribution-guide.md)
+- [Creator Cost Tracker](creator-cost-tracker.md)
+- [Influencer ROI Analysis Quality Checklist](checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown ROI report with tables, calculations, recommendations, and checklist-driven review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces manual ROI analysis guidance only; no executable behavior was observed in the security evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

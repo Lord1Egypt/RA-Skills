@@ -1,0 +1,13 @@
+interface:
+  display_name: "Payment header deploy check"
+  short_description: "Verify live header changes"
+policy:
+  products: ["CHAT", "CODEX"]
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "powmcp-security-headers-check"
+      description: "Security Headers Check (PowMCP)"
+      transport: "streamable_http"
+      url: "https://powmcp.com/security-headers-check/mcp"

@@ -1,42 +1,64 @@
-## Description: <br>
-Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A PDF manipulation toolkit for extracting text and tables, creating, merging, splitting, rotating, protecting, watermarking, and filling PDF documents.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary. LICENSE.txt has complete terms <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and agents use this skill to extract content from PDFs, generate or transform PDF documents, and complete PDF forms with field validation and visual review steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: Generated JSON, PNG, text, and PDF artifacts may contain private or sensitive document data. <br>
-Mitigation: Use the skill only on PDFs the user is authorized to process, keep generated artifacts out of shared or synced locations when they contain private data, and delete intermediate files when finished. <br>
-Risk: Decrypted, repaired, or filled PDFs can expose protected content or replace important document state. <br>
-Mitigation: Work from a backup before repair or decryption steps, avoid in-place changes, and review generated PDFs before sharing or filing them. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect, transform, generate, and fill PDF documents with Python libraries, command-line tools, and bundled validation utilities.
 
-## Reference(s): <br>
-- [PDF Processing Advanced Reference](reference.md) <br>
-- [PDF Form Filling Workflow](forms.md) <br>
-- [Adobe PDF 32000:2008 Standard](https://opensource.adobe.com/dc-acrobat-sdk-docs/standards/pdfstandards/pdf/PDF32000_2008.pdf#page=448) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with Python, JavaScript, bash, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce text extracts, JSON field maps, PNG validation images, and generated or filled PDF files during agent workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: PDFs can contain sensitive personal, legal, or business data that may be extracted, logged, or copied into local outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use copies of important documents, restrict access to generated outputs, and avoid logging or sharing extracted sensitive text.
+
+Risk: PDF transformation and form-filling utilities create local files and may overwrite or misplace important outputs if paths are reused.
+
+Mitigation: Choose unique output paths, review generated files before use, and keep original PDFs unchanged.
+
+Risk: Password-removal examples can be misused on documents the user is not authorized to decrypt.
+
+Mitigation: Only remove PDF passwords when the user has explicit authorization for the document.
+
+Risk: Non-fillable PDF form completion depends on accurate visual bounding boxes and can place text in the wrong area.
+
+Mitigation: Generate and inspect validation images, correct bounding boxes, and verify the completed PDF before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/flink-query-pdf)
+- [PDF forms guide](artifact/forms.md)
+- [PDF processing advanced reference](artifact/reference.md)
+- [Adobe PDF 32000:2008 field state reference](https://opensource.adobe.com/dc-acrobat-sdk-docs/standards/pdfstandards/pdf/PDF32000_2008.pdf#page=448)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with Python, JavaScript, shell, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local PDFs, page images, JSON field maps, and validation images when the agent runs bundled utilities.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -25,6 +25,7 @@ Options:
   --min-paragraphs <n>      Minimum substantial paragraphs/sections, default 7
   --require <term>          Required product/SEO term; repeat at least twice
   --variant <term>          Natural typo/search variant; repeat if useful
+  --min-variants <n>        Minimum natural typo/search variants, default 1
   --ad-json <path>          Write copyQuality evidence into an ad.json file
   --allow-no-variant        Allow no typo/search variant; use only with explicit exception
   --allow-no-required       Allow no required product terms; use only for diagnostics
@@ -64,6 +65,7 @@ function parseArgs(argv) {
     else if (arg === '--min-paragraphs') options.minParagraphs = Number(next());
     else if (arg === '--require') options.required.push(next());
     else if (arg === '--variant') options.variants.push(next());
+    else if (arg === '--min-variants') options.minVariants = Number(next());
     else if (arg === '--ad-json') options.adJson = next();
     else if (arg === '--allow-no-variant') options.allowNoVariant = true;
     else if (arg === '--allow-no-required') options.allowNoRequired = true;
@@ -97,6 +99,23 @@ function getLastSentence(text) {
   return text.trim().match(/[^.!?\n][^.!?]*(?:[.!?])?\s*$/)?.[0]?.trim() || '';
 }
 
+function findWebsiteReferences(text) {
+  const patterns = [
+    /\bhttps?:\/\/[^\s<>"')]+/giu,
+    /\bwww\.[^\s<>"')]+/giu,
+    /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/giu,
+    /\b(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+(?:com|nl|eu|org|net|de|be|io|co|uk|fr|info|biz|shop|online|me|app|dev|ai|cloud|tv|se|dk|es|it)\b/giu,
+  ];
+  const matches = [];
+  for (const pattern of patterns) {
+    for (const match of text.matchAll(pattern)) {
+      const value = match[0].replace(/[.,;:!?]+$/u, '');
+      if (value && !matches.includes(value)) matches.push(value);
+    }
+  }
+  return matches;
+}
+
 function evaluate(text, options, file = null) {
   const normalized = normalize(text);
   const chars = countChars(normalized);
@@ -114,6 +133,7 @@ function evaluate(text, options, file = null) {
     const trimmed = line.trim();
     return trimmed.length >= 120 && (trimmed.match(/,/g) || []).length >= 8;
   });
+  const websiteReferences = findWebsiteReferences(normalized);
   const requiredMissing = options.required.filter((term) => !includes(term));
   const variantMatches = options.variants.filter((term) => includes(term));
   const lastSentence = getLastSentence(normalized);
@@ -147,6 +167,10 @@ function evaluate(text, options, file = null) {
 
   if (commaDump) {
     failures.push('contains a likely comma-separated keyword dump');
+  }
+
+  if (websiteReferences.length) {
+    failures.push(`contains forbidden website/domain reference(s): ${websiteReferences.join(', ')}`);
   }
 
   if (!options.allowNoRequired && options.required.length < options.minRequiredTerms) {
@@ -184,9 +208,12 @@ function evaluate(text, options, file = null) {
     maxChars: options.max,
     absoluteMinChars: options.absoluteMin,
     absoluteMaxChars: options.absoluteMax,
+    minVariants: options.minVariants,
     hasNaturalSeo: options.required.length >= options.minRequiredTerms && requiredMissing.length === 0 && !keywordHeading && !commaDump,
     hasIntentionalVariant: options.allowNoVariant || variantMatches.length > 0,
     hasKeywordDump: keywordHeading || commaDump,
+    hasWebsiteReferences: websiteReferences.length > 0,
+    websiteReferences,
     requiredTerms: options.required,
     requiredMissing,
     variantTerms: options.variants,
@@ -208,10 +235,13 @@ function writeAdJson(adJsonPath, result) {
     paragraphs: result.paragraphs,
     minChars: result.minChars,
     maxChars: result.maxChars,
+    minVariants: result.minVariants,
     passed: result.passed,
     hasNaturalSeo: result.hasNaturalSeo,
     hasIntentionalVariant: result.hasIntentionalVariant,
     hasKeywordDump: result.hasKeywordDump,
+    hasWebsiteReferences: result.hasWebsiteReferences,
+    websiteReferences: result.websiteReferences,
     requiredTerms: result.requiredTerms,
     requiredMissing: result.requiredMissing,
     variantTerms: result.variantTerms,
@@ -235,6 +265,7 @@ function printResult(result, json) {
   if (result.requiredTerms.length) console.log(`requiredTerms=${result.requiredTerms.join(', ')}`);
   if (result.variantTerms.length) console.log(`variantTerms=${result.variantTerms.join(', ')}`);
   if (result.variantMatches.length) console.log(`variantMatches=${result.variantMatches.join(', ')}`);
+  if (result.websiteReferences.length) console.log(`websiteReferences=${result.websiteReferences.join(', ')}`);
   if (result.warnings.length) console.log(`warnings:\n- ${result.warnings.join('\n- ')}`);
   if (result.failures.length) console.log(`failures:\n- ${result.failures.join('\n- ')}`);
   console.log(`lastSentence=${result.lastSentence}`);
@@ -269,6 +300,10 @@ function runSelfTest() {
 
   assertSelfTest(!evaluate(bad, options).passed, 'bad sample should fail');
   assertSelfTest(evaluate(good, options).passed, 'good sample should pass');
+  assertSelfTest(!evaluate(`${good}\n\nMeer info: https://voorbeeld.nl`, options).passed, 'https URL should fail');
+  assertSelfTest(!evaluate(`${good}\n\nMeer info: www.voorbeeld.nl`, options).passed, 'www domain should fail');
+  assertSelfTest(!evaluate(good.replace('Testmerk Model X', 'StarTech.com Model X'), options).passed, 'domain-like brand should fail');
+  assertSelfTest(!evaluate(`${good}\n\nMail info@example.com voor vragen.`, options).passed, 'email address should fail');
 
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'marktplaats-copy-qa-'));
   const adJson = path.join(tmpDir, 'ad.json');

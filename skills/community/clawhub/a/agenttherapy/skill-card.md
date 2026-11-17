@@ -1,41 +1,53 @@
-## Description: <br>
-AgentTherapy helps agents handle uncertainty, repeated errors, correction, and ability limits by stopping bluffing, stating blockers, and offering concrete fallback options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentTherapy helps agents recover from uncertainty, repeated errors, corrections, hallucination risk, or missing context by pausing, naming blockers, stating limits, and offering concrete fallback options.
 
-## Publisher: <br>
-[macoloye](https://clawhub.ai/user/macoloye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[macoloye](https://clawhub.ai/user/macoloye)
 
-## Use Case: <br>
-Developers, agent builders, and agent operators use this skill to help an agent recover when it is stuck, uncertain, corrected, blocked by missing context or tools, or at risk of hallucinating. It gives the agent a concise failure-handling pattern: pause, name the blocker, state what can and cannot be verified, and offer concrete next options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Durable working-style notes could capture sensitive information if an agent stores more than practical correction preferences. <br>
-Mitigation: If note-taking is enabled, keep notes short and non-sensitive, and avoid storing secrets, logs, personal data, or psychological inferences. <br>
-Risk: The therapy framing could be misunderstood as human mental-health support. <br>
-Mitigation: Use the skill only as an agent failure-handling policy; the artifact explicitly states that it is not therapy for humans. <br>
+## Use Case:
 
+Developers, agent operators, and external users use this skill to guide an agent when it is stuck, uncertain, repeatedly wrong, corrected by the user, or at risk of hallucinating. The skill supports honest failure reporting, concrete fallback options, and correction-style adaptation without treating the content as human therapy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/macoloye/agenttherapy) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with response templates and compact preference-note examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code or hidden access requests were identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill may activate during ordinary uncertainty or correction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when failure, uncertainty, correction, missing context, or hallucination risk is present, and keep responses concise for routine tasks.
+
+Risk: The skill may write compact working-style notes if the host agent has durable memory enabled.
+
+Mitigation: Disable memory or adapt the preference-note section before deployment when persistent working-style notes are not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/macoloye/skills/agenttherapy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown or plain text response guidance with optional YAML preference notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; may suggest fallback actions or compact working-style notes when durable memory is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Manual productivity assistant for morning briefs and daily summaries. Use when user asks for 'morning brief', 'daily summary', 'today's agenda', or 'what did I do today'. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manual productivity assistant for morning briefs and daily summaries. Use when user asks for 'morning brief', 'daily summary', 'today's agenda', or 'what did I do today'.
 
-## Publisher: <br>
-[kneijenhuijs](https://clawhub.ai/user/kneijenhuijs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kneijenhuijs](https://clawhub.ai/user/kneijenhuijs)
 
-## Use Case: <br>
-Knowledge workers and OpenClaw users use this skill to request morning briefs, agenda and task summaries, and end-of-day summaries. It can combine local profile, intention, workspace activity, and optional Todoist or calendar information into concise productivity updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read personal OpenClaw profile files, workspace activity, chat context, and optional Todoist or calendar data. <br>
-Mitigation: Install only when that local productivity context is acceptable for the assistant to use, and enable only the optional integrations the user wants exposed. <br>
-Risk: Daily summaries are saved under ~/.openclaw/workspace/memory and may contain sensitive personal or work information. <br>
-Mitigation: Review or delete memory files that should not persist, and avoid adding sensitive details to end-of-day check-ins. <br>
+## Use Case:
 
+External OpenClaw users use this skill to generate on-demand morning briefs and end-of-day summaries from local workspace preferences, focus notes, optional calendar events, optional Todoist tasks, and recent workspace activity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kneijenhuijs/clawflow-free) <br>
-- [README](artifact/README.md) <br>
-- [Installation guide](artifact/INSTALL.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown messages, local Markdown summary files, and optional shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local OpenClaw workspace files; optional Todoist and calendar CLI integrations are skipped when unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and CHANGELOG, released 2026-04-24) <br>
+Risk: The skill can read local OpenClaw workspace preferences, current chat context, file activity, and optional Todoist or Google Calendar data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when comfortable with that access, configure only the integrations you need, and use isolated accounts or workspaces for sensitive contexts.
+
+Risk: Daily summaries are saved under ~/.openclaw/workspace/memory/ and may contain sensitive work or personal context.
+
+Mitigation: Review or delete memory files that contain sensitive information.
+
+Risk: Optional task and calendar integrations depend on local CLI tools and their authentication state.
+
+Mitigation: Verify CLI configuration before use and prefer an isolated or pinned install method for todoist-cli.
+
+## Reference(s):
+
+- [Clawflow Free on ClawHub](https://clawhub.ai/kneijenhuijs/skills/clawflow-free)
+- [OpenClaw gog skill documentation](https://github.com/openclaw/openclaw/skills/gog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown chat responses, Markdown memory files, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a morning brief in chat or writes a dated daily summary to ~/.openclaw/workspace/memory/ after an optional check-in.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and CHANGELOG, released 2026-04-24)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

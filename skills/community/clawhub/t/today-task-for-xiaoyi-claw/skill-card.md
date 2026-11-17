@@ -1,39 +1,60 @@
-## Description: <br>
-Pushes completed task results and related task metadata to Huawei Xiaoyi's negative-screen service using a standardized JSON format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pushes completed Xiaoyi Claw or OpenClaw task results to Huawei's negative-screen task notification service using a standard JSON payload.
 
-## Publisher: <br>
-[ganhaiyang3](https://clawhub.ai/user/ganhaiyang3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ganhaiyang3](https://clawhub.ai/user/ganhaiyang3)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill after an agent task completes to package the task name, result, Markdown content, and timestamp into the service's expected push payload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task results and metadata are sent to the hardcoded Huawei Xiaoyi endpoint. <br>
-Mitigation: Install only when that data flow is intended, and avoid including sensitive personal, business, or secret data in task content. <br>
-Risk: Credentials are handled through a plaintext .xiaoyienv file and may be exposed through console output, verbose logs, or local records. <br>
-Mitigation: Protect or avoid the plaintext credential file, limit log verbosity, review local records, and clean logs and push records after use. <br>
+## Use Case:
 
+Developers and OpenClaw or Xiaoyi Claw users use this skill to package completed task results as JSON, preserve Markdown content, and push status updates to Huawei negative-screen notifications.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces task push payload guidance and command-line usage; runtime scripts may create local logs and push records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.26 (source: server release evidence and artifact/version.json) <br>
+Risk: Task names, content, results, timestamps, UID, and authenticated requests may be sent to a fixed Huawei endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive task content and install only when that destination and data flow are acceptable.
+
+Risk: Personal API credentials may appear in output or logs.
+
+Mitigation: Restrict access to the credential file, generated logs, and push records; rotate credentials if this version has already run.
+
+Risk: Some documented privacy controls do not match the code behavior.
+
+Mitigation: Review the current security statement and assume fixed-endpoint transmission and local credential-file access when assessing use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ganhaiyang3/skills/today-task-for-xiaoyi-claw)
+- [Artifact README](artifact/README.md)
+- [Artifact security statement](artifact/SECURITY.md)
+- [Huawei negative-screen REST endpoint](https://celia-claw-drcn.ai.dbankcloud.cn/celia-claw/v1/rest-api/skill/execute)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [JSON status objects and Markdown task content, with CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write logs and optional push records locally; normal execution sends task data to a fixed Huawei endpoint.]
+
+## Skill Version(s):
+
+1.0.26 (source: server release evidence and artifact/version.json, released 2026-04-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

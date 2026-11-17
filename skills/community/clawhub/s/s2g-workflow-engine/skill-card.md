@@ -1,48 +1,62 @@
-## Description: <br>
-Connects OpenClaw agents to S2G over WebSocket so they can discover, execute, and manage S2G workflow nodes as tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects OpenClaw agents to the S2G visual workflow automation platform over WebSocket so agents can discover and execute workflow nodes as tools.
 
-## Publisher: <br>
-[helmutsreinis](https://clawhub.ai/user/helmutsreinis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[helmutsreinis](https://clawhub.ai/user/helmutsreinis)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to connect an OpenClaw agent to S2G workflows, execute connected workflow nodes, receive workflow data pushes, and manage S2G automation through documented APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The bridge exposes workflow execution controls through a network-accessible local HTTP API that is unauthenticated by default. <br>
-Mitigation: Run the bridge behind a local firewall or change it to bind to 127.0.0.1, and add authentication before exposing the port beyond trusted local agent access. <br>
-Risk: Connected S2G workflows may include powerful or destructive nodes, including database, custom-code, AI, and workflow-management actions. <br>
-Mitigation: Connect only trusted workflows and nodes, avoid production database or destructive custom nodes unless required, and review node schemas and parameters before execution. <br>
-Risk: Bridge logs may contain node names, execution parameters, errors, and pushed workflow data. <br>
-Mitigation: Treat bridge logs as sensitive, restrict log file access, and avoid passing secrets or unnecessary sensitive data through workflow payloads. <br>
-Risk: The S2G WebSocket endpoint can operate without an auth secret if the OpenClaw node is left unprotected. <br>
-Mitigation: Set an S2G Auth Secret on the OpenClaw node and pass the matching secret to the bridge through the CLI or S2G_SECRET environment variable. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to connect OpenClaw to S2G workflows, execute discovered workflow nodes, manage workflow operations, and inspect node schemas through S2G APIs.
 
-## Reference(s): <br>
-- [S2G Platform](https://s2g.run) <br>
-- [ClawHub Skill Page](https://clawhub.ai/helmutsreinis/s2g-workflow-engine) <br>
-- [S2G REST API Reference](references/api.md) <br>
-- [Deployment & Operations](references/operations.md) <br>
-- [WebSocket Protocol Reference](references/protocol.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples, shell commands, and local HTTP API requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated bridge commands, S2G workflow API calls, node execution payloads, operational checks, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The bridge can expose broad workflow execution capabilities to any caller that can reach its HTTP API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the bridge on localhost or behind a firewall, add authentication before exposing execution endpoints, and connect only the S2G nodes the agent actually needs.
+
+Risk: Bridge logs may contain execution parameters, responses, data pushes, or other sensitive workflow data.
+
+Mitigation: Protect the log directory, reduce or disable sensitive logging where possible, and rotate or delete logs according to local data-retention requirements.
+
+Risk: Connected S2G nodes can include high-impact operations such as database queries, workflow changes, or knowledge-base delete/update actions.
+
+Mitigation: Review workflows and node permissions before agent use, avoid wiring destructive nodes unless required, and manually approve sensitive update or delete operations.
+
+## Reference(s):
+
+- [S2G Skill README](artifact/README.md)
+- [S2G REST API Reference](artifact/references/api.md)
+- [Deployment & Operations](artifact/references/operations.md)
+- [WebSocket Protocol Reference](artifact/references/protocol.md)
+- [S2G Platform](https://s2g.run)
+- [ClawHub Skill Page](https://clawhub.ai/helmutsreinis/skills/s2g-workflow-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls, Code]
+
+**Output Format:** [Markdown guidance with inline shell commands, JavaScript bridge code, and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing outputs include setup steps and local bridge/API calls; S2G node execution responses are JSON and depend on the selected workflow node.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

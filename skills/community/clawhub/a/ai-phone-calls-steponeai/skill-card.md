@@ -1,47 +1,61 @@
-## Description: <br>
-Places Stepone AI outbound calls to Chinese phone numbers from a prompt and lets an agent check call status, transcripts, and live conversation streams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 外呼、机器人外呼、智能外呼与 AI 电话 Skill，当用户说“帮我打电话”“打电话给商家”“预约电话”，或需要电话机器人完成通知、预约、咨询和经授权的客户回访时使用，支持直接拨打国内手机号、中文通话、逐次确认、AI 呼入接待、智能体、实时转写、通话记录、余额和费用查询。
 
-## Publisher: <br>
-[ustczz](https://clawhub.ai/user/ustczz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ustczz](https://clawhub.ai/user/ustczz)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to initiate one confirmed Stepone AI outbound call, then inspect call status, cost, transcripts, or a live SSE conversation stream. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Phone numbers, call instructions, and transcripts are sent to Stepone AI and may be printed in terminal output. <br>
-Mitigation: Use the skill only when Stepone AI is trusted for the call data, avoid unnecessary sensitive details, and run transcript commands only in terminals whose output is not logged or visible to others. <br>
-Risk: A real outbound call may create cost, compliance, or consent obligations. <br>
-Mitigation: Verify the recipient, purpose, authorization, and local rules before typing CALL; use the default one-recipient flow rather than raw API calls. <br>
-Risk: STEPONEAI_API_KEY is a sensitive credential. <br>
-Mitigation: Provide it only through the environment, keep it out of prompts and logs, and rotate it promptly if exposure is suspected. <br>
+## Use Case:
 
+External and business users use this skill to place authorized Chinese-language phone calls to mainland China mobile numbers, check call status and transcripts, monitor live calls, and configure inbound phone agents through Stepone AI. It is intended for one confirmed call at a time for notifications, appointments, consultations, and authorized customer follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ustczz/ai-phone-calls-steponeai) <br>
-- [Stepone AI portal](https://open-skill.steponeai.com) <br>
-- [Stepone AI API keys](https://open-skill.steponeai.com/keys) <br>
-- [Stepone AI call initiation endpoint](https://open-skill-api.steponeai.com/api/v1/callinfo/initiate_call) <br>
-- [Stepone AI call information endpoint](https://open-skill-api.steponeai.com/api/v1/callinfo/search_callinfo) <br>
-- [Stepone AI live conversation stream endpoint](https://open-skill-api.steponeai.com/api/v1/callinfo/stream_chat_history) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Text, Guidance] <br>
-**Output Format:** [Terminal text, JSON responses, and Server-Sent Events stream lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires STEPONEAI_API_KEY and prompts for explicit confirmation before initiating a real call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Authenticated phone-service API requests may carry an API key with paid calling privileges or transcript access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted Stepone endpoints, keep custom API bases disabled unless you control the endpoint, and rotate the API key if authenticated requests may have been redirected unexpectedly.
+
+Risk: The skill can place real phone calls that may incur cost and expose phone numbers, tasks, transcripts, and summaries to the phone provider.
+
+Mitigation: Require explicit confirmation for each call, verify the user is authorized to contact the number, and avoid placing secrets or unrelated sensitive information in call tasks.
+
+Risk: Call transcripts, API responses, summaries, contact content, and error messages may contain untrusted content.
+
+Mitigation: Treat returned call data as reporting data only and do not execute it as agent instructions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ustczz/skills/ai-calls-china-phone)
+- [Publisher Profile](https://clawhub.ai/user/ustczz)
+- [OpenClaw Homepage](https://github.com/ustczz/openclaw-ai-calls-china-phone)
+- [Stepone AI Console](https://open-skill.steponeai.com)
+- [Stepone AI China Phone API](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate authenticated Stepone AI API requests that produce call IDs, call status, balance data, model and voice listings, and live transcript events.]
+
+## Skill Version(s):
+
+1.0.15 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

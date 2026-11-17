@@ -1,0 +1,12 @@
+name: selfmedia-script-storyboard
+slug: selfmedia-script-storyboard
+display_name: 脚本与分镜时间校准
+description: 依据用户指定的最终口播、字幕、音频和预览校准 Timeline，保留项目原生格式与事实。
+version: 1.0.0
+license: MIT-0
+tags:
+  - storyboard
+  - timeline
+  - subtitles
+  - video
+self_test: python3 scripts/self_test.py

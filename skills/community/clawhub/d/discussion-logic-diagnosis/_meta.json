@@ -1,0 +1,27 @@
+{
+  "name": "discussion-logic-diagnosis",
+  "version": "1.0.0",
+  "description": "Diagnose logical argumentation in the Discussion of an English psychology research paper. Checks argument chains (premise → evidence → conclusion), causal claims (does X cause Y, or correlate?), and the distinction between data, interpretation, and speculation.",
+  "author": "UX Course Project - Discussion Group",
+  "license": "MIT",
+  "keywords": [
+    "discussion",
+    "logic",
+    "argumentation",
+    "causal-claims",
+    "academic-writing"
+  ],
+  "metadata": {
+    "clawhub": {
+      "emoji": "🧠",
+      "triggers": [
+        "check logic",
+        "argument check",
+        "is my reasoning sound",
+        "Discussion 逻辑",
+        "causal claim check"
+      ],
+      "theory_basis": "Glasman-Deal (2021) Science Research Writing Unit 4.2.2 (data/interpretation/speculation layering) + causal vs correlational boundary"
+    }
+  }
+}

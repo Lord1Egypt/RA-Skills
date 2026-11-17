@@ -1,0 +1,341 @@
+# skill-vetter v2.0 — 模式库
+# 涵盖：安全 / 性能 / 质量 三维度审计
+# 版本：2.0.0 (2026-08-19)
+# 维护：左运来
+# 参考：skill-auditor-plus（仅作 blueprint，不引入依赖）
+
+meta:
+  schema_version: "2.0"
+  total_patterns_target: 30
+  categories: [security, performance, quality]
+  severity_levels: [critical, high, medium, low, info]
+
+# ═══════════════════════════════════════════════════════════════
+# 类别 1：安全（security）— 严重程度默认 critical / high
+# 来源：skill-vetter v1.0 红线 15 项 + 扩展（凭据模式/注入/混淆）
+# ═══════════════════════════════════════════════════════════════
+
+security:
+  description: "危险代码执行、凭据泄露、网络外发、权限提升、混淆、注入"
+  default_severity: high
+  exception_marker: "# safe-pattern:"  # 同行有此注释即豁免
+
+  groups:
+
+    # ─────────── EXEC：动态代码执行 ───────────
+    - id: SEC-EXEC-001
+      category: code_execution
+      name: "eval() 调用"
+      severity: critical
+      regex: '\beval\s*\('
+      description: "eval() 接受字符串并作为代码执行，可被注入利用"
+      why_dangerous: "如果参数来自用户输入或外部数据，等价于执行任意代码"
+
+    - id: SEC-EXEC-002
+      category: code_execution
+      name: "exec() / execSync() 调用"
+      severity: critical
+      regex: '\bexec(?:Sync)?\s*\('
+      description: "exec() 执行字符串代码；Node.js 子进程调用任意命令"
+
+    - id: SEC-EXEC-003
+      category: code_execution
+      name: "os.system / subprocess shell=True"
+      severity: critical
+      regex: '(os\.system\s*\(|subprocess\.[A-Za-z_]+\([^)]*shell\s*=\s*True)'
+      description: "通过 shell 执行命令，参数注入风险高"
+
+    - id: SEC-EXEC-004
+      category: code_execution
+      name: "Function 构造器"
+      severity: critical
+      regex: '\bnew\s+Function\s*\('
+      description: "JavaScript 动态创建函数，等价于 eval"
+
+    # ─────────── NET：网络外发 ───────────
+    - id: SEC-NET-001
+      category: network
+      name: "外发 curl/wget"
+      severity: medium
+      regex: '\b(curl|wget)\s+'
+      description: "外发 HTTP 请求，可能上传数据到外部服务器"
+      file_glob:
+        - "*.sh"
+        - "*.py"
+        - "*.js"
+        - "*.md"
+      note: "v2.0.1 严重度从 high 降为 medium（v2.0.0 误判 updater 类工具）"
+
+    - id: SEC-NET-002
+      category: network
+      name: "Python requests/aiohttp"
+      severity: medium
+      regex: '\b(requests|aiohttp|httpx|urllib)\.(get|post|put|delete|patch)\s*\('
+      description: "Python HTTP 客户端调用，需人工评估目标域名"
+
+    - id: SEC-NET-003
+      category: network
+      name: "硬编码 IP 地址"
+      severity: high
+      regex: |-
+        (?<![\w./])(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?::\d+)?(?![\w.])
+      description: "硬编码 IP 而非域名，无法审计来源；常见 C2 模式"
+      exception_pattern: '(127\.0\.0\.1|0\.0\.0\.0|localhost|::1|Macintosh|Windows|Chrome|Safari|Mozilla|AppleWebKit|User-Agent)'
+
+    - id: SEC-NET-004
+      category: network
+      name: "URL 短链 / Pastebin"
+      severity: high
+      regex: '(bit\.ly|tinyurl\.com|t\.co|pastebin\.com|hastebin\.com|transfer\.sh)\b'
+      description: "URL 短链/Pastebin 常用于隐藏恶意 payload"
+
+    # ─────────── CRED：凭据泄露 ───────────
+    - id: SEC-CRED-001
+      category: credentials
+      name: "硬编码 API key/secret/token"
+      severity: critical
+      regex: |-
+        (?i)(api[_-]?key|secret[_-]?key|access[_-]?token|auth[_-]?token|bearer)\s*[:=]\s*["\'][\w\-/+]{16,}["\']
+      description: "代码中硬编码的凭据字符串，疑似泄露"
+      exception_pattern: '\$\{?[A-Z_]+\}?'  # 环境变量引用
+
+    - id: SEC-CRED-002
+      category: credentials
+      name: "硬编码密码字段"
+      severity: critical
+      regex: |-
+        (?i)(password|passwd|pwd)\s*[:=]\s*["\'][^"\']{4,}["\']
+      description: "硬编码密码字符串"
+      exception_pattern: '\$\{?[A-Z_]+\}?|op://|vault://|secret://|keychain://'
+
+    - id: SEC-CRED-003
+      category: credentials
+      name: "AWS Access Key ID"
+      severity: critical
+      regex: '\bAKIA[0-9A-Z]{16}\b'
+      description: "AWS Access Key ID 格式"
+
+    - id: SEC-CRED-004
+      category: credentials
+      name: "Private Key 头"
+      severity: critical
+      regex: '-----BEGIN (RSA |EC |OPENSSH |DSA |PGP )?PRIVATE KEY-----'
+      description: "私钥文件头，整段私钥嵌入代码"
+
+    - id: SEC-CRED-005
+      category: credentials
+      name: "访问敏感路径"
+      severity: high
+      regex: '(~/\.ssh|~/\.aws|~/\.config|~/\.kube|~/\.docker|~/.netrc|\.pem|\.key\b|\.p12|\.pfx)'
+      description: "代码引用敏感凭据文件路径"
+      note: "需人工评估是否合理（如 SSH key 操作类技能合理）"
+
+    - id: SEC-CRED-006
+      category: credentials
+      name: "读取 OpenClaw 核心记忆文件"
+      severity: high
+      regex: '(MEMORY\.md|USER\.md|SOUL\.md|IDENTITY\.md|AGENTS\.md)\b'
+      description: "技能不应主动读取主人核心身份/偏好/记忆文件"
+      file_glob:
+        - "*.py"
+        - "*.js"
+        - "*.sh"
+      note: "lz-skill-vetter-plus 自己读 SKILL.md 不算违规"
+
+    # ─────────── OBFUSC：混淆 ───────────
+    - id: SEC-OBFUSC-001
+      category: obfuscation
+      name: "base64 解码"
+      severity: high
+      regex: '\bbase64\s*(-d|--decode|decode)\b'
+      description: "base64 解码常用于隐藏 payload"
+
+    - id: SEC-OBFUSC-002
+      category: obfuscation
+      name: "Python base64 模块"
+      severity: high
+      regex: '\bbase64\.(b64decode|decodestring)\s*\('
+      description: "Python 解码 base64 内容"
+
+    - id: SEC-OBFUSC-003
+      category: obfuscation
+      name: "压缩/编码字符串"
+      severity: medium
+      regex: '\b(gzip|lzma|zlib|bz2)\.(decompress|decode)\s*\('
+      description: "动态解压隐藏代码"
+
+    - id: SEC-OBFUSC-004
+      category: obfuscation
+      name: "超长十六进制串"
+      severity: medium
+      regex: '\b0x[0-9a-fA-F]{64,}\b'
+      description: "超长 hex 串常用于隐藏 shellcode 或 token"
+
+    # ─────────── SYS：系统权限 ───────────
+    - id: SEC-SYS-001
+      category: privilege
+      name: "sudo / setuid"
+      severity: high
+      regex: '\b(sudo\s|chmod\s+[0-7]*[4-7][0-7]*|setuid|setgid)\b'
+      description: "提权操作，普通技能不应需要"
+
+    - id: SEC-SYS-002
+      category: privilege
+      name: "rm -rf 危险删除"
+      severity: critical
+      regex: '\brm\s+(-[rRf]+|--recursive)\s+(/|~|\$HOME|\.\s|$)'
+      description: "递归删除根目录/Home/当前目录"
+
+    - id: SEC-SYS-003
+      category: privilege
+      name: "chmod 777 全开"
+      severity: medium
+      regex: '\bchmod\s+777\b'
+      description: "777 权限违反最小权限原则"
+
+    - id: SEC-SYS-004
+      category: privilege
+      name: "dd 块设备覆写"
+      severity: critical
+      regex: '\bdd\s+.*of\s*=\s*/dev/'
+      description: "向块设备覆写数据，可能毁盘"
+
+    # ─────────── PERSIST：持久化 ───────────
+    - id: SEC-PERSIST-001
+      category: persistence
+      name: "修改 rc/crontab/systemd"
+      severity: critical
+      regex: '\.(bashrc|zshrc|profile|bash_profile)\b|systemctl\s+(enable|start)|crontab\s+'
+      description: "写入启动项/计划任务，技能自启"
+      file_glob:
+        - "*.sh"
+        - "*.py"
+
+    - id: SEC-PERSIST-002
+      category: persistence
+      name: "系统级包安装"
+      severity: medium
+      regex: '\b(apt|apt-get|yum|dnf|pacman|brew)\s+(install|add)\b'
+      description: "调用系统包管理器安装软件"
+      file_glob:
+        - "*.sh"
+
+# ═══════════════════════════════════════════════════════════════
+# 类别 2：性能（performance）— 严重程度默认 medium
+# 参考：skill-auditor-plus performance_audit.py
+# ═══════════════════════════════════════════════════════════════
+
+performance:
+  description: "SKILL.md / 引用文件 / scripts 的 token 用量与结构效率"
+  default_severity: medium
+
+  metrics:
+
+    - id: PERF-SIZE-001
+      name: "SKILL.md body 行数过多"
+      severity: medium
+      target: SKILL.md
+      max_lines: 500
+      description: "SKILL.md body 超过 500 行应拆分到 references/"
+      suggestion: "Move detailed sections to references/feature-name.md"
+
+    - id: PERF-SIZE-002
+      name: "SKILL.md frontmatter description 过长"
+      severity: low
+      target: SKILL.md
+      field: description
+      max_chars: 500
+      description: "description 字段超过 500 字符浪费前置 token"
+      suggestion: "Keep description concise, move details to body"
+
+    - id: PERF-SIZE-003
+      name: "SKILL.md body 总字符过多"
+      severity: medium
+      target: SKILL.md
+      field: body
+      max_chars: 30000  # ~5000 tokens
+      description: "SKILL.md body 超过 5000 tokens（粗略 30K 字符）应拆分"
+      suggestion: "Split content into references/, use progressive disclosure"
+
+    - id: PERF-SIZE-004
+      name: "references/ 单文件过大"
+      severity: medium
+      target: references/
+      max_lines_per_file: 800
+      description: "单个 references/ 文件超过 800 行应进一步拆分"
+
+    - id: PERF-STRUCT-001
+      name: "scripts/ 缺少 shebang"
+      severity: low
+      target: scripts/
+      pattern: '^(?!#!)[^#]'
+      description: "scripts/ 下的脚本文件首行应为 shebang (#!/...)"
+      suggestion: "Add shebang line: #!/usr/bin/env python3"
+
+# ═══════════════════════════════════════════════════════════════
+# 类别 3：质量（quality）— 严重程度默认 low / info
+# 参考：skill-auditor-plus 质量审计
+# ═══════════════════════════════════════════════════════════════
+
+quality:
+  description: "SKILL.md 结构完整性、最佳实践合规、文档质量"
+  default_severity: low
+
+  checks:
+
+    - id: QUAL-FM-001
+      name: "frontmatter 缺少必填字段"
+      severity: high
+      required_fields: [name, description]
+      description: "name + description 是 OpenClaw 技能 frontmatter 必填项"
+
+    - id: QUAL-FM-002
+      name: "frontmatter YAML 解析失败"
+      severity: high
+      description: "YAML 语法错误，技能将无法被加载"
+
+    - id: QUAL-FM-003
+      name: "name 包含非法字符"
+      severity: medium
+      regex_for_name: '^[a-z0-9][a-z0-9_-]*$'
+      description: "name 只能含小写字母、数字、连字符、下划线"
+
+    - id: QUAL-STRUCT-001
+      name: "包含 README.md / CHANGELOG.md"
+      severity: info
+      forbid_files: [README.md, CHANGELOG.md, INSTALLATION.md, INSTALL.md, SETUP.md]
+      description: "skill-creator 规范：技能内不应有 README/CHANGELOG/SETUP 文档"
+      exception_pattern: '^\s*#'  # 在 SKILL.md 内提到可以
+      suggestion: "Move to skill-card.md or top-level README, not inside skill dir"
+
+    - id: QUAL-STRUCT-002
+      name: "scripts/ 文件无可执行权限"
+      severity: info
+      target: scripts/
+      description: "scripts/ 下的脚本应有可执行权限（chmod +x）"
+      note: "默认 audit.py 不强制，仅提示"
+
+    - id: QUAL-STRUCT-003
+      name: "缺少 license 声明"
+      severity: info
+      description: "推荐在 SKILL.md 末尾或 _meta.json 声明 license"
+
+    - id: QUAL-DOC-001
+      name: "SKILL.md 缺少使用示例"
+      severity: low
+      check: "has_code_block"
+      description: "SKILL.md 应包含至少一个代码块示例"
+
+    - id: QUAL-DOC-002
+      name: "SKILL.md 缺少 'When to Use' 段"
+      severity: low
+      check: "has_section"
+      section_name: "When to Use"
+      description: "明确触发场景便于模型匹配"
+
+    - id: QUAL-DOC-003
+      name: "SKILL.md description 触发词不足"
+      severity: low
+      check: "description_word_count_min"
+      min_words: 5
+      description: "description 至少 5 个英文单词或 12 个中文字符，便于触发"

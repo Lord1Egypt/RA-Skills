@@ -1,0 +1,7 @@
+interface:
+  display_name: "Jenkins CI"
+  short_description: "Jenkins job and build operations"
+  default_prompt: "Use $jenkins-skills to inspect this Jenkins job and its latest build."
+
+policy:
+  allow_implicit_invocation: true

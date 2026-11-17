@@ -1,43 +1,54 @@
-## Description: <br>
-CloudPlus helps an agent operate the CloudPlus enterprise messaging app to send messages and files, search contacts, groups, files, messages, and light apps, retrieve chat history and saved content, open links and apps, and launch CloudPlus. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CloudPlus helps agents operate the CloudPlus enterprise messaging app to send messages or files, search users, group chats, files, messages, and light apps, retrieve chat history or collected content, open links or apps, and launch the desktop client.
 
-## Publisher: <br>
-[billyang1222](https://clawhub.ai/user/billyang1222) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billyang1222](https://clawhub.ai/user/billyang1222)
 
-## Use Case: <br>
-Employees and their agents use this skill to operate CloudPlus for workplace messaging tasks, including sending messages or files, finding people and groups, searching chat content, retrieving chat history, and opening CloudPlus resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send CloudPlus messages or files on the user's behalf. <br>
-Mitigation: Confirm recipients, message text, and file paths before sending or opening shared content. <br>
-Risk: Search and chat-history commands can expose sensitive workplace communications. <br>
-Mitigation: Use specific queries and date ranges, and retrieve chat history only when needed for the user's request. <br>
-Risk: Commands depend on local CloudPlus tooling and may fail if the desktop client or command-line dependency is unavailable. <br>
-Mitigation: Check Node.js, npm, mcp-cloudplus, and the CloudPlus desktop client before running requested operations. <br>
+## Use Case:
 
+Employees, administrators, and support agents use this skill to act through a CloudPlus enterprise account for chat, file, contact, group, app, and history workflows from an agent session.
 
-## Reference(s): <br>
-- [CloudPlus ClawHub release](https://clawhub.ai/billyang1222/cloudplus) <br>
-- [Node.js](https://nodejs.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Natural-language guidance with shell commands and parsed JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npm, the mcp-cloudplus command, and a running CloudPlus desktop client for some operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A global npm install can add a persistent executable to the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the cloudplus-mcp-server package before installation, and avoid installing it in unmanaged or sensitive environments.
+
+Risk: The skill can send messages and files, open links or apps, and retrieve chat history or collected content through a CloudPlus account.
+
+Mitigation: Require explicit user confirmation before sends, file transfers, link or app opens, and sensitive data retrieval.
+
+## Reference(s):
+
+- [CloudPlus Skill on ClawHub](https://clawhub.ai/billyang1222/skills/cloudplus)
+- [Node.js](https://nodejs.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with bash command examples and JSON command output conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require Node.js, npm, and the mcp-cloudplus CLI; command results should be summarized in natural language rather than shown as raw JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

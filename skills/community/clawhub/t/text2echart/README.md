@@ -5,6 +5,19 @@ Zero npm dependencies. CLI + interactive Web App.
 
 ---
 
+## Skill Invocation Settings
+
+As an OpenClaw skill, text2echart uses the following invocation model:
+
+| Parameter | Value | Description |
+|-----------|-------|-------------|
+| `disable-model-invocation` | `true` | The AI model will **never** auto-invoke this skill. The user must explicitly request a chart, graph, or visualization. This ensures conscious human oversight before data is processed into visualizations. |
+| `user-invocable` | `true` | The user can explicitly invoke this skill via trigger keywords: `chart`, `graph`, `visualize`, `plot`, `draw`, `wordcloud`, `图表`, `画图`, `可视化`, etc. |
+
+**Why these settings matter:** Chart generation involves processing uploaded data files (CSV/JSON) and rendering executable HTML content. Requiring explicit user invocation ensures there is always a conscious human decision before data is processed into visualizations.
+
+---
+
 ## Quick Start
 
 ```bash

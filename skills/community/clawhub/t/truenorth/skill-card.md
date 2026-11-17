@@ -1,39 +1,58 @@
-## Description: <br>
-TrueNorth crypto market intelligence: technical analysis (RSI, MACD, Bollinger Bands), derivatives (funding rates, open interest), DeFi (TVL, fees), token performance, events, liquidation risk, token unlock, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TrueNorth crypto market intelligence: technical analysis (RSI, MACD, Bollinger Bands), derivatives (funding rates, open interest), DeFi (TVL, fees), token performance, events, liquidation risk, token unlock, and more.
 
-## Publisher: <br>
-[truenorth-lj](https://clawhub.ai/user/truenorth-lj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[truenorth-lj](https://clawhub.ai/user/truenorth-lj)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for read-only crypto market intelligence, including technical indicators, derivatives data, DeFi metrics, token events, performance rankings, unlocks, and liquidation-risk context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Crypto-related query text may be sent to TrueNorth's API, and market data can be misread as personal financial advice. <br>
-Mitigation: Avoid sending secrets, account details, wallet addresses, or sensitive personal financial information, and treat the returned analysis as informational market context rather than trading instruction. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TrueNorth web app](https://app.true-north.xyz) <br>
-- [TrueNorth CLI npm package](https://www.npmjs.com/package/@truenorth-ai/cli) <br>
-- [ClawHub skill page](https://clawhub.ai/truenorth-lj/truenorth) <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for read-only crypto market intelligence, including technical indicators, derivatives data, DeFi metrics, token performance, events, liquidation risk, and token unlock information.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and JSON-backed analysis.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands use the local tn CLI with --json and call TrueNorth's read-only public API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs a mutable global third-party npm CLI using the latest package tag.
+
+Mitigation: Review the package before installation and prefer a pinned version or isolated environment when available.
+
+Risk: Token-related prompts may be sent to TrueNorth's external public API for entity recognition and market data lookups.
+
+Mitigation: Do not include private keys, credentials, wallet details, account information, or sensitive trading context in requests.
+
+Risk: Market intelligence may be incomplete, stale, or unsuitable for trading decisions.
+
+Mitigation: Treat outputs as informational analysis and independently verify data before acting on financial decisions.
+
+## Reference(s):
+
+- [TrueNorth web app](https://app.true-north.xyz)
+- [TrueNorth CLI package](https://www.npmjs.com/package/@truenorth-ai/cli)
+- [ClawHub skill page](https://clawhub.ai/truenorth-lj/skills/truenorth)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with natural language analysis and JSON-producing CLI command references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses summarize read-only API results and include a TrueNorth web app call to action.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

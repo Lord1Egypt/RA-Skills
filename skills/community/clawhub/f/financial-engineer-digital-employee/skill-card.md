@@ -1,43 +1,52 @@
-## Description: <br>
-覆盖数据探查、单变量分析、特征工程、LR评分卡、XGBoost/DNN建模、超参数调优、模型解释、多模型对比、分群建模、DeepModel集成全流程。从数据到模型上线的一站式机器学习建模能力。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+覆盖数据探查、单变量分析、特征工程、LR评分卡、XGBoost/DNN建模、超参数调优、模型解释、多模型对比、分群建模、DeepModel集成全流程。从数据到模型上线的一站式机器学习建模能力。
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[gechengling](https://clawhub.ai/user/gechengling)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, data scientists, and financial modeling practitioners can use the skill's reference workflows to explore datasets, assess features, compare and explain models, and prepare reviewable analysis drafts. Outputs require qualified human review and are not financial advice or production decisions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The security scan was benign but incomplete: Skillspector inspected the skill only partially, and many referenced files were absent.
+
+Mitigation: Before using any referenced files or commands, confirm that the source is trusted and that each file or command is expected.
+
+Risk: Modeling drafts may be misleading if data is unauthorized, contains sensitive fields, or includes information unavailable at the prediction time.
+
+Mitigation: Use only authorized, minimized data; check feature timing and leakage; and have a qualified reviewer assess assumptions, results, and limitations before real-world use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Financial analysts, risk modelers, and agent operators use this skill to plan or run data profiling, univariate analysis, feature engineering, scorecard modeling, XGBoost/DNN workflows, tuning, model explanation, model comparison, segmentation, and ensemble modeling for financial datasets. Outputs should be reviewed by qualified humans before they are used for business, financial, legal, insurance, or customer-impacting decisions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Analysis, Code, Shell commands, Configuration instructions]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to process financial or customer datasets, train models, and write model or report artifacts to disk. <br>
-Mitigation: Approve the exact data path, output directory, retention plan, and whether AUTO tuning or autonomous experiments are allowed before use. <br>
-Risk: Regulated, PII-bearing, confidential, or customer-impacting data could be processed without an adequate governance decision. <br>
-Mitigation: Do not use such data unless the data owner has approved the workflow, storage location, retention policy, and human review process. <br>
-Risk: Modeling results or financial analysis could be mistaken for professional financial, legal, insurance, or business advice. <br>
-Mitigation: Treat outputs as analytical guidance only and require qualified human review before any real-world decision. <br>
+**Output Format:** [Markdown guidance with illustrative code, shell commands, and JSON configuration examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/financial-engineer-digital-employee) <br>
-- [Publisher profile](https://clawhub.ai/user/gechengling) <br>
+**Other Properties Related to Output:** [Reference drafts for human review; the skill itself does not execute commands or perform system operations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and JSON result examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe reports, model artifacts, metrics, and result manifests produced by local financial ML workflows.] <br>
+2.0.6 (source: frontmatter)
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

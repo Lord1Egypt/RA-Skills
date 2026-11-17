@@ -1,42 +1,56 @@
-## Description: <br>
-Analyze IP addresses with subnet calculation and CIDR notation. Use when planning network addressing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze IP addresses with subnet calculation and CIDR notation. Use when planning network addressing.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and network planners use this skill to inspect IP addresses, validate IPv4-style input, review CIDR mask bits, and check local or public network identity while planning addressing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local command can expose interface and address details from the host running the agent. <br>
-Mitigation: Run the local command only when local network details are needed and acceptable to share in the agent session. <br>
-Risk: The public command contacts checkip.amazonaws.com and reveals a public IP lookup to that service. <br>
-Mitigation: Run the public command only when external IP discovery is needed and outbound contact to that endpoint is acceptable. <br>
+## Use Case:
 
+Developers and network operators use this skill to inspect IPv4 addresses, check simple private/public classification, view CIDR mask bits, validate address format, and retrieve local or public interface information during network planning.
 
-## Reference(s): <br>
-- [Ip Advisor on ClawHub](https://clawhub.ai/ckchzh/ip-advisor) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Public IP lookup endpoint](https://checkip.amazonaws.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands accept IP addresses, CIDR notation, and optional start/end ranges; no credential parameters are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server evidence release.version and SKILL.md frontmatter) <br>
+Risk: The public-IP command contacts Amazon's checkip service, which discloses the machine's outbound public IP address to that service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the public command only when external public-IP disclosure is acceptable for the current network environment.
+
+Risk: The local command can reveal local network interface addresses and related interface details.
+
+Mitigation: Avoid running the local command in sensitive environments unless exposing local interface details is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ckchzh/skills/ip-advisor)
+- [Publisher Profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain Homepage](https://bytesagain.com)
+- [Amazon Check IP Service](https://checkip.amazonaws.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Text]
+
+**Output Format:** [Markdown with inline bash code blocks and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a local data directory at ~/.local/share/ip-advisor and may call an external public-IP endpoint when the public command is used.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

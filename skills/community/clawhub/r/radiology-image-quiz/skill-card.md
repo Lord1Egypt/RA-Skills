@@ -1,41 +1,58 @@
-## Description: <br>
-Generates text-based radiology quiz cases from structured case descriptions for medical education and board exam preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats provided radiology cases into text-based diagnostic quizzes for medical education and board exam practice.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Medical educators, students, and residents can use this skill to create bounded radiology quiz content from provided case data for study and board preparation. It is best suited for educational review workflows where assumptions, inputs, and limitations are stated explicitly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the advertised image-based radiology quiz capability does not match the shipped text-only script and missing documented code paths. <br>
-Mitigation: Use the packaged scripts/main.py path for text-based quiz generation only, and review any additional referenced code before relying on image-based workflows. <br>
-Risk: Radiology case content can include sensitive or identifying clinical details. <br>
-Mitigation: Use de-identified educational case data only and confirm that inputs are appropriate for training or study use before generating quiz content. <br>
+## Use Case:
 
+Medical educators, residents, and exam-prep authors use this skill to turn radiology case data into structured diagnostic quiz content. It is best suited for text-based study materials that require explicit case history, findings, answer choices, answers, and explanations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/radiology-image-quiz) <br>
-- [Audit reference](references/audit-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown quiz content with optional shell commands for local validation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should identify inputs, assumptions, risks, unresolved items, and validation checks when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documentation describes image handling, PDF output, and interactive quiz behavior that are not evidenced by the packaged script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for text-based quiz formatting unless the package is updated and revalidated for image, PDF, or interactive workflows.
+
+Risk: Caller-provided case JSON is printed directly in the generated quiz output.
+
+Mitigation: Review and de-identify case data before use, and avoid including protected health information or sensitive patient details.
+
+Risk: Radiology quiz content may be incomplete or unsuitable for clinical decision-making.
+
+Mitigation: Have a qualified medical reviewer verify diagnoses, findings, answer choices, and explanations before educational or commercial distribution.
+
+## Reference(s):
+
+- [Audit Reference](references/audit-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/radiology-image-quiz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown quiz content with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces text quiz output from demo data or caller-provided JSON cases; no actual image handling, PDF output, or interactive quiz behavior is evidenced in the current package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

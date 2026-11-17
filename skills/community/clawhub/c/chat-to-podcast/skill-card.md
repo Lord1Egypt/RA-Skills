@@ -1,41 +1,57 @@
-## Description: <br>
-Transforms selected AI chat history into a podcast-style article draft, asks the user to confirm it, and publishes it to a Halo blog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns selected AI conversation history into podcast-style Markdown drafts, asks for user review, and can publish approved content to a Halo blog.
 
-## Publisher: <br>
-[alex-shen1121](https://clawhub.ai/user/alex-shen1121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alex-shen1121](https://clawhub.ai/user/alex-shen1121)
 
-## Use Case: <br>
-Writers and blog maintainers use this skill to turn selected OpenClaw conversations into human-reviewed podcast-style Markdown articles and publish them through a configured Halo account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can search selected or historical OpenClaw chat sessions, which may expose private or sensitive conversation content. <br>
-Mitigation: Require the agent to show the exact sessions or files it plans to read, limit extraction to specific messages, and review the full draft for private information before publication. <br>
-Risk: The skill can publish content publicly through a configured Halo account. <br>
-Mitigation: Verify the Halo profile, URL, slug, visibility, and overwrite behavior before approving any publish step. <br>
+## Use Case:
 
+External users and developers use this skill to convert selected OpenClaw chat sessions into polished podcast-style blog articles and publish them to Halo after review. It is intended for content-management workflows that require drafting, preview, optional image generation, and publication metadata updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alex-shen1121/chat-to-podcast) <br>
-- [Publisher profile](https://clawhub.ai/user/alex-shen1121) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown draft with confirmation prompts and Halo publishing commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate article imagery and update a local episode counter after successful publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill can read broad historical OpenClaw session logs while searching for conversation material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on explicitly selected current-session or narrowly scoped conversation content, and avoid shared-agent environments.
+
+Risk: The skill can publish AI-derived content to a public Halo blog.
+
+Mitigation: Review the full preview, generated images, tags, visibility, and AI-generated-content annotations before approving publication.
+
+Risk: Runtime Markdown conversion may use npm resolution for the converter.
+
+Mitigation: Pin or preinstall the Markdown converter and Halo CLI before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alex-shen1121/skills/chat-to-podcast)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown articles with optional shell commands and Halo publication metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate article body content, image prompts, Halo publish commands, visibility updates, AI-generated-content annotations, and a local podcast counter update.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

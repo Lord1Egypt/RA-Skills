@@ -1,46 +1,62 @@
-## Description: <br>
-TencentCloud Websocket Checker helps diagnose WebSocket connection latency by measuring DNS lookup, TCP handshake, TLS handshake, and WebSocket Upgrade timing for ws and wss endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses WebSocket connection latency by measuring DNS lookup, TCP handshake, TLS handshake, and WebSocket Upgrade timing for ws and wss endpoints.
 
-## Publisher: <br>
-[jizhouli](https://clawhub.ai/user/jizhouli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jizhouli](https://clawhub.ai/user/jizhouli)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to test WebSocket endpoint connection setup time, compare ws and wss behavior, generate CSV or JSON timing reports, and troubleshoot slow DNS, TCP, TLS, or WebSocket Upgrade stages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency installation may use privileged setup steps. <br>
-Mitigation: Review installation scripts before running them with sudo and prefer trusted OS package-manager commands for required tools. <br>
-Risk: WebSocket timing checks generate network probes against target endpoints. <br>
-Mitigation: Run checks only against endpoints you control or are authorized to test. <br>
-Risk: Cron examples can create persistent monitoring jobs. <br>
-Mitigation: Track and remove scheduled checks when diagnostics are complete. <br>
+## Use Case:
 
+Developers and engineers use this skill to run shell-based WebSocket latency checks, compare ws and wss connection behavior, and troubleshoot slow connection stages for authorized endpoints.
 
-## Reference(s): <br>
-- [Examples Reference](artifact/references/examples.md) <br>
-- [Troubleshooting Reference](artifact/references/troubleshooting.md) <br>
-- [Usage Examples](artifact/docs/EXAMPLES.md) <br>
-- [Troubleshooting Guide](artifact/docs/TROUBLESHOOTING.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jizhouli/tencentcloud-websocket-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional CSV or JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can include multi-round timing summaries, bottleneck analysis, performance ratings, and ASCII timing diagrams.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installer and diagnostic scripts can perform high-impact shell and network actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Audit the shell scripts before use, avoid running the sudo installer blindly, and install dependencies manually where practical.
+
+Risk: WebSocket checks can send network traffic to sensitive or unauthorized targets.
+
+Mitigation: Run diagnostics only against endpoints you own or are explicitly authorized to test, and avoid private or internal targets unless intentional.
+
+Risk: Unvalidated test rounds can increase repeated network activity.
+
+Mitigation: Validate the rounds argument as a simple integer from 1 to 10 before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jizhouli/skills/tencentcloud-websocket-checker)
+- [README](docs/README.md)
+- [Examples](docs/EXAMPLES.md)
+- [Troubleshooting](docs/TROUBLESHOOTING.md)
+- [Reference examples](references/examples.md)
+- [Reference troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text and Markdown guidance with optional CSV or JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Network diagnostics depend on bash, curl, dig, awk, sed, and authorized target endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

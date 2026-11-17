@@ -1,38 +1,57 @@
-## Description: <br>
-Multi search engine integration with 17 engines (8 CN + 9 Global), supporting advanced search operators, time filters, site search, privacy engines, and WolframAlpha knowledge queries without API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi search engine integration for 17 Chinese and global engines that supports advanced operators, time filters, site search, privacy-focused engines, and WolframAlpha knowledge queries without API keys.
 
-## Publisher: <br>
-[reknottycat](https://clawhub.ai/user/reknottycat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reknottycat](https://clawhub.ai/user/reknottycat)
 
-## Use Case: <br>
-Developers and agents use this skill to construct direct search URLs across Chinese and global search engines, including site-specific, filetype, time-filtered, privacy-focused, and WolframAlpha knowledge queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Advanced search operators could be used for credential discovery, admin endpoint hunting, recovering withdrawn sensitive content, or sending confidential queries to external search engines. <br>
-Mitigation: Review and constrain agent use of the search templates; avoid sensitive queries and prohibit credential, admin endpoint, or withdrawn-content searches. <br>
+## Use Case:
 
+Developers and external users can use this skill to construct search queries across Chinese and global search engines, compare results, apply advanced operators, and route knowledge queries to WolframAlpha.
 
-## Reference(s): <br>
-- [International Search Guide](references/international-search.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code] <br>
-**Output Format:** [Markdown with inline search URL and web_fetch examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces search-engine URL templates and query examples; no API keys are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search queries are sent to external providers, which can expose sensitive terms, personal data, secrets, or internal URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use confidential queries with this skill; review generated URLs before fetching and prefer privacy-focused engines only when their terms are acceptable.
+
+Risk: Artifact examples include unsafe patterns for locating login/admin pages and exposed password text.
+
+Mitigation: Remove or ignore password, admin-page, and exposed-secret discovery examples before use or publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/reknottycat/skills/multi-search-engine-local)
+- [International search guide](references/international-search.md)
+- [Changelog](CHANGELOG.md)
+- [DuckDuckGo Bangs](https://duckduckgo.com/bang)
+- [WolframAlpha examples](https://www.wolframalpha.com/examples/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with URL examples and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys required; generated search URLs send query text to external search providers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact files list v2.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

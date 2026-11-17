@@ -1,41 +1,54 @@
-## Description: <br>
-Fetch specified crypto spot prices from OKX and present them in USD display. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch specified crypto spot prices from OKX and present them in USD display.
 
-## Publisher: <br>
-[chgy123](https://clawhub.ai/user/chgy123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chgy123](https://clawhub.ai/user/chgy123)
 
-## Use Case: <br>
-External users, traders, and developers use this skill to fetch one-shot OKX spot quotes for specified crypto symbols and display them in USD order. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OKX-related workflows can affect real funds if paired with live trading tools or credentials. <br>
-Mitigation: Use least-privileged OKX credentials where applicable and review any trade, cancel, leverage, or close-position confirmation before execution. <br>
-Risk: Market prices are live external data and may be unavailable, delayed, or missing for a requested symbol. <br>
-Mitigation: Treat returned prices as point-in-time quotes and verify important financial decisions against OKX or another authoritative market source. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to retrieve one-shot OKX spot prices for requested cryptocurrency symbols and display the results in USD terms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chgy123/okx-symbol-prices) <br>
-- [OKX](https://www.okx.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands] <br>
-**Output Format:** [Plain text price lines or JSON objects per symbol.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results preserve the requested symbol order and report N/A when no supported OKX USD-based ticker is found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill makes live network requests to www.okx.com, so results depend on external service availability and current market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the timeout option, handle N/A or null results, and avoid treating returned prices as guaranteed execution quotes.
+
+Risk: The requests dependency is specified with a lower bound rather than an exact pinned version.
+
+Mitigation: Pin and review dependency versions before deployment in controlled environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chgy123/skills/okx-symbol-prices)
+- [OKX API Base](https://www.okx.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [Plain text price list or JSON array of symbol price objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves input symbol order; unavailable supported tickers are reported as N/A or null.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

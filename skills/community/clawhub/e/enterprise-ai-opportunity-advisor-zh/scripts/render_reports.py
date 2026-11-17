@@ -1,0 +1,719 @@
+#!/usr/bin/env python3
+"""把企业 AI 诊断 JSON 生成 Markdown、HTML 和 PDF 三种报告。"""
+
+from __future__ import annotations
+
+import argparse
+import html
+import json
+import os
+import re
+import signal
+import shutil
+import subprocess
+import sys
+import tempfile
+import time
+from pathlib import Path
+from typing import Any
+
+
+REPORT_BASENAME = "企业AI落地诊断报告"
+WEBSITE = "https://luodi.xixisys.com"
+INQUIRY_URL = f"{WEBSITE}/inquiry"
+EMAIL = "info@xixisys.com"
+SKILL_DIR = Path(__file__).resolve().parents[1]
+ASSETS_DIR = SKILL_DIR / "assets"
+REQUIRED_KEYS = {
+    "executive_summary",
+    "analysis_boundary",
+    "top_three_applications",
+    "main_obstacles",
+    "not_recommended_now",
+    "other_candidates",
+    "detailed_evidence",
+    "consultation_cta",
+}
+EVIDENCE_LABELS = {
+    "company_facts": "企业事实",
+    "tasks": "任务拆解",
+    "scoring_rationales": "评分依据",
+    "pilot_steps": "试点步骤",
+    "sources": "资料来源",
+    "risks": "风险与边界",
+    "method": "分析方法",
+    "non_ai_comparisons": "非 AI 方案比较",
+    "success_and_stop_conditions": "成功与停止条件",
+    "task_name": "任务名称",
+    "department": "部门",
+    "role": "岗位",
+    "trigger": "触发条件",
+    "inputs": "输入",
+    "current_steps": "当前步骤",
+    "outputs": "输出",
+    "systems": "使用系统",
+    "pain_points": "当前痛点",
+    "human_responsibility": "人工责任点",
+    "frequency_scale_time": "频率、规模与耗时",
+    "candidate": "候选应用",
+    "process_first": "流程优先方案",
+    "existing_system_or_traditional": "现有系统或传统自动化",
+    "why_ai": "为什么需要 AI",
+    "decision": "判断",
+    "application": "应用",
+    "priority": "优先级",
+    "evidence_grade": "证据等级",
+    "total": "总分",
+    "risk_level": "风险等级",
+    "business_value": "业务价值",
+    "feasibility": "可行性",
+    "data_readiness": "数据准备",
+    "adoption": "使用推广",
+    "risk_controllability": "风险可控",
+    "speed_complexity": "见效速度与复杂度",
+    "subtotal": "小计",
+    "input_policy": "输入策略",
+    "analysis_sequence": "分析顺序",
+    "evidence_limit": "证据限制",
+    "scale_frequency": "规模与频率",
+    "efficiency_cost": "效率与成本",
+    "quality_risk": "质量与风险",
+    "growth_customer": "增长与客户",
+    "process_clarity": "流程清晰度",
+    "technology_maturity": "技术成熟度",
+    "system_integration": "系统集成",
+    "output_verifiability": "输出可核验性",
+    "data_available": "数据可获得性",
+    "data_quality": "数据质量",
+    "rights_permissions": "权利与权限",
+    "samples_evaluation": "样本与评测",
+    "user_pain": "用户痛点",
+    "workflow_fit": "工作流适配",
+    "owner_participation": "负责人参与",
+    "training_change": "培训与变更",
+    "error_impact": "错误影响",
+    "data_privacy": "数据隐私",
+    "human_review_rollback": "人工复核与回退",
+    "permission_audit": "权限与审计",
+    "prototype_speed": "原型速度",
+    "integration_complexity": "集成复杂度",
+    "operations": "持续运维",
+    "reusability": "复用性",
+}
+
+
+def text(value: Any, fallback: str = "当前资料不足") -> str:
+    if value is None:
+        return fallback
+    value = str(value).strip()
+    return value or fallback
+
+
+def items(value: Any) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    return [text(item) for item in value]
+
+
+def add_list(lines: list[str], values: Any, empty: str = "当前资料不足") -> None:
+    entries = items(values)
+    lines.extend([f"- {entry}" for entry in entries] or [f"- {empty}"])
+    lines.append("")
+
+
+def level_reason(value: Any) -> str:
+    if not isinstance(value, dict):
+        return text(value)
+    return f"{text(value.get('level') or value.get('mode'))}。{text(value.get('reason'))}"
+
+
+def render_nested_markdown(lines: list[str], value: Any, depth: int = 3) -> None:
+    if isinstance(value, dict):
+        if not value:
+            lines.extend(["- 当前资料不足", ""])
+            return
+        for key, nested in value.items():
+            label = EVIDENCE_LABELS.get(str(key), str(key).replace("_", " "))
+            if isinstance(nested, (dict, list)):
+                lines.extend([f"{'#' * min(depth, 6)} {label}", ""])
+                render_nested_markdown(lines, nested, depth + 1)
+            else:
+                lines.extend([f"- {label}：{text(nested)}", ""])
+        return
+    if isinstance(value, list):
+        if not value:
+            lines.extend(["- 当前资料不足", ""])
+            return
+        for nested in value:
+            if isinstance(nested, dict):
+                summary = "；".join(
+                    f"{str(key).replace('_', ' ')}：{text(item)}"
+                    for key, item in nested.items()
+                    if not isinstance(item, (dict, list))
+                )
+                lines.append(f"- {summary or '详细记录'}")
+                for key, item in nested.items():
+                    if isinstance(item, (dict, list)):
+                        lines.append(f"  - {str(key).replace('_', ' ')}：{json.dumps(item, ensure_ascii=False)}")
+            else:
+                lines.append(f"- {text(nested)}")
+        lines.append("")
+        return
+    lines.extend([text(value), ""])
+
+
+def validate(data: Any) -> dict[str, Any]:
+    if not isinstance(data, dict):
+        raise ValueError("诊断结果必须是 JSON 对象")
+    missing = sorted(REQUIRED_KEYS.difference(data))
+    if missing:
+        raise ValueError(f"诊断结果缺少字段：{', '.join(missing)}")
+    applications = data.get("top_three_applications")
+    if not isinstance(applications, list) or not 1 <= len(applications) <= 3:
+        raise ValueError("top_three_applications 必须包含 1 到 3 个应用")
+    if not all(isinstance(application, dict) for application in applications):
+        raise ValueError("每个优先应用都必须是 JSON 对象")
+    return data
+
+
+def to_markdown(data: dict[str, Any]) -> str:
+    boundary = data.get("analysis_boundary")
+    boundary = boundary if isinstance(boundary, dict) else {}
+    lines = [
+        "# 企业 AI 落地诊断报告",
+        "",
+        "> 本报告由“企业 AI 落地智能参谋”根据用户提供并确认的材料生成。",
+        "",
+        "## 管理摘要",
+        "",
+        text(data.get("executive_summary")),
+        "",
+        f"- 整体可信度：{text(boundary.get('overall_confidence'))}",
+        "",
+        "## 分析边界",
+        "",
+        "### 已确认事实",
+        "",
+    ]
+    add_list(lines, boundary.get("confirmed_facts"))
+    lines.extend(["### 合理推断", ""])
+    add_list(lines, boundary.get("assumptions"))
+    lines.extend(["### 待确认信息", ""])
+    add_list(lines, boundary.get("unknowns"))
+    lines.extend(["## 最值得先做的应用", ""])
+
+    for index, application in enumerate(data["top_three_applications"], start=1):
+        rank = application.get("rank", index)
+        lines.extend(
+            [
+                f"### {rank}. {text(application.get('name'))}",
+                "",
+                text(application.get("summary")),
+                "",
+                f"- 部门 / 岗位 / 任务：{text(application.get('department'))} / {text(application.get('role'))} / {text(application.get('task'))}",
+                f"- 方案类型：{text(application.get('solution_type'))}",
+                f"- 实施难度：{level_reason(application.get('implementation_difficulty'))}",
+                f"- 内部配合：{level_reason(application.get('internal_coordination'))}",
+                f"- 数据准备：{level_reason(application.get('data_readiness'))}",
+                f"- 涉密程度：{level_reason(application.get('confidentiality'))}",
+                f"- 部署建议：{level_reason(application.get('deployment'))}",
+                f"- 结论可信度：{text(application.get('confidence'))}",
+                f"- 最大不确定性：{text(application.get('largest_uncertainty'))}",
+                f"- ROI 状态：{text(application.get('roi_status'), '待测算')}",
+                "",
+                "#### 为什么现在值得验证",
+                "",
+            ]
+        )
+        add_list(lines, application.get("why_now"))
+        lines.extend(["#### AI 或自动化可以做什么", ""])
+        add_list(lines, application.get("ai_can_do"))
+        lines.extend(["#### 人必须负责什么", ""])
+        add_list(lines, application.get("human_must_do"))
+        coordination = application.get("internal_coordination")
+        coordination = coordination if isinstance(coordination, dict) else {}
+        lines.extend(["#### 需要参与的角色", ""])
+        add_list(lines, coordination.get("required_roles"))
+        confidentiality = application.get("confidentiality")
+        confidentiality = confidentiality if isinstance(confidentiality, dict) else {}
+        lines.extend(["#### 涉及的数据", ""])
+        add_list(lines, confidentiality.get("data_types"))
+        lines.extend(
+            [
+                "#### 最小试点",
+                "",
+                text(application.get("minimum_pilot")),
+                "",
+                "#### 下一步",
+                "",
+                text(application.get("next_action")),
+                "",
+            ]
+        )
+        if application.get("missing_roi_data"):
+            lines.extend(["#### ROI 测算前需补充", ""])
+            add_list(lines, application.get("missing_roi_data"))
+
+    lines.extend(["## 当前主要障碍", ""])
+    add_list(lines, data.get("main_obstacles"), "未发现需要单独列出的主要障碍")
+    lines.extend(["## 当前不建议推进", ""])
+    recommendations = data.get("not_recommended_now")
+    if isinstance(recommendations, list) and recommendations:
+        for recommendation in recommendations:
+            if isinstance(recommendation, dict):
+                lines.append(
+                    f"- {text(recommendation.get('name'))}：{text(recommendation.get('reason'))}；重新评估条件：{text(recommendation.get('reconsider_when'))}"
+                )
+    else:
+        lines.append("- 未发现需要单独列出的暂缓项目")
+    lines.append("")
+    lines.extend(["## 其他候选应用", ""])
+    candidates = data.get("other_candidates")
+    if isinstance(candidates, list) and candidates:
+        for candidate in candidates:
+            if isinstance(candidate, dict):
+                lines.append(
+                    f"- {text(candidate.get('name'))}（{text(candidate.get('department'))}）：{text(candidate.get('priority'))}"
+                )
+    else:
+        lines.append("- 暂无")
+    lines.append("")
+    lines.extend(["## 详细诊断依据", ""])
+    render_nested_markdown(lines, data.get("detailed_evidence"))
+    lines.extend(
+        [
+            "## 免费咨询",
+            "",
+            "如果希望进一步确认优先级、数据准备、部署方式或最小试点，可以申请免费咨询：",
+            "",
+            f"- 企业 AI 落地智能参谋：{WEBSITE}",
+            f"- 免费咨询邮箱：{EMAIL}",
+            f"- 在线填写材料：{INQUIRY_URL}",
+            "- 我们收到材料后会进行分析，并尽快与你联系，提供免费咨询。",
+            "",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def inline_markup(value: str) -> str:
+    escaped = html.escape(value)
+    escaped = re.sub(r"`([^`]+)`", r"<code>\1</code>", escaped)
+    escaped = re.sub(
+        r"(https://[A-Za-z0-9._~:/?#\[\]@!$&amp;'()*+,;=%-]+)",
+        r'<a href="\1">\1</a>',
+        escaped,
+    )
+    escaped = escaped.replace(
+        EMAIL, f'<a href="mailto:{EMAIL}">{EMAIL}</a>'
+    )
+    return escaped
+
+
+def dictionary(value: Any) -> dict[str, Any]:
+    return value if isinstance(value, dict) else {}
+
+
+def label(key: Any) -> str:
+    raw = str(key)
+    return EVIDENCE_LABELS.get(raw, raw.replace("_", " "))
+
+
+def html_list(values: Any, class_name: str = "clean-list", empty: str = "当前资料不足") -> str:
+    entries = values if isinstance(values, list) else []
+    rendered = "".join(f"<li>{inline_markup(text(entry))}</li>" for entry in entries)
+    return f'<ul class="{class_name}">{rendered or f"<li>{inline_markup(empty)}</li>"}</ul>'
+
+
+def badge_class(value: Any) -> str:
+    current = text(value, "")
+    if current in {"高", "极高", "较高"}:
+        return "risk"
+    if current in {"中", "中等", "需要少量整理", "需要重新采集", "当前无法判断", "暂时无法判断"}:
+        return "warn"
+    if current in {"低", "较低", "可直接开始", "高可信度"}:
+        return "good"
+    return ""
+
+
+def fact_cell(title: str, value: Any, reason: Any = None) -> str:
+    reason_html = f'<p class="fact-reason">{inline_markup(text(reason))}</p>' if reason else ""
+    return (
+        '<div class="fact">'
+        f'<p class="fact-label">{html.escape(title)}</p>'
+        f'<p class="fact-value">{inline_markup(text(value))}</p>'
+        f'{reason_html}</div>'
+    )
+
+
+def render_application(application: dict[str, Any], fallback_rank: int) -> str:
+    rank = application.get("rank", fallback_rank)
+    difficulty = dictionary(application.get("implementation_difficulty"))
+    coordination = dictionary(application.get("internal_coordination"))
+    readiness = dictionary(application.get("data_readiness"))
+    confidentiality = dictionary(application.get("confidentiality"))
+    deployment = dictionary(application.get("deployment"))
+    confidence = text(application.get("confidence"))
+    priority_label = "首个试点" if rank == 1 else f"第 {rank} 优先"
+    facts = "".join(
+        [
+            fact_cell("方案类型", application.get("solution_type")),
+            fact_cell("实施难度", difficulty.get("level"), difficulty.get("reason")),
+            fact_cell("内部配合", coordination.get("level"), coordination.get("reason")),
+            fact_cell("数据准备", readiness.get("level"), readiness.get("reason")),
+            fact_cell("涉密程度", confidentiality.get("level"), confidentiality.get("reason")),
+            fact_cell("推荐部署", deployment.get("mode"), deployment.get("reason")),
+        ]
+    )
+    data_types = confidentiality.get("data_types")
+    data_detail = html_list(data_types) if data_types else '<p class="fact-reason">当前资料不足</p>'
+    roi_items = application.get("missing_roi_data")
+    roi_detail = html_list(roi_items) if roi_items else '<p class="fact-reason">当前无额外补充项</p>'
+    return f"""
+      <article class="application-card">
+        <header class="application-head">
+          <div class="application-title-row">
+            <div>
+              <div class="rank-line"><span class="rank">{rank}</span><span class="priority">{priority_label}</span></div>
+              <h3>{inline_markup(text(application.get('name')))}</h3>
+              <p class="application-summary">{inline_markup(text(application.get('summary')))}</p>
+            </div>
+            <div class="badges">
+              <span class="badge {badge_class(difficulty.get('level'))}">难度：{inline_markup(text(difficulty.get('level')))}</span>
+              <span class="badge {badge_class(confidence)}">可信度：{inline_markup(confidence)}</span>
+              <span class="badge">ROI：{inline_markup(text(application.get('roi_status'), '待测算'))}</span>
+            </div>
+          </div>
+          <div class="task-meta">
+            <span>部门：{inline_markup(text(application.get('department')))}</span>
+            <span>岗位：{inline_markup(text(application.get('role')))}</span>
+            <span>任务：{inline_markup(text(application.get('task')))}</span>
+          </div>
+        </header>
+        <div class="fact-grid">{facts}</div>
+        <div class="application-body">
+          <h4 class="subsection-title">为什么值得先验证</h4>
+          {html_list(application.get('why_now'), 'check-list')}
+          <div class="pilot-panel">
+            <p class="label">建议的最小试点</p>
+            <p>{inline_markup(text(application.get('minimum_pilot')))}</p>
+            <p class="next-action">{inline_markup(text(application.get('next_action')))}</p>
+          </div>
+          <div class="detail-grid">
+            <section class="detail-card"><h4>AI 或自动化可以做什么</h4>{html_list(application.get('ai_can_do'))}</section>
+            <section class="detail-card"><h4>人必须负责什么</h4>{html_list(application.get('human_must_do'))}</section>
+            <section class="detail-card"><h4>需要参与的角色</h4>{html_list(coordination.get('required_roles'))}</section>
+            <section class="detail-card"><h4>涉及的数据</h4>{data_detail}</section>
+            <section class="detail-card"><h4>ROI 测算前需补充</h4>{roi_detail}</section>
+            <section class="detail-card"><h4>部署边界</h4><p class="fact-reason">{inline_markup(text(deployment.get('reason')))}</p></section>
+          </div>
+          <div class="uncertainty"><strong>最大不确定性：</strong>{inline_markup(text(application.get('largest_uncertainty')))}</div>
+        </div>
+      </article>
+    """
+
+
+def render_record(value: dict[str, Any]) -> str:
+    title_value = value.get("application") or value.get("task_name") or value.get("candidate") or value.get("name")
+    title_html = f'<h4 class="record-title">{inline_markup(text(title_value))}</h4>' if title_value else ""
+    scalar_rows: list[str] = []
+    nested_blocks: list[str] = []
+    title_keys = {"application", "task_name", "candidate", "name"}
+    for key, nested in value.items():
+        if key in title_keys:
+            continue
+        if isinstance(nested, dict):
+            chips = "".join(
+                f'<div class="score-chip"><span>{html.escape(label(item_key))}</span><strong>{inline_markup(text(item_value))}</strong></div>'
+                for item_key, item_value in nested.items()
+                if not isinstance(item_value, (dict, list))
+            )
+            deeper = "".join(
+                f'<div class="nested-block"><strong>{html.escape(label(item_key))}</strong>{render_evidence_value(item_value)}</div>'
+                for item_key, item_value in nested.items()
+                if isinstance(item_value, (dict, list))
+            )
+            nested_blocks.append(
+                f'<div class="nested-block"><strong>{html.escape(label(key))}</strong><div class="score-grid">{chips}</div>{deeper}</div>'
+            )
+        elif isinstance(nested, list):
+            nested_blocks.append(
+                f'<div class="nested-block"><strong>{html.escape(label(key))}</strong>{render_evidence_value(nested)}</div>'
+            )
+        else:
+            scalar_rows.append(
+                f'<dt>{html.escape(label(key))}</dt><dd>{inline_markup(text(nested))}</dd>'
+            )
+    grid = f'<dl class="record-grid">{"".join(scalar_rows)}</dl>' if scalar_rows else ""
+    return f'<article class="evidence-record">{title_html}{grid}{"".join(nested_blocks)}</article>'
+
+
+def render_evidence_value(value: Any) -> str:
+    if isinstance(value, list):
+        if not value:
+            return '<p class="fact-reason">当前资料不足</p>'
+        if all(not isinstance(item, (dict, list)) for item in value):
+            return html_list(value)
+        return "".join(
+            render_record(item) if isinstance(item, dict)
+            else f'<div class="evidence-record">{render_evidence_value(item)}</div>'
+            for item in value
+        )
+    if isinstance(value, dict):
+        return render_record(value)
+    return f'<p class="fact-reason">{inline_markup(text(value))}</p>'
+
+
+def render_evidence(data: Any) -> str:
+    evidence = dictionary(data)
+    if not evidence:
+        return '<p class="fact-reason">当前资料不足</p>'
+    sections = []
+    for key, value in evidence.items():
+        sections.append(
+            f'<details class="evidence"><summary>{html.escape(label(key))}</summary>'
+            f'<div class="evidence-content">{render_evidence_value(value)}</div></details>'
+        )
+    return '<div class="evidence-stack">' + "".join(sections) + "</div>"
+
+
+def to_html(data: dict[str, Any]) -> str:
+    boundary = dictionary(data.get("analysis_boundary"))
+    applications = data.get("top_three_applications")
+    applications = applications if isinstance(applications, list) else []
+    app_html = "".join(render_application(application, index) for index, application in enumerate(applications, 1))
+    obstacles = data.get("main_obstacles") if isinstance(data.get("main_obstacles"), list) else []
+    obstacle_html = "".join(
+        f'<div class="obstacle"><span class="obstacle-index">{index:02d}</span><span>{inline_markup(text(item))}</span></div>'
+        for index, item in enumerate(obstacles, 1)
+    ) or '<div class="obstacle"><span>当前没有需要单独列出的主要障碍。</span></div>'
+    recommendations = data.get("not_recommended_now") if isinstance(data.get("not_recommended_now"), list) else []
+    recommendation_html = "".join(
+        '<article class="recommendation">'
+        f'<h3>{inline_markup(text(dictionary(item).get("name")))}</h3>'
+        f'<p>{inline_markup(text(dictionary(item).get("reason")))}</p>'
+        f'<p class="reconsider"><strong>重新评估条件：</strong>{inline_markup(text(dictionary(item).get("reconsider_when")))}</p>'
+        '</article>'
+        for item in recommendations
+    ) or '<article class="recommendation"><h3>暂无暂缓项目</h3><p>当前资料未识别出需要单独列出的暂缓项目。</p></article>'
+    candidates = data.get("other_candidates") if isinstance(data.get("other_candidates"), list) else []
+    candidate_html = "".join(
+        '<div class="candidate">'
+        f'<strong>{inline_markup(text(dictionary(item).get("name")))}</strong>'
+        f'<span>{inline_markup(text(dictionary(item).get("department")))} · {inline_markup(text(dictionary(item).get("priority")))}</span>'
+        '</div>'
+        for item in candidates
+    ) or '<div class="candidate"><strong>暂无其他候选应用</strong><span>—</span></div>'
+    cta = dictionary(data.get("consultation_cta"))
+    body = f"""
+  <header class="site-bar no-print">
+    <div class="site-bar-inner">
+      <a class="brand-lockup" href="{WEBSITE}"><span class="brand-mark">AI</span><span><span class="brand-name">AI 落地参谋</span><span class="brand-subtitle">企业 AI 落地智能参谋</span></span></a>
+      <span class="site-bar-label">企业 AI 落地诊断报告</span>
+    </div>
+  </header>
+  <div class="print-page-header"><span>企业 AI 落地诊断报告</span><span>{WEBSITE}</span></div>
+  <div class="print-page-footer"><span>免费咨询：{EMAIL}</span><span>{WEBSITE} · {INQUIRY_URL}</span></div>
+  <main class="report">
+    <section class="hero">
+      <p class="eyebrow">企业 AI 应用诊断报告</p>
+      <h1>AI 落地机会与试点建议</h1>
+      <p class="hero-lead">{inline_markup(text(data.get('executive_summary')))}</p>
+      <div class="hero-meta"><span class="pill">整体可信度：{inline_markup(text(boundary.get('overall_confidence')))}</span><span class="pill">优先应用：{len(applications)} 项</span><span class="pill">ROI：以真实试点数据测算</span></div>
+      <div class="boundary-note"><strong>本次分析边界：</strong>基于用户提供并确认的材料，明确区分已确认事实、合理推断和待确认信息；报告不编造任务量、效率比例、价格或回收期。</div>
+    </section>
+
+    <section class="principle">
+      <p class="kicker">企业 AI 落地第一阶段的唯一主关键词</p>
+      <h2>可控自动化</h2>
+      <p>在明确边界内，让原始输入按既有习惯进入，流程自动处理、交接并形成可核查的最终产出。</p>
+      <div class="principle-grid">
+        <article class="principle-card ai"><h3>智能化</h3><p>把需要理解、识别、检索和起草的工作交给 AI，同时用规则、权限和审计约束其行为。</p></article>
+        <article class="principle-card human"><h3>人兜底</h3><p>关键决定由人做最后核查，过程保留清晰、完整、可追溯的记录，让自动化始终可控。</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><div><p class="section-kicker">优先顺序</p><h2>最值得先做的 {len(applications)} 个应用</h2><p class="section-description">优先选择目标明确、输出可核查、失败可控且能够小范围验证的应用。</p></div></div>
+      <div class="application-list">{app_html}</div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><div><p class="section-kicker">事实边界</p><h2>我们知道什么，还不知道什么</h2></div></div>
+      <div class="three-column">
+        <article class="info-card confirmed"><h3>已确认事实</h3>{html_list(boundary.get('confirmed_facts'))}</article>
+        <article class="info-card assumption"><h3>合理推断</h3>{html_list(boundary.get('assumptions'))}</article>
+        <article class="info-card unknown"><h3>待确认信息</h3>{html_list(boundary.get('unknowns'))}</article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><div><p class="section-kicker">实施准备</p><h2>当前主要障碍</h2></div></div>
+      <div class="obstacle-list">{obstacle_html}</div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><div><p class="section-kicker">明确边界</p><h2>当前不建议推进</h2></div></div>
+      <div class="recommendation-list">{recommendation_html}</div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><div><p class="section-kicker">机会池</p><h2>其他候选应用</h2></div></div>
+      <div class="candidate-grid">{candidate_html}</div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><div><p class="section-kicker">可追溯依据</p><h2>详细诊断依据</h2><p class="section-description">网页中默认折叠，打印时完整展开。</p></div></div>
+      {render_evidence(data.get('detailed_evidence'))}
+    </section>
+
+    <section class="cta">
+      <h2>获取免费咨询</h2>
+      <p>{inline_markup(text(cta.get('message'), '如需进一步确认试点范围、数据准备和验收标准，欢迎联系我们。'))}</p>
+      <div class="cta-links"><a class="cta-link" href="{WEBSITE}">{WEBSITE}</a><a class="cta-link" href="mailto:{EMAIL}">{EMAIL}</a><a class="cta-link" href="{INQUIRY_URL}">在线填写材料</a></div>
+      <p>收到材料后会进行分析，并尽快与你联系，提供免费咨询。</p>
+    </section>
+  </main>
+"""
+    shell_path = ASSETS_DIR / "report-shell.html"
+    theme_path = ASSETS_DIR / "report-theme.css"
+    if not shell_path.is_file() or not theme_path.is_file():
+        raise ValueError("报告模板不完整：请确认 assets/report-shell.html 和 assets/report-theme.css 存在")
+    shell = shell_path.read_text(encoding="utf-8")
+    theme = theme_path.read_text(encoding="utf-8")
+    return shell.replace("{{STYLE}}", theme).replace("{{BODY}}", body)
+
+
+def browser_candidates() -> list[str]:
+    configured = os.environ.get("CHROME_PATH")
+    candidates = [configured] if configured else []
+    for command in (
+        "google-chrome",
+        "google-chrome-stable",
+        "chromium",
+        "chromium-browser",
+        "microsoft-edge",
+    ):
+        resolved = shutil.which(command)
+        if resolved:
+            candidates.append(resolved)
+    candidates.extend(
+        [
+            "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+            "/Applications/Chromium.app/Contents/MacOS/Chromium",
+        ]
+    )
+    return [candidate for candidate in candidates if candidate and Path(candidate).is_file()]
+
+
+def render_pdf(html_path: Path, pdf_path: Path) -> None:
+    candidates = browser_candidates()
+    if not candidates:
+        raise RuntimeError(
+            "未找到 Chrome、Chromium 或 Edge。安装浏览器，或设置 CHROME_PATH 后重试。"
+        )
+    errors: list[str] = []
+    temporary_pdf = pdf_path.with_name(f".{pdf_path.stem}.tmp.pdf")
+    for browser in candidates:
+        temporary_pdf.unlink(missing_ok=True)
+        with tempfile.TemporaryDirectory(prefix="enterprise-ai-report-") as profile:
+            command = [
+                browser,
+                "--headless=new",
+                "--disable-gpu",
+                "--disable-background-networking",
+                "--disable-component-update",
+                "--disable-dev-shm-usage",
+                "--disable-extensions",
+                "--no-sandbox",
+                "--no-pdf-header-footer",
+                f"--user-data-dir={profile}",
+                f"--print-to-pdf={temporary_pdf}",
+                html_path.resolve().as_uri(),
+            ]
+            process = subprocess.Popen(
+                command,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                start_new_session=True,
+            )
+            valid_ticks = 0
+            deadline = time.monotonic() + 60
+            while time.monotonic() < deadline:
+                if (
+                    temporary_pdf.exists()
+                    and temporary_pdf.stat().st_size > 100
+                    and temporary_pdf.read_bytes()[:5] == b"%PDF-"
+                ):
+                    valid_ticks += 1
+                    if valid_ticks >= 3:
+                        if process.poll() is None:
+                            try:
+                                os.killpg(process.pid, signal.SIGTERM)
+                            except (OSError, AttributeError):
+                                process.terminate()
+                        try:
+                            process.communicate(timeout=5)
+                        except subprocess.TimeoutExpired:
+                            try:
+                                os.killpg(process.pid, signal.SIGKILL)
+                            except (OSError, AttributeError):
+                                process.kill()
+                            process.communicate()
+                        temporary_pdf.replace(pdf_path)
+                        return
+                else:
+                    valid_ticks = 0
+                if process.poll() is not None:
+                    break
+                time.sleep(0.2)
+            if process.poll() is None:
+                try:
+                    os.killpg(process.pid, signal.SIGTERM)
+                except (OSError, AttributeError):
+                    process.terminate()
+            try:
+                _, stderr = process.communicate(timeout=5)
+            except subprocess.TimeoutExpired:
+                try:
+                    os.killpg(process.pid, signal.SIGKILL)
+                except (OSError, AttributeError):
+                    process.kill()
+                _, stderr = process.communicate()
+            errors.append(f"{Path(browser).name}: {stderr.strip() or '未生成有效 PDF'}")
+            temporary_pdf.unlink(missing_ok=True)
+    raise RuntimeError("PDF 生成失败：" + " | ".join(errors))
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("input", type=Path, help="符合 diagnosis-output.schema.json 的 JSON 文件")
+    parser.add_argument("--output-dir", type=Path, required=True, help="三种报告的输出目录")
+    return parser.parse_args()
+
+
+def main() -> int:
+    arguments = parse_args()
+    try:
+        data = validate(json.loads(arguments.input.read_text(encoding="utf-8")))
+        arguments.output_dir.mkdir(parents=True, exist_ok=True)
+        markdown_path = arguments.output_dir / f"{REPORT_BASENAME}.md"
+        html_path = arguments.output_dir / f"{REPORT_BASENAME}.html"
+        pdf_path = arguments.output_dir / f"{REPORT_BASENAME}.pdf"
+        markdown = to_markdown(data)
+        html_document = to_html(data)
+        markdown_path.write_text(markdown, encoding="utf-8")
+        html_path.write_text(html_document, encoding="utf-8")
+        render_pdf(html_path, pdf_path)
+        for output in (markdown_path, html_path, pdf_path):
+            print(output.resolve())
+        return 0
+    except (OSError, ValueError, json.JSONDecodeError, RuntimeError, subprocess.TimeoutExpired) as error:
+        print(f"报告生成失败：{error}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

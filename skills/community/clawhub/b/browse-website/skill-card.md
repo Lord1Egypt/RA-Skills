@@ -1,43 +1,58 @@
-## Description: <br>
-Turn any website into a filesystem. Crawls sites automatically and mounts pages as markdown files you can grep, diff, cat, and explore with standard Unix commands — over SSH or HTTP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn any website into a filesystem. Crawls sites automatically and mounts pages as markdown files you can grep, diff, cat, and explore with standard Unix commands — over SSH or HTTP.
 
-## Publisher: <br>
-[bigmindai](https://clawhub.ai/user/bigmindai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bigmindai](https://clawhub.ai/user/bigmindai)
 
-## Use Case: <br>
-Developers, researchers, and support teams use this skill to crawl public websites, inspect pages as markdown, search site content, and compare changes across crawls with standard Unix commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OpenObj is a third-party service that can see requested sites, search terms, and commands. <br>
-Mitigation: Use the skill for public, non-sensitive websites; avoid private URLs, confidential queries, authenticated pages, and regulated data unless the user explicitly trusts OpenObj for that processing. <br>
-Risk: Fresh crawls and forced recrawls can consume OpenObj credits. <br>
-Mitigation: Prefer cached reads, review commands before running recrawl operations, and stop retrying when a credit limit error appears. <br>
-Risk: The skill depends on network access to openobj.com over SSH or HTTPS. <br>
-Mitigation: Confirm network permission before use and fall back to the HTTP API when SSH is unavailable. <br>
+## Use Case:
 
+Developers and agents use this skill to research public websites, inspect documentation, search crawled pages, and compare crawl changes using familiar Unix commands.
 
-## Reference(s): <br>
-- [OpenObj HTTP API endpoint](https://openobj.com/exec) <br>
-- [ClawHub skill page](https://clawhub.ai/bigmindai/browse-website) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with SSH and curl command examples; HTTP API calls return JSON with stdout, stderr, and exitCode fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to openobj.com. Cached reads are free, while new crawls and forced recrawls may consume OpenObj credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact frontmatter reports 1.2.0) <br>
+Risk: Target website domains, search terms, and remote commands may be sent to OpenObj.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those inputs with OpenObj is acceptable.
+
+Risk: Commands may be built from unvalidated user-controlled domains, paths, or search terms.
+
+Mitigation: Validate and quote user-provided values before execution, and avoid attacker-supplied domains or terms.
+
+Risk: The skill requests broad network access for SSH or HTTPS calls.
+
+Mitigation: Prefer destination-scoped access to openobj.com where the agent runtime supports it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bigmindai/skills/browse-website)
+- [OpenObj HTTP execution endpoint](https://openobj.com/exec)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return crawled website content, search results, file listings, diffs, command output, stderr, and exit codes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

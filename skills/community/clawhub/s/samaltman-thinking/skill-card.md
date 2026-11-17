@@ -1,39 +1,54 @@
-## Description: <br>
-Sam Altman（OpenAI CEO、前YC总裁）的AI时代创业思维和机会判断框架。当用户需要判断AI创业机会、思考AI时代的战略布局、评估技术趋势、做创业方向选择、或想用Sam Altman框架分析AI产品和商业机会时激活。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language Sam Altman-inspired framework for evaluating AI startup opportunities, AI-era strategy, technology trends, founder focus, and product direction.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
 
-## Use Case: <br>
-Founders, product strategists, and business teams use this skill to evaluate AI startup opportunities, strategic timing, product direction, and execution priorities through a Sam Altman-inspired framework. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can frame ordinary AI business discussions through a specific Sam Altman-style startup perspective. <br>
-Mitigation: Use it for explicit strategy-framework requests or narrow the activation triggers when a neutral business analysis posture is required. <br>
+## Use Case:
 
+External users, founders, product leaders, and strategy teams use this skill to analyze AI startup ideas, classify AI-native versus AI-enhanced opportunities, assess timing and leverage, and identify concrete validation steps.
 
-## Reference(s): <br>
-- [Sam Altman 思维框架](references/framework.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jiwenbing/samaltman-thinking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and structured analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides concise opportunity assessment, timing judgment, risk awareness, and concrete validation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill may activate on broad AI strategy prompts and provide framework-driven guidance beyond the user's exact intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's business context and treat outputs as advisory analysis that should be checked against current market evidence and domain expertise.
+
+Risk: The skill may answer in Chinese.
+
+Mitigation: Use it when Chinese-language guidance is acceptable, or instruct the agent to translate or summarize the response for the target audience.
+
+## Reference(s):
+
+- [Sam Altman 思维框架 — 完整参考](artifact/references/framework.md)
+- [ClawHub skill page](https://clawhub.ai/jiwenbing/skills/samaltman-thinking)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown or plain text strategic analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language responses are likely unless the user requests another language.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

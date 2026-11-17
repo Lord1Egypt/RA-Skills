@@ -170,7 +170,7 @@ def ai_analyze_async(agents):
                 diff_str     = f"+{a.get('insertions',0)}-{a.get('deletions',0)} lines" if a.get("files_changed") else "no diff"
                 turns_str    = f"{a['turns']} shell calls" if a.get("turns") else "?"
                 retries_str  = f"{a['retries']} retries" if a.get("retries") else "0 retries"
-                log_tail     = a["log"][-150:].strip() if a.get("log") else "(no log)"
+                log_tail     = a["log"][-500:].strip() if a.get("log") else "(no log)"
                 agent_blocks.append(
                     f"=== {a['name']} ===\n"
                     f"status={a['status']} model={a['model']} tokens={a['tokens']} "
@@ -182,16 +182,6 @@ def ai_analyze_async(agents):
 
             prompt = "\n\n".join(agent_blocks)
 
-            user_msg = (
-                f"并行编码任务数据和log尾部：\n\n{prompt}\n\n"
-                "直接输出bullet（不超过6条，每条含具体数字）：\n"
-                "• token效率：最费/最省各谁，tok/line是否合理\n"
-                "• 有无弯路（重试/反复修改）\n"
-                "• 代码质量简评（从log tail判断）\n"
-                "• 最差prompt是哪个agent，问题在哪\n"
-                "• 1条改进prompt片段（代码块）"
-            )
-            print(f"[dashboard] AI prompt length: {len(user_msg)} chars")
             resp = httpx.post(
                 "https://openrouter.ai/api/v1/chat/completions",
                 headers={"Authorization": f"Bearer {key}",
@@ -199,10 +189,18 @@ def ai_analyze_async(agents):
                 json={"model": "stepfun/step-3.5-flash:free",
                       "messages": [
                           {"role": "system", "content":
-                           "你是代码Agent效率审查员。只输出bullet list，不超过6条，每条含具体数字，无开场白。"},
-                          {"role": "user", "content": user_msg}
+                           "你是代码 Agent 效率审查员。只输出 bullet list，严格不超过6条，"
+                           "每条必须含具体数字或引用 log 内容，不要任何开场白和结尾总结。"},
+                          {"role": "user", "content":
+                           f"以下是本次并行编码任务各 agent 的数据和 log 尾部：\n\n{prompt}\n\n"
+                           "请分析（直接输出 bullet）：\n"
+                           "• token 效率：最费和最省各是谁，tok/line 是否合理\n"
+                           "• 有没有 agent 走了弯路（反复修改、大量重试）\n"
+                           "• 代码质量简评（从 log tail 判断有无错误处理、是否符合要求）\n"
+                           "• 最差的 prompt 是哪个 agent 的，问题在哪\n"
+                           "• 给出1条可直接复用的改进 prompt 片段（用代码块包裹）"}
                       ],
-                      "max_tokens": 600},
+                      "max_tokens": 500},
                 timeout=30,
             )
             resp_json = resp.json()

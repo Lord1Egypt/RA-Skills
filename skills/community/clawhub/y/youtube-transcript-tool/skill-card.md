@@ -1,42 +1,60 @@
-## Description: <br>
-Fetches YouTube video transcript or subtitle information from a provided video URL, with support claims for timestamps and multiple languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses YouTube video URLs and returns a demo-style JSON response for transcript retrieval.
 
-## Publisher: <br>
-[loverun321](https://clawhub.ai/user/loverun321) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[loverun321](https://clawhub.ai/user/loverun321)
 
-## Use Case: <br>
-External users and agents use this skill to request YouTube transcript or subtitle data by supplying a YouTube URL. The published artifact currently returns a structured readiness response for matched YouTube video IDs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release evidence flags a published API key in the artifact. <br>
-Mitigation: Do not install or use this version until the publisher removes the credential and rotates any exposed secret. <br>
-Risk: The release evidence flags broad paid-service activation wording. <br>
-Mitigation: Review and narrow invocation wording so the skill only runs when a user clearly requests YouTube transcript retrieval. <br>
-Risk: The artifact handler reports service readiness instead of fetching an actual transcript. <br>
-Mitigation: Verify runtime behavior against expected transcript retrieval before relying on the skill for transcript output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loverun321/youtube-transcript-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/loverun321) <br>
+## Use Case:
 
+Developers and agents can use this skill as a lightweight starting point for recognizing YouTube links before integrating a real transcript provider. Reviewers should treat it as a demo parser, not a working paid transcript service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Structured JSON response with status, video ID, transcript fields, language metadata, or error text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a YouTube video URL containing a recognizable 11-character video ID.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The package exposes a credential-like API key in the artifact.
+
+Mitigation: Remove and rotate the exposed key before use or redistribution.
+
+Risk: The package claims paid transcript functionality but the artifact only parses URLs and returns a demo response.
+
+Mitigation: Disclose the demo limitation clearly or implement transcript retrieval before presenting it as a transcript service.
+
+Risk: The artifact reports paid status without real payment verification.
+
+Mitigation: Do not rely on payment_status until real payment verification is implemented.
+
+Risk: External transcript provider and data-sharing behavior are not disclosed.
+
+Mitigation: Document any provider used and its data handling before processing user-supplied video URLs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loverun321/skills/youtube-transcript-tool)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, text, guidance]
+
+**Output Format:** [JSON object with short text status or error fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the parsed video_id and demo status; does not fetch transcript content in the provided artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

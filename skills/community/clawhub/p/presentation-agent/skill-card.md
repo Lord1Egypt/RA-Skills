@@ -1,41 +1,56 @@
-## Description: <br>
-Convert Markdown documents into PDF, PPTX, or HTML presentation slides using Marp with Mermaid diagram support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Markdown documents to presentation slides (PDF/PPTX/HTML) using Marp. Supports Mermaid diagrams (gantt, flowchart, etc.) and data graphs. Use when a user asks to create slides, presentations, or decks from Markdown files or text content.
 
-## Publisher: <br>
-[mtdnot](https://clawhub.ai/user/mtdnot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtdnot](https://clawhub.ai/user/mtdnot)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and content creators use this skill to turn Markdown or generated text into PDF, PPTX, or HTML slide decks with Marp. It is suited for presentation workflows that need Mermaid diagram preprocessing and bundled slide styling.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated decks may inherit the bundled Frexida visual style and attempted logo placement by default.
+
+Mitigation: Review or replace the theme before use, especially for neutral, client-branded, or brand-sensitive presentations.
+
+Risk: Untrusted Markdown and Mermaid content is processed by local conversion tools and rendered with local-file access enabled.
+
+Mitigation: Run conversions in a constrained workspace and review input files before processing.
+
+Risk: Generated output files may overwrite existing files when the same input basename and output directory are reused.
+
+Mitigation: Choose a dedicated output directory or verify target filenames before running conversion commands.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to turn Markdown content or generated slide outlines into presentation decks, including Mermaid diagrams and data visualizations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Local renderers process Markdown, Mermaid diagrams, embedded HTML, and local file references. <br>
-Mitigation: Use trusted Markdown and assets, review third-party decks before conversion, and keep local file access scoped to intended presentation resources. <br>
-Risk: The Mermaid preprocessing step invokes a local diagram renderer on diagram content. <br>
-Mitigation: Avoid running graph-generation steps on untrusted input and review diagram blocks before rendering. <br>
+**Output Format:** [Markdown guidance with shell commands and generated slide files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtdnot/presentation-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/mtdnot) <br>
+**Other Properties Related to Output:** [Can produce PDF, PPTX, or HTML presentation files through Marp and local Mermaid image preprocessing.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and generated presentation files in PDF, PPTX, or HTML format] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local Marp and Mermaid renderers and read local Markdown, theme, and image assets.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

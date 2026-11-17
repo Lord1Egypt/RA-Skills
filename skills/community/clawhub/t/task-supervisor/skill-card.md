@@ -1,39 +1,53 @@
-## Description: <br>
-Task Supervisor helps agents manage complex long-running tasks with step tracking, checkpoint files, and periodic progress reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage complex long-running tasks with checkpoint files, step tracking, and periodic progress reports until completion or pause.
 
-## Publisher: <br>
-[Mashirops](https://clawhub.ai/user/Mashirops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mashirops](https://clawhub.ai/user/mashirops)
 
-## Use Case: <br>
-Agents use this skill when handling large tasks with multiple steps or extended duration. It helps decompose work, track progress in task files, report status, and resume paused work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent task files can contain private task details or sensitive context. <br>
-Mitigation: Avoid recording secrets or private details in task logs, and review task files before sharing status updates. <br>
-Risk: Recurring progress reporters can send task details to an external chat service without clear privacy boundaries. <br>
-Mitigation: Confirm the intended chat service and recipient before enabling reports, and remove reporter schedules when work is paused, completed, or abandoned. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Mashirops/task-supervisor) <br>
+## Use Case:
 
+Developers and agent users use this skill to supervise large, multi-step tasks by creating checkpoint files, tracking step status, and sending periodic progress or blocker summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown task files with inline shell commands and concise status updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates persistent task logs and may schedule recurring progress reporters for external chat updates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent `.tasks/` files may retain task details beyond the active work session.
+
+Mitigation: Use the skill only when local task-status retention is acceptable, and define cleanup expectations before using it for sensitive work.
+
+Risk: Recurring external progress messages have unclear destination, consent, retention, and cleanup behavior.
+
+Mitigation: Confirm the reporting channel and recipient consent before activation, and verify scheduled reporting is removed when the task completes or fails.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mashirops/skills/task-supervisor)
+- [ClawHub publisher profile](https://clawhub.ai/user/mashirops)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown task files with shell command snippets and brief text status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent task files and scheduled external progress reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Sends a direct message to a specific Douyin user through the user's logged-in Chrome session and verifies delivery or ban/block tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends a Douyin web direct message from the user's logged-in Chrome session and verifies mutual-follow and ban/block delivery signals before reporting success.
 
-## Publisher: <br>
-[scs001](https://clawhub.ai/user/scs001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scs001](https://clawhub.ai/user/scs001)
 
-## Use Case: <br>
-External users and agents use this skill to send a text DM to a mutual-follow Douyin user through the web client. The skill is intended to confirm the target conversation and report whether Douyin delivered, blocked, or failed the message. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The activation wording is broad enough to send messages from an authenticated Douyin account when the user intent is ambiguous. <br>
-Mitigation: Require explicit confirmation of the recipient and exact message text before any DM is sent. <br>
-Risk: The skill operates a logged-in Douyin account through the user's Chrome session. <br>
-Mitigation: Install and use it only when the account owner is comfortable with browser automation acting on that account. <br>
-Risk: Douyin may render a local message bubble even when delivery is blocked or the sender is banned from DMs. <br>
-Mitigation: Run the verification step after sending and report Douyin's exact ban or block tip instead of claiming success from the bubble alone. <br>
+## Use Case:
 
+Agent operators use this skill to send a specific text DM to a mutually followed Douyin user through an existing logged-in Chrome session. The skill is intended for web-client messaging workflows that require honest delivery verification before reporting success.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/scs001/douyin-send-dm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline browser-action and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit recipient and message confirmation; reports delivery, ban, block, or retry status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can send real Douyin direct messages from a logged-in Chrome session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the exact recipient and message and obtain explicit user confirmation before executing the send step.
+
+Risk: Message text is inserted through interpolated browser JavaScript, which can mishandle externally supplied or complex text.
+
+Mitigation: Avoid externally supplied or complex text until message insertion passes text as data rather than interpolating it into JavaScript.
+
+Risk: Douyin may render a local message bubble even when delivery is blocked or sender DM privileges are banned.
+
+Mitigation: Run the documented delivery verification and report the exact Douyin ban or block tip before claiming success.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scs001/skills/douyin-send-dm)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline browser and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a logged-in Chrome session, Douyin mutual-follow status, and post-send verification before success is reported.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

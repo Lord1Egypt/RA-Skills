@@ -1,45 +1,59 @@
-## Description: <br>
-Agent Memory gives AI agents persistent local memory with tiered storage, correction learning, self-reflection, multi-agent sharing, and decay rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete memory architecture for AI agents with tiered local storage, correction-based learning, self-reflection, multi-agent memory sharing, intelligent decay, and bootstrap setup.
 
-## Publisher: <br>
-[ironmanc2014](https://clawhub.ai/user/ironmanc2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ironmanc2014](https://clawhub.ai/user/ironmanc2014)
 
-## Use Case: <br>
-Developers and agent builders use this skill to set up local persistent memory so an agent can remember explicit preferences, corrections, project patterns, and shared multi-agent knowledge over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Long-term local memory may retain user preferences, corrections, and work context beyond the current session. <br>
-Mitigation: Review ~/agent-memory periodically, avoid storing sensitive personal or business data, and use the documented forget or wipe workflow when memory should be removed. <br>
-Risk: Shared multi-agent memory files can spread overly broad or stale patterns across agents. <br>
-Mitigation: Keep shared files narrowly scoped, prefer project or agent-specific entries when appropriate, and review conflicts before promoting patterns. <br>
-Risk: Casual phrases could be encoded as approval patterns in workflows where approval has high impact. <br>
-Mitigation: Require explicit confirmation for high-impact actions and do not treat ambiguous conversational signals as standing authorization. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up persistent local memory for AI agents, including preference storage, correction tracking, compaction, and shared memory patterns for multi-agent teams.
 
-## Reference(s): <br>
-- [Agent Memory release page](https://clawhub.ai/ironmanc2014/agent-memory-architect) <br>
-- [Memory Architecture](references/architecture.md) <br>
-- [Multi-Agent Memory](references/multi-agent.md) <br>
-- [Security Boundaries](references/security.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and maintains local files under ~/agent-memory when the bootstrap script or setup instructions are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Persistent memory can retain sensitive preferences, work context, or personal data longer than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the memory directory private with owner-only permissions, audit stored memory regularly, and avoid storing secrets or sensitive personal data.
+
+Risk: Bootstrap setup has review-worthy path containment concerns when using custom roots, untrusted agent names, or forced overwrites.
+
+Mitigation: Review the target path and agent names before running the bootstrap script, avoid --force unless the target files are known, and test setup in a disposable directory first.
+
+Risk: Broad file permission guidance can expose local memory files to other users on the same system.
+
+Mitigation: Use owner-only permissions for the memory directory and files instead of broad read or execute permissions.
+
+## Reference(s):
+
+- [Memory Architecture](references/architecture.md)
+- [Multi-Agent Memory](references/multi-agent.md)
+- [Security Boundaries](references/security.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with inline bash commands and local file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local files under an agent-memory directory when the bootstrap script is run.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

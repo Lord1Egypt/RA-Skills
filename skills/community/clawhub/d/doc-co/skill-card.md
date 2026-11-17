@@ -1,38 +1,50 @@
-## Description: <br>
-Deep co-authoring workflow for context gathering, iterative drafting and structure, reader testing, and quality gates when writing documentation, proposals, technical specs, decision docs, RFCs, or similar structured content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep co-authoring workflow: context gathering, iterative drafting and structure, reader testing, and quality gates for documentation, proposals, technical specs, decision docs, RFCs, and similar structured content.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Writers, product teams, engineers, and other collaborators use this skill to gather context, draft structured documents section by section, refine content through feedback, and test whether a fresh reader can understand the result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document context gathering may involve privacy-sensitive connector access or confidential source material. <br>
-Mitigation: Scope connectors to only the documents, threads, or channels needed, avoid importing secrets or regulated data, and review draft content before reader testing. <br>
+## Use Case:
 
+External users and developers use this skill to co-author substantial documents through context gathering, section-by-section drafting, iterative refinement, and reader testing before sharing.
 
-## Reference(s): <br>
-- [Doc Co on ClawHub](https://clawhub.ai/codenova58/doc-co) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce document scaffolds, section drafts, revision guidance, clarifying questions, and reader-testing prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Company documents, team-channel content, or shared-document context may be exposed to connected tools or sub-agents during context gathering and reader testing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved connectors and sub-agents for sensitive work, and confirm that the user is comfortable sharing the relevant context before gathering or testing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/doc-co)
+- [Publisher profile](https://clawhub.ai/user/codenova58)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, files]
+
+**Output Format:** [Markdown documents and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or edit a document artifact or local Markdown file when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

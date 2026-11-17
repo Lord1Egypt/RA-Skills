@@ -1,0 +1,27 @@
+{
+  "style": "zhanguo",
+  "cases": [
+    {
+      "name": "战国风-日常问候",
+      "input": "你好",
+      "style": "zhanguo",
+      "intensity": 2,
+      "expected_output": "大王，臣有礼。今得拜见，臣不胜荣幸。",
+      "expect_contains": ["大王", "臣", "有礼"],
+      "expect_not_contains": ["互联网", "AI", "APP", "好的", "收到"],
+      "max_length_per_sentence": 20,
+      "min_score": 70
+    },
+    {
+      "name": "战国风-表达决心",
+      "input": "我一定要完成这个任务",
+      "style": "zhanguo",
+      "intensity": 2,
+      "expected_output": "大王，此事虽难，臣必竭力以赴。兵贵神速，事贵果断，愿大王察之。",
+      "expect_contains": ["大王", "臣", "察之"],
+      "expect_not_contains": ["互联网", "AI", "好的"],
+      "max_length_per_sentence": 20,
+      "min_score": 70
+    }
+  ]
+}

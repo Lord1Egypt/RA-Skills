@@ -1,42 +1,54 @@
-## Description: <br>
-将输入文字通过 tts.wangwangit.com 转换为多种语音风格的 MP3 音频文件，并返回给用户。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts user-provided text into MP3 speech audio through a disclosed remote TTS service with selectable voices, speed, pitch, and style.
 
-## Publisher: <br>
-[yinsuso](https://clawhub.ai/user/yinsuso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinsuso](https://clawhub.ai/user/yinsuso)
 
-## Use Case: <br>
-Agents use this skill when a user wants supplied text read aloud and returned as an audio file. It supports selecting voice, speed, pitch, and speaking style for text-to-speech generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided text is sent to an external TTS endpoint. <br>
-Mitigation: Do not submit passwords, confidential business material, private records, or regulated data unless the endpoint has been independently vetted. <br>
-Risk: Very long text may exceed the documented single-request character limit. <br>
-Mitigation: Split text over 10,000 characters into smaller requests before generating audio. <br>
+## Use Case:
 
+Agents use this skill when a user asks to hear text aloud or receive generated speech as an audio file. It is suited for converting single or batched text inputs into downloadable speech output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinsuso/tts-wangwang) <br>
-- [Publisher profile](https://clawhub.ai/user/yinsuso) <br>
-- [TTS API endpoint](https://tts.wangwangit.com/v1/audio/speech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown with inline JSON, bash, and Python examples; generated audio is saved as an MP3 file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends user-provided text to tts.wangwangit.com and writes generated audio to a local file path such as /tmp/tts_output.mp3.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Text submitted for conversion is sent to tts.wangwangit.com, which may expose sensitive or regulated content to an external provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for secrets, credentials, regulated data, or confidential documents unless that provider has been approved.
+
+Risk: Using a fixed temporary output path such as /tmp/tts_output.mp3 can overwrite existing files or expose generated audio to later processes.
+
+Mitigation: Use a unique private temporary output file for each generation and clean it up after delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinsuso/skills/tts-wangwang)
+- [Disclosed remote TTS API endpoint](https://tts.wangwangit.com/v1/audio/speech)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, audio files, guidance]
+
+**Output Format:** [Markdown with JSON, bash, and Python examples; generated MP3 audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes text to a remote TTS endpoint; documented examples write audio output to /tmp.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

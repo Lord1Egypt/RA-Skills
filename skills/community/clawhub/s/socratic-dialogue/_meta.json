@@ -1,6 +1,8 @@
-{
-  "ownerId": "kn7e4xdsnt66p6zxxrvewvmvf1841pwv",
-  "slug": "socratic-dialogue",
+﻿{
+  "name": "socratic-dialogue",
   "version": "1.0.0",
-  "publishedAt": 1775059133170
+  "description": "苏格拉底式对话 - 澄清思想、挑战假设、寻找证据、探寻替代观点。",
+  "author": "silifelab",
+  "homepage": "",
+  "source": ""
 }

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{INDUSTRY_NAME}}行业景气度跟踪简报</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    background: #f8f9fa; color: #1a1a1a; line-height: 1.6; padding: 24px;
+  }
+  .report { max-width: 720px; margin: 0 auto; background: #fff;
+    border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .header { padding: 24px 28px; background: linear-gradient(135deg, #185fa5, #378add); color: #fff; }
+  .header h1 { font-size: 20px; font-weight: 500; margin-bottom: 4px; }
+  .header .date { font-size: 13px; opacity: 0.85; }
+  .section { padding: 20px 28px; border-bottom: 1px solid #f1f3f5; }
+  .section-title { font-size: 15px; font-weight: 500; color: #495057; margin-bottom: 12px;
+    padding-left: 10px; border-left: 3px solid #185fa5; }
+  .score-section { display: flex; align-items: center; gap: 28px; }
+  .score-info { flex: 1; }
+  .direction-badge { display: inline-block; padding: 4px 12px; border-radius: 20px;
+    font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+  .direction-up { background: #ebfbee; color: #2f9e44; }
+  .direction-neutral { background: #fff9db; color: #e8590c; }
+  .direction-down { background: #ffeaea; color: #e03131; }
+  .signals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .signal-box { padding: 12px 16px; border-radius: 8px; background: #f8f9fa; }
+  .signal-box h4 { font-size: 13px; font-weight: 500; margin-bottom: 8px; }
+  .signal-item { display: flex; align-items: center; gap: 6px; padding: 4px 0; font-size: 13px; }
+  .signal-arrow { font-size: 16px; font-weight: 500; }
+  .signal-name { flex: 1; color: #495057; }
+  .signal-weight { font-size: 12px; color: #adb5bd; }
+  .no-signal { font-size: 13px; color: #adb5bd; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; padding: 8px 10px; border-bottom: 2px solid #e9ecef;
+    color: #868e96; font-weight: 500; font-size: 12px; }
+  td { padding: 8px 10px; border-bottom: 1px solid #f1f3f5; color: #495057; }
+  tr:hover td { background: #f8f9fa; }
+  .tier-badge { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 11px; }
+  .tier-leading { background: #e6f1fb; color: #185fa5; }
+  .tier-coincident { background: #eaf3de; color: #3b6d11; }
+  .tier-lagging { background: #faeeda; color: #854f0b; }
+  .footer { padding: 16px 28px; background: #f8f9fa; font-size: 12px; color: #868e96; }
+  .footer p { margin-bottom: 4px; }
+  .disclaimer { padding: 12px 28px; background: #fff5f5; border-top: 2px solid #ffc9c9;
+    font-size: 12px; color: #a32d2d; }
+  .disclaimer strong { font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="report">
+  <div class="header">
+    <h1>{{INDUSTRY_NAME}}行业景气度跟踪简报</h1>
+    <div class="date">报告期：{{REPORT_DATE}}</div>
+  </div>
+
+  {{SAMPLE_WARNING}}
+
+  <div class="section">
+    <div class="section-title">综合景气评分</div>
+    <div class="score-section">
+      <div class="gauge">{{GAUGE_SVG}}</div>
+      <div class="score-info">
+        <span class="direction-badge {{DIRECTION_BADGE_CLASS}}">{{DIRECTION}}</span>
+        <p style="font-size:13px;color:#868e96;">{{DIRECTION_DESC}}</p>
+        <p style="font-size:12px;color:#adb5bd;margin-top:4px;">评分基于领先(40%) + 同步(40%) + 滞后(20%) 三层加权计算</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">关键信号</div>
+    <div class="signals-grid">
+      <div class="signal-box">
+        <h4 style="color:#2f9e44;">正向信号（景气改善）</h4>
+        {{POSITIVE_SIGNALS}}
+      </div>
+      <div class="signal-box">
+        <h4 style="color:#e03131;">负向信号（景气恶化）</h4>
+        {{NEGATIVE_SIGNALS}}
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">指标明细</div>
+    <table>
+      <thead>
+        <tr>
+          <th>层级</th><th>指标</th><th>最新值</th><th>环比</th>
+          <th>方向</th><th>权重</th><th>数据期</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{INDICATOR_ROWS}}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">数据来源</div>
+    <p style="font-size:13px;color:#495057;">{{DATA_SOURCES}}</p>
+    <p style="font-size:12px;color:#adb5bd;margin-top:4px;">所有数据均来自免费公开数据源（AKShare、国家统计局、海关总署、交易所公告等），不使用任何付费终端数据。</p>
+  </div>
+
+  <div class="disclaimer">
+    <strong>&#9888; 免责声明</strong>
+    <p>本工具仅提供数据整理和指标计算服务，<strong>不构成任何投资建议</strong>。</p>
+    <p>本报告不预测涨跌幅，不推荐买卖，不提供目标价。历史数据不代表未来表现。数据可能存在延迟。</p>
+  </div>
+
+  <div class="footer">
+    <p>行业景气度跟踪器 v1.0 | 生成时间：{{GENERATE_TIME}}</p>
+  </div>
+</div>
+</body>
+</html>

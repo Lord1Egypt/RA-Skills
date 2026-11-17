@@ -1,42 +1,57 @@
-## Description: <br>
-Control Roborock robot vacuums for status checks, cleaning commands, maps, consumables, and related device settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Roborock robot vacuums with CLI commands for status checks, cleaning, maps, consumables, and settings.
 
-## Publisher: <br>
-[dru-ca](https://clawhub.ai/user/dru-ca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dru-ca](https://clawhub.ai/user/dru-ca)
 
-## Use Case: <br>
-External users with Roborock or compatible Xiaomi robot vacuums use this skill to turn cleaning, status, maintenance, map, and settings requests into roborock CLI commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide commands that control a physical vacuum and change device settings. <br>
-Mitigation: Confirm the target device ID, room IDs, and intended action before running cleaning or settings commands. <br>
-Risk: Roborock/Xiaomi account credentials, device IDs, and map images can expose private home and account information. <br>
-Mitigation: Enter credentials only into the CLI prompt, keep device IDs and map images out of shared chats or logs, and treat generated map files as private. <br>
-Risk: The skill depends on the third-party python-roborock CLI package. <br>
-Mitigation: Install only if the package and its account permissions are trusted in the deployment environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dru-ca/robo-rock) <br>
-- [python-roborock](https://github.com/humbertogontijo/python-roborock) <br>
+## Use Case:
 
+People who manage Roborock or compatible Xiaomi robot vacuums use this skill to have an agent provide and run commands for cleaning, docking, room selection, map access, consumable checks, and device settings.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the roborock CLI and a user-provided device ID.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The CLI can control physical vacuum behavior, including starting, stopping, docking, room cleaning, consumable resets, and settings changes.
+
+Mitigation: Require user confirmation before executing commands that move the device, alter device state, reset maintenance counters, or change settings.
+
+Risk: Account login, device IDs, maps, and home-layout data may expose private household information.
+
+Mitigation: Authenticate only through the CLI prompt, do not paste credentials into chat, and treat device IDs, maps, and exported images as private data.
+
+Risk: The skill depends on the unpinned third-party python-roborock CLI package.
+
+Mitigation: Install only from trusted package sources, review the installed package before use, and keep the dependency updated according to local policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dru-ca/skills/robo-rock)
+- [python-roborock](https://github.com/humbertogontijo/python-roborock)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the roborock CLI and a Roborock/Xiaomi account; commands should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

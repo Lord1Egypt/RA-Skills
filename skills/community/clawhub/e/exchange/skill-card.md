@@ -1,44 +1,56 @@
-## Description: <br>
-Queries and converts currency exchange rates, including popular rates, supported currencies, bank foreign-exchange quotes, real-time market data, and historical exchange-rate trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides exchange-rate conversion, currency lists, bank foreign-exchange rates, realtime quote data, and historical exchange-rate queries through JisuAPI.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-Agents use this skill to answer currency conversion and exchange-rate lookup questions by calling JisuAPI-backed commands. It supports current conversions, currency lists, bank quotes, real-time rates, and historical rate or price trend queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Currency, date, bank, and market query details are sent to JisuAPI. <br>
-Mitigation: Use the skill only when this third-party data flow is acceptable, and avoid including sensitive personal or business context in lookup prompts. <br>
-Risk: The skill requires a JISU_API_KEY to call the external API. <br>
-Mitigation: Use a scoped key, provide it through the environment, and do not hard-code it in prompts or files. <br>
-Risk: Exchange-rate results are reference data and may not be appropriate as the sole basis for financial decisions. <br>
-Mitigation: Verify important rates against an authoritative financial source before relying on them for transactions or reporting. <br>
+## Use Case:
 
+External users and agents use this skill to answer currency conversion, bank foreign-exchange quote, realtime market quote, and historical exchange-rate questions. Developers can call the included Python script with JSON or subcommands after configuring a JisuAPI AppKey.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/exchange) <br>
-- [JisuAPI exchange-rate API documentation](https://www.jisuapi.com/api/exchange/) <br>
-- [JisuAPI publisher site](https://www.jisuapi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; exchange-rate queries are sent to api.jisuapi.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Currency query details and the JisuAPI AppKey are sent to JisuAPI endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a service-scoped AppKey, avoid unnecessary personal or account information in queries, and monitor quota or billing usage.
+
+Risk: Exchange-rate data is reference information and may not be suitable as the sole basis for financial decisions.
+
+Mitigation: Verify important rates with the relevant bank, exchange, or authoritative source before acting on them.
+
+## Reference(s):
+
+- [JisuAPI Exchange Rate API Documentation](https://www.jisuapi.com/api/exchange/)
+- [JisuAPI](https://www.jisuapi.com/)
+- [ClawHub Skill Page](https://clawhub.ai/jisuapi/skills/exchange)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/jisuapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JISU_API_KEY; API results can include exchange-rate data, realtime quotes, historical records, or structured error objects.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

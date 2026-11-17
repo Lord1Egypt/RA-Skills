@@ -1,41 +1,58 @@
-## Description: <br>
-Generates professional Chinese API documentation from code, OpenAPI/Swagger specifications, or endpoint descriptions, with terminology guidance, examples, error tables, authentication notes, rate limiting sections, and optional validation support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional Chinese API documentation from code, OpenAPI/Swagger specs, or endpoint descriptions, with terminology guidance, realistic examples, error-code tables, authentication sections, rate-limit sections, and optional backend validation.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Developers and technical writers use this skill to create or convert API reference documentation into natural Chinese for Chinese developer audiences. It supports OpenAPI/Swagger specs, source-code-derived endpoint descriptions, and plain-language endpoint descriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan marks the release suspicious because it advertises an external validation service and includes an executable validation script without clear data-handling guidance. <br>
-Mitigation: Install only after confirming the operator and data-handling terms; avoid sending private OpenAPI specs, internal source-derived documentation, tokens, authentication examples, or unreleased API details to the external service. <br>
-Risk: The skill is in maintenance mode and states that it will not receive feature updates. <br>
-Mitigation: Review generated documentation before publication and use maintained alternatives for compliance-focused checks as suggested by the skill text. <br>
+## Use Case:
 
+Developers and technical writers use this skill to create native Chinese API reference documentation from OpenAPI/Swagger specs, source code, or plain-language endpoint descriptions. It is suited for Chinese developer-facing REST API docs that need consistent terminology, examples, authentication guidance, rate-limit notes, and error-code tables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lm203688/cn-api-doc-writer) <br>
-- [External validation API base URL](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown with API documentation sections, tables, JSON examples, and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese API documentation may include generated request and response examples, error code tables, authentication guidance, terminology mappings, and validation notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Generated API documentation can omit details or infer descriptions when source inputs are incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated endpoint descriptions, parameter tables, authentication notes, rate limits, and error-code guidance before publishing.
+
+Risk: The included validation script contacts an external backend that may process documentation content.
+
+Mitigation: Do not send confidential internal specs, endpoint details, or unreleased API documentation to the validation backend unless that processing is acceptable.
+
+Risk: The skill is in maintenance mode and will not receive feature updates.
+
+Mitigation: Use it for existing Chinese API documentation workflows, and consider the referenced alternative ClawHub skills for compliance-specific checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lm203688/skills/cn-api-doc-writer)
+- [Validation API base URL](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with JSON examples and optional shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs Chinese API documentation using consistent terminology, realistic example values, request and response sections, error-code tables, and notes for fields needing manual review.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

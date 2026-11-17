@@ -1,42 +1,55 @@
-## Description: <br>
-Runpod (runpod.io). Use this skill for ANY Runpod request - reading, creating, updating, and deleting data. Whenever a task involves Runpod, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runpod (runpod.io). Use this skill for ANY Runpod request — reading, creating, updating, and deleting data. Whenever a task involves Runpod, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and manage Runpod pods through an OOMOL-connected account, including reads, lifecycle operations, and explicitly approved destructive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run powerful Runpod actions, including write and destructive pod operations. <br>
-Mitigation: Confirm the exact target, payload, and expected effect with the user before write actions, and require explicit approval before destructive actions. <br>
-Risk: The skill requires a connected OOMOL account and sensitive service credentials. <br>
-Mitigation: Use OOMOL server-side credential injection and avoid exposing raw Runpod tokens in prompts, logs, or command payloads. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and manage Runpod Pods through an OOMOL-connected account. It guides the agent to check each action's schema and obtain approval before write or destructive operations.
 
-## Reference(s): <br>
-- [Runpod homepage](https://www.runpod.io) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before Runpod action execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Automatic setup can run an unchecked installer with broader effects on the agent; external installers and the hosted connector were not audited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the oo CLI separately before using the skill, and disable cross-agent skill synchronization if it is unwanted.
+
+Risk: Runpod write and destructive actions can change or remove resources.
+
+Mitigation: Use narrowly scoped Runpod credentials and retain user approval for changes and deletions.
+
+## Reference(s):
+
+- [Runpod API documentation](https://docs.runpod.io/api-reference/overview)
+- [Runpod](https://www.runpod.io)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target Runpod actions through the oo CLI.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,36 @@
+{
+  "knowledge_bases": [
+    {
+      "id": "YOUR_KB_ID_HERE",
+      "name": "我的知识库",
+      "role": "main",
+      "designated_inbox": true
+    }
+  ],
+  "output_directory": "C:/Users/YOUR_USERNAME/Documents/ima-kb-index",
+  "tracker_directory": ".workbuddy/ima-tracker",
+  "scan_frequency": "WEEKLY",
+  "scan_day": "SU",
+  "scan_time": "10:00",
+  "formats": ["docx", "markdown"],
+  "categories": [
+    {
+      "name": "分类名称1",
+      "description": "分类描述",
+      "keywords": ["关键词1", "关键词2"],
+      "exclude_keywords": ["排除词1"]
+    },
+    {
+      "name": "分类名称2",
+      "description": "分类描述",
+      "keywords": ["关键词1", "关键词2"],
+      "exclude_keywords": []
+    }
+  ],
+  "rag_settings": {
+    "search_before_fetch": true,
+    "max_items_per_rag": 5,
+    "cache_content": true,
+    "cache_directory": ".workbuddy/ima-tracker/content_cache"
+  }
+}

@@ -25,6 +25,7 @@ import os
 import subprocess
 import sys
 from dataclasses import dataclass
+from dataclasses import replace
 from pathlib import Path
 from typing import Any
 
@@ -47,7 +48,21 @@ bootstrap_local_vendor()
 
 SUPPORTED_MODES = {"parse", "to-code", "to-data"}
 BASE_DIR = Path(__file__).resolve().parent
-ALLOWED_CONFIG_KEYS = {"mode", "file", "out", "target", "extract", "fields", "title", "audience", "debug"}
+ALLOWED_CONFIG_KEYS = {
+    "mode",
+    "file",
+    "out",
+    "target",
+    "extract",
+    "fields",
+    "title",
+    "audience",
+    "debug",
+    "use_server",
+    "no_server",
+    "server_timeout",
+    "server_kind",
+}
 
 
 @dataclass
@@ -61,6 +76,9 @@ class Config:
     title: str | None = None
     audience: str = "developer"
     debug: bool = False
+    use_server: bool = True
+    server_timeout: float = 300.0
+    server_kind: str = "auto"
 
 
 def parse_args() -> argparse.Namespace:
@@ -80,6 +98,43 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--title", help="Optional title override for to-code")
     parser.add_argument("--audience", default="developer", help="Reserved for future slide generation mode")
     parser.add_argument("--debug", action="store_true")
+    parser.add_argument(
+        "--use-server",
+        action="store_true",
+        help="Route the parse step through a persistent local MinerU/OpenVINO server. This is now the default.",
+    )
+    parser.add_argument(
+        "--no-server",
+        action="store_true",
+        help="Disable the auto local service and run the parse step directly in the current process.",
+    )
+    parser.add_argument(
+        "--server-timeout",
+        type=float,
+        default=300.0,
+        help="Seconds to wait for the persistent parse server to start.",
+    )
+    parser.add_argument(
+        "--server-kind",
+        choices=["auto", "http", "ipc"],
+        default=os.environ.get("LOCAL_DOCUMENT_AI_SERVER_KIND", "auto"),
+        help="Server transport. auto prefers HTTP/FastAPI and falls back to the stdlib IPC server.",
+    )
+    parser.add_argument(
+        "--server-status",
+        action="store_true",
+        help="Print persistent parse server status and exit.",
+    )
+    parser.add_argument(
+        "--warmup-server",
+        action="store_true",
+        help="Start the persistent parse server and preload the MinerU/OpenVINO runtime.",
+    )
+    parser.add_argument(
+        "--shutdown-server",
+        action="store_true",
+        help="Ask the persistent parse server to shut down and exit.",
+    )
 
     return parser.parse_args()
 
@@ -115,6 +170,12 @@ def normalize_config_payload(raw: dict[str, Any], cli_ns: argparse.Namespace) ->
     title = raw.get("title", cli_ns.title)
     audience = raw.get("audience", cli_ns.audience)
     debug = bool(raw.get("debug", cli_ns.debug))
+    raw_has_use_server = "use_server" in raw
+    no_server = bool(raw.get("no_server", False)) or bool(cli_ns.no_server)
+    use_server = bool(raw.get("use_server", True)) if raw_has_use_server else True
+    use_server = (use_server or bool(cli_ns.use_server)) and not no_server
+    server_timeout = float(raw.get("server_timeout", cli_ns.server_timeout))
+    server_kind = str(raw.get("server_kind", cli_ns.server_kind or "auto"))
 
     if cli_ns.target != "react":
         target = cli_ns.target
@@ -126,6 +187,10 @@ def normalize_config_payload(raw: dict[str, Any], cli_ns: argparse.Namespace) ->
         audience = cli_ns.audience
     if cli_ns.debug:
         debug = True
+    if os.environ.get("LOCAL_DOCUMENT_AI_USE_SERVER", "").strip().lower() in {"1", "true", "yes", "on"}:
+        use_server = True
+    if os.environ.get("LOCAL_DOCUMENT_AI_DISABLE_SERVER", "").strip().lower() in {"1", "true", "yes", "on"}:
+        use_server = False
 
     if not mode:
         raise ValueError("Missing required config field: mode")
@@ -145,6 +210,9 @@ def normalize_config_payload(raw: dict[str, Any], cli_ns: argparse.Namespace) ->
         title=title,
         audience=str(audience),
         debug=debug,
+        use_server=use_server,
+        server_timeout=server_timeout,
+        server_kind=server_kind,
     )
 
 
@@ -172,6 +240,12 @@ def build_config(ns: argparse.Namespace) -> Config:
         title=ns.title,
         audience=ns.audience,
         debug=ns.debug,
+        use_server=(
+            not ns.no_server
+            and os.environ.get("LOCAL_DOCUMENT_AI_DISABLE_SERVER", "").strip().lower() not in {"1", "true", "yes", "on"}
+        ),
+        server_timeout=ns.server_timeout,
+        server_kind=ns.server_kind,
     )
 
 
@@ -204,7 +278,7 @@ def run_subprocess(cmd: list[str]) -> dict[str, Any]:
 
 
 def build_parse_cmd(config: Config, artifact_dir: Path) -> list[str]:
-    script = BASE_DIR / "parse_document.py"
+    script = BASE_DIR / ("parse_client.py" if config.use_server else "parse_document.py")
     cmd = [
         sys.executable,
         str(script),
@@ -217,7 +291,31 @@ def build_parse_cmd(config: Config, artifact_dir: Path) -> list[str]:
     ]
     if config.debug:
         cmd.append("--debug")
+    if config.use_server:
+        cmd.extend(["--connect-timeout", str(config.server_timeout), "--server-kind", config.server_kind])
     return cmd
+
+
+def run_parse_with_fallback(config: Config, artifact_dir: Path) -> dict[str, Any]:
+    parse_run = run_subprocess(build_parse_cmd(config, artifact_dir))
+    if parse_run["returncode"] == 0 or not config.use_server:
+        return parse_run
+
+    direct_config = replace(config, use_server=False)
+    direct_run = run_subprocess(build_parse_cmd(direct_config, artifact_dir))
+    if direct_run["returncode"] == 0:
+        direct_run["server_fallback"] = {
+            "used": True,
+            "server_kind": config.server_kind,
+            "server_returncode": parse_run["returncode"],
+            "server_stdout": parse_run["stdout"],
+            "server_stderr": parse_run["stderr"],
+        }
+        if isinstance(direct_run.get("status"), dict):
+            direct_run["status"]["server_fallback"] = True
+            direct_run["status"]["server_kind_attempted"] = config.server_kind
+        return direct_run
+    return parse_run
 
 
 def build_transform_cmd(config: Config, artifact_dir: Path) -> list[str] | None:
@@ -291,6 +389,9 @@ def build_effective_config_payload(config: Config, artifact_dir: Path) -> dict[s
         "title": config.title,
         "audience": config.audience,
         "debug": config.debug,
+        "use_server": config.use_server,
+        "server_timeout": config.server_timeout,
+        "server_kind": config.server_kind,
     }
 
 
@@ -326,6 +427,29 @@ def main() -> int:
     early_error_dir = Path.cwd() / "artifacts" / "run_skill_error"
 
     try:
+        if ns.server_status or ns.warmup_server or ns.shutdown_server:
+            client_script = BASE_DIR / "parse_client.py"
+            cmd = [
+                sys.executable,
+                str(client_script),
+                "--connect-timeout",
+                str(ns.server_timeout),
+                "--server-kind",
+                str(ns.server_kind),
+            ]
+            if ns.server_status:
+                cmd.append("--status")
+            if ns.warmup_server:
+                cmd.append("--warmup")
+            if ns.shutdown_server:
+                cmd.append("--shutdown")
+            server_run = run_subprocess(cmd)
+            if server_run["stdout"].strip():
+                print(server_run["stdout"].strip())
+            if server_run["returncode"] != 0 and server_run["stderr"].strip():
+                print(server_run["stderr"].strip(), file=sys.stderr)
+            return int(server_run["returncode"])
+
         config = build_config(ns)
         artifact_dir = resolve_artifact_dir(config)
 
@@ -337,8 +461,7 @@ def main() -> int:
 
         write_effective_manifest(artifact_dir, config)
 
-        parse_cmd = build_parse_cmd(config, artifact_dir)
-        parse_run = run_subprocess(parse_cmd)
+        parse_run = run_parse_with_fallback(config, artifact_dir)
 
         if parse_run["returncode"] != 0:
             write_error(

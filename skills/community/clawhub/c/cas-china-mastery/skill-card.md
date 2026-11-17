@@ -1,43 +1,55 @@
-## Description: <br>
-Comprehensive practical system covering China's 1 basic and 40 specific enterprise accounting standards with detailed interpretations, applications, and cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive practical reference for Chinese Accounting Standards, covering China's Basic Standard and 40 Specific Standards with interpretations, applications, cases, implementation Q&A, and guidance.
 
-## Publisher: <br>
-[yjkj999999](https://clawhub.ai/user/yjkj999999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yjkj999999](https://clawhub.ai/user/yjkj999999)
 
-## Use Case: <br>
-Finance, accounting, audit, and reporting professionals use this skill to reference and apply Chinese Accounting Standards across common enterprise accounting scenarios, implementation Q&A, application cases, and CAS/IFRS comparison points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Accounting guidance may be incomplete, outdated, or misapplied to entity-specific reporting facts. <br>
-Mitigation: Have qualified accounting professionals verify conclusions against current Ministry of Finance guidance and the specific reporting context before relying on the output. <br>
-Risk: The security guidance flags possible high-impact maintainer automation in inspected artifacts. <br>
-Mitigation: Review and scan the skill before deployment, and avoid granting broad local or account access unless the operating environment requires it. <br>
+## Use Case:
 
+Accounting and finance professionals use this skill as a practical Chinese Accounting Standards reference for interpreting standards, reviewing accounting treatments, and understanding current implementation examples. It is informational support and should not replace current official standards or qualified professional judgment for material reporting decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yjkj999999/cas-china-mastery) <br>
-- [README](artifact/README.md) <br>
-- [Skill Source](artifact/SKILL.md) <br>
-- [Package Metadata](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with tables and code-style accounting formulas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language accounting standards reference material; no executable behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Accounting guidance may be outdated, incomplete, or unsuitable for a specific entity's material financial reporting decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify significant reporting decisions against current official Chinese Accounting Standards and a qualified accounting professional.
+
+Risk: License evidence is inconsistent across server evidence and artifact metadata.
+
+Mitigation: Confirm the authoritative license terms before redistribution, publication, or commercial reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yjkj999999/skills/cas-china-mastery)
+- [Artifact README](README.md)
+- [Artifact skill content](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and plain-text accounting reference guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; security evidence reports no executable code, credential access, persistence, or hidden behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release.version and artifact package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Detects and maps complexity imbalances across system boundaries, showing where complexity is accumulating and what may fail first. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects and maps complexity imbalances across system boundaries so developers can see where pressure is building and what may fail first.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect software boundaries, identify modules where complexity has become concentrated, and plan refactoring or architecture reviews. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Architecture findings may be incomplete or misleading when the agent sees only part of a codebase or lacks project history. <br>
-Mitigation: Review the pressure analysis against repository context, ownership boundaries, tests, and recent change history before acting on recommendations. <br>
-Risk: Recommended refactors can change behavior if applied without design review and tests. <br>
-Mitigation: Approve proposed code changes separately, keep refactors scoped, and require normal test and review gates before merging. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jcools1977/osmotic-pressure) <br>
-- [Publisher profile](https://clawhub.ai/user/jcools1977) <br>
+## Use Case:
 
+Developers and engineers use this skill during architecture design, review, and refactoring to identify uneven complexity distribution across modules, services, APIs, and layers.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text architecture analysis with pressure maps, diagnoses, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls or executable code are required by the skill evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad invocation wording may cause the skill to influence architecture review conversations where a narrower review scope was intended.
+
+Mitigation: Use explicit activation criteria or reviewer confirmation when teams want this analysis only for designated architecture reviews.
+
+Risk: Architecture recommendations may be misleading if the agent lacks current codebase metrics, ownership context, or design constraints.
+
+Mitigation: Review recommendations against repository evidence, system metrics, and team constraints before using them to plan refactors.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jcools1977/skills/osmotic-pressure)
+- [Publisher profile](https://clawhub.ai/user/jcools1977)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown architecture analysis with pressure maps, pattern summaries, diagnoses, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, network access, persistence, or credential handling is required by the skill evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

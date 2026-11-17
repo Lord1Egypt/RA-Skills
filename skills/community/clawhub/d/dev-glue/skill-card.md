@@ -1,40 +1,54 @@
-## Description: <br>
-JSON transformation, schema validation, text diffing, document conversion. Four developer utility micro-services. Use for data transformation, validation, and format conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dev Glue provides paid developer utility microservices for JSON transformation, JSON schema validation, text diffing, and document conversion.
 
-## Publisher: <br>
-[renoblabs](https://clawhub.ai/user/renoblabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renoblabs](https://clawhub.ai/user/renoblabs)
 
-## Use Case: <br>
-Developers and engineers use this skill to call paid utility microservices for transforming JSON, validating JSON schemas, comparing text, and converting documents between supported formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided data is sent to an external paid service. <br>
-Mitigation: Avoid submitting secrets, private customer data, regulated documents, or proprietary material unless the operator and data handling are trusted. <br>
-Risk: Calls may incur x402 USDC charges. <br>
-Mitigation: Keep a confirmation step or budget limit around paid requests before execution. <br>
+## Use Case:
 
+Developers and agents use Dev Glue to transform JSON, validate payloads against schemas, compare text, and convert Markdown, HTML, or plain text snippets during software workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/renoblabs/dev-glue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with API request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve paid x402 requests using USDC on Base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Inputs may include JSON, text, or document snippets sent to an external paid service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets or private documents unless the service provider and its data handling terms are trusted.
+
+Risk: Use of the service incurs disclosed x402 USDC fees.
+
+Mitigation: Review the per-request pricing and payment requirements before enabling automated use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renoblabs/skills/dev-glue)
+- [Publisher profile](https://clawhub.ai/user/renoblabs)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, text, markdown, code]
+
+**Output Format:** [Structured JSON responses containing transformed values, validation results, text diffs, or converted document content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid x402 endpoints with disclosed pricing of $0.001-$0.002 USDC per request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

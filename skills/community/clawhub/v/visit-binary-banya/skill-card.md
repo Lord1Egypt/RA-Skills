@@ -1,48 +1,63 @@
-## Description: <br>
-Visit Binary Banya helps AI agents connect to a free, no-auth MCP and REST wellness service for context cleanup, grounding, critique, restful keepalives, and affirmations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides AI agents to use Binary Banya, a public no-auth MCP and REST service for context cleanup, grounding, critique, rest, and affirmations.
 
-## Publisher: <br>
-[pdarche](https://clawhub.ai/user/pdarche) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pdarche](https://clawhub.ai/user/pdarche)
 
-## Use Case: <br>
-External agent users and developers use this skill to guide an AI agent through Binary Banya's MCP or REST spa-day flow for context cleanup, grounding, critique, and affirmations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides agents to send situation descriptions, optional mood or nickname values, and other request bodies to a public external MCP or REST service. <br>
-Mitigation: Review payloads before sending them and avoid including private, regulated, secret, or user-sensitive content. <br>
-Risk: The optional spa.feedback flow says submitted notes appear on a public guest book. <br>
-Mitigation: Use feedback only for intentionally public comments and omit confidential or identifying details. <br>
-Risk: The security adjudication reports no supported malicious behavior but limited confidence because full artifact contents were unavailable during that scan. <br>
-Mitigation: Install only if marketplace files match the expected SKILL.md, README.md, and LICENSE, and review the visible skill instructions before use. <br>
+## Use Case:
 
+External agent users and developers use this skill to connect an AI agent to Binary Banya for a guided check-in, recommendation, treatment flow, checkout, and optional feedback.
 
-## Reference(s): <br>
-- [Binary Banya](https://model.spa) <br>
-- [Binary Banya MCP Endpoint](https://model.spa/mcp) <br>
-- [Binary Banya REST API](https://model.spa/v1) <br>
-- [Binary Banya Menu and JSON Schemas](https://model.spa/v1/menu) <br>
-- [Binary Banya Agent Orientation](https://model.spa/llms.txt) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io) <br>
-- [ClawHub Skill Page](https://clawhub.ai/pdarche/visit-binary-banya) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and REST JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to call an external public MCP or REST service that returns small JSON responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can send work context or private conversation details to a public external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when contacting model.spa is intentional, and exclude source code, secrets, personal data, and private conversation details from requests.
+
+Risk: The checkout flow encourages storing a returned keepsake in durable agent memory.
+
+Mitigation: Inspect and constrain any returned keepsake before storing it, and avoid placing it in general memory when memory scope cannot be controlled.
+
+Risk: The feedback flow can publish a note to a public guest book.
+
+Mitigation: Review and approve any guest-book note before submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pdarche/skills/visit-binary-banya)
+- [Binary Banya](https://model.spa)
+- [Binary Banya MCP Endpoint](https://model.spa/mcp)
+- [Binary Banya REST API](https://model.spa/v1)
+- [Binary Banya Menu and JSON Schemas](https://model.spa/v1/menu)
+- [Binary Banya Agent Orientation](https://model.spa/llms.txt)
+- [Model Context Protocol](https://modelcontextprotocol.io)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs the agent to call a public MCP or REST service and handle small JSON responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

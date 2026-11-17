@@ -1,6 +1,6 @@
 # rune-skill-router
 
-> Rune L0 Skill | orchestrator | model: tier:light
+> Rune L0 Skill | orchestrator | model: tier:mid
 
 
 ## Live Routing Context
@@ -182,6 +182,7 @@ For users who know exactly what they want:
 | Fix bug / debug only (no fix) | `rune-debug.md` → `rune-fix.md` | L2 chain |
 | Marketing assets only | `rune-marketing.md` | L2 |
 | Gather requirements / BA / elicit needs | `rune-ba.md` | L2 — requires opus |
+| "Did it fully implement?" / "does code match spec?" / check completeness | `rune-converge.md` | L3 — needs requirements.md |
 | Generate / update docs | `rune-docs.md` | L2 |
 | Build MCP server | `rune-mcp-builder.md` | L2 |
 | Red-team / challenge a plan / stress-test | `rune-adversary.md` | L2 — requires opus |
@@ -198,6 +199,7 @@ These are rarely invoked directly — they're called by Tier 1/2 skills:
 | `rune-verification.md` | cook, fix | Run lint/test/build |
 | `rune-hallucination-guard.md` | cook, fix | Verify imports |
 | `rune-completion-gate.md` | cook | Validate claims |
+| `rune-converge.md` | cook | Spec↔code gap scan (Phase 6.5) |
 | `rune-sentinel-env.md` | cook, scaffold, onboard | Environment pre-flight |
 | `rune-research.md` / `rune-docs-seeker.md` | any | Look up docs |
 | `rune-session-bridge.md` | cook, team | Save context (in-session state handoff) |
@@ -479,7 +481,7 @@ If the request type is `QUESTION` or `EXPLORE` (LITE enforcement):
 ~0 tokens (routing logic is internalized from this document). Cost comes from the skills it routes to, not from skill-router itself. The routing table is loaded once and cached in context.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

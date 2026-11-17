@@ -1,40 +1,53 @@
-## Description: <br>
-专业撰写婉拒邮件/拒绝函，适用于拒绝合作邀约、供应商报价、项目外包、演讲邀请、赞助请求等职场场景，并以得体、温和的语气清晰表达拒绝立场。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专业撰写婉拒邮件和拒绝函，适用于拒绝合作邀约、供应商报价、项目外包、演讲邀请、赞助请求等职场场景，并生成正式或半正式的中文邮件正文。
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olina1ye](https://clawhub.ai/user/olina1ye)
 
-## Use Case: <br>
-Employees and business users use this skill to draft polished Chinese decline emails for vendor quotes, partnership proposals, outsourcing requests, speaking invitations, sponsorship asks, and similar workplace communication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated decline emails may not match the sender's exact business facts, tone, authority, or legal position. <br>
-Mitigation: Review and adjust the draft before sending, especially names, commitments, reasons for declining, and any language that could affect a business relationship. <br>
-Risk: The security guidance recommends reviewing command-capable or write-capable behavior before use. <br>
-Mitigation: Use the skill for drafting assistance only when its file access and write permissions are acceptable for the working environment. <br>
+## Use Case:
 
+Employees and external business users use this skill to draft professional Chinese decline emails for supplier quotes, partnership invitations, outsourcing proposals, speaking invitations, sponsorship requests, and similar workplace communication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olina1ye/email-decline-zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text email draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces complete Chinese email bodies and optional subject lines for direct review and sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A generated decline email may contain wording that does not match the sender's relationship, negotiation position, or approval requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit each generated message before sending.
+
+Risk: The skill can write a draft file if file writing is allowed.
+
+Mitigation: Allow file writes only when a saved draft is explicitly desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/olina1ye/skills/email-decline-zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese email body text, typically with a subject line and complete message draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally write a draft file when the user explicitly asks for one.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

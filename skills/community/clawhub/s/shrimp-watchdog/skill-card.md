@@ -1,41 +1,58 @@
-## Description: <br>
-Keep OpenClaw gateway alive with heartbeat monitoring, auto-restart, crash alerts, memory warnings, and uptime reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keep OpenClaw gateway alive with heartbeat monitoring, auto-restart, crash alerts, memory warnings, uptime reports, and configurable port monitoring.
 
-## Publisher: <br>
-[sarrymo](https://clawhub.ai/user/sarrymo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sarrymo](https://clawhub.ai/user/sarrymo)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to monitor an OpenClaw Gateway process, restart it when health checks fail, receive crash or recovery alerts, and review uptime reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires root/systemd control to monitor and restart openclaw-gateway. <br>
-Mitigation: Install it only on systems where granting root/systemd control is acceptable, and review proposed systemctl actions before deployment. <br>
-Risk: Automatic gateway restarts can interrupt active OpenClaw Gateway sessions. <br>
-Mitigation: Confirm the monitored port, heartbeat interval, stop/status workflow, and restart behavior before leaving the watchdog running. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor an OpenClaw Gateway service, check process and port health, restart it when unavailable, and report operational status.
 
-## Reference(s): <br>
-- [OpenClaw Watchdog on ClawHub](https://clawhub.ai/sarrymo/shrimp-watchdog) <br>
-- [Publisher profile: sarrymo](https://clawhub.ai/user/sarrymo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and status or alert text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose root/systemd operations and configurable monitoring parameters such as port, interval, and memory threshold.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Privileged watchdog behavior may automatically restart openclaw-gateway through systemd.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit operator confirmation for restart-capable monitoring and scope service permissions narrowly before deployment.
+
+Risk: The release references a watchdog script path but does not bundle an auditable watchdog.sh implementation.
+
+Mitigation: Review the actual watchdog.sh before use and require strict validation for configurable port, interval, and threshold parameters.
+
+Risk: The authoritative security review marks this release suspicious because it directs a privileged systemd watchdog to automatically restart openclaw-gateway without a bundled, auditable implementation or tight controls.
+
+Mitigation: Follow the security guidance in evidence.json before installation, including auditable implementation review and tight operational controls.
+
+## Reference(s):
+
+- [OpenClaw Watchdog on ClawHub](https://clawhub.ai/sarrymo/skills/shrimp-watchdog)
+- [sarrymo publisher profile](https://clawhub.ai/user/sarrymo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command examples and operational status/report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce monitoring instructions, restart guidance, alert text, and uptime report content for an OpenClaw Gateway watchdog.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

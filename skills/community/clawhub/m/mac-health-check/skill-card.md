@@ -1,43 +1,55 @@
-## Description: <br>
-Checks current Mac temperature, load, memory, swap, and power usage with macmon. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mac Health Check reads live macOS telemetry through macmon and summarizes current temperature, load, memory, swap, and power usage.
 
-## Publisher: <br>
-[ruban-gt](https://clawhub.ai/user/ruban-gt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruban-gt](https://clawhub.ai/user/ruban-gt)
 
-## Use Case: <br>
-Mac users and support-oriented agents use this skill to collect a short local health snapshot for temperature, CPU/GPU activity, memory, swap, and power usage. It is suited for quick troubleshooting and status checks on macOS hosts with macmon installed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local macmon commands and may use a zsh login-shell fallback, so local shell startup files and PATH configuration can affect execution. <br>
-Mitigation: Use the skill only in a trusted local macOS environment and verify the intended Homebrew macmon package before running it. <br>
-Risk: The summary reflects a single live telemetry snapshot and may not represent long-term thermal or performance behavior. <br>
-Mitigation: Treat results as a point-in-time status check and avoid making sustained-health conclusions from one sample. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for a practical snapshot of a Mac's thermal state, CPU/GPU activity, RAM, swap, and power usage. It is scoped to macOS hosts with macmon installed.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/ruban-gt/mac-health-check) <br>
-- [Publisher profile](https://clawhub.ai/user/ruban-gt) <br>
-- [macmon project](https://github.com/vladkens/macmon) <br>
-- [Sample macmon JSON fields](references/sample-output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text summary with optional JSON input/output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS and the local macmon command, commonly installed with Homebrew formula macmon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill runs local macmon commands to read host telemetry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where local Mac telemetry collection is intended, and review command execution before deployment.
+
+Risk: The wrapper may invoke zsh as a login shell, so shell startup files and PATH can influence what runs.
+
+Mitigation: Keep shell startup files and PATH trusted, and verify macmon resolves to the expected binary before use.
+
+## Reference(s):
+
+- [Mac Health Check ClawHub page](https://clawhub.ai/ruban-gt/skills/mac-health-check)
+- [macmon project](https://github.com/vladkens/macmon)
+- [Sample macmon JSON fields](references/sample-output.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text summary or raw JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One-shot local telemetry snapshot; raw JSON can be pretty-printed on request.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

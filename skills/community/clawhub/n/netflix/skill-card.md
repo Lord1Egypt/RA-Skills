@@ -1,40 +1,49 @@
-## Description: <br>
-Provides Netflix content recommendations, subscription and account guidance, streaming troubleshooting, and viewing experience tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides personalized Netflix content recommendations, subscription and account guidance, streaming troubleshooting, and user experience tips.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Consumers and support-oriented agents use this skill to choose Netflix titles, understand plan and household features, resolve common streaming issues, and improve playback or accessibility settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Netflix subscription tiers, household policies, title availability, and regional features can change after release. <br>
-Mitigation: Verify plan terms, availability, and account rules against current Netflix sources before giving decisive guidance. <br>
-Risk: Users may disclose private Netflix account details while seeking troubleshooting help. <br>
-Mitigation: Do not request or store passwords, profile PINs, payment details, or other private account information. <br>
+## Use Case:
 
+Viewers and account holders use this skill to get Netflix recommendations, compare plan and account features, resolve common streaming issues, and improve playback, subtitle, download, and profile settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DuanC-Chao/netflix) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations and account guidance should be checked against current Netflix availability, plan terms, and regional rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Netflix plan, pricing, catalog, and household-policy details can change by region and over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Netflix's current help pages for the user's region before relying on those details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanc-chao/skills/netflix)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language guidance in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code or shell commands; recommendations and troubleshooting guidance may depend on current Netflix catalog, pricing, and regional policy details.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

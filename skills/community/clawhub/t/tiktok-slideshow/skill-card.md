@@ -1,42 +1,57 @@
-## Description: <br>
-Creates TikTok image carousels with text overlays via the ViralBaby API, including image search, slideshow editing, previewing, and upload to TikTok drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates TikTok image carousels with text overlays on photos via the ViralBaby API, including image search, slideshow editing, and TikTok draft upload.
 
-## Publisher: <br>
-[aryanbhasin](https://clawhub.ai/user/aryanbhasin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aryanbhasin](https://clawhub.ai/user/aryanbhasin)
 
-## Use Case: <br>
-External creators, marketers, and agents assisting them use this skill to create photo-based TikTok slideshow drafts: search and select images, write slide text and captions, manage collections, preview drafts, and upload to TikTok drafts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated slideshow content, stored business/style preferences, TikTok draft-upload access, and diagnostic reports may be handled by ViralBaby. <br>
-Mitigation: Install only if ViralBaby is trusted for this data, review or clear saved preferences when they contain sensitive business information, and ask the agent to confirm before sending feedback or error reports. <br>
-Risk: The workflow asks the agent to persist ViralBaby credentials for reuse across sessions. <br>
-Mitigation: Use a managed secret store where available, avoid saving sensitive passwords directly in environment variables, and rotate credentials if they are exposed. <br>
-Risk: Connected TikTok access can upload generated slideshows to TikTok drafts. <br>
-Mitigation: Complete TikTok authorization intentionally and review every uploaded draft in TikTok before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aryanbhasin/tiktok-slideshow) <br>
-- [ViralBaby API](https://viralbaby.co) <br>
+## Use Case:
 
+External creators, marketers, and social media operators use this skill to create TikTok photo slideshows: search for background images, assemble slides with text overlays, manage image collections, preview and edit drafts, and upload to TikTok drafts through ViralBaby.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON API payloads and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create ViralBaby slideshow resources and upload completed slideshows to TikTok drafts after user authorization.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to persist API credentials and generated passwords in environment variables.
+
+Mitigation: Use a dedicated secret manager where available, avoid exposing credentials in chat or logs, and rotate credentials if they may have been revealed.
+
+Risk: The ViralBaby workflow can receive slideshow content, business/style preferences, TikTok connection flow data, and diagnostic or feedback messages.
+
+Mitigation: Confirm the user is comfortable sharing this data before use, and review feedback or error reports before sending them.
+
+Risk: The skill includes destructive actions such as deleting collections or slideshows.
+
+Mitigation: Ask for explicit confirmation before deletion or other irreversible changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aryanbhasin/skills/tiktok-slideshow)
+- [ViralBaby API base URL](https://viralbaby.co)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON API request examples, shell command snippets, and returned ViralBaby or TikTok workflow URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce slideshow preview URLs, OAuth connection URLs, checkout URLs, rendered slide URLs, captions, hashtags, and upload status messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

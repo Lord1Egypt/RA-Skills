@@ -1,43 +1,54 @@
-## Description: <br>
-Access and summarize public Xueqiu posts and stock quote pages for lightweight market information review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents summarize public Xueqiu posts, topics, and stock quote pages for basic market insight without trading or bulk extraction.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and analysts use this skill to summarize public Xueqiu posts, quote pages, interaction metrics, and topic or sector distribution for internal analysis and reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Summaries of public financial posts or quote pages may be incomplete, stale, or unsuitable for investment decisions. <br>
-Mitigation: Use outputs only for internal analysis and reminders; verify important details against the original public pages and do not rely on the skill for trading decisions. <br>
-Risk: Automated access to Xueqiu pages may encounter dynamic rendering, human verification, platform rate limits, or terms-of-use constraints. <br>
-Mitigation: Keep use limited to lightweight public-page review, control request frequency, and avoid bulk scraping or API reverse engineering. <br>
-Risk: Using the skill for logged-in account workflows or trading actions could create security, compliance, or financial harm. <br>
-Mitigation: Do not provide credentials, perform account actions, place orders, or generate instructions intended to execute trades. <br>
+## Use Case:
 
+External users and developers use this skill to collect light summaries of public Xueqiu posts, topics, quote pages, and interaction metrics for informational market monitoring.
 
-## Reference(s): <br>
-- [Xueqiu](https://xueqiu.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/xueqiu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries with extracted public-page fields and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include post titles, author names, timestamps, interaction counts, stock names, symbols, prices, percentage changes, volume, collection time, and source links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence) <br>
+Risk: Financial summaries could be mistaken for investment advice or trading instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational only and keep trading, account actions, and investment recommendations out of scope.
+
+Risk: Automation against public pages could exceed platform expectations or encounter human verification.
+
+Mitigation: Limit use to public pages, control request frequency, avoid login-required workflows, and do not bypass human verification.
+
+## Reference(s):
+
+- [Xueqiu homepage](https://xueqiu.com/)
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/xueqiu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational summaries only; no trading, account actions, credential handling, or bulk extraction.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

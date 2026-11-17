@@ -1,0 +1,12 @@
+{
+  "_comment": "office-master 子技能的文档样式规则集，被 scripts/check_doc_style.py 与 scripts/check_ppt_brief.py 读取执行。脚本读取时跳过所有 '_' 开头的键（注释/元信息）。修改后请重跑各脚本的 --check-rules 自检。",
+  "single_h1": true,
+  "no_skipped_levels": true,
+  "max_heading_depth": 3,
+  "required_frontmatter_keys": ["title"],
+  "missing_tokens": ["TODO", "FIXME", "XXX", "TBD"],
+  "ppt_min_slides": 3,
+  "ppt_max_slides": 20,
+  "ppt_max_title_len": 60,
+  "ppt_max_body_chars": 400
+}

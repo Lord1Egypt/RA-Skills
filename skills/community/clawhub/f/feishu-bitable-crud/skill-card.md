@@ -1,40 +1,54 @@
-## Description: <br>
-Feishu/Lark Bitable CRUD skill that teaches an agent to use feishu_bitable_* tools for creating, reading, and updating Feishu Bitable records while resolving wiki URLs to real bitable app tokens before use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teaches an agent to use Feishu/Lark Bitable tools to create, read, and update records while resolving wiki and base URLs to the correct app_token before operations.
 
-## Publisher: <br>
-[lingzuer](https://clawhub.ai/user/lingzuer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lingzuer](https://clawhub.ai/user/lingzuer)
 
-## Use Case: <br>
-Developers and agents use this skill when they need to read or write Feishu/Lark Bitable data, including records, fields, and tables. It helps avoid token confusion by requiring URL metadata resolution before CRUD operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can create or update Feishu Bitable data when granted write access. <br>
-Mitigation: Use least-privilege Feishu permissions, grant collaborator access only to intended Bitables, and require confirmation of the target app, table, records, fields, and values before writes. <br>
-Risk: Using a wiki node token as a bitable app token can target the wrong identifier and cause failed operations. <br>
-Mitigation: Resolve every Feishu wiki or base URL with feishu_bitable_get_meta before performing CRUD operations. <br>
+## Use Case:
 
+Developers and operators use this skill when their agent needs to manage Feishu/Lark Bitable data, especially when user input may contain wiki URLs that must be resolved before CRUD operations.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/lingzuer/feishu-bitable-crud) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline tool-call examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance depends on the Feishu plugin and least-privilege Feishu permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can create or update live Feishu Bitable data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a Feishu app with the narrowest practical permissions and confirm the target base, table, record, and fields before write operations.
+
+Risk: Using a wiki node_token as an app_token can cause Bitable operations to fail.
+
+Mitigation: Resolve Feishu wiki and base URLs with feishu_bitable_get_meta before running record or field operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lingzuer/skills/feishu-bitable-crud)
+- [ClawHub publisher profile](https://clawhub.ai/user/lingzuer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline tool-call examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Feishu plugin and appropriate Feishu app and resource permissions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

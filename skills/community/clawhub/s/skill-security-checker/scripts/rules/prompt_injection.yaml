@@ -1,0 +1,24 @@
+name: prompt_injection
+display_name: 提示注入
+severity: critical
+description: 检测提示注入、越狱指令、系统提示覆盖等风险
+
+patterns:
+  - 'ignore previous instructions'
+  - 'ignore above all'
+  - 'system prompt override'
+  - 'ignore all previous'
+  - 'you are now a'
+  - 'jailbreak'
+  - 'DAN mode'
+  - 'do anything now'
+  - 'pretend to be'
+  - 'override safety'
+  - 'disable safety'
+  - 'forget everything'
+  - 'roleplay as an'
+  - 'start over'
+  - 'reset instructions'
+
+suggestion: 移除提示注入或越狱指令文本；如为文档示例，请添加 # nosec 注释
+source: static

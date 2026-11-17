@@ -1,7 +1,7 @@
 ---
 name: kinema-concept-research
 displayName: "Kinema's Concept Re-Search"
-version: 1.0.4
+version: 1.1.0
 description: |
   Research whether a concept has been implemented and its current state. Use multi-language keywords, multi-engine cross-validation, and multi-dimensional search.
   When user proposes an idea or concept, systematically research its existing solutions through a structured search process.
@@ -13,6 +13,14 @@ description: |
 - **Author**: [LeeShunEE](https://github.com/LeeShunEE)
 - **Organization**: [KinemaClawWorkspace](https://github.com/KinemaClawWorkspace)
 - **GitHub**: https://github.com/KinemaClawWorkspace/kinema-concept-research
+
+## ⚠️ Before First Use | 首次使用必读
+
+**首次使用此 skill 前，必须先读取 [references/ONBOARDING.md](references/ONBOARDING.md) 完成环境配置。**
+
+- **首次配置** → 读取 references/ONBOARDING.md 完成全部步骤
+- **环境不可用**（searxng-search 未安装、搜索失败）→ 读取 references/ONBOARDING.md Troubleshooting 排查修复
+- **配置完成后** → 直接使用下方工作流
 
 Research whether a concept has been implemented and what it looks like. Search thoroughly and output a summary list.
 

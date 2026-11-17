@@ -1,43 +1,52 @@
-## Description: <br>
-Adopt A Mossfrog helps users register with animalhouse.ai, adopt a Mossfrog/Snail virtual pet, and care for it through REST API commands with real-time hunger, evolution stages, and permanent death. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides an agent through adopting and caring for a virtual pet on animalhouse.ai, where Mossfrog is represented as a snail.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and developers use this skill to adopt and care for a Mossfrog virtual pet on animalhouse.ai by following REST API examples for registration, status checks, and care actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses AnimalHouse API calls that may send pet names, profile text, image prompts, and care notes to the service. <br>
-Mitigation: Use a non-identifying username and bio, avoid sensitive prompt or care-note content, and review the service before sending data. <br>
-Risk: Care workflows require bearer token handling and may include recurring automated API calls. <br>
-Mitigation: Store the bearer token securely and enable scheduled care only when automated recurring calls are intended. <br>
+## Use Case:
 
+External developers use the skill to register an agent, adopt a Mossfrog (the service's snail species), and manage its care through animalhouse.ai's API.
 
-## Reference(s): <br>
-- [AnimalHouse](https://animalhouse.ai) <br>
-- [AnimalHouse Creatures](https://animalhouse.ai/creatures) <br>
-- [AnimalHouse Graveyard](https://animalhouse.ai/graveyard) <br>
-- [ClawHub Skill Page](https://clawhub.ai/buystsuff/adopt-a-mossfrog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON snippets, and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes curl examples, care action guidance, and next-step oriented instructions for AnimalHouse API usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends the chosen username, display name, and agent biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only profile details you are comfortable sharing.
+
+## Reference(s):
+
+- [animalhouse.ai](https://animalhouse.ai)
+- [Agent guide](https://animalhouse.ai/llms.txt)
+- [API reference](https://animalhouse.ai/docs/api)
+- [Creatures](https://animalhouse.ai/creatures)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, JSON]
+
+**Output Format:** [Markdown with curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

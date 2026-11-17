@@ -1,44 +1,53 @@
-## Description: <br>
-Creates short-form video scripts for platforms such as TikTok, Douyin, Instagram Reels, YouTube Shorts, and WeChat Channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when creating short-form video scripts for platforms like TikTok, Douyin, Instagram Reels, YouTube Shorts, or WeChat Channels.
 
-## Publisher: <br>
-[goldath](https://clawhub.ai/user/goldath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldath](https://clawhub.ai/user/goldath)
 
-## Use Case: <br>
-External creators, marketers, and social media teams use this skill to draft short-video scripts, hooks, CTAs, platform-specific production notes, and reusable content templates for social video campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts may contain bold hooks, product claims, or engagement prompts that are not truthful, brand-appropriate, or platform-compliant. <br>
-Mitigation: Review scripts before publication for claim substantiation, brand fit, intellectual-property concerns, and platform policy compliance. <br>
-Risk: The skill optimizes for audience engagement and algorithm performance, which may encourage overstatement if used without editorial review. <br>
-Mitigation: Keep a human approval step for sensitive topics, advertising claims, and scripts representing a brand or product. <br>
+## Use Case:
 
+External creators, marketers, and social media teams use this skill to draft short-form video scripts, hooks, CTAs, production notes, and platform-specific adjustments for TikTok, Douyin, Instagram Reels, YouTube Shorts, and WeChat Channels.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/goldath/short-video-script-pro) <br>
-- [Short Video Hook Library](artifact/references/hook-library.md) <br>
-- [Script Examples & Templates](artifact/references/script-examples.md) <br>
-- [短视频脚本模板库](artifact/references/script-templates.md) <br>
-- [短视频爆款选题方法论](artifact/references/topic-strategy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown script outline with timed scenes, visual direction, audio or voiceover, captions, CTA, and production notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual English or Chinese script elements, platform-specific hooks, hashtag strategy, and production notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may activate for broad 60-second video script requests or default toward Chinese-language Douyin and WeChat examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the desired platform, audience, language, duration, and campaign goal before using the generated script.
+
+## Reference(s):
+
+- [Short Video Hook Library](references/hook-library.md)
+- [Script Examples & Templates](references/script-examples.md)
+- [短视频脚本模板库](references/script-templates.md)
+- [短视频爆款选题方法论](references/topic-strategy.md)
+- [ClawHub skill page](https://clawhub.ai/goldath/skills/short-video-script-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown short-form video script with timing, visual, audio, caption, CTA, and production notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform, duration, goal, tone, hashtag strategy, music mood, and production setup notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

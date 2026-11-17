@@ -3,8 +3,9 @@
 ## 命令
 
 ```bash
-aios-apps-invoke-cli servercommand <applicationName> <commandName> <method> [jsonBody] -p <provider> -s <SessionId>
-aios-apps-invoke-cli binding <applicationName> <commandName> <method> <jsonBody> -p <provider> -s <SessionId>
+aios-apps-invoke-cli servercommand <applicationName> <commandName> POST --body-file <jsonFile> -s <SessionId>
+aios-apps-invoke-cli servercommand <applicationName> <commandName> GET --query-file <jsonFile> -s <SessionId>
+aios-apps-invoke-cli binding <applicationName> <commandName> <method> --body-file <jsonFile> -s <SessionId>
 aios-apps-invoke-cli service-status
 aios-apps-invoke-cli status
 ```
@@ -13,9 +14,8 @@ aios-apps-invoke-cli status
 
 ## 必守规则
 
-- `-p/-s` 分别来自 `provider`、当前 `SessionId` （上下文中的 `topic_id` ）
-- 当前 CLI 只支持 `provider=hzg`
-- 如果 ontology、用户或上下文指向其他 provider，直接停止并说明当前运行链路不支持
+- `-s` 来自当前 `SessionId` （上下文中的 `topic_id` ），仅用于业务系统会话调用，不参与 workspace 文件隔离
+- 业务系统调用链路固定使用 HZG；CLI 不接受 `provider`、`-p` 或 `--provider` 参数
 - `servercommand` 和 `binding` 是 CLI client 命令，会通过本地 app invoke socket service 执行真实业务系统调用
 - 不要手动启动 `serve` 或 `serve-mqtt`，也不要绕过 CLI 直接拼业务系统 HTTP 请求
 - `service-status` 用于检查 socket service 配置；`status` 会读取完整配置视图，可能要求兼容 MQTT 环境变量存在
@@ -35,6 +35,8 @@ aios-apps-invoke-cli status
 - `servercommand`：`commandName` 用本体命令名，`method` 用本体 `verb`，`jsonBody` 严格按 `ServerCommand 兼容 schema` 章节处理
 - `servercommand` 不新增字段，不遗漏字段，不修改字段类型
 - CLI 请求体只发送当前链路实际需要的 OpenClaw 会话字段：`SessionId`
+- `POST servercommand` 和 `binding` 优先把 `jsonBody` 写入 UTF-8 JSON 文件，并用 `--body-file <jsonFile>` 传入
+- `GET servercommand` 优先把查询参数 JSON 写入 UTF-8 JSON 文件，并用 `--query-file <jsonFile>` 传入；该 JSON 必须是字符串值对象
 - `binding`：优先根据 ontology 中的 `*-bindings.md` 文档生成兼容 schema，不要手写或反推底层 HTTP 原始 body
 - `DataSourceBindings` 一律用 `binding` 命令，`commandName` 固定为 `CalcBindingDataSource`
 - 如果 `binding` 和 `servercommand` 都能勉强解释当前需求，优先按 ontology 明确标注的端点类型执行；ontology 没标明时停止，不要猜
@@ -242,7 +244,7 @@ aios-apps-invoke-cli status
 
 - 如果 bindings 文档已经给出真实 `column-name`，必须保留真实列名，不要用 `guid` 顶替
 - 只有在文档没有列名、但调试链路必须先跑通时，才允许临时用 `guid` 兼作 `column-name`，并且必须明确说明这是降级方案
-- 生成 CLI 命令前，先在答案里或推理里完成这 4 个定值：`applicationName`、`commandName`、`provider`、`SessionId`
+- 生成 CLI 命令前，先在答案里或推理里完成这 4 个定值：`applicationName`、`commandName`、`SessionId`、`jsonFile`
 - 任一值不能唯一确定时，不要继续拼命令
 - 需要底层 ID 时，先用本体定义的查询或绑定把展示文本解析成真实 ID，再发正式请求
 - JSON 字符串统一双引号；shell 转义按当前 shell 处理

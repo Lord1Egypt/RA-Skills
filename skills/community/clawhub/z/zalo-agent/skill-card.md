@@ -1,47 +1,67 @@
-## Description: <br>
-Automates Zalo messaging, Official Account workflows, real-time listeners, webhooks, and MCP integration through the preinstalled zalo-agent CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Zalo personal messaging, Official Account workflows, real-time listening, webhooks, and MCP client integration through the zalo-agent CLI.
 
-## Publisher: <br>
-[PhucMPham](https://clawhub.ai/user/PhucMPham) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phucmpham](https://clawhub.ai/user/phucmpham)
 
-## Use Case: <br>
-Developers and operators use this skill to have an agent prepare Zalo CLI workflows for messaging, groups, Official Accounts, webhooks, and MCP integrations. It is intended for environments where the user has already installed and authorized the zalo-agent command-line tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent operate real Zalo accounts or Official Accounts and send, forward, store, or expose private messages. <br>
-Mitigation: Use it only with trusted conversations and endpoints, confirm recipients and message content before account-changing actions, and apply filters or whitelists for listeners. <br>
-Risk: Exported credentials and session files can enable account takeover if copied, logged, committed, or shared. <br>
-Mitigation: Treat exported credentials as secrets, keep restrictive file permissions, avoid committing them, and delete or rotate credentials when no longer needed. <br>
-Risk: Webhook, MCP, or OA listener endpoints can expose account data if left unauthenticated or run with verification disabled. <br>
-Mitigation: Require authentication for remote MCP endpoints, use HTTPS and verified webhook domains, and avoid no-verify modes outside local testing. <br>
+## Use Case:
 
+Developers and operators use this skill to draft safe zalo-agent commands and configuration for Zalo messaging, group operations, Official Account automation, webhook listeners, and MCP server access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PhucMPham/zalo-agent) <br>
-- [Login flow](references/login-flow.md) <br>
-- [Command reference](references/command-reference.md) <br>
-- [Official Account command reference](references/oa-command-reference.md) <br>
-- [Listen mode guide](references/listen-mode-guide.md) <br>
-- [MCP guide](references/mcp-guide.md) <br>
+### Deployment Geography for Use:
 
+Global, subject to Zalo account, Official Account, webhook, and local regulatory availability.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that operate live Zalo accounts, configure webhooks or MCP endpoints, and handle credential-related setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: High-impact Zalo actions can send, recall, delete, export credentials, or forward message data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before these actions, especially when messages, contact data, credentials, or bulk recipients are involved.
+
+Risk: Credentials, app secrets, access tokens, cookies, proxy passwords, and exported credential files can expose account access.
+
+Mitigation: Do not display credential contents or place secrets directly in commands; use secure transfer and restrictive file permissions when credentials must move between systems.
+
+Risk: Public or plain HTTP QR, webhook, and remote MCP endpoints can expose login flows, message data, or agent controls.
+
+Mitigation: Prefer local or authenticated endpoints, HTTPS, verified webhooks, bearer tokens for remote MCP, and narrow event filters.
+
+Risk: Webhook and listen modes may forward personal or business communications to third-party systems.
+
+Mitigation: Use only user-specified destinations, verify webhook receivers, avoid sensitive data by default, and document what event types are forwarded.
+
+## Reference(s):
+
+- [Zalo Agent CLI project homepage](https://github.com/PhucMPham/zalo-agent-cli)
+- [Full Command Reference](references/command-reference.md)
+- [Login Flow](references/login-flow.md)
+- [Listen Mode Guide](references/listen-mode-guide.md)
+- [Official Account Command Reference](references/oa-command-reference.md)
+- [MCP Server Guide](references/mcp-guide.md)
+- [Evaluation Scenarios](evals/eval-scenarios.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that require human confirmation, local credentials, or explicit webhook and MCP endpoint choices.]
+
+## Skill Version(s):
+
+1.7.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

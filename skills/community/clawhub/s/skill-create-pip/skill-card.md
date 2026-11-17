@@ -1,40 +1,57 @@
-## Description: <br>
-Control Ecovacs/DEEBOT robot vacuums via the Ecovacs IoT API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Ecovacs/DEEBOT robot vacuums via the Ecovacs IoT API.
 
-## Publisher: <br>
-[1209823208](https://clawhub.ai/user/1209823208) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1209823208](https://clawhub.ai/user/1209823208)
 
-## Use Case: <br>
-External users and developers use this skill to control Ecovacs/DEEBOT robot vacuums, inspect device state, manage cleaning behavior, and issue supported Ecovacs IoT API commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reusable Ecovacs account material may be stored locally in the session file. <br>
-Mitigation: Use the skill only on a trusted machine, restrict ~/.ecovacs_session.json to user-only permissions, remove stored credentials after use, and consider editing the script to avoid storing the password hash. <br>
-Risk: Broad robot-vacuum control commands can start cleaning, alter settings, or change schedules. <br>
-Mitigation: Review each device command and payload before execution, especially commands that start cleaning, change suction or water levels, dock the robot, or modify schedules. <br>
+## Use Case:
 
+Developers and robot vacuum owners use this skill to operate Ecovacs/DEEBOT devices, inspect status, adjust cleaning settings, manage schedules, and issue supported IoT API commands.
 
-## Reference(s): <br>
-- [Ecovacs Robot Control API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+China domestic Ecovacs accounts
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Python examples, and JSON command payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Ecovacs IoT API command names, device identifiers, and local session-file handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The helper controls a physical robot and can start, stop, dock, schedule, or otherwise alter cleaning behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted accounts and devices, review intended commands before execution, and require confirmation for persistent or disruptive actions.
+
+Risk: Reusable Ecovacs authentication material is stored locally after login.
+
+Mitigation: Avoid placing real passwords or MD5 password values in shell history, restrict or delete ~/.ecovacs_session.json after use, and prefer storage with minimal tokens and 0600 permissions.
+
+Risk: Device command requests rely on hosts returned by the Ecovacs device service metadata.
+
+Mitigation: Validate command hostnames before use and restrict execution to a known allowlist of supported commands.
+
+## Reference(s):
+
+- [Ecovacs Robot Control API Reference](artifact/references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; script output may be JSON or terminal text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Controls a live robot through Ecovacs account credentials and device API calls.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

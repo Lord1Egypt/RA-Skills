@@ -1,45 +1,61 @@
-## Description: <br>
-DashClaw platform expert for integration, troubleshooting, and governance. Snapshot-based - prefer live queries via `python -m livingcode query`, or `GET {baseUrl}/api/doctor` when Python/livingcode/the repo are unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DashClaw platform expert for integration, troubleshooting, and governance. Snapshot-based - prefer live queries via `python -m livingcode query`, or `GET {baseUrl}/api/doctor` when Python/livingcode/the repo are unavailable.
 
-## Publisher: <br>
-[dashclaw](https://clawhub.ai/user/dashclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashclaw](https://clawhub.ai/user/dashclaw)
 
-## Use Case: <br>
-Developers and operators use this skill to understand DashClaw platform structure, API routes, environment requirements, troubleshooting paths, and integration health. It helps agents prefer live platform queries when available and fall back to bundled snapshot documentation when live access is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to query a DashClaw instance with sensitive credentials. <br>
-Mitigation: Use a least-privilege or test API key and avoid sharing production credentials in prompts, logs, or diagnostics. <br>
-Risk: Full validation, bootstrap validation, live bootstrap, `/api/doctor/fix`, and setup-proof capture can create records or change configuration. <br>
-Mitigation: Review commands before execution and avoid running write-capable flows against production unless the resulting records, uploads, or configuration changes are acceptable. <br>
-Risk: Bundled platform facts may become stale when live queries or the DashClaw repository are unavailable. <br>
-Mitigation: Prefer `python -m livingcode query` or `GET {baseUrl}/api/doctor`; use the static snapshot only as the documented fallback. <br>
+## Use Case:
 
+Developers, operators, and agent integrators use this skill to understand DashClaw's platform shape, troubleshoot integrations, and run diagnostics or validation against a configured DashClaw instance.
 
-## Reference(s): <br>
-- [DashClaw API Surface](references/api-surface.md) <br>
-- [DashClaw Platform Knowledge](references/platform-knowledge.md) <br>
-- [DashClaw Troubleshooting Guide](references/troubleshooting.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dashclaw/dashclaw-platform-intelligence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON diagnostic output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend live queries, authenticated API calls, diagnostic scripts, or opt-in write checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: API keys may be sent to a user-supplied DashClaw server or exposed through command-line arguments and diagnostic output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the DashClaw host before running scripts, prefer environment variables over command-line key arguments, use short-lived or least-privileged keys, and avoid sharing diagnostic logs.
+
+Risk: Bootstrap and hook workflows can persist across projects or affect future agent sessions.
+
+Mitigation: Prefer project-scoped installation, review any global hook install before use, and run diagnostics or bootstrap commands in dry-run or read-only mode first when available.
+
+Risk: Full integration validation can create test data on the configured DashClaw instance.
+
+Mitigation: Run read-only validation by default and use full validation only against an intended environment with an appropriate test agent ID.
+
+## Reference(s):
+
+- [DashClaw Platform Intelligence](https://clawhub.ai/dashclaw/skills/dashclaw-platform-intelligence)
+- [DashClaw Publisher Profile](https://clawhub.ai/user/dashclaw)
+- [DashClaw API Surface](references/api-surface.md)
+- [DashClaw Platform Knowledge](references/platform-knowledge.md)
+- [DashClaw Troubleshooting Guide](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON diagnostic output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May query a live DashClaw API or run bundled Node.js scripts when the user provides a base URL, API key, and target agent workspace.]
+
+## Skill Version(s):
+
+1.1.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

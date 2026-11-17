@@ -1,39 +1,50 @@
-## Description: <br>
-Evaluate Claude skill quality through auditing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate Claude skill quality through auditing
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to audit Claude skills for structure, content quality, token efficiency, activation reliability, and tool integration. It guides improvement planning, validation, and performance benchmarking for skill releases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to run audit or benchmark commands from third-party skills without clear sandboxing or approval boundaries. <br>
-Mitigation: Review commands before execution, treat audited third-party skills as untrusted, and prefer sandboxed or allowlisted execution. <br>
+## Use Case:
 
+Developers and skill maintainers use the skill to assess skill structure, content quality, activation reliability, token efficiency, and tool integration, then prepare audit findings and prioritized improvements.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/athola/skills/nm-abstract-skills-eval) <br>
-- [Source homepage from release metadata](https://github.com/athola/claude-night-market/tree/master/plugins/abstract) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides skill audits, improvement plans, verification steps, and performance checks; users should review commands before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: ClawHub release evidence) <br>
+Risk: The security review flags guidance that may involve agent settings or other installed skills, along with potentially ambiguous cleanup advice; some referenced local scripts were not analyzed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing or following troubleshooting advice, review whether the task needs configuration or cross-skill access, inspect the referenced scripts, and check cleanup steps for effects on unrelated work or data.
+
+## Reference(s):
+
+- [Project homepage listed in Clawdis metadata](https://github.com/athola/claude-night-market/tree/master/plugins/abstract)
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-abstract-skills-eval)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Guidance]
+
+**Output Format:** [Audit findings, scores, and improvement plans in Markdown or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings and recommendations are tailored to the supplied skill or skill directory.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

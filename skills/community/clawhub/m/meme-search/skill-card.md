@@ -1,39 +1,58 @@
-## Description: <br>
-用表情包图片丰富 Agent 表达。可以使用图片使用表情包表达情绪、状态、反应、场景。支持在 SOUL.md 中免安装配置。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+搜索表情包图片，帮助 Agent 在回复中用图片表达情绪、状态和场景反应。
 
-## Publisher: <br>
-[laizhenjie0107](https://clawhub.ai/user/laizhenjie0107) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laizhenjie0107](https://clawhub.ai/user/laizhenjie0107)
 
-## Use Case: <br>
-Agents use this skill to search for meme images that express the agent's current emotion, status, reaction, or situation, then embed the image directly in a Markdown reply. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meme search text is sent to an external plain-HTTP service, and replies may embed remote images returned by that service. <br>
-Mitigation: Avoid using this skill in conversations containing secrets, private customer data, or sensitive work context; prefer HTTPS or a trusted proxy for sensitive environments. <br>
+## Use Case:
 
+External users and agents use this skill to generate natural-language mood or context queries and embed returned meme image URLs in Markdown replies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laizhenjie0107/meme-search) <br>
-- [Meme search API endpoint](http://101.200.84.220/api/v1/meme/search?query={query}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with image embeds and optional curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return an empty string when the external service fails or rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Agent-generated mood and context queries may be sent to an unauthenticated third-party HTTP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that disclosure is acceptable, and avoid including sensitive context in meme queries.
+
+Risk: Copying the SOUL.md block can make the meme reply behavior persist across future sessions.
+
+Mitigation: Copy the block only when persistence is intended, and remove it later to fully disable the behavior.
+
+Risk: Markdown image embeds load content from the third-party HTTP service and may fail or be rate limited silently.
+
+Mitigation: Treat images as optional presentation and allow responses to continue without an image.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laizhenjie0107/skills/meme-search)
+- [Meme search API endpoint](http://101.200.84.220/api/v1/meme/search?query={query})
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown image embeds with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return empty output when the API fails or is rate limited; images load from a third-party HTTP service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact _meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

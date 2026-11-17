@@ -1,40 +1,57 @@
-## Description: <br>
-A-Share Stock Diagnosis guides an agent through macro, industry, and stock-level analysis of A-share companies, producing weighted scores, investment star ratings, and operation suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides top-down China A-share stock diagnosis by combining macro climate, industry diagnosis, and single-stock fundamental, technical, capital-flow, and news analysis into a structured investment report.
 
-## Publisher: <br>
-[stevenge791](https://clawhub.ai/user/stevenge791) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenge791](https://clawhub.ai/user/stevenge791)
 
-## Use Case: <br>
-External users and analysts use this skill to request structured A-share stock diagnoses. The agent combines macro, industry, fundamental, technical, capital-flow, and news analysis into an informational Markdown report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce investment ratings and buy/sell-style recommendations that users may mistake for personalized financial advice. <br>
-Mitigation: Treat outputs as informational, verify data independently, and consult qualified financial professionals before making investment decisions. <br>
-Risk: Financial, market, policy, and news inputs may be stale, incomplete, or interpreted incorrectly. <br>
-Mitigation: Validate key data against current authoritative sources and include the data date or source context in the generated report. <br>
+## Use Case:
 
+Investors, analysts, and agent workflows use this skill to create informational A-share stock research reports that combine macro, industry, and company-level signals. It is suited for structured stock diagnosis, not for unreviewed personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stevenge791/a-share-stock-diagnosis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with tables, weighted scores, investment star ratings, and operation suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires current financial, market, policy, and news data; outputs are informational and should not be treated as personalized financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The report can include buy, hold, or sell suggestions that may be mistaken for personalized investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as informational stock research and review assumptions, evidence, and risk notes before acting.
+
+Risk: Market, macro, industry, and company data may be stale, incomplete, or inconsistent across upstream sources.
+
+Mitigation: Verify current market data independently with trusted data sources before relying on the diagnosis.
+
+Risk: The final report depends on upstream macro and industry skill outputs.
+
+Mitigation: Use trusted upstream macro and industry skills and inspect their reports before incorporating them into decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stevenge791/skills/a-share-stock-diagnosis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown stock research report with tables, scores, star rating, operation suggestion, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report includes macro analysis, industry analysis, fundamentals, technicals, capital flows, news signals, weighted scoring, and key risks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

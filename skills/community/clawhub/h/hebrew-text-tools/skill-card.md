@@ -1,43 +1,57 @@
-## Description: <br>
-Hebrew text processing utilities for transliteration, gematria calculation, nikud removal, letter identification, and Hebrew number formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hebrew text processing utilities for transliteration, gematria calculation, nikud removal, letter identification, and Hebrew number formatting; pure Python, no dependencies, and works offline.
 
-## Publisher: <br>
-[abeperl](https://clawhub.ai/user/abeperl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeperl](https://clawhub.ai/user/abeperl)
 
-## Use Case: <br>
-External users and developers use this skill to process Hebrew text offline, including transliteration, gematria calculation, vowel-point removal, letter-name listing, right-to-left reversal, and Hebrew number formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transliteration is Ashkenazi-style and may not match Sephardi, Israeli, academic, or community-specific expectations. <br>
-Mitigation: Review transliteration output before using it in user-facing, educational, liturgical, or archival material. <br>
-Risk: Hebrew number formatting is limited to values from 1 to 999. <br>
-Mitigation: Use a specialized formatter or manual review for numbers outside the documented range. <br>
-Risk: Right-to-left reversal is basic and may produce incorrect ordering for mixed Hebrew and non-Hebrew text. <br>
-Mitigation: Manually inspect mixed-direction text output and use a Unicode-aware bidi library for production text layout. <br>
+## Use Case:
 
+Developers, agents, and end users use this skill to process Hebrew text offline, including transliteration, gematria calculation, nikud removal, Hebrew letter naming, RTL reversal, and Hebrew number formatting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/abeperl/hebrew-text-tools) <br>
-- [Publisher Profile](https://clawhub.ai/user/abeperl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Plain text, JSON, Markdown, and Python or shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces offline Hebrew text-processing results; CLI output can be plain text or JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may activate for broad Hebrew-related prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user needs Hebrew text processing before applying transformations or recommending commands.
+
+Risk: Transliteration is Ashkenazi-style and has a known Tav mapping accuracy issue.
+
+Mitigation: Treat transliteration as a utility aid, not an authoritative linguistic result; verify sensitive names, liturgy, or educational material with a qualified source.
+
+Risk: Hebrew number formatting is limited to 1-999 and RTL reversal is basic for mixed text.
+
+Mitigation: Check ranges and mixed-direction output before using results in published or user-facing content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abeperl/skills/hebrew-text-tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python examples, and text or JSON utility output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline pure-Python CLI and Python API; optional JSON output is available from the script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

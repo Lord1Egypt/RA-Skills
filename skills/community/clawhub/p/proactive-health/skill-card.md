@@ -1,42 +1,58 @@
-## Description: <br>
-Proactive health monitoring for AI agents. Apple Health integration, pattern detection, anomaly alerts. Built for agents caring for humans with chronic conditions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactive health monitoring for AI agents. Apple Health integration, pattern detection, anomaly alerts. Built for agents caring for humans with chronic conditions.
 
-## Publisher: <br>
-[CTsolutionsdev](https://clawhub.ai/user/CTsolutionsdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ctsolutionsdev](https://clawhub.ai/user/ctsolutionsdev)
 
-## Use Case: <br>
-Agents and caregivers use Health Guardian to import Apple Health exports, analyze local health readings, and surface anomaly alerts for people with chronic conditions or disabilities. Alerts and summaries are informational and require human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive Apple Health exports that may be synced through iCloud and copied into local skill data files. <br>
-Mitigation: Install only after confirming the data flow is acceptable, protect local data directories, and restrict access to exported health files. <br>
-Risk: Health alerts and summaries can be mistaken for medical advice or emergency monitoring. <br>
-Mitigation: Treat outputs as informational, require human review, and keep appropriate clinical or emergency escalation processes outside the skill. <br>
-Risk: Hourly imports, heartbeat checks, Telegram alerts, or caregiver notifications may send sensitive or misleading information if configured loosely. <br>
-Mitigation: Review thresholds, recipients, schedules, and notification content before enabling automated monitoring. <br>
+## Use Case:
 
+External users, caregivers, and agent operators use this skill to import Apple Health exports, monitor health trends, and surface anomaly alerts for humans with chronic conditions or disabilities.
 
-## Reference(s): <br>
-- [Health Auto Export](https://apps.apple.com/app/health-auto-export/id1115567069) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local JSON health data files, alert summaries, and human-readable health summaries when scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, release evidence) <br>
+Risk: The skill reads and stores sensitive Apple Health export data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configuration and local data directory before installation, and use it only where local storage of health readings is acceptable.
+
+Risk: Hourly monitoring and external alert channels can expose health information outside the machine.
+
+Mitigation: Keep external alert channels disabled unless the operator has reviewed what information may be sent and configured an appropriate private channel.
+
+Risk: Anomaly alerts and health summaries may be incomplete or clinically incorrect.
+
+Mitigation: Treat outputs as monitoring prompts for human review, not as diagnosis or medical advice.
+
+## Reference(s):
+
+- [Health Auto Export App](https://apps.apple.com/app/health-auto-export/id1115567069)
+- [ClawHub Skill Page](https://clawhub.ai/ctsolutionsdev/skills/proactive-health)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local health summaries and anomaly alerts from locally stored Apple Health export data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

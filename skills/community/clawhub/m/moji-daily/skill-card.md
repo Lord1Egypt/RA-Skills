@@ -1,42 +1,55 @@
-## Description: <br>
-墨记 is a daily task tracking skill that helps an agent create, update, follow up on, summarize, and roll over local Markdown task files through scheduled prompts and chat interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+墨记 (moji-daily) helps an agent manage daily tasks through Chinese-language chat, scheduled reviews, local Markdown task files, and rollover of unfinished items.
 
-## Publisher: <br>
-[afeicn](https://clawhub.ai/user/afeicn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afeicn](https://clawhub.ai/user/afeicn)
 
-## Use Case: <br>
-Managers, founders, consultants, and other daily planning users use this skill to maintain a local Markdown record of tasks, progress, and end-of-day carryover. Agents use it during scheduled morning, noon, and evening prompts or user-initiated chat updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled cron prompts may create recurring reminders or write updates at 09:00, 12:00, and 18:00. <br>
-Mitigation: Review the generated cron JSON, schedule, channel, and prompts before enabling the skill. <br>
-Risk: Task notes are stored in local Markdown files and may contain sensitive work details if users include them. <br>
-Mitigation: Avoid recording secrets or highly sensitive information in task notes, and review the tasks directory before sharing or migrating it. <br>
+## Use Case:
 
+Employees and external users use this skill to track daily work in Chinese-language chat, with morning planning, midday progress checks, evening summaries, and local Markdown task records.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/afeicn/moji-daily) <br>
-- [Workflow reference](references/workflow.md) <br>
-- [Daily task template](assets/daily-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown task files, cron JSON configuration, and chat guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores daily task history in local tasks/YYYY-MM-DD.md files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Optional cron snippets send scheduled prompts to a Feishu channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended Feishu channel before enabling the cron configuration.
+
+Risk: Casual task-management phrases may update local Markdown task files.
+
+Mitigation: Review task changes when reporting additions, cancellations, completions, or rollovers in chat.
+
+## Reference(s):
+
+- [Detailed Workflow](references/workflow.md)
+- [ClawHub Skill Page](https://clawhub.ai/afeicn/skills/moji-daily)
+- [Publisher Profile](https://clawhub.ai/user/afeicn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese-language chat responses, Markdown task files, and cron configuration JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores task records locally in tasks/YYYY-MM-DD.md and can emit optional cron setup configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

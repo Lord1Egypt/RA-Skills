@@ -1,46 +1,61 @@
-## Description: <br>
-Performs automated data analysis workflows that load datasets, validate data quality, generate LLM prompts for ontology and method selection, create Python analysis scripts, and produce Markdown or HTML reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs LLM-driven data analysis by loading and validating datasets, selecting methods, generating Python analysis scripts, executing them, and producing reports.
 
-## Publisher: <br>
-[yamaz49](https://clawhub.ai/user/yamaz49) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yamaz49](https://clawhub.ai/user/yamaz49)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to profile uploaded datasets, assess data quality, plan suitable analysis methods, generate executable Python analysis scripts, and assemble report outputs for exploratory or decision-support analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dataset-derived prompts or reports may expose sensitive data to external LLM providers. <br>
-Mitigation: Redact sensitive fields before use and review generated prompt files before sending them to any third-party model. <br>
-Risk: Generated or supplied Python analysis scripts may perform unsafe or unintended actions when executed. <br>
-Mitigation: Review scripts before execution and run them in an isolated environment or container with only the needed files mounted. <br>
-Risk: SQL database analysis can expose more data than intended if broad credentials or queries are used. <br>
-Mitigation: Use read-only, least-privilege database credentials and narrow SQL queries to the minimum dataset needed. <br>
+## Use Case:
 
+Developers and analysts use this skill to automate exploratory and goal-directed analysis of uploaded datasets, including data loading, quality checks, method selection, script generation, execution, and HTML/Markdown reporting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yamaz49/universal-data-analyst-en) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Flow Health Monitor Guide](artifact/FLOW_HEALTH_MONITOR_GUIDE.md) <br>
-- [Quick Reference](artifact/quick_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, Python code, shell commands, generated prompt files, charts, and HTML or Markdown analysis reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create session directories containing prompt files, validation reports, generated scripts, charts, and report artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact files also mention 1.0.0, 1.1.0, and 2.0.0) <br>
+Risk: Generated Python may run with broad local permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated scripts before execution and run analyses in a sandbox or container.
+
+Risk: Database analysis can expose data through overly broad credentials.
+
+Mitigation: Use read-only, least-privilege database credentials.
+
+Risk: Saved prompts and reports may contain sensitive data.
+
+Mitigation: Delete or secure saved session artifacts after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yamaz49/skills/universal-data-analyst-en)
+- [Universal Data Analyst README](artifact/README.md)
+- [Universal Data Analyst Skill Guide](artifact/SKILL.md)
+- [Quick Reference](artifact/quick_reference.md)
+- [Flow Health Monitor Guide](artifact/FLOW_HEALTH_MONITOR_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, HTML reports, JSON validation/session files, Python analysis scripts, charts, and saved LLM prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes session artifacts to analysis output directories; generated Python should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

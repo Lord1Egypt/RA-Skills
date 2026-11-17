@@ -32,18 +32,18 @@ Scoring rationale:
 
 ## Evidence
 
-- github-issues (2026-06-11T09:27:04+00:00): [🐝 Hive Advisory Report](https://github.com/kubestellar/console/issues/17528)
-- github-issues (2026-06-20T02:11:50+00:00): [[Split de #3925] EP2-H5b – Modelo optimista de Sherlock (envío + verificación en background + corrección por canal)](https://github.com/intrale/platform/issues/4105)
-- hacker-news-search (2026-06-15T09:27:26+00:00): [What are you looking for when reviewing LLM generated code?](https://news.ycombinator.com/item?id=48538778)
-- segmentfault-search (2026-06-20T13:09:58.651101+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
-- segmentfault-search (2026-06-20T13:09:58.651101+00:00): [javascript](https://segmentfault.com/t/javascript)
-- segmentfault-search (2026-06-20T13:09:58.651101+00:00): [typescript](https://segmentfault.com/t/typescript)
-- segmentfault-search (2026-06-20T13:09:58.651101+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
-- segmentfault-search (2026-06-20T13:09:58.652616+00:00): [Writing Great Unit Tests: Best and Worst Practices](https://segmentfault.com/a/1190000009709754)
-- segmentfault-search (2026-06-20T13:09:58.652616+00:00): [Android自动化测试一 UiAutomator官方介绍](https://segmentfault.com/a/1190000045114982)
-- segmentfault-search (2026-06-20T13:09:58.653622+00:00): [CSCI 2134](https://segmentfault.com/a/1190000041402955)
-- github-issues (2026-06-11T14:56:04+00:00): [🐝 Hive Advisory Report](https://github.com/projectbluefin/common/issues/639)
-- hacker-news-search (2026-06-20T12:03:19+00:00): [Egyptian Fractions (2006)](https://news.ycombinator.com/item?id=48608621)
+- github-issues (2026-11-11T22:32:10+00:00): [[P1][Organization] 组织成员签发普通成员邀请，并按邀请范围撤销及接受](https://github.com/alexj11324/Mikka/issues/2076)
+- github-issues (2026-11-15T23:03:45+00:00): [sim/selftest.sh PVT smoke fails on PDK-equipped hosts: grid spread checks read n/a](https://github.com/2AMLogic/gf180-temp-por/issues/555)
+- hacker-news-ask-hn (2026-11-16T23:52:37+00:00): [Ask HN: Who's really winning with AI-Coding?](https://news.ycombinator.com/item?id=50525329)
+- hacker-news-search (2026-11-10T07:20:54+00:00): [Question: How to control unit tests in Agentic Pipelines](https://news.ycombinator.com/item?id=50437119)
+- github-issues (2026-11-13T16:28:23+00:00): [Writing to a well-known folder (Pictures, Screenshots, Downloads) without a picker per file](https://github.com/expo/exact/issues/507)
+- hacker-news-ask-hn (2026-11-15T17:39:49+00:00): [Ask HN: Tips for maintainability of large software projects using agents?](https://news.ycombinator.com/item?id=50508896)
+- segmentfault-search (2026-11-17T04:04:50.168168+00:00): [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
+- segmentfault-search (2026-11-17T04:04:50.168168+00:00): [javascript](https://segmentfault.com/t/javascript)
+- segmentfault-search (2026-11-17T04:04:50.168168+00:00): [typescript](https://segmentfault.com/t/typescript)
+- segmentfault-search (2026-11-17T04:04:50.168168+00:00): [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
+- segmentfault-search (2026-11-17T04:04:50.168937+00:00): [Writing Great Unit Tests: Best and Worst Practices](https://segmentfault.com/a/1190000009709754)
+- segmentfault-search (2026-11-17T04:04:50.168937+00:00): [Android自动化测试一 UiAutomator官方介绍](https://segmentfault.com/a/1190000045114982)
 
 ## How The Skill Meets The Requirement
 

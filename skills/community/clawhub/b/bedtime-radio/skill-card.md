@@ -1,44 +1,54 @@
-## Description: <br>
-Generate a complete bedtime story audio program from a keyword, with intro, narration, character voices, and a sleepy outro. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a complete bedtime story audio program from a keyword, with intro, narration, character voices, and a sleepy outro.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-Parents, caregivers, and agents serving families use this skill to turn a bedtime-story idea, child age, and length preference into a structured soothing audio program. It guides story writing, SenseAudio synthesis, MP3 file generation, and final assembly instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated bedtime-story text is sent to SenseAudio for text-to-audio synthesis. <br>
-Mitigation: Avoid including children's real names, addresses, health details, or sensitive family information in prompts or generated story text. <br>
-Risk: The skill stores SenseAudio JSON responses and MP3 files locally. <br>
-Mitigation: Review generated files before sharing them and delete local story artifacts that contain private family details. <br>
-Risk: The workflow depends on a SenseAudio API key and local command-line tools. <br>
-Mitigation: Keep SENSEAUDIO_API_KEY out of shared logs and repositories, and install curl, jq, and xxd from trusted package sources. <br>
+## Use Case:
 
+Parents and caregivers use this skill to create age-appropriate bedtime story programs for children, including story text, voice planning, SenseAudio synthesis commands, and playback order guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/scikkk/bedtime-radio) <br>
-- [SenseAudio homepage](https://senseaudio.cn) <br>
-- [SenseAudio API key page](https://senseaudio.cn/platform/api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown with Bash snippets and generated MP3/JSON file names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces story text, audio segment plans, SenseAudio API calls, local JSON responses, MP3 segment files, durations, and ffmpeg assembly guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated story text is sent to SenseAudio using the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including children's full names, addresses, school details, or other sensitive personal information in prompts.
+
+Risk: The sample shell command builds JSON around user-generated text.
+
+Mitigation: Harden the script with proper JSON encoding before operational use.
+
+## Reference(s):
+
+- [Bedtime Radio on ClawHub](https://clawhub.ai/scikkk/skills/bedtime-radio)
+- [SenseAudio](https://senseaudio.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, audio files, guidance]
+
+**Output Format:** [Markdown with story text, segment tables, Bash synthesis commands, generated MP3 filenames, and assembly instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SENSEAUDIO_API_KEY and local curl, jq, and xxd for audio synthesis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

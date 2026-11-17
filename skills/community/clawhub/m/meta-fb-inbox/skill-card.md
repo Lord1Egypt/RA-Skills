@@ -1,43 +1,58 @@
-## Description: <br>
-Check Facebook page inbox messages via Meta Business Suite browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks and manages Facebook page inbox messages through Meta Business Suite browser automation, including message review, replies, conversation URLs, labels, notes, and image extraction.
 
-## Publisher: <br>
-[PicSeeInc](https://clawhub.ai/user/PicSeeInc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[picseeinc](https://clawhub.ai/user/picseeinc)
 
-## Use Case: <br>
-Customer support and social media operations teams use this skill to inspect Facebook Page inboxes, review unread messages, reply to customers, manage conversation labels and notes, and retrieve direct conversation URLs through Meta Business Suite browser automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in Meta Business inbox and may read or modify customer conversations, labels, and internal notes. <br>
-Mitigation: Use a dedicated low-privilege Meta account where possible and review replies, label changes, and note changes before submission. <br>
-Risk: Conversation URLs and extracted message content can expose customer data if stored or shared unnecessarily. <br>
-Mitigation: Avoid saving conversation URLs unless needed and treat any exported conversation details as sensitive customer information. <br>
-Risk: Downloaded message images are saved under the user's Downloads directory and may contain untrusted customer-provided content. <br>
-Mitigation: Treat downloaded images as sensitive untrusted files and open or share them only after appropriate review. <br>
+## Use Case:
 
+External business page operators and support teams use this skill to check Facebook inbox conversations, respond to customers, and manage Meta Business Suite labels and notes across one or more configured pages.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/PicSeeInc/meta-fb-inbox) <br>
-- [Meta Business Suite](https://business.facebook.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with browser actions, shell commands, JSON configuration examples, and extracted conversation summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May output customer names, message previews, read or unread status, conversation URLs, labels, notes, and local file paths for downloaded images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and _meta.json) <br>
+Risk: The skill can read customer messages, store sensitive conversation URLs, and download customer media.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for business pages the operator is authorized to manage, and keep config.json, saved conversation URLs, and downloaded media out of shared folders and repositories.
+
+Risk: The skill can send replies and modify labels or notes in Meta Business Suite.
+
+Mitigation: Require explicit approval before sending replies, changing labels or notes, or deleting notes.
+
+Risk: The documented tab cleanup flow may close unrelated browser tabs.
+
+Mitigation: Change cleanup behavior to close only tabs opened by this skill.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/picseeinc/skills/meta-fb-inbox)
+- [Meta Business Suite](https://business.facebook.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline browser actions, shell commands, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May report customer names, message previews, unread state, conversation URLs, labels, notes, and downloaded image handling instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

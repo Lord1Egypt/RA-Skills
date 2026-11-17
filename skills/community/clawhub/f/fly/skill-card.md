@@ -1,39 +1,58 @@
-## Description: <br>
-Deploy and manage Fly.io apps via CLI - apps, machines, volumes, secrets, certificates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and manage Fly.io apps via CLI - apps, machines, volumes, secrets, certificates.
 
-## Publisher: <br>
-[Melvynx](https://clawhub.ai/user/Melvynx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[melvynx](https://clawhub.ai/user/melvynx)
 
-## Use Case: <br>
-Developers and engineers use this skill to install, authenticate, deploy, inspect, and administer Fly.io applications and related resources through flyctl commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward Fly.io commands that deploy, scale, alter secrets, open SSH or proxy sessions, or destroy resources. <br>
-Mitigation: Verify the active Fly.io account, app, region, machine, volume, and secret names, and require explicit confirmation before resource-changing commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy and operate Fly.io applications from an agent-assisted CLI workflow, including app creation, deployments, logs, scaling, secrets, volumes, certificates, machines, SSH, and proxy tasks.
 
-## Reference(s): <br>
-- [Fly.io install script](https://fly.io/install.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/Melvynx/fly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Use --json for programmatic flyctl command output where supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The Linux setup path uses a pipe-to-shell installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use, or prefer a trusted package manager or verified pinned flyctl release.
+
+Risk: The skill includes high-impact Fly.io operations such as destroy, delete, unset, SSH, and direct infrastructure changes.
+
+Mitigation: Require explicit confirmation before destructive operations, scope commands to the intended app or resource, and treat SSH commands as changes to running infrastructure.
+
+Risk: Secret-management commands can expose sensitive values if echoed into prompts, logs, or command history.
+
+Mitigation: Avoid logging secret values and pass secrets through an approved secret-handling workflow.
+
+## Reference(s):
+
+- [Fly.io install script](https://fly.io/install.sh)
+- [ClawHub Fly skill page](https://clawhub.ai/melvynx/skills/fly)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and command reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommends JSON output for programmatic flyctl commands where supported.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

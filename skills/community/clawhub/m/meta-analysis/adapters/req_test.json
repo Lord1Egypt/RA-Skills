@@ -1,0 +1,16 @@
+{
+  "task": "pairwise_meta",
+  "data": {
+    "source": "inline",
+    "rows": [
+      {"study": "Smith 2000", "event_exp": 22, "n_exp": 130, "event_ctrl": 20, "n_ctrl": 125},
+      {"study": "Jones 2003", "event_exp": 15, "n_exp": 90, "event_ctrl": 12, "n_ctrl": 88},
+      {"study": "Lee 2005", "event_exp": 30, "n_exp": 150, "event_ctrl": 25, "n_ctrl": 160},
+      {"study": "Wang 2008", "event_exp": 8, "n_exp": 60, "event_ctrl": 10, "n_ctrl": 65}
+    ],
+    "colmap": {"study": "study", "event_exp": "event_exp", "n_exp": "n_exp", "event_ctrl": "event_ctrl", "n_ctrl": "n_ctrl"}
+  },
+  "params": {"model": "REML", "sm": "OR"},
+  "figure": {"format": "svg", "plots": ["forest", "funnel"], "width": 7, "height": 5},
+  "query_origin": "sha256:<64hex>"
+}

@@ -1,45 +1,60 @@
-## Description: <br>
-Daily-updated intelligence on what's happening across 16 areas of AI, exposed through 12 MCP tools that let an agent query signals, trends, blockers, predictions, alerts, and wiki content from public Eigen Terminal data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides daily updated AI intelligence across 16 areas through 12 MCP tools for signals, trends, blockers, predictions, wiki lookup, and update checks, using public data from terminal.clawlab.dev without uploading user data.
 
-## Publisher: <br>
-[shawkatdidar](https://clawhub.ai/user/shawkatdidar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawkatdidar](https://clawhub.ai/user/shawkatdidar)
 
-## Use Case: <br>
-Developers, analysts, and AI-focused teams use this skill to let an agent pull current AI landscape intelligence and summarize only the signals relevant to the user's work. It supports daily briefs, topic deep dives, cause-and-effect analysis, trend review, blocker review, speed metrics, predictions, search, page reads, product updates, and breaking-update checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public AI intelligence over the network from terminal.clawlab.dev. <br>
-Mitigation: Install only in environments where a Node MCP server making read-only requests to that domain is acceptable. <br>
-Risk: The skill asks the agent to use local project or conversation context to decide which intelligence is relevant. <br>
-Mitigation: Ask the agent before it inspects local context, and review generated briefs for relevance and disclosure before sharing. <br>
-Risk: The current JavaScript artifact may need a packaging or syntax fix before it runs correctly. <br>
-Mitigation: Smoke test the MCP server after installation before relying on it in a production workflow. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve current AI landscape intelligence, filter it for the user's work, and answer follow-up questions about signals, trends, blockers, predictions, and wiki pages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shawkatdidar/eigen-ai-terminal) <br>
-- [Eigen AI Terminal public homepage](https://terminal.clawlab.dev) <br>
-- [Eigen AI Terminal public data endpoint](https://terminal.clawlab.dev/data) <br>
-- [Eigen AI Terminal public wiki endpoint](https://terminal.clawlab.dev/wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted text returned from MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are synthesized from public Eigen Terminal data; the agent is instructed to avoid supplementing tool responses with training knowledge.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Remote public wiki and intelligence content could contain prompt-injection text or misleading guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat returned content as reference data, not instructions, and require the agent to ground every surfaced signal in tool responses.
+
+Risk: Tool arguments could accidentally include secrets or private conversation details.
+
+Mitigation: Do not pass secrets or private user context into tool arguments, especially update-check timestamps or free-text topic queries.
+
+Risk: The package may need a reliability fix before it runs consistently.
+
+Mitigation: Perform a runtime smoke test of the MCP server and its tools before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shawkatdidar/skills/eigen-ai-terminal)
+- [Eigen AI Terminal homepage](https://terminal.clawlab.dev)
+- [Eigen AI Terminal data endpoint](https://terminal.clawlab.dev/data)
+- [Eigen AI Terminal wiki](https://terminal.clawlab.dev/wiki)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted text returned by MCP tools]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns public AI intelligence, topic summaries, trend analysis, blockers, predictions, wiki pages, and update checks.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

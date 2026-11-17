@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn77xyb166rqsjqcs6a1xa4npd81kay0",
   "slug": "qian-jiu-jiu",
-  "version": "0.1.0",
-  "publishedAt": 1772358355642
+  "displayName": "钱纠纠",
+  "version": "1.0.0",
+  "description": "A Chinese message preprocessor that detects typos/grammar errors without auto-correcting",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "tags": ["chinese", "preprocessor", "typo-detection", "grammar"],
+  "minOpenClawVersion": "2026.2.0"
 }

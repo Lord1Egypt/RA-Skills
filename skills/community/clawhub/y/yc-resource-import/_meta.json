@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn79gtfgvvyd60pa2k1d85qpzn85qcvj",
-  "slug": "yc-resource-import",
+  "name": "yc-resource-import",
   "version": "2.1.0",
-  "publishedAt": 1778492794825
+  "description": "全球旅游资源全自动解析入库技能。支持本地文件/云盘合同，PDF/Word/图片全格式解析，8大资源类型锁死字段体系，CSV追加到生产库。",
+  "compatibility": "Python 3.8+, PyMuPDF, python-docx, pdfplumber, csv, redis（可选）",
+  "category": "data-processing",
+  "tags": ["旅游", "资源入库", "CSV", "PDF解析", "数据标准化"],
+  "author": "travel-ai-team",
+  "license": "MIT",
+  "homepage": "https://clawhub.ai/skills/yc-resource-import",
+  "platform": "openclaw",
+  "runtime": "subagent",
+  "required_skills": ["google-drive", "Bbaidu-netdisk-storage"],
+  "python_deps": ["pdfplumber", "python-docx", "PyMuPDF"],
+  "created_at": "2026-05-11",
+  "updated_at": "2026-05-11"
 }

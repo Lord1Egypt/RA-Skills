@@ -1,42 +1,65 @@
-## Description: <br>
-XiaoHongShu (Little Red Book) data collection and interaction toolkit for searching and scraping notes, retrieving user profiles, extracting comments and engagement data, fetching feeds, and optionally following users or liking posts with an authenticated session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+XiaoHongShu (Little Red Book) helps agents search and retrieve notes, profiles, comments, likes, feeds, and authenticated account interactions while generating the platform headers and cookies required for API requests.
 
-## Publisher: <br>
-[ChocomintX](https://clawhub.ai/user/ChocomintX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chocomintx](https://clawhub.ai/user/chocomintx)
 
-## Use Case: <br>
-Developers and analysts use this skill to automate XiaoHongShu data collection workflows, including note search, profile lookup, comment extraction, and feed retrieval. Authenticated use can also perform account actions such as following users, liking posts, and interacting with comments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Authenticated workflows can act as the user's XiaoHongShu account. <br>
-Mitigation: Use a dedicated low-impact account, limit permissions where possible, and avoid sharing web_session cookies in prompts, logs, or team channels. <br>
-Risk: The security evidence flags account-state changes, engagement-manipulation behavior, session-cookie logging, and unsafe config execution. <br>
-Mitigation: Review or remove mutation APIs, read-count metrics workflows, cookie logging, and the eval-based config parser before production use. <br>
-Risk: Automation may trigger platform security controls, rate limits, or account enforcement. <br>
-Mitigation: Use only legitimate workflows, keep request rates conservative, and stop automation when XiaoHongShu returns security, permission, or ban-related responses. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ChocomintX/xiaohongshutools) <br>
-- [RedCrack](https://github.com/Cialle/RedCrack) <br>
+## Use Case:
 
+Developers and data analysts use this skill to collect XiaoHongShu content, inspect user, profile, and comment data, and perform account actions such as likes or follows when they have an authorized session.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, and API response handling notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide use of proxies, web_session cookies, XiaoHongShu note identifiers, and asynchronous Python API calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Authenticated use depends on web_session cookies that can grant account access.
+
+Mitigation: Treat web_session as a password-equivalent secret, avoid sharing it in chat or logs, redact cookies from output, and rotate or revoke exposed sessions.
+
+Risk: The skill can change account state through follow, like, comment, and delete actions.
+
+Mitigation: Require explicit confirmation for every state-changing action and disable or wrap mutating calls when only collection or analysis is intended.
+
+Risk: Automation against XiaoHongShu may create platform-policy, anti-abuse, rate-limit, or account restriction risk.
+
+Mitigation: Use only authorized data and accounts, review platform rules before deployment, rate-limit requests, avoid unnecessary concurrency, and stop when restriction or abuse signals appear.
+
+Risk: The security guidance identifies eval() configuration parsing and unpinned dependencies as pre-use concerns.
+
+Mitigation: Replace eval() configuration parsing with a safe parser and pin dependencies before installing or running the skill.
+
+Risk: The security guidance calls out an underdocumented read-count metrics flow.
+
+Mitigation: Remove or disable the read-count metrics flow before production use unless it has been reviewed and explicitly approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chocomintx/skills/xiaohongshutools)
+- [RedCrack upstream reference](https://github.com/Cialle/RedCrack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API usage examples, cookie and proxy configuration, and risk-aware operating guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

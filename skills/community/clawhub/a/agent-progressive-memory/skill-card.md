@@ -1,40 +1,57 @@
-## Description: <br>
-Provides a progressive disclosure protocol for agents to read group, team, and project memory through an index-first workflow instead of loading all memory at once. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Progressive Memory guides agents to load group-chat memory progressively through an index-first workflow and includes hooks for manual and pre-compaction memory flushing.
 
-## Publisher: <br>
-[biociao](https://clawhub.ai/user/biociao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biociao](https://clawhub.ai/user/biociao)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage shared group memory in chat, team, and project collaboration contexts. It guides agents to map group names, read an index first, load only the most relevant memory files, and optionally maintain local memory state through hooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent group memory can retain sensitive or stale workspace information. <br>
-Mitigation: Install only in workspaces where persistent group memory is acceptable, and periodically inspect or prune memory files and memory/flush-state.json. <br>
-Risk: Optional hooks can automatically write local memory state. <br>
-Mitigation: Review the hook code before copying it into ~/.openclaw/hooks and enable precompact-remem only when automatic memory-state updates are desired. <br>
+## Use Case:
 
+Developers and teams using OpenClaw use this skill to keep group or project collaboration memory structured, load only the most relevant memory files, and flush meaningful session updates back to local memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/biociao/agent-progressive-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local hook configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes optional hooks that update local memory state files when installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: server release evidence) <br>
+Risk: The skill installs persistent OpenClaw hooks and can automatically write local session/activity metadata before compaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted workspaces, document enablement status, and provide clear disable, uninstall, and retention controls.
+
+Risk: Unsafe file handling may overwrite writable files through symlinks in memory directories.
+
+Mitigation: Use trusted, non-shared memory directories and prefer a version that rejects symlinks and validates canonical paths before writing.
+
+Risk: Memory flush behavior can retain session metadata and deltas beyond the current conversation.
+
+Mitigation: Limit stored metadata, review memory files periodically, and avoid using attacker-writable or shared memory locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/biociao/skills/agent-progressive-memory)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with inline shell commands and hook configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local OpenClaw hook files that can update memory state when installed and enabled.]
+
+## Skill Version(s):
+
+1.2.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

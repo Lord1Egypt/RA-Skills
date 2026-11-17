@@ -1,44 +1,58 @@
-## Description: <br>
-Micro-trades altcoin 5-minute Up/Down markets when BTC leads with strong directional bias and ETH, SOL, or XRP have not caught up yet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Micro-trades altcoin 5-min Up/Down markets when BTC leads with strong directional bias and ETH/SOL/XRP haven't caught up yet.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-Developers and trading agents use this skill to monitor Polymarket 5-minute crypto Up/Down markets and act on BTC lead-lag signals for ETH, SOL, and XRP. It defaults to simulated trading and can place live Polymarket trades only when explicitly run with the live flag. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket trades and expose funds to USDC loss. <br>
-Mitigation: Start in paper mode, keep the live flag disabled until limits and strategy behavior are reviewed, and use small position tunables. <br>
-Risk: SIMMER_API_KEY is a sensitive credential with trading authority. <br>
-Mitigation: Use a least-privileged or disposable key when available and keep it out of source control, logs, and shared prompts. <br>
-Risk: The skill depends on simmer-sdk for market access and trade execution. <br>
-Mitigation: Review the installed simmer-sdk package before deployment and pin dependency versions in controlled environments. <br>
+## Use Case:
 
+Developers and trading automation users can use this skill to run a configurable Polymarket micro-trading strategy for short-interval crypto Up/Down markets. It defaults to paper trading and requires an explicit live mode for real USDC trades.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-micro-coin-lag-trader) <br>
-- [Simmer SDK on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [Simmer SDK GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and runtime console output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and supports configurable trading limits through environment tunables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: Live mode can spend real USDC through Polymarket.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in the default paper mode first, use --live only after review, and set conservative position and trade-size tunables.
+
+Risk: The security review found that live-trading safeguards do not fully match the documented claims.
+
+Mitigation: Do not rely on volume, threshold, or position safeguards as complete controls until they are fixed and independently reviewed.
+
+Risk: SIMMER_API_KEY grants trading authority.
+
+Mitigation: Use a dedicated least-privileged key and keep unrelated secrets out of the same runtime environment.
+
+## Reference(s):
+
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls]
+
+**Output Format:** [Console logs and Simmer SDK trade API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY; paper trading is the default and live trading requires --live.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

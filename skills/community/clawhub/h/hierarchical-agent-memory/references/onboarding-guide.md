@@ -9,10 +9,12 @@ The agent should initiate onboarding when:
 
 1. **First install** — no `memory/topics/` directory exists and no
    `memory_structure` configuration is found in the workspace config.
-2. **Update from v2.x** — `memory/daily/` or `memory/weekly/` exists but
-   `memory/topics/` does not.
-3. **User explicitly requests** — user says "set up memory", "configure
-   memory skill", or similar.
+2. **Update from v2.x** — `memory/weekly/` exists but `memory/topics/` does
+   not.
+3. **Update from v3.1.x or earlier** — `memory/daily/` exists. OpenClaw does
+   not read that directory; offer the daily-note migration (below).
+4. **User explicitly requests** — user says "set up memory", "configure
+   memory skill", runs `/hierarchical_agent_memory setup`, or similar.
 
 ## Conversation Script
 
@@ -22,7 +24,7 @@ The agent should initiate onboarding when:
 > into topic-based working files with optional time-based archival layers.
 >
 > There are three presets:
-> - **minimal** — just a lean MEMORY.md index and daily notes
+> - **minimal** — just a lean MEMORY.md index on top of OpenClaw's daily notes
 > - **standard** — adds topic files and contact files
 > - **full** — adds weekly/monthly/yearly archival summaries on top of standard
 >
@@ -41,6 +43,23 @@ The agent should initiate onboarding when:
 > Want me to scan your current MEMORY.md and suggest topic files to create?
 > I won't change anything without your approval.
 
+### Opening (Update from v3.1.x or earlier)
+
+> The hierarchical-agent-memory skill has been updated to v3.2. Earlier
+> versions kept daily notes in `memory/daily/`, but OpenClaw reads and writes
+> daily notes at `memory/YYYY-MM-DD.md`: that is where the start-of-session
+> preload, the pre-compaction memory flush, and dreaming all look.
+>
+> I found [N] notes in `memory/daily/`. Want me to move them to `memory/`?
+> I'll use `git mv` if this workspace is a repo, merge rather than overwrite
+> if a date already exists at the root, and show you the list first. Nothing
+> gets loaded that wasn't loaded before; older notes stay on-demand through
+> memory_search.
+
+If the user declines, record that in the daily note and do not ask again
+until the next skill update. Do not read `memory/daily/` as intake while it
+remains unmigrated; say so if asked why a note was missed.
+
 ### Follow-up Questions
 
 After preset selection, ask only the questions relevant to their choice:
@@ -53,9 +72,13 @@ After preset selection, ask only the questions relevant to their choice:
   and governance."
 
 **For full only:**
-- "What timezone are you in? I'll set distillation cron jobs accordingly."
-  (Default: system timezone)
+- If `memory-wiki` is enabled or dreaming is on, say so and recommend
+  `standard` once before continuing.
+- "What timezone are you in? I'll set the distillation automations
+  accordingly." (Default: system timezone)
 - "Weekly synthesis defaults to Sunday 2:00 AM. Does that work?"
+- Name each job `hierarchical-agent-memory <weekly|monthly|yearly> synthesis`
+  and tell the user how to list, disable, or remove it.
 
 **If user says "just use defaults" at any point:**
 - Apply `standard` preset
@@ -65,11 +88,13 @@ After preset selection, ask only the questions relevant to their choice:
 
 ### Migration Offer
 
-If MEMORY.md contains more than ~3KB of content:
+If the hand-maintained part of MEMORY.md (everything without dreaming's
+`<!-- trigger: … -->` / `<!-- importance: N -->` markers) exceeds ~3KB:
 
-> Your MEMORY.md is currently [X]KB. For best results, it should be under 3KB
-> — just pointers and active constraints. Want me to suggest how to split it
-> into topic files? I'll show you the plan before making changes.
+> Your MEMORY.md is currently [X]KB of hand-written content. For best results
+> it should be under 3KB — just pointers and active constraints. Want me to
+> suggest how to split it into topic files? I'll show you the plan before
+> making changes. Entries that dreaming promoted stay as they are.
 
 ### Closing
 

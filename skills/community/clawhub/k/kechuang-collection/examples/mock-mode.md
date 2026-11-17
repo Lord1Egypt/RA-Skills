@@ -8,16 +8,13 @@
 # 扫描模式（Mock）
 /kechuang-collection scan 高新技术企业 认定 --mock
 
-# 监控模式（Mock）
-/kechuang-collection monitor --mock
-
 # 报告模式（Mock）
 /kechuang-collection report --mock
 ```
 
 ## Mock 数据说明
 
-预置 5 条示例科创线索，覆盖：
+预置 6 条示例科创线索，覆盖：
 
 | KPI维度 | 线索数 | 覆盖情况 |
 |---------|--------|---------|

@@ -1,42 +1,54 @@
-## Description: <br>
-Decode, validate, and debug JSON Web Tokens. Inspect headers, payloads, signatures, expiration, claims, and key mismatches. Diagnose common JWT issues in authentication flows without external tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decode, validate, and debug JSON Web Tokens. Inspect headers, payloads, signatures, expiration, claims, and key mismatches. Diagnose common JWT issues in authentication flows without external tools.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect JWT headers and payloads, validate signatures, compare claims, and diagnose authentication failures locally without sending tokens to external debugging sites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: JWTs, secrets, and public or private keys used during validation can expose sensitive authentication material if pasted into shared prompts, shell history, logs, or tickets. <br>
-Mitigation: Handle tokens and keys locally, prefer stdin or short-lived environment variables, redact diagnostic output before sharing, and avoid persisting token values in logs. <br>
-Risk: Decoded JWT headers and payloads are only inspection data and can be mistaken for proof that a token is trustworthy. <br>
-Mitigation: Treat decoding as unverified inspection, then validate the signature, expected algorithm, issuer, audience, and time-based claims before relying on the token. <br>
-Risk: Generated test JWTs can be confused with production credentials or accepted by services if weak test secrets leak into real configurations. <br>
-Mitigation: Use clearly scoped test issuers, audiences, and secrets, keep generated tokens out of production systems, and rotate any test secret accidentally reused in live environments. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect JWT structure, validate signatures and claims, compare token behavior, and diagnose authentication failures without relying on external JWT websites.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/jwt-debugger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local diagnostic output and example commands; it does not require external token debugging services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Validation examples may execute injected Python when token or key values are maliciously crafted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before using the validation snippets, rewrite them so tokens, secrets, keys, and audiences are passed through stdin, files, or environment variables read by Python instead of embedded in python3 -c source.
+
+Risk: Tokens or key material supplied by an untrusted party could make the current validation snippets unsafe to run.
+
+Mitigation: Do not run the current validation snippets on untrusted tokens or key material; review and harden the commands before installation or execution.
+
+## Reference(s):
+
+- [JWT Debugger on ClawHub](https://clawhub.ai/charlie-morrison/skills/jwt-debugger)
+- [charlie-morrison ClawHub profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local JWT inspection, validation, comparison, generation, and diagnostic guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

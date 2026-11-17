@@ -1,0 +1,34 @@
+{
+  "mode": "agent_eval_kit",
+  "sample": {
+    "cases": [
+      {
+        "id": "timezone",
+        "actual": "09:00 UTC",
+        "mustContain": [
+          "UTC"
+        ],
+        "mustNotContain": [
+          "API_KEY"
+        ]
+      },
+      {
+        "id": "exact",
+        "actual": "done",
+        "exact": "done"
+      }
+    ]
+  },
+  "expected": {
+    "passed": 2,
+    "total": 2
+  },
+  "invalid": {
+    "cases": [
+      {
+        "id": "empty",
+        "actual": "text"
+      }
+    ]
+  }
+}

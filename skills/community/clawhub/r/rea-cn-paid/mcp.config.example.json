@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "rea-cn-paid": {
+      "command": "node",
+      "args": ["<REA-CN 付费技能包绝对路径>/scripts/run-mcp.mjs"],
+      "env": {},
+      "_note": "启动前必须先完成付费：node scripts/pay-gate.mjs（402 → weixinpay_pay → --resume <outTradeNo>）。run-mcp.mjs 会强制校验 engine/.entitlement.json，未付费将 exit 65 拒绝启动。",
+      "_paid": {
+        "gateway": "https://www.ontoagent.net/rea402/api/resource",
+        "price": "¥1.9/次（单次解锁）",
+        "payGate": "scripts/pay-gate.mjs"
+      }
+    }
+  }
+}

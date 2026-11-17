@@ -1,45 +1,55 @@
-## Description: <br>
-Monitor Steam game prices and alert when a game hits historical low or a user target price. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Steam game prices and alert when a game hits historical low or a user target price.
 
-## Publisher: <br>
-[G-zoe](https://clawhub.ai/user/G-zoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[g-zoe](https://clawhub.ai/user/g-zoe)
 
-## Use Case: <br>
-External users and agents use this skill to watch Steam games, check current prices against observed lows or target prices, and produce alerts when a watched game reaches a configured trigger. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores watched games, target prices, and observed lows locally. <br>
-Mitigation: Use it only where local watchlist storage is acceptable and review the generated data files before sharing or publishing the workspace. <br>
-Risk: Documentation may overstate verified all-time historical-low behavior. <br>
-Mitigation: Treat alerts as Steam discount or target-price notifications unless the implementation is updated to verify all-time lows from an authoritative historical source. <br>
-Risk: The skill contacts CheapShark and Steam APIs during normal use. <br>
-Mitigation: Run it only in environments where outbound requests to those services are allowed. <br>
+## Use Case:
 
+External users and developers use this skill to keep a local watchlist of Steam games, check current Steam prices, and receive command-line alerts when a watched game is discounted or reaches a target price.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/G-zoe/steam-lowest-price-skill) <br>
-- [CheapShark games API](https://www.cheapshark.com/api/1.0/games) <br>
-- [Steam app details API](https://store.steampowered.com/api/appdetails) <br>
-- [Steam store app page](https://store.steampowered.com/app/{appid}/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with inline shell commands and alert text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Alerts include game name, current price, observed low price, price difference, discount status, and Steam store link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Historical-low alerts may not match the advertised behavior because the security review says the code may alert on any discount rather than a true historical low.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat alerts as discount or target-price notifications unless historical-low behavior is fixed or documented clearly.
+
+Risk: Price checks use China-region Steam pricing in CNY, which may not match a user's expected Steam region or currency.
+
+Mitigation: Confirm the target region and currency before relying on alerts for purchasing decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/g-zoe/skills/steam-lowest-price-skill)
+- [CheapShark games API](https://www.cheapshark.com/api/1.0/games)
+- [Steam Store appdetails API](https://store.steampowered.com/api/appdetails)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text alerts and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local JSON watchlist and state files; price checks use China-region Steam pricing in CNY.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

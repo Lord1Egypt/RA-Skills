@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zeabur Deployment"
+  short_description: "Deploy and verify services on existing Zeabur resources"
+  default_prompt: "Use $zeabur-deploy to prepare and verify this project deployment on Zeabur, reusing existing resources within the agreed budget."

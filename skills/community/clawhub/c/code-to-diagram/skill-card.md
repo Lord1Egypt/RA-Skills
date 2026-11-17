@@ -1,43 +1,60 @@
-## Description: <br>
-Analyzes source code logic, generates Mermaid flowcharts or SVG architecture diagrams, and renders them as PNG images with multiple themes, visual styles, semantic shapes, and product icons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes source code logic and produces Mermaid flowcharts or SVG architecture diagrams, with optional PNG rendering, themes, visual styles, semantic shapes, and product icons.
 
-## Publisher: <br>
-[zhouchang1988](https://clawhub.ai/user/zhouchang1988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhouchang1988](https://clawhub.ai/user/zhouchang1988)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect code structure and produce human-readable diagrams, Markdown documentation, and rendered PNG assets for flows, architectures, classes, states, and data models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports that the skill can automatically run external npm tooling during rendering. <br>
-Mitigation: Review before installing, run npm install from the included lockfile, pin or preinstall mmdc instead of relying on npx fallback, and use the skill only on code intended for diagramming. <br>
-Risk: Generated diagrams and explanations may omit or misstate code behavior if the analyzed code path is incomplete. <br>
-Mitigation: Review generated Markdown, Mermaid or SVG source, and PNG output against the source code before using the diagrams for design or operational decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn source-code structure, control flow, data flow, and architecture into readable diagrams and supporting explanations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouchang1988/skills/code-to-diagram) <br>
-- [beautiful-mermaid](https://github.com/lukilabs/beautiful-mermaid) <br>
-- [icons.md](references/icons.md) <br>
-- [style-diagram-matrix.md](references/style-diagram-matrix.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown with Mermaid or SVG code blocks, rendered PNG files, and terminal JSON containing generated file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Mermaid or SVG rendering paths and may invoke local npm-based tooling and rsvg-convert during diagram rendering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: ClawHub release metadata; artifact frontmatter says 2.0.0) <br>
+Risk: The renderer can automatically run an unpinned npm command when Mermaid CLI is not already available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall and pin a trusted Mermaid CLI, and avoid relying on the npx fallback.
+
+Risk: The render script may delete .mmd input files after rendering.
+
+Mitigation: Use disposable intermediate .mmd files or keep backups of important diagram sources before rendering.
+
+Risk: PNG rendering may use a browser configuration with sandbox protections disabled.
+
+Mitigation: Run the skill in an isolated workspace without secrets and limit inputs to trusted repository content.
+
+## Reference(s):
+
+- [README](README.md)
+- [Style Diagram Matrix](references/style-diagram-matrix.md)
+- [Icon Reference](references/icons.md)
+- [Optimization Plan](docs/optimization-plan.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown explanations with Mermaid or SVG source, optional PNG image files, and terminal JSON path output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mermaid rendering depends on mmdc or an npx fallback; SVG rendering depends on rsvg-convert.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

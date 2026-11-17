@@ -1,44 +1,58 @@
-## Description: <br>
-Discover, name, and manage OpenClaw instances on your LAN. Scan for AI agents, check status, set aliases, resolve .claw names, and get connection URLs via the ClawNexus daemon. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, name, and manage OpenClaw instances on your LAN. Scan for AI agents, check status, set aliases, resolve .claw names, and get connection URLs via the ClawNexus daemon.
 
-## Publisher: <br>
-[alan-stratcraftsai](https://clawhub.ai/user/alan-stratcraftsai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alan-stratcraftsai](https://clawhub.ai/user/alan-stratcraftsai)
 
-## Use Case: <br>
-Developers and operators use this skill to discover OpenClaw instances, check their status, assign aliases, resolve .claw names, and produce connection URLs for local or registered instances. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger local network scans for OpenClaw instances. <br>
-Mitigation: Use scan commands only on networks where probing devices is allowed. <br>
-Risk: The local daemon persists discovered instance history in ~/.clawnexus/registry.json. <br>
-Mitigation: Review or clear the registry file when discovered instance history should not be retained. <br>
-Risk: The skill depends on a locally installed clawnexus daemon and npm package. <br>
-Mitigation: Install only when the clawnexus package is trusted and confirm the daemon is running before using commands. <br>
+## Use Case:
 
+Developers and operators use this skill to discover OpenClaw instances, check availability, assign aliases, resolve .claw names, and produce connection URLs through a local ClawNexus daemon.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alan-stratcraftsai/clawnexus) <br>
-- [Project homepage](https://github.com/SilverstreamsAI/ClawNexus) <br>
-- [Publisher profile](https://clawhub.ai/user/alan-stratcraftsai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Assumes curl is available and the ClawNexus daemon listens on localhost:17890.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.1 (source: ClawHub release metadata) <br>
+Risk: Installing and running an unpinned global daemon can execute publisher-controlled code with user-level access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only a pinned, reviewed ClawNexus package from a trusted publisher and avoid sudo or administrator privileges.
+
+Risk: LAN scanning can probe systems or networks where discovery is not authorized.
+
+Mitigation: Run scans only on networks where the user has permission to discover OpenClaw instances.
+
+Risk: The daemon persists discovered instance metadata in ~/.clawnexus/registry.json.
+
+Mitigation: Treat the registry as local network metadata and clear it when the stored instance data is no longer needed.
+
+## Reference(s):
+
+- [ClawNexus project homepage](https://github.com/SilverstreamsAI/ClawNexus)
+- [ClawHub skill page](https://clawhub.ai/alan-stratcraftsai/skills/clawnexus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include localhost API calls, instance status summaries, alias instructions, and WebSocket connection URLs.]
+
+## Skill Version(s):
+
+0.4.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

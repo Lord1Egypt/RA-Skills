@@ -1,40 +1,49 @@
-## Description: <br>
-基于多源权威信息和视觉取证，客观拆解用户提交的文本或图片，验证信息真伪并识别谣言与误导。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于多源权威信息、网络检索和视觉取证，拆解用户提交的文本或图片并评估其真实性、谣言风险与误导性。
 
-## Publisher: <br>
-[liuchang0812](https://clawhub.ai/user/liuchang0812) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuchang0812](https://clawhub.ai/user/liuchang0812)
 
-## Use Case: <br>
-External users and agents use this skill to check public claims, rumors, news snippets, and images in Chinese by decomposing claims, gathering evidence, cross-checking sources, and reporting a clear truthfulness rating. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can send claim details, image contents, or extracted text into web searches while gathering evidence. <br>
-Mitigation: Avoid private or confidential material unless the user is comfortable with those details being used in search queries. <br>
-Risk: Fact-checking current or developing events can produce incomplete conclusions when evidence is still emerging. <br>
-Mitigation: Use the skill's evidence-insufficient rating, cite sources, and clearly label uncertainty when available information is limited. <br>
+## Use Case:
 
+External users and agents use this skill to fact-check Chinese-language claims, news snippets, and images. It guides claim decomposition, independent source retrieval, visual review, cross-checking, and a structured truthfulness assessment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuchang0812/fact-checker-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with claim breakdown, evidence, reasoning, verdict, and references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source links, uncertainty notes, visual-analysis observations, and a final rating of true, false, misleading, or unverified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: User-submitted images or claims may contain private or sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting private images or sensitive claims unless the user is comfortable having them analyzed for verification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuchang0812/skills/fact-checker-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown fact-check report with verdict, claim breakdown, evidence, fallacy analysis, and references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source links and image-analysis notes when provided by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

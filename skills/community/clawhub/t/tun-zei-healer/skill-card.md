@@ -1,37 +1,52 @@
-## Description: <br>
-吞贼·净化魄 provides agent guidance for error detection, recovery, redundancy cleanup, fault tolerance, and diagnostic reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+吞贼·净化魄 is an auto-healing skill for diagnosing system instability, proposing recovery actions, cleaning redundant files, and applying resilience patterns such as retries, rollback, and circuit breakers.
 
-## Publisher: <br>
-[lt8899789](https://clawhub.ai/user/lt8899789) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lt8899789](https://clawhub.ai/user/lt8899789)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to have an agent inspect system health, report detected issues, recommend recovery actions, and perform constrained remediation such as retries, rollback planning, redundancy cleanup, or process recovery.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may prompt agents to delete redundant files, roll back state, restart processes, or trigger recovery actions without enough limits or confirmation.
+
+Mitigation: Use read-only diagnosis by default, require exact target lists and user confirmation before changes, keep backups for rollback, and restrict filesystem or process access to explicit allowlists.
+
+Risk: Automated recovery recommendations can affect production stability if applied broadly or without review.
+
+Mitigation: Run in constrained workspaces or non-production environments unless the agent is required to ask before executing changes, and review proposed actions before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to guide system health checks, diagnose abnormal behavior, plan recovery actions, and produce remediation reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to perform broad cleanup and recovery actions without clear approval or scope limits. <br>
-Mitigation: Use it first for read-only diagnostics and require an explicit proposed change list plus user approval before deleting files, restarting processes, triggering garbage collection, rolling back versions, or sharing diagnostic reports from logs. <br>
+**Output Format:** [Markdown diagnostic reports with optional command or remediation guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include health status, issue severity, executed repairs, and follow-up recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown diagnostic reports with optional command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose recovery, cleanup, rollback, retry, circuit breaker, graceful degradation, and reporting steps.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

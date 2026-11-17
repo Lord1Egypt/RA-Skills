@@ -1,40 +1,57 @@
-## Description: <br>
-将 Agent 规划结果补全为可交付、可部署的落地闭环，适用于把蓝图、架构、next actions 写入目标 Agent workspace，并主动推进到平台部署与接入引导。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents turn planning outputs into deliverable workspace documentation, handoff maps, and deployment onboarding guidance.
 
-## Publisher: <br>
-[BeAChanger](https://clawhub.ai/user/BeAChanger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beachanger](https://clawhub.ai/user/beachanger)
 
-## Use Case: <br>
-Developers and agent builders use this skill after planning an agent or MVP to turn blueprints into workspace documents, handoff notes, next actions, and deployment-channel onboarding guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent workspace documents under memory or skills directories. <br>
-Mitigation: Confirm the target workspace and review planned file paths and generated content before preserving them. <br>
-Risk: Saved handoff documents may carry private context into future agent sessions. <br>
-Mitigation: Avoid including secrets or private data unless future sessions are explicitly intended to use them. <br>
+## Use Case:
 
+Developers and agent builders use this skill after they have an agent blueprint, architecture plan, MVP boundary, or next actions and need the agent to write those assets into the target workspace. It also prompts the agent to provide a handoff map and continue into platform deployment intake for channels such as Telegram, Feishu, or Discord.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BeAChanger/blueprint-to-deployment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and workspace file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent handoff documents and platform onboarding guidance for a target agent workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may cause an agent to create or update planning and handoff documents in the wrong target workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target workspace path and intended file list before allowing edits.
+
+Risk: Writing under a skills/ directory can change agent behavior if the generated content is later loaded as a skill.
+
+Mitigation: Review and scan any generated skill files before enabling or deploying them.
+
+Risk: The skill is written in Chinese, which can make review harder for teams that do not read Chinese.
+
+Mitigation: Have a Chinese reader or trusted translation workflow review the skill behavior before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/beachanger/skills/blueprint-to-deployment)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown guidance with workspace file paths and deployment intake steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to create or update planning and handoff documents in a target agent workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

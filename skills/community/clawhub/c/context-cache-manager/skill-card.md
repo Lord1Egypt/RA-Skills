@@ -1,41 +1,57 @@
-## Description: <br>
-Provides fork-safe context cloning, message-history compaction, and session restore helpers for OpenClaw-style multi-agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides fork-safe context cloning, message history compaction, and fast session restoration for multi-agent OpenClaw workflows.
 
-## Publisher: <br>
-[suda6632](https://clawhub.ai/user/suda6632) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suda6632](https://clawhub.ai/user/suda6632)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preserve parent-agent context across spawned child sessions, compact long conversation histories, and restore local session snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive prompts, messages, and content replacement state can be written to local cache files. <br>
-Mitigation: Use only on machines and accounts where local conversation snapshots are acceptable; avoid secrets and sensitive work until cache controls, retention, permissions, and cleanup are documented. <br>
-Risk: Cached snapshots are reloaded through pickle deserialization. <br>
-Mitigation: Review before installation and replace pickle with a safe serialization format before using with untrusted or sensitive cache contents. <br>
+## Use Case:
 
+Developers and agent operators use this skill to preserve parent context when spawning child agents, compact long message histories, and restore local sessions efficiently.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/suda6632/context-cache-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/suda6632) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Guidance] <br>
-**Output Format:** [Python module and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists compressed local context snapshots and cache index files under an OpenClaw workspace path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Cached context may contain secrets, credentials, private customer data, or sensitive system prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill with sensitive data until it limits what it stores and adds restrictive cache permissions or encryption.
+
+Risk: Restoring cached snapshots uses unsafe pickle deserialization.
+
+Mitigation: Replace pickle with safe serialization before using the skill outside a controlled local environment.
+
+Risk: Weak session-id and path controls may allow cache confusion or unintended file access patterns.
+
+Mitigation: Validate session identifiers and keep cache files isolated from other users and processes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/suda6632/skills/context-cache-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe local cache behavior and context-management workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

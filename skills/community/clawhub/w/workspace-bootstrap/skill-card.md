@@ -1,47 +1,62 @@
-## Description: <br>
-Workspace Bootstrap creates OpenClaw workspace directory structures, core markdown templates, scenario examples, and validation checks for new or migrated agent workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workspace Bootstrap helps agents and users quickly create an OpenClaw workspace structure, core file templates, example configurations, and workspace pitfall checks.
 
-## Publisher: <br>
-[jack-long-2022](https://clawhub.ai/user/jack-long-2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack-long-2022](https://clawhub.ai/user/jack-long-2022)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to initialize or migrate an agent workspace, choose a starter scenario, generate core files, and check common setup pitfalls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workspace may contain persistent personal data or credentials in markdown files and generated directories. <br>
-Mitigation: Create the workspace in a new empty directory, avoid storing raw API keys or SSH secrets, and review or redact USER.md, SOUL.md, memory, reports, shared, and user-data before sharing. <br>
-Risk: Whole-workspace sharing can expose private user or agent data. <br>
-Mitigation: Treat generated workspace content as private until reviewed, and add a .gitignore before using Git. <br>
-Risk: Bootstrap or wizard scripts may affect files in an existing workspace. <br>
-Mitigation: Review existing files before running bootstrap or wizard scripts, especially outside a clean workspace. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to bootstrap a workspace with standard directories, core Markdown files, scenario examples, and validation scripts. It is useful for first-time setup, recreating an existing workspace layout, or checking a workspace for common configuration problems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jack-long-2022/workspace-bootstrap) <br>
-- [README](README.md) <br>
-- [Quickstart](docs/QUICKSTART.md) <br>
-- [Usage Guide](docs/USAGE.md) <br>
-- [Workspace Template](templates/WORKSPACE-TEMPLATE.md) <br>
-- [Test Report](tests/test-report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and generated workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates workspace directories and core markdown templates, with optional scenario examples and pitfall checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md, README.md) <br>
+Risk: Bootstrap or wizard scripts can overwrite existing workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run them in a new empty directory or back up the target workspace before execution, then review generated files.
+
+Risk: Workspace documentation may lead users to store sensitive data in plaintext workspace files.
+
+Mitigation: Avoid storing secrets in TOOLS.md or user-data/apis, and review private workspace data before sharing or committing files.
+
+Risk: Generated or copied workspace data may accidentally be published.
+
+Mitigation: Review files before using broad git commands, exclude private user-data, and avoid committing unreviewed generated content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jack-long-2022/skills/workspace-bootstrap)
+- [Quickstart Guide](docs/QUICKSTART.md)
+- [Usage Guide](docs/USAGE.md)
+- [Workspace Template](templates/WORKSPACE-TEMPLATE.md)
+- [Workspace Examples](templates/WORKSPACE-EXAMPLES.md)
+- [Test Report](tests/test-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and generated workspace template files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes reusable workspace templates, example configurations, bootstrap scripts, a setup wizard, validation scripts, and pitfall checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

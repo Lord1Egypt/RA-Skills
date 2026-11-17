@@ -1,40 +1,55 @@
-## Description: <br>
-Plans B-roll shot lists with timing and sourcing advice to cover edits and enhance storytelling in short videos based on a script and content type. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans B-roll shot lists with timing and sourcing advice to cover edits and enhance storytelling in short videos based on a script and content type.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Video editors and content creators use this skill to plan B-roll, cutaways, sourcing options, timing, and coverage checklists for short-form videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger terms may cause the skill to appear in general video-editing conversations. <br>
-Mitigation: Confirm that the user wants B-roll or cutaway planning before applying the workflow. <br>
-Risk: B-roll plans may suggest using third-party footage, locations, or subjects that require rights or releases. <br>
-Mitigation: Remind users to verify stock licenses, footage rights, and any needed location or subject releases before publication. <br>
+## Use Case:
 
+Video editors, content creators, product reviewers, vloggers, and documentary-style creators use this skill to map B-roll and cutaway shots to short-video scripts, cover edits, add visual variety, and plan footage before or after a shoot.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/sv-broll-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text with shot lists, timing guidance, sourcing recommendations, and coverage checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not provide or source actual footage; users remain responsible for footage rights, stock licenses, and location or subject releases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Users may treat suggested footage or sourcing options as clearing rights for use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm stock licensing, location releases, and usage rights before publishing or reusing footage.
+
+Risk: Broad trigger words may activate the skill during general B-roll discussions.
+
+Mitigation: Confirm the user wants B-roll planning guidance before applying the shot-planning workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/sv-broll-planner)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured shot lists, sourcing recommendations, timing guidance, and coverage checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not provide or source actual footage; users remain responsible for footage rights and licensing.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

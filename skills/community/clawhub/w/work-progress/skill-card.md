@@ -1,41 +1,53 @@
-## Description: <br>
-Work Progress monitors OpenClaw work progress, todo items, sub-agent timeouts or missing sessions, and full-session status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work Progress monitors OpenClaw work sessions and daily todos, reports stalled or failed activity, and records local recovery notes.
 
-## Publisher: <br>
-[amd5](https://clawhub.ai/user/amd5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amd5](https://clawhub.ai/user/amd5)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor OpenClaw work sessions, surface stalled or failed tasks, check daily todos, and receive recovery guidance for interrupted work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect active sessions across all OpenClaw agents and retain local session and task metadata. <br>
-Mitigation: Install only where that monitoring scope is acceptable; review configured cron jobs and clear the local state file when historical monitoring data should not be retained. <br>
-Risk: Automated progress and recovery reports may flag stale, failed, or missing sessions and write local recovery notes. <br>
-Mitigation: Review reported issues before acting on recovery guidance, especially before rerunning interrupted work. <br>
+## Use Case:
 
+Developers and agent operators use this skill to monitor OpenClaw session progress, detect stalled or failed work, inspect outstanding daily todos, and surface recovery recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amd5/work-progress) <br>
-- [Publisher profile](https://clawhub.ai/user/amd5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance, files] <br>
-**Output Format:** [Plain text or JSON monitoring reports; local Markdown and JSON state files may be updated.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs NO_REPLY when no action is needed; may retain local task state and append recovery notes to local memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.6 (source: frontmatter, skill.json, release evidence) <br>
+Risk: The skill periodically inspects local OpenClaw session metadata and todo files and stores task labels and statuses locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in trusted local workspaces where this monitoring and local status storage are acceptable.
+
+Risk: The release describes automatic recovery, but the security evidence indicates current behavior is notification and recommendation rather than actual task restart.
+
+Mitigation: Treat recovery output as guidance for human or agent review before taking restart actions.
+
+## Reference(s):
+
+- [Work Progress ClawHub release page](https://clawhub.ai/amd5/skills/work-progress)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Console text or JSON monitoring reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return NO_REPLY when no issues are found.]
+
+## Skill Version(s):
+
+4.0.6 (source: SKILL.md frontmatter, skill.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

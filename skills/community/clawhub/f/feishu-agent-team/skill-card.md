@@ -1,40 +1,54 @@
-## Description: <br>
-Feishu Agent Team helps OpenClaw users route Feishu group @mentions from a coordinator to configurable specialist agents for multi-agent collaboration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a configurable OpenClaw multi-agent team in which a Coordinator receives Feishu group @mentions and routes tasks to specialist agents by keyword.
 
-## Publisher: <br>
-[mars82311111](https://clawhub.ai/user/mars82311111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mars82311111](https://clawhub.ai/user/mars82311111)
 
-## Use Case: <br>
-Developers and operations teams use this skill to configure an OpenClaw coordinator that accepts Feishu group tasks, routes them by keyword to specialist agents, and tests team routing from the CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured Feishu group messages may be processed by multiple agents and routed beyond the original coordinator context. <br>
-Mitigation: Limit enabled Feishu groups and specialist agents to the intended workspace, review routing keywords before deployment, and avoid sending secrets or sensitive content in routed chats. <br>
-Risk: Group chat content may be retained in checkpoints or logs depending on the deployment configuration. <br>
-Mitigation: Review retention and redaction controls before broad use, and keep checkpoint storage scoped to approved environments. <br>
+## Use Case:
 
+Developers and operations teams use this skill to configure a coordinator-and-specialist agent team for routing Feishu group chat tasks to business analysis, development, marketing, or custom roles. It is most useful as a starting point for OpenClaw team routing and configuration workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mars82311111/feishu-agent-team) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline YAML, JSON, Python, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces configuration and routing guidance for OpenClaw and Feishu multi-agent team setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review classifies the release as suspicious because the documented Feishu, MQ, and LangGraph automation is broader than the shipped implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as prototype-quality, review and pin dependencies, and verify missing Feishu, MQ, and LangGraph pieces before running listeners.
+
+Risk: Feishu app secrets and group chat content may be exposed if real credentials or sensitive group data are used before access controls and privacy handling are added.
+
+Mitigation: Avoid placing real Feishu app secrets or sensitive group content into the skill until those controls are reviewed and implemented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mars82311111/skills/feishu-agent-team)
+- [Publisher profile](https://clawhub.ai/user/mars82311111)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON/YAML configuration examples, and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces routing decisions and setup guidance; shipped listener integration code contains placeholders for MQ and Feishu API behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact src/__init__.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-QA and testing workflow for game development, covering test plans, smoke tests, regression suites, bug reporting, automated testing, and playtest reports for solo developers and small teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QA and testing workflow for game development covering test plans, smoke tests, regression suites, bug reporting, automated testing, and playtest reports for solo developers and small teams.
 
-## Publisher: <br>
-[toilanguyen2910](https://clawhub.ai/user/toilanguyen2910) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[toilanguyen2910](https://clawhub.ai/user/toilanguyen2910)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Game developers, solo developers, and small teams use this skill to create structured QA plans, smoke tests, regression suites, bug reports, playtest reports, and engine-specific automated test examples for game projects.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may create Markdown QA documents in a project.
+
+Mitigation: Confirm the destination path before asking the agent to generate files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Game developers and small teams use this skill to create structured QA materials for game projects, including test plans, smoke checks, regression suites, bug reports, playtest reports, and starter automated tests. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as bug report or quality assurance may activate the skill for non-game requests. <br>
-Mitigation: Confirm the request is about game development before creating QA templates, files, or test guidance. <br>
-Risk: Generated test code, CI snippets, or shell commands may not match the user's engine, project layout, or tooling. <br>
-Mitigation: Review and adapt generated commands, configuration, and tests before running them in a project. <br>
+**Output Format:** [Markdown guidance with templates, checklists, and inline code examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/toilanguyen2910/skills/game-dev-qa-test) <br>
+**Other Properties Related to Output:** [May create Markdown QA documents in a project when requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with templates, checklists, code examples, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose QA files under a game project qa/ directory when the user asks for project artifacts.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

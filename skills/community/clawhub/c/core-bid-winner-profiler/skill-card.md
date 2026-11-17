@@ -1,42 +1,53 @@
-## Description: <br>
-结构化汇总企业近期公开中标项目，分析核心采购方、业务地域、客单价与现金流健康度。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a target company's recent public bid awards to summarize major projects, purchaser profiles, regional strengths, customer concentration, and cash-flow signals from public procurement evidence.
 
-## Publisher: <br>
-[daviddatamining](https://clawhub.ai/user/daviddatamining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daviddatamining](https://clawhub.ai/user/daviddatamining)
 
-## Use Case: <br>
-Business analysts, investors, and competitive intelligence teams use this skill to research a company's public bid-award record and produce a structured report on customers, contract value, regional concentration, and revenue-quality risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bid-award, customer-dependence, and cash-flow conclusions are analyst inferences from public procurement records. <br>
-Mitigation: Check conclusions against cited public sources and label inferred statements clearly. <br>
-Risk: Company matching can be inaccurate when users provide a short name or incomplete company name. <br>
-Mitigation: Use the registered company name when searching and disclose ambiguous or incomplete matches. <br>
-Risk: Public records may omit award amounts or exclude non-public contracts. <br>
-Mitigation: Mark undisclosed amounts, exclude them from totals unless justified, and avoid treating missing records as proof of no business. <br>
+## Use Case:
 
+Business analysts, investors, and due-diligence teams use this skill to examine what kinds of public procurement projects a company has recently won, who its main buyers are, and whether the disclosed awards suggest customer concentration or regional revenue dependence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daviddatamining/core-bid-winner-profiler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with tables and short analytical conclusions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires public web search and cited public sources; inferred regional and cash-flow conclusions should be labeled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Public procurement searches can return incomplete, stale, or mismatched records when a company name is abbreviated or ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the full legal company name and review the cited procurement notices or business-information records before relying on the report.
+
+Risk: Customer concentration, regional strength, and cash-flow health conclusions are analytical estimates derived from public award data.
+
+Mitigation: Label inferred conclusions clearly and compare them with primary procurement records, company disclosures, and financial due-diligence sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daviddatamining/skills/core-bid-winner-profiler)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with tables and concise analytical conclusions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include estimated customer clustering, regional concentration, and cash-flow health observations based on public procurement data; inferred sections should be labeled for review.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

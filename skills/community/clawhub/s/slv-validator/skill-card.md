@@ -1,48 +1,58 @@
-## Description: <br>
-Deploys and manages Solana validators on mainnet and testnet using guided Ansible playbook workflows for Jito, Agave, and Firedancer validator types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys and manages Solana validators on mainnet and testnet using guided agent workflows, Ansible playbooks, and Jinja2 templates.
 
-## Publisher: <br>
-[poppin-fumi](https://clawhub.ai/user/poppin-fumi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[poppin-fumi](https://clawhub.ai/user/poppin-fumi)
 
-## Use Case: <br>
-Developers, DevOps engineers, and validator operators use this skill to collect deployment variables, generate validator inventory, and run or review Ansible playbook commands for Solana validator deployment, maintenance, migration, and monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup, cleanup, identity-switching, migration, and monitoring commands can materially affect validator infrastructure. <br>
-Mitigation: Confirm the target host, validator identity, RPC endpoint, and rollback plan before running playbooks; use dry-run review when uncertain. <br>
-Risk: Validator keys, SSH keys, and RPC API keys may be exposed if copied into commands, logs, or generated configuration carelessly. <br>
-Mitigation: Keep private keys and API keys out of logs and shell history, verify key paths before execution, and avoid passing secrets directly in visible command lines. <br>
-Risk: Incorrect validator type, binary, or version selection can lead to failed starts or incompatible runtime flags. <br>
-Mitigation: Verify the selected validator type and installed CLI binary before deployment or switching, especially when moving between Jito, Agave, and Firedancer modes. <br>
+## Use Case:
 
+Developers and validator operators use this skill to collect deployment variables, generate inventory configuration, run or propose Ansible commands, and monitor Solana validator lifecycle operations across mainnet and testnet.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/poppin-fumi/slv-validator) <br>
-- [Publisher profile](https://clawhub.ai/user/poppin-fumi) <br>
-- [ValidatorsDAO/slv](https://github.com/ValidatorsDAO/slv) <br>
-- [Anza Agave](https://github.com/anza-xyz/agave.git) <br>
-- [Jito Solana](https://github.com/jito-foundation/jito-solana.git) <br>
-- [Firedancer](https://github.com/firedancer-io/firedancer.git) <br>
-- [ERPC Global](https://erpc.global/en/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for Ansible playbook selection, variable collection, inventory generation, dry-run review, and validator monitoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.13.15 (source: server release metadata) <br>
+Risk: The skill asks agents to run high-impact Ansible automation from an unaudited mutable template directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the resolved ~/.slv/template playbooks before any run, use the skill only on intended validator hosts, and require explicit confirmation before identity changes, restarts, user creation, firewall/systemd changes, or ledger cleanup.
+
+Risk: Setup guidance includes installer patterns that can pull mutable dependencies.
+
+Mitigation: Avoid curl-to-shell installers where possible and prefer pinned, verified dependencies before installing or updating validator tooling.
+
+## Reference(s):
+
+- [SLV Validator Skill Page](https://clawhub.ai/poppin-fumi/skills/slv-validator)
+- [ValidatorsDAO/slv](https://github.com/ValidatorsDAO/slv)
+- [ERPC](https://erpc.global/en/)
+- [Agave Source](https://github.com/anza-xyz/agave.git)
+- [Jito Solana Source](https://github.com/jito-foundation/jito-solana.git)
+- [Firedancer Source](https://github.com/firedancer-io/firedancer.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Ansible inventory variables, dry-run commands, validator health checks, and confirmation prompts before high-impact operations.]
+
+## Skill Version(s):
+
+0.13.15 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

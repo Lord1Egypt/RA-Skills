@@ -1,42 +1,59 @@
-## Description: <br>
-Generate and decode QR codes using the CaoLiao QR Code API when a user wants to create a QR code from text or a URL, read QR code content from an image, or work with QR code generation and scanning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and decodes QR codes using the CaoLiao QR Code API and local libraries for text, URL, image, and batch workflows.
 
-## Publisher: <br>
-[hiNISAL](https://clawhub.ai/user/hiNISAL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hinisal](https://clawhub.ai/user/hinisal)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate QR code links or image files, decode QR code content from image URLs or local files, and run batch QR code generation or decoding workflows over Excel, CSV, or TXT inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: QR contents, image URLs, or fallback-decoded local images may be sent to the third-party CaoLiao QR API. <br>
-Mitigation: Avoid using the skill with secrets, private links, internal URLs, personal data, regulated documents, or other content that should not be sent to api.2dcode.biz. <br>
-Risk: Batch decoding can write decoded results back into the original spreadsheet or CSV input. <br>
-Mitigation: Back up batch input files before decoding, and use a separate TXT output when a non-mutating workflow is required. <br>
+## Use Case:
 
+External users and developers use this skill to generate static QR codes, save QR images, decode QR contents from local files or URLs, and process QR data in batches.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hiNISAL/qrcode-remote-skills) <br>
-- [CaoLiao QR Code API documentation](https://cli.im/open-api/qrcode-api/quick-start.html) <br>
-- [QR Code API reference](artifact/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown responses with QR image links, shell commands, JSON script results, and generated local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local QR image, TXT, or ZIP files and may write batch decode results back into spreadsheet or CSV inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: QR contents and local QR images can be sent to api.2dcode.biz during generation or decode fallback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential QR data, prefer local generation and decoding when possible, and manually control remote fallback for sensitive files.
+
+Risk: The skill can automatically install Python or Node.js dependencies.
+
+Mitigation: Install dependencies yourself in an isolated environment, review package manifests, and pin versions before deployment.
+
+Risk: Batch decode can write results back into CSV or spreadsheet inputs.
+
+Mitigation: Back up source spreadsheets before use and request TXT output when the original file should remain unchanged.
+
+## Reference(s):
+
+- [CaoLiao QR Code API documentation](https://cli.im/open-api/qrcode-api/quick-start.html)
+- [QR Code API reference](reference.md)
+- [qr-scanner-wechat](https://github.com/antfu/qr-scanner-wechat)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Files, JSON, Guidance]
+
+**Output Format:** [Markdown responses with QR links and previews, JSON script results, and generated image, TXT, ZIP, CSV, or spreadsheet files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call CaoLiao API; decode fallback can upload local images; batch decode can modify CSV/XLSX inputs unless TXT output is requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

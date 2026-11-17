@@ -1,39 +1,53 @@
-## Description: <br>
-Converts Markdown files or strings into formatted HTML for web display or CMS publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown files or strings into formatted HTML for web display, static site generation, documentation, and content pipeline workflows.
 
-## Publisher: <br>
-[frankxpj](https://clawhub.ai/user/frankxpj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frankxpj](https://clawhub.ai/user/frankxpj)
 
-## Use Case: <br>
-Developers and content engineers use this skill to convert Markdown from files, stdin, or generated text into browser-ready HTML. It supports documentation, static site, and CMS publishing workflows when the source Markdown is trusted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HTML output is not sanitized for untrusted Markdown, LLM responses, or user submissions. <br>
-Mitigation: Use only trusted Markdown for direct publishing, or add an HTML sanitizer plus URL and attribute policy before publishing to a website or CMS. <br>
+## Use Case:
 
+Developers and content engineers use this skill to convert Markdown input from files, stdin, or Node.js code into HTML snippets or output files. It is suited to local trusted notes, documentation conversion, and content pipeline drafts that receive downstream security review before publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/frankxpj/md-2-html) <br>
-- [Publisher profile](https://clawhub.ai/user/frankxpj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell and JavaScript examples; generated output is HTML text or an HTML file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs content HTML without an html, head, or body wrapper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Converted HTML can be unsafe if generated from untrusted Markdown or published directly to a website, CMS, or database-rendered page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for trusted local content or add a real HTML sanitizer and URL validation before publishing the generated HTML.
+
+Risk: The artifact documentation presents code-block escaping as safe, but the converter does not provide comprehensive HTML sanitization.
+
+Mitigation: Treat the generated HTML as unsanitized output and review it before deployment or downstream storage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frankxpj/skills/md-2-html)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands]
+
+**Output Format:** [Markdown guidance with shell and JavaScript examples; generated HTML as text or files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces content HTML without a full html/head/body wrapper.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

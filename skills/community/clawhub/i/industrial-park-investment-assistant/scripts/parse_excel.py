@@ -95,17 +95,17 @@ def identify_table_type(headers):
     """根据表头判断表格类型（房源销控表/客户跟进记录/渠道跟进表）"""
     header_str = '|'.join([str(h) for h in headers]).lower()
     
-    # 房源销控表关键词
-    if any(kw in header_str for kw in ['房间号', '房号', '面积', '底价', '租金']):
-        return '房源销控表'
-    
-    # 客户跟进记录关键词
-    if any(kw in header_str for kw in ['企业名称', '公司名称', '客户名称', '联系人', '意向']):
+    # 客户跟进记录关键词（优先判断，更具体）
+    if any(kw in header_str for kw in ['企业名称', '公司名称', '客户名称', '联系人', '意向等级', '最后跟进']):
         return '客户跟进记录'
     
-    # 渠道跟进表关键词
-    if any(kw in header_str for kw in ['渠道名称', '渠道', '对接人', '推荐客户', '成交数']):
+    # 渠道跟进表关键词（优先判断，更具体）
+    if any(kw in header_str for kw in ['渠道名称', '推荐客户数', '成交数', '佣金比例']):
         return '渠道跟进记录'
+    
+    # 房源销控表关键词（放在最后，因为"面积"太宽泛）
+    if any(kw in header_str for kw in ['房间号', '房号', '底价', '租金单价', '招商状态']):
+        return '房源销控表'
     
     return '未知'
 

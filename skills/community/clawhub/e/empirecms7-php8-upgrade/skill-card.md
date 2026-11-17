@@ -1,40 +1,54 @@
-## Description: <br>
-Provides a checklist for upgrading EmpireCMS 7.5 sites to PHP 8 compatibility, including common fatal errors, deprecated PHP APIs, encoding considerations, and validation steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a checklist and migration guidance for upgrading EmpireCMS 7.5 sites to PHP 8 compatibility.
 
-## Publisher: <br>
-[ebandao777-oss](https://clawhub.ai/user/ebandao777-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ebandao777-oss](https://clawhub.ai/user/ebandao777-oss)
 
-## Use Case: <br>
-Developers and site maintainers use this skill to plan and review an EmpireCMS 7.5 migration to PHP 8. It guides fixes for fatal errors, deprecated PHP APIs, database extension changes, GBK handling, and post-upgrade testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying broad PHP 8 migration changes mechanically can break an existing EmpireCMS site. <br>
-Mitigation: Back up the site, test changes in staging, and review each source-code change before deploying to production. <br>
-Risk: The skill provides migration guidance but does not verify the target CMS codebase or runtime behavior. <br>
-Mitigation: Run full PHP error reporting and test admin login, content publishing, front-end pages, search, comments, member flows, email, FTP, ZIP, and template rendering after changes. <br>
+## Use Case:
 
+Developers and maintainers use this skill when migrating EmpireCMS 7.5 from PHP 7.x to PHP 8, diagnosing PHP 8 fatal errors, and planning compatibility edits across legacy PHP code.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ebandao777-oss/empirecms7-php8-upgrade) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline PHP and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes migration checklist items, code snippets, search patterns, and validation steps; outputs should be reviewed before changing a live CMS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad PHP compatibility edits can affect large parts of an EmpireCMS site.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply changes in a version-controlled copy or staging environment, review replacements manually, and run functional tests before deployment.
+
+Risk: Migration guidance may not match customized EmpireCMS installations, plugins, encodings, or templates.
+
+Mitigation: Validate behavior for admin login, content publishing, search, comments, member flows, mail, file upload, archive handling, template tags, and GBK-specific text handling where applicable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ebandao777-oss/skills/empirecms7-php8-upgrade)
+- [Publisher profile](https://clawhub.ai/user/ebandao777-oss)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with PHP code examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only migration guidance; generated edits should be reviewed and tested before deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,18 @@
+# 论衡流程真源 · 第二部分：节点 retrieval（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: retrieval
+  phase: "Phase 1"
+  phase_seq: 2
+  input: 01-任务简报.md（+ owner 已确认的语言/同意记录）
+  kind: parallel_agents
+  role: T1/T2/T3
+  agents: [T1, T2, T3]
+  write_authority: executor
+  verification_authority: 主控
+  on_worker_failure: {executor: 主控, disclosure: degraded_executor, retry_limit: 1}
+  output:
+    T1: literature/文献卡.md
+    T2: data/数据卡.md
+    T3: cases/案例卡.md
+  next: post_phase1_dispatch_verify   # v2.15.7：先过派发硬验证闸门再进 Phase 1.5

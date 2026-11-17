@@ -1,39 +1,54 @@
-## Description: <br>
-Daily Backup helps an agent inspect its Git workspace for changes and decide whether to commit and push a daily backup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Backup helps an agent check its current workspace for pending Git changes and decide whether to commit and push them on a daily schedule or by manual request.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep an agent workspace backed up in Git on a daily schedule or on demand. It checks workspace state first so the agent can review pending changes before committing and pushing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can support committing and pushing the agent workspace to a Git remote. <br>
-Mitigation: Set AGENT_WORKSPACE explicitly, review changed files and .gitignore for secrets before committing, and confirm the Git remote and SSH credentials point to a destination the user controls. <br>
+## Use Case:
 
+Developers and agent operators use this skill to maintain Git backups of an agent workspace, inspect change status, and coordinate commits and pushes to a private remote repository.
 
-## Reference(s): <br>
-- [Daily Backup ClawHub Page](https://clawhub.ai/axelhu/daily-backup) <br>
-- [Remote Repo Creation Guide](references/spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown report with shell command guidance and status strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The pre-flight script emits NOT_GIT_REPO, NO_CHANGES, or HAS_CHANGES with change counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.2 (source: server release evidence) <br>
+Risk: The skill can commit and push workspace data, which may expose sensitive files if workspace scope is loose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a private, access-controlled remote, require AGENT_WORKSPACE to be explicitly set, and review exact staged files before scheduled backups run.
+
+Risk: Scheduled backups may capture secrets, generated artifacts, or files that should not be versioned.
+
+Mitigation: Maintain a .gitignore or allowlist and run secret scanning before any commit or push.
+
+## Reference(s):
+
+- [Remote repository setup guide](artifact/references/spec.md)
+- [ClawHub skill page](https://clawhub.ai/axelhu/skills/daily-backup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with shell-command guidance and status lines from the pre-flight script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports Git repository status, change counts, and up to 30 changed file entries.]
+
+## Skill Version(s):
+
+1.9.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

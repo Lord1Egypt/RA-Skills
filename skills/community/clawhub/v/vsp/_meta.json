@@ -1,0 +1,43 @@
+{
+  "ownerId": "ou_3488869320e94c5bb58a3061feb16f16",
+  "slug": "verified-search-pro",
+  "version": "2.1.1",
+  "publishedAt": 1784390400000,
+  "author": "黄艾伦（那个谁）",
+  "license": "MIT",
+  "tags": [
+    "搜索",
+    "信息验证",
+    "多引擎",
+    "交叉验证",
+    "降噪",
+    "信息源分级",
+    "Tavily",
+    "必应",
+    "搜狗",
+    "DuckDuckGo"
+  ],
+  "platforms": [
+    "openclaw",
+    "claude-code",
+    "codex",
+    "hermes"
+  ],
+  "description": "Verified Search Pro v2.1.1：面向深度调研和事实核查的可信研究助理。整合腾讯云联网搜索（WSA）、百度（千帆）、Tavily、必应、搜狗、DuckDuckGo 与可选宿主搜索结果，将资料清洗、降噪、验证为 Markdown 报告与 claims-json/evidence-pack 证据包。触发场景：国家公园/文化公园调研、政策追踪、机构/项目研究、信息验真、竞品追踪、人物/机构背调。",
+  "minPythonVersion": "3.8",
+  "dependencies": {
+    "required": [],
+    "optional": [],
+    "external": [
+      "TAVILY_API_KEY (optional Tavily API access)",
+      "TENCENTCLOUD_SECRET_ID + TENCENTCLOUD_SECRET_KEY (optional Tencent Cloud WSA access, WeChat coverage)",
+      "BAIDU_API_KEY (optional Baidu Qianfan AI search access)",
+      "Node.js (for WeChat article fetching)"
+    ]
+  },
+  "entryPoint": "scripts/search_engine.py",
+  "config": {
+    "scriptPath": "scripts/search_engine.py"
+  },
+  "schema": "schemas/evidence-pack.schema.json"
+}

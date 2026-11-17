@@ -42,6 +42,19 @@ Each endpoint has a **weight** (1–5). Each call costs `weight` from your budge
 | GET | `/fills/{address}` | 5 | optional | Trading history (fills) for a wallet address |
 | WS | `/fills/ws` | 5/msg | optional | Real-time fills stream. Addr limits: free=1, pro=50, ultra=300 |
 
+### V2 Discover
+
+Auth **optional**. Same filter semantics and `definition_hash` across wallets/count/aggregate.
+
+| Method | Path | Weight | Description |
+|--------|------|--------|-------------|
+| GET | `/v2/famous-traders` | 1 | Curated famous traders (identity + avatar CDN). Metrics stay on `/v2/discover/wallets` |
+| POST | `/v2/discover/wallets` | 2 | Wallet list with keyset cursor pagination (no offset) |
+| POST | `/v2/discover/count` | 2 | Cohort count. Empty body `{}` = all wallets (period defaults to `all`) |
+| POST | `/v2/discover/aggregate` | 5 | Server-side cohort aggregation (account value, PnL, long/short, market/dex/asset-class) |
+
+**GET `/v2/famous-traders`** returns `{ total, items[{address, display_name, twitter, avatar_url, tag, verified, last_synced_at}], addresses }`. Pass `addresses` as `user_address_list` to `/v2/discover/wallets` for HyperX performance metrics (do not use third-party PnL).
+
 ### Market Analysis
 
 All **weight 1**, **no auth** required.

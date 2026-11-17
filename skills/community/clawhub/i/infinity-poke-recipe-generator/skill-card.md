@@ -1,45 +1,60 @@
-## Description: <br>
-Generate a small, specific, daily-life Poke recipe MVP from idea to Kitchen-ready draft (name, onboarding, integrations, automations, sandbox tests), with a lightweight uniqueness check against poke.com/recipes, publish-readiness verdict, and a repeatable improvement loop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a small, specific, daily-life Poke recipe MVP from idea to Kitchen-ready draft, including recipe fields, integrations, sandbox tests, publish-readiness checks, and an improvement loop.
 
-## Publisher: <br>
-[skylinehk](https://clawhub.ai/user/skylinehk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skylinehk](https://clawhub.ai/user/skylinehk)
 
-## Use Case: <br>
-Developers and recipe authors use this skill to scaffold narrow Poke recipe MVPs, map recipe specs into Kitchen fields, generate sandbox checks, and prepare publish-readiness review materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated recipe and integration drafts may contain TODO placeholders or unverified endpoint values. <br>
-Mitigation: Review generated files before publishing and replace placeholders with tested Poke Kitchen and MCP configuration. <br>
-Risk: Setup commands can affect Poke accounts or connect to MCP endpoints selected by the user. <br>
-Mitigation: Run generated npx poke login and mcp add commands only for accounts and endpoints the user trusts. <br>
-Risk: The recipe uniqueness check depends on visible poke.com listings and may miss unavailable or recently changed recipes. <br>
-Mitigation: Confirm the generated recipe remains unique enough before publication. <br>
+## Use Case:
 
+External developers and Poke recipe creators use this skill to scaffold narrow, daily-life Poke recipe MVPs and prepare Kitchen-ready recipe, integration, sandbox, verdict, README, and upload-instruction materials.
 
-## Reference(s): <br>
-- [Recipe Template](artifact/references/recipe-template.json) <br>
-- [Integration Template](artifact/references/integration-template.json) <br>
-- [Verdict Checklist](artifact/references/verdict-checklist.md) <br>
-- [Poke Recipes Listing](https://poke.com/recipes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Generated files containing JSON recipe and integration drafts, Markdown sandbox and review documents, and inline shell commands for Poke setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes scaffolded recipe assets under recipes/poke/<slug>/ when the helper script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Generated Kitchen instructions can include copyable shell commands derived from recipe data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before execution and verify integration URLs and names are plain data without shell syntax.
+
+Risk: The skill suggests mutable npx poke@latest commands.
+
+Mitigation: Pin the Poke CLI version before running bootstrap commands.
+
+Risk: Integration endpoints may be placeholders or may need MCP endpoint selection.
+
+Mitigation: Replace TODO endpoints, verify authentication requirements, and test the integration connection before publishing.
+
+## Reference(s):
+
+- [Recipe Template](artifact/references/recipe-template.json)
+- [Integration Template](artifact/references/integration-template.json)
+- [Verdict Checklist](artifact/references/verdict-checklist.md)
+- [Poke Recipes](https://poke.com/recipes)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus JSON templates and generated files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include copyable CLI bootstrap commands and generated recipe folders under recipes/poke/<slug>/.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

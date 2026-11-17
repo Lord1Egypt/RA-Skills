@@ -1,42 +1,57 @@
-## Description: <br>
-Operate JumpCloud through an OOMOL-connected account to search and read systems and system users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read JumpCloud data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, administrators, and support agents use this skill to inspect JumpCloud system and system-user records through an OOMOL-connected account without handling raw credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read JumpCloud systems and system users through the user's OOMOL-connected account. <br>
-Mitigation: Install only when this read access is intended, and review the OOMOL connection scopes before use. <br>
-Risk: Future releases could add write or destructive JumpCloud actions beyond the current read-only behavior. <br>
-Mitigation: Review future action lists, security summaries, and connection scopes before approving an upgrade. <br>
+## Use Case:
 
+IT administrators can list JumpCloud systems and system users or retrieve individual records by ID through a connected account.
 
-## Reference(s): <br>
-- [JumpCloud homepage](https://jumpcloud.com/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-jumpcloud) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads; read-only JumpCloud actions return JSON data through the OOMOL CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Automatic setup can run unverified remote code and make broader agent changes without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup first, install a verified oo CLI release manually, require approval before installing software, and consider disabling automatic skill synchronization.
+
+Risk: A connected JumpCloud account's credentials and data are handled by OOMOL.
+
+Mitigation: Connect a minimally privileged JumpCloud account only if you accept OOMOL handling its credentials and data.
+
+## Reference(s):
+
+- [JumpCloud API documentation](https://docs.jumpcloud.com/api/1.0/index.html)
+- [JumpCloud](https://jumpcloud.com/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [JumpCloud connection setup](https://console.oomol.com/connections/jumpcloud)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-jumpcloud)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON data with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only system and system-user lookups; available data depends on the connected account.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

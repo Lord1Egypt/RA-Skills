@@ -1,46 +1,61 @@
-## Description: <br>
-Book flights to Spain including Barcelona, Madrid, and Seville, with support for flight booking, hotels, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, and car rental through Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights to Spain including Barcelona, Madrid, and Seville. Also supports: flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more - powered by Fliggy (Alibaba Group).
 
-## Publisher: <br>
-[palexu](https://clawhub.ai/user/palexu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[palexu](https://clawhub.ai/user/palexu)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to search Spain-related travel options, especially flights to Barcelona, Madrid, and Seville. The skill collects route and date parameters, runs the flyai CLI, and formats real-time results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install @fly-ai/flyai-cli globally through npm if flyai is missing. <br>
-Mitigation: Require user confirmation before installing global packages and verify the npm package source and version before use. <br>
-Risk: The skill relies on a third-party travel CLI for booking data and links. <br>
-Mitigation: Treat CLI output as travel-search assistance only and verify booking prices, links, terms, and availability before purchase. <br>
-Risk: Travel results can be incomplete or unavailable when the CLI fails, times out, or returns invalid data. <br>
-Mitigation: Retry once, use documented fallback searches, and avoid fabricating results when CLI data is unavailable. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to search Spain flight options, collect route and date parameters, execute flyai CLI searches, and format flight results with booking links.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/palexu/explore-spain) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on flyai CLI results and include a brand tag plus [Book](detailUrl) links for every listed result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill instructs agents to install and run a global third-party flight CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI package before installation, require explicit approval before installing or executing it, and pin or verify the package source where possible.
+
+Risk: Itinerary details may be sent to a third-party flight service during searches.
+
+Mitigation: Use the skill only when sharing route, date, and travel preferences with the third-party service is acceptable.
+
+Risk: Booking links could be unsafe or outside expected domains if returned data is not validated.
+
+Mitigation: Validate booking URLs before presenting them and only include links sourced from CLI detailUrl fields.
+
+## Reference(s):
+
+- [Parameter Collection & Output Templates](artifact/references/templates.md)
+- [Scenario Playbooks](artifact/references/playbooks.md)
+- [Failure Recovery](artifact/references/fallbacks.md)
+- [Execution Runbook](artifact/references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Flight results must come from flyai CLI output, include detailUrl booking links, and avoid raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

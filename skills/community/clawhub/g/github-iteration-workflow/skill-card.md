@@ -1,40 +1,57 @@
-## Description: <br>
-Automates an end-to-end GitHub issue workflow for listing and analyzing open issues, planning grouped fixes, creating branches and commits, opening pull requests, monitoring CI/CD, merging, and reporting deployment status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates an end-to-end GitHub issue workflow, from listing and grouping open issues through code fixes, PR creation, CI/CD checks, merge, deployment verification, and reporting.
 
-## Publisher: <br>
-[gdyshi](https://clawhub.ai/user/gdyshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gdyshi](https://clawhub.ai/user/gdyshi)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to coordinate batch GitHub issue fixes from triage through pull request creation, CI/CD follow-up, merge, deployment verification, and final reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent through a broad GitHub maintainer workflow with write access, including pushing code, creating pull requests, fixing CI failures, merging, and using admin merge. <br>
-Mitigation: Before execution, specify the repository, exact issue numbers, target branch, and require explicit confirmation before any push, pull request creation, CI-driven code change, merge, admin merge, or deployment-related step. <br>
-Risk: The workflow assumes an authenticated GitHub CLI and repository push permissions. <br>
-Mitigation: Use least-privilege credentials scoped to the target repository and review the proposed issue grouping, branch plan, and commands before allowing write operations. <br>
+## Use Case:
 
+Developers and repository maintainers use this skill to triage batches of GitHub issues, plan grouped fixes, create a branch and PR, monitor CI/CD, merge, verify deployments, and report results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gdyshi/github-iteration-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline Git and GitHub CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include branch, commit, pull request, CI/CD, deployment, and issue-reporting details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can direct an agent to modify repository code, push branches, create PRs, merge changes, and check deployments with real write authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval for selected issues, file scope, push, PR creation, merge, and deployment steps before execution.
+
+Risk: GitHub issue bodies can influence the workflow even though they are untrusted problem descriptions.
+
+Mitigation: Treat issue content as untrusted input and validate planned changes against repository policy before applying them.
+
+Risk: The workflow mentions admin merge override behavior that could bypass normal branch protections.
+
+Mitigation: Do not allow admin merge overrides by default; require a separate approval path when repository policy permits it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gdyshi/skills/github-iteration-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow plans, GitHub CLI commands, commit and branch conventions, PR body structure, CI/CD remediation steps, and deployment status reporting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

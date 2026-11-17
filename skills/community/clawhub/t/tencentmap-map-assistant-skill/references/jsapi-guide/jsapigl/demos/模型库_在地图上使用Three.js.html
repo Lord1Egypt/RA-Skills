@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>GLCustomLayer-全国行政区划图</title>
 </head>
-<script charset="utf-8" src="https://map.qq.com/api/gljs?v=1.exp&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&libraries=model"></script>
+<script charset="utf-8" src="https://map.qq.com/api/gljs?v=1.exp&key={TMAP_JSAPI_KEY}&libraries=model"></script>
 <script src="https://mapapi.qq.com/web/jsapiGL/three-155/three@0.155.js"></script>
 <script src="https://lbs.gtimg.com/visual/lbs_component/v/jquery-1.11.0.min.js"></script>
 <script src="https://mapapi.qq.com/web/visualization/demo-asset/styleMap.js"></script>
@@ -144,7 +144,7 @@
 
         function createJsonMap() {
             $.ajax({
-                url: "https://apis.map.qq.com/ws/district/v1/getchildren?key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&output=jsonp&get_polygon=2&max_offset=3000", // 请求地址+参数
+                url: "https://apis.map.qq.com/ws/district/v1/getchildren?key={TMAP_JSAPI_KEY}&output=jsonp&get_polygon=2&max_offset=3000", // 请求地址+参数
                 type: "GET", //get请求
                 dataType: "JSONP", //指定服务器返回的数据类型
                 success: function (res) {

@@ -1,44 +1,59 @@
-## Description: <br>
-Analyzes chat records to produce structured personality, communication-style, and psychological-profile reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes chat records to infer personality traits, speaking style, and psychological profile, then produces a structured report.
 
-## Publisher: <br>
-[yangmanqi2104201431-ship-it](https://clawhub.ai/user/yangmanqi2104201431-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangmanqi2104201431-ship-it](https://clawhub.ai/user/yangmanqi2104201431-ship-it)
 
-## Use Case: <br>
-External users and developers use this skill to analyze consented chat text, screenshots, or exported files and generate structured personality reports for a target speaker. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill profiles people from private chat records and may expose sensitive personal or relationship information. <br>
-Mitigation: Use it only with consent and lawful authority, and remove unnecessary personal details before analysis. <br>
-Risk: Speculative dark-trait, trigger, and imitation sections could be misused for manipulation, harassment, impersonation, or consequential decisions about someone. <br>
-Mitigation: Treat outputs as non-clinical speculation and do not use them to harass, manipulate, impersonate, or make decisions affecting rights, access, or opportunities. <br>
-Risk: Screenshots or exported chats may contain private data that is exposed to helper tools during OCR, upload, or PDF conversion. <br>
-Mitigation: Avoid uploading private screenshots unless the helper tools are trusted for the data, and review generated files before sharing. <br>
+## Use Case:
 
+External users use this skill to analyze permitted chat records or extracted screenshot text for personality, communication style, values, emotional patterns, and relationship needs. Outputs should be treated as speculative, non-clinical observations rather than definitive psychological assessments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangmanqi2104201431-ship-it/personality-analysis) <br>
-- [Analysis framework](artifact/references/analysis-framework.md) <br>
-- [Report template](artifact/references/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown report and generated PDF file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use OCR or file-upload helper skills for screenshots and md2pdf for PDF delivery; outputs should be treated as speculative personality analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill analyzes chat records and screenshots that may contain private or third-party data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with conversations the user is allowed to analyze; remove unnecessary personal data and avoid uploading sensitive screenshots.
+
+Risk: The skill asks for personality and psychological judgments that can be mistaken for clinical or factual conclusions.
+
+Mitigation: Frame outputs as speculative, evidence-limited, non-clinical observations and avoid diagnostic language.
+
+Risk: The artifact includes dark-trait, manipulation, and style-imitation sections that can enable harmful profiling or impersonation.
+
+Mitigation: Keep outputs focused on benign understanding and communication safety, and refuse requests that support harassment, coercion, or impersonation.
+
+## Reference(s):
+
+- [Analysis Framework](artifact/references/analysis-framework.md)
+- [Report Template](artifact/references/report-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/yangmanqi2104201431-ship-it/skills/personality-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Markdown report with optional PDF file conversion]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured personality analysis report covering HEXACO, MBTI-style inference, values, emotional patterns, interpersonal needs, and communication guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

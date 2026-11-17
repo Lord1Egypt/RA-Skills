@@ -1,40 +1,49 @@
-## Description: <br>
-Book Dog Walker helps agents find dog-walker services, check availability, and create bookings through Lokuli's MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book dog-walker services through Lokuli MCP by searching providers, checking availability, and creating bookings.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-Agents serving pet owners can use this skill to search for dog-walker services, check provider availability, and prepare a booking through Lokuli. The workflow is intended for user-directed service discovery and booking. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can prepare bookings that include personal contact details. <br>
-Mitigation: Before creating a booking, confirm the provider, date, time, price or cancellation terms if available, and get user approval before sending contact details. <br>
-Risk: The skill relies on Lokuli for dog-walker searches and bookings. <br>
-Mitigation: Install and use the skill only when the user is comfortable using Lokuli for this service workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Dog Walker on ClawHub](https://clawhub.ai/edwardrodriguez703-design/book-dog-walker) <br>
-- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can ask an agent to find dog-walker services near a ZIP code, check availability, and prepare a booking through Lokuli after confirming details.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown or plain text with JSON-RPC tool call details when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider search results, availability details, and booking request fields for user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A booking flow can disclose customer contact details or create a service request with incorrect provider, service, or time-slot information.
+
+Mitigation: Before creating a booking, have the agent show the provider, service, time slot, and contact details, then request explicit user confirmation.
+
+## Reference(s):
+
+- [Book Dog Walker ClawHub page](https://clawhub.ai/edwardrodriguez703-design/skills/book-dog-walker)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, configuration]
+
+**Output Format:** [Markdown with JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Lokuli's external MCP service for search, availability checks, and booking creation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

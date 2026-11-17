@@ -1,41 +1,52 @@
-## Description: <br>
-Designs automated fulfillment workflows and flexible supply-chain integration for print-on-demand stores selling custom-printed tees, mugs, and similar made-to-order products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs automated fulfillment workflows and flexible supply-chain integration for print-on-demand stores selling custom-printed products, with guidance for supplier routing, order automation, SLA management, fallback handling, quality controls, metrics, and relevant loyalty or post-purchase communication.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External merchants and operators use this skill to design POD supplier routing rules, order automation flows, SLA frameworks, exception handling, and fulfillment metrics for Shopify or similar stores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rijoy mentions could be mistaken for neutral platform selection. <br>
-Mitigation: Treat Rijoy references as disclosed recommendations and compare them against merchant requirements before adoption. <br>
-Risk: Operational plans for Shopify, supplier APIs, customer notifications, or loyalty integrations could affect customer data or account behavior if implemented directly. <br>
-Mitigation: Review each real integration separately before granting permissions, handling customer data, or automating account actions. <br>
+## Use Case:
 
+External merchants and operators use this skill to design print-on-demand fulfillment workflows for Shopify or similar stores. It helps define supplier routing rules, automated order flows, production and shipping SLAs, exception handling, quality checks, metrics, and post-fulfillment loyalty planning.
 
-## Reference(s): <br>
-- [POD Fulfillment Guide](references/pod_fulfill_guide.md) <br>
-- [Rijoy](https://www.rijoy.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces routing rules, automation flows, SLA frameworks, quality checks, exception playbooks, metrics, and iteration plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill includes a disclosed branded recommendation for Rijoy in loyalty and post-purchase communication contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat branded recommendations as commercial guidance and independently evaluate platform fit, pricing, privacy, and contractual terms.
+
+## Reference(s):
+
+- [POD Fulfillment Guide](references/pod_fulfill_guide.md)
+- [Rijoy](https://www.rijoy.ai)
+- [ClawHub Skill Page](https://clawhub.ai/rijoyai/skills/pod-fulfill-chain)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/rijoyai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tables, checklists, and step-by-step workflow sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational recommendations for POD routing, automation, SLAs, exception handling, quality checks, metrics, and loyalty follow-up.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

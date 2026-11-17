@@ -1,40 +1,48 @@
-## Description: <br>
-Book computer-repair services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book computer-repair services through Lokuli MCP.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to search for computer-repair providers, check appointment availability, and create a repair booking through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create a real third-party repair appointment and send contact details without documented confirmation or consent safeguards. <br>
-Mitigation: Require explicit user confirmation of the provider, service, time, price or fees if available, cancellation terms, and exact contact information before creating any booking. <br>
-Risk: Search and booking details may be sent to Lokuli. <br>
-Mitigation: Use only if the user is comfortable sharing the required search and booking information with Lokuli. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-computer-repair) <br>
+## Use Case:
 
+External users use this skill to search for computer-repair providers, check availability, and create bookings through Lokuli's MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, API Calls, guidance] <br>
-**Output Format:** [Text and JSON-RPC tool call arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include search criteria, availability details, booking details, and customer contact information.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send customer contact details to an external booking service when creating a booking.
+
+Mitigation: Confirm the provider, time slot, customer name, email, and phone number with the user before submission.
+
+## Reference(s):
+
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown and JSON-RPC tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider search criteria, availability selections, booking details, and confirmation prompts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Comprehensive trading knowledge base covering fundamentals, technicals, strategies, backtesting, and risk management for agents building trading apps or evaluating strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive trading knowledge base covering fundamentals, technicals, strategies, backtesting, and risk management.
 
-## Publisher: <br>
-[rmbell09-lang](https://clawhub.ai/user/rmbell09-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rmbell09-lang](https://clawhub.ai/user/rmbell09-lang)
 
-## Use Case: <br>
-Developers and external users use this skill as a trading education and strategy reference when building trading apps, evaluating strategy ideas, and planning backtesting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contains trading education and strategy guidance that could be mistaken for personalized financial, legal, or tax advice. <br>
-Mitigation: Treat outputs as educational references only, independently verify any strategy, and consult qualified professionals for financial, legal, or tax decisions. <br>
-Risk: Following strategy suggestions without validation could lead to losses from overfitting, poor data quality, fees, slippage, or changing market conditions. <br>
-Mitigation: Backtest with clean data, include fees and slippage, use out-of-sample validation, paper trade first, and start with minimal position sizes only after review. <br>
-Risk: Artifact content discusses broker and exchange APIs, including live trading and API key handling. <br>
-Mitigation: Do not give an agent live trading keys or withdrawal permissions without a separate security review; prefer read-only keys, testnets, paper trading, IP allowlists, and independent operator approval. <br>
+## Use Case:
 
+Developers, analysts, and agent builders use this skill as a trading research and system-design reference for strategy evaluation, backtesting, technical indicators, and risk management. Outputs should be treated as informational support rather than financial advice or authorization to trade.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rmbell09-lang/trading-strategies) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional code, shell commands, and configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No automatic trading, installation, credential access, persistence, or live order execution behavior is present in artifact evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Trading guidance can be mistaken for financial advice or treated as an instruction to execute live trades.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review for trading decisions and treat skill output as informational research support only.
+
+Risk: Agent-built trading systems may introduce financial loss through unvalidated strategies, overfitting, or incorrect market assumptions.
+
+Mitigation: Use paper trading, out-of-sample backtesting, explicit limits, and compliance review before any live deployment.
+
+Risk: Broker or exchange API keys could enable unwanted live trading if connected without controls.
+
+Mitigation: Use withdrawal-disabled keys, explicit trade approvals, position and loss limits, and separate implementation review before connecting broker or exchange APIs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rmbell09-lang/skills/trading-strategies)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with possible code, shell command, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational trading research and system-design support; does not include executable code in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

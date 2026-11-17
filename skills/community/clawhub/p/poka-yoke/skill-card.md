@@ -1,42 +1,54 @@
-## Description: <br>
-Mistake-proofing technique manager. Use when json poka yoke tasks, csv poka yoke tasks, checking poka yoke status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mistake-proofing technique manager. Use when json poka yoke tasks, csv poka yoke tasks, checking poka yoke status.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and operators use this skill to manage a local poka-yoke entry log, including adding, listing, searching, removing, exporting, and summarizing mistake-proofing records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled CLI writes local records and configuration files. <br>
-Mitigation: Set POKA_YOKE_DIR to an intended workspace-specific directory before use when persistent local state should be isolated. <br>
-Risk: Export commands can create JSON or CSV files in the current directory. <br>
-Mitigation: Run export from the desired output directory and review generated files before sharing them. <br>
+## Use Case:
 
+External users and developers use this skill to manage local poka-yoke records, including adding, listing, searching, removing, exporting, and configuring entries for mistake-proofing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/poka-yoke) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and local CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local data under POKA_YOKE_DIR, defaulting to ~/.poka-yoke, and may export JSON or CSV files in the current directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The ClawHub security scan reports a suspicious verdict because an unsafe config command can be abused to run shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only trusted local input, and avoid passing untrusted text to config until the command-injection issue is fixed.
+
+Risk: The scan summary and guidance note weak safeguards around JSON/CSV escaping, remove operations, and export overwrite behavior.
+
+Mitigation: Do not use this release for sensitive records; review exported data, confirm destructive removals manually, and avoid overwriting important files until these behaviors are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/poka-yoke)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local JSONL data, configuration text, and export files under the configured POKA_YOKE_DIR or current working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

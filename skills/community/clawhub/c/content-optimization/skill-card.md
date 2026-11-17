@@ -1,39 +1,49 @@
-## Description: <br>
-Helps agents optimize SEO content for word count, H2 keyword placement, keyword density, multimedia, tables, lists, and content structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides on-page SEO content optimization across word count, H2 keyword placement, keyword density, multimedia, tables, and lists.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External users and content teams use this skill to guide SEO content optimization, including content length, heading keyword placement, natural keyword use, and structured media recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local project context files may contain sensitive business information that the agent can use when generating SEO recommendations. <br>
-Mitigation: Review .claude/project-context.md and .cursor/project-context.md before installation or use, and keep only information suitable for agent-assisted content work. <br>
-Risk: SEO guidance can become misleading if applied without editorial judgment or current competitive review. <br>
-Mitigation: Review recommendations before publishing and validate word count, structure, and keyword choices against the target audience and current search results. <br>
+## Use Case:
 
+Content marketers, SEO practitioners, and developers use this skill to audit and plan on-page content for search intent, heading coverage, natural keyword use, and snippet-friendly structures.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include word count recommendations, H2 outlines, keyword density checks, structure guidance for tables and lists, and a multimedia checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: frontmatter and release evidence) <br>
+Risk: The skill may activate for ordinary writing or formatting requests because its trigger terms include word count and bullet points.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify whether the user wants SEO-focused content optimization before applying SEO guidance to generic writing tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/content-optimization)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with recommendations, outlines, checks, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference related SEO skills for keyword research, image optimization, video optimization, featured snippets, and competitor research.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

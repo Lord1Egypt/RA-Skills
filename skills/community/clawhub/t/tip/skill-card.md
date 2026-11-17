@@ -1,38 +1,54 @@
-## Description: <br>
-Recognizes a user's tipping intent, collects and validates a tip amount, asks for confirmation, and then calls a payment skill to create the tip payment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes a user's intent to tip, collect and validate a tip amount, confirm the amount with the user, and call the payment skill to complete the payment.
 
-## Publisher: <br>
-[sayxxx](https://clawhub.ai/user/sayxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sayxxx](https://clawhub.ai/user/sayxxx)
 
-## Use Case: <br>
-External users and agent operators use this skill to handle tip, appreciation, or gift-giving payment flows after collecting a valid amount and asking the user to confirm payment intent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can create a payment order without clearly confirming the intended recipient or merchant. <br>
-Mitigation: Use only with a trusted payment skill and require confirmation of both the monetary intent and the intended recipient before real tips are paid. <br>
+## Use Case:
 
+External agents use this skill when a user expresses an explicit tipping, appreciation, or gift intent. It collects a positive amount up to 10000 yuan, asks for confirmation, and passes payment parameters to the payment skill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sayxxx/tip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown-like conversational text with payment result details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a payment trade code and payment link returned by the paired payment skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create payment orders without clearly binding or confirming who receives the money.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit tipping intent and show the verified recipient and amount before creating or presenting a payment order.
+
+Risk: Users could follow untrusted payment links.
+
+Mitigation: Only display payment links from trusted payment systems and review returned payment links before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sayxxx/skills/tip)
+- [Publisher profile](https://clawhub.ai/user/sayxxx)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown conversation responses with payment skill parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Collects amount, validates amount > 0 and amount <= 10000, confirms with the user, and passes amount, order_type, and description to the payment skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

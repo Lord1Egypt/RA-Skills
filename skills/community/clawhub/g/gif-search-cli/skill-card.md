@@ -1,44 +1,58 @@
-## Description: <br>
-Search GIF providers with CLI/TUI, download results, and extract stills/sheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search GIF providers with CLI/TUI, download results, and extract stills/sheets.
 
-## Publisher: <br>
-[utromaya-code](https://clawhub.ai/user/utromaya-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utromaya-code](https://clawhub.ai/user/utromaya-code)
 
-## Use Case: <br>
-Developers, creators, and agent users use this skill to find GIFs from supported providers, preview results, download selected media, and extract still images or contact sheets for review and sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires the external gifgrep binary, so agent guidance may fail or produce unusable commands if gifgrep is not installed. <br>
-Mitigation: Install gifgrep using one of the documented ClawHub installation methods before relying on the workflow. <br>
-Risk: Provider-specific searches may require API credentials, and missing credentials can limit GIF search behavior. <br>
-Mitigation: Configure required provider environment variables such as GIPHY_API_KEY when selecting providers that require them. <br>
-Risk: The security guidance recommends reviewing commands before running powerful, user-directed workflows. <br>
-Mitigation: Review generated shell commands before execution, especially in sensitive repositories or accounts. <br>
+## Use Case:
 
+Developers and external users can use this skill to ask an agent for gifgrep CLI workflows that search GIF providers, preview results, download GIFs, and extract still images or sprite sheets.
 
-## Reference(s): <br>
-- [Gifgrep Homepage](https://gifgrep.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/utromaya-code/gif-search-cli) <br>
-- [Publisher Profile](https://clawhub.ai/user/utromaya-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference gifgrep CLI output, downloaded GIF files, still PNG images, contact sheet PNG images, provider URLs, and optional provider API key environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The skill relies on an external gifgrep CLI installed from a Homebrew tap or Go module.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after deciding that the upstream tap or Go module is acceptable for the environment.
+
+Risk: Commands using --download or --reveal can create files in ~/Downloads or open Finder.
+
+Mitigation: Use those options only when local file creation or Finder reveal behavior is intended.
+
+Risk: Provider API keys may be supplied through GIPHY_API_KEY or TENOR_API_KEY.
+
+Mitigation: Provide only the provider credentials needed for the selected GIF source.
+
+## Reference(s):
+
+- [Gifgrep homepage](https://gifgrep.com)
+- [ClawHub Gifgrep release](https://clawhub.ai/utromaya-code/skills/gif-search-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include commands that download GIFs to ~/Downloads, reveal files in Finder, or configure provider API keys.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Founder Signal turns verified Reddit and V2EX evidence into a small, reviewable signal package for founders evaluating product demand and positioning across one or more configured product profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Founder Signal turns verified Reddit and V2EX evidence into a small, reviewable signal package for founders evaluating product demand and positioning across one or more configured product profiles.
 
-## Publisher: <br>
-[toliuweijing](https://clawhub.ai/user/toliuweijing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toliuweijing](https://clawhub.ai/user/toliuweijing)
 
-## Use Case: <br>
-Founders and product teams use this skill to gather verified Reddit and V2EX demand signals, score candidate evidence, and generate reviewable founder research artifacts for product positioning decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Every run review is automatically sent to a public Draft page by default, including failed or no-evidence runs. <br>
-Mitigation: Use only public-safe product profiles and evidence snapshots, or modify the workflow to require explicit approval before any Draft publication. <br>
-Risk: The documented config confirmation flag is not a reliable gate for Draft publication in this version. <br>
-Mitigation: Review generated public-run-review.md and draft-publish-intent.json before running with sensitive internal research, and disable or gate the automatic Draft publish step when privacy matters. <br>
+## Use Case:
 
+External founders and product teams use this skill to configure product profiles, discover Reddit and V2EX demand signals, verify candidate evidence, score findings, and generate review artifacts plus Draft review pages.
 
-## Reference(s): <br>
-- [Founder Signal ClawHub page](https://clawhub.ai/toliuweijing/founder-signal) <br>
-- [Draft CLI dependency](https://clawhub.ai/toliuweijing/draft-cli) <br>
-- [Profile setup documentation](profiles/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON run artifacts, Draft publish intent JSON, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local run folders under the Founder Signal runtime home and prepares a Draft public-page publish intent for each profile run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.14 (source: frontmatter and server release evidence) <br>
+Risk: Public Draft review pages may expose configured product names, source URLs, scores, generated recommendations, and failure details because Draft publication is attempted automatically for every run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when public Draft publication is acceptable, or require a version that keeps reviews local by default and asks before publishing.
+
+Risk: Research quality depends on verified Reddit or V2EX evidence and saved snapshots; missing or stale evidence can produce weak or misleading demand signals.
+
+Mitigation: Review the source URLs, verification status, selected candidate, and generated Action Card before relying on recommendations.
+
+## Reference(s):
+
+- [Founder Signal on ClawHub](https://clawhub.ai/toliuweijing/skills/founder-signal)
+- [Draft CLI dependency](https://clawhub.ai/toliuweijing/draft-cli)
+- [Founder Signal Profiles](profiles/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports and public run reviews, JSON run artifacts and configuration, local files, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes runtime artifacts under the Founder Signal home directory and attempts Draft public-page publication for each run.]
+
+## Skill Version(s):
+
+0.2.14 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

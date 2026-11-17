@@ -1,41 +1,57 @@
-## Description: <br>
-Configure firewalls on servers and cloud providers with security best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure firewalls on servers and cloud providers with security best practices.
 
-## Publisher: <br>
-[gonzachee](https://clawhub.ai/user/gonzachee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gonzachee](https://clawhub.ai/user/gonzachee)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to reason about firewall rules for servers and cloud providers, including SSH access, default-deny inbound policy, provider firewalls, Docker exposure, IPv6 coverage, and common misconfigurations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect firewall guidance or unreviewed rule changes can block SSH or remote administration access, especially on remote servers. <br>
-Mitigation: Require explicit user confirmation before applying firewall changes, allow remote access first, test from a second session, and confirm provider-console recovery access. <br>
-Risk: The registry listing and package metadata do not fully match, which can reduce confidence that the displayed release and packaged artifact describe the same state. <br>
-Mitigation: Confirm the publisher and release metadata before installation, and treat the skill as guidance rather than executable authority. <br>
-Risk: Docker, IPv6, or provider-level firewall behavior can differ from host firewall assumptions and leave services unexpectedly exposed. <br>
-Mitigation: Review provider, host, Docker, and IPv6 rules together; verify exposure from outside the network before relying on the configuration. <br>
+## Use Case:
 
+Developers and operators use this skill as firewall guidance for servers and cloud providers, including SSH access safety, default deny rules, provider firewalls, IP restrictions, Docker exposure, IPv6, and debugging.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown firewall guidance and configuration considerations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not include executable code, automation, hidden telemetry, persistence, or credential requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: target metadata and server release evidence) <br>
+Risk: Firewall changes can lock out remote access if SSH or the management path is blocked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm required ports and IP ranges, keep provider console or another recovery path available, and test remote access in a second session before closing the first.
+
+Risk: Opening unnecessary ports or exposing databases can increase attack surface.
+
+Mitigation: Open only explicitly needed services, prefer private networks or SSH tunnels for databases, and review temporary rules for removal.
+
+Risk: Docker and IPv6 behavior can bypass or differ from expected host firewall coverage.
+
+Mitigation: Check Docker port bindings and provider-level controls, and configure both IPv4 and IPv6 rules where applicable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gonzachee/skills/my-firewall-v2)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with possible inline shell commands or configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential handling, persistence, or hidden behavior identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

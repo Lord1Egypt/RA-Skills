@@ -1,0 +1,9 @@
+{
+  "name": "polymarket-place-scripts",
+  "version": "1.0.11",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@hypelens/polymarket-place": "0.1.16"
+  }
+}

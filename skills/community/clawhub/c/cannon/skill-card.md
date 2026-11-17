@@ -1,49 +1,64 @@
-## Description: <br>
-Cannon package manager for Ethereum deployments. Use when building, testing, deploying, or inspecting Cannon packages. Covers cannonfile syntax, CLI commands (build, run, test, publish, inspect), actions (deploy, invoke, clone, pull, router, diamond), and package workflows. NOT for general Solidity development questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cannon helps AI agents build, test, deploy, inspect, publish, and troubleshoot Cannon packages for Ethereum smart contract deployments.
 
-## Publisher: <br>
-[dbeal-eth](https://clawhub.ai/user/dbeal-eth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dbeal-eth](https://clawhub.ai/user/dbeal-eth)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide Cannon package workflows for Ethereum smart contract builds, tests, deployments, publishing, inspection, and registry operations. It is intended for Cannon-specific deployment work, not general Solidity development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real Cannon deploy, publish, register, or publisher-management commands can affect on-chain state, fees, package ownership, or published artifacts. <br>
-Mitigation: Run dry-run first, explain the exact operation, and verify chain ID, RPC URL, wallet, package/version, artifacts, fees, and command before any real execution. <br>
-Risk: Private keys or privileged wallets used for deployment and publishing can expose funds or package permissions if mishandled. <br>
-Mitigation: Use a dedicated low-balance deployment key, prefer environment variables or impersonation for simulations, and require explicit approval before using a real private key. <br>
-Risk: Wrong-network or wrong-version deployment guidance can create irreversible blockchain state. <br>
-Mitigation: Test locally on Cannon Network chain 13370 before target chains and confirm package references, presets, and target network details with the user. <br>
+## Use Case:
 
+Developers and engineers use this skill to have an AI assistant generate or review Cannon CLI commands, cannonfile TOML, deployment workflows, testing patterns, registry publishing steps, and troubleshooting guidance for Ethereum smart contract packages.
 
-## Reference(s): <br>
-- [Cannon CLI Reference](references/cli.md) <br>
-- [Cannonfile Specification](references/cannonfile.md) <br>
-- [Testing Patterns](references/testing.md) <br>
-- [Registry and Publishing](references/registry.md) <br>
-- [Full Cannonfile JSON Schema](https://raw.githubusercontent.com/usecannon/cannon/refs/heads/dev/packages/lsp/src/schema.json) <br>
-- [Cannonfile Fragment JSON Schema](https://raw.githubusercontent.com/usecannon/cannon/refs/heads/dev/packages/lsp/src/schema-fragment.json) <br>
-- [Cannon Deployments](https://usecannon.com/deploy) <br>
-- [Cannon Website](https://usecannon.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose high-impact blockchain commands that require dry-run, review, and explicit confirmation before real execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.26.0 (source: ClawHub release metadata) <br>
+Risk: Real-network Cannon deployments, registry registration, publisher management, and package publishing can be irreversible.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local testing and dry-run mode first, explain the planned operation, require explicit approval before funded or production network actions, and double-check chain ID, package name, version, and preset.
+
+Risk: Cannon workflows may involve funded wallets or private keys.
+
+Mitigation: Prefer hardware or managed signers, avoid raw private keys where possible, keep any required key material scoped to the environment, and run the skill in an isolated development workspace.
+
+Risk: Tool installation and package publishing steps can pull remote code or expose project contents through registry and IPFS workflows.
+
+Mitigation: Pin and verify tooling before use, review package contents before publishing, and use Cannon privacy controls when source code should not be included in published packages.
+
+## Reference(s):
+
+- [CLI Reference](references/cli.md)
+- [Cannonfile Specification](references/cannonfile.md)
+- [Testing Patterns](references/testing.md)
+- [Registry and Publishing](references/registry.md)
+- [Cannon JSON Schema](https://raw.githubusercontent.com/usecannon/cannon/refs/heads/dev/packages/lsp/src/schema.json)
+- [Cannon Fragment Schema](https://raw.githubusercontent.com/usecannon/cannon/refs/heads/dev/packages/lsp/src/schema-fragment.json)
+- [Cannon Deploy](https://usecannon.com/deploy)
+- [Cannon Website](https://usecannon.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, TOML snippets, and Solidity examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes safety guidance for dry-runs, wallet and key handling, chain selection, testing, and registry publishing.]
+
+## Skill Version(s):
+
+2.26.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

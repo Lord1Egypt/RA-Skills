@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn7ejrk3vtjqzxbjn3b3k2n1ph811y3d",
-  "slug": "generate-news-article",
+  "name": "generate_news_article",
   "version": "1.0.0",
-  "publishedAt": 1771913285207
+  "description": "Generate news articles from SerpAPI search results and save as Markdown with time-based directory structure",
+  "author": "wechatai",
+  "keywords": ["news", "article", "markdown", "serpapi", "ai"],
+  "scripts": {
+    "generate": "scripts/generate.sh"
+  },
+  "dependencies": {
+    "serpapi": "*"
+  }
 }

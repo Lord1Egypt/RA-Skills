@@ -1,40 +1,53 @@
-## Description: <br>
-社区团购选品策略全链路技能包。涵盖选品战略、品类分级、各平台选品逻辑对比、定价方法论、选品 SOP 及配套工具。不含供应链执行（见模块四）、仓储物流（见模块五）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Community group-buying product-selection guidance covering assortment strategy, category grading, platform comparisons, pricing methods, selection SOPs, and supporting calculators, while excluding supply-chain execution and warehousing logistics.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Community group-buying operators, product managers, and category teams use this skill to choose products, classify SKU roles, compare platform selection logic, price items, and apply product-selection risk controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market figures, legal thresholds, and operational recommendations may be outdated or jurisdiction-specific. <br>
-Mitigation: Verify market data, contracts, and local regulations before taking supplier, delisting, refund, or legal actions. <br>
-Risk: Embedded calculators and SOPs may oversimplify real platform costs, logistics constraints, quality issues, or compliance requirements. <br>
-Mitigation: Validate formulas against current business data and run limited pilots before using recommendations for production decisions. <br>
+## Use Case:
 
+External operators, product managers, and analysts use this skill to evaluate community group-buying products, compare category and platform fit, estimate pricing and margins, and structure product-selection risk checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/local-community-group-buying-product-selection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with Chinese-language business guidance, SOPs, checklists, and embedded Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes reference calculators and comparison helpers that users should validate before operational use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and changelog mention 1.1.0) <br>
+Risk: The skill gives business guidance on delisting, refunds, supplier blacklists, legal escalation, pricing formulas, and logistics changes that could affect real users or suppliers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as advisory and manually validate them against current law, contracts, supplier records, and business approvals before applying them.
+
+Risk: The artifact content is Chinese-only, which can create review gaps for teams that do not read Chinese fluently.
+
+Mitigation: Have qualified Chinese-language reviewers validate the guidance before deploying it to operational users.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nic-yuan/skills/local-community-group-buying-product-selection)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with Chinese prose, tables, checklists, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language business guidance; no autonomous installation, data access, persistence, or action execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and auto changelog mention 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

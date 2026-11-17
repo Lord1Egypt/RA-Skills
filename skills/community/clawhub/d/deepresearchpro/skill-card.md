@@ -1,43 +1,55 @@
-## Description: <br>
-DeepResearchPro guides agents through cross-language, multi-platform deep research and produces structured reports with traceable citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepResearchPro guides an agent through cross-language, multi-platform research and produces structured reports with source tracking and citations.
 
-## Publisher: <br>
-[APTjason](https://clawhub.ai/user/APTjason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aptjason](https://clawhub.ai/user/aptjason)
 
-## Use Case: <br>
-External users, analysts, and researchers use this skill to plan web searches across news, social, and academic sources, cross-check claims, and write cited deep research reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries and visited pages may be sent to external search engines and websites. <br>
-Mitigation: Avoid sensitive or confidential topics in queries unless the environment and data handling are approved. <br>
-Risk: Generated reports can include stale, incomplete, or weakly dated source material. <br>
-Mitigation: Review final citations, publication dates, and source reliability before using the report for decisions or publication. <br>
+## Use Case:
 
+Researchers, analysts, and agents use this skill to plan and conduct broad web research across news, academic, and social platforms, then synthesize the results into a cited analytical report.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/APTjason/deepresearchpro) <br>
-- [Publisher profile](https://clawhub.ai/user/APTjason) <br>
-- [Report template](references/report-template.md) <br>
-- [Search platforms guide](references/search-platforms.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown research reports with numbered citations, reference indexes, and tool-use guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires fresh web access; final citations, dates, and source quality should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Research reports may include outdated, weakly supported, or incorrectly verified citations, especially for current events or high-stakes topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually verify cited URLs, publication dates, source domains, and important claims before relying on the report.
+
+Risk: Broad web browsing across news, academic, and social platforms can surface low-quality, duplicated, or biased sources.
+
+Mitigation: Cross-check important claims across independent authoritative sources and clearly label unresolved disagreements in the final report.
+
+## Reference(s):
+
+- [DeepResearchPro ClawHub listing](https://clawhub.ai/aptjason/skills/deepresearchpro)
+- [Search platform guide](references/search-platforms.md)
+- [Research report template](references/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with numbered citations and reference list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include search plans, source-quality notes, disagreement analysis, and citation indexes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

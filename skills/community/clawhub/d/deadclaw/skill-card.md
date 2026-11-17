@@ -1,46 +1,65 @@
-## Description: <br>
-Emergency kill switch for OpenClaw agents that can halt running agents, pause scheduled jobs, kill active sessions, log incidents, and report status through message, WebChat, phone shortcut, or watchdog triggers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeadClaw is an emergency stop skill for OpenClaw agents that can halt running agents, pause scheduled jobs, stop active sessions, log incidents, and provide status or restore guidance from chat, WebChat, phone shortcut, or watchdog triggers.
 
-## Publisher: <br>
-[Kintupercy](https://clawhub.ai/user/Kintupercy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kintupercy](https://clawhub.ai/user/kintupercy)
 
-## Use Case: <br>
-External OpenClaw users and operators use DeadClaw to stop, monitor, and restore agent processes when autonomous agents run away, spend unexpectedly, make unauthorized network calls, or need an emergency shutdown from a phone, chat channel, or dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote triggers can grant broad shutdown and restore authority over OpenClaw agents. <br>
-Mitigation: Install only where trigger channels are controlled, use namespaced trigger words, restrict authorized senders and channels, and test with --dry-run before enabling live actions. <br>
-Risk: Phone shortcuts and messaging integrations can expose or misuse trigger paths if tokens or channels are not controlled. <br>
-Mitigation: Avoid storing Telegram bot tokens in phone shortcuts when possible, restrict bot access, and rotate or revoke exposed credentials. <br>
-Risk: Watchdog and restore behavior can stop or restart jobs in the target environment. <br>
-Mitigation: Review the exact watchdog thresholds, restore behavior, crontab backups, and workspace settings in the deployed copy before enabling the skill. <br>
+## Use Case:
 
+Developers and operators use DeadClaw as an emergency control for OpenClaw deployments when agents appear runaway, suspicious, too costly, or need to be stopped from a remote surface. It also helps inspect current agent state and restore paused jobs or containers after the incident is reviewed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Kintupercy/deadclaw) <br>
-- [DeadClaw README](artifact/deadclaw/README.md) <br>
-- [ClawHub Listing](artifact/deadclaw/docs/clawhub-listing.md) <br>
-- [iPhone Shortcut Guide](artifact/deadclaw/docs/iphone-shortcut-guide.md) <br>
-- [Android Widget Guide](artifact/deadclaw/docs/android-widget-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown status, confirmation, setup, and recovery guidance with shell command invocations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute kill, status, restore, or watchdog scripts; supports dry-run behavior for testing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Broad chat triggers and simple buttons can stop or restart OpenClaw resources without adequate authorization safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a namespaced admin-only trigger, restrict allowed senders and channels, and require confirmation for kill and restore actions.
+
+Risk: The skill can stop agents, containers, sessions, cron jobs, and user services.
+
+Mitigation: Install only where emergency-stop authority is intended, test with dry-run mode before live use, and protect cron backups.
+
+Risk: Phone shortcuts may store Telegram bot tokens as long-lived credentials.
+
+Mitigation: Treat shortcut tokens as secrets, limit who can access them, and rotate tokens if they are shared or exposed.
+
+Risk: Overly broad process patterns can affect unintended processes.
+
+Mitigation: Configure narrow OpenClaw-specific process patterns and review status output before live kill or restore flows when time allows.
+
+## Reference(s):
+
+- [ClawHub DeadClaw skill page](https://clawhub.ai/kintupercy/skills/deadclaw)
+- [DeadClaw README](artifact/README.md)
+- [iPhone shortcut setup guide](artifact/docs/iphone-shortcut-guide.md)
+- [Android widget setup guide](artifact/docs/android-widget-guide.md)
+- [ClawHub listing notes](artifact/docs/clawhub-listing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, status text, and optional JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may describe or invoke local stop, status, watchdog, and restore actions when the host agent grants the requested authority.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

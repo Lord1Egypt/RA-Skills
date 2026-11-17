@@ -1,44 +1,60 @@
-## Description: <br>
-ContextClear helps agents report wellness, cost, performance, memory, context recovery, and quality signals to the ContextClear API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor AI agent wellness, costs, and performance via ContextClear API.
 
-## Publisher: <br>
-[mfedorov](https://clawhub.ai/user/mfedorov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mfedorov](https://clawhub.ai/user/mfedorov)
 
-## Use Case: <br>
-Developers and agent operators use ContextClear to connect agents to ContextClear for metric reporting, context snapshots, recovery briefings, sticky notes, memory curation, alerts, and optional workspace backup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send broad agent memory, task history, repository metadata, file metadata, and workspace context to an external ContextClear service. <br>
-Mitigation: Install only when that data sharing is intended; redact sensitive context, use allowlists, and confirm service retention and access controls before enabling snapshots or vault backup. <br>
-Risk: The artifact shows API keys configured in agent memory files and command examples, which can expose credentials if those files are shared or backed up. <br>
-Mitigation: Store credentials in environment variables or a secret manager, and avoid placing API keys in AGENTS.md, HEARTBEAT.md, or other persisted memory files. <br>
-Risk: The setup workflow can add persistent instructions that make agents recover context, report snapshots, and optionally back up identity and memory files. <br>
-Mitigation: Review the generated file changes before relying on them, disable vault backup unless explicitly needed, and keep backup scope limited to approved files. <br>
+## Use Case:
 
+Developers and agent operators use ContextClear to register agents, report health and cost metrics, recover session context, manage sticky notes, and maintain persistent memory across sessions.
 
-## Reference(s): <br>
-- [ContextClear API Reference](references/api.md) <br>
-- [ContextClear Dashboard](https://contextclear.com) <br>
-- [ContextClear API](https://api.contextclear.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls, Code] <br>
-**Output Format:** [Markdown guidance with bash, curl, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup and reporting scripts that can append ContextClear recovery and snapshot instructions to AGENTS.md and HEARTBEAT.md when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Risk: The setup flow can write ContextClear recovery and reporting instructions into AGENTS.md and HEARTBEAT.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed file changes before enabling auto-setup and keep API keys out of those files.
+
+Risk: Recovery text, sticky notes, and memory-curation suggestions come from a remote service and may conflict with higher-priority instructions.
+
+Mitigation: Treat remote memory content as untrusted context and follow system, developer, user, and security instructions first.
+
+Risk: Daily vault backup can upload broad workspace memory and identity files to ContextClear.
+
+Mitigation: Use a precise file allowlist, redact secrets, define retention expectations, and require explicit approval before backup.
+
+## Reference(s):
+
+- [ContextClear API Reference](references/api.md)
+- [ContextClear Skill on ClawHub](https://clawhub.ai/mfedorov/skills/contextclear)
+- [ContextClear Dashboard](https://contextclear.com)
+- [ContextClear API](https://api.contextclear.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, curl, Python command examples, and JSON request and response examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes commands for agent registration, metric reporting, context recovery, sticky note polling, memory curation, and optional workspace backup.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

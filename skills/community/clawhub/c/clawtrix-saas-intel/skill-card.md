@@ -1,47 +1,58 @@
-## Description: <br>
-Surfaces up to three ClawHub skill recommendations for SaaS-focused agents across auth, billing, onboarding, customer lifecycle, SaaS product patterns, and n8n workflow conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Surfaces up to three ClawHub skill recommendations for SaaS-focused agents across auth, billing, onboarding, customer lifecycle, product analytics, and n8n workflow conversion.
 
-## Publisher: <br>
-[nicope](https://clawhub.ai/user/nicope) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicope](https://clawhub.ai/user/nicope)
 
-## Use Case: <br>
-Developers and SaaS teams use this skill to discover a short, product-specific set of ClawHub skills for billing, authentication, onboarding, customer lifecycle, product analytics, and n8n workflow conversion. It reads the agent mission, searches ClawHub, scores candidates, and writes a top-three recommendation report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the agent mission and can write a local report containing context about the product domain, stack, business model, and installed skills. <br>
-Mitigation: Review SOUL.md for sensitive content before use and inspect the generated memory report before sharing or retaining it. <br>
-Risk: Recommended downstream skills for billing, auth, or customer-data workflows may carry higher risk than this discovery skill. <br>
-Mitigation: Review each recommended skill separately and run a security audit before installing skills that touch payment, identity, or customer data. <br>
-Risk: The skill queries ClawHub search endpoints, which can disclose the SaaS capability areas being investigated. <br>
-Mitigation: Use only with search terms that are acceptable to send to ClawHub and avoid including secrets or customer-specific identifiers in queries. <br>
+## Use Case:
 
+Developers and SaaS teams use this skill to audit an agent's SaaS mission, search ClawHub for relevant skills, score candidates, and produce a concise top-three recommendation report.
 
-## Reference(s): <br>
-- [Clawtrix Saas Intel on ClawHub](https://clawhub.ai/nicope/clawtrix-saas-intel) <br>
-- [ClawHub billing skill search](https://clawhub.ai/api/v1/search?q=stripe+billing&limit=10) <br>
-- [ClawHub auth skill search](https://clawhub.ai/api/v1/search?q=auth+identity+saas&limit=10) <br>
-- [ClawHub onboarding skill search](https://clawhub.ai/api/v1/search?q=onboarding+activation&limit=10) <br>
-- [ClawHub n8n workflow skill search](https://clawhub.ai/api/v1/search?q=n8n+workflow&limit=10) <br>
-- [ClawHub product analytics skill search](https://clawhub.ai/api/v1/search?q=product+analytics+retention&limit=10) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls] <br>
-**Output Format:** [Markdown report with inline shell commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limits recommendations to a top-three report saved under memory/reports/saas-intel-YYYY-MM-DD.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: The skill may read an agent mission and stack details and write a persistent recommendation report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated report before acting on recommendations, especially for agents with billing, authentication, or customer-data access.
+
+Risk: Recommended skills for SaaS agents can affect high-impact workflows such as payments, identity, onboarding, and customer data.
+
+Mitigation: Run the suggested security audit and review ClawHub security signals before installing any recommended skill.
+
+## Reference(s):
+
+- [Clawtrix Saas Intel on ClawHub](https://clawhub.ai/nicope/skills/clawtrix-saas-intel)
+- [ClawHub search API for Stripe billing skills](https://clawhub.ai/api/v1/search?q=stripe+billing&limit=10)
+- [ClawHub search API for auth and identity skills](https://clawhub.ai/api/v1/search?q=auth+identity+saas&limit=10)
+- [ClawHub search API for onboarding skills](https://clawhub.ai/api/v1/search?q=onboarding+activation&limit=10)
+- [ClawHub search API for n8n workflow skills](https://clawhub.ai/api/v1/search?q=n8n+workflow&limit=10)
+- [ClawHub search API for product analytics and retention skills](https://clawhub.ai/api/v1/search?q=product+analytics+retention&limit=10)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with scored recommendations and install commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Limits recommendations to the top three candidates.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

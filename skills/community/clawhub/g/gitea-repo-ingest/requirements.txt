@@ -1,0 +1,1 @@
+# gitea_repo_ingest uses only the Python 3 standard library and the git CLI.

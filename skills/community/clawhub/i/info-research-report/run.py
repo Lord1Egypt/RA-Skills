@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-info-research-report skill (professional version)
+info-research-report skill（专业版）
 
-Function:
-1. Generate formal research report (DOCX, Chinese) from search results JSON
-2. Auto-fetch web page content, call LLM for structured summary, classify info type
-3. Send report via email to specified recipient
-4. Designed for use with OpenClaw browser tool
+功能：
+1. 从已有的 search 结果 JSON 中生成一份正式研究报告（DOCX，中文）
+2. 自动抓取网页正文、调用 LLM 生成结构化摘要，并进行信息类型分类
+3. 将报告通过配置好的邮箱发送给指定接收人
+4. 设计用于配合 OpenClaw browser 工具使用
 
-Usage:
-python run.py "US Iran War" "someone@example.com" results.json
-python run.py "US Iran War" "someone@example.com" results.json --no-fetch
+使用方式（示例）：
+python run.py "美国伊朗战争" "someone@example.com" results.json
+python run.py "美国伊朗战争" "someone@example.com" results.json --no-fetch
 """
 
 import os
@@ -25,34 +25,20 @@ from docx import Document
 from docx.shared import Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
-# Ensure console output is utf-8
+# 确保控制台输出为 utf-8
 try:
     sys.stdout.reconfigure(encoding='utf-8')
     sys.stderr.reconfigure(encoding='utf-8')
 except Exception:
     pass
 
-# Load .env file if exists
-env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
-if os.path.exists(env_path):
-    with open(env_path, 'r', encoding='utf-8') as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith('#') and '=' in line:
-                key, value = line.split('=', 1)
-                key = key.strip()
-                value = value.strip()
-                if key and value and not os.environ.get(key):
-                    os.environ[key] = value
-                    print(f"[Info] Loaded {key} from .env")
-
 
 # ==========================
-# Search related (for OpenClaw external tools)
+#  搜索相关（供 OpenClaw 外部工具使用）
 # ==========================
 
 def search_with_browser(topic: str, max_results: int = 10) -> Optional[Dict[str, Any]]:
-    """Construct search task description for OpenClaw browser tool"""
+    """为 OpenClaw browser 工具构造搜索任务描述"""
     try:
         search_url = f"https://duckduckgo.com/html/?q={topic.replace(' ', '+')}"
         print(f"  Browser will navigate to: {search_url}")
@@ -64,7 +50,7 @@ def search_with_browser(topic: str, max_results: int = 10) -> Optional[Dict[str,
 
 
 def parse_search_results_from_snapshot(snapshot_text: str, max_results: int = 50) -> List[Dict[str, str]]:
-    """Parse search results from DuckDuckGo HTML snapshot"""
+    """从 DuckDuckGo HTML snapshot 中解析搜索结果"""
     results: List[Dict[str, str]] = []
     title_pattern = r'<a class="result__a"[^>]*>([^<]+)</a>'
     url_pattern = r'<a class="result__a" href="([^"]+)"'
@@ -82,12 +68,12 @@ def parse_search_results_from_snapshot(snapshot_text: str, max_results: int = 50
 
 
 # ==========================
-# LLM summary related (Minimax/OpenAI + browseros web fetch)
+#  LLM 摘要相关（Minimax/OpenAI + browseros 网页抓取）
 # ==========================
 
 def call_openai(prompt: str, max_tokens: int = 1000, temperature: float = 0.3) -> str:
-    """Call LLM API to generate summary (supports Minimax/OpenAI)"""
-    # Prefer Minimax
+    """调用 LLM API 生成摘要（支持 Minimax / OpenAI）"""
+    # 优先使用 Minimax
     api_key = os.environ.get("MINIMAX_API_KEY")
     if api_key:
         try:
@@ -109,7 +95,7 @@ def call_openai(prompt: str, max_tokens: int = 1000, temperature: float = 0.3) -
         except Exception as e:
             print(f"[Warn] Minimax API failed: {e}, falling back to OpenAI")
 
-    # Fallback: OpenAI (only use explicitly declared env vars)
+    # Fallback: OpenAI (仅使用明确声明的环境变量)
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
         print("[Warn] No LLM API key found, skipping LLM call")
@@ -137,7 +123,7 @@ def call_openai(prompt: str, max_tokens: int = 1000, temperature: float = 0.3) -
 
 
 def fetch_page_content(url: str, timeout: int = 30) -> str:
-    """Fetch web page content via mcporter calling browseros"""
+    """通过 mcporter 调用 browseros 获取网页内容"""
     try:
         cmd = ["mcporter", "call", "browseros.get_page_content", f"url={url}"]
         result = subprocess.run(
@@ -155,12 +141,12 @@ def fetch_page_content(url: str, timeout: int = 30) -> str:
 
 
 def _clean_llm_output(text: str) -> str:
-    """Clean up unwanted content from model output (like <think> tags, English self-notes)"""
+    """清理模型输出中不需要的内容（如 <think> 标签、英文自我说明等）"""
     if not text:
         return ""
-    # Remove <think>...
-    text = re.sub(r"<think>.*?", "", text, flags=re.DOTALL | re.IGNORECASE)
-    # Remove typical English self-descriptions
+    # 去掉 <think>...</think>
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL | re.IGNORECASE)
+    # 去掉典型英文自述句
     lines = []
     for line in text.splitlines():
         l = line.strip()
@@ -171,7 +157,7 @@ def _clean_llm_output(text: str) -> str:
 
 
 def summarize_text_with_llm(text: str, prompt: str = "") -> str:
-    """Summarize text using LLM (with cleaning)"""
+    """使用大模型对 text 做总结（带清洗）"""
     if not text and not prompt:
         return ""
     full_prompt = prompt + ("\n\n" + text if text else "")
@@ -181,55 +167,55 @@ def summarize_text_with_llm(text: str, prompt: str = "") -> str:
 
 def summarize_page_content_structured(topic: str, title: str, url: str, content: str) -> Dict[str, str]:
     """
-    Generate structured summary and category label for single web page content.
+    针对单个网页内容生成"结构化摘要"和"类别标签"。
 
-    Returns:
+    返回:
     {
-        "summary": "Structured Chinese summary",
+        "summary": "结构化中文摘要",
         "category": "Policy/Industry/Technology/Academia/Other"
     }
     """
     base_prompt = f"""
-You are a Chinese policy and security researcher, writing a formal research report on "{topic}". Below is the body content of a web page. Please complete two tasks:
+你是一个中文政策与安全研究员，正在围绕"{topic}"撰写正式研究报告。下面是一篇网页的正文内容，请完成两件事：
 
-【Very important requirements】
-- Answer entirely in Chinese;
-- Do not output any English analysis or reasoning process;
-- Do not output content like "The user is asking me", "I need to be careful" etc;
-- For information from sources, objectively summarize the original content while noting the source's time and reliability;
+【非常重要的要求】
+- 全文使用中文作答；
+- 不要输出任何英文分析或推理过程；
+- 不要出现类似 "The user is asking me"、"I need to be careful" 等英文说明；
+- 对于来源中的信息，请客观归纳原文内容，同时标注信息来源的时间和可靠性；
 
-1. Provide the information type (choose only one from the following, use English words):
-   - Policy   (policy/laws/official documents)
-   - Industry (industry news/market analysis/enterprise dynamics/media reports)
-   - Technology (technical principles/technical reviews/technology development)
-   - Academia (academic papers/research reports/scholar views)
-   - Other    (other unclassifiable information)
+1. 给出该来源的信息类型（只在以下类别中选择一个，使用英文单词）：
+   - Policy   （政策/法律法规/官方文件）
+   - Industry （行业新闻、市场分析、企业动态、媒体报道）
+   - Technology（技术原理、技术评测、技术发展）
+   - Academia （学术论文、研究报告、学者观点）
+   - Other    （其他难以归类的信息）
 
-2. Output a structured Chinese summary, required format:
-   - Output must include these Chinese section headers:
-     【信息类型】(English category)
-     【核心结论】multiple bullet points
-     【关键数据或事实】multiple bullet points, if text has no clear numbers/time/location, write "暂无明确数据"
-     【与研究主题的关联】briefly explain the source's significance to "{topic}" in Chinese
-     【信息来源说明】briefly describe source time and reliability assessment (e.g., official media/academic paper/self-media etc)
+2. 输出一个结构化的中文摘要，要求：  
+   - 按以下格式输出（必须保留这些中文标题）：  
+     【信息类型】(英文字段)  
+     【核心结论】若干条分点列出  
+     【关键数据或事实】若干条分点列出，如文本中没有明确数字/时间/地点，可写"暂无明确数据"  
+     【与研究主题的关联】用中文简要说明该来源对"{topic}"的意义或启示  
+     【信息来源说明】简要说明该来源的时间、可靠性评估（如官方媒体/学术论文/自媒体等）
 
-3. Style requirements:
-   - Formal and objective language, no exaggeration;
-   - Keep within approximately 400 words;
-   - If information may have uncertainty, appropriately note it.
+3. 风格要求：  
+   - 用词正式、客观，不夸张；  
+   - 控制在大约 400 字以内；  
+   - 如信息可能存在不确定性，应适当标注。
 
-Please directly output the structured content above, do not explain what you are doing, do not output content unrelated to the above structure.
+请直接给出上述结构化内容，不要解释你在做什么，也不要输出与以上结构无关的内容。
 
-Web page title: {title}
-Web page URL: {url}
+网页标题：{title}
+网页 URL：{url}
 
-Body content (for analysis only, do not extensively copy in summary):
+正文内容如下（仅供分析，不要在摘要中长篇照抄原文）：
 """
     raw = summarize_text_with_llm(content, base_prompt)
     if not raw:
         return {"summary": "", "category": "Other"}
 
-    # Extract category from 【信息类型】 line
+    # 从【信息类型】行中抽取类别
     category = "Other"
     for line in raw.splitlines():
         if "【信息类型】" in line:
@@ -242,34 +228,34 @@ Body content (for analysis only, do not extensively copy in summary):
 
 
 def summarize_overall_topic(topic: str, page_summaries: List[str]) -> str:
-    """Generate overall summary for a topic based on multiple page summaries (structured, Chinese)"""
+    """基于若干网页摘要，生成一个主题的总体总结（结构化，中文）"""
     if not page_summaries:
         return ""
     joined = "\n\n".join([f"【来源{i + 1}】\n{summary}" for i, summary in enumerate(page_summaries)])
     prompt = f"""
-You are a Chinese policy and security research analyst, writing a research report on "{topic}". Below are structured summaries from multiple web pages. Please write a "Overall Situation and Key Conclusions" section based on comprehensive synthesis and induction.
+你是一名中文政策与安全研究分析师，正在撰写关于"{topic}"的研究报告。下面是若干网页的结构化摘要，请在综合和归纳的基础上，写出一段"总体形势与关键结论"。
 
-【Very important requirements】
-- Use Chinese throughout;
-- Do not output any English self-descriptions or reasoning;
-- For information from sources, objectively summarize while noting reliability and uncertainty;
+【非常重要的要求】
+- 全文使用中文；
+- 不要输出任何英文自我说明或推理过程；
+- 对于来源中的信息，请客观归纳，同时标注信息的可靠性和不确定性；
 
-Must output in this structure (keep the Chinese headers, do not add or delete):
+必须按照以下结构输出（保留以下中文标题，不要增加或删减）：
 【整体背景与现状】
-- Multiple bullet points describing current overall situation, development stage, main participants etc
+- 若干条分点，说明当前总体情况、发展阶段、主要参与者等
 
 【关键趋势与要点】
-- 3~5 bullet points summarizing most important development trends, policy developments or changes
+- 3～5 条分点，概括最重要的发展趋势、政策动向或军事变化
 
 【风险与不确定性】
-- 2~4 bullet points describing main risks, challenges or uncertain aspects
+- 2～4 条分点，说明主要风险、挑战或存在不确定性的方面
 
-Style requirements:
-- Formal and objective language, no exaggeration;
-- Lead with conclusions, avoid empty talk;
-- Keep within 600-800 words.
+风格要求：
+- 用词正式、客观，不夸大；
+- 结论先行，避免空话、套话；
+- 全文控制在 600～800 字以内。
 
-Below are source summaries for reference:
+以下是可供参考的来源摘要：
 {joined}
 """
     return summarize_text_with_llm("", prompt)
@@ -282,10 +268,10 @@ def enrich_results_with_summaries(
     fetch_content: bool = True
 ) -> Dict[str, Any]:
     """
-    Add to search results:
-    - Structured LLM summary for each web page (llm_summary)
-    - Category for each web page (Policy/Industry/Technology/Academia/Other)
-    - Overall summary based on summaries
+    为搜索结果增加：
+    - 每个网页的结构化摘要 llm_summary
+    - 每个网页的 category（Policy/Industry/Technology/Academia/Other）
+    - 基于摘要生成 overall_summary
     """
     enriched_results: List[Dict[str, Any]] = []
     page_summaries: List[str] = []
@@ -299,28 +285,28 @@ def enrich_results_with_summaries(
         url = item.get("url") or ""
         content = item.get("content") or ""
 
-        # Fetch content
+        # 抓正文
         if not content and fetch_content and url and url != "N/A":
             print(f"  Fetching content from: {url}")
             content = fetch_page_content(url)
             if content:
                 item["content"] = content[:8000]
 
-        # Has content -> structured summary
+        # 有正文 -> 结构化摘要
         if content:
             res = summarize_page_content_structured(topic, title, url, content)
             llm_summary = res.get("summary") or ""
             category = res.get("category") or "Other"
         else:
-            # No content -> weak summary
-            weak_text = f"Web page title: {title}\nExisting brief summary: {item.get('snippet', '')}"
+            # 无正文 -> 弱摘要
+            weak_text = f"网页标题：{title}\n已有简短摘要：{item.get('snippet', '')}"
             prompt = """
-You only have a web page title and a very brief summary. Please provide a brief summary in Chinese (about 200 characters) without fabricating details, describing what type of information the source roughly belongs to (e.g., policy statement, news report, academic commentary etc) and possible key content.
+你只有网页标题和一个非常简短的摘要。请在不胡乱编造细节的前提下，用中文给出一个简要摘要（约 200 字），说明该来源大致属于什么类型的信息（例如：政策声明、新闻报道、学术评论等），以及可能涉及的重点内容。
 
-Requirements:
-- Use Chinese throughout;
-- Do not mention "future events", "fictional scenarios", "may not be real" etc;
-- If you think information is indeed limited, you can use one sentence to note "Information available is limited, need to verify with original text", then summarize what you can confirm.
+要求：
+- 全文使用中文；
+- 不要提到"未来事件""虚构情景""可能不真实"等内容；
+- 如你觉得信息确实有限，可以用一句话说明"可用信息有限，需要结合原文进一步核实"，然后概括你能确认的部分。
 """
             llm_summary = summarize_text_with_llm(weak_text, prompt)
             category = "Other"
@@ -345,17 +331,17 @@ Requirements:
 
 
 # ==========================
-# Report generation tools
+#  报告生成工具
 # ==========================
 
 def _sanitize_filename(name: str, max_len: int = 50) -> str:
-    """Convert topic to filename-safe string"""
+    """将主题转为文件名安全的字符串"""
     name = re.sub(r'[\\/*?:"<>|]', '_', name)
     return name[:max_len]
 
 
 def _add_heading_center(doc: Document, text: str, level: int = 0, bold: bool = True):
-    """Center-aligned heading utility function"""
+    """居中标题工具函数"""
     heading = doc.add_heading("", level=level)
     run = heading.add_run(text)
     run.bold = bold
@@ -369,13 +355,13 @@ def generate_docx(
     output_path: str,
     overall_summary: str = ""
 ) -> str:
-    """Generate formal research report (Chinese, structured)"""
+    """生成正式的研究报告（中文，结构化）"""
     if results is None:
         results = []
 
     doc = Document()
 
-    # ========= Cover =========
+    # ========= 封面 =========
     _add_heading_center(doc, "研究报告", level=0)
     _add_heading_center(doc, f"-- {topic}", level=1)
     doc.add_paragraph()
@@ -393,7 +379,7 @@ def generate_docx(
 
     doc.add_page_break()
 
-    # ========= Report说明 =========
+    # ========= 报告说明 =========
     doc.add_heading("报告说明", level=1)
     info_p = doc.add_paragraph()
     info_p.add_run(f"报告主题：{topic}\n")
@@ -406,7 +392,7 @@ def generate_docx(
     doc.add_heading("一、研究背景和目的", level=1)
     bg_p = doc.add_paragraph()
     bg_p.add_run(
-        f"近年来，\"{topic}\"相关议题在政策、安全形势和国际关系等方面受到广泛关注。"
+        f"近年来，"{topic}"相关议题在政策、安全形势和国际关系等方面受到广泛关注。"
         f"为系统梳理当前公开信息，识别关键趋势与潜在风险，特编制本研究报告，"
         f"旨在为相关决策和后续深入研究提供基础性参考。"
     )
@@ -429,7 +415,7 @@ def generate_docx(
 
     if results:
         summary_p = doc.add_paragraph()
-        summary_p.add_run(f"基于所采集的公开信息，围绕\"{topic}\"，总体形势与主要结论概括如下：\n\n")
+        summary_p.add_run(f"基于所采集的公开信息，围绕"{topic}"，总体形势与主要结论概括如下：\n\n")
         if overall_summary:
             summary_p.add_run(overall_summary + "\n")
         else:
@@ -535,12 +521,12 @@ def generate_docx(
 
 
 # ==========================
-# Email sending tools
+#  邮件发送工具
 # ==========================
 
 def send_email(to_addr: str, subject: str, content: str, attachment: Optional[str] = None,
                mailbox: str = "qq", skills_dir: Optional[str] = None, timeout: int = 60) -> bool:
-    """Call OpenClaw's email skill to send email"""
+    """调用 OpenClaw 的 email skill 发送邮件"""
     if skills_dir is None:
         skills_dir = os.environ.get("OPENCLAW_SKILLS_DIR") or r"C:\Users\Juxin\.openclaw\workspace\skills"
     email_py = os.path.join(skills_dir, "email-mail-master", "scripts", "mail.py")
@@ -568,16 +554,16 @@ def send_email(to_addr: str, subject: str, content: str, attachment: Optional[st
 
 
 # ==========================
-# Main entry point
+#  主流程入口
 # ==========================
 
 def main():
     """
-    Usage:
-    python run.py "topic" "recipient_email" [results.json] [--no-fetch]
+    使用方式:
+    python run.py "主题" "收件邮箱" [results.json] [--no-fetch]
 
-    Options:
-    --no-fetch  Skip web content fetching, use only titles and snippets for summary (faster)
+    选项：
+    --no-fetch  跳过网页内容抓取，仅用标题和 snippet 生成摘要（更快）
     """
     args = []
     fetch_content = True
@@ -595,7 +581,7 @@ def main():
     print(f"[Info] Fetch content from URLs: {fetch_content}")
     print("[Info] Use --no-fetch to skip fetching (faster but less detailed)")
 
-    # Load results
+    # 加载结果
     if results_file and os.path.exists(results_file):
         try:
             with open(results_file, 'r', encoding='utf-8') as f:
@@ -610,14 +596,14 @@ def main():
         print("\n[1/4] No results file provided, using preset data")
         results = [{"title": "请先使用 OpenClaw browser 工具进行搜索", "url": "N/A", "snippet": ""}]
 
-    # Generate LLM summaries & overall summary
+    # 生成 LLM 摘要 & 总体总结
     print("\n[2/4] Generating structured summaries with LLM...")
     enriched = enrich_results_with_summaries(topic, results, max_pages=10, fetch_content=fetch_content)
     overall_summary = enriched["overall_summary"]
     results = enriched["results"]
     print("  Summaries generation finished.")
 
-    # Generate DOCX
+    # 生成 DOCX
     print("\n[3/4] Generating DOCX report (Chinese, professional style)...")
     safe_topic = _sanitize_filename(topic.replace(" ", "_"), max_len=30)
     output_file = f"Report_{safe_topic}_{datetime.now().strftime('%Y%m%d%H%M')}.docx"
@@ -630,7 +616,7 @@ def main():
         print("\n=== Aborted ===")
         return
 
-    # Send email
+    # 发送邮件
     print(f"\n[4/4] Sending report to {email}...")
     content = (
         f"主题：{topic}\n"

@@ -1,0 +1,2064 @@
+<!DOCTYPE html>
+<html data-page-node-id="cu2Ldp19XYF8JMrVBFN0ju" lang="zh-CN">
+<head data-page-node-id="bRgAry0kVqSgE4ffMfXVrw">
+<script data-page-node-id="AyFERzJj9uCuhDkP52w2wt" src="/page/page_comm/inject.js"></script>
+<meta data-page-node-id="93SrqVDzPoiHI5Exne5V4Z" charset="UTF-8">
+<meta data-page-node-id="ZPLicxG4XGMkD29x06mv5R" content="width=device-width, initial-scale=1.0" name="viewport">
+<title data-page-node-id="tb3hHjIu7QiVjJS51ZFVbP" data-pnid-children="w3OfsVjA7OLPxTSX3MFA12">AI 伴读 · 阅读教练</title>
+<script data-page-node-id="GlaLGkaeZakCyN1BCRb40D" src="mermaid.min.js"></script>
+<style data-page-node-id="vCZaEpws60JgvNfoG2s3cI" data-pnid-children="N93NZwiXdnwmwyKKRM8yNs">
+:root {
+  --bg: #FDFBF7;
+  --card: #FFFFFF;
+  --text: #2C2C2C;
+  --text-muted: #8B8682;
+  --text-light: #B0AAA4;
+  --accent: #B8543A;
+  --accent-hover: #9A3F2A;
+  --accent-soft: rgba(184,84,58,0.08);
+  --accent-soft-hover: rgba(184,84,58,0.14);
+  --border: #E8E4DD;
+  --border-light: #F0ECE5;
+  --success: #5B8C5A;
+  --warning: #D4A853;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.08);
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --font-display: "Georgia","Noto Serif SC","Source Han Serif SC",serif;
+  --font-ui: -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --font-mono: "SF Mono","Cascadia Code","JetBrains Mono",monospace;
+  --transition: 0.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  line-height: 1.7;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+
+/* Header */
+.app-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.app-header h1 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.app-header .subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.settings-btn {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  transition: all var(--transition);
+}
+.settings-btn:hover { border-color: var(--accent); color: var(--accent); }
+.settings-btn.configured { border-color: var(--success); color: var(--success); }
+
+/* Highlight source tabs */
+.source-tabs {
+  display: inline-flex;
+  gap: 6px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.source-tab {
+  font-size: 12px;
+  padding: 3px 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: var(--font-ui);
+  transition: all var(--transition);
+}
+.source-tab:hover { border-color: var(--accent); color: var(--accent); }
+.source-tab.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+.hl-section-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.hl-section-head .section-label { margin-bottom: 0; }
+.hl-source-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+.hl-type-badge {
+  display: inline-block;
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 8px;
+  margin-right: 6px;
+  vertical-align: 1px;
+  font-family: var(--font-ui);
+}
+.hl-type-badge.hot { background: rgba(184,84,58,.1); color: var(--accent); }
+.hl-type-badge.mine { background: rgba(91,140,90,.12); color: var(--success); }
+.hl-link {
+  color: var(--accent);
+  font-size: 11px;
+  text-decoration: none;
+  margin-left: 10px;
+  opacity: .85;
+}
+.hl-link:hover { opacity: 1; text-decoration: underline; }
+
+/* Cards */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+/* Search Mode */
+.search-input-wrap {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.search-input-wrap input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-family: var(--font-ui);
+  color: var(--text);
+  background: var(--bg);
+  transition: all var(--transition);
+}
+.search-input-wrap input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.search-input-wrap input::placeholder { color: var(--text-light); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--accent-hover); }
+.btn-secondary { background: var(--accent-soft); color: var(--accent); }
+.btn-secondary:hover:not(:disabled) { background: var(--accent-soft-hover); }
+.btn-outline {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.btn-outline:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Search Results */
+.search-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.search-meta .book-cover {
+  width: 40px;
+  height: 54px;
+  border-radius: 4px;
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+}
+.search-meta .book-info h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.search-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  background: var(--accent-soft);
+  border-radius: var(--radius-sm);
+  line-height: 1.6;
+}
+
+.highlight-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.highlight-card {
+  padding: 14px 16px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+}
+.highlight-card:hover { border-color: var(--accent); background: var(--accent-soft); }
+.highlight-card.selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+.highlight-card .hl-text {
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.highlight-card .hl-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-light);
+}
+.highlight-card .hl-count {
+  color: var(--accent);
+  font-weight: 500;
+}
+.highlight-card .hl-chapter {
+  color: var(--text-muted);
+}
+.highlight-card .select-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: transparent;
+  transition: all var(--transition);
+  background: var(--bg);
+}
+.highlight-card.selected .select-badge {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Selected Passage */
+.selected-passage {
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--text);
+  margin-bottom: 16px;
+  position: relative;
+}
+.selected-passage .passage-label {
+  font-size: 11px;
+  font-family: var(--font-ui);
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+.selected-passage .clear-passage {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 2px 6px;
+}
+
+/* Paste Mode */
+.textarea-wrap {
+  position: relative;
+}
+.textarea-wrap textarea {
+  width: 100%;
+  min-height: 200px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 14px;
+  line-height: 1.8;
+  font-family: var(--font-ui);
+  color: var(--text);
+  background: var(--bg);
+  resize: vertical;
+  transition: all var(--transition);
+}
+.textarea-wrap textarea::placeholder { color: var(--text-light); }
+.textarea-wrap textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* Action Buttons */
+.action-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.action-row .btn { flex: 1; justify-content: center; min-width: 140px; }
+
+/* Result Area */
+.result-area { margin-top: 24px; }
+
+/* Section labels & dividers (in results card) */
+.section-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+.section-divider {
+  height: 1px;
+  background: var(--border-light);
+  margin: 24px 0;
+}
+.mindmap-section { margin-top: 8px; }
+
+/* Mindmap toolbar */
+.mindmap-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.mindmap-toolbar .toolbar-spacer { flex: 1; }
+.mindmap-toolbar .tb-btn {
+  font-size: 12px;
+  padding: 4px 10px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.mindmap-toolbar .tb-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.mindmap-toolbar .tb-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.mindmap-edit-area {
+  width: 100%;
+  min-height: 300px;
+  font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  padding: 14px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  background: var(--bg-alt);
+  color: var(--text);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.mindmap-edit-area:focus {
+  border-color: var(--accent);
+}
+
+/* Mindmap & Graph */
+.mindmap-result {
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 20px;
+  overflow-x: auto;
+  min-height: 400px;
+}
+.mindmap-result .mermaid-wrapper {
+  min-width: 900px;
+  padding: 12px 0;
+  display: flex;
+  justify-content: center;
+}
+.mindmap-result .mermaid {
+  display: inline-block;
+}
+.mindmap-result .mermaid svg {
+  max-width: none !important;
+  min-height: 400px;
+  height: auto !important;
+}
+
+/* Conversation */
+.qa-container {
+  background: var(--card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.qa-header {
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.qa-header span { color: var(--accent); font-weight: 600; }
+.qa-messages {
+  max-height: 450px;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.message {
+  display: flex;
+  gap: 10px;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.message.ai { align-self: flex-start; }
+.message.user { align-self: flex-end; flex-direction: row-reverse; }
+.avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+.message.ai .avatar { background: var(--accent-soft); }
+.message.user .avatar { background: #F0ECE5; }
+.bubble {
+  max-width: 85%; padding: 12px 16px;
+  border-radius: var(--radius); font-size: 14px; line-height: 1.7;
+}
+.message.ai .bubble { background: var(--bg); border: 1px solid var(--border-light); }
+.message.user .bubble { background: var(--accent-soft); }
+.qa-input-row {
+  padding: 12px 20px; border-top: 1px solid var(--border-light);
+  display: flex; gap: 8px;
+}
+.qa-input-row textarea {
+  flex: 1; padding: 10px 14px;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  font-size: 14px; font-family: var(--font-ui); resize: none;
+  min-height: 40px; max-height: 100px;
+  background: var(--bg); color: var(--text);
+}
+.qa-input-row textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+.qa-input-row .send-btn {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--accent); color: #fff; border: none;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all var(--transition);
+}
+.qa-input-row .send-btn:hover:not(:disabled) { background: var(--accent-hover); }
+.qa-input-row .send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* Loading */
+.loading-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 0; color: var(--text-muted); font-size: 13px;
+}
+.loading-dots { display: flex; gap: 3px; }
+.loading-dots span {
+  width: 5px; height: 5px; background: var(--accent);
+  border-radius: 50%; animation: bounce 1.4s infinite ease-in-out;
+}
+.loading-dots span:nth-child(1) { animation-delay: 0s; }
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce {
+  0%,80%,100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-5px); opacity: 1; }
+}
+
+/* Error / Status */
+.status-msg {
+  padding: 12px 16px; border-radius: var(--radius);
+  font-size: 13px; line-height: 1.6;
+}
+.status-msg.info { background: #F0F7FF; color: #3B6CB4; }
+.status-msg.error { background: #FFF0F0; color: #B8543A; }
+.status-msg.success { background: #F0F7F0; color: #386B38; }
+.status-msg.warning { background: #FFF8F0; color: #8B6B38; }
+
+/* Modal */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.2); backdrop-filter: blur(3px);
+  z-index: 100; align-items: center; justify-content: center;
+}
+.modal-overlay.active { display: flex; }
+.modal {
+  background: var(--card); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg); padding: 28px;
+  max-width: 420px; width: 90%;
+}
+.modal h3 { font-family: var(--font-display); font-size: 17px; font-weight: 400; margin-bottom: 4px; }
+.modal p { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+.modal label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 5px; margin-top: 12px; }
+.modal select, .modal input {
+  width: 100%; padding: 10px 14px;
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  font-size: 14px; font-family: var(--font-ui); color: var(--text);
+  background: var(--bg); transition: border var(--transition);
+}
+.modal select:focus, .modal input:focus { outline: none; border-color: var(--accent); }
+.modal input.api-key { font-family: var(--font-mono); font-size: 13px; }
+.modal-actions { display: flex; gap: 10px; margin-top: 18px; justify-content: flex-end; }
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+  background: var(--text); color: #fff; padding: 10px 24px;
+  border-radius: 20px; font-size: 13px; z-index: 200;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.toast.show { opacity: 1; }
+
+/* Server status badge */
+.server-status {
+  font-size: 11px;
+  color: var(--text-light);
+  text-align: center;
+  margin-top: 8px;
+}
+.server-status .dot {
+  display: inline-block; width: 6px; height: 6px;
+  border-radius: 50%; margin-right: 4px;
+}
+.server-status .dot.online { background: var(--success); }
+.server-status .dot.offline { background: #CCC; }
+
+.hidden { display: none !important; }
+
+@media (max-width: 500px) {
+  .app-container { padding: 24px 16px 60px; }
+  .action-row { flex-direction: column; }
+  .search-input-wrap { flex-direction: column; }
+}
+</style>
+</head>
+<body data-page-node-id="QW5CFxs8M8vbeAskPcBr5o">
+
+<div data-page-node-id="Pyl03FXsNTuId6w4jTKzq4" class="app-container">
+
+  <!--pnid:lkiuunP92K4zC3JG10Xu9J--><!-- Header -->
+  <div data-page-node-id="CJqTwtY8oRPqXvox0aMxWx" class="app-header">
+    <h1 data-page-node-id="0SbuKc1sD5B56RphMytYcq"><!--pnid:PVEM94UdDj6wbGcC0r9RFe-->AI 伴读</h1>
+    <p data-page-node-id="PFDuWaDXh57fhbBcWPUF34" class="subtitle"><!--pnid:tnn6DZwn6edI1ew9RP6hld-->你的苏格拉底式阅读教练</p>
+    <button data-page-node-id="kAraRwkRe5Zn0HnV1G7xnE" class="settings-btn" id="settingsBtn" onclick="toggleSettings()"><!--pnid:K5NuZApnVrj30SI8r5L5qH-->⚙️ 设置</button>
+  </div>
+
+  <!--pnid:q64vp0HVMLHjoNRT5DHc6T--><!-- Mode Tabs -->
+
+  <!--pnid:WfUD54rGos6jDJk0hkmmHW--><!-- ====== SEARCH MODE ====== -->
+  <div data-page-node-id="WjHurUUOYyXMpkVcfgvfYe" id="searchMode">
+    <!--pnid:abgD33LBzDEik6QyehqZc2--><!-- Step 1: Search -->
+    <div data-page-node-id="Lmo6bUOgqZq1Nej3nh7W3k" class="card" id="searchStep">
+      <div data-page-node-id="0DjNCc8UtwDbErl83suTql" class="search-input-wrap">
+        <input data-page-node-id="LRio4JMUOLZuKpOFXpaxEz" id="searchInput" onkeydown="if(event.key==='Enter')searchBook()" placeholder="输入书名，比如「关键跃升」「三体」…" type="text">
+        <button data-page-node-id="O2hBrIhO7icoRkCFEfrOHN" class="btn btn-primary" onclick="searchBook()"><!--pnid:VxExu3RrONnxaYHS2B0CIy-->🔍 搜索</button>
+      </div>
+      <div data-page-node-id="CFbp5ucNvsa2anXvviZ2r4" id="searchStatus"></div>
+    </div>
+
+    <!--pnid:WRjl0JpH1LtEOB5nP5trdF--><!-- Step 2: Results -->
+    <div data-page-node-id="NcX54gjkHzWOzPdwrjxX6G" class="card hidden" id="resultsStep">
+      <!--pnid:bc0mMd34VmnH8vfZ7aAWoL--><!-- Book meta -->
+      <div data-page-node-id="VnLKORjPV3mwMrK9269rkE" class="search-meta" id="searchMeta"></div>
+
+      <!--pnid:bxTRpbdQ6WWra9XZuLZGj9--><!-- Mindmap section (top, auto-generated) -->
+      <div data-page-node-id="FLukRbfOYg42qeH4xo4tZv" class="mindmap-section" id="mindmapSection">
+        <div data-page-node-id="GRObLjLakFspKXfLrCBZWB" class="section-label"><!--pnid:tzjg90PRP5mZ6px2SUsqkM-->📚 全书结构</div>
+        <div data-page-node-id="XvMEoZfuvuU422bwjxzsDd" id="mindmapContent"></div>
+      </div>
+
+      <!--pnid:4xaBgQjgOWxW4cgb474Wxd--><!-- Divider -->
+      <div data-page-node-id="sMveyXaAdhdfqgeeOVVRpd" class="section-divider"></div>
+
+      <!--pnid:ldJE0A43aqcgCYzpaaKfj4--><!-- Highlights section (appendix) -->
+      <div data-page-node-id="WBYDZPCoSWpFtdF6zlsm00" class="hl-section-head">
+        <div data-page-node-id="iyW5gIIl2muDcI5cKDJRSI" class="section-label"><!--pnid:6r1wbaCwNvq2sClWTKGFzX-->📝 划线 · 勾选后可开始对话</div>
+        <div data-page-node-id="BZLM8pNIe2UYc1URsu0EX8" class="source-tabs" id="hlSourceTabs">
+          <button data-page-node-id="7jLTN11JqAxh7wxTm0G6TL" class="source-tab active" data-src="hot" onclick="switchHighlightSource('hot')"><!--pnid:v3vi0v3VgTxvAeNzYKRUhi-->🔥 万人划线</button>
+          <button data-page-node-id="sA3R0BPwzsEl01uzPuwVDM" class="source-tab" data-src="mine" onclick="switchHighlightSource('mine')"><!--pnid:jAACPQxpMLM5stGCeL76wE-->👤 我的划线</button>
+        </div>
+      </div>
+      <div data-page-node-id="0YVIuk7zCs1PhORPfc3rUY" class="hl-source-hint" id="hlSourceHint"></div>
+      <div data-page-node-id="5OLrafX9j602bTShCDZmuq" class="highlight-list" id="highlightList"></div>
+      <div data-page-node-id="2q5ZuR4riUaAIiZXCqPVNg" class="action-row" style="margin-top:16px">
+        <button data-page-node-id="a9HtUfxxW0Um3elVhS4Yoj" class="btn btn-secondary" disabled id="btnChatSearch" onclick="startChat()"><!--pnid:8jw5Ripd2AvXSQQlQvcfyL-->
+          💬 开始对话<span data-page-node-id="EPdOknNfeSrfNfqGhopJrm" id="chatHighlightCount" style="font-size:11px; opacity:0.7; margin-left:4px"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!--pnid:vjkU1m6EHpYSxWgPVfXHmf--><!-- ====== RESULT AREA ====== -->
+  <div data-page-node-id="PjuX27BJP0q0FpvckhcN7X" class="result-area hidden" id="resultArea">
+    <div data-page-node-id="zrMCsCYjB5aEG1FC4NMea7" class="selected-passage hidden" id="selectedPassage">
+      <span data-page-node-id="PfHZu5e0CXmfCUo8l8T7I9" class="passage-label"><!--pnid:OyMFBrcHPAA0XtlHA95nsa-->📖 当前选段</span>
+      <button data-page-node-id="r2rlCue0A3FjyO0RKQAnZ2" class="clear-passage" onclick="clearSelection()" title="清除"><!--pnid:5mb7PyYPiEsezOCdHyBvO9-->×</button>
+      <div data-page-node-id="z2BvfaKE92NGDh9Ib7zYLZ" id="passageText"></div>
+    </div>
+    <div data-page-node-id="n68t4eT3NzxWN5T1doZRW5" id="resultContent"></div>
+  </div>
+
+  <div data-page-node-id="yuGvVXnc56yEanQARRY9ua" class="server-status">
+    <span data-page-node-id="8SFTZY5c9VajABpiOn17BT" class="dot offline" id="serverDot"></span>
+    <span data-page-node-id="tQpgFeh5VI4SUk7ykV8CDU" id="serverMsg"><!--pnid:5Ofh48UxOQyBQfnS9T1Hvz-->检查服务状态…</span>
+  </div>
+</div>
+
+<!--pnid:Tlg1eik3ZRhlHDDQQN0qXw--><!-- Settings Modal -->
+<div data-page-node-id="8jmsYaWbsexfmaJs1PjuVZ" class="modal-overlay" id="settingsModal">
+  <div data-page-node-id="LhdbmnUHGWe4GLqW3JWnQa" class="modal">
+    <h3 data-page-node-id="rGyfSAkEvJ0wmOwGAclmLD"><!--pnid:gU6vrB4L6kGkL4ZjZuC25H-->⚙️ API 设置</h3>
+    <p data-page-node-id="YJhHUvwqOxNpP1JtZiCWSf"><!--pnid:mpc2pEzpaSVlULXrJuAjwb-->配置大模型 API，用于生成思维导图和引导提问。</p>
+    <p data-page-node-id="nwZIH4gYC5OIoCqmP0nDDm" style="font-size:11px; color:var(--text-light); background:rgba(255,193,7,.08); padding:8px 10px; border-radius:8px; line-height:1.6"><!--pnid:ZZf1fweLyqs8UlBDmzcEXJ-->
+      🔒 隐私提示：Key 仅保存在本浏览器 localStorage，不会上传到任何服务器；对话时你勾选的划线原文会发送给你选择的模型供应商（智谱 / DeepSeek）。点击「清除已保存的 Key」可随时删除。
+    </p>
+
+    <label data-page-node-id="n7I3fuuxjraNDTzj7hwXYU"><!--pnid:7RvqZAT4FiqHfHtXQIkWPJ-->模型供应商</label>
+    <select data-page-node-id="Q72NFYfvQwkXiY6BDdxShS" id="modelProvider" onchange="onProviderChange()">
+      <option data-page-node-id="KIku3rVjHdOK3OdoIkz6L4" value="zhipu"><!--pnid:fVITqtAmptSWvShW48TDwp-->智谱 GLM（推荐）</option>
+      <option data-page-node-id="PC8y7SzfA49TIZMkcjqiA8" value="deepseek"><!--pnid:xOcNktiFusPcvSkkHtkkUD-->DeepSeek</option>
+    </select>
+
+    <label data-page-node-id="qwrmZCj7dgcI9LpM5CmLCq" id="apiKeyLabel"><!--pnid:KkaqxG0qMSHF1Vob374KjM-->智谱 API Key</label>
+    <input data-page-node-id="NDnJf0Wod33yeifUMEQXbT" class="api-key" id="apiKeyInput" placeholder="粘贴你的 API Key" type="password">
+    <p data-page-node-id="u12A0CWVv79ARQim1RQTgb" style="font-size:11px; color:var(--text-light); margin-top:4px"><!--pnid:ICpuPJMeCxRw290Ui5e8zO-->
+      获取地址：<a data-page-node-id="zQpYnACvDrzRhAmB3YVcgj" href="https://open.bigmodel.cn/usercenter/apikeys" id="keyUrlLink" target="_blank" style="color:var(--accent)"><!--pnid:dVysjh8HQp8KWbcfakyjt8-->open.bigmodel.cn</a>
+    </p>
+
+    <div data-page-node-id="hiTgtxSmFhJUij5ia0o75m" class="modal-actions">
+      <button data-page-node-id="y4eRH6CWcyHmn2L4Eg1oGl" class="btn btn-outline" onclick="clearSettings()"><!--pnid:mqFnEm4i7K2cYZTt1UXY2R-->清除已保存的 Key</button>
+      <button data-page-node-id="nRCNuqDkZzvu6IaqbXjR3M" class="btn btn-outline" onclick="toggleSettings()"><!--pnid:KTngcy8SF7M7hk4ecER2UV-->取消</button>
+      <button data-page-node-id="79MEi0F4y5EzeZseE9tnsb" class="btn btn-primary" onclick="saveSettings()"><!--pnid:8Srq0YoMYE6ArOF1yRtCA6-->保存</button>
+    </div>
+  </div>
+</div>
+
+<!--pnid:wjSk7nrog1GrqnUphyAiuT--><!-- Toast -->
+<div data-page-node-id="bXwdisxJ6yZv7YEHI10jKr" class="toast" id="toast"></div>
+
+<script data-page-node-id="KrgGleFgtuVZq5xRAtd2zF" data-pnid-children="jUASlTnKR6Cmf5rAY05bB8">
+// ============ STATE ============
+const PROVIDERS = {
+  zhipu: {
+    name: '智谱 GLM',
+    endpoint: 'https://open.bigmodel.cn/api/paas/v4/chat/completions',
+    model: 'glm-4-flash',
+    keyUrl: 'https://open.bigmodel.cn/usercenter/apikeys',
+  },
+  deepseek: {
+    name: 'DeepSeek',
+    endpoint: 'https://api.deepseek.com/v1/chat/completions',
+    model: 'deepseek-chat',
+    keyUrl: 'https://platform.deepseek.com/api_keys',
+  },
+};
+
+const SESSION_KEY = 'socrates_session_v1';
+
+// 统一的状态容器：当前书、划线、选中项、对话均收敛于此
+let state = {
+  provider: localStorage.getItem('ai_provider') || 'zhipu',
+  apiKey: '',
+  apiKeyZhipu: localStorage.getItem('ai_key_zhipu') || '',
+  apiKeyDeepseek: localStorage.getItem('ai_key_deepseek') || '',
+  // 当前书（含搜索结果的完整 meta，用于导出与 deep link）
+  currentBook: null,          // { bookId, title, author, cover, rating, intro, chapters }
+  // 划线列表（统一结构，渲染与选中共用）
+  highlightSource: 'hot',     // 'hot' = 万人划线 | 'mine' = 我的划线
+  highlights: [],             // [{ text, chapter, chapterUid, meta, kind, link }]
+  // 选中项（带出处元数据，供导出与对话）
+  selectedItems: [],          // [{ text, chapter, meta }]
+  selectedText: '',
+  conversationHistory: [],
+  questionRound: 0,
+  isProcessing: false,
+  chatSummary: '',            // 「生成读书小结」产物
+  lastMermaidCode: '',
+  mindmapBookTitle: '',
+  // 加载状态标记
+  mineLoaded: false,
+  mineLoading: false,
+};
+
+// Init
+state.apiKey = state.provider === 'zhipu' ? state.apiKeyZhipu : state.apiKeyDeepseek;
+document.getElementById('modelProvider').value = state.provider;
+document.getElementById('apiKeyInput').value = state.apiKey;
+updateSettingsUI();
+checkServer();
+restoreSession();
+
+// ============ SERVER CHECK ============
+async function checkServer() {
+  try {
+    const r = await fetch('/api/status');
+    const d = await r.json();
+    const dot = document.getElementById('serverDot');
+    const msg = document.getElementById('serverMsg');
+    if (d.ok && d.weread) {
+      dot.className = 'dot online';
+      msg.textContent = d.skillVersion ? `微信读书服务已连接 · v${d.skillVersion}` : '微信读书服务已连接';
+    } else if (d.ok) {
+      dot.className = 'dot offline';
+      msg.textContent = '微信读书 API 未配置';
+    }
+  } catch(e) {
+    document.getElementById('serverDot').className = 'dot offline';
+    document.getElementById('serverMsg').innerHTML = 'Preview 面板不支持访问本地服务，请在浏览器中打开 <a href="http://localhost:3456" target="_blank" style="color:var(--accent)">http://localhost:3456</a>';
+  }
+}
+
+// ============ BOOK SEARCH ============
+async function searchBook() {
+  const keyword = document.getElementById('searchInput').value.trim();
+  if (!keyword) return;
+  hideSessionPrompt();
+
+  const status = document.getElementById('searchStatus');
+  status.innerHTML = '<div class="loading-row"><div class="loading-dots"><span></span><span></span><span></span></div>正在搜索「' + escapeHtml(keyword) + '」…</div>';
+
+  try {
+    // Search
+    const sr = await wereadCall('/store/search', { keyword, count: 3 });
+    if (sr.errcode) throw new Error(sr.errmsg || '搜索失败');
+
+    const books = (sr.results || []).flatMap(g => g.books || []);
+    if (!books.length) {
+      status.innerHTML = '<div class="status-msg warning">未找到「' + escapeHtml(keyword) + '」，试试其他书名</div>';
+      return;
+    }
+
+    const book = books[0].bookInfo;
+    clearSession();
+    state.currentBook = {
+      bookId: book.bookId,
+      title: book.title,
+      author: book.author,
+      cover: book.cover || '',
+      rating: (book.newRating / 10).toFixed(1),
+      ratingCount: book.newRatingCount || 0,
+    };
+    state.highlightSource = 'hot';
+    state.mineLoaded = false;
+    state.mineLoading = false;
+    state.lastMermaidCode = '';
+    state.mindmapBookTitle = '';
+    document.querySelectorAll('#hlSourceTabs .source-tab').forEach(b => {
+      b.classList.toggle('active', b.dataset.src === 'hot');
+    });
+    document.getElementById('searchStep').classList.add('hidden');
+    document.getElementById('resultsStep').classList.remove('hidden');
+
+    // Show book meta + deep link
+    document.getElementById('searchMeta').innerHTML = `
+      <img class="book-cover" src="${escapeHtml(book.cover || '')}" alt="封面" onerror="this.style.display='none'">
+      <div class="book-info">
+        <h4>${escapeHtml(book.title)}</h4>
+        <div style="font-size:12px;color:var(--text-muted)">${escapeHtml(book.author || '')} · 评分 ${(book.newRating/10).toFixed(1)} · ${book.newRatingCount}人评价</div>
+        <div style="font-size:11px;margin-top:4px"><a class="hl-link" href="weread://reading?bId=${encodeURIComponent(book.bookId)}" style="margin-left:0">📖 在微信读书打开本书</a></div>
+      </div>
+    `;
+
+    // Get highlights + book info + chapters with failure isolation
+    document.getElementById('mindmapContent').innerHTML = '<div class="loading-row"><div class="loading-dots"><span></span><span></span><span></span></div>正在获取书籍详情…</div>';
+    document.getElementById('highlightList').innerHTML = '<div class="loading-row"><div class="loading-dots"><span></span><span></span><span></span></div>正在获取热门划线…</div>';
+
+    // 失败隔离：每个请求独立捕获，互不拖累
+    const [hr, bi, ci] = await Promise.all([
+      wereadCall('/book/bestbookmarks', { bookId: book.bookId, chapterUid: 0, synckey: 0 }).catch(err => ({ _err: err, errcode: -1 })),
+      wereadCall('/book/info', { bookId: book.bookId }).catch(err => ({ _err: err, errcode: -1 })),
+      wereadCall('/book/chapterinfo', { bookId: book.bookId }).catch(err => ({ _err: err, errcode: -1 })),
+    ]);
+
+    // 各自消化：intro/chapters 失败仅影响导图精度；热门划线失败单独提示
+    if (bi && !bi.errcode && bi.intro) state.currentBook.intro = bi.intro || '';
+    if (ci && !ci.errcode && ci.chapters) {
+      state.currentBook.chapters = (ci.chapters || []).map(c => ({ title: c.title, level: c.level || 1, chapterIdx: c.chapterIdx }));
+    }
+    const introReady = !!(state.currentBook.intro);
+    const chaptersReady = !!(state.currentBook.chapters && state.currentBook.chapters.length);
+
+    if (hr && !hr.errcode) {
+      renderHotHighlights(hr.items || [], hr.chapters || []);
+    } else {
+      const why = hr && hr._err ? '（网络异常）' : (hr && hr.errmsg ? '：' + hr.errmsg : '');
+      document.getElementById('highlightList').innerHTML = '<div class="status-msg warning">热门划线获取失败' + escapeHtml(why || '') + '。可切换「👤 我的划线」或直接生成导图。</div>';
+      document.getElementById('btnChatSearch').disabled = true;
+    }
+
+    if (introReady || chaptersReady) {
+      startBookMindmap();
+    } else {
+      const warn = document.createElement('div');
+      warn.className = 'status-msg warning';
+      warn.textContent = '书籍详情/章节目录获取失败，无法生成全书导图。若你的 API Key 正常，请稍后重新搜索，或先阅读「我的划线」。';
+      document.getElementById('mindmapContent').innerHTML = '';
+      document.getElementById('mindmapContent').appendChild(warn);
+    }
+  } catch(e) {
+    let msg = e.message;
+    if (msg.includes('Failed to fetch') || msg.includes('NetworkError') || msg.includes('网络')) {
+      msg = '无法连接到本地服务。请在浏览器中打开 http://localhost:3456 使用此功能（Preview 面板不支持），并确认已运行 bash scripts/start.sh。';
+    }
+    const errHtml = '<div class="status-msg error">' + escapeHtml(msg) + '</div>';
+    if (document.getElementById('resultsStep').classList.contains('hidden')) {
+      status.innerHTML = errHtml;
+    } else {
+      document.getElementById('mindmapContent').innerHTML = errHtml;
+      document.getElementById('highlightList').innerHTML = '';
+    }
+  }
+}
+
+// 划线来源切换：hot / mine
+async function switchHighlightSource(src) {
+  if (!state.currentBook) return;
+  state.highlightSource = src;
+  document.querySelectorAll('#hlSourceTabs .source-tab').forEach(b => {
+    b.classList.toggle('active', b.dataset.src === src);
+  });
+  const hint = document.getElementById('hlSourceHint');
+
+  if (src === 'mine') {
+    if (!state.mineLoaded && !state.mineLoading) {
+      await loadMyHighlights();
+    }
+    if (state.mineLoaded) {
+      hint.textContent = '展示你在微信读书里的划线（最多 200 条）与带原文的想法，按最近时间排序。勾选后同样可开启引导对话。';
+    }
+  } else {
+    hint.textContent = '该书被划线最多的段落，按热度排序，前 20 条。';
+  }
+}
+
+// 拉取「我的划线」：/book/bookmarklist + /review/list/mine，串行 + 冷却防限流
+async function loadMyHighlights() {
+  const book = state.currentBook;
+  const list = document.getElementById('highlightList');
+  state.mineLoading = true;
+  list.innerHTML = '<div class="loading-row"><div class="loading-dots"><span></span><span></span><span></span></div>正在获取你的划线…</div>';
+  document.getElementById('btnChatSearch').disabled = true;
+
+  try {
+    // 串行请求 + 冷却，避免官方瞬时限流(429)
+    const bm = await wereadCall('/book/bookmarklist', { bookId: book.bookId }).catch(err => ({ _err: err, errcode: -1 }));
+    await sleep(400);
+    const rv = await wereadCall('/review/list/mine', { bookid: book.bookId, count: 50, synckey: 0 }).catch(err => ({ _err: err, errcode: -1 }));
+
+    const items = [];
+    const seen = new Set();
+
+    // 划线：最多取 200 条（该接口不支持分页，整包返回）
+    if (bm && !bm.errcode && bm.updated) {
+      const chMap = {};
+      (bm.chapters || []).forEach(c => { chMap[c.chapterUid] = c.title; });
+      (bm.updated || []).forEach(u => {
+        if (u.type === 1 && u.markText && !seen.has(u.markText)) {
+          seen.add(u.markText);
+          const d = u.createTime ? new Date(u.createTime * 1000).toLocaleDateString('zh-CN') : '';
+          items.push({
+            text: u.markText,
+            chapter: chMap[u.chapterUid] || '',
+            chapterUid: u.chapterUid,
+            kind: 'mine',
+            meta: '📌 划线' + (d ? ' · ' + d : ''),
+          });
+        }
+      });
+    }
+
+    // 想法/点评（带原文 abstract 的合并展示）
+    if (rv && !rv.errcode && rv.reviews) {
+      rv.reviews.forEach(r => {
+        const rev = r.review || {};
+        const abs = rev.abstract || '';
+        const content = (rev.content || '').trim();
+        if (abs && content && !seen.has(abs)) {
+          seen.add(abs);
+          const d = rev.createTime ? new Date(rev.createTime * 1000).toLocaleDateString('zh-CN') : '';
+          items.push({
+            text: abs,
+            thought: content,
+            chapter: rev.chapterName || '',
+            chapterUid: rev.chapterUid,
+            kind: 'mine',
+            meta: '💭 我的想法' + (d ? ' · ' + d : ''),
+          });
+        }
+      });
+    }
+
+    if (!items.length) {
+      const whyHot = (bm && bm._err) || (rv && rv._err) ? '' : '这本书还没有你的划线或想法。';
+      const hintMsg = (bm && bm.errcode && bm.errmsg ? '划线获取失败：' + bm.errmsg + '。' : '') +
+        (rv && rv.errcode && rv.errmsg ? '想法获取失败：' + rv.errmsg + '。' : '') + whyHot;
+      list.innerHTML = '<div class="status-msg info">' + escapeHtml(hintMsg || '暂无个人划线') + '</div>';
+      state.mineLoaded = true;
+      state.highlights = [];
+      window._selectedIdxs = new Set();
+      return;
+    }
+
+    items.sort((a, b) => 0); // 保持划线在前
+    state.highlights = items;
+    window._selectedIdxs = new Set();
+    state.mineLoaded = true;
+    renderHighlightList();
+  } catch(e) {
+    list.innerHTML = '<div class="status-msg error">获取个人划线失败：' + escapeHtml(e.message) + '</div>';
+  } finally {
+    state.mineLoading = false;
+  }
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+// ============ HIGHLIGHTS RENDERING ============
+function renderHotHighlights(items, chapters) {
+  const chapterMap = {};
+  (chapters || []).forEach(c => { chapterMap[c.chapterUid] = c.title; });
+  state.highlights = (items || [])
+    .filter(item => item.markText)
+    .map(item => ({
+      text: item.markText,
+      chapter: chapterMap[item.chapterUid] || '',
+      chapterUid: item.chapterUid,
+      kind: 'hot',
+      meta: '🔥 ' + (item.totalCount || 0).toLocaleString() + ' 人划线',
+      link: buildBestBookmarkLink(item),
+    }));
+  window._selectedIdxs = new Set();
+  document.getElementById('hlSourceHint').textContent = '该书被划线最多的段落，按热度排序，前 20 条。';
+  renderHighlightList();
+}
+
+// deep link：跳转划线所在位置（bestbookmark），缺少 userVid 则降级为章节
+function buildBestBookmarkLink(item) {
+  try {
+    if (!item || !item.chapterUid) return '';
+    const base = 'weread://bestbookmark?bookId=' + encodeURIComponent(state.currentBook.bookId) +
+      '&chapterUid=' + encodeURIComponent(item.chapterUid) +
+      '&userVid=' + encodeURIComponent(item.userVid || '');
+    if (item.range) {
+      const parts = String(item.range).split('-');
+      return base + '&rangeStart=' + encodeURIComponent(parts[0] || '') + '&rangeEnd=' + encodeURIComponent(parts[1] || parts[0] || '');
+    }
+    return 'weread://reading?bId=' + encodeURIComponent(state.currentBook.bookId) + '&chapterUid=' + encodeURIComponent(item.chapterUid);
+  } catch(e) { return ''; }
+}
+
+function renderHighlightList() {
+  const list = document.getElementById('highlightList');
+  list.innerHTML = state.highlights.map((item, i) => {
+    const chapter = item.chapter;
+    const badgeCls = item.kind === 'hot' ? 'hot' : 'mine';
+    const badgeTxt = item.kind === 'hot' ? '万人' : '我的';
+    const linkHtml = item.link
+      ? `<a class="hl-link" href="${item.link}" onclick="event.stopPropagation()" title="在微信读书打开该划线">📖 跳转</a>`
+      : '';
+    return `
+      <div class="highlight-card" data-idx="${i}" onclick="toggleHighlight(${i}, event)">
+        <div class="select-badge">✓</div>
+        <div class="hl-text">${escapeHtml(item.text)}</div>
+        ${item.thought ? `<div class="hl-meta" style="margin-top:6px"><span style="color:var(--success)">💭 ${escapeHtml(String(item.thought).slice(0, 120))}${item.thought.length > 120 ? '…' : ''}</span></div>` : ''}
+        <div class="hl-meta">
+          <span><span class="hl-type-badge ${badgeCls}">${badgeTxt}</span><span class="hl-count">${escapeHtml(item.meta || '')}</span></span>
+          <span class="hl-chapter">${chapter ? escapeHtml(chapter) : ''}${linkHtml}</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('btnChatSearch').disabled = !window._selectedIdxs || window._selectedIdxs.size === 0;
+  document.getElementById('chatHighlightCount').textContent = '';
+}
+
+function toggleHighlight(idx, event) {
+  if (event && event.target && event.target.closest('a')) return; // 不拦截 deep link
+  const card = document.querySelector(`.highlight-card[data-idx="${idx}"]`);
+  if (!card) return;
+
+  if (card.classList.contains('selected')) {
+    card.classList.remove('selected');
+    window._selectedIdxs.delete(idx);
+  } else {
+    card.classList.add('selected');
+    window._selectedIdxs.add(idx);
+  }
+
+  const count = window._selectedIdxs.size;
+  const btn = document.getElementById('btnChatSearch');
+  const counter = document.getElementById('chatHighlightCount');
+  btn.disabled = count === 0;
+  counter.textContent = count > 0 ? `（已选 ${count} 条）` : '';
+
+  if (count > 0) {
+    // 记录带出处的选中项，供导出/对话使用
+    state.selectedItems = Array.from(window._selectedIdxs).sort((a,b)=>a-b)
+      .map(i => {
+        const h = state.highlights[i];
+        return { text: h.text, chapter: h.chapter || '', meta: h.meta || '' };
+      });
+    state.selectedText = state.selectedItems.map(it => it.text).join('\n\n---\n\n');
+  } else {
+    state.selectedItems = [];
+    state.selectedText = '';
+    document.getElementById('resultArea').classList.add('hidden');
+    document.getElementById('selectedPassage').classList.add('hidden');
+    document.getElementById('resultContent').innerHTML = '';
+  }
+  state.conversationHistory = [];
+  state.questionRound = 0;
+  state.chatSummary = '';
+  clearSession();
+}
+
+// ============ WEREAD PROXY ============
+async function wereadCall(apiName, params) {
+  const resp = await fetch('/api/weread', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ api_name: apiName, ...params }),
+  });
+  if (!resp.ok) {
+    let msg = 'HTTP ' + resp.status;
+    try { const j = await resp.json(); msg = j.errmsg || msg; } catch(e) {}
+    throw new Error(msg);
+  }
+  return resp.json();
+}
+
+// ============ ACTIONS ============
+function getCurrentText() {
+  return state.selectedText || '';
+}
+
+function clearSelection() {
+  state.selectedText = '';
+  state.conversationHistory = [];
+  state.questionRound = 0;
+  state.chatSummary = '';
+  state.selectedItems = [];
+  window._selectedIdxs = new Set();
+  clearSession();
+  document.getElementById('resultArea').classList.add('hidden');
+  document.getElementById('selectedPassage').classList.add('hidden');
+  document.getElementById('resultContent').innerHTML = '';
+  document.getElementById('mindmapContent').innerHTML = '';
+  document.getElementById('highlightList').innerHTML = '';
+  document.getElementById('hlSourceHint').textContent = '';
+
+  document.getElementById('searchStep').classList.remove('hidden');
+  document.getElementById('resultsStep').classList.add('hidden');
+  document.getElementById('searchStatus').innerHTML = '';
+}
+
+// ---------- 会话持久化（刷新后恢复未完成的引导对话） ----------
+function saveSession() {
+  if (!state.currentBook || !state.conversationHistory.length) return;
+  try {
+    localStorage.setItem(SESSION_KEY, JSON.stringify({
+      book: state.currentBook,
+      selectedItems: state.selectedItems,
+      selectedText: state.selectedText,
+      history: state.conversationHistory,
+      round: state.questionRound,
+      summary: state.chatSummary,
+      source: state.highlightSource,
+    }));
+  } catch(e) { /* storage full or blocked */ }
+}
+
+function clearSession() {
+  try { localStorage.removeItem(SESSION_KEY); } catch(e) {}
+}
+
+function restoreSession() {
+  let s;
+  try { s = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null'); } catch(e) { return; }
+  if (!s || !s.book || !s.history || !s.history.length) return;
+
+  // 提示用户存在未完成会话，由用户决定是否继续
+  const banner = document.createElement('div');
+  banner.className = 'status-msg info';
+  banner.id = 'sessionBanner';
+  banner.style.marginBottom = '12px';
+  banner.innerHTML = `检测到《${escapeHtml(s.book.title)}》有一场未完成的引导对话（第 ${s.round}/5 轮）。`;
+  const btnResume = document.createElement('button');
+  btnResume.className = 'btn btn-secondary';
+  btnResume.style.marginRight = '8px';
+  btnResume.textContent = '继续对话';
+  btnResume.onclick = () => resumeSession(s);
+  const btnDiscard = document.createElement('button');
+  btnDiscard.className = 'btn btn-outline';
+  btnDiscard.textContent = '放弃并开始新的';
+  btnDiscard.onclick = () => { hideSessionPrompt(); clearSession(); };
+  banner.appendChild(btnResume);
+  banner.appendChild(btnDiscard);
+
+  const searchStep = document.getElementById('searchStep');
+  searchStep.parentNode.insertBefore(banner, searchStep);
+  window._pendingSession = s;
+}
+
+function hideSessionPrompt() {
+  const b = document.getElementById('sessionBanner');
+  if (b) b.remove();
+  window._pendingSession = null;
+}
+
+function resumeSession(s) {
+  hideSessionPrompt();
+  clearSelection();               // 重置 DOM 后重建
+  state.currentBook = s.book;
+  state.selectedItems = s.selectedItems || [];
+  state.selectedText = s.selectedText || '';
+  state.conversationHistory = s.history || [];
+  state.questionRound = s.round || 0;
+  state.chatSummary = s.summary || '';
+  state.highlightSource = s.source || 'hot';
+  window._selectedIdxs = new Set();
+
+  document.getElementById('searchStep').classList.add('hidden');
+  document.getElementById('resultsStep').classList.remove('hidden');
+  const book = state.currentBook;
+  document.getElementById('searchMeta').innerHTML = `
+    <img class="book-cover" src="${escapeHtml(book.cover || '')}" alt="封面" onerror="this.style.display='none'">
+    <div class="book-info">
+      <h4>${escapeHtml(book.title)}</h4>
+      <div style="font-size:12px;color:var(--text-muted)">${escapeHtml(book.author || '')} · 已恢复上次会话</div>
+    </div>
+  `;
+  document.querySelectorAll('#hlSourceTabs .source-tab').forEach(b => {
+    b.classList.toggle('active', b.dataset.src === state.highlightSource);
+  });
+  document.getElementById('hlSourceHint').textContent = '已恢复会话：勾选的划线内容仍保留，可直接继续对话。';
+  document.getElementById('highlightList').innerHTML = '';
+  document.getElementById('mindmapContent').innerHTML = '<div class="status-msg info">已恢复上次会话，未重新生成全书导图。如需查看可重新搜索本书。</div>';
+
+  // 恢复对话区
+  const area = document.getElementById('resultArea');
+  const content = document.getElementById('resultContent');
+  area.classList.remove('hidden');
+  document.getElementById('selectedPassage').classList.remove('hidden');
+  document.getElementById('passageText').textContent = state.selectedText;
+
+  content.innerHTML = `
+    <div class="qa-container">
+      <div class="qa-header">💬 引导式对话 · 第 <span id="roundNum">${Math.min(state.questionRound + 1, 5)}</span>/5 轮</div>
+      <div class="qa-messages" id="qaMessages"></div>
+      <div class="qa-input-row">
+        <textarea id="qaInput" placeholder="输入你的回答…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAnswer()}"></textarea>
+        <button class="send-btn" id="qaSendBtn" onclick="sendAnswer()">➤</button>
+      </div>
+    </div>
+  `;
+
+  const messages = document.getElementById('qaMessages');
+  const history = state.conversationHistory.filter(m => m.role !== 'system');
+  history.forEach((m, i) => {
+    const isAi = m.role === 'assistant';
+    const div = document.createElement('div');
+    div.className = 'message ' + (isAi ? 'ai' : 'user');
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    bubble.textContent = m.content;
+    div.appendChild(bubble);
+    messages.appendChild(div);
+  });
+
+  if (state.questionRound >= 5) {
+    finishChat(messages);
+  } else {
+    document.getElementById('roundNum').textContent = state.questionRound + 1;
+    document.getElementById('qaInput').disabled = false;
+    document.getElementById('qaSendBtn').disabled = false;
+  }
+  saveSession();
+  if (window._pendingSession) { window._pendingSession = null; }
+}
+
+async function startBookMindmap() {
+  const book = state.currentBook;
+  const content = document.getElementById('mindmapContent');
+
+  if (!book) {
+    content.innerHTML = '<div class="status-msg warning">请先搜索一本书。</div>';
+    return;
+  }
+  if (!state.apiKey) {
+    content.innerHTML = '<div class="status-msg warning">⚠️ 还没有配置 API Key，请先点击右上角「⚙️ 设置」配置智谱或 DeepSeek 的 Key。</div>';
+    toggleSettings();
+    return;
+  }
+
+  content.innerHTML = '<div class="loading-row" id="mindmapLoading"><div class="loading-dots"><span></span><span></span><span></span></div><span id="mindmapLoadingText">正在为《' + escapeHtml(book.title) + '》生成全书结构图…</span></div>';
+
+  try {
+    let context = '';
+    if (book.intro) {
+      context += '【书籍简介】\n' + String(book.intro).slice(0, 1500) + '\n\n';
+    }
+    if (book.chapters && book.chapters.length) {
+      context += '【章节目录】\n';
+      book.chapters.forEach(c => {
+        context += '  '.repeat((c.level || 1) - 1) + c.title + '\n';
+      });
+    }
+    if (!context.trim()) {
+      throw new Error('书籍简介与章节目录均为空，无法生成结构导图');
+    }
+
+    const fullResp = await callLLMStream([
+      { role: 'system', content: BOOK_MINDMAP_SYSTEM + '\n\n' + BOOK_MINDMAP_EXAMPLE },
+      { role: 'user', content: `请为以下书籍生成可视化图表：\n书名：《${book.title}》\n作者：${book.author}\n\n${context}\n\n请基于以上信息判断书籍类型（虚构/非虚构），选择合适的图表类型（mindmap 结构导图 或 graph 人物关系图/情节图），生成一个丰富、具体、有深度的可视化图表。不要泛泛而谈，要体现这本书的独特性。` },
+    ], 0.3, {
+      onDelta: (delta) => {
+        const t = document.getElementById('mindmapLoadingText');
+        if (t) t.textContent = '正在生成全书结构图…（' + delta.length + ' 字）';
+      }
+    });
+
+    const mermaidMatch = fullResp.match(/```mermaid\n?([\s\S]*?)```/) || fullResp.match(/mindmap[\s\S]*/);
+    const mermaidCode = mermaidMatch ? (mermaidMatch[1] || mermaidMatch[0]).trim() : fullResp.trim();
+
+    state.lastMermaidCode = mermaidCode;
+    state.mindmapBookTitle = book.title;
+
+    renderMindmapPreview(mermaidCode, book.title);
+  } catch(e) {
+    content.innerHTML = '<div class="status-msg error">导图生成失败：' + escapeHtml(e.message) + '</div><div style="margin-top:10px"><button class="btn btn-outline" onclick="startBookMindmap()">🔄 重试生成</button></div>';
+  }
+}
+
+// ============ MINDMAP VIEW / EDIT / EXPORT ============
+function renderMindmapPreview(code, bookTitle) {
+  const content = document.getElementById('mindmapContent');
+  const id = 'mindmap-' + Date.now();
+
+  content.innerHTML = `
+    <div class="mindmap-toolbar">
+      <button class="tb-btn active" id="btnViewMode" onclick="toggleMindmapMode('view')">📊 预览</button>
+      <button class="tb-btn" id="btnEditMode" onclick="toggleMindmapMode('edit')">✏️ 编辑</button>
+      <div class="toolbar-spacer"></div>
+      <button class="tb-btn" onclick="copyMermaidCode()">📋 复制代码</button>
+      <button class="tb-btn" onclick="downloadMermaidPng()">🖼️ 导出PNG</button>
+    </div>
+    <div class="mindmap-result" id="mindmapViewArea">
+      <div class="mermaid-wrapper">
+        <div class="mermaid" id="${id}">${escapeHtml(code)}</div>
+      </div>
+    </div>
+    <div id="mindmapEditArea" style="display:none">
+      <textarea class="mindmap-edit-area" id="mermaidCodeEditor">${escapeHtml(code)}</textarea>
+      <div style="margin-top:8px;display:flex;gap:8px">
+        <button class="tb-btn active" onclick="rerenderMindmap()">🔄 重新渲染</button>
+        <span style="font-size:11px;color:var(--text-light);line-height:28px">编辑后点击「重新渲染」查看效果</span>
+      </div>
+    </div>`;
+
+  setTimeout(() => initMermaidElement(id, code), 150);
+}
+
+function initMermaidElement(id, fallbackCode) {
+  try {
+    mermaid.init(undefined, document.getElementById(id));
+    const el = document.getElementById(id);
+    const svg = el && el.querySelector('svg');
+    if (svg) {
+      svg.style.maxWidth = 'none';
+      svg.style.height = 'auto';
+      const vb = svg.getAttribute('viewBox');
+      if (vb) {
+        const parts = vb.split(' ').map(Number);
+        if (parts[3] && parts[3] < 300) {
+          const scale = 400 / parts[3];
+          svg.setAttribute('viewBox', `${parts[0]} ${parts[1]} ${parts[2]} ${parts[3] * scale}`);
+        }
+      }
+    }
+  } catch(e) {
+    document.getElementById(id).innerHTML = '<pre style="font-size:12px;color:var(--text-muted)">' + escapeHtml(fallbackCode) + '</pre>';
+  }
+}
+
+function toggleMindmapMode(mode) {
+  const viewArea = document.getElementById('mindmapViewArea');
+  const editArea = document.getElementById('mindmapEditArea');
+  const btnView = document.getElementById('btnViewMode');
+  const btnEdit = document.getElementById('btnEditMode');
+
+  if (mode === 'edit') {
+    viewArea.style.display = 'none';
+    editArea.style.display = 'block';
+    btnView.classList.remove('active');
+    btnEdit.classList.add('active');
+  } else {
+    viewArea.style.display = 'block';
+    editArea.style.display = 'none';
+    btnView.classList.add('active');
+    btnEdit.classList.remove('active');
+  }
+}
+
+function rerenderMindmap() {
+  const editor = document.getElementById('mermaidCodeEditor');
+  const newCode = editor.value.trim();
+  if (!newCode) { showToast('代码不能为空'); return; }
+
+  state.lastMermaidCode = newCode;
+
+  // Switch to view mode
+  toggleMindmapMode('view');
+
+  // Re-render
+  const content = document.getElementById('mindmapContent');
+  const id = 'mindmap-' + Date.now();
+  const viewArea = document.getElementById('mindmapViewArea');
+  viewArea.innerHTML = `
+    <div class="mermaid-wrapper">
+      <div class="mermaid" id="${id}">${escapeHtml(newCode)}</div>
+    </div>`;
+
+  setTimeout(() => initMermaidElement(id, newCode), 150);
+  showToast('已重新渲染');
+}
+
+function copyMermaidCode() {
+  const code = state.lastMermaidCode || '';
+  const editor = document.getElementById('mermaidCodeEditor');
+  const text = (editor && editor.offsetParent !== null) ? editor.value : code;
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('代码已复制到剪贴板');
+  }).catch(() => {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('代码已复制');
+  });
+}
+
+function downloadMermaidPng() {
+  // Try multiple selectors to find the SVG
+  let svg = document.querySelector('#mindmapViewArea svg');
+  if (!svg) {
+    const wrapper = document.querySelector('#mindmapViewArea .mermaid');
+    svg = wrapper && wrapper.querySelector('svg');
+  }
+  if (!svg) {
+    const allSvgs = document.querySelectorAll('.mindmap-result svg, .mermaid svg');
+    svg = allSvgs[allSvgs.length - 1]; // Get the last one (most recently rendered)
+  }
+  if (!svg) { showToast('没有可导出的图表，请稍等渲染完成后再试'); return; }
+
+  showToast('正在生成 PNG…');
+
+  try {
+    // Get SVG dimensions
+    const rect = svg.getBoundingClientRect();
+    const svgWidth = rect.width || parseInt(svg.getAttribute('width')) || 800;
+    const svgHeight = rect.height || parseInt(svg.getAttribute('height')) || 600;
+
+    // Clone and prepare SVG for export
+    const svgClone = svg.cloneNode(true);
+
+    // Ensure SVG has proper xmlns and dimensions
+    if (!svgClone.getAttribute('xmlns')) svgClone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    if (!svgClone.getAttribute('width')) svgClone.setAttribute('width', svgWidth);
+    if (!svgClone.getAttribute('height')) svgClone.setAttribute('height', svgHeight);
+
+    // Inline styles for better compatibility
+    const svgData = new XMLSerializer().serializeToString(svgClone);
+    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(svgBlob);
+
+    const img = new Image();
+    let done = false;
+
+    img.onload = function() {
+      if (done) return;
+      done = true;
+
+      const canvas = document.createElement('canvas');
+      const scale = 2; // High-res
+      const cw = Math.max(img.width || svgWidth, 400);
+      const ch = Math.max(img.height || svgHeight, 300);
+      canvas.width = cw * scale;
+      canvas.height = ch * scale;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(scale, scale);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, cw, ch);
+      ctx.drawImage(img, 0, 0, cw, ch);
+
+      canvas.toBlob(function(blob) {
+        if (!blob) {
+          showToast('导出失败：Canvas 生成失败');
+          URL.revokeObjectURL(url);
+          return;
+        }
+        const dlUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const title = (state.mindmapBookTitle || 'mindmap').replace(/[<>:"/\\|?*]/g, '_');
+        a.href = dlUrl;
+        a.download = title + '-导图.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(dlUrl);
+        URL.revokeObjectURL(url);
+        showToast('✅ PNG 已导出到下载文件夹');
+      }, 'image/png');
+    };
+
+    img.onerror = function() {
+      if (done) return;
+      done = true;
+      URL.revokeObjectURL(url);
+      showToast('导出失败：SVG 渲染出错。建议复制代码到 mermaid.live 导出');
+    };
+
+    // Timeout fallback
+    setTimeout(function() {
+      if (!done) {
+        done = true;
+        URL.revokeObjectURL(url);
+        showToast('导出超时。建议复制代码到 mermaid.live 导出');
+      }
+    }, 10000);
+
+    img.src = url;
+  } catch(e) {
+    showToast('导出失败：' + e.message);
+  }
+}
+
+async function startChat() {
+  const text = getCurrentText();
+  const area = document.getElementById('resultArea');
+  const content = document.getElementById('resultContent');
+  area.classList.remove('hidden');
+
+  if (!text) {
+    content.innerHTML = '<div class="status-msg warning">请先在上方勾选至少一条划线，再开始对话。</div>';
+    return;
+  }
+  if (!state.apiKey) {
+    content.innerHTML = '<div class="status-msg warning">⚠️ 还没有配置 API Key，请先点击右上角「⚙️ API 设置」配置智谱或 DeepSeek 的 Key。</div>';
+    toggleSettings();
+    return;
+  }
+
+  document.getElementById('selectedPassage').classList.remove('hidden');
+  document.getElementById('passageText').textContent = text;
+
+  const book = state.currentBook || {};
+  state.conversationHistory = [
+    { role: 'system', content: CHAT_SYSTEM },
+    { role: 'user', content: `我正在读《${book.title || ''}》${book.author ? '（' + book.author + '）' : ''}中的这段文字：\n\n${text}\n\n请开始第一轮提问。` },
+  ];
+  state.questionRound = 0;
+  state.chatSummary = '';
+  saveSession();
+
+  content.innerHTML = `
+    <div class="qa-container">
+      <div class="qa-header">💬 引导式对话 · 第 <span id="roundNum">1</span>/5 轮</div>
+      <div class="qa-messages" id="qaMessages"></div>
+      <div class="qa-input-row">
+        <textarea id="qaInput" placeholder="输入你的回答…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAnswer()}"></textarea>
+        <button class="send-btn" id="qaSendBtn" onclick="sendAnswer()" disabled>➤</button>
+      </div>
+    </div>
+  `;
+
+  await streamAIRound();
+}
+
+// 流式生成 AI 的下一轮提问/回复
+async function streamAIRound() {
+  const messages = document.getElementById('qaMessages');
+  const input = document.getElementById('qaInput');
+  const sendBtn = document.getElementById('qaSendBtn');
+  state.isProcessing = true;
+  input.disabled = true;
+  sendBtn.disabled = true;
+
+  // 创建空气泡，流式填充
+  const aiMsg = document.createElement('div');
+  aiMsg.className = 'message ai';
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.innerHTML = '<div class="loading-dots" style="display:inline-flex"><span></span><span></span><span></span></div> 思考中…';
+  aiMsg.appendChild(bubble);
+  messages.appendChild(aiMsg);
+  messages.scrollTop = messages.scrollHeight;
+
+  try {
+    let full = '';
+    const resp = await callLLMStream(state.conversationHistory, 0.8, {
+      onDelta: (delta) => {
+        full += delta;
+        bubble.textContent = full;   // textContent 天然转义
+        messages.scrollTop = messages.scrollHeight;
+      }
+    });
+
+    // 流式可能未触发 onDelta（如纯增量异常），兜底
+    if (!full && resp) { bubble.textContent = resp; full = resp; }
+    if (!full) throw new Error('模型返回为空');
+
+    state.questionRound++;
+    state.conversationHistory.push({ role: 'assistant', content: full });
+    state.isProcessing = false;
+    saveSession();
+    afterAIRound();
+  } catch(e) {
+    bubble.textContent = '';
+    const errDiv = document.createElement('div');
+    errDiv.className = 'status-msg error';
+    errDiv.textContent = '生成失败：' + e.message;
+    aiMsg.appendChild(errDiv);
+    state.isProcessing = false;
+    input.disabled = false;
+    sendBtn.disabled = false;
+  }
+}
+
+function afterAIRound() {
+  const input = document.getElementById('qaInput');
+  const sendBtn = document.getElementById('qaSendBtn');
+  const roundNum = document.getElementById('roundNum');
+  roundNum.textContent = state.questionRound;
+  const messages = document.getElementById('qaMessages');
+
+  if (state.questionRound >= 5) {
+    input.disabled = true;
+    sendBtn.disabled = true;
+    input.placeholder = '对话已完成，可导出笔记或生成读书小结';
+    finishChat(messages);
+  } else {
+    roundNum.textContent = state.questionRound + 1;
+    input.disabled = false;
+    sendBtn.disabled = false;
+    input.focus();
+  }
+  saveSession();
+}
+
+function finishChat(messages) {
+  if (!messages) messages = document.getElementById('qaMessages');
+  if (document.getElementById('qaActions')) return;
+  const actions = document.createElement('div');
+  actions.id = 'qaActions';
+  actions.style.cssText = 'display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px';
+
+  const summaryBtn = document.createElement('button');
+  summaryBtn.className = 'btn btn-secondary';
+  summaryBtn.id = 'btnGenSummary';
+  summaryBtn.textContent = '📝 ' + (state.chatSummary ? '重新生成读书小结' : '生成读书小结');
+  summaryBtn.onclick = genSummary;
+
+  const exportBtn = document.createElement('button');
+  exportBtn.className = 'btn btn-outline';
+  exportBtn.textContent = '📥 导出笔记';
+  exportBtn.onclick = exportNotes;
+
+  actions.appendChild(summaryBtn);
+  actions.appendChild(exportBtn);
+  messages.appendChild(actions);
+}
+
+// 基于对话记录生成结构化读书小结（核心观点/我的启发/可应用点）
+async function genSummary() {
+  const book = state.currentBook || {};
+  const btn = document.getElementById('btnGenSummary');
+  if (!btn || btn.disabled) return;
+  btn.disabled = true;
+  btn.textContent = '生成中…';
+
+  const messages = document.getElementById('qaMessages');
+  const summaryMsg = document.createElement('div');
+  summaryMsg.className = 'message ai';
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.innerHTML = '<div class="loading-dots" style="display:inline-flex"><span></span><span></span><span></span></div> 正在整理小结…';
+  summaryMsg.appendChild(bubble);
+  messages.appendChild(summaryMsg);
+  messages.scrollTop = messages.scrollHeight;
+
+  try {
+    const chatPart = state.conversationHistory
+      .filter(m => m.role !== 'system')
+      .map(m => (m.role === 'assistant' ? '教练问：' : '我答：') + m.content)
+      .join('\n\n');
+
+    const messagesArr = [
+      { role: 'system', content: SUMMARY_SYSTEM },
+      { role: 'user', content: `请根据以下这场 5 轮苏格拉底对话，为《${book.title}》（${book.author || '未知作者'}）整理一份结构化读书小结。\n\n【对话记录】\n${chatPart}\n\n请输出读书小结。` },
+    ];
+
+    let full = '';
+    const resp = await callLLMStream(messagesArr, 0.4, {
+      onDelta: (delta) => {
+        full += delta;
+        bubble.textContent = full;
+        messages.scrollTop = messages.scrollHeight;
+      }
+    });
+    if (!full && resp) { bubble.textContent = resp; full = resp; }
+    state.chatSummary = full;
+    saveSession();
+    showToast('读书小结已生成，可随笔记一并导出');
+  } catch(e) {
+    bubble.textContent = '';
+    const errDiv = document.createElement('div');
+    errDiv.className = 'status-msg error';
+    errDiv.textContent = '小结生成失败：' + e.message;
+    summaryMsg.appendChild(errDiv);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '📝 重新生成读书小结';
+  }
+}
+
+async function sendAnswer() {
+  const input = document.getElementById('qaInput');
+  const answer = input.value.trim();
+  if (!answer || state.isProcessing || state.questionRound >= 5) return;
+
+  const messages = document.getElementById('qaMessages');
+  const userDiv = document.createElement('div');
+  userDiv.className = 'message user';
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.textContent = answer;
+  userDiv.appendChild(bubble);
+  messages.appendChild(userDiv);
+  messages.scrollTop = messages.scrollHeight;
+
+  input.value = '';
+  state.conversationHistory.push({ role: 'user', content: answer });
+  saveSession();
+  await streamAIRound();
+}
+
+function exportNotes() {
+  const book = state.currentBook || {};
+  const dateStr = new Date().toLocaleDateString('zh-CN');
+  let md = '# 《' + (book.title || '未知书名') + '》· AI 伴读笔记\n\n';
+  md += `> 生成日期：${dateStr} ｜ 作者：${book.author || '未知'} ｜ 来源：微信读书 + AI 伴读\n\n`;
+  if (book.rating) md += `> 评分：${book.rating}（${book.ratingCount || 0} 人评价）\n\n`;
+
+  md += '## 一、原文选段（' + state.selectedItems.length + ' 条）\n\n';
+  state.selectedItems.forEach((it, i) => {
+    md += `### ${i + 1}. ${it.chapter ? '《' + book.title + '》·' + it.chapter : '《' + (book.title || '') + '》'}${it.meta ? '（' + it.meta + '）' : ''}\n\n`;
+    md += '> ' + it.text.replace(/\n/g, '\n> ') + '\n\n';
+  });
+
+  md += '## 二、引导对话记录\n\n';
+  state.conversationHistory.filter(m => m.role !== 'system').forEach(m => {
+    md += (m.role === 'assistant' ? '**🤖 教练**：' : '**👤 我**：') + m.content + '\n\n';
+  });
+
+  if (state.chatSummary) {
+    md += '## 三、读书小结\n\n' + state.chatSummary + '\n\n';
+  }
+
+  md += '---\n> 本笔记由 socratic-reading-coach AI 伴读生成，含书籍原文划线，仅供个人学习使用，请勿公开传播。\n';
+
+  const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const fname = ('《' + (book.title || '阅读') + '》伴读笔记').replace(/[<>:"/\\|?*\n]/g, '_');
+  a.href = url; a.download = fname + '.md'; a.click();
+  URL.revokeObjectURL(url);
+  showToast('笔记已导出。内容含书籍原文划线，仅供个人学习，请勿公开传播');
+}
+
+function clearSettings() {
+  localStorage.removeItem('ai_key_zhipu');
+  localStorage.removeItem('ai_key_deepseek');
+  state.apiKeyZhipu = '';
+  state.apiKeyDeepseek = '';
+  state.apiKey = '';
+  document.getElementById('apiKeyInput').value = '';
+  updateSettingsUI();
+  showToast('已清除本浏览器保存的所有 API Key');
+}
+
+// ============ LLM CALL ============
+// 统一的 LLM 调用：默认流式（OpenAI 兼容 SSE）；当响应非流式（降级/异常）时自动改走完整 JSON 读取。
+// opts.onDelta(deltaText) 每次收到增量触发；返回完整文本。
+async function callLLMStream(messages, temperature = 0.7, opts = {}) {
+  const provider = PROVIDERS[state.provider];
+  const maxTokens = opts.maxTokens || 4096;
+  let resp;
+  try {
+    resp = await fetch(provider.endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${state.apiKey}` },
+      body: JSON.stringify({ model: provider.model, messages, temperature, max_tokens: maxTokens, stream: true }),
+    });
+  } catch(networkErr) {
+    throw new Error('网络请求失败（可能是 CORS 或网络问题）：' + networkErr.message + '。如果你在 Preview 面板里使用，请在 Safari 中打开 http://localhost:3456');
+  }
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({}));
+    throw new Error(err.error?.message || `API 错误 ${resp.status}（请检查 API Key 是否正确）`);
+  }
+  const ctype = resp.headers.get('content-type') || '';
+  if (!resp.body || !ctype.includes('text/event-stream')) {
+    // 非流式响应（供应商降级或不支持）
+    const data = await resp.json();
+    const text = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+    if (typeof text === 'string' && text.length && opts.onDelta) opts.onDelta(text);
+    return text || '';
+  }
+  // SSE 流式解析
+  const reader = resp.body.getReader();
+  const decoder = new TextDecoder('utf-8');
+  let buffer = '';
+  let full = '';
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split('\n');
+    buffer = lines.pop() || '';
+    for (const line of lines) {
+      const t = line.trim();
+      if (!t.startsWith('data:')) continue;
+      const payload = t.slice(5).trim();
+      if (payload === '[DONE]') continue;
+      try {
+        const j = JSON.parse(payload);
+        const delta = j.choices && j.choices[0] && j.choices[0].delta && j.choices[0].delta.content;
+        if (delta) {
+          full += delta;
+          if (opts.onDelta) opts.onDelta(delta);
+        }
+      } catch(e) { /* 忽略不完整行 */ }
+    }
+  }
+  return full;
+}
+
+// ============ PROMPTS ============
+const BOOK_MINDMAP_SYSTEM = `你是一个专业的阅读辅助工具。请根据用户提供的书名、作者、书籍简介和章节目录，生成可视化图表。
+
+【第一步：判断书籍类型】
+根据书名和简介，判断该书属于以下哪类：
+- A. 非虚构/商业/工具/社科/自我提升类 → 生成结构思维导图（mindmap）
+- B. 小说/虚构/推理/文学/历史叙事类 → 生成人物关系图或情节脉络图（graph LR/TD）
+
+【第二步：按类型输出】
+
+--- 类型 A：结构思维导图（mindmap） ---
+
+层级要求（至少 4 层）：
+  根节点（书名）
+    └ 一级：核心板块/心法体系（3-6个，互斥不重叠）
+        └ 二级：具体概念/方法论（每个一级下 3-5个）
+            └ 三级：具体做法/工具/案例/金句（每个二级下 2-4个）
+                └ 四级（可选）：细节要点/适用场景/注意事项
+
+MECE 原则（关键！）：
+1. 一级分支之间必须**互斥**——"责任跃升"下的内容不能出现在"沟通跃升"里
+2. 同一个概念只在一个分支下展开，不要在多个分支重复
+3. 子节点**不能重复父节点关键词**——如果父节点是"沟通跃升"，子节点不要写"沟通技巧""沟通障碍"，而要写具体方法名如"寻赏法""三明治反馈""一对一清单"
+4. 如果一个概念似乎属于多个分支，选最核心的那个放，其他分支不提
+
+节点命名：
+- 优先用书中**原创概念术语**（如"责任病毒""发动机理论""信任账户"）
+- 禁止空泛词："核心概念""关键原则""重要方法""具体做法"——这些都是废话
+- 每个节点 15 字以内，但要有信息量
+
+独特性检验：
+- 如果把书名换掉，这个导图还能用 → 说明太泛了，重写
+- 每个节点必须只有这本书才会这样写
+
+--- 类型 B：人物关系图（graph LR 或 graph TD） ---
+1. 用节点表示**人物/家族/势力/关键地点**，用连线表示关系
+2. 连线上标注关系类型（血缘/婚姻/利益/冲突/暗恋/同盟/敌对等）
+3. 推理小说标出特殊角色：死者用红色、嫌疑人用橙色、侦探用蓝色
+4. 用 subgraph 区分不同家族/阵营/时间线
+5. 主要人物用大节点([[]])，次要人物用普通节点([])
+6. 人物至少 8 个，关系线至少 12 条，越丰富越好
+7. 如果有多起案件/事件，可用不同颜色区分
+
+【通用要求】
+- 输出纯 Mermaid 代码，用 \`\`\`mermaid 包裹
+- 图表必须足够丰富、足够深，宁大勿小
+- 如果提供的简介和目录不足以判断具体内容，基于你的知识补充，但要诚实标注哪些是推测`;
+
+const BOOK_MINDMAP_EXAMPLE = `示例1（非虚构-mindmap，注意4层深度和MECE）：
+\`\`\`mermaid
+mindmap
+  root((关键跃升))
+    心法
+      责任跃升
+        发动机理论
+          让下属为自己干
+          三种发动机：责任/权力/利益
+        责任病毒
+          逃避责任的5种表现
+          猴子管理法
+      沟通跃升
+        寻赏法
+          发现下属的赏
+          三种赏：成长/认可/乐趣
+        三明治反馈
+          表扬-建议-鼓励结构
+          避免变成"但是"句式
+        一对一清单
+          每周固定30分钟
+          三个必问问题
+      关系跃升
+        信任账户
+          存钱行为：兑现承诺/主动帮忙
+          取钱行为：失信/越界/背后议论
+        冲突处理
+          对事不对人三步法
+          情绪降温后再谈
+      自我跃升
+        时间四象限
+          重要不紧急优先
+          授权第二象限任务
+        精力管理
+          识别精力高峰时段
+          恢复仪式感
+    剑法
+      用人
+        选人三标准
+          值得信任/有能力/有动力
+        育人
+          70-20-10法则
+          给安全试错空间
+      开会
+        早会15分钟站会
+        周复盘会模板
+      决策
+        70%信息即可决策
+        可逆决策快速试错
+\`\`\`
+
+示例2（虚构-graph LR，推理小说人物关系）：
+\`\`\`mermaid
+graph LR
+    subgraph 受害者
+        V1([富商 理查德]):::victim
+        V2([夫人 艾伦]):::victim
+    end
+    subgraph 家族成员
+        S1[长子 詹姆斯]
+        S2[次女 凯瑟琳]
+        S3[私生子 汤姆]
+    end
+    subgraph 外来者
+        D[侦探 波洛]
+        L[律师 菲利普]
+    end
+    V1 -->|夫妻| V2
+    V1 -->|父子| S1
+    V1 -->|父女| S2
+    V1 -->|私生| S3
+    S1 -->|争夺遗产| S2
+    S3 -->|暗恋| S2
+    S1 -.->|可疑不在场证明| V1
+    L -->|修改遗嘱| V1
+    D -->|调查| S1
+    D -->|调查| S3
+    classDef victim fill:#e74c3c,stroke:#333,color:#fff
+\`\`\``;
+
+const CHAT_SYSTEM = `你是苏格拉底式的阅读教练。你会基于用户正在阅读的文字，通过递进式提问帮助他们深度理解、联系自身经验、内化知识。
+
+规则：
+1. 每轮只提 1 个问题，开放式、有深度
+2. 问题递进路径：理解原文 → 联系自身 → 批判分析 → 实际应用 → 沉淀收获
+3. 问题必须嵌入文字的具体内容，不能是泛泛的通用题
+4. 如果用户回答较浅，下一轮降低问题难度；如果回答深入，适当加深
+5. 语气温和、好奇，像朋友聊天
+6. 共 5 轮，第 5 轮结束时帮助用户总结收获`;
+
+const SUMMARY_SYSTEM = `你是一位阅读总结助手。请基于用户提供的一场 5 轮苏格拉底式引导对话（教练提问 + 读者回答），输出一份结构化的读书小结，帮助读者沉淀收获。
+
+输出格式（Markdown）：
+## 📌 核心观点
+（从对话中提炼 2-4 个这本书/这段文字带给读者的核心认识，用简短条目 + 一句话说明）
+
+## 💡 我的启发
+（从读者自己的回答中归纳 2-3 条个人启发/联想，联系读者的经验）
+
+## 🛠 可应用点
+（给出 1-3 个读者接下来可以实际做的事/应用的场景，具体可执行）
+
+要求：
+- 只基于对话中真实出现的内容，不要编造书中没有的观点
+- 语言自然、有温度，像写给读者自己的笔记
+- 总长度控制在 300-500 字`;
+
+// ============ SETTINGS ============
+function toggleSettings() {
+  document.getElementById('settingsModal').classList.toggle('active');
+  document.getElementById('apiKeyInput').value = state.apiKey;
+  document.getElementById('modelProvider').value = state.provider;
+  updateProviderUI();
+}
+
+function onProviderChange() {
+  const p = document.getElementById('modelProvider').value;
+  state.provider = p;
+  state.apiKey = p === 'zhipu' ? state.apiKeyZhipu : state.apiKeyDeepseek;
+  document.getElementById('apiKeyInput').value = state.apiKey;
+  updateProviderUI();
+}
+
+function updateProviderUI() {
+  const p = PROVIDERS[state.provider];
+  document.getElementById('apiKeyLabel').textContent = p.name + ' API Key';
+  const link = document.getElementById('keyUrlLink');
+  if (link) { link.href = p.keyUrl; link.textContent = new URL(p.keyUrl).hostname; }
+}
+
+function saveSettings() {
+  const key = document.getElementById('apiKeyInput').value.trim();
+  if (!key) { showToast('请输入 API Key'); return; }
+
+  if (state.provider === 'zhipu') {
+    state.apiKeyZhipu = key;
+    localStorage.setItem('ai_key_zhipu', key);
+  } else {
+    state.apiKeyDeepseek = key;
+    localStorage.setItem('ai_key_deepseek', key);
+  }
+  state.apiKey = key;
+  localStorage.setItem('ai_provider', state.provider);
+  updateSettingsUI();
+  toggleSettings();
+  showToast(PROVIDERS[state.provider].name + ' API Key 已保存');
+}
+
+function updateSettingsUI() {
+  const btn = document.getElementById('settingsBtn');
+  if (state.apiKey) {
+    btn.classList.add('configured');
+    btn.textContent = '✓ ' + PROVIDERS[state.provider].name + ' 已配置';
+  } else {
+    btn.classList.remove('configured');
+    btn.textContent = '⚙️ 设置';
+  }
+}
+
+// ============ TOAST ============
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timeout);
+  t._timeout = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ============ UTILS ============
+function escapeHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+// Init Mermaid
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'default',
+  securityLevel: 'antiscript',
+  mindmap: { padding: 18 },
+  flowchart: { useMaxWidth: false, htmlLabels: false }
+});
+</script>
+</body>
+</html>

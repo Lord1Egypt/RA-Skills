@@ -1,46 +1,59 @@
-## Description: <br>
-Analyze images and search the web using MiniMax MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze images and search the web using MiniMax MCP tools
 
-## Publisher: <br>
-[daowuu](https://clawhub.ai/user/daowuu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daowuu](https://clawhub.ai/user/daowuu)
 
-## Use Case: <br>
-Developers and agent users use this skill to call MiniMax MCP tools for image understanding and web search from local scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images, search prompts, and Telegram-saved media may include confidential content that is processed by MiniMax or stored locally. <br>
-Mitigation: Use only inputs approved for provider processing and delete locally saved Telegram images when they are no longer needed. <br>
-Risk: The MiniMax API key can be exposed if it is stored broadly in shell startup files or shared logs. <br>
-Mitigation: Store the API key in a restricted environment or secret manager and avoid printing or committing it. <br>
-Risk: The skill executes a MiniMax MCP package through uvx, so runtime behavior depends on the package source. <br>
-Mitigation: Install and run it only when MiniMax and the uvx package source are trusted for the environment. <br>
+## Use Case:
 
+Developers and external users use this skill to ask an agent to analyze local, URL, or Telegram-saved images and run MiniMax-backed web searches from the command line.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/daowuu/minimax-vision-search) <br>
-- [Project Homepage](https://github.com/daowuu/minimax-vision-search) <br>
-- [MiniMax MCP Guide](https://platform.minimaxi.com/docs/token-plan/mcp-guide) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text or JSON returned by MiniMax MCP tools, with setup guidance in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uvx and MINIMAX_API_KEY; MINIMAX_API_HOST can override the default MiniMax API host.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: The skill relies on unpinned external MCP tooling and includes curl-to-shell installer guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned and reviewed MCP package and avoid the curl-to-shell installer path.
+
+Risk: Images, URLs, search queries, and the MiniMax API key are handled by MiniMax tooling.
+
+Mitigation: Use a narrowly scoped MiniMax key, avoid submitting sensitive images, URLs, or search queries, and clean up private Telegram images stored under ~/.openclaw/media/inbound.
+
+## Reference(s):
+
+- [Minimax Vision Search on ClawHub](https://clawhub.ai/daowuu/skills/minimax-vision-search)
+- [Project Homepage](https://github.com/daowuu/minimax-vision-search)
+- [MiniMax MCP Guide](https://platform.minimaxi.com/docs/token-plan/mcp-guide)
+- [MiniMax Token Plan](https://platform.minimaxi.com/subscribe/token-plan)
+- [Chinese README](references/README_zh.md)
+- [Setup Guide](references/setup.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; scripts print JSON responses from MiniMax tools.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uvx and MINIMAX_API_KEY; MINIMAX_API_HOST is optional and defaults to https://api.minimaxi.com.]
+
+## Skill Version(s):
+
+1.1.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Find recent arXiv papers, skip what is already in Zotero, and save new imports with parent-item tagging and PDF attachments into a dedicated collection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find recent arXiv papers, skip what is already in Zotero, and save new imports with parent-item tagging and PDF attachments into a dedicated collection.
 
-## Publisher: <br>
-[cnicpyx](https://clawhub.ai/user/cnicpyx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnicpyx](https://clawhub.ai/user/cnicpyx)
 
-## Use Case: <br>
-External research users use this skill to search recent arXiv papers by topic and time range, deduplicate them against Zotero, and import only new papers into an organized Zotero collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Zotero API key and can create Zotero items, attachments, and a target collection. <br>
-Mitigation: Use a minimally scoped Zotero API key, keep it in ~/.openclaw/.env or the process environment, and install only where the agent is allowed to write new Zotero content. <br>
-Risk: Optional run summaries may reveal research topics and Zotero import details. <br>
-Mitigation: Avoid configuring run.export_summary_path to a shared location and review any exported summaries before sharing them. <br>
-Risk: The skill downloads PDFs from arXiv and uploads or links them in Zotero. <br>
-Mitigation: Review imported papers and attachments according to the user's research and data-handling expectations. <br>
+## Use Case:
 
+External researchers and Zotero users use this skill to search recent arXiv papers by topic and time range, deduplicate against their Zotero library, and import new papers with PDF attachments into a dedicated collection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cnicpyx/arxiv-to-zotero) <br>
-- [Publisher profile](https://clawhub.ai/user/cnicpyx) <br>
-- [arXiv API endpoint](https://export.arxiv.org/api/query) <br>
-- [Zotero Web API endpoint](https://api.zotero.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Plain text or Markdown final summaries, with a single Python command invocation and optional JSON run summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZOTERO_API_KEY plus local python3 and curl; creates Zotero parent items, attachments, and the configured target collection when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill reads ~/.openclaw/.env and may over-read unrelated secrets stored in that shared file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Zotero API key with the minimum required permissions and avoid storing unrelated secrets in ~/.openclaw/.env.
+
+Risk: PDF downloads have insufficient host, redirect, and size restrictions before upload attempts.
+
+Mitigation: Review before installation and restrict PDF downloads to expected arXiv HTTPS hosts with redirect and size limits, or disable PDF attachment behavior if that risk is unacceptable.
+
+Risk: Runs can create Zotero items, attachments, and a collection in the configured library.
+
+Mitigation: Confirm the target Zotero library and collection settings before use, and use a narrowly scoped Zotero API key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cnicpyx/skills/arxiv-to-zotero)
+- [Publisher profile](https://clawhub.ai/user/cnicpyx)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Markdown text with a direct Python command invocation and final run summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates Zotero parent items, attachments, and a target collection through the Zotero Web API; can optionally write a JSON run summary when configured.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

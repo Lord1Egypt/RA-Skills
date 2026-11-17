@@ -1,38 +1,48 @@
-## Description: <br>
-Weixin Reader extracts readable content from WeChat Official Account article links, including the article title, author, publication date, and body text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weixin Reader helps an agent extract the title, author, publication date, and full text from user-provided WeChat Official Account article links.
 
-## Publisher: <br>
-[supengchao](https://clawhub.ai/user/supengchao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[supengchao](https://clawhub.ai/user/supengchao)
 
-## Use Case: <br>
-External users and developers use this skill when an agent needs to read a WeChat Official Account article from an mp.weixin.qq.com link and return the article's title, author, publication date, and main text. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on extraction from external WeChat article pages, so returned content may be incomplete or affected by page access constraints. <br>
-Mitigation: Review extracted title, author, publication date, and body text before relying on the result. <br>
-Risk: Security evidence reports no hidden or malicious behavior, but recommends reviewing high-impact workflows before use. <br>
-Mitigation: Review and scan the skill before deployment, and install it only in environments where this article-extraction workflow is intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers use this skill when they need an agent to read a WeChat Official Account article from an mp.weixin.qq.com link and return the article title, author, publication date, and main text. It is intended for article extraction from user-provided links without requesting login sessions or credentials.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text containing extracted article metadata and body content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Filters irrelevant HTML, navigation, and advertising content before returning article text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-provided WeChat article URLs are sent to the configured extraction tool.
+
+Mitigation: Use only links the user intends to process, and avoid submitting private or access-controlled article URLs unless policy permits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/supengchao/skills/weixin-reader-oc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text article extraction summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes article title, author, publication date, and main text when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Generates a daily Zen Buddhist koan lecture with historical background, interpretation, modern insight, optional Chinese ink wash image prompting, and TTS narration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Zen Buddhist koan lecture with Chinese ink wash illustration and TTS audio, producing classical text, background, interpretation, modern insight, image guidance, and narration.
 
-## Publisher: <br>
-[yumyumtum](https://clawhub.ai/user/yumyumtum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yumyumtum](https://clawhub.ai/user/yumyumtum)
 
-## Use Case: <br>
-External users and agents use this skill to produce daily Zen koan content, including bilingual lecture text, image-generation prompts or commands, and spoken narration for contemplative or spiritual-content workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The image workflow can hand off to a separate external image-generation command and service whose data flow is not fully scoped in the skill documentation. <br>
-Mitigation: Review the generated image command and the referenced image-generation script before execution, and avoid sending sensitive personal reflections or private context into image prompts. <br>
-Risk: Personalized koan lectures, web lookup, image generation, and TTS can expose user-provided text to external services. <br>
-Mitigation: Use explicit /koan commands for routine use and avoid including personal, confidential, or sensitive information in personalized prompts or narration text. <br>
+## Use Case:
 
+External users and developers use this skill to generate daily Zen koan study material, including bilingual lecture text, contemplative image prompts or images, and TTS narration for personal practice or content creation.
 
-## Reference(s): <br>
-- [Zen Koan Daily ClawHub Page](https://clawhub.ai/yumyumtum/zen-koan-daily) <br>
-- [README](README.md) <br>
-- [Koan Reference Examples](references/koans.json) <br>
-- [Progress Tracking Reference](references/progress.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown lecture text with optional JSON koan metadata, shell commands, PNG image output paths, and MP3 audio output paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external image and TTS services when the user runs the generated commands; outputs can be persisted under the user's OpenClaw media directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and package.json) <br>
+Risk: The security scan reports that the documented image workflow asks the agent to run a generated shell command targeting an undeclared external yumfu script with shell-formatted dynamic arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated image command before execution, verify the external dependency is installed and trusted, and avoid automatically executing image commands until dynamic arguments are safely handled.
+
+Risk: Lecture text, prompts, or personalized context may be sent to optional web search, Google Gemini, or Edge TTS services.
+
+Mitigation: Do not include sensitive personal context in prompts or narration text, and disable optional web search or external media generation when privacy requirements do not allow third-party service use.
+
+## Reference(s):
+
+- [Zen Koan Daily ClawHub page](https://clawhub.ai/yumyumtum/skills/zen-koan-daily)
+- [Publisher profile](https://clawhub.ai/user/yumyumtum)
+- [Artifact homepage](https://github.com/yumyumtum/YumSkills/tree/main/zen-koan-daily)
+- [Koan reference data](references/koans.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown lecture text with optional JSON metadata, shell commands, PNG image output, and MP3 audio output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use optional web search, Google Gemini image generation, and Edge TTS; generated media is written to a local outbound media directory.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Real-time OpenClaw session monitor that tails JSONL transcripts and sends formatted activity updates to a Telegram chat as a persistent background process. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session Monitor tails OpenClaw JSONL session transcripts and sends formatted live updates to a configured Telegram chat as a persistent background monitor.
 
-## Publisher: <br>
-[jusaka](https://clawhub.ai/user/jusaka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jusaka](https://clawhub.ai/user/jusaka)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and run continuous monitoring of OpenClaw session transcripts, with live activity summaries delivered to a trusted Telegram chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The monitor continuously forwards local agent transcripts to Telegram, which may expose secrets or sensitive business data. <br>
-Mitigation: Install only for sessions intended to be monitored, send updates only to a trusted private chat, and avoid monitoring directories that may contain sensitive content. <br>
-Risk: A persistent background process or HEARTBEAT watchdog can keep forwarding transcript updates until explicitly stopped. <br>
-Mitigation: Use narrowly scoped AGENTS or SESSIONS_DIR values, track the PID file for the correct skill directory, and remove any watchdog entry when stopping the monitor. <br>
-Risk: Telegram bot credentials and chat IDs control where transcript data is sent. <br>
-Mitigation: Use a dedicated bot, keep BOT_TOKEN and CHAT_ID private, and verify the destination chat before starting the monitor. <br>
+## Use Case:
 
+Developers and operators use this skill to deploy and manage continuous monitoring of OpenClaw agent sessions, including multi-agent transcript polling, message formatting, and Telegram delivery.
 
-## Reference(s): <br>
-- [Session Monitor Reference](artifact/references/REFERENCE.md) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/jusaka/openclaw-session-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration values; runtime monitor messages are formatted as Telegram HTML text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Telegram bot credentials and a target chat ID; monitors configured OpenClaw session directories continuously.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.0.0 (source: server release evidence) <br>
+Risk: Continuous monitoring can forward unredacted prompts, responses, commands, filenames, URLs, and tool outputs to Telegram.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when every monitored session owner expects forwarding to the configured chat, and treat the Telegram destination as authorized to receive transcript excerpts.
+
+Risk: Telegram bot credentials and chat identifiers are sensitive because they control where monitoring updates are delivered.
+
+Mitigation: Store the bot token and chat ID only in the local environment configuration and limit access to the skill directory and logs.
+
+Risk: Auto-restart guidance can make monitoring persist beyond the initiating agent session.
+
+Mitigation: Use watchdog or heartbeat restart configuration only when persistent monitoring is explicitly required, and verify the monitor status before and after deployment.
+
+## Reference(s):
+
+- [Session Monitor Reference](artifact/references/REFERENCE.md)
+- [ClawHub Skill Release](https://clawhub.ai/jusaka/skills/openclaw-session-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown with inline bash commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational instructions for a persistent Node.js monitor that formats transcript excerpts as Telegram HTML messages.]
+
+## Skill Version(s):
+
+9.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

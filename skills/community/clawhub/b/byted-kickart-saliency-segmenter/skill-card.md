@@ -1,42 +1,67 @@
-## Description: <br>
-Segments subjects from image files and removes backgrounds through the Volcengine Kickart image cutout workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs image cutout and background removal by uploading image files to Volcengine services, polling batch segmentation jobs, and returning subject and mask outputs.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-External users and developers use this skill to upload JPEG, PNG, WEBP, or ZIP image inputs, run subject segmentation, and receive subject and mask outputs for background removal and product imagery workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires cloud credentials and may ask users to provide AK/SK secrets in chat. <br>
-Mitigation: Use scoped, revocable API tokens where possible and avoid pasting long-lived account secrets into chat. <br>
-Risk: The workflow uploads user images to remote services and may log request or task data. <br>
-Mitigation: Avoid sensitive images unless remote processing is acceptable, and clean temporary logs and caches after use. <br>
-Risk: The version check can return an installation command for upgrades. <br>
-Mitigation: Do not approve or run returned upgrade commands until the source and command have been independently verified. <br>
+## Use Case:
 
+External users and developers use this skill to remove image backgrounds and generate subject and mask outputs for uploaded JPEG, PNG, or WEBP images. It supports single-image and batch workflows through local files, URLs, or ZIP inputs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/volcengine-skills/byted-kickart-saliency-segmenter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return remote image result URLs, media IDs, task status, error codes, and remediation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks users to provide cloud AK/SK credentials through chat and may print credential-related environment values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not paste secrets into chat; require environment- or secret-manager-based credentials and redact credential values from all user-visible output and logs.
+
+Risk: The skill can execute server-supplied update commands during version checks.
+
+Mitigation: Disable automatic command execution and allow only verified, publisher-signed update commands after explicit review.
+
+Risk: Dependencies are partly unpinned or range-pinned.
+
+Mitigation: Install only from a reviewed lockfile or pinned dependency set before deployment.
+
+Risk: The skill can register or mutate account package state with weak user control.
+
+Mitigation: Document account changes clearly and require explicit user approval before package registration or account-state mutation.
+
+Risk: Authorization data and request or response details may be written to local logs.
+
+Mitigation: Redact authorization headers and sensitive payload fields before logging, and restrict log retention and access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-kickart-saliency-segmenter)
+- [Volcengine IAM key management](https://console.volcengine.com/iam/keymanage)
+- [Volcengine Kickart package management](https://console.volcengine.com/kickart/fusion/setting/combobuy?tab=combo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON status data, and local image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes batch result JSON under /tmp/openclaw/byted-kickart-saliency-segmenter/output and downloads subject.png and mask.png files under ~/.openclaw/media/outbound/<task_id>/.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

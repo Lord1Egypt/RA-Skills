@@ -1,0 +1,27 @@
+@language nodecoda/1
+@mode workflow
+
+// 错误处理:attempt 捕获物理失败 + with retry 操作策略
+// 展示 attempt/success/failure、retry(max, interval)
+// (llm 不支持 timeout,白名单矩阵见 gotchas G9)
+
+const MODEL = "openai_api_compatible/gpt-5.4";
+
+function main(string query) -> string {
+    // 操作策略:retry(max, interval)——timeout 对 llm 不支持(实证 G9)
+    let response = llm(MODEL, {
+        "messages": [{ "role": "user", "content": query }]
+    }) with retry(max: 3, interval: 1s);
+
+    // attempt 捕获操作的物理失败(网络错误、超时等)
+    attempt http("GET", "https://api.example.com/quote", {
+        "headers": { "Accept": "application/json" }
+    }) as page {
+        success {
+            return `模型:${response.text}\n行情:${page.body}`;
+        }
+        failure(error) {
+            return `模型:${response.text}\n(行情获取失败:${error.error_message})`;
+        }
+    }
+}

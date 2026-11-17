@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{TITLE} — {DESCRIPTION}</title>
-    <meta name="description" content="{DESCRIPTION_LENGTH_160_chars_max}">
+    <meta name="description" content="{META_DESCRIPTION}">
     
     <!-- Schema: ImageObject or Article -->
     <script type="application/ld+json">

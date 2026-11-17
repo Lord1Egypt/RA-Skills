@@ -1,0 +1,96 @@
+{
+  "_scene": "KM 生存曲线",
+  "_description": "KM 生存曲线（km）。用模板自带 _command 一键渲染示例。",
+  "_chart_type": "km",
+  "_command": "python3 scripts/gen_figure.py -t km -d templates/03-survival-km.json -o km.png --theme lancet --journal nejm",
+  "_caption_template": "图X | Kaplan-Meier 生存曲线。治疗组中位生存 60 个月，对照组 30 个月（log-rank P=0.032）。",
+  "_note": "示例数字仅示意，请替换为你的真实数据（--stats auto 可用于 box/violin 原始数据）",
+  "groups": {
+    "Treatment": [
+      [
+        12,
+        1
+      ],
+      [
+        24,
+        1
+      ],
+      [
+        36,
+        0
+      ],
+      [
+        48,
+        1
+      ],
+      [
+        60,
+        0
+      ],
+      [
+        75,
+        1
+      ]
+    ],
+    "Control": [
+      [
+        6,
+        1
+      ],
+      [
+        10,
+        1
+      ],
+      [
+        18,
+        1
+      ],
+      [
+        30,
+        1
+      ],
+      [
+        42,
+        0
+      ],
+      [
+        55,
+        1
+      ]
+    ]
+  },
+  "log_rank": {
+    "p": 0.032,
+    "method": "Log-rank"
+  },
+  "median_survival": {
+    "Treatment": 60.0,
+    "Control": 30.0
+  },
+  "risk_table": {
+    "times": [
+      0,
+      15,
+      30,
+      45,
+      60,
+      75
+    ],
+    "Treatment": [
+      6,
+      6,
+      5,
+      4,
+      3,
+      2
+    ],
+    "Control": [
+      6,
+      4,
+      3,
+      2,
+      2,
+      1
+    ]
+  }
+}

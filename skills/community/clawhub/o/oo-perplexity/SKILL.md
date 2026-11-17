@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Perplexity"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["perplexity"]
   icon: "https://static.oomol.com/logo/third-party/Perplexity%20AI.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `create_chat_completion` — Create a Perplexity Sonar chat completion grounded by web search when enabled. [write]
+- `create_chat_completion` — Create a Perplexity Sonar chat completion grounded by web search when enabled.
 - `create_embeddings` — Generate vector embeddings for one or more input strings with Perplexity. [write]
 - `list_models` — List the models currently available from Perplexity.
 - `search` — Search the web and return ranked raw results from Perplexity without LLM synthesis.
@@ -71,11 +71,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Perplexity is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=perplexity
+  https://console.oomol.com/connections/perplexity
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Perplexity homepage: https://www.perplexity.ai
+- API documentation: https://docs.perplexity.ai/

@@ -1,0 +1,40 @@
+{
+  "name": "@yottameta/yotta-intel",
+  "version": "0.2.4",
+  "description": "Yuanqing — a zero-dependency threat-intel IOC extraction & normalization engine for AI agents: extracts IP (IPv4/IPv6), domains, URLs, emails, hashes (MD5/SHA1/SHA256/SHA512) and CVE IDs from threat reports, phishing emails and logs; recognizes and reverses defanged forms (hxxp / [.] / (.) / [dot] / [:] / [@]); deduplicates, normalizes (IDN punycode, default-port stripping) and outputs CSV / JSON / STIX-lite (STIX 2.1 Bundle) with the pure Python 3.8+ standard library. Triggers when the user provides text containing suspicious IPs / domains / URLs / hashes and needs IOC extraction, normalization, dedup, format conversion, or safe sharing. Boundaries: fully local and offline; no reputation lookups, no sample downloads, no proactive scanning; authorized / own-asset / educational use only.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-intel"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "README.md",
+    "README.zh-CN.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "NOTICE",
+    "CHANGELOG.md",
+    "!scripts/test_*.py",
+    "!scripts/__pycache__",
+    "!**/__pycache__",
+    "!**/*.pyc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-intel.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-intel": "bin/install.js"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\" && python scripts/test_yotta_intel.py"
+  }
+}

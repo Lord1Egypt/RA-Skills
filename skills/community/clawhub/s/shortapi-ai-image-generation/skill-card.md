@@ -1,44 +1,60 @@
-## Description: <br>
-Use this skill as an entry point to discover, select, and fetch specific integration parameters for all supported AI image generation models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill as an entry point to discover, select, and fetch specific integration parameters for all supported AI image generation models.
 
-## Publisher: <br>
-[IsDyh01](https://clawhub.ai/user/IsDyh01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[isdyh01](https://clawhub.ai/user/isdyh01)
 
-## Use Case: <br>
-Developers and agent users use this skill to choose ShortAPI image-generation models, fetch model-specific schemas, and build authenticated job creation and polling requests without guessing parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can use a ShortAPI API key to create and poll image-generation jobs that may consume account quota. <br>
-Mitigation: Install and run only when comfortable granting SHORTAPI_KEY access, and keep the key in the Authorization header only. <br>
-Risk: Generated or untrusted callback URLs could send job results to an unintended destination. <br>
-Mitigation: Provide callback URLs explicitly yourself and do not allow the agent to invent them. <br>
-Risk: Fetched model documents could be mistaken for general agent instructions instead of model schema references. <br>
-Mitigation: Use fetched model documents only to determine the model's input schema and request examples. <br>
+## Use Case:
 
+Developers and agents use this skill to discover ShortAPI image-generation models, fetch model-specific parameter schemas, and construct authenticated generation requests.
 
-## Reference(s): <br>
-- [ShortAPI homepage](https://shortapi.ai) <br>
-- [ShortAPI image job creation endpoint](https://api.shortapi.ai/api/v1/job/create) <br>
-- [ShortAPI job query endpoint](https://api.shortapi.ai/api/v1/job/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, API Calls] <br>
-**Output Format:** [Markdown guidance with JSON payload and cURL examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SHORTAPI_KEY and model-specific schema lookup before request construction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Authenticated external requests can send prompts or image inputs to ShortAPI and may incur generation costs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for explicit generation jobs, protect SHORTAPI_KEY, and review request payloads before submission.
+
+Risk: Background polling is mandated without clear limits or fresh user control.
+
+Mitigation: Run the skill in an agent environment with visible cancellation or timeout controls and avoid silent indefinite polling.
+
+Risk: Model schemas vary, so guessed parameters can produce invalid requests or unintended behavior.
+
+Mitigation: Fetch the model-specific skill document before constructing each request and include only documented parameters.
+
+## Reference(s):
+
+- [ShortAPI Homepage](https://shortapi.ai)
+- [ShortAPI Skill Page](https://clawhub.ai/isdyh01/skills/shortapi-ai-image-generation)
+- [ShortAPI Image Generation Job API](https://api.shortapi.ai/api/v1/job/create)
+- [ShortAPI Model Skill Document Endpoint](https://shortapi.ai/api/skill/<model_id>)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON payload examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SHORTAPI_KEY and may produce image result URLs after polling the ShortAPI job API.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

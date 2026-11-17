@@ -1,46 +1,60 @@
-## Description: <br>
-Build agent-to-agent threat intelligence marketplace guidance for STIX/TAXII feed listing, paywall-gated IOC access, reputation-verified intel quality, autonomous SLA negotiation, and compliance-ready audit trails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Threat Intelligence Exchange is a guide for building agent-to-agent threat intelligence marketplaces with STIX/TAXII feed listings, paywall-gated IOC access, reputation-verified intel quality, autonomous SLA negotiation, and compliance-ready audit trails.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers, SOC engineers, and security automation teams use this guide to design agent-to-agent threat intelligence marketplaces with provider and consumer agents, STIX/TAXII feeds, escrow-backed access, SLA negotiation, quality scoring, audit trails, and dispute handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples may create financial, contractual, or sensitive threat-intelligence records when adapted to authenticated live GreenHelix APIs. <br>
-Mitigation: Use only a verified sandbox or mock endpoint until API effects are reviewed; do not connect production GreenHelix accounts, wallets, or private threat-intelligence feeds without approval. <br>
-Risk: Autonomous purchase, escrow, SLA, dispute, or data-sharing flows can spend funds or create operational obligations. <br>
-Mitigation: Require explicit budget limits and human approval for purchases, escrow, SLA, dispute, and data-sharing actions. <br>
-Risk: Threat-intelligence workflows may expose sensitive indicators, feed contents, or compliance-restricted sharing metadata. <br>
-Mitigation: Use synthetic or approved test data during evaluation and confirm sharing rules before applying the patterns to real intelligence feeds. <br>
+## Use Case:
 
+SOC developers, security engineers, and agent builders use this guide to design provider and consumer agents for GreenHelix-based threat-intelligence exchange, including IOC feed listing, gated access, SLA negotiation, quality scoring, and compliance audit trails.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mirni/greenhelix-agent-threat-intel-exchange) <br>
-- [Publisher Profile](https://clawhub.ai/user/mirni) <br>
-- [GreenHelix Sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API Reference](https://api.greenhelix.net/docs) <br>
-- [GreenHelix Agent Production Hardening](https://clawhub.ai/skills/greenhelix-agent-production-hardening) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guide with Python, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executing guide; copied examples may call live GreenHelix APIs if run outside the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The guide describes autonomous live marketplace actions involving payments, SLAs, disputes, and sensitive threat-intelligence data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the release as a review item before installation or use; require explicit endpoint selection, test-mode confirmation, budget limits, and legal/compliance review before any real GreenHelix account or real threat-intelligence data is used.
+
+Risk: Security evidence reports inconsistent safety framing and flawed access-control examples.
+
+Mitigation: Independently review and fix authorization checks, access gating, and SLA enforcement before adapting examples for production workflows.
+
+Risk: Threat-intelligence exchange can involve handling restrictions and regulated data such as TLP/PAP-labeled intelligence or GDPR-relevant indicators.
+
+Mitigation: Require policy review, TLP/PAP enforcement, audit logging, and human approval for sensitive feeds before enabling autonomous purchase, sharing, or dispute flows.
+
+## Reference(s):
+
+- [Agent Threat Intelligence Exchange on ClawHub](https://clawhub.ai/mirni/skills/greenhelix-agent-threat-intel-exchange)
+- [Publisher profile: mirni](https://clawhub.ai/user/mirni)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API documentation](https://api.greenhelix.net/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guide with Python examples and API request patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guide; examples describe GreenHelix API calls and threat-intelligence marketplace workflows.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

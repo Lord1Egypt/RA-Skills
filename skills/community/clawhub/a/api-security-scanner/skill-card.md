@@ -1,40 +1,54 @@
-## Description: <br>
-Api Security Scanner helps agents review REST API endpoints and API configuration for common security issues, including OWASP API Top 10 risks, authentication and authorization flaws, sensitive data exposure, missing rate limits, and injection risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews REST API endpoints, API documentation, and gateway or framework configurations against OWASP API Security Top 10-style checks, then produces a structured security report.
 
-## Publisher: <br>
-[caingao](https://clawhub.ai/user/caingao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caingao](https://clawhub.ai/user/caingao)
 
-## Use Case: <br>
-Developers, API owners, and security teams use this skill to perform lightweight REST API security reviews before deployment, during design review, or when preparing structured security reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API descriptions, configuration snippets, or scan inputs may contain bearer tokens, API keys, session cookies, private keys, internal hostnames, customer data, or private vulnerability details. <br>
-Mitigation: Redact or replace sensitive values before sharing inputs with the agent unless the user has approval to process them in the AI environment. <br>
+## Use Case:
 
+Developers, security reviewers, and API teams use this skill to review REST API designs, endpoint lists, API documentation, gateway settings, and framework configurations before deployment or during lightweight security audits.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/caingao/api-security-scanner) <br>
-- [API security scan rules](artifact/scan-rules.md) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown security review report with severity labels and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include findings grouped by authentication, authorization, input validation, data protection, rate limiting, and configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-provided API documentation or configuration may include real tokens, passwords, customer data, or other sensitive production details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide sanitized API documentation, configurations, or examples unless the execution environment is approved for that data.
+
+Risk: The skill provides checklist-based security review guidance and may miss context-specific vulnerabilities or produce findings that need validation.
+
+Mitigation: Have qualified reviewers verify findings and remediation steps before using the report for production risk decisions.
+
+## Reference(s):
+
+- [API Security Scan Rules](artifact/scan-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/caingao/skills/api-security-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown security report with severity-ranked findings and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Critical, High, Medium, Low, and Passed result categories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

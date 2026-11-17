@@ -1,44 +1,62 @@
-## Description: <br>
-Review-first Xiaohongshu/Rednote content ops for OpenClaw. Use when creating a repeatable workflow for topic research, draft generation, Feishu review, exact-title approval, structured publish packages, and optional approved publishing after explicit confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawnote is a review-first Xiaohongshu/Rednote content operations skill for OpenClaw workflows covering topic research, draft generation, Feishu review, exact-title approval, structured publish packages, and optional approved publishing.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External developers and content operators use this skill to run a review-first Xiaohongshu/Rednote workflow in OpenClaw, from topic research and draft preparation through Feishu review and optional exact-title publishing after explicit approval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live publishing or deletion could affect a real Xiaohongshu account if run with the wrong account, toolkit, or target title. <br>
-Mitigation: Keep publishing and deletion confirmation-based, verify the local toolkit and login state, and require exact-title confirmation before any live action. <br>
-Risk: The workflow writes local draft, memory, and publish package files that may contain unpublished content or account preferences. <br>
-Mitigation: Use an intended local workspace, review generated files before sharing, and configure Feishu review identifiers through the user's own environment. <br>
-Risk: Cron-driven use can create repeated draft activity if scheduled incorrectly. <br>
-Mitigation: Verify cron setup manually and keep default operation review-first rather than unattended live publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawnote on ClawHub](https://clawhub.ai/zhangifonly/clawnote) <br>
-- [Safety](docs/SAFETY.md) <br>
-- [Publish Assist](workspace-template/PUBLISH_ASSIST.md) <br>
-- [Tools](workspace-template/TOOLS.md) <br>
+## Use Case:
 
+External developers and creators use this skill to run a repeatable OpenClaw workflow for researching AI or OpenClaw practice topics, drafting Xiaohongshu-style posts, routing drafts through Feishu review, and publishing only after explicit approval.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON draft packages and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces review-first draft and publish-assist artifacts; live publishing requires explicit approval and exact title confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can read local sessions, logs, and workspace artifacts while preparing externally sent draft summaries.
+
+Mitigation: Restrict the local files the workflow may inspect and review generated Feishu drafts before sharing them.
+
+Risk: Draft summaries may be sent to a configured Feishu recipient.
+
+Mitigation: Validate XHS_REVIEW_OPEN_ID before use and send only review-ready content to the configured recipient.
+
+Risk: Persistent memory handling was flagged as unsafe for untrusted or multiline entries.
+
+Mitigation: Avoid storing untrusted or multiline memory entries and patch write_memory_entry.py to validate --date before relying on persistent memory or cron-driven use.
+
+Risk: Live publishing and deletion affect public Xiaohongshu content.
+
+Mitigation: Keep preview-only defaults, require explicit approval, require exact title confirmation, and treat deletion as a separate high-risk action.
+
+## Reference(s):
+
+- [Clawnote README](README.md)
+- [Safety](docs/SAFETY.md)
+- [ClawHub Skill Page](https://clawhub.ai/zhangifonly/skills/clawnote)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON draft packages, Xiaohongshu draft text, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review-first workflow; publish commands require explicit approval and exact title confirmation.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

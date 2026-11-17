@@ -1,40 +1,53 @@
-## Description: <br>
-Placeholder skill for image-to-image workflows on skills.video. Use when the user is asking about i2i generation and the concrete API contract has not been implemented yet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Placeholder skill for image-to-image workflows on skills.video. Use when the user is asking about i2i generation and the concrete API contract has not been implemented yet.
 
-## Publisher: <br>
-[skills-video](https://clawhub.ai/user/skills-video) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skills-video](https://clawhub.ai/user/skills-video)
 
-## Use Case: <br>
-Developers and agents use this placeholder to respond transparently to image-to-image workflow requests on skills.video while the concrete API contract is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expect the skill to generate or transform images even though image-to-image support is not implemented. <br>
-Mitigation: State that i2i is currently a placeholder and confirm model-specific documentation or an OpenAPI contract before proceeding. <br>
-Risk: Invented endpoint fields or upload semantics could lead to incorrect guidance. <br>
-Mitigation: Do not guess image input formats, endpoint names, polling behavior, credentials, or network calls; require verified provider documentation before implementation. <br>
+## Use Case:
 
+Developers and agents use this placeholder to handle image-to-image requests on skills.video without inventing unsupported API details while the concrete provider or model contract is unavailable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skills-video/i2i) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; the skill directs the agent to avoid undocumented image-to-image API assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is a placeholder and does not include a verified image-to-image API contract, endpoint, payload template, or helper command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users the workflow is not implemented yet, check for model-specific OpenAPI or documentation, and avoid inventing image input fields or upload semantics.
+
+Risk: Users may expect actual image generation from this skill even though it only provides guidance.
+
+Mitigation: Surface the limitation clearly and ask for the exact provider, model, or endpoint only when that information is necessary to continue.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skills-video/skills/i2i)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance in the agent response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not execute image generation; defers real i2i execution until a verified provider or model API contract is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

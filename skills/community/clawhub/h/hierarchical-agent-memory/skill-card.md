@@ -1,45 +1,56 @@
-## Description: <br>
-Organizes agent memory into a scalable hybrid structure with a lean MEMORY.md routing table, topic and contact files, and optional daily, weekly, monthly, and yearly distillation layers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes OpenClaw's persistent memory into a concise routing table, topic and contact files, and optional chronological summaries.
 
-## Publisher: <br>
-[richgoodson](https://clawhub.ai/user/richgoodson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richgoodson](https://clawhub.ai/user/richgoodson)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to set up and maintain durable, organized agent memory across active projects, contacts, and long-running time horizons while keeping MEMORY.md concise. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill maintains persistent workspace memory files that may be loaded into future agent context. <br>
-Mitigation: Review setup and migration plans before approving changes, and do not store secrets, API keys, passwords, or sensitive personal data in MEMORY.md or linked memory files. <br>
-Risk: Migration or setup could change existing memory organization. <br>
-Mitigation: Require explicit approval before creating, deleting, or refactoring memory files, and preserve existing daily, weekly, monthly, and yearly archives during upgrades. <br>
-Risk: Optional time-based distillation can overlap with memory-wiki syntheses when both are enabled. <br>
-Mitigation: Prefer the standard preset or disable time_layers when memory-wiki is enabled unless chronological archives are intentionally needed. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to keep long-running agent memory organized across projects and contacts, distill daily notes, and optionally create periodic summaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/richgoodson/hierarchical-agent-memory) <br>
-- [Configuration Reference](references/configuration.md) <br>
-- [Onboarding Guide](references/onboarding-guide.md) <br>
-- [Migration Guide: v2.x to v3.0](references/migration-v2-to-v3.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose workspace memory file and configuration changes; user approval is required before modifying existing memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Persistent memory files may retain secrets or sensitive personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep passwords, API keys, secrets, and sensitive personal data out of MEMORY.md and memory files.
+
+Risk: The full preset can create recurring synthesis jobs and additional archive files.
+
+Mitigation: Review the full preset before enabling it, and approve scheduled jobs and file changes only when needed.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/richgoodson/skills/hierarchical-agent-memory)
+- [Configuration reference](references/configuration.md)
+- [Onboarding guide](references/onboarding-guide.md)
+- [Migration guide](references/migration-v2-to-v3.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown memory files, Configuration guidance, Status reports]
+
+**Output Format:** [Markdown and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Memory changes require user approval; the optional full preset can produce scheduled archive summaries.]
+
+## Skill Version(s):
+
+3.2.0 (source: skill metadata and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

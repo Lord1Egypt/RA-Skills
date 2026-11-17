@@ -8,7 +8,7 @@ TOKEN_JSON=""
 usage() {
   cat <<USAGE
 Usage:
-  $SCRIPT_NAME auth [--show-token]
+  $SCRIPT_NAME auth
   $SCRIPT_NAME list [--search <text>] [--tag <name>] [--archive 0|1] [--starred 0|1] [--page <n>] [--per-page <n>]
   $SCRIPT_NAME get --id <entry_id>
   $SCRIPT_NAME create --url <url> [--title <title>] [--tags <csv>]
@@ -201,22 +201,8 @@ tags_remove() {
 }
 
 cmd_auth() {
-  local show_token=0
-
-  while [[ $# -gt 0 ]]; do
-    case "$1" in
-      --show-token) show_token=1; shift ;;
-      *) error "Unknown option for auth: $1"; usage; exit 2 ;;
-    esac
-  done
-
   oauth_token
-
-  if [[ "$show_token" -eq 1 ]]; then
-    echo "$TOKEN_JSON"
-  else
-    echo '{"status":"ok","message":"Authenticated. Access token kept in-process and not printed."}'
-  fi
+  echo "$TOKEN_JSON"
 }
 
 cmd_list() {

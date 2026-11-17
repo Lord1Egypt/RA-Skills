@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "status": "live-verified-read-only",
+  "capturedAt": "2026-09-20T16:35:59Z",
+  "project": "ceshi",
+  "schematicDocumentUuid": "f4351c9ef51e8321",
+  "pcbDocumentUuid": "2e719e9419653c72",
+  "schematicU3": {
+    "primitiveId": "0893cc822008148a",
+    "uniqueId": "gge70",
+    "deviceUuid": "1a67523763b042979a28407a6f93d651",
+    "deviceLibraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+    "manufacturerPart": "N096-1608TBBIG11-H13",
+    "lcsc": "C2890616",
+    "footprintName": "OLED-SMD_ST7735S",
+    "footprintSourceUuid": "c05d828b99d949d68457ec5951eaa4eb",
+    "footprintLibraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+    "model3dUuid": "55cc08024bd249a298d835f2dd067767",
+    "model3dTitle": "OLED-SMD_ST7735S",
+    "model3dTransform": "531.495,1125.982,0,0,0,0,0,83.819,0"
+  },
+  "pcbU3": {
+    "primitiveId": "f086401280b13c2e",
+    "uniqueId": "gge60",
+    "manufacturerPart": "N096-1608TBBIG11-H13",
+    "lcsc": "C2890616",
+    "anchorMil": [650, 900],
+    "rotationDeg": 0,
+    "layer": 1,
+    "padCount": 13,
+    "bboxMil": [379.151, 410.751, 920.903, 1552.738]
+  },
+  "boardTopLevelRegions": {
+    "count": 0,
+    "scopeLimit": "This only counts top-level PCB regions; it does not by itself inspect primitives embedded inside a footprint asset."
+  },
+  "previousWork": {
+    "existingFootprintWriteAttempt": "Adding the no-components region directly to the existing source footprint returned partial because pcb_Document.save returned false; persistence was not proven.",
+    "sourceLibraryReadback": {
+      "uuid": "0819f05c4eef4c71ace90d822a990e87",
+      "kind": "system",
+      "writable": false,
+      "evidence": "easyeda lib libraries returned this UUID as systemLibraryUuid"
+    },
+    "personalFixture": {
+      "name": "EA_AGENT__U3_LCD_COMPONENT_KEEPOUT_DEMO",
+      "footprintUuid": "5e1662059e174644a40d45f813b437d5",
+      "libraryUuid": "f60b2174579745258ada9b72bbe2f52b",
+      "regionPrimitiveId": "74049f69b7f01501",
+      "layer": 12,
+      "ruleType": [2],
+      "locked": true,
+      "boundToU3": false
+    }
+  },
+  "conclusion": [
+    "U3 already has the correct device, footprint and 3D model association; none of those were authored by the Agent.",
+    "The only newly authored geometry was one no-components region in an unbound personal-library footprint fixture.",
+    "Adding an LCD body keepout must preserve the existing U3 device, footprint and 3D model associations; replacing or rebinding the model is not the default solution.",
+    "The source footprint is an immutable system-library asset; a typed tool must refuse it before mutation and keep the current instance incomplete until a verified no-rebind instance/project region path exists.",
+    "Schematic/PCB U3 identity was subsequently reconciled to gge60; see u3-identity-reconcile-live.json."
+  ]
+}

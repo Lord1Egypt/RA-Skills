@@ -1,41 +1,63 @@
-## Description: <br>
-Standardized literature search workflow that integrates Tavily, PubMed, BGPT paper search, OpenAlex, and related academic search skills from query analysis through literature acquisition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardized literature search workflow integrating tavily-search, pubmed-database, bgpt-paper-search, openalex-database and other academic search skills.
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earthwalking](https://clawhub.ai/user/earthwalking)
 
-## Use Case: <br>
-Researchers, students, and academic support agents use this skill to run a six-stage literature search workflow for academic papers, scale validation, reviews, and research methodology. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes and uses a bundled Tavily API key and sends literature-search queries to Tavily. <br>
-Mitigation: Remove the bundled key, rotate or revoke it if you own it, and require users to provide TAVILY_API_KEY through a proper secret mechanism before use. <br>
-Risk: The script writes Markdown search reports into the working directory. <br>
-Mitigation: Run it in a workspace where generated literature_search_*.md files are expected and review the report before relying on citations or links. <br>
+## Use Case:
 
+Developers, researchers, and academic assistants use this skill to run a staged literature-search workflow that analyzes a query, searches academic and web sources, organizes results, retrieves full text when available, and produces a structured report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/earthwalking/literature-search-workflow) <br>
-- [Tavily Search API endpoint used by the script](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report files and terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped literature_search_*.md reports in the working directory and sends search queries to Tavily when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: A bundled hard-coded Tavily credential could be exposed or reused unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded credential, rotate it, and require users to provide TAVILY_API_KEY through their own secret-management process.
+
+Risk: Search queries and result retrieval are sent to external services, which may disclose research topics or sensitive query text.
+
+Mitigation: Document the external Tavily API behavior and advise users to avoid confidential, regulated, or unpublished research content unless approved.
+
+Risk: The documentation lists several academic search providers, while the bundled script directly implements Tavily and leaves other providers as optional placeholders.
+
+Mitigation: Align the public documentation with the actual implementation and clearly separate implemented behavior from optional integrations.
+
+Risk: Broad keyword triggers could activate the skill for generic literature-search phrases.
+
+Mitigation: Narrow trigger terms or require explicit user confirmation before running external searches.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/earthwalking/skills/literature-search-workflow)
+- [Publisher Profile](https://clawhub.ai/user/earthwalking)
+- [PubMed Central Example Source](https://pmc.ncbi.nlm.nih.gov/articles/PMC4107280/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with citations, source links, DOI fields, full-text links, and optional BibTeX entries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes timestamped literature_search_*.md report files when the bundled script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, openclaw.skill.json, SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

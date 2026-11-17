@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "serverName": "高德打车",
+  "endpoint": "https://mcp.amap.com/rest/amap_car/dev/mcp",
+  "authMode": "mcp-client-url",
+  "webServiceKey": "",
+  "lastVerifiedAt": ""
+}

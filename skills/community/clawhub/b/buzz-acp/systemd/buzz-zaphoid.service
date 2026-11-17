@@ -1,0 +1,33 @@
+[Unit]
+Description=Buzz Agent - Claude Code Agent (native ACP via Claude Agent SDK)
+Documentation=https://github.com/darrenjrobinson/buzz-acp
+After=network.target buzz-relay.service
+Requires=buzz-relay.service
+
+[Service]
+Type=simple
+User=YOUR_USER
+WorkingDirectory=/path/to/ccagent
+# PATH must include wherever buzz-cli is installed (agents call buzz messages send)
+Environment=PATH=/home/YOUR_USER/.local/bin:/usr/local/bin:/usr/bin:/bin
+EnvironmentFile=/path/to/buzz-zaphoid.env
+ExecStart=/home/YOUR_USER/.local/bin/buzz-acp \
+  --agent-command node \
+  --agent-args /path/to/ccagent/dist/index.js \
+  --subscribe mentions
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=buzz-zaphoid
+
+# Hardening — relax (e.g. add ReadWritePaths=) if this breaks the agent's
+# access to its WorkingDirectory.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=true
+ReadWritePaths=/path/to/ccagent
+
+[Install]
+WantedBy=multi-user.target

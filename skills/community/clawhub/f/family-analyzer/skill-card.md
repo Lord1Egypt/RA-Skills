@@ -1,46 +1,62 @@
-## Description: <br>
-Analyzes family or group chat exports and generates a collective soul.md plus member persona Markdown files for use as AI agent personality foundations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes family or group chat exports and produces Markdown soul and persona files that can be used as AI agent personality foundations.
 
-## Publisher: <br>
-[zengury](https://clawhub.ai/user/zengury) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zengury](https://clawhub.ai/user/zengury)
 
-## Use Case: <br>
-External users and developers use this skill to process exported chat records, identify relationship and behavior patterns, and produce Markdown persona files that can guide AI agents. It is intended for user-supplied chat exports where participants have consented to analysis and any external model processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive private chats may be processed by external LLM services. <br>
-Mitigation: Use only chat exports whose participants have consented, and define clear privacy, retention, and deletion controls before running the skill. <br>
-Risk: The release evidence reports bundled private-looking chat data and generated output files. <br>
-Mitigation: Remove bundled raw chat data and generated outputs before installation or redistribution. <br>
-Risk: The release evidence reports embedded Kimi API credentials. <br>
-Mitigation: Delete the embedded credential, rotate the exposed key, and require runtime configuration through user-controlled environment variables. <br>
-Risk: The release evidence recommends fixing the runner to process only the user-selected file. <br>
-Mitigation: Validate the runner behavior before use so it reads only the path explicitly provided by the user. <br>
+## Use Case:
 
+External users and developers use this skill to process WeChat, WhatsApp, or CSV chat exports into a collective personality document and per-member persona Markdown files for agent configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zengury/family-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/zengury) <br>
-- [Bundled README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files and progress-tagged terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces soul.md and persona_*.md files from chat exports; stage markers report pipeline progress and output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence; bundled SKILL.md frontmatter says 1.0.0) <br>
+Risk: The skill processes private family, group, or third-party chat exports and may send content to external model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only with participant consent, use non-sensitive test data first, and document every external provider before processing real chat exports.
+
+Risk: The release bundles a raw chat export and server evidence flags under-disclosed external AI calls.
+
+Mitigation: Remove bundled private chat data and verify data paths point only to the user-selected input file before installation or execution.
+
+Risk: Server evidence reports exposed API credentials in the artifact.
+
+Mitigation: Remove hard-coded keys, rotate any exposed credentials, and require API keys to come from user-controlled environment variables.
+
+Risk: Generated soul or persona files could be installed as agent prompts without review.
+
+Mitigation: Review generated Markdown for privacy, accuracy, and impersonation concerns before using it as an agent system prompt.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zengury/skills/family-analyzer)
+- [Publisher profile](https://clawhub.ai/user/zengury)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files with agent-facing progress messages and setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a collective soul.md file and per-member persona Markdown files from chat-analysis pipeline output.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

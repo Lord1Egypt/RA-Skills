@@ -1,43 +1,58 @@
-## Description: <br>
-Enhances OpenClaw memory by automatically recalling relevant past workspace memories before each turn and capturing durable conversation details after agent runs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhances OpenClaw memory by automatically recalling relevant saved memories before agent turns and capturing durable facts, preferences, and decisions after successful runs.
 
-## Publisher: <br>
-[zhoulf1006](https://clawhub.ai/user/zhoulf1006) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhoulf1006](https://clawhub.ai/user/zhoulf1006)
 
-## Use Case: <br>
-Developers and OpenClaw users use this plugin to provide agents with persistent workspace context by recalling relevant memories and capturing durable facts, preferences, and decisions from recent conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recent conversations may be summarized into persistent workspace memory and reused in later prompts. <br>
-Mitigation: Disable autoCapture for sensitive work, avoid entering secrets or regulated data while enabled, and regularly review stored memory files. <br>
-Risk: Automatically recalled memories may include stale or untrusted historical context. <br>
-Mitigation: Keep autoRecall disabled when strict context isolation is required and review recalled memory content before relying on it for decisions. <br>
+## Use Case:
 
+Developers using OpenClaw use this plugin to preserve useful workspace context across sessions and automatically surface relevant prior memories during future agent interactions.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/zhoulf1006/memory-core-plus) <br>
-- [Publisher profile](https://clawhub.ai/user/zhoulf1006) <br>
-- [README](artifact/README.md) <br>
-- [Plugin manifest](artifact/openclaw.plugin.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Prompt context text plus Markdown memory entries and JSON-style configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Auto-recall injects up to the configured maximum number of relevant memories per turn; auto-capture analyzes up to the configured maximum number of recent messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and package.json) <br>
+Risk: Conversation-derived facts may be persisted automatically and reused in later prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable autoCapture in sensitive or shared workspaces unless users intentionally want durable memory capture.
+
+Risk: Recalled memories can influence future model behavior if untrusted users can shape stored memory.
+
+Mitigation: Disable autoRecall or limit use to trusted workspaces until review-before-save or per-message filtering controls are in place.
+
+Risk: Automatic recall may expose prior workspace context in prompts where it is not expected.
+
+Mitigation: Review memory files regularly and tune recall limits before enabling the plugin for confidential work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhoulf1006/skills/memory-core-plus)
+- [npm package](https://www.npmjs.com/package/memory-core-plus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration]
+
+**Output Format:** [Prompt context injection and Markdown memory entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Auto-recall and auto-capture are enabled by default; captured memories are appended to dated Markdown files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

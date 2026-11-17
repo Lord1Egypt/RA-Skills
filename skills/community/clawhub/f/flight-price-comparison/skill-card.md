@@ -1,47 +1,62 @@
-## Description: <br>
-Flight Price Comparison is intended to help an agent query and compare flight prices across travel platforms such as Fliggy, Ctrip, and Qunar using browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent compare flight prices for requested routes and dates across travel platforms and return a concise recommendation.
 
-## Publisher: <br>
-[nodermachine](https://clawhub.ai/user/nodermachine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nodermachine](https://clawhub.ai/user/nodermachine)
 
-## Use Case: <br>
-Travel planners and agent users use this skill to request one-way or round-trip fare checks by route, date, passenger count, and platform, then receive a comparison-style report. It is most useful for preliminary travel planning before manual booking review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to place real travel-account credentials in TOOLS.md, which can expose those accounts to the agent or local workspace. <br>
-Mitigation: Avoid storing real passwords in repository files; prefer QR or manual login, a password manager, OS keychain, or tightly scoped environment secrets. <br>
-Risk: The included script does not currently perform real price extraction or comparison, so generated fare results may be incomplete or misleading. <br>
-Mitigation: Treat results as planning assistance only and verify prices, fees, availability, and ticket rules directly on the travel platforms before booking. <br>
-Risk: Browser automation runs against logged-in travel accounts and may encounter captchas, saved sessions, or account-specific prices. <br>
-Mitigation: Supervise initial runs, use the least-privileged account or session practical for the task, and require explicit user review before any purchase or account action. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to request one-way or round-trip flight price comparisons, summarize candidate fares, and identify a lowest-price or preferred itinerary. Review the implementation before relying on returned prices because the security evidence describes the release as an unfinished prototype.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nodermachine/flight-price-comparison) <br>
-- [Account Configuration Reference](references/account-config.md) <br>
-- [Fliggy](https://www.fliggy.com/) <br>
-- [Ctrip](https://www.ctrip.com/) <br>
-- [Qunar](https://www.qunar.com/) <br>
-- [Umetrip](https://www.umetrip.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with command-line examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires route, date, trip type, passenger details, platform selection, and travel account login state; prices, fees, and booking restrictions should be manually verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to store travel-site passwords in TOOLS.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use manual or QR login in a dedicated browser profile, and avoid storing travel-site passwords in shared agent files.
+
+Risk: Security evidence describes the release as an unfinished prototype that overstates implemented flight search and price extraction behavior.
+
+Mitigation: Review and test the implementation before deployment, and treat returned fares as advisory until search, extraction, credential handling, and platform scope are verified.
+
+Risk: Flight prices and booking conditions can change after lookup.
+
+Mitigation: Confirm current price, taxes, fees, availability, and refund or change rules on the travel platform before purchase.
+
+## Reference(s):
+
+- [Account Configuration](references/account-config.md)
+- [Flight Price Comparison on ClawHub](https://clawhub.ai/nodermachine/skills/flight-price-comparison)
+- [Fliggy](https://www.fliggy.com/)
+- [Ctrip](https://www.ctrip.com/)
+- [Qunar](https://www.qunar.com/)
+- [Umetrip](https://www.umetrip.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with flight comparison tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include route, date, fare, flight, airline, recommendation, and booking-link fields when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

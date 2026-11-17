@@ -1,40 +1,54 @@
-## Description: <br>
-Advertised as an interactive MBTI personality test, but the submitted artifact currently appears to be an unfinished placeholder skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an MBTI personality-test workflow intended to help an agent guide users through questions and report a Myers-Briggs type, while the packaged skill instructions remain incomplete.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users or agents would use this skill to guide an MBTI-style personality assessment and produce a personality-type result. Current artifact evidence is placeholder content, so reviewers should confirm the real test workflow before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The submitted artifact appears unfinished and may not deliver the advertised MBTI test. <br>
-Mitigation: Deploy only after the publisher replaces placeholder files with real test instructions, resources, and expected result formatting. <br>
-Risk: Users may receive incomplete or misleading personality-test guidance from placeholder content. <br>
-Mitigation: Review the skill behavior before use and clearly label any generated MBTI-style result as informational rather than diagnostic. <br>
+## Use Case:
 
+External users can use this skill with an agent to run an MBTI-style questionnaire and receive a personality-type summary. Reviewers should confirm or complete the packaged workflow before relying on it because the artifact still contains placeholder instructions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/mbti-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text personality-test guidance and results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No functional MBTI workflow is present in the submitted artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact still contains placeholder instructions, so the agent may not run a reliable MBTI workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Complete and review the trigger conditions, questionnaire flow, scoring approach, and result guidance before deployment.
+
+Risk: Personality-test results can be overinterpreted by users.
+
+Mitigation: Present results as informal self-reflection guidance rather than clinical, hiring, or other high-stakes assessment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/mbti-test)
+- [Reference Documentation for Mbti Test](references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text questionnaire results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include an MBTI type, answer-driven interpretation, and follow-up guidance after the workflow is completed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

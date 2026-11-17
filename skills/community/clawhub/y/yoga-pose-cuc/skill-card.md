@@ -1,44 +1,59 @@
-## Description: <br>
-中国传媒大学瑜伽精品课（赵晓琳老师）瑜伽体式知识库，帮助用户查询瑜伽体式名称、步骤、要点、目标肌肉、考试提示和文化背景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国传媒大学瑜伽精品课（赵晓琳老师）瑜伽体式知识库，帮助用户查询瑜伽体式名称、动作步骤、练习要点、目标肌肉、考试提示和文化背景。
 
-## Publisher: <br>
-[hoovaycn](https://clawhub.ai/user/hoovaycn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hoovaycn](https://clawhub.ai/user/hoovaycn)
 
-## Use Case: <br>
-External users and students use this skill to ask about CUC yoga course poses, including pose lookup, difficulty, movement steps, practice points, target muscles, exam tips, Sanskrit names, and origin stories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a remote NocoDB query to answer pose questions. <br>
-Mitigation: Disclose the external service before installation and allow deployment only where outbound access to that service is approved. <br>
-Risk: The artifact includes an embedded reusable database token. <br>
-Mitigation: Remove or rotate the bundled token and require operators to provide a scoped token through NOCODB_XC_TOKEN. <br>
-Risk: The query retrieves up to 100 records from the configured table and view. <br>
-Mitigation: Narrow the table, view, token permissions, and query scope to only the pose records needed for the skill. <br>
+## Use Case:
 
+External users and students use this skill to ask about the CUC yoga course pose catalog, including pose matching, step-by-step practice guidance, exam-relevant cues, Sanskrit names, and origin stories.
 
-## Reference(s): <br>
-- [瑜伽体式知识参考（CUC赵晓琳老师瑜伽精品课）](references/poses.md) <br>
-- [ClawHub skill page](https://clawhub.ai/hoovaycn/yoga-pose-cuc) <br>
-- [External NocoDB API endpoint used by the skill](https://nocodb.dixchain.com/api/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown prose backed by JSON records returned from a shell query] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include pose names, Sanskrit names, classifications, steps, key points, target muscles, exam tips, origin stories, and image-link notices when present in the source data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The package includes and uses a plaintext shared NocoDB token with unclear privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate the exposed token, remove it from the artifact, and require a user-provided or restricted read-only credential before deployment.
+
+Risk: The skill provides yoga pose guidance without explicit safety qualifications or injury-screening guidance.
+
+Mitigation: Add basic safety language advising users to avoid painful movements, account for injuries or medical conditions, and consult a qualified instructor or clinician when appropriate.
+
+Risk: The skill contacts an external NocoDB service during normal use.
+
+Mitigation: Review the external service endpoint, data access scope, credential handling, and network policy before installing in restricted environments.
+
+## Reference(s):
+
+- [Skill reference: poses.md](artifact/references/poses.md)
+- [ClawHub skill page](https://clawhub.ai/hoovaycn/skills/yoga-pose-cuc)
+- [Publisher profile](https://clawhub.ai/user/hoovaycn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with optional shell command execution for data retrieval]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are generated from an 11-pose yoga knowledge base and may include pose steps, key points, target muscles, exam tips, Sanskrit names, origin stories, and image-link notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

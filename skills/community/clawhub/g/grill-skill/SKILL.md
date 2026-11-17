@@ -43,6 +43,12 @@ Write the spec beside `SKILL.md`, named `<dir-name>.eval.yaml`, with `skill.path
 
 Read the existing spec and report its tasks. **Ask what behaviors are missing or under-tested before proposing or writing anything** — even if the user only asked you to inspect it, report first, then ask. Sharpen each gap into a task, show it, and confirm before writing it in.
 
+## Whose setup is measured
+
+Runs load the user's own customizations by default (user skills, plugins, rules, settings and connectors; see REFERENCE.md for backend exceptions), which answers "does my skill work in *my* agent?". **Isolate** (`--no-user-customizations`, or `user_customizations: false` in the spec) when comparing backends or models, when the number leaves this machine (shared, published, compared with someone else's run), or when measuring the bare agent: each setup is different, so otherwise part of the delta is the setups. `--ablate` of the user's own skill needs no isolation, since both runs load the same setup.
+
+**Always tell the user which mode ran** and what it loaded, from the report header's `user customizations:` line (absent means isolated), and relay any fix `caliper compare` suggests about it.
+
 ## Phase 3 — First run
 
 Validate the spec, then run at `k=1` (commands in [REFERENCE.md](REFERENCE.md)). Show the results. Fix any harness or config error (not a task failure) before asking the user what to do next.
@@ -52,4 +58,4 @@ Validate the spec, then run at `k=1` (commands in [REFERENCE.md](REFERENCE.md)).
 Ask whether to iterate or finish.
 
 - **Iterate** — after the user edits their `SKILL.md`, re-run at `k=3` and show results. Loop back.
-- **Done** — suggest a `--baseline` run to prove the skill beats the raw agent, then remind the user to commit `SKILL.md` and the `.eval.yaml` together.
+- **Done** — suggest an `--ablate <skill-name>` run plus a `caliper compare` to prove the skill beats the raw agent, then remind the user to commit `SKILL.md` and the `.eval.yaml` together. Mention that the ablated run is worth keeping: it cannot move when the skill's text changes, so later iterations re-diff against it instead of re-running it.

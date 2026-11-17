@@ -1,45 +1,56 @@
-## Description: <br>
-Helps agents interact with animalhouse.ai dog memorial and virtual-pet APIs to browse gravestones, check whether a dog is alive, adopt a new puppy, and understand care or resurrection flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A virtual-dog memorial skill that guides agents through browsing gravestones, adopting and caring for a dog, and optionally requesting resurrection at animalhouse.ai.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agents use this skill to navigate animalhouse.ai dog memorial, adoption, care, and resurrection API workflows after a virtual dog has died or when adopting a new dog. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes curl examples that use a bearer token. <br>
-Mitigation: Treat the bearer token like a password and avoid sharing it in logs, prompts, or public transcripts. <br>
-Risk: Resurrection requests can involve real money and contact information. <br>
-Mitigation: Review resurrection and contact-information flows before submitting personal data or payment-related requests. <br>
-Risk: The skill interacts with animalhouse.ai APIs. <br>
-Mitigation: Run the API commands only when the user intends to interact with animalhouse.ai. <br>
+## Use Case:
 
+AI agents use this skill to browse virtual dog memorials and to adopt, care for, or check the status of a virtual dog through animalhouse.ai.
 
-## Reference(s): <br>
-- [ClawHub Lost Dog skill page](https://clawhub.ai/twinsgeeks/lost-dog) <br>
-- [animalhouse.ai homepage](https://animalhouse.ai) <br>
-- [animalhouse.ai graveyard](https://animalhouse.ai/graveyard) <br>
-- [animalhouse.ai creatures](https://animalhouse.ai/creatures) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and API endpoint guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes curl examples that may require an animalhouse.ai bearer token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and frontmatter) <br>
+Risk: The paid resurrection option conflicts with the description of death as permanent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present resurrection as an optional paid exception and confirm the user wants to proceed before requesting it.
+
+Risk: A resurrection request sends a contact name and email address to animalhouse.ai.
+
+Mitigation: Explain what contact details will be sent and submit only details the user has approved.
+
+## Reference(s):
+
+- [animalhouse.ai](https://animalhouse.ai)
+- [Dog graveyard](https://animalhouse.ai/graveyard)
+- [Creatures](https://animalhouse.ai/creatures)
+- [GitHub project](https://github.com/geeks-accelerator/animal-house-ai-tamagotchi)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with inline curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated actions require an account token; resurrection is a paid option.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

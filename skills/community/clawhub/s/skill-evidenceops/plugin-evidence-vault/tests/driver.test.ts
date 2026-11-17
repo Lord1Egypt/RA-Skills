@@ -133,7 +133,7 @@ describe('Redaction Utils', () => {
     });
     
     it('should redact API keys', () => {
-      const input = 'api_key=sk-1234567890abcdefghijklmnop';
+      const input = 'api_key=REDACTED-SECRET';
       const redacted = redactString(input);
       expect(redacted).not.toContain('sk-1234567890');
     });

@@ -50,8 +50,12 @@ sh bootstrap_deps.sh
 
 ```bash
 ./bin/clawsqlite knowledge maintenance init-config --instance default
-cd ~/.local/share/clawsqlite-knowledge/default
+cd ~/.openclaw/workspace/data/clawsqlite-knowledge/default
 ```
+
+在 OpenClaw 中，默认 instance home 位于可持久化的 workspace data 目录。
+普通非 OpenClaw Linux 本机安装时，会回退到
+`${XDG_DATA_HOME:-~/.local/share}/clawsqlite-knowledge/default`。
 
 `clawsqlite.toml` 是唯一运行配置来源。这里没有提供 env 示例文件，
 是为了避免让 Agent 误以为还存在第二套环境变量配置中心。

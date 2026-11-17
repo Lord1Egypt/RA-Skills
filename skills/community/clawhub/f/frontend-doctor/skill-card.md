@@ -1,43 +1,55 @@
-## Description: <br>
-Diagnose and fix common frontend issues -- white screen, JS errors, resource loading failures, React/Vue hydration, browser extension popup, and CSS layout bugs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose and fix common frontend issues, including white screens, JavaScript errors, resource loading failures, React/Vue hydration problems, browser extension popup failures, and CSS layout bugs.
 
-## Publisher: <br>
-[727155455](https://clawhub.ai/user/727155455) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[727155455](https://clawhub.ai/user/727155455)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to diagnose common web application failures, gather relevant browser and project context, and produce concrete fixes for rendering, hydration, resource loading, extension popup, JavaScript, and CSS layout issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI report can include local file paths and source snippets from the project being diagnosed. <br>
-Mitigation: Run it only in the intended project and review output before sharing it outside the team. <br>
-Risk: Troubleshooting guidance and proposed fixes may be incomplete for project-specific build, framework, or deployment constraints. <br>
-Mitigation: Review suggested code and configuration changes, then verify them in the target browser, build pipeline, and deployment environment. <br>
-Risk: Using an unexpected package source could expose users to a different implementation than the reviewed release. <br>
-Mitigation: Install only from the package or source intended for this ClawHub release. <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to diagnose common browser and framework failures in web apps and browser extensions, then produce root-cause, fix, verification, and prevention guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/727155455/frontend-doctor) <br>
-- [OpenClaw ClawHub homepage](https://github.com/openclaw/clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with diagnostic checklists, code snippets, shell commands, configuration examples, and local scan report text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled CLI scans local frontend project files and prints root cause, evidence, and fix entries; agent use may also produce conversational troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and package.json) <br>
+Risk: The local scanner can read outside the intended project through symlinks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted project directories, review symlinks before scanning, and avoid hostile or unknown repositories until symlink boundary checks are added.
+
+Risk: The scanner prints untrusted project text directly to the terminal.
+
+Mitigation: Treat scan output as untrusted, review it before copying commands or reports, and avoid adversarial files until terminal-output sanitization is added.
+
+## Reference(s):
+
+- [Frontend Doctor ClawHub Skill Page](https://clawhub.ai/727155455/skills/frontend-doctor)
+- [Publisher Profile](https://clawhub.ai/user/727155455)
+- [OpenClaw ClawHub Homepage](https://github.com/openclaw/clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include root-cause analysis, minimal fixes, verification steps, and prevention tips.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

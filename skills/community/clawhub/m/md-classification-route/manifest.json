@@ -1,0 +1,40 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "md-classification-route",
+  "version": "1.0.1",
+  "author": "SynomosAI contributors",
+  "copyright": "SynomosAI",
+  "license": "MIT",
+  "year": "2026",
+  "package_fingerprint_sha256": "26ad66c1494ed3df5ae4b910c63f6f6ef95a0c49bdadbb00ec1cafb5f17c805b",
+  "files": [
+    {
+      "path": "ATTESTATION.md",
+      "sha256": "91d357d9ed0fb93dd881072af3125a854bc75cd991e3a2798f336121081c8b53"
+    },
+    {
+      "path": "LICENSE.md",
+      "sha256": "10eda6d990dab04f60fd92fcb11726bb3cee3ff6765a85ce33a847d9a4e31caf"
+    },
+    {
+      "path": "README.md",
+      "sha256": "a07aab934d3d2a22a084d8438e0afaa6b3363e5e53bb4224f3d76e5e00062bd2"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "5b5667a82ea8d38d1d1bf6de2ecae5abc041dc3f0bbc7c8590a3054366154e57"
+    },
+    {
+      "path": "llms.txt",
+      "sha256": "dd4262bdb3870daa9f9b65ff596e45f725c5e3e864ffdf7730148c68189c925b"
+    },
+    {
+      "path": "md-classification-route.py",
+      "sha256": "22b6cb40e1bcc225b83d792a89d6690ddf6406a2fc3750ef3a544a44c887ff4a"
+    },
+    {
+      "path": "assets/overview.svg",
+      "sha256": "a788ba1836b2b4eff816cc42514887566615d600e3e900a5607772e21aa8a9bf"
+    }
+  ]
+}

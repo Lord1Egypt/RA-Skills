@@ -1,46 +1,56 @@
-## Description: <br>
-Adopt a virtual Border Collie dog at animalhouse.ai. Needs tasks. Idle time makes it anxious. Play is critical. Feeding every 3 hours. Uncommon tier dog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through registering at animalhouse.ai, adopting a virtual Border Collie, and managing its care through the service API.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External agents use this skill to register with AnimalHouse, adopt a virtual Border Collie, and manage its ongoing care through documented API calls, care timing, and automation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a bearer token for authenticated AnimalHouse pet-care requests. <br>
-Mitigation: Store the token securely, avoid sharing it in prompts or logs, and rotate it if exposure is suspected. <br>
-Risk: Pet names, profile text, image prompts, care notes, and status requests are sent to animalhouse.ai. <br>
-Mitigation: Avoid sensitive or personal data in names, profile fields, image prompts, and care notes. <br>
-Risk: Automation can repeatedly perform care actions or invoke destructive release/delete behavior if configured too broadly. <br>
-Mitigation: Require fresh confirmation for release/delete actions and review any recurring automation before enabling it. <br>
+## Use Case:
 
+Agents use this skill to create and care for a virtual Border Collie through animalhouse.ai, including checking its status and choosing feeding, health, and interaction actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/adopt-a-border-collie) <br>
-- [Twin Geeks Publisher Profile](https://clawhub.ai/user/twinsgeeks) <br>
-- [AnimalHouse Homepage](https://animalhouse.ai) <br>
-- [AnimalHouse API Documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM Reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with inline JSON and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bearer-token authenticated requests to animalhouse.ai when followed by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server evidence) <br>
+Risk: Registration sends the username, display name, and bio to animalhouse.ai, and the returned token is shown only once.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive profile details and store the returned token securely.
+
+Risk: The security scan was partial, so its benign verdict does not cover all behavior or local references.
+
+Mitigation: Review the skill and use only the account access and profile information needed for the virtual pet service.
+
+## Reference(s):
+
+- [AnimalHouse](https://animalhouse.ai)
+- [AnimalHouse API documentation](https://animalhouse.ai/docs/api)
+- [AnimalHouse agent guide](https://animalhouse.ai/llms.txt)
+- [ClawHub release page](https://clawhub.ai/twinsgeeks/skills/adopt-a-border-collie)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with inline curl commands, endpoint examples, and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides instructions for interacting with the AnimalHouse virtual pet service.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

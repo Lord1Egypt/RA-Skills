@@ -1,43 +1,56 @@
-## Description: <br>
-0-18岁全年龄段育儿助手，覆盖分月龄发展里程碑、喂养睡眠指南、健康疫苗护理、早教启蒙、行为管教、亲子沟通、安全防护。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+0-18岁全年龄段育儿助手，覆盖分月龄发展里程碑、喂养睡眠指南、健康疫苗护理、早教启蒙、行为管教、亲子沟通、安全防护。当用户询问育儿、宝宝喂养、睡眠训练、辅食添加、疫苗、早教、管教、亲子关系，或需要生成公众号/小红书育儿内容时触发。
 
-## Publisher: <br>
-[xbmchina](https://clawhub.ai/user/xbmchina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xbmchina](https://clawhub.ai/user/xbmchina)
 
-## Use Case: <br>
-External caregivers and parenting content creators use this skill for Chinese-language guidance on child development, feeding, sleep, vaccines, health care, early education, behavior, communication, safety, and parenting social-media drafts. Medical or vaccine-specific answers require local pediatric review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pediatric feeding, allergy, and vaccine answers may be unsafe if treated as individualized medical advice. <br>
-Mitigation: Present the skill as general parenting content and require local pediatric guidance for immunizations, allergy symptoms, food reintroduction, prematurity, poor growth, eczema, reflux, or concerning reactions. <br>
-Risk: Locale-specific vaccine guidance may not match the user's local immunization schedule. <br>
-Mitigation: Ask users to verify schedules with local public-health guidance and their child's clinician before acting. <br>
+## Use Case:
 
+External Chinese-speaking caregivers and parenting-content creators use this skill for age-staged child development, feeding, sleep, vaccination, safety, early education, discipline, and parent-child communication guidance. It can also draft parenting posts for channels such as WeChat public accounts and Xiaohongshu.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xbmchina/parenting-cn) <br>
-- [辅食添加完整指南](references/feeding_guide.md) <br>
-- [疫苗接种完整指南](references/vaccine_schedule.md) <br>
-- [育儿公众号/小红书内容模板库](assets/content_templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese-language Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include parenting schedules, checklists, tables, and social-media content drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill gives actionable child health, vaccine, feeding, medication, allergy, and first-aid guidance that may be incomplete, outdated, or mismatched to a child or region.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat health-related responses as educational drafts and verify them against current local pediatric or public-health guidance before relying on or publishing them.
+
+Risk: Generated parenting posts may present medical or safety claims with more certainty than the evidence supports.
+
+Mitigation: Review drafted content for age, jurisdiction, emergency, allergy, medication, and vaccination accuracy before publication.
+
+## Reference(s):
+
+- [辅食添加完整指南](artifact/references/feeding_guide.md)
+- [疫苗接种完整指南](artifact/references/vaccine_schedule.md)
+- [育儿公众号/小红书内容模板库](artifact/assets/content_templates.md)
+- [ClawHub skill page](https://clawhub.ai/xbmchina/skills/parenting-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain text parenting guidance and content drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language educational parenting content; health-related outputs require current local professional review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

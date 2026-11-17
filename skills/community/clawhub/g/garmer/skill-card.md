@@ -1,41 +1,59 @@
-## Description: <br>
-Extract health and fitness data from Garmin Connect including activities, sleep, heart rate, stress, steps, and body composition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract health and fitness data from Garmin Connect including activities, sleep, heart rate, stress, steps, and body composition.
 
-## Publisher: <br>
-[garrza](https://clawhub.ai/user/garrza) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[garrza](https://clawhub.ai/user/garrza)
 
-## Use Case: <br>
-Developers and external users use Garmer to retrieve Garmin Connect health and fitness data through CLI commands or a Python API for personal analysis, health insight workflows, and assistant integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Garmer handles sensitive Garmin Connect tokens and health-data exports. <br>
-Mitigation: Treat saved tokens and exported JSON files as sensitive data, avoid broad exports unless needed, and delete tokens with `garmer logout` when access is no longer required. <br>
-Risk: `garmer update` can change local package code from the configured git remote. <br>
-Mitigation: Run updates only from trusted package sources and review the configured source before changing local code. <br>
+## Use Case:
 
+Developers, health insight builders, and AI agents use Garmer to retrieve Garmin Connect activity, sleep, heart rate, stress, steps, body composition, hydration, and respiration data for analysis or user-facing health summaries.
 
-## Reference(s): <br>
-- [Garmer API Reference](references/REFERENCE.md) <br>
-- [Garmer README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell and Python examples; CLI commands can produce JSON health-data exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Garmin Connect authentication and may read saved tokens or exported local health data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata; artifact frontmatter and pyproject.toml report 0.1.0) <br>
+Risk: Garmer stores reusable Garmin account tokens on disk for future sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use interactive login, protect or relocate the token directory such as ~/.garmer/garmin_tokens or GARMER_TOKEN_DIR, and remove tokens when access is no longer needed.
+
+Risk: Garmer exports sensitive health and fitness data as JSON that may be copied, committed, or shared with other systems.
+
+Mitigation: Store exports in protected locations, avoid committing or sharing exported JSON files, and review outputs before sending them to AI or chat systems.
+
+Risk: The garmer update command can pull new code from a git remote and change installed behavior.
+
+Mitigation: Run updates only after verifying the git remote and reviewing the incoming code source.
+
+## Reference(s):
+
+- [Garmer Skill Page](https://clawhub.ai/garrza/skills/garmer)
+- [README](README.md)
+- [Garmer API Reference](references/REFERENCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON, files]
+
+**Output Format:** [Markdown guidance with shell and Python examples; CLI commands may return human-readable text, JSON, or exported JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.10+, a Garmin Connect account, and garmer CLI installation via pip or uv.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata; artifact package metadata is 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

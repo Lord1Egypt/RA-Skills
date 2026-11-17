@@ -1,44 +1,60 @@
-## Description: <br>
-Trades Polymarket prediction markets on landmark court cases, antitrust rulings, SEC enforcement actions, EU regulatory decisions, and DOJ investigations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket prediction markets on landmark court cases, antitrust rulings, SEC enforcement actions, EU regulatory decisions, and DOJ investigations using legal and regulatory market signals.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External traders and agent builders use this skill to discover legal and regulatory Polymarket markets, generate paper-trade orders by default, and optionally place live trades when explicitly enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real-money Polymarket trades and cause financial loss. <br>
-Mitigation: Run in paper mode first, keep position limits conservative, and use --live only when accepting real-money loss risk. <br>
-Risk: SIMMER_API_KEY grants trading authority and is a sensitive credential. <br>
-Mitigation: Protect the key, avoid committing it to files or logs, and rotate it if exposure is suspected. <br>
-Risk: The skill depends on simmer-sdk for market discovery and trade execution. <br>
-Mitigation: Verify the simmer-sdk package source and version before installing or running the skill. <br>
+## Use Case:
 
+External users and developers use this skill to identify and optionally execute paper or live Polymarket trades tied to legal and regulatory prediction markets. It is intended for users who can evaluate legal-market signals and manage trading risk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-legal-regulatory-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, API Calls, Guidance] <br>
-**Output Format:** [Python script execution with console logs and simulated or live trade API requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live trading requires SIMMER_API_KEY and an explicit --live flag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: ClawHub release evidence) <br>
+Risk: Live trading can place real Polymarket orders using a high-value Simmer API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode by default, require an explicit live-mode review before execution, and use a narrowly scoped, low-balance credential.
+
+Risk: Live-trading safeguards may not fully prevent trades outside the user's safety expectations.
+
+Mitigation: Pin and review simmer-sdk, verify the effective venue before every order, and keep account-side limits aligned with the configured maximum position.
+
+Risk: Market filters and position sizing depend on configurable thresholds that can materially change trading exposure.
+
+Mitigation: Review minimum volume, maximum spread, maximum position, and maximum open-position settings before enabling live use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/diagnostikon/skills/polymarket-legal-regulatory-trader)
+- [diagnostikon Publisher Profile](https://clawhub.ai/user/diagnostikon)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and Markdown guidance with configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or place paper trades by default; live Polymarket trading requires an explicit live flag and a Simmer API key.]
+
+## Skill Version(s):
+
+0.0.3 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

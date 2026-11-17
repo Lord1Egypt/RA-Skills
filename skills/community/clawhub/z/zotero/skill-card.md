@@ -1,44 +1,57 @@
-## Description: <br>
-Manage Zotero reference libraries via the Web API, including search, item creation from DOI/ISBN/PMID, metadata updates, deletion or trashing, bibliography export, citation cross-referencing, missing DOI lookup, and open-access PDF fetching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Zotero reference libraries via the Web API, including searching and listing items, adding citations by DOI/ISBN/PMID, updating metadata and tags, exporting bibliographies, cross-referencing citations, finding missing DOIs, and fetching open-access PDFs.
 
-## Publisher: <br>
-[Terwox](https://clawhub.ai/user/Terwox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[terwox](https://clawhub.ai/user/terwox)
 
-## Use Case: <br>
-Developers, researchers, students, and agents use this skill to manage personal or group Zotero libraries from a CLI-backed workflow. It supports library search, importing identifiers, updating metadata and tags, exporting bibliographies, checking PDF coverage, and fetching open-access PDFs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change a Zotero personal or group library when provided an API key. <br>
-Mitigation: Use a least-privilege Zotero API key and confirm whether the configured credentials target a personal or group library before running write operations. <br>
-Risk: Bulk, delete, update, PDF fetch, export, and override options can modify Zotero data or write local files. <br>
-Mitigation: Use scoping and preview controls such as --limit, --collection, --dry-run, and default recoverable trash behavior before using --yes, --permanent, --force, --upload, --download-dir, or --output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Zotero Skill](https://clawhub.ai/Terwox/zotero) <br>
-- [Zotero API Key Settings](https://www.zotero.org/settings/keys/new) <br>
-- [Zotero Web API Endpoint](https://api.zotero.org) <br>
-- [Zotero Skill Troubleshooting](references/troubleshooting.md) <br>
-- [Zotero Status](https://status.zotero.org) <br>
-- [Crossref](https://www.crossref.org) <br>
+## Use Case:
 
+Developers, researchers, and agents use this skill to manage Zotero personal or group libraries through the Zotero Web API, including search, citation import, metadata updates, bibliography export, PDF checks, and open-access PDF retrieval.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, plain text CLI output, optional JSON for supported commands, and bibliography files such as BibTeX, RIS, or CSL-JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Zotero API credentials; write-capable commands may change Zotero library data, and selected export or PDF workflows may write local files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a Zotero API key that can expose or modify a user's Zotero library depending on key permissions.
+
+Mitigation: Prefer a read-only Zotero API key unless add, update, delete, or upload features are needed; use --dry-run, --limit, and --collection before batch operations.
+
+Risk: The PDF-fetching feature can download from unvalidated third-party URLs.
+
+Mitigation: Avoid fetch-pdfs on networks where the agent can reach sensitive internal services until URL validation and download-size limits are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terwox/skills/zotero)
+- [Zotero API endpoint](https://api.zotero.org)
+- [Zotero API key settings](https://www.zotero.org/settings/keys/new)
+- [Zotero status](https://status.zotero.org)
+- [CrossRef](https://www.crossref.org)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, files]
+
+**Output Format:** [Markdown guidance with command examples; CLI output may be text or JSON; exports may be BibTeX, RIS, CSL-JSON, or downloaded PDF files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZOTERO_API_KEY and either ZOTERO_USER_ID or ZOTERO_GROUP_ID; some write and upload features require Zotero API key permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

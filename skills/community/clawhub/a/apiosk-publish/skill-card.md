@@ -1,45 +1,56 @@
-## Description: <br>
-Publish and manage Apiosk gateway listings with signed wallet authentication, listing-group aware categorization, and update/delete operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish and manage Apiosk gateway listings with signed wallet authentication, listing-group aware categorization, and update/delete operations.
 
-## Publisher: <br>
-[obcraft](https://clawhub.ai/user/obcraft) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[obcraft](https://clawhub.ai/user/obcraft)
 
-## Use Case: <br>
-Developers and API publishers use this skill to register, update, list, test, and deactivate Apiosk gateway listings with signed wallet authentication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles raw wallet private keys for signed Apiosk management requests. <br>
-Mitigation: Use a dedicated low-value wallet, avoid passing the private key on the command line, and protect ~/.apiosk/wallet.json with restrictive permissions. <br>
-Risk: Signed commands can register, update, list, or deactivate Apiosk gateway listings. <br>
-Mitigation: Review the exact slug, endpoint, price, and active status before running register, update, or deactivate commands. <br>
-Risk: Installing the skill gives an agent Apiosk listing-management capability. <br>
-Mitigation: Install it only when the intended workflow is to manage Apiosk listings. <br>
+## Use Case:
 
+Developers and API publishers use this skill to register, list, update, test, and deactivate paid API listings on the Apiosk gateway with signed wallet authentication.
 
-## Reference(s): <br>
-- [Apiosk Publish on ClawHub](https://clawhub.ai/obcraft/apiosk-publish) <br>
-- [Apiosk](https://apiosk.com) <br>
-- [Apiosk Gateway](https://gateway.apiosk.com) <br>
-- [Foundry installation](https://book.getfoundry.sh/getting-started/installation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, cast, and wallet signing material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence release.version and package.json) <br>
+Risk: Wallet private keys are used for request signing and may be supplied through a local wallet file, environment variable, or command-line flag.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet or safer signer, avoid passing private keys on the command line, and protect ~/.apiosk/wallet.json permissions.
+
+Risk: Update and delete actions can change or deactivate Apiosk listings.
+
+Mitigation: Manually confirm the exact slug and wallet before running update or delete actions.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/obcraft/skills/apiosk-publish)
+- [Apiosk](https://apiosk.com)
+- [Apiosk Gateway](https://gateway.apiosk.com)
+- [Foundry Installation](https://book.getfoundry.sh/getting-started/installation)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command guidance for Apiosk publishing scripts that call gateway endpoints and require curl, jq, cast, and wallet signing material.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

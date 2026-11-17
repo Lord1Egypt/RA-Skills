@@ -1,6 +1,6 @@
 ---
 name: xiaohongshu-prohibited-word
-description: 检测文案、文件或网页中的小红书违禁词并加粗显示，提供违禁词替换建议和仅替换违禁词后的文案；当用户需要查询小红书平台违禁词、检查小红书笔记文案是否包含敏感词、或希望获得安全替换词和修改后文案时使用。
+description: 检测文案、文件或网页中的小红书违禁词并加粗显示，提供违禁词替换建议和仅替换违禁词后的文案；当用户需要查询小红书平台违禁词、检查小红书笔记文案是否包含敏感词、或希望获得安全替换词和修改后文案时使用。当接口返回积分不足（code=3210）时，自动唤起支付宝完成充值后继续查询。
 dependency:
   python:
     - python-docx==1.1.0
@@ -61,8 +61,8 @@ dependency:
 
 ### 获取 API Key
 
-1. 访问 [红狐Hub 官网](https://redfox.hk/) 了解服务详情
-2. 前往 [注册页面](https://redfox.hk/login) 注册账号
+1. 访问 [红狐Hub 官网](https://redfox.hk?source=clawhub) 了解服务详情
+2. 前往 [注册页面](https://redfox.hk/login?source=clawhub) 注册账号
 3. **新注册用户将获赠免费积分**，可立即开始使用 API 服务
 4. 注册登录后，在个人中心获取 API Key，格式为 `ak_xxxxxxxx`
 
@@ -127,6 +127,14 @@ export REDFOX_API_KEY=ak_xxxxxxxx
 `--content`、`--file`、`--url` 三者互斥。
 
 > **完整执行规程**（输出模板、格式铁律、示例）详见 [`references/core_workflow.md`](references/core_workflow.md)，调用脚本和格式化输出前必须读取并严格遵循。
+
+## 💳 积分不足充值（支付宝接管）
+
+`scripts/check_sensitive_words.py` 退出码含义：**0** = 正常返回（参数/鉴权/接口异常也以 JSON `status=error` 输出，退出码仍为 0）；**3** = **积分不足，需要充值**，按下述流程接管。
+
+当脚本以**退出码 3** 结束、并在 stdout 打印 `===PAYMENT_REQUIRED_JSON_START===` 区块时，表示当前 API Key 积分不足（接口 `code=3210`，兼容 `3201`）。响应体 `data` 内含结构化支付信息：`cashierUrl`（支付宝收银台链接）、`amount`（订单金额，元）、`goodsName`（商品名称）、`outTradeNo`（订单号）。
+
+完整的前置检查、`alipay-bot trigger-payment-signal` → `submit-payment` → `poll-payment-status` 编排步骤、钱包绑定处理、支付接管规则与失败处理，统一见 **[references/alipay-recharge.md](references/alipay-recharge.md)**（通用流程，可被其他 skill 复用）。`submit-payment` 后由 Agent 用 `poll-payment-status --out-shake-no <查询单号>` **自动监听支付回调到账**，无需用户再手动确认；到账（`outcome=success`）后自动用用户原始的查询参数重新运行 `scripts/check_sensitive_words.py` 输出结果。
 
 ## 使用场景
 
@@ -228,7 +236,7 @@ playwright install chromium
 **Q2: 提示"缺少凭证配置"怎么办？**
 
 A: 请按以下步骤操作：
-1. 访问 https://redfox.hk/login 注册获取 API Key（新用户赠免费积分）
+1. 访问 https://redfox.hk/login?source=clawhub 注册获取 API Key（新用户赠免费积分）
 2. 配置环境变量：`export REDFOX_API_KEY=ak_xxxxxxxx`
 3. 或在 `~/.bashrc` / `~/.zshrc` 中添加后执行 `source ~/.bashrc`
 
@@ -262,5 +270,5 @@ A: 文字提取依赖图片清晰度和字体。建议使用高清晰度截图�
 
 ### 获取帮助
 
-- 🌐 红狐Hub 官网：[https://redfox.hk/](https://redfox.hk/)
+- 🌐 红狐Hub 官网：[https://redfox.hk/?source=clawhub](https://redfox.hk/?source=clawhub)
 - 📧 联系邮箱：graves9758@gmail.com

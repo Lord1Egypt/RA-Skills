@@ -1,43 +1,48 @@
-## Description: <br>
-Generate and verify hashes for strings and files using MD5, SHA variants, CRC32, HMAC, and BLAKE2 with streaming support and no external dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and verify hashes for strings and files using MD5, SHA variants, CRC32, HMAC, and BLAKE2 with a zero-dependency Python utility.
 
-## Publisher: <br>
-[darbling](https://clawhub.ai/user/darbling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[darbling](https://clawhub.ai/user/darbling)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to compute hashes, verify file integrity, batch-hash local files, and generate HMAC signatures for selected input data.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: HMAC keys supplied on the command line may be exposed through shell history or process listings.
+
+Mitigation: Use non-sensitive keys for routine use, or adapt the workflow to read HMAC keys from a prompt, stdin, or another secret-safe channel.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to compute hashes, verify file integrity, batch-hash files, and generate HMAC signatures during local checksum or integrity workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Hashing files requires the agent to read the specified local files. <br>
-Mitigation: Only provide paths for files that the agent is allowed to read and hash. <br>
-Risk: HMAC generation can expose sensitive key material if long-lived secrets are supplied in prompts or command arguments. <br>
-Mitigation: Use short-lived or test keys where possible, and avoid providing production secrets unless the workflow requires them. <br>
-Risk: MD5, SHA1, and CRC32 are included for compatibility and checksums but are not appropriate for new security-sensitive cryptographic verification. <br>
-Mitigation: Use SHA256, SHA512, or BLAKE2 for stronger integrity workflows unless a legacy format requires another algorithm. <br>
+**Output Format:** [Plain text or Markdown with optional shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/darbling/hash-utilities) <br>
-- [Project Repository Linked by Artifact](https://github.com/darbling/clawhub-skills) <br>
+**Other Properties Related to Output:** [Generated hash values depend on the selected algorithm and input data.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with hash strings, verification results, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local file paths, selected hash algorithms, computed digests, and pass/fail verification results.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

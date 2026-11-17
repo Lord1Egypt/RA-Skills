@@ -1,39 +1,54 @@
-## Description: <br>
-Search Deutsche Bahn train connections using the bahn-cli tool for German station routes, departure times, and travel planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Deutsche Bahn train connections with a local bahn-cli tool backed by Transitous.
 
-## Publisher: <br>
-[bone187](https://clawhub.ai/user/bone187) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bone187](https://clawhub.ai/user/bone187)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to find Deutsche Bahn train connections between German stations, including departure and arrival details, platforms, duration, transfers, stops, and train numbers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill calls a local ~/Code/bahn-cli implementation whose source is not provided or pinned in the artifact. <br>
-Mitigation: Use it only with a trusted local bahn-cli installation, and inspect or pin that implementation before running generated shell commands. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to run local bahn-cli searches for German rail connections, departure times, platforms, durations, changes, and train numbers.
 
-## Reference(s): <br>
-- [Transitous](https://transitous.org/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bone187/bahn-transitous) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and summarized train connection details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on the local ~/Code/bahn-cli implementation and the Transitous-backed train data available at query time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill runs node index.js from a local ~/Code/bahn-cli directory, so an unintended local checkout could run the wrong code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing or using the skill, confirm that ~/Code/bahn-cli contains the intended Deutsche Bahn CLI code.
+
+Risk: The skill is scoped to German rail lookups and may be unsuitable for broader travel planning.
+
+Mitigation: Use it for German rail connection searches, not hotel, flight, or full itinerary planning.
+
+## Reference(s):
+
+- [Transitous](https://transitous.org/)
+- [ClawHub Skill Page](https://clawhub.ai/bone187/skills/bahn-transitous)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise rail-search summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on a local ~/Code/bahn-cli checkout and Transitous service availability.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.
 
-## Publisher: <br>
-[ayakolin](https://clawhub.ai/user/ayakolin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayakolin](https://clawhub.ai/user/ayakolin)
 
-## Use Case: <br>
-Developers and AI agents use this skill to automate browser navigation, UI testing, form filling, structured page extraction, screenshots, and session workflows through the agent-browser CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act inside logged-in browser sessions and perform high-impact web actions. <br>
-Mitigation: Use a dedicated or throwaway browser session, avoid sensitive accounts unless necessary, and require human approval for submissions, uploads, purchases, account changes, or other consequential actions. <br>
-Risk: Browser state, cookies, screenshots, recordings, PDFs, and saved authentication files can expose sensitive data. <br>
-Mitigation: Store capture and authentication files in protected locations, limit retention, and clear cookies or storage after use. <br>
-Risk: The workflow depends on installing and running the external agent-browser package. <br>
-Mitigation: Install only when the package source is trusted and review package updates before use in sensitive environments. <br>
+## Use Case:
 
+Developers and automation agents use this skill to drive browser sessions, inspect page structure, interact with forms, capture screenshots or PDFs, and test web UIs through structured agent-browser commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ayakolin/temp-agent-browser) <br>
-- [agent-browser CLI repository](https://github.com/vercel-labs/agent-browser) <br>
-- [Agent Browser skill issue repository](https://github.com/TheSethRose/Agent-Browser-CLI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with agent-browser shell commands; command output may be text, JSON, screenshots, PDFs, recordings, or browser state files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and npm; browser automation may read, modify, save, or clear session state depending on the command used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill documents unpinned installation of a third-party browser automation package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the upstream agent-browser package before installation, or pin the package version in local deployment instructions.
+
+Risk: Saved authenticated browser state can expose access to accounts if auth.json is mishandled.
+
+Mitigation: Avoid saved auth state for high-privilege accounts and protect auth.json as sensitive data.
+
+Risk: Screenshots, PDFs, videos, and traces can capture sensitive page content.
+
+Mitigation: Store generated browser artifacts only in approved locations and handle them as sensitive data.
+
+Risk: Passing real passwords as plain command arguments can expose credentials through shell history or process inspection.
+
+Mitigation: Avoid real passwords in plain command arguments unless that exposure risk is explicitly accepted.
+
+## Reference(s):
+
+- [Temp Agent Browser ClawHub skill page](https://clawhub.ai/ayakolin/skills/temp-agent-browser)
+- [agent-browser upstream CLI repository](https://github.com/vercel-labs/agent-browser)
+- [Agent Browser skill issue repository](https://github.com/TheSethRose/Agent-Browser-CLI)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser screenshots, PDFs, videos, traces, saved state files, and JSON command output when the documented CLI options are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Generate AI images using Nano Banana Pro via Media.io OpenAPI, including text-to-image and reference-image workflows with up to 4K output support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI images with Nano Banana Pro through the Media.io OpenAPI, including prompt-based generation, reference-image workflows, multi-image fusion, character consistency, and up to 4K output.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-Agents and developers use this skill to submit image-generation prompts or reference-image URLs to Media.io, receive task IDs, and query generation status and results. It is suited for workflows that need automated image generation through the Media.io OpenAPI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, reference image URLs, and an API key to Media.io and may consume Media.io credits. <br>
-Mitigation: Use a dedicated or revocable Media.io API key, avoid confidential prompts or private image URLs, and monitor credit usage before broad deployment. <br>
-Risk: The skill depends on the external `requests` package and outbound calls to Media.io services. <br>
-Mitigation: Install dependencies in a controlled virtual environment, consider pinning `requests`, and review network access policies before use. <br>
+## Use Case:
 
+External developers and agents use this skill to submit Nano Banana Pro image-generation jobs through Media.io, poll task results, and integrate generated image workflows using a Media.io API key.
 
-## Reference(s): <br>
-- [Media.io API documentation](https://platform.media.io/docs/) <br>
-- [Media.io developer portal](https://developer.media.io/) <br>
-- [Media.io pricing](https://developer.media.io/pricing.html) <br>
-- [ClawHub skill page](https://clawhub.ai/wondershare-boop/mediaio-nano-banana-pro-image-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Images] <br>
-**Output Format:** [JSON API responses containing credit balances, task IDs, task status, and generated image result data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires API_KEY and may consume Media.io credits; image generation results are retrieved through asynchronous task polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The Media.io API key can submit generation jobs and query account credit balance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, least-privilege Media.io key where available and monitor account usage.
+
+Risk: Running scripts/skill_router.py directly performs the Credits query rather than an image-generation request.
+
+Mitigation: Run the script directly only when you intend to query credits; otherwise invoke the documented Nano Banana Pro or Task Result APIs from controlled code.
+
+Risk: The skill depends on the Python requests package without pinned dependency versions.
+
+Mitigation: Install dependencies in a virtual environment and pin reviewed package versions for production use.
+
+## Reference(s):
+
+- [Media.io API documentation](https://platform.media.io/docs/)
+- [Media.io developer homepage](https://developer.media.io/)
+- [Media.io pricing](https://developer.media.io/pricing.html)
+- [ClawHub skill page](https://clawhub.ai/wondershare-boop/skills/mediaio-nano-banana-pro-image-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; API calls return JSON responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Media.io API key in API_KEY or an explicit api_key argument.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

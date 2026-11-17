@@ -1,43 +1,65 @@
-## Description: <br>
-Builds ETL pipelines for business data, including API extraction, data cleaning, transformation, warehouse loading, recurring syncs, and data quality checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ETL pipeline builder for business data covering API extraction, data cleaning, transformation, warehouse loading, recurring data syncs, and data quality audits.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Developers, analysts, and operations teams use this skill to design ETL workflows that extract data from APIs or files, clean and normalize it, merge sources, load outputs into warehouses or spreadsheets, and schedule recurring syncs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ETL workflows may request broad access to APIs, files, sheets, or database tables. <br>
-Mitigation: Define the allowed sources and destinations before use, and provide least-privilege credentials only for that scope. <br>
-Risk: Database load examples can overwrite or replace existing tables if used without safeguards. <br>
-Mitigation: Use staging tables, backups, row-count validation, and explicit approval before replace-style loads. <br>
-Risk: Pipeline examples involve credentials for business systems and financial data sources. <br>
-Mitigation: Keep secrets in environment variables or a vault, and test pipelines on sample data before full runs. <br>
+## Use Case:
 
+Developers, data engineers, and operations teams use this skill to design ETL workflows that extract business data from APIs or CSV files, clean and normalize records, merge sources, load warehouses or databases, and schedule recurring syncs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/data-pipeline-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/samledger67-dotcom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ETL patterns, data quality checks, scheduling examples, and database load guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-98.0.1 (source: server release metadata) <br>
+Risk: The sample API extractor can forward authorization headers to pagination URLs that are not validated against the original trusted HTTPS host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict pagination to the original trusted HTTPS host before sending credentials or other headers.
+
+Risk: Pipelines may process financial or business data and real credentials.
+
+Mitigation: Review before installation or real use, load secrets from environment variables or 1Password CLI, and avoid hardcoding credentials.
+
+Risk: Long-running API extraction can run without explicit timeout or page limits.
+
+Mitigation: Add request timeouts, retry bounds, and maximum page limits before production use.
+
+Risk: Dependency installation examples are not pinned to exact versions.
+
+Mitigation: Install dependencies in an isolated environment and pin package versions for repeatable execution.
+
+Risk: Status alerts could expose sensitive operational details if notifications include raw pipeline output.
+
+Mitigation: Send only sanitized status text in Telegram or other notification channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/data-pipeline-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks plus configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes ETL patterns, dependency commands, scheduling examples, data quality checks, and file organization guidance.]
+
+## Skill Version(s):
+
+98.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

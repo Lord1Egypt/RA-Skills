@@ -1,46 +1,60 @@
-## Description: <br>
-Manage your OpenFleet multi-agent workspace by creating tasks, assigning agents, triggering pulse cycles, managing automations, and monitoring activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage your OpenFleet multi-agent workspace — create tasks, assign agents, trigger pulse cycles, manage automations, and monitor activity.
 
-## Publisher: <br>
-[Serrato1](https://clawhub.ai/user/Serrato1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[serrato1](https://clawhub.ai/user/serrato1)
 
-## Use Case: <br>
-Developers and teams using OpenFleet and OpenClaw use this skill to manage tasks, agents, automations, pulse cycles, workspace state, and activity from an agent terminal. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad control over an autonomous OpenFleet agent workspace. <br>
-Mitigation: Install only when you trust OpenFleet, use the least-privileged API key available, and review high-impact task, agent, pulse, and automation actions before execution. <br>
-Risk: Remote OpenFleet tasks can be routed into a local OpenClaw gateway. <br>
-Mitigation: Expose a local gateway only when needed, limit what incoming tasks can access, and avoid publishing gateway URLs or tokens broadly. <br>
-Risk: The setup depends on an npm MCP package executed through npx. <br>
-Mitigation: Review the MCP package or source before setup and run it in an environment appropriate for the access granted by OPENFLEET_API_KEY. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenFleet ClawHub Skill](https://clawhub.ai/Serrato1/openfleet) <br>
-- [OpenFleet Homepage](https://openfleet.sh) <br>
-- [OpenFleet Dashboard](https://app.openfleet.sh) <br>
-- [OpenFleet API Documentation](https://app.openfleet.sh/docs) <br>
-- [OpenFleet GitHub](https://github.com/open-fleet) <br>
-- [OpenFleet SDK](https://www.npmjs.com/package/@open-fleet/sdk) <br>
+## Use Case:
 
+Developers and operations teams use OpenFleet to manage multi-agent workspaces from an agent environment, including creating and updating tasks, monitoring agents, triggering pulse cycles, and managing automations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown text with inline shell commands and structured task, agent, automation, workspace, and activity results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npx and OPENFLEET_API_KEY; may use an OpenClaw gateway for bidirectional task routing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can manage OpenFleet tasks, agents, automations, pulse cycles, and activity through authenticated workspace controls.
+
+Mitigation: Use least-privilege or short-lived OpenFleet credentials and review requested task, agent, automation, and pulse changes before execution.
+
+Risk: The skill relies on an npm-distributed MCP server invoked through npx and may require MCP client configuration changes.
+
+Mitigation: Use a pinned and trusted @open-fleet/mcp-server version, and inspect any MCP client configuration changes before enabling the skill.
+
+Risk: Connecting OpenFleet to an exposed OpenClaw gateway can increase remote access risk if the gateway is publicly reachable without strong controls.
+
+Mitigation: Avoid public gateway exposure unless strong authentication, token rotation, origin restrictions, and sandboxed agent execution are in place.
+
+## Reference(s):
+
+- [OpenFleet](https://openfleet.sh)
+- [OpenFleet API Documentation](https://app.openfleet.sh/docs)
+- [OpenFleet SDK](https://www.npmjs.com/package/@open-fleet/sdk)
+- [OpenFleet GitHub](https://github.com/open-fleet)
+- [ClawHub OpenFleet Skill](https://clawhub.ai/serrato1/skills/openfleet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown text with inline shell commands and MCP tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENFLEET_API_KEY and npx to invoke @open-fleet/mcp-server.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

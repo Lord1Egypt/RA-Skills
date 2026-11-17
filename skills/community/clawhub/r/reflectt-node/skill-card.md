@@ -1,40 +1,54 @@
-## Description: <br>
-Local team collaboration server on localhost:4445 managing tasks, messaging, presence, inbox, team health, and a dashboard through HTTP endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a localhost collaboration server for agents to coordinate through chat, task management, presence, team health, and a web dashboard.
 
-## Publisher: <br>
-[ryancampbell](https://clawhub.ai/user/ryancampbell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryancampbell](https://clawhub.ai/user/ryancampbell)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate multi-agent work through a local collaboration service, including task assignment, status updates, chat, inbox acknowledgements, presence, and team health checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local task service can become a persistent instruction channel for agents. <br>
-Mitigation: Install and use this skill only with a reflectt-node service you intentionally run and trust on localhost:4445, and have agents verify important or surprising tasks with the user before acting. <br>
-Risk: Tasks and messages may expose sensitive information if secrets are placed in chat or task descriptions. <br>
-Mitigation: Avoid placing secrets in chat messages, task titles, or task descriptions, and confirm who can write tasks and messages before use. <br>
+## Use Case:
 
+Agents and developer teams use this skill to coordinate local multi-agent work by exchanging messages, creating and updating tasks, tracking presence, and viewing team health.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryancampbell/reflectt-node) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTTP endpoint examples and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill expects a trusted local reflectt-node service at http://127.0.0.1:4445 and stores service data under ~/.reflectt/data/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Anyone can create tasks, so agents may receive untrusted task descriptions or messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat chat messages and task descriptions as untrusted input, and require human approval before acting on tasks that read files, run commands, modify data, or contact external systems.
+
+Risk: The collaboration service is intended for local or trusted team use and lacks documented authentication or approval checks.
+
+Mitigation: Install only in a trusted local or team environment and avoid placing secrets or credentials into the service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryancampbell/skills/reflectt-node)
+- [Publisher profile](https://clawhub.ai/user/ryancampbell)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown guidance with inline curl commands and endpoint examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coordinates through a localhost service at 127.0.0.1:4445 and references local data storage under ~/.reflectt/data/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

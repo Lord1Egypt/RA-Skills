@@ -1,43 +1,59 @@
-## Description: <br>
-Quick Capture helps an agent save user-provided notes into a local Inbox or Journal as structured knowledge notes or raw dated journal blocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quick Capture helps an agent save user-provided notes into an Inbox or Journal, creating structured Markdown notes for Inbox entries and raw appended blocks for Journal entries.
 
-## Publisher: <br>
-[daowuu](https://clawhub.ai/user/daowuu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daowuu](https://clawhub.ai/user/daowuu)
 
-## Use Case: <br>
-External users and developers use this skill to quickly capture notes into a local note vault, choosing between structured Inbox notes and unmodified Journal entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad capture phrases can cause notes to be saved when the user did not intend a durable record. <br>
-Mitigation: Use explicit Inbox or Journal wording for captures and review the returned destination path after each write. <br>
-Risk: The skill writes Markdown files into local Inbox and Journal folders, so mistakes can affect a user's note vault. <br>
-Mitigation: Keep backups or version control for the note vault before routine use. <br>
-Risk: Inbox mode may expand or restructure the user's source text. <br>
-Mitigation: Use Journal mode when the note should remain raw and unmodified. <br>
+## Use Case:
 
+Knowledge workers and developers use Quick Capture to save fleeting ideas, source links, observations, and draft knowledge notes into an Elysia-style Markdown vault from an agent conversation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daowuu/quick-capture) <br>
-- [Project homepage](https://github.com/daowuu/elysia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands] <br>
-**Output Format:** [Markdown note files with a short text confirmation; the helper script returns JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes to local Inbox or Journal paths and requires python3.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create or append persistent Markdown files in a location derived from installation layout, which may be outside the intended note vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or change the script before installation so the vault root is explicit, and verify final write paths remain inside that vault.
+
+Risk: Broad trigger phrases such as casual requests to save or remember something may cause the agent to capture and restructure content unexpectedly.
+
+Mitigation: Use explicit destination wording for Inbox or Journal, and confirm ambiguous captures before writing persistent notes.
+
+Risk: Inbox captures are designed to reorganize and enrich content rather than preserve the original text.
+
+Mitigation: Use Journal for verbatim records and review Inbox notes when exact wording or source fidelity matters.
+
+## Reference(s):
+
+- [Quick Capture ClawHub listing](https://clawhub.ai/daowuu/skills/quick-capture)
+- [Publisher profile](https://clawhub.ai/user/daowuu)
+- [Project homepage](https://github.com/daowuu/elysia)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Markdown files with concise text confirmation; JSON when the helper script is invoked directly.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates new Inbox Markdown notes or appends Journal Markdown blocks under year and month folders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

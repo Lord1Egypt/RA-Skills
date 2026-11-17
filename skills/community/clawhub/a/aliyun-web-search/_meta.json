@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn71vnks5v3bd38h5z2njj0x9x81g21d",
-  "slug": "aliyun-web-search",
+  "name": "aliyun-web-search",
   "version": "1.0.0",
-  "publishedAt": 1771581882276
+  "description": "阿里云开放搜索实时网页搜索 | Aliyun Real-time Web Search",
+  "author": "猪王 (Pig King) @xiaoyunbowen",
+  "license": "MIT",
+  "tags": ["search", "aliyun", "web-search", "chinese", "real-time"]
 }

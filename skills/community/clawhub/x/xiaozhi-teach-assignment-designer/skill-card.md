@@ -1,43 +1,50 @@
-## Description: <br>
-Xiaozhi Teach Assignment Designer helps teachers create differentiated homework, grading rubrics, and feedback templates from lesson goals and available learning diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为教师设计分层、可批改且时长可控的作业任务卡，并提供评分标准与反馈模板。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Teachers use this skill to turn lesson topics, existing homework, or class learning summaries into layered assignment cards, scoring standards, and concise feedback templates. It supports differentiated practice while defaulting to a basic assignment when no learning profile is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use learning summaries or assignment results that contain sensitive student information. <br>
-Mitigation: Use anonymized or aggregate inputs unless the connected school systems are approved for identifiable student data. <br>
-Risk: Layered assignments can be misleading if A/B/C grouping is generated without current learning evidence. <br>
-Mitigation: Use teacher-supplied diagnostics or the connected student-analyzer output for layering; otherwise keep the documented basic assignment mode. <br>
-Risk: Generated rubrics and feedback may not match local grading policies or individual accommodations. <br>
-Mitigation: Have the teacher review scoring standards, workload, and feedback language before assigning work to students. <br>
+## Use Case:
 
+教师可用此技能把课程知识点与学情转化为分层任务卡，标注预计用时，并生成评分标准、反馈模板和作业完成情况摘要。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-teach-assignment-designer) <br>
-- [Assignment rubric template](references/assignment-rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with structured assignment cards, grading rubrics, and feedback templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use anonymized class or student learning summaries when supplied; otherwise defaults to a basic assignment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Revision scheduling may extend beyond the skill's assignment-design scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep revision scheduling with the review-planner skill and use this skill to design the related assignment tasks.
+
+## Reference(s):
+
+- [作业设计师（ClawHub）](https://clawhub.ai/qizhitang/skills/xiaozhi-teach-assignment-designer)
+- [作业评分标准与分层任务卡模板](artifact/references/assignment-rubric.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Chinese task cards, scoring rubrics, feedback templates, and structured completion summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Task cards include estimated time for each question.]
+
+## Skill Version(s):
+
+2.12.7 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

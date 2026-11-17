@@ -1,40 +1,57 @@
-## Description: <br>
-Chou Fei helps agents fetch external resources, extract useful information from content, and allocate compute handling based on task priority and load. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chou Fei helps agents simulate external resource fetching, extract key information from text, and allocate local compute based on task priority and system load.
 
-## Publisher: <br>
-[lt8899789](https://clawhub.ai/user/lt8899789) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lt8899789](https://clawhub.ai/user/lt8899789)
 
-## Use Case: <br>
-Developers and external agent users use this skill to route resource-ingestion tasks, summarize or extract key points from supplied content, and receive lightweight allocation guidance for processing requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resource fetching and content processing may expose sensitive URLs, API targets, or files to the host agent workflow. <br>
-Mitigation: Use the skill only with resources you are permitted to process, and avoid private or credential-bearing targets unless the host execution path has been reviewed. <br>
-Risk: Broad resource-ingestion wording can make the expected execution boundary unclear. <br>
-Mitigation: Review host permissions and execution behavior before deployment, especially for URL, file, and API-style inputs. <br>
+## Use Case:
 
+Developers and agent builders use Chou Fei to add Chinese-language resource intake, text information extraction, and lightweight compute-allocation guidance to agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lt8899789/chou-fei) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON objects and streamed text, with command examples in Markdown documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetch results are truncated to 500 characters in the script; streaming helpers emit typed progress chunks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.35 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Users may mistake simulated fetch or search behavior for real retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label these outputs as simulated and verify any cited or retrieved information before use.
+
+Risk: Future changes that add real URL, API, or file retrieval could send sensitive content externally.
+
+Mitigation: Add destination limits and user confirmation before enabling real external retrieval.
+
+Risk: The skill uses a Chinese-language interface that may not fit all deployment teams.
+
+Mitigation: Confirm localization expectations before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lt8899789/skills/chou-fei)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON objects and streamed text, with optional CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetch behavior is simulated; text extraction and compute allocation use lightweight local heuristics.]
+
+## Skill Version(s):
+
+1.0.35 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,8 @@
+interface:
+  display_name: "角色成长弧线卡"
+  short_description: "把人物设定和已写章节整理成带证据与建议的成长弧线卡"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+  default_prompt: "请根据人物设定、故事概要与已写章节整理欲望、缺陷、转折、最终选择及章节锚点；已知事实和未来建议分开。"
+policy:
+  allow_implicit_invocation: true

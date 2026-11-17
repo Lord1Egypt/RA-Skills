@@ -1,41 +1,54 @@
-## Description: <br>
-Query Grok AI (grok.com) for real-time information via browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Grok AI (grok.com) for real-time information via browser automation. Requires: OpenClaw browser enabled, user pre-logged-in to grok.com, and a Grok account (free tier works).
 
-## Publisher: <br>
-[InphinitiZ](https://clawhub.ai/user/InphinitiZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[inphinitiz](https://clawhub.ai/user/inphinitiz)
 
-## Use Case: <br>
-Developers and agents use this skill to query Grok through an authenticated OpenClaw browser session for current information, fact checks, news, and multi-turn research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The agent uses the user's logged-in Grok browser session and sends prompts to Grok. <br>
-Mitigation: Use only with prompts and context that the user intends Grok to receive; avoid passwords, private documents, regulated data, and other sensitive content. <br>
-Risk: Browser automation can be blocked by login prompts, CAPTCHA, popups, quota limits, or Grok UI changes. <br>
-Mitigation: Require the user to complete login or human verification manually, refresh page state with browser snapshots, and stop with a clear user-facing message when quota or timeout limits are reached. <br>
+## Use Case:
 
+Developers and agents use this skill to query Grok through an authenticated OpenClaw browser session for current information, news, fact checks, and multi-turn external research.
 
-## Reference(s): <br>
-- [Grok](https://grok.com) <br>
-- [ClawHub release page](https://clawhub.ai/InphinitiZ/grok-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and browser workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenClaw browser session already logged in to Grok; responses are subject to Grok availability, UI state, account limits, and user-entered prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts and context are submitted to Grok through the user's logged-in browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending private, regulated, or account-sensitive data unless that use matches the user's Grok privacy expectations.
+
+Risk: The skill depends on browser automation and cannot complete login, CAPTCHA, or human-verification flows automatically.
+
+Mitigation: Confirm the user is logged in to grok.com and ask them to complete any manual verification before continuing.
+
+## Reference(s):
+
+- [Grok](https://grok.com)
+- [Grok Query on ClawHub](https://clawhub.ai/inphinitiz/skills/grok-query)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, text, markdown]
+
+**Output Format:** [Markdown with inline shell commands and browser-operation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an OpenClaw browser session already logged in to grok.com; responses may include Grok-generated text or image URLs captured from the browser.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

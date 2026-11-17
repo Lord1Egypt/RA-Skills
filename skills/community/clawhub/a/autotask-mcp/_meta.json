@@ -2,5 +2,45 @@
   "ownerId": "kn701d1v7ehbwdhwk54h6dqzdd80zpsa",
   "slug": "autotask-mcp",
   "version": "1.0.4",
-  "publishedAt": 1771259216419
+  "publishedAt": 1770827557282,
+  "env": {
+    "AUTOTASK_INTEGRATION_CODE": {
+      "required": true,
+      "secret": true,
+      "description": "Autotask API integration code"
+    },
+    "AUTOTASK_USERNAME": {
+      "required": true,
+      "secret": true,
+      "description": "Autotask API username"
+    },
+    "AUTOTASK_SECRET": {
+      "required": true,
+      "secret": true,
+      "description": "Autotask API secret key"
+    },
+    "AUTOTASK_API_URL": {
+      "required": false,
+      "secret": false,
+      "description": "Override default Autotask API endpoint URL"
+    },
+    "LOG_LEVEL": {
+      "required": false,
+      "secret": false,
+      "description": "Logging level (default: info)",
+      "default": "info"
+    },
+    "LOG_FORMAT": {
+      "required": false,
+      "secret": false,
+      "description": "Log output format (default: simple)",
+      "default": "simple"
+    },
+    "NODE_ENV": {
+      "required": false,
+      "secret": false,
+      "description": "Node environment (default: production)",
+      "default": "production"
+    }
+  }
 }

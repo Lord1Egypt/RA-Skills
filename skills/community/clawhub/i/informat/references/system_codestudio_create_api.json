@@ -1,0 +1,48 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_codestudio_create_api",
+		"description": "Register or update an API for this AICodeStudio module (expose a script function as an HTTP endpoint for the frontend callApi). The backend auto-applies the ai/{moduleId}/ path prefix and files it under the module group — you only give subPath. The same moduleId + subPath updates the existing path and returns the original id; do not create list2 / create_new paths to bypass duplicates. Multiple APIs can reuse one scriptId, differentiated by scriptFunc.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"moduleId": {
+					"type": "string",
+					"description": "Module id."
+				},
+				"subPath": {
+					"type": "string",
+					"description": "Path suffix (without prefix), e.g. orders/list. Backend forms ai/{moduleId}/orders/list. Later changes for the same business endpoint must keep the same subPath."
+				},
+				"name": {
+					"type": "string",
+					"description": "API name, human-readable."
+				},
+				"scriptId": {
+					"type": "string",
+					"description": "Script id returned by _codestudio_create_script."
+				},
+				"scriptFunc": {
+					"type": "string",
+					"description": "Exported function name in the script (must exist)."
+				},
+				"method": {
+					"type": "string",
+					"description": "HTTP method, default POST, optional."
+				},
+				"ownerAppId": {
+					"type": "string",
+					"description": "For cross-app: pass the dashboard app's appId (the script/API is created in the source app you routed to via --appId, but its prefix/group still belongs to the dashboard module). Do NOT pass when reading the current app's data."
+				}
+			},
+			"required": [
+				"moduleId",
+				"subPath",
+				"name",
+				"scriptId",
+				"scriptFunc"
+			],
+			"additionalProperties": false
+		}
+	}
+}

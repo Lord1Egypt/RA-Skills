@@ -1,0 +1,37 @@
+# medical-device-iomt-compliance
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`；人类看 `README.md`。
+
+## Purpose / 一句话定位
+
+Compliance guide for connected medical devices that combine sensors, a companion app and a cloud service: it lays out the SaMD and SiMD registration paths, cybersecurity expectations, UDI traceability and remote patient monitoring scope across NMPA, FDA and EU MDR. Produces a submission-document checklist and the key points reviewers will look for. Use when a hardware product gains software, connectivity or an AI feature and the regulatory picture suddenly gets complicated.
+
+带传感器/APP/云的智能医疗器械（IoMT）合规助手：SaMD+SiMD注册路径、网络安全IEC 81001-5-1、UDI追溯、RPM远程监测。3分钟理清联网器械的NMPA/FDA/MDR合规拼图，输出可提交文档清单与要点。
+
+## When to use / 什么时候用
+
+- 设备加了蓝牙和APP，要重新注册吗
+- 远程监测功能归哪一类器械
+- 网络安全测试报告要测哪些项
+- UDI码怎么编，追溯链怎么打通
+- 软件升级后要不要重新申报
+- 带AI算法的影像软件按SaMD报吗
+
+## Key files / 关键文件
+
+- [SKILL.md](SKILL.md) — 主说明书（frontmatter + 触发条件 + 执行步骤）
+- [README.md](README.md) — 人类总览
+- [LICENSE.md](LICENSE.md) — 分层许可（代码层 MIT／理论与文本保留权利）
+
+## Boundaries / 边界
+
+- 本技能只处理上面写的场景；不覆盖同领域其它技能的职责范围。
+- 输出不含未经验证的事实性断言；需要证据时给出出处。理论根基：LGD 三律（有籍 Recorded · 有证 Evidenced · 有门禁 Gated）。
+
+## Ecosystem / 生态入口
+
+- 生态总入口 / hub: https://zhaoxinghua09-cell.github.io/lgd-hub/
+- 理论正本 / theory: https://github.com/zhaoxinghua09-cell/LGD
+- 形式化论文 / paper: https://doi.org/10.5281/zenodo.22456647
+- 协议与参考实现 / protocol: https://github.com/zhaoxinghua09-cell/uibc-core
+- 全部已发布技能 / all skills: https://github.com/zhaoxinghua09-cell/agent-skills

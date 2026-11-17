@@ -3,13 +3,14 @@
 Collect documents via API endpoint (much faster and more reliable)
 """
 import sys
+import argparse
 import time
 import json
 import requests
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from elba import load_credentials, login, URL_DOCUMENTS, PROFILE_DIR, _safe_output_path, WORKSPACE_ROOT
+from elba import load_credentials, login, URL_DOCUMENTS, _safe_output_path, WORKSPACE_ROOT
 
 try:
     from playwright.sync_api import sync_playwright
@@ -70,7 +71,7 @@ def extract_bearer_token(page):
     }""")
     
     if token:
-        print(f"[token] Found token in storage: {token[:20]}...", flush=True)
+        print("[token] Found token in storage", flush=True)
         return token
     
     print("[token] Token not found in storage, will extract from network requests", flush=True)
@@ -92,7 +93,7 @@ def get_bearer_token_from_context(context, page):
         auth_header = request.headers.get('authorization', '')
         if auth_header.startswith('Bearer '):
             captured_token['value'] = auth_header[7:]  # Remove 'Bearer ' prefix
-            print(f"[token] Captured from request: {captured_token['value'][:20]}...", flush=True)
+            print("[token] Captured from request", flush=True)
         route.continue_()
     
     page.route('**/api/**', handle_request)
@@ -181,22 +182,32 @@ def collect_all_documents(token, cookies, from_date="2025-01-01", to_date="2025-
     return all_docs
 
 def main():
+    parser = argparse.ArgumentParser(description="Collect documents via API")
+    parser.add_argument("--profile", default="default", help="Profile to use")
+    args = parser.parse_args()
+
+    import elba
+    elba.set_active_profile(args.profile)
+
     elba_id, pin = load_credentials()
     if not elba_id or not pin:
         print("Credentials not found")
         sys.exit(1)
     
-    if not PROFILE_DIR.exists():
-        PROFILE_DIR.mkdir(parents=True)
+    # We need to get the updated PROFILE_DIR from elba
+    profile_dir = elba.PROFILE_DIR
+    
+    if not profile_dir.exists():
+        profile_dir.mkdir(parents=True)
         try:
             from elba import _harden_path
-            _harden_path(PROFILE_DIR)
+            _harden_path(profile_dir)
         except:
             pass
     
     with sync_playwright() as p:
         context = p.chromium.launch_persistent_context(
-            user_data_dir=str(PROFILE_DIR),
+            user_data_dir=str(profile_dir),
             headless=False,
             viewport={"width": 1280, "height": 800}
         )
@@ -225,7 +236,7 @@ def main():
                 print("[main] ERROR: Could not extract bearer token")
                 sys.exit(1)
             
-            print(f"[main] Using bearer token: {token[:20]}...", flush=True)
+            print("[main] Using bearer token", flush=True)
             
             # Get cookies from context
             cookies = {cookie['name']: cookie['value'] for cookie in context.cookies()}

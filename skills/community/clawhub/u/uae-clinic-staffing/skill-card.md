@@ -1,40 +1,52 @@
-## Description: <br>
-Clinic staffing, hiring, HR, payroll, and team management for UAE clinics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clinic staffing, hiring, HR, payroll, and team management for UAE clinics.
 
-## Publisher: <br>
-[dralmazrouei](https://clawhub.ai/user/dralmazrouei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dralmazrouei](https://clawhub.ai/user/dralmazrouei)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External clinic owners, operators, and HR staff use this skill to plan staffing, hiring, contracts, visas, payroll, and performance management for private UAE clinics. Users should treat the output as an HR checklist and verify current UAE labour, licensing, visa, and anti-discrimination requirements with qualified local advisors.
+
+### Deployment Geography for Use:
+
+United Arab Emirates
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat UAE labour, licensing, visa, salary, leave, or anti-discrimination guidance as current legal advice.
+
+Mitigation: Verify current requirements with qualified UAE legal, HR, licensing, or immigration advisors before acting.
+
+Risk: Hard rules such as mandatory language requirements or salary and leave benchmarks may be outdated or too broad for a specific emirate or clinic role.
+
+Mitigation: Confirm emirate-specific licensing rules, current market compensation, and role requirements before using the guidance in hiring or contracts.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Clinic owners, managers, and HR staff in the UAE use this skill to plan clinical and administrative staffing, hiring, contracts, visas, payroll, leave, gratuity, and performance-management workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-United Arab Emirates <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: UAE labour, healthcare licensing, visa, and payroll requirements may change or vary by emirate. <br>
-Mitigation: Verify current requirements with the relevant UAE authorities and qualified legal or HR professionals before acting on generated guidance. <br>
-Risk: Staffing workflows can involve candidate or employee personal data, third-party contacts, official filings, and payroll enrollment. <br>
-Mitigation: Require explicit user approval before contacting third parties, submitting filings, enrolling payroll, or processing personal data. <br>
+**Output Format:** [Markdown guidance with checklists, process steps, and tables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dralmazrouei/uae-clinic-staffing) <br>
+**Other Properties Related to Output:** [Covers staffing processes, HR checklists, role guidance, payroll considerations, performance review frameworks, and salary benchmark tables.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and process steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only drafting and checklist aid; no code, tools, credential access, or hidden automation.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

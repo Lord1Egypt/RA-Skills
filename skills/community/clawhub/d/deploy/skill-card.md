@@ -1,39 +1,48 @@
-## Description: <br>
-Ship applications reliably with CI/CD, rollback strategies, and zero-downtime deployment patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ship applications reliably with CI/CD, rollback strategies, and zero-downtime deployment patterns.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, DevOps engineers, and release owners use this skill to plan safer application deployments, CI/CD pipelines, zero-downtime releases, database migrations, rollback procedures, and post-deploy monitoring. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Deployment advice applied directly to production can cause downtime or failed releases when environment-specific tests, health checks, or rollback paths are missing. <br>
-Mitigation: Validate proposed deployment steps in CI and staging, require passing health checks, keep previous artifacts available, and confirm the rollback plan before production changes. <br>
-Risk: Migration, rollback, or secret-management changes can affect data integrity or expose credentials if treated as generic instructions. <br>
-Mitigation: Have a qualified operator review database and secret-management steps, use a secret manager, test migrations on representative data, and prefer backwards-compatible migration sequences. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/deploy) <br>
+## Use Case:
 
+Developers and engineers use this skill for deployment planning and review, including CI/CD practices, rollback readiness, zero-downtime releases, migrations, and post-deploy monitoring.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown deployment guidance with checklists, operational recommendations, and possible command or configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides deployment best practices and does not include executable code or request credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Deployment guidance may lead an agent to propose changes involving secrets, database migrations, rollback procedures, or production monitoring.
+
+Mitigation: Review proposed deployment commands and plans against the target environment, verify secret handling and migration compatibility, and confirm rollback and monitoring steps before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/deploy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with checklists and inline operational recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not execute commands or access systems; agents should adapt recommendations to the target platform and review deployment actions before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

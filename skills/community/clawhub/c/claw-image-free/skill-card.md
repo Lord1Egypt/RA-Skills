@@ -1,44 +1,54 @@
-## Description: <br>
-FREE AI image & portrait generation - No authentication required! Fast generation (3-5 seconds) with 140+ nationalities, diverse styles, professional headshots, character design, and fashion visualization. Perfect for creative projects, character design, professional portraits, and diverse representation. Simple curl-based API. Powered by diversityfaces.org <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawImage Free helps agents generate AI portrait and character images through a no-auth curl-based API powered by diversityfaces.org.
 
-## Publisher: <br>
-[luruibu](https://clawhub.ai/user/luruibu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luruibu](https://clawhub.ai/user/luruibu)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent generate professional portraits, headshots, avatars, character designs, fashion visuals, and other appropriate human-centered images through a curl-based third-party API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts and generation parameters are sent to diversityfaces.org. <br>
-Mitigation: Avoid real names, private likeness details, confidential creative material, and other sensitive personal information in prompts. <br>
-Risk: Downloaded generated images and filenames may be reused outside the agent conversation. <br>
-Mitigation: Review downloaded image filenames, storage locations, and image suitability before reuse or publication. <br>
-Risk: The skill can be prompted for inappropriate portrait or image content. <br>
-Mitigation: Refuse requests involving minors, nudity, sexual content, violence, hate, illegal activity, undisclosed deepfakes, or personal identifying information, and offer an appropriate professional-portrait alternative. <br>
+## Use Case:
 
+External users and developers use this skill to have agents generate professional portraits, character designs, avatars, fashion visuals, and other appropriate human-image concepts through the DiversityFaces service.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/luruibu/claw-image-free) <br>
-- [Live image generation service](https://gen1.diversityfaces.org) <br>
-- [diversityfaces.org](https://diversityfaces.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline curl commands and downloaded image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are retrieved from the third-party service as WebP by default, with PNG and JPEG options documented by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: Portrait prompts and generation metadata are sent to diversityfaces.org.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include private, identifying, confidential, client-sensitive, or unnecessary personal details in prompts.
+
+Risk: The artifact includes donation, Discord, and project-star links that could distract from core usage.
+
+Mitigation: Treat donation, Discord, and project-star links as optional promotional material, not required usage steps.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luruibu/skills/claw-image-free)
+- [DiversityFaces Generation Service](https://gen1.diversityfaces.org)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and downloaded image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images may be WebP, PNG, or JPEG; prompt and generation metadata are sent to diversityfaces.org.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

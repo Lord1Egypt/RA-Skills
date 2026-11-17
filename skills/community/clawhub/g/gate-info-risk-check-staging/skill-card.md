@@ -1,42 +1,60 @@
-## Description: <br>
-Token and address risk assessment for security-only queries about token contracts, honeypots, rugs, and address safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs token contract security and degraded address risk assessment using read-only Gate Info MCP data, then produces structured risk reports.
 
-## Publisher: <br>
-[gaixianggeng](https://clawhub.ai/user/gaixianggeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaixianggeng](https://clawhub.ai/user/gaixianggeng)
 
-## Use Case: <br>
-External users and developers use this skill to request security-focused token or contract risk reports, including honeypot, tax, holder concentration, open-source, and name-risk checks. Address safety requests are supported only as basic on-chain information until address compliance risk detection is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Address safety output can be mistaken for a blacklist, compliance label, or definitive safety verdict even though address compliance risk detection is unavailable. <br>
-Mitigation: State that address compliance risk detection is under development and provide only basic on-chain address information unless a supported compliance signal is available. <br>
-Risk: Automated token checks can miss risks outside the retrieved on-chain security data. <br>
-Mitigation: Avoid absolute safety guarantees, preserve high-severity warnings such as honeypot, high tax, or concentrated holdings, and recommend further due diligence when risk signals or missing data warrant it. <br>
+## Use Case:
 
+External users and developers use this skill to check token or contract safety signals such as honeypot risk, taxes, holder concentration, name risk, and open-source status. It also handles address-safety requests in a degraded mode that returns basic on-chain address information without treating it as compliance clearance.
 
-## Reference(s): <br>
-- [Gate Info RiskCheck MCP Specification](references/mcp.md) <br>
-- [RiskCheck Scenarios and Prompt Examples](references/scenarios.md) <br>
-- [ClawHub skill page](https://clawhub.ai/gaixianggeng/gate-info-risk-check-staging) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown risk report or concise degradation notice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Token mode produces a structured contract security report; address mode discloses that compliance risk labels are unavailable and reports only basic on-chain information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill depends on shared runtime rule files outside the packaged artifact, so installed behavior may depend on files the package does not include.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher is trusted and the shared runtime rule files can be verified in the target environment.
+
+Risk: Address-safety mode is degraded and does not provide definitive compliance, sanctions, or blacklist clearance.
+
+Mitigation: Treat address output as basic on-chain information only and use independent compliance checks before making safety decisions.
+
+Risk: Automated token-risk checks can miss risks or return incomplete data.
+
+Mitigation: Keep report warnings visible, label unavailable data, and combine results with manual due diligence before acting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gaixianggeng/skills/gate-info-risk-check-staging)
+- [Gate.com](https://www.gate.com)
+- [MCP Specification](references/mcp.md)
+- [Scenarios and Prompt Examples](references/scenarios.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown risk report or plain-language clarification/degradation notice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Token security reports include risk overview, high-risk details, tax analysis, holder concentration, name risk, project context, overall assessment, and warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter version 2026.4.3-1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

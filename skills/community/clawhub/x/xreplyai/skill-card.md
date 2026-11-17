@@ -1,44 +1,54 @@
-## Description: <br>
-Generate, schedule, and publish posts to X, LinkedIn, and Threads in your voice using AI, with tools for preferences and billing status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, schedule, and publish posts across 10 platforms: X, LinkedIn, Instagram, Threads, Facebook, YouTube, TikTok, Pinterest, Bluesky, and Mastodon, using the user's AI-assisted brand voice.
 
-## Publisher: <br>
-[jmoon90](https://clawhub.ai/user/jmoon90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jmoon90](https://clawhub.ai/user/jmoon90)
 
-## Use Case: <br>
-External users and social media operators use this skill to draft, manage, schedule, and publish social posts across connected X, LinkedIn, and Threads accounts. It also supports media upload, style preferences, billing checks, and account discovery for post workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish or schedule live posts and upload media to external social accounts. <br>
-Mitigation: Review generated content before publishing, prefer drafts or scheduling for important posts, and confirm the target social account before live actions. <br>
-Risk: The skill requires an XREPLY_TOKEN credential for connected XreplyAI account access. <br>
-Mitigation: Keep the token private, store it only in the intended agent configuration, and refresh it if authentication fails. <br>
-Risk: Media upload actions send selected local image or video files outside the local environment. <br>
-Mitigation: Double-check file paths, file types, and file sizes before upload. <br>
+## Use Case:
 
+External users, creators, and marketing teams use this skill to draft, manage, schedule, and publish social posts through XreplyAI-connected social accounts. It also helps users inspect billing, quota, social account, style, rule, content plan, and posting schedule state before acting.
 
-## Reference(s): <br>
-- [XreplyAI homepage](https://xreplyai.com) <br>
-- [ClawHub skill page](https://clawhub.ai/jmoon90/xreplyai) <br>
-- [Publisher profile](https://clawhub.ai/user/jmoon90) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and MCP tool parameter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XREPLY_TOKEN credential and mcporter or npx to call the XreplyAI MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.20 (source: server release metadata; artifact frontmatter reports 0.4.0) <br>
+Risk: The skill can publish or schedule public posts and queue recurring automated content generation through connected XreplyAI accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before publish, schedule, content-plan, or posting-schedule actions, require the agent to show the exact content, account, platform, and time, then wait for explicit user approval.
+
+Risk: The skill can create drafts, upload chosen media files, and change posting preferences or schedules.
+
+Mitigation: Confirm the intended file, preference, schedule, platform, and account before executing changes, and review queue or billing state when quota or plan limits may affect the result.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jmoon90/skills/xreplyai)
+- [XreplyAI Homepage](https://xreplyai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with mcporter shell commands and text or JSON-like tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XREPLY_TOKEN and either mcporter or npx. The skill invokes the @xreplyai/mcp package referenced by the artifact and may depend on connected social accounts, paid-plan features, media file access, quota limits, and schedule constraints.]
+
+## Skill Version(s):
+
+0.3.26 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

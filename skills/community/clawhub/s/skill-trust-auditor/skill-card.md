@@ -1,44 +1,59 @@
-## Description: <br>
-Audit a ClawHub skill for security risks BEFORE installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit a named ClawHub skill or skill URL before installation by combining OpenClaw verification with bounded static analysis.
 
-## Publisher: <br>
-[JonathanJing](https://clawhub.ai/user/JonathanJing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jonathanjing](https://clawhub.ai/user/jonathanjing)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect ClawHub skills before installation, review reported security patterns, and receive an advisory trust score with remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The auditor fetches target skill files and may install Python dependencies during setup. <br>
-Mitigation: Run it in an environment where Python package installation and network access are acceptable, and review setup behavior before first use. <br>
-Risk: The optional --llm mode can send inspected skill content to Anthropic for analysis. <br>
-Mitigation: Use --llm only for skill content that is acceptable to share with that provider. <br>
-Risk: Trust scores are advisory and are not proof that another skill is safe. <br>
-Mitigation: Use reported findings as a screening aid and manually review flagged files before installation. <br>
+## Use Case:
 
+Developers and engineers use this skill to review a ClawHub skill before installation, combining registry verification with bounded local checks and a concise risk report. It is intended to support install decisions, not to guarantee that another skill is safe.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JonathanJing/skill-trust-auditor) <br>
-- [JonathanJing publisher profile](https://clawhub.ai/user/JonathanJing) <br>
-- [ClawHavoc Pattern Reference](references/clawhavoc-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with optional JSON audit report and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Trust scores are advisory and may include exact file and line findings when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: frontmatter, CHANGELOG, skill.json, server release) <br>
+Risk: The setup script installs Python packages in the active environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run setup only inside a dedicated virtual environment and review the declared dependencies before first use.
+
+Risk: The audit result is heuristic and a clean score is not proof that the target skill is safe.
+
+Mitigation: Treat the report as a triage signal and manually inspect flagged, unusually large, omitted, or failed files for the exact release.
+
+Risk: Optional LLM analysis may send excerpts from the audited skill to Anthropic.
+
+Mitigation: Use --llm only when that data sharing is acceptable; otherwise run the static analysis mode.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jonathanjing/skills/skill-trust-auditor)
+- [ClawHub metadata homepage](https://clawhub.ai/jonathanjing/skill-trust-auditor)
+- [ClawHavoc pattern reference](references/clawhavoc-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown summary and optional JSON report with risk findings, score, verdict, and recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can run with --json-only for machine-readable output; optional --llm mode adds advisory analysis for ambiguous network findings.]
+
+## Skill Version(s):
+
+1.1.5 (source: frontmatter, changelog, skill.json, server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

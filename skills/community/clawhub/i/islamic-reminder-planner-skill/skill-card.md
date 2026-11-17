@@ -1,42 +1,57 @@
-## Description: <br>
-Guides structured help for Islamic Reminder Planner using clear templates, checks, and safe defaults for Faith & Lifestyle planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Islamic Reminder Planner using clear templates, checks, and safe defaults (category: Faith & Lifestyle).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-External users use this skill to plan Islamic reminder workflows with reusable checklists, concise plans, next actions, and editable draft copy while avoiding secret collection and unsafe command suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reminder planning notes may include private personal details. <br>
-Mitigation: Keep personally identifying information minimal and avoid pasting sensitive private details into reminder notes. <br>
-Risk: The PayPal donation link is an external support link outside the skill's operation. <br>
-Mitigation: Treat donations as optional external support and do not rely on the payment link to use the skill. <br>
+## Use Case:
 
+External users use this skill to create concise Islamic reminder planning guidance, reusable checklists, next actions, and editable draft copy without asking the agent to scrape external sources or handle secrets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/islamic-reminder-planner-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/abdullah944) <br>
-- [Optional PayPal support link](https://www.paypal.com/donate/?hosted_button_id=MJHCRZA9Z4X7Y) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with concise plans, numbered checklists, next actions, and optional draft copy blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, installer, credential use, or hidden data access is described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and ClawHub release metadata) <br>
+Risk: The skill may be invoked outside its intended Islamic reminder planning context if users treat it as a general lifestyle-writing template.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it only for Islamic-focused reminder planning and faith-and-lifestyle checklist drafting.
+
+Risk: User-provided goals or notes could contain unnecessary personal or sensitive information.
+
+Mitigation: Provide a short goal without secrets, and keep optional pasted notes minimal and free of unnecessary PII.
+
+Risk: Reminder text can become misleading if copied without review.
+
+Mitigation: Review generated plans, checklists, and draft copy before reuse, keeping outputs factual and reversible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/abdullah944/skills/islamic-reminder-planner-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with concise plans, numbered checklists, next-action lists, and optional draft copy blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, credential use, or hidden data handling indicated by security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

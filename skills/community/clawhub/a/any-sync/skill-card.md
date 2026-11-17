@@ -1,42 +1,58 @@
-## Description: <br>
-Cross-device sync for OpenClaw workspace skills, memory, and settings via GitHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-device sync for OpenClaw workspace skills, memory, and settings via GitHub.
 
-## Publisher: <br>
-[imink](https://clawhub.ai/user/imink) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imink](https://clawhub.ai/user/imink)
 
-## Use Case: <br>
-OpenClaw users and developers use this plugin to synchronize workspace skills, memory, and settings across devices through a configured GitHub repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically upload and download OpenClaw skills, memory, and settings without per-session approval. <br>
-Mitigation: Use a dedicated private sync repository, review synced paths, and set autoSync to false until the workflow is trusted. <br>
-Risk: Sensitive workspace content or secrets could be synced to GitHub if included in configured paths. <br>
-Mitigation: Avoid syncing secrets or sensitive memory, and review the mapping configuration before pushing. <br>
-Risk: The skill depends on GitHub authentication and may use GITHUB_TOKEN or GitHub CLI credentials. <br>
-Mitigation: Use credentials scoped for the intended private repository and rotate them if sync access is no longer needed. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to keep workspace skills, memory, and selected configuration files synchronized across devices through a configured GitHub repository. It provides setup, pull, push, status, reset, and session lifecycle sync workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/imink/any-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger GitHub-backed workspace synchronization through configured commands and session hooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.10 (source: server release metadata and package.json) <br>
+Risk: The skill can move sensitive OpenClaw workspace data, including memory and settings, to and from GitHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private, least-privilege repository, review generated sync mappings before enabling auto-sync, and avoid syncing secrets or private memory.
+
+Risk: The artifact relies on mutable package execution for the any-sync CLI.
+
+Mitigation: Prefer a pinned and reviewed version of the any-sync CLI before running sync commands in sensitive environments.
+
+Risk: Automatic pull and push hooks can change workspace files at session start or session end with limited review.
+
+Mitigation: Disable autoSync until the repository, branch, mappings, and expected file changes have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imink/skills/any-sync)
+- [Publisher profile](https://clawhub.ai/user/imink)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Any Sync configuration and lock files and may synchronize selected OpenClaw workspace files with the configured GitHub repository.]
+
+## Skill Version(s):
+
+0.2.10 (source: server release evidence, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

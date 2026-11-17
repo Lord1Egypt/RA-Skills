@@ -1,44 +1,56 @@
-## Description: <br>
-OpenHarmony React Native performance static checks and optimization guidance for reviewing RNOH code, bundle-harmony configuration, lifecycle wiring, TurboModule placement, and React rendering patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenHarmony React Native Performance provides static-check guidance for optimizing React Native for OpenHarmony code, bundle configuration, lifecycle integration, TurboModule usage, and list rendering.
 
-## Publisher: <br>
-[code-sunbo](https://clawhub.ai/user/code-sunbo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[code-sunbo](https://clawhub.ai/user/code-sunbo)
 
-## Use Case: <br>
-Developers and engineers use this skill to review React Native for OpenHarmony applications for performance-sensitive render, lifecycle, bundle, list, and TurboModule patterns. It supports static analysis and code review by pointing agents to focused rule files and concrete examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Copied production bundle or Hermes bytecode commands may be inappropriate for a specific build pipeline. <br>
-Mitigation: Review command flags and output paths before applying them to production or CI projects. <br>
-Risk: TurboModule worker guidance can hurt performance if UI-bound modules are moved off the main thread. <br>
-Mitigation: Apply worker-thread configuration only to heavy or I/O-bound modules and keep UI-bound modules on the appropriate thread. <br>
+## Use Case:
 
+Developers and engineers use this skill when writing or reviewing React Native for OpenHarmony applications for performance-sensitive render paths, production bundle settings, RNAbility lifecycle wiring, TurboModule threading, and stable list keys.
 
-## Reference(s): <br>
-- [OpenHarmony-SIG homecheck repository](https://gitcode.com/openharmony-sig/homecheck) <br>
-- [OpenHarmony React Native performance optimization documentation (English)](https://gitcode.com/openharmony-sig/ohos_react_native/blob/master/docs/en/performance-optimization.md) <br>
-- [OpenHarmony React Native performance optimization documentation (Chinese)](https://gitcode.com/openharmony-sig/ohos_react_native/blob/master/docs/zh-cn/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98.md) <br>
-- [ClawHub skill page](https://clawhub.ai/code-sunbo/ohos-react-native-performance) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/code-sunbo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no hidden execution or data access was reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Unpinned installation commands can fetch mutable package or repository content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill files before installation, or pin installer versions and repository commits when installing from a remote source.
+
+Risk: Performance recommendations may be misapplied outside React Native for OpenHarmony projects or without checking local application constraints.
+
+Mitigation: Treat the skill output as review guidance and validate changes against the official OpenHarmony React Native documentation and project-specific performance measurements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/code-sunbo/skills/ohos-react-native-performance)
+- [OpenHarmony-SIG homecheck](https://gitcode.com/openharmony-sig/homecheck)
+- [OpenHarmony React Native Performance Optimization](https://gitcode.com/openharmony-sig/ohos_react_native/blob/master/docs/en/performance-optimization.md)
+- [OpenHarmony React Native Performance Tuning](https://gitcode.com/openharmony-sig/ohos_react_native/blob/master/docs/zh-cn/性能调优.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static code-review guidance; no executable tooling is bundled.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

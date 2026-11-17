@@ -1,45 +1,55 @@
-## Description: <br>
-Fetch personalized developer news digests from Snapbyte External API with API-key auth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch personalized developer news digests from Snapbyte External API with API-key auth. Use for Hacker News digest, Reddit digest, Lobsters digest, and DEV.to digest workflows.
 
-## Publisher: <br>
-[onatm](https://clawhub.ai/user/onatm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[onatm](https://clawhub.ai/user/onatm)
 
-## Use Case: <br>
-Developers use this skill to retrieve their Snapbyte digest configurations, latest digests, digest history, individual digests, and digest items, then present results as markdown or raw JSON. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill retrieves user-scoped Snapbyte digest data using SNAPBYTE_API_KEY. <br>
-Mitigation: Install it only when digest retrieval is intended, and keep the API key private, current, and scoped according to Snapbyte guidance. <br>
-Risk: SNAPBYTE_BASE_URL can redirect requests to a different Snapbyte-compatible endpoint. <br>
-Mitigation: Leave SNAPBYTE_BASE_URL unset unless the alternate endpoint is trusted. <br>
-Risk: The quickstart includes an optional cron workflow that can run digest retrieval on a schedule. <br>
-Mitigation: Add the cron job only when recurring automatic digest delivery is desired, and review scheduled runs periodically. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Snapbyte API Documentation](https://api.snapbyte.dev/docs) <br>
-- [Snapbyte API Base URL](https://api.snapbyte.dev) <br>
-- [Snapbyte Digest API Quickstart](references/quickstart.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/onatm/snapbyte-digest-api) <br>
-- [Publisher Profile](https://clawhub.ai/user/onatm) <br>
+## Use Case:
 
+Developers use this skill to fetch Snapbyte digest configurations, latest digests, digest history, individual digests, and digest items, then present the results as Markdown or raw JSON.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown by default, with optional raw JSON output and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SNAPBYTE_API_KEY for authenticated read-only API requests; SNAPBYTE_BASE_URL can override the default endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The helper script can send SNAPBYTE_API_KEY to a non-default endpoint when SNAPBYTE_BASE_URL is set.
+
+Mitigation: Use the default https://api.snapbyte.dev endpoint unless you fully control the override, and review environment configuration before running the skill.
+
+Risk: The quickstart cron example creates persistent scheduled use of the configured API key.
+
+Mitigation: Review the cron command, destination channel, session isolation, and schedule before enabling it; disable the job when routine digest delivery is no longer needed.
+
+## Reference(s):
+
+- [Snapbyte Digest API Quickstart](references/quickstart.md)
+- [Snapbyte API Documentation](https://api.snapbyte.dev/docs)
+- [Snapbyte API Base URL](https://api.snapbyte.dev)
+- [ClawHub Skill Page](https://clawhub.ai/onatm/skills/snapbyte-digest-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown by default, with optional raw JSON payloads and inline shell or configuration examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SNAPBYTE_API_KEY; supports optional SNAPBYTE_BASE_URL override.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

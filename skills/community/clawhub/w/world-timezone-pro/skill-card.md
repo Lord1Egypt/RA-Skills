@@ -1,41 +1,49 @@
-## Description: <br>
-World timezone converter for looking up current times and comparing supported city time zones for international calls, remote work, travel planning, and global business. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+World Timezone Pro helps agents look up current local times and compare time zones for supported cities worldwide.
 
-## Publisher: <br>
-[darbling](https://clawhub.ai/user/darbling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darbling](https://clawhub.ai/user/darbling)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve local times, compare cities, and support timezone-aware planning across global locations. It is most useful for scheduling, travel planning, and remote collaboration where quick timezone context is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation advertises command names and features that do not fully match the shipped script. <br>
-Mitigation: Inspect the artifact and invoke the bundled script path directly; validate expected commands before relying on the skill in a workflow. <br>
-Risk: Timezone conversion behavior may vary by operating system because the script shells out to the local date command. <br>
-Mitigation: Test representative timezone lookups and conversions on the target host, especially before scheduling important meetings or travel. <br>
-Risk: Timezone output can be misleading if treated as authoritative for high-impact scheduling decisions. <br>
-Mitigation: Use the output as planning assistance and confirm critical times against a trusted calendar or timezone source. <br>
+## Use Case:
 
+External users and agents use this skill to check local times, compare supported city time zones, and plan international calls, remote work handoffs, or travel coordination.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON responses from the bundled timezone script plus concise agent guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local execution; no evidence of networking, persistence, hidden data access, or destructive behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Timezone conversion output may be incorrect or misleading for real scheduling decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test conversion behavior before relying on it for meetings, travel, deadlines, or business decisions.
+
+## Reference(s):
+
+- [World Timezone Pro ClawHub listing](https://clawhub.ai/darbling/skills/world-timezone-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Timezone results depend on the local script behavior and host timezone data.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

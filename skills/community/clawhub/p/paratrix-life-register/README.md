@@ -1,6 +1,6 @@
-# Paratrix Life Register
+# Karpak Life Register
 
-Automate the full flow: **wallet connect → paratrix-life registration → SBT mint** on the Karpak Living Map.
+Automate the full flow: **wallet connect → karpak-life registration → SBT mint** on the Karpak Living Map.
 
 Zero external dependencies — uses Node.js built-in modules + browser bridge for wallet interactions.
 
@@ -39,36 +39,33 @@ Zero external dependencies — uses Node.js built-in modules + browser bridge fo
 
 - Node.js >= 18
 - MetaMask or compatible Web3 wallet extension installed in default browser
-- Wallet funded with BNB for gas (testnet BNB from faucet for devnet)
+- Wallet funded with BNB for gas
 
 ## Usage
 
 ```bash
-# Testnet (default)
-node register-and-mint.mjs --nickname=MyName --twitter=myhandle --identity=IDENTITY_TYPE_HUMAN --env=testnet
+# Full options
+node register-and-mint.mjs --env=mainnet --nickname=MyName --twitter=myhandle --identity=IDENTITY_TYPE_HUMAN
 
-# Mainnet
-node register-and-mint.mjs --nickname=MyName --twitter=myhandle --identity=IDENTITY_TYPE_AGENT --env=mainnet
-
-# Minimal (auto-generated nickname + twitter)
-node register-and-mint.mjs
+# Minimal (auto-generates nickname + twitter)
+node register-and-mint.mjs --env=mainnet
 ```
 
 ### Flags
 
 | Flag | Default | Description |
 |------|---------|-------------|
-| `--nickname=NAME` | Auto-generated (`openclaw_XXXXXXXX`) | Display name on paratrix-life |
+| `--nickname=NAME` | Auto-generated (`karpak_agent_XXXXXXXX`) | Display name on karpak-life |
 | `--identity=TYPE` | `IDENTITY_TYPE_HUMAN` | `IDENTITY_TYPE_HUMAN` or `IDENTITY_TYPE_AGENT` |
 | `--twitter=USER` | Auto-generated | Twitter username for SBT (no @) |
 | `--wallet=0x...` | (via bridge) | Pre-set wallet address, skip wallet connect step |
-| `--env=testnet|mainnet` | `testnet` | Target environment |
+| `--env=mainnet` | *(required)* | Target environment |
 
 ### Environment Variables
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `KARPAK_ENV` | `testnet` | Target environment |
+| `KARPAK_ENV` | — | Override target environment (see `--env`) |
 | `KARPAK_NICKNAME` | (auto) | Default nickname |
 | `KARPAK_IDENTITY` | `IDENTITY_TYPE_HUMAN` | Identity type |
 | `KARPAK_TWITTER` | (auto) | Default Twitter handle |
@@ -79,7 +76,6 @@ node register-and-mint.mjs
 
 | Environment | API Base | SBT URL | Chain |
 |-------------|----------|---------|-------|
-| **testnet** | `https://devnet-lifestyle-api.karpak.xyz` | `https://devnet.paratrix-sbt.pages.dev` | BSC Testnet (97) |
 | **mainnet** | `https://lifestyle-api.karpak.xyz` | `https://sbt.karpak.xyz` | BSC Mainnet (56) |
 
 ## How It Works

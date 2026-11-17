@@ -1,42 +1,59 @@
-## Description: <br>
-Xby Review Code is an MCP-based code review helper that supports whole-code, git diff, and single-file reviews with score parsing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+一个基于Model Context Protocol (MCP)的代码审查工具服务器，提供多维度的代码审查和打分功能。
 
-## Publisher: <br>
-[alinklab](https://clawhub.ai/user/alinklab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alinklab](https://clawhub.ai/user/alinklab)
 
-## Use Case: <br>
-Developers use this skill to request structured code review assistance for full code snippets, git diffs, or individual files, and to extract review scores from returned review text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reviewed code is sent to an external XiaoBenYang service. <br>
-Mitigation: Use the skill only when that provider is approved for the code being reviewed, and do not submit proprietary code, secrets, or regulated data unless approval covers that use. <br>
-Risk: The skill stores the XBY_APIKEY value locally in a .env file. <br>
-Mitigation: Protect the .env file, exclude it from version control, and rotate the API key if it may have been exposed. <br>
+## Use Case:
 
+Developers use this skill to prepare code review prompts for full code snippets, Git diffs, and individual files, and to extract review scores from review text.
 
-## Reference(s): <br>
-- [Xby Review Code on ClawHub](https://clawhub.ai/alinklab/xby-review-code) <br>
-- [XiaoBenYang API Key Portal](https://xiaobenyang.com) <br>
-- [XiaoBenYang MCP API Endpoint](https://mcp.xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown or structured text derived from raw API response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XBY_APIKEY value and may return success, raw response data, and status messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Submitted code or diffs are sent to the xiaobenyang/XBY API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with code you are willing to share with that API, and remove secrets or private diffs before use.
+
+Risk: The API key is saved in a local plaintext .env file.
+
+Mitigation: Use an appropriately scoped key, protect local files, and rotate or remove the key when it is no longer needed.
+
+Risk: Documentation and implementation details are inconsistent.
+
+Mitigation: Review the skill behavior before installation and confirm the available tools match the intended code review workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alinklab/skills/xby-review-code)
+- [XiaoBenYang API key site](https://xiaobenyang.com)
+- [XiaoBenYang MCP API endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, JSON]
+
+**Output Format:** [Markdown or JSON-compatible tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include raw upstream API responses and parsed review score fields.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

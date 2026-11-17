@@ -1,45 +1,59 @@
-## Description: <br>
-Generate a structured comparison report for multiple WeChat Official Account articles under one topic, including article metadata, engagement status, content-structure tables, writing-pattern tags, and an optional later Feishu sync step. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a structured comparison report for multiple WeChat Official Account articles under one topic, including article metadata, engagement status, content structure, writing tags, and optional downstream Feishu sync preparation.
 
-## Publisher: <br>
-[abigale-cyber](https://clawhub.ai/user/abigale-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abigale-cyber](https://clawhub.ai/user/abigale-cyber)
 
-## Use Case: <br>
-Content researchers, editors, and marketing teams use this skill to collect several WeChat Official Account articles for one topic and compare their metadata, engagement availability, structure, titles, openings, endings, and reusable writing hooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches search results and WeChat article pages, runs browser automation, and stores scraped article content and metadata locally. <br>
-Mitigation: Use it only in workspaces where local retention of scraped content is acceptable, review generated files before sharing, and set collect_engagement to false when browser-based engagement collection is not needed. <br>
-Risk: A WeChat login or verification flow may expose browser session state to the skill's Playwright profile. <br>
-Mitigation: Use a dedicated browser profile for WeChat access and avoid reusing a personal or broadly privileged browser profile. <br>
-Risk: The article extractor dependency influences what content is collected and parsed. <br>
-Mitigation: Review and pin the external extractor dependency before relying on the outputs in production workflows. <br>
+## Use Case:
 
+Content and marketing operators use this skill to compare several WeChat Official Account articles for a topic, inspect engagement availability, and summarize reusable writing patterns. Agents can use it to turn a frontmatter-based request into a local Markdown report and raw JSON dataset.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/abigale-cyber/wechat-report) <br>
-- [Publisher Profile](https://clawhub.ai/user/abigale-cyber) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Files, Text] <br>
-**Output Format:** [Local Markdown report plus structured raw JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a comparison report under content-production/inbox/ and raw article data under content-production/inbox/raw/wechat-report/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Network and browser automation are under-scoped and may access arbitrary URLs from request Markdown or seed URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a sandboxed workspace, review request Markdown and seed URLs before execution, and prefer versions that enforce mp.weixin.qq.com URL allowlisting and redirect validation.
+
+Risk: The Playwright profile can reuse browser session state under .cache/wechat-report-playwright.
+
+Mitigation: Avoid logging into accounts through the reused profile unless that session reuse is acceptable, or use a temporary browser profile and clear cached browser state after use.
+
+Risk: Dependency provenance is harder to review because pinned dependency lockfiles are not included in the artifact evidence.
+
+Mitigation: Install dependencies in an isolated environment and review dependency versions before running the skill.
+
+## Reference(s):
+
+- [Wechat Report on ClawHub](https://clawhub.ai/abigale-cyber/skills/wechat-report)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, json, guidance]
+
+**Output Format:** [Local Markdown report plus raw JSON data file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a comparison report and raw structured data under content-production/inbox; Feishu sync is prepared but requires separate user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

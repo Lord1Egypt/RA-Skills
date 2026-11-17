@@ -1,42 +1,56 @@
-## Description: <br>
-Create secure shareable self-destructing notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create secure shareable self-destructing notes.
 
-## Publisher: <br>
-[easyFloyd](https://clawhub.ai/user/easyFloyd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[easyfloyd](https://clawhub.ai/user/easyfloyd)
 
-## Use Case: <br>
-External users and developers use this skill to turn sensitive text into an encrypted, one-time-read note and return a shareable URL from a configured FadNote endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Encrypted note ciphertext is uploaded to the configured FADNOTE_URL endpoint. <br>
-Mitigation: Use a trusted or self-hosted endpoint for highly sensitive content and review the configured endpoint before creating a note. <br>
-Risk: The generated URL contains the decryption key and can reveal the note to whoever opens it first before expiry. <br>
-Mitigation: Share the full URL only through trusted channels, avoid logging it, and choose an appropriate TTL for the sensitivity of the content. <br>
+## Use Case:
 
+Developers and external users use this skill to create encrypted, one-time-read notes from text supplied directly, through stdin, or from files and clipboard tools.
 
-## Reference(s): <br>
-- [ClawHub FadNote page](https://clawhub.ai/easyFloyd/fadnote) <br>
-- [FadNote source repository](https://github.com/easyFloyd/fadnote) <br>
-- [FadNote live service](https://fadnote.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text shareable URL by default, or JSON containing noteId, expiresIn, and decryptionUrl when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a configured or trusted FADNOTE_URL; accepts direct text or stdin with an optional TTL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: The skill can create notes containing highly sensitive secrets and send them to the configured FADNOTE_URL service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the endpoint before use and require explicit confirmation before creating notes for credentials or other sensitive content.
+
+Risk: Supplying secrets directly as command-line arguments can expose them through shell history or process listings.
+
+Mitigation: Prefer piping content through stdin from a protected source instead of passing passwords, API keys, or private keys as arguments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/easyfloyd/skills/fadnote)
+- [Project Homepage](https://github.com/easyFloyd/fadnote)
+- [Live Service](https://fadnote.com)
+- [Issue Tracker](https://github.com/easyFloyd/fadnote/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Plain text URL or JSON with noteId, expiresIn, and decryptionUrl]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a configured FADNOTE_URL endpoint; input is limited to 1MB.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

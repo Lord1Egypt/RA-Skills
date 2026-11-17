@@ -2,7 +2,7 @@
 name: karpathy-principles
 description: |
   Pre-implementation gate covering think-first, simplicity, surgical edits, and verifiable goals
-version: 1.9.8
+version: 1.10.3
 triggers:
   - karpathy
   - coding-pitfalls
@@ -17,7 +17,7 @@ source: claude-night-market
 source_plugin: imbue
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 > The models make wrong assumptions on your behalf and
@@ -26,21 +26,21 @@ source_plugin: imbue
 > don't surface inconsistencies, don't present
 > tradeoffs, don't push back when they should.
 >
-> -- Andrej Karpathy, on agentic coding failure modes
+> (Andrej Karpathy, on agentic coding failure modes)
 
 ## What This Is
 
 A four-principle contract for reducing the most common
 LLM coding pitfalls. Compact entry-point. Each
 principle has a deeper-dive skill in night-market;
-this skill is the index, not the encyclopedia.
+this skill is the index.
 
 Derivation: distilled by Forrest Chang
 (forrestchang/andrej-karpathy-skills, MIT) from
 Karpathy's observations. Full attribution in
 `references/source-attribution.md`.
 
-## When to Use
+## When To Use
 
 - Before starting any coding task larger than a typo
 - During code review, to name the failure mode you see
@@ -85,7 +85,7 @@ speculative.**
 > They really like to overcomplicate code and APIs,
 > bloat abstractions.
 >
-> -- Andrej Karpathy, on the same agentic-coding thread
+> (Andrej Karpathy, on the same agentic-coding thread)
 
 
 
@@ -107,6 +107,18 @@ proof on every addition,
 `Skill(conserve:code-quality-principles)` for the
 KISS / YAGNI / SOLID foundation.
 
+### Record the Tradeoff (decision journal)
+
+When this step settles a decision with real alternatives, record it to
+`docs/tradeoffs.md` while the reasoning is live (draft and confirm):
+
+- If leyline is installed, invoke `Skill(leyline:decision-journal)` and append
+  a tradeoff entry (the decision, the options weighed, and what was
+  sacrificed, with `phase` set to `plan`). Show the draft and append
+  on confirmation.
+- Fallback (leyline absent): append to `docs/tradeoffs.md` using the in-file
+  ENTRY TEMPLATE, and assign the next `TR-NNN` id.
+
 ### 3. Surgical Changes
 
 **Touch only what you must. Clean up only your own
@@ -117,6 +129,11 @@ mess.**
 - Do not refactor things that aren't broken
 - Match existing style even when you would do it
   differently
+- Match the module's existing model of the concern
+  as well as its style. During a migration, use the
+  target model and never copy the superseded one,
+  even when it is the majority. See
+  `Skill(conserve:elegant-code)` rung 2
 - If you notice unrelated dead code, mention it; do
   not delete it
 - When your changes orphan imports or variables,
@@ -209,7 +226,7 @@ iterate.
   for the full gate-skill federation graph (this skill
   is the synthesis hub)
 
-## Required TodoWrite Items
+## Required Progress Items
 
 When invoked as a pre-flight gate, create:
 
@@ -221,9 +238,12 @@ When invoked as a pre-flight gate, create:
 
 ## Exit Criteria
 
-- Each of the four principles has been answered with a
+- [ ] Each of the four principles has been answered with a
   concrete artifact (assumption list, scope rationale,
   diff trace, verification plan).
-- The senior-engineer test was applied at least once.
-- Verifiable success criteria are written down before
+- [ ] The senior-engineer test was applied at least once.
+- [ ] Verifiable success criteria are written down before
   the implementation begins.
+- [ ] The chosen approach and its simplicity tradeoff are
+  recorded to `docs/tradeoffs.md` (or the in-file
+  template) when real alternatives were weighed.

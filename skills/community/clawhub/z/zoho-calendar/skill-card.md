@@ -1,47 +1,63 @@
-## Description: <br>
-Zoho Calendar API integration with managed OAuth for reading, creating, updating, and deleting calendars and events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent manage Zoho calendars and events through a Maton-connected account, including optional scheduled or event-triggered automations.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an agent to Zoho Calendar through Maton-managed OAuth, inspect calendars, schedule meetings, and manage events after user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Maton API key and OAuth-backed access to Zoho Calendar data. <br>
-Mitigation: Install only if you trust Maton with calendar access, keep MATON_API_KEY private, and remove unused OAuth connections. <br>
-Risk: Calendar create, update, and delete operations can modify or remove user scheduling data. <br>
-Mitigation: Confirm the target calendar or event and intended effect with the user before every write or delete action. <br>
-Risk: When multiple Zoho Calendar accounts are connected, requests may target the wrong account. <br>
-Mitigation: Use the Maton-Connection header when more than one account is connected. <br>
+## Use Case:
 
+People and teams use this skill to list, create, update, and delete Zoho Calendar events and calendars, schedule meetings, and, with approval, set up related automations through Maton.
 
-## Reference(s): <br>
-- [ClawHub Zoho Calendar skill page](https://clawhub.ai/byungkyu/zoho-calendar) <br>
-- [Zoho Calendar API Introduction](https://www.zoho.com/calendar/help/api/introduction.html) <br>
-- [Zoho Calendar Events API](https://www.zoho.com/calendar/help/api/events-api.html) <br>
-- [Zoho Calendar Calendars API](https://www.zoho.com/calendar/help/api/calendars-api.html) <br>
-- [Zoho Calendar Create Event](https://www.zoho.com/calendar/help/api/post-create-event.html) <br>
-- [Zoho Calendar Get Events List](https://www.zoho.com/calendar/help/api/get-events-list.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, API calls, Configuration instructions] <br>
-**Output Format:** [Markdown with inline Python, JavaScript, HTTP, Bash, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MATON_API_KEY; use Maton-Connection to select a specific OAuth connection when multiple accounts are connected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Calendar changes or deletion may affect events and schedules in the connected account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Begin with read-only actions and confirm the account, target, and each write or deletion with the user.
+
+Risk: Approved hosted functions or triggers can keep running after the immediate task.
+
+Mitigation: Confirm automation creation with the user and review its trigger, destination, and ongoing behavior before enabling it.
+
+Risk: Trigger destinations or exposed credentials could disclose account data.
+
+Mitigation: Keep destinations on Maton-controlled hosts unless the user explicitly trusts another host, and never expose Maton API keys or OAuth credentials.
+
+## Reference(s):
+
+- [ClawHub Zoho Calendar skill release](https://clawhub.ai/byungkyu/skills/zoho-calendar)
+- [Maton homepage](https://maton.ai)
+- [Maton documentation](https://docs.maton.ai)
+- [Zoho Calendar API introduction](https://www.zoho.com/calendar/help/api/introduction.html)
+- [Zoho Calendar events API](https://www.zoho.com/calendar/help/api/events-api.html)
+- [Zoho Calendar calendars API](https://www.zoho.com/calendar/help/api/calendars-api.html)
+- [Scheduled trigger reference](references/time/triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with command, JSON, and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include calendar API results and instructions for approved automations.]
+
+## Skill Version(s):
+
+1.2.5 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

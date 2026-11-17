@@ -1,0 +1,200 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/media-release-report.schema.json",
+  "schemaVersion": "1.0.0",
+  "projectId": "proj_demo",
+  "runId": "run_demo",
+  "timelineRevision": "rev_host_2",
+  "planHash": "sha256:f6850dade638dfed44228323b690207bb2d1b5b770537e4890d44f3849948866",
+  "artifact": {
+    "artifactId": "artifact_master_001",
+    "path": "exports/master.mp4",
+    "sha256": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  },
+  "expectedProbe": {
+    "videoCodec": "h264",
+    "width": 1080,
+    "height": 1920,
+    "pixelFormat": "yuv420p",
+    "colorSpace": "bt709",
+    "frameRate": {
+      "numerator": 30,
+      "denominator": 1
+    },
+    "timeBase": {
+      "numerator": 1,
+      "denominator": 30
+    },
+    "audioCodec": "aac",
+    "audioChannels": 2,
+    "audioSampleRate": 48000,
+    "duration": {
+      "domain": "export",
+      "rate": {
+        "numerator": 30,
+        "denominator": 1
+      },
+      "start": 0,
+      "end": 180
+    }
+  },
+  "actualProbe": {
+    "videoCodec": "h264",
+    "width": 1080,
+    "height": 1920,
+    "pixelFormat": "yuv420p",
+    "colorSpace": "bt709",
+    "frameRate": {
+      "numerator": 30,
+      "denominator": 1
+    },
+    "timeBase": {
+      "numerator": 1,
+      "denominator": 30
+    },
+    "audioCodec": "aac",
+    "audioChannels": 2,
+    "audioSampleRate": 48000,
+    "duration": {
+      "domain": "export",
+      "rate": {
+        "numerator": 30,
+        "denominator": 1
+      },
+      "start": 0,
+      "end": 180
+    }
+  },
+  "qaPolicy": {
+    "loudnessMinLufs": -16,
+    "loudnessMaxLufs": -12,
+    "truePeakMaxDbtp": -1,
+    "maxSilenceUnits": 30,
+    "maxBlackUnits": 2,
+    "maxFreezeUnits": 60
+  },
+  "audioAnalysis": {
+    "integratedLufs": -14,
+    "truePeakDbtp": -1.2,
+    "silenceSegments": [
+      {
+        "domain": "export",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 60,
+        "end": 70
+      }
+    ]
+  },
+  "visualAnalysis": {
+    "blackSegments": [],
+    "freezeSegments": []
+  },
+  "privacy": {
+    "risks": [
+      {
+        "riskId": "risk_privacy_001",
+        "severity": "critical",
+        "range": {
+          "domain": "export",
+          "rate": {
+            "numerator": 30,
+            "denominator": 1
+          },
+          "start": 90,
+          "end": 120
+        }
+      }
+    ],
+    "treatments": [
+      {
+        "treatmentId": "treatment_privacy_001",
+        "riskId": "risk_privacy_001",
+        "range": {
+          "domain": "export",
+          "rate": {
+            "numerator": 30,
+            "denominator": 1
+          },
+          "start": 90,
+          "end": 120
+        },
+        "evidenceRef": "evidence_privacy_001"
+      }
+    ]
+  },
+  "inspection": {
+    "boundaries": [
+      90
+    ],
+    "samples": [
+      {
+        "sampleId": "sample_001",
+        "position": 0,
+        "reasons": [
+          "start"
+        ],
+        "evidenceRef": "evidence_frame_001"
+      },
+      {
+        "sampleId": "sample_002",
+        "position": 89,
+        "reasons": [
+          "boundary-before"
+        ],
+        "evidenceRef": "evidence_frame_002"
+      },
+      {
+        "sampleId": "sample_003",
+        "position": 90,
+        "reasons": [
+          "boundary",
+          "privacy-start"
+        ],
+        "evidenceRef": "evidence_frame_003"
+      },
+      {
+        "sampleId": "sample_004",
+        "position": 91,
+        "reasons": [
+          "boundary-after"
+        ],
+        "evidenceRef": "evidence_frame_004"
+      },
+      {
+        "sampleId": "sample_005",
+        "position": 104,
+        "reasons": [
+          "privacy-mid"
+        ],
+        "evidenceRef": "evidence_frame_005"
+      },
+      {
+        "sampleId": "sample_006",
+        "position": 119,
+        "reasons": [
+          "privacy-end"
+        ],
+        "evidenceRef": "evidence_frame_006"
+      },
+      {
+        "sampleId": "sample_007",
+        "position": 179,
+        "reasons": [
+          "end"
+        ],
+        "evidenceRef": "evidence_frame_007"
+      }
+    ]
+  },
+  "exportAuthorization": {
+    "authorizationId": "authorization_export_001",
+    "actorId": "actor_reviewer",
+    "decision": "approved",
+    "artifactHash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "planHash": "sha256:f6850dade638dfed44228323b690207bb2d1b5b770537e4890d44f3849948866",
+    "recordedAt": "2026-07-24T13:00:00Z"
+  },
+  "status": "passed"
+}

@@ -1,49 +1,69 @@
-## Description: <br>
-This release is labeled as a QuickBooks/accounting skill, but the artifact content implements CreditClaw payment and wallet workflows for agent shopping, checkout pages, invoices, and owner-approved encrypted-card purchases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Despite the QuickBooks-themed release name, the artifact content describes a CreditClaw payment skill that lets an agent shop online with guardrailed wallets, multiple payment methods, and owner approval.
 
-## Publisher: <br>
-[TripleHippo](https://clawhub.ai/user/TripleHippo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[triplehippo](https://clawhub.ai/user/triplehippo)
 
-## Use Case: <br>
-External users and developers can use the artifact's CreditClaw workflows to register an agent wallet, check spending permissions, request purchases, create payment links, issue invoices, and manage wallet status with owner approval. Reviewers should note the mismatch between the public QuickBooks/accounting listing and the payment-commerce behavior in the artifact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The public listing suggests QuickBooks/accounting, while the artifact enables CreditClaw payment and commerce workflows. <br>
-Mitigation: Install only when the intended use is CreditClaw payment, wallet, checkout, invoice, or purchasing functionality. <br>
-Risk: The skill grants broad financial authority and can initiate purchases, payment links, invoices, seller-profile updates, and wallet operations. <br>
-Mitigation: Use a limited and revocable API key, keep human approval required for purchases and public seller actions, and review spending rules before each transaction. <br>
-Risk: Encrypted-card checkout can expose sensitive card, identity, billing, and shipping data if run in the main agent context or logged. <br>
-Mitigation: Use an ephemeral checkout sub-agent where available, never store or log decrypted card data, and run checkout in a disposable sandbox with restricted filesystem, logging, and network access. <br>
-Risk: The CreditClaw API key authorizes sensitive payment operations. <br>
-Mitigation: Store CREDITCLAW_API_KEY in a secure secrets manager and send it only to CreditClaw API endpoints. <br>
+## Use Case:
 
+External users and developers would use this skill to let an agent register and operate a CreditClaw wallet, check spending permissions, request owner approvals, make purchases, and create checkout or payment links. It is appropriate only where real-money payment authority and related buyer or card data handling are explicitly approved by the owner.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/TripleHippo/qb) <br>
-- [Publisher profile](https://clawhub.ai/user/TripleHippo) <br>
-- [CreditClaw skill documentation](https://creditclaw.com/creditcard/skill.md) <br>
-- [CreditClaw checkout guide](https://creditclaw.com/creditcard/checkout.md) <br>
-- [CreditClaw encrypted-card guide](https://creditclaw.com/creditcard/encrypted-card.md) <br>
-- [CreditClaw spending guide](https://creditclaw.com/creditcard/spending.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown with inline shell commands, JSON request and response examples, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY and access to CreditClaw payment endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata); artifact package version 2.3.1 <br>
+Risk: The skill gives an agent broad real-money payment and card-handling authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in an isolated payment environment with restricted network and filesystem access, and require explicit owner control for purchases, invoices, public shop publishing, and webhook fulfillment.
+
+Risk: The security evidence reports reliance on mutable remote instructions and locally executed remote-delivered code.
+
+Mitigation: Pin and review artifact content before use, and avoid executing mutable server-delivered scripts or natural-language tasks without validation.
+
+Risk: Leaking CREDITCLAW_API_KEY could enable unauthorized spending or wallet access.
+
+Mitigation: Store the key only in a secure secrets manager and send it only to creditclaw.com endpoints required by the reviewed artifact.
+
+Risk: Checkout, invoice, buyer, shipping, and webhook flows can affect privacy and fulfillment outcomes.
+
+Mitigation: Apply owner approval, data-minimization, and reconciliation checks before sending invoices, publishing shops, storing buyer data, or fulfilling webhook-triggered actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/triplehippo/skills/qb)
+- [CreditClaw main skill documentation](https://creditclaw.com/creditcard/skill.md)
+- [CreditClaw package metadata](https://creditclaw.com/creditcard/skill.json)
+- [CreditClaw checkout guide](https://creditclaw.com/creditcard/checkout.md)
+- [CreditClaw encrypted card guide](https://creditclaw.com/creditcard/encrypted-card.md)
+- [CreditClaw wallet management guide](https://creditclaw.com/creditcard/management.md)
+- [CreditClaw spending permissions guide](https://creditclaw.com/creditcard/spending.md)
+- [CreditClaw heartbeat guide](https://creditclaw.com/creditcard/heartbeat.md)
+- [CreditClaw Crossmint wallet guide](https://creditclaw.com/creditcard/crossmint-wallet.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown guidance with curl commands, JSON examples, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY and network access to creditclaw.com; no fixed token or file output contract.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

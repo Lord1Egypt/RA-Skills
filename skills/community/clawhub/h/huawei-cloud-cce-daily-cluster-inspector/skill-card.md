@@ -1,44 +1,51 @@
-## Description: <br>
-Huawei Cloud CCE Daily Cluster Inspector runs read-only health inspections for Huawei Cloud CCE clusters, starting with quick checks and escalating to deeper diagnostics when anomalies are found. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when performing periodic, low-risk health checks on Huawei Cloud CCE clusters: daily inspection, quick health check, heartbeat summary, or continuous operations report.
 
-## Publisher: <br>
-[pintudeyudi](https://clawhub.ai/user/pintudeyudi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pintudeyudi](https://clawhub.ai/user/pintudeyudi)
 
-## Use Case: <br>
-Operations engineers and cloud platform teams use this skill for daily or periodic Huawei Cloud CCE cluster health checks, heartbeat summaries, post-change validation, and first-pass triage before deeper diagnosis or remediation handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary says the skill is presented as a read-only daily CCE inspector, but its bundled dispatcher exposes cluster credentials, secret data, and multiple cloud or Kubernetes mutation actions. <br>
-Mitigation: Treat it as a broad Huawei Cloud CCE administration toolkit, review and disable mutating actions before production use, and execute only the read-only inspection workflow. <br>
-Risk: The skill requires sensitive Huawei Cloud credentials and may handle cluster access material. <br>
-Mitigation: Use least-privilege IAM credentials, avoid passing AK/SK values as parameters, do not expose credentials in commands or reports, and avoid subagent mode with real secrets. <br>
+## Use Case:
 
+Developers and cloud operations teams use this skill to run quick-first Huawei Cloud CCE health inspections, summarize cluster status, classify P0/P1/P2 risks, and prepare read-only handoff recommendations when anomalies need follow-up.
 
-## Reference(s): <br>
-- [Workflow](artifact/references/workflow.md) <br>
-- [Risk Rules](artifact/references/risk-rules.md) <br>
-- [Output Schema](artifact/references/output-schema.md) <br>
-- [Publisher Profile](https://clawhub.ai/user/pintudeyudi) <br>
-- [Skill Page](https://clawhub.ai/pintudeyudi/huawei-cloud-cce-daily-cluster-inspector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown or JSON inspection summaries with risk classifications, recommended follow-ups, and optional report file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should avoid secrets such as AK/SK values, tokens, certificates, and full kubeconfig content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill presents itself as read-only cluster inspection, but the packaged dispatcher exposes powerful cloud and Kubernetes administration actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing as an admin-capable Huawei Cloud tool; use tightly scoped read-only IAM/RBAC, avoid passing AK/SK on command lines, avoid Secret and kubeconfig actions, and prefer a package that separates inspection from remediation or enforces a read-only action allowlist.
+
+## Reference(s):
+
+- [Workflow](references/workflow.md)
+- [Risk Rules](references/risk-rules.md)
+- [Output Schema](references/output-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON inspection reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cluster health summaries, check results, classified risks, recommended follow-ups, and optional report file paths.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

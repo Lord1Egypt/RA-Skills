@@ -1,41 +1,57 @@
-## Description: <br>
-Use when the user needs Xcode build/test/run workflows, simulator or device control, UI automation, screenshots/video, logs, or LLDB debugging through XcodeBuildMCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user needs Xcode build/test/run workflows, simulator or device control, UI automation, screenshots/video, logs, or LLDB debugging through XcodeBuildMCP tools.
 
-## Publisher: <br>
-[ipavlidakis](https://clawhub.ai/user/ipavlidakis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ipavlidakis](https://clawhub.ai/user/ipavlidakis)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide XcodeBuildMCP-based build, run, test, simulator/device control, UI automation, logging, screenshot/video, and LLDB debugging workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill enables powerful Xcode automation, including simulator and device actions, screenshots, logs, video recording, physical-device installs, and LLDB commands. <br>
-Mitigation: Use test projects or devices when possible, review proposed actions before execution, and require explicit confirmation for sensitive or destructive workflows. <br>
-Risk: The setup guidance includes installing the external XcodeBuildMCP package with a moving latest version. <br>
-Mitigation: Prefer pinning and reviewing the external package version before allowing an agent to use the MCP server. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ipavlidakis/xcodebuildmcp) <br>
-- [XcodeBuildMCP setup](references/mcp-setup.md) <br>
-- [Xcodebuildmcp workflows](references/workflows.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to run repeatable Xcode build, test, simulator, device, UI automation, logging, media capture, and debugging workflows through XcodeBuildMCP tools.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline MCP tool names and shell or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Depends on a configured XcodeBuildMCP server, Xcode, and available simulator or device targets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: MCP setup examples use unpinned network package installation, which can install changing package contents over time.
+
+Mitigation: Review the MCP setup before installation, prefer pinned package versions from a trusted source, and avoid running install commands with elevated privileges.
+
+Risk: Device and simulator workflows can launch, install, erase, or interact with the wrong target if the target is ambiguous.
+
+Mitigation: List available targets and confirm the exact simulator or device before launch, install, erase, clean, or similar actions.
+
+Risk: Screenshots, recordings, logs, and debugger output can expose sensitive application or user data.
+
+Mitigation: Use sanitized test data and review captured media, logs, and debugger output before sharing or storing them.
+
+## Reference(s):
+
+- [XcodeBuildMCP Setup](references/mcp-setup.md)
+- [Xcodebuildmcp Workflows](references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline tool names, JSON configuration examples, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an installed and configured XcodeBuildMCP server, macOS 14.5 or newer, Xcode 16.x, and Node.js 18.x or newer.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

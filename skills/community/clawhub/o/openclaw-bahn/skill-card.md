@@ -1,40 +1,57 @@
-## Description: <br>
-A comprehensive suite of commands for tracking Deutsche Bahn trains <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive suite of commands for tracking Deutsche Bahn trains.
 
-## Publisher: <br>
-[ableitung](https://clawhub.ai/user/ableitung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ableitung](https://clawhub.ai/user/ableitung)
 
-## Use Case: <br>
-External users and developers use this skill to search stations, inspect live departures, parse Deutsche Bahn journey text, check live connection status, track trains, and estimate transfer or Zugbindung risk. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The evidence reports no artifact-backed reason to block installation, but the security summary says direct artifact content was not available for a full coherence review. <br>
-Mitigation: Review the skill files and metadata before installation, especially requested tools, credentials, local file access, and background behavior. <br>
-Risk: Rail status, delay, and journey outputs depend on external data sources and can be unavailable, delayed, or incomplete. <br>
-Mitigation: Treat outputs as operational guidance and verify critical travel decisions against official rail information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ableitung/openclaw-bahn) <br>
-- [Project homepage](https://github.com/ableitung/openclaw-bahn) <br>
+## Use Case:
 
+External travelers and developers use this skill to search stations, review departures, plan journeys, parse shared Deutsche Bahn itineraries, check live transfer status, and estimate transfer or Zugbindung risk.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or structured JSON from Node.js CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [All modes support optional JSON output; prediction and historical statistics are opt-in.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts DB-related external services when retrieving live departures, journeys, delay data, and historical statistics.
+
+Mitigation: Review network use before installing or running the skill in restricted environments.
+
+Risk: Parsed travel plans may be retained locally, and the package includes a dated itinerary file.
+
+Mitigation: Remove bundled or generated active.json files that should not be retained or shared.
+
+Risk: Node package installs without pinned versions may reduce deployment reproducibility.
+
+Mitigation: Pin and audit dependencies before managed or commercial deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ableitung/skills/openclaw-bahn)
+- [Project Homepage](https://github.com/ableitung/openclaw-bahn)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [CLI text or structured JSON envelope]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [All modes support --json; prediction and historical statistics are opt-in.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection.
 
-## Publisher: <br>
-[ChenJinsong](https://clawhub.ai/user/ChenJinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenjinsong](https://clawhub.ai/user/chenjinsong)
 
-## Use Case: <br>
-Developers and agent operators use this skill to drive browser workflows through the agent-browser CLI, including navigation, accessibility-tree snapshots, ref-based element interaction, session isolation, state persistence, screenshots, PDFs, and network controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved cookies and browser storage can expose logged-in sessions if mishandled. <br>
-Mitigation: Keep auth-state, cookie, and storage files private, access-controlled, out of version control, and deleted when no longer needed. <br>
-Risk: Browser automation can submit consequential actions on approved sites and accounts. <br>
-Mitigation: Review consequential actions before submission and use the skill only on sites and accounts explicitly approved by the operator. <br>
-Risk: The skill depends on an external agent-browser CLI source. <br>
-Mitigation: Install only when the external CLI source is trusted. <br>
+## Use Case:
 
+Developers and agent operators use this skill to drive browser workflows through the agent-browser CLI, including navigation, ref-based element interaction, state checks, screenshots, PDFs, sessions, and network controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ChenJinsong/agent-browser-clawdbot-bak) <br>
-- [agent-browser CLI homepage](https://github.com/vercel-labs/agent-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the external agent-browser CLI command and may produce browser state files, screenshots, PDFs, and JSON command output when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Saved browser authentication files, cookies, localStorage, and sessionStorage can expose account access if shared or committed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep saved browser state local, exclude it from version control and shared artifacts, delete it when no longer needed, and avoid high-privilege accounts unless required.
+
+Risk: Browser automation can act on live web sessions and perform actions under the user's account.
+
+Mitigation: Review the target site, account privilege level, and proposed commands before running multi-step automation.
+
+## Reference(s):
+
+- [agent-browser project homepage](https://github.com/vercel-labs/agent-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the agent-browser command-line tool; examples favor JSON snapshots for deterministic parsing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

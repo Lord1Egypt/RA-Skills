@@ -1,0 +1,14 @@
+{
+  "assets": [
+    {
+      "id": "wrong-type",
+      "type": "video",
+      "original_filename": "演示.jpg",
+      "evidence": {
+        "kind": "unavailable",
+        "scope": "none",
+        "reference": "媒体清单中的类型和扩展名冲突"
+      }
+    }
+  ]
+}

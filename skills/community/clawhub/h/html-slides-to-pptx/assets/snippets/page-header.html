@@ -1,0 +1,23 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:页头区(装饰线 + 眉题 + 主标题 + 副标题 + 页码)
+  ⚠️ 使用限制(去 AI 味反模式 1):kicker+副标题"三件套"仅章节首页/封面可用;
+     普通内容页直接 action title,不要用本片段。
+  参数:
+    {{KICKER}}      眉题文字(章节标签)      {{TITLE}}    主标题(可含 <br> 和 <span style="color:var(--lenovo-red);">强调</span>)
+    {{SUBTITLE}}    副标题一句话            {{PAGE_NUM}} 页码(如 01 / 06)
+  位置约定: left:100px 起,宽 1720px;标题区占 top 60→300
+  z 序: 全部 z-index:10,DOM 顺序即叠放序
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:60px;width:80px;height:4px;background:var(--lenovo-red);z-index:10;"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:88px;width:1000px;z-index:10;">
+  <div style="font-size:20px;font-weight:600;letter-spacing:4px;color:var(--lenovo-red);">{{KICKER}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:1720px;top:92px;width:100px;text-align:right;z-index:10;">
+  <div class="num" style="font-size:16px;font-weight:600;color:var(--text-tertiary);letter-spacing:2px;">{{PAGE_NUM}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:120px;width:1720px;z-index:10;">
+  <div style="font-size:60px;font-weight:700;line-height:1.15;color:var(--charcoal);letter-spacing:-0.5px;">{{TITLE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:270px;width:1720px;z-index:10;">
+  <div style="font-size:24px;font-weight:400;color:var(--text-secondary);line-height:1.5;">{{SUBTITLE}}</div>
+</div>

@@ -1,0 +1,22 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_table_save_datasource_dbview",
+    "description": "Save datasource configuration for database view type tables, update SQL query statement. Only identifier mode (version=2) is supported.\n\n[IMPORTANT] Before writing SQL, you must first query the table's field list. Every SELECT field in the SQL must use AS alias, where the alias is the field id of this table.\n\n[Naming Rules]\n- Table name: Convert camelCase table identifiers to underscore notation (e.g. userName → user_name)\n- Field name: Convert camelCase field identifiers to underscore notation (e.g. createTime → create_time)",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "tableId": {
+          "type": "string",
+          "description": "Table ID (must exist and datasource type must be dbview)."
+        },
+        "sql": {
+          "type": "string",
+          "description": "SQL query statement (identifier mode). SELECT fields must use AS alias corresponding to this table's field ids. Table and field names use underscore notation."
+        }
+      },
+      "required": ["tableId", "sql"],
+      "additionalProperties": false
+    }
+  }
+}

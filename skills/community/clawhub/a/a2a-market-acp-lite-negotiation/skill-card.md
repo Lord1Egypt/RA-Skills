@@ -1,45 +1,61 @@
-## Description: <br>
-Gateway-only ACP negotiation skill with optional OpenClaw model-driven turn decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gateway-only ACP negotiation skill with optional OpenClaw model-driven turn decisions.
 
-## Publisher: <br>
-[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run a buyer or seller participant in an A2A market gateway negotiation. It registers with a trusted gateway, pulls negotiation messages, and responds with structured turn decisions from either a rule engine or an optional OpenClaw decision engine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gateway traffic can be sent to non-local endpoints when the default localhost URL is changed. <br>
-Mitigation: Use the skill only with trusted gateways and review the gateway URL before running. <br>
-Risk: The default auth token and direct API key flag are unsuitable for real deployments. <br>
-Mitigation: Replace the default token and prefer provider credentials from environment variables instead of command-line arguments. <br>
-Risk: The gateway loop can poll indefinitely when max-polls is zero. <br>
-Mitigation: Set max-polls or stop-on-session-end when bounded operation is required. <br>
-Risk: The optional OpenClaw decision engine spawns a local OpenClaw executable. <br>
-Mitigation: Enable the OpenClaw engine only with a trusted OpenClaw executable and trusted model-provider credentials. <br>
+## Use Case:
 
+Developers and agent builders use this skill to run buyer or seller participants in an ACP-style market negotiation through a trusted gateway. It supports rule-based decisions or optional local OpenClaw model decisions for each negotiation turn.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luoqianchenguni-max/a2a-market-acp-lite-negotiation) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON lines from the CLI and Markdown usage guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Negotiation responses include action, offerMinorUnits, utterance, and reason fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.8 (source: server release metadata) <br>
+Risk: The skill can automatically negotiate through a gateway while exposing tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted local or HTTPS gateway and replace default tokens with unique secrets.
+
+Risk: Passing API keys or authentication tokens on the command line can expose secrets.
+
+Mitigation: Prefer environment-based provider keys, avoid direct command-line secrets, and rotate any exposed credentials.
+
+Risk: The OpenClaw decision engine may send negotiation or session data to a model provider.
+
+Mitigation: Avoid sensitive negotiation data unless the configured provider and data handling controls are approved.
+
+Risk: The security guidance warns against real financial or business negotiations until token handling, TLS guidance, and policy checks are tightened.
+
+Mitigation: Limit use to reviewed sandbox scenarios or require human approval before acting on generated decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luoqianchenguni-max/skills/a2a-market-acp-lite-negotiation)
+
+## Skill Output:
+
+**Output Type(s):** [json, shell commands, configuration, guidance]
+
+**Output Format:** [Newline-delimited JSON status events and structured negotiation response JSON, with Markdown command examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Gateway loop mode registers an agent, pulls messages, responds to negotiation turns, and can auto-start a session.]
+
+## Skill Version(s):
+
+0.2.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

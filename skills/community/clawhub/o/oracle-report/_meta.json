@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn76w7e099zbh34gxer36bgwhd84624s",
-  "slug": "oracle-report",
+  "name": "oracle-report",
   "version": "1.0.0",
-  "publishedAt": 1775311286637
+  "description": "A股收盘日报生成器，包含大盘指数、情绪资金、全球市场数据，支持交易日历和飞书卡片",
+  "author": "Friday",
+  "keywords": ["股票", "日报", "A股", "收盘报告", "Oracle"],
+  "trigger": ["日报", "收盘报告", "Oracle报告", "生成日报", "每日动量"],
+  "requires": {
+    "env": ["QVERIS_API_KEY", "MX_APIKEY"],
+    "optional": ["TUSHARE_TOKEN", "TAVILY_API_KEY", "FEISHU_TARGET"],
+    "skills": ["mx_data", "qveris"]
+  },
+  "schedule": {
+    "cron": "30 16 * * 1-5",
+    "description": "每工作日16:30发送日报"
+  }
 }

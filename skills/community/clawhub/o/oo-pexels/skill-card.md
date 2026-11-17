@@ -1,45 +1,51 @@
-## Description: <br>
-Pexels helps agents search and retrieve Pexels photo, video, collection, and account collection metadata through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Pexels and retrieve photo, video, and collection data through an OOMOL-connected Pexels account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent find Pexels photos and videos, inspect item metadata, browse curated or popular media, and access Pexels collections through an authenticated OOMOL connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials through an authenticated OOMOL-connected Pexels account. <br>
-Mitigation: Use the least-privileged connected account available, review requested commands before approval, and reconnect only when auth or scope errors require it. <br>
-Risk: The skill can guide an agent to run powerful authenticated CLI commands. <br>
-Mitigation: Review command payloads and expected effects before execution, especially if future connector actions are tagged as write or destructive. <br>
-Risk: Billing or connection state can stop successful connector execution. <br>
-Mitigation: Follow the documented setup fallback only after an action fails with an auth, connection, scope, or billing error. <br>
+## Use Case:
 
+External users and developers can use an agent to search Pexels photos and videos, retrieve media details, and browse collections through their connected account.
 
-## Reference(s): <br>
-- [ClawHub Pexels skill page](https://clawhub.ai/oomol/oo-pexels) <br>
-- [Pexels homepage](https://www.pexels.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: First-time setup may run downloaded CLI software that was not inspected in the supplied evidence and may proceed without clear user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before installation, install a reviewed version-pinned CLI separately, decide whether to allow automatic skill synchronization, and connect only the intended Pexels account.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-pexels)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [Pexels API documentation](https://www.pexels.com/api/documentation/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Shell commands with JSON payloads; API results returned as JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions retrieve Pexels photos, videos, and collection data.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

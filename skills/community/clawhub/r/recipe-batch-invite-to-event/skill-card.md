@@ -1,40 +1,50 @@
-## Description: <br>
-Add a list of attendees to an existing Google Calendar event and send notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add a list of attendees to an existing Google Calendar event and send notifications.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Employees, administrators, and agents managing Google Workspace calendars use this skill to add multiple attendees to an existing event and send invite notifications through a repeatable CLI workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The patch step modifies an existing calendar event and can email invite notifications to every added attendee. <br>
-Mitigation: Verify the active Google account, calendar event ID, and attendee email list before running the patch command. <br>
-Risk: Using the wrong event ID or attendee list could update the wrong event or notify unintended recipients. <br>
-Mitigation: Fetch the event before the update and verify the attendee list again after the update. <br>
+## Use Case:
 
+Workspace automation users use this recipe to batch-add attendees to an existing Google Calendar event and send the corresponding event notifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-batch-invite-to-event) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI and the gws-calendar prerequisite skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: release evidence; skill metadata version 0.22.5) <br>
+Risk: Adding attendees with sendUpdates set to all sends Google Calendar notifications to affected recipients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the calendar event ID and attendee list before patching the event, then verify the attendee list after the update.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/recipe-batch-invite-to-event)
+- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws binary and gws-calendar skill; commands modify an existing Google Calendar event and send updates to attendees.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata; artifact metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

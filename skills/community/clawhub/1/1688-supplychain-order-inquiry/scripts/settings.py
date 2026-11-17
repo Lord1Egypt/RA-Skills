@@ -6,7 +6,7 @@ Skill 配置模块（含路径常量）
 改为惰性校验，仅在真实调用前触发，避免 import 即崩溃
 
 环境变量覆盖：
-  ORDER_INQUIRY_TOOL_TIMEOUT  - NewtonOrderBatchInquiry 超时（默认 100s）
+  ORDER_INQUIRY_TOOL_TIMEOUT  - alibaba.1688.newton.order.batch.inquiry 超时（默认 100s）
 """
 
 import os
@@ -33,12 +33,18 @@ class Settings:
     SKILL_NAME = "1688-supplychain-order-inquiry"
     SKILL_VERSION = "0.1.0"
 
-    # NewtonOrderBatchInquiry 接口
-    TOOL_PATH = "/api/NewtonOrderBatchInquiry/1.0.0"
+    # alibaba.1688.newton.order.batch.inquiry 接口
+    TOOL_PATH = "/api/alibaba.1688.newton.order.batch.inquiry/1.0.0"
+
+    # 询盘结果查询接口
+    INQUIRY_QUERY_PATH = "/api/alibaba.1688.ai.inquiry.query/1.0.0"
 
     # 图片批量上传接口
-    IMG_UPLOAD_PATH = "/api/zongheng_batch_img_upload/1.0.0"
+    IMG_UPLOAD_PATH = "/api/alibaba.1688.zongheng.batch.img.upload/1.0.0"
     IMG_UPLOAD_TIMEOUT = 30
+
+    # 询盘对话配置接口（cbu_a2a 网关，按 serviceName 路由）
+    A2A_GATEWAY_PATH = "/api/alibaba.1688.a2a.gateway/1.0.0"
 
     @property
     def TOOL_TIMEOUT(self):

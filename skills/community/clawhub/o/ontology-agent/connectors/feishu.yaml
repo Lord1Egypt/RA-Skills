@@ -1,0 +1,26 @@
+# connectors/feishu.yaml — Feishu (Lark) connection placeholder (stub)
+# Ontology Agent · Tianjin Weishu Artificial Intelligence Technology Co., Ltd.
+# Bilingual note: the Chinese counterpart of this file is `feishu.zh.yaml`.
+# Status: stub (not yet implemented). To be filled in with a real implementation in Phase 6 when
+# enterprise customers appear.
+
+meta:
+  connector: feishu
+  status: stub
+  trigger: "Fill in the implementation when enterprise customers appear and real people + IM need to be connected"
+
+integration:
+  type: bot_webhook           # Feishu bot / app
+  app_id_env: FEISHU_APP_ID
+  app_secret_env: FEISHU_APP_SECRET
+  message_types: [text, post, interactive]
+
+bindings:
+  - role: employee
+    scope: "department/{dept}/shared"
+  - event: task_assigned
+  - event: approval_request
+
+note: >
+  Integrates with the Feishu open platform bot and address book APIs, mapping employee identities to
+  the employee role; same contract as dingtalk.yaml / wecom.yaml, different implementation details.

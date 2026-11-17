@@ -1,48 +1,63 @@
-## Description: <br>
-YNAB (You Need A Budget) budget management via API for adding transactions, tracking goals, monitoring spending, creating transfers, and generating budget reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YNAB budget management skill that helps agents add transactions, track goals, monitor spending, create transfers, and generate budget reports through the YNAB API.
 
-## Publisher: <br>
-[f-liva](https://clawhub.ai/user/f-liva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[f-liva](https://clawhub.ai/user/f-liva)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent manage a personal YNAB budget, including budget checks, spending analysis, goal tracking, transfers, scheduled transaction reports, and transaction entry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change live YNAB budget records, including adding transactions and creating transfers. <br>
-Mitigation: Before any add, transfer, or approval action, verify the exact account, payee, date, amount, category, and whether YNAB should be used. <br>
-Risk: The YNAB token and budget reports can expose sensitive personal financial information. <br>
-Mitigation: Keep the token private, restrict config file permissions, avoid logging full API keys, and treat scheduled report output as sensitive. <br>
-Risk: Broad finance prompts could cause unintended budget operations. <br>
-Mitigation: Review proposed changes before execution and require explicit confirmation for actions that modify records. <br>
+## Use Case:
 
+External users and developers who manage YNAB budgets use this skill to inspect budget status, add transactions or transfers, review goals, compare months, and produce budget reports. It is intended for workflows where an agent is explicitly allowed to access a live YNAB account.
 
-## Reference(s): <br>
-- [YNAB API Skill for Claude Code](artifact/README.md) <br>
-- [YNAB API Guide](artifact/references/api-guide.md) <br>
-- [Category Examples](artifact/references/category-examples.md) <br>
-- [YNAB API documentation](https://api.ynab.com) <br>
-- [YNAB developer settings](https://app.ynab.com/settings/developer) <br>
-- [ClawHub skill page](https://clawhub.ai/f-liva/ynab-api) <br>
-- [Publisher profile](https://clawhub.ai/user/f-liva) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown and terminal stdout, with JSON returned by helper scripts for YNAB API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, a YNAB API token, and a YNAB budget ID; some scripts can create or approve live budget records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release metadata and skill.toml) <br>
+Risk: The skill can read from and write to a live YNAB budget, including creating transactions and transfers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when YNAB access is intended and require explicit confirmation before any write action.
+
+Risk: The skill requires a YNAB API key and budget identifier.
+
+Mitigation: Store credentials in environment variables or a protected config file, avoid logging full API keys, and rotate tokens periodically.
+
+Risk: Broad finance-related activation phrases may invoke the skill even when the user did not explicitly mention YNAB.
+
+Mitigation: Confirm that the user intends to use YNAB and verify the target budget or account before running scripts or API calls.
+
+Risk: Transient API errors and rate limits can produce misleading failure messages.
+
+Mitigation: Retry 401, 429, and 5xx responses with short delays before reporting failure, and do not treat the first 401 as proof of token expiration.
+
+## Reference(s):
+
+- [YNAB API Guide](references/api-guide.md)
+- [Category Examples](references/category-examples.md)
+- [YNAB API documentation](https://api.ynab.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with shell command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, YNAB_API_KEY, and YNAB_BUDGET_ID or an equivalent protected YNAB config file.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release metadata and skill.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

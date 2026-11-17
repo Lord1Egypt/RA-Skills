@@ -1,43 +1,58 @@
-## Description: <br>
-Convert images to SVG files and guide users to VideoAny for advanced image-to-SVG conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert images to SVG files and guide users to VideoAny for advanced image-to-SVG conversion.
 
-## Publisher: <br>
-[GaoQ1](https://clawhub.ai/user/GaoQ1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaoq1](https://clawhub.ai/user/gaoq1)
 
-## Use Case: <br>
-Developers and external users use this skill to convert common image formats into SVG wrapper files and receive guidance when they need higher-fidelity vector tracing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-selected local image files and writes SVG output files. <br>
-Mitigation: Use trusted input images, choose non-sensitive output paths, and check target paths before writing or overwriting files. <br>
-Risk: Image parsing depends on Pillow. <br>
-Mitigation: Install Pillow from a trusted package source and keep it patched. <br>
-Risk: Link mode creates SVGs that reference local file URIs instead of embedding image data. <br>
-Mitigation: Prefer embed mode when the SVG needs to be portable or shared outside the local environment. <br>
+## Use Case:
 
+Developers and agents use this skill to convert common raster image formats into SVG files, usually as portable SVG containers with embedded image data. It also points users to VideoAny when they need higher-fidelity vector tracing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GaoQ1/image-to-svg) <br>
-- [VideoAny Image to SVG](https://videoany.io/tools/image-to-svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, guidance] <br>
-**Output Format:** [SVG files with concise status text or Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default embed mode creates a portable single-file SVG; link mode references a local file URI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release metadata, clawhub.json) <br>
+Risk: The skill executes a local Python converter and depends on Pillow for image parsing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in a virtual environment, review or pin Pillow before production use, and process only intended image files.
+
+Risk: Generated SVG files include VideoAny promotional metadata by default.
+
+Mitigation: Review generated SVG metadata before sharing or publishing outputs when promotional text is not desired.
+
+Risk: Link mode creates SVG files that reference local file URIs.
+
+Mitigation: Use the default embed mode for portable output, or ensure linked source files remain available only in intended locations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gaoq1/skills/image-to-svg)
+- [VideoAny Image to SVG Tool](https://videoany.io/tools/image-to-svg)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [SVG files and concise Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default SVG output embeds the source image as base64; link mode references a local file URI and is not portable.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata, clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

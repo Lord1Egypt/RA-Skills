@@ -1,41 +1,54 @@
-## Description: <br>
-A local shell utility advertised for Modbus tasks that stores, searches, deletes, and exports entries under a configurable data directory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Modbus-labeled CLI helper for recording, listing, searching, exporting, and checking local task entries.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and operators can use this skill to run bundled shell commands for maintaining a local JSONL log and configuration associated with Modbus-related notes or tasks. It should not be relied on for Modbus device communication or status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Capability mismatch: security evidence says the artifact behaves as a local log and configuration utility, not as a Modbus communication or status-checking tool. <br>
-Mitigation: Treat it only as local data management; do not use it to assess, monitor, or control Modbus devices. <br>
-Risk: Local data exposure or loss: the script stores entries under ~/.modbus by default, can delete entries, and can export stored data. <br>
-Mitigation: Set MODBUS_DIR deliberately, avoid storing sensitive operational details, review exports before sharing, and back up data before removal. <br>
+## Use Case:
 
+Developers and operators can use this skill as a CLI-style local record manager for Modbus-labeled tasks such as adding, listing, searching, exporting, and checking status. Security evidence says it does not perform real Modbus communication and should not be relied on for industrial device state.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/ckchzh/modbus) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Terminal text with local JSONL, JSON, or CSV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes under MODBUS_DIR or ~/.modbus by default and can export modbus-export.json or modbus-export.csv in the working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: Users may mistake the Modbus-labeled status output for industrial device state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as a local note/config record manager and verify real device state with appropriate Modbus tooling.
+
+Risk: Untrusted config keys or values may be written through an unsafe config update path.
+
+Mitigation: Avoid untrusted config input and review changes to files under ~/.modbus or MODBUS_DIR before use.
+
+## Reference(s):
+
+- [ClawHub Modbus skill page](https://clawhub.ai/ckchzh/skills/modbus)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and local JSONL or CSV file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or mutate files under ~/.modbus or the directory named by MODBUS_DIR.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

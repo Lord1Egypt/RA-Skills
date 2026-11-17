@@ -1,51 +1,70 @@
-## Description: <br>
-macOS UI automation CLI tool for screen capture, window control, element clicking, text input, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+macOS UI automation CLI tool for screen capture, window control, element clicking, text input, UI testing, screen capture, window management, and app control.
 
-## Publisher: <br>
-[terryso](https://clawhub.ai/user/terryso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terryso](https://clawhub.ai/user/terryso)
 
-## Use Case: <br>
-Developers and automation agents use this skill to operate macOS desktop applications through Peekaboo CLI commands for UI testing, screen capture, app control, window management, and scripted workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent view and operate a macOS desktop, including screenshots, clicks, typing, app control, and autonomous agent runs. <br>
-Mitigation: Require explicit user confirmation before screenshots, external AI analysis, desktop control, app quits, credential entry, daemon/MCP use, or autonomous runs. <br>
-Risk: Desktop screenshots, clipboard content, cached snapshots, and provider credentials may expose sensitive information. <br>
-Mitigation: Avoid sensitive work during capture, review and clean ~/.peekaboo caches after use, and inspect stored provider credentials after sensitive sessions. <br>
-Risk: Commands may change user state through typing, clipboard changes, file moves or deletes, app quits, and window actions. <br>
-Mitigation: Prefer dry-run, status, list, and permission-check commands first; confirm destructive or state-changing commands before execution. <br>
+## Use Case:
 
+Developers, QA engineers, and automation-focused agent users use this skill to operate macOS applications through Peekaboo CLI commands for UI capture, window management, element interaction, text entry, menu navigation, clipboard workflows, and scripted desktop tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terryso/peekaboo-cli) <br>
-- [Peekaboo installation](https://github.com/steipete/Peekaboo#install) <br>
-- [UI Capture](references/see.md) <br>
-- [Element Click](references/click.md) <br>
-- [Text Input](references/type.md) <br>
-- [App Management](references/app.md) <br>
-- [Window Management](references/window.md) <br>
-- [Permissions](references/permissions.md) <br>
-- [Autonomous Agent](references/agent.md) <br>
-- [MCP Server](references/mcp.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend JSON-output Peekaboo commands for agent integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can capture screen contents and UI metadata from live macOS apps and windows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted apps and windows, avoid sensitive screens, and verify Screen Recording and Accessibility permissions before command execution.
+
+Risk: The skill can control live applications through clicks, typing, hotkeys, menus, clipboard changes, and scripted flows.
+
+Mitigation: Review commands before execution, prefer dry runs for agent or script workflows, and scope commands to specific apps, windows, or elements whenever possible.
+
+Risk: Credentials or sensitive text could be exposed through command arguments, clipboard operations, captured screenshots, or generated command output.
+
+Mitigation: Do not pass real passwords or API keys on the command line, avoid sensitive screens during capture, and limit clipboard and paste operations to intended data.
+
+Risk: Long-running daemon, MCP server, or autonomous agent workflows can continue exposing desktop automation capability after the immediate task.
+
+Mitigation: Use trusted tasks and bounded settings, cap or dry-run agent workflows where appropriate, and stop daemon or MCP server processes when finished.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terryso/skills/peekaboo-cli)
+- [Peekaboo CLI installation](https://github.com/steipete/Peekaboo#install)
+- [UI Capture](references/see.md)
+- [Element Click](references/click.md)
+- [Text Input](references/type.md)
+- [App Management](references/app.md)
+- [Window Management](references/window.md)
+- [Permissions](references/permissions.md)
+- [Autonomous Agent](references/agent.md)
+- [MCP Server](references/mcp.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Many Peekaboo commands support --json or --json-output for scripting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

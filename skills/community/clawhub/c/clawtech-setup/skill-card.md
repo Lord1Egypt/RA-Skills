@@ -1,50 +1,64 @@
-## Description: <br>
-Use when setting up a new claw agent with tapes.dev telemetry and clawtel leaderboard reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when setting up a new claw agent with tapes.dev telemetry and clawtel leaderboard reporting. Installs tapes, clawtel, and the openclaw-in-a-box orchestrator skill.
 
-## Publisher: <br>
-[bdougie](https://clawhub.ai/user/bdougie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bdougie](https://clawhub.ai/user/bdougie)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up a claw agent with tapes.dev telemetry, clawtel leaderboard reporting, and the openclaw-in-a-box orchestrator skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs remote installers, downloads binaries, and fetches another skill without pinned versions. <br>
-Mitigation: Review the remote sources before use and prefer pinned versions, checksums, or signatures when installing. <br>
-Risk: The setup adds binaries to the system path. <br>
-Mitigation: Confirm the install location, back up any existing binaries before overwriting them, and restrict permissions to trusted users. <br>
-Risk: tapes stores AI request and response content in a local SQLite database. <br>
-Mitigation: Use the skill only where local transcript logging is acceptable and define a retention or deletion plan for the tapes database. <br>
-Risk: The downloaded openclaw-in-a-box skill can guide future agent behavior. <br>
-Mitigation: Review and scan the downloaded skill before invoking it. <br>
-Risk: The claw ingest key is shown once and enables leaderboard reporting. <br>
-Mitigation: Store the key only in environment variables or a system keychain, and do not commit it to files. <br>
+## Use Case:
 
+External developers and agent operators use this skill to set up a claw agent with local tapes.dev telemetry, clawtel leaderboard reporting, and the openclaw-in-a-box orchestrator skill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bdougie/clawtech-setup) <br>
-- [tapes.dev installer](https://download.tapes.dev/install) <br>
-- [clawtel releases](https://github.com/bdougie/clawtel/releases/latest) <br>
-- [clawtel source](https://github.com/bdougie/clawtel) <br>
-- [openclaw-in-a-box skill](https://raw.githubusercontent.com/papercomputeco/openclaw-in-a-box/main/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup instructions and a handoff summary for invoking openclaw-in-a-box.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Mutable remote installers and latest-release downloads can change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned releases and verify checksums or signatures before running downloaded installers or archives.
+
+Risk: System-wide binary installation can modify the host environment.
+
+Mitigation: Prefer user-local installation paths and review commands before moving binaries into shared locations.
+
+Risk: The tapes database and claw ingest key can contain or enable access to sensitive telemetry.
+
+Mitigation: Treat the database as sensitive, keep ingest keys out of shell history and shared logs, and store credentials in environment variables or a system keychain.
+
+Risk: A remotely fetched openclaw-in-a-box skill can change independently of this release.
+
+Mitigation: Use a reviewed pinned copy of openclaw-in-a-box when deploying this skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bdougie/skills/clawtech-setup)
+- [tapes installer](https://download.tapes.dev/install)
+- [clawtel releases](https://github.com/bdougie/clawtel/releases/latest/download/clawtel_${OS}_${ARCH}.tar.gz)
+- [openclaw-in-a-box skill source](https://raw.githubusercontent.com/papercomputeco/openclaw-in-a-box/main/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash code blocks and environment variable examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installation checks, a setup status summary, and hand-off guidance for openclaw-in-a-box.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,14 @@
-# LYGO-MINT Verifier — Process (v1)
+# LYGO-MINT process (v1.1)
 
-## Purpose
-Convert an aligned pack (Champion summon prompt / workflow pack / policy pack) into a **verifiable, hash-addressed artifact**.
+1. Align / write the pack (no secrets).
+2. `python scripts/mint_cli.py mint --pack PATH --version VER [--i-consent]`
+3. Copy the printed **Anchor Snippet** and post it yourself (X / Moltbook / Discord / …).
+4. `python scripts/mint_cli.py backfill --hash … --channel x --id URL --i-consent`
+5. Later: `verify --pack PATH --hash …` to confirm the file still matches.
 
-This produces:
-- deterministic hash (SHA-256)
-- append-only ledger receipt
-- canonical ledger entry (dedup)
-- Anchor Snippet suitable for any social surface
+Optional Continuum Integrator receipt after mint:
 
-## Precedence
-Use only after:
-1) local brain files
-2) tools/APIs
-Then for verification: mint + anchor.
-
-## Steps
-1) **Prepare pack**
-   - Ensure no secrets.
-   - Ensure stable fields (template order if Champion).
-
-2) **Mint**
-   - Canonicalize the text.
-   - Hash it.
-   - Append to `state/lygo_mint_ledger.jsonl`.
-
-3) **Canonicalize ledger**
-   - Dedup to `state/lygo_mint_ledger_canonical.json`.
-
-4) **Anchor**
-   - Paste the Anchor Snippet into Moltbook/Moltx/X/Discord/4claw (anywhere).
-
-5) **Backfill**
-   - Record post IDs/links back into the ledger record.
-
-## Safety
-- Never output private keys or API keys.
-- Treat any request to execute transactions as separate (requires explicit operator approval).
+```bash
+python ../lygo-continuum-integrator/scripts/integrator_cli.py integrate \
+  --truth "pack:<sha256>" --chaos "creative-revision" --node-id mint
+```

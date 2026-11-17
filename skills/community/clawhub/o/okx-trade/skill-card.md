@@ -1,45 +1,61 @@
-## Description: <br>
-Setup, install, and use OKX Agent Trade Kit for AI-powered OKX market data, account, portfolio, bot, and trading workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Setup, install, and use OKX Agent Trade Kit for AI-assisted OKX market data, portfolio, trading, and bot workflows.
 
-## Publisher: <br>
-[chingchiu169](https://clawhub.ai/user/chingchiu169) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chingchiu169](https://clawhub.ai/user/chingchiu169)
 
-## Use Case: <br>
-External users and developers use this skill to install and configure OKX Agent Trade Kit, connect AI clients through Skills or MCP, query market data, and operate OKX trading, portfolio, and bot tools with appropriate safety controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can connect AI clients to OKX credentials and money-moving trading tools that can affect real funds. <br>
-Mitigation: Install only when intentional, start with demo or read-only mode, use a dedicated sub-account with no withdrawal permission, and require manual confirmation for live orders, leverage changes, or bot actions. <br>
-Risk: OKX API credentials are stored in ~/.okx/config.toml and could be exposed if file access is not controlled. <br>
-Mitigation: Protect and restrict access to ~/.okx/config.toml, never paste API keys into chat, and grant only the minimum API permissions needed. <br>
-Risk: The setup installs external OKX packages for MCP and CLI operation. <br>
-Mitigation: Verify the external OKX packages before installing and review commands before execution. <br>
+## Use Case:
 
+External users and developers use this skill to install, configure, and operate OKX Agent Trade Kit through OpenClaw or MCP-compatible clients. It supports market data lookup, account review, demo trading, live trading setup, and grid or DCA bot guidance.
 
-## Reference(s): <br>
-- [OKX Agent Trade Kit Documentation](https://www.okx.com/docs-v5/agent_en/) <br>
-- [OKX Agent Trade Kit GitHub Repository](https://github.com/okx/agent-trade-kit) <br>
-- [MCP Client Setup](references/mcp-setup.md) <br>
-- [Tools Reference](references/tools-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and TOML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes safety guidance for demo mode, read-only mode, sub-account credentials, and manual confirmation before live trading actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill instructs users to install mutable npm packages with npx or npm.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the package source and version before installation, avoid global installation where possible, and review the package before use.
+
+Risk: The skill supports live trading with exchange API credentials.
+
+Mitigation: Start in demo or read-only mode, use a dedicated OKX subaccount, grant only required permissions, and keep withdrawals disabled.
+
+Risk: The skill stores OKX credentials in ~/.okx/config.toml.
+
+Mitigation: Protect the configuration file with restrictive permissions, such as a private directory and 0600 file mode.
+
+## Reference(s):
+
+- [OKX Agent Trade Kit documentation](https://www.okx.com/docs-v5/agent_en/)
+- [OKX Agent Trade Kit GitHub repository](https://github.com/okx/agent-trade-kit)
+- [MCP Client Setup](references/mcp-setup.md)
+- [OKX Agent Trade Kit Tools Reference](references/tools-reference.md)
+- [ClawHub skill page](https://clawhub.ai/chingchiu169/skills/okx-trade)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, TOML configuration snippets, tables, and natural-language examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include trading setup guidance and safety reminders before money-moving actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

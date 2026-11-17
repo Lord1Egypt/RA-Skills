@@ -1,41 +1,58 @@
-## Description: <br>
-Manage shared expenses, balances, and settlements through the Splitwise CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage shared expenses, balances, and settlements through the Splitwise CLI.
 
-## Publisher: <br>
-[barronlroth](https://clawhub.ai/user/barronlroth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[barronlroth](https://clawhub.ai/user/barronlroth)
 
-## Use Case: <br>
-People who use Splitwise can ask an agent to check balances, list expenses, create shared expenses, record settlements, and delete expense records through an authenticated Splitwise CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated Splitwise commands can change, settle, or delete shared expense records. <br>
-Mitigation: Confirm the group, people, payer, amount, currency, split, settlement target, and expense ID before any state-changing command, especially deletion. <br>
-Risk: The agent could operate the wrong Splitwise account or an unintended CLI binary. <br>
-Mitigation: Verify that the splitwise binary on PATH and the OAuth/config files are the intended ones before using the skill. <br>
+## Use Case:
 
+External users and agents use this skill to inspect Splitwise balances and groups, list expenses, create shared expenses, record settlements, and delete records through the local Splitwise CLI.
 
-## Reference(s): <br>
-- [Declared Splitwise CLI homepage](https://github.com/example/splitwise-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/barronlroth/splitwise-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may use Splitwise CLI output modes such as JSON, quiet output, or no-color output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill can expose sensitive Splitwise balances, friends, groups, and expense history to the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the user is comfortable granting the agent access to local Splitwise CLI data and OAuth-backed account context.
+
+Risk: Expense creation, settlement recording, and expense deletion can change financial records.
+
+Mitigation: Require explicit user confirmation before creating expenses, recording settlements, or deleting records.
+
+Risk: Duplicate or incorrect expense entries can affect shared balances.
+
+Mitigation: List recent matching expenses before logging recurring or similar charges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/barronlroth/skills/splitwise-cli)
+- [Splitwise CLI homepage](https://github.com/example/splitwise-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports JSON, quiet, and no-color CLI output modes when the underlying splitwise command is run.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Daily morning news digest covering tech and finance, collecting current global news and curating concise items with summaries and original links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily morning news digest covering tech and finance that gathers current global coverage, curates top items with one-line summaries, and includes original links.
 
-## Publisher: <br>
-[bustes01](https://clawhub.ai/user/bustes01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bustes01](https://clawhub.ai/user/bustes01)
 
-## Use Case: <br>
-External users and agents use this skill to compile a daily bilingual technology and finance briefing from current news sources. It supports focused requests such as AI, semiconductor, finance-only, or company-specific digests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on web search or network access to collect current technology and finance news. <br>
-Mitigation: Run it only in environments where network access is expected, and review cited source links before relying on time-sensitive or market-moving claims. <br>
-Risk: Weekend caching can retain digest items across days. <br>
-Mitigation: Keep any cache visible, limited to digest content, and under normal user or agent control. <br>
+## Use Case:
 
+External users and analysts use this skill to request concise daily technology, AI, and finance news digests with categorized summaries and source links. It supports focused requests such as AI and semiconductor news, finance-only digests, or company-specific filtering.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bustes01/morning-news-daily) <br>
-- [Metadata homepage](https://clawhub.ai/BusTes01/morning-news-daily) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown digest with categorized one-line summaries and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces about 20 weekday items, with a larger weekend-plus-Monday merged edition when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill depends on current public web search, so news and finance summaries can be stale, incomplete, or inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important finance or market-moving claims against the linked original sources before relying on them.
+
+Risk: Weekend merge behavior depends on retaining prior weekend items, but the evidence describes that behavior conceptually rather than as implemented persistence.
+
+Mitigation: Treat weekend merging as workflow guidance unless the host agent provides suitable caching or memory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bustes01/skills/morning-news-daily)
+- [ClawHub metadata homepage](https://clawhub.ai/BusTes01/morning-news-daily)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown news digest with categorized one-line summaries and original source links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current web search or similar network access; standard weekday output targets about 20 items, while Monday merged editions target about 25 to 30 items.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

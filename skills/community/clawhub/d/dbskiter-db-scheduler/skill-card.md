@@ -1,41 +1,57 @@
-## Description: <br>
-Database scheduling tool that guides agents through dbskiter backup, scheduled task, execution log, scheduler daemon, and DAG workflow commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage database backups, scheduled tasks, execution logs, scheduler daemon operations, and DAG workflows with dbskiter.
 
-## Publisher: <br>
-[magicczc](https://clawhub.ai/user/magicczc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[magicczc](https://clawhub.ai/user/magicczc)
 
-## Use Case: <br>
-Developers and database operators use this skill to direct an agent through database backups, scheduled job management, execution log review, scheduler daemon control, and DAG workflow execution with dbskiter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can manage database backups, scheduled jobs, workflows, and scheduler daemons, which can affect data availability and recurring automation. <br>
-Mitigation: Before execution, require confirmation of the database, task or workflow name, schedule, command, expected impact, and stop or removal procedure. <br>
-Risk: Broad scheduler control without explicit scoping could apply changes to the wrong database or automation target. <br>
-Mitigation: Constrain use to the intended database and review task, workflow, and daemon commands before running them. <br>
+## Use Case:
 
+Developers and database operators use this skill to ask an agent for dbskiter scheduler commands and summaries for backups, recurring jobs, log review, daemon control, and DAG workflow execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/magicczc/dbskiter-db-scheduler) <br>
-- [Publisher profile](https://clawhub.ai/user/magicczc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and short status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require an explicit database name and may create, enable, disable, run, or remove recurring database automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can remove scheduled jobs or run jobs immediately on a database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before task deletion or immediate task runs.
+
+Risk: The skill can start or stop a background scheduler daemon.
+
+Mitigation: Confirm daemon start and stop actions with the user and make the affected database explicit before execution.
+
+Risk: Large backups may affect production or shared databases.
+
+Mitigation: Confirm the backup scope, type, target database, and output location before running large backups.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/magicczc/skills/dbskiter-db-scheduler)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include database names, task names, cron expressions, backup options, scheduler daemon actions, workflow names, and command result summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

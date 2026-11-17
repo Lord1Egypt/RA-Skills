@@ -1,42 +1,56 @@
-## Description: <br>
-BigLead helps an agent search public web sources for B2B company leads by industry, product, and region, cross-check sources, extract available contact details, and manage a local lead database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BigLead helps agents search for B2B customer leads by industry, product, and region, cross-check public sources, extract public contact details, manage a local lead database, and export prospecting reports.
 
-## Publisher: <br>
-[kobenfang](https://clawhub.ai/user/kobenfang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kobenfang](https://clawhub.ai/user/kobenfang)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Sales, business-development, and market-research users can use this skill to find target companies, collect public business contact information, score lead credibility, track follow-up status, and export local lead lists.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill persists prospect and contact data locally, which may be sensitive in some workflows.
+
+Mitigation: Use the skill only where local storage of lead data is acceptable, and review retention, access, and handling practices for memory/lead-data/.
+
+Risk: Export paths are under-scoped and could overwrite files if chosen carelessly.
+
+Mitigation: Do not allow untrusted prompts to choose export paths; review the CSV output destination before running exports.
+
+Risk: CSV exports from imported or untrusted lead data may be unsafe to open directly in spreadsheet tools.
+
+Mitigation: Inspect or sanitize exported CSV content before opening it in a spreadsheet application.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Sales, market research, and competitive analysis users use this skill to identify target companies, gather publicly available business and contact information, deduplicate leads, and export prospecting records. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect and locally store company names, business details, phone numbers, emails, and source URLs from public web sources. <br>
-Mitigation: Install it only for intentional lead prospecting tasks, and review exported CSV files because they may contain contact information. <br>
-Risk: Broad trigger terms such as `list` may start lead prospecting when that was not the user's intent. <br>
-Mitigation: Use specific prospecting prompts and avoid vague trigger terms unless lead search is intended. <br>
-Risk: Public company and contact information may be incomplete or out of date. <br>
-Mitigation: Verify important lead details against current official or primary sources before outreach. <br>
+**Output Format:** [Markdown reports with JSON and CSV files managed by shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kobenfang/biglead) <br>
+**Other Properties Related to Output:** [Stores lead records under memory/lead-data/ and can export CSV files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown lead reports with inline shell commands, plus local JSON and CSV lead data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores lead records, search history, and CSV exports under memory/lead-data/.] <br>
+1.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

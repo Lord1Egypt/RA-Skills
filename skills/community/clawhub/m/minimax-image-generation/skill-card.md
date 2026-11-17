@@ -1,42 +1,59 @@
-## Description: <br>
-Generates images with MiniMax image-01 and image-01-live models, supporting text-to-image, image-to-image, multiple aspect ratios, and optional styles with a MiniMax API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images with MiniMax image-01 and image-01-live models for text-to-image and image-to-image workflows that require a MiniMax Coding Plan API key.
 
-## Publisher: <br>
-[wanycun](https://clawhub.ai/user/wanycun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanycun](https://clawhub.ai/user/wanycun)
 
-## Use Case: <br>
-Developers and agents use this skill to call MiniMax's Coding Plan image generation API from the command line for prompt-based image creation and optional image-to-image transformations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts and optional input image URLs to MiniMax for processing. <br>
-Mitigation: Avoid sensitive prompts or private image URLs unless MiniMax processing is acceptable for the intended use. <br>
-Risk: The skill requires a MiniMax API key for API calls. <br>
-Mitigation: Use a revocable API key and provide it through the MINIMAX_API_KEY environment variable rather than embedding secrets in commands or files. <br>
+## Use Case:
 
+Developers and agent users use this skill to invoke MiniMax image generation from prompts or input image URLs, choose supported models, aspect ratios, output formats, seeds, and style options, and receive generated image URLs or base64 output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanycun/minimax-image-generation) <br>
-- [MiniMax API key page](https://platform.minimaxi.com/user-center/basic-information/interface-key) <br>
-- [MiniMax image generation endpoint](https://api.minimaxi.com/v1/image_generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Command-line text or JSON containing generated image URLs and task metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can request URL or base64 response formats; returned image URLs are documented as valid for 24 hours.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Command examples that pass the MiniMax API key with --api-key can expose the key through shell history or process listings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use MINIMAX_API_KEY from the environment and avoid passing secrets directly as command-line arguments.
+
+Risk: Prompts, private image URLs, signed URLs, or regulated data submitted to MiniMax leave the local environment for external processing.
+
+Mitigation: Do not submit confidential prompts, private or signed image URLs, or regulated data unless the deployment has approved MiniMax for that data.
+
+Risk: The artifact specifies an unpinned dependency range for requests.
+
+Mitigation: Use a pinned dependency lockfile before production use.
+
+## Reference(s):
+
+- [MiniMax API key settings](https://platform.minimaxi.com/user-center/basic-information/interface-key)
+- [MiniMax image generation API endpoint](https://api.minimaxi.com/v1/image_generation)
+- [ClawHub skill page](https://clawhub.ai/wanycun/skills/minimax-image-generation)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration, Text]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON or text output from the MiniMax image script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return generated image URLs or base64 data depending on the selected response format.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

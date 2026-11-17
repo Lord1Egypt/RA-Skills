@@ -1,44 +1,59 @@
-## Description: <br>
-Fetch and export WeChat public article content through down.mptext.top API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and export WeChat public article content through down.mptext.top API.
 
-## Publisher: <br>
-[lniosy](https://clawhub.ai/user/lniosy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lniosy](https://clawhub.ai/user/lniosy)
 
-## Use Case: <br>
-Developers and content workflows use this skill to fetch public WeChat article URLs through the down.mptext.top API and save the returned content for analysis, archiving, or downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Article URLs provided by the user are sent to the third-party down.mptext.top service. <br>
-Mitigation: Use only URLs that are appropriate to share with that service, and avoid confidential, internal-only, or share-restricted links unless the service is trusted and processing is authorized. <br>
-Risk: Returned article content is written to local disk. <br>
-Mitigation: Choose a deliberate output directory and basename, and review generated files before sharing or using them downstream. <br>
-Risk: Downloaded article content may be copyright-sensitive. <br>
-Mitigation: Confirm permission to process or reuse the source material before downloading, transforming, or redistributing it. <br>
+## Use Case:
 
+Developers and content workflows use this skill to fetch public WeChat article URLs and save the returned article content as HTML, Markdown, plain text, or JSON for testing, analysis, summarization, or batch collection.
 
-## Reference(s): <br>
-- [API Reference](references/api.md) <br>
-- [down.mptext.top public download API](https://down.mptext.top/api/public/v1/download) <br>
-- [ClawHub release page](https://clawhub.ai/lniosy/wechat-article-download-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Local files in HTML, Markdown, text, or JSON plus command-line status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves files as the chosen basename with .html, .md, .txt, or .json extensions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: WeChat article URLs are sent to the third-party down.mptext.top API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public, non-sensitive article links and avoid custom API endpoints unless they are trusted.
+
+Risk: Downloaded article content is stored on disk and may include content the user did not intend to persist.
+
+Mitigation: Choose a dedicated output directory and handle saved files according to the sensitivity of the source article.
+
+Risk: Unsafe or reused output names can overwrite local files.
+
+Mitigation: Keep basename values to simple filenames, review the target output directory, and avoid writing into directories with important existing files.
+
+## Reference(s):
+
+- [API Reference](references/api.md)
+- [down.mptext.top public download API](https://down.mptext.top/api/public/v1/download)
+- [ClawHub skill page](https://clawhub.ai/lniosy/skills/wechat-article-download-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands; downloaded article files may be HTML, Markdown, plain text, or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local output files named from the selected basename and format extension, and prints one status summary per requested format.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

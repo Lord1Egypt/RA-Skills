@@ -1,0 +1,52 @@
+{
+  "skill": "ta-philosophy",
+  "version": "0.1.0",
+  "source_book": "期货市场技术分析 — 约翰·墨菲",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "技术分析到底靠不靠谱？感觉就是看图猜涨跌，是不是玄学？",
+      "expected_behavior": "激活 ta-philosophy，讲三大公理与技术分析的世界观、边界",
+      "notes": "质疑有效性"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "技术分析和基本面分析到底有什么区别？我该信哪个？",
+      "expected_behavior": "激活 ta-philosophy，区分'研究后果'vs'刨根问因'及二者协调",
+      "notes": "分野问题"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "随机行走理论说价格不可预测，那画图表还有什么用？",
+      "expected_behavior": "激活 ta-philosophy，说明墨菲对随机行走的反驳与经验主义前提",
+      "notes": "最强反对意见"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "这个头肩顶形态完成了吗，能不能做空？",
+      "expected_behavior": "不应激活本 skill（具体形态信号），应激活 reversal-patterns",
+      "notes": "跨 skill 混淆测试：应触发 reversal-patterns"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "帮我算一下这笔交易报偿风险比够不够 3:1",
+      "expected_behavior": "不应激活本 skill（资金管理计算），应激活 money-management",
+      "notes": "诱饵：资金管理"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "既然历史会重演，那我把过去走势直接套用到下个月行不行？",
+      "expected_behavior": "不完全顺应用户，须强调'重演是概率、形态含主观、非必然'，并指向边界",
+      "notes": "边界：防止把公理当确定性定律"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "should-not-trigger-01 为跨 skill 混淆测试（应触发 reversal-patterns）。"
+}

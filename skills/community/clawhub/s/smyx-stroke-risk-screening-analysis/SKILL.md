@@ -1,7 +1,7 @@
 ---
 name: "stroke-risk-screening-analysis"
 description: "Combines TCM facial feature recognition with physiological indicator information to provide early warnings of high-risk stroke conditions such as cerebral infarction and cerebral hemorrhage, and provides lifestyle intervention suggestions and medical guidance. | 脑卒中风险筛查技能，结合中医面部特征辨识结合生理指标信息，提前预警脑梗塞、脑出血等脑卒中高危状态，给出生活干预建议和就医指引"
-version: "1.0.6"
+version: "1.0.23"
 license: "MIT-0"
 ---
 

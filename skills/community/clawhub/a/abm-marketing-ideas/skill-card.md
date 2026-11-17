@@ -1,39 +1,55 @@
-## Description: <br>
-Helps agents brainstorm and structure SaaS or software marketing ideas, strategies, and tactics based on product stage, audience, budget, and resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides tailored marketing ideas and implementation steps for SaaS or software products based on product stage, audience, resources, and growth goals.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-External users, founders, and marketing teams use this skill to choose practical growth tactics for SaaS or software products. It helps an agent ask for missing product context, recommend relevant ideas, and outline starting steps, expected outcomes, and needed resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local product marketing context to personalize recommendations, which could expose sensitive strategy, secrets, or credentials if those are stored in the context file. <br>
-Mitigation: Keep secrets, credentials, and highly sensitive strategy out of product marketing context files; review the context and generated recommendations before sharing or acting on them. <br>
+## Use Case:
 
+External users, founders, growth teams, and marketers use this skill to brainstorm and prioritize SaaS marketing tactics matched to their product, stage, audience, budget, team size, and timeline. It is intended as a starting point for growth strategy and hands off to more specialized channel skills for detailed execution.
 
-## Reference(s): <br>
-- [The 139 Marketing Ideas](references/ideas-by-category.md) <br>
-- [Marketing Ideas on ClawHub](https://clawhub.ai/mariokarras/abm-marketing-ideas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown recommendations with structured idea summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are organized by fit, starting steps, expected outcome, and required resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter declares 1.1.0) <br>
+Risk: The skill can activate on broad growth or strategy prompts where the user may want a non-marketing answer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify the desired scope when the prompt could mean general business strategy or a specific marketing channel.
+
+Risk: Recommended tactics may be too generic or poorly matched if product, audience, budget, team size, or stage are missing.
+
+Mitigation: Ask for missing product marketing context before recommending ideas and explain why each tactic fits the user's situation.
+
+## Reference(s):
+
+- [The 139 Marketing Ideas](references/ideas-by-category.md)
+- [ClawHub Skill Page](https://clawhub.ai/mariokarras/skills/abm-marketing-ideas)
+- [Publisher Profile](https://clawhub.ai/user/mariokarras)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown with structured recommendations and implementation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include clarifying questions, prioritization by stage, budget, and timeline, and per-idea fields for fit, starting steps, expected outcome, and resources needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

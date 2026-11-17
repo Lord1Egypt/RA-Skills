@@ -1,44 +1,53 @@
-## Description: <br>
-Guide users buying resistance training equipment - free weights, barbells, racks, cables, or machines - through space, load, safety, and goal questions to get the exact specs they need. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users buying resistance training equipment through space, load, safety, and goal questions to identify the equipment specifications they need.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users use this skill to choose resistance training equipment for a purchase or upgrade by answering questions about goals, space, loading, safety, region, and equipment preferences. The agent produces brand-neutral specifications first, then a small set of product research starting points that match the confirmed requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Equipment recommendations can affect user safety and purchasing decisions if dimensions, load ratings, or local availability are stale or incomplete. <br>
-Mitigation: Require users to verify current manufacturer specifications, floor loading constraints, safety mechanisms, warranty coverage, and regional certifications before purchase or installation. <br>
-Risk: The skill can produce product research suggestions after specification gathering, which may be mistaken for endorsements. <br>
-Mitigation: Keep product suggestions explicitly framed as research starting points and prioritize non-negotiable specifications over brand or model preference. <br>
-Risk: Solo barbell training without appropriate safety mechanisms can create serious injury risk. <br>
-Mitigation: Preserve the artifact guardrail that solo bench press and squat recommendations must include spotter arms, safety straps, Smith machine rails, or another suitable safety mechanism. <br>
+## Use Case:
 
+External users use this skill to choose resistance training equipment for a home or shared training space. It gathers goals, space, floor loading, safety needs, weight progression, noise constraints, and region, then turns the answers into buying specifications and product-selection guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/resistance-training-equipment-buying-consultant) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown consultation with grouped questions, prioritized specification lists, and up to five product research suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Brand-neutral; no external APIs, environment variables, or runtime dependencies required] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Named product suggestions may be outdated or mismatched for current price, availability, warranty, specifications, or regional fit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify product details independently before purchase and use the skill's output as specification guidance rather than final procurement approval.
+
+Risk: Heavy resistance training equipment can exceed safe floor loading on upstairs or uncertain floors.
+
+Mitigation: Use only approximate region information during consultation and confirm floor loading limits with a qualified professional before installing heavy equipment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/arbazex/skills/resistance-training-equipment-buying-consultant)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown consultation questions, specification lists, risk notes, and product-selection guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes personalized equipment specifications and up to five matching product suggestions after required user context is collected.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Interact with Skylight Calendar frame - manage calendar events, chores, lists, task box items, and rewards. Use when the user wants to view/create calendar events, manage family chores, work with shopping or to-do lists, check reward points, or interact with their Skylight smart display. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Skylight Calendar frame - manage calendar events, chores, lists, task box items, and rewards.
 
-## Publisher: <br>
-[yurybubnov](https://clawhub.ai/user/yurybubnov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yurybubnov](https://clawhub.ai/user/yurybubnov)
 
-## Use Case: <br>
-External users and household administrators use this skill to ask an agent for Skylight Calendar operations such as viewing calendar events, managing chores, working with shopping or to-do lists, checking rewards, and creating task box items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Skylight account credentials and bearer tokens. <br>
-Mitigation: Use a secret manager where possible, keep credentials and tokens out of logs and commits, and rotate or regenerate tokens if exposed. <br>
-Risk: The integration is unofficial and reverse-engineered, so Skylight API behavior may change without notice. <br>
-Mitigation: Review generated API calls before use and update authentication or endpoints when Skylight returns authorization, redirect, or response-format errors. <br>
-Risk: The skill can create or change shared household calendar events, chores, lists, rewards, and task box items. <br>
-Mitigation: Confirm write actions before execution, especially for shared household resources. <br>
-Risk: Manual HTTPS proxy token capture can expose account traffic, credentials, or bearer tokens. <br>
-Mitigation: Avoid proxy capture unless necessary and only use trusted local tooling and certificates. <br>
+## Use Case:
 
+External users and developers use this skill to operate their own Skylight Calendar smart display through an unofficial API, including calendar events, chores, lists, task box items, categories, rewards, frame details, and devices.
 
-## Reference(s): <br>
-- [ClawHub Skylight skill page](https://clawhub.ai/yurybubnov/skylight) <br>
-- [Skylight web app](https://app.ourskylight.com) <br>
-- [Skylight website](https://ourskylight.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or run Skylight API calls that require SKYLIGHT_FRAME_ID and authentication environment variables; Skylight API responses use JSON:API when commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles Skylight credentials and bearer tokens that can access household calendar data and related resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege account where possible, store credentials in a secret manager, and treat exported tokens like passwords.
+
+Risk: Changing SKYLIGHT_URL or proxy-capturing live tokens can expose credentials or tokens to an unintended host or tool.
+
+Mitigation: Keep SKYLIGHT_URL pinned to the official Skylight host and avoid proxy token capture unless the operator fully understands the exposure.
+
+Risk: The integration relies on an unofficial, reverse-engineered API that may change without notice.
+
+Mitigation: Review commands before execution, limit use to accounts the operator owns, and revalidate behavior when API calls fail or return unexpected data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yurybubnov/skills/skylight)
+- [Skylight Web App](https://app.ourskylight.com)
+- [Skylight Calendar Website](https://ourskylight.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON:API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Skylight account credentials or bearer token plus SKYLIGHT_FRAME_ID; API responses use JSON:API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact README says 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

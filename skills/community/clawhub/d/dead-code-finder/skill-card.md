@@ -1,38 +1,52 @@
-## Description: <br>
-Find and report dead code in JavaScript/TypeScript projects, including unused exports, unreferenced files, unused dependencies, and dead functions or variables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects and reports unused exports, unreferenced files, and unused npm dependencies in JavaScript and TypeScript projects.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and maintainers use this skill to audit JavaScript and TypeScript projects for potentially unused code and dependencies before manual cleanup. Findings should be reviewed before deleting code.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The scanner may produce false positives or miss references in projects with dynamic imports, custom path aliases, barrel exports, monorepos, or externally consumed library exports.
+
+Mitigation: Treat results as review candidates, verify each finding in source control, and run the project's tests before removing code.
+
+Risk: The skill description includes removal-oriented language, while the inspected behavior is a read-only reporting helper.
+
+Mitigation: Use the skill to identify candidates for cleanup, and keep deletion as a separate manual change reviewed by a developer.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to scan JS/TS codebases for likely unused exports, unreferenced source files, and unused npm dependencies before manual cleanup. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Dead-code findings may be false positives for dynamic imports, reflection, external library APIs, entry points, CSS imports, or partially supported export patterns. <br>
-Mitigation: Review each finding against dynamic imports, configured entry points, public APIs, and tests before removing code or dependencies. <br>
+**Output Format:** [Markdown or JSON scanner report with suggested follow-up commands and review guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/dead-code-finder) <br>
+**Other Properties Related to Output:** [Read-only local analysis; JSON output is available when requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; scanner output is plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports candidate findings only; users should verify findings before deleting code.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

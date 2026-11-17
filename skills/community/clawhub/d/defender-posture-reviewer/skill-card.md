@@ -1,40 +1,56 @@
-## Description: <br>
-Interpret Microsoft Defender for Cloud Secure Score and generate a prioritized remediation roadmap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interpret Microsoft Defender for Cloud Secure Score and generate a prioritized remediation roadmap.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-Security teams and cloud engineers use this skill to turn user-provided Microsoft Defender for Cloud Secure Score exports, recommendations, and alerts into a prioritized remediation roadmap and executive posture narrative. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User-provided Azure security posture exports may include sensitive subscription, resource, or control-state details. <br>
-Mitigation: Provide only the exports needed for review, remove credentials or secret values before processing, and handle generated analysis according to the organization's security-data policy. <br>
-Risk: Suggested Azure CLI remediation commands may need tenant-specific validation before use. <br>
-Mitigation: Have a qualified Azure or security owner review, test, and approve generated commands before running them in Azure. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/anmolnagpal/defender-posture-reviewer) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/anmolnagpal) <br>
+## Use Case:
 
+Security teams, cloud engineers, and security leaders use this skill to analyze user-provided Microsoft Defender for Cloud Secure Score exports, recommendations, and alerts, then turn the findings into prioritized remediation work and a leadership-ready posture narrative.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with tables, remediation roadmap, CISO narrative, and optional Azure CLI command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated from user-provided Defender for Cloud exports or described posture data; does not require Azure credentials or direct Azure access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated Azure CLI fixes may be inappropriate for a specific tenant if applied without review.
+
+Mitigation: Review proposed changes with the responsible Azure owner and apply them through a controlled change process.
+
+Risk: Users could accidentally provide credentials, access keys, or secret values when pasting cloud security data.
+
+Mitigation: Use exported data or read-only CLI output only, and confirm pasted raw data contains no credentials before analysis.
+
+Risk: Incomplete Defender exports can lead to an incomplete remediation roadmap.
+
+Mitigation: Provide Secure Score, active recommendations, and security alerts when available, and document any missing inputs in the analysis.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anmolnagpal/skills/defender-posture-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with tables, narrative sections, and inline Azure CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided exports or read-only CLI output; does not require credentials or direct Azure account access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,16 +1,16 @@
 # deslop-the-copy
 
-A Claude Code skill that strips AI-generated writing patterns and makes text sound like a real person wrote it.
+A writing skill that removes AI-generated patterns without replacing the writer's voice with a generic "human" one.
 
-Three passes: kill AI patterns, add soul, final audit.
+It can edit a draft or detect named slop patterns without rewriting. Every edit is checked against a repeatable evaluation, and em dashes are never allowed in the output.
 
 ## Why this exists
 
 Wikipedia's [WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup) maintains a detailed guide called [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), cataloging patterns observed across thousands of AI-generated texts. NPR, TechCrunch, and FlowingData have all covered it as the best reference for spotting machine-written prose.
 
-Existing tools use these patterns to detect and strip AI tells from text — banned phrases, structural cliches, sentence-level rules. They focus on **detection and removal**. They strip the bad stuff out.
+Existing tools use these patterns to detect and strip AI tells from text: banned phrases, structural cliches, and sentence-level habits. Detection and removal are useful, but an aggressive rewrite can erase the person along with the slop.
 
-deslop-the-copy goes further. It doesn't just remove AI tells, it **adds back what's missing**: varied sentence rhythm, real opinions, contractions, rough edges, the things that make writing feel like a person actually wrote it. Three passes instead of two. Zero em dash tolerance. And a final audit that asks the only question that matters: "Would someone suspect AI wrote this?"
+deslop-the-copy preserves the writer's vocabulary, cadence, bluntness, humor, uncertainty, digressions, and formality. It makes the minimum effective edit, leaves strong human sentences alone, and never invents facts or opinions to sound more alive.
 
 ## Installation
 
@@ -34,43 +34,55 @@ Ask Claude to clean up any AI-sounding text:
 - "Clean up this copy"
 - "This reads like slop, fix it"
 
+Or audit a draft without rewriting it:
+
+- "Scan this for AI slop"
+- "Which AI-writing patterns are in this copy?"
+- "Flag the slop, but don't rewrite it"
+
 ## What it does
 
-AI text has a recognizable smell. This skill teaches Claude to identify and remove it through three passes.
+AI text has a recognizable smell. This skill handles it through three passes and a final evaluation.
 
-### Pass 1: Kill AI patterns
+### Pass 1: Read before editing
 
-Targets four categories of AI tells:
+Find the draft's core point, audience, existing voice signals, and lines that already sound human. This keeps the edit anchored to the writer instead of a universal casual voice.
 
-**Content patterns** like significance inflation ("stands as a testament"), promotional language ("groundbreaking", "nestled in the heart of"), vague attributions ("experts argue"), and generic "challenges and future" wrap-ups.
+### Pass 2: Remove slop
 
-**Language patterns** like AI vocabulary (robust, leverage, navigate, landscape, paradigm, delve, foster, synergy), copula avoidance ("serves as" instead of "is"), negative parallelisms ("it's not just about X, it's about Y"), rule-of-three overuse, synonym cycling, false ranges, filler phrases, and excessive hedging.
+Targets AI tells including:
 
-**Style patterns** like em dash overuse (zero tolerance), boldface overuse, inline-header vertical lists, Title Case headings, emojis in headers, and curly quotes.
+**Content patterns** like significance inflation ("stands as a testament"), standalone filler sentences ("that distinction matters", "the practical mental model is simple"), promotional language ("groundbreaking", "nestled in the heart of"), vague attributions ("experts argue"), and generic "challenges and future" wrap-ups.
+
+**Language patterns** like AI vocabulary (robust, leverage, navigate, landscape, paradigm, delve, foster, synergy), copula avoidance ("serves as" instead of "is"), binary contrasts ("it's not just about X, it's about Y"), rule-of-three overuse, synonym cycling, false ranges, filler phrases, and empty hedging.
+
+**Copy patterns** like throat-clearing openers, faux-insight hooks, colon reveals, negative lists, dramatic fragments, rhetorical setups, robotic rhythm, fake-profound endings, and redundant recaps.
+
+**Style patterns** like em dash use (zero tolerance), decorative bold, inline-header lists, Title Case headings, emoji headers, and unnecessary micro-sections.
 
 **Communication artifacts** like chatbot language ("I hope this helps!"), knowledge-cutoff disclaimers, sycophancy, and meta-signposting ("let's explore", "here's the thing").
 
-### Pass 2: Add soul
+### Pass 3: Preserve the person
 
-After removing the AI patterns, it makes the text feel human:
+After removing the patterns, it checks that the edit still belongs to the writer:
 
-- Varies sentence rhythm aggressively (mix 3-word fragments with 25-word sentences)
-- Adds opinions where appropriate
-- Uses contractions naturally
-- Starts sentences with And, But, So
-- Leaves rough edges and trusts the reader
+- Keeps recognizable vocabulary, cadence, humor, bluntness, and uncertainty
+- Preserves strong opinions already in the draft without inventing new ones
+- Uses contractions only when they fit the writer and context
+- Keeps useful rough edges instead of manufacturing them
+- Changes rhythm only where the original drones or repeats itself
 
-### Pass 3: Final audit
+### Final evaluation
 
-One last check: "What would make someone suspect AI wrote this?" Fix anything that still feels off. Zero em dashes, contractions in place, meaning preserved.
+The skill runs every result against [references/eval.md](references/eval.md). Failed checks trigger another revision before the text is returned. The first hard check requires zero Unicode em-dash characters in the full response, including quoted evidence in detection mode.
 
 ## Before and after
 
 **Before:**
-> In today's rapidly evolving digital landscape, artificial intelligence stands as a transformative force that is fundamentally reshaping how businesses navigate the complexities of modern commerce. From small startups to large enterprises, organizations are leveraging robust AI solutions to enhance their operational efficiency, foster innovation, and drive sustainable growth. It's not just about automation -- it's about reimagining what's possible.
+> In today's rapidly evolving digital landscape, artificial intelligence stands as a transformative force that is fundamentally reshaping how businesses navigate the complexities of modern commerce. From small startups to large enterprises, organizations are leveraging robust AI solutions to enhance their operational efficiency, foster innovation, and drive sustainable growth. It's not just about automation. It's about reimagining what's possible.
 
 **After:**
-> AI is changing how businesses work. Companies of all sizes are using it to cut costs, speed up processes, and try things they couldn't before. That matters. But we're still figuring out the real risks, and not everyone benefits equally.
+> AI is changing how businesses operate. Companies of all sizes use it to automate work, run more efficiently, and test new ideas.
 
 ## License
 

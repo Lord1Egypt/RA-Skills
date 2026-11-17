@@ -1,40 +1,53 @@
-## Description: <br>
-Structured planning mode for performing systematic planning before complex tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huo15 Openclaw Plan Mode guides an agent to create a structured plan before complex or multi-step work, including requirement review, investigation, risks, validation, and confirmation before execution.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and agent users use this skill to plan multi-step work before execution, including clarifying requirements, inspecting relevant code, identifying risks, and presenting a concrete plan for confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages the agent to read project files while planning changes. <br>
-Mitigation: Keep use scoped to intended workspaces and review the generated plan before authorizing edits. <br>
-Risk: A proposed plan could be incomplete, incorrect, or misaligned with the user's intent. <br>
-Mitigation: Require user confirmation before execution and verify the plan against the relevant project files and tests. <br>
+## Use Case:
 
+Developers and operators use this skill to have an OpenClaw-style agent pause before complex changes, inspect the existing context, produce a concrete plan with risks and validation steps, and wait for confirmation before execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-openclaw-plan-mode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown plan with sections for background, steps, risks, and verification] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no external tools or binaries are required by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: A structured plan can still contain incorrect assumptions or incomplete guidance for a complex change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the plan against the actual task context before execution and verify completed work with appropriate tests or checks.
+
+Risk: The skill intentionally changes agent behavior by encouraging a pause for planning before complex work.
+
+Mitigation: Use it where plan-first behavior is desired, and allow direct execution only when the task is simple or the user explicitly requests it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-openclaw-plan-mode)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown plan with headings, lists, and checkboxes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

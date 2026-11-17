@@ -1,46 +1,56 @@
-## Description: <br>
-Drafts structured dependency-upgrade briefings that explain benefits, risks, rollback plans, business impact, and recommended rollout pace from user-provided upgrade details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Chinese-language dependency upgrade briefings that summarize upgrade benefits, risks, rollback plans, business impact, and recommended timing from user-supplied upgrade details.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers, engineering leads, and release stakeholders use this skill to turn dependency name, version-change, and changelog-summary inputs into reviewable Markdown briefings for upgrade decisions, technical-debt planning, and release communication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Briefings may be incomplete or misleading if the user supplies partial upgrade details or omits upstream changelog context. <br>
-Mitigation: List missing information as confirmation items and require review before using the briefing for release decisions. <br>
-Risk: The local script can write generated output to a user-specified file path. <br>
-Mitigation: Prefer stdout or dry-run for quick drafts and check output paths before writing files. <br>
-Risk: Inputs may include sensitive business or release-planning details. <br>
-Mitigation: Avoid feeding sensitive information unless it is needed for the briefing, and redact unnecessary personal or confidential details first. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to turn dependency names, version changes, and changelog summaries into review-ready upgrade briefings. It is suited for upgrade review, technical debt planning, and release communication where missing facts should be called out instead of invented.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/dependency-upgrade-briefing) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [Skill README](README.md) <br>
-- [Output template](resources/template.md) <br>
-- [Structured briefing spec](resources/spec.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, guidance, shell commands] <br>
-**Output Format:** [Markdown briefing or JSON wrapper containing the generated report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write to stdout or to a user-specified output file; supports dry-run mode and a sample-size limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Briefings can be incomplete or misleading if the input omits dependency names, version changes, or changelog summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide concrete upgrade details and review the generated pending-confirmation items before using the briefing for planning or release communication.
+
+Risk: Sensitive dependency or business context could be included in generated local output files.
+
+Mitigation: Remove sensitive details before processing and choose an intended local path when using --output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/dependency-upgrade-briefing)
+- [README](artifact/README.md)
+- [Structured output spec](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown briefing, with optional JSON wrapper when the bundled script is run with --format json]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write the generated briefing to a user-selected local output path when --output is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

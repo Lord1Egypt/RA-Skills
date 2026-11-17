@@ -1,41 +1,57 @@
-## Description: <br>
-Verify email address deliverability via SMTP without sending mail, including MX lookup, RCPT TO verification, catch-all detection, single-address checks, batch checks, and CSV input. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify email address deliverability via SMTP without sending mail by checking MX records, running RCPT TO verification, and detecting catch-all domains.
 
-## Publisher: <br>
-[psyduckler](https://clawhub.ai/user/psyduckler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[psyduckler](https://clawhub.ai/user/psyduckler)
 
-## Use Case: <br>
-Developers, operators, and data-quality workflows use this skill to check whether email addresses appear deliverable before outreach or record cleanup. It is best suited for authorized, low-volume validation where live SMTP probing is acceptable. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live SMTP verification can disclose queried email addresses and source IP metadata to recipient mail servers. <br>
-Mitigation: Use it only for addresses you own or are authorized to process, and prefer syntax or domain-only checks when privacy or mail-server reputation matters. <br>
-Risk: Rapid or high-volume SMTP checks can damage IP reputation, trigger greylisting, or lead to port 25 blocks. <br>
-Mitigation: Keep batch sizes conservative, use the documented rate limits, and use a dedicated email verification service for bulk lists. <br>
-Risk: Catch-all domains, greylisting, and servers that block verification can make results inconclusive. <br>
-Mitigation: Treat catch-all and unknown results as uncertain rather than proof that an inbox exists. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/psyduckler/email-verifier) <br>
+## Use Case:
 
+Developers and operators use this skill to validate individual addresses, clean contact lists, and inspect CSV lead lists before outreach. It is intended for authorized verification where live SMTP checks and contact-list privacy obligations are understood.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, code, configuration, text] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON array results from the verifier script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include email, domain, MX host, SMTP code and response, deliverability status, and optional error or note fields.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Live SMTP checks can disclose queried email addresses to external mail servers.
+
+Mitigation: Verify only addresses the user is authorized to check, avoid sensitive contact lists unless privacy obligations are clear, and prefer a constrained runtime for operational use.
+
+Risk: DNS-controlled MX records can steer checks toward unexpected or internal SMTP services.
+
+Mitigation: Run the skill in a restricted network or container that cannot reach internal mail services unless that access is intentional.
+
+Risk: The dependency guidance does not pin dnspython, so installs may change behavior over time.
+
+Mitigation: Pin and review dnspython before production or repeated operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/psyduckler/skills/email-verifier)
+- [Publisher profile](https://clawhub.ai/user/psyduckler)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; the verifier script emits JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deliverability status, MX host, SMTP response details, and error or note fields when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,43 @@
-# 验证修复报告模板
+# Verify repair report template
 
 ```markdown
-# 验证修复报告
+# Verify repair report
 
-> 生成时间: YYYY-MM-DD HH:mm
-> 验证范围: lint / type-check / test / build / CI
+> Generation time: YYYY-MM-DD HH:mm
+> Verification scope: lint/type-check/test/build/CI
 
-## 命令状态表
+## Command status table
 
-| 命令 | 初始状态 | 修复后状态 | 备注 |
+| Command | Initial state | Repaired state | Remarks |
 | --- | --- | --- | --- |
-| `npm run type-check` | 失败 / 通过 / 未运行 | 失败 / 通过 / 未运行 | ... |
+| `npm run type-check` | failed/passed/didn’t run | failed/passed/didn’t run | ... |
 
-## 失败摘要
+## Failure summary
 
-- 最早出现且会级联的错误
-- 受影响文件、错误类型和关键日志
-- 是否属于 CI 专属、测试环境、依赖版本或 flaky 问题
+- Errors that occur earliest and cascade
+- Affected files, error types and critical logs
+- Whether it is CI exclusive, test environment, dependent version or flaky issue
 
-## 根因
+## Root cause
 
-- 确认的根本原因
-- 支持该结论的输出、日志或复现证据
+- Confirmed root cause
+- Output, logs, or reproduction evidence to support the conclusion
 
-## 修复内容
+## Fix content
 
-- 修改的文件和行为
-- 为什么没有通过关闭规则、删除断言或降低类型安全来规避失败
+- Modified files and behavior
+- Why the failure was not circumvented by turning off rules, removing assertions, or reducing type safety
 
-## 验证结果
+## Verification results
 
-- 重新执行的命令
-- 命令输出摘要
-- 是否仍有失败项
+- Command to re-execute
+- Summary of command output
+- Are there still failed items?
 
-## 剩余风险
+## Residual risk
 
-- 未覆盖的验证命令
-- 仍需用户决策或外部环境确认的问题
+- Uncovered verification commands
+- Issues that still require user decision-making or external environment confirmation
 ```
 
-验证修复完成后，将报告保存到 `reports/validation-fix-YYYY-MM-DD-HHmmss.md`，并告知用户报告路径。
+After the verification fix is completed, save the report to `reports/validation-fix-YYYY-MM-DD-HHmmss.md` and inform the user of the report path.

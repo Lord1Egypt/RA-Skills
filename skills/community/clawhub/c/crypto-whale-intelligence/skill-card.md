@@ -1,40 +1,54 @@
-## Description: <br>
-Crypto Whale Intelligence helps agents monitor large on-chain crypto transactions, whale accumulation patterns, smart-money activity, exchange flows, and related DeFi trading signals across Solana, Ethereum, Base, and BSC. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto Whale Intelligence provides agent guidance for tracking large crypto transactions, whale accumulation patterns, smart-money movements, exchange flows, and related DeFi trading signals across Solana, Ethereum, Base, and BSC.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
 
-## Use Case: <br>
-External users and developers can use this skill for crypto whale tracking, on-chain market analysis, exchange-flow review, and DeFi trading-signal support. Outputs should be treated as decision support and verified before any financial action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto market-analysis outputs may influence financial decisions or trading activity. <br>
-Mitigation: Treat outputs as decision support only, verify signals independently, and require explicit human confirmation before any trade. <br>
-Risk: Wallet addresses, exchange credentials, or trading-bot access could expose sensitive assets if over-scoped. <br>
-Mitigation: Use read-only wallet addresses or tightly scoped API keys, and never provide seed phrases, private keys, unrestricted exchange credentials, or autonomous trading-bot control. <br>
+## Use Case:
 
+External users and trading-oriented analysts can use this skill to request on-chain whale tracking, exchange-flow analysis, smart-money detection, and DeFi signal guidance. Treat outputs as analysis support, not as verified trading advice or an automated trading system.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ssidharhubble/crypto-whale-intelligence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text analysis and alerts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, install hooks, persistence, or credential-handling instructions are present in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Users may mistake the current package for a working trading system or automated execution tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat this release as descriptive or incomplete; review future wallet, exchange, trading bot, or private-key integrations before use.
+
+Risk: Trading-signal guidance can be incomplete, stale, or financially harmful if treated as verified investment advice.
+
+Mitigation: Require human review, independent data validation, and explicit approval before acting on any trading-related output.
+
+## Reference(s):
+
+- [Crypto Whale Intelligence ClawHub listing](https://clawhub.ai/ssidharhubble/skills/crypto-whale-intelligence)
+- [ssidharhubble publisher profile](https://clawhub.ai/user/ssidharhubble)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable outputs are included in the submitted artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

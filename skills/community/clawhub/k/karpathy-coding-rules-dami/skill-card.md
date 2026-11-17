@@ -1,41 +1,49 @@
-## Description: <br>
-Guides coding agents to think through assumptions, prefer simple implementations, make narrowly scoped edits, and verify coding tasks before completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Karpathy 编程四原则｜解决 AI 写代码常犯的 4 类错误：不过脑子假设、过度工程化、乱改无关代码、只管写不管对。基于 Andrej Karpathy 观察，触发于写脚本/自动化/修复 bug 等编码任务，让 AI 输出更可靠。
 
-## Publisher: <br>
-[cq2000419](https://clawhub.ai/user/cq2000419) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cq2000419](https://clawhub.ai/user/cq2000419)
 
-## Use Case: <br>
-Developers and coding agents use this skill during scripting, automation, debugging, and implementation work to keep changes deliberate, simple, scoped, and validated. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make coding work more deliberate and may increase time spent planning and validating. <br>
-Mitigation: Use it for coding, automation, debugging, and implementation tasks where careful scoping and verification are desired. <br>
-Risk: Its guidance is not intended for pure conversation, file organization, or information retrieval unless the task involves code. <br>
-Mitigation: Apply it only to coding-related workflows, matching the scope described by the artifact. <br>
+## Use Case:
 
+Developers and engineers use this skill to make an agent apply Karpathy-inspired coding rules when writing automation scripts, fixing bugs, debugging, or building tools. It emphasizes checking assumptions, preferring simple designs, making focused edits, and verifying against explicit success criteria.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cq2000419/karpathy-coding-rules-dami) <br>
-- [Publisher profile](https://clawhub.ai/user/cq2000419) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; does not run commands, access credentials, install software, or connect to external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill changes how an agent plans, scopes edits, and verifies coding tasks across coding workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance before enabling it broadly and apply it where this coding posture matches the expected workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cq2000419/skills/karpathy-coding-rules-dami)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with code or shell commands when the coding task requires them]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable payload; influences coding workflow guidance, scoping, and verification behavior.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,64 @@
-## Description: <br>
-Search Outlook mail, read threads, manage drafts, send or reply to email, and manage calendar events via Microsoft Graph. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Outlook mail, read threads, manage drafts, send or reply to email, and manage calendar events via Microsoft Graph.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-OpenClaw users use this skill to manage Outlook email, calendar events, contacts, attachments, rules, and categories through Microsoft Graph with ClawLink-managed OAuth. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive Outlook mail, calendar, contact, and task data through a connected Microsoft account. <br>
-Mitigation: Review Microsoft consent scopes before connecting Outlook through ClawLink and revoke the connection when access is no longer needed. <br>
-Risk: Write actions can send email, delete messages, cancel events, or modify Outlook resources. <br>
-Mitigation: Use explicit confirmation and preview flows before send, delete, create, update, move, or cancel operations. <br>
-Risk: Batch operations can affect multiple mailbox items in one call. <br>
-Mitigation: Review the target item list before execution and keep batch moves or updates within the documented 20-item limit. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent work with Outlook mail, calendar events, contacts, and tasks through Microsoft Graph via ClawLink. It supports mailbox discovery, message drafting and sending, calendar coordination, and related account-management workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hith3sh/outlook-inbox) <br>
-- [Microsoft Graph Mail API overview](https://learn.microsoft.com/graph/api/resources/mail-api-overview) <br>
-- [Microsoft Graph Calendar API](https://learn.microsoft.com/graph/api/resources/calendar) <br>
-- [Microsoft Graph Message resource](https://learn.microsoft.com/graph/api/resources/message) <br>
-- [Microsoft Graph Event resource](https://learn.microsoft.com/graph/api/resources/event) <br>
-- [ClawLink OpenClaw docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connected Microsoft account through ClawLink; write actions require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill asks users to install and authorize a third-party ClawLink plugin with broad Microsoft account access and no pinned plugin version in the evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the ClawLink plugin and OAuth consent before installation, prefer a limited Microsoft account where possible, and document how to revoke the connected app and remove the plugin.
+
+Risk: Email send, delete, rule, contact, and calendar write actions can materially change a user's Outlook account.
+
+Mitigation: Preview write actions and require explicit user confirmation of the target resource and intended effect before execution, especially for send, delete, rule, and calendar operations.
+
+Risk: The live ClawLink Outlook tool catalog may differ from examples in the skill text.
+
+Mitigation: List and describe the live Outlook tools before unfamiliar or ambiguous calls, and treat the returned catalog and tool schemas as the source of truth.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/outlook-inbox)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=outlook-inbox)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+- [Microsoft Graph Mail API Overview](https://learn.microsoft.com/graph/api/resources/mail-api-overview)
+- [Microsoft Graph Calendar API](https://learn.microsoft.com/graph/api/resources/calendar)
+- [Microsoft Graph Message Resource](https://learn.microsoft.com/graph/api/resources/message)
+- [Microsoft Graph Event Resource](https://learn.microsoft.com/graph/api/resources/event)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Microsoft Graph tool-call parameters and user-facing confirmation prompts for write actions.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

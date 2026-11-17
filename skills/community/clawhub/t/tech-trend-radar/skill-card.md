@@ -1,41 +1,59 @@
-## Description: <br>
-Use when generating current technology, AI model ranking, product, startup, funding, regulation, or market trend reports from recent industry updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when generating current technology, AI model ranking, product, startup, funding, regulation, or market trend reports from recent industry updates.
 
-## Publisher: <br>
-[chadlwm](https://clawhub.ai/user/chadlwm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chadlwm](https://clawhub.ai/user/chadlwm)
 
-## Use Case: <br>
-Developers, product teams, analysts, and strategy teams use this skill to generate current technology and market trend reports across AI, developer tools, SaaS, cloud infrastructure, security, startups, funding, and regulation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may browse public web sources and save generated reports or event summaries in the workspace. <br>
-Mitigation: Avoid including confidential strategy, proprietary research priorities, or sensitive business context in prompts unless that content may be retained in report artifacts. <br>
-Risk: Trend reports can become outdated or overstate weak market signals. <br>
-Mitigation: Refresh sources for each run, prefer primary evidence, and review report conclusions before using them for business decisions. <br>
+## Use Case:
 
+External users, developers, analysts, and product teams use this skill to generate current technology and market trend reports across AI, developer tools, SaaS, cloud infrastructure, security, startups, funding, regulation, model rankings, and GitHub momentum.
 
-## Reference(s): <br>
-- [Tech Trend Radar ClawHub Release](https://clawhub.ai/chadlwm/tech-trend-radar) <br>
-- [Publisher Profile](https://clawhub.ai/user/chadlwm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown trend reports with tables, source links, action items, and watchlists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save generated reports and event summaries in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release evidence and artifact metadata) <br>
+Risk: The skill may perform fresh web research and produce reports that depend on the quality and recency of public sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer primary sources, include publication dates or checked timestamps, cross-check major claims, and label uncertain signals as Watch.
+
+Risk: The skill may create saved report or event files when invoked.
+
+Mitigation: Review the generated report path and contents before sharing or relying on saved outputs.
+
+Risk: Scheduled runs or downstream event-bus automation can generate recurring trend reports.
+
+Mitigation: Enable recurring automation only when recurring reports are intended and review the schedule, scope, and recipients.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chadlwm/skills/tech-trend-radar)
+- [README](artifact/README.md)
+- [Skill Instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown trend report with tables, dated evidence links, summaries, action items, watchlists, and optional saved report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may cover 1w, 1m, 3m, or explicit date ranges and may be saved under memory/research when the invoking agent supports file output.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

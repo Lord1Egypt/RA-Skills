@@ -1,11 +1,11 @@
 ---
 name: oo-vectorshift
-description: "VectorShift (vectorshift.ai). Use this skill for ANY VectorShift request — searching and reading data. Whenever a task involves VectorShift, use this skill instead of calling the API directly."
+description: "VectorShift (vectorshift.ai). Use this skill for ANY VectorShift request — reading, creating, and updating data. Whenever a task involves VectorShift, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "VectorShift"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["vectorshift"]
   icon: "https://static.oomol.com/logo/third-party/vectorshift.png"
 ---
@@ -37,10 +37,10 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `bulk_run_pipeline` — Run multiple instances of the same VectorShift pipeline with JSON-safe inputs in one request.
+- `bulk_run_pipeline` — Run multiple instances of the same VectorShift pipeline with JSON-safe inputs in one request. [write]
 - `get_pipeline` — Fetch one VectorShift pipeline by pipeline ID or by pipeline name.
 - `list_pipelines` — List VectorShift pipelines that are accessible to the connected API key.
-- `run_pipeline` — Run one VectorShift pipeline with JSON-safe inputs and return the resulting outputs.
+- `run_pipeline` — Run one VectorShift pipeline with JSON-safe inputs and return the resulting outputs. [write]
 
 ## Safety
 
@@ -71,11 +71,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — VectorShift is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=vectorshift
+  https://console.oomol.com/connections/vectorshift
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - VectorShift homepage: https://vectorshift.ai
+- API documentation: https://docs.vectorshift.ai/api-reference/overview

@@ -1,37 +1,48 @@
-## Description: <br>
-Lightweight website uptime monitor that checks URL availability, measures response times, detects content changes with hashes, and verifies expected response text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight website uptime monitor. Check if URLs are up, measure response times, detect content changes via hashing, and verify expected content. Zero dependencies.
 
-## Publisher: <br>
-[claudiodrusus](https://clawhub.ai/user/claudiodrusus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[claudiodrusus](https://clawhub.ai/user/claudiodrusus)
 
-## Use Case: <br>
-Developers, site operators, and automation agents use this skill to check whether one or more websites return expected status codes, expected content, and stable content hashes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill makes live network requests to user-provided URLs, which may reveal that the running environment accessed a target endpoint. <br>
-Mitigation: Confirm each URL before running the skill, especially for internal services or sensitive endpoints. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/claudiodrusus/website-monitor) <br>
+## Use Case:
 
+Developers, site operators, and automation agents use this skill to check URL availability, measure response time, verify expected text, and detect page-content changes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text status summaries or JSON arrays from command-line execution examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns process exit code 1 when any checked site fails the expected status or validation checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes outbound requests to user-supplied URLs and reads response bodies for hashing or text checks.
+
+Mitigation: Use care with private or internal URLs, and review monitored targets before running the checker in shared or automated environments.
+
+## Reference(s):
+
+- [Website Monitor on ClawHub](https://clawhub.ai/claudiodrusus/skills/website-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands]
+
+**Output Format:** [Plain text or JSON command output; agent-facing usage may include Markdown with shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns exit code 1 when any checked site is down or fails expectations.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

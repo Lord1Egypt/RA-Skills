@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7bwx2qpadhr9wgbcqfr6q86h8098s2",
-  "slug": "fal-ai",
-  "version": "0.1.0",
-  "publishedAt": 1769875535293
+  "owner": "agmmnn",
+  "slug": "fal-api",
+  "displayName": "fal.ai API",
+  "latest": {
+    "version": "0.1.0"
+  }
 }

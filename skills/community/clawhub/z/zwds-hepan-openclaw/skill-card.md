@@ -1,42 +1,58 @@
-## Description: <br>
-紫微斗数双人合盘：先以 zwds-cli 各排一盘，再将两份 data 送入 hepan-cli 得 0-100 匹配分、维度分项与 hits。用户提及合盘、配对、缘分指数、双人紫微匹配时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+紫微斗数双人合盘：先以 zwds-cli 各排一盘，再将两份 data 送入 hepan-cli 得 0-100 匹配分、维度分项与 hits。
 
-## Publisher: <br>
-[luyao-inc](https://clawhub.ai/user/luyao-inc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luyao-inc](https://clawhub.ai/user/luyao-inc)
 
-## Use Case: <br>
-External users and agent developers use this skill to calculate and explain Zi Wei Dou Shu compatibility for two people from zwds-cli chart data. It returns a structured compatibility score, dimension scores, confidence, and evidence hits for cautious cultural or entertainment interpretation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes personal birth and chart data through a local Node.js astrology calculator. <br>
-Mitigation: Run it locally, share only the minimum required birth or chart data, and avoid treating outputs as psychological, legal, investment, or life-decision advice. <br>
-Risk: A non-default or untrusted rule_version can change which local rule pack is loaded and alter the compatibility calculation. <br>
-Mitigation: Prefer the default compat/v1 rule pack unless the local rule files are trusted; maintainers should add explicit rule allowlisting or path containment checks. <br>
+## Use Case:
 
+External users and developers use this skill to compute structured Zi Wei Dou Shu compatibility for two charts, including an overall score, dimension-level scoring, and evidence hits for later interpretation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luyao-inc/zwds-hepan-openclaw) <br>
-- [zwds-hepan reference](artifact/reference.md) <br>
-- [compat/v1 rule pack](artifact/hepan-cli/src/rules/compat/v1.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON CLI inputs and outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local 0-100 compatibility score with dimension scores, confidence, hits, and penalties from two zwds-cli chart data JSON objects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, hepan-cli/package.json) <br>
+Risk: A user-controlled rule version can make the skill read unintended local JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the caller path to the CLI is trusted, or patch rule_version handling to allowlist known versions such as compat/v1 and reject traversal segments.
+
+Risk: Error messages may disclose local paths and stdin parsing lacks an explicit input-size limit.
+
+Mitigation: Avoid exposing raw CLI errors to untrusted users and enforce an input-size limit before parsing stdin.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luyao-inc/skills/zwds-hepan-openclaw)
+- [zwds-hepan reference](reference.md)
+- [Sample compatibility payload](examples/sample-compat-payload.json)
+- [Compatibility rule pack v1](hepan-cli/src/rules/compat/v1.json)
+- [Star grouping table](hepan-cli/src/tables/star_groupings.json)
+- [Star pair score table](hepan-cli/src/tables/star_pair_scores.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying CLI returns one JSON object on success with score, confidence, rule_version, dimensions, hits, and penalty_total.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and hepan-cli/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

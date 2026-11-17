@@ -1,89 +1,226 @@
 ---
-name: deslop
-description: "Strip AI-generated writing patterns and make text sound like a real person wrote it. Use this skill whenever the user asks to deslop, de-slop, clean up, humanize, or fix AI-sounding text, or when they say something sounds 'too AI', 'robotic', 'generic', 'corporate', or 'ChatGPT-y'. Also trigger when the user pastes text and asks you to rewrite it to sound more natural, more human, or less like a machine. If someone says 'make this not sound like AI' or 'this reads like slop', this is the skill to use."
+name: "deslop"
+description: "Deslop, humanize, edit, or audit AI-sounding, robotic, generic, corporate, or ChatGPT-like copy while preserving the writer's voice."
 ---
 
 # Deslop
 
-You're an editor whose job is to take AI-generated text and make it read like a human wrote it. Not a human trying to sound impressive, but a human who actually has something to say.
+Edit AI-sounding writing into clear human prose without replacing the writer's voice with a different generic voice.
 
-AI text has a recognizable smell. It hedges too much, inflates significance, reaches for fancy words when simple ones work, and arranges everything into tidy parallel structures that no real person would use. Your job is to burn all of that out while keeping the meaning intact.
+Keep the meaning, factual claims, attitude, and level of formality intact. Make the minimum effective edit. Leave strong human sentences alone.
 
-One rule above all others: **do not use em dashes (—) anywhere in your output.** Not even one. Replace every em dash with a comma, a period, parentheses, or restructure the sentence. This is the single most recognizable AI tell and it must be completely absent from the final text.
+One rule overrides every stylistic preference: never return an em dash. Use a comma, period, colon, semicolon, parentheses, or a rewritten sentence. This applies to edited copy, explanations, and quoted evidence.
 
-Work through three passes. You don't need to announce the passes to the user. Just do them internally and return the cleaned result.
+## Choose the job
 
-## Pass 1: Kill AI patterns
+### Edit
 
-### Content patterns
+Use edit mode by default when the user wants text rewritten, cleaned up, humanized, or deslopped.
 
-Remove these on sight:
+Return the cleaned text. Do not explain the changes unless the user asks. For a sentence or two, use a light touch.
 
-- **Significance inflation.** "Stands as", "is a testament to", "pivotal moment", "marks a shift", "setting the stage". If something is actually important, the facts will show it. You don't need to tell the reader it's important.
-- **Promotional language.** "Vibrant", "groundbreaking", "nestled", "in the heart of", "stunning", "breathtaking". These words have been drained of meaning through overuse. Find specific details instead, or just cut them.
-- **Vague attributions.** "Experts argue", "industry reports suggest", "observers have cited". Either name the source or drop the claim. Waving vaguely at authority is worse than stating an opinion directly.
-- **Superficial -ing analyses.** "Highlighting", "underscoring", "emphasizing", "showcasing", "fostering". These verbs let the writer gesture at significance without actually analyzing anything. Say what the thing *does*, not that it "highlights" something.
-- **Generic "challenges and future" sections.** If the last section is a vague "challenges remain but the future looks bright" wrap-up, cut it or replace it with something specific.
+### Detect
 
-### Language patterns
+Use detect mode when the user asks to audit, scan, flag, or judge a draft without rewriting it.
 
-- **AI vocabulary.** These words are AI tells. Swap them for plainer alternatives or restructure the sentence: crucial, robust, comprehensive, leverage, navigate, landscape, realm, foster, paradigm, holistic, synergy, delve, underscore, transformative, tapestry, interplay, intricacies, garner, enduring, pivotal, additionally, align with, enhance, valuable.
-- **Copula avoidance.** AI loves to dodge the word "is" with fancier constructions. "Serves as", "stands as", "functions as" should just be "is".
-- **Negative parallelisms.** "It's not just about X, it's about Y." This structure is a crutch. Say what you mean directly.
-- **Rule of three overuse.** AI loves grouping things in threes. Real writing doesn't always come in neat trios. If the third item feels forced or redundant, cut it.
-- **Synonym cycling.** Using different words for the same thing to avoid repetition ("the company / the firm / the organization" in consecutive sentences). Pick one and stick with it. Repetition is fine. Forced variation is distracting.
-- **False ranges.** "From X to Y" where X and Y aren't on a meaningful scale. "From educators to policymakers" isn't a range. Just say "educators and policymakers."
-- **Filler phrases.** Cut these ruthlessly. "In order to" becomes "to". "Due to the fact that" becomes "because". "It is important to note" gets deleted. "At this point in time" becomes "now". "Has the ability to" becomes "can".
-- **Excessive hedging.** "Could potentially possibly be argued that it might" needs to become an actual position.
+For every pattern found:
 
-### Style patterns
+1. Name the pattern.
+2. Quote the relevant line or fragment.
+3. Give a short fix.
 
-- **Em dashes: zero tolerance.** Do not use em dashes (—) at all. Not even one. AI scatters them everywhere and they're the biggest tell. Use commas, periods, colons, semicolons, parentheses, or just split the sentence.
-- **Boldface overuse.** Don't bold random phrases for emphasis. Let the writing do the work.
-- **Inline-header lists.** The "**Bold word**: explanation" pattern repeated vertically. If the content works as prose, write it as prose.
-- **Heading case.** Use sentence case for headings ("How we built it"), not Title Case ("How We Built It").
-- **Emojis in headings or bullets.** Remove them unless the user's context clearly calls for them (e.g., a casual Slack post).
-- **Curly quotes.** Use straight quotes (" and '), not curly ones.
+Do not rewrite the full draft, assign a slop score, or claim that AI wrote it. Named patterns are evidence; authorship detectors are guesses. If quoted source text contains an em dash, replace the character with `[em dash]` in the quotation.
 
-### Communication artifacts
+If the user has not provided text, ask for it. Ask about audience, format, or intended effect only when the missing context could materially change the edit.
 
-Remove traces of chatbot behavior:
+## Pass 1: Read before editing
 
-- "I hope this helps!", "Let me know if you have questions", "Great question!"
-- Knowledge-cutoff disclaimers ("as of 2024", "based on available information")
-- Sycophantic openers ("Excellent point!", "You're absolutely right")
-- Meta-signposting ("Let's explore", "Here's the thing", "The key takeaway is", "It's worth noting")
+Read the whole draft and identify internally:
 
-## Pass 2: Add soul
+- Its core point
+- Its audience and job, when evident
+- Three to five voice signals worth preserving, such as vocabulary, cadence, bluntness, humor, uncertainty, digressions, or formality
+- The lines that already sound specific and human
 
-After stripping the AI patterns, the text might be clean but lifeless. Now make it human.
+Do not reorganize the draft unless its structure blocks understanding. Do not invent facts, examples, statistics, sources, opinions, or confidence.
 
-- **Vary sentence rhythm aggressively.** If every sentence is 15-20 words, the writing will drone. Mix short punchy fragments with longer sentences. Three words. Then a sentence that unspools across a full line with a couple of subordinate clauses. That contrast is what makes prose feel alive.
-- **Allow opinions.** "This is impressive but also kind of unsettling" is more interesting than neutral reporting. If the text is supposed to have a voice, let it have one.
-- **Use contractions everywhere.** Don't, won't, isn't, can't, it's, they're, we're. Uncontracted forms ("do not", "will not") read as stiff and formal unless that's the intended register. Scan every sentence and contract what a native speaker would naturally contract. If a sentence has "do not" or "it is" or "they are" in it, contract it.
-- **Start sentences with conjunctions.** And, But, So. These are fine sentence starters. They create flow and informality that AI text usually lacks.
-- **Leave rough edges.** Not every thought needs to be perfectly polished. A tangent, an aside in parentheses, a half-formed observation that the reader can finish. These are signs of a real mind at work.
-- **Trust the reader.** Don't over-explain. If the implication is clear, let it stand. AI text tends to spell out every conclusion as if the reader can't think.
+## Pass 2: Remove slop
 
-## Pass 3: Final audit
+### Empty significance
 
-Read the text one more time and ask: "What would make someone suspect AI wrote this?" Look for:
+Cut claims that tell the reader something matters instead of showing why:
 
-- Any stock AI phrases that survived the first pass
-- Sentence and paragraph lengths that are too uniform
-- Any em dashes at all (there should be zero)
-- Any uncontracted forms that a native speaker would contract
-- Facts changed or meaning shifted (they shouldn't be, so preserve the original meaning)
-- The overall feel: does this read like a specific person wrote it, or like it was generated?
+- "Stands as a testament"
+- "Marks a pivotal moment"
+- "Plays a vital role"
+- "Underscores its significance"
+- "Sets the stage"
+- Generic "challenges remain, but the future looks bright" endings
 
-Fix anything that still feels off.
+Keep the concrete fact and let the reader judge its importance.
 
-## What to return
+### Standalone filler sentences
 
-Return the cleaned text. Don't explain what you changed unless the user asks. If the user wants to understand the edits, walk them through the major changes. But the default is just the result.
+Cut sentences that only announce importance, simplicity, contrast, scope, or what the next paragraph will explain. Common examples include "That distinction matters," "This matters because," "The practical mental model is simple," "The key point is," "The same principle applies," and "This is why it matters."
 
-If the original text is very short (a sentence or two), you can be lighter-touch. Not every sentence needs the full three-pass treatment. Use judgment.
+Delete the sentence if it adds no fact, argument, or useful tension. If it contains a real point, merge that point into the surrounding sentence.
 
-## Important: preserve meaning
+### Promotional fog
 
-The goal is to change *how* something is said, not *what* is said. Don't add information, remove factual claims, or change the argument. If a sentence makes a specific point, the deslopped version should make the same point, just without the AI smell.
+Replace inflated words such as "vibrant," "groundbreaking," "stunning," "breathtaking," "cutting-edge," and "game-changing" with specific details, or remove them.
+
+### Vague authority
+
+Replace "experts agree," "studies show," "industry reports suggest," and similar claims with a named source. If no source exists, remove or flag the claim. Never invent attribution.
+
+### Superficial analysis
+
+Cut trailing clauses built around "highlighting," "underscoring," "showcasing," "reflecting," "emphasizing," or "fostering" when they merely gesture at meaning. State the real consequence when the draft supports one.
+
+### AI vocabulary
+
+Prefer plain language over habitual AI words such as:
+
+- crucial, robust, comprehensive, leverage, utilize, facilitate, empower
+- navigate, landscape, realm, foster, paradigm, holistic, synergy
+- delve, underscore, transformative, tapestry, interplay, intricacies
+- pivotal, multifaceted, meticulous, paramount, elevate, embark, harness
+- additionally, align with, enhance, valuable, ever-evolving
+
+Do not replace a precise technical term just because it appears on this list.
+
+### Fake-strong verbs and copula avoidance
+
+Prefer "is," "has," and direct verbs over "serves as," "stands as," "functions as," "acts as," "made a decision," or "has the ability to."
+
+Use active voice when it makes the actor and action clearer. Do not force active voice when the actor is unknown or irrelevant.
+
+### Binary contrasts and negative lists
+
+Remove templates such as:
+
+- "It's not X. It's Y."
+- "It's not just X, it's Y."
+- "The question isn't X, it's Y."
+- "Not X. Not Y. Z."
+
+State the real point directly.
+
+### Throat-clearing and faux insight
+
+Cut setups that delay or inflate the point:
+
+- "Here's the thing"
+- "Let me be clear"
+- "The uncomfortable truth is"
+- "What nobody tells you"
+- "The part everyone misses"
+- "What most people get wrong"
+- "The key takeaway is"
+- "It's worth noting"
+- "Let's explore" or "Let's dive in"
+
+Keep a personal admission or aside only when it adds character, context, or honest uncertainty.
+
+### Colon reveals
+
+Rewrite dramatic noun-phrase reveals such as "The best part: it learns" or "The real problem: distribution." Use colons for lists, labels, explanations, and quotations, not manufactured suspense.
+
+### Rhetorical setups
+
+Remove "What if I told you," "Think about it," "Plot twist," and self-answered question-and-answer pairs when a direct statement works better.
+
+### Dramatic fragmentation
+
+Fix stacked fragments such as "That's it. That's the whole thing." and "X. And Y. And Z." Keep fragments that genuinely match the writer's natural cadence and do not create fake drama.
+
+### Rule-of-three overuse
+
+Do not force ideas into neat trios. Remove the third item when it is redundant or exists only for rhythm.
+
+### Synonym cycling
+
+Use the same clear noun consistently instead of rotating among near-synonyms to avoid repetition.
+
+### False ranges
+
+Replace "from X to Y" when X and Y are not endpoints on a meaningful scale. Use "X and Y" or name the actual scope.
+
+### Filler and hedging
+
+Compress empty phrases:
+
+- "In order to" becomes "to"
+- "Due to the fact that" becomes "because"
+- "At this point in time" becomes "now"
+- "Has the ability to" becomes "can"
+- "It is important to note" is usually deleted
+
+Remove stacked hedges. Keep "I think," "maybe," "probably," and similar language when it expresses real uncertainty or belongs to the writer's voice.
+
+### Robotic rhythm
+
+Break repeated sentence shapes, identical paragraph structures, and overly tidy parallelism. Do not replace them with a stack of manufactured punchy fragments. Let rhythm serve the point and the writer.
+
+### Fake-profound endings
+
+Delete the cute metaphor, aphorism, or mic-drop line when it adds no information. End on the last concrete point, useful takeaway, or next action.
+
+### Summary-recap endings
+
+Remove "In conclusion," "Ultimately," "Overall," and final paragraphs that only repeat what the reader just read.
+
+### Formatting slop
+
+Remove decorative formatting that does not help the content:
+
+- Random bold emphasis
+- Repeated inline-header lists when prose reads better
+- Emoji headings unless the context clearly calls for them
+- Headings over tiny sections
+- Title Case headings when sentence case fits
+- Curly quotation marks when plain straight quotes are required by the user's format
+
+### Em dashes
+
+Remove every em dash from edited text. Replace it with punctuation or rewrite the sentence. In detect mode, flag every source occurrence as the "Em dash" pattern and render the character as `[em dash]` in quoted evidence.
+
+### Chatbot residue
+
+Remove:
+
+- "I hope this helps"
+- "Let me know if you have questions"
+- "Great question"
+- Sycophantic openers
+- Knowledge-cutoff disclaimers that are not relevant
+- Meta-commentary about generating or presenting the answer
+
+## Pass 3: Preserve the person
+
+After removing slop, prevent the edit from becoming sterile or uniformly polished.
+
+- Preserve the writer's recognizable vocabulary, cadence, bluntness, humor, uncertainty, digressions, and formality.
+- Keep strong opinions already present. Do not invent stronger opinions.
+- Use contractions when they fit the writer and context. Do not force casual speech into formal copy.
+- Keep useful rough edges and asides. Do not manufacture roughness.
+- Vary rhythm only where the original drones or repeats itself.
+- Keep concrete names, numbers, dates, mechanisms, and examples.
+- Trust the reader. Remove explanations that merely restate an obvious implication.
+- Preserve the original progression unless a structural change clearly improves comprehension.
+
+The result should sound like this writer on a good day, not like a universal "human" persona.
+
+## Final audit
+
+Read `references/eval.md` and check the full output against it. If any check fails, revise and run the audit again.
+
+Before returning, scan the actual response for the Unicode em-dash character. There must be zero occurrences.
+
+## Output
+
+For edit mode, return only the cleaned text unless the user asks for commentary.
+
+For detect mode, return the named findings with quoted evidence and concise fixes. If no listed pattern appears, say that plainly without inventing problems.
+
+Preserve meaning above all.

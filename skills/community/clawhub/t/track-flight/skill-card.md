@@ -1,41 +1,53 @@
-## Description: <br>
-Track flights in real time with detailed status, gate information, delays, and live position using AviationStack flight data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track flights in real time with status, gate, terminal, delay, aircraft, and live position details from AviationStack.
 
-## Publisher: <br>
-[rafaforesightai](https://clawhub.ai/user/rafaforesightai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rafaforesightai](https://clawhub.ai/user/rafaforesightai)
 
-## Use Case: <br>
-External users and agents use this skill to look up flight status by IATA flight number, including schedule, gate, delay, aircraft, and live position details when available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The free AviationStack setup sends the API key and flight lookup over HTTP, which can expose sensitive travel lookups or credentials on untrusted networks. <br>
-Mitigation: Use a dedicated, revocable AviationStack key; avoid sensitive lookups on untrusted networks; prefer an HTTPS-capable plan, proxy, or alternative provider when confidentiality matters. <br>
-Risk: The skill depends on a third-party flight-data service and local Python dependencies, so availability, rate limits, and environment setup can affect results. <br>
-Mitigation: Install dependencies in a virtual environment, monitor API quota, and verify critical flight details with an authoritative airline or airport source. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AviationStack API Setup](references/api-setup.md) <br>
-- [AviationStack free API signup](https://aviationstack.com/signup/free) <br>
-- [ClawHub Track Flight release page](https://clawhub.ai/rafaforesightai/track-flight) <br>
+## Use Case:
 
+External users and agents use this skill to look up flight status by IATA flight number and present readable flight details for travel planning or operational awareness.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration instructions] <br>
-**Output Format:** [Formatted terminal text or raw JSON, with setup guidance and command examples in Markdown documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AVIATIONSTACK_API_KEY environment variable and the Python requests package.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends the AviationStack API key and flight lookup over unencrypted HTTP.
+
+Mitigation: Prefer an HTTPS-capable AviationStack plan or another provider, use a limited and rotatable API key, and rotate any key already used through the HTTP endpoint.
+
+Risk: Persisting the API key in a shared shell profile can expose the credential to other users or processes on the same system.
+
+Mitigation: Store the key only in an appropriate local environment or secret-management mechanism and avoid adding it to shared shell profile files.
+
+## Reference(s):
+
+- [AviationStack API Setup](references/api-setup.md)
+- [AviationStack free API signup](https://aviationstack.com/signup/free)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands]
+
+**Output Format:** [Formatted terminal text with optional raw JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AVIATIONSTACK_API_KEY environment variable and the Python requests dependency.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

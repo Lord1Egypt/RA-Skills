@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn79pv113kbmhyepn50jn7k7f183edey",
   "slug": "design-daily-news",
-  "version": "1.0.1",
-  "publishedAt": 1774415646765
+  "version": "1.2.0",
+  "publishedAt": 1742860800000,
+  "author": "小Q / 天宇",
+  "name": "设计日报",
+  "description": "每日设计与科技资讯聚合 - 从优设读报、36氪、虎嗅自动抓取并筛选最新的设计、AI、产品等行业动态"
 }

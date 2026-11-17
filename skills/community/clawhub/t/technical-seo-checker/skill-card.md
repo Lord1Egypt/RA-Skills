@@ -1,53 +1,70 @@
-## Description: <br>
-Audits crawlability, indexability, Core Web Vitals, mobile readiness, HTTPS/security, redirects, structured data, URL structure, and technical SEO evidence gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Technical SEO Checker audits crawlability, indexing, Core Web Vitals, robots.txt, sitemaps, canonicals, redirects, migrations, and related technical SEO health signals.
 
-## Publisher: <br>
-[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu)
 
-## Use Case: <br>
-External site owners, SEO practitioners, and developers use this skill to diagnose technical SEO issues on sites they own or are authorized to test, then turn the findings into prioritized repair plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk sitemap or multi-URL audits can generate traffic against target sites. <br>
-Mitigation: Use the skill only on sites the user owns or is authorized to test, sample representative URL groups where appropriate, and avoid unnecessary repeated fetches. <br>
-Risk: Fetched web pages can contain prompt-injection text or misleading audit directives. <br>
-Mitigation: Treat fetched page content as untrusted evidence, not instructions, and preserve the agent's existing instruction hierarchy. <br>
-Risk: Audit notes, analytics data, or Search Console details may contain sensitive business information. <br>
-Mitigation: Review summaries before saving them to memory or shared files, and retain only the evidence needed for follow-up work. <br>
-Risk: Technical SEO recommendations may be incomplete when connector data, crawler output, or current search-console evidence is unavailable. <br>
-Mitigation: Mark unsupported checks as unavailable, cite the evidence source and audit date, and validate production changes against trusted site data before rollout. <br>
+## Use Case:
 
+SEO practitioners, marketers, developers, and site operators use this skill to audit technical SEO health for a URL or domain. It produces scored findings and a prioritized repair plan for crawlability, indexability, site speed, mobile behavior, HTTPS, URL structure, structured data, international SEO, migrations, and bulk site audits.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aaron-he-zhu/technical-seo-checker) <br>
-- [Project Homepage](https://github.com/aaron-he-zhu/seo-geo-claude-skills) <br>
-- [Robots.txt Reference Guide](references/robots-txt-reference.md) <br>
-- [HTTP Status Codes for Technical SEO](references/http-status-codes.md) <br>
-- [Technical SEO Checker - Compact Output Templates](references/technical-audit-templates.md) <br>
-- [Technical SEO Checker Worked Example and Checklist](references/technical-audit-example.md) <br>
-- [Technical SEO - Site-Wide / Bulk Audit Playbook](references/bulk-audit-playbook.md) <br>
-- [E-commerce Platform SEO Patterns](references/ecommerce-platform-patterns.md) <br>
-- [LLM Crawler Handling](references/llm-crawler-handling.md) <br>
-- [Technical SEO - Pre-Migration Playbook](references/pre-migration-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown audit report with scorecards, evidence tables, prioritized fixes, and a handoff summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include robots.txt snippets, redirect maps, platform-specific checks, and memory-ready audit summaries when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.9.9 (source: server release metadata and skill frontmatter) <br>
+Risk: Audits may send private URLs, page contents, or business-sensitive SEO data to third-party SEO, rendering, validation, or crawler services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before using external services for private, staging, authenticated, or tokenized URLs; prefer local tools where possible.
+
+Risk: URLs may contain sensitive query parameters or access tokens that could be exposed during validation or crawling.
+
+Mitigation: Strip sensitive query parameters and tokens before fetching, rendering, or validating URLs.
+
+Risk: Index-push workflows can notify search engines about URLs and should not be run unintentionally.
+
+Mitigation: Confirm each live index-push submission URL-by-URL and keep dry-run behavior unless the user explicitly approves live submission.
+
+Risk: Locally saved audit outputs may contain sensitive SEO metrics, crawl results, or business context.
+
+Mitigation: Store audit outputs only in approved workspace locations and avoid persisting confidential metrics unless the user requests it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaron-he-zhu/skills/technical-seo-checker)
+- [Project homepage](https://github.com/aaron-he-zhu/aaron-marketing-skills)
+- [Bulk Audit Playbook](references/bulk-audit-playbook.md)
+- [E-commerce Platform Patterns](references/ecommerce-platform-patterns.md)
+- [HTTP Status Codes](references/http-status-codes.md)
+- [LLM Crawler Handling](references/llm-crawler-handling.md)
+- [Pre-Migration Playbook](references/pre-migration-playbook.md)
+- [Robots.txt Reference](references/robots-txt-reference.md)
+- [Technical Audit Example](references/technical-audit-example.md)
+- [Technical Audit Templates](references/technical-audit-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown audit report with scored findings, prioritized recommendations, checklists, and occasional inline shell commands or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include measured, user-provided, estimated, or N/A labels for metrics; may include a handoff summary suitable for storage in the user's SEO workflow.]
+
+## Skill Version(s):
+
+19.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

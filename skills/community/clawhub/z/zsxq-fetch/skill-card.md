@@ -1,46 +1,57 @@
-## Description: <br>
-知识星球帖子抓取助手可抓取指定知识星球的最新帖子，支持全部或精华帖筛选、单条帖子详情查询和多星球配置。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+知识星球帖子抓取助手自动抓取指定知识星球的最新帖子，支持全部或仅精华筛选、通过帖子链接或 ID 获取单条帖子详情，并支持多星球配置。
 
-## Publisher: <br>
-[huxiaoqiao](https://clawhub.ai/user/huxiaoqiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[huxiaoqiao](https://clawhub.ai/user/huxiaoqiao)
 
-## Use Case: <br>
-Developers and external users use this skill to fetch, summarize, or inspect Knowledge Planet posts that their configured account can access. It supports recent post collection, digest-only retrieval, single-post lookup, and joined-group discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security review found that the skill can silently use an embedded account token to fetch private Knowledge Planet content instead of requiring the user's own token. <br>
-Mitigation: Remove the hardcoded default token path and require an explicit user-managed ZSXQ_TOKEN before any API call. <br>
-Risk: Token material may be stored in plaintext token.json if token persistence is used. <br>
-Mitigation: Treat ZSXQ_TOKEN as a password and avoid plaintext token.json storage unless the user knowingly accepts that risk. <br>
-Risk: Group enumeration and bulk fetching can expose the configured account's joined groups and private posts to the agent. <br>
-Mitigation: Run group listing or bulk fetching only when the user explicitly intends to expose that account data for the current task. <br>
+## Use Case:
 
+Developers and external users can use this skill to retrieve, review, summarize, and search Knowledge Planet group content that their configured account is authorized to access.
 
-## Reference(s): <br>
-- [知识星球 API 参考](artifact/references/api-reference.md) <br>
-- [Skill README](artifact/README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/huxiaoqiao/zsxq-fetch) <br>
-- [Knowledge Planet web application](https://wx.zsxq.com) <br>
-- [Knowledge Planet API base URL](https://api.zsxq.com/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Chinese Markdown summaries and JSON command output from the Node.js helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Post text may be truncated to 5000 characters; list fetching uses rate limits and retry backoff.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: An embedded or persisted Knowledge Planet token could expose account access if reused, logged, committed, or shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove and revoke any embedded token, require the user to provide their own token through a secure local secret or environment variable, and avoid storing cookie tokens in plaintext files.
+
+Risk: Fetched group lists and posts can reveal private memberships or restricted community content.
+
+Mitigation: Use only accounts and groups the user is authorized to access, and avoid pasting tokens, private posts, logs, screenshots, or raw outputs into shared channels.
+
+## Reference(s):
+
+- [Skill listing on ClawHub](https://clawhub.ai/huxiaoqiao/skills/zsxq-fetch)
+- [Publisher profile on ClawHub](https://clawhub.ai/user/huxiaoqiao)
+- [知识星球 API 参考](references/api-reference.md)
+- [Knowledge Planet web app](https://wx.zsxq.com)
+- [Knowledge Planet API base URL](https://api.zsxq.com/v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Chinese text or Markdown summaries, with JSON returned by helper commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js >= 18 and a Knowledge Planet access token; topic text is truncated to 5000 characters per item.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

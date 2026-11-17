@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-ip-query-v4",
   "version": "1.0.0",
-  "publishedAt": 1777376834806
+  "title": "IPv4地址查询 - 即刻数据",
+  "description": "输入 IPv4 地址，实时查询国家、省份、城市、运营商和 long_ip 数值。",
+  "env": "JIKE_IP_QUERY_V4_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/ip/query/v4",
+  "homepage": "https://www.jikeapi.cn/"
 }

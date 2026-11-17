@@ -1,45 +1,66 @@
-## Description: <br>
-Agile Workflow is an automated multi-agent workflow engine for task decomposition, dependency management, monitoring, repair, and coordinated execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agile Workflow helps OpenClaw agents decompose, schedule, monitor, and optimize multi-agent workflows with dependency management, quality checks, and task-state tracking.
 
-## Publisher: <br>
-[XBCS](https://clawhub.ai/user/XBCS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xbcs](https://clawhub.ai/user/xbcs)
 
-## Use Case: <br>
-Developers and workflow operators use this skill to coordinate OpenClaw agents across writing, software development, documentation, analysis, and other multi-step tasks. It decomposes work, tracks dependencies and task state, monitors agent activity, and emits commands or configuration guidance for operating the workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports that the skill can start, stop, restart, and repair local agents with limited user confirmation. <br>
-Mitigation: Install and run it only in a dedicated OpenClaw workspace where this level of background automation is acceptable. <br>
-Risk: The security guidance flags background monitors, process inspection or termination, local logging and caching, gateway restart behavior, cron/nohup usage, and hard-coded paths as review areas. <br>
-Mitigation: Review cron and nohup instructions, health-check repair behavior, cleanup scripts, and hard-coded paths before enabling the skill in shared or sensitive environments. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to coordinate complex work such as content creation, software development, documentation, and analysis across multiple agents. It is intended to generate task breakdowns, dependency chains, monitoring output, quality-review guidance, configuration snippets, and operational commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/XBCS/agile-workflow) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [v7.0 Usage Guide](artifact/docs/v7.0-使用指南.md) <br>
-- [v7.0 Concurrent Safety Architecture](artifact/docs/ADD-v7.0-并发安全架构.md) <br>
-- [v7.18 Token Limit Fix](artifact/docs/ADD-v7.18-Token 超限修复.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with command examples, JSON configuration snippets, and JavaScript usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local workflow status, health-check, repair, cleanup, and monitoring guidance for OpenClaw workspaces.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.18.1 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: Persistent background execution and cron jobs can continue outside the intended workflow scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated OpenClaw environment and do not enable cron jobs or long-lived daemons until persistence and cleanup boundaries are reviewed.
+
+Risk: Automatic cleanup or external execution paths may affect unrelated OpenClaw data.
+
+Mitigation: Review cleanup commands, restrict workspace paths, and limit execution permissions before enabling automation.
+
+Risk: Automatic report submission can disclose workflow data unexpectedly.
+
+Mitigation: Disable automatic report submission unless the destination and data-handling expectations are approved.
+
+Risk: An exposed dashboard can reveal operational state if it is network-accessible without controls.
+
+Mitigation: Bind the dashboard to localhost and add authentication before exposing it beyond the local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xbcs/skills/agile-workflow)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [v7.0 user guide](artifact/docs/v7.0-使用指南.md)
+- [v7.0 concurrency-safe architecture](artifact/docs/ADD-v7.0-并发安全架构.md)
+- [v7.18 token-limit fix](artifact/docs/ADD-v7.18-Token 超限修复.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline JSON, JavaScript, and shell command examples; workflow artifacts may be JSON, Markdown, logs, or task-state files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run Node.js workflow automation that creates task state, logs, reports, and cleanup actions.]
+
+## Skill Version(s):
+
+7.18.1 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

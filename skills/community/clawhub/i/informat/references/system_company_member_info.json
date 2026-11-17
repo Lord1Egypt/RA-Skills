@@ -1,0 +1,18 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_member_info",
+    "description": "Get detailed information of a specific company member by account ID.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "description": "Account ID of the member to query (required)."
+        }
+      },
+      "required": ["accountId"],
+      "additionalProperties": false
+    }
+  }
+}

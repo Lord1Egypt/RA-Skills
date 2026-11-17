@@ -1,41 +1,57 @@
-## Description: <br>
-A real-time information collection assistant that aggregates recent public information about a topic from multiple sources and outputs a structured report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates and verifies recent public information about a topic from news, official sources, social platforms, repositories, and forums, then returns a structured report.
 
-## Publisher: <br>
-[89171](https://clawhub.ai/user/89171) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[89171](https://clawhub.ai/user/89171)
 
-## Use Case: <br>
-Employees, external users, researchers, and developers use this skill to monitor recent public updates about a specified topic, verify source links and timestamps, deduplicate related items, and produce a prioritized Markdown report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Collected public-source information may be incomplete, outdated, duplicated, promotional, or insufficiently verified for important decisions. <br>
-Mitigation: Specify the topic, time window, language, included and excluded sources, and strict recency requirements; manually verify important source links and timestamps before relying on findings. <br>
-Risk: The skill can search broad public sources and may optionally preserve findings for later reference. <br>
-Mitigation: Confirm allowed sources and whether findings may be saved to memory before use, especially for sensitive monitoring tasks. <br>
+## Use Case:
 
+External users and developers use this skill to collect recent public updates about a product, technology, organization, event, competitor, or industry topic and turn them into a prioritized Markdown report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/89171/info-collector) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/89171) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured report with source links, timestamps, summaries, categories, and a core findings summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports topic, time window, language, regional preferences, include/exclude sources, maximum items per category, and strict recency settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may search public news, forums, repositories, and social platforms in ways that collect information about sensitive topics or communities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Define the topic, language, time window, included sources, and excluded sources before use, and avoid targeting private individuals or sensitive communities without a lawful and appropriate reason.
+
+Risk: Public-source reports can be incomplete or stale because paywalled, login-only, private, deleted, inaccessible, or fast-changing content may be missed.
+
+Mitigation: Prefer verifiable original links and timestamps, label uncertain or outdated items, and manually review key sources before relying on the report for important decisions.
+
+Risk: Collected findings may be retained if the agent saves them to memory.
+
+Mitigation: Do not save findings to memory unless retention is intended and appropriate for the topic.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/89171/skills/info-collector)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown report with source links, timestamps, summaries, categories, and core findings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Topic, time window, language, regional preference, required or excluded sources, category item limits, and recency options shape the report.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

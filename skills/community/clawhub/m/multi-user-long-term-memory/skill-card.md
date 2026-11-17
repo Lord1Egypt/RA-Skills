@@ -1,42 +1,59 @@
-## Description: <br>
-Creates and manages isolated long-term Markdown memory files for multiple users so an agent can retain preferences and context across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill lets an agent maintain separate Markdown long-term memory files for multiple users by deriving a username from sender_id.
 
-## Publisher: <br>
-[kadbbz](https://clawhub.ai/user/kadbbz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kadbbz](https://clawhub.ai/user/kadbbz)
 
-## Use Case: <br>
-Developers and agent operators use this skill when a multi-user chat or agent needs separate persistent memory per user across sessions. It is useful for retaining user preferences, context, and important notes without mixing memory between user identifiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory files may contain private user data if sensitive information is stored. <br>
-Mitigation: Avoid storing secrets, credentials, regulated personal data, or information users have not agreed to retain, and periodically review or delete files in the users directory. <br>
-Risk: Different sessions that share the same sender_id prefix will share the same memory file. <br>
-Mitigation: Confirm the sender_id naming scheme separates users correctly before using the skill in shared or multi-tenant environments. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give an OpenClaw agent persistent per-user context across sessions in multi-user chats or conversations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kadbbz/multi-user-long-term-memory) <br>
-- [README.md](artifact/README.md) <br>
-- [user-memory.js](artifact/references/user-memory.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Code] <br>
-**Output Format:** [Markdown memory files and plain-text CLI or module responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Memory is stored in per-user Markdown files keyed by the sanitized sender_id prefix before the pipe character.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local persistent memory can retain user identifiers, preferences, and context indefinitely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with user consent and define a process to review, delete, and retire stored memory files.
+
+Risk: The sender_id-to-filename mapping can collide when different sessions or users share the same prefix before the pipe character.
+
+Mitigation: Use trusted caller identities and verify that sender_id prefixes are unique for the deployment before sharing the memory directory.
+
+Risk: Stored memory content is untrusted user data and may later influence agent behavior.
+
+Mitigation: Review memory contents before relying on them for consequential actions and treat retrieved memories as untrusted context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kadbbz/skills/multi-user-long-term-memory)
+- [README.md](README.md)
+- [user-memory.js](references/user-memory.js)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown memory files with JavaScript API and CLI usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local files are persisted under the skill's users directory; evidence reports no external dependency or network behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

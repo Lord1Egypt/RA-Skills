@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+# 日志记录
+__version__ = "1.0.0"
+
+import logging
+logger = logging.getLogger(__name__)
 """
 建议池模块（Advice Pool）
 
@@ -27,6 +33,8 @@ import sys
 import uuid
 from datetime import datetime, timedelta
 from typing import Dict, Any, List, Optional
+from interfaces import TraceContext, create_trace_context
+from validation_framework import ValidationError, validate_params, validate_params
 
 
 class AdvicePool:
@@ -308,7 +316,7 @@ class AdvicePool:
             相关性得分（0.0-1.0）
         """
         if not context:
-            return 0.5
+            return 0.6  # 无context时返回较高值，确保建议不被过滤
         
         based_on = suggestion.get('based_on_intentionality', {})
         context_intentionality = context.get('intentionality', {})

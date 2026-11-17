@@ -1,44 +1,60 @@
-## Description: <br>
-Get AI-ranked exhibitors matching a user's ICP and shortlist the top accounts worth outreach at a trade show. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve Lensmor exhibitor recommendations for a specific trade show and distinguish ranked matches from unranked fallback records.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-B2B sales, marketing, and event teams use this skill before a trade show to find exhibitors that match an ideal customer profile and prioritize outreach targets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends trade-show and ICP query data to Lensmor's API. <br>
-Mitigation: Use it only when Lensmor is trusted for that data and avoid submitting sensitive prospecting details that should not leave the user's environment. <br>
-Risk: The skill requires a LENSMOR_API_KEY secret. <br>
-Mitigation: Store the API key as a secret and do not paste real keys into examples, prompts, shared logs, or generated output. <br>
-Risk: The skill may hand off results to downstream contact-finding or outreach workflows. <br>
-Mitigation: Review downstream skills and generated outreach before use, especially when handling personal contact data or sales communications. <br>
+## Use Case:
 
+External users and sales teams use this skill to retrieve Lensmor exhibitor recommendations for a trade show, apply supported company filters, and separate ranked recommendation evidence from unranked exhibitor fallback records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/weilun88313/trade-show-lead-recommender) <br>
-- [Lensmor API Documentation](https://api.lensmor.com/) <br>
-- [Lensmor Platform Base URL](https://platform.lensmor.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown with ranked tables, ICP match rationale, and follow-up suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lensmor API results and must not reveal the LENSMOR_API_KEY value.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Install instructions include --acknowledge-clawhub-risk for an unpinned personal-scope package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, verified release from a trusted publisher and review the source before installation.
+
+Risk: The skill sends authenticated event and filter queries to Lensmor using LENSMOR_API_KEY.
+
+Mitigation: Provide the API key only when the user is comfortable sending those queries to Lensmor, and never print or expose the key.
+
+Risk: Fallback exhibitor records can be mistaken for AI-ranked recommendations when recommendation metadata is absent.
+
+Mitigation: Label fallback records as unranked exhibitors and preserve returned ranks, scores, reasons, and null fields exactly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weilun88313/skills/trade-show-lead-recommender)
+- [Lensmor API docs](https://api.lensmor.com/)
+- [Lensmor platform](https://platform.lensmor.com)
+- [Lensmor](https://www.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=trade-show-skills)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LENSMOR_API_KEY; preserves returned recommendation ranks, scores, tiers, reasons, and fallback null fields without inference.]
+
+## Skill Version(s):
+
+1.2.1 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

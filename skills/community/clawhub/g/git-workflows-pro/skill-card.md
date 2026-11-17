@@ -1,42 +1,59 @@
-## Description: <br>
-Handle advanced git workflows and recovery tasks. Use when the user needs help with interactive rebase, commit cleanup, conflict resolution, reflog recovery, cherry-pick, stash, worktree, bisect, submodule vs subtree decisions, sparse checkout, branch archaeology, or undoing dangerous history mistakes in real repositories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handle advanced git workflows and recovery tasks. Use when the user needs help with interactive rebase, commit cleanup, conflict resolution, reflog recovery, cherry-pick, stash, worktree, bisect, submodule vs subtree decisions, sparse checkout, branch archaeology, or undoing dangerous history mistakes in real repositories.
 
-## Publisher: <br>
-[DarinRowe](https://clawhub.ai/user/DarinRowe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darinrowe](https://clawhub.ai/user/darinrowe)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and execute advanced Git workflows, including history cleanup, conflict resolution, recovery from repository mistakes, and repository-structure decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested Git commands can alter repository history or working-tree state, especially reset, rebase, and force-push operations. <br>
-Mitigation: Review commands before running them, inspect repository state first, and create a backup branch before risky history edits. <br>
-Risk: Rewriting shared history can disrupt collaborators or overwrite remote work. <br>
-Mitigation: Avoid rewriting shared branches unless the tradeoff is explicit, and prefer force-with-lease over force-push when a rewritten remote update is intended. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and execute advanced Git workflows, including history cleanup, recovery from mistakes, conflict handling, branch archaeology, and repository topology decisions.
 
-## Reference(s): <br>
-- [Advanced Patterns](references/advanced-patterns.md) <br>
-- [History Surgery](references/history-surgery.md) <br>
-- [Recovery](references/recovery.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes safety checks, recommended command sequences, rollback paths, and shared-history warnings when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Git history operations such as reset, rebase, and force-push can discard local state or rewrite shared history when used on the wrong branch or commit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, inspect repository state first, and create a recovery branch before destructive or hard-to-reverse operations.
+
+Risk: Recovery commands can move a repository to the wrong historical state if the target reflog entry or commit is selected incorrectly.
+
+Mitigation: Inspect reflog and commit graph output before changing refs, and use the actual verified commit or reflog entry for recovery.
+
+Risk: Force-pushing after history surgery can overwrite collaborators' work on shared branches.
+
+Mitigation: Avoid rewriting shared history unless explicitly intended, and prefer force-with-lease when a rewritten branch must be updated remotely.
+
+## Reference(s):
+
+- [Advanced Patterns](references/advanced-patterns.md)
+- [History Surgery](references/history-surgery.md)
+- [Recovery](references/recovery.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with inline shell commands and concise decision guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include risk level, safe first checks, recommended commands, rollback path, and shared-history warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

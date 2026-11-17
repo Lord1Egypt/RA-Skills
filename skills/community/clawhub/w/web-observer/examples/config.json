@@ -1,0 +1,71 @@
+{
+  "notify": {
+    "channel": "telegram",
+    "to": "telegram:REPLACE_WITH_YOUR_CHAT_ID"
+  },
+
+  "uptime": {
+    "enabled": true,
+    "tickMinutes": 5,
+    "defaults": {
+      "timeoutMs": 10000,
+      "attempts": 2,
+      "retryDelayMs": 10000,
+      "failureThreshold": 2
+    },
+    "watches": [
+      {
+        "id": "site",
+        "url": "https://example.com",
+        "intervalMinutes": 5
+      },
+      {
+        "id": "health",
+        "url": "https://example.com/api/health",
+        "intervalMinutes": 5,
+        "expectBody": "\"status\":\"ok\"",
+        "failureThreshold": 1,
+        "timeoutMs": 5000
+      },
+      {
+        "id": "docs",
+        "url": "https://docs.example.com",
+        "intervalMinutes": 60,
+        "expectStatus": [200, [300, 399]],
+        "enabled": false
+      }
+    ]
+  },
+
+  "vercel": {
+    "enabled": false,
+    "project": "REPLACE_WITH_PROJECT_NAME_OR_ID",
+    "errors": {
+      "enabled": true,
+      "intervalMinutes": 15,
+      "windowMinutes": 20,
+      "threshold": 0,
+      "includeMessages": false
+    },
+    "budget": {
+      "enabled": true,
+      "intervalMinutes": 360,
+      "metrics": {
+        "lcp": 2500,
+        "inp": 200,
+        "cls": 0.1
+      }
+    }
+  },
+
+  "ga4": {
+    "enabled": false,
+    "property": "REPLACE_WITH_9_OR_10_DIGIT_PROPERTY_ID",
+    "digest": {
+      "enabled": true,
+      "cron": "0 9 * * 1",
+      "preset": "report",
+      "since": "7d"
+    }
+  }
+}

@@ -1,41 +1,66 @@
-## Description: <br>
-RAG Retriever V3 provides document retrieval with local or OpenAI embeddings, hybrid vector and BM25 search, cross-encoder reranking, and source citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RAG Retriever V3 indexes documents for retrieval-augmented generation, combining semantic embeddings, BM25 keyword search, reciprocal-rank fusion, reranking, and cited context output for agents.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and agent builders use this skill to index documents, retrieve relevant passages, and prepare cited RAG context for downstream answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document chunks and search queries may be sent to OpenAI when OpenAI is configured or OPENAI_API_KEY is present. <br>
-Mitigation: Use the Xenova/local embedding provider for private documents and avoid exposing OPENAI_API_KEY in the runtime environment. <br>
-Risk: The skill can download local model files and create local LanceDB collections during normal operation. <br>
-Mitigation: Run it in an approved workspace with controlled storage and review generated data directories before sharing or publishing artifacts. <br>
-Risk: Collection deletion paths can remove indexed data. <br>
-Mitigation: Restrict access to code paths or wrappers that call collection drop operations and keep backups of important indexes. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add document indexing, hybrid retrieval, reranking, and source citations to RAG workflows. It is suited for agents that need to retrieve relevant local document text and assemble cited prompt context.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown and CLI/API text output with cited retrieval results and RAG context] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local LanceDB collections and model cache files during use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: release metadata and package metadata) <br>
+Risk: Indexed documents are stored locally in the RAG database and may contain sensitive text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an approved local storage path, limit indexed content to permitted documents, and apply normal data-retention and access controls to the database.
+
+Risk: Auto embedding mode can send document text to a cloud embedding service when OPENAI_API_KEY is present.
+
+Mitigation: Configure the local Xenova provider explicitly for sensitive documents, and only provide OPENAI_API_KEY when cloud embedding upload is intended.
+
+Risk: Retrieved document text can carry prompt-injection content into downstream tool-using agents.
+
+Mitigation: Treat retrieved content as untrusted context, separate it from instructions, and apply prompt-injection controls before giving generated RAG prompts to tool-using agents.
+
+Risk: Model artifacts and dependencies can change or include vulnerable versions.
+
+Mitigation: Pin or prefetch model artifacts and update vulnerable dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuyonghao-123/skills/rag-retriever-v3)
+- [LanceDB documentation](https://lancedb.github.io/lancedb/)
+- [Transformers.js documentation](https://huggingface.co/docs/transformers.js/)
+- [Okapi BM25](https://en.wikipedia.org/wiki/Okapi_BM25)
+- [Reciprocal rank fusion paper](https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf)
+- [Cross-Encoder documentation](https://www.sbert.net/examples/applications/cross-encoder/README.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and JavaScript or CLI snippets; runtime retrieval returns text results, cited context, citation lists, and RAG prompt text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include source metadata and generated prompt context derived from indexed documents.]
+
+## Skill Version(s):
+
+3.0.0 (source: evidence.release.version, package.json, clawhub.json, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

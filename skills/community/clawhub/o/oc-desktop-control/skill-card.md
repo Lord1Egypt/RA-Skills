@@ -1,42 +1,52 @@
-## Description: <br>
-Remote desktop control and automation for capturing screenshots, controlling mouse and keyboard input, automating UI interactions, and managing local desktop tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remote desktop control and automation. Capture screenshots, control mouse and keyboard, automate UI interactions. Supports VNC, RDP, and local desktop environments.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[michealxie001](https://clawhub.ai/user/michealxie001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to let an agent inspect and control desktop sessions for UI automation, testing, server administration, and data-entry workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can control the active desktop, capture screenshots, type into applications, and open or close apps.
+
+Mitigation: Install it only when that control is intended; prefer a VM or test account and keep sensitive windows and secrets out of the session.
+
+Risk: The skill can read and write local files as the running user.
+
+Mitigation: Run it with a constrained account or workspace and review automation scripts before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and automation engineers use this skill to let an agent inspect and operate a local desktop session, including screenshots, mouse and keyboard actions, application control, filesystem actions, and scripted workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, images, files, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad control over a desktop session, including clicking, typing, opening or closing applications, and capturing screenshots. <br>
-Mitigation: Use a disposable VM or low-privilege test account, keep sensitive windows closed, and require human review before automation that types, clicks, opens or closes apps, or captures screenshots. <br>
-Risk: Automation scripts and file commands can read from or write to user-selected paths. <br>
-Mitigation: Restrict allowed scripts and file paths before execution, and review script contents before running them. <br>
-Risk: Remote desktop workflows can expose sensitive sessions if VNC or RDP access is configured insecurely. <br>
-Mitigation: Use private networks or SSH/VPN tunnels, avoid weak passwords, and do not expose remote desktop ports on public networks. <br>
+**Output Format:** [Markdown guidance, CLI commands, Python examples, automation scripts, text status output, file content, and base64 PNG screenshots.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [OpenClaw Desktop Control on ClawHub](https://clawhub.ai/michealxie001/oc-desktop-control) <br>
+**Other Properties Related to Output:** [May act on the active desktop and local filesystem using the privileges of the running user.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python examples, CLI text output, generated files, and base64 screenshot data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform desktop input, capture screenshots, open or close applications, run automation scripts, and read or write local files when invoked.] <br>
+1.0.0 (source: server release metadata and artifact version text)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact package version) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

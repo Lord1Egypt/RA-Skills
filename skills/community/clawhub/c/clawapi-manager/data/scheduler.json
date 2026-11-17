@@ -1,0 +1,51 @@
+{
+  "nodes": {
+    "central": {
+      "node_id": "central",
+      "name": "Central",
+      "ip": "43.163.225.27",
+      "status": "online",
+      "health_score": 100.0,
+      "cpu_usage": 0.0,
+      "memory_usage": 0.0,
+      "active_tasks": 0,
+      "total_tasks": 0,
+      "success_rate": 1.0,
+      "avg_response_time": 0.0,
+      "last_heartbeat": 1772470935.3102427,
+      "created_at": 1772470935.310242
+    },
+    "silicon": {
+      "node_id": "silicon",
+      "name": "Silicon",
+      "ip": "170.106.73.160",
+      "status": "online",
+      "health_score": 100.0,
+      "cpu_usage": 0.0,
+      "memory_usage": 0.0,
+      "active_tasks": 0,
+      "total_tasks": 0,
+      "success_rate": 1.0,
+      "avg_response_time": 0.0,
+      "last_heartbeat": 1772470935.3102455,
+      "created_at": 1772470935.3102455
+    },
+    "tokyo": {
+      "node_id": "tokyo",
+      "name": "Tokyo",
+      "ip": "43.167.192.145",
+      "status": "online",
+      "health_score": 100.0,
+      "cpu_usage": 0.0,
+      "memory_usage": 0.0,
+      "active_tasks": 0,
+      "total_tasks": 0,
+      "success_rate": 1.0,
+      "avg_response_time": 0.0,
+      "last_heartbeat": 1772470935.3102477,
+      "created_at": 1772470935.3102474
+    }
+  },
+  "tasks": {},
+  "performance_history": []
+}

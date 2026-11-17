@@ -1,26 +1,22 @@
-Read `.lens/AXIOM.yaml`, `.lens/ETHOS.yaml`, `.lens/MODUS.yaml`, and `.lens/SCOPE.json`. If `.lens/TRACE.txt` exists and is not empty, read it as well to understand the surrounding conversational context.
+Read `~/.lens/AXIOM.yaml`, `~/.lens/ETHOS.yaml`, `~/.lens/MODUS.yaml`, and `~/.lens/SCOPE.json`. If `~/.lens/TRACE.txt` is non-empty, read it for recent context.
 
-**MISSION:** Act as a Discourse Analyst, Personality Psychologist, and Psycholinguist. Synchronize and evolve the subject's Trinity Nodes to improve their digital shadow. Generate deep understanding through your questions; do not pursue superficial information that has no benefit in helping future prompts replicate the user's mind, character, and speech.
+**OBJECTIVE:** Calibrate the subject's Trinity Nodes (`AXIOM`, `ETHOS`, `MODUS`) by asking ONE concrete scenario or trade-off question that elicits both decision logic (`ETHOS`) and natural phrasing (`MODUS`).
 
 **PROTOCOL:**
-0. **Self-Repair & Cron Sync:**
-   - Check the message that triggered this session. Does it contain `INTERVIEW_READY`? If NO: You are running an outdated cron job. Run `node skills/lens/scripts/interview.js` via the `exec` tool.
-   - Next, check the output of the script. If it includes `BOOTSTRAP_LENS`, use the `cron` tool to update the `lens-interview` job to match the exact payload and schedule output by the script.
-   - Proceed to Step 1.
+0. **Preflight & Schedule Sync:**
+   - If the trigger message lacks `INTERVIEW_READY`, run `node` on [scripts/interview.js](../scripts/interview.js) from the skill directory (outside the workspace sandbox if needed to access `~/.lens/`) to decrement the question counter and sync `~/.lens/SCOPE.json`.
+   - If stdout contains `BOOTSTRAP_LENS` and the `cron` tool is available, register or update any job in `jobs`, remove any job listed in `removeJobs` via the `cron` tool, and note in your response when recurring schedules are first registered or updated.
 
-1. **Scan:** Identify a section in the Trinity Nodes that is sparse or missing detail. Cross-reference with `.lens/TRACE.txt` (if available) to anchor your question in expressed thoughts, projects, or behaviors.
-2. **Contextual Scaling:** Tailor the query based on the current lifecycle phase in `.lens/SCOPE.json`:
-   - **Onboarding:** If this is the first run or phase is onboarding, lead with: "I've just activated your LENS. It’s a background process that helps me see the world through your eyes, evolving as we work together. I’ll reach out with questions from time to time. Let’s start with this one: [Question]?"
-   - **Stabilizing:** Focus on decision-logic and active interests (`core_personality_and_motivations`).
-   - **Habitual:** Focus on nuanced philosophical alignment and edge-case reactions.
-3. **Select:** Choose ONE specific topic to query. Prioritize depth and clarity over volume.
-4. **Execute:** Directly output a concise, surgical question for the human in the current session. Follow the subject's MODUS (Collaborative, surgical, zero-servility).
+1. **Target Selection:** Identify an uncalibrated `[Pending Input]` placeholder or under-defined key in `~/.lens/AXIOM.yaml`, `~/.lens/ETHOS.yaml`, or `~/.lens/MODUS.yaml`.
+2. **Phase Targeting (`~/.lens/SCOPE.json` -> `interview.phase`):**
+   - **`onboarding`:** Target foundational facts (`AXIOM`) and core operational preferences. On the very first onboarding question (`questions: 14` after decrement, or all nodes uncalibrated), prefix briefly: *"I've activated your LENS in `~/.lens/` (configured for calibration questions and nightly session distillation per `~/.lens/SCOPE.json`) so I can learn how you think and write as we work together. Let's start with a quick one: [Question]"*
+   - **`stabilizing`:** Target `ETHOS` trade-off rules (`decision_heuristics`, `conflict_protocol`, `quality_standards`) via a realistic "X vs. Y" dilemma.
+   - **`habitual`:** Target nuanced edge cases, aesthetic/taste distinctions, or how the subject would phrase a response to a specific scenario (`ETHOS` + `MODUS`).
+3. **Question Formulation:** Draft **ONE** specific question (1-2 sentences maximum). Never ask abstract self-report questions; always frame a concrete scenario, trade-off, or forced choice:
+   - *Invalid (Abstract):* "How do you handle conflict or disagreements on a team?"
+   - *Valid (Concrete Trade-Off):* "If a collaborator ships code that works but violates your structural standards right before a deadline, do you merge it and clean it up later or block it on the spot?"
+4. **Delivery:** Output the question directly in a natural, conversational tone calibrated to `~/.lens/MODUS.yaml` (direct, zero servility, no bullet points).
 
-**CRITICAL:** Stop immediately after sending the question. Do not simulate a response, do not use the `message` tool, and do not continue the turn. The goal is to wait for the human's manual input in the main chat.
-
-**GOAL:** Continuous refinement and synchronization of the LENS.
-
-**SAFETY:**
-- **Add Only:** The interview process is for data acquisition only.
-- **No Modification:** Never edit, distill, or replace existing data in the Trinity Nodes during this turn.
-- **Hand-off:** All refinement and structural updates are handled exclusively by the `lens-distillation` routine.
+**EXECUTION CONSTRAINTS:**
+- **Question Turn (Read-Only on YAML):** Stop immediately after outputting the single question. Do not modify `~/.lens/AXIOM.yaml`, `~/.lens/ETHOS.yaml`, or `~/.lens/MODUS.yaml` during the question turn, do not simulate a reply, and do not call any external `message` tool.
+- **Reply Turn (Distillation):** When the user replies in the next turn, extract their decision logic (`AXIOM`/`ETHOS`) and phrasing (`MODUS`) directly from their live reply into `~/.lens/AXIOM.yaml`, `~/.lens/ETHOS.yaml`, and `~/.lens/MODUS.yaml` per [prompts/distillation.md](./distillation.md) (skipping Step 0 `TRACE.txt` harvesting).

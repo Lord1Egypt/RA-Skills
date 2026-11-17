@@ -1,46 +1,56 @@
-## Description: <br>
-Tracks viral Bilibili short-drama content through RedFox API queries, clusters themes, and produces local HTML daily reports with structured trend analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks Bilibili short-drama content, filters popular works by likes, clusters themes, and generates a local HTML daily report with creative trend analysis.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-Short-drama creators, MCN operators, production teams, and content strategists use this skill to monitor Bilibili short-drama trends, compare themes, identify high-engagement works, and generate daily trend reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RedFox API key and calls redfox.hk to fetch Bilibili short-drama data. <br>
-Mitigation: Use a revocable API key stored in REDFOX_API_KEY, review the key scope before use, and avoid exposing credentials in prompts, logs, code, or generated files. <br>
-Risk: The skill creates local report and cache files and may open generated HTML in the browser. <br>
-Mitigation: Review generated HTML reports before sharing them and run the skill in an environment where local report and cache output paths are acceptable. <br>
-Risk: The security guidance notes that the subscription feature and some command examples are unreliable in this version. <br>
-Mitigation: Prefer one-off report generation for important workflows and verify the installed script path and output directory before relying on scheduled or subscription behavior. <br>
+## Use Case:
 
+Short-drama creators, MCN operators, production teams, and content strategists use this skill to monitor Bilibili short-drama trends, compare themes, and prepare daily creative trend reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/playlet-bili-feed) <br>
-- [Publisher profile](https://clawhub.ai/user/redfox-data) <br>
-- [RedFox API key setup](https://redfox.hk/settings/api-keys?souce=github) <br>
-- [Core workflow](references/core_workflow.md) <br>
-- [Usage examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown trend summary, shell command examples, and locally generated HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY; creates local cache/report files and may open generated HTML reports in the browser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may automatically open locally generated HTML built from third-party data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports before broad use and require HTML escaping, URL validation, a restrictive content security policy, and an option to disable browser auto-open.
+
+Risk: Queries and the API key are sent to redfox.hk.
+
+Mitigation: Use only a revocable RedFoxHub API key and verify its scope, validity period, and reset process before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/redfox-data/skills/playlet-bili-feed)
+- [Core Workflow](references/core_workflow.md)
+- [Usage Examples](references/examples.md)
+- [RedFoxHub](https://redfox.hk/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown trend report, shell commands, configuration guidance, and generated local HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDFOX_API_KEY; generated reports are saved locally and may open in a browser.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

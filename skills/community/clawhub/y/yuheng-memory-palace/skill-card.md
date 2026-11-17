@@ -1,40 +1,55 @@
-## Description: <br>
-Memory Palace helps an AI assistant preserve long-conversation context, track multi-step tasks, record decisions, and turn important knowledge into long-term memory using Method of Loci techniques. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Palace helps an agent use Method of Loci style spatial and image encoding to retain long conversation context, track multi-step work, record decisions, and archive important user or project information.
 
-## Publisher: <br>
-[horizoncove](https://clawhub.ai/user/horizoncove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[horizoncove](https://clawhub.ai/user/horizoncove)
 
-## Use Case: <br>
-Developers and external agent users can use this skill to help an assistant retain important context, task state, decisions, and user or project knowledge across long or complex work sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save user and project details into long-term memory without clear opt-in or deletion controls. <br>
-Mitigation: Require explicit confirmation before saving any memory, avoid secrets or sensitive personal data, and keep a way to inspect, edit, delete, or disable saved memories. <br>
+## Use Case:
 
+External users and agent builders use this skill to guide an agent in preserving key context during long conversations, tracking complex tasks, and organizing important decisions or knowledge into memory-palace locations.
 
-## Reference(s): <br>
-- [Memory Palace Coding Table](references/coding-table.md) <br>
-- [Memory Palace History and Examples](references/history.md) <br>
-- [ClawHub Skill Release Page](https://clawhub.ai/horizoncove/yuheng-memory-palace) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown and plain-text memory guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide the agent to create or update long-term memory records when important context is identified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill encourages persistent memory of user preferences and project details without clear permission or review controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before saving any memory, show exactly what will be stored, avoid sensitive data, use isolated storage, and provide review and deletion controls.
+
+Risk: Stored context can become outdated, incorrect, or broader than the user intended.
+
+Mitigation: Review memory entries periodically, keep them narrowly scoped to the active user or project, and delete or revise entries when context changes.
+
+## Reference(s):
+
+- [Memory Palace Coding Table](references/coding-table.md)
+- [Memory Palace History and Examples](references/history.md)
+- [ClawHub Skill Page](https://clawhub.ai/horizoncove/skills/yuheng-memory-palace)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured memory notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include suggested memory locations, mnemonic imagery, task-tracking notes, and archival memory content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

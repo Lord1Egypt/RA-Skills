@@ -1,40 +1,60 @@
-## Description: <br>
-Assist with installing, configuring, and using the Apple Mail channel plugin for OpenClaw/Hermes on macOS to monitor and respond to emails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists with installing, configuring, and using the Apple Mail channel plugin for OpenClaw and Hermes on macOS.
 
-## Publisher: <br>
-[jehadurre](https://clawhub.ai/user/jehadurre) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jehadurre](https://clawhub.ai/user/jehadurre)
 
-## Use Case: <br>
-Developers and operators use this skill to set up the @jehadurre/openclaw-apple-mail channel on macOS, including installation, configuration examples, and troubleshooting for email monitoring and replies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The related plugin can access Apple Mail and may process private, business, or customer email if configured too broadly. <br>
-Mitigation: Install only when Apple Mail access is intended, use a narrow sender allowlist, avoid allowFrom ["*"] except on dedicated low-risk accounts, and keep archiveOnReply disabled until the setup is tested. <br>
+## Use Case:
 
+Developers and operators use this skill to set up Apple Mail as an OpenClaw or Hermes email channel on macOS, including installation, account configuration, monitoring, troubleshooting, and common multi-account patterns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jehadurre/apple-mail-setup) <br>
-- [Apple Mail Plugin Package](https://www.npmjs.com/package/@jehadurre/openclaw-apple-mail) <br>
-- [Apple Mail Plugin Documentation](https://openclaw-apple-mail.jehadurre.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focused on macOS Apple Mail, OpenClaw or Hermes setup, and plugin configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence, package.json, skill.json, CHANGELOG) <br>
+Risk: Example configurations can allow processing email from any sender.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit sender allowlists and use a dedicated or least-privileged mailbox where possible.
+
+Risk: The setup grants an external Apple Mail plugin access to mailbox automation through macOS Automation permissions.
+
+Mitigation: Pin or verify the external plugin before granting Mail.app automation access and review permissions before deployment.
+
+Risk: Automated replies or archiving can affect live mailbox state.
+
+Mitigation: Require manual approval before replies or archiving, and leave archiveOnReply disabled unless the workflow intentionally archives handled threads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jehadurre/skills/apple-mail-setup)
+- [Apple Mail channel documentation](https://openclaw-apple-mail.jehadurre.me)
+- [Apple Mail plugin package](https://www.npmjs.com/package/@jehadurre/openclaw-apple-mail)
+- [Skill package](https://www.npmjs.com/package/@jehadurre/openclaw-apple-mail-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, Apple Mail, Node.js 18 or newer, and OpenClaw 2026.1.0 or Hermes.]
+
+## Skill Version(s):
+
+1.0.1 (source: skill.json, package.json, CHANGELOG, released 2026-06-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-AI-ready skill to format and publish Markdown articles to WeChat Official Accounts using Wenyan CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-ready skill to format and publish Markdown articles to WeChat Official Accounts using Wenyan CLI.
 
-## Publisher: <br>
-[caol64](https://clawhub.ai/user/caol64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caol64](https://clawhub.ai/user/caol64)
 
-## Use Case: <br>
-Developers and content teams use this skill to guide agents through formatting Markdown articles and publishing them to WeChat Official Accounts with Wenyan CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent using this skill can publish externally through a delegated WeChat Official Account. <br>
-Mitigation: Require manual final approval before any preview or publish submission. <br>
-Risk: WeChat AppID and secret values may be exposed if credential checks print them into logs or chat. <br>
-Mitigation: Store credentials in protected environment configuration and avoid commands that echo secrets. <br>
+## Use Case:
 
+External creators, publishers, and agents use this skill to format Markdown articles for WeChat Official Accounts and prepare live publication through Wenyan CLI. It is suited to workflows that need themed article layout, code highlighting, metadata-driven publishing, and media upload handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caol64/wenyan-publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and YAML frontmatter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WECHAT_APP_ID and WECHAT_APP_SECRET environment variables and an installed wenyan-cli.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can publish live WeChat content and upload images using account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inject WeChat credentials securely only at publish time and require explicit final confirmation before running any live publish or upload command.
+
+Risk: The workflow relies on a globally installed third-party Wenyan CLI.
+
+Mitigation: Use an isolated environment and pin and verify the Wenyan CLI version before installation.
+
+Risk: Incorrect metadata, missing images, or IP restrictions can cause failed or unintended publishing behavior.
+
+Mitigation: Validate required YAML frontmatter, confirm referenced image paths, and ensure the environment's outbound IP is allowed in the WeChat account settings before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caol64/skills/wenyan-publish)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and YAML frontmatter examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WeChat credentials at publish time and a Wenyan CLI installation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

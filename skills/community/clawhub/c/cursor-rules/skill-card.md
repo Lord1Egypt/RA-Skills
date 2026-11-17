@@ -1,41 +1,60 @@
-## Description: <br>
-Guides developers using Cursor IDE rules, .cursorrules, MDC rule files, Agent mode, and MCP integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cursor IDE guidance for configuring .cursorrules, MDC rules, Agent mode, and MCP integration.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to get Cursor IDE guidance for AI-assisted coding workflows, rule configuration, Agent mode, and MCP integration.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Agent or yolo mode may execute commands without sufficient review.
+
+Mitigation: Use yolo mode only in disposable or sandboxed projects and review proposed commands and diffs before applying them.
+
+Risk: MCP filesystem examples can expose broader local files than intended.
+
+Mitigation: Configure MCP servers with the narrowest practical filesystem path.
+
+Risk: MCP GitHub examples can expose tokens if copied into committed configuration.
+
+Mitigation: Keep GitHub tokens out of committed files and store credentials through local secret-management practices.
+
+Risk: Unpinned MCP package examples can change behavior over time.
+
+Mitigation: Pin package versions where possible before adopting the examples.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Cursor project and global rules, choose Cursor AI workflows, and integrate MCP servers for AI-assisted development. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Cursor Agent mode and MCP integrations can make file changes or run commands with broad project access. <br>
-Mitigation: Keep command confirmations enabled for sensitive projects, review generated diffs before accepting them, and limit MCP filesystem access to the folders needed. <br>
-Risk: MCP or GitHub integrations may expose credentials if tokens are stored in shared project files. <br>
-Mitigation: Use least-privilege tokens and keep secrets outside shared project files. <br>
+**Output Format:** [Markdown guidance with configuration examples, tables, and inline code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/cursor-rules) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangifonly) <br>
+**Other Properties Related to Output:** [Includes Cursor rule examples, keyboard shortcut tables, MCP configuration examples, and workflow guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with configuration snippets and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable guidance skill; no bundled code or hidden actions.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

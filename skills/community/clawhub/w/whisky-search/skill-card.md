@@ -1,46 +1,57 @@
-## Description: <br>
-Searches WhiskySpace for whisky bottles, brands, distilleries, prices, ratings, regions, cask types, recommendations, and WhiskySpace page links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches WhiskySpace API data for whisky and brand information, including prices, ratings, regions, cask types, recommendations, and canonical WhiskySpace page URLs.
 
-## Publisher: <br>
-[fengci](https://clawhub.ai/user/fengci) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengci](https://clawhub.ai/user/fengci)
 
-## Use Case: <br>
-External users and agents use this skill to answer whisky search, comparison, recommendation, detail lookup, and WhiskySpace URL questions using WhiskySpace API responses as the source of truth. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Whisky-related searches and URL lookups can be sent to WhiskySpace's public API. <br>
-Mitigation: Avoid private information in search terms and use explicit whisky-related wording when invoking the skill. <br>
-Risk: Prices, ratings, and review counts may be stale, sparse, or absent in API responses. <br>
-Mitigation: Show recorded dates and review counts when available, and state clearly when a field is not provided. <br>
-Risk: Incorrect route construction could misidentify WhiskySpace pages or confuse them with official brand websites. <br>
-Mitigation: Use only API-returned identifiers and the declared canonical WhiskySpace routes; use the API website field only for official websites. <br>
+## Use Case:
 
+External users and agents use this skill to search, compare, and retrieve concise whisky or brand information from WhiskySpace without guessing missing fields or undeclared page routes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fengci/whisky-search) <br>
-- [WhiskySpace search API](https://www.whiskyspace.com/api/search) <br>
-- [WhiskySpace whisky details API](https://www.whiskyspace.com/api/whiskies/{slug_or_id}) <br>
-- [WhiskySpace brand API](https://www.whiskyspace.com/api/brands/{identifier}) <br>
-- [WhiskySpace search filters API](https://www.whiskyspace.com/api/search/filters) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Concise Markdown or plain text answers with WhiskySpace URLs and optional curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses API-returned fields, states when requested data is unavailable, and keeps link-only answers minimal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Whisky-related questions may be sent to WhiskySpace API endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether sending those queries to WhiskySpace is acceptable for the intended use before installing or enabling the skill.
+
+Risk: Whisky prices, ratings, and page identifiers can be missing or stale in API responses.
+
+Mitigation: Show recorded dates when available and state that missing fields are unavailable rather than filling gaps from naming patterns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengci/skills/whisky-search)
+- [WhiskySpace search API](https://www.whiskyspace.com/api/search)
+- [WhiskySpace whisky details API](https://www.whiskyspace.com/api/whiskies/{slug_or_id})
+- [WhiskySpace brands API](https://www.whiskyspace.com/api/brands)
+- [WhiskySpace search filters API](https://www.whiskyspace.com/api/search/filters)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or plain text with concise whisky facts, links, and occasional inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses API-returned data and declared WhiskySpace URL patterns; reports unavailable fields instead of guessing.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn74a5v0hv6qt84e6cgb1yfhyd824zv4",
+  "name": "Reliability Evidence Pack",
   "slug": "reliability-evidence-pack",
   "version": "2.0.2",
-  "publishedAt": 1772488435039
+  "description": "Runtime system for agent operational reliability through artifact recording and validation",
+  "author": "ChristineOpenclaw",
+  "license": "MIT",
+  "homepage": "https://github.com/ChristineOpenclaw/rep",
+  "repository": "https://github.com/ChristineOpenclaw/rep",
+  "required_binaries": [
+    {
+      "name": "node",
+      "version": ">=16.0.0",
+      "optional": false,
+      "install_hint": "Install from https://nodejs.org (LTS version recommended)"
+    }
+  ],
+  "environment_variables": [],
+  "capabilities": [
+    "file:read",
+    "file:write",
+    "process:execute"
+  ],
+  "privilege_level": "user",
+  "autonomous_invocation": false,
+  "persistence": "optional"
 }

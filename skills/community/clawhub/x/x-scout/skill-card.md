@@ -1,49 +1,66 @@
-## Description: <br>
-X/Twitter intelligence scraper. Search tweets, scrape profiles, pull comments, auto-transcribe videos. Classify tweets as replicable methods vs content. CLI tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X-Scout is a CLI skill for searching X/Twitter, scraping profiles and replies, transcribing embedded videos, and classifying tweets as replicable methods or general content.
 
-## Publisher: <br>
-[aces1up](https://clawhub.ai/user/aces1up) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aces1up](https://clawhub.ai/user/aces1up)
 
-## Use Case: <br>
-External developers, analysts, and content researchers use this skill to collect X/Twitter posts, profile posts, replies, and tweet intelligence for workflow and content research. It can classify posts as replicable methods or general content and can include video transcripts when optional provider credentials are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Usage telemetry is sent to ClawAgents during setup and execution. <br>
-Mitigation: Review the telemetry behavior before installation and use the skill only when telemetry sharing is acceptable. <br>
-Risk: Provider API keys can be stored in plaintext .env and ~/.x-scout/config.json files. <br>
-Mitigation: Protect local configuration files, restrict filesystem permissions, and rotate keys if the host or files are exposed. <br>
-Risk: The tool can modify the Python environment by installing packages during setup or at runtime. <br>
-Mitigation: Run it inside a virtual environment and review dependency installation paths before use. <br>
-Risk: Tweet text or media-derived content may be sent to external AI or transcription providers when optional features are enabled. <br>
-Mitigation: Use --no-methods or --no-transcribe when external processing is not appropriate. <br>
+## Use Case:
 
+External developers and content research teams use X-Scout to gather X/Twitter posts, profile activity, replies, and video transcripts for social intelligence and method discovery.
 
-## Reference(s): <br>
-- [X-Scout ClawHub page](https://clawhub.ai/aces1up/x-scout) <br>
-- [Publisher profile](https://clawhub.ai/user/aces1up) <br>
-- [X-Scout homepage](https://clawagents.dev/x-scout) <br>
-- [TwitterAPI.io](https://twitterapi.io) <br>
-- [OpenRouter](https://openrouter.ai) <br>
-- [Deepgram](https://deepgram.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [CLI text tables or JSON, with setup and usage guidance in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TWITTERAPI_KEY for primary data access; optional OpenRouter, Cerebras, and Deepgram keys enable method detection, query optimization, and transcription.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Usage telemetry is reported to clawagents.dev during setup and normal CLI runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review telemetry acceptability before installation and run only where this reporting is approved.
+
+Risk: API keys may be stored in plaintext config files in the project directory and home directory.
+
+Mitigation: Use isolated credentials, restrict file access, and rotate keys if generated config files may have been exposed.
+
+Risk: Tweet content, queries, media audio, and classification prompts may be processed by external services.
+
+Mitigation: Avoid submitting confidential or regulated data and review the service terms for TwitterAPI.io, OpenRouter, Cerebras, and Deepgram.
+
+Risk: The setup script has an input handling flaw reported by the security evidence.
+
+Mitigation: Review setup.sh before execution and avoid running setup with privileged accounts.
+
+## Reference(s):
+
+- [X-Scout homepage](https://clawagents.dev/x-scout)
+- [ClawHub X-Scout listing](https://clawhub.ai/aces1up/skills/x-scout)
+- [TwitterAPI.io](https://twitterapi.io)
+- [OpenRouter](https://openrouter.ai)
+- [Cerebras API](https://api.cerebras.ai/v1/chat/completions)
+- [Deepgram](https://deepgram.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Terminal table text or structured JSON from CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TWITTERAPI_KEY; optional OPENROUTER_API_KEY, CEREBRAS_API_KEYS, and DEEPGRAM_API_KEY enable classification, query optimization, and transcription.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

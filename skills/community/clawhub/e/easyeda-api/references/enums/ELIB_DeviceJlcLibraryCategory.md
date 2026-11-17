@@ -1,11 +1,11 @@
 # ELIB\_DeviceJlcLibraryCategory enum
 
-嘉立创贴片库类别
+EasyEDA SMT library category
 
 ## Signature
 
 ```typescript
-declare enum ELIB_DeviceJlcLibraryCategory 
+enum ELIB_DeviceJlcLibraryCategory
 ```
 
 ## Enumeration Members
@@ -14,48 +14,35 @@ declare enum ELIB_DeviceJlcLibraryCategory
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 EXTEND
 
-
 </td><td>
 
-`"extend"`
-
+`'extend'`
 
 </td><td>
-
-扩展库
-
 
 </td></tr>
 <tr><td>
 
 STANDARD
 
-
 </td><td>
 
-`"standard"`
-
+`'standard'`
 
 </td><td>
-
-基础库
-
 
 </td></tr>
 </tbody></table>

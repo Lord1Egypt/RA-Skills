@@ -1,45 +1,63 @@
-## Description: <br>
-Provides YouTube channel statistics, video data, and analytics reporting through youtube-analytics-cli for channel, video, report, and analytics group workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides YouTube channel statistics, video details, and analytics reporting through youtube-analytics-cli.
 
-## Publisher: <br>
-[bin-huang](https://clawhub.ai/user/bin-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bin-huang](https://clawhub.ai/user/bin-huang)
 
-## Use Case: <br>
-Developers, analysts, and creators use this skill to fetch YouTube channel or video data, run authenticated analytics reports, and prepare JSON-backed reporting for content performance decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth credentials and refresh tokens can expose private YouTube analytics if mishandled. <br>
-Mitigation: Use least-privilege OAuth scopes, keep credentials and refresh tokens out of chat and logs, and restrict permissions on local credential files. <br>
-Risk: Analytics commands can access account-specific channel, group, and monetization data. <br>
-Mitigation: Use this skill only for YouTube analytics tasks and verify OAuth credentials, scopes, and report parameters before running private reports. <br>
+## Use Case:
 
+Developers, analysts, and YouTube channel operators use this skill to fetch channel and video data, run analytics reports with dimensions and filters, and inspect analytics groups through a CLI.
 
-## Reference(s): <br>
-- [YouTube Data API v3](https://developers.google.com/youtube/v3) <br>
-- [YouTube Analytics API v2](https://developers.google.com/youtube/analytics) <br>
-- [YouTube Analytics Reports](https://developers.google.com/youtube/analytics/reference/reports/query) <br>
-- [YouTube Analytics Dimensions](https://developers.google.com/youtube/analytics/dimensions) <br>
-- [YouTube Analytics Metrics](https://developers.google.com/youtube/analytics/metrics) <br>
-- [YouTube Analytics Groups](https://developers.google.com/youtube/analytics/reference/groups/list) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI commands may read YouTube API data and return pretty-printed or compact JSON; errors are JSON on stderr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to install and run an unpinned third-party CLI that handles OAuth refresh tokens and private YouTube analytics data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, verified CLI version in an isolated environment before granting access to YouTube account data.
+
+Risk: OAuth credentials, refresh tokens, client secrets, and credential files could expose private analytics data if shared in chat or logs.
+
+Mitigation: Never paste secrets or credential file contents into chat or logs, and grant only the minimum YouTube OAuth scopes needed.
+
+Risk: The monetary-read scope can expose revenue-related analytics.
+
+Mitigation: Avoid the monetary-read scope unless revenue reporting is required for the task.
+
+## Reference(s):
+
+- [YouTube Analytics CLI documentation](https://github.com/Bin-Huang/youtube-analytics-cli)
+- [YouTube Data API v3](https://developers.google.com/youtube/v3)
+- [YouTube Analytics API v2](https://developers.google.com/youtube/analytics)
+- [YouTube Analytics reports query reference](https://developers.google.com/youtube/analytics/reference/reports/query)
+- [YouTube Analytics dimensions](https://developers.google.com/youtube/analytics/dimensions)
+- [YouTube Analytics metrics](https://developers.google.com/youtube/analytics/metrics)
+- [ClawHub skill page](https://clawhub.ai/bin-huang/skills/youtube-analytics-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI output references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI commands return pretty-printed JSON by default or compact JSON when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

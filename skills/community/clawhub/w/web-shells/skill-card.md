@@ -1,40 +1,60 @@
-## Description: <br>
-Provides diverse web shell samples in PHP, ASP, ASPX, JSP, Python, and Perl for detection, malware analysis, and authorized security testing. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Provides diverse web shell samples in PHP, ASP, ASPX, JSP, Python, and Perl for detection, malware analysis, and authorized security testing.
 
-## Publisher: <br>
-[PandaAI-1337](https://clawhub.ai/user/PandaAI-1337) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pandaai-1337](https://clawhub.ai/user/pandaai-1337)
 
-## Use Case: <br>
-Security teams, researchers, and developers use this skill to inspect web-shell specimens for authorized detection testing, malware analysis, IDS/IPS signature validation, and forensics research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled web-shell specimens could be copied, packaged, executed, or deployed into a reachable web environment. <br>
-Mitigation: Keep the files isolated and do not copy, package, execute, or deploy them unless working in a controlled lab with explicit permission. <br>
-Risk: Use outside an authorized scope could support harmful access attempts or policy violations. <br>
-Mitigation: Use only for authorized security research, detection testing, education, or other approved work with clear scope and permission. <br>
+## Use Case:
 
+Security researchers, detection engineers, and incident responders use this skill to inspect web shell samples, validate monitoring controls, and support malware analysis in authorized lab or test environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PandaAI-1337/web-shells) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with reference files containing web-shell sample code and file lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Contains live web-shell specimens that should remain isolated and unused outside authorized, controlled environments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release includes deployable web-shell samples for command execution, upload, file browsing, and credential disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in an isolated lab and do not copy or deploy the samples to production or internet-accessible servers.
+
+Risk: An agent could treat reference scripts as runnable operational steps.
+
+Mitigation: Review agent output before execution and prevent agents from running or deploying the bundled reference scripts.
+
+## Reference(s):
+
+- [Skill Definition](artifact/SKILL.md)
+- [Web Shell Backdoor List](artifact/references/Web-Shells/backdoor_list.txt)
+- [Vtiger Vulnerable Extension README](artifact/references/Web-Shells/Vtiger/README.md)
+- [ColdFusion Shell Sample](artifact/references/Web-Shells/CFM/shell.cfm.html)
+- [FuzzDB Command Execution Shell](artifact/references/Web-Shells/FuzzDB/cmd.sh)
+- [FuzzDB Directory Listing Shell](artifact/references/Web-Shells/FuzzDB/list.sh)
+- [FuzzDB Upload Shell](artifact/references/Web-Shells/FuzzDB/up.sh)
+- [Laudanum JSP WAR Descriptor](artifact/references/Web-Shells/laudanum-1.0/jsp/warfiles/WEB-INF/web.xml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional code, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference materials include executable web-shell samples and should be handled as evidence for authorized analysis, not deployed automatically.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

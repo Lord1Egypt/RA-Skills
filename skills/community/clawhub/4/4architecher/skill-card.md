@@ -1,54 +1,68 @@
-## Description: <br>
-Helps users turn product requirements into Chinese-language 4A enterprise architecture deliverables, including a master layered architecture diagram, four layer-specific diagrams, supporting documentation, and draw.io XML outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于产品需求生成中文 4A 分层架构蓝图，通过苏格拉底式澄清逐步产出 4A 总览主图、业务架构图、应用架构图、数据架构图、技术架构图及配套文档，图形默认以可导入 draw.io 的 XML 代码块呈现。
 
-## Publisher: <br>
-[doertiger](https://clawhub.ai/user/doertiger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[doertiger](https://clawhub.ai/user/doertiger)
 
-## Use Case: <br>
-Product managers, enterprise architects, solution architects, and delivery teams use this skill to clarify product boundaries, ask focused follow-up questions, and produce reusable 4A architecture assets. It is especially useful when a team needs draw.io XML diagrams, layer-by-layer architecture notes, mapping matrices, assumptions, validation records, and next-step guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture prompts may include confidential product, system, data, or operating-model details. <br>
-Mitigation: Avoid sharing sensitive internal information unless it is appropriate for the agent environment, and redact confidential details before use. <br>
-Risk: Generated diagrams, draw.io XML, and recommendations may contain assumptions or incorrect architecture mappings. <br>
-Mitigation: Review assumptions, XML structure, layer mappings, and generated documentation before using the outputs for planning, approvals, or implementation. <br>
-Risk: External authority validation may depend on public sources that are incomplete, outdated, or not applicable to the user's context. <br>
-Mitigation: Prefer primary sources, record source dates and unresolved uncertainty, and have domain reviewers confirm high-impact claims. <br>
+## Use Case:
 
+Developers, product teams, solution architects, and enterprise architects use this skill to turn product requirements into structured 4A architecture deliverables for planning, design alignment, technical review, procurement, or roadmap discussion. It is especially oriented toward Chinese-language enterprise architecture work where draw.io XML diagrams and supporting documentation are expected outputs.
 
-## Reference(s): <br>
-- [4A Framework Reference](references/4a-framework.md) <br>
-- [Authority Validation Reference](references/authority-validation.md) <br>
-- [Deliverable Template](references/deliverable-template.md) <br>
-- [Draw.io XML Template](references/drawio-xml-template.md) <br>
-- [Layered Architecture Specification](references/layered-architecture-spec.md) <br>
-- [ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393.html) <br>
-- [The Open Group TOGAF Standards](https://publications.opengroup.org/standards/togaf) <br>
-- [ArchiMate and TOGAF Complementary Guidance](https://help.opengroup.org/hc/en-us/articles/32115987894930-How-the-ArchiMate-Language-and-the-TOGAF-Standard-Complement-Each-Other) <br>
-- [Business Architecture Guild](https://www.businessarchitectureguild.org/) <br>
-- [DAMA-DMBOK](https://dama.org/learning-resources/dama-data-management-body-of-knowledge-dmbok/) <br>
-- [NIST AI Risk Management Framework 1.0](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10) <br>
-- [NIST Zero Trust Architecture](https://www.nist.gov/publications/zero-trust-architecture) <br>
-- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with draw.io XML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one 4A master diagram, four layer-specific architecture diagrams, supporting architecture documentation, mapping matrices, validation notes, assumptions, and next-step recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Architecture recommendations may be incomplete or misleading when the product boundary, target users, or business goals are unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the product scope and key assumptions early, then review each generated diagram and document before using them for design or compliance decisions.
+
+Risk: Externally sourced claims about regulations, standards, products, or market facts may be stale, misapplied, or insufficient for the user's jurisdiction or industry.
+
+Mitigation: Use current authoritative sources, record provenance for key claims, and separate user-provided facts, external evidence, and model inferences in the final deliverable.
+
+Risk: Generated draw.io XML can encode an incorrect architecture even when the file format is importable.
+
+Mitigation: Validate the imported diagrams against the 4A mapping checks and have domain owners review business, application, data, and technology relationships.
+
+## Reference(s):
+
+- [4A Framework Reference](references/4a-framework.md)
+- [Authority Validation Reference](references/authority-validation.md)
+- [Deliverable Template](references/deliverable-template.md)
+- [Layered Architecture Spec](references/layered-architecture-spec.md)
+- [Draw.io XML Template](references/drawio-xml-template.md)
+- [ISO/IEC/IEEE 42010:2022](https://www.iso.org/standard/74393.html)
+- [The Open Group TOGAF Standards](https://publications.opengroup.org/standards/togaf)
+- [Business Architecture Guild](https://www.businessarchitectureguild.org/)
+- [DAMA-DMBOK](https://dama.org/learning-resources/dama-data-management-body-of-knowledge-dmbok/)
+- [NIST AI Risk Management Framework](https://www.nist.gov/publications/artificial-intelligence-riREDACTED-SECRET)
+- [NIST Zero Trust Architecture](https://www.nist.gov/publications/zero-trust-architecture)
+- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown containing prose, tables, and fenced draw.io XML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are expected to distinguish confirmed information, assumptions, external evidence, model inferences, unresolved gaps, and next-step recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

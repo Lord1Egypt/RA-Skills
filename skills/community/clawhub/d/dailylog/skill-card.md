@@ -1,39 +1,50 @@
-## Description: <br>
-Record daily wins, challenges, and learnings with streak tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dailylog records daily wins, challenges, and learnings with streak tracking.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Individuals and teams use Dailylog to record plans, habits, reflections, priorities, timelines, weekly reviews, and simple reports in local daily log files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Journal entries and exports may contain personal or sensitive information stored as plaintext local files. <br>
-Mitigation: Avoid entering secrets or highly sensitive information, review storage and export locations, and protect or delete log files when they are no longer needed. <br>
+## Use Case:
 
+External users and personal-productivity agents use Dailylog to capture plans, habits, reflections, reminders, weekly reviews, searchable activity, and local log exports.
 
-## Reference(s): <br>
-- [Dailylog on ClawHub](https://clawhub.ai/ckchzh/dailylog) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and plaintext, JSON, CSV, or TXT log exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped local log and export files under ~/.local/share/dailylog.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Personal notes, plans, reminders, and exports are stored as plaintext under ~/.local/share/dailylog.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets or regulated data, use restrictive local file permissions or umask, and handle exported JSON/CSV/TXT files as sensitive copies of the log history.
+
+## Reference(s):
+
+- [Dailylog ClawHub skill page](https://clawhub.ai/ckchzh/skills/dailylog)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files]
+
+**Output Format:** [Plain text CLI output and local log/export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores timestamped plaintext logs and exported JSON/CSV/TXT files under ~/.local/share/dailylog.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

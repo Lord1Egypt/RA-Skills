@@ -1,46 +1,62 @@
-## Description: <br>
-Build or improve AI conference paper workflows by organizing literature, experiment, writing, review, and revision loops into reusable project artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build or improve a top-tier AI conference paper workflow for NeurIPS, ICML, ICLR, and similar venues.
 
-## Publisher: <br>
-[hayashishungenn](https://clawhub.ai/user/hayashishungenn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hayashishungenn](https://clawhub.ai/user/hayashishungenn)
 
-## Use Case: <br>
-External researchers and developers use this skill to scaffold real AI paper projects, maintain stage-by-stage progress, and coordinate literature review, experiments, drafting, review, and revision without fabricating evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research workflows may run code, install packages, call APIs, or create commits in a live project. <br>
-Mitigation: Use a dedicated repository and isolated virtual environment or container, and explicitly approve API calls, package installs, coding-tool invocations, and git commits. <br>
-Risk: Paper drafts can become misleading if experiments, citations, datasets, ablations, or statistical tests are invented or not tied to evidence. <br>
-Mitigation: Keep the no-fabrication restrictions active, compare claims against logs and result files, and require real citations and real experiment evidence before submission. <br>
-Risk: Progress logs and commits can expose credentials or sensitive project information. <br>
-Mitigation: Redact secrets from PROGRESS.md and commits before sharing or publishing project artifacts. <br>
+## Use Case:
 
+Developers and researchers use this skill to scaffold and manage AI conference paper projects, including literature review, experiment planning, drafting, review, revision, and reusable project file setup.
 
-## Reference(s): <br>
-- [Ai Paper Pipeline on ClawHub](https://clawhub.ai/hayashishungenn/ai-paper-pipeline) <br>
-- [Full Pipeline Template](references/full-pipeline-template.md) <br>
-- [Project Scaffold](references/project-scaffold.md) <br>
-- [Project Mega Prompt Template](templates/MEGA_PROMPT.project.md) <br>
-- [Restrictions Example](templates/RESTRICTS.example.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, LaTeX skeletons, YAML configuration, code project folders, and guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create or update project scaffolds including MEGA_PROMPT.md, RESTRICTS.yaml, PROGRESS.md, plans, code, data, results, and paper directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can drive broad file creation and persistent Git commits in a research-paper repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before file creation, package installs, external API calls, and each Git commit.
+
+Risk: Credential-adjacent logs or progress files could expose API keys or token values.
+
+Mitigation: Record only environment variable names and configuration status; never write secret values into PROGRESS.md, logs, or commits.
+
+Risk: Automated paper workflows can introduce fabricated experiments, fake citations, or unsupported claims.
+
+Mitigation: Require evidence review for experiments, datasets, ablations, statistical tests, citations, and methodology-to-result consistency before using generated paper content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hayashishungenn/skills/ai-paper-pipeline)
+- [Full pipeline template](artifact/references/full-pipeline-template.md)
+- [Project scaffold](artifact/references/project-scaffold.md)
+- [Project mega prompt template](artifact/templates/MEGA_PROMPT.project.md)
+- [Progress template](artifact/templates/PROGRESS.template.md)
+- [Restrictions example](artifact/templates/RESTRICTS.example.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance plus workspace files such as project templates, YAML configuration, LaTeX scaffolds, plans, code directories, and progress logs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify workspace files and Git commits when appropriate.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

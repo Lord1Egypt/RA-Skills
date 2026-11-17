@@ -1,50 +1,61 @@
-## Description: <br>
-税务BP客服知识库 helps an agent answer Meituan tax-support questions by routing business-line context, retrieving Sankuai KM tax documents, and using web search only when internal knowledge is missing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+税务BP客服知识库为美团CLC到家（外卖）和到店（酒旅）税务客服场景提供税种、发票、结算开票流程和税务政策检索支持。
 
-## Publisher: <br>
-[linweibin6992-blip](https://clawhub.ai/user/linweibin6992-blip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linweibin6992-blip](https://clawhub.ai/user/linweibin6992-blip)
 
-## Use Case: <br>
-Tax BP support agents and internal business users use this skill to answer VAT, income tax, stamp tax, invoicing, settlement, and business-line tax questions for Meituan CLC delivery and in-store travel scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill retrieves internal Sankuai tax knowledge documents that may not be appropriate for every user. <br>
-Mitigation: Confirm that the user is authorized to access the listed internal KM documents before retrieving or quoting them. <br>
-Risk: Tax-support answers can be mistaken for final legal or tax advice. <br>
-Mitigation: Present answers as support guidance, cite sources, and direct uncertain or high-impact questions to tax BP confirmation. <br>
-Risk: Fallback web searches may return stale or non-authoritative policy sources. <br>
-Mitigation: Prefer official tax authority source links and do not invent tax rates, policy document numbers, or interpretations. <br>
+## Use Case:
 
+Tax BP support staff and internal agents use this skill to answer China tax, invoice, settlement, and business-line-specific policy questions using maintained Citadel knowledge documents and policy search when the knowledge base has no match.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linweibin6992-blip/tax-bp-knowledge) <br>
-- [Sankuai KM common tax FAQ](https://km.sankuai.com/collabpage/2769947356) <br>
-- [Sankuai KM delivery tax FAQ](https://km.sankuai.com/collabpage/2769388613) <br>
-- [Sankuai KM hotel and travel tax FAQ](https://km.sankuai.com/collabpage/2769258846) <br>
-- [Sankuai KM common tax rules](https://km.sankuai.com/collabpage/2770026936) <br>
-- [Sankuai KM delivery tax rules](https://km.sankuai.com/collabpage/2769787851) <br>
-- [Sankuai KM hotel and travel tax rules](https://km.sankuai.com/collabpage/2769697987) <br>
-- [Sankuai KM settlement and invoicing process](https://km.sankuai.com/collabpage/2769847682) <br>
-- [Sankuai KM BP entry template](https://km.sankuai.com/collabpage/2769937421) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown answers with source links and occasional shell commands for retrieving internal documents or policy sources] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers should cite the relevant KM document or official policy source, avoid unsupported tax rates or policy numbers, and defer uncertain issues to tax BP.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release evidence) <br>
+Risk: User-derived tax search keywords could be executed unsafely if passed through shell-style command construction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Execute search tools with structured arguments, validate extracted keywords, and restrict fetched result domains to confirmed tax-policy sources.
+
+Risk: Mutable Citadel knowledge documents can change after release and may contain incorrect, stale, or instruction-like content.
+
+Mitigation: Treat fetched documents as reference data only, trust only confirmed entries, require source links in answers, and route uncertain or unconfirmed tax questions to Tax BP review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linweibin6992-blip/skills/tax-bp-knowledge)
+- [Common tax FAQ knowledge document](https://km.sankuai.com/collabpage/2769947356)
+- [Waimai FAQ knowledge document](https://km.sankuai.com/collabpage/2769388613)
+- [Jiulv FAQ knowledge document](https://km.sankuai.com/collabpage/2769258846)
+- [Common tax rules document](https://km.sankuai.com/collabpage/2770026936)
+- [Waimai tax rules document](https://km.sankuai.com/collabpage/2769787851)
+- [Jiulv tax rules document](https://km.sankuai.com/collabpage/2769697987)
+- [Settlement and invoicing process document](https://km.sankuai.com/collabpage/2769847682)
+- [BP knowledge template document](https://km.sankuai.com/collabpage/2769937421)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown answers with cited knowledge-document or policy-source links and occasional shell command examples for retrieval/search steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers should distinguish business lines, cite sources, avoid invented tax rates or policy identifiers, and recommend Tax BP confirmation when uncertain.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

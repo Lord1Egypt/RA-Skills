@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "kb-literature-review",
+  "name": "kb_literature_review",
   "version": "1.0.0",
-  "publishedAt": 1782415827815
+  "description": "Generate focused source-grounded reviews, thematic syntheses, method comparisons, and research-gap analyses from selected Research KB repositories; usable from the query page.",
+  "author": "mayidan",
+  "language": "python3",
+  "entry": "SKILL.md",
+  "part_of": "research-kb-desktop",
+  "taskTypes": ["kb_query", "kb_literature_review"],
+  "requires": {
+    "env": ["GITEA_URL", "GITEA_ADMIN_TOKEN", "GITEA_BOT_USERNAME"],
+    "input": ["research_kb_agent_task JSON"]
+  }
 }

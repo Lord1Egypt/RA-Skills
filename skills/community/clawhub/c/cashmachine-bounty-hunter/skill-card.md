@@ -1,42 +1,57 @@
-## Description: <br>
-Automates multi-repo GitHub bounty searches, estimates bounty values, generates fixes with a coding agent, opens pull requests, and monitors payout progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates multi-repo GitHub bounty searches, estimates values, generates fixes through a coding agent, prepares pull requests, and monitors payout progress.
 
-## Publisher: <br>
-[sergeysolovyev](https://clawhub.ai/user/sergeysolovyev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergeysolovyev](https://clawhub.ai/user/sergeysolovyev)
 
-## Use Case: <br>
-Developers and automation operators use this skill to search GitHub issues for bounty opportunities, prepare candidate fixes, open pull requests, handle review follow-up, and draft payout claim notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill proposes autonomous GitHub activity, including forks, pull requests, comments, review responses, and payout-related claims. <br>
-Mitigation: Require manual approval before every public GitHub action or payout claim. <br>
-Risk: Generated fixes may be incorrect, incomplete, or unsafe if published without review. <br>
-Mitigation: Run generated changes in a sandboxed temporary clone and require human review before publication. <br>
-Risk: Broad GitHub credentials could expose repositories or accounts beyond the intended bounty workflow. <br>
-Mitigation: Use a narrowly scoped GitHub token or a dedicated test account. <br>
+## Use Case:
 
+Developers and bounty hunters use this skill to search GitHub bounty issues, estimate likely payouts, generate candidate fixes, prepare pull requests, and track payout-related follow-up.
 
-## Reference(s): <br>
-- [CashMachine Bounty Hunter on ClawHub](https://clawhub.ai/sergeysolovyev/cashmachine-bounty-hunter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, code changes, pull request text, review responses, and payout claim drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include GitHub search results, bounty estimates, temporary clone instructions, and human-review checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill could use GitHub accounts or repositories beyond the user's intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit account, organization, and repository allowlists before search, clone, branch, pull request, or notification actions.
+
+Risk: The skill could open pull requests or post claim notifications without enough user control.
+
+Mitigation: Require user approval before creating pull requests, posting comments, sending notifications, or claiming payouts.
+
+Risk: Temporary clones and coding-agent execution may leave local artifacts or run untrusted project code.
+
+Mitigation: Use isolated temporary workspaces, avoid running untrusted code without approval, and define cleanup for clones, branches, credentials, and generated files.
+
+## Reference(s):
+
+- [CashMachine Bounty Hunter on ClawHub](https://clawhub.ai/sergeysolovyev/skills/cashmachine-bounty-hunter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, shell commands, pull request text, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include GitHub search plans, bounty analysis, generated fix steps, pull request preparation, and payout-monitoring guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

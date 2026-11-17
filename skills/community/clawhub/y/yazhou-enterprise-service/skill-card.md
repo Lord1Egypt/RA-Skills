@@ -1,49 +1,66 @@
-## Description: <br>
-A Chinese-language enterprise-service skill for querying company information, recommending applicable policies, supporting safety-production supervision, and generating service reports for Yazhou District enterprises. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports Yazhou District enterprise-service work by helping agents query enterprise information, recommend preferential policies, review safety-production supervision needs, provide development suggestions, and prepare reports for one or more companies.
 
-## Publisher: <br>
-[wing-art](https://clawhub.ai/user/wing-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wing-art](https://clawhub.ai/user/wing-art)
 
-## Use Case: <br>
-Yazhou District enterprise-service, investment-promotion, and policy-consultation staff use this skill to gather company facts, match preferential policies, review safety-production posture, and produce single- or multi-company service reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China, focused on Yazhou District, Sanya, Hainan <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Company lookups and generated reports may include sensitive or confidential business information. <br>
-Mitigation: Confirm that the lookup is necessary, avoid entering unnecessary confidential or personal data, and review generated .docx reports before sharing. <br>
-Risk: Policy, financial, or safety-production conclusions may be outdated, incomplete, or tied to the wrong company identity. <br>
-Mitigation: Verify the company identity and cross-check policy, financial, and safety conclusions against official sources before acting on the report. <br>
-Risk: The skill depends on web search and companion skills, so output quality depends on those tools and their available sources. <br>
-Mitigation: Use the skill only in workflows where web search and the documented dependent skills are available, and treat generated recommendations as review material rather than final determinations. <br>
+## Use Case:
 
+Yazhou District enterprise-service, investment-promotion, and policy consultation staff use this skill to look up enterprise facts, match policy support, structure safety-production supervision records, and generate single- or multi-company service reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wing-art/yazhou-enterprise-service) <br>
-- [Policies Reference](references/policies.md) <br>
-- [Safety Regulations Reference](references/safety-regulations.md) <br>
-- [Enterprise Types Reference](references/enterprise-types.md) <br>
-- [Industrial Development Reference](references/industrial-development.md) <br>
-- [National Enterprise Credit Information Publicity System](http://www.gsxt.gov.cn/) <br>
-- [Hainan Policy Service](https://hqzc.hainan.gov.cn/) <br>
-- [Yazhou District Government](http://www.yazhou.gov.cn/) <br>
+### Deployment Geography for Use:
 
+China (Yazhou District, Sanya, Hainan)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Word documents (.docx) for service reports, with markdown/text drafts and shell command prompts when using the helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports single-company and multi-company reports; may rely on web search, docx generation, and optional financial-data lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may activate outside its intended Yazhou District enterprise-service context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm activation rules and user prompts keep the skill scoped to Yazhou District enterprise-service work before installation.
+
+Risk: Generated Word reports may contain business information or personal-identifying details.
+
+Mitigation: Store, share, retain, and delete generated reports according to the deploying organization's data-handling rules.
+
+Risk: Policy recommendations, enterprise records, and financial data can become stale or inaccurate.
+
+Mitigation: Verify current policies and financial data from official or trusted sources before relying on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wing-art/skills/yazhou-enterprise-service)
+- [崖州区及上级优惠政策汇总](references/policies.md)
+- [安全生产监管法规依据](references/safety-regulations.md)
+- [企业类型与政策匹配指南](references/enterprise-types.md)
+- [崖州区产业发展情况与规划](references/industrial-development.md)
+- [海南省惠企政策兑现服务系统](https://hqzc.hainan.gov.cn/)
+- [崖州区政府官网](http://www.yazhou.gov.cn/)
+- [三亚市政府官网](http://www.sanya.gov.cn/)
+- [海南省政府官网](http://www.hainan.gov.cn/)
+- [国家企业信用信息公示系统](http://www.gsxt.gov.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance, files]
+
+**Output Format:** [Word document (.docx) reports, with Markdown/text guidance and query suggestions as intermediate agent output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-company and multi-company reports; multi-company reports are structured in one Word document with separate report sections.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Updates a system hosts file with GitHub-related host entries for users in China while preserving non-GitHub entries, showing risk warnings, and supporting backup-oriented workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub Hosts CN helps users in China update system hosts entries for GitHub while preserving non-GitHub entries and supporting preview, backup, and restore workflows.
 
-## Publisher: <br>
-[n1e](https://clawhub.ai/user/n1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[n1e](https://clawhub.ai/user/n1e)
 
-## Use Case: <br>
-Developers and technical users use this skill to preview or apply GitHub-related hosts-file entries when troubleshooting GitHub access from China. It is intended for environments where the user accepts privileged hosts-file modification and verifies proposed network changes first. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes the system hosts file for GitHub access and requires sudo or administrator access, which can affect network behavior. <br>
-Mitigation: Use preview mode first, verify the proposed entries, run only in a trusted environment, and keep a manual hosts-file backup before applying changes. <br>
-Risk: The advertised restore flow appears broken, creating rollback risk for a privileged networking change. <br>
-Mitigation: Do not rely solely on the built-in restore command until fixed; keep a separate manual backup and verify rollback steps before use. <br>
+## Use Case:
 
+Developers and technical users use this skill to inspect and optionally update local GitHub-related hosts mappings when direct GitHub access is unreliable. It is intended for users who understand the effect of system-wide DNS overrides.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/n1e/github-hosts-cn-n1e) <br>
-- [README.md](README.md) <br>
-- [HelloGitHub hosts source](https://raw.hellogithub.com/hosts) <br>
-- [GitLab ineo6 hosts source](https://gitlab.com/ineo6/hosts/-/raw/master/hosts) <br>
-- [Gitee hosts mirror](https://gitee.com/peng_zhihui/hosts/raw/master/hosts) <br>
-- [JSDelivr hosts mirror](https://cdn.jsdelivr.net/gh/ineo6/hosts@master/hosts) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and terminal guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce privileged hosts-file changes and command output when the generated commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill writes externally supplied network-routing data into the privileged system hosts file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only when intentionally changing GitHub DNS resolution and review the fetched mappings with --preview before applying them.
+
+Risk: The security evidence reports weak safeguards and a likely broken restore path.
+
+Mitigation: Avoid --yes, confirm each run interactively, and be prepared to manually edit or restore /etc/hosts if built-in restore fails.
+
+Risk: Changing hosts entries can disrupt GitHub or broader network access.
+
+Mitigation: Keep a known-good hosts backup available and validate connectivity after changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/n1e/skills/github-hosts-cn-n1e)
+- [HelloGitHub hosts source](https://raw.hellogithub.com/hosts)
+- [GitLab ineo6 hosts source](https://gitlab.com/ineo6/hosts/-/raw/master/hosts)
+- [Gitee hosts mirror](https://gitee.com/peng_zhihui/hosts/raw/master/hosts)
+- [JSDelivr hosts mirror](https://cdn.jsdelivr.net/gh/ineo6/hosts@master/hosts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and terminal guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for running a Node.js hosts updater that may preview, update, back up, or restore system hosts entries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

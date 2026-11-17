@@ -1,47 +1,57 @@
-## Description: <br>
-Generates structured monthly internal control and compliance reports from complaint, risk event, supplier score, and logistics exception data for Cainiao Logistics, Cainiao Post, and Taobao Flash Purchase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Chinese monthly internal-control compliance reports from monthly complaint, logistics exception, supplier, and risk-incident data for Cainiao Logistics, Cainiao Post, and Taobao Flash Purchase.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Internal control and compliance employees use this skill to turn monthly operating data into management-ready compliance reports. It helps summarize complaints, logistics exceptions, supplier or station risk changes, major incidents, open cases, and next-month action priorities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monthly compliance reporting can involve sensitive operational, customer, legal, or supplier data. <br>
-Mitigation: Confirm the requester is authorized, use aggregated or redacted inputs where possible, and avoid unnecessary customer identifiers, privileged legal material, credentials, or confidential records. <br>
-Risk: The Alibaba-themed author claim is not verified by the server-resolved publisher evidence. <br>
-Mitigation: Treat the author context as unverified unless the organization independently confirms its source. <br>
-Risk: Incomplete or inaccurate source data can produce a misleading management report. <br>
-Mitigation: Review provided inputs and generated conclusions before using the report for internal decisions, especially when the skill marks the report as simplified or data-limited. <br>
+## Use Case:
 
+Internal control and compliance teams use this skill to turn monthly operational, complaint, supplier, and incident data into management-ready compliance reports with summaries, trend tables, major incidents, and next-month action items.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/inter-control-05-monthly-report) <br>
-- [Publisher profile](https://clawhub.ai/user/nic-yuan) <br>
-- [GLOSSARY.md](docs/GLOSSARY.md) <br>
-- [INSUFFICIENCY-HANDLING.md](docs/INSUFFICIENCY-HANDLING.md) <br>
-- [RULE-UPDATE-SOP.md](docs/RULE-UPDATE-SOP.md) <br>
-- [LINKING-SOP.md Section 6B](docs/LINKING-SOP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with an executive summary, tables, risk notes, incident tracking, and next-month action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a full, simplified, or severely data-limited monthly report depending on how much source data the user provides.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 1.7.0) <br>
+Risk: Users may paste unnecessary personal identifiers, privileged legal details, or confidential case text into the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove unnecessary sensitive details before use unless an approved internal process allows that information in the agent environment.
+
+Risk: Monthly reports can be incomplete or misleading when required operational data is missing.
+
+Mitigation: Use the skill's simplified or data-insufficient reporting modes and explicitly mark data gaps before management review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/inter-control-05-monthly-report)
+- [Referenced glossary](docs/GLOSSARY.md)
+- [Referenced insufficiency handling](docs/INSUFFICIENCY-HANDLING.md)
+- [Referenced rule update SOP](docs/RULE-UPDATE-SOP.md)
+- [Referenced output conflict SOP](docs/LINKING-SOP.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style Chinese compliance report with tables and action-oriented summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided monthly business data; can produce simplified reports when data is incomplete.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata); artifact frontmatter reports 1.7.0
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

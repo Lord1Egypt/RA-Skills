@@ -1,40 +1,53 @@
-## Description: <br>
-德牧洒洒·房车陪伴助手 is a Chinese RV companion assistant that offers a browser-based German shepherd persona for scripted text or supported voice interactions about navigation, traffic, fuel stops, email, search, Tencent Meeting, camera, and common app tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+洒洒（房车陪伴助手）。会说话的德牧导航官，净如姐房车旅途的小狗搭子。唤醒口令「洒洒，洒洒」，可语音控制高德导航、邮件回复、百度/谷歌搜索、腾讯会议及常用App。
 
-## Publisher: <br>
-[Clara-Wang-2023](https://clawhub.ai/user/Clara-Wang-2023) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clara-wang-2023](https://clawhub.ai/user/clara-wang-2023)
 
-## Use Case: <br>
-External users can open the bundled local HTML page as a Chinese RV-trip companion and send text or browser-supported speech input for assistant-style responses. The skill is best understood as an interactive companion interface for travel, communication, search, meeting, and camera prompts rather than a verified controller for those services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scripted responses may present navigation, traffic, email, meeting, camera, search, or app actions as completed even when no real external service action occurred. <br>
-Mitigation: Treat these responses as simulated assistant feedback and verify important actions directly in the relevant app or service before relying on them. <br>
-Risk: Voice or text prompts may contain sensitive travel, account, or meeting details, and the security review notes unresolved privacy notice and DOM-injection concerns. <br>
-Mitigation: Avoid entering sensitive content, run the page only in a trusted local context, and review or fix input handling and privacy notice coverage before broader deployment. <br>
+## Use Case:
 
+External RV travelers and skill evaluators can use this static browser skill to interact with a Chinese text and voice companion persona for RV travel prompts such as navigation-style requests, traffic, fuel stations, email, meetings, search, and camera actions. Treat it as a simulated assistant rather than a source of real driving, traffic, email, meeting, search, or camera actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Clara-Wang-2023/sasa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Files] <br>
-**Output Format:** [Markdown instructions with a bundled HTML/CSS/JavaScript page] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language scripted responses; browser speech recognition is used when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill presents navigation, traffic, fuel, email, meeting, search, and camera actions as completed even though the artifact is a static browser prototype.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label these capabilities as simulations and require verified integrations before relying on them for travel, communication, search, or camera workflows.
+
+Risk: Users may enter sensitive text or speech into a page with unsafe HTML rendering and browser speech recognition.
+
+Mitigation: Avoid sensitive inputs unless rendering is sanitized and users understand that browser or vendor speech services may process audio.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clara-wang-2023/skills/sasa)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Chinese conversational responses in a browser chat interface]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are scripted and simulated; supported browsers may also accept speech recognition input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

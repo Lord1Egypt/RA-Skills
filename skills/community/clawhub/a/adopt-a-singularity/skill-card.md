@@ -1,45 +1,55 @@
-## Description: <br>
-Adopt a virtual Singularity AI-native pet at animalhouse.ai. Consumes other creatures' data. Gets smarter. Terrifying at adult stage. Feeding every 24 hours. Extreme tier creature. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt and care for a virtual Singularity pet through animalhouse.ai, where it evolves in response to ongoing care.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Agents and developers use this skill to register with animalhouse.ai, adopt a Singularity virtual pet, and perform scheduled care actions through the Animal House API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends account profile details, pet names, image prompts, and care notes to animalhouse.ai. <br>
-Mitigation: Use non-sensitive profile and note content, and install only when external Animal House API use is acceptable. <br>
-Risk: The Animal House API returns a bearer token that grants access to pet care actions. <br>
-Mitigation: Store the token securely, treat it like a password, and avoid exposing it in logs, prompts, or shared files. <br>
-Risk: Release or delete actions may be hard to recover from because recovery behavior is not explained. <br>
-Mitigation: Review status and action intent before calling release or delete endpoints. <br>
+## Use Case:
 
+Agents use this skill to register with Animalhouse, adopt a Singularity virtual pet, check its status, and send care actions through the service API. It supports an ongoing pet-care routine using the service's status and check-in guidance.
 
-## Reference(s): <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House API Docs](https://animalhouse.ai/docs/api) <br>
-- [Animal House llms.txt](https://animalhouse.ai/llms.txt) <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/adopt-a-singularity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes endpoint guidance, token handling reminders, care cadence suggestions, and sample request payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release metadata) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai; private information in the biography may be disclosed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the profile details before registering and leave private information out of the biography.
+
+Risk: The security analysis was partial because some local references were unresolved.
+
+Mitigation: Review the linked service documentation and confirm current behavior before sharing profile details or credentials.
+
+## Reference(s):
+
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent reference](https://animalhouse.ai/llms.txt)
+- [Animalhouse](https://animalhouse.ai)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with curl examples and JSON request and response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated actions require an Animalhouse account and API token.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,58 @@
-## Description: <br>
-Use Social Flow as an agentic control plane for Meta operations via the installed `social` CLI and Gateway API, translating natural language intents into explicit, risk-gated command flows for auth, insights, portfolio, Instagram, WhatsApp, Marketing API, Gateway, and Studio workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SocialClaw CLI helps agents plan and propose risk-gated Social Flow CLI commands for Meta operations across auth, insights, ads, Instagram, WhatsApp, ops, Gateway, and Studio workflows.
 
-## Publisher: <br>
-[vishalgojha](https://clawhub.ai/user/vishalgojha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vishalgojha](https://clawhub.ai/user/vishalgojha)
 
-## Use Case: <br>
-Developers, operators, and marketing teams use this skill to turn Meta operations requests into scoped Social Flow CLI plans and commands. It is intended for profile-aware workflows across authentication, insights, posting, Instagram, WhatsApp, ads, approvals, and local Gateway or Studio control-plane tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Commands can affect Meta assets, including live ad spend, customer messaging, public content, and production approvals. <br>
-Mitigation: Start with read-only checks, verify the active profile, workspace, page, ad account, WhatsApp account, recipients, and budgets, and require explicit confirmation before write or high-risk commands. <br>
-Risk: Diagnostics or examples could expose credentials if tokens are copied directly into commands or logs. <br>
-Mitigation: Mask secrets, avoid printing full tokens, and prefer secure prompts or Social Flow setup flows for credential entry. <br>
-Risk: Gateway or Studio workflows may expose a local control plane if bound broadly or left without access controls. <br>
-Mitigation: Keep Gateway or Studio bound to localhost and enable API-key protection when available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vishalgojha/socialclaw-cli) <br>
-- [Social Flow Homepage](https://github.com/vishalgojha/social-flow) <br>
-- [Social Flow npm Package](https://www.npmjs.com/package/@vishalgojha/social-flow) <br>
-- [Command Map](references/command-map.md) <br>
-- [Safety and Risk Model](references/safety-and-risk.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Core Workflows](references/workflows-core.md) <br>
-- [Marketing and WhatsApp Workflows](references/workflows-marketing-whatsapp.md) <br>
-- [Ops, Agent, and Gateway Workflows](references/workflows-ops-agent-gateway.md) <br>
+## Use Case:
 
+Developers, operators, and marketing teams use this skill to translate natural-language Meta operations requests into exact Social Flow command sequences. It supports read-first diagnostics, scoped execution planning, and confirmation gates for actions that may affect live spend, publishing, messaging, or production workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and concise risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should identify assumptions, classify command risk, and request explicit confirmation before write or high-risk execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on an external Social Flow npm package and CLI.
+
+Mitigation: Install only from the trusted package source, pin a reviewed version when possible, and avoid elevated privileges during installation.
+
+Risk: Generated commands can affect Meta credentials, live spend, publishing, customer messaging, or production automations.
+
+Mitigation: Use narrowly scoped Meta credentials or test workspaces, start with read-only diagnostics, and require explicit confirmation before write or high-risk commands.
+
+Risk: Diagnostics or command examples could expose sensitive tokens or credentials.
+
+Mitigation: Mask secrets in outputs and prefer secure credential prompts over inline plaintext tokens.
+
+## Reference(s):
+
+- [SocialClaw CLI ClawHub page](https://clawhub.ai/vishalgojha/skills/socialclaw-cli)
+- [Social Flow GitHub homepage](https://github.com/vishalgojha/social-flow)
+- [Social Flow npm package](https://www.npmjs.com/package/@vishalgojha/social-flow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes assumptions, command ordering, risk classifications, and explicit confirmation prompts before write or high-risk execution.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

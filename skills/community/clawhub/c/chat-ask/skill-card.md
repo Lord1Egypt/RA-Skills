@@ -1,42 +1,56 @@
-## Description: <br>
-Chat and ask functionality for OpenClaw. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Chat and ask functionality for OpenClaw.
 
-## Publisher: <br>
-[xander-art](https://clawhub.ai/user/xander-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xander-art](https://clawhub.ai/user/xander-art)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+External users and developers use Chat Ask to run simple local OpenClaw chat, question-answering, and chat-history workflows that return structured JSON.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Chat input can be echoed in generated responses and local stderr logs.
+
+Mitigation: Do not send secrets, credentials, or sensitive business data through this skill unless that handling is acceptable.
+
+Risk: The chat history feature is basic and non-durable.
+
+Mitigation: Treat history output as session-only context rather than a persistent conversation archive.
+
+Risk: Responses are simple local tool outputs and may be incomplete or misleading for real user questions.
+
+Mitigation: Review answers before relying on them for decisions or customer-facing use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and OpenClaw users can use this skill for simple local chat, question answering, and chat-history inspection during demos or lightweight experimentation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts may be printed to local stderr logs. <br>
-Mitigation: Avoid sending secrets, credentials, or sensitive personal data through the chat and ask tools. <br>
-Risk: Chat history is local, in-memory, and sample data may be generated for empty history reads. <br>
-Mitigation: Do not treat chat_history output as a durable audit trail or source of record. <br>
-Risk: Responses are simple canned or echo-style outputs rather than validated external knowledge. <br>
-Mitigation: Use the skill for basic demos and verify important answers with authoritative sources. <br>
+**Output Format:** [JSON objects containing chat responses, Q&A answers, or chat history data]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/xander-art/chat-ask) <br>
+**Other Properties Related to Output:** [Includes status, timestamp, tool name, and tool-specific fields; chat history is in-memory for the current session.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [JSON objects containing chat responses, answers, chat history, summaries, or error status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful responses include status and tool fields; chat and ask responses also include timestamps.] <br>
+1.0.0 (source: frontmatter, package.json, release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

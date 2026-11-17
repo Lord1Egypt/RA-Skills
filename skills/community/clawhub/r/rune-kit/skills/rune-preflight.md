@@ -108,7 +108,7 @@ const permissions = await fetchPermissions(id); // waits unnecessarily
 const [user, permissions] = await Promise.all([fetchUser(id), fetchPermissions(id)]);
 ```
 
-Flag each issue with: file path, line number, category (null-deref | missing-await | off-by-one | type-coerce), and a one-line description.
+Flag each issue with: file path, a **verbatim evidence snippet** copied from the file, category (null-deref | missing-await | off-by-one | type-coerce), and a one-line description. Record the snippet, not a line number — Step 6's Anchor Pass resolves the line with grep.
 
 ### Step 2 — Error Handling
 For every changed file, verify:
@@ -137,7 +137,7 @@ app.use((err, req, res, next) => {
 });
 ```
 
-Flag each violation with: file path, line number, category (bare-catch | missing-status-check | raw-error-exposure), and description.
+Flag each violation with: file path, a **verbatim evidence snippet**, category (bare-catch | missing-status-check | raw-error-exposure), and description. Same rule as Step 1 — the snippet is what you produce; the line number comes from Step 6's Anchor Pass.
 
 ### Step 3 — Regression Check
 Use `rune-scout.md` to identify all files that import or depend on the changed files/functions.
@@ -155,6 +155,7 @@ Verify that new code ships complete:
 - New feature → has at least one test file
 - New configuration option → has documentation (inline comment or docs file)
 - New database query → has corresponding migration file if schema changed
+- **Cross-layer pairing**: new interactive component (button/form/action) → its handler chain reaches a REAL endpoint/service that exists in the codebase — OR the plan explicitly scopes it UI-only with a mock (stated, not assumed). Unexcused missing pair = **BLOCK**, not WARN: a dead interactive element is incomplete work presented as complete. (Mirror check: new endpoint this diff → ≥1 consumer or a NAMED future task consuming it)
 
 **Framework-specific completeness (apply only if detected):**
 - React component with async data → must have `loading` state AND `error` state
@@ -213,7 +214,7 @@ If a domain hook flags BLOCK, the overall preflight verdict is BLOCK regardless 
 | `openapi.*`, `*.graphql`, `*.proto` | API Contract | Breaking changes flagged, version bumped, deprecated fields documented |
 | `docs/policies/*`, `PRIVACY*`, `TERMS*` | Legal/Compliance | No placeholder text, review date current, practice matches policy |
 | `**/billing*`, `**/payment*`, `**/invoice*` | Financial | Decimal precision correct, currency locale-aware, no hardcoded rates |
-| `*.tsx`, `*.jsx`, `*.svelte`, `*.vue`, `components/*` | UI/Frontend | Design token compliance, animation a11y, touch targets, visual hierarchy |
+| `*.tsx`, `*.jsx`, `*.svelte`, `*.vue`, `*.html` (with script/template content), `components/*` | UI/Frontend | Design token compliance, animation a11y, touch targets, visual hierarchy |
 | `skills/*/SKILL.md`, `extensions/*/PACK.md` | Rune Skill | Frontmatter valid, all required sections present, word count within layer budget |
 | `*.test.*`, `*.spec.*`, `__tests__/*` | Test Quality | No `.skip`/`.only` left in, assertions present (not empty tests), no hardcoded timeouts |
 
@@ -229,7 +230,7 @@ For each detected domain, run its checks on the relevant files in the diff:
 
 #### UI/Frontend Domain Checks
 
-When UI/Frontend hook is triggered, run these checks on all `.tsx`/`.jsx`/`.svelte`/`.vue` files in the diff.
+When UI/Frontend hook is triggered, run these checks on all `.tsx`/`.jsx`/`.svelte`/`.vue`/`.html` files in the diff (plain `.html` counts when it carries interactive markup or inline scripts — a vanilla-JS page is still a UI).
 
 **Preamble — load design contract**: If `.rune/design-system.md` exists, read it once. Apply the project's **Scale Minimums** block over the defaults below (e.g., a project declaring `body ≥18px` should flag 16px body text). If the file is absent, use defaults and emit a LOW advisory: "No `.rune/design-system.md` — run `rune design` to lock visual decisions."
 
@@ -238,11 +239,17 @@ When UI/Frontend hook is triggered, run these checks on all `.tsx`/`.jsx`/`.svel
 | **Design token compliance** | Hardcoded colors (`#fff`, `rgb(`, `hsl(`) instead of CSS variables or Tailwind tokens | WARN: "Hardcoded color at {file}:{line} — use design token" |
 | **UI-SPEC drift** | If `.rune/ui-spec.md` exists, compare component decisions (card style, form layout, nav type) against spec | BLOCK: "Component at {file} uses bordered cards but UI-SPEC locks elevated cards" |
 | **Animation accessibility** | Animations/transitions without `prefers-reduced-motion` guard | WARN: "Animation at {file}:{line} missing reduced-motion check" |
+| **Reduced-motion branch is dead** | A file that *does* mention `prefers-reduced-motion` / `prefersReducedMotion` / `useReducedMotion`, where an outer `if (reduced) return` (or `if (!shouldAnimate) return`) precedes the call that applies the end state — the guard exists and never runs. A grep hit is not a pass: **touches ≠ reachable ≠ correct** | WARN: "Reduced-motion branch at {file}:{line} is unreachable — reduced users get the default DOM" |
+| **Stale motion preference** | `matchMedia("(prefers-reduced-motion...")` read once with no `addEventListener("change")` nearby, and no library equivalent (`useReducedMotion`, `MotionConfig`, `gsap.matchMedia`) | WARN: "One-shot motion preference at {file}:{line} — goes stale when toggled mid-session" |
+| **Zero-duration vs completion listener** | `duration: 0` / `0s` on a reduced path in a file that also awaits `transitionend`, `animationend`, or `onComplete` | WARN: "Zero-length transition at {file}:{line} may drop its completion event — use ~0.01ms" |
+| **JS motion ungated** | GSAP / Motion / Framer / Lenis / canvas rAF timeline in the diff, with reduced-motion handling present only in CSS | WARN: "JS timeline at {file}:{line} unaffected by the CSS reduced-motion query" |
+| **SVGO strips animation** | An SVGO config (`svgo.config.*`, `vite-plugin-svgr`, `svgo` block in build config) in the diff or repo root while the project ships animated SVG, without `cleanupIds` / `mergePaths` / `removeHiddenElems` / `removeViewBox` / `inlineStyles` disabled | WARN: "SVGO at {file} will strip animated-SVG structure — source correct, build output broken" |
 | **Touch target size** | Interactive elements with explicit small sizing (`w-5 h-5`, `p-0.5` on buttons/links) < 44×44px (or project override from design-system.md) | WARN: "Touch target too small at {file}:{line}" |
 | **Scale Minimum — body text** | `text-sm` / `text-xs` / explicit `font-size: 14px` on `<p>` or primary body regions (not meta/secondary) | WARN: "Body text below 16px at {file}:{line} — reads as AI boilerplate" |
 | **Scale Minimum — hero display** | `<h1>` with `text-3xl` or smaller (30px) when the heading is in a hero/landing section | WARN: "Hero heading below 48px at {file}:{line} — insufficient visual hierarchy" |
 | **Hand-rolled SVG for standard icons** | Inline `<svg viewBox=` in JSX when the surrounding comment/class names indicate standard iconography (dashboard, menu, close, chevron, arrow, search, home, user, settings, bell, trash) | WARN: "Hand-rolled SVG at {file}:{line} — use @phosphor-icons/react or huge-icons, or ship boxed placeholder" |
 | **Manual hex accent shading** | CSS/Tailwind config defining 2+ sibling `--accent-hover` / `--accent-pressed` / `--accent-active` with hex literals (no `oklch(from ...)` or design-token chain) | WARN: "Manual hex shade at {file}:{line} — derive via oklch(from var(--accent) calc(l - 0.08) c h)" |
+| **Dead interactive element** | `<button>`/`<form>`/action element with no bound handler (any framework syntax: `onClick=`, `on:click=`, `@click`, `v-on:`), `onClick={() => {}}`, `href="#"` on an action link (not navigation/scroll anchors), or `preventDefault()`-only submit — in files of THIS diff (skip elements listed in `.rune/ui-spec.md` `## Unwired Elements`; prop-origin handlers like `onClick={props.onSave}` count as bound) | BLOCK: "Dead interactive at {file}:{line} — element renders but does nothing" |
 | **Missing states** | Components fetching data without loading/error/empty states | WARN: "Async component at {file} missing [loading|error|empty] state" |
 | **Icon accessibility** | Decorative icons without `aria-hidden="true"`, functional icons without `aria-label` | WARN: "Icon at {file}:{line} missing aria attribute" |
 | **Inline styles** | `style={{` or `style=` attribute usage instead of classes/tokens | WARN: "Inline style at {file}:{line} — use CSS class or Tailwind" |
@@ -340,27 +347,51 @@ Score is appended to the Preflight Report footer. Useful for tracking quality tr
 Invoke `rune-sentinel.md` on the changed files. Attach sentinel's output verbatim under the "Security" section of the preflight report. If sentinel returns BLOCK, preflight verdict is also BLOCK.
 
 ### Step 6 — Generate Verdict
-Aggregate all findings:
-- Any BLOCK from sentinel OR a logic issue that would cause data corruption or security bypass → overall **BLOCK**
-- Any missing error handling, regression risk with no tests, or incomplete feature → **WARN**
+
+**Falsification Pass first.** Before aggregating, filter findings by disproof, not by confidence — the same rule `review` applies (`../review/SKILL.md` → Step 6):
+
+- **DROP** a finding only when the code you read contains **direct counter-evidence** against its key claim (the null check exists, the `await` is present, the caller validates the input).
+- **KEEP** a finding that depends on context outside the diff which you did read via tools — that context is evidence.
+- **KEEP** a finding you can neither verify nor disprove. "Unsure" is not grounds to drop; only counter-evidence is.
+- Dropped findings are discarded silently, never listed as considered-and-dismissed.
+
+Type each surviving finding `OBSERVED | DERIVED | ASSUMED` per `../completion-gate/references/claim-discipline.md`. An `ASSUMED` finding — one resting on a premise you could not check — names that premise and **never escalates the verdict to BLOCK on its own**. It reports as WARN with the premise stated.
+
+**Anchor Pass second.** Every finding you collected in Steps 1-4 carries an evidence snippet, not a line number. Resolve each one now via the Anchor Ladder defined in `../review/SKILL.md` → Step 6: grep the exact snippet, retry once whitespace-normalised with the outer lines dropped, and on a second miss mark the finding `UNANCHORED`.
+
+`UNANCHORED` behaves here exactly as it does in `review` — downgrade one level (BLOCK → WARN → INFO), report as `path (unanchored)` with the snippet inline, never drop. A finding that will not anchor **cannot carry the BLOCK verdict on its own**, for the same reason an `ASSUMED` one cannot: halting a pipeline on a claim nobody can locate spends the developer's trust faster than the bug would have.
+
+Then aggregate all surviving findings:
+- Any BLOCK from sentinel OR a logic issue that would cause data corruption or security bypass OR a dead interactive element (Step 4 cross-layer pairing / Step 4.5 dead-interactive check) OR a BLOCK from any domain hook → overall **BLOCK**
+- Any missing error handling, regression risk with no tests, or incomplete feature (other than the BLOCK cases above) → **WARN**
 - Only style or best-practice suggestions → **PASS**
 
 Report PASS, WARN, or BLOCK. For WARN, list each item the developer must acknowledge. For BLOCK, list each item that must be fixed before proceeding.
 
 ## Output Format
 
-```
+````
 ## Preflight Report
 - **Status**: PASS | WARN | BLOCK
 - **Files Checked**: [count]
 - **Changes**: +[added] -[removed] lines across [files] files
+- **Unanchored**: [count — findings whose evidence did not resolve to a line]
 
 ### Logic Issues
-- `path/to/file.ts:42` — null-deref: `user.name` accessed without null check
-- `path/to/api.ts:85` — missing-await: async database call not awaited
+- `path/to/file.ts:42` — [OBSERVED] null-deref: `user.name` accessed without null check
+  ```ts
+  return user.name.trim();
+  ```
+- `path/to/api.ts (unanchored)` — [ASSUMED: caller in job.ts not read] missing-await: async database call not awaited
+  ```ts
+  db.orders.insert(row);
+  ```
 
 ### Error Handling
 - `path/to/handler.ts:20` — bare-catch: error swallowed silently
+  ```ts
+  } catch (e) {}
+  ```
 
 ### Regression Risk
 - `utils/format.ts` — changed function used by 5 modules, 2 have tests, 3 untested (WARN)
@@ -382,12 +413,14 @@ Report PASS, WARN, or BLOCK. For WARN, list each item the developer must acknowl
 
 ### Verdict
 WARN — 3 issues found (0 blocking, 3 must-acknowledge). Resolve before commit or explicitly acknowledge each WARN.
-```
+````
+
+Findings under Logic Issues and Error Handling show their evidence block; the Regression, Completeness, and Coherence sections describe file-level or structural gaps that have no single line to anchor, so they carry a path only.
 
 ## Constraints
 
 1. MUST check: logic errors, error handling, edge cases, type safety, naming conventions
-2. MUST reference specific file:line for every finding
+2. MUST anchor every line-level finding to a verbatim evidence snippet, resolving the line via the Anchor Pass rather than recall — unresolved findings report `(unanchored)`, downgraded one level, and cannot carry BLOCK alone
 3. MUST NOT skip edge case analysis — "happy path works" is insufficient
 4. MUST verify error messages are user-friendly and don't leak internal details
 5. MUST check that async operations have proper error handling and cleanup
@@ -415,6 +448,8 @@ WARN — 3 issues found (0 blocking, 3 must-acknowledge). Resolve before commit 
 | Domain hooks not triggered when pack is installed | HIGH | Step 4.5 auto-detects file patterns — if pack is installed but hooks don't fire, check file pattern matching |
 | Domain hooks overriding generic checks | HIGH | HARD-GATE: domain hooks are ADDITIVE — they never replace Steps 1-4 |
 | Pack Hard-Stop Thresholds ignored in preflight | MEDIUM | Step 4.5 Pack Integration must read installed pack thresholds — test with each new pack |
+| Dead interactive element downgraded to WARN ("just a loading-state issue") | CRITICAL | Step 4 cross-layer pairing + Step 4.5 dead-interactive check are BLOCK — a button wired to nothing is incomplete work, not a style nit |
+| Flagging design's declared placeholders as dead interactives | MEDIUM | Elements listed in `.rune/ui-spec.md` `## Unwired Elements` are design debt tracked by converge — skip, don't BLOCK |
 
 ## Done When
 
@@ -422,15 +457,17 @@ WARN — 3 issues found (0 blocking, 3 must-acknowledge). Resolve before commit 
 - Error handling verified on all async functions and HTTP calls
 - Regression impact assessed — dependent files identified via scout
 - Completeness checklist passed (validation schema, loading/error states, test file)
+- Cross-layer pairing checked (Step 4): every new interactive component's handler chain reaches a real endpoint/service or has an explicit UI-only scope
+- Dead-interactive scan done (Step 4.5 UI hook) on all UI files in the diff
 - Sentinel invoked and its output attached in Security section
-- Structured report emitted with PASS / WARN / BLOCK verdict and file:line for every finding
+- Structured report emitted with PASS / WARN / BLOCK verdict, and every line-level finding anchored to a verbatim snippet (or reported `(unanchored)` and downgraded)
 
 ## Cost Profile
 
 ~2000-4000 tokens input, ~500-1500 tokens output. Sonnet for logic analysis quality.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

@@ -1,39 +1,54 @@
-## Description: <br>
-Retrieve business listings and information in North America (via AJAX endpoint). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve business listings and information in North America (via AJAX endpoint).
 
-## Publisher: <br>
-[zheng108](https://clawhub.ai/user/zheng108) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zheng108](https://clawhub.ai/user/zheng108)
 
-## Use Case: <br>
-Agents and developers use this skill to draft curl-based Dealmoon business-directory lookups for North American real estate, retail, and service listings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-North America <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may send network requests to Dealmoon using curl. <br>
-Mitigation: Use the generated commands only for targeted business-listing lookups and follow the destination site's acceptable-use expectations. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve structured Dealmoon business listings for North American real estate, retail, and service searches.
 
-## Reference(s): <br>
-- [Dealmoon business directory endpoint](https://www.dealmoon.com/local-category/updata?lang=cn) <br>
-- [ClawHub skill page](https://clawhub.ai/zheng108/dealmoon) <br>
+### Deployment Geography for Use:
 
+North America
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and sends requests to Dealmoon public web endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill makes requests to Dealmoon for business-directory searches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that network access is acceptable and review generated requests before execution.
+
+Risk: Search parameters could expose private personal data, secrets, or unrelated sensitive information.
+
+Mitigation: Limit inputs to business-directory search terms and exclude secrets or sensitive personal data.
+
+## Reference(s):
+
+- [Dealmoon business directory endpoint](https://www.dealmoon.com/local-category/updata?lang=cn)
+- [ClawHub skill page](https://clawhub.ai/zheng108/skills/dealmoon)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl; avoid placing private personal data, secrets, or unrelated sensitive information into search parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

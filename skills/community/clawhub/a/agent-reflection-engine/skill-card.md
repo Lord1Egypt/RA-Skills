@@ -1,39 +1,53 @@
-## Description: <br>
-Agent Reflection Engine analyzes local agent trace JSON to identify reasoning bottlenecks and produce improvement suggestions for developers tuning autonomous agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables AI agents to self-audit decision steps, identify reasoning bottlenecks, and generate improvement patches via chain-of-thought critique.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers use this skill to inspect logged agent decision traces, spot weak reasoning patterns, and generate concrete reflection suggestions that can inform future agent-loop improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent traces and generated reflection reports may contain secrets, customer data, private prompts, or proprietary reasoning. <br>
-Mitigation: Use sanitized traces where possible, avoid sensitive trace content, and store generated reports only in access-controlled locations. <br>
-Risk: Verbose mode can print sensitive reflection report contents to the terminal. <br>
-Mitigation: Disable verbose mode when handling sensitive traces or when terminal output may be logged or visible to other users. <br>
+## Use Case:
 
+Developers and agent builders use this skill to review JSON execution traces, surface reasoning bottlenecks, and produce reflection reports that inform improvements to autonomous agent loops.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Guidance] <br>
-**Output Format:** [JSON reflection report with optional terminal JSON output when verbose mode is enabled] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a local JSON trace file and writes a reflection report to a user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Reflection reports and logs may contain sensitive information from agent trace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only controlled trace inputs and output locations, and treat generated reports as sensitive artifacts.
+
+Risk: The current local script may need a bug fix before it works as advertised.
+
+Mitigation: Review and test the script in a local sandbox before integrating it into agent loops or release workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/skills/agent-reflection-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON report descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local reflection reports from JSON trace files; generated reports can contain sensitive trace-derived content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

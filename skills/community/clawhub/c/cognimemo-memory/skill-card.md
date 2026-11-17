@@ -1,46 +1,61 @@
-## Description: <br>
-Universal AI memory infrastructure that stores, understands, and learns from past interactions for cross-app persistent memory across AI models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CogniMemo Memory helps agents store, retrieve, update, and delete persistent memory such as preferences, decisions, tasks, facts, and context across AI applications.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-Developers and agent builders use CogniMemo Memory to add persistent cross-session memory to AI applications, including storing, retrieving, updating, and deleting user preferences, decisions, tasks, facts, and context through CogniMemo APIs and SDKs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can retain sensitive interaction history, preferences, decisions, tasks, and other personal context beyond the current session. <br>
-Mitigation: Enable the skill only with user approval, avoid storing secrets or regulated data unless approved, and confirm deletion and revocation controls before automatic capture. <br>
-Risk: Production use requires CogniMemo and storage-provider API keys that could expose memory data if mishandled. <br>
-Mitigation: Store credentials in environment variables or a secrets manager, rotate and revoke keys when needed, and verify SDK packages and provider terms before deployment. <br>
-Risk: Cross-app memory sharing can disclose data to broader contexts than intended if permissions are too permissive. <br>
-Mitigation: Use scoped permissions, check access before storing or retrieving memory, and review app permission and revocation settings regularly. <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect agents to persistent memory workflows, including storing user preferences, decisions, tasks, and facts, then retrieving relevant context across sessions.
 
-## Reference(s): <br>
-- [CogniMemo Memory on ClawHub](https://clawhub.ai/engsathiago/cognimemo-memory) <br>
-- [CogniMemo Website](https://cognimemo.com) <br>
-- [CogniMemo Documentation](https://docs.cognimemo.com) <br>
-- [CogniMemo API Reference](https://api.cognimemo.com/docs) <br>
-- [CogniMemo SDK GitHub Resource](https://github.com/cognimemo/sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API-key environment configuration and example integrations; bundled memory manager script uses mock storage for demonstration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Persistent memory can store broad user and conversation context outside the current session without strong opt-in or scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user opt-in before capture, scope access by memory type and user, and provide revocation and deletion controls.
+
+Risk: Secrets or highly sensitive personal data could be stored in reusable memory.
+
+Mitigation: Filter or redact secrets and sensitive data before storage, and document categories that must not be saved.
+
+Risk: Example integrations rely on caller-side permission checks and external API keys.
+
+Mitigation: Enforce permission checks in integration code, use least-privileged environments, pin SDK versions, and keep API keys in environment variables.
+
+## Reference(s):
+
+- [CogniMemo Memory ClawHub Skill](https://clawhub.ai/engsathiago/skills/cognimemo-memory)
+- [CogniMemo Website](https://cognimemo.com)
+- [CogniMemo Documentation](https://docs.cognimemo.com)
+- [CogniMemo API Reference](https://api.cognimemo.com/docs)
+- [CogniMemo SDK GitHub Repository](https://github.com/cognimemo/sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and bash code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a CogniMemo API key for real external integration; the included memory_manager.py script uses mock storage for demonstration.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

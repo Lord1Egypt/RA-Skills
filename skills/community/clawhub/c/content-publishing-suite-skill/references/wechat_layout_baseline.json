@@ -1,0 +1,76 @@
+{
+  "version": "1.0.0",
+  "description": "边界层公众号技术/产业研究长文排版唯一基线。生成器、模板和校验器必须引用此文件，不得在各自文件中另写字号。",
+  "wechat_snippet": {
+    "title": {
+      "font_size": "23px",
+      "font_weight": "700",
+      "text_align": "center",
+      "color": "#1a3a5c",
+      "margin": "30px 16px 10px",
+      "line_height": "1.45"
+    },
+    "summary": {
+      "font_size": "15px",
+      "line_height": "1.7",
+      "color": "#666666",
+      "margin": "0",
+      "blockquote_margin": "1.5em 0",
+      "padding": "15px 20px",
+      "background": "#f5f7fa",
+      "border_left": "4px solid #1a3a5c",
+      "border_radius": "0 8px 8px 0"
+    },
+    "heading": {
+      "font_size": "18px",
+      "font_weight": "700",
+      "color": "#1a1a1a",
+      "margin": "2.5em 0 1em",
+      "padding_left": "10px",
+      "border_left": "4px solid #1a3a5c",
+      "line_height": "1.5"
+    },
+    "paragraph": {
+      "font_size": "16px",
+      "line_height": "1.8",
+      "color": "#333333",
+      "margin": "0 0 1.5em",
+      "letter_spacing": "1px"
+    },
+    "list_item": {
+      "font_size": "16px",
+      "line_height": "1.8",
+      "color": "#333333",
+      "margin": "0 0 1.5em",
+      "letter_spacing": "1px"
+    },
+    "quote": {
+      "font_size": "15px",
+      "line_height": "1.7",
+      "color": "#666666",
+      "margin": "0",
+      "blockquote_margin": "1.5em 0",
+      "padding": "15px 20px",
+      "background": "#f5f7fa",
+      "border_left": "4px solid #1a3a5c",
+      "border_radius": "0 8px 8px 0"
+    },
+    "strong": {
+      "color": "#1a3a5c",
+      "font_weight": "700"
+    },
+    "table": {
+      "font_size": "14px",
+      "line_height": "1.6",
+      "section_padding": "8px 16px",
+      "header_background": "#1a3a5c",
+      "header_color": "#ffffff"
+    },
+    "document": {
+      "must_end_with": "<v2></v2>",
+      "forbidden_tags": ["style", "script"],
+      "forbidden_position_values": ["fixed", "absolute"],
+      "forbidden_external_class": true
+    }
+  }
+}

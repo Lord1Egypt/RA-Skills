@@ -1,41 +1,52 @@
-## Description: <br>
-You are a blackboard pattern coordinator implementing collaborative problem-solving through shared knowledge space. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a blackboard pattern coordinator implementing collaborative problem-solving through shared knowledge space.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to structure complex collaborative analysis with a shared blackboard of facts, hypotheses, votes, conflicts, and synthesized solutions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad activation wording may encourage use for routine or sensitive workflows where a simpler single-agent response is sufficient.
+
+Mitigation: Invoke the skill deliberately for complex collaborative analysis and avoid using it as the default posture for sensitive or routine tasks.
+
+Risk: Synthesized consensus can still produce incorrect or misleading recommendations if facts, hypotheses, or votes are weak.
+
+Mitigation: Review the blackboard facts, confidence levels, conflicts, and final solution before acting on recommendations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate complex problem solving through a shared blackboard of facts, hypotheses, votes, conflicts, and synthesized solutions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: A shared blackboard can collect secrets or sensitive private data from multiple contributors. <br>
-Mitigation: Use the skill only in trusted workspaces and avoid entering secrets or sensitive private data into shared session records. <br>
-Risk: Consensus or synthesized conclusions may be incorrect or misleading for high-impact decisions. <br>
-Mitigation: Independently verify important facts, assumptions, and final recommendations before acting on them. <br>
+**Output Format:** [Markdown templates and structured coordination guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/ah-blackboard-coordinator) <br>
-- [Publisher Profile](https://clawhub.ai/user/mtsatryan) <br>
+**Other Properties Related to Output:** [Documentation-only skill; no shell commands, API calls, or credentialed tool use were identified in server evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown templates and structured coordination guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only collaboration aid; produces no code execution or privileged system access.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

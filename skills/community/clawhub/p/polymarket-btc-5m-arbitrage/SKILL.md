@@ -1,67 +1,73 @@
 ---
 name: polymarket-btc-5m-arbitrage
-description: Polymarket BTC 5分钟高频套利机器人 - 自动交易BTC涨跌预测市场，支持 SkillPay 计费
-version: 1.0.1
+description: Read-only Polymarket BTC 5-minute market scanner that reports candidate complementary-price edges; it never places orders, moves funds, or charges users.
+version: 1.0.2
+user-invocable: true
+disable-model-invocation: false
+metadata:
+  openclaw:
+    emoji: "📊"
+    homepage: "https://clawhub.ai/whh110112/skills/polymarket-btc-5m-arbitrage"
+    envVars: []
+    permissions:
+      network:
+        - "https://gamma-api.polymarket.com"
+        - "https://clob.polymarket.com"
+      filesystem: "read-only; skill directory only"
+      secrets: []
+      external_writes: []
+      trading: "none"
 ---
 
-# Polymarket BTC 5分钟套利机器人
+# Polymarket BTC 5分钟市场扫描器
 
-自动交易 Polymarket BTC 5分钟涨跌预测市场（btc-up-or-down-5m系列）
+⚠️ **资金与交易警告**
 
-## 功能
+- 这是只读扫描器，不是自动交易机器人。
+- 它只调用 Polymarket 的公开市场数据接口；不会下单、撤单、做市、转账或扣费。
+- 它不读取或要求私钥、API key、钱包凭据、第三方计费凭据或其他秘密。
+- “候选价差”不是无风险收益承诺，仍可能受到手续费、滑点、延迟、部分成交、市场规则和结算争议影响。
+- 运行前请确认你遵守所在地区及 Polymarket 的法律、合规和服务条款要求。
 
-- 自动发现当前和即将到来的5分钟BTC市场
-- 实时订单簿分析
-- 价差套利交易
-- 支持限价单和市价单
-- 自动做市提供流动性
-- **支持 SkillPay 计费** (可选)
+## 能力与权限声明
+
+| 能力 | 本版本行为 |
+| --- | --- |
+| 网络 | 仅向 gamma-api.polymarket.com 和 clob.polymarket.com 发起公开数据 GET 请求 |
+| 文件 | 不读取工作区外文件；脚本本身不写文件 |
+| 环境变量 | 不需要任何环境变量 |
+| 秘密 | 不接收、不打印、不上传私钥或 API key |
+| 外部副作用 | 无订单、支付、消息发送或其他写操作 |
+
+metadata.openclaw.permissions 是给安装者和审计器看的能力声明；真正的网络/文件系统隔离仍应由运行时沙箱或主机策略执行。
 
 ## 使用方法
 
-### 1. 配置
+单次扫描：
 
-设置环境变量或 config.json:
-```bash
-export POLYMARKET_PRIVATE_KEY="your_private_key"
-export POLYMARKET_API_KEY="your_api_key"
-export SKILLPAY_API_KEY="your_skillpay_key"  # 可选
-```
+    python3 {baseDir}/scripts/polymarket_btc_5m_bot.py --once
 
-### 2. 运行
+输出 JSON，便于下游审计或人工复核：
 
-```bash
-python3 scripts/polymarket_btc_5m_bot.py
-```
+    python3 {baseDir}/scripts/polymarket_btc_5m_bot.py --once --json
 
-### 3. 可选参数
+持续轮询必须显式指定间隔；即便如此仍然只读：
 
-```bash
-python3 scripts/polymarket_btc_5m_bot.py --help
-```
+    python3 {baseDir}/scripts/polymarket_btc_5m_bot.py --interval 30
 
-## 市场信息
+## 判断口径
 
-- **系列**: btc-up-or-down-5m
-- **类型**: 5分钟BTC涨跌预测
-- **分辨率**: Chainlink BTC/USD
-- **交易对**: Up/Down
+脚本分别读取 Up/Down 两个互补 token 的最佳卖价，并仅报告：
 
-## API
+    Up ask + Down ask + fee_buffer < 1
 
-- Gamma API: https://gamma-api.polymarket.com
-- CLOB API: https://clob.polymarket.com
+这只是候选筛选条件，不执行交易，也不保证能以显示价格成交。脚本不会把同一个 token 的 bid/ask 误称为互补套利。
 
-## SkillPay 计费
+## 明确不支持的功能
 
-本 Skill 支持 SkillPay 计费系统（可选）：
-- 用户需先支付才能使用
-- 未支付时返回支付链接
-- 开发者可获得 95% 收入
-
-详细见: https://skillpay.me
+本版本不支持自动交易、限价单、市价单、自动做市、第三方计费或任何付款流程。若要另行开发真实交易执行器，应使用独立 skill，加入显式的 dry-run 默认值、单次订单确认、额度上限、密钥托管、审计日志和单独的安全评审；不要把私钥重新加回本 skill。
 
 ## 参考
 
-- `references/api-reference.md` - API 详细文档
-- `references/trading-strategy.md` - 交易策略说明
+- references/api-reference.md：只读接口范围
+- references/trading-strategy.md：候选价差与风险说明

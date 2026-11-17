@@ -1,42 +1,55 @@
-## Description: <br>
-Python best practices enforcer — clean code, proper patterns, performance, testing, type hints. Use when writing or reviewing Python code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Python best practices enforcer - clean code, proper patterns, performance, testing, type hints. Use when writing or reviewing Python code.
 
-## Publisher: <br>
-[NakedoShadow](https://clawhub.ai/user/NakedoShadow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nakedoshadow](https://clawhub.ai/user/nakedoshadow)
 
-## Use Case: <br>
-Developers and engineers use this skill to write, review, refactor, and test Python code against documented best-practice standards for structure, typing, error handling, async usage, and tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Running Python syntax checks or tests may execute code from the local repository. <br>
-Mitigation: Use the skill only on trusted repositories, or run it in a virtual environment or sandbox before allowing Python commands. <br>
-Risk: Automated review or refactoring guidance may introduce incorrect changes if accepted without review. <br>
-Mitigation: Review proposed diffs and scan changes before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to write, review, refactor, and test Python code against practical standards for structure, typing, error handling, async patterns, and project organization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NakedoShadow/shadows-python-sensei) <br>
-- [Publisher profile](https://clawhub.ai/user/NakedoShadow) <br>
-- [OpenClaw homepage metadata](https://clawhub.ai/NakedoShadow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with line-referenced review notes, corrected code blocks, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations adapt to available Python tooling such as pytest, mypy, pyright, and ruff.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact body) <br>
+Risk: Running syntax checks or tests can execute local project code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in trusted repositories or sandboxed environments, and prefer an isolated virtual environment.
+
+Risk: Optional tool installation examples may reference floating dependency versions.
+
+Mitigation: Use pinned or locked dependencies for pytest, mypy, pyright, ruff, or related tooling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nakedoshadow/skills/shadows-python-sensei)
+- [Publisher profile](https://clawhub.ai/user/nakedoshadow)
+- [OpenClaw homepage](https://clawhub.ai/NakedoShadow)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with line references, recommendations, code blocks, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Python source edits and locally executed syntax checks or tests when the agent applies recommendations.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,65 @@
-## Description: <br>
-Goalz über MCP enables an autonomous Goalz agent to play through the public Goalz MCP endpoint, report progress, and manage a club toward long-term success. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomer Goalz-Agent für den öffentlichen Goalz-MCP-Endpunkt, der selbstständig spielt, berichtet und einen Verein langfristig entwickelt.
 
-## Publisher: <br>
-[geby85](https://clawhub.ai/user/geby85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[geby85](https://clawhub.ai/user/geby85)
 
-## Use Case: <br>
-Goalz players or operators can use this skill to run an agent-managed club through the public Goalz MCP, including account bootstrap, team checks, match preparation, communication, scheduling, and autonomous game actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed for unattended Goalz account management with broad messaging, scheduling, and irreversible game-action authority. <br>
-Mitigation: Install only for intentional unattended use, check Goalz rules on automation, and set hard limits for scheduling, public posts, registration, club takeovers, transfers, bids, sponsor choices, stadium orders, and other irreversible actions. <br>
-Risk: Telegram bot tokens and account credentials may be exposed or overused if reused outside this skill. <br>
-Mitigation: Use a dedicated Goalz account and a fresh revocable Telegram bot token, and keep all tokens and credentials out of normal reports and public communication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Modes and Safety](references/modes-and-safety.md) <br>
-- [Tool Groups](references/tool-groups.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Degraded Mode](references/degraded-mode.md) <br>
-- [Goalz MCP endpoint](https://www.goalz.de/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/geby85/goalz-de) <br>
+## Use Case:
 
+External Goalz players and automation users can use this skill to let an agent manage a Goalz account through MCP, including account bootstrap, team management, recurring checks, in-game communication, and long-term club development.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, API Calls, Configuration] <br>
-**Output Format:** [German Markdown status updates with MCP tool calls and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request a Telegram bot token as a secret and may perform autonomous Goalz actions when enabled.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is intended for recurring hands-off Goalz account control.
+
+Mitigation: Install it only for accounts where autonomous recurring play is acceptable, and review the planned session cadence before use.
+
+Risk: The skill can request and use a Telegram bot token.
+
+Mitigation: Provide only a dedicated Telegram bot token, treat it as a secret, and rotate or revoke it if it is exposed or no longer needed.
+
+Risk: The skill can send public or private in-game communication.
+
+Mitigation: Prefer policy-protected communication tools and review communication behavior when tone, recipients, or public visibility matter.
+
+Risk: The skill can make irreversible or consequential game and account changes without per-action approval.
+
+Mitigation: Use it only if autonomous registration, club takeover, transfers, sponsor decisions, stadium orders, and other high-impact game actions are acceptable.
+
+## Reference(s):
+
+- [Goalz MCP endpoint](https://www.goalz.de/mcp)
+- [Modes and safety](references/modes-and-safety.md)
+- [Tool groups](references/tool-groups.md)
+- [Playbooks](references/playbooks.md)
+- [Degraded mode](references/degraded-mode.md)
+- [ClawHub skill page](https://clawhub.ai/geby85/skills/goalz-de)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [German Markdown guidance with operational status updates and MCP-oriented action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide recurring autonomous sessions, Goalz MCP tool use, Telegram token handling, and policy-aware in-game communication.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

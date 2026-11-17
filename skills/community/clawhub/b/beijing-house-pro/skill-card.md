@@ -1,47 +1,61 @@
-## Description: <br>
-查询北京住宅小区的基础信息（房价/区域/交通），并通过官方验证渠道核实学区划片信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询北京住宅小区的基础信息（房价/区域/交通），并通过官方验证渠道核实学区划片信息。
 
-## Publisher: <br>
-[iamhankai](https://clawhub.ai/user/iamhankai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[iamhankai](https://clawhub.ai/user/iamhankai)
 
-## Use Case: <br>
-External users use this skill to research Beijing residential communities, including price, district, transit signals, and school-zone verification steps. It supports housing research but requires current official confirmation before enrollment or purchase decisions. <br>
-
-### Deployment Geography for Use: <br>
-Beijing, China <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User-entered community or address details may be sent to real-estate, search, and education websites. <br>
-Mitigation: Use the skill only when comfortable sharing the searched community or address with those sites, and avoid providing unnecessary personal details. <br>
-Risk: Housing prices, transit details, and school-zone policies can change and may be incomplete or stale. <br>
-Mitigation: Verify school-zone and enrollment results with the current district education authority before making housing or enrollment decisions. <br>
-Risk: Some official school-zone checks require personal login or QR-code authentication. <br>
-Mitigation: Complete any authentication yourself in the browser and do not give the agent credentials, login tokens, or QR-login access. <br>
-Risk: Web scraping and browser automation can fail because of CAPTCHA, site changes, or unavailable pages. <br>
-Mitigation: Treat failed or partial lookups as inconclusive and use the official manual verification route when automation does not return a clear result. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iamhankai/beijing-house-pro) <br>
-- [Beike Beijing community search](https://bj.ke.com/xiaoqu/) <br>
-- [Chaoyang official school-zone query](http://xqcx.bjchyedu.cn/) <br>
-- [Beijing compulsory education enrollment platform](http://yjrx.bjedu.cn/) <br>
-- [Haidian 17 school-district source](http://bj.bendibao.com/edu/2022425/313157.shtm) <br>
+## Use Case:
 
+External users and agents use this skill to look up Beijing residential community prices, districts, transit clues, and school zoning verification paths. It is scoped to Beijing and emphasizes official or manually verified school assignment sources.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and JSON results from helper scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require web search, browser-guided user verification, Chrome or Chromium, ChromeDriver, and network access to Beijing real-estate and education websites.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.8 (source: server evidence release.version) <br>
+China (Beijing)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may submit a community name or precise address to external housing and education websites.
+
+Mitigation: Ask for user consent before lookup, avoid precise home addresses when possible, and prefer manual browser verification for sensitive queries.
+
+Risk: The school lookup launches a browser with no-sandbox against an HTTP education site.
+
+Mitigation: Run only in an isolated virtual environment or container under a low-privilege account, and remove no-sandbox before broader deployment.
+
+Risk: Housing prices and school zoning can become outdated or vary by annual policy updates.
+
+Mitigation: Show source and date context, and require confirmation against the current education authority notice before relying on school assignment results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iamhankai/skills/beijing-house-pro)
+- [Beike Beijing community search](https://bj.ke.com/xiaoqu/rs{community_name}/)
+- [Chaoyang official school lookup](http://xqcx.bjchyedu.cn/)
+- [Beijing compulsory education enrollment service platform](http://yjrx.bjedu.cn/)
+- [Haidian district education portal](https://www.bjhd.gov.cn/kjhd/)
+- [Haidian 2025 school district source data](http://bj.bendibao.com/edu/2022425/313157.shtm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with JSON-formatted script results and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include official lookup URLs, manual verification steps, and time-sensitivity notices for school zoning results.]
+
+## Skill Version(s):
+
+1.0.8 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

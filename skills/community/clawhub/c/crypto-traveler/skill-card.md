@@ -1,42 +1,59 @@
-## Description: <br>
-Book flights, hotels, and eSIMs on cryptotraveler.com with Bitcoin and other cryptocurrencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights, hotels, and eSIMs on cryptotraveler.com with Bitcoin and other cryptocurrencies.
 
-## Publisher: <br>
-[g33kme](https://clawhub.ai/user/g33kme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[g33kme](https://clawhub.ai/user/g33kme)
 
-## Use Case: <br>
-External users and travel agents use this skill to search flights, hotels/stays, and eSIM packages, create booking orders, and continue to hosted checkout with cryptocurrency payment support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Linked account access may expose account details and booking history when user-specific endpoints are used. <br>
-Mitigation: Use account and booking-history endpoints only for explicit user requests and avoid sharing unnecessary itinerary, identity, or payment-related details. <br>
-Risk: Agent credentials and user access tokens can authorize travel actions and account lookups. <br>
-Mitigation: Send credentials only to agents.cryptotraveler.com, redact secrets in user-visible output, and revoke or regenerate any exposed secret. <br>
+## Use Case:
 
+External users and developers use this skill to help agents search flights, hotel stays, and eSIM packages, prepare booking workflows, and redirect users to hosted checkout for cryptocurrency payment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/g33kme/crypto-traveler) <br>
-- [CryptoTraveler homepage](https://www.cryptotraveler.com) <br>
-- [CryptoTraveler agent API base](https://agents.cryptotraveler.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, API calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON, HTTP, Python, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses JSON or compact TOON API responses where supported; protected endpoints require signed requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release evidence and frontmatter) <br>
+Risk: CryptoTraveler API credentials and optional USER_ACCESS tokens can expose booking or account data if placed in prompts, logs, repositories, or shared folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store CLIENT_SECRET and USER_ACCESS outside prompts and source files, preferably in a secret manager or tightly permissioned local storage, and revoke exposed secrets immediately.
+
+Risk: Travel booking workflows can require personal passenger or guest data and may present multiple valid offers or changed booking conditions.
+
+Mitigation: Validate required fields, ask the user for missing or ambiguous details, and obtain confirmation before continuing when selections or conditions are unclear.
+
+## Reference(s):
+
+- [CryptoTraveler Skill Page](https://clawhub.ai/g33kme/skills/crypto-traveler)
+- [CryptoTraveler Homepage](https://www.cryptotraveler.com)
+- [CryptoTraveler Agent Registration](https://www.cryptotraveler.com/en/agent)
+- [CryptoTraveler Flights](https://www.cryptotraveler.com/en/flight)
+- [CryptoTraveler Hotels and Stays](https://www.cryptotraveler.com/en/stay)
+- [CryptoTraveler eSIM](https://www.cryptotraveler.com/en/esim)
+- [CryptoTraveler Agents API Base](https://agents.cryptotraveler.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with JSON, HTTP, bash, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API endpoint workflows, HMAC signing guidance, credential handling rules, and hosted checkout handoff guidance.]
+
+## Skill Version(s):
+
+1.3.2 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

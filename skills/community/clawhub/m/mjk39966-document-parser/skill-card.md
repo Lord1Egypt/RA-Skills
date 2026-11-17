@@ -1,43 +1,58 @@
-## Description: <br>
-Parse and extract content from .docx, .pdf, and .txt documents, including plain text and tables, so an agent can analyze or answer questions about document contents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse and extract content from .docx, .pdf, and .txt documents, including plain text and tables for document analysis.
 
-## Publisher: <br>
-[mjk39966-glitch](https://clawhub.ai/user/mjk39966-glitch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mjk39966-glitch](https://clawhub.ai/user/mjk39966-glitch)
 
-## Use Case: <br>
-Developers, analysts, and document-focused agents use this skill to parse local Word, PDF, and text files into extracted text, tables, and metadata for summarization, question answering, and data lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The parser can expose the full contents of local documents in terminal output or agent context. <br>
-Mitigation: Use the skill only with deliberately selected files, avoid unnecessary confidential documents, and review extracted output before sharing it further. <br>
-Risk: Dependency installation modifies the active Python environment. <br>
-Mitigation: Install and run the parser in a virtual environment when possible. <br>
-Risk: Scanned PDFs and complex PDF tables may produce incomplete extraction results. <br>
-Mitigation: Use source documents with selectable text and verify extracted tables against the original document before relying on them. <br>
+## Use Case:
 
+Developers, employees, and external users can use this skill to parse uploaded Word, PDF, and text documents before summarizing, answering questions, extracting tables, or searching document content.
 
-## Reference(s): <br>
-- [Document Parser Usage Examples](references/usage_examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mjk39966-glitch/mjk39966-document-parser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON or human-readable text with extracted document text, tables, and metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally on user-selected files; PDF table extraction depends on pdfplumber, and scanned PDFs without selectable text are not supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.yaml) <br>
+Risk: Parsing confidential or regulated documents may expose sensitive content to the local runtime or downstream agent responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a trusted local environment, prefer a virtual environment, and avoid confidential or regulated documents unless the runtime and handling process are approved.
+
+Risk: The OpenClaw entry file is less capable than the documented parse_document.py script, which may cause inconsistent behavior depending on the entry point used.
+
+Mitigation: Use scripts/parse_document.py for the documented JSON and text parsing workflow, and verify extracted output before relying on answers.
+
+Risk: Scanned PDFs, image-only documents, and complex layouts may produce incomplete or missing extraction results.
+
+Mitigation: Confirm PDFs contain selectable text and review extracted text and tables before analysis.
+
+## Reference(s):
+
+- [Document Parser Usage Examples](artifact/references/usage_examples.md)
+- [ClawHub skill page](https://clawhub.ai/mjk39966-glitch/skills/mjk39966-document-parser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or plain-text parser output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces extracted document text, tables, and metadata; output quality depends on document format and parser support.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

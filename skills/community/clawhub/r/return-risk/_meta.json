@@ -1,0 +1,13 @@
+{
+  "ownerId": "583963",
+  "slug": "return-risk",
+  "version": "1.5.3",
+  "workflow": "product",
+  "focus": "risk",
+  "outputTemplate": "ops_product",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ],
+  "releaseWave": 3
+}

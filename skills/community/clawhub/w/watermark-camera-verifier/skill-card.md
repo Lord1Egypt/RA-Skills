@@ -1,47 +1,60 @@
-## Description: <br>
-Verifies Today's Watermark Camera photo URLs by submitting public image links to openapi.xhey.top and returning authenticity verdicts with capture time and location metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verifies Today's Watermark Camera photo URLs through openapi.xhey.top and returns authenticity verdicts, tamper indicators, capture time, GPS coordinates, and location metadata.
 
-## Publisher: <br>
-[wanmeishijie618](https://clawhub.ai/user/wanmeishijie618) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanmeishijie618](https://clawhub.ai/user/wanmeishijie618)
 
-## Use Case: <br>
-External users and business teams use this MCP skill to verify whether Today's Watermark Camera photos are authentic and to surface capture time and location metadata for insurance, attendance, construction, evidence, and compliance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided public photo URLs to openapi.xhey.top and can expose returned capture time and location metadata to the agent. <br>
-Mitigation: Submit only approved public image links, avoid private, internal, or presigned URLs, and treat returned location/time data as sensitive. <br>
-Risk: The skill requires TRUTU_GROUP_KEY and TRUTU_GROUP_SECRET credentials. <br>
-Mitigation: Store credentials in environment variables, rotate them when required, and use limited credentials where possible. <br>
-Risk: The bundled Feishu implementation contains verbose request and result logging behavior. <br>
-Mitigation: Remove or disable verbose logging before using that implementation with real photos or production credentials. <br>
+## Use Case:
 
+External teams and developers use this skill to verify whether publicly reachable Today's Watermark Camera image URLs are authentic for insurance claims, attendance, construction acceptance, evidence review, and compliance workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanmeishijie618/watermark-camera-verifier) <br>
-- [Publisher profile](https://clawhub.ai/user/wanmeishijie618) <br>
-- [Project homepage](https://github.com/wanmeishijie618/trutu-photo-verify-mcp) <br>
-- [Trutu build API documentation](https://docs.xhey.top/docs/trutu-build-api) <br>
-- [Skill README](README.md) <br>
-- [Trutu API reference](trutu-api-reference/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance, configuration] <br>
-**Output Format:** [MCP text content containing formatted JSON verification results, plus Markdown setup guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns task IDs, per-photo verdicts, status codes, and capture metadata when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Photo URLs are sent to openapi.xhey.top for verification, and successful results may include precise capture time and location metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only publicly reachable, non-sensitive photo URLs when external verification is intended; avoid private, signed, internal, or sensitive links.
+
+Risk: The bundled Feishu implementation logs sensitive photo and location-related data according to the security evidence.
+
+Mitigation: Prefer the MCP server path and avoid the Feishu implementation until sensitive logging and weak default authorization configuration are removed.
+
+Risk: The skill may initiate verification when image URLs are provided, which sends those URLs to an external service.
+
+Mitigation: Use the tool only for explicit photo-authenticity workflows and make the external verification step clear to users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanmeishijie618/skills/watermark-camera-verifier)
+- [Publisher profile](https://clawhub.ai/user/wanmeishijie618)
+- [Source homepage from ClawHub metadata](https://github.com/wanmeishijie618/trutu-photo-verify-mcp)
+- [Today's Watermark Camera Trutu API documentation](https://docs.xhey.top/docs/trutu-build-api)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, JSON, Analysis]
+
+**Output Format:** [JSON text containing a task ID, task status, summary counts, per-photo verdicts, and optional capture metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts 1 to 10 publicly reachable photo URLs; can either wait for verification results or return a submitted task ID.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence; artifact frontmatter and package.json list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

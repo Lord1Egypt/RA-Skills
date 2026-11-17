@@ -1,43 +1,51 @@
-## Description: <br>
-Use Twelve Data REST/WebSocket APIs for market quotes, latest prices, historical time series, symbol discovery, and technical indicators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Twelve Data REST and WebSocket APIs for market quotes, latest prices, historical time series, symbol discovery, and technical indicators.
 
-## Publisher: <br>
-[softtrymee](https://clawhub.ai/user/softtrymee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[softtrymee](https://clawhub.ai/user/softtrymee)
 
-## Use Case: <br>
-Developers and agents use this skill to construct Twelve Data REST and WebSocket requests for live and historical multi-asset market data. It supports quotes, latest prices, time series, symbol discovery, technical indicators, and selected fundamentals endpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API keys may be exposed through URLs, logs, browser history, or shell history when query-string authentication examples are used. <br>
-Mitigation: Prefer the Authorization header examples, keep TWELVEDATA_API_KEY in a secure environment variable, and avoid sharing full request URLs. <br>
-Risk: Unbounded or repeated market-data requests can consume Twelve Data API credits or hit rate limits. <br>
-Mitigation: Monitor API credit usage, cache frequent reads, and apply retry/backoff for transient failures and 429 responses. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Twelve Data documentation](https://twelvedata.com/docs) <br>
-- [Twelve Data request guide](https://support.twelvedata.com/en/articles/5620512-how-to-create-a-request) <br>
-- [Twelve Data trial information](https://support.twelvedata.com/en/articles/5335783-trial) <br>
-- [ClawHub skill page](https://clawhub.ai/softtrymee/twelve-data) <br>
-- [Publisher profile](https://clawhub.ai/user/softtrymee) <br>
+## Use Case:
 
+Developers and market-data users use this skill to configure Twelve Data access, construct REST and WebSocket requests, retrieve live and historical multi-asset data, and add technical or fundamentals endpoints when appropriate.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash, JSON, and text examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TWELVEDATA_API_KEY for authenticated Twelve Data requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API keys can be exposed when copied into request URLs, logs, browser history, or shared command output.
+
+Mitigation: Prefer the Authorization header pattern, avoid logging URLs containing apikey values, and protect any environment or configuration file storing TWELVEDATA_API_KEY.
+
+## Reference(s):
+
+- [Twelve Data Documentation](https://twelvedata.com/docs)
+- [Twelve Data Request Guide](https://support.twelvedata.com/en/articles/5620512-how-to-create-a-request)
+- [Twelve Data Trial Information](https://support.twelvedata.com/en/articles/5335783-trial)
+- [ClawHub Skill Page](https://clawhub.ai/softtrymee/skills/twelve-data)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Twelve Data API key for normal API use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-LLM hallucination detector with dual strategy (UQLM + rule-based fallback). Scores any AI output's confidence and flags potential hallucination risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LLM hallucination detector with dual strategy (UQLM + rule-based fallback). Scores any AI output's confidence and flags potential hallucination risks.
 
-## Publisher: <br>
-[li8476295-bot](https://clawhub.ai/user/li8476295-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[li8476295-bot](https://clawhub.ai/user/li8476295-bot)
 
-## Use Case: <br>
-Developers and AI practitioners use this skill to assess LLM-generated text or selected file fields for hallucination risk before critical actions such as code execution, SQL use, or external sends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external uqlm Python package when using its primary scoring path. <br>
-Mitigation: Install it in an isolated Python environment, verify the intended PyPI package, and pin versions before relying on it for important workflows. <br>
-Risk: Confidence scores and rule-based flags can miss hallucinations or overstate risk. <br>
-Mitigation: Use the result as a review aid and keep human review for critical decisions, especially before code execution, SQL use, or external sends. <br>
+## Use Case:
 
+Developers and agents use this skill to check AI-generated text for hallucination risk before critical operations such as code execution, SQL, or external sends.
 
-## Reference(s): <br>
-- [Hallucination Check on ClawHub](https://clawhub.ai/li8476295-bot/hallucination-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Plain text or JSON with confidence score, risk status, flags, and suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can analyze direct input text or a selected field from a file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/clawhub.json) <br>
+Risk: The external uqlm package and its dependencies are the main trust boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment or container, pin dependency versions, and avoid running with sensitive credentials or broad filesystem access.
+
+Risk: Hallucination confidence scores and rule-based fallback results may miss or misclassify risky content.
+
+Mitigation: Use results as a screening signal and keep human review for critical code, SQL, or external communications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/li8476295-bot/skills/hallucination-check)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Plain text or JSON containing confidence, risk level, and suggestion fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports threshold-based risk classification and a rule-based fallback when UQLM dependencies are unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: clawhub.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

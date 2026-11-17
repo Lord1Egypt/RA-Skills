@@ -1,39 +1,52 @@
-## Description: <br>
-Generate concise investor-style briefings on startups using live web searches to extract verified company info, funding, founders, traction, and competitors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates concise investor-style startup briefings using web research to verify company information, funding, founders, traction, competitors, and risks.
 
-## Publisher: <br>
-[brunobuddy](https://clawhub.ai/user/brunobuddy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brunobuddy](https://clawhub.ai/user/brunobuddy)
 
-## Use Case: <br>
-Developers, analysts, and investors use this skill to turn a company name or URL into a concise startup briefing using web research. The briefing covers product, founders, funding, traction, competitors, moat, and key risks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Company research queries may expose confidential deal names, private URLs, or sensitive diligence topics to the configured web search provider. <br>
-Mitigation: Use the skill for public company research and avoid confidential inputs unless the configured search provider is approved for that data. <br>
-Risk: Web search snippets and blocked sources can be incomplete or outdated for funding, traction, or founder details. <br>
-Mitigation: Cross-reference funding across multiple sources and mark unsupported fields as Not disclosed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Startup Info ClawHub page](https://clawhub.ai/brunobuddy/startup-info) <br>
+## Use Case:
 
+External users and analysts use this skill to produce concise startup briefings from public web research when given a company name or URL.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown startup briefing with tables and short sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live web search; marks unavailable data as Not disclosed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Startup data gathered from public web sources may be incomplete, stale, blocked by source access limits, or inconsistent across providers.
+
+Mitigation: Cross-reference funding and company facts across multiple sources, prefer recent sources, and mark missing fields as Not disclosed.
+
+Risk: The skill queries external sites while researching a target company.
+
+Mitigation: Use it only for intended public web research and avoid submitting private or sensitive company information as input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brunobuddy/skills/startup-info)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown startup briefing with tables and concise sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires web search access; missing facts are reported as Not disclosed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

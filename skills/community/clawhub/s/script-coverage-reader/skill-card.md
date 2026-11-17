@@ -1,44 +1,48 @@
-## Description: <br>
-Evaluates feature screenplays or TV pilots and produces industry-standard coverage, including a logline, synopsis, character breakdown, craft grid, producibility notes, comps, and separate script and writer verdicts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a script reader, development executive, producer, or contest reader needs to evaluate a feature screenplay or TV pilot and produce industry-standard coverage.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Script readers, development executives, producers, and contest readers use this skill to evaluate screenplay or TV pilot submissions and turn them into actionable development coverage. It supports intake, read-pass analysis, craft scoring, producibility review, comps, and separate script and writer verdicts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; defaults to US industry conventions unless the user names another market. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted scripts can contain confidential writer, representation, project, or rights information. <br>
-Mitigation: Keep outputs labeled for development team use only, do not disclose writer identity outside the team, avoid external services, and do not write submitted scripts to disk. <br>
-Risk: Coverage can mislead a development team if plot beats, character actions, dialogue, or comparable titles are invented. <br>
-Mitigation: Mark missing material as unknown, paraphrase source material, cap verbatim quotation, and use only real released comparable projects. <br>
-Risk: The server security review recommends trusted-maintainer installation and least-privileged credentials for the broader release environment. <br>
-Mitigation: Install only in a trusted ClawHub maintainer environment and keep GitHub, ClawHub, and Convex credentials least-privileged when related tooling is present. <br>
+## Use Case:
 
+Development teams, script readers, producers, contest readers, and entertainment executives use this skill to produce structured coverage for feature screenplays, TV pilots, and shorts. It standardizes intake, synopsis, craft assessment, producibility notes, comparable titles, and separate script and writer verdicts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/archlab-space/script-coverage-reader) <br>
-- [README](artifact/README.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Submitted scripts may contain confidential story, writer, or representation details.
+
+Mitigation: Confirm the user is comfortable sharing script text and related details with the agent; the skill directs the agent not to send scripts to external services or write them to disk.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown coverage document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a development-team-use label, reader/date fields, fixed craft rating anchors, and separate script and writer verdicts.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.1 (source: evidence.release.version and changelog, released 2026-05-28) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown coverage document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes submission metadata, logline, synopsis, character breakdown, craft grid, comments, producibility notes, comps, verdicts, optional next steps, and open flags.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and CHANGELOG, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

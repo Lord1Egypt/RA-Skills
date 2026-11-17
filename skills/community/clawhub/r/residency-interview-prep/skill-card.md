@@ -1,41 +1,53 @@
-## Description: <br>
-Mock interview preparation tool for residency Match interviews that generates practice questions and structured answer guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Residency Interview Prep helps agents generate mock NRMP Match interview questions with suggested response structures, key points, and common pitfalls.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External users preparing for NRMP residency interviews use this skill to practice behavioral, clinical, program-specific, and ethical questions and receive structured response guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive personal, patient, or professional details while practicing interview answers. <br>
-Mitigation: Use minimal, non-sensitive context and avoid including identifiable patient or private professional information. <br>
-Risk: Some academic-writing and interview guidance may be generic or imprecise for a specific specialty, program, or situation. <br>
-Mitigation: Review generated guidance against official program materials and current professional expectations before relying on it. <br>
+## Use Case:
 
+External users and agents use this skill to prepare for residency Match interviews by generating behavioral, clinical, program-specific, and ethical practice questions with structured feedback.
 
-## Reference(s): <br>
-- [Residency Interview Prep Guidelines](artifact/references/guidelines.md) <br>
-- [Residency Interview Prep on ClawHub](https://clawhub.ai/aipoch-ai/residency-interview-prep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON interview-question output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated questions include a category, suggested response structure, key points, and common pitfalls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Interview prompts that touch medical, legal, or ethics topics could be mistaken for professional advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the outputs for interview practice only and verify specialty, legal, and ethics details against authoritative sources.
+
+Risk: The skill routing text is broader than the core residency interview preparation behavior.
+
+Mitigation: Confirm that requests are within residency interview preparation scope before using the skill.
+
+## Reference(s):
+
+- [Residency Interview Prep References](references/guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON question records and concise Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a question category, suggested response structure, key points, and common pitfalls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

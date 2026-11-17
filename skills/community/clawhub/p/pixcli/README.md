@@ -40,7 +40,7 @@ cd ./my-video && npm install && npx remotion studio
 | `pixcli job` | Check job status and download results. Recover timed-out video jobs |
 | `pixcli link` | Open the Canva Mode dashboard for a job |
 
-**Publishing:** every generation command takes `--publish` (public link) / `--publish-private` (key-gated) / `--publish-ttl <days>` / `--publish-name <slug>` to host the result at a shareable `https://pixcli.shellbot.sh/p/<slug>-<id>` URL (all expire; default 60d, max 365d).
+**Publishing:** every generation command takes `--publish` (public link) / `--publish-private` (key-gated) / `--publish-ttl <days>` / `--publish-name <slug>` to host the result at a shareable `https://pixcli.hilo.cx/p/<slug>-<id>` URL (all expire; default 60d, max 365d).
 
 ### 6 Remotion templates
 | Template | Use case |
@@ -76,7 +76,7 @@ User / AI Agent
         └── Final render to MP4
 ```
 
-> All model providers (fal, Google, OpenAI, ElevenLabs) are called **server-side** by the pixcli API through a Cloudflare AI Gateway. The CLI/skill only ever talk to `pixcli.shellbot.sh` — no provider keys client-side.
+> All model providers (fal, Google, OpenAI, ElevenLabs) are called **server-side** by the pixcli API through a Cloudflare AI Gateway. The CLI/skill only ever talk to `pixcli.hilo.cx` — no provider keys client-side.
 
 ## The opinionated workflow
 
@@ -98,7 +98,7 @@ Get your key at https://shellbot.sh — it covers every command (image, video, a
 ## What's new in v2.4
 
 - **New models** — native **Veo 3.1** (`veo-3.1-lite/-fast/-3.1`, resolution-priced, native audio), **Seedance 2** (t2v/i2v on fal), **Grok Imagine** i2v, **GPT Image 2** (best in-image text), **FLUX VTO** (try-on), **Gemini TTS** + multi-speaker dialogue, **Lyria 3 Pro** music, **ElevenLabs SFX v2**
-- **R2 publishing** — `--publish` / `--publish-private` / `--publish-ttl` / `--publish-name` host any result at a shareable `https://pixcli.shellbot.sh/p/...` URL
+- **R2 publishing** — `--publish` / `--publish-private` / `--publish-ttl` / `--publish-name` host any result at a shareable `https://pixcli.hilo.cx/p/...` URL
 - **New commands** — `pixcli podcast` (topic → finished, grounded, multi-speaker episode with cover art + share page), `pixcli dialogue`, `pixcli tryon`, `pixcli models`, `pixcli link`
 - **Voice** — `--engine gemini` (steerable), instant **voice cloning** (`--clone`/`--sample`)
 - **Video** — `--resolution 480p/720p/1080p/4k`

@@ -1,42 +1,53 @@
-## Description: <br>
-Focus coach for AI agents: diagnose focus blockers using BJ Fogg B=MAP and return one tiny action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Focus coach for AI agents that diagnoses focus blockers using BJ Fogg's B=MAP framework and returns one tiny action.
 
-## Publisher: <br>
-[Daisuke134](https://clawhub.ai/user/Daisuke134) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daisuke134](https://clawhub.ai/user/daisuke134)
 
-## Use Case: <br>
-External users and AI agents use this skill to diagnose a current focus blocker and receive one small, concrete action for restoring attention. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the user's focus situation to an external API. <br>
-Mitigation: Avoid including secrets, confidential work details, health information, or sensitive personal data in requests. <br>
-Risk: The skill uses a paid x402 request flow through a wallet or payment-capable account. <br>
-Mitigation: Confirm each paid request is intentional and that the wallet or account is appropriate for small USDC charges. <br>
-Risk: The skill depends on the pinned awal npm CLI for authentication and payment execution. <br>
-Mitigation: Install only the documented pinned CLI version and review the command before running it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Focus Coach Skill Page](https://clawhub.ai/Daisuke134/focus-coach) <br>
-- [Focus Coach x402 API](https://anicca-proxy-production.up.railway.app/api/x402/focus-coach) <br>
+## Use Case:
 
+External users and agents use this skill when a user is distracted, procrastinating, or otherwise struggling to focus. It helps diagnose one focus blocker and returns a small next action with an environment adjustment.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, json, shell commands] <br>
-**Output Format:** [JSON response from an external API, with setup and payment commands documented in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The response includes a focus diagnosis, one tiny action, environment design guidance, and a safety flag.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install and authenticate a third-party payment CLI and pay per request.
+
+Mitigation: Review the CLI and endpoint before use, run in a constrained environment, and use a low-limit payment identity.
+
+Risk: Focus-related prompts may be sent to a paid external API.
+
+Mitigation: Avoid sending private or sensitive situations unless the user trusts the endpoint and CLI, and minimize the personal detail included in requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daisuke134/skills/focus-coach)
+- [Focus Coach x402 API endpoint](https://anicca-proxy-production.up.railway.app/api/x402/focus-coach)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls]
+
+**Output Format:** [JSON response with focus diagnosis, tiny action, environment design, and safety flag]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a paid x402 request through the awal CLI; the artifact documents a price of $0.01 USDC per request on Base mainnet.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

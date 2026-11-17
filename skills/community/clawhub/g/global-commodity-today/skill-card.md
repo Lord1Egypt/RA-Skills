@@ -1,42 +1,59 @@
-## Description: <br>
-Generates concise commodity market briefings for London gold, London silver, LME copper, NYMEX platinum, and Brent crude oil using akshare public market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全球大宗商品行情简报工具，支持查询伦敦金、伦敦银、伦敦铜、纽约铂、布伦特原油的当前价格和当日涨跌幅，生成简洁的行情简报。基于akshare获取实时数据。
 
-## Publisher: <br>
-[M0dZer0](https://clawhub.ai/user/M0dZer0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[m0dzer0](https://clawhub.ai/user/m0dzer0)
 
-## Use Case: <br>
-External users and developers use this skill to fetch recent precious-metals and Brent crude oil prices, then present either a full commodity briefing or a single-commodity status report. The output is informational market data and is not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Python script and requires installing akshare and pandas. <br>
-Mitigation: Review the included script before use and install dependencies only in an environment where local Python execution and public market-data requests are acceptable. <br>
-Risk: Commodity prices may be delayed, unavailable during weekends or holidays, or affected by public data-source limitations. <br>
-Mitigation: Check the reported data timestamp, retry later when fetches fail, and treat results as informational rather than trading guidance. <br>
+## Use Case:
 
+External users and agents use this skill to fetch current precious-metals and Brent crude oil prices, inspect daily movement, and generate concise market briefings. The data is for public market reference and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [Global Commodity Today on ClawHub](https://clawhub.ai/M0dZer0/global-commodity-today) <br>
-- [M0dZer0 ClawHub publisher profile](https://clawhub.ai/user/M0dZer0) <br>
-- [AkShare](https://github.com/akfamily/akshare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown commodity briefing or single-commodity report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include current price, daily change, open, high, low, previous close, data timestamp, failed-fetch notices, and an informational-use disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill requires unpinned Python packages for data fetching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in an environment where the current ClawHub installer and unpinned Python dependencies are acceptable.
+
+Risk: Returned commodity prices may be stale, unavailable, or delayed by market hours, holidays, network errors, or upstream rate limits.
+
+Mitigation: Check the reported data time, retry later after failures, and treat results as reference data rather than a guaranteed live trading feed.
+
+Risk: Users may mistake public market summaries for investment advice.
+
+Mitigation: Keep the reference-only framing and avoid presenting the output as a recommendation to trade or invest.
+
+## Reference(s):
+
+- [AkShare](https://github.com/akfamily/akshare)
+- [Global Commodity Today on ClawHub](https://clawhub.ai/m0dzer0/skills/global-commodity-today)
+- [m0dzer0 ClawHub profile](https://clawhub.ai/user/m0dzer0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown market briefing or single-commodity summary with inline shell commands for invocation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; commodity prices are in USD and include fetch time, latest price, daily change, open, high, low, and reference-only disclaimer when available.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

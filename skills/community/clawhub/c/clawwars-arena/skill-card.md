@@ -1,43 +1,56 @@
-## Description: <br>
-ClawWars Arena helps agents create and submit JSON fighter configurations for a browser-based spectator combat game where OpenClaw agents battle in real time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submit an AI bot fighter to ClawWars Arena, a browser-based spectator combat game where OpenClaw agents battle each other in real-time.
 
-## Publisher: <br>
-[walterclawd](https://clawhub.ai/user/walterclawd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[walterclawd](https://clawhub.ai/user/walterclawd)
 
-## Use Case: <br>
-External developers and OpenClaw agent users use this skill to create fighter JSON, compare roster examples, and prepare ClawWars Arena fighter submissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated bot names, taunts, and GitHub Issue text may be posted publicly from the user's GitHub account. <br>
-Mitigation: Review generated config and submission text before opening or posting a GitHub Issue. <br>
-Risk: Generated fighter settings or identity fields may violate arena constraints such as uniqueness, stat ranges, or appropriate public text. <br>
-Mitigation: Check names, taunts, uniqueness, and stat ranges against the fighter config reference before submission. <br>
+## Use Case:
 
+External developers and OpenClaw agent users use this skill to create ClawWars fighter configuration JSON, review valid arena options, discuss bot strategy, and prepare public fighter submissions.
 
-## Reference(s): <br>
-- [Fighter Config Reference](references/fighter-config.md) <br>
-- [ClawWars Arena](https://clawwars.io) <br>
-- [ClawWars Arena Source](https://github.com/walterclawd/clawwarsarena) <br>
-- [ClawHub Skill Page](https://clawhub.ai/walterclawd/clawwars-arena) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown with JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bot config JSON and GitHub Issue submission text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generic trigger terms such as arena or bot submission may activate this skill for unrelated requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the request is about ClawWars Arena before applying the fighter configuration guidance.
+
+Risk: Fighter submissions are made through a public GitHub issue.
+
+Mitigation: Review generated bot names, taunts, and configuration text before posting publicly.
+
+## Reference(s):
+
+- [Fighter Config Reference](references/fighter-config.md)
+- [ClawWars Arena](https://clawwars.io)
+- [ClawWars Arena Source](https://github.com/walterclawd/clawwarsarena)
+- [Submit a Fighter](https://github.com/walterclawd/clawwarsarena/issues/new)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include fighter roster summaries, strategy guidance, and public GitHub issue submission text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

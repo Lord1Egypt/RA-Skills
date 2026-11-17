@@ -1,45 +1,59 @@
-## Description: <br>
-Immigration, tax, and business compliance alerts for Guardian users, including STEM OPT, H-1B, I-140, CPT status, upcoming deadlines, risk findings, documents, and tax filing obligations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Immigration, tax, and business compliance alerts for STEM OPT, H-1B, I-140, CPT status, upcoming deadlines, risk findings, and tax filing obligations from Guardian.
 
-## Publisher: <br>
-[lee-chenyu](https://clawhub.ai/user/lee-chenyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lee-chenyu](https://clawhub.ai/user/lee-chenyu)
 
-## Use Case: <br>
-External Guardian users use this skill to review their immigration, tax, and business compliance status, deadlines, findings, documents, and account-aware answers in an agent conversation. The skill is intended to summarize Guardian results and remind users that compliance risk detection is not legal, immigration, or tax advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill accesses sensitive immigration, tax, business compliance, and document metadata through Guardian. <br>
-Mitigation: Use it only with a trusted Guardian account and request results only when sharing that account context with the agent is acceptable. <br>
-Risk: GUARDIAN_TOKEN authorizes access to the user's Guardian data. <br>
-Mitigation: Keep GUARDIAN_TOKEN private and configure it only through the agent environment or approved secret settings. <br>
-Risk: GUARDIAN_API_URL can redirect requests to an alternate endpoint. <br>
-Mitigation: Leave GUARDIAN_API_URL unset unless the alternate endpoint is trusted. <br>
-Risk: Compliance summaries can affect immigration, legal, or tax decisions. <br>
-Mitigation: Treat Guardian output as compliance risk detection, not legal or tax advice, and consult an immigration attorney or qualified CPA for critical issues. <br>
+## Use Case:
 
+External users use this skill to check Guardian-backed immigration, tax, and business compliance status, deadlines, risk findings, documents, and specific compliance questions from their chat agent.
 
-## Reference(s): <br>
-- [Guardian Compliance homepage](https://guardian-compliance.fly.dev) <br>
-- [ClawHub skill page](https://clawhub.ai/lee-chenyu/guardian-compliance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text summaries from Guardian API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GUARDIAN_TOKEN and the curl and jq command-line tools; GUARDIAN_API_URL is optional and defaults to the Guardian hosted endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill frontmatter) <br>
+Risk: The skill sends a bearer token and potentially sensitive immigration, tax, business compliance, deadline, risk, document, and question data to Guardian's remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure GUARDIAN_TOKEN only for the intended Guardian account and assume data requested through the skill may be sent to the Guardian API.
+
+Risk: Setting GUARDIAN_API_URL changes the remote endpoint that receives the bearer token and compliance requests.
+
+Mitigation: Avoid overriding GUARDIAN_API_URL unless the endpoint is trusted.
+
+Risk: Guardian output may affect decisions in legal, immigration, tax, or business compliance contexts.
+
+Mitigation: Treat Guardian as compliance risk detection rather than legal or tax advice, and consult an immigration attorney or qualified CPA for critical issues.
+
+## Reference(s):
+
+- [Guardian Compliance on ClawHub](https://clawhub.ai/lee-chenyu/skills/guardian-compliance)
+- [Guardian Compliance Homepage](https://guardian-compliance.fly.dev)
+- [Publisher Profile](https://clawhub.ai/user/lee-chenyu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text returned from Guardian API-backed shell scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and GUARDIAN_TOKEN; sends compliance questions and dashboard requests to the configured Guardian API endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

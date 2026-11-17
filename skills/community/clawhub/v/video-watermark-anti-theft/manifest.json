@@ -1,0 +1,9 @@
+{
+  "name": "video-watermark-anti-theft",
+  "normalizedName": "video-watermark-anti-theft",
+  "description": "视频水印与防盗用处理技能，用于回答「视频怎么防被搬运」「被盗用了怎么证明是我的」这类问题。为视频添加水印以标识权属、防止未经授权盗用，并在发生盗用时支持溯源取证。权属信息按注册方法论登记为可被第三方核验的属性，取证链路按证据链审计留痕，使「何时、由谁、基于哪个原始文件生成」可还原。触发词：视频水印、加水印、视频防盗、防盗用、版权保护、水印溯源、盗用取证、权属标识、watermark、anti-theft、video watermark。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺源(Arche)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

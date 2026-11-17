@@ -1,0 +1,4 @@
+playwright>=1.41.0
+Pillow>=10.0.0
+python-telegram-bot>=20.7
+reportlab>=4.0.0

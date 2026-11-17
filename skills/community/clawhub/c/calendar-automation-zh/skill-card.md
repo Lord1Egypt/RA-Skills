@@ -1,41 +1,53 @@
-## Description: <br>
-Automates Google Calendar and Outlook schedule management for meeting scheduling, time-block planning, daily agenda summaries, reminders, and cross-platform calendar coordination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+日历自动化 / 智能日程管理 / 会议日程助手 / calendar automation。自动同步 Google Calendar、Outlook 跨平台日程，智能安排会议时间、生成日程播报、设置会前提醒。适配行政助理的会议室预订冲突排查、项目经理的多项目时间块管理、团队负责人的团队日程协调需求。减少重复手动操作，提升团队协作效率。
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olina1ye](https://clawhub.ai/user/olina1ye)
 
-## Use Case: <br>
-Employees, administrative assistants, project managers, and team leads use this skill to coordinate meetings, summarize calendar load, reserve focus blocks, detect schedule conflicts, and send approved schedule notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calendar automation can expose sensitive schedule details or attendee information. <br>
-Mitigation: Use least-privilege calendar scopes and keep summaries private by default. <br>
-Risk: Posting meeting details to a group channel can share information with unintended recipients. <br>
-Mitigation: Require explicit confirmation before sending schedule details to group chat destinations. <br>
+## Use Case:
 
+Employees, administrative assistants, project managers, and team leads use this skill to summarize calendars, schedule meetings, create focus blocks, analyze meeting fragmentation, and send schedule notifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olina1ye/calendar-automation-zh) <br>
-- [Publisher profile](https://clawhub.ai/user/olina1ye) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Markdown or text schedule summaries with calendar and notification actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, list, or update calendar events and send schedule notifications when the connected tools are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Calendar summaries and notification posts can disclose confidential meeting titles, attendees, or private schedule details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm notification destinations before sending and avoid sharing private calendar details unless the user intends disclosure.
+
+Risk: Calendar read/write permissions allow the skill to create or update events in connected calendars.
+
+Mitigation: Install only for calendars where read/write access is appropriate and review proposed schedule changes before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/olina1ye/skills/calendar-automation-zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or concise natural-language responses with proposed or executed calendar and notification actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include schedule summaries, meeting reminders, time-block recommendations, and notification text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

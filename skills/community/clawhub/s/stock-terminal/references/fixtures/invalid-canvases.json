@@ -1,0 +1,87 @@
+[
+  {
+    "name": "version mismatch",
+    "expectedCode": "VERSION_MISMATCH",
+    "xml": "<canvas id=\"bad.version\" title=\"Bad\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"1.0\"><block id=\"note\" type=\"narrative\" width=\"full\">Test only</block></canvas>"
+  },
+  {
+    "name": "external entity declaration",
+    "expectedCode": "FORBIDDEN_XML",
+    "xml": "<!DOCTYPE canvas [<!ENTITY secret SYSTEM 'file:///tmp/secret'>]><canvas id=\"bad.dtd\" title=\"Bad\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"2.0\"><block id=\"note\" type=\"narrative\" width=\"full\">&secret;</block></canvas>"
+  },
+  {
+    "name": "processing instruction",
+    "expectedCode": "FORBIDDEN_XML",
+    "xml": "<?xml version=\"1.0\"?><canvas id=\"bad.pi\" title=\"Bad\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"2.0\"><block id=\"note\" type=\"narrative\" width=\"full\">Test only</block></canvas>"
+  },
+  {
+    "name": "unknown entity",
+    "expectedCode": "UNKNOWN_ENTITY",
+    "xml": "<canvas id=\"bad.entity\" title=\"Bad &bogus;\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"2.0\"><block id=\"note\" type=\"narrative\" width=\"full\">Test only</block></canvas>"
+  },
+  {
+    "name": "duplicate block id",
+    "expectedCode": "DUPLICATE_ID",
+    "xml": "<canvas id=\"bad.duplicate\" title=\"Bad\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"2.0\"><block id=\"same\" type=\"narrative\" width=\"full\">First</block><block id=\"same\" type=\"narrative\" width=\"full\">Second</block></canvas>"
+  },
+  {
+    "name": "block duplicates canvas id",
+    "expectedCode": "DUPLICATE_ID",
+    "xml": "<canvas id=\"same\" title=\"Bad\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"2.0\"><block id=\"same\" type=\"narrative\" width=\"full\">Test only</block></canvas>"
+  },
+  {
+    "name": "unknown block type",
+    "expectedCode": "UNKNOWN_BLOCK_TYPE",
+    "xml": "<canvas id=\"bad.type\" title=\"Bad\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"2.0\"><block id=\"unknown\" type=\"html\" width=\"full\" /></canvas>"
+  },
+  {
+    "name": "top level half width",
+    "expectedCode": "INVALID_WIDTH",
+    "xml": "<canvas id=\"bad.width\" title=\"Bad\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"2.0\"><block id=\"note\" type=\"narrative\" width=\"half\">Test only</block></canvas>"
+  },
+  {
+    "name": "two item row uses thirds",
+    "expectedCode": "INVALID_WIDTH",
+    "xml": "<canvas id=\"bad.rowwidth\" title=\"Bad\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"2.0\"><row><block id=\"one\" type=\"narrative\" width=\"third\">One</block><block id=\"two\" type=\"narrative\" width=\"third\">Two</block></row></canvas>"
+  },
+  {
+    "name": "nested row",
+    "expectedCode": "NESTED_ROW",
+    "xml": "<canvas id=\"bad.nested\" title=\"Bad\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"2.0\"><row><row><block id=\"one\" type=\"narrative\" width=\"half\">One</block><block id=\"two\" type=\"narrative\" width=\"half\">Two</block></row></row></canvas>"
+  },
+  {
+    "name": "missing live or synthetic data mode",
+    "expectedCode": "INVALID_DATA_MODE",
+    "xml": "<canvas id=\"bad.mode\" title=\"Bad\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"2.0\"><block id=\"metric\" type=\"metric-card\" width=\"full\" label=\"Price\" value=\"$1.00\" /></canvas>"
+  },
+  {
+    "name": "live and inline modes collide",
+    "expectedCode": "INVALID_DATA_MODE",
+    "xml": "<canvas id=\"bad.both\" title=\"Bad\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"2.0\"><block id=\"metric\" type=\"metric-card\" width=\"full\" label=\"Price\" field=\"price\" dataRef=\"quote.demo\" value=\"$1.00\" asOf=\"2026-01-15T15:00:00Z\" synthetic=\"true\" /></canvas>"
+  },
+  {
+    "name": "authored host source URL",
+    "expectedCode": "INVALID_PROPS",
+    "xml": "<canvas id=\"bad.url\" title=\"Bad\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"2.0\"><block id=\"metric\" type=\"metric-card\" width=\"full\" label=\"Price\" field=\"price\" dataRef=\"quote.demo\" sourceUrl=\"javascript:alert(1)\" /></canvas>"
+  },
+  {
+    "name": "authored host status",
+    "expectedCode": "INVALID_PROPS",
+    "xml": "<canvas id=\"bad.status\" title=\"Bad\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"2.0\"><block id=\"metric\" type=\"metric-card\" width=\"full\" label=\"Price\" field=\"price\" dataRef=\"quote.demo\" status=\"ok\" /></canvas>"
+  },
+  {
+    "name": "event handler prop",
+    "expectedCode": "INVALID_PROPS",
+    "xml": "<canvas id=\"bad.handler\" title=\"Bad\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"2.0\"><block id=\"note\" type=\"narrative\" width=\"full\" onload=\"run\">Test only</block></canvas>"
+  },
+  {
+    "name": "encoded script markup",
+    "expectedCode": "UNSAFE_CONTENT",
+    "xml": "<canvas id=\"bad.script\" title=\"Bad\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"2.0\"><block id=\"note\" type=\"narrative\" width=\"full\">&lt;script&gt;run()&lt;/script&gt;</block></canvas>"
+  },
+  {
+    "name": "duplicate XML attribute",
+    "expectedCode": "DUPLICATE_ATTRIBUTE",
+    "xml": "<canvas id=\"bad.attr\" title=\"Bad\" title=\"Again\" created=\"2026-01-15T16:00:00Z\" schemaVersion=\"2.0\"><block id=\"note\" type=\"narrative\" width=\"full\">Test only</block></canvas>"
+  }
+]

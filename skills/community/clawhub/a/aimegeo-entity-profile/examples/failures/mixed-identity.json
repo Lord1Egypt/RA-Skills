@@ -1,0 +1,246 @@
+{
+  "schema_version": "1.0",
+  "data_mode": "illustrative",
+  "profile_id": "qinghe-tools-demo",
+  "as_of": "2026-10-19",
+  "primary_entity_id": "product-qinghe-tools",
+  "sources": [
+    {
+      "id": "S1",
+      "kind": "official_site",
+      "locator": "https://qinghe-tools.example/tools",
+      "acquisition": "user_supplied",
+      "captured_on": "2026-10-19",
+      "subject_entity_ids": [
+        "org-qinghe",
+        "product-qinghe-tools"
+      ],
+      "excerpt": "青禾工具（Qinghe Tools）是青禾科技有限公司开发的表格与文本整理软件，支持表格去重和文本格式整理。产品页为 https://qinghe-tools.example/tools。"
+    },
+    {
+      "id": "S2",
+      "kind": "official_site",
+      "locator": "https://qinghe-tools.example/about",
+      "acquisition": "user_supplied",
+      "captured_on": "2026-10-19",
+      "subject_entity_ids": [
+        "org-qinghe"
+      ],
+      "excerpt": "青禾科技有限公司（简称青禾科技）开发青禾工具。公司官网为 https://qinghe-tools.example/。本页未提供公司成立日期及公司英文名。"
+    },
+    {
+      "id": "S3",
+      "kind": "third_party",
+      "locator": "https://qinghe-hardware.example/",
+      "acquisition": "user_supplied",
+      "captured_on": "2026-10-19",
+      "subject_entity_ids": [
+        "product-qinghe-tools"
+      ],
+      "excerpt": "青禾工具是一组园艺手工具，由青禾五金厂生产。本页为 https://qinghe-hardware.example/，未提及青禾科技有限公司或 Qinghe Tools 软件。"
+    }
+  ],
+  "entities": [
+    {
+      "id": "org-qinghe",
+      "type": "Organization",
+      "facts": {
+        "canonical_name": {
+          "status": "supported",
+          "value": "青禾科技有限公司",
+          "evidence": [
+            {
+              "source_id": "S2",
+              "quote": "青禾科技有限公司（简称青禾科技）"
+            }
+          ]
+        },
+        "name_zh": {
+          "status": "supported",
+          "value": "青禾科技有限公司",
+          "evidence": [
+            {
+              "source_id": "S2",
+              "quote": "青禾科技有限公司（简称青禾科技）"
+            }
+          ]
+        },
+        "name_en": {
+          "status": "unknown",
+          "value": null,
+          "evidence": [],
+          "reason": "演示官网摘录未给出公司英文名，不将 Qinghe Tools 反推为公司英文名。"
+        },
+        "aliases": {
+          "status": "supported",
+          "value": [
+            "青禾科技"
+          ],
+          "evidence": [
+            {
+              "source_id": "S2",
+              "quote": "青禾科技有限公司（简称青禾科技）"
+            }
+          ]
+        },
+        "description": {
+          "status": "supported",
+          "value": "青禾科技有限公司是青禾工具的开发公司。",
+          "evidence": [
+            {
+              "source_id": "S2",
+              "quote": "青禾科技有限公司（简称青禾科技）开发青禾工具。"
+            }
+          ]
+        },
+        "website": {
+          "status": "supported",
+          "value": "https://qinghe-tools.example/",
+          "evidence": [
+            {
+              "source_id": "S2",
+              "quote": "公司官网为 https://qinghe-tools.example/。"
+            }
+          ]
+        },
+        "founding_date": {
+          "status": "unknown",
+          "value": null,
+          "evidence": [],
+          "reason": "资料没有提供成立日期。"
+        }
+      },
+      "same_as": []
+    },
+    {
+      "id": "product-qinghe-tools",
+      "type": "SoftwareApplication",
+      "facts": {
+        "canonical_name": {
+          "status": "supported",
+          "value": "青禾工具",
+          "evidence": [
+            {
+              "source_id": "S1",
+              "quote": "青禾工具（Qinghe Tools）"
+            }
+          ]
+        },
+        "name_zh": {
+          "status": "supported",
+          "value": "青禾工具",
+          "evidence": [
+            {
+              "source_id": "S1",
+              "quote": "青禾工具（Qinghe Tools）"
+            }
+          ]
+        },
+        "name_en": {
+          "status": "supported",
+          "value": "Qinghe Tools",
+          "evidence": [
+            {
+              "source_id": "S1",
+              "quote": "青禾工具（Qinghe Tools）"
+            }
+          ]
+        },
+        "aliases": {
+          "status": "unknown",
+          "value": null,
+          "evidence": [],
+          "reason": "未提供产品简称或旧称。"
+        },
+        "description": {
+          "status": "supported",
+          "value": "青禾工具是青禾科技有限公司开发的表格与文本整理软件，支持表格去重和文本格式整理。",
+          "evidence": [
+            {
+              "source_id": "S1",
+              "quote": "青禾工具（Qinghe Tools）是青禾科技有限公司开发的表格与文本整理软件，支持表格去重和文本格式整理。"
+            }
+          ]
+        },
+        "website": {
+          "status": "supported",
+          "value": "https://qinghe-tools.example/tools",
+          "evidence": [
+            {
+              "source_id": "S1",
+              "quote": "产品页为 https://qinghe-tools.example/tools。"
+            }
+          ]
+        },
+        "founding_date": {
+          "status": "unknown",
+          "value": null,
+          "evidence": [],
+          "reason": "公司成立日期不适用于软件产品，资料也未给出产品发布日期。"
+        }
+      },
+      "same_as": [
+        {
+          "url": "https://qinghe-tools.example/",
+          "entity_id": "product-qinghe-tools",
+          "status": "supported",
+          "evidence": [
+            {
+              "source_id": "S1",
+              "quote": "青禾工具（Qinghe Tools）是青禾科技有限公司开发的表格与文本整理软件"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "subject_id": "product-qinghe-tools",
+      "predicate": "developed_by",
+      "object_id": "org-qinghe",
+      "status": "supported",
+      "evidence": [
+        {
+          "source_id": "S1",
+          "quote": "青禾工具（Qinghe Tools）是青禾科技有限公司开发的表格与文本整理软件"
+        }
+      ]
+    }
+  ],
+  "disambiguation": [
+    {
+      "entity_id": "product-qinghe-tools",
+      "candidate_name": "青禾工具",
+      "candidate_url": "https://qinghe-hardware.example/",
+      "resolution": "distinct",
+      "reason": "所给演示候选页描述园艺手工具和青禾五金厂；本次对象为青禾科技有限公司开发的软件，保持两个主体，不复制对方生产信息。",
+      "evidence": [
+        {
+          "source_id": "S3",
+          "quote": "青禾工具是一组园艺手工具，由青禾五金厂生产。本页为 https://qinghe-hardware.example/，未提及青禾科技有限公司或 Qinghe Tools 软件。"
+        },
+        {
+          "source_id": "S1",
+          "quote": "青禾工具（Qinghe Tools）是青禾科技有限公司开发的表格与文本整理软件"
+        }
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "id": "Q1",
+      "entity_id": "product-qinghe-tools",
+      "platform": "ChatGPT",
+      "query": "青禾工具（Qinghe Tools）是什么，由谁开发？",
+      "status": "not_run",
+      "observed_on": null,
+      "source_id": null,
+      "answer": null,
+      "mentioned": null,
+      "citation_capture": "not_captured",
+      "native_citations": null,
+      "error": null
+    }
+  ]
+}

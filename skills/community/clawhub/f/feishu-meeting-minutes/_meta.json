@@ -1,6 +1,25 @@
 {
-  "ownerId": "kn76gyma440ek3y2dgvtzs4p0983y3se",
-  "slug": "feishu-meeting-minutes",
+  "name": "feishu-meeting-minutes",
   "version": "1.2.0",
-  "publishedAt": 1774965472599
+  "runtime": "node",
+  "requiredTools": [
+    "node",
+    "lark-cli",
+    "pandoc",
+    "xelatex"
+  ],
+  "recommendedFonts": [
+    "Noto Sans CJK SC"
+  ],
+  "requiredScopes": {
+    "fetch": [
+      "minutes:minutes:readonly",
+      "minutes:minutes.artifacts:read",
+      "minutes:minutes.transcript:export",
+      "vc:note:read"
+    ],
+    "upload": [
+      "drive:file:upload"
+    ]
+  }
 }

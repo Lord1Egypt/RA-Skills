@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn79ejbb92aa0wjs98yvzxgykx8401je",
-  "slug": "wechat-look",
+  "ownerId": "2720480371",
+  "slug": "wechat-look-ocr",
   "version": "1.0.1",
-  "publishedAt": 1775754986224
+  "publishedAt": 1775803200000,
+  "name": "WeChat Look OCR",
+  "description": "微信文章阅读工具，支持OCR文字识别",
+  "requirements": {
+    "python": ">=3.7",
+    "nodejs": ">=18",
+    "npm": true
+  },
+  "dependencies": {
+    "python": ["requests"],
+    "nodejs": ["tesseract.js", "node-fetch"]
+  },
+  "installSteps": [
+    "cd ocr_node && npm install"
+  ]
 }

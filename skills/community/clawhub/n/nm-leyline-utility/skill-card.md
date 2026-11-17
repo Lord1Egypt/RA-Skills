@@ -1,46 +1,54 @@
-## Description: <br>
-Scores agent actions by expected gain, cost, uncertainty, and redundancy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scores agent actions by expected gain, cost, uncertainty, and redundancy.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and agent builders use this skill to decide whether an agent should respond, retrieve, call a tool, verify, delegate, or stop based on utility scoring. It is useful for cost-aware orchestration, verification gating, model-tier selection, and limiting redundant agent actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad triggers such as orchestration, cost-control, and decision-making may cause the skill to appear in more workflows than a narrowly scoped skill. <br>
-Mitigation: Install it only where agents should use a utility-scoring checklist for action selection. <br>
-Risk: Prescriptive mode can change orchestration behavior by making the selected utility-scored action mandatory. <br>
-Mitigation: Keep advisory mode as the default and enable prescriptive gating only through explicit consuming-skill frontmatter. <br>
-Risk: Utility scoring is heuristic and may overvalue or undervalue actions when evidence, uncertainty, or redundancy estimates are poorly calibrated. <br>
-Mitigation: Log the selected action, utility score, score breakdown, and any high-gain override before executing the action. <br>
+## Use Case:
 
+Developers and agent builders use this skill to decide when an agent should respond, retrieve information, call a tool, verify, delegate, or stop. It helps control cost and avoid redundant orchestration steps by applying a utility score before action selection.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-leyline-utility) <br>
-- [Project Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
-- [State Builder](modules/state-builder.md) <br>
-- [Action Selector](modules/action-selector.md) <br>
-- [Integration](modules/integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with action report templates and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory by default; prescriptive utility gating is opt-in through consuming skill frontmatter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: ClawHub release evidence) <br>
+Risk: The skill can influence whether an agent uses tools or delegates work, so an unsuitable prescriptive configuration could cause the agent to skip useful action or over-follow heuristic scores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default advisory mode for normal adoption and enable prescriptive mode only where utility scoring is intentionally meant to constrain action selection.
+
+Risk: The utility score depends on self-estimated gain, uncertainty, and redundancy, which can be inaccurate for ambiguous tasks.
+
+Mitigation: Require the agent to log score breakdowns and rationale, then review high-impact decisions before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-utility)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with scoring formulas, checklists, and action report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory or opt-in prescriptive decision guidance; no executable code is included in the artifact.]
+
+## Skill Version(s):
+
+1.9.19 (source: server release metadata; artifact frontmatter lists 1.9.8)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-使用 BillCat API 从自然语言中提取并保存记账信息到乖猫记账 App，并支持删除账单、账单统计、账本与资产列表查询。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用 BillCat API 从自然语言中提取并保存记账信息到乖猫记账 App，并支持删除账单、账单统计、账本与资产列表查询。
 
-## Publisher: <br>
-[isee15](https://clawhub.ai/user/isee15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[isee15](https://clawhub.ai/user/isee15)
 
-## Use Case: <br>
-External users and developers use this skill to turn Chinese natural-language expense or income descriptions into saved BillCat records, retrieve bill IDs, delete records by billId, and summarize income, expenses, books, and assets over a date range. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a BillCat API key that grants access to account operations. <br>
-Mitigation: Store BILLCAT_API_KEY only in environment or local OpenClaw configuration files, and do not commit or log the secret. <br>
-Risk: The skill can save new financial records and may create duplicates during testing or repeated runs. <br>
-Mitigation: Review extracted bill results before relying on them, and avoid repeatedly submitting the same bill text unless duplicate entries are intended. <br>
-Risk: The delete command can remove real BillCat records by billId. <br>
-Mitigation: Double-check bill IDs before deletion and prefer Markdown or pretty JSON output when saving bills so the returned billId is visible. <br>
+## Use Case:
 
+External users and developers use this skill to turn Chinese natural-language expense or income descriptions into BillCat records, delete records by billId, and summarize income, expenses, books, and assets over date ranges.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/isee15/billcat-save-my-money) <br>
-- [BillCat extractbill API endpoint](https://billcat.cn/api/app/openclaw/extractbill) <br>
-- [BillCat skill API endpoint](https://billcat.cn/api/app/openclaw/skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON or Markdown emitted by Python command-line scripts, with configuration guidance for API key setup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BILLCAT_API_KEY; commands can save or delete real BillCat financial records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill can create financial records remotely from natural-language input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the extracted bill details before using the saved record for accounting or reporting.
+
+Risk: The skill can delete one or multiple bill records by billId without a second confirmation step.
+
+Mitigation: Confirm billIds and keep the original saved bill output before running delete operations.
+
+Risk: Bill descriptions, date ranges, and the BillCat API key are sent to billcat.cn.
+
+Mitigation: Install only if the user trusts BillCat and is comfortable sharing those inputs with the BillCat service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/isee15/skills/billcat-save-my-money)
+- [Declared skill homepage](https://github.com/isee15/billcat-save-my-money)
+- [BillCat extract bill API endpoint](https://billcat.cn/api/app/openclaw/extractbill)
+- [BillCat skill API endpoint](https://billcat.cn/api/app/openclaw/skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON, formatted JSON, or concise Markdown from command-line scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BILLCAT_API_KEY and sends user-provided bill descriptions or date ranges to BillCat endpoints.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: momentum-and-form
 description: "Activate when: user says 'we have a better product but we're losing,' 'they're growing despite less funding,' 'our moat isn't protecting us,' 'the market shifted under us,' 'we just need to hire harder,' or is diagnosing why strong incumbents lose to weaker newcomers, evaluating a market entry, or asking whether a strategy depends too much on specific people.
-  Do NOT activate when: the decision is purely tactical (not strategic), or the context is cooperative/ethical leadership where 'winning configurationally' is the wrong frame."
+  Do NOT activate when: the decision is purely tactical (not strategic), or the context is cooperative/ethical leadership where 'winning configurationally' is the wrong frame. More: deciqai.com/c/momentum-and-form"
 ---
 
 # Momentum and Form
@@ -10,7 +10,7 @@ description: "Activate when: user says 'we have a better product but we're losin
 
 Competitive advantage is two distinct things, not one: **form (形, xíng)** — the structural stock built before any contest (capital, distribution, brand, product, org capability) — and **momentum (势, shì)** — the configurational force that converts form into outcome (timing, terrain, market direction). Most strategic failures trace to conflating them. Composed from *Sun Tzu's Art of War*, Chapters 4–5, c. 5th century BCE.
 
-Composes with [`signaling-games`](../signaling-games/SKILL.md), [`feedback-loops`](../feedback-loops/SKILL.md), [`s-curve-technology-adoption`](../s-curve-technology-adoption/SKILL.md), and [`inversion`](../inversion/SKILL.md).
+Composes with `signaling-games`, `feedback-loops`, `s-curve-technology-adoption`, and `inversion`.
 
 ## When to Use
 
@@ -115,4 +115,6 @@ Falsifier: [what would tell you this diagnosis is wrong]
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/momentum-and-form** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/momentum-and-form.json*

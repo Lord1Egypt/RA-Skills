@@ -8,7 +8,7 @@
   <title>动态围墙线</title>
 </head>
 <script charset="utf-8"
-  src="https://map.qq.com/api/gljs?v=1.exp&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&libraries=visualization"></script>
+  src="https://map.qq.com/api/gljs?v=1.exp&key={TMAP_JSAPI_KEY}&libraries=visualization"></script>
 <style type="text/css">
   html,
   body {
@@ -33,7 +33,8 @@
         zoom: 11.5,
           mapStyleId: "style8",
         center: new TMap.LatLng(40.0324251949936, 116.23647955854779), //设置地图中心点坐标
-        pitch: 40, // 设置地图俯仰角renderOptions: {
+        pitch: 40, // 设置地图俯仰角
+        renderOptions: {
           enableBloom: true, // 泛光
         },
         baseMap: {

@@ -4,25 +4,32 @@ SessionStore - 会话级人格栈持久化
 """
 
 import json
+import os
 import uuid
 from pathlib import Path
 from typing import Dict, List, Optional, Any
 from datetime import datetime
 
 from schemas.launch_config import CompiledPersona, RelationshipMode
+from .security import resolve_child_path, validate_identifier
 
 
 class SessionStore:
     """会话存储 - 管理会话级活跃人格栈"""
     
     def __init__(self, sessions_dir: Path):
-        self.sessions_dir = sessions_dir
+        self.sessions_dir = Path(sessions_dir).expanduser().resolve()
         self.sessions_dir.mkdir(parents=True, exist_ok=True)
         self._active_sessions: Dict[str, Dict[str, Any]] = {}
     
     def _get_session_file(self, session_id: str) -> Path:
         """获取会话文件路径"""
-        return self.sessions_dir / f"session_{session_id}.json"
+        validate_identifier(session_id, "session_id")
+        return resolve_child_path(
+            self.sessions_dir,
+            f"session_{session_id}.json",
+            "session path",
+        )
     
     def _load_session(self, session_id: str) -> Dict[str, Any]:
         """加载会话数据"""
@@ -46,8 +53,10 @@ class SessionStore:
     def _save_session(self, session_id: str, data: Dict[str, Any]) -> None:
         """保存会话数据"""
         session_file = self._get_session_file(session_id)
-        with open(session_file, 'w', encoding='utf-8') as f:
+        temp_file = session_file.with_suffix(".json.tmp")
+        with open(temp_file, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
+        os.replace(temp_file, session_file)
     
     def create_session(self, session_id: Optional[str] = None) -> str:
         """
@@ -61,6 +70,7 @@ class SessionStore:
         """
         if session_id is None:
             session_id = str(uuid.uuid4())[:8]
+        validate_identifier(session_id, "session_id")
         
         data = {
             "session_id": session_id,
@@ -89,6 +99,7 @@ class SessionStore:
         Returns:
             是否成功
         """
+        validate_identifier(persona.id, "persona_id")
         data = self._load_session(session_id)
         
         # 检查是否已存在
@@ -132,6 +143,7 @@ class SessionStore:
         Returns:
             是否成功
         """
+        validate_identifier(persona_id, "persona_id")
         data = self._load_session(session_id)
         
         original_len = len(data["overlay_stack"])
@@ -184,6 +196,7 @@ class SessionStore:
         source: str
     ) -> None:
         """设置主（继承）人格"""
+        validate_identifier(persona_id, "persona_id")
         data = self._load_session(session_id)
         data["main_persona"] = {
             "id": persona_id,
@@ -202,7 +215,12 @@ class SessionStore:
     
     def list_sessions(self) -> List[str]:
         """列出所有会话 ID"""
-        return [
-            f.stem.replace("session_", "")
-            for f in self.sessions_dir.glob("session_*.json")
-        ]
+        session_ids = []
+        for session_file in self.sessions_dir.glob("session_*.json"):
+            session_id = session_file.stem.removeprefix("session_")
+            try:
+                validate_identifier(session_id, "session_id")
+            except ValueError:
+                continue
+            session_ids.append(session_id)
+        return session_ids

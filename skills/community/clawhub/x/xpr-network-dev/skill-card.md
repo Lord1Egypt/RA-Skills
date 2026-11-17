@@ -1,47 +1,73 @@
-## Description: <br>
-Comprehensive knowledge for XPR Network blockchain development - smart contracts, CLI, web SDK, DeFi, NFTs, and infrastructure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive knowledge for XPR Network blockchain development - smart contracts, CLI, web SDK, DeFi, NFTs, and infrastructure.
 
-## Publisher: <br>
-[paulgnz](https://clawhub.ai/user/paulgnz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paulgnz](https://clawhub.ai/user/paulgnz)
 
-## Use Case: <br>
-Developers and engineers use this skill to build, integrate, test, and operate XPR Network applications, including smart contracts, wallet-enabled dApps, CLI workflows, DeFi integrations, NFTs, payments, and node infrastructure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Blockchain examples can affect real assets or account authority if copied into a mainnet workflow without review. <br>
-Mitigation: Review generated code and commands, test on testnet first, and require explicit confirmation before mainnet transfers, trades, deployments, permission changes, or recurring-payment flows. <br>
-Risk: Private keys or owner credentials could be exposed if pasted into code, shell commands, logs, or prompts. <br>
-Mitigation: Avoid production private keys in code or shell history, keep owner keys offline, and use least-privilege permissions for bots and automation. <br>
-Risk: Smart contract schema changes and DEX deposit details can create irreversible operational loss when applied incorrectly. <br>
-Mitigation: Follow the safety guidance before modifying deployed contracts, back up and compare ABIs, verify destination accounts and memo requirements, and have experienced developers review high-value changes. <br>
+## Use Case:
 
+Developers use this skill as a reference for building XPR Network smart contracts, dApps, backend services, DeFi/NFT integrations, payments, and node operations. It helps agents produce guidance, code examples, shell commands, and configuration patterns for XPR Network workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/paulgnz/xpr-network-dev) <br>
-- [XPR Network Developer Docs](https://docs.xprnetwork.org) <br>
-- [XPR Network GitHub](https://github.com/XPRNetwork) <br>
-- [XPR Network Explorer](https://explorer.xprnetwork.org) <br>
-- [XPR Network Resources Portal](https://resources.xprnetwork.org) <br>
-- [MetalX API Docs](https://api.dex.docs.metalx.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline TypeScript, JavaScript, JSON, bash, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; examples involving transfers, trades, deployments, permissions, or recurring payments require human review and explicit confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: Examples involving blockchain signing can expose private keys if copied into shell arguments, environment variables, logs, or agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented CLI keychain, KMS-backed signing, or tightly scoped secret-manager keys; keep private keys out of shell arguments and environment variables.
+
+Risk: Generated transaction, permission, cron, or node-setup commands may affect real assets or privileged infrastructure.
+
+Mitigation: Require human review before execution, verify target accounts and contracts, and test on XPR testnet before mainnet use.
+
+Risk: Payment and event examples can become unsafe if webhooks are unauthenticated or processed more than once.
+
+Mitigation: Authenticate webhook payloads, de-duplicate events by transaction or event identifier, and reconcile payments before fulfillment.
+
+Risk: Smart contract schema changes can make deployed table data unreadable.
+
+Mitigation: Do not modify existing table structures with live data; add new tables or migrate intentionally after review and testnet validation.
+
+Risk: Using an incorrect DEX deposit memo can make funds unrecoverable.
+
+Mitigation: Verify DEX transfer memo requirements before signing; for Metal X DEX deposits, use the documented empty memo.
+
+Risk: Infrastructure setup examples may download packages or expose node services if run without hardening.
+
+Mitigation: Pin and verify packages and npm dependencies, restrict node services behind hardened networking, and review firewall and service settings before launch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paulgnz/skills/xpr-network-dev)
+- [XPR Network documentation](https://docs.xprnetwork.org)
+- [XPR Network explorer](https://explorer.xprnetwork.org)
+- [XPR Network resources portal](https://resources.xprnetwork.org)
+- [Metal X API documentation](https://api.dex.docs.metalx.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, command examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference-oriented outputs should be reviewed before executing transactions, deployment commands, or infrastructure changes.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

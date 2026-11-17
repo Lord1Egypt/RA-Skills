@@ -1,8 +1,10 @@
 # 独立教师日工作台模板
 
+> 适用学段：小学中段 / 小学高段 / 初中 / 高中
 > 配合 `xiaozhi-teach-solo-dashboard` 使用。
 > 完整 Prompt 逻辑请参阅 [`../SKILL.md`](../SKILL.md)。
-> 数据字段约束请参阅 [`../../schemas/solo-teacher-workspace.schema.json`](../../schemas/solo-teacher-workspace.schema.json)。
+> 数据字段约束请参阅 [`../shared/solo-teacher-workspace.schema.json`](../shared/solo-teacher-workspace.schema.json)。
+> 工作台**只读聚合，不写任何字段**，也不被其他 SKILL 依赖。"最近 N 条"一律按 `lessonLogs[].date` 倒序取；逾期一律看 `homeworkFollowups[].overdueDays`（`status` 枚举里没有 `overdue`）。
 
 ---
 
@@ -31,12 +33,12 @@
 📅 今日课表 · [YYYY-MM-DD] · 周[X]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┌────────┬────────┬──────┬────────────┬──────────────┐
-│ 时间    │ 学生   │ 学科 │ 课时       │ 状态          │
+│ 时间   │ 学生   │ 学科 │ 时长       │ 状态         │
 ├────────┼────────┼──────┼────────────┼──────────────┤
 │        │        │      │            │              │
 └────────┴────────┴──────┴────────────┴──────────────┘
 
-课时统计：今日共 [N] 课时
+课时统计：今日共 [N] 节，[N] 分钟
 近 7 日已上 / 已排：[N] / [N] 课时
 本周课时包消耗：[N] 课时
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -50,7 +52,7 @@
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ■ [时间] [学生 alias] · [学科]
   上次记录：[lastLessonSummary 摘要]
-  作业跟进：[上次作业状态 + 错题数]
+  课上练习 / 带来的学校作业：[上次状态 + 错题数]
   备课要点：[lessonPlan 摘要或"需用 lesson-planner 现备"]
   教具 / 资料：[教材页码 / 课件 / 学案]
   提醒：[家长沟通状态 / 学员风险 / 其他]
@@ -66,7 +68,7 @@
 今日已上 [N] 课，已发反馈 [N] 条，待发 [N] 条
 
 待发：
-  [ ] [时间] [学生] · [学科] → 给家长发"今日重点+作业"
+  [ ] [时间] [学生] · [学科] → 给家长发"今日重点+课上练习情况"
   [ ] ...
 
 历史积压：
@@ -81,14 +83,14 @@
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📚 作业与复习跟进
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-近 7 日作业完成率：[   ]%
+近 7 日课上练习：按约定做完 [N] / 共 [N] 条（按 task 开头的类别，学校作业、考试错题不算）
 待跟进学员：
-  · [alias]（[status]）：已 [N] 天未交 → 建议动作
+  · [alias]（status=未交，overdueDays=[N]）：课上练习下节课也没补上 → 建议动作
   · [alias]（[status]）：订正 [N] 道未完成 → 建议动作
   · [alias]（[status]）：错题 [N] 道待复盘 → 建议动作
 
 今日相关课程可顺带处理：
-  · [时间] [学生] → 上次作业 [   ]，可课前 5 分钟复盘
+  · [时间] [学生] → 上次课上练习或带来的学校作业 [   ]，可课前 5 分钟复盘
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -103,7 +105,7 @@
 
 需要主动沟通：
   · [alias] 家长：本周上课表现 [事实] → 建议客观同步
-  · [alias] 家长：作业问题持续 [N] 天 → 建议共同制定方案
+  · [alias] 家长：课上练习连续没做完（overdueDays=[N]）→ 说一下课上怎么调整，不催交
 
 调课 / 补课确认（待发）：
   · [alias] 家长：[详情] → 待确认
@@ -116,14 +118,20 @@
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 💰 课时包与续课节点
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-续课关注名单（remainingUnits ≤ 3）：
-  · [alias]：[remaining] 课时 → 预计 [日期] 耗尽 → 建议本周沟通
-  · [alias]：[remaining] 课时 → 预计 [日期] 耗尽 → 建议提前续课
+待你确认的课时（pendingConfirmations）：
+  · [alias]：[日期] [N] 课时 → 确认后剩余从 [A] 变 [B]
+    → 去 lesson-log 确认（本工作台不改课时台账）
+
+续课关注名单（remainingUnits ≤ 3，或 expiryDate 距今 ≤ 7 天）：
+  · [alias]：剩 [N] 课时（未含 [N] 条待确认）·
+    课时包 [expiryDate] 到期 → 本周可以跟家长说一声
+  · 说明：只陈述事实，不催单；要发消息先查
+    studentCards[].consent 的 parentCommunicationAllowed
 
 课时正常：
-  · 多数学员 remainingUnits ≥ 5
+  · 其余学员 remainingUnits ≥ 5
 
-近 30 日续课达成：[N] 单 / 总 [N] 学员
+续课节点：已用 50% / 70%（与 renewal-report 同一口径）
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -155,41 +163,54 @@
 ## 三、风险学员标记判定速查
 
 ```text
-┌──────┬──────────────────────────────┬──────────┬──────────┐
-│ 编号 │ 触发条件                       │ 中度阈值  │ 高度阈值  │
-├──────┼──────────────────────────────┼──────────┼──────────┤
-│ ①   │ 缺课（absence/cancelled）      │ ≥ 2 次   │ ≥ 3 次   │
-│ ②   │ 作业 overdue 累计              │ ≥ 3 次   │ ≥ 5 次   │
-│ ③   │ 课堂 masteryStatus 需重讲/巩固  │ ≥ 3 次   │ ≥ 5 次   │
-│ ④   │ 家长沉默（无 sent 记录）        │ > 14 天  │ > 21 天  │
-│ ⑤   │ 课时 remainingUnits            │ ≤ 3      │ ≤ 2      │
-└──────┴──────────────────────────────┴──────────┴──────────┘
+┌──────┬─────────────────────────────────────────┬──────────┬────────────┐
+│ 编号 │ 判据（全部读字段值，不凭印象）          │ 中度     │ 高度       │
+├──────┼─────────────────────────────────────────┼──────────┼────────────┤
+│ ①    │ lessonSchedule 近 4 周（按 startTime）  │ ≥ 2 次   │ ≥ 3 次     │
+│      │ status=absence/cancelled 累计           │          │            │
+│ ②    │ homeworkFollowups 近 4 周（按 dueDate） │ 2 条     │ ≥ 3 条     │
+│      │ overdueDays ≥ 1 的条目数                │          │ 或单条≥7天 │
+│      │ （不是 status=overdue）                 │          │            │
+│ ③    │ lessonLogs 按 date 倒序最近 5 条中，    │ 3 条     │ 5 条       │
+│      │ masteryStatus 为需要重讲/仍需巩固       │          │            │
+│ ④    │ parentCommunicationLogs 无              │ 14-21 天 │ > 21 天    │
+│      │ sentStatus=sent 的天数                  │          │            │
+│ ⑤    │ coursePackageLedger remainingUnits      │ = 3      │ 1-2        │
+│      │ 或 expiryDate 距今 ≤ 7 天               │          │ 0 → ❌     │
+└──────┴─────────────────────────────────────────┴──────────┴────────────┘
 
 综合风险 = MAX(各信号等级)
-  ⚠️ 中度 → 本周关注
+  🟡 中度 → 本周关注
   🔴 高度 → 今日必处理
   ❌ 立即 → 暂停新内容
+
+顽固弱项阈值不在本表定义，按 shared/vocab.md §5；
+工作台只展示 homework-tracker 已判定的结果。
 ```
 
 ---
 
 ## 四、字段映射表（schema → 工作台）
 
+全部为**只读**。工作台不写任何一列。
+
 | 工作台区块 | 读取字段 | 来源 |
 |---|---|---|
-| 1 课表 | startTime, status, studentId, subject | lessonSchedule |
-| 2 课前 | completedContent, masteryStatus, nextLessonFocus | lessonLogs（最近 1 条）|
-| 2 课前 | status, mainErrors | homeworkFollowups |
-| 3 课后 | sentStatus, date | parentCommunicationLogs |
-| 4 作业 | status, dueDate, mainErrors | homeworkFollowups |
-| 5 家长 | date, scenario, sentStatus | parentCommunicationLogs |
-| 6 课时 | remainingUnits, usedUnits, totalUnits | coursePackageLedger |
+| 1 课表 | startTime, durationMinutes, status（trial 标"试听"）, studentId, subject | lessonSchedule |
+| 2 课前 | date, completedContent, masteryStatus, perTopicMastery, nextLessonFocus | lessonLogs（按 date 倒序最近 1 条）|
+| 2 课前 | status, overdueDays, mainErrors | homeworkFollowups |
+| 3 课后 | date, sentStatus | parentCommunicationLogs |
+| 4 作业 | status, dueDate, overdueDays, mainErrors, nextAction | homeworkFollowups |
+| 5 家长 | date, scenario, channel, sentStatus | parentCommunicationLogs |
+| 5 家长 | consent（`parentCommunicationAllowed` 为 false 时不提示发消息）| studentCards |
+| 6 课时 | remainingUnits, usedUnits, totalUnits, expiryDate | coursePackageLedger |
+| 6 课时 | pendingConfirmations（只读展示 + 提示老师去确认）| coursePackageLedger |
 | 6 课时 | renewalAttention | coursePackageLedger |
-| 风险 ① | status 计数 | lessonSchedule |
-| 风险 ② | status 计数 | homeworkFollowups |
-| 风险 ③ | masteryStatus 计数 | lessonLogs |
-| 风险 ④ | sentStatus 计数 | parentCommunicationLogs |
-| 风险 ⑤ | remainingUnits 数值 | coursePackageLedger |
+| 风险 ① | 近 4 周（按 startTime）的 status 计数 | lessonSchedule |
+| 风险 ② | 近 4 周（按 dueDate）overdueDays ≥ 1 的条目数 | homeworkFollowups |
+| 风险 ③ | 按 date 倒序最近 5 条的 masteryStatus | lessonLogs |
+| 风险 ④ | sentStatus + date | parentCommunicationLogs |
+| 风险 ⑤ | remainingUnits, expiryDate | coursePackageLedger |
 
 ---
 
@@ -218,13 +239,17 @@
 
 每次生成工作台前，AI 必须自检：
 
-- [ ] 是否所有 7 区块都已生成（缺数据时写"暂无记录"）
+- [ ] 是否所有 7 区块都已生成（缺数据时写"暂无记录"并说明去哪个 SKILL 补）
 - [ ] 是否用 alias 替代真实姓名
-- [ ] 风险标记是否附了字段依据
-- [ ] 续课建议是否基于学习证据，无焦虑话术
-- [ ] 课时消耗、家长消息等写动作是否标注"待老师确认"
-- [ ] 主观判断是否显式标注
-- [ ] 跨 SKILL 推荐是否只引用了白名单内的 SKILL
+- [ ] 风险标记是否都附了字段依据与日期
+- [ ] 逾期是否看的 `overdueDays`（没有造 status=overdue）
+- [ ] "最近 N 条"是否按 `lessonLogs[].date` 倒序取
+- [ ] 剩余课时是否注明"未含 N 条待确认"
+- [ ] 是否**没有**在本工作台改动课时台账（确认动作转 lesson-log）
+- [ ] 家长相关提示前是否查过 `parentCommunicationAllowed`
+- [ ] 续课提示是否只陈述事实、无焦虑话术
+- [ ] 主观判断是否显式标注 `[主观判断]`
+- [ ] 是否**没有**向任何 SKILL 推送数据（工作台只读）
 
 ---
 

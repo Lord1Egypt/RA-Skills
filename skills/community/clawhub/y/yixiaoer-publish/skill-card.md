@@ -1,50 +1,58 @@
-## Description: <br>
-蚁小二 supports one-click distribution across 50+ platforms, multi-account matrix management, team collaboration, and content analytics for image-text, article, and short-video publishing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用于安装蚁小二 CLI、同步正式技能并完成基础配置与环境自检。
 
-## Publisher: <br>
-[yixiaoer888](https://clawhub.ai/user/yixiaoer888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yixiaoer888](https://clawhub.ai/user/yixiaoer888)
 
-## Use Case: <br>
-External users, operators, and developers use this skill to publish media content, query connected accounts, upload resources, review publication records, retrieve platform metadata, and inspect account or content performance through the Yixiaoer API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish content to connected accounts. <br>
-Mitigation: Review every target account, platform, publish channel, and content payload before running a publish action. <br>
-Risk: The skill can upload local or remote media files to Yixiaoer storage. <br>
-Mitigation: Upload only media files intended for publication and confirm returned resource keys before using them in publishing payloads. <br>
-Risk: The YIXIAOER_API_KEY environment variable grants access to publishing and account-management actions. <br>
-Mitigation: Treat YIXIAOER_API_KEY as high privilege, keep it out of prompts and logs, and install the skill only when the Yixiaoer service and publisher are trusted. <br>
-Risk: The skill can update connected account settings such as proxy configuration. <br>
-Mitigation: Run update-account only after confirming the account ID and intended proxy or area setting. <br>
+## Use Case:
 
+External users and developers use this skill to install the yxer CLI, sync the formal yixiaoer skill, initialize API-key based configuration, and run an environment self-check before using the production publishing workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yixiaoer888/yixiaoer-publish) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [API helper guide](artifact/docs/scripts/api-guide.md) <br>
-- [Platform definitions](artifact/docs/platform.md) <br>
-- [Resource upload guide](artifact/docs/upload-resource.md) <br>
-- [Video publishing guide](artifact/docs/publish/video/index.md) <br>
-- [Proxy management guide](artifact/docs/proxy-management.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires YIXIAOER_API_KEY and action-specific JSON payloads for API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill defaults to mutable global CLI installation and global skill synchronization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the yixiaoer888 publisher, prefer a pinned reviewed version, and use local sync or install options when global availability is not required.
+
+Risk: The setup flow uses an API key during configuration.
+
+Mitigation: Avoid putting real API keys directly in chat or reusable shell history, and provide secrets only through an appropriate local secret-handling process.
+
+Risk: Security evidence marks the release suspicious because it bootstraps a CLI and remote skill sync workflow.
+
+Mitigation: Review the generated shell commands before execution and run the provided environment self-check after installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yixiaoer888/skills/yixiaoer-publish)
+- [Publisher profile](https://clawhub.ai/user/yixiaoer888)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs installation, synchronization, configuration, and self-check steps for the yxer CLI; it does not produce publishing payloads.]
+
+## Skill Version(s):
+
+1.6.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

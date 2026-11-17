@@ -1,43 +1,53 @@
-## Description: <br>
-Simulates a Shen Nanpeng-style business thinking framework for investment analysis, business decisions, and technology trend judgment based on public materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a simulated Shen Nanpeng-style analytical lens for investment, business decision, and technology trend questions using public-information mental models and decision heuristics.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users use this skill as roleplay-based decision support for applying a Shen Nanpeng-style perspective to investment questions, business strategy, and technology trends. It should be treated as a simulated thinking framework, not the real person's views or professional financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may speak in a first-person simulated persona and could be mistaken for the real person's views. <br>
-Mitigation: Treat outputs as roleplay and decision support, and preserve the disclaimer that it is based on public information rather than Shen Nanpeng's own statements. <br>
-Risk: Business or investment outputs may be interpreted as professional financial advice. <br>
-Mitigation: Use responses as one analytical perspective only, avoid short-term stock or speculative recommendations, and require independent review for financial decisions. <br>
-Risk: Broad trigger phrases such as long-term value or first-principles thinking may activate the skill unintentionally. <br>
-Mitigation: Confirm persona use when the user's intent is ambiguous and allow users to exit roleplay with plain-language commands. <br>
+## Use Case:
 
+External users can use this skill as a business and investment thinking aid that frames questions through Shen Nanpeng-inspired first-principles, long-term value, ecosystem, and technology-for-good perspectives. It is not intended for short-term trading advice or statements on behalf of Shen Nanpeng.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/shen-nanpeng-perspective-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/xiejianjun000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only persona simulation; no code execution, tool access, or system access indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill instructs the agent to speak in the first person as a real investor and to limit repeated disclaimers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep clear that outputs are a simulated analytical lens, not statements, endorsements, or investment advice from Shen Nanpeng.
+
+Risk: Business and investment analysis from the persona may be mistaken for personalized financial advice.
+
+Mitigation: Review outputs before use and avoid relying on them for specific stocks, short-term trading, or final investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/shen-nanpeng-perspective-v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text analytical responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external tools or APIs detected; outputs should be reviewed as generated interpretation from public information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

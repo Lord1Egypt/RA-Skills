@@ -1,45 +1,55 @@
-## Description: <br>
-Helps agents manage Multilogin X browser profiles, including launching quick disposable profiles, listing, starting, and stopping saved profiles, and checking launcher status with the xcli CLI tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when you need to manage Multilogin through `xcli`, including Android cloud phones, browser profiles, workspaces, proxies, scripts, tags, files, apps, ADB access, and account settings.
 
-## Publisher: <br>
-[MultiloginCom](https://clawhub.ai/user/MultiloginCom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[multilogincom](https://clawhub.ai/user/multilogincom)
 
-## Use Case: <br>
-Developers, operators, and automation agents use this skill to install Multilogin X command-line tools, start the launcher, authenticate, and manage headless or desktop browser profiles for automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Multilogin account credentials and browser profiles. <br>
-Mitigation: Use a dedicated low-privilege account, avoid putting passwords in prompts or command lines, and clear or revoke local xcli tokens on shared machines. <br>
-Risk: The skill installs and runs external Multilogin binaries. <br>
-Mitigation: Install only from trusted Multilogin sources and verify downloaded binaries where possible before allowing an agent to run them. <br>
-Risk: Credential passing across delegated node sessions can expose secrets. <br>
-Mitigation: Do not send credentials through sessions_spawn messages; provide credentials through a secure local channel on the target machine. <br>
-Risk: A running launcher can keep browser automation available after the task is complete. <br>
-Mitigation: Stop the launcher when finished and review active profiles before leaving shared or unattended systems. <br>
+## Use Case:
 
+Developers, operators, and social media workflow teams use this skill to control Multilogin browser profiles and Android cloud phones through the `xcli` and `mlx-launcher` command-line tools.
 
-## Reference(s): <br>
-- [ClawHub Multilogin X Skill](https://clawhub.ai/MultiloginCom/multiloginx) <br>
-- [Multilogin X CLI Latest Version Endpoint](https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/cli-mlx/latest) <br>
-- [Multilogin X Launcher Latest Version Endpoint](https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/launcher-mlx/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell and PowerShell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires xcli and mlx-launcher; commands may depend on local OS, launcher state, credentials, and active Multilogin profile state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can give an agent authority over Multilogin profiles, cloud phones, files, proxies, ADB sessions, account settings, and potentially billed mobile minutes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the Multilogin CLI distribution is trusted, review proposed commands before execution, and require explicit confirmation before deletes, transfers, ADB actions, file operations, 2FA changes, or actions that spend mobile minutes.
+
+Risk: The skill includes workflows that may handle account passwords or delegated node access.
+
+Mitigation: Avoid sending passwords in chat or spawned node messages; prefer a pre-authenticated local `xcli` session or another secret-safe login method.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/multilogincom/skills/multilogin)
+- [xcli latest version endpoint](https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/cli-mlx/latest)
+- [mlx-launcher latest version endpoint](https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/launcher-mlx/latest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI command references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires `xcli` and `mlx-launcher`; may involve credentials, profile operations, cloud phone minutes, files, proxies, ADB sessions, and account settings.]
+
+## Skill Version(s):
+
+1.0.2 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

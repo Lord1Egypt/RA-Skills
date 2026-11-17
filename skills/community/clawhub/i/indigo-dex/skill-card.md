@@ -1,41 +1,54 @@
-## Description: <br>
-Interact with decentralized exchanges on Cardano through the Indigo Protocol ecosystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with decentralized exchanges on Cardano through the Indigo Protocol ecosystem.
 
-## Publisher: <br>
-[adacapo21](https://clawhub.ai/user/adacapo21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adacapo21](https://clawhub.ai/user/adacapo21)
 
-## Use Case: <br>
-External users and developers use this skill to query Cardano DEX information in the Indigo ecosystem, including SteelSwap token availability and swap estimates, Iris liquidity pools, and Blockfrost wallet balances. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet balance lookups can expose wallet addresses and holdings through an external provider. <br>
-Mitigation: Do not provide seed phrases, private keys, or wallet addresses you do not want queried through Blockfrost. <br>
-Risk: Swap estimates may be treated as transaction approval or final pricing. <br>
-Mitigation: Treat estimates as informational only and review current route, price impact, and slippage before any separate transaction. <br>
+## Use Case:
 
+External users and developers use this skill to query Cardano DEX information in the Indigo ecosystem, including SteelSwap token lists and swap estimates, Iris liquidity pools, and Blockfrost wallet balances.
 
-## Reference(s): <br>
-- [DEX Concepts](references/concepts.md) <br>
-- [DEX MCP Tools Reference](references/mcp-tools.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, API Calls] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only DEX data queries and informational swap estimates; no transaction execution is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Wallet balance lookups send the queried Cardano address to Blockfrost and can reveal holdings associated with that address.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid querying addresses you do not want associated with your usage, and review responses before sharing them.
+
+Risk: DEX estimates, liquidity data, and wallet balances can become stale or incomplete because they depend on third-party Cardano data services.
+
+Mitigation: Treat outputs as informational and verify market data with trusted services before making trading or portfolio decisions.
+
+## Reference(s):
+
+- [DEX MCP Tools Reference](references/mcp-tools.md)
+- [DEX Concepts](references/concepts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown text with structured DEX data and MCP tool call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Cardano DEX and wallet-balance queries; balance lookups send wallet addresses to Blockfrost.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

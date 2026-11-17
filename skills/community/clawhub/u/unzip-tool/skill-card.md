@@ -1,39 +1,52 @@
-## Description: <br>
-List, test, and extract files from ZIP archives. Use when you need to decompress or inspect ZIP file contents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+List, test, and extract files from ZIP archives. Use when you need to decompress or inspect ZIP file contents.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to unpack ZIP archives into a selected directory during file handling workflows. Review before use because the security evidence says documented listing, testing, overwrite controls, and selective extraction are not implemented by the bundled extractor.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The documentation advertises archive listing, testing, overwrite controls, and selective extraction, but the security evidence says the bundled script does not implement those behaviors.
+
+Mitigation: Use it only in an empty temporary directory, inspect ZIP contents with another trusted tool first, and do not rely on -l, -n, -o, or selective extraction behavior.
+
+Risk: The bundled extractor writes ZIP contents to disk in the target directory.
+
+Mitigation: Run extraction in an empty temporary directory and review the extracted files before moving them into a project or shared location.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to inspect or extract ZIP archives during local file workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: Extracting ZIP archives writes files locally and can overwrite existing paths. <br>
-Mitigation: Extract only trusted archives into a new empty directory and review the extracted files before use. <br>
-Risk: Documented list, test, and non-overwrite options may not be supported by the current implementation. <br>
-Mitigation: Confirm supported arguments before use and use another ZIP tool for list, test, or non-overwrite workflows until the implementation is updated. <br>
+**Output Format:** [Markdown guidance with command-line examples and terminal status text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May extract files to disk in the requested directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands] <br>
-**Output Format:** [Extracted archive files plus plain-text status or error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local filesystem output; no network or credential behavior is reported by the security evidence.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,8 @@
+interface:
+  display_name: "店铺FAQ知识库"
+  short_description: "将已批准店铺政策整理为可复用中文FAQ，并明确缺失字段"
+  default_prompt: "$shop-faq-pack-cn 请提供已批准的运费、配送时效、售后和商品规格政策；我将整理为分类FAQ，并标记无法依据资料回答的字段。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

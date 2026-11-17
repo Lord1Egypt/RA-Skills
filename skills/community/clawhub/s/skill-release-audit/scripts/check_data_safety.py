@@ -28,6 +28,11 @@ CONFIG_KEYWORDS = re.compile(
     re.IGNORECASE
 )
 
+# 模板/示例文件：发布包内合法内容，不是运行时数据。命名惯例含 example/sample
+# /template/.example 后缀，被覆盖也无需恢复（重新安装即可）。但不含
+# 真实凭证——真实凭证必须在 skill 目录外（如 ~/.credentials/）。
+TEMPLATE_KEYWORDS = re.compile(r'(example|sample|template)', re.IGNORECASE)
+
 SKILL_DIR_REF_PATTERNS = [
     # __file__ based paths
     re.compile(r'__file__'),
@@ -156,7 +161,7 @@ def check_existing_data_in_skill_dir(skill_dir: Path) -> list[dict]:
             continue
         if f.name.startswith("."):
             # Hidden files like .setup-done are common sidecar state
-            if DATA_PATTERNS.search(f.name) and CONFIG_KEYWORDS.search(f.name):
+            if DATA_PATTERNS.search(f.name) and CONFIG_KEYWORDS.search(f.name) and not TEMPLATE_KEYWORDS.search(f.name):
                 issues.append({
                     "file": str(rel),
                     "line": None,
@@ -164,7 +169,7 @@ def check_existing_data_in_skill_dir(skill_dir: Path) -> list[dict]:
                     "severity": "WARN",
                 })
             continue
-        if DATA_PATTERNS.search(f.name) and CONFIG_KEYWORDS.search(f.name):
+        if DATA_PATTERNS.search(f.name) and CONFIG_KEYWORDS.search(f.name) and not TEMPLATE_KEYWORDS.search(f.name):
             issues.append({
                 "file": str(rel),
                 "line": None,

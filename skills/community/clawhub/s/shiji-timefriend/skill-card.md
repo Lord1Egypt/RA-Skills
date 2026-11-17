@@ -1,41 +1,59 @@
-## Description: <br>
-Records time, review journal entries, todos, inbox items, and daily summaries in TimeFriend through natural-language requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+时迹 lets an agent record TimeFriend activity, append review journal entries, create and query todos and inbox items, and summarize today's time records through natural-language requests.
 
-## Publisher: <br>
-[Masir1128](https://clawhub.ai/user/Masir1128) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[masir1128](https://clawhub.ai/user/masir1128)
 
-## Use Case: <br>
-OpenClaw users who use TimeFriend can ask an agent to add and query time records, daily reviews, todos, inbox entries, and today's statistics. The skill is useful for personal productivity workflows where users want natural-language capture and retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write personal time records, review journal entries, todos, and inbox items to a TimeFriend account. <br>
-Mitigation: Install only if you trust timefriend.xin, use a revocable token if available, and review records before relying on them. <br>
-Risk: Broad natural-language phrases can be ambiguous and may store the wrong kind of note or parse the wrong date or time. <br>
-Mitigation: Clarify ambiguous requests and review parsed dates, times, and record type before submitting entries. <br>
+## Use Case:
 
+External TimeFriend users and agent operators use this skill to capture daily activity, diary notes, todos, inbox items, and same-day statistics in TimeFriend without switching out of the agent conversation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Masir1128/shiji-timefriend) <br>
-- [TimeFriend](https://timefriend.xin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Configuration guidance] <br>
-**Output Format:** [Natural-language responses with HTTP request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a TIMEFRIEND_TOKEN and can read or write TimeFriend account data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad conversational triggers may unintentionally send or change personal TimeFriend data such as diary text, todos, inbox items, and time records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit TimeFriend commands, review sensitive diary or task content before sending, and confirm write operations when the request is ambiguous.
+
+Risk: The TIMEFRIEND_TOKEN grants authenticated access to the remote TimeFriend service.
+
+Mitigation: Keep the token secret, store it only in the configured environment variable, and rotate it from timefriend.xin if exposure is suspected.
+
+Risk: Records and diary entries may be permanently changed on the remote service.
+
+Mitigation: Verify dates, time ranges, categories, and appended diary text before creating or updating remote TimeFriend data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/masir1128/skills/shiji-timefriend)
+- [Publisher profile](https://clawhub.ai/user/masir1128)
+- [TimeFriend service](https://timefriend.xin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown and natural-language responses with authenticated TimeFriend API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a TIMEFRIEND_TOKEN environment variable and uses Beijing time (UTC+8) when parsing conversational time expressions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

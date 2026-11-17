@@ -1,41 +1,55 @@
-## Description: <br>
-Use when updating OpenClaw or debugging an OpenClaw instance after an update. This skill acts as a structured update runbook with emphasis on gateway startup, service-manager state, plugin registry and install drift, bundled-vs-npm/clawhub plugin confusion, stale config carried across upgrades, channel health, task ledger corruption, and logs that explain why the updated system is slow, disconnected, or half-broken. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when updating OpenClaw or debugging an OpenClaw instance after an update. This skill acts as a structured update runbook with emphasis on gateway startup, service-manager state, plugin registry and install drift, bundled-vs-npm/clawhub plugin confusion, stale config carried across upgrades, channel health, task ledger corruption, and logs that explain why the updated system is slow, disconnected, or half-broken.
 
-## Publisher: <br>
-[bkf-gitty](https://clawhub.ai/user/bkf-gitty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bkf-gitty](https://clawhub.ai/user/bkf-gitty)
 
-## Use Case: <br>
-Operators and engineers maintaining OpenClaw hosts use this skill to audit updates, diagnose post-upgrade failures, and verify service, plugin, config, channel, task, and model-route health before making the smallest necessary repair. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides broad update, restart, plugin-change, and secret-handling guidance that could change an OpenClaw host if followed without review. <br>
-Mitigation: Review each proposed command before execution and prefer the smallest repair that makes host state consistent. <br>
-Risk: Diagnostics may encounter tokens, service environment files, secret-bearing backups, or other sensitive credentials. <br>
-Mitigation: Avoid printing or pasting tokens, protect or delete secret-bearing backups, and prefer platform secret-management commands when available. <br>
+## Use Case:
 
+Operators and engineers use this skill to plan OpenClaw updates, diagnose post-update regressions, verify service and plugin state, and choose the smallest repair that returns a host to a healthy state.
 
-## Reference(s): <br>
-- [Failure Patterns](references/failure-patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/bkf-gitty/claw-update-runbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command examples and operator checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces diagnostic and repair guidance for review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: frontmatter and server release metadata) <br>
+Risk: Troubleshooting guidance can expose live channel tokens in terminal output, logs, or agent transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run token-inspection commands that print raw values. If a token appears in a transcript, support ticket, log, or backup, rotate it and remove plaintext fallbacks after recovery.
+
+Risk: Update, restart, or configuration-edit steps can affect a live OpenClaw host.
+
+Mitigation: Use the skill only for explicit OpenClaw maintenance tasks, require confirmation before updates, restarts, or config edits, and verify host state before and after changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bkf-gitty/skills/claw-update-runbook)
+- [Failure Patterns](references/failure-patterns.md)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes diagnostic sequences, verification criteria, and handoff-note guidance; does not execute commands itself.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

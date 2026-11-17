@@ -1,42 +1,59 @@
-## Description: <br>
-Manage stories on Shortcut.com kanban boards. Use when creating, updating, or listing tasks/stories on Shortcut project management boards. Supports creating stories with descriptions and types (feature/bug/chore), updating story status, and listing active/completed stories. Includes full checklist task management and comment support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Shortcut.com project board stories, checklist tasks, and comments from an agent.
 
-## Publisher: <br>
-[catwalksophie](https://clawhub.ai/user/catwalksophie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[catwalksophie](https://clawhub.ai/user/catwalksophie)
 
-## Use Case: <br>
-Developers and teams using Shortcut can let an agent list, create, update, and inspect project stories, checklist tasks, and comments through Shortcut's API. The skill is useful for routine project-management updates where the agent has an appropriate Shortcut API token and workspace permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify or delete live Shortcut workspace data when supplied with an API token. <br>
-Mitigation: Use the least-privileged token available and require explicit confirmation before update or delete requests. <br>
-Risk: The workflow initialization script writes a shell configuration file that may later be sourced by the user's shell. <br>
-Mitigation: Inspect the generated workflow-states file before sourcing it or adding it to shell startup files. <br>
+## Use Case:
 
+External developers and teams use this skill to let an agent list, create, inspect, update, and delete Shortcut stories, checklist tasks, and comments in a Shortcut workspace.
 
-## Reference(s): <br>
-- [Shortcut ClawHub page](https://clawhub.ai/catwalksophie/shortcut) <br>
-- [Shortcut API v3](https://api.app.shortcut.com/api/v3) <br>
-- [Shortcut workflows API endpoint](https://api.app.shortcut.com/api/v3/workflows) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can invoke Shortcut API scripts that read a local API token and may create, update, or delete live workspace data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: frontmatter, changelog, release metadata) <br>
+Risk: The workflow-states setup path can write workspace data into shell code that users may source on their machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated workflow-states file before sourcing it, do not add it to shell startup files, and prefer a passive configuration format until the skill is fixed.
+
+Risk: Story, task, and comment delete operations can remove Shortcut workspace content.
+
+Mitigation: Verify story, task, and comment IDs before running delete commands.
+
+Risk: The skill requires a Shortcut API token with access to workspace data.
+
+Mitigation: Use a token with the minimum Shortcut permissions needed and store it with restricted file permissions.
+
+## Reference(s):
+
+- [ClawHub Shortcut skill page](https://clawhub.ai/catwalksophie/skills/shortcut)
+- [Shortcut API v3 endpoint](https://api.app.shortcut.com/api/v3)
+- [Shortcut workflows API endpoint](https://api.app.shortcut.com/api/v3/workflows)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and text or JSON-capable shell script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Shortcut API token and workspace permissions.]
+
+## Skill Version(s):
+
+1.4.1 (source: frontmatter, changelog, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

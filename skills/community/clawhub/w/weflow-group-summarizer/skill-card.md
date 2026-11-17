@@ -1,45 +1,59 @@
-## Description: <br>
-Helps agents configure WeFlow API access, monitor selected WeChat groups, and summarize new group messages on a recurring heartbeat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weflow Group Summarizer helps agents configure WeFlow API access, monitor WeChat group chats, and summarize new group messages on a heartbeat.
 
-## Publisher: <br>
-[liusining](https://clawhub.ai/user/liusining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liusining](https://clawhub.ai/user/liusining)
 
-## Use Case: <br>
-Employees, external users, and developers who control a WeFlow account can use this skill to set up WeChat group monitoring, maintain group configuration, and produce periodic summaries of new messages and selected members' posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional unauthenticated LAN proxy can expose WeFlow chat and media endpoints to other machines on the network. <br>
-Mitigation: Use the proxy only when remote access is required, run it on a trusted network, and restrict firewall access to the intended client machine. <br>
-Risk: The skill processes private WeChat group messages and may download image media to local paths. <br>
-Mitigation: Install only when the operator controls the WeFlow account and has permission to summarize the selected groups; keep configuration files and downloaded media in a private directory. <br>
-Risk: Unpinned Python dependencies may resolve to different package versions over time. <br>
-Mitigation: Pin PyYAML and openpyxl to current patched versions before deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to set up WeFlow connectivity, choose WeChat groups, configure prompts and member tracking, and run periodic fetches that an agent turns into group summaries.
 
-## Reference(s): <br>
-- [WeFlow HTTP API](reference/HTTP-API.md) <br>
-- [WeFlow Desktop](https://github.com/hicccc77/WeFlow) <br>
-- [ChatLab Format](https://github.com/nichuanfang/chatlab-format) <br>
-- [ClawHub Skill Page](https://clawhub.ai/liusining/weflow-group-summarizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated configuration or message-summary text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local image file paths for the agent to inspect when WeFlow exports media from group messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can read and summarize private WeChat group messages and images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for groups the user intentionally selects, treat chat and media content as sensitive untrusted input, and avoid sharing generated summaries beyond the intended audience.
+
+Risk: The included proxy can expose the local WeFlow API to a network without authentication.
+
+Mitigation: Do not run the proxy on untrusted networks; bind it to localhost or add authentication, route limits, and firewall restrictions before use.
+
+Risk: Python dependencies are listed without pinned versions.
+
+Mitigation: Install dependencies in an isolated environment and pin reviewed versions before production deployment.
+
+## Reference(s):
+
+- [WeFlow HTTP API](reference/HTTP-API.md)
+- [WeFlow](https://github.com/hicccc77/WeFlow)
+- [ChatLab Format](https://github.com/nichuanfang/chatlab-format)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries and setup guidance with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local image paths when new WeChat messages contain images.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,241 @@
+{
+  "version": "2.4.0",
+  "source_id": "keras",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:03:18.876Z",
+  "entry": {
+    "url": "https://keras.io/",
+    "final_url": "https://keras.io/",
+    "title": "Keras: Deep Learning for humans",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:03:18.876Z",
+    "identity": {
+      "declared_name": "Keras 官方文档",
+      "hostname": "keras.io",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "search",
+      "text": "Search",
+      "label": "",
+      "aria_label": "Search",
+      "placeholder": "SEARCH",
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://keras.io/",
+      "locator": {
+        "role": "textbox",
+        "name": "Search",
+        "exact": true
+      },
+      "observed_url": "https://keras.io/",
+      "observed_at": "2026-10-09T09:03:17.779Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://keras.io/",
+      "locator": null,
+      "observed_url": "https://keras.io/",
+      "observed_at": "2026-10-09T09:03:17.779Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://keras.io/",
+      "observed_at": "2026-10-09T09:03:17.779Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://keras.io/",
+      "observed_at": "2026-10-09T09:03:17.779Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://keras.io/",
+      "observed_at": "2026-10-09T09:03:17.779Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://keras.io/",
+      "observed_at": "2026-10-09T09:03:17.779Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://keras.io/",
+      "observed_at": "2026-10-09T09:03:17.779Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "keras:record-lookup",
+      "source_id": "keras",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://keras.io/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "search",
+          "text": "Search",
+          "label": "",
+          "aria_label": "Search",
+          "placeholder": "SEARCH",
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://keras.io/",
+          "locator": {
+            "role": "textbox",
+            "name": "Search",
+            "exact": true
+          },
+          "observed_url": "https://keras.io/",
+          "observed_at": "2026-10-09T09:03:17.779Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "keras",
+    "quiz_entries": [],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:03:18.876Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/keras-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/keras-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

@@ -1,17 +1,17 @@
-# 无障碍检查
+# Accessibility check
 
-Frontend Craft skill for 无障碍检查.
+Audit WCAG, semantics, keyboard access, focus, and screen-reader behavior in existing interfaces.
 
 ## Skill
 
 - ID: `fec-accessibility-check`
 - Category: `review-quality`
-- Version: `2.5.0`
+- Version: `2.9.0`
 - Source: `skills/fec-accessibility-check/SKILL.md`
 
 ## Description
 
-Use when reviewing or improving frontend accessibility, semantic structure, keyboard support, focus management, ARIA labels, screen reader behavior, WCAG 2.2 issues, touch accessibility, or assistive-technology regressions; Chinese triggers include 无障碍, accessibility, a11y, WCAG, 屏幕阅读器.
+Use when reviewing or improving frontend accessibility, semantic structure, keyboard support, focus management, ARIA labels, screen reader behavior, WCAG 2.2 issues, touch accessibility, or assistive-technology regressions; Chinese triggers include accessibility, accessibility, a11y, WCAG, screen reader.
 
 ## Usage
 

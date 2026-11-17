@@ -1,6 +1,30 @@
 {
-  "ownerId": "kn7b9rd61qhmgregrdb36ty75n87g0ng",
-  "slug": "anti-hallucination-v2",
+  "name": "anti-hallucination",
   "version": "1.0.0",
-  "publishedAt": 1779895149522
+  "description": "防幻觉skill - 行为层面的AI幻觉防护，不是告诉AI不要编，而是给它一套具体操作流程来避免编",
+  "description_en": "Anti-hallucination skill - Behavioral AI hallucination prevention. Instead of telling AI 'don't make things up', it provides a concrete operational workflow to avoid fabrication.",
+  "author": "CherryAI",
+  "tags": ["hallucination", "accuracy", "verification", "fact-checking", "safety"],
+  "category": "safety",
+  "license": "MIT",
+  "homepage": "https://github.com/CherryAI/anti-hallucination",
+  "repository": "https://github.com/CherryAI/anti-hallucination",
+  "engines": {
+    "openclaw": ">=2026.5.0"
+  },
+  "dependencies": [],
+  "keywords": ["anti-hallucination", "fact-checking", "accuracy", "verification", "safety"],
+  "structure": {
+    "rules": ["pre-check.md", "in-process.md", "post-check.md"],
+    "hooks": ["fact-check.md", "code-verify.md"],
+    "scripts": ["validate_output.py", "tool_hook.py"],
+    "assets": ["prompt_template.md"]
+  },
+  "modes": ["strict", "balanced", "fast"],
+  "contributors": {
+    "CC": "rules/, hooks/, _meta.json skeleton",
+    "assistant": "scripts/, assets/, SKILL.md main document merge",
+    "QQbot": "Confidence labeling, citation tracing ideas",
+    "DeepSeek": "Behavioral vs prompt-level differentiation"
+  }
 }

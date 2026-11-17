@@ -1,39 +1,53 @@
-## Description: <br>
-Safely applies OpenClaw config changes with automatic rollback and an ack timeout guard for risky runtime configuration changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely apply OpenClaw config changes with automatic rollback and ack timeout guard.
 
-## Publisher: <br>
-[wangwu-30](https://clawhub.ai/user/wangwu-30) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangwu-30](https://clawhub.ai/user/wangwu-30)
 
-## Use Case: <br>
-Developers and operators use this skill to apply OpenClaw runtime configuration changes with backup, restart, health-check, optional manual acknowledgement, and rollback behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The apply command can execute arbitrary shell supplied through --apply-cmd. <br>
-Mitigation: Only pass reviewed, deterministic commands from trusted sources, and never build the command from untrusted text. <br>
-Risk: Rollback restores the target config file but may not undo side effects outside that file. <br>
-Mitigation: Validate the proposed command's side effects before execution and require explicit acknowledgement only after end-to-end checks pass. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangwu-30/elegant-config-guardian) <br>
+## Use Case:
 
+Developers and operators use this skill to apply risky OpenClaw runtime configuration changes with backup, restart, health-check, and optional manual acknowledgement steps.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command-oriented guidance for guarded config application; no structured machine output is declared.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The safety wrapper can run arbitrary shell commands through the supplied apply command.
+
+Mitigation: Review the exact apply command before use, run it without unnecessary privileges, and use only commands from trusted sources.
+
+Risk: Rollback and acknowledgement behavior is weaker than advertised and may require manual recovery.
+
+Mitigation: Keep an independent backup and recovery path for the OpenClaw gateway configuration, and do not treat the ack or rollback flow as the only safety boundary.
+
+## Reference(s):
+
+- [Elegant Config Guardian on ClawHub](https://clawhub.ai/wangwu-30/skills/elegant-config-guardian)
+- [wangwu-30 ClawHub profile](https://clawhub.ai/user/wangwu-30)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command guidance for guarded OpenClaw configuration changes; execution depends on the local OpenClaw CLI and the supplied apply command.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

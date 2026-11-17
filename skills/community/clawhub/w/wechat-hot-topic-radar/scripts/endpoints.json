@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "root": "https://api.we-media.cn",
+    "auth_header": "X-API-Key",
+    "source_header": "X-WM-Source",
+    "official_site": "https://api.we-media.cn"
+  },
+  "endpoints": [
+    {
+      "key": "hot-search",
+      "name": "全网热搜",
+      "cat": "other",
+      "method": "GET",
+      "path": "/openapi/today-hot-search/rank",
+      "price": 0.0,
+      "params": [
+        "platform",
+        "limit",
+        "includeStale"
+      ],
+      "purpose": "多平台热搜榜",
+      "free": true,
+      "param_types": {
+        "platform": "string",
+        "limit": "integer",
+        "includeStale": "boolean"
+      },
+      "product_slug": "today-hot-search"
+    },
+    {
+      "key": "low-baseline-viral",
+      "name": "低粉爆文",
+      "cat": "other",
+      "method": "GET",
+      "path": "/openapi/wechat-low-baseline-viral-library-api/rank",
+      "price": 0.0,
+      "params": [
+        "range",
+        "category",
+        "title",
+        "account",
+        "publishedFrom",
+        "publishedTo",
+        "readMin",
+        "readMax",
+        "likeMin",
+        "likeMax",
+        "oldLikeMin",
+        "oldLikeMax",
+        "shareMin",
+        "shareMax",
+        "commentMin",
+        "commentMax",
+        "collectMin",
+        "collectMax",
+        "interactionMin",
+        "interactionMax",
+        "page",
+        "pageSize",
+        "sortBy",
+        "sortOrder"
+      ],
+      "purpose": "低粉爆文榜单",
+      "free": true,
+      "param_types": {
+        "range": "string",
+        "category": "string",
+        "title": "string",
+        "account": "string",
+        "publishedFrom": "string",
+        "publishedTo": "string",
+        "readMin": "integer",
+        "readMax": "integer",
+        "likeMin": "integer",
+        "likeMax": "integer",
+        "oldLikeMin": "integer",
+        "oldLikeMax": "integer",
+        "shareMin": "integer",
+        "shareMax": "integer",
+        "commentMin": "integer",
+        "commentMax": "integer",
+        "collectMin": "integer",
+        "collectMax": "integer",
+        "interactionMin": "integer",
+        "interactionMax": "integer",
+        "page": "integer",
+        "pageSize": "integer",
+        "sortBy": "string",
+        "sortOrder": "string"
+      },
+      "product_slug": "wechat-low-baseline-viral-library-api"
+    },
+    {
+      "key": "mp-search-suggestions",
+      "name": "搜一搜推荐词",
+      "cat": "mp",
+      "method": "POST",
+      "path": "/openapi/wechat-native-search-suggestions/search/suggestions",
+      "price": 0.1,
+      "params": [
+        "query"
+      ],
+      "purpose": "关键词联想",
+      "param_types": {
+        "query": "string"
+      },
+      "product_slug": "wechat-native-search-suggestions"
+    }
+  ]
+}

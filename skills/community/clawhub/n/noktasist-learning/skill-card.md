@@ -1,42 +1,52 @@
-## Description: <br>
-Guides Noktasist through continuous learning, error handling, tool discovery, memory updates, and commit practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-Learning for Noktasist guides an agent to document discoveries, debugging outcomes, tool usage, and long-term memory updates.
 
-## Publisher: <br>
-[noktanyus](https://clawhub.ai/user/noktanyus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[noktanyus](https://clawhub.ai/user/noktanyus)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers running Noktasist use this skill to guide an agent through learning from new systems, errors, tools, and operational observations while updating memory and related project files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to persist broad memory, user, identity, logs, configuration, and repository changes without clear consent or scope limits.
+
+Mitigation: Require explicit user approval before writing long-term memory, USER.md, IDENTITY.md, SOUL.md, logs, configs, or git commits.
+
+Risk: Memory and log updates could capture secrets, personal data, raw logs, or unrelated files.
+
+Mitigation: Prohibit storing secrets, personal data, raw logs, and unrelated files in persistent memory or repository updates.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents and operators use this skill to maintain Noktasist's working memory, capture lessons from errors and new tools, and follow a repeatable diagnostic workflow. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory and user, identity, or persona file updates could save sensitive details or unreviewed operational assumptions. <br>
-Mitigation: Use a controlled workspace and prohibit saving secrets, credentials, raw logs, or sensitive personal details. <br>
-Risk: Operational diagnostics, log inspection, and command execution can expose sensitive data or change systems if performed without consent. <br>
-Mitigation: Require explicit approval before command execution, log inspection, identity or user file edits, and git commits. <br>
-Risk: Broad git staging can include unrelated or sensitive files. <br>
-Mitigation: Review staged files and commit only intended changes instead of relying on blanket staging. <br>
+**Output Format:** [Markdown guidance with ordered checklists, a file-update table, and bash command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/noktanyus/noktasist-learning) <br>
+**Other Properties Related to Output:** [May direct edits to memory, user, identity, log, config, and git state; review before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file-path conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; may prompt memory file updates, operational diagnostics, and git commits.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

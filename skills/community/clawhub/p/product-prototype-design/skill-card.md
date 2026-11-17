@@ -1,41 +1,59 @@
-## Description: <br>
-Generates high-fidelity interactive product prototypes as standalone HTML files for product managers, founders, and designers who need to validate product ideas quickly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates high-fidelity interactive product prototypes as standalone HTML files for quickly visualizing and validating product ideas.
 
-## Publisher: <br>
-[yz6214589-hash](https://clawhub.ai/user/yz6214589-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yz6214589-hash](https://clawhub.ai/user/yz6214589-hash)
 
-## Use Case: <br>
-Product managers, founders, designers, and builders use this skill to turn product concepts into clickable prototype pages, dashboards, landing pages, MVP demos, or interface mockups. It asks for product context, applies relevant industry design guidance, and produces local standalone HTML prototypes with simulated data and interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prototypes may include external CDN or font links, which can be unsuitable for fully offline or private review workflows. <br>
-Mitigation: Review generated HTML before sharing or deployment and replace external links with local assets when offline or private prototypes are required. <br>
-Risk: Broad page, demo, or interface requests may trigger local prototype file creation. <br>
-Mitigation: Confirm the intended output path and inspect generated files before using them beyond ideation or review. <br>
+## Use Case:
 
+Product managers, founders, designers, and developers use this skill to turn product concepts, MVP ideas, landing pages, and interface requests into clickable prototype pages for rapid review.
 
-## Reference(s): <br>
-- [Industry Design Specifications](references/industry-design-specs.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yz6214589-hash/product-prototype-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and standalone HTML code written to local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated prototypes are intended as single-file HTML mockups using Tailwind CSS from a CDN, native JavaScript, CSS transitions, and simulated JSON data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may activate for broad page, interface, or demo requests and produce a prototype when the user expected a narrower design artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the product type, target users, core features, and visual style before generating the prototype.
+
+Risk: Generated prototype HTML can load Tailwind CSS from a remote CDN.
+
+Mitigation: Review generated HTML before use in restricted environments and replace the CDN dependency with approved local CSS when needed.
+
+Risk: Prototype screens use simulated data and interactions that may be mistaken for production-ready behavior.
+
+Mitigation: Label prototypes as validation artifacts and review them before entering sensitive or realistic test data.
+
+## Reference(s):
+
+- [Industry Design Specifications](artifact/references/industry-design-specs.md)
+- [ClawHub Skill Page](https://clawhub.ai/yz6214589-hash/skills/product-prototype-design)
+- [Tailwind CSS CDN](https://cdn.tailwindcss.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Standalone HTML file plus concise Markdown delivery notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated prototypes may include Tailwind CSS from a remote CDN, native JavaScript interactions, simulated JSON data, and optional local assets.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

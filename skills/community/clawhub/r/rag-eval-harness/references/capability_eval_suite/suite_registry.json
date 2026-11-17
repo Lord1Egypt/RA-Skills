@@ -1,0 +1,21 @@
+{
+  "suite_name": "知识库能力评测套件",
+  "version": "0.1.0",
+  "created": "2026-08-26",
+  "description": "持续能力进化闭环的感知层：注册各队/各技能的评测模块，每日自动跑、对比基线、暴露弱点。当前已接入 rag 检索质量模块；预留 B(技能沉淀)/C(知识库自更新)/D(训练课表) 扩展点——往 modules 数组加一项即可。",
+  "modules": [
+    {
+      "id": "rag_quality",
+      "name": "知识库 RAG 检索质量",
+      "owner": "knowledge-team",
+      "script": "../local_rag_eval.py",
+      "report": "../rag_eval_report.json",
+      "enabled": true,
+      "metrics": [
+        {"key": "overall_pass_rate", "label": "整体合格率", "baseline": 1.0, "warn_below": 0.95, "unit": "rate"},
+        {"key": "faq_pass_rate", "label": "FAQ检索命中率", "baseline": 1.0, "warn_below": 1.0, "unit": "rate"},
+        {"key": "negative_reject_rate", "label": "负样本拒答率", "baseline": 1.0, "warn_below": 1.0, "unit": "rate"}
+      ]
+    }
+  ]
+}

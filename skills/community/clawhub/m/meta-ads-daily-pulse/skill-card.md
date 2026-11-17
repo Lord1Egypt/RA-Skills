@@ -1,43 +1,50 @@
-## Description: <br>
-[Didoo AI] Rapid daily health scan for Meta Ads that detects week-over-week performance changes and flags urgent issues before meetings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meta Ads Daily Pulse performs a daily Meta Ads monitoring scan that compares yesterday's performance with the same day of the prior week and ranks urgent change alerts by revenue impact.
 
-## Publisher: <br>
-[elias-didoo](https://clawhub.ai/user/elias-didoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elias-didoo](https://clawhub.ai/user/elias-didoo)
 
-## Use Case: <br>
-Marketing operators, performance marketers, and agents use this skill to query Meta Ads account and campaign metrics, compare yesterday with the same day in the prior week, and produce a concise daily alert summary before reviews or meetings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Meta Ads access token and ad account identifier. <br>
-Mitigation: Use a token restricted to the ads_read scope and the intended ad account. <br>
-Risk: Commands and outputs can expose sensitive business reporting data or credentials in shared logs. <br>
-Mitigation: Avoid command tracing and shared logs, and treat generated ad performance reports as sensitive data. <br>
+## Use Case:
 
+External marketers and paid media operators use this skill before daily review meetings to detect meaningful Meta Ads changes, including week-over-week drops, spend without conversions, budget-cap opportunities, and creative fatigue. It is a detection workflow rather than a full diagnostic or recommendation workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/elias-didoo/meta-ads-daily-pulse) <br>
-- [Publisher Profile](https://clawhub.ai/user/elias-didoo) <br>
-- [Didoo AI Blog](https://didoo.ai/blog) <br>
-- [Meta Graph API Insights Endpoint](https://graph.facebook.com/v21.0/act_${META_AD_ACCOUNT_ID}/insights) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and ranked alert sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires META_ACCESS_TOKEN and META_AD_ACCOUNT_ID; output may include sensitive ad performance data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Example Meta Graph API calls place the access token in the URL query string, which may expose credentials through logs or diagnostics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege, read-only Meta token, avoid shell tracing or verbose logs, and prefer sending the token with an Authorization header or credential-aware SDK.
+
+## Reference(s):
+
+- [Meta Ads Daily Pulse on ClawHub](https://clawhub.ai/elias-didoo/skills/meta-ads-daily-pulse)
+- [Didoo AI Blog](https://didoo.ai/blog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown alert report with supporting curl command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires META_ACCESS_TOKEN and META_AD_ACCOUNT_ID; alert sections should include specific campaign or ad IDs and metrics, with no more than three items per section.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

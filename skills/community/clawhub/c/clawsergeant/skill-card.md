@@ -1,42 +1,57 @@
-## Description: <br>
-Train autonomous OpenClaw AI agents through LLM-guided curriculum design and multi-turn dialogue evaluation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Train autonomous OpenClaw AI agents through LLM-guided curriculum design and multi-turn dialogue evaluation.
 
-## Publisher: <br>
-[myismyname](https://clawhub.ai/user/myismyname) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myismyname](https://clawhub.ai/user/myismyname)
 
-## Use Case: <br>
-Developers and agent operators use ClawSergeant to design, approve, run, and evaluate structured OpenClaw training sessions for a target agent. It is suited for iterative curriculum-driven improvement where an LLM generates tasks, scores responses, and records training outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Training content and agent outputs are sent to external LLM or agent services. <br>
-Mitigation: Use a controlled OpenClaw training setup, avoid confidential prompts or outputs, and configure a limited API key. <br>
-Risk: The skill persists training memory and lesson logs with limited runtime control. <br>
-Mitigation: Inspect or disable lesson logging and MEMORY.md writes before running if persistent memory is not intended. <br>
-Risk: The release evidence reports that learning_logger.py is missing from the artifact while runtime code imports it. <br>
-Mitigation: Obtain and review the missing learning_logger.py implementation before executing a full training session. <br>
+## Use Case:
 
+Developers and engineers use ClawSergeant to design, run, and evaluate multi-stage training sessions for OpenClaw agents. The skill helps turn a training intent into curriculum JSON, LLM-generated training messages, evaluator feedback, and session results.
 
-## Reference(s): <br>
-- [ClawSergeant ClawHub release](https://clawhub.ai/myismyname/clawsergeant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON examples, configuration instructions, and generated training result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write training_results.json, lesson logs under .claw_sergeant_accumulated_lessons/, and an OpenClaw MEMORY.md summary when the target workspace exists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: LLM-generated training messages are sent to the configured OpenClaw recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a test recipient or restricted OpenClaw profile before connecting the skill to a real agent workspace.
+
+Risk: Training results and lessons may be stored for later use by the agent.
+
+Mitigation: Avoid sensitive prompts or secrets, and review or disable the MEMORY.md write path before production use.
+
+Risk: The skill depends on an OpenAI-compatible LLM endpoint for curriculum design, training dialogue, and evaluation.
+
+Mitigation: Keep LLM_BASE_URL pointed at a trusted HTTPS provider and verify API-key handling before running training sessions.
+
+## Reference(s):
+
+- [ClawSergeant ClawHub skill page](https://clawhub.ai/myismyname/skills/clawsergeant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON curriculum objects, and JSON training results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write training_results.json and accumulated lesson markdown files during a training run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

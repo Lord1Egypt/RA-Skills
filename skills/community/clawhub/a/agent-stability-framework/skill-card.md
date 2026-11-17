@@ -1,46 +1,58 @@
-## Description: <br>
-Provides a framework for AI agents to reduce drift, catch faults, and maintain consistent character across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a framework to prevent agent drift, catch faults, and maintain consistent on-character behavior across sessions and models.
 
-## Publisher: <br>
-[donovanpankratz-del](https://clawhub.ai/user/donovanpankratz-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[donovanpankratz-del](https://clawhub.ai/user/donovanpankratz-del)
 
-## Use Case: <br>
-Developers, operators, and agent builders use this skill to add identity files, baseline examples, drift logs, fault logs, and stability audits to LLM-based agents that need consistent behavior over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Style and brevity rules could suppress safety warnings, uncertainty, or clarifying questions when they are needed. <br>
-Mitigation: Review and adapt the framework language before deployment so safety caveats, uncertainty, and clarifying questions remain mandatory for tasks that require them. <br>
-Risk: Drift, fault, and stability logs may capture sensitive user or agent behavior over time. <br>
-Mitigation: Store logs only in approved workspaces, limit retained detail to what is needed for review, and remove sensitive data before sharing logs. <br>
+## Use Case:
 
+Developers, teams, and agent operators use this skill to define agent identity, baseline responses, standing orders, fault logs, and audit routines for long-running or repeated-session AI agents.
 
-## Reference(s): <br>
-- [Agent Stability Framework](AGENT_STABILITY_FRAMEWORK.md) <br>
-- [SOUL Template](SOUL_TEMPLATE.md) <br>
-- [Baseline Examples Template](BASELINE_EXAMPLES_TEMPLATE.md) <br>
-- [Drift Log Template](DRIFT_LOG_TEMPLATE.md) <br>
-- [Fault Log Template](FAULT_LOG_TEMPLATE.md) <br>
-- [Stability Log Template](STABILITY_LOG_TEMPLATE.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/donovanpankratz-del/agent-stability-framework) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration guidance] <br>
-**Output Format:** [Markdown guidance and reusable Markdown templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes prompt additions, checklists, scoring guidance, and log templates for ongoing agent review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad standing orders and persona-stability rules can suppress safety-relevant caveats or override normal agent safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add an explicit higher-priority rule that safety, authorization, privacy, factual accuracy, and platform policies override ASF rules.
+
+Risk: Persistent drift, fault, and stability logs can capture sensitive user or conversation data.
+
+Mitigation: Avoid storing raw conversations or sensitive data in logs; record only minimal incident summaries needed for stability tracking.
+
+Risk: Turning repeated log patterns into permanent standing orders can lock in incorrect behavior.
+
+Mitigation: Require human review before converting log patterns into persistent instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/donovanpankratz-del/skills/agent-stability-framework)
+- [Publisher profile](https://clawhub.ai/user/donovanpankratz-del)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown documentation and templates with system prompt additions, checklists, and log tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reusable framework files and prompts for agent stability audits; no executable code is included in the release artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

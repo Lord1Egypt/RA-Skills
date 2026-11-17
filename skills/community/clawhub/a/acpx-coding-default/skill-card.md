@@ -1,39 +1,53 @@
-## Description: <br>
-Use direct acpx CLI via exec as the default coding execution path for Codex- and Claude-focused agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use direct acpx CLI via exec as the default coding execution path for Codex- and Claude-focused agents.
 
-## Publisher: <br>
-[chaoyang78](https://clawhub.ai/user/chaoyang78) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoyang78](https://clawhub.ai/user/chaoyang78)
 
-## Use Case: <br>
-Developers and coding agents use this skill to route coding, debugging, refactoring, test-running, and repository tasks through the local acpx CLI with Codex or Claude adapters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes coding work through a local acpx command that runs with the user's normal local permissions. <br>
-Mitigation: Use it in repositories you trust and review prompts, commands, and resulting changes before sensitive or destructive work. <br>
-Risk: acpx sessions may retain context across related tasks. <br>
-Mitigation: Reuse named sessions only when continuity is intended and start a fresh session when task context should be isolated. <br>
+## Use Case:
 
+Developers and coding agents use this skill to route coding, debugging, refactoring, test-running, and repository tasks through the local acpx CLI while preserving explicit command visibility and fallback behavior.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with shell command templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an explicit working directory and may reuse named acpx sessions when continued context is useful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Coding requests routed through the local acpx CLI may edit files or run project tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts, commands, and repository context before use, especially in sensitive repositories.
+
+Risk: The configured acpx binary, adapter, or toolchain may be missing or incompatible.
+
+Mitigation: Check the plugin-local binary first and report the exact missing command or failure before using any fallback path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chaoyang78/skills/acpx-coding-default)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Direct acpx CLI invocation templates for Codex and Claude adapters, including named-session and failure-handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

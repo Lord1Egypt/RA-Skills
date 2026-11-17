@@ -1,41 +1,51 @@
-## Description: <br>
-A general-purpose industry research assistant covering PESTEL, Porter's Five Forces, SCP, SWOT, and other analytical frameworks, with support for supply-demand logic analysis, cycle assessment, and key data indicator extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A general-purpose industry research assistant covering PESTEL, Porter's Five Forces, SCP, SWOT, and other analytical frameworks, with support for supply-demand logic analysis, cycle assessment, and key data indicator extraction.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users, researchers, analysts, and planners use this skill to structure industry research, market research, competitive analysis, and strategic planning reports for a specified industry, geography, timeframe, and purpose. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ambiguous industry research requests can produce reports with the wrong scope or purpose. <br>
-Mitigation: Confirm the target industry, geography, timeframe, and research purpose before generating the report. <br>
-Risk: Market data, forecasts, and estimates may be outdated, incomplete, or inaccurate. <br>
-Mitigation: Verify sourced market data independently and clearly label estimates when precise data is unavailable. <br>
+## Use Case:
 
+External users and business analysts use this skill to structure industry, market, competitive, investment, market-entry, and strategic-planning research reports for a chosen industry and geography.
 
-## Reference(s): <br>
-- [Industry Analysis Framework Reference](references/frameworks.md) <br>
-- [Industry Key Indicator Reference](references/key-indicators.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report sections are adjusted based on the research purpose and industry characteristics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Industry research outputs can contain weak sources or estimates that affect investment or business decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports for source quality and treat estimates as estimates before relying on conclusions.
+
+## Reference(s):
+
+- [Industry Analysis Framework Reference](references/frameworks.md)
+- [Industry Key Indicator Reference](references/key-indicators.md)
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/industry-research-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown structured research report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public-source estimates that should be labeled as estimates when precise data is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

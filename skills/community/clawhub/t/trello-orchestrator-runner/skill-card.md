@@ -1,40 +1,56 @@
-## Description: <br>
-Runs a Trello-backed closed-loop delivery workflow for OpenClaw multi-agent execution, keeping cards moving through workflow lists with manager-only intake, local-first routing, reviewer-gated completion, and retry cycles until accepted or blocked. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a Trello-backed closed-loop delivery workflow for OpenClaw multi-agent execution that moves cards across workflow lists, uses local-first routing, requires reviewer-gated completion, and retries rejected work until accepted or blocked.
 
-## Publisher: <br>
-[jeremiahdingal](https://clawhub.ai/user/jeremiahdingal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jeremiahdingal](https://clawhub.ai/user/jeremiahdingal)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and delivery managers use this skill to let an agent coordinate Trello cards through a defined intake, scoping, routing, build, review, and completion workflow while preserving reviewer control over final acceptance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill updates Trello cards, descriptions, comments, and list placement using Trello credentials.
+
+Mitigation: Use credentials limited to the intended Trello workspace or board and review trello-workflow-map.json before running.
+
+Risk: Task objectives, acceptance criteria, risk notes, and review outcomes may be written to Trello cards.
+
+Mitigation: Avoid placing sensitive task details in cards unless those details are appropriate for Trello.
+
+Risk: Moving work to Done without real review would weaken the workflow's acceptance gate.
+
+Mitigation: Require explicit reviewer ACCEPT against the original objective before any card is moved to Done.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and delivery managers use this skill to coordinate OpenClaw work through Trello, creating or locating objective cards, moving them through scoped workflow states, routing execution, and recording reviewer decisions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, API Calls, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, comment on, and move Trello cards using the user's Trello account. <br>
-Mitigation: Use the least-privileged Trello token available, avoid sharing credentials in chat or logs, and require a clear summary and confirmation before Trello changes are made. <br>
-Risk: Workflow state changes can mark work accepted, rejected, done, or blocked. <br>
-Mitigation: Keep explicit reviewer ACCEPT as the gate for Done and review card descriptions and comments before relying on the recorded status. <br>
+**Output Format:** [Markdown summary with Trello card metadata and workflow status]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeremiahdingal/trello-orchestrator-runner) <br>
+**Other Properties Related to Output:** [Requires Trello API credentials and a workspace-level trello-workflow-map.json; updates Trello cards, comments, descriptions, and list placement.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown status summary with Trello card identifiers, URL, current list, routing mode, reviewer verdict, and next action.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TRELLO_API_KEY, TRELLO_TOKEN, and a workspace trello-workflow-map.json before use.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

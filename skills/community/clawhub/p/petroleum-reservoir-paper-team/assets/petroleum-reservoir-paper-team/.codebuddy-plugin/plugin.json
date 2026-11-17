@@ -1,0 +1,131 @@
+{
+  "name": "petroleum-reservoir-paper-team",
+  "version": "1.0.0",
+  "description": "An eight-member expert team for petroleum reservoir engineering academic paper writing, covering topic selection, research, writing, review and formatting.",
+  "author": {
+    "name": "锦程",
+    "email": "jincheng@local.dev"
+  },
+  "agents": [
+    "./agents/petroleum-reservoir-paper-team-team-lead.md",
+    "./agents/liu-fenge.md",
+    "./agents/zhao-xuanti.md",
+    "./agents/zhang-sucai.md",
+    "./agents/wang-zhengli.md",
+    "./agents/li-wenzhang.md",
+    "./agents/wu-chacha.md",
+    "./agents/chen-paiban.md"
+  ],
+
+  "expertType": "team",
+  "agentName": "petroleum-reservoir-paper-team-team-lead",
+  "teamInfo": {
+    "leadAgent": "petroleum-reservoir-paper-team-team-lead",
+    "memberAgents": [
+      "liu-fenge",
+      "zhao-xuanti",
+      "zhang-sucai",
+      "wang-zhengli",
+      "li-wenzhang",
+      "wu-chacha",
+      "chen-paiban"
+    ]
+  },
+
+  "displayName": {
+    "en": "Petroleum Reservoir Paper Team",
+    "zh": "石油工程油藏论文写作专家团"
+  },
+  "profession": {
+    "en": "Petroleum Reservoir Paper Team",
+    "zh": "石油工程油藏论文写作专家团"
+  },
+  "displayDescription": {
+    "en": "An eight-member team for petroleum reservoir engineering academic papers, covering topic selection, research, writing, review and formatting end-to-end.",
+    "zh": "聚焦石油工程油藏方向，八位专家分工协作，从选题、调研、写作到审稿排版，全流程支撑高质量学术论文产出。"
+  },
+  "avatar": "avatars/team.png",
+  "categoryId": "12-IndustryConsultant",
+  "defaultInitPrompt": {
+    "zh": "帮我选题：基于深度学习压裂停泵压力去噪方向，推荐3个有创新性的论文选题，并说明每个选题的选题意义、创新点和可检索的数据库。",
+    "en": "Help me choose a topic: based on deep learning denoising of fracture pump-stop pressure data, recommend 3 innovative paper topics with significance, novelty and searchable databases."
+  },
+  "plugin": "petroleum-reservoir-paper-team",
+  "tags": [
+    { "en": "Reservoir Paper Writing", "zh": "油藏论文写作" },
+    { "en": "Academic Research & Review", "zh": "学术调研与审稿" },
+    { "en": "Petroleum Engineering Consulting", "zh": "石油工程咨询" }
+  ],
+  "quickPrompts": [
+    {
+      "en": "Help me choose a topic: based on deep learning denoising of fracture pump-stop pressure data, recommend 3 innovative paper topics with significance, novelty and searchable databases.",
+      "zh": "帮我选题：基于深度学习压裂停泵压力去噪方向，推荐3个有创新性的论文选题，并说明每个选题的选题意义、创新点和可检索的数据库。"
+    },
+    {
+      "en": "Organize my research notes and generate a structured outline for a petroleum reservoir engineering paper.",
+      "zh": "整理我的研究笔记，生成一份石油工程油藏方向论文大纲，包含标题、摘要、关键词、引言、方法、结果与讨论、结论。"
+    },
+    {
+      "en": "Review this reservoir engineering paper draft and give revision suggestions according to core journal standards.",
+      "zh": "审阅这篇油藏工程论文初稿，按中文核心期刊和SCI/EI标准给出修改意见，包括创新性、数据合理性、结论合理性和应用价值。"
+    }
+  ],
+  "members": [
+    {
+      "id": "petroleum-reservoir-paper-team-team-lead",
+      "displayName": { "en": "Zhou", "zh": "周审稿" },
+      "profession": { "en": "Senior Editor", "zh": "资深主编" },
+      "avatar": "avatars/petroleum-reservoir-paper-team-team-lead.png",
+      "role": "lead"
+    },
+    {
+      "id": "liu-fenge",
+      "displayName": { "en": "Liu", "zh": "刘风格" },
+      "profession": { "en": "Style Polisher", "zh": "风格打磨师" },
+      "avatar": "avatars/liu-fenge.png",
+      "role": "member"
+    },
+    {
+      "id": "zhao-xuanti",
+      "displayName": { "en": "Zhao", "zh": "赵选题" },
+      "profession": { "en": "Topic Strategist", "zh": "选题策划" },
+      "avatar": "avatars/zhao-xuanti.png",
+      "role": "member"
+    },
+    {
+      "id": "zhang-sucai",
+      "displayName": { "en": "Zhang", "zh": "张素材" },
+      "profession": { "en": "Research Specialist", "zh": "调研专家" },
+      "avatar": "avatars/zhang-sucai.png",
+      "role": "member"
+    },
+    {
+      "id": "wang-zhengli",
+      "displayName": { "en": "Wang", "zh": "王整理" },
+      "profession": { "en": "Knowledge Manager", "zh": "知识管家" },
+      "avatar": "avatars/wang-zhengli.png",
+      "role": "member"
+    },
+    {
+      "id": "li-wenzhang",
+      "displayName": { "en": "Li", "zh": "李文章" },
+      "profession": { "en": "Writer", "zh": "写手" },
+      "avatar": "avatars/li-wenzhang.png",
+      "role": "member"
+    },
+    {
+      "id": "wu-chacha",
+      "displayName": { "en": "Wu", "zh": "吴查查" },
+      "profession": { "en": "Fact Checker", "zh": "事实核查专家" },
+      "avatar": "avatars/wu-chacha.png",
+      "role": "member"
+    },
+    {
+      "id": "chen-paiban",
+      "displayName": { "en": "Chen", "zh": "陈排版" },
+      "profession": { "en": "Layout Designer", "zh": "排版设计师" },
+      "avatar": "avatars/chen-paiban.png",
+      "role": "member"
+    }
+  ]
+}

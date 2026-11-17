@@ -1,43 +1,53 @@
-## Description: <br>
-Generate, validate, and lint systemd unit files (.service, .timer, .socket, .mount) with hardening and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, validate, and lint systemd unit files (.service, .timer, .socket, .mount) with hardening and best practices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to generate service, timer, and socket unit files, validate existing systemd units, and lint them for operational and hardening issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated unit files can change service privileges, startup behavior, network exposure, or persistence when installed and enabled. <br>
-Mitigation: Review generated unit files before placing them under systemd directories or enabling them. <br>
-Risk: Services may run with broader privileges than needed if no explicit user or group is configured. <br>
-Mitigation: Set --user and --group for least privilege where the service does not require root. <br>
-Risk: Socket units can listen on public interfaces when a broad address is generated. <br>
-Mitigation: Use explicit localhost bindings when sockets should not be publicly reachable. <br>
-Risk: Documentation may overstate mount-generation or hardening coverage. <br>
-Mitigation: Check the actual generated output and do not rely on documentation claims alone. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate systemd service, timer, socket, and mount unit configurations and to validate or lint existing units before deployment.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated systemd unit-file text or JSON validation output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated unit files when the --output option is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated systemd units may create privileged services or exposed sockets if reviewed and deployed without changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated unit before installing or enabling it; prefer explicit non-root users and bind sockets to 127.0.0.1 unless public exposure is intended.
+
+Risk: The linter is not a complete systemd security review.
+
+Mitigation: Treat lint results as advisory and perform a separate systemd security review for production services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/systemd-unit-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, generated systemd unit content, and optional JSON output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write generated unit output to a file when requested by the user.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

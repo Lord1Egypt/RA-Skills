@@ -1,43 +1,59 @@
-## Description: <br>
-Health Data Analyzer helps agents query and analyze sleep, exercise, recovery, heart-rate variability, blood oxygen, and related health data through a connected healthdata MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Health Data Analyzer helps agents query and analyze sleep, exercise, recovery, and related health metrics from a healthdata MCP server.
 
-## Publisher: <br>
-[tianchuanjun64-afk](https://clawhub.ai/user/tianchuanjun64-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianchuanjun64-afk](https://clawhub.ai/user/tianchuanjun64-afk)
 
-## Use Case: <br>
-External users and developers use this skill to inspect health database tables, query scoped date ranges, and produce health summaries, trend analysis, and personalized recommendations from connected sleep, training, and recovery data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive health, account, and device metadata from the connected healthdata MCP server. <br>
-Mitigation: Install only when this access is intended, use explicit prompts, and treat terminal output and logs as sensitive health information. <br>
-Risk: Broad table queries or long date ranges can expose more health data than needed for a question. <br>
-Mitigation: Use narrow date ranges and query only the tables needed for the requested analysis; avoid users and user_data_sources unless identity or device provenance is specifically required. <br>
+## Use Case:
 
+External users and developers use this skill to inspect health database tables, run healthdata MCP queries, and summarize sleep quality, exercise load, recovery state, trends, and data quality signals. It is intended for health-data analysis workflows where the user controls or trusts the connected MCP server.
 
-## Reference(s): <br>
-- [Health Data Analyzer ClawHub page](https://clawhub.ai/tianchuanjun64-afk/health-data-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/tianchuanjun64-afk) <br>
-- [Query Patterns](references/query-patterns.md) <br>
-- [Database Schema](references/database-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON query results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may contain sensitive health, account, and device metadata from the connected MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can query sensitive health and profile data from the configured healthdata MCP server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted local environments and limit queries to the minimum tables, date ranges, and fields needed for the user's request.
+
+Risk: The included workflows support user_info and complete-profile queries that may expose personal profile and device-source data.
+
+Mitigation: Avoid profile-wide queries unless explicitly necessary and authorized by the data owner.
+
+Risk: The status script writes a fixed temporary file and may automatically change script permissions.
+
+Mitigation: Do not run the status script with elevated privileges until the temporary-file and chmod behavior are reviewed and corrected.
+
+## Reference(s):
+
+- [Health Data Analyzer ClawHub Release](https://clawhub.ai/tianchuanjun64-afk/skills/health-data-analyzer)
+- [Database Schema](references/database-schema.md)
+- [Query Patterns](references/query-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include health metric summaries, trend observations, MCP command examples, and personalized recommendations based on queried data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

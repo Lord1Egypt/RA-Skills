@@ -1,0 +1,22 @@
+{
+  "schema": "v1",
+  "name": "papi",
+  "displayName": "PAPI — WhatsApp Cloud API & AI Voice Agent Engine",
+  "version": "1.1.0",
+  "description": "WhatsApp automation engine for AI agents: text, PTT voice notes, media, quick reply buttons, lists, polls, and real-time webhook routing.",
+  "author": "Rafa Martins / PAPI Cloud",
+  "category": "communication",
+  "tags": [
+    "papi",
+    "whatsapp",
+    "voice-notes",
+    "ptt",
+    "messaging",
+    "ai-agents",
+    "crm",
+    "omnichannel"
+  ],
+  "entrypoint": "SKILL.md",
+  "platforms": ["linux", "darwin", "windows"],
+  "homepage": "https://papi.api.br"
+}

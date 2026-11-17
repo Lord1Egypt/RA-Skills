@@ -1,39 +1,53 @@
-## Description: <br>
-Intervention Agent helps AI agents learn from collaboration friction by tracking corrections, surfacing intervention points, and remembering user workflow preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI collaboration assistant that helps agents learn from mistakes and user corrections through a mistake journal, human intervention points, friction detection, and collaboration memory.
 
-## Publisher: <br>
-[goldcharding](https://clawhub.ai/user/goldcharding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldcharding](https://clawhub.ai/user/goldcharding)
 
-## Use Case: <br>
-External users and developers use this skill to make agent collaboration more adaptive by recording corrections, pausing at key decision points, and reusing confirmed preferences across future work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may save summaries of corrections, workflow preferences, and collaboration friction, which can reveal sensitive working patterns or content. <br>
-Mitigation: Use it only where the memory store is understood, inspectable, and deletable; avoid sensitive work unless memory retention is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to make agent collaboration more adaptive by tracking corrections, surfacing progress, pausing at decision points, and remembering collaboration preferences across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goldcharding/intervention-agent) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/goldcharding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with optional shell commands and progress status snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save summaries of corrections, workflow preferences, and collaboration friction for later reuse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may save collaboration preferences, corrections, and friction patterns persistently.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including sensitive personal, business, or credential details in correction examples unless the user understands where OpenClaw memory is stored and how to delete it.
+
+Risk: Preference learning could apply an incorrect correction or workflow preference in later sessions.
+
+Mitigation: Require confirmation before important learnings take effect and let the user remain the final decision-maker.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/goldcharding/skills/intervention-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with examples, workflow steps, and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include status messages, confirmation prompts, remembered preference summaries, and mistake-journal entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

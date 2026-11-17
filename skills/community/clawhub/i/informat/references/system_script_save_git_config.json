@@ -1,0 +1,41 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_script_save_git_config",
+    "description": "Save script Git repository configuration. After configuration, scripts can be pulled from or pushed to the Git repository.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "repo": {
+          "type": "string",
+          "description": "Git repository URL. Use https format for password auth (e.g. https://github.com/user/repo.git), use ssh format for SSH key auth (e.g. git@github.com:user/repo.git)."
+        },
+        "branch": {
+          "type": "string",
+          "description": "Git branch name, default is master."
+        },
+        "authType": {
+          "type": "string",
+          "description": "Authentication type. Options: password (username/password), ssh (SSH key). Default is password."
+        },
+        "user": {
+          "type": "string",
+          "description": "Git username (required when authType is password)."
+        },
+        "password": {
+          "type": "string",
+          "description": "Git password or access token (required when authType is password)."
+        },
+        "sshKey": {
+          "type": "string",
+          "description": "SSH private key content (required when authType is ssh)."
+        },
+        "targetPath": {
+          "type": "string",
+          "description": "Target path in the repository for syncing. Empty means repository root."
+        }
+      },
+      "required": ["repo", "authType"]
+    }
+  }
+}

@@ -1,0 +1,24 @@
+---
+name: {{skill_name}}
+description: {{description_yaml}}
+version: 0.1.0
+license: MIT
+metadata:
+  zh_name: {{zh_name_yaml}}
+---
+
+# {{zh_name}}（{{skill_name}}）
+
+一句话：这个技能做什么、输出什么。
+
+## 触发与边界
+- Triggers：什么时候应该使用本技能。
+- Do NOT trigger：什么时候不要使用本技能。
+
+## 核心流程
+1. 第一步。
+2. 第二步。
+3. 收尾自检。
+
+## 渐进披露
+- 更多细节放 references/，按需读取，不要每次全读。

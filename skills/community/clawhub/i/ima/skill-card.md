@@ -1,45 +1,60 @@
-## Description: <br>
-IMA personal notes API skill for searching notes, browsing notebooks, reading note content, creating notes, and appending content to existing notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IMA Skills YC helps an agent manage a user's Tencent IMA notes through IMA OpenAPI, including note search, notebook browsing, content retrieval, note creation, and appending Markdown content.
 
-## Publisher: <br>
-[laineyboy](https://clawhub.ai/user/laineyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laineyboy](https://clawhub.ai/user/laineyboy)
 
-## Use Case: <br>
-External users and agents use this skill to manage a user's IMA notes through the IMA OpenAPI, including search, notebook browsing, reading, creation, and appending workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change private IMA notes. <br>
-Mitigation: Install only when the agent should access those notes, keep API keys private, and prefer revocable credentials. <br>
-Risk: Broad trigger guidance may cause unintended note reads or writes. <br>
-Mitigation: Ask the agent to confirm the target note or notebook and exact content before creating, appending, or revealing note content. <br>
-Risk: Using the skill in shared chats could expose sensitive note content. <br>
-Mitigation: Avoid shared-chat use for sensitive notes and limit displays to titles or summaries unless the user explicitly authorizes full content. <br>
+## Use Case:
 
+External users with Tencent IMA OpenAPI credentials use this skill to let an agent search, list, read, create, and append personal IMA notes. It is intended for personal note-management workflows where the user has authorized access to the target account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laineyboy/ima) <br>
-- [IMA homepage](https://ima.qq.com) <br>
-- [IMA agent interface](https://ima.qq.com/agent-interface) <br>
-- [IMA notes API reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, markdown, text] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses IMA_OPENAPI_CLIENTID and IMA_OPENAPI_APIKEY credentials to call the IMA notes API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can read and modify private IMA notes after credentials are configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for accounts where that access is intended, and require explicit confirmation before reading full note content, creating a note, importing a file, or appending to an existing note.
+
+Risk: The setup guidance includes persistent shell environment variables for API credentials.
+
+Mitigation: Use a dedicated secrets mechanism where available, avoid committing credentials, and avoid placing API keys in broadly readable shell startup files.
+
+Risk: Broad activation rules may treat ambiguous requests such as remembering or finding prior writing as note-access requests.
+
+Mitigation: Clarify the user's intent and requested scope before making API calls, especially in shared or group contexts.
+
+## Reference(s):
+
+- [IMA Note API Reference](references/api.md)
+- [IMA Homepage](https://ima.qq.com)
+- [IMA OpenAPI Credential Setup](https://ima.qq.com/agent-interface)
+- [ClawHub Skill Page](https://clawhub.ai/laineyboy/skills/ima)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires IMA_OPENAPI_CLIENTID and IMA_OPENAPI_APIKEY; outputs may include private note metadata or note content when authorized.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

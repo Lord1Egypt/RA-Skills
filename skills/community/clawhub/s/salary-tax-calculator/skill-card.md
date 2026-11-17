@@ -1,42 +1,54 @@
-## Description: <br>
-A personal income tax calculation and optimization skill for salary, annual bonus, labor remuneration, special deductions, annual settlement estimates, and pre-tax/post-tax salary conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides China individual income tax calculation and optimization assistance for salary, annual bonus, labor remuneration, special deductions, annual settlement estimates, and pre-tax to after-tax conversion.
 
-## Publisher: <br>
-[wangyue71](https://clawhub.ai/user/wangyue71) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangyue71](https://clawhub.ai/user/wangyue71)
 
-## Use Case: <br>
-Individuals and tax-preparation helpers use this skill to estimate Chinese personal income tax, compare annual bonus tax treatments, review special deduction rules, and generate a calculation report from supplied income and deduction inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may overstate supported tax features and silently omit user-provided income from calculations. <br>
-Mitigation: Use it only for basic salary-and-bonus estimates, and verify labor remuneration, annual settlement, reverse salary calculations, and filing decisions in the official tax app or with a qualified tax professional. <br>
-Risk: Tax rules and filing outcomes may differ from the estimate. <br>
-Mitigation: Treat generated results as reference calculations and confirm final obligations with the tax authority or a qualified tax professional. <br>
+## Use Case:
 
+External users use this skill to estimate China personal income tax, compare annual bonus tax treatments, look up special deduction rules, and produce calculation breakdowns. Outputs are estimates for planning and should be checked against current official tax guidance or a qualified tax professional.
 
-## Reference(s): <br>
-- [Personal Income Tax Calculation Reference Manual](references/tax_rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangyue71/skills/salary-tax-calculator) <br>
-- [Publisher Profile](https://clawhub.ai/user/wangyue71) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with calculation tables and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate a local Markdown tax calculation report from command-line or JSON inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Tax calculations may become inaccurate when tax-year rules or official guidance change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current rules with official tax guidance, the individual income tax app, the 12366 tax service hotline, or a qualified tax professional before relying on results.
+
+Risk: Server security evidence says the documentation overstates some supported scenarios, including labor-income, annual-settlement, reverse salary, and other-income handling.
+
+Mitigation: Treat those scenarios as planning estimates and avoid relying on them until the implementation gaps are fixed.
+
+## Reference(s):
+
+- [Personal Income Tax Rules Reference](artifact/references/tax_rules.md)
+- [Salary Tax Calculator on ClawHub](https://clawhub.ai/wangyue71/skills/salary-tax-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with plain-text console summaries and optional JSON configuration input]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reference-only tax estimates, calculation breakdowns, and optimization suggestions based on user-supplied income and deduction inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Security audit for external resources (GitHub repos, downloaded skills, files). Detects malicious code, suspicious executables, and content mismatches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security Audit checks external resources such as GitHub repositories, downloaded skills, and files for malicious code, suspicious executables, and content mismatches.
 
-## Publisher: <br>
-[ITHACAJASON](https://clawhub.ai/user/ITHACAJASON) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ithacajason](https://clawhub.ai/user/ithacajason)
 
-## Use Case: <br>
-Developers and security-minded users use this skill to inspect local copies of external repositories, downloaded skills, and scripts before trusting or executing them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The audit recursively reads the chosen folder and reports file paths, which can expose sensitive local structure if run on broad private directories. <br>
-Mitigation: Run it only on the specific repository, skill, or folder being evaluated, and review reports before sharing them. <br>
-Risk: The scan is heuristic and static, so a clean result does not guarantee that external code is safe to execute. <br>
-Mitigation: Treat results as triage guidance, then manually review code and use isolated environments before running untrusted software. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect cloned repositories, downloaded skills, and external files before running unfamiliar code. It provides static, heuristic findings that support manual security review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ITHACAJASON/jason-security-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style terminal report with risk level, findings, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write a text report file when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The scanner may miss important malicious-file patterns while reporting that a project is safe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat SAFE results as preliminary, run the tool only on the specific downloaded project or skill under review, and manually inspect findings before executing unfamiliar code.
+
+Risk: Users may mistake the skill for a reliable security gate.
+
+Mitigation: Present it as a lightweight static helper and require additional review for executables, obfuscated content, external scripts, and other high-risk inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ithacajason/skills/jason-security-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or terminal text with command examples and security findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are heuristic and require manual review before trusting or executing unfamiliar code.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

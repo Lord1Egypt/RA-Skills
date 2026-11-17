@@ -1,44 +1,56 @@
-## Description: <br>
-Instantly check if a file, URL, domain, or IP is malicious using VirusTotal, returning detection ratios, contextual threat intelligence, VirusTotal report links, and actionable recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instantly checks file hashes, URLs, domains, and IP addresses with VirusTotal and returns threat intelligence for SOC triage, incident response, malware analysis, and IOC enrichment.
 
-## Publisher: <br>
-[Bryan-Project](https://clawhub.ai/user/Bryan-Project) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bryan-project](https://clawhub.ai/user/bryan-project)
 
-## Use Case: <br>
-Security analysts, incident responders, threat hunters, and SOC operators use this skill to enrich hashes, URLs, domains, and IP addresses with VirusTotal context during triage and investigation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Queried hashes, URLs, domains, and IP addresses are sent to VirusTotal. <br>
-Mitigation: Only submit indicators your organization permits sharing; avoid confidential internal URLs, private hostnames, customer-linked indicators, or sensitive incident details. <br>
-Risk: The skill requires a VirusTotal API key and can encounter authentication errors or rate limits. <br>
-Mitigation: Provide VT_API_KEY through the agent environment, restrict access to that secret, and expect retries or waits for quota-limited keys. <br>
-Risk: A clean or not-found VirusTotal result does not prove an indicator is safe. <br>
-Mitigation: Treat VirusTotal results as one signal and corroborate with sandboxing, endpoint data, or other threat intelligence sources before making security decisions. <br>
+## Use Case:
 
+Security analysts, incident responders, threat hunters, and developers use this skill to enrich suspicious hashes, URLs, domains, and IP addresses with VirusTotal detections, reputation data, infrastructure context, and actionable recommendations.
 
-## Reference(s): <br>
-- [VirusTotal API v3](https://www.virustotal.com/api/v3) <br>
-- [VirusTotal URL API Reference](https://docs.virustotal.com/reference/url) <br>
-- [VirusTotal API Key](https://www.virustotal.com/gui/my-apikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown threat report informed by JSON lookup results and shell command execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VT_API_KEY and sends queried indicators to VirusTotal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: Indicators submitted for lookup are sent to VirusTotal using the configured VT_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only indicators approved for third-party services, and avoid internal-only, customer-sensitive, embargoed, or investigation-sensitive IOCs unless organizational policy allows it.
+
+Risk: A clean VirusTotal result does not guarantee that an indicator is safe.
+
+Mitigation: Treat VirusTotal as one signal and corroborate clean or not-found results with additional threat intelligence sources and internal telemetry before making security decisions.
+
+## Reference(s):
+
+- [VirusTotal API v3](https://www.virustotal.com/api/v3)
+- [VirusTotal URL API Reference](https://docs.virustotal.com/reference/url)
+- [VirusTotal API Key](https://www.virustotal.com/gui/my-apikey)
+- [ClawHub Skill Page](https://clawhub.ai/bryan-project/skills/vt-hash-intel)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, Shell commands, JSON, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON lookup results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VT_API_KEY and sends submitted indicators to VirusTotal.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

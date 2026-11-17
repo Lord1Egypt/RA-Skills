@@ -1,41 +1,53 @@
-## Description: <br>
-电机设计一体化工作流 | 串联极槽配合→磁路计算→Maxwell仿真→FOC参数配置全流程，输出完整设计报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+电机设计一体化工作流 | 串联极槽配合→磁路计算→Maxwell仿真→FOC参数配置全流程，输出完整设计报告。
 
-## Publisher: <br>
-[yongjie666888](https://clawhub.ai/user/yongjie666888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongjie666888](https://clawhub.ai/user/yongjie666888)
 
-## Use Case: <br>
-Developers and motor-control engineers use this skill to plan an integrated motor design workflow from requirements analysis through pole-slot selection, magnetic circuit estimates, Maxwell simulation planning, winding design, and FOC parameter configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Motor, controller, or simulation parameters may be unsuitable for a real device if treated as final engineering authority. <br>
-Mitigation: Independently validate motor and controller parameters through engineering review, simulation, and bench testing before hardware or firmware use. <br>
-Risk: The workflow references separately installed helper skills whose behavior is outside this release's security evidence. <br>
-Mitigation: Review and scan any helper skill independently before using its outputs in the design process. <br>
+## Use Case:
 
+Developers and motor-design engineers use this Chinese-language skill to structure a motor design workflow from requirements through pole-slot selection, magnetic-circuit estimates, Maxwell simulation planning, winding design, and FOC parameter configuration.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yongjie666888/motor-design-integration) <br>
-- [Publisher profile](https://clawhub.ai/user/yongjie666888) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with parameter tables, formulas, checklists, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces engineering design reports and FOC configuration guidance; outputs should be independently validated before hardware or firmware use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Engineering formulas, example values, and generated FOC code may be inaccurate or incomplete for a specific motor or controller.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a design aid only and validate calculations, simulation results, and controller parameters with qualified engineering review before applying them to real hardware.
+
+Risk: FOC configuration guidance could lead to unsafe behavior if transferred directly to a physical motor system.
+
+Mitigation: Test generated parameters in simulation or a controlled bench setup with conservative current, voltage, and thermal limits before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yongjie666888/skills/motor-design-integration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown design report with code and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language workflow guidance; engineering values and generated controller settings require professional validation before hardware use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

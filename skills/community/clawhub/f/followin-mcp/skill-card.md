@@ -1,54 +1,71 @@
-## Description: <br>
-Routes agent requests to Followin MCP sub-skills for crypto intelligence, market sentiment, trading signals, macro dashboards, and U.S. stock analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FollowinMCP is an index and routing entry point for Followin MCP sub-skills covering crypto intelligence, sentiment, trading signals, macro dashboards, morning briefs, and U.S. stock analysis.
 
-## Publisher: <br>
-[rayniubi](https://clawhub.ai/user/rayniubi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rayniubi](https://clawhub.ai/user/rayniubi)
 
-## Use Case: <br>
-External users and agents use this skill to select the right Followin MCP sub-skill for finance and crypto intelligence tasks, then follow that sub-skill's routing boundaries and tool mapping. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys may be exposed if placed in URL query strings. <br>
-Mitigation: Prefer secret storage or header-only authentication when supported, and avoid sharing or logging MCP configuration that contains query-string credentials. <br>
-Risk: Broad market prompts can trigger multiple external finance and crypto queries, including premium endpoints that may cost money or reveal research intent. <br>
-Mitigation: Ask for scope clarification before broad market requests and confirm use of premium data sources when cost or privacy matters. <br>
+## Use Case:
 
+External users and agent developers use this skill to route market-intelligence requests to the appropriate Followin MCP sub-skill. It supports workflows for crypto news, token sentiment, Telegram channel intelligence, trading signals, macro analysis, daily briefs, earnings review, and stock divergence scans.
 
-## Reference(s): <br>
-- [FollowinMCP ClawHub release](https://clawhub.ai/rayniubi/followin-mcp) <br>
-- [Followin sub-skill index](references/README.md) <br>
-- [Followin Intel Center](references/01-followin-intel-center.SKILL.md) <br>
-- [Breaking News Analysis](references/02-breaking-news.SKILL.md) <br>
-- [Trending News Topics](references/03-trending-news-topics.SKILL.md) <br>
-- [Crypto Daily Brief](references/04-crypto-daily-brief.SKILL.md) <br>
-- [Token Buzz Views](references/05-token-buzz-views.SKILL.md) <br>
-- [Trading Strategy Signal](references/06-trading-strategy-signal.SKILL.md) <br>
-- [TG Channel Intel](references/07-tg-channel-intel.SKILL.md) <br>
-- [BTC Macro Dashboard](references/08-btc-macro-dashboard.SKILL.md) <br>
-- [Gold Macro Dashboard](references/09-gold-macro-dashboard.SKILL.md) <br>
-- [Macro Morning Brief](references/10-macro-morning-brief.SKILL.md) <br>
-- [US Stock Earnings Report](references/11-us-stock-earnings-report.SKILL.md) <br>
-- [Macro Analyzer](references/12-macro-analyzer.SKILL.md) <br>
-- [US Stock Divergence Scan](references/13-us-stock-divergence-scan.SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with MCP configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes requests to referenced sub-skills; some sub-skills call external Followin MCP or premium MCP services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenClaw metadata) <br>
+Risk: The security summary flags unsafe API-key placement in SSE URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Followin API keys only through headers or a protected secret store, and avoid placing keys in URLs.
+
+Risk: The security summary notes that saved watchlists can be used automatically in remote requests.
+
+Mitigation: Disable saved watchlist use or require confirmation before sending watchlist tickers to Followin.
+
+Risk: Broad market or Telegram wording may route a request into specialized remote data workflows.
+
+Mitigation: Confirm the selected sub-skill and remote data scope before running workflows that could disclose user intent or market interests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rayniubi/skills/followin-mcp)
+- [Followin Agent Skills README](references/README.md)
+- [Followin Intel Center](references/01-followin-intel-center.SKILL.md)
+- [Breaking News](references/02-breaking-news.SKILL.md)
+- [Trending News Topics](references/03-trending-news-topics.SKILL.md)
+- [Crypto Daily Brief](references/04-crypto-daily-brief.SKILL.md)
+- [Token Buzz Views](references/05-token-buzz-views.SKILL.md)
+- [Trading Strategy Signal](references/06-trading-strategy-signal.SKILL.md)
+- [TG Channel Intel](references/07-tg-channel-intel.SKILL.md)
+- [BTC Macro Dashboard](references/08-btc-macro-dashboard.SKILL.md)
+- [Gold Macro Dashboard](references/09-gold-macro-dashboard.SKILL.md)
+- [Macro Morning Brief](references/10-macro-morning-brief.SKILL.md)
+- [US Stock Earnings Report](references/11-us-stock-earnings-report.SKILL.md)
+- [Macro Analyzer](references/12-macro-analyzer.SKILL.md)
+- [US Stock Divergence Scan](references/13-us-stock-divergence-scan.SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown/text routing guidance with MCP configuration snippets and market-intelligence response structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes user intent across 13 sub-skills and may rely on Followin MCP or premium MCP services when the user has configured access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenClaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Queries and analyzes DingTalk attendance and clock-in records, summarizing exceptions such as late arrivals, early departures, absences, and attendance trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries and analyzes DingTalk attendance clock-in data, including lateness, early departure, absenteeism, attendance rate, missed clock-ins, and related workplace attendance questions.
 
-## Publisher: <br>
-[Golden-Pigeon](https://clawhub.ai/user/Golden-Pigeon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golden-pigeon](https://clawhub.ai/user/golden-pigeon)
 
-## Use Case: <br>
-Authorized HR, operations, or management users can use this skill to query DingTalk attendance data over natural-language date ranges and receive concise summaries of attendance anomalies, severity, and trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive employee attendance data through DingTalk credentials. <br>
-Mitigation: Use only when authorized, configure a least-privileged DingTalk app, and protect the AppSecret and administrator phone configuration. <br>
-Risk: Broad date ranges or organization scopes may retrieve more attendance data than needed. <br>
-Mitigation: Limit queries to the required time period and organizational scope before running the attendance query. <br>
-Risk: Generated SQLite cache and history files may persist sensitive attendance data locally. <br>
-Mitigation: Store the cache in a secured location and delete or rotate it according to organizational data-retention requirements. <br>
+## Use Case:
 
+HR, operations, and authorized attendance administrators use this skill to query DingTalk attendance data, review exceptions, and summarize patterns across employees and time ranges. It helps convert natural-language date requests into script arguments, retrieve current or cached attendance records, and produce concise Chinese-language attendance reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Golden-Pigeon/dingtalk-attendance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run a local Python query script, call DingTalk APIs, and read or write a local SQLite cache when authorized credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill stores identifiable employee attendance history locally in SQLite without clear retention, deletion, or access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with authorized HR or attendance-admin credentials, restrict access to the cache database, define a retention policy, and provide a purge or no-history workflow before routine workplace use.
+
+Risk: Attendance data can expose sensitive workplace behavior and may be misused if queried outside an authorized business purpose.
+
+Mitigation: Scope DingTalk permissions to the minimum needed, verify that each query is authorized, and limit report sharing to users with a legitimate need to know.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golden-pigeon/skills/dingtalk-attendance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Analysis]
+
+**Output Format:** [Structured Chinese Markdown with inline shell commands and attendance summary tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on DingTalk API responses and local SQLite history for comparison across date ranges.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

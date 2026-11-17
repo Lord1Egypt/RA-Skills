@@ -1,43 +1,54 @@
-## Description: <br>
-Covered call portfolio strategy analysis and optimization for investment strategy, Roll Up/Roll Down decisions, option strike price selection, portfolio structure optimization, and questions about combining stock holdings with short call options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Covered call portfolio strategy analysis and optimization for roll decisions, strike selection, portfolio structure, and stock-plus-short-call scenarios.
 
-## Publisher: <br>
-[frankxpj](https://clawhub.ai/user/frankxpj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frankxpj](https://clawhub.ai/user/frankxpj)
 
-## Use Case: <br>
-External users and agents use this skill to analyze covered-call portfolios, compare roll and close strategies, and build scenario-based trade-off summaries. It helps quantify premium cushion, assignment outcomes, break-even points, and monitoring triggers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Covered-call calculations may be incorrect or based on stale assumptions, prices, premiums, taxes, or assignment expectations. <br>
-Mitigation: Review every input and result before relying on the analysis, and treat outputs as educational calculation support rather than guaranteed investment advice. <br>
-Risk: An agent could present a trading action that a user treats as executable advice. <br>
-Mitigation: Require explicit human confirmation for any trade, and do not allow the skill or external tools to execute trades automatically. <br>
+## Use Case:
 
+External users and analysts use this skill to compare covered-call strategies, quantify roll-up and roll-down trade-offs, model assignment outcomes, and generate scenario matrices before making independent trading decisions.
 
-## Reference(s): <br>
-- [Covered Call Strategy release page](https://clawhub.ai/frankxpj/covered-call-strategy) <br>
-- [Publisher profile](https://clawhub.ai/user/frankxpj) <br>
-- [Multi-Strike Covered Call Model](references/multi-strike-model.md) <br>
-- [Roll Decision Framework](references/roll-decision.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis with tables, formulas, decision guidance, and optional command-line calculator usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scenario matrices, P&L calculations, strategy comparisons, and monitoring triggers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may mistake strategy analysis or calculator output for financial advice or guaranteed trading outcomes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as an analysis aid and independently verify option prices, tax effects, assignment risk, and calculations before making trades.
+
+Risk: Covered-call decisions can be misunderstood because short calls cap upside while offering only premium-based downside cushion.
+
+Mitigation: Review the scenario matrix, net premium impact, and assignment mechanics before choosing to hold, roll, close, or adjust positions.
+
+## Reference(s):
+
+- [Multi-Strike Covered Call Model](references/multi-strike-model.md)
+- [Roll Decision Framework](references/roll-decision.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with tables and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scenario matrices, calculated profit-and-loss tables, and monitoring triggers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

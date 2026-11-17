@@ -1,38 +1,57 @@
-## Description: <br>
-Monitor, filter, and summarize RSS/Atom feeds on a schedule, including keyword alerts, feed digests, and routing selected articles to configured destinations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor, filter, and summarize RSS/Atom feeds on a schedule, including keyword alerts, periodic digests, and optional routing to Discord, webhooks, or Notion.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Developers and automation users use this skill to monitor RSS or Atom feeds, filter new entries by age or keywords, and produce scheduled digests or alerts for services they configure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled feed fetching and delivery can send selected feed titles, links, summaries, and source URLs to configured external services. <br>
-Mitigation: Use approved destinations and avoid private or internal feeds unless those destinations are authorized for that data. <br>
+## Use Case:
 
+Developers and automation users use this skill to monitor RSS or Atom feeds, filter entries by age or keywords, and produce recurring news digests or alerts for downstream channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/fuzzy-rss-aggregator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python and JSON examples; the bundled feed-fetching script emits JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch RSS or Atom URLs and send selected feed titles, links, summaries, and source URLs to user-configured destinations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Scheduled forwarding can send article titles, links, and summaries to Discord, webhooks, or Notion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public feeds where possible, review destination configuration before enabling schedules, and avoid routing private or internal feed content to third-party services.
+
+Risk: Feed text is untrusted input and may be summarized or reposted by an agent.
+
+Mitigation: Treat feed content as untrusted, review generated summaries before broad distribution, and avoid executing instructions found inside feed entries.
+
+Risk: The Python feed fetcher depends on external package behavior and remote feed availability.
+
+Mitigation: Install dependencies in a pinned virtual environment and monitor scheduled jobs for empty, malformed, or unavailable feeds.
+
+## Reference(s):
+
+- [RSS Aggregator ClawHub listing](https://clawhub.ai/fuzzyb33s/skills/fuzzy-rss-aggregator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, Python, and JSON examples; script output is JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scheduled automation recipes and optional forwarding to external services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

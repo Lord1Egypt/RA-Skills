@@ -1,46 +1,63 @@
-## Description: <br>
-Poi Clean plans nearby dining, cafe, dessert, mall, cinema, and date-spot recommendations from a local origin using POI recall, web evidence, scoring, and fallback area guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans nearby places for dining, desserts, cafes, malls, cinemas, and date spots by combining structured POI recall, local search evidence, scoring, and fallback area guidance when store-level evidence is weak.
 
-## Publisher: <br>
-[ccmxigua](https://clawhub.ai/user/ccmxigua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ccmxigua](https://clawhub.ai/user/ccmxigua)
 
-## Use Case: <br>
-External users and agent operators use this skill to answer nearby-place requests with constraints such as origin, metro access, seating, category, budget, and avoid rules. It is most useful when an agent needs ranked recommendations, backups, weak-evidence notes, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with strongest coverage for China local POI workflows and locations supported by the configured map and search providers. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically derive a user's location and share location-derived data with external map or search services. <br>
-Mitigation: Use an explicit origin when location privacy matters, and review nearby queries before allowing device or IP-based location fallback. <br>
-Risk: The skill requires a sensitive AMAP_KEY credential for map and routing calls. <br>
-Mitigation: Keep AMAP_KEY scoped, rotate it as needed, and do not store it in shared files or published artifacts. <br>
-Risk: Optional CoreLocationCLI use depends on a locally installed location utility and macOS permission prompts. <br>
-Mitigation: Install CoreLocationCLI only from a trusted source and approve location access only when current-position lookup is intended. <br>
+## Use Case:
 
+External users and agents use this skill to plan local place recommendations with constraints such as origin, transit access, seating, category, budget, mall preference, and avoid rules. It returns a ranked recommendation with backups, weak-evidence notes, and next-step guidance.
 
-## Reference(s): <br>
-- [Poi Clean on ClawHub](https://clawhub.ai/ccmxigua/local-poi-planner) <br>
-- [Unified Search Suite dependency](https://clawhub.ai/ccmxigua/unified-search-suite) <br>
-- [Output template](references/output-template.md) <br>
-- [Planner lessons, 2026-05-31](references/lessons-2026-05-31.md) <br>
-- [Planner lessons, 2026-06-01](references/lessons-2026-06-01.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown recommendations, JSON intermediate planner output, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write /tmp/local-poi-planner-*.json and /tmp/local-poi-planner-*.md; reports include a top pick, backups, weak-evidence notes, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: The skill can send addresses, coordinates, nearby-search terms, and possibly public IP information to external location and search providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an explicit origin when possible, avoid automatic nearby/current-location mode when IP privacy matters, and disclose that external providers may receive location-related inputs.
+
+Risk: The skill depends on a sibling unified-search skill and its configured providers for evidence enrichment.
+
+Mitigation: Review and install the unified-search dependency separately, verify its provider configuration, and treat weak or missing enrichment as uncertainty rather than a confirmed recommendation.
+
+Risk: Some venue attributes, such as cinema screen types, may not be available in the primary POI source.
+
+Mitigation: Use the documented secondary source path for specialty venue checks and keep uncertainty visible when store-level evidence is weak.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ccmxigua/skills/local-poi-planner)
+- [Unified Search Suite dependency](https://clawhub.ai/ccmxigua/unified-search-suite)
+- [Output template](artifact/references/output-template.md)
+- [Lessons / 2026-05-31](artifact/references/lessons-2026-05-31.md)
+- [Lessons / 2026-06-01](artifact/references/lessons-2026-06-01.md)
+- [Amap Web Service API typecode reference](https://lbs.amap.com/api/webservice/download)
+- [Maoyan cinema list endpoint](https://m.maoyan.com/ajax/cinemaList)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown recommendation report or JSON planner result]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write intermediate JSON and rendered Markdown reports under /tmp/local-poi-planner-*.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

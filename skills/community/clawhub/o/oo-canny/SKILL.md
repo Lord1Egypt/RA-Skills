@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Canny"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["canny"]
   icon: "https://static.oomol.com/logo/third-party/Canny.svg"
 ---
@@ -45,7 +45,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_posts` — List Canny posts with optional filtering, search, sorting, and pagination.
 - `list_users` — List Canny users with cursor-based pagination.
 - `retrieve_board` — Retrieve a single Canny board by board ID.
-- `retrieve_post` — Retrieve a single Canny post by post ID. [write]
+- `retrieve_post` — Retrieve a single Canny post by post ID.
 - `retrieve_user` — Retrieve a single Canny user by id, userID, or email.
 - `update_post` — Update mutable fields on an existing Canny post. [write]
 
@@ -78,11 +78,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Canny is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=canny
+  https://console.oomol.com/connections/canny
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Canny homepage: https://canny.io
+- API documentation: https://developers.canny.io/api-reference

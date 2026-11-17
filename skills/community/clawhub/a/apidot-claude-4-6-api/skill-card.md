@@ -1,48 +1,63 @@
-## Description: <br>
-Use APIDot for Claude 4.6 API workflows, including Claude Sonnet 4.6, Claude Opus 4.6, Messages API, chat completions, streaming, tool use planning, production chat, coding agents, API key safety guidance, and APIDot docs routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes agents to APIDot Claude 4.6 documentation and guidance for Messages API, chat completions, streaming, tool use planning, production chat, coding agents, and API key safety.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and engineers use this skill to find APIDot Claude 4.6 documentation paths and plan API integrations for chat, coding-agent, streaming, tool-use, and long-context workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APIDOT_API_KEY or private prompt data could be exposed through frontend code, logs, screenshots, repositories, or chat output. <br>
-Mitigation: Keep API keys server-side in environment variables or a secret manager, and avoid logging keys, private prompts, customer data, tool arguments, private context, or sensitive generated output. <br>
-Risk: Claude 4.6 request fields, limits, availability, or commercial terms may change outside the bundled reference notes. <br>
-Mitigation: Use current APIDot docs and model pages as the source of truth before preparing payloads or making product claims. <br>
-Risk: A live APIDot API call could be made when the user only wanted documentation or planning guidance. <br>
-Mitigation: Make live API calls only when the user explicitly asks and a safe server-side environment is available. <br>
+## Use Case:
 
+Developers and integration engineers use this skill to plan APIDot Claude 4.6 integrations, find model docs and examples, and apply API key handling guidance before making backend API calls.
 
-## Reference(s): <br>
-- [APIDot Claude 4.6 Reference](references/api.md) <br>
-- [APIDot Docs](https://apidot.ai/docs) <br>
-- [APIDot Claude 4.6 Docs](https://apidot.ai/docs/claude-4-6) <br>
-- [APIDot Claude 4.6 Model Page](https://apidot.ai/models/claude-4-6) <br>
-- [APIDot Quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot Error Guidance](https://apidot.ai/docs/errors) <br>
-- [APIDot Examples](https://github.com/APIDotAI/apidot-examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text guidance with optional code and configuration snippets when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no bundled executable files, automatic network calls, or stored credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: APIDot API keys or private request data could be exposed if copied into browser code, public repositories, logs, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep APIDOT_API_KEY in a backend secret store or server-side environment variable, and avoid logging API keys, private prompts, customer data, tool arguments, private context, or generated responses.
+
+Risk: Agents could produce stale or incorrect Claude 4.6 request details, model availability claims, limits, or commercial terms.
+
+Mitigation: Use current APIDot docs and model pages as the source of truth before preparing copyable request examples or product-specific guidance.
+
+Risk: A live APIDot API call could be made before the user intends to connect their application.
+
+Mitigation: Only make live API calls when the user explicitly asks and provides a safe server-side environment.
+
+## Reference(s):
+
+- [APIDot Docs](https://apidot.ai/docs)
+- [APIDot Claude 4.6 Model Page](https://apidot.ai/models/claude-4-6)
+- [APIDot Claude 4.6 Docs](https://apidot.ai/docs/claude-4-6)
+- [APIDot Quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot Error Guidance](https://apidot.ai/docs/errors)
+- [APIDot Examples](https://github.com/APIDotAI/apidot-examples)
+- [APIDot Claude 4.6 Reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with documentation links and safety notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable files, bundled API clients, automatic network calls, or stored credentials.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

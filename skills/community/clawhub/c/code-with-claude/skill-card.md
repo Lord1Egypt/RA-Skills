@@ -1,49 +1,66 @@
-## Description: <br>
-Comprehensive Claude Code CLI reference covering interactive mode, CLI flags, commands, environment variables, hooks, channels, checkpointing, plugins, and tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive Claude Code CLI reference covering interactive mode, CLI flags, commands, environment variables, hooks, channels, checkpointing, plugins, and tools.
 
-## Publisher: <br>
-[awalesagar](https://clawhub.ai/user/awalesagar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[awalesagar](https://clawhub.ai/user/awalesagar)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise Claude Code CLI reference for commands, configuration, session workflows, permissions, hooks, plugins, channels, tools, environment variables, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may copy examples involving hooks, HTTP endpoints, agent hooks, remote control, permission bypassing, or long-lived tokens without reviewing their data exposure or permission impact. <br>
-Mitigation: Review examples before use, prefer trusted local or HTTPS endpoints, keep tool permissions narrowly scoped, and avoid long-lived tokens unless they are required and protected. <br>
-Risk: The skill describes powerful Claude Code features but does not enforce safe configuration choices. <br>
-Mitigation: Treat the skill as reference material and validate any configuration changes against local security and operational requirements before applying them. <br>
+## Use Case:
 
+Developers and Claude Code users use this skill as a quick reference for CLI commands, configuration, workflows, keyboard shortcuts, permissions, hooks, plugins, channels, checkpointing, and tool behavior.
 
-## Reference(s): <br>
-- [Code With Claude](SKILL.md) <br>
-- [Channels Reference](references/channels.md) <br>
-- [Checkpointing](references/checkpointing.md) <br>
-- [CLI Reference](references/cli-reference.md) <br>
-- [Commands](references/commands.md) <br>
-- [Environment Variables](references/env-vars.md) <br>
-- [Hooks Reference](references/hooks.md) <br>
-- [Interactive Mode](references/interactive-mode.md) <br>
-- [Plugins Reference](references/plugins.md) <br>
-- [Tools Reference](references/tools.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline command, configuration, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference material; no runtime execution is performed by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Readers may copy guidance for permission bypass, remote control, development channels, hooks, scheduled tasks, tokens, telemetry, or proxies without considering privacy or system integrity impact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a reference aid; review advanced settings against project policy before applying them and keep credentials out of shared configuration.
+
+Risk: Hook, channel, and MCP examples can connect external events or tools to an agent session.
+
+Mitigation: Use trusted local configurations, gate inbound messages from untrusted sources, and keep approval controls enabled for actions that affect files, systems, or services.
+
+Risk: Checkpoint guidance may be mistaken for full version control coverage.
+
+Mitigation: Use Git or another source control system for durable history because checkpoints do not cover bash, manual, external, or concurrent-session file changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/awalesagar/skills/code-with-claude)
+- [CLI Reference](references/cli-reference.md)
+- [Commands](references/commands.md)
+- [Interactive Mode](references/interactive-mode.md)
+- [Hooks Reference](references/hooks.md)
+- [Plugins Reference](references/plugins.md)
+- [Channels Reference](references/channels.md)
+- [Checkpointing](references/checkpointing.md)
+- [Tools Reference](references/tools.md)
+- [Environment Variables](references/env-vars.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reference guidance with inline code, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; does not execute code directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

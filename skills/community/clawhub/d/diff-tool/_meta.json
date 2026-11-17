@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn78gtvscyas8xfjhqjf6sj8x1831j1y",
-  "slug": "diff-tool",
-  "version": "1.0.2",
-  "publishedAt": 1773660554613
+  "name": "diff-tool",
+  "version": "1.0.0",
+  "description": "文本差异比较工具",
+  "author": "OpenClaw",
+  "entry": "scripts/diff.py",
+  "triggers": [
+    "比较差异",
+    "文本对比",
+    "diff",
+    "找不同"
+  ],
+  "dependencies": [],
+  "metadata": {
+    "emoji": "🧐",
+    "requires": {
+      "bins": ["python3"]
+    }
+  }
 }

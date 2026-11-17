@@ -1,48 +1,59 @@
-## Description: <br>
-Claude Code compatibility mirror for the Codex-native 10000 Mentors Research Workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claude Code compatibility mirror for the Codex-native 10000 Mentors Research Workflow, used when running from Claude Code and needing the same source-gated research loop contract.
 
-## Publisher: <br>
-[wd041216-bit](https://clawhub.ai/user/wd041216-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wd041216-bit](https://clawhub.ai/user/wd041216-bit)
 
-## Use Case: <br>
-Developers and research engineers use this skill in Claude Code to run a source-gated research workflow that reads a target repository, plans one bounded micro-step per cycle, produces runnable research artifacts, and gates completion on advisor, executor, and delivery checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create workflow files and publish sanitized artifacts to a target GitHub repository. <br>
-Mitigation: Use --no-push or a local-only run for dry runs, then review generated .autonomous-research-workflow and source_changes artifacts before publishing. <br>
-Risk: Publishing behavior may use GitHub CLI credentials. <br>
-Mitigation: Use appropriately scoped GitHub credentials and avoid running the workflow against private or sensitive repositories unless those credentials and outputs have been reviewed. <br>
+## Use Case:
 
+Developers and research engineers use this skill in Claude Code to run a bounded, source-gated research loop over a target repository. It guides intake, literature refresh, advisor review, executor micro-steps, hygiene checks, handoff artifacts, and optional publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wd041216-bit/research-loop) <br>
-- [Publisher profile](https://clawhub.ai/user/wd041216-bit) <br>
-- [Homepage](https://github.com/wd041216-bit/10000-mentors-research-workflow) <br>
-- [Advisor Rubric](references/advisor-rubric.md) <br>
-- [Executor Template](references/executor-template.md) <br>
-- [Innovation Frontier](references/innovation-frontier.md) <br>
-- [Phases](references/phases.md) <br>
-- [Protocol Hygiene](references/protocol-hygiene.md) <br>
-- [State Schema](references/state-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with JSON manifests, source-change files, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces bounded workflow artifacts under the research run state tree and source_changes mirror; publishing may be local-only or pushed through GitHub CLI credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can publish repository changes and workflow memory with an unclear sanitization and approval boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run, --no-push, or local-only modes first, then inspect the full generated diff and .autonomous-research-workflow contents before allowing publication.
+
+Risk: Workflow state, memory, handoffs, or repository analysis may contain information the user does not want published.
+
+Mitigation: Avoid enabling persistent memory or private handoffs unless their fields are understood, and review generated workflow artifacts before sharing them.
+
+## Reference(s):
+
+- [Research workflow homepage](https://github.com/wd041216-bit/10000-mentors-research-workflow)
+- [Submission Advisor Rubric](references/advisor-rubric.md)
+- [Agent-Native Executor Output Template](references/executor-template.md)
+- [Innovation Frontier Rubric](references/innovation-frontier.md)
+- [Research Loop Phases](references/phases.md)
+- [Protocol Hygiene Rubric](references/protocol-hygiene.md)
+- [State Schema](references/state-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline commands, JSON manifests, source-change files, and workflow state artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces bounded micro-step outputs and local workflow artifacts; publication may be dry-run or local-only when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

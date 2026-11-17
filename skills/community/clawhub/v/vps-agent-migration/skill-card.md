@@ -1,38 +1,55 @@
-## Description: <br>
-Migrates local OpenClaw sub-agents to a VPS by guiding file sync, Discord bot configuration, bindings updates, gateway restarts, and local account disablement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides migration of local OpenClaw sub-agents to a VPS, including file transfer, Discord bot configuration, bindings updates, gateway restarts, and disabling the local account to avoid conflicts.
 
-## Publisher: <br>
-[sparkingskin-tech](https://clawhub.ai/user/sparkingskin-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sparkingskin-tech](https://clawhub.ai/user/sparkingskin-tech)
 
-## Use Case: <br>
-Developers and operators use this skill when moving OpenClaw agents such as creative, dev, qa, strategist, or pojun from a local machine to a VPS while preserving Discord routing and avoiding duplicate local and remote responders. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The migration handles live credentials, including SSH access and Discord bot tokens. <br>
-Mitigation: Prefer SSH keys with verified host fingerprints, avoid putting passwords or tokens directly in commands, validate all substituted values, and rotate the Discord token after migration. <br>
-Risk: Remote and local OpenClaw configuration changes can interrupt routing or create duplicate responders. <br>
-Mitigation: Back up local and VPS configurations first, review bindings before restart, confirm the VPS agent is healthy, and disable the local account only after the cutover is verified. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and operators use this skill when moving configured OpenClaw agents such as creative, dev, qa, strategist, or pojun from a local machine to a remote VPS while preserving Discord routing behavior.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The migration procedure uses password-based root SSH and disables SSH host key checking, which can expose credentials or allow host impersonation.
+
+Mitigation: Use a verified SSH key with a limited account and keep host key verification enabled before transferring files or changing remote configuration.
+
+Risk: Discord bot tokens and VPS secrets may be printed, embedded, or exposed through shell history and process listings.
+
+Mitigation: Handle tokens through a secret manager or protected environment variables, avoid echoing them in commands, and rotate any token that may have been exposed.
+
+Risk: Remote configuration changes and gateway restarts can break agent routing or leave both local and VPS accounts in an inconsistent state.
+
+Mitigation: Back up openclaw.json, perform a dry run with an allowlisted transfer set, verify bindings, and prepare rollback steps before restarting gateways or disabling the local account.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses placeholders for VPS IP, Discord ID, agent ID, token, agent name, and password that users must replace before execution.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash, Python, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes placeholders for VPS credentials, Discord IDs, tokens, agent names, and OpenClaw bindings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

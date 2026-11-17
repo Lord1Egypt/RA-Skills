@@ -1,42 +1,57 @@
-## Description: <br>
-Tasks and habits that live in a plain markdown file on your machine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tasks and habits that live in a plain markdown file on your machine. Free, private, and claw-native.
 
-## Publisher: <br>
-[tallhamn](https://clawhub.ai/user/tallhamn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tallhamn](https://clawhub.ai/user/tallhamn)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent manage local task and habit lists through the ClawKeeper CLI while storing the data in markdown files under CLAWKEEPER_DIR. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and writes user-selected local task and habit data. <br>
-Mitigation: Set CLAWKEEPER_DIR to a dedicated folder for non-sensitive task data. <br>
-Risk: Fuzzy text matching can modify or delete the wrong task or habit. <br>
-Mitigation: Prefer stable item IDs for edits, completions, and deletions. <br>
-Risk: The skill depends on an external npm package named clawkeeper. <br>
-Mitigation: Install only if you trust the npm package and its release source. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tallhamn/clawkeeper) <br>
-- [Publisher profile](https://clawhub.ai/user/tallhamn) <br>
+## Use Case:
 
+External users and agents use this skill to manage tasks, habits, notes, and periodic check-ins through the ClawKeeper CLI while keeping data in a local markdown-backed directory.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CLAWKEEPER_DIR to select the local markdown storage directory; command responses report ok/data or ok/error.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and relies on the npm `clawkeeper` package.
+
+Mitigation: Install only when the package source and version are trusted for the environment.
+
+Risk: Task and habit data can be shared when multiple agents use the same CLAWKEEPER_DIR.
+
+Mitigation: Use a private per-user or per-agent CLAWKEEPER_DIR unless shared task data is intentional.
+
+Risk: Delete and edit commands can affect the wrong item when matched by text.
+
+Mitigation: Prefer stable item IDs and confirm exact IDs before deleting or changing tasks, habits, or notes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tallhamn/skills/clawkeeper)
+- [Publisher profile](https://clawhub.ai/user/tallhamn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands operate on local markdown data under CLAWKEEPER_DIR and return JSON success or error objects.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

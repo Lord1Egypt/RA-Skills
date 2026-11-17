@@ -1,43 +1,57 @@
-## Description: <br>
-自动将 Markdown 文章转为适配微信公众号格式的 HTML，并批量发布至公众号草稿箱，支持封面图生成与专题管理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates conversion of Markdown articles into WeChat Official Account-ready HTML and creates draft posts with optional cover generation.
 
-## Publisher: <br>
-[hanbinsite](https://clawhub.ai/user/hanbinsite) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanbinsite](https://clawhub.ai/user/hanbinsite)
 
-## Use Case: <br>
-Content creators, operators, and developers use this skill to convert Markdown articles into WeChat-compatible HTML, generate or attach cover images, and create WeChat Official Account drafts for review before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses WeChat Official Account credentials to create drafts in an account-connected workflow. <br>
-Mitigation: Store credentials in environment variables, restrict access to the runtime environment, and review generated drafts before publication. <br>
-Risk: Optional AI cover generation sends prompts to a configured image-generation API endpoint. <br>
-Mitigation: Use a trusted HTTPS endpoint and a scoped API key, and avoid sending sensitive unpublished content in prompts. <br>
-Risk: Dependency ranges are not pinned to exact patched versions. <br>
-Mitigation: Install with a reviewed lockfile or pinned dependency versions in production environments. <br>
+## Use Case:
 
+Developers and content teams use this skill to prepare Markdown article directories, generate or supply cover images, and create WeChat Official Account drafts for review before publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanbinsite/wechat-publish-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/hanbinsite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, API calls, Files] <br>
-**Output Format:** [Markdown guidance with Python examples, environment-variable configuration, generated PNG cover files, converted HTML, and WeChat draft API results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses WeChat Official Account credentials and optional AI image-generation credentials from environment variables; users should review drafts in WeChat before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill handles WeChat account credentials and optional AI image API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted credentials only, keep secrets out of committed .env files and examples, and rotate credentials if they are exposed.
+
+Risk: The AI image configuration can send a bearer token and prompts to a configurable endpoint.
+
+Mitigation: Set AI_IMAGE_BASE_URL only to trusted HTTPS providers and prefer the base64 image generation path over URL downloads.
+
+Risk: Article content, cover prompts, images, and publishing metadata may be sent to external WeChat or AI services.
+
+Mitigation: Review content before publishing and confirm that external service use is acceptable for the article material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanbinsite/skills/wechat-publish-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, and environment-variable configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces WeChat draft IDs and local cover image files when the supplied scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

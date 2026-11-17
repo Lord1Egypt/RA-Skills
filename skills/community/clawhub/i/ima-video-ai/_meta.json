@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7ac9knfd0gdwhn8ktjvqqgj181thkt",
+  "ownerid": "kn70cjr952qdec1nx70zs6wefn7ynq2t",
   "slug": "ima-video-ai",
-  "version": "1.0.13",
-  "publishedAt": 1776149197809
+  "name": "IMA AI Video Generator",
+  "description": "AI video generator with premier models: Wan 2.6, Kling O1/2.6, Google Veo 3.1, Sora 2 Pro, Pixverse V5.5, Hailuo 2.0/2.3, SeeDance 1.5 Pro, Vidu Q2. Text-to-video, image-to-video, first-last-frame, reference-image.",
+  "version": "1.2.0",
+  "publishedAt": 1741277713337
 }

@@ -1,44 +1,58 @@
-## Description: <br>
-OUA (OpenClaw Unified Assessment) v2.0 is an engineering-focused AI evaluation framework that combines 8 OIT capability dimensions and 5 LLI delivery dimensions across 104 Normal, Hard, and Extreme test questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OUA v2.0 is an engineering-focused AI assessment framework that combines OIT intelligence-ceiling checks with LLI engineering-readiness checks across 13 dimensions and 104 test questions.
 
-## Publisher: <br>
-[rafeyu8899](https://clawhub.ai/user/rafeyu8899) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rafeyu8899](https://clawhub.ai/user/rafeyu8899)
 
-## Use Case: <br>
-Developers, evaluators, and AI teams use this skill to run structured capability, engineering reliability, tool-use accuracy, satisfaction, and self-correction assessments for AI agents or models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes adversarial benchmark prompts and red-team style examples intended for evaluation. <br>
-Mitigation: Use the prompts only in authorized testing and avoid pasting them into unrelated systems. <br>
-Risk: The skill includes a local scoring script that generates reports from benchmark results. <br>
-Mitigation: Review the script before running it and execute it only in an appropriate local environment. <br>
+## Use Case:
 
+Developers and evaluators use this skill to administer structured AI capability assessments, score model performance, and produce reports that compare intelligence, engineering reliability, tool-use accuracy, delivery satisfaction, and self-improvement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rafeyu8899/20260425203240) <br>
-- [test-bank-v2.md](artifact/references/test-bank-v2.md) <br>
-- [test-bank.md](artifact/references/test-bank.md) <br>
-- [OUA v2.0 upgrade plan](artifact/OUA-v2.0-upgrade-plan.md) <br>
-- [OUA v2.0 weight revision](artifact/OUA-v2.0-weight-revision.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with scoring instructions, test prompts, JSON inputs, shell commands, and generated HTML or JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces benchmark scoring reports and improvement guidance from structured test results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated HTML reports may run unsafe browser code from unescaped input and an unpinned CDN dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review result files before report generation, escape report metadata before sharing, and bundle or pin Chart.js with integrity before operational use.
+
+Risk: Generated reports may contain raw prompts, model outputs, and evaluator notes.
+
+Mitigation: Review reports for sensitive or unintended content before distributing them.
+
+## Reference(s):
+
+- [Skill Definition](artifact/SKILL.md)
+- [OUA v2.0 Test Bank](artifact/references/test-bank-v2.md)
+- [OUA v1.0 Test Bank](artifact/references/test-bank.md)
+- [OUA v2.0 Weight Revision](artifact/OUA-v2.0-weight-revision.md)
+- [OUA v2.0 Upgrade Plan](artifact/OUA-v2.0-upgrade-plan.md)
+- [Scoring Script](artifact/scripts/score_test.py)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with structured assessment instructions and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can guide scoring workflows that produce an HTML report from provided result data.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

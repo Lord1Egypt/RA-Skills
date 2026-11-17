@@ -1,43 +1,58 @@
-## Description: <br>
-Installs an OpenClaw WeChat publishing team with visual design, article formatting, API publishing, and publishing analytics support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+部署微信公众号发布 Agent 团队（画境视觉设计和数澜运营发布），支持封面设计、排版美化、API 发布和数据分析。
 
-## Publisher: <br>
-[little-ke](https://clawhub.ai/user/little-ke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[little-ke](https://clawhub.ai/user/little-ke)
 
-## Use Case: <br>
-External operators and developers use this skill to deploy a two-agent WeChat Official Account publishing workflow, including cover design, article formatting, draft creation, publication, and post-publication metrics review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles WeChat AppID, AppSecret, and access-token material that may be stored in local workspace files. <br>
-Mitigation: Use a secret manager or runtime environment variables where possible, restrict file permissions, remove stored secrets after use, and rotate the WeChat AppSecret if exposure is suspected. <br>
-Risk: Persistent workspace memory may retain account details, publishing context, or other sensitive operating information. <br>
-Mitigation: Allow memory retention only when intentional, review stored memory files periodically, and delete sensitive prior-session data that is not required. <br>
-Risk: The included publishing flow can submit WeChat drafts for publication through the WeChat API. <br>
-Mitigation: Require explicit operator confirmation before publishing and validate credentials, IP allowlisting, draft content, cover assets, and publication status before treating a release as complete. <br>
+## Use Case:
 
+Developers and WeChat account operators use this skill to deploy a two-agent publishing team that prepares visual assets, formats articles, creates drafts, publishes after confirmation, and reports engagement data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/little-ke/wechat-publisher-setup) <br>
-- [WeChat Official Accounts API base endpoint](https://api.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and an existing OpenClaw content-creation team.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill stores WeChat publishing credentials locally and may use an unexpected credential file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use dedicated low-privilege WeChat credentials, confirm the WECHAT_ENV_FILE path, set restrictive file permissions, and rotate credentials if they were already stored.
+
+Risk: Setup behavior may run unsafe shell commands or be influenced by untrusted environment variables.
+
+Mitigation: Run setup only in a controlled environment, review commands before execution, and avoid untrusted environment variables during installation.
+
+Risk: Publication commands can affect the connected WeChat account.
+
+Mitigation: Confirm the target account and require explicit operator approval before creating drafts or publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/little-ke/skills/wechat-publisher-setup)
+- [WeChat public platform API base](https://api.weixin.qq.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Node.js scripts, configuration files, and generated agent workspace files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and an OpenClaw environment with the content-creation team already deployed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

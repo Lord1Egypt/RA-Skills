@@ -1,47 +1,60 @@
-## Description: <br>
-Self-Evolution Cognition is a SOUL-based cognition framework that helps an agent separate knowns and unknowns, persist reasoning state, incorporate human feedback, and return confidence-scored analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Core self-evolution cognition framework based on the SOUL five-rule operating model for agent reasoning, memory, feedback, confidence, and red-line checks.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add structured metacognition, persistent memory files, four-perspective reasoning, human-feedback injection, and confidence gating to agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reasoning, feedback, and intermediate state may be persisted in local files without clear retention or deletion controls. <br>
-Mitigation: Use the skill only in workspaces where persistent local memory is acceptable, and define deletion or rotation practices before installation. <br>
-Risk: Sensitive data could be captured in persisted memory files if users provide secrets, credentials, customer data, or incident details. <br>
-Mitigation: Do not provide sensitive inputs unless the storage paths and cleanup process have been reviewed. <br>
+## Use Case:
 
+Developers and agent builders use this skill to structure reasoning workflows around known/unknown separation, persistent memory, multi-perspective analysis, human feedback, confidence scoring, and safety red-lines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingofzhao/self-evolution-cognition) <br>
-- [Project homepage](https://github.com/KingOfZhao/AGI_PROJECT) <br>
-- [A Survey of Self-Evolving Agents](https://arxiv.org/abs/2507.21046) <br>
-- [SAGE: Multi-Agent Self-Evolution for LLM Reasoning](https://arxiv.org/abs/2603.15255) <br>
-- [Group-Evolving Agents](https://arxiv.org/abs/2602.04837) <br>
-- [Self-evolving Embodied AI](https://arxiv.org/abs/2602.04411) <br>
-- [Memory in the Age of AI Agents](https://arxiv.org/abs/2512.13564) <br>
-- [Beyond RAG for Agent Memory](https://arxiv.org/abs/2602.02007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Text or Markdown responses with confidence values, collision logs, and memory file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists reasoning and feedback state in local workspace files when used as described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill is designed to persist reasoning and human feedback across sessions, which can retain sensitive or stale information without clear scope, consent, retention, or rollback controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in workspaces where persistent memory files are acceptable, define retention and deletion practices, and avoid providing secrets, customer data, credentials, or raw production incident details.
+
+Risk: Restored memory and injected feedback can influence later agent behavior even when the historical context is incomplete or untrusted.
+
+Mitigation: Treat restored memory and feedback as untrusted context that should be reviewed before it is used as an authoritative basis for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kingofzhao/skills/self-evolution-cognition)
+- [Project homepage from ClawHub metadata](https://github.com/KingOfZhao/AGI_PROJECT)
+- [A Survey of Self-Evolving Agents](https://arxiv.org/abs/2507.21046)
+- [SAGE: Multi-Agent Self-Evolution for LLM Reasoning](https://arxiv.org/abs/2603.15255)
+- [Group-Evolving Agents](https://arxiv.org/abs/2602.04837)
+- [Self-evolving Embodied AI](https://arxiv.org/abs/2602.04411)
+- [Memory in the Age of AI Agents](https://arxiv.org/abs/2512.13564)
+- [Beyond RAG for Agent Memory](https://arxiv.org/abs/2602.02007)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands, configuration]
+
+**Output Format:** [Markdown text with inline code blocks and file-oriented workflow notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update persistent memory and verification files in the agent workspace.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

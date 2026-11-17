@@ -1,44 +1,59 @@
-## Description: <br>
-Find trusted BestChange exchangers for crypto-to-fiat and e-currency exchange requests using the hosted BestChange MCP tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find trusted BestChange exchangers for crypto-to-fiat and e-currency exchange requests using the hosted BestChange MCP tool when users ask for current BestChange options or exchanger rankings.
 
-## Publisher: <br>
-[swiftadviser](https://clawhub.ai/user/swiftadviser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[swiftadviser](https://clawhub.ai/user/swiftadviser)
 
-## Use Case: <br>
-External users and agents use this skill to resolve BestChange currency codes and compare live exchanger options for crypto, fiat, and e-currency routes. It helps present ranked options while requiring users to verify final rates, networks, payout rails, and destinations before sending funds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exchange lookup details are sent to the hosted MCP provider. <br>
-Mitigation: Do not include wallet secrets, account credentials, private recipient details, or personal financial identifiers in prompts. <br>
-Risk: Returned exchanger rankings and referral links are decision support, not a guarantee of final exchange terms. <br>
-Mitigation: Verify rates, network, payout rail, reputation, reserves, and final destination directly before sending funds. <br>
-Risk: If the MCP service is unavailable or currency data is missing, the agent cannot fetch live rates for the route. <br>
-Mitigation: Report the unavailable service or missing currency clearly and avoid fabricating rates, reserves, exchanger names, or links. <br>
+## Use Case:
 
+External users and agents use this skill to resolve exact BestChange currency codes and retrieve ranked live exchanger options for crypto-to-fiat and e-currency routes through a hosted MCP service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/swiftadviser/bestchange) <br>
-- [BestChange MCP homepage](https://bestchange-mcp.krutovoy.me) <br>
-- [BestChange MCP endpoint](https://bestchange-mcp.krutovoy.me/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown text with exchanger summaries, setup commands, and verification guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on live BestChange API data and the hosted MCP service being connected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence and skill frontmatter) <br>
+Risk: Exchange search details, amounts, payout rails, and some blocked-request text are sent to the hosted BestChange MCP operator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data sharing is acceptable, and avoid sending sensitive personal or destination details through the skill.
+
+Risk: Returned BestChange URLs are referral or tracked click links.
+
+Mitigation: Treat links as tracked routes and independently verify exchanger reputation, exact network, payout rail, fees, limits, and destination details before sending funds.
+
+Risk: The skill can only quote routes available through the connected hosted MCP service and current BestChange API data.
+
+Mitigation: Use exact BestChange currency codes from the search tool, ask for clarification on ambiguous routes, and do not rely on fabricated or stale exchange information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/swiftadviser/skills/bestchange)
+- [BestChange MCP homepage](https://bestchange-mcp.krutovoy.me)
+- [BestChange MCP endpoint](https://bestchange-mcp.krutovoy.me/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful quote responses include live BestChange route details, ranked exchanger options, referral URLs, and pre-send checks when MCP data is available.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

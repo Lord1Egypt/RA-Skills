@@ -1,0 +1,147 @@
+{
+  "_meta": {
+    "name": "teacher_toolbox_templates",
+    "version": "8.2.0-aipc",
+    "module": "module-h-t-toolbox",
+    "section": "T2 教师 AI 教学工具箱",
+    "last_updated": "2026-08-24"
+  },
+  "description": "教师 AI 教学 4 件套模板（备课/出题/评估/答疑）",
+  "t2_1_lesson_prep_assistant": {
+    "name": "AI 备课助手",
+    "integration": "V8.1-AIPC compose_lesson.py",
+    "input_format": {
+      "primary_major": "string (e.g., CM+GD)",
+      "lesson_topic": "string (e.g., AI 数字化身与游戏角色)",
+      "duration_minutes": 45,
+      "student_count": 30,
+      "teaching_objectives": ["knowledge", "skill", "innovation"]
+    },
+    "output_format": {
+      "courseware_markdown": "5 课时完整讲义",
+      "p5js_html": "5 个互动课件（V8.1-AIPC 8 类 27 项门控 100% 适用）",
+      "assessment_json": "5 课时评估题目",
+      "teacher_notes": "1 份教师备注"
+    },
+    "time_savings": {
+      "traditional_hours_per_lesson": "6-8",
+      "ai_assisted_hours_per_lesson": "1-2",
+      "savings_percent": 70
+    }
+  },
+  "t2_2_question_generation_assistant": {
+    "name": "AI 出题助手",
+    "input_format": {
+      "primary_major": "string",
+      "topic": "string",
+      "difficulty_levels": ["basic", "intermediate", "advanced"],
+      "question_types": ["multiple_choice", "short_answer", "project", "case_study"],
+      "count_per_type": 5
+    },
+    "output_format": {
+      "questions": "题型 × 难度 × 数量",
+      "answers": "自动答案 + 解析",
+      "rubric": "评分标准"
+    },
+    "supported_question_types": [
+      {"type": "multiple_choice", "template": "学科知识点 × 4 选项", "ai_output": "10 题 + 答案 + 解析"},
+      {"type": "short_answer", "template": "学科开放问题", "ai_output": "5 题 + 评分要点"},
+      {"type": "project", "template": "学科项目式任务", "ai_output": "3 个项目 + 评分 rubric"},
+      {"type": "case_study", "template": "学科真实案例", "ai_output": "2 个案例 + 分析问题"}
+    ],
+    "time_savings": {
+      "traditional_hours_per_quiz": "4-6",
+      "ai_assisted_hours_per_quiz": "1-2",
+      "savings_percent": 60
+    }
+  },
+  "t2_3_assessment_assistant": {
+    "name": "AI 评估助手",
+    "input_format": {
+      "student_submissions": "本地文件或 LLM 入口",
+      "rubric_template": "Bloom 6 级分类",
+      "comparison_mode": "cross_class"
+    },
+    "workflow": [
+      "Step 1: 学生提交作业（本地或 LLM）",
+      "Step 2: AI 评分（初评） + 反馈",
+      "Step 3: 教师审校（终评）",
+      "Step 4: AI 生成跨班对比 + 薄弱知识点报告",
+      "Step 5: 教师调整下一轮教学"
+    ],
+    "output_format": {
+      "initial_score": "AI 自动评分",
+      "feedback": "AI 自动反馈",
+      "cross_class_comparison": "跨班对比报告",
+      "weak_points_report": "薄弱知识点识别"
+    },
+    "privacy_protection": {
+      "student_answers": "本地推理（pii_redactor.py）",
+      "grade_storage": "本地（llm_cache.py 7 天 TTL）",
+      "cloud_policy": "成绩不上传（端云协议保证）"
+    },
+    "time_savings": {
+      "traditional_hours_per_assignment": "8-10",
+      "ai_assisted_hours_per_assignment": "3-5",
+      "savings_percent": 50
+    }
+  },
+  "t2_4_qa_assistant": {
+    "name": "AI 答疑助手",
+    "capabilities": {
+      "availability": "7×24",
+      "knowledge_base": "本地 RAG（学科教案 + 公共核心课教材）",
+      "escalation": "复杂问题自动转教师"
+    },
+    "supported_question_categories": [
+      "课程大纲疑问",
+      "作业要求疑问",
+      "工具使用疑问（DeepSeek / Cline / p5.js 等）",
+      "学科知识点疑问"
+    ],
+    "time_savings": {
+      "traditional_daily_hours": "2-3",
+      "ai_assisted_daily_hours": "0.5",
+      "savings_percent": 80
+    }
+  },
+  "t3_cross_disciplinary_collaboration": {
+    "name": "T3 跨专业教学协同",
+    "coordination_mechanism": {
+      "monthly_meetings": [
+        {"school": "SCC", "program": "CM+N", "representative": "陈儒林 (CMX+N 课程主任)"},
+        {"school": "FHSS", "program": "DGC+N", "representative": "待定"},
+        {"school": "FBM", "program": "IBL+N", "representative": "待定"},
+        {"school": "FST", "program": "Math+N", "representative": "待定"},
+        {"school": "FST", "program": "IST+N", "representative": "待定"}
+      ]
+    },
+    "shared_resources": [
+      "29 专业 AI 教案（T1）",
+      "29 专业工具栈（S2）",
+      "10 期博智坊案例",
+      "V8.1-AIPC 评估 rubric"
+    ],
+    "collaboration_modes": [
+      {"mode": "1+1 联合", "example": "CM+GD × Math+AI"},
+      {"mode": "1+N 联合", "example": "IBL+FIN × DGC+MCOM × Math+DS"},
+      {"mode": "学院间联合", "example": "SCC × FST"}
+    ]
+  },
+  "t4_teaching_innovation_support": {
+    "name": "T4 教学创新支持",
+    "innovation_categories": [
+      "AI 教学法创新（5E / 翻转 / PBL 在 AI 课中的新应用）",
+      "跨学科 AI 课程（学院间联合新课）",
+      "AI 评估创新（智能评估 / 跨班对比）",
+      "AI 工具创新（教师自研 AI 教学工具）"
+    ],
+    "approval_workflow": [
+      "Step 1: 教师提交立项申请书（含 T1/T2 教案 + 评估方案）",
+      "Step 2: 学院教学委员会评审",
+      "Step 3: 立项通过 → 拨经费 + 教分",
+      "Step 4: 一学期实施",
+      "Step 5: 学期末答辩 + 推广"
+    ]
+  }
+}

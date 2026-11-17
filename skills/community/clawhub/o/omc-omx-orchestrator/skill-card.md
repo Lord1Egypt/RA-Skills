@@ -1,45 +1,60 @@
-## Description: <br>
-异步派发编码任务到 OMC (claude -p) 或 OMX (omx exec)。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+异步派发编码任务到 OMC (claude -p) 或 OMX (omx exec)，并通过任务文件、后台进程和恢复脚本跟踪执行状态。
 
-## Publisher: <br>
-[qiuscut](https://clawhub.ai/user/qiuscut) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiuscut](https://clawhub.ai/user/qiuscut)
 
-## Use Case: <br>
-Developers and engineers use this skill to dispatch local coding, analysis, review, and refactoring work to Claude Code or Codex CLI as background tasks. It helps create task specifications, launch detached jobs, track status, and recover task state after agent restarts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Background Claude/Codex jobs may run with broad local authority against project files. <br>
-Mitigation: Use the skill only for intentional local coding jobs, choose trusted working directories, and review generated task specs and commands before launch. <br>
-Risk: Prompts, specs, logs, or results may contain secrets or private customer data. <br>
-Mitigation: Avoid placing sensitive data in task descriptions or generated specs, and monitor task folders that store result and log files. <br>
-Risk: Detached processes can continue after the controlling agent restarts. <br>
-Mitigation: Monitor task folders and PIDs, and use the provided recovery workflow to reconcile task status after restarts. <br>
+## Use Case:
 
+Developers and engineering teams use this Chinese-language skill to dispatch local coding, analysis, review, and refactoring work to Claude Code or Codex-style CLI agents while tracking task state across restarts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qiuscut/omc-omx-orchestrator) <br>
-- [Recovery Guide](references/recovery-guide.md) <br>
-- [Spec Template](references/spec-template.md) <br>
-- [Task Schema](references/task-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON task metadata and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local task files such as task.json, spec.md, result.txt, log.txt, and exit_code when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.3.0 (source: frontmatter and server release metadata) <br>
+Risk: Dispatched coding tasks may run with sandbox and approval controls disabled, which can allow broad local file changes or command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for intentional work on trusted repositories, review generated task specs before dispatch, and avoid sandbox-bypass execution unless that behavior is required and understood.
+
+Risk: Persistent recovery and cleanup automation can change task state, delete task directories, or kill tmux sessions.
+
+Mitigation: Review cron and startup-hook commands before enabling them, and run cleanup commands manually first to confirm the target task workspace.
+
+Risk: Task specs, logs, and result files can capture sensitive project context or credentials.
+
+Mitigation: Inspect spec.md and logs for secrets before dispatch or sharing, and avoid embedding API keys or other credentials in task descriptions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiuscut/skills/omc-omx-orchestrator)
+- [Task schema](references/task-schema.md)
+- [Spec template](references/spec-template.md)
+- [Recovery guide](references/recovery-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON task metadata descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create local task specs, task metadata, result logs, exit-code files, and recovery commands.]
+
+## Skill Version(s):
+
+4.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

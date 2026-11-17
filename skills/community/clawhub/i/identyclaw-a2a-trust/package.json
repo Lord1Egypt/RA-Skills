@@ -1,0 +1,12 @@
+{
+  "name": "identyclaw-a2a-trust-skill",
+  "private": true,
+  "description": "ClawHub skill bundle — trusted OpenClaw inter-agent messaging (sessions_send + A2A) via IdentyClaw collaboration envelopes",
+  "scripts": {
+    "build-message": "node scripts/build-trusted-message.cjs",
+    "verify-message": "node scripts/verify-trusted-message.cjs"
+  },
+  "dependencies": {
+    "@rodit/hola-client": "file:../hola-client"
+  }
+}

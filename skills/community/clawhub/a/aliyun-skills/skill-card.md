@@ -1,55 +1,68 @@
-## Description: <br>
-Manage Alibaba Cloud resources using the Aliyun CLI tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Alibaba Cloud resources using the Aliyun CLI tool.
 
-## Publisher: <br>
-[hambaobao](https://clawhub.ai/user/hambaobao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hambaobao](https://clawhub.ai/user/hambaobao)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to construct, explain, and review Aliyun CLI commands for Alibaba Cloud resources such as ECS, VPC, OSS, RDS, SLB/CLB, RAM, DNS, and ACR. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud administration commands can delete, expose, or reconfigure Alibaba Cloud resources. <br>
-Mitigation: Use least-privilege RAM roles or temporary credentials, verify the active profile, region, and resource IDs, and require explicit confirmation before destructive or exposure-changing commands. <br>
-Risk: Credentials, passwords, private keys, signed URLs, or debug logs may expose sensitive cloud access. <br>
-Mitigation: Do not paste secrets into chat or shared terminals; prefer RAM roles, environment variables, and temporary credentials. <br>
-Risk: Provisioning, bandwidth, storage, and instance-size changes can incur cost. <br>
-Mitigation: Call out cost implications before create, resize, bandwidth, or public endpoint operations. <br>
-Risk: Wrong region, profile, or resource ID can cause actions against unintended resources. <br>
-Mitigation: Run describe/list commands first, present the resolved target, and confirm ambiguous targets before acting. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to construct, explain, and review Aliyun CLI commands for Alibaba Cloud setup, authentication, and resource administration across ECS, VPC, OSS, RDS, SLB/CLB, RAM, DNS, and ACR.
 
-## Reference(s): <br>
-- [Aliyun CLI Skill](SKILL.md) <br>
-- [Setup and Authentication](references/setup.md) <br>
-- [ECS Reference](references/ecs.md) <br>
-- [VPC Reference](references/vpc.md) <br>
-- [OSS Reference](references/oss.md) <br>
-- [RDS Reference](references/rds.md) <br>
-- [SLB / CLB Reference](references/slb.md) <br>
-- [RAM Reference](references/ram.md) <br>
-- [AliDNS Reference](references/dns.md) <br>
-- [ACR Reference](references/acr.md) <br>
-- [Aliyun CLI GitHub Repository](https://github.com/aliyun/aliyun-cli) <br>
-- [ossutil Installation Documentation](https://help.aliyun.com/zh/oss/developer-reference/install-and-configure-ossutil) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash, PowerShell, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Aliyun CLI and ossutil commands intended for review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can help produce high-impact cloud administration commands that change or delete Alibaba Cloud resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify regions and resource IDs before mutating commands, list targets before bulk deletion, and require explicit user confirmation for destructive operations.
+
+Risk: Commands may expose or mishandle credentials when users pass passwords, access keys, or tokens directly in shells or transcripts.
+
+Mitigation: Use least-privilege RAM users or roles, avoid root or AdministratorAccess unless explicitly required, and avoid putting real passwords or tokens directly in shell commands or shared transcripts.
+
+Risk: Database, storage, DNS, and registry changes can be difficult or impossible to reverse.
+
+Mitigation: Keep backups or rollback plans before changing or deleting databases, storage buckets or objects, DNS records, and container registry resources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hambaobao/skills/aliyun-skills)
+- [Aliyun CLI repository](https://github.com/aliyun/aliyun-cli)
+- [Aliyun CLI setup reference](references/setup.md)
+- [ECS reference](references/ecs.md)
+- [VPC reference](references/vpc.md)
+- [OSS reference](references/oss.md)
+- [RDS reference](references/rds.md)
+- [SLB / CLB reference](references/slb.md)
+- [RAM reference](references/ram.md)
+- [DNS reference](references/dns.md)
+- [ACR reference](references/acr.md)
+- [ossutil install and configure documentation](https://help.aliyun.com/zh/oss/developer-reference/install-and-configure-ossutil)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may require configured Aliyun CLI credentials, explicit regions, resource IDs, and user confirmation before mutating operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

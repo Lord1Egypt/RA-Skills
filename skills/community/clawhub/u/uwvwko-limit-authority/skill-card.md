@@ -1,41 +1,49 @@
-## Description: <br>
-Requires agents to print complete absolute paths and obtain explicit user authorization before creating, deleting, modifying, copying, moving, or renaming files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language file safety skill that requires agents to show full absolute paths and receive explicit user authorization before creating, deleting, modifying, copying, moving, or renaming files or directories.
 
-## Publisher: <br>
-[uwvwko-zzz](https://clawhub.ai/user/uwvwko-zzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uwvwko-zzz](https://clawhub.ai/user/uwvwko-zzz)
 
-## Use Case: <br>
-External users and developers use this skill to make an agent pause before file-changing operations, disclose exact paths, and wait for explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is an instruction-only guardrail, so broad permission such as telling the agent it can operate directly may bypass per-operation confirmation. <br>
-Mitigation: Avoid broad standing authorization when using the skill; require explicit confirmation for each file-changing operation. <br>
-Risk: Reads, directory listings, and temporary-file creation are identified exceptions to per-operation confirmation. <br>
-Mitigation: Review these exceptions before installation and pair the skill with environment-level permissions when stricter file access control is required. <br>
+## Use Case:
 
+Developers and agent users can install this skill when they want a strict confirmation workflow before file system changes. It is most useful in workflows where transparency, explicit consent, and full-path review are required before an agent performs file operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uwvwko-zzz/uwvwko-limit-authority) <br>
-- [Publisher profile](https://clawhub.ai/user/uwvwko-zzz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain-text confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill claims priority over all other skills, which may conflict with the agent platform's policy hierarchy or other governance controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only where a strict Chinese-language file-change confirmation workflow is desired, and confirm that platform-level policy precedence remains authoritative before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uwvwko-zzz/skills/uwvwko-limit-authority)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown or plain-text confirmation prompts and procedural guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language workflow requiring operation type, file type, full absolute paths, action summary, and explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

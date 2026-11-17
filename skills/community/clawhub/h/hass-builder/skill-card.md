@@ -1,41 +1,55 @@
-## Description: <br>
-A skill to build and manage Home Assistant configurations using the Home Assistant Builder (hab) CLI for inspection, creation, updates, deletion, operations, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill to build and manage Home Assistant configurations with the Home Assistant Builder (`hab`) CLI.
 
-## Publisher: <br>
-[ha](https://clawhub.ai/user/ha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ha](https://clawhub.ai/user/ha)
 
-## Use Case: <br>
-Developers, operators, and Home Assistant administrators use this skill to generate safe hab CLI workflows for Home Assistant resources, dashboards, automations, backups, operations, and ESPHome tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The hab CLI can perform powerful Home Assistant operations using HAB_TOKEN and HAB_URL, including deletes, restarts, backup restore/delete, network changes, and ESPHome hardware actions. <br>
-Mitigation: Use least-privileged tokens, start with read-only or preview commands, review the exact command, and require explicit user confirmation before risky mutations. <br>
-Risk: The wrapper script downloads the hab binary from the upstream GitHub latest release before executing it. <br>
-Mitigation: Install only when the upstream Home Assistant Builder releases are trusted and the environment can safely run downloaded CLI binaries. <br>
+## Use Case:
 
+External developers, operators, and Home Assistant administrators use this skill to inspect, create, update, delete, operate, and troubleshoot Home Assistant resources from a terminal. It emphasizes read-first workflows, JSON parsing, preview steps, confirmation for risky mutations, and verification commands.
 
-## Reference(s): <br>
-- [Home Assistant Build CLI](https://github.com/balloob/home-assistant-build-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/ha/hass-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with ordered shell commands, JSON field guidance, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts agents to prefer JSON output, preview mutations with --plan or --dry-run when supported, and include verification commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The wrapper downloads and executes a mutable latest GitHub release binary without integrity verification while using HAB_TOKEN and HAB_URL credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in trusted environments, prefer a pinned and checksum-verified hab release for sensitive deployments, and confirm that credential exposure to the downloaded CLI is acceptable.
+
+Risk: Home Assistant operations can change or delete resources, restart systems, affect connectivity, or alter hardware behavior.
+
+Mitigation: Start with read-only inventory, use --plan or --dry-run when available, obtain explicit user confirmation for risky mutations, avoid convenience use of --force, and run verification commands after changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ha/skills/hass-builder)
+- [Publisher Profile](https://clawhub.ai/user/ha)
+- [Home Assistant Build CLI](https://github.com/balloob/home-assistant-build-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON-field inspection guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may produce JSON envelopes or NDJSON event streams when executed through the hab CLI.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

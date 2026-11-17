@@ -1,0 +1,21 @@
+# Event Venue Quote - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+venue_name: ""
+contact: ""
+client_name: ""
+event_type: ""
+event_date: ""
+guests: 0
+hours: ""
+spaces:
+  - name: ""
+    rate: 0.00
+included:
+  - ""
+fees:
+  - name: "deposit|service_charge|tax|other"
+    amount: 0.00
+payment_schedule:
+  - due: ""
+    amount: 0.00
+terms: ""

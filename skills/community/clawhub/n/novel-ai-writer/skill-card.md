@@ -1,49 +1,63 @@
-## Description: <br>
-小说AI创作助手 helps Chinese-language fiction writers plan story outlines, continue drafts, polish prose, and check narrative consistency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Novel Writer helps authors develop fiction from ideas to outlines and drafts, with guidance for story planning, continuation, polishing, logic checks, templates, reference material, and word-count tools.
 
-## Publisher: <br>
-[270775418](https://clawhub.ai/user/270775418) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[270775418](https://clawhub.ai/user/270775418)
 
-## Use Case: <br>
-External writers and content creators use this skill to develop Chinese-language fiction from initial concepts through outlines, draft continuation, revision, and consistency review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outlines, continuations, polish, or consistency reports may introduce incorrect or unwanted changes to a manuscript. <br>
-Mitigation: Review generated edits and reports before applying them to manuscript files. <br>
-Risk: Optional local helper scripts process manuscript files or project folders selected by the user. <br>
-Mitigation: Run scripts only on files and folders the user intends to process. <br>
-Risk: Broad trigger phrases may activate the skill in environments with multiple available skills. <br>
-Mitigation: Use explicit skill invocation when the agent environment supports it. <br>
+## Use Case:
 
+External writers, content creators, and writing hobbyists use this skill to plan novels, continue drafts, polish prose, and review story logic across chapters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/270775418/skills/novel-ai-writer) <br>
-- [Skill README](README.md) <br>
-- [Story structure guide](references/story-structure.md) <br>
-- [Character development guide](references/character-development.md) <br>
-- [Plot design guide](references/plot-design.md) <br>
-- [Writing style guide](references/writing-style.md) <br>
-- [Logic consistency checklist](references/logic-checklist.md) <br>
-- [Writing materials reference](references/writing-materials.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown prose, structured reports, templates, and optional Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for human review before edits are applied to manuscripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Generated outlines, continuations, and edits may diverge from the writer's intent or introduce continuity issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated text, confirm major plot decisions, and use the included consistency guidance as an aid rather than as final editorial judgment.
+
+Risk: Local helper scripts process user-selected writing files, and watch mode runs as a foreground live counter.
+
+Mitigation: Run scripts only on files intended for processing and use watch mode only when live counting is desired.
+
+Risk: Consistency and outline utilities use lightweight checks and can miss issues or produce false positives.
+
+Mitigation: Treat script output as review cues and manually verify story logic, timelines, character behavior, and outline completeness.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/270775418/skills/novel-ai-writer)
+- [Story Structure Guide](references/story-structure.md)
+- [Character Development Guide](references/character-development.md)
+- [Plot Design Guide](references/plot-design.md)
+- [Writing Style Guide](references/writing-style.md)
+- [Logic Consistency Checklist](references/logic-checklist.md)
+- [Writing Materials](references/writing-materials.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown prose, outlines, draft passages, review reports, and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily supports Chinese-language fiction-writing workflows; local utilities operate on user-provided writing files.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

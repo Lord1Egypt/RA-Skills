@@ -1,0 +1,65 @@
+{
+  "skill": "pmclite-order-review",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "id": "TC001",
+      "name": "询单阶段：还没建单",
+      "category": "happy_path",
+      "input": { "user_message": "客户要 500 件 X100，11 月底交货，这单能接吗" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["assess_insertion"],
+        "tool_args_check": { "assess_insertion": { "quantity": 500 } },
+        "output_contains": ["能接", "交期", "影响"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC002",
+      "name": "已建单：给单号评审",
+      "category": "happy_path",
+      "input": { "user_message": "WO-0028 这个交期 11-30 来得及吗" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["evaluate_order"],
+        "output_contains": ["结论", "交期"],
+        "must_not": ["看情况"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC003",
+      "name": "交期来源是估算值",
+      "category": "edge_case",
+      "input": { "user_message": "这单没有销售交期，按月底算能接吗" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["evaluate_order", "assess_insertion"],
+        "output_contains": ["估算", "不是真交期"],
+        "must_not": ["保证按期交付"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC004",
+      "name": "产品没有 BOM",
+      "category": "edge_case",
+      "input": { "user_message": "这个新产品刚建，能接 300 件吗" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["query_master_data", "assess_insertion"],
+        "output_contains": ["没有 BOM", "无法判断齐套"],
+        "must_not": ["齐套没问题"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC005",
+      "name": "边界：纯报价计算",
+      "category": "boundary",
+      "input": { "user_message": "这单按 12.5 元一件算，总价多少" },
+      "expected": { "trigger_skill": false, "calls_tool": [], "output_contains": ["报价"], "uses_fallback": false }
+    }
+  ]
+}

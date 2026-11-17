@@ -1,46 +1,57 @@
-## Description: <br>
-Provides Fantasy Premier League squad, transfer, captaincy, lineup, chip, rules, and gameweek guidance using public FPL data and documented strategy references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fantasy Premier League (FPL) assistant for squad management, transfer planning, captain selection, and chip strategy.
 
-## Publisher: <br>
-[dongbinnie](https://clawhub.ai/user/dongbinnie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongbinnie](https://clawhub.ai/user/dongbinnie)
 
-## Use Case: <br>
-External FPL players and agents use this skill to analyze squads, plan transfers, select captains, order benches, understand FPL rules, and choose chip timing for a gameweek. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may request or process a manager ID or squad details while helping with FPL analysis. <br>
-Mitigation: Share only the FPL manager ID or squad details needed for analysis and do not provide FPL passwords, session tokens, or other credentials. <br>
-Risk: Broad trigger phrases such as fantasy, captain, or transfer may activate the skill outside an FPL conversation. <br>
-Mitigation: Narrow trigger phrases or confirm FPL intent when accidental activation would disrupt non-FPL conversations. <br>
-Risk: Recommendations based on live public FPL data can become stale as fixtures, injuries, and prices change. <br>
-Mitigation: Refresh the public FPL API data and review injury, rotation, and deadline context before acting on lineup, transfer, captaincy, or chip advice. <br>
+## Use Case:
 
+External FPL managers and agents use this skill to analyze squads, plan transfers, choose captains, set lineups, and time chips using public Fantasy Premier League data and the bundled rules and strategy references.
 
-## Reference(s): <br>
-- [FPL API Reference](references/api.md) <br>
-- [FPL Rules Reference](references/rules.md) <br>
-- [FPL Player Selection Strategy](references/strategy.md) <br>
-- [Fantasy Premier League Public API](https://fantasy.premierleague.com/api/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dongbinnie/fpl-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with structured recommendations and optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include starting XI, bench order, captain and vice-captain picks, transfer suggestions, chip recommendations, and supporting analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Broad terms such as fantasy, captain, or transfer may activate the skill outside a Fantasy Premier League context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for clearly FPL-related requests and confirm the user's gameweek or team context before making recommendations.
+
+Risk: The skill may ask for a manager ID and fetch public FPL team data.
+
+Mitigation: Use manager IDs only when the user is comfortable referencing that public team information, and avoid requesting unrelated personal or sensitive data.
+
+## Reference(s):
+
+- [FPL API Reference](references/api.md)
+- [FPL Rules Reference](references/rules.md)
+- [FPL Player Selection Strategy](references/strategy.md)
+- [Fantasy Premier League Public API](https://fantasy.premierleague.com/api/)
+- [ClawHub Skill Page](https://clawhub.ai/dongbinnie/skills/fpl-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown recommendations with optional inline shell commands for public FPL API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference public FPL manager IDs and live public API data when the user provides enough context.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

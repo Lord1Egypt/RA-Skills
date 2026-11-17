@@ -1,43 +1,60 @@
-## Description: <br>
-Generate UML, C4, architecture, timing, ER, mindmap, WBS, and Gantt diagrams with PlantUML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate UML, C4, architecture, timing, ER, mindmap, WBS, and Gantt diagrams with PlantUML.
 
-## Publisher: <br>
-[guoxh](https://clawhub.ai/user/guoxh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guoxh](https://clawhub.ai/user/guoxh)
 
-## Use Case: <br>
-Developers and technical writers use this skill to draft PlantUML source for software, architecture, process, and planning diagrams, then render those diagrams locally as PNG or SVG outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rendering untrusted PlantUML source runs local Java and, for most diagram types, Graphviz against the diagram file. <br>
-Mitigation: Review .puml files from untrusted sources before rendering and run them in a controlled workspace. <br>
-Risk: URL-based PlantUML includes may fetch external resources during rendering. <br>
-Mitigation: Avoid URL-based includes in sensitive or offline environments, or mirror required icon libraries locally. <br>
+## Use Case:
 
+Developers and engineers use this skill to author PlantUML source for UML, C4 architecture, ER, timing, mindmap, WBS, and Gantt diagrams and render local diagram outputs with Java and Graphviz tooling.
 
-## Reference(s): <br>
-- [PlantUML Syntax Quick Reference](references/syntax-guide.md) <br>
-- [PlantUML Standard Library Quick Reference](references/stdlib-guide.md) <br>
-- [PlantUML Themes Gallery](https://the-lum.github.io/puml-themes-gallery/) <br>
-- [AWS Icons for PlantUML](https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v18.0/dist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with PlantUML code blocks, local render commands, and rendered diagram files when executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports PNG or SVG rendering through local Java, PlantUML, and Graphviz tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: release metadata) <br>
+Risk: Rendering untrusted .puml files runs local PlantUML and, for most non-sequence diagrams, Graphviz on diagram source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review .puml source before rendering and run untrusted diagrams in a controlled workspace.
+
+Risk: URL-based AWS, Azure, or devicon includes can fetch mutable content from GitHub during rendering.
+
+Mitigation: Mirror icon libraries locally or avoid URL-based includes in sensitive or offline environments.
+
+Risk: Most non-sequence diagram types fail when Graphviz is missing or unavailable.
+
+Mitigation: Verify Java, PlantUML, and Graphviz before use; use sequence diagrams only when Graphviz is not installed.
+
+## Reference(s):
+
+- [PlantUML Syntax Quick Reference](references/syntax-guide.md)
+- [PlantUML Standard Library Quick Reference](references/stdlib-guide.md)
+- [PlantUML Themes Gallery](https://the-lum.github.io/puml-themes-gallery/)
+- [AWS Icons for PlantUML](https://github.com/awslabs/aws-icons-for-plantuml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with PlantUML code blocks and shell commands; rendered diagram files may be PNG, SVG, PDF, EPS, TXT, or UTXT.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Java and PlantUML tooling; Graphviz is required for most non-sequence diagram types.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

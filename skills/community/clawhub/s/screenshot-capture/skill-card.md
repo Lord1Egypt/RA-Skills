@@ -1,41 +1,57 @@
-## Description: <br>
-Processes screenshots Enzo shares with comments by saving them to a local reference library, extracting content, categorizing notes, setting reminders, and logging patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes commented screenshots by saving them to a notes library, extracting key content, categorizing the item, setting a one-week reminder, logging observed patterns, and confirming what was saved.
 
-## Publisher: <br>
-[enzoricciulli](https://clawhub.ai/user/enzoricciulli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[enzoricciulli](https://clawhub.ai/user/enzoricciulli)
 
-## Use Case: <br>
-People who save and revisit screenshots use this skill to turn commented images into organized local notes, screenshot references, intent-pattern logs, and one-week follow-up reminders. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Screenshots may contain sensitive personal, financial, proprietary, or credential information that would be saved into local notes. <br>
-Mitigation: Use only on screenshots the user wants retained; avoid screenshots containing passwords, tokens, private messages, financial data, or proprietary material. <br>
-Risk: The workflow creates a one-week reminder by default, which may be unwanted for some saved screenshots. <br>
-Mitigation: Follow explicit user instructions to skip or adjust reminders and confirm the reminder date when one is created. <br>
-Risk: Extracted screenshot content or visible source details may be incomplete or misread. <br>
-Mitigation: Keep the saved screenshot reference with the note and review the extracted summary before relying on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Screenshot Capture on ClawHub](https://clawhub.ai/enzoricciulli/screenshot-capture) <br>
+## Use Case:
 
+External users or personal knowledge-management agents use this skill to turn shared screenshots and accompanying comments into organized notes, reminders, and pattern logs.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown notes with brief confirmation text and optional shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local notes and one-week reminder entries when the agent has appropriate workspace access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically preserve shared screenshots and commentary in local notes without clear pre-action confirmation.
+
+Mitigation: Narrow the trigger, require confirmation before writes, and avoid using the skill with sensitive screenshots.
+
+Risk: Descriptive filenames and note destinations derived from screenshot context can create unsafe or messy paths if not handled carefully.
+
+Mitigation: Sanitize filenames and use structured file operations constrained to approved notes directories.
+
+Risk: Automatic one-week reminders can create unwanted follow-up tasks when the screenshot is misclassified.
+
+Mitigation: Confirm the reminder topic and date, and honor user-provided reminder overrides.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/enzoricciulli/skills/screenshot-capture)
+- [Publisher profile](https://clawhub.ai/user/enzoricciulli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown note entries, shell command snippets, reminder text, and brief text confirmation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local note files and reminders when the hosting agent has those capabilities.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

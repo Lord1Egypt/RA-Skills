@@ -1,43 +1,64 @@
-## Description: <br>
-拾遗 is a general exam-prep tracking skill that records wrong-question screenshots or text, classifies them with reusable tags, schedules review reminders, and exports an Excel error notebook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shiyi helps exam-prep users capture wrong-question screenshots or quick text entries, organize them with reusable tags, schedule review prompts, and export filtered Excel mistake notebooks.
 
-## Publisher: <br>
-[KaguraNanaga](https://clawhub.ai/user/KaguraNanaga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kagurananaga](https://clawhub.ai/user/kagurananaga)
 
-## Use Case: <br>
-External learners preparing for exams use this skill to turn screenshots and short text notes into organized wrong-question records, review prompts, and filtered Excel exports. It supports general exam workflows across standardized tests, school exams, and professional qualification exams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exam screenshots and extracted study details may contain personal or sensitive information and are stored locally, backed up, reused in prompts, and included in reminders or exports. <br>
-Mitigation: Avoid submitting screenshots with personal information, review local data retention expectations before use, and limit exports or reminders to contexts where that study data is appropriate to share. <br>
-Risk: Export filenames and spreadsheet output can be influenced by user-provided filter text. <br>
-Mitigation: Sanitize export filters and filenames before broad use, and keep generated exports constrained to the intended local export directory. <br>
-Risk: Scheduled cron jobs can proactively send study summaries and review prompts through Feishu. <br>
-Mitigation: Enable scheduled jobs only when proactive reminders are desired and the configured channel is acceptable for the study data being sent. <br>
+## Use Case:
 
+External learners and exam-prep users use this skill to track mistakes across exams, convert screenshots or short text notes into structured study records, receive review reminders, and export filtered mistake notebooks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/KaguraNanaga/shiyi-study-tracker) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, configuration, shell commands, guidance] <br>
-**Output Format:** [Conversational text, JSON-backed local records, scheduled reminder messages, and Excel exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local study records, screenshot-derived details, Feishu reminder text, and .xlsx attachments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; package.json reports 0.1.0) <br>
+Risk: The skill can retain exam text, annotations, and screenshots that may contain personal or sensitive study material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending screenshots with personal or account details, and review local saved data before using the skill on shared machines.
+
+Risk: Screenshot recognition uses the configured vision model, which may process image contents outside the local data directory.
+
+Mitigation: Use the skill only with a trusted model configuration and avoid images containing confidential or regulated information.
+
+Risk: Excel exports may include raw question text, annotations, and embedded screenshots.
+
+Mitigation: Review generated spreadsheets before sharing them, and use the no-image export path when screenshots are unnecessary.
+
+Risk: The security guidance flags export sanitization, tag validation, temporary-file handling, dependency pinning, and broad trigger phrases as issues to review.
+
+Mitigation: Address those items before broader deployment, especially on shared devices or with sensitive study materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kagurananaga/skills/shiyi-study-tracker)
+- [ClawHub publisher profile](https://clawhub.ai/user/kagurananaga)
+- [OpenClaw](https://openclaw.ai)
+- [Node.js](https://nodejs.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown-style agent messages, structured JSON study records, and generated XLSX export files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores study data locally under the user's OpenClaw skill data directory and can attach exported Excel workbooks.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

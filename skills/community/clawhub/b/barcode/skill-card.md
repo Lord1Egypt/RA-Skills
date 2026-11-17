@@ -1,43 +1,55 @@
-## Description: <br>
-按条形码查询商品名称、品牌、规格与产地等。当用户说：扫这个条码是什么商品、690 开头的条码查一下信息，或类似商品条码查询时，使用本技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+按条形码查询商品名称、品牌、规格与产地等。当用户说：扫这个条码是什么商品、690 开头的条码查一下信息，或类似商品条码查询时，使用本技能。
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and developers use this skill to look up product details from a barcode, including product name, brand, specification, net content, weight, and origin information. The skill is intended for barcode inquiry workflows that can send the queried barcode to JisuAPI under the user's API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Barcode values are sent to JisuAPI under the user's API key, which may reveal purchase, inventory, or personal context. <br>
-Mitigation: Use a dedicated API key where possible, monitor quota usage, and avoid querying sensitive barcode values unless the provider is trusted. <br>
-Risk: Provider API errors, quota limits, expired keys, or missing records can produce incomplete or failed lookups. <br>
-Mitigation: Check the returned JSON error fields before presenting results and communicate when the provider reports no data or an API error. <br>
+## Use Case:
 
+External users and agents use this skill to look up product details from a supplied EAN8 or EAN13 barcode. It is intended for explicit product barcode inquiries where the user wants a concise summary of fields such as name, brand, specification, weight, and origin.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jisuapi/barcode) <br>
-- [JisuAPI](https://www.jisuapi.com/) <br>
-- [JisuAPI Barcode API Documentation](https://www.jisuapi.com/api/barcode2/) <br>
-- [JisuAPI Barcode Query Endpoint](https://api.jisuapi.com/barcode2/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [JSON returned by a Python command-line script, with Markdown usage guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and the JISU_API_KEY environment variable; accepts a JSON object with a required barcode string.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence) <br>
+Risk: Barcode values and the JISU_API_KEY are sent to JisuAPI for lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for explicit barcode inquiries and configure API keys with appropriate quota, billing, and access controls.
+
+Risk: The skill is limited to product barcode lookup and may return API errors for missing, invalid, unavailable, or unsupported barcodes.
+
+Mitigation: Check the JSON error fields before summarizing results, and avoid using it for barcode generation, QR handling, or general product search.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/barcode)
+- [JisuAPI barcode inquiry documentation](https://www.jisuapi.com/api/barcode2/)
+- [JisuAPI service website](https://www.jisuapi.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the lookup script, with agent-facing text summaries derived from returned product fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a JISU_API_KEY environment variable; sends the queried barcode and API key to JisuAPI.]
+
+## Skill Version(s):
+
+1.0.11 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

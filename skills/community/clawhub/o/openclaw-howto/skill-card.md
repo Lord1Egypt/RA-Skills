@@ -1,45 +1,62 @@
-## Description: <br>
-OpenClaw HowTo provides guidance on OpenClaw features, configuration, CLI commands, troubleshooting, and best practices using web search when available and local OpenClaw information when web search is unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance on OpenClaw features, configuration, CLI commands, troubleshooting, and best practices, with local reference use and optional web search workflows.
 
-## Publisher: <br>
-[sparkmilkway](https://clawhub.ai/user/sparkmilkway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sparkmilkway](https://clawhub.ai/user/sparkmilkway)
 
-## Use Case: <br>
-Developers and operators use this skill to answer OpenClaw usage questions, configure OpenClaw features, inspect CLI behavior, and troubleshoot agents, cron jobs, skills, gateway services, and related settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide CLI mutations and configuration changes. <br>
-Mitigation: Review every suggested remove, uninstall, write/edit, bulk, or shell command before allowing an agent to run it. <br>
-Risk: The skill stores environment-specific configuration and search or troubleshooting notes in memory. <br>
-Mitigation: Do not provide tokens, internal endpoints, secret-bearing examples, or sensitive error logs. <br>
-Risk: The skill may provide command examples that are unsafe to copy and run without context. <br>
-Mitigation: Treat commands as proposals and adapt them to the local environment after manual review. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to answer OpenClaw usage questions, configure agents and cron jobs, manage skills, and troubleshoot CLI or environment issues. It supports local CLI/reference workflows and optional web search when current external information is needed.
 
-## Reference(s): <br>
-- [OpenClaw HowTo Skill](https://clawhub.ai/sparkmilkway/openclaw-howto) <br>
-- [OpenClaw Best Practices Guide](artifact/references/best-practices.md) <br>
-- [OpenClaw Command Cheatsheet](artifact/references/commands-cheatsheet.md) <br>
-- [OpenClaw Search Strategy Guide](artifact/references/search-strategies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend OpenClaw CLI commands, local file reads, configuration updates, or web search depending on available tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill may persist and automatically reuse user-provided web search tool call formats.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local mode unless web search is explicitly needed, and periodically inspect or delete memory/openclaw-env-info.md and memory/openclaw-knowledge.
+
+Risk: User-provided queries, tool call formats, or error messages may include secrets or internal URLs.
+
+Mitigation: Do not place secrets, private URLs, or sensitive operational details in search queries, cached tool configuration, or troubleshooting messages.
+
+Risk: Generated OpenClaw shell commands and configuration examples can alter local agents, cron jobs, skills, gateway state, or workspace files.
+
+Mitigation: Review commands before execution, prefer help or dry-run modes when available, and apply changes in a controlled workspace.
+
+## Reference(s):
+
+- [OpenClaw HowTo ClawHub release](https://clawhub.ai/sparkmilkway/skills/openclaw-howto)
+- [OpenClaw Best Practices Guide](references/best-practices.md)
+- [OpenClaw Command Cheatsheet](references/commands-cheatsheet.md)
+- [OpenClaw Search Strategy Guide](references/search-strategies.md)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw GitHub repository](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, Python, and configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands and configuration examples should be reviewed before execution.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Manage OmniFocus tasks, projects, and folders via Omni Automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage OmniFocus tasks, projects, folders, tags, due dates, recurrence, and task status via Omni Automation on macOS.
 
-## Publisher: <br>
-[Coyote-git](https://clawhub.ai/user/Coyote-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[coyote-git](https://clawhub.ai/user/coyote-git)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent read, create, update, organize, and complete OmniFocus tasks, projects, folders, tags, due dates, and recurring task settings on macOS. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify local OmniFocus tasks, including notes that may contain sensitive information. <br>
-Mitigation: Install it only when local OmniFocus automation is intended, grant macOS Automation access deliberately, and avoid storing secrets in task notes. <br>
-Risk: Task mutations such as delete, move, note replacement, due date changes, and completion changes can alter personal task data. <br>
-Mitigation: Ask the agent to show the target task details before important mutations, especially permanent delete or note replacement. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Coyote-git/omnifocus-automation) <br>
+## Use Case:
 
+Developers and OmniFocus users use this skill to let an agent query and update OmniFocus task data for GTD workflows, project tracking, due dates, tags, and recurring tasks. It is intended for macOS environments where OmniFocus 3 or 4 is installed and automation access is granted.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands that return JSON from OmniFocus automation commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS with OmniFocus installed and macOS Automation permission granted deliberately.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read and change OmniFocus task, project, folder, tag, due date, note, recurrence, and completion data.
+
+Mitigation: Install and use it only when agent access to OmniFocus data is intended, and review task IDs and proposed changes before running modifying commands.
+
+Risk: The delete command removes OmniFocus tasks and may permanently remove user data.
+
+Mitigation: Require explicit confirmation before delete operations and ask the agent to show matching task IDs before destructive actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coyote-git/skills/omnifocus-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [JSON command responses and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, OmniFocus 3 or 4, and local automation permission.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

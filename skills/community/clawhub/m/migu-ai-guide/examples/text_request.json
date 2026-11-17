@@ -1,0 +1,11 @@
+{
+  "header": {
+    "task_type": "text_to_llm",
+    "biz_type": "guide_chat",
+    "session_id": "8b450e43-9b47-49ce-927b-7d70e00ed250"
+  },
+  "body": {
+    "session_id": "8b450e43-9b47-49ce-927b-7d70e00ed250",
+    "question": "介绍成都"
+  }
+}

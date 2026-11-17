@@ -1,48 +1,63 @@
-## Description: <br>
-Use this skill to fetch TAAPI.IO indicator data for crypto or stocks, including fast single-indicator requests and bulk/multi-construct queries for agentic trading workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to fetch TAAPI.IO indicator data for crypto or stocks, including fast single-indicator requests and bulk/multi-construct queries for agentic trading workflows.
 
-## Publisher: <br>
-[oscraters](https://clawhub.ai/user/oscraters) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oscraters](https://clawhub.ai/user/oscraters)
 
-## Use Case: <br>
-Developers and agents use this skill to request TAAPI.IO market indicators for crypto or stocks through a local shell helper. It supports single-indicator checks, bulk indicator requests, and multi-construct workflows for market analysis automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: TAAPI API secrets can appear in request URLs or failed command output. <br>
-Mitigation: Prefer the TAAPI_SECRET environment variable over command-line secrets, avoid sharing logs or failed command output, and rotate the secret if it appears in logs. <br>
-Risk: Unofficial TAAPI base URLs can receive secrets and request payloads. <br>
-Mitigation: Use the default https://api.taapi.io endpoint unless the alternate endpoint is fully trusted and explicitly approved. <br>
-Risk: Live smoke tests send real network requests with TAAPI credentials. <br>
-Mitigation: Run live tests only in an isolated session with revocable credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TAAPI.IO](https://taapi.io/) <br>
-- [TAAPI.IO Documentation](https://taapi.io/documentation/) <br>
-- [TAAPI.IO Direct Integration](https://taapi.io/documentation/integration/direct/) <br>
-- [TAAPI.IO Bulk REST Integration](https://taapi.io/documentation/integration/post-rest-bulk/) <br>
-- [TAAPI.IO Multiple Constructs](https://taapi.io/documentation/multiple-constructs/) <br>
-- [TAAPI.IO Rate Limits](https://taapi.io/documentation/rate-limits/) <br>
-- [TAAPI.IO Indicators](https://taapi.io/indicators/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/oscraters/taapi) <br>
+## Use Case:
 
+Developers and trading workflow builders use this skill to retrieve TAAPI.IO technical indicators for crypto, stocks, and ETFs through repeatable CLI commands and JSON payloads.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses TAAPI_SECRET for live requests; curl is required, and jq is required for multi-construct payload generation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: TAAPI secrets can be exposed through direct request URLs, command arguments, or retained error logs.
+
+Mitigation: Prefer TAAPI_SECRET in a session-scoped environment and use bulk or multi POST flows where practical; rotate revocable secrets if logs may have captured them.
+
+Risk: Unofficial TAAPI base URLs can receive secrets and request payloads.
+
+Mitigation: Use the default https://api.taapi.io endpoint unless a deliberate override is required and acknowledged with TAAPI_ALLOW_UNOFFICIAL_BASE_URL=1 or --allow-unofficial-base-url.
+
+Risk: Live smoke tests send real network requests with TAAPI credentials.
+
+Mitigation: Run live smoke tests only in an isolated session with a revocable TAAPI_SECRET and avoid environments with retained command or output logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oscraters/skills/taapi)
+- [TAAPI homepage](https://taapi.io/)
+- [TAAPI documentation](https://taapi.io/documentation/)
+- [TAAPI direct integration](https://taapi.io/documentation/integration/direct/)
+- [TAAPI bulk integration](https://taapi.io/documentation/integration/post-rest-bulk/)
+- [TAAPI multiple constructs](https://taapi.io/documentation/multiple-constructs/)
+- [TAAPI rate limits](https://taapi.io/documentation/rate-limits/)
+- [TAAPI indicators](https://taapi.io/indicators/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown guidance with bash commands and JSON payload examples; CLI responses are JSON or raw text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for live requests, TAAPI_SECRET for authenticated calls, and jq for the multi command.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

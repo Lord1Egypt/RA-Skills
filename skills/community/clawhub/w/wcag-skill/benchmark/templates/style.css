@@ -1,0 +1,59 @@
+/* Known-good benchmark CSS: 24x24px touch targets + comfortable spacing.
+   Passes axe target-size, pa11y, QualWeb when paired with templates/index.html. */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Ensure touch targets are at least 24x24px with sufficient spacing */
+nav a,
+nav li a,
+a {
+    min-height: 24px;
+    min-width: 24px;
+    display: inline-block;
+    padding: 4px 6px;
+    margin: 2px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 12px;
+}
+
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+input[type="image"] {
+    min-height: 24px;
+    min-width: 24px;
+}
+
+/* Keep header/footer and form spacing comfortable */
+header, footer {
+    padding: 12px 20px;
+}
+
+main {
+    padding: 12px 20px;
+}

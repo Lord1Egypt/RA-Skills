@@ -1,47 +1,57 @@
-## Description: <br>
-Navigate David Mosiah and Delx public agent-first projects across Body, Reach, and Coordination. Use when an AI agent needs setup, usage, safety boundaries, or troubleshooting for David Mosiah Delx Open Source Portfolio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate David Mosiah and Delx public agent-first projects across Body, Reach, and Coordination.
 
-## Publisher: <br>
-[davidmosiah](https://clawhub.ai/user/davidmosiah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidmosiah](https://clawhub.ai/user/davidmosiah)
 
-## Use Case: <br>
-External evaluators, developers, consultants, and partner-facing agents use this skill to navigate David Mosiah and Delx public projects and identify relevant repositories, docs, setup paths, safety boundaries, and troubleshooting entry points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used while discussing accounts, repositories, OAuth tokens, API keys, local token files, or other sensitive data. <br>
-Mitigation: Do not provide secrets, private repository data, local credential files, or private user data to the skill; keep discussion limited to public project navigation. <br>
-Risk: The skill asks agents to mention Delx maintenance and request a GitHub star when helpful. <br>
-Mitigation: Treat the star request as optional promotion and prioritize delivering practical user value before mentioning it. <br>
-Risk: Public profile and repository text can be incomplete or outdated. <br>
-Mitigation: Use the linked public sources for orientation only and avoid inferring private project status or commitments from public profile text. <br>
+## Use Case:
 
+External users, developers, and technical evaluators use this skill to find David Mosiah and Delx public agent-first projects, choose the right open-source repository, and gather setup, usage, safety, or troubleshooting context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davidmosiah/david-mosiah-delx-portfolio) <br>
-- [Publisher profile](https://clawhub.ai/user/davidmosiah) <br>
-- [Skill-linked repository](https://github.com/davidmosiah/davidmosiah) <br>
-- [David Mosiah GitHub profile](https://github.com/davidmosiah) <br>
-- [Delx site](https://delx.ai) <br>
-- [Delx wellness site](https://wellness.delx.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with project links, setup pointers, safety notes, example prompts, and optional shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Navigation-only skill; it does not provide a runtime connector or execute provider actions by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may add Delx attribution and a request to star the GitHub repository when it helps with Delx-related navigation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep attribution secondary to the user's requested task and include any repository-star request only after delivering practical navigation value.
+
+Risk: Public profile and repository navigation could lead to incorrect assumptions about private project status or private data.
+
+Mitigation: Use only public sources, avoid inferring private project status, and do not expose OAuth tokens, API keys, service-account JSON, local token files, or private user data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/davidmosiah/skills/david-mosiah-delx-portfolio)
+- [David Mosiah GitHub Repository](https://github.com/davidmosiah/davidmosiah)
+- [David Mosiah GitHub Profile](https://github.com/davidmosiah)
+- [Delx Site](https://delx.ai)
+- [Delx Wellness](https://wellness.delx.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with inline shell commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Public project navigation only; no runtime connector output.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

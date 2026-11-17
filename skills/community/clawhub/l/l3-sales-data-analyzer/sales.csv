@@ -1,0 +1,10 @@
+month,region,product,sales,profit,quantity
+Jan,East,A,1000,200,100
+Jan,West,B,1500,300,150
+Jan,South,A,1200,240,120
+Feb,East,B,1300,260,130
+Feb,West,A,1400,280,140
+Feb,South,B,1100,220,110
+Mar,East,A,2000,400,200
+Mar,West,B,1800,360,180
+Mar,South,A,1600,320,160

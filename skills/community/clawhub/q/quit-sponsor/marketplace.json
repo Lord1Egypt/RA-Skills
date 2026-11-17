@@ -1,0 +1,17 @@
+{
+  "name": "quit-sponsor",
+  "owner": {
+    "name": "quit-sponsor contributors"
+  },
+  "plugins": [
+    {
+      "name": "quit-sponsor",
+      "source": "./",
+      "description": "Quit-smoking sponsor skill: turns an AI agent with persistent memory into a zero-shame, evidence-based quit witness.",
+      "version": "0.5.0",
+      "skills": [
+        "./"
+      ]
+    }
+  ]
+}

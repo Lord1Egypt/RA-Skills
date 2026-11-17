@@ -1,39 +1,54 @@
-## Description: <br>
-Clarifies and rewrites ecommerce refund policies into clear, customer-friendly language without expanding or changing the store's actual refund terms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clarifies and rewrites ecommerce refund policies into clear, customer-friendly language without expanding or changing the store's actual refund terms.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Sellers, ecommerce operators, and support teams use this skill to turn confusing refund or return rules into customer-facing explanations. It helps preserve the store's existing commercial terms while flagging ambiguity, contradictions, and risky phrasing for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated refund language could be treated as final policy wording even when legal compliance, platform rules, or store-specific exceptions need review. <br>
-Mitigation: Review rewritten policies before publishing and verify them against the source policy, applicable platform rules, and business-specific refund exceptions. <br>
+## Use Case:
 
+Sellers, ecommerce operators, and support teams use this skill to turn confusing refund and return rules into clear customer-facing policy language while preserving the original commercial meaning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/refund-policy-clarifier) <br>
-- [Output template](artifact/references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sections with policy summary, customer-facing rewrite, ambiguity flags, FAQ clarifications, and optional tone variations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or configuration output; generated policy language should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A rewritten refund policy could be mistaken for legal or compliance advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a qualified reviewer check the final language against applicable marketplace rules, consumer-protection obligations, and regulated-product requirements.
+
+Risk: The skill could accidentally make a refund policy sound more generous than the store's actual terms.
+
+Mitigation: Compare the rewrite against the source policy and remove any language that expands refund windows, eligibility, proof requirements, or return-shipping obligations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/refund-policy-clarifier)
+- [Output Template](artifact/references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with a policy summary, customer-facing rewrite, ambiguity flags, FAQ clarifications, and optional tone variations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should remain faithful to the provided policy and avoid legal advice or expanded refund promises.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

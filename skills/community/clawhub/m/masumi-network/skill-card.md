@@ -1,42 +1,54 @@
-## Description: <br>
-Masumi Network skill for warranty vault verification. Handles OCR receipt scanning, Cardano blockchain proof-of-purchase logging, immutable decision logging, agent collaboration discovery, and smart wallet payments. Use for warranty claims, product verification, agent-to-agent service payments, or immutable audit trails on Cardano. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Masumi Network Warranty Vault helps agents prototype warranty verification flows with receipt text extraction, proof hashing, agent discovery, and smart-wallet payment examples for Masumi and Cardano-oriented workflows.
 
-## Publisher: <br>
-[fisch192](https://clawhub.ai/user/fisch192) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fisch192](https://clawhub.ai/user/fisch192)
 
-## Use Case: <br>
-External developers and agents use this skill to run warranty-verification workflows, produce proof hashes, discover collaborator agents, and simulate payment or ledger steps for warranty claims and product verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: This looks like a local demo, but it presents simulated OCR, Cardano logging, and payment actions as if they can be used for real warranty decisions. <br>
-Mitigation: Install only if you treat it as a non-production demo. Do not rely on it for warranty approval, immutable audit trails, Cardano records, agent registration, or payments unless the publisher clearly labels simulations, implements real verification, and documents wallet consent, fees, stored data, and transaction confirmation steps. <br>
-Risk: The artifact behavior presents OCR, Cardano logging, agent registration, and payment flows as successful local script output. <br>
-Mitigation: Require publisher documentation and independent validation for receipt extraction, wallet consent, fees, stored data, and transaction confirmations before using the skill for real warranty or payment decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Masumi Network API Reference](references/api.md) <br>
-- [Reference Documentation for Masumi Network](references/api_reference.md) <br>
-- [ClawHub release page](https://clawhub.ai/fisch192/masumi-network) <br>
-- [Publisher profile](https://clawhub.ai/user/fisch192) <br>
+## Use Case:
 
+External developers and agents use this skill to prototype warranty claim verification, product proof logging, agent collaboration discovery, and payment handoff workflows. Treat the included scripts as demonstrations rather than reliable on-chain warranty, blockchain, or payment integrations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local scripts may print simulated OCR, proof hash, agent discovery, Cardano transaction, and payment messages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Warranty, blockchain, and payment claims may be unsupported by the shipped scripts.
+
+Mitigation: Treat outputs as prototype guidance and verify any real Masumi, Cardano, warranty, or payment integration before using the skill with claims, receipts, or funds.
+
+Risk: Receipt text can contain sensitive purchase or personal data.
+
+Mitigation: Avoid real receipts or sensitive purchase data until data handling, documentation, and security controls are reviewed.
+
+## Reference(s):
+
+- [Masumi Network API Reference](artifact/references/api.md)
+- [Reference Documentation for Masumi Network](artifact/references/api_reference.md)
+- [ClawHub skill page](https://clawhub.ai/fisch192/skills/masumi-network)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-style script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include simulated receipt extraction, proof hashes, transaction hashes, agent IDs, and payment status messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-AI机票助手 - 实现国内航班搜索、舱位查询、预订下单、机票改期、机票退票。适用于用户询问航班、查询机票价格、提交机票订单、改期航班、退票时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search domestic Chinese flights, compare cabin prices and rules, create bookings, and manage ticket changes or refunds through Python command-line scripts.
 
-## Publisher: <br>
-[ryan-zry](https://clawhub.ai/user/ryan-zry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-zry](https://clawhub.ai/user/ryan-zry)
 
-## Use Case: <br>
-External travelers or travel-support agents use this skill to search domestic flights in China, compare fares and cabin rules, and run booking, order lookup, cancellation, change, and refund workflows after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform real booking, cancellation, change, and refund actions that may affect orders, payments, and travel plans. <br>
-Mitigation: Require explicit user review of order number, passengers, dates, fees, and refund or change effects before approving any booking, cancellation, change, or refund command. <br>
-Risk: Server evidence reports weak transport security and warns that the flight-service endpoint must be trusted. <br>
-Mitigation: Install only if the publisher and service endpoint are trusted, confirm TLS verification is fixed, and verify FBT_API_URL is not redirecting requests before use. <br>
-Risk: Server evidence reports insecure local credential storage, and the skill handles passenger PII and apiKey-based authentication. <br>
-Mitigation: Avoid shared machines, do not expose personal data or credentials in logs or replies, and clear local authentication state when access is no longer needed. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to search flights, review cabin pricing and ticket rules, book domestic flights in China, view orders, cancel unpaid orders, and submit ticket change or refund requests.
 
-## Reference(s): <br>
-- [ClawHub release: AI机票预订助手](https://clawhub.ai/ryan-zry/airticket) <br>
-- [Publisher profile: ryan-zry](https://clawhub.ai/user/ryan-zry) <br>
-- [Configured flight service endpoint](https://app-gate.fenbeitong.com/air_biz/skill/execute) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown with plaintext tables, inline shell commands, and order or payment links when returned by the service] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and stores temporary authentication and selected-seat state for follow-on commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata, release evidence, and SKILL.md frontmatter) <br>
+Risk: The skill stores an API key and phone number locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use private credential storage with restricted access, limit retention, and clear authentication state after use.
+
+Risk: The workflow sends passenger PII to an external flight API and can print sensitive passenger details.
+
+Mitigation: Collect only required data with user consent, mask PII in agent responses and logs, and avoid retaining command output.
+
+Risk: The security evidence calls for review of transport and endpoint trust before installation.
+
+Mitigation: Use verified TLS, review the external service endpoint, and run the skill only in controlled environments approved for booking data.
+
+Risk: Scripts can submit booking, cancellation, change, and refund transactions.
+
+Mitigation: Require explicit user confirmation immediately before each transactional command, including order identifiers, fees, and refund amounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-zry/skills/airticket)
+- [Fenbeitong flight API endpoint](https://app-gate.fenbeitong.com/air_biz/skill/execute)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and plaintext table output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; stores authentication and seat-selection state in local JSON files; script output can include flight, fare, order, payment, change, refund, and passenger details.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, SKILL.md frontmatter, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

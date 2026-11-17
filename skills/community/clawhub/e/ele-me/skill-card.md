@@ -1,40 +1,52 @@
-## Description: <br>
-提供饿了么外卖订餐、即时配送及商户优惠指引。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for Ele.me food ordering, instant delivery, merchant discounts, workflows, status tracking, and privacy-aware usage.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codenova58](https://clawhub.ai/user/codenova58)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to answer practical questions about Ele.me ordering, delivery, discounts, feature filters, status tracking, notifications, and safe account authorization.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may share unnecessary personal information or grant sensitive account permissions while following Ele.me task guidance.
+
+Mitigation: Limit requested personal data and account permissions to what is needed for the specific Ele.me task.
+
+Risk: Guidance that depends on third-party interfaces may become inaccurate when those interfaces change or are unavailable.
+
+Mitigation: Treat interface-dependent steps as operational guidance and confirm critical actions in Ele.me before relying on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to get concise guidance for Ele.me food ordering, instant delivery, merchant discounts, feature workflows, status tracking, and safety considerations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Text, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Guidance may involve real orders, payments, delivery addresses, or account authorizations. <br>
-Mitigation: Confirm ordering, payment, address, and authorization actions in the official Ele.me app or website, and avoid sharing unnecessary personal information. <br>
-Risk: Some Ele.me features may depend on third-party interfaces or partner services whose stability can change. <br>
-Mitigation: Treat availability-sensitive instructions as guidance and verify current behavior in the official service before relying on it. <br>
+**Output Format:** [Markdown guidance with bullet lists and example prompts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/codenova58/ele-me) <br>
+**Other Properties Related to Output:** [No executable code; guidance may include privacy, authorization, and third-party interface stability considerations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or concise natural-language guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only usage guidance; no executable code, credential handling, or persistence.] <br>
+0.1.0 (source: release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

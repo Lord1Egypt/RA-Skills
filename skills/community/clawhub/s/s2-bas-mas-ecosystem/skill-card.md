@@ -1,46 +1,69 @@
-## Description: <br>
-Multi-Agent System for Building Automation powered by S2-SWM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-Agent System for Building Automation powered by S2-SWM.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-Space2 Custom License Agreement (S2-CLA) <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Facility engineers, building-automation developers, and energy operations teams use this skill to reason about local BAS, HVAC, microgrid, identity, and energy-audit workflows in a sandboxed multi-agent setup. It helps produce optimization proposals, dispatch guidance, audit summaries, and configuration steps for review before any real building-control deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+S2 Custom License Agreement (S2-CLA)
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the skill asks for sensitive building-control signing authority and describes high-impact automation without enough boundaries. <br>
-Mitigation: Install only in a test or tightly controlled BAS sandbox, and add explicit human approval, least-privilege key management, audit logging, and safety limits before connecting it to production controls. <br>
-Risk: The security guidance warns against providing production building-control keys, live actuator access, employee biometric data, EV/account data, or purchase authority without extra controls. <br>
-Mitigation: Use non-production credentials and simulated data by default; require privacy, consent, spending-limit, and change-control reviews before enabling sensitive data or purchase-capable workflows. <br>
-Risk: The artifact declares a required S2_BMS_MASTER_KEY and local governance file writes for PKI and building-sovereignty records. <br>
-Mitigation: Store the key in an approved secret manager, restrict filesystem access to the declared governance path, rotate keys when testing is complete, and review generated ledger or key files before reuse. <br>
+## Use Case:
 
+Developers and building-automation engineers use this skill to evaluate a local simulated multi-agent building automation ecosystem for HVAC, hydronic distribution, ground-source heat pumps, microgrids, forecasting, identity registration, and energy auditing. It produces advisory proposals, reports, commands, and configuration guidance that require strict controls before any physical or financial deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spacesq/s2-bas-mas-ecosystem) <br>
-- [S2-BAS-MAS Whitepaper (English)](docs/S2-BAS-MAS-Whitepaper-EN.md) <br>
-- [S2-BAS-MAS Whitepaper (Chinese)](docs/S2-BAS-MAS-Whitepaper-CN.md) <br>
-- [Release changelog](CHANGELOG.md) <br>
-- [License terms](LICENSE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON-style proposals, Python code references, and shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require S2_BMS_MASTER_KEY and may write local governance, ledger, and key files when associated code is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.6 (source: SKILL.md frontmatter, CHANGELOG, and server evidence; package.json reports 2.0.5) <br>
+Risk: The skill asks for sensitive building-control authority while approval and safety boundaries are not strong enough for direct deployment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as research or simulation unless strict deployment controls are added, and require explicit human approval before physical control actions.
+
+Risk: Master signing keys and private-key access could authorize unsafe or unintended subsystem actions.
+
+Mitigation: Isolate the master signing key, remove private-key access from subsystem agents, and use hardened key management such as an HSM for production-like testing.
+
+Risk: Dispatch authorization may be replayed or separated from important command context.
+
+Mitigation: Sign complete command envelopes with timestamps, target identities, nonces, and replay protection before connecting to real systems.
+
+Risk: Unpinned dependencies can change security and behavior across installs.
+
+Mitigation: Pin dependencies, verify package hashes, and scan the environment before execution.
+
+Risk: Occupancy, EV, and wearable-data scenarios can expose sensitive personal or operational data.
+
+Mitigation: Define privacy controls, data minimization, consent, retention, and access policies before using those data types.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/spacesq/skills/s2-bas-mas-ecosystem)
+- [S2-BAS-MAS Whitepaper EN](artifact/docs/S2-BAS-MAS-Whitepaper-EN.md)
+- [S2-BAS-MAS Whitepaper CN](artifact/docs/S2-BAS-MAS-Whitepaper-CN.md)
+- [Skill Directives](artifact/SKILL.md)
+- [Release Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code, Python examples, JSON configuration, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local simulation outputs can include signed dispatch tokens, advisory control proposals, energy and carbon reports, identity registry records, and visualization JSON.]
+
+## Skill Version(s):
+
+2.0.6 (source: SKILL.md frontmatter, ClawHub release evidence, CHANGELOG released 2026-04-08)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

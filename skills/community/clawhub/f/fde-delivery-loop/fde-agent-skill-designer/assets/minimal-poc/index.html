@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{POC_NAME}}</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">FDE MINIMUM POC · v0.1.0</p>
+      <h1>{{POC_NAME}}</h1>
+      <p>{{SCENARIO}}</p>
+    </div>
+    <div class="badges">
+<span>Mock data</span><span>has no external writing</span><span>requires manual review</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel input-panel">
+      <div class="section-title">
+<div><span>01</span><h2>Input task</h2></div>
+<button id="load-example" type="button" class="secondary">Loading example</button>
+      </div>
+<label for="task-input">Please paste the scene information that needs to be processed</label>
+<textarea id="task-input" rows="9" placeholder="Enter de-identified or synthetic material from a representative task. Do not include secrets, personal data, or restricted information."></textarea>
+      <div class="actions">
+<button id="run" type="button">generates auditable results</button>
+<button id="clear" type="button" class="secondary">Clear</button>
+      </div>
+    </section>
+
+    <section class="panel output-panel" aria-live="polite">
+<div class="section-title"><div><span>02</span><h2>Running results</h2></div></div>
+<div id="status" class="status idle">is waiting for input</div>
+      <dl class="result-grid">
+<div><dt>Evidence Status</dt><dd id="evidence">—</dd></div>
+<div><dt>The system decides</dt><dd id="decision">—</dd></div>
+<div><dt>Manual action</dt><dd id="human-action">—</dd></div>
+<div><dt>External action</dt><dd id="external-action">Not enabled</dd></div>
+      </dl>
+      <div class="result-box">
+<h3>Output draft</h3>
+<pre id="result">is not running yet.</pre>
+      </div>
+    </section>
+  </main>
+
+<footer>This page is only used for POC interaction and guardrail verification, and does not represent production launch, customer approval or business value.</footer>
+  <script src="logic.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

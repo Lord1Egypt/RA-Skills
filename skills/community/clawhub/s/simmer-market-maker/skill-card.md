@@ -1,41 +1,58 @@
-## Description: <br>
-Places GTC limit orders on both sides of liquid Polymarket markets to quote bid/ask spreads around the CLOB midpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Places GTC bid and ask limit orders on liquid Polymarket markets by selecting active markets and quoting around the CLOB midpoint.
 
-## Publisher: <br>
-[prysm96](https://clawhub.ai/user/prysm96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[prysm96](https://clawhub.ai/user/prysm96)
 
-## Use Case: <br>
-External traders and developers use this skill to run a configurable Polymarket market-making strategy that selects liquid markets, quotes both YES and NO sides, and reports dry-run or live execution results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real trades on the connected trading account. <br>
-Mitigation: Review before installing, use dry run or TRADING_VENUE=sim first, and use --live only after confirming the account, venue, and strategy settings. <br>
-Risk: Live execution can cancel all existing open orders on the connected account. <br>
-Mitigation: Prefer a dedicated trading account or API key, and do not run --live on an account with manual orders or other strategies unless existing open-order cancellation is acceptable. <br>
+## Use Case:
 
+External traders and developers use this skill to run or evaluate a configurable Polymarket market-making strategy that selects liquid markets, quotes around the CLOB midpoint, and can execute in dry-run or live mode.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/prysm96/simmer-market-maker) <br>
-- [Polymarket CLOB API](https://clob.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Console text with optional automaton JSON status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and supports dry-run, live trading, position display, and configurable strategy parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: Live mode can cancel all open account orders before placing market-making quotes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode first, prefer a dedicated restricted API key or isolated account, and avoid --live when unrelated orders are open.
+
+Risk: The skill requires trading credentials and uses simmer-sdk to access trading functionality.
+
+Mitigation: Pin or verify simmer-sdk before installation and provide credentials scoped only to the intended trading account.
+
+Risk: Automated market making can place real-money GTC orders based on live market data and local configuration.
+
+Mitigation: Keep conservative limits for maximum order size and market count, review configuration before live runs, and monitor positions after execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/prysm96/skills/simmer-market-maker)
+- [Polymarket CLOB endpoint](https://clob.polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [CLI text output with optional JSON automaton status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; default run is dry-run, while --live can place real orders.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

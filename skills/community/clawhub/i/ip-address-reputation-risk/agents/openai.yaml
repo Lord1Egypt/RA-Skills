@@ -1,0 +1,4 @@
+interface:
+  display_name: "IP地址归属、信誉、风控查询"
+  short_description: "在本地或经确认的外部查询中核查单个已授权公网IP的归属、路由与网络风险信号"
+  default_prompt: "先确认 <PUBLIC_IP> 属于自有、公开或明确授权范围；默认只做本地报告。只有获得外部查询确认后，才使用 $ip-intelligence-fusion 执行 --external。"

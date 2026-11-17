@@ -1,47 +1,60 @@
-## Description: <br>
-Auto-generated skill for gemini tools via OneKey Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OneKey Gateway tools for generating images with Gemini/Nano Banana image models.
 
-## Publisher: <br>
-[AI-Hub-Admin](https://clawhub.ai/user/AI-Hub-Admin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin)
 
-## Use Case: <br>
-Developers and agents use this skill to invoke Gemini image-generation tools through OneKey Gateway, providing prompts and image settings to create image files and JSON status results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts and image-generation requests through third-party API and gateway dependencies. <br>
-Mitigation: Use a revocable API key and avoid sending private prompts, sensitive images, secrets, or regulated data unless external processing is acceptable. <br>
-Risk: Generated files may be written to user-provided paths. <br>
-Mitigation: Provide explicit safe output locations and review generated file paths before use. <br>
-Risk: The skill depends on the OneKey Gateway npm package and the ai-agent-marketplace Python package. <br>
-Mitigation: Install only if you trust OneKey Gateway and the listed npm and PyPI packages. <br>
+## Use Case:
 
+Developers and agents use this skill to invoke Gemini image generation through OneKey Gateway and save generated images from prompt, model, aspect ratio, and image size inputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AI-Hub-Admin/gemini-nano-banana) <br>
-- [OneKey Gateway Keys](https://www.deepnlp.org/workspace/keys) <br>
-- [OneKey MCP Router Documentation](https://www.deepnlp.org/doc/onekey_mcp_router) <br>
-- [OneKey Gateway Documentation](https://deepnlp.org/doc/onekey_agent_router) <br>
-- [AI Agent Marketplace](https://www.deepnlp.org/store/ai-agent) <br>
-- [Skills Marketplace](https://www.deepnlp.org/store/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Files, JSON, Shell commands, Configuration instructions] <br>
-**Output Format:** [JSON result objects with generated image file paths and optional CLI shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DEEPNLP_ONEKEY_ROUTER_ACCESS and an explicit safe output location for generated files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence) <br>
+Risk: The skill requires a OneKey Gateway API key and routes prompts or image inputs through the OneKey/Gemini provider path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, revocable API key and only submit prompts or images appropriate for that provider path.
+
+Risk: Gateway dependencies are documented without pinned versions.
+
+Mitigation: Pin and review npm and Python dependency versions before installing or deploying the skill.
+
+Risk: The documentation includes image-analysis examples that are outside the two artifact scripts.
+
+Mitigation: Review available tools and intended permissions before enabling the skill in an agent environment.
+
+## Reference(s):
+
+- [Gemini Nano Banana ClawHub Skill Page](https://clawhub.ai/ai-hub-admin/skills/gemini-nano-banana)
+- [OneKey MCP Router Documentation](https://www.deepnlp.org/doc/onekey_mcp_router)
+- [OneKey Gateway Documentation](https://deepnlp.org/doc/onekey_agent_router)
+- [AI Agent Marketplace GitHub Repository](https://github.com/aiagenta2z/ai-agent-marketplace)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, files]
+
+**Output Format:** [JSON responses and generated image files, with Markdown and shell command guidance in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated image results may include image_path, image_url, message, and success fields.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

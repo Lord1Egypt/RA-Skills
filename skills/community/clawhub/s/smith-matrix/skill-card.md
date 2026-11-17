@@ -1,45 +1,56 @@
-## Description: <br>
-This skill should be used when the user asks to "create a multi-agent system", "spawn agents for parallel tasks", "decompose task recursively", "set up agent matrix", or wants to execute complex tasks using multiple coordinated agents with conflict-free parallel processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smith Matrix guides agents in building a recursive multi-agent workspace that decomposes complex tasks into bounded parallel subagents with directory-isolated coordination.
 
-## Publisher: <br>
-[cyijun](https://clawhub.ai/user/cyijun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyijun](https://clawhub.ai/user/cyijun)
 
-## Use Case: <br>
-Developers and agent operators use Smith Matrix to organize complex work into recursive, bounded multi-agent task folders with directory-based inbox, outbox, private workspace, and child-agent conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task descriptions and private notes may expose sensitive information if generated .smith-matrix files are shared or committed. <br>
-Mitigation: Avoid placing secrets in tasks or notes, and review generated .smith-matrix files before sharing, committing, or publishing them. <br>
-Risk: Directory isolation is an agent protocol, not a hard security sandbox. <br>
-Mitigation: Run the skill in a constrained workspace and review file changes before relying on generated outputs. <br>
-Risk: Recursive task decomposition can create unnecessary local files or coordination overhead if used on simple tasks. <br>
-Mitigation: Apply the documented recursion limits: maximum level 3, at most 5 child agents per level, and direct execution at terminal levels. <br>
+## Use Case:
 
+Developers and agent operators use Smith Matrix to decompose complex tasks into bounded parallel subagents, coordinate them through inbox/outbox files, and aggregate results without cross-agent write conflicts.
 
-## Reference(s): <br>
-- [Smith Matrix on ClawHub](https://clawhub.ai/cyijun/smith-matrix) <br>
-- [Core Concepts](references/concepts.md) <br>
-- [Conflict-Free Protocol](references/protocol.md) <br>
-- [Best Practices](references/best-practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions and local workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces .smith-matrix task, private, outbox, children, and results files when applied by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: The skill creates and retains a .smith-matrix directory containing task descriptions, outputs, and private agent notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid placing secrets or sensitive data in tasks, and review generated files before committing or sharing them.
+
+Risk: Recursive task decomposition can create unnecessary child work when the task scope is too broad or vague.
+
+Mitigation: Use the documented maximum depth and child-agent limits, and require each parent agent to summarize results and stop at terminal depth.
+
+## Reference(s):
+
+- [Smith Matrix ClawHub release](https://clawhub.ai/cyijun/skills/smith-matrix)
+- [Core Concepts](references/concepts.md)
+- [Protocol Specification](references/protocol.md)
+- [Best Practices](references/best-practices.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with workspace file instructions and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a .smith-matrix workspace tree with task, private, outbox, and result files when used.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata; artifact frontmatter lists 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-Set up and manage Xian blockchain nodes for mainnet or testnet deployment, custom network creation, and ongoing node operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and manage Xian blockchain nodes for mainnet or testnet deployment, custom network creation, CometBFT configuration, and node monitoring.
 
-## Publisher: <br>
-[Endogen](https://clawhub.ai/user/Endogen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[endogen](https://clawhub.ai/user/endogen)
 
-## Use Case: <br>
-Developers and node operators use this skill to deploy and configure Xian blockchain nodes, create custom networks, monitor node status, and troubleshoot common node operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Validator private keys may be exposed through chat, terminal history, logs, or generated output. <br>
-Mitigation: Treat validator private keys as secrets; avoid pasting them into chat or command history, store them in a protected file or secret manager, and back them up securely. <br>
-Risk: Reset and wipe commands can remove node data or disrupt a running validator or service node. <br>
-Mitigation: Review each reset command before execution and back up node keys, genesis files, and configuration before using wipe or full reset workflows. <br>
-Risk: Incorrect node, seed, genesis, or validator configuration can prevent syncing or create an unintended network state. <br>
-Mitigation: Verify network, seed node, genesis file, moniker, port, and validator settings against the intended Xian network before starting or restarting the node. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Xian Node ClawHub page](https://clawhub.ai/Endogen/xian-node-skill) <br>
-- [Genesis File Template](references/genesis-template.md) <br>
-- [xian-network/xian-stack](https://github.com/xian-network/xian-stack) <br>
-- [xian-network/xian-core](https://github.com/xian-network/xian-core) <br>
-- [xian-network/xian-py](https://github.com/xian-network/xian-py) <br>
-- [CometBFT docs](https://docs.cometbft.com/) <br>
-- [Xian project site](https://xian.org) <br>
+## Use Case:
 
+Developers and node operators use this skill to deploy and manage Xian blockchain nodes, including joining mainnet or testnet, creating a custom network, configuring validator or service nodes, and checking sync status.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, configuration examples, JSON snippets, and Python helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce validator key material, genesis configuration entries, node status summaries, and operational troubleshooting guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Validator private keys may be exposed if pasted into agent chats, shell histories, logs, or stdout-captured environments.
+
+Mitigation: Avoid pasting private keys into prompts or commands, generate keys only in an isolated environment, disable stdout logging for key generation, and move secrets through approved secret-handling workflows.
+
+Risk: Building or running upstream node software without review can introduce supply-chain or operational risk.
+
+Mitigation: Pin and review upstream Xian and CometBFT-related code before building, and run the node in an isolated environment.
+
+Risk: Wipe and reset commands can remove local blockchain data or configuration state.
+
+Mitigation: Back up node configuration and required chain data before running wipe, reset, or rebuild workflows.
+
+## Reference(s):
+
+- [Genesis File Template](references/genesis-template.md)
+- [Xian Stack](https://github.com/xian-network/xian-stack)
+- [Xian Core](https://github.com/xian-network/xian-core)
+- [Xian Python SDK](https://github.com/xian-network/xian-py)
+- [CometBFT Documentation](https://docs.cometbft.com/)
+- [Xian Project Site](https://xian.org)
+- [ClawHub Skill Page](https://clawhub.ai/endogen/skills/xian-node-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash, Python, and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes node setup commands, monitoring commands, troubleshooting guidance, and helper scripts for validator key generation and node status checks.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

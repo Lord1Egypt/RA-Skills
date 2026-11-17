@@ -1,0 +1,18 @@
+{
+"roles": {
+    "admin":{
+        "name":"超级管理员",
+        "rights":{
+            "project":"*",
+            "member":"*"
+        }
+    },
+    "normal":{
+        "name":"普通用户",
+        "rights":{
+            "project":"",
+            "member":"*"
+        }
+    }
+}
+}

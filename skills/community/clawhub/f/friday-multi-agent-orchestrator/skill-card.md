@@ -1,46 +1,52 @@
-## Description: <br>
-Designs multi-agent team roles, communication patterns, task distribution, conflict resolution, and priority management for agent teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design, build, and manage multi-agent teams with role templates, communication patterns, task distribution, escalation rules, and priority management.
 
-## Publisher: <br>
-[miio-jinglin](https://clawhub.ai/user/miio-jinglin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miio-jinglin](https://clawhub.ai/user/miio-jinglin)
 
-## Use Case: <br>
-Developers, solo founders, and operators use this skill to design role-specialized agent teams, choose coordination patterns, and set up task tracking and escalation rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared directories can expose task data or coordination state to agents that do not need it. <br>
-Mitigation: Decide which agents can access each shared directory before using the skill operationally. <br>
-Risk: Agent teams may prepare or request sensitive actions such as deployments, publishing, finance, or account changes. <br>
-Mitigation: Require human approval for sensitive actions and keep strategic decisions human-in-the-loop. <br>
-Risk: Heartbeat or cron jobs can continue running without clear ownership or review. <br>
-Mitigation: Track scheduled monitoring jobs, owners, and review cadence before enabling them. <br>
+## Use Case:
 
+Developers, operators, and solo founders use this skill to design coordinated AI-agent teams, define agent responsibilities, establish communication protocols, and manage execution across strategic, tactical, and operational layers.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/miio-jinglin/friday-multi-agent-orchestrator) <br>
-- [Skill definition](SKILL.md) <br>
-- [Team Roles](references/team-roles.md) <br>
-- [Communication Patterns](references/communication-patterns.md) <br>
-- [Task Management](references/task-management.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with templates, tables, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no hidden executable behavior reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may propose shared directories, agent rules files, cross-session messages, or scheduled jobs that can affect future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed coordination files, rules, shared workspace changes, cross-session messages, and schedules before applying them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/miio-jinglin/skills/friday-multi-agent-orchestrator)
+- [Team Roles](references/team-roles.md)
+- [Communication Patterns](references/communication-patterns.md)
+- [Task Management](references/task-management.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with role templates, tables, file structure examples, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewed orchestration plans and templates rather than executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

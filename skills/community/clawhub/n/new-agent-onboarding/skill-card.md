@@ -1,41 +1,57 @@
-## Description: <br>
-New Agent Onboarding provides a training manual that teaches agents workspace management, user communication, error handling, tool-use practices, and self-improvement routines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides onboarding and multi-agent training guidance for agents, including communication norms, workspace boundaries, error handling, memory practices, and training-manual templates.
 
-## Publisher: <br>
-[harrot90-code](https://clawhub.ai/user/harrot90-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrot90-code](https://clawhub.ai/user/harrot90-code)
 
-## Use Case: <br>
-Developers and agent operators use this skill to onboard new agents with consistent behavior expectations, communication rules, local-memory practices, and review routines. It is most relevant when creating or supervising sub-agents that need a shared training manual. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill teaches agents to maintain local memory and user-profile files that may contain private user context. <br>
-Mitigation: Confirm which local agent folders may be changed before use, and do not copy USER.md or similar profile files into sub-agent workspaces unless the user has approved that scope. <br>
-Risk: Training workflows can lead agents to create or update sub-agent configuration and memory files. <br>
-Mitigation: Apply changes only inside explicitly authorized agent workspaces and review generated file changes before deploying trained agents. <br>
+## Use Case:
 
+Developers and agent operators use this skill to onboard new agents, maintain shared training manuals, and align multi-agent teams around communication, configuration, memory, and review practices.
 
-## Reference(s): <br>
-- [Training manual template](artifact/references/training-manual-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/harrot90-code/new-agent-onboarding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance and training templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to create or update local agent memory, profile, and training files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agent memory and profile files may store sensitive user or operational information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Define what may be stored before use, require approval before memory or profile updates, and review generated memory entries for sensitive data.
+
+Risk: Copying full user profiles to sub-agents can broaden access to private context.
+
+Mitigation: Share only the minimum user context needed for each sub-agent and avoid copying full USER.md files by default.
+
+Risk: Cross-agent experience sharing can expose information to unintended destinations.
+
+Mitigation: Disable or tightly control EvoMap/Capsule sharing unless the destination and payload are explicit.
+
+## Reference(s):
+
+- [Training manual template](references/training-manual-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists and configuration-file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; outputs are agent-facing instructions and reusable onboarding templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

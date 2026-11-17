@@ -1,39 +1,50 @@
-## Description: <br>
-Lobster Fork Mode helps agents spawn subagents with concise parent-session context when the subagent needs project background, prior decisions, or user preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lobster Fork Mode helps agents spawn subagents with selected parent-session context so the subagent can preserve task goals, relevant files, decisions, and preferences.
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create fork-style subagent prompts that carry task goals, relevant files, decisions, user preferences, and project structure from a parent session. It is best suited for subagent work that depends on shared context rather than isolated mechanical tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spawned subagents may receive parent-session or MEMORY.md-derived context that is broader than the task requires. <br>
-Mitigation: Share only task-relevant context, exclude secrets and unrelated memory, and ask before including MEMORY.md-derived preferences. <br>
-Risk: Summarized parent context can omit constraints or introduce misleading assumptions for the subagent. <br>
-Mitigation: Review the fork prompt before spawning the subagent and keep task goals, constraints, files, and decisions concise and explicit. <br>
+## Use Case:
 
+Developers and agent operators use this skill when a subagent needs parent-session context, including task goals, relevant file paths, code snippets, decisions, and selected preferences. It is most useful for project-aware or decision-aware subagent work rather than independent mechanical tasks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with structured prompt templates and spawn configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes suggested context limits and truncation guidance for inherited parent-session context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Selected parent-session context can include private file paths, code snippets, decisions, or memory-derived preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and limit the context before spawning subagents, and avoid tasks involving secrets or private memory unless sharing is explicitly acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaofei860208-source/skills/lobster-fork-mode)
+- [ClawHub publisher profile](https://clawhub.ai/user/wangxiaofei860208-source)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with prompt templates and inline command-style blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes suggested context-size limits and truncation strategies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

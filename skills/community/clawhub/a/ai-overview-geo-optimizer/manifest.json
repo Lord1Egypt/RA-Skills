@@ -1,0 +1,16 @@
+{
+  "name": "ai-overview-geo-optimizer",
+  "version": "1.0.0",
+  "description": "A high-performance AI Agent skill designed to optimize articles for Google AI Overviews, Perplexity AI, and ChatGPT Search using GEO principles.",
+  "author": "Muhammad Uzair Abid",
+  "tags": [
+    "seo",
+    "geo",
+    "ai-overviews",
+    "clawhub-skill",
+    "search-engine-optimization",
+    "prompt-engineering"
+  ],
+  "entry": "skill.md",
+  "license": "MIT"
+}

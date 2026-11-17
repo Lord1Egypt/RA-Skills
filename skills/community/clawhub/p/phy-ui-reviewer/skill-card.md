@@ -1,46 +1,56 @@
-## Description: <br>
-Reviews frontend UI code for visual consistency, design-system compliance, component structure, responsive behavior, and UI performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews frontend UI code for visual consistency, design-system compliance, component structure, responsive behavior, and UI performance using a Chinese-oriented checklist and report format.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and frontend reviewers use this skill to inspect UI code for design-system compliance, responsive layout issues, visual consistency, component structure, and UI performance concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent needs access to the UI files being reviewed, which may expose private source code during review. <br>
-Mitigation: Limit review scope to the required files and follow the user's or organization's data-handling requirements for private code. <br>
-Risk: The generated UI review may contain incorrect or context-insensitive recommendations. <br>
-Mitigation: Have a developer or designer validate findings before applying changes to production code. <br>
-Risk: The default report format is Chinese, which may not match the user's preferred review language. <br>
-Mitigation: Ask the agent or host environment to use the desired language when a different report language is needed. <br>
+## Use Case:
 
+Frontend developers, UI engineers, and design-system reviewers use this skill during code review to identify visual consistency, responsive design, component-structure, and UI performance issues before release.
 
-## Reference(s): <br>
-- [Canlah AI](https://canlah.ai) <br>
-- [Front-End Checklist](https://github.com/thedaviddias/Front-End-Checklist) <br>
-- [React Code Review Best Practices](https://pagepro.co/blog/18-tips-for-a-better-react-code-review-ts-js/) <br>
-- [Vue Style Guide](https://v2.vuejs.org/v2/style-guide/) <br>
-- [USWDS Design Tokens](https://designsystem.digital.gov/design-tokens/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown UI review report with issue severity, file references, suggested fixes, and checklist summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports follow the skill's Chinese-language template unless the user or host requests another language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill produces advisory UI review findings and suggested fixes that may be incomplete or context-dependent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a developer or design-system owner verify findings before applying changes to production UI.
+
+Risk: The checklist and example report are Chinese-oriented, which may reduce clarity for non-Chinese users.
+
+Mitigation: Ask the agent to provide the review in the user's preferred language when needed.
+
+## Reference(s):
+
+- [Front-End Checklist](https://github.com/thedaviddias/Front-End-Checklist)
+- [React Code Review Best Practices](https://pagepro.co/blog/18-tips-for-a-better-react-code-review-ts-js/)
+- [Vue Style Guide](https://v2.vuejs.org/v2/style-guide/)
+- [USWDS Design Tokens](https://designsystem.digital.gov/design-tokens/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown UI review report with issue severity sections, checklist summaries, file references, and suggested fixes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese headings and review labels unless the user asks for another language.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

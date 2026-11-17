@@ -1,53 +1,66 @@
-## Description: <br>
-Longbridge platform expert for investment analysis and developer tasks across market analysis, portfolio queries, Longbridge CLI usage, Python and Rust SDK development, MCP setup, and LLM/RAG documentation integration for HK, US, CN, SG, and Crypto markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Longbridge helps agents use Longbridge CLI, MCP, Python and Rust SDKs, and documentation for market data, portfolio queries, trading workflows, and financial research.
 
-## Publisher: <br>
-[huacnlee](https://clawhub.ai/user/huacnlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huacnlee](https://clawhub.ai/user/huacnlee)
 
-## Use Case: <br>
-External users, developers, and engineers use this skill to retrieve Longbridge market data, analyze securities and portfolios, configure Longbridge MCP access, and write Longbridge CLI or SDK workflows. It supports investment research and brokerage-related automation, including quote, news, filing, position, and order-oriented tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward sensitive portfolio access and brokerage actions. <br>
-Mitigation: Use read-only scopes where possible and require explicit user confirmation before any account or trade action. <br>
-Risk: Installation examples may involve remote scripts or live order examples. <br>
-Mitigation: Inspect remote install scripts before execution and avoid running live order examples unchanged. <br>
-Risk: OAuth authorizations may persist after the immediate task is complete. <br>
-Mitigation: Review and revoke unused Longbridge authorizations when they are no longer needed. <br>
+## Use Case:
 
+Developers, analysts, and AI-agent users use this skill to retrieve market data and news, inspect portfolios, configure Longbridge MCP or CLI access, and write Python or Rust integrations for quote and trade workflows.
 
-## Reference(s): <br>
-- [Longbridge Official Docs](https://open.longbridge.com) <br>
-- [Longbridge llms.txt](https://open.longbridge.com/llms.txt) <br>
-- [CLI Overview](references/cli/overview.md) <br>
-- [MCP Server](references/mcp.md) <br>
-- [Python SDK Overview](references/python-sdk/overview.md) <br>
-- [Python SDK QuoteContext](references/python-sdk/quote-context.md) <br>
-- [Python SDK TradeContext](references/python-sdk/trade-context.md) <br>
-- [Rust SDK Overview](references/rust-sdk/overview.md) <br>
-- [Rust SDK QuoteContext](references/rust-sdk/quote-context.md) <br>
-- [Rust SDK TradeContext](references/rust-sdk/trade-context.md) <br>
-- [LLM and AI Integration](references/llm.md) <br>
-- [Setup and Authentication](references/setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, code snippets, configuration examples, and concise analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to call Longbridge CLI, SDK, or MCP tools and to inspect current CLI help before relying on command syntax.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security summary flags an unsafe remote installer pattern.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Homebrew or verified release artifacts over the documented curl-to-shell installer.
+
+Risk: The security summary flags broad access to sensitive financial and trading workflows.
+
+Mitigation: Approve only the OAuth scopes required for the task and periodically revoke unused authorizations.
+
+Risk: The skill can support order placement, cancellation, watchlist changes, and other account-impacting actions.
+
+Mitigation: Require explicit user confirmation before any order placement, cancellation, watchlist change, or sensitive portfolio/account retrieval.
+
+## Reference(s):
+
+- [Longbridge OpenAPI Documentation](https://open.longbridge.com)
+- [Longbridge llms.txt](https://open.longbridge.com/llms.txt)
+- [Longbridge CLI Overview](references/cli/overview.md)
+- [Longbridge MCP Server](references/mcp.md)
+- [Longbridge Python SDK Overview](references/python-sdk/overview.md)
+- [Longbridge Rust SDK Overview](references/rust-sdk/overview.md)
+- [LLM and Markdown Integration](references/llm.md)
+- [Longbridge Python SDK Documentation](https://longbridge.github.io/openapi/python/index.html)
+- [Longbridge Rust SDK Documentation](https://longbridge.github.io/openapi/rust/longbridge/)
+- [ClawHub Skill Page](https://clawhub.ai/huacnlee/skills/xxxxxx11124124124-developers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, shell commands, JSON snippets, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include financial analysis and executable trading workflow examples; users should verify outputs before acting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

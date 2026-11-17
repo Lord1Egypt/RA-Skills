@@ -1,45 +1,60 @@
-## Description: <br>
-Backs up key OpenClaw configuration, workspace, skill, memory, cron, and device files, with dry-run, JSON output, retention cleanup, and recovery guide support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OC Backup helps OpenClaw users back up key configuration files, workspace data, custom skills, memory, cron data, and device settings with full or category-specific backup modes.
 
-## Publisher: <br>
-[neverland83](https://clawhub.ai/user/neverland83) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neverland83](https://clawhub.ai/user/neverland83)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to create local backups of OpenClaw configuration, workspace files, custom skills, memory, cron jobs, and device data before changes or on a schedule. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup archives can include sensitive OpenClaw data such as .env secrets, device data, memory, and user configuration. <br>
-Mitigation: Keep backups private, restrict filesystem access, and encrypt archives or storage locations when sensitive files are included. <br>
-Risk: Broad conversational triggers or default full backups may copy more OpenClaw data than intended. <br>
-Mitigation: Run the skill with --dry-run first and choose explicit backup categories when only part of the OpenClaw state should be copied. <br>
-Risk: Retention cleanup can delete older backup directories when --retain is used. <br>
-Mitigation: Preview cleanup with --clean --retain <days> --dry-run before allowing deletion. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to create local backups of critical OpenClaw configuration, data, and custom skill files before upgrades, major edits, or scheduled maintenance.
 
-## Reference(s): <br>
-- [Backup File List](artifact/references/FILE_LIST.md) <br>
-- [Recovery Guide Template](artifact/references/RECOVERY_GUIDE_TEMPLATE.md) <br>
-- [Configuration Example](artifact/config/config.example.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/neverland83/oc-backup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Compressed tar.gz backup, JSON manifest, Markdown recovery guide, and optional JSON or console text summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports dry-run previews, category-specific backups, custom output directories, and retention cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and SKILL.md; package.json reports 1.0.2) <br>
+Risk: Backups may contain API keys, tokens, private memory, device credentials, and custom skill source in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store backup archives in a private encrypted location and avoid shared or synced folders unless the backup is encrypted.
+
+Risk: A default full backup can include more sensitive OpenClaw data than a specific maintenance task requires.
+
+Mitigation: Use category-specific backup options or dry-run previews when secrets, memory, device data, or custom skill source are not needed.
+
+Risk: Retention cleanup can remove older backup directories from the selected output location.
+
+Mitigation: Run cleanup with dry-run first and confirm the output directory and retention period before deleting old backups.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/neverland83/skills/oc-backup)
+- [Backup File List](references/FILE_LIST.md)
+- [Recovery Guide Template](references/RECOVERY_GUIDE_TEMPLATE.md)
+- [Configuration Example](config/config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [CLI text or JSON plus tar.gz backup archives, JSON manifests, and Markdown recovery guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports full or category-specific backup modes, dry-run previews, custom output directories, and retention-based cleanup.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence release metadata, SKILL.md, and scripts/backup.js; artifact/package.json reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

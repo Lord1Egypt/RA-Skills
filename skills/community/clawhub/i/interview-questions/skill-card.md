@@ -1,41 +1,54 @@
-## Description: <br>
-Generates multi-round interview question banks from job requirements, including technical, business, soft-skill assessment areas, scoring criteria, and follow-up prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language interview question banks from job requirements, covering technical, business, and soft-skill assessment with scoring criteria and follow-up techniques.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-Recruiters, hiring managers, and interview panel designers use this skill to draft structured interview question banks for technical, product, sales, operations, management, and general roles. It helps organize interview rounds, focus areas, follow-up techniques, and scoring references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated interview questions may be irrelevant, unfair, or legally inappropriate for a specific hiring context. <br>
-Mitigation: Review generated question banks for role relevance, fairness, and legal compliance before using them in hiring. <br>
-Risk: Tailoring interview questions may invite unnecessary candidate personal data in prompts. <br>
-Mitigation: Avoid entering candidate personal data that is not needed for interview question drafting. <br>
+## Use Case:
 
+Recruiters, hiring managers, and interviewers use this skill to generate Chinese-language interview question sets from job title and responsibilities, selected interview rounds, and focus areas. The generated material can include role-specific questions, follow-up prompts, and scoring criteria.
 
-## Reference(s): <br>
-- [Question Bank Reference](artifact/references/question_bank.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/huajianjiu000/interview-questions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown question bank with interview sections, questions, follow-up guidance, and scoring criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content should be reviewed for role relevance, fairness, and legal compliance before hiring use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version information) <br>
+Risk: Optional resume or job-description input may contain personal or business-sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the information needed to generate interview questions and avoid including unnecessary candidate or company-sensitive details.
+
+Risk: Generated interview questions and scoring criteria may not fully match role requirements or local hiring policy.
+
+Mitigation: Review the generated question set before use and adapt it to the job profile, interview stage, and applicable hiring guidelines.
+
+## Reference(s):
+
+- [Question Bank Reference](artifact/references/question_bank.md)
+- [ClawHub Skill Page](https://clawhub.ai/huajianjiu000/skills/interview-questions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown interview question bank with tables and scoring guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language content; may incorporate optional job-description or resume input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,61 @@
-## Description: <br>
-使用内置 Rust 引擎审计待安装的 skill 包或归档，并可选桥接外部 scanner。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits local skill packages or archives with a bundled scanner and optional external scanner integration.
 
-## Publisher: <br>
-[cyzlmh](https://clawhub.ai/user/cyzlmh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyzlmh](https://clawhub.ai/user/cyzlmh)
 
-## Use Case: <br>
-Developers and operators use this skill to run a local Rust-based scan of skill packages, archives, or release bundles before installation. It helps review engine findings, risk level, and installation readiness before trusting a package. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's main risk is the expected need to download and run a scanner binary. <br>
-Mitigation: Install only from a trusted release source, verify the documented SHA-256 checksum before running the binary, or build the scanner from source. <br>
-Risk: Optional upload and external-scanner modes add behavior beyond the default local scan. <br>
-Mitigation: Keep upload and external-scanner modes disabled unless deliberately configured, and scan only intended skill directories. <br>
+## Use Case:
 
+Developers and security reviewers use this skill before installing local skills, archives, or release bundles to generate scanner findings, risk levels, and a short installation conclusion. This package targets BCLinux 21 and older glibc Linux x64 environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyzlmh/cmic-skill-scanner-bclinux21-amd64) <br>
-- [Cisco Skill Scanner](https://github.com/cisco-ai-defense/skill-scanner.git) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local scan findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write local scan reports when an output directory is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.0 (source: server release metadata; binary build v0.9.0) <br>
+Risk: The install path may download and execute a native binary from mutable release metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and trusted release, verify the documented SHA-256 checksum before execution, or build the scanner from source.
+
+Risk: Server-resolved provenance is unavailable for this version.
+
+Mitigation: Do not infer provenance from repository links in the skill text; confirm the release host and source relationship before relying on the bundled binary.
+
+Risk: External scanner mode is opt-in and may clone code or install dependencies when configured.
+
+Mitigation: Keep external scanner mode disabled unless explicitly needed, and review the selected scanner work directory and dependency installation path before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyzlmh/skills/cmic-skill-scanner-bclinux21-amd64)
+- [Publisher profile](https://clawhub.ai/user/cyzlmh)
+- [CMIC Skill Scanner source build instructions](https://gitee.com/random_player/cmic-skill-scanner.git)
+- [Cisco Skill Scanner optional external backend](https://github.com/cisco-ai-defense/skill-scanner.git)
+- [uv package manager documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and scanner findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local scan reports when an output directory is configured.]
+
+## Skill Version(s):
+
+0.9.0 (source: server release metadata; bundled binary reports v0.9.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

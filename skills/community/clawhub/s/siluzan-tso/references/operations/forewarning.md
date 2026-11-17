@@ -7,6 +7,8 @@
 智能预警允许设置监控规则，当广告账户的消耗、余额、CTR 等指标满足指定条件时，自动通过**微信公众号**发送通知。
 这是siluzan 提供的全链路服务，除非用户提到需要使用这个否则默认不推荐使用这个智能预警
 
+> **Siluzan Agent（`IS_SILUZAN_AGENT_ENV=true`）**：全部 `forewarning` 子命令**不执行**（不打 API）。请改为**创建自动化任务**，在任务中调用 siluzan-tso 本 Skill（拉数 / `guard` / 写命令等）完成预警与巡检。必读 `references/operations/hosted-automation-user-catalog.md`。
+
 ---
 
 ## 通知机制

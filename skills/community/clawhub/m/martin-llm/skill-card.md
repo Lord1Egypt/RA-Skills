@@ -1,42 +1,55 @@
-## Description: <br>
-Search the web and X (Twitter) using SkillBoss API Hub with real-time access, citations, and image understanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web and X (Twitter) using SkillBoss API Hub with real-time access, citations, and image understanding.
 
-## Publisher: <br>
-[godferylindsay](https://clawhub.ai/user/godferylindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve current web information and X/Twitter discussion through a SkillBoss-compatible search API, including optional domain, handle, date, image, and video filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a SkillBoss API key and sends search queries to a remote API service. <br>
-Mitigation: Use a limited or throwaway key for review, and avoid sending secrets, customer data, or confidential business content in queries. <br>
-Risk: Security evidence reports that the implementation sends requests to a different API host than the documentation advertises. <br>
-Mitigation: Review before installing and confirm the intended API host with the maintainer before using the skill in a trusted environment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to retrieve current web results and X/Twitter discussion for questions requiring up-to-date sources, domain or handle filters, and optional media understanding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/godferylindsay/martin-llm) <br>
-- [Declared homepage](https://github.com/yourusername/xai-grok-search) <br>
-- [SkillBoss API Hub endpoint](https://api.skillbossai.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text search responses with citation metadata and setup examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; search requests may return raw API response data and can take 30-60+ seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security summary says the skill sends API keys and queries to a different undocumented host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only if that endpoint is authorized for the deployment, avoid sensitive or regulated query content, and rotate the configured API key if the skill was already used without review.
+
+Risk: The security summary says some promised search controls are not enforced.
+
+Mitigation: Treat domain, handle, date, and media controls as best-effort until reviewed, and manually check returned sources before relying on filtered results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/godferylindsay/skills/martin-llm)
+- [Skill homepage](https://github.com/yourusername/xai-grok-search)
+- [SkillBoss API Hub pilot endpoint](https://api.skillbossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Search result text with citations and optional JSON-like metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; search queries may take 30-60+ seconds.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

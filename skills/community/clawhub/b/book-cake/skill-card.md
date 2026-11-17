@@ -1,39 +1,53 @@
-## Description: <br>
-Book cake services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Cake helps an agent search for cake services, check availability, and create bookings through Lokuli MCP.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for cake services, check availability, and create bookings through Lokuli's MCP service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Booking creation sends customer contact details to Lokuli's external MCP service. <br>
-Mitigation: Confirm the provider, service, time, and contact details with the user before creating a booking. <br>
-Risk: Broad cake-service trigger scope may activate the skill for general cake-related requests. <br>
-Mitigation: Use the skill only when the user intends to search for or book cake services. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users use this skill to find cake providers, check service availability, and book cake services through Lokuli. Agents should use it when a user asks to find or book cake services.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON-RPC request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an external MCP service for cake search, availability checks, and booking creation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send cake search, booking details, and customer contact information to Lokuli.
+
+Mitigation: Use the skill only when the user is comfortable sharing those details with Lokuli, and confirm before sending personal information.
+
+Risk: The skill can create bookings without an explicit confirmation requirement in the artifact.
+
+Mitigation: Require user confirmation before creating any booking.
+
+## Reference(s):
+
+- [Book Cake ClawHub Page](https://clawhub.ai/edwardrodriguez703-design/skills/book-cake)
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Configuration]
+
+**Output Format:** [Markdown instructions with JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Lokuli MCP tools for search, availability checks, and booking creation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

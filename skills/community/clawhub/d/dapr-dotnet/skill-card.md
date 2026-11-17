@@ -1,37 +1,62 @@
-## Description: <br>
-Expertise in backend development using Dapr and .NET 7/8/9 to design, build, and optimize high-performance, maintainable microservice architectures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in building and adapting Dapr-enabled ASP.NET Core backends with layered architecture, reusable repositories and services, and consistent API responses.
 
-## Publisher: <br>
-[WesLon1987](https://clawhub.ai/user/WesLon1987) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weslon1987](https://clawhub.ai/user/weslon1987)
 
-## Use Case: <br>
-Developers and engineers use this skill for guidance and templates when building Dapr-based .NET microservices, including API setup, health checks, logging, data access, Swagger, CORS, and project structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backend templates include security-sensitive choices such as CORS with credentials, raw SQL helpers, database delete/update methods, logging destinations, and local Dapr/Redis/Consul settings. <br>
-Mitigation: Review and adapt these choices before production use; constrain CORS origins, validate SQL usage, protect logs, and replace local service endpoints with environment-specific configuration. <br>
+## Use Case:
 
+Developers use this skill to scaffold or adapt .NET microservices with Dapr components, four-layer separation, database repositories, service patterns, and API health checks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration, shell commands] <br>
-**Output Format:** [Markdown with C# and YAML code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated backend templates before production use, especially security-sensitive defaults.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Generated API defaults may allow overly broad cross-origin access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict CORS origins to approved clients before deployment.
+
+Risk: Raw SQL helpers can bypass repository safeguards or enable unsafe queries.
+
+Mitigation: Limit raw SQL access to reviewed repository code and require parameterized queries.
+
+Risk: Fixed zh-CN culture and local DEBUG sidecar startup may not fit every environment.
+
+Mitigation: Make culture configurable and approve any DEBUG helper that starts daprd locally.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/weslon1987/skills/dapr-dotnet)
+- [Project structure](references/project-structure.md)
+- [Dapr API setup](references/dapr-api-setup.md)
+- [Domain layer](references/domain-layer.md)
+- [Infrastructure layer](references/infrastructure-layer.md)
+- [Application and API results](references/result-application.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown with C#, YAML, and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Templates require adaptation and review before deployment.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release; bundled skill frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,64 @@
-## Description: <br>
-ClawTune helps users get AI-generated original music playlists and, when appropriate, turn emotional or story-driven ideas into a custom song. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawTune helps users receive AI-generated original music playlists and, when appropriate, turn a mood, story, gift idea, or draft concept into a song through the ClawTune service.
 
-## Publisher: <br>
-[spirits001](https://clawhub.ai/user/spirits001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spirits001](https://clawhub.ai/user/spirits001)
 
-## Use Case: <br>
-External users use this skill to find mood-matched AI original music playlists, shape a song idea from emotions, stories, gifts, or commemorative moments, and recover order or result status after continuing on the ClawTune web flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends music requests, lyrics, story details, and order metadata to the ClawTune remote service. <br>
-Mitigation: Use it only for creative content the user is comfortable sharing with that service, and avoid entering sensitive personal information unless necessary. <br>
-Risk: The skill stores persistent access and refresh tokens under the local OpenClaw directory and can print authentication material in some modes. <br>
-Mitigation: Treat generated token files as secrets, avoid auth print mode in shared logs or transcripts, and review local state files before sharing diagnostics. <br>
+## Use Case:
 
+External users use this skill to request AI original playlists, shape emotional or gift-oriented music ideas, create drafts, continue to the ClawTune order flow, and recover finished result pages after asynchronous generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spirits001/clawtune) <br>
-- [ClawTune service](https://clawtune.aqifun.com) <br>
-- [API playbook](references/api-playbook.md) <br>
-- [Conversation playbook](references/conversation-playbook.md) <br>
-- [Scenario playbook](references/scenario-playbook.md) <br>
-- [Usage examples](examples/usage-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Natural-language responses with optional Markdown links and shell-backed API workflow actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist session and authentication state locally while using the ClawTune remote service for playlist, draft, order, and recovery workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores and reuses local ClawTune authentication and session data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict permissions on ~/.openclaw/clawtune and avoid exposing authentication output or local state in chat, logs, or shared terminals.
+
+Risk: Playlist prompts, draft details, order identifiers, and creative content are sent to an external ClawTune service.
+
+Mitigation: Avoid entering secrets or sensitive personal stories unless the user intends to share that content with ClawTune.
+
+Risk: The service base URL can be overridden through CLAWTUNE_BASE_URL.
+
+Mitigation: Use the documented ClawTune production endpoint and do not set CLAWTUNE_BASE_URL to untrusted hosts.
+
+## Reference(s):
+
+- [ClawTune ClawHub Skill Page](https://clawhub.ai/spirits001/skills/clawtune)
+- [ClawTune API Playbook](references/api-playbook.md)
+- [ClawTune Conversation Playbook](references/conversation-playbook.md)
+- [ClawTune Scenario Playbook](references/scenario-playbook.md)
+- [ClawTune curl templates: core API calls](references/curl-api-calls.md)
+- [ClawTune curl templates: authentication bootstrap](references/curl-auth.md)
+- [ClawTune curl templates: recovery and tracing](references/curl-recovery.md)
+- [ClawTune service](https://clawtune.aqifun.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational text and Markdown, with optional shell command execution and JSON API responses when the host supports scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may create or update local ClawTune session and authentication files, call ClawTune APIs, and return playlist, order, continuation, status, or result-page guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

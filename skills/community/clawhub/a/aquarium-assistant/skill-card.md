@@ -1,44 +1,55 @@
-## Description: <br>
-Aquarium Assistant helps small home aquarium keepers plan feeding and water changes, check fish and shrimp compatibility, choose plants and hardscape, interpret basic disease or water-quality symptoms, and generate care guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aquarium Assistant helps small home aquarium beginners plan feeding and water changes, check fish and shrimp compatibility, configure themed tanks, classify aquascaping materials, and get advisory support for fish illness, water quality, and care calculations.
 
-## Publisher: <br>
-[kingcodingking](https://clawhub.ai/user/kingcodingking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingcodingking](https://clawhub.ai/user/kingcodingking)
 
-## Use Case: <br>
-External aquarium hobbyists and small home aquarium beginners use this skill to get structured care plans, stocking compatibility guidance, disease-triage prompts, water-quality reminders, and setup recommendations for small tanks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fish disease diagnosis and treatment suggestions may be incomplete or mistaken. <br>
-Mitigation: Treat diagnosis and medication guidance as advisory, and verify serious illness or treatment decisions with trusted aquarium references, manual observation, or a qualified expert. <br>
-Risk: Water-quality alerts or sensor-based interpretations may be inaccurate or stale. <br>
-Mitigation: Confirm unusual readings with manual water tests and inspect aquarium equipment before acting on alerts. <br>
-Risk: Stocking, native-fish, or compatibility recommendations may not account for local law or individual aquarium conditions. <br>
-Mitigation: Check species legality, tank size, water parameters, and animal behavior before adding fish, shrimp, plants, or hardscape. <br>
+## Use Case:
 
+External users and aquarium hobbyists use this skill for Chinese-language guidance on small home aquarium setup, fish compatibility, routine care, water-quality checks, and fish-illness triage. The skill is most suitable as an advisory assistant for planning and troubleshooting, not as a definitive veterinary diagnosis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kingcodingking/aquarium-assistant) <br>
-- [Fish database](references/fish-database.md) <br>
-- [Output templates](templates/output-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style care guidance, checklists, compatibility summaries, and reminder plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no hidden execution, data access, or abusive behavior was found in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Fish illness and treatment guidance could be mistaken for a definitive diagnosis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a starting point for triage and confirm serious or persistent issues with a qualified aquarium or animal-care expert.
+
+Risk: Photo and sensor-data features may involve sensitive user-submitted aquarium images or device readings.
+
+Mitigation: Share photos or sensor data only when the host application clearly explains processing, retention, and deletion behavior.
+
+## Reference(s):
+
+- [Common Fish Database](artifact/references/fish-database.md)
+- [Output Templates](artifact/templates/output-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/kingcodingking/skills/aquarium-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style natural-language responses with structured recommendations, compatibility checks, care plans, and diagnostic prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language responses; fish illness, treatment, photo, and sensor-data guidance should be treated as advisory.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

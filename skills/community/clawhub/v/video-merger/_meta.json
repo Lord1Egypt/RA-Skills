@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn71cegdvn6ps8v9s9hge0tfdh826kxx",
-  "slug": "video-merger",
-  "version": "1.1.0",
-  "publishedAt": 1772882248292
+  "name": "video-merger",
+  "version": "1.0.0",
+  "description": "多片段短视频自动拼接工具，支持按文件名排序、统一参数、转场效果、分块/完整拼接",
+  "author": "mhjz",
+  "tags": ["视频处理", "剪辑", "批量处理", "短剧生产"],
+  "dependencies": ["ffmpeg", "python3"],
+  "minOpenClawVersion": "0.8.0"
 }

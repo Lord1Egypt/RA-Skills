@@ -1,42 +1,59 @@
-## Description: <br>
-SlonAide helps agents query, search, and summarize AiDeNote recording notes, including transcripts, AI summaries, tags, folders, and optional remote OpenClaw bridge setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SlonAide lets an agent query recording notes, retrieve transcripts and AI summaries, and set up an AiDeNote remote bridge for local OpenClaw access.
 
-## Publisher: <br>
-[ajingmiao](https://clawhub.ai/user/ajingmiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ajingmiao](https://clawhub.ai/user/ajingmiao)
 
-## Use Case: <br>
-Developers and end users connect OpenClaw to SlonAide or AiDeNote accounts to retrieve recording-note lists, view note details, search notes, and summarize recent recordings. Users who need mobile remote access can optionally install and check a local AiDeNote OpenClaw bridge on macOS or Windows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional remote bridge downloads and runs installer scripts, creates login persistence, and can access the user's SlonAide API key and local OpenClaw connection. <br>
-Mitigation: Install the bridge only when remote AiDeNote access is needed, review or verify installer sources first, understand the created auto-start service, and run it only on machines where exposing those credentials and the local OpenClaw connection is acceptable. <br>
-Risk: The skill requires sensitive API credentials for note access. <br>
-Mitigation: Use a dedicated SlonAide API key, store it through OpenClaw configuration, rotate it if exposed, and avoid sharing full transcript or note output in contexts where private recordings should not be disclosed. <br>
+## Use Case:
 
+External users and developers who use SlonAide or AiDeNote use this skill to search and review recording notes, transcripts, AI-generated summaries, tags, and processing status from an OpenClaw agent. Users can also install and check a phone-to-local-OpenClaw bridge on macOS or Windows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ajingmiao/slonaide) <br>
-- [AiDeNote Web App](https://h5.aidenote.cn/) <br>
-- [SlonAide Web App](https://h5.slonaide.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style text with structured note summaries, API status messages, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include truncated transcript text, AI summaries, note metadata, bridge status, and installation results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.3 (source: server release metadata) <br>
+Risk: Bridge setup downloads and runs external installer code and creates an auto-starting tunnel service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the bridge only when the user trusts SlonAide/AiDeNote and wants phone-to-local-OpenClaw connectivity; review installer URLs and service behavior before use.
+
+Risk: Bridge setup passes API credentials to installer-controlled code and diagnostic output may expose key or token fragments.
+
+Mitigation: Use a least-privilege API key, avoid sharing diagnostic output publicly, and rotate credentials if logs or terminal output may have exposed secrets.
+
+Risk: Custom installer, API, tunnel, or relay URLs can redirect setup or traffic to endpoints outside the expected service.
+
+Mitigation: Use the default service URLs unless the user controls the replacement endpoints.
+
+## Reference(s):
+
+- [ClawHub SlonAide Skill Page](https://clawhub.ai/ajingmiao/skills/slonaide)
+- [SlonAide Web App](https://h5.slonaide.cn/)
+- [AiDeNote Web App](https://h5.aidenote.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration guidance]
+
+**Output Format:** [Markdown-style text with command snippets and structured note summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include truncated transcripts, AI summaries, note metadata, bridge installation status, and diagnostic messages.]
+
+## Skill Version(s):
+
+3.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

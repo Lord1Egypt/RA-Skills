@@ -1,0 +1,5 @@
+{
+  "schema": 1,
+  "notes": "Candidates are discovered, not safety-verified. Explicitly verify and set enabled=true; default exits BLOCKED.",
+  "checks": []
+}

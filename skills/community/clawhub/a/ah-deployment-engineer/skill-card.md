@@ -1,38 +1,48 @@
-## Description: <br>
-Expert deployment engineer specializing in CI/CD pipelines, release automation, deployment strategies, zero-downtime releases, and rapid rollback capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert deployment engineer specializing in CI/CD pipelines, release automation, and deployment strategies. Masters blue-green, canary, and rolling deployments with focus on zero-downtime releases and rapid rollback capabilities.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and deployment engineers use this skill to assess, design, and improve CI/CD pipelines, release automation, rollback procedures, GitOps workflows, and production deployment strategies.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Deployment guidance can affect production systems, secrets, DNS, traffic routing, rollback behavior, and release safety.
+
+Mitigation: Review proposed changes before applying them and require explicit approval for production-affecting actions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, DevOps engineers, SREs, and platform teams use this skill for guidance on CI/CD pipeline design, release automation, progressive delivery, rollback planning, GitOps workflows, and deployment observability. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Deployment, infrastructure, DNS, database, secret-handling, rollback, or production changes can have high operational impact if applied incorrectly. <br>
-Mitigation: Review proposed changes before applying them and require explicit approval for live environments. <br>
+**Output Format:** [Markdown with deployment plans, pipeline guidance, configuration examples, and command snippets as needed]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-deployment-engineer) <br>
+**Other Properties Related to Output:** [May include review checklists, rollout plans, rollback guidance, CI/CD configuration, and operational recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with code, shell command, and configuration examples as needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance skill; outputs should be reviewed before use in live deployment environments.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

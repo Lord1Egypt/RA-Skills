@@ -1,43 +1,60 @@
-## Description: <br>
-Helps an agent use the xflows CLI to manage EVM wallets, query bridge routes, estimate fees, send cross-chain or same-chain token transfers, check balances, and track transaction status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-chain bridge operations using the xflows CLI (Wanchain XFlows) for wallet management, route discovery, quotes, cross-chain sends, same-chain transfers, status tracking, and address balance checks.
 
-## Publisher: <br>
-[lolieatapple](https://clawhub.ai/user/lolieatapple) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lolieatapple](https://clawhub.ai/user/lolieatapple)
 
-## Use Case: <br>
-Developers and crypto operators use this skill to guide agent-driven xflows CLI workflows for EVM wallet management, route discovery, bridge quotes, cross-chain transfers, same-chain token transfers, balance checks, and transaction tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet private keys or recovery details can be exposed through wallet import or wallet show operations. <br>
-Mitigation: Use fresh low-balance wallets, enable wallet encryption, avoid importing main private keys, and avoid wallet show unless recovery is required. <br>
-Risk: Cross-chain and same-chain sends are irreversible blockchain transactions that can transfer funds to the wrong chain, token, or recipient. <br>
-Mitigation: Run dry-runs first and manually confirm chain IDs, token contracts, recipient, amount, fees, slippage, and RPC before real transactions. <br>
-Risk: The skill depends on the external xflows CLI and package source. <br>
-Mitigation: Verify the xflows package source and version before use and keep transaction approvals scoped to the intended route. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to prepare and execute EVM cross-chain bridge transactions, same-chain token transfers, and balance checks through the xflows CLI.
 
-## Reference(s): <br>
-- [XFlows CLI](https://github.com/wandevs/xflows-cli) <br>
-- [XFlows CLI Complete Command Reference](references/commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may create wallet files, query balances, dry-run transfers, or broadcast blockchain transactions through the xflows CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill can give an agent sensitive wallet and transaction authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only test or low-value wallets, require dry runs and explicit approval before real sends, and avoid granting broader wallet access than the task needs.
+
+Risk: Private keys or wallet passwords may be exposed through chat, shell history, or command output.
+
+Mitigation: Avoid pasting private keys or wallet passwords into chat or command arguments, and run wallet key export commands only when intentionally needed in a protected environment.
+
+Risk: The xflows CLI dependency may change behavior or provenance across versions.
+
+Mitigation: Pin and verify the xflows CLI source and version before use.
+
+## Reference(s):
+
+- [XFlows CLI command reference](artifact/references/commands.md)
+- [xflows CLI](https://github.com/wandevs/xflows-cli)
+- [ClawHub skill page](https://clawhub.ai/lolieatapple/skills/xflows-bridge-skills)
+- [Publisher profile](https://clawhub.ai/user/lolieatapple)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and structured CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run xflows commands that create wallets, inspect balances, quote bridge routes, submit transactions, and poll status.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

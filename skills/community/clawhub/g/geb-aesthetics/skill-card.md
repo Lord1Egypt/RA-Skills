@@ -1,43 +1,56 @@
-## Description: <br>
-Generates and validates multi-layered, multi-modal creative narratives using recursive constraints inspired by Godel, Escher, and Bach principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and validates recursive, multi-modal creative narratives using a five-layer specification system inspired by Godel, Escher, and Bach.
 
-## Publisher: <br>
-[weiyangzen](https://clawhub.ai/user/weiyangzen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[weiyangzen](https://clawhub.ai/user/weiyangzen)
 
-## Use Case: <br>
-Developers, creative technologists, and media teams use this skill to design, scaffold, and validate multi-layer creative projects across narrative, audio, and visual modes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The initializer creates project directories and writes a README in the selected project path. <br>
-Mitigation: Run initialization only in a new or intended project directory and review generated files before adding existing work. <br>
-Risk: Creative validation outputs can be mistaken for definitive quality or safety guarantees. <br>
-Mitigation: Use generated consistency checks as planning guidance and keep human review in the release workflow. <br>
+## Use Case:
 
+Creative practitioners, developers, and agents use this skill to design stories, films, games, music, or visual narratives with recursive structure and cross-modal consistency checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/weiyangzen/geb-aesthetics) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [GEB Philosophy](artifact/docs/PHILOSOPHY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated project scaffolding] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local project directories, README files, layered specification folders, validation summaries, and export packaging guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Project initialization helpers create local folders and README files in the current workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run initialization only in the workspace where new creative project files should be created.
+
+Risk: Creative consistency checks may produce subjective guidance that does not match a project's artistic intent.
+
+Mitigation: Review generated specifications and consistency guidance before using them in production creative work.
+
+## Reference(s):
+
+- [GEB Aesthetics on ClawHub](https://clawhub.ai/weiyangzen/skills/geb-aesthetics)
+- [Skill Specification](SKILL.md)
+- [GEB Philosophy](docs/PHILOSOPHY.md)
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local project folders when initialization helpers are run.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

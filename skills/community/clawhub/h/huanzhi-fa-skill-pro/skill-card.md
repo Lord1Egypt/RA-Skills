@@ -1,50 +1,68 @@
-## Description: <br>
-A Chinese-first fundraising advisor for founders that diagnoses financing readiness, analyzes term-sheet risks, and provides Capital EQ negotiation and emotional-support guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language agent skill for OPC founders that supports fundraising readiness diagnosis, business-plan review, term-sheet analysis, policy matching, investor-readiness guidance, emotional support, and optional structured HTML reports.
 
-## Publisher: <br>
-[ai-innopower](https://clawhub.ai/user/ai-innopower) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-innopower](https://clawhub.ai/user/ai-innopower)
 
-## Use Case: <br>
-External founders and startup operators use this skill to assess fundraising readiness, interpret investor terms, prepare negotiation responses, and track financing progress. It is oriented toward Chinese-language startup fundraising scenarios and should not replace professional legal, accounting, investment, or financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide sensitive founder profiles, BP materials, diagnosis history, and term-sheet context that may be stored locally under data/users/. <br>
-Mitigation: Use redacted materials when possible, confirm how locally stored files are deleted, and avoid confidential uploads until storage and deletion expectations are clear. <br>
-Risk: Fundraising, investment, legal, and financial guidance may be incomplete, stale, or unsuitable for a user's specific deal. <br>
-Mitigation: Treat outputs as decision support only and review important financing, term-sheet, legal, tax, or accounting decisions with qualified professionals. <br>
-Risk: The security evidence notes broad triggers, scheduled follow-ups, and inconsistent audit claims in the artifact. <br>
-Mitigation: Review reminder and follow-up behavior before use, disable it where inappropriate, and rely on the marketplace security status rather than artifact audit claims. <br>
+## Use Case:
 
+External founders and startup teams use this skill to assess financing readiness, improve fundraising materials, review investor terms, match Chinese startup policies, and receive structured next-step guidance. It is especially focused on Chinese OPC and early-stage startup financing workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ai-innopower/huanzhi-fa-skill-pro) <br>
-- [Xiaping Coze distribution page](https://xiaping.coze.com/skill/b8e65963-a64b-4ffe-87ab-f85a31c615a4) <br>
-- [Output schemas](references/outputs-schema.md) <br>
-- [Configuration guide](references/config-guide.md) <br>
-- [Known limitations](references/known-limitations.md) <br>
-- [Failure handling](references/failure-handling.md) <br>
-- [Knowledge base](references/knowledge-base.md) <br>
-- [Response templates](references/response-templates.md) <br>
-- [Determinism details](references/determinism-details.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown-style Chinese responses with structured sections, plus JSON payloads for fundraising diagnosis and term-sheet analysis.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local profile and progress configuration, deterministic scoring paths, output validation with one retry, and fallback guidance for failure cases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.9.4 (source: server release evidence; artifact frontmatter and skill.json show 2.9.3) <br>
+Risk: Users may share confidential business plans, cap tables, term sheets, financials, or legal materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear data-handling language, ask users to redact sensitive files before sharing, and avoid retaining uploaded startup materials unless a secure intake process is documented.
+
+Risk: Hardcoded WeChat/email footer and off-platform document transfer can create privacy and support-channel risk.
+
+Mitigation: Make off-platform contact optional, document when it is used, and provide a secure intake path before requesting confidential documents.
+
+Risk: Curl-to-shell installation guidance can expose users to unverifiable installer behavior.
+
+Mitigation: Replace curl-to-shell setup with verifiable package or script steps, checksums, and instructions users can inspect before execution.
+
+Risk: Financing, legal, policy, and tax guidance may be mistaken for professional advice.
+
+Mitigation: Preserve visible disclaimers and route critical financing, legal, accounting, tax, and policy decisions to qualified professionals or official sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ai-innopower/skills/huanzhi-fa-skill-pro)
+- [Publisher profile](https://clawhub.ai/user/ai-innopower)
+- [User guide](artifact/docs/user-guide.md)
+- [Developer guide](artifact/docs/developer-guide.md)
+- [Output schema](artifact/references/outputs-schema.md)
+- [Known limitations](artifact/references/known-limitations.md)
+- [OPC policy database](artifact/references/opc-policy-db.md)
+- [HTML design specification](artifact/references/html-design-spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese Markdown responses with structured scoring tables, JSON-like report schemas, optional HTML report content, and inline command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include funding scores, risk flags, action plans, policy estimates, disclaimers, and optional report-generation guidance.]
+
+## Skill Version(s):
+
+3.1.0 (source: frontmatter, skill.json, _meta.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

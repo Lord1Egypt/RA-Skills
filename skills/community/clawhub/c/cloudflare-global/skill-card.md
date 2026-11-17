@@ -1,43 +1,57 @@
-## Description: <br>
-Cloudflare Global helps agents administer Cloudflare DNS, zone settings, cache, firewall and page rules, analytics, and tunnel operations through the legacy Global API Key flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cloudflare DNS and zone operations using a Global API Key. Use when the user needs to list, create, update, delete, export, or import DNS records, inspect zone settings or SSL mode, purge cache, inspect page rules or firewall rules, or work with Cloudflare tunnels using a Global API Key instead of a modern API token.
 
-## Publisher: <br>
-[ugvfpdcuwfnh](https://clawhub.ai/user/ugvfpdcuwfnh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugvfpdcuwfnh](https://clawhub.ai/user/ugvfpdcuwfnh)
 
-## Use Case: <br>
-Developers and operations engineers use this skill when an agent needs to inspect or change Cloudflare DNS records, zone settings, SSL mode, cache state, page rules, firewall rules, analytics, or Cloudflare tunnels using Global API Key authentication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Global API Key can authorize broad Cloudflare account changes. <br>
-Mitigation: Prefer a scoped Cloudflare API token where possible, keep credentials in local environment variables, and grant access only for the zones needed. <br>
-Risk: DNS deletes, DNS imports, SSL changes, full cache purges, and tunnel deletion can affect production traffic. <br>
-Mitigation: Test on non-production zones first and manually review these commands before allowing an agent to execute them. <br>
-Risk: The skill has no built-in confirmation step before destructive operations. <br>
-Mitigation: Require a human approval gate for delete, import, setting change, cache purge, and tunnel deletion operations. <br>
+## Use Case:
 
+Developers and engineers use this skill to perform Cloudflare zone, DNS, SSL, cache, firewall, page-rule, analytics, and tunnel operations through the legacy Global API Key flow.
 
-## Reference(s): <br>
-- [Cloudflare API endpoint used by this skill](https://api.cloudflare.com/client/v4) <br>
-- [ClawHub skill page](https://clawhub.ai/ugvfpdcuwfnh/cloudflare-global) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Cloudflare credentials in environment variables and command-line tools such as curl and jq for script execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can give an agent broad live Cloudflare control through a legacy Global API Key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when legacy Global API Key automation is intentionally required; prefer scoped API-token workflows when possible and run it only on trusted systems.
+
+Risk: Delete, import, SSL, cache purge, and tunnel operations can make disruptive live changes.
+
+Mitigation: Verify zone and record IDs before mutations and require an explicit confirmation process before high-impact operations.
+
+Risk: Cloudflare credentials and identifiers could be exposed through examples, logs, or local environment handling.
+
+Mitigation: Keep credentials in local environment variables and keep examples, logs, and future edits free of real zone IDs, account IDs, emails, and record contents.
+
+## Reference(s):
+
+- [Cloudflare API v4 endpoint](https://api.cloudflare.com/client/v4)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local environment variables for Cloudflare credentials; script output is filtered through jq.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

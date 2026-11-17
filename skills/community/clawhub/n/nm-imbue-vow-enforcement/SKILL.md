@@ -2,7 +2,7 @@
 name: vow-enforcement
 description: |
   Classifies and enforces constraints via soft vows, hard vows, and Nen Court layers
-version: 1.9.8
+version: 1.10.3
 triggers:
   - enforcement
   - constraints
@@ -15,7 +15,7 @@ source: claude-night-market
 source_plugin: imbue
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 > Rules that depend on willpower fail under pressure.
@@ -24,24 +24,12 @@ source_plugin: imbue
 
 # Vow Enforcement
 
-## Table of Contents
-
-- [The Problem](#the-problem)
-- [Three Enforcement Layers](#three-enforcement-layers)
-- [Vow Classification Protocol](#vow-classification-protocol)
-- [Night Market Vow Inventory](#night-market-vow-inventory)
-- [Vow Graduation Criteria](#vow-graduation-criteria)
-- [Nen Court Protocol](#nen-court-protocol)
-- [Integration Points](#integration-points)
-- [When to Use](#when-to-use)
-- [When NOT to Use](#when-not-to-use)
-
 ## The Problem
 
 ODCV-Bench found that agents break self-imposed
 constraints 30-50% of the time when goals conflict.
 Practitioner consensus confirms: past 150 soft rules,
-compliance drops for ALL rules, not just the new ones.
+compliance drops for ALL rules, old ones included.
 
 The core insight: "settings.json is a firewall;
 CLAUDE.md is an employee handbook." Handbooks work for
@@ -218,15 +206,15 @@ The user can override any Nen Court verdict:
 
 ## Integration Points
 
-- **`imbue:scope-guard`** -- Soft vow layer. Worthiness
+- **`imbue:scope-guard`**: Soft vow layer. Worthiness
   scoring is a judgment call that belongs in skills.
-- **`imbue:proof-of-work`** -- Mixed enforcement.
-  Evidence rules are soft; evidence content can be
+- **`imbue:proof-of-work`**: Mixed enforcement.
+  Evidence rules are soft. Evidence content can be
   verified by a Nen Court validator.
-- **`imbue:justify`** -- Post-hoc Nen Court audit.
+- **`imbue:justify`**: Post-hoc Nen Court audit.
   Already functions as a validator agent for additive
   bias, Iron Law, and test mutations.
-- **Mission Orchestrator** -- Phase-routing with Nen
+- **Mission Orchestrator**: Phase-routing with Nen
   Court checkpoints between phases as gates:
 
 ```
@@ -238,7 +226,7 @@ execute -> [Nen Court: justify]     -> pr-prep
 Phase advances only when Nen Court returns `pass` or
 the user provides an explicit override.
 
-## When to Use
+## When To Use
 
 - Designing new constraints for the codebase
 - Auditing existing constraints for enforcement gaps
@@ -264,3 +252,19 @@ the user provides an explicit override.
   that vow-enforcement classifies and may promote
 - See `docs/quality-gates.md#skill-level-quality-gate-composition`
   for the federation this skill governs
+
+## Exit Criteria
+
+- [ ] Every constraint under review is assigned to exactly one
+  enforcement layer (Soft Vow, Hard Vow, or Nen Court) with the
+  classification rationale recorded
+- [ ] Graduation criteria evaluated for any soft vow with 3+
+  violations in 30 days: binary constraints graduate to Hard Vow,
+  judgment constraints graduate to Nen Court
+- [ ] Nen Court validators called at phase boundaries return one
+  of three verdicts (`pass`, `violation`, `inconclusive`) via
+  exit codes 0, 1, 2; exit code 1 blocks phase advancement
+  unless the user provides an explicit override
+- [ ] Any demotion of a Hard Vow back to Soft is documented with
+  the false positive rate (>10%) or the specific concern that
+  no longer applies

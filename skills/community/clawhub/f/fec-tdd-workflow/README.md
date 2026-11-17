@@ -1,17 +1,17 @@
-# TDD 工作流
+# TDD workflow
 
-Frontend Craft skill for TDD 工作流.
+Use failing behavior tests to guide frontend features and bug fixes through red, green, and refactor.
 
 ## Skill
 
 - ID: `fec-tdd-workflow`
 - Category: `testing`
-- Version: `2.5.0`
+- Version: `2.9.0`
 - Source: `skills/fec-tdd-workflow/SKILL.md`
 
 ## Description
 
-Use when implementing new frontend behavior, fixing bugs, or refactoring logic where tests can describe the expected behavior first. Apply to components, hooks/composables, utilities, API clients, route guards, or user workflows; Chinese triggers include TDD, 测试驱动, 先写测试, 红绿重构, 回归测试.
+Use when implementing new observable frontend behavior or fixing a behavior-changing bug where a failing test can describe the missing or incorrect behavior first. Apply to components, hooks/composables, utilities, API clients, route guards, or user workflows; pure behavior-preserving refactoring uses an already-green contract instead.
 
 ## Usage
 

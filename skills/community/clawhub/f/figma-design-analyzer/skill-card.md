@@ -1,40 +1,58 @@
-## Description: <br>
-Analyzes Figma design files to extract design-system data, export screenshots, and compare implementation files against the design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Figma design files to extract design system data, export screenshots, and compare designs with implementation files.
 
-## Publisher: <br>
-[plume-lj](https://clawhub.ai/user/plume-lj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[plume-lj](https://clawhub.ai/user/plume-lj)
 
-## Use Case: <br>
-Developers and design engineers use this skill to inspect Figma files, extract colors, typography, spacing, and components, export design screenshots, and compare CSS or code implementations with the source design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Figma access tokens can expose private design files if mishandled. <br>
-Mitigation: Keep FIGMA_ACCESS_TOKEN private, avoid committing .env files or shell-profile token changes, use the narrowest practical Figma access, and rotate the token if exposed. <br>
-Risk: Generated reports and exported screenshots may contain design details or local implementation content. <br>
-Mitigation: Review generated local outputs before sharing them and only compare local files intended to be included in the analysis output. <br>
+## Use Case:
 
+Developers and design engineers use this skill to inspect Figma files, extract colors, fonts, spacing, components, and screenshots, and check whether CSS or code implementations match the design source.
 
-## Reference(s): <br>
-- [Figma API Reference](references/figma-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance and shell commands; generated artifacts may include JSON reports, HTML reports, and PNG/JPG screenshots.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 20+ and a FIGMA_ACCESS_TOKEN with appropriate Figma file access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Figma access tokens can expose private design files if stored or shared improperly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a token with the minimum needed access, keep .env files out of version control, and rotate the token if it is exposed.
+
+Risk: Figma file metadata, comments, versions, design structure, and screenshots may be retrieved and stored locally.
+
+Mitigation: Run the skill only on files the user is authorized to access and review generated files before sharing or committing them.
+
+Risk: Dependencies are installed at runtime and may change without a lockfile.
+
+Mitigation: Install from a verified package or repository and review dependencies or use a lockfile before deployment.
+
+## Reference(s):
+
+- [Figma API Reference](references/figma-api.md)
+- [ClawHub skill page](https://clawhub.ai/plume-lj/skills/figma-design-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, API Calls, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance plus JSON, HTML, PNG, or JPG artifacts from the CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 20+ and a FIGMA_ACCESS_TOKEN for Figma API access.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

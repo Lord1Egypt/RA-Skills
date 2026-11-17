@@ -1,42 +1,56 @@
-## Description: <br>
-Helps entrepreneurs produce structured competitor benchmarking reports with competitor discovery, multi-dimensional comparison, positioning analysis, and strategic recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps founders and early-stage operators produce structured competitor benchmarking reports with competitor discovery, comparison matrices, profile cards, differentiation analysis, strategy recommendations, and moat assessment.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-Entrepreneurs, founders, and startup advisors use this skill to compare a product or venture against market competitors, identify differentiation opportunities, and prepare competitor-analysis material for strategy or fundraising work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competitor benchmarking may use business descriptions, target markets, and competitor names in external web searches. <br>
-Mitigation: Avoid including confidential strategy, unreleased product details, customer data, or trade secrets in prompts unless sharing them with search or web providers is acceptable. <br>
-Risk: Market, pricing, funding, and competitor claims can become outdated or be incomplete. <br>
-Mitigation: Review generated reports against current public sources before using them for strategy, fundraising, or market positioning decisions. <br>
+## Use Case:
 
+Founders, startup consultants, and business operators use this skill to analyze a target market, identify three to five relevant competitors, compare product, pricing, customer, channel, technical, and funding signals, and turn the findings into a concise competitor benchmarking report for positioning, strategy, or fundraising materials.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/golngod/competitor-benchmark) <br>
-- [Competitor Analysis Framework Library](references/framework.md) <br>
-- [Startup Consulting AI Competitor Database](references/competitor-db.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with comparison tables, competitor profiles, positioning analysis, and action recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on public competitor information and user-provided business context; users should review market claims before acting on recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill can include publisher promotional upsells and an external WeCom contact path in generated reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports before sharing them and remove promotional or contact content when a neutral deliverable is required.
+
+Risk: Competitor data gathered from public web, review, or social sources may be incomplete, outdated, estimated, or biased.
+
+Mitigation: Use only public, non-sensitive business information, record source dates, and verify material claims against primary or trusted sources before making strategic decisions.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/golngod/skills/competitor-benchmark)
+- [Competitor analysis framework](artifact/references/framework.md)
+- [Startup consulting AI competitor database](artifact/references/competitor-db.md)
+- [Sample competitor benchmark report](artifact/测试报告-途途竞品对标.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with tables, matrices, profile cards, scoring rubrics, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public competitor information and asks users to clarify product, target market, and known competitors before producing the report.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

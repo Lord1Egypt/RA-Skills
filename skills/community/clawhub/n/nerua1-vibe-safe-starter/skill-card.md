@@ -1,43 +1,58 @@
-## Description: <br>
-Provides a minimal security starter pack that helps developers add dependency audits, package checks, and basic secret scanning to AI-generated projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a minimal security starter pack for AI-generated code projects, including dependency audit and package vetting scripts for common vulnerability, maintenance, credential, and supply-chain checks.
 
-## Publisher: <br>
-[nerua1](https://clawhub.ai/user/nerua1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nerua1](https://clawhub.ai/user/nerua1)
 
-## Use Case: <br>
-Developers and engineers use this skill to add a small security baseline to vibe-coded repositories, including npm and Python dependency checks, package vetting, and simple secret scanning before install or deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included checks are lightweight and may miss vulnerabilities, malicious packages, or secrets that require deeper review. <br>
-Mitigation: Treat clean results as a first-pass signal, then use maintained security tools and human review before production deployment. <br>
-Risk: The shell scripts inspect local project files and query external package and vulnerability registries. <br>
-Mitigation: Review the scripts before running them, use trusted workspaces, and avoid exposing sensitive project details where that is not acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to add lightweight security checks to AI-generated application projects before installing dependencies or deploying code. It is aimed at quick local and CI-oriented review rather than comprehensive security assurance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nerua1/nerua1-vibe-safe-starter) <br>
-- [Publisher profile](https://clawhub.ai/user/nerua1) <br>
-- [VibeSafe Extension](https://github.com/nerua1/vibe-safe) <br>
-- [VibeSafe full audit pipeline](https://github.com/nerua1/vibe-safe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with bash commands and configuration file instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct users to run local shell scripts and review dependency, registry, vulnerability, and secret-scan results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The audit helper can modify project state and may rely on local package manager behavior or external tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on a clean git working tree, review any changed files and command output, and avoid elevated privileges.
+
+Risk: A final CLEAN result may be misleading if npm audit, pip-audit, gitleaks, or fallback checks miss vulnerabilities or secrets.
+
+Mitigation: Install and run the underlying security tools directly when possible, manually review their output, and treat this starter as a first-pass check.
+
+Risk: Package vetting uses live registry and vulnerability service responses, so network failures or stale service data can affect results.
+
+Mitigation: Re-run checks before installation and compare results with registry, OSV, and project maintenance information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nerua1/skills/nerua1-vibe-safe-starter)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/nerua1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewed setup and audit guidance; results depend on local project files and available security tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

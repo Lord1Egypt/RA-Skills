@@ -1,44 +1,56 @@
-## Description: <br>
-Convert various document formats (PDF, Word, PowerPoint, Excel, images, audio, HTML, etc.) to Markdown using Microsoft's markitdown tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert various document formats (PDF, Word, PowerPoint, Excel, images, audio, HTML, etc.) to Markdown using Microsoft's markitdown tool.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and agents use this skill to install and run Microsoft's MarkItDown tooling for converting documents, images, audio, HTML, and supported URLs into Markdown for LLM and text analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URL and YouTube conversion can involve upstream network behavior from MarkItDown or its dependencies. <br>
-Mitigation: Review upstream behavior before converting remote URLs and prefer local files when network access is not required. <br>
-Risk: Document, image, and audio conversion may expose confidential content to processing workflows. <br>
-Mitigation: Avoid using confidential inputs unless the processing path and dependency behavior are understood. <br>
-Risk: Broad Python dependency installation can increase local environment exposure. <br>
-Mitigation: Install with pipx or a virtual environment and use minimal MarkItDown extras when only specific formats are needed. <br>
+## Use Case:
 
+Developers and agents use this skill to convert PDFs, Office documents, images, audio, HTML, YouTube URLs, archives, and text-based files into Markdown for LLM workflows and text analysis.
 
-## Reference(s): <br>
-- [Microsoft MarkItDown GitHub repository](https://github.com/microsoft/markitdown) <br>
-- [MarkItDown on PyPI](https://pypi.org/project/markitdown/) <br>
-- [MarkItDown MCP server](https://github.com/microsoft/markitdown/tree/main/packages/markitdown-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown with command examples and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Converted content may be written to files or stdout depending on MarkItDown options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Unpinned installation examples can install different MarkItDown or dependency versions over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a dedicated virtual environment or container and pin reviewed versions before production use.
+
+Risk: Document, media, or URL conversion can expose confidential content to local converters or remote-fetch behavior.
+
+Mitigation: Avoid converting confidential documents or private media unless the execution environment and converter behavior are trusted.
+
+## Reference(s):
+
+- [Microsoft MarkItDown GitHub Repository](https://github.com/microsoft/markitdown)
+- [Microsoft MarkItDown PyPI Package](https://pypi.org/project/markitdown/)
+- [MarkItDown MCP Server](https://github.com/microsoft/markitdown/tree/main/packages/markitdown-mcp)
+- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/skills/ms-markitdown)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell and Python code examples; converted outputs are Markdown, JSON, HTML, or text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write converted files to a requested output path or return converted content to stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

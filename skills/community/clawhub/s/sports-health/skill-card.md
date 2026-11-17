@@ -1,41 +1,59 @@
-## Description: <br>
-AI运动健康助手 lets an agent record exercise from natural language, estimate calorie burn, generate personalized workout plans, answer exercise questions, and create daily or weekly HTML reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI运动健康助手 helps users record workouts in natural language, estimate calorie expenditure, generate personalized exercise plans, and produce visual HTML fitness reports.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users use this skill to track exercise, estimate calories, review workout history, and receive general fitness-plan guidance through an agent. It is intended for fitness support and reporting, not as medical advice or a substitute for a clinician or professional coach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically stores health-adjacent profile and exercise diary data without clear consent, retention, deletion, or export controls. <br>
-Mitigation: Use it only when users understand and accept local storage; add explicit consent, storage-path disclosure, and delete/export controls before broader deployment. <br>
-Risk: The skill requests web tool permissions that are not necessary for the core local exercise logging, calorie calculation, plan generation, or report generation behavior. <br>
-Mitigation: Review and remove unused web permissions unless a specific deployment requires them. <br>
+## Use Case:
 
+External users and personal wellness users use this skill to log exercise activity, estimate calories, review exercise guidance, build weekly plans, and generate daily or weekly fitness reports. The skill is intended for general fitness support and not as a substitute for medical or professional coaching advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/sports-health) <br>
-- [Project homepage](https://github.com/bettermen/sports-health) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration, files] <br>
-**Output Format:** [Markdown-style agent responses, generated HTML reports, and local JSON profile or diary files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exercise and profile records may be stored locally under the skill's user_data directory; calorie values and plans are estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release metadata) <br>
+Risk: Profile and workout history may include health-related personal data saved as plaintext files in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in trusted workspaces, avoid entering sensitive medical details, and provide clear delete, export, and opt-out practices for local records.
+
+Risk: Generated HTML reports can expose sensitive fitness history and may carry unsafe scripting risk if built from untrusted or edited diary data.
+
+Mitigation: Treat generated reports as sensitive, avoid opening reports from untrusted data, escape report fields, and bundle or pin Chart.js with integrity checks.
+
+Risk: Exercise plans and calorie estimates are general guidance and may be inappropriate for users with medical conditions or injuries.
+
+Mitigation: Keep medical disclaimers visible, advise users with health concerns to consult a clinician or qualified coach, and tell users to stop exercising if discomfort occurs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/sports-health)
+- [Project homepage](https://github.com/bettermen/sports-health)
+- [Publisher profile](https://clawhub.ai/user/bettermen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with optional JSON-backed workout records and generated HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save local profile and diary data as plaintext JSON and generate browser-viewable HTML reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

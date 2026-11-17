@@ -6,6 +6,8 @@
  * 自动处理签名头、降级、重试、限流
  *
  * C3a | S6 | S9 | I20 (Plan B)
+ *
+ * @module zhihu-http
  */
 
 import { readFileSync } from 'fs';
@@ -13,25 +15,28 @@ import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { defaultSignatureManager } from './zhihu-signature.js';
 import { httpRateLimiter } from './zhihu-ratelimiter.js';
-import { withRetry, writeLog, preflightCookieCheck } from './zhihu-core.js';
+import { withRetry } from './zhihu-core.js';
+import { httpLog, writeLog } from './zhihu-logger.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// ──────────────────────────────────────────
-// 配置
-// ──────────────────────────────────────────
-
+/** @type {string} API 端点配置文件路径 */
 const ENDPOINTS_PATH = resolve(__dirname, '..', 'config', 'api-endpoints.json');
 
-/** @type {{ version: string, baseUrls: object, endpoints: object }} */
+/** @type {{ version: string, baseUrls: object, endpoints: object }|null} 端点配置缓存 */
 let endpointsConfig = null;
 
+/**
+ * 加载端点配置（含缓存）
+ * @returns {{ version: string, baseUrls: object, endpoints: object }} 端点配置
+ */
 function loadEndpoints() {
   if (endpointsConfig) return endpointsConfig;
   endpointsConfig = JSON.parse(readFileSync(ENDPOINTS_PATH, 'utf-8'));
   return endpointsConfig;
 }
 
+/** @type {Record<string,string>} 默认 HTTP 请求头 */
 const DEFAULT_HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
   'Accept': 'application/json, text/plain, */*',
@@ -44,6 +49,7 @@ const DEFAULT_HEADERS = {
 // 端点 Schema 校验 (S9)
 // ──────────────────────────────────────────
 
+/** @type {Record<string, (data: any) => string|null>} Schema 校验函数 */
 const SCHEMA_CHECKS = {
   hotList: (data) => {
     if (!Array.isArray(data?.data)) return '缺少 .data 数组';
@@ -79,13 +85,20 @@ const SCHEMA_CHECKS = {
   },
 };
 
+/**
+ * 校验 API 响应 Schema
+ *
+ * @param {string} endpointName - 端点名称
+ * @param {object} data - API 响应数据
+ * @returns {{ valid: boolean, error?: string }} 校验结果
+ */
 function validateSchema(endpointName, data) {
   const check = SCHEMA_CHECKS[endpointName];
   if (!check) return { valid: true }; // 无校验规则
 
   const error = check(data);
   if (error) {
-    console.warn(`[zhihu-http] Schema 校验失败 [${endpointName}]: ${error}`);
+    httpLog.warn(`Schema 校验失败 [${endpointName}]: ${error}`);
     writeLog({
       level: 'WARN',
       module: 'zhihu-http',
@@ -105,12 +118,16 @@ function validateSchema(endpointName, data) {
 
 /**
  * 构建完整的 API URL
+ *
+ * @param {string} baseUrl - 基础 URL
+ * @param {string} endpointPath - 端点路径
+ * @param {object} [params] - 路径参数
+ * @returns {string} 完整 URL
  */
 function buildUrl(baseUrl, endpointPath, params) {
   let url = `${baseUrl}${endpointPath}`;
 
   if (params) {
-    // 替换路径参数 {id}
     for (const [key, value] of Object.entries(params)) {
       url = url.replace(`{${key}}`, encodeURIComponent(value));
     }
@@ -120,7 +137,84 @@ function buildUrl(baseUrl, endpointPath, params) {
 }
 
 /**
- * 发送 HTTP 请求到知乎 API
+ * @typedef {object} HotListItem
+ * @property {number} rank - 排名
+ * @property {string} title - 标题
+ * @property {string} excerpt - 摘要
+ * @property {string} heat - 热度
+ * @property {string} url - 链接
+ * @property {number} answerCount - 回答数
+ * @property {number} followCount - 关注数
+ */
+
+/**
+ * @typedef {object} SearchResult
+ * @property {string} type - 内容类型
+ * @property {string} title - 标题
+ * @property {string} excerpt - 摘要
+ * @property {string} url - 链接
+ * @property {number} answerCount - 回答数
+ * @property {number} voteCount - 赞同数
+ */
+
+/**
+ * @typedef {object} ArticleData
+ * @property {string} id - 文章 ID
+ * @property {string} title - 标题
+ * @property {string} content - 正文
+ * @property {string} excerpt - 摘要
+ * @property {string} author - 作者
+ * @property {number} voteCount - 赞同数
+ * @property {number} commentCount - 评论数
+ * @property {number} created - 创建时间
+ * @property {number} updated - 更新时间
+ * @property {string} url - 文章链接
+ */
+
+/**
+ * @typedef {object} UserData
+ * @property {string} id - 用户 ID
+ * @property {string} name - 用户名
+ * @property {string} headline - 头衔
+ * @property {string} description - 描述
+ * @property {string} avatarUrl - 头像
+ * @property {string} urlToken - URL 标识
+ * @property {number} followerCount - 粉丝数
+ * @property {number} answerCount - 回答数
+ * @property {number} articleCount - 文章数
+ * @property {number} voteupCount - 获赞数
+ */
+
+/**
+ * @typedef {object} QuestionData
+ * @property {string} id - 问题 ID
+ * @property {string} title - 标题
+ * @property {string} detail - 详情
+ * @property {number} answerCount - 回答数
+ * @property {number} followCount - 关注数
+ * @property {number} commentCount - 评论数
+ * @property {number} created - 创建时间
+ * @property {string} url - 链接
+ */
+
+/**
+ * @typedef {object} AnswerData
+ * @property {string} id - 回答 ID
+ * @property {string} author - 作者
+ * @property {string} content - 内容
+ * @property {number} voteCount - 赞同数
+ * @property {number} commentCount - 评论数
+ * @property {number} created - 创建时间
+ * @property {number} updated - 更新时间
+ * @property {string} url - 链接
+ */
+
+/**
+ * @typedef {{ data: any, source: string, degraded: boolean }} ExtractResult
+ */
+
+/**
+ * 发送 HTTP 请求到知乎 API（含签名/限流/重试/降级）
  *
  * @param {string} endpointName - 端点名称（对应 api-endpoints.json）
  * @param {object} [pathParams] - 路径参数（如 { id: '123' }）
@@ -148,7 +242,6 @@ async function fetchFromAPI(endpointName, pathParams = {}, queryParams = {}) {
   let finalPath = path;
   const queryKeys = Object.keys(queryParams);
   if (queryKeys.length > 0) {
-    // 替换路径中的 {query} 占位符
     if (finalPath.includes('{query}')) {
       finalPath = finalPath.replace('{query}', encodeURIComponent(queryParams.q || queryParams.query || ''));
     } else {
@@ -176,18 +269,13 @@ async function fetchFromAPI(endpointName, pathParams = {}, queryParams = {}) {
     async () => {
       const response = await fetch(fullUrl, { headers, method: 'GET' });
 
-      // 处理 429 限流
       if (response.status === 429) {
         httpRateLimiter.triggerBackoff();
         throw new Error(`HTTP 429 限流 [${endpointName}]`);
       }
 
-      // 处理 403（签名失效或风控）
       if (response.status === 403) {
-        const healthOk = await defaultSignatureManager.healthCheck();
-        if (!healthOk) {
-          throw new Error(`签名失效 [${endpointName}]: 准备降级到 Plan B`);
-        }
+        httpLog.warn(`403 被拒绝 [${endpointName}]，准备降级到浏览器通道`);
         throw new Error(`HTTP 403 被拒绝 [${endpointName}]`);
       }
 
@@ -201,7 +289,6 @@ async function fetchFromAPI(endpointName, pathParams = {}, queryParams = {}) {
       maxRetries: 3,
       baseDelay: 1000,
       retryOn: (err) => {
-        // 只对 429 和网络错误重试
         return err.message.includes('429') ||
                err.message.includes('ETIMEDOUT') ||
                err.message.includes('ECONNRESET') ||
@@ -216,7 +303,6 @@ async function fetchFromAPI(endpointName, pathParams = {}, queryParams = {}) {
   // Schema 校验
   const schemaResult = validateSchema(endpointName, data);
   if (!schemaResult.valid && endpoint.planBFallback !== 'none') {
-    console.log(`[zhihu-http] ${endpointName} 数据格式异常，标记为降级候选`);
     writeLog({
       level: 'WARN',
       module: 'zhihu-http',
@@ -235,8 +321,9 @@ async function fetchFromAPI(endpointName, pathParams = {}, queryParams = {}) {
 
 /**
  * 获取全站热榜
+ *
  * @param {number} [limit=20] - 返回条数
- * @returns {Promise<Array>} 热榜条目
+ * @returns {Promise<HotListItem[]>} 热榜条目
  */
 async function getHotList(limit = 20) {
   const data = await fetchFromAPI('hotList');
@@ -258,9 +345,10 @@ async function getHotList(limit = 20) {
 
 /**
  * 搜索内容
+ *
  * @param {string} query - 搜索关键词
  * @param {number} [limit=10] - 返回条数
- * @returns {Promise<Array>} 搜索结果
+ * @returns {Promise<SearchResult[]>} 搜索结果
  */
 async function search(query, limit = 10) {
   const data = await fetchFromAPI('search', {}, { q: query });
@@ -281,8 +369,9 @@ async function search(query, limit = 10) {
 
 /**
  * 获取文章详情
+ *
  * @param {number|string} articleId - 文章 ID
- * @returns {Promise<object>} 文章数据
+ * @returns {Promise<ArticleData>} 文章数据
  */
 async function getArticle(articleId) {
   const data = await fetchFromAPI('article', { id: articleId });
@@ -302,8 +391,9 @@ async function getArticle(articleId) {
 
 /**
  * 获取用户信息
+ *
  * @param {string} userId - 用户 ID 或 url_token
- * @returns {Promise<object>} 用户数据
+ * @returns {Promise<UserData>} 用户数据
  */
 async function getUser(userId) {
   const data = await fetchFromAPI('user', { id: userId });
@@ -323,8 +413,9 @@ async function getUser(userId) {
 
 /**
  * 获取问题详情
+ *
  * @param {number|string} questionId - 问题 ID
- * @returns {Promise<object>} 问题数据
+ * @returns {Promise<QuestionData>} 问题数据
  */
 async function getQuestion(questionId) {
   const data = await fetchFromAPI('question', { id: questionId });
@@ -342,26 +433,25 @@ async function getQuestion(questionId) {
 
 /**
  * 获取问题回答列表
+ *
  * @param {number|string} questionId - 问题 ID
  * @param {number} [limit=10] - 返回条数
- * @returns {Promise<Array>} 回答列表
+ * @returns {Promise<AnswerData[]>} 回答列表
  */
 async function getAnswers(questionId, limit = 10) {
   const data = await fetchFromAPI('answers', { id: questionId }, { limit });
   const items = (data?.data || []).slice(0, limit);
 
-  return items.map(item => {
-    return {
-      id: item.id,
-      author: item.author?.name || '',
-      content: item.content || '',
-      voteCount: item.voteup_count || 0,
-      commentCount: item.comment_count || 0,
-      created: item.created_time || item.created,
-      updated: item.updated_time || item.updated,
-      url: `https://www.zhihu.com/question/${questionId}/answer/${item.id}`,
-    };
-  });
+  return items.map(item => ({
+    id: item.id,
+    author: item.author?.name || '',
+    content: item.content || '',
+    voteCount: item.voteup_count || 0,
+    commentCount: item.comment_count || 0,
+    created: item.created_time || item.created,
+    updated: item.updated_time || item.updated,
+    url: `https://www.zhihu.com/question/${questionId}/answer/${item.id}`,
+  }));
 }
 
 // ──────────────────────────────────────────
@@ -372,17 +462,16 @@ async function getAnswers(questionId, limit = 10) {
  * 智能数据提取
  * HTTP 通道优先，标记是否适合降级到浏览器
  *
- * @param {string} type - 数据类型 (hotList|search|article|user|question|answers)
+ * @param {'hotList'|'search'|'article'|'user'|'question'|'answers'} type - 数据类型
  * @param {object} params - 参数
  * @param {boolean} [useBrowser=false] - 是否强制使用浏览器
- * @returns {Promise<{ data: any, source: string, degraded: boolean }>}
+ * @returns {Promise<ExtractResult>} 提取结果
  */
 async function extract(type, params = {}, useBrowser = false) {
   const httpOnlyTypes = ['user', 'question', 'answers'];
   const needsSignature = !httpOnlyTypes.includes(type);
 
   if (useBrowser || (defaultSignatureManager.isPlanBActive() && needsSignature)) {
-    // 标记为需要浏览器降级，但这里只返回标记，由调用方处理
     return { data: null, source: 'should_fallback_to_browser', degraded: true };
   }
 

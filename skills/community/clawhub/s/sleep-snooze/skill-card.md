@@ -1,45 +1,59 @@
-## Description: <br>
-Snooze incoming notifications during your sleep window and receive a morning digest when you wake up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Snooze incoming notifications during your sleep window and receive a morning digest when you wake up. Supports Telegram, WhatsApp, and any provider OpenClaw is connected to.
 
-## Publisher: <br>
-[Hardik500](https://clawhub.ai/user/Hardik500) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hardik500](https://clawhub.ai/user/hardik500)
 
-## Use Case: <br>
-OpenClaw users use this skill to pause non-urgent notifications during configured sleep hours, queue messages locally, and receive a morning digest when they wake. It supports manual sleep and wake commands, setup guidance, urgency bypasses, and provider-agnostic message handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reveal the user's sleep window to message senders through automatic direct-message replies. <br>
-Mitigation: Review or disable the dm-guard auto-reply behavior if disclosing sleep status or schedule information is not acceptable. <br>
-Risk: Sleep-time messages and previews are stored locally for later digest generation. <br>
-Mitigation: Install only where local storage of message content is acceptable, and review the local data directory and retention expectations before deployment. <br>
-Risk: Setup adds persistent cron jobs that control sleep-mode changes and digest delivery. <br>
-Mitigation: Review the generated crontab entries after setup and remove or adjust them if the schedule or execution path is not appropriate. <br>
+## Use Case:
 
+OpenClaw users use this skill to pause routine notifications during configured sleep hours, queue messages locally, let urgent or VIP messages through, and receive a morning digest.
 
-## Reference(s): <br>
-- [Sleep Snooze setup guide](references/setup.md) <br>
-- [Project homepage](https://github.com/Hardik500/sleep-snooze) <br>
-- [ClawHub listing](https://clawhub.ai/Hardik500/sleep-snooze) <br>
-- [Publisher profile](https://clawhub.ai/user/Hardik500) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-formatted command output with shell commands for setup and status checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queues message previews locally and emits digest text for delivery through connected OpenClaw providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: package.json and server release metadata) <br>
+Risk: The skill can suppress notifications across connected providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm sleep and wake schedules, VIP bypass rules, and urgent keyword handling before relying on it for important messages.
+
+Risk: The skill stores private message contents locally for the morning digest.
+
+Mitigation: Review local data retention, file permissions, and cleanup behavior for the SQLite queue and related data files before installation.
+
+Risk: The skill registers cron jobs and digest delivery may fail or be delayed if the local environment is misconfigured.
+
+Mitigation: Verify cron registration, Node.js availability in cron, digest delivery confirmation, and uninstall cleanup behavior during setup.
+
+## Reference(s):
+
+- [Setup Guide](references/setup.md)
+- [ClawHub Skill Page](https://clawhub.ai/hardik500/skills/sleep-snooze)
+- [Metadata Homepage](https://github.com/Hardik500/sleep-snooze)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local schedule, queue, VIP contact, and digest state files under the user's OpenClaw skill data directory.]
+
+## Skill Version(s):
+
+1.0.2 (source: package.json, server release metadata, and target metadata; SKILL.md frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

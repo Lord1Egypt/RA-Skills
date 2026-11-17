@@ -1,43 +1,53 @@
-## Description: <br>
-Generate XML sitemaps by crawling a website for SEO, site-structure audits, domain page discovery, or search-engine submission, with configurable crawl depth, page limits, and polite delays. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate XML sitemaps by crawling a website for SEO, site structure audits, page discovery, or search engine submission with configurable depth, page limits, and polite delays.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers, site operators, and SEO practitioners use this skill to crawl an authorized website and produce a standards-compliant sitemap.xml for search-engine submission or site-structure review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The crawler makes network requests to a user-provided website and could burden sites if run without authorization or with aggressive limits. <br>
-Mitigation: Run it only against sites you own or are authorized to audit, and keep max-pages, max-depth, delay, and timeout settings reasonable. <br>
-Risk: The skill writes a sitemap file to the selected output path. <br>
-Mitigation: Choose the output path deliberately, or use stdout when you need to inspect the sitemap before writing a file. <br>
-Risk: The script depends on Python packages from the execution environment. <br>
-Mitigation: Install requests and beautifulsoup4 from a trusted Python environment before running the crawler. <br>
+## Use Case:
 
+Developers, site owners, and SEO practitioners use this skill to crawl a trusted website and produce a standards-compliant sitemap.xml for audit or search engine submission.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Johnnywang2001/sitemap-generator) <br>
-- [Sitemaps.org Protocol 0.9](http://www.sitemaps.org/schemas/sitemap/0.9) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and XML sitemap output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes sitemap XML to a chosen output path or stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The crawler can be directed or redirected to private or internal network targets without built-in safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only against sites you own or trust, and block private, loopback, link-local, reserved, and cloud metadata addresses while validating or disabling redirects.
+
+Risk: Unbounded or aggressive crawling can create unwanted load on a target site.
+
+Mitigation: Use conservative max-pages, max-depth, delay, and timeout settings that match the target site's capacity and policies.
+
+## Reference(s):
+
+- [Sitemaps.org Protocol 0.9](http://www.sitemaps.org/schemas/sitemap/0.9)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [XML sitemap file or XML on stdout with concise command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports configurable crawl depth, maximum pages, delay, timeout, changefreq, priority, and output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

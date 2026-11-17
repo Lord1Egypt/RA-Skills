@@ -1,41 +1,54 @@
-## Description: <br>
-Tunelo exposes local services and files through a public HTTPS URL so agents can share previews, dev servers, demos, or temporary localhost access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expose local services and files to the internet through a public HTTPS URL for remote previews, dev-server sharing, demos, and temporary localhost access.
 
-## Publisher: <br>
-[claw-bot](https://clawhub.ai/user/claw-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[claw-bot](https://clawhub.ai/user/claw-bot)
 
-## Use Case: <br>
-Developers and agent operators use this skill when a user needs remote access to local files, a local dev server, a demo service, or localhost content from another device or network. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make local files or services reachable from the internet. <br>
-Mitigation: Use it only for paths and ports intended for sharing, prefer --private or --local when appropriate, avoid broad folders such as home or Documents, and stop the tunnel when finished. <br>
-Risk: Installation uses a remote shell script from tunelo.net. <br>
-Mitigation: Install only when tunelo.net is trusted and the operator is comfortable with the remote installer. <br>
+## Use Case:
 
+Developers and AI agents use this skill to share a local service, localhost application, or prepared directory through a temporary public URL when a user needs remote access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/claw-bot/tunelo) <br>
-- [Tunelo install script](https://tunelo.net/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public HTTPS tunnel URLs, local preview URLs, access codes, and relay or host options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill can publicly expose local files or services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for content intentionally meant to be reachable from the internet, prefer `--private` for demos and APIs, and share a minimal prepared directory instead of project roots, home folders, credentials, or internal admin services.
+
+Risk: Installation uses a remote shell script.
+
+Mitigation: Install only after trusting the publisher and reviewing or verifying the installer separately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/claw-bot/skills/tunelo)
+- [Tunelo installer](https://tunelo.net/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes commands for exposing HTTP ports, serving files, private access codes, local-only preview, and custom relay settings.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

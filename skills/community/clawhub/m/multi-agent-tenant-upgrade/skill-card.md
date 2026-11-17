@@ -1,48 +1,68 @@
-## Description: <br>
-Multi-agent UX for OpenClaw Control UI: agent selector, per-agent sessions, session history viewer with search, agent-filtered Sessions tab with friendly names, Create Agent wizard, emoji picker, backend agent CRUD, and auth mode badge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent UX for OpenClaw Control UI: agent selector, per-agent sessions, session history, agent-filtered Sessions tab, Create Agent wizard, emoji picker, backend agent CRUD, and auth mode badge.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to patch OpenClaw with multi-agent tenant UX, session history, agent creation and editing, agent-scoped scheduling status, model selector fixes, and auth-mode visibility. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently patches core OpenClaw source files. <br>
-Mitigation: Review the full patch set before installation, apply it on a git branch or backup, and rebuild only after confirming the patch scope. <br>
-Risk: Auth badge changes can expose auth profile identifiers in browser or client state. <br>
-Mitigation: Restrict the Control UI to trusted users and prefer sending only display-safe auth modes such as oauth, api, fallback, or unknown. <br>
-Risk: The AI wizard makes outbound model-provider API calls using configured credentials. <br>
-Mitigation: Confirm the selected provider, keep API keys in trusted profiles or environment variables, and avoid submitting sensitive descriptions to the wizard. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/maverick-software/multi-agent-tenant-upgrade) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Agents view patch](artifact/references/agents-view.txt) <br>
-- [Server agents patch](artifact/references/server-agents.txt) <br>
-- [Sessions history RPC patch](artifact/references/v1.4.0/patch-01-sessions-history-rpc.txt) <br>
-- [Sessions tab overhaul patch](artifact/references/v1.4.0/patch-02-sessions-tab-overhaul.txt) <br>
-- [Auth badge patch](artifact/references/v1.5.0/patch-auth-badge.txt) <br>
-- [Pipedream agent switch patch](artifact/references/v1.5.0/patch-pipedream-agent-switch.txt) <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to patch the OpenClaw Control UI and gateway for multi-agent management, session browsing, wizard-based agent creation, and auth visibility.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with patch code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Applies persistent source patches and requires an OpenClaw UI and gateway rebuild.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.5.2 (source: server release evidence and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill persistently patches sensitive auth, session, and gateway code.
+
+Mitigation: Review each patch before applying, back up or branch the OpenClaw checkout, rebuild the UI and gateway, and scan the result before use.
+
+Risk: The auth badge behavior may expose raw auth profile identifiers in the UI.
+
+Mitigation: Review the auth badge changes before applying and prefer returning only coarse modes such as oauth, api, or fallback.
+
+Risk: The session history feature exposes stored conversations through the Control UI.
+
+Mitigation: Treat session transcripts as sensitive data and limit installation and access to trusted OpenClaw operators.
+
+Risk: Temporary Python-based config repair can be unsafe for JSONC-style configuration files.
+
+Mitigation: Make a backup first and use a JSONC-aware, atomic edit process instead.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maverick-software/skills/multi-agent-tenant-upgrade)
+- [Skill source and installation notes](artifact/SKILL.md)
+- [Agent gateway patch](artifact/references/server-agents.txt)
+- [Session history RPC patch](artifact/references/v1.4.0/patch-01-sessions-history-rpc.txt)
+- [Sessions tab overhaul patch](artifact/references/v1.4.0/patch-02-sessions-tab-overhaul.txt)
+- [Auth badge patch](artifact/references/v1.5.0/patch-auth-badge.txt)
+- [Pipedream and Zapier agent switch patch](artifact/references/v1.5.0/patch-pipedream-agent-switch.txt)
+- [Anthropic Messages API endpoint used by the wizard](https://api.anthropic.com/v1/messages)
+- [OpenAI Chat Completions endpoint used by the wizard](https://api.openai.com/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with TypeScript patch files and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Applies persistent OpenClaw source patches and requires UI and gateway rebuilds.]
+
+## Skill Version(s):
+
+1.5.2 (source: ClawHub release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

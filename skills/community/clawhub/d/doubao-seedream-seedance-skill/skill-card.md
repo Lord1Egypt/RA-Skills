@@ -1,43 +1,63 @@
-## Description: <br>
-Provides Volcengine Doubao API helpers for image generation and editing, video generation, visual understanding, task management, and configuration setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use Volcengine Doubao Seedream, Seedance, and Seed Vision APIs for image generation, video generation, visual understanding, task management, and configuration guidance.
 
-## Publisher: <br>
-[AI-Lychee](https://clawhub.ai/user/AI-Lychee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ai-lychee](https://clawhub.ai/user/ai-lychee)
 
-## Use Case: <br>
-Developers and content teams use this skill to connect agents to Doubao Seedream, Seedance, and Seed Vision workflows for generating media, analyzing images, tracking asynchronous jobs, and managing Volcengine configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image inputs, and generation requests are sent to Volcengine/Doubao APIs. <br>
-Mitigation: Use the skill only with data approved for external API processing and avoid submitting sensitive or regulated content unless the deployment has appropriate approvals. <br>
-Risk: API keys may be exposed if stored in committed config files or logs. <br>
-Mitigation: Prefer ARK_API_KEY as an environment variable, keep .env and .volcengine config files out of version control, and use restrictive file permissions for local config. <br>
-Risk: Generated media downloads and task history can be written to local output directories. <br>
-Mitigation: Set the output directory deliberately, review downloaded files before reuse, and clean local task or state history when it is no longer needed. <br>
+## Use Case:
 
+Developers and content teams use this skill to guide AI agents through Doubao image, video, and vision API workflows, including parameter validation, configuration, task tracking, and result download guidance.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/AI-Lychee/doubao-seedream-seedance-skill) <br>
-- [Volcengine Ark console](https://console.volcengine.com/ark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with prompts, code snippets, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or retrieve local image and video result files through Volcengine/Doubao APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: One-click installation from a mutable branch can run code that has not been reviewed for the release being installed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer source from a fixed release or commit before installation.
+
+Risk: API keys can be exposed through persistent config files or unsafe handling.
+
+Mitigation: Use a scoped Volcengine API key and prefer a temporary environment variable or secret manager over storing credentials in project files.
+
+Risk: A project .volcengine/config.yaml file can override the API base URL and send credentials or requests to an unintended endpoint.
+
+Mitigation: Verify base_url configuration before use and remove untrusted project-level overrides.
+
+Risk: Generated downloads can be written into unexpected locations if output paths are not constrained.
+
+Mitigation: Keep generated media downloads inside a dedicated output directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ai-lychee/skills/doubao-seedream-seedance-skill)
+- [Volcengine Ark console](https://console.volcengine.com/ark)
+- [Publisher profile](https://clawhub.ai/user/ai-lychee)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, API workflow descriptions, and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create API requests, validate media-generation parameters, track task state, and download generated media into an output directory.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

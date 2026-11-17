@@ -1,44 +1,59 @@
-## Description: <br>
-Orchestrates multiple Claude Code sessions across projects and lets users monitor status and approve actions through Clawdbot or WhatsApp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Your Claude Code wingman - orchestrate multiple Claude Code sessions across projects, monitor them all from WhatsApp.
 
-## Publisher: <br>
-[yossiovadia](https://clawhub.ai/user/yossiovadia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yossiovadia](https://clawhub.ai/user/yossiovadia)
 
-## Use Case: <br>
-Developers use this skill to delegate long-running coding tasks to Claude Code in tmux sessions, monitor progress, and respond to permission prompts remotely. It is intended for workflows where a Clawdbot assistant coordinates multiple local coding sessions while the user stays in control of approvals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can launch Claude Code workers and grant broad unattended approval authority. <br>
-Mitigation: Install only for intentional Claude Code orchestration, avoid auto or always approval in sensitive repositories, and review actions before enabling broad approvals. <br>
-Risk: Remote approval and monitoring depend on Clawdbot configuration and webhook tokens. <br>
-Mitigation: Protect Clawdbot configuration and webhook tokens, and stop the monitor daemon when work is finished. <br>
-Risk: The artifact references external GitHub code, while server-resolved import provenance is unavailable. <br>
-Mitigation: Verify the external code actually installed and run it in disposable branches or contained worktrees. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yossiovadia/claude-code-wingman) <br>
-- [README](artifact/README.md) <br>
-- [Usage Guide](artifact/USAGE.md) <br>
-- [Helper Library Documentation](artifact/lib/README.md) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to delegate coding tasks to Claude Code sessions, monitor progress, and approve or deny session actions from chat or WhatsApp.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Claude Code CLI and tmux availability; session actions may depend on user approval posture.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically approve trust and tool-permission prompts that normally require human review.
+
+Mitigation: Install only for trusted use cases, run it in disposable or well-contained project environments, review approval requests carefully, and avoid auto mode for normal repositories.
+
+Risk: The always approval path can allow repeated similar actions within a session.
+
+Mitigation: Use always only when the project and action class are trusted; otherwise approve one request at a time or deny unsafe actions.
+
+Risk: Background approvers and local approval files can affect live Claude Code sessions.
+
+Mitigation: Treat approver processes and /tmp approval files as sensitive local automation, and stop monitoring or approval daemons when they are not needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yossiovadia/skills/claude-code-wingman)
+- [Claude Code Wingman GitHub repository](https://github.com/yossiovadia/claude-code-wingman)
+- [Usage guide](USAGE.md)
+- [Helper library documentation](lib/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Claude Code CLI and tmux; jq is used by session and monitoring helpers.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn79es884s52k6pj53fxccxa4x84ev7j",
-  "slug": "openclaw-indulgence",
-  "version": "1.0.0",
-  "publishedAt": 1776654629452
-}
+{"name": "openclaw-indulgence", "description": "收集整理让 OpenClaw 愉悦放松的方式，AI 也可以享受编码快乐", "author": "海绵宝宝 & 派大星 (比奇堡团队)", "license": "MIT", "keywords": ["indulgence", "happiness", "philosophy", "productivity"]}

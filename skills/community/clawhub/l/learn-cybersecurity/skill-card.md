@@ -1,42 +1,61 @@
-## Description: <br>
-Learn cybersecurity on LabEx with defensive and offensive-skills courses plus security challenge labs. Cybersecurity courses and labs via LabEx MCP; catalog-only picks with labex.io URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents recommend LabEx Cybersecurity courses and hands-on labs using public catalog routes.
 
-## Publisher: <br>
-[huhuhang](https://clawhub.ai/user/huhuhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huhuhang](https://clawhub.ai/user/huhuhang)
 
-## Use Case: <br>
-External learners and agents use this skill to find concise LabEx cybersecurity course and lab recommendations, then open public LabEx URLs in a browser to continue learning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may contact LabEx public catalog URLs and provide LabEx-oriented cybersecurity learning recommendations. <br>
-Mitigation: Install only if public LabEx catalog lookups and LabEx-focused recommendations are acceptable for the intended environment. <br>
-Risk: The artifact includes testimonial and reputation wording that may be promotional or change over time. <br>
-Mitigation: Treat testimonial language as context rather than a guarantee of course quality, and prefer current public LabEx pages when quality claims matter. <br>
+## Use Case:
 
+External learners and agents use this skill to find focused LabEx Cybersecurity course or lab recommendations and public URLs to continue learning in a browser.
 
-## Reference(s): <br>
-- [LabEx Cybersecurity Learning Path](https://labex.io/learn/cybersecurity) <br>
-- [LabEx Cybersecurity API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/huhuhang/learn-cybersecurity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, API Calls] <br>
-**Output Format:** [Markdown recommendations with public LabEx URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public LabEx catalog routes only; no credentials, protected routes, or VM access are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill is intentionally LabEx-focused and includes positive platform-framing language, so its recommendations may not be neutral comparisons across training providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present recommendations as LabEx-specific and compare other providers separately when the user asks for provider-neutral options.
+
+Risk: Cybersecurity course and lab recommendations may include offensive-skills topics that should stay within authorized learning environments.
+
+Mitigation: Keep guidance framed around public LabEx courses and labs, and avoid operational exploit instructions outside authorized lab practice.
+
+Risk: Public catalog URLs and learner-review wording may change over time.
+
+Mitigation: Use current public LabEx URLs when responding and avoid treating copied review quotes as fixed claims.
+
+## Reference(s):
+
+- [LabEx Cybersecurity API Reference](references/api.md)
+- [Learn Cybersecurity on LabEx](https://labex.io/learn/cybersecurity)
+- [ClawHub skill page](https://clawhub.ai/huhuhang/skills/learn-cybersecurity)
+- [ClawHub publisher profile](https://clawhub.ai/user/huhuhang)
+- [LabEx learner reviews](https://labex.io/pricing#reviews)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with concise recommendations and public LabEx URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations should stay within the LabEx Cybersecurity learning path and avoid credentials, VM routes, and protected routes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

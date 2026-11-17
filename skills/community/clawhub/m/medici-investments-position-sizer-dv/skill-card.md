@@ -1,39 +1,59 @@
-## Description: <br>
-Calculate risk-based position sizes for long stock trades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates risk-based position sizes for long stock trades using fixed fractional, ATR-based, and Kelly Criterion methods with portfolio constraint checks.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-External users and agents use this skill to calculate long-stock position sizes from account size, entry price, stop-loss or ATR values, risk percentage, and Kelly inputs. It supports risk-management review before a trade, not trade entry or exit recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local report files may contain portfolio size and planned trade details. <br>
-Mitigation: Run the skill in a folder where saved reports are acceptable, avoid synced or shared directories for sensitive trades, and do not provide brokerage credentials. <br>
+## Use Case:
 
+External users and agents use this skill to calculate share counts and risk budgets for long stock trades from account size, entry price, stop-loss distance, ATR, Kelly inputs, and optional portfolio concentration limits. It supports risk-management analysis and does not provide buy or sell signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawdiri-ai/medici-investments-position-sizer-dv) <br>
-- [Position Sizing Methodologies](artifact/references/sizing_methodologies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands] <br>
-**Output Format:** [Natural-language summary with CLI commands; local JSON and Markdown report files when the bundled script runs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates timestamped report files in the selected output directory; reports may contain portfolio size and planned trade details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Users may treat position-sizing output as investment advice or as a recommendation to buy or sell a security.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the output as risk-management math only, and require users to confirm their own trading assumptions before acting.
+
+Risk: Incorrect account size, entry, stop-loss, ATR, Kelly, or concentration inputs can produce unsuitable share counts or risk budgets.
+
+Mitigation: Validate all inputs with the user and prefer conservative rounding before using results for a real trade.
+
+Risk: The local script saves JSON and Markdown reports that may contain sensitive portfolio or trading assumptions.
+
+Mitigation: Run it in a trusted workspace, choose the output directory deliberately, and review or remove saved reports when they contain sensitive data.
+
+## Reference(s):
+
+- [Sizing Methodologies](references/sizing_methodologies.md)
+- [ClawHub Skill Page](https://clawhub.ai/clawdiri-ai/skills/medici-investments-position-sizer-dv)
+- [Publisher Profile](https://clawhub.ai/user/clawdiri-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [CLI guidance with stdout summaries and timestamped JSON and Markdown position-sizing reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are saved under the configured output directory; calculations depend on user-supplied financial inputs.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact SKILL.md frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

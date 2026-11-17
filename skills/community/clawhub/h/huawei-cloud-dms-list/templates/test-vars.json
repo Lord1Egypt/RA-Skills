@@ -1,0 +1,46 @@
+{
+  "skill_name": "huawei-cloud-dms-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "Kafka ListInstances — instance list (read-only GET)",
+      "command": "hcloud Kafka ListInstances --cli-region={region} --engine=kafka --limit=10 --offset=0",
+      "expected": "JSON with instances[] and instance_num (both engines share GET /v2/{project_id}/instances)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "RabbitMQ ListInstancesDetails — instance list (read-only GET)",
+      "command": "hcloud RabbitMQ ListInstancesDetails --cli-region={region} --engine=rabbitmq --limit=10 --offset=0",
+      "expected": "JSON with instances[] and instance_num",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "Kafka ListInstances with server-side name/status filters",
+      "command": "hcloud Kafka ListInstances --cli-region={region} --engine=kafka --name=dms-demo --status=RUNNING --limit=10",
+      "expected": "filtered instance list or empty instances[]",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-04",
+      "name": "own-script syntax: ensure_cli.sh",
+      "command": "bash -n $PWD/scripts/ensure_cli.sh",
+      "expected": "no syntax error",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-05",
+      "name": "own-script syntax: install_cli.sh",
+      "command": "bash -n $PWD/scripts/install_cli.sh",
+      "expected": "no syntax error",
+      "type": "syntax",
+      "executor": "cli"
+    }
+  ]
+}

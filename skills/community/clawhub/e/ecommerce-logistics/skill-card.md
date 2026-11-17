@@ -1,43 +1,58 @@
-## Description: <br>
-Aggregates ecommerce order logistics from Taobao and Pinduoduo with QR login, persistent cookie storage, in-transit filtering, and command-line queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregate logistics information from Taobao, JD, PDD, and Douyin for multi-platform order tracking with persistent cookie storage and QR code login.
 
-## Publisher: <br>
-[charles-lpf](https://clawhub.ai/user/charles-lpf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charles-lpf](https://clawhub.ai/user/charles-lpf)
 
-## Use Case: <br>
-External users and developers use this skill to query shopping-platform order logistics, reuse authenticated sessions, and view currently in-transit shipments from supported ecommerce accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill logs into shopping accounts, reuses stored sessions, and writes cookie data and QR screenshots locally. <br>
-Mitigation: Use a dedicated data directory with restricted file permissions, treat the directory as sensitive, and remove stored session files and QR images when they are no longer needed. <br>
-Risk: Stealth browser automation and all-platform or headless runs can create account, privacy, and platform-policy risk. <br>
-Mitigation: Run only against accounts and platforms where this automation is acceptable, prefer explicit platform selection, and review the site terms and operational impact before use. <br>
-Risk: Douyin debug output may write shopping-page screenshots or HTML to disk. <br>
-Mitigation: Remove the Douyin debug file writes before using that adapter or avoid running Douyin queries. <br>
+## Use Case:
 
+External users and developers use this skill to query authenticated shopping-platform logistics, review in-transit orders, and receive CLI commands for login and tracking across supported platforms.
 
-## Reference(s): <br>
-- [Selector Reference](references/selectors.md) <br>
-- [ClawHub skill page](https://clawhub.ai/charles-lpf/ecommerce-logistics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Terminal text with command examples and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local cookie JSON files and QR-code screenshots in the configured data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill uses authenticated browser automation for shopping accounts and stores sensitive session and order data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when users accept access to authenticated shopping sessions, and require review or remediation of local cookie storage before use.
+
+Risk: Security guidance flags plaintext cookie storage, a false encryption claim, and security-disabling Chromium flags.
+
+Mitigation: Require fixes for cookie protection claims and browser launch settings before deployment in a trusted environment.
+
+Risk: The skill advertises JD and Douyin but evidence says those paths are unsupported, and Douyin code writes debug captures to a hard-coded local path.
+
+Mitigation: Limit supported execution to reviewed Taobao and PDD flows until unsupported platform paths and debug capture behavior are removed or corrected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charles-lpf/skills/ecommerce-logistics)
+- [Platform selector reference](references/selectors.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with bash commands; runtime CLI output is plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write QR-code screenshots and shopping-session cookie files under the configured data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

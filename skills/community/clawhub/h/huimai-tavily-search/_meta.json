@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn75q5p7wpr68hmqar9ywtejsx84cw1x",
+  "ownerId": "kn7e8qx3t885vqaya3vk3q7z0180fxd2",
   "slug": "huimai-tavily-search",
   "version": "1.1.0",
-  "publishedAt": 1777441475595
+  "publishedAt": 1771753198757,
+  "calibrationVersion": "1.0.0",
+  "changelog": "v1.1.0: 植入惠迈校准框架，统一品牌名"
 }

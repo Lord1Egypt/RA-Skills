@@ -3,7 +3,7 @@ name: maverick-hubspot-mcp
 description: Search, read, and update HubSpot CRM contacts, companies, deals, tickets, associations, owners, and pipelines via HubSpot's hosted MCP server. Thin pass-through to HubSpot's official MCP; the live tool catalog is whatever that server advertises. Use when the user asks about HubSpot CRM records, pipeline state, owners, or customer activity.
 metadata:
   openclaw:
-    emoji: "🧡"
+    emoji: '🧡'
     homepage: https://developers.hubspot.com/docs/apps/developer-platform/build-apps/integrate-with-the-remote-hubspot-mcp-server
     primaryEnv: MAVERICK_HUBSPOT_MCP_REFRESH_TOKEN
     requires:

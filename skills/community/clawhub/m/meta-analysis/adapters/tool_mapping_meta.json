@@ -1,0 +1,19 @@
+{
+  "_comment": "Phase 0/1 工具卡映射（Block A/C 需要的 ct-* 本地调用）。request_upload 为特殊内建类型，不在此表。仅 need_tool 命中 cmd 时才真正执行；缺失/未安装 → 返回 error 并回退 coze draft_answer。skill_dir 中的 ~ 由代码 os.path.expanduser 展开；fixed_flags 为无条件追加的开关型参数（如 ct-literature 的 --run）。cmd[0] 一律写占位符 {python}，由 coze_client.resolve_python_exe() 在运行时解析为真实解释器（显式环境变量 → Anaconda base → 当前解释器 → PATH）；请勿再写死绝对解释器路径，否则换机后子进程启动失败会被静默吞成空结果。",
+  "ct-literature": {
+    "description": "文献检索（OpenAlex / Europe PMC / MeSH），供 A2 检索委派",
+    "cmd": ["{python}", "{skill_dir}/scripts/ct_literature.py"],
+    "arg_map": {"topic": "--topic", "max": "--max", "year_from": "--year-from", "out_dir": "--out-dir", "include_reviews": "--include-reviews", "sources": "--sources"},
+    "fixed_flags": ["--run"],
+    "skill_dir": "~/.workbuddy/skills/ct-literature",
+    "output": "ndjson"
+  },
+  "ct-registry": {
+    "description": "全球临床试验注册库检索（CT.gov / EU-CTR / ChiCTR 等），供 A1/A2 选题与查重",
+    "cmd": ["{python}", "{skill_dir}/scripts/ct_registry.py"],
+    "arg_map": {"condition": "--cond", "status": "--status", "max": "--max", "drug": "--drug"},
+    "fixed_flags": ["--run"],
+    "skill_dir": "~/.workbuddy/skills/ct-registry",
+    "output": "json"
+  }
+}

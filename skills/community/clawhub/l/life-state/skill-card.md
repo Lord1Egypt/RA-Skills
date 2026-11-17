@@ -1,42 +1,58 @@
-## Description: <br>
-Daily mood / energy / soreness / sleep capture primitive. Other lifekit skills read this to make state-aware suggestions instead of generic templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily mood / energy / soreness / sleep capture primitive. Other lifekit skills read this to make state-aware suggestions instead of generic templates.
 
-## Publisher: <br>
-[dsdevq](https://clawhub.ai/user/dsdevq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dsdevq](https://clawhub.ai/user/dsdevq)
 
-## Use Case: <br>
-External users and agent builders use this skill to capture daily mood, energy, sleep quality, soreness, and notes in local files so other lifekit skills can adapt their suggestions to current state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Mood, sleep, soreness, energy, and free-text notes are stored locally in plaintext. <br>
-Mitigation: Avoid logging highly sensitive details and restrict access to the local ~/.life/state directory. <br>
-Risk: Casual statements such as "I feel..." could be interpreted as state to log. <br>
-Mitigation: Have the agent confirm user intent before writing personal state entries. <br>
+## Use Case:
 
+External users and agent builders use this skill to capture daily mood, energy, soreness, sleep quality, and notes so related personal-AI skills can adapt suggestions to current state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dsdevq/life-state) <br>
-- [Publisher profile](https://clawhub.ai/user/dsdevq) <br>
-- [lifekit framework](https://github.com/dsdevq/lifekit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [YAML on stdout for CLI results, with agent guidance in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores one plaintext JSON file per day under ~/.life/state when the CLI set command is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill stores mood, sleep, soreness, and personal notes as plaintext JSON under the user's home directory by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted machines and storage locations; set LIFE_STATE_DIR to a private or container-local path when isolation is needed.
+
+Risk: Free-form personal notes are passed to a Bash-invoked CLI, which can create command-execution risk if agents concatenate raw user text into shell commands.
+
+Mitigation: Invoke life-state with structured arguments and safe argument passing rather than building shell strings from untrusted text.
+
+Risk: Broad conversational triggers can cause personal state to be captured more often than intended.
+
+Mitigation: Prefer explicit check-in commands and confirm tersely what was recorded.
+
+## Reference(s):
+
+- [Life State ClawHub release page](https://clawhub.ai/dsdevq/skills/life-state)
+- [Publisher profile](https://clawhub.ai/user/dsdevq)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text guidance with shell command examples and YAML-producing CLI calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and reads plaintext daily JSON state through the life-state CLI.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

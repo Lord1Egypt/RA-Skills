@@ -1,0 +1,175 @@
+{
+  "plantilla": "garabato",
+  "handle": "@tuhandle",
+  "color": "#FFD60A",
+  "slides": [
+    {
+      "foto": {
+        "src": "fotos/foto-1.jpg",
+        "foco": "50% 50%"
+      },
+      "velo": "arriba",
+      "cara": {
+        "x": 400,
+        "y": 500,
+        "w": 320,
+        "h": 330
+      },
+      "contorno": {
+        "x": 250,
+        "y": 440,
+        "w": 780,
+        "h": 1010
+      },
+      "notas": [
+        {
+          "texto": "¿nueva por aquí?",
+          "x": 60,
+          "y": 70,
+          "w": 620,
+          "h": 150,
+          "px": 110,
+          "rot": -4
+        },
+        {
+          "texto": "empecemos",
+          "x": 90,
+          "y": 220,
+          "w": 400,
+          "h": 110,
+          "px": 80,
+          "rot": -2
+        },
+        {
+          "texto": "[a qué te dedicas]",
+          "x": 40,
+          "y": 400,
+          "w": 330,
+          "h": 170,
+          "px": 66,
+          "rot": -6,
+          "flecha": {
+            "desde": [
+              230,
+              575
+            ],
+            "hasta": [
+              390,
+              640
+            ],
+            "curva": -0.3
+          }
+        },
+        {
+          "texto": "lentes de repuesto, siempre",
+          "x": 740,
+          "y": 880,
+          "w": 320,
+          "h": 180,
+          "px": 62,
+          "rot": 4,
+          "flecha": {
+            "desde": [
+              780,
+              1050
+            ],
+            "hasta": [
+              570,
+              1110
+            ],
+            "curva": 0.3
+          }
+        }
+      ],
+      "circulos": [
+        {
+          "x": 478,
+          "y": 1120,
+          "rx": 80,
+          "ry": 110
+        }
+      ],
+      "swipe": true
+    },
+    {
+      "foto": {
+        "src": "fotos/foto-2.jpg",
+        "foco": "50% 50%"
+      },
+      "cara": {
+        "x": 350,
+        "y": 310,
+        "w": 300,
+        "h": 400
+      },
+      "notas": [
+        {
+          "texto": "cada foto cuenta algo de ti",
+          "x": 50,
+          "y": 60,
+          "w": 520,
+          "h": 220,
+          "px": 84,
+          "rot": -4
+        },
+        {
+          "texto": "el lugar",
+          "x": 760,
+          "y": 40,
+          "w": 280,
+          "h": 100,
+          "px": 70,
+          "rot": 5,
+          "flecha": {
+            "desde": [
+              850,
+              130
+            ],
+            "hasta": [
+              800,
+              260
+            ],
+            "curva": 0.25
+          }
+        },
+        {
+          "texto": "el detalle",
+          "x": 540,
+          "y": 850,
+          "w": 300,
+          "h": 110,
+          "px": 70,
+          "rot": -3,
+          "flecha": {
+            "desde": [
+              760,
+              950
+            ],
+            "hasta": [
+              900,
+              1010
+            ],
+            "curva": -0.3
+          }
+        }
+      ],
+      "circulos": [
+        {
+          "x": 970,
+          "y": 1070,
+          "rx": 95,
+          "ry": 120,
+          "rot": 10
+        }
+      ],
+      "subrayados": [
+        {
+          "x": 60,
+          "y": 240,
+          "w": 300,
+          "doble": true
+        }
+      ]
+    }
+  ]
+}

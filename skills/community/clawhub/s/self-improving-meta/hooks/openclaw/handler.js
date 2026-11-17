@@ -1,43 +1,31 @@
 /**
  * Self-Improving Meta Hook for OpenClaw
  *
- * Injects a meta-specific reminder to evaluate infrastructure learnings during agent bootstrap.
- * Fires on agent:bootstrap event before workspace files are injected.
+ * Optional session-start reminder. Log-only. Does not edit files or call the network.
+ * Enable only if you want this reminder in main sessions. Not matcher-gated.
  */
 
-const REMINDER_CONTENT = `
-## Meta Self-Improvement Reminder
+const REMINDER_CONTENT = `## Meta Self-Improvement Reminder (log-only)
 
-After completing tasks, evaluate if any agent infrastructure learnings should be captured:
+This reminder does not authorize edits. Do not change AGENTS.md, SOUL.md, TOOLS.md, MEMORY.md, hooks, rules, or skills unless the user explicitly asked in this session.
 
-**Log learnings when:**
-- Agent misinterprets a prompt file instruction → \`.learnings/LEARNINGS.md\` (instruction_ambiguity)
-- Two rules contradict each other across files → \`.learnings/LEARNINGS.md\` (rule_conflict)
-- Context window feels cramped or truncated → \`.learnings/LEARNINGS.md\` (context_bloat)
-- Memory entry is stale or causing wrong behavior → \`.learnings/LEARNINGS.md\` (prompt_drift)
-- Skill template is missing a section → \`.learnings/LEARNINGS.md\` (skill_gap)
+After tasks, if infrastructure issues appeared, log a short redacted note:
 
-**Log meta issues when:**
-- Hook fails or produces no output → \`.learnings/META_ISSUES.md\`
-- Skill doesn't activate when expected → \`.learnings/META_ISSUES.md\`
-- Prompt file has malformed frontmatter → \`.learnings/META_ISSUES.md\`
-- Extension API breaks or behaves unexpectedly → \`.learnings/META_ISSUES.md\`
+**Learnings** (\`.learnings/LEARNINGS.md\`):
+- Misread prompt-file instruction → \`instruction_ambiguity\`
+- Contradictory rules across files → \`rule_conflict\`
+- Truncated or bloated context → \`context_bloat\`
+- Stale memory causing wrong behavior → \`prompt_drift\`
 
-**Log feature requests when:**
-- New infrastructure capability needed → \`.learnings/FEATURE_REQUESTS.md\`
-- Skill authoring workflow improvement → \`.learnings/FEATURE_REQUESTS.md\`
-- Hook development tooling gap → \`.learnings/FEATURE_REQUESTS.md\`
+**Meta issues** (\`.learnings/META_ISSUES.md\`):
+- Hook produced no output or failed
+- Skill did not activate when expected
+- Malformed skill frontmatter
 
-**Promote when pattern is proven:**
-- Instruction fixes → rewrite directly in AGENTS.md / SOUL.md / TOOLS.md
-- Behavior patterns → SOUL.md
-- Workflow improvements → AGENTS.md
-- Tool integration fixes → TOOLS.md
-- Memory management patterns → MEMORY.md
-- Skill improvements → update the affected SKILL.md
+**Feature requests** (\`.learnings/FEATURE_REQUESTS.md\`):
+- Missing infrastructure capability
 
-Meta-learnings modify the infrastructure all other skills depend on. Apply fixes directly.
-`.trim();
+Do not apply patches, extract skills, or send cross-session messages from this reminder.`.trim();
 
 const handler = async (event) => {
   if (!event || typeof event !== 'object') {
@@ -49,6 +37,11 @@ const handler = async (event) => {
   }
 
   if (!event.context || typeof event.context !== 'object') {
+    return;
+  }
+
+  const sessionKey = event.sessionKey || '';
+  if (sessionKey.includes(':subagent:')) {
     return;
   }
 

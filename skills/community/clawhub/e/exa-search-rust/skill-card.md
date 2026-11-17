@@ -1,46 +1,57 @@
-## Description: <br>
-Exa Search (Rust) lets agents run Exa neural web search, find similar pages, and fetch URL contents through a native Rust binary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exa Search (Rust) lets agents run Exa AI web search, similar-page discovery, and URL content retrieval through a Rust command-line binary.
 
-## Publisher: <br>
-[Prompt-Surfer](https://clawhub.ai/user/Prompt-Surfer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[prompt-surfer](https://clawhub.ai/user/prompt-surfer)
 
-## Use Case: <br>
-Developers, engineers, and agents use this skill to search the web, discover similar pages, and retrieve page contents from Exa for research and information-gathering workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and requested URLs are sent to Exa. <br>
-Mitigation: Use the skill only for inputs suitable for Exa processing and avoid submitting sensitive or restricted information. <br>
-Risk: The skill requires an EXA_API_KEY stored in the agent workspace environment. <br>
-Mitigation: Use a revocable key, keep the workspace .env file private, and avoid sharing command transcripts that expose environment values. <br>
-Risk: The installed skill path must match the expected workspace location before invocation. <br>
-Mitigation: Verify the installed path and binary before running the skill, especially after installation or upgrade. <br>
+## Use Case:
 
+Developers and external agents use this skill to search the web, find pages similar to a known URL, and fetch page contents through Exa when a task needs current or indexed web information.
 
-## Reference(s): <br>
-- [ClawHub listing for Exa Search (Rust)](https://clawhub.ai/Prompt-Surfer/exa-search-rust) <br>
-- [Exa AI](https://exa.ai) <br>
-- [Exa Python SDK](https://github.com/exa-labs/exa-py) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [OpenClaw Exa plugin reference](https://github.com/Prompt-Surfer/openclaw-exa-plugin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON on stdout with a formatted Markdown field for search and similar-page results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful responses include ok, action, results, optional cost data, and, for search-style actions, formatted Markdown; errors are emitted to stderr with exit code 1.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Search terms and requested URLs are sent to Exa using the user's EXA_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets, internal-only URLs, and regulated data unless third-party sharing with Exa is approved.
+
+Risk: Fetched page text can contain untrusted web content that attempts to steer the agent.
+
+Mitigation: Treat fetched content as data for review and summarization, not as instructions for the agent to follow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/prompt-surfer/skills/exa-search-rust)
+- [Exa AI](https://exa.ai)
+- [Official Exa Python SDK](https://github.com/exa-labs/exa-py)
+- [OpenClaw Exa plugin](https://github.com/Prompt-Surfer/openclaw-exa-plugin)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [JSON on stdout, including result objects and a formatted markdown field for search-style actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EXA_API_KEY and sends search terms or requested URLs to Exa.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

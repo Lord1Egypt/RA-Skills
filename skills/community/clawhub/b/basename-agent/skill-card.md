@@ -1,46 +1,61 @@
-## Description: <br>
-Basename Agent helps AI agents register a Basename on Base and obtain a BaseMail email address through Donate Buy, free auto-registration, or WalletConnect v2. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Basename Agent helps agents register a yourname.base.eth Basename and create a yourname@basemail.ai account through Donate Buy, worker-paid auto-registration, or WalletConnect v2.
 
-## Publisher: <br>
-[daaab](https://clawhub.ai/user/daaab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daaab](https://clawhub.ai/user/daaab)
 
-## Use Case: <br>
-Developers and agents use this skill to check, register, and configure onchain Basenames and related BaseMail email access. It provides command examples, JavaScript helpers, and WalletConnect flows for Base mainnet identity registration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad private-key-backed wallet signing power beyond simple Basename and email registration. <br>
-Mitigation: Use a dedicated low-balance wallet, review every signing or transaction request, and avoid using the generic WalletConnect helper for arbitrary dApps. <br>
-Risk: The configured PRIVATE_KEY has full spending authority for its wallet. <br>
-Mitigation: Store the key only in environment variables, never pass it on the command line, and prefer mandatory confirmations before signing. <br>
-Risk: BaseMail API flows may send wallet, token, signature, or registration data to external services. <br>
-Mitigation: Review the publisher's API documentation and confirm exactly what data and tokens are transmitted before deployment. <br>
+## Use Case:
 
+External developers and autonomous agents use this skill to obtain an onchain Basename identity and BaseMail address, then interact with registration and email APIs or WalletConnect flows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/daaab/basename-agent) <br>
-- [BaseMail](https://basemail.ai) <br>
-- [BaseMail API documentation](https://api.basemail.ai/api/docs) <br>
-- [DonateBuy contract on BaseScan](https://basescan.org/address/0x8b10c4D29C99Eac19Edc59C4fac790518b815DE7#code) <br>
-- [CO-QAF and Attention Bonds](https://blog.juchunko.com/en/glen-weyl-coqaf-attention-bonds/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash, JavaScript, Python, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include transaction, signing, WalletConnect, and API-call instructions that require a funded wallet and sensitive credential handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata) <br>
+Risk: The skill can give an agent broad wallet-signing and transaction authority for Basename registration and WalletConnect flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated, low-balance wallet and review each transaction or signature manually before allowing unattended operation.
+
+Risk: Registration, email/account binding, signatures, and transactions may be irreversible or security-sensitive.
+
+Mitigation: Confirm the requested name, recipient wallet, contract address, transaction value, and SIWE message before signing or sending funds.
+
+Risk: Weak scoping and confirmation controls increase the impact of malicious or unintended dApp requests.
+
+Mitigation: Prefer interactive mode and strict allowlists for dApps, contract addresses, methods, and expected transaction values.
+
+## Reference(s):
+
+- [BaseMail](https://basemail.ai)
+- [BaseMail API Docs](https://api.basemail.ai/api/docs)
+- [DonateBuy Contract](https://basescan.org/address/0x8b10c4D29C99Eac19Edc59C4fac790518b815DE7#code)
+- [AttentionBondEscrow Contract](https://basescan.org/address/0xF5fB1bb79D466bbd6F7588Fe57B67C675844C220#code)
+- [CO-QAF and Attention Bonds](https://blog.juchunko.com/en/glen-weyl-coqaf-attention-bonds/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline Bash, JavaScript, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce wallet transaction, signing, API registration, and email-send instructions that require user-controlled credentials and funds.]
+
+## Skill Version(s):
+
+2.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Simulate standardized patient encounters for medical training, supporting OSCE-style history-taking practice, communication skills rehearsal, and educational debriefing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simulate standardized patient encounters for medical training, supporting OSCE-style history-taking practice, communication skills rehearsal, and educational debriefing.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Medical educators, learners, and training facilitators use this skill to rehearse standardized patient encounters, practice clinical interviewing, and prepare debriefing notes for OSCE-style education. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Simulated patient responses could be mistaken for real clinical advice. <br>
-Mitigation: Use outputs only as training artifacts; keep the skill's education-only boundary, real-care exclusions, and faculty-supervision expectations visible in downstream use. <br>
-Risk: Unsupported scenarios could create misleading certainty if treated as executed simulations. <br>
-Mitigation: Use the packaged simulator only for supported scenarios and provide a manual teaching scaffold when a requested scenario is unsupported or execution fails. <br>
-Risk: Unpinned requirements entries may create avoidable dependency ambiguity in stricter environments. <br>
-Mitigation: Pin or remove the requirements entries before installation where dependency provenance and reproducibility controls are required. <br>
+## Use Case:
 
+External educators, learners, and training facilitators use this skill for standardized-patient interview practice, OSCE-style rehearsal, communication feedback, and debrief preparation. It is limited to educational simulation and is not for real clinical triage, diagnosis, treatment selection, or emergency guidance.
 
-## Reference(s): <br>
-- [Virtual Patient Roleplay References](references/references.md) <br>
-- [Audit Reference](references/audit-reference.md) <br>
-- [Guidelines](references/guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with optional shell commands for local simulator checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational simulation output; not clinical advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Training simulation output could be mistaken for real clinical advice or emergency guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs strictly as educational simulation; stop requests for real diagnosis, treatment, triage, or emergency advice and direct users to appropriate clinical channels.
+
+Risk: The packaged simulator supports only a small fixed set of scenarios and can fail or reject unsupported cases.
+
+Mitigation: Use manual roleplay scaffolds for unsupported scenarios and clearly state assumptions, limits, and faculty review needs.
+
+Risk: The release guidance flags requirements.txt entries for review before installation.
+
+Mitigation: Install only in an isolated environment or remove unnecessary requirements before deployment.
+
+## Reference(s):
+
+- [Virtual Patient Roleplay References](references/references.md)
+- [Audit Reference](references/audit-reference.md)
+- [Virtual Patient Roleplay - References](references/guidelines.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/virtual-patient-roleplay)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with simulated patient responses, structured debrief guidance, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes educational-use limits and manual fallback guidance; packaged scenarios are chest_pain, headache, and abdominal_pain.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

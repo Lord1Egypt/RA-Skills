@@ -1,44 +1,59 @@
-## Description: <br>
-Download Instagram videos, Reels, and IGTV in HD quality. Free tier: 5 downloads/day. Unlimited downloads for $0.1 per video. Use when user provides an Instagram video URL. Powered by savefbs.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instagram Video Downloader parses Instagram video links through the redfox.hk API and returns watermark-free video download URLs.
 
-## Publisher: <br>
-[frankchen622](https://clawhub.ai/user/frankchen622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External users and agents use this skill when they have a public Instagram video, Reel, post, IGTV item, or story URL and want downloadable video links returned through the savefbs.com service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted Instagram URLs are sent to savefbs.com for processing. <br>
-Mitigation: Use only public, non-sensitive Instagram URLs and do not provide Instagram credentials, private links, session URLs, or sensitive content. <br>
-Risk: The skill keeps a local usage counter for daily quota tracking. <br>
-Mitigation: Install only if local quota tracking is acceptable and review or remove the local usage file when decommissioning the skill. <br>
-Risk: The payment and upgrade flow is present, but the artifacts do not show reliable payment verification or a clear unlock process. <br>
-Mitigation: Treat payment links cautiously and verify upgrade terms outside the skill before sending funds. <br>
+## Use Case:
 
+External users, creators, editors, collectors, and researchers use this skill to parse public Instagram Reel or post video links and obtain direct MP4 download links for authorized saving, editing, backup, or analysis.
 
-## Reference(s): <br>
-- [savefbs.com](https://savefbs.com) <br>
-- [savefbs.com pricing](https://savefbs.com/pricing) <br>
-- [ClawHub release page](https://clawhub.ai/frankchen622/instagram-video-downloader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command usage and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns download metadata, direct media URLs, usage counts, remaining free quota, and upgrade information when quota is low or exhausted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release metadata) <br>
+Risk: User-submitted Instagram URLs are sent to redfox.hk for parsing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only public Instagram URLs that the user owns or is authorized to download, and avoid private or unrelated URLs.
+
+Risk: The skill uses a RedFox API key and supports command-line or local-file credential handling.
+
+Mitigation: Prefer the REDFOX_API_KEY environment variable, avoid passing keys on the command line, and confirm the key source, scope, expiration, and revocation path before use.
+
+Risk: The security evidence reports external output and weak safeguards around third-party results.
+
+Mitigation: Review returned links before opening or downloading them, and scan downloaded media according to local security policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/instagram-video-downloader)
+- [RedFox API keys](https://redfox.hk/settings/api-keys?source=clawhub)
+- [RedFox Instagram video download API endpoint](https://redfox.hk/story/api/parseWork/videoDownload/instagram)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown and terminal text with full download and cover URLs; optional JSON output from the script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes one Instagram link per request; batch upload is not supported.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

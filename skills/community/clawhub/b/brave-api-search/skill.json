@@ -1,6 +1,6 @@
 {
   "name": "brave-api-search-skill",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "Real-time web search, autosuggest, spellcheck, and AI-powered answers using the Brave Search API. Requires BRAVE_SEARCH_API_KEY and BRAVE_ANSWERS_API_KEY environment variables.",
   "author": "Broedkrummen",
   "requiredEnv": [
@@ -31,7 +31,12 @@
         "freshness": {
           "type": "string",
           "description": "Date filter: pd (24h), pw (7 days), pm (31 days), py (1 year)",
-          "enum": ["pd", "pw", "pm", "py"]
+          "enum": [
+            "pd",
+            "pw",
+            "pm",
+            "py"
+          ]
         },
         "extra_snippets": {
           "type": "boolean",
@@ -73,7 +78,7 @@
       }
     },
     {
-"name": "brave_spellcheck",
+      "name": "brave_spellcheck",
       "description": "Spell check and autocorrect search queries. Returns 'Did you mean' suggestions or confirms no correction needed.",
       "command": "node {{workspace}}/brave_spellcheck.js --query \"{{query}}\" --country {{country|US}}"
     },

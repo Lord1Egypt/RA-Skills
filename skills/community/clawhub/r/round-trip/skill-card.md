@@ -1,48 +1,64 @@
-## Description: <br>
-Helps agents book round-trip flights by collecting route and date details, querying the flyai CLI for outbound and inbound options, and formatting booking results with links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search and present round-trip travel options through the flyai CLI, including outbound and return flight selection and related travel services.
 
-## Publisher: <br>
-[ivan97](https://clawhub.ai/user/ivan97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivan97](https://clawhub.ai/user/ivan97)
 
-## Use Case: <br>
-Travelers and travel-support agents use this skill to search round-trip flight options, compare outbound and return choices, and produce bookable Markdown results from FlyAI/Fliggy data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to install a global npm package. <br>
-Mitigation: Require user approval before installation and stop with manual installation instructions if the CLI remains unavailable. <br>
-Risk: The skill can send travel searches to an external FlyAI service. <br>
-Mitigation: Tell users that searches require external real-time data and avoid using the skill for sensitive travel details without consent. <br>
-Risk: The runbook describes persisting raw travel queries to .flyai-execution-log.json. <br>
-Mitigation: Avoid writing local execution logs unless the user explicitly asks for persistence. <br>
-Risk: Round-trip results may be incomplete or misleading if return-date handling is omitted. <br>
-Mitigation: Confirm both departure and return dates before relying on booking results, and verify that each displayed result includes a booking link. <br>
+## Use Case:
 
+External users and travel agents use this skill to collect trip parameters, run real-time round-trip travel searches, and present bookable outbound and return options. The skill is intended for travel booking workflows that require CLI-backed results instead of model-generated travel data.
 
-## Reference(s): <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ivan97/round-trip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking tables, inline shell commands, and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses real-time flyai CLI results and should include booking links for every listed result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can install a global npm package and execute shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package source and run the skill in a contained environment before using it with real travel requests.
+
+Risk: Travel itinerary details may be sent to a third-party flight service.
+
+Mitigation: Use only when external travel data sharing is acceptable for the user and organization.
+
+Risk: The skill may persist raw queries and command logs locally.
+
+Mitigation: Confirm logging behavior and retention expectations before handling sensitive itinerary information.
+
+Risk: Booking links and branding are added to the agent response.
+
+Mitigation: Check that returned links come from CLI output and that users understand they are leaving the agent workflow to book.
+
+## Reference(s):
+
+- [Parameter and output templates](artifact/references/templates.md)
+- [Round-trip search playbooks](artifact/references/playbooks.md)
+- [Failure recovery fallbacks](artifact/references/fallbacks.md)
+- [Execution log runbook](artifact/references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown travel results with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses flyai CLI output as the source for travel results; may include booking links, brand text, and local execution logging.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

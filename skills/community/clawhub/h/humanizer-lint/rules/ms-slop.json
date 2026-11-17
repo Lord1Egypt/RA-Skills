@@ -1,0 +1,190 @@
+{
+  "language": "ms",
+  "stopwords": [
+    "yang",
+    "dan",
+    "di",
+    "ini",
+    "untuk",
+    "dengan",
+    "tidak",
+    "dalam",
+    "daripada",
+    "pada",
+    "adalah",
+    "kerana",
+    "boleh",
+    "bagi",
+    "bahawa",
+    "oleh",
+    "juga",
+    "akan",
+    "kepada",
+    "mereka"
+  ],
+  "patterns": [
+    {
+      "id": "MS001",
+      "type": "SLOP_PHRASE",
+      "pattern": "dalam\\s+era\\s+digital\\s+kini",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS002",
+      "type": "SLOP_PHRASE",
+      "pattern": "tidak\\s+dapat\\s+dinafikan\\s+bahawa",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS003",
+      "type": "SLOP_PHRASE",
+      "pattern": "penting\\s+untuk\\s+diingat",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS004",
+      "type": "SLOP_PHRASE",
+      "pattern": "perlu\\s+dinyatakan\\s+bahawa",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS005",
+      "type": "SLOP_PHRASE",
+      "pattern": "secara\\s+keseluruhannya",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS006",
+      "type": "SLOP_PHRASE",
+      "pattern": "kesimpulannya",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS007",
+      "type": "SLOP_PHRASE",
+      "pattern": "tambahan\\s+pula",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS008",
+      "type": "SLOP_PHRASE",
+      "pattern": "selain\\s+itu",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS009",
+      "type": "SLOP_PHRASE",
+      "pattern": "memainkan\\s+peranan\\s+penting",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS010",
+      "type": "SLOP_PHRASE",
+      "pattern": "bukan\\s+sahaja",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS011",
+      "type": "SLOP_PHRASE",
+      "pattern": "malah",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS012",
+      "type": "SLOP_PHRASE",
+      "pattern": "seiring\\s+dengan\\s+perkembangan\\s+pesat",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS013",
+      "type": "SLOP_PHRASE",
+      "pattern": "mari\\s+kita\\s+terokai",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS014",
+      "type": "SLOP_PHRASE",
+      "pattern": "hal\\s+ini\\s+membuktikan\\s+bahawa",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS015",
+      "type": "SLOP_PHRASE",
+      "pattern": "dalam\\s+dunia\\s+yang\\s+pantas\\s+berubah",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS016",
+      "type": "SLOP_PHRASE",
+      "pattern": "perlu\\s+diberi\\s+perhatian",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS017",
+      "type": "SLOP_PHRASE",
+      "pattern": "tanpa\\s+ragu-ragu",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS018",
+      "type": "SLOP_PHRASE",
+      "pattern": "sebagai\\s+kesimpulan",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS019",
+      "type": "SLOP_PHRASE",
+      "pattern": "pada\\s+masa\\s+kini",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS020",
+      "type": "SLOP_PHRASE",
+      "pattern": "membuka\\s+peluang\\s+baharu",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS021",
+      "type": "SLOP_PHRASE",
+      "pattern": "satu\\s+langkah\\s+ke\\s+hadapan",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS022",
+      "type": "SLOP_PHRASE",
+      "pattern": "memberi\\s+impak\\s+besar",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS023",
+      "type": "SLOP_PHRASE",
+      "pattern": "dalam\\s+landskap\\s+digital",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS024",
+      "type": "SLOP_PHRASE",
+      "pattern": "menjadi\\s+semakin\\s+penting",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS025",
+      "type": "SLOP_PHRASE",
+      "pattern": "secara\\s+tidak\\s+langsung",
+      "fixInstruction": "Replace this stock phrase with the concrete fact, actor, or action."
+    },
+    {
+      "id": "MS026",
+      "type": "DEFINITIONAL_OPENING",
+      "pattern": "^(?:Dalam konteks|Dalam dunia|Dalam bidang) [\\w\\s]+,",
+      "scope": "paragraph-start",
+      "fixInstruction": "Start with the specific subject or event instead of a generic framing clause."
+    },
+    {
+      "id": "MS027",
+      "type": "STRUCTURAL_CLICHE",
+      "pattern": "\\bbukan\\s+sahaja\\b[\\s\\S]{0,100}?\\bmalah\\b",
+      "fixInstruction": "State both claims directly without the stock paired construction."
+    }
+  ]
+}

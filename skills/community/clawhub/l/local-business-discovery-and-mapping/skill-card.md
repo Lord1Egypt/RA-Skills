@@ -1,42 +1,61 @@
-## Description: <br>
-Local Business Discovery and Mapping helps agents search for nearby places, run text-based place searches, and convert between addresses and coordinates through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Business Discovery and Mapping: Search for nearby places or by text query. 30+ category filters. Use when an agent needs local business discovery and mapping, local business discovery and recommendations for travel planning, restaurant and dining venue search for meal planning applications, healthcare facility location for medical service directories, retail store finding for shopping assistance, geocode, address, nearby search through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to discover local businesses and services, find places by category or text query, and geocode or reverse-geocode locations for travel, dining, healthcare, retail, routing, and market research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location searches can expose sensitive home, workplace, medical, or other personal-location context. <br>
-Mitigation: Ask for explicit user intent before sending sensitive locations and keep lookup inputs limited to the minimum needed for the task. <br>
-Risk: AgentPMT account, wallet, payment, or API credentials could be exposed if included in prompts or logs. <br>
-Mitigation: Use the setup skills for credential handling and keep account secrets, wallet private keys, mnemonics, signatures, and payment headers out of prompts and logs. <br>
+## Use Case:
 
+External developers and agents use this skill to discover local businesses and places, geocode addresses, reverse geocode coordinates, and run location-biased text searches through AgentPMT-hosted remote tool calls.
 
-## Reference(s): <br>
-- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/local-business-discovery-and-mapping) <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/local-business-discovery-and-mapping) <br>
-- [Action Schema](artifact/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API Calls, JSON] <br>
-**Output Format:** [Markdown instructions with JSON request and response handling examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces action guidance for geocode, nearby_search, reverse_geocode, and text_search calls; tool responses are JSON from AgentPMT and Google Maps-backed lookups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Location searches can expose sensitive home, workplace, or other precise addresses to a remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only the minimum location detail needed for the task and avoid using sensitive addresses unless required.
+
+Risk: Remote setup and invocation may involve account credentials or payment-related headers.
+
+Mitigation: Use the referenced setup flow for credential handling and do not place AgentPMT credentials, wallet secrets, signatures, or payment headers in prompts or logs.
+
+Risk: Endpoint details, schemas, or examples may change after publication.
+
+Mitigation: Refresh the installed skill or fetch live schema and instructions before new production integrations or unclear calls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/local-business-discovery-and-mapping)
+- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/local-business-discovery-and-mapping)
+- [Action Schema](artifact/schema.md)
+- [AgentPMT MCP Server](https://api.agentpmt.com/mcp/)
+- [AgentPMT REST Invoke Endpoint](https://api.agentpmt.com/products/purchase)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands, API calls]
+
+**Output Format:** [Markdown instructions with JSON request examples and schema references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports geocode, nearby_search, reverse_geocode, and text_search action guidance; remote tool responses are JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

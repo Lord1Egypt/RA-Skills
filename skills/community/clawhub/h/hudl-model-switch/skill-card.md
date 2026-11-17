@@ -1,44 +1,64 @@
-## Description: <br>
-Switches the active OpenClaw LLM model through the Huddle01 GRU gateway and reports the current model when asked. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Switches an OpenClaw agent's active LLM model on the Huddle01 GRU gateway and reports the current model state.
 
-## Publisher: <br>
-[OmGuptaIND](https://clawhub.ai/user/OmGuptaIND) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omguptaind](https://clawhub.ai/user/omguptaind)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to switch or inspect the active model for a hudl provider backed by gru.huddle01.io while keeping active and default model settings aligned. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes OpenClaw model settings and restarts OpenClaw. <br>
-Mitigation: Run validation first, review the resolved model and before/after active/default values, and keep a config backup when rollback matters. <br>
-Risk: Broad model aliases may select a model the user did not intend. <br>
-Mitigation: State the resolved hudl model ID before switching and ask for clarification when the requested model is unclear or high impact. <br>
-Risk: A fallback install source is not established by server-resolved provenance. <br>
-Mitigation: Prefer the ClawHub install path unless the fallback source is independently trusted. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to change or inspect the active model for agents configured with the hudl provider backed by gru.huddle01.io.
 
-## Reference(s): <br>
-- [GRU Gateway Model Catalog](references/models.md) <br>
-- [Huddle01 GRU Gateway](https://gru.huddle01.io) <br>
-- [GRU Gateway Models API](https://gru.huddle01.io/v1/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands and configuration status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports before and after active/default model values and may restart OpenClaw after successful validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Broad or ambiguous chat phrasing can trigger persistent changes to the active and default OpenClaw model and then restart the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested model before switching, prefer explicit model names, and confirm the active/default values before restart.
+
+Risk: Model switching changes local OpenClaw configuration.
+
+Mitigation: Back up the OpenClaw config before switching and verify both active and default model fields after the script runs.
+
+Risk: Gateway validation accepts HTTP as well as HTTPS for the GRU base URL.
+
+Mitigation: Use only an HTTPS Huddle01 GRU baseUrl for deployment.
+
+Risk: The GitHub fallback install path is unpinned while server-resolved import provenance is unavailable.
+
+Mitigation: Prefer the ClawHub release artifact or independently verify the repository state before using the GitHub fallback.
+
+## Reference(s):
+
+- [Hudl Model Switch Skill Page](https://clawhub.ai/omguptaind/skills/hudl-model-switch)
+- [GRU Gateway](https://gru.huddle01.io)
+- [GRU Gateway Models API](https://gru.huddle01.io/v1/models)
+- [GRU Gateway Model Catalog](references/models.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status messages with shell command execution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update OpenClaw configuration and initiate an OpenClaw restart when used for model switching.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

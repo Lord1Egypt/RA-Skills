@@ -1,41 +1,62 @@
-## Description: <br>
-Monitors OpenClaw JSON logs for ERROR-level entries, records recent issues, and provides system-level remediation suggestions for gateway, port, and session problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors OpenClaw JSON logs for ERROR-level entries, records deduplicated findings, and suggests system-level fixes for gateway, port, and session issues.
 
-## Publisher: <br>
-[amd5](https://clawhub.ai/user/amd5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amd5](https://clawhub.ai/user/amd5)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor local OpenClaw runtime logs, deduplicate recent error reports, and receive suggested checks for gateway connectivity, port usage, and session cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scheduled install behavior is unclear, including a declared postinstall script that is not present in the artifact. <br>
-Mitigation: Review install behavior before use, ask the publisher to include or remove the installer, and document how any cron job is created and disabled. <br>
-Risk: The skill runs local commands and writes persisted log excerpts, while some documentation describes behavior as manual or read-only. <br>
-Mitigation: Run without elevated privileges, review command execution before enabling automation, and treat saved log excerpts as potentially sensitive. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor OpenClaw runtime errors, keep a deduplicated error record, and receive suggested checks or manual recovery steps for common gateway, port, and session failures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amd5/error-monitor-fix) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/amd5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and console text, with optional JSON output from scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes deduplicated error summaries and fix history under the local OpenClaw workspace when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: OpenClaw error logs may contain sensitive data and are copied into persistent workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add redaction before writing error records and review retained workspace files for sensitive content.
+
+Risk: Log-derived text is appended to Markdown files and may affect how reports render.
+
+Mitigation: Escape Markdown table content and other user-controlled log fields before appending them.
+
+Risk: The release declares an install hook for a script that is not present in the artifact.
+
+Mitigation: Provide and document the install script or remove the postinstall hook before deployment.
+
+Risk: Fixed diagnostic commands inspect local services and OpenClaw sessions.
+
+Mitigation: Document the commands and run the skill with least necessary workspace and system access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/amd5/skills/error-monitor-fix)
+- [Publisher Profile](https://clawhub.ai/user/amd5)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Console text or JSON, with Markdown error records appended to workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains deduplication and fix-log JSON files in the OpenClaw workspace.]
+
+## Skill Version(s):
+
+3.0.0 (source: server evidence, skill.json, _meta.json, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

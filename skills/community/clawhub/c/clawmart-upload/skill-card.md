@@ -1,43 +1,54 @@
-## Description: <br>
-Upload your current OpenClaw configuration to the ClawMart marketplace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload your current OpenClaw configuration to the ClawMart marketplace.
 
-## Publisher: <br>
-[rxdaozhang](https://clawhub.ai/user/rxdaozhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rxdaozhang](https://clawhub.ai/user/rxdaozhang)
 
-## Use Case: <br>
-OpenClaw users use this skill to package their workspace configuration and submit it as a ClawMart pack for marketplace review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload OpenClaw configuration, memory, user, tools, identity, and local skill contents to an external marketplace. <br>
-Mitigation: Review the file list before upload and exclude sensitive files or local skills unless their full contents are intended for submission. <br>
-Risk: The built-in sensitive-data check does not cover local skill files. <br>
-Mitigation: Inspect local skill files manually before including them in the upload payload. <br>
-Risk: The ClawMart API token is stored in a local configuration file. <br>
-Mitigation: Use a revocable token and revoke it if the local config file is exposed. <br>
+## Use Case:
 
+OpenClaw users use this skill to package selected local OpenClaw configuration files and submit them as a pack to the ClawMart marketplace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rxdaozhang/clawmart-upload) <br>
-- [ClawMart marketplace](https://clawmart-gray.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with JSON payload examples and HTTP request details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user prompts, upload summaries, sensitive-data warnings, and ClawMart API request details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.5 (source: server release metadata) <br>
+Risk: The skill can collect and upload broad local OpenClaw configuration, including identity, memory, user, tools, bootstrap, and local skill files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every file before uploading and exclude private or sensitive files unless they are intended for ClawMart submission.
+
+Risk: The skill stores a ClawMart API token in a local plaintext configuration file.
+
+Mitigation: Only paste or store a token where it can be protected, and revoke or replace the token if it may have been exposed.
+
+## Reference(s):
+
+- [ClawMart service](https://clawmart-gray.vercel.app)
+- [ClawMart token dashboard](https://clawmart-gray.vercel.app/dashboard/tokens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, API calls, guidance]
+
+**Output Format:** [Markdown/plain text with JSON payload and HTTP request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local ClawMart token configuration and submit selected OpenClaw pack files after user confirmation.]
+
+## Skill Version(s):
+
+1.5.5 (source: server release metadata and changelog; artifact frontmatter lists 1.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,31 @@
+{
+  "name": "kuaishou-topic-analysis-v1",
+  "version": "1.0.0",
+  "description": "当用户需要做快手选题、快手内容选题、短视频选题策划、快手视频爆款角度拆解、内容方向规划或选题素材整理时使用。面向内容运营、品牌调研和创作者。提供快手关键词搜索、快手博主作品获取、快手视频评论获取等功能。",
+  "keywords": [
+    "快手",
+    "爆款视频",
+    "市场调研",
+    "数据挖掘",
+    "趋势监控",
+    "竞品分析",
+    "KOL营销",
+    "流量增长"
+  ],
+  "homepage": "https://github.com/why20261/kuaishou-detail-guaikei",
+  "bugs": {
+    "url": "https://github.com/um-why/kuaishou-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/why20261/kuaishou-detail-guaikei.git"
+  },
+  "license": "MIT",
+  "author": "why20261",
+  "main": "scripts/kuaishou/search-cli.js",
+  "scripts": {
+    "search": "node scripts/kuaishou/search-cli.js",
+    "post": "node scripts/kuaishou/post-cli.js",
+    "comment": "node scripts/kuaishou/comment-cli.js"
+  }
+}

@@ -1,46 +1,61 @@
-## Description: <br>
-Scrapes Craigslist NY service ads to find small owner-operated businesses in Staten Island, Brooklyn, and Bronx for lead generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes Craigslist NY service ads to find small owner-operated businesses in Staten Island, Brooklyn, and the Bronx for lead generation.
 
-## Publisher: <br>
-[JayJJimenez](https://clawhub.ai/user/JayJJimenez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jayjjimenez](https://clawhub.ai/user/jayjjimenez)
 
-## Use Case: <br>
-Sales, marketing, and operations users use this skill to collect public Craigslist service-ad leads in selected New York City boroughs. It can print leads to the console or append a markdown lead table for outreach follow-up. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill scrapes Craigslist and collects public contact details for outreach. <br>
-Mitigation: Confirm the use complies with applicable site rules, outreach laws, and internal contact-data handling policies before running it. <br>
-Risk: Saved lead files may contain phone numbers, listing URLs, and business-identifying details. <br>
-Mitigation: Store saved lead files in an approved location, restrict access, and delete them when they are no longer needed. <br>
-Risk: The optional weekly cron command creates recurring scraping activity. <br>
-Mitigation: Install the cron job only when recurring collection is intended, and review or remove the schedule when the campaign ends. <br>
-Risk: The script depends on a local Scrapling environment. <br>
-Mitigation: Verify the local Scrapling dependency and path before execution so the skill runs in the expected environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JayJJimenez/craigslist-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/JayJJimenez) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
-- [Artifact monitor script](artifact/monitor.py) <br>
+## Use Case:
 
+Developers, operators, or sales teams use this skill to scan Craigslist NY service listings for owner-operated businesses in target boroughs, prioritize leads with phone numbers, and optionally append results to a local markdown lead list.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, guidance] <br>
-**Output Format:** [Console text and markdown tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can append lead results to a local markdown file and optionally enrich listings by fetching individual ad pages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes outbound Craigslist requests and can be scheduled for recurring scraping.
+
+Mitigation: Run scheduled scans only when recurring collection is intended and keep frequency aligned with site terms and operational needs.
+
+Risk: When --save is used, lead and contact details are appended to a local markdown file.
+
+Mitigation: Store the lead list in an approved location and review retention, access, and privacy handling before sharing it.
+
+Risk: The --enrich mode follows listing URLs without strong validation.
+
+Mitigation: Use --enrich cautiously and validate or constrain listing URLs before relying on enriched contact data.
+
+## Reference(s):
+
+- [ClawHub Craigslist Monitor skill page](https://clawhub.ai/jayjjimenez/skills/craigslist-monitor)
+- [Craigslist NY plumber search](https://newyork.craigslist.org/search/sss?query=plumber&nearby=1)
+- [Craigslist NY HVAC search](https://newyork.craigslist.org/search/sss?query=hvac&nearby=1)
+- [Craigslist NY auto repair search](https://newyork.craigslist.org/search/sss?query=auto+repair&nearby=1)
+- [Craigslist NY dental search](https://newyork.craigslist.org/search/sss?query=dental&nearby=1)
+- [Craigslist NY contractor search](https://newyork.craigslist.org/search/sss?query=contractor&nearby=1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands; runtime output is console text or a markdown table.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional --save appends lead/contact details to a local markdown file; optional --enrich fetches listing pages for phone numbers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

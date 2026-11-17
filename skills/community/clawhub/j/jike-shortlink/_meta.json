@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-shortlink",
   "version": "1.0.0",
-  "publishedAt": 1777376848568
+  "title": "短链接 - 即刻数据",
+  "description": "支持生成短链接、短链接还原和短链接访问统计，可设置最大访问次数和到期时间。",
+  "env": "JIKE_SHORTLINK_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/shortlink/create",
+  "homepage": "https://www.jikeapi.cn/"
 }

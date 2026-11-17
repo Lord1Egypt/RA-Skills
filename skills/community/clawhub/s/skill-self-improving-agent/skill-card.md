@@ -1,46 +1,62 @@
-## Description: <br>
-Captures learnings, errors, feature requests, and corrections so coding agents can preserve and promote useful lessons across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures agent learnings, errors, corrections, and missing capabilities in markdown logs so future sessions can reuse them.
 
-## Publisher: <br>
-[vincntk](https://clawhub.ai/user/vincntk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincntk](https://clawhub.ai/user/vincntk)
 
-## Use Case: <br>
-Developers and agent operators use this skill to log failed commands, user corrections, feature requests, and reusable lessons into local markdown records. The skill also guides promotion of broadly useful lessons into agent memory or project instruction files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning logs can retain secrets, tokens, customer data, private paths, raw transcripts, or full command outputs. <br>
-Mitigation: Redact sensitive data before logging, prefer summarized entries, and keep `.learnings/` out of version control unless intentionally shared. <br>
-Risk: Promoting entries to memory files or sharing them across sessions can spread private or inaccurate guidance. <br>
-Mitigation: Require explicit review and approval before promotion or cross-session sharing. <br>
-Risk: Optional hooks can inject reminders or inspect command results during agent workflows. <br>
-Mitigation: Keep hooks opt-in, inspect hook scripts and configuration before enabling them, and use them only in trusted workspaces. <br>
+## Use Case:
 
+Developers and coding-agent users use this skill to capture corrections, command failures, knowledge gaps, and reusable practices in project-local learning files. It also guides promotion of durable learnings into agent instruction files or reusable skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vincntk/skill-self-improving-agent) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [OpenClaw Integration Guide](references/openclaw-integration.md) <br>
-- [Examples](references/examples.md) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with file templates and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local learning logs and optional hook setup guidance; no structured machine-readable output is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Conversation-derived content may be persisted into future agent instructions or shared learning files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review diffs manually before promoting entries and keep promoted guidance concise, factual, and scoped to verified behavior.
+
+Risk: Learning logs and raw command errors may capture secrets, sensitive paths, or private implementation details.
+
+Mitigation: Redact sensitive values before logging and keep .learnings project-local or ignored when it may contain sensitive content.
+
+Risk: Hook reminders can influence future sessions and instruction files if enabled without review.
+
+Mitigation: Enable hooks only intentionally, inspect hook output, and treat AGENTS.md, SOUL.md, TOOLS.md, CLAUDE.md, and Copilot instruction changes as security-sensitive.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vincntk/skills/skill-self-improving-agent)
+- [Publisher Profile](https://clawhub.ai/user/vincntk)
+- [Hook Setup Guide](references/hooks-setup.md)
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [Entry Examples](references/examples.md)
+- [Agent Skills Specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown entries, configuration snippets, shell commands, and reminder text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update project-local learning files and, when the extraction helper is run, scaffold a new skill under a relative skills directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

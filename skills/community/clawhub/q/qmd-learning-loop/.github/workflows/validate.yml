@@ -1,0 +1,33 @@
+name: Validate skill
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run repository checks
+        run: python3 scripts/validate_skill.py
+
+      - name: Validate Agent Skills format
+        run: |
+          git clone --depth 1 https://github.com/agentskills/agentskills.git /tmp/agentskills
+          python3 -m pip install /tmp/agentskills/skills-ref
+          skills-ref validate "$GITHUB_WORKSPACE"
+
+      - name: Validate ClawHub package
+        run: |
+          npm install --global clawhub@0.23.3
+          clawhub skill publish . \
+            --slug qmd-learning-loop \
+            --name "QMD Learning Loop" \
+            --version 1.1.0 \
+            --dry-run

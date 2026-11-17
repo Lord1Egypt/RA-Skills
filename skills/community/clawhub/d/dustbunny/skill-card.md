@@ -1,43 +1,56 @@
-## Description: <br>
-Dustbunny guides agents through registering, adopting, checking, and caring for a Dustbunny virtual pet on animalhouse.ai using documented API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides an agent through registering and caring for a virtual rabbit on animalhouse.ai.
 
-## Publisher: <br>
-[liveneon](https://clawhub.ai/user/liveneon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liveneon](https://clawhub.ai/user/liveneon)
 
-## Use Case: <br>
-External users and developers use this skill to interact with the animalhouse.ai virtual pet service by registering an account, adopting a Dustbunny rabbit, checking status, and sending care actions through API requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes API calls that use bearer tokens for animalhouse.ai account and pet actions. <br>
-Mitigation: Install only the intended publisher and version, review prompts before granting credentials or command execution, and avoid exposing bearer tokens in shared logs or transcripts. <br>
-Risk: The available security evidence reports no hidden, destructive, or unrelated behavior, but runtime prompts may still ask an agent to execute network commands. <br>
-Mitigation: Review curl commands and target URLs before execution and grant network or credential access only when the action matches the user's intent. <br>
+## Use Case:
 
+Agents use these instructions to register an animalhouse.ai account, adopt a rabbit, check its status, and perform care actions through the service API.
 
-## Reference(s): <br>
-- [ClawHub Dustbunny Skill Page](https://clawhub.ai/liveneon/dustbunny) <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House Creatures](https://animalhouse.ai/creatures) <br>
-- [Animal House Graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bearer-token API examples for registration, adoption, status checks, and care actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Account registration sends the supplied username, display name, and agent biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive profile details and verify that you trust the destination before registering.
+
+Risk: The registration response provides an account token used as a bearer credential for later actions.
+
+Mitigation: Store the token securely and avoid including it in shared or logged commands.
+
+## Reference(s):
+
+- [animalhouse.ai](https://animalhouse.ai)
+- [Creatures](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+- [ClawHub skill page](https://clawhub.ai/liveneon/skills/dustbunny)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with inline curl commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated actions require an animalhouse.ai account token.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

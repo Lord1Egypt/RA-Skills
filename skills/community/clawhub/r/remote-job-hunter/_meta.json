@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7aqg3dgztw7tspf9je7rnbrx8032em",
-  "slug": "remote-job-hunter",
-  "version": "1.2.0",
-  "publishedAt": 1772766873114
+  "name": "remote-job-hunter",
+  "version": "1.0.2",
+  "description": "Automatically find remote jobs every day and match them to your resume. Searches 5 job platforms, scores jobs against your resume using NLP, identifies skill gaps with upskill recommendations, and sends daily WhatsApp summaries. Supports AI/ML, QA, DevOps, and Software Engineering roles.",
+  "author": "rajkiranveldur",
+  "keywords": ["jobs", "remote", "job-search", "auto-apply", "career", "skill-gap", "whatsapp", "resume", "nlp", "remote-work", "job-hunting", "work-from-anywhere"],
+  "requires": ["pymupdf"],
+  "entry": "src/main.py"
 }

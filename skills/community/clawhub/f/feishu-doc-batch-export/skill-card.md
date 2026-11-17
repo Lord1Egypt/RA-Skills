@@ -1,44 +1,58 @@
-## Description: <br>
-Exports Feishu docx documents to local Markdown with document formatting, links, and images saved for local use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exports accessible Feishu docx documents to local Markdown with supported formatting, links, and downloaded images.
 
-## Publisher: <br>
-[technologyliu](https://clawhub.ai/user/technologyliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[technologyliu](https://clawhub.ai/user/technologyliu)
 
-## Use Case: <br>
-Developers, operators, and Feishu workspace users can use this skill to configure a Feishu app and export accessible docx documents into local Markdown files for archival, migration, or downstream editing. The included script currently supports single docx links; folder batch export is advertised but not implemented in the script evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill overstates batch and folder export behavior compared with the included script. <br>
-Mitigation: Treat the release as a single-document exporter unless folder export support is verified in updated code. <br>
-Risk: The skill requires Feishu app credentials and read permissions that can expose document contents. <br>
-Mitigation: Use a dedicated low-privilege Feishu app, grant only needed read permissions, and keep credentials out of shared logs or exported files. <br>
-Risk: Exported Markdown and images are written to a local directory and may contain sensitive document content. <br>
-Mitigation: Choose a deliberate output directory, apply normal data handling controls, and review exported files before sharing. <br>
+## Use Case:
 
+Developers, operators, and knowledge workers use this skill to configure Feishu app credentials and export accessible Feishu docx content into local Markdown archives.
 
-## Reference(s): <br>
-- [Feishu app configuration guide](references/config.md) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
-- [ClawHub skill page](https://clawhub.ai/technologyliu/feishu-doc-batch-export) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown files with downloaded image assets and optional HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FEISHU_APP_ID and FEISHU_APP_SECRET environment variables and a Feishu app with appropriate document read permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The release describes batch and folder export behavior that the shipped script does not fully implement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the requested export mode before use and rely on single-document export unless folder support is added and reviewed.
+
+Risk: Feishu credentials and Drive permissions may expose more workspace data than needed for single-document export.
+
+Mitigation: Use narrowly scoped Feishu credentials and avoid granting drive:readonly until folder export is actually required.
+
+Risk: Document-supplied image links can cause the machine running the skill to contact arbitrary HTTP(S) URLs and write downloaded files locally.
+
+Mitigation: Export only trusted documents and choose an output directory appropriate for sensitive local copies.
+
+## Reference(s):
+
+- [Feishu app configuration guide](artifact/references/config.md)
+- [Feishu Open Platform](https://open.feishu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands; exported documents are written as Markdown files with local image assets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FEISHU_APP_ID and FEISHU_APP_SECRET, Feishu document access, and a local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

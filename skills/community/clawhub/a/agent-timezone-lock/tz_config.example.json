@@ -1,0 +1,8 @@
+{
+  "_comment": "This is an example only. Do not edit manually. Run timezone_setup.py to generate.",
+  "timezone": "<IANA_TIMEZONE_NAME e.g. America/New_York, Europe/London, Asia/Tokyo>",
+  "display_name": "<Human-readable label e.g. US Eastern, UK London, Japan>",
+  "utc_offset_hours": 0,
+  "configured_by": "timezone_setup.py",
+  "note": "Edit timezone field to change. Run now.py to verify."
+}

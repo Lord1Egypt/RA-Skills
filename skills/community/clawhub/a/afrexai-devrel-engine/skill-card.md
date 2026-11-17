@@ -1,39 +1,54 @@
-## Description: <br>
-Provides expert guidance to build, grow, and measure developer programs that enhance community engagement, product adoption, and ecosystem growth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides expert guidance to build, grow, and measure developer programs that enhance community engagement, product adoption, and ecosystem growth.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developer relations, product, marketing, and engineering teams use this skill to audit developer experience, plan DevRel programs, design content and community strategy, and measure developer adoption. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad example invocation phrases could route an agent into this skill unintentionally in automatic skill-selection environments. <br>
-Mitigation: Invoke the skill explicitly by name or tune routing rules so it is selected only for DevRel planning, DX audit, content strategy, community, events, SDK strategy, and measurement tasks. <br>
-Risk: The README includes promotional external links to related AfrexAI resources. <br>
-Mitigation: Review external links before treating them as neutral references or sharing generated recommendations with stakeholders. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-devrel-engine) <br>
+## Use Case:
 
+Developers, DevRel teams, founders, and product leaders use this skill to assess developer experience, plan developer advocacy programs, design community and content systems, and measure DevRel impact.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables, checklists, and YAML-style planning templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scoring rubrics, strategy briefs, program templates, community plans, and measurement frameworks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may provide private business metrics, community data, or unpublished strategy while asking for DevRel guidance.
+
+Mitigation: Use explicit skill invocation and share only data intended for the agent to analyze.
+
+Risk: Strategy, budget, community, and growth recommendations may be mismatched to a specific company's constraints if accepted without review.
+
+Mitigation: Have a responsible owner review generated plans against current product, legal, community, and business requirements before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-devrel-engine)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with YAML templates, scoring rubrics, checklists, and strategy recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory planning artifacts; does not request tool execution or persistent access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

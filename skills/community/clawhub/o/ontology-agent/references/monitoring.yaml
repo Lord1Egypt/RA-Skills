@@ -1,0 +1,230 @@
+# monitoring.yaml — Autonomous monitoring subscription template (added in Phase 10; purely additive, core untouched)
+# Ontology Agent · Autonomous monitoring and proactive behavior layer
+# Bilingual note: the Chinese counterpart of this file is `monitoring.zh.yaml`.
+# Design principle: describe only "what to monitor / who owns it / frequency / thin-vs-thick
+# adaptation / the instruction injected into the agent"; it does not modify the 24-department
+# template, the action library, decision/roles/semantic/logic, or init.py.
+meta:
+  layer: monitoring
+  version: 0.5.0
+  description: Catalog of enterprise autonomous monitoring signal domains + switchable automation templates (value-added layer)
+
+# Thin / thick profile determination (decides which signal domains activate)
+profile_mode:
+  # In instance.yaml, when the number of hits among the "business richness" fields below >= rich_threshold, the profile is thick
+  rich_fields: [products, customers, competitors, supply_chain, projects, channels]
+  rich_threshold: 2
+  # Thin profile: run only the thin_applicable domains (generic, independent of proprietary data)
+  # Thick profile: run thin + thick domains (precise subscription, low noise)
+  note: A thin profile still delivers value immediately; a thick profile has a higher hit rate and lower noise
+
+# 8 signal domains
+signal_domains:
+  - id: policy
+    name: Policy & Regulation
+    owner_depts: [finance, legal, strategy]
+    actions: [compliance monitoring, financial early warning]
+    frequency: "FREQ=WEEKLY;BYDAY=MO"
+    thin_applicable: true
+    thick_applicable: true
+    enabled_default: true
+    requires: []
+    prompt: |
+      As the business principal, dispatch the Finance & Tax / Legal / Strategy members to search
+      online for policy / regulation / tax incentive / social insurance subsidy / new regulatory
+      changes in the enterprise's region and industry over the past week (Heping District, Tianjin +
+      one-person company / AI industry first). Record only signals that are relevant and valuable to
+      the enterprise by calling monitor.py record, then let proactive.py grade them.
+
+  - id: industry
+    name: Industry Hotspots / Technology Trends
+    owner_depts: [strategy, rnd]
+    actions: [market insight, industry trend insight]
+    frequency: "FREQ=WEEKLY;BYDAY=WE"
+    thin_applicable: true
+    thick_applicable: true
+    enabled_default: true
+    requires: []
+    prompt: |
+      Dispatch the Strategy / R&D members to search industry reports, new technologies, policy
+      dividends and sector funding activity. Focus on signals relevant to the enterprise's track;
+      record, then grade.
+
+  - id: sentiment
+    name: Public Sentiment / Brand
+    owner_depts: [pr, mkt_content]
+    actions: [sentiment monitoring]
+    frequency: "FREQ=DAILY"
+    thin_applicable: true
+    thick_applicable: true
+    enabled_default: true
+    requires: []
+    prompt: |
+      Dispatch the Public Relations / Content Marketing members to monitor brand mentions, negative
+      sentiment and crisis warnings. On any negative or crisis signal, alert immediately at L1/L2;
+      record, then grade.
+
+  - id: ops_health
+    name: Own Business Health (internal)
+    owner_depts: [finance, lead]
+    actions: [financial early warning, operations daily report]
+    frequency: "FREQ=DAILY"
+    thin_applicable: true
+    thick_applicable: true
+    enabled_default: true
+    requires: []
+    prompt: |
+      Aggregate internal business signals: cash flow / receivables, backlog, tax filing milestones,
+      invoice status. Shares the same source as the daily operations report; add newly identified
+      risk signals, record, then grade.
+
+  - id: competitor
+    name: Market / Competitors
+    owner_depts: [strategy, sales, mkt_seo]
+    actions: [market research, sales trend insight]
+    frequency: "FREQ=WEEKLY;BYDAY=FR"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [competitors, products]
+    prompt: |
+      Thick profiles only. Dispatch the Strategy / Sales / SEO members to monitor competitor moves,
+      price changes, channel shifts and search popularity. Record, then grade (precise, low noise).
+
+  - id: customer
+    name: Customers / Opportunities
+    owner_depts: [csm, sales]
+    actions: [customer churn warning, sales early warning]
+    frequency: "FREQ=DAILY"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [customers]
+    prompt: |
+      Thick profiles only. Dispatch the Customer Success / Sales members to monitor customer churn
+      warnings, opportunity signals and RFM anomalies. Record, then grade.
+
+  - id: risk
+    name: Risk / Compliance / Security
+    owner_depts: [legal, risk, it_security]
+    actions: [risk monitoring & early warning, compliance monitoring, vulnerability scan, system monitoring]
+    frequency: "FREQ=DAILY"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [products, supply_chain]
+    prompt: |
+      Thick profiles only (or when the enterprise already has systems / data assets). Dispatch the
+      Legal / Risk / IT & Security members to monitor contract risk, data security risk, system
+      alerts and vulnerabilities. Record, then grade.
+
+  - id: talent
+    name: Talent / Recruiting
+    owner_depts: [hr]
+    actions: [recruiting analysis, compensation benchmark]
+    frequency: "FREQ=MONTHLY;BYMONTHDAY=1"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [employees]
+    prompt: |
+      Thick profiles only (when there are employees). Dispatch the Human Resources member to monitor
+      role supply/demand and compensation benchmarks. Record, then grade.
+
+  - id: manufacturing
+    name: Manufacturing-specific (equipment / yield / stock-out / safety & environment)
+    owner_depts: [operations, quality, procurement, risk]
+    actions: [risk monitoring & early warning, quality monitoring]
+    frequency: "FREQ=DAILY"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [products, supply_chain]
+    prompt: |
+      Thick profiles only (manufacturing usually has line / equipment / inventory data). As the
+      business principal, dispatch the Operations / Quality / Procurement / Risk members to monitor
+      manufacturing-specific signals: equipment downtime or OEE drop, yield fluctuation, material
+      stock-out, safety & environmental incidents, energy anomalies, quality recall risk
+      (see manufacturing_signals in packs/manufacturing.yaml for the specific signals and subtype
+      emphasis). On major risks such as safety incidents or critical stock-outs, alert the owner
+      immediately at L1/L2; others are recorded and graded by proactive.py.
+
+  - id: public_institution
+    name: Public-institution-specific (state assets / procurement / staffing / budget)
+    owner_depts: [finance, legal, procurement, hr]
+    actions: [compliance monitoring, risk monitoring & early warning]
+    frequency: "FREQ=MONTHLY;BYMONTHDAY=1"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [products]
+    prompt: |
+      Thick profiles only (public institutions usually have budget / asset / procurement data). As the
+      business principal, dispatch the Finance & Tax / Legal / Procurement / HR members to monitor
+      public-institution-specific signals: budget overruns, unapproved state asset disposal, split
+      procurement to evade tendering, over-quota hiring (see public_institution_signals in
+      packs/public_institution.yaml; State Asset Management / Internal Audit can be added as private
+      custom departments). On major state asset / procurement compliance risks, alert the owner
+      immediately at L1/L2; others are recorded and graded by proactive.py.
+
+  - id: finance
+    name: Finance-specific (AML / suitability / capital / regulation)
+    owner_depts: [legal, risk, it_security, strategy]
+    actions: [compliance monitoring, risk monitoring & early warning]
+    frequency: "FREQ=DAILY"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [products, customers]
+    prompt: |
+      Thick profiles only (financial institutions have customer / transaction / product data). As the
+      business principal, dispatch the Legal / Risk / IT & Security / Strategy members to monitor
+      finance-specific signals: suspicious AML transactions, suitability mismatch, capital metric
+      decline, new regulations, complaint / sentiment swings (see finance_signals in
+      packs/finance.yaml; Compliance & AML is recommended as a private custom department).
+      ⚠️ Red lines are a reference framework and not legal advice; on major compliance risk, alert the
+      owner immediately at L1/L2; others are recorded and graded.
+
+  - id: biomed
+    name: Healthcare-specific (genetic resources / adverse reactions / quality / data)
+    owner_depts: [legal, quality, it_security, rnd]
+    actions: [compliance monitoring, quality monitoring]
+    frequency: "FREQ=WEEKLY;BYDAY=MO"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [products, customers]
+    prompt: |
+      Thick profiles only (medical institutions / pharma have patient / product / clinical data). As the
+      business principal, dispatch the Legal / Quality / IT & Security / R&D members to monitor
+      healthcare-specific signals: adverse reactions and adverse events, human genetic resource
+      violations, quality recall risk, health data leakage (see biomed_signals in
+      packs/biomed.yaml; Medical Affairs / Regulatory Affairs / Pharmacovigilance can be added as
+      private custom departments). On major health data / genetic resource violations, alert the owner
+      immediately at L1/L2; others are recorded and graded.
+
+  - id: edu_research
+    name: Education & research-specific (funding / achievement transfer / data / integrity)
+    owner_depts: [legal, finance, rnd, hr]
+    actions: [compliance monitoring, risk monitoring & early warning]
+    frequency: "FREQ=MONTHLY;BYMONTHDAY=1"
+    thin_applicable: false
+    thick_applicable: true
+    enabled_default: false
+    requires: [projects]
+    prompt: |
+      Thick profiles only (education / research has project / funding / outcome data). As the business
+      principal, dispatch the Legal / Finance / R&D / HR members to monitor education & research
+      specific signals: research fund misappropriation, achievement transfer procedure gaps, student
+      information leakage, research integrity risk (see edu_research_signals in
+      packs/edu_research.yaml; Academic Affairs / Research Management / Technology Transfer can be
+      added as private custom departments). On major funding / data violations, alert the owner
+      immediately at L1/L2; others are recorded and graded.
+
+# Switchable automation templates (included with the skill; policy / ops_health on by default, others on demand)
+# Each template maps to a WorkBuddy automation: rrule comes from frequency above, prompt from prompt above.
+automation_templates:
+  note: >
+    By default only policy (weekly) and ops_health (daily) are ACTIVE (already-running automations);
+    other templates are switched on by the user / digital company in the Expert Center with one click
+    (PAUSED→ACTIVE) — never forced, never intrusive.

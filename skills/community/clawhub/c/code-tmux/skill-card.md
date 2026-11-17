@@ -1,47 +1,65 @@
-## Description: <br>
-Run coding tasks in persistent tmux sessions with git worktree isolation, supporting Claude Code, Codex, CodeBuddy, OpenCode, and other interactive coding-agent CLIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run coding tasks using a persistent tmux session with git worktree isolation, supporting multiple coding agents including Claude Code, Codex, CodeBuddy, and OpenCode.
 
-## Publisher: <br>
-[yuanshenstarto](https://clawhub.ai/user/yuanshenstarto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanshenstarto](https://clawhub.ai/user/yuanshenstarto)
 
-## Use Case: <br>
-Developers use this skill to delegate build, fix, refactor, and review tasks to a chosen coding agent while isolating each task in a git worktree and keeping the session persistent in tmux. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates coding work to high-privilege agent CLIs and includes permission-skipping examples. <br>
-Mitigation: Review commands before execution and remove permission-skipping flags unless the user intentionally accepts that access. <br>
-Risk: Symlinking full environment files into worktrees can expose secrets to spawned agents. <br>
-Mitigation: Link only the environment files needed for the task and avoid exposing full .env files when narrower credentials are sufficient. <br>
-Risk: Incorrect tmux session names or worktree paths can lead to cleanup or commands affecting the wrong workspace. <br>
-Mitigation: Verify exact session names and worktree paths before sending commands or removing sessions and worktrees. <br>
+## Use Case:
 
+Developers and engineers use this skill to delegate build, fix, refactor, and review tasks to a coding agent running in an isolated git worktree and persistent tmux session. The skill helps preserve task context across turns while keeping generated changes off the main workspace until review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuanshenstarto/code-tmux) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [tmux](https://github.com/tmux/tmux) <br>
-- [Claude Code](https://github.com/anthropics/claude-code) <br>
-- [Codex](https://github.com/openai/codex) <br>
-- [OpenCode](https://github.com/sst/opencode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs and monitors persistent tmux sessions and relays plans, questions, and status back to the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: ClawHub release evidence) <br>
+Risk: Persistent tmux sessions may keep coding agents active beyond the initial request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Monitor session output, relay approval-sensitive prompts to the user, and close tmux sessions when work is complete.
+
+Risk: The Claude workflow uses a permission-bypass flag that reduces normal execution safeguards.
+
+Mitigation: Remove the dangerous flag or require explicit user approval before using it.
+
+Risk: Symlinking full environment files into worktrees can expose secrets to coding agents.
+
+Mitigation: Avoid linking full .env files unless required; prefer scoped or sanitized environment files.
+
+Risk: Worktree and session cleanup mistakes can leave branches, worktrees, or sessions in an unexpected state.
+
+Mitigation: Verify git worktree and tmux session state before cleanup or branch checkout.
+
+## Reference(s):
+
+- [Troubleshooting](references/troubleshooting.md)
+- [tmux](https://github.com/tmux/tmux)
+- [Claude Code](https://github.com/anthropics/claude-code)
+- [Codex](https://github.com/openai/codex)
+- [OpenCode](https://github.com/sst/opencode)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and status guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can start persistent tmux sessions and isolated git worktrees for follow-on agent work.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

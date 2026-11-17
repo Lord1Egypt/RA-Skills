@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7f59rjdw92g48qp4r345de3n80xe7k",
-  "slug": "aoi-triple-memory-lite",
+  "name": "aoi-triple-memory-lite",
   "version": "0.1.2",
-  "publishedAt": 1771138641585
+  "description": "AOI Triple Memory (Lite): file search + decision notes templates (no plugins).",
+  "author": "Aoineco & Co.",
+  "license": "MIT",
+  "tags": ["memory", "search", "notes", "ops"],
+  "sdna": "AOI-2026-0215-SDNA-MEM01"
 }

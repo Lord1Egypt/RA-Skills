@@ -1,7 +1,7 @@
 ---
 name: send-a-custom-greeting-card
 description: "Send a Custom Greeting Card: Mail custom folded greeting cards to any US address. Use when an agent needs send a custom greeting card, send a greeting card, holiday greeting card campaigns, customer appreciation and thank you cards, birthday and anniversary greetings, event invitation mailings, create proof, orientation through AgentPMT-hosted remote tool calls. Discovery terms: send a custom greeting card, send a greeting card, holiday greeting card campaigns."
-version: 1.0.0
+version: 1.0.1
 homepage: https://www.agentpmt.com/marketplace/send-a-greeting-card
 compatibility: "Agent instructions for AgentPMT-hosted remote tool calls. Follow this skill body for supported account, wallet, and setup routes. No local command runtime is declared."
 metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/marketplace/send-a-greeting-card"}}
@@ -9,7 +9,7 @@ metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/
 # Send a Custom Greeting Card
 
 ## Freshness
-Last updated: `2026-06-24`.
+Last updated: `2026-10-15`.
 
 If the current date is more than 7 days after the last updated date, reinstall this skill from skills.sh or ClawHub before relying on endpoints, schemas, setup steps, or examples.
 
@@ -294,9 +294,7 @@ List past greeting card orders for the current budget, sorted by most recent fir
 - Welcome and onboarding cards
 
 ## Related Product Skills
-- File Storage - Over 10MB: ../file-storage-over-10mb (ClawHub: `file-storage-over-10mb`, page: https://clawhub.ai/agentpmt/file-storage-over-10mb; skills.sh: `npx skills add AgentPMT/agent-skills --skill file-storage-over-10mb`)
 - File Management: ../file-management (ClawHub: `file-management`, page: https://clawhub.ai/agentpmt/file-management; skills.sh: `npx skills add AgentPMT/agent-skills --skill file-management`)
-- File Storage - 10MB or less: ../file-storage-10mb-or-less (ClawHub: `file-storage-10mb-or-less`, page: https://clawhub.ai/agentpmt/file-storage-10mb-or-less; skills.sh: `npx skills add AgentPMT/agent-skills --skill file-storage-10mb-or-less`)
 
 ## Categories And Industries
 No categories or industry tags are published for this tool.
@@ -306,11 +304,11 @@ Complete generated action schema: `./schema.md`.
 Supported action count: `6`.
 x402 availability: not enabled for this product.
 
-- `create_proof` (action slug: `create-proof`): Upload the card to Click2Mail and create the print job without mailing. Used for final review before committing to send. Price: `400` credits. Parameters: `back_image_file_id`, `back_image_url`, `back_text`, `document_pdf_file_id`, `document_pdf_url`, `font_style`, `front_cover_image_file_id`, `front_cover_image_url`, plus 8 more.
-- `get_order_status` (action slug: `get-order-status`): Check the status of a previously sent or proofed card order. Automatically includes USPS tracking information when available. Price: `400` credits. Parameters: `order_id`.
-- `get_tracking` (action slug: `get-tracking`): Get USPS tracking details for a previously sent card order. Price: `400` credits. Parameters: `order_id`, `tracking_type`.
-- `list_orders` (action slug: `list-orders`): List past greeting card orders for the current budget, sorted by most recent first. Price: `400` credits. Parameters: `limit`.
-- `render_preview` (action slug: `render-preview`): Generate a preview of the greeting card without mailing. Returns the generated PDF and preview images with signed URLs for review before sending. Price: `400` credits. Parameters: `back_image_file_id`, `back_image_url`, `back_text`, `document_pdf_file_id`, `document_pdf_url`, `font_style`, `front_cover_image_file_id`, `front_cover_image_url`, plus 7 more.
+- `create_proof` (action slug: `create-proof`): Upload the card to Click2Mail and create the print job without mailing. Used for final review before committing to send. Price: `3` credits. Parameters: `back_image_file_id`, `back_image_url`, `back_text`, `document_pdf_file_id`, `document_pdf_url`, `font_style`, `front_cover_image_file_id`, `front_cover_image_url`, plus 8 more.
+- `get_order_status` (action slug: `get-order-status`): Check the status of a previously sent or proofed card order. Automatically includes USPS tracking information when available. Price: `3` credits. Parameters: `order_id`.
+- `get_tracking` (action slug: `get-tracking`): Get USPS tracking details for a previously sent card order. Price: `3` credits. Parameters: `order_id`, `tracking_type`.
+- `list_orders` (action slug: `list-orders`): List past greeting card orders for the current budget, sorted by most recent first. Price: `3` credits. Parameters: `limit`.
+- `render_preview` (action slug: `render-preview`): Generate a preview of the greeting card without mailing. Returns the generated PDF and preview images with signed URLs for review before sending. Price: `3` credits. Parameters: `back_image_file_id`, `back_image_url`, `back_text`, `document_pdf_file_id`, `document_pdf_url`, `font_style`, `front_cover_image_file_id`, `front_cover_image_url`, plus 7 more.
 - `send` (action slug: `send`): Generate the card PDF, print it on premium cardstock, fold it, envelope it, and mail it via USPS First Class to the recipient address. Price: `400` credits. Parameters: `back_image_file_id`, `back_image_url`, `back_text`, `document_pdf_file_id`, `document_pdf_url`, `font_style`, `front_cover_image_file_id`, `front_cover_image_url`, plus 8 more.
 
 ## Live Schema And Examples

@@ -1,0 +1,48 @@
+{
+  "name": "lygo-quantum-attestor",
+  "displayName": "LYGO Quantum Attestor",
+  "version": "1.0.1",
+  "description": "Protocol 6 attestation hooks for Biophase7 anchors + SLM Merkle gossip. Cryptographic verify-node (recomputes attest_sha256 + Merkle). Δ9 seals, non-collapsing receipts. Local-first, consent-gated. No network, no auto-publish.",
+  "slug": "lygo-quantum-attestor",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/clawhub/mirrors/lygo-quantum-attestor",
+  "clawhub": "https://clawhub.ai/deepseekoracle/lygo-quantum-attestor",
+  "signature": "Delta9Phi963-QUANTUM-ATTESTOR",
+  "proposed_by": "@grok",
+  "tags": ["latest", "lygo", "p6", "quantum-attest", "attestation", "biophase7", "slm", "merkle", "delta9", "security"],
+  "entry": "SKILL.md",
+  "scripts": {
+    "attest": "scripts/attestor_cli.py attest",
+    "verify-node": "scripts/attestor_cli.py verify-node",
+    "emit-receipt": "scripts/attestor_cli.py emit-receipt",
+    "seal-delta9": "scripts/attestor_cli.py seal-delta9",
+    "demo": "scripts/attestor_cli.py demo",
+    "self_check": "scripts/self_check.py"
+  },
+  "permissions": {
+    "network": false,
+    "subprocess": false,
+    "shell": false,
+    "filesystem": {
+      "read": "optional --from-file / --anchor-file",
+      "write": "only --write with --i-consent"
+    },
+    "publish": false
+  },
+  "security": {
+    "no_network": true,
+    "no_subprocess": true,
+    "local_first": true,
+    "consent_required_for_writes": true,
+    "non_collapsing_default": true,
+    "no_auto_publish": true
+  },
+  "pairs_with": [
+    "lygo-continuum-integrator",
+    "lygo-geodesic-sealer",
+    "lygo-continuum",
+    "lygo-mint-verifier",
+    "lygo-protocol-stack-operator"
+  ]
+}

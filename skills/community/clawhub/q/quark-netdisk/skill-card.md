@@ -1,45 +1,62 @@
-## Description: <br>
-Automates Quark Drive file operations, including QR-code login, list and search, upload, share-link creation, and saving external shared links into an allowlisted drive folder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quark Netdisk automates Quark Drive QR login, file browsing and search, uploads, share-link creation with expiry and passcode options, and saving external shared links into a user's drive.
 
-## Publisher: <br>
-[StNJJJJJ](https://clawhub.ai/user/StNJJJJJ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stnjjjjj](https://clawhub.ai/user/stnjjjjj)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to operate a linked Quark Drive account from an agent workflow while keeping file activity scoped to configured local and remote allowlists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain ongoing access to the linked Quark Drive account through session, cookie, and token files. <br>
-Mitigation: Install only for accounts where this access is acceptable, keep generated credential files private, and rotate or delete sessions when access should end. <br>
-Risk: Some cloud-file mutations may run without the confirmation behavior promised by the skill documentation. <br>
-Mitigation: Manually confirm rename and move intent before execution, and review command output until confirmation behavior is enforced consistently. <br>
-Risk: Broad local or remote allowlists could expose or modify more files than intended. <br>
-Mitigation: Configure a narrow references/config.json before use and keep operations under the intended Quark Drive folder and approved local upload paths. <br>
-Risk: Share links can expose files outside the immediate agent session. <br>
-Mitigation: Set expiry and passcodes intentionally, and verify the selected file or folder before creating a share link. <br>
+## Use Case:
 
+External users and developers use this skill to operate an authenticated Quark Drive account from an OpenClaw agent, including login, allowed-path file management, upload, sharing, and saving external shares.
 
-## Reference(s): <br>
-- [Configuration example](references/config.example.json) <br>
-- [Quark Netdisk ClawHub page](https://clawhub.ai/StNJJJJJ/quark-netdisk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON status responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce QR-code PNG files, session files, share links, and machine-readable interaction codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Authenticated Quark Drive access can expose account files and account actions to the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where the agent is trusted to operate the account, keep operations scoped to configured local and remote allowlists, and require confirmation for destructive actions.
+
+Risk: Server security evidence reports allowlist protections that can be bypassed.
+
+Mitigation: Fix allowlist checks to use path-aware containment before relying on the skill for sensitive files or broad account access.
+
+Risk: Server security evidence reports account cookies stored without enforced private file permissions.
+
+Mitigation: Store session and cookie files with owner-only permissions and avoid printing cookies, auth headers, QR tokens, or raw authenticated responses.
+
+Risk: Share links may expose user files beyond the intended audience.
+
+Mitigation: Prefer expiring, passcode-protected shares and review the selected file or folder before creating a link.
+
+## Reference(s):
+
+- [Configuration example](references/config.example.json)
+- [QuarkPan attribution](https://github.com/lich0821/QuarkPan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance, shell command examples, JSON status and action payloads, and generated local files such as QR images or session data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses machine-readable exit codes for login, selection, and confirmation flows; runtime session and cookie files are sensitive.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

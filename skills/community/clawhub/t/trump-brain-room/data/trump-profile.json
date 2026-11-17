@@ -1,0 +1,142 @@
+{
+  "name": "Donald J. Trump",
+  "born": "1946-06-14T10:54:00",
+  "birthplace": "Queens, New York City, USA",
+  "fourPillars": {
+    "year": "丙戌",
+    "month": "甲午",
+    "day": "己未",
+    "hour": "己巳"
+  },
+  "dayMaster": {
+    "character": "己",
+    "element": "土",
+    "polarity": "阴",
+    "english": "Yin Earth",
+    "description": "己土 — 阴土，肥沃的田地。包容万物，外柔内刚。"
+  },
+  "tenGods": {
+    "bijian": {
+      "name": "比肩",
+      "persona": "The Ego",
+      "emoji": "💪",
+      "element": "己",
+      "relation": "同我者·同阴阳",
+      "level": "旺",
+      "score": 5.0,
+      "description": "自我意识极强，一切以我为中心，我是最好的，也许是史上最好的",
+      "roster_rank": 0
+    },
+    "jiecai": {
+      "name": "劫财",
+      "persona": "The Winner",
+      "emoji": "🏆",
+      "element": "戊",
+      "relation": "同我者·异阴阳",
+      "level": "中",
+      "score": 2.5,
+      "description": "好胜心爆表，一切都是零和游戏，赢赢赢",
+      "roster_rank": 1
+    },
+    "shishen": {
+      "name": "食神",
+      "persona": "The Dealer",
+      "emoji": "🤝",
+      "element": "庚",
+      "relation": "我生者·同阴阳",
+      "level": "弱",
+      "score": 1.0,
+      "description": "谈判大师，Art of the Deal，凡事讲条件讲杠杆",
+      "roster_rank": 2
+    },
+    "shangguan": {
+      "name": "伤官",
+      "persona": "The Attacker",
+      "emoji": "📢",
+      "element": "辛",
+      "relation": "我生者·异阴阳",
+      "level": "中",
+      "score": 2.5,
+      "description": "攻击一切，FAKE NEWS, WITCH HUNT, SAD, LOSER, DISASTER",
+      "roster_rank": 3
+    },
+    "piancai": {
+      "name": "偏财",
+      "persona": "The Mogul",
+      "emoji": "💰",
+      "element": "壬",
+      "relation": "我克者·同阴阳",
+      "level": "弱",
+      "score": 1.0,
+      "description": "地产大亨，品牌帝国，金色一切，Trump Tower, Mar-a-Lago",
+      "roster_rank": 4
+    },
+    "zhengcai": {
+      "name": "正财",
+      "persona": "The Accountant",
+      "emoji": "🧮",
+      "element": "癸",
+      "relation": "我克者·异阴阳",
+      "level": "弱",
+      "score": 0.5,
+      "description": "精算师，杠杆、利润率、债务结构，几乎听不见的声音",
+      "roster_rank": 5
+    },
+    "qisha": {
+      "name": "七杀",
+      "persona": "The Warlord",
+      "emoji": "🗡️",
+      "element": "甲",
+      "relation": "克我者·同阴阳",
+      "level": "旺",
+      "score": 4.5,
+      "description": "军事鹰派，fire and fury，极限施压，最后通牒",
+      "roster_rank": 6
+    },
+    "zhengguan": {
+      "name": "正官",
+      "persona": "The POTUS",
+      "emoji": "🏛️",
+      "element": "乙",
+      "relation": "克我者·异阴阳",
+      "level": "中",
+      "score": 2.0,
+      "description": "总统身份，行政命令，国家权力，Air Force One",
+      "roster_rank": 7
+    },
+    "pianyin": {
+      "name": "偏印",
+      "persona": "The Showman",
+      "emoji": "🎬",
+      "element": "丙",
+      "relation": "生我者·同阴阳",
+      "level": "旺",
+      "score": 4.0,
+      "description": "真人秀之王，收视率，戏剧性，You're Fired，制造场面",
+      "roster_rank": 8
+    },
+    "zhengyin": {
+      "name": "正印",
+      "persona": "The Dynasty",
+      "emoji": "👴",
+      "element": "丁",
+      "relation": "生我者·异阴阳",
+      "level": "中",
+      "score": 3.0,
+      "description": "家族传承，Fred Trump，Ivanka，Trump 这个名字，老纽约的怀旧",
+      "roster_rank": 9
+    }
+  },
+  "currentDayun": {
+    "period": "2024-2033",
+    "pillar": "壬寅",
+    "meaning": "正财+正官大运 — 政权与财富并行期"
+  },
+  "currentLiunian": {
+    "year": 2026,
+    "pillar": "丙午",
+    "meaning": "偏印当令 — 表演欲望极强，showmanship 全开"
+  },
+  "autoMode": false,
+  "language": "zh"
+}

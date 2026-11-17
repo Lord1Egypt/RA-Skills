@@ -1,41 +1,53 @@
-## Description: <br>
-薪酬调研助手 - 查询岗位薪酬数据并生成分析报告 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+薪酬调研助手 - 查询岗位薪酬数据并生成分析报告
 
-## Publisher: <br>
-[wanwan2qq](https://clawhub.ai/user/wanwan2qq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanwan2qq](https://clawhub.ai/user/wanwan2qq)
 
-## Use Case: <br>
-Employees, compensation analysts, HR users, and agents supporting compensation research use this skill to query role and location salary data and generate salary analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external salary-natural command that is not reviewed in the artifact. <br>
-Mitigation: Install and run the skill only after independently validating the salary-natural binary and its source. <br>
-Risk: Enterprise upload features may process confidential compensation records. <br>
-Mitigation: Do not upload confidential salary data until the publisher documents storage location, retention, deletion, access controls, and authorization requirements. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to query role and city compensation data, compare salary ranges, and generate salary analysis reports. It also supports enterprise compensation data workflows when the user has authorization to upload, query, and export that data.
 
-## Reference(s): <br>
-- [ClawHub skill page: Salary Research](https://clawhub.ai/wanwan2qq/salary-research) <br>
-- [ClawHub publisher profile: wanwan2qq](https://clawhub.ai/user/wanwan2qq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, CSV, shell commands, guidance] <br>
-**Output Format:** [Markdown, JSON, text, or CSV salary query results and reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the external salary-natural command; artifact text also describes enterprise data commands for uploading and querying compensation records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Internal compensation data can be uploaded, queried broadly, or exported in reports without enough scoping safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with authorized compensation data and approve the sharing audience before query-all operations or report exports.
+
+Risk: The skill executes an external salary-natural binary that is not bundled with the artifact.
+
+Mitigation: Install salary-natural from a trusted, pinned path and verify the executable before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanwan2qq/skills/salary-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, CSV, shell commands, guidance]
+
+**Output Format:** [Natural-language responses and reports, with optional Markdown, JSON, text, or CSV output from the salary CLI.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the salary-natural executable; enterprise data uploads, query-all operations, and report exports should be limited to approved data and audiences.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

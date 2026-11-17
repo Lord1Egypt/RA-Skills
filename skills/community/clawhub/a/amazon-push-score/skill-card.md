@@ -1,42 +1,55 @@
-## Description: <br>
-Calculates an Amazon listing push score from CTR, CVR, 7-day growth, and account health, then classifies the traffic tier and suggests optimization priorities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when user needs Amazon push score calculation and optimization strategy for Amazon listing performance, A9 optimization planning, traffic tier classification, and CTR/CVR improvement.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Amazon marketplace operators and ecommerce teams use this skill to evaluate listing traffic potential from four supplied metrics and receive traffic-tier classification with prioritized CTR, CVR, growth, and account-health improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Amazon-ranking trigger terms may invoke the skill when the user does not intend push-score or traffic-tier analysis. <br>
-Mitigation: Confirm the user wants Amazon push-score analysis and has provided the four required metrics before relying on recommendations. <br>
-Risk: The score and optimization plan depend on user-supplied metrics and benchmark heuristics rather than real-time Amazon platform data. <br>
-Mitigation: Verify the input metrics from trusted operational sources and treat the generated strategy as planning guidance. <br>
+## Use Case:
 
+External Amazon marketplace operators and ecommerce teams use this skill to score listings from manually supplied CTR, CVR, seven-day growth, and account health metrics, then receive traffic pool classification and prioritized optimization guidance.
 
-## Reference(s): <br>
-- [Amazon Push Score on ClawHub](https://clawhub.ai/wangm-a3/amazon-push-score) <br>
-- [CloudTrip homepage](https://cloudtrip.ai) <br>
-- [Amazon industry benchmarks](references/benchmarks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with calculations and score tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied CTR, CVR, 7-day growth, and account health inputs; does not connect to Amazon data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The score and benchmarks may be mistaken for verified Amazon algorithm data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as operational guidance based on manually supplied metrics and validate decisions against seller platform data and business judgment.
+
+Risk: The skill may activate during broad Amazon CTR, CVR, ranking, or A9 discussions.
+
+Mitigation: Confirm that the user wants Amazon push score analysis before applying the scoring workflow.
+
+## Reference(s):
+
+- [Amazon industry benchmark reference](artifact/references/benchmarks.md)
+- [CloudTrip homepage](https://cloudtrip.ai)
+- [ClawHub skill page](https://clawhub.ai/wangm-a3/skills/amazon-push-score)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with score calculation, tier classification, benchmark comparison, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires four manually supplied listing metrics; does not access Amazon accounts, install code, or run external tools.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

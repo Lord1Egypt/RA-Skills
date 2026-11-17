@@ -1,38 +1,49 @@
-## Description: <br>
-Harness Research helps agents track recent AI-agent research, analyze papers against project context, and record actionable findings in a local research log. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Harness Research helps an AI agent track recent AI Agent papers and articles, analyze them through a structured framework, and record actionable improvement ideas for ongoing agent system evolution.
 
-## Publisher: <br>
-[dottythehomeless](https://clawhub.ai/user/dottythehomeless) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dottythehomeless](https://clawhub.ai/user/dottythehomeless)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep an AI agent project aware of recent agent research, screen papers for relevance, and append structured findings and daily summaries to research/harness-log.md. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may cause ordinary paper-reading or research requests to append entries to a project research log. <br>
-Mitigation: Narrow the trigger phrases or require confirmation before writing to research/harness-log.md. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep a running research log of recent AI Agent papers and engineering articles, then map findings to concrete, non-implementation improvement proposals for their own agent systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dottythehomeless/harness-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown research log entries and concise text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append to research/harness-log.md; does not implement code changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter says 1.1.0) <br>
+Risk: Project context may be read and summarized into a local research log when the skill is invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill only in intended projects and review research/harness-log.md when project documents may contain sensitive information.
+
+## Reference(s):
+
+- [Harness Research skill page](https://clawhub.ai/dottythehomeless/skills/harness-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research log entries and concise summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill records research findings and recommendations but instructs the agent not to modify code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

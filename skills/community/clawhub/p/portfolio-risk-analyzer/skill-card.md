@@ -1,46 +1,64 @@
-## Description: <br>
-Analyzes crypto portfolios across multiple chains for risk exposures, stress tests, and optimization advice with automated $BANKR buyback monetization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes crypto portfolios across multiple chains for risk exposures, stress tests, and optimization advice with automated $BANKR buyback monetization.
 
-## Publisher: <br>
-[kellyclaudeai](https://clawhub.ai/user/kellyclaudeai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kellyclaudeai](https://clawhub.ai/user/kellyclaudeai)
 
-## Use Case: <br>
-Developers and crypto operators use this skill to analyze wallet exposures, produce risk scores, run stress-test style checks, and generate portfolio optimization guidance. Operators may also configure payment-gated access, voice access, and automated $BANKR buybacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Running the skill can grant wallet-spending authority through payment-wallet credentials and buyback scripts. <br>
-Mitigation: Do not provide a main wallet private key; use a segregated low-balance wallet, testnet or dry-run flow, explicit approvals, and spending limits. <br>
-Risk: Automated buybacks can trigger crypto transactions without per-transaction approval. <br>
-Mitigation: Disable or gate scheduled and manual buybacks until audited, and require explicit operator approval before transactions execute. <br>
-Risk: Missing transaction helper scripts and configured dependencies may change the effective transaction behavior. <br>
-Mitigation: Audit all helper scripts and installed dependencies before deployment, especially transaction construction, signing, and swap execution paths. <br>
-Risk: Wallet and optional voice flows can expose financial and personal data. <br>
-Mitigation: Provide clear privacy disclosures, limit retained logs, and restrict API and voice credentials to the minimum required access. <br>
+## Use Case:
 
+External crypto users and developers use this skill to analyze wallet risk, stress-test exposures, and generate rebalancing, hedging, yield, and tax-loss recommendations. It also supports paid or token-holder access and an optional voice interface for requesting analysis by phone.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kellyclaudeai/portfolio-risk-analyzer) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-line text with JSON API response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include wallet risk scores, asset breakdowns, stress-test results, recommendations, payment-gating configuration, and buyback execution commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence, skill.json, package.json) <br>
+Risk: Automated token buybacks can spend all USDC in the configured payment wallet without clear spending limits or explicit approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated low-balance hot wallet and disable or remove hourly buybacks until spending caps and explicit approvals are implemented.
+
+Risk: Payment wallet credentials and API secrets are required for operation.
+
+Mitigation: Do not place unrelated funds in the payment wallet, avoid shell-sourcing .env, and isolate credentials before running the server or scripts.
+
+Risk: Wallet, API, and optional voice data handling is not documented in the release evidence.
+
+Mitigation: Document third-party data handling and retention for wallet analysis, market-data APIs, and Twilio voice flows before deployment.
+
+Risk: JavaScript dependencies are specified without a lockfile in the artifact evidence.
+
+Mitigation: Pin dependencies with a lockfile and review dependency updates before installation.
+
+## Reference(s):
+
+- [Portfolio Risk Analyzer ClawHub listing](https://clawhub.ai/kellyclaudeai/skills/portfolio-risk-analyzer)
+- [Publisher profile](https://clawhub.ai/user/kellyclaudeai)
+- [README](artifact/README.md)
+- [Skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style guidance, shell commands, JSON API responses, and code or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires wallet addresses, RPC and market-data API credentials, payment wallet settings, and optional Twilio configuration.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, package.json, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

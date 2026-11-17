@@ -1,44 +1,61 @@
-## Description: <br>
-AI product-management coaching agent that uses guided dialogue to help PMs move from pain-point analysis through AI suitability, capability boundaries, confidence handling, hallucination planning, and PRD output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI PM Coach guides product managers through AI product design, from pain-point analysis to PRD generation, while leaving key decisions to the product manager.
 
-## Publisher: <br>
-[fbz1234](https://clawhub.ai/user/fbz1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fbz1234](https://clawhub.ai/user/fbz1234)
 
-## Use Case: <br>
-Product managers and AI product teams use this skill to structure early AI product design conversations, evaluate whether AI is appropriate, define human decision points, and produce PRD-style summaries for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as AI product, product design, PRD, capability boundary, confidence, hallucination, or continue may invoke the skill during ordinary product-management discussions. <br>
-Mitigation: Use explicit invocation context and disable or avoid the skill when the conversation should not enter AI product-design coaching. <br>
-Risk: Product plans, customer data, credentials, or regulated business details may be sensitive if pasted into the coaching conversation. <br>
-Mitigation: Do not provide confidential or regulated information unless the workspace policy allows that data to be used with the agent. <br>
-Risk: Coaching outputs and generated PRD sections may be treated as final decisions even though the skill is designed to guide user judgment. <br>
-Mitigation: Have the product owner review and confirm assumptions, risk thresholds, responsibility boundaries, and PRD content before implementation. <br>
+## Use Case:
 
+Product managers and product teams use this Chinese-language coaching agent to explore AI product opportunities, define capability boundaries, choose confidence and escalation policies, plan hallucination handling, and assemble a PRD for review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fbz1234/xxjdjdnene) <br>
-- [AI PM Coach README](artifact/README.md) <br>
-- [AI PM Coach architecture](artifact/ARCHITECTURE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Conversational text and Markdown PRD-style summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation at decision checkpoints; does not execute commands or access external systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can generate AI product recommendations, suitability scores, boundaries, and PRD content from incomplete user input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated decisions and PRD before using them for product planning or implementation.
+
+Risk: Server-resolved GitHub import provenance is unavailable for this version.
+
+Mitigation: Use the ClawHub publisher profile as the release identity signal and separately verify OpenClaw source provenance if it matters to the installation decision.
+
+Risk: The workflow is primarily Chinese-language PM coaching.
+
+Mitigation: Confirm language fit for the target team and translate or review outputs before broader use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fbz1234/skills/xxjdjdnene)
+- [ClawHub publisher profile](https://clawhub.ai/user/fbz1234)
+- [Artifact README](artifact/README.md)
+- [Architecture overview](artifact/ARCHITECTURE.md)
+- [Main skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Chinese-language conversational guidance with Markdown and JSON decision artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated PRD content, AI suitability scores, boundary statements, confidence mechanisms, and hallucination plans require user confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

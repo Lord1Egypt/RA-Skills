@@ -1,43 +1,57 @@
-## Description: <br>
-Configures China-friendly mirror sources for common development tools including npm, yarn, pnpm, pip, Go, Docker, Cargo, Maven, Gradle, Homebrew, and Git. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures China-friendly mirror sources for common developer tools, including npm, pip, Go, Docker, Cargo, Maven, Gradle, Homebrew, and Git.
 
-## Publisher: <br>
-[ironmanc2014](https://clawhub.ai/user/ironmanc2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ironmanc2014](https://clawhub.ai/user/ironmanc2014)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect and configure package registry, proxy, and mirror settings for development tools when network access to default upstream sources is slow or unreliable. It supports status checks, per-tool mirror changes, reset commands, and troubleshooting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently redirect package and registry sources for development tools. <br>
-Mitigation: Run status first, configure only named tools instead of using all-tool setup by default, and use reset commands when changes are no longer desired. <br>
-Risk: Some settings can weaken dependency trust, including global pip trusted-host configuration and broad Go GONOSUMDB settings. <br>
-Mitigation: Avoid those settings unless the user understands the trust tradeoff, and review the resulting configuration before continuing dependency installation. <br>
-Risk: Docker mirror setup may require root or administrator changes to daemon configuration. <br>
-Mitigation: Review Docker daemon JSON edits before applying elevated changes and restart Docker only after the configuration is confirmed. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect and switch package-manager, container, language-toolchain, and Git proxy settings to China-region mirrors when default sources are slow or time out.
 
-## Reference(s): <br>
-- [Mirror Source Reference](references/mirrors.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/ironmanc2014/cn-dev-setup) <br>
+### Deployment Geography for Use:
 
+Global; designed for China-region developer network environments.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose persistent development-tool configuration changes and reset commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Persistent mirror changes can alter dependency sources across local developer tools and may overwrite existing Cargo or Docker configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run status checks first, configure only reviewed tools, and back up existing Cargo and Docker configuration before applying changes.
+
+Risk: Trusted-host pip settings and broad Go checksum bypasses can reduce dependency integrity protections.
+
+Mitigation: Avoid trusted-host and GONOSUMDB=* settings unless the tradeoff is understood; prefer controlled mirrors and keep checksum validation enabled where possible.
+
+Risk: Public or community mirrors may be unsuitable for production or CI dependency supply chains.
+
+Mitigation: Use organization-controlled mirrors for production and CI systems.
+
+## Reference(s):
+
+- [Domestic Mirror Source List](references/mirrors.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend status checks, reset commands, and selective use of the bundled setup script.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

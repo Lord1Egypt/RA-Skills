@@ -1,40 +1,56 @@
-## Description: <br>
-Calculates cold chain transport risks from route, duration, and packaging inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate cold chain transport risks.
 
-## Publisher: <br>
-[shanruoyu](https://clawhub.ai/user/shanruoyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shanruoyu](https://clawhub.ai/user/shanruoyu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Logistics, laboratory operations, and cold-chain support users can run this skill to estimate route risk from transport duration and packaging choice for temperature-sensitive shipments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The calculator is a draft estimator and may be mistaken for an authoritative logistics or compliance decision tool.
+
+Mitigation: Use its results as advisory only and have qualified cold-chain or compliance personnel review decisions before shipment.
+
+Risk: Duration input is not constrained to realistic positive values, which can produce misleading risk scores.
+
+Mitigation: Run the script only with realistic positive transport durations and validate inputs in any operational wrapper.
+
+Risk: The documentation mentions file input/output more broadly than the current script implements.
+
+Mitigation: Confirm expected behavior before relying on workspace files or generated reports; the current script prints results to standard output.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operations teams, and external users use this skill to estimate temperature-excursion risk for cold chain transport and compare packaging options for a route and duration. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The calculator is a simplified draft and is not validated as an operational or regulatory decision tool. <br>
-Mitigation: Review the scoring formula and validate it against cold-chain requirements before relying on it for real shipments. <br>
-Risk: The skill runs a local Python script to calculate and print risk estimates. <br>
-Mitigation: Run it in a sandboxed workspace and review the script before deployment. <br>
+**Output Format:** [Plain text CLI output with Markdown usage guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shanruoyu/cold-chain-risk-calculator) <br>
+**Other Properties Related to Output:** [Outputs route, duration, packaging, numeric risk score, and a Low/Medium/High risk level.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text risk report with optional Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires route and duration inputs; packaging defaults to dry-ice.] <br>
+0.1.0 (source: server release metadata; artifact SKILL.md frontmatter says 1.0.0)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

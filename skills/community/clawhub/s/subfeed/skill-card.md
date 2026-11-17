@@ -1,48 +1,67 @@
-## Description: <br>
-Subfeed helps an IDE agent self-register with Subfeed Cloud, create an AI entity for an OpenClaw project, and optionally onboard a human account with permission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI entities with full agentic backend for your OpenClaw project in one prompt. Your IDE agent will self-register and start building. Human is optional.
 
-## Publisher: <br>
-[Subfeed-AI](https://clawhub.ai/user/Subfeed-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[subfeed-ai](https://clawhub.ai/user/subfeed-ai)
 
-## Use Case: <br>
-Developers and IDE agents use Subfeed to register an agent identity, create and manage a Subfeed Cloud AI entity, and connect optional capabilities such as RAG, addons, MCP, webhooks, and public directory discovery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to create persistent Subfeed Cloud identities and entities. <br>
-Mitigation: Install only when cloud identity creation is intended, prefer agent-scoped tokens, and confirm token revocation and entity deletion procedures before use. <br>
-Risk: The artifact instructs agents to re-fetch remotely mutable skill instructions. <br>
-Mitigation: Review any fetched remote instructions before execution and avoid automatic remote skill updates without human approval. <br>
-Risk: Entity configs, chat messages, and RAG content are sent to Subfeed Cloud. <br>
-Mitigation: Avoid sending sensitive content until data handling, RAG storage, addon behavior, and account controls are understood. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Subfeed ClawHub release](https://clawhub.ai/Subfeed-AI/subfeed) <br>
-- [Subfeed homepage](https://subfeed.app) <br>
-- [Subfeed live skill document](https://subfeed.app/skill.md) <br>
-- [Subfeed RAG documentation](https://subfeed.app/skill/rag.md) <br>
-- [Subfeed addons documentation](https://subfeed.app/skill/addons.md) <br>
-- [Subfeed MCP documentation](https://subfeed.app/skill/mcp.md) <br>
-- [Subfeed webhook documentation](https://subfeed.app/skill/webhook.md) <br>
-- [Subfeed directory documentation](https://subfeed.app/skill/directory.md) <br>
+## Use Case:
 
+Developers and IDE agents use this skill to connect an OpenClaw project to Subfeed Cloud, register an agent identity, create an AI entity, and guide human onboarding when explicitly approved.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with HTTP request examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SUBFEED_API_KEY or SUBFEED_AGENT_TOKEN for authenticated operations; sends API requests and entity data to Subfeed Cloud.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may register accounts or create Subfeed entities before the user has clearly approved the exact action.
+
+Mitigation: Require explicit user approval before account registration, entity creation, human onboarding, or any cloud resource creation.
+
+Risk: The skill asks agents to load mutable remote instructions from Subfeed during use.
+
+Mitigation: Review remote instructions before following them and avoid continuing if the fetched content differs from the validated release expectations.
+
+Risk: Using a full human API key can grant broad account access to Subfeed Cloud operations.
+
+Mitigation: Prefer SUBFEED_AGENT_TOKEN when possible and only use SUBFEED_API_KEY after the user approves the specific operation and data being sent.
+
+Risk: Messages, entity configuration, and RAG content can be sent to Subfeed Cloud.
+
+Mitigation: Confirm that the user intends to send the exact data to Subfeed Cloud before chat, entity configuration, RAG, or attachment operations.
+
+## Reference(s):
+
+- [Subfeed ClawHub skill page](https://clawhub.ai/subfeed-ai/skills/subfeed)
+- [Subfeed homepage](https://subfeed.app)
+- [Subfeed remote skill document](https://subfeed.app/skill.md)
+- [Subfeed RAG guide](https://subfeed.app/skill/rag.md)
+- [Subfeed addons guide](https://subfeed.app/skill/addons.md)
+- [Subfeed MCP guide](https://subfeed.app/skill/mcp.md)
+- [Subfeed webhook guide](https://subfeed.app/skill/webhook.md)
+- [Subfeed directory guide](https://subfeed.app/skill/directory.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with REST API examples and JSON request/response snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Subfeed credentials through SUBFEED_API_KEY or SUBFEED_AGENT_TOKEN for authenticated operations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

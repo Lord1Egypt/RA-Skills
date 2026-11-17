@@ -1,0 +1,17 @@
+{
+  "account": "personal",
+  "username": "you@example.com",
+  "auth": "password",
+  "passwordEnv": "MOCHI_MAIL_PASSWORD",
+  "incoming": {
+    "protocol": "imap",
+    "host": "YOUR_IMAP_HOST",
+    "port": 993,
+    "security": "ssl"
+  },
+  "smtp": {
+    "host": "YOUR_SMTP_HOST",
+    "port": 465,
+    "security": "ssl"
+  }
+}

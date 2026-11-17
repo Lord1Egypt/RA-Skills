@@ -1,45 +1,60 @@
-## Description: <br>
-Drive Tools helps an agent configure and manage SMB, WebDAV, and FTP drives for listing, uploading, downloading, searching, moving, and deleting remote files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drive Tools helps agents configure and run SMB, WebDAV, and FTP command-line tools for listing, uploading, downloading, searching, moving, creating, and deleting files on personal drives.
 
-## Publisher: <br>
-[SmileTM](https://clawhub.ai/user/SmileTM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smiletm](https://clawhub.ai/user/smiletm)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect configured personal or team drives over SMB, WebDAV, or FTP, then run guided file management operations from an agent session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and uses credentials for configured remote drives. <br>
-Mitigation: Use least-privilege drive accounts and keep config.json out of source control and shared workspaces. <br>
-Risk: The skill can delete or move remote files. <br>
-Mitigation: Manually verify the target drive alias and path before running rm or mv operations. <br>
-Risk: FTP TLS mode is called out by the security guidance as unsafe until certificate verification is fixed. <br>
-Mitigation: Avoid FTP TLS mode unless certificate verification has been reviewed and corrected. <br>
+## Use Case:
 
+Developers and external users can use this skill to connect an agent to personal SMB, WebDAV, or FTP drives and perform routine remote file-management tasks. It is best suited for guided drive configuration, connection testing, directory inspection, file transfer, search, move, folder creation, and deletion workflows.
 
-## Reference(s): <br>
-- [Drive Tools on ClawHub](https://clawhub.ai/SmileTM/drive-tools) <br>
-- [SMB usage guide](smb_usage_guide.md) <br>
-- [WebDAV usage guide](webdav_usage_guide.md) <br>
-- [FTP usage guide](ftp_usage_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may read, write, move, or delete files on configured remote drives.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: Reusable drive credentials are stored in config.json for SMB, WebDAV, and FTP connections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated low-privilege drive accounts, keep config.json out of version control and backups, and rotate credentials if the file is exposed.
+
+Risk: The scripts support destructive or overwriting remote file operations, including upload, move, download overwrite, and delete.
+
+Mitigation: Manually confirm exact source and destination paths before execution, especially for delete, move, upload, and download commands.
+
+Risk: FTP configurations may use cleartext transport or weak FTPS validation.
+
+Mitigation: Avoid plain FTP where possible and do not rely on this tool as proof of secure FTPS certificate validation.
+
+## Reference(s):
+
+- [Drive Tools ClawHub Page](https://clawhub.ai/smiletm/skills/drive-tools)
+- [SMB Usage Guide](artifact/smb_usage_guide.md)
+- [WebDAV Usage Guide](artifact/webdav_usage_guide.md)
+- [FTP Usage Guide](artifact/ftp_usage_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands, text]
+
+**Output Format:** [Markdown with JSON and shell command code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute remote drive operations through bundled Python scripts when the user supplies configured connection details.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

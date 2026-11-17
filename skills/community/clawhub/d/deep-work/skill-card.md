@@ -1,44 +1,58 @@
-## Description: <br>
-Helps an agent coach users to protect focused time, distinguish deep work from shallow work, and produce a concrete deep-work plan for cognitively demanding projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps knowledge workers protect focused time and make progress on demanding cognitive work while accounting for interruptions and role constraints.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, external users, and knowledge-work agents use this skill to diagnose fragmented attention, select a deep-work operating style, and create a protected schedule for research, writing, engineering, strategy, or other cognitively demanding work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Focused-work coaching can be misapplied in emergencies or roles where continuous responsiveness is required. <br>
-Mitigation: Use the skill's fit checks before applying the plan, and avoid this lens when availability must dominate. <br>
-Risk: The coaching flow may surface sensitive personal work-pattern details. <br>
-Mitigation: Review advice in context and avoid storing sensitive work-pattern information unless that is intentional. <br>
+## Use Case:
 
+Knowledge workers use this skill to identify high-value work that needs sustained attention, choose a focus-time approach that fits their role, and build a practical plan for protecting it.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deciqai/skills/deep-work) <br>
-- [Publisher profile](https://clawhub.ai/user/deciqai) <br>
-- [Sources - deep-work](references/sources.md) <br>
-- [Donald Knuth and the No-Email Policy, 1990](examples/donald-knuth-no-email-policy-1990.md) <br>
-- [Knuth versus Email](https://www-cs-faculty.stanford.edu/~knuth/email.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown coaching prompts and a structured deep-work plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May stop at explicit wait points while eliciting user context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Planning guidance may lead to calendar or communication changes that do not fit the user's role.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose changes deliberately and use the skill's fit checks for high-coordination roles and short-term emergencies.
+
+Risk: Examples or planning notes may expose confidential work details if shared.
+
+Mitigation: Avoid including confidential work details in examples that may be shared.
+
+## Reference(s):
+
+- [Deep Work source list](references/sources.md)
+- [ClawHub skill release](https://clawhub.ai/deciqai/skills/deep-work)
+- [Deep Work skill page](https://www.deciqai.com/c/deep-work)
+- [Knuth versus Email](https://www-cs-faculty.stanford.edu/~knuth/email.html)
+- [GitHub Copilot is generally available to all developers](https://github.blog/2022-06-21-github-copilot-is-generally-available-to-all-developers/)
+- [Cal Newport](https://calnewport.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Conversational coaching and a structured Markdown Deep Work Plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coach mode asks one focused question at a time; engine mode applies the process to a concrete case.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

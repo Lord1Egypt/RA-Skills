@@ -1,44 +1,60 @@
-## Description: <br>
-Helps agents create Chinese posters with precise, readable text by combining AI-generated illustration prompts with HTML-rendered text layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+精准文字海报生成技能（两步法）。当用户需要生成中文海报且文字必须100%精准时触发。核心方法：Step1 用 image_synthesize 以参考图生成插画，Step2 用 HTML 精确渲染文字，两者互补。适用场景：健康科普、教育宣传、活动海报、运营素材。
 
-## Publisher: <br>
-[leosheep821-debug](https://clawhub.ai/user/leosheep821-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leosheep821-debug](https://clawhub.ai/user/leosheep821-debug)
 
-## Use Case: <br>
-External users and content teams use this skill to create Chinese health, education, activity, and operations posters where the text must remain exact and readable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive images or health-related poster content may be processed by external image generation or deployment tools. <br>
-Mitigation: Confirm the privacy terms of the selected image generation and deployment tools before using sensitive content. <br>
-Risk: The bundled HTML template requests Google Fonts, which can create an external network request when rendered. <br>
-Mitigation: Use local fonts instead of the Google Fonts link when external font requests are not acceptable. <br>
-Risk: Generated posters may contain inaccurate or misleading health or educational claims if source content is not reviewed. <br>
-Mitigation: Review poster text and visual claims before publishing, especially for health-related materials. <br>
+## Use Case:
 
+External creators, educators, healthcare communicators, and operations teams use this skill to produce Chinese poster assets where exact readable text matters more than direct illustration fidelity. The workflow combines image-based illustration generation with HTML-rendered text for precise poster layouts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leosheep821-debug/poster-precise-text) <br>
-- [poster_prompt_guide.md](references/poster_prompt_guide.md) <br>
-- [bone_health_template.html](references/bone_health_template.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with HTML template code and deploy instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce HTML poster files and optional browser-based export guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Generated posters may include copyrighted source imagery, commercial素材, or overly close visual references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review image sources and generated poster assets before public or commercial deployment; replace protected assets or use original artwork when rights are unclear.
+
+Risk: Medical, educational, or operational poster claims may be inaccurate or insufficiently reviewed.
+
+Mitigation: Have qualified reviewers check final poster text, claims, and context before publication.
+
+Risk: User-supplied text embedded into HTML poster templates can carry unsafe or unintended content.
+
+Mitigation: Sanitize or escape user-provided text before publishing generated HTML and inspect the rendered poster before sharing.
+
+## Reference(s):
+
+- [Poster prompt guide](references/poster_prompt_guide.md)
+- [Bone health HTML poster template](references/bone_health_template.html)
+- [ClawHub skill page](https://clawhub.ai/leosheep821-debug/skills/poster-precise-text)
+- [Publisher profile](https://clawhub.ai/user/leosheep821-debug)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML template code and shell-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce HTML poster files and deployment guidance when the agent follows the workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

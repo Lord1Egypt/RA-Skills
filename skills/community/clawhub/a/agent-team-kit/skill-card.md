@@ -1,43 +1,58 @@
-## Description: <br>
-Agent Team Kit provides a process framework for AI agent teams to manage work queues, roles, discovery, and proactive heartbeat-driven operation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Framework enabling AI agent teams to self-manage work queues, clear roles, continuous discovery, and proactive operation via a heartbeat process.
 
-## Publisher: <br>
-[ryancampbell](https://clawhub.ai/user/ryancampbell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ryancampbell](https://clawhub.ai/user/ryancampbell)
 
-## Use Case: <br>
-Developers and operators of multi-agent workspaces use this skill to set up self-service queues, role ownership, intake triage, status tracking, and heartbeat checks. It helps an agent team discover work, triage it, assign execution, and feed completed work back into future opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs persistent instructions that can encourage agents to spawn and act autonomously without enough local safety boundaries. <br>
-Mitigation: Define in-scope queues before enabling heartbeat checks, cap agent spawning, restrict writable paths, require human approval for destructive, deployment, public, financial, account, or credential-related actions, and review file changes before committing them. <br>
+## Use Case:
 
+Developers and operators of multi-agent workspaces use this skill to install a lightweight operating process for discovery, triage, self-service execution, status tracking, and team health checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ryancampbell/agent-team-kit) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Heartbeat template](templates/HEARTBEAT.md) <br>
-- [Intake process template](templates/process/INTAKE.md) <br>
-- [Roles template](templates/process/ROLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown templates with inline shell commands and process tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational process files and agent coordination guidance; no runtime API output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill encourages approval-free task execution and agent spawning from broad inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add explicit approval gates for shell commands, deployments, package installs, credential access, public communications, deletion, and externally sourced requests.
+
+Risk: Autonomous agents may modify workspace files or spawn work in environments that are not prepared for that behavior.
+
+Mitigation: Use only in workspaces where autonomous agents are allowed to modify files and spawn work, and monitor backlog, status, and blockers regularly.
+
+Risk: Server-resolved provenance is unavailable for this version.
+
+Mitigation: Verify the repository source and pin a reviewed commit before copying templates or appending heartbeat instructions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ryancampbell/skills/agent-team-kit)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown templates and setup instructions with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces process files for intake, roles, opportunities, backlog, status, and heartbeat-driven team operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

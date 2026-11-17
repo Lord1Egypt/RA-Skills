@@ -38,11 +38,11 @@ Content-Type: ${a.type||"application/octet-stream"}\r
   "default_model": "deepseek/deepseek-chat",
   "providers": {
     "deepseek": {
-      "apiKey": "sk-your-deepseek-api-key-here",
+      "apiKey": "REDACTED-SECRET",
       "baseURL": "https://api.deepseek.com"
     },
     "openai": {
-      "apiKey": "sk-your-openai-api-key-here",
+      "apiKey": "REDACTED-SECRET",
       "baseURL": "https://api.openai.com/v1"
     }
   }

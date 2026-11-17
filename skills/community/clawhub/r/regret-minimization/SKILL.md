@@ -1,7 +1,7 @@
 ---
 name: regret-minimization
 description: "Activate when: user says 'what would my 80-year-old self think', 'if I never try this will I regret it', 'I keep hesitating but the math is clear', 'regret minimization', or faces a major hard-to-reverse life decision (career pivot, founding a company, relocation, leaving a relationship) where the units are joy/meaning/identity rather than money.
-  Do NOT activate when: the decision is routine or easily reversible (which restaurant, which tool to buy); or when money/EV is genuinely the right unit (portfolio allocation, pricing math)."
+  Do NOT activate when: the decision is routine or easily reversible (which restaurant, which tool to buy); or when money/EV is genuinely the right unit (portfolio allocation, pricing math). More: deciqai.com/c/regret-minimization"
 ---
 
 # Regret Minimization
@@ -12,11 +12,11 @@ Most frameworks optimize *expected value* — pick the highest probability-weigh
 
 Associated with **Jeff Bezos** (D.E. Shaw → Amazon, 1994); rooted in Stoic *Premeditatio Malorum* (Seneca, *Epistulae Morales* 91) and formalized in Regret Theory (Loomes & Sugden, *The Economic Journal*, 1982).
 
-**Compose with neighbors:** use [first-principles](../first-principles/SKILL.md) to clarify what is at stake; [inversion](../inversion/SKILL.md) to surface failure modes; [second-order-thinking](../second-order-thinking/SKILL.md) to verify downstream consequences; then use regret minimization to choose when EV analyses come out close and the true cost is psychological.
+**Compose with neighbors:** use first-principles to clarify what is at stake; inversion to surface failure modes; second-order-thinking to verify downstream consequences; then use regret minimization to choose when EV analyses come out close and the true cost is psychological.
 
 ## When to Use
 
-Apply when: decision is **major, hard-to-reverse, asymmetric** (career pivot, founding, relocation, relationship, children); EV math feels insufficient because **units are joy/meaning/identity**; hesitation is emotional, not analytical; user says "what would my 80-year-old self think?", "if I never try this will I regret it?", "I keep hesitating but the math is clear."
+Apply when: decision is **major, hard-to-reverse, asymmetric** (career pivot, founding, relocation, relationship, children); EV math feels insufficient because **units are joy/meaning/identity**; hesitation is emotional, not analytical; user says "what would my 80-year-old self think?", "if I never try this will I regret it?", "I keep hesitating but the math is clear," "should I quit big tech to go all-in on AI / join the AI wave / start a company now (bubble or export-control fears notwithstanding)?"
 
 **When NOT to use:** routine reversible decisions; EV is genuinely the right unit (portfolio allocation, pricing); framework being re-run weekly (procrastination); both regrets are unlivable (redesign the choice instead).
 
@@ -62,7 +62,8 @@ Commitment: I commit to <option> by <date>. Stop relitigating after that.
 Re-open trigger: only if <specific observable evidence> before <date>.
 ```
 
-*→ Method in Action: [Jeff Bezos, D.E. Shaw → Amazon (1994)](examples/jeff-bezos-de-shaw-amazon-1994.md)*
+*→ Method in Action: [Jeff Bezos, D.E. Shaw → Amazon (1994)](examples/jeff-bezos-de-shaw-amazon-1994.md) · [Gilovich & Medvec, the Evidence for the Age-80 Test (1995)](examples/gilovich-medvec-regret-of-inaction-1995.md)*
+*→ 2026 lens: [The "go all-in on AI" career / founder decision (2023–2026)](examples/go-all-in-on-ai-career-2023-2026.md) — quit big tech for the AI wave, or stay?*
 
 ## Regret Packs
 
@@ -116,4 +117,6 @@ The Audit runs identically across domains; what differs is the typical load-bear
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/regret-minimization** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/regret-minimization.json*

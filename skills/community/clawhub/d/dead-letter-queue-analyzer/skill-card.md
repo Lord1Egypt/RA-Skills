@@ -1,40 +1,52 @@
-## Description: <br>
-Analyze dead letter queue (DLQ) messages to identify failure patterns, root causes, and remediation strategies. Supports AWS SQS, RabbitMQ, Kafka, Azure Service Bus, and generic message queues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze dead letter queue (DLQ) messages to identify failure patterns, root causes, and remediation strategies. Supports AWS SQS, RabbitMQ, Kafka, Azure Service Bus, and generic message queues.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operations engineers use this skill to inspect dead letter queue messages, categorize failure causes, decide which messages are replayable, and plan remediation for AWS SQS, RabbitMQ, Kafka, Azure Service Bus, or generic message queues.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: DLQ message inspection can expose sensitive message payloads or attributes.
+
+Mitigation: Use least-privileged queue access, inspect only necessary samples, and redact sensitive values before sharing reports.
+
+Risk: Replay guidance can change production queues if used before the failure cause is fixed.
+
+Mitigation: Confirm the root cause is fixed, consumers are idempotent, the destination queue is correct, and replay rate limits are appropriate before moving messages.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operations engineers use this skill to inspect DLQ backlogs, categorize message failures, identify likely root causes, and plan safe remediation or replay steps. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: DLQ message bodies and attributes may contain sensitive operational or customer data. <br>
-Mitigation: Use least-privilege queue credentials, limit reads to the minimum needed for analysis, and treat message payloads as sensitive data. <br>
-Risk: Replaying DLQ messages before the underlying cause is fixed can repeat failures or trigger duplicate and unsafe side effects. <br>
-Mitigation: Confirm the target environment and queues, fix the root cause first, review replay scope, throttle replay, and account for idempotency and duplicate handling. <br>
+**Output Format:** [Markdown with inline shell and code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/dead-letter-queue-analyzer) <br>
+**Other Properties Related to Output:** [Includes DLQ analysis reports, replay command guidance, monitoring alert recommendations, and message-handling prevention guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, code snippets, tables, reports, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include queue inspection commands, DLQ analysis summaries, replay guidance, monitoring recommendations, and prevention recommendations.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

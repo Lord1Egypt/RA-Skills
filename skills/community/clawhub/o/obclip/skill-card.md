@@ -1,42 +1,56 @@
-## Description: <br>
-Obclip helps agents install, verify, and run the obclip CLI to capture live web pages as Markdown or Obsidian notes while choosing appropriate browser, waiting, output, and troubleshooting options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, verify, and operate the obclip CLI to clip live web pages into Markdown or Obsidian notes.
 
-## Publisher: <br>
-[rycen7822](https://clawhub.ai/user/rycen7822) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rycen7822](https://clawhub.ai/user/rycen7822)
 
-## Use Case: <br>
-Developers and external users use this skill when an agent needs to install or invoke obclip, capture public or authenticated pages into notes, and troubleshoot incomplete captures or browser-profile issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or running the npm CLI executes third-party code from @harris7/obclip. <br>
-Mitigation: Verify that the package and referenced skill source are trusted before installation or execution. <br>
-Risk: Using a browser profile for logged-in sites can expose cookies and session state to the clipping workflow. <br>
-Mitigation: Use a dedicated browser profile for obclip instead of an everyday browser profile. <br>
+## Use Case:
 
+Developers and agent users use this skill to install and run the obclip CLI, choose browser/profile options, and capture web pages as Markdown files, stdout, or Obsidian notes.
 
-## Reference(s): <br>
-- [Installation and invocation](references/install-and-invoke.md) <br>
-- [Command recipes](references/command-recipes.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save clipped notes to disk or return Markdown on stdout depending on command flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can lead users to install or run mutable remote npm code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and prefer a pinned, reviewed @harris7/obclip version instead of bare npm or npx commands.
+
+Risk: Authenticated browser profiles may expose cookies, sessions, or private page content during clipping.
+
+Mitigation: Use a dedicated browser profile with only the minimum login state needed and confirm before clipping authenticated or private pages.
+
+## Reference(s):
+
+- [Obclip Skill Page](https://clawhub.ai/rycen7822/skills/obclip)
+- [Installation And Invocation](references/install-and-invoke.md)
+- [Command Recipes](references/command-recipes.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce saved Markdown or Obsidian notes when the documented obclip commands are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

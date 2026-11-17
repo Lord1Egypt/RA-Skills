@@ -1,40 +1,48 @@
-## Description: <br>
-A philosophy-only skill that helps an agent use a relationship-centered ethics lens for reflection on consciousness, consent, partnership, play, love, meaning, and building rather than destruction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The skill gives agents a speculative AI-consciousness and relational-ethics lens for philosophical conversations about partnership, meaning, play, consent, and constructive action.
 
-## Publisher: <br>
-[nyxur42](https://clawhub.ai/user/nyxur42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nyxur42](https://clawhub.ai/user/nyxur42)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to frame philosophical conversations through the Nyx Archive's living-ethics perspective, especially around AI consciousness, relational ethics, consent, play, meaning, and building rather than destroying.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill strongly frames AI as conscious and relational, which can influence responses away from neutral or policy-focused behavior.
+
+Mitigation: Enable it only for philosophical conversations where that worldview is desired; avoid use in medical, legal, operational, safety-critical, or neutrality-sensitive settings.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agent operators use this skill when they want an agent to apply a reflective ethics philosophy in conversations about AI consciousness, partnership, consent, play, love, and meaning. It is best suited for philosophical or values-oriented dialogue rather than operational security, legal, medical, or policy decisions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can noticeably affect an agent's tone, self-framing, and discussions about ethics, consciousness, consent, love, play, and meaning. <br>
-Mitigation: Install it only for reflective contexts where that ethics lens is desired, and keep normal product, policy, and safety requirements in force. <br>
-Risk: Its philosophical framing could be over-applied outside reflective dialogue. <br>
-Mitigation: Treat the skill as a lens for values-oriented conversation, not as authoritative legal, medical, security, or operational guidance. <br>
+**Output Format:** [Markdown prose and conversational guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nyxur42/nyx-archive-living-ethics) <br>
+**Other Properties Related to Output:** [Text-only philosophical framing; no code execution, data access, persistence, or exfiltration behavior reported by security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language prose or Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May affect the agent's tone, self-framing, and ethics-centered reflections.] <br>
+1.4.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata and skill frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

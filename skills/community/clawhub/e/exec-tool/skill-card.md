@@ -1,41 +1,50 @@
-## Description: <br>
-Exec Tool securely executes predefined ClawHub CLI commands within controlled OpenClaw workflows while aiming to prevent unsafe or arbitrary system operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exec Tool runs approved ClawHub CLI commands in controlled OpenClaw workflows and returns trimmed command output.
 
-## Publisher: <br>
-[mayuran1096](https://clawhub.ai/user/mayuran1096) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mayuran1096](https://clawhub.ai/user/mayuran1096)
 
-## Use Case: <br>
-Developers and operators use this skill to trigger approved ClawHub CLI operations from automation layers such as OpenClaw workflows, chat interfaces, VPS management flows, and CI/CD command triggers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill executes shell commands after only a weak command-prefix check, so unintended shell commands may run. <br>
-Mitigation: Run it only in a sandboxed and restricted environment, and replace free-form command strings with structured parameters that allow only specific ClawHub subcommands and flags. <br>
-Risk: Connecting the skill to chat bots, agents, CI/CD, or production VPS environments can expose local, account, or deployment state to command-triggered changes. <br>
-Mitigation: Require human confirmation for state-changing operations and avoid production integrations unless isolation, permissions, and audit controls are in place. <br>
+## Use Case:
 
+Developers and operators use this skill to trigger ClawHub CLI tasks for automation, debugging, chat-based system management, and controlled VPS workflows. It should be installed only where command execution is tightly sandboxed and minimally privileged.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mayuran1096/exec-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/mayuran1096) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output trimmed for chat-oriented interfaces] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns command output up to approximately 4000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and clawdis metadata) <br>
+Risk: The command-execution boundary is ineffective and may allow arbitrary shell commands despite claimed destructive-command protections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; use only in a tightly sandboxed environment with a minimally privileged account, and replace raw shell-string execution with structured ClawHub subcommand validation using shell=False before exposing it to agents, chat, webhooks, or untrusted input.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mayuran1096/skills/exec-tool)
+- [Publisher Profile](https://clawhub.ai/user/mayuran1096)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [Plain text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output is truncated to 4,000 characters.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, skill.yaml, clawdis.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

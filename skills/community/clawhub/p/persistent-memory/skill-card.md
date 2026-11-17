@@ -1,39 +1,53 @@
-## Description: <br>
-Persistent Memory adds a three-layer memory system using Markdown, ChromaDB vectors, and a NetworkX knowledge graph for long-term agent recall across OpenClaw sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent Memory adds a three-layer Markdown, ChromaDB, and NetworkX memory system to OpenClaw workspaces so agents can search and reuse long-term context across sessions.
 
-## Publisher: <br>
-[Jakebot-ops](https://clawhub.ai/user/Jakebot-ops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jakebot-ops](https://clawhub.ai/user/jakebot-ops)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up persistent workspace memory so agents can recall prior decisions, facts, context, and institutional knowledge across sessions. It is also used to configure OpenClaw memory search so directive and reference files are included in future retrieval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: One-command setup can change user-level OpenClaw memory behavior and persistent memory indexing without enough control or rollback. <br>
-Mitigation: Before running setup, back up ~/.openclaw/openclaw.json, review the memorySearch extraPaths, and confirm the configuration changes are acceptable. <br>
-Risk: Persistent memory indexing can make sensitive workspace information retrievable by future agent sessions. <br>
-Mitigation: Avoid indexing secrets, credentials, private identity files, or sensitive infrastructure details unless later agent retrieval is intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Memory Architecture](references/architecture.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to install and maintain durable local memory for OpenClaw agents, including semantic search, graph traversal, sync checks, and memory-search configuration for workspace files.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and local configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Setup may create local memory files, a vector database, a Python virtual environment, and OpenClaw memorySearch configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create a durable local memory system that retains sensitive workspace and session information.
+
+Mitigation: Install only when durable local memory is intended; avoid storing secrets or private contact and infrastructure details, and define a deletion plan for the vector database, graph, heartbeat state, and generated memory files.
+
+Risk: Setup can make broad, lasting OpenClaw memory-search configuration changes that include additional workspace paths.
+
+Mitigation: Review setup scripts first, prefer dry-run or manual configuration, and remove extraPaths that should not be indexed before use.
+
+## Reference(s):
+
+- [Memory Architecture](references/architecture.md)
+- [Persistent Memory ClawHub page](https://clawhub.ai/jakebot-ops/skills/persistent-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with bash commands and Python helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local workspace files, vector indexes, graph data, heartbeat state, and OpenClaw memory-search configuration when setup scripts are run.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-Kling AI Image Generation API tool that supports text-to-image, image-to-image, multi-image reference generation, Omni-Image, image expansion, and task management through Kling API scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kling Image Generate helps agents use Kling AI image-generation APIs for text-to-image, image-to-image, multi-image reference generation, Omni-Image, image expansion, task querying, and task listing.
 
-## Publisher: <br>
-[UMRzcz-831](https://clawhub.ai/user/UMRzcz-831) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[umrzcz-831](https://clawhub.ai/user/umrzcz-831)
 
-## Use Case: <br>
-Developers and agents use this skill to configure Kling API credentials, submit image generation or image editing tasks, poll task status, and retrieve task results for creative image workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image inputs or image URLs, callback URLs, and task metadata are sent to Kling's API. <br>
-Mitigation: Use the skill only for data suitable for Kling processing, avoid sensitive callback URLs, and review inputs before submitting tasks. <br>
-Risk: Kling API keys are required for JWT authentication. <br>
-Mitigation: Keep KLING_ACCESS_KEY and KLING_SECRET_KEY private, prefer dedicated or limited keys, and store them only in the local environment. <br>
-Risk: Python dependencies are installed from package indexes. <br>
-Mitigation: Install dependencies in a virtual environment and pin versions when deploying the skill. <br>
+## Use Case:
 
+Developers and external users can use this skill to configure Kling API credentials and run scripts that generate, edit, expand, and track AI image tasks through Kling's cloud API.
 
-## Reference(s): <br>
-- [Kling Image Generate on ClawHub](https://clawhub.ai/UMRzcz-831/kling-image-generate) <br>
-- [UMRzcz-831 publisher profile](https://clawhub.ai/user/UMRzcz-831) <br>
-- [English API reference](references/api-reference.en.md) <br>
-- [Chinese API reference](references/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON task responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May submit prompts, image references, callback URLs, and task metadata to Kling's API; generated image results are returned through Kling task responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prompts, reference images, and generated task data are sent to Kling's cloud API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when Kling is approved for the intended data, and avoid sensitive prompts, private images, regulated data, and internal callback URLs unless that approval is in place.
+
+Risk: Kling access and secret keys are required for JWT authentication.
+
+Mitigation: Store keys in local environment variables only, keep them out of shared shells, logs, and source control, and rotate them if exposure is suspected.
+
+## Reference(s):
+
+- [Kling Image Generation API Reference](references/api-reference.en.md)
+- [Kling Image Generation API Reference (Chinese)](references/api-reference.md)
+- [Kling API endpoint](https://api-beijing.klingai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses from bundled Python scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include generated image URLs, task IDs, task status JSON, progress text, and configuration steps for local environment variables.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

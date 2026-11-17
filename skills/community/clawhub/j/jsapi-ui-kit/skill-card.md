@@ -1,51 +1,69 @@
-## Description: <br>
-Guides developers using the Baidu Maps JavaScript API ui-kit components for place autocomplete, place search, place details, and driving route planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides development guidance for using Baidu Map JavaScript API UI Kit components for place autocomplete, place search, place detail display, and driving route planning.
 
-## Publisher: <br>
-[wahddbing](https://clawhub.ai/user/wahddbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wahddbing](https://clawhub.ai/user/wahddbing)
 
-## Use Case: <br>
-Developers use this skill to integrate Baidu Maps UI components into JavaScript map applications, including search autocomplete, POI search and details, and driving route planning. It provides implementation guidance, API options, event callbacks, and example code for @baidumap/jsapi-ui-kit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Baidu Maps API keys can be exposed or misused when copied into client-side examples. <br>
-Mitigation: Use a restricted Baidu Maps API key and do not place server-side secrets in client code. <br>
-Risk: Search terms, POI identifiers, and route coordinates may be handled by Baidu Maps services. <br>
-Mitigation: Disclose location-service data handling to users and review the integration against applicable privacy requirements. <br>
-Risk: Unpinned npm or CDN imports can change behavior over time. <br>
-Mitigation: Pin package and CDN versions where possible before deployment. <br>
+## Use Case:
 
+Developers use this skill to implement Baidu Maps UI Kit workflows in web map applications, including search input autocomplete, POI search, POI detail panels, and driving route planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wahddbing/jsapi-ui-kit) <br>
-- [Publisher profile](https://clawhub.ai/user/wahddbing) <br>
-- [Quick start](references/getting-started.md) <br>
-- [PlaceAutocomplete reference](references/place-autocomplete.md) <br>
-- [PlaceSearch reference](references/place-search.md) <br>
-- [PlaceDetail reference](references/place-detail.md) <br>
-- [RoutePlan reference](references/route-plan.md) <br>
-- [Baidu Maps JavaScript API loader](https://api.map.baidu.com/api?v=1.0&type=webgl&ak=YOUR_AK) <br>
-- [jsapi-ui-kit CDN stylesheet](https://unpkg.com/@baidumap/jsapi-ui-kit/dist/css/jsapi-ui-kit.css) <br>
-- [jsapi-ui-kit CDN script](https://unpkg.com/@baidumap/jsapi-ui-kit/dist/jsapi-ui-kit.iife.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JavaScript, TypeScript, HTML, and shell code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js for package installation examples and BMAP_JSAPI_KEY for Baidu Maps API usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Map searches, selected places, coordinates, phone fields, and route endpoints can contain sensitive user data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide notice and consent where appropriate, minimize logged location and POI data, and handle route and place data as user-sensitive application data.
+
+Risk: An unrestricted Baidu Maps JavaScript API key can be abused if exposed in production applications.
+
+Mitigation: Restrict BMAP_JSAPI_KEY by allowed origins and APIs, rotate keys when needed, and avoid shipping unrestricted keys.
+
+Risk: CDN or package dependency drift can change runtime behavior after deployment.
+
+Mitigation: Pin package versions, prefer lockfile-based installs or reviewed self-hosted assets, and use a restrictive Content Security Policy for production apps.
+
+Risk: RoutePlan documentation states that only driving route planning is currently available.
+
+Mitigation: Design application flows to expose driving route planning only, and validate unsupported transit, riding, or walking modes before promising them to users.
+
+## Reference(s):
+
+- [Quick Start](references/getting-started.md)
+- [PlaceAutocomplete Reference](references/place-autocomplete.md)
+- [PlaceSearch Reference](references/place-search.md)
+- [PlaceDetail Reference](references/place-detail.md)
+- [RoutePlan Reference](references/route-plan.md)
+- [ClawHub Skill Page](https://clawhub.ai/wahddbing/skills/jsapi-ui-kit)
+- [Baidu Maps JavaScript API Loader](https://api.map.baidu.com/api?v=1.0&type=webgl&ak=YOUR_AK)
+- [jsapi-ui-kit CDN Bundle](https://unpkg.com/@baidumap/jsapi-ui-kit/dist/jsapi-ui-kit.iife.js)
+- [jsapi-ui-kit CDN Stylesheet](https://unpkg.com/@baidumap/jsapi-ui-kit/dist/css/jsapi-ui-kit.css)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript, TypeScript, HTML, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js for package installation examples and a Baidu Maps JavaScript API key in BMAP_JSAPI_KEY for implementations.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

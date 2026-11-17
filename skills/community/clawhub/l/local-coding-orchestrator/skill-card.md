@@ -1,46 +1,67 @@
-## Description: <br>
-Use OpenClaw as a supervisor-driven orchestration scaffold for local coding CLIs such as Codex, Claude Code, and OpenCode. Supports task records, lifecycle transitions, worker launch and reconcile, retry briefs, pipeline presets, and environment-aware blocking for local coding workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use OpenClaw as a supervisor-driven orchestration scaffold for local coding CLIs such as Codex, Claude Code, and OpenCode, with support for task records, lifecycle transitions, worker launch and reconcile, retry briefs, pipeline presets, and environment-aware blocking for local coding workflows.
 
-## Publisher: <br>
-[lijiejoy](https://clawhub.ai/user/lijiejoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijiejoy](https://clawhub.ai/user/lijiejoy)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate local coding work across Codex, Claude Code, and OpenCode through task records, worker roles, lifecycle states, review phases, and retry briefs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The usage guide shows PowerShell execution with an execution-policy bypass, which can run local scripts that users have not independently reviewed. <br>
-Mitigation: Review the referenced PowerShell scripts before installing or running them, use the bypass form only for code you trust, and prefer a normal PowerShell execution path when it works. <br>
-Risk: Worker processes may exit or report success before objective checks prove the task is complete. <br>
-Mitigation: Use the documented done policies, review artifacts, and supervisor lifecycle transitions before marking work completed. <br>
-Risk: Local CLI workers may run in constrained, read-only, or path-drifted environments where outputs do not land in the intended repo. <br>
-Mitigation: Verify the reachable workdir, preserve logs and task records, classify environment blockers explicitly, and relaunch with corrected paths when needed. <br>
+## Use Case:
 
+Developers and engineering operators use this skill to supervise local coding work across Codex, Claude Code, and OpenCode with task records, worker roles, review loops, retries, and objective completion checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lijiejoy/local-coding-orchestrator) <br>
-- [Usage Guide](docs/usage-guide.md) <br>
-- [Operator Playbook](docs/operator-playbook.md) <br>
-- [Task Schema v1](docs/task-schema.v1.json) <br>
-- [Supervisor vs Worker Responsibilities](assets/references/supervisor-vs-worker.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON task records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces supervisor-facing task structure, worker briefs, lifecycle decisions, retry guidance, and operational summaries; it does not directly guarantee that delegated code changes land.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata; artifact changelog top entry is v0.3.1) <br>
+Risk: PowerShell examples use ExecutionPolicy Bypass and relative script paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify scripts from a trusted installed path before execution, avoid ExecutionPolicy Bypass where possible, and prefer explicit absolute paths.
+
+Risk: The package references local worker scripts that security evidence says are missing from the package.
+
+Mitigation: Confirm the required worker adapters exist in the installed skill before enabling launch or auto-launch behavior.
+
+Risk: Auto-launching local coding workers can modify repositories and create sensitive local prompts, logs, results, and summaries.
+
+Mitigation: Use preview or manual modes first, isolate the target repo or worktree, and treat generated orchestration artifacts as sensitive.
+
+Risk: The artifact documentation describes the skill as an experimental scaffold with heuristic background reconciliation and incomplete build/test parsing.
+
+Mitigation: Use objective checks, review phases, and manual validation before marking work completed or relying on unattended execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lijiejoy/skills/local-coding-orchestrator)
+- [Publisher profile](https://clawhub.ai/user/lijiejoy)
+- [Usage guide](docs/usage-guide.md)
+- [Operator playbook](docs/operator-playbook.md)
+- [Capability map](docs/capability-map.md)
+- [Task schema](docs/task-schema.v1.json)
+- [Status](docs/status.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with PowerShell command examples, JSON task records, worker briefs, logs, summaries, and review artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for local orchestration and may include paths to prompt, log, result, summary, and review artifacts.]
+
+## Skill Version(s):
+
+0.2.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Talos Pro generates multi-platform social media content calendars with daily posting schedules, A/B caption variants, content angle ideas, repurposing guidance, and CSV exports for scheduling tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Talos Pro generates multi-platform social media content calendars with daily schedules, A/B caption variants, content angles, repurposing guidance, and export files for scheduling tools.
 
-## Publisher: <br>
-[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway)
 
-## Use Case: <br>
-Marketing teams, content creators, and social media operators use Talos Pro to generate 8- to 12-week posting calendars, caption variants, content angles, and scheduling exports for Twitter, LinkedIn, Instagram, Threads, and TikTok. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is gated by a paid license key. <br>
-Mitigation: Confirm the license source before use and provide LICENSE_KEY only in a trusted local environment. <br>
-Risk: The documented install command uses --break-system-packages for Python dependency installation. <br>
-Mitigation: Install dependencies in a virtual environment or other isolated Python environment instead. <br>
-Risk: The skill creates local JSON, CSV, and Markdown calendar export files where it runs. <br>
-Mitigation: Run it from an intended workspace and review generated files before importing them into scheduling tools. <br>
+## Use Case:
 
+External users and marketing teams use this skill to create 8- or 12-week social media calendars for Twitter, LinkedIn, Instagram, Threads, and TikTok. It is intended to help plan posting schedules, draft caption variants, generate content angles, and export calendar files for scheduling workflows.
 
-## Reference(s): <br>
-- [Talos Pro on ClawHub](https://clawhub.ai/occupythemilkyway/talos-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, CSV, Files, Shell commands, Configuration] <br>
-**Output Format:** [Terminal tables plus generated JSON, CSV, and Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LICENSE_KEY and writes talos_pro_<topic>_<date> export files in the working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: The install step uses an unpinned dependency install with --break-system-packages, which can modify the system Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in an isolated virtual environment and pin the rich dependency before use.
+
+Risk: The skill writes generated JSON, CSV, and Markdown export files to the current working directory.
+
+Mitigation: Run the skill from a directory intended for generated marketing plans and review exported files before importing them into scheduling tools.
+
+Risk: Generated captions, posting times, and content angles may be generic or unsuitable for a specific brand or platform policy.
+
+Mitigation: Review and edit generated calendars before publication, especially claims, hashtags, timing assumptions, and platform-specific content.
+
+## Reference(s):
+
+- [Talos Pro ClawHub release page](https://clawhub.ai/occupythemilkyway/skills/talos-pro)
+- [Talos Pro homepage metadata link](https://clawhub.ai/occupythemilkyway/talos-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown instructions with inline shell and Python code; runtime exports JSON, CSV, and Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LICENSE_KEY and BRAND_TOPIC environment variables; optional platform, posting cadence, content pillar, tone, calendar length, and A/B variant settings control generated output.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

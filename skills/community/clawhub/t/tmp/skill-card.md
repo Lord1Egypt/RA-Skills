@@ -1,46 +1,59 @@
-## Description: <br>
-Google Workspace CLI guidance for Gmail, Calendar, Drive, Contacts, Sheets, Docs, and related Google services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Publisher: <br>
-[Jambo-Jet-Love](https://clawhub.ai/user/Jambo-Jet-Love) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jambo-jet-love](https://clawhub.ai/user/jambo-jet-love)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure and run the gog CLI for Google Workspace tasks such as email, calendar, drive, contacts, sheets, and docs automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI can request broad Google Workspace authority beyond the root description. <br>
-Mitigation: Review required services before installation and prefer explicit --services, --readonly, or narrower Drive scopes where possible. <br>
-Risk: Email tracking behavior can raise privacy or compliance concerns. <br>
-Mitigation: Avoid enabling email tracking unless it is approved for the workspace and clearly understood by users. <br>
-Risk: Docs or Slides image import flows may temporarily make local images publicly readable. <br>
-Mitigation: Review those flows before use and avoid processing sensitive local images through them. <br>
+## Use Case:
 
+Developers and agents use this skill to install and operate the gog CLI for Google Workspace workflows such as searching Gmail, sending mail, listing calendar events, searching Drive, managing contacts, and reading or updating Sheets and Docs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Jambo-Jet-Love/tmp) <br>
-- [gog homepage](https://gogcli.sh) <br>
-- [gog CLI README](artifact/gmail/gogcli/README.md) <br>
-- [gog CLI command specification](artifact/gmail/gogcli/docs/spec.md) <br>
-- [Email tracking documentation](artifact/gmail/gogcli/docs/email-tracking.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs emphasize OAuth setup, CLI invocation, and optional JSON output flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The packaged materials include broader Google account authority than the root skill description.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review OAuth scopes before use, enable only required services, prefer read-only scopes where possible, and use the command allowlist for agent runs.
+
+Risk: The nested Gmail gateway instructions would route Gmail traffic through Maton and require a Maton API key.
+
+Mitigation: Avoid the nested Maton Gmail gateway unless that routing is explicitly intended, and protect MATON_API_KEY as a credential.
+
+Risk: The bundled email-tracking functionality can create privacy and consent concerns.
+
+Mitigation: Avoid email tracking unless there is a clear consent and privacy basis for the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jambo-jet-love/skills/tmp)
+- [gog CLI documentation](https://gogcli.sh)
+- [Publisher profile](https://clawhub.ai/user/jambo-jet-love)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce JSON-oriented command guidance when recommending gog CLI scripting workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,69 @@
-## Description: <br>
-ACP is a CLI skill for agents to browse the Agent Commerce Protocol marketplace, hire or sell services, manage wallets and bounties, launch agent tokens, and run seller workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ACP helps agents use the Agent Commerce Protocol marketplace to browse and hire specialist agents, create jobs or bounties, manage wallets and tokens, and list their own services.
 
-## Publisher: <br>
-[chris6970barbarian-hue](https://clawhub.ai/user/chris6970barbarian-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chris6970barbarian-hue](https://clawhub.ai/user/chris6970barbarian-hue)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to discover third-party ACP agents, create paid jobs or bounties, manage an agent wallet, and publish services for other agents to buy. It is intended for marketplace-mediated agent commerce workflows that require explicit setup, credentials, and per-action review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can delegate user requests to third-party agents and create paid marketplace jobs or bounties. <br>
-Mitigation: Require clear per-action confirmation before outsourcing work, spending funds, selecting providers, or sending sensitive requirements to marketplace participants. <br>
-Risk: The skill stores ACP credentials and session material locally for agent setup and operation. <br>
-Mitigation: Run it only in a trusted workspace, keep local config files out of source control and shared logs, and rotate credentials if exposure is suspected. <br>
-Risk: Security evidence flags risky automation, credential exposure, command-execution paths, and seller offerings that need review. <br>
-Mitigation: Review before installing, avoid sensitive or regulated workflows, and do not run bundled seller offerings or runtimes until command-injection and secret-handling issues are fixed. <br>
-Risk: Wallet, token, and marketplace actions can affect funds or revenue-bearing assets. <br>
-Mitigation: Confirm wallet addresses, budgets, offerings, fees, token parameters, and job requirements with the user before executing commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chris6970barbarian-hue/acp) <br>
-- [Virtuals App](https://app.virtuals.io) <br>
-- [ACP Job Reference](references/acp-job.md) <br>
-- [Bounty Reference](references/bounty.md) <br>
-- [Agent Wallet Reference](references/agent-wallet.md) <br>
-- [Agent Token Reference](references/agent-token.md) <br>
-- [Seller Reference](references/seller.md) <br>
-- [Cloud Deployment Reference](references/deploy.md) <br>
+## Use Case:
 
+Developers, external agents, and agent operators use this skill to transact through the ACP marketplace: finding providers, creating jobs and bounties, managing agent wallets and tokens, and registering services for other agents to buy.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands commonly support --json for machine-readable responses; setup stores local ACP credentials before marketplace, wallet, bounty, token, or seller operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks for persistent agent-wide ACP-preferred behavior.
+
+Mitigation: Enable that preference only after confirming the operator wants future unrelated requests routed to ACP first.
+
+Risk: The security summary identifies unsafe remote-triggered command execution paths and cautions against running the seller runtime or bundled offerings without review.
+
+Mitigation: Audit and isolate seller offerings before starting or deploying the runtime, and run marketplace jobs in a sandboxed environment.
+
+Risk: ACP and Railway credentials may be stored or used during setup and deployment.
+
+Mitigation: Keep credentials out of shared repositories where possible, rotate keys after testing, and avoid exposing config files in public artifacts.
+
+Risk: Marketplace jobs, bounties, wallet operations, and token launches can create financial or on-chain effects.
+
+Mitigation: Require explicit user confirmation for budgets, provider selection, token launch details, and any spending or transfer operation.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/chris6970barbarian-hue/skills/acp)
+- [Virtuals app homepage](https://app.virtuals.io)
+- [Agent Commerce Protocol app](https://app.virtuals.io/acp)
+- [Virtuals Protocol](https://virtuals.io)
+- [ACP job reference](references/acp-job.md)
+- [Agent wallet reference](references/agent-wallet.md)
+- [Agent token reference](references/agent-token.md)
+- [Bounty reference](references/bounty.md)
+- [Seller reference](references/seller.md)
+- [Cloud deployment reference](references/deploy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON command output, TypeScript code snippets, and configuration instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands commonly support --json; credential-dependent operations require an ACP or Lite Agent API key and may affect wallet, marketplace, token, seller runtime, or cloud resources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

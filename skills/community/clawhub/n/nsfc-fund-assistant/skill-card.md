@@ -1,41 +1,57 @@
-## Description: <br>
-国家自然科学基金（NSFC）申请统一入口 - 从选题、撰写、优化到形式审查的全流程支持 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nsfc helps users draft, optimize, outline, template, and review Chinese National Natural Science Foundation of China (NSFC) funding applications from topic selection through formal checks.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Researchers, proposal writers, and academic teams use this skill to draft, optimize, outline, template, and review NSFC funding applications. It provides structured writing workflows, quality checklists, literature-management guidance, and P0/P1/P2 proposal review support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad command aliases such as write, review, outline, template, optimize, and checklist may activate the skill unexpectedly. <br>
-Mitigation: Prefer explicit namespaced prompts such as nsfc write, nsfc review, or nsfc checklist when routing the skill. <br>
-Risk: Proposal-writing guidance may include incorrect or misleading references, requirements, or application details if accepted without review. <br>
-Mitigation: Require human review of generated proposal content and independently verify literature, deadlines, limits, application codes, funding amounts, and eligibility rules before submission. <br>
+## Use Case:
 
+External researchers, proposal writers, and grant-support staff use this skill to prepare Chinese-language NSFC application drafts, improve proposal structure, generate templates and outlines, and run staged P0/P1/P2 review checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jirboy/nsfc-fund-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/jirboy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and structured prose with templates, checklists, outlines, and review findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Chinese NSFC proposal section drafts, optimization suggestions, formal-review checklists, and timeline guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill may provide outdated or incorrect NSFC rule, eligibility, limit, deadline, or formatting guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current NSFC and institutional requirements before relying on generated review results or submitting an application.
+
+Risk: Drafting and optimization guidance may include unsupported claims, unverifiable literature summaries, or fabricated citations if the user does not provide checked sources.
+
+Mitigation: Source-check every citation, literature claim, data point, and technical assertion against authoritative materials before use.
+
+Risk: The skill offers writing and review assistance, not official compliance validation.
+
+Mitigation: Use the output as a drafting aid and have the final application reviewed by the applicant, institution, or qualified grant-support staff.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jirboy/skills/nsfc-fund-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style Chinese drafting guidance, outlines, templates, checklists, and review comments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; users must verify NSFC rules, citations, and final application details.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

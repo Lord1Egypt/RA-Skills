@@ -1,44 +1,59 @@
-## Description: <br>
-Triggers when a user explicitly identifies as ENTP and needs growth, career, or learning guidance, with coaching and advisory modes for analysis paralysis, scattered focus, and action planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps ENTP users work through growth, career, and learning questions with a coaching mode for reflection and a consultant mode for concrete action plans.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users who identify as ENTP use this skill for growth, career, and study coaching. The skill alternates between reflective questions and concrete action plans, while noting that it does not replace professional mental health care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release mixes ENTP and INTP materials, which can produce mismatched personality guidance. <br>
-Mitigation: Review the artifact before use and ask the publisher to align the README, tags, and reference materials with the ENTP scope. <br>
-Risk: The skill instructs the agent to keep personal coaching records without clear consent, review, or deletion controls. <br>
-Mitigation: Use only with explicit user consent for saved coaching context, and provide a way to review and delete retained notes. <br>
-Risk: Users may treat coaching guidance as professional mental health advice. <br>
-Mitigation: Keep the skill within self-development coaching and direct users with serious psychological concerns to qualified professionals. <br>
+## Use Case:
 
+External users who identify as ENTP use this skill for structured personal growth, career, and learning coaching. The skill supports reflective dialogue, concrete action planning, and follow-up on user-stated goals without replacing professional mental health care.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lj22503/lj22503-entp-coach) <br>
-- [ENTP Traits and Cognitive Functions](references/entp-traits.md) <br>
-- [INTP Insights Reference](references/intp-insights.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational guidance with questions, action steps, and brief plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coaching responses are intended to be concise; the source caps coaching-mode replies at 200 Chinese characters and advisor-mode replies at 400 Chinese characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release metadata) <br>
+Risk: Package identity and persona scope are inconsistent across the release evidence and artifacts, including ENTP and INTP references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or deploy only after the publisher aligns the package name, README, metadata, repository, and intended persona scope.
+
+Risk: The growth-record feature may involve personal or mental-health-adjacent details without clear consent, memory review, or deletion controls.
+
+Mitigation: Use the skill only in runtimes with explicit memory controls, minimize sensitive details, and provide a clear way to review and delete stored records.
+
+Risk: Users may treat coaching responses as professional mental health advice.
+
+Mitigation: Keep the skill scoped to growth, career, and learning coaching, and direct severe psychological concerns to qualified professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/lj22503-entp-coach)
+- [ENTP traits reference](artifact/references/entp-traits.md)
+- [INTP insights reference](artifact/references/intp-insights.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown conversational replies with concise coaching questions, options, or action steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, shell commands, or configuration are produced; artifact guidance caps coach-mode replies at 200 Chinese characters and consultant-mode replies at 400 Chinese characters.]
+
+## Skill Version(s):
+
+1.8.0 (source: evidence.json release.version; artifact frontmatter lists 1.6.0 and clawhub.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

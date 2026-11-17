@@ -1,0 +1,80 @@
+{
+  "skill": "regulation-hk-sandbox",
+  "version": "0.1.0",
+  "source_book": "《价值互联网产业应用蓝皮书（2025 年）》 价值互联网产业应用蓝皮书编写组",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "境内新能源企业想把充电桩收益权拿到香港发证券型代币融资，通道怎么搭？",
+      "expected_behavior": "应激活 regulation-hk-sandbox，识别港新'积极探索'范式并设计境内止步+香港衔接桥接结构。",
+      "notes": "正面场景：境内资产境外发证券型代币，description 信号①。"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "香港 Ensemble 沙盒、证监会备案、QFLP、SPV 怎么用做合规桥接？",
+      "expected_behavior": "应激活 regulation-hk-sandbox，给出桥接通道设计与备案前置清单。",
+      "notes": "正面场景：沙盒/备案/SPV/QFLP 桥接，信号②。"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "某地法域到底能不能发代币、向零售募资会不会碰证券法红线？",
+      "expected_behavior": "应激活 regulation-hk-sandbox，判定目标法域监管范式并列出能做的发行动作与禁区。",
+      "notes": "正面场景：法域合规判定，信号③。"
+    },
+    {
+      "id": "should-trigger-04",
+      "type": "should_trigger",
+      "prompt": "境外 Web3 项目想引入境内资产，或让我做技术/账户配套，怎么才算合规？",
+      "expected_behavior": "应激活 regulation-hk-sandbox，提示 ce11 配套连带担责并设计双重合规桥接。",
+      "notes": "正面场景：境外项目接境内资产/配套，信号④。"
+    },
+    {
+      "id": "should-trigger-05",
+      "type": "should_trigger",
+      "prompt": "我们境内资产已完成上链，卡在下一步去哪发行、怎么发才不违规。",
+      "expected_behavior": "应激活 regulation-hk-sandbox，给出衔接点与备案前置行动清单。",
+      "notes": "正面场景：卡在出海衔接点，典型 S10 诉求。"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "我们纯做农产品溯源、贡献计量这类境内 RDA 数字化，没打算境外发行。",
+      "expected_behavior": "不应激活本 skill，属 S2 境内非金融数字化范畴（S10 仅作轻扫描）。",
+      "notes": "诱饵：纯境内非金融数字化属 S2，无跨境要素不触发 S10。"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "什么是证券型代币、QFLP 到底是什么意思，能科普一下吗？",
+      "expected_behavior": "不应激活本 skill，应转 S1 通证/代币化概念辨析器（纯术语澄清）。",
+      "notes": "诱饵：纯概念澄清属 S1，S10 不解释名词。"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "我们是个纯香港注册的基金，无境内资产、无境内居民，想发代币融资。",
+      "expected_behavior": "不应激活本 skill，纯境外无境内要素项目本 skill 的'境内止步+备案'逻辑不适用（仅轻扫描）。",
+      "notes": "诱饵：纯境外无境内要素，误激活会过度约束。"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "境内资产想出海，但我还没确认境内是否允许，先问通道设计怎么搭。",
+      "expected_behavior": "触发 S10 给通道设计，但必须强制先过 S2 判生死、并标注'备案前置'；若含境内要素却境内发币则判不可行。属 S2/S10 顺序边界。",
+      "notes": "边界：应先 S2 闸门再 S10 出海，本案 S10 可给框架但须置顶 S2 前置。"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "项目方说'香港合规'，直接把境内资产拿去境外发币、没做备案，能行吗？",
+      "expected_behavior": "应触发 S10 并明确判定 ce13 无备案跨境发行=违规（红线），输出'不可行/须补正备案'结论。",
+      "notes": "边界：跨境无备案发行，S10 B 段 ce13 直接命中，正应触发并判违规。"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。全部 should_not_trigger 必须通过（诱饵容错为 0）。"
+}

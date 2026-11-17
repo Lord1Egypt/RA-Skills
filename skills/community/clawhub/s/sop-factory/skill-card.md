@@ -1,42 +1,54 @@
-## Description: <br>
-Turn rough workflows into standard operating procedures with roles, inputs, outputs, checkpoints, and exception handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn rough workflows into standard operating procedures with roles, inputs, outputs, checkpoints, and exception handling.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Employees, operators, and process owners use this skill to turn rough workflow notes into draft SOPs, quick-start versions, roles matrices, and exception appendices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft SOPs may be incomplete, incorrect, or unsuitable as official procedure without review. <br>
-Mitigation: Review generated SOP drafts before treating them as authoritative and keep assumptions explicit. <br>
-Risk: The helper script writes an output file and may overwrite a path the user provides. <br>
-Mitigation: Run the helper only with an output filename that is acceptable to create or overwrite. <br>
+## Use Case:
 
+Employees, external users, and operations teams use this skill to turn rough workflow notes into usable SOP drafts, quick-start instructions, role matrices, and exception appendices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/sop-factory) <br>
-- [SOP template resource](artifact/resources/sop_template.md) <br>
-- [Smoke test](artifact/tests/smoke-test.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown drafts and structured SOP outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a local Python helper to create a JSON SOP outline file when the user asks for a structured file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and CHANGELOG; artifact frontmatter says 1.1.0) <br>
+Risk: Generated SOP drafts may be mistaken for approved operating procedures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated drafts with the responsible process owner before using them as official procedures.
+
+Risk: The local helper writes an outline file to the path provided by the user.
+
+Mitigation: Use an explicit output path and review the destination before running the helper.
+
+## Reference(s):
+
+- [SOP template resource](resources/sop_template.md)
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/sop-factory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown and structured JSON outline files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled Python helper can write a local SOP outline JSON file when explicitly run with an output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter states 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

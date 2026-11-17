@@ -1,41 +1,54 @@
-## Description: <br>
-Local Spanish TTS using Microsoft VibeVoice. Generate natural voice audio from text, optimized for WhatsApp voice messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Spanish TTS using Microsoft VibeVoice that generates natural voice audio from text, optimized for WhatsApp voice messages.
 
-## Publisher: <br>
-[javier887](https://clawhub.ai/user/javier887) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[javier887](https://clawhub.ai/user/javier887)
 
-## Use Case: <br>
-Developers and agents use this skill to generate local Spanish text-to-speech audio files, especially WhatsApp-compatible OGG voice messages, from inline text or text files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Voice selection and environment-derived values can lead to local code execution if supplied from untrusted input. <br>
-Mitigation: Review and constrain the script before installation, keep voice names on a known allowlist, and do not pass untrusted voice names or environment values. <br>
-Risk: Loading arbitrary .pt voice files can execute unsafe local model artifacts. <br>
-Mitigation: Use a pinned, isolated VibeVoice environment and avoid loading arbitrary .pt voice files. <br>
+## Use Case:
 
+Developers and agents use this skill to turn Spanish text into local voice-message audio for WhatsApp-style workflows, with voice, speed, and output-format options.
 
-## Reference(s): <br>
-- [VibeVoice GitHub repository](https://github.com/microsoft/VibeVoice) <br>
-- [ClawHub skill page](https://clawhub.ai/javier887/vibevoice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, text, guidance] <br>
-**Output Format:** [Markdown with bash examples and generated audio file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local .ogg, .mp3, or .wav audio files through the bundled shell script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The security review flags high-impact input-handling and dependency risks around the local script, dependency installation, model downloads, voice option, and environment variables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted VibeVoice source checkouts, pin dependencies and upstream revisions before use, and avoid exposing voice names or environment variables to untrusted input.
+
+Risk: The skill executes local shell, Python, PyTorch, and ffmpeg workflows that create media files on the host.
+
+Mitigation: Review the script before installation, run it in a controlled local environment, and scan generated files and changed dependencies before deployment.
+
+## Reference(s):
+
+- [VibeVoice project homepage](https://github.com/microsoft/VibeVoice)
+- [ClawHub skill page](https://clawhub.ai/javier887/skills/vibevoice)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated audio file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local audio files in OGG, MP3, or WAV format; OGG is the default for WhatsApp voice-message use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

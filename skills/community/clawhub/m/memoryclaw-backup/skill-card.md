@@ -1,43 +1,60 @@
-## Description: <br>
-Helps users install and use MemoryClaw to securely back up and restore their OpenClaw setup across machines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users install and use MemoryClaw to securely back up and restore their OpenClaw setup across machines.
 
-## Publisher: <br>
-[iarayan](https://clawhub.ai/user/iarayan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iarayan](https://clawhub.ai/user/iarayan)
 
-## Use Case: <br>
-External users and developers use this skill to choose safe MemoryClaw commands for backing up, checking, restoring, or migrating an OpenClaw setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The separate MemoryClaw plugin needs access to local OpenClaw files and network services to perform backups. <br>
-Mitigation: Verify that clawhub:memoryclaw is the intended plugin, review the plugin or source when stronger assurance is needed, and only proceed with installation after accepting that trust boundary. <br>
-Risk: Backup passphrases and interactive restore or login steps can expose sensitive information if handled through chat. <br>
-Mitigation: Keep passphrases out of chat and run login, restore, and first-time setup commands directly in a local terminal. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install MemoryClaw and follow backup, restore, migration, and recovery workflows for OpenClaw settings, memory, and claw metadata.
 
-## Reference(s): <br>
-- [MemoryClaw Backup ClawHub Page](https://clawhub.ai/iarayan/memoryclaw-backup) <br>
-- [MemoryClaw Plugin Page](https://clawhub.ai/packages/memoryclaw) <br>
-- [MemoryClaw Documentation](https://memoryclaw.ai/docs) <br>
-- [MemoryClaw Dashboard](https://memoryclaw.ai/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides recommended commands and terminal handoff guidance; it does not execute the MemoryClaw plugin itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The recommended external plugin can access the user's OpenClaw folder, settings, metadata, network connection, and backup scheduling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that clawhub:memoryclaw is the intended trusted plugin before installation and use it only for documented backup and restore workflows.
+
+Risk: Restore, login, and first-time setup are interactive workflows that may require user confirmation or passphrase handling.
+
+Mitigation: Direct users to run interactive commands in their own terminal and reserve automated backup commands for users who have already completed setup.
+
+Risk: Force-install or mutable @latest publisher workflows can increase trust and supply-chain risk.
+
+Mitigation: Suggest force-install only after the user explicitly accepts the trust tradeoff.
+
+## Reference(s):
+
+- [MemoryClaw package](https://clawhub.ai/packages/memoryclaw)
+- [MemoryClaw documentation](https://memoryclaw.ai/docs)
+- [MemoryClaw dashboard](https://memoryclaw.ai/dashboard)
+- [MemoryClaw Backup skill page](https://clawhub.ai/iarayan/skills/memoryclaw-backup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct users to run interactive login or restore commands in their own terminal.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

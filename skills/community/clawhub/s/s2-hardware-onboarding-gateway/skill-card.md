@@ -1,47 +1,60 @@
-## Description: <br>
-The official S2 firmware guide for hardware onboarding with zero-exfiltration data topology, user-in-the-loop authorization, and local-only 3FA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Developer guidance for S2 hardware onboarding, including user-approved local authentication, heartbeat broadcast examples, and cloud reputation-audit guidance.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers, firmware engineers, and Openclaw integrators use this skill to understand and apply the S2 hardware identity onboarding and heartbeat protocol for local device discovery, user-approved onboarding, and vendor transparency checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+S2 Sovereign Open Source License (S2-SOSL)
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes handling sensitive hardware identity data and remote audits. <br>
-Mitigation: Review the workflow before using it with real devices or corporate domains, independently verify the publisher and portal, and require explicit user approval for cloud audit or disconnection actions. <br>
-Risk: The source material makes strong zero-exfiltration and no-user-IP claims. <br>
-Mitigation: Do not rely on those claims until an implementation proves the exact transmitted fields, retention limits, and network protections. <br>
-Risk: The release license metadata and artifact license file do not match. <br>
-Mitigation: Confirm which license governs the release before publication or commercial reuse. <br>
+## Use Case:
 
+Developers, firmware engineers, and Openclaw integrators use this skill to understand the S2 hardware onboarding flow, including local user consent, 6D-VTM submission, and reputation-audit expectations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/spacesq/s2-hardware-onboarding-gateway) <br>
-- [Publisher profile](https://clawhub.ai/user/spacesq) <br>
-- [S2 developer portal](https://space2.world/developer) <br>
-- [README](artifact/README.md) <br>
-- [S2 Hardware Identity Onboarding & Heartbeat Protocol Whitepaper](artifact/S2-HIOP-Whitepaper.md) <br>
-- [License](artifact/LICENSE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks, protocol steps, and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-oriented output for firmware and hardware onboarding workflows] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and openclaw.skill.json) <br>
+Risk: The skill discusses hardware onboarding flows that can involve sensitive device identifiers such as MAC addresses and Gene Codes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent before any identifier transfer and keep identifier handling local unless separately reviewed and approved.
+
+Risk: The artifacts make strong zero-exfiltration and zero-IP claims that the security evidence treats as unproven.
+
+Mitigation: Verify the actual TLS, endpoint, logging, and cloud request behavior before adopting the guidance in firmware or host integrations.
+
+Risk: Sample heartbeat and payload code may be incomplete for production security needs.
+
+Mitigation: Harden sample code before use, including certificate validation, rate limiting, randomness review, and local endpoint access controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-hardware-onboarding-gateway)
+- [S2 developer portal](https://space2.world/developer)
+- [S2 Hardware Identity Onboarding & Heartbeat Protocol Whitepaper](artifact/S2-HIOP-Whitepaper.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python pseudocode and protocol configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes hardware onboarding guidance, local-network handling notes, and security review caveats.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence, openclaw.skill.json, and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,15 @@
+{
+  "fixture_kind": "offline visible-page material simulation; not an online collection result",
+  "videoUrl": "https://www.bilibili.com/video/BV1fixture",
+  "learningGoal": "理解示例中的三步工作流",
+  "visible": {
+    "title": "示例：三步工作流",
+    "chapters": [
+      {"time": "00:00", "title": "问题定义"},
+      {"time": "01:20", "title": "整理证据"}
+    ],
+    "subtitles": [
+      {"time": "00:12", "text": "先明确要解决的问题。"}
+    ]
+  }
+}

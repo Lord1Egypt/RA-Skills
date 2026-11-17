@@ -1,38 +1,49 @@
-## Description: <br>
-Finds cruise itineraries, including ocean cruises, river cruises, expedition voyages, and island-hopping routes with cabin types and onboard activities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cruise Trip is listed as a cruise-itinerary helper, but this submitted artifact contains no active instructions or code.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-Travel planners and cruise shoppers use this skill to compare cruise routes, cabin options, and onboard activities. This version's shipped artifact files are empty, so users should confirm that useful planning instructions are present before relying on it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This version may not provide useful cruise-planning behavior because all shipped artifact files are empty markdown files with no executable code or instructions. <br>
-Mitigation: Confirm that non-empty skill instructions or documentation are available before deploying or relying on this release. <br>
+## Use Case:
 
+Travel planners or agents would use this skill to produce cruise itinerary guidance when usable content is present. This release should be treated as nonfunctional because the artifact files are empty.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/dingtom336-gif/cruise-trip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown or plain text travel-planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is shipped in this version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: server release evidence) <br>
+Risk: The package appears nonfunctional because it contains no instructions, code, permissions, or persistence behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add and review intended skill content before relying on this release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/cruise-trip)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No active output behavior is present in the submitted artifact.]
+
+## Skill Version(s):
+
+3.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

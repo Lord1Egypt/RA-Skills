@@ -1,45 +1,60 @@
-## Description: <br>
-Data Analysis uses the AnyGen CLI to analyze datasets and create charts, dashboards, reports, and other visualizations through AnyGen's server-side service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Analysis helps agents analyze datasets, summarize CSV files, create charts, build dashboards, and prepare KPI, funnel, retention, financial, and revenue analyses.
 
-## Publisher: <br>
-[logictortoise](https://clawhub.ai/user/logictortoise) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[logictortoise](https://clawhub.ai/user/logictortoise)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill when an agent needs to analyze business, financial, product, experiment, or CSV-style data and produce summaries, charts, dashboards, or reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Datasets may be sent to AnyGen's remote service for analysis. <br>
-Mitigation: Use only datasets that the user is authorized to send to AnyGen and avoid sensitive, regulated, or confidential data unless that transfer is approved. <br>
-Risk: The skill depends on an AnyGen API key. <br>
-Mitigation: Keep API keys in environment variables or approved secret stores and avoid placing keys in prompts, chat logs, or shared files. <br>
-Risk: The artifact tells the agent to install an additional anygen-workflow-generate skill if it is missing. <br>
-Mitigation: Review and approve that dependency before allowing installation or execution. <br>
+## Use Case:
 
+Developers and analysts use this skill to delegate data analysis and visualization requests to the AnyGen CLI, including sales analysis, financial modeling, cohort analysis, funnel analysis, KPI reports, retention analysis, conversion analysis, CSV summarization, and dashboard creation.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/logictortoise/anygen-data-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/logictortoise) <br>
-- [AnyGen website](https://www.anygen.io) <br>
-- [AnyGen CLI package](https://www.npmjs.com/package/@anygen/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce analysis guidance and visualization/report instructions that rely on AnyGen CLI execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence) <br>
+Risk: Analysis data may be sent to AnyGen's servers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with approved datasets and avoid sensitive business, financial, personal, or regulated data unless organizational review allows it.
+
+Risk: The workflow uses API credentials through ANYGEN_API_KEY or CLI authentication.
+
+Mitigation: Prefer browser-based login or managed environment variables, avoid pasting API keys into shell history, and rotate credentials if exposure is suspected.
+
+Risk: The skill installs and relies on mutable third-party components, including @anygen/cli and a companion workflow skill.
+
+Mitigation: Review and pin the CLI and companion skill versions before deployment, and repeat security review when dependencies change.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/logictortoise/skills/anygen-data-analysis)
+- [Publisher profile](https://clawhub.ai/user/logictortoise)
+- [AnyGen website](https://www.anygen.io)
+- [AnyGen CLI package](https://www.npmjs.com/package/@anygen/cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on the AnyGen CLI, the ANYGEN_API_KEY environment variable, browser-based login, and the companion anygen-workflow-generate skill.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Generates, formats, converts, sorts, and manipulates Markdown tables from structured or pasted data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, format, and manipulate Markdown tables with support for alignment, CSV/TSV conversion, sorting, and transposition.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers, technical writers, and other users use this skill to create readable Markdown tables, convert CSV or TSV data, adjust alignment, sort rows, transpose tables, and add or remove rows and columns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or transformed tables can contain formatting errors or data conversion mistakes. <br>
-Mitigation: Review generated tables for formatting accuracy and preserved data values before publishing or relying on them. <br>
-Risk: User-supplied tabular data may contain sensitive information. <br>
-Mitigation: Avoid pasting sensitive data unless sharing it with the active agent is acceptable. <br>
+## Use Case:
 
+Developers, technical writers, and agents use this skill to create, format, convert, sort, transpose, and edit Markdown tables from user-provided data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/markdown-table-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables with concise transformation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution, credentials, network access, or persistence requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Table conversion or formatting could alter important rows, columns, or alignment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated tables and conversions against the source data before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/markdown-table-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown tables, with optional CSV, TSV, HTML table, or JSON conversions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves user-provided rows, columns, alignment, and table operations where possible.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -18,6 +18,15 @@ Use APIDot's async workflow for generation tasks that return a `task_id`, then c
 
 This skill is for routing async integration questions to the right APIDot docs, examples, and production workflow guidance. It is documentation-only: it includes no executable files, setup-time automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Read the APIDot quickstart: https://apidot.ai/docs/quickstart
+- Read APIDot webhook guidance: https://apidot.ai/docs/webhooks
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use official APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## When To Use
 
 Use this skill when the user asks to:

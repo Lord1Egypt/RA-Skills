@@ -1,41 +1,52 @@
-## Description: <br>
-策划案压力测试：在隔离环境中对通过 Pitch Review 的策划案执行四轮对抗式攻击，验证不可替代性。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+策划案压力测试：在隔离环境中对通过 Pitch Review 的策划案执行四轮对抗式攻击，验证不可替代性。
 
-## Publisher: <br>
-[huangliujiao-tal](https://clawhub.ai/user/huangliujiao-tal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[huangliujiao-tal](https://clawhub.ai/user/huangliujiao-tal)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Writers, development teams, and pitch reviewers use this skill after Pitch Review to run an isolated, adversarial four-part stress test of a series pitch before downstream development.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill applies strict reject and redo criteria that can block downstream development.
+
+Mitigation: Use it as a post-Pitch Review gate and review the concrete notes and mandatory rewrites before deciding whether to reject or resubmit.
+
+Risk: The skill asks for an isolated review session, so missing pitch context can lead to overly narrow critiques.
+
+Mitigation: Provide the passed Pitch Review draft and relevant theme, character, market, and series-engine context before running the stress test.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Creative development teams and agents use this skill after Pitch Review to stress-test a pitch before downstream development. It evaluates market appeal, story engine durability, character necessity, and emotional engagement, then returns PASS, CONDITIONAL, or REJECT with required rewrite targets. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, JSON, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may block downstream creative work because it applies strict review gates to pitches. <br>
-Mitigation: Treat REJECT and CONDITIONAL outcomes as review findings for human creative leads to evaluate before halting or restarting work. <br>
-Risk: Pitch review output may be incorrect or overly harsh if the input pitch lacks context. <br>
-Mitigation: Provide the full Pitch Review pass output and require notes to cite specific issues before acting on mandatory rewrites. <br>
+**Output Format:** [JSON object with scored attack notes and mandatory rewrite items]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangliujiao-tal/planner-pitch-stress-test) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/huangliujiao-tal) <br>
+**Other Properties Related to Output:** [Four attack sections with 1-5 scores, notes, optional flags, a verdict, and combined mandatory rewrites.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, json, guidance] <br>
-**Output Format:** [JSON stress-test report with scores, notes, verdict, and mandatory rewrite items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill is intentionally strict and may block downstream creative work until pitch weaknesses are addressed.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

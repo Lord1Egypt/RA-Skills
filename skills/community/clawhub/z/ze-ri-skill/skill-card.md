@@ -1,41 +1,57 @@
-## Description: <br>
-择日学技能。支持查询吉日凶日、建除十二神、黄道黑道、神煞吉凶，提供婚嫁、开业、动土、出行等择日建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+择日学技能 supports Chinese almanac-style date selection, including auspicious and inauspicious days, Jianchu twelve deities, Huangdao/Heidao indicators, Shen Sha influences, and suggestions for events such as weddings, openings, ground-breaking, and travel.
 
-## Publisher: <br>
-[dglijin-oss](https://clawhub.ai/user/dglijin-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dglijin-oss](https://clawhub.ai/user/dglijin-oss)
 
-## Use Case: <br>
-External users and agents use this skill as a lightweight cultural reference helper for auspicious-date lookup, date scoring, and event-specific date-selection guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat simplified auspicious-date recommendations as authoritative for important personal or business decisions. <br>
-Mitigation: Present outputs as cultural/reference guidance and verify important marriage, business, travel, or construction decisions through independent sources. <br>
-Risk: The documented Python command is missing from this package. <br>
-Mitigation: Use the packaged JavaScript module behavior or confirm installation instructions before relying on command-line examples. <br>
+## Use Case:
 
+Agents use this skill to provide Chinese-language date-selection guidance for culturally specific planning tasks such as weddings, business openings, construction starts, travel, and general auspicious-day checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dglijin-oss/ze-ri-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/dglijin-oss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text date-selection guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are non-authoritative cultural/reference recommendations and may include date ratings,宜忌 items, and event-specific suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill appears to produce Chinese-only guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy it only where Chinese-language output is acceptable, or require translation and localization review before user-facing release.
+
+Risk: The documented Python entrypoint is absent and the bundled JavaScript does not pass a syntax check, so the skill may not run as documented.
+
+Mitigation: Validate the runtime path in a staging agent before enabling it, and require a corrected artifact if executable behavior is needed.
+
+Risk: Date-selection recommendations may be culturally specific and should not be treated as factual, legal, medical, financial, or safety-critical advice.
+
+Mitigation: Present outputs as traditional almanac-style guidance and require human judgment for consequential decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dglijin-oss/skills/ze-ri-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language text or Markdown date-selection guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include auspiciousness labels, Yi/Ji recommendations, conflict indicators, event-specific recommendations, and scoring.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

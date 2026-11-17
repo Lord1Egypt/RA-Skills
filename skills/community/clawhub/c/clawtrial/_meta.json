@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn77eycf6njttw0568k4bva1m1817x3a",
+  "ownerId": "Assassin-1234",
   "slug": "clawtrial",
-  "version": "1.0.9",
-  "publishedAt": 1771603099663
+  "version": "1.0.7",
+  "publishedAt": 1700000000000,
+  "clawdbot": {
+    "emoji": "🏛️",
+    "autoLoad": true
+  },
+  "openclaw": {
+    "emoji": "🏛️",
+    "autoLoad": true
+  }
 }

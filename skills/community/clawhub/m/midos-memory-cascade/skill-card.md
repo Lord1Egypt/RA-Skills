@@ -1,39 +1,56 @@
-## Description: <br>
-Auto-escalating multi-tier memory search that cascades from in-memory cache through SQLite, grep, and LanceDB vector search to find the best answer with minimal latency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-escalating multi-tier memory search that cascades from in-memory cache through SQLite, grep, and LanceDB vector search to find the best answer with minimal latency.
 
-## Publisher: <br>
-[msruruguay](https://clawhub.ai/user/msruruguay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[msruruguay](https://clawhub.ai/user/msruruguay)
 
-## Use Case: <br>
-Developers and agent operators use this skill to recall and persist project memory across local storage tiers, with automatic escalation and self-tuning shortcuts for repeated queries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad local memory search can expose unrelated or sensitive project content from knowledge directories, SQLite databases, grep results, or LanceDB stores. <br>
-Mitigation: Install only in approved workspaces, review which local memory paths are accessible, and avoid using it on projects containing sensitive data unless retention rules are clear. <br>
-Risk: The store and evolve workflows can persist content, recall statistics, and learned routing state without explicit cleanup controls. <br>
-Mitigation: Avoid storing sensitive content, define retention and cleanup rules before use, and review generated knowledge, hooks, and cascade statistics files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/msruruguay/midos-memory-cascade) <br>
+## Use Case:
 
+Developers and engineers use this skill to let an agent search memory across cache, JSON state, SQLite, grep, and optional LanceDB tiers without manually choosing a storage layer. It also supports storing routed memory entries and learning shortcuts from prior cascade results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Python dictionary results or CLI text output; write operations may create Markdown, JSON, or JSONL files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Searches local memory tiers and may persist recall statistics, routing shortcuts, and stored content in project memory files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security evidence reports broad persistent write and import behavior that can affect local workspace state and future routing.
+
+Mitigation: Review before installation and use only in a contained private workspace with trusted dependencies and patched path validation.
+
+Risk: The store API can write files based on caller-supplied filenames and content.
+
+Mitigation: Do not pass secrets or untrusted filenames to store(), and restrict writable paths before use.
+
+Risk: Memory search results can be low-confidence, stale, or drawn from broad local indexes.
+
+Mitigation: Review returned sources, confidence, and escalation details before relying on an answer.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/msruruguay/skills/midos-memory-cascade)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Code, Guidance]
+
+**Output Format:** [Python dictionaries, CLI text output, and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recall results include answer, confidence, latency, tiers tried, resolved tier, question routing, shortcut use, and escalation details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Scheduling polls for humans and their agents. Create polls, share participation links, collect votes, and find the best meeting time. A Doodle alternative built for the age of AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meetlark helps humans and agents create scheduling polls, share participation links, collect votes, and find the best meeting time.
 
-## Publisher: <br>
-[mkelk](https://clawhub.ai/user/mkelk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mkelk](https://clawhub.ai/user/mkelk)
 
-## Use Case: <br>
-External users and agents use this skill to create Meetlark scheduling polls, share participant links, collect availability votes, inspect results, and close polls after a meeting time is chosen. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Poll admin tokens allow access to full results, individual votes, and poll closure actions. <br>
-Mitigation: Keep admin tokens private, share only participation URLs, and remove admin tokens from agent memory or notes once the poll is closed or no longer needed. <br>
-Risk: Individual vote results and scheduling availability can reveal sensitive participant information. <br>
-Mitigation: Avoid exposing individual votes unless necessary and summarize aggregate availability when possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Meetlark skill page](https://clawhub.ai/mkelk/meetlark) <br>
-- [Meetlark website](https://meetlark.ai) <br>
-- [Meetlark OpenAPI spec](https://meetlark.ai/api/v1/openapi.json) <br>
-- [Meetlark interactive docs](https://meetlark.ai/docs) <br>
-- [Meetlark AI plugin manifest](https://meetlark.ai/.well-known/ai-plugin.json) <br>
+## Use Case:
 
+External users and their agents use this skill to coordinate meetings through Meetlark by creating scheduling polls, sharing participant links, checking votes, and closing polls when a time is chosen.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Markdown] <br>
-**Output Format:** [Markdown with API request examples and user-facing scheduling messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include poll participation links, admin-token handling guidance, vote summaries, and close-poll instructions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to retain a private poll admin token, which could expose poll administration if stored or repeated in chats, logs, or summaries.
+
+Mitigation: Keep admin tokens out of shared messages, logs, and summaries; use them only for authorized poll management and remove them when they are no longer needed.
+
+Risk: Participate URLs are shareable links that allow anyone with the link to vote in the poll.
+
+Mitigation: Share participate links only with intended participants and avoid posting them in public or unrelated channels.
+
+## Reference(s):
+
+- [Meetlark website](https://meetlark.ai)
+- [Meetlark OpenAPI spec](https://meetlark.ai/api/v1/openapi.json)
+- [Meetlark interactive docs](https://meetlark.ai/docs)
+- [Meetlark AI plugin manifest](https://meetlark.ai/.well-known/ai-plugin.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, API calls]
+
+**Output Format:** [Markdown guidance with API endpoints and short share-message templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include participant-facing message text, poll status summaries, and token-authenticated poll actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

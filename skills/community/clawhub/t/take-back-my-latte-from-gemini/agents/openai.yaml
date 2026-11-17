@@ -1,0 +1,4 @@
+interface:
+  display_name: "Take Back My Latte from Gemini"
+  short_description: "分析 Gemini 成本并换算拿铁 · Gemini cost savings"
+  default_prompt: "Use $take-back-my-latte-from-gemini to analyze these Gemini billing and usage JSON files and tell me how many lattes I can take back."

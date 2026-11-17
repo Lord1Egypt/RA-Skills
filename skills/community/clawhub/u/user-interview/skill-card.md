@@ -1,43 +1,60 @@
-## Description: <br>
-Run real user interviews via Usercall when qualitative feedback is needed for onboarding drop-off, feature confusion, pricing clarity, prototype testing, or similar research questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run real user interviews via Usercall when qualitative feedback is needed for onboarding drop-off, feature confusion, pricing clarity, prototype testing, and similar research topics.
 
-## Publisher: <br>
-[junetic](https://clawhub.ai/user/junetic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junetic](https://clawhub.ai/user/junetic)
 
-## Use Case: <br>
-Product teams, researchers, founders, and developers use this skill to create Usercall interview studies, share participant links, check study status, add participant slots, and summarize interview results with themes and quotes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to check the Usercall API key in a way that can print the secret into the terminal or logs. <br>
-Mitigation: Use a non-printing key presence check and avoid exposing the value in command output. <br>
-Risk: The skill may send research goals, business context, customer details, prototype links, or images to Usercall. <br>
-Mitigation: Confirm that the study content and linked materials are intended to be shared with Usercall before creating the study. <br>
-Risk: Persisting the API key in shell startup files can broaden credential exposure. <br>
-Mitigation: Prefer a session-scoped environment variable or a secret manager for the Usercall API key. <br>
+## Use Case:
 
+External users, product teams, founders, researchers, and developers use this skill to create Usercall interview studies, share participant links, and retrieve summarized interview themes and quotes.
 
-## Reference(s): <br>
-- [Usercall](https://app.usercall.co) <br>
-- [ClawHub release page](https://clawhub.ai/junetic/user-interview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Markdown] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Usercall study links, status responses, and summarized interview themes with quotes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill asks the agent to echo USERCALL_API_KEY, which can expose a live credential in terminal logs or transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a presence-only check for the environment variable and never print the key value.
+
+Risk: The skill recommends storing the API key permanently in shell startup files as plaintext.
+
+Mitigation: Prefer a credential manager or session-only environment variable, and rotate any key that may have been exposed.
+
+Risk: Study context, prototypes, media URLs, and interview results are transmitted to the third-party Usercall service.
+
+Mitigation: Avoid sending confidential product plans, personal data, or unreleased material unless that third-party transmission is intended and approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/junetic/skills/user-interview)
+- [Junetic publisher profile](https://clawhub.ai/user/junetic)
+- [Usercall app](https://app.usercall.co)
+- [Usercall agent studies API endpoint](https://app.usercall.co/api/v1/agent/studies)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, Configuration, Markdown, Guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks plus concise study-result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires USERCALL_API_KEY and sends study context, optional media URLs, and interview-management requests to Usercall.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence, created 2026-03-17T01:25:20Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

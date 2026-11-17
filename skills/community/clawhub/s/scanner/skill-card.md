@@ -1,43 +1,60 @@
-## Description: <br>
-Transform document photos into clean scanned-looking pages with automatic edge detection, cropping, and perspective correction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform document photos into clean scanned-looking pages with automatic edge detection, cropping, and perspective correction. Use when (1) the user wants a photo to look scanned; (2) receipts, forms, pages, or papers need clean borders and straightening; (3) the result should be easier to read, share, archive, or pass to OCR.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and end users use this skill to turn document photos, receipts, forms, pages, or papers into cropped, perspective-corrected scan-style images for easier reading, sharing, archiving, or downstream OCR. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser workflows may load mutable CDN dependencies for OpenCV.js or jscanify. <br>
-Mitigation: For sensitive or production document cleanup, pin dependency versions or use local dependencies instead of mutable CDN URLs. <br>
-Risk: Generated scans can differ from the original photo if edge detection or perspective correction selects the wrong document corners. <br>
-Mitigation: Keep original photos separate from generated scans and visually review outputs before sharing, archiving, or passing them to OCR. <br>
+## Use Case:
 
+Developers and external users use this skill to turn document photos, receipts, forms, and sheets into cleaner scan-style outputs with edge detection, cropping, and perspective correction guidance.
 
-## Reference(s): <br>
-- [ClawHub Scanner skill page](https://clawhub.ai/ivangdavila/scanner) <br>
-- [Scanner homepage](https://clawic.com/skills/scanner) <br>
-- [OpenCV.js documentation](https://docs.opencv.org/) <br>
-- [jscanify browser bundle](https://cdn.jsdelivr.net/gh/ColonelParrot/jscanify@master/src/jscanify.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and JavaScript or HTML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend browser-first document scanning workflows using jscanify, OpenCV.js, local preview commands, and manual-corner fallback guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Unpinned npm tooling and mutable CDN scripts can change between runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned package versions, lockfile-managed installs, immutable script URLs, or vendored reviewed copies before deployment.
+
+Risk: Browser-loaded third-party scripts may process sensitive document images.
+
+Mitigation: Avoid using pages with mutable third-party scripts for identity, financial, legal, medical, or business documents.
+
+Risk: Automatic edge detection can select incorrect corners on poor inputs.
+
+Mitigation: Review the output visually and retry with a cleaner image or manual-corner flow when detection is wrong.
+
+## Reference(s):
+
+- [OpenCV.js 4.7.0](https://docs.opencv.org/4.7.0/opencv.js)
+- [OpenCV Documentation](https://docs.opencv.org/)
+- [jscanify CDN Source](https://cdn.jsdelivr.net/gh/ColonelParrot/jscanify@master/src/jscanify.min.js)
+- [Scanner Skill Page](https://clawhub.ai/ivangdavila/skills/scanner)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell, HTML, and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Browser-first document scanning workflow using jscanify; recommends visual review before accepting crops.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

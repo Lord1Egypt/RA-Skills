@@ -1,46 +1,61 @@
-## Description: <br>
-Runs a repo-local scan through `skills/news-aggregator-skill` and normalizes the result into a collect-layer report contract for repeatable `news-report.md` output with raw JSON archived under `content-production/inbox/raw/news/`. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a repo-local scan through `skills/news-aggregator-skill`, then normalize the result into a local report contract for the collect layer.
 
-## Publisher: <br>
-[abigale-cyber](https://clawhub.ai/user/abigale-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abigale-cyber](https://clawhub.ai/user/abigale-cyber)
 
-## Use Case: <br>
-Developers and content teams use News Collect to run broad overseas or domestic news scans from a markdown request and turn the results into standardized local reports and raw JSON archives for topic selection or follow-on research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes reports and raw archives under content-production/inbox/. <br>
-Mitigation: Install and run it only in repositories where creating files in that path is acceptable. <br>
-Risk: Request notes, fetched content, and vendor stderr may be saved in local report or raw archive files. <br>
-Mitigation: Do not put secrets or private notes in request files, and review generated artifacts before sharing them. <br>
-Risk: The repo-local news-aggregator-skill dependency performs the external news fetching. <br>
-Mitigation: Review that dependency and its source behavior before deployment. <br>
+## Use Case:
 
+Developers and content teams use this skill to run broad domestic or overseas news scans, produce repeatable Markdown news reports, and archive raw JSON for later review. It is useful when turning current news into candidate topics for human editorial selection or downstream research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abigale-cyber/news-collect) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [runtime.py](artifact/runtime.py) <br>
-- [skill.json](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report plus raw JSON archive written to local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes standardized reports under content-production/inbox/ and raw fetch results under content-production/inbox/raw/news/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The reviewed artifact depends on repo-local news-aggregator-skill files that were not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the dependency implementation and requirements before installation or deployment.
+
+Risk: The skill contacts configured news sources and stores raw JSON plus Markdown reports in the workspace.
+
+Mitigation: Run it in an isolated environment with only the workspace access needed for content-production/inbox outputs.
+
+Risk: News summaries and writing-angle recommendations can be incomplete or misleading if based only on fetched snippets.
+
+Mitigation: Have a human verify source articles and context before using recommendations for editorial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abigale-cyber/skills/news-collect)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Artifact runtime](artifact/runtime.py)
+- [Artifact skill manifest](artifact/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown report plus archived JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a standardized news-report.md under content-production/inbox and raw JSON under content-production/inbox/raw/news.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

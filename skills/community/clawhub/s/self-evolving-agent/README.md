@@ -538,7 +538,7 @@ delivery:
 delivery:
   platform: "slack"
   slack:
-    webhook_url: "https://hooks.slack.com/services/T.../B.../..."
+    webhook_url: "REDACTED-SECRET.../B.../..."
 ```
 
 → [Create a Slack Incoming Webhook](https://api.slack.com/messaging/webhooks)

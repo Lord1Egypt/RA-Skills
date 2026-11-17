@@ -1,42 +1,60 @@
-## Description: <br>
-Provides real-time web retrieval through the Baidu Qianfan web search API for current information, fact checking, and Baidu search queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Baidu Qianfan web search API to retrieve real-time web results for questions that need current information, fact checking, or source-backed answers.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-External users and developers use this skill to run Baidu-backed web searches from an agent when a request needs current information, fact checking, or source-backed results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Baidu Qianfan and may include sensitive user-provided terms. <br>
-Mitigation: Use the skill only for clear web-search or current-information requests, and avoid submitting secrets or private data as search queries. <br>
-Risk: The skill requires a Baidu API key for authenticated search requests. <br>
-Mitigation: Configure BAIDU_API_KEY through trusted OpenClaw or ClawHub settings or a private local config, and do not share the key in chats, logs, screenshots, or generated output. <br>
+## Use Case:
 
+Developers and agents use this skill to run Baidu-backed web searches, receive structured search results, and answer user questions with current source material.
 
-## Reference(s): <br>
-- [Baidu Qianfan API documentation](https://cloud.baidu.com/doc/qianfan-api/s/Wmbq4z7e5) <br>
-- [LeiAIBot publisher website](https://leiaibot.com) <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/sunshine-baidu-web-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search results with agent-authored text or markdown answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BAIDU_API_KEY and sends search terms to Baidu Qianfan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Search queries are sent to Baidu Qianfan for web retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for queries appropriate for Baidu processing, and avoid sensitive or regulated data unless approved.
+
+Risk: The skill requires a Baidu Qianfan API key through BAIDU_API_KEY or local configuration.
+
+Mitigation: Prefer platform-managed environment variables, avoid exposing secrets in chats, logs, or screenshots, and rotate the key if disclosure is suspected.
+
+Risk: Dependency installation uses package metadata without an accompanying lockfile in the artifact.
+
+Mitigation: Pin dependencies with a lockfile before deploying in higher-trust environments.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/sunshine-del-ux/skills/sunshine-baidu-web-search)
+- [Publisher profile](https://clawhub.ai/user/sunshine-del-ux)
+- [Baidu Qianfan API documentation](https://cloud.baidu.com/doc/qianfan-api/s/Wmbq4z7e5)
+- [LeiAIBot website](https://leiaibot.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [JSON search results plus Markdown answer guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIDU_API_KEY; default result count is 20 and the maximum is 50.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

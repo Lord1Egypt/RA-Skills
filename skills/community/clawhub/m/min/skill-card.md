@@ -1,43 +1,57 @@
-## Description: <br>
-Captures learnings, errors, feature requests, and corrections so agents can record reusable project knowledge and improve future work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures agent learnings, errors, corrections, and feature requests in markdown logs for later review and promotion to durable project memory.
 
-## Publisher: <br>
-[dragon-wlf](https://clawhub.ai/user/dragon-wlf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dragon-wlf](https://clawhub.ai/user/dragon-wlf)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create and maintain project-local learning logs, error records, feature-request notes, and reusable agent guidance. It supports OpenClaw and general agent workflows that need persistent, reviewed learning artifacts across tasks or sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning files can retain sensitive notes or command output if users log too much detail. <br>
-Mitigation: Prefer project-local .learnings folders and avoid storing secrets, tokens, raw transcripts, environment variables, private keys, or sensitive command output. <br>
-Risk: Optional prompt and tool hooks can add reminders broadly across sessions and may inspect command output for error patterns. <br>
-Mitigation: Enable hooks only after review, avoid global all-prompt hooks unless that behavior is intended, and keep hook output sanitized and minimal. <br>
+## Use Case:
 
+Developers and coding-agent users use this skill to capture corrections, command failures, knowledge gaps, and requested capabilities as structured markdown entries. Teams can review those entries and promote broadly useful learnings into project or agent memory files.
 
-## Reference(s): <br>
-- [Entry Examples](references/examples.md) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or append project-local .learnings markdown files and may provide optional hook reminders when explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent learning logs and promoted memory entries can carry incorrect guidance or sensitive details into future agent sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every proposed write to instruction or memory files, keep learning logs project-local unless intentionally shared, and redact secrets, raw transcripts, and command output.
+
+Risk: Always-on or global hooks can create broad reminder injection and may inspect command output for error patterns.
+
+Mitigation: Prefer project-local setup, avoid global hooks and empty matchers, enable only the reminder hook by default, and add error-output detection only in trusted environments.
+
+## Reference(s):
+
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [Hook Setup Guide](references/hooks-setup.md)
+- [Entry Examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/dragon-wlf/skills/min)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and optional hook code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces project-local learning logs and optional reminder output; users should avoid logging secrets or raw transcripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

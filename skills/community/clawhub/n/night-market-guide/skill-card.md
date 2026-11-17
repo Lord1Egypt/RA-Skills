@@ -1,40 +1,57 @@
-## Description: <br>
-Find night markets, food streets, and local culinary hotspots with real-time FlyAI/Fliggy CLI results and booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds night markets, food streets, street food hotspots, and related travel options using FlyAI and Fliggy results.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to find night markets, food streets, and street-food hotspots for a city, then return Markdown recommendations with provider booking links from FlyAI/Fliggy CLI output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to install and run a third-party global npm CLI. <br>
-Mitigation: Approve the CLI installation yourself, review @fly-ai/flyai-cli before use, and run it only in an environment where FlyAI/Fliggy provider access is acceptable. <br>
-Risk: Booking links and travel results come from FlyAI/Fliggy and may reflect commercial provider availability rather than neutral rankings. <br>
-Mitigation: Treat booking links as provider links and independently verify prices, availability, and suitability before purchase. <br>
+## Use Case:
 
+External users and travel-focused agents use this skill to look up night markets, food streets, and local culinary points of interest with booking-linked results.
 
-## Reference(s): <br>
-- [ClawHub Night Market Guide release](https://clawhub.ai/xiejinsong/night-market-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and FlyAI CLI command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a city name and FlyAI CLI output; recommendations should include detailUrl booking links from the provider results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill depends on installing and running an unpinned global npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a pinned, reviewed CLI version manually in an isolated environment before use.
+
+Risk: Travel search parameters may be sent to FlyAI or Fliggy services.
+
+Mitigation: Avoid entering sensitive personal data and review whether sharing destination and travel intent data is acceptable.
+
+Risk: Booking links are commercial results rather than neutral recommendations.
+
+Mitigation: Treat linked results as commercial booking options and compare against independent sources before purchase.
+
+## Reference(s):
+
+- [Night Market Guide on ClawHub](https://clawhub.ai/xiejinsong/skills/night-market-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown travel recommendations with comparison tables and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are expected to include Book links and avoid raw JSON in end-user output.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

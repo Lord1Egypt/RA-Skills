@@ -1,0 +1,2 @@
+# 腾讯云 OCR SDK（简历图片/PDF 识别，矩阵内技能 tencentcloud-ocr）
+tencentcloud-sdk-python>=3.0.1100

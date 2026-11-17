@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>样张 · 金字塔(原型 26)</title>
+<link rel="stylesheet" href="../assets/theme.css">
+</head>
+<body>
+<div class="slide-container" style="background:var(--off-white);">
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:120px;width:1720px;">
+    <div style="font-size:60px;font-weight:700;line-height:1.2;color:var(--charcoal);">能力金字塔:地基没打好,塔尖立不住</div>
+  </div>
+  <!-- 3 层:顶三角 w500 / 中梯 w1000 / 底梯 w1500,h180,顶 340 -->
+  <div data-object="true" data-object-type="shape" data-shape="triangle" style="position:absolute;left:710px;top:340px;width:500px;height:180px;background:var(--deep-navy);"></div>
+  <div data-object="true" data-object-type="shape" data-shape="trapezoid" style="position:absolute;left:460px;top:536px;width:1000px;height:180px;background:var(--deep-navy-light);"></div>
+  <div data-object="true" data-object-type="shape" data-shape="trapezoid" style="position:absolute;left:210px;top:732px;width:1500px;height:180px;background:#E8EEF5;border:1px solid var(--border-medium);"></div>
+  <!-- 层内叠字(三角文字偏下避尖角) -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:760px;top:392px;width:400px;text-align:center;">
+    <div style="font-size:26px;font-weight:700;color:#FFFFFF;line-height:1.3;">战略层</div>
+    <div style="font-size:18px;color:#C9D2DC;margin-top:8px;line-height:1.4;">选对场景,决定上限</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:560px;top:576px;width:800px;text-align:center;">
+    <div style="font-size:26px;font-weight:700;color:#FFFFFF;line-height:1.3;">工程层</div>
+    <div style="font-size:18px;color:#C9D2DC;margin-top:8px;line-height:1.4;">数据与平台,决定下限</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:460px;top:772px;width:1000px;text-align:center;">
+    <div style="font-size:26px;font-weight:700;color:var(--charcoal);line-height:1.3;">执行层</div>
+    <div style="font-size:18px;color:var(--text-secondary);margin-top:8px;line-height:1.4;">流程与运营,决定复利</div>
+  </div>
+</div>
+<template data-slide-notes>
+样张:原型 26 金字塔。triangle+trapezoid 原生形状;层间 16px 缝;深→浅单向。
+</template>
+</body>
+</html>

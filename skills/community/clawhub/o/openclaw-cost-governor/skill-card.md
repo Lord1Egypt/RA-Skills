@@ -1,44 +1,58 @@
-## Description: <br>
-Pre-flight cost estimation for subagent spawns and approval gates. Prevents API overspend and surprise billing. Budget control for sessions_spawn calls. Daily spend tracking. Essential for multi-agent OpenClaw deployments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimates and logs subagent spawn costs, presents approval gates for higher-cost tasks, and summarizes daily or monthly spend for OpenClaw workflows.
 
-## Publisher: <br>
-[donovanpankratz-del](https://clawhub.ai/user/donovanpankratz-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[donovanpankratz-del](https://clawhub.ai/user/donovanpankratz-del)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to estimate subagent costs before spawning, require approval for higher-cost tasks, and keep local daily or monthly spend summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Cost-tracking logs can contain task details, model names, and spend history. <br>
-Mitigation: Avoid writing sensitive task details or secrets into the local cost-tracking log and review log retention practices. <br>
-Risk: The approval gate can be bypassed or misconfigured. <br>
-Mitigation: Review the bypass phrase, approval threshold, and budget settings before enabling the skill in routine workflows. <br>
-Risk: Cron-based summaries may run recurring local automation. <br>
-Mitigation: Enable cron only when recurring summaries are desired and periodically verify the schedule and output location. <br>
+## Use Case:
 
+Developers and operators using OpenClaw multi-agent workflows use this skill to estimate subagent costs before spawning, log estimated and actual spend, and review budget status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/donovanpankratz-del/openclaw-cost-governor) <br>
-- [Publisher profile](https://clawhub.ai/user/donovanpankratz-del) <br>
-- [ClawHub homepage](https://clawhub.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with shell commands and local cost-tracking files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces estimates, approval prompts, local cost log entries, and daily or monthly spend summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may be interpreted as hard billing protection even though the security review describes it as an advisory estimator and logger.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and add an enforced wrapper around subagent spawning before relying on it to stop spend.
+
+Risk: Persistent cost logs can capture sensitive task details.
+
+Mitigation: Avoid storing secrets or sensitive task descriptions in cost-tracking.md and restrict access to the workspace notes directory.
+
+Risk: The documented budget cap may not stop spending unless the surrounding agent runtime enforces it.
+
+Mitigation: Verify budget-cap behavior in the target environment and monitor provider billing dashboards for actual spend.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/donovanpankratz-del/skills/openclaw-cost-governor)
+- [Publisher profile](https://clawhub.ai/user/donovanpankratz-del)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and cost summary tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cost estimates depend on configured model rates, task multipliers, and manual reconciliation of actual spend.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

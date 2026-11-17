@@ -3,7 +3,14 @@
 set -euo pipefail
 
 
-INSTALL_DIR="$HOME/.quarkclouddrive"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ "$(basename "$SCRIPT_DIR")" = "scripts" ]; then
+  SKILL_DIR="$(dirname "$SCRIPT_DIR")"
+else
+  SKILL_DIR="$SCRIPT_DIR"
+fi
+
+LEGACY_GLOBAL_DIR="$HOME/.quarkclouddrive"
 
 
 RED='\033[0;31m'
@@ -17,167 +24,92 @@ warn()  { printf "${YELLOW}[warn]${NC}  %s\n" "$*"; }
 error() { printf "${RED}[error]${NC} %s\n" "$*" >&2; }
 
 
-OS_TYPE=""
-detect_os() {
-  info "Step 1: 检测运行环境..."
+revoke_auth() {
+  info "Step 1: 撤销本机授权并清除当前 agent 配置 (logout)..."
+
+  local cli_entry="$SKILL_DIR/scripts/quark-drive.cjs"
+
+  if [ -f "$cli_entry" ]; then
+    if node "$cli_entry" logout >/dev/null 2>&1; then
+      info "  已撤销本机授权并清除当前 agent 配置"
+    else
+      warn "  撤销本机授权失败（可能未登录或网络异常），继续卸载"
+    fi
+  else
+    info "  未找到 CLI 入口文件，跳过授权撤销"
+  fi
+
+  return 0
+}
+
+
+remove_legacy_global_command() {
+  info "Step 2: 检查并删除旧版全局命令..."
 
   case "$(uname -s)" in
-    Linux*)   OS_TYPE="linux" ;;
-    Darwin*)  OS_TYPE="mac" ;;
-    CYGWIN*|MINGW*|MSYS*) OS_TYPE="windows" ;;
+    Linux*|Darwin*)
+      local symlink="/usr/local/bin/quarkclouddrive"
+      if [ -L "$symlink" ] || [ -f "$symlink" ]; then
+        if rm -f "$symlink" 2>/dev/null; then
+          info "  已删除旧版全局命令: $symlink"
+        else
+          warn "  删除旧版全局命令失败（可能需要 sudo 权限）: $symlink"
+        fi
+      else
+        info "  未发现旧版全局命令，跳过"
+      fi
+      ;;
+    CYGWIN*|MINGW*|MSYS*)
+      local win_usr_bin
+      win_usr_bin=$(cygpath -u "$(cygpath -w /usr/local/bin)" 2>/dev/null || echo "/usr/local/bin")
+      local win_files=(
+        "$win_usr_bin/quarkclouddrive"
+        "$win_usr_bin/quarkclouddrive.cmd"
+        "$win_usr_bin/quarkclouddrive.ps1"
+      )
+      local found=false
+      for f in "${win_files[@]}"; do
+        if [ -f "$f" ] || [ -L "$f" ]; then
+          rm -f "$f" 2>/dev/null && info "  已删除旧版全局命令: $f" || warn "  删除失败: $f"
+          found=true
+        fi
+      done
+      if [ "$found" = "false" ]; then
+        info "  未发现旧版全局命令，跳过"
+      fi
+      ;;
     *)
-      error "不支持的操作系统: $(uname -s)"
-      return 1
-      ;;
-  esac
-
-  info "检测到操作系统: ${OS_TYPE}"
-}
-
-
-revoke_auth() {
-  info "Step 2: 撤销本机授权 (logout)..."
-
-  local cli_bin="$INSTALL_DIR/quarkclouddrive"
-
-  if [ -x "$cli_bin" ]; then
-    if "$cli_bin" logout >/dev/null 2>&1; then
-      info "已撤销本机授权"
-    else
-      warn "撤销本机授权失败（可能未登录或网络异常），继续卸载"
-    fi
-  elif command -v quarkclouddrive &>/dev/null; then
-    if quarkclouddrive logout >/dev/null 2>&1; then
-      info "已撤销本机授权"
-    else
-      warn "撤销本机授权失败（可能未登录或网络异常），继续卸载"
-    fi
-  else
-    info "未找到 quarkclouddrive 可执行文件，跳过授权撤销"
-  fi
-
-  return 0
-}
-
-
-remove_install_dir() {
-  info "Step 3: 删除安装目录..."
-
-  if [ -d "$INSTALL_DIR" ]; then
-    rm -rf "$INSTALL_DIR"
-    info "已删除安装目录: $INSTALL_DIR"
-  else
-    warn "安装目录不存在，跳过: $INSTALL_DIR"
-  fi
-}
-
-
-remove_global_command() {
-  info "Step 4: 移除全局命令注册..."
-
-  case "$OS_TYPE" in
-    mac|linux)
-      remove_symlink
-      remove_path_from_shell_rc
-      ;;
-    windows)
-      remove_path_from_shell_rc
+      warn "  不支持的操作系统: $(uname -s)，跳过全局命令清理"
       ;;
   esac
 }
 
-remove_symlink() {
-  local symlink_path="/usr/local/bin/quarkclouddrive"
 
-  if [ -L "$symlink_path" ]; then
-    rm -f "$symlink_path"
-    info "已删除符号链接: $symlink_path"
-  elif [ -f "$symlink_path" ]; then
-    rm -f "$symlink_path"
-    info "已删除文件: $symlink_path"
+remove_legacy_global_dir() {
+  info "Step 3: 清除旧版全局目录..."
+
+  if [ -d "$LEGACY_GLOBAL_DIR" ]; then
+    rm -rf "$LEGACY_GLOBAL_DIR"
+    info "  已删除旧版全局目录: $LEGACY_GLOBAL_DIR"
   else
-    info "符号链接不存在，跳过: $symlink_path"
+    info "  未发现旧版全局目录，跳过"
   fi
-}
-
-remove_path_from_shell_rc() {
-  local shell_rc_files=(
-    "$HOME/.zshrc"
-    "$HOME/.bashrc"
-    "$HOME/.bash_profile"
-    "$HOME/.profile"
-    "$HOME/.config/fish/config.fish"
-  )
-
-  local found=false
-
-  for rc_file in "${shell_rc_files[@]}"; do
-    if [ ! -f "$rc_file" ]; then
-      continue
-    fi
-
-    if grep -qF "$INSTALL_DIR" "$rc_file" 2>/dev/null; then
-      local tmp_file
-      tmp_file=$(mktemp)
-      awk -v install_dir="$INSTALL_DIR" '
-        /^# quarkclouddrive CLI$/ { skip_next = 1; next }
-        skip_next == 1 { skip_next = 0; next }
-        index($0, install_dir) { next }
-        { print }
-      ' "$rc_file" > "$tmp_file"
-      mv "$tmp_file" "$rc_file"
-      info "已从 $rc_file 中移除 quarkclouddrive PATH 配置"
-      found=true
-    fi
-  done
-
-  if [ "$found" = false ]; then
-    info "未在 shell 配置文件中发现 quarkclouddrive PATH 配置"
-  fi
-}
-
-
-verify_uninstall() {
-  info "Step 5: 验证卸载结果..."
-
-  local has_issue=false
-
-  if [ -d "$INSTALL_DIR" ]; then
-    error "安装目录仍然存在: $INSTALL_DIR"
-    has_issue=true
-  fi
-
-  if command -v quarkclouddrive &>/dev/null; then
-    warn "quarkclouddrive 命令仍然可用（可能需要重启终端才能完全生效）"
-  else
-    info "quarkclouddrive 命令已不可用"
-  fi
-
-  if [ "$has_issue" = true ]; then
-    return 1
-  fi
-  return 0
 }
 
 
 print_result() {
-  local success="$1"
   local divider
   divider=$(printf '%0.s─' {1..50})
 
   printf '\n%s\n' "$divider"
 
-  if [ "$success" = "true" ]; then
-    printf "${GREEN}${BOLD}✅ quarkclouddrive CLI 卸载完成${NC}\n\n"
-    printf "  已清理以下内容:\n"
-    printf "  • 安装目录  ${BOLD}%s${NC}\n" "$INSTALL_DIR"
-    printf "  • 全局命令  ${BOLD}quarkclouddrive${NC}\n"
-    printf "  • shell 配置中的 PATH 条目\n\n"
-    printf "  请${BOLD}重新打开终端${NC}以确保环境变量完全生效\n"
-  else
-    printf "${RED}${BOLD}❌ quarkclouddrive CLI 卸载未完全成功${NC}\n\n"
-    printf "  请检查以上错误信息并手动清理\n"
-  fi
+  printf "${GREEN}${BOLD}✅ quarkclouddrive CLI 卸载完成${NC}\n\n"
+  printf "  已清理以下内容:\n"
+  printf "  • 旧版全局命令 (/usr/local/bin/quarkclouddrive)\n"
+  printf "  • 旧版全局目录 (%s)\n" "$LEGACY_GLOBAL_DIR"
+  printf "  • 当前 agent 的授权与配置 (logout)\n\n"
+  printf "  skill 目录由 agent 平台管理，未删除:\n"
+  printf "  • ${BOLD}%s${NC}\n" "$SKILL_DIR"
 
   printf '%s\n\n' "$divider"
 }
@@ -187,29 +119,13 @@ main() {
   info "=== quarkclouddrive CLI 卸载脚本 ==="
   echo ""
 
-  if ! detect_os; then
-    print_result "false"
-    exit 1
-  fi
-
   revoke_auth
 
-  if ! remove_install_dir; then
-    print_result "false"
-    exit 1
-  fi
+  remove_legacy_global_command
 
-  if ! remove_global_command; then
-    print_result "false"
-    exit 1
-  fi
+  remove_legacy_global_dir
 
-  if ! verify_uninstall; then
-    print_result "false"
-    exit 1
-  fi
-
-  print_result "true"
+  print_result
 }
 
 main "$@"

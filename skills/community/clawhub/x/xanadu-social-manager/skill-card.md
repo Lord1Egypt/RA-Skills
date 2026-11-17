@@ -1,43 +1,58 @@
-## Description: <br>
-Use this skill when the user wants to manage social media scheduling, analytics, cross-posting, or AI-assisted content creation across Instagram, TikTok, Twitter/X, LinkedIn, or Facebook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to manage social media scheduling, analytics, cross-posting, or AI-assisted content creation across Instagram, TikTok, Twitter/X, LinkedIn, or Facebook.
 
-## Publisher: <br>
-[saintlittlefish](https://clawhub.ai/user/saintlittlefish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[saintlittlefish](https://clawhub.ai/user/saintlittlefish)
 
-## Use Case: <br>
-External users, social media managers, and developers use this skill to plan posts, adapt content across major social platforms, generate approved replies, and summarize social performance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The package includes preconfigured SkillPay billing code with an exposed API key and a charge function. <br>
-Mitigation: Remove or disable the bundled SkillPay files unless monetization is intended, rotate the exposed key if it is real, and require clear user confirmation before any billing call. <br>
-Risk: Social platform tokens and queued drafts may expose account access, unpublished content, or brand-sensitive information. <br>
-Mitigation: Use least-privilege platform tokens, store queued drafts only in a private project directory, and avoid committing local queue files or credentials. <br>
-Risk: Generated posts, cross-post adaptations, and replies may be inaccurate, off-brand, or inappropriate for a platform context. <br>
-Mitigation: Require human approval before publishing posts or sending replies, and check generated content against brand guidelines and platform rules. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Platform Specifications](references/platform-specs.md) <br>
-- [Caption Templates](assets/templates/captions.md) <br>
-- [ClawHub skill page](https://clawhub.ai/saintlittlefish/xanadu-social-manager) <br>
+## Use Case:
 
+External users and social media operators use this skill to plan posts, adapt content across platforms, generate approved replies, and summarize social media analytics.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, Python code snippets, configuration guidance, queued post records, and analytics report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided social platform tokens and optional SkillPay configuration; posting, replies, and billing should require explicit user approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact includes a hardcoded SkillPay API key in billing configuration.
+
+Mitigation: Remove the bundled key, rotate it before release, and require deployers to provide their own billing credentials through configuration or environment variables.
+
+Risk: The billing module can submit charge requests for skill usage.
+
+Mitigation: Require explicit user or deployer consent before enabling billing and before any charge is made.
+
+Risk: Scheduled post content is stored locally in queue.json.
+
+Mitigation: Document local storage behavior and apply appropriate access controls, retention limits, or encryption for sensitive social content.
+
+## Reference(s):
+
+- [Platform Specifications](references/platform-specs.md)
+- [Caption Templates](assets/templates/captions.md)
+- [SkillPay](https://skillpay.me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce social copy, scheduling recommendations, analytics summaries, platform-specific formatting, and configuration guidance.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; artifact frontmatter is 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

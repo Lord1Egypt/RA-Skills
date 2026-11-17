@@ -1,43 +1,56 @@
-## Description: <br>
-Guides Frontline platform users through creating a continuous update pipeline for already deployed workloads, covering code clone, dependency install and build, image build, and image deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through creating a CI/CD update pipeline on the Frontline platform for already deployed workloads, covering code cloning, dependency build steps, image build, and rollout deployment.
 
-## Publisher: <br>
-[wyzauh](https://clawhub.ai/user/wyzauh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wyzauh](https://clawhub.ai/user/wyzauh)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and platform operators use this skill to collect confirmed tenant, project, repository, build, registry, and deployment details, then create a Jenkins-based update pipeline for an existing workload. It is not intended for first-time workload creation or infrastructure initialization.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated Jenkins jobs may receive high-impact host Docker access through the required Jenkins template.
+
+Mitigation: Review the template before installation and prefer a revised version that removes the host Docker socket mount or uses an isolated image builder.
+
+Risk: Credential handling is ambiguous and could lead to raw passwords being placed in generated pipeline content.
+
+Mitigation: Use credential IDs or platform-managed secrets only, and verify that tokens or passwords are not written to Jenkinsfiles, repositories, or user-visible responses.
+
+Risk: Unvalidated Jenkinsfile inputs could create incorrect or unsafe pipeline behavior.
+
+Mitigation: Validate and safely render all placeholders, and require explicit user confirmation for tenant, project, repository, build, registry, and deployment selections before creating the pipeline.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and platform engineers use this skill to collect confirmed deployment, build, registry, and workload details before creating a CI/CD pipeline for an existing Frontline platform workload. It is intended for continuous updates of already deployed Deployment, StatefulSet, or DaemonSet workloads, not first-time workload creation or infrastructure initialization. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent CI/CD pipelines that update live workloads. <br>
-Mitigation: Review tenant, project, registry, namespace, workload, build commands, and rollback plan before creating or triggering a pipeline. <br>
-Risk: Build runners may receive broad access to repositories, registries, and workload update paths. <br>
-Mitigation: Use trusted repositories, isolated CI runners, and scoped credential-store references rather than raw passwords. <br>
-Risk: Ambiguous Git credential handling can expose secrets if users provide raw credentials in generated artifacts. <br>
-Mitigation: Use platform or Jenkins credential references and avoid writing tokens or passwords into repositories, Jenkinsfiles, or user-visible responses. <br>
+**Output Format:** [Markdown guidance with Jenkinsfile/Groovy code and shell command snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wyzauh/tests44) <br>
-- [Publisher profile](https://clawhub.ai/user/wyzauh) <br>
+**Other Properties Related to Output:** [Requires step-by-step user confirmation before generating or creating the pipeline.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Jenkinsfile Groovy code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires step-by-step user confirmation before generating or creating pipeline artifacts.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

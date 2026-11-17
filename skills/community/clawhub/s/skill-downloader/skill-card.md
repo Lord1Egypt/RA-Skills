@@ -1,41 +1,54 @@
-## Description: <br>
-Discover, compare, review, install, or update OpenClaw skills from trusted sources with a review-first workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Downloader helps agents discover, compare, review, install, or update OpenClaw skills from trusted sources using a review-first workflow.
 
-## Publisher: <br>
-[yyang100](https://clawhub.ai/user/yyang100) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yyang100](https://clawhub.ai/user/yyang100)
 
-## Use Case: <br>
-Developers and agent users use this skill to find, compare, inspect, install, or update OpenClaw skills while preserving explicit approval and source review before write actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or updating an unfamiliar skill can write files into a workspace or global skill directory. <br>
-Mitigation: Inspect source material first, prefer official registry workflows, require explicit user approval before writes, and use a workspace-local install when testing an unfamiliar skill. <br>
-Risk: Partial or minimal metadata can lead to unsupported comparisons or recommendations. <br>
-Mitigation: Disclose missing fields, mark unavailable values as unknown, and give a firm recommendation only when the inspected information is complete enough to support it. <br>
+## Use Case:
 
+Developers and agent operators use this skill to find or compare skills, inspect ClawHub-hosted candidates, and install or update skills after review and explicit approval.
 
-## Reference(s): <br>
-- [Advanced Workflows](references/advanced-workflows.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yyang100/skill-downloader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured review summaries and inline commands when installation is approved] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source labels, unknown-field disclosure, recommendation status, and approval gating before write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.20 (source: server release evidence) <br>
+Risk: Installed skills can influence future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the source registry and destination directory, then review candidate skill material before approving installation or updates.
+
+Risk: Incomplete registry metadata can lead to overconfident recommendations.
+
+Mitigation: Label results as Full, Partial, or Minimal and avoid firm recommendations unless the available information is complete.
+
+## Reference(s):
+
+- [Advanced Workflows](references/advanced-workflows.md)
+- [ClawHub Skill Page](https://clawhub.ai/yyang100/skills/skill-downloader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with source labels, completeness notes, and optional shell commands or file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Installation and update writes require explicit user approval.]
+
+## Skill Version(s):
+
+0.1.20 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

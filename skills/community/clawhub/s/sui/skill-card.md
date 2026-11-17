@@ -1,43 +1,51 @@
-## Description: <br>
-Answers questions about the Sui blockchain ecosystem, concepts, tokenomics, validators, staking, and general knowledge outside Move programming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Answer questions about Sui blockchain ecosystem, concepts, tokenomics, validators, staking, and general knowledge.
 
-## Publisher: <br>
-[EasonC13](https://clawhub.ai/user/EasonC13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[easonc13](https://clawhub.ai/user/easonc13)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to answer general Sui blockchain questions, compare Sui with other chains, and locate official Sui reference material. It is not intended for Sui Move programming questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The optional setup script downloads the current Sui documentation from GitHub, so local references can change over time. <br>
-Mitigation: Review or pin the downloaded checkout before relying on it when reproducibility matters. <br>
-Risk: General blockchain guidance can become stale as the Sui ecosystem changes. <br>
-Mitigation: Prefer the official Sui documentation and repository links included in the references for current details. <br>
+## Use Case:
 
+External users and developers use this skill to answer general Sui blockchain questions about architecture, tokenomics, staking, validators, ecosystem resources, and comparisons with other chains. The skill directs Move programming questions to a separate Sui Move skill.
 
-## Reference(s): <br>
-- [Sui official docs](https://docs.sui.io) <br>
-- [Sui website](https://sui.io) <br>
-- [MystenLabs Sui repository](https://github.com/MystenLabs/sui) <br>
-- [Sui docs source](https://github.com/MystenLabs/sui/tree/main/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with optional inline shell commands and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers should distinguish general Sui knowledge from Move programming and cite official Sui references when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter and package.json declare 1.0.0) <br>
+Risk: The setup script fetches current Sui documentation from GitHub, so answers may reflect upstream documentation changes over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the fetched documentation before relying on responses for release-sensitive or business-critical decisions; pin or archive references when reproducibility is required.
+
+## Reference(s):
+
+- [Sui Official Documentation](https://docs.sui.io)
+- [Sui Documentation Source](https://github.com/MystenLabs/sui/tree/main/docs)
+- [Sui Website](https://sui.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use locally cloned Sui documentation as reference material after setup.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,60 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_wb_create_user_schedule",
+		"description": "Create a team scheduled task (UserSchedule / t_user_schedule). Note: this is a team-side scheduled task that periodically sends a prompt to Informatclaw/AI by cron; it is not an application designer scheduled task ScheduleDefine and must not be used to create an in-app schedule module.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "User scheduled task name, for example: Daily sales summary."
+				},
+				"cron": {
+					"type": "string",
+					"description": "Cron expression, for example daily at 09:00: 0 0 9 * * ?. Confirm the frequency before creation and avoid overly frequent schedules."
+				},
+				"prompt": {
+					"type": "string",
+					"description": "Prompt sent to Informatclaw/AI when the schedule runs. Include the task goal, data scope, output format, and necessary constraints."
+				},
+				"schedulePeriod": {
+					"type": "string",
+					"description": "Optional period type. Leave empty when unclear; the backend calculates nextRunTime from cron."
+				},
+				"expertId": {
+					"type": "string",
+					"description": "Optional expert ID. Fill only when the user explicitly wants a specific expert to execute the task."
+				},
+				"retryCount": {
+					"type": "integer",
+					"description": "Optional retry count after failure, recommended 0-10."
+				},
+				"isEnable": {
+					"type": "boolean",
+					"description": "Whether the schedule is enabled. Defaults to true."
+				},
+				"misfireHandlingType": {
+					"type": "string",
+					"description": "Optional misfire handling strategy."
+				},
+				"misfireThreshold": {
+					"type": "integer",
+					"description": "Optional misfire threshold, interpreted by backend UserSchedule configuration."
+				},
+				"key": {
+					"type": "string",
+					"description": "Optional business key for the user schedule. Do not fill when unsure."
+				},
+				"serverIdList": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"description": "Optional list of server IDs allowed to execute the task. Do not fill when unsure."
+				}
+			},
+			"required": ["name", "cron", "prompt"]
+		}
+	}
+}

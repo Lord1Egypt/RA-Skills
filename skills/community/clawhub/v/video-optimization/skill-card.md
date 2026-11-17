@@ -1,42 +1,57 @@
-## Description: <br>
-Guides agents in optimizing website videos for Google Search with video sitemaps, VideoObject schema, thumbnails, indexing, previews, and key moments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in optimizing website videos for Google Search, video sitemaps, VideoObject schema, thumbnails, indexing, previews, and key moments.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, SEO practitioners, and content teams use this skill to plan and review website video optimization for Google Search visibility, rich results, indexing, video previews, and key moments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project context files or connected Google Search Console accounts may expose sensitive data or broader access than intended. <br>
-Mitigation: Confirm project files and account permissions before allowing an agent to inspect context or act in Search Console. <br>
+## Use Case:
 
+External site owners, SEO practitioners, and developers use this skill to prepare website videos for Google discovery with crawlable embeds, sitemaps, VideoObject metadata, thumbnails, previews, key moments, and monitoring guidance.
 
-## Reference(s): <br>
-- [ClawHub video-optimization release page](https://clawhub.ai/kostja94/video-optimization) <br>
-- [Google Search Central: Video SEO Best Practices](https://developers.google.com/search/docs/appearance/video) <br>
-- [Google Search Central: Video Sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/video-sitemaps) <br>
-- [Search Engine Land: YouTube SEO and AI Overviews](https://searchengineland.com/youtube-seo-ai-overviews-467253) <br>
-- [Semrush: YouTube SEO](https://www.semrush.com/blog/youtube-seo/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with example JSON-LD and XML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no executable code or credential handling is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Local project context files may contain sensitive brand or site information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review `.claude/project-context.md` and `.cursor/project-context.md` before allowing their contents to inform SEO recommendations.
+
+Risk: SEO guidance may be incorrect or outdated if search documentation or platform behavior changes.
+
+Mitigation: Validate generated video SEO recommendations against current Google Search documentation before publishing site changes.
+
+## Reference(s):
+
+- [Google Video SEO](https://developers.google.com/search/docs/appearance/video)
+- [Google Video Sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/video-sitemaps)
+- [Google SafeSearch](https://developers.google.com/search/docs/appearance/safesearch)
+- [Semrush YouTube SEO](https://www.semrush.com/blog/youtube-seo/)
+- [Search Engine Land YouTube SEO and AI Overviews](https://searchengineland.com/youtube-seo-ai-overviews-467253)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON-LD, XML, HTML, and checklist-style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include VideoObject JSON-LD, video sitemap XML, embed recommendations, metadata checks, and SEO monitoring steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -45,19 +45,19 @@ your-project/.agents/skills/figma-to-mobile/
 
 ## Setup
 
-1. Get a Figma Personal Access Token:
-   - Figma → Avatar → Settings → Security → Personal Access Tokens
-   - Generate a new token (starts with `figd_`)
-
-2. Set the environment variable:
-   ```bash
-   # macOS/Linux
-   export FIGMA_TOKEN="figd_your_token_here"
-
-   # Windows PowerShell
-   $env:FIGMA_TOKEN = "figd_your_token_here"
-   ```
-   Never paste tokens into chat logs. If you insist on using a `.env` file, edit it locally and ensure it is ignored by git.
+> ⚠️ **Figma Token** — Set the `FIGMA_TOKEN` environment variable.
+> Generate one at Figma → Avatar → Settings → Security → Personal Access Tokens.
+>
+> **Do not paste your token into chat** — chat messages may be logged.
+> Set it via your shell profile or system environment variables:
+>
+> ```bash
+> # macOS/Linux
+> export FIGMA_TOKEN="figd_your_token_here"
+>
+> # Windows PowerShell
+> $env:FIGMA_TOKEN = "figd_your_token_here"
+> ```
 
 ## Usage
 
@@ -99,8 +99,13 @@ figma-to-mobile/
 
 ## Requirements
 
-- Python 3.10+ with `requests` package
+- Python 3.8+ with `requests` package
 - Figma Personal Access Token (free)
+
+## Feedback & Issues
+
+Found a bug or have a suggestion?
+[Open an issue on GitHub](https://github.com/TimeAground/figma-to-mobile/issues)
 
 ## License
 

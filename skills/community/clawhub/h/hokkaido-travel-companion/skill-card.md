@@ -1,41 +1,54 @@
-## Description: <br>
-Hokkaido travel companion protocol for collecting, verifying, storing, and reusing travel knowledge with a local vault plus live search for restaurants, transport, weather, budgets, and GO/NOGO guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hokkaido Travel Companion helps agents collect, verify, store, and reuse Sapporo, Otaru, Yoichi, and Chitose travel knowledge with local notes, live source checks, route details, weather, budget tracking, and GO/NOGO guidance.
 
-## Publisher: <br>
-[ico1036](https://clawhub.ai/user/ico1036) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ico1036](https://clawhub.ai/user/ico1036)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to plan trips in Sapporo, Otaru, Yoichi, and Chitose Airport with verified restaurants, routes, weather, budgets, and GO/NOGO guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for trips within Hokkaido, Japan. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store local trip notes and budget details. <br>
-Mitigation: Keep the local vault and memory/travel-budget.json private; review or delete them before sharing or publishing the skill folder. <br>
-Risk: Travel details such as restaurant hours, route timing, weather, and closures can become stale. <br>
-Mitigation: Follow the skill's verification rules: refresh stale data, cross-check hours, and verify closures, routes, fares, and weather with live sources before answering. <br>
+## Use Case:
 
+External users and travel-focused agents use this skill to plan Hokkaido trips, verify restaurant, transport, weather, and closure details, and make budget-aware GO/NOGO decisions. It is scoped to Sapporo, Otaru, Yoichi, and Chitose Airport.
 
-## Reference(s): <br>
-- [Travel Vault README](references/vault/README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ico1036/hokkaido-travel-companion) <br>
+### Deployment Geography for Use:
 
+Global, for Hokkaido travel planning.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown travel guidance with sourced summaries, route details, budget checks, and local note updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local vault notes and memory/travel-budget.json when the user provides trip details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may save personal trip details such as itinerary notes, hotel-adjacent context, budgets, and visit notes in local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive travel details that should not be retained, and review or delete local vault and budget files before sharing or publishing the skill directory.
+
+Risk: Restaurant hours, closures, fares, walking times, and weather can change or become stale.
+
+Mitigation: Verify stale or high-risk travel details with official or trusted live sources before making recommendations.
+
+## Reference(s):
+
+- [Hokkaido Travel Companion on ClawHub](https://clawhub.ai/ico1036/skills/hokkaido-travel-companion)
+- [Travel Vault README](references/vault/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured travel planning, route, budget, weather, and source-check details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation or updates of local travel vault notes and budget JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

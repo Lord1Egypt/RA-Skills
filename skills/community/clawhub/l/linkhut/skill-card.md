@@ -1,45 +1,56 @@
-## Description: <br>
-LinkHut helps users manage LinkHut bookmarks from chat through ClawLink OAuth, including saving, organizing, searching, updating, and deleting bookmarks with tags, notes, and privacy settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LinkHut bookmark management API integration with managed OAuth. Save, organize, search, and manage bookmarks with tags, notes, and privacy settings. Use this skill when users want to save bookmarks, search saved links, organize bookmarks with tags, or manage their reading list.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and developers use this skill to connect LinkHut through ClawLink OAuth and manage bookmark collections from an agent chat workflow. It supports saving bookmarks, searching by tag, listing tags, updating metadata, and deleting bookmarks by exact URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires connecting LinkHut through the third-party ClawLink OAuth service. <br>
-Mitigation: Install only if the user accepts that OAuth connection path and reconnect through the dashboard if authorization expires. <br>
-Risk: Bookmark write operations can add or change saved bookmark metadata. <br>
-Mitigation: Review write requests before execution, especially URL, tags, notes, privacy, and reading-list settings. <br>
-Risk: Bookmark deletion is high impact and irreversible. <br>
-Mitigation: Confirm the exact bookmark URL before calling the delete tool. <br>
+## Use Case:
 
+External users and developers use this skill to manage LinkHut bookmarks from an OpenClaw chat, including saving links, searching saved bookmarks, organizing tags, updating metadata, and maintaining a reading list.
 
-## Reference(s): <br>
-- [ClawHub LinkHut Skill Page](https://clawhub.ai/hith3sh/linkhut) <br>
-- [LinkHut](https://linkhut.org/) <br>
-- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=linkhut) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ClawLink tool-call examples for LinkHut bookmark and tag operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill asks users to install and permanently enable an unaudited external plugin that is not pinned to a specific version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the ClawLink plugin package and publisher before installing, request pinned version and permission details where possible, and keep a rollback path before enabling it.
+
+Risk: The skill can perform write operations and irreversible bookmark deletion after LinkHut is connected.
+
+Mitigation: Require confirmation for write actions, use read operations to verify targets first, and require the exact bookmark URL before deletion.
+
+## Reference(s):
+
+- [LinkHut](https://linkhut.org/)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=linkhut)
+- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw)
+- [LinkHut Skill on ClawHub](https://clawhub.ai/hith3sh/skills/linkhut)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JavaScript tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup steps, OAuth connection guidance, bookmark tool examples, troubleshooting notes, and safety notes for write and delete operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

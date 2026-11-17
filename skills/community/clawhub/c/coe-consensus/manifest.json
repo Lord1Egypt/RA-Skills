@@ -1,0 +1,31 @@
+{
+  "name": "coe-consensus",
+  "version": "2.0.0",
+  "description": "Evaluate signed votes against an operator-configured quorum.",
+  "author": "Cognitive Emergence Lab <yuqiang@humanjudgment.org>",
+  "license": "MIT",
+  "protocol": "COE",
+  "entrypoint": "skill.api:app",
+  "host_targets": [
+    "mcp",
+    "api",
+    "python"
+  ],
+  "dependencies": [
+    "requirements.txt (exact versions and hashes)"
+  ],
+  "tags": [
+    "coe",
+    "consensus",
+    "jep",
+    "swarm",
+    "multi-agent",
+    "world-model",
+    "bft"
+  ],
+  "environment_variables": [
+    "JEP_CLIENTS",
+    "JEP_TRUSTED_KEYS",
+    "JEP_CONSENSUS_POLICY"
+  ]
+}

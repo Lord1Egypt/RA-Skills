@@ -1,48 +1,61 @@
-## Description: <br>
-Adaptive testing engine with IRT/CAT, AI question generation, and personalized learning recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adaptive testing engine with IRT/CAT, AI question generation, and personalized learning recommendations.
 
-## Publisher: <br>
-[woodstocksoftware](https://clawhub.ai/user/woodstocksoftware) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[woodstocksoftware](https://clawhub.ai/user/woodstocksoftware)
 
-## Use Case: <br>
-Educators, assessment developers, and education-platform teams use this skill to create and administer adaptive tests, generate assessment questions, calibrate items, manage student and class records, and retrieve learning recommendations and analytics from the AdaptiveTest API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send student, class, assessment, response, and analytics data to the remote AdaptiveTest API. <br>
-Mitigation: Use it only when authorized to share that data with AdaptiveTest, minimize student PII where possible, and follow the applicable education data policies for the deployment. <br>
-Risk: ADAPTIVETEST_API_KEY is an account credential for authenticated API access. <br>
-Mitigation: Store the key in the environment or a secret manager, avoid pasting it into prompts or logs, and rotate it if exposure is suspected. <br>
-Risk: Some workflows create, update, delete, enroll, submit, or calibrate records in the AdaptiveTest service. <br>
-Mitigation: Review request payloads and confirm before delete, bulk enrollment, calibration, or other record-changing actions. <br>
-Risk: AI-generated questions and personalized recommendations may be unsuitable without domain review. <br>
-Mitigation: Have qualified educators or content owners review generated items, rationales, standards alignment, and recommendations before using them for instruction or assessment. <br>
+## Use Case:
 
+Developers and education teams use this skill to call the AdaptiveTest API for adaptive assessments, AI question generation, learning recommendations, item calibration, student and class management, and results analytics.
 
-## Reference(s): <br>
-- [AdaptiveTest API endpoint reference](references/api-endpoints.md) <br>
-- [Adaptive testing concepts](references/adaptive-testing.md) <br>
-- [Item calibration guide](references/calibration.md) <br>
-- [AdaptiveTest API base URL](https://adaptivetest-platform-production.up.railway.app/api) <br>
-- [AdaptiveTest developer homepage](https://adaptivetest.io/developers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with HTTP endpoint examples, shell commands, and JSON request and response bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and an ADAPTIVETEST_API_KEY environment variable for authenticated API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata, SKILL.md frontmatter, clawhub.json, and CHANGELOG.md released 2026-02-27) <br>
+Risk: The skill uses an AdaptiveTest API key and may access sensitive education records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep ADAPTIVETEST_API_KEY in the environment, do not expose it in prompts or logs, and use real student identifiers only when privacy requirements are satisfied.
+
+Risk: The API supports record creation, updates, enrollment, calibration, and deletion workflows.
+
+Mitigation: Require explicit user confirmation before creating, changing, enrolling, calibrating from, or deleting records.
+
+Risk: Adaptive testing and calibration quality depends on adequate item data and representative response samples.
+
+Mitigation: Confirm item calibration prerequisites, response counts, and sample diversity before using calibration results or relying on CAT behavior.
+
+## Reference(s):
+
+- [AdaptiveTest API Endpoint Reference](references/api-endpoints.md)
+- [Adaptive Testing Concepts](references/adaptive-testing.md)
+- [Item Calibration Guide](references/calibration.md)
+- [AdaptiveTest Developer Site](https://adaptivetest.io/developers)
+- [AdaptiveTest API Base URL](https://adaptivetest-platform-production.up.railway.app/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request and response examples and curl-style API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ADAPTIVETEST_API_KEY and curl; API rate limits depend on the account tier.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, clawhub.json, CHANGELOG released 2026-02-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

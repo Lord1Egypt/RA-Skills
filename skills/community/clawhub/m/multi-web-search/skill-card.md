@@ -1,43 +1,59 @@
-## Description: <br>
-Provides no-API-key multi-engine web search across international, Chinese, and professional sources with parallel search, time and site filters, and text, image, news, video, and book search modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-Web-Search is a no-API-key web search skill that runs multi-engine text, image, news, video, and book searches with time, site, proxy, cache, and fallback support.
 
-## Publisher: <br>
-[wangzairong](https://clawhub.ai/user/wangzairong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzairong](https://clawhub.ai/user/wangzairong)
 
-## Use Case: <br>
-Developers, engineers, and agent users use this skill to run real-time web searches, gather technical documentation or examples, and compare results across global and Chinese search engines without configuring an API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and result fetching may contact external search engines, proxies, or package services. <br>
-Mitigation: Use the skill only when external web access is intended, choose engines and proxies deliberately, and review installation behavior before running install.py. <br>
-Risk: Sensitive prompts, private URLs, credentials, customer data, or regulated information could be exposed through search queries or local cache entries. <br>
-Mitigation: Do not include sensitive data in queries, and use --no-cache for searches that should not be stored locally. <br>
-Risk: Returned search results may be outdated, incomplete, duplicated, or misleading across engines. <br>
-Mitigation: Review source links and compare results before using them for decisions or downstream agent actions. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent search current web, technical, news, image, video, and book sources without configuring an API key. It is suited for multi-language search, site-restricted search, and search workflows that can tolerate third-party search-engine exposure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangzairong/multi-web-search) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance and JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search result objects may include title, URL, snippet or media metadata, source engine, ranking score, engine status, cache/DHT flags, and proxy status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.4.0 (source: frontmatter, metadata.json, CHANGELOG.md, server release evidence) <br>
+Risk: Search queries are sent to third-party search engines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for queries that can be shared with external search providers.
+
+Risk: Proxy credentials or sensitive query details may appear in output or local cache.
+
+Mitigation: Avoid credentials in proxy URLs and use --no-cache for sensitive searches.
+
+Risk: The installer can install an unpinned third-party package into the user environment.
+
+Mitigation: Install ddgs separately in an isolated environment with pinned versions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangzairong/skills/multi-web-search)
+- [Release changelog](artifact/CHANGELOG.md)
+- [Artifact metadata](artifact/metadata.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON search-result output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results can include titles, URLs, snippets, source engines, result counts, cache flags, DHT status, and proxy status.]
+
+## Skill Version(s):
+
+3.4.0 (source: frontmatter, changelog, metadata, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

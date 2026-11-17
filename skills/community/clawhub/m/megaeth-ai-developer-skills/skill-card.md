@@ -1,52 +1,66 @@
-## Description: <br>
-End-to-end MegaETH development playbook (Feb 2026). Covers wallet operations, token swaps (Kyber Network), eth_sendRawTransactionSync (EIP-7966) for instant receipts, JSON-RPC batching, real-time mini-block subscriptions, storage-aware contract patterns (Solady RedBlackTreeLib), MegaEVM gas model, WebSocket keepalive, bridging from Ethereum, and debugging with mega-evme. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Megaeth Developer is an end-to-end MegaETH development playbook for wallet operations, token swaps, real-time RPC flows, frontend patterns, smart contracts, gas modeling, storage optimization, testing, and debugging.
 
-## Publisher: <br>
-[0xBreadguy](https://clawhub.ai/user/0xBreadguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xbreadguy](https://clawhub.ai/user/0xbreadguy)
 
-## Use Case: <br>
-Developers and engineers use this skill to build MegaETH applications, configure wallets and RPC flows, optimize transaction submission, and develop or debug MegaEVM smart contracts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes examples for real blockchain transactions, swaps, approvals, bridging, and deployments. <br>
-Mitigation: Before executing commands or signing transactions, verify chain ID, recipient, token, amount, spender, slippage, bridge address, and gas settings; use testnet or small-value trials first. <br>
-Risk: MegaETH storage costs can make contracts vulnerable to gas-draining storage allocation patterns. <br>
-Mitigation: Review SSTORE patterns, limit arbitrary key writes, charge users for storage costs, and prefer slot-reuse designs where appropriate. <br>
-Risk: Local EVM simulations may use incorrect gas assumptions for MegaEVM. <br>
-Mitigation: Use MegaETH remote gas estimation, test on forked or live testnet conditions, and replay/profile transactions with mega-evme for higher-risk contract changes. <br>
-Risk: Fast transaction and mini-block behavior can create timing, retry, and finality assumptions that differ from standard EVM workflows. <br>
-Mitigation: Treat synchronous receipts as soft finality for high-value actions, wait for additional confirmations when needed, and design time-sensitive logic with MegaETH's timing constraints in mind. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MegaETH Docs](https://docs.megaeth.com) <br>
-- [MegaETH Real-time API](https://docs.megaeth.com/realtime-api) <br>
-- [MegaETH Testnet Guide](https://docs.megaeth.com/testnet) <br>
-- [MegaETH Frontier](https://docs.megaeth.com/frontier) <br>
-- [MegaEVM](https://github.com/megaeth-labs/mega-evm) <br>
-- [MegaEVM Spec (MiniRex)](https://github.com/megaeth-labs/mega-evm/blob/main/specs/MiniRex.md) <br>
-- [MegaETH Token List](https://github.com/megaeth-labs/mega-tokenlist) <br>
-- [Solady](https://github.com/Vectorized/solady) <br>
-- [KyberSwap Aggregator Docs](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator) <br>
-- [EIP-7966 Discussion](https://ethereum-magicians.org/t/eip-7966-eth-sendrawtransactionsync-method/24640) <br>
+## Use Case:
 
+Developers and engineers use this skill to build, test, debug, and operate MegaETH applications, including wallets, transaction flows, token swaps, WebSocket subscriptions, and MegaEVM smart contracts.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MegaETH-specific transaction, RPC, wallet, gas, storage, testing, and deployment guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: High-impact wallet, swap, approval, bridge, transfer, signed transaction, and deployment guidance can cause fund loss if copied directly.
+
+Mitigation: Require explicit human confirmation for each value-moving action and verify chain ID, RPC endpoint, contract addresses, token addresses, spender or router addresses, amounts, slippage, calldata, and simulation results from authoritative sources.
+
+Risk: Mainnet examples and gas assumptions may be unsafe or inconsistent for a specific project or current network state.
+
+Mitigation: Prefer testnet first, use remote MegaETH estimation for non-trivial operations, and independently confirm current gas limits, fees, router addresses, and bridge details before signing or deploying.
+
+Risk: External repositories, libraries, and tooling referenced by the artifact can change after release.
+
+Mitigation: Pin external repositories and dependencies before building or installing them, and review source, permissions, and release integrity before use.
+
+## Reference(s):
+
+- [MegaETH Docs](https://docs.megaeth.com)
+- [MegaETH Real-time API](https://docs.megaeth.com/realtime-api)
+- [MegaETH Frontier](https://docs.megaeth.com/frontier)
+- [MegaETH Testnet Guide](https://docs.megaeth.com/testnet)
+- [MegaEVM Source](https://github.com/megaeth-labs/mega-evm)
+- [MegaEVM MiniRex Spec](https://github.com/megaeth-labs/mega-evm/blob/main/specs/MiniRex.md)
+- [MegaETH Token List](https://github.com/megaeth-labs/mega-tokenlist)
+- [Solady RedBlackTreeLib](https://github.com/Vectorized/solady/blob/main/src/utils/RedBlackTreeLib.sol)
+- [EIP-7966 eth_sendRawTransactionSync](https://ethereum-magicians.org/t/eip-7966-eth-sendrawtransactionsync-method/24640)
+- [KyberSwap Aggregator Docs](https://docs.kyberswap.com/kyberswap-solutions/kyberswap-aggregator)
+- [Envio HyperSync](https://docs.envio.dev/docs/HyperSync/overview)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include transaction, deployment, RPC, gas, and security review guidance that should be checked against authoritative network sources before use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

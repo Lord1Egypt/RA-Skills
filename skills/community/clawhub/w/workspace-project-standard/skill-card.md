@@ -1,41 +1,54 @@
-## Description: <br>
-Project workspace setup and documentation standard for OpenClaw agents that enforces a three-layer documentation system and self-contained project structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workspace Project Standard guides OpenClaw agents to organize project work into self-contained directories with a three-layer documentation structure.
 
-## Publisher: <br>
-[lnshyo](https://clawhub.ai/user/lnshyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lnshyo](https://clawhub.ai/user/lnshyo)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill when starting a new project, organizing an existing workspace, or creating project documentation. It guides agents to keep project code, temporary files, and documentation in predictable locations and to maintain MEMORY.md plus per-project docs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Workspace organization guidance may move or reclassify files in ways that affect a project layout. <br>
-Mitigation: Review the scaffold script, resulting diffs, and root-file moves before accepting changes; keep the workspace under version control. <br>
-Risk: Project documentation templates include credential reference sections that could be misused to record secrets directly. <br>
-Mitigation: Document only secret names, vault paths, or environment variable references, and avoid writing actual credential values into project docs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lnshyo/workspace-project-standard) <br>
-- [Project documentation template](assets/project-template.md) <br>
-- [Links and paths template](assets/links-template.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill when starting a project, organizing an existing workspace, or creating project documentation. It helps keep project code, temporary work, and agent-maintained records in predictable locations.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline PowerShell commands and project documentation templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API calls or credential values are required; credentials should be documented only as secret names or vault/environment references.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to immediately move root-level files that are not on its whitelist, which may disrupt unrelated workspace data.
+
+Mitigation: Require the agent to list proposed file moves and obtain explicit approval before relocating files.
+
+Risk: The workspace layout may conflict with projects that already use different root files or tool-managed directories.
+
+Mitigation: Review the whitelist against the current workspace before applying the standard.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/lnshyo/skills/workspace-project-standard)
+- [Project Documentation Template](artifact/assets/project-template.md)
+- [Links and Paths Template](artifact/assets/links-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with templates and inline PowerShell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workspace organization instructions and documentation templates for agents.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact skill.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

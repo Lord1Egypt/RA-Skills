@@ -1,0 +1,6 @@
+{
+  "name": "qa_notebooklm_api",
+  "version": "1.0.0",
+  "description": "Use NotebookLM CLI to manage notebooks, add sources, ask questions, summarize, and generate learning materials (slides, quizzes, flashcards).",
+  "author": "OpenClaw"
+}

@@ -1,39 +1,56 @@
-## Description: <br>
-Instruction-only workflow for formatting, editing, and creating Google Docs using the existing gog skill/CLI while relying on gog for all Google Docs and Drive operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instruction-only workflow for formatting, editing, and creating Google Docs using the existing gog skill/CLI.
 
-## Publisher: <br>
-[sebastiangansca](https://clawhub.ai/user/sebastiangansca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[asperitas-solutions](https://clawhub.ai/user/asperitas-solutions)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to format, edit, create, and verify Google Docs through an existing gog workflow while preserving document structure and requiring approval for risky writes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Google Docs changes may overwrite, clear, delete, or substantially replace document content.
+
+Mitigation: Require explicit approval before writes, clears, large replacements, deletions, or changes to shared/work documents with unclear ownership or audience.
+
+Risk: The delegated gog tool may have Google account scopes that affect documents or Drive content.
+
+Mitigation: Confirm the installer trusts and understands gog and its Google account scopes before using the skill.
+
+Risk: Advanced formatting may not be supported by the gog workflow.
+
+Mitigation: Inspect and export the document before editing, verify the result afterward, and propose the nearest gog-supported alternative when formatting is unsupported.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and document authors use this skill to create formatted Google Docs from Markdown, update placeholders or sections, make small edits, and verify the result through gog. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Google Docs write operations can overwrite or delete document content, especially clears, full rewrites, large replacements, or edits to shared work documents. <br>
-Mitigation: Confirm the target document and intended change before writing, inspect or export the document first, and prefer bounded replacements or a backup copy for full rewrites. <br>
-Risk: The workflow depends on a separate gog tool with access to Google Docs, and temporary exports can contain sensitive document content. <br>
-Mitigation: Use only a trusted, authenticated gog setup for the intended Google account, review document IDs before changes, and remove temporary exports when no longer needed. <br>
+**Output Format:** [Markdown guidance with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Instruction-only; Google Docs and Drive operations are delegated to the existing gog tool.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; delegates Google Docs and Drive operations to gog.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

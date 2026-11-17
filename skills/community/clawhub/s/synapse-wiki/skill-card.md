@@ -1,45 +1,59 @@
-## Description: <br>
-Synapse Wiki builds and maintains a persistent local knowledge base by ingesting source materials, creating structured wiki pages, answering queries, and checking wiki health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synapse Wiki helps an agent initialize, ingest into, query, and health-check a persistent Markdown wiki knowledge base.
 
-## Publisher: <br>
-[ankechenlab-node](https://clawhub.ai/user/ankechenlab-node) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ankechenlab-node](https://clawhub.ai/user/ankechenlab-node)
 
-## Use Case: <br>
-Developers, knowledge workers, and documentation maintainers use this skill to create a local wiki, ingest raw notes or articles, query accumulated knowledge, and inspect wiki link health. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently writes wiki summaries, indexes, logs, and query outputs to local paths selected by the user. <br>
-Mitigation: Use a dedicated wiki folder and review generated files before sharing or syncing them. <br>
-Risk: Raw materials may contain secrets or private project information that become summarized or logged in the local wiki. <br>
-Mitigation: Avoid placing secrets in raw sources and review generated pages before publication or team distribution. <br>
-Risk: Automatic synapse-code/wiki logging can preserve technical decisions and project context that may not be appropriate for every repository. <br>
-Mitigation: Enable automatic logging only for projects where persistent documentation of development decisions is acceptable. <br>
+## Use Case:
 
+Developers, writers, and knowledge workers use this skill to create and maintain a local structured wiki from source notes, articles, papers, and project records. It supports recurring workflows for ingesting raw material, querying accumulated knowledge, and checking wiki health.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ankechenlab-node/synapse-wiki) <br>
-- [Publisher profile](https://clawhub.ai/user/ankechenlab-node) <br>
-- [Project homepage](https://github.com/ankechenlab-node/synapse-wiki) <br>
-- [Karpathy LLM Wiki reference](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, terminal text, wiki files, and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local wiki directories, summary pages, index files, logs, and query output files under user-selected paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence and frontmatter) <br>
+Risk: Installation modifies the local Claude skills directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted source and review the release contents before running the installer.
+
+Risk: Wiki operations create and update persistent files under the wiki root supplied by the user.
+
+Mitigation: Run commands only against an intended wiki directory and keep backups or version control for important knowledge bases.
+
+Risk: Generated summaries, concepts, and query answers can contain incomplete placeholders or misleading synthesis.
+
+Mitigation: Review generated Markdown before relying on it, publishing it, or promoting it into long-lived wiki pages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ankechenlab-node/skills/synapse-wiki)
+- [Project homepage](https://github.com/ankechenlab-node/synapse-wiki)
+- [Karpathy llm-wiki Gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, terminal text, shell commands, and generated local Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates files under the user-provided wiki root, including raw, wiki, log, and outputs paths.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

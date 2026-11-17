@@ -1,43 +1,55 @@
-## Description: <br>
-Guides users through short DISC-based quizzes and provides install commands for follow-on AI communication personalization skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discovers a user's DISC personality type or predicts another person's likely DISC style, then recommends a matching AI communication skill to install.
 
-## Publisher: <br>
-[lukethomas14](https://clawhub.ai/user/lukethomas14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lukethomas14](https://clawhub.ai/user/lukethomas14)
 
-## Use Case: <br>
-External users and teams use this skill to estimate their own or another person's DISC communication style, then install a matching communication personalization or coaching skill. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate broadly for personality, DISC, communication coaching, meeting preparation, or difficult conversation prompts. <br>
-Mitigation: Confirm that the user wants DISC-based communication personalization before using the quiz or recommending follow-on skills. <br>
-Risk: The skill recommends installing follow-on personalization skills that may change how the agent communicates in later sessions. <br>
-Mitigation: Review the specific follow-on skill and install command before running it. <br>
-Risk: Short DISC quizzes provide rough estimates and may be less precise than a full assessment. <br>
-Mitigation: Present results as likely matches and direct users to a full DISC assessment when they need higher confidence. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Crystal DISC framework](https://www.crystalknows.com/disc) <br>
-- [Crystal DISC personality test](https://www.crystalknows.com/disc-personality-test) <br>
-- [Crystal personality prediction](https://www.crystalknows.com/sales) <br>
+## Use Case:
 
+Developers and end users use this skill to personalize AI communication style through a short DISC quiz or to get communication coaching for interacting with another person.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Conversational Markdown with inline install commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; outputs quiz prompts, DISC type recommendations, and suggested follow-on skill installation commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may recommend unpinned external skill installation.
+
+Mitigation: Review the exact package, version, target skill, and publisher before running the suggested install command.
+
+Risk: The skill directs users to branded external personality services, including workflows that may profile another person.
+
+Mitigation: Treat external assessment and profile-prediction links as optional and consider consent, privacy, and organizational policy before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lukethomas14/skills/personality)
+- [Crystal DISC Framework](https://www.crystalknows.com/disc)
+- [Crystal DISC Personality Test](https://www.crystalknows.com/disc-personality-test)
+- [Crystal Sales Personality Prediction](https://www.crystalknows.com/sales)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with quiz prompts, scoring guidance, links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend installing additional personality-specific skills after quiz scoring.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

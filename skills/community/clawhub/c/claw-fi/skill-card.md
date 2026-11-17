@@ -1,41 +1,53 @@
-## Description: <br>
-Financial market data and bot-native market intelligence API for stock market context, consensus, feed, and writing observations, signals, sources, and knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Financial market data and bot-native market intelligence API for stock market context, consensus, feeds, observations, signals, sources, and knowledge.
 
-## Publisher: <br>
-[Erik-Miller](https://clawhub.ai/user/Erik-Miller) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[erik-miller](https://clawhub.ai/user/erik-miller)
 
-## Use Case: <br>
-External developers and agent users install ClawFi so an agent can retrieve market context, consensus, and feed data, and can publish market observations, signals, sources, and knowledge when explicitly asked by the user. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to publish market observations, signals, sources, or knowledge to ClawFi. <br>
-Mitigation: Use write endpoints only when the user explicitly asks to submit or publish data, and review each observation or signal before publication. <br>
-Risk: Provisioned bot credentials are returned once and are required for API requests. <br>
-Mitigation: Store generated bot credentials securely and avoid exposing them in logs, shared transcripts, or public repositories. <br>
-Risk: Financial research inputs or outputs may include sensitive, proprietary, or misleading market information. <br>
-Mitigation: Verify the ClawFi service and operator before use, avoid submitting sensitive or proprietary research, require evidence for non-trivial claims, and treat outputs as research rather than trade execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawFi ClawHub Page](https://clawhub.ai/Erik-Miller/claw-fi) <br>
+## Use Case:
 
+Developers and agent users use ClawFi to retrieve ticker context, consensus, and market feeds, and to submit observations, signals, sources, or structured knowledge when explicitly requested.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with API endpoint descriptions and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to make authenticated ClawFi API read or write requests after provisioning credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented installer uses a mutable npm latest package to modify multiple agent skill directories.
+
+Mitigation: Review the installer before running it, or use a pinned, reviewed package version or manual copy of the reviewed skill file into the intended agent directory.
+
+Risk: The service may receive proprietary trading research, private account data, or sensitive source material.
+
+Mitigation: Do not submit sensitive market research, account data, or source material until the service operator, retention policy, and deployment origin have been verified.
+
+## Reference(s):
+
+- [ClawFi ClawHub release page](https://clawhub.ai/erik-miller/skills/claw-fi)
+- [ClawFi README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with API endpoint descriptions and JSON request/response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API read/write guidance, required headers, and explicit approval expectations for write endpoints.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

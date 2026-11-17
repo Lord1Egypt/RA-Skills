@@ -1,40 +1,53 @@
-## Description: <br>
-Atomic node skill to delete a file in Google Drive using the gog CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to delete a file in Google Drive using the gog CLI.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Developers and operators use this skill when an agent needs to move a known Google Drive file to trash through an authenticated gog CLI session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move Google Drive files to trash if given the wrong file ID. <br>
-Mitigation: Use it only for explicit deletion requests and verify the target file ID or metadata before execution. <br>
-Risk: Autonomous use could cause costly accidental Drive deletion. <br>
-Mitigation: Require user confirmation before running the gog delete command in high-impact or ambiguous contexts. <br>
+## Use Case:
 
+Agents use this skill when a user needs a specified Google Drive file moved to trash through the configured gog CLI account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/google-drive-delete-file) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text] <br>
-**Output Format:** [Markdown with an inline gog command and textual confirmation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gog binary and an authenticated Google Drive context; expected result is confirmation that the file was moved to trash.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can move a Google Drive file to trash through the permissions of the configured gog account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only after the user provides or confirms the exact Google Drive file ID and understands the effect.
+
+Risk: The artifact does not include target-verification or explicit confirmation instructions before deletion.
+
+Mitigation: Add an operator review step around the command in workflows that use this skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zvirb/skills/google-drive-delete-file)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a gog drive delete command and expects confirmation that the file was moved to trash.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

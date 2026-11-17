@@ -1,7 +1,7 @@
 ---
 name: "pet-calming-trigger-analysis"
 description: "Automatically triggers soothing mechanisms (playing relaxing sounds, activating laser toys) when pet anxiety, howling, or prolonged loneliness is detected; a smart companion for pet care. | 宠物安抚触发技能，检测到宠物焦虑、嚎叫、长时间孤独时，自动触发安抚机制（播放舒缓音效、开启激光逗宠），智能宠物陪伴好帮手"
-version: "1.0.6"
+version: "1.0.25"
 license: "MIT-0"
 ---
 

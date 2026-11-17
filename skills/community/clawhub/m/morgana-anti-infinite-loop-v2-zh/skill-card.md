@@ -1,41 +1,56 @@
-## Description: <br>
-A lightweight Chinese-language Python guard for LLM agents that detects and responds to repeated or looping behavior with predictive checks, healing directives, pause behavior, or abort signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Morgana Anti Infinite Loop V2 Zh is a Chinese-language Python guard for LLM agents that detects repeated or looping behavior and returns heal, pause, or abort directives.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kofna3369](https://clawhub.ai/user/kofna3369)
 
-## Use Case: <br>
-External developers and engineers use this skill to add loop detection and recovery behavior to LLM agents, including coding agents, RAG chatbots, batch workflows, and multi-agent systems. It helps identify repeated actions, low novelty, intent drift, rapid retry patterns, and known loop signatures before choosing a heal, pause, or abort response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cross-session loop memory can store samples of agent actions locally in ~/.anti_loop/loops.json. <br>
-Mitigation: Avoid passing secrets or sensitive business content as action strings, and periodically inspect or delete the local loop memory file for private workflows. <br>
+## Use Case:
 
+Developers and engineers building LLM agents use this skill to monitor agent actions, detect likely infinite loops or intent drift, and recover before repeated tool calls or token use escalate. It is aimed at agent runtimes that need lightweight loop detection with a zero-dependency core and optional Python extras.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kofna3369/morgana-anti-infinite-loop-v2-zh) <br>
-- [PyPI project: anti-loop](https://pypi.org/project/anti-loop/) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, JSON-like directives, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The runtime guard returns structured intervention results with fields such as intervene, loop_type, directive, and stats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Heal mode can pass user-derived action or intent text into a system message.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer pause or hard_kill mode for sensitive agents, or change heal handling so observed text is quoted as lower-privilege context.
+
+Risk: LoopDNA can persist raw loop actions locally.
+
+Mitigation: Disable or redirect LoopDNA storage where possible, and avoid passing secrets, private prompts, or raw tool arguments into observe().
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kofna3369/skills/morgana-anti-infinite-loop-v2-zh)
+- [PyPI project](https://pypi.org/project/anti-loop/)
+- [Artifact README](artifact/README.md)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Python dictionaries, JSON-style CLI output, and Markdown documentation with code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return heal, pause, or abort directives; optional extras enable additional numerical or multi-agent behavior.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and pyproject.toml report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

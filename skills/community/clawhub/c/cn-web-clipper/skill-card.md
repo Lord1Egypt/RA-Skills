@@ -1,41 +1,54 @@
-## Description: <br>
-Cn Web Clipper fetches a user-provided webpage, extracts readable article text and metadata, and saves the clipping as a local Markdown file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Web Clipper extracts article content from web page URLs and saves the result as local Markdown, with optional cloud output modes described in the artifact.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-External users and developers use this skill to clip web articles into local Markdown notes from URLs they provide. It is suited to personal knowledge capture, article archiving, and lightweight research workflows where local files are acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches user-provided URLs and can save extracted content from sensitive internal or private pages. <br>
-Mitigation: Use it only with URLs intended for clipping, and choose a dedicated output folder for saved Markdown files. <br>
-Risk: Repeated clips with the same date and title can produce the same Markdown filename. <br>
-Mitigation: Review the output path before relying on a saved clip, and rename or separate outputs when clipping multiple similar pages. <br>
+## Use Case:
 
+Developers and content workers use this skill to clip web articles into Markdown archives from supplied URLs. It is suited for local web research capture where users can review outbound requests and saved content.
 
-## Reference(s): <br>
-- [Cn Web Clipper ClawHub page](https://clawhub.ai/freedompixels/cn-web-clipper) <br>
-- [freedompixels publisher profile](https://clawhub.ai/user/freedompixels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown files with plain-text CLI status and optional JSON result output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes extracted webpage content to a local output directory selected by CLI argument or environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.7 (source: server release evidence) <br>
+Risk: The skill makes outbound requests to user-supplied URLs and may fetch untrusted or internal resources if run in a privileged environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against trusted public URLs or in a network-restricted environment with appropriate outbound request controls.
+
+Risk: Cloud output modes and credential handling are under-documented in the release evidence.
+
+Mitigation: Review cloud integration behavior before enabling Feishu or Notion output, and avoid exposing credentials until that review is complete.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/freedompixels/skills/cn-web-clipper)
+- [Publisher profile](https://clawhub.ai/user/freedompixels)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Files]
+
+**Output Format:** [Markdown files with terminal status text and a JSON result object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes clipped content locally by default; optional Feishu and Notion modes are present but require separate dependency and credential review.]
+
+## Skill Version(s):
+
+1.2.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

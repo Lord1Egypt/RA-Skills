@@ -1,42 +1,59 @@
-## Description: <br>
-Intelligent task routing system that identifies task types (web/code/data/doc/chat) and routes to optimal models with appropriate execution mode (subagent/main session). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hive Task Router identifies task types such as web, code, data, documentation, and chat, then recommends an appropriate model and execution mode for OpenClaw.
 
-## Publisher: <br>
-[qiongqiongcaocao](https://clawhub.ai/user/qiongqiongcaocao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiongqiongcaocao](https://clawhub.ai/user/qiongqiongcaocao)
 
-## Use Case: <br>
-Developers and agents use this skill to classify incoming work, select a configured model provider, and route code, web, data, documentation, chat, or batch tasks to an appropriate OpenClaw execution mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically delegate prompts to configured model providers or subagents, including sensitive, costly, or parallel work. <br>
-Mitigation: Review routing decisions before execution and require confirmation for sensitive, high-cost, or parallel tasks. <br>
-Risk: The router shell script sources a writable cache file as shell code. <br>
-Mitigation: Keep the cache directory private and patch the router to parse cached values safely instead of sourcing the file. <br>
+## Use Case:
 
+Developers and agent operators use this skill in OpenClaw environments to classify user tasks and generate recommended model and session commands for code, research, data, documentation, chat, and batch work. It is intended for configurable routing across multiple AI model providers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiongqiongcaocao/hive-task-router) <br>
-- [Publisher profile](https://clawhub.ai/user/qiongqiongcaocao) <br>
-- [Configuration guide](artifact/config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and model-routing recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes tasks by keyword-detected type and may recommend subagent or main-session execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: The router loads a writable model validation cache as shell code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep HIVE_CACHE_DIR private and trusted, and review or patch cache loading to parse key-value data without source execution before automated deployment.
+
+Risk: The router prints copyable OpenClaw commands containing unescaped task and model values.
+
+Mitigation: Do not execute printed commands automatically; shell-escape generated values or invoke OpenClaw through argument arrays.
+
+Risk: Automatic subagent routing can delegate sensitive or high-impact tasks without additional review.
+
+Mitigation: Treat subagent routing as opt-in for sensitive work and require a human review step before running generated commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiongqiongcaocao/skills/hive-task-router)
+- [Publisher profile](https://clawhub.ai/user/qiongqiongcaocao)
+- [Configuration guide](artifact/config.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Terminal text with shell command examples and Markdown documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes one task description at a time; batch usage repeats the same routing pattern for parallel subagent commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

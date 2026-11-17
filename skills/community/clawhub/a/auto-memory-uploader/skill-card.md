@@ -1,40 +1,53 @@
-## Description: <br>
-Automatically saves important conversation details to memory files every two messages, when the user asks to save memory, or when important information is detected. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Memory Uploader helps an agent save important conversation notes to local memory files every two turns, on manual request, or when important information is detected.
 
-## Publisher: <br>
-[nameefef](https://clawhub.ai/user/nameefef) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nameefef](https://clawhub.ai/user/nameefef)
 
-## Use Case: <br>
-Users who want durable conversation memory use this skill to save decisions, preferences, tasks, project status, and other important context into local Markdown memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory files may capture personal, project, or confidential details from chats. <br>
-Mitigation: Use only when durable local memory is intended, avoid sharing sensitive personal, legal, medical, financial, account, or confidential work details while it is active, and periodically inspect or delete saved memory files. <br>
-Risk: Automatic saving can occur frequently, including every two conversation turns, with limited consent and cleanup controls. <br>
-Mitigation: Confirm the desired memory scope before enabling the skill and review saved notes regularly. <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to maintain local notes about important decisions, preferences, tasks, project status, and other conversation context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nameefef/auto-memory-uploader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown notes written to local memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes daily notes under memory/YYYY-MM-DD.md and periodically updates MEMORY.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill persists conversation-derived information broadly and repeatedly without clear per-save user control or retention controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, consider requiring confirmation before each write, and periodically inspect or delete memory/YYYY-MM-DD.md and MEMORY.md.
+
+Risk: Stored memory files may include inaccurate, stale, or overly broad conversation notes if treated as trusted instructions.
+
+Mitigation: Treat saved memories as notes rather than trusted instructions and review them before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nameefef/skills/auto-memory-uploader)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown notes written to local memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses memory/YYYY-MM-DD.md for daily notes and MEMORY.md for longer-term consolidation.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

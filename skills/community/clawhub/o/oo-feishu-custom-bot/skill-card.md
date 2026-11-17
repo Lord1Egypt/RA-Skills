@@ -1,45 +1,55 @@
-## Description: <br>
-Helps an agent send Feishu/Lark custom bot webhook messages through an OOMOL-connected account using the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send text, image, interactive card, rich-text post, and shared-chat messages through a connected Feishu Custom Bot.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to have an agent send approved Feishu/Lark custom bot messages, including text, image, rich post, interactive card, and shared-chat messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill description is broader than the documented actions and could be mistaken for support for reading or updating Feishu data. <br>
-Mitigation: Use it only for the documented Feishu/Lark custom bot send-message actions unless the publisher updates the documented action set. <br>
-Risk: All documented send actions are write operations that can post unintended content to Feishu/Lark. <br>
-Mitigation: Inspect the live connector schema and confirm the exact message payload and effect with the user before execution. <br>
-Risk: The skill requires a connected account and sensitive credentials managed through OOMOL. <br>
-Mitigation: Install it only for Feishu/Lark custom bot messaging workflows and avoid exposing raw tokens in prompts, files, or command arguments. <br>
+## Use Case:
 
+External users and developers use this skill to send messages through a Feishu Custom Bot connected to their OOMOL account.
 
-## Reference(s): <br>
-- [Feishu Custom Bot homepage](https://www.feishu.cn) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-feishu-custom-bot) <br>
-- [Publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live connector schema inspection before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and skill frontmatter) <br>
+Risk: Setup can run software whose behavior has not been verified and may add other agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the installer release before running it, and inspect any skills it adds.
+
+Risk: Messages are sent to Feishu recipients through write actions.
+
+Mitigation: Keep confirmation enabled and review the recipients and message content before sending.
+
+## Reference(s):
+
+- [Feishu Custom Bot API documentation](https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [Feishu](https://www.feishu.cn)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON]
+
+**Output Format:** [oo CLI commands with JSON payloads and structured connector responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends one message action per connector call.]
+
+## Skill Version(s):
+
+1.0.5 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

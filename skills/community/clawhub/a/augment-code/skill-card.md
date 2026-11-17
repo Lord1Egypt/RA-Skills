@@ -1,40 +1,53 @@
-## Description: <br>
-Augment Code is an AI coding assistant for enterprise-scale code understanding, large-codebase navigation, and context-aware code completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Augment Code is an AI coding assistant guide for enterprise codebase understanding, large-repository navigation, context-aware completion, IDE chat, and agent-mode coding workflows.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and engineering teams use this skill for guidance on using Augment Code to navigate large repositories, ask codebase questions, receive context-aware completions, and coordinate multi-file coding changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository indexing can expose sensitive code or secrets if access is granted too broadly. <br>
-Mitigation: Confirm the official Augment extension identity, grant access only to intended repositories, review privacy and retention settings, and exclude secrets or sensitive folders where possible. <br>
-Risk: Agent-generated code changes can be incorrect or misaligned with project requirements. <br>
-Mitigation: Inspect generated changes before applying them and run the relevant test suite before relying on the result. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to understand Augment Code capabilities, IDE support, installation steps, and suitable workflows for large enterprise repositories, microservices, legacy maintenance, onboarding, and code review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhangifonly/augment-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The recommended IDE extension may access source code in authorized workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the extension publisher, workspace and repository scope, and organizational policy for indexing private source code before installation.
+
+Risk: The skill documentation is Chinese-only, which may make review harder for non-Chinese readers.
+
+Mitigation: Have a qualified reader or translation workflow review the instructions before relying on them in a production environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/augment-code)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language informational guidance with no bundled executable behavior]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,50 @@
-## Description: <br>
-Guides agents through Freebeat MCP workflows to upload media, generate effects or music videos, poll asynchronous tasks, and return completed video and cover URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Freebeat MCP workflows for generating AI music videos and effects, including media upload, parameter validation, asynchronous polling, and result retrieval.
 
-## Publisher: <br>
-[d3ter28](https://clawhub.ai/user/d3ter28) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[d3ter28](https://clawhub.ai/user/d3ter28)
 
-## Use Case: <br>
-External users and developers use this skill to run Freebeat MCP creative workflows from an agent, turning prompts plus uploaded or default media into generated effects or music videos with status polling and result retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided audio, images, or URLs are sent to Freebeat or its underlying MCP service. <br>
-Mitigation: Avoid private, sensitive, copyrighted, or confidential media unless the user understands the service's retention, sharing, account, and billing terms. <br>
+## Use Case:
 
+External users and developers use this skill to run Freebeat MCP effect-generation and music-video workflows from an MCP-capable client, including required media uploads, option selection, task polling, and final video retrieval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/d3ter28/freebeatfit-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown progress updates and final video or cover URL summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes task type, task_id, status, video_url, cover_url, or failure code and next fix step when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Audio files, image files, prompts, and media URLs may be sent to the Freebeat MCP service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive, private, or copyrighted media unless the user accepts that service's terms and data handling.
+
+## Reference(s):
+
+- [Freebeat Music Video Generator on ClawHub](https://clawhub.ai/d3ter28/skills/freebeatfit-ai)
+- [d3ter28 Publisher Profile](https://clawhub.ai/user/d3ter28)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Markdown status updates with generated video and cover URLs when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports task status and waits for completion before returning result URLs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

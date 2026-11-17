@@ -1,38 +1,52 @@
-## Description: <br>
-Trend Analyst detects emerging trends, forecasts industry changes, and develops future scenarios to support strategic planning and competitive positioning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+專業趨勢分析師，負責偵測新興趨勢、預測產業變化、發展未來情境，以支持策略規劃與競爭定位。
 
-## Publisher: <br>
-[peterlwh62-arch](https://clawhub.ai/user/peterlwh62-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[peterlwh62-arch](https://clawhub.ai/user/peterlwh62-arch)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Analysts, strategists, and business teams use this skill to scan emerging signals, evaluate trend trajectories, develop future scenarios, and produce actionable foresight for strategy planning and competitive positioning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Web and X/social search can surface stale, noisy, or misleading trend signals.
+
+Mitigation: Cross-check important findings against reliable sources and clearly label uncertainty, time horizon, and confidence.
+
+Risk: Host-agent memory may retain trend research notes or user preferences across sessions.
+
+Mitigation: Review or disable memory behavior when working with sensitive research topics or private strategy context.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Strategy, market, and planning teams use this skill to scan signals across industries, evaluate trend impact and uncertainty, and turn findings into forward-looking recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Trend research may use web, X, and memory tools, so prompts could expose sensitive private or business information to research workflows. <br>
-Mitigation: Avoid including sensitive private or business information unless those tools are approved for the analysis, and review outputs before using them for decisions. <br>
+**Output Format:** [Markdown or structured prose trend-analysis brief]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Trend Analyst ClawHub page](https://clawhub.ai/peterlwh62-arch/trend-analyst) <br>
+**Other Properties Related to Output:** [May use web, web fetch, X/social search, and memory tools when available through the host agent.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include trend signals, impact assessments, scenarios, recommendations, uncertainty notes, and monitoring suggestions.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

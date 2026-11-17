@@ -1,46 +1,56 @@
-## Description: <br>
-Use the BrickEconomy API through the included CLI for LEGO set/minifig valuation, collection performance, and sales-ledger analysis from verified Brick Directory references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the BrickEconomy API through the included CLI for LEGO set/minifig valuation, collection performance, and sales-ledger analysis from verified Brick Directory references.
 
-## Publisher: <br>
-[musketyr](https://clawhub.ai/user/musketyr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[musketyr](https://clawhub.ai/user/musketyr)
 
-## Use Case: <br>
-AFOL collectors and LEGO investment analysts use this skill to query BrickEconomy for set and minifig values, collection performance, forecasts, and sales-ledger profit/loss analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Server security evidence marks the release verdict as suspicious. <br>
-Mitigation: Install only if the publisher is trusted and the workflow is needed; review the skill before installation. <br>
-Risk: The skill requires a sensitive BrickEconomy API key for live requests. <br>
-Mitigation: Provide the key only through BRICKECONOMY_API_KEY and avoid printing, logging, or pasting the real value. <br>
-Risk: Collection and sales-ledger responses can contain private financial or account data. <br>
-Mitigation: Call personal collection or sales-ledger endpoints only when the user asks for that analysis, and summarize private fields rather than exposing raw records. <br>
+## Use Case:
 
+External users and developers use this skill to query BrickEconomy for LEGO set and minifig valuation, authenticated collection performance, forecasts, ROI, and sales-ledger profit/loss analysis.
 
-## Reference(s): <br>
-- [BrickEconomy OpenAPI reference](references/openapi/brickeconomy.yaml) <br>
-- [BrickEconomy tool guidance](references/prompts/brickeconomy-tools.txt) <br>
-- [BrickEconomy API](https://www.brickeconomy.com/api/v1) <br>
-- [BrickEconomy website](https://www.brickeconomy.com) <br>
-- [AFOL BrickEconomy ClawHub listing](https://clawhub.ai/musketyr/afol-brickeconomy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only BrickEconomy CLI workflows; live API calls require BRICKECONOMY_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The BrickEconomy API key can be sent to an arbitrary configured base URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default BrickEconomy API endpoint only, and do not set BRICKECONOMY_BASE_URL or pass --base-url unless the endpoint is confirmed as https://www.brickeconomy.com/api/v1.
+
+Risk: Collection and sales-ledger commands can expose private financial, order, and note data in terminal output or agent logs.
+
+Mitigation: Run authenticated collection or sales-ledger commands only when the user asks for that analysis, summarize results, and avoid pasting full private records into shared reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/musketyr/skills/afol-brickeconomy)
+- [BrickEconomy OpenAPI reference](references/openapi/brickeconomy.yaml)
+- [BrickEconomy tool guidance](references/prompts/brickeconomy-tools.txt)
+- [BrickEconomy API](https://www.brickeconomy.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with CLI command examples and JSON API-response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live use requires BRICKECONOMY_API_KEY; dry-run commands can show request shape without calling the API.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

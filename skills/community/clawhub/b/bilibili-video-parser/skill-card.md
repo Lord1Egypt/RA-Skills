@@ -1,42 +1,58 @@
-## Description: <br>
-下载并解析B站视频，用于需要理解视频视觉信息的单条B站视频分析任务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads a single Bilibili video with yt-dlp and passes the local video file to a video-analysis skill for visual understanding.
 
-## Publisher: <br>
-[danielcy](https://clawhub.ai/user/danielcy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielcy](https://clawhub.ai/user/danielcy)
 
-## Use Case: <br>
-Developers and agent users use this skill to resolve a Bilibili video link or BV ID, download the video with yt-dlp, and pass the local video to a video-analysis skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download remote video content and create local workspace files. <br>
-Mitigation: Use explicit user-provided Bilibili links or BV IDs, review the target storage path before download, and remove retained video files when no longer needed. <br>
-Risk: The skill depends on an external yt-dlp executable or YT_DLP_PATH setting. <br>
-Mitigation: Install yt-dlp from a trusted source, verify the configured binary path, and stop if the expected command is unavailable. <br>
-Risk: Remote videos may be untrusted or oversized. <br>
-Mitigation: Avoid untrusted or unexpectedly large links and monitor workspace storage during download-heavy use. <br>
+## Use Case:
 
+Developers and external users can use this skill when an agent needs to download a Bilibili video by URL or BV ID and analyze the downloaded visual content. The workflow checks for yt-dlp, stores videos under the workspace, and delegates analysis to a separate video-analysis skill.
 
-## Reference(s): <br>
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command blocks and local video file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or reuse MP4 files under ./bilibili/videos and requires yt-dlp, optionally configured by YT_DLP_PATH.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The download command may be unsafe if BV IDs or Bilibili URLs are accepted without validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate BV IDs and Bilibili HTTPS URLs, pass arguments without shell interpolation, and add -- before the URL.
+
+Risk: The workflow may install the doubao-video-analyze skill without a verified source.
+
+Mitigation: Require explicit approval or a pinned trusted source before installing doubao-video-analyze.
+
+Risk: The skill downloads Bilibili videos into the workspace.
+
+Mitigation: Use only when workspace video downloads are acceptable for the user's permissions, storage, and data-handling requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielcy/skills/bilibili-video-parser)
+- [yt-dlp project](https://github.com/yt-dlp/yt-dlp)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands, workspace file paths, and delegated analysis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires yt-dlp or YT_DLP_PATH and may create MP4 files under ./bilibili/videos.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

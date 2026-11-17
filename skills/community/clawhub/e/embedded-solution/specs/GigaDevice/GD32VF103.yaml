@@ -1,0 +1,50 @@
+part: GD32VF103
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "GigaDevice GD32VF103 \u2014 RISC-V MCU (GD32 series)"
+main_page: https://www.gigadevice.com/product/mcu/low-power-mcus/gd32vf103-series
+datasheet_path_expected: ../../embedded_dev/gigadevice/datasheet/GD32VF103_datasheet.pdf
+datasheet_source_url: https://www.gd32mcu.com/data/documents/datasheet/GD32VF103_Datasheet_Rev1.7.pdf
+datasheet_source_note: GigaDevice official datasheet (Rev 1.7, 87 pages, 2.4 MB, served from gd32mcu.com which is NOT Cloudflare-gated
+  for the /data/documents/ path). The placeholder yaml pointed at gigadevice.com which redirects to a JS SPA; gd32mcu.com
+  is the actual datasheet host.
+created_at: '2026-06-27T20:39:00+08:00'
+specs:
+  cores: RISC-V 32-bit
+  wireless: none
+  clock_mhz_max: 108
+  ram: 32 KB
+  operating_temp_c_min: -40
+  operating_temp_c_max: 85
+  package:
+  - LQFP100
+  - LQFP64
+  - LQFP48
+  - QFN36
+  flash: up to 128 KB
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 extracted 8 spec fields from gd32mcu.com official datasheet\
+  \ (Rev 1.7, 87 pages, 2.4 MB). The placeholder yaml said gigadevice.com but the actual datasheet is at gd32mcu.com; also\
+  \ fixed cores to drop the misleading Nuclei N200 Bumblebee brand (datasheet only writes RISC-V 32-bit, no Nuclei/Bumblebee\
+  \ mention)."
+- "GD32VF103 \u2014 GigaDevice RISC-V MCU. RISC-V alternative to GD32F103 (ARM Cortex-M3)."
+- 'Family differentiator vs GD32E230xx: Cortex-M (ARM) vs RISC-V architecture.'
+- 'Family differentiator vs GD32F303xx: lower performance tier.'
+- 'Cross-reference: WCH CH32V103R8T6 in same RISC-V MCU tier (different vendor).'
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet PDF: 9/11 spec fields matched
+  (82%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-06-28T10:38:23+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

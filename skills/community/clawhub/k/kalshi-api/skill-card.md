@@ -1,42 +1,56 @@
-## Description: <br>
-Read-only Kalshi API skill for market discovery, liquidity checks, and market validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only Kalshi API skill for market discovery, liquidity checks, and market validation.
 
-## Publisher: <br>
-[BRS999](https://clawhub.ai/user/BRS999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brs999](https://clawhub.ai/user/brs999)
 
-## Use Case: <br>
-Developers and external users use this skill to query read-only Kalshi market data, inspect liquidity, and validate market candidates before separate analysis or paper-trading workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Custom KALSHI_BASE_URL values send requested tickers and filters to the configured endpoint. <br>
-Mitigation: Leave KALSHI_BASE_URL unset or set it only to a trusted Kalshi-compatible endpoint. <br>
-Risk: A separate paper-trading or execution skill may introduce different trading or account risks. <br>
-Mitigation: Review any separate paper-trading or execution skill independently before using it with this read-only market-data skill. <br>
+## Use Case:
 
+External users and developers use this skill to query Kalshi market data, inspect exchange status, discover markets and events, review order books and trades, and validate market opportunities without placing orders.
 
-## Reference(s): <br>
-- [Kalshi API Documentation](https://docs.kalshi.com) <br>
-- [Kalshi Trade API Base Endpoint](https://api.elections.kalshi.com/trade-api/v2) <br>
-- [ClawHub Release Page](https://clawhub.ai/BRS999/kalshi-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI commands return JSON payloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only market data helper; requires Node.js.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The optional KALSHI_BASE_URL override can direct read-only requests to an untrusted endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default Kalshi production API unless you trust the destination, and review any custom base URL before running commands.
+
+Risk: Market data can be stale, unavailable, or insufficient for trading decisions.
+
+Mitigation: Treat results as discovery and validation inputs only, and verify market details before acting in a separate trading workflow.
+
+## Reference(s):
+
+- [Kalshi API Documentation](https://docs.kalshi.com)
+- [Kalshi Production Trade API Base URL](https://api.elections.kalshi.com/trade-api/v2)
+- [ClawHub Skill Page](https://clawhub.ai/brs999/skills/kalshi-api)
+- [Publisher Profile](https://clawhub.ai/user/brs999)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses from the CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only API access; commands return endpoint metadata and Kalshi response data as JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

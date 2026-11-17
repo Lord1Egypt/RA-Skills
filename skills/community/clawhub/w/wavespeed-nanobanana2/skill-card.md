@@ -1,38 +1,57 @@
-## Description: <br>
-Generates images from text prompts by calling the Wavespeed AI NanoBanana2 API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images from text prompts by calling the Wavespeed AI NanoBanana2 API with configurable resolution and image format options.
 
-## Publisher: <br>
-[reroc8](https://clawhub.ai/user/reroc8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[reroc8](https://clawhub.ai/user/reroc8)
 
-## Use Case: <br>
-Developers and agent users can use this skill to generate image assets from natural-language prompts through Wavespeed AI. It is suited to workflows that can send prompt text and generation settings to a third-party image-generation API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generation parameters are sent to Wavespeed AI. <br>
-Mitigation: Do not include secrets, private personal data, regulated data, or confidential business material unless the provider's data-handling terms have been reviewed and accepted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/reroc8/wavespeed-nanobanana2) <br>
-- [Wavespeed AI API Documentation](https://docs.wavespeed.ai/) <br>
+## Use Case:
 
+Developers and agent users can use this skill to request image generation from text prompts through the Wavespeed AI service. It is intended for workflows that need generated visual assets and can provide a valid Wavespeed API key.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Configuration guidance] <br>
-**Output Format:** [JSON response from the Wavespeed AI API, or JSON error objects for missing configuration, missing prompts, or API failures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WAVESPEED_API_KEY. Prompts and generation settings are sent to Wavespeed AI; avoid submitting secrets, private personal data, regulated data, or confidential business material unless the provider terms have been reviewed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security evidence reports unsafe automatic API execution and an exposed API key.
+
+Mitigation: Review before installing; remove hard-coded credentials and any auto-running test block before use.
+
+Risk: The security evidence reports a malformed manifest that can affect user-level skill configuration.
+
+Mitigation: Replace the manifest with a valid skill manifest before registering or executing the skill.
+
+Risk: The security evidence reports vulnerable dependencies.
+
+Mitigation: Update dependencies and re-run security scanning before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/reroc8/skills/wavespeed-nanobanana2)
+- [Wavespeed AI API Documentation](https://docs.wavespeed.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON response with generated image API data or error details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WAVESPEED_API_KEY and a text prompt; optional resolution and output format parameters are documented by the artifact.]
+
+## Skill Version(s):
+
+1.0.3 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

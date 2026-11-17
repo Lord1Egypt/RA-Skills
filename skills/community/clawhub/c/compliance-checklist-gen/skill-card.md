@@ -1,44 +1,59 @@
-## Description: <br>
-Generates industry-specific and region-specific compliance checklists to streamline regulatory adherence and audit preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates industry-specific and region-specific compliance checklists to streamline regulatory adherence and audit preparation.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security, compliance, risk, and audit teams use this skill to generate an initial compliance checklist for a selected industry and region. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated checklist items may be incomplete or unsuitable for a specific legal or regulatory context. <br>
-Mitigation: Treat the checklist as a starting point and have qualified compliance or legal reviewers validate it before relying on it. <br>
-Risk: Industry and region inputs may disclose internal planning or compliance scope. <br>
-Mitigation: Avoid entering sensitive internal details beyond the required industry and region. <br>
+## Use Case:
 
+Security teams, compliance officers, risk managers, and internal audit teams use this skill to request industry- and region-specific compliance checklists for audit preparation and governance planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/compliance-checklist-gen) <br>
-- [Compliance Checklist Generator API docs](https://api.mkkpro.com:8020/docs) <br>
-- [Compliance Checklist Generator API route](https://api.mkkpro.com/compliance/checklist-generator) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [JSON checklist content summarized or presented by the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires industry and region inputs; checklist items should be treated as a starting point for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends industry and jurisdiction values to a third-party provider API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only high-level industry and region values unless the provider's privacy and retention terms have been reviewed.
+
+Risk: Generated compliance checklists may be incomplete or unsuitable for a specific audit or regulatory obligation.
+
+Mitigation: Have qualified compliance, legal, or audit personnel review checklist items before using them for regulatory decisions.
+
+Risk: Submitting confidential audit evidence, secrets, internal control details, or regulatory findings could expose sensitive information.
+
+Mitigation: Do not submit customer data, secrets, audit evidence, internal control details, or confidential findings through this skill.
+
+## Reference(s):
+
+- [Compliance Checklist Generator API Docs](https://api.mkkpro.com:8020/docs)
+- [Compliance Checklist Generator API Route](https://api.mkkpro.com/compliance/checklist-generator)
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/compliance-checklist-gen)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON response containing checklist items, framework labels, status values, totals, and estimated completion hours.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires industry and region inputs; output depends on the provider API response.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

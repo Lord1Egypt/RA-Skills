@@ -1,51 +1,62 @@
-## Description: <br>
-Provides automated testing and integration validation for OpenClaw's skill management in agency-agents projects with error handling and logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides automated testing and integration validation for OpenClaw's skill management in agency-agents projects with error handling and logging.
 
-## Publisher: <br>
-[dannyzhao0609](https://clawhub.ai/user/dannyzhao0609) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dannyzhao0609](https://clawhub.ai/user/dannyzhao0609)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to validate OpenClaw skill management workflows, API behavior, accessibility, performance, test evidence, tool choices, workflow quality, and release readiness for agency-agents projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents broad testing and data-handling authority. <br>
-Mitigation: Constrain use to authorized local or staging systems unless production testing is formally approved. <br>
-Risk: Generated test scripts or shell commands may run tools in ways the operator did not intend. <br>
-Mitigation: Review proposed commands and local scripts before execution, and pin external CLI tools where possible. <br>
-Risk: Screenshots, logs, and reports may capture secrets or real user data. <br>
-Mitigation: Use non-production data by default, redact sensitive content, and keep generated evidence out of public or committed locations unless reviewed. <br>
+## Use Case:
 
+Developers and engineers use this skill to validate OpenClaw skill installation, updates, integrations, test results, accessibility, API behavior, performance, tool choices, and workflow quality in agency-agents projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dannyzhao0609/testing-agency-agents-huyue) <br>
-- [Skill overview](artifact/SKILL.md) <br>
-- [Accessibility Auditor](artifact/testing-accessibility-auditor.md) <br>
-- [API Tester](artifact/testing-api-tester.md) <br>
-- [Evidence Collector](artifact/testing-evidence-collector.md) <br>
-- [Performance Benchmarker](artifact/testing-performance-benchmarker.md) <br>
-- [Reality Checker](artifact/testing-reality-checker.md) <br>
-- [Test Results Analyzer](artifact/testing-test-results-analyzer.md) <br>
-- [Tool Evaluator](artifact/testing-tool-evaluator.md) <br>
-- [Workflow Optimizer](artifact/testing-workflow-optimizer.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with code examples, shell commands, JSON examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce testing reports, validation checklists, remediation guidance, screenshots or references to visual evidence, and implementation recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Mandatory local command or script execution can affect repositories, workstations, or connected systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve each target explicitly, inspect project-local scripts before execution, and run tests in an isolated non-production workspace.
+
+Risk: API and performance test personas may run load, stress, or third-party integration tests against systems that should not receive test traffic.
+
+Mitigation: Use authorized non-production endpoints, set rate limits, pin external tool versions, and avoid production systems unless separately approved.
+
+Risk: Tool evaluation and testing workflows may expose sensitive repositories or real user datasets.
+
+Mitigation: Use sanitized fixtures and non-sensitive repositories unless a reviewer explicitly approves the data and target environment.
+
+Risk: Some personas default to negative or biased reporting patterns that can overstate issues or readiness failures.
+
+Mitigation: Require evidence-backed findings, remove biased reporting and persistent-memory instructions where inappropriate, and have a human reviewer confirm conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dannyzhao0609/skills/testing-agency-agents-huyue)
+- [Publisher profile](https://clawhub.ai/user/dannyzhao0609)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, code examples, shell commands, JSON-oriented test output guidance, and configuration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include testing checklists, remediation plans, benchmark summaries, issue findings, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Queries Vipshop product details by product ID or product link and returns structured shopping information after the user has logged in. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询唯品会商品详情，并返回价格、优惠、图片、评价、品牌和商品链接等结构化信息。
 
-## Publisher: <br>
-[viphgta](https://clawhub.ai/user/viphgta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viphgta](https://clawhub.ai/user/viphgta)
 
-## Use Case: <br>
-External users and shopping agents use this skill to retrieve Vipshop product images, prices, discounts, service tags, authenticity information, reviews, and product links from a product identifier. The skill expects a saved Vipshop login and may invoke a companion login flow before querying product data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads saved Vipshop login tokens and can create chat-visible exchange-token links that function as sensitive login material. <br>
-Mitigation: Install and run it only for users who accept this behavior, and do not share generated exchange-token links or leave them in public logs. <br>
-Risk: The skill can automatically install or run the companion Vipshop login skill when no valid login is present. <br>
-Mitigation: Review the companion login skill and confirm the login flow before allowing automatic installation or execution. <br>
+## Use Case:
 
+External users and shopping agents use this skill to look up Vipshop product details from a product ID or product link after Vipshop login is available. It summarizes product images, pricing, discounts, service tags, authenticity information, reviews, and a product link for user-facing comparison or purchase decisions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/viphgta/vipshop-product-detail) <br>
-- [Vipshop product detail API endpoint](https://mapi-pc.vip.com/vips-mobile/rest/shopping/skill/detail/main/v6) <br>
-- [Vipshop exchange-token endpoint](https://passport.vip.com/exchangeTokenFromApp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, JSON, Shell commands] <br>
-**Output Format:** [JSON from the script, usually reformatted by the agent as Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product image URLs and an auto-login exchange-token product link when a valid Vipshop login token is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: Generated product links can expose a logged-in Vipshop session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Return ordinary product-detail URLs unless the publisher removes token-bearing auto-login links and prevents session material from being printed or returned.
+
+Risk: The skill can automatically install or run a separate login skill.
+
+Mitigation: Require explicit user approval and a pinned, reviewed login dependency before installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/viphgta/skills/vipshop-product-detail)
+- [Vipshop product detail main API](https://mapi-pc.vip.com/vips-mobile/rest/shopping/skill/detail/main/v6)
+- [Vipshop exchange-token endpoint](https://passport.vip.com/exchangeTokenFromApp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [JSON from the script, then Markdown or plain text product-detail summary for the user]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes up to three product images and up to two highlighted reviews when returned by the source service.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

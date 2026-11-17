@@ -1,45 +1,62 @@
-## Description: <br>
-IMA Sevio AI Generation lets agents create videos with Ima Sevio 1.0 and Ima Sevio 1.0-Fast across text-to-video, image-to-video, first-last-frame, and reference-image workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates videos with IMA Sevio 1.0 and IMA Sevio 1.0-Fast from text prompts and optional image inputs, returning video and cover URLs.
 
-## Publisher: <br>
-[allenfancy-gan](https://clawhub.ai/user/allenfancy-gan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allenfancy-gan](https://clawhub.ai/user/allenfancy-gan)
 
-## Use Case: <br>
-External creators and agents use this skill to generate short videos from prompts and optional images using the two Sevio model choices. It supports quality-oriented generation, faster drafts, first-last-frame transitions, and reference-image motion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, selected media, and the IMA API key are sent to documented IMA services during generation and local-media upload flows. <br>
-Mitigation: Install only if the publisher and IMA services are trusted, use a revocable API key, and avoid sending sensitive local media. <br>
-Risk: Local logs can retain sensitive request details and may capture an API key during some upload failures. <br>
-Mitigation: Periodically inspect or delete ~/.openclaw/logs/ima_skills/ and ~/.openclaw/memory/ima_prefs.json, especially after failed local-media uploads. <br>
+## Use Case:
 
+External creators and developers use this skill to produce Sevio model videos from text prompts, source images, first/last frames, or reference images in agent workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/allenfancy-gan/ima-sevio-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/allenfancy-gan) <br>
-- [IMA Studio](https://imastudio.com/) <br>
-- [IMA API key page](https://www.imaclaw.ai/imaclaw/apikey) <br>
-- [IMA subscription and credits](https://www.imaclaw.ai/imaclaw/subscription) <br>
-- [Security disclosure](artifact/SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, video URL, guidance] <br>
-**Output Format:** [JSON task/result payloads and concise user-facing text with remote video URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IMA_API_KEY; accepts prompts, model choice, task type, and optional image inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Prompts, task data, API keys, and local media may be sent to IMA services during generation and upload workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher and IMA service endpoints are trusted, use a limited-scope IMA API key when available, and avoid submitting sensitive prompts or media.
+
+Risk: Configurable network endpoints can redirect task or upload traffic if command arguments or environment variables are untrusted.
+
+Mitigation: Do not set --base-url or IMA_IM_BASE_URL outside trusted IMA endpoints, and avoid running the skill with untrusted command arguments or environment variables.
+
+Risk: Preference and operational log files are written under ~/.openclaw and may remain visible on shared machines.
+
+Mitigation: Review or remove local preferences and logs after use, especially on shared systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/allenfancy-gan/skills/ima-sevio-ai)
+- [ClawHub publisher profile](https://clawhub.ai/user/allenfancy-gan)
+- [IMA Studio](https://imastudio.com/)
+- [IMA API key management](https://www.imaclaw.ai/imaclaw/apikey)
+- [IMA subscription and credits](https://www.imaclaw.ai/imaclaw/subscription)
+- [IMA video creation records](https://www.imastudio.com/ai-creation/text-to-video)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [CLI status text and optional JSON containing task_id, url, cover_url, model_id, model_name, and credit.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns remote media URLs for generated videos; local preference and operational log files may be written under ~/.openclaw.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

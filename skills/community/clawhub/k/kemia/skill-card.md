@@ -1,42 +1,59 @@
-## Description: <br>
-Connects an OpenClaw instance to Kemia for visual agent configuration management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect your OpenClaw instance to kemia for visual agent configuration management, including connection setup, deploy-ready config import, status checks, and one-time web login links.
 
-## Publisher: <br>
-[cwendler](https://clawhub.ai/user/cwendler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cwendler](https://clawhub.ai/user/cwendler)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to enroll an OpenClaw workspace with a Kemia deployment, export local agent configuration, check deploy status, generate one-time Kemia login links, and import deploy-ready Kemia snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Importing from Kemia can overwrite workspace markdown files chosen by the server without local filename validation. <br>
-Mitigation: Install only for trusted Kemia deployments; prefer a release that validates filenames against a fixed allowlist and shows the files or diff before overwriting workspace content. <br>
-Risk: The skill stores and uses sensitive Kemia credentials for API access. <br>
-Mitigation: Keep the OpenClaw workspace private, avoid sharing enrollment or one-time login URLs, and rotate credentials by reconnecting if exposure is suspected. <br>
+## Use Case:
 
+Developers and operators use this skill to connect an OpenClaw workspace to a trusted kemia deployment, export agent configuration files, import deploy-ready snapshots, and check connection or deployment status.
 
-## Reference(s): <br>
-- [Kemia API v1 Reference](references/api.md) <br>
-- [Kemia service](https://kemia.byte5.ai) <br>
-- [ClawHub release page](https://clawhub.ai/cwendler/kemia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, markdown] <br>
-**Output Format:** [Terminal text with JSON configuration and imported OpenClaw markdown files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; stores Kemia connection credentials in the OpenClaw workspace and can overwrite workspace markdown files during import.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: A remote kemia server can influence local workspace files during import.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only connect to a kemia server you control or strongly trust, and review deploy-ready snapshots before running import.
+
+Risk: Agent configuration files and API credentials may be exposed to an arbitrary or untrusted URL.
+
+Mitigation: Avoid plain HTTP, verify the base URL before connecting, and treat config.json and generated login links as secrets.
+
+Risk: Imported filenames from the server may overwrite more than the intended agent markdown files.
+
+Mitigation: Review server behavior and imported file lists before deployment; rely on the built-in backup as recovery, not as the primary control.
+
+## Reference(s):
+
+- [kemia API v1 Reference](artifact/references/api.md)
+- [kemia service](https://kemia.byte5.ai)
+- [ClawHub skill release page](https://clawhub.ai/cwendler/skills/kemia)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with shell command references and generated URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local workspace configuration and markdown files when the user runs the bundled scripts.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

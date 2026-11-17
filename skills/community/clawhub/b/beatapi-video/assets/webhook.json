@@ -1,0 +1,8 @@
+{
+  "url": "https://example.com/beatapi-webhook",
+  "description": "Production BeatAPI task events",
+  "events": [
+    "task.succeeded",
+    "task.failed"
+  ]
+}

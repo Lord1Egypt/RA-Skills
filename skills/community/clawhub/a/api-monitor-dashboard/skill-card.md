@@ -1,40 +1,58 @@
-## Description: <br>
-Real-time monitoring dashboard for API uptime, response times, error rates, custom health checks, and alert notifications via email or Slack. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time monitoring dashboard for API uptime, response times, error rates, custom health checks, and alert notifications via email or Slack.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and operators use this skill to start a lightweight local monitor, add trusted API health endpoints, and inspect recent uptime and response checks in a browser dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The monitor performs network checks against configured endpoints and could be misused to reach internal or sensitive services. <br>
-Mitigation: Run it in a dedicated directory, only add endpoints you trust, avoid URLs containing secrets, and do not allow untrusted users to add endpoints. <br>
-Risk: Advertised alerting and historical reporting may not be fully implemented in the artifact. <br>
-Mitigation: Do not rely on email, Slack, or historical reporting behavior until those features are verified in the deployed environment. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to set up API endpoint monitoring, inspect uptime and latency, and receive health-related alerting signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/api-monitor-dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact includes a shell script that creates local runtime files and serves a browser dashboard on localhost:3000.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The dashboard may expose monitoring data over a local web interface without authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the dashboard to 127.0.0.1 or add authentication before using it in a shared or sensitive environment.
+
+Risk: Untrusted endpoint values may be handled unsafely when adding monitored URLs.
+
+Mitigation: Review and fix the jq URL handling before accepting endpoint values from untrusted users.
+
+Risk: Monitoring internal or metadata-service URLs can expose sensitive network information.
+
+Mitigation: Run the skill in a non-sensitive directory and avoid monitoring internal services unless the environment has been reviewed and isolated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/api-monitor-dashboard)
+- [Publisher profile](https://clawhub.ai/user/sunshine-del-ux)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local monitoring files and expose a browser dashboard when the provided shell script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

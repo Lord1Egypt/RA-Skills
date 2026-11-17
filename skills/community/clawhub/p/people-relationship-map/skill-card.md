@@ -1,44 +1,58 @@
-## Description: <br>
-Personal CRM and relationship graph for OpenClaw that tracks people, connections, notes, and stale relationships in Obsidian-friendly Markdown plus a JSON graph index. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+People Relationship Map is a personal CRM and relationship graph skill for OpenClaw that tracks people, their connections, and contextual notes as Obsidian-friendly Markdown with a JSON graph index.
 
-## Publisher: <br>
-[gobiraj](https://clawhub.ai/user/gobiraj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gobiraj](https://clawhub.ai/user/gobiraj)
 
-## Use Case: <br>
-External users and developers use this skill to maintain a local personal CRM, prepare for meetings, query relationship context, and receive reminders about relationships that may need follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores names, relationship links, notes, birthdays, and contact history in local workspace files that may be synced through tools such as Obsidian or cloud storage. <br>
-Mitigation: Review captured entries, avoid secrets or highly sensitive third-party information, and confirm where the people folder is synced before use. <br>
-Risk: Auto-capture can persist personal relationship context from conversations when intent is clear. <br>
-Mitigation: Ask before persisting ambiguous information and periodically review the generated person files and graph index. <br>
-Risk: Optional weekly digests can send relationship reminders to WhatsApp or Telegram channels. <br>
-Mitigation: Enable chat delivery only after confirming the digest content, target channel, and who can see that channel. <br>
+## Use Case:
 
+External users and developers use this skill to maintain a lightweight people directory, record relationship context, query connections, prepare for meetings, and receive stale-relationship reminders from an OpenClaw workspace.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [ClawHub listing](https://clawhub.ai/gobiraj/people-relationship-map) <br>
-- [Project homepage](https://github.com/gobiraj/people-relationship-map) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, JSON graph data, Mermaid graph text, shell command output, and chat-friendly digest text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local people records as Markdown files and a JSON graph index under the user's workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, _meta.json, release metadata) <br>
+Risk: The skill stores personal relationship details as plaintext Markdown and JSON in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid recording sensitive social, family, medical, workplace, or private details unless needed, and apply workspace access controls, backups, and deletion practices appropriate for personal data.
+
+Risk: Auto-capture behavior can persist relationship context from conversation when the intent is clear.
+
+Mitigation: Use explicit commands for writes or require confirmation before persisting new people, notes, touches, or links.
+
+Risk: The optional weekly digest can send relationship summaries to messaging channels.
+
+Mitigation: Do not enable the digest until the destination channel and content are understood and acceptable for the stored relationship data.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/gobiraj/people-relationship-map)
+- [ClawHub skill page](https://clawhub.ai/gobiraj/skills/people-relationship-map)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown person cards, JSON graph records, Mermaid graph text, and chat-friendly text digests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes plaintext people data under the workspace people directory and can print stale-relationship reports for messaging workflows.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, artifact/_meta.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

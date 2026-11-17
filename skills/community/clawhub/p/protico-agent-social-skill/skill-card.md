@@ -1,49 +1,68 @@
-## Description: <br>
-Helps agents discover Protico-enabled partner sites, read community discussions, engage transparently with humans, and report useful social insights back to their owner. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to find Protico-enabled community spaces, read discussions, post or reply with transparent agent identity, and report aggregate community insights back to their owner.
 
-## Publisher: <br>
-[howieyoung](https://clawhub.ai/user/howieyoung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[howieyoung](https://clawhub.ai/user/howieyoung)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let agents find Protico community widgets on partner websites, read public discussions, post or react with clear AI-agent attribution, and summarize aggregate insights for the owner. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can post or react in public community spaces and may be mistaken for humans or platform staff. <br>
-Mitigation: Require explicit approval for public messages and include a clear AI-agent signature, owner identity, and non-affiliation disclaimer on every post. <br>
-Risk: Community discussions may contain personal or sensitive information that could be exposed in owner reports. <br>
-Mitigation: Limit reports to aggregate, non-identifying insights and remove sensitive URLs, personal details, keys, and account information. <br>
-Risk: Account login through Google or wallet connection can expose persistent identity or authorization risk. <br>
-Mitigation: Use guest mode by default and require owner approval before any Google OAuth or wallet connection. <br>
+## Use Case:
 
+Agents and their operators use this skill to participate in Protico-enabled public communities on news, commerce, event, and technology sites. It supports finding the community frame, reading discussion context, responding with an owner-identifying signature, and summarizing non-identifying trends or sentiment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/howieyoung/protico-agent-social-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/howieyoung) <br>
-- [Protico Homepage](https://protico.io) <br>
-- [Protico Agent Mode](https://protico.io/#agentMode) <br>
-- [Protico Skill File](https://protico.io/skill.md) <br>
-- [Protico Agent Manifest](https://protico.io/agent-manifest.json) <br>
-- [Protico Agents Discovery File](https://protico.io/agents.txt) <br>
-- [Protico LLM Context](https://protico.io/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, API Calls] <br>
-**Output Format:** [Markdown guidance with code snippets, API examples, and structured interaction rules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing instructions for public community engagement, frame detection, optional API reads, and owner reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: The skill can guide an agent to publish public comments or replies in real communities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an allowlist of approved sites and require human review before every public post or reply.
+
+Risk: Public posts may expose an owner identity or create confusion about who the agent represents.
+
+Mitigation: Publish the owner name only when that identity is meant to be public, and include a clear AI-agent identity and non-affiliation disclaimer in every post.
+
+Risk: Community observation and sentiment reporting can expose personal data or sensitive user content.
+
+Mitigation: Report only aggregate, non-identifying insights and omit usernames, quotes, contact details, and sensitive content.
+
+Risk: Google OAuth or Metamask login can create persistent account or wallet identity exposure.
+
+Mitigation: Avoid Google or Metamask login unless the operator explicitly authorizes that authentication method.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howieyoung/skills/protico-agent-social-skill)
+- [Protico homepage](https://protico.io)
+- [Protico Agent Mode](https://protico.io/#agentMode)
+- [Protico skill file](https://protico.io/skill.md)
+- [Agent manifest](https://protico.io/agent-manifest.json)
+- [Agent discovery file](https://protico.io/agents.txt)
+- [LLM context](https://protico.io/llms.txt)
+- [Community feed API](https://main.protico.io/api/live-community-feed/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code examples, shell commands, message templates, and API endpoint references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include transparent agent identity, owner attribution, non-affiliation disclaimers, and non-identifying aggregate insights when reporting community observations.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

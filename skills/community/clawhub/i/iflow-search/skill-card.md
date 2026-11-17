@@ -1,42 +1,57 @@
-## Description: <br>
-Provides web search, image search, and webpage content fetch through the iFlow Search API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search, image search, and webpage content fetch via the iFlow Search API.
 
-## Publisher: <br>
-[iflow-ai](https://clawhub.ai/user/iflow-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iflow-ai](https://clawhub.ai/user/iflow-ai)
 
-## Use Case: <br>
-Developers and agents use this skill to search the web, search images, and fetch cleaned webpage content for current-information research and summarization workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, image queries, fetched URLs, and API-key-backed requests are sent to the external iFlow service. <br>
-Mitigation: Avoid submitting secrets, private document links, localhost URLs, or internal-only URLs. <br>
-Risk: The skill requires IFLOW_API_KEY, which can be exposed if stored or shared carelessly. <br>
-Mitigation: Store IFLOW_API_KEY in a secret manager or temporary shell environment and do not commit it to files. <br>
+## Use Case:
 
+Developers and agent users use this skill to search the web, search images, and fetch readable webpage content through the iFlow Search API when current or URL-specific information is needed.
 
-## Reference(s): <br>
-- [iFlow Search Skill Homepage](https://github.com/iflow-ai/iflow-skills/tree/main/skills/iflow-search) <br>
-- [iFlow API Key Setup](https://platform.iflow.cn/profile?tab=apiKey) <br>
-- [iFlow Platform](https://platform.iflow.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON responses from the iFlow Search API scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IFLOW_API_KEY and network access to the iFlow platform.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Search terms and fetched URLs are sent to the iFlow Search API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive queries or confidential URLs unless that data sharing is acceptable for the deployment.
+
+Risk: The documented setup can expose or persist the iFlow API key in shell history or shell configuration.
+
+Mitigation: Use protected secret storage or a temporary environment variable, and do not print the API key during setup checks.
+
+Risk: The shell scripts build JSON request bodies from command-line input.
+
+Mitigation: Avoid attacker-controlled inputs and validate result counts until the scripts use safe JSON encoding.
+
+## Reference(s):
+
+- [iFlow Search skill homepage](https://github.com/iflow-ai/iflow-skills/tree/main/skills/iflow-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON API responses and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires IFLOW_API_KEY and network access to the iFlow Search API.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

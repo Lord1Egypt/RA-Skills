@@ -1,44 +1,57 @@
-## Description: <br>
-Better Memory installs and maintains a native OpenClaw memory stack with daily L1 logs, sidecar L2 summaries, weekly L3 rollups, migration support, and non-destructive review workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Better Memory V2 installs and maintains a native OpenClaw memory stack with daily logs, structured sidecar summaries, weekly rollups, migration tooling, typed capture, and review workflows.
 
-## Publisher: <br>
-[fuuuuujichaos](https://clawhub.ai/user/fuuuuujichaos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuuuuujichaos](https://clawhub.ai/user/fuuuuujichaos)
 
-## Use Case: <br>
-Developers and agent users use this skill to add durable workspace memory, capture typed memory entries, migrate legacy memory cautiously, and run daily, weekly, and monthly maintenance reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates durable workspace memory and managed blocks that can influence future agent behavior. <br>
-Mitigation: Install it only in workspaces where persistent memory is intended, and review generated AGENTS.md and MEMORY.md managed blocks before relying on them. <br>
-Risk: Scheduled maintenance or cleanup workflows could preserve, summarize, or change memory state in ways the user does not expect. <br>
-Mitigation: Review .openclaw-memory-os sidecar files, migration plans, cleanup plans, and the cron template before enabling schedules or applying cleanup actions. <br>
-Risk: Legacy memory migration may import outdated or low-confidence information into the new memory structure. <br>
-Mitigation: Use the generated migration review and editable migration plan, and enable only the items that should be imported as candidate memory. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install persistent memory support, capture typed memory, migrate legacy memory safely, and run daily, weekly, and monthly memory distillation or cleanup-review workflows.
 
-## Reference(s): <br>
-- [Better Memory V2 Schema](references/memory-schema.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fuuuuujichaos/better-memory) <br>
-- [Publisher Profile](https://clawhub.ai/user/fuuuuujichaos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local Markdown, JSON, and text file artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and writes persistent workspace memory state under memory/, MEMORY.md, AGENTS.md managed blocks, and .openclaw-memory-os.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill modifies persistent workspace memory and agent guidance files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review AGENTS.md, MEMORY.md, HEARTBEAT.md, .openclaw-memory-os, and generated review artifacts before relying on the installed memory stack.
+
+Risk: Scheduled runs can repeatedly apply memory distillation or review behavior after installation.
+
+Mitigation: Inspect the generated cron template and enable scheduled commands only after confirming the workspace path, timing, and intended memory lifecycle.
+
+Risk: Untrusted captured or migrated memory text could affect future agent behavior.
+
+Mitigation: Import legacy memory only through reviewed migration plans and avoid capturing untrusted memory text until marker handling is fixed.
+
+## Reference(s):
+
+- [Better Memory V2 Schema (Native-Fusion)](references/memory-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent workspace memory files, managed guidance blocks, review reports, migration plans, cleanup plans, and cron template text.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

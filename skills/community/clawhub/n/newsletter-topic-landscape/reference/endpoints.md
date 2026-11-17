@@ -1,0 +1,59 @@
+# newsletter-topic-landscape — endpoint reference
+
+> Generated from `scripts/tools.json` by `scripts/generate.mjs` — do not edit by hand.
+
+Only the endpoints used by this workflow. Call them via `scripts/crawlora.sh` (see SKILL.md).
+
+All paths are relative to the API base `https://api.crawlora.net/api/v1` and require the header `x-api-key: $CRAWLORA_API_KEY`. Path params like `{id}` are substituted into the URL; `GET` params go in the query string; `POST` params go in a JSON body.
+
+**8 endpoints across 1 platform group(s).**
+
+## Substack (8)
+
+### `substack_categories`
+
+- **HTTP:** `GET /substack/categories`
+- **What:** List Substack categories. Returns every public Substack category, with the category id required by /substack/category. Ids span two spaces: 32 categories use a numeric id and one uses the string id `podcast`. Both are accepted by /substack/category.
+- **Params:** _none_
+
+### `substack_category`
+
+- **HTTP:** `GET /substack/category`
+- **What:** List the publications ranked in one Substack category. Returns one page of a category's public publication leaderboard. Each row carries the publication's subscriber signals and its full subscription offering (web plans with multi-currency pricing, App Store plans, and per-tier benefits). Subscriber totals are published to roughly three significant figures and are opt-in per writer; paid subscriber figures are only ever buckets. Upstream serves 25 publications per page and accepts pages 0-26, so at most 675 publications are reachable per category and type.
+- **Params:** `category_id` (string, **required**) — Category id from /substack/categories. Numeric for 32 categories, or the string podcast.; `page` (integer, optional) — Zero-based page, 0-26; `type` (string, optional) — Ranking to read
+
+### `substack_post`
+
+- **HTTP:** `GET /substack/post`
+- **What:** Get one public Substack post. Returns one public post with the extended metadata the archive listing omits, including word count, every credited byline, and podcast audio details where the post has them. Post bodies are not returned.
+- **Params:** `publication` (string, **required**) — Publication subdomain or custom domain; `slug` (string, **required**) — Post slug, the trailing path segment of the post URL
+
+### `substack_publication`
+
+- **HTTP:** `GET /substack/publication`
+- **What:** Get a Substack publication and its subscription offering. Returns a publication's public profile and its complete subscription offering: every purchasable web plan with per-currency pricing, the separately priced App Store plans, per-tier benefit copy, and the toggles governing which tiers are sold. Identify the publication by name (a subdomain such as semianalysis, or a custom domain such as www.thefp.com) or by numeric publication_id -- exactly one is required. Prefer publication_id when you have it: it reads a compact document, while resolving by name has to parse the publication's full homepage.
+- **Params:** `publication` (string, optional) — Publication subdomain or custom domain. Provide this or publication_id.; `publication_id` (integer, optional) — Numeric publication id. Cheaper than resolving by name. Provide this or publication.
+
+### `substack_publication_contributors`
+
+- **HTTP:** `GET /substack/publication/contributors`
+- **What:** List a Substack publication's public contributors. Returns one page of the writers credited on a publication, ranked as Substack ranks them. Rows include each writer's handle, profile URL, and bestseller badge tier, so a publication can be fanned out into individual /substack/user lookups. Large publications return several hundred contributors on the first page.
+- **Params:** `page` (integer, optional) — Zero-based page; `publication` (string, **required**) — Publication subdomain or custom domain
+
+### `substack_publication_posts`
+
+- **HTTP:** `GET /substack/publication/posts`
+- **What:** List a Substack publication's public post archive. Returns one page of a publication's public post archive with title, subtitle, canonical URL, publish date, engagement counts, and whether each post is paywalled. search filters the publication's own posts full-text; a query with no matches returns an empty list rather than the unfiltered archive.
+- **Params:** `limit` (integer, optional) — Rows per page, 1-50; `offset` (integer, optional) — Zero-based row offset; `publication` (string, **required**) — Publication subdomain or custom domain; `search` (string, optional) — Full-text filter over the publication's own posts; `sort` (string, optional) — Archive ordering
+
+### `substack_publication_recommendations`
+
+- **HTTP:** `GET /substack/publication/recommendations`
+- **What:** List the publications one Substack publication recommends. Returns the publications a given publication recommends to its own readers, as a publication-to-publication graph. Useful for discovering publications beyond the 675-per-category ceiling on /substack/category. publication_id is the numeric id returned by /substack/publication, /substack/category, or /substack/user.
+- **Params:** `publication_id` (integer, **required**) — Numeric publication id
+
+### `substack_search`
+
+- **HTTP:** `GET /substack/search`
+- **What:** Search posts and publications across Substack. Searches posts across all of Substack and returns the publications that also matched, unlike /substack/publication/posts which searches within a single publication. Set focus_publication_id to additionally receive that one publication's own matching posts in focused_posts alongside the site-wide results.
+- **Params:** `focus_limit` (integer, optional) — Cap on focused_posts, 1-20. Requires focus_publication_id.; `focus_publication_id` (integer, optional) — Numeric publication id whose own matching posts are returned in focused_posts; `page` (integer, optional) — Zero-based page, 20 posts per page; `query` (string, **required**) — Search text

@@ -1,45 +1,60 @@
-## Description: <br>
-Syncs Docker Hub images to a CNB.tool registry via GitHub Actions so OpenClaw can pull images when direct Docker Hub access is unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Syncs Docker Hub images to a CNB.tool registry via GitHub Actions to help OpenClaw pull images when direct Docker Hub access fails.
 
-## Publisher: <br>
-[lufei4](https://clawhub.ai/user/lufei4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lufei4](https://clawhub.ai/user/lufei4)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure a private GitHub Actions mirror that copies Docker Hub images into CNB.tool and then pulls them locally when direct Docker Hub access fails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live GitHub and CNB credentials. <br>
-Mitigation: Prefer provider-managed login flows such as gh auth login, avoid pasting tokens into chat, and use the narrowest possible GitHub and CNB tokens. <br>
-Risk: The skill creates or modifies a GitHub repository and installs persistent GitHub Actions automation. <br>
-Mitigation: Confirm the target repository and workflow contents before setup, and remove repository secrets or the workflow when the mirror is no longer needed. <br>
-Risk: The skill stores configuration and secrets in a local OpenClaw environment file. <br>
-Mitigation: Protect ~/.openclaw/.env with restrictive permissions and keep the file on trusted machines only. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure a private GitHub Actions proxy that syncs requested Docker images into CNB, then pull those images locally when Docker Hub access is unavailable.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lufei4/docker-image-sync) <br>
-- [GitHub CLI](https://cli.github.com) <br>
-- [Docker installation documentation](https://docs.docker.com/desktop/install/linux-install/) <br>
-- [CNB](https://cnb.cool/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration values.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local GitHub CLI and Docker CLI setup, plus user-managed GitHub and CNB credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release evidence) <br>
+Risk: GitHub and CNB tokens may be handled by OpenClaw and persisted in local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer gh auth login, avoid pasting tokens into chat, use short-lived narrowly scoped tokens, protect local secret files, and rotate any token previously exposed.
+
+Risk: The skill creates or updates a private GitHub repository, sets Repository Secrets, and pushes a GitHub Actions workflow.
+
+Mitigation: Inspect the workflow before running it, confirm the repository is private, and restrict any GitHub token to the required repository and workflow, contents, and secrets permissions.
+
+Risk: The sync workflow pulls Docker images and republishes them into a CNB registry for later local pulls.
+
+Mitigation: Review requested image names and GitHub Actions results before relying on synced images.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lufei4/skills/docker-image-sync)
+- [GitHub CLI](https://cli.github.com)
+- [Docker Desktop for Linux install docs](https://docs.docker.com/desktop/install/linux-install/)
+- [CNB](https://cnb.cool/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include status messages and commands for setup, image sync, and local image pull operations.]
+
+## Skill Version(s):
+
+0.3.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

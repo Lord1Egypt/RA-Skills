@@ -1,43 +1,58 @@
-## Description: <br>
-Builds and deploys custom AI agents for businesses, specializing in customer service agents, sales assistants, and operational AI bots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and deploys custom AI agents for businesses, including customer service agents, sales assistants, and operational AI bots.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Developers, operators, and business teams use this skill to design and deploy AI assistants for sales, customer service, and operations workflows. It guides discovery, design, integration, deployment, and iteration for agents that connect with tools such as CRMs, help desks, messaging platforms, workflow automation, and knowledge retrieval systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business AI assistants may handle customer, lead, or internal workflow data. <br>
-Mitigation: Test in a sandbox first, minimize customer-data retention, and add privacy, compliance, and rollback procedures before production use. <br>
-Risk: CRM, help desk, messaging, and workflow integrations can create or modify business records. <br>
-Mitigation: Use least-privilege credentials and require human confirmation for every CRM or API write until the workflow has been validated. <br>
-Risk: AI agents can produce incorrect or unsupported responses. <br>
-Mitigation: Define escalation paths, review outputs before deployment, and keep guardrails for hallucination-prone or high-impact interactions. <br>
+## Use Case:
 
+External teams and developers use this skill to plan, build, deploy, and iterate business AI agents for sales, customer service, and operational workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/sales-ai-agent-starter) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/fuzzyb33s) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands, Code] <br>
-**Output Format:** [Markdown guidance with implementation plans, configuration notes, commands, and code when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only guidance; no scanner-detected executable scripts beyond declared Node/OpenClaw installation metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill installs an unpinned executable npm package that can change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted package source, prefer sandboxed or least-privileged environments, and review the resolved package before granting business-system access.
+
+Risk: Business-agent deployments may require CRM, messaging, knowledge-base, or production workflow access.
+
+Mitigation: Use project-scoped credentials, avoid production secrets during setup, and grant only the minimum access needed for the specific agent.
+
+Risk: AI agents can hallucinate or provide incorrect guidance in customer-facing workflows.
+
+Mitigation: Define guardrails, escalation paths, sandbox testing, and post-deployment monitoring before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/skills/sales-ai-agent-starter)
+- [Publisher profile](https://clawhub.ai/user/fuzzyb33s)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, shell commands, and configuration details as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose integrations with CRM, messaging, workflow automation, and knowledge retrieval systems.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

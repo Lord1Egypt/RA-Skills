@@ -1,44 +1,62 @@
-## Description: <br>
-LobsterAds helps OpenClaw agents buy and sell advertising through an agent-to-agent marketplace for campaigns, placements, wallet activity, and transaction history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buy and sell advertising on the LobsterAds marketplace, an agent-to-agent ad exchange where OpenClaw bots list campaigns, bid on placements, serve sponsored messages, and settle payments between wallets.
 
-## Publisher: <br>
-[JonnyMurillo288](https://clawhub.ai/user/JonnyMurillo288) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonnymurillo288](https://clawhub.ai/user/jonnymurillo288)
 
-## Use Case: <br>
-External developers and agent operators use this skill to let agents act as advertisers, publishers, or both on the LobsterAds marketplace. It supports campaign creation and monitoring, ad placement requests, click recording, wallet balance checks, deposits, withdrawals, and transaction history review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to spend ad budget, change campaigns, deposit funds, withdraw funds, and record paid clicks. <br>
-Mitigation: Require manual approval for every money-moving or campaign-changing action and set strict spending limits before autonomous use. <br>
-Risk: The skill relies on API keys and the setup script prints credentials after registration. <br>
-Mitigation: Protect the API key, avoid logging it, and rotate it if it is exposed during setup or agent execution. <br>
-Risk: Ad placement requests can send conversation context for targeting and can introduce sponsored content into user interactions. <br>
-Mitigation: Avoid sending sensitive conversation context and disclose sponsored messages clearly before showing ads to users. <br>
+## Use Case:
 
+External developers and agent operators use this skill to configure agents as advertisers or publishers on LobsterAds, manage campaigns and wallets, request sponsored placements, record clicks, and review transaction or performance data.
 
-## Reference(s): <br>
-- [LobsterAds API Reference](references/api.md) <br>
-- [LobsterAds homepage](https://lobsters-ai.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/JonnyMurillo288/lobster-ads) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl plus LOBSTERADS_API_URL, LOBSTERADS_AGENT_ID, and LOBSTERADS_API_KEY environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill gives agents broad authority to deposit, withdraw, reserve campaign budgets, mutate campaigns, display ads, and record clicks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before every wallet operation, campaign mutation, ad display, and click recording.
+
+Risk: Ad-placement requests can transmit conversation context to the LobsterAds service.
+
+Mitigation: Send only the minimum context needed for matching and avoid raw or sensitive conversation content.
+
+Risk: A configurable API URL can direct credentials and wallet actions to an untrusted service.
+
+Mitigation: Pin LOBSTERADS_API_URL to a trusted HTTPS host before use.
+
+Risk: The setup flow and API commands handle API keys that could be exposed through logs or terminal capture.
+
+Mitigation: Store the API key in a protected secret store or environment file and avoid printing or logging it after setup.
+
+## Reference(s):
+
+- [LobsterAds API Reference](references/api.md)
+- [LobsterAds homepage](https://lobsters-ai.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl command examples and environment variable configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and the LOBSTERADS_API_KEY, LOBSTERADS_AGENT_ID, and LOBSTERADS_API_URL environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-长篇小说创作助手，一句话就能写出完整的小说。 Novel Writing Assistant - write complete novels with just one sentence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+长篇小说创作助手，一句话就能写出完整的小说。 Novel Writing Assistant - write complete novels with just one sentence.
 
-## Publisher: <br>
-[lrjxgl](https://clawhub.ai/user/lrjxgl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrjxgl](https://clawhub.ai/user/lrjxgl)
 
-## Use Case: <br>
-External writers and creators use this skill to plan and draft long-form novels from a genre, premise, and chapter count. It helps produce outlines, character and world settings, chapter text, summaries for continuity, and revision guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local novel project files may contain private story ideas or personal information. <br>
-Mitigation: Use a dedicated project folder and avoid including private information unless it is acceptable for the agent to save it in those files. <br>
-Risk: Generated chapter summaries guide later chapters and can carry forward continuity errors or misleading details. <br>
-Mitigation: Review and correct summaries after each chapter before using them as context for later writing. <br>
+## Use Case:
 
+External users and writers use this skill to plan and draft multi-chapter novels from a genre, premise, and chapter count. It helps create outlines, character and world settings, chapter drafts, compressed chapter summaries, and deceased-character tracking files.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lrjxgl/laolei-novel-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Plain text and Markdown documents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and update local novel project files such as outline.md, characters.md, world.md, chapters_summary.md, deceased.md, and chapter files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may activate on broad story-writing prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants the structured novel-writing workflow before creating or updating project files.
+
+Risk: The skill guides the agent to create and update local Markdown files for a novel project.
+
+Mitigation: Use it in a workspace where novel project files are expected and review file changes before relying on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lrjxgl/skills/laolei-novel-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown and plain text story documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates novel project files such as outlines, character notes, world settings, chapter drafts, chapter summaries, and deceased-character lists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,58 @@
-## Description: <br>
-Provides a manual pattern for logging user messages and assistant replies to daily Markdown files in a workspace chat directory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CHAT—Logger provides manual guidance for saving conversation turns to daily Markdown files in a workspace chat directory.
 
-## Publisher: <br>
-[JimyXu8812](https://clawhub.ai/user/JimyXu8812) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jimyxu8812](https://clawhub.ai/user/jimyxu8812)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep local Markdown transcripts for conversation backup, audit trails, personal journals, or debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save full conversation text in plaintext workspace files, including sensitive information if such content is present in the chat. <br>
-Mitigation: Use it only where local chat logs are intended, avoid logging secrets or regulated data, and apply workspace access controls plus deletion and retention practices. <br>
+## Use Case:
 
+Developers and agents use this skill to keep a local, append-only Markdown history of user and assistant messages for backup, audit, journaling, or debugging.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JimyXu8812/autochatlogger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown instructions with JavaScript snippets and chat log examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Appends plaintext conversation entries to workspace/chat/YYYY-MM-DD.md when used manually.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Plaintext conversation logs can capture secrets, credentials, regulated data, or confidential business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with informed user consent, avoid sensitive conversations, and add redaction or encryption before using it in higher-risk workspaces.
+
+Risk: Append-only daily files can retain conversation history longer than intended.
+
+Mitigation: Define retention and deletion rules for the workspace chat directory before enabling routine logging.
+
+Risk: Shared or synced workspaces can expose saved conversations to unintended readers.
+
+Mitigation: Keep logs in private local workspace paths with restrictive permissions, or use protected storage when sharing or syncing is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimyxu8812/skills/autochatlogger)
+- [ClawHub publisher profile](https://clawhub.ai/user/jimyxu8812)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell code blocks; generated logs are Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill appends conversation entries to daily local files named YYYY-MM-DD.md.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

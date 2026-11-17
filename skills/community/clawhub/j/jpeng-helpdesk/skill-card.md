@@ -1,41 +1,58 @@
-## Description: <br>
-Helpdesk ticketing system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helpdesk ticketing system.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Support teams and agents use this skill to perform helpdesk ticketing, automate ticket tasks, and support communication workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an API key and may affect helpdesk tickets or support communications. <br>
-Mitigation: Use a least-privilege helpdesk API key and require explicit confirmation before ticket changes or customer-facing communications. <br>
-Risk: The bundled evidence does not include scripts/helpdesk.py or identify the helpdesk service and data sent. <br>
-Mitigation: Verify the implementation and destination service before installing or running the skill. <br>
+## Use Case:
 
+Support teams and operators use this skill to automate helpdesk ticket tasks and communication workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-helpdesk) <br>
-- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration] <br>
-**Output Format:** [JSON results with command-line usage and environment configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TICKET_API_KEY; ticket changes and customer-facing communications should require explicit confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Credentialed helpdesk operations may contact an unspecified ticketing system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target helpdesk system, allowed ticket actions, and API-key handling before installation.
+
+Risk: The artifact references scripts/helpdesk.py, but that executable file is not included.
+
+Mitigation: Verify the implementation that will actually run before deployment or production use.
+
+Risk: Support content may include confidential or regulated data.
+
+Mitigation: Avoid confidential or regulated data until data-handling boundaries and safeguards are documented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-helpdesk)
+- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, JSON]
+
+**Output Format:** [JSON results with command-line usage and environment configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TICKET_API_KEY for authenticated ticket operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,51 @@
-## Description: <br>
-Build a powerful morning routine with habit checklists, timing, and streak tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a powerful morning routine with habit checklists, timing, and streak tracking.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill to create and maintain a personalized morning habit checklist, track completion timing, review streaks, and adjust habits over time. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Routine history may contain personal habit or schedule details stored locally. <br>
-Mitigation: Avoid recording sensitive personal details and review local routine history before sharing the workspace or device. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Morning Routine ClawHub release page](https://clawhub.ai/jhillin8/morning-routine) <br>
+## Use Case:
+
+External users use this skill to create, update, and review a local morning habit routine with checklists, timing, streaks, and consistency reports.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad conversational trigger phrases may accidentally activate the routine or update habits.
+
+Mitigation: Use explicit wording when changing habits and review proposed routine updates before accepting them.
+
+Risk: Local routine history may expose personal habit information on a shared device.
+
+Mitigation: Review local routine history and avoid storing sensitive habit details on shared accounts or machines.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational text or Markdown checklists, routine status summaries, and consistency reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routine progress is described as local-only; users should avoid storing sensitive personal details in local routine history.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Conversational Markdown guidance with routine status, habit updates, timing notes, and consistency summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local routine data only; no cloud sync or third-party tracking is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

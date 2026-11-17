@@ -1,44 +1,60 @@
-## Description: <br>
-Automates content creation, management, and distribution workflows for blogs, social media, newsletters, and publishing pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate content creation, management, and distribution workflows for blogs, social media, newsletters, and publishing calendars.
 
-## Publisher: <br>
-[JacealLLC](https://clawhub.ai/user/JacealLLC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacealllc](https://clawhub.ai/user/jacealllc)
 
-## Use Case: <br>
-External content creators, marketing teams, agencies, and businesses use this skill to design and run repeatable content workflows for ideation, drafting, scheduling, publishing, distribution, and performance tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live publishing, scheduled posting, newsletter sending, or auto-response workflows can create externally visible actions. <br>
-Mitigation: Review workflow definitions before execution, use test accounts first, and require explicit approval before any live external action. <br>
-Risk: API credentials and other sensitive inputs may be exposed through workflow inputs or logs. <br>
-Mitigation: Use least-privilege API keys, avoid passing secrets in workflow inputs, and inspect logs before sharing or storing them. <br>
-Risk: Workflow execution includes under-scoped command execution behavior. <br>
-Mitigation: Run only reviewed workflows in a controlled workspace and avoid executing untrusted workflow files. <br>
+## Use Case:
 
+Content creators, marketing teams, agencies, and business operators use this skill to plan, generate, schedule, distribute, and review recurring content workflows across publishing and social channels.
 
-## Reference(s): <br>
-- [Scheduled Blog Pipeline Guide](references/scheduled_blog.md) <br>
-- [Multi-Platform Social Media Pipeline Guide](references/social_multi.md) <br>
-- [Content Workflow Engine ClawHub Listing](https://clawhub.ai/JacealLLC/content-workflow-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, JSON workflow definitions, and generated content or configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require API credentials and explicit approval before live publishing, scheduled posts, newsletter sends, or auto-responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: Unsafe command execution and path handling can expose the host environment when scripts are run with untrusted arguments or workflow files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and patch command construction and path validation before use; run only in a constrained workspace until fixed.
+
+Risk: Credential and live-posting workflows can affect real publishing, social, email, analytics, or storage accounts.
+
+Mitigation: Do not connect real credentials until secrets are stored safely, live posting requires explicit confirmation, and credential redaction is in place.
+
+Risk: Generated reports and logs may contain workflow inputs, outputs, or operational details.
+
+Mitigation: Review report locations and add log/report redaction before processing sensitive content or customer data.
+
+## Reference(s):
+
+- [Scheduled Blog Pipeline Guide](references/scheduled_blog.md)
+- [Multi-Platform Social Pipeline Guide](references/social_multi.md)
+- [ClawHub Skill Page](https://clawhub.ai/jacealllc/skills/content-workflow-engine)
+- [Publisher Profile](https://clawhub.ai/user/jacealllc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create workflow definitions, local reports, and content drafts when its scripts are executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

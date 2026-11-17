@@ -1,42 +1,54 @@
-## Description: <br>
-Extract transcript from a YouTube video using Python and summarize it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract transcript from a YouTube video using Python and summarize it.
 
-## Publisher: <br>
-[5eun](https://clawhub.ai/user/5eun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[5eun](https://clawhub.ai/user/5eun)
 
-## Use Case: <br>
-Developers and end users use this skill when a user provides a YouTube URL and asks for a summary or explanation. The skill retrieves available subtitles, returns the transcript text, and guides the agent to summarize the transcript. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes network requests to YouTube to retrieve transcript content. <br>
-Mitigation: Use it only in environments where outbound requests to YouTube are allowed and expected. <br>
-Risk: Retrieved transcript text is passed to the LLM for summarization. <br>
-Mitigation: Avoid using the skill for sensitive private video content unless that data flow is approved. <br>
-Risk: Bundled transcript libraries include proxy support outside the documented skill flow. <br>
-Mitigation: Do not provide proxy credentials unless proxy use is intentional and separately approved. <br>
+## Use Case:
 
+External users and developers use this skill to fetch available YouTube subtitles from a provided video URL and produce an LLM-generated summary of the transcript.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/5eun/custom-youtube-summarize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with transcript markers and natural-language summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Python script to fetch YouTube transcripts, preferring Korean and falling back to English when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill contacts YouTube for the requested video and sends the resulting transcript into the LLM for summarization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for videos where that data flow is acceptable, and avoid private or sensitive video content.
+
+Risk: The skill may fail or return an error when a URL is invalid, transcripts are disabled, or no supported Korean or English transcript is available.
+
+Mitigation: Check that the video URL is a supported YouTube URL and that the video has an available transcript before relying on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/5eun/skills/custom-youtube-summarize)
+- [Publisher profile](https://clawhub.ai/user/5eun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with transcript text and a summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script prints transcript delimiters and returns errors when a URL is invalid or no transcript is available.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

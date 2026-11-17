@@ -1,41 +1,54 @@
-## Description: <br>
-Anime Ebook Reader helps agents read anime light novels and ebooks, organize tables of contents and reading progress, extract chapter content, and create chapter summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents read anime light novels and ebooks, organize tables of contents and reading progress, summarize chapters, and recommend related titles.
 
-## Publisher: <br>
-[marson2016](https://clawhub.ai/user/marson2016) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marson2016](https://clawhub.ai/user/marson2016)
 
-## Use Case: <br>
-External users use this skill to read uploaded anime ebooks and light novels, navigate chapters, continue from a prior reading position, summarize chapters, manage reading lists, and get related book recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to read user-uploaded ebook files, which may contain sensitive or copyrighted content. <br>
-Mitigation: Use it only with files the user is allowed to process, and avoid uploading sensitive material unless the agent platform's file handling is acceptable. <br>
-Risk: The skill prefers Chinese titles and content, which may be inappropriate when the user needs the original language preserved. <br>
-Mitigation: Ask the agent to preserve the original language when exact wording or language fidelity matters. <br>
+## Use Case:
 
+External users and reading assistants use this skill to process uploaded anime light novels or ebooks, navigate chapters, preserve reading position during the conversation, generate chapter notes, and manage reading lists.
 
-## Reference(s): <br>
-- [Anime Ebook Reader on ClawHub](https://clawhub.ai/marson2016/anime-ebook-reader) <br>
-- [Anime Light Novel Platforms and Resources](references/platforms.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style reading output with book metadata, table of contents, current chapter content, chapter summary, reading progress, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese titles and content are preferred unless the user asks to preserve the original language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Uploaded ebooks, book titles, reading lists, and progress may reveal sensitive personal interests during an agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid uploading sensitive reading material or private reading lists unless the user is comfortable sharing them with the active agent session.
+
+Risk: Chapter extraction and summarization can omit details or misstate plot points, especially for long chapters or image-based PDFs.
+
+Mitigation: Review important summaries against the source text and use OCR or manual verification for image-only PDFs.
+
+## Reference(s):
+
+- [Anime Ebook Reader ClawHub page](https://clawhub.ai/marson2016/skills/anime-ebook-reader)
+- [Anime light novel platforms and resources](references/platforms.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reading view with tables of contents, chapter text, summaries, notes, recommendations, and progress updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first responses; may include chapter summaries, extracted key points, reading-list entries, and conversation-scoped progress state]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Converts natural language descriptions into structured outputs such as SQL queries, JSON objects, API request specifications, search queries, regex patterns, schemas, and shell commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts natural-language requests into structured SQL, JSON, API requests, search queries, regular expressions, schemas, or shell commands, with explanations and validation notes.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn plain-language requests into machine-readable structures while preserving intent, constraints, and assumptions for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security verdict is suspicious because install metadata and documentation overstate sensitive capabilities and leave credential or write behavior unclear. <br>
-Mitigation: Review before installing and do not grant financial, purchase, OAuth, or sensitive-credential access unless the publisher narrows and explains those requirements. <br>
-Risk: Generated SQL, API calls, and shell commands can be incorrect or unsafe if treated as executable instructions. <br>
-Mitigation: Treat generated outputs as untrusted drafts, validate them against the target system, and require explicit review before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to translate plain-language requirements into structured outputs such as queries, schemas, requests, regular expressions, and commands. It is intended to surface assumptions, ambiguity, confidence, and warnings before generated artifacts are used.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjipeng977/convert-natural-language) <br>
-- [Publisher profile](https://clawhub.ai/user/wangjipeng977) <br>
-- [Metadata source repository](https://github.com/MiniMax-AI/skills) <br>
-- [Reference index](references/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or structured snippets with explanations, confidence notes, warnings, and assumptions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SQL, JSON, HTTP request specifications, search queries, regex patterns, schemas, or CLI commands depending on the requested conversion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact changelog lists 1.0 released 2026-05-21) <br>
+Risk: Generated SQL, shell commands, and API requests may be executable or may change external systems if run without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated artifacts before use and require explicit confirmation before executing commands, sending API calls, or running mutating SQL.
+
+Risk: Authorization headers, API keys, and environment auth tokens may expose sensitive credentials if copied into generated API requests or commands.
+
+Mitigation: Use placeholders or user-supplied test tokens, scope credentials tightly, and avoid automatic execution or transmission of generated requests.
+
+Risk: Ambiguous natural-language input can produce incorrect table names, fields, date ranges, database dialects, or overly broad regular expressions.
+
+Mitigation: Ask clarifying questions when required information is missing and flag assumptions, confidence, and warnings in the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/convert-natural-language)
+- [Metadata source repository](https://github.com/MiniMax-AI/skills)
+- [MiniMax](https://minimax.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown containing structured snippets such as SQL, JSON, API requests, search queries, regular expressions, schemas, shell commands, explanations, confidence, warnings, and assumptions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask clarifying questions and requires human review before executing generated commands, mutating SQL, or API requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and changelog report 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

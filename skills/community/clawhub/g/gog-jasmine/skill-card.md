@@ -1,42 +1,61 @@
-## Description: <br>
-Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Publisher: <br>
-[jasminehuang98613](https://clawhub.ai/user/jasminehuang98613) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jasminehuang98613](https://clawhub.ai/user/jasminehuang98613)
 
-## Use Case: <br>
-Developers and operators use this skill to have an agent propose gog CLI setup and commands for Gmail, Calendar, Drive, Contacts, Sheets, and Docs workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The gog CLI can access Google Workspace data through OAuth-enabled services. <br>
-Mitigation: Install and authenticate only when that access is intended, and enable only the narrowest Google services required for the task. <br>
-Risk: Commands can send email, create calendar events, or change spreadsheet and document data. <br>
-Mitigation: Require explicit user confirmation before executing write actions, especially mail sends, event creation, and Sheets or Docs updates. <br>
-Risk: The install path depends on an external Homebrew package. <br>
-Mitigation: Review the Homebrew package source and installed binary before using it with sensitive Google Workspace accounts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [gog homepage](https://gogcli.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/jasminehuang98613/gog-jasmine) <br>
+## Use Case:
 
+Developers and operators use this skill to work with Gmail, Calendar, Drive, Contacts, Sheets, and Docs from an agent-assisted CLI workflow after OAuth setup.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-oriented command examples for scripting with gog.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad Google Workspace OAuth permissions may expose mail, calendar, drive, contacts, sheets, and docs data.
+
+Mitigation: Use a dedicated or least-privilege Google account and authorize only the Google services needed for the task.
+
+Risk: The Homebrew install references an unpinned third-party CLI dependency.
+
+Mitigation: Review the gog Homebrew tap before installing and pin or otherwise control the CLI version in managed environments.
+
+Risk: OAuth client secrets and tokens can be exposed through repositories, logs, or shared shells.
+
+Mitigation: Keep credentials and tokens out of repos, logs, and shared shell history, and store them using local secret-handling practices.
+
+Risk: Generated CLI actions could send mail or create calendar events.
+
+Mitigation: Require confirmation before executing commands that send messages, create events, or modify Google Workspace data.
+
+## Reference(s):
+
+- [gog CLI homepage](https://gogcli.sh)
+- [ClawHub skill page](https://clawhub.ai/jasminehuang98613/skills/gog-jasmine)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-oriented command examples when the underlying gog command supports --json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

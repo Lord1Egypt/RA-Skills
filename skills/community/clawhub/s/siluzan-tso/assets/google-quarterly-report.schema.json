@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "siluzan-tso/google-quarterly-report.schema.json",
+  "title": "GoogleQuarterlyReport",
+  "description": "Google 季度经营报告。Agent 只写 narrative；kpis/monthly/exploreAds/specialAds/planDefaults/usStates（消耗最高国家的一级行政区）由 collect 覆盖。",
+  "type": "object",
+  "required": ["narrative"],
+  "properties": {
+    "narrative": {
+      "type": "object",
+      "required": ["executiveSummary", "sections", "plan"],
+      "properties": {
+        "executiveSummary": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "agenda": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "sections": {
+          "type": "object",
+          "required": ["efficiency", "adType", "region", "summary"],
+          "properties": {
+            "efficiency": { "$ref": "#/$defs/analysisBlock" },
+            "adType": { "$ref": "#/$defs/analysisBlock" },
+            "region": { "$ref": "#/$defs/analysisBlock" },
+            "summary": { "$ref": "#/$defs/analysisBlock" }
+          }
+        },
+        "plan": { "$ref": "#/$defs/planBlock" }
+      }
+    }
+  },
+  "$defs": {
+    "analysisBlock": {
+      "type": "object",
+      "properties": {
+        "analysis": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "goals": { "type": "array", "items": { "type": "string" } },
+        "text": { "type": "string" }
+      }
+    },
+    "planBlock": {
+      "type": "object",
+      "description": "下期规划九章。analysis 必填；其余八章写规划时都应有。规则见 report-templates/google-quarterly-plan.md。",
+      "properties": {
+        "analysis": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "goals": { "$ref": "#/$defs/analysisBlock" },
+        "budget": { "$ref": "#/$defs/analysisBlock" },
+        "structure": { "$ref": "#/$defs/analysisBlock" },
+        "keywords": { "$ref": "#/$defs/analysisBlock" },
+        "audience": { "$ref": "#/$defs/analysisBlock" },
+        "creative": { "$ref": "#/$defs/analysisBlock" },
+        "roadmap": { "$ref": "#/$defs/analysisBlock" },
+        "risks": { "$ref": "#/$defs/analysisBlock" },
+        "text": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,43 +1,58 @@
-## Description: <br>
-Run code snippets in 30+ programming languages including JavaScript, Python, TypeScript, Java, C, C++, Go, Rust, Ruby, PHP, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run code snippets in 30+ programming languages including JavaScript, Python, TypeScript, Java, C, C++, Go, Rust, Ruby, PHP, and more.
 
-## Publisher: <br>
-[panchenbo](https://clawhub.ai/user/panchenbo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panchenbo](https://clawhub.ai/user/panchenbo)
 
-## Use Case: <br>
-Developers and engineers use this skill to execute short code snippets, test algorithms, verify behavior, and inspect stdout or error output across installed local language runtimes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Executed snippets have the same local access as the user running the agent. <br>
-Mitigation: Review snippets before execution and use a disposable container or sandbox for code that might read files, use the network, run shell commands, or change the system. <br>
-Risk: Untrusted code can modify files, expose local data, or invoke system commands through supported runtimes. <br>
-Mitigation: Run only trusted snippets in the normal workspace and isolate unknown code from sensitive files, credentials, and network access. <br>
-Risk: Language support depends on interpreters and compilers installed on the local machine. <br>
-Mitigation: Confirm the required runtime is installed and in PATH before relying on the output for user-facing answers. <br>
+## Use Case:
 
+Developers and engineers use this skill to execute snippets, test algorithms, verify outputs, and inspect syntax or runtime behavior across many local programming language runtimes.
 
-## Reference(s): <br>
-- [Supported Languages Reference](references/LANGUAGES.md) <br>
-- [Code Runner Local on ClawHub](https://clawhub.ai/panchenbo/code-runner-local) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and captured stdout or stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs submitted code locally with a default 30 second timeout; available languages depend on installed interpreters and compilers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Arbitrary snippets run directly on the local host without enforced isolation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a contained environment with no sensitive files, credentials, or broad network access.
+
+Risk: Executed code can access files, make network requests, run system commands, or modify environment variables.
+
+Mitigation: Review snippets before execution and avoid running untrusted code in normal workspaces.
+
+Risk: Language execution depends on locally installed interpreters and compilers.
+
+Mitigation: Confirm required runtimes are installed and use command errors to guide setup or troubleshooting.
+
+## Reference(s):
+
+- [Supported Languages Reference](references/LANGUAGES.md)
+- [Code Runner Local on ClawHub](https://clawhub.ai/panchenbo/skills/code-runner-local)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with command examples, stdout, stderr, and error explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Execution depends on local runtimes being installed; code execution uses a default 30-second timeout.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

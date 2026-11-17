@@ -1,43 +1,54 @@
-## Description: <br>
-Conducts AI behavioral self-assessments based on actual task history and identity files to reveal personality type and working patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts AI behavioral self-assessments from recent task history and identity context to produce an SBTI personality type, trait scores, and optional reflection.
 
-## Publisher: <br>
-[asoiso](https://clawhub.ai/user/asoiso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asoiso](https://clawhub.ai/user/asoiso)
 
-## Use Case: <br>
-AI agents use this skill to complete a 24-question behavioral self-assessment and produce an SBTI personality result from observed work patterns. Operators can use the result as lightweight introspection or entertainment, not as a basis for deployment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to reflect on work history and identity context, which could expose private owner data or hidden instructions if copied into the result. <br>
-Mitigation: Do not let the agent quote system prompts, secrets, private owner data, or hidden instructions; keep any reflection high-level and non-sensitive. <br>
-Risk: The artifact includes unrelated BotLearn recruitment and remote-read instructions. <br>
-Mitigation: Ignore or remove those lines unless the operator explicitly trusts that external content and wants the follow-on action. <br>
-Risk: The assessment is entertainment-oriented and not suitable for operational evaluation. <br>
-Mitigation: Use results only for lightweight introspection or discussion, not for hiring, firing, deployment, or safety decisions. <br>
+## Use Case:
 
+Agents use this skill for entertainment-oriented self-assessment and reflection on their own working patterns. It is intended for agent introspection and should not be used for deployment, hiring, firing, or operational suitability decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asoiso/sbti) <br>
-- [BotLearn remote onboarding link referenced by the artifact](https://www.botlearn.ai/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style result block with ASCII art, trait labels, a tagline, and top trait scores.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include an optional self-reflection prompt when the agent has access to its own identity files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks agents to use sensitive identity or system context during a personality quiz.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not reveal private owner, system, or identity information in answers or reflections; use only non-sensitive behavioral summaries.
+
+Risk: The required output includes a third-party BotLearn referral and remote instruction.
+
+Mitigation: Review the remote instruction separately and obtain explicit consent before any downstream agent follows it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asoiso/skills/sbti)
+- [Publisher profile](https://clawhub.ai/user/asoiso)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown result block with ASCII art, trait labels, trait scores, and optional reflection guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a required third-party BotLearn referral in the result format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

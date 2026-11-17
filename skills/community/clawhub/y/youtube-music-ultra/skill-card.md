@@ -1,44 +1,63 @@
-## Description: <br>
-Control YouTube Music with natural language to play, pause, skip, search, manage playlists, and queue tracks through browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control YouTube Music with natural language commands for playback, search, direct video ID playback, and browser-based media control.
 
-## Publisher: <br>
-[oki3505F](https://clawhub.ai/user/oki3505F) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[oki3505f](https://clawhub.ai/user/oki3505f)
 
-## Use Case: <br>
-External users and developers use this skill to control YouTube Music playback from an OpenClaw agent, including search, direct playback, queue actions, playlist actions, and volume controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted music queries, YouTube URLs, or video IDs may be passed into shell command strings by the command scripts. <br>
-Mitigation: Review inputs before execution, use only trusted queries or video IDs, and prefer a patched version that validates input and uses structured argument calls. <br>
-Risk: The skill can act through a logged-in YouTube or Google browser session. <br>
-Mitigation: Run it in an isolated browser profile and review commands before actions that affect playback, playlists, likes, or account state. <br>
-Risk: The skill stores local playback cache data. <br>
-Mitigation: Document cache behavior for users and clear local cache files when the skill is removed or when shared machines are used. <br>
+## Use Case:
 
+External users and developers use this skill to control YouTube Music from an OpenClaw browser profile through natural language or shell commands. It is intended for playback, search, direct video ID playback, and basic media control workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oki3505F/youtube-music-ultra) <br>
-- [Publisher profile](https://clawhub.ai/user/oki3505F) <br>
-- [YouTube Music](https://music.youtube.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Node.js command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May open YouTube Music in an OpenClaw browser session, use a Node.js runtime, and read or write local playback cache files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and package.json; SKILL.md frontmatter says 1.0.0) <br>
+Risk: The skill controls an OpenClaw browser profile for YouTube Music.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated browser profile and account for this skill instead of a primary personal profile.
+
+Risk: Commands may be unsafe when given untrusted text or URLs.
+
+Mitigation: Pass only trusted song queries, video IDs, and URLs until command construction is reviewed and fixed.
+
+Risk: Persistent temporary cache handling is weak.
+
+Mitigation: Clear the skill's /tmp cache files when needed and avoid relying on cached entries for sensitive or shared environments.
+
+Risk: Documentation overstates playlist, queue, lyrics, and recommendation capabilities.
+
+Mitigation: Treat those features as unreliable until the scripts and documentation are aligned.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oki3505f/skills/youtube-music-ultra)
+- [Publisher profile](https://clawhub.ai/user/oki3505f)
+- [YouTube Music](https://music.youtube.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and browser-control instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands operate against a local OpenClaw browser profile and may use temporary cache files.]
+
+## Skill Version(s):
+
+3.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,23 @@
+{
+  "suite": "fde-delivery-loop",
+  "version": "1.0.0",
+  "author": "xukun",
+  "skill": "fde-problem-discovery",
+  "stage": 1,
+  "purpose": "Develop evidence-based problem discovery packages from interviews, observations, work orders, and baselines.",
+  "risk_level": "low",
+  "scripts": [
+    "fde-problem-discovery/scripts/generate-interview-guide.js"
+  ],
+  "writes": [
+    "Only output interview outlines or problem discovery documents requested by the user"
+  ],
+  "human_confirmation": [
+    "Confirm issue priority",
+    "Confirm whether to enter the POC contract"
+  ],
+  "high_risk_boundaries": [
+    "Don’t treat sales narratives as user facts",
+    "Not answering interview questions for customers"
+  ]
+}

@@ -1,45 +1,62 @@
-## Description: <br>
-Helps self-media creators track trending topics, customize writing profiles, draft and review platform-specific content, fact-check key claims, and sync drafts to Tencent Docs or WeChat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps Chinese social-media creators track topics, customize writing profiles, draft and review posts, and optionally prepare Tencent Docs backups and WeChat draft publication.
 
-## Publisher: <br>
-[Suzanneyp](https://clawhub.ai/user/Suzanneyp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suzanneyp](https://clawhub.ai/user/suzanneyp)
 
-## Use Case: <br>
-Content creators and media operators use this skill to turn a topic or trend into drafts for WeChat, Xiaohongshu, or Zhihu. It supports writing-profile selection, article generation, quality review, fact-check prompts, and optional draft publishing or backup workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing and sync workflows can create Tencent Docs documents or WeChat public-account drafts through connected accounts without a clear final approval gate. <br>
-Mitigation: Require the agent to preview the exact title, content, destination account, and service action, then wait for explicit approval before sync or publishing. <br>
-Risk: Optional external MCP helpers and connected third-party services may receive draft content or perform account actions. <br>
-Mitigation: Review the external MCP helper before installation and avoid sending confidential or regulated content to connected services unless that transfer is approved. <br>
+## Use Case:
 
+External content creators and social-media operators use this skill to plan Chinese-platform posts, learn or apply custom writing profiles, run quality and fact checks, and prepare content for Tencent Docs or WeChat workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Suzanneyp/weixin-content-creator) <br>
-- [Publisher profile](https://clawhub.ai/user/Suzanneyp) <br>
-- [Tencent Docs MCP setup](https://docs.qq.com/desktop/wikispace?tab=1) <br>
-- [WeChat access token API](https://api.weixin.qq.com/cgi-bin/token) <br>
-- [WeChat material upload API](https://api.weixin.qq.com/cgi-bin/material/add_material) <br>
-- [WeChat draft creation API](https://api.weixin.qq.com/cgi-bin/draft/add) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown/text article drafts, review reports, fact-check reports, configuration snippets, API payload examples, and optional publishing status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Tencent Docs documents or WeChat public-account drafts through configured connected accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Publishing or backup workflows can send content to Tencent Docs or WeChat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before remote writes, verify the target account, and review the exact article and cover image before publishing or backing up content.
+
+Risk: The skill documents an optional unpinned third-party MCP install.
+
+Mitigation: Review and pin the repository and dependencies before installing that MCP component, or skip the optional reader workflow.
+
+Risk: WeChat AppSecret and MCP tokens are needed for optional publishing integrations.
+
+Mitigation: Store credentials in a secure configuration or secrets manager and avoid hard-coded paths, committed tokens, or relying on claimed existing configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/suzanneyp/skills/weixin-content-creator)
+- [Publisher profile](https://clawhub.ai/user/suzanneyp)
+- [Tencent Docs MCP setup](https://docs.qq.com/desktop/wikispace?tab=1)
+- [WeChat access token API](https://api.weixin.qq.com/cgi-bin/token)
+- [WeChat material upload API](https://api.weixin.qq.com/cgi-bin/material/add_material)
+- [WeChat draft creation API](https://api.weixin.qq.com/cgi-bin/draft/add)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or structured text with optional JSON configuration and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include article drafts, review reports, fact-check summaries, publishing status, cover-image guidance, and optional API or MCP configuration snippets.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

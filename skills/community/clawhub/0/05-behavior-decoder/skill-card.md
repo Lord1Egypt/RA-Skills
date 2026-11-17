@@ -1,38 +1,50 @@
-## Description: <br>
-Helps agents decode common behaviors in children aged 12-36 months, assess whether they are typical, explain likely causes, and suggest caregiver responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps interpret common 12-36 month toddler behaviors, assess whether they are typical, and suggest caregiver response strategies.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Parents, caregivers, and family-support agents use this skill to interpret common toddler behaviors, frame whether they appear developmentally typical, and produce practical response strategies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Toddler-behavior guidance may be over-applied to persistent, severe, or developmentally concerning behavior. <br>
-Mitigation: Treat the output as general parenting information and consult a qualified professional for persistent, severe, or developmentally concerning behavior. <br>
+## Use Case:
 
+Caregivers and parenting-support agents use this skill to structure toddler behavior consultations by combining the child's age, behavior, and context into a normalcy assessment, likely reasons, response strategies, warning signs, and recommended resources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/05-behavior-decoder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown behavior consultation report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses child age, behavior description, context, caregiver response, and primary concern as inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may treat general toddler behavior guidance as medical or developmental diagnosis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as general parenting support and advise consultation with a qualified pediatric or child-development professional for severe, persistent, self-injurious, or safety-related behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/05-behavior-decoder)
+- [Publisher profile](https://clawhub.ai/user/nic-yuan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style behavior decoding report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces general parenting guidance, not medical or developmental diagnosis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

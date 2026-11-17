@@ -1,0 +1,30 @@
+name: shop-promo-eligibility-check-cn
+slug: shop-promo-eligibility-check-cn
+display_name: 优惠适用条件核对
+description: 输入商家已确认的优惠有效期与时区、门槛口径、适用 SKU、叠加顺序及购物清单，输出逐条件可用、不可用或待确认表和计算依据，适用于客服与运营复核具体订单；时间、运费口径或叠加授权缺失时保留待确认，不猜规则、不报最优价。
+version: 1.0.0
+repository: https://github.com/xxjrq/shop-promo-eligibility-check-cn
+license: MIT-0
+icon: icon-512.png
+tags:
+  - 优惠核对
+  - 电商订单
+  - 满减
+  - 折扣计算
+  - 客服运营
+trigger_words:
+  - 优惠能用吗
+  - 满减核对
+  - 订单优惠计算
+  - 折扣适用条件
+triggers:
+  - 核对购物车能否使用某个优惠
+  - 逐条计算订单满减和折扣
+  - 根据优惠规则判断应付金额
+interface:
+  display_name: 优惠适用条件核对
+  short_description: 核对既定优惠与购物清单，输出条件状态、计算依据和应付草稿
+  default_prompt: 请根据我提供的优惠规则和购物清单，核对每项条件并列出计算依据；缺少信息请标为待确认。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+self_test: python3 scripts/self_test.py

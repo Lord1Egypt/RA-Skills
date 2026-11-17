@@ -1,40 +1,58 @@
-## Description: <br>
-Cost Guardian monitors OpenClaw API costs by estimating spend from session token usage, reporting model and session breakdowns, alerting against budgets, and recommending lower-cost routing for routine tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor and control OpenClaw API costs by tracking token usage across sessions, estimating spend by model, alerting on budget overruns, and recommending cheaper model routing for routine tasks.
 
-## Publisher: <br>
-[tso1079](https://clawhub.ai/user/tso1079) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tso1079](https://clawhub.ai/user/tso1079)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect OpenClaw API spend, identify high-cost sessions or models, set budget alerts, and prepare daily or weekly cost reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cost estimates depend on local session records and static model pricing, so reports can be inaccurate if provider prices or session formats change. <br>
-Mitigation: Review the pricing table before relying on budget decisions and update the model pricing values when provider rates change. <br>
-Risk: The reporting script reads local OpenClaw session data from the user's home directory. <br>
-Mitigation: Run it only in trusted environments and avoid sharing generated reports if session labels or usage details may be sensitive. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect API usage, estimate spending, identify top-cost sessions, configure budget alerts, and plan lower-cost model routing for routine work.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tso1079/dex-cost-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can include budget alerts, model cost breakdowns, top sessions, and routing recommendations based on local OpenClaw session data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The script reads local OpenClaw session metadata, which may include sensitive session labels or usage history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing when session metadata is sensitive, and run reports only in environments where the local OpenClaw usage data may be inspected.
+
+Risk: The --agent value can affect the session file path used by the report script.
+
+Mitigation: Run the script only for trusted agent IDs, avoid path-like --agent values, and prefer a patched version that validates agent IDs and keeps resolved files under ~/.openclaw/agents.
+
+Risk: Automated cron reports can become recurring access to local usage metadata.
+
+Mitigation: Treat cron setup as an explicit opt-in recurring job and review the delivery channel before enabling scheduled reports.
+
+## Reference(s):
+
+- [Cost Guardian by Dexter Labs on ClawHub](https://clawhub.ai/tso1079/skills/dex-cost-guardian)
+- [Publisher profile: tso1079](https://clawhub.ai/user/tso1079)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON cost reports with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include estimated cost, token breakdowns, model-level totals, session rankings, budget alerts, and model-routing recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

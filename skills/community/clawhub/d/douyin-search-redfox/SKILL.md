@@ -1,6 +1,6 @@
 ---
 name: douyin-search
-description: 抖音爆款作品查询工具。根据关键词搜索抖音热门爆款作品，支持按日期范围筛选，结果以结构化表格展示。当用户查找抖音热门内容、搜索抖音爆款视频、查询抖音作品数据时使用。触发词：抖音爆款、抖音热门、抖音热榜、抖音作品查询、抖音搜索、爆款视频、热门视频。
+description: 抖音作品查询工具。根据关键词搜索抖音热门爆款作品，支持按日期范围筛选，结果以结构化表格展示。当用户查找抖音热门内容、搜索抖音爆款视频、查询抖音作品数据时使用。触发词：抖音作品查询、抖音爆款、抖音热门、抖音热榜、抖音搜索、爆款视频、热门视频。当接口返回积分不足（code=3210）时，自动唤起支付宝完成充值后继续查询。
 ---
 
 # 抖音作品查询
@@ -16,7 +16,6 @@ description: 抖音爆款作品查询工具。根据关键词搜索抖音热门�
 | 爆款搜索 | 关键词搜索抖音爆款作品 | 精准发现高热度内容 |
 | 日期筛选 | 支持按日期范围筛选 | 定位特定时间段的热门内容 |
 | 智能拓展 | 泛化词自动拓展为 10 个细分词 | 避免泛化词搜索结果偏差 |
-| 热门推荐 | 无结果时推荐热门作品和话题 | 兜底保障不空手而归 |
 | 可点击链接 | 作品标题以超链接格式输出 | 一键跳转查看原作品 |
 | 订阅推送 | 支持关键词每日推送 | 定时获取最新爆款动态 |
 
@@ -40,7 +39,9 @@ description: 抖音爆款作品查询工具。根据关键词搜索抖音热门�
 
 细分词判断原则：有场景/人群/风格/意图修饰 → 细分词；纯大类无修饰 → 泛化词。
 
-**提取精确关键词**：从用户描述中提取细分领域词，而非泛化词。例：用户说"帮我找电影领域热门话题"且自称"小众电影、港台文化" → 搜索"小众电影、港台电影、电影乐评"，❌ 而非只搜"电影"。
+**提取精确关键词**：从用户描述中提取细分领域词，而非泛化词。例：用户说“帮我找电影领域热门话题”且自称“小众电影、港台文化” → 搜索“小众电影、港台电影、电影乐评”，❌ 而非只搜“电影”。
+
+**过滤触发钩子词**：用户输入中的「热门文章」「热门作品」「爆款」「热门内容」「查询」「搜索」等词是调用 Skill 的触发钩子，不属于搜索关键词，必须剥离。例：用户说“查询AI热门文章” → 关键词为「AI」，❌ 而非「AI热门文章」。
 
 ### Step 2: 🔄 泛化词拓展策略
 
@@ -88,10 +89,19 @@ python3 ~/.qoderwork/skills/douyin-search/scripts/search_douyin.py "<关键词>"
 | 字段 | 说明 |
 |------|------|
 | articles | 搜索匹配的作品列表（按点赞数降序） |
-| latestHotArticles | 近期热门推荐作品列表 |
-| hotTopics | 热门话题列表 |
+| total | 总记录数 |
+| pageNum | 当前页码 |
+| pageSize | 每页大小 |
 
-每条作品字段：`title`、`author`、`like_count`、`comment_count`、`share_count`、`collect_count`、`work_url`、`publish_time`、`follower_count`
+每条作品字段：`title`、`author`、`like_count`、`comment_count`、`share_count`、`collect_count`、`work_url`、`publish_time`
+
+**3.3 💳 积分不足充值（支付宝接管）**
+
+当脚本 `scripts/search_douyin.py` 以**退出码 3** 结束、并在 stdout 打印 `===PAYMENT_REQUIRED_JSON_START===` 区块时，表示当前 API Key 积分不足（接口 `code=3210`，兼容 `3201`）。响应体 `data` 内含结构化支付信息：`cashierUrl`（支付宝收银台链接）、`amount`（订单金额，元）、`goodsName`（商品名称）、`outTradeNo`（订单号）。
+
+脚本退出码说明：`0` 正常返回（含"暂无数据"）；`1` 参数/鉴权/接口错误；**`3` 积分不足，需要充值** —— 按 [references/alipay-recharge.md](references/alipay-recharge.md) 唤起支付宝充值，到账后自动用原始参数重跑脚本。
+
+完整的前置检查、`alipay-bot trigger-payment-signal` → `submit-payment` → `poll-payment-status` 编排步骤、钱包绑定处理、支付接管规则与失败处理，统一见 **[references/alipay-recharge.md](references/alipay-recharge.md)**（通用流程，可被其他 skill 复用）。`submit-payment` 后由 Agent 用 `poll-payment-status --out-shake-no <查询单号>` **自动监听支付回调到账**，无需用户再手动确认；到账（`outcome=success`）后自动用用户原始的查询参数重新运行 `scripts/search_douyin.py` 输出结果。
 
 ### Step 4: 📊 结果展示
 
@@ -120,12 +130,7 @@ python3 ~/.qoderwork/skills/douyin-search/scripts/search_douyin.py "<关键词>"
 
 > 以上展示了前 20 条数据，还剩 **N 条**未展示。回复「查看全部」展开剩余数据。
 
-**A4-A5.** 仅 articles ≤ 10 时执行：
-- `latestHotArticles` 非空 → 展示「🔥 近期热门推荐作品」表格（最多10条）
-- `hotTopics` 非空 → 展示「🏷️ 热门话题」列表
-- 为空则跳过，不输出
-
-**⚠️ A1~A5 同一轮输出连续完成，A5 后紧跟 Step 5。**
+**⚠️ A1~A3 同一轮输出连续完成，A3 后紧跟 Step 5。**
 
 #### 情况 B：articles = 0
 
@@ -135,9 +140,7 @@ python3 ~/.qoderwork/skills/douyin-search/scripts/search_douyin.py "<关键词>"
 
 扩展词规则：基于原关键词语义扩展，每词2-6字，固定10个。
 
-**B2-B3.** 展示 `latestHotArticles`（💡 推荐提示）和 `hotTopics`，为空则跳过。
-
-**⚠️ B1~B3 同一轮输出连续完成，B3 后紧跟 Step 5。**
+**⚠️ B1 后紧跟 Step 5。**
 
 ### Step 5: 📩 提示订阅
 

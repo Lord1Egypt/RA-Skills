@@ -1,44 +1,59 @@
-## Description: <br>
-StockMasterHunter helps agents combine Elliott Wave analysis, volume-price dynamics, trend-cycle analysis, 100-bagger fundamental screening, market data, IMA knowledge-base retrieval, and backtesting to produce structured stock analysis and entry/exit guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+World-first AI Skill fusing Elliott Wave Theory, volume-price dynamics, trend-cycle analysis, and 100-bagger fundamental screening. Captures breakout entry points and identifies 10x/100x potential stocks. Integrates IMA knowledge base, real-time market data, and backtesting.
 
-## Publisher: <br>
-[yjkj999999](https://clawhub.ai/user/yjkj999999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yjkj999999](https://clawhub.ai/user/yjkj999999)
 
-## Use Case: <br>
-External investors, analysts, and developers use this skill to turn a general-purpose agent into a structured stock-analysis assistant that screens companies, evaluates technical trend position, runs backtests, and drafts Markdown reports with risk-aware entry, target, and stop-loss conditions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use IMA credentials and external financial or knowledge-base APIs. <br>
-Mitigation: Use scoped managed secrets, review the configured data sources, and require confirmation before calls that expose credentials or sensitive queries. <br>
-Risk: The skill can persist or modify local knowledge and version files during knowledge-base sync workflows. <br>
-Mitigation: Require confirmation before sync or write operations and review diffs before accepting generated knowledge-base or version changes. <br>
-Risk: Stock analysis and entry/exit guidance can be incorrect, stale, or misleading if market data is unavailable or incomplete. <br>
-Mitigation: Prefer live or user-provided market data, clearly state source limitations, and treat outputs as analysis requiring independent review rather than guaranteed investment advice. <br>
+## Use Case:
 
+External users, developers, and investment analysts use this skill to turn an LLM agent into a stock-analysis assistant that combines technical analysis, 100-bagger screening, live market-data retrieval, and backtesting workflows.
 
-## Reference(s): <br>
-- [StockMasterHunter ClawHub listing](https://clawhub.ai/yjkj999999/skills/stock-master-hunter) <br>
-- [IMA Agent Interface](https://ima.qq.com/agent-interface) <br>
-- [IMA Search Knowledge API](https://ima.qq.com/openapi/wiki/v1/search_knowledge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown reports with tables, structured text diagrams, inline code examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external market-data or knowledge-base APIs when configured; should state data limitations when live data is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and ClawHub release evidence) <br>
+Risk: The skill asks users to persist IMA API credentials for knowledge-base integrations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use platform-managed or environment-scoped secrets instead of persistent local credential files, and limit credentials to the minimum required scope.
+
+Risk: The skill can update its own reference files and changelog during knowledge-base synchronization.
+
+Mitigation: Require explicit user confirmation before sync operations and review generated reference-file or changelog changes before continuing to use the skill.
+
+Risk: Market-data and investment-analysis outputs can be incomplete or misleading if live data is unavailable or stale.
+
+Mitigation: Prefer current, user-approved market-data connectors; disclose data limitations in outputs; and keep the skill's own investment-risk disclaimer visible in generated analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yjkj999999/skills/stock-master-hunter)
+- [IMA agent interface](https://ima.qq.com/agent-interface)
+- [IMA knowledge search API](https://ima.qq.com/openapi/wiki/v1/search_knowledge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with tables, structured text diagrams, inline shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request or reference live market data, fundamentals, Fibonacci calculations, IMA knowledge-base search results, and user-provided historical data.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,52 @@
-## Description: <br>
-提问质量优化师会自动分析、重写、扩展用户问题，并给出结构化解答。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提问质量优化师 - 自动分析、重写、扩展用户问题，并给出完整解答
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[smseow001](https://clawhub.ai/user/smseow001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill to turn Chinese-language questions into clearer, more complete prompts before receiving a structured answer. It diagnoses ambiguity, rewrites the question, adds related follow-up questions, and summarizes the core issue.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill broadly redirects every question into a question-improvement workflow without a clear opt-out.
+
+Mitigation: Install only when this behavior is intended, or narrow the trigger and add an explicit opt-out before deployment.
+
+Risk: Users who want direct answers or language flexibility may receive unnecessary prompt rewriting first.
+
+Mitigation: Document the expected Chinese rewrite-and-answer behavior for users and route direct-answer workflows around this skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and individual operators use this skill to improve Chinese questions before answering them. It diagnoses ambiguity or missing context, rewrites the question, expands related follow-up angles, and produces a complete answer. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, analysis, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routinely critiques, rewrites, expands, and answers user questions in Chinese, which can change the shape or language of otherwise direct requests. <br>
-Mitigation: Use it when prompt improvement and expanded Chinese answers are desired; disable it for short direct answers, adaptive language behavior, or unmodified responses. <br>
+**Output Format:** [Markdown text, typically in Chinese, with diagnosis, rewritten question, expanded questions, answer, and summary sections.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/question-enhancer) <br>
+**Other Properties Related to Output:** [No code execution, file access, tools, or external APIs are described by the skill evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text in Chinese with diagnostic bullets, rewritten question, expanded follow-up questions, answer, and summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, tool use, file access, or external data transfer is requested by the skill.] <br>
+1.0.0 (source: server release evidence; skill frontmatter says 1.0)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

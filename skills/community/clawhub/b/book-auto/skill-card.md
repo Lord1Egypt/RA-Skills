@@ -1,40 +1,49 @@
-## Description: <br>
-Book Auto helps agents search, present, check availability for, and book automotive services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book auto services through Lokuli MCP for smog checks, oil changes, car detailing, mechanics, tire services, and other automotive service requests.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users and agents use this skill to find auto-service providers, compare pricing and available time slots, and create a booking after explicit user approval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may share booking details such as customer name, email, phone number, preferred time, provider, service, and location with Lokuli. <br>
-Mitigation: Before creating a booking, review the provider, service, price, time slot, and contact details with the user and obtain explicit approval. <br>
-Risk: Search results, prices, or availability may be stale, incomplete, or unsuitable for the user's vehicle or location. <br>
-Mitigation: Present options clearly, confirm the selected provider and service details, and use availability checks before generating a checkout link. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Auto on ClawHub](https://clawhub.ai/edwardrodriguez703-design/book-auto) <br>
-- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can use this skill to search for automotive service providers, compare options, check availability, and create a booking after explicit approval.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API Calls, guidance] <br>
-**Output Format:** [Markdown summaries with JSON-RPC tool call arguments and booking guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider options, prices, availability, checkout links, and customer contact details needed for booking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Using the booking flow may send a ZIP code and, if the user proceeds, name, email, and phone number to Lokuli or its booking providers.
+
+Mitigation: Confirm provider details, price, time, and contact information with the user before approving or creating a booking.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+- [Book Auto on ClawHub](https://clawhub.ai/edwardrodriguez703-design/skills/book-auto)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, text]
+
+**Output Format:** [Markdown with JSON-RPC call examples and booking guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use ZIP code and customer contact details when the user proceeds with booking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

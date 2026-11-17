@@ -1,45 +1,61 @@
-## Description: <br>
-PDF Extract helps agents process PDFs and images through ComPDF Cloud for OCR, structured extraction, conversion, page editing, compression, comparison, and export workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract PDF helps agents process PDFs and images with ComPDF Cloud for structured data extraction, OCR, table extraction, document parsing, conversion, comparison, compression, and PDF page operations.
 
-## Publisher: <br>
-[compdf-youna](https://clawhub.ai/user/compdf-youna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[compdf-youna](https://clawhub.ai/user/compdf-youna)
 
-## Use Case: <br>
-Developers, analysts, and automation users use this skill when they need an agent to extract tables or text, run OCR, convert files, edit PDF pages, or return downloadable ComPDF processing results from user-selected documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with International and Mainland China API endpoints selected according to the user's environment. <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents, and encrypted-PDF passwords when supplied, are uploaded to ComPDF's cloud service for processing. <br>
-Mitigation: Require explicit user confirmation before upload and avoid highly sensitive documents unless the user's ComPDF account, privacy requirements, and data-handling obligations allow it. <br>
-Risk: The skill covers extraction, conversion, and PDF editing operations, so an incorrect operation or parameter choice could process unintended pages or produce an unexpected output. <br>
-Mitigation: Review the requested operation, tool type, page ranges, and optional parameters with the user before sending the request. <br>
-Risk: A ComPDF API key can be stored locally if the user opts in. <br>
-Mitigation: Store the key only after explicit user approval, use it only for ComPDF requests, and remind the user they can delete the local key file. <br>
+## Use Case:
 
+Developers and automation agents use this skill to extract text, tables, OCR results, and structured fields from PDFs or images, and to route related PDF conversion or editing requests through ComPDF Cloud.
 
-## Reference(s): <br>
-- [ComPDF API Overview](https://www.compdf.com/guides/api-reference/v2/overview?utm_source=clawhub&utm_medium=skillhub&utm_campaign=pdf_skill_pdf_extract&ref_platform_id=clawhub_skills) <br>
-- [ComPDF API Complete Tool Type Reference](references/tool-list.md) <br>
-- [ComPDF API Tool Parameter Details](references/parameters.md) <br>
-- [ComPDF API Error Code Reference](references/error-codes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown status summaries with API response fields, troubleshooting guidance, and download URLs for processed files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ComPDF API key, explicit upload confirmation, selected operation, source documents, and optional JSON parameters for supported tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release) <br>
+Risk: The skill advertises PDF extraction but also enables broader PDF conversion, comparison, compression, page editing, watermark, and related document operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected operation before execution and use editing or transformation actions only when the user explicitly asks for them.
+
+Risk: Documents are uploaded to ComPDF Cloud for processing.
+
+Mitigation: Obtain explicit user confirmation before upload and use only documents the user is allowed to send to ComPDF Cloud; avoid highly sensitive files unless approved.
+
+Risk: The skill may store a ComPDF API public key locally if the user opts in.
+
+Mitigation: Store the key only after explicit user approval and remind users they can delete config/public_key.txt to revoke local storage.
+
+## Reference(s):
+
+- [ComPDF API Overview](https://www.compdf.com/guides/api-reference/v2/overview?utm_source=clawhub&utm_medium=skillhub&utm_campaign=pdf_skill_pdf_extract&ref_platform_id=clawhub_skills)
+- [ComPDF API Tool Type Reference](references/tool-list.md)
+- [ComPDF API Tool Parameter Details](references/parameters.md)
+- [ComPDF API Error Code Reference](references/error-codes.md)
+- [ClawHub Skill Page](https://clawhub.ai/compdf-youna/skills/extract-pdf-compdf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown text with API request parameters, processing status, error suggestions, and expiring download links when processing succeeds.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request an API public key, user consent for external upload, regional base URL selection, optional JSON parameters, and PDF password input for encrypted files.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

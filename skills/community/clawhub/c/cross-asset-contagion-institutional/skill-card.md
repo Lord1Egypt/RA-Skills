@@ -1,45 +1,51 @@
-## Description: <br>
-Full cross-asset contagion analysis with correlation matrices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retired signal. No longer sold.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External agents and institutional risk teams use this skill to request live cross-asset contagion analysis, correlation matrices, and tail-risk indicators for systemic risk modelling and risk committee reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make paid x402 requests from the configured wallet. <br>
-Mitigation: Install only when paid calls are intended, use a dedicated wallet with minimal funds, and configure spend caps or recipient allowlists where available. <br>
-Risk: Automated use can accumulate costs per request. <br>
-Mitigation: Review the displayed per-call pricing and wallet call history before allowing automated requests. <br>
+## Use Case:
 
+For users reviewing this release: understand that the cross-asset contagion signal has been retired and should not be called. It formerly provided cross-asset contagion analysis with correlation matrices and has no direct replacement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kynto2001-ctrl/skills/cross-asset-contagion-institutional) <br>
-- [APEX Runner signal endpoint](https://apexrunner.ai/signals/cross-asset-contagion-institutional) <br>
-- [APEX Runner pricing status](https://apexrunner.ai/signals/my-pricing) <br>
-- [Related signal: cross-asset-contagion](https://apexrunner.ai/signals/cross-asset-contagion) <br>
-- [Related signal: regime-confluence-institutional](https://apexrunner.ai/signals/regime-confluence-institutional) <br>
-- [Related signal: apex-alpha-score-institutional](https://apexrunner.ai/signals/apex-alpha-score-institutional) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Analysis] <br>
-**Output Format:** [JSON response containing contagion score, correlation matrix, and tail-risk fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY for x402 payment authorization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The retired signal endpoint returns HTTP 410 Gone, so an agent configured to call it cannot obtain the former analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not configure an agent to call the endpoint; the artifact states there is no direct replacement.
+
+## Reference(s):
+
+- [Retired signal endpoint](https://apexrunner.ai/signals/cross-asset-contagion-institutional)
+- [ClawHub release page](https://clawhub.ai/kynto2001-ctrl/skills/cross-asset-contagion-institutional)
+- [Publisher profile](https://clawhub.ai/user/kynto2001-ctrl)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Retirement notice; no operational signal is produced.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

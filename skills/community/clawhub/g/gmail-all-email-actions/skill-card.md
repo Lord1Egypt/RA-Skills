@@ -1,43 +1,60 @@
-## Description: <br>
-Gmail All Email Actions helps agents send, read, search, reply to, forward, label, draft, trash, and restore Gmail messages through AgentPMT-hosted tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to search, read, send, reply to, forward, and organize Gmail messages, including drafts and attachments, through AgentPMT.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to automate Gmail workflows such as inbox triage, customer follow-up, message search, draft review, forwarding, labeling, and sending messages with attachments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad Gmail mailbox and outbound email authority, including reading, sending, forwarding, labeling, trashing, deleting drafts, and attachment handling. <br>
-Mitigation: Use it only in workflows that require explicit review of recipients, message bodies, forwarded content, attachments, labels, and trash or delete actions before execution. <br>
-Risk: The security summary reports weak scoping and no clear confirmation rules for sensitive Gmail actions. <br>
-Mitigation: Restrict enabled workflows to the minimum needed Gmail actions and require confirmation before sending, forwarding, or destructive mailbox changes. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to triage Gmail messages, send notifications and replies, manage labels and drafts, and forward messages with attachments.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/gmail-all-email-actions) <br>
-- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/gmail-all-email-actions) <br>
-- [Gmail All Email Actions Schema](artifact/schema.md) <br>
-- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, JSON] <br>
-**Output Format:** [Markdown instructions with JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes action names, required and optional parameters, response handling guidance, and schema lookup routes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Broad Gmail access can expose message contents and enable sending or forwarding sensitive email.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant access only if appropriate and manually verify recipients, From addresses, BCC, attachments, and forwarded content before execution.
+
+Risk: Mailbox actions can trash messages or permanently delete drafts without clear confirmation controls.
+
+Mitigation: Review the target messages and drafts and explicitly confirm destructive actions before allowing the agent to execute them.
+
+Risk: Unreviewed installation steps can affect the safety of a broad-access Gmail connection.
+
+Mitigation: Prefer the OpenClaw install path or pinned, audited setup commands.
+
+## Reference(s):
+
+- [Gmail - All Email Actions on ClawHub](https://clawhub.ai/agentpmt/skills/gmail-all-email-actions)
+- [AgentPMT Gmail marketplace page](https://www.agentpmt.com/marketplace/gmail-all-email-actions)
+- [Gmail action schema](artifact/schema.md)
+- [AgentPMT account and connection setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Markdown guidance and JSON tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses can include email content, message metadata, draft details, and attachment metadata; some actions change mailbox state.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

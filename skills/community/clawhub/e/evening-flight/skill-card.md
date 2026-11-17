@@ -1,44 +1,61 @@
-## Description: <br>
-Book evening flights for after-work departure and dusk travel, using Fliggy-powered flyai CLI results for flight options and booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book evening flights for after-work departure and dusk travel, with related travel booking support powered by Fliggy through the flyai CLI.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel-booking agents use this skill to search evening, cheapest, fastest, and direct flight options after collecting origin, destination, and date details. The skill formats live flyai CLI results into user-readable booking guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to install an unpinned global npm CLI before use. <br>
-Mitigation: Review the install step before execution and prefer running or installing @fly-ai/flyai-cli in a contained environment. <br>
-Risk: Flight searches send travel route and date details to flyai or Fliggy-backed services. <br>
-Mitigation: Use the skill only when the user intends to share those travel details with the booking provider. <br>
+## Use Case:
 
+Travel users and agent operators use this skill to collect route parameters, run live flyai CLI searches for evening, cheapest, fastest, or direct flights, and return concise booking results with required links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/evening-flight) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown tables with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live flyai CLI output; every displayed itinerary must include a booking link from detailUrl.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill directs agents to install and run a third-party flight CLI globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer manual pinned local or sandboxed installation, and require confirmation before any install or live search.
+
+Risk: The skill sends user travel searches to a third-party CLI.
+
+Mitigation: Use only when users are comfortable sharing route, date, and preference details with that CLI, and avoid unusual free-form route text until command argument handling is explicit.
+
+Risk: The skill can execute user-derived shell commands without detailed safety boundaries.
+
+Mitigation: Collect only the required parameters, map them to documented flags, and confirm live searches before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/evening-flight)
+- [Parameter Collection & Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown flight summaries and comparison tables with inline booking links, based on flyai CLI output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires detailUrl booking links in every result and should not expose raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

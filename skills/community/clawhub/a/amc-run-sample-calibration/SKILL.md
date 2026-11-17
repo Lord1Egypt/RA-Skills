@@ -6,8 +6,9 @@ service: "auto-magic-calib"
 version: "1.0.0"
 reviewed: "2026-04-28"
 license: "Apache-2.0"
-data_classification: public
+permissions: [env, file_read, network]
 metadata:
+  author: "Shubham Agrawal <shuagrawal@nvidia.com>"
   tags: [amc, calibration, sample, rest-api, validation, python]
 ---
 
@@ -23,7 +24,9 @@ Activate this skill when the user wants to sanity-check a running AMC stack with
 
 **Do NOT use this skill when:**
 
-- The user references their own video paths (e.g. `/data/videos/`, `cam_*.mp4` not from the bundled zip) — route to `amc-run-video-calibration`. This skill is exclusively for `assets/sdg_08_2_sample_data_010926.zip`.
+- The user references their own video paths (e.g. `/data/videos/`, `cam_*.mp4` not from the bundled zip) — route to `amc-run-video-calibration`.
+- The user provides live RTSP streams or `rtsp://...` URLs — route to `amc-run-rtsp-calibration`.
+- This skill is exclusively for `assets/sdg_08_2_sample_data_010926.zip`.
 
 Prerequisite: AMC microservice running on a port in 8000-8009. If no backend is detected, delegate to `amc-setup-calibration-stack` first.
 
@@ -39,9 +42,9 @@ The sample includes GT, so the run produces evaluation metrics (L2 distance, rep
 
 - [ ] AMC microservice running (follow `skills/amc-setup-calibration-stack/SKILL.md` if not)
 - [ ] Sample zip present at `assets/sdg_08_2_sample_data_010926.zip`
-- [ ] Python 3 with `requests` available, or use the Swagger UI path below
-  - The bundled script self-heals: if `requests` is missing it creates a throwaway venv under `${TMPDIR:-/tmp}/amc-sample-test-venv` (nothing written to the repo)
-  - If `python3 -m venv` itself fails with `ensurepip not available`: `sudo apt install -y python3-venv python3-pip`
+- [ ] Python 3 with `requests` installed, or use the Swagger UI path below
+  - Install it explicitly before running the script: `python3 -m pip install requests`
+  - If `pip` is unavailable, install your distro's Python packaging support first
 
 ## Instructions
 
@@ -78,7 +81,8 @@ echo "Backend on port $MS_PORT"
 ### Locate + Extract Sample Data (idempotent)
 
 ```bash
-export REPO_ROOT=$(git rev-parse --show-toplevel)
+: "${REPO_ROOT:?set REPO_ROOT to the auto-magic-calib checkout. Run amc-setup-calibration-stack Step 0b first.}"
+grep -q "AutoMagicCalib" "$REPO_ROOT/README.md" 2>/dev/null && grep -q "auto-magic-calib-ms" "$REPO_ROOT/compose/ms/compose.yml" 2>/dev/null || { echo "ERROR: REPO_ROOT is not an auto-magic-calib checkout: $REPO_ROOT" >&2; exit 1; }
 
 SAMPLE_ZIP="$REPO_ROOT/assets/sdg_08_2_sample_data_010926.zip"
 [ -f "$SAMPLE_ZIP" ] || { echo "Sample zip not found at $SAMPLE_ZIP"; exit 1; }
@@ -96,7 +100,42 @@ ls "$SAMPLE_DIR"
 
 ## Run Script
 
-Run `scripts/run_sample_calibration.py` from the `auto-magic-calib` repo root, or set `REPO_ROOT=/path/to/auto-magic-calib`. The script reads `compose/.env` for the backend port, accepts `BASE_URL`, `MS_PORT`, `SAMPLE_DIR`, and `RUN_VGGT` overrides, creates a fresh project each run, attempts VGGT when ready, and prints the NGC warehouse dataset note at the end.
+Run the bundled script from the `amc-run-sample-calibration` skill package, not from the `auto-magic-calib` repo root. If the user points the agent at this skill folder directly instead of installing it, set `AMC_SAMPLE_SKILL_DIR` to the directory containing this `SKILL.md`, or run the command from that directory. Set `REPO_ROOT` to the AutoMagicCalib checkout resolved by `amc-setup-calibration-stack`; the script auto-detects a running backend on localhost ports `8000`-`8009` when `BASE_URL` / `MS_PORT` are not set, accepts `BASE_URL`, `MS_PORT`, `SAMPLE_DIR`, and `RUN_VGGT` overrides, creates a fresh project each run, attempts VGGT when ready, and prints the NGC warehouse dataset note at the end.
+
+```bash
+# REPO_ROOT must point to the auto-magic-calib checkout, not the DeepStream repo.
+: "${REPO_ROOT:?set REPO_ROOT to the auto-magic-calib checkout. Run amc-setup-calibration-stack Step 0b first.}"
+grep -q "AutoMagicCalib" "$REPO_ROOT/README.md" 2>/dev/null && grep -q "auto-magic-calib-ms" "$REPO_ROOT/compose/ms/compose.yml" 2>/dev/null || { echo "ERROR: REPO_ROOT is not an auto-magic-calib checkout: $REPO_ROOT" >&2; exit 1; }
+
+# If AMC was resolved from DeepStream's tools/auto-magic-calib submodule,
+# derive the DeepStream root so the unpacked repo skill can be used directly.
+if [ -z "${DEEPSTREAM_REPO_ROOT:-}" ] && [ -d "$REPO_ROOT/../../skills/amc-run-sample-calibration" ]; then
+  DEEPSTREAM_REPO_ROOT="$(cd "$REPO_ROOT/../.." && pwd)"
+fi
+
+SCRIPT_PATH=""
+for candidate in \
+  "${AMC_SAMPLE_SKILL_DIR:+$AMC_SAMPLE_SKILL_DIR/scripts/run_sample_calibration.py}" \
+  "$PWD/scripts/run_sample_calibration.py" \
+  "${DEEPSTREAM_REPO_ROOT:+$DEEPSTREAM_REPO_ROOT/skills/amc-run-sample-calibration/scripts/run_sample_calibration.py}" \
+  "$PWD/skills/amc-run-sample-calibration/scripts/run_sample_calibration.py" \
+  "$HOME/.claude/skills/amc-run-sample-calibration/scripts/run_sample_calibration.py" \
+  "$HOME/.codex/skills/amc-run-sample-calibration/scripts/run_sample_calibration.py" \
+  "$HOME/.cursor/skills/amc-run-sample-calibration/scripts/run_sample_calibration.py"; do
+  if [ -f "$candidate" ]; then
+    SCRIPT_PATH="$candidate"
+    break
+  fi
+done
+
+[ -n "$SCRIPT_PATH" ] || {
+  echo "ERROR: could not find amc-run-sample-calibration/scripts/run_sample_calibration.py" >&2
+  echo "Set AMC_SAMPLE_SKILL_DIR to the amc-run-sample-calibration skill directory, or run this block from that directory." >&2
+  exit 1
+}
+
+python3 "$SCRIPT_PATH"
+```
 
 ## Alternative: Swagger UI Walkthrough
 
@@ -162,14 +201,16 @@ projects/project_<project_id>/
 
 ```bash
 PROJECT_ID=<id_from_step_1>
-REPO_ROOT=$(git rev-parse --show-toplevel)
+: "${REPO_ROOT:?set REPO_ROOT to the auto-magic-calib checkout. Run amc-setup-calibration-stack Step 0b first.}"
+grep -q "AutoMagicCalib" "$REPO_ROOT/README.md" 2>/dev/null && grep -q "auto-magic-calib-ms" "$REPO_ROOT/compose/ms/compose.yml" 2>/dev/null || { echo "ERROR: REPO_ROOT is not an auto-magic-calib checkout: $REPO_ROOT" >&2; exit 1; }
 tail -F --retry "$REPO_ROOT/projects/project_${PROJECT_ID}/calibration.log"
 ```
 
 Or stream MS logs:
 
 ```bash
-REPO_ROOT=$(git rev-parse --show-toplevel)
+: "${REPO_ROOT:?set REPO_ROOT to the auto-magic-calib checkout. Run amc-setup-calibration-stack Step 0b first.}"
+grep -q "AutoMagicCalib" "$REPO_ROOT/README.md" 2>/dev/null && grep -q "auto-magic-calib-ms" "$REPO_ROOT/compose/ms/compose.yml" 2>/dev/null || { echo "ERROR: REPO_ROOT is not an auto-magic-calib checkout: $REPO_ROOT" >&2; exit 1; }
 docker compose -f "$REPO_ROOT/compose/compose.yml" logs -f auto-magic-calib-ms
 ```
 
@@ -177,8 +218,8 @@ docker compose -f "$REPO_ROOT/compose/compose.yml" logs -f auto-magic-calib-ms
 
 | Issue | Fix |
 |---|---|
-| `requests` not installed | Inside a venv: `python3 -m venv venv && ./venv/bin/pip install requests`. If `python3 -m venv` fails: `sudo apt install -y python3-venv python3-pip` first |
-| `[2] Uploaded N videos` where N >> 4 | `SAMPLE_DIR` resolved to the repo root (or another over-broad path) and `rglob("cam_*.mp4")` swept stale videos from `.cache/`, `projects/`, etc. Stop the run (`POST /v1/stop_calibration/{id}`), delete the project (`DELETE /v1/delete_project/{id}`), set `SAMPLE_DIR` explicitly to the extracted sample dir, re-run. The script anchors on `videos/` and asserts `len(videos) <= 16` to fail loud |
+| `requests` not installed | Install it before running the script: `python3 -m pip install requests` |
+| `[2] Uploaded N videos` where N >> 4 | `SAMPLE_DIR` resolved to the repo root (or another over-broad path) and `rglob("cam_*.mp4")` swept stale videos from `.cache/`, `projects/`, etc. Correct `SAMPLE_DIR`, then start a fresh project instead of trying to salvage the bad upload set. The script anchors on `videos/` and asserts `len(videos) <= 16` to fail loud |
 | `verify_project` returns state `!= READY` | Confirm all 4 videos + alignment + layout + GT uploaded; inspect `GET /v1/get_project_info/{id}` response |
 | Sample not extracted | `unzip <repo_root>/assets/sdg_08_2_sample_data_010926.zip -d <repo_root>/assets/.cache/sdg_08_2_sample_data_010926/` |
 | `cam_*.mp4` glob finds 0 files | Check wrapper-folder depth: `find <sample_dir> -name "cam_*.mp4"` |
@@ -194,6 +235,7 @@ The root `README.md` also documents `nv_warehouse_032326.zip`, a real-world ware
 
 - `skills/amc-setup-calibration-stack/SKILL.md` — launch MS + UI (prerequisite).
 - `skills/amc-run-video-calibration/SKILL.md` — run calibration on your own pre-recorded MP4s.
+- `skills/amc-run-rtsp-calibration/SKILL.md` — run calibration from live RTSP streams through VIOS capture.
 
 Root `README.md` "Sample Data Setup" and "Calibration Workflow (UI)" sections cover the human-oriented path through the same sample.
 

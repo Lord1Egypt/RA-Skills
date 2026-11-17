@@ -1,46 +1,67 @@
-## Description: <br>
-EngramClaw helps agents use Engram through MCPorter to retrieve, save, search, and summarize curated cross-session technical memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EngramClaw helps agents use Engram persistent memory across sessions to save significant technical findings, search prior work, restore project context, and write end-of-session summaries.
 
-## Publisher: <br>
-[DragonJAR](https://clawhub.ai/user/DragonJAR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dragonjar](https://clawhub.ai/user/dragonjar)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give OpenClaw-compatible agents curated technical memory across sessions, including bugfixes, architecture decisions, patterns, configuration notes, and end-of-session summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory may retain prompts, session details, personal data, or behavior patterns beyond the intended context. <br>
-Mitigation: Use project-scoped technical notes only, avoid raw prompts, redact secrets and personal data before saving, and regularly review or delete the Engram database. <br>
-Risk: Behavioral preferences or broad user context could be saved without clear consent. <br>
-Mitigation: Require user approval before saving behavioral preferences and keep saved observations limited to relevant technical work. <br>
-Risk: The skill depends on local command-line tools that can execute MCP calls and write persistent memory. <br>
-Mitigation: Install MCPorter and Engram only from the intended sources, review setup commands before running them, and limit use to environments where persistent local memory is acceptable. <br>
+## Use Case:
 
+Developers and agent operators use EngramClaw to connect agents to an Engram MCP memory backend so agents can retain curated technical context, find prior work, and preserve session summaries across coding sessions.
 
-## Reference(s): <br>
-- [Engram backend](https://github.com/Gentleman-Programming/engram) <br>
-- [Engram releases](https://github.com/Gentleman-Programming/engram/releases) <br>
-- [MCPorter](https://github.com/steipete/mcporter) <br>
-- [MCPorter releases](https://github.com/steipete/mcporter/releases) <br>
-- [Engram MCP Tools Reference](references/tools.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, markdown] <br>
-**Output Format:** [Markdown instructions with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local MCPorter and Engram binaries to be installed and available on PATH.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent memory may retain confidential code, secrets, customer data, personal information, prompts, or preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit project scoping, save only significant technical context, redact secrets before saving, and avoid raw prompts or preferences unless they are necessary.
+
+Risk: Broad automatic retention and recall can exceed user expectations when consent, minimization, or retention controls are unclear.
+
+Mitigation: Apply a clear retention policy before deployment, avoid saving every message or tool call, and review recalled context before using it in sensitive work.
+
+Risk: The skill depends on downloaded mcporter and engram binaries or packages.
+
+Mitigation: Verify package and release sources before installation and prefer approved package channels for the deployment environment.
+
+Risk: Hard deletion of stored observations is irreversible.
+
+Mitigation: Prefer soft delete for routine cleanup and reserve hard delete for confirmed removal requests or retention-policy enforcement.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dragonjar/skills/engramclaw)
+- [Engram project](https://github.com/Gentleman-Programming/engram)
+- [Engram releases](https://github.com/Gentleman-Programming/engram/releases)
+- [MCPorter project](https://github.com/steipete/mcporter)
+- [MCPorter releases](https://github.com/steipete/mcporter/releases)
+- [OpenClaw framework](https://github.com/gentleman-programming/openclaw)
+- [Engram MCP tools reference](artifact/references/tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and MCP tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mcporter and engram binaries; stores and retrieves persistent memory through an Engram MCP server.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

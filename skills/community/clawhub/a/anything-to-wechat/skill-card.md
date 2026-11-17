@@ -1,42 +1,64 @@
-## Description: <br>
-Accepts files, folders, URLs, or ideas, generates polished HTML, converts it for WeChat compatibility, and publishes it to a WeChat Official Account draft box. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts files, folders, URLs, or briefs into WeChat-compatible HTML articles and publishes them to a WeChat Official Account draft box.
 
-## Publisher: <br>
-[lutongsuo](https://clawhub.ai/user/lutongsuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lutongsuo](https://clawhub.ai/user/lutongsuo)
 
-## Use Case: <br>
-Developers, creators, and operators use this skill to transform source material into a WeChat-ready article and send it to their WeChat Official Account draft box for review and publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can read broad user-provided files or URLs and automatically upload generated content to WeChat. <br>
-Mitigation: Run it only on intended inputs and review the generated HTML and cover image before publishing from the WeChat draft box. <br>
-Risk: The workflow uses WeChat Official Account credentials and may install Python packages at runtime. <br>
-Mitigation: Use a constrained environment, provide credentials only for the session, and install or review dependencies before running the publishing step. <br>
+## Use Case:
 
+External users and developers use this skill to turn documents, folders, URLs, or article ideas into WeChat Official Account drafts. It handles HTML generation, WeChat compatibility conversion, cover image preparation, and draft upload for later review in WeChat.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/lutongsuo/skills/anything-to-wechat) <br>
-- [README](README.md) <br>
-- [WeChat Official Accounts Platform](https://mp.weixin.qq.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated HTML/image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read user-provided files or URLs, convert HTML for WeChat, generate a cover image, and upload content to a WeChat draft box using user-provided credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can install Python packages at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and preinstall pinned dependencies in an isolated environment.
+
+Risk: The publishing flow uses WeChat account credentials.
+
+Mitigation: Use environment variables or a secret store, and avoid typing AppSecret into an echoed interactive prompt.
+
+Risk: The skill can fetch arbitrary remote image URLs and upload images and content to WeChat.
+
+Mitigation: Avoid untrusted HTML or remote image URLs and confirm exactly what content and images will be uploaded before creating a draft.
+
+Risk: The workflow uploads to the WeChat draft box without a clear final consent boundary in the security evidence.
+
+Mitigation: Run it only with the intended WeChat account and require operator review of the generated article before executing the publish step.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lutongsuo/skills/anything-to-wechat)
+- [Publisher profile](https://clawhub.ai/user/lutongsuo)
+- [WeChat Official Account platform](https://mp.weixin.qq.com/)
+- [WeChat Official Account API base](https://api.weixin.qq.com/cgi-bin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a WeChat-ready HTML article, optional cover image, and WeChat draft media ID when publishing succeeds.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

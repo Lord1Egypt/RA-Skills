@@ -1,43 +1,51 @@
-## Description: <br>
-Current position exposure by pair, strategy, and exchange. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retired signal. No longer sold.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External developers and trading operators use this skill to retrieve real-time APEX Runner position exposure by pair, strategy, and exchange before monitoring portfolios, adding correlated positions, or rebalancing across exchanges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an EVM private key to authorize paid x402 requests that can spend USDC on Base mainnet. <br>
-Mitigation: Use a dedicated low-balance wallet and require confirmation before repeated or automated use. <br>
+## Use Case:
 
+External users can check that the position-exposure signal has been retired and should not configure an agent to call its endpoint. The notice points them to the portfolio-heat listing for current alternative details.
 
-## Reference(s): <br>
-- [ClawHub listing: Position Exposure](https://clawhub.ai/kynto2001-ctrl/skills/position-exposure) <br>
-- [APEX Runner position exposure endpoint](https://apexrunner.ai/signals/position-exposure) <br>
-- [APEX Runner pricing tier check](https://apexrunner.ai/signals/my-pricing) <br>
-- [Related signal: portfolio-heat](https://apexrunner.ai/signals/portfolio-heat) <br>
-- [Related signal: live-atr-sizing](https://apexrunner.ai/signals/live-atr-sizing) <br>
-- [Related signal: agent-stress-index](https://apexrunner.ai/signals/agent-stress-index) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON response with agent-facing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY and can spend USDC on Base mainnet through paid x402 requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: An agent configured to call the retired endpoint will receive HTTP 410 and cannot obtain position-exposure data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not configure an agent to call or pay for this endpoint; check the portfolio-heat listing for current product details.
+
+## Reference(s):
+
+- [Position-exposure signal page](https://apexrunner.ai/signals/position-exposure)
+- [Portfolio-heat signal listing](https://apexrunner.ai/signals/portfolio-heat)
+- [ClawHub release listing](https://clawhub.ai/kynto2001-ctrl/skills/position-exposure)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Retirement status notice; documents the endpoint's HTTP 410 response.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

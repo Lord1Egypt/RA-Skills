@@ -1,46 +1,61 @@
-## Description: <br>
-Manage a Bring! shopping list by adding, removing, completing, and listing grocery items through a Bring! account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a Bring! shopping list by adding, removing, completing, and checking items through a Bring! account.
 
-## Publisher: <br>
-[zahlmann](https://clawhub.ai/user/zahlmann) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zahlmann](https://clawhub.ai/user/zahlmann)
 
-## Use Case: <br>
-External users and agent operators use this skill to manage a personal or household Bring! shopping list from natural-language grocery requests. It is suited for adding, removing, completing, and checking items on the account's default Bring! list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill needs Bring account credentials and can read and update the user's default Bring shopping list. <br>
-Mitigation: Use secure environment-variable storage and install only when the agent should have access to that account and list. <br>
-Risk: Ambiguous grocery requests could add, remove, or complete the wrong item. <br>
-Mitigation: Confirm unclear add, remove, or complete requests before running the command. <br>
-Risk: Dependencies are declared without pinned versions. <br>
-Mitigation: Pin and review dependencies before use in stricter or shared environments. <br>
+## Use Case:
 
+External users with a Bring! account use this skill to let an agent add, remove, complete, and list groceries from the account's default shopping list.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zahlmann/bring-shopping-list) <br>
-- [Bring!](https://www.getbring.com/) <br>
-- [bring-api Python package](https://github.com/miaucl/bring-api) <br>
-- [uv package manager](https://docs.astral.sh/uv/) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Natural-language confirmations with CLI text or JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BRING_EMAIL and BRING_PASSWORD; actions apply to the first default Bring! shopping list.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill requires Bring! account credentials and can expose shopping-list contents to the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials outside project files, avoid reusing the Bring! password, and use the skill only in trusted workspaces.
+
+Risk: The skill uses a live external Bring! API through an unofficial Python package.
+
+Mitigation: Review requested list changes before execution and expect behavior to depend on Bring! and bring-api availability.
+
+Risk: Python dependencies are unpinned in requirements and uv examples.
+
+Mitigation: Pin or lock bring-api and python-dotenv before regular use.
+
+## Reference(s):
+
+- [Bring!](https://www.getbring.com/)
+- [bring-api Python package](https://github.com/miaucl/bring-api)
+- [uv documentation](https://docs.astral.sh/uv/)
+- [Agent Skills specification](https://agentskills.io/specification)
+- [ClawHub skill page](https://clawhub.ai/zahlmann/skills/bring-shopping-list)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus CLI JSON or text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the first default Bring! shopping list and supports optional item specifications with name:spec syntax.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

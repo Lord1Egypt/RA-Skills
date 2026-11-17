@@ -1,41 +1,61 @@
-## Description: <br>
-AI Personal Assistant network skill for multi-agent PA coordination, including PA contact lookup, peer-agent coordination, meeting scheduling, PA group broadcasts, and local PA directory use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Personal Assistant network skill for multi-agent PA coordination, including PA contact lookup, cross-agent coordination, owner-to-owner scheduling, PA group broadcasts, and local PA directory use.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Employees and delegated personal assistant agents use this skill to coordinate with peer PAs, look up PA contacts from a local directory, schedule meetings between owners, broadcast coordination messages, and send owner-approved email or calendar actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive PA and owner contact data. <br>
-Mitigation: Install only in trusted workspaces and remove or replace real-looking example contact entries before use. <br>
-Risk: The skill can guide agents through delegated owner email, calendar, authentication, and directory update actions. <br>
-Mitigation: Require explicit owner approval before email sends, calendar creation, account authentication steps, or directory updates. <br>
-Risk: Loading local context from a .context file can execute shell content if the workspace is not controlled. <br>
-Mitigation: Avoid sourcing .context as shell unless the file is controlled and reviewed by the workspace owner. <br>
+## Use Case:
 
+External users and agent operators use this skill to coordinate through personal assistants, look up PA contacts from a local directory, arrange meetings, broadcast messages to PA groups, and prepare email or calendar actions on an owner's behalf.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON examples and inline shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance and command templates for local PA directory lookup, validation, updates, messaging, email, and calendar workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill handles sensitive PA and owner contact details and can guide email, calendar, broadcast, or directory-write actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit owner approval before directory writes, calendar creation, email sends, broadcasts, or authentication setup.
+
+Risk: The local context-loading example sources a shell file, which can execute arbitrary commands if the file is unsafe.
+
+Mitigation: Replace shell sourcing with strict configuration parsing before deployment.
+
+Risk: The declared contact source is inconsistent between PA_LIST.md and pa-directory.json, which can cause stale or incorrect coordination.
+
+Mitigation: Align the production contact source and validate it before taking coordination actions.
+
+Risk: One example directory includes real-looking contact details.
+
+Mitigation: Remove real-looking example contacts and use placeholders or sanitized sample data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netanel-abergel/skills/ai-pa)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline bash, JSON, and command templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local PA directory data and may produce contact, messaging, email, calendar, and directory-update instructions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

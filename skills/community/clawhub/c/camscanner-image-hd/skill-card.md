@@ -1,42 +1,55 @@
-## Description: <br>
-CamScanner Image HD helps agents enhance image clarity by uploading a selected image to CamScanner for auto-crop and HD filtering, with optional demoire processing only when requested. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses CamScanner to enhance image clarity and quality with auto-crop, HD super filter processing, and optional moire-pattern removal when explicitly requested.
 
-## Publisher: <br>
-[camscanner-ai](https://clawhub.ai/user/camscanner-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[camscanner-ai](https://clawhub.ai/user/camscanner-ai)
 
-## Use Case: <br>
-External users and agents use this skill to prepare a curl and jq image-enhancement pipeline for photos or scanned documents that need clearer, sharper, higher-definition output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images are sent to CamScanner servers for processing, so image contents are handled by a third-party service. <br>
-Mitigation: Avoid sensitive IDs, medical, legal, financial, or private business documents unless CamScanner's privacy and retention terms meet the user's needs. <br>
-Risk: The pipeline downloads the enhanced image to a user-specified local path. <br>
-Mitigation: Confirm the input and output paths before running the commands. <br>
+## Use Case:
 
+External users and developers use this skill to enhance photos or scanned documents through CamScanner's image HD workflow and to choose demoire mode only when moire removal is requested.
 
-## Reference(s): <br>
-- [CamScanner Homepage](https://www.camscanner.com) <br>
-- [CamScanner AI Tools API](https://ai-tools.camscanner.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/camscanner-ai/camscanner-image-hd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; output files are saved to the local path selected by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Selected images or scanned documents are uploaded to CamScanner servers for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for files where external processing by CamScanner is acceptable; avoid sensitive IDs, financial records, medical documents, or confidential business files unless approved.
+
+Risk: Enhancement mode selection can produce unintended results if demoire processing is used when the user did not request moire removal.
+
+Mitigation: Use the default HD enhancement path unless the user explicitly asks to remove moire patterns.
+
+## Reference(s):
+
+- [CamScanner Homepage](https://www.camscanner.com)
+- [CamScanner Image HD API Base](https://ai-tools.camscanner.com)
+- [ClawHub Skill Page](https://clawhub.ai/camscanner-ai/skills/camscanner-image-hd)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance, configuration]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local image files after uploading selected inputs to CamScanner servers for processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact metadata version: 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-Expert API documenter specializing in comprehensive, developer-friendly API documentation, OpenAPI/Swagger specifications, interactive documentation portals, and documentation automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert API documenter specializing in creating comprehensive, developer-friendly API documentation, OpenAPI/Swagger specifications, interactive documentation portals, and documentation automation.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers, API teams, and technical writers use this skill to analyze API surfaces and produce developer-friendly API documentation, including OpenAPI specifications, authentication guides, examples, SDK references, and integration guides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated authentication examples or documentation drafts could expose live secrets, private tokens, or production credentials if users paste them into source material. <br>
-Mitigation: Use placeholders or redacted values for credentials, avoid pasting live secrets into examples, and review generated authentication sections before publishing. <br>
+## Use Case:
 
+Developers, API platform teams, and technical writers use this skill to analyze API surfaces and produce developer-facing API references, OpenAPI/Swagger specifications, code examples, authentication guides, and integration documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-api-documenter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown and structured documentation guidance with API examples and specification content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OpenAPI specifications, authentication examples, error documentation, versioning notes, SDK references, and integration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated API examples or interactive documentation could include incorrect authentication flows, misleading integration guidance, or sample credential patterns if given incomplete source material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only project-relevant API materials and review generated examples, authentication guidance, and interactive documentation before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-api-documenter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown, OpenAPI/Swagger specifications, code examples, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API documentation plans, endpoint descriptions, schemas, examples, authentication notes, migration guidance, and review checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-04-29)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Automated code review assistant that analyzes code changes, pull requests, and files for quality issues, best practices, security concerns, and style violations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated code review assistant that analyzes code changes, pull requests, and files for quality issues, best-practice gaps, security concerns, and style violations.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michealxie001](https://clawhub.ai/user/michealxie001)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review local files, staged Git changes, commits, or diff files before merging or shipping code. It helps surface maintainability, style, best-practice, and common security issues in Markdown or JSON reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local repository files and Git state to produce review findings. <br>
-Mitigation: Run it only in repositories and paths you intend to inspect. <br>
-Risk: Repository-controlled filenames or source snippets may appear in terminal or Markdown output. <br>
-Mitigation: Treat reports from untrusted repositories with normal caution before sharing or rendering them. <br>
-Risk: The skill can write review reports to a user-selected output path. <br>
-Mitigation: Choose report output paths deliberately and review generated files before relying on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to review selected files, staged Git changes, commits, or diff files before commit, pull request review, or CI submission. It produces issue summaries, per-file findings, line references, metrics, and suggested fixes for supported Python, JavaScript, and TypeScript files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michealxie001/openclaw-code-review) <br>
-- [Publisher profile](https://clawhub.ai/user/michealxie001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON code review report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include issue summaries, per-file findings, severities, line references, and suggested fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads the files or Git changes selected by the user, which may include proprietary source paths, snippets, or findings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on repositories and file sets appropriate for local review, and review generated reports before sharing or uploading them.
+
+Risk: The --output option can overwrite the target report file.
+
+Mitigation: Choose an explicit report path and check whether the file already exists before writing output.
+
+Risk: CI report artifacts may expose proprietary filenames, snippets, metrics, or security findings.
+
+Mitigation: Review CI artifact retention, access controls, and upload settings before publishing generated reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michealxie001/skills/openclaw-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance, shell commands, configuration]
+
+**Output Format:** [Markdown or JSON reports with issue summaries, file details, line references, metrics, and suggested fixes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write reports to a user-specified output path and can return a nonzero exit code when --fail-on-error is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

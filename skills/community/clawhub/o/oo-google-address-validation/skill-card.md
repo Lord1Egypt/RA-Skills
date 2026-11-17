@@ -1,42 +1,56 @@
-## Description: <br>
-This skill lets an agent validate and standardize postal addresses through an OOMOL-connected Google Address Validation account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates and standardizes postal addresses through Google Address Validation, returning a verdict, parsed address, and geocode details.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to validate and standardize postal addresses through an OOMOL-connected Google Address Validation account, including verdicts, parsed address details, and geocode data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The feedback-sending action can submit the final outcome of a completed validation sequence and is not clearly labeled as state-changing in the artifact. <br>
-Mitigation: Review and explicitly approve any provide_validation_feedback payload before execution. <br>
-Risk: First-time setup may require optional remote installer commands for the oo CLI. <br>
-Mitigation: Review installer commands before approving them, and use an already installed oo CLI when available. <br>
+## Use Case:
 
+Developers and operations teams use this skill to validate and standardize postal addresses through a connected Google Address Validation account, then review the returned verdict, parsed address, and geocode details.
 
-## Reference(s): <br>
-- [Google Address Validation documentation](https://developers.google.com/maps/documentation/address-validation) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-google-address-validation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on live Google Address Validation connector schemas and may include validation verdicts, parsed address details, geocode data, response metadata, or setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and frontmatter) <br>
+Risk: Setup can execute unchecked remote code and introduce undisclosed changes to other agent skills; the actual installers and released CLI binary are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before installing, use a verified fixed CLI release, and disable startup skill synchronization before its first invocation with OO_SKILLS_SYNC_DISABLED=1.
+
+Risk: Addresses pass through OOMOL during validation.
+
+Mitigation: Submit addresses only when processing them through OOMOL is acceptable for the user and their data-handling requirements.
+
+## Reference(s):
+
+- [Google Address Validation API documentation](https://developers.google.com/maps/documentation/address-validation/overview)
+- [Google Address Validation](https://developers.google.com/maps/documentation/address-validation)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI environment controls](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+
+## Skill Output:
+
+**Output Type(s):** [API results, JSON, Text, Shell commands, Guidance]
+
+**Output Format:** [JSON API responses with concise text summaries; shell commands for schema inspection and action execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results include validation verdict, parsed address, and geocode details when returned by the service.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

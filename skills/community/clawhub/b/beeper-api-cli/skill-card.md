@@ -1,44 +1,61 @@
-## Description: <br>
-Read and send messages via Beeper CLI, with support for WhatsApp, Telegram, Signal, Instagram, Twitter/X, LinkedIn, Facebook Messenger, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and send messages via Beeper CLI. Supports WhatsApp, Telegram, Signal, Instagram, Twitter/X, LinkedIn, Facebook Messenger and more.
 
-## Publisher: <br>
-[nerveband](https://clawhub.ai/user/nerveband) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nerveband](https://clawhub.ai/user/nerveband)
 
-## Use Case: <br>
-Developers and agent users use this skill to inspect Beeper chats, retrieve recent messages, search conversations, and draft or send messages through a locally running Beeper Desktop API after explicit user approval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a powerful Beeper bearer token that can access connected messaging accounts. <br>
-Mitigation: Use the token only in trusted environments, avoid exposing it in logs or shared shells, and rotate it if disclosure is suspected. <br>
-Risk: The wrapper delegates to an unbundled hard-coded Beeper CLI binary and may auto-launch Beeper Desktop. <br>
-Mitigation: Verify the CLI binary at the configured path and review the auto-launch behavior before installation or use. <br>
-Risk: Message sending can affect multiple connected chat networks. <br>
-Mitigation: Show the exact recipient and full message text, then wait for explicit user approval before every send. <br>
-Risk: Remote API configuration can expose Beeper Desktop beyond localhost. <br>
-Mitigation: Keep the API bound to localhost unless remote access is intentional, and review the allowed IP list before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nerveband/beeper-api-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/nerveband) <br>
+## Use Case:
 
+Developers and agent operators use this skill to read Beeper chats, search messages, monitor unread conversations, and prepare or send messages across Beeper-connected networks. It requires Beeper Desktop API access and a valid Beeper bearer token.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON, text, or markdown CLI outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Beeper Desktop API access and a BEEPER_TOKEN environment variable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Beeper token exposure could allow access to all Beeper-connected networks available to the account.
+
+Mitigation: Keep BEEPER_TOKEN out of logs and shared shell history, store it only in a trusted local environment, and rotate it if exposure is suspected.
+
+Risk: Remote or plaintext Beeper API access can expose messages and sending authority outside the local machine.
+
+Mitigation: Prefer localhost-only API access and avoid plaintext HTTP for remote Beeper API access.
+
+Risk: Message sending acts with the user's account authority across connected chat networks.
+
+Mitigation: Require the agent to show the complete draft and wait for explicit user approval before every send, reply, or forward operation.
+
+Risk: The wrapper depends on an external Beeper CLI binary outside the artifact files.
+
+Mitigation: Install only from a trusted source and pin or verify the external binary before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nerveband/skills/beeper-api-cli)
+- [ClawHub publisher profile](https://clawhub.ai/user/nerveband)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and Beeper CLI outputs in JSON, text, or markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read chat metadata and messages, search conversations, and send messages when explicitly approved by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

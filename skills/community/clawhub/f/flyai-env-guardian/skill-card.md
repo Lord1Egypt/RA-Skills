@@ -1,43 +1,54 @@
-## Description: <br>
-Protect sensitive environment variables from accidental exposure in commits, logs, and CI pipelines with automated scanning and pre-commit validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Protect sensitive environment variables from accidental exposure in commits, logs, and CI pipelines with automated scanning and pre-commit validation.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to scan repositories, staged changes, environment files, and CI/CD workflows for exposed secrets before code reaches version control or deployment pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may need to read source files, staged changes, environment files, and possibly git history to find exposed secrets. <br>
-Mitigation: Use it only in repositories where that access is acceptable and review the scope of files or history before allowing broad scans. <br>
-Risk: Scan results may reveal real secret values, secret names, or precise file locations. <br>
-Mitigation: Treat findings as sensitive, avoid sharing raw output unnecessarily, and rotate any credential that may have been exposed. <br>
-Risk: Suggested .gitignore edits, .env.example generation, pre-commit hooks, or CI/CD changes could affect repository workflows. <br>
-Mitigation: Review proposed file and configuration changes before applying them, then test the affected commit or pipeline path. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit repositories, staged changes, environment files, and CI/CD workflows for exposed secrets or unsafe environment-variable handling. It also provides remediation guidance such as moving secrets to environment variables, rotating leaked credentials, updating .gitignore entries, and adding pre-commit or CI scanning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/flyai-env-guardian) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/dingtom336-gif) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with findings, remediation guidance, and inline shell commands or configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May identify file paths, line locations, environment variable names, and suggested .gitignore, .env.example, pre-commit, or CI/CD changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Secret scan output may reveal sensitive file paths or locations where credentials appear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep scan output private, review findings locally, and avoid publishing logs that include sensitive paths or values.
+
+Risk: Suggested .gitignore, hook, or CI/CD changes may affect repository workflow if applied automatically.
+
+Mitigation: Review proposed changes before applying them and test pre-commit or CI behavior on a small change first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/flyai-env-guardian)
+- [Publisher profile](https://clawhub.ai/user/dingtom336-gif)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with findings, remediation steps, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May identify sensitive file paths or secret locations in scan output; review before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

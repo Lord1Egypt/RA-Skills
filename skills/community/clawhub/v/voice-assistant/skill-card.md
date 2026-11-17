@@ -1,43 +1,57 @@
-## Description: <br>
-Real-time voice assistant for OpenClaw that streams microphone audio through configurable STT providers, sends transcripts to an OpenClaw agent, and speaks responses through configurable TTS providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time voice assistant for OpenClaw that streams microphone audio through configurable speech-to-text providers into an OpenClaw agent and speaks responses through configurable text-to-speech providers.
 
-## Publisher: <br>
-[charantejmandali18](https://clawhub.ai/user/charantejmandali18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[charantejmandali18](https://clawhub.ai/user/charantejmandali18)
 
-## Use Case: <br>
-Developers and external users use this skill to add a browser-based voice interface to an OpenClaw agent, with configurable speech-to-text and text-to-speech providers for real-time conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill streams live microphone audio and assistant content through external STT and TTS providers. <br>
-Mitigation: Use only approved provider accounts and avoid speaking sensitive information unless those providers are approved for that data. <br>
-Risk: The local voice server depends on a trusted OpenClaw gateway and network environment. <br>
-Mitigation: Run the server only on trusted networks and point it only at a trusted OpenClaw gateway. <br>
-Risk: Server evidence reports missing privacy notice or consent flow, origin/auth controls, transcript rendering fixes, and .env.example metadata. <br>
-Mitigation: Address those issues before broad deployment and review the release before installing. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to run a browser-based voice interface that transcribes microphone audio, sends turns to an OpenClaw gateway, and speaks the agent response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charantejmandali18/voice-assistant) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and environment variable guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and operating guidance for a local browser voice assistant server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, artifact _meta.json, pyproject.toml) <br>
+Risk: The skill exposes an unauthenticated network service that can use the operator's speech-provider keys and OpenClaw gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on a trusted machine or network, bind the server to localhost, and add authentication and Origin checks before exposing it.
+
+Risk: Microphone audio, transcripts, and generated text may be sent to Deepgram or ElevenLabs and written to logs.
+
+Mitigation: Use provider accounts and logging settings appropriate for the data being processed, and avoid speaking sensitive information unless those providers are approved for that use.
+
+Risk: A highly privileged OpenClaw gateway could allow spoken requests to trigger sensitive agent tools or actions.
+
+Mitigation: Connect the voice assistant to a least-privileged OpenClaw gateway and review tool access before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charantejmandali18/skills/voice-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and environment-variable settings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes provider and gateway configuration for OpenClaw, Deepgram, and ElevenLabs.]
+
+## Skill Version(s):
+
+0.1.0 (source: pyproject.toml, _meta.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

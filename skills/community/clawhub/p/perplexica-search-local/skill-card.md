@@ -1,42 +1,55 @@
-## Description: <br>
-AI-powered search using your local Perplexica instance. Runs deep research with web search and LLM reasoning, then returns answers with cited sources while keeping search state in Perplexica. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered search using your local Perplexica instance that runs deep research with web search and LLM reasoning, then returns answers with cited sources in OpenClaw.
 
-## Publisher: <br>
-[eplt](https://clawhub.ai/user/eplt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eplt](https://clawhub.ai/user/eplt)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to query a local Perplexica instance for AI-powered web, academic, or discussion search and receive cited answers in an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries, optional conversation history, and custom instructions are sent to the local Perplexica instance, and Perplexica may forward that data to its configured search or LLM providers. <br>
-Mitigation: Use this skill only with a trusted local Perplexica deployment, review its configured providers, and avoid sending sensitive data unless those providers are approved for it. <br>
-Risk: The skill depends on a reachable local Perplexica service with configured chat and embedding models, so missing or misconfigured local services can cause failed or incomplete searches. <br>
-Mitigation: Confirm Perplexica is running locally, verify model provider setup before use, and use the documented timeout and mode options for long-running searches. <br>
+## Use Case:
 
+External developers and agent users use this skill to ask a local Perplexica instance for AI-powered web, academic, or discussion search results with cited answers. It is intended for workflows where search and RAG state remain in Perplexica while the agent receives the answer and sources.
 
-## Reference(s): <br>
-- [Perplexica Search on ClawHub](https://clawhub.ai/eplt/perplexica-search-local) <br>
-- [Perplexica](https://github.com/ItzCrazyKns/Perplexica) <br>
-- [OpenClaw](https://open-claw.bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Human-readable answer with cited sources, or JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports quiet output, source selection, optimization mode, custom instructions, conversation history, and configurable local Perplexica URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Search queries may leave the user's machine through the local Perplexica instance's configured search and LLM providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when running and trusting a local Perplexica instance, and review Perplexica provider configuration before sending sensitive queries.
+
+Risk: Broad or ambiguous prompts can trigger unintended searches.
+
+Mitigation: Use explicit Perplexica wording for sensitive workflows and reserve this skill for requests that clearly need local Perplexica search.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/eplt/skills/perplexica-search-local)
+- [Perplexica](https://github.com/ItzCrazyKns/Perplexica)
+- [OpenClaw](https://open-claw.bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON]
+
+**Output Format:** [Markdown-style answer with cited sources, or raw JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include query, mode, selected sources, cited source metadata, selected model, and elapsed time.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

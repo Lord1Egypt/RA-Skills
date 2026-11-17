@@ -1,48 +1,69 @@
-## Description: <br>
-AI-driven visual content generation skill for creating posters, social media images, video covers, and virtual-human backgrounds from natural-language or structured requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates visual assets such as posters, social media images, video covers, and virtual-human backgrounds by turning user requirements into image prompts and optional image-generation commands.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Content creators, marketers, and agent users use this skill to turn visual requirements into image-generation prompts and produce local image files for posters, social posts, covers, and backgrounds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud image generation can expose prompts to an external model provider when DALL-E 3 is selected. <br>
-Mitigation: Use non-sensitive prompts for cloud generation and prefer local Stable Diffusion when prompt privacy is required. <br>
-Risk: The generation script may use sensitive API credentials such as OPENAI_API_KEY. <br>
-Mitigation: Restrict API key permissions, avoid embedding keys in prompts or files, and keep credentials in environment variables. <br>
-Risk: Optional Feishu uploads can share generated output beyond the local workspace. <br>
-Mitigation: Approve uploads only for outputs intended to be shared and review generated images before upload. <br>
-Risk: Generated text inside images may be distorted or unreliable. <br>
-Mitigation: Review image text manually and use separate design tooling for precise final typography when needed. <br>
+## Use Case:
 
+Content creators, marketers, and agents use this skill to convert visual-content requests into structured image prompts, generation commands, platform size choices, and local image outputs.
 
-## Reference(s): <br>
-- [视觉风格规范](references/visual-style-guide.md) <br>
-- [Prompt 模板库](references/prompt-templates.md) <br>
-- [平台尺寸规范](references/platform-size-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tujinsama/visual-content-generator-claw) <br>
-- [Publisher profile](https://clawhub.ai/user/tujinsama) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and generated local image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save generated PNG files locally and can emit a JSON result with file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Cloud image generation sends prompts to OpenAI when DALL-E 3 is selected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the local Stable Diffusion path for sensitive prompts and use DALL-E 3 only when the user accepts external API processing.
+
+Risk: Generated text inside images can be distorted or inaccurate.
+
+Mitigation: Review generated images before publication and use manual layout or post-processing for exact typography.
+
+Risk: Optional Feishu upload can move generated assets to cloud storage.
+
+Mitigation: Upload only after an explicit user-selected action and avoid uploading sensitive images without approval.
+
+Risk: Some advertised generation backends or post-processing capabilities may be incomplete.
+
+Mitigation: Confirm the selected engine and dependencies are available before relying on the workflow for production output.
+
+Risk: Commercial use can raise rights or licensing questions for generated imagery.
+
+Mitigation: Check generated assets and model terms before commercial publication.
+
+## Reference(s):
+
+- [Visual Style Guide](references/visual-style-guide.md)
+- [Prompt Template Library](references/prompt-templates.md)
+- [Platform Size Guide](references/platform-size-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/tujinsama/skills/visual-content-generator-claw)
+- [Publisher Profile](https://clawhub.ai/user/tujinsama)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON status output from the generation script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local PNG files when an available image-generation backend is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

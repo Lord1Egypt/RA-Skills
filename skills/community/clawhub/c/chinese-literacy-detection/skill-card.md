@@ -1,44 +1,56 @@
-## Description: <br>
-Provides a Chinese-language conversational assessment for estimating Chinese character recognition in children ages 3-12 using stratified sampling, early stopping, and positive follow-up guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese Literacy Detection guides an agent through a conversational Chinese-character literacy assessment for children aged 3-12 using stratified sampling, adaptive stopping, and score reporting.
 
-## Publisher: <br>
-[wangwang4git](https://clawhub.ai/user/wangwang4git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangwang4git](https://clawhub.ai/user/wangwang4git)
 
-## Use Case: <br>
-External users, including parents, caregivers, and education assistants, use this skill to run an in-chat Chinese character recognition assessment, review missed characters, and understand age-based literacy references. The skill is intended for guidance and learning support, not clinical or formal educational placement decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill displays a QR code for an optional external WeChat mini-program. <br>
-Mitigation: Continue in chat unless the QR-code destination and publisher are trusted. <br>
-Risk: The assessment asks for a child's age and recognition responses. <br>
-Mitigation: Avoid entering sensitive child, account, or identifying information into the chat or any external mini-program. <br>
+## Use Case:
 
+Parents, guardians, educators, and agent users use this skill to estimate a child's Chinese-character recognition level, produce a positive assessment report, and optionally review unfamiliar characters. Developers can also use the included references and helper scripts to validate data, sampling, and scoring behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangwang4git/chinese-literacy-detection) <br>
-- [Usage guide](artifact/USAGE.md) <br>
-- [Algorithm specification](artifact/references/algorithm-spec.md) <br>
-- [Data schema](artifact/references/data-schema.md) <br>
-- [Chatbot workflow](artifact/references/chatbot-workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversation with tables, status summaries, assessment reports, and review prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language interaction; may ask for a child's age and test responses; includes an optional QR-code prompt for a WeChat mini-program.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill is intended for child literacy assessment and may handle age and performance details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review privacy, consent, and guardian-notice requirements before using the skill with children or retaining assessment results.
+
+Risk: The skill automatically promotes an opaque WeChat mini-program QR code according to the security summary.
+
+Mitigation: Verify the QR code destination and provide clear privacy and consent information before showing it to users.
+
+## Reference(s):
+
+- [Algorithm Specification](artifact/references/algorithm-spec.md)
+- [Data Schema](artifact/references/data-schema.md)
+- [Chatbot Workflow](artifact/references/chatbot-workflow.md)
+- [ClawHub Skill Page](https://clawhub.ai/wangwang4git/skills/chinese-literacy-detection)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown conversation prompts, assessment tables, score reports, review guidance, and optional helper-script command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a bundled JSON data asset of 2500 Chinese characters and local Python helper scripts for validation, sequence generation, and score calculation.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,48 @@
-## Description: <br>
-Reports local disk usage, uptime, and operating system information using standard read-only system commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reports local disk usage, kernel and operating system details, uptime, and load by running df, uname, and uptime.
 
-## Publisher: <br>
-[aneasystone](https://clawhub.ai/user/aneasystone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aneasystone](https://clawhub.ai/user/aneasystone)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to answer quick questions about the current host's disk usage, OS and kernel version, uptime, and load. It is intended for read-only local system status checks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may reveal local system details such as disk usage, kernel and OS information, uptime, and load.
+
+Mitigation: Use it only where sharing host status with the agent is acceptable, and avoid installing it in environments where these details are sensitive.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators can use this skill to ask an agent for a quick local machine status summary, including filesystem usage, kernel or operating system details, and uptime/load information. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Command output can reveal local system, load, kernel, and mount information. <br>
-Mitigation: Use only when the user is comfortable sharing local machine status with the agent, and review the displayed df, uname, and uptime output before redistributing it. <br>
+**Output Format:** [Plain text with command lines and short summaries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aneasystone/sysinfo-demo) <br>
+**Other Properties Related to Output:** [Reports command output from df, uname, and uptime; no file writes or elevated privileges are requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text] <br>
-**Output Format:** [Plain text command output followed by a brief summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses df -h, uname -a, and uptime on Darwin or Linux; does not require sudo or write access.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

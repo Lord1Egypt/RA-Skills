@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mosocanvas.local/schemas/evidence-registry-0.1.json",
+  "title": "MoSoCanvas Evidence Registry 0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "created_at", "entries"],
+  "properties": {
+    "schema": { "const": "moso.evidence-registry/0.1" },
+    "id": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "content_ref", "sha256", "size_bytes", "media_type", "created_at"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "kind": {
+            "enum": [
+              "visual-spec",
+              "shot-plan",
+              "composition-proof",
+              "series-plan",
+              "prompt",
+              "artifact",
+              "artifact-review",
+              "review-session",
+              "user-decision",
+              "benchmark-suite",
+              "pairwise-evaluation",
+              "trend-snapshot",
+              "other"
+            ]
+          },
+          "content_ref": { "type": "string", "minLength": 1 },
+          "source_ref": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+          "size_bytes": { "type": "integer", "minimum": 0 },
+          "media_type": { "type": "string", "minLength": 1 },
+          "created_at": { "type": "string", "format": "date-time" },
+          "producer": { "type": "string", "minLength": 1 },
+          "parent_ids": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          }
+        }
+      }
+    }
+  }
+}

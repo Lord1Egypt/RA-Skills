@@ -1,42 +1,57 @@
-## Description: <br>
-Review Arabic app and website UI localization for RTL layout, translation quality, terminology consistency, tone, and launch readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review Arabic app and website UI localization for RTL layout, translation quality, terminology consistency, tone, and launch readiness.
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-Product teams, localization reviewers, designers, and developers use this skill to review or improve Arabic UI copy, RTL layout behavior, terminology consistency, tone, and launch readiness for websites and apps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share passwords, OTPs, credentials, customer records, or unredacted private screenshots while requesting localization review. <br>
-Mitigation: Ask for redacted UI text or screenshots and avoid requesting or processing secrets or private customer data. <br>
-Risk: Localization suggestions may be mistaken for legal, religious, medical, or financial approval. <br>
-Mitigation: Present suggestions as wording and UX guidance only, and route regulated or sensitive copy to the responsible reviewer. <br>
-Risk: Suggested copy could be applied to production without review. <br>
-Mitigation: Require explicit user approval and owner review before publishing or changing production UI copy. <br>
+## Use Case:
 
+External product teams, developers, and localization reviewers use this skill to review, draft, and improve Arabic UI copy and right-to-left layout readiness for apps, websites, forms, onboarding screens, dashboards, and launch QA.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/arabic-ui-localization-reviewer-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review with prioritized issues, suggested Arabic copy, and RTL/layout notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; produces review findings and suggested copy only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Screenshots or UI examples may contain private customer data or sensitive account information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or blur private data before sharing screenshots or text for review.
+
+Risk: Suggested Arabic wording could be mistaken for legal, religious, medical, or financial approval.
+
+Mitigation: Treat outputs as localization suggestions and route regulated or sensitive copy to the responsible reviewer.
+
+Risk: Publishing revised production copy without review could introduce incorrect or inconsistent user-facing text.
+
+Mitigation: Require explicit approval and human review before applying suggested copy to production systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullah944/skills/arabic-ui-localization-reviewer-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text review notes, rewritten Arabic copy, checklists, and screenshot QA findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prioritized issues, suggested copy, RTL layout notes, and next-step recommendations.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

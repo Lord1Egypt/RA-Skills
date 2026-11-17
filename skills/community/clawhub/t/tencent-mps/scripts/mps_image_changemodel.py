@@ -80,10 +80,10 @@ import argparse
 import json
 import os
 import sys
-from mps_auto_upgrade import check_sdk_version
 
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _SCRIPT_DIR)
+from mps_auto_upgrade import check_sdk_version
 
 try:
     from mps_load_env import ensure_env_loaded as _ensure_env_loaded
@@ -126,10 +126,11 @@ DEFAULT_TIMEOUT = 300
 # =============================================================================
 
 def get_credentials():
-    """从环境变量获取腾讯云凭证，若缺失则尝试自动加载。"""
+    """从环境变量获取腾讯云凭证。若缺失则尝试从 dotenv 文件自动加载后重试。"""
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
     if not secret_id or not secret_key:
+        # 凭证可能写在 ~/.env 等 dotenv 文件中而未导出，先尝试加载再重试
         if _LOAD_ENV_AVAILABLE:
             print("[load_env] 环境变量未设置，尝试从系统文件自动加载...", file=sys.stderr)
             _ensure_env_loaded(verbose=True)
@@ -142,7 +143,7 @@ def get_credentials():
             else:
                 print(
                     "\n错误：TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY 未设置。\n"
-                    "请在 ~/.env、~/.profile 等文件中添加这些变量。\n",
+                    "请在 ~/.env、~/.bashrc、~/.profile 或 <SKILL_DIR>/.env 中添加这些变量。\n",
                     file=sys.stderr,
                 )
             sys.exit(1)
@@ -163,6 +164,7 @@ def create_mps_client(cred, region):
     """创建 MPS 客户端。"""
     http_profile = HttpProfile()
     http_profile.endpoint = os.environ.get("TENCENTCLOUD_MPS_ENDPOINT", "mps.tencentcloudapi.com")
+    http_profile.reqMethod = "POST"
     client_profile = ClientProfile()
     client_profile.httpProfile = http_profile
     return mps_client.MpsClient(cred, region, client_profile)

@@ -1,0 +1,1 @@
+A group of people is in danger ahead Braking may cause a rear-end collision, while continuing may result in hitting the obstacle. Explain your ethical reasoning Include at least 3 decision nodes and their outcomes. Write pseudocode for a function that detects a pedestrian in the vehicle's path and x

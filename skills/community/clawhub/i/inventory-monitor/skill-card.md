@@ -1,42 +1,54 @@
-## Description: <br>
-库存监控与补货提醒用于读取指定 Excel 库存台账，计算库存可用月数，并在库存低于阈值时生成企微补货提醒。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于美兰中心C+服务.xlsx Excel台账监控库存水位、计算可用月数，并在库存低于阈值时生成补货提醒。
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-园区运营、仓储或采购人员使用该技能监控 Excel 库存台账、识别缺货和低库存物资，并生成补货建议或出入库更新反馈。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and update the named inventory spreadsheet through stock-in and stock-out commands. <br>
-Mitigation: Install only for agents allowed to access that ledger, keep backups, and use confirmations or audit logs for inventory-changing actions. <br>
-Risk: Shortage details may be sent to configured WeCom recipients. <br>
-Mitigation: Use a restricted webhook and limit recipients and message content to the operational stock details needed for replenishment. <br>
-Risk: Replenishment recommendations depend on current stock counts and monthly usage values in the spreadsheet. <br>
-Mitigation: Keep transaction records and monthly usage values current, and review suggested purchase quantities before procurement. <br>
+## Use Case:
 
+Operations and facilities teams use this skill to monitor inventory levels from an Excel ledger, calculate available months of supply, and prepare replenishment alerts for purchasing follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/perrykono-debug/inventory-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Chinese-language text or Markdown inventory reports, replenishment alerts, transaction confirmations, and configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference configured Excel worksheet paths, inventory thresholds, WeCom recipients, scheduled checks, and stock transaction inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can modify a real business inventory workbook through intake and withdrawal workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require role-based authorization, explicit confirmation before ledger changes, strict quantity and stock validation, backups, and an audit log.
+
+Risk: The skill can send inventory alerts to an external WeCom destination.
+
+Mitigation: Have an administrator configure and review the webhook destination, restrict who can trigger alerts, and avoid sending sensitive inventory details to unapproved recipients.
+
+## Reference(s):
+
+- [Reference Documentation for Inventory Monitor](artifact/references/api_reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/perrykono-debug/skills/inventory-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown text with inventory status summaries, replenishment alerts, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recommended purchase quantities and proposed ledger updates; external alert delivery depends on administrator-configured WeCom settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Generates professional food photography images from text prompts using the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI food photography generator for restaurants, recipe bloggers, cookbook authors, food brands, and Instagram creators that creates food marketing and editorial images with cinematic lighting and styling through the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and developers use this skill to generate food marketing, menu, recipe, blog, branding, and editorial images from text prompts, with optional aspect ratio and reference-image style controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference image UUIDs, and the Neta API token are sent to the Neta/TalesOfAI service. <br>
-Mitigation: Use the skill only when that external service exposure is acceptable, and avoid including secrets, private customer data, unpublished campaign details, or other sensitive material in prompts. <br>
-Risk: The skill requires an API token supplied on the command line. <br>
-Mitigation: Use a scoped or trial token where possible and avoid sharing shell history, logs, or screenshots that include the token. <br>
+## Use Case:
 
+External creators, restaurants, cookbook authors, food brands, and marketing teams use this skill to turn text prompts into food photography image URLs for menus, recipe cards, blogs, branding, and culinary editorial content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blammectrappora/food-photography-generator) <br>
-- [Neta API token and free trial](https://www.neta.art/open/) <br>
-- [TalesOfAI image generation endpoint](https://api.talesofai.com/v3/make_image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls] <br>
-**Output Format:** [Plain text image URL printed to stdout, with progress and error messages on stderr.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token passed with --token; supports square, portrait, landscape, and tall image sizes plus optional reference image UUIDs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: API tokens are supplied on the command line and may be exposed through shell history, process listings, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a minimally privileged token, avoid shared or logged shells, and rotate the token if it may have been exposed.
+
+Risk: Prompts and reference image identifiers are sent to an external image-generation provider.
+
+Mitigation: Do not submit confidential recipes, customer data, proprietary campaign details, or other sensitive content unless external processing is approved.
+
+Risk: The documented install path is broad and mutable.
+
+Mitigation: Install only after review, and prefer a pinned, reviewed version or checksum when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blammectrappora/skills/food-photography-generator)
+- [Neta API token page](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text image URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token supplied with --token; supports square, portrait, landscape, and tall image sizes plus optional reference image UUIDs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

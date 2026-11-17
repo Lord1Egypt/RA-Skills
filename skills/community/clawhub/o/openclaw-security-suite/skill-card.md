@@ -1,42 +1,56 @@
-## Description: <br>
-Comprehensive security suite for OpenClaw skills. Includes static scanning (AST + keywords) and AI-powered semantic behavior review to detect malicious code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive security suite for OpenClaw skills. Includes static scanning (AST + keywords) and AI-powered semantic behavior review to detect malicious code.
 
-## Publisher: <br>
-[xunxingyuan](https://clawhub.ai/user/xunxingyuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xunxingyuan](https://clawhub.ai/user/xunxingyuan)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to scan OpenClaw skill directories for static indicators of malicious behavior and to request LLM-assisted semantic review of individual files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI review sends the selected file content to the configured LLM, which may expose sensitive source code or secrets. <br>
-Mitigation: Run AI review only on files that are approved for disclosure to the configured LLM, and remove secrets before review. <br>
-Risk: Static scanning is advisory and may miss relevant files, especially nested files outside the top-level directory scan. <br>
-Mitigation: Supplement scan results with recursive review or additional tooling before relying on a clean result for deployment decisions. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to scan OpenClaw skill directories and review individual source files for suspicious imports, dangerous calls, keyword matches, and LLM-identified malicious behavior.
 
-## Reference(s): <br>
-- [OpenClaw Security Suite on ClawHub](https://clawhub.ai/xunxingyuan/openclaw-security-suite) <br>
-- [README](artifact/README.md) <br>
-- [SKILL definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Guidance] <br>
-**Output Format:** [JSON objects containing scan findings or LLM review results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static scan results include a safe flag and per-file issues; AI review results depend on the configured LLM.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.3 (source: frontmatter, package.json, server release evidence) <br>
+Risk: The review action can read a local file path and send the full contents to the active LLM context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the review action only on files intentionally approved for LLM processing, and avoid secrets, credentials, private agent state, and broad filesystem paths.
+
+Risk: Scan and review results are advisory because advertised security layers are not all enforced and scanner coverage is incomplete.
+
+Mitigation: Treat a clean result as one input to review rather than an authorization to deploy; pair it with human review and additional security checks.
+
+## Reference(s):
+
+- [OpenClaw Security README](README.md)
+- [OpenClaw Security Suite Skill Definition](SKILL.md)
+- [Security Policy Configuration](config/policy.json)
+- [Malicious Pattern Configuration](config/malicious_patterns.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON scan results or LLM-generated review text with JSON fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scan results include a safe flag and per-file issues; review results include risk_level and reason when the LLM follows the prompt.]
+
+## Skill Version(s):
+
+0.2.3 (source: SKILL.md frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,8 @@
+assets/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+.env
+.DS_Store

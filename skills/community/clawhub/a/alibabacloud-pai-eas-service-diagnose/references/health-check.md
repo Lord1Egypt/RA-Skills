@@ -192,12 +192,12 @@ SERVICE="my-service"
 REGION="cn-hangzhou"
 
 # Check health check configuration
-aliyun eas describe-service --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-service --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | \
   jq '{StartupCheck, LivenessCheck, ReadinessCheck}'
 
 # Check service listening port
 aliyun eas describe-service-log --cluster-id $REGION --service-name $SERVICE \
-  --keyword "listening" --limit 10 --user-agent AlibabaCloud-Agent-Skills
+  --keyword "listening" --limit 10 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ### Issue 2: Intermittent service unavailability
@@ -229,10 +229,10 @@ REGION="cn-hangzhou"
 
 # View restart reasons
 aliyun eas describe-service-log --cluster-id $REGION --service-name $SERVICE \
-  --keyword "liveness" --limit 20 --user-agent AlibabaCloud-Agent-Skills
+  --keyword "liveness" --limit 20 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 
 # Check health check failure events
-aliyun eas describe-service-event --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills | \
+aliyun eas describe-service-event --cluster-id $REGION --service-name $SERVICE --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose | \
   jq '.Events[] | select(.Reason | test("Unhealthy|ProbeFailed"; "i"))'
 ```
 
@@ -254,7 +254,7 @@ SERVICE="my-service"
 REGION="cn-hangzhou"
 
 aliyun eas describe-service-log --cluster-id $REGION --service-name $SERVICE \
-  --keyword "health" --limit 30 --user-agent AlibabaCloud-Agent-Skills
+  --keyword "health" --limit 30 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 ### 3. Temporarily Disable Health Checks

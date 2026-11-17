@@ -1,0 +1,447 @@
+metadata:
+  version: 1
+  sample_date: "2026-07-04"
+  source_type: "sourced_public_game_fps_samples"
+  note: "Only exact-source FPS samples may be listed here. Public prediction samples are not measured benchmarks and must not be described as 1% low data."
+
+games:
+  - id: aaa_representative
+    name: "3A代表游戏"
+    aliases: ["3A", "大型3A", "3a游戏", "单机3A"]
+    category: aaa
+    default_preset: source_default_unknown
+    representatives: ["black_myth_wukong", "cyberpunk_2077"]
+  - id: delta_force
+    name: "三角洲行动"
+    aliases: ["三角洲", "三角洲行动", "Delta Force", "DeltaForce"]
+    category: competitive_fps
+    default_preset: source_default_unknown
+  - id: valorant
+    name: "无畏契约"
+    aliases: ["无畏契约", "瓦", "打瓦", "瓦罗兰特", "Valorant"]
+    category: competitive_fps
+    default_preset: source_default_unknown
+  - id: cs2
+    name: "CS2"
+    aliases: ["CS2", "CS GO", "CSGO", "GO", "反恐精英2"]
+    category: competitive_fps
+    default_preset: source_default_unknown
+  - id: pubg
+    name: "绝地求生"
+    aliases: ["吃鸡", "绝地求生", "PUBG"]
+    category: competitive_fps
+    default_preset: source_default_unknown
+  - id: black_myth_wukong
+    name: "黑神话：悟空"
+    aliases: ["黑神话", "黑神话悟空", "Black Myth Wukong", "Black Myth: Wukong"]
+    category: aaa
+    default_preset: source_default_unknown
+  - id: cyberpunk_2077
+    name: "赛博朋克2077"
+    aliases: ["赛博朋克", "赛博朋克2077", "Cyberpunk", "Cyberpunk 2077"]
+    category: aaa
+    default_preset: source_default_unknown
+
+presets:
+  source_default_unknown: "来源默认/未知画质"
+  competitive_low: "竞技低画质"
+  high_no_rt: "高画质，不开光追"
+  rt_dlss_fg: "光追 + DLSS/帧生成"
+
+sample_requirements:
+  required_fields:
+    - game
+    - resolution
+    - preset
+    - cpu
+    - gpu
+    - avg_fps
+    - confidence
+    - source_title
+    - source_date
+    - source_type
+  rules:
+    - "必须是同游戏、同分辨率、同画质档、明确 CPU 和 GPU 的直接样本。"
+    - "不允许用相邻显卡、CPU 或跑分倍率推算 FPS。"
+    - "没有 1% low 但来源明确给出 FPS 区间时，可用 fps_range 入库；输出必须说明这不是 1% low。"
+    - "发布包只保留脱敏来源类型和标题，不保留维护端原始抓取证据。"
+
+benchmarks:
+  - game: delta_force
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 5 9600X"
+    gpu: "NVIDIA GeForce RTX 5070"
+    avg_fps: [216, 216]
+    fps_range: [170, 259]
+    confidence: medium
+    sample_count: 1227
+    vram_gb: 7.9
+    dram_gb: 19.1
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: valorant
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 5 9600X"
+    gpu: "NVIDIA GeForce RTX 5070"
+    avg_fps: [405, 405]
+    fps_range: [349, 466]
+    confidence: medium
+    sample_count: 289
+    vram_gb: 4.2
+    dram_gb: 15.1
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: black_myth_wukong
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 5 9600X"
+    gpu: "NVIDIA GeForce RTX 5070"
+    avg_fps: [175, 175]
+    fps_range: [110, 235]
+    confidence: medium
+    sample_count: 159
+    vram_gb: 8.0
+    dram_gb: 17.3
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: cyberpunk_2077
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 5 9600X"
+    gpu: "NVIDIA GeForce RTX 5070"
+    avg_fps: [170, 170]
+    fps_range: [116, 218]
+    confidence: medium
+    sample_count: 72
+    vram_gb: 9.6
+    dram_gb: 14.9
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: delta_force
+    resolution: 1080p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070"
+    avg_fps: [313, 313]
+    fps_range: [258, 366]
+    confidence: medium
+    sample_count: 141
+    vram_gb: 7.2
+    dram_gb: 20.1
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: delta_force
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070"
+    avg_fps: [241, 241]
+    fps_range: [184, 288]
+    confidence: medium
+    sample_count: 1920
+    vram_gb: 7.9
+    dram_gb: 19.4
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: valorant
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070"
+    avg_fps: [564, 564]
+    fps_range: [496, 636]
+    confidence: medium
+    sample_count: 459
+    vram_gb: 4.3
+    dram_gb: 15.4
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: cs2
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070"
+    avg_fps: [339, 339]
+    fps_range: [289, 397]
+    confidence: medium
+    sample_count: 72
+    vram_gb: 8.2
+    dram_gb: 15.1
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: pubg
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070"
+    avg_fps: [274, 274]
+    fps_range: [211, 334]
+    confidence: medium
+    sample_count: 1119
+    vram_gb: 6.7
+    dram_gb: 17.4
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: black_myth_wukong
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070"
+    avg_fps: [207, 207]
+    fps_range: [125, 269]
+    confidence: medium
+    sample_count: 113
+    vram_gb: 7.8
+    dram_gb: 18.3
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: cyberpunk_2077
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070"
+    avg_fps: [159, 159]
+    fps_range: [106, 216]
+    confidence: medium
+    sample_count: 52
+    vram_gb: 9.1
+    dram_gb: 15.6
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: delta_force
+    resolution: 1080p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070 Ti"
+    avg_fps: [356, 356]
+    fps_range: [272, 430]
+    confidence: medium
+    sample_count: 114
+    vram_gb: 7.2
+    dram_gb: 20.0
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: delta_force
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070 Ti"
+    avg_fps: [255, 255]
+    fps_range: [181, 326]
+    confidence: medium
+    sample_count: 3144
+    vram_gb: 8.0
+    dram_gb: 17.9
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: valorant
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070 Ti"
+    avg_fps: [543, 543]
+    fps_range: [447, 635]
+    confidence: medium
+    sample_count: 1047
+    vram_gb: 4.4
+    dram_gb: 14.2
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: cs2
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070 Ti"
+    avg_fps: [378, 378]
+    fps_range: [322, 450]
+    confidence: medium
+    sample_count: 272
+    vram_gb: 8.1
+    dram_gb: 15.1
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: pubg
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070 Ti"
+    avg_fps: [307, 307]
+    fps_range: [229, 359]
+    confidence: medium
+    sample_count: 2170
+    vram_gb: 6.8
+    dram_gb: 16.3
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: black_myth_wukong
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070 Ti"
+    avg_fps: [214, 214]
+    fps_range: [149, 269]
+    confidence: medium
+    sample_count: 645
+    vram_gb: 8.2
+    dram_gb: 18.1
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: cyberpunk_2077
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070 Ti"
+    avg_fps: [195, 195]
+    fps_range: [126, 267]
+    confidence: medium
+    sample_count: 383
+    vram_gb: 9.7
+    dram_gb: 15.3
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: delta_force
+    resolution: 2160p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070 Ti"
+    avg_fps: [166, 166]
+    fps_range: [131, 207]
+    confidence: medium
+    sample_count: 508
+    vram_gb: 10.1
+    dram_gb: 19.0
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: black_myth_wukong
+    resolution: 2160p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070 Ti"
+    avg_fps: [153, 153]
+    fps_range: [102, 218]
+    confidence: medium
+    sample_count: 348
+    vram_gb: 10.0
+    dram_gb: 18.5
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: cyberpunk_2077
+    resolution: 2160p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5070 Ti"
+    avg_fps: [143, 143]
+    fps_range: [96, 203]
+    confidence: medium
+    sample_count: 269
+    vram_gb: 12.1
+    dram_gb: 16.0
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: black_myth_wukong
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5080"
+    avg_fps: [176, 176]
+    fps_range: [117, 251]
+    confidence: medium
+    sample_count: 580
+    vram_gb: 8.8
+    dram_gb: 18.3
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: cyberpunk_2077
+    resolution: 1440p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5080"
+    avg_fps: [201, 201]
+    fps_range: [131, 263]
+    confidence: medium
+    sample_count: 412
+    vram_gb: 10.4
+    dram_gb: 15.8
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: delta_force
+    resolution: 2160p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5080"
+    avg_fps: [182, 182]
+    fps_range: [144, 228]
+    confidence: medium
+    sample_count: 1394
+    vram_gb: 10.2
+    dram_gb: 19.2
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: valorant
+    resolution: 2160p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5080"
+    avg_fps: [512, 512]
+    fps_range: [414, 594]
+    confidence: medium
+    sample_count: 437
+    vram_gb: 5.9
+    dram_gb: 15.3
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: black_myth_wukong
+    resolution: 2160p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5080"
+    avg_fps: [146, 146]
+    fps_range: [98, 207]
+    confidence: medium
+    sample_count: 1021
+    vram_gb: 10.6
+    dram_gb: 18.6
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction
+  - game: cyberpunk_2077
+    resolution: 2160p
+    preset: source_default_unknown
+    cpu: "AMD Ryzen 7 9800X3D"
+    gpu: "NVIDIA GeForce RTX 5080"
+    avg_fps: [163, 163]
+    fps_range: [114, 218]
+    confidence: medium
+    sample_count: 841
+    vram_gb: 12.3
+    dram_gb: 16.3
+    source_title: "公开 FPS 配置预测样本"
+    source_date: "2026-07-04"
+    source_type: public_fps_prediction

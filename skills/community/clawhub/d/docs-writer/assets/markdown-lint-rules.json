@@ -1,0 +1,11 @@
+{
+  "_comment": "docs-writer 子技能的检查规则集，被 scripts/check_md_links.py 与 scripts/check_code_blocks.py 读取执行。脚本读取时跳过所有 '_' 开头的键（注释/元信息）。修改后请重跑各脚本的 --check-rules 自检。",
+  "require_code_lang": true,
+  "warn_on_unknown_lang": false,
+  "allowed_schemes": ["http", "https", "mailto"],
+  "forbid_empty_anchor": true,
+  "forbid_dead_anchor": true,
+  "ignore_link_paths": ["node_modules/", "vendor/"],
+  "missing_tokens": ["TODO", "FIXME", "XXX", "TBD"],
+  "max_heading_slug_len": 80
+}

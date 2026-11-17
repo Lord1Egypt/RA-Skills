@@ -10,47 +10,31 @@ set -euo pipefail
 #   ./opensea-swap.sh 0xToToken 100 base 0x0000000000000000000000000000000000000000 turnkey
 #
 # Required env vars:
-#   OPENSEA_API_KEY    OpenSea API key
-#   Plus one wallet provider's credentials:
+#   OPENSEA_API_KEY    OpenSea API key (or a key cached in ~/.opensea/api_key)
+#   Plus one wallet provider's credentials. Without [wallet_provider], the CLI
+#   picks one from env vars (see the opensea-wallet skill):
 #     Privy (default):  PRIVY_APP_ID, PRIVY_APP_SECRET, PRIVY_WALLET_ID
 #     Turnkey:          TURNKEY_API_PUBLIC_KEY, TURNKEY_API_PRIVATE_KEY, TURNKEY_ORGANIZATION_ID, TURNKEY_WALLET_ADDRESS, TURNKEY_RPC_URL
 #     Fireblocks:       FIREBLOCKS_API_KEY, FIREBLOCKS_API_SECRET, FIREBLOCKS_VAULT_ID
 #     Bankr:            BANKR_API_KEY
-#     Private Key:      PRIVATE_KEY, RPC_URL, WALLET_ADDRESS
+#     Private Key:      PRIVATE_KEY, RPC_URL (WALLET_ADDRESS optional)
 
-TO_TOKEN="${1:?Usage: $0 <to_token_address> <amount> [chain] [from_token] [wallet_provider]}"
+TO_TOKEN_ADDRESS="${1:?Usage: $0 <to_token_address> <amount> [chain] [from_token] [wallet_provider]}"
 AMOUNT="${2:?Amount required}"
 CHAIN="${3:-base}"
-FROM_TOKEN="${4:-0x0000000000000000000000000000000000000000}"
+FROM_TOKEN_ADDRESS="${4:-0x0000000000000000000000000000000000000000}"
 WALLET_PROVIDER="${5:-}"
 
-if [ -z "${OPENSEA_API_KEY:-}" ]; then
-  echo "OPENSEA_API_KEY environment variable is required" >&2
+key_file="${OPENSEA_CONFIG_DIR:-${HOME:-}/.opensea}/api_key"
+if [ -z "${OPENSEA_API_KEY:-}" ] && [ ! -s "$key_file" ]; then
+  echo "OPENSEA_API_KEY is required (or a key cached in ~/.opensea/api_key)" >&2
   exit 1
-fi
-
-# Detect wallet provider from env vars if not explicitly specified
-# Priority and detection logic matches CLI's createWalletFromEnv: Privy > Fireblocks > Turnkey > Bankr > Private Key
-if [ -z "$WALLET_PROVIDER" ]; then
-  if [ -n "${PRIVY_APP_ID:-}" ] && [ -n "${PRIVY_APP_SECRET:-}" ]; then
-    WALLET_PROVIDER="privy"
-  elif [ -n "${FIREBLOCKS_API_KEY:-}" ] && [ -n "${FIREBLOCKS_VAULT_ID:-}" ]; then
-    WALLET_PROVIDER="fireblocks"
-  elif [ -n "${TURNKEY_API_PUBLIC_KEY:-}" ] && [ -n "${TURNKEY_ORGANIZATION_ID:-}" ]; then
-    WALLET_PROVIDER="turnkey"
-  elif [ -n "${BANKR_API_KEY:-}" ]; then
-    WALLET_PROVIDER="bankr"
-  elif [ -n "${PRIVATE_KEY:-}" ] && [ -n "${RPC_URL:-}" ]; then
-    WALLET_PROVIDER="private-key"
-  else
-    echo "No wallet provider credentials found. Set env vars for one of: Privy, Turnkey, Fireblocks, Bankr, or Private Key." >&2
-    echo "See the opensea-wallet skill (opensea-wallet/references/wallet-setup.md) for details." >&2
-    exit 1
-  fi
 fi
 
 # Validate required env vars for the selected provider
 case "$WALLET_PROVIDER" in
+  "")
+    ;;
   privy)
     for var in PRIVY_APP_ID PRIVY_APP_SECRET PRIVY_WALLET_ID; do
       if [ -z "${!var:-}" ]; then
@@ -82,7 +66,7 @@ case "$WALLET_PROVIDER" in
     fi
     ;;
   private-key)
-    for var in PRIVATE_KEY RPC_URL WALLET_ADDRESS; do
+    for var in PRIVATE_KEY RPC_URL; do
       if [ -z "${!var:-}" ]; then
         echo "${var} environment variable is required for Private Key provider" >&2
         exit 1
@@ -95,10 +79,15 @@ case "$WALLET_PROVIDER" in
     ;;
 esac
 
+provider_args=()
+if [ -n "$WALLET_PROVIDER" ]; then
+  provider_args=(--wallet-provider "$WALLET_PROVIDER")
+fi
+
 exec opensea swaps execute \
-  --wallet-provider "$WALLET_PROVIDER" \
+  ${provider_args[@]+"${provider_args[@]}"} \
   --from-chain "$CHAIN" \
-  --from-address "$FROM_TOKEN" \
+  --from-address "$FROM_TOKEN_ADDRESS" \
   --to-chain "$CHAIN" \
-  --to-address "$TO_TOKEN" \
+  --to-address "$TO_TOKEN_ADDRESS" \
   --quantity "$AMOUNT"

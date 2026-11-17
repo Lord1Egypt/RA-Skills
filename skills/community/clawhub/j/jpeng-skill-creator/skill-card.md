@@ -1,39 +1,61 @@
-## Description: <br>
-Create new skills, modify and improve existing skills, and measure skill performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create new skills, modify and improve existing skills, and measure skill performance.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and agent builders use this skill to draft, revise, evaluate, benchmark, and package agent skills. It helps guide iterative skill creation from initial intent through test prompts, review, and improvement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or modified skills can change when an agent activates and what actions it takes. <br>
-Mitigation: Review the resulting SKILL.md before installation, especially the description and trigger wording. <br>
-Risk: Broad activation language, local scripts, or subagent workflows could create behavior that is too expansive for private projects. <br>
-Mitigation: Keep triggers specific and inspect referenced scripts or workflows before running them. <br>
+## Use Case:
 
+Developers and skill authors use this skill to draft, revise, test, evaluate, benchmark, and package agent skills. It supports both new skill creation and iterative improvement of existing skills.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional JSON snippets, shell commands, and generated skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify skill source files, evaluation metadata, benchmark outputs, and review artifacts when used in a writable workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Generated or revised skill instructions may be too broad, ambiguous, or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated skill descriptions and instructions before packaging or publishing, with particular attention to trigger scope and user-facing behavior.
+
+Risk: The skill may create or edit local files while drafting skills, evals, benchmarks, or packages.
+
+Mitigation: Run it in an appropriate workspace and review file changes before deployment or distribution.
+
+Risk: Evaluation workflows can spawn agents and run local Python or Claude CLI commands.
+
+Mitigation: Use it only where those tools are expected, inspect generated commands, and avoid running unreviewed workflows in sensitive environments.
+
+Risk: Review pages or viewer processes may remain open after evaluation.
+
+Mitigation: Stop any launched viewer process when review is complete.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-skill-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with code blocks, JSON snippets, file edits, and shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify skill files, evaluation metadata, benchmark outputs, packaged skill files, and review pages as part of the skill creation workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

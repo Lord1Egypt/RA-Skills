@@ -1,42 +1,57 @@
-## Description: <br>
-Fetches WeChat public account article content from mp.weixin.qq.com links and extracts the article body. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches WeChat Official Account article content from mp.weixin.qq.com links and extracts the article body.
 
-## Publisher: <br>
-[xiaozs-com](https://clawhub.ai/user/xiaozs-com) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaozs-com](https://clawhub.ai/user/xiaozs-com)
 
-## Use Case: <br>
-External users and developers use this skill to fetch a WeChat public account article, extract its title and body text, and save reviewable local artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The fetch script can open a supplied URL in Chrome, including non-WeChat URLs. <br>
-Mitigation: Use only public mp.weixin.qq.com article links and avoid private, internal, or untrusted URLs. <br>
-Risk: The skill persists fetched article content and screenshots to a user-selected directory. <br>
-Mitigation: Choose an output folder that can be reviewed and cleaned up after execution. <br>
-Risk: The dependency requirement allows newer DrissionPage versions. <br>
-Mitigation: Pin and review dependencies before use in controlled environments. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve the visible title and body of WeChat Official Account articles from trusted mp.weixin.qq.com links and save the result for downstream reading or summarization.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiaozs-com/weixin-fetcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands] <br>
-**Output Format:** [Markdown article text, standard output text, and a PNG screenshot file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes article_content_weixin.md and article_screenshot_weixin.png to the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The script can browse and save content from any supplied URL, not only WeChat links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted mp.weixin.qq.com article URLs and reject or review non-WeChat URLs before running.
+
+Risk: Browser automation saves article text and a full-page screenshot in the chosen output directory or current working directory.
+
+Mitigation: Run the skill in an isolated browser and network environment, and choose an output directory appropriate for captured article content.
+
+Risk: First use can install browser automation dependencies and download a matching ChromeDriver.
+
+Mitigation: Review and install dependencies in a controlled environment before deployment.
+
+## Reference(s):
+
+- [WeChat Article Fetcher on ClawHub](https://clawhub.ai/xiaozs-com/skills/weixin-fetcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration]
+
+**Output Format:** [Markdown file, PNG screenshot, and stdout text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Chrome and DrissionPage; writes article_content_weixin.md and article_screenshot_weixin.png to the selected output directory or current working directory.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

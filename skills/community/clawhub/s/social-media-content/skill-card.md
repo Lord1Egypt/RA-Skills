@@ -1,39 +1,53 @@
-## Description: <br>
-Generate social media posts for LevelUpLove and PayLessTax brands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate social media posts for LevelUpLove and PayLessTax brands.
 
-## Publisher: <br>
-[wespeakallday](https://clawhub.ai/user/wespeakallday) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wespeakallday](https://clawhub.ai/user/wespeakallday)
 
-## Use Case: <br>
-External creators and brand operators use this skill to generate local social media image assets for LevelUpLove and PayLessTax campaigns, including carousel, infographic, image, and oneliner formats. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated branded social content may be inaccurate, off-brand, or unsuitable for publication. <br>
-Mitigation: Review generated images and source text against brand, legal, and compliance requirements before publishing. <br>
-Risk: The skill creates local image files in the configured output directory. <br>
-Mitigation: Run it in an intended workspace and inspect generated files before distribution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wespeakallday/social-media-content) <br>
+## Use Case:
 
+Marketing operators and developers use this skill to generate branded social media PNG assets for LevelUpLove and PayLessTax campaigns, including carousel panels, infographics, single images, and oneliner posts.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Configuration] <br>
-**Output Format:** [PNG image files generated from JSON template inputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports carousel, infographic, image, and oneliner content types for leveluplove and paylesstax brands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated PNG files may be written to an unexpected local path if the output argument is not reviewed.
+
+Mitigation: Review the output path before running the generator so files are written only where intended.
+
+Risk: The artifact describes scheduled, manual CLI, and API triggers broadly, which can be ambiguous when adapted for automation.
+
+Mitigation: Clarify the intended trigger mode and approval process before wiring the skill into automated publishing workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wespeakallday/skills/social-media-content)
+- [PayLessTax website](https://paylesstax.co.za)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration]
+
+**Output Format:** [PNG files with CLI status text and JSON template inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports brand and content-type choices and writes generated PNGs to a local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

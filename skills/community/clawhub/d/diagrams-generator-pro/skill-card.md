@@ -1,45 +1,60 @@
-## Description: <br>
-Generate professional diagrams including cloud architecture, data charts, academic figures, and more from user descriptions or reference images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional diagrams including cloud architecture, data charts, academic figures, and more.
 
-## Publisher: <br>
-[CodeHourra](https://clawhub.ai/user/CodeHourra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[codehourra](https://clawhub.ai/user/codehourra)
 
-## Use Case: <br>
-External users, developers, and technical authors use this skill to plan and generate cloud architecture diagrams, data visualizations, flow diagrams, network topology diagrams, and academic figures. It guides tool selection, asks for confirmation, and can produce diagram code and output files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can contact an external billing service and charge for generation before the user has confirmed the final work. <br>
-Mitigation: Require explicit user confirmation before every paid generation and verify the SkillPay account identity before use. <br>
-Risk: The documented anonymous_user fallback can obscure which user is being billed or authorized. <br>
-Mitigation: Set a deliberate SKILLPAY_USER_ID for each user or session and do not rely on the anonymous fallback. <br>
-Risk: Diagram and LaTeX generation can execute code and use large third-party dependencies. <br>
-Mitigation: Run generation in an isolated environment with pinned dependencies and review generated code before execution. <br>
+## Use Case:
 
+Developers, architects, analysts, and researchers use this skill to turn text prompts or reference sketches into cloud architecture diagrams, data visualizations, flow diagrams, network topologies, and academic figures.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/CodeHourra/diagrams-generator-pro) <br>
-- [Diagrams API Reference](references/diagrams-api.md) <br>
-- [Styling Guide](references/styling-guide.md) <br>
-- [SkillPay](https://skillpay.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown with Mermaid previews, Python code blocks, shell commands, and generated diagram files such as PNG, SVG, PDF, or HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May contact SkillPay for paid generation and may write generated code plus diagram assets under a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Ordinary diagram requests may trigger external SkillPay network calls, transmit a user identifier, and attempt a USDT charge.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the billing flow before installation and run the skill only after confirming the expected payment behavior.
+
+Risk: The security summary indicates the workflow may charge before final diagram confirmation and may be capable of charging more than once for one request.
+
+Mitigation: Use an isolated test environment and verify that a single request cannot trigger duplicate charges before relying on the skill.
+
+Risk: The security guidance treats the embedded billing API key as exposed.
+
+Mitigation: Rotate or replace exposed billing credentials before operational use and avoid sharing them across deployments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codehourra/skills/diagrams-generator-pro)
+- [Diagrams API Reference](artifact/references/diagrams-api.md)
+- [Styling Guide](artifact/references/styling-guide.md)
+- [SkillPay](https://skillpay.me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Mermaid previews, Python code, shell commands, and generated diagram file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can produce PNG, SVG, PDF, HTML, and source-code artifacts depending on the selected diagram tool.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

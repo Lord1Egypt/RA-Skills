@@ -1,47 +1,60 @@
-## Description: <br>
-Create distinctive, production-grade frontend interfaces with high design quality for web components, pages, and applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create distinctive, production-grade frontend interfaces with high design quality for web components, pages, and applications.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Developers and agents use this skill to design and implement production-grade frontend interfaces, including landing pages, dashboards, forms, component libraries, and responsive web applications with distinctive visual direction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace metadata includes crypto and purchasing capability tags that are not supported by the markdown artifacts. <br>
-Mitigation: Do not rely on those capability tags when assessing behavior; treat the skill as a frontend design guide unless new evidence is provided. <br>
-Risk: Some guidance examples include commands such as npx package installation or skillboss sync that may fetch packages or contact external services. <br>
-Mitigation: Review any agent-proposed commands before execution and confirm package sources, versions, and network effects. <br>
+## Use Case:
 
+Developers and agents use this skill to build polished frontend interfaces such as landing pages, dashboards, forms, components, and responsive web applications. It guides typography, color, motion, layout, accessibility, and implementation choices for production-quality UI work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/mar-frontend-design) <br>
-- [SkillBoss frontend skill page](https://skillboss.heybossai.com/skills/frontend) <br>
-- [Stack & Tooling - Frontend](artifact/Frontend Design/stack.md) <br>
-- [Typography - Frontend](artifact/Frontend Design/typography.md) <br>
-- [Color & Theme - Frontend](artifact/Frontend Design/colors.md) <br>
-- [Mobile-First Patterns - Frontend](artifact/Frontend Design/mobile.md) <br>
-- [Animation - Frontend](artifact/Frontend Design/animation.md) <br>
-- [Examples - Frontend](artifact/Frontend Design/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration, Shell commands, Markdown] <br>
-**Output Format:** [Markdown guidance with code, CSS, TypeScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill artifacts; no credential variables or MCP/tool references detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill includes mutable third-party code execution advice through `npx shadcn@latest` setup commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review package versions, run generators in a clean project without secrets, and inspect generated changes before use.
+
+Risk: The artifact includes an unrelated SkillBoss promotional line.
+
+Mitigation: Treat promotional text as nonessential advertising rather than task guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/mar-frontend-design)
+- [SkillBoss frontend skill homepage](https://skillboss.heybossai.com/skills/frontend)
+- [Stack & Tooling - Frontend](artifact/Frontend Design/stack.md)
+- [Typography - Frontend](artifact/Frontend Design/typography.md)
+- [Color & Theme - Frontend](artifact/Frontend Design/colors.md)
+- [Mobile-First Patterns - Frontend](artifact/Frontend Design/mobile.md)
+- [Animation - Frontend](artifact/Frontend Design/animation.md)
+- [Examples - Frontend](artifact/Frontend Design/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce frontend implementation code and project setup guidance; no data collection or network access is described by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

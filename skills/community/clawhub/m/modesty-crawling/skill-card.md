@@ -1,45 +1,63 @@
-## Description: <br>
-Use for TikTok crawling, content retrieval, and analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use for TikTok crawling, content retrieval, and analysis.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Developers, analysts, and content researchers use this skill to build TikTok collection workflows with yt-dlp, including downloads, metadata export, filtering, incremental archiving, and scheduled scraping. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide users to use browser cookies or exported cookie files for restricted TikTok content. <br>
-Mitigation: Use cookies only from accounts you control, treat cookie files as secrets, and avoid committing, sharing, or pasting them into logs or prompts. <br>
-Risk: The skill may produce or process scraped TikTok data that can include user-generated content and engagement metadata. <br>
-Mitigation: Store exports in controlled locations, review downstream sharing, and avoid sending scraped data to optional external APIs unless the transmitted data is understood and approved. <br>
-Risk: The skill includes scheduled scraping examples that can run repeatedly without close supervision. <br>
-Mitigation: Review cron jobs and scripts before enabling them, confirm target handles and storage paths, and monitor logs and rate-limit behavior. <br>
+## Use Case:
 
+Developers and analysts use this skill to generate command-line guidance for collecting TikTok videos and metadata with yt-dlp, exporting datasets, and analyzing engagement patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-crawling) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/modestyrichards) <br>
-- [yt-dlp supported sites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md) <br>
-- [yt-dlp output template reference](https://github.com/yt-dlp/yt-dlp#output-template) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, bash scripts, JSON/CSV export patterns, jq snippets, and cron examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent in producing local download commands, metadata extraction commands, analysis snippets, and scheduled scraping configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Commands may use browser login state or exported cookies to access restricted TikTok content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use cookies only for accounts and content you are authorized to access, prefer a dedicated browser profile or tightly permissioned cookie file, and avoid sharing cookie files.
+
+Risk: Scheduled scraping jobs can continue collecting data after the intended task is complete.
+
+Mitigation: Review scheduled jobs before deployment, log activity, and remove any cron entry when it is no longer needed.
+
+Risk: Scraped private or personal data could be uploaded to third-party analysis services.
+
+Mitigation: Analyze data locally when possible and upload exports only when you have permission and trust the provider.
+
+Risk: Unpinned yt-dlp or ffmpeg installations may change behavior over time.
+
+Mitigation: Use a virtual environment or pinned package versions and review updates before recurring scraping runs.
+
+## Reference(s):
+
+- [yt-dlp supported sites](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md)
+- [yt-dlp output template reference](https://github.com/yt-dlp/yt-dlp#output-template)
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-crawling)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and examples for JSON, JSONL, CSV, and downloaded media files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that download TikTok media or metadata, use browser cookies, write local files, and schedule recurring scraping jobs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

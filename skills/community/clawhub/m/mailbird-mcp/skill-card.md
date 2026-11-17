@@ -1,42 +1,58 @@
-## Description: <br>
-Use the Mailbird MCP server running locally inside the Mailbird email client for email-related tasks such as inbox triage, sending, search, drafts, attachments, and contacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Mailbird MCP server running locally inside the Mailbird email client for email tasks including inbox triage, sending, search, drafts, attachments, and contacts.
 
-## Publisher: <br>
-[mailbirdagent](https://clawhub.ai/user/mailbirdagent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mailbirdagent](https://clawhub.ai/user/mailbirdagent)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent work with a local Mailbird mailbox through Mailbird's MCP server for reading, searching, drafting, sending, and managing email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Providing the Mailbird MCP token gives an agent broad access to the user's mailbox, including messages, contacts, attachments, drafts, and write actions when enabled. <br>
-Mitigation: Install only when mailbox access is intended, keep the token private, do not share it with remote agents, and review drafts or destructive actions before allowing writes. <br>
-Risk: Exposing the local MCP endpoint outside loopback could make mailbox access available beyond the local machine. <br>
-Mitigation: Keep MAILBIRD_MCP_URL pointed at 127.0.0.1 or localhost and do not proxy, tunnel, or port-forward the endpoint. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent work with a local Mailbird mailbox for triage, search, drafting, attachments, folder actions, and user-approved sends.
 
-## Reference(s): <br>
-- [Mailbird ClawHub listing](https://clawhub.ai/mailbirdagent/mailbird-mcp) <br>
-- [Mailbird website](https://www.getmailbird.com) <br>
-- [Mailbird local MCP endpoint default](http://127.0.0.1:18790/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, text] <br>
-**Output Format:** [Markdown guidance with environment-variable configuration and MCP tool-use instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MAILBIRD_MCP_TOKEN for authenticated mailbox access and optionally MAILBIRD_MCP_URL for a local loopback endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The skill can expose mailbox contents, attachments, contacts, and draft or send capabilities to an agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when agent access to local Mailbird email is intended, keep the mailbox token private, and enable Mailbird's audit log when visibility is needed.
+
+Risk: Forwarding, tunneling, or sharing the local MCP URL or token could expose mailbox access outside the user's machine.
+
+Mitigation: Keep MAILBIRD_MCP_URL on 127.0.0.1 or localhost, do not proxy or port-forward it, and rotate the token immediately if it leaks.
+
+Risk: Write actions can change mailbox state or send email.
+
+Mitigation: Use Mailbird's Allow write actions gate, show drafts to the user, and require explicit approval before any send.
+
+## Reference(s):
+
+- [ClawHub Mailbird skill page](https://clawhub.ai/mailbirdagent/skills/mailbird-mcp)
+- [Mailbird website](https://www.getmailbird.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown guidance with MCP tool calls and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Mailbird MCP access through MAILBIRD_MCP_URL and MAILBIRD_MCP_TOKEN; write actions and sends require user-controlled gates.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

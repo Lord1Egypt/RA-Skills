@@ -1,48 +1,68 @@
-## Description: <br>
-Blueprint for wiring multiple OpenClaw agents running on different servers into shared Feishu group chats so they can coordinate multi-turn discussions, hand off tasks, log cross-agent messages, and pause for human approvals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Agent Mesh is a blueprint for wiring multiple OpenClaw agents into shared Feishu group chats through a relay, shared context, logging, routing, and human approval checkpoints.
 
-## Publisher: <br>
-[Waytobetter619](https://clawhub.ai/user/Waytobetter619) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[waytobetter619](https://clawhub.ai/user/waytobetter619)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and configure a Feishu relay that lets multiple OpenClaw agent instances coordinate in authorized group chats while preserving shared context, logs, routing rules, and human approval checkpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu bot secrets, verification tokens, encrypt keys, session keys, and chat logs may be exposed or misused if operators place real values in source control or broad shared storage. <br>
-Mitigation: Keep real secrets out of the skill files, use environment-specific secret storage, restrict log store access, and define retention and redaction rules before deployment. <br>
-Risk: A relay connected to unauthorized chats or bots could route messages or invoke agents outside the intended scope. <br>
-Mitigation: Deploy only for approved chats and bots, enforce chat allowlists, require human approval at configured checkpoints, and review route configuration before enabling automation. <br>
-Risk: The included callback server is sample code and contains artifact-level issues that make it unsuitable for production without review. <br>
-Mitigation: Fix and test the sample callback server, pin dependencies, run it behind HTTPS, validate Feishu event signatures and tokens, and perform a security review before production use. <br>
+## Use Case:
 
+Developers and operations teams use this skill to plan and configure Feishu-based coordination among multiple OpenClaw agents, including relay deployment, agent routing, shared logs, and approval checkpoints.
 
-## Reference(s): <br>
-- [Architecture Guide](references/architecture.md) <br>
-- [Deployment Checklist](references/deployment-checklist.md) <br>
-- [Information Intake Form](references/info-collection-template.md) <br>
-- [Logging & Approval Schema](references/logging-schema.md) <br>
-- [Workflow Templates](references/workflow-templates.md) <br>
-- [Scripts README](scripts/README.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Waytobetter619/feishu-agent-mesh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces relay architecture, deployment, logging, approval, and Feishu callback setup guidance for agent operators.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The skill centralizes Feishu app secrets, verification tokens, encrypt keys, and bearer tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials in a secret manager or protected environment variables, keep real secrets out of shared documents and JSON templates, and rotate any values exposed during setup.
+
+Risk: Full-content message logging can capture sensitive chat content across Feishu groups.
+
+Mitigation: Disable or minimize full-content logging unless approved by users and administrators, apply retention limits, and restrict log access to authorized operators.
+
+Risk: An exposed callback or relay can become an entry point for unauthorized requests or replayed events.
+
+Mitigation: Use HTTPS, verify Feishu tokens, add request signing and replay protection, whitelist approved chats, and grant only narrow per-agent permissions.
+
+Risk: CLI fallback and broad relay-to-agent invocation can expand the blast radius of a misrouted or compromised task.
+
+Mitigation: Remove CLI fallback for production deployments, enforce per-agent allowlists, and require human approval at configured checkpoints before sensitive actions continue.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/waytobetter619/skills/feishu-agent-mesh)
+- [Architecture Guide](references/architecture.md)
+- [Deployment Checklist](references/deployment-checklist.md)
+- [Information Intake Form](references/info-collection-template.md)
+- [Logging and Approval Schema](references/logging-schema.md)
+- [Workflow Templates](references/workflow-templates.md)
+- [Relay Configuration Example](scripts/relay-config.example.json)
+- [Accounts Configuration Example](templates/accounts.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes relay, logging, approval, deployment, and workflow templates for Feishu agent coordination.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

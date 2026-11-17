@@ -1,40 +1,52 @@
-## Description: <br>
-Composite scoring and efficiency frontier analysis for LLM evaluation combines accuracy, latency, cost, consistency, and related dimensions into a Pareto-oriented model selection framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Composite scoring and efficiency frontier analysis for LLM evaluation that combines accuracy, latency, cost, and consistency into Pareto-optimal model rankings.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nissan](https://clawhub.ai/user/nissan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and evaluation teams use this skill to compare LLM providers or agent configurations across competing quality, latency, and cost objectives. It supports model selection, evaluation dashboards, and efficiency frontier analysis for cost-optimal choices at a target quality threshold.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The inspected artifact is a draft reference skill and is not yet feature-complete.
+
+Mitigation: Re-review future versions that add LangFuse integration, CSV/JSON export implementation, dependencies, or network access before deployment.
+
+Risk: Benchmarking guidance can affect model selection decisions even when no executable behavior is present.
+
+Mitigation: Review proposed scoring weights, benchmark inputs, and frontier analysis before using results for production model selection.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, evaluation engineers, and model selection teams use this skill to compare three or more LLMs or agent configurations across competing quality, latency, cost, and consistency objectives. It supports benchmark planning, dashboard design, stakeholder reporting, and efficiency frontier analysis for cost-aware model selection. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, configuration, code]
 
-## Known Risks and Mitigations: <br>
-Risk: Future versions may add executable code, LangFuse ingestion, credential handling, or memory-backed behavior. <br>
-Mitigation: Re-review security evidence and behavior before relying on any later release that adds those capabilities. <br>
-Risk: The reviewed release is a draft benchmarking guide, so planned capabilities may not be fully implemented. <br>
-Mitigation: Confirm implemented behavior and evaluation assumptions before using its recommendations for production model selection. <br>
+**Output Format:** [Markdown guidance with planned CSV/JSON export support]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/aa-benchmarking-framework) <br>
+**Other Properties Related to Output:** [No outbound network access or credential requirements are declared in the inspected artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with optional code snippets, benchmark configuration details, and CSV/JSON export recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only draft with no executable code, credentials, network access, or hidden install behavior in the reviewed release.] <br>
+0.1.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

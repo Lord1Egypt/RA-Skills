@@ -1,37 +1,54 @@
-## Description: <br>
-Multi-account patterns, networking, and well-architected trade-offs. Use when designing cloud systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-account patterns, networking, and well-architected trade-offs. Use when designing cloud systems.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers, architects, and technical teams use this skill to structure cloud architecture conversations around accounts, networking, identity, data protection, scalability, operations, and well-architected trade-offs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud architecture recommendations may be incomplete or unsuitable for a specific production environment. <br>
-Mitigation: Review recommendations with qualified cloud, security, and operations stakeholders before making infrastructure changes. <br>
+## Use Case:
 
+Developers and cloud architects use this skill to structure cloud architecture discussions around accounts, networking, identity, data protection, scalability, validation, and operations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown text with staged recommendations, checklists, trade-off analysis, and validation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Cloud architecture guidance can be incomplete or misleading when environment constraints, account structure, or operational requirements are missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask targeted context questions before making strong recommendations and review proposed designs before implementation.
+
+Risk: The skill could be mistaken for authority to access cloud accounts or make changes.
+
+Mitigation: Use the skill for guidance only; grant cloud access or execute changes only through separately approved tools and instructions.
+
+## Reference(s):
+
+- [Cloud Arch Skill Page](https://clawhub.ai/codenova58/skills/cloud-arch)
+- [Source Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown or plain-text procedural guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include targeted questions, staged architecture plans, checklists, trade-off comparisons, validation steps, and operational follow-up.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

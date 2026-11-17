@@ -1,40 +1,57 @@
-## Description: <br>
-Manage and interpret ClawSec Monitor v3.0, a proxy that inspects AI agent HTTP/HTTPS traffic, detects threats, and logs suspicious activity in real time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and interpret ClawSec Monitor v3.0, a proxy that inspects AI agent HTTP/HTTPS traffic, detects threats, and logs suspicious activity in real time.
 
-## Publisher: <br>
-[zhc1991](https://clawhub.ai/user/zhc1991) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhc1991](https://clawhub.ai/user/zhc1991)
 
-## Use Case: <br>
-Developers and security-minded operators use this skill to start, configure, and troubleshoot ClawSec Monitor and interpret proxy threat logs for AI-agent traffic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad HTTPS interception and trusting a local CA can expose plaintext traffic beyond the intended agent scope. <br>
-Mitigation: Prefer --no-mitm or per-process CA variables over system-wide CA trust, and route only the intended agent traffic through the proxy. <br>
-Risk: Threat logs may contain secrets or sensitive request and response snippets. <br>
-Mitigation: Treat ClawSec log files and Docker volumes as sensitive, restrict access, and remove the trusted CA and persisted volume when finished. <br>
+## Use Case:
 
+Developers and security engineers use this skill to operate ClawSec Monitor, inspect AI agent traffic, interpret threat logs, and generate proxy setup or troubleshooting guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhc1991/clawsec-bak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose commands that affect proxy routing, Docker services, CA trust, and local log files; review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill directs users to trust a local HTTPS interception CA, which can expose plaintext traffic to the proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the tool only when intentional traffic inspection is required, prefer per-process CA trust, and avoid routing unrelated applications through the proxy.
+
+Risk: Threat logs may contain plaintext snippets with secrets or sensitive data.
+
+Mitigation: Protect access to /tmp/clawsec logs, delete logs when no longer needed, and scope monitoring to the specific agent traffic under review.
+
+Risk: The provided artifact documents commands for implementation files that are not included in the artifact evidence.
+
+Mitigation: Confirm the referenced implementation files are present and reviewed before running the documented commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhc1991/skills/clawsec-bak)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include operational steps, proxy configuration, threat-log interpretation, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

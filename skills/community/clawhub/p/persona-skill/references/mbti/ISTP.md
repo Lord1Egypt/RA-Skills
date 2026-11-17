@@ -304,7 +304,7 @@ context_mapping:
       scene_activity: fixing-building-testing-or-adjusting
       appearance: functional-ready-to-move
       camera_mode: direct
-      lighting: task-light-or-natural-clear
+      lighting: taREDACTED-SECRET
     guardrail:
       - 不要默认她深度工作时一定在“修东西”；也可能是在高专注地处理任何现实问题
 

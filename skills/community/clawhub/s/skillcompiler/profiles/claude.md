@@ -77,6 +77,17 @@ Triggers on:
 | `examples/` | ✅ | 示例 |
 | `config/` | ✅ | 配置参数 |
 
+## Compaction 行为
+
+| 字段 | 值 | 说明 |
+|------|---|------|
+| `strategy` | `summarize` | 压缩时对 body 做摘要，保留结构但丢失细节 |
+| `body_limit_lines` | 100 | 压缩后 body 大约保留行数 |
+| `preserves` | frontmatter, first_heading_section, key_lists | 保留的部分 |
+| `loses` | deep_references, long_prose, nested_gotchas | 丢失的部分 |
+
+**对编译器的启示：** routing table 和关键 gotchas 必须前置，compaction 后摘要可能丢失深层引用细节。
+
 ## 已知限制与差异
 
 1. description 支持多行但推荐不超过 500 字符

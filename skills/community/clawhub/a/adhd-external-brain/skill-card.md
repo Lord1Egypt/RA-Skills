@@ -1,42 +1,48 @@
-## Description: <br>
-A bilingual executive assistant for ADHD and anxiety that captures thoughts, tracks tasks, adapts recommendations to a 1-10 energy level, and provides gentle deadline and rhythm check-ins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A bilingual executive assistant for ADHD and anxiety that captures notes, adapts task suggestions to 1-10 energy levels, and supports deadline reminders, task suspension, and daily check-ins.
 
-## Publisher: <br>
-[sono19](https://clawhub.ai/user/sono19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sono19](https://clawhub.ai/user/sono19)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill as bilingual productivity support to offload reminders, planning, prioritization, and small-step task initiation while matching the user's Chinese or English input.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad activation phrases may cause ambiguous mentions of deadlines, memory, energy, or task pausing to be treated as productivity-management cues.
+
+Mitigation: Ask for confirmation before saving, suspending, or escalating a task when the user's intent is unclear.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can use this skill as a bilingual ADHD and anxiety support assistant for cognitive offloading, task capture, energy-aware prioritization, deadline preparation, task suspension, and daily check-ins. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to maintain Memory_Box and Task_Pool state, which can retain personal tasks, ideas, and errands. <br>
-Mitigation: Confirm how the host agent stores and deletes these entries, and avoid saving highly sensitive information unless retention controls are clear. <br>
-Risk: Broad trigger phrases such as deadline, review, or remember this may activate the skill unintentionally. <br>
-Mitigation: Review generated reminders or task changes before acting on them, especially when the prompt was not meant as a task-management request. <br>
+**Output Format:** [Markdown or plain text in Chinese or English]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sono19/adhd-external-brain) <br>
-- [Publisher profile](https://clawhub.ai/user/sono19) <br>
-- [Source skill definition](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Bilingual responses match the user's input language; the artifact declares no environment variables, binaries, dependencies, credential use, or network access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational bilingual text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include short confirmations, task suggestions, micro-steps, reminders, task rollover notes, and empathetic check-in summaries.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

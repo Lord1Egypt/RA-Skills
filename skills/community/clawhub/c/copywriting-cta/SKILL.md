@@ -6,12 +6,14 @@ license: MIT
 compatibility: Designed for Claude or similar AI agents.
 metadata:
   author: samber
-  version: "1.0.0"
+  version: "1.1.0"
   openclaw:
     emoji: "🎯"
     homepage: https://github.com/samber/cc-skills
 allowed-tools: Read Edit Write Glob Grep Agent AskUserQuestion
 ---
+
+**Questions:** Ask the user through the environment's question tool — never as plain-text prose. One question at a time, 2–4 tappable options, wait for the answer. If the environment has no question tool, ask in prose with the same options, one at a time.
 
 # End-of-Article CTA Designer
 
@@ -27,7 +29,7 @@ Run the four steps below in order. Do not skip the interview. The user may have 
 
 ### Step 1 — Interview
 
-Use the `ask_user_input_v0` tool. Ask one question at a time. Do not stack questions in prose. Each question must have 2-4 tappable options. Fall back to free text only if the answer genuinely cannot be enumerated.
+Ask one question at a time. Do not stack questions in prose. Each question must have 2-4 tappable options. Fall back to free text only if the answer genuinely cannot be enumerated.
 
 Ask these in order, skipping any already answered:
 

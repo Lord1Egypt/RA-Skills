@@ -87,6 +87,126 @@ def parse_scalar(value: str) -> Any:
         return value
 
 
+def _parse_inline_array(raw: str) -> list[Any] | None:
+    """Parse a YAML-style inline array like ["a", "b"] or [a, b]. Returns None if not an array."""
+    value = raw.strip()
+    if not (value.startswith("[") and value.endswith("]")):
+        return None
+    inner = value[1:-1].strip()
+    if not inner:
+        return []
+    items: list[Any] = []
+    for item in inner.split(","):
+        item = item.strip()
+        if not item:
+            continue
+        if (item.startswith('"') and item.endswith('"')) or (
+            item.startswith("'") and item.endswith("'")
+        ):
+            items.append(item[1:-1])
+        else:
+            items.append(parse_scalar(item))
+    return items
+
+
+def _parse_nested_brief(lines: list[str], start: int, base_indent: int) -> tuple[dict[str, Any], int]:
+    """Parse a nested YAML-subset block (for _brief) starting at start index.
+
+    Returns (parsed_dict, next_index) where next_index is the first line that
+    does not belong to the nested block.
+    """
+    result: dict[str, Any] = {}
+    index = start
+    while index < len(lines):
+        line = lines[index]
+        # End of front matter
+        if line.strip() == "---":
+            break
+        # Empty or comment line
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            index += 1
+            continue
+        # Compute indentation
+        indent = len(line) - len(line.lstrip(" "))
+        if indent <= base_indent:
+            # Back to parent level: nested block ended
+            break
+        if ":" not in stripped:
+            index += 1
+            continue
+        key, raw_value = stripped.split(":", 1)
+        key = key.strip()
+        raw_value = raw_value.strip()
+        if raw_value:
+            # Inline value: try array first, then scalar
+            arr = _parse_inline_array(raw_value)
+            if arr is not None:
+                result[key] = arr
+            else:
+                result[key] = parse_scalar(raw_value)
+        else:
+            # Empty value: read the indented block that follows. It may be a
+            # nested dict (``key: value`` lines) or a YAML block list
+            # (``- item`` lines). Both forms are common in LLM-emitted briefs.
+            block_lines: list[str] = []
+            sub_index = index + 1
+            while sub_index < len(lines):
+                sub_line = lines[sub_index]
+                if sub_line.strip() == "---":
+                    break
+                sub_indent = len(sub_line) - len(sub_line.lstrip(" "))
+                if not sub_line.strip() or sub_line.strip().startswith("#"):
+                    block_lines.append(sub_line)
+                    sub_index += 1
+                    continue
+                if sub_indent <= indent:
+                    break
+                block_lines.append(sub_line)
+                sub_index += 1
+
+            if block_lines:
+                # A YAML block list: any non-empty line begins with '-'.
+                looks_like_list = any(
+                    ln.strip().startswith("-") for ln in block_lines if ln.strip()
+                )
+                if looks_like_list:
+                    items: list[Any] = []
+                    for ln in block_lines:
+                        s = ln.strip()
+                        if s.startswith("-"):
+                            item = s[1:].strip()
+                            if item:
+                                arr = _parse_inline_array(item)
+                                items.append(arr if arr is not None else parse_scalar(item))
+                    if items:
+                        result[key] = items
+                        index = sub_index
+                        continue
+                # Otherwise parse the block as a nested dict (one more level).
+                sub: dict[str, Any] = {}
+                for ln in block_lines:
+                    sub_stripped = ln.strip()
+                    if not sub_stripped or sub_stripped.startswith("#"):
+                        continue
+                    if ":" not in sub_stripped:
+                        continue
+                    sub_key, sub_raw = sub_stripped.split(":", 1)
+                    sub_key = sub_key.strip()
+                    sub_raw = sub_raw.strip()
+                    if sub_raw:
+                        arr2 = _parse_inline_array(sub_raw)
+                        sub[sub_key] = arr2 if arr2 is not None else parse_scalar(sub_raw)
+                    else:
+                        sub[sub_key] = ""
+                if sub:
+                    result[key] = sub
+                    index = sub_index
+                    continue
+        index += 1
+    return result, index
+
+
 def parse_front_matter(text: str) -> tuple[dict[str, Any], str]:
     lines = text.splitlines()
     if not lines or lines[0].strip() != "---":
@@ -102,12 +222,32 @@ def parse_front_matter(text: str) -> tuple[dict[str, Any], str]:
         return {}, text
 
     meta: dict[str, Any] = {}
-    for line in lines[1:end_index]:
+    index = 1
+    while index < end_index:
+        line = lines[index]
         stripped = line.strip()
-        if not stripped or stripped.startswith("#") or ":" not in stripped:
+        if not stripped or stripped.startswith("#"):
+            index += 1
+            continue
+        if ":" not in stripped:
+            index += 1
             continue
         key, raw_value = stripped.split(":", 1)
-        meta[key.strip()] = parse_scalar(raw_value)
+        key = key.strip()
+        raw_value = raw_value.strip()
+        if raw_value:
+            meta[key] = parse_scalar(raw_value)
+            index += 1
+        else:
+            # Empty value: check for nested block (e.g. _brief:)
+            base_indent = len(line) - len(line.lstrip(" "))
+            nested, next_index = _parse_nested_brief(lines, index + 1, base_indent)
+            if nested:
+                meta[key] = nested
+                index = next_index
+            else:
+                meta[key] = ""
+                index += 1
 
     body = "\n".join(lines[end_index + 1 :]).lstrip()
     return meta, body
@@ -139,12 +279,70 @@ def strip_matching_title_heading(body: str, title: str) -> str:
     return body
 
 
+HEADING_LINE_PATTERN = re.compile(r"^ {0,3}(?P<hashes>#{1,6})[ \t]+\S")
+FENCE_LINE_PATTERN = re.compile(r"^ {0,3}(?P<marker>`{3,}|~{3,})(?P<rest>.*)$")
+
+
+def markdown_heading_levels(body: str) -> list[int]:
+    """Return ATX heading levels outside fenced code blocks."""
+    levels: list[int] = []
+    active_fence: tuple[str, int] | None = None
+
+    for line in body.splitlines():
+        fence_match = FENCE_LINE_PATTERN.match(line)
+        if active_fence is not None:
+            if fence_match:
+                marker = fence_match.group("marker")
+                rest = fence_match.group("rest")
+                if (
+                    marker[0] == active_fence[0]
+                    and len(marker) >= active_fence[1]
+                    and not rest.strip()
+                ):
+                    active_fence = None
+            continue
+
+        if fence_match:
+            marker = fence_match.group("marker")
+            rest = fence_match.group("rest")
+            if marker[0] != "`" or "`" not in rest:
+                active_fence = (marker[0], len(marker))
+                continue
+
+        heading_match = HEADING_LINE_PATTERN.match(line)
+        if heading_match:
+            levels.append(len(heading_match.group("hashes")))
+
+    return levels
+
+
+def validate_stored_markdown_headings(body: str, *, require_section: bool = True) -> None:
+    """Enforce the database-body heading contract: H2-H6 only."""
+    levels = markdown_heading_levels(body)
+    if 1 in levels:
+        die(
+            "Article body must not contain H1. The page's only H1 comes from "
+            "the separate article title; use H2-H6 in stored body content."
+        )
+    if require_section and not any(level >= 2 for level in levels):
+        die(
+            "The article body has no section headings. "
+            "Add at least one level-2 heading (e.g., '## Section Name')."
+        )
+
+
+def validate_markdown_headings(body: str, *, force: bool = False) -> None:
+    """Validate stored-body headings after the source title H1 is removed."""
+    validate_stored_markdown_headings(body, require_section=not force)
+
+
 def request_json(
     method: str,
     url: str,
     api_key: str,
     payload: dict[str, Any] | None = None,
     extra_headers: dict[str, str] | None = None,
+    return_error_dict: bool = False,
 ) -> dict[str, Any]:
     headers = {
         "X-API-KEY": api_key,
@@ -167,6 +365,9 @@ def request_json(
             return json.loads(content)
     except urllib.error.HTTPError as exc:
         body = exc.read().decode("utf-8", errors="replace")
+        if return_error_dict:
+            # 供调用方自行翻译 HTTP 层错误（如旧后端的 404/500），不再直接终止
+            return {"code": exc.code, "message": f"HTTP {exc.code} calling {url}", "detail": body[:500]}
         die(f"HTTP {exc.code} calling {url}\n{body}")
     except urllib.error.URLError as exc:
         die(f"Network error calling {url}: {exc}")
@@ -386,7 +587,7 @@ def poll_task(
     api_key: str,
     task_id: str,
     interval_seconds: float,
-    timeout_seconds: int,
+    timeout_seconds: float,
 ) -> dict[str, Any]:
     status_url = f"{base_url.rstrip('/')}/api/api/article/task/{urllib.parse.quote(task_id, safe='')}"
     deadline = time.time() + timeout_seconds
@@ -605,6 +806,15 @@ def is_probably_local_file_reference(reference: str) -> bool:
 
     decoded = urllib.parse.unquote(candidate)
     if os.path.isabs(decoded):
+        # 以 "/" 开头的是「站点根相对 URL」（如 /media/xxx、/static/xxx），不是本地磁盘路径。
+        # ⚠️ os.path.isabs("/media/xxx") 在 POSIX 与 Windows 上**都**返回 True，
+        # 之前因此把这类站内引用当成本地待传文件，磁盘上找不到就 die，
+        # 结果存量文章里写过 /media/ 的一更新就失败，只能先把正文改成绝对 URL 才发得出去。
+        # 真存在于磁盘的文件在 resolve_local_file_path() 那一步就已经被识别并返回了；
+        # 走到这里说明它不是本地文件 → 按站内已有资源处理，跳过即可。
+        if decoded.startswith("/"):
+            return False
+        # 其余绝对路径（Windows 盘符 C:\…、UNC \\server\share）仍按本地文件处理
         return True
 
     return not decoded.startswith("/")
@@ -753,7 +963,8 @@ def ensure_payment_plugin_ready(
         return payload
 
     requested_plugin_key = args.payment_plugin_key or meta.get("paymentPluginKey")
-    strict_paid = bool(args.require_paid or meta.get("requirePaid"))
+    # Security constraint: paid articles must never be silently downgraded to free.
+    strict_paid = True
     status_url = f"{args.base_url.rstrip('/')}/api/api/payment/plugin/status"
     if isinstance(requested_plugin_key, str) and requested_plugin_key:
         status_url = (
@@ -910,6 +1121,8 @@ def build_payload(markdown_text: str, args: argparse.Namespace) -> tuple[dict[st
     if not body.strip():
         die("Article content is empty after parsing Markdown.")
 
+    validate_markdown_headings(body, force=getattr(args, "force", False))
+
     body = replace_local_markdown_images(
         body,
         args.markdown_file,
@@ -969,6 +1182,14 @@ def build_payload(markdown_text: str, args: argparse.Namespace) -> tuple[dict[st
     elif not is_update:
         die("Missing label. Provide front matter 'label' or 'labelId'.")
 
+    # 分类/标签描述（auto-create 时传入，避免后端用硬编码默认值）
+    sort_description = meta_value(meta, "sortDescription") or meta_value(meta, "sortDesc")
+    label_description = meta_value(meta, "labelDescription") or meta_value(meta, "labelDesc")
+    if sort_description is not MISSING:
+        payload["sortDescription"] = sort_description
+    if label_description is not MISSING:
+        payload["labelDescription"] = label_description
+
     if cover is not None:
         payload["cover"] = cover
 
@@ -987,10 +1208,9 @@ def build_payload(markdown_text: str, args: argparse.Namespace) -> tuple[dict[st
     if recommend_status is not MISSING:
         payload["recommendStatus"] = bool(recommend_status)
 
-    submit_default = bool(view_status) if view_status_explicit else (False if not is_update else MISSING)
-    submit_to_search = meta_value(meta, "submitToSearchEngine", submit_default)
+    submit_to_search = meta_value(meta, "submitToSearchEngine")
     if submit_to_search is not MISSING:
-        payload["submitToSearchEngine"] = bool(submit_to_search)
+        payload["submitToSearchEngine"] = submit_to_search
 
     password = meta_value(meta, "password")
     tips = meta_value(meta, "tips")

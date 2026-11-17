@@ -1,39 +1,53 @@
-## Description: <br>
-Fast OpenAI Codex account switch for OpenClaw via the local cs command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast OpenAI Codex account switching for OpenClaw via the local cs command, including relogin start, OAuth callback completion, and status checks.
 
-## Publisher: <br>
-[anjun](https://clawhub.ai/user/anjun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anjun](https://clawhub.ai/user/anjun)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to switch the local OpenAI Codex account with the trusted `cs relogin` command, complete callback-based login, and inspect account status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local account-switching command that can change the active Codex/OpenClaw account. <br>
-Mitigation: Use it only when you intend to switch accounts and have confirmed that `cs` is the trusted local command on the machine. <br>
-Risk: OAuth callback URLs or codes are sensitive and can complete a login flow. <br>
-Mitigation: Provide callback material only after personally initiating the login and expecting the account switch; do not expose full tokens or secrets in responses. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anjun/cs-relogin) <br>
+## Use Case:
 
+Developers and operators use this skill to switch the local OpenAI Codex account in OpenClaw, complete a relogin callback, or inspect account-switching status.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Concise Markdown with inline shell commands and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a login URL, callback next step, command stderr on failure, relogin status, gateway restart status, and active account summary; must not expose full tokens or secrets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive OAuth callback input is handled through a shell-style command pattern.
+
+Mitigation: Use the skill only when intentionally switching the local Codex account, avoid callback text from untrusted sources, require explicit confirmation for callback completion, and pass callback data as structured input where possible.
+
+Risk: Raw authentication errors may expose sensitive details.
+
+Mitigation: Redact authentication errors before showing them and avoid displaying full tokens or secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anjun/skills/cs-relogin)
+- [Publisher profile](https://clawhub.ai/user/anjun)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Concise Markdown text with shell command snippets, login URLs, callback instructions, and status summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command stderr on failure; should avoid exposing full tokens or secrets.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

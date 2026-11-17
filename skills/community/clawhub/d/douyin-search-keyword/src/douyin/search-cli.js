@@ -1,71 +1,86 @@
 #!/usr/bin/env node
 
-const constants = require("../config/constants");
-const token = require("../utils/token");
-const log = require("../utils/log");
 const search = require("../api/search");
+const log = require("../utils/log");
+const token = require("../utils/token");
 const utils = require("../utils/utils");
 const validator = require("../validate/keyword");
+const { parseArgs, buildHelp, parseDecimalInteger } = require("../utils/args");
+const {
+  emitError,
+  emitEmpty,
+  buildSuccessEnvelope,
+  finishSuccess,
+  emitUncaught,
+} = require("../utils/output");
 
-function parseArgs(args) {
-  const result = {
-    keyword: "",
-    sort: 0,
-    time: 0,
-    duration: 0,
-    limit: 10,
-    helpRequested: false,
-  };
-
-  for (let i = 0; i < args.length; i++) {
-    const arg = args[i];
-    if (arg === "--keyword" || arg === "-k") {
-      result.keyword = args[i + 1] || "";
-      i++;
-    } else if (arg === "--sort" || arg === "-s") {
-      result.sort = Number(args[i + 1]) || 0;
-      i++;
-    } else if (arg === "--time" || arg === "-t") {
-      result.time = Number(args[i + 1]) || 0;
-      i++;
-    } else if (arg === "--duration" || arg === "-d") {
-      result.duration = Number(args[i + 1]) || 0;
-      i++;
-    } else if (arg === "--limit" || arg === "-l") {
-      result.limit = Number(args[i + 1]) || 10;
-      i++;
-    } else if (arg === "--help" || arg === "-h") {
-      printHelp();
-      result.helpRequested = true;
-    } else if (!arg.startsWith("--") && !result.keyword) {
-      result.keyword = arg;
-    }
-  }
-
-  return result;
-}
+const SCHEMA = {
+  flags: {
+    "--keyword": {
+      alias: "-k",
+      key: "keyword",
+      type: "string",
+      required: true,
+      desc: "搜索关键词",
+    },
+    "--sort": {
+      alias: "-s",
+      key: "sort",
+      type: "number",
+      default: 0,
+      transform: parseDecimalInteger,
+      desc: "排序依据, 0: 综合排序(默认), 1: 最多点赞, 2: 最新发布",
+    },
+    "--time": {
+      alias: "-t",
+      key: "time",
+      type: "number",
+      default: 0,
+      transform: parseDecimalInteger,
+      desc: "发布时间, 0: 全部(默认), 1: 一天内, 7: 七天内, 180: 半年内",
+    },
+    "--duration": {
+      alias: "-d",
+      key: "duration",
+      type: "number",
+      default: 0,
+      transform: parseDecimalInteger,
+      desc: "视频时长, 0: 不限(默认), 1: 1分钟以下, 2: 1-5分钟, 3: 5分钟以上",
+    },
+    "--content": {
+      alias: "-c",
+      key: "content",
+      type: "number",
+      default: 0,
+      transform: parseDecimalInteger,
+      desc: "内容类型, 0: 不限(默认), 1: 视频, 2: 图文",
+    },
+    "--limit": {
+      alias: "-l",
+      key: "limit",
+      type: "number",
+      default: 10,
+      transform: parseDecimalInteger,
+      desc: "搜索数量, 1-10000",
+    },
+  },
+  positionalKey: "keyword",
+};
 
 function printHelp() {
-  console.log(`
-用法: node src/douyin/search-cli.js <关键词> [选项]
-
-选项:
-  --keyword, -k \t<关键词> \t搜索关键词
-  --sort, -s \t<排序> \t排序依据, 0: 综合排序(默认), 1: 最多点赞, 2: 最新发布
-  --time, -t \t<时间> \t发布时间, 0: 全部(默认), 1: 一天内, 7: 七天内, 180: 半年内
-  --duration, -d \t<时长> \t视频时长, 0: 不限(默认), 1: 1分钟以下, 2: 1-5分钟, 3: 5分钟以上
-  --limit, -l \t<数量> \t搜索数量 (默认 10, 最大 10000)
-  --help, -h \t显示帮助信息
-
-示例1: node src/douyin/search-cli.js --keyword "AI"
-示例2: node src/douyin/search-cli.js --keyword "AI 模型"
-示例3: node src/douyin/search-cli.js --keyword AI --sort 0 --time 0 --duration 0 --limit 10
-示例4: node src/douyin/search-cli.js -k "AI 模型" -s 1 -t 180 -d 2 -l 100
-
-注意: 
-  - 关键词建议 2-50 个汉字，避免特殊符号
-  - 所有参数都会自动清洗和验证
-`);
+  process.stderr.write(
+    buildHelp(SCHEMA, "node src/douyin/search-cli.js <关键词> [选项]", [
+      'node src/douyin/search-cli.js --keyword "AI"',
+      'node src/douyin/search-cli.js --keyword "AI 模型"',
+      "node src/douyin/search-cli.js --keyword AI --sort 0 --time 0 --duration 0 --limit 10",
+      'node src/douyin/search-cli.js -k "AI 模型" -s 1 -t 180 -d 2 -l 100',
+    ]) +
+      "\n\n注意:\n" +
+      "  - 关键词建议 2-50 个字符，不能是链接, 不含 < > \" ' &\n" +
+      "  - 排序、时间、时长、类型和数量若不在允许范围内，命令会直接失败，不会改成默认值后继续搜索\n" +
+      "  - 数量 1-10000；包月 Token 实际最多 30，超限返回 PLAN_LIMIT\n" +
+      "  - 关键词以 - 开头时写成 --keyword=-AI，或在 -- 后面写位置参数",
+  );
 }
 
 /**
@@ -77,54 +92,114 @@ async function main() {
   const args = process.argv.slice(2);
   if (args.length === 0) {
     printHelp();
+    emitError("search", "INVALID_ARGS", "缺少命令参数", 2, startTime);
     return;
   }
 
-  const parsedArgs = parseArgs(args);
-  let { keyword, sort, time, duration, limit, helpRequested } = parsedArgs;
-
-  if (helpRequested) return;
-  if (!keyword) {
-    utils.printError(`未提供关键词`);
+  let parsed;
+  try {
+    parsed = parseArgs(args, SCHEMA);
+  } catch (error) {
+    utils.printError(`参数解析错误: ${error.message}`);
+    printHelp();
+    emitError(
+      "search",
+      "INVALID_ARGS",
+      `参数解析错误: ${error.message}`,
+      2,
+      startTime,
+    );
+    return;
+  }
+  if (parsed._help) {
     printHelp();
     return;
   }
+  let { keyword, sort, time, duration, content, limit } = parsed;
 
   utils.printBanner();
-  utils.printInfo(`原始关键词: ${keyword}`);
-  keyword = validator.cleanKeyword(keyword);
-  const isRight = validator.isKeywordValid(keyword);
-  if (!isRight) {
+  const keywordRaw = keyword;
+  utils.printInfo(`原始关键词: ${keywordRaw}`);
+  keyword = validator.normalizeKeyword(keyword);
+  if (!validator.isKeywordValid(keyword)) {
+    emitError(
+      "search",
+      "INVALID_KEYWORD",
+      "关键词不合法: 需 2-50 个字符, 不能是链接, 不含 < > \" ' & 等特殊符号",
+      1,
+      startTime,
+      {
+        command: "search",
+        keyword_raw: keywordRaw,
+        keyword: keyword,
+        sort: sort,
+        time: time,
+        duration: duration,
+        content: content,
+        limit: limit,
+      },
+    );
     return;
   }
   utils.printInfo(`清洗后关键词: ${keyword}`);
-  [sort, time, duration, limit] = validator.optionFormat(
-    sort,
-    time,
-    duration,
-    limit,
-  );
+  try {
+    [sort, time, duration, content, limit] = validator.assertSearchOptions(
+      sort,
+      time,
+      duration,
+      content,
+      limit,
+    );
+  } catch (error) {
+    utils.printError(error.message);
+    emitError("search", "INVALID_ARGS", error.message, 2, startTime, {
+      command: "search",
+      keyword_raw: keywordRaw,
+      keyword: keyword,
+      sort: sort,
+      time: time,
+      duration: duration,
+      content: content,
+      limit: limit,
+    });
+    return;
+  }
   utils.printInfo(
-    `排序: ${sort}, 时间: ${time}, 时长: ${duration}, 数量: ${limit}`,
+    `排序: ${sort}, 时间: ${time}, 时长: ${duration}, 类型: ${content}, 数量: ${limit}`,
   );
 
   const tokenValue = token.skillToken(process.env.GUAIKEI_API_TOKEN);
-  if (tokenValue === "") return;
+  if (tokenValue === "") {
+    emitError(
+      "search",
+      "AUTH_REQUIRED",
+      "GUAIKEI_API_TOKEN 未配置或格式无效。须为 16-256 位字母、数字、下划线或连字符",
+      3,
+      startTime,
+      {
+        command: "search",
+        keyword_raw: keywordRaw,
+        keyword: keyword,
+        sort: sort,
+        time: time,
+        duration: duration,
+        content: content,
+        limit: limit,
+      },
+    );
+    return;
+  }
   let searchTask = null;
   try {
-    const status = await search.createSearchTask(
+    await search.createSearchTask(
       tokenValue,
       keyword,
       sort,
       time,
       duration,
+      content,
       limit,
     );
-    if (!status || status.errcode !== 0) {
-      throw new Error(
-        `搜索任务创建失败时, 遇到未知错误, 请反馈给开发者 ${status} - ${Date.now()}`,
-      );
-    }
     utils.printSuccess(`搜索任务创建成功, 正在搜索中...`);
 
     searchTask = await search.getSearchTask(
@@ -133,72 +208,60 @@ async function main() {
       sort,
       time,
       duration,
+      content,
       limit,
     );
   } catch (error) {
     utils.printError(`搜索失败: ${error.message}`);
-    const errorOutput = {
-      status: "error",
-      keyword: keyword,
-      message: error.message,
-      error_code: error.code || "UNKNOWN",
-      sort: sort,
-      time: time,
-      duration: duration,
-      limit: limit,
-      timestamp: new Date().toLocaleString(),
-      results: [],
-    };
-    console.log(JSON.stringify(errorOutput, null, 2));
+    emitError(
+      "search",
+      error.code || "UNKNOWN",
+      error.message,
+      error.name === "AuthError" ? 3 : 1,
+      startTime,
+      {
+        command: "search",
+        keyword_raw: keywordRaw,
+        keyword: keyword,
+        sort: sort,
+        time: time,
+        duration: duration,
+        content: content,
+        limit: limit,
+      },
+    );
     return;
   }
 
-  if (!searchTask || !Array.isArray(searchTask) || searchTask.length === 0) {
-    utils.printError(`搜索任务没有返回结果, 请稍后重试或联系开发者`);
-    const emptyOutput = {
-      status: "empty",
-      keyword: keyword,
-      message: "没有找到匹配的视频或图文内容",
-      error_code: "NO_MATCH",
-      sort: sort,
-      time: time,
-      duration: duration,
-      limit: limit,
-      timestamp: new Date().toLocaleString(),
-      results: [],
-    };
-    console.log(JSON.stringify(emptyOutput, null, 2));
-    return;
-  }
-
-  // 输出搜索结果
-  const finalOutput = {
-    status: "success",
+  const searchRequest = {
+    command: "search",
+    keyword_raw: keywordRaw,
     keyword: keyword,
-    message: "搜索任务完成",
     sort: sort,
     time: time,
     duration: duration,
+    content: content,
     limit: limit,
-    total: searchTask.length,
-    timestamp: new Date().toLocaleString(),
-    metadata: {
-      skill_version: constants.VERSION,
-      runtime_version: process.versions.node,
-      execution_time: Date.now() - startTime,
-    },
-    results: searchTask,
   };
-  console.log(JSON.stringify(finalOutput, null, 2));
-  utils.printSuccess(`搜索任务完成, 共返回 ${finalOutput.total} 条结果`);
+  if (!searchTask || !Array.isArray(searchTask) || searchTask.length === 0) {
+    utils.printInfo("没有找到匹配的视频或图文内容");
+    emitEmpty("没有找到匹配的视频或图文内容", startTime, searchRequest);
+    return;
+  }
 
-  await log.taskWrite(
-    `${startTime}_${keyword}_${sort}_${time}_${duration}_search.json`,
-    JSON.stringify(finalOutput, null, 2),
+  const finalOutput = buildSuccessEnvelope(
+    "搜索任务完成",
+    startTime,
+    searchRequest,
+    searchTask,
   );
+  await finishSuccess(finalOutput, {
+    logFilename: `${startTime}_${keyword}_${sort}_${time}_${duration}_${content}_search.json`,
+    stderrMessage: `搜索任务完成, 共返回 ${finalOutput.results.length} 条结果`,
+  });
 }
 
 main().catch((error) => {
-  utils.printError(error);
-  process.exit(1);
+  utils.printError(error.message || String(error));
+  emitUncaught("search", error);
 });

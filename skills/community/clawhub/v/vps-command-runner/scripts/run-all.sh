@@ -1,28 +1,25 @@
 #!/bin/bash
-# Run command on all VPS
-# EDIT THIS: Add your VPS IPs, username, and password
+# Run command on all VPS — requires confirmation
+set -euo pipefail
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/lib.sh"
+load_inventory
 
-VPS_LIST=(
-    "YOUR_INTERNAL_IP"
-    "YOUR_VPS1_IP"
-    "YOUR_VPS2_IP"
-)
+[[ $# -eq 0 ]] && { echo "Usage: run-all.sh <command>"; exit 1; }
+COMMAND="$*"
 
-USER="YOUR_USERNAME"
-PASS="YOUR_PASSWORD"
+echo "About to run on ${#HOSTS[@]} host(s): ${HOSTS[*]}"
+echo "Command: $COMMAND"
+read -rp "Continue? [y/N] " confirm
+[[ "${confirm:-}" =~ ^[Yy]$ ]] || { echo "Aborted."; exit 1; }
 
-if [ -z "$1" ]; then
-    echo "Usage: run-all.sh <command>"
-    exit 1
-fi
-
-COMMAND="$1"
-
-echo "=== Running: $COMMAND ==="
-echo ""
-
-for VPS in "${VPS_LIST[@]}"; do
-    echo "--- $VPS ---"
-    sshpass -p "$PASS" ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 "$USER@$VPS" "$COMMAND" 2>&1
-    echo ""
+FAIL=0
+for HOST in "${HOSTS[@]}"; do
+    echo "--- $HOST ---"
+    if ! ssh "${SSH_OPTS[@]}" "$HOST" "$COMMAND"; then
+        echo "!!! $HOST failed"
+        FAIL=1
+    fi
+    echo
 done
+exit $FAIL

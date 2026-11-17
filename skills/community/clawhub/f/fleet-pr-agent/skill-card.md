@@ -1,41 +1,53 @@
-## Description: <br>
-Multi-repo PR monitoring and triage agent that scans GitHub repositories for open PRs, prioritizes by staleness, review status, and CI state, and generates a structured Markdown triage summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-repo PR monitoring and triage agent. Scans GitHub repos for open PRs, prioritizes by staleness/review status/CI state, and generates a structured Markdown triage summary.
 
-## Publisher: <br>
-[lanxevo3](https://clawhub.ai/user/lanxevo3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanxevo3](https://clawhub.ai/user/lanxevo3)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to monitor open pull requests across multiple GitHub repositories and surface the PRs most likely to need review, CI attention, or merge follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads pull request metadata from every repository named by the user through the authenticated GitHub CLI. <br>
-Mitigation: Use a GitHub token with only the repository access needed for the intended triage run, and provide only repositories that should be inspected. <br>
-Risk: The shell helper depends on jq in addition to the authenticated GitHub CLI. <br>
-Mitigation: Prefer the Python triage script for standard use, or confirm jq is installed before using the shell helper. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to scan open pull requests across one or more GitHub repositories, rank them by urgency, and produce a concise triage report.
 
-## Reference(s): <br>
-- [Fleet PR Agent on ClawHub](https://clawhub.ai/lanxevo3/fleet-pr-agent) <br>
-- [Publisher profile: lanxevo3](https://clawhub.ai/user/lanxevo3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown triage report with prioritized PR sections and summary counts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print the report to standard output or write it to a Markdown file when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The included Bash helper has a command-execution weakness if run with attacker-controlled environment variables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the documented Python script and require integer validation for FLEET_PR_STALE_DAYS, FLEET_PR_CI_WEIGHT, and FLEET_PR_MAX_PRS before using the Bash helper.
+
+Risk: The skill uses the authenticated GitHub CLI to read pull request metadata from repositories available to the user's token.
+
+Mitigation: Run it with a least-privilege GitHub token and review generated triage reports before taking repository actions.
+
+## Reference(s):
+
+- [Fleet PR Agent on ClawHub](https://clawhub.ai/lanxevo3/skills/fleet-pr-agent)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown triage report with prioritized PR lists and a summary section]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authenticated GitHub CLI access and repository visibility through the user's GitHub token.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

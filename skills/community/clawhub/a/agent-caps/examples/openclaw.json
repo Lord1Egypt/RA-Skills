@@ -1,0 +1,10 @@
+{
+  "name": "OpenClaw",
+  "version": "2026.6.11",
+  "capabilities": ["browser automation", "GUI/desktop use", "messaging", "Telegram"],
+  "dependencies": ["Paperclip API", "gateway :18789"],
+  "memory_requirements": "128MB",
+  "tools": ["computer_use", "browser", "messaging"],
+  "api": "openclaw_gateway",
+  "status": "active"
+}

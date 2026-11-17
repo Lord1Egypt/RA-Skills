@@ -1,39 +1,48 @@
-## Description: <br>
-Business writing assistant for industry research reports, business insights, consulting analysis, company research, competitive analysis, user research, and market analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents draft detailed, well-sourced business reports, industry research, market analysis, company research, competitive analysis, consulting analysis, user research, and business insights.
 
-## Publisher: <br>
-[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and external business users can use this skill to produce citation-heavy business writing such as industry research reports, market analysis, company research, competitive analysis, consulting analysis, and business insights.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Business reports may include outdated, incorrect, or unsupported citations and market data if source material is not checked.
+
+Mitigation: Verify important citations and data sources, especially for current market or company information, before relying on or publishing the output.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business users, analysts, consultants, and teams use this skill to draft detailed research reports and business analysis in the user's language with source-backed claims. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated citations, source links, data, or business claims may be incorrect, outdated, or unsupported. <br>
-Mitigation: Verify cited sources, links, data, and business claims before relying on outputs or using them in business decisions. <br>
-Risk: No server-resolved GitHub import provenance is available for this version. <br>
-Mitigation: Use the ClawHub publisher profile and release evidence for publisher identity, and review the release files directly when provenance matters. <br>
+**Output Format:** [Markdown with clickable numbered references, tables, and mermaid diagrams when supported by real sources]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Uses the user's language by default and requires cited sources for specific claims.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with tables, Mermaid diagrams, and numbered source links when supported by verified data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language unless specified; users should verify cited sources, links, data, and business claims before relying on outputs.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

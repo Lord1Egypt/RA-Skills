@@ -1,41 +1,52 @@
-## Description: <br>
-Generates structured travel plans for trip websites. Invoke when user wants to create a travel itinerary, plan a trip, or needs help organizing travel details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured travel plans for trip websites. Invoke when user wants to create a travel itinerary, plan a trip, or needs help organizing travel details.
 
-## Publisher: <br>
-[dustink66](https://clawhub.ai/user/dustink66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dustink66](https://clawhub.ai/user/dustink66)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to collect trip requirements through guided questions and draft structured travel itineraries, budgets, checklists, and notes for trip websites.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated travel costs, schedules, booking details, and safety notes may be inaccurate or outdated.
+
+Mitigation: Review itinerary details against current booking, transit, venue, and local safety sources before relying on the plan.
+
+Risk: The skill may ask several trip-detail questions and may respond in Chinese unless adapted.
+
+Mitigation: Set language expectations before use and confirm collected trip details before generating the final itinerary.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to collect trip requirements through guided questions and produce a structured itinerary with daily plans, budget, preparation checklist, and travel notes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill collects trip details that may include sensitive identity, booking, or personal travel information. <br>
-Mitigation: Provide only the details needed for planning and use placeholders for sensitive identity or booking information. <br>
-Risk: The skill's prompt flow and structured output are primarily Chinese, which may not match every user's expected language. <br>
-Mitigation: Ask the agent to adapt the questions and final itinerary language when a different language is required. <br>
-Risk: Generated travel guidance can include inaccurate timing, prices, opening hours, or booking assumptions. <br>
-Mitigation: Verify transportation, lodging, ticketing, weather, and local availability before making travel decisions. <br>
+**Output Format:** [Structured Markdown travel plan with itinerary, budget, preparation checklist, and notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May ask multiple trip-detail questions before generating the travel plan.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown travel plan with structured sections for itinerary, budget, checklist, and notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive Q&A flow; the skill's prompts and default output structure are primarily Chinese unless the agent adapts the language.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

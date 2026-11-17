@@ -1,42 +1,59 @@
-## Description: <br>
-Control the iPlay media player to play videos or streams from URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control the iPlay media player to play videos or streams from URLs, including YouTube, Bilibili, and direct media links such as mp4 and m3u8.
 
-## Publisher: <br>
-[saltpi](https://clawhub.ai/user/saltpi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saltpi](https://clawhub.ai/user/saltpi)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to open media URLs, streams, or direct video links in the locally installed iPlay desktop app. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill opens user-provided media URLs in the local iPlay desktop app. <br>
-Mitigation: Treat media links as untrusted and run the skill only for links the user intends to open. <br>
-Risk: On Windows, the helper currently invokes the platform launcher through shell=True. <br>
-Mitigation: Windows users should prefer a future version that avoids shell=True for stronger hardening. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to open videos or streams in the local iPlay desktop media player from supported URLs.
 
-## Reference(s): <br>
-- [iPlay Homepage](https://iplay.saltpi.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/saltpi/iplay) <br>
-- [Publisher profile](https://clawhub.ai/user/saltpi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Command invocation and plain-text status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends a base64-encoded media URL to the local iPlay app through the iplay:// URI scheme; playback status is not monitored.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill opens user-provided media URLs in the local iPlay application.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only play URLs from trusted sources and review agent-proposed media links before execution.
+
+Risk: The helper triggers playback asynchronously and does not monitor playback status.
+
+Mitigation: Confirm playback and errors in the iPlay application when reliable completion status is required.
+
+Risk: On Windows, the helper uses a shell command to launch the iPlay URI.
+
+Mitigation: Prefer a future helper version that avoids shell=True, and install only when this local launch behavior is acceptable.
+
+## Reference(s):
+
+- [iPlay homepage](https://iplay.saltpi.cn)
+- [ClawHub iPlay skill page](https://clawhub.ai/saltpi/skills/iplay)
+- [Publisher profile: saltpi](https://clawhub.ai/user/saltpi)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text with shell command examples and helper status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and a local iPlay installation; playback is triggered asynchronously and status is not monitored.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

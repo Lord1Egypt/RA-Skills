@@ -1,39 +1,50 @@
-## Description: <br>
-Git Blame Archaeologist helps developers trace git blame and file history to explain why lines or code blocks exist, including commit context, renames, linked references, and mystery blocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Git history archaeology tool that helps developers explain why code exists by tracing blame, commit history, rename history, commit messages, linked references, and mystery blocks in a local git repository.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and engineers use this skill to investigate why code exists by tracing local Git blame, commit history, rename history, issue references, and terse or unexplained commits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive local repository history, including diffs, commit bodies, author emails, branch history, and issue or ticket references. <br>
-Mitigation: Use it only in repositories where that history may be inspected, and prefer explicit slash-command use with a specific file, line, or range in private codebases. <br>
+## Use Case:
 
+Developers and engineers use this skill to investigate file, line, symbol, or directory history in a local git repository and produce a narrative explanation of why the code changed. It is useful for debugging, onboarding, maintenance, and documenting unexplained code decisions.
 
-## Reference(s): <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-git-blame-archaeologist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with inline shell commands and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Works offline against a local Git repository and may summarize commit metadata, diffs, authors, branches, and linked issue or ticket references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill can lead an agent to inspect local git history and nearby repository files while answering code-history questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it with an explicit file, line, symbol, commit, or directory so the investigation stays scoped to the intended repository area.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-git-blame-archaeologist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown report with command snippets, timelines, findings, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally against a git repository and may inspect commit history plus nearby repository files when requested.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "研究任务与场景界定"
+  short_description: "识别研究任务、决策场景、口径和研究意图"
+  default_prompt: "使用 $wiki-intent-scope 根据客户原始需求界定研究任务、研究对象、决策场景、研究意图、口径约束，并生成结构化交接文件。"

@@ -1,39 +1,50 @@
-## Description: <br>
-Generate MD5 and SHA checksums, verify integrity, and compare hash values. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate MD5 and SHA checksums, verify integrity, and compare hash values.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers, release engineers, and support teams use Hash to compute checksums for files or text, verify downloads against known hashes, compare file hashes, batch-hash directories, and check checksum manifests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local operation history and batch manifests can retain file paths and hashes under ~/.local/share/hash. <br>
-Mitigation: Avoid batch hashing broad or sensitive directories unless retention is intended, and delete history or manifest files when they are no longer needed. <br>
+## Use Case:
 
+Developers and operators use this skill to compute hashes, verify downloaded files, compare file integrity, and check checksum manifests from an agent workflow.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/hash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and plain-text checksum output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Batch operations can write local manifests and operation history under ~/.local/share/hash.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: release evidence and skill frontmatter) <br>
+Risk: Local history and batch manifest files can record file paths and hashes, which may reveal private project structure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid batch mode on sensitive directories unless a saved manifest is intended, and delete history or manifest files afterward when they expose private paths.
+
+## Reference(s):
+
+- [Hash on ClawHub](https://clawhub.ai/bytesagain-lab/skills/hash)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Plain text command output and checksum manifest files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Batch mode and history operations can write local records under ~/.local/share/hash.]
+
+## Skill Version(s):
+
+3.0.1 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

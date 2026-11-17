@@ -1,41 +1,66 @@
-## Description: <br>
-GIS/DEM preprocessing for SWMM experiments using the user's own QGIS/GRASS layers, including subcatchment delineation, QGIS-derived polygon preprocessing, entropy hotspot ranking, and reproducible workflow guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GIS/DEM preprocessing for SWMM experiments using the user's own QGIS/GRASS layers, including subcatchment delineation, preprocessing, entropy hotspot analysis, and QGIS/GRASS-backed reproducible workflows.
 
-## Publisher: <br>
-[zhonghao1995](https://clawhub.ai/user/zhonghao1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhonghao1995](https://clawhub.ai/user/zhonghao1995)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare watershed GIS and DEM inputs for SWMM workflows, generate subcatchment and parameter handoff files, and inspect entropy-guided spatial heterogeneity before model building. The workflow is intended for local processing of user-supplied QGIS/GRASS layers and does not by itself validate calibrated hydrologic performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local GIS processing scripts read user-supplied watershed files and write SWMM/QGIS outputs, including behavior that can overwrite files in run or final_layers directories. <br>
-Mitigation: Use a fresh dedicated run/final_layers directory, keep backups of original GIS data, and inspect generated manifests before relying on outputs. <br>
-Risk: The workflow depends on external Agentic SWMM, QGIS, GRASS, and SWMM tooling that is outside the skill package. <br>
-Mitigation: Review and complete the separate installation steps for those dependencies before executing generated commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare local GIS/DEM inputs for SWMM experiments, including QGIS/GRASS watershed processing, subcatchment metrics, entropy-guided partitioning, and builder-ready CSV/JSON handoffs. It is intended for user-provided project data and does not by itself establish calibrated hydrologic performance.
 
-## Reference(s): <br>
-- [ClawHub Swmm Gis release page](https://clawhub.ai/zhonghao1995/swmm-gis) <br>
-- [Agentic SWMM workflow](https://github.com/Zhonghao1995/agentic-swmm-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file path lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When the referenced scripts run, they can write CSV, JSON, GeoJSON, shapefile, raster, PNG, manifest, and audit outputs under user-selected run directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.3 (source: server release evidence) <br>
+Risk: The skill runs local QGIS/GRASS/Python preprocessing over user-provided DEM and vector data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on project data you trust and in an isolated working directory with expected GIS dependencies installed.
+
+Risk: Final-layer packaging can overwrite files named subcatchments, flow, outfall, slope_percent.tif, overview.png, and manifest.json in the selected output directory.
+
+Mitigation: Use a dedicated run or output directory for each case and keep separate backups of existing deliverables.
+
+Risk: CRS normalization can reproject, clip, or resample layers, which may change watershed structure.
+
+Mitigation: Validate CRS and raster alignment first, and normalize only when the input layers actually need harmonization.
+
+Risk: The workflow produces GIS-derived SWMM subcatchment units and audit evidence but does not prove calibrated hydrologic performance.
+
+Mitigation: Pass outputs through the downstream SWMM builder, runner, and experiment audit workflow before relying on hydrologic conclusions.
+
+Risk: The skill documentation depends on the external Agentic SWMM project for the executable toolchain and MCP server.
+
+Mitigation: Review the external project and its installation requirements before relying on that toolchain.
+
+## Reference(s):
+
+- [ClawHub Swmm Gis Skill Page](https://clawhub.ai/zhonghao1995/skills/swmm-gis)
+- [Agentic SWMM Project Link From Skill Documentation](https://github.com/Zhonghao1995/agentic-swmm-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and local file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local GIS/SWMM artifacts such as CSV, JSON, shapefiles, rasters, PNG overview figures, manifests, and audit files when the referenced tools are run.]
+
+## Skill Version(s):
+
+0.7.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

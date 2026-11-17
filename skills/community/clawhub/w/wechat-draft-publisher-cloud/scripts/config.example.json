@@ -1,0 +1,4 @@
+{
+  "relay_url": "https://<你的服务名>.<地域>.run.tcloudbase.com",
+  "relay_key": "你的 RELAY_API_KEY"
+}

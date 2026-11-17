@@ -1,0 +1,4 @@
+interface:
+  display_name: "Writing Ticks"
+  short_description: "Audit prose for AI-writing tells and concrete human-edit fixes."
+  default_prompt: "Writing Ticks: review the provided text for AI-writing tells, cite specific phrases, separate hard artifacts from soft style signals, avoid provenance claims, and propose concrete edits."

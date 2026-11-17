@@ -2,6 +2,26 @@
 
 All notable changes to Cron Sentinel are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/); this project adheres to semantic versioning.
 
+## [1.2.0] - 2026-09-28
+
+Fixes from ClawHub's security audit. Existing commands and state files keep working.
+
+### Security
+- **State file is now owner-only.** The state folder is created with 0700 and `state.json` is written with 0600.
+- **Secrets are redacted before saving.** Captured output is scanned for common credential patterns (password/token/API-key assignments, bearer and basic auth headers, AWS, GitHub, Slack and `sk-` style keys, private-key blocks, credentials in URLs) and masked before it's written to the state file.
+- **New `--no-output-tail` flag** for `wrap` stores no command output at all.
+- **`crontab` output is validated and quoted.** `--name` must be a simple identifier, `--schedule` must be five cron fields or a macro like `@daily`, `--expect-every` must parse as a duration, the Python and script paths are quoted, and `%` is escaped so the printed line can't be broken or injected into.
+- `wrap` now passes `shell=False` explicitly and documents that commands are never run through a shell.
+
+### Changed
+- Replaced the frontmatter `permissions` block (not part of ClawHub's schema, so it wasn't being read) with `metadata.openclaw.requires` and `envVars` declarations.
+- SKILL.md and the description now state plainly that Sentinel never edits a crontab, creates scheduled tasks, uses the network, or requires elevated privileges, and that the agent must not create scheduled tasks without the user's explicit confirmation.
+- Corrected the description, which previously said commands run "via the shell."
+- `crontab` output now opens with a note that Sentinel doesn't install anything.
+
+### Added
+- `.clawhubignore` so development-only files (`evals/`) stay in the repository but aren't published to ClawHub.
+
 ## [1.1.0] - 2026-05-24
 
 Security-review fixes. No behavior change to the tool itself.

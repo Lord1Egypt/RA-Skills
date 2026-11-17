@@ -1,45 +1,61 @@
-## Description: <br>
-Generate and transform WeryAI videos from text, images, storyboard frames, or first-frame and last-frame guidance, including bounded wait polling, status checks, model switching, and dry-run previews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and transform WeryAI videos from text, images, storyboard frames, or first-frame and last-frame guidance, with bounded polling for final video output, status checks, model switching, and dry-run payload previews.
 
-## Publisher: <br>
-[weryai-developer](https://clawhub.ai/user/weryai-developer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weryai-developer](https://clawhub.ai/user/weryai-developer)
 
-## Use Case: <br>
-External users and developers use this skill to generate WeryAI videos from prompts or reference images, check model support, poll task status, and return playable video links when generation completes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Most executable behavior depends on shared runtime core files that are outside the reviewed artifact. <br>
-Mitigation: Install only if you trust the runtime core and WeryAI API endpoint; review the runtime core before production use. <br>
-Risk: The skill uses WERYAI_API_KEY and can submit prompts or media to external WeryAI API hosts. <br>
-Mitigation: Use a scoped API key when available, avoid sensitive media, and keep API base URL overrides limited to trusted destinations. <br>
-Risk: Real generation commands can consume WeryAI credits. <br>
-Mitigation: Use dry-run or model/status checks before paid submissions and confirm final parameters before creating a new task. <br>
+## Use Case:
 
+Developers and creative operators use this skill to submit WeryAI text-to-video, image-to-video, storyboard, first-frame/last-frame, model lookup, balance, and status workflows through an agent. It is intended for paid WeryAI API use with explicit credential setup and bounded polling for generation results.
 
-## Reference(s): <br>
-- [WeryAI Video Generator on ClawHub](https://clawhub.ai/weryai-developer/weryai-video-generator) <br>
-- [WeryAI API keys](https://www.weryai.com/api/keys) <br>
-- [WeryAI Video Generation Models](references/api-models.md) <br>
-- [WeryAI Error Codes](references/error-codes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with playable video links and JSON command output from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task IDs, batch IDs, task status, video URLs, request summaries, balance data, and error codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Runtime behavior depends on external core/weryai-core and core/weryai-video modules that are outside this package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the surrounding runtime modules before production use or before processing sensitive media.
+
+Risk: The skill uses a paid WeryAI API credential and can submit generation jobs that consume credits.
+
+Mitigation: Keep WERYAI_API_KEY secret, confirm model parameters before paid submissions, and use dry-run or status/model checks when possible.
+
+Risk: Endpoint override variables can redirect requests to non-default hosts.
+
+Mitigation: Use WERYAI_BASE_URL and WERYAI_MODELS_BASE_URL only with hosts that the operator controls or explicitly trusts.
+
+## Reference(s):
+
+- [WeryAI Skill Page](https://clawhub.ai/weryai-developer/skills/weryai-video-generator)
+- [WeryAI Publisher Profile](https://clawhub.ai/user/weryai-developer)
+- [WeryAI API Keys](https://www.weryai.com/api/keys)
+- [WeryAI Video Generation Models](references/api-models.md)
+- [WeryAI Error Codes](references/error-codes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON command output and playable video links when generation completes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generation results can include task identifiers, task status, video URLs, request summaries, balance data, and error details.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

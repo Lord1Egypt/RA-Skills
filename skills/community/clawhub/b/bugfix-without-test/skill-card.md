@@ -1,41 +1,53 @@
-## Description: <br>
-A fix is applied without a reproduction test, leaving no proof the bug is fixed and no regression coverage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A fix is applied without a reproduction test, leaving no proof the bug is fixed and no regression coverage.
 
-## Publisher: <br>
-[mvogt99](https://clawhub.ai/user/mvogt99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mvogt99](https://clawhub.ai/user/mvogt99)
 
-## Use Case: <br>
-Developers and coding agents use this skill to identify bug fixes that lack regression tests and to add or document verification before accepting the fix. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: When followed by a coding agent with repository write access, the skill may lead to added or modified tests and code while fixing bugs. <br>
-Mitigation: Review the resulting code changes and run the normal test suite and CI before merging. <br>
-Risk: Manual verification may be substituted when a bug is hard to test, which can leave weaker regression coverage. <br>
-Mitigation: Require an explicit explanation of why automated coverage is not practical and record the manual verification performed. <br>
+## Use Case:
 
+Developers and coding agents use this skill when fixing bugs to require a reproduction test, verify the fix, and preserve regression coverage. It also guides explicit manual verification notes when automated tests are impractical.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mvogt99/bugfix-without-test) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mvogt99) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance and checklist-style recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only skill with no hidden access or execution behavior reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may cause the agent to spend extra effort adding or requesting regression tests when fixing bugs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Plan for the extra test-writing or review effort; this behavior matches the scanner guidance and the skill's coding-quality purpose.
+
+Risk: If a bug is hard to test, the fix may still lack automated regression coverage.
+
+Mitigation: Record the manual verification performed and explain why automated coverage was impractical, as directed by the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mvogt99/skills/bugfix-without-test)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credentials, tools, or external services are requested by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

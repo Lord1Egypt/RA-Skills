@@ -1,39 +1,51 @@
-## Description: <br>
-Guides agents through integrating the YZTurboWebAndroid high-performance Android WebView container SDK with WebView reuse, offline package handling, and JS Bridge communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YZTurboWebAndroid helps Android developers integrate a high-performance WebView container with WebView preloading and reuse, offline package resource handling, and Native-to-H5 JS Bridge communication.
 
-## Publisher: <br>
-[hefuwei-95](https://clawhub.ai/user/hefuwei-95) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hefuwei-95](https://clawhub.ai/user/hefuwei-95)
 
-## Use Case: <br>
-Android developers use this skill to integrate H5 pages into an Android app with WebView preloading and reuse, offline resource interception, and Native-to-H5 JS Bridge calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: JS bridge handlers can expose user data or privileged app behavior if implemented without origin and permission controls. <br>
-Mitigation: Verify trusted origins, enforce permission checks, minimize returned data, and review each handler before use in a production Android app. <br>
-Risk: The guide references an Android SDK dependency that should be trusted before being added to an app. <br>
-Mitigation: Confirm the Gradle dependency source and review SDK permissions, privacy behavior, and update practices before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hefuwei-95/yzturbo-web-android) <br>
+## Use Case:
+
+Developers use this skill to add a WebView container to Android apps that embed H5 pages, need offline package support, or require two-way communication between Native code and H5 content.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: JS Bridge handlers could expose sensitive native actions or user data to untrusted pages.
+
+Mitigation: Restrict handlers to trusted pages or origins, authenticate and authorize sensitive calls, and expose only the minimum user data needed.
+
+Risk: The referenced Gradle dependency may need normal application supply-chain review before production use.
+
+Mitigation: Review the dependency through the app team's standard dependency, license, and security process before adopting the examples.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with Kotlin, Groovy, and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Android initialization, WebViewFragment usage, manual WebView management, and JS Bridge examples.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with Kotlin, Groovy, and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Recognizes bus ticket documents and returns structured OCR data for key ticket fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes bus ticket receipts with the Sugon-Scnet OCR service and returns structured ticket fields.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-Developers and agents use this skill to send a local bus ticket image or PDF to the Scnet OCR API and extract structured fields such as ticket number, travel date, stations, fare, and passenger name. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Ticket images are sent to the Scnet OCR API for processing. <br>
-Mitigation: Use the skill only for ticket images that are acceptable to process with Scnet, and avoid highly sensitive files when local-only OCR is required. <br>
-Risk: The skill requires a sensitive SCNET_API_KEY credential. <br>
-Mitigation: Store a dedicated key in an environment variable or config/.env with restrictive permissions, and do not paste the key into chat. <br>
-Risk: Server evidence says import provenance is unavailable and security guidance notes unfinished README and homepage metadata. <br>
-Mitigation: Verify the publisher profile and release provenance before deploying in environments that require provenance controls. <br>
+## Use Case:
 
+External users and developers use this skill to send a local bus ticket image, PDF, or archive to Scnet's OCR API and receive structured ticket data such as route, dates, invoice numbers, passenger name, and amount.
 
-## Reference(s): <br>
-- [Sugon-Scnet OCR API Documentation](references/api-docs.md) <br>
-- [Bus Ticket Field Summary](assets/templates/fields-summary.md) <br>
-- [Scnet website](https://www.scnet.cn) <br>
-- [Scnet OCR API base](https://api.scnet.cn/api/llm/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON written to standard output, with human-readable error guidance on failure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCNET_API_KEY and sends the selected ticket file to the Scnet OCR API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release metadata) <br>
+Risk: Bus ticket images, PDFs, or archives may contain passenger names, routes, dates, invoice numbers, and amounts that are uploaded to Scnet's OCR service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where sending those documents to Scnet is acceptable, and have the agent confirm before each upload.
+
+Risk: SCNET_API_BASE can change the upload endpoint.
+
+Mitigation: Keep the default Scnet API base unless the replacement endpoint is controlled and trusted.
+
+Risk: A configured Scnet API key can be exposed if config/.env is readable by untrusted users or pasted into chat.
+
+Mitigation: Prefer environment variables or restrict config/.env permissions to trusted users, and never share the API key in conversation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scnet-sugon/skills/bus-ticket-ocr)
+- [Sugon-Scnet OCR API documentation summary](artifact/references/api-docs.md)
+- [Bus ticket field summary](artifact/assets/templates/fields-summary.md)
+- [Scnet website](https://www.scnet.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [Pretty-printed JSON on standard output, with human-readable error text on failure.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script removes confidence fields from successful API results before printing the data array.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter, skill.yaml, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

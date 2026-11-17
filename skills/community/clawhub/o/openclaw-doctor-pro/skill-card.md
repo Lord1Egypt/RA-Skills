@@ -1,49 +1,70 @@
-## Description: <br>
-Comprehensive diagnostic, error-fixing, and skill recommendation tool for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive diagnostic, error-fixing, and skill recommendation tool for OpenClaw.
 
-## Publisher: <br>
-[PhenixStar](https://clawhub.ai/user/PhenixStar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[phenixstar](https://clawhub.ai/user/phenixstar)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose OpenClaw issues, run health checks, apply guided or automated fixes, and identify relevant ClawHub skills for their gateway setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can alter an OpenClaw host through auto-fix actions, including configuration edits, file operations, package installation, service restarts, and process termination. <br>
-Mitigation: Start with check-only or dry-run modes, review each proposed fix before execution, avoid broad auto-fix commands on production systems, and back up ~/.openclaw before applying changes. <br>
-Risk: Diagnostic logs and configuration details may contain API keys, tokens, or other sensitive operational information. <br>
-Mitigation: Do not paste API keys or full diagnostic output into chats or tickets, and redact credentials before sharing reports. <br>
-Risk: The authoritative security verdict is suspicious because the troubleshooting behavior is broad and warnings are incomplete. <br>
-Mitigation: Install only if this level of host-modifying troubleshooting is acceptable, keep auto-fix use scoped to known issues, and manually review changes after execution. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose OpenClaw issues, inspect logs and configuration, apply guided fixes, run health checks, set up OpenClaw, refresh local references, and find relevant ClawHub skills.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/PhenixStar/openclaw-doctor-pro) <br>
-- [OpenClaw Doctor Pro homepage](https://github.com/PhenixStar/openclaw-doctor-pro) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
-- [Error Catalog](references/error-catalog.md) <br>
-- [Auto-Fix Capabilities](references/auto-fix-capabilities.md) <br>
-- [Diagnostic Commands](references/diagnostic-commands.md) <br>
-- [Troubleshooting Workflow](references/troubleshooting-workflow.md) <br>
-- [ClawHub Integration](references/clawhub-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, rich terminal text, JSON, and shell commands depending on the selected tool and flags.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include diagnostic reports, recommended fix steps, generated configuration changes, dry-run output, and ClawHub skill recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata; SKILL.md frontmatter lists 1.0.0) <br>
+Risk: Setup and repair flows can expose credentials or weaken host security.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; use diagnostic and read-only commands first, and avoid the setup wizard until credential storage and gateway defaults are fixed.
+
+Risk: Some guidance can install mutable software or change host state.
+
+Mitigation: Require explicit approval before package installs, Docker pulls, remote installer scripts, log deletion, or cache updates.
+
+Risk: Docker socket permission changes can weaken host isolation.
+
+Mitigation: Do not follow Docker socket chmod guidance; use safer Docker access controls approved by the deployment owner.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phenixstar/skills/openclaw-doctor-pro)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+- [Error Catalog](references/error-catalog.md)
+- [Auto-Fix Capabilities](references/auto-fix-capabilities.md)
+- [Diagnostic Commands](references/diagnostic-commands.md)
+- [Troubleshooting Workflow](references/troubleshooting-workflow.md)
+- [Authentication Errors](references/authentication-errors.md)
+- [Rate Limiting Errors](references/rate-limiting-errors.md)
+- [Gateway Errors](references/gateway-errors.md)
+- [Channel Errors](references/channel-errors.md)
+- [Sandbox Errors](references/sandbox-errors.md)
+- [Configuration Errors](references/configuration-errors.md)
+- [Installation Errors](references/installation-errors.md)
+- [ClawHub Integration](references/clawhub-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, optional JSON from diagnostic tools, and report templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can propose or execute local diagnostic, setup, update, and auto-fix commands; review security guidance before applying changes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

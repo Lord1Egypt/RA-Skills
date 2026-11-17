@@ -1,50 +1,63 @@
-## Description: <br>
-Route Aqara Open API requests across device, space, and automation skills with a relationship-first router, shared CLI contract, and structured handoff contract. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route Aqara Open API requests across device, space, and automation skills with a relationship-first router, shared CLI contract, and structured handoff contract.
 
-## Publisher: <br>
-[aqara](https://clawhub.ai/user/aqara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aqara](https://clawhub.ai/user/aqara)
 
-## Use Case: <br>
-Developers and smart-home operators use this skill to route agent requests to Aqara device, space, and automation workflows, generate validated Aqara CLI commands, and manage cache-backed Open API interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an Aqara Open API token and can control real smart-home devices and automations. <br>
-Mitigation: Install only if the aqara publisher is trusted, keep tokens out of chat/logs/files, and verify credential source before running commands. <br>
-Risk: Mutating operations can delete automations, move devices between spaces, or trigger device-control automations. <br>
-Mitigation: Confirm exact IDs and names, and require explicit confirmation before deletes, broad room moves, or device-control automations. <br>
-Risk: Automation examples may contain button or event enum assumptions that differ from live device capabilities. <br>
-Mitigation: Check live capabilities and enum values before creating automations from examples. <br>
+## Use Case:
 
+Developers and smart-home operators use this skill to inspect Aqara devices and spaces, control device traits, and create or manage automations through the Aqara Open API CLI. It is intended for credentialed Aqara environments where live device and automation changes are reviewed before execution.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/aqara/aqara-open-api-local) <br>
-- [README](README.md) <br>
-- [ClawHub Deployment Guide](README-CLAWHUB.md) <br>
-- [CLI Command Catalog](docs/commands.md) <br>
-- [Intent-Based Example Index](references/examples.md) <br>
-- [Automation HTTP Lifecycle Examples](references/automation-http-examples.md) <br>
-- [Automation Configuration Guide](references/automation_config.md) <br>
-- [Automation Instance Schema](references/automation-instance-v0.schema.json) <br>
-- [Aqara Open API Endpoint](https://aiot-open-3rd.aqara.cn/open/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration or API request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or execute Aqara CLI commands; mutating device, space, and automation actions require confirmed identifiers and credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: The skill can control physical smart-home devices and create, update, enable, disable, or delete live automations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before device-control, batch, status-changing, or delete operations, and verify target devices, spaces, and automation IDs from retrieved evidence before execution.
+
+Risk: Bearer tokens may be sent to any configured endpoint if AQARA_ENDPOINT_URL is wrong or untrusted.
+
+Mitigation: Verify the endpoint is the real Aqara API URL before use, prefer environment variables or a tightly permissioned CLI config, and never print real tokens in chat, logs, or generated files.
+
+Risk: The local device cache can contain sensitive home device, room, and automation context.
+
+Mitigation: Keep local config and cache files tightly permissioned and avoid sharing generated files or logs that expose device identifiers, room membership, or credential-adjacent context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aqara/skills/aqara-open-api-local)
+- [Aqara Open API Deployment Guide](README-CLAWHUB.md)
+- [Aqara Open API CLI](README.md)
+- [Aqara Open API CLI Commands](docs/commands.md)
+- [Automation Configuration Reference](references/automation_config.md)
+- [Automation Instance Schema](references/automation-instance-v0.schema.json)
+- [Unified Example Index](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, and shell command snippets for Aqara CLI workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate automation configuration JSON and Aqara CLI commands that require Node.js, AQARA_ENDPOINT_URL, and AQARA_OPEN_API_TOKEN.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

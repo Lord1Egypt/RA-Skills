@@ -1,42 +1,54 @@
-## Description: <br>
-Control Chrome browser with AI using MCP protocol for browser automation, screenshots, form filling, navigation, browsing history, bookmark management, and existing-session workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+mcp-chrome connects an AI agent to a user's existing Chrome browser through MCP to navigate pages, capture screenshots, fill forms, extract page content, search history, manage bookmarks, and monitor network activity.
 
-## Publisher: <br>
-[femto](https://clawhub.ai/user/femto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[femto](https://clawhub.ai/user/femto)
 
-## Use Case: <br>
-Developers and MCP-compatible agent users use this skill to connect an AI agent to Chrome for navigation, page inspection, screenshots, form workflows, history and bookmark tasks, and network-aware browser automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an AI agent broad control over a live Chrome browser session and browser data. <br>
-Mitigation: Install only when intentional, prefer a separate Chrome profile, and disable or remove the extension and native bridge when not needed. <br>
-Risk: Browser automation may affect logged-in sessions, history, bookmarks, network requests, or authenticated actions. <br>
-Mitigation: Avoid banking or admin sessions and confirm history, bookmark, network, and authenticated actions before allowing them to proceed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/femto/mcp-chrome) <br>
-- [mcp-chrome GitHub project](https://github.com/femto/mcp-chrome) <br>
-- [mcp-chrome releases](https://github.com/femto/mcp-chrome/releases) <br>
-- [mcp-chrome-bridger npm package](https://www.npmjs.com/package/mcp-chrome-bridger) <br>
+## Use Case:
 
+Developers and users of MCP-compatible AI clients use this skill to automate browser workflows in an existing Chrome session, including navigation, screenshots, form interaction, page extraction, history and bookmark access, and network inspection.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, MCP tool calls] <br>
-**Output Format:** [Markdown with shell commands, JSON configuration snippets, and tool-use steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to operate an existing Chrome session when the MCP bridge and extension are installed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can expose an active Chrome profile, including logged-in sessions, page content, browsing history, bookmarks, and cookies.
+
+Mitigation: Use a dedicated Chrome profile with minimal logged-in accounts and only connect the skill when that access is acceptable.
+
+Risk: Browser automation can submit forms, click elements, change bookmarks, search history, capture network traffic, or make cookie-backed requests.
+
+Mitigation: Require explicit confirmation before sensitive browser actions and pin and verify the bridge package and extension versions before use.
+
+## Reference(s):
+
+- [mcp-chrome GitHub repository](https://github.com/femto/mcp-chrome)
+- [mcp-chrome releases](https://github.com/femto/mcp-chrome/releases)
+- [mcp-chrome-bridger npm package](https://www.npmjs.com/package/mcp-chrome-bridger)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with shell and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MCP client setup instructions and browser automation tool guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Helps an agent consolidate multiple overlapping skills into one distilled skill while preserving traceability, resolving conflicts with user confirmation, and validating the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Distill helps agents consolidate multiple overlapping skills into one distilled skill while preserving source traceability and requiring user confirmation for conflicts.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill when two or more local agent skills overlap enough to create routing ambiguity, duplicated context, or maintenance overhead. It guides collection, cross-analysis, user confirmation, generation, and post-generation validation of a distilled replacement skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose persistent edits to local skill files, including scripts and shared skill content. <br>
-Mitigation: Review proposed diffs carefully before approving changes, especially when scripts, external searches, installs, or shared/team skills are involved. <br>
+## Use Case:
 
+Developers and agent maintainers use this skill to merge overlapping skills, reduce routing ambiguity, and lower repeated context overhead. It guides collection, cross-analysis, conflict confirmation, generation, and validation of a distilled replacement skill.
 
-## Reference(s): <br>
-- [Skill Distill on ClawHub](https://clawhub.ai/lanyasheng/skill-distill) <br>
-- [Publisher profile](https://clawhub.ai/user/lanyasheng) <br>
-- [Distillation checklist](references/distillation-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown plans and generated skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Distilled SKILL.md output is constrained to 500 lines, with longer material moved to references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Phase 4 validation depends on external local Python tools from other installed skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect and trust the referenced improvement-learner, improvement-orchestrator, and improvement-evaluator skill scripts before running their commands.
+
+Risk: Generated distillation actions may replace, downgrade, or otherwise change installed skills without strong integrity checks.
+
+Mitigation: Require explicit review and approval before applying generated files or any delete, replace, or downgrade operation.
+
+## Reference(s):
+
+- [Skill Distill release page](https://clawhub.ai/lanyasheng/skills/skill-distill)
+- [README](artifact/README.md)
+- [Distillation Decision and Checklist](artifact/references/distillation-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown plans, generated skill files, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before generation and relies on local improvement pipeline tools for validation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

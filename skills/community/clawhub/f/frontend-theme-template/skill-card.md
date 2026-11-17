@@ -1,37 +1,54 @@
-## Description: <br>
-Frontend theme engineer skill for theme structure, source-template editing, layout-safe styling, and Weline view-layer conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Frontend theme engineer skill for theme structure, source-template editing, layout-safe styling, and Weline view-layer conventions.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiweline](https://clawhub.ai/user/aiweline)
 
-## Use Case: <br>
-Developers and theme engineers use this skill to make WelineFramework theme-template, layout, and scoped asset changes in source templates while preserving view-layer conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository-specific theme conventions may be applied incorrectly, causing visual regressions or edits to compiled outputs instead of source templates. <br>
-Mitigation: Review the referenced local Weline project docs, edit only the owning source templates and scoped assets, and validate the rendered route before relying on the change. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide WelineFramework frontend theme work, including source-template edits, layout files, scoped CSS or JavaScript, and rendered-page validation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration, Markdown] <br>
-**Output Format:** [Markdown guidance with code and file-change recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include affected template paths, scoped asset updates, validation notes, and collaboration status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill guides edits to source templates and theme assets, which can affect rendered pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed file changes and validate the intended route or rendered page before release.
+
+Risk: The workflow depends on WelineFramework documentation paths existing in the target repository.
+
+Mitigation: Confirm the target repository includes the referenced AI and theme documentation before applying the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiweline/skills/frontend-theme-template)
+- [Publisher profile](https://clawhub.ai/user/aiweline)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with code, file changes, commands, and validation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include affected template paths, scoped asset changes, validation evidence, and collaboration status.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

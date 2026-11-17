@@ -38,7 +38,6 @@ Before asking follow-up questions, classify the request and extract the minimum 
 | Instrumental | No vocals, no lyric drafting |
 | Text-only reference | Song name, artist, era, or genre as a vibe cue only |
 | URL/image enrichment | Removed in v1.5.0 — local audio files only |
-| MiniMax redirect | Fast cloud cover, mashup, advanced analysis, or separate `mmx` flag control |
 | ACE-Step local audio | Local source-audio cover/repaint experiment after hardware/time-budget gate |
 
 Extract these fields before asking:
@@ -129,9 +128,9 @@ Always ask: "Your text is long. Do you want me to set it all, summarize it, or p
 Choose the route from the user's priority:
 
 - **Local, no cloud, exact source-length experiment:** use ACE-Step audio-conditioned generation in [`acestep-generation.md`](acestep-generation.md). Confirm the user accepts slower queue-bound behavior and hardware/timeout constraints.
-- **Fast cloud cover, advanced analysis, emotion extraction, or mashup:** switch to `music-craft-minimax`.
+- **MiniMax cloud cover or mashup:** no longer available (MiniMax music generation was discontinued). Use the local ACE-Step route above.
 
-**MiniMax redirect message:** "That needs fast cloud cover / style transfer or advanced audio analysis, which is in `music-craft-minimax`. Switch to that skill and I will run the same pre-flight with the extended checks."
+**If the user asks for MiniMax:** "MiniMax music generation is no longer available. I can try the cover locally with ACE-Step instead."
 
 **Local ACE-Step message:** "I can try this locally with ACE-Step cover/repaint. It is slower and experimental; I will trim long sources or raise the server timeout before starting."
 
@@ -151,7 +150,7 @@ The orchestrator supports:
 After analysis, the typical flow is:
 1. Run `analysis_orchestrator.py` → unified JSON
 2. Run `emotion_to_prompt.py --emotion [json] --style [json]` → final prompt
-3. Call `mmx music generate`, `music_generate`, MusicGen, or the detected backend with the prompt
+3. Call `music_generate`, ACE-Step, MusicGen, or the detected backend with the prompt
 
 ## Input Type 5: Song name or artist reference
 
@@ -238,7 +237,7 @@ Then map to a production-sheet prompt. Example: "Bohemian Rhapsody" → epic roc
 
 **v1.5.0+:** `web_fetch` for YouTube/JioSaavn pages returns metadata only (artist, title, era). It does not download audio. To get the audio, use the private `music-source-fetch` skill first.
 
-**When to redirect to music-craft-minimax:** If the user wants the actual audio of the YouTube video (for cover, sample, or detailed analysis), use the `music-source-fetch` skill to download the audio to a local path first, then proceed as Input Type 3.
+**When the user wants the source audio:** If the user wants the actual audio of the YouTube video (for cover, sample, or detailed analysis), use the `music-source-fetch` skill to download the audio to a local path first, then proceed as Input Type 3.
 
 ## Input Type 7b: JioSaavn URL (metadata only)
 
@@ -346,7 +345,7 @@ Most providers do not respond well to raw chord notation; phrase the chords musi
 
 ### The user provides a melody (audio or MIDI)
 
-This is Input Type 3. Redirect to music-craft-minimax — covers are the only way to use a specific melody.
+This is Input Type 3. Use the local ACE-Step cover route — covers are the only way to use a specific melody.
 
 ### The user provides only a mood or vibe
 
@@ -369,7 +368,7 @@ The "happy sad" oxymoron is a real creative direction. The skill should:
 2. Map to: minor key, mid-tempo, building structure (sad start, hopeful end), 2–3 mood adjectives (bittersweet, hopeful, melancholic).
 3. Generate and let the user iterate.
 
-Do not ask the user to resolve the contradiction — the tension is the creative direction.
+Treat the contradiction as the creative direction rather than an error; mention how you read it so the user can redirect.
 
 ### The user gives a URL that 404s or returns empty
 

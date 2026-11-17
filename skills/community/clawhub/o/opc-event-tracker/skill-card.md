@@ -1,47 +1,60 @@
-## Description: <br>
-追踪 OPC/AI/独立开发者相关赛事活动，从信息源抓取并提取结构化信息，可在用户启用上传后提交到 OPC 公共赛事池。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+追踪 OPC、AI 和独立开发者相关赛事活动，从信息源抓取赛事信息，提取结构化字段，并可在用户启用上传后提交到 OPC 公共赛事池。
 
-## Publisher: <br>
-[guipi888](https://clawhub.ai/user/guipi888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guipi888](https://clawhub.ai/user/guipi888)
 
-## Use Case: <br>
-External users and developers use this skill to track OPC, AI, hackathon, startup, and independent-developer events, extract structured event details, maintain local event records, and optionally submit public event information to the OPC event pool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores an OPC API key locally for authenticated queries and optional uploads. <br>
-Mitigation: Keep the key in scripts/user_config.json only, do not commit local configuration or generated data files, and rotate the key if it is exposed. <br>
-Risk: Uploaded event records become visible in the OPC public event pool. <br>
-Mitigation: Leave upload_enabled set to false for local-only tracking, and review event title, summary, organizer, dates, and external URL before enabling submission. <br>
-Risk: Tracked sources may include private or confidential event information if a user adds unsuitable sources. <br>
-Mitigation: Add only public event sources and avoid sources that contain private, confidential, or access-controlled content. <br>
+## Use Case:
 
+External users and agent operators use this skill to discover, track, summarize, and optionally publish OPC, AI, hackathon, startup, and independent developer event records. It supports local Markdown/JSON tracking, source management, and OPC event-pool query or ingest workflows that require a locally configured API key.
 
-## Reference(s): <br>
-- [OPC API Spec](references/api-spec.md) <br>
-- [Platform Event Fetching Spec](references/platform-spec.md) <br>
-- [Source Management and Parser Guide](references/sources-mgmt.md) <br>
-- [Event Record Templates](references/templates.md) <br>
-- [OPC Public Event Pool](https://mrkjai.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/guipi888/opc-event-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese-language Markdown summaries, local JSON and Markdown records, shell command examples, configuration JSON, and OPC API payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate local tracking files under scripts/, query summaries, event tables, and optional authenticated submissions to the OPC public event pool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can store an OPC API key locally and use it for event-pool query or ingest requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the key in the local user_config.json file, do not publish that file, and use the skill only if local API-key storage is acceptable.
+
+Risk: When upload is enabled, scraped event records may be submitted to a public OPC event pool.
+
+Mitigation: Keep upload_enabled false unless public publication is intended, and review event fields before enabling or running ingest workflows.
+
+Risk: Changing api_base or adding untrusted event sources can send the API key or scraped data outside the intended service.
+
+Mitigation: Keep api_base fixed to https://mrkjai.com and add only trusted HTTPS event sources after reviewing what they fetch and submit.
+
+## Reference(s):
+
+- [OPC API specification](references/api-spec.md)
+- [Platform event source guide](references/platform-spec.md)
+- [Source management and parser guide](references/sources-mgmt.md)
+- [Event record templates](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries, local Markdown records, structured JSON history, shell command examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform HTTPS fetches from configured event sources and OPC API requests when the user has configured an API key and enabled upload.]
+
+## Skill Version(s):
+
+2.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

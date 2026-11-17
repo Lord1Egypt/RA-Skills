@@ -2,8 +2,8 @@
 
 Skill: `fs-worldcup-knockout`  
 Published ClawHub owner: `@bridgeaisocial`  
-Published version verified: `0.1.3`.  
-Repo path used for verification: `/root/projects/simmer/skills/fs-worldcup-knockout`
+Published version verified: `0.1.5` after this feedback pass.  
+Repo path used for verification: `/root/projects/@bridgeaisocial/fs-worldcup-knockout`
 
 ## What this skill does
 
@@ -14,6 +14,8 @@ Repo path used for verification: `/root/projects/simmer/skills/fs-worldcup-knock
 - Default mode is dry-run.
 - `--live` places mutating propSPACE play-money positions in the FunctionSpace competition engine.
 - Default mode selects the best 1 FWD + 1 MID + 1 DEF for the currently open round.
+- Live campaign page: `https://propspace.fun`; signup: `https://app.propspace.fun`.
+- Prize pool per live campaign page/partner feedback: `$6,500` total (`$1,000` each knockout round R32 through Semis plus `$2,500` grand prize across all rounds); each round starts with a fresh `$1,000` play-money bankroll.
 
 ## Install / run
 
@@ -161,6 +163,6 @@ Result:
 
 1. All observed players currently show missing sentiment enrichment (`✗` / player not in DB). This is intentional fallback behavior: the skill still trades using FS `expectedPts` / `line` as-is. If FunctionSpace wants sentiment-backed edges, run or improve `scripts/enrich_from_web.py` and/or provide a seeded player file.
 2. Please confirm the official fantasy scoring/variance assumptions. The strategy uses FS metadata for the mean expectation and position-specific spread constants in `main.py`.
-3. Please confirm the engine URL and whether `https://fs-engine-api-mech-v0-4.onrender.com` remains the intended competition endpoint.
+3. Please confirm the engine URL and whether `https://fs-engine-api-mech-v0-4.onrender.com` is the exact backend the live `propspace.fun` competition settles on, whether API trades count toward the `$6,500` competition, and whether agent/bot trading is allowed under competition rules.
 4. Please confirm whether `position_id` is globally unique or scoped by `(market_id, position_id)`; current automation treats the pair as the safer unique handle for future sell/management automation.
 5. `--live` is a real mutation against the propSPACE play-money engine, despite not being real-money trading.

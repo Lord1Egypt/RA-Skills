@@ -1,0 +1,38 @@
+{
+  "会员营销类": {
+    "total": 32,
+    "ok": 32,
+    "resp_ok": 13,
+    "elapsed": "32s"
+  },
+  "供应链旗舰版": {
+    "total": 227,
+    "ok": 227,
+    "resp_ok": 80,
+    "elapsed": "217s"
+  },
+  "基础档案类": {
+    "total": 45,
+    "ok": 45,
+    "resp_ok": 35,
+    "elapsed": "42s"
+  },
+  "数据报表类": {
+    "total": 17,
+    "ok": 17,
+    "resp_ok": 3,
+    "elapsed": "15s"
+  },
+  "沽清类": {
+    "total": 1,
+    "ok": 1,
+    "resp_ok": 0,
+    "elapsed": "1s"
+  },
+  "订单类": {
+    "total": 7,
+    "ok": 7,
+    "resp_ok": 6,
+    "elapsed": "6s"
+  }
+}

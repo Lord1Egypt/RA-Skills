@@ -1,44 +1,59 @@
-## Description: <br>
-Trades distribution-sum violations in F1 championship winner markets on Polymarket when driver winner probabilities collectively drift above or below approximately 100%. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades distribution-sum violations in F1 championship winner markets on Polymarket by identifying when driver winner probabilities collectively drift above or below about 100%.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External developers and trading-bot operators use this skill to run a paper-by-default Polymarket strategy that scans F1 championship winner markets for distribution-sum mispricing and can place live trades only when explicitly enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires SIMMER_API_KEY, a sensitive trading credential. <br>
-Mitigation: Treat SIMMER_API_KEY as a high-value credential and install only if you intend to run a trading bot. <br>
-Risk: Live mode can place real Polymarket trades using USDC. <br>
-Mitigation: Start in paper mode and use --live only with funds you are prepared to risk. <br>
-Risk: Position sizing and open-position limits affect financial exposure. <br>
-Mitigation: Review the max position and max open position tunables before enabling live trading. <br>
+## Use Case:
 
+External agents and trading-system developers use this skill to monitor Polymarket F1 championship winner markets and place paper or explicitly enabled live trades when distribution-sum violations exceed configured thresholds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-ladder-f1-championship-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python code and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to paper trading and requires --live for live Polymarket trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: ClawHub release evidence) <br>
+Risk: The skill can place real Polymarket orders when run with --live.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep live runs manual, use constrained credentials where available, and confirm all tunables before enabling --live.
+
+Risk: Documented volume and concurrent-position limits may not be fully enforced by the implementation.
+
+Mitigation: Do not rely on those limits without code review and live-environment testing; set external account or venue-level limits where possible.
+
+Risk: The skill depends on simmer-sdk for market access and trading behavior.
+
+Mitigation: Pin and review simmer-sdk before use, and retest after dependency updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-ladder-f1-championship-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API calls, Trading orders]
+
+**Output Format:** [Console text and Simmer SDK trade requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket orders require an explicit --live flag and a SIMMER_API_KEY.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

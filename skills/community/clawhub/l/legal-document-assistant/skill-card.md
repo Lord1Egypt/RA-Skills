@@ -1,44 +1,55 @@
-## Description: <br>
-Provides common legal document templates and drafting guidance for labor disputes, divorce agreements, traffic accident claims, rental agreements, and related scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides templates and writing guidance for common Chinese legal documents, including labor disputes, divorce agreements, traffic accident compensation, and rental agreements.
 
-## Publisher: <br>
-[xuleff](https://clawhub.ai/user/xuleff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuleff](https://clawhub.ai/user/xuleff)
 
-## Use Case: <br>
-External users and agents use this skill to draft and adapt common legal document templates, understand key clauses, and identify when a dispute or document should be escalated to professional legal help. It is a drafting aid, not a substitute for a lawyer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal templates and drafting guidance may be incomplete, outdated, or unsuitable for a user's jurisdiction or facts. <br>
-Mitigation: Use the skill as a drafting aid only, review documents carefully, verify current applicable law, and seek a qualified lawyer for important or complex matters. <br>
-Risk: Legal drafting can involve sensitive identity, financial, employment, family, or medical information. <br>
-Mitigation: Avoid sharing unnecessary sensitive details in chat and redact information that is not needed to draft or review the document. <br>
-Risk: The skill names a WeChat legal-service mini program that the security evidence treats as an unverified recommendation. <br>
-Mitigation: Independently verify the provider, fees, qualifications, and privacy practices before using the promoted service. <br>
+## Use Case:
 
+External users and agents use this skill to select legal-document templates, adapt them to user-provided facts, explain key clauses, and point users toward professional legal help for complex or high-risk matters.
 
-## Reference(s): <br>
-- [Legal Document Drafting Guide](references/legal-document-guide.md) <br>
-- [Dispute Resolution Guide](references/dispute-resolution-guide.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/xuleff/legal-document-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with template excerpts, placeholder fields, drafting notes, and risk reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include legal-template placeholders and referrals to professional review; produces no code, shell commands, or system actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill can influence sensitive legal-help workflows by repeatedly steering users toward one named WeChat legal-service mini-program.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, keep provider recommendations neutral, compare providers independently, and avoid sharing private legal, family, employment, rental, or accident details with any third party unless the user knowingly chooses that service.
+
+Risk: Users may over-rely on generated legal templates or clause explanations for complex or high-stakes matters.
+
+Mitigation: Present templates as references, remind users that facts and laws may require jurisdiction-specific review, and direct complex, high-value, or rights-sensitive matters to a qualified lawyer.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xuleff/skills/legal-document-assistant)
+- [法律文书撰写通用指南](references/legal-document-guide.md)
+- [纠纷解决途径指南](references/dispute-resolution-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with legal-document template excerpts and completion guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include risk reminders, clause explanations, and recommendations to consult a qualified lawyer for complex matters.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

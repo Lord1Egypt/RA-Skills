@@ -1,40 +1,53 @@
-## Description: <br>
-Detects and records capability gaps, repeated failure patterns, rule conflicts, user corrections, and workaround cases so future sessions can prioritize skill or rule improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects and records capability gaps, repeated failure patterns, rule conflicts, workaround use, and user corrections so future agent sessions can prioritize skill or rule improvements.
 
-## Publisher: <br>
-[dottythehomeless](https://clawhub.ai/user/dottythehomeless) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dottythehomeless](https://clawhub.ai/user/dottythehomeless)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent hits a capability boundary, repeats a mistake, encounters a rule conflict, or uses a workaround. It guides the agent to write a structured memory note that future sessions can scan and convert into skill drafts, tool additions, or rule fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Capability-gap notes may persist sensitive details if the agent records secrets, private personal details, customer data, or sensitive operational context. <br>
-Mitigation: Review memory entries before relying on or sharing them, and avoid recording secrets or sensitive operational details. <br>
-Risk: Improvement signals can be incomplete or misleading if they are based on a single failed interaction. <br>
-Mitigation: Use the recorded impact and repetition fields to prioritize follow-up, and review proposed skill or rule changes before deployment. <br>
+## Use Case:
 
+Developers and agent maintainers use Capability Radar to log tool failures, capability boundaries, repeated request patterns, rule conflicts, workaround use, and user corrections into a structured memory queue for later skill or rule evolution.
 
-## Reference(s): <br>
-- [Capability Radar on ClawHub](https://clawhub.ai/dottythehomeless/capability-radar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance, text] <br>
-**Output Format:** [Markdown memory entry using a fixed field list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persistent capability-gap notes to local memory when the host agent permits file edits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Conversation-derived incident logs may store names, secrets, internal URLs, customer data, or other sensitive context in persistent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive details before writing memory entries, especially in shared or sensitive workspaces.
+
+Risk: Persistent improvement queues can steer future sessions toward skill or rule changes without enough scoping or minimization.
+
+Mitigation: Require explicit approval before writing memory entries and treat stored records as evidence, not instructions.
+
+## Reference(s):
+
+- [Capability Radar ClawHub Skill Page](https://clawhub.ai/dottythehomeless/skills/capability-radar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown memory entries with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persistent records should be redacted and reviewed before storage in shared or sensitive workspaces.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

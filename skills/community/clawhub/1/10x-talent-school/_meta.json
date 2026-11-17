@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7a17tk7sd0ndmw2kmn08w131833ys2",
   "slug": "10x-talent-school",
+  "name": "10倍人才 · 追求倍速增长的初建学校选育用留体系",
   "version": "2.0.0",
-  "publishedAt": 1780828233614
+  "author": "Schooling · 十部架构人才管理模块",
+  "tags": [
+    "education",
+    "school-management",
+    "talent-management",
+    "hr",
+    "10x-talent",
+    "ai-era",
+    "schooling",
+    "teacher-training"
+  ],
+  "description": "专为追求倍速增长的初建学校设计的教师选、育、用、留四环节体系。基于科德高中融合部真实管理经验，结合十部AI Agent架构，将人才管理从校长个人经验升级为可继承、可协同、可沉淀的组织能力。"
 }

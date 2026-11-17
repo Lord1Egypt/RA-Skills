@@ -1,43 +1,55 @@
-## Description: <br>
-Call GET /api/v1/google/local/search for Google SERP Local Search through Just Serp API with query. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/v1/google/local/search for Google SERP Local Search through Just Serp API with query.
 
-## Publisher: <br>
-[justserpapi](https://clawhub.ai/user/justserpapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justserpapi](https://clawhub.ai/user/justserpapi)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve Google local search data such as business listings, ratings, and contact details through Just Serp API for local lead generation and competitor research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Just Serp API key and uses that account's quota. <br>
-Mitigation: Store the key in the documented JUST_SERP_API_KEY environment variable and avoid pasting the key into chat, screenshots, or logs. <br>
-Risk: Search queries, locations, and filters are submitted to Just Serp API. <br>
-Mitigation: Install and use the skill only when you trust Just Serp API with the submitted searches and locations. <br>
+## Use Case:
 
+Developers and agents use this skill to call Just Serp API's Google local search endpoint for business listings, ratings, and contact details using a required search query.
 
-## Reference(s): <br>
-- [Just Serp API Project Site](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_local_search&utm_content=project_link) <br>
-- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_local_search&utm_content=project_link) <br>
-- [ClawHub Skill Page](https://clawhub.ai/justserpapi/justserpapi-google-local-search) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/justserpapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the JUST_SERP_API_KEY environment variable and sends query parameters to the Just Serp API local search endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The helper requires a Just Serp API key and passes it through --api-key, which can expose credentials in logged or visible process command lines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only where process command lines are not exposed or logged, and prefer a version that reads JUST_SERP_API_KEY directly from the environment.
+
+Risk: The skill makes outbound requests to api.justserpapi.com with user-supplied local search parameters.
+
+Mitigation: Use intended query and location filters, and review API responses before relying on local lead generation or competitor research outputs.
+
+## Reference(s):
+
+- [Just Serp API homepage](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_local_search&utm_content=project_link)
+- [Just Serp API docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_local_search&utm_content=project_link)
+- [ClawHub skill page](https://clawhub.ai/justserpapi/skills/justserpapi-google-local-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown summary followed by raw JSON from the Just Serp API helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and JUST_SERP_API_KEY; calls GET /api/v1/google/local/search with query parameters.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

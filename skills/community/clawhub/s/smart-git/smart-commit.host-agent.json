@@ -1,0 +1,106 @@
+{
+  "smartCommitHostAgent": {
+    "review": {
+      "threshold": 6,
+      "language": "zh-cn",
+      "maxDiffChars": 500000,
+      "skill": {
+        "id": "code-review",
+        "path": "",
+        "promptTuning": ""
+      }
+    },
+    "commitMessage": {
+      "language": "zh-cn",
+      "input": "",
+      "maxDiffChars": 150000,
+      "structure": "subjectOnly",
+      "scope": "forbidden",
+      "autoGenerate": true,
+      "hybridGenerate": false,
+      "skill": {
+        "id": "conventional",
+        "path": "",
+        "promptTuning": ""
+      },
+      "validation": {
+        "protocol": "none",
+        "pattern": "",
+        "extractTicketIdFromBranch": true,
+        "requireTicketIdInMessage": false
+      }
+    },
+    "git": {
+      "autoStageWhenNothingStaged": true,
+      "autoCommit": true,
+      "autoPush": true,
+      "pushTimeoutMs": 180000
+    },
+    "pullRequest": {
+      "provider": "auto",
+      "apiBaseUrl": "",
+      "authToken": "env:SMART_COMMIT_PULL_REQUEST_AUTH_TOKEN",
+      "remoteHost": ""
+    },
+    "pullRequestCreation": {
+      "autoCreateAfterPush": true,
+      "configFilePath": "",
+      "targetBranch": "",
+      "titlePrompt": "",
+      "descriptionPrompt": "",
+      "maxDiffChars": 300000,
+      "assignees": [],
+      "reviewers": [],
+      "labels": [],
+      "milestone": "",
+      "draft": false,
+      "removeSourceBranch": true,
+      "skipBranches": ["main", "master", "develop"]
+    },
+    "pullRequestReview": {
+      "threshold": 6,
+      "autoApprove": true,
+      "autoMerge": true,
+      "summarySeverities": ["P0", "P1"],
+      "commentSeverities": ["P0", "P1"],
+      "skillPromptTuning": "",
+      "skipSummaryOnPass": true,
+      "skipCommentOnPass": true,
+      "configFilePath": ""
+    },
+    "myPullRequest": {
+      "listScope": "account",
+      "listKinds": ["created", "assigned", "reviewer"],
+      "batchReviewKinds": ["reviewer", "assigned"]
+    },
+    "myCommit": {
+      "scope": "account",
+      "range": "today",
+      "authorAliases": [],
+      "concurrency": 2,
+      "requestDelayMs": 100,
+      "includeMergeCommits": false,
+      "outputFormat": "compact"
+    },
+    "passHistory": {
+      "enabled": false,
+      "writeStage": "review_passed",
+      "outputDirPath": "",
+      "maxEntries": 3000
+    },
+    "reporting": {
+      "language": "zh-cn",
+      "weekStartsOn": "monday",
+      "outputDirPath": "",
+      "maxInputChars": 200000,
+      "prompt": "",
+      "ai": {
+        "enabled": false
+      }
+    },
+    "output": {
+      "format": "json",
+      "logLevel": "info"
+    }
+  }
+}

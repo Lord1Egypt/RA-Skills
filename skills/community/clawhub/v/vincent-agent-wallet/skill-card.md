@@ -1,42 +1,57 @@
-## Description: <br>
-Use this skill to safely create a wallet the agent can use for transfers, swaps, and any EVM chain transaction, with support for raw signing and Polymarket betting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to safely create a wallet the agent can use for transfers, swaps, and any EVM chain transaction. Also supports raw signing and polymarket betting.
 
-## Publisher: <br>
-[piperwallet](https://clawhub.ai/user/piperwallet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[piperwallet](https://clawhub.ai/user/piperwallet)
 
-## Use Case: <br>
-External users and developers use this skill to create agent-controlled wallets, check balances, transfer or swap tokens, send EVM transactions, sign raw messages, and use Polymarket wallets under owner-defined policies. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An agent may gain broad ongoing authority to move funds, sign messages, and place bets. <br>
-Mitigation: Use a dedicated low-balance wallet, claim it immediately, and configure spending limits, allowlists, and require-approval policies before funding it. <br>
-Risk: API keys and re-link tokens can authorize wallet access. <br>
-Mitigation: Treat API keys and re-link tokens as financial credentials, store them securely, and avoid sharing them outside the intended agent workflow. <br>
-Risk: Raw signing and arbitrary contract calls can produce irreversible or unintended blockchain actions. <br>
-Mitigation: Avoid raw signing or arbitrary contract calls unless the wallet owner verifies the target, chain, amount, calldata, and expected effect. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Vincent Wallet Service](https://heyvincent.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/piperwallet/vincent-agent-wallet) <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent create and operate policy-controlled wallets for EVM transfers, swaps, smart contract transactions, raw signing, and Polymarket activity without exposing private keys to the agent.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API request patterns, credential handling guidance, wallet policy guidance, and transaction workflow instructions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can give an agent transaction-capable wallet access with broad financial authority.
+
+Mitigation: Claim the wallet before funding it, configure strict policies first, and require human approval for meaningful transactions.
+
+Risk: Raw signing and arbitrary calldata can authorize actions that are difficult for users or agents to inspect safely.
+
+Mitigation: Avoid raw signing and arbitrary calldata unless the user fully understands the payload and the receiving contract or protocol.
+
+Risk: API keys may be exposed if stored in a project directory or another shared, synced, logged, or committed location.
+
+Mitigation: Store API keys only in a private credential store or protected credentials directory, not in project files.
+
+## Reference(s):
+
+- [Vincent Agent Wallet skill page](https://clawhub.ai/piperwallet/skills/vincent-agent-wallet)
+- [Vincent wallet service](https://heyvincent.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands, API request examples, configuration guidance, and user-facing wallet details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include claim URLs, wallet addresses, API-key handling steps, policy guidance, transaction status, and approval instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

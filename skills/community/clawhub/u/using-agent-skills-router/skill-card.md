@@ -1,39 +1,53 @@
-## Description: <br>
-Route ambiguous agent work to the right skill, command style, and effort level. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route ambiguous agent work to the right skill, command style, and effort level.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-Developers and agent operators use this skill to choose the appropriate skill, workflow, or direct action for ambiguous agent tasks while keeping effort proportional to the request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence which later skill an agent chooses, including for sensitive or high-impact work. <br>
-Mitigation: Review any selected skill, command, or plan before allowing sensitive, destructive, production, financial, or credential-related work. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route ambiguous agent requests to an appropriate skill, workflow, or direct response path while keeping effort proportional to the task.
 
-## Reference(s): <br>
-- [Routing Patterns](references/routing-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zack-dev-cm/using-agent-skills-router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown routing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a route, reason, and next action; does not create files unless requested or required by the chosen skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can route high-risk requests such as credential, deletion, production, or release work to an insufficient review path if the agent ignores its selection rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Follow the skill's high-risk routing rule and apply normal confirmation practices for risky edits, destructive commands, credentials, production systems, and releases.
+
+Risk: The selected downstream skill or workflow may introduce behavior outside this router's clean security profile.
+
+Mitigation: Review and rely on the security posture of the selected underlying skill before executing risky changes.
+
+## Reference(s):
+
+- [Routing Patterns](references/routing-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Short plain-text or Markdown routing response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a route, reason, and next action for the agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

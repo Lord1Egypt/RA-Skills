@@ -1,45 +1,60 @@
-## Description: <br>
-SEC EDGAR filing analysis for M&A due diligence - extract financials, detect risks, and track corporate events from 10-K, 10-Q, and 8-K filings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SEC EDGAR filing analysis for M&A due diligence — extract financials, detect risks, and track corporate events from 10-K, 10-Q, and 8-K filings.
 
-## Publisher: <br>
-[aniebyl](https://clawhub.ai/user/aniebyl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aniebyl](https://clawhub.ai/user/aniebyl)
 
-## Use Case: <br>
-M&A analysts, finance teams, and diligence reviewers use this skill to structure SEC EDGAR filing review, extract XBRL financial signals, identify risk-factor changes, and summarize material corporate events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may make public SEC EDGAR requests for companies or filings the user asks about. <br>
-Mitigation: Avoid using sensitive deal strategy, non-public target information, or confidential assumptions in prompts sent through public filing workflows. <br>
-Risk: Financial and legal analysis can be incomplete or misleading if treated as definitive due-diligence advice. <br>
-Mitigation: Use the output as due-diligence support and have qualified finance, legal, or compliance reviewers verify conclusions before business decisions. <br>
+## Use Case:
 
+M&A analysts, finance teams, and agents supporting acquisition diligence use this skill to structure SEC EDGAR filing review, extract financial indicators, identify disclosure risks, and summarize material corporate events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aniebyl/olo-sec-scanner) <br>
-- [Publisher profile](https://clawhub.ai/user/aniebyl) <br>
-- [Author website](https://ololand.ai) <br>
-- [SEC EDGAR Company Facts API](https://data.sec.gov/api/xbrl/companyfacts/CIK{cik}.json) <br>
-- [SEC EDGAR Submissions API](https://data.sec.gov/submissions/CIK{cik}.json) <br>
-- [SEC EDGAR Full-Text Search](https://efts.sec.gov/LATEST/search-index?q=...) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown due-diligence analysis with financial summaries, risk flags, material events, ownership notes, and M&A-specific checks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no local access, credentials, persistence, or account-changing permissions are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Company identifiers or search terms may be sent to SEC public data endpoints during use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public or approved company identifiers and avoid submitting confidential deal names, internal code names, or non-public diligence terms as SEC search queries.
+
+Risk: Broad filing-related triggers may activate the skill in generic annual or quarterly report contexts.
+
+Mitigation: Confirm that the task involves SEC EDGAR filing analysis for M&A or diligence before relying on the skill's workflow.
+
+Risk: Filing summaries and risk scores can omit context or misstate diligence significance if source filings are incomplete or stale.
+
+Mitigation: Review cited filings, dates, and extracted financial concepts before using the output in transaction decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aniebyl/skills/olo-sec-scanner)
+- [SEC EDGAR Company Facts API](https://data.sec.gov/api/xbrl/companyfacts/CIK{cik}.json)
+- [SEC EDGAR Submissions API](https://data.sec.gov/submissions/CIK{cik}.json)
+- [SEC EDGAR Full-Text Search](https://efts.sec.gov/LATEST/search-index?q=...)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis report with structured financial summary, risk flags, material event timeline, and insider activity sections.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference public SEC EDGAR data sources and should include filing type, date range, and company identifier when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

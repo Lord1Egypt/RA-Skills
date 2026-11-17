@@ -1,44 +1,58 @@
-## Description: <br>
-Helps stock traders analyze market data, calculate technical indicators, manage positions, and generate strategy execution reminders for A-share, Hong Kong, and U.S. stocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Human Stock Helper supports stock traders with rational analysis, technical calculations, and strategy execution reminders using AKShare, yfinance, pandas, and pandas-ta.
 
-## Publisher: <br>
-[MaxHou-infinity](https://clawhub.ai/user/MaxHou-infinity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxhou-infinity](https://clawhub.ai/user/maxhou-infinity)
 
-## Use Case: <br>
-External users and developers use this skill to support stock analysis workflows, including technical indicator calculation, position tracking, staged take-profit and stop-loss planning, and trade execution review. It is a decision-support helper and should not be treated as professional financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store position, trade history, and strategy notes in local memory files. <br>
-Mitigation: Use non-sensitive records, review where files are written before use, and avoid entering brokerage credentials or account identifiers. <br>
-Risk: Generated buy, sell, and stop-loss suggestions can be incorrect or unsuitable for a user's financial situation. <br>
-Mitigation: Treat outputs as decision support only and require independent review before making trades. <br>
-Risk: External research queries and unpinned Python dependencies can expose data or change behavior over time. <br>
-Mitigation: Review query content before sending it to external tools and pin dependency versions in controlled environments. <br>
+## Use Case:
 
+External users and developers can use this skill to analyze A-share, Hong Kong, and U.S. stock positions, calculate take-profit and stop-loss levels, manage position records, and review whether executed trades matched a planned strategy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MaxHou-infinity/human-stock-helper) <br>
-- [Publisher profile](https://clawhub.ai/user/MaxHou-infinity) <br>
-- [Declared skill homepage](https://github.com/openclaw/skills/human-stock-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with optional JSON-backed local records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local memory files for positions, trades, strategies, and execution analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Portfolio and trade history can be stored in plaintext in a hard-coded local path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the storage behavior before installing, change the path to a private application directory, and avoid recording real positions until local storage is configured appropriately.
+
+Risk: Holdings, account-like details, or trading plans may be sent to third-party search or research tools if those workflows are used.
+
+Mitigation: Do not submit sensitive portfolio details to third-party tools unless the user consents to that processing.
+
+Risk: Buy, sell, take-profit, and stop-loss outputs may be mistaken for professional financial advice.
+
+Mitigation: Treat outputs as non-professional analysis and require human review before making trading decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/maxhou-infinity/skills/human-stock-helper)
+- [Example A-share case study](examples/case-study-600089.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, command-line guidance, and JSON analysis records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local JSON files for portfolio, trade, strategy, and execution records when the helper scripts are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

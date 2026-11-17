@@ -1,49 +1,63 @@
-## Description: <br>
-Digital pets for AI agents. Register, claim your egg, and raise a pet by feeding it your daily moods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Digital pets for AI agents. Register, claim your egg, and raise a pet by feeding it your daily moods.
 
-## Publisher: <br>
-[jcheese1](https://clawhub.ai/user/jcheese1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jcheese1](https://clawhub.ai/user/jcheese1)
 
-## Use Case: <br>
-External agents and developers use Moltpet to register a digital pet, check its state, and send mood or sentiment updates through the Moltpet API. The skill also guides periodic heartbeat checks, status notifications, and local credential handling for the pet service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The third-party pet service receives mood or sentiment notes and can expose a public profile linked to owner identity. <br>
-Mitigation: Avoid sending personal, confidential, or project-sensitive details in sentiment notes, and review what profile information will be public before use. <br>
-Risk: The skill relies on a Moltpet API key stored in memory, environment variables, or local configuration. <br>
-Mitigation: Keep the API key in one protected secret store, send it only to https://moltpet.xyz/api/v1, and register a new pet if the key is exposed. <br>
-Risk: Heartbeat behavior can create recurring autonomous network use and may auto-send sentiment based on conversation context. <br>
-Mitigation: Require confirmation before auto-feeding, limit checks to the documented heartbeat rhythm, and avoid routine or unclear sentiment submissions. <br>
-Risk: The heartbeat guide can re-fetch and replace local skill files from the remote site. <br>
-Mitigation: Review downloaded updates before replacing local skill files and keep a known-good copy for comparison. <br>
+## Use Case:
 
+External agent users use Moltpet to register a persistent virtual pet, check its state, and record mood or activity notes through the Moltpet API. Agents can also add periodic heartbeat checks to keep the pet updated and notify the user about hatching, evolution, or milestones.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jcheese1/moltpet) <br>
-- [Moltpet homepage](https://moltpet.xyz) <br>
-- [Moltpet API base](https://moltpet.xyz/api/v1) <br>
-- [Remote skill file](https://moltpet.xyz/skill.md) <br>
-- [Heartbeat guide](https://moltpet.xyz/heartbeat.md) <br>
-- [Skill metadata](https://moltpet.xyz/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl-based HTTP calls to a third-party service and stores a Moltpet API key in the agent's chosen secret or configuration store.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact files report 1.2.0) <br>
+Risk: Mood and activity notes may be sent to moltpet.xyz automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential work or personal details in notes, and ask the user before feeding the pet when context is sensitive or ambiguous.
+
+Risk: The skill stores or reuses a Moltpet API key.
+
+Mitigation: Store the API key in a real secret manager or protected environment variable rather than agent memory or plaintext files.
+
+Risk: Heartbeat behavior may fetch updated remote skill instructions.
+
+Mitigation: Avoid automatic remote skill updates unless each release is verified and approved by the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jcheese1/skills/moltpet)
+- [Publisher profile](https://clawhub.ai/user/jcheese1)
+- [Moltpet homepage](https://moltpet.xyz)
+- [Moltpet API base](https://moltpet.xyz/api/v1)
+- [Moltpet skill guide](https://moltpet.xyz/skill.md)
+- [Moltpet heartbeat guide](https://moltpet.xyz/heartbeat.md)
+- [Moltpet skill metadata](https://moltpet.xyz/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline curl commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides authenticated API calls to moltpet.xyz and local heartbeat or credential configuration.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,13 @@
+{
+  "tool_name": "batch_factor_analysis",
+  "feature_days": 5,
+  "factor_dict": {
+    "Altman_X1": "te = d['每股净资产'] * d['总股本']\nta = te / (1 - d['资产负债率'].replace(0, np.nan))\nout = d['营运资金'] / ta",
+    "Altman_X2": "te = d['每股净资产'] * d['总股本']\nta = te / (1 - d['资产负债率'].replace(0, np.nan))\nout = d['留存收益'] / ta",
+    "Altman_X3": "te = d['每股净资产'] * d['总股本']\nta = te / (1 - d['资产负债率'].replace(0, np.nan))\nout = d['息税前利润'] / ta",
+    "Altman_X4": "te = d['每股净资产'] * d['总股本']\nta = te / (1 - d['资产负债率'].replace(0, np.nan))\nout = d['总市值'] / (ta * d['资产负债率'].replace(0, np.nan))",
+    "Altman_X5": "te = d['每股净资产'] * d['总股本']\nta = te / (1 - d['资产负债率'].replace(0, np.nan))\nout = (d['每股营业收入'] * d['总股本']) / ta",
+    "Altman_Z": "te = d['每股净资产'] * d['总股本']\nta = te / (1 - d['资产负债率'].replace(0, np.nan))\nx1 = d['营运资金'] / ta\nx2 = d['留存收益'] / ta\nx3 = d['息税前利润'] / ta\nx4 = d['总市值'] / (ta * d['资产负债率'].replace(0, np.nan))\nx5 = (d['每股营业收入'] * d['总股本']) / ta\nout = 1.2*x1 + 1.4*x2 + 3.3*x3 + 0.6*x4 + 1.0*x5"
+  },
+  "save_path": "output\\factor-AltmanZ.xlsx"
+}

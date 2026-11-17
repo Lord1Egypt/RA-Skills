@@ -1,52 +1,66 @@
-## Description: <br>
-抖音数据查询与工具助手，覆盖视频详情、用户数据、搜索、热榜、创作者工具、星图达人和内容指数等模块。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抖音数据查询与工具助手。覆盖视频详情、用户数据、搜索、热榜、创作者工具、星图达人、内容指数等模块。含部分交互触发和协议工具接口（已标注）。
 
-## Publisher: <br>
-[new-ironman](https://clawhub.ai/user/new-ironman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[new-ironman](https://clawhub.ai/user/new-ironman)
 
-## Use Case: <br>
-External users, analysts, creators, and developers use this skill to query Douyin video, user, search, trending, creator, Xingtu KOL, live, and content-index data through MaxHub APIs for data analysis and content research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive MaxHub API keys and may handle Douyin session cookies that are equivalent to login credentials. <br>
-Mitigation: Protect MAXHUB_API_KEY, avoid primary-account cookies, use a separate test account for cookie-required endpoints, and rotate or revoke cookies after use. <br>
-Risk: Broad scraping, protocol utility, device-registration, signature, and high-quality extraction endpoints may create platform-terms or content-rights risk if misused. <br>
-Mitigation: Use the skill only for authorized analysis, review applicable platform terms and content rights, and require explicit approval before using high-risk protocol or extraction endpoints. <br>
-Risk: Incorrect endpoint paths or guessed parameters can cause failed requests and unreliable results. <br>
-Mitigation: Use documented action tables and reference files, especially the recorded full paths and parameter mappings, before making API calls. <br>
+## Use Case:
 
+External users and developers use this skill to query and analyze Douyin video, account, search, trending, creator, Xingtu KOL, live, and content-index data through MaxHub APIs.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/new-ironman/douyin-aggregate-scraper) <br>
-- [Publisher profile](https://clawhub.ai/user/new-ironman) <br>
-- [MaxHub API website](https://www.aconfig.cn) <br>
-- [Video & Content API reference](references/api-video.md) <br>
-- [User Data API reference](references/api-user.md) <br>
-- [Search API reference](references/api-search.md) <br>
-- [Trending & Billboard API reference](references/api-trending.md) <br>
-- [Creator API reference](references/api-creator.md) <br>
-- [Xingtu API reference](references/api-xingtu.md) <br>
-- [Index & Analytics API reference](references/api-index.md) <br>
-- [Parameter mappings](references/param-mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MAXHUB_API_KEY and curl; some endpoints may require Douyin session cookies or other sensitive credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.7.1 (source: release metadata and skill frontmatter) <br>
+Risk: Some endpoints can handle login-equivalent Douyin cookies, proxy values, or device credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust MaxHub/aconfig.cn, avoid providing a primary Douyin account cookie, use a disposable test account for cookie-required endpoints, and revoke cookies after use.
+
+Risk: API requests and queried data are transmitted to a third-party service.
+
+Mitigation: Prefer public and read-only endpoints, avoid sending sensitive data, and review what each endpoint requires before calling it.
+
+Risk: An unpinned installer command can change behavior if the upstream package changes.
+
+Mitigation: Pin the installer or skill version where the deployment process allows it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/new-ironman/skills/douyin-aggregate-scraper)
+- [MaxHub API service](https://www.aconfig.cn)
+- [Creator API / 创作者接口](references/api-creator.md)
+- [Index & Analytics API / 指数与分析接口](references/api-index.md)
+- [Search API / 搜索接口](references/api-search.md)
+- [Trending & Billboard API / 热榜与趋势接口](references/api-trending.md)
+- [User Data API / 用户数据接口](references/api-user.md)
+- [Video & Content API / 视频与内容接口](references/api-video.md)
+- [Xingtu API / 星图接口](references/api-xingtu.md)
+- [Parameter Mappings / 参数映射](references/param-mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and API response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON API response excerpts from MaxHub/Douyin endpoints.]
+
+## Skill Version(s):
+
+3.7.1 (source: evidence release, skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

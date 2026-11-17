@@ -1,0 +1,218 @@
+{
+ "schema": "cn-earnings-note/ledger@0.2.0-draft",
+ "run": "earnings-000333-2026H1",
+ "period": "2026H1",
+ "anchors": [
+  {
+   "id": "H1G1",
+   "type": "dividend",
+   "status": "partial",
+   "source": "2026H1:S21",
+   "quote": "2026 中期每 10 股派 5 元(基数 7,448,597,984 股)",
+   "next_check": {
+    "period": "2026AR",
+    "field": "全年派息",
+    "operator": ">=",
+    "threshold": 43
+   }
+  },
+  {
+   "id": "H1G2",
+   "type": "guidance",
+   "status": "carried_forward",
+   "source": "2026H1:S27"
+  },
+  {
+   "id": "H1G3",
+   "type": "buyback",
+   "status": "partial",
+   "source": "2026H1:S14",
+   "events": [
+    {
+     "date": "2026-04-30",
+     "type": "amendment",
+     "ref": "2025AR:S25"
+    },
+    {
+     "date": "2026-07-09",
+     "type": "milestone",
+     "ref": "2026H1:S15"
+    },
+    {
+     "date": "2026-09-03",
+     "type": "milestone",
+     "ref": "2026H1:S16"
+    }
+   ]
+  },
+  {
+   "id": "H1G4",
+   "type": "hedge_convergence",
+   "status": "unfulfilled",
+   "trend": true,
+   "direction": "worsening",
+   "source": null,
+   "next_check": {
+    "period": "2026AR",
+    "field": "非经常性/经常性错配",
+    "operator": "<=",
+    "threshold": "2025AR:S6 水平"
+   }
+  }
+ ],
+ "pending": [
+  {
+   "id": "H1P1",
+   "carry_from": "2025AR:P1",
+   "question": "货币资金重配(H1 无反证)",
+   "verdict": null
+  },
+  {
+   "id": "H1P2",
+   "carry_from": "2025AR:P2",
+   "question": "商誉来源/参数(H1 净减,新增来源问句部分失效)",
+   "verdict": null
+  },
+  {
+   "id": "H1P3",
+   "carry_from": "2025AR:P3",
+   "question": "现金流×应收联查(优先级↑,仍空)",
+   "verdict": null
+  },
+  {
+   "id": "H1P4",
+   "carry_from": "2025AR:P4",
+   "question": "缺位三项回补",
+   "verdict": null
+  },
+  {
+   "id": "H1P5",
+   "carry_from": "2025AR:P5",
+   "question": "L3 钉死(本季深研仍含推算行)",
+   "verdict": null
+  },
+  {
+   "id": "H1P6",
+   "carry_from": "2025AR:P6",
+   "question": "关联方对读",
+   "verdict": null
+  },
+  {
+   "id": "H1P7",
+   "carry_from": "2025AR:P7",
+   "question": "纪要获取",
+   "verdict": null
+  },
+  {
+   "id": "H1P8",
+   "carry_from": "new",
+   "question": "2026 末期派息对 43 元级(G1 联动)",
+   "verdict": null
+  },
+  {
+   "id": "H1P9",
+   "carry_from": "2025AR:P8",
+   "question": "评级",
+   "verdict": null,
+   "exempt_from_gate": true
+  },
+  {
+   "id": "H1P10",
+   "carry_from": "2025AR:P9",
+   "question": "目标价",
+   "verdict": null,
+   "exempt_from_gate": true
+  }
+ ],
+ "linkage_checks": [
+  {
+   "metric": "goodwill",
+   "prev_period_end": 34256859,
+   "this_period_begin": 34256859,
+   "both_ref": [
+    "2025AR:S4",
+    "2026H1:S2"
+   ]
+  },
+  {
+   "metric": "accounts_receivable",
+   "prev_period_end": 40450097,
+   "this_period_begin": 40450096,
+   "both_ref": [
+    "2025AR:S4",
+    "2026H1:S2"
+   ]
+  },
+  {
+   "metric": "contract_liability",
+   "prev_period_end": 46993060,
+   "this_period_begin": 46993060,
+   "both_ref": [
+    "2025AR:S4",
+    "2026H1:S2"
+   ]
+  }
+ ],
+ "risk_scan": {
+  "related_party_balance": {
+   "result": "MISS",
+   "evidence": "2026H1:S8",
+   "values": []
+  },
+  "restricted_cash": {
+   "result": "NO_TOOL",
+   "evidence": null,
+   "values": []
+  },
+  "contingent_guarantee": {
+   "result": "MISS",
+   "evidence": "2026H1:S9",
+   "values": []
+  },
+  "receivable_aging": {
+   "result": "NO_TOOL",
+   "evidence": "2026H1:S2",
+   "values": [
+    {
+     "metric": "accounts_receivable",
+     "value": 61954826,
+     "basis": {
+      "type": "vs_beginning",
+      "period": "2026H1",
+      "unit": "人民币千元"
+     }
+    }
+   ]
+  },
+  "contract_liability": {
+   "result": "NO_TOOL",
+   "evidence": "2026H1:S2",
+   "values": [
+    {
+     "metric": "contract_liability",
+     "value": 45458117,
+     "basis": {
+      "type": "vs_beginning",
+      "period": "2026H1",
+      "unit": "人民币千元"
+     }
+    }
+   ]
+  },
+  "goodwill_impairment": {
+   "result": "MISS",
+   "evidence": "2026H1:S2",
+   "values": [
+    {
+     "metric": "goodwill",
+     "value": 31576620,
+     "basis": {
+      "type": "vs_beginning",
+      "period": "2026H1",
+      "unit": "人民币千元"
+     }
+    }
+   ]
+  }
+ }
+}

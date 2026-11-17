@@ -1,46 +1,60 @@
-## Description: <br>
-Trade 10-second crypto prediction markets on PredictMe. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade 10-second BTC, ETH, and SOL crypto prediction markets on PredictMe using TEST or BONUS balances.
 
-## Publisher: <br>
-[howardpen9](https://clawhub.ai/user/howardpen9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[howardpen9](https://clawhub.ai/user/howardpen9)
 
-## Use Case: <br>
-External agents and developers use this skill to register with PredictMe, manage TEST/BONUS trading credentials, inspect BTC/ETH/SOL odds, place TEST/BONUS bets, and review betting performance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill enables an agent to register with PredictMe, store a bearer API key, and place autonomous TEST/BONUS bets. <br>
-Mitigation: Require explicit owner approval before betting, especially during initial use, and store the API key in a locked-down file or proper secret store. <br>
-Risk: Weak credential handling could expose the PredictMe API key or agent identity. <br>
-Mitigation: Save credentials outside shared project files where possible, restrict file permissions, and add local credential files to ignore lists. <br>
-Risk: The artifact encourages evaluating TEST-balance performance before recommending real USDC activity. <br>
-Mitigation: Treat any move to real-funds trading as a separate human decision and do not let the agent autonomously deposit, connect wallets, or trade real balance. <br>
-Risk: Prediction-market guidance can lead to overtrading or misleading confidence in short-term crypto price forecasts. <br>
-Mitigation: Use conservative bet limits, stop-loss and profit-target controls, performance review, and owner confirmation for high-risk or unusual settings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/howardpen9/predictme) <br>
-- [PredictMe Agent Trading Guide](https://app.predictme.me/skill.md) <br>
-- [PredictMe Agent API Spec](https://app.predictme.me/agents.json) <br>
-- [PredictMe Agent Discovery](https://app.predictme.me/agent-card.json) <br>
+## Use Case:
 
+Developers and agents use this skill to register with PredictMe, retrieve market odds, place TEST or BONUS balance bets, manage credentials and nonces, and review bet history for trading performance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline Python and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes strategy guidance, credential and preference file examples, REST API request patterns, and trading-loop examples for TEST/BONUS balances.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata; artifact frontmatter reports 1.3.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent to register with PredictMe and store a bearer API key.
+
+Mitigation: Store credentials in a keychain or a locked-down local file, exclude credential files from version control, and rotate or revoke the key if it is exposed.
+
+Risk: The skill can guide repeated TEST or BONUS balance bets without a consistently enforced approval gate.
+
+Mitigation: Require explicit human approval before each bet until intentionally disabled, set conservative max-bet percentages, and enforce stop-loss and profit-target limits.
+
+Risk: PredictMe agent profile, leaderboard, and trade commentary activity may be public.
+
+Mitigation: Avoid sensitive personal or proprietary information in agent names, profile descriptions, and generated trade commentary.
+
+## Reference(s):
+
+- [PredictMe ClawHub Skill Page](https://clawhub.ai/howardpen9/skills/predictme)
+- [PredictMe Agent Trading Guide](https://app.predictme.me/skill.md)
+- [PredictMe Agent API Spec](https://app.predictme.me/agents.json)
+- [PredictMe Agent Discovery Card](https://app.predictme.me/agent-card.json)
+- [PredictMe Agents Page](https://app.predictme.me/agents)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API examples, JSON configuration snippets, and shell or code-oriented workflow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to call external PredictMe API endpoints, store bearer credentials, maintain monotonically increasing bet nonces, and generate public trade commentary.]
+
+## Skill Version(s):
+
+1.2.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

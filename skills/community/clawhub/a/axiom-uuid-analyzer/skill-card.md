@@ -1,43 +1,59 @@
-## Description: <br>
-UUID inspector that parses UUIDs and extracts version, variant, timestamp details for v1 and v7, and MAC address details for v1 without using an LLM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UUID inspector that parses UUIDs, reports version and variant, and extracts timestamps for UUID v1 and v7 plus MAC addresses for UUID v1.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kofna3369](https://clawhub.ai/user/kofna3369)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze, validate, debug, or audit UUIDs, including identifying UUID version and variant and extracting timestamp or node details from time-based UUIDs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: UUID v1 values can reveal generation time and a device-like node identifier. <br>
-Mitigation: Avoid logging or sharing raw v1 timestamp, MAC, or node output unless that detail is needed for the analysis. <br>
-Risk: UUID v6, v7, v8, and Microsoft-variant handling is documented as partial, so edge-case results may be incomplete. <br>
-Mitigation: Treat the output as inspection guidance and verify edge cases with authoritative UUID tooling before making policy or security decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze, validate, or audit UUIDs, including checking UUID version consistency and extracting available timestamp or node identifier data from time-based UUIDs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kofna3369/axiom-uuid-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/kofna3369) <br>
-- [artifact/SKILL.md](artifact/SKILL.md) <br>
-- [artifact/README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Code, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or JSON analysis with optional Python dictionary output and example shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local, deterministic UUID analysis; batch mode accepts one UUID per input line.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: UUID v1 analysis can reveal embedded timestamps and node identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on UUIDs and batch files that are intended for inspection, and treat extracted MAC or timestamp data as potentially sensitive.
+
+Risk: The manifest evidence is stale relative to the packaged SKILL.md hash.
+
+Mitigation: Review package hashes from current server evidence before relying on the manifest for integrity checks.
+
+Risk: UUID v6, v7, and v8 support is documented as partial, and Microsoft variant validation is not strict.
+
+Mitigation: Use results for inspection and triage, and confirm edge-case UUID interpretations with a standards-compliant parser when correctness is critical.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kofna3369/skills/axiom-uuid-analyzer)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Shell commands, Code]
+
+**Output Format:** [Plain text or JSON from CLI usage, with Python dictionary results when used as a local module.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deterministic local UUID inspection; batch mode reads one UUID per line from a user-selected file.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

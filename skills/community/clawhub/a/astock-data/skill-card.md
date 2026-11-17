@@ -1,43 +1,59 @@
-## Description: <br>
-Provides A-share stock market data queries through qgdata, including real-time prices, minute K-line data, trade details, fundamentals, and trading calendar information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Astock Data helps agents query A-share market data from qgdata, including minute K-line data, realtime prices, selected fields, sorting, and JSON or dataframe outputs.
 
-## Publisher: <br>
-[Listolany](https://clawhub.ai/user/Listolany) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[listolany](https://clawhub.ai/user/listolany)
 
-## Use Case: <br>
-Developers, analysts, and trading researchers use this skill to query A-share market data for quantitative analysis, intraday monitoring, technical analysis, and automated trading workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can fall back to an embedded shared qgdata API token, which may have quota, pricing, or operational reliability limits. <br>
-Mitigation: Configure a dedicated personal QGDATA_TOKEN before production use and review the provider's quota and pricing terms. <br>
-Risk: The skill reads QGDATA_TOKEN from the environment and may read ~/.openclaw/.env. <br>
-Mitigation: Use a least-privilege token, protect local environment files from disclosure, and rotate the token if it is exposed. <br>
-Risk: The artifact includes a hardcoded local Python import path for qgdata dependencies. <br>
-Mitigation: Audit or remove the hardcoded import path and install qgdata and pandas in the intended agent runtime. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Astock Data on ClawHub](https://clawhub.ai/Listolany/astock-data) <br>
-- [QuantGo Data Platform](https://data.quantgo.ai) <br>
-- [QuantGo Data Documentation](https://data.quantgo.ai/docs) <br>
+## Use Case:
 
+Developers and quantitative trading users can use this skill through an agent to retrieve A-share minute bars and realtime price data for market analysis, monitoring, and strategy workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON data responses with Markdown usage guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include qgdata provider fields, token and quota notes, upgrade guidance, and data freshness warnings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.7.0 (source: server release metadata and SKILL.md changelog, released 2026-03-02) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends requested A-share symbols and the configured QGDATA_TOKEN to qgdata/QuantGo.
+
+Mitigation: Install only if that data sharing is acceptable, and prefer setting QGDATA_TOKEN in the session environment instead of storing it in ~/.openclaw/.env.
+
+Risk: The qgdata dependency and credential handling should be reviewed before installation.
+
+Mitigation: Review or pin the qgdata dependency before use and validate credential handling against local security requirements.
+
+Risk: The built-in trial token is shared and may fail or expose usage under a shared identity.
+
+Mitigation: Use a personal QGDATA_TOKEN for production or sensitive workflows rather than relying on the shared trial token.
+
+## Reference(s):
+
+- [Astock Data ClawHub listing](https://clawhub.ai/listolany/skills/astock-data)
+- [QuantGo data platform](https://data.quantgo.ai)
+- [QuantGo documentation](https://data.quantgo.ai/docs)
+- [QuantGo registration](https://data.quantgo.ai/register)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or dataframe command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, qgdata, pandas, and a QGDATA_TOKEN or the built-in shared trial token.]
+
+## Skill Version(s):
+
+1.7.0 (source: server release metadata and SKILL.md version section)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

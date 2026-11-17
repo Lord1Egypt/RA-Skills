@@ -1,47 +1,54 @@
-## Description: <br>
-OpenClaw 中文安装诊断 - 自动检测安装问题、修复常见错误、生成配置。适合：国内用户、新手安装。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Installer Cn helps agents diagnose OpenClaw installation problems, propose fixes for common errors, and generate recommended configuration for Chinese-language users.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose OpenClaw installation issues, suggest fixes for common Node.js, npm, network, permission, and dependency problems, and generate recommended local configuration for Chinese users and new installers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested repairs can make broad package-manager, filesystem-permission, dependency, and shell-profile changes. <br>
-Mitigation: Use the skill for diagnosis and command proposals first, review each affected path, and back up project or profile files before applying repairs. <br>
-Risk: Commands such as sudo ownership changes, cache cleaning, and recursive deletion can damage a system if targets are wrong. <br>
-Mitigation: Require explicit user approval for privileged or destructive commands and verify the exact target directory before execution. <br>
-Risk: The skill references remote installer scripts and alternate package registries. <br>
-Mitigation: Inspect downloaded installer scripts before running them and prefer trusted package-manager workflows for the user's environment. <br>
-Risk: Generated configuration examples include API key environment variables. <br>
-Mitigation: Enter real API keys manually, avoid writing secrets into shell profiles through an agent, and do not echo or log credential values. <br>
+## Use Case:
 
+Developers and end users use this skill to check Node.js, npm, network, architecture, disk, and OpenClaw configuration issues, then receive repair guidance and configuration snippets for OpenClaw installation workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/openclaw-installer-cn) <br>
-- [OpenClaw npm Registry Entry](https://registry.npmjs.org/openclaw) <br>
-- [npmmirror Registry](https://registry.npmmirror.com) <br>
-- [nvm Installer Script Referenced by Skill](https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with diagnostic findings, bash command blocks, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to shell profiles and OpenClaw configuration files; users should review commands and file paths before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Repair guidance may include high-impact shell commands that change system permissions or dependency files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each command and rollback plan before execution, especially commands using sudo or modifying /usr/local, ~/.npm, node_modules, or package lock files.
+
+Risk: The skill may suggest piping a remote install script into bash or persisting shell and configuration changes.
+
+Mitigation: Independently inspect remote scripts and generated configuration before running them or writing changes to ~/.zshrc or OpenClaw config files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-installer-cn)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with diagnostic findings, shell command snippets, and JSON or shell configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that modify npm settings, file permissions, dependency state, shell startup files, and OpenClaw configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

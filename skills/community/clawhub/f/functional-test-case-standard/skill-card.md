@@ -1,46 +1,55 @@
-## Description: <br>
-Generate and evaluate functional test cases following standardized quality dimensions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and evaluates functional test cases using standardized quality dimensions, with Markdown output, optional XMind mindmap structure, and timestamped versioning.
 
-## Publisher: <br>
-[zengzhaoyu2528](https://clawhub.ai/user/zengzhaoyu2528) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zengzhaoyu2528](https://clawhub.ai/user/zengzhaoyu2528)
 
-## Use Case: <br>
-Developers, QA engineers, and product teams use this skill to create, review, and score functional test cases from requirements. It supports coverage analysis, execution-ready case design, and quality evaluation using defined dimensions and examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated test cases or evaluations can be incomplete or misaligned with the source requirements. <br>
-Mitigation: Review generated cases against the original requirements before using them for execution, audits, or automation. <br>
-Risk: Timestamped versioning preserves old generated files that may contain confidential requirement details. <br>
-Mitigation: Choose approved output locations and manage retained versions according to the organization's data handling rules. <br>
-Risk: Using online Markdown-to-XMind converters may disclose confidential requirements. <br>
-Mitigation: Use local XMind import or an organization-approved conversion service for sensitive material. <br>
-Risk: Marketplace capability tags may not match the documentation-only behavior reported by the security scan. <br>
-Mitigation: Review the security summary and skill documentation before relying on marketplace capability labels. <br>
+## Use Case:
 
+QA engineers, testers, developers, and product teams use this skill to generate standardized functional test cases from requirements and evaluate case quality across naming, structure, executability, verifiability, design-method diversity, coverage, priority, and test data specificity.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zengzhaoyu2528/functional-test-case-standard) <br>
-- [Detailed Scoring Rubrics](artifact/reference.md) <br>
-- [Example Evaluations](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown test case documents with optional XMind mindmap files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports review or execution dimensions and timestamped versioned filenames.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Generated requirement and test-case documents may contain private business details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review content before sharing and avoid online XMind converters unless third-party sharing is explicitly approved.
+
+Risk: Generated test cases or evaluations may omit important coverage or contain misleading quality judgments.
+
+Mitigation: Review outputs against the source requirements and the included quality rubric before using them for execution or sign-off.
+
+## Reference(s):
+
+- [Functional Test Case Standard on ClawHub](https://clawhub.ai/zengzhaoyu2528/skills/functional-test-case-standard)
+- [Detailed Scoring Rubrics](artifact/reference.md)
+- [Example Evaluations](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Markdown test case documents, optional XMind-compatible mindmap outlines, and test case quality evaluation reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can use timestamped filenames for generated Markdown and XMind outputs when requested.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

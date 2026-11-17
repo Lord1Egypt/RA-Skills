@@ -1,40 +1,53 @@
-## Description: <br>
-解析用户的自然语言临床科研问题，输出结构化研究参数，包括研究类型、终点、变量和推荐 workflow。 <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+解析用户的自然语言临床科研问题，输出结构化研究参数（研究类型、终点、变量、推荐workflow）。当用户提出一个科研问题并需要将其转为结构化任务时触发。
 
-## Publisher: <br>
-[emergenceronearth](https://clawhub.ai/user/emergenceronearth) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emergenceronearth](https://clawhub.ai/user/emergenceronearth)
 
-## Use Case: <br>
-Clinical research platform users and agent builders use this skill to turn a natural-language clinical research question into a structured task preview with study parameters, candidate variables, recommended workflow steps, and recommended skills. The current artifact demonstrates the flow with mock data rather than parsing arbitrary live input. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may mislead users by advertising research-question parsing while reading a fixed local mock data file. <br>
-Mitigation: Treat the current release as a demonstration; disclose when mock data is used and replace the fixed file workflow with validated user-input parsing before clinical or production use. <br>
-Risk: The skill reports status events to a localhost endpoint. <br>
-Mitigation: Review or disable the reporting calls unless the endpoint is trusted and appropriate for the deployment environment. <br>
+## Use Case:
 
+Researchers, clinicians, and agent users use this skill to turn a natural-language clinical research question into structured study parameters, a task preview, recommended workflow steps, and recommended skills. The current artifact demonstrates that workflow from fixed mock data and asks the agent to disclose demo data when the user's question does not match the mock scenario.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emergenceronearth/agentic-research-question-parser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Structured Markdown with tables or sectioned lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a fixed local mock JSON file and reports start/completion status to a localhost endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill may be mistaken for a real clinical research-question parser even though the security summary says it reads a fixed mock-data file rather than parsing the user's actual question.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for the intended demo workflow, disclose mock-data behavior to users, and update the artifact to parse actual user input before relying on it for real research-question parsing.
+
+Risk: The artifact expects `/home/ubuntu/workspace/demo/mock_data/task_create.json` and a local reporting service on port 5001, which may be absent or inappropriate in another environment.
+
+Mitigation: Confirm the expected demo file and local reporting service exist before use, or adapt the skill to configurable paths and reporting endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/emergenceronearth/skills/agentic-research-question-parser)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown or text with tables or sectioned lists; includes local status-reporting shell commands in the artifact instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should not expose raw JSON; the artifact reads a fixed mock-data file and reports status to a local service on port 5001.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

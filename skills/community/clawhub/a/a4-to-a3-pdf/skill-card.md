@@ -1,40 +1,53 @@
-## Description: <br>
-Combines ordered images from a folder into an A3 landscape PDF with two A4-sized images placed side by side on each page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Merges numbered images from a folder into an A3 landscape PDF with two A4-sized images placed side by side on each page.
 
-## Publisher: <br>
-[wangchuang9523-gif](https://clawhub.ai/user/wangchuang9523-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangchuang9523-gif](https://clawhub.ai/user/wangchuang9523-gif)
 
-## Use Case: <br>
-Developers and document-preparation users use this skill to convert numbered image files into printable A3 landscape PDFs with two A4 images per page. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local script reads image files from a user-selected folder and writes a PDF to the requested output path. <br>
-Mitigation: Run it only on folders you control and choose the output path carefully before execution. <br>
-Risk: Image parsing depends on Pillow, so outdated image-processing dependencies can carry security exposure. <br>
-Mitigation: Keep Pillow updated and process only trusted image files when possible. <br>
+## Use Case:
 
+Developers, operators, and document-processing users can use this skill to create A3 landscape PDFs from ordered image scans or photos, placing two A4 pages side by side per PDF page.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangchuang9523-gif/a4-to-a3-pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and Python script guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local PDF files when the referenced Python script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The helper processes local image files and depends on Pillow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a virtual environment and consider pinning the Pillow version before use.
+
+Risk: The script primarily searches for numerically named .jpg files and has limited fallback extension handling.
+
+Mitigation: Confirm input files are numbered in the expected order and extension format before generating the PDF.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangchuang9523-gif/skills/a4-to-a3-pdf)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, files]
+
+**Output Format:** [Markdown guidance with shell command examples; the helper script produces a PDF file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local Python script with Pillow; default output is A3 landscape at 300 DPI.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

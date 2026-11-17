@@ -1,44 +1,56 @@
-## Description: <br>
-Use when you need to extract QR code or barcode content from an image, screenshot, photo URL, or local image file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts QR code, DataMatrix, and barcode content from image URLs or base64 image data using a disclosed remote decoding API.
 
-## Publisher: <br>
-[edwincen](https://clawhub.ai/user/edwincen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwincen](https://clawhub.ai/user/edwincen)
 
-## Use Case: <br>
-Developers and agents use this skill to send an image URL or base64 image to the QR/barcode detection service and receive decoded content, content classification, location, and confidence data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images, screenshots, or image URLs may contain sensitive QR/barcode content and are sent to an external service for processing. <br>
-Mitigation: Avoid passwords, private keys, login QR codes, personal documents, proprietary screenshots, internal URLs, and other sensitive content unless the provider and data handling are acceptable for the use case. <br>
-Risk: Decoded content may be a URL, WiFi configuration, contact card, email, phone number, SMS command, geolocation, or other user-provided text. <br>
-Mitigation: Review decoded values before opening links, executing commands, importing contacts, joining networks, or using the content in downstream automation. <br>
+## Use Case:
 
+Developers and agent users use this skill to decode QR codes or barcodes from screenshots, uploaded images, local image data, or image URLs, then classify decoded content such as URLs, WiFi configs, vCards, email links, phone links, SMS links, geolocations, or plain text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edwincen/qrcode-decode) <br>
-- [Publisher profile](https://clawhub.ai/user/edwincen) <br>
-- [QR decode service](https://data.cli.im/x-deepscan/vision) <br>
-- [Detection API endpoint](https://data.cli.im/x-deepscan/vision/detect) <br>
-- [cli.im](https://cli.im) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, json] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON response structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Decoded QR or barcode content may include content type, bounding box, and confidence values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release evidence) <br>
+Risk: Image URLs, base64 image data, or uploaded image files are sent to data.cli.im for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential screenshots, identity documents, private URLs, credentials, or regulated data unless external processing by that service is approved.
+
+Risk: Decoded QR or barcode content can include links or instructions that may be unsafe to follow automatically.
+
+Mitigation: Treat decoded content as untrusted text and review it before opening links, executing commands, or using extracted contact, WiFi, or payment data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwincen/skills/qrcode-decode)
+- [QR decode service](https://data.cli.im/x-deepscan/vision)
+- [Detect endpoint](https://data.cli.im/x-deepscan/vision/detect)
+- [cli.im](https://cli.im)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, JSON]
+
+**Output Format:** [Markdown guidance with curl examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote API output includes decoded content, code format, content type, bounding box, and confidence when a code is found.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

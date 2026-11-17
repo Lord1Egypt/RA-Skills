@@ -1,45 +1,59 @@
-## Description: <br>
-Explains abnormal health exam indicators item by item, including likely causes, health impacts, intervention suggestions, urgency, correlations, and JSON plus summary text output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interprets abnormal health exam indicators one by one, explaining what each item means, why it may be abnormal, potential health impact, suggested interventions, and cross-indicator correlations in accessible language.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Health management teams and developers use this skill to convert text or JSON health exam reports into structured explanations of abnormal indicators and plain-language guidance. The output is intended for health education and review, not as a substitute for clinician diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive medical report content is sent to a remote model endpoint. <br>
-Mitigation: Use only with organizational approval, confirm the endpoint and data-retention terms, and remove names, IDs, phone numbers, and other direct identifiers before running the skill. <br>
-Risk: Output files may store health-related information after the model call completes. <br>
-Mitigation: Choose output locations with appropriate access controls, retention limits, and deletion procedures for medical or personal data. <br>
-Risk: The default timeout can wait indefinitely for the remote API. <br>
-Mitigation: Set a finite timeout that matches operational requirements and failure-handling expectations. <br>
-Risk: Generated explanations may be mistaken for medical diagnosis or treatment advice. <br>
-Mitigation: Present the output as health education for review and direct users to qualified clinicians for diagnosis and care decisions. <br>
+## Use Case:
 
+Health management staff, physical examination centers, and developers use this skill to turn abnormal exam report items into structured JSON and Chinese patient-facing explanations. It supports health education workflows by summarizing possible causes, health impact, lifestyle and medical follow-up suggestions, urgency, and correlations such as metabolic syndrome patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-abnormal-items) <br>
-- [Internal medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance, files] <br>
-**Output Format:** [JSON followed by plain-language summary text, printed to stdout or written to an output file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-supplied input file and app key; supports optional base URL, model, timeout, output path, and encoding parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release version and artifact _meta.json) <br>
+Risk: Sensitive medical reports may be sent to a remote API without code-enforced de-identification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pre-redact patient identifiers and unnecessary details before use, and review data handling requirements before submitting real patient data.
+
+Risk: A custom base URL can redirect reports and the app key to an endpoint outside the expected service.
+
+Mitigation: Use only a verified trusted API endpoint and restrict app key handling to approved environments.
+
+Risk: Generated medical explanations may be incomplete or incorrect for clinical decision-making.
+
+Mitigation: Treat outputs as health education material and require clinician review for diagnosis, treatment, or urgent-care decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-abnormal-items)
+- [Publisher profile](https://clawhub.ai/user/unisound-llm)
+- [Unisound MaaS chat completions endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON object followed by Chinese explanatory text headed with 【专项解读】]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print to stdout or write to a user-specified output file; generated content is health education guidance and not a substitute for medical diagnosis.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

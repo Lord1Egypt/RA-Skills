@@ -1,44 +1,56 @@
-## Description: <br>
-Selects A-share stocks with a public-source approximation of a net-profit growth strategy using Eastmoney public market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens China A-share stocks for a public-source approximation of net profit growth using Eastmoney public market data.
 
-## Publisher: <br>
-[luyao-inc](https://clawhub.ai/user/luyao-inc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luyao-inc](https://clawhub.ai/user/luyao-inc)
 
-## Use Case: <br>
-Agents or analysts use this skill to run a Python-based A-share selector for a profit-growth approximation and receive ranked stock data for review. Outputs are informational and not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The stock-selection results are approximate and may be incorrect or unsuitable for a specific investment decision. <br>
-Mitigation: Treat results as informational, review the returned data independently, and do not use the output as investment advice. <br>
-Risk: The skill runs a repo-local Python script and fetches public market data over the network. <br>
-Mitigation: Review the script before execution and run it only in an environment where Python network access to the public data source is acceptable. <br>
+## Use Case:
 
+Developers and analysts use this skill to run a local Python stock-screening helper for A-share profit-growth candidates and receive a JSON-ranked list for further review. Outputs are approximate and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luyao-inc/china-stock-profitgrowth) <br>
-- [Publisher profile](https://clawhub.ai/user/luyao-inc) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [a_share_public_selector.py](artifact/scripts/a_share_public_selector.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON from the selector script, with concise textual guidance from the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The selector returns ok, strategy_type, stocks, and message fields; results are an approximation and not investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Stock-screening outputs are approximate and may be incomplete or misleading for financial decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as a starting point only and independently verify candidates before taking investment action.
+
+Risk: The skill runs a local Python script that contacts Eastmoney public quote APIs.
+
+Mitigation: Review the script and allow network execution only in environments where this data access is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luyao-inc/skills/china-stock-profitgrowth)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [Eastmoney public quote API](https://push2.eastmoney.com/api/qt/clist/get)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with shell command usage and JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [JSON includes ok, strategy_type, stocks, and message; stock data comes from public market APIs.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-NotebookLM Skill lets agents query and manage Google NotebookLM notebooks for source-grounded answers, source uploads, notebook management, and generated media artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to query Google NotebookLM notebooks from agent coding environments for source-grounded, citation-backed answers, notebook management, source uploads, and media artifact generation.
 
-## Publisher: <br>
-[magicseek](https://clawhub.ai/user/magicseek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[magicseek](https://clawhub.ai/user/magicseek)
 
-## Use Case: <br>
-Developers and agent users use this skill to authenticate with Google NotebookLM, query notebooks for cited answers, upload or sync sources, manage notebooks, and generate downloadable media from notebook content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to authenticated Google NotebookLM sessions and local documents. <br>
-Mitigation: Use a dedicated Google account, review stored auth files under data/auth, and install only when this access is acceptable. <br>
-Risk: Z-Library workflows may involve material the user is not authorized to download or upload. <br>
-Mitigation: Avoid Z-Library commands unless you have rights to the material being used. <br>
-Risk: Notebook and folder synchronization commands can change local files and NotebookLM data. <br>
-Mitigation: Use dry-run or review prompts before sync, delete, download, or media-management commands. <br>
-Risk: Account rotation and rate-limit workarounds can violate service expectations. <br>
-Mitigation: Do not use account rotation to bypass limits; pause or reduce activity when rate limits are encountered. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/magicseek/nblm) <br>
-- [nblm API Reference](references/api_reference.md) <br>
-- [nblm Usage Patterns](references/usage_patterns.md) <br>
-- [nblm Troubleshooting Guide](references/troubleshooting.md) <br>
-- [Authentication Notes](AUTHENTICATION.md) <br>
+## Use Case:
 
+Developers and agent users use this skill to authenticate with Google NotebookLM, manage notebooks and sources, query notebook content, and generate NotebookLM media artifacts without leaving their coding agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown and terminal output, with optional downloaded media files such as MP3, PDF, and PNG.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the selected NotebookLM command and authenticated account state.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist Google NotebookLM session credentials and, when used, Z-Library session data.
+
+Mitigation: Use a dedicated Google account where possible, avoid shared machines, and review permissions for the skill data directory.
+
+Risk: Notebook and source management commands can upload, sync, rename, or delete user content.
+
+Mitigation: Review command targets before execution and prefer dry-run or explicit notebook selection for sync and delete workflows.
+
+Risk: Untrusted input could cause unsafe command routing or repeated follow-up queries.
+
+Mitigation: Do not let untrusted content choose script names or trigger automated query loops without user review.
+
+## Reference(s):
+
+- [NotebookLM Skill on ClawHub](https://clawhub.ai/magicseek/skills/nblm)
+- [NotebookLM](https://notebooklm.google.com)
+- [Authentication Notes](AUTHENTICATION.md)
+- [nblm API Reference](references/api_reference.md)
+- [nblm Troubleshooting Guide](references/troubleshooting.md)
+- [nblm Usage Patterns](references/usage_patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and NotebookLM response text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also guide generation or download of NotebookLM media artifacts such as audio, slide decks, and infographics.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

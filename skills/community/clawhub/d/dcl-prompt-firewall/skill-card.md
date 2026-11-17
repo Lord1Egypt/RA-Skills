@@ -1,42 +1,60 @@
-## Description: <br>
-DCL Prompt Firewall is an instruction-only prompt-screening skill that checks untrusted inputs for prompt injection, jailbreaks, role-switch attacks, instruction overrides, token smuggling, indirect injection, social engineering, and context overflow before an agent or LLM acts on them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DCL Prompt Firewall screens untrusted input for prompt injection, jailbreak, role-switch, and instruction-override attempts before the input reaches a model.
 
-## Publisher: <br>
-[daririnch](https://clawhub.ai/user/daririnch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daririnch](https://clawhub.ai/user/daririnch)
 
-## Use Case: <br>
-Developers and operators of AI agents and LLM pipelines use this skill to screen user-supplied or external prompt content before it reaches a model, producing a local checklist-based verdict and findings for risky instruction patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the instruction-only checklist as a technical enforcement boundary. <br>
-Mitigation: Use it as a prompt-screening aid and review any real logging, blocking, or pipeline integration separately before deployment. <br>
-Risk: Screening quality depends on the agent applying the checklist consistently to the supplied input. <br>
-Mitigation: Review findings for high-impact workflows and keep downstream policy, redaction, secret scanning, and output-sanitization controls in place where required. <br>
+## Use Case:
 
+Developers and agent builders use this skill to gate user-supplied messages, retrieved documents, web content, and tool results before forwarding them to an LLM. It supports either a paid DCL Trust Oracle MCP check or a local instruction-only checklist for manual review.
 
-## Reference(s): <br>
-- [DCL Prompt Firewall on ClawHub](https://clawhub.ai/daririnch/dcl-prompt-firewall) <br>
-- [Fronesis Labs Privacy Policy](https://fronesislabs.com/#privacy) <br>
-- [DCL Security Suite Hub](https://hub.fronesislabs.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON-style screening report with verdict, risk score, findings, checked categories, and clear categories] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs as an instruction-only local checklist; no code execution, install steps, credentials, persistence, or data transmission are requested by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: The live screening path sends raw input to a paid third-party MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid sending secrets, credentials, private documents, or regulated data, and apply local redaction before live checks when sensitive content may be present.
+
+Risk: Paid live calls can trigger USDC-on-Base wallet payments.
+
+Mitigation: Configure wallet spending limits and require explicit confirmation for paid calls before enabling the live MCP path.
+
+Risk: The security verdict flags unclear data and spending controls.
+
+Mitigation: Use the free checklist or add strict approval controls unless the operator accepts the live-service data flow and payment model.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daririnch/skills/dcl-prompt-firewall)
+- [ClawHub publisher profile](https://clawhub.ai/user/daririnch)
+- [DCL Trust Oracle MCP endpoint](https://mcp.fronesislabs.com/mcp)
+- [DCL Security Suite](https://hub.fronesislabs.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live checks return a verdict, confidence score, reason, transaction hash, input hash, policy version, drift mode, and drift score.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Use when setting up, checking, writing, linting, or troubleshooting Brigade memory handoffs for a repo or agent workspace, especially when a user wants durable agent memory, handoff inboxes, cross-harness memory routing, or a safe first Brigade setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Brigade to set up and review agent memory handoffs.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solomonneas](https://clawhub.ai/user/solomonneas)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up, inspect, draft, lint, review, and troubleshoot Brigade memory handoffs in code repositories or agent workspaces. It is especially suited to teams that want local-first durable memory workflows across coding harnesses while preserving existing memory conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill suggests shell commands that can install Brigade tooling or write Brigade setup files in a workspace. <br>
-Mitigation: Run the dry-run quickstart first, inspect the planned files, and execute the non-dry-run command only after the target path and harness selection are confirmed. <br>
-Risk: Handoff content may contain private workspace details, transcripts, terminal logs, or other sensitive material. <br>
-Mitigation: Redact private hostnames, tokens, repo names, absolute home paths, user IDs, channel IDs, and raw private messages before sharing or committing output. <br>
+## Use Case:
 
+Developers and agent-workspace operators use Brigade to set up, lint, and review local memory handoffs before the memory owner ingests them.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/solomonneas/brigade-handoffs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and text code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed before execution, with dry-run results checked before workspace changes are made.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Handoff content or diagnostics may expose private information when ingested or shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review handoff content before ingestion and redact diagnostics and sensitive details before sharing.
+
+Risk: The setup example installs the CLI without pinning a version.
+
+Mitigation: Choose and install a reviewed Brigade CLI version.
+
+## Reference(s):
+
+- [Brigade Handoffs release page](https://clawhub.ai/solomonneas/skills/brigade-handoffs)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local-first workflow; drafts and receipts await review and do not automatically edit canonical memory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Generates compliance-oriented marketing drafts for licensed addiction treatment and behavioral health providers using LegitScript, 42 CFR Part 2, FTC, platform advertising, and related healthcare marketing checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates marketing prompts and templates for licensed addiction treatment and behavioral health providers, including patient acquisition campaigns, paid and organic advertising content, website copy, JSON-LD schema, reputation responses, and outreach materials.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Licensed addiction treatment facilities, behavioral health programs, healthcare marketing teams, and compliance reviewers use this skill to draft outreach, advertising, website, schema, reputation, and community content for review before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States, with Nevada-specific licensing content included. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketing drafts may contain claims that are incomplete, outdated, or unsuitable for a specific facility's licenses, certifications, payer status, or jurisdiction. <br>
-Mitigation: Have healthcare counsel or a compliance officer verify advertising, testimonial, insurance, licensing, accreditation, and outcome-related claims before publication. <br>
-Risk: Using real patient-identifying information in prompts or outputs can create privacy and consent issues for substance use disorder treatment contexts. <br>
-Mitigation: Do not provide patient-identifying information unless required consent and a compliant workflow are already in place. <br>
+## Use Case:
 
+Healthcare marketers, compliance officers, and licensed behavioral health providers use this skill to draft addiction treatment marketing assets and review them against stated compliance gates before publication. It is intended for U.S. behavioral health marketing workflows that require human legal, compliance, and credential review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gitflopez/addiction-treatment-marketing-kit) <br>
-- [Publisher profile](https://clawhub.ai/user/gitflopez) <br>
+### Deployment Geography for Use:
 
+United States, with Nevada-specific licensing and regulatory prompts
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown drafts with compliance checklists, advertising copy, outreach text, website content, and JSON-LD schema snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are marketing drafts that require licensed professional, compliance, and legal review before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact package.json reports 1.0.0) <br>
+Risk: Generated content can include false or inapplicable certification, accreditation, license, payer-network, or clinical credential claims if placeholders, examples, or fixed footers are published without verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify active LegitScript status, facility licensing, accreditation, staff credentials, payer network status, MAT prescribing authority, and OTP status before publishing; remove or conditionally render any claim that is not active, verified, and applicable.
+
+Risk: Healthcare marketing outputs may be treated as compliance-ready even though the server security review flagged risk in certification and credential claims.
+
+Mitigation: Require human compliance and legal review before production use, and do not rely on the skill's compliance claims as the sole basis for publication or ad submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitflopez/skills/addiction-treatment-marketing-kit)
+- [Publisher profile](https://clawhub.ai/user/gitflopez)
+- [README](artifact/README.md)
+- [Marketing notes](artifact/MARKETING.md)
+- [Sample output](artifact/examples/sample-output.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown prompt outputs with optional JSON-LD code blocks, campaign copy, checklist text, and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only outputs require human legal, compliance, credential, and advertising-platform review before use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

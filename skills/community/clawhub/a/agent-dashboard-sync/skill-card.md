@@ -1,46 +1,60 @@
-## Description: <br>
-Sync OpenClaw fleet runtime/heartbeat/cron status to Cloudflare KV and serve dashboard-ready data via Worker API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Syncs OpenClaw fleet runtime, heartbeat, and cron status to Cloudflare KV and serves dashboard-ready data through a Worker API.
 
-## Publisher: <br>
-[reed1898](https://clawhub.ai/user/reed1898) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[reed1898](https://clawhub.ai/user/reed1898)
 
-## Use Case: <br>
-Developers and operators use this skill to set up and operate the Agent Fleet Dashboard data plane, including Cloudflare Worker and KV setup, collector cron scheduling, dashboard environment wiring, and migration of high-frequency fleet state out of Git. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Deploy and cron commands can execute code from local Worker and collector projects outside this documentation skill. <br>
-Mitigation: Review the referenced projects before running npm deploy or collector commands, and document how to remove installed cron entries. <br>
-Risk: Ingest, read, dashboard, and report tokens could be exposed through files, logs, screenshots, or client-side environment variables. <br>
-Mitigation: Use dedicated Cloudflare, Vercel, or system secret storage; keep tokens server-side; redact logs and shared snippets; rotate credentials immediately if exposed. <br>
-Risk: Dashboard sync may expose unnecessary operational data if collector payloads or event buffers are too broad. <br>
-Mitigation: Limit uploaded data to operational telemetry, validate payloads, truncate long error fields, redact secret-like patterns, and keep event buffers bounded. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/reed1898/agent-dashboard-sync) <br>
-- [Worker Setup](references/worker-setup.md) <br>
-- [Collector + Cron](references/collector-cron.md) <br>
-- [Env Matrix](references/env-matrix.md) <br>
-- [KV Schema](references/schema.md) <br>
-- [Security Rules](references/security-rules.md) <br>
+## Use Case:
 
+Developers and operators use this skill to set up and run an Agent Fleet Dashboard data plane, including Cloudflare KV storage, Worker ingest/read APIs, collector cron scheduling, environment configuration, and migration away from Git-backed high-frequency state.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash, cron, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces runbook guidance for Worker deployment, KV schema setup, environment variables, collector cron installation, and security checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Collector cron examples can expose ingest tokens if real values are placed directly in crontab, logs, screenshots, or shared commands.
+
+Mitigation: Use secret managers or protected system profiles for runtime tokens, keep placeholders in shared snippets, redact logs, and rotate any exposed token immediately.
+
+Risk: The sync pipeline handles fleet telemetry and operational status that may reveal infrastructure details if over-collected or over-retained.
+
+Mitigation: Send only operational telemetry, omit chat content, PII, and credential-bearing command output, truncate error fields, and keep event buffers bounded.
+
+Risk: Public ingest and read endpoints can be abused if authentication, transport, payload, or rate controls are misconfigured.
+
+Mitigation: Require HTTPS and bearer authentication, validate JSON schema and payload size, reject invalid tokens with 401 responses, and add basic rate limiting.
+
+## Reference(s):
+
+- [Worker Setup](references/worker-setup.md)
+- [Collector + Cron](references/collector-cron.md)
+- [Env Matrix](references/env-matrix.md)
+- [KV Schema (v1)](references/schema.md)
+- [Agent Dashboard Sync - Security Rules](references/security-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash, cron, JSON, and environment-variable examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No LLM output is required in the collector path; examples use placeholders for secrets and local paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

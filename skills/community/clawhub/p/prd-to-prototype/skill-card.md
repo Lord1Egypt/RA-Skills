@@ -1,42 +1,55 @@
-## Description: <br>
-Transforms product ideas into a complete PRD and, after platform confirmation, generates a high-fidelity interactive HTML/Tailwind prototype. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms product ideas into PRDs and high-fidelity interactive HTML/Tailwind prototypes for mobile or desktop.
 
-## Publisher: <br>
-[zengxming45](https://clawhub.ai/user/zengxming45) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zengxming45](https://clawhub.ai/user/zengxming45)
 
-## Use Case: <br>
-Product teams, designers, and developers use this skill to turn an initial product idea into a structured PRD and then into a browser-previewable mobile or desktop prototype. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local PRD and prototype files automatically. <br>
-Mitigation: Review /workspace/docs/prd.md before confirming prototype generation. <br>
-Risk: Optional deployment may expose product details through a preview link. <br>
-Mitigation: Avoid confidential product details unless preview-link exposure is acceptable. <br>
+## Use Case:
 
+Product builders and designers use this skill to turn brief product ideas into a PRD, confirm a mobile or desktop target, and generate a browser-previewable prototype.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zengxming45/prd-to-prototype) <br>
-- [Tailwind CSS CDN](https://cdn.tailwindcss.com) <br>
-- [Font Awesome 6 CDN](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown PRD plus HTML, Tailwind CSS, and Vanilla JS prototype files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates /workspace/docs/prd.md and /workspace/prototype/ files; may return a prototype preview link when deployment tooling is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and artifact metadata) <br>
+Risk: The skill can create files and deploy prototypes from broad product-related prompts without enough user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when a PRD/prototype workflow is intended, and confirm output paths and deployment behavior before execution.
+
+Risk: Sensitive business ideas or internal product flows may be written into generated PRDs or prototypes.
+
+Mitigation: Review prompts and generated files before sharing, deploying, or storing outputs in less restricted locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zengxming45/skills/prd-to-prototype)
+- [Tailwind CSS CDN](https://cdn.tailwindcss.com)
+- [Font Awesome CSS CDN](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown PRD plus HTML/Tailwind/JavaScript prototype files and delivery guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed to write a PRD under /workspace/docs/ and prototype files under /workspace/prototype/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,51 @@
-## Description: <br>
-Optimization suite for OpenClaw agents to prevent token leaks and context bloat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimization suite for OpenClaw agents to prevent token leaks and context bloat through background task isolation, reset-and-summarize workflows, local RAG, transcript indexing, and hybrid search.
 
-## Publisher: <br>
-[klautimus](https://clawhub.ai/user/klautimus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[klautimus](https://clawhub.ai/user/klautimus)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to reduce context bloat by isolating background tasks, configuring memory search, and applying reset-and-summarize workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Optional transcript indexing can expose sensitive past conversations through local search. <br>
-Mitigation: Index selectively, remove secrets before indexing, and include only transcripts the user is comfortable making searchable later. <br>
-Risk: Applying configuration examples without review can change OpenClaw cron or memory behavior. <br>
-Mitigation: Review openclaw.json edits before applying them and keep cron jobs intentional. <br>
-Risk: Restart-based reset workflows can discard active session context if important details are not saved first. <br>
-Mitigation: Save important session context to long-term memory or logs before restarting OpenClaw. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to configure agent memory and background-task workflows that reduce context bloat, lower token use, and preserve searchable long-term recall.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/klautimus/openclaw-token-memory-optimizer) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OpenClaw configuration checks and memory-management workflow recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and package.json declare 1.1.0) <br>
+Risk: Transcript indexing can make historical OpenClaw sessions searchable, including secrets, personal data, proprietary code, or sensitive tool output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a small allowlist of sanitized transcript paths, prefer local-only embeddings, set retention limits, and rebuild or delete indexes when source data should no longer be searchable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/klautimus/skills/openclaw-token-memory-optimizer)
+- [README](README.md)
+- [Skill instructions](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes an optional local shell status check script; review transcript indexing guidance before use with sensitive session data.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter and package.json report 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

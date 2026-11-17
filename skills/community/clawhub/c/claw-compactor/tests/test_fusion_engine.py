@@ -105,7 +105,7 @@ NARRATIVE_TEXT = (
 
 SYSTEM_MSG_WITH_DYNAMIC = (
     "You are a helpful assistant. Request ID: 550e8400-e29b-41d4-a716-446655440000. "
-    "Date: 2025-01-15T12:00:00Z. API key: sk-abcdefghijklmnopqrstuvwxyz123456. "
+    "Date: 2025-01-15T12:00:00Z. API key: REDACTED-SECRET. "
     "Always respond concisely."
 )
 

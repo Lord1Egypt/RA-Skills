@@ -1,42 +1,60 @@
-## Description: <br>
-Billions/Iden3 authentication and identity management tools for agents to link, prove, sign, and verify decentralized identities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Billions/Iden3 authentication and identity management tools for agents. Link, proof, sign, and verify.
 
-## Publisher: <br>
-[ijangasbar](https://clawhub.ai/user/ijangasbar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ijangasbar](https://clawhub.ai/user/ijangasbar)
 
-## Use Case: <br>
-External developers and agents use this skill to create and manage Billions/iden3 DIDs, link human and agent identities, sign challenges, and verify ownership proofs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores identity material, including private keys, in a local plaintext key store under $HOME/.openclaw/billions. <br>
-Mitigation: Use it only on a trusted single-user machine and treat kms.json and related identity files as sensitive credentials. <br>
-Risk: The skill can send signed identity proofs or verification links through OpenClaw direct messages. <br>
-Mitigation: Confirm the recipient, challenge, and linking intent before running signing or human-agent linking commands. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create and manage decentralized identities for agents, link an agent identity to a human owner, and sign or verify identity challenges on the Billions Network.
 
-## Reference(s): <br>
-- [Billions Network](https://billions.network/) <br>
-- [ClawHub skill page](https://clawhub.ai/ijangasbar/billionsnetwork-verified-agent-identity-0-0-2) <br>
-- [Publisher profile](https://clawhub.ai/user/ijangasbar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local identity setup, DID management, signed challenge, verification-link, and signature-verification workflows for an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact package.json reports 0.0.2) <br>
+Risk: Long-lived private identity keys may be stored unencrypted under $HOME/.openclaw/billions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat kms.json as a wallet secret, restrict access to the account and machine, and avoid using this skill where other users can read the home directory.
+
+Risk: Existing valuable private keys can be imported with --key and then persist in local storage.
+
+Mitigation: Prefer generating a new identity for agent use and avoid importing valuable existing private keys.
+
+Risk: Local key files may not have permission-hardening enforced by the skill.
+
+Mitigation: Check file permissions after identity creation and run on a single-user machine until encrypted or permission-hardened storage is available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ijangasbar/skills/billionsnetwork-verified-agent-identity-0-0-2)
+- [Billions Network](https://billions.network/)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text and JSON CLI output with occasional Markdown-formatted verification links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local identity and challenge files and may send verification messages through OpenClaw.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact package version is 0.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

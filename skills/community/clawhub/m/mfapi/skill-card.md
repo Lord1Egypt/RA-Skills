@@ -1,41 +1,54 @@
-## Description: <br>
-Query Indian mutual fund NAV data, scheme info, and history via the free MFapi.in REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Indian mutual fund NAV data, scheme info, and history via the free MFapi.in REST API.
 
-## Publisher: <br>
-[kanaksinghal](https://clawhub.ai/user/kanaksinghal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kanaksinghal](https://clawhub.ai/user/kanaksinghal)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to look up Indian mutual fund schemes, latest NAVs, and historical NAV data through MFapi.in. It can also resolve an ISIN to a scheme code before fetching the latest NAV. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Fund names, scheme codes, and ISINs are sent to the third-party MFapi.in service when queries run. <br>
-Mitigation: Avoid using the skill for sensitive portfolio analysis unless third-party disclosure to MFapi.in is acceptable. <br>
-Risk: Mutual fund data is retrieved from an external service and may be unavailable or unsuitable as the sole basis for financial decisions. <br>
-Mitigation: Verify NAV and scheme data against authoritative fund or AMFI sources before relying on results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Mfapi release page](https://clawhub.ai/kanaksinghal/mfapi) <br>
-- [MFapi.in](https://www.mfapi.in) <br>
-- [MFapi REST API base URL](https://api.mfapi.in) <br>
+## Use Case:
 
+Developers and agents use this skill to look up Indian mutual fund schemes, latest NAV values, NAV history, and scheme metadata through MFapi.in. It also supports resolving ISINs to scheme codes with a local cache before fetching latest NAV data.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Guidance, API calls] <br>
-**Output Format:** [Markdown guidance with shell commands, Python helper usage, and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The Python helper may return a JSON object for one ISIN or a JSON array for multiple ISINs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Fund search terms, scheme codes, and ISINs are sent to MFapi.in.
+
+Mitigation: Install and use the skill only when sharing those lookup values with MFapi.in is acceptable.
+
+Risk: The ISIN lookup script stores its scheme-list cache in /tmp, which can be inappropriate on shared or multi-user machines.
+
+Mitigation: Use a private per-user cache directory before relying on ISIN lookup results in shared environments.
+
+## Reference(s):
+
+- [MFapi.in](https://www.mfapi.in)
+- [MFapi.in REST API base URL](https://api.mfapi.in)
+- [ClawHub skill page](https://clawhub.ai/kanaksinghal/skills/mfapi)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown with inline bash, Python, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq for CLI examples; the optional Python script caches the MFapi scheme list locally for ISIN lookup.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

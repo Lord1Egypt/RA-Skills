@@ -1,44 +1,64 @@
-## Description: <br>
-Feishu-integrated wrapper for the capability-evolver. Manages the evolution loop lifecycle (start/stop/ensure), sends rich Feishu card reports, and provides dashboard visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Evolver Wrapper manages capability-evolver lifecycle tasks, Feishu card reporting, dashboard visualization, history export, and watchdog checks.
 
-## Publisher: <br>
-[autogame-17](https://clawhub.ai/user/autogame-17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[autogame-17](https://clawhub.ai/user/autogame-17)
 
-## Use Case: <br>
-Developers and operators use this skill to run and supervise a capability-evolver loop with Feishu reporting, lifecycle controls, dashboard generation, and watchdog recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can keep an autonomous evolver manager running and restart it through watchdog behavior. <br>
-Mitigation: Run it only in an isolated workspace with explicit lifecycle controls and backups. <br>
-Risk: The skill can send operational data to Feishu and depends on Feishu token scope and target configuration. <br>
-Mitigation: Review Feishu app permissions, token scope, target chats, and document tokens before use. <br>
-Risk: The skill can modify installed skills and push workspace changes to git. <br>
-Mitigation: Review git remote, branch, auto-heal behavior, and any generated changes before enabling automated push behavior. <br>
+## Use Case:
 
+Developers and operators running capability-evolver use this skill to start, stop, monitor, and report evolution cycles through Feishu.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/autogame-17/feishu-evolver-wrapper) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Console text, Markdown dashboards, Feishu card payloads, and lifecycle command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send operational reports to Feishu, manage a watchdog process, and coordinate git synchronization when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: package.json and server release metadata) <br>
+Risk: High-impact automatic actions may affect repositories or long-running workspace state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a sandboxed or dedicated repository, disable automatic Git pushes, and make watchdog persistence explicit and removable before installation.
+
+Risk: Dynamic evaluation and shell execution can broaden execution risk.
+
+Mitigation: Remove dynamic eval and validate OpenClaw CLI paths without shell execution.
+
+Risk: Automatic npm healing may change dependencies without an explicit operator decision.
+
+Mitigation: Make npm auto-healing opt-in and review dependency changes before use.
+
+Risk: Feishu-bound reports and exports may expose sensitive workspace content or reach unintended destinations.
+
+Mitigation: Limit and redact all Feishu-bound content and restrict configured destinations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/autogame-17/skills/feishu-evolver-wrapper)
+- [ClawHub publisher profile](https://clawhub.ai/user/autogame-17)
+- [Feishu IM messages API](https://open.feishu.cn/open-apis/im/v1/messages)
+- [Feishu Docx documents API](https://open.feishu.cn/open-apis/docx/v1/documents)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions, CLI status text, Feishu interactive cards, dashboard markdown, and optional JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send reports, dashboard content, or history exports to Feishu when credentials and target IDs are configured.]
+
+## Skill Version(s):
+
+1.8.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

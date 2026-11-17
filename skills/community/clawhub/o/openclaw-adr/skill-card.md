@@ -1,43 +1,54 @@
-## Description: <br>
-Architecture Decision Records (ADR) management. Creates, updates, and tracks architectural decisions with templates and linting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Architecture Decision Records (ADR) management. Creates, updates, and tracks architectural decisions with templates and linting.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michealxie001](https://clawhub.ai/user/michealxie001)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to create, list, update, and lint Architecture Decision Records in a repository using a MADR-style Markdown format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Create and update commands write Markdown files under docs/adr for the selected repository root. <br>
-Mitigation: Run the skill from the intended repository root and use --root carefully before allowing file writes. <br>
-Risk: The documentation mentions index and configuration behavior that is not implemented in this artifact version. <br>
-Mitigation: Use the implemented create, list, update, and lint commands, and verify generated ADR indexes or configuration behavior manually. <br>
-Risk: Generated ADR files contain placeholder decision content. <br>
-Mitigation: Review and complete the generated ADR before treating it as an accepted architectural decision. <br>
+## Use Case:
 
+Developers and engineers use this skill to create, update, list, and lint Architecture Decision Records in MADR-style markdown so architectural choices can be tracked in a project repository.
 
-## Reference(s): <br>
-- [MADR](https://adr.github.io/madr/) <br>
-- [OpenClaw ADR on ClawHub](https://clawhub.ai/michealxie001/openclaw-adr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown ADR files and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local files under docs/adr in the selected project root.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill creates and updates ADR markdown files in docs/adr under the selected project root.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it from the intended repository root, review generated ADR files before committing, and keep normal version-control backups.
+
+Risk: Permission scope is not declared separately from the skill behavior.
+
+Mitigation: Before installation, confirm that local project-file creation and modification under docs/adr is acceptable for the target workspace.
+
+## Reference(s):
+
+- [MADR](https://adr.github.io/madr/)
+- [OpenClaw ADR on ClawHub](https://clawhub.ai/michealxie001/skills/openclaw-adr)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown ADR files, command-line text, JSON configuration examples, and YAML CI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and modifies ADR markdown files under docs/adr in the selected project root.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

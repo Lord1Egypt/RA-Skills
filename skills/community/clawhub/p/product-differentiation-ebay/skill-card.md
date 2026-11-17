@@ -1,44 +1,55 @@
-## Description: <br>
-eBay product differentiation strategy tool. Analyze competitor weaknesses, extract pain points from negative feedback, identify unique selling points, and generate actionable differentiation strategies. Includes eBay-specific seller feedback analysis. No API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates eBay-oriented product differentiation reports by comparing listings, mining review text for pain points and selling points, and recommending positioning and action steps.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External e-commerce sellers and marketplace analysts use this skill to compare eBay listings, mine feedback for pain points, identify selling points, and create product differentiation action plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace recommendations may be incomplete or misleading if listing, review, competitor, or market data is stale, biased, or sparse. <br>
-Mitigation: Review generated differentiation strategies against current eBay listings, seller policies, and business constraints before acting on them. <br>
-Risk: Input may include seller feedback, listing details, or other commercial data the user does not want to expose unnecessarily. <br>
-Mitigation: Provide only listing and review data that is appropriate to process locally, following the scan guidance for this release. <br>
-Risk: The installation example uses a global npx command from a third-party repository. <br>
-Mitigation: Confirm trust in the publisher and source package before global installation or execution. <br>
+## Use Case:
 
+External e-commerce sellers and operators use this skill to structure product comparison, review-text analysis, differentiation opportunities, positioning strategy, and prioritized action items for eBay-style marketplace listings.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/phheng/product-differentiation-ebay) <br>
-- [Publisher Profile](https://clawhub.ai/user/phheng) <br>
-- [Nexscope AI](https://www.nexscope.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style product differentiation report with comparison tables, prioritized findings, and action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run interactively or with JSON parameters containing listing, competitor, category, feedback, and market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The evidence flags eBay-specific claims as overstated for the local analyzer behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as a structured product differentiation aid and review marketplace-specific conclusions against real listing, feedback, shipping, and policy data before using them commercially.
+
+Risk: The documented installation command uses an unpinned global npx install path.
+
+Mitigation: Pin the skills CLI and source revision, or install and test in an isolated environment before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phheng/skills/product-differentiation-ebay)
+- [Publisher Profile](https://clawhub.ai/user/phheng)
+- [Nexscope AI](https://www.nexscope.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown report with comparison tables, ranked findings, strategy recommendations, and action items; usage examples include shell commands and JSON input.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally with interactive mode or a JSON argument; no API key is identified in the evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+interface:
+  display_name: "Mermail Support Agent"
+  short_description: "Triage, reply to, and escalate support email"
+  default_prompt: "Use $mermail-support-agent when the job is support triage, drafting customer replies, escalating a ticket, or closing a resolved support thread."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mermail"
+      description: "Mermail workspace and mailbox MCP server"
+      transport: "streamable_http"
+      url: "https://console.mermail.app/mcp"

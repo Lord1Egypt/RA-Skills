@@ -1,43 +1,60 @@
-## Description: <br>
-Reviews project architecture against OpenSpec documents and source structure, producing scored findings and actionable recommendations across configurable dimensions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Architecture review based on OpenSpec documents and code, with multi-dimension evaluation, structured scoring, and actionable recommendations.
 
-## Publisher: <br>
-[fdingiit](https://clawhub.ai/user/fdingiit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fdingiit](https://clawhub.ai/user/fdingiit)
 
-## Use Case: <br>
-Developers and engineers use this skill to evaluate module and component architecture against OpenSpec requirements and project code before major implementation, refactoring, or design review work. It supports spec-only and incremental reviews and helps triage issues into a structured Markdown report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads project specifications and architecture-relevant source files, which may include sensitive design details. <br>
-Mitigation: Install and run it only in projects where the agent is allowed to inspect those files. <br>
-Risk: The generated report may influence later implementation or automated fix work. <br>
-Mitigation: Review the report, including its metadata block, before sharing it or using it to drive follow-up changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to evaluate software architecture against OpenSpec requirements and project structure. It produces a structured architecture report with dimension scores, strengths, weaknesses, prioritized recommendations, and issue triage.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fdingiit/architect-review) <br>
-- [Architecture Review Dimensions](artifact/dimensions.md) <br>
-- [Architecture Review Examples](artifact/examples.md) <br>
-- [Architecture Review Report Template](artifact/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown architecture review report with tables, scoring, recommendations, and machine-readable metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local .arch-review/{date}-report.md file after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill reads project structure, OpenSpec documents, previous review reports, and relevant local files for architecture analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in projects where local architecture details may be reviewed by the agent.
+
+Risk: Generated reports may contain internal architecture details and file paths.
+
+Mitigation: Review the report before sharing it outside the project or organization.
+
+Risk: Architecture recommendations can be incomplete when specifications or project structure are missing or stale.
+
+Mitigation: Validate recommendations with project owners before using them as implementation direction.
+
+## Reference(s):
+
+- [Architecture Review Dimensions](dimensions.md)
+- [Report Template](report-template.md)
+- [Example Architecture Review Report](examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/fdingiit/skills/architect-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown architecture review report with scoreboard, per-dimension findings, recommendations, selected and deferred issues, and hidden machine-readable metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a local .arch-review/<date>-report.md file only after user confirmation; otherwise presents analysis in chat.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

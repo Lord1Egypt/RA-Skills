@@ -1,43 +1,57 @@
-## Description: <br>
-Helps agents retrieve and explain A-share stock quotes, historical K-line data, financial indicators, sector data, fund flow, IPO data, and margin trading data through AkShare. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Akshare Stock Temp helps agents use AkShare to retrieve and analyze China A-share quotes, historical K-line data, financial metrics, sector data, fund flow, IPO, and margin trading information.
 
-## Publisher: <br>
-[Liguang00806](https://clawhub.ai/user/Liguang00806) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liguang00806](https://clawhub.ai/user/liguang00806)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to ask an agent for A-share market data lookups, examples, and analysis workflows backed by AkShare data access. The outputs are informational and should not be treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market data may be delayed, incomplete, or affected by upstream website and API changes. <br>
-Mitigation: Treat outputs as informational, add retries and exception handling, and verify important results against authoritative market data sources. <br>
-Risk: The skill depends on installing AkShare from the Python package ecosystem. <br>
-Mitigation: Install AkShare deliberately from a trusted package source and review the resolved dependency set before deployment. <br>
-Risk: Users may confuse financial data summaries with trading advice. <br>
-Mitigation: Present results as data assistance only and avoid using outputs as a sole basis for investment decisions. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to answer China A-share market-data questions and generate AkShare-based examples or commands for quotes, historical prices, financial analysis, screening, and sector review. Outputs should be treated as research data, not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Liguang00806/akshare-stock-temp) <br>
-- [Publisher profile](https://clawhub.ai/user/Liguang00806) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; the included CLI script emits JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AkShare installation and network access to upstream market data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: AkShare calls contact external market-data services and may return unavailable, stale, or changed data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in an isolated Python environment, pin AkShare when reproducibility matters, add retries or exception handling, and verify important results against authoritative sources.
+
+Risk: Market-data outputs may be mistaken for investment advice.
+
+Mitigation: Treat outputs as research data only and require independent review before making financial decisions.
+
+Risk: The fund-flow CLI path may fail because the security evidence flags that command as needing correction.
+
+Mitigation: Test the fund-flow action locally and fix or disable it before relying on that command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liguang00806/skills/akshare-stock-temp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May query external market-data services through AkShare; the fund-flow command may need correction before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

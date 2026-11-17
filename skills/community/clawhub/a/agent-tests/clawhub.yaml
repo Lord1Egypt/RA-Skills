@@ -1,0 +1,15 @@
+slug: agent-tests
+name: agent-tests
+owner: jlacroix82
+description: Test framework for agent-native skills
+version: 1.0.1
+type: skill
+author: OpenClaw
+license: MIT
+keywords:
+  - testing
+  - framework
+  - agent
+  - automation
+entry: SKILL.md
+dependencies: []

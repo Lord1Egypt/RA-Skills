@@ -1,40 +1,54 @@
-## Description: <br>
-Acts as a professional UX/UI specialist for analyzing web and app designs, comparing solutions, identifying UX problems, and providing usability and accessibility guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Acts as a professional UX/UI specialist for analyzing web and app design, comparing solutions, identifying UX problems, and advising on usability and accessibility.
 
-## Publisher: <br>
-[Nykstukas](https://clawhub.ai/user/Nykstukas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nykstukas](https://clawhub.ai/user/nykstukas)
 
-## Use Case: <br>
-Designers, developers, and product teams use this skill to evaluate interface choices, compare UX alternatives, and receive accessibility-aware recommendations for web and application design. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: UX/UI and accessibility recommendations may be mistaken for formal accessibility certification. <br>
-Mitigation: Treat the output as guidance and have compliance-critical decisions reviewed through the appropriate accessibility and product review process. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Apple Human Interface Guidelines (HIG)](references/apple_hig.md) <br>
-- [Material Design 3](references/material_design.md) <br>
-- [UX/UI Analysis Framework](references/ux_analysis_framework.md) <br>
-- [WCAG 2.1 Principles (POUR)](references/wcag.md) <br>
+## Use Case:
 
+Designers, developers, and product teams use this skill to critique interfaces, compare UX options, and produce actionable recommendations grounded in usability heuristics, WCAG-oriented accessibility checks, and platform design guidelines.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown] <br>
-**Output Format:** [Markdown responses with recommendations, comparison tables, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no code execution, credential access, network activity, or persistence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bundled WCAG, Apple HIG, and Material Design references are short summaries and may not reflect complete or current official standards.
+
+Mitigation: Use the skill for design critique and accessibility-oriented advice, then verify consequential recommendations against the current official standards before release.
+
+## Reference(s):
+
+- [UX/UI Specialist Skill](artifact/SKILL.md)
+- [UX/UI Analysis Framework](artifact/references/ux_analysis_framework.md)
+- [WCAG 2.1 Principles (POUR)](artifact/references/wcag.md)
+- [Apple Human Interface Guidelines (HIG)](artifact/references/apple_hig.md)
+- [Material Design 3](artifact/references/material_design.md)
+- [ClawHub skill page](https://clawhub.ai/nykstukas/skills/ux-ui-specialist)
+- [Publisher profile](https://clawhub.ai/user/nykstukas)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with optional comparison tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory recommendations and risk notes; does not execute code or install dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

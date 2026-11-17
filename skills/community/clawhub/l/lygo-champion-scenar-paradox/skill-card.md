@@ -1,44 +1,62 @@
-## Description: <br>
-LYGO Delta9 Council Champion persona helper for SCENAR, the Architect of Paradox, used for semantic recursion, contradiction analysis, and memetic reversal as a pure advisor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated legacy persona-helper slug for the LYGO SCENAR champion; new installs should use lygo-champion-council.
 
-## Publisher: <br>
-[DeepSeekOracle](https://clawhub.ai/user/DeepSeekOracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-External users and developers use this persona helper to map contradictions, invert assumptions, extract testable claims, and request receipts while keeping the agent in an advisory role. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona guidance can produce misleading or manipulative framing if used to confuse rather than clarify. <br>
-Mitigation: Keep the skill in its documented advisory posture, separate observed facts from inferences and unknowns, and require receipts when stakes are high. <br>
-Risk: The linked LYGO-MINT verifier is a separate package with minting, ledger, and anchor-backfill workflows. <br>
-Mitigation: Review the verifier separately before providing files, URLs, or IDs to those workflows. <br>
+## Use Case:
 
+External users and agents with legacy LYGO workflows use this skill to invoke SCENAR-style paradox framing, contradiction maps, inversion tests, and receipts-first analysis while migrating new installs to lygo-champion-council.
 
-## Reference(s): <br>
-- [Persona Pack](references/persona_pack.md) <br>
-- [Canon Metadata](references/canon.json) <br>
-- [Portable Equations](references/equations.md) <br>
-- [Verifier Usage](references/verifier_usage.md) <br>
-- [LYGO-MINT Verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier) <br>
-- [ClawHub Skill Page](https://clawhub.ai/DeepSeekOracle/lygo-champion-scenar-paradox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with structured analysis sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typical responses include contradiction maps, inversion tests, essence extraction, receipts to verify, and misuse warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Manual successor installation uses npx clawhub@latest, which should be treated as remote code execution in sensitive environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or review the installer and successor package before installing; scan the successor before deployment.
+
+Risk: The bundled self-check confirms expected local files but is not cryptographic proof of authenticity.
+
+Mitigation: Verify the persona pack SHA-256 independently against references/canon.json when integrity matters.
+
+Risk: Paradox framing can be misused to confuse or obscure facts.
+
+Mitigation: Keep outputs separated into observed, inferred, and unknown claims, and require receipts for high-stakes use.
+
+## Reference(s):
+
+- [LYGO Champion: scenar paradox on ClawHub](https://clawhub.ai/deepseekoracle/skills/lygo-champion-scenar-paradox)
+- [Persona Pack](references/persona_pack.md)
+- [Canon](references/canon.json)
+- [Equations](references/equations.md)
+- [Verifier Usage](references/verifier_usage.md)
+- [LYGO-MINT Verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with prompt snippets and optional shell command text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Legacy deprecated slug; successor is lygo-champion-council.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

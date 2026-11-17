@@ -1,41 +1,53 @@
-## Description: <br>
-Split image datasets into train, validation, and test sets with random or stratified ratios, annotation handling, YOLO output structure, and reproducible seeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Split image datasets into train, validation, and test sets with configurable ratios, optional stratification, annotation handling, YOLO output layout, and reproducible random seeds.
 
-## Publisher: <br>
-[Mingo-318](https://clawhub.ai/user/Mingo-318) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mingo-318](https://clawhub.ai/user/mingo-318)
 
-## Use Case: <br>
-Developers and machine learning engineers use this skill to prepare image datasets for model training by splitting images and matching label files into train, validation, and test folders. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The split operation moves source image and annotation files by default. <br>
-Mitigation: Back up the dataset first or use the copy option when the original dataset must be preserved. <br>
-Risk: Dataset outputs may not match the expected training pipeline if annotations or YOLO structure are misconfigured. <br>
-Mitigation: Use the YOLO option when matching label files should be split with images, then verify the generated folders before deleting originals or updating training jobs. <br>
-Risk: Optional image statistics require Pillow in the runtime environment. <br>
-Mitigation: Install dependencies in a virtual environment when using statistics or image inspection features. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mingo-318/dataset-splitter) <br>
+## Use Case:
 
+Developers and machine learning engineers use this skill to prepare image datasets for model training by creating train, validation, and test splits while keeping corresponding annotation files aligned.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, text] <br>
-**Output Format:** [Markdown with bash command examples and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The underlying utility can create train, validation, and test folders, optionally in YOLO format, and can copy or move source files depending on user options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The default split operation moves image and label files, which can alter the source dataset or leave it partially relocated if execution fails.
+
+Mitigation: Run on a backup, prefer the --copy option, and choose an empty output directory before splitting.
+
+Risk: Existing files in the output location can be overwritten or mixed with prior split contents.
+
+Mitigation: Use a new empty output directory and review split counts before relying on the generated dataset.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mingo-318/skills/dataset-splitter)
+- [Publisher Profile](https://clawhub.ai/user/mingo-318)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown with inline bash commands and file path references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create train, validation, and test dataset folders, with optional YOLO images and labels layout, when the splitter script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

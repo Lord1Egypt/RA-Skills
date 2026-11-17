@@ -1,39 +1,52 @@
-## Description: <br>
-Meta-skill that orchestrates logging, monitoring, error handling, performance, security, deployment, and testing skills to assess whether a service is production-ready before launch, major releases, quarterly reviews, or incident follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meta-skill that orchestrates logging, monitoring, error handling, performance, security, deployment, and testing skills to ensure a service is fully production-ready before launch.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers, SREs, and engineering teams use this skill to coordinate production readiness reviews before first deploys, major releases, quarterly audits, incidents, dependency upgrades, or ownership handoffs. It helps route operational checks to specialized skills or agents and synthesize findings into a go/no-go assessment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates review areas to other skills or agents that may inspect sensitive project context. <br>
-Mitigation: Review delegated skills or agents before use and limit sensitive context to what each review area requires. <br>
-Risk: Installing from a branch URL can change the reviewed source over time. <br>
-Mitigation: Prefer the ClawHub install path or pin and inspect the source when installing from a repository branch. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Production Readiness on ClawHub](https://clawhub.ai/wpank/production-readiness) <br>
+## Use Case:
 
+Developers and engineers use this skill before first deploys, major releases, quarterly reviews, post-incident hardening, dependency upgrades, and team handoffs to produce a unified production readiness assessment.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, routing tables, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a readiness review workflow and synthesized go/no-go assessment guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mutable remote installer sources can change after review.
+
+Mitigation: Pin installer sources to a fixed ClawHub version and an immutable release tag or commit before running installation commands.
+
+Risk: The skill delegates parts of the review to other named skills or agents.
+
+Mitigation: Review and trust the delegated skills before relying on the synthesized production readiness result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/production-readiness)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown readiness assessment with checklists, maturity guidance, and go/no-go recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Synthesizes delegated operational reviews across logging, error handling, performance, security, deployment, testing, and documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

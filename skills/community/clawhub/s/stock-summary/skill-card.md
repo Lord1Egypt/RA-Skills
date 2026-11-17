@@ -1,41 +1,57 @@
-## Description: <br>
-Query stock quotes and technical analysis for A-share, Hong Kong, and U.S. stocks, returning real-time quote data, RSI/MACD indicators, a buy/sell/hold signal, and a trend chart image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query stock quotes, technical indicators, trading posture, and a trend chart for A-share, Hong Kong, and US stock codes.
 
-## Publisher: <br>
-[dongdong-bryant](https://clawhub.ai/user/dongdong-bryant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongdong-bryant](https://clawhub.ai/user/dongdong-bryant)
 
-## Use Case: <br>
-External users and agents use this skill to request stock-code summaries across supported A-share, Hong Kong, and U.S. markets. It fetches market data, computes simple technical indicators, and prepares a readable quote summary with a one-month trend chart. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requested stock symbols are sent to external finance data providers. <br>
-Mitigation: Use only stock symbols you are comfortable sharing with the configured market data providers. <br>
-Risk: The buy/sell/hold signal may be mistaken for financial advice. <br>
-Mitigation: Treat the signal as a simple RSI/MACD technical indicator and review it independently before making trading decisions. <br>
-Risk: The generated chart image may overwrite an existing stock_chart.png file in the workspace. <br>
-Mitigation: Move or rename any existing chart output before running the skill when file preservation matters. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve stock quote summaries, RSI/MACD technical analysis, buy/sell/hold posture, and a one-month trend chart for supported stock codes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Guidance] <br>
-**Output Format:** [Plain text stock summary plus a generated PNG chart image] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Takes one stock code as input and may overwrite the stock_chart.png chart output in the OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can produce unreliable trading signals from rough technical indicators and live data routing issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat buy/sell/hold posture as non-personalized technical commentary and verify quotes, indicators, and investment decisions with authoritative financial sources.
+
+Risk: Chart generation writes to a fixed privileged path.
+
+Mitigation: Review or adjust the chart output path before deployment so generated files are written only to an approved workspace location.
+
+Risk: A-share quote requests use unencrypted HTTP endpoints.
+
+Mitigation: Validate returned market data and prefer trusted or encrypted data sources where available before relying on the summary.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dongdong-bryant/skills/stock-summary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, files]
+
+**Output Format:** [Markdown-style text summary with quote fields, RSI/MACD values, a buy/sell/hold posture, and a generated PNG trend chart path.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires one stock code input; output depends on live market data from East Money or Yahoo Finance/yfinance sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

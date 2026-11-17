@@ -1,43 +1,59 @@
-## Description: <br>
-Generate images via OpenRouter API (text-to-image) with automation-ready local scripts and a queue-first workflow for single images or batched variants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images through OpenRouter text-to-image models with local scripts for single-image requests, batched variants, queued processing, and structured success or failure records.
 
-## Publisher: <br>
-[ironystock](https://clawhub.ai/user/ironystock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ironystock](https://clawhub.ai/user/ironystock)
 
-## Use Case: <br>
-Developers and agents use Banana Claws to generate image files from text prompts through OpenRouter, including posters, thumbnails, illustrations, concept art, and iterative variants. It is especially suited to workflows that enqueue work quickly, process batches asynchronously, and return consolidated completion records with attachments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and baseline images can be sent to OpenRouter, and provider metadata may be retained locally. <br>
-Mitigation: Use a private workspace, avoid sensitive prompts or images unless external transmission is approved, and delete generated queue/provider records when they are no longer needed. <br>
-Risk: Queue mode can terminate local processes based on editable queue metadata. <br>
-Mitigation: Review queue mode before installation and disable or patch stale-worker cleanup so it only terminates verified worker processes. <br>
-Risk: The skill requires an OpenRouter API key and network access. <br>
-Mitigation: Scope and protect OPENROUTER_API_KEY, run the preflight check before use, and avoid exposing logs or generated metadata containing request details. <br>
+## Use Case:
 
+Developers and agent operators use Banana Claws to turn image-generation requests into OpenRouter API calls, queue multi-image batches, and return generated files with consolidated status records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ironystock/banana-claws) <br>
-- [Declared skill homepage](https://github.com/ironystock/banana-claws) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Generated image files, JSON status/provider records, and Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OPENROUTER_API_KEY, supports queued batch generation, writes outputs and queue records to workspace paths, and may persist provider metadata for debugging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.9 (source: server release metadata) <br>
+Risk: Prompts and baseline images are transmitted to OpenRouter, and generated provider responses may be retained in local queue files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit sensitive prompts or private images without explicit approval, and periodically clear queue and provider-response files when retention is not needed.
+
+Risk: The server security review flagged the background queue because it can write outside intended paths and terminate local processes based on weak queue metadata.
+
+Mitigation: Install and run the skill only in a dedicated workspace under an unprivileged account, avoid shared or attacker-writable queue directories, and keep request IDs to simple letters, numbers, and dashes.
+
+Risk: Local baseline image uploads can disclose local file contents to the external provider.
+
+Mitigation: Use the deny-by-default local upload behavior and pass the upload confirmation option only after the user approves external transmission.
+
+## Reference(s):
+
+- [Banana Claws on ClawHub](https://clawhub.ai/ironystock/skills/banana-claws)
+- [Skill homepage](https://github.com/ironystock/banana-claws)
+- [OpenRouter](https://openrouter.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON status records, and generated image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY, python3, and requests; queue workflows may write result and provider-response JSON files.]
+
+## Skill Version(s):
+
+0.1.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

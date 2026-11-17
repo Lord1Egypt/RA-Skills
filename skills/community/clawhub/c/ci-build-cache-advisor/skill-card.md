@@ -1,38 +1,52 @@
-## Description: <br>
-Optimizes CI/CD build caching across GitHub Actions, GitLab CI, CircleCI, and Jenkins by analyzing cache hit rates, recommending cache keys, and reducing build times. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize CI/CD build caching across GitHub Actions, GitLab CI, CircleCI, and Jenkins — analyze cache hit rates, recommend cache keys, and reduce build times.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and DevOps engineers use this skill to analyze CI/CD cache configuration, identify cache misses or weak cache keys, and produce platform-specific recommendations that can reduce build time.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated cache configuration may be incorrect or inefficient for a specific repository or CI platform.
+
+Mitigation: Review generated cache keys, paths, restore keys, and platform-specific settings before applying them.
+
+Risk: The skill may inspect or reason about CI configuration files when asked about caching or build time.
+
+Mitigation: Limit shared inputs to the CI files needed for cache analysis and avoid including secrets or unrelated repository data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to review CI pipeline cache behavior, diagnose cache misses, and draft platform-specific cache key and restore-key recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested cache paths or keys could accidentally include secrets, credentials, environment files, or unnecessarily broad directories in CI caches. <br>
-Mitigation: Review cache paths and keys before applying recommendations, and exclude secret-bearing files, credential stores, environment files, and broad workspace directories. <br>
+**Output Format:** [Markdown with tables and inline YAML or shell examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/ci-build-cache-advisor) <br>
+**Other Properties Related to Output:** [Includes actionable CI cache recommendations, projected build-time improvements, and reviewable configuration snippets.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with tables, YAML examples, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory recommendations and projected CI time savings; users should review proposed cache paths and keys before applying changes.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

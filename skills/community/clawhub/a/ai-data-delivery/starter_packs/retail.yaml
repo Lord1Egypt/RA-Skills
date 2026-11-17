@@ -1,0 +1,50 @@
+# starter pack · 零售电商
+# 来源：mocks/retail 合成场景提炼
+# 本体段为声明式事实清单；投影示例见 mocks/ 与 references/contract.md。
+pack:
+  id: retail
+  name: 零售电商
+  version: '0.1'
+  source: mocks/retail 合成场景提炼
+  aligns:
+  - schema.org/Order
+  - schema.org/Customer
+  usage: python scripts/guide_model.py init --model partial.yaml --scope scope.yaml
+    --session session.json --pack starter_packs/retail.yaml
+ontology:
+  entities:
+  - name: 订单
+    attributes:
+    - name: 销售渠道
+      value_type: enum
+      values:
+      - 线上
+      - 线下
+      - 直播
+    - name: 订单状态
+      value_type: enum
+      values:
+      - 已完成
+      - 已退款
+      - 待付款
+    note: 一行一笔订单
+    uid: ent_order
+    evidence:
+      source: user_provided
+  - name: 客户
+    attributes:
+    - name: 会员等级
+      value_type: enum
+      values:
+      - 普通
+      - 银卡
+      - 金卡
+    note: 一行一个客户
+    uid: ent_customer
+    evidence:
+      source: user_provided
+  relations:
+  - from: 客户
+    to: 订单
+    predicate: 下单
+    mapping: equi_key

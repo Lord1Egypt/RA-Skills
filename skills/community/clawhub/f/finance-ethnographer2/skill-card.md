@@ -1,50 +1,61 @@
-## Description: <br>
-Privacy-first UX research ethnographer for OpenClaw with a personal-finance lens that observes consented usage, logs structured behavioral events, and compiles sanitized observed-behavior and interpretation reports for participant review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Privacy-first UX research ethnographer for OpenClaw with a personal-finance lens that observes consented usage, logs structured behavioral events, and produces sanitized pulse reports for participant review.
 
-## Publisher: <br>
-[dflam1](https://clawhub.ai/user/dflam1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dflam1](https://clawhub.ai/user/dflam1)
 
-## Use Case: <br>
-External OpenClaw users and research participants use this skill to collect consent-based UX research signals about personal-finance workflows. It records abstracted behavioral events, delegates redaction to a sanitizer subagent, and presents sanitized pulse reports for review before any sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently records broad OpenClaw usage and creates finance-related scores and hypothesis reports. <br>
-Mitigation: Require explicit participant consent before logging, keep retention low, allow pause/stop/delete controls, and review every sanitized report before sharing. <br>
-Risk: Reports may contain sensitive personal or financial context if abstraction or redaction fails. <br>
-Mitigation: Keep raw reports in memory only, delegate redaction to the sanitizer subagent, enable aggressive redaction by default, and require participant review before export or email. <br>
-Risk: Finance-related profiling and general usage logging can create privacy concerns even when raw values are not stored. <br>
-Mitigation: Use the configurable general-usage logging control where available, keep the default retention window limited, and use delete controls for unwanted date ranges. <br>
-Risk: Email sharing could send sanitized reports to the wrong recipient. <br>
-Mitigation: Require a participant-supplied recipient, validate the email format, confirm the recipient, and wait for explicit send approval. <br>
+## Use Case:
 
+External OpenClaw participants and UX researchers use this skill to collect consent-based behavioral observations about personal-finance workflows, then review sanitized observed-behavior and interpretation reports before any sharing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dflam1/finance-ethnographer2) <br>
-- [Publisher Profile](https://clawhub.ai/user/dflam1) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Sanitizer Subagent](artifact/sanitizer/SKILL.md) <br>
-- [Settings Schema](artifact/settings.schema.json) <br>
-- [Test Plan](artifact/test-plan.md) <br>
-- [Example Pulse Output](artifact/example-output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON event and manifest records, local files, and participant-facing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scheduled sanitized pulse reports, redaction manifests, settings/state files, and exportable report packages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and OpenClaw metadata) <br>
+Risk: The skill records broad local OpenClaw usage metadata after consent, including non-finance activity when general usage logging is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the consent notice and settings before starting research mode, and disable or limit general usage logging when only finance-specific activity should be collected.
+
+Risk: Finance-related observations may involve sensitive personal or financial context even when the skill is designed to abstract and sanitize values.
+
+Mitigation: Keep participant review enabled, use the sanitizer subagent before storing or sharing reports, and approve exports or sends only after reviewing the sanitized package.
+
+Risk: Stored event logs and pulse reports can accumulate local behavioral data over time.
+
+Mitigation: Use the configured retention window, pause or stop research mode for unrelated work, and delete research data by date range when it is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dflam1/skills/finance-ethnographer2)
+- [Publisher profile](https://clawhub.ai/user/dflam1)
+- [Settings schema](artifact/settings.schema.json)
+- [Example pulse output](artifact/example-output.md)
+- [Test plan](artifact/test-plan.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown reports with JSONL event records, JSON manifests, and settings JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces sanitized observed-behavior and interpretation reports, redaction manifests, local state files, and participant-facing review choices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenClaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

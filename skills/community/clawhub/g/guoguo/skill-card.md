@@ -1,41 +1,53 @@
-## Description: <br>
-Creates Guoguo courier shipment orders through an MCP-connected service after collecting sender, receiver, address, account, and pickup-time details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Guoguo shipping pickup orders through an MCP-connected Guoguo send service after collecting sender, receiver, account, address, and pickup-time details.
 
-## Publisher: <br>
-[dazhanggui](https://clawhub.ai/user/dazhanggui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dazhanggui](https://clawhub.ai/user/dazhanggui)
 
-## Use Case: <br>
-Users who need courier pickup orders can use this skill to gather required shipment details, prepare the Guoguo MCP request, submit an order, and report the order ID, pickup code, account ID, or failure reason. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill collects and transmits personal shipment information, including account phone numbers, sender and receiver details, full addresses, and pickup time. <br>
-Mitigation: Confirm all account, sender, receiver, address, and pickup-time details with the user before sending data to the Guoguo MCP service. <br>
-Risk: The skill can create real courier shipment orders through the connected MCP service. <br>
-Mitigation: Require explicit user approval before submitting the order and clearly show the resulting order ID, pickup code, account ID, or failure reason. <br>
-Risk: The skill may attempt persistent MCP setup when the Guoguo server is not already configured. <br>
-Mitigation: Ask for approval before changing MCP configuration, review the setup behavior, and use the skill only when the publisher and Guoguo MCP service are trusted. <br>
+## Use Case:
 
+External users and agents use this skill to gather required shipping details and create a Guoguo pickup order for a two-hour service window. The skill also guides MCP connection setup or checks before order creation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce courier order identifiers, pickup codes, account IDs, and failure explanations after MCP execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup step may persistently modify MCP configuration through a setup script that is not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before setup, show the exact MCP configuration change, and include the setup script for review before use.
+
+Risk: The order workflow handles personal shipping details such as names, phone numbers, and full addresses.
+
+Mitigation: Use the skill only with a trusted MCP server and collect or transmit only the information needed to create the shipment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dazhanggui/skills/guoguo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP tool arguments containing names, phone numbers, full addresses, pickup timestamps, and order response fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

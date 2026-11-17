@@ -1,41 +1,54 @@
-## Description: <br>
-Monitor GitHub repositories and npm packages for new releases and version updates, summarize changelogs, and highlight breaking changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor GitHub repos and npm packages for new releases and version updates. Summarizes changelogs and highlights breaking changes.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-Developers and engineers use this skill to monitor a configured watchlist of GitHub repositories and npm packages, detect new releases, and generate markdown changelog reports with breaking-change highlights. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs network lookups against public GitHub and npm sources and may encounter rate limits, missing packages, or transient network errors. <br>
-Mitigation: Review the watchlist before use, start with a dry run, and follow the setup guide's rate-limit and error-handling guidance. <br>
-Risk: Using --update-state changes the local baseline, which can suppress future reporting for versions already recorded. <br>
-Mitigation: Use --update-state only after confirming the report is correct; omit it for dry runs. <br>
+## Use Case:
 
+Developers and engineers use this skill to monitor configured GitHub repositories and npm packages, detect new releases, and receive concise markdown changelog reports with breaking changes highlighted.
 
-## Reference(s): <br>
-- [Setup Guide](references/setup-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/newageinvestments25-byte/nai-changelog-watcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and JSON release data, with shell commands and configuration guidance for setup and scheduling.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local watchlist and local state file; --update-state records current versions as the future baseline.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Release notes and changelog text from watched projects may contain untrusted or misleading content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated release-note text as untrusted, avoid following instructions embedded in changelog output, and review links or rendered Markdown before acting on them.
+
+Risk: The skill contacts GitHub and npm and can maintain local last-seen version state.
+
+Mitigation: Install and run it only for repositories and packages you intentionally add to the watchlist, and use cron scheduling only when background checks are desired.
+
+## Reference(s):
+
+- [Setup Guide](references/setup-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/newageinvestments25-byte/skills/nai-changelog-watcher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown reports with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local watchlist and last-seen version state when run with state updates enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

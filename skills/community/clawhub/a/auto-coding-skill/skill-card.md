@@ -1,43 +1,60 @@
-## Description: <br>
-Auto Coding V3 is an autonomous coding workflow skill that uses staged sub-agent prompts, model selection, review vetoes, complexity grading, and risk scorecards to move software tasks from requirements through implementation and verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Coding V3 coordinates an autonomous coding workflow with staged skill injection, code review, testing, verification, and risk scorecard checks.
 
-## Publisher: <br>
-[krislu1221](https://clawhub.ai/user/krislu1221) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krislu1221](https://clawhub.ai/user/krislu1221)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to structure coding work into design, decomposition, coding, testing, review, optimization, verification, and final output stages. It is intended for repository-level software changes where staged progress reporting, approval rules, state recovery, and review checks are useful. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad capability tags and approval controls that may allow consequential repository changes. <br>
-Mitigation: Install only in trusted repositories, review the capability tags and .auto-coding/rules.yaml, and run the skill in a disposable branch or worktree for higher-risk architecture or deletion work. <br>
-Risk: Local .auto-coding state, logs, approvals, and scratchpad files may contain task details, file paths, test output, or code excerpts. <br>
-Mitigation: Keep .auto-coding out of commits, avoid use with secrets or confidential code unless the model provider is approved, and delete the directory when the task is complete. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to drive multi-phase coding work from requirements through implementation, review, testing, and delivery verification. It is intended for project-scoped coding tasks where staged checks and explicit approvals are useful.
 
-## Reference(s): <br>
-- [Auto Coding V3 ClawHub page](https://clawhub.ai/krislu1221/auto-coding-skill) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [DESIGN.md](artifact/DESIGN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown progress reports, code edits, configuration files, shell commands, and verification summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local .auto-coding state, logs, approval records, and scratchpad files inside the project directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.7.17 (source: server release metadata, clawhub.json, README.md) <br>
+Risk: Advertised discipline and scorecard guardrails may be stronger than the behavior guaranteed by the package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and explicitly enable and verify discipline or scorecard modes when relying on those checks.
+
+Risk: The skill writes persistent local workflow files that may contain task details, file paths, test results, or code context.
+
+Mitigation: Run the skill only on an intended project directory, keep .auto-coding/ and /tmp/auto-coding-projects out of version control, and clean local state after use when appropriate.
+
+Risk: Optional external notifications or background scheduling can expose task summaries or create local automation if enabled.
+
+Mitigation: Leave notifications and scheduling disabled unless intentionally opted in, and verify cleanup after the task completes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krislu1221/skills/auto-coding-skill)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Design Document](artifact/DESIGN.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or text guidance with code, configuration, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-stream agent output; the skill may also create or update project files and local workflow state/log files when run.]
+
+## Skill Version(s):
+
+3.7.17 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

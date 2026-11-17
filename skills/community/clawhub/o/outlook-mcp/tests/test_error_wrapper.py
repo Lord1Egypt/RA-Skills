@@ -6,7 +6,7 @@ import pytest
 from msgraph.generated.models.o_data_errors.main_error import MainError
 from msgraph.generated.models.o_data_errors.o_data_error import ODataError
 
-from outlook_mcp.errors import GraphAPIError, wrap_graph_error
+from outlook_mcp.errors import MESSAGE_MAY_HAVE_BEEN_SENT, GraphAPIError, wrap_graph_error
 
 
 def _make_odata_error(status_code: int, code: str | None, message: str | None) -> ODataError:
@@ -38,6 +38,33 @@ def test_wrap_401_returns_auth_hint():
     assert "outlook-mcp auth" in wrapped.action
 
 
+def test_wrap_400_property_validation_names_the_time_zone_causes():
+    """`ErrorPropertyValidationFailure` says nothing about which property failed.
+
+    The whole of Graph's message is "At least one property failed validation",
+    and both causes seen on the calendar write path are time zones — neither
+    of which the text hints at. Verified live 2026-09-21: a recurrence whose
+    `recurrenceTimeZone` names a different zone than the event is refused with
+    exactly this code, as is a start/end patch that would change a series
+    master's zone without the recurrence alongside it.
+
+    A hint rather than a local refusal, deliberately. Detecting the first case
+    ourselves would mean deciding whether "Pacific Standard Time" and
+    "America/Los_Angeles" are the same zone — Graph accepts that pairing, and
+    the stdlib ships no mapping between the two vocabularies, so a string
+    comparison would refuse a round trip that currently works. That is the
+    shape of #30.
+    """
+    exc = _make_odata_error(
+        400, "ErrorPropertyValidationFailure", "At least one property failed validation."
+    )
+    wrapped = wrap_graph_error(exc)
+    assert wrapped.status_code == 400
+    assert wrapped.action is not None
+    assert "recurrenceTimeZone" in wrapped.action
+    assert "series master" in wrapped.action
+
+
 def test_wrap_403_access_denied_references_roadmap():
     """403/ErrorAccessDenied carries the unsupported-endpoint hint with ROADMAP pointer."""
     exc = _make_odata_error(403, "ErrorAccessDenied", "Access denied")
@@ -45,7 +72,21 @@ def test_wrap_403_access_denied_references_roadmap():
     assert wrapped.status_code == 403
     assert wrapped.error_code == "ErrorAccessDenied"
     assert wrapped.action is not None
-    assert "ROADMAP" in wrapped.action
+    assert (
+        "https://github.com/mpalermiti/outlook-mcp/blob/main/ROADMAP.md"
+        "#investigated-and-not-viable" in wrapped.action
+    )
+
+
+def test_roadmap_anchor_heading_still_exists():
+    """The 403 hint deep-links to ROADMAP.md#investigated-and-not-viable.
+    ROADMAP.md is not shipped in the sdist or wheel, so the hint has to be a
+    URL — fail loudly here if the heading it points at is ever renamed.
+    """
+    from pathlib import Path
+
+    roadmap = Path(__file__).resolve().parents[1] / "ROADMAP.md"
+    assert "## Investigated and not viable" in roadmap.read_text(encoding="utf-8")
 
 
 def test_wrap_403_unknown_subcode_has_no_hint():
@@ -64,6 +105,34 @@ def test_wrap_404_item_not_found_hint():
     assert wrapped.status_code == 404
     assert wrapped.action is not None
     assert "stale" in wrapped.action.lower() or "re-list" in wrapped.action.lower()
+
+
+def test_wrap_412_conflict_says_the_change_may_have_landed_and_to_re_read():
+    """412 is the one status a caller reaches by losing a race, not by being wrong.
+
+    `outlook_update_event` pins its recurrence re-send to the version it read, so
+    a concurrent edit conflicts instead of being silently reverted. Graph's own
+    message talks about "change keys", which tells an agent nothing about what to
+    do — the hint has to say what may have happened and that the retry is a re-read.
+
+    It must not say "nothing was modified" (#96): kiota retries a PATCH after a
+    503/504, and when the first attempt had committed, the retry carries the old
+    change key and gets this 412 for a change that landed. An agent told nothing
+    happened reports failure for a write that succeeded.
+    """
+    exc = _make_odata_error(
+        412,
+        "ErrorIrresolvableConflict",
+        "The send or update operation could not be performed because the change key "
+        "passed in the request does not match the current change key for the item.",
+    )
+    wrapped = wrap_graph_error(exc)
+    assert wrapped.status_code == 412
+    assert wrapped.action is not None
+    action = wrapped.action.lower()
+    assert "nothing was modified" not in action
+    assert "may already have been applied" in action
+    assert "re-read" in action
 
 
 def test_wrap_429_rate_limit_hint():
@@ -91,6 +160,31 @@ def test_wrap_500_unknown_has_no_hint():
     assert wrapped.status_code == 500
     assert wrapped.error_code == "InternalServerError"
     assert wrapped.action is None
+
+
+@pytest.mark.parametrize("status", [500, 502, 503, 504])
+def test_wrap_5xx_on_a_send_says_it_may_already_have_gone(status):
+    """A 5xx on a write that emails someone leaves its outcome unknown (#131).
+
+    The 503 row says to retry, which for a send is how the duplicate happens. The
+    send paths pass the hint for what they send, and it replaces the table's.
+    """
+    exc = _make_odata_error(status, "ServiceUnavailable", "Try again")
+    wrapped = wrap_graph_error(exc, outcome_unknown=MESSAGE_MAY_HAVE_BEEN_SENT)
+    assert wrapped.status_code == status
+    assert wrapped.action == MESSAGE_MAY_HAVE_BEEN_SENT
+
+
+@pytest.mark.parametrize(
+    ("status", "code"),
+    [(400, "ErrorInvalidRecipients"), (404, "ErrorItemNotFound"), (429, "TooManyRequests")],
+)
+def test_wrap_4xx_on_a_send_keeps_the_tables_hint(status, code):
+    """A 4xx is a refusal: nothing went out, so the usual hint stands."""
+    exc = _make_odata_error(status, code, "Refused")
+    assert wrap_graph_error(exc, outcome_unknown=MESSAGE_MAY_HAVE_BEEN_SENT).action == (
+        wrap_graph_error(exc).action
+    )
 
 
 def test_wrap_non_graph_exception_raises_typeerror():

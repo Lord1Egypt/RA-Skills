@@ -1,44 +1,63 @@
-## Description: <br>
-Send sticker and emoji images in chat by searching a local collection or Tenor, downloading favorites, and sending media through supported messaging channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send sticker/emoji images (表情包) in chat by searching a local collection or Tenor online, downloading favorites, and sending them through supported messaging channels.
 
-## Publisher: <br>
-[Horisky](https://clawhub.ai/user/Horisky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[horisky](https://clawhub.ai/user/horisky)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to let agents respond to chats with matching stickers or GIFs, search or manage a personal sticker collection, and send selected media through supported channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Sticker names and indexed paths may allow file operations outside the intended sticker directory. <br>
-Mitigation: Patch or constrain path handling before deployment, pin STICKER_DIR to a dedicated directory, and review indexed file paths before sending or deleting media. <br>
-Risk: The skill can automatically download and send media in chat. <br>
-Mitigation: Use it only in contexts where automatic media sending is acceptable and confirm the target chat, recipient, and media before sending. <br>
-Risk: Online fallback contacts Tenor with the search query. <br>
-Mitigation: Avoid sensitive search terms, prefer local-only search for private conversations, or disable online fallback where external queries are not acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw agent find, save, and send expressive sticker or emoji images in chat conversations across supported messaging channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Horisky/emo-img) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Tenor search API endpoint](https://tenor.googleapis.com/v2/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Media attachments, Guidance] <br>
-**Output Format:** [JSON command output and messaging-tool media payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Searches local sticker metadata first and can contact Tenor for online results; downloaded media is stored in the configured sticker directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The helper can fetch online media and arbitrary download URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted URLs only, prefer Tenor search results, and add URL allowlisting plus file size and media type checks before broad deployment.
+
+Risk: Unsafe file handling could write or delete files outside the intended sticker folder.
+
+Mitigation: Constrain filenames and paths to the configured sticker directory before allowing add, download, or remove operations.
+
+Risk: The skill can send media through messaging channels.
+
+Mitigation: Require user confirmation before sending externally sourced or newly downloaded media.
+
+Risk: TLS verification may be disabled as a fallback when certificate discovery fails.
+
+Mitigation: Require a valid certificate bundle and fail closed rather than disabling certificate verification.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/horisky/skills/emo-img)
+- [OpenClaw](https://openclaw.ai)
+- [Tenor Search API Endpoint](https://tenor.googleapis.com/v2/search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, download, list, or remove local sticker media files and return media paths or URLs for messaging tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

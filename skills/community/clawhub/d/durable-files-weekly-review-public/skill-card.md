@@ -1,42 +1,52 @@
-## Description: <br>
-Run a weekly token-optimization audit for durable instruction files in any OpenClaw workspace, generate a markdown report, and propose approval-gated cleanup actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a weekly token-optimization audit for durable instruction files in any OpenClaw workspace, generate a markdown report, and propose approval-gated cleanup actions.
 
-## Publisher: <br>
-[andyylin](https://clawhub.ai/user/andyylin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyylin](https://clawhub.ai/user/andyylin)
 
-## Use Case: <br>
-Developers and engineers use this skill to review durable workspace instruction files for token-heavy content, stale markers, and cleanup candidates while preserving a required approval step before edits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads durable workspace instruction files that may contain sensitive project or user context. <br>
-Mitigation: Run it only in workspaces where local review of those files is acceptable, and inspect the generated report before sharing it outside the workspace. <br>
-Risk: Cleanup proposals may remove useful instructions if accepted without review. <br>
-Mitigation: Approve deletions or edits only after checking the specific content proposed for removal, and apply cleanup in explicit batches. <br>
-Risk: The generated report records the scanned root path and findings about missing, stale, or large files. <br>
-Mitigation: Treat reports as workspace-local review artifacts unless their contents have been checked for sensitive paths or context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Publish Safety Notes](references/publish-safety.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/andyylin/durable-files-weekly-review-public) <br>
+## Use Case:
 
+Developers and workspace maintainers use this skill to audit durable instruction files for token-heavy content, stale markers, and cleanup candidates while preserving an explicit approval step before removals.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with concise chat guidance and optional shell command invocation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates a dated local report and an approval queue for proposed removals.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and RELEASE.md) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Running the audit against the wrong workspace could include unintended durable instruction files in the generated report.
+
+Mitigation: Run the skill only against a workspace you intend to review and inspect the generated report before sharing or acting on it.
+
+Risk: Cleanup proposals could remove useful instructions if accepted without review.
+
+Mitigation: Require explicit user approval before deletion or compaction and apply only approved cleanup batches.
+
+## Reference(s):
+
+- [Publish Safety Notes](references/publish-safety.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report plus concise chat guidance and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a dated report under knowledge/reports/durable-files by default; cleanup edits require explicit user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and RELEASE.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

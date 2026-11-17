@@ -1,45 +1,60 @@
-## Description: <br>
-Fabrik Codek helps an agent use a local personal knowledge base built from work sessions, knowledge graphs, vector search, full-text search, and outcome feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal cognitive architecture that learns how you work, builds a knowledge graph from local sessions, profiles expertise, adapts retrieval per task, and self-corrects using outcome feedback.
 
-## Publisher: <br>
-[ikchain](https://clawhub.ai/user/ikchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ikchain](https://clawhub.ai/user/ikchain)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure and query Fabrik Codek as a local MCP-backed memory and retrieval system for coding context, session knowledge, graph search, and personalized model routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create a persistent local knowledge base from work history and session transcripts, which may include sensitive code, credentials, or conversation history. <br>
-Mitigation: Review local transcript and datalake contents before indexing, and avoid indexing secrets or sensitive projects. <br>
-Risk: Optional SSE transport can expose indexed data if bound to a public interface. <br>
-Mitigation: Keep the default local transport unless SSE is required, bind SSE to localhost, and use firewall or access controls before any broader network exposure. <br>
-Risk: The skill relies on upstream Fabrik Codek source and local services outside the skill artifact. <br>
-Mitigation: Audit the upstream source before installing and keep Ollama, Meilisearch, and the fabrik command restricted to trusted local environments. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and operate Fabrik-Codek as a local MCP knowledge assistant for coding questions, semantic search, graph traversal, full-text search, and system health checks over their accumulated work context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ikchain/fabrik-codek) <br>
-- [Fabrik Codek homepage](https://github.com/ikchain/Fabrik-Codek) <br>
-- [Ollama](https://ollama.ai/) <br>
-- [Meilisearch](https://meilisearch.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; produces guidance for configuring and using a local MCP server and knowledge base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.10.0 (source: frontmatter and server release evidence) <br>
+Risk: The release depends on an unpinned external Fabrik-Codek source install.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Audit or pin the external source before installation and before running the MCP server.
+
+Risk: The skill can index Claude session transcripts and persistent local knowledge stores may contain sensitive derived content.
+
+Mitigation: Review transcript directories before ingestion, avoid broad transcript indexing unless needed, and protect the generated ./data/ indexes as sensitive data.
+
+Risk: Optional SSE transport could expose indexed local knowledge if bound beyond localhost.
+
+Mitigation: Keep MCP transport on stdio or localhost-only unless firewall and access controls are explicitly configured.
+
+## Reference(s):
+
+- [Fabrik-Codek GitHub repository](https://github.com/ikchain/Fabrik-Codek)
+- [Ollama](https://ollama.ai/)
+- [Ollama model library](https://ollama.ai/library)
+- [Meilisearch](https://meilisearch.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only skill output may include MCP configuration snippets, setup commands, and local usage guidance.]
+
+## Skill Version(s):
+
+1.10.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

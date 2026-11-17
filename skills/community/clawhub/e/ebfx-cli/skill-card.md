@@ -1,40 +1,53 @@
-## Description: <br>
-Helps agents use the ebfx CLI to query EBFX financial platform data, quotes, dashboard status, deal profit, education payment calculations, supported currencies, and payout methods from a terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents use the ebfx CLI to query EBFX financial business platform data, quotes, and operations information for cross-border payments, foreign exchange, and education-payment workflows.
 
-## Publisher: <br>
-[renxqoo](https://clawhub.ai/user/renxqoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renxqoo](https://clawhub.ai/user/renxqoo)
 
-## Use Case: <br>
-Agents use this skill when a user asks to access EBFX operational or financial information through the ebfx CLI, including authentication status, dashboard pending items, deal profit, education payment quotes, currency support, and payout methods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to access protected EBFX financial dashboard and profit data. <br>
-Mitigation: Require clear EBFX-specific user intent before login, dashboard, or profit queries, and confirm sender binding and token status before protected commands. <br>
-Risk: Sender IDs and token files can expose access to user-scoped EBFX data if the runtime environment is not controlled. <br>
-Mitigation: Run the skill only where sender IDs and token files are access-controlled, and rely on the injected OPENCLAW_SENDER_ID unless an explicit override is required. <br>
+## Use Case:
 
+Developers and operations agents use this skill to select and run ebfx CLI commands for EBFX authentication, dashboard pending and deal-profit queries, supported-currency checks, payout-method lookup, and education-payment price calculations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renxqoo/ebfx-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline bash commands; the referenced CLI commands normally return JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Protected queries should be gated on sender binding and token status before running business commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Broad or ambiguous business requests could cause an agent to run authenticated EBFX dashboard, profit, or token-status commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit activation to explicit EBFX requests and confirm user intent before running protected financial-data commands.
+
+Risk: The skill may run in environments where EBFX tokens or sender IDs are available.
+
+Mitigation: Review before installation in those environments and verify sender binding and token status before protected queries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renxqoo/skills/ebfx-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON-oriented command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default EBFX CLI command output is JSON for agent and automation consumption.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

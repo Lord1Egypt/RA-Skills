@@ -1,0 +1,5 @@
+{
+  "name": "text-util",
+  "version": "1.0.0",
+  "description": "Lightweight text transformation utilities: case conversion, reverse, and count."
+}

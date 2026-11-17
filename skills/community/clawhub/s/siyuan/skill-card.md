@@ -1,44 +1,62 @@
-## Description: <br>
-SiYuan Note API client for notebook, document, block, asset, search, export, file, and system operations through a local SiYuan API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SiYuan Note API client for complete notebook, document, block, search, export, and local API management.
 
-## Publisher: <br>
-[weiwei2027](https://clawhub.ai/user/weiwei2027) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weiwei2027](https://clawhub.ai/user/weiwei2027)
 
-## Use Case: <br>
-Developers and note-management users use this skill to let an agent read, search, create, update, move, delete, and export content in a local SiYuan workspace. It is suited for authenticated automation of notebooks, documents, blocks, assets, SQL queries, and file operations when the user controls the local SiYuan API token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make broad authenticated changes to a local SiYuan workspace, including document, block, notebook, asset, and file operations. <br>
-Mitigation: Install it only for workspaces where agent control is intended, keep config.yaml private, and review create, update, move, delete, export, file, Pandoc, and proxy requests before execution. <br>
-Risk: Raw SQL and network proxy features can expose sensitive note data or send trusted local requests to destinations chosen during use. <br>
-Mitigation: Review SQL before allowing it, prefer read-only queries when possible, and use the network proxy only for destinations and payloads the user explicitly trusts. <br>
+## Use Case:
 
+Developers and ClawHub users use this skill to let an agent manage a local SiYuan Note workspace. It supports listing, searching, reading, creating, updating, moving, deleting, and exporting notebooks, documents, blocks, assets, and files through the SiYuan local HTTP API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weiwei2027/siyuan) <br>
-- [SiYuan API documentation](https://www.siyuan-note.club/apis) <br>
-- [SiYuan official repository](https://github.com/siyuan-note/siyuan) <br>
-- [Local API reference](artifact/API.md) <br>
-- [Configuration example](artifact/config.example.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline Python, shell, YAML, and JSON examples; command-line tools may emit text, Markdown, JSON, files, or exported archives.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a running local SiYuan instance, API access enabled, and a private config.yaml containing the user's API token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence, frontmatter, and CHANGELOG) <br>
+Risk: The skill can edit, move, or delete notebooks, documents, blocks, and files in a SiYuan workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up notes before write/delete operations and review the exact target IDs, paths, and command flags before execution.
+
+Risk: The skill depends on config.yaml containing a SiYuan API token.
+
+Mitigation: Protect config.yaml, avoid sharing logs or artifacts that expose the token, and rotate the token if it may have been disclosed.
+
+Risk: Raw SQL, forward_proxy, file deletion, and --yes can perform broad or irreversible actions.
+
+Mitigation: Use these capabilities only with explicit intent, keep base_url pointed at a trusted localhost SiYuan instance, and prefer confirmation prompts for destructive commands.
+
+## Reference(s):
+
+- [ClawHub SiYuan release page](https://clawhub.ai/weiwei2027/skills/siyuan)
+- [SiYuan official repository](https://github.com/siyuan-note/siyuan)
+- [SiYuan online API documentation](https://www.siyuan-note.club/apis)
+- [SiYuan API.md source](https://github.com/siyuan-note/siyuan/blob/master/API.md)
+- [Artifact API reference](artifact/API.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON, terminal text, and Python API usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local SiYuan API endpoint and token in config.yaml; operations may read, create, update, delete, move, export, query, or proxy through that local instance.]
+
+## Skill Version(s):
+
+1.0.3 (source: SKILL.md frontmatter, evidence.release.version, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

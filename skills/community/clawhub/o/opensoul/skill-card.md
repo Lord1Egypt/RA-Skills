@@ -1,45 +1,62 @@
-## Description: <br>
-OpenSoul helps agents implement encrypted, blockchain-based audit logging for persistent memory, self-reflection, and economic activity tracking on Bitcoin SV. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables AI agents to log immutable, encrypted audit trails on Bitcoin SV for persistent memory, self-reflection, and on-chain economic tracking.
 
-## Publisher: <br>
-[MasterGoogler](https://clawhub.ai/user/MasterGoogler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mastergoogler](https://clawhub.ai/user/mastergoogler)
 
-## Use Case: <br>
-Developers and agent operators use OpenSoul to add persistent, auditable action logs, session history, performance reflection, and cost tracking to Python-based agents. It is most relevant when an agent needs verifiable records across sessions and the operator is prepared to manage blockchain wallet and encryption keys. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to handle BSV wallet private keys and PGP private keys. <br>
-Mitigation: Use a new low-balance or testnet wallet, store keys outside source control, prefer passphrase-protected PGP keys, and treat local backup JSON files as sensitive records with encryption, restrictive permissions, and deletion policies. <br>
-Risk: Agent logs may contain prompts, personal data, secrets, raw queries, document names, or confidential business details that become permanent if written to a public blockchain. <br>
-Mitigation: Log only minimal redacted metadata or encrypted commitments, review fields before flushing, and avoid publishing raw prompts, secrets, PII, or confidential business context. <br>
-Risk: External install or clone workflows can run code from outside the reviewed artifact. <br>
-Mitigation: Audit any cloned repository and external install script before execution, and prefer installing dependencies in an isolated virtual environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenSoul on ClawHub](https://clawhub.ai/MasterGoogler/opensoul) <br>
-- [MasterGoogler publisher profile](https://clawhub.ai/user/MasterGoogler) <br>
-- [Bitcoin SV documentation](https://wiki.bitcoinsv.io/) <br>
-- [OpenPGP](https://www.openpgp.org/) <br>
-- [WhatsOnChain block explorer](https://whatsonchain.com/) <br>
+## Use Case:
 
+Developers and agent builders use this skill to add blockchain-backed audit logging, persistent memory, and self-reflection workflows to agents that need verifiable action history.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, and configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces implementation guidance and example code; runtime behavior may write local backups and publish encrypted or redacted log data to the BSV blockchain when configured by the operator.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Activity logs written to blockchain storage may expose sensitive data and can be difficult or impossible to remove.
+
+Mitigation: Verify encryption and storage behavior before using real data, and do not log prompts, secrets, PII, customer data, filenames, internal project names, or raw task text.
+
+Risk: Wallet private-key handling can expose funds or agent identity if raw keys are passed through unsafe workflows.
+
+Mitigation: Start on testnet with throwaway keys, avoid raw private-key handoff, and keep wallet and PGP secrets in protected environment variables or a secrets manager.
+
+Risk: Installer or dependency behavior from the external OpenSoul package may change over time.
+
+Mitigation: Inspect and pin the external repository and dependencies before installation, and use a virtual environment instead of changing system Python packages.
+
+## Reference(s):
+
+- [OpenSoul skill page](https://clawhub.ai/mastergoogler/skills/opensoul)
+- [OpenSoul skill guide](artifact/SKILL.md)
+- [OpenSoul prerequisites](artifact/PREREQUISITES.md)
+- [OpenSoul examples](artifact/EXAMPLES.md)
+- [Bitcoin SV documentation](https://wiki.bitcoinsv.io/)
+- [WhatsOnChain API documentation](https://developers.whatsonchain.com/)
+- [OpenPGP software](https://www.openpgp.org/software/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown documentation with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes templates for agent configuration, logging, self-reflection, and blockchain interaction.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

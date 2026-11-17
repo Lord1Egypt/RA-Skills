@@ -1,0 +1,8 @@
+interface:
+  display_name: 栏目写作风格手册
+  short_description: 将成熟稿提炼为可复用的栏目表达规范、依据摘录与写稿核对表
+  default_prompt: 请根据我提供的3至5篇成熟稿、目标读者、词表和表达限制，生成栏目写作风格手册；证据请引用短摘录。
+  icon_small: ../icon-512.png
+  icon_large: ../icon-512.png
+policy:
+  allow_implicit_invocation: true

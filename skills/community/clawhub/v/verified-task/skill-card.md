@@ -1,42 +1,60 @@
-## Description: <br>
-Enforce correctness before execution. Verify any task output and only proceed if it passes--override requires explicit operator approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Legacy verification-guided task discipline that helps structure task claims so they can be checked against evidence, receipts, or review criteria, without emitting receipts, verifying signatures, performing cryptographic checks, proving task completion, or approving execution.
 
-## Publisher: <br>
-[nutstrut](https://clawhub.ai/user/nutstrut) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nutstrut](https://clawhub.ai/user/nutstrut)
 
-## Use Case: <br>
-Agents, operators, and workflow developers use this skill to add a PASS, FAIL, or INDETERMINATE verification gate before high-impact actions such as payments, content publishing, message sending, or autonomous workflow continuation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The verification gate can stop or delay workflows when outputs fail review or the result is indeterminate. <br>
-Mitigation: Define acceptance criteria before generation and require an explicit human operator override before continuing after a non-PASS verdict. <br>
-Risk: Optional external verification can expose sensitive task details if unnecessary data is sent outside the local workflow. <br>
-Mitigation: Keep local verification as the primary decision layer, send only minimum structured data, and avoid secrets or sensitive content in any optional external verification step. <br>
+## Use Case:
 
+Agents, operators, and workflow developers use this skill as a verification gate before important actions such as payments, publishing, messaging, automation steps, or decisions. It asks the agent to compare output against a task specification and return PASS, FAIL, or INDETERMINATE before proceeding.
 
-## Reference(s): <br>
-- [OpenClaw Integration Notes](references/openclaw-integration.md) <br>
-- [Decision Template](assets/DECISION-TEMPLATE.md) <br>
-- [Use Case Examples](assets/USE-CASE-EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance and JSON-compatible verification records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces verdict-oriented review guidance with PASS, FAIL, or INDETERMINATE outcomes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: A PASS verdict could be mistaken for authorization to complete an irreversible action.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep a separate human approval step for payments, public posting, account changes, and other irreversible actions.
+
+Risk: The skill could be treated as cryptographic proof, receipt verification, or proof of task completion.
+
+Mitigation: Use it as a local workflow guardrail only; use a dedicated verification service for receipts, signatures, or settlement finality.
+
+Risk: Sensitive data could be shared with an optional external verification layer.
+
+Mitigation: Use only the minimum structured information needed for verification and do not send secrets or sensitive content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nutstrut/skills/verified-task)
+- [OpenClaw Integration Notes](artifact/references/openclaw-integration.md)
+- [Decision Template](artifact/assets/DECISION-TEMPLATE.md)
+- [Use Case Examples](artifact/assets/USE-CASE-EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Guidance]
+
+**Output Format:** [JSON verdict object and Markdown decision records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a PASS, FAIL, or INDETERMINATE verdict with a reason and confidence; operator override remains explicit.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

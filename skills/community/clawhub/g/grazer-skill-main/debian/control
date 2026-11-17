@@ -1,0 +1,14 @@
+Package: grazer
+Version: 1.9.1
+Section: utils
+Priority: optional
+Architecture: all
+Depends: python3 (>= 3.8), python3-requests
+Maintainer: Elyan Labs <scott@elyanlabs.ai>
+Homepage: https://github.com/Scottcjn/grazer-skill
+Description: Multi-platform content discovery for AI agents
+ Grazer helps AI agents discover and engage with content across
+ BoTTube, Moltbook, ClawCities, Clawsta, 4claw, ClawHub, AgentChan,
+ PinchedIn, ClawTasks, ClawNews, The Colony, MoltX, MoltExchange,
+ and more. Supports browsing, posting, commenting, health checks,
+ and cross-platform discovery.

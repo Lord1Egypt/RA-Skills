@@ -1,42 +1,64 @@
-## Description: <br>
-Solves high-school and college-entrance-exam style derivative problems about root existence, root counts, and parameter ranges by turning derivative analysis into concrete point-selection proofs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to solve derivative problems about root existence, root counts, and parameter ranges by converting derivative and limit analysis into concrete point-selection, sign-change, continuity, and intermediate-value proofs.
 
-## Publisher: <br>
-[jiuxiao-yunwai](https://clawhub.ai/user/jiuxiao-yunwai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiuxiao-yunwai](https://clawhub.ai/user/jiuxiao-yunwai)
 
-## Use Case: <br>
-Students, tutors, and education-focused agents use this skill to produce grader-friendly derivative proofs for root existence, root-count, and parameter-range problems. It emphasizes monotonic intervals, concrete sign-changing points, continuity, and endpoint checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated mathematical proofs may contain incorrect derivative signs, endpoint handling, or point-selection inequalities. <br>
-Mitigation: Review each proof step, verify calculations independently, and check equality cases before using the result for grading or instruction. <br>
-Risk: Users may apply generated content outside the skill's educational math scope, including safety-critical or compliance contexts. <br>
-Mitigation: Verify any safety-critical or compliance conclusion against current official sources and qualified experts; use this skill for educational derivative proof writing. <br>
+## Use Case:
 
+External learners, educators, and developers use this skill to solve or rewrite high-school and college-entrance-exam style derivative problems into grader-friendly proofs. It is especially useful when an agent must justify root existence, root count, or parameter ranges with explicit selected points and sign-change arguments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiuxiao-yunwai/derivative-point-picking) <br>
-- [README](README.md) <br>
-- [Example library](examples/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with mathematical notation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual Chinese and English educational proof guidance; no autonomous tool use or code execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is Chinese-focused and may not match every learner's language needs, curriculum, or examination style.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated explanation for language, notation, and curriculum fit before using it in instruction or assessment.
+
+Risk: Educational math guidance can still produce an incorrect proof, omit an endpoint case, or choose points that do not establish the required sign change.
+
+Mitigation: Check derivative signs, domains, endpoint cases, continuity intervals, and selected-point inequalities before relying on the final proof.
+
+Risk: Installation guidance uses standard git clone commands into local skill folders.
+
+Mitigation: Install only from a trusted publisher or repository and review the skill files before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiuxiao-yunwai/skills/derivative-point-picking)
+- [README](README.md)
+- [Root existence and parameter range example](examples/01-root-existence-parameter-range.md)
+- [Exponential positive point example](examples/02-exponential-positive-point.md)
+- [Negative interval point example](examples/03-negative-interval-point.md)
+- [Local bound derivative example](examples/04-local-bound-derivative.md)
+- [Sequence explicit n example](examples/05-sequence-explicit-n.md)
+- [Log transform three roots example](examples/06-log-transform-three-roots.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown proof guidance with mathematical notation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English guidance; no code execution required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

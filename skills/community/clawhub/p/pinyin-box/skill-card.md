@@ -1,41 +1,58 @@
-## Description: <br>
-Pinyin Box helps agents convert Chinese text, or text extracted from images, into pinyin grid or mizige practice sheets as PNG or PDF files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pinyin Box helps an agent turn Chinese text, or text extracted from images, into pinyin-grid or mizige handwriting practice sheets.
 
-## Publisher: <br>
-[yanglinzhen](https://clawhub.ai/user/yanglinzhen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanglinzhen](https://clawhub.ai/user/yanglinzhen)
 
-## Use Case: <br>
-External users and agents use this skill to turn Chinese text or OCR-extracted image text into printable handwriting practice materials. It supports pinyin-grid and mizige worksheet generation with PNG output by default and PDF output on request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external pinyin-box package installation. <br>
-Mitigation: Install it in a virtual environment when possible and review the dependency before use. <br>
-Risk: Image OCR and generated worksheet files may save sensitive text in the workspace output directory. <br>
-Mitigation: Use only text or images intended for worksheet generation, and avoid sensitive images unless saved OCR text and output files are acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to generate Chinese handwriting practice materials from provided text or from OCR-extracted image text. It guides the agent to clean the input, call the pinyin-box CLI, and return generated PNG or PDF worksheet files with basic character and page information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yanglinzhen/pinyin-box) <br>
-- [pinyin-box 1.0.0 package artifact](https://github.com/yanglinzhen/pinyin-box/releases/download/v1.0.0/pinyin_box-1.0.0-py3-none-any.whl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated PNG or PDF file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated files are saved to the workspace output directory; image inputs may require OCR before worksheet generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Dependency installation uses a broad package specifier and a direct wheel URL, which can make supply-chain review harder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a dedicated virtual environment or sandbox and use a reviewed, exactly pinned, hash-verified dependency source.
+
+Risk: Images processed for OCR may contain sensitive text.
+
+Mitigation: Treat uploaded images and extracted text as sensitive and avoid retaining or exposing them beyond the worksheet-generation task.
+
+Risk: Passing user-provided text to a CLI can be unsafe if command strings are assembled directly.
+
+Mitigation: Invoke the CLI with structured arguments rather than building a shell command string from user text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yanglinzhen/skills/pinyin-box)
+- [pinyin-box 1.0.0 wheel listed in requirements.txt](https://github.com/yanglinzhen/pinyin-box/releases/download/v1.0.0/pinyin_box-1.0.0-py3-none-any.whl)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PNG or PDF worksheet files with concise Markdown status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include output file paths, character counts, and page counts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

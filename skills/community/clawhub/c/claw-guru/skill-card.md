@@ -1,45 +1,61 @@
-## Description: <br>
-OpenClaw support skill for troubleshooting configuration errors, gateway startup and crashes, chat channel routing, integrations, authentication, upgrades, tools, policies, remote access, and other OpenClaw topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OpenClaw documentation-grounded troubleshooting and support guidance for configuration, gateway operation, channel integrations, upgrades, skills, sandboxing, model providers, webhooks, hooks, and related OpenClaw issues.
 
-## Publisher: <br>
-[isriam](https://clawhub.ai/user/isriam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[isriam](https://clawhub.ai/user/isriam)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose and resolve OpenClaw gateway, configuration, integration, routing, authentication, installation, and upgrade problems using live documentation and local diagnostics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic workflows may read OpenClaw logs, installed files, and configuration paths that can contain private operational details or tokens. <br>
-Mitigation: Review diagnostic output before sharing it and redact sensitive values from logs or configuration snippets. <br>
-Risk: Configuration edits or gateway restarts can disrupt an OpenClaw installation if applied without review. <br>
-Mitigation: Back up the configuration, validate JSON, and review proposed edits or restart commands before allowing changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/isriam/claw-guru) <br>
-- [OpenClaw docs home](https://docs.openclaw.ai) <br>
-- [OpenClaw docs index](https://docs.openclaw.ai/llms.txt) <br>
-- [OpenClaw configuration reference](https://docs.openclaw.ai/gateway/configuration-reference.md) <br>
-- [OpenClaw gateway troubleshooting](https://docs.openclaw.ai/gateway/troubleshooting.md) <br>
-- [OpenClaw GitHub repository](https://github.com/openclaw/openclaw) <br>
-- [OpenClaw GitHub issues](https://github.com/openclaw/openclaw/issues) <br>
+## Use Case:
 
+Developers, operators, and support agents use this skill to diagnose OpenClaw installation, gateway, configuration, channel routing, integration, and operational problems using current OpenClaw documentation and local diagnostics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose diagnostic commands, log review, configuration validation steps, and gateway restart guidance for user review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may guide an agent to read OpenClaw logs and configuration files that can contain sensitive operational details.
+
+Mitigation: Review diagnostic commands and outputs before sharing them, especially when auth, permissions, sandboxing, remote access, or tool policy are involved.
+
+Risk: The skill may suggest configuration edits or gateway restarts that can disrupt an OpenClaw deployment.
+
+Mitigation: Back up configuration, validate JSON, review proposed changes, restart deliberately, and check logs after changes.
+
+## Reference(s):
+
+- [OpenClaw Docs](https://docs.openclaw.ai)
+- [OpenClaw Docs Index](https://docs.openclaw.ai/llms.txt)
+- [OpenClaw Configuration Reference](https://docs.openclaw.ai/gateway/configuration-reference.md)
+- [OpenClaw Gateway Troubleshooting](https://docs.openclaw.ai/gateway/troubleshooting.md)
+- [OpenClaw General Troubleshooting](https://docs.openclaw.ai/help/troubleshooting.md)
+- [OpenClaw FAQ](https://docs.openclaw.ai/help/faq.md)
+- [OpenClaw Doctor Docs](https://docs.openclaw.ai/gateway/doctor.md)
+- [OpenClaw GitHub Repository](https://github.com/openclaw/openclaw)
+- [OpenClaw GitHub Issues](https://github.com/openclaw/openclaw/issues)
+- [OpenClaw Releases](https://github.com/openclaw/openclaw/releases)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration review steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose diagnostics, log inspection, configuration validation, gateway restarts, and documentation lookups for review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

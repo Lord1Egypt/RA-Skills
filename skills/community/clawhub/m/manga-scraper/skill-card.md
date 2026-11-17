@@ -1,44 +1,54 @@
-## Description: <br>
-Download manga chapters from MangaBat by guiding an agent to run a scraper with CDN download and optional Playwright browser fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download manga chapters from MangaBat as image files using direct CDN URLs with optional Playwright browser fallback.
 
-## Publisher: <br>
-[jrrqd](https://clawhub.ai/user/jrrqd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jrrqd](https://clawhub.ai/user/jrrqd)
 
-## Use Case: <br>
-Agents use this skill to help users download MangaBat chapters by locating and running a trusted scraper, choosing CDN or browser fallback options, and saving chapter images locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package tells agents to find and run a scraper script that is not included, making the script source uncertain. <br>
-Mitigation: Only run a scraper whose exact source is trusted, and review the script before execution. <br>
-Risk: Scraping can create outbound requests and local image downloads that may exceed rights, site permission, or acceptable-use expectations. <br>
-Mitigation: Use the skill only for content the user has rights and permission to access, keep worker counts low, and avoid broad batch downloads without authorization. <br>
-Risk: The optional Playwright fallback may install Chromium and launch a headless browser. <br>
-Mitigation: Confirm the environment allows browser installation and outbound browsing before using the fallback. <br>
+## Use Case:
 
+External users and developers can use this skill to guide manga chapter downloads from MangaBat URLs, including single chapters, chapter ranges, or all detected chapters. The skill provides setup and command guidance for CDN-based downloads and optional browser fallback when direct access is blocked.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jrrqd/manga-scraper) <br>
-- [Publisher profile](https://clawhub.ai/user/jrrqd) <br>
-- [MangaBat](https://www.mangabats.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe local image output paths and optional browser fallback setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill tells users to locate manga_scraper.py with a broad home-directory search, while the artifact does not include that script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that manga_scraper.py comes from the same trusted package and execute it only from a fixed, reviewed path.
+
+Risk: The workflow can scrape remote sites, write downloaded files, and optionally install Playwright and Chromium.
+
+Mitigation: Require user confirmation before scraping, writing files, using browser fallback, or installing browser dependencies; prefer an isolated environment with pinned dependencies.
+
+## Reference(s):
+
+- [Manga Scraper on ClawHub](https://clawhub.ai/jrrqd/skills/manga-scraper)
+- [Publisher profile: jrrqd](https://clawhub.ai/user/jrrqd)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent to produce command-line download instructions and setup steps; the referenced scraper may write downloaded .webp image files when executed by the user.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

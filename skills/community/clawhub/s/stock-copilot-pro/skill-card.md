@@ -1,48 +1,67 @@
-## Description: <br>
-OpenClaw stock analysis skill for US/HK/CN markets. Combines QVeris data sources (THS, Caidazi, Alpha Vantage, Finnhub, X sentiment) for quote, fundamentals, technicals, news radar, morning/evening brief, and actionable investment insights. <br>
+## Description:
 
-This skill is for research and development only. <br>
+OpenClaw stock analysis skill for US/HK/CN markets. Combines QVeris data sources (THS, Caidazi, Alpha Vantage, Finnhub, X sentiment) for quote, fundamentals, technicals, news radar, morning/evening brief, and actionable investment insights.
 
-## Publisher: <br>
-[buxibuxi](https://clawhub.ai/user/buxibuxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[buxibuxi](https://clawhub.ai/user/buxibuxi)
 
-## Use Case: <br>
-External users and developers use this skill to analyze US, Hong Kong, and China equities, compare symbols, manage watchlists, generate daily briefs, and scan market themes using QVeris-sourced market, fundamentals, technical, news, and sentiment data. Outputs are for research and education, not financial or investment advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a QVeris API key and sends stock symbols or watchlist-related queries to qveris.ai. <br>
-Mitigation: Use a scoped QVeris API key and install only when that data sharing is acceptable. <br>
-Risk: The skill stores local watchlist and parameter-template state. <br>
-Mitigation: Review or delete local watchlist and evolution files when needed, and disable evolution for runs that should not update local state. <br>
-Risk: Generated stock analysis may be incomplete, stale, or misleading if source data is sparse or provider coverage varies. <br>
-Mitigation: Treat output as research rather than financial advice and verify important decisions against authoritative market data. <br>
-Risk: Optional scheduled jobs can repeatedly send holdings-oriented prompts through the configured agent workflow. <br>
-Mitigation: Review cron job payloads and delivery targets before enabling scheduled briefs or radar runs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [QVeris](https://qveris.ai) <br>
-- [Metrics and Signals](references/metrics-and-signals.md) <br>
-- [Report Template](references/report-template.md) <br>
-- [Tool Selection Strategy](references/tool-selection.md) <br>
-- [Tool Chains](references/tool-chains.json) <br>
-- [Sector Benchmarks](references/sector-benchmarks.json) <br>
+## Use Case:
 
+External users and developers use this skill to analyze US, Hong Kong, and China equities, compare symbols, manage watchlists, and generate market briefs or radar from QVeris-powered data sources.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance, configuration] <br>
-**Output Format:** [Markdown, JSON, or chat-friendly text, depending on command options.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include watchlist updates, scheduled brief configuration, source disclosures, and optional evidence traces.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.3.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends stock symbols, watchlist context, and analysis queries to QVeris using QVERIS_API_KEY.
+
+Mitigation: Install only when this data sharing is acceptable, keep the API key scoped for read-only use, and avoid placing secrets in prompts, logs, or configuration files.
+
+Risk: Auto-invocation and optional cron jobs can create recurring QVeris API usage.
+
+Mitigation: Review auto-invocation before enabling the skill and add scheduled jobs only when recurring market briefs or radar runs are intended.
+
+Risk: The skill stores local watchlist state and optional tool-template evolution state inside the skill directory.
+
+Mitigation: Review watchlist contents before use and run with --no-evolution when local tool-template state should not be persisted.
+
+Risk: Stock analysis outputs can be incomplete, stale, or unsuitable as investment advice.
+
+Mitigation: Treat outputs as research support, check source freshness and consistency, and verify decisions against independent financial analysis.
+
+## Reference(s):
+
+- [Stock Copilot Pro on ClawHub](https://clawhub.ai/buxibuxi/skills/stock-copilot-pro)
+- [QVeris](https://qveris.ai)
+- [Metrics and Signals](references/metrics-and-signals.md)
+- [Report Template](references/report-template.md)
+- [Tool Selection Strategy](references/tool-selection.md)
+- [Sector Benchmarks](references/sector-benchmarks.json)
+- [Tool Chains](references/tool-chains.json)
+- [OpenClaw Cron Example](config/openclaw-cron.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, or chat-friendly text with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include concise research reports, comparison summaries, watchlist updates, scheduled brief guidance, and optional evidence traces.]
+
+## Skill Version(s):
+
+0.3.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

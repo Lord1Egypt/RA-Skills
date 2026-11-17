@@ -1,44 +1,61 @@
-## Description: <br>
-Analyzes current stock news, policy events, company announcements, industry developments, and market sentiment to produce event-driven market analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes news and event-driven signals for Chinese equity markets, including policy, company, industry, and sentiment events.
 
-## Publisher: <br>
-[wang-junjian](https://clawhub.ai/user/wang-junjian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wang-junjian](https://clawhub.ai/user/wang-junjian)
 
-## Use Case: <br>
-Investors, analysts, and market researchers use this skill to interpret news events, corporate disclosures, policy changes, and industry developments and organize their likely market impact. It helps produce structured analysis for stock-impact assessment, event classification, related ticker discovery, historical comparison, and risk-aware decision support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce trading-style analysis that may be mistaken for personalized investment advice. <br>
-Mitigation: Treat outputs as informational analysis only, verify cited sources, and consult a qualified financial professional before making investment decisions. <br>
-Risk: Market-event analysis can be incomplete or stale if current news searches fail or sources are not checked. <br>
-Mitigation: Require the report to state whether current news was searched and clearly mark analysis that does not include real-time news. <br>
+## Use Case:
 
+Investors, analysts, and financial research workflows use this skill to structure event-driven market commentary around policy changes, company announcements, industry events, market sentiment, related securities, historical analogs, and risk controls. Outputs should be treated as educational analysis, not personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wang-junjian/news-event-driven-analysis) <br>
-- [Quick Start](references/quick-start.md) <br>
-- [Event Analysis Template](references/event-analysis-template.md) <br>
-- [Event Classification](references/event-classification.md) <br>
-- [Historical Cases](references/historical-cases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis report with tables, ratings, risk notes, and source-search status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require current web searches for news and market-event context before analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can generate buy, sell, timing, position-size, target-price, and stop-loss suggestions that users may mistake for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as educational market commentary, require independent verification, and avoid using the skill as the sole basis for trading decisions.
+
+Risk: Event-driven analysis can become stale if current news or announcements are not retrieved successfully.
+
+Mitigation: State whether current news was searched and included; when search fails, label the report as based on historical patterns or framework analysis.
+
+Risk: The bundled report template contains a hard-coded analyst attribution.
+
+Mitigation: Remove or replace the attribution before publishing reports unless the attribution has been verified.
+
+## Reference(s):
+
+- [Event Analysis Template](artifact/references/event-analysis-template.md)
+- [Event Classification](artifact/references/event-classification.md)
+- [Historical Cases](artifact/references/historical-cases.md)
+- [Quick Start](artifact/references/quick-start.md)
+- [ClawHub Skill Page](https://clawhub.ai/wang-junjian/skills/news-event-driven-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis reports with tables, ratings, risk notes, and action-oriented commentary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market impact ratings, affected securities, timing, position sizing, stop-loss guidance, and source freshness notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

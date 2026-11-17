@@ -1,0 +1,8 @@
+{
+  "id": "memory-handoff",
+  "version": "0.1.1",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh memory-handoff"
+  ],
+  "trust_level": "workspace"
+}

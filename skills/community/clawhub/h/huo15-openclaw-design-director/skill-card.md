@@ -1,36 +1,52 @@
-## Description: <br>
-Generates three contrasting, executable design-direction briefs with palette, typography, visual hook, comparison matrix, anti-pattern warnings, and handoff guidance for frontend design work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language design-direction advisor that turns ambiguous page, product, brand, app, or mini-program requests into three contrasting executable design briefs with palettes, typography, visual hooks, contemporary reference anchors, anti-pattern warnings, a comparison matrix, and a recommended direction.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Designers, developers, and product teams use this skill when a product, page, app, or brand needs a clear aesthetic direction before implementation. It compares divergent design styles and recommends one direction with concrete colors, fonts, trend anchors, and downstream handoff guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
+External users, product teams, and developers use this skill when they need to choose a visual direction before frontend design work. It prepares concise, executable design briefs that can be handed to a related frontend-design workflow.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown design briefs with comparison matrices and structured handoff guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces three contrasting design directions with color, typography, visual hook, anti-pattern notes, and frontend-design handoff guidance; no executable code.] <br>
+Global
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Broad aliases such as design direction or 设计方向 may route ordinary design discussions to this skill.
+
+Mitigation: Confirm the user is asking for direction selection or visual brief generation before relying on the skill's recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-openclaw-design-director)
+- [Publisher profile](https://clawhub.ai/user/zhaobod1)
+- [Skill definition](artifact/SKILL.md)
+- [License](artifact/LICENSE)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown briefs and structured handoff JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces three contrasting direction briefs, comparison and recommendation text, and handoff fields for downstream frontend design work.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -42,14 +42,44 @@ SME behavior:
 - prefer unique-key joins to merge with product master
 - keep staleness messaging explicit (daily batch timing)
 
-## 3) Invoicing outputs
+**Parsed by `get-inventory-feed`** — `sanmar_dip.txt` (pipe-delimited,
+inventory **by warehouse**, refreshed hourly, under `/SanMarPDD/`). Columns:
 
-Guide includes invoice delivery modes such as:
+| # | Column | # | Column |
+| --- | --- | --- | --- |
+| 1 | Inventory_Key | 10 | Dozens_Price (=piece) |
+| 2 | Size_Index | 11 | Case_Price |
+| 3 | Catalog_No (style) | 12 | Case_Size |
+| 4 | Catalog_Color | 13–15 | sale prices |
+| 5 | Size | 16–17 | sale start/end |
+| 6 | Whse_No (1=Sea,2=Cin,3=Dal,4=Reno,5=Robb,6=Jax,7=Minn,12=Phx,31=Rich) | 18 | Unique_key |
+| 7 | Quantity (≤1500/whse) | 19 | Discontinued_code (S/M) |
+| 8 | Piece_Weight | | |
+| 9 | Piece_Price | | |
 
-- EDI-like `810` data artifacts
-- spreadsheet/email variants (on request)
+Always pass `style` to filter — the full feed is very large. For real-time
+per-warehouse levels prefer the SOAP `get-inventory-levels` (PromoStandards v2).
+`SanMar_EPDD.csv` (comma-delimited) is the bulk-inventory companion (QTY = all
+warehouses combined) and shares the SDL columns plus `QTY`.
 
-If a caller asks for invoice status or extracts, route to the canonical invoice surface and include the source file type in metadata.
+## 3) Invoicing & shipment outputs
+
+By-request outbound files (exported to the account's FTP outbound folder):
+
+- **Daily Invoice** — fixed-width `.txt`, Excel, and EDI-810 variants. Parsed by
+  `parse-invoice-file`. Full layout in [`invoicing.md`](invoicing.md).
+- **Daily Shipment Status (ASN)** — tab-delimited `*Status.txt` with tracking +
+  per-line costs. Parsed by `get-shipment-status`. Layout in
+  [`shipment_status.md`](shipment_status.md).
+- **Special/Incentive pricing** — `sanmar_dp.csv` (lowest `my_price`, full
+  catalog), `sanmar_dpc.csv` (daily delta: `unique_key` + `my_price` only),
+  `sanmar_dpIncentive.csv` (program pricing). The `common` join key is
+  `unique_key` (= `inventory_key` + `size_index`).
+
+The invoice/status/pricing files are account-specific in name and folder — pass
+an exact `remote_path`, or let the tool fetch the newest match from
+`SANMAR_FTP_OUTBOUND_DIR`. Never invent filenames when a caller expects a
+deterministic PO association.
 
 ## File and folder handling behaviors
 

@@ -1,39 +1,50 @@
-## Description: <br>
-Agente especialista em Matemática para FUVEST - Ciência da Computação (IME-USP), covering the FUVEST math program through guided reasoning, Socratic tutoring, study planning cues, and flashcard-oriented review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agente especialista em Matemática para preparação FUVEST em Ciência da Computação (IME-USP), com resolução guiada, método socrático, revisão por flashcards e planejamento de estudo.
 
-## Publisher: <br>
-[AntonioVFranco](https://clawhub.ai/user/AntonioVFranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antoniovfranco](https://clawhub.ai/user/antoniovfranco)
 
-## Use Case: <br>
-Students and tutoring agents use this skill to guide FUVEST mathematics study sessions, especially for Ciencia da Computacao at IME-USP. It helps structure concept explanations, exercise-solving dialogue, module review, assessment, and flashcard prompts without simply giving final answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad math or concept-learning requests and steer the session into a FUVEST-focused guided tutoring style. <br>
-Mitigation: Use it for explicit FUVEST mathematics study sessions or narrow the trigger if general math assistance should remain separate. <br>
-Risk: As a prompt-only tutoring skill, it may produce incorrect or incomplete mathematical guidance. <br>
-Mitigation: Review reasoning steps, verify final results against trusted study materials, and scan the skill before deployment. <br>
+## Use Case:
 
+Estudantes e tutores externos usam este agente para orientar estudos de Matemática voltados à FUVEST, cobrindo conceitos, resolução guiada de exercícios, identificação de armadilhas comuns e revisão espaçada. O agente é especialmente direcionado ao contexto de Antonio e ao objetivo de Ciência da Computação no IME-USP.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guided tutoring prompts, study structure, conceptual explanations, and flashcard-style review content; it does not execute code or access external systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill is tailored to a named student context and may activate broadly around math topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when Portuguese FUVEST mathematics tutoring is desired, and narrow activation or language guidance before deployment in broader tutoring contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antoniovfranco/skills/agente-matematica)
+- [Publisher profile](https://clawhub.ai/user/antoniovfranco)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational tutoring guidance with study checklists and example flashcards]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Portuguese-language tutoring output tailored to FUVEST mathematics preparation]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

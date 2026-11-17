@@ -1,40 +1,53 @@
-## Description: <br>
-A simple test skill for verifying clawhub.ai upload functionality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A simple test skill for verifying ClawHub upload functionality.
 
-## Publisher: <br>
-[xiaoshitou1](https://clawhub.ai/user/xiaoshitou1) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoshitou1](https://clawhub.ai/user/xiaoshitou1)
 
-## Use Case: <br>
-Developers and ClawHub publishers use this skill to verify that a skill upload can load, respond with a status message, and report a timestamp. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill does not provide useful production functionality beyond upload and loading verification. <br>
-Mitigation: Use it only as a platform loading test, not as a production workflow dependency. <br>
-Risk: A successful status message may be mistaken for a broader validation of the hosting platform or agent runtime. <br>
-Mitigation: Treat the response as confirmation that this skill loaded and responded; run separate checks for platform, metadata, and trigger behavior. <br>
+## Use Case:
 
+Developers and platform testers use this skill to confirm that a ClawHub skill upload can be loaded, invoked, and return a timestamped status message.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoshitou1/test-upload-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Plain text status message in a Markdown-compatible response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a current ISO timestamp and basic operational status text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and artifact _meta.json) <br>
+Risk: Users may mistake this upload-testing artifact for a production integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only to verify skill loading and upload behavior; select or build a production skill for operational workflows.
+
+Risk: The skill only returns a timestamped status message and component checklist.
+
+Mitigation: Do not rely on it for domain work, automation, or productivity tasks beyond basic platform verification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoshitou1/skills/test-upload-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with a timestamped confirmation message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No files, shell commands, code changes, API calls, or external tool calls are produced.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

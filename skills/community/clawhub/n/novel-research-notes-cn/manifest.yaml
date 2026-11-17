@@ -1,0 +1,25 @@
+name: novel-research-notes-cn
+slug: novel-research-notes-cn
+display_name: 小说考据资料卡
+description: 面向单次章节、场景或短文的小说考据资料卡：接收用户粘贴的材料、可访问的官方链接及设定问题，逐条整理可引用事实、来源定位、写作建议与未证实项。适合世界观核对和情节细节补全；材料、链接内容或关键时间地点不足时，明确列出缺项，不把推测包装成历史、医疗或法律专业结论。
+version: 1.0.1
+repository: https://github.com/xxjrq/novel-research-notes-cn
+license: MIT-0
+icon: icon-512.png
+tags:
+  - 小说写作
+  - 资料考据
+  - 世界观设定
+  - 来源整理
+trigger_words:
+  - 小说考据
+  - 设定资料卡
+  - 写作资料整理
+interface:
+  display_name: 小说考据资料卡
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+  input_examples:
+    - "根据我贴出的出版社年表，回答这段剧情中的交通设定是否成立。"
+  output_description: "带来源定位的可用事实、写作建议和缺失资料清单。"
+self_test: "python3 scripts/self_test.py"

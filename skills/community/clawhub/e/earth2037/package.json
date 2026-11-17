@@ -1,0 +1,19 @@
+{
+  "name": "@earth2037/clawhub-earth2037",
+  "version": "2.0.5",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/main.mjs",
+    "doctor": "node tools/doctor.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "ajv": "8.20.0",
+    "ws": "8.22.0"
+  },
+  "license": "MIT-0"
+}

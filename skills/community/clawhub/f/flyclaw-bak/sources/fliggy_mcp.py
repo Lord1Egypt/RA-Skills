@@ -35,7 +35,7 @@ logger = logging.getLogger("flyclaw.fliggy_mcp")
 # Constants (from @fly-ai/flyai-cli v1.0.6 open-source bundle)
 # ---------------------------------------------------------------------------
 MCP_URL = "https://flyai.open.fliggy.com/mcp"
-DEFAULT_API_KEY = "sk-faRn8Kp2QzXvLm9YtA4EjHcWbS7oUdG5iF3xNqV6rZ"
+DEFAULT_API_KEY = "REDACTED-SECRET"
 DEFAULT_SIGN_SECRET = "XSbdYnucPARDc9knhD8+X6hxdD1Nh6ZGI6Hadg25kBw="
 X_TTID = "ai2c(sk.clawhub)"
 SIGN_VER = "7"

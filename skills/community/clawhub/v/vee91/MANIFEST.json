@@ -1,0 +1,16 @@
+{
+  "name": "vee-qwen-transcendent-nexus",
+  "version": "91.0.0",
+  "primary_provider": "qwen",
+  "primary_general_model": "qwen3.8-max",
+  "specialists": {
+    "coding": "qwen3-coder-next",
+    "multimodal": "qwen3.8-omni-flash",
+    "image": "qwen-image-2.1"
+  },
+  "provider_lock_in": false,
+  "openai_required": false,
+  "self_evolution": true,
+  "sandbox_required_for_self_modification": true,
+  "zero_cost_first": true
+}

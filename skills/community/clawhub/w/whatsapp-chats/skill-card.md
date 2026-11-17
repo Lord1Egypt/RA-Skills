@@ -1,39 +1,52 @@
-## Description: <br>
-List, search, and analyze WhatsApp conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+List, search, and analyze WhatsApp conversations.
 
-## Publisher: <br>
-[MarcosRippel](https://clawhub.ai/user/MarcosRippel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[marcosrippel](https://clawhub.ai/user/marcosrippel)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and agents use this skill to list, search, and summarize locally cached WhatsApp/Baileys chats, including contacts, groups, and basic chat counts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can reveal private contacts, phone numbers, group identifiers, and local WhatsApp/Baileys cache paths.
+
+Mitigation: Run it only in workspaces where that disclosure is acceptable, and treat command output as sensitive.
+
+Risk: Search and statistics results may be copied into broader agent context or user-visible responses.
+
+Mitigation: Review and redact identifiers, names, phone numbers, group IDs, and local paths before sharing output.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents and users use this skill to browse, search, and summarize locally stored WhatsApp chat metadata from a Baileys session cache. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local WhatsApp chat/session data that may include names, phone numbers, group identifiers, and message content. <br>
-Mitigation: Use it only in a trusted workspace and review outputs before sharing, storing, or pasting them elsewhere. <br>
-Risk: Broad or casual searches can expose private conversation metadata beyond the user's immediate intent. <br>
-Mitigation: Use narrow search terms and limit result counts when inspecting sensitive local data. <br>
+**Output Format:** [JSON from the helper script, with Markdown command examples in skill guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Reads local WhatsApp/Baileys state and returns contact, group, search, or statistics data.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Analysis] <br>
-**Output Format:** [JSON printed to stdout, with optional text summaries by the calling agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local WhatsApp credential/session cache paths and can return contacts, groups, and chat statistics.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-HTTP status code reference that helps agents explain status codes, common causes, and suggested fixes using an offline lookup table. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTTP status code reference for instant offline lookup of status code meanings, common causes, and fix suggestions across RFC-standard, WebDAV, Nginx, Cloudflare, and common unofficial codes.
 
-## Publisher: <br>
-[ToBeWin](https://clawhub.ai/user/ToBeWin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers and support engineers use this skill to quickly interpret HTTP response codes during API debugging, including standard, WebDAV, Nginx, Cloudflare, AWS Elastic Load Balancer, and common unofficial codes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reported no suspicious behavior, but noted that full artifact-backed verification was not available in its review workspace. <br>
-Mitigation: Review the visible skill description and packaged files before deployment, and install only if they match the expected HTTP status reference. <br>
-Risk: HTTP status guidance for unofficial vendor-specific codes can be incomplete or change over time. <br>
-Mitigation: For production incidents, confirm vendor-specific codes against the relevant server, proxy, or platform documentation. <br>
+## Use Case:
 
+Developers and support engineers use this skill to interpret HTTP response codes, compare related errors, and choose practical debugging or retry actions while working offline.
 
-## Reference(s): <br>
-- [HTTP status code table](references/codes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text explanations with status-code summaries, causes, and recommended actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline lookup; no API key, network access, or external dependencies required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: HTTP troubleshooting guidance can be incomplete for provider-specific or unofficial status codes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify high-impact production changes against the relevant service, proxy, or standards documentation before applying them.
+
+Risk: Retry recommendations can increase load or duplicate side effects when used blindly.
+
+Mitigation: Use exponential backoff, respect Retry-After headers, and retry only idempotent or otherwise safe requests.
+
+Risk: Authentication and authorization debugging may prompt users to discuss secrets or tokens.
+
+Mitigation: Avoid pasting credentials into agent conversations and rotate any secret that may have been exposed.
+
+## Reference(s):
+
+- [HTTP Status Codes Complete Reference](references/codes.md)
+- [ClawHub Skill Page](https://clawhub.ai/tobewin/skills/http-status)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown with concise explanations, comparison summaries, and retry guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline reference output; no API calls, network access, persistence, or credential handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

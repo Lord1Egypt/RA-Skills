@@ -1,0 +1,198 @@
+#!/usr/bin/env bash
+# setup_profile.sh — 首次引导：交互式收集开源身份 + 写入持久化 profile
+#
+# 写入位置（XDG 兼容）：
+#   ${XDG_CONFIG_HOME:-$HOME/.config}/opensource-skill-to-github/profile.env
+#
+# 跨 agent 工作：profile 在用户 $HOME 下，不在 skill 目录、不在 workspace；
+# 重装 skill / 切 agent / 换 workspace 都不丢；权限 600 不可被其他用户读。
+set -euo pipefail
+
+. "$(dirname "$0")/_lib_profile.sh"
+
+PROFILE="$(osg_profile_path)"
+PROFILE_DIR="$(dirname "$PROFILE")"
+
+# ─── 模式 ─────────────────────────────────────
+MODE="interactive"
+NON_INTERACTIVE=0
+SHOW_ONLY=0
+for arg in "$@"; do
+  case "$arg" in
+    --show|--print)        SHOW_ONLY=1 ;;
+    --non-interactive|-y)  NON_INTERACTIVE=1 ;;
+    --path)                echo "$PROFILE"; exit 0 ;;
+    --help|-h)
+      cat <<EOF
+Usage: $0 [options]
+  (no args)            交互式引导写入 profile
+  --show, --print      显示当前已配置的开源身份
+  --non-interactive    无人值守，从环境变量读后直接落盘
+  --path               只打印 profile 路径并退出
+  --help, -h           显示本帮助
+
+Profile 路径: $PROFILE
+EOF
+      exit 0
+      ;;
+  esac
+done
+
+# ─── --show 模式 ─────────────────────────────
+if [[ $SHOW_ONLY -eq 1 ]]; then
+  osg_resolve_identity
+  echo "📋 当前开源身份配置"
+  echo "==================================="
+  echo "Profile 路径: $PROFILE"
+  if [[ -f "$PROFILE" ]]; then
+    echo "Profile 状态: ✅ 已存在"
+  else
+    echo "Profile 状态: ⚠️  不存在（运行 $0 引导创建）"
+  fi
+  echo ""
+  echo "OSG_AUTHOR_NAME   = ${OSG_AUTHOR_NAME:-<未设置>}"
+  echo "OSG_GITHUB_HANDLE = ${OSG_GITHUB_HANDLE:-<未设置>}"
+  echo "OSG_AUTHOR_EMAIL  = ${OSG_AUTHOR_EMAIL:-<未设置>}"
+  if [[ -n "${OSG_GITHUB_TOKEN_CMD:-}" ]]; then
+    echo "OSG_GITHUB_TOKEN_CMD = <已配置>"
+  elif [[ -n "${OSG_GITHUB_TOKEN:-}" || -n "${GITHUB_TOKEN:-}" ]]; then
+    echo "OSG_GITHUB_TOKEN     = <已配置，不显示>"
+  else
+    echo "GitHub push token    = <未配置>"
+  fi
+  echo ""
+  echo "来源优先级（高→低）："
+  echo "  1. 当前 shell 环境变量"
+  echo "  2. $PROFILE"
+  echo "  3. git config --global user.name/email"
+  echo ""
+  echo "GitHub push token 优先级：GITHUB_TOKEN → OSG_GITHUB_TOKEN → OSG_GITHUB_TOKEN_CMD → gh auth token"
+  exit 0
+fi
+
+# ─── 准备目录 ────────────────────────────────
+mkdir -p "$PROFILE_DIR"
+chmod 700 "$PROFILE_DIR" 2>/dev/null || true
+
+# ─── 读取已有值作为默认 ──────────────────────
+osg_resolve_identity
+DEFAULT_NAME="${OSG_AUTHOR_NAME:-}"
+DEFAULT_HANDLE="${OSG_GITHUB_HANDLE:-}"
+DEFAULT_EMAIL="${OSG_AUTHOR_EMAIL:-}"
+
+# ─── 非交互模式 ──────────────────────────────
+if [[ $NON_INTERACTIVE -eq 1 ]]; then
+  if [[ -z "$DEFAULT_NAME" || -z "$DEFAULT_HANDLE" || -z "$DEFAULT_EMAIL" ]]; then
+    cat <<EOF >&2
+❌ 非交互模式需要预设所有 OSG_* 环境变量：
+   export OSG_AUTHOR_NAME="..."
+   export OSG_GITHUB_HANDLE="..."
+   export OSG_AUTHOR_EMAIL="..."
+EOF
+    exit 1
+  fi
+  NAME="$DEFAULT_NAME"
+  HANDLE="$DEFAULT_HANDLE"
+  EMAIL="$DEFAULT_EMAIL"
+else
+  # ─── 交互模式 ────────────────────────────
+  echo "🪪 opensource-skill-to-github 首次引导"
+  echo "===================================================="
+  echo "将写入：${PROFILE}（chmod 600）"
+  echo "这个文件跨 agent 跨 skill 重装都不丢；只属于你的 \$HOME"
+  echo ""
+
+  ask() {
+    local prompt="$1"
+    local default="$2"
+    local var
+    if [[ -n "$default" ]]; then
+      read -r -p "$prompt [$default]: " var
+      echo "${var:-$default}"
+    else
+      read -r -p "$prompt: " var
+      echo "$var"
+    fi
+  }
+
+  echo "📝 对外署名（写入 LICENSE 版权人、README Author 段）"
+  echo "   推荐用真名（如 'Jane Doe' / 'Evan Song'），不用内网身份"
+  NAME="$(ask "  Author name" "$DEFAULT_NAME")"
+
+  echo ""
+  echo "🐙 GitHub handle（写入 repo URL、Author 链接）"
+  HANDLE="$(ask "  GitHub handle" "$DEFAULT_HANDLE")"
+
+  echo ""
+  echo "✉️  对外邮箱（写入 LICENSE / git commit author email）"
+  echo "   ⚠️  推荐用 GitHub noreply 格式：<HANDLE>@users.noreply.github.com"
+  echo "       避免真实邮箱被公开 commit log 暴露"
+  if [[ -n "$HANDLE" && -z "$DEFAULT_EMAIL" ]]; then
+    DEFAULT_EMAIL="${HANDLE}@users.noreply.github.com"
+  fi
+  EMAIL="$(ask "  Author email" "$DEFAULT_EMAIL")"
+
+  echo ""
+  echo "===================================================="
+  echo "即将写入 $PROFILE:"
+  echo "  OSG_AUTHOR_NAME=\"$NAME\""
+  echo "  OSG_GITHUB_HANDLE=\"$HANDLE\""
+  echo "  OSG_AUTHOR_EMAIL=\"$EMAIL\""
+  echo ""
+  read -r -p "确认？[y/N] " confirm
+  if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
+    echo "❌ 已取消，未写入"
+    exit 2
+  fi
+fi
+
+# ─── 校验 ────────────────────────────────────
+if [[ -z "$NAME" || -z "$HANDLE" || -z "$EMAIL" ]]; then
+  echo "❌ 三个字段都必须非空" >&2
+  exit 3
+fi
+# 简单格式校验
+if ! [[ "$HANDLE" =~ ^[a-zA-Z0-9_-]+$ ]]; then
+  echo "❌ GitHub handle 只能含字母/数字/'-'/'_'（'$HANDLE' 不合法）" >&2
+  exit 4
+fi
+if ! [[ "$EMAIL" =~ ^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$ ]]; then
+  echo "⚠️  邮箱格式看起来不对：'$EMAIL'（继续？）" >&2
+  if [[ $NON_INTERACTIVE -eq 0 ]]; then
+    read -r -p "继续？[y/N] " c2
+    [[ ! "$c2" =~ ^[Yy]$ ]] && { echo "❌ 已取消"; exit 5; }
+  fi
+fi
+
+# ─── 写入 ────────────────────────────────────
+# 防止值里的 " 破坏文件格式（简单转义）
+esc() { printf '%s' "$1" | sed 's/"/\\"/g'; }
+
+cat > "$PROFILE" <<EOF
+# opensource-skill-to-github profile
+# Generated by scripts/setup_profile.sh at $(date -u +%Y-%m-%dT%H:%M:%SZ)
+# Format: OSG_KEY="value" — only OSG_* keys are loaded; comments allowed.
+#
+# 修改：直接编辑本文件，或重跑 scripts/setup_profile.sh
+# 查看：scripts/setup_profile.sh --show
+# 路径：scripts/setup_profile.sh --path
+#
+# GitHub push token 可选配置：
+# - 推荐：OSG_GITHUB_TOKEN_CMD="gh auth token"
+# - 或 macOS Keychain：
+#   OSG_GITHUB_TOKEN_CMD="security find-generic-password -a \$USER -s opensource-skill-to-github.github-token -w"
+# - 不推荐但支持：OSG_GITHUB_TOKEN="ghp_xxx"（明文写入本文件，务必 chmod 600）
+
+OSG_AUTHOR_NAME="$(esc "$NAME")"
+OSG_GITHUB_HANDLE="$(esc "$HANDLE")"
+OSG_AUTHOR_EMAIL="$(esc "$EMAIL")"
+EOF
+chmod 600 "$PROFILE"
+
+echo ""
+echo "✅ 已写入 $PROFILE (chmod 600)"
+echo ""
+echo "📌 后续：所有 scripts/*.sh 自动从此 profile 读取，不需要每次输入。"
+echo "   - 查看：bash $0 --show"
+echo "   - 修改：直接编辑 $PROFILE 或重跑 bash $0"
+echo "   - 临时覆盖：export OSG_AUTHOR_NAME='...' 即可压过 profile"

@@ -15,11 +15,11 @@ if str(SKILL_ROOT) not in sys.path:
 
 import argparse
 import json
-import shutil
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
-from core.common import DEFAULT_HEARTBEAT_PATH, DEFAULT_MEMORY_ROOT, WORKSPACE_ROOT, load_json, memory_strength, save_json
+from core.common import DEFAULT_HEARTBEAT_PATH, DEFAULT_MEMORY_ROOT, WORKSPACE_ROOT, load_json, memory_strength, normalize_signal_history, session_fingerprint, save_json, resolve_path, resolve_memory_root as common_memory_root
+from core.safe_fs import atomic_write_bytes, atomic_write_text, check_directory, iter_files, preflight_files, read_bytes, read_text, safe_exists
 
 SKIP = {"index.md", "retrieval-log.md", "_template.md"}
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -32,10 +32,7 @@ VALID_CONFIDENCE = {"high", "medium", "low"}
 
 
 def resolve_memory_root(arg: str | None) -> Path:
-    if arg:
-        candidate = Path(arg)
-        return candidate if candidate.is_absolute() else (Path.cwd() / candidate).resolve()
-    return DEFAULT_MEMORY_ROOT
+    return common_memory_root(arg)
 
 
 def ensure_cold_state(state: dict) -> dict:
@@ -151,7 +148,7 @@ def parse_session_signals(lines: list[str]) -> dict:
 
 
 def parse_note(path: Path, memory_root: Path) -> dict:
-    lines = path.read_text(encoding="utf-8").splitlines()
+    lines = read_text(path).splitlines()
     title = next((line[2:].strip() for line in lines if line.startswith("# ")), path.stem)
     summary_lines = parse_section_lines(lines, "## TL;DR")
     memory_type = parse_single_value(lines, "## Memory type") or "unknown"
@@ -179,7 +176,7 @@ def parse_note(path: Path, memory_root: Path) -> dict:
         next_review = default_next_review(anchor, interval_days)
 
     rel_path = relative_note_path(path, memory_root).as_posix()
-    summary = summary_lines[0] if summary_lines else title
+    summary = " ".join(value for value in summary_lines if value and value != "-") or title
     updated = last_verified or last_seen or date.today().isoformat()
     review = {
         "interval_days": interval_days,
@@ -215,27 +212,73 @@ def parse_note(path: Path, memory_root: Path) -> dict:
 
 def note_paths(memory_root: Path) -> list[Path]:
     paths = []
-    for path in memory_root.rglob("*.md"):
-        if path.name in SKIP:
+    for path in iter_files(memory_root, "*.md"):
+        if path.name.lower() in SKIP:
             continue
-        if path.parent == memory_root or path.parent.parent == memory_root:
-            paths.append(path)
+        paths.append(path)
     return sorted(paths)
 
 
+def retain_runtime_metadata(notes: list[dict], previous: object) -> None:
+    """Rebuild derived fields without erasing real activation/dedup evidence.
+
+    Only exact unambiguous paths may retain index-only data. Note content still
+    owns counters, summaries, dates and the review ladder. Explicit lifecycle
+    metadata is retained so superseded facts or fixtures do not reappear merely
+    because the index was rebuilt.
+    """
+    old_notes = previous.get("notes", []) if isinstance(previous, dict) else []
+    by_path: dict[str, list[dict]] = {}
+    for old in old_notes if isinstance(old_notes, list) else []:
+        if isinstance(old, dict) and isinstance(old.get("path"), str):
+            by_path.setdefault(old["path"], []).append(old)
+    for note in notes:
+        matches = by_path.get(note["path"], [])
+        if len(matches) != 1:
+            continue
+        old = matches[0]
+        if isinstance(old.get("last_session_key"), str) and old["last_session_key"]:
+            key = old["last_session_key"]
+            note["last_session_key"] = key if key.startswith("sha256:") else session_fingerprint(key)
+        if isinstance(old.get("signal_history"), list):
+            note["signal_history"] = normalize_signal_history(old["signal_history"])[-20:]
+        aliases = old.get("aliases")
+        if isinstance(aliases, list):
+            note["aliases"] = list(dict.fromkeys(x.strip() for x in aliases if isinstance(x, str) and x.strip()))
+        for field in ("active", "fixture", "is_fixture"):
+            if isinstance(old.get(field), bool):
+                note[field] = old[field]
+        for field in ("status", "superseded_by"):
+            if isinstance(old.get(field), str) and old[field].strip():
+                note[field] = old[field].strip()
+
+
 def backup_if_exists(path: Path) -> None:
-    if path.exists():
-        shutil.copy2(path, path.with_suffix(path.suffix + ".bak"))
+    if safe_exists(path):
+        atomic_write_bytes(path.with_suffix(path.suffix + ".bak"), read_bytes(path))
+
+
+def preflight_rebuild(memory_root: Path, heartbeat_path: Path) -> None:
+    check_directory(heartbeat_path.parent)
+    preflight_files(
+        memory_root / "index.md", memory_root / "index.md.bak",
+        memory_root / "tags.json", memory_root / "tags.json.bak", heartbeat_path,
+    )
+    note_paths(memory_root)
 
 
 def build_index(notes: list[dict]) -> str:
     lines = ["# Cold Memory Index", "", "## Entries", ""]
     notes_sorted = sorted(notes, key=lambda n: (n.get("updated") or "", n.get("importance") == "high"), reverse=True)
     for note in notes_sorted:
-        lines.append(f"- `{Path(note['path']).name}` — {note['summary']}")
+        lines.append(f"- `{note['path'].removeprefix('memory/cold/')}` — {note['summary']}")
         lines.append(f"  - type: {note['type']}")
         lines.append(f"  - importance: {note['importance']}")
         lines.append(f"  - state: {note['state']}")
+        if note.get("fixture") is True or note.get("is_fixture") is True:
+            lines.append("  - fixture: true (excluded from ordinary recall)")
+        if note.get("status"):
+            lines.append(f"  - status: {note['status']}")
         lines.append(f"  - tags: {', '.join(note['tags']) if note['tags'] else 'none'}")
         lines.append(f"  - triggers: {', '.join(note['triggers']) if note['triggers'] else 'none'}")
         lines.append(f"  - read when: {'; '.join(note['scenarios']) if note['scenarios'] else 'n/a'}")
@@ -287,19 +330,21 @@ def main() -> int:
     args = parser.parse_args()
 
     memory_root = resolve_memory_root(args.memory_root)
-    heartbeat_path = Path(args.heartbeat_path).resolve() if args.heartbeat_path else DEFAULT_HEARTBEAT_PATH
+    heartbeat_path = resolve_path(args.heartbeat_path) if args.heartbeat_path else memory_root.parent / "heartbeat-state.json"
     index_path = memory_root / "index.md"
     tags_path = memory_root / "tags.json"
 
-    if not memory_root.exists():
+    if not safe_exists(memory_root, kind="directory"):
         print(f"memory root not found: {memory_root}")
         return 1
 
+    preflight_rebuild(memory_root, heartbeat_path)
     notes = [parse_note(path, memory_root) for path in note_paths(memory_root)]
+    retain_runtime_metadata(notes, load_json(tags_path))
     backup_if_exists(index_path)
     backup_if_exists(tags_path)
-    index_path.write_text(build_index(notes), encoding="utf-8")
-    tags_path.write_text(build_tags(notes), encoding="utf-8")
+    atomic_write_text(index_path, build_index(notes))
+    atomic_write_text(tags_path, build_tags(notes))
     update_heartbeat_index_refresh(heartbeat_path, notes)
     print(f"Rebuilt index.md and tags.json from {len(notes)} note(s).")
     print(f"memory root: {memory_root}")

@@ -1,39 +1,53 @@
-## Description: <br>
-Navigate Tenerife as visitor, resident, digital nomad, or retiree with zones, transport, costs, residency, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Tenerife as visitor, resident, digital nomad, or retiree with zones, transport, costs, residency, and local insights.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users ask an agent for practical Tenerife guidance for visiting, relocating, remote work, retirement, business planning, transport, neighborhoods, costs, visas, safety, healthcare, education, food, culture, and outdoor activities. <br>
-
-### Deployment Geography for Use: <br>
-Global, for Tenerife-related travel and relocation guidance. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may rely on static guidance for time-sensitive visas, taxes, healthcare, hiking, swimming, driving, bookings, rules, prices, permits, or safety conditions. <br>
-Mitigation: Verify current details with official sources or qualified local professionals before making legal, financial, medical, travel, or safety decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/tenerife) <br>
-- [Skill homepage](https://clawic.com/skills/tenerife) <br>
-- [Tenerife skill definition](artifact/SKILL.md) <br>
+## Use Case:
 
+External users use this skill to answer Tenerife travel, relocation, remote work, retirement, and local-life questions. It helps agents provide practical guidance about neighborhoods, transport, costs, residency, healthcare, food, outdoor activities, and visitor planning.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured recommendations, comparisons, and practical checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; time-sensitive legal, tax, healthcare, transport, pricing, permit, and safety details should be verified before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Visa, tax, healthcare, medication, parking, driving, hiking, and marine-activity guidance can become outdated or depend on the user's circumstances.
+
+Mitigation: Verify current rules, professional requirements, and safety conditions with official sources or qualified local professionals before acting.
+
+Risk: General Tenerife guidance may not fit a user's nationality, residency status, health needs, insurance coverage, budget, mobility, or exact location.
+
+Mitigation: Ask for the user's role, timeline, constraints, and area of Tenerife before applying recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/tenerife)
+- [Skill homepage](https://clawic.com/skills/tenerife)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static guide content with no executable tools or external integrations required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,59 @@
-## Description: <br>
-Enhances AI ability to read, write, translate, and format Persian (Farsi) with native-level accuracy across tasks involving Unicode, half-spaces, RTL text, register, ta'arof, Solar Hijri dates, and cultural nuance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhances AI ability to read, write, translate, and format Persian (Farsi) with native-level accuracy across any task.
 
-## Publisher: <br>
-[nimaansari](https://clawhub.ai/user/nimaansari) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nimaansari](https://clawhub.ai/user/nimaansari)
 
-## Use Case: <br>
-Developers, writers, localization teams, and other external users use this skill to produce, translate, edit, summarize, and format Persian text with correct script, punctuation, numerals, tone, and cultural conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persian-triggered formatting may alter exact source formatting, technical identifiers, or non-Persian locale conventions. <br>
-Mitigation: Review outputs containing code, URLs, identifiers, exact source text, numbers, dates, or locale-specific formatting before use. <br>
-Risk: Translations or culturally nuanced Persian content may still contain register, terminology, date, or ta'arof mistakes in sensitive contexts. <br>
-Mitigation: Use human review by a qualified Persian speaker for public, legal, medical, financial, or high-impact communications. <br>
+## Use Case:
 
+External users and developers use this skill when generating, translating, editing, summarizing, or localizing Persian content. It helps agents apply Persian Unicode, half-space, right-to-left formatting, register, numerals, dates, transliteration, and cultural conventions.
 
-## Reference(s): <br>
-- [Persian Language ClawHub Page](https://clawhub.ai/nimaansari/persian-language) <br>
-- [Writing Standards](references/writing-standards.md) <br>
-- [Numerals](references/numerals.md) <br>
-- [Tone Register](references/tone-register.md) <br>
-- [Common Mistakes](references/common-mistakes.md) <br>
-- [Transliteration](references/transliteration.md) <br>
-- [Content Templates](references/content-templates.md) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Natural language text or Markdown, with code comments or localized strings when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Persian script, right-to-left formatting, Persian numerals, transliteration, translations, edits, summaries, templates, or checklist-style guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Persian normalization may change punctuation, digit forms, half-spaces, or date presentation in text where exact characters must be preserved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs carefully for legal, financial, archival, or data-preservation tasks, and keep original source text when exact wording or code points matter.
+
+Risk: The skill defaults to Iranian Persian conventions, including Solar Hijri dates and Persian numeric symbols, which may not fit every Persian-speaking audience or technical context.
+
+Mitigation: Confirm the target audience and preserve Western digits in code, technical identifiers, versions, ports, URLs, and code blocks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nimaansari/skills/persian-language)
+- [Persian Writing Standards](references/writing-standards.md)
+- [Persian Numerals](references/numerals.md)
+- [Persian Tone & Register Guide](references/tone-register.md)
+- [Common AI Mistakes in Persian Generation](references/common-mistakes.md)
+- [Persian Transliteration Guide](references/transliteration.md)
+- [Persian Content Templates](references/content-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Natural-language Persian or translated text, Markdown, and code or documentation snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Applies Persian Unicode, half-space, right-to-left formatting, register, numeral, date, and transliteration conventions to agent responses.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

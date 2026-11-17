@@ -1,41 +1,54 @@
-## Description: <br>
-Fills book match results (匹配结果) and Amazon links (书籍链接) in a Feishu Bitable by querying Amazon UK/US with ISBNs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fill book match results (匹配结果) and Amazon links (书籍链接) into a Feishu Bitable by querying Amazon with ISBN.
 
-## Publisher: <br>
-[JakLiao](https://clawhub.ai/user/JakLiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jakliao](https://clawhub.ai/user/jakliao)
 
-## Use Case: <br>
-Employees or operators maintaining Feishu book inventory tables use this skill to find Amazon listings by ISBN and batch-fill match status and product links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk Bitable updates can write incorrect match statuses or Amazon links at scale. <br>
-Mitigation: Confirm the target table, field IDs, Feishu account, and Chrome profile, then run a small preview and review batches before continuing. <br>
-Risk: Unattended background or cron execution can continue modifying records without timely review. <br>
-Mitigation: Avoid unattended execution unless explicit limits, logs, stop conditions, and a recovery plan are in place. <br>
+## Use Case:
 
+External users and agents use this skill to match book records in Feishu Bitable against Amazon UK and US ISBN search results, then fill match status and clean Amazon detail links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JakLiao/feishu-book-match) <br>
-- [Publisher profile](https://clawhub.ai/user/JakLiao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with inline JSON and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide Feishu Bitable updates and browser-based Amazon UK/US lookup steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can bulk-modify live Feishu Bitable records without requiring a preview or confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request a dry-run preview of affected records and proposed Amazon links, confirm the exact table and fields, and keep a rollback plan before bulk updates.
+
+Risk: Running the skill unattended can propagate incorrect match classifications or links across many records.
+
+Mitigation: Process records in small batches, review progress after each batch, and avoid unattended cron or background execution unless monitoring and recovery are in place.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jakliao/skills/feishu-book-match)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/jakliao)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Text]
+
+**Output Format:** [Markdown instructions with structured Feishu Bitable update payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces match status values and Amazon detail links; may update Feishu Bitable records in batches.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

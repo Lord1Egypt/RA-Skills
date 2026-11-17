@@ -1,42 +1,58 @@
-## Description: <br>
-Find and recommend AI agents for any workflow using AgentConcierge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and recommend AI agents for any workflow using AgentConcierge.
 
-## Publisher: <br>
-[gomisterb](https://clawhub.ai/user/gomisterb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gomisterb](https://clawhub.ai/user/gomisterb)
 
-## Use Case: <br>
-External users and developers use this skill to ask for AI agent recommendations based on a role, pain point, current tools, budget, and team size. The skill returns five ranked recommendations with match scores and reasons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendation details are sent to AgentConcierge, including role, pain point, current tools, budget, and team-size details provided by the user. <br>
-Mitigation: Use generalized descriptions for sensitive workflows and do not include passwords, secrets, private customer data, regulated personal data, or confidential internal plans. <br>
+## Use Case:
 
+External users, employees, and developers use this skill to find AI agents for a role, task, pain point, budget, tool stack, or team context. The skill queries AgentConcierge and returns ranked recommendations with match scores and reasons.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gomisterb/agentconcierge) <br>
-- [AgentConcierge](https://agentconcierge.io) <br>
-- [AgentConcierge API Reference](references/api-schema.md) <br>
-- [AgentConcierge Developer API](https://agentconcierge.io/developers) <br>
-- [AgentConcierge Search](https://agentconcierge.io/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown recommendations with ranked items, match scores, reasons, pricing, and URLs; includes curl-based API call guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and network access to agentconcierge.io; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Workflow context is sent to the external AgentConcierge service for recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only the role and pain point required for the request, and avoid sending secrets, credentials, regulated personal data, or confidential internal project details.
+
+Risk: The skill depends on network access to agentconcierge.io and may be rate-limited.
+
+Mitigation: Handle 429 responses by waiting before retrying, and direct users to the AgentConcierge search page when the API is unavailable.
+
+## Reference(s):
+
+- [AgentConcierge API Reference](references/api-schema.md)
+- [AgentConcierge](https://agentconcierge.io)
+- [AgentConcierge Search](https://agentconcierge.io/search)
+- [AgentConcierge Developer API](https://agentconcierge.io/developers)
+- [ClawHub Skill Page](https://clawhub.ai/gomisterb/skills/agentconcierge)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/gomisterb)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown recommendations backed by a JSON API response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns five ranked AI agent recommendations with match scores, reasons, pricing, and URLs when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

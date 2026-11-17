@@ -1,41 +1,58 @@
-## Description: <br>
-AI-powered Twitter thread creator that turns a topic into engaging, formatted Twitter threads with hook and engagement optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate optimized Twitter/X thread drafts from a topic with hooks, structured formatting, and engagement-oriented copy.
 
-## Publisher: <br>
-[G0atfac3](https://clawhub.ai/user/G0atfac3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[g0atfac3](https://clawhub.ai/user/g0atfac3)
 
-## Use Case: <br>
-Content creators, thought leaders, and businesses use this skill to generate ready-to-share Twitter threads from a topic, including hooks, structure, formatting, and engagement-oriented phrasing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an OpenAI API key for thread generation. <br>
-Mitigation: Install and run it only in environments where use of an OpenAI API key for this purpose is approved. <br>
-Risk: The documented thread_gen.py command references a script that is not included in the reviewed artifact. <br>
-Mitigation: Confirm the script source and review it before running the documented command. <br>
+## Use Case:
 
+Content creators, thought leaders, businesses, and their agents use this skill to draft Twitter/X threads from a topic, including hooks, thread formatting, and engagement-oriented structure.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/G0atfac3/g0atbot-twitter-threads) <br>
-- [Publisher profile](https://clawhub.ai/user/G0atfac3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash setup and usage commands plus generated thread text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENAI_API_KEY; the documented thread_gen.py script is not included in the reviewed artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact references a thread_gen.py command, but the implementation file is not included in the release artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the implementation before running it or providing valuable API keys.
+
+Risk: The skill requires an OPENAI_API_KEY for setup.
+
+Mitigation: Install in a virtual environment, pin dependency versions where possible, and use scoped or low-risk credentials during evaluation.
+
+Risk: The listing mentions auto-posting readiness, but the artifact does not include posting controls or Twitter/X credential handling.
+
+Mitigation: Treat generated threads as drafts and review any separate posting workflow before connecting social media credentials.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/g0atfac3/skills/g0atbot-twitter-threads)
+- [Publisher profile](https://clawhub.ai/user/g0atfac3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated threads should be treated as drafts for human review before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

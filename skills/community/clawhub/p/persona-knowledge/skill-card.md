@@ -1,44 +1,59 @@
-## Description: <br>
-Persistent, incremental, searchable persona knowledge base. Ingests data from Obsidian vaults, chat exports, X/Twitter archives, and more into a MemPalace-backed store with a Karpathy LLM Wiki knowledge layer. Exports training/ directories for persona-model-trainer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent, incremental, searchable persona knowledge base. Ingests data from Obsidian vaults, chat exports, X/Twitter archives, and more into a MemPalace-backed store with a Karpathy LLM Wiki knowledge layer. Exports training/ directories for persona-model-trainer.
 
-## Publisher: <br>
-[neiljo-gy](https://clawhub.ai/user/neiljo-gy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neiljo-gy](https://clawhub.ai/user/neiljo-gy)
 
-## Use Case: <br>
-Developers and agents use this skill to initialize, ingest, search, maintain, and export a persistent persona knowledge base from local notes, chat exports, social archives, and related source files. It is intended for persona dataset preparation and downstream persona-model training workflows, not quick one-shot summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create long-lived local persona datasets from private notes, messages, social archives, and chat databases. <br>
-Mitigation: Use it only for intentional persona dataset creation, confirm the dataset slug and subject, and avoid broad personal directories or chat.db unless that source is explicitly needed. <br>
-Risk: Social and chat archive ingestion can include direct messages, third-party messages, phone numbers, emails, passwords, and other sensitive content. <br>
-Mitigation: Run dry runs carefully, remove DM and unrelated folders before ingestion, review PII flags, and manually redact sensitive source material before retaining or exporting it. <br>
-Risk: Training exports may copy raw source files and preserve sensitive material. <br>
-Mitigation: Treat training directories as sensitive data, restrict sharing and storage, and use wiki-only export mode when raw source copying is not required. <br>
+## Use Case:
 
+Developers and external users use this skill to create, incrementally update, search, and export local persona datasets from notes, chats, social archives, and other source files for downstream persona training.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neiljo-gy/persona-knowledge) <br>
-- [Source formats](artifact/references/source-formats.md) <br>
-- [Wiki schema](artifact/references/wiki-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSONL datasets, Markdown wiki pages, and training export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist local knowledge stores, source backups, wiki pages, and training exports under the configured OpenPersona knowledge path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata and skill frontmatter) <br>
+Risk: Persistent local storage and exports can contain private messages or sensitive persona data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with datasets suitable for persistent searchable storage, sanitize sources before ingestion, and keep OPENPERSONA_KNOWLEDGE in a private directory.
+
+Risk: Imported archives can include passwords, financial identifiers, SSNs, private DMs, or third-party messages.
+
+Mitigation: Review and sanitize archives before import, avoid sensitive or non-consensual third-party content, and prefer dry-run or wiki-only modes where possible.
+
+Risk: Deleting a dataset may require removing multiple generated artifacts.
+
+Mitigation: Verify deletion of source backups, MemPalace data, wiki files, and training exports when removing a dataset.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neiljo-gy/skills/persona-knowledge)
+- [Source Formats](artifact/references/source-formats.md)
+- [Wiki Schema](artifact/references/wiki-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus generated local JSON, JSONL, Markdown, and metadata files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent local knowledge directories, wiki pages, source backups, search results, and training exports.]
+
+## Skill Version(s):
+
+0.2.2 (source: evidence.json release and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

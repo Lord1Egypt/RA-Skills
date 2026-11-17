@@ -1,38 +1,52 @@
-## Description: <br>
-favicon.so project API reference covering favicon fetch and image-to-favicon package conversion APIs for integrations, debugging, and endpoint work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+favicon.so project API reference for favicon fetching and image-to-favicon-package conversion across API routes, integrations, debugging, and endpoint additions.
 
-## Publisher: <br>
-[Go7hic](https://clawhub.ai/user/Go7hic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[go7hic](https://clawhub.ai/user/go7hic)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill when working with favicon.so API routes, building integrations, debugging favicon fetch or conversion behavior, or adding endpoints for favicon package generation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Implementing the described service may involve fetching user-supplied URLs.
+
+Mitigation: Review the actual application code for standard URL-fetching controls such as domain validation, redirect handling, network egress restrictions, and timeout limits before deployment.
+
+Risk: Implementing the described conversion API may involve processing uploaded images.
+
+Mitigation: Review the actual application code for upload size limits, supported content-type checks, image parser hardening, and failure handling before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to understand favicon.so API routes for fetching favicons, converting uploaded images into favicon packages, and integrating or debugging those workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, code, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Using the documented favicon.so endpoints with private images or sensitive internal domains may expose that information to an external service. <br>
-Mitigation: Avoid submitting private images or sensitive internal domains unless the user has approved that external processing. <br>
+**Output Format:** [Markdown guidance with API endpoint details, request and response examples, implementation notes, and JSON snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Go7hic/favicon-so) <br>
+**Other Properties Related to Output:** [Can include favicon fetch routes, image conversion routes, accepted request parameters, response modes, generated favicon package contents, and implementation notes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reference guidance with API route tables and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no code execution, credential access, or data persistence is requested.] <br>
+1.0.0 (source: server release metadata and skill metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

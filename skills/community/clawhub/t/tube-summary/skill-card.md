@@ -1,41 +1,55 @@
-## Description: <br>
-Searches YouTube for videos on a topic, extracts English subtitles, and produces summaries with key topics, timestamps, and quotes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search YouTube videos on any topic, extract English subtitles, and generate detailed summaries with key topics, quotes, and timestamps.
 
-## Publisher: <br>
-[dillera](https://clawhub.ai/user/dillera) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dillera](https://clawhub.ai/user/dillera)
 
-## Use Case: <br>
-External users, developers, and researchers use this skill to find YouTube videos on a topic and quickly understand selected videos from available subtitle text. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts YouTube and depends on third-party tooling before it can search videos or fetch subtitles. <br>
-Mitigation: Install only from a trusted source, verify required tools such as yt-dlp and Python packages, and run the workflow in a normal non-privileged environment. <br>
-Risk: Subtitle files are created in the directory where the subtitle download command is run. <br>
-Mitigation: Run subtitle extraction from a dedicated working folder and review generated files before sharing or reusing them. <br>
-Risk: Summaries are based on available subtitles, which may be missing, auto-generated, incomplete, or inaccurate. <br>
-Mitigation: Treat generated summaries, quotes, and timestamps as aids for review and check important claims against the original video. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dillera/tube-summary) <br>
+## Use Case:
+
+Developers, researchers, and external users use this skill to find YouTube videos on a topic, select one, download English subtitles, and receive a structured content summary without watching the full video.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill contacts YouTube and writes subtitle text to the local working directory.
+
+Mitigation: Run it only in environments where outbound YouTube access and temporary local subtitle files are acceptable.
+
+Risk: Unpinned dependencies such as yt-dlp and requests can change behavior over time.
+
+Mitigation: Install dependencies in a dedicated virtual environment and pin versions for repeatable releases.
+
+Risk: Some videos may lack English subtitles or may only provide auto-generated subtitles.
+
+Mitigation: Treat summaries as subtitle-derived aids and verify important conclusions against the source video.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-formatted summaries and terminal text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include search-result lists, video URLs, key topics, concise summaries, timestamps, and key quotes.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown-style text with command examples and optional JSON search data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include top video results, key topics, an extractive summary, timestamped notable moments, and short quotes when subtitles are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

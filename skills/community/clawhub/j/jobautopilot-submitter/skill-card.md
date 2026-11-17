@@ -1,43 +1,63 @@
-## Description: <br>
-Automatically fills and submits job applications by opening application pages, filling multi-step forms, uploading tailored resume and cover letter files, confirming submission, and updating the local job tracker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically fills and submits job applications by opening application pages, completing multi-step forms, uploading tailored resume and cover letter files, confirming submission, and updating a job tracker.
 
-## Publisher: <br>
-[jerronl](https://clawhub.ai/user/jerronl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerronl](https://clawhub.ai/user/jerronl)
 
-## Use Case: <br>
-Job seekers use this skill to automate filling and submitting approved job applications from a local tracker, including resume uploads, cover letter fields, work history, education, dropdowns, and EEOC-style questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read configured resume and application files that contain sensitive personal data. <br>
-Mitigation: Restrict resume and upload directories before use, and review configured file paths before allowing uploads. <br>
-Risk: The skill can upload local files and submit job application forms through browser automation. <br>
-Mitigation: Run only on application pages the user has approved, review generated actions before execution, and verify successful submission on the target site. <br>
-Risk: The skill may answer language, work authorization, demographic, or EEOC-style questions using configured values or defaults. <br>
-Mitigation: Provide explicit current answers for sensitive application questions instead of relying on defaults. <br>
+## Use Case:
 
+External job seekers use this skill to automate repetitive job application submission steps after a tailored resume is ready. It fills browser forms, uploads local application documents, handles common dropdown and required-field checks, and records applied, error, or wrong_url status in a tracker.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jerronl/jobautopilot-submitter) <br>
-- [Publisher Profile](https://clawhub.ai/user/jerronl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown status updates with generated shell commands and tracker edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses browser automation, local environment variables, local resume files, and local tracker state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release metadata; artifact frontmatter reports 1.3.3) <br>
+Risk: The skill may submit real job applications and upload local resume or cover letter documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval for target jobs and uploaded files, verify the final application state before submit, and record failures or wrong URLs in the tracker.
+
+Risk: Generated temporary shell scripts perform state-changing browser actions.
+
+Mitigation: Use private temporary files, restrict permissions, validate the browser tab and URL before execution, and clean up scripts unconditionally after use.
+
+Risk: Browser form values and application data can expose sensitive personal information to the agent context.
+
+Mitigation: Avoid returning populated field values where possible, exclude credential, payment, and security fields, and keep personal data limited to approved environment variables and local resume files.
+
+Risk: Unpinned runtime dependencies can change behavior over time.
+
+Mitigation: Pin and review required dependencies such as python-docx before installation or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jerronl/skills/jobautopilot-submitter)
+- [Project homepage](https://github.com/jerronl/jobautopilot)
+- [ERRORS.md](artifact/ERRORS.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, markdown]
+
+**Output Format:** [Markdown guidance with bash, JavaScript, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate state-changing browser automation commands, file-upload actions, and tracker status updates during agent execution.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release metadata; artifact frontmatter states 1.3.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

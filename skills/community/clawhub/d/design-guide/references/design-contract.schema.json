@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/GrubbyLee/design-guide/references/design-contract.schema.json",
+  "title": "design-guide implementation contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "contractStatus",
+    "productRole",
+    "audience",
+    "primaryFlow",
+    "breakpoints",
+    "requiredStates",
+    "flows",
+    "designSystem",
+    "accessibility",
+    "performance",
+    "dataContracts",
+    "approval"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "1.0"},
+    "contractStatus": {"enum": ["draft", "approved"]},
+    "productRole": {"type": "string", "minLength": 1},
+    "audience": {"type": "string", "minLength": 1},
+    "primaryFlow": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "breakpoints": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "integer", "minimum": 240}
+    },
+    "requiredStates": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "flows": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "coversStates", "start", "steps"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+          "coversStates": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "minLength": 1}
+          },
+          "start": {"type": "string", "minLength": 1},
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["action"],
+              "properties": {
+                "action": {
+                  "enum": ["goto", "click", "fill", "press", "expect-visible", "expect-hidden", "expect-text", "expect-url", "screenshot"]
+                },
+                "selector": {"type": "string"},
+                "value": {"type": "string"},
+                "name": {"type": "string"},
+                "timeoutMs": {"type": "integer", "minimum": 0}
+              }
+            }
+          }
+        }
+      }
+    },
+    "designSystem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["color", "typography", "spacing", "radius", "motion"],
+      "properties": {
+        "color": {"type": "string", "minLength": 1},
+        "typography": {"type": "string", "minLength": 1},
+        "spacing": {"type": "string", "minLength": 1},
+        "radius": {"type": "string", "minLength": 1},
+        "motion": {"type": "string", "minLength": 1}
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxAxeViolations", "keyboardComplete", "requireAccessibleNames", "reducedMotion"],
+      "properties": {
+        "maxAxeViolations": {"type": "integer", "minimum": 0},
+        "keyboardComplete": {"type": "boolean"},
+        "requireAccessibleNames": {"type": "boolean"},
+        "reducedMotion": {"type": "boolean"}
+      }
+    },
+    "performance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxLoadMs", "maxTransferBytes", "maxRequests", "maxConsoleErrors", "maxVisualDiffRatio", "minLighthouseScore"],
+      "properties": {
+        "maxLoadMs": {"type": "number", "minimum": 0},
+        "maxTransferBytes": {"type": "integer", "minimum": 0},
+        "maxRequests": {"type": "integer", "minimum": 0},
+        "maxConsoleErrors": {"type": "integer", "minimum": 0},
+        "maxVisualDiffRatio": {"type": "number", "minimum": 0, "maximum": 1},
+        "minLighthouseScore": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "dataContracts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "type", "required"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "type": {"enum": ["openapi", "json-schema", "graphql", "typescript"]},
+          "required": {"type": "boolean"}
+        }
+      }
+    },
+    "visualBaselines": {
+      "type": "object",
+      "additionalProperties": {"type": "string", "minLength": 1}
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["direction", "artifacts", "tradeoffs"],
+      "properties": {
+        "direction": {"type": "string"},
+        "artifacts": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "tradeoffs": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    }
+  }
+}

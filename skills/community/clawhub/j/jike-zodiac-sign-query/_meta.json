@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-zodiac-sign-query",
   "version": "1.0.0",
-  "publishedAt": 1778294765360
+  "title": "星座查询 - 即刻数据",
+  "description": "星座查询。输入星座名称，查询星座特征、守护宫、阴阳性、守护星、幸运色、幸运数字、区间和男女特点。",
+  "env": "JIKE_ZODIAC_SIGN_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/zodiac_sign",
+  "homepage": "https://www.jikeapi.cn/"
 }

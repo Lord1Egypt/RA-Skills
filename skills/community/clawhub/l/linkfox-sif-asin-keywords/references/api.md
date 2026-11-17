@@ -4,7 +4,7 @@
 
 - **请求地址**：`${LINKFOX_TOOL_GATEWAY}/sif/asinKeywords`
 - **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY` 读取（如未配置，提示用户前往 https://skill.linkfox.com/linkfoxskills/guide.htm 申请）
+- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY` 读取（如未配置 按 SKILL.md 的 **## 解决认证和积分问题** 处理）
 
 ## 请求参数
 
@@ -28,7 +28,7 @@ POST Body（JSON）：
 
 | 字段 | 类型 | 说明 |
 |------|------|------|
-| code | string | 返回码 |
+| code | string | SIF 业务返回码，`"1"` 表示成功 |
 | msg | string | 消息 |
 | total | integer | 本次实际返回的数据数量 |
 | data | array | 返回数据数组（详见下方） |
@@ -76,12 +76,13 @@ POST Body（JSON）：
 
 ## 错误码
 
-正常情况下，接口的 HTTP 状态码均为 200，业务的成功与否通过响应体中的 errorCode 字段区分（errorCode = 200 表示成功，其他值表示业务错误）。当遇到未授权等情况时，HTTP 状态码为 401，且对应的 errorCode 也是 401。
+接口包含两层状态码：网关调用状态通过 `errcode` 字段区分，`errcode = 200` 表示网关调用成功；SIF 业务成功通过响应体中的 `code` 字段区分，`code = "1"` 表示成功。当遇到未授权等网关错误时，HTTP 状态码和 `errcode` 为对应的错误码。
 
 | errcode | 含义 | 处理建议 |
 |---------|------|----------|
 | 200 | 成功 | 正常解析业务字段 |
-| 401 | 认证失败 | 检查请求头 `Authorization` 是否正确携带 API Key；API Key 申请方式请参考上述[调用规范](#调用规范)下的认证方式。|
+| 401 | 认证失败 | HTTP 401 或 authorized error：按 SKILL.md 的 **## 解决认证和积分问题** 处理。|
+| 402 | 积分不足 | HTTP 402：按 SKILL.md 的 **## 解决认证和积分问题** 处理。|
 | 其他非200值 | 业务异常 | 参考 `errmsg` 字段获取具体错误原因 |
 
 错误响应示例：

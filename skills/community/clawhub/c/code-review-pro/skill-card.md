@@ -1,41 +1,54 @@
-## Description: <br>
-Code Review Pro guides an agent to perform parallel code review across logic, security, performance, and style, reporting findings at a stated confidence threshold of 70% or higher. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code Review Pro prompts an agent to run a Chinese-language code review across logic, security, performance, and style with confidence-scored findings.
 
-## Publisher: <br>
-[softboypatrick](https://clawhub.ai/user/softboypatrick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[softboypatrick](https://clawhub.ai/user/softboypatrick)
 
-## Use Case: <br>
-Developers use this skill to request structured code review feedback on logical errors, security vulnerabilities, performance bottlenecks, and style issues. It is intended to produce concise findings with severity, confidence, location, risk level, and suggested fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's confidence scores are advisory and are not backed by an independent verifier. <br>
-Mitigation: Treat findings as review guidance and have a qualified developer confirm any reported issue before acting on it. <br>
-Risk: Code review requests may include sensitive proprietary code. <br>
-Mitigation: Avoid sharing sensitive code unless the agent environment is approved for that material. <br>
+## Use Case:
 
+Developers use this skill to have an agent review code for logical errors, security vulnerabilities, performance bottlenecks, and style issues. It is intended to return structured findings only when confidence is at least 70%, including severity, location, risk, and suggested remediation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/softboypatrick/code-review-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/softboypatrick) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review findings with severity, confidence, location, risk, and suggested remediation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports only severe issues or optimization suggestions that meet the skill's stated confidence threshold of 70% or higher.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Output may default to Chinese, which can reduce usability for teams expecting another language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Explicitly tell the invoking agent what output language to use when applying the skill.
+
+Risk: Review findings are advisory and confidence-scored, so issues or optimization suggestions may still need human validation before code changes.
+
+Mitigation: Have a developer review findings and run relevant tests before applying suggested changes.
+
+## Reference(s):
+
+- [Code Review Pro ClawHub page](https://clawhub.ai/softboypatrick/skills/code-review-pro)
+- [Source skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured issue entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language findings; severe issues and suggestions include confidence, location, risk, and remediation guidance when applicable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

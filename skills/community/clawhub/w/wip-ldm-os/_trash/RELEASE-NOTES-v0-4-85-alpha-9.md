@@ -1,0 +1,1 @@
+Improves Universal Installer skill dry runs so users can see the exact skill files and folders that would be copied before installing. Skill dry runs now print the source folder, copied entries, permanent LDM copy, per-harness skill destinations, and workspace reference-doc target.

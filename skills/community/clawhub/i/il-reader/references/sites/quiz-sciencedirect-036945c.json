@@ -1,0 +1,393 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-sciencedirect-036945c",
+  "status": "blocked",
+  "checked_at": "2026-10-09T09:05:49.190Z",
+  "entry": {
+    "url": "https://www.sciencedirect.com",
+    "final_url": "https://id.elsevier.com/as/authorization.oauth2?platSite=SD%2Fscience&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&scope=openid+email+profile+els_auth_info+els_idp_info+els_idp_analytics_attrs+els_sa_discover+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Ainst_assoc&response_type=code&prompt=login&client_id=SDFE-v4&dgcid=user-inst-login",
+    "title": "查找您的组织",
+    "status": "redirect_identity_pending",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:05:49.190Z",
+    "identity": {
+      "declared_name": "ScienceDirect",
+      "hostname": "id.elsevier.com",
+      "domain_matches": false
+    },
+    "links": [
+      {
+        "text": "帮助↗",
+        "href": "https://www.elsevier.support/elsevieraccess",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "取消",
+      "label": "",
+      "aria_label": "取消",
+      "placeholder": null,
+      "name": "close",
+      "id": "bdd-els-close",
+      "css": "#bdd-els-close",
+      "role": null,
+      "form_action": "https://id.elsevier.com/as/authorization.oauth2?platSite=SD%2Fscience&response_type=code&dgcid=user-inst-login&client_id=SDFE-v4&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&scope=els_auth_info+profile+els_idp_analytics_attrs+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Ainst_assoc+email+els_sa_discover+els_idp_info+openid&prompt=none",
+      "locator": {
+        "css": "#bdd-els-close"
+      },
+      "observed_url": "https://id.elsevier.com/as/authorization.oauth2?platSite=SD%2Fscience&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&scope=openid+email+profile+els_auth_info+els_idp_info+els_idp_analytics_attrs+els_sa_discover+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Ainst_assoc&response_type=code&prompt=login&client_id=SDFE-v4&dgcid=user-inst-login",
+      "observed_at": "2026-10-09T09:05:49.157Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "组织名称或电子邮箱",
+      "label": "组织名称或电子邮箱",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "els_institution",
+      "id": "bdd-email",
+      "css": "#bdd-email",
+      "role": "combobox",
+      "form_action": "ref: <Node>",
+      "locator": {
+        "css": "#bdd-email"
+      },
+      "observed_url": "https://id.elsevier.com/as/authorization.oauth2?platSite=SD%2Fscience&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&scope=openid+email+profile+els_auth_info+els_idp_info+els_idp_analytics_attrs+els_sa_discover+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Ainst_assoc&response_type=code&prompt=login&client_id=SDFE-v4&dgcid=user-inst-login",
+      "observed_at": "2026-10-09T09:05:49.157Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "提交并继续 ↗",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "action",
+      "id": "bdd-els-searchBtn",
+      "css": "#bdd-els-searchBtn",
+      "role": null,
+      "form_action": "ref: <Node>",
+      "locator": {
+        "css": "#bdd-els-searchBtn"
+      },
+      "observed_url": "https://id.elsevier.com/as/authorization.oauth2?platSite=SD%2Fscience&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&scope=openid+email+profile+els_auth_info+els_idp_info+els_idp_analytics_attrs+els_sa_discover+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Ainst_assoc&response_type=code&prompt=login&client_id=SDFE-v4&dgcid=user-inst-login",
+      "observed_at": "2026-10-09T09:05:49.157Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "获取有关访问权限的帮助",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "ref: <Node>",
+      "locator": {
+        "role": "button",
+        "name": "获取有关访问权限的帮助",
+        "exact": true
+      },
+      "observed_url": "https://id.elsevier.com/as/authorization.oauth2?platSite=SD%2Fscience&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&scope=openid+email+profile+els_auth_info+els_idp_info+els_idp_analytics_attrs+els_sa_discover+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Ainst_assoc&response_type=code&prompt=login&client_id=SDFE-v4&dgcid=user-inst-login",
+      "observed_at": "2026-10-09T09:05:49.157Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-sciencedirect-036945c:statistics-ranking",
+      "source_id": "quiz-sciencedirect-036945c",
+      "task_kind": "statistics-ranking",
+      "status": "blocked",
+      "parameters": [
+        "query_terms",
+        "fields",
+        "boolean_relation",
+        "match_mode",
+        "start_year",
+        "end_year",
+        "resource_type",
+        "fund",
+        "sort_field",
+        "sort_direction",
+        "rank_or_threshold"
+      ],
+      "instructions": [
+        "把本题条件逐一填入已观察字段或该库自己的专业语法；清除上题筛选；核对结果回显、资源类型、年份、匹配方式、排序及统计口径。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.sciencedirect.com",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "取消",
+          "label": "",
+          "aria_label": "取消",
+          "placeholder": null,
+          "name": "close",
+          "id": "bdd-els-close",
+          "css": "#bdd-els-close",
+          "role": null,
+          "form_action": "https://id.elsevier.com/as/authorization.oauth2?platSite=SD%2Fscience&response_type=code&dgcid=user-inst-login&client_id=SDFE-v4&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&scope=els_auth_info+profile+els_idp_analytics_attrs+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Ainst_assoc+email+els_sa_discover+els_idp_info+openid&prompt=none",
+          "locator": {
+            "css": "#bdd-els-close"
+          },
+          "observed_url": "https://id.elsevier.com/as/authorization.oauth2?platSite=SD%2Fscience&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&scope=openid+email+profile+els_auth_info+els_idp_info+els_idp_analytics_attrs+els_sa_discover+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Ainst_assoc&response_type=code&prompt=login&client_id=SDFE-v4&dgcid=user-inst-login",
+          "observed_at": "2026-10-09T09:05:49.157Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "组织名称或电子邮箱",
+          "label": "组织名称或电子邮箱",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "els_institution",
+          "id": "bdd-email",
+          "css": "#bdd-email",
+          "role": "combobox",
+          "form_action": "ref: <Node>",
+          "locator": {
+            "css": "#bdd-email"
+          },
+          "observed_url": "https://id.elsevier.com/as/authorization.oauth2?platSite=SD%2Fscience&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&scope=openid+email+profile+els_auth_info+els_idp_info+els_idp_analytics_attrs+els_sa_discover+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Ainst_assoc&response_type=code&prompt=login&client_id=SDFE-v4&dgcid=user-inst-login",
+          "observed_at": "2026-10-09T09:05:49.157Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "提交并继续 ↗",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "action",
+          "id": "bdd-els-searchBtn",
+          "css": "#bdd-els-searchBtn",
+          "role": null,
+          "form_action": "ref: <Node>",
+          "locator": {
+            "css": "#bdd-els-searchBtn"
+          },
+          "observed_url": "https://id.elsevier.com/as/authorization.oauth2?platSite=SD%2Fscience&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&scope=openid+email+profile+els_auth_info+els_idp_info+els_idp_analytics_attrs+els_sa_discover+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Ainst_assoc&response_type=code&prompt=login&client_id=SDFE-v4&dgcid=user-inst-login",
+          "observed_at": "2026-10-09T09:05:49.157Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "获取有关访问权限的帮助",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "ref: <Node>",
+          "locator": {
+            "role": "button",
+            "name": "获取有关访问权限的帮助",
+            "exact": true
+          },
+          "observed_url": "https://id.elsevier.com/as/authorization.oauth2?platSite=SD%2Fscience&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&scope=openid+email+profile+els_auth_info+els_idp_info+els_idp_analytics_attrs+els_sa_discover+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Ainst_assoc&response_type=code&prompt=login&client_id=SDFE-v4&dgcid=user-inst-login",
+          "observed_at": "2026-10-09T09:05:49.157Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "quiz-sciencedirect-036945c:search-syntax",
+      "source_id": "quiz-sciencedirect-036945c",
+      "task_kind": "search-syntax",
+      "status": "blocked",
+      "parameters": [
+        "field",
+        "terms",
+        "operators",
+        "phrase_mode",
+        "wildcard",
+        "exclude_terms"
+      ],
+      "instructions": [
+        "在官方检索帮助确认该字段、布尔、短语或截词规则；数据库之间不得互套语法。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.sciencedirect.com",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "取消",
+          "label": "",
+          "aria_label": "取消",
+          "placeholder": null,
+          "name": "close",
+          "id": "bdd-els-close",
+          "css": "#bdd-els-close",
+          "role": null,
+          "form_action": "https://id.elsevier.com/as/authorization.oauth2?platSite=SD%2Fscience&response_type=code&dgcid=user-inst-login&client_id=SDFE-v4&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&scope=els_auth_info+profile+els_idp_analytics_attrs+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Ainst_assoc+email+els_sa_discover+els_idp_info+openid&prompt=none",
+          "locator": {
+            "css": "#bdd-els-close"
+          },
+          "observed_url": "https://id.elsevier.com/as/authorization.oauth2?platSite=SD%2Fscience&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&scope=openid+email+profile+els_auth_info+els_idp_info+els_idp_analytics_attrs+els_sa_discover+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Ainst_assoc&response_type=code&prompt=login&client_id=SDFE-v4&dgcid=user-inst-login",
+          "observed_at": "2026-10-09T09:05:49.157Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "组织名称或电子邮箱",
+          "label": "组织名称或电子邮箱",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "els_institution",
+          "id": "bdd-email",
+          "css": "#bdd-email",
+          "role": "combobox",
+          "form_action": "ref: <Node>",
+          "locator": {
+            "css": "#bdd-email"
+          },
+          "observed_url": "https://id.elsevier.com/as/authorization.oauth2?platSite=SD%2Fscience&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&scope=openid+email+profile+els_auth_info+els_idp_info+els_idp_analytics_attrs+els_sa_discover+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Ainst_assoc&response_type=code&prompt=login&client_id=SDFE-v4&dgcid=user-inst-login",
+          "observed_at": "2026-10-09T09:05:49.157Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "提交并继续 ↗",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "action",
+          "id": "bdd-els-searchBtn",
+          "css": "#bdd-els-searchBtn",
+          "role": null,
+          "form_action": "ref: <Node>",
+          "locator": {
+            "css": "#bdd-els-searchBtn"
+          },
+          "observed_url": "https://id.elsevier.com/as/authorization.oauth2?platSite=SD%2Fscience&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&scope=openid+email+profile+els_auth_info+els_idp_info+els_idp_analytics_attrs+els_sa_discover+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Ainst_assoc&response_type=code&prompt=login&client_id=SDFE-v4&dgcid=user-inst-login",
+          "observed_at": "2026-10-09T09:05:49.157Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "获取有关访问权限的帮助",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "ref: <Node>",
+          "locator": {
+            "role": "button",
+            "name": "获取有关访问权限的帮助",
+            "exact": true
+          },
+          "observed_url": "https://id.elsevier.com/as/authorization.oauth2?platSite=SD%2Fscience&additionalPlatSites=GH%2Fgeneralhospital%2CLS%2FLS%2CMDY%2Fmendeley%2CSC%2Fscopus%2CRX%2Freaxys&scope=openid+email+profile+els_auth_info+els_idp_info+els_idp_analytics_attrs+els_sa_discover+urn%3Acom%3Aelsevier%3Aidp%3Apolicy%3Aproduct%3Ainst_assoc&response_type=code&prompt=login&client_id=SDFE-v4&dgcid=user-inst-login",
+          "observed_at": "2026-10-09T09:05:49.157Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "redirect_identity_pending",
+      "detail": "入口重定向到目录声明范围外，需根据发布机构核对新身份，未自动授予权威来源身份。"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-087"
+    ],
+    "example_ids": [
+      "KH-Q060",
+      "KH-Q085",
+      "KH-Q098"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:05:49.190Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-sciencedirect-036945c-search-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-sciencedirect-036945c-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

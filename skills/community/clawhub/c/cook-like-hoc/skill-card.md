@@ -1,42 +1,55 @@
-## Description: <br>
-Search and display recipes from the open-source Gar-b-age/CookLikeHOC repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and displays recipes from the open-source Gar-b-age/CookLikeHOC repository for CookLikeHOC dish requests.
 
-## Publisher: <br>
-[xiaoxiangxie](https://clawhub.ai/user/xiaoxiangxie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoxiangxie](https://clawhub.ai/user/xiaoxiangxie)
 
-## Use Case: <br>
-External users and agents use this skill to search the CookLikeHOC recipe database and return matched recipe instructions as readable Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes network requests to GitHub and jsDelivr to refresh recipe listings and fetch recipe content. <br>
-Mitigation: Use it only in environments where outbound requests to those services are acceptable. <br>
-Risk: If GITHUB_TOKEN is set, the recipe search script may use it for the GitHub API request. <br>
-Mitigation: Unset GITHUB_TOKEN or use a narrowly scoped token before running the skill if token use is not intended. <br>
+## Use Case:
 
+External users and cooking assistants use this skill to find matching CookLikeHOC recipes and present the selected recipe instructions as clean Markdown.
 
-## Reference(s): <br>
-- [CookLikeHOC repository](https://github.com/Gar-b-age/CookLikeHOC) <br>
-- [Cook Like Hoc ClawHub page](https://clawhub.ai/xiaoxiangxie/cook-like-hoc) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaoxiangxie) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown recipe text with occasional shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses fuzzy matching and may return the closest available recipe when there is no exact match.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The recipe lookup script may send an existing GITHUB_TOKEN environment variable to GitHub while refreshing the public recipe index.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run without ambient GitHub credentials when possible, or update the script to avoid automatically attaching credentials for public recipe lookup.
+
+Risk: Recipe Markdown is fetched from a remote repository and may change independently of this skill release.
+
+Mitigation: Treat fetched recipe content as untrusted user-facing text and review it before relying on it for cooking, safety, or dietary decisions.
+
+## Reference(s):
+
+- [CookLikeHOC repository](https://github.com/Gar-b-age/CookLikeHOC)
+- [Cook Like Hoc ClawHub page](https://clawhub.ai/xiaoxiangxie/skills/cook-like-hoc)
+- [Publisher profile](https://clawhub.ai/user/xiaoxiangxie)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown recipe text with optional shell command execution by the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fuzzy recipe matching may return the closest available recipe or a short list of examples when no match is found.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

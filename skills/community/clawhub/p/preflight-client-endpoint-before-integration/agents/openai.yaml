@@ -1,0 +1,13 @@
+interface:
+  display_name: "FHIR endpoint preflight"
+  short_description: "Check declared FHIR surface"
+policy:
+  products: ["CHAT", "CODEX"]
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "powmcp-fhir-server-check"
+      description: "FHIR Server Check (PowMCP)"
+      transport: "streamable_http"
+      url: "https://powmcp.com/fhir-server-check/mcp"

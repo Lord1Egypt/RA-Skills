@@ -1,43 +1,55 @@
-## Description: <br>
-Analyzes employee retention risk across eight dimensions, estimates turnover costs, flags retention risks, and produces a 90-day action plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes employee retention risk across eight dimensions, identifies flight risks, estimates turnover costs, and produces a 90-day retention action plan.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-HR leaders, people operations teams, and managers use this skill to assess retention risk from workforce data, estimate the cost of preventable turnover, and prioritize retention interventions. It is intended as decision support for planning, not as the sole basis for employment decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Workforce data may include identifiable or confidential employee information. <br>
-Mitigation: Only provide data the user is authorized to share; prefer aggregated or anonymized inputs. <br>
-Risk: Retention analysis could be misused as the sole basis for employment decisions. <br>
-Mitigation: Treat outputs as decision support and require appropriate human, HR, and policy review before action. <br>
-Risk: Sensitive compensation, DEI, health, disciplinary, or similar details may require additional controls. <br>
-Mitigation: Avoid named sensitive data unless the user's environment is approved for that data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1kalin/afrexai-employee-retention) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+HR leaders, people managers, and workforce-planning teams use this skill to assess retention risk from team data, prioritize at-risk areas, estimate turnover cost exposure, and plan interventions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style retention risk assessment with scores, risk levels, prioritized risks, 90-day actions, and savings estimates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided workforce metrics; no executable output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Identifiable employee records or compensation data could expose sensitive HR information if shared unnecessarily.
+
+Mitigation: Aggregate or anonymize HR and compensation data where possible, and include identifiable records only when they are necessary for the assessment.
+
+Risk: Benchmark and commercial-link content may be treated as authoritative without validation.
+
+Mitigation: Verify benchmark assumptions and linked resources before using recommendations for HR, compensation, or workforce-planning decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-employee-retention)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted retention risk assessment with scores, cost estimates, prioritized risks, and a 90-day action plan.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; output depends on user-provided HR, compensation, and retention data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

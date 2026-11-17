@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "OwlCodaRunKitSnapshotRequestV1",
+  "snapshotId": "replace-with-stable-snapshot-id",
+  "mode": "project",
+  "targetRoot": "replace-with-absolute-project-root",
+  "cwd": ".",
+  "executable": "replace-with-absolute-executable-path",
+  "argv": ["replace-with-exact-argument"],
+  "launcherVersion": "replace-with-launcher-version",
+  "toolVersions": [{ "name": "replace-with-tool-name", "version": "replace-with-tool-version" }],
+  "selectedPaths": ["replace-with-product-source-path"],
+  "statusMode": "porcelain-v1-z-untracked-all-runkit-excluded",
+  "verificationContext": {
+    "schemaVersion": "OwlCodaRunKitVerificationContextV1",
+    "reusePolicy": "portable",
+    "platform": null,
+    "toolchains": [],
+    "lockfiles": [],
+    "fixtures": [],
+    "services": [],
+    "environment": []
+  }
+}

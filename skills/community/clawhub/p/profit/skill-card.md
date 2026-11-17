@@ -1,39 +1,54 @@
-## Description: <br>
-Reference tool for devtools — covers intro, quickstart, patterns and more. Quick lookup for Profit concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools — covers intro, quickstart, patterns and more. Quick lookup for Profit concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and engineers use Profit as a quick reference for devtools-oriented Profit concepts, quickstart steps, operational patterns, debugging, performance, security, migration, and cheatsheet material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes an executable shell script, even though security evidence describes it as static reference output. <br>
-Mitigation: Review the script before execution and treat its generated text as reference guidance rather than verified operational instructions. <br>
+## Use Case:
 
+Developers and engineers use Profit as a local reference for devtools concepts, setup, implementation patterns, debugging, performance, security, migration, and quick-reference guidance.
 
-## Reference(s): <br>
-- [Profit on ClawHub](https://clawhub.ai/bytesagain-lab/profit) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain-text and Markdown reference documentation emitted by shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference output; no API keys, credentials, or network access are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Static security, migration, debugging, or performance guidance could be too generic for a specific production environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated guidance against project documentation, environment constraints, and current operational procedures before applying it.
+
+Risk: The skill includes an executable shell helper.
+
+Mitigation: Inspect the helper before installation and use it only for the documented local reference commands.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [Profit on ClawHub](https://clawhub.ai/bytesagain-lab/skills/profit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference content; no API keys, credentials, or network access are indicated by evidence.]
+
+## Skill Version(s):
+
+2.0.1 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

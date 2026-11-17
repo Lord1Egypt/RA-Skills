@@ -1,43 +1,58 @@
-## Description: <br>
-Collaborative robot task planner. Use when json cobot tasks, csv cobot tasks, checking cobot status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cobot provides CLI commands for recording, listing, searching, exporting, and configuring local cobot task entries.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and operators use Cobot to keep a local command-line log of cobot-related task notes, status checks, searches, statistics, and JSON or CSV exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local entries may contain sensitive operational data and are persisted on disk. <br>
-Mitigation: Avoid storing secrets or sensitive operational details unless local persistence in COBOT_DIR or ~/.cobot is acceptable. <br>
-Risk: The remove command deletes entries immediately. <br>
-Mitigation: Export or back up important entries before using remove, and confirm the entry number before deletion. <br>
-Risk: Exports copy saved entries into the current working directory. <br>
-Mitigation: Run exports only from an intended directory and review generated JSON or CSV files before sharing. <br>
+## Use Case:
 
+Developers and operators can use this skill for CLI-based local tracking of cobot-related entries, status checks, search, export, statistics, and simple configuration. It should be treated as a local note/configuration helper rather than a robot planner.
 
-## Reference(s): <br>
-- [Cobot on ClawHub](https://clawhub.ai/ckchzh/cobot) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with Bash command examples; the skill script produces terminal text and JSONL, JSON, or CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local persistence under COBOT_DIR or ~/.cobot; export writes cobot-export.json or cobot-export.csv in the current directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The release security verdict is suspicious because the skill claims collaborative robot task planning while the inspected artifact behaves as a local entry and configuration manager.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the artifact before installation and treat it as a local note/configuration CLI, not as a robot planner.
+
+Risk: The bundled script persists entries and configuration under COBOT_DIR and can export local data to JSON or CSV files.
+
+Mitigation: Keep COBOT_DIR in a private directory you control and avoid storing sensitive information in entries or exported files.
+
+Risk: Unsafe input handling and CSV export can preserve untrusted values in local files.
+
+Mitigation: Do not pass untrusted values to add, search, or config commands, and avoid opening exported CSVs from untrusted entries in spreadsheet software.
+
+## Reference(s):
+
+- [Cobot on ClawHub](https://clawhub.ai/ckchzh/skills/cobot)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local JSONL data, CSV exports, JSON exports, and configuration files when the bundled shell script is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

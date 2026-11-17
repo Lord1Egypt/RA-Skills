@@ -1,43 +1,58 @@
-## Description: <br>
-Record video proof of implemented features after coding tasks complete, using Playwright walkthroughs to capture recordings, screenshots, console logs, and proof summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Proof records Playwright-driven proof artifacts after coding tasks, including UI recordings, screenshots, console logs, API results, and Markdown summaries.
 
-## Publisher: <br>
-[rikisann](https://clawhub.ai/user/rikisann) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[rikisann](https://clawhub.ai/user/rikisann)
 
-## Use Case: <br>
-Developers and coding agents use this skill after implementation work to create a reproducible browser or API proof that demonstrates the changed feature and records reviewable artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated proof specs can execute broad start commands and make browser or API requests against configured targets. <br>
-Mitigation: Review proof specs before execution and run them only in trusted repositories and non-production environments. <br>
-Risk: Recorded videos, screenshots, logs, and API results can capture sensitive page content, credentials, or response data. <br>
-Mitigation: Avoid secret-bearing or authenticated pages when possible, and inspect or redact proof-artifacts before committing or sharing them. <br>
-Risk: Setup installs npm packages, Playwright browser dependencies, Chromium, and may attempt system package installation for ffmpeg. <br>
-Mitigation: Run setup only on machines where those dependency and package-manager changes are acceptable. <br>
+## Use Case:
 
+Developers and coding agents use this skill after implementation work to create visual or API proof that a feature works and to attach the resulting artifacts to a task or pull request.
 
-## Reference(s): <br>
-- [Proof Spec Reference](artifact/references/proof-spec.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rikisann/video-proof-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, Markdown, Files] <br>
-**Output Format:** [Markdown guidance with YAML proof specs and shell commands; generated proof artifacts may include WebM or MP4 video, PNG screenshots, console logs, Markdown summaries, and JSON API results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces pass/fail proof summaries and exits nonzero when proof steps or API assertions fail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Setup may install Node packages, Playwright browser dependencies, and ffmpeg through local package managers or sudo-capable commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup scripts before installation, prefer manual dependency installation when possible, and run setup in a development or disposable environment.
+
+Risk: Proof specs and CLI options can start arbitrary local commands to launch an application before recording.
+
+Mitigation: Use only trusted proof specs and start commands, and avoid running the skill against production systems or sensitive authenticated pages.
+
+Risk: Generated videos, screenshots, console logs, Markdown summaries, and API results may capture sensitive data.
+
+Mitigation: Inspect and redact generated artifacts before committing, sharing, or attaching them to a pull request.
+
+## Reference(s):
+
+- [Proof Spec Reference](artifact/references/proof-spec.md)
+- [ClawHub Skill Page](https://clawhub.ai/rikisann/skills/video-proof-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with YAML proof specs, shell commands, and generated proof artifacts such as WebM or MP4 video, PNG screenshots, logs, and JSON API results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local proof-artifacts with pass/fail summaries and may return a nonzero exit code when proof steps fail.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "package": "paged-report",
+  "version": "1.2.1",
+  "release_state": "development",
+  "stability": "review-pending",
+  "migration_state": "blocked",
+  "runtime": {
+    "language": "python",
+    "requires_python": ">=3.9",
+    "dependencies": []
+  },
+  "allowlist": [
+    "README.md",
+    "SKILL.md",
+    "CHANGELOG.md",
+    ".gitignore",
+    ".github/workflows/ci.yml",
+    "LICENSE",
+    "pyproject.toml",
+    "release/manifest.json",
+    "generator/__init__.py",
+    "generator/paged_report.py",
+    "schemas/report.schema.json",
+    "templates/base.css",
+    "templates/component-catalog.html",
+    "examples/confirmation-data.json",
+    "examples/confirmation-generated.html",
+    "examples/confirmation.html",
+    "examples/proposal.html"
+  ],
+  "exclusions": [
+    {
+      "pattern": "examples/*-internal-*",
+      "reason": "Domain-specific internal evidence remains in the checkout but outside the generic package."
+    },
+    {
+      "pattern": "examples/*.pdf",
+      "reason": "Legacy binary previews are excluded until regenerated from sanitized generic fixtures."
+    },
+    {
+      "pattern": "examples/*-preview.png",
+      "reason": "Legacy visual previews are excluded until regenerated from sanitized generic fixtures."
+    },
+    {
+      "pattern": "docs/**",
+      "reason": "Project evidence, QA contracts, and development records are outside the generic package."
+    },
+    {
+      "pattern": "qa/**",
+      "reason": "QA tooling and evidence are development-only material."
+    },
+    {
+      "pattern": "tests/**",
+      "reason": "Test fixtures are development-only material and are not runtime package contents."
+    },
+    {
+      "pattern": "**/__pycache__/**",
+      "reason": "Generated local interpreter state is never release content."
+    }
+  ]
+}

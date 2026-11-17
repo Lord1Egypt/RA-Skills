@@ -1,38 +1,52 @@
-## Description: <br>
-A budget performance audit workflow that guides target review, data collection, completion analysis, fund efficiency analysis, satisfaction statistics, scoring, and report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a budget performance audit workflow covering target review, data collection, completion analysis, fund efficiency, satisfaction statistics, scoring, and report drafting.
 
-## Publisher: <br>
-[rc17777](https://clawhub.ai/user/rc17777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[rc17777](https://clawhub.ai/user/rc17777)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Audit teams and public-sector finance reviewers use this skill to coordinate budget performance evaluations, analyze completion and efficiency data, calculate satisfaction and scoring outputs, and draft a performance report.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Sensitive audit, financial, or survey data may flow through external helper skills and runtime scripts with unclear provenance.
+
+Mitigation: Confirm the exact versions and publishers of referenced helper skills and runtime scripts, restrict their permissions, and avoid confidential data until dependency provenance and data handling are clear.
+
+Risk: Required runtime scripts and audit modules are not included in the artifact.
+
+Mitigation: Verify the local runtime environment provides the expected pipeline_engine.py, audit_workflow.py, and audit_router.py versions before using the workflow in an audit setting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Use this skill to run or preview a seven-step budget performance management workflow for audit teams evaluating project goals, budget execution, efficiency, satisfaction data, comprehensive scores, and performance reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-No deployment geography restriction is stated in the release evidence. <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown and text audit workflow outputs with optional shell command examples]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rc17777/audit-budget-performance) <br>
-- [Publisher profile](https://clawhub.ai/user/rc17777) <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [Requires external pipeline_engine.py and related audit modules; workflow use may involve financial records and satisfaction survey data.]
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Workflow instructions, audit prompts, command-line examples, and generated budget performance report content.] <br>
-**Output Parameters:** [project_name, dept_name, year, and budget_amount are used by the workflow context.] <br>
-**Other Properties Related to Output:** [The security evidence reports no executable payloads, persistence, hidden behavior, or scanner findings. Use in trusted environments because the workflow may handle project budget, financial, and satisfaction survey data and depends on external audit engine components and named skills.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.0.0 <br>
+1.0.0 (source: server release evidence and artifact metadata)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

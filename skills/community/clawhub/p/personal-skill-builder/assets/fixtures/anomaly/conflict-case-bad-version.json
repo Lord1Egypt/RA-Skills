@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "raw": {
+    "path": "raw.csv",
+    "format": "csv",
+    "id_column": "编号",
+    "line_base": "file",
+    "fields": {
+      "quantity": {
+        "column": "数量",
+        "type": "number",
+        "min": 0,
+        "unknown": "未知"
+      },
+      "note": {
+        "column": "备注"
+      }
+    }
+  },
+  "actual": {
+    "path": "conflict-bad-version.csv",
+    "format": "csv"
+  },
+  "compare": [
+    "quantity"
+  ],
+  "retain": [
+    "quantity",
+    "note"
+  ]
+}

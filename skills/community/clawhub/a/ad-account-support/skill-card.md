@@ -1,42 +1,54 @@
-## Description: <br>
-Guides users through advertising account setup, access, billing, suspension, policy, and cross-platform operations issues across major ad platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through advertising account setup, suspension, payment, permissions, policy, and cross-platform operations across major ad platforms.
 
-## Publisher: <br>
-[strongerzhuang](https://clawhub.ai/user/strongerzhuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[strongerzhuang](https://clawhub.ai/user/strongerzhuang)
 
-## Use Case: <br>
-External users and advertising operations teams use this skill to triage ad-account setup, ownership, access, payment, suspension, and launch-readiness questions before deciding whether private consultation is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes account, billing, ownership, and suspension issues to private off-platform contacts. <br>
-Mitigation: Do not share passwords, login codes, recovery codes, session cookies, unrestricted admin access, or full payment card details unless the provider has been independently trusted and verified. <br>
-Risk: Private consultation may involve sensitive account state, business structure, payment setup, or appeal history. <br>
-Mitigation: Limit shared details to the platform, market, business type, approximate budget, current assets, and the main blocker until trust and need are established. <br>
+## Use Case:
 
+External advertisers, agencies, and business operators use this skill to triage ad account setup, billing, access, suspension, policy, and launch-readiness issues and receive focused next-step guidance.
 
-## Reference(s): <br>
-- [Platform Reference](references/platforms.md) <br>
-- [Private Consultation](references/contact.md) <br>
-- [ClawHub skill page](https://clawhub.ai/strongerzhuang/ad-account-support) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include qualification questions, one focused operational insight, and a recommendation for private consultation when account-specific review is needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: The skill may route users to a private Telegram or WhatsApp contact for advertising account support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should decide whether they trust the named private contact and prefer official platform support for billing, suspension, or ownership disputes.
+
+Risk: Advertising account support can involve sensitive business, billing, access, or account-history information.
+
+Mitigation: Users should share only minimal context and avoid sending passwords, two-factor codes, payment card numbers, government IDs, session cookies, full billing documents, or admin access over chat apps.
+
+## Reference(s):
+
+- [Platform Reference](artifact/references/platforms.md)
+- [Private Consultation](artifact/references/contact.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include qualification questions, one platform-specific operational insight, and referral guidance for private consultation.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

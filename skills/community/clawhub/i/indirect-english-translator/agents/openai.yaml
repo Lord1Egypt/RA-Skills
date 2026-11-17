@@ -1,0 +1,7 @@
+interface:
+  display_name: "Indirect English Translator"
+  short_description: "Decode polite hidden meaning"
+  default_prompt: "Use $indirect-english-translator to translate this indirect English into direct simple meaning and suggest a safe reply."
+
+policy:
+  allow_implicit_invocation: true

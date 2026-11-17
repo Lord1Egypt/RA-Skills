@@ -1,42 +1,56 @@
-## Description: <br>
-This skill enables playing a rhythm game called "节奏大师" (Rhythm Master) similar to QQ Dance/DDR. Players press arrow keys and spacebar in time with falling notes to score points. The game features multiple difficulty levels, combo system, judgment ratings (PERFECT/GREAT/GOOD/BAD/MISS), local leaderboard, and can be extended with online leaderboards. Use this skill when the user wants to play a rhythm game, test their reflexes, or have fun with a keyboard-based music game. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rhythm Master is a browser-based keyboard rhythm game skill where players press arrow keys and the spacebar in time with falling notes, with difficulty levels, combo scoring, judgment ratings, and local or optional online leaderboards.
 
-## Publisher: <br>
-[dletter2](https://clawhub.ai/user/dletter2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dletter2](https://clawhub.ai/user/dletter2)
 
-## Use Case: <br>
-External users can use this skill to play or host a keyboard rhythm game in a browser, with difficulty selection, scoring, combo tracking, and local leaderboard support. Developers can extend it with an online leaderboard after adding appropriate Firebase or backend configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The online leaderboard setup can expose player score data and a Firebase database to public tampering if followed with open read/write rules. <br>
-Mitigation: Use the local HTML game for low-risk play, prefer non-personal player names, and do not publish an online leaderboard until Firebase rules are locked down, writes are validated and rate-limited, users know what data is uploaded, and stored scores can be managed or deleted. <br>
+## Use Case:
 
+External users use this skill to play a keyboard rhythm game and test reflexes in a browser. Developers can use its bundled documentation to run the local HTML game or configure an optional online leaderboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dletter2/rhythm-master) <br>
-- [Game mechanics](artifact/references/game_mechanics.md) <br>
-- [Leaderboard system](artifact/references/leaderboard_system.md) <br>
-- [Firebase setup](artifact/FIREBASE_SETUP.md) <br>
-- [Firebase documentation](https://firebase.google.com/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with HTML, JavaScript, JSON, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes browser game files and optional leaderboard configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Player names and scores are stored in the browser for the local leaderboard.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users what is stored locally and avoid collecting sensitive player information.
+
+Risk: The optional online leaderboard guidance can allow unsafe public score submission and remote leaderboard rendering.
+
+Mitigation: Do not deploy the online leaderboard as written; require authenticated or server-mediated score submission, deny public database writes by default, validate all fields, render leaderboard values as text, and add a privacy notice before publishing player data.
+
+## Reference(s):
+
+- [Game Mechanics](references/game_mechanics.md)
+- [Leaderboard System](references/leaderboard_system.md)
+- [Firebase Documentation](https://firebase.google.com/docs)
+- [Firebase Cloud Functions Documentation](https://firebase.google.com/docs/functions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks and bundled HTML game files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The local game stores scores in browser LocalStorage; online leaderboard use requires additional Firebase or server configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

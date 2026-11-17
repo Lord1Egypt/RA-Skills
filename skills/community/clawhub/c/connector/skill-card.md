@@ -1,48 +1,61 @@
-## Description: <br>
-Deprecated legacy connector skill. Use @launchthatbot/connect-openclaw-plugin for all new LaunchThatBot OpenClaw connect flows with configurable permissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated legacy connector skill. Use @launchthatbot/connect-openclaw-plugin for all new LaunchThatBot OpenClaw connect flows with configurable permissions.
 
-## Publisher: <br>
-[launchthatbot](https://clawhub.ai/user/launchthatbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[launchthatbot](https://clawhub.ai/user/launchthatbot)
 
-## Use Case: <br>
-External developers and OpenClaw operators use this skill to connect existing OpenClaw infrastructure to LaunchThatBot for heartbeat, event ingest, replay checks, and live visibility while migrations to the replacement plugin are completed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: This is a deprecated legacy connector; using it for new setups may miss the replacement plugin's configurable permissions. <br>
-Mitigation: Use @launchthatbot/connect-openclaw-plugin for new connections and reserve this connector for existing deployments that intentionally need it. <br>
-Risk: The connector sends scoped OpenClaw status and event data, including optional metadata, to a configured LaunchThatBot endpoint. <br>
-Mitigation: Verify the base URL, avoid sensitive values in event metadata, and restrict egress to the expected LaunchThatBot domain. <br>
-Risk: Ingest tokens and optional signing secrets are required for authenticated operation. <br>
-Mitigation: Provide secrets through environment injection, a secret manager, or secure files; keep them out of CLI history, logs, and screenshots. <br>
-Risk: The local retry queue can persist event data on disk. <br>
-Mitigation: Use restrictive queue-file permissions and disable queue persistence with --persist-queue=false when local event storage is not acceptable. <br>
+## Use Case:
 
+Developers and operators use this legacy skill to connect an existing OpenClaw VPS or local deployment to LaunchThatBot for heartbeat, event ingest, replay checks, and live operational visibility. New LaunchThatBot OpenClaw connections should use @launchthatbot/connect-openclaw-plugin instead.
 
-## Reference(s): <br>
-- [ClawHub Connector listing](https://clawhub.ai/launchthatbot/connector) <br>
-- [LaunchThatBot connect documentation](https://launchthatbot.com/docs/skills/connect) <br>
-- [LaunchThatBot import documentation](https://launchthatbot.com/docs/skills/import) <br>
-- [README](artifact/README.md) <br>
-- [Security policy](artifact/SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides connector setup, hardening, troubleshooting guidance, and CLI commands; the auth-link command can emit JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release and package.json) <br>
+Risk: The connector handles ingest tokens and telemetry and accepts a configurable base URL, which could expose data or credentials if pointed at an unintended endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the intended LaunchThatBot HTTPS endpoint, restrict egress to that domain, and avoid plaintext HTTP except for isolated localhost development.
+
+Risk: Secrets may be exposed through command history, logs, terminal output, screenshots, or recordings if passed directly on the command line.
+
+Mitigation: Provide tokens through protected environment injection or a secure secret file, and rotate the ingest token if exposure is suspected.
+
+Risk: This is a deprecated legacy connector and may not be the safest default for new installations.
+
+Mitigation: Prefer @launchthatbot/connect-openclaw-plugin for new installs and review this connector carefully before use.
+
+## Reference(s):
+
+- [ClawHub Connector Listing](https://clawhub.ai/launchthatbot/skills/connector)
+- [README.md](artifact/README.md)
+- [SECURITY.md](artifact/SECURITY.md)
+- [LaunchThatBot Connect Documentation](https://launchthatbot.com/docs/skills/connect)
+- [LaunchThatBot Import Documentation](https://launchthatbot.com/docs/skills/import)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operator-facing setup, hardening, validation, and troubleshooting guidance for the connector flow.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

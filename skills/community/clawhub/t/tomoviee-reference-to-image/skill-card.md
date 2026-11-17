@@ -1,47 +1,58 @@
-## Description: <br>
-Generate images from a reference image using Tomoviee Image-to-Image API (`tm_reference_img2img`) through Wondershare OpenAPI gateway (`https://openapi.wondershare.cc`). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates new images from a reference image and prompt using Tomoviee's Image-to-Image API through the Wondershare OpenAPI gateway.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-Developers and image-generation workflow authors use this skill to call Tomoviee's image-to-image API for reference-based image editing, style transfer, and subject-preserving transformations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference image URLs, optional callback URLs, and task metadata are sent to Wondershare/Tomoviee for processing. <br>
-Mitigation: Use non-sensitive prompts and images, avoid private or regulated content, and review the provider's terms before production use. <br>
-Risk: API credentials and generated Basic authorization tokens are sensitive, and the token helper prints the token to stdout. <br>
-Mitigation: Use dedicated revocable API credentials and avoid running token generation in CI logs, shared terminals, or other recorded sessions. <br>
-Risk: Callback URLs can disclose internal endpoints or receive generated-task metadata. <br>
-Mitigation: Use purpose-built public callback endpoints and avoid internal, secret-bearing, or privileged callback URLs. <br>
+## Use Case:
 
+Developers and creative production teams use this skill to create subject-preserving image variations, style transfers, and scene changes from a prompt and reference image.
 
-## Reference(s): <br>
-- [Tomoviee Image-to-Image API Reference](references/image_apis.md) <br>
-- [Tomoviee Prompt Engineering Guide](references/prompt_guide.md) <br>
-- [Tomoviee API docs (global)](https://www.tomoviee.ai/doc/ai-image/image-to-image.html) <br>
-- [Tomoviee developer portal (global)](https://www.tomoviee.ai/developers.html) <br>
-- [Tomoviee API docs (mainland)](https://www.tomoviee.cn/doc/ai-image/image-to-image.html) <br>
-- [Tomoviee developer portal (mainland)](https://www.tomoviee.cn/developers.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and shell examples; API responses may include JSON task metadata and generated image URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an asynchronous task workflow with polling; generated assets are returned by the Tomoviee/Wondershare service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Reusable Tomoviee API credentials can be exposed through command-line arguments or printed authorization tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a secrets manager outside the skill, avoid the token helper for real credentials, and prevent agents from printing Authorization tokens.
+
+Risk: Reference image URLs, prompts, callback URLs, and passthrough params are submitted to Tomoviee/Wondershare endpoints.
+
+Mitigation: Submit only data approved for third-party processing and avoid sensitive images, private URLs, or callbacks that expose internal services.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wondershare-boop/skills/tomoviee-reference-to-image)
+- [Tomoviee Image-to-Image API Docs](https://www.tomoviee.ai/doc/ai-image/image-to-image.html)
+- [Tomoviee Developer Portal](https://www.tomoviee.ai/developers.html)
+- [Tomoviee Image-to-Image API Docs (Mainland)](https://www.tomoviee.cn/doc/ai-image/image-to-image.html)
+- [Image API Reference](references/image_apis.md)
+- [Prompt Engineering Guide](references/prompt_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation with Python snippets and shell commands; API responses are JSON with task status and generated image URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates asynchronous image-generation tasks and polls for completion.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

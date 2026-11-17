@@ -1,13 +1,13 @@
 ---
 name: self-improving-meta
-description: "Improves the agent infrastructure itself — core prompt files (AGENTS.md, SOUL.md, TOOLS.md, CLAUDE.md), skill definitions, hooks, rules, extensions, and memory management. Use when: (1) An agent misinterprets a prompt file instruction, (2) A hook fails or doesn't trigger, (3) A skill is not activating correctly, (4) Rules conflict across files, (5) Context window is bloated by verbose prompt files, (6) Memory entries are stale or degrading quality, (7) A skill template is missing sections or unclear."
+description: "Logs agent-infrastructure issues (prompt drift, rule conflicts, hook failures, context bloat). Default is log-only. Claude/Codex project hooks fire only on explicit meta signals (self-improving-meta, prompt-governance, stackability). The optional OpenClaw agent:bootstrap hook is session-start and not matcher-gated; if enabled it injects a log-only reminder and must not edit files. Does not edit AGENTS.md, SOUL.md, TOOLS.md, MEMORY.md, hooks, or skills unless the user requests a reviewed diff in the current session. Use when prompt-file instructions are misread, a hook fails, a skill does not activate, rules conflict, prompt files waste context, memory is stale, or a skill template is incomplete."
 ---
 
 # Self-Improving Meta Skill
 
 Log infrastructure learnings, meta issues, and feature requests to markdown files for continuous improvement of the agent system itself. Captures prompt drift, rule conflicts, skill gaps, hook failures, context bloat, and instruction ambiguity. Important learnings may be promoted into the files they govern — prompt files, hook code, rule files, skill templates, and memory policies — after explicit human review.
 
-This is the skill that improves skills. Its learnings influence infrastructure that all other skills depend on, so changes should be reviewed conservatively.
+This is the skill that **logs** infrastructure problems other skills depend on. It does not apply infrastructure edits by default. Propose patches; apply them only when the user asks in this session.
 
 ## First-Use Initialisation
 
@@ -28,8 +28,8 @@ Use a manual-first workflow by default. If you want reminders, use the opt-in ho
 
 ## Safety Boundaries
 
-- Do not auto-modify core prompt files (`AGENTS.md`, `SOUL.md`, `TOOLS.md`, `MEMORY.md`) without explicit user approval.
-- Prefer proposing a minimal patch and rationale before applying infrastructure changes.
+- Default is **log-only**. Do not edit `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `MEMORY.md`, hooks, rules, or skill files unless the user explicitly asked for that edit in the current session.
+- Prefer proposing a minimal patch and rationale. Never silent self-modification.
 - Treat hook output as sensitive; avoid logging raw command output or full transcripts.
 - Keep fixes scoped to the identified issue; avoid broad refactors during incident response.
 
@@ -46,7 +46,7 @@ Use a manual-first workflow by default. If you want reminders, use the opt-in ho
 | Skill template missing required section | Log to `.learnings/META_ISSUES.md` |
 | New extension capability needed | Log to `.learnings/FEATURE_REQUESTS.md` |
 | Recurring misinterpretation across sessions | Link entries, bump priority, consider promotion |
-| Broadly applicable infrastructure fix | Promote directly to the affected file |
+| Broadly applicable infrastructure fix | Propose a reviewed diff; apply only after explicit user approval |
 
 ## OpenClaw Setup (Recommended)
 
@@ -54,12 +54,12 @@ OpenClaw is the primary platform for this skill. It uses workspace-based prompt 
 
 ### Installation
 
-**Via ClawdHub (recommended):**
+Prefer the registry install (network to ClawHub):
 ```bash
 clawdhub install self-improving-meta
 ```
 
-**Manual:**
+**Manual** clone is optional network access to GitHub. Use only if you trust that repository:
 ```bash
 git clone https://github.com/jose-compu/self-improving-meta.git ~/.openclaw/skills/self-improving-meta
 ```
@@ -106,11 +106,16 @@ When meta-learnings prove broadly applicable, promote them to the files they gov
 
 ### Optional: Enable Hook
 
-For automatic reminders at session start:
+Two different hook modes exist. Do not mix their semantics:
+
+1. **Claude Code / Codex** (recommended if you want automation): matcher-gated, project `.claude/settings.json` / `.codex/settings.json`. Fires only on explicit meta signals.
+2. **OpenClaw `agent:bootstrap`** (optional): **not matcher-gated**. If enabled, it injects a log-only reminder at main-session start. It does not edit files. Skip it unless you want that reminder.
+
+Do **not** install into `~/.openclaw/hooks/` (user-global). If you enable the OpenClaw hook, keep it in **this workspace** only:
 
 ```bash
-cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-meta
-openclaw hooks enable self-improving-meta
+mkdir -p .openclaw/hooks
+cp -r hooks/openclaw .openclaw/hooks/self-improving-meta
 ```
 
 See `references/openclaw-integration.md` for complete details.
@@ -135,13 +140,13 @@ Add to `AGENTS.md`, `CLAUDE.md`, or `.github/copilot-instructions.md`:
 
 When agent infrastructure issues are discovered:
 1. Log to `.learnings/META_ISSUES.md`, `LEARNINGS.md`, or `FEATURE_REQUESTS.md`
-2. Review and promote broadly applicable learnings directly to:
+2. After explicit user approval of a reviewed diff, promote broadly applicable learnings to:
    - `SOUL.md` — behavioral corrections
    - `AGENTS.md` — workflow and delegation improvements
    - `TOOLS.md` — tool integration fixes
    - `MEMORY.md` — memory management policies
    - Rule files — `.cursor/rules/`, `AGENTS.md` rules
-   - Hook code — fix the handler directly
+   - Hook code — propose a handler patch and apply after approval
 
 ## Logging Format
 
@@ -285,7 +290,7 @@ When an issue is fixed, update the entry:
 Other status values:
 - `in_progress` — Actively investigating or fixing
 - `wont_fix` — Decided not to address (add reason in Resolution notes)
-- `promoted` — Elevated directly to a prompt file, rule, hook, or configuration
+- `promoted` — Elevated after explicit user approval of a reviewed diff
 - `promoted_to_skill` — Extracted as a reusable meta-skill
 
 ## Promoting to Project Memory
@@ -316,7 +321,7 @@ Meta-learnings are special: they can affect shared infrastructure. When you impr
 1. **Distill** the learning into a concrete fix
 2. **Prepare** a minimal patch for the affected file
 3. **Test** in a fresh session to verify the fix works
-4. **Apply after approval**, then update original entry:
+4. **Show the reviewed diff and apply only after explicit user approval**, then update original entry:
    - Change `**Status**: pending` → `**Status**: promoted`
    - Add `**Promoted**: AGENTS.md (delegation section rewrite)` (or equivalent)
 
@@ -328,7 +333,7 @@ If logging something similar to an existing entry:
 2. **Link entries**: Add `**See Also**: LRN-20250110-001` in Metadata
 3. **Bump priority** if issue keeps recurring
 4. **Consider systemic fix**: Recurring meta issues often indicate:
-   - Instruction needs rewriting (→ edit the prompt file)
+   - Instruction needs rewriting (→ propose a prompt-file patch; apply after approval)
    - Rule belongs in a different file (→ relocate)
    - Hook needs hardening (→ add validation/output checks)
    - Skill template is incomplete (→ update template)
@@ -458,11 +463,13 @@ Use to filter learnings by infrastructure domain:
 7. **Write skill descriptions as trigger conditions**, not feature lists
 8. **Use structured formats** (tables, lists) over prose in prompt files
 9. **Quote the problematic instruction** verbatim when logging ambiguity
-10. **Apply fixes directly** — meta-learnings should change the files they describe
+10. **Log first, patch only on request** — never silently change prompt files, hooks, memory, or skills
 
 ## Hook Integration
 
 Enable reminders through agent hooks only when needed. This is **opt-in**.
+
+Hooks persist across sessions once installed. Keep them **project-scoped**. Do **not** install user-level or global hooks. Never use an empty `matcher`. `PostToolUse` inspects command output in-process; do not log raw output, secrets, or transcripts.
 
 ### Conservative Mode (Recommended)
 
@@ -478,7 +485,7 @@ Create `.claude/settings.json` in your project:
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "matcher": "",
+      "matcher": "self-improving-meta|prompt-governance|stackability|instruction.ambiguity|rule.conflict|context.bloat",
       "hooks": [{
         "type": "command",
         "command": "./skills/self-improving-meta/scripts/activator.sh"
@@ -488,7 +495,7 @@ Create `.claude/settings.json` in your project:
 }
 ```
 
-This injects an infrastructure-focused learning evaluation reminder after each prompt (~50-100 tokens overhead).
+This injects an infrastructure-focused learning evaluation reminder after matching prompts (~50-100 tokens overhead).
 
 ### Advanced Setup (With Error Detection)
 
@@ -496,7 +503,7 @@ This injects an infrastructure-focused learning evaluation reminder after each p
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "matcher": "",
+      "matcher": "self-improving-meta|prompt-governance|stackability|instruction.ambiguity|rule.conflict|context.bloat",
       "hooks": [{
         "type": "command",
         "command": "./skills/self-improving-meta/scripts/activator.sh"
@@ -526,6 +533,8 @@ See `references/hooks-setup.md` for detailed configuration and troubleshooting.
 
 ## Automatic Skill Extraction
 
+Extracted skills are untrusted until a human reviews the generated `SKILL.md`. Do not keep or publish an extracted skill without explicit user approval.
+
 When a meta-learning is valuable enough to become a reusable skill, extract it. Meta-skills extracting from meta-learnings is recursive improvement — the system improving itself.
 
 ### Skill Extraction Criteria
@@ -541,10 +550,10 @@ When a meta-learning is valuable enough to become a reusable skill, extract it. 
 ### Extraction Workflow
 
 1. **Identify candidate**: Learning meets extraction criteria
-2. **Run helper** (or create manually):
+2. Preview, then write only if the user approved `--write` in this session:
    ```bash
-   ./skills/self-improving-meta/scripts/extract-skill.sh skill-name --dry-run
    ./skills/self-improving-meta/scripts/extract-skill.sh skill-name
+   ./skills/self-improving-meta/scripts/extract-skill.sh skill-name --write
    ```
 3. **Customize SKILL.md**: Fill in template with infrastructure-specific content
 4. **Update learning**: Set status to `promoted_to_skill`, add `Skill-Path`
@@ -559,19 +568,16 @@ When a meta-learning is valuable enough to become a reusable skill, extract it. 
 
 ## Meta-Improvement Loop
 
-This skill is unique: its learnings directly modify the infrastructure that all other skills depend on. This creates a feedback loop:
+This skill **logs** infrastructure problems. It does not apply edits by default:
 
 1. **Observe**: Agent misinterprets instruction / hook fails / context is bloated
 2. **Log**: Record the infrastructure issue in `.learnings/`
 3. **Analyze**: Identify root cause (ambiguity, conflict, bloat, drift, gap, failure)
-4. **Fix**: Apply correction directly to the affected file
-5. **Propagate**: The fix takes effect in all future sessions for all agents
-6. **Verify**: Confirm the fix works in a fresh session
-7. **Learn from the fix**: If the fix itself causes issues, log that too (recursive)
+4. **Propose**: Draft a minimal patch. Do not apply it unless the user asked in this session.
+5. **Verify**: If applied after approval, confirm the fix in a fresh session
+6. **Learn from the fix**: If the fix itself causes issues, log that too
 
-When you improve a prompt file, that improvement affects all future sessions. When you fix a hook, that fix propagates to all bootstraps. When you update a skill template, all future skill extractions benefit.
-
-The meta skill is the only skill whose learnings directly modify the infrastructure that all other skills depend on. Handle with care — test before applying.
+Do not treat logging as authorization to change shared prompt files, hooks, memory, or skills.
 
 ## Multi-Agent Support
 
@@ -590,7 +596,7 @@ The meta skill is the only skill whose learnings directly modify the infrastruct
 ```
 
 **Track learnings in repo** (team-wide):
-Don't add to .gitignore — learnings become shared knowledge.
+Only track `.learnings/` after a human has reviewed entries for secrets, PII, and privileged content.
 
 **Hybrid** (track templates, ignore entries):
 ```gitignore
@@ -620,10 +626,12 @@ Every new entry must include:
 - Suggested defaults: dedupe key = `event + matcher + file + 5m_window`; max 1 reminder per skill every 5 minutes.
 
 ### Narrow Matcher Scope (meta)
-Only trigger this skill automatically for meta orchestration signals such as:
-- `cross-skill conflict|routing ambiguity|policy overlap|dedupe`
-- `learning loop quality|stackability issue|prompt governance`
-- explicit meta intent in user prompt
+Only trigger this skill automatically for explicit meta signals such as:
+- `self-improving-meta|prompt-governance|stackability`
+- `instruction.ambiguity|rule.conflict|context.bloat`
+- explicit meta intent in the user prompt
+
+Do not match generic words such as `hook`, `skill`, `rule`, or `prompt` by themselves.
 
 ### Cross-Skill Precedence
 When guidance conflicts, apply:
@@ -637,3 +645,7 @@ When guidance conflicts, apply:
 ### Ownership Rules
 - This skill writes only to `.learnings/meta/` in stackable mode.
 - It may read other skill folders for cross-linking, but should not rewrite their entries.
+- Standalone mode writes to this project's `.learnings/*.md` log files only.
+- Stackable mode writes only to the namespaced folder above and must not rewrite other skills' log entries.
+- Promotion into `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `MEMORY.md`, rules, hooks, or generated skills is not a logging write. Show a reviewed diff and apply only after explicit user approval.
+

@@ -1,39 +1,54 @@
-## Description: <br>
-Helps an agent guide browser-based QR code login to Weibo so a user can maintain a session for later content access or posting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to open Weibo's official browser login page for QR-code authentication, validate the signed-in session, and preserve cookies for later authorized Weibo use.
 
-## Publisher: <br>
-[bombfuock](https://clawhub.ai/user/bombfuock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bombfuock](https://clawhub.ai/user/bombfuock)
 
-## Use Case: <br>
-External users and agents use this skill when they need to establish a Weibo browser session by QR code and verify that the session is active before later Weibo activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A browser profile may retain a reusable logged-in Weibo session after QR code login. <br>
-Mitigation: Use a dedicated browser profile when possible, approve later scraping or posting separately, and log out or clear cookies when the session is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill when an agent needs a user-approved Weibo browser session before later authorized content retrieval or posting workflows.
 
-## Reference(s): <br>
-- [Weibo Login](https://weibo.com/login) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bombfuock/weibo-login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown with browser action examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no files or code are generated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: A logged-in Weibo browser session may persist through saved cookies after the immediate login task is complete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only accounts and actions the user explicitly authorizes, then log out or clear browser cookies when the session should no longer remain available.
+
+Risk: Frequent or automated Weibo activity can encounter anti-scraping controls.
+
+Mitigation: Avoid frequent operations and keep activity within Weibo-authorized, user-approved workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bombfuock/skills/weibo-login)
+- [Weibo Login Page](https://weibo.com/login)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Browser actions, Configuration instructions]
+
+**Output Format:** [Markdown with inline browser action examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user QR-code approval and may rely on persisted browser cookies.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

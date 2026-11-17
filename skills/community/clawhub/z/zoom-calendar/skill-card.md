@@ -1,42 +1,61 @@
-## Description: <br>
-Create Zoom meetings and add them to Google Calendar events with conference data, including the Zoom video entry, icon, and notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Zoom meetings and add them to Google Calendar events with proper conferenceData, including the icon, video entry point, and notes.
 
-## Publisher: <br>
-[Shaharsha](https://clawhub.ai/user/Shaharsha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaharsha](https://clawhub.ai/user/shaharsha)
 
-## Use Case: <br>
-Developers and operators use this skill to create Zoom meetings and attach them to new or existing Google Calendar events. It is intended for workflows where Zoom Server-to-Server OAuth credentials and Google Calendar CLI authentication are already configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses powerful Zoom and Google Calendar credentials and can modify calendar events. <br>
-Mitigation: Use it only with accounts you are comfortable modifying, verify the exact calendar event ID before running it, and keep Zoom and Google credentials scoped and protected. <br>
-Risk: Incorrect timezone or meeting details could create or update the wrong calendar information. <br>
-Mitigation: Confirm the event ID, title, start time, duration, and timezone expectations before execution. <br>
-Risk: Temporary token handling and shell JSON construction may expose credentials or produce malformed API payloads in some environments. <br>
-Mitigation: Review the script before installation, prefer hardened token cleanup, and consider generating JSON payloads with jq. <br>
+## Use Case:
 
+Developers and calendar automation users use this skill to create Zoom meetings and attach them to Google Calendar events. It is intended for workflows that explicitly request Zoom meeting creation or adding Zoom conference data to an existing event.
 
-## Reference(s): <br>
-- [Zoom Calendar Skill Page](https://clawhub.ai/Shaharsha/zoom-calendar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash commands and setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow creates a Zoom meeting, patches a Google Calendar event, and prints the join URL, meeting ID, and password.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release metadata and skill metadata) <br>
+Risk: The skill handles Zoom and Google Calendar credentials and access tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted machines and accounts, keep credential scopes as narrow as possible, and review credential paths before execution.
+
+Risk: The script prints live meeting join details and passcodes.
+
+Mitigation: Run it only in terminals and logs appropriate for sensitive meeting information.
+
+Risk: The workflow assumes the Asia/Jerusalem timezone for created Zoom meetings.
+
+Mitigation: Confirm the intended timezone before using it for events outside that timezone.
+
+Risk: The security summary reports brittle shell handling around credentials and request bodies.
+
+Mitigation: Review before installing and prefer fixes that JSON-encode request bodies and clean up temporary token files with an exit trap.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shaharsha/skills/zoom-calendar)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and credential setup notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The shell workflow creates a Zoom meeting, patches the Google Calendar event, and prints the join URL, meeting ID, and passcode.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Linear.app CLI for issue tracking. Use for listing, creating, updating, and searching Linear issues, comments, documents, cycles, and projects. Optimized for LLM agents with JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linear.app CLI for issue tracking. Use for listing, creating, updating, and searching Linear issues, comments, documents, cycles, and projects. Optimized for LLM agents with JSON output.
 
-## Publisher: <br>
-[whoisnnamdi](https://clawhub.ai/user/whoisnnamdi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[whoisnnamdi](https://clawhub.ai/user/whoisnnamdi)
 
-## Use Case: <br>
-Developers and automation agents use Linearis to query and manage Linear issues, comments, documents, projects, cycles, users, teams, and file embeds from a CLI that returns JSON. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A Linear API token can grant access to workspace data. <br>
-Mitigation: Use a trusted npm package source and a Linear API token with the narrowest practical scope. <br>
-Risk: Create, update, delete, upload, and download commands can change Linear workspace data or local files. <br>
-Mitigation: Allow an agent to run these commands only after the user explicitly requests the action and understands the affected resources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Linearis documentation](https://github.com/czottmann/linearis) <br>
-- [Linearis blog post](https://zottmann.org/2025/09/03/linearis-my-linear-cli-built.html) <br>
-- [Linear](https://linear.app) <br>
+## Use Case:
 
+Developers, engineers, and agents use Linearis to inspect and manage Linear issues, comments, documents, teams, users, projects, cycles, uploads, and downloads through a JSON-oriented CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples; CLI commands return JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the linearis binary and a Linear API token.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs an unpinned global npm CLI.
+
+Mitigation: Pin and independently verify the npm package version before installation.
+
+Risk: The CLI can use a Linear API token for create, update, delete, upload, and download operations.
+
+Mitigation: Use a least-privilege Linear token and require confirmation before allowing agents to run write, delete, upload, or download commands.
+
+Risk: Passing API tokens directly through shell commands can expose secrets in shell history or process listings.
+
+Mitigation: Prefer restrictive token storage or a secret manager, and avoid command-line token flags when possible.
+
+## Reference(s):
+
+- [Linearis skill page](https://clawhub.ai/whoisnnamdi/skills/linearis)
+- [Linearis documentation](https://github.com/czottmann/linearis)
+- [Linearis blog post](https://zottmann.org/2025/09/03/linearis-my-linear-cli-built.html)
+- [Linear](https://linear.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced CLI returns JSON by default for downstream processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

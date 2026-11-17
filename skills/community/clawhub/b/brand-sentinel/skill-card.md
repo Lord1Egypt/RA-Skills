@@ -1,42 +1,59 @@
-## Description: <br>
-Searches public web sources for brand-related mentions, removes duplicate URLs, filters results by recency, and returns structured monitoring results for an agent or LLM to review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brand Sentinel searches public web results for brand-related reputation signals, deduplicates URLs, filters by recency, and returns structured results for agent analysis.
 
-## Publisher: <br>
-[bbniao100](https://clawhub.ai/user/bbniao100) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bbniao100](https://clawhub.ai/user/bbniao100)
 
-## Use Case: <br>
-Developers and agents use this skill to monitor public brand or product mentions, collect recent negative or reputation-related search results, and hand structured findings to an LLM for downstream risk assessment or summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitoring results may be noisy or scoped incorrectly if search behavior does not include the brand name in every query. <br>
-Mitigation: Review results manually and verify the generated queries cover the intended brand before using outputs for alerts or decisions. <br>
-Risk: The skill collects public search results but does not perform final risk classification or alert routing. <br>
-Mitigation: Use a downstream reviewer or LLM workflow to classify severity, confirm relevance, and decide whether any alert should be sent. <br>
+## Use Case:
 
+Agents and operators use this skill to monitor recent public brand or product mentions, gather potentially negative reputation signals, and prepare structured search results for separate LLM-based risk review or alerting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bbniao100/brand-sentinel) <br>
-- [Configuration example](references/config-example.json) <br>
-- [AutoGLM Web Search API endpoint](https://autoglm-api.zhipuai.cn/agentdr/v1/assistant/skills/web-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json] <br>
-**Output Format:** [Plain text or structured JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON output includes brand, run time, time window, keywords, counts, and filtered result items with title, URL, snippet, date status, and parsed date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill ships an embedded API application key and depends on a local token service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate the embedded key, move credentials out of source, and run the token service only in a trusted local environment.
+
+Risk: The brand argument may not be included in searches unless each keyword already contains the brand name.
+
+Mitigation: Validate configuration and include the brand in every keyword before relying on monitoring results.
+
+Risk: Public web search results and date parsing may retain undated or stale items.
+
+Mitigation: Review returned items before escalation, especially results with unknown dates or incomplete snippets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bbniao100/skills/brand-sentinel)
+- [Publisher profile](https://clawhub.ai/user/bbniao100)
+- [Example configuration](references/config-example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, json]
+
+**Output Format:** [Plain text summary or structured JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [JSON output includes brand, run time, time window, keywords, result counts, and items with title, URL, snippet, date status, and parsed date when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-Provides 1688 product discovery through official 1688 Open Platform APIs, including category lookup, keyword and image search, product detail lookup, shop search, recommendations, and product pool pulls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches 1688 products through official 1688 Open Platform APIs, including category lookup, keyword search, image search, product details, seller listings, recommendations, and product-pool pulls.
 
-## Publisher: <br>
-[1688AiInfra](https://clawhub.ai/user/1688AiInfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External developers and sourcing agents use this skill to search 1688 listings by keyword, image, seller, category, or product ID and return product IDs, product links, pricing, sales, seller, and recommendation data for procurement workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires 1688 API credentials and can cache reusable account tokens in a shared local token file. <br>
-Mitigation: Install only where 1688 account access is appropriate, protect the credential environment variables, and restrict or periodically clear the shared .1688_token_cache.json file. <br>
-Risk: Image search can send selected product images or image URLs to 1688 and may fetch user-supplied image URLs. <br>
-Mitigation: Use only public product images or trusted image URLs; avoid private screenshots, sensitive documents, internal URLs, localhost URLs, and cloud-metadata URLs. <br>
-Risk: The security verdict is suspicious because the skill combines token storage with image upload and URL-fetching behavior. <br>
-Mitigation: Review the skill before deployment and limit use to workflows where these credential and image-handling behaviors are acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to search and compare 1688 marketplace products, retrieve product and seller details, and generate recommendation or sourcing results from authorized 1688 API access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1688AiInfra/1688-product-search) <br>
-- [1688 Product Search API reference](references/api.md) <br>
-- [1688 Open Platform](https://open.1688.com) <br>
-- [1688 API invocation guide](https://open.1688.com/doc/apiInvoke.htm) <br>
-- [1688 signature rules](https://open.1688.com/doc/signature.htm) <br>
-- [1688 authorization guide](https://open.1688.com/doc/apiAuth.htm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [JSON API responses and Markdown-ready product summaries with product IDs and links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires 1688 API credentials through ALI1688_APP_KEY, ALI1688_APP_SECRET, and ALI1688_REFRESH_TOKEN; image search may send selected image URLs or uploaded images to 1688 APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and release evidence) <br>
+Risk: The skill requires 1688 account API credentials and may cache access tokens for reuse across 1688 skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted workspaces, use scoped credentials where possible, protect environment variables and token cache files, and review token handling before deployment.
+
+Risk: Image search can process user-supplied image URLs and may download or submit image data to the 1688 API.
+
+Mitigation: Prefer trusted 1688 or alicdn.com image URLs, avoid untrusted image URLs, and validate image URL destinations before use.
+
+Risk: Product, price, seller, and availability data comes from external 1688 API responses.
+
+Mitigation: Verify commercial decisions against 1688 product pages and seller records before purchasing or publishing results.
+
+## Reference(s):
+
+- [1688 Product Search API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/1688aiinfra/skills/1688-product-search)
+- [1688 Open Platform](https://open.1688.com)
+- [1688 API Invocation Documentation](https://open.1688.com/doc/apiInvoke.htm)
+- [1688 Signature Documentation](https://open.1688.com/doc/signature.htm)
+- [1688 Authorization Documentation](https://open.1688.com/doc/apiAuth.htm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON API responses with human-readable text or Markdown summaries and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires 1688 API credentials; product-search results should expose product IDs and links for follow-up detail queries.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

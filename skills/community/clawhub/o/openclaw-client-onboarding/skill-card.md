@@ -1,40 +1,53 @@
-## Description: <br>
-Helps agents onboard OpenClaw configuration clients by collecting requirements, drafting recommended setup options, creating local client records, and preparing quotes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Client Onboarding helps collect client requirements, generate configuration recommendations, create client profile files, and prepare a quote for paid OpenClaw setup services.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Service providers and OpenClaw implementers use this skill to gather client setup requirements, recommend model and messaging-channel configurations, and prepare client-facing onboarding files and quote drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Client profiles and notes may contain customer data. <br>
-Mitigation: Store only necessary details, restrict access to the clients directory, avoid secrets, and delete records when they are no longer needed. <br>
-Risk: Generated quotes or contact details may be inappropriate or stale for a specific business. <br>
-Mitigation: Review pricing, contact details, and quote drafts before sending them to clients. <br>
+## Use Case:
 
+Service providers or operators onboarding paid OpenClaw clients use this skill to collect model, messaging-channel, budget, and use-case requirements, then prepare configuration guidance, client records, and a quote.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/openclaw-client-onboarding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration content and local file plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce client profile notes, quote drafts, and config.json content under a clients/{customer}/ workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill can create persistent customer files using a customer name as part of the folder path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm before writing files, scope writes to the intended workspace, and sanitize customer names into safe folder identifiers.
+
+Risk: Client notes, configuration files, or invoices may capture unnecessary sensitive customer data.
+
+Mitigation: Record only the information needed for onboarding and review generated customer-facing files before sharing them.
+
+## Reference(s):
+
+- [Openclaw Client Onboarding on ClawHub](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-client-onboarding)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration content and client-facing notes or invoice content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent client files such as config.json, notes.md, and invoice.md when the agent is authorized to write them.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

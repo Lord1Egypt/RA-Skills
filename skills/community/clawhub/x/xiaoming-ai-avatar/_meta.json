@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn7c3kgfvnhefjww9yw5h6n7zx83wgtx",
-  "slug": "xiaoming-ai-avatar",
-  "version": "1.2.0",
-  "publishedAt": 1776411119725
-}
+{"name":"ai-avatar-generator","version":"1.0.0","author":"小鸣 🦞","tags":["avatar","image","ai","generator"],"requires":{"bins":["curl"]}}

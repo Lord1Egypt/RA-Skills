@@ -1,42 +1,55 @@
-## Description: <br>
-生成 Zao Live 分享卡片，当用户想要收听早播、新闻或播客音频时返回可点击的分享链接。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Zao Live morning-news audio share card when a user asks to listen to 早播, news, or podcast-style audio.
 
-## Publisher: <br>
-[Emotibot5](https://clawhub.ai/user/Emotibot5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emotibot5](https://clawhub.ai/user/emotibot5)
 
-## Use Case: <br>
-Chinese-language chat agents and users use this skill to turn news, podcast, or Zao Live listening requests into a shareable Zao Live morning-news audio link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may route generic news or podcast requests to Zao Live. <br>
-Mitigation: Narrow trigger wording before deployment if the agent should only respond to Zao-specific requests. <br>
-Risk: Opening generated Zao Live links may share normal visit data with the platform. <br>
-Mitigation: Tell users that external link visits are governed by Zao Live's terms and privacy practices. <br>
+## Use Case:
 
+External users and chat-agent operators use this skill to turn Chinese news, podcast, or audio listening requests into a clickable Zao Live share link for the latest 早播 audio.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Emotibot5/zaobo-news) <br>
-- [Zao Live homepage](https://zao.live) <br>
-- [Zao Live new share endpoint](https://zao.live/zaobo/newshare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, guidance] <br>
-**Output Format:** [Markdown link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a concise clickable Zao Live share link; generated links may expire and platform visits may be logged by Zao Live.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Broad Chinese news, podcast, or audio trigger phrases may route ambiguous requests to a Zao Live share link unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow trigger phrases or require clarification for ambiguous news, podcast, or audio requests before deployment.
+
+Risk: Generated share links may expire or become inaccessible.
+
+Mitigation: Regenerate the share link when access fails and communicate that links may be time-sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/emotibot5/skills/zaobo-news)
+- [Zao Live](https://zao.live)
+- [Zao Live new share endpoint](https://zao.live/zaobo/newshare)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown link]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Clickable link containing a time-sensitive Zao Live share URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact notes)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

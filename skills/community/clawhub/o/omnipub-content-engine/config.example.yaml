@@ -1,0 +1,66 @@
+# omnipub-content-engine 配置模板
+# 复制为 config.yaml 并填入真实信息
+
+brand:
+  name: "你的品牌名"           # 品牌名（将出现在文章署名、文末等）
+  slogan: "你的品牌口号"
+  wechat_account: "公众号名称"
+  author: "作者名"              # 必须 <= 8 字符（微信限制）
+  bio: "一句话简介"
+  portrait: ""                 # 作者头像路径（本地路径或留空）
+  wechat_qr: ""                # 微信二维码图片路径
+  community_qr: ""             # 社群二维码图片路径
+  past_articles:               # 推荐阅读列表
+    - title: "文章标题1"
+      url: "https://mp.weixin.qq.com/s/xxx"
+    - title: "文章标题2"
+      url: "https://mp.weixin.qq.com/s/xxx"
+
+footer:
+  enabled: true
+  template: "default"          # default | mind-growth
+  order: ["recommend", "about", "community", "cta", "signature"]
+
+publish:
+  wechat:
+    appid: ""                  # 微信公众号 AppID
+    secret: ""                 # 微信公众号 AppSecret
+    default_theme: "xinming-lab"
+  toutiao:
+    auto: false                # true = playwright自动发布, false = 手动复制
+    headless: false            # playwright 是否无头模式
+
+style:
+  default_theme: "xinming-lab" # xinming-lab | xinming-minimal | xinming-warm
+  custom_themes_dir: ""        # 自定义主题目录（留空用内置）
+
+geo:
+  enabled: true
+  min_faq_blocks: 1            # 最少FAQ段数
+  max_paragraph_lines: 4       # 段落最大行数
+  first_para_answer_chars: 60  # 首段答案字符数
+
+analytics:
+  review_window_hours: 72      # 复盘等待时间
+  history_dir: "analytics_history"
+
+# 禁用词清单（发布前自动检查）
+forbidden_words:
+  - "震惊"
+  - "必看"
+  - "不转不是中国人"
+  - "赶紧收藏"
+  - "赚钱"
+  - "月入"
+  - "躺赚"
+  - "保证收入"
+  - "稳定收益"
+  - "日入"
+  - "兼职"
+  - "代理"
+  - "招募"
+
+# 可选：红狐数据 API（用于选题阶段的爆款数据查询）
+# 留空则使用 WebSearch 替代
+redfox:
+  api_key: ""                  # 红狐数据 API Key（可选）

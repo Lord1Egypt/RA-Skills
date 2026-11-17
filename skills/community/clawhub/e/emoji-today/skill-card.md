@@ -1,44 +1,58 @@
-## Description: <br>
-Emoji Today lets an agent cast a paid onchain vote in the daily emoji.today election and optionally mint that vote as an NFT. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vote in the daily emoji election on emoji.today.
 
-## Publisher: <br>
-[bill-makes](https://clawhub.ai/user/bill-makes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bill-makes](https://clawhub.ai/user/bill-makes)
 
-## Use Case: <br>
-Agents with a Farcaster FID and a funded Base wallet use this skill to vote for a daily emoji, then share or mint the result when appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an EVM private key and can sign paid onchain transactions. <br>
-Mitigation: Use a fresh low-balance wallet, never use a primary wallet key, and keep only the funds needed for expected votes or mints. <br>
-Risk: Voting costs USDC on Base, and optional minting costs additional USDC. <br>
-Mitigation: Personally confirm every vote, mint, recipient address, and social post before execution. <br>
-Risk: Overriding EMOJI_TODAY_URL can redirect signing and payment requests to a different endpoint. <br>
-Mitigation: Leave EMOJI_TODAY_URL at the default unless the replacement endpoint is fully trusted. <br>
+## Use Case:
 
+External users and agents use the skill to cast a daily emoji vote associated with a Farcaster ID; they can optionally mint the vote as an NFT.
 
-## Reference(s): <br>
-- [Emoji Today](https://emoji.today) <br>
-- [Emoji Today Vote API](https://emoji.today/api/vote) <br>
-- [Emoji Today Mint API](https://emoji.today/api/vote/mint) <br>
-- [Neynar Farcaster ID lookup](https://neynar.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the voting and minting script prints JSON responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, EVM_PRIVATE_KEY, FARCASTER_FID, and a wallet with USDC on Base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The skill directs the agent to publish about votes on X and Farcaster without a separate opt-in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before any public post.
+
+Risk: Voting and optional minting spend USDC through the configured wallet.
+
+Mitigation: Use a dedicated wallet with a small balance, protect its private key, and review the $0.01 vote and optional $1 mint charges.
+
+Risk: The supplied security guidance identifies a Zod advisory affecting the current dependency set.
+
+Mitigation: Request a compatible dependency update that addresses the advisory.
+
+## Reference(s):
+
+- [emoji.today](https://emoji.today)
+- [Neynar (Farcaster ID lookup)](https://neynar.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, JSON]
+
+**Output Format:** [Markdown instructions, shell commands, and JSON response text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Farcaster ID and an EVM wallet; voting and optional NFT minting use Base USDC payments.]
+
+## Skill Version(s):
+
+1.2.1 (source: frontmatter, scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

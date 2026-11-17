@@ -1,38 +1,55 @@
-## Description: <br>
-AI MIDI音乐生成助手，一句话生成MIDI文件。AI MIDI Generator - generate standard MIDI files from natural language descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI MIDI音乐生成助手，一句话生成MIDI文件。AI MIDI Generator - generate standard MIDI files from natural language descriptions.
 
-## Publisher: <br>
-[lrjxgl](https://clawhub.ai/user/lrjxgl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrjxgl](https://clawhub.ai/user/lrjxgl)
 
-## Use Case: <br>
-External users and developers use this skill to turn natural-language music descriptions into standard MIDI files. It supports prompts that specify instruments, style, tempo, key, and song length for DAW or browser playback workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated .mid files may be written to an unexpected location or overwrite existing work if the user does not specify a destination. <br>
-Mitigation: Specify the desired output folder and filename before generation, and check for existing files before writing. <br>
+## Use Case:
 
+External users and music creators use this skill to turn natural-language music descriptions into standard multi-track MIDI files. It supports prompts that specify instruments, style, tempo, key, and length.
 
-## Reference(s): <br>
-- [Online MIDI playback tool referenced by the skill](https://www.huiwanai.com/daw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated MIDI file content or instructions for producing .mid files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces standard MIDI files intended to be saved with a .mid extension; users should specify the output folder and filename.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated MIDI files may not match the user's intended musical style, structure, or arrangement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or audition generated .mid files in a DAW, browser player, or other trusted MIDI software before reuse.
+
+Risk: Optional online playback requires opening a third-party service.
+
+Mitigation: Use the online playback site only when comfortable sharing or opening the generated file with that service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lrjxgl/skills/laolei-llm-midi)
+- [Publisher profile](https://clawhub.ai/user/lrjxgl)
+- [Online MIDI playback site](https://www.huiwanai.com/daw/)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Guidance]
+
+**Output Format:** [MIDI files with markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces .mid files intended to follow Standard MIDI File Format Type 1.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

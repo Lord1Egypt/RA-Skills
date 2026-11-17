@@ -1,48 +1,66 @@
-## Description: <br>
-微信公众号文章全自动写作与发布。从信息搜集、AI配图规划、报刊级 HTML 排版、到草稿创建和发布的完整流程。适用于 AI 日报、财经周报、深度分析、新闻资讯类文章。内置多种模板，并提供本地渲染、校验、图片规划和发布流水线脚本。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates WeChat public-account articles from structured JSON, with helpers for source collection, image planning, HTML rendering, validation, draft creation, and optional publishing.
 
-## Publisher: <br>
-[th3ee9ine](https://clawhub.ai/user/th3ee9ine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[th3ee9ine](https://clawhub.ai/user/th3ee9ine)
 
-## Use Case: <br>
-Developers and content operators use this skill to turn structured article JSON and source bundles into WeChat-ready HTML, image plans, validation results, drafts, and optional publishing actions. It is intended for AI daily briefings, financial reviews, deep analysis, product releases, industry radar, and breaking-news article workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rendered articles or generated drafts may contain inaccurate, unsuitable, or policy-sensitive content. <br>
-Mitigation: Inspect the rendered HTML and WeChat draft before creating or publishing any live article. <br>
-Risk: The optional pipeline can delegate image generation, search, upload, draft creation, and publishing to separate helper skills or scripts. <br>
-Mitigation: Review those helper skills or scripts separately, start with --dry-run, and enable --create-draft or --publish only after confirming the target account and content. <br>
-Risk: Images and article text may create copyright, attribution, or account-compliance issues. <br>
-Mitigation: Verify source rights, image rights, captions, and WeChat CDN image handling before publication. <br>
+## Use Case:
 
+Developers, editors, and agent operators use this skill to turn structured article inputs into WeChat-ready HTML, validate platform constraints, plan images, and optionally prepare or publish drafts through companion tooling.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/th3ee9ine/wechat-claw-skill) <br>
-- [README](README.md) <br>
-- [English documentation](docs/README.en.md) <br>
-- [OpenClaw integration guide](docs/openclaw.en.md) <br>
-- [Writing guide](references/writing-guide.md) <br>
-- [Title formulas](references/title-formulas.md) <br>
-- [Image prompts](references/image-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with JSON article structures, bash commands, and generated HTML or JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can render and validate WeChat article HTML, plan image prompts, collect source bundles, and optionally delegate image generation and WeChat draft or publish actions to separate helper scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact/SKILL.md frontmatter lists 1.1.0) <br>
+Risk: The optional publish path can create and publish drafts on a real WeChat account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the pipeline in dry-run mode first, review the rendered HTML and resolved article JSON, and approve draft or publish actions manually.
+
+Risk: Source collection can fetch user-supplied URLs and render user-supplied article content.
+
+Mitigation: Use trusted source specs, avoid internal or sensitive URLs, and review collected source bundles before article generation.
+
+Risk: External image-generation and WeChat helper scripts are invoked when the full pipeline is enabled.
+
+Mitigation: Point the pipeline only at reviewed helper scripts and verify generated media, uploaded image URLs, and returned media IDs before publishing.
+
+Risk: Generated output may include default attribution such as 39Claw.
+
+Mitigation: Check article metadata, rendered HTML, and author fields for expected attribution before connecting a real account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/th3ee9ine/skills/wechat-claw-skill)
+- [English README](docs/README.en.md)
+- [OpenClaw integration guide](docs/openclaw.en.md)
+- [Writing guide](references/writing-guide.md)
+- [Title formulas](references/title-formulas.md)
+- [Image prompt reference](references/image-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON article plans, HTML files, image prompt plans, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write rendered article HTML, resolved article JSON, image-plan JSON, and publish pipeline summaries when its scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

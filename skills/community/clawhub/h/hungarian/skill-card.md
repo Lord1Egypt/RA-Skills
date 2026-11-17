@@ -1,37 +1,47 @@
-## Description: <br>
-Write Hungarian that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Hungarian that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agent builders use this skill to guide Hungarian-language writing toward casual, natural phrasing instead of stiff or overly formal output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence wording and tone in Hungarian output, which may still be inappropriate for formal or professional contexts. <br>
-Mitigation: Review generated Hungarian for audience, register, and formality before sending or publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/hungarian) <br>
+## Use Case:
+
+Employees, external users, and developers use this skill to help an agent write more natural, casual Hungarian with appropriate formality, particles, fillers, and idiomatic expressions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill defaults to casual Hungarian, which may be inappropriate for business, legal, customer-support, or other formal contexts.
+
+Mitigation: Explicitly request formal Hungarian or Ön/Maga usage when the target audience or setting requires a formal register.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural-language guidance for generated Hungarian text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill with no evidence of code execution, credential use, persistence, or data access.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Natural-language text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, persistence, data access, tools, or shell commands are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

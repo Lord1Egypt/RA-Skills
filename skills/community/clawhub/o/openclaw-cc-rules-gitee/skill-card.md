@@ -1,40 +1,54 @@
-## Description: <br>
-OpenClaw programming workflow skill for plan mode, task tracking, Git safety, read-only exploration, and ordered multi-file coding work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw programming workflow skill for plan mode, task tracking, Git safety protocols, and read-only exploration.
 
-## Publisher: <br>
-[badxtdss](https://clawhub.ai/user/badxtdss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[badxtdss](https://clawhub.ai/user/badxtdss)
 
-## Use Case: <br>
-Developers and engineers use this skill in OpenClaw coding sessions to require exploration and planning before non-trivial changes, maintain task status, avoid unsafe Git operations, and apply a predictable multi-file change workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly affects future OpenClaw programming conversations after installation. <br>
-Mitigation: Install it only where this structured coding workflow is desired, review the artifact before use, and remove or disable the skill when it is no longer appropriate. <br>
-Risk: Workflow rules may over-constrain a project or conflict with local engineering policies. <br>
-Mitigation: Review generated plans and proposed commands before execution, and customize the rules to match repository-specific policies. <br>
+## Use Case:
 
+Developers and engineers use this skill to make OpenClaw follow structured coding workflows, including exploration, planning, task tracking, conservative Git handling, and post-change verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/badxtdss/openclaw-cc-rules-gitee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and workflow checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Influences agent behavior during programming conversations; no hidden code, credential access, exfiltration, or destructive behavior was reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can activate broadly across coding conversations and may add planning or confirmation steps to normal development work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the workflow rules before deployment and tune or disable sections that do not match the target team's coding process.
+
+Risk: The README contains questionable provenance language, and server-resolved GitHub provenance is unavailable for this release.
+
+Mitigation: Install only when the publisher and ClawHub release source are trusted; do not treat repository URLs in the artifact text as verified provenance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/badxtdss/skills/openclaw-cc-rules-gitee)
+- [ClawHub publisher profile](https://clawhub.ai/user/badxtdss)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown guidance with plans, task lists, command examples, and coding workflow rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May add planning and confirmation steps before non-trivial code changes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

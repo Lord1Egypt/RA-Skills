@@ -1,43 +1,58 @@
-## Description: <br>
-Query web analytics data using the Supalytics CLI for pageviews, visitors, top pages, traffic sources, referrers, countries, revenue metrics, conversions, funnels, events, and realtime visitors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query web analytics data using the Supalytics CLI. Use when the user wants to check pageviews, visitors, top pages, traffic sources, referrers, countries, revenue metrics, conversions, funnels, events, or realtime visitors.
 
-## Publisher: <br>
-[yogesharc](https://clawhub.ai/user/yogesharc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yogesharc](https://clawhub.ai/user/yogesharc)
 
-## Use Case: <br>
-External developers and site operators use this skill to query Supalytics web analytics, inspect traffic and revenue metrics, manage sites, and produce CLI queries for reporting or troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Setup instructions include remote installation and admin-level symlink commands. <br>
-Mitigation: Review installation commands before execution, prefer a user-local PATH setup, and avoid running remote install scripts blindly. <br>
-Risk: The skill can guide site create, update, default, and remove operations through the Supalytics CLI. <br>
-Mitigation: Only run administrative site commands after the user explicitly requests the change and confirms the target site. <br>
-Risk: OAuth login requires browser interaction and may expose a verification URL during agent-assisted authentication. <br>
-Mitigation: Present the verification URL only to the intended user and poll the background login session without storing credentials in the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Supalytics](https://supalytics.co) <br>
-- [Bun runtime](https://bun.sh) <br>
-- [ClawHub release page](https://clawhub.ai/yogesharc/supalytics) <br>
+## Use Case:
 
+Developers, operators, and site owners use this skill to query Supalytics web analytics from an agent through the Supalytics CLI, including traffic, revenue, conversion, funnel, event, and realtime visitor metrics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON-oriented CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Supalytics CLI commands, setup guidance, filters, metric and dimension choices, troubleshooting steps, and JSON output guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation guidance includes piping a remote Bun install script into a shell.
+
+Mitigation: Review the install path first and prefer a pinned, verified Bun and Supalytics CLI installation.
+
+Risk: Troubleshooting guidance includes sudo symlinks into /usr/local/bin, which can affect the whole system.
+
+Mitigation: Avoid creating system-wide symlinks unless the user explicitly approves and understands the impact.
+
+Risk: Site add, update, and remove commands are administrative actions on Supalytics resources.
+
+Mitigation: Require explicit user approval before running site management commands.
+
+## Reference(s):
+
+- [Supalytics](https://supalytics.co)
+- [Bun Runtime](https://bun.sh)
+- [ClawHub Skill Page](https://clawhub.ai/yogesharc/skills/supalytics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Supalytics CLI and an authenticated Supalytics account; analytics commands can return human-readable tables or raw JSON when --json is used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

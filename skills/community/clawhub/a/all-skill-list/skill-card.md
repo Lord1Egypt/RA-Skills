@@ -1,38 +1,53 @@
-## Description: <br>
-All-skill-list catalogs local OpenClaw skills by scanning the local skills directory, extracting descriptions and paths, caching results, and exporting JSON or Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lists local OpenClaw skills, extracts their descriptions and paths, caches scan results, compares directory changes, and can export the inventory as JSON or Markdown.
 
-## Publisher: <br>
-[fantasywoc](https://clawhub.ai/user/fantasywoc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fantasywoc](https://clawhub.ai/user/fantasywoc)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inventory locally installed skills, inspect descriptions and paths, and export the catalog for sharing or integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent Pickle cache loading can execute code if the cache file is tampered with. <br>
-Mitigation: Use only in a trusted local skills workspace, prefer JSON cache storage, and delete skills_cache.pickle before running if cache integrity is uncertain. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect the local skill directory, see which skills have SKILL.md files, and export a skill inventory for review or integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fantasywoc/all-skill-list) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Markdown, Files] <br>
-**Output Format:** [Console text, JSON, or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write skills_cache.pickle, skills_export.json, and all_skills.md under the skill scripts directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill reads and caches local OpenClaw skill instructions, which may include private operational notes or secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid JSON or Markdown export when local skills contain sensitive information, and review generated cache and export files before sharing.
+
+Risk: The server security summary identifies unsafe Pickle cache loading that can execute tampered cache data.
+
+Mitigation: Install only in trusted local environments and replace the Pickle cache with a safer format such as JSON before broad use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fantasywoc/skills/all-skill-list)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, markdown, shell commands]
+
+**Output Format:** [Console text, JSON export, or Markdown export.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist cache and export files in the skill scripts directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

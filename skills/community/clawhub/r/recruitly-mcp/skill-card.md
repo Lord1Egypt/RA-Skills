@@ -1,43 +1,55 @@
-## Description: <br>
-Search candidates, manage jobs, view pipelines, track billing and team performance in Recruitly CRM via MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search candidates, manage jobs, view pipelines, track billing and team performance in Recruitly CRM via MCP.
 
-## Publisher: <br>
-[willgary](https://clawhub.ai/user/willgary) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[willgary](https://clawhub.ai/user/willgary)
 
-## Use Case: <br>
-Recruiting teams and agents use this skill to query Recruitly CRM records, find candidates, inspect jobs and pipelines, and summarize team or billing activity through an MCP connection. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent may retrieve candidate, client, company, job, billing, or team performance data visible to the connected Recruitly account. <br>
-Mitigation: Use a least-privileged Recruitly account or token and avoid bringing sensitive CRM data into conversations unless organizational policy permits it. <br>
-Risk: The required RECRUITLY_TOKEN could be exposed through shared logs, chat transcripts, or pasted configuration. <br>
-Mitigation: Keep RECRUITLY_TOKEN out of shared logs and chats, and provide it through the local environment rather than hard-coding it in public configuration. <br>
-Risk: Tenant-specific status and type labels may vary by account and language, leading to incorrect filters. <br>
-Mitigation: Call list_options before filtering by status or type so the agent uses account-specific option values. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Recruitly](https://recruitly.io) <br>
-- [Recruitly MCP Server](https://recruitly.io/mcp) <br>
-- [ClawHub Skill Page](https://clawhub.ai/willgary/recruitly-mcp) <br>
+## Use Case:
 
+Recruiting teams and agents use this skill to connect to Recruitly CRM, search candidates, contacts, companies, jobs, and pipelines, and summarize CRM activity through MCP.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, API Calls, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples; agent responses are text or markdown summaries from Recruitly CRM data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcporter and RECRUITLY_TOKEN; search results are capped at 50 per request.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill lets an agent access Recruitly CRM through a bearer token.
+
+Mitigation: Use a token scoped to the account access you are comfortable granting, and revoke or rotate it if you stop using the skill.
+
+Risk: Tenant-specific status and type labels can make filtered searches inaccurate if the agent assumes fixed values.
+
+Mitigation: Call list_options before filtering jobs, candidates, or activities by status or type.
+
+## Reference(s):
+
+- [Recruitly](https://recruitly.io)
+- [Recruitly MCP Server](https://recruitly.io/mcp)
+- [Recruitly MCP Sign-In](https://mcp.recruitly.dev)
+- [ClawHub Skill Page](https://clawhub.ai/willgary/skills/recruitly-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands]
+
+**Output Format:** [Markdown instructions with JSON configuration and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mcporter and RECRUITLY_TOKEN; search results are capped at 50 per request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

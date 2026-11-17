@@ -1,6 +1,6 @@
 ---
 name: "微信AI接入顾问"
-version: "1.3.1"
+version: "1.4.0"
 slug: "wechat-aiagent-dev"
 author: "huangjihua007-rgb"
 description: "微信小程序AI怎么接，先别急着写代码\n开发模式/自动模式怎么选，商品服务怎么结构化，一次讲清\n说你的业务就能出接入方案和代码骨架"
@@ -29,6 +29,7 @@ Powered by SkillManager
 - "开发模式和自动模式有什么区别？" — 模式对比
 - "微信 AI 有哪些能力？" — 能力清单查询
 - "我是奶茶店，怎么接微信 AI？" — 行业案例
+- "官方 demo 怎么跑起来的？每个文件干什么？" — Demo 逐文件解读
 - "帮我诊断我的小程序适合哪种模式" — 接入诊断
 - "帮我列 GEO 结构化数据清单" — 商品/服务数据优化
 - "帮我设计原子接口清单" — 开发模式规划
@@ -70,6 +71,7 @@ Powered by SkillManager
 | 13 | 最佳实践检查 | 检查 mcp.json description、字段来源、content 写法是否符合官方规范 |
 | 14 | 自动模式兜底建议 | 页面、商品描述、服务信息、知识库、页面元数据优化 |
 | 15 | 测试矩阵和上线检查 | 20条测试问题、接口、参数、返回、失败兜底、合规风险、文件大小校验 |
+| 16 | 官方 Demo 逐文件解读 | 8 类文件拆解：app.json / AGENTS.md / SKILL.md / mcp.json / index.js / apis / components / page-meta.json，每个文件的干什么、为什么这么写、你改哪里 |
 
 ## 使用流程
 
@@ -92,6 +94,7 @@ Powered by SkillManager
 - `references/industry-cases.md`：12 个行业接入示范 + 接口组合速查表
 - `references/geo-checklists.md`：GEO 数据字段、字段补全器、质量评分、测试矩阵、上线检查
 - `references/dev-mode-templates.md`：开发模式三件套、mcp.json、index.js、接口实现、测试矩阵模板
+- `references/demo-walkthrough.md`：官方 Demo（ai-mode-demo / WeStoreCafe）逐文件解读，从 app.json 到 components 全拆解
 - `templates/`：代码生成模板（app.json、AGENTS.md、SKILL.md、mcp.json、index.js、apis、components、page-meta.json）
 
 ## 红线

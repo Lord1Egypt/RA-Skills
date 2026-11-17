@@ -1,42 +1,55 @@
-## Description: <br>
-Create or refactor code for solving HJB equations with this repository's TensorFlow DGM framework. Use when users ask to generate new HJB training code, add a new problem (config/problem/loss/train script), adapt sampling/training hyperparameters, or create plotting/analysis code from trainer CSV outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create or refactor code for solving HJB equations with this repository's TensorFlow DGM framework.
 
-## Publisher: <br>
-[Reedcgx](https://clawhub.ai/user/Reedcgx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reedcgx](https://clawhub.ai/user/reedcgx)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold and adapt TensorFlow DGM projects for Hamilton-Jacobi-Bellman equation experiments, including configs, problem definitions, losses, training scripts, and plotting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes HJB solver project files and can introduce incorrect PDE residuals, terminal conditions, or training parameters if the generated TODO sections are used without review. <br>
-Mitigation: Use a clear snake_case problem slug, work in a clean or version-controlled workspace, and review generated problem, loss, config, and training files before running training. <br>
-Risk: Training requires installing Python dependencies and executing generated TensorFlow code. <br>
-Mitigation: Review requirements.txt and generated scripts before installing dependencies or running training, and run the workflow in an isolated environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate or refactor TensorFlow Deep Galerkin Method training code for Hamilton-Jacobi-Bellman problems, including problem configs, loss functions, training scripts, plotting helpers, and repository-convention guidance.
 
-## Reference(s): <br>
-- [Repository Conventions](references/repo-conventions.md) <br>
-- [Training Output Contract](references/training-output-contract.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Reedcgx/deep-hjb-solver-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration instructions, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash and Python code blocks plus generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HJB projects are organized under a problem slug and may include TensorFlow source files, requirements, training examples, CSV outputs, plots, and saved model weights.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Scaffold behavior can write outside intended project paths if given an unsafe problem name or run from the wrong directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use simple snake_case problem slugs, run in a disposable or project-scoped directory, and inspect generated files before training.
+
+Risk: Generated HJB problem and loss files include placeholders that may be mathematically incomplete until customized.
+
+Mitigation: Replace TODO payoff, PDE residual, and control-objective code, then verify tensor shapes and required trainer return signatures before running training.
+
+## Reference(s):
+
+- [Repository Conventions](artifact/references/repo-conventions.md)
+- [Training Output Contract](artifact/references/training-output-contract.md)
+- [ClawHub Skill Page](https://clawhub.ai/reedcgx/skills/deep-hjb-solver-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks; generated Python project files when applied]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces self-contained HJB problem folders, TensorFlow training scripts, config/loss/problem modules, plotting helpers, and CSV-output guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

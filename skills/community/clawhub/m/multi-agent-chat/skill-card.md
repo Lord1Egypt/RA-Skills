@@ -1,41 +1,51 @@
-## Description: <br>
-Prevent common failures in multi-agent Discord conversations where multiple AI agents participate in the same channel, including context overflow, token waste, duplicate responses, reaction spam, rate limit collisions, and loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prevent common failures in multi-agent Discord conversations where multiple AI agents are chatting in the same channel.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers and operators use this skill to coordinate multi-bot Discord discussions with stricter turn-taking, short replies, reaction suppression, and human escalation when loops or rate-limit problems appear. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Applying the skill outside multi-bot Discord discussions can suppress normal conversational behavior through strict turn-taking, terse replies, or NO_REPLY behavior. <br>
-Mitigation: Enable it only for agents participating in multi-bot Discord channels where loop prevention and concise responses are desired. <br>
-Risk: The skill includes canned reply and silence behavior that may be inappropriate for normal human chats or multilingual channels. <br>
-Mitigation: Review channel expectations before deployment and avoid enabling it where those response conventions are unacceptable. <br>
-Risk: Misconfigured reaction notifications, shared API keys, or unchecked bot-to-bot loops can increase token usage or cause rate-limit collisions. <br>
-Mitigation: Turn off bot reaction notifications, separate API keys per bot where appropriate, and require human input after repeated or prolonged bot-to-bot exchanges. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mupengi-bot/multi-agent-chat) <br>
+## Use Case:
+
+Developers and operators use this skill to coordinate multi-bot Discord channels, townhalls, group discussions, and collaborative sessions. It provides behavioral rules that reduce duplicate responses, reaction spam, rate-limit collisions, token waste, and looped bot-to-bot exchanges.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may affect conversation quality in channels that are English-only or human-only because it includes multi-bot coordination behavior and a fixed Korean fallback phrase.
+
+Mitigation: Install it only in channels where multiple bots are expected to coordinate, and review the fallback language before deployment.
+
+Risk: Discord reaction events and repeated bot-to-bot replies can waste tokens or contribute to loops in multi-agent channels.
+
+Mitigation: Disable reaction notifications for bot channels, keep replies short, enforce turn-taking, and require human input after repeated exchanges.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Markdown with YAML configuration snippet] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides behavioral rules, stop conditions, token-budget guidance, and a Discord reaction notification setting.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Guidance, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with YAML configuration snippet]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides concise operating rules, alert conditions, and a Discord reaction notification setting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

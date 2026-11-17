@@ -1,42 +1,55 @@
-## Description: <br>
-Fades strong directional moves in Polymarket 5-minute BTC, ETH, and SOL interval markets using streak detection and conviction-based position sizing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fades strong directional crypto moves on Polymarket 5-minute interval markets after consecutive high-conviction BTC, ETH, or SOL Up/Down intervals.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and trading-agent operators use this skill to scan Polymarket crypto interval markets for short-horizon momentum-fade opportunities and run the strategy in paper mode or, after explicit opt-in, live mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The required SIMMER_API_KEY grants trading authority and live mode can place real-money Polymarket trades. <br>
-Mitigation: Keep paper mode enabled until review is complete, protect the credential as sensitive, and only use the --live flag with position, volume, spread, and open-position limits set appropriately. <br>
-Risk: Security evidence reports an apparent trade-direction ambiguity that could cause unintended YES or NO actions. <br>
-Mitigation: Verify the YES/NO direction mapping in paper mode against known market outcomes before enabling live trading or increasing position size. <br>
+## Use Case:
 
+External developers and trading agents use this skill to identify and optionally execute mean-reversion trades on Polymarket crypto interval markets. It defaults to paper trading and requires an explicit live flag before placing real USDC trades.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/diagnostikon/polymarket-bundle-crypto-fade-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk GitHub Repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and runtime configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The runtime script prints market-discovery, skip, and trade-status messages and can submit simulated or live trade requests through the configured trading SDK.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: Live execution can place real USDC trades, and the authoritative security summary says the live-trading safeguards and dependency controls do not fully match the authority requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in paper mode unless YES/NO trade semantics, pinned and reviewed simmer-sdk dependency, account-wide position limits, volume limits, and spend limits have been verified.
+
+Risk: SIMMER_API_KEY grants trading authority and is identified as a required high-value credential.
+
+Mitigation: Restrict the API key to the smallest practical trading scope, enforce spend limits, and avoid using unrestricted credentials for live execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-bundle-crypto-fade-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and Python runtime logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May place simulated or live market orders through simmer-sdk depending on execution mode.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

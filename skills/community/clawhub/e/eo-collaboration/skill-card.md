@@ -1,48 +1,55 @@
-## Description: <br>
-Everything Openclaw (EO) adds multi-expert collaboration tools to OpenClaw for planning, architecture, checkpoint verification, and code review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Everything Openclaw (EO) adds a multi-expert collaboration plugin for OpenClaw with expert roles, standardized commands, skill integration, and workflow orchestration.
 
-## Publisher: <br>
-[467718584](https://clawhub.ai/user/467718584) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[467718584](https://clawhub.ai/user/467718584)
 
-## Use Case: <br>
-Developers and agent users use this skill to coordinate specialized OpenClaw experts for project planning, architecture design, checkpoint review, and code review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary flags broad authority around persistence, public posting, payment, deployment, wallet access, and production credentials. <br>
-Mitigation: Install and run only in a constrained workspace, and provide social publishing tokens, payment credentials, wallet access, or production deploy credentials only with explicit approval and account-level safeguards. <br>
-Risk: The security summary warns that review and verification tools may create false confidence. <br>
-Mitigation: Treat generated review, verification, and security outputs as advisory; keep independent security review, testing, and release gates in place. <br>
-Risk: The release is marked suspicious by the authoritative security evidence. <br>
-Mitigation: Review the skill carefully before installation and limit access to sensitive repositories, accounts, and credentials until the review is complete. <br>
+## Use Case:
 
+Developers and teams using OpenClaw use EO to route planning, architecture, review, verification, deployment, design, marketing, and research work through a library of domain experts and standardized commands.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/467718584/eo-collaboration) <br>
-- [Project repository](https://github.com/467718584/everything-openclaw) <br>
-- [Plugin source](https://github.com/467718584/everything-openclaw/tree/main/openclaw-eo-plugin) <br>
-- [README](README.md) <br>
-- [Expert library architecture](expert-library/ARCHITECTURE.md) <br>
-- [Expert mapping](expert-library/EXPERT-MAPPING.md) <br>
-- [Expert roles](expert-library/EXPERT_ROLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text with tables, code blocks, and command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory and may include plans, architecture recommendations, checkpoint findings, review notes, and next-step guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata and package.json) <br>
+Risk: Code review and verification outputs may be incomplete or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as advisory and require human review plus independent testing or security tooling before acting on them.
+
+Risk: The plugin may propose high-impact operational actions, including deployment, workflow automation, or public social posting when configured with credentials.
+
+Mitigation: Install in a constrained environment, use least-privilege credentials, disable or scope posting and scheduling capabilities, and require approval before external actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/467718584/skills/eo-collaboration)
+- [Everything Openclaw GitHub Link](https://github.com/467718584/everything-openclaw)
+- [Plugin Source Link](https://github.com/467718584/everything-openclaw/tree/main/openclaw-eo-plugin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline command and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single response stream that may combine plans, reviews, verification summaries, and implementation guidance.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

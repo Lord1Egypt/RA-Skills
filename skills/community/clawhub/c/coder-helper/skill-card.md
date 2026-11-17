@@ -1,40 +1,57 @@
-## Description: <br>
-将自然语言编码需求转换为当前项目中的 requests.txt 需求文档，并自动用本地编辑器打开。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts a natural-language coding request into a requests.txt requirements document and opens it in a preferred local editor.
 
-## Publisher: <br>
-[bombers26](https://clawhub.ai/user/bombers26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bombers26](https://clawhub.ai/user/bombers26)
 
-## Use Case: <br>
-Developers use this skill to turn brief Chinese natural-language coding requests into a starter requirements document for AI-assisted coding work. It is intended for use inside the project folder where the generated requests.txt should be created. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill writes or overwrites requests.txt in the current project directory. <br>
-Mitigation: Run it only from the intended project folder and check for an existing requests.txt before use. <br>
-Risk: The skill automatically launches a local editor after creating the requirements file. <br>
-Mitigation: Use it only when local editor launch is expected, and prefer a future version that asks before launching the editor or removes shell=True. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bombers26/coder-helper) <br>
-- [Publisher profile](https://clawhub.ai/user/bombers26) <br>
+## Use Case:
 
+Developers use this skill to turn brief natural-language coding ideas into a local requirements document they can refine or pass to an AI coding assistant.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style requirements text written to requests.txt plus a brief status message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes or overwrites requests.txt in the selected project directory and launches a local editor when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill writes requests.txt into the project path and may overwrite an existing requirements file.
+
+Mitigation: Review the target path before use and require confirmation or backup behavior before replacing an existing requests.txt file.
+
+Risk: The skill launches an external editor using an unsafe command pattern.
+
+Mitigation: Remove shell=True, pass editor arguments as a constrained list, and ask before opening external applications.
+
+Risk: An unconstrained project_path can cause the generated file to be written outside the intended workspace.
+
+Mitigation: Validate or restrict project_path to an approved workspace directory before writing files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bombers26/skills/coder-helper)
+- [Publisher profile](https://clawhub.ai/user/bombers26)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Markdown-like requests.txt file plus a short text status message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes requests.txt in the selected project path and attempts to launch a local editor.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

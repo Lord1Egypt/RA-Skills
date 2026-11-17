@@ -1,7 +1,8 @@
 ---
 name: feishu-room-booking
 description: |
-  字节内部使用的飞书会议室查询与预订技能（覆盖全球130+工区、7300+会议室）。当用户提到"查会议室"、"订会议室"、"空闲会议室"、"预订会议室"、"开会"、"找个会议室"、"F4会议室"、"紫金会议室"、"哪个会议室有空"、或者创建会议时需要自动匹配空闲会议室时，必须使用此 skill。也适用于用户要求创建日程并指定楼栋/区域时自动完成会议室预订的场景。也适用于用户提到"会议室偏好"、"我的偏好"、"候补"、"补订会议室"、"自动订会议室"时。当用户未指定楼栋时，优先读取用户偏好中的默认楼栋；无偏好则主动询问城市/楼栋。
+  面向飞书用户的会议室查询、预订与配置技能，支持首次使用时识别公司、从飞书日程自动导入企业会议室 room_id、查询忙闲、按楼栋/楼层/容量筛选、创建或补订会议室、偏好管理、候补轮询与工区时间线。当用户提到“查会议室”“订会议室”“配置会议室”“导入会议室”“会议室偏好”“补订会议室”或首次安装配置时使用。
+author: qiushiban.123
 ---
 
 # 飞书会议室查询与预订
@@ -10,15 +11,49 @@ description: |
 
 ## 前置依赖
 
-- `lark-cli` 已安装且 bot 身份可用
-- 飞书应用已开通相关权限（calendar:calendar.free_busy:read, calendar:calendar.event:create 等）
-- 数据文件：`references/room-mapping.json`（全球 130+ 工区、7300+ 会议室）、`references/user-preferences.json`、`references/room-waitlist.json`、`references/weekly-workspace.json`
+- 运行环境已提供 `lark-cli`，并以当前飞书用户身份完成授权
+- 日历、参与人和忙闲命令统一使用 `--as user`
+- 飞书应用需具备日历读取、参与人读取、忙闲查询及日程写入权限
+- 首次使用先运行 `python3 scripts/room_setup.py --status --json`；未配置时必须先询问用户所在公司
+- 数据文件：内置目录 `references/room-mapping.json`、自定义目录 `references/custom-room-mapping.json`、租户配置 `references/tenant-profile.json`，以及偏好/候补/工区文件
 - 脚本目录：`scripts/`
-- 建筑匹配使用索引查找（O(1)），忙闲查询自动 10 线程并行
+- 建筑匹配使用索引查找，忙闲查询支持并行
 
 ## 工具脚本
 
 所有会议室操作**必须通过脚本**，不要手写 bash 循环。
+
+### room_setup.py — 首次配置与会议室导入
+
+每次查询配置状态：
+
+```bash
+python3 scripts/room_setup.py --status --json
+```
+
+返回 `configured: false` 时，先询问：**“你所在的公司/组织名称是什么？”**
+
+- 用户属于字节跳动或 TikTok：运行 `python3 scripts/room_setup.py --set-company "字节跳动"`，启用随技能提供的会议室目录。
+- 其他公司：运行 `python3 scripts/room_setup.py --set-company "公司名称"`，然后按下面步骤引导。不要要求用户编辑脚本或 JSON。
+
+**非字节租户配置步骤（逐步完成，不要一次抛出全部操作）：**
+
+1. 请用户在飞书日历中新建一个临时日程，标题建议为“会议室配置-楼栋名”。为降低影响，选择一个非工作时段并设置 5 分钟。
+2. 在日程的“会议室”中选择同一楼栋的全部会议室并保存。会议室数量超过单次上限时，拆成多个临时日程；不同楼栋分别创建。
+3. 请用户告诉 Agent 临时日程的标题/时间与楼栋名称。Agent 用 `lark-cli calendar +search-event --as user` 或 `+agenda` 找到 `calendar_id` 和 `event_id`。
+4. Agent 自动读取全部 resource 参与人并导入，无需用户复制 room_id：
+
+```bash
+python3 scripts/room_setup.py \
+  --calendar-id "<calendar_id>" --event-id "<event_id>" \
+  --building "总部A座" --aliases "总部,A座" --default-capacity 0
+```
+
+5. 运行 `python3 scripts/query_rooms.py --list-rooms -b "总部A座"`，把导入数量和样例会议室展示给用户核对。名称中的 `(8)` / `（8人）` 会自动识别为容量；无法识别时容量为 `--default-capacity`，可按楼栋分批导入并指定默认容量。
+6. 导入确认后，请用户删除临时日程或移除其中的会议室，避免占用资源。Agent 不主动删除，除非用户明确要求。
+7. 继续处理下一栋楼，全部导入后再开始查询和预订。
+
+若读取参与人返回权限错误，保留错误码、scope、console URL 和 hint，提示管理员开通日程参与人读取权限；不要让用户手工维护 room_id。
 
 ### query_rooms.py — 会议室查询
 
@@ -114,7 +149,9 @@ python3 scripts/workspace_manager.py --timeline
 
 | 文件 | 用途 |
 |------|------|
-| `references/room-mapping.json` | 会议室资源 ID 映射 |
+| `references/tenant-profile.json` | 公司与当前会议室目录选择 |
+| `references/room-mapping.json` | 随技能提供的会议室目录 |
+| `references/custom-room-mapping.json` | 非内置租户通过配置日程自动生成的目录 |
 | `references/user-preferences.json` | 用户个人偏好 |
 | `references/room-waitlist.json` | 候补预订队列 |
 | `references/weekly-workspace.json` | 当前工区 / 下周工区时间线 |
@@ -148,13 +185,14 @@ python3 scripts/workspace_manager.py --timeline
    - 无偏好时读取工区时间线：`python3 scripts/workspace_manager.py --get`
    - 用户显式指定楼栋时覆盖默认值
 4. **查询空闲会议室** — 用脚本查询，带上容量筛选
-5. **用户选择** — `feishu_ask_user_question` 弹卡片
-6. **创建日程** — `feishu_calendar_event` create
-7. **添加会议室+参会人** — `feishu_calendar_event_attendee` create
-   - ⚠️ 字段名是 `attendee_id`，不是 `id`
-8. **Reflection 二次校验** — 等 5 秒后查 attendee list / event detail
-   - `confirmed`：resource 已 accept，才能对用户说“预订成功”
-   - `pending`：resource 已出现但状态未定，只能说“已提交，等待确认”
+5. **用户选择** — 把候选会议室列给用户确认
+6. **创建日程** — `lark-cli calendar +create --as user`（或 `events create`）
+7. **添加会议室+参会人** — `lark-cli calendar event.attendees create --as user`
+   - ⚠️ 会议室是 resource：attendee type 为 `"resource"`，会议室 ID 传 `omm_xxx`
+   - ⚠️ 日历操作统一用 `--as user`，不要用 bot 身份
+8. **Reflection 二次校验** — 等 5 秒后用 `lark-cli calendar event.attendees list --as user` 查 RSVP
+   - `confirmed`：resource 已 accept，才能对用户说"预订成功"
+   - `pending`：resource 已出现但状态未定，只能说"已提交，等待确认"
    - `failed`：resource decline / 缺失，不能宣告成功
 9. **Fallback** — `failed` 时自动换下一个空闲会议室
 10. **记录选择** — 仅 `confirmed` 后调用 `python3 scripts/manage_preferences.py --learn --user "ou_xxx" --room "F11-15(8)" --building "..."`
@@ -186,7 +224,8 @@ python3 scripts/workspace_manager.py --timeline
 - **自动**：Heartbeat 定时任务
 
 **扫描步骤：**
-1. 调用 `feishu_calendar_event` list 获取用户近期日程（未来 24 小时）
+1. 用 `lark-cli calendar +agenda --as user` 或 `events search_event --as user` 获取用户近期日程（未来 24 小时），再用 `events get --need-attendee --as user` 补齐参与人详情，保存为 JSON 传给 `scan_events.py --events-file`
+   - 若飞书返回 `194001 no permission to list event attendees` 等权限错误，在该事件中写入 `"attendee_details_complete": false`；扫描器会将其标为待确认并跳过，避免因看不到已有资源而重复预订
 2. 首轮检查当前用户是否已 accept：优先读事件级 `self_rsvp_status`，没有时再看 attendees 中当前用户的 `rsvp_status / status / response_status`
 3. 对 resource 参会人做 reflection 分类，而不是只看“是否存在 resource”
    - `confirmed`：已有已确认会议室，直接跳过
@@ -267,7 +306,7 @@ python3 scripts/workspace_manager.py --timeline
 
 ### 楼栋匹配提示
 
-当前覆盖全球 130+ 工区。agent 匹配楼栋时：
+会议室目录支持随技能提供的内置数据，也支持用户所在飞书租户的自定义数据。agent 匹配楼栋时：
 - 中文关键词（"丽金"、"紫金"、"大钟寺"）→ 自动模糊匹配
 - 英文缩写（"F4"、"F11"）→ 自动匹配别名
 - 楼层 / 房间号差异表达（"11楼" / "11F" / "F11-15" / "11-15" / "DiscussionBooth A"）→ 自动抽取并缩小候选
@@ -282,13 +321,13 @@ python3 scripts/workspace_manager.py --timeline
 ## 注意事项
 
 1. **并行查询**：freebusy 查询自动 10 线程并行，大工区（200+ 间）可加 `--max-workers 20`
-2. **会议室是 resource**：attendee type 为 `"resource"`，`attendee_id` 传 `omm_xxx`
-3. **预订异步**：添加后等 5 秒再查 RSVP
+2. **会议室是 resource**：添加参会人时 attendee type 为 `"resource"`，会议室 ID 传 `omm_xxx`
+3. **身份统一 user**：所有日历、参与人和忙闲命令都用 `--as user`
 4. **时区统一**：`Asia/Shanghai`（+08:00），ISO 8601
 5. **日期验证**：涉及相对时间必须验证星期几
 6. **脚本优先**：统一用 scripts/ 下的脚本
 7. **时间修改风险**：patch 改时间后会议室可能 decline，必须重新验证
 8. **偏好自动学习**：每次预订成功后调用 `--learn` 记录
 9. **楼栋匹配**：使用索引查找（O(1)），支持模糊匹配 name 和所有 alias
-10. **全球覆盖**：room-mapping.json 含 130+ 工区、7300+ 间会议室，未指定楼栋时优先使用用户偏好，再回退到当前/下周工区
+10. **租户目录**：首次使用必须先确认公司；内置目录之外的租户通过配置日程导入会议室，未指定楼栋时优先使用用户偏好，再回退到当前/下周工区
 11. **工区时间线**：weekly-workspace.json 只负责当前工区 / 下周工区，不替代用户个人偏好和自动学习

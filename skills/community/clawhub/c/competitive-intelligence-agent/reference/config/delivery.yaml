@@ -20,7 +20,7 @@ delivery:
 
   # Slack Configuration
   slack:
-    webhook_url: "https://hooks.slack.com/services/T00/B00/xxxxxxxx"
+    webhook_url: "REDACTED-SECRET"
     channel: "#competitive-intel"
     username: "CI Agent"
     icon_emoji: ":male-detective:"

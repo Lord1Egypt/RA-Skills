@@ -33,16 +33,16 @@ When a user's Stellar account is brand new and has only XLM:
 
 ```bash
 # 1. See what's there
-npx tsx skills/check-balance/run.ts
+./node_modules/.bin/tsx skills/check-balance/run.ts
 
 # 2. Enable USDC
-npx tsx skills/check-balance/add-trustline.ts
+./node_modules/.bin/tsx skills/check-balance/add-trustline.ts
 
 # 3. Swap XLM → USDC (example: swap 10 XLM)
-npx tsx skills/check-balance/swap-xlm-to-usdc.ts 10
+./node_modules/.bin/tsx skills/check-balance/swap-xlm-to-usdc.ts 10
 
 # 4. Verify
-npx tsx skills/check-balance/run.ts
+./node_modules/.bin/tsx skills/check-balance/run.ts
 ```
 
 ## Commands
@@ -51,16 +51,16 @@ npx tsx skills/check-balance/run.ts
 
 ```bash
 # Derive pubkey from --identity or --secret-file (default: .stellar-secret)
-npx tsx skills/check-balance/run.ts
+./node_modules/.bin/tsx skills/check-balance/run.ts
 
 # Use an existing Stellar CLI identity
-npx tsx skills/check-balance/run.ts --identity mpp-mainnet-payer
+./node_modules/.bin/tsx skills/check-balance/run.ts --identity mpp-mainnet-payer
 
 # Check any pubkey
-npx tsx skills/check-balance/run.ts GABCD...
+./node_modules/.bin/tsx skills/check-balance/run.ts GABCD...
 
 # JSON output
-npx tsx skills/check-balance/run.ts --json
+./node_modules/.bin/tsx skills/check-balance/run.ts --json
 ```
 
 Output:
@@ -81,7 +81,7 @@ Reads from Horizon (Classic balances + reserves) and Soroban RPC (SAC balance vi
 ### add USDC trustline
 
 ```bash
-npx tsx skills/check-balance/add-trustline.ts
+./node_modules/.bin/tsx skills/check-balance/add-trustline.ts
 ```
 
 - Idempotent — safe to re-run.
@@ -95,16 +95,16 @@ Two modes — pick whichever the user expressed naturally:
 
 ```bash
 # "Swap 10 XLM to USDC" → spend exactly 10 XLM
-npx tsx skills/check-balance/swap-xlm-to-usdc.ts --xlm 10
+./node_modules/.bin/tsx skills/check-balance/swap-xlm-to-usdc.ts --xlm 10
 
 # "I need 1 USDC" / "Change enough XLM for 1 USDC" → receive exactly 1 USDC
-npx tsx skills/check-balance/swap-xlm-to-usdc.ts --usdc 1
+./node_modules/.bin/tsx skills/check-balance/swap-xlm-to-usdc.ts --usdc 1
 
 # Tighter slippage (default 1%)
-npx tsx skills/check-balance/swap-xlm-to-usdc.ts --usdc 5 --slippage 0.005
+./node_modules/.bin/tsx skills/check-balance/swap-xlm-to-usdc.ts --usdc 5 --slippage 0.005
 
 # Skip confirmation on mainnet (large-amount gate still fires)
-npx tsx skills/check-balance/swap-xlm-to-usdc.ts --xlm 10 --yes
+./node_modules/.bin/tsx skills/check-balance/swap-xlm-to-usdc.ts --xlm 10 --yes
 ```
 
 **Intent mapping — pick the right mode:**

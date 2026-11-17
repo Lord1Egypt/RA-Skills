@@ -1,0 +1,11 @@
+interface:
+  display_name: "PageCrawl"
+  short_description: "Monitor websites and report what changed"
+  default_prompt: "Use PageCrawl to watch this page for changes, or tell me what changed on my monitored pages this week."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "pagecrawl"
+      description: "PageCrawl MCP server"
+      transport: "streamable_http"
+      url: "https://mcp.pagecrawl.io/mcp"

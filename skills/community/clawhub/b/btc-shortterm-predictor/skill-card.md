@@ -1,47 +1,63 @@
-## Description: <br>
-BTC 15分钟短线预测 - 技术指标分析，预测涨跌方向。每次调用0.005 USDT。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BTC 15分钟短线预测 - 技术指标分析，预测涨跌方向。每次调用0.005 USDT。
 
-## Publisher: <br>
-[ffffff9331](https://clawhub.ai/user/ffffff9331) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ffffff9331](https://clawhub.ai/user/ffffff9331)
 
-## Use Case: <br>
-External users run this Node.js skill to retrieve a paid BTC/USDT 15-minute directional prediction based on Binance market data and technical indicators. The output is intended as informational trading analysis and includes a warning that it is not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security review describes the paid billing flow as under-scoped and unable to preserve a user's paid balance across runs. <br>
-Mitigation: Review the SkillPay flow before use and require the publisher to document how balances are tied to a stable user identity. <br>
-Risk: The security review reports an embedded billing key. <br>
-Mitigation: Require the publisher to remove or rotate the embedded key and rely on a user-provided SKILLPAY_API_KEY. <br>
-Risk: The security review warns that trading-performance claims need substantiation or a reduced claim. <br>
-Mitigation: Treat predictions as informational only and require documented evaluation evidence before relying on claimed win rates or profitability. <br>
-Risk: The security review calls for clearer SkillPay data-sharing documentation. <br>
-Mitigation: Do not deposit funds until the publisher explains what payment and user data is shared with SkillPay. <br>
+## Use Case:
 
+External users run this agent skill to fetch BTC market data, calculate short-term technical indicators, and receive a 15-minute direction forecast with confidence, stop-loss, and take-profit guidance. The skill charges 0.005 USDT per invocation through SkillPay.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ffffff9331/btc-shortterm-predictor) <br>
-- [Publisher profile](https://clawhub.ai/user/ffffff9331) <br>
-- [Binance API endpoint](https://api.binance.com) <br>
-- [SkillPay service](https://skillpay.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Console text with trading direction, confidence, indicator signals, stop loss, take profit, and market summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLPAY_API_KEY for billing and network access to Binance and SkillPay services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: The skill contacts a paid remote billing service during invocation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming that SkillPay billing, user consent, and expected per-call charges are acceptable.
+
+Risk: A bundled SkillPay key should be treated as exposed.
+
+Mitigation: Use a reviewer-controlled SKILLPAY_API_KEY and rotate any exposed billing credentials before deployment.
+
+Risk: The advertised win-rate and automated-trading claims may mislead users.
+
+Mitigation: Treat predictions as informational analysis only and validate performance independently before relying on the output.
+
+Risk: History and auto commands may run before the billing behavior is fully validated.
+
+Mitigation: Avoid history or auto modes until charging behavior has been reviewed and tested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ffffff9331/skills/btc-shortterm-predictor)
+- [Binance API endpoint](https://api.binance.com)
+- [SkillPay billing endpoint](https://skillpay.me)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Console text with BTC price, prediction direction, confidence, technical indicators, trading guidance, and 24-hour market summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLPAY_API_KEY for billing; help output documents history and auto commands as development-stage modes.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

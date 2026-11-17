@@ -2,24 +2,26 @@
 jurisdiction: "American Samoa"
 slug: american-samoa
 countryCode: US
-snapshotAsOf: "2026-06-08"
-lastReviewed: "2026-06-03"
-canonicalUrl: https://openagreements.org/legal/non-compete/american-samoa
+content_packaged_at: "2026-09-05"
+law_checked_through: "2026-06-03"
+human_reviewed_at: null
+next_review_due: "2026-11-30"
+canonicalUrl: https://openagreements.org/practice-guides/non-compete/us/american-samoa
 license: CC BY 4.0
 stale: false
 ---
 
 > [!IMPORTANT]
-> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice note,
+> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice guide,
 > provided for general information. It is not legal advice, does not create an attorney-client
 > relationship, and is not a substitute for a licensed attorney in the relevant jurisdiction.
 > Laws change; verify against the canonical version before relying on it.
 >
-> **Canonical:** https://openagreements.org/legal/non-compete/american-samoa · **Snapshot as of:** 2026-06-08 · License: CC BY 4.0 · © UseJunior
+> **Canonical:** https://openagreements.org/practice-guides/non-compete/us/american-samoa · **Snapshot as of:** 2026-09-05 · License: CC BY 4.0 · © openagreements.org
 
 # Non-Competes in American Samoa[^about]
 
-American Samoa has no non-compete statute and no on-point case law; its High Court would gap-fill through the imported common law of A.S.C.A. § 1.0201 and the Restatement reasonableness test, while local public policy and a tiny island economy make aggressive covenants hard to enforce.
+American Samoa has no non-compete statute and no on-point case law found in our review; its High Court would gap-fill through the imported common law of A.S.C.A. § 1.0201 and the Restatement reasonableness test, while local public policy and a tiny island economy make aggressive covenants hard to enforce.
 
 
 ## At a glance
@@ -27,14 +29,14 @@ American Samoa has no non-compete statute and no on-point case law; its High Cou
 | Question | American Samoa |
 | --- | --- |
 | **Are non-competes enforceable?** | Unsettled |
-| **Bottom line** | No non-compete statute and no on-point case law; a court would likely apply the Restatement reasonableness test, with local public policy disfavoring broad restraints. |
+| **Bottom line** | No non-compete statute and no on-point case law found in our review; a court would likely apply the Restatement reasonableness test, with local public policy disfavoring broad restraints. |
 | **Main law or case** | A.S.C.A. § 1.0201 (imported common law); Restatement (Second) of Contracts § 188 |
 | **Can a court narrow it?** | Unsettled |
 | **Applies to contractors?** | Unclear |
 | **Restriction extended during a breach?** | Silent — no statute or case law |
 | **Maximum length set by law** | No statutory limit |
 
-## Are employee non-compete agreements enforceable in American Samoa? {#employee-noncompetes}
+## Are employee non-compete agreements enforceable in American Samoa? {#employee-non-compete-enforceability}
 
 **Short answer.** Probably sometimes, but the law is genuinely unsettled. American Samoa has no statute that governs employee non-competes and no High Court decision that has squarely enforced or struck one down. A covenant would be judged under the common law the High Court imports through A.S.C.A. § 1.0201 [^asca-1-0201], which in practice means the Restatement reasonableness framework.
 
@@ -87,7 +89,7 @@ In *American Samoa Gov't v. Samoa Aviation, Inc.*, the High Court refused to voi
 
 That tendency is reinforced by *Ilalio*'s reliance on Restatement § 208, which lets a court enforce the remainder of a contract or limit an unconscionable term rather than strike everything [^ilalio-partial]. Still, reformation here is a prediction: no American Samoa decision has blue-penciled an employee non-compete, so an employer should draft to a defensible scope rather than count on judicial rescue.
 
-## Does the restricted period toll or extend if the employee breaches? {#tolling}
+## Does the restricted period toll or extend if the employee breaches? {#extended-for-breach}
 
 **Short answer.** American Samoa law is silent. No statute or High Court decision addresses whether a non-compete clock pauses during a breach, during litigation, or during an injunction application — and the deep-research record finds no local authority on either contractual or equitable tolling. The prudent assumption is that a court will not pause the clock unless the contract says so, so any extension-on-breach must be drafted expressly [^asca-1-0201-tolling].
 
@@ -136,7 +138,7 @@ Two background developments matter only for monitoring. The FTC's 2024 Non-Compe
 
 The practical takeaway is stability layered on uncertainty: the rules will not move by legislation soon, but because no court has yet decided an employee non-compete, the first case to reach the High Court could set the baseline in either direction.
 
-[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org) · Maintained by [UseJunior](https://usejunior.com). Last reviewed 2026-06-03. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not American Samoa. This article synthesizes American Samoa primary law and is not legal advice from a American Samoa-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship.
+[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org). Last reviewed 2026-06-03. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not American Samoa. This article synthesizes American Samoa primary law and is not legal advice from a American Samoa-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship. CC BY 4.0. Cite as Steven Obiajulu, *Non-Competes in American Samoa*, OpenAgreements (last updated June 3, 2026), https://openagreements.org/practice-guides/non-compete/us/american-samoa.
 
 [^asca-1-0201]: **A.S.C.A. § 1.0201 — Laws applicable in American Samoa** — "so much of the common law of England as is suitable to conditions in American Samoa and not inconsistent with this section." *A.S.C.A. § 1.0201.* <https://asbar.org/code-annotated/1-0201-laws-applicable-in-american-samoa/>
 

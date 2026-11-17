@@ -1,44 +1,63 @@
-## Description: <br>
-Converts raw feed candidates, especially FreshRSS unread items, into structured Digest candidate pools through de-duplication, clustering, content checks, filtering, Chinese summarization, tagging, and preliminary ranking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Digest Builder turns raw feed candidates or FreshRSS unread items into structured digest candidates through URL deduplication, event clustering, content checks, noise filtering, summary generation, tagging, and preliminary ranking.
 
-## Publisher: <br>
-[gcdd1993](https://clawhub.ai/user/gcdd1993) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gcdd1993](https://clawhub.ai/user/gcdd1993)
 
-## Use Case: <br>
-Developers and feed-heavy knowledge workers use this skill to turn FreshRSS unread items or raw feed entries into a structured candidate pool for deciding what belongs in a digest. It is a preprocessing workflow, not a final daily digest writer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill needs access to a FreshRSS API password to fetch unread items. <br>
-Mitigation: Use a FreshRSS API password rather than a web login password, prefer environment variables or a local config file, and do not share generated configuration files. <br>
-Risk: Unread feed titles, links, excerpts, summaries, and reading-history-derived outputs are saved under digest output paths. <br>
-Mitigation: Review generated JSON and Markdown files before sharing, committing, or uploading them to another system. <br>
-Risk: The mark-as-read helper can change FreshRSS read state when deliberately invoked. <br>
-Mitigation: Run the helper only on purpose, use dry-run first, and apply date filtering so it does not mark the wrong items as read. <br>
+## Use Case:
 
+Developers and operators use this skill to collect FreshRSS unread items or raw feed entries and turn them into a clean, deduplicated, human-reviewable digest candidate pool. It is intended as preprocessing for digest creation, not as a final daily digest publisher.
 
-## Reference(s): <br>
-- [Digest Builder ClawHub release](https://clawhub.ai/gcdd1993/digest-builder) <br>
-- [Digest Spec](references/digest-spec.md) <br>
-- [FreshRSS Google Reader API](references/freshrss-google-reader.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and JSON digest files, plus concise command output and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Handles FreshRSS credentials, unread feed metadata, local digest files, and optional mark-as-read operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: FreshRSS credentials can be exposed if the configured FreshRSS base URL uses insecure HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an HTTPS FreshRSS base URL and avoid printing or sharing the API password.
+
+Risk: Feed-controlled URLs may be fetched from the user's network context during content checks.
+
+Mitigation: Run against trusted feeds or use a sandboxed environment with constrained outbound network access.
+
+Risk: Raw FreshRSS content and generated summaries are written to local digest files.
+
+Mitigation: Store outputs in an appropriate local workspace and avoid using sensitive feeds unless those files can be protected.
+
+Risk: The mark-read script can change FreshRSS read state for selected items.
+
+Mitigation: Use the mark-read script only after an explicit user decision, preferably with date filters and dry-run review first.
+
+## Reference(s):
+
+- [Digest Spec](artifact/references/digest-spec.md)
+- [FreshRSS Google Reader API](artifact/references/freshrss-google-reader.md)
+- [ClawHub Skill Page](https://clawhub.ai/gcdd1993/skills/digest-builder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and generated JSON/Markdown digest files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces FreshRSS raw exports, date-sliced candidate files, and structured digest candidates with summaries, tags, cluster metadata, and ranking rationale.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

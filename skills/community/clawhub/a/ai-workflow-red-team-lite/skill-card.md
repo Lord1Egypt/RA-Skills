@@ -1,41 +1,58 @@
-## Description: <br>
-Performs lightweight defensive red-team reviews of AI workflows, focusing on misuse paths, boundary failures, and data leakage risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents perform lightweight defensive red-team reviews of AI automation workflows, focusing on misuse paths, boundary failures, and data leakage risks.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers and AI engineers use this skill to review AI workflow descriptions, permission boundaries, and inputs and outputs for misuse paths, boundary failures, data risks, and mitigation checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit workflow may read file contents from user-supplied paths, which can expose secrets or sensitive data in generated reports. <br>
-Mitigation: Run it only on intended workspace paths, avoid system roots and sensitive directories, and inspect reports before sharing them. <br>
-Risk: A defensive red-team workflow can become unsafe if prompts drift toward executable attack steps or destructive system changes. <br>
-Mitigation: Keep outputs limited to review-only analysis, dry-run checklists, and mitigations; do not request or provide destructive scripts. <br>
+## Use Case:
 
+Developers, workflow owners, and security reviewers use this skill to turn AI workflow descriptions, inputs and outputs, and permission boundaries into a structured defensive red-team brief before deployment or operational changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/ai-workflow-red-team-lite) <br>
-- [Publisher Profile](https://clawhub.ai/user/52yuanchangxing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with structured sections and optional shell command invocation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces review-oriented findings and checklists; script-based runs should be reviewed before acting on or sharing the output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The local Python helper reads user-provided paths and may access sensitive workspace or home-directory files if invoked broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on intended review inputs or in a restricted workspace, and avoid granting access to sensitive directories.
+
+Risk: The helper can write report files and may overwrite writable local files when given an unsafe output path.
+
+Mitigation: Use stdout, dry-run mode, or a dedicated output directory, and review output paths before execution.
+
+Risk: User-controlled filenames may be unsafe if copied into shell commands without quoting.
+
+Mitigation: Pass paths as arguments without shell interpolation and avoid untrusted filenames in pasted command lines.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/ai-workflow-red-team-lite)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/52yuanchangxing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON defensive review brief; may include local Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces attack surface summaries, misuse paths, boundary failures, data risks, mitigations, checklists, confirmation items, and next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

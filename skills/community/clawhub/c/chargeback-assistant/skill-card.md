@@ -1,47 +1,61 @@
-## Description: <br>
-Helps consumers prepare payment-dispute and chargeback materials by identifying dispute type, mapping likely network reason codes, producing evidence checklists, drafting dispute letters, and summarizing deadlines and next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps consumers classify payment disputes, map them to network or platform reason codes, gather evidence, and draft chargeback dispute letters.
 
-## Publisher: <br>
-[hgereat](https://clawhub.ai/user/hgereat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgereat](https://clawhub.ai/user/hgereat)
 
-## Use Case: <br>
-External users use this skill to structure consumer chargeback and payment-dispute requests for Visa, Mastercard, American Express, PayPal, and Stripe-related transactions. It produces a situation assessment, reason-code guidance, a tailored evidence checklist, a draft dispute letter, and deadline-oriented next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chargeback deadlines, reason codes, and provisional-credit expectations may be incorrect for a user's specific issuer, payment platform, jurisdiction, or transaction facts. <br>
-Mitigation: Tell users to verify deadlines, reason-code fit, and procedural requirements with their bank, card issuer, or payment platform before submitting a dispute. <br>
-Risk: Users may share sensitive payment details while preparing dispute materials. <br>
-Mitigation: Advise users to avoid sharing full card numbers, account credentials, passwords, and other highly sensitive identifiers in chat. <br>
-Risk: A drafted dispute letter could be misused for an illegitimate or already-refunded chargeback. <br>
-Mitigation: Follow the skill's honest-limits guidance by refusing friendly-fraud framing and by redirecting invalid, already-refunded, or buyer's-remorse cases to appropriate alternatives. <br>
+## Use Case:
 
+External consumers use this skill to prepare chargeback or payment dispute submissions by identifying the dispute type, matching the relevant Visa, Mastercard, American Express, PayPal, or Stripe path, assembling evidence, and drafting a submission letter.
 
-## Reference(s): <br>
-- [Visa Dispute Reference](references/visa.md) <br>
-- [Mastercard Dispute Reference](references/mastercard.md) <br>
-- [American Express Dispute Reference](references/amex.md) <br>
-- [PayPal & Stripe Dispute Reference](references/paypal-stripe.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hgereat/chargeback-assistant) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/hgereat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces consumer-facing dispute assessments, evidence checklists, draft letters, and next-step guidance; users should verify deadlines and financial advice with their issuer or payment platform.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Financial dispute guidance may be outdated or misapplied to a user's issuer, payment network, or facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify deadlines, reason codes, and evidence requirements with the card issuer or payment platform before acting.
+
+Risk: A user could submit unsupported or illegitimate dispute claims.
+
+Mitigation: Submit only factual, supported disputes and use the skill's honest-limits checks for weak or invalid cases.
+
+Risk: The artifact README's installer example uses @latest.
+
+Mitigation: Prefer a pinned or otherwise verified ClawHub installer when installing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hgereat/skills/chargeback-assistant)
+- [Visa Dispute Reference](artifact/references/visa.md)
+- [Mastercard Dispute Reference](artifact/references/mastercard.md)
+- [American Express Dispute Reference](artifact/references/amex.md)
+- [PayPal & Stripe Dispute Reference](artifact/references/paypal-stripe.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown response with situation assessment, reason code, tailored evidence checklist, dispute letter, deadline, and next steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bracketed placeholders for user-specific details; no automatic filing or external actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

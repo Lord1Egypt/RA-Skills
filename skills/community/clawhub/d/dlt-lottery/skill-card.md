@@ -1,47 +1,60 @@
-## Description: <br>
-Queries China Sports Lottery Super Lotto draw results, including winning numbers, prize rules, and details for a specified issue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供中国体育彩票大乐透开奖信息，支持查询开奖号码、中奖规则及指定期号详情。
 
-## Publisher: <br>
-[chenchaoqun](https://clawhub.ai/user/chenchaoqun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchaoqun](https://clawhub.ai/user/chenchaoqun)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve current or issue-specific Super Lotto results and summarize draw rules for number checking. It is informational and does not provide lottery predictions or number-picking advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External lottery websites may be unavailable, dynamically loaded, or return incomplete data. <br>
-Mitigation: Use the skill's ordered fallback sources and tell the user when data cannot be retrieved reliably. <br>
-Risk: Third-party fallback sources may disagree with official China Sports Lottery results. <br>
-Mitigation: Prefer the official lottery.gov.cn source and label third-party results as reference-only. <br>
-Risk: Lottery information can be mistaken for gambling advice. <br>
-Mitigation: Keep responses factual, avoid predictions or number recommendations, and include rational-purchase reminders when relevant. <br>
+## Use Case:
 
+External users and agents use this skill to look up China Sports Lottery 大乐透 draw results, check a specific issue number, compare ticket numbers, and review prize rules.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chenchaoqun/dlt-lottery) <br>
-- [Publisher profile](https://clawhub.ai/user/chenchaoqun) <br>
-- [Data sources reference](artifact/references/data_sources.md) <br>
-- [Lottery rules reference](artifact/references/rules.md) <br>
-- [China Sports Lottery official site](https://www.lottery.gov.cn) <br>
-- [Official Super Lotto draw list](https://www.lottery.gov.cn/kj/kjlb.html?dlt) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with draw numbers, dates, source labels, and rule summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include issue number, draw date, front-area numbers, back-area numbers, prize pool, data source, and official-site reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Third-party lottery sources may be stale, incomplete, or inconsistent with official results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the official lottery.gov.cn source and verify important ticket checks against it.
+
+Risk: Outbound requests to lottery websites can fail because of network issues, site changes, dynamic loading, or access controls.
+
+Mitigation: Treat fetch failures as lookup failures, retry later, or visit the official site directly.
+
+Risk: Lottery result lookup can be mistaken for betting or prediction guidance.
+
+Mitigation: Use the skill for results and rules only, not for purchase recommendations, predictions, or financial advice.
+
+## Reference(s):
+
+- [大乐透数据源配置](references/data_sources.md)
+- [大乐透详细规则](references/rules.md)
+- [中国体彩网大乐透开奖列表](https://www.lottery.gov.cn/kj/kjlb.html?dlt)
+- [ClawHub release page](https://clawhub.ai/chenchaoqun/skills/dlt-lottery)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown with draw numbers, issue details, source labels, and prize-rule summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May contact listed lottery websites; third-party-source results are advisory and should be checked against the official lottery.gov.cn source for important ticket decisions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

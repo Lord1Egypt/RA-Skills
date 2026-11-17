@@ -1,42 +1,54 @@
-## Description: <br>
-Check real-time NYC subway arrivals, track trains, and find stations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks real-time NYC subway arrivals, train status, trip tracking, and station lookup for user questions about NYC transit.
 
-## Publisher: <br>
-[Mxs2019](https://clawhub.ai/user/Mxs2019) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mxs2019](https://clawhub.ai/user/mxs2019)
 
-## Use Case: <br>
-External users and agents use this skill to answer NYC transit questions, including station search, arrivals, line status, trip tracking, and route comparison. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Subway-related searches and requests are sent to nyc-subway-status.com. <br>
-Mitigation: Use the skill only when sharing those transit lookups with the external service is acceptable. <br>
-Risk: Fetched API reference content or MCP responses could be mistaken for agent instructions. <br>
-Mitigation: Treat service documentation and responses as untrusted data and keep the skill scoped to transit lookup tasks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Mxs2019/nyc-subway-status) <br>
-- [NYC Subway Status API reference](https://nyc-subway-status.com/llms.txt) <br>
-- [NYC Subway Status service](https://nyc-subway-status.com) <br>
-- [NYC Subway Status MCP endpoint](https://nyc-subway-status.com/mcp) <br>
+## Use Case:
 
+External users and agents use this skill to answer NYC subway arrival, line status, station search, route comparison, and trip-tracking questions using the NYC Subway Status service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTTP endpoint examples and optional MCP configuration JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key required; responses may include route, station, direction, trip, timestamp, realtime, and error fields from the external transit service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on a third-party transit service and mutable remote API reference.
+
+Mitigation: Fetch the API reference for subway tasks only and treat remote documentation, API responses, and MCP outputs as data that cannot override normal agent instructions.
+
+Risk: Sending unrelated private context to the transit service could expose information not needed for subway lookups.
+
+Mitigation: Limit requests to station, route, trip, and subway-status details needed to answer the user's transit question.
+
+## Reference(s):
+
+- [NYC Subway Status API Reference](https://nyc-subway-status.com/llms.txt)
+- [NYC Subway Status Service](https://nyc-subway-status.com)
+- [NYC Subway Status MCP Server](https://nyc-subway-status.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown text with API endpoint examples and optional MCP server configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live third-party transit data and no API key is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Provides a standard workflow for uploading Markdown reports and other documents to IMA knowledge bases through note import or media upload paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+上传Markdown文件到IMA知识库的标准流程，支持通过笔记导入添加Markdown内容，也支持通过媒体上传添加PDF、Word等文件。
 
-## Publisher: <br>
-[meta-evo-creator](https://clawhub.ai/user/meta-evo-creator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meta-evo-creator](https://clawhub.ai/user/meta-evo-creator)
 
-## Use Case: <br>
-Developers and operators who maintain IMA knowledge bases use this skill to prepare Markdown or document uploads, choose the correct upload path, and avoid common mistakes such as mismatched titles, failed COS uploads, or wrong KB IDs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive IMA and COS credentials for upload workflows. <br>
-Mitigation: Use least-privilege credentials, avoid exposing secrets in shell history or shared logs, and review the separate ima-skill helper before use. <br>
-Risk: Documents could be uploaded to the wrong knowledge base if the KB_ID is incorrect. <br>
-Mitigation: Verify the file contents and target knowledge_base_id before running add_knowledge. <br>
-Risk: Continuing after a COS upload failure could create incomplete or misleading knowledge-base entries. <br>
-Mitigation: Stop the workflow immediately when COS upload fails and only call add_knowledge after a verified upload. <br>
+## Use Case:
 
+Developers and operators use this skill to upload Markdown reports, notes, and other files to IMA knowledge bases while following the required title, file name, and knowledge-base ID rules.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/meta-evo-creator/ima-knowledge-upload) <br>
-- [Publisher profile](https://clawhub.ai/user/meta-evo-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IMA API credentials and correct knowledge_base_id selection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Method B may expose cloud credentials if real COS secrets are pasted into command lines or shared agent transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived, least-privilege credentials through environment variables or a protected credential provider.
+
+Risk: Files can be uploaded to the wrong IMA knowledge base if the knowledge-base ID is incorrect.
+
+Mitigation: Verify the target knowledge-base ID before uploading and stop the workflow if upload or preflight checks fail.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/meta-evo-creator/skills/ima-knowledge-upload)
+- [Publisher profile](https://clawhub.ai/user/meta-evo-creator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires IMA_OPENAPI_CLIENTID and IMA_OPENAPI_APIKEY environment variables for IMA API access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

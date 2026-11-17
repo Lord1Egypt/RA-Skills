@@ -1,0 +1,118 @@
+{
+  "skill_name": "blog-mini-kit-mys",
+  "entry_file": "scripts/blog-mini-kit-mys.py",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "health-check",
+      "command": "python3 scripts/blog-mini-kit-mys.py health-check",
+      "expected": "{\"status\":\"ok\",\"service\":\"blog-api\",\"version\":\"1.0.0\"}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "检查 API 可达性"
+    },
+    {
+      "id": "TC-02",
+      "name": "list-articles",
+      "command": "python3 scripts/blog-mini-kit-mys.py list-articles --page 1 --size 10",
+      "expected": "{\"code\":200,\"data\":[...],\"total\":N}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询文章列表"
+    },
+    {
+      "id": "TC-03",
+      "name": "list-labels",
+      "command": "python3 scripts/blog-mini-kit-mys.py list-labels",
+      "expected": "{\"code\":200,\"data\":[{\"id\":1,\"lname\":\"...\"}]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询标签列表"
+    },
+    {
+      "id": "TC-04",
+      "name": "list-users",
+      "command": "python3 scripts/blog-mini-kit-mys.py list-users",
+      "expected": "{\"code\":200,\"data\":[{\"id\":1,\"uname\":\"admin\"}]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询用户列表"
+    },
+    {
+      "id": "TC-05",
+      "name": "list-messages",
+      "command": "python3 scripts/blog-mini-kit-mys.py list-messages",
+      "expected": "{\"code\":200,\"data\":[...]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询留言列表"
+    },
+    {
+      "id": "TC-06",
+      "name": "list-moods",
+      "command": "python3 scripts/blog-mini-kit-mys.py list-moods",
+      "expected": "{\"code\":200,\"data\":[...]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询说说列表"
+    },
+    {
+      "id": "TC-07",
+      "name": "list-uploads",
+      "command": "python3 scripts/blog-mini-kit-mys.py list-uploads",
+      "expected": "{\"code\":200,\"data\":[...]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询已上传文件列表"
+    },
+    {
+      "id": "TC-08",
+      "name": "top-articles",
+      "command": "python3 scripts/blog-mini-kit-mys.py top-articles --limit 3",
+      "expected": "{\"code\":200,\"data\":[{\"id\":N,\"title\":\"...\",\"heat\":N}]}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询热门文章 Top 3"
+    },
+    {
+      "id": "TC-09",
+      "name": "get-article",
+      "command": "python3 scripts/blog-mini-kit-mys.py get-article --article-id 1",
+      "expected": "{\"code\":200,\"data\":{\"article\":{...},\"comments\":[...]}}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "查询文章详情（含评论）"
+    },
+    {
+      "id": "TC-10",
+      "name": "create-article",
+      "command": "python3 scripts/blog-mini-kit-mys.py create-article --title skill-test-temp --content temporary",
+      "expected": "{\"code\":200,\"message\":\"文章发布成功\",\"data\":{\"id\":N}}",
+      "method": "POST",
+      "category": "mutable",
+      "description": "创建文章（测试后清理）",
+      "cleanup": "从返回 JSON 提取 data.id，执行 delete-article --article-id <id> --hard 删除"
+    },
+    {
+      "id": "TC-11",
+      "name": "create-label",
+      "command": "python3 scripts/blog-mini-kit-mys.py create-label --lname skill-test-temp",
+      "expected": "{\"code\":200,\"data\":{\"id\":N,\"lname\":\"skill-test-temp\"}}",
+      "method": "POST",
+      "category": "mutable",
+      "description": "创建标签（测试后清理）",
+      "cleanup": "标签无删除端点，创建后可保留或通过数据库清理"
+    },
+    {
+      "id": "TC-12",
+      "name": "capability-list",
+      "command": "python3 scripts/blog-mini-kit-mys.py capability-list",
+      "expected": "{\"capability\":\"capability-list\",\"skill\":\"blog-mini-kit-mys\",\"endpoint_count\":32}",
+      "method": "GET",
+      "category": "readonly",
+      "description": "列出全部能力项，验证 32 端点覆盖"
+    }
+  ],
+  "env_vars_required": ["BLOG_MINI_KIT_MYS_BASE_URL（API 地址，无认证无需凭据）"],
+  "notes": "base_url 从环境变量 BLOG_MINI_KIT_MYS_BASE_URL 或 .project-info/ 下 JSON 配置文件获取，不写入此文件。无认证模式无需凭据变量。"
+}

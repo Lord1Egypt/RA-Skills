@@ -1,6 +1,53 @@
 {
-  "ownerId": "kn7942dkcdsfv6s69j3az4sr9n81vmpj",
-  "slug": "wechat-article-fetcher-safe",
-  "version": "2.0.1",
-  "publishedAt": 1776846121959
+  "name": "wechat-article-fetcher-safe",
+  "displayName": "微信文章抓取器 - 安全版",
+  "version": "2.0.0",
+  "description": "使用 Puppeteer + Chrome 本地运行提取微信公众号文章内容，支持全文提取和元信息获取。",
+  "author": "@Adgai115",
+  "license": "MIT-0",
+  "category": "tools",
+  "tags": [
+    "wechat",
+    "article",
+    "fetcher",
+    "puppeteer",
+    "chinese",
+    "privacy-safe"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Adgai115/wechat-article-fetcher-safe"
+  },
+  "engines": {
+    "openclaw": ">=2026.3.0",
+    "node": ">=18.0.0"
+  },
+  "capabilities": [
+    "file_read",
+    "file_write",
+    "exec",
+    "browser"
+  ],
+  "permissions": {
+    "workspace": "read-write",
+    "exec": "limited",
+    "browser": "local-chrome"
+  },
+  "config": {
+    "chromePath": "auto-detect",
+    "timeout": 30000,
+    "userAgent": "mobile"
+  },
+  "entry": {
+    "main": "fetch-wechat-article.js",
+    "type": "javascript"
+  },
+  "dependencies": {
+    "puppeteer-core": "^24.37.5"
+  },
+  "scripts": {
+    "fetch": "node fetch-wechat-article.js"
+  },
+  "createdAt": "2026-03-21T16:32:00+08:00",
+  "updatedAt": "2026-04-22T15:55:00+08:00"
 }

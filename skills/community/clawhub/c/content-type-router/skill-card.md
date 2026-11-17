@@ -1,41 +1,51 @@
-## Description: <br>
-Detects and routes visual content generation requests into structured content type configurations with layout rules, visual modes, typography guidance, and generation hints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and route to the correct visual content type (hero shot, poster, infographic, etc.) from a text description or output type hint. Use when you need to classify a content generation request into a structured type with layout rules, visual mode, and generation hints.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and agents use this skill to classify visual generation requests into content types such as hero shots, posters, infographics, and testimonials, then apply the matching layout, typography, and prompt guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A later implementation of database-backed routing could let DB-sourced rules influence generated prompts. <br>
-Mitigation: Review that implementation and credentials separately, restrict Supabase table permissions, and treat database routing records as controlled configuration. <br>
-Risk: Ambiguous content descriptions may be routed to a fallback or lower-confidence content type. <br>
-Mitigation: Check the returned slug and confidence before injecting the selected configuration into downstream image-generation prompts. <br>
+## Use Case:
 
+Developers and content-generation agents use this skill to classify visual content requests into structured content types with layout, typography, visual mode, and generation-prompt hints.
 
-## Reference(s): <br>
-- [Content Type Router on ClawHub](https://clawhub.ai/PHY041/content-type-router) <br>
-- [Canlah AI](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Code] <br>
-**Output Format:** [Markdown with Python and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes content type slugs, layout constraints, visual mode guidance, generation hints, and optional database mode guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Optional database-backed content type rules can influence downstream image prompts if enabled or misconfigured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep database mode disabled unless it is required; when enabling it, review the Supabase table contents, credentials, and rule changes before use.
+
+## Reference(s):
+
+- [Canlah AI](https://canlah.ai)
+- [Content Type Router on ClawHub](https://clawhub.ai/phy041/skills/content-type-router)
+- [Publisher Profile](https://clawhub.ai/user/phy041)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with structured content type descriptions and Python usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes content type slugs, confidence guidance, layout rules, visual modes, generation hints, and optional database-mode configuration guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

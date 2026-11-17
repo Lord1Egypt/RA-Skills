@@ -1,46 +1,64 @@
-## Description: <br>
-Comprehensive guide for Polygon PoS blockchain development, including Foundry deployment, Amoy testnet testing, faucet use, and Polygonscan verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive guide for Polygon PoS blockchain development using Foundry, including contract deployment, Amoy testnet testing, faucet use, and Polygonscan verification.
 
-## Publisher: <br>
-[AkshatGada](https://clawhub.ai/user/AkshatGada) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[akshatgada](https://clawhub.ai/user/akshatgada)
 
-## Use Case: <br>
-Developers and smart-contract engineers use this skill to set up Foundry projects, test on Polygon Amoy, deploy to Polygon PoS, and verify contracts on Polygonscan. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses private keys and .env files for deployment workflows. <br>
-Mitigation: Use a dedicated low-balance deployment wallet and never commit or share .env files. <br>
-Risk: Deployment commands with --broadcast or cast send can submit live blockchain transactions. <br>
-Mitigation: Confirm the network, wallet address, gas cost, and transaction details before broadcasting; test on Amoy before mainnet. <br>
-Risk: The workflow installs Foundry through a remote installer command. <br>
-Mitigation: Install Foundry only from official sources before running the skill's deployment guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Foundry Deployment Guide for Polygon PoS](references/foundry-deployment.md) <br>
-- [Testing Strategies for Polygon PoS](references/testing-strategies.md) <br>
-- [Contract Verification on Polygonscan](references/contract-verification.md) <br>
-- [Foundry Book](https://book.getfoundry.sh/) <br>
-- [Polygon Documentation](https://docs.polygon.technology/) <br>
-- [Polygonscan API Documentation](https://docs.polygonscan.com/) <br>
+## Use Case:
 
+Developers and engineers use this skill to build, test, deploy, and verify smart contracts on Polygon PoS with Foundry, primarily on Amoy before mainnet deployment.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Solidity, TOML, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands requiring PRIVATE_KEY and POLYGONSCAN_API_KEY environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill instructs users to install Foundry through a remote shell installer.
+
+Mitigation: Review the installer source and use a verified, pinned installation method in an isolated development environment.
+
+Risk: The skill includes workflows that pass wallet private keys to deployment commands.
+
+Mitigation: Avoid machines or shells that hold valuable keys, prefer keystores or hardware/external signers, and use low-value test keys for Amoy.
+
+Risk: Mainnet deployment commands with `--broadcast` can create irreversible real-funds transactions.
+
+Mitigation: Complete testnet deployment and verification first, review every command and network target, and treat mainnet broadcast steps as final.
+
+## Reference(s):
+
+- [Foundry Deployment Guide for Polygon PoS](references/foundry-deployment.md)
+- [Testing Strategies for Polygon PoS](references/testing-strategies.md)
+- [Contract Verification on Polygonscan](references/contract-verification.md)
+- [Foundry Book](https://book.getfoundry.sh/)
+- [Foundry GitHub](https://github.com/foundry-rs/foundry)
+- [Polygon Documentation](https://docs.polygon.technology/)
+- [Polygon Gas Station](https://gasstation.polygon.technology/)
+- [Polygon Faucet](https://faucet.polygon.technology/)
+- [Polygonscan API Documentation](https://docs.polygonscan.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, TOML, and Solidity code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance includes external network, faucet, explorer, and API-key setup steps for Polygon PoS workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

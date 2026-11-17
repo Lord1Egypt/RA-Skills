@@ -1,43 +1,58 @@
-## Description: <br>
-Clawlens analyzes OpenClaw conversation history to surface usage patterns, friction points, and skill effectiveness for a personal OpenClaw retrospective. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawlens analyzes OpenClaw conversation history to surface usage patterns, friction points, and skill effectiveness.
 
-## Publisher: <br>
-[dunzhang](https://clawhub.ai/user/dunzhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dunzhang](https://clawhub.ai/user/dunzhang)
 
-## Use Case: <br>
-OpenClaw users and developers use Clawlens to analyze local conversation history, identify usage patterns and friction points, and generate a personal retrospective report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation history and derived summaries may be sent to an external LLM provider. <br>
-Mitigation: Run only with a trusted provider and limit the analysis scope with --days and --max-sessions before execution. <br>
-Risk: Automatic model detection can use saved OpenClaw credentials from local configuration. <br>
-Mitigation: Specify --model with an intentionally provided API key when avoiding saved credential use is important. <br>
-Risk: Cached facet files may retain sensitive derived analysis after the report is generated. <br>
-Mitigation: Delete the .clawlens-cache directory after use when generated facets contain sensitive information. <br>
+## Use Case:
 
+OpenClaw users and agent operators use this skill to review their conversation history, identify common task patterns, inspect friction points, and generate a usage insights report.
 
-## Reference(s): <br>
-- [Clawlens Report Format Reference](references/report-format.md) <br>
-- [LiteLLM Provider Documentation](https://docs.litellm.ai/docs/providers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, html, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report by default, or self-contained HTML when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write the report to stdout or to a user-specified output file; verbose progress is emitted on stderr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and artifact _meta.json) <br>
+Risk: Conversation history, including possible tool-output excerpts, may be sent to the selected external LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the shortest practical --days window, choose the provider deliberately, and review the report inputs before sharing results.
+
+Risk: Auto-detection reads OpenClaw provider configuration and stored credentials.
+
+Mitigation: Review OpenClaw provider configuration before using auto-detect, or specify a model explicitly with the corresponding environment variable.
+
+Risk: HTML reports generated from session content may expose untrusted content in a browser.
+
+Mitigation: Prefer Markdown output for untrusted session content and only open HTML reports from trusted local runs.
+
+## Reference(s):
+
+- [Clawlens Report Format Reference](references/report-format.md)
+- [LiteLLM Providers](https://docs.litellm.ai/docs/providers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, html]
+
+**Output Format:** [Markdown report by default, with optional self-contained HTML output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report language can be Chinese or English; the default analysis window is 180 days.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

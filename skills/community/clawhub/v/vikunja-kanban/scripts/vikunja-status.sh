@@ -3,9 +3,14 @@
 # Usage: vikunja-status.sh [bucket_name]
 
 VIKUNJA_URL="https://kanban.pigpen.haus"
-TOKEN="${VIKUNJA_TOKEN:?Set VIKUNJA_TOKEN env var}"
+TOKEN="${VIKUNJA_TOKEN}"
 PROJECT_ID=1
 VIEW_ID=4
+
+if [ -z "$TOKEN" ]; then
+  echo "ERROR: VIKUNJA_TOKEN environment variable not set"
+  exit 1
+fi
 
 # Fetch kanban view and save to temp file
 TMPFILE=$(mktemp)

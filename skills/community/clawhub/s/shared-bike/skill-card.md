@@ -1,40 +1,49 @@
-## Description: <br>
-Provides guidance for scanning HelloBike or Meituan bike QR codes, riding areas, and pricing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for unlocking HelloBike and Meituan shared bikes by QR code, riding areas, and pricing.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-External users can ask an agent for shared-bike QR unlock, riding-area, and pricing guidance. The artifact also describes broader travel, ticketing, flight, weather, and local-tip responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as shared-bike help, but the artifact also claims unrelated travel, ticketing, flight, and boarding-pass features without documented data sources. <br>
-Mitigation: Treat outputs as informational guidance only and do not rely on the skill for real-time travel, ticketing, check-in, boarding-pass, insurance, or bike-unlock actions unless the publisher documents supported data sources. <br>
-Risk: The security evidence verdict is suspicious due to internally inconsistent scope. <br>
-Mitigation: Review the artifact scope before deployment and constrain prompts or downstream use to the documented shared-bike guidance that the publisher can support. <br>
+## Use Case:
 
+External users and travel assistants can use this skill to answer shared-bike access, riding-area, and pricing questions. Reviewers should constrain usage to bike-specific guidance because the security evidence flags unrelated travel-planning content in the artifact.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikeclaw007/shared-bike) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill is described as shared-bike guidance, but the security evidence says its instructions expand into flights, rail, visas, tickets, check-in, and boarding passes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow the skill before installation so agents use it only for shared-bike QR unlock, riding-area, and pricing guidance.
+
+## Reference(s):
+
+- [Shared Bike ClawHub page](https://clawhub.ai/mikeclaw007/skills/shared-bike)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

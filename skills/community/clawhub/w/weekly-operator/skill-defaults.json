@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "channel": "weekly-operator",
+  "workflow": "weekly",
+  "focus": "asin",
+  "outputTemplate": "ops_weekly",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews",
+    "product-snapshots"
+  ]
+}

@@ -1,43 +1,57 @@
-## Description: <br>
-Use when you need custom, durable, repairable tools like awls, needles, scrapers, harpoons, or fishing hooks made from local animal bones or antlers and commercial metal alternatives are unreliable or unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to help users plan traditional bone or antler tool making by identifying suitable materials, calculating processing schedules, generating templates and reminders, and tracking tests while the human performs all physical work.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill to plan traditional bone or antler tool-making workflows, including source assessment, processing schedules, safety checklists, progress logs, and barter or inventory templates. The agent provides planning and recordkeeping guidance while the human performs all physical cleaning, shaping, polishing, and testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store photos, inventory details, reminders, progress logs, and barter templates on the filesystem. <br>
-Mitigation: Use a dedicated project folder and avoid unnecessary personal details in stored records. <br>
-Risk: Bone or antler handling can involve sanitation, wildlife, fire, dust, and tool-safety hazards. <br>
-Mitigation: Follow the skill's safety rules and applicable local sanitation and wildlife regulations before handling materials. <br>
-Risk: Physical tool-making steps can cause burns, cuts, strain, or dust exposure if performed unsafely. <br>
-Mitigation: Keep all physical work human-controlled, use appropriate PPE and ventilation, and stop work when safety conditions are not met. <br>
+## Use Case:
 
+External users use this skill to convert available animal bones or antlers into awls, needles, scrapers, hooks, or similar hand tools with agent-generated recipes, schedules, logs, and barter or inventory templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/traditional-bone-tool-making-basics) <br>
-- [Publisher profile](https://clawhub.ai/user/howtousehumans) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with structured checklists, schedules, logs, templates, and safety guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or maintain project photos, inventory details, reminders, progress logs, and barter templates on the filesystem.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The install command is not version-pinned, creating a generic supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a trusted ClawHub/npm source, prefer a version-pinned installer when available, and use a dedicated workspace.
+
+Risk: The workflow may store craft photos, progress logs, templates, and reminders in the workspace.
+
+Mitigation: Use a dedicated project directory and review stored files before sharing or publishing the workspace.
+
+Risk: The physical process involves boiling, cutting, drilling, and possible bone dust exposure.
+
+Mitigation: Follow the skill's disclosed safety cautions for ventilation, protective equipment, heat handling, cutting, drilling, and dust control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/traditional-bone-tool-making-basics)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands]
+
+**Output Format:** [Markdown with checklists, schedules, templates, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce filesystem-backed craft logs, progress trackers, reminders, and reusable templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

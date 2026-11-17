@@ -1,42 +1,55 @@
-## Description: <br>
-Plan campaign visuals and messaging hooks for paid travel and hospitality promotions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create visual concepts and messaging hooks for paid travel and hospitality campaign planning.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Travel teams, hospitality marketers, and campaign planners use this skill to draft creative briefs for paid promotions, including audience goals, visual direction, and messaging hooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Campaign details may be sent to external chat or image-generation providers. <br>
-Mitigation: Use approved providers and avoid sharing proprietary campaign details unless that is acceptable for the team. <br>
-Risk: Draft campaign claims or visuals may be inaccurate or unsuitable for external publication. <br>
-Mitigation: Review and refine outputs for accuracy, readability, and actionability before delivery or publication. <br>
+## Use Case:
 
+Travel teams, hospitality marketers, and campaign planners use this skill to draft paid promotion creative briefs that clarify audience, business goal, constraints, visuals, and messaging hooks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-travel-hospitality-ad-creative-brief) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-travel-hospitality-ad-creative-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown creative brief with campaign hooks, visual direction, and refinement guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use chat and image generation APIs when available; review before external publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The security evidence reports unjustified Bash and broad local file-read authority for a simple travel ad brief generator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the ClawHub-managed or pinned verified release, and do not grant Bash or broad local file-read access unless the publisher documents why it is needed and how it is constrained.
+
+Risk: Campaign brief recommendations may be inaccurate, incomplete, or unsuitable for external publication without review.
+
+Mitigation: Review generated creative briefs for factual accuracy, brand fit, legal requirements, and campaign constraints before publishing or automating downstream work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-travel-hospitality-ad-creative-brief)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-travel-hospitality-ad-creative-brief)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown creative brief with visual and messaging recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include campaign goals, audience framing, visual directions, messaging hooks, and review guidance before external publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

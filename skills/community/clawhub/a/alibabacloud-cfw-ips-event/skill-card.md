@@ -1,45 +1,63 @@
-## Description: <br>
-Query and analyze security events and alerts detected by Alibaba Cloud Firewall IPS (Intrusion Prevention System), helping quickly locate threats and provide remediation recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and analyze security events and alerts detected by Alibaba Cloud Firewall IPS to help locate threats and provide remediation recommendations.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Security operations engineers and cloud administrators use this skill to investigate Alibaba Cloud Firewall IPS alerts, identify attacked assets and attack patterns, check IPS configuration, and produce remediation recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an Alibaba Cloud profile to read Cloud Firewall security data and requires sensitive cloud credentials. <br>
-Mitigation: Use a least-privilege read-only RAM policy or temporary credentials and avoid entering long-lived access keys in command lines. <br>
-Risk: The skill changes local Aliyun CLI and plugin settings while presenting its Cloud Firewall activity as read-only. <br>
-Mitigation: Review setup commands before installation and verify AI-mode, user-agent, and auto-plugin-install settings after use. <br>
+## Use Case:
 
+Developers and security operators use this skill to collect read-only Alibaba Cloud Firewall IPS alert data through Aliyun CLI and turn it into a concise incident analysis and remediation report.
 
-## Reference(s): <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [API Analysis - IPS Alert Event Analysis](references/api-analysis.md) <br>
-- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md) <br>
-- [RAM Policies - IPS Alert Event Analysis](references/ram-policies.md) <br>
-- [Related APIs - IPS Alert Event Analysis](references/related-apis.md) <br>
-- [Verification Method - IPS Alert Event Analysis](references/verification-method.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with inline shell commands and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include partial results when individual Alibaba Cloud Firewall API calls fail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Setup instructions can execute remote installer code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup steps before installation and prefer a trusted package manager or verified pinned download for Aliyun CLI.
+
+Risk: Automatic plugin installation and AI-mode settings can persistently change local CLI behavior.
+
+Mitigation: Enable these settings only when needed for the workflow, verify plugin updates, and disable AI-mode at every workflow exit point.
+
+Risk: Cloud credentials may be exposed if access keys are pasted into agent-visible commands or transcripts.
+
+Mitigation: Use a dedicated read-only RAM profile for Cloud Firewall queries and never paste real access keys into command lines or conversation text.
+
+## Reference(s):
+
+- [API Analysis](references/api-analysis.md)
+- [Related APIs](references/related-apis.md)
+- [RAM Policies](references/ram-policies.md)
+- [Verification Method](references/verification-method.md)
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md)
+- [Skill release page](https://clawhub.ai/sdk-team/skills/alibabacloud-cfw-ips-event)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown report with inline Aliyun CLI commands and tabular security analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Alibaba Cloud Firewall IPS queries; results depend on configured Aliyun CLI credentials, RAM permissions, selected region, and time range.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Deploy a custom OpenClaw repo, official package, or fork to a Hostinger VPS and make it reachable as a cloud-hosted OpenClaw service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys official or forked OpenClaw builds to a Hostinger VPS and configures SSH access, Node.js, OpenClaw installation, systemd, firewall rules, and auth token generation.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and operators use this skill to provision an OpenClaw gateway on a remote VPS, including SSH setup, Node.js installation, OpenClaw installation, systemd service configuration, firewall changes, and auth token generation. It also supports multi-agent VPS layouts with separate ports, workspaces, services, and optional Cloudflare tunnel exposure. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The deployment can create a persistent, internet-reachable root service and open a gateway port on the VPS. <br>
-Mitigation: Keep the gateway behind HTTPS, VPN, or a trusted tunnel where possible, close public ports when not needed, and disable the service after use if persistence is unnecessary. <br>
-Risk: The workflow handles SSH trust, private keys, model-provider API keys, and generated auth tokens. <br>
-Mitigation: Verify the VPS SSH fingerprint, avoid storing private keys in temporary paths, use dedicated low-blast-radius API keys, and protect and rotate generated tokens. <br>
-Risk: Custom repository or package values are installed and built on the target VPS. <br>
-Mitigation: Use only trusted repository and package inputs and review deployment settings before running the script. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/maverick-software/openclaw-vps-deploy) <br>
-- [OpenClaw VPS Deploy Skill](SKILL.md) <br>
-- [Known Gotchas - OpenClaw VPS Deployment](references/gotchas.md) <br>
-- [Multi-Agent VPS Deployment](references/multi-agent.md) <br>
+## Use Case:
 
+Developers and operators use this skill to deploy a cloud-accessible OpenClaw gateway on a Hostinger VPS from either the official package or a custom fork. It also guides multi-agent VPS setups with separate ports, workspaces, systemd services, and optional tunnel exposure.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash, JSON, Python, and systemd configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include deployment commands that handle SSH access, API keys, firewall state, persistent services, and auth tokens.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The deployment can run a persistent root service on a VPS.
+
+Mitigation: Review and harden the service before use, prefer an unprivileged service account, and use a dedicated VPS for this workload.
+
+Risk: The deployment handles SSH keys, API keys, and generated gateway tokens.
+
+Mitigation: Use a dedicated deployment key, verify SSH host keys, avoid copying private keys to /tmp, protect generated tokens, and rotate any exposed API keys or tokens.
+
+Risk: The gateway may be exposed over public HTTP.
+
+Mitigation: Do not expose the raw gateway over public HTTP; place it behind TLS or a tunnel and keep direct ports closed where possible.
+
+Risk: The deployment installs packages and can build a custom repository on the target server.
+
+Mitigation: Pin trusted package and repository versions, review the selected package or repository before deployment, and validate the generated service and configuration before enabling them.
+
+## Reference(s):
+
+- [Known Gotchas - OpenClaw VPS Deployment](artifact/references/gotchas.md)
+- [Multi-Agent VPS Deployment](artifact/references/multi-agent.md)
+- [ClawHub skill page](https://clawhub.ai/maverick-software/skills/openclaw-vps-deploy)
+- [ClawHub publisher profile](https://clawhub.ai/user/maverick-software)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, Python, and systemd unit snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include deployment commands, configuration files, service definitions, firewall guidance, and operational checks.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

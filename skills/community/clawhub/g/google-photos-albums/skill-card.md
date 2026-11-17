@@ -1,47 +1,62 @@
-## Description: <br>
-Google Photos Library API integration with managed OAuth for uploading media, searching photos, creating and managing albums, and updating media items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Photos Library API integration with managed OAuth. Upload media, search photos, create and manage albums, and update media items. Use this skill when users want to manage their Google Photos library, create albums, or upload media.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and developers use this skill to connect an OpenClaw agent to Google Photos through ClawLink OAuth, then list albums and media, upload media, and manage albums or media metadata after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth access to a connected Google Photos account through ClawLink. <br>
-Mitigation: Review the Google account permissions during connection and install only when ClawLink is an acceptable hosted OAuth provider. <br>
-Risk: The skill can upload media and change albums or media metadata. <br>
-Mitigation: Confirm the target resource and intended effect before any upload, album change, or media update is executed. <br>
-Risk: Google Photos Library API visibility is limited to media uploaded or created by this application. <br>
-Mitigation: Use the Google Photos Picker API when the task requires access to the user's full photo library. <br>
+## Use Case:
 
+External users and developers use this skill to manage Google Photos albums and media through ClawLink-managed OAuth, including listing, searching, uploading, creating albums, and updating media metadata.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/google-photos-albums) <br>
-- [Google Photos Library API Overview](https://developers.google.com/photos/library/guides/overview) <br>
-- [Google Photos Media Items Reference](https://developers.google.com/photos/library/reference/rest/v1/mediaItems) <br>
-- [Google Photos Albums Reference](https://developers.google.com/photos/library/reference/rest/v1/albums) <br>
-- [Google Photos Picker API](https://developers.google.com/photos/picker) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read operations can return Google Photos album or media metadata; write operations require explicit user confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill uses ClawLink-managed OAuth and tool calls for access to a connected Google Photos account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Google account permissions during connection, install only if you trust ClawLink and the ClawHub plugin source, and revoke the Google or ClawLink connection when it is no longer needed.
+
+Risk: Write operations can create albums, upload media, add items, or update media descriptions.
+
+Mitigation: Confirm the target resource and intended effect before each write operation, and preview upload, album, or media update calls before execution.
+
+Risk: Google Photos Library API access is limited to media items uploaded or created by this application.
+
+Mitigation: Use the Google Photos Picker API instead when the user needs access to photos created by camera uploads or other applications.
+
+## Reference(s):
+
+- [Google Photos Library API Overview](https://developers.google.com/photos/library/guides/overview)
+- [Google Photos Media Items Reference](https://developers.google.com/photos/library/reference/rest/v1/mediaItems)
+- [Google Photos Albums Reference](https://developers.google.com/photos/library/reference/rest/v1/albums)
+- [Google Photos Picker API](https://developers.google.com/photos/picker)
+- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide authenticated Google Photos read and write tool calls after user connection and confirmation.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

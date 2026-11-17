@@ -1,45 +1,56 @@
-## Description: <br>
-Music perception for AI entities - hear BPM, key, structure, genre, mood, and lyrics in audio files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Music perception for AI entities - hear BPM, key, structure, genre, mood, and lyrics in any audio file.
 
-## Publisher: <br>
-[vveerrgg](https://clawhub.ai/user/vveerrgg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vveerrgg](https://clawhub.ai/user/vveerrgg)
 
-## Use Case: <br>
-Developers and agents use this skill to analyze local or URL-based audio and return musical observations such as tempo, key, structure, genre, mood, lyrics, summaries, and visualizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a Python package plus audio and ML dependencies. <br>
-Mitigation: Install it only in environments where those package and dependency risks are acceptable, and review dependency updates before deployment. <br>
-Risk: Audio analysis can produce transcripts, HTML, JSON, and image exports that may contain private speech, personal information, or copyrighted content. <br>
-Mitigation: Analyze only audio files or URLs you have permission to process, then review, restrict, or delete generated exports when they contain sensitive material. <br>
-Risk: URL-based audio analysis retrieves remote content. <br>
-Mitigation: Use trusted URLs and rely on the skill's documented private, loopback, and link-local URL blocking as part of normal network-safety review. <br>
+## Use Case:
 
+Developers and agent operators use this skill to analyze local or URL-based audio files and produce structured music observations, lyrics, visualizations, JSON, and HTML exports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vveerrgg/sense-music) <br>
-- [OpenClaw homepage](https://github.com/HumanjavaEnterprises/huje.sensemusic.OC-python.src) <br>
-- [PyPI package](https://pypi.org/project/sense-music/) <br>
-- [huje.tools](https://huje.tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, html, image files, guidance] <br>
-**Output Format:** [Structured analysis objects with natural-language summaries, optional lyrics, JSON or HTML exports, and generated spectrogram or waveform images.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ffmpeg and the sense-music Python package; Whisper models may be downloaded and cached on first use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: frontmatter and server release evidence) <br>
+Risk: Audio files and generated lyrics, transcripts, HTML, JSON, or images may contain sensitive user content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat inputs and exports as private data, disable lyrics for private recordings when transcription is unnecessary, and delete generated outputs when they are no longer needed.
+
+Risk: The release depends on the current PyPI package and audio-analysis dependencies.
+
+Mitigation: Pin and review the package version in controlled environments before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vveerrgg/skills/sense-music)
+- [OpenClaw Homepage](https://github.com/HumanjavaEnterprises/huje.sensemusic.OC-python.src)
+- [PyPI Package](https://pypi.org/project/sense-music/)
+- [huje.tools](https://huje.tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python examples, structured JSON/HTML exports, and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include tempo, key, structure, genre, mood, lyrics, energy curves, spectrograms, waveforms, analysis.json, and analysis.html.]
+
+## Skill Version(s):
+
+0.1.5 (source: frontmatter, metadata.json, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

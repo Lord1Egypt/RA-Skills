@@ -1,39 +1,53 @@
-## Description: <br>
-Call GET /api/bilibili/get-video-danmu/v2 for Bilibili Video Danmaku through JustOneAPI with aid and cid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/bilibili/get-video-danmu/v2 for Bilibili Video Danmaku through JustOneAPI with aid and cid.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and agents use this skill to fetch Bilibili video danmaku by AID and CID for audience reaction analysis and subtitle-style comment review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The access token is sent as a query parameter to api.justoneapi.com, so it may appear in full request URLs, logs, screenshots, or error reports. <br>
-Mitigation: Use a restricted or easily revocable JUST_ONE_API_TOKEN and avoid sharing logs, screenshots, or full request URLs that may contain the token. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve Bilibili video danmaku by AID and CID through JustOneAPI, then summarize timeline positions and comment text for audience reaction analysis or subtitle-style review.
 
-## Reference(s): <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_bilibili_get_video_danmu&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN plus aid and cid; page is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token may be exposed because the skill sends it in the request URL and accepts it through process arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that handling is acceptable, avoid sharing logs or command histories that may contain the token, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_bilibili_get_video_danmu&utm_content=project_link)
+- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_bilibili_get_video_danmu&utm_content=project_link)
+- [Bilibili Video Danmaku operations](generated/operations.md)
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-bilibili-get-video-danmu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Endpoint-specific summary followed by raw JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node and JUST_ONE_API_TOKEN; required endpoint inputs are aid and cid, with optional page.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

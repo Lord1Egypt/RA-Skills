@@ -1,44 +1,59 @@
-## Description: <br>
-Apply modern web development best practices for security, compatibility, code quality, and coding standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply modern web development best practices for security, compatibility, code quality, and coding standards. Covers KISS/DRY/YAGNI principles, TypeScript/JavaScript standards, React patterns, write-time quality enforcement, and comprehensive code review checklists.
 
-## Publisher: <br>
-[huamu668](https://clawhub.ai/user/huamu668) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[huamu668](https://clawhub.ai/user/huamu668)
 
-## Use Case: <br>
-Developers and engineers use this skill to apply web development standards for TypeScript, JavaScript, React, security headers, browser compatibility, code review, and write-time quality enforcement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Privileged moderation or proof-publishing actions can have high impact if used with the wrong target or reason. <br>
-Mitigation: Install or enable only for trusted ClawHub staff or maintainer contexts, confirm the target and reason, use the least-privileged token available, and verify resulting state after each write. <br>
-Risk: Web development guidance can be applied incorrectly or become stale for a specific project. <br>
-Mitigation: Review recommendations against the project context, run linting and security scans, and validate changes before deployment. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to have an agent apply web development standards for TypeScript, React, security, browser compatibility, performance, and code review.
 
-## Reference(s): <br>
-- [MDN Web Security](https://developer.mozilla.org/en-US/docs/Web/Security) <br>
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/) <br>
-- [SecurityHeaders.com](https://securityheaders.com) <br>
-- [W3C Validator](https://validator.w3.org) <br>
-- [Mozilla Observatory](https://observatory.mozilla.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code, configuration, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata; skill frontmatter version 2.0) <br>
+Risk: Generated sites may load mutable third-party JavaScript for polyfills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review examples before use and prefer locally bundled or pinned polyfills with integrity controls.
+
+Risk: Broad error telemetry guidance could expose sensitive data if copied without controls.
+
+Mitigation: Use approved telemetry providers and redact sensitive data before capture.
+
+Risk: Copying pre-commit or agent hook examples into a project can run commands automatically.
+
+Mitigation: Review hook configuration before enabling it in a project.
+
+## Reference(s):
+
+- [MDN Web Security](https://developer.mozilla.org/en-US/docs/Web/Security)
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+- [Web Quality Audit](../web-quality-audit/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no API calls or files are produced unless an agent applies the guidance in a project.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

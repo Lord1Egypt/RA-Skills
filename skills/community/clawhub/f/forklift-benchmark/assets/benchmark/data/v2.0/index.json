@@ -1,0 +1,6659 @@
+{
+  "dataset": "FK-Bench v2",
+  "version": "2.1.0",
+  "skill_version": "1.1.0",
+  "total_items": 722,
+  "by_batch": {
+    "FK-500": 500,
+    "FK-EXT": 122,
+    "FK-EXT2": 100
+  },
+  "by_module": {
+    "MOD-1": 152,
+    "MOD-2": 124,
+    "MOD-3": 120,
+    "MOD-4": 110,
+    "MOD-5": 112,
+    "MOD-6": 104
+  },
+  "by_scene": {
+    "S1_HIGH_BAY": 103,
+    "S2_BLOCK": 142,
+    "S3_DOCK": 87,
+    "S4_LINE_SIDE": 133,
+    "S5_VNA": 84,
+    "S6_OUTDOOR": 84,
+    "S7_MIXED": 89
+  },
+  "by_difficulty": {
+    "basic": 285,
+    "edge_case": 137,
+    "intermediate": 300
+  },
+  "red_line_items": 34,
+  "cross_module_scene": {
+    "MOD-1": {
+      "S1_HIGH_BAY": 80,
+      "S2_BLOCK": 13,
+      "S3_DOCK": 2,
+      "S4_LINE_SIDE": 11,
+      "S5_VNA": 6,
+      "S6_OUTDOOR": 20,
+      "S7_MIXED": 20
+    },
+    "MOD-2": {
+      "S1_HIGH_BAY": 0,
+      "S2_BLOCK": 91,
+      "S3_DOCK": 21,
+      "S4_LINE_SIDE": 4,
+      "S5_VNA": 6,
+      "S6_OUTDOOR": 0,
+      "S7_MIXED": 2
+    },
+    "MOD-3": {
+      "S1_HIGH_BAY": 0,
+      "S2_BLOCK": 6,
+      "S3_DOCK": 56,
+      "S4_LINE_SIDE": 56,
+      "S5_VNA": 1,
+      "S6_OUTDOOR": 1,
+      "S7_MIXED": 0
+    },
+    "MOD-4": {
+      "S1_HIGH_BAY": 0,
+      "S2_BLOCK": 3,
+      "S3_DOCK": 3,
+      "S4_LINE_SIDE": 45,
+      "S5_VNA": 51,
+      "S6_OUTDOOR": 1,
+      "S7_MIXED": 7
+    },
+    "MOD-5": {
+      "S1_HIGH_BAY": 0,
+      "S2_BLOCK": 22,
+      "S3_DOCK": 0,
+      "S4_LINE_SIDE": 5,
+      "S5_VNA": 19,
+      "S6_OUTDOOR": 60,
+      "S7_MIXED": 6
+    },
+    "MOD-6": {
+      "S1_HIGH_BAY": 23,
+      "S2_BLOCK": 7,
+      "S3_DOCK": 5,
+      "S4_LINE_SIDE": 12,
+      "S5_VNA": 1,
+      "S6_OUTDOOR": 2,
+      "S7_MIXED": 54
+    }
+  },
+  "cross_module_difficulty": {
+    "MOD-1": {
+      "basic": 71,
+      "intermediate": 63,
+      "edge_case": 18
+    },
+    "MOD-2": {
+      "basic": 53,
+      "intermediate": 56,
+      "edge_case": 15
+    },
+    "MOD-3": {
+      "basic": 50,
+      "intermediate": 55,
+      "edge_case": 15
+    },
+    "MOD-4": {
+      "basic": 36,
+      "intermediate": 40,
+      "edge_case": 34
+    },
+    "MOD-5": {
+      "basic": 42,
+      "intermediate": 48,
+      "edge_case": 22
+    },
+    "MOD-6": {
+      "basic": 33,
+      "intermediate": 38,
+      "edge_case": 33
+    }
+  },
+  "cross_scene_difficulty": {
+    "S1_HIGH_BAY": {
+      "basic": 41,
+      "intermediate": 44,
+      "edge_case": 18
+    },
+    "S2_BLOCK": {
+      "basic": 59,
+      "intermediate": 58,
+      "edge_case": 25
+    },
+    "S3_DOCK": {
+      "basic": 33,
+      "intermediate": 37,
+      "edge_case": 17
+    },
+    "S4_LINE_SIDE": {
+      "basic": 53,
+      "intermediate": 53,
+      "edge_case": 27
+    },
+    "S5_VNA": {
+      "basic": 34,
+      "intermediate": 35,
+      "edge_case": 15
+    },
+    "S6_OUTDOOR": {
+      "basic": 31,
+      "intermediate": 36,
+      "edge_case": 17
+    },
+    "S7_MIXED": {
+      "basic": 34,
+      "intermediate": 37,
+      "edge_case": 18
+    }
+  },
+  "items": [
+    {
+      "item_id": "FK-500-MOD1-000",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-001",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-002",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-003",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-004",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-005",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-006",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-007",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-008",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-009",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-010",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-011",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-012",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-013",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-014",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-015",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-016",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-017",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-018",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-019",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-020",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-021",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-022",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-023",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-024",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-025",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-026",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-027",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-028",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-029",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-030",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-031",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-032",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-033",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-034",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-035",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-036",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-037",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-038",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-039",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-040",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-041",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-042",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-043",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-044",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-045",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-046",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-047",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-048",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-049",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-050",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-051",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-052",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-053",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-054",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-055",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-056",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-057",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-058",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-059",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-060",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-061",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-062",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-063",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-064",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-065",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-066",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-067",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-068",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-069",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-070",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-071",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-072",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-073",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-074",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-075",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-076",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-077",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-078",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD1-079",
+      "batch": "FK-500",
+      "module": "MOD-1",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-000",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-001",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-002",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-003",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-004",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-005",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-006",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-007",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-008",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-009",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-010",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-011",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-012",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-013",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-014",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-015",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-016",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-017",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-018",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-019",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-020",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-021",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-022",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-023",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-024",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-025",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-026",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-027",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-028",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-029",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-030",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-031",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-032",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-033",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-034",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-035",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-036",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-037",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-038",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-039",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-040",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-041",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-042",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-043",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-044",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-045",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-046",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-047",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-048",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-049",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-050",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-051",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-052",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-053",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-054",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-055",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-056",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-057",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-058",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-059",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-060",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-061",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-062",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-063",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-064",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-065",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-066",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-067",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-068",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-069",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-070",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-071",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-072",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-073",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-074",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-075",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-076",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-077",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-078",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-079",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-080",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-081",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-082",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-083",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-084",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-085",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-086",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-087",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-088",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-089",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-090",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-091",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-092",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-093",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-094",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-095",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-096",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-097",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-098",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD2-099",
+      "batch": "FK-500",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-000",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-001",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-002",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-003",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-004",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-005",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-006",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-007",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-008",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-009",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-010",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-011",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-012",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-013",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-014",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-015",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-016",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-017",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-018",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-019",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-020",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-021",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-022",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-023",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-024",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-025",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-026",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-027",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-028",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-029",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-030",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-031",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-032",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-033",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-034",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-035",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-036",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-037",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-038",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-039",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-040",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-041",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-042",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-043",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-044",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-045",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-046",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-047",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-048",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-049",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-050",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-051",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-052",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-053",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-054",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-055",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-056",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-057",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-058",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-059",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-060",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-061",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-062",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-063",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-064",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-065",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-066",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-067",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-068",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-069",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-070",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-071",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-072",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-073",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-074",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-075",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-076",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-077",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-078",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-079",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-080",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-081",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-082",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-083",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-084",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-085",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-086",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-087",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-088",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-089",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-090",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-091",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-092",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-093",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-094",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-095",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-096",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-097",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-098",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD3-099",
+      "batch": "FK-500",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-000",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-500-MOD4-001",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-002",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-500-MOD4-003",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-004",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-005",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-500-MOD4-006",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-007",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-008",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-009",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-010",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-011",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-012",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-013",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-014",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-015",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-500-MOD4-016",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-017",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-018",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-019",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-020",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-021",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-022",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-023",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-500-MOD4-024",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-025",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-026",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-027",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-500-MOD4-028",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-029",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-030",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-031",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-032",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-033",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-034",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-035",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-500-MOD4-036",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-500-MOD4-037",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-038",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-039",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-040",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-041",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-042",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-043",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-500-MOD4-044",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-045",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-046",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-047",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-048",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-049",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-500-MOD4-050",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-051",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-052",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-053",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-054",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-055",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-500-MOD4-056",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-057",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-058",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-059",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-060",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-061",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-062",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-063",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-500-MOD4-064",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-065",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-066",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-067",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-068",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-069",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-070",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-071",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-072",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-073",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-074",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-075",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-076",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-500-MOD4-077",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-078",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-079",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-080",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-081",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-082",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-083",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-084",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-500-MOD4-085",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-086",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-087",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-088",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD4-089",
+      "batch": "FK-500",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-000",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-001",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-002",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-003",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-004",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-005",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-006",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-007",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-008",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-009",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-010",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-011",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-012",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-013",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-014",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-015",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-016",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-017",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-018",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-019",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-020",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-021",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-022",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-023",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-024",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-025",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-026",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-027",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-028",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-029",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-030",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-031",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-032",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-033",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-034",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-035",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-036",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-037",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-038",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-039",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-040",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-041",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-042",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-043",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-044",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-045",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-046",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-047",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-048",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-049",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-050",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-051",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-052",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-053",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-054",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-055",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-056",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-057",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-058",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-059",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-060",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-061",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-062",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-063",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-064",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-065",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-066",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-067",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-068",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-069",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-070",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-071",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-072",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-073",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-074",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-075",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-076",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-077",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-078",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD5-079",
+      "batch": "FK-500",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-000",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-001",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-002",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-003",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-004",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-005",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-006",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-007",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-008",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-009",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-010",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-011",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-012",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-013",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-014",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-015",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-016",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-017",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-018",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-019",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-020",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-021",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-022",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-023",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-024",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-025",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-026",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-027",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-028",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-029",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-030",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-031",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-032",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-033",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-034",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-035",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-036",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-037",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-038",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-039",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-040",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-041",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-042",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-043",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-044",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-045",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-046",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-047",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-048",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-500-MOD6-049",
+      "batch": "FK-500",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-000",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-001",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-002",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-003",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-004",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-005",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-006",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-007",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-008",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-009",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-010",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-011",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-012",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-013",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-014",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-015",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-016",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-017",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-018",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-019",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-020",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-021",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-022",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-023",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-024",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-025",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-026",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-027",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-028",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-029",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-030",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-031",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-032",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-033",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-034",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-035",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-036",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-037",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-038",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-039",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-040",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-041",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-042",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-043",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-044",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-045",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-046",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-047",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-048",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-049",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-050",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-051",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-052",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-053",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-054",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-055",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-056",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD1-057",
+      "batch": "FK-EXT",
+      "module": "MOD-1",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD2-000",
+      "batch": "FK-EXT",
+      "module": "MOD-2",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD2-001",
+      "batch": "FK-EXT",
+      "module": "MOD-2",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD2-002",
+      "batch": "FK-EXT",
+      "module": "MOD-2",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD2-003",
+      "batch": "FK-EXT",
+      "module": "MOD-2",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD2-004",
+      "batch": "FK-EXT",
+      "module": "MOD-2",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD2-005",
+      "batch": "FK-EXT",
+      "module": "MOD-2",
+      "scene_type": "S5_VNA",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD3-000",
+      "batch": "FK-EXT",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD3-001",
+      "batch": "FK-EXT",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD3-002",
+      "batch": "FK-EXT",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD3-003",
+      "batch": "FK-EXT",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD3-004",
+      "batch": "FK-EXT",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD3-005",
+      "batch": "FK-EXT",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD4-000",
+      "batch": "FK-EXT",
+      "module": "MOD-4",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT-MOD4-001",
+      "batch": "FK-EXT",
+      "module": "MOD-4",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT-MOD4-002",
+      "batch": "FK-EXT",
+      "module": "MOD-4",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT-MOD4-003",
+      "batch": "FK-EXT",
+      "module": "MOD-4",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT-MOD5-000",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-001",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-002",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-003",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-004",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-005",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-006",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-007",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-008",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-009",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-010",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-011",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-012",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-013",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-014",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-015",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-016",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-017",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-018",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD5-019",
+      "batch": "FK-EXT",
+      "module": "MOD-5",
+      "scene_type": "S5_VNA",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-000",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-001",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-002",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-003",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-004",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-005",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-006",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-007",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-008",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-009",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-010",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-011",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-012",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-013",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-014",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-015",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-016",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-017",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-018",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-019",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-020",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-021",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-022",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-023",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-024",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-025",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-026",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT-MOD6-027",
+      "batch": "FK-EXT",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD1-000",
+      "batch": "FK-EXT2",
+      "module": "MOD-1",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD1-001",
+      "batch": "FK-EXT2",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD1-002",
+      "batch": "FK-EXT2",
+      "module": "MOD-1",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD1-003",
+      "batch": "FK-EXT2",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD1-004",
+      "batch": "FK-EXT2",
+      "module": "MOD-1",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD1-005",
+      "batch": "FK-EXT2",
+      "module": "MOD-1",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD1-006",
+      "batch": "FK-EXT2",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD1-007",
+      "batch": "FK-EXT2",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD1-008",
+      "batch": "FK-EXT2",
+      "module": "MOD-1",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD1-009",
+      "batch": "FK-EXT2",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD1-010",
+      "batch": "FK-EXT2",
+      "module": "MOD-1",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD1-011",
+      "batch": "FK-EXT2",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD1-012",
+      "batch": "FK-EXT2",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD1-013",
+      "batch": "FK-EXT2",
+      "module": "MOD-1",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-000",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-001",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-002",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-003",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-004",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-005",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-006",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-007",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-008",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S7_MIXED",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-009",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-010",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-011",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-012",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-013",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-014",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-015",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-016",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD2-017",
+      "batch": "FK-EXT2",
+      "module": "MOD-2",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD3-000",
+      "batch": "FK-EXT2",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD3-001",
+      "batch": "FK-EXT2",
+      "module": "MOD-3",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD3-002",
+      "batch": "FK-EXT2",
+      "module": "MOD-3",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD3-003",
+      "batch": "FK-EXT2",
+      "module": "MOD-3",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD3-004",
+      "batch": "FK-EXT2",
+      "module": "MOD-3",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD3-005",
+      "batch": "FK-EXT2",
+      "module": "MOD-3",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD3-006",
+      "batch": "FK-EXT2",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD3-007",
+      "batch": "FK-EXT2",
+      "module": "MOD-3",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD3-008",
+      "batch": "FK-EXT2",
+      "module": "MOD-3",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD3-009",
+      "batch": "FK-EXT2",
+      "module": "MOD-3",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD3-010",
+      "batch": "FK-EXT2",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD3-011",
+      "batch": "FK-EXT2",
+      "module": "MOD-3",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD3-012",
+      "batch": "FK-EXT2",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD3-013",
+      "batch": "FK-EXT2",
+      "module": "MOD-3",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD4-000",
+      "batch": "FK-EXT2",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT2-MOD4-001",
+      "batch": "FK-EXT2",
+      "module": "MOD-4",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT2-MOD4-002",
+      "batch": "FK-EXT2",
+      "module": "MOD-4",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT2-MOD4-003",
+      "batch": "FK-EXT2",
+      "module": "MOD-4",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT2-MOD4-004",
+      "batch": "FK-EXT2",
+      "module": "MOD-4",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT2-MOD4-005",
+      "batch": "FK-EXT2",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT2-MOD4-006",
+      "batch": "FK-EXT2",
+      "module": "MOD-4",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT2-MOD4-007",
+      "batch": "FK-EXT2",
+      "module": "MOD-4",
+      "scene_type": "S5_VNA",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT2-MOD4-008",
+      "batch": "FK-EXT2",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT2-MOD4-009",
+      "batch": "FK-EXT2",
+      "module": "MOD-4",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT2-MOD4-010",
+      "batch": "FK-EXT2",
+      "module": "MOD-4",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT2-MOD4-011",
+      "batch": "FK-EXT2",
+      "module": "MOD-4",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT2-MOD4-012",
+      "batch": "FK-EXT2",
+      "module": "MOD-4",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT2-MOD4-013",
+      "batch": "FK-EXT2",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT2-MOD4-014",
+      "batch": "FK-EXT2",
+      "module": "MOD-4",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT2-MOD4-015",
+      "batch": "FK-EXT2",
+      "module": "MOD-4",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "SAFETY_ABORT",
+      "is_red_line": true
+    },
+    {
+      "item_id": "FK-EXT2-MOD5-000",
+      "batch": "FK-EXT2",
+      "module": "MOD-5",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD5-001",
+      "batch": "FK-EXT2",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD5-002",
+      "batch": "FK-EXT2",
+      "module": "MOD-5",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD5-003",
+      "batch": "FK-EXT2",
+      "module": "MOD-5",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD5-004",
+      "batch": "FK-EXT2",
+      "module": "MOD-5",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD5-005",
+      "batch": "FK-EXT2",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD5-006",
+      "batch": "FK-EXT2",
+      "module": "MOD-5",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD5-007",
+      "batch": "FK-EXT2",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD5-008",
+      "batch": "FK-EXT2",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD5-009",
+      "batch": "FK-EXT2",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD5-010",
+      "batch": "FK-EXT2",
+      "module": "MOD-5",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD5-011",
+      "batch": "FK-EXT2",
+      "module": "MOD-5",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-000",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-001",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-002",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-003",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-004",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-005",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-006",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-007",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-008",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-009",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-010",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-011",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-012",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-013",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-014",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-015",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S3_DOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-016",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S7_MIXED",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-017",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S6_OUTDOOR",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-018",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "edge_case",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-019",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-020",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S3_DOCK",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-021",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S3_DOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-022",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S2_BLOCK",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-023",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S1_HIGH_BAY",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-024",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S4_LINE_SIDE",
+      "difficulty": "intermediate",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    },
+    {
+      "item_id": "FK-EXT2-MOD6-025",
+      "batch": "FK-EXT2",
+      "module": "MOD-6",
+      "scene_type": "S5_VNA",
+      "difficulty": "basic",
+      "expected_decision": "EXECUTE",
+      "is_red_line": false
+    }
+  ]
+}

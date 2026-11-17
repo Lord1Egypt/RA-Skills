@@ -1,42 +1,58 @@
-## Description: <br>
-Generates videos from a text prompt with optional first-frame image input using the bundled video_generate.py script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates videos from text prompts with an optional URL or local image as the first frame.
 
-## Publisher: <br>
-[shinewilzhang](https://clawhub.ai/user/shinewilzhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shinewilzhang](https://clawhub.ai/user/shinewilzhang)
 
-## Use Case: <br>
-Developers and creators use this skill to generate an MP4 video from a prompt, optionally conditioning the first frame with an image URL or local image file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and optional first-frame images are sent to the Ark/Volcengine service. <br>
-Mitigation: Use a dedicated API key and avoid sensitive prompts, local images, private URLs, or internal content. <br>
-Risk: The script downloads the generated video to the requested output path, which may overwrite an existing file. <br>
-Mitigation: Choose an output path where replacement is acceptable or verify that the destination file does not already exist. <br>
-Risk: The skill depends on an external SDK and service availability. <br>
-Mitigation: Install dependencies from trusted sources and handle service or credential failures before relying on the output. <br>
+## Use Case:
 
+Developers and agents use this skill to run a video-generation script that submits a prompt, optionally includes a first-frame image, prints the generated video URL, and saves the downloaded video file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shinewilzhang/shinewilzhang-video-generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime output is console text and an MP4 file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Ark/Volcengine credentials and sends prompts and optional first-frame images to the external generation service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A local first-frame image can be uploaded to the remote video service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive first-frame files and prefer URLs or a dedicated approved asset directory.
+
+Risk: The generated video download can overwrite user-writable files.
+
+Mitigation: Write outputs to a dedicated directory and avoid absolute or sensitive destination paths.
+
+Risk: Untrusted prompts or agent invocations can trigger remote video-generation requests.
+
+Mitigation: Install and invoke the skill only in trusted workflows with appropriate service credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shinewilzhang/skills/shinewilzhang-video-generate)
+- [Apache License 2.0 header reference](http://www.apache.org/licenses/LICENSE-2.0)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Console text and a downloaded video file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires video service credentials through environment variables; optional first-frame local files may be uploaded to the remote service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

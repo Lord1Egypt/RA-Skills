@@ -1,43 +1,58 @@
-## Description: <br>
-Gets current, hourly, and 7-day forecasts from Open-Meteo and can generate an interactive Weather Strip HTML/SVG widget for weather summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets weather forecasts through Open-Meteo and can generate an interactive Weather Strip widget with current conditions, hourly forecasts, daily forecasts, rain probability, feels-like temperature, UV index, wind, sunrise, and sunset details.
 
-## Publisher: <br>
-[dapkus](https://clawhub.ai/user/dapkus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dapkus](https://clawhub.ai/user/dapkus)
 
-## Use Case: <br>
-Developers and agent users use this skill to answer weather questions, retrieve Open-Meteo forecast data, and generate a daily digest weather visualization for one or more locations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Open-Meteo to fetch weather and geocoding data. <br>
-Mitigation: Use it only when external requests to Open-Meteo are acceptable for the location data being queried. <br>
-Risk: The weather-strip generator can write a local HTML file. <br>
-Mitigation: Confirm the output path before writing and avoid overwriting unrelated files. <br>
-Risk: Untrusted schedule or city names may be embedded into generated HTML. <br>
-Mitigation: Use trusted schedule data or review generated HTML before embedding it in another page. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Open-Meteo Forecast API endpoint](https://api.open-meteo.com/v1/forecast) <br>
-- [Open-Meteo Geocoding API endpoint](https://geocoding-api.open-meteo.com/v1/search?name=CityName&count=1) <br>
-- [ClawHub skill page](https://clawhub.ai/dapkus/open-meteo) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to answer weather questions for supplied coordinates or locations, summarize forecast conditions, and generate embeddable weather-strip visualizations for digest-style pages.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; bundled scripts produce JSON forecast data or HTML/SVG weather widgets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses latitude, longitude, forecast mode, day count, unit selection, optional multi-city schedule JSON, and optional output file path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated weather-strip HTML can preserve unsafe schedule names as executable browser content.
+
+Mitigation: Use only trusted schedule and location names until output escaping is fixed, and review generated HTML before embedding it.
+
+Risk: Generated weather-strip HTML is active content.
+
+Mitigation: Write it only to controlled output locations and embed it only in trusted pages.
+
+Risk: Weather lookups send latitude and longitude coordinates to Open-Meteo.
+
+Mitigation: Disclose the external API transfer and avoid sending sensitive travel locations without user consent.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dapkus/skills/open-meteo)
+- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast)
+- [Open-Meteo Geocoding API](https://geocoding-api.open-meteo.com/v1/search?name=CityName&count=1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, JSON forecast data, and embeddable HTML/SVG weather-strip output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The weather fetcher returns Open-Meteo JSON; the weather-strip generator prints an embeddable HTML div to stdout or writes a standalone HTML page when an output path is supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-03-02)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

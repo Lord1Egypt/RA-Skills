@@ -1,48 +1,66 @@
-## Description: <br>
-ADBPG Knowledge Base Management helps agents create knowledge bases, upload documents, search content, and run Q&A workflows for Alibaba Cloud AnalyticDB PostgreSQL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ADBPG Knowledge Base Management: Create knowledge bases, upload documents, search, and run Q&A over Alibaba Cloud AnalyticDB for PostgreSQL knowledge bases.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage Alibaba Cloud AnalyticDB PostgreSQL knowledge bases through Aliyun CLI and SDK workflows. It supports creating namespaces and document collections, uploading documents, searching indexed content, and answering questions from knowledge-base data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill works with Alibaba Cloud database resources and sensitive credentials, including manager and namespace passwords. <br>
-Mitigation: Use least-privilege RAM credentials, prefer temporary credentials or a secure secret path, and avoid pasting long-lived passwords into chat or command lines. <br>
-Risk: Knowledge-base creation can trigger paid Alibaba Cloud resource usage. <br>
-Mitigation: Require explicit user approval for region, instance, size, cost expectations, and cleanup plan before creating or modifying resources. <br>
-Risk: Incorrect parameters or missing permissions can operate on the wrong instance or fail after partial workflow progress. <br>
-Mitigation: Confirm user-customizable parameters before modification commands and verify RAM permissions before running write operations. <br>
+## Use Case:
 
+Developers, operators, and cloud administrators use this skill to create and manage ADBPG knowledge bases, upload documents, search indexed content, and run knowledge-base Q&A. It guides users through Alibaba Cloud CLI and Python SDK workflows with parameter confirmation, RAM permission checks, and verification steps.
 
-## Reference(s): <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Related APIs](references/related-apis.md) <br>
-- [Interaction Guidelines](references/interaction-guidelines.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [Chinese Skill Reference](references/SKILL.zh-CN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Aliyun CLI commands, Python SDK command examples, configuration guidance, and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cloud operation plans, parameter confirmations, upload job identifiers, search results, and Q&A responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: The skill asks users to change Alibaba Cloud CLI setup, including AI-mode, automatic plugin installation, plugin updates, and a custom User-Agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or update the CLI and plugins only through verified vendor or package-manager sources, confirm the configuration changes before use, and disable AI-mode after the workflow completes.
+
+Risk: Knowledge-base operations require cloud credentials and database or namespace passwords.
+
+Mitigation: Use least-privilege RAM credentials, configure credentials outside chat and command history, avoid pasting reusable passwords into conversations or literal command lines, and verify required permissions before write operations.
+
+Risk: Document upload can send local or remote files to Alibaba Cloud services.
+
+Mitigation: Confirm file paths, URLs, collection names, and endpoints before upload, and verify non-default endpoints before sending files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-analyticdb-postgresql-knowledgebase-ops)
+- [Publisher profile](https://clawhub.ai/user/sdk-team)
+- [ADBPG API documentation](https://help.aliyun.com/zh/analyticdb-for-postgresql/developer-reference/api-reference)
+- [ADBPG OpenAPI documentation](https://api.aliyun.com/product/gpdb)
+- [CLI installation guide](references/cli-installation-guide.md)
+- [RAM policies](references/ram-policies.md)
+- [Related APIs](references/related-apis.md)
+- [Interaction guidelines](references/interaction-guidelines.md)
+- [Verification method](references/verification-method.md)
+- [Acceptance criteria](references/acceptance-criteria.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline bash and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Alibaba Cloud CLI commands, parameter confirmation prompts, SDK upload guidance, and verification steps.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

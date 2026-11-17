@@ -1,44 +1,57 @@
-## Description: <br>
-Organic personality development through self-observation with lightweight reliability guards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self helps an agent maintain an evolving SELF.md self-model through scheduled reflection checks, meaningful trigger criteria, and lightweight reliability guards.
 
-## Publisher: <br>
-[Kirchlive](https://clawhub.ai/user/Kirchlive) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kirchlive](https://clawhub.ai/user/kirchlive)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add lightweight self-observation, reflection cadence, and quality gates for maintaining an evolving SELF.md without forcing routine filler. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local self-observation state and periodic reflection checks, which can accumulate sensitive or directive-like memory if used carelessly. <br>
-Mitigation: Review proposed AGENTS.md and HEARTBEAT.md changes before enabling them, keep SELF.md observational, and avoid storing secrets or private user data in self-memory files. <br>
-Risk: Self-observations could be mistaken for core identity instructions if SELF.md and SOUL.md boundaries are not maintained. <br>
-Mitigation: Keep SELF.md as an autonomous observation space and require human approval before changing SOUL.md. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Self Skill](https://clawhub.ai/Kirchlive/self) <br>
-- [Trigger Model](references/trigger-model.md) <br>
-- [SELF.md Template](references/self-template.md) <br>
-- [self-state.json Schema](references/self-state-schema.md) <br>
-- [Reflection Levels](references/reflection-levels.md) <br>
-- [Anti-Patterns](references/anti-patterns.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent personality-growth reflection to an agent workspace while keeping durable identity boundaries separate from living observations.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration instructions, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with JSON state schema examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local SELF.md guidance, heartbeat checks, and self-state tracking conventions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent self-memory can influence future agent behavior without enough consent or review.
+
+Mitigation: Enable the skill only in workspaces where persistent agent memory is intended and review SELF.md, HEARTBEAT.md, AGENTS.md, and memory files before relying on them.
+
+Risk: Self-observation files may accumulate user-specific or confidential details.
+
+Mitigation: Avoid storing private or confidential information and define explicit deletion, expiration, and approval procedures for persistent observations.
+
+## Reference(s):
+
+- [SKILL.md](SKILL.md)
+- [Anti-Patterns](references/anti-patterns.md)
+- [Reflection Levels](references/reflection-levels.md)
+- [self-state.json Schema](references/self-state-schema.md)
+- [SELF.md Template](references/self-template.md)
+- [Trigger Model](references/trigger-model.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with configuration steps and a JSON state schema]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workspace memory guidance for SELF.md, HEARTBEAT.md, AGENTS.md, and memory/self-state.json.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

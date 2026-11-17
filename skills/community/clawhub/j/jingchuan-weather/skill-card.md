@@ -1,39 +1,50 @@
-## Description: <br>
-查询甘肃省泾川县7天天气预报，包含天气状况、温度、降雨概率、日出日落时间和出行建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a 7-day weather forecast for Jingchuan County, Gansu, including sunrise and sunset times.
 
-## Publisher: <br>
-[ltap266](https://clawhub.ai/user/ltap266) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ltap266](https://clawhub.ai/user/ltap266)
 
-## Use Case: <br>
-External users and agents use this skill to answer Jingchuan County weather requests with a 7-day forecast, sunrise and sunset times, and short travel guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Forecast data may be inaccurate or tampered with on untrusted networks because the script disables HTTPS certificate validation and falls back to HTTP. <br>
-Mitigation: Use normal HTTPS certificate validation, remove HTTP fallback, and confirm the Open-Meteo response before relying on the forecast in safety-sensitive decisions. <br>
+## Use Case:
 
+External users and agents use this skill to answer Jingchuan County weather queries with a current 7-day forecast, sunrise and sunset times, precipitation probability, and short travel guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ltap266/jingchuan-weather) <br>
-- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style weather forecast table with concise travel guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches a 7-day forecast for fixed Jingchuan County coordinates from Open-Meteo.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Weather responses may be unverified or plaintext due to the transport-security weakness identified by the security evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for low-stakes forecast convenience unless the transport handling is fixed and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ltap266/skills/jingchuan-weather)
+- [Open-Meteo forecast API endpoint](https://api.open-meteo.com/v1/forecast?latitude=35.51&longitude=107.36&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset&timezone=Asia/Shanghai&forecast_days=7)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text weather table in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes 7-day forecast values, sunrise and sunset times, precipitation probability, and short travel advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

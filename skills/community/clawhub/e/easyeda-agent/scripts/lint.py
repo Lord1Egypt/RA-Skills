@@ -6,7 +6,12 @@ import orient
 
 _args = [a for a in sys.argv[1:] if not a.startswith('--')]
 JSON_OUT = '--json' in sys.argv[1:]   # structured findings for diff.py; text otherwise
-data = json.load(open(_args[0]))
+# 输出含中文与 ✅ 等字符:管道/重定向时 Windows 默认走 cp936/cp950 会 UnicodeEncodeError,
+# 所以固定 utf-8(控制台本来就是 utf-8,等价空操作)。输入同理固定 utf-8 解码。
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, 'reconfigure'):
+        _stream.reconfigure(encoding='utf-8')
+data = json.load(open(_args[0], encoding='utf-8'))
 parts  = [p for p in data['parts'] if p.get('type') == 'part']
 sheets = [p for p in data['parts'] if p.get('type') == 'sheet']
 flags  = data['flags']
@@ -43,7 +48,7 @@ def direction(frm, to):
 # Orientation table — DERIVED from the canonical spec (orientation.json), never
 # hand-edited here. Body points outward along the stub. The connector's
 # connect_pin (extension/src/actions.ts deriveBodyRotation) derives the same
-# table from the same four facts; tests/run.py asserts they agree. §3.5.
+# table from the same four facts; scripts/skill-lint-tests/run.py (repo) asserts they agree. §3.5.
 BODY_ROT = orient.load_body_rotation()
 def family(f):
     if f['type'] == 'netport': return 'port'

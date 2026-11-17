@@ -1,41 +1,48 @@
-## Description: <br>
-Generate a detailed expense breakdown by category for a given period. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a detailed expense breakdown by category for a given period.
 
-## Publisher: <br>
-[stanlee000](https://clawhub.ai/user/stanlee000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stanlee000](https://clawhub.ai/user/stanlee000)
 
-## Use Case: <br>
-Employees and finance operators use this skill to generate readable expense reports for a requested period, including category totals, top vendors, trends, and comparisons with previous periods when data is available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may expose transaction history, vendors, amounts, categories, and balance context to the agent through the Norman finance MCP connection. <br>
-Mitigation: Install and run it only with a trusted Norman finance MCP connection and limit requests to reporting periods the user intends to analyze. <br>
-Risk: Expense reports can be misleading if the requested period, transaction filters, or prior-period data are incomplete. <br>
-Mitigation: Review the requested period and report assumptions before using the results for business decisions, and drill down into categories when figures look unusual. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Norman Finance](https://norman.finance) <br>
-- [ClawHub skill page](https://clawhub.ai/stanlee000/norman-expense-report) <br>
-- [Publisher profile](https://clawhub.ai/user/stanlee000) <br>
+## Use Case:
 
+External Norman Finance users use this skill to ask an agent for expense reports, spending summaries, and cost analysis over a requested period. The skill reads transaction and balance data, then produces category, vendor, trend, and period-comparison summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown expense report with category, vendor, trend, and comparison sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Amounts are presented in EUR; reports may offer follow-up drill-down by category.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Expense reports may expose confidential business financial details from Norman Finance transaction and balance data.
+
+Mitigation: Use the skill only in trusted sessions and review generated reports before sharing them.
+
+## Reference(s):
+
+- [Norman Finance](https://norman.finance)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, guidance]
+
+**Output Format:** [Structured Markdown expense report with ranked lists and concise insights]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Amounts are presented in EUR; report sections may include category totals, top vendors, trends, comparisons, and optional drill-down guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

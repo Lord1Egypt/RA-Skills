@@ -1,38 +1,54 @@
-## Description: <br>
-Ai Reviewer is intended to produce structured quality inspection reports for e-commerce image-generation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Reviewer produces structured quality review reports for e-commerce image outputs against configurable checklist criteria.
 
-## Publisher: <br>
-[duzhihai123](https://clawhub.ai/user/duzhihai123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duzhihai123](https://clawhub.ai/user/duzhihai123)
 
-## Use Case: <br>
-E-commerce image teams can use this skill to score generated images against a configurable checklist, summarize issues, and propose revision actions before delivery. Treat it as a report template unless paired with validated image review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill may approve images without actually checking their content. <br>
-Mitigation: Use it only as a placeholder or report template until real image analysis is implemented and its limits are documented. <br>
+## Use Case:
 
+Creative operations teams and agents use this skill to summarize e-commerce image quality checks, classify pass/revision outcomes, and provide improvement suggestions for generated product imagery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duzhihai123/ai-reviewer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON report with verdict, score, issues, suggestions, and summary text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Chinese-language labels and configurable quality thresholds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill presents itself as an image quality gate, but the authoritative security review says it does not actually inspect images and deterministically approves them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as a prototype or workflow stub; do not rely on it to approve e-commerce images until real image analysis is implemented and independently verified.
+
+Risk: Review metadata may be appended to a local history file, which can expose review activity if the metadata is sensitive.
+
+Mitigation: Review the local history logging behavior before using the skill with sensitive projects, products, or customer material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duzhihai123/skills/ai-reviewer)
+- [Publisher profile](https://clawhub.ai/user/duzhihai123)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Guidance]
+
+**Output Format:** [JSON quality report with summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes verdict, average score, image-level reports, issues, suggestions, and checklist details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

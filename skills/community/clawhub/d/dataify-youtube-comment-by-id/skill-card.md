@@ -1,43 +1,60 @@
-## Description: <br>
-Submit Dataify YouTube comment collection tasks by video ID through Dataify Builder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect YouTube comments for a known video ID. Do not use for video metadata, transcripts, media downloads, or keyword discovery.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to submit Dataify Builder jobs that collect YouTube comments for one or more video IDs and return the created task ID and status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Dataify API TOKEN and sends task parameters to Dataify. <br>
-Mitigation: Use a dedicated token when possible, review the parameter table before submission, and proceed only when the user is comfortable using Dataify for YouTube comment collection. <br>
-Risk: Persisting DATAIFY_API_TOKEN can allow future runs to use the token without re-entering it. <br>
-Mitigation: Do not save DATAIFY_API_TOKEN persistently unless the user explicitly wants future runs to reuse it. <br>
+## Use Case:
 
+External users and developers use this skill to submit Dataify YouTube comment collection jobs by video ID, monitor the returned task, and retrieve final collected results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dataify-server/dataify-youtube-comment-by-id) <br>
-- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify Login](https://dashboard.dataify.com/login?utm_source=skill) <br>
-- [Dataify Builder Endpoint](https://scraperapi.dataify.com/builder?platform=1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls, JSON] <br>
-**Output Format:** [Markdown parameter confirmation and guidance, with JSON summaries from the helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns task_id, status, submitted parameters, file_name, dashboard_url, and message after successful submission; does not retrieve YouTube comments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The helper script loads sibling Dataify task-operations runtime code while passing it the API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and use only with a trusted local Dataify task-operations runtime.
+
+Risk: Users may expose secrets if they paste an API TOKEN into chat.
+
+Mitigation: Configure DATAIFY_API_TOKEN through the local shell or environment and never print or paste the token in conversation.
+
+Risk: The skill may submit and monitor Dataify jobs by default, which can consume account credits.
+
+Mitigation: Confirm high-volume or multi-input collection scope before execution and resume existing task IDs instead of resubmitting paid jobs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-youtube-comment-by-id)
+- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill)
+- [Dataify API token login](https://dashboard.dataify.com/login?utm_source=skill)
+- [Dataify Builder endpoint](https://scraperapi.dataify.com/builder?platform=1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task or result output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May wait for asynchronous Dataify task completion and summarize large JSON payloads while preserving access to raw results.]
+
+## Skill Version(s):
+
+1.3.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

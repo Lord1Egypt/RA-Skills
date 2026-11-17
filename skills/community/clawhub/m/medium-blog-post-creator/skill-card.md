@@ -1,44 +1,62 @@
-## Description: <br>
-Publish blog posts to Medium via GitHub Pages and URL import without requiring a Medium API token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish blog posts to Medium via GitHub Pages + URL import; no API token required.
 
-## Publisher: <br>
-[ylnhari](https://clawhub.ai/user/ylnhari) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ylnhari](https://clawhub.ai/user/ylnhari)
 
-## Use Case: <br>
-External users and developers use this skill to turn a requested topic, outline, or draft into a Medium-ready draft. The workflow creates constrained HTML, publishes it through the user's GitHub Pages staging repo, imports it into Medium, and stops for human review before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft content is published to a public GitHub Pages staging repo before Medium import. <br>
-Mitigation: Use only content that is safe to make public, confirm the target GitHub owner and repo, and review the Medium draft before publishing. <br>
-Risk: The skill can reuse a remembered blog repository from prior setup. <br>
-Mitigation: Confirm or override the GitHub owner and repository when the destination matters, especially for broad blog-writing prompts. <br>
+## Use Case:
 
+Developers, writers, and teams use this skill to create Medium-ready blog drafts from a topic, outline, or source content. It writes constrained HTML, publishes it through the user's GitHub Pages site, imports it into Medium, and stops at draft review.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/ylnhari/skills/medium-blog-post-creator) <br>
-- [HTML standards for Medium importer](references/html-standards.md) <br>
-- [Persistent configuration](references/configuration.md) <br>
-- [GitHub CLI](https://cli.github.com) <br>
-- [Medium URL import](https://medium.com/p/import) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML, JSON, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates public GitHub Pages draft artifacts and a Medium draft URL for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create or update public GitHub repositories and publish draft source pages publicly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target owner, repo, branch, and public URL before each run, and avoid using sensitive or unpublished content.
+
+Risk: The workflow uses the user's authenticated GitHub and Medium sessions.
+
+Mitigation: Run only in trusted workspaces and confirm authentication state before allowing repository or browser actions.
+
+Risk: Medium draft editor URLs may be exposed if committed to a public repository.
+
+Mitigation: Review post metadata before pushing and do not commit Medium draft editor URLs to public repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ylnhari/skills/medium-blog-post-creator)
+- [Skill homepage](https://github.com/ylnhari/openclaw-skills/tree/main/skills/medium-blog-post-creator)
+- [HTML standards for Medium's URL importer](references/html-standards.md)
+- [Persistent configuration](references/configuration.md)
+- [Post HTML template](assets/post-template.html)
+- [Metadata sidecar template](assets/meta.template.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus generated HTML and JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates public GitHub Pages source pages and a Medium draft URL; requires authenticated gh, git, and a Medium browser session.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

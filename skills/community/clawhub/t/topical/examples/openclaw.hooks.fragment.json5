@@ -1,0 +1,17 @@
+// Merge into ~/.openclaw/openclaw.json under hooks.*
+// Generate a unique hooks.token — distinct from gateway.auth.token.
+{
+  hooks: {
+    enabled: true,
+    token: "<GENERATE_A_RANDOM_HOOKS_TOKEN>",
+    path: "/hooks",
+    transformsDir: "~/.openclaw/hooks/transforms",
+    mappings: [
+      {
+        match: { path: "topical-inbound" },
+        action: "agent",
+        transform: { module: "topical-inbound.mjs", export: "topicalInbound" },
+      },
+    ],
+  },
+}

@@ -1,38 +1,49 @@
-## Description: <br>
-Proactively suggest better English phrasing and flag impolite tone in user messages. Appends a casual "By the way" note at the end of your normal reply. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactively suggests better English phrasing and flags impolite tone in user messages, appending a brief casual note only when there is something useful to improve.
 
-## Publisher: <br>
-[littletwocheng](https://clawhub.ai/user/littletwocheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[littletwocheng](https://clawhub.ai/user/littletwocheng)
 
-## Use Case: <br>
-Users who want lightweight English phrasing and tone coaching can use this skill to receive short, occasional suggestions after normal assistant replies. It is intended for conversational writing feedback rather than formal editing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Always-on phrasing and tone coaching may feel intrusive when the user did not ask for writing feedback. <br>
-Mitigation: Keep suggestions short, append them only when there is a clear improvement, and skip feedback when the user is distressed, frustrated, using a non-English native language, or has no meaningful issue to correct. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to receive concise English phrasing and tone suggestions at the end of normal assistant replies. It is intended for writing-awareness support and should be enabled only when proactive feedback is welcome.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/littletwocheng/by-the-way-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown text appended to normal assistant replies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs only when the latest user message has a meaningful English phrasing or tone improvement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may receive unsolicited writing feedback across conversations where they do not want it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only for users or contexts that want proactive English phrasing and tone tips, such as writing-help workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/littletwocheng/skills/by-the-way-coach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Brief Markdown prose appended to normal assistant replies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Only emits feedback when the user's English phrasing or tone has a concrete improvement opportunity.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

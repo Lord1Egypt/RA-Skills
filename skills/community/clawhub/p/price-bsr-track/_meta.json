@@ -1,0 +1,13 @@
+{
+  "ownerId": "583963",
+  "slug": "price-bsr-track",
+  "version": "1.5.3",
+  "workflow": "watch",
+  "focus": "price_bsr",
+  "outputTemplate": "watch_digest",
+  "requiredCapabilities": [
+    "product-detail",
+    "product-snapshots"
+  ],
+  "releaseWave": 5
+}

@@ -1,43 +1,50 @@
-## Description: <br>
-你来指定谁当狼人，然后押注谁赢——4个AI互相骗，你看谁先露馅。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language AI werewolf chat game where users watch four AI roles bluff, question, vote, and reveal the hidden role through a recap.
 
-## Publisher: <br>
-[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangjihua007-rgb](https://clawhub.ai/user/huangjihua007-rgb)
 
-## Use Case: <br>
-External users use this Chinese entertainment skill to run a short AI werewolf-style social deduction game where four AI personas debate, vote, and reveal the hidden role in a recap. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words such as start or play may activate the game when the user did not intend to launch it. <br>
-Mitigation: Use explicit launch phrases such as “开始AI模型大乱斗” and stop the session if activation was accidental. <br>
-Risk: User-provided topics could be processed by multiple AI models or providers in multi-model play. <br>
-Mitigation: Keep topics casual and avoid private, sensitive, regulated, or confidential information. <br>
-Risk: The game presents named AI personas and voting outcomes that could be mistaken for objective model evaluation. <br>
-Mitigation: Treat outcomes as entertainment roleplay, not benchmark evidence about model quality or safety. <br>
+## Use Case:
 
+External users use this skill for a Chinese-language entertainment game in which an agent moderates an AI werewolf match, advances rounds, and provides a final explanation of the hidden-role clues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangjihua007-rgb/aiwolfpk) <br>
-- [Publisher profile](https://clawhub.ai/user/huangjihua007-rgb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown game dialogue, tables, voting summaries, and recap text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language casual game output with staged turns, hidden-role recap, and no generated files] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad Chinese trigger phrases such as "开始", "玩", and "继续" may start or continue the game unintentionally when the skill is active.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only in contexts where the game is intended, and review active trigger behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangjihua007-rgb/skills/aiwolfpk)
+- [ClawHub publisher profile](https://clawhub.ai/user/huangjihua007-rgb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown chat responses with game tables, role dialogue, voting results, and recap text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive turn-by-turn game flow; no code execution or data access indicated by security evidence.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

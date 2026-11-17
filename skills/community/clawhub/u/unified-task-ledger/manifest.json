@@ -1,0 +1,9 @@
+{
+  "name": "unified-task-ledger",
+  "normalizedName": "unified-task-ledger",
+  "description": "统一任务账本，用于回答「派出去的任务现在什么状态」「批量派单怎么统一收口」这类问题。DSH 桥 + WorkSwarm 双通道派单 / 回收 / 看板一体化：一个脚本向 DSH（inbox / outbox）或 WorkSwarm（chat.send / session）派活，按核心任务 ID 回收结果，看板查状态。任务 ID 与归属按注册方法论登记为可核验条目，全流程按证据链审计留痕，可还原每个任务由哪条通道派出、由谁完成、结果存在哪。触发词：派任务、任务状态、双通道派单、批量调度、任务账本、任务回收、任务看板、DSH、WorkSwarm、task ledger。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免责声明。",
+  "author": "诺声(Logos)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

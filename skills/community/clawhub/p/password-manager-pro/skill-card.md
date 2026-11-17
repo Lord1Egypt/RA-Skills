@@ -1,44 +1,57 @@
-## Description: <br>
-Local password-management skill for adding, editing, deleting, searching, categorizing, backing up, importing, exporting, and generating passwords, with local data storage and password-strength guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Password Manager helps an agent guide users through local password record management, including adding, editing, searching, categorizing, backing up, importing, exporting, and generating passwords.
 
-## Publisher: <br>
-[liningg](https://clawhub.ai/user/liningg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liningg](https://clawhub.ai/user/liningg)
 
-## Use Case: <br>
-External users use this skill to manage personal or work account credentials locally, including search, categorization, password generation, import/export, backup, and password safety checks. It is not appropriate for enterprise team password sharing or regulated secret management without stronger access controls and encryption. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Passwords, backups, and exports may be stored in plaintext local files. <br>
-Mitigation: Use a vetted encrypted password manager for real credentials, or require encryption at rest and restrictive file permissions before storing sensitive secrets. <br>
-Risk: Viewing, exporting, importing, deleting, or backing up credentials can expose or irreversibly change sensitive data. <br>
-Mitigation: Require explicit user confirmation for those actions and keep exported or backup files in protected locations. <br>
-Risk: Automatically created backups can multiply copies of plaintext secrets. <br>
-Mitigation: Limit backup locations, retention, and access permissions, and delete unneeded backups securely. <br>
+## Use Case:
 
+External users can use this skill to manage personal or work account records in local files, search and categorize saved entries, generate passwords, and produce basic password safety reports. It is not appropriate as a vault-grade password manager without additional protections for stored, backed-up, and exported credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liningg/password-manager-pro) <br>
-- [README](README.md) <br>
-- [Password Security Guide](references/password_security_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with local Python code and JSON/CSV file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local password, backup, import, and export files under user-selected paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata) <br>
+Risk: Credentials, backups, and exports are stored as plaintext local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on encrypted local storage, restrict file access, avoid syncing credential files to cloud services, and prefer an established encrypted password manager for real accounts.
+
+Risk: CSV and JSON exports can expose secrets outside the local data file.
+
+Mitigation: Export only when necessary, store exports in an encrypted location, and remove exported files after use.
+
+Risk: Generated passwords rely on a weak random source.
+
+Mitigation: Use a cryptographically secure generator or a trusted password manager for production credentials unless the generator is revised.
+
+## Reference(s):
+
+- [Password Security Guide](references/password_security_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional Python command examples and local JSON/CSV file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, read, back up, import, or export local credential records when the bundled scripts are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

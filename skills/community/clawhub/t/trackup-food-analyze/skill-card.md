@@ -1,43 +1,60 @@
-## Description: <br>
-Analyze a food image with AISpark TrackUp production APIs, using AnalyzeWholeFood for full analysis and dedicated endpoints for macros, ingredients, health insight, and keyword-based food search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze a food image with AISpark TrackUp production APIs, using AnalyzeWholeFood for full analysis and dedicated endpoints for macros, ingredients, health insight, and keyword-based food search.
 
-## Publisher: <br>
-[trackup](https://clawhub.ai/user/trackup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trackup](https://clawhub.ai/user/trackup)
 
-## Use Case: <br>
-External users and developers use this skill to route food image analysis or keyword lookup requests to AISpark TrackUp APIs and return nutrition, ingredient, glycemic index, and health insight data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected food images, image URLs, base64 image data, and food-search keywords are sent to deepeat.ai for processing. <br>
-Mitigation: Use only images and keywords appropriate for third-party processing, and avoid private or identifying photos unless that processing is acceptable. <br>
-Risk: Local image workflows can create temporary base64 and JSON payload files under /tmp. <br>
-Mitigation: Delete temporary payload files after use when the source image or analysis request is sensitive. <br>
+## Use Case:
 
+Developers and agents use this skill to analyze food images or lookup foods by keyword through AISpark TrackUp APIs while preserving API-returned nutrition values exactly.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/trackup/trackup-food-analyze) <br>
-- [AISpark TrackUp API host](https://deepeat.ai) <br>
-- [AnalyzeWholeFood endpoint](https://deepeat.ai/step.aispark.api.API/AnalyzeWholeFood) <br>
-- [SearchFood endpoint](https://deepeat.ai/step.aispark.api.API/SearchFood) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON API responses and optional bash curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Numeric values should be preserved exactly as returned, and missing fields should not be invented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Food images, base64 image data, food keywords, and nutrition-analysis context are sent to an external deepeat.ai service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable for the user and environment.
+
+Risk: The documented /tmp image workflow can expose sensitive local image data on shared systems.
+
+Mitigation: Use a private temporary directory with restrictive permissions and remove temporary image payload files after the request.
+
+Risk: The proxy bypass example can evade managed network controls if used in workplace environments.
+
+Mitigation: Unset proxy variables only when direct outbound access is explicitly authorized.
+
+## Reference(s):
+
+- [TrackUp Food Analyze ClawHub page](https://clawhub.ai/trackup/skills/trackup-food-analyze)
+- [deepeat.ai service endpoint](https://deepeat.ai)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with JSON and inline bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns API-provided nutrition fields, health insight fields, food-search results, and error guidance without inventing missing values.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

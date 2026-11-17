@@ -1,0 +1,124 @@
+{
+  "version": "1.0",
+  "platforms": {
+    "wechat_official": {
+      "format": "html",
+      "layer": "L2",
+      "style": "simple",
+      "inline_css": true,
+      "features": ["section_wrapper", "code_highlight", "image_center"]
+    },
+    "zhihu": {
+      "format": "html",
+      "layer": "L2",
+      "style": "tech",
+      "inline_css": true,
+      "features": ["blockquote_style", "link_card"]
+    },
+    "baijiahao": {
+      "format": "html",
+      "layer": "L2",
+      "style": "business",
+      "inline_css": true,
+      "features": ["section_wrapper", "image_center"]
+    },
+    "weibo": {
+      "format": "html",
+      "layer": "L2",
+      "style": "simple",
+      "inline_css": false,
+      "features": ["short_text", "image_grid"],
+      "max_length": 2000
+    },
+    "toutiao": {
+      "format": "html",
+      "layer": "L1",
+      "style": "simple",
+      "inline_css": true,
+      "features": ["section_wrapper"]
+    },
+    "douban": {
+      "format": "html",
+      "layer": "L1",
+      "style": "literary",
+      "inline_css": false,
+      "features": ["blockquote_style"]
+    },
+    "juejin": {"format": "markdown", "layer": "L0", "style": null, "inline_css": false, "features": []},
+    "csdn": {"format": "markdown", "layer": "L0", "style": null, "inline_css": false, "features": []},
+    "segmentfault": {"format": "markdown", "layer": "L0", "style": null, "inline_css": false, "features": []},
+    "cnblogs": {"format": "markdown", "layer": "L0", "style": null, "inline_css": false, "features": []},
+    "51cto": {"format": "markdown", "layer": "L0", "style": null, "inline_css": false, "features": []},
+    "oschina": {"format": "markdown", "layer": "L0", "style": null, "inline_css": false, "features": []},
+    "yuque": {"format": "markdown", "layer": "L0", "style": null, "inline_css": false, "features": []},
+    "imooc": {"format": "markdown", "layer": "L0", "style": null, "inline_css": false, "features": []},
+    "jianshu": {"format": "markdown", "layer": "L0", "style": null, "inline_css": false, "features": []},
+    "woshipm": {"format": "markdown", "layer": "L0", "style": null, "inline_css": false, "features": []},
+    "bilibili_col": {"format": "markdown", "layer": "L0", "style": null, "inline_css": false, "features": []},
+    "x_twitter": {
+      "format": "text",
+      "layer": "L3",
+      "style": null,
+      "inline_css": false,
+      "features": ["strip_markdown", "truncate"],
+      "max_length": 280
+    },
+    "sohu": {"format": "html", "layer": "L1", "style": "simple", "inline_css": true, "features": []},
+    "dayu": {"format": "html", "layer": "L1", "style": "simple", "inline_css": true, "features": []},
+    "netease": {"format": "html", "layer": "L1", "style": "simple", "inline_css": true, "features": []},
+    "yidian": {"format": "html", "layer": "L1", "style": "simple", "inline_css": true, "features": []},
+    "smzdm": {"format": "html", "layer": "L1", "style": "simple", "inline_css": true, "features": []},
+    "xueqiu": {"format": "html", "layer": "L1", "style": "business", "inline_css": true, "features": []},
+    "eastmoney": {"format": "html", "layer": "L1", "style": "business", "inline_css": true, "features": []},
+    "douyin_img": {"format": "html", "layer": "L1", "style": "simple", "inline_css": false, "features": []},
+    "douyin": {
+      "format": "text",
+      "layer": "L3",
+      "style": null,
+      "inline_css": false,
+      "features": ["strip_markdown", "hashtag_optimize", "emoji_friendly"],
+      "max_length": 1000
+    },
+    "kuaishou": {
+      "format": "text",
+      "layer": "L3",
+      "style": null,
+      "inline_css": false,
+      "features": ["strip_markdown", "hashtag_optimize", "emoji_friendly"],
+      "max_length": 1000
+    },
+    "bilibili": {
+      "format": "text",
+      "layer": "L3",
+      "style": null,
+      "inline_css": false,
+      "features": ["strip_markdown", "hashtag_optimize"],
+      "max_length": 2000
+    },
+    "xiaohongshu": {
+      "format": "text",
+      "layer": "L3",
+      "style": null,
+      "inline_css": false,
+      "features": ["strip_markdown", "hashtag_optimize", "emoji_friendly", "short_paragraph"],
+      "max_length": 1000
+    },
+    "shipinhao": {
+      "format": "text",
+      "layer": "L3",
+      "style": null,
+      "inline_css": false,
+      "features": ["strip_markdown", "hashtag_optimize"],
+      "max_length": 1000
+    },
+    "sohufocus": {"format": "html", "layer": "L1", "style": "simple", "inline_css": true, "features": []},
+    "wordpress": {"format": "html", "layer": "L1", "style": "simple", "inline_css": false, "features": []},
+    "typecho": {"format": "html", "layer": "L1", "style": "simple", "inline_css": false, "features": []},
+    "youtube": {"format": "html", "layer": "L1", "style": "simple", "inline_css": true, "features": ["section_wrapper", "image_center"], "max_length": 5000},
+    "tiktok": {"format": "text", "layer": "L3", "style": null, "inline_css": false, "features": ["strip_markdown", "hashtag_optimize", "emoji_friendly"], "max_length": 2200},
+    "instagram": {"format": "text", "layer": "L3", "style": null, "inline_css": false, "features": ["strip_markdown", "hashtag_optimize", "emoji_friendly", "short_paragraph"], "max_length": 2200},
+    "facebook": {"format": "html", "layer": "L1", "style": "simple", "inline_css": true, "features": ["section_wrapper", "image_center"], "max_length": 63206},
+    "linkedin": {"format": "html", "layer": "L1", "style": "business", "inline_css": true, "features": ["section_wrapper"], "max_length": 3000},
+    "medium": {"format": "html", "layer": "L2", "style": "tech", "inline_css": true, "features": ["section_wrapper", "code_highlight", "image_center"]}
+  }
+}

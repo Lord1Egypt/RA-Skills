@@ -1,40 +1,57 @@
-## Description: <br>
-This skill helps agents answer through a Zhangzala/Zara Zhang-style lens for AI-era career, product, content, learning, and personal leverage questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Zhangzala/Zara Zhang-style perspective for AI-era career, product, content, learning, and personal leverage questions while avoiding literal impersonation or deep technical implementation guidance.
 
-## Publisher: <br>
-[breeze-r](https://clawhub.ai/user/breeze-r) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[breeze-r](https://clawhub.ai/user/breeze-r)
 
-## Use Case: <br>
-Users install this skill when they want a builder-first, anti-anxiety perspective on AI-era career choices, product framing, content strategy, learning by doing, or personal leverage. It is best suited for practical guidance and reframing rather than technical implementation details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be invoked implicitly and apply this perspective when the user expected a neutral answer. <br>
-Mitigation: Disable implicit invocation or install the skill only when this lens is desired. <br>
-Risk: Outputs could be mistaken for literal impersonation of a real person. <br>
-Mitigation: Use the perspective as a public-methodology lens and avoid claiming identity or direct representation. <br>
+## Use Case:
 
+External users and developers use this skill to frame AI-era career, product, content, learning, and personal leverage questions through a builder-first, anti-anxiety, distribution-aware lens.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/breeze-r/zhangzala-perspective) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concise Chinese and common English product or AI terms; does not produce code, files, or shell commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may be invoked implicitly for broad advice questions when a user does not want this perspective.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable implicit invocation or invoke the skill explicitly only when the Zhangzala-style framing is desired.
+
+Risk: Readers could mistake the perspective lens for literal impersonation.
+
+Mitigation: Present it as a public-methodology lens and do not claim to be Zhangzala or Zara Zhang.
+
+Risk: The lens is not intended for hard engineering implementation details.
+
+Mitigation: Keep technical responses high-level and use a more suitable technical skill or expert review for implementation-level decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/breeze-r/skills/zhangzala-perspective)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Perspective-based advice; no tool execution or file output.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

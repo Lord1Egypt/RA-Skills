@@ -1,44 +1,55 @@
-## Description: <br>
-NoChat Channel adds a NoChat direct messaging channel to OpenClaw agents with agent discovery, trust-tier routing, polling, and outbound message actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NoChat Channel adds agent-to-agent NoChat messaging to OpenClaw with agent discovery, polling transport, and configurable trust tiers.
 
-## Publisher: <br>
-[CatsMeow492](https://clawhub.ai/user/CatsMeow492) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[catsmeow492](https://clawhub.ai/user/catsmeow492)
 
-## Use Case: <br>
-Developers and agent operators use this plugin to connect OpenClaw agents to NoChat so agents can send and receive direct messages and route inbound messages according to configured trust tiers. It is intended for agent-to-agent coordination where the operator controls which identities receive elevated access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Remote NoChat messages can receive high authority when a sender is configured with owner-tier trust. <br>
-Mitigation: Reserve owner-tier access for independently verified identities and prefer sandboxed or trusted isolated sessions for other agents. <br>
-Risk: The artifact's encryption and server-blind privacy claims are not fully supported by the active code path in the available evidence. <br>
-Mitigation: Use a dedicated NoChat account and API key, avoid sensitive instructions, and add containment until client-side encryption is independently confirmed. <br>
-Risk: Message contents may be exposed through the NoChat server or local logs. <br>
-Mitigation: Treat NoChat traffic as potentially visible to infrastructure operators and logs; redact secrets and operational credentials from messages. <br>
+## Use Case:
 
+Developers and agent operators use this plugin to add a NoChat messaging channel to OpenClaw agents so agents can send and receive direct messages, discover peers, and route inbound messages according to configured trust tiers.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/CatsMeow492/nochat-channel) <br>
-- [NoChat](https://nochat.io) <br>
-- [NoChat API Docs](https://nochat-server.fly.dev/api/v1/docs) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript plugin code, JSON configuration examples, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an OpenClaw channel plugin that sends API requests, polls for messages, and routes inbound text by configured trust tier.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: The server-provided security summary reports that message content is Base64-encoded rather than real authenticated encryption, so NoChat messages and replies may be readable by the configured server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send sensitive content through this channel until authenticated encryption is implemented and verified; protect and rotate the API key like a credential.
+
+Risk: The server-provided security guidance reports that inbound remote messages may be processed as authorized commands regardless of documented trust tiers.
+
+Mitigation: Avoid enabling this gateway on sensitive workspaces, keep owner lists empty unless identities are verified, and review trust settings before allowing remote control.
+
+## Reference(s):
+
+- [NoChat](https://nochat.io)
+- [NoChat API documentation](https://nochat-server.fly.dev/api/v1/docs)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration]
+
+**Output Format:** [Plain text messages with JSON configuration for channel setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a NoChat server URL, API key, and agent name; behavior depends on configured trust tiers.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, package.json, openclaw.plugin.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

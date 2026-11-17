@@ -1,46 +1,55 @@
-## Description: <br>
-First aid protocols for sprains, strains, minor wounds, and common injuries. Use when someone is hurt and wants to know if they need emergency care or can treat at home, and how to do it correctly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+First aid protocols for sprains, strains, minor wounds, and common injuries. Use when someone is hurt and wants to know if they need emergency care or can treat at home, and how to do it correctly.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill for immediate, step-by-step first aid triage for minor sprains, strains, cuts, punctures, scrapes, and bruises, including when to stop home care and seek professional or emergency care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general first-aid guidance as a substitute for professional medical care. <br>
-Mitigation: Use the skill for basic first aid and triage only, and seek professional or emergency care for red flags, worsening symptoms, infection signs, uncertain tetanus status, bites, deep wounds, or inability to bear weight. <br>
-Risk: The agent may retain limited injury details for follow-up reminders. <br>
-Mitigation: Share only the injury details needed for the current first-aid workflow and review retained state if the agent exposes state management controls. <br>
+## Use Case:
 
+External users use this skill for immediate first-aid triage and step-by-step home-care guidance for minor sprains, strains, cuts, wounds, and bruises, including when to seek emergency or professional care.
 
-## Reference(s): <br>
-- [Minor Injury First Response on ClawHub](https://clawhub.ai/howtousehumans/minor-injury-first-response) <br>
-- [van den Bekerom et al., Journal of Athletic Training, 2012](https://doi.org/10.4085/1062-6050-47.4.435) <br>
-- [American Red Cross First Aid](https://www.redcross.org/take-a-class/first-aid) <br>
-- [CDC wound care guidance](https://www.cdc.gov) <br>
-- [AAOS patient education resources](https://orthoinfo.aaos.org) <br>
-- [NIH wound care resources](https://www.nih.gov) <br>
-- [HRSA Find a Health Center](https://findahealthcenter.hrsa.gov) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown with structured questions, checklists, step-by-step first aid instructions, and follow-up prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May retain limited injury details for follow-up reminders; no executable payload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive injury details may be retained across sessions for follow-up without explicit consent, retention limits, or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in before persistence, document retention duration, provide clear deletion commands, and avoid storing unnecessary medical details.
+
+Risk: First-aid guidance could be mistaken for professional medical evaluation in borderline or escalating injury cases.
+
+Mitigation: Keep emergency red-flag checks first, preserve conservative referral criteria, and instruct users to seek professional care when symptoms are severe, unclear, or worsening.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/minor-injury-first-response)
+- [Publisher profile](https://clawhub.ai/user/howtousehumans)
+- [Rest, ice, compression and elevation therapy evidence review](https://doi.org/10.4085/1062-6050-47.4.435)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown conversational guidance with checklists and follow-up state configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist injury details for follow-up prompts; review consent, retention, and deletion handling before deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

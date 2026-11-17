@@ -1,51 +1,64 @@
-## Description: <br>
-Complete gRPC test automation for embedded devices with C/C++ SDKs, producing a test framework, JMeter test plan, and Excel report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete gRPC test automation for embedded devices with C/C++ SDKs, producing a test framework, JMeter JMX plans, and Excel reports from requirements and SDK inputs.
 
-## Publisher: <br>
-[ventus-z](https://clawhub.ai/user/ventus-z) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ventus-z](https://clawhub.ai/user/ventus-z)
 
-## Use Case: <br>
-Developers and test engineers use this skill to create and operate a gRPC and JMeter workflow for validating C/C++ SDKs on embedded boards. It supports SDK header analysis, proto and server wrapper guidance, board deployment steps, test execution, and report generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents unauthenticated board-control and plaintext gRPC services. <br>
-Mitigation: Bind services to localhost or an isolated lab network, and add authentication, TLS, or firewall rules before using them outside a controlled test environment. <br>
-Risk: The workflow includes remote upload, execution, service control, and a shutdown command for embedded boards. <br>
-Mitigation: Review generated scripts before execution, run with least required privileges, and disable or avoid shutdown behavior unless explicitly required. <br>
-Risk: Some scripts automatically install Python packages. <br>
-Mitigation: Run the workflow in a virtual environment or container with reviewed and pinned dependencies. <br>
-Risk: Generated reports may contain SDK, device, request, response, or error details. <br>
-Mitigation: Store reports in controlled locations and clean them up when they are no longer needed. <br>
+## Use Case:
 
+Developers and test engineers use this skill to build a lab workflow for testing C/C++ SDK interfaces on embedded boards through generated gRPC services, JMeter test plans, serial-style deployment flows, and Excel result reports.
 
-## Reference(s): <br>
-- [SDK Analysis Guide](references/sdk-analysis.md) <br>
-- [C++ gRPC Server Implementation Guide](references/cpp-server.md) <br>
-- [Serial Communication Protocol](references/serial-protocol.md) <br>
-- [JMeter gRPC Plugin Configuration](references/jmeter-config.md) <br>
-- [JMX Test Plan Template](references/jmx-template.md) <br>
-- [Protocol Buffer Design](references/proto-design.md) <br>
-- [Test Patterns](references/test-patterns.md) <br>
-- [Excel Report Format](references/excel-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with code blocks, shell commands, generated project files, JMX XML, proto definitions, and Excel report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local project scaffolds and test reports when its scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release evidence flags unauthenticated network services and under-scoped board deployment patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in an isolated lab environment and review, harden, and restrict generated services before exposing them beyond that environment.
+
+Risk: The release evidence flags automatic package installation in included scripts.
+
+Mitigation: Review dependency installation behavior before running scripts, and avoid privileged or shared execution environments.
+
+Risk: The release evidence advises validating project paths and treating generated reports as untrusted test data.
+
+Mitigation: Validate project paths and deployment targets before execution, and handle generated Excel reports as untrusted files when opening or sharing them.
+
+## Reference(s):
+
+- [SDK Header Analysis Guide](references/sdk-analysis.md)
+- [C++ gRPC Server Implementation Guide](references/cpp-server.md)
+- [Proto Design Guide](references/proto-design.md)
+- [JMeter gRPC Plugin Configuration](references/jmeter-config.md)
+- [JMX Template Guide](references/jmx-template.md)
+- [Serial Communication Protocol](references/serial-protocol.md)
+- [Test Case Patterns](references/test-patterns.md)
+- [Excel Report Format](references/excel-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with generated project files, proto definitions, JMX XML, shell commands, and Excel report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local test framework artifacts that should be reviewed before lab execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

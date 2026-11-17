@@ -1,39 +1,52 @@
-## Description: <br>
-Design DynamoDB tables and write efficient queries avoiding common NoSQL pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design DynamoDB tables and write efficient queries avoiding common NoSQL pitfalls.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a DynamoDB design and query reference when modeling access patterns, choosing indexes, avoiding scans, handling pagination and consistency, and planning capacity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: An agent may turn DynamoDB guidance into actions that use AWS credentials or modify real tables. <br>
-Mitigation: Review proposed AWS credential use and live DynamoDB table changes before approval. <br>
-Risk: Incorrect data-modeling or query advice can lead to inefficient access patterns, high costs, or stale reads. <br>
-Mitigation: Validate generated designs against the application's access patterns, consistency needs, capacity limits, and AWS documentation before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub DynamoDB release](https://clawhub.ai/ivangdavila/dynamodb) <br>
+## Use Case:
 
+Developers and engineers use this skill for DynamoDB table design, index planning, query patterns, pagination, consistency, writes, capacity, and limits.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; review any proposed AWS credential use or changes to live DynamoDB tables before approving them.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: An agent may turn DynamoDB design guidance into AWS CLI actions that affect cloud resources.
+
+Mitigation: Require an explicit user request, account and region scoping, and review before applying cloud resource changes.
+
+Risk: Incorrect access-pattern or capacity assumptions can lead to inefficient DynamoDB designs.
+
+Mitigation: Validate table keys, indexes, pagination, consistency needs, and expected load before deployment.
+
+## Reference(s):
+
+- [ClawHub DynamoDB skill page](https://clawhub.ai/ivangdavila/skills/dynamodb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and design checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static guidance; no executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

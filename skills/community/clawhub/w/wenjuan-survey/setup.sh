@@ -77,10 +77,10 @@ check_node() {
         
         if [ "$NODE_MAJOR" -ge 18 ]; then
             print_success "Node.js 版本符合要求 (>= 18)"
-            return 0
+    return 0
         else
             print_error "Node.js 版本过低，需要 18+"
-            return 1
+    return 1
         fi
     else
         print_error "未检测到 Node.js"
@@ -233,7 +233,7 @@ print_install_risk_notice() {
     echo "  • npm install 将从当前 registry 拉取第三方依赖，请在可信网络下执行，并确保 registry 来源可信。"
     echo "  • 使用问卷网接口时，登录凭证会写入本机（如 ~/.wenjuan 或 Skill 目录下 .wenjuan/）；请勿将含 token 的文件提交到 Git 或发送给他人。"
     echo "  • 清除登录态请自行删除相关文件，见 references/auth.md「清除本机登录态（手动）」。"
-    echo ""
+        echo ""
 }
 
 # 安装 npm 依赖
@@ -278,10 +278,10 @@ verify_installation() {
         print_success "open: $OPEN_VERSION"
     else
         print_error "open 未安装"
-        return 1
+            return 1
     fi
     
-    return 0
+            return 0
 }
 
 # 显示帮助
@@ -313,7 +313,7 @@ main() {
     echo "  问卷网 Skill 环境检测与安装 (Node.js 版本)"
     echo "============================================================"
     echo ""
-    
+
     # 解析参数
     CHECK_ONLY=0
     AUTO_INSTALL=0
@@ -341,21 +341,21 @@ main() {
                 print_error "未知选项: $1"
                 show_help
                 exit 1
-                ;;
-        esac
+            ;;
+    esac
     done
-    
+
     # 仅验证模式
     if [ $VERIFY_ONLY -eq 1 ]; then
         if verify_installation; then
-            echo ""
+    echo ""
             print_success "环境验证通过！"
             exit 0
         else
-            echo ""
+    echo ""
             print_error "环境验证失败"
-            exit 1
-        fi
+        exit 1
+    fi
     fi
     
     # 检测 Node.js
@@ -366,9 +366,9 @@ main() {
         if [ $CHECK_ONLY -eq 1 ]; then
             echo ""
             print_error "环境检查未通过"
-            echo ""
+                echo ""
             echo "Node.js 未安装或版本过低（需要 18+）"
-            echo ""
+                echo ""
             echo "安装指南:"
             echo "  macOS:     brew install node"
             echo "  Ubuntu:    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - && sudo apt-get install -y nodejs"
@@ -378,29 +378,29 @@ main() {
             echo "  openSUSE:  sudo zypper install -y nodejs npm"
             echo "  Alpine:    apk add --no-cache nodejs npm"
             echo "  Windows:   winget install OpenJS.NodeJS"
-            echo ""
+                echo ""
             exit 1
         elif [ $AUTO_INSTALL -eq 1 ]; then
             echo ""
             install_node
-            echo ""
+                echo ""
         else
-            echo ""
+        echo ""
             print_warning "Node.js 未安装或版本过低"
             read -p "是否自动安装 Node.js? (y/N) " -n 1 -r
             echo ""
             if [[ $REPLY =~ ^[Yy]$ ]]; then
                 install_node
             else
-                echo ""
+            echo ""
                 echo "安装指南:"
                 echo "  macOS:    brew install node"
                 echo "  Ubuntu:   curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - && sudo apt-get install -y nodejs"
                 echo "  CentOS:   curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo bash - && sudo yum install -y nodejs"
                 echo "  Windows:  winget install OpenJS.NodeJS"
                 echo ""
-                exit 1
-            fi
+            exit 1
+        fi
         fi
     fi
     
@@ -429,24 +429,24 @@ main() {
     fi
     
     # 验证
-    echo ""
+                        echo ""
     if verify_installation; then
-        echo ""
+                            echo ""
         echo "============================================================"
         print_success "环境准备完成！"
         echo "============================================================"
-        echo ""
+                            echo ""
         echo "当前环境：Node.js 与项目 npm 依赖已安装，可正常执行本目录下的 Node 脚本。"
         echo "二次校验可运行: node \"${SCRIPT_DIR}/scripts/check_env.js\""
-        echo ""
+                            echo ""
         exit 0
     else
-        echo ""
+                        echo ""
         echo "============================================================"
         print_error "环境验证失败"
         echo "============================================================"
-        echo ""
-        exit 1
+                        echo ""
+                        exit 1
     fi
 }
 

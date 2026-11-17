@@ -1,38 +1,53 @@
-## Description: <br>
-Diagnose and fix OpenClaw cron job model override issues. Use when cron jobs show "not allowed, falling back to agent defaults" in logs, experience unexpected cloud token burn, have slow run times, or models aren't being applied correctly. Fixes agent model allowlist configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses and fixes OpenClaw cron job model override issues by identifying rejected model selections and adding permitted models to the agent allowlist.
 
-## Publisher: <br>
-[mklue](https://clawhub.ai/user/mklue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mklue](https://clawhub.ai/user/mklue)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose OpenClaw cron jobs whose configured model is rejected and to update the agent model allowlist so the intended model can run. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Adding the wrong model to the OpenClaw allowlist can authorize unintended agent or cron model use. <br>
-Mitigation: Confirm the model name before applying changes, run with --dry-run first, keep the generated backup, validate ~/.openclaw/openclaw.json, and restart the gateway only when ready for the policy change to take effect. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to diagnose cron jobs that reject configured model overrides, fall back to default cloud models, run slowly, or consume unexpected tokens. It guides them through log checks, allowlist validation, configuration updates, and gateway restart verification.
 
-## Reference(s): <br>
-- [OpenClaw Model Configuration Layers](references/model-config-layers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash, JSON, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to ~/.openclaw/openclaw.json and a gateway restart after validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill documentation) <br>
+Risk: The skill can modify the OpenClaw agent model allowlist configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the model name is intentional, run the helper with --dry-run when possible, and create or keep a backup of ~/.openclaw/openclaw.json before applying changes.
+
+Risk: A model format mismatch or missing provider definition can keep cron jobs falling back to defaults after the allowlist is changed.
+
+Mitigation: Verify the model appears in the provider configuration and the agent allowlist using the same provider-prefixed format, then restart the gateway and inspect cron run history.
+
+## Reference(s):
+
+- [OpenClaw Model Configuration Layers](references/model-config-layers.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON snippets, and an optional Python helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may propose edits to ~/.openclaw/openclaw.json and requires gateway restart verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md version section)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

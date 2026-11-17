@@ -21,6 +21,14 @@ Do not only rewrite the text.
 
 First diagnose why the current draft may not work, then give a usable version, then create a return loop.
 
+Before returning the usable Xiaohongshu version, run
+`xhs-platform-management-risk-baseline.md` and
+`xhs-content-compliance-risk-gate.md`. If the user's draft or benchmark copy
+contains off-platform diversion, WeChat/private-contact guidance, comment-gated
+resources, product-first selling, exaggerated promises, or unsupported
+sensitive claims, do not polish those lines into the final copy. Mark the
+risky wording, explain briefly, and replace it with a safer platform version.
+
 Output should help the user understand:
 
 - 这段内容现在的问题在哪里
@@ -80,9 +88,10 @@ Use this order:
 2. 用户画像判断：这条给谁看，谁不太会点
 3. 保留点：哪句话、哪个经历、哪个观点值得留
 4. 需要改的地方：标题、开头、结构、情绪、具体性、收藏点、商业承接
-5. 改写版本：give the revised copy
-6. 配套内容：3 个最强标题 + 1 套封面文案 + optional graphic-note pages or 1-minute spoken script
-7. 发布后复盘入口：ask user to send note link/data after publishing
+5. 小红书风控：公开价值是否优先、产品名是否需要后置、是否有站外引流/加微信/诱导评论/敏感夸大表达
+6. 改写版本：give the revised copy
+7. 配套内容：3 个最强标题 + 1 套封面文案 + optional graphic-note pages or 1-minute spoken script
+8. 发布后复盘入口：ask user to send note link/data after publishing
 
 Do not put the revised copy in a copyable block unless the user explicitly asks for “给我一段可以直接复制的文案”. Normal Markdown is usually enough.
 
@@ -286,7 +295,7 @@ Possible fixed tracking:
 - 每周输出 7 天选题 + 标题 + 封面文案
 - 每周复盘用户自己的已发布笔记
 
-Credit reminder:
+Scope reminder:
 
 If recurring tracking requires searches, say that Lingzao will confirm the scope before searching. Basic search can look at titles, covers, metrics and links; deep search reads full body, comments, subtitles or transcripts.
 

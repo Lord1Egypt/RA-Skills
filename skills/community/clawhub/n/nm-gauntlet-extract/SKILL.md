@@ -1,7 +1,7 @@
 ---
 name: extract
 description: Builds the gauntlet knowledge base from AST extraction and AI enrichment
-version: 1.9.8
+version: 1.10.3
 triggers:
   - initializing or refreshing codebase knowledge for challenges
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet", "emoji": "\ud83e\udd9e"}}
@@ -9,12 +9,17 @@ source: claude-night-market
 source_plugin: gauntlet
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/gauntlet](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/gauntlet](https://github.com/athola/claude-night-market/tree/master/plugins/gauntlet). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Extract Codebase Knowledge
 
 Build or rebuild the `.gauntlet/knowledge.json` knowledge base.
+
+## When NOT To Use
+
+- Tribal knowledge no parser can see (use `gauntlet:curate`)
+- Building the code graph (use `gauntlet:graph-build`)
 
 ## Steps
 
@@ -40,6 +45,19 @@ Build or rebuild the `.gauntlet/knowledge.json` knowledge base.
 
 7. **Report**: show summary by category, coverage gaps, difficulty
    distribution
+
+## Exit Criteria
+
+- [ ] `.gauntlet/knowledge.json` exists and is valid JSON after the
+  skill completes; entries from `.gauntlet/annotations/` are merged
+  and not overwritten
+- [ ] Report shows entry counts broken down by all 7 categories
+  (business_logic, architecture, data_flow, api_contract, pattern,
+  dependency, error_handling) with coverage gaps identified
+- [ ] Each extracted entry has a `detail` field containing a natural
+  language explanation (not just the raw AST node name)
+- [ ] Cross-reference links between related entries are present for
+  modules sharing imports, shared types, or data flow paths
 
 ## Category Priority
 

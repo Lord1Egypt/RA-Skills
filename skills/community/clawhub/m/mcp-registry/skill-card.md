@@ -1,42 +1,61 @@
-## Description: <br>
-Discover, search, and browse MCP servers from the official MCP Registry and MCPCentral, including server specs and setup configurations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, search, and browse MCP servers from the official MCP Registry and MCPCentral.
 
-## Publisher: <br>
-[mcpcentral-io](https://clawhub.ai/user/mcpcentral-io) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcpcentral-io](https://clawhub.ai/user/mcpcentral-io)
 
-## Use Case: <br>
-Developers and agent builders use this skill to find MCP servers, inspect installation metadata, compare registry and MCPCentral enrichment data, and generate MCP client configuration snippets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommended MCP servers and generated install commands may point to third-party code, packages, remotes, or token scopes outside this skill's control. <br>
-Mitigation: Verify the publisher, repository, package name, remote endpoint, requested permissions, and any token scopes before running generated npx, uvx, or docker commands or adding generated config to an MCP client. <br>
-Risk: MCPCentral enrichment data may lag authoritative registry metadata. <br>
-Mitigation: Use the official MCP Registry as the authoritative source for version, package, transport, and environment variable metadata, and treat MCPCentral metrics as supplemental. <br>
+## Use Case:
 
+Developers and engineers use this skill to find MCP servers, inspect registry metadata, compare popular servers, and generate setup guidance for MCP clients.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mcpcentral-io/mcp-registry) <br>
-- [Official MCP Registry API](https://registry.modelcontextprotocol.io/v0.1/servers) <br>
-- [MCPCentral Servers API](https://mcpcentral.io/api/servers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public registry data and generated MCP client configuration snippets; no authentication is required for the documented registry endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may produce activation-ready install commands or MCP client configuration for third-party servers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually verify package publisher, repository, version, and remote endpoint before running generated commands or adding generated configuration.
+
+Risk: Fetched server documentation may describe behavior or setup steps that have not been independently trusted.
+
+Mitigation: Treat fetched READMEs and external documentation as untrusted reference material and use least-privilege credentials when testing servers.
+
+Risk: Unpinned packages or floating container tags can change after setup guidance is generated.
+
+Mitigation: Prefer pinned package versions or Docker digests before deploying a selected MCP server.
+
+## Reference(s):
+
+- [ClawHub mcp-registry release page](https://clawhub.ai/mcpcentral-io/skills/mcp-registry)
+- [Publisher profile](https://clawhub.ai/user/mcpcentral-io)
+- [Official MCP Registry server search](https://registry.modelcontextprotocol.io/v0.1/servers?search=QUERY&limit=N&version=latest)
+- [Official MCP Registry latest server version](https://registry.modelcontextprotocol.io/v0.1/servers/SERVER_NAME_URL_ENCODED/versions/latest)
+- [MCPCentral server browser API](https://mcpcentral.io/api/servers?limit=N&cursor=TOKEN)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are based on live registry and MCPCentral metadata when the required public endpoints are reachable.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Uploads user-selected images to the 7bu.top image hosting service using a user-provided TOKEN. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+7bu uploader helps an agent upload supported image files to the 7bu.top image hosting service using a user-provided TOKEN.
 
-## Publisher: <br>
-[penndu](https://clawhub.ai/user/penndu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[penndu](https://clawhub.ai/user/penndu)
 
-## Use Case: <br>
-External users and developers use this skill to upload JPEG, PNG, GIF, BMP, ICO, or WEBP images to 7bu.top by supplying an image file path or URL and a 7bu TOKEN. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Images are uploaded to 7bu.top. <br>
-Mitigation: Install only if you trust 7bu.top with the images you upload, and verify the exact file or URL before invoking the skill. <br>
-Risk: The 7bu TOKEN may be exposed if placed in shared logs or public chats. <br>
-Mitigation: Treat the TOKEN like a password, avoid sharing it in logs or chats, and rotate it if it is exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/penndu/7bu) <br>
-- [7bu.top image hosting service](https://7bu.top) <br>
-- [7bu.top upload API endpoint](https://7bu.top/api/v1/upload) <br>
+## Use Case:
 
+External users and developers use this skill to prepare image-upload requests to 7bu.top for JPEG, JPG, PNG, GIF, BMP, ICO, and WEBP files with their own service token.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided 7bu TOKEN and an image file path or URL; supported formats are JPEG, JPG, PNG, GIF, BMP, ICO, and WEBP.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Images selected for upload and the user-provided TOKEN are sent to 7bu.top.
+
+Mitigation: Use a token intended only for 7bu.top and avoid uploading sensitive images unless the provider's handling of that data is acceptable.
+
+Risk: The release is marked by ClawHub quality metadata as low trust and quarantined for moderation review.
+
+Mitigation: Complete moderation and quality review before listing or recommending the skill for broad use.
+
+## Reference(s):
+
+- [7bu.top](https://7bu.top)
+- [7bu upload API](https://7bu.top/api/v1/upload)
+- [ClawHub skill page](https://clawhub.ai/penndu/skills/7bu)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces upload guidance for user-selected image paths or URLs and a user-provided TOKEN.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

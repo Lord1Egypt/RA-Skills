@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7eqcr25zxgm998kwbtpz2zj980tdyp",
-  "slug": "groww",
+  "name": "groww",
   "version": "1.0.0",
-  "publishedAt": 1770727805307
+  "description": "Trade stocks and manage portfolio on Groww (Indian broker)",
+  "author": "Lappy",
+  "requires": {
+    "env": ["GROWW_API_KEY"]
+  },
+  "primaryEnv": "GROWW_API_KEY",
+  "emoji": "📈",
+  "tags": ["trading", "stocks", "india", "nse", "bse", "portfolio", "groww"]
 }

@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "skill-c-fetch-minutes",
-  "version": "1.0.2",
-  "publishedAt": 1777484617990
+  "name": "skill-c-fetch-minutes",
+  "version": "1.0.0",
+  "description": "会议全流程自动化 Skill-C：cron 每10分钟触发，协调 tencent-meeting-skill 拉取转录、OpenClaw 做AI抽取、imap-smtp-email 通知组织者，完成会后纪要与issue草稿生成闭环",
+  "author": "mayidan"
 }

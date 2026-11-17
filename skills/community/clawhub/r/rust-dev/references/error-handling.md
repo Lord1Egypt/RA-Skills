@@ -49,7 +49,7 @@ n.ok_or("missing");              // turn Option into Result
 
 **Rule of thumb for app code**: outside of `main()` (which can panic), use `?` everywhere. `unwrap` and `expect` should be flagged in code review unless paired with a comment explaining why the case is impossible.
 
-To enforce this mechanically, clippy's `unwrap_used` lint flags every `.unwrap()`. It is in the `restriction` group - off by default, and a deliberate per-project opt-in, not a blanket default. If you enable it, add a `clippy.toml` with `allow-unwrap-in-tests = true`, since test code panics by design. Leave `expect_used` off - `.expect("reason")` is the documented-invariant form you want people reaching for.
+To enforce this mechanically, clippy's `unwrap_used` lint flags `.unwrap()` calls - though not literally every one: `allow-unwrap-in-consts` defaults to `true`, so an unwrap in a const context is exempt without any configuration from you. The lint is in the `restriction` group - off by default, and a deliberate per-project opt-in, not a blanket default. If you enable it, add a `clippy.toml` with `allow-unwrap-in-tests = true`, since test code panics by design. Leave `expect_used` off - `.expect("reason")` is the documented-invariant form you want people reaching for.
 
 ## `anyhow` for Application Code
 
@@ -120,6 +120,24 @@ The `#[from]` attribute generates the `From` impl that `?` needs to convert from
 
 **Do not return `Box<dyn std::error::Error>` from a public library API.** It forces callers to downcast to inspect the error. Define the enum.
 
+## Wrap at the Boundary, Not Before It
+
+The corollary of the split above, and the one that costs real debugging time: **`anyhow::Error` is a one-way door.** Once a typed error is wrapped, the variant is still in there but nothing downstream can `match` on it without a `downcast_ref`, and code that needed to branch on the failure silently stops branching.
+
+This shows up most often in retry loops and error-to-status mapping:
+
+```rust
+// BAD: the helper is generic over anyhow::Result, so by the time the retry
+// loop sees a failure the typed variant is already gone - it cannot tell a
+// retryable conflict from a permanent bad-request, and retries both.
+async fn with_retry<T>(f: impl Fn() -> anyhow::Result<T>) -> anyhow::Result<T>
+
+// GOOD: stay typed as long as something still needs to classify.
+async fn with_retry<T, E: IsRetryable>(f: impl Fn() -> Result<T, E>) -> Result<T, E>
+```
+
+The rule: convert to `anyhow::Error` at the point where the only remaining job is to report the failure - a request handler, `main`, a log line. Anywhere above that, if a caller has to *decide* something from the error, keep the type. `.context(...)` is free to add on the way; it enriches without erasing.
+
 ## Combining `anyhow` and `thiserror`
 
 The standard pattern in a project that has both library and binary crates:
@@ -180,6 +198,19 @@ fn outer() -> Result<(), MyError> {
 
 If you derived `#[from]` on a variant with `thiserror`, this Just Works. If you wrote the enum by hand, write the `From` impl. If you use `anyhow::Error`, all errors that impl `std::error::Error` convert automatically.
 
+## Collecting `Result`s
+
+An iterator of `Result`s collects into a `Result` of a collection: the first `Err` stops the iteration and becomes the value, otherwise you get every `Ok` value. This is how you apply a fallible operation to every element without a manual loop:
+
+```rust
+let nums: Vec<i32> = ["1", "2", "3"]
+    .iter()
+    .map(|s| s.parse::<i32>())
+    .collect::<Result<Vec<_>, _>>()?;   // Err on the first bad input
+```
+
+`Option` works the same way (`collect::<Option<Vec<_>>>()`). If you need every error rather than the first, collect into a `Vec<Result<..>>` and `partition` it.
+
 ## `Result` in `main`
 
 `fn main` can return a `Result`. With `anyhow`:
@@ -194,12 +225,40 @@ fn main() -> anyhow::Result<()> {
 
 If `main` returns `Err`, the program exits with a non-zero status and prints the error chain via `Debug`.
 
+A CLI usually wants more control than "0 or 1": distinct codes a calling script can branch on, and its own error message instead of the `Debug` dump. Return `std::process::ExitCode` (stable since 1.61), print the message yourself with `eprintln!` so it goes to stderr, and keep stdout for real output:
+
+```rust
+use std::process::ExitCode;
+
+fn main() -> ExitCode {
+    match run() {
+        Ok(()) => ExitCode::SUCCESS,
+        Err(e) => {
+            eprintln!("error: {e:#}");     // {:#} prints anyhow's chain on one line
+            ExitCode::from(2)
+        }
+    }
+}
+
+fn run() -> anyhow::Result<()> { Ok(()) }
+```
+
+Prefer this over `std::process::exit`, which ends the process on the spot without running destructors - buffered writers are not flushed.
+
 ## Common Pitfalls
 
 - **Returning `Result<T, String>`**: tempting in early days, but you lose the error chain (`source()`), and you cannot `?`-convert from other error types. Use `anyhow` or `thiserror`.
 - **`.unwrap()` because the error type is annoying**: define the conversion with `From` once, then `?` everywhere.
 - **Catching every error and logging it**: errors are values; let them propagate to a single point that decides how to log or display them. Your app likely has one or two such points (request handler, CLI entry).
 - **Ignoring `Result`**: `let _ = fallible();` discards an error silently. The compiler warns by default; do not silence the warning without a comment.
+- **Treating `Command::output()?` as "the command succeeded"**: the `Result` covers only failing to *run* the child. std: "this method does **not** return an error if the child runs and then exits unsuccessfully, or is terminated by a signal." Check the status yourself - the subprocess twin of reqwest's `error_for_status()`:
+
+  ```rust
+  let out = std::process::Command::new("git").args(["rev-parse", "HEAD"]).output()?;
+  if !out.status.success() {
+      anyhow::bail!("git failed ({}): {}", out.status, String::from_utf8_lossy(&out.stderr));
+  }
+  ```
 
 ## Quick Reference
 

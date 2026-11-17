@@ -1,61 +1,74 @@
-## Description: <br>
-Manage oVirt/RHV virtualization infrastructure via MCP with reference guidance for 186 tools covering VMs, hosts, clusters, networks, storage, templates, snapshots, disks, events, RBAC, quotas, and related operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage oVirt/RHV virtualization infrastructure via MCP with reference coverage for VMs, hosts, clusters, networks, storage, templates, snapshots, disks, events, RBAC, quotas, and related operations.
 
-## Publisher: <br>
-[imjoey](https://clawhub.ai/user/imjoey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imjoey](https://clawhub.ai/user/imjoey)
 
-## Use Case: <br>
-Developers and infrastructure administrators use this skill to install, configure, and operate the oVirt MCP Server for oVirt/RHV VM, host, storage, network, template, event, quota, and RBAC workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through broad oVirt/RHV administration, including delete, force, fence, reinstall, restore, RBAC, network, storage, disk, console, and alert-clearing actions. <br>
-Mitigation: Use least-privilege credentials, restrict use to approved environments, and require human confirmation before high-impact operations. <br>
-Risk: The MCP server requires oVirt Engine credentials and may be configured with password-bearing environment variables or config files. <br>
-Mitigation: Use scoped accounts and secret-managed or ephemeral credentials, and avoid committing credentials in configuration files. <br>
-Risk: Incorrect tool parameters can affect live VMs, hosts, storage, or network resources. <br>
-Mitigation: Review arguments against the reference docs and test changes in non-production before applying them to production. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to help agents install, configure, and operate an oVirt/RHV MCP server and choose the right tools for virtualization administration workflows. It is intended for VM lifecycle, host, storage, network, template, event, RBAC, quota, and affinity-management tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/imjoey/ovirt-mcp) <br>
-- [oVirt MCP Server](https://github.com/imjoey/ovirt-engine-mcp-server) <br>
-- [oVirt](https://www.ovirt.org/) <br>
-- [ovirtsdk4](https://github.com/oVirt/ovirt-engine-sdk-python) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io/) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [VM tool reference](references/vm.md) <br>
-- [Host tool reference](references/host.md) <br>
-- [Cluster tool reference](references/cluster.md) <br>
-- [Storage tool reference](references/storage.md) <br>
-- [Disk tool reference](references/disk.md) <br>
-- [Network tool reference](references/network.md) <br>
-- [Template tool reference](references/template.md) <br>
-- [Events tool reference](references/events.md) <br>
-- [RBAC tool reference](references/rbac.md) <br>
-- [Quota tool reference](references/quota.md) <br>
-- [Affinity tool reference](references/affinity.md) <br>
-- [Data center tool reference](references/datacenter.md) <br>
-- [System tool reference](references/system.md) <br>
-- [Instance types tool reference](references/instance-types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, JSON snippets] <br>
-**Output Format:** [Markdown reference with inline shell, YAML, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes tool-domain reference files and operational workflow examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata and SKILL.md) <br>
+Risk: The skill enables high-impact oVirt/RHV infrastructure administration, including delete, force, fence, install, export, migration, storage, network, and RBAC-changing operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation before high-impact operations and run the MCP server under a restricted account instead of broad administrative credentials.
+
+Risk: Installation guidance references third-party MCP server packages without a pinned and verified release.
+
+Mitigation: Use a pinned, verified MCP server release before installing or running the server in an environment with access to infrastructure.
+
+Risk: Credential examples include an oVirt password and a broad admin-style user.
+
+Mitigation: Store the oVirt password in a protected secret mechanism and avoid broad admin credentials where possible.
+
+## Reference(s):
+
+- [VM Tool Reference](references/vm.md)
+- [Host Tool Reference](references/host.md)
+- [Cluster Tool Reference](references/cluster.md)
+- [Data Center Tool Reference](references/datacenter.md)
+- [Storage Tool Reference](references/storage.md)
+- [Disk Tool Reference](references/disk.md)
+- [Network Tool Reference](references/network.md)
+- [Template Tool Reference](references/template.md)
+- [System Tool Reference](references/system.md)
+- [Events Tool Reference](references/events.md)
+- [RBAC Tool Reference](references/rbac.md)
+- [Quota Tool Reference](references/quota.md)
+- [Affinity Tool Reference](references/affinity.md)
+- [Instance Types Tool Reference](references/instance-types.md)
+- [oVirt MCP Server](https://github.com/imjoey/ovirt-engine-mcp-server)
+- [oVirt](https://www.ovirt.org/)
+- [ovirtsdk4](https://github.com/oVirt/ovirt-engine-sdk-python)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON snippets, YAML snippets, and tool names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for agent use; the referenced MCP tools can perform high-impact infrastructure changes when connected to an oVirt/RHV environment.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and skill documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

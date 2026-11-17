@@ -4,6 +4,7 @@ OpenClaw CLI 数据获取模块
 封装 openclaw skills list 命令，增加错误处理和重试机制
 """
 import subprocess
+import shutil
 import json
 import re
 from typing import List, Dict, Any, Optional
@@ -38,15 +39,18 @@ def get_skills_from_cli(max_retries: int = 3) -> Optional[List[Dict[str, Any]]]:
     Returns:
         技能列表，失败返回 None
     """
+    if shutil.which('openclaw') is None:
+        logger.error("未找到 openclaw 命令，请确认 OpenClaw 已安装并在 PATH 中")
+        return None
+
     for attempt in range(max_retries):
         try:
             result = subprocess.run(
-                'openclaw skills list --json',
+                ['openclaw', 'skills', 'list', '--json'],
                 capture_output=True,
                 text=True,
                 encoding='utf-8',
-                timeout=60,
-                shell=True
+                timeout=60
             )
             
             if result.returncode == 0:
@@ -106,10 +110,11 @@ def get_skill_status(skill: Dict[str, Any]) -> str:
     if is_disabled:
         return 'disabled'
     
-    # 检查是否有缺失的依赖
+    # 检查是否有缺失的依赖（anyBins 表示该组任一存在即可，全缺才算缺失）
     missing = skill.get('missing', {})
     has_missing_deps = (
         bool(missing.get('bins', [])) or
+        bool(missing.get('anyBins', [])) or
         bool(missing.get('env', [])) or
         bool(missing.get('config', [])) or
         bool(missing.get('os', []))

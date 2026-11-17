@@ -1,47 +1,65 @@
-## Description: <br>
-OKX Exchange is a quantitative trading agent for OKX that supports market data, account management, order execution, automated strategies, risk monitoring, and reports across spot, perpetual swaps, and futures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OKX Exchange is a quantitative trading agent for OKX that supports market data queries, account and portfolio views, order execution, automated strategies, risk monitoring, performance reports, and liquidation alerts across spot, USDT-M perpetual swaps, and coin-M futures.
 
-## Publisher: <br>
-[lk2023060901](https://clawhub.ai/user/lk2023060901) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lk2023060901](https://clawhub.ai/user/lk2023060901)
 
-## Use Case: <br>
-External users and developers use this skill to query OKX market and account data, manage positions, execute trades, run grid, trend, and arbitrage strategies, monitor liquidation and stop-loss/take-profit risk, and generate performance reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access OKX account data and, when configured, place live trades or transfer funds. <br>
-Mitigation: Start in paper trading, use OKX API keys with the minimum permissions needed, keep order confirmation enabled, and configure position, leverage, and daily trade limits before live use. <br>
-Risk: Automated monitoring, cron jobs, auto_trade, or --no-confirm can execute trading actions without an interactive prompt. <br>
-Mitigation: Do not enable auto_trade, cron jobs, or confirmation bypasses until limits are configured and behavior has been tested in paper trading; use the documented teardown command as a kill switch. <br>
-Risk: A custom OKX_API_URL can route account and trading requests to a nonstandard endpoint. <br>
-Mitigation: Avoid setting OKX_API_URL unless the endpoint is controlled and trusted. <br>
-Risk: API credentials grant access to financial account data and trading authority. <br>
-Mitigation: Store credentials outside the published skill, avoid logging or printing secrets, and keep live and demo credentials isolated. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OKX V5 API Documentation](https://www.okx.com/docs-v5/en/) <br>
-- [OKX API Key Management](https://www.okx.com/account/my-api) <br>
-- [Trading Rules](artifact/docs/trading-rules.md) <br>
-- [Decision Engine Guide](artifact/docs/decision-engine-guide.md) <br>
-- [Learning System Data Management](artifact/docs/learning-system-data-management.md) <br>
+## Use Case:
 
+External users and developers use this skill to operate OKX trading workflows through an agent, including market analysis, portfolio inspection, order placement, strategy execution, monitoring, and reporting. It can affect real trading accounts when configured with live credentials.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text reports with shell command guidance and JSON-backed configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local memory files and call OKX APIs when the agent runs the provided commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can handle live OKX API credentials and place real trades.
+
+Mitigation: Start in demo mode, use withdrawal-disabled and IP-restricted API keys, keep live credentials separate, and confirm all live-mode changes before use.
+
+Risk: Automated execution can bypass prompts through auto-trading settings or no-confirm flags.
+
+Mitigation: Keep `auto_trade` disabled and avoid `--no-confirm` unless independent order, position, and daily trade limits are configured and reviewed.
+
+Risk: Scheduled monitoring jobs can repeatedly scan markets or close positions without an interactive review.
+
+Mitigation: Review every cron job before enabling it, use conservative intervals, and tear down scheduled jobs when active monitoring is no longer intended.
+
+Risk: Changing `OKX_API_URL` can redirect API traffic away from the standard OKX endpoint.
+
+Mitigation: Leave `OKX_API_URL` unset unless the endpoint has been independently verified and the environment file is access-controlled.
+
+## Reference(s):
+
+- [OKX API V5 Documentation](https://www.okx.com/docs-v5/en/)
+- [OKX API Base URL](https://www.okx.com)
+- [ClawHub Skill Page](https://clawhub.ai/lk2023060901/skills/okx-exchange)
+- [Trading Rules](artifact/docs/trading-rules.md)
+- [Decision Engine Guide](artifact/docs/decision-engine-guide.md)
+- [Learning System Data Management](artifact/docs/learning-system-data-management.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with command examples, configuration snippets, and script-generated trading reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live OKX account data, market data, trade execution results, monitoring output, and generated reports when credentials are configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,61 @@
-## Description: <br>
-Analyzes Solana meme token contract addresses for holder concentration, suspected insider wallets, and token risk signals using DexScreener and Solana RPC data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Solana token contract addresses for meme-token risk by checking holder distribution, suspected insider wallets, and top-holder concentration.
 
-## Publisher: <br>
-[ultranumblol](https://clawhub.ai/user/ultranumblol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ultranumblol](https://clawhub.ai/user/ultranumblol)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to assess Solana meme token contract addresses for concentration, suspected insider wallet patterns, and rug-risk indicators before acting on a token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The hosted API path can initiate wallet-based USDC payments through x402. <br>
-Mitigation: Prefer the local Python script unless paid API use is explicitly approved; set a spending limit and approve each paid request. <br>
-Risk: The analyzer depends on external Solana RPC and DexScreener lookups, so results may be unavailable, delayed, or incomplete. <br>
-Mitigation: Use a Helius API key for more reliable local RPC access and treat the output as one input to token review rather than a final trading decision. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to assess Solana meme token risk before acting on a token contract address. It supports local script execution and a hosted pay-per-request API path for JSON-oriented agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ultranumblol/memeanalyzer) <br>
-- [Helius RPC](https://helius.xyz/) <br>
-- [Hosted analysis API](https://solana-meme-analyzer-production.up.railway.app/analyze?ca=TOKEN_CA) <br>
-- [x402 facilitator](https://x402.org/facilitator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, json, text, shell commands, guidance] <br>
-**Output Format:** [Terminal text and optional JSON risk report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Solana token contract address; HELIUS_API_KEY improves reliability for local analysis, and the hosted API path may require wallet-based USDC payment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The security review flags the hosted payment path as requiring review because it recommends wallet-based paid requests through mutable npm tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Trust and pin the payment client before use, isolate wallet access, and confirm the 0.02 USDC x402 charge before authorizing payment.
+
+Risk: Self-hosted payment configuration can depend on facilitator and recipient settings.
+
+Mitigation: Validate FACILITATOR_URL and payment recipient configuration, and set only the environment variables needed for the selected deployment path.
+
+Risk: The package includes PaxHeader archive metadata files.
+
+Mitigation: Remove PaxHeader archive metadata from the release package before installation or redistribution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ultranumblol/skills/memeanalyzer)
+- [Helius](https://helius.xyz/)
+- [Hosted x402 Analysis Endpoint](https://solana-meme-analyzer-production.up.railway.app/analyze?ca=TOKEN_CA)
+- [Project Homepage Declared in Artifact Metadata](https://github.com/ultranumblol/solana-meme-analyzer)
+- [Project Support Declared in Artifact Metadata](https://github.com/ultranumblol/solana-meme-analyzer/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, API calls, guidance]
+
+**Output Format:** [Console text tables and optional JSON; the hosted API returns JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Solana token contract address. A Helius API key improves local reliability, and the hosted API may require a 0.02 USDC x402 payment.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

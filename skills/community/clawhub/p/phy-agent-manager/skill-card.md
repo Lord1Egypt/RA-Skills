@@ -1,42 +1,54 @@
-## Description: <br>
-Meta-orchestrator that analyzes tasks and creates execution plans using subagents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meta-orchestrator that analyzes complex multi-step tasks, recommends suitable subagents, and produces ready-to-execute phased plans.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and agent users use this skill to classify complex work, choose suitable subagents, and produce a staged execution plan before approving follow-up actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated plans may recommend file changes, security review, or subagent activity that affects project data. <br>
-Mitigation: Review each generated plan and approve only the phases and subagent prompts that fit the task and data-access expectations. <br>
-Risk: Planning output can be incomplete or misclassify task complexity and risk. <br>
-Mitigation: Check the classification, selected agents, and checkpoints before using the plan to guide execution. <br>
+## Use Case:
 
+Developers and agent operators use this skill to classify complex coding tasks, choose suitable subagents, and produce phased execution plans with checkpoints and follow-up prompts.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/PHY041/phy-agent-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
-- [Homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with tables, checkpoints, and inline command prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning guidance only; users review the plan before approving execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can steer Codex into a subagent-planning workflow that may expand scope or choose unsuitable agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated plan before approving execution, especially agent choices, phase boundaries, and requested follow-up prompts.
+
+Risk: Security-sensitive work may need specialized review before any proposed plan is executed.
+
+Mitigation: Use the skill's security-review path for security-sensitive tasks and verify the plan before authorizing downstream execution.
+
+## Reference(s):
+
+- [Phy Agent Manager on ClawHub](https://clawhub.ai/phy041/skills/phy-agent-manager)
+- [Canlah AI](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown execution plan with classification, phased tables, checkpoints, and prompt-style follow-up commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include subagent recommendations and asks the user to approve, modify, or cancel the proposed plan before execution.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

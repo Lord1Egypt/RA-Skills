@@ -1,38 +1,54 @@
-## Description: <br>
-Test skill created and published directly via ClawHub API using provided key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test skill created and published directly via ClawHub API using provided key. Use when testing ClawHub publish flow from agents or Grok.
 
-## Publisher: <br>
-[maliot100x](https://clawhub.ai/user/maliot100x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maliot100x](https://clawhub.ai/user/maliot100x)
 
-## Use Case: <br>
-Developers and agents use this skill to verify that a ClawHub skill publish is live and that the loaded skill can report a successful publishing-flow test. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release has crypto and sensitive-credential capability tags that are not reflected in the actual skill instructions. <br>
-Mitigation: Do not treat this release as a crypto or credential-management tool; use it only as a publishing-flow test unless the skill instructions are updated and rescanned. <br>
+## Use Case:
 
+Developers and agents use this skill to verify that ClawHub skill publishing and registry loading work for a test release.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/maliot100x/claw-test-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces a short confirmation message and suggested install commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release evidence) <br>
+Risk: A user may install the test skill expecting production functionality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the package name and intended test purpose before installing; the skill only reports publish success and suggests install commands.
+
+Risk: The skill references publishing with an API key in its notes, which could be mistaken for a request to provide credentials.
+
+Mitigation: Do not provide credentials to this skill; evidence.security states it does not request credentials, execute code, collect data, or persist changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maliot100x/skills/claw-test-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/maliot100x)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No side effects; reports publish success and suggests install commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

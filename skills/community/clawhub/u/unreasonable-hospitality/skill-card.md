@@ -1,42 +1,54 @@
-## Description: <br>
-Applies Will Guidara's Unreasonable Hospitality principles and PDCA closed-loop feedback to AI product design, UX review, copywriting, assistant behavior, and team process improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply Will Guidara's 'Unreasonable Hospitality' and PDCA closed-loop feedback to AI product design, development, and interaction so products become more emotionally memorable and sustainably excellent.
 
-## Publisher: <br>
-[zacko2o](https://clawhub.ai/user/zacko2o) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zacko2o](https://clawhub.ai/user/zacko2o)
 
-## Use Case: <br>
-Product builders, UX designers, copywriters, and AI assistant developers use this skill to make interfaces, messages, onboarding, error states, reviews, and feedback loops feel more personal, useful, and memorable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence a broad range of product, writing, and assistant-interaction tasks, including personalization advice. <br>
-Mitigation: Apply the guidance within normal user-consent, privacy, and data-access boundaries. <br>
-Risk: Hospitality-oriented suggestions could make an experience feel warmer while leaving functional, accessibility, or reliability issues unresolved. <br>
-Mitigation: Use the skill alongside review of core functionality, performance, error handling, accessibility, and human approval before release. <br>
+## Use Case:
 
+Developers, designers, product teams, and AI assistant builders use this skill to apply hospitality-focused UX, copy, onboarding, feedback, and product-quality review practices. It helps agents evaluate experiences, suggest warmer interaction patterns, and maintain closed-loop feedback discipline.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zacko2o/unreasonable-hospitality) <br>
-- [Unreasonable Hospitality - Design & Development Checklist](references/checklist.md) <br>
-- [Unreasonable Hospitality - Core Principles Reference](references/principles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, scoring rubrics, review notes, and suggested copy or interaction improvements] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no code execution, credential access, persistence, or hidden data handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill has a broad trigger description and may influence work outside product-experience tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it explicitly for UX, copy, onboarding, feedback, and product review work when a hospitality-focused lens is desired.
+
+Risk: Hospitality-focused suggestions can make product behavior warmer but may also add unnecessary delight, personalization, or process.
+
+Mitigation: Review suggestions against user intent, accessibility, performance, and the skill's own 95 percent technical-excellence baseline before adopting them.
+
+## Reference(s):
+
+- [Unreasonable Hospitality Core Principles Reference](references/principles.md)
+- [Unreasonable Hospitality Design and Development Checklist](references/checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance, checklists, review scores, suggested copy, and proposed product or code changes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool execution, credential access, or persistence behavior is described in the release evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

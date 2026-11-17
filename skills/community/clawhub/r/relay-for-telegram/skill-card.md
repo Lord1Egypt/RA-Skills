@@ -1,43 +1,64 @@
-## Description: <br>
-Relay for Telegram lets agents search, summarize, extract action items, and recall information from a user's synced Telegram messages, chats, DMs, groups, and channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Relay for Telegram lets agents search, retrieve, summarize, and extract structured information from a user's synced Telegram message history through Relay's read-only API.
 
-## Publisher: <br>
-[RelayIntel](https://clawhub.ai/user/RelayIntel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[relayintel](https://clawhub.ai/user/relayintel)
 
-## Use Case: <br>
-External users and agents use Relay for Telegram to search, summarize, and extract structured information from the user's previously synced Telegram chats, DMs, groups, and channels. The skill is intended for Telegram-related recall, catch-up, and communication analysis tasks after the user configures RELAY_API_KEY. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose private Telegram message history through broad model invocation. <br>
-Mitigation: Install only if the user trusts Relay with synced Telegram data, keep RELAY_API_KEY private, and consider setting disable-model-invocation to true so access occurs only on explicit requests. <br>
-Risk: The artifact presents the API as read-only while documenting billing and referral account actions. <br>
-Mitigation: Review billing and referral requests before use, and prefer read-only search, chat listing, and message retrieval operations unless the user explicitly approves account changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/RelayIntel/relay-for-telegram) <br>
-- [Relay for Telegram homepage](https://relayfortelegram.com) <br>
-- [Relay Agent API base](https://relayfortelegram.com/api/v1) <br>
-- [Relay skill source](https://relayfortelegram.com/skill.md) <br>
-- [Relay agent guide](https://relayfortelegram.com/agents.md) <br>
+## Use Case:
 
+External users and developers use this skill to answer questions about synced Telegram conversations, search message history, summarize chats, and extract action items or decisions from private communication data.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown guidance with shell commands, REST API examples, and optional JSON summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RELAY_API_KEY; accesses previously synced Telegram data through Relay's API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can expose private synced Telegram message history to an agent and a third-party Relay service.
+
+Mitigation: Install only when the user trusts Relay with Telegram data, keep RELAY_API_KEY in managed secrets or environment variables, and limit responses to necessary excerpts with summaries for the rest.
+
+Risk: Automatic model invocation can cause Telegram message access without a separate explicit command for each request.
+
+Mitigation: Require explicit invocation for sensitive deployments by setting disable-model-invocation to true or by removing RELAY_API_KEY when message access is not needed.
+
+Risk: Telegram authentication codes, 2FA passwords, API keys, and OAuth tokens are sensitive credentials.
+
+Mitigation: Do not put real verification codes or 2FA passwords into chat transcripts, shell history, logs, or config files; use secure secret storage for tokens and API keys.
+
+Risk: Billing, upgrade, and referral endpoints can trigger account or payment-related workflows outside the core read-only message-search use case.
+
+Mitigation: Treat billing, upgrade, checkout, portal, cancellation, and referral actions as requiring separate explicit user approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/relayintel/skills/relay-for-telegram)
+- [Relay homepage](https://relayfortelegram.com)
+- [Relay API base](https://relayfortelegram.com/api/v1)
+- [Relay skill documentation](https://relayfortelegram.com/skill.md)
+- [Relay agent documentation](https://relayfortelegram.com/agents.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance, API calls]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RELAY_API_KEY and returns information derived from previously synced Telegram messages.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

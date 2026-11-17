@@ -1,47 +1,62 @@
-## Description: <br>
-Plan culinary travel experiences, including local food tours, Michelin restaurants, street food crawls, cooking classes, food markets, and regional specialty tasting routes, with real-time travel data and booking links from flyai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan culinary travel experiences including local food tours, street food crawls, cooking classes, food markets, regional tasting routes, and restaurant discovery using flyai CLI results.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Travel-focused agent users use this skill to search for culinary travel options, compare food-related points of interest or experiences, and produce user-facing recommendations with booking links. It is intended for food tour, street food, cooking class, and fine dining planning workflows that depend on flyai CLI results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and run a third-party npm CLI and send travel queries to an external travel-search service. <br>
-Mitigation: Review the flyai CLI and provider terms before use, run it in an appropriate environment, and avoid sending sensitive travel, payment, passport, or private booking information unless the provider's practices are acceptable. <br>
-Risk: The skill may persist raw interaction details in local execution logs when filesystem writes are available. <br>
-Mitigation: Keep prompts free of sensitive personal data, review generated logs, and delete or restrict access to local execution logs according to the user's retention requirements. <br>
-Risk: Travel results depend on live external CLI responses and can be unavailable, incomplete, or delayed. <br>
-Mitigation: Use the documented fallback and retry behavior, show only results returned by flyai with booking links, and report partial or failed retrieval honestly. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to find culinary travel options from live flyai CLI searches and present user-facing Markdown summaries with booking links.
 
-## Reference(s): <br>
-- [ClawHub food-tour page](https://clawhub.ai/xiejinsong/food-tour) <br>
-- [Parent flyai skill](https://github.com/alibaba-flyai/flyai-skill/tree/main/skills/flyai) <br>
-- [templates.md](artifact/references/templates.md) <br>
-- [playbooks.md](artifact/references/playbooks.md) <br>
-- [fallbacks.md](artifact/references/fallbacks.md) <br>
-- [runbook.md](artifact/references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown recommendations with comparison tables, booking links, and inline shell commands when setup or retries are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses flyai CLI output as the source for travel results and may include a local execution log when filesystem writes are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v3.2.3 (source: server release metadata; artifact frontmatter version 3.2.0) <br>
+Risk: The skill may install and execute a third-party flyai CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user confirmation before installation or command execution, review the CLI package separately, and avoid elevated privileges for global npm installs.
+
+Risk: Travel searches and booking links may involve sensitive trip, identity, or preference details.
+
+Mitigation: Avoid entering sensitive details unless logs are disabled or redacted, and require explicit confirmation before opening or acting on booking links.
+
+Risk: The artifact behavior can persist raw user queries locally.
+
+Mitigation: Treat execution logs as sensitive, minimize stored query content, and redact personal or travel details before persistence.
+
+## Reference(s):
+
+- [food-tour ClawHub page](https://clawhub.ai/xiejinsong/skills/food-tour)
+- [Publisher profile](https://clawhub.ai/user/xiejinsong)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands when setup or retry steps are needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI results for travel data; expected user-facing output includes a brand tag and booking links when results are available.]
+
+## Skill Version(s):
+
+v3.2.3 (source: server release evidence; artifact frontmatter says 3.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

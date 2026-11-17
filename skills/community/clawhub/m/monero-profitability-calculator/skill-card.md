@@ -1,42 +1,57 @@
-## Description: <br>
-Calculates estimated Monero mining profitability from hardware, electricity, network, and market inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate Monero mining profitability by estimating XMR earnings, electricity costs, net profit, break-even points, and ROI from hardware, electricity, and market inputs.
 
-## Publisher: <br>
-[liumaimiao](https://clawhub.ai/user/liumaimiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liumaimiao](https://clawhub.ai/user/liumaimiao)
 
-## Use Case: <br>
-Developers, miners, and analysts use this skill to estimate XMR earnings, electricity costs, net profit or loss, break-even price, and ROI for candidate mining setups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Profitability numbers can be misleading if market price, network difficulty, block reward, or electricity inputs are stale or simplified. <br>
-Mitigation: Treat outputs as estimates and verify current Monero market, network, and local electricity data before making mining or hardware decisions. <br>
-Risk: The artifact includes example Python code that calls CoinGecko for market data. <br>
-Mitigation: Review outbound API use and data handling before running adapted code in controlled environments. <br>
-Risk: The artifact shows a `monero-profitability` command, but the release evidence reports no included executable code. <br>
-Mitigation: Do not install or run a separate command with that name unless its source and behavior are independently trusted. <br>
+## Use Case:
 
+Developers and mining hobbyists use this skill to estimate whether a Monero mining setup is likely to be profitable under specific hardware, electricity, pool fee, and market assumptions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liumaimiao/monero-profitability-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown with command examples, calculation tables, and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Profitability estimates depend on current market, network, hardware, and electricity inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is an informational calculator rather than a complete CLI tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt any example commands or Python code before execution, and validate assumptions against current mining, network, electricity, and market data.
+
+Risk: The example Python code may contact CoinGecko to retrieve public Monero price data.
+
+Mitigation: Run it only where outbound public price lookup is acceptable, and do not include secrets or private data in requests.
+
+Risk: A voluntary XMR tip address is included in the artifact.
+
+Mitigation: Treat tipping as optional and verify any payment destination before sending funds.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liumaimiao/skills/monero-profitability-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown with examples, tables, and inline Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes estimates and example calculations; values depend on user-supplied inputs and current market/network data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

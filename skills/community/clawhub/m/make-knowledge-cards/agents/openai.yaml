@@ -1,0 +1,4 @@
+interface:
+  display_name: "Knowledge Cards Generator"
+  short_description: "Convert articles or Markdown/TXT files into 5-8 structured knowledge cards for review and self-testing."
+  default_prompt: "Please convert the following content into knowledge cards."

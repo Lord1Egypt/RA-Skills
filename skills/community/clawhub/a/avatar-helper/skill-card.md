@@ -1,46 +1,59 @@
-## Description: <br>
-Helps an agent browse an external avatar gallery, choose an avatar, preview it with the user, and download the selected image locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Avatar Helper helps an agent browse a designated avatar gallery, present an avatar choice, and download the selected image locally after user confirmation.
 
-## Publisher: <br>
-[adminlove520](https://clawhub.ai/user/adminlove520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adminlove520](https://clawhub.ai/user/adminlove520)
 
-## Use Case: <br>
-External users and agent operators use this skill when they want an agent to select an avatar from a designated gallery, ask for user approval, and save the approved image to the workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prompt unsolicited avatar-selection behavior after installation. <br>
-Mitigation: Disable unsolicited post-install actions and require the user to explicitly request avatar selection before the agent starts browsing. <br>
-Risk: The skill browses an external avatar gallery. <br>
-Mitigation: Confirm that browsing the configured gallery is acceptable before use and review any selected image URL before downloading. <br>
-Risk: The skill can write a downloaded image to the local workspace. <br>
-Mitigation: Require explicit confirmation for downloads and verify the destination path before saving workspace/assets/avatar.jpg. <br>
-Risk: The artifact includes intimate or persona-specific prompt wording that may be inappropriate for some deployments. <br>
-Mitigation: Remove or adapt persona-specific language before enabling the skill in shared, professional, or customer-facing environments. <br>
+## Use Case:
 
+Users and agents use this skill to choose an avatar from a specified gallery, preview the selected image, and save it as a local avatar asset after confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adminlove520/avatar-helper) <br>
-- [Publisher profile](https://clawhub.ai/user/adminlove520) <br>
-- [Avatar gallery](https://wallpaper.dfyx.click/avatar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown conversation with browser actions and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save an avatar image to workspace/assets/avatar.jpg after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may proactively ask to choose an avatar and may give weak control to user preferences or cancellation requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before browsing, selecting, or downloading, and treat user preferences and cancellation requests as authoritative.
+
+Risk: The skill browses a specific external wallpaper site and downloads an image.
+
+Mitigation: Confirm the site and target image URL before download, and review the selected image source before saving.
+
+Risk: The default save path can overwrite workspace/assets/avatar.jpg.
+
+Mitigation: Ask for the destination path or check for an existing file before writing.
+
+## Reference(s):
+
+- [Avatar Helper ClawHub page](https://clawhub.ai/adminlove520/skills/avatar-helper)
+- [adminlove520 publisher profile](https://clawhub.ai/user/adminlove520)
+- [Designated avatar gallery](https://wallpaper.dfyx.click/avatar)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands]
+
+**Output Format:** [Markdown with browser-action examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May browse an external avatar gallery and save the selected image to workspace/assets/avatar.jpg after confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact _meta.json and CHANGELOG.md list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

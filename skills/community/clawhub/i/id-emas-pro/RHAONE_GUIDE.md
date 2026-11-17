@@ -102,7 +102,7 @@ Tambahkan ke `~/.openclaw/openclaw.json`:
 ```json
 {
   "env": {
-    "KIMI_API_KEY": "sk-xxxxxxxxxxxxxxxxxxxx"
+    "KIMI_API_KEY": "REDACTED-SECRET"
   },
   "tools": {
     "allow": ["exec", "group:fs"]

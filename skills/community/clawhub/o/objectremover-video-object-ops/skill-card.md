@@ -1,41 +1,55 @@
-## Description: <br>
-Remove or extract objects from videos with AI. Supports watermark/distraction removal, subject extraction with transparent background, natural-language object selection, upload-or-URL input, and end-to-end processing from input to downloadable result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remove or extract objects from videos with AI. Supports watermark/distraction removal, subject extraction with transparent background, natural-language object selection, upload-or-URL input, and end-to-end processing from input to downloadable result.
 
-## Publisher: <br>
-[quanyongli](https://clawhub.ai/user/quanyongli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quanyongli](https://clawhub.ai/user/quanyongli)
 
-## Use Case: <br>
-External creators, editors, and automation developers use this skill to remove unwanted objects or extract subjects from videos, then retrieve a processed output through a hosted ObjectRemover workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected videos, video URLs, prompts, and processing data are sent to the ObjectRemover backend. <br>
-Mitigation: Avoid sensitive, confidential, regulated, or rights-restricted media unless the provider's data handling and retention terms are acceptable. <br>
-Risk: Some flows may require credits, checkout, or top-up before processing can continue. <br>
-Mitigation: Manually confirm any credit purchase or checkout step before proceeding. <br>
+## Use Case:
 
+External creators, editors, and developers use this skill to guide AI video object removal or subject extraction workflows from upload or URL input through mask generation, task polling, and downloadable output retrieval.
 
-## Reference(s): <br>
-- [ObjectRemover Video Object Ops Reference](artifact/reference.md) <br>
-- [ObjectRemover backend API](https://apiobjectremover.tokenlens.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Configuration] <br>
-**Output Format:** [Markdown with endpoint paths, request rules, and troubleshooting steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include upload, mask generation, task start, polling, authentication, credit, and output retrieval guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The workflow sends video files, prompt text, source URLs, and session or API identity information to the ObjectRemover backend for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only media approved for that backend service, and avoid confidential or regulated content unless retention and data-handling terms have been reviewed.
+
+Risk: Host authentication mode may vary between guest sessions and API automation.
+
+Mitigation: Confirm the host-provided credential mechanism and route processing calls to the documented backend API domain before starting automated jobs.
+
+## Reference(s):
+
+- [ObjectRemover Video Object Ops Reference](artifact/reference.md)
+- [ObjectRemover backend API](https://apiobjectremover.tokenlens.ai)
+- [ClawHub skill page](https://clawhub.ai/quanyongli/skills/objectremover-video-object-ops)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, configuration]
+
+**Output Format:** [Markdown with endpoint and request-flow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; guides upload, mask generation, task start, polling, troubleshooting, and result retrieval.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

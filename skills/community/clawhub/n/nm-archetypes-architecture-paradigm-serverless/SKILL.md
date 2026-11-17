@@ -1,20 +1,20 @@
 ---
 name: architecture-paradigm-serverless
-description: Applies serverless FaaS patterns for event-driven workloads
-version: 1.9.8
+description: |
+  Serverless FaaS patterns. Use for bursty event-driven workloads with pay-per-execution cost and little infrastructure
+version: 1.10.3
 triggers:
   - architecture
   - serverless
   - faas
   - event-driven
   - cost-optimization
-  - designing bursty workloads with minimal infrastructure and pay-per-execution cost model
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/archetypes", "emoji": "\ud83c\udfd7\ufe0f"}}
 source: claude-night-market
 source_plugin: archetypes
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # The Serverless Architecture Paradigm
@@ -57,13 +57,20 @@ source_plugin: archetypes
 
 ## Concrete Components
 
-These vocabulary items name the concrete tools and abstractions
-that show up when the paradigm is implemented. They are not
-required dependencies and they are not part of the skill's
-``tools:`` frontmatter (which is reserved for Claude Code tool
-restrictions). Use this list to disambiguate during architecture
-discussions.
+Vocabulary for the tools and abstractions an implementation of this
+paradigm tends to carry. Not dependencies, and not ``tools:`` frontmatter.
 
-- ``cloud-sdk`` -- AWS SDK, Google Cloud SDK, or Azure SDK; first-class platform integration
-- ``serverless-framework`` -- Serverless Framework, SAM, or CDK; declarative function deployment
-- ``IaC-tools`` -- Terraform, Pulumi, or platform-native IaC for shared infrastructure around functions
+- ``cloud-sdk``: AWS SDK, Google Cloud SDK, or Azure SDK; first-class platform integration
+- ``serverless-framework``: Serverless Framework, SAM, or CDK; declarative function deployment
+- ``IaC-tools``: Terraform, Pulumi, or platform-native IaC for shared infrastructure around functions
+
+## Exit Criteria
+
+- [ ] An ADR documents function triggers, runtime choices, state externalization strategy,
+  cold-start mitigation approach, and cost projections before any function is deployed.
+- [ ] A complete IaC definition (SAM, CDK, Terraform, or equivalent) exists for every function
+  and its supporting infrastructure, and a deploy from scratch reproduces it.
+- [ ] Every function handler is idempotent: repeated execution with the same event produces the
+  same outcome and no duplicate side effects (verified by unit test with replayed inputs).
+- [ ] Observability dashboards cover function duration, error rate, cold-start frequency, and
+  cost per invocation before the function reaches production traffic.

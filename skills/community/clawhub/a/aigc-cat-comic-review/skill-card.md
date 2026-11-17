@@ -1,41 +1,54 @@
-## Description: <br>
-AI漫剧改编审核专家，用25个维度审核剧本的爆款潜力、爽点打脸、悬念密度和改编适配度。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI漫剧改编审核专家，提供25维剧本审核，覆盖爆款潜力、爽点打脸、悬念检测、改编适配和AI制作分析。
 
-## Publisher: <br>
-[303008132-collab](https://clawhub.ai/user/303008132-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[303008132-collab](https://clawhub.ai/user/303008132-collab)
 
-## Use Case: <br>
-External content creators, script reviewers, and development teams use this skill to evaluate Chinese AI comic or short-drama scripts with a fixed rubric covering market fit, retention, commercial value, AI production feasibility, and improvement priorities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be invoked by generic script-review prompts and return a strict Chinese-language, 25-section critique that may not match every requested tone or language. <br>
-Mitigation: Use it when a structured AI comic or short-drama review is desired, and review the output for tone, language, and format fit before sharing. <br>
-Risk: The skill is designed for direct commercial script assessment and may produce blunt criticism. <br>
-Mitigation: Route sensitive editorial reviews through a human reviewer before using the critique with writers or external stakeholders. <br>
+## Use Case:
 
+External creators, content teams, and developers use this Chinese-language skill to evaluate scripts for AI comic, short-drama, and IP adaptation readiness through a fixed 25-part review rubric.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/303008132-collab/skills/aigc-cat-comic-review) <br>
-- [Publisher profile](https://clawhub.ai/user/303008132-collab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured as a 25-section Chinese-language review with score tables and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a fixed review format and does not call tools or external APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad Chinese script-analysis requests may receive a long fixed-format review when the user expected a rewrite or general critique.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants the 25-part AI comic or short-drama adaptation audit before applying the rubric.
+
+Risk: The skill produces opinionated editorial and commercial-readiness judgments that may be over-weighted as definitive market predictions.
+
+Mitigation: Treat scores and recommendations as review guidance and validate release decisions with human content leads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/303008132-collab/skills/aigc-cat-comic-review)
+- [Publisher profile](https://clawhub.ai/user/303008132-collab)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown-style Chinese review with section headings, scoring tables, and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fixed 25-part rubric; no code execution, data access, persistence, or hidden system changes indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

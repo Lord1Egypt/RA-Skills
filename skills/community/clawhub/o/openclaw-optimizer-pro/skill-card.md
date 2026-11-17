@@ -1,42 +1,63 @@
-## Description: <br>
-OpenClaw token cost reduction, performance tuning, and security hardening guide. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw token cost reduction, performance tuning, and security hardening guide.
 
-## Publisher: <br>
-[learsea](https://clawhub.ai/user/learsea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[learsea](https://clawhub.ai/user/learsea)
 
-## Use Case: <br>
-Developers and operators use this skill to audit and tune OpenClaw installations for lower token cost, better tool availability, cache/search configuration, and security hardening. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives broad optimization and security guidance that could lead to unintended OpenClaw setting or file changes. <br>
-Mitigation: Ask for read-only diagnostics first and require a preview of files or settings to be changed before allowing edits. <br>
-Risk: The skill includes memory-log cleanup behavior that can remove useful history. <br>
-Mitigation: Back up memory logs or explicitly confirm they are no longer needed before permitting deletion. <br>
+## Use Case:
 
+Developers and operators use this skill to tune OpenClaw configuration, reduce token and search costs, restore missing capabilities, and review local security settings.
 
-## Reference(s): <br>
-- [Openclaw Optimizer Pro on ClawHub](https://clawhub.ai/learsea/openclaw-optimizer-pro) <br>
-- [Gemini API key setup](https://aistudio.google.com/apikey) <br>
-- [qmd GitHub repository](https://github.com/tobi/qmd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local OpenClaw file or configuration changes; review proposed edits before applying them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata and target metadata) <br>
+Risk: The skill recommends broad persistent changes to OpenClaw configuration and SOUL.md policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed configuration or policy change manually before applying it, especially changes that affect long-term agent behavior.
+
+Risk: The skill may lead users to expose sensitive OpenClaw configuration, account identifiers, API keys, or credentials while auditing settings.
+
+Mitigation: Inspect only needed fields locally and redact tokens or infrastructure details from chat, logs, and shared outputs.
+
+Risk: The skill recommends enabling a full tools profile, which can expand the available tool surface.
+
+Mitigation: Avoid setting tools.profile to full unless the user understands and needs the additional enabled tools.
+
+Risk: The skill includes unpinned global npx or npm install commands.
+
+Mitigation: Verify package source, version, and behavior before running global installation commands.
+
+## Reference(s):
+
+- [Openclaw Optimizer Pro on ClawHub](https://clawhub.ai/learsea/skills/openclaw-optimizer-pro)
+- [Google AI Studio API Keys](https://aistudio.google.com/apikey)
+- [qmd GitHub Repository](https://github.com/tobi/qmd)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with tables and inline shell, JSON, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent OpenClaw policy, configuration, permission, firewall, and global package changes that should be reviewed before use.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

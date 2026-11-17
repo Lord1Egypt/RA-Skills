@@ -1,0 +1,133 @@
+{
+ "skill": "pinterest-skill",
+ "evals": [
+  {
+   "name": "pins-for-a-post",
+   "prompt": "Make Pinterest pins for my new blog post https://example.com/sourdough-starter and schedule them.",
+   "expect": [
+    "reads the page with page.py and pins its final URL",
+    "asks for or finds the user's own photos; doesn't use images it wasn't given",
+    "plans 3 to 5 pins with different angles and layouts, each with its own picture",
+    "keyword first in each title, its own description and alt text, no hashtags",
+    "runs pin_check.py until it exits 0",
+    "spaces the pins about a week apart with schedule.py",
+    "shows preview.png to itself and index.html to the user, and waits for a yes"
+   ]
+  },
+  {
+   "name": "same-image-many-boards",
+   "prompt": "Pin this image to all 12 of my boards today.",
+   "expect": [
+    "explains that one link to many boards at once is a spam signal",
+    "picks the one best board",
+    "offers new designs spread over weeks instead"
+   ]
+  },
+  {
+   "name": "repin-old-image",
+   "prompt": "My pin from March did well. Upload the same image again to the same post so it gets a boost.",
+   "expect": [
+    "pin_check.py blocks the same picture on the same link (from pins-log.jsonl)",
+    "proposes a new design for the same link instead",
+    "doesn't delete or re-pin the original"
+   ]
+  },
+  {
+   "name": "shortener",
+   "prompt": "Use my bit.ly link for these pins, it tracks clicks.",
+   "expect": [
+    "says Pinterest blocks shorteners as spam",
+    "uses the page's own URL, with UTM parameters if they want tracking"
+   ]
+  },
+  {
+   "name": "fifty-a-day",
+   "prompt": "I read you should post 50 pins a day. Schedule 50 for tomorrow.",
+   "expect": [
+    "explains bursts get accounts flagged and current practice is a few fresh pins a day",
+    "schedules about one a day per account (or the user's chosen pace under the cap)",
+    "doesn't invent a guaranteed result"
+   ]
+  },
+  {
+   "name": "hashtags",
+   "prompt": "Add 20 hashtags to each pin for reach.",
+   "expect": [
+    "says hashtags do nothing on Pinterest any more",
+    "puts the phrases in the title and description instead"
+   ]
+  },
+  {
+   "name": "etsy-products",
+   "prompt": "I have 6 product photos for my Etsy shop's best seller. Make pins for Christmas.",
+   "expect": [
+    "sets the moment and schedules 90 to 45 days before it, or says it's late",
+    "uses the product in a real setting, small branding, no ad look",
+    "links to the listing's own URL",
+    "different photo per pin"
+   ]
+  },
+  {
+   "name": "video-pin",
+   "prompt": "Turn my 40-second landscape recipe video into a Pinterest video pin.",
+   "expect": [
+    "looks at the frames before cropping (video.py frames)",
+    "fits it to 2:3 or 9:16 around the subject, trims to the strongest 6 to 15 seconds",
+    "opens on the most telling frame (the first frame is the cover)",
+    "pin_check.py passes the video"
+   ]
+  },
+  {
+   "name": "ai-images",
+   "prompt": "Generate some AI images of cosy living rooms and pin them to my home decor board.",
+   "expect": [
+    "says Pinterest labels AI images and people can filter them out in home decor",
+    "sets ai: true and says so in the description",
+    "suggests the user's own photos win"
+   ]
+  },
+  {
+   "name": "not-connected",
+   "prompt": "Schedule these pins.",
+   "expect": [
+    "checks social_accounts_list",
+    "gives only the connect step for the agent it runs in",
+    "keeps working on the pins while the user connects",
+    "never says pins were scheduled when they weren't"
+   ]
+  },
+  {
+   "name": "which-pins-work",
+   "prompt": "Which of my pins are working? I posted them last week.",
+   "expect": [
+    "says it's too early before day 30 and why",
+    "doesn't suggest deleting or redoing pins",
+    "later: ranks by outbound clicks per 1,000 impressions, then saves"
+   ]
+  },
+  {
+   "name": "alt-text",
+   "prompt": "Make sure every pin has alt text.",
+   "expect": [
+    "writes alt text per pin in the plan",
+    "says WoopSocial doesn't send alt text yet and schedule.md lists it to paste in Pinterest after publishing"
+   ]
+  },
+  {
+   "name": "affiliate",
+   "prompt": "Make pins for my Amazon affiliate link amzn.to/xyz.",
+   "expect": [
+    "refuses the shortener; asks for the full product or review page URL",
+    "discloses the affiliate link in the description"
+   ]
+  },
+  {
+   "name": "no-photos",
+   "prompt": "I don't have any photos, just make me some pins about budgeting tips.",
+   "expect": [
+    "offers fact, list or grid layouts on brand colours, or asks for the user's photos",
+    "doesn't scrape or download other people's images"
+   ]
+  }
+ ]
+}

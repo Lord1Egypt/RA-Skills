@@ -1,43 +1,58 @@
-## Description: <br>
-Stocktorch helps agents analyze A-share stocks and broader market conditions using technical, financial, capital-flow, peer-comparison, and news signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stocktorch helps analyze China A-share stocks and broad market conditions using technical, financial, capital-flow, peer-comparison, and news signals.
 
-## Publisher: <br>
-[fslong520](https://clawhub.ai/user/fslong520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fslong520](https://clawhub.ai/user/fslong520)
 
-## Use Case: <br>
-External users and agents use this skill to produce stock and market analysis reports for A-share equities, including focused technical, financial, capital-flow, peer-comparison, and market-wide views. Outputs should be reviewed before relying on any investment suggestion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock names and queries may be sent to web search providers during analysis. <br>
-Mitigation: Confirm that this disclosure is acceptable before installation and avoid entering sensitive portfolio or account information. <br>
-Risk: Referenced scripts or documentation may be missing or differ from the trusted package. <br>
-Mitigation: Verify that referenced run_skill.py and docs files come from the same trusted release before executing commands. <br>
-Risk: Generated market reports and investment suggestions can be incorrect, stale, or misleading. <br>
-Mitigation: Review cited data sources and timestamps before using the report for financial decisions. <br>
+## Use Case:
 
+External users and developers use Stocktorch for stock-research assistance on China A-share equities and real-time market conditions. It can produce module-specific analysis or a combined report that integrates technical, financial, capital-flow, peer-comparison, and news context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fslong520/stocktorch) <br>
-- [Publisher profile](https://clawhub.ai/user/fslong520) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands; optional JSON output is described by the skill.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include source and timestamp expectations; generated investment suggestions require human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Stock-research outputs may be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as research assistance only and verify investment decisions against authoritative market data or qualified financial advice.
+
+Risk: The skill may search the web and save generated analysis reports locally.
+
+Mitigation: Run it only where browser-based research and local report writes are expected, and review data sources and timestamps before relying on results.
+
+Risk: The packaged artifact contains instructions but appears to lack the referenced analysis scripts and documentation.
+
+Mitigation: Confirm the required runtime files are present before attempting workflows such as run_skill.py.
+
+## Reference(s):
+
+- [Stocktorch ClawHub skill page](https://clawhub.ai/fslong520/skills/stocktorch)
+- [fslong520 ClawHub publisher profile](https://clawhub.ai/user/fslong520)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown research reports with shell command examples and optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may be saved locally under a reports directory when the referenced runtime files are available.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

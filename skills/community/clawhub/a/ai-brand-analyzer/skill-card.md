@@ -1,38 +1,60 @@
-## Description: <br>
-AI Brand Analyzer uses Gemini Flash with Google Search grounding to generate reusable brand identity profiles as JSON for ad generation and creative workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze brands to generate comprehensive brand identity profiles (JSON). Use when the user wants to analyze a brand, create a brand profile, or needs brand data for ad generation. Stores profiles for reuse across Ad-Ready, Morpheus, and other creative workflows. Can list existing profiles and update them.
 
-## Publisher: <br>
-[PauldeLavallaz](https://clawhub.ai/user/PauldeLavallaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pauldelavallaz](https://clawhub.ai/user/pauldelavallaz)
 
-## Use Case: <br>
-Developers and creative workflow operators use this skill to research a brand and produce or update a structured brand identity JSON profile for ad generation, Ad-Ready, Morpheus, or custom creative pipelines. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Brand analysis prompts and researched brand context are sent to Google/Gemini. <br>
-Mitigation: Use the skill only when that data handling is acceptable, and provide the Gemini API key deliberately through the environment or command option. <br>
-Risk: The --output and --auto-save options can create or overwrite JSON files where the agent has write permission. <br>
-Mitigation: Prefer stdout for review first, or choose an explicit output path and review the generated JSON before reuse in downstream creative workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and creative workflow operators use this skill to research a brand with Gemini Flash and Google Search grounding, then generate a structured JSON brand identity profile for ad generation and related creative workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON brand identity profile, with optional Markdown-facing shell command guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Gemini API key. Output may be written to stdout, a user-specified JSON path, or the configured Ad-Ready brands catalog when auto-save is used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Brand names and prompts are sent to Gemini and Google Search.
+
+Mitigation: Avoid confidential unreleased brands and install only when this data sharing is acceptable.
+
+Risk: AI-generated web research may be reused in downstream creative workflows without enough validation.
+
+Mitigation: Review generated brand profiles before using them in ad generation or other AI workflows.
+
+Risk: Auto-save can write generated profiles into the Ad-Ready brand catalog.
+
+Mitigation: Back up or review catalog files before using --auto-save.
+
+Risk: The script declares a broad google-genai dependency range.
+
+Mitigation: Pin dependencies before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pauldelavallaz/skills/ai-brand-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON brand identity profile, optionally saved as a file or printed to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses GEMINI_API_KEY or --api-key and can auto-save profiles to an Ad-Ready brand catalog.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

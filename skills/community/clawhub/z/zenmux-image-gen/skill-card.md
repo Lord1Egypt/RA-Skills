@@ -1,42 +1,57 @@
-## Description: <br>
-Generate images from text prompts or input images using the ZenMux Vertex AI-compatible API with Gemini image models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images from text prompts using the ZenMux API with Gemini image models, including aspect ratio and resolution controls and optional image-to-image editing.
 
-## Publisher: <br>
-[thinkthinking](https://clawhub.ai/user/thinkthinking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thinkthinking](https://clawhub.ai/user/thinkthinking)
 
-## Use Case: <br>
-Developers and creative users use this skill to generate images from prompts, edit existing images, and control model, aspect ratio, and resolution through a command-line script. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and optional input images are sent to ZenMux for generation. <br>
-Mitigation: Use the skill only with prompts and images that are acceptable to share with ZenMux. <br>
-Risk: Providing the API key with the --api-key flag can expose it in shell history. <br>
-Mitigation: Set ZENMUX_API_KEY in the environment instead of passing the key on the command line. <br>
-Risk: The script can create output directories and write generated image files locally. <br>
-Mitigation: Choose output paths deliberately and review generated files before reuse. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ZenMux](https://zenmux.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/thinkthinking/zenmux-image-gen) <br>
+## Use Case:
 
+Developers and agent users use this skill to generate or edit images from prompts through ZenMux-hosted Gemini image models, saving returned images as local files.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; the Python script writes generated image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZENMUX_API_KEY; supports optional input image, model, aspect ratio, image size, temperature, token limit, and output path settings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts and optional input images are sent to ZenMux.
+
+Mitigation: Use the skill only when ZenMux data handling terms are acceptable, and avoid confidential prompts or images unless approved.
+
+Risk: API keys can be exposed if passed on the command line or committed to source control.
+
+Mitigation: Set ZENMUX_API_KEY in the environment and do not use command-line API key arguments or store keys in repository files.
+
+Risk: Generated images may not match the intended prompt or may fail to return image data.
+
+Mitigation: Review generated outputs before use and adjust prompt, model, aspect ratio, or image size when needed.
+
+## Reference(s):
+
+- [ZenMux](https://zenmux.ai)
+- [ClawHub skill page](https://clawhub.ai/thinkthinking/skills/zenmux-image-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and Python script usage; generated images are saved as local files by the helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script accepts prompt, output path, model, optional input image, temperature, max tokens, aspect ratio, and image size.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

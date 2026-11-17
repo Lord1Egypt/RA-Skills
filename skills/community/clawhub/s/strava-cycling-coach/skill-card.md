@@ -1,44 +1,58 @@
-## Description: <br>
-Track and analyze cycling performance from Strava, including ride data, fitness trends, workout performance, and automatic monitoring of new rides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and analyze cycling performance from Strava, including ride data, fitness trends, workout performance, and automatic new-ride performance analysis.
 
-## Publisher: <br>
-[EricRosenberg](https://clawhub.ai/user/EricRosenberg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ericrosenberg](https://clawhub.ai/user/ericrosenberg)
 
-## Use Case: <br>
-Cyclists and coaching workflows use this skill to fetch Strava virtual ride data, analyze power, heart-rate zones, personal records, training load, and recent fitness trends, and optionally monitor for new rides. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Strava client credentials and OAuth tokens in ~/.config/strava/config.json. <br>
-Mitigation: Use the skill only on trusted machines, keep the config file restricted to the local user, and revoke the Strava application if access is no longer needed. <br>
-Risk: Optional monitoring can run repeatedly from cron and analyze new rides on a schedule. <br>
-Mitigation: Review the cron entry before enabling automation, keep monitoring optional, and remove the entry when stopping use of the skill. <br>
-Risk: Local cache and log files under ~/.cache/strava can contain activity details. <br>
-Mitigation: Avoid shared machines for this skill or clear the cache and logs when the local activity history should not persist. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/EricRosenberg/strava-cycling-coach) <br>
-- [Strava API Reference](artifact/references/api.md) <br>
-- [Strava API Documentation](https://developers.strava.com/docs/reference/) <br>
-- [Strava API Application Settings](https://www.strava.com/settings/api) <br>
+## Use Case:
 
+External athletes and developers use this skill to connect a Strava account, fetch cycling activities, and receive ride analysis covering power, heart-rate zones, personal records, training load, and fitness trends.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Plain text or Markdown ride analysis, optional JSON summaries, and shell commands for setup and monitoring.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use Strava activity/profile data, local Strava configuration, local activity cache/log files, and an optional Telegram chat ID for notifications.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles private Strava activity/profile data and long-lived OAuth tokens.
+
+Mitigation: Use it only when the user is comfortable granting Strava read access; treat the OAuth code, refresh token, client secret, and config file as sensitive credentials.
+
+Risk: The skill stores ride data and logs under the user's home directory.
+
+Mitigation: Restrict ~/.config/strava/config.json to 0600, prefer ~/.cache/strava permissions of 0700 with files set to 0600, and avoid retaining full ride analyses in logs.
+
+Risk: Optional cron monitoring can continue polling Strava and producing analysis after setup.
+
+Mitigation: Review the cron entry before enabling it and remove the entry when automatic monitoring is no longer needed.
+
+## Reference(s):
+
+- [Strava API Reference](references/api.md)
+- [Strava API Documentation](https://developers.strava.com/docs/reference/)
+- [Strava API Application Settings](https://www.strava.com/settings/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text, JSON activity summaries, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Strava ride metrics, locally cached activity data, and optional Telegram notification text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

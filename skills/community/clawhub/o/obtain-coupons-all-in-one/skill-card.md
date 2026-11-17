@@ -1,43 +1,55 @@
-## Description: <br>
-综合优惠券获取工具，支持外卖（美团、饿了么、京东）、快递（顺丰、中通、圆通等）、出行（滴滴、携程）、电影票（淘票票、猫眼）等全平台优惠券，一键获取所有优惠。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches takeout, courier, travel, and movie-ticket coupons and presents redemption links, codes, or QR codes.
 
-## Publisher: <br>
-[moooai](https://clawhub.ai/user/moooai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moooai](https://clawhub.ai/user/moooai)
 
-## Use Case: <br>
-External users use this skill to request coupon codes, coupon links, QR image URLs, and redemption guidance for takeout, parcel, travel, and movie-ticket platforms. It is suited for agents that need to collect and present currently available third-party coupon offers by category or platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill displays third-party coupon links and QR codes that may lead users outside the agent experience. <br>
-Mitigation: Ask users to verify destinations before opening links or scanning QR codes, and avoid entering account, payment, or personal information unless they confirm the intended platform. <br>
-Risk: Coupon APIs may be unavailable or returned offers may change, expire, or fail to redeem. <br>
-Mitigation: Present API-returned coupon codes and links unchanged, include the returned redemption guidance, and provide retry or backup-skill guidance when an API call fails. <br>
+## Use Case:
 
+People using China-market services can ask an assistant to find available takeout, parcel, travel, and movie-ticket coupons and get the links or codes needed to redeem them.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/moooai/obtain-coupons-all-in-one) <br>
-- [Publisher Profile](https://clawhub.ai/user/moooai) <br>
-- [Homepage](https://github.com/moooai/obtain-coupons-all-in-one) <br>
-- [全平台优惠券API接口文档](references/api_documentation.md) <br>
+### Deployment Geography for Use:
 
+China-market services; availability depends on the platform.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with coupon codes, coupon URLs, QR image URLs, and redemption notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coupon codes, coupon URLs, and QR image URLs should be presented unchanged from the API response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: A persistent install identifier is sent to the coupon service for attribution on requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review this attribution behavior before installing; do not run the skill if persistent identification is unacceptable.
+
+Risk: Third-party coupon links and QR codes lead to external redemption flows with limited privacy detail.
+
+Mitigation: Check link destinations and redemption terms before opening or sharing them; use only if comfortable with China-market and WeChat-style flows.
+
+## Reference(s):
+
+- [Coupon API documentation](references/api_documentation.md)
+- [Project homepage (listed in ClawHub metadata)](https://github.com/moooai/obtain-coupons-all-in-one)
+- [ClawHub skill release](https://clawhub.ai/moooai/skills/obtain-coupons-all-in-one)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Markdown coupon listings with links, redemption codes, and QR image URLs; optional JSON from the bundled script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Redemption codes should be preserved exactly as returned.]
+
+## Skill Version(s):
+
+2.0.2 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

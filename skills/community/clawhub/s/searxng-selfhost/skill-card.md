@@ -1,41 +1,54 @@
-## Description: <br>
-Self-hosted web search aggregator for OpenClaw agents that installs or uses a local SearXNG instance and provides a search CLI with Wikipedia and GitHub fallbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-hosted web search aggregator for OpenClaw agents that can install a local SearXNG service or run searches against an existing local instance without API keys.
 
-## Publisher: <br>
-[saikatkumardey](https://clawhub.ai/user/saikatkumardey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[saikatkumardey](https://clawhub.ai/user/saikatkumardey)
 
-## Use Case: <br>
-Developers and engineers use this skill to self-host web search for OpenClaw agents, configure the local SearXNG service, and run agent-readable searches without API keys. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The installation workflow makes system-level changes and enables a persistent local SearXNG service. <br>
-Mitigation: Run the installer only on a server or VM intended for this service, and review the shell script before execution. <br>
-Risk: Search queries may reach upstream search providers through SearXNG or the Wikipedia and GitHub fallback. <br>
-Mitigation: Avoid sensitive search queries unless that exposure is acceptable for the deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SearXNG Search Usage Reference](references/usage.md) <br>
-- [SearXNG project](https://github.com/searxng/searxng) <br>
-- [ClawHub skill page](https://clawhub.ai/saikatkumardey/searxng-selfhost) <br>
+## Use Case:
 
+Developers and engineers use this skill to add web search capability to OpenClaw agents by installing and managing a local SearXNG service, or by using the included CLI to query an existing local SearXNG instance. It is also useful for diagnosing search failures and understanding fallback behavior.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include title, URL, snippet, and engine when emitted by the CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer uses root privileges to fetch mutable third-party code and enable a persistent local search service.
+
+Mitigation: Run it only on hosts where root-level setup and a persistent local service are acceptable, and review or modify the installer to pin and verify SearXNG, uv, and dependencies before production use.
+
+Risk: Fallback mode sends search queries to Wikipedia and GitHub, which can expose sensitive prompts or internal identifiers.
+
+Mitigation: Avoid sensitive query content, or disable or modify fallback behavior for confidential workloads.
+
+## Reference(s):
+
+- [SearXNG Search Usage Reference](references/usage.md)
+- [SearXNG source repository](https://github.com/searxng/searxng)
+- [ClawHub skill page](https://clawhub.ai/saikatkumardey/skills/searxng-selfhost)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python CLI output, and optional JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include title, URL, snippet, and engine fields when emitted as JSON.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

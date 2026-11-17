@@ -1,43 +1,54 @@
-## Description: <br>
-Image Craft helps agents generate stylized 3D images for characters, scenes, products, and style transformations using curated prompt workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Curated image generation assistant covering four categories: characters, scenes, products, and style transformation, for generating high-quality stylized 3D images.
 
-## Publisher: <br>
-[ericn26-star](https://clawhub.ai/user/ericn26-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericn26-star](https://clawhub.ai/user/ericn26-star)
 
-## Use Case: <br>
-External users, creative teams, and developers use this skill to turn photos, product or brand descriptions, city and landmark names, movie scenes, and style requests into generated image assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may analyze and pass user-provided photos, product images, IDs, documents, or confidential visual references to image-generation tools. <br>
-Mitigation: Avoid submitting sensitive personal photos, confidential product images, IDs, private documents, or other regulated visual material as references. <br>
-Risk: Broad trigger keywords may cause the skill to activate when the user intended a different image or design workflow. <br>
-Mitigation: Confirm the requested style or show the interactive style selector when the request is vague or could match multiple categories. <br>
-Risk: City, landmark, brand, or movie-scene requests may involve public web lookups for visual details. <br>
-Mitigation: Use public, non-sensitive prompts for lookup-driven requests and avoid including private context that is not needed for generation. <br>
+## Use Case:
 
+External users and creators use this skill to generate stylized 3D images from prompts or reference images, including characters, city and landmark scenes, product renders, advertisements, memes, and other style transformations.
 
-## Reference(s): <br>
-- [Image Craft release page](https://clawhub.ai/ericn26-star/eric-image-craft-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/ericn26-star) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Image files, API calls, Guidance] <br>
-**Output Format:** [Concise Markdown or deliver_assets XML-style blocks containing generated image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce one or two image variants depending on request clarity, example mode, or scene/style workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Prompts, uploaded reference images, and derived search queries may be processed by image analysis, image generation, or search tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid uploading sensitive personal photos, confidential brand assets, or private project details unless that processing is acceptable.
+
+Risk: The skill has broad activation for image-generation requests and may route user content through external generation workflows.
+
+Mitigation: Review requested inputs and generated outputs before use, especially for brand, product, likeness, or private project material.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ericn26-star/skills/eric-image-craft-v2)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ericn26-star)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text]
+
+**Output Format:** [Image file paths in a deliver_assets XML block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Direct image delivery with concise text; typical requests produce one image, examples and scene transformations may produce two variants.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

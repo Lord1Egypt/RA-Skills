@@ -1,43 +1,62 @@
-## Description: <br>
-Autonomous goal completion with checkpoint, resume, and no intermediary confirmation handoffs for complex or long-running tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous goal completion with checkpoint, resume, and no intermediary confirmation handoffs.
 
-## Publisher: <br>
-[as76](https://clawhub.ai/user/as76) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[as76](https://clawhub.ai/user/as76)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep an agent working through scoped, multi-step tasks until completion, with checkpoints and resume behavior. It is intended for tasks where the agent should ask only when genuinely blocked. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad autonomous execution authority and discourages intermediary confirmations. <br>
-Mitigation: Define written task scope, stop conditions, and hard blockers before activation; require confirmation for deletes, risky commands, production changes, external actions, and real-world side effects. <br>
-Risk: The artifact includes Telegram messaging behavior with a hard-coded recipient in its examples. <br>
-Mitigation: Remove or replace the recipient before use and require confirmation before sending external messages. <br>
-Risk: Checkpoint and memory logs may retain task details after completion. <br>
-Mitigation: Review and clean checkpoint or memory logs after the task completes, especially when the task handles sensitive data. <br>
+## Use Case:
 
+Developers and operators use this skill to keep an agent working through complex or long-running tasks with checkpoint, resume, and completion protocols. It is intended for scoped autonomous execution where the agent pauses only for hard blockers or completion.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/as76/tenacity) <br>
-- [Standing Orders Template](references/standing-orders-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and checkpoint state examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create checkpoint JSON files under the configured checkpoint directory when its helper script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is designed for unattended workspace access and persistent execution authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict file and tool access to the specific task scope before use, and require confirmation for destructive or external actions.
+
+Risk: The skill can create durable scheduled execution and continue after restarts.
+
+Mitigation: Disable cron unless explicitly needed, and use clear stop conditions and completion criteria for each task.
+
+Risk: The skill references sending summaries to a hard-coded Telegram recipient.
+
+Mitigation: Remove or replace the hard-coded destination before deployment, and require confirmation for external messages.
+
+Risk: Checkpoint data may persist in a shared temporary directory.
+
+Mitigation: Store checkpoints in a private, validated directory with appropriate access controls.
+
+## Reference(s):
+
+- [Tenacity Standing Orders Template](references/standing-orders-template.md)
+- [ClawHub skill page](https://clawhub.ai/as76/skills/tenacity)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and structured checkpoint examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes standing order templates, checkpoint/resume patterns, and completion criteria for autonomous task execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

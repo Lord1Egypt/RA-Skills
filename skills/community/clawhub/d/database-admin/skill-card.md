@@ -1,42 +1,58 @@
-## Description: <br>
-Comprehensive database administration, schema management, data operations, and optimization for PostgreSQL-oriented workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides PostgreSQL database administration support for schema design, bulk data operations, complex queries, query optimization, backup and restore, migrations, type handling, transactions, and database error troubleshooting.
 
-## Publisher: <br>
-[ericyang1234](https://clawhub.ai/user/ericyang1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericyang1234](https://clawhub.ai/user/ericyang1234)
 
-## Use Case: <br>
-Developers and database administrators use this skill to create and migrate PostgreSQL schemas, bulk insert data, optimize queries, handle JSONB and BIGINT fields, and manage backups or restores. It is intended for database administration assistance and should be reviewed before operating on live systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release exposes live-looking PostgreSQL credentials and connection details for a specific RoadFlow database. <br>
-Mitigation: Treat the exposed password as compromised, rotate it, remove hardcoded connection details, and use environment variables or a secret manager before deployment. <br>
-Risk: The skill includes scripts and guidance that can change schemas, restore data, clean up backups, benchmark queries, or perform bulk updates. <br>
-Mitigation: Run with least-privilege credentials, require explicit confirmation or dry-runs for destructive operations, and review generated SQL before applying it to live databases. <br>
+## Use Case:
 
+Developers and database operators use this skill to generate database administration guidance, SQL, shell commands, and supporting scripts for PostgreSQL schema changes, bulk loading, query analysis, backups, restores, migrations, JSONB and BIGINT handling, and troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ericyang1234/database-admin) <br>
-- [Database Schema Guidelines](references/DB_SCHEMA.md) <br>
-- [Usage Guide](references/USAGE_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with SQL, JavaScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce database schema changes, SQL statements, backup or restore commands, and operational recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release metadata and package.json) <br>
+Risk: The release evidence reports a real-looking PostgreSQL administrator credential in the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install as published unless you own the referenced database and have rotated the exposed password; replace hardcoded secrets with environment variables or a secret manager.
+
+Risk: The release evidence reports high-impact database and file operations without adequate safeguards.
+
+Mitigation: Use least-privilege database roles and require confirmation, dry-run review, and backups before destructive or state-changing actions.
+
+Risk: The release evidence recommends validating or safely quoting SQL identifiers before real database use.
+
+Mitigation: Validate table, column, and index identifiers and use safe SQL construction patterns before executing generated statements.
+
+## Reference(s):
+
+- [Database Schema Guidelines](references/DB_SCHEMA.md)
+- [Usage Guide](references/USAGE_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with SQL, JavaScript, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include executable database commands or scripts that require review before use.]
+
+## Skill Version(s):
+
+2.0.0 (source: evidence release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

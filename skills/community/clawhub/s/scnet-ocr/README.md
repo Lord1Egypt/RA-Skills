@@ -1,8 +1,18 @@
 # scnet-ocr
 
+> **⚠️ 隐私与安全提示**
+>
+> `scnet-ocr` 是一款调用第三方 OCR 服务（SCNET，默认 `https://api.scnet.cn`）的识别技能。
+> 使用过程中，用户指定的图片或 PDF 文件会被上传至 SCNET 服务器进行处理。
+> 上传的文件可能包含身份证、银行卡、护照、发票、医疗记录等敏感个人信息。
+> 使用前请确保：
+> 1. 您拥有该文件的合法处理权限；
+> 2. 您理解并同意 SCNET 服务方的数据处理与隐私政策；
+> 3. 不要将包含他人敏感信息的文件在未经授权的情况下上传。
+>
+> 本技能不会在本地持久化保存上传的文件或识别结果，但识别输出可能包含 PII，请妥善保管。
 
 
-## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
 

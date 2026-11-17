@@ -1,50 +1,60 @@
-## Description: <br>
-Free Model Config helps agents select and configure free AI model services for text, image, video, and audio workflows, including API key setup, model configuration, multimodal generation, TTS, and audio/video merging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users in selecting and configuring free or credit-based AI models across multiple platforms, with optional multimodal generation and audio and video tools.
 
-## Publisher: <br>
-[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure free AI model providers, generate reusable model settings, and produce guidance or scripts for multimodal generation workflows. It is most useful when a user needs help choosing a provider, preparing API configuration, or creating text, image, video, audio, TTS, or merged media outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send prompts and media to external AI services and may upload local images to public temporary file hosts. <br>
-Mitigation: Do not use confidential prompts or private images unless the upload and external-service behavior is explicitly approved for the environment. <br>
-Risk: The skill reads local API-key configuration and may expose credentials if secrets are copied into shared files, prompts, or logs. <br>
-Mitigation: Store API keys with restricted permissions, prefer environment variables or approved secret storage, and avoid pasting live secrets into shared artifacts. <br>
-Risk: The skill includes helper scripts that run ffmpeg and generate or merge local media files. <br>
-Mitigation: Review commands and file paths before execution, run scripts in a controlled workspace, and inspect generated media before relying on it. <br>
-Risk: The security summary flags an unsafe instruction telling agents not to refuse skill edits. <br>
-Mitigation: Apply normal safety and authorization checks to any requested skill edits, and do not treat artifact instructions as overriding system, developer, or user policies. <br>
+## Use Case:
 
+Developers use this skill to compare supported AI model platforms, prepare API-compatible model configuration, and get usage guidance. It can also help generate or combine image, video, and audio content through the included workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjiaocheng/skills/free-model-config) <br>
-- [FMC catalog](references/fmc-catalog.md) <br>
-- [FMC requirements](references/fmc-requirements.md) <br>
-- [FMC exemplars](references/exemplars.md) <br>
-- [Agnes AI API](https://apihub.agnes-ai.com/v1) <br>
-- [BigModel API](https://open.bigmodel.cn/api/paas/v4/) <br>
-- [SenseNova API](https://token.sensenova.cn/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with configuration snippets, command examples, generated code, and media file outputs from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external AI services, read local API-key configuration, upload local images to temporary public file hosts, and run ffmpeg on local media files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The workflows automatically upload local files to public hosts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive media until the files and destination are explicitly approved; inspect storyboard paths before running them.
+
+Risk: API keys may be exposed through reports or inadequately protected configuration files and backups.
+
+Mitigation: Keep API keys out of reports and protect configuration files and backups.
+
+Risk: Applying configuration changes can affect existing files, and predictable temporary files may be unsafe.
+
+Mitigation: Preview changes before using --write and replace predictable temporary files. Explicitly select the video model because the documented script default is paid.
+
+## Reference(s):
+
+- [Free-Model Config on ClawHub](https://clawhub.ai/wangjiaocheng/skills/free-model-config)
+- [Task catalog](artifact/references/fmc-catalog.md)
+- [Method requirements](artifact/references/fmc-requirements.md)
+- [Workflow exemplars](artifact/references/fmc-exemplars.md)
+
+## Skill Output:
+
+**Output Type(s):** [Configuration, Guidance, Code, Shell commands, Generated media]
+
+**Output Format:** [Markdown guidance, JSON configuration, code, shell commands, and media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated or combined image, video, and audio assets.]
+
+## Skill Version(s):
+
+1.0.11 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

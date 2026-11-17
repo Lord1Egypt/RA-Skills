@@ -1,41 +1,58 @@
-## Description: <br>
-Extract hazard codes and safety info from chemical safety datasheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract hazard codes and safety info from chemical safety datasheets.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, lab safety reviewers, and compliance teams use this skill to extract GHS H-codes, P-codes, safety summaries, and PPE recommendations from SDS/MSDS content for reviewable safety documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Extracted hazard codes or safety summaries may be incomplete or incorrect for a given SDS/MSDS. <br>
-Mitigation: Treat outputs as draft safety summaries and verify extracted codes, PPE recommendations, and risk levels against the original SDS/MSDS before using them. <br>
-Risk: The skill is not sufficient as the sole basis for compliance, emergency response, or PPE decisions. <br>
-Mitigation: Use qualified human review and applicable safety procedures before relying on outputs for regulated or emergency contexts. <br>
+## Use Case:
 
+Lab safety, compliance, hazard communication, and emergency response users can use this skill to extract GHS H-codes, P-codes, safety summaries, and PPE recommendations from SDS/MSDS-style chemical safety documents. Results should be reviewed against the source datasheet and applicable safety requirements.
 
-## Reference(s): <br>
-- [Audit Reference](references/audit-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/sds-msds-risk-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with structured safety findings and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include extracted H-codes, P-codes, risk level, safety summary, PPE recommendations, assumptions, validation needs, and unresolved items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Chemical safety outputs may be incomplete or inaccurate when the source SDS/MSDS content is missing, malformed, or outside the skill's documented scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the original datasheet, confirm extracted codes and PPE recommendations, and use professional safety guidance before acting on results.
+
+Risk: The skill can execute a local Python helper and handle workspace files.
+
+Mitigation: Run it in a sandboxed workspace, validate input and output paths, and keep generated outputs within the intended project directory.
+
+Risk: The included scanner is simple and the artifact marks the skill as draft.
+
+Mitigation: Treat results as triage or documentation support, then validate against authoritative SDS/MSDS content and applicable regulatory requirements.
+
+## Reference(s):
+
+- [Audit Reference](references/audit-reference.md)
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/sds-msds-risk-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown with extracted hazard codes, precautionary statements, safety summary, PPE recommendations, assumptions, risks, and next checks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are a structured aid for reviewing SDS/MSDS content and are not a substitute for the source datasheet or professional safety guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

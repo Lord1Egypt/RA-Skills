@@ -1,45 +1,55 @@
-## Description: <br>
-Breeze helps an agent search and read Breeze CHMS data through the OOMOL-connected breeze connector and oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Breeze data through the user's OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve Breeze people, profile-field, tag-folder, and tag data through their connected OOMOL account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected Breeze account, so use can expose Breeze data to the agent during requested reads. <br>
-Mitigation: Install and invoke it only when connector-backed Breeze access is intended, and review requested data retrieval before running commands. <br>
-Risk: The trigger wording is broad and may activate for casual Breeze-related discussion. <br>
-Mitigation: Confirm the task needs live Breeze connector access before executing oo CLI commands. <br>
-Risk: First-time setup may involve CLI installation or account-connection steps. <br>
-Mitigation: Review installation and connection prompts before approving them, and only connect the Breeze account required for the task. <br>
+## Use Case:
 
+External users can use this skill to search and read people, profile fields, tags, and tag folders in Breeze through their OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub Breeze skill page](https://clawhub.ai/oomol/oo-breeze) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Breeze homepage](https://www.breezechms.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only Breeze connector actions and returns connector responses as JSON when commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: First-time setup directs the user to execute downloaded installer code whose contents are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: If installation is needed, use a separately reviewed, version-pinned CLI and require approval before running its installer.
+
+Risk: The connected account exposes personal records through OOMOL, and the CLI may synchronize additional skills.
+
+Mitigation: Connect only the intended Breeze account and review the CLI's additional skill synchronization behavior.
+
+## Reference(s):
+
+- [Breeze API documentation](https://www.breezechms.com/api)
+- [Breeze homepage](https://www.breezechms.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text, Guidance]
+
+**Output Format:** [JSON connector requests and responses with natural-language task guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Connector response fields vary by Breeze action; actions documented by this skill are read-only.]
+
+## Skill Version(s):
+
+1.0.5 (source: SKILL.md frontmatter; server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

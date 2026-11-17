@@ -1,40 +1,49 @@
-## Description: <br>
-Manages Telegram group chat replies by responding to mentions, questions, name calls, technical topics, or priority users while preventing spam and bot loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Telegram group chat replies by responding to mentions, questions, name calls, technical topics, or priority users while reducing spam and bot loops.
 
-## Publisher: <br>
-[zboxman](https://clawhub.ai/user/zboxman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zboxman](https://clawhub.ai/user/zboxman)
 
-## Use Case: <br>
-Developers and operators use this skill to configure Telegram group bots so they reply only when useful and stay silent for small talk, bot messages, emoji-only posts, repeated topics, or other low-value messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad reply triggers could cause unwanted Telegram group replies if the skill is applied outside the intended bot or group. <br>
-Mitigation: Install it only for the intended Telegram bot and group, set the bot name and priority users carefully, and monitor early behavior. <br>
-Risk: Silent NO_REPLY handling could suppress responses if the surrounding bot integration applies the policy too broadly. <br>
-Mitigation: Test mention, question, bot-message, emoji-only, and cooldown scenarios before relying on the configuration. <br>
+## Use Case:
 
+External developers and Telegram bot operators use this skill to define when an agent should answer in group chats and when it should remain silent. It is intended for group-message handling, bot configuration, reply-policy setup, multi-bot groups, mention handling, and bot-loop avoidance.
 
-## Reference(s): <br>
-- [Telegram Group Chat on ClawHub](https://clawhub.ai/zboxman/telegram-group-chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with reply rules, configuration snippets, examples, and testing checklist items.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; includes NO_REPLY guidance for silent handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bot may reply more broadly than intended if its bot name, priority user IDs, or cooldown behavior are configured incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those settings before deployment and test mention, question, emoji-only, other-bot, and cooldown scenarios against the intended Telegram group.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zboxman/skills/telegram-group-chat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with plain-text reply decisions, including the NO_REPLY sentinel]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return exactly NO_REPLY when the bot should process a message silently without sending a chat response.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

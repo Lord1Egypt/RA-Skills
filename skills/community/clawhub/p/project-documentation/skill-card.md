@@ -1,40 +1,52 @@
-## Description: <br>
-Complete workflow for project documentation including ADRs, PRDs, personas, and docs organization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete workflow for project documentation including ADRs, PRDs, personas, and docs organization.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and project teams use this skill to set up or improve project documentation, including docs structure, ADRs, PRDs, persona documents, runbooks, roadmaps, quality gates, and checklists. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installation commands may reference moving package or branch targets. <br>
-Mitigation: Install only after trusting the publisher and prefer a pinned or reviewed version when available. <br>
-Risk: Generated documentation templates can become misleading if planning material is presented as current behavior. <br>
-Mitigation: Review generated documentation before publication and keep current-state docs separate from planning docs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/wpank/project-documentation) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/wpank) <br>
+## Use Case:
 
+Developers and project teams use this skill to set up or improve project documentation, including ADRs, PRDs, personas, runbooks, roadmaps, and a docs-first directory structure.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with templates, checklists, directory structures, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mutable npx or GitHub installation sources can change between review and installation.
+
+Mitigation: Prefer a pinned ClawHub/package version or inspect the package before installation.
+
+Risk: Global installation can make the skill available across future agent sessions where it may not be intended.
+
+Mitigation: Use per-project installation when the skill should be limited to one workspace.
+
+## Reference(s):
+
+- [Project Documentation on ClawHub](https://clawhub.ai/wpank/skills/project-documentation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown templates and structured documentation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to create documentation structure and templates; no executable code is bundled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

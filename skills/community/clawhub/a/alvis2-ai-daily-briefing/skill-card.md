@@ -1,39 +1,54 @@
-## Description: <br>
-Produces a morning briefing with overdue tasks, today's priorities, calendar overview, and recent meeting context from local workspace sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Start every day focused. Get a morning briefing with overdue tasks, today's priorities, calendar overview, and context from recent meetings. Works with ai-meeting-notes to-do list. No setup. Just say 'briefing'.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Employees and individual operators use this skill to turn local todo lists, meeting notes, memory files, and calendar data into a daily or weekly planning briefing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read private workspace and calendar information from local todos, meeting notes, memory files, and calendar data. <br>
-Mitigation: Review before installing, invoke it explicitly, confirm first-run behavior, and disable calendar, notes, or memory sources that should not be used. <br>
+## Use Case:
 
+External users and productivity-focused teams use this skill to generate concise daily or weekly briefings from local task lists, recent meeting notes, calendar context, and optional memory files. It helps surface overdue work, today's priorities, schedule items, relevant meeting context, and a single focus recommendation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/alvis2-ai-daily-briefing) <br>
-- [Creator homepage](https://jeffjhunter.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown briefing with section headings, task checkboxes, and concise planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single-message daily or weekly briefing; empty sections may be skipped when no source data is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The briefing may read private task, meeting, calendar, memory, and profile context when invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that local productivity context is appropriate, and ask the agent to skip memory or calendar sources when those may contain sensitive material.
+
+Risk: Priority and focus recommendations may be incomplete when source files are missing, outdated, or unavailable.
+
+Mitigation: Review the generated briefing against current task and calendar systems before acting on deadlines or priorities.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/alvis2-ai-daily-briefing)
+- [Creator homepage](https://jeffjhunter.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown daily briefing with prioritized sections and optional setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include overdue tasks, today's priorities, calendar items, recent-meeting context, and one focus statement; empty sections are skipped.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

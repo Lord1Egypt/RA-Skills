@@ -1,41 +1,54 @@
-## Description: <br>
-Poem is a reference tool that provides static documentation for devtools-oriented poem workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Poem is a reference tool that provides plain-text guidance for poem-related devtools workflows.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and technical users can use this skill to retrieve concise poem reference material, including introductions, quickstarts, patterns, debugging, performance, security, migration, and cheatsheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes an executable shell script. <br>
-Mitigation: Review the script before installation; the security evidence reports that it prints static reference text and does not request credentials, network access, persistence, or system changes. <br>
-Risk: The generated reference guidance is generic and may not match a user's specific environment. <br>
-Mitigation: Validate any operational advice against local requirements before applying it. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve concise reference documentation for poem concepts, quick starts, patterns, debugging, performance, security, migration, and command cheatsheets.
 
-## Reference(s): <br>
-- [Poem on ClawHub](https://clawhub.ai/xueyetianya/poem) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static command-specific reference output; no external API calls or credentials required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The security guidance notes one inaccurate cheatsheet command name may cause user confusion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented debugging command when seeking troubleshooting guidance.
+
+Risk: The skill provides generic reference content that may not match every user's environment or workflow.
+
+Mitigation: Review the emitted guidance before applying it to production or compliance-sensitive work.
+
+## Reference(s):
+
+- [Poem ClawHub release](https://clawhub.ai/xueyetianya/skills/poem)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, network access, or user data access are described in the inspected artifacts.]
+
+## Skill Version(s):
+
+2.0.2 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

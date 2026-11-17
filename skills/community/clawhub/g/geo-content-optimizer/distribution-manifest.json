@@ -1,0 +1,70 @@
+{
+  "capabilities": [
+    "inline-delivery",
+    "canonical-state-read"
+  ],
+  "capability_ceiling": "lite",
+  "catalog_sha256": "6f0256cf52710f2916ecebaea0f3110c9313099ec4a69a11cac72ba9b2f3b940",
+  "files": [
+    {
+      "bytes": 9297,
+      "mode": "0644",
+      "path": "SKILL.md",
+      "sha256": "2d566864bed499b226d30866489a7346320044558fac0de8922f59ac1b086b8a"
+    },
+    {
+      "bytes": 6932,
+      "mode": "0644",
+      "path": "references/ai-citation-patterns.md",
+      "sha256": "73e2db65d51761f21d810934c54285c1f685f0c0399944ce554afe93b0bfb5fc"
+    },
+    {
+      "bytes": 4960,
+      "mode": "0644",
+      "path": "references/ai-overview-recovery.md",
+      "sha256": "ad778226ad40da9099ee4cedd8cf776b012d3794f0839c335b57f0ab9072cf32"
+    },
+    {
+      "bytes": 3456,
+      "mode": "0644",
+      "path": "references/geo-optimization-techniques.md",
+      "sha256": "a4e34d667cb801e9327512502a20ca7eebe5a4e25ae8b4d7d3e137f66fcbca93"
+    },
+    {
+      "bytes": 4177,
+      "mode": "0644",
+      "path": "references/instructions-detail.md",
+      "sha256": "721c2e93ca425c177f12c19703e4e973160460f9f939fc4cf103e34a9f8fe32a"
+    },
+    {
+      "bytes": 5888,
+      "mode": "0644",
+      "path": "references/medium-github-surfaces.md",
+      "sha256": "8b3b0e08ba06cb78e4f25feeec0762da02006a407935628ba158bf46fd6ffd18"
+    },
+    {
+      "bytes": 3645,
+      "mode": "0644",
+      "path": "references/quotable-content-examples.md",
+      "sha256": "0423bc158bd2b9480315f668c3c5afe40d9a677137122f7e2f31cad44b7aeb0c"
+    }
+  ],
+  "files_sha256": "2eac41045cdbeda60c6dea72ce863838317d43a6ff1a5a4633d637dbb991ba2e",
+  "hash_algorithm": "sha256",
+  "kind": "standalone-skill",
+  "manifest_excludes": [
+    "distribution-manifest.json"
+  ],
+  "manifest_path": "distribution-manifest.json",
+  "package_ceiling": {
+    "max_bytes": 1000000,
+    "max_files": 64
+  },
+  "profile": "lite",
+  "profile_definition_sha256": "4598e1f7bba667ef928ea2a60a6252ad9348086e9eecab29437db442df2a568e",
+  "schema_version": "1.1",
+  "source": {
+    "commit": "f552620c278afddcb25d09637a0cfcc1ce48faf4",
+    "repository": "aaron-he-zhu/aaron-marketing-skills"
+  }
+}

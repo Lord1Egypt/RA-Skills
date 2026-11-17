@@ -1,43 +1,63 @@
-## Description: <br>
-Real-time web search for OpenClaw commander agents using local SearXNG, page browsing, claim verification, and optional Gemini Google Search grounding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Web Search gives agents real-time web search, page browsing, factual claim verification, and optional Gemini-backed Google Search grounding while preferring local SearXNG and Scrapling paths by default.
 
-## Publisher: <br>
-[psanger](https://clawhub.ai/user/psanger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[psanger](https://clawhub.ai/user/psanger)
 
-## Use Case: <br>
-Developers and agents use this skill to search for current web information, browse result pages, and cross-check factual claims before answering. It is intended for OpenClaw environments that can run shell commands and have trusted search, browsing, or optional Gemini API endpoints configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is framed as local or private, but searches, browsing, fallback services, proxies, browser workers, and optional Gemini grounding can send queries or URLs to configured network endpoints. <br>
-Mitigation: Use a SearXNG instance you control, leave LOCAL_SEARCH_FALLBACK_URL and BROWSER_WORKER_URL unset unless those services are trusted, and avoid sensitive searches through unknown proxies. <br>
-Risk: Optional Gemini or 1Password access requires sensitive credentials. <br>
-Mitigation: Enable Gemini mode only when needed, use a scoped API key for this purpose, and do not print or include secret values in prompts, logs, or outputs. <br>
-Risk: Fetched pages and search snippets can be incomplete, blocked, stale, or misleading. <br>
-Mitigation: Use full-page browsing and claim verification before asserting factual claims, prefer cross-validated results, and report insufficient evidence when verification is uncertain. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let OpenClaw-style agents search the web, read pages, verify factual claims, and produce current-information answers with source context. The normal path favors local/private search, with Gemini-backed Google Search grounding available only when explicitly requested or local engines are insufficient.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/psanger/local-web-search) <br>
-- [Scrapling](https://github.com/D4Vinci/Scrapling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown or JSON with search results, page extracts, citations, confidence signals, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source URLs, published dates, fetched page text, grounding metadata, claim-verification verdicts, and confidence scores.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.2.0 (source: server-resolved release evidence) <br>
+Risk: The skill can fetch arbitrary URLs and make outbound web requests from the runtime environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it with egress controls, and avoid environments where localhost, private services, or cloud metadata endpoints are reachable unless those routes are blocked.
+
+Risk: Gemini mode can use sensitive API credentials and sends the raw search query to Google's Gemini API.
+
+Mitigation: Use scoped credentials, pass only the search question, and avoid sourcing broad secrets.env files into shared agent sessions.
+
+Risk: Browsing can be delegated to a configured browser worker.
+
+Mitigation: Configure BROWSER_WORKER_URL only for a trusted worker that is intentionally reachable from the caller's network.
+
+Risk: The Gemini wrapper can create a virtual environment and install an unpinned google-genai dependency.
+
+Mitigation: Review or pin the dependency before using the wrapper in managed or production-like environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/psanger/skills/local-web-search)
+- [Declared project homepage](https://github.com/wd041216-bit/openclaw-free-web-search)
+- [Scrapling](https://github.com/D4Vinci/Scrapling)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text, Markdown-style answers, or JSON search, browsing, and verification results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include source URLs, snippets or extracted page text, confidence indicators, verification verdicts, and Gemini grounding citations when available.]
+
+## Skill Version(s):
+
+4.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

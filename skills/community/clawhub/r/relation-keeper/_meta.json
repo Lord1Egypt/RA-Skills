@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7c8kq3vma64hymr633jztpn980k9mf",
+  "owner": "elfpuck",
   "slug": "relation-keeper",
+  "name": "relation-keeper",
+  "displayName": "关系维护 Relation Keeper",
+  "description": "维护、记忆、提醒你的社交关系。记录人物肖像、未来约会/生日/纪念日、过去共同经历。",
   "version": "1.0.1",
-  "publishedAt": 1770279625696
+  "author": "shanquan54@gmail.com",
+  "license": "MIT",
+  "homepage": "https://github.com/yujintang/skills/tree/main/relation-keeper",
+  "repository": "https://github.com/yujintang/skills.git"
 }

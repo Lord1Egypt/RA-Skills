@@ -1,45 +1,63 @@
-## Description: <br>
-Helps an agent install, configure, verify, and remove backend services in WSL Ubuntu from a Windows host using wsl.exe, root shell commands, and aptitude. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents deploy and manage backend services in WSL Ubuntu from Windows using local WSL commands and aptitude.
 
-## Publisher: <br>
-[microsnow](https://clawhub.ai/user/microsnow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[microsnow](https://clawhub.ai/user/microsnow)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy and manage WSL Ubuntu services such as MySQL, Redis, Nginx, PostgreSQL, and MongoDB from a Windows host. It provides command guidance for package discovery, installation, service startup, configuration backup, verification, and cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes root-level service management patterns and weak example credentials. <br>
-Mitigation: Review commands before use, replace all example passwords, and run only in disposable or tightly controlled WSL environments. <br>
-Risk: The skill can expose services such as Redis beyond localhost. <br>
-Mitigation: Avoid remote exposure unless firewall rules and strong authentication are configured. <br>
-Risk: Cleanup examples include destructive purge and rm -rf steps that can erase service data. <br>
-Mitigation: Create backups and run destructive cleanup only when data removal is explicitly intended. <br>
+## Use Case:
 
+Developers and engineers use this skill to have an agent generate WSL Ubuntu service installation, uninstall, status-check, and configuration workflows for packages such as MySQL, Redis, Nginx, PostgreSQL, and MongoDB.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/microsnow/wsl-service-deploy) <br>
-- [Server-resolved GitHub source](https://github.com/microsnow/wsl-service-deploy.git) <br>
-- [WSL command reference](references/wsl-commands.md) <br>
-- [Ubuntu mirror referenced by the skill](https://mirrors.aliyun.com/ubuntu/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are intended for review before execution in a controlled WSL environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Hardcoded weak passwords and command-line secret handling can expose root or service credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace default passwords with unique runtime-supplied secrets, avoid echoing secrets into su or command lines, and rotate any credentials created during testing.
+
+Risk: Remote Redis exposure can make a service reachable beyond the local WSL host.
+
+Mitigation: Bind Redis and other services to localhost by default, and require explicit network and firewall review before enabling external access.
+
+Risk: Package purge and recursive cleanup commands can delete installed services, configuration, and data.
+
+Mitigation: Require explicit confirmation, verified backups, and a disposable WSL environment before running uninstall or data-removal commands.
+
+Risk: Running generated temporary scripts as root increases the impact of command mistakes or script tampering.
+
+Mitigation: Review generated scripts before execution, use restrictive file permissions, and test in a disposable WSL environment until the workflow is revised.
+
+## Reference(s):
+
+- [WSL operations command reference](references/wsl-commands.md)
+- [Source repository](https://github.com/microsnow/wsl-service-deploy.git)
+- [ClawHub skill page](https://clawhub.ai/microsnow/skills/wsl-service-deploy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include root-level WSL service-management commands, generated shell scripts, package operations, and configuration changes.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

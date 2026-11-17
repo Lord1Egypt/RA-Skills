@@ -1,9 +1,9 @@
 {
   "name": "deep-digest",
-  "version": "1.0.0",
-  "description": "深度内容萃取 — 从原始文本中提取模式、洞察和行动信号",
+  "version": "1.1.0",
+  "description": "深度内容萃取 — 从原始文本中提取模式、洞察和行动信号。V1.1 增加 Evaluator veto 机制",
   "author": "溯-Agent",
-  "tags": ["digest", "analysis", "patterns", "insights", "cognition"],
+  "tags": ["digest", "analysis", "patterns", "insights", "cognition", "veto"],
   "type": "analysis",
   "model": "default",
   "temperature": 0.3,
@@ -19,10 +19,37 @@
       "description": "分析模式：full（完整三区）/ facts-only / patterns-only / signals-only",
       "default": "full",
       "enum": ["full", "facts-only", "patterns-only", "signals-only"]
+    },
+    "enable_veto": {
+      "type": "boolean",
+      "description": "是否启用 Evaluator veto 机制（独立评估器检查输出质量）",
+      "default": true
+    },
+    "veto_threshold": {
+      "type": "number",
+      "description": "veto 阈值（0.0-1.0），低于此分数打回重做",
+      "default": 0.6
+    },
+    "max_retries": {
+      "type": "integer",
+      "description": "veto 后最大重试次数",
+      "default": 2
     }
   },
   "outputs": {
     "format": "markdown",
-    "sections": ["facts", "patterns", "signals"]
+    "sections": ["facts", "patterns", "signals"],
+    "veto_report": "可选：veto 机制评估报告"
+  },
+  "changelog": {
+    "1.1.0": {
+      "date": "2026-06-26",
+      "changes": [
+        "新增 Evaluator veto 机制：独立评估器检查输出质量",
+        "新增 enable_veto / veto_threshold / max_retries 参数",
+        "评估维度：模式发现是否空洞、行动项是否可操作、认知转变是否成立",
+        "参考：Spotify LLM-as-judge veto 25% 实测数据"
+      ]
+    }
   }
 }

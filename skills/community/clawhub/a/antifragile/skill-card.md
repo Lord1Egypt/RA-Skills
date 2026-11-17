@@ -1,42 +1,56 @@
-## Description: <br>
-Guides agents through an Antifragile Audit that stress-tests systems, portfolios, and plans for hidden fragility, bounded downside, and convex upside under disorder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Activate when users need to stress-test a system, business, or portfolio against crises, worst-case scenarios, Taleb's antifragility concepts, or high uncertainty.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users, employees, and agents use this skill to evaluate whether a business, portfolio, career, supply chain, or strategic plan is fragile, robust, or antifragile under stress. It helps identify leverage, single points of failure, concentration, and design moves such as barbell allocation, via negativa, optionality, and skin in the game. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence finance, business, portfolio, or organizational decisions where incorrect assumptions may cause harm. <br>
-Mitigation: Treat outputs as decision support and independently verify factual claims, downside assumptions, and investment implications before acting. <br>
-Risk: Users may misclassify high-variance or complex plans as antifragile. <br>
-Mitigation: Require the skill's bounded-downside and convex-upside checks before accepting an antifragile classification, and avoid applying the framework to simple, reversible, low-stakes decisions. <br>
+## Use Case:
 
+Users and analysts can use this skill to assess whether a system, business, or portfolio is fragile, robust, or antifragile under stress, then identify design moves such as reducing dependencies or preserving optionality. Its analysis is qualitative; verify assumptions before consequential financial or business decisions.
 
-## Reference(s): <br>
-- [Sources - antifragile](references/sources.md) <br>
-- [Method in Action: Taleb's Framework, 2007-2012, and the 2008 Financial Crisis](examples/talebs-framework-2007-2012-and-the-2008-financial-crisis.md) <br>
-- [Antifragile Skill on ClawHub](https://clawhub.ai/deciqai/skills/antifragile) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown Antifragile Audit with structured sections and short coaching questions when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May pause at explicit WAIT steps during novice coaching; produces decision-support analysis rather than executable actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may rely on qualitative stress analysis for consequential financial or business decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify assumptions and seek appropriate expert review before acting on consequential decisions.
+
+Risk: Confidential details could be exposed in examples saved back into the skill.
+
+Mitigation: Keep confidential details out of saved examples.
+
+## Reference(s):
+
+- [Primary sources](references/sources.md)
+- [Antifragile skill page](https://clawhub.ai/deciqai/skills/antifragile)
+- [Machine-readable skill metadata](https://www.deciqai.com/s/antifragile.json)
+- [Skill overview](https://www.deciqai.com/c/antifragile)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown audit and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Qualitative framework; can guide a novice step by step or analyze a concrete system directly.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

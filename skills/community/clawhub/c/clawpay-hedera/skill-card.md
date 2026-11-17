@@ -1,45 +1,63 @@
-## Description: <br>
-Pay for MCP tool calls on Hedera using x402 micropayments, discover AI agents via on-chain registry, check reputation before transacting, and submit ratings after tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pay for MCP tool calls on Hedera using x402 micropayments, discover AI agents via on-chain registry, check reputation before transacting, and submit ratings after tool calls.
 
-## Publisher: <br>
-[EmadQureshiKhi](https://clawhub.ai/user/EmadQureshiKhi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emadqureshikhi](https://clawhub.ai/user/emadqureshikhi)
 
-## Use Case: <br>
-Developers and agents use this skill to handle paid MCP tool calls, discover Hedera-hosted agent services, check reputation before payment, and submit ratings after tool use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Blockchain private keys may be exposed if passed through command-line flags or logged during setup and use. <br>
-Mitigation: Use SDK modes that read credentials from environment variables or a secret manager, and use only a dedicated Hedera testnet wallet or a wallet with minimal funds. <br>
-Risk: Mainnet use grants real spending authority and can create irreversible payment activity. <br>
-Mitigation: Keep workflows on Hedera testnet by default, confirm any mainnet switch explicitly, and maintain strict per-call spending caps. <br>
+## Use Case:
 
+External developers and agents use this skill to handle paid MCP tool calls on Hedera testnet, including x402 payment retry flows, agent discovery, reputation checks, and post-call ratings.
 
-## Reference(s): <br>
-- [x402 Payment Flow on Hedera](references/x402-flow.md) <br>
-- [ClawPay-Hedera source](https://github.com/aspect-build/clawpay-hedera) <br>
-- [ClawPay agent dashboard](https://clawpay-hedera.vercel.app/agents) <br>
-- [Hedera testnet registry contract](https://hashscan.io/testnet/contract/0x411278256411dA9018e3c880Df21e54271F2502b) <br>
-- [Hedera testnet reputation topic](https://hashscan.io/testnet/topic/0.0.8107518) <br>
-- [ClawHub skill page](https://clawhub.ai/EmadQureshiKhi/clawpay-hedera) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npx, and HEDERA_PRIVATE_KEY for payment workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Runtime use of unpinned payment tooling can install a package version that has not been reviewed for the deployment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a reviewed, pinned SDK version through a lockfile or trusted package workflow before deployment.
+
+Risk: The skill handles a Hedera private key and includes a CLI pattern where private key material could appear in command history, logs, or process lists.
+
+Mitigation: Use a dedicated, minimally funded testnet key through HEDERA_PRIVATE_KEY, avoid mainnet keys, and do not pass private keys through command-line arguments.
+
+Risk: Payment flows can spend more than intended if caps or network settings are changed without review.
+
+Mitigation: Keep Hedera testnet defaults, retain spending caps, and increase payment limits only after confirming the recipient, asset, and expected cost.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/emadqureshikhi/skills/clawpay-hedera)
+- [x402 Payment Flow on Hedera](references/x402-flow.md)
+- [ClawPay-Hedera homepage](https://github.com/aspect-build/clawpay-hedera)
+- [Hedera testnet registry contract](https://hashscan.io/testnet/contract/0x411278256411dA9018e3c880Df21e54271F2502b)
+- [Reputation HCS topic](https://hashscan.io/testnet/topic/0.0.8107518)
+- [Payment history HCS topic](https://hashscan.io/testnet/topic/0.0.8058213)
+- [ClawPay agent dashboard](https://clawpay-hedera.vercel.app/agents)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose x402 payment handling, Hedera testnet CLI commands, reputation checks, and environment variable setup.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

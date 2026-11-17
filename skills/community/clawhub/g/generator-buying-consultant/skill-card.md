@@ -1,40 +1,58 @@
-## Description: <br>
-Helps generator buyers calculate running watts, surge watts, fuel type, voltage, frequency, and safety-related specifications from their appliances, outage situation, and location. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users buying a generator calculate running watts, surge watts, and fuel type from their appliances, outage situation, and location; load-sizing formulas included, brand-neutral, region-aware.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External generator buyers use this skill to size residential or light-duty portable generators, compare required specifications, and avoid undersized, oversized, or unsafe purchase choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generator specifications, certifications, prices, and availability can change after the skill provides buying guidance. <br>
-Mitigation: Verify current manufacturer specifications, regional certifications, local availability, and seller documentation before purchase. <br>
-Risk: Incorrect transfer switch, panel connection, or indoor generator use can create electrical, fire, or carbon monoxide hazards. <br>
-Mitigation: Use the skill as decision support only; follow local electrical code and use a licensed electrician for transfer switches or panel connections. <br>
+## Use Case:
 
+External users and agents use this skill to run a structured generator-buying consultation for residential and light-duty needs. It sizes running and surge wattage, identifies voltage, frequency, fuel, generator type, certifications, and safety requirements, then presents brand-neutral buying specs and limited product suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/generator-buying-consultant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown consultation with load calculations, prioritized specifications, safety warnings, and matched product guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided appliance, location, fuel, and operating-context details; no external APIs or runtime dependencies are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Risk: Generator model availability, specifications, certifications, and local electrical rules may change after the skill content was published.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current product specifications, regional compliance marks, local electrical rules, and availability before purchase.
+
+Risk: Incorrect transfer switch, panel connection, or installation advice can create electrical shock, backfeed, fire, or code-compliance hazards.
+
+Mitigation: Use the skill for buying specifications only and route transfer switch, panel, wiring, and commissioning work to a licensed electrician.
+
+Risk: Generator operation can create life-safety hazards, especially carbon monoxide exposure and unsafe backfeed into the utility grid.
+
+Mitigation: Preserve and follow the skill's safety warnings for outdoor-only operation, CO precautions, and proper transfer switch or interlock use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/generator-buying-consultant)
+- [Skill homepage](https://github.com/arbazex/power-energy-buying-consultants/tree/master/generator-buying-consultant)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Conversational text followed by structured Markdown recommendations, load calculation tables, warnings, and numbered product suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Product suggestions are capped at 5 and should be verified for current availability, specifications, and regional compliance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

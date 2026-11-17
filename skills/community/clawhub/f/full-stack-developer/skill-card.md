@@ -1,39 +1,51 @@
-## Description: <br>
-Generate personalized full stack development career roadmaps based on developer experience, skills, and goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate personalized full stack development career roadmaps based on developer experience, skills, and goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Career counselors, educational institutions, training teams, and individual developers use this skill to request structured full stack developer career roadmaps from a roadmap API. The roadmap response can summarize learning phases, recommended technologies, milestones, completion estimates, and success metrics from a developer's experience, skills, and goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/full-stack-developer) <br>
-- [Full Stack Developer Roadmap API docs](https://api.mkkpro.com:8049/docs) <br>
-- [Full Stack Developer Roadmap API route](https://api.mkkpro.com/career/full-stack-developer) <br>
+Developers, career counselors, educational institutions, and training teams use this skill to request personalized full stack developer roadmaps from assessment data covering experience, skills, and goals.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, JSON] <br>
-**Output Format:** [JSON roadmap response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The API response may include roadmap phases, recommended technologies, milestones, estimated completion date, and success metrics. Requests can include career profile details, optional user identifiers, session identifiers, and timestamps. Security guidance from the release evidence advises using pseudonymous identifiers where possible and avoiding sensitive employer, client, compensation, or private organizational details unless provider data-handling terms have been verified.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence and OpenAPI info.version) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Assessment details may include personal, career, or employer-confidential information sent to a third-party API.
+
+Mitigation: Use pseudonymous identifiers where possible and avoid sending sensitive personal or employer-confidential information unless approved by the organization.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/full-stack-developer)
+- [Full Stack Developer Roadmap API](https://api.mkkpro.com/career/full-stack-developer)
+- [API Documentation](https://api.mkkpro.com:8049/docs)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON roadmap data with phases, recommended technologies, milestones, and success metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses assessment details such as experience, skills, goals, session IDs, timestamps, and optional user IDs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

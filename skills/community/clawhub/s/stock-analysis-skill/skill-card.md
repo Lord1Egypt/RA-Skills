@@ -1,40 +1,64 @@
-## Description: <br>
-Provides multi-market stock analysis with quotes, technical indicators, news sentiment, and buy/sell/hold recommendations for portfolios and indices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides multi-market real-time stock analysis with technical indicators, news sentiment, and AI buy/sell/hold recommendations for portfolios and indices.
 
-## Publisher: <br>
-[leohuang8688](https://clawhub.ai/user/leohuang8688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leohuang8688](https://clawhub.ai/user/leohuang8688)
 
-## Use Case: <br>
-Investors, analysts, and automation agents use this skill to review stock watchlists, portfolios, and market indices with market data, technical signals, and news sentiment. Its recommendations are informational and should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock symbols, watchlists, and news searches may be sent to external market data or search providers. <br>
-Mitigation: Configure only the API keys and providers needed for the deployment, and avoid submitting sensitive portfolio information when provider sharing is not acceptable. <br>
-Risk: Generated buy, sell, or hold recommendations may be incorrect, delayed, or unsuitable for a user's financial situation. <br>
-Mitigation: Treat analysis as informational, verify prices and signals independently, and require human review before making investment decisions. <br>
+## Use Case:
 
+Developers and investment-focused users use this skill to analyze configured portfolios, market indices, or sector watchlists across A-share, Hong Kong, and US markets. It produces technical indicators, news sentiment, and buy/sell/hold reports for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leohuang8688/stock-analysis-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain-text or Markdown-style stock analysis report with prices, indicators, sentiment, recommendations, and rationale.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured stock list and may use optional API keys for Tavily, Alpha Vantage, and Tushare data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.3 (source: server release metadata) <br>
+Risk: Stock symbols, watchlists, and news-search queries may be sent to third-party market and news services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure only the API keys required for the intended workflow, avoid sensitive watchlists, and review the data-provider terms before use.
+
+Risk: Python dependencies are not pinned and the skill depends on live external services that may be delayed, rate-limited, or unavailable.
+
+Mitigation: Install in a virtual environment with normal user privileges, review and pin dependencies, and validate provider limits and data freshness before relying on results.
+
+Risk: Buy/sell/hold outputs are generated from rule-based technical and sentiment scoring and may be inaccurate or incomplete.
+
+Mitigation: Treat outputs as informational analysis, not financial advice, and require human review before making investment decisions.
+
+Risk: Very large stock lists can trigger many outbound requests because no clear per-run request limit is documented.
+
+Mitigation: Keep configured stock lists small or add operational request limits before scheduled or repeated use.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/leohuang8688/skills/stock-analysis-skill)
+- [Tavily Search API](https://tavily.com/)
+- [Alpha Vantage API](https://www.alphavantage.co/)
+- [Tushare Pro](https://tushare.pro/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown stock-analysis reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes stock recommendations, price levels, confidence, reasoning, sentiment counts, data-source notes, and an investment-risk disclaimer.]
+
+## Skill Version(s):
+
+2.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,55 @@
-## Description: <br>
-Happy Horse video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `happy-horse`, text-to-video, image-to-video, reference-driven short video, video edit planning, task submission, polling, and webhook integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Happy Horse video generation on PoYo / poyo.ai via the PoYo async generation API for text-to-video, image-to-video, reference-driven short video, video edit planning, task submission, polling, and webhook integration.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare, submit, and follow up on PoYo Happy Horse video generation jobs for text-to-video, image-to-video, and reference-driven short video workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: POYO_API_KEY exposure could allow unauthorized use of the PoYo API. <br>
-Mitigation: Keep POYO_API_KEY in server-side environment variables or a backend secret manager, and never include it in browser code, public repositories, logs, screenshots, or chat output. <br>
-Risk: Prompt text, media URLs, and callback URLs may contain private or sensitive data. <br>
-Mitigation: Review payloads before submission and avoid sending private prompts, media URLs, or callback URLs unless the user trusts PoYo to handle that data. <br>
-Risk: Live submissions send requests to the external PoYo API. <br>
-Mitigation: Make live API calls only when the user explicitly asks and a safe server-side environment is available. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare PoYo Happy Horse video-generation payloads, choose text-to-video or source-media workflows, submit asynchronous jobs, and explain polling or webhook follow-up.
 
-## Reference(s): <br>
-- [PoYo Happy Horse API Reference](references/api.md) <br>
-- [PoYo Happy Horse source docs](https://docs.poyo.ai/api-manual/video-series/happy-horse) <br>
-- [PoYo Happy Horse model page](https://poyo.ai/models/happy-horse) <br>
-- [PoYo Happy Horse example repository](https://github.com/PoyoAPI/happy-horse-api) <br>
-- [ClawHub skill page](https://clawhub.ai/coolhackboy/poyo-happy-horse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON payloads and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include chosen model id, workflow type, request payload or parameter summary, task_id after submission, and polling or webhook next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The helper script uses POYO_API_KEY to authenticate to an external paid API, which can expose the key through unsafe environments, logs, or shell history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store POYO_API_KEY only in a server-side environment or secret manager, avoid echoing commands that include secrets, and scrub logs and screenshots before sharing.
+
+Risk: The helper script forwards arbitrary payload files to PoYo, which can submit private prompts, private media URLs, callback URLs, or unintended paid jobs.
+
+Mitigation: Use only trusted payload files, review request content before submission, validate the model and request schema, and make live API calls only after the user explicitly requests them.
+
+## Reference(s):
+
+- [PoYo Happy Horse API Reference](references/api.md)
+- [PoYo Happy Horse model page](https://poyo.ai/models/happy-horse)
+- [PoYo Happy Horse API docs](https://docs.poyo.ai/api-manual/video-series/happy-horse)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payloads and optional bash or curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a returned task_id after an explicitly requested live submission; requires POYO_API_KEY for API calls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

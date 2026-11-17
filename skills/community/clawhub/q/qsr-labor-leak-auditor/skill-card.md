@@ -1,43 +1,54 @@
-## Description: <br>
-QSR Labor Leak Auditor provides real-time labor decision support for restaurant and franchise operators, including daily labor-to-sales checks, goal tracking, recovery planning, forward planning, event-aware comparisons, and mobile-first executive summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QSR Labor Leak Auditor provides real-time labor decision support for restaurant and franchise operators, with concise daily labor reads, week-to-date goal tracking, and recovery planning for payroll-week decisions.
 
-## Publisher: <br>
-[blake27mc](https://clawhub.ai/user/blake27mc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC-BY-NC-4.0 <br>
+## Publisher:
 
+[mcphersonai](https://clawhub.ai/user/mcphersonai)
 
-## Use Case: <br>
-Restaurant operators, general managers, district managers, and multi-unit leaders use this skill to track labor cost against sales, detect mid-week labor drift, account for operational context, and choose corrective actions before payroll closes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
 
-## Known Risks and Mitigations: <br>
-Risk: The skill analyzes workforce, compensation, sales, and shift-operation data that may be sensitive or regulated. <br>
-Mitigation: Confirm the README and deployment process explain what employee or shift data is analyzed, who can see override logs, retention expectations, and any notice or approval requirements before use. <br>
-Risk: Labor recommendations could affect staffing decisions if access controls or review practices are weak. <br>
-Mitigation: Use the skill only where workforce monitoring is lawful, governed by clear access controls, and reviewed by responsible store leadership before action. <br>
-Risk: The scanner summary reports no malicious behavior but could not independently verify the referenced workforce-monitoring privacy concern from the accessible artifacts. <br>
-Mitigation: Treat privacy and monitoring governance as a deployment prerequisite even when scanner findings are clean. <br>
+## Use Case:
 
+Restaurant and franchise operators use this skill to interpret sales and labor inputs, track week-to-date labor against targets, and produce concise recovery actions before payroll closes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/blake27mc/qsr-labor-leak-auditor) <br>
-- [McPherson AI](https://mcphersonai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Mobile-optimized Markdown executive summaries with optional calculation worksheets and export-style records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [In-chat output; detailed math is hidden by default unless requested or needed to resolve material ambiguity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.1 (source: frontmatter and server release metadata) <br>
+Risk: Store-level sales, labor cost, weekly goal, and audit context may be persisted by the configured store memory engine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the memory engine retention, deletion, authentication, authorization, and access-control settings before deployment.
+
+Risk: Labor recommendations can affect staffing decisions if treated as automatic instructions.
+
+Mitigation: Use the output as decision support, keep operator review and override context, and confirm operational constraints before changing schedules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mcphersonai/skills/qsr-labor-leak-auditor)
+- [McPherson AI](https://mcphersonai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown and structured text records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [In-chat summaries with optional detailed math; persistent records depend on the configured store memory engine.]
+
+## Skill Version(s):
+
+3.1.4 (source: frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

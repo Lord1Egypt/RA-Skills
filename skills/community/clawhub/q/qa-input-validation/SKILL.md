@@ -1,44 +1,32 @@
 ---
 name: qa-input-validation
-version: 1.5.0
 description: >-
-  在测试工作流开始前检查用户输入是否包含有效的需求描述和足够的上下文信息。当用户的测试请求过于模糊（只说"帮我测试"却没说测什么）、缺少必要的需求文档或上下文时，应当使用此技能来验证输入完整性。如果输入验证失败，必须返回缺失信息清单要求用户补充。适用于启动任何测试设计流程的第一步。
-
-when_to_use: 用户说"需求不清楚"、"信息不够"、"这个需求能测吗"、用户输入模糊时自动激活（第一步）
+  在测试工作流开始前检查用户输入是否包含有效的需求描述和足够的上下文信息。当用户的测试请求过于模糊（只说"帮我测试"却没说测什么）、缺少必要的需求文档或上下文时，应当使用此技能来验证输入完整性。如果输入验证失败，必须返回缺失信息清单要求用户补充。适用于启动任何测试设计流程的第一步。 触发场景：需求不清楚、信息不够、这个需求能测吗、用户输入模糊时自动激活（第一步）。 Use when the user asks about: checking whether the user's test request contains enough context before any test design work starts.
+license: MIT
 allowed-tools: Read Grep Glob WebFetch
-related_skills:
-  upstream: []  # 无上游依赖（工作流入口）
-  downstream:
-    - qa-requirement-review  # 验证通过后进入需求评审
-input_format:
-  required:
-    - name: 用户输入
-      type: string
-      description: 用户的需求描述或问题
-  optional:
-    - name: 附件
-      type: file
-      description: 上传的需求文档
-    - name: URL
-      type: string
-      description: 需求文档链接
-output_format:
-  structure:
-    - validation_result: "pass/fail/need_more_info"
-    - input_quality_score: "输入质量评分（1-10）"
-    - missing_info: "缺失信息清单"
-    - clarification_questions: "需要追问的问题"
-error_recovery_guidance:
-  on_failure: "返回缺失信息清单和追问问题，要求用户补充"
-  retry_behavior: "用户补充后重新执行输入验证"
+metadata:
+  display-name: "Input Validation"
+  version: "1.8.0"
+  when-to-use: "用户说\"需求不清楚\"、\"信息不够\"、\"这个需求能测吗\"、用户输入模糊时自动激活（第一步）"
+  related-skills: "{\"upstream\":[],\"downstream\":[\"qa-requirement-review\"]}"
+  references: "[\"references/output-formats.md\"]"
+  input-format: "{\"required\":[{\"name\":\"用户输入\",\"type\":\"string\",\"description\":\"用户的需求描述或问题\"}],\"optional\":[{\"name\":\"附件\",\"type\":\"file\",\"description\":\"上传的需求文档\"},{\"name\":\"URL\",\"type\":\"string\",\"description\":\"需求文档链接\"}]}"
+  output-format: "{\"traceability\":[\"本技能验证输入，不产出唯一ID\"],\"structure\":[\"覆盖率：标注口径（基于现有需求/输入文档），禁止\\\"全覆盖/100%\\\"绝对化表述；缺失模块标注\\\"未覆盖+原因\\\"\",{\"validation_result\":\"pass/fail/need_more_info\"},{\"input_quality_score\":\"输入质量评分（1-10）\"},{\"missing_info\":\"缺失信息清单\"},{\"clarification_questions\":\"需要追问的问题\"}]}"
+  error-recovery-guidance: "{\"on_failure\":\"返回缺失信息清单和追问问题，要求用户补充\",\"retry_behavior\":\"用户补充后重新执行输入验证\"}"
+  categories: "[\"Development\",\"Testing\",\"AI\"]"
+  depth-requirement: "{\"reference_value\":\"根据输入模糊度调整验证深度：简单×1/中等×2/复杂×3\",\"minimum\":\"至少检查需求明确性、上下文充分性、输入类型3项\"}"
 ---
+> ⚠️ 本技能单独使用效果有限，建议配合完整技能集（12 步工作流）使用。安装：npx skills add Kokxi/qa-test-skills
+
+> **⚠️ 安全警告**：本技能的示例可能涉及订单号、支付金额、截图、身份证、手机号等敏感数据。
+> 实际使用时请勿粘贴真实生产数据、客户信息或财务凭证；测试前应脱敏/掩码处理。
+> 本技能仅在 workspace/ 输出评估文件，不持久化、不外传、不跨会话复用。
 
 # 输入验证
 
 ## 核心原则
 
-你是一位输入验证专家，确保用户输入包含有效的需求描述和足够的上下文信息。
-**核心原则**：垃圾进，垃圾出——输入质量决定输出质量。
+垃圾进，垃圾出——输入质量决定输出质量。
  本技能是整个QA Test Skills工作流的第一步，在需求评审之前执行，验证输入是否满足生成高质量测试用例的基本要求。
 
 ## 验证维度
@@ -125,58 +113,13 @@ error_recovery_guidance:
 └─ fail（失败）：综合评分<4分
 ```
 
-## 输出格式
+## 加载时机
 
-### 通过（pass）
+| 什么时候读 | 读哪个 |
+|-----------|--------|
+| 校验输入完整性或需要输出格式时 | [`references/output-formats.md`](references/output-formats.md) |
 
-```json
-{
-  "validation_result": "pass",
-  "input_quality_score": 8,
-  "missing_info": [],
-  "recommendation": "输入质量良好，可以继续执行"
-}
-```
-
-### 需要更多信息（need_more_info）
-
-```json
-{
-  "validation_result": "need_more_info",
-  "input_quality_score": 5,
-  "missing_info": [
-    "缺少业务背景描述",
-    "缺少用户角色说明",
-    "缺少约束条件"
-  ],
-  "clarification_questions": [
-    "这个功能的业务目标是什么？",
-    "主要用户有哪些角色？",
-    "有什么技术约束或业务规则？"
-  ],
-  "recommendation": "请补充以上信息后再生成"
-}
-```
-
-### 失败（fail）
-
-```json
-{
-  "validation_result": "fail",
-  "input_quality_score": 2,
-  "missing_info": [
-    "缺少功能描述",
-    "缺少业务背景",
-    "缺少所有必要信息"
-  ],
-  "clarification_questions": [
-    "请描述需要测试的功能是什么",
-    "这个功能的业务背景是什么",
-    "主要用户是谁，核心流程是什么"
-  ],
-  "recommendation": "输入信息严重不足，无法生成有效测试用例"
-}
-```
+> `输出格式`的完整内容已下沉至 `references/output-formats.md`，避免每次触发都占用上下文。
 
 ## 输入类型速查表
 
@@ -241,5 +184,3 @@ error_recovery_guidance:
 | 边界不清晰 | "输入有什么限制？最大/最小/格式？" | 定位测试边界 |
 | 规则不清楚 | "有没有业务规则或约束条件？" | 识别隐性需求 |
 | 范围过大 | "先聚焦哪个模块？优先级是什么？" | 缩小测试范围 |
-
-

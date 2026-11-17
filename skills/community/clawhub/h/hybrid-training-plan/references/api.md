@@ -1,283 +1,94 @@
-# Hybrid Training Plan API Reference
+# Hybrid Training Plan API — what an API key can reach
 
 Base URL: `https://api.hybridtrainingplan.app`
+Auth: `Authorization: Bearer htp_<64 hex>`
 
-All endpoints require `Authorization: Bearer <token>` where the token is either:
-- A JWT from the web app session, or
-- An API key with prefix `htp_` generated from the Account page
+An `htp_` key reaches only the routes below. Anything else answers
+`403 {"error":"Not available to API keys — use the app"}`. A revoked key, or one
+belonging to a deleted account, answers `401`.
+
+| Method | Path |
+|---|---|
+| GET | `/api/watch/sessions` |
+| GET | `/api/users/me`, `/api/users/me/dashboard` |
+| GET | `/api/plans`, `/api/plans/:planId` |
+| PATCH | `/api/plans/:planId/days/:date` |
+| GET, PUT | `/api/session-logs` |
+| GET, PUT | `/api/exercise-maxes` |
 
 ---
 
-## Authentication
+## GET /api/watch/sessions
 
-### API key format
-`htp_` + 64 hex characters (68 chars total)
+The coming days' sessions, already worked out (suggested weights, run steps,
+circuit stations). Rest days and skipped days are left out.
 
-Example: `htp_a1b2c3d4e5f6...`
-
----
-
-## Users
-
-### GET /api/users/me
-Returns the authenticated user's profile.
-
-**Response:**
 ```json
 {
-  "id": "uuid",
-  "email": "user@example.com",
-  "name": "Jane Smith",
+  "version": 3,
+  "state": "ok",
   "distanceUnit": "km",
-  "timezone": "Europe/London"
-}
-```
-
-### GET /api/users/me/dashboard
-Returns a summary of the user's current training plan and today's workout.
-
-**Response:**
-```json
-{
-  "currentPlanId": "uuid | null",
-  "today": "2026-02-27",
-  "currentWeek": { "weekNumber": 3, "theme": "Volume build" },
-  "todayDay": {
-    "date": "2026-02-27",
-    "dayOfWeek": "friday",
-    "isRestDay": false,
-    "status": "pending",
-    "sessions": [{ "id": "uuid", "title": "Lower Strength", "sessionType": "strength" }]
-  }
-}
-```
-
----
-
-## Plans
-
-### GET /api/plans/:planId
-Returns a plan with its full content.
-
-**Response:**
-```json
-{
-  "id": "uuid",
-  "title": "12-Week Hybrid Plan",
-  "status": "active",
-  "content": {
-    "weeks": [
-      {
-        "weekNumber": 1,
-        "theme": "Foundation",
-        "days": [
-          {
-            "date": "2026-02-27",
-            "dayOfWeek": "friday",
-            "isRestDay": false,
-            "status": "pending",
-            "sessions": [
-              {
-                "id": "uuid",
-                "title": "Lower Strength",
-                "sessionType": "strength",
-                "strength": {
-                  "exercises": [
-                    {
-                      "name": "Squat",
-                      "sets": 3,
-                      "reps": "5",
-                      "loadGuidance": "@RPE8"
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-### PATCH /api/plans/:planId/days/:date
-Update the status of a day.
-
-**Request body:**
-```json
-{ "status": "completed" | "skipped" | "pending" }
-```
-
-**Response:** `{ "success": true }`
-
----
-
-## Session Logs
-
-### GET /api/session-logs?planId=&sessionId=
-Fetch a single session log + prefill suggestions.
-
-**Response:**
-```json
-{
-  "log": {
-    "id": "uuid",
-    "planId": "uuid",
-    "sessionId": "uuid",
-    "dayDate": "2026-02-27",
-    "sessionType": "strength",
-    "strengthSets": [
-      {
-        "exerciseName": "Squat",
-        "exerciseKey": "squat",
-        "setIndex": 0,
-        "reps": 5,
-        "weightKg": 100
-      }
-    ],
-    "runDistanceKm": null,
-    "runDurationSeconds": null,
-    "notes": null,
-    "updatedAt": "2026-02-27T10:00:00.000Z"
-  },
-  "prefill": {
-    "strengthSets": [
-      {
-        "exerciseName": "Squat",
-        "exerciseKey": "squat",
-        "suggestedWeightKg": 95.0,
-        "source": "calculated_1rm" | "previous_log" | "none"
-      }
-    ],
-    "runDistanceKm": null
-  }
-}
-```
-
-`log` is `null` if no log exists yet.
-
-### GET /api/session-logs?planId=&dayDate=
-Fetch all session logs for a day.
-
-**Response:**
-```json
-{
-  "logs": [ /* array of log objects (same shape as above, no prefill) */ ]
-}
-```
-
-### PUT /api/session-logs
-Upsert a session log (create or update). Also auto-updates exercise 1RMs if Epley-implied max exceeds current stored value.
-
-**Request body:**
-```json
-{
-  "planId": "uuid",
-  "sessionId": "uuid",
-  "dayDate": "2026-02-27",
-  "sessionType": "strength",
-  "strengthSets": [
+  "sessions": [
     {
-      "exerciseName": "Squat",
-      "exerciseKey": "squat",
-      "setIndex": 0,
-      "reps": 5,
-      "weightKg": 100
-    }
-  ],
-  "runDistanceKm": null,
-  "runDurationSeconds": null,
-  "notes": "Felt strong"
-}
-```
-
-All fields except `planId`, `sessionId`, `dayDate`, `sessionType` are optional/nullable.
-
-**StrengthSetLog shape:**
-```typescript
-{
-  exerciseName: string    // display name from plan
-  exerciseKey: string     // normalised (lowercase, trimmed, spaces→underscores)
-  setIndex: number        // 0-based
-  reps: number | null
-  weightKg: number | null
-}
-```
-
-**Response:** `{ "log": { ...logObject } }`
-
----
-
-## Exercise Maxes (1RMs)
-
-### GET /api/exercise-maxes
-Returns all stored 1RMs for the user.
-
-**Response:**
-```json
-{
-  "maxes": [
-    {
-      "exerciseKey": "squat",
-      "displayName": "Squat",
-      "oneRepMaxKg": 120.0,
-      "updatedAt": "2026-02-20T09:00:00.000Z"
+      "kind": "strength",
+      "planId": "uuid", "sessionId": "string", "dayDate": "2026-10-11",
+      "title": "Lower Strength", "sessionType": "strength",
+      "description": "…", "durationMinutes": 55, "done": false,
+      "strength": {
+        "exercises": [{ "name": "Back Squat", "key": "back_squat", "kind": "reps", "label": "5 reps", "loadGuidance": "@RPE8" }],
+        "sets": [{ "exerciseIdx": 0, "setIndex": 0, "warmupPercent": null, "target": 5, "weightKg": 100, "restAfter": 120, "isBenchmark": false }]
+      }
     }
   ]
 }
 ```
 
-### POST /api/exercise-maxes
-Create or update a 1RM.
+`kind` is `strength`, `run` (has `runSteps`), `circuit` (has `workout`, `sequence`)
+or `simple`. `state` is `ok`, `no_plan`, `building`, `no_access`, `paused` or `ended`.
+`sets` with a `warmupPercent` are warm-ups.
 
-**Request body:**
-```json
-{
-  "displayName": "Squat",
-  "oneRepMaxKg": 120.0
-}
-```
+## GET /api/users/me/dashboard
 
-**Response:** `{ "max": { ...maxObject } }`
+Large: includes the whole plan document. The helper trims it to
+`user.currentPlanId`, `plans[]`, `todaySession` (`{ planId, planTitle, day, distanceUnit }` or null), `distanceUnit`, `totalCompletedSessions`.
 
----
+## GET /api/plans/:planId
 
-## API Keys
+`{ plan: {...}, content: { weeks: [{ weekNumber, days: [{ date, status, isRestDay, sessions: [...] }] }] }, version }`.
+Day `status` is `planned`, `completed`, `skipped` or `moved`.
 
-### GET /api/api-keys
-List active (non-revoked) API keys for the user.
+## PATCH /api/plans/:planId/days/:date
 
-**Response:**
-```json
-{
-  "keys": [
-    {
-      "id": "uuid",
-      "name": "My Claude Code",
-      "createdAt": "2026-02-01T12:00:00.000Z",
-      "lastUsedAt": "2026-02-27T08:30:00.000Z"
-    }
-  ]
-}
-```
+Body `{ "status": "completed" | "skipped" | "planned" }`.
 
-### POST /api/api-keys
-Create a new API key. The raw key is returned **once** — store it immediately.
+## GET /api/session-logs
 
-**Request body:** `{ "name": "My Claude Code" }`
+`?planId=&dayDate=` → `{ logs: [...] }` for the day.
+`?planId=&sessionId=` → `{ log: {...} | null, prefill: {...} }` for one session.
 
-**Response:**
-```json
-{
-  "key": "htp_a1b2c3d4...",
-  "id": "uuid",
-  "name": "My Claude Code",
-  "createdAt": "2026-02-27T12:00:00.000Z"
-}
-```
+## PUT /api/session-logs
 
-### DELETE /api/api-keys/:id
-Revoke a key. Immediate effect — any subsequent request with this key returns 401.
+Upsert one session's log, keyed on `planId` + `sessionId`. Saving any content
+completes the day, and a set that implies a higher 1RM raises the stored max.
 
-**Response:** `{ "success": true }`
+Required: `planId` (uuid), `sessionId`, `dayDate`, `sessionType`. Optional:
+
+| Field | Type |
+|---|---|
+| `strengthSets` | `[{ exerciseName, exerciseKey, setIndex, reps?, weightKg?, durationSeconds?, distanceMetres? }]` |
+| `runDistanceKm`, `runDurationSeconds` | number, integer |
+| `rowDistanceM`, `rowDurationSeconds` | number, integer |
+| `roundsCompleted` | integer |
+| `warmupDone`, `cooldownDone` | boolean |
+| `notes` | string |
+
+A `0` in a numeric field is stored as "not recorded". Response `{ log: {...} }`.
+
+## GET /api/exercise-maxes
+
+`{ maxes: [{ exerciseKey, displayName, oneRepMaxKg, source, confidence, updatedAt, ... }] }`
+
+## PUT /api/exercise-maxes
+
+Body `{ "exerciseName": "Back Squat", "oneRepMaxKg": 140 }` (kg, 0 < x ≤ 1000).
+A hand-set max is stored with `source: "user"`; the next benchmark set replaces it.

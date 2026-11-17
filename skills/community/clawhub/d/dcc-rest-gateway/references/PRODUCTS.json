@@ -1,0 +1,690 @@
+{
+  "schema_version": 1,
+  "sources": {
+    "released_cli": {
+      "name": "dcc-mcp-cli",
+      "version": "0.20.25",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-core",
+      "tag": "v0.20.25",
+      "commit": "05b3c61cf787045f11e4fd49019c2be090e9db78",
+      "command": "dcc-mcp-cli dcc-types --output json",
+      "checked_at": "2026-09-10",
+      "reported_total": 37,
+      "dcc_types": [
+        "3dsmax",
+        "aftereffects",
+        "blender",
+        "c4d",
+        "comfyui",
+        "freecad",
+        "gimp",
+        "godot",
+        "houdini",
+        "illustrator",
+        "katana",
+        "krita",
+        "liquigen",
+        "mari",
+        "marmoset",
+        "material-maker",
+        "maya",
+        "mobu",
+        "nuke",
+        "obs",
+        "openscad",
+        "openusd",
+        "photoshop",
+        "powerpoint",
+        "premiere",
+        "renderdoc",
+        "shogun",
+        "shotgrid",
+        "sketchup",
+        "substance3d_designer",
+        "substance3d_painter",
+        "tiled",
+        "touchdesigner",
+        "unity",
+        "unreal",
+        "wwise",
+        "zbrush"
+      ]
+    },
+    "core_catalog": {
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-core",
+      "commit": "05b3c61cf787045f11e4fd49019c2be090e9db78",
+      "path": "dcc-mcp-catalog.yml"
+    },
+    "owner_repositories_checked_at": "2026-09-10",
+    "current_core_catalog": {
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-core",
+      "commit": "05b3c61cf787045f11e4fd49019c2be090e9db78",
+      "path": "dcc-mcp-catalog.yml",
+      "ref": "main",
+      "checked_at": "2026-09-10"
+    }
+  },
+  "ui_routing": {
+    "canonical_provider": "dcc-cua",
+    "search_terms": [
+      "DCC-CUA",
+      "ui-control"
+    ],
+    "typed_tools_first": true,
+    "default_for_dcc_mcp_application_ui": true,
+    "scope": [
+      "DCC application UI",
+      "browser UI",
+      "non-DCC application UI"
+    ],
+    "conditional_skill_route": "dcc-cua",
+    "hard_skill_dependency": false,
+    "forbidden_fallbacks": [
+      "Codex/OpenAI Computer Use",
+      "computer-use Skill",
+      "@oai/sky",
+      "Browser plugin",
+      "Chrome plugin"
+    ],
+    "required_attestation": [
+      "provider",
+      "runtime",
+      "pid",
+      "hwnd"
+    ],
+    "action_contract": [
+      "fresh observation before every state-dependent action",
+      "latest snapshot or semantic reference only",
+      "post-action state readback",
+      "stop on interruption or permission failure"
+    ],
+    "human_handoff": [
+      "CAPTCHA",
+      "authentication challenge",
+      "security challenge"
+    ]
+  },
+  "products": [
+    {
+      "id": "3dsmax",
+      "display_name": "Autodesk 3ds Max",
+      "aliases": ["3ds Max", "3dsmax", "3ds-max"],
+      "contextual_aliases": [],
+      "family": "3d-content",
+      "adapter": "dcc-mcp-3dsmax",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-3dsmax",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Create a modeled scene in Autodesk 3ds Max.",
+        "zh": "在 Autodesk 3ds Max 中创建一个建模场景。"
+      }
+    },
+    {
+      "id": "aftereffects",
+      "display_name": "Adobe After Effects",
+      "aliases": ["After Effects", "AfterEffects"],
+      "contextual_aliases": [],
+      "family": "adobe-content",
+      "adapter": "dcc-mcp-aftereffects",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-aftereffects",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Build a motion graphics composition in Adobe After Effects.",
+        "zh": "在 Adobe After Effects 中制作动态图形合成。"
+      }
+    },
+    {
+      "id": "blender",
+      "display_name": "Blender",
+      "aliases": [],
+      "contextual_aliases": ["Blender"],
+      "family": "3d-content",
+      "adapter": "dcc-mcp-blender",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-blender",
+      "catalog_install_available": true,
+      "host_install": {
+        "kind": "free_open_source",
+        "official_url": "https://www.blender.org/download/"
+      },
+      "intent_examples": {
+        "en": "Build and render a scene in Blender.",
+        "zh": "在 Blender 中搭建并渲染场景。"
+      }
+    },
+    {
+      "id": "c4d",
+      "display_name": "Cinema 4D",
+      "aliases": ["Cinema4D", "C4D"],
+      "contextual_aliases": [],
+      "family": "3d-content",
+      "adapter": "dcc-mcp-cinema4d",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-cinema4d",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Create and render a scene in Cinema 4D.",
+        "zh": "在 Cinema 4D 中创建并渲染场景。"
+      }
+    },
+    {
+      "id": "comfyui",
+      "display_name": "ComfyUI",
+      "aliases": ["Comfy UI"],
+      "contextual_aliases": [],
+      "family": "generative-content",
+      "adapter": "dcc-mcp-comfyui",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-comfyui",
+      "catalog_install_available": true,
+      "host_install": {
+        "kind": "free_open_source",
+        "official_url": "https://github.com/Comfy-Org/ComfyUI#installing"
+      },
+      "intent_examples": {
+        "en": "Run a bounded image workflow in ComfyUI.",
+        "zh": "在 ComfyUI 中运行一个有界的图像工作流。"
+      }
+    },
+    {
+      "id": "freecad",
+      "display_name": "FreeCAD",
+      "aliases": [],
+      "contextual_aliases": [],
+      "family": "cad",
+      "adapter": "dcc-mcp-freecad",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-freecad",
+      "catalog_install_available": true,
+      "host_install": {
+        "kind": "free_open_source",
+        "official_url": "https://www.freecad.org/downloads.php"
+      },
+      "intent_examples": {
+        "en": "Create a parametric part in FreeCAD.",
+        "zh": "在 FreeCAD 中创建一个参数化零件。"
+      }
+    },
+    {
+      "id": "gimp",
+      "display_name": "GIMP",
+      "aliases": ["GIMP 3"],
+      "contextual_aliases": [],
+      "family": "image-content",
+      "adapter": "dcc-mcp-gimp",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-gimp",
+      "catalog_install_available": true,
+      "host_install": {
+        "kind": "free_open_source",
+        "official_url": "https://www.gimp.org/downloads/"
+      },
+      "intent_examples": {
+        "en": "Edit and export an image in GIMP.",
+        "zh": "在 GIMP 中编辑并导出图像。"
+      }
+    },
+    {
+      "id": "godot",
+      "display_name": "Godot Engine",
+      "aliases": [],
+      "contextual_aliases": ["Godot"],
+      "family": "game-engine",
+      "adapter": "dcc-mcp-godot",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-godot",
+      "catalog_install_available": true,
+      "host_install": {
+        "kind": "free_open_source",
+        "official_url": "https://godotengine.org/download/"
+      },
+      "intent_examples": {
+        "en": "Build a playable scene in Godot Engine.",
+        "zh": "在 Godot Engine 中制作一个可玩场景。"
+      }
+    },
+    {
+      "id": "houdini",
+      "display_name": "SideFX Houdini",
+      "aliases": ["Houdini"],
+      "contextual_aliases": [],
+      "family": "3d-content",
+      "adapter": "dcc-mcp-houdini",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-houdini",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Create procedural geometry in SideFX Houdini.",
+        "zh": "在 SideFX Houdini 中创建程序化几何。"
+      }
+    },
+    {
+      "id": "illustrator",
+      "display_name": "Adobe Illustrator",
+      "aliases": [],
+      "contextual_aliases": ["Illustrator"],
+      "family": "adobe-content",
+      "adapter": "dcc-mcp-illustrator",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-illustrator",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Create vector artwork in Adobe Illustrator.",
+        "zh": "在 Adobe Illustrator 中创建矢量图稿。"
+      }
+    },
+    {
+      "id": "katana",
+      "display_name": "Foundry Katana",
+      "aliases": [],
+      "contextual_aliases": ["Katana"],
+      "family": "3d-content",
+      "adapter": "dcc-mcp-katana",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-katana",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Build a lighting and lookdev graph in Foundry Katana.",
+        "zh": "在 Foundry Katana 中搭建灯光与外观开发图。"
+      }
+    },
+    {
+      "id": "krita",
+      "display_name": "Krita",
+      "aliases": [],
+      "contextual_aliases": [],
+      "family": "image-content",
+      "adapter": "dcc-mcp-krita",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-krita",
+      "catalog_install_available": true,
+      "host_install": {
+        "kind": "free_open_source",
+        "official_url": "https://krita.org/en/download/"
+      },
+      "intent_examples": {
+        "en": "Paint and export an illustration in Krita.",
+        "zh": "在 Krita 中绘制并导出插画。"
+      }
+    },
+    {
+      "id": "liquigen",
+      "display_name": "LiquiGen",
+      "aliases": ["LiquiGen", "Liquid Gen"],
+      "contextual_aliases": [],
+      "family": "water simulation",
+      "adapter": "dcc-mcp-liquigen",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-liquigen",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Inspect the simulation in LiquiGen.",
+        "zh": "在 LiquiGen 中检查液体模拟。"
+      }
+    },
+    {
+      "id": "mari",
+      "display_name": "Foundry Mari",
+      "aliases": [],
+      "contextual_aliases": ["Mari"],
+      "family": "materials",
+      "adapter": "dcc-mcp-mari",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-mari",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Texture a production asset in Foundry Mari.",
+        "zh": "在 Foundry Mari 中为制作资产绘制纹理。"
+      }
+    },
+    {
+      "id": "marmoset",
+      "display_name": "Marmoset Toolbag",
+      "aliases": ["Marmoset"],
+      "contextual_aliases": ["Toolbag"],
+      "family": "rendering",
+      "adapter": "dcc-mcp-marmoset",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-marmoset",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Set up and render a PBR asset in Marmoset Toolbag.",
+        "zh": "在 Marmoset Toolbag 中设置并渲染 PBR 资产。"
+      }
+    },
+    {
+      "id": "material-maker",
+      "display_name": "Material Maker",
+      "aliases": ["MaterialMaker"],
+      "contextual_aliases": [],
+      "family": "materials",
+      "adapter": "dcc-mcp-material-maker",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-material-maker",
+      "catalog_install_available": false,
+      "intent_examples": {
+        "en": "Build and export a procedural material in Material Maker.",
+        "zh": "在 Material Maker 中制作并导出程序化材质。"
+      }
+    },
+    {
+      "id": "maya",
+      "display_name": "Autodesk Maya",
+      "aliases": [],
+      "contextual_aliases": ["Maya"],
+      "family": "3d-content",
+      "adapter": "dcc-mcp-maya",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-maya",
+      "catalog_install_available": true,
+      "catalog_adapter_version": "0.9.22",
+      "intent_examples": {
+        "en": "Inspect scene state, DAG nodes, animation, and materials in Autodesk Maya.",
+        "zh": "在 Autodesk Maya 中检查场景状态、DAG 节点、动画与材质。"
+      },
+      "versioned_capabilities": [
+        {
+          "id": "assetsync-v2-native-lookdev",
+          "minimum_adapter_version": "0.9.26",
+          "availability": "requires_adapter_upgrade",
+          "source_url": "https://github.com/dcc-mcp/dcc-mcp-maya/pull/486",
+          "summary": {
+            "en": "AssetSync v2 editable rig, groom, materials, animation, and Arnold lookdev support is available after upgrading the Maya adapter.",
+            "zh": "升级 Maya 适配器后，可使用 AssetSync v2 的可编辑绑定、毛发、材质、动画与 Arnold 外观开发能力。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobu",
+      "display_name": "Autodesk MotionBuilder",
+      "aliases": ["MotionBuilder", "MoBu"],
+      "contextual_aliases": [],
+      "family": "animation",
+      "adapter": "dcc-mcp-mobu",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-mobu",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Retarget motion capture in Autodesk MotionBuilder.",
+        "zh": "在 Autodesk MotionBuilder 中重定向动作捕捉。"
+      }
+    },
+    {
+      "id": "nuke",
+      "display_name": "Foundry Nuke",
+      "aliases": [],
+      "contextual_aliases": ["Nuke"],
+      "family": "compositing",
+      "adapter": "dcc-mcp-nuke",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-nuke",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Composite a shot in Foundry Nuke.",
+        "zh": "在 Foundry Nuke 中合成镜头。"
+      }
+    },
+    {
+      "id": "obs",
+      "display_name": "OBS Studio",
+      "aliases": ["OBS", "OBS Studio"],
+      "contextual_aliases": ["OBS 录屏", "OBS录屏", "OBS 录制", "OBS录制"],
+      "family": "broadcast",
+      "adapter": "dcc-mcp-obs",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-obs",
+      "catalog_install_available": true,
+      "host_install": {
+        "kind": "free_open_source",
+        "official_url": "https://obsproject.com/download"
+      },
+      "intent_examples": {
+        "en": "Start a recording in OBS Studio.",
+        "zh": "在 OBS 中开始录屏。"
+      }
+    },
+    {
+      "id": "openscad",
+      "display_name": "OpenSCAD",
+      "aliases": [],
+      "contextual_aliases": [],
+      "family": "cad",
+      "adapter": "dcc-mcp-openscad",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-openscad",
+      "catalog_install_available": true,
+      "host_install": {
+        "kind": "free_open_source",
+        "official_url": "https://openscad.org/downloads.html"
+      },
+      "intent_examples": {
+        "en": "Create and export a deterministic model in OpenSCAD.",
+        "zh": "在 OpenSCAD 中创建并导出确定性模型。"
+      }
+    },
+    {
+      "id": "openusd",
+      "display_name": "OpenUSD",
+      "aliases": ["Universal Scene Description"],
+      "contextual_aliases": [],
+      "family": "interchange",
+      "adapter": "dcc-mcp-openusd",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-openusd",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Inspect and edit a scene graph with OpenUSD.",
+        "zh": "使用 OpenUSD 检查并编辑场景图。"
+      }
+    },
+    {
+      "id": "photoshop",
+      "display_name": "Adobe Photoshop",
+      "aliases": ["Photoshop"],
+      "contextual_aliases": [],
+      "family": "adobe-content",
+      "adapter": "dcc-mcp-photoshop",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-photoshop",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Retouch and export an image in Adobe Photoshop.",
+        "zh": "在 Adobe Photoshop 中修图并导出图像。"
+      }
+    },
+    {
+      "id": "powerpoint",
+      "display_name": "Microsoft PowerPoint",
+      "aliases": ["PowerPoint", "PPT", "PPTX", "幻灯片"],
+      "contextual_aliases": [],
+      "family": "presentation",
+      "adapter": "dcc-mcp-PowerPoint",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-PowerPoint",
+      "catalog_install_available": false,
+      "intent_examples": {
+        "en": "Create and review a deck in Microsoft PowerPoint.",
+        "zh": "在 Microsoft PowerPoint 中创建并审阅演示文稿。"
+      }
+    },
+    {
+      "id": "premiere",
+      "display_name": "Adobe Premiere Pro",
+      "aliases": ["Premiere Pro", "Adobe Premiere"],
+      "contextual_aliases": ["Premiere"],
+      "family": "adobe-content",
+      "adapter": "dcc-mcp-premiere",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-premiere",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Edit and export a sequence in Adobe Premiere Pro.",
+        "zh": "在 Adobe Premiere Pro 中剪辑并导出序列。"
+      }
+    },
+    {
+      "id": "renderdoc",
+      "display_name": "RenderDoc",
+      "aliases": [],
+      "contextual_aliases": [],
+      "family": "graphics-debugging",
+      "adapter": "dcc-mcp-renderdoc",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-renderdoc",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Capture and inspect a graphics frame in RenderDoc.",
+        "zh": "在 RenderDoc 中捕获并检查图形帧。"
+      }
+    },
+    {
+      "id": "shogun",
+      "display_name": "Vicon Shogun",
+      "aliases": ["Shogun Post"],
+      "contextual_aliases": ["Shogun"],
+      "family": "motion-capture",
+      "adapter": "dcc-mcp-shogun",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-shogun",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Process a motion-capture take in Vicon Shogun.",
+        "zh": "在 Vicon Shogun 中处理动作捕捉 take。"
+      }
+    },
+    {
+      "id": "shotgrid",
+      "display_name": "Autodesk Flow Production Tracking",
+      "aliases": ["Flow Production Tracking", "ShotGrid"],
+      "contextual_aliases": [],
+      "family": "production-tracking",
+      "adapter": "dcc-mcp-fpt",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-fpt",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Read a shot task in Autodesk Flow Production Tracking.",
+        "zh": "在 Autodesk Flow Production Tracking 中读取镜头任务。"
+      }
+    },
+    {
+      "id": "sketchup",
+      "display_name": "SketchUp",
+      "aliases": [],
+      "contextual_aliases": [],
+      "family": "cad",
+      "adapter": "dcc-mcp-sketchup",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-sketchup",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Model and validate a scene in SketchUp.",
+        "zh": "在 SketchUp 中建模并验证场景。"
+      }
+    },
+    {
+      "id": "substance3d_designer",
+      "display_name": "Adobe Substance 3D Designer",
+      "aliases": ["Substance 3D Designer", "Substance Designer"],
+      "contextual_aliases": [],
+      "family": "materials",
+      "adapter": "dcc-mcp-substance3d-designer",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-substance3d-designer",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Author a procedural material in Adobe Substance 3D Designer.",
+        "zh": "在 Adobe Substance 3D Designer 中制作程序化材质。"
+      }
+    },
+    {
+      "id": "substance3d_painter",
+      "display_name": "Adobe Substance 3D Painter",
+      "aliases": ["Substance 3D Painter", "Substance Painter"],
+      "contextual_aliases": [],
+      "family": "materials",
+      "adapter": "dcc-mcp-substance3d-painter",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-substance3d-painter",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Paint and export texture maps in Adobe Substance 3D Painter.",
+        "zh": "在 Adobe Substance 3D Painter 中绘制并导出纹理贴图。"
+      }
+    },
+    {
+      "id": "tiled",
+      "display_name": "Tiled Map Editor",
+      "aliases": [],
+      "contextual_aliases": ["Tiled"],
+      "family": "game-content",
+      "adapter": "dcc-mcp-tiled",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-tiled",
+      "catalog_install_available": false,
+      "intent_examples": {
+        "en": "Author and validate a tilemap in Tiled Map Editor.",
+        "zh": "在 Tiled Map Editor 中制作并验证瓦片地图。"
+      }
+    },
+    {
+      "id": "touchdesigner",
+      "display_name": "TouchDesigner",
+      "aliases": ["Touch Designer"],
+      "contextual_aliases": [],
+      "family": "interactive-media",
+      "adapter": "dcc-mcp-touchdesigner",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-touchdesigner",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Build an interactive operator graph in TouchDesigner.",
+        "zh": "在 TouchDesigner 中搭建交互式算子图。"
+      }
+    },
+    {
+      "id": "unity",
+      "display_name": "Unity Editor",
+      "aliases": ["Tuanjie", "Tuanjie Engine", "团结引擎"],
+      "contextual_aliases": ["Unity"],
+      "family": "game-engine",
+      "adapter": "dcc-mcp-unity",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-unity",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Build a playable scene in Unity Editor.",
+        "zh": "在团结引擎中创建一个可玩场景。"
+      }
+    },
+    {
+      "id": "unreal",
+      "display_name": "Unreal Engine",
+      "aliases": ["UE4", "UE5", "虚幻引擎"],
+      "contextual_aliases": ["Unreal", "UE"],
+      "family": "game-engine",
+      "adapter": "dcc-mcp-unreal",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-unreal",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Build and validate a level in Unreal Engine.",
+        "zh": "在 UE5 中搭建并验证关卡。"
+      }
+    },
+    {
+      "id": "wwise",
+      "display_name": "Audiokinetic Wwise",
+      "aliases": ["Wwise"],
+      "contextual_aliases": [],
+      "family": "game-audio",
+      "adapter": "dcc-mcp-wwise",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-wwise",
+      "catalog_install_available": false,
+      "intent_examples": {
+        "en": "Build and inspect a SoundBank in Audiokinetic Wwise.",
+        "zh": "在 Audiokinetic Wwise 中构建并检查 SoundBank。"
+      }
+    },
+    {
+      "id": "zbrush",
+      "display_name": "ZBrush",
+      "aliases": [],
+      "contextual_aliases": [],
+      "family": "3d-content",
+      "adapter": "dcc-mcp-zbrush",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-zbrush",
+      "catalog_install_available": true,
+      "intent_examples": {
+        "en": "Sculpt and inspect a model in ZBrush.",
+        "zh": "在 ZBrush 中雕刻并检查模型。"
+      }
+    }
+  ],
+  "application_routes": [
+    {
+      "id": "office-suite",
+      "display_name": "Microsoft Office",
+      "aliases": ["Microsoft Office", "Microsoft Excel", "Microsoft Word", "Microsoft Outlook", "表格", "电子表格", "做表", "spreadsheet"],
+      "contextual_aliases": ["Excel", "Word", "Outlook"],
+      "family": "office",
+      "adapter": "dcc-mcp-office",
+      "repository": "https://github.com/dcc-mcp/dcc-mcp-office",
+      "catalog_install_available": false,
+      "core_catalog_required": false,
+      "source": "current_core_catalog",
+      "intent_examples": {
+        "en": "Create a spreadsheet in Microsoft Excel.",
+        "zh": "在 Excel 中创建并填写表格。"
+      }
+    }
+  ]
+}

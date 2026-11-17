@@ -130,7 +130,7 @@ def main():
     parser = argparse.ArgumentParser(description="YumFu unified load script")
     parser.add_argument("--user-id", required=True, help="User ID (Telegram/Platform)")
     parser.add_argument("--universe", 
-                       choices=["xiaoao", "harry-potter", "warrior-cats", "lotr", "game-of-thrones", "yitian", "sengoku", "journey-to-west"],
+                       choices=["xiaoao", "harry-potter", "warrior-cats", "lotr", "game-of-thrones", "yitian", "sengoku", "journey-to-west", "ramayana", "xuanzang"],
                        help="Game world/universe (omit to check all worlds)")
     parser.add_argument("--check-all", action="store_true", help="Check all worlds for this user")
     parser.add_argument("--quiet", action="store_true", help="Only output JSON result")

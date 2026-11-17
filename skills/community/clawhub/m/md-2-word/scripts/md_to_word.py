@@ -60,6 +60,28 @@ def add_heading(doc, text, level):
         para.space_after = Pt(6)
 
 
+def add_code_block(doc, code_lines, language=""):
+    """Add a formatted code block with syntax-like styling."""
+    for line in code_lines:
+        para = doc.add_paragraph()
+        run = para.add_run(line if not line else line)
+        # Monospace font for code
+        run.font.name = 'Consolas'
+        run.font.size = Pt(9)
+        run._element.rPr.rFonts.set(qn('w:eastAsia'), 'Consolas')
+        run.font.color.rgb = RGBColor(0x1A, 0x1A, 0x2E)
+        # Gray background via paragraph shading
+        shading = OxmlElement('w:shd')
+        shading.set(qn('w:val'), 'clear')
+        shading.set(qn('w:fill'), 'F0F0F0')
+        para.paragraph_format.left_indent = Cm(0.5)
+        para.paragraph_format.space_before = Pt(0)
+        para.paragraph_format.space_after = Pt(0)
+        para.paragraph_format.line_spacing = Pt(13)
+        pPr = para._p.get_or_add_pPr()
+        pPr.append(shading)
+
+
 def add_paragraph(doc, text):
     """Add a regular paragraph with bold text support."""
     para = doc.add_paragraph()
@@ -154,9 +176,35 @@ def convert_md_to_word(input_path, output_path=None):
     i = 0
     in_table = False
     table_data = []
+    in_code_block = False
+    code_block_lines = []
+    code_language = ""
     
     while i < len(lines):
         line = lines[i].rstrip()
+        
+        # Detect fenced code block start/end
+        code_fence_match = re.match(r'^```(\w*)$', line.strip())
+        if code_fence_match is not None:
+            if not in_code_block:
+                # Start of code block
+                in_code_block = True
+                code_language = code_fence_match.group(1)
+                code_block_lines = []
+            else:
+                # End of code block
+                in_code_block = False
+                add_code_block(doc, code_block_lines, code_language)
+                code_block_lines = []
+                code_language = ""
+            i += 1
+            continue
+        
+        # If inside a code block, accumulate lines
+        if in_code_block:
+            code_block_lines.append(line)
+            i += 1
+            continue
         
         # Table separator, skip but keep in_table state
         if line.startswith('|---') or line.startswith('| ---'):
@@ -231,6 +279,10 @@ def convert_md_to_word(input_path, output_path=None):
         # Regular paragraph
         add_paragraph(doc, line)
         i += 1
+    
+    # Flush any remaining code block (malformed block without closing fence)
+    if code_block_lines:
+        add_code_block(doc, code_block_lines, code_language)
     
     # Handle remaining table
     if table_data:

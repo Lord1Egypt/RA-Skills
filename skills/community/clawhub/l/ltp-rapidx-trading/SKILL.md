@@ -1,6 +1,6 @@
 ---
 name: ltp-rapidx-trading
-version: 1.0.16
+version: 1.0.17
 description: Use when an agent needs to operate RapidX through MCP or CLI for portfolio reads, market reads, order preview, order submit/replace/cancel, position management, algo orders, or explicit live trading verification.
 ---
 
@@ -109,6 +109,8 @@ For a symbol, refresh market data:
 ```
 
 Use RapidX symbol format `BINANCE_PERP_<BASE>_<QUOTE>`, for example `BINANCE_PERP_BTC_USDT` or `BINANCE_PERP_ETH_USDT`. `OKX_PERP_<BASE>_<QUOTE>` is supported for OKX perpetual instruments. If the user says an OKX swap symbol, `OKX_SWAP_<BASE>_<QUOTE>` is accepted as an input alias and normalizes to `OKX_PERP_<BASE>_<QUOTE>`. Market adapters may return `originalSymbol` for venue-native symbols such as `BTCUSDT` or `BTC-USDT-SWAP`.
+
+`rapidx/market/get-klines` supports Binance and OKX symbols. For OKX perpetual candles, use `OKX_PERP_<BASE>_<QUOTE>` or its `OKX_SWAP_<BASE>_<QUOTE>` input alias with the same `interval` and optional `limit` fields used for Binance.
 
 Normalize user-facing Binance symbols before tool calls. If the user says `BTCUSDT`, `btcusdt`, or `BTC/USDT`, call RapidX with `BINANCE_PERP_BTC_USDT`. If the base asset contains Chinese characters, preserve the base exactly: `币安人生USDT` becomes `BINANCE_PERP_币安人生_USDT`. Do not translate Chinese base assets. Do not pass Binance native symbols directly as the `symbol` field. If exchange, type, base, or quote cannot be identified, ask the user to confirm the RapidX symbol first.
 

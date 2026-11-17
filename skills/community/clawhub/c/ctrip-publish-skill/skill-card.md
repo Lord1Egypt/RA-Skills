@@ -1,45 +1,60 @@
-## Description: <br>
-Automates Ctrip content-center picture-text notes by gathering images, filling title and body fields, selecting destination metadata, and preparing or triggering publication in a logged-in browser session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+携程内容中心全自动发布技能，支持从 Bing Images 搜索高清无版权图片、自动填写标题正文、自动上传图片、自动选择目的地、自动点击发布。适用于旅行攻略、美食推荐等图文笔记发布。
 
-## Publisher: <br>
-[ansike](https://clawhub.ai/user/ansike) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ansike](https://clawhub.ai/user/ansike)
 
-## Use Case: <br>
-External creators and agents use this skill to draft and publish travel or food notes to Ctrip by automating image collection, form filling, destination selection, and browser actions. It is intended for users who can review the generated content and approve publication from an authenticated Ctrip account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a logged-in Chrome session and modify a live Ctrip publishing page. <br>
-Mitigation: Run it in a separate browser profile where possible and keep the session limited to the Ctrip account needed for the post. <br>
-Risk: Generated titles, body text, destination choices, and downloaded images may be inaccurate or unsuitable for publication. <br>
-Mitigation: Review all generated text, selected images, and form fields before allowing final publication. <br>
-Risk: The publication boundary is unclear because automation may click or prepare publish actions on a live page. <br>
-Mitigation: Require explicit user approval for the exact final post before any publish confirmation is accepted. <br>
+## Use Case:
 
+External content creators and operators use this skill to draft and automate Ctrip travel-note publishing workflows, including page navigation, title and body entry, image upload guidance, destination selection, and final publishing steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ansike/ctrip-publish-skill) <br>
-- [Ctrip picture-text publishing page](https://we.ctrip.com/publish/publishPictureText) <br>
-- [Ctrip creator backend](https://we.ctrip.com/publish/publishHome) <br>
-- [Ctrip content management](https://we.ctrip.com/publish/contentManagement) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style guidance with Python, JavaScript, and shell command artifacts for browser automation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May operate a logged-in Chrome session, download images to local temporary storage, fill live web forms, and request or perform publishing actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 3.2.0) <br>
+Risk: The skill can control a logged-in Chrome session and affect a Ctrip publishing account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a browser profile intended for this workflow and review every title, body, image, destination, and publish action before completion.
+
+Risk: Generated browser scripts and post content may be unsafe or incorrect when based on untrusted input.
+
+Mitigation: Use trusted source material, inspect generated text and JavaScript before execution, and avoid pasting unreviewed content into an authenticated session.
+
+Risk: Install-time dependency downloads can change the runtime environment.
+
+Mitigation: Pin or preinstall dependencies in a controlled environment before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ansike/skills/ctrip-publish-skill)
+- [Ctrip picture-text publishing page](https://we.ctrip.com/publish/publishPictureText)
+- [Ctrip creator backend](https://we.ctrip.com/publish/publishHome)
+- [Ctrip content management](https://we.ctrip.com/publish/contentManagement)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with Python, JavaScript, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser automation steps that affect a logged-in Ctrip account.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 3.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

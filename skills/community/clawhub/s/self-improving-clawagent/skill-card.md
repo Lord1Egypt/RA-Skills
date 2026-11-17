@@ -1,42 +1,57 @@
-## Description: <br>
-Generates and debugs code, scaffolds projects, navigates Antigravity-style local environments, and performs resilient YouTube research with fallback data modeling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and debugs code, scaffolds projects, navigates Antigravity environments, and performs YouTube research workflows with fallback data modeling.
 
-## Publisher: <br>
-[pratikbhosale7](https://clawhub.ai/user/pratikbhosale7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pratikbhosale7](https://clawhub.ai/user/pratikbhosale7)
 
-## Use Case: <br>
-Developers and agent builders use this skill to support code generation, project scaffolding, local file-aware workflows, and self-improvement logging. It can also produce YouTube research-derived copy, with outputs treated as heuristic when live data access is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to rewrite its own instructions and related Python files. <br>
-Mitigation: Review every proposed or actual change to SKILL.md, SOUL.md, MEMORY.md, and Python files before installation or continued use. <br>
-Risk: Self-modifying behavior may be unsuitable for sensitive projects. <br>
-Mitigation: Avoid using the skill on sensitive projects unless the execution environment, permissions, and file changes are tightly reviewed. <br>
-Risk: YouTube research outputs may be heuristic or mock data when live API quotas or endpoint access are unavailable. <br>
-Mitigation: Independently verify YouTube research outputs before using them for business, publishing, or decision-making. <br>
+## Use Case:
 
+Developers and agent operators can use this skill to generate or debug code, scaffold projects, navigate Antigravity workflows, and produce YouTube research outputs. It also includes a self-improvement loop that can revise local instruction and memory files after task audits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pratikbhosale7/self-improving-clawagent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with optional Python code, shell commands, and configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or apply changes to SKILL.md, SOUL.md, MEMORY.md, and Python helper files when explicitly operating in its self-improvement workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill implements a self-modifying workflow that can rewrite local instruction and memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a disposable, tightly sandboxed workspace and require explicit review and approval before any self-rewrite or persistent memory update is accepted.
+
+Risk: The skill includes broad local code execution and file-write behavior.
+
+Mitigation: Run with least privilege, keep private projects and secrets out of the workspace, and review generated code or shell commands before execution.
+
+Risk: YouTube research may fall back to mock-data modeling when live data access is unavailable.
+
+Mitigation: Treat fallback research as synthetic, label it clearly, and verify important findings against live or authoritative sources before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pratikbhosale7/skills/self-improving-clawagent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with code, shell commands, and JSON-like structured content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local instruction, memory, and behavior files when self-improvement behavior is used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,49 @@
-## Description: <br>
-Guides agents through scanning local skills, MCP servers, and agent tools for security issues using Snyk's agent scanner. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan installed agent components such as MCP servers, skills, and agent tools for security vulnerabilities using snyk-agent-scan.
 
-## Publisher: <br>
-[SwiftKing100](https://clawhub.ai/user/SwiftKing100) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[swiftking100](https://clawhub.ai/user/swiftking100)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to run local scans of agent components and interpret scanner findings before installing or publishing skills, MCP servers, or tools. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The documented examples execute external tooling with uvx and may fetch the latest scanner package at runtime. <br>
-Mitigation: Verify the snyk-agent-scan package source before use and pin a known scanner version instead of using @latest when reproducibility matters. <br>
-Risk: Scanning broad local paths can expose more files to the scanner than intended. <br>
-Mitigation: Run scans only against directories selected for audit, such as the specific skill or MCP server path under review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Snyk agent-scan issue code reference](https://github.com/snyk/agent-scan/blob/main/docs/issue-codes.md) <br>
-- [ClawHub release page](https://clawhub.ai/SwiftKing100/snyk-skill-scanner) <br>
-- [Publisher profile](https://clawhub.ai/user/SwiftKing100) <br>
+## Use Case:
 
+Developers and security reviewers use this skill to run snyk-agent-scan against installed or candidate agent components and interpret findings such as prompt injection, malware payloads, credential handling issues, hardcoded secrets, and MCP-specific risks.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with bash command examples and result interpretation tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce scanner output or JSON when the user runs the documented snyk-agent-scan commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact instructs users to run mutable external code through snyk-agent-scan@latest and a remote shell installer, which the server security summary flagged as relying too heavily on mutable third-party code.
+
+Mitigation: Prefer a pinned, reviewed version of snyk-agent-scan, avoid copy-pasting the curl | sh installer, and run scans only against required paths under a non-administrative account.
+
+## Reference(s):
+
+- [Snyk Agent Scan Issue Codes](https://github.com/snyk/agent-scan/blob/main/docs/issue-codes.md)
+- [ClawHub Skill Page](https://clawhub.ai/swiftking100/skills/snyk-skill-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON scan output when users run snyk-agent-scan with the --json option.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

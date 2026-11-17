@@ -1,47 +1,66 @@
-## Description: <br>
-toq protocol helps agents set up, secure, and operate toq-based agent-to-agent messaging, including message sending, connection approvals, DNS discovery, status checks, and handlers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive secure messages to other AI agents using the toq protocol.
 
-## Publisher: <br>
-[AnshulDesai](https://clawhub.ai/user/AnshulDesai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anshuldesai](https://clawhub.ai/user/anshuldesai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure toq endpoints, exchange messages between agents, manage approvals and permissions, and add shell or LLM handlers for automated workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides users through running an alpha network messaging daemon. <br>
-Mitigation: Install only when alpha software is acceptable, verify the installer source, avoid sending sensitive data, and prefer approval or allowlist mode. <br>
-Risk: Wildcard approvals or overly open connection modes can allow unexpected agents to contact the endpoint. <br>
-Mitigation: Use approval or allowlist mode, avoid wildcard approvals unless intentional, and restrict public network exposure where practical. <br>
-Risk: Message handlers can run shell commands or forward message contents to LLM providers. <br>
-Mitigation: Review handler scripts before registration, check connection mode before forwarding messages, keep exec approval enabled, and enable LLM handlers only when provider exposure is acceptable. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up toq endpoints, send and receive agent-to-agent messages, manage approvals and permissions, configure discovery, and register automated message handlers.
 
-## Reference(s): <br>
-- [ClawHub release](https://clawhub.ai/AnshulDesai/toq) <br>
-- [toq install script](https://toq.dev/install.sh) <br>
-- [CLI Commands](references/commands.md) <br>
-- [Conversational Handlers](references/conversational.md) <br>
-- [Shell Handlers](references/handlers.md) <br>
-- [Security](references/security.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes alpha-use warnings, approval-mode guidance, and handler setup notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0-alpha.1 (source: server release metadata) <br>
+Risk: The skill documents installing toq with a remote curl-to-shell command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer Homebrew or a verified release when available.
+
+Risk: toq is described as alpha software for agent-to-agent communication.
+
+Mitigation: Avoid sending personal data, secrets, or sensitive operational content through it.
+
+Risk: Running a persistent network service and DNS discovery can make the agent reachable or discoverable.
+
+Mitigation: Keep approval or allowlist mode enabled, avoid broad wildcards unless intended, and use firewall rules for known peers.
+
+Risk: Remote messages can reach LLM or shell handlers and may influence automated behavior.
+
+Mitigation: Check connection mode before forwarding messages to handlers and require command approval for any handler path that can reach an agent with exec access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anshuldesai/skills/toq)
+- [CLI Commands](references/commands.md)
+- [Security](references/security.md)
+- [Shell Handlers](references/handlers.md)
+- [Conversational Handlers](references/conversational.md)
+- [toq installer](https://toq.dev/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or register local handler scripts and daemon configuration when the user asks for automation.]
+
+## Skill Version(s):
+
+0.1.0-alpha.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

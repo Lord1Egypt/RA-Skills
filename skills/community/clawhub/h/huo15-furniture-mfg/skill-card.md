@@ -1,43 +1,63 @@
-## Description: <br>
-Huo15 Furniture Mfg helps agents answer and act on furniture manufacturing operations for the HeySleep/和栖家居 system, including order tracking, production status, inventory, quality checks, purchasing, customer records, daily overviews, quotations, reminders, and document generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huo15 Furniture Mfg helps agents answer and act on furniture manufacturing operations in the HeySleep/和栖家居 test manufacturing system, including order tracking, production, inventory, quality, purchasing, customer records, daily overviews, confirmed write actions, and document generation.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Furniture manufacturing employees and operations teams use this skill to query ERP status, summarize production and fulfillment risk, prepare customer and quotation workflows, and run confirmation-gated updates from a chat agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive ERP credentials. <br>
-Mitigation: Use a revocable, low-privilege API key scoped to the intended test system. <br>
-Risk: Write and delete capabilities may be broader than the documentation claims. <br>
-Mitigation: Review every write/delete preview before approving execution and avoid production credentials unless environment allowlists are enforced. <br>
-Risk: Ownership-sensitive actions such as deletes can affect ERP records. <br>
-Mitigation: Verify tool ownership and record targets before approving destructive actions. <br>
+## Use Case:
 
+Manufacturing employees use this skill to query sales orders, production work, inventory, quality checks, purchasing, customers, and daily operating summaries from the HeySleep furniture manufacturing system. It can also prepare confirmed operational updates, customer or quote drafts, QC photo actions, and PDF business documents after user review.
 
-## Reference(s): <br>
-- [Complete Command Reference](references/commands.md) <br>
-- [HeySleep Manufacturing API Notes](references/heysleep-mfg-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and file attachments for generated PDFs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses confirmation-gated write previews and may require scoped ERP credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill handles ERP credentials and business records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Odoo API key, keep credentials out of chat and command arguments, and review installation before use.
+
+Risk: The promised test-only boundary is not technically enforced by the package.
+
+Mitigation: Confirm the configured URL is https://test.heysleep.cn with db=test and avoid production credentials until endpoint and HTTPS allowlisting are enforced.
+
+Risk: Write-capable workflows can change operational records if approved.
+
+Mitigation: Inspect each dry-run preview before approving any command with --yes.
+
+Risk: Generated PDFs may contain sensitive business information.
+
+Mitigation: Treat generated PDFs as confidential business documents and share them only with intended recipients.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhaobod1/skills/huo15-furniture-mfg)
+- [Command Reference](references/commands.md)
+- [HeySleep Manufacturing API Notes](references/heysleep-mfg-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown summaries with inline shell commands and generated local files when documents are requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write-capable workflows are designed around dry-run previews followed by explicit user approval.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

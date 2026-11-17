@@ -1,45 +1,63 @@
-## Description: <br>
-Edit PDFs with natural-language instructions using the nano-pdf CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edit PDFs with natural-language instructions using the nano-pdf CLI.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and document workflow users use this skill to edit a specified PDF page with natural-language instructions through the nano-pdf CLI. The skill is intended for careful PDF edits where users inspect results and confirm batch scope or sensitive document values before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The underlying nano-pdf package is a third-party AI PDF processor and may involve external data handling. <br>
-Mitigation: Install only if you trust the package and provider data handling, and avoid confidential or regulated PDFs unless that processing is acceptable. <br>
-Risk: Batch edits can modify unintended files if the resolved file list is not checked. <br>
-Mitigation: List the exact resolved PDF paths and ask the user to confirm the full list before running batch edits. <br>
-Risk: Substantive edits to legal, financial, medical, signed, or confidential documents can alter material terms incorrectly. <br>
-Mitigation: Confirm the specific field and replacement value before editing sensitive content, then test on copies and inspect the resulting PDF. <br>
+## Use Case:
 
+Developers and document operators use this skill to apply specific natural-language edits to PDF pages through the nano-pdf CLI while confirming batch scope and sensitive document values before execution.
 
-## Reference(s): <br>
-- [Nano Pdf Hardened on ClawHub](https://clawhub.ai/snazar-faberlens/nano-pdf-hardened) <br>
-- [nano-pdf PyPI project](https://pypi.org/project/nano-pdf/) <br>
-- [Faberlens nano-pdf safety evaluation](https://faberlens.ai/explore/nano-pdf) <br>
-- [Faberlens publisher profile](https://clawhub.ai/user/snazar-faberlens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the nano-pdf CLI; users should inspect output PDFs and confirm batch or sensitive-document edits before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on an unpinned third-party nano-pdf CLI package that runs locally on user PDFs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the package is trusted for the deployment context, and review sensitive files and outputs before sharing.
+
+Risk: Batch edits can modify unintended PDF files if the resolved file list is not checked first.
+
+Mitigation: List the exact resolved file paths and obtain user confirmation before executing batch edits.
+
+Risk: Sensitive legal, financial, medical, or signed documents can be materially changed by vague instructions.
+
+Mitigation: Confirm the specific fields and replacement values before editing substantive content in sensitive documents.
+
+Risk: Page numbering may differ between zero-based and one-based nano-pdf configurations.
+
+Mitigation: Inspect the output PDF and retry with the alternate page number if the edit lands on the wrong page.
+
+## Reference(s):
+
+- [nano-pdf PyPI package](https://pypi.org/project/nano-pdf/)
+- [Nano Pdf Hardened on ClawHub](https://clawhub.ai/snazar-faberlens/skills/nano-pdf-hardened)
+- [Faberlens nano-pdf safety report](https://faberlens.ai/explore/nano-pdf)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the nano-pdf CLI and user review of edited PDFs before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

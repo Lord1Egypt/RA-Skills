@@ -1,40 +1,57 @@
-## Description: <br>
-阿里云百炼 FunASR 录音文件识别，使用阿里云 DashScope API 进行语音转文字。当用户需要转录音频文件时触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fun-ASR speech recognition transcribes audio files with the Aliyun DashScope API when an agent receives audio or a transcription request.
 
-## Publisher: <br>
-[pengzhendong](https://clawhub.ai/user/pengzhendong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pengzhendong](https://clawhub.ai/user/pengzhendong)
 
-## Use Case: <br>
-Developers and end users use this skill to transcribe supported audio files into text through Alibaba Cloud DashScope FunASR. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audio files are processed by Alibaba Cloud DashScope, which may expose sensitive recordings to a third-party service. <br>
-Mitigation: Use the skill only for recordings you are authorized to process with DashScope, and avoid sensitive audio unless the provider is approved for that data. <br>
-Risk: The skill requires a DashScope API key in the execution environment. <br>
-Mitigation: Use a dedicated API key, keep it out of shared logs and prompts, and run the Python dependencies in an isolated environment. <br>
+## Use Case:
 
+Developers and agent users use this skill to transcribe local audio files such as WAV, MP3, M4A, FLAC, and OGG files into text through Alibaba Cloud DashScope Fun-ASR.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pengzhendong/fun-asr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text transcription with Markdown setup and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a DASHSCOPE_API_KEY and sends selected audio files to Alibaba Cloud DashScope for recognition.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Submitted audio is processed by Alibaba Cloud DashScope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending confidential, regulated, or consent-sensitive recordings unless that cloud processing is acceptable for the use case.
+
+Risk: Python dependencies are installed at runtime and may vary by environment.
+
+Mitigation: Install the skill in a virtual environment and use reviewed dependency versions where possible.
+
+Risk: The artifact grants WebSearch permission even though the skill behavior centers on DashScope transcription.
+
+Mitigation: Remove the unnecessary WebSearch permission before deployment if it is not needed.
+
+## Reference(s):
+
+- [ClawHub Fun-ASR skill page](https://clawhub.ai/pengzhendong/skills/fun-asr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text transcription with Markdown setup and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a DASHSCOPE_API_KEY environment variable and sends submitted audio to Alibaba Cloud DashScope for processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

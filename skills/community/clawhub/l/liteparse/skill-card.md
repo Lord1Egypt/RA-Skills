@@ -1,45 +1,59 @@
-## Description: <br>
-LiteParse parses, extracts text from, and screenshots PDF and document files locally using the LiteParse CLI (`lit`) for document and vision workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse, extract text from, and screenshot PDF and document files locally using the LiteParse CLI (`lit`).
 
-## Publisher: <br>
-[alfred-intel-handler-source](https://clawhub.ai/user/alfred-intel-handler-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alfred-intel-handler-source](https://clawhub.ai/user/alfred-intel-handler-source)
 
-## Use Case: <br>
-Developers, engineers, and coding agents use LiteParse to extract text, JSON, and page screenshots from local PDFs and documents for review, prompt context, batch conversion, or vision model inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes local/offline parsing, but OCR may download English language data on first run. <br>
-Mitigation: For strict offline or sensitive-document workflows, run with `--no-ocr` when possible or preinstall and cache OCR language data before processing documents. <br>
-Risk: Broad input folders or unclear output paths may process or write more private document data than intended. <br>
-Mitigation: Use explicit file and output paths, and avoid broad private folders unless the batch scope is intentional. <br>
-Risk: The skill depends on the external `@llamaindex/liteparse` npm package and optional local conversion tools. <br>
-Mitigation: Verify the package source before installing and confirm required local dependencies such as LibreOffice or ImageMagick for non-PDF formats. <br>
+## Use Case:
 
+Developers and agents use LiteParse to extract text, structured JSON, and page screenshots from PDFs and common office or image document formats for local document-processing workflows.
 
-## Reference(s): <br>
-- [LiteParse documentation](https://developers.llamaindex.ai/liteparse/) <br>
-- [LiteParse output examples](references/output-examples.md) <br>
-- [LiteParse ClawHub release](https://clawhub.ai/alfred-intel-handler-source/liteparse) <br>
-- [LlamaParse Cloud](https://cloud.llamaindex.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; LiteParse outputs plain text, JSON, and PNG screenshot files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON output may include page metadata, text items, bounding boxes, font data, and document metadata; screenshot output creates one PNG file per rendered page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: LiteParse is a third-party CLI that can read any documents provided to it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the installed package version when supply-chain control matters, and only point the CLI at documents the user intends to process.
+
+Risk: Strict offline operation can be affected by OCR language-data downloads or optional cloud fallback guidance.
+
+Mitigation: Use `--no-ocr` for text-layer PDFs or preinstall OCR language data, and avoid the optional cloud fallback for sensitive documents.
+
+Risk: Complex tables, multi-column layouts, and scanned forms may produce imperfect extracted text.
+
+Mitigation: Inspect outputs before relying on them for critical decisions and use page screenshots or a higher-fidelity parser for difficult layouts.
+
+## Reference(s):
+
+- [LiteParse documentation](https://developers.llamaindex.ai/liteparse/)
+- [LlamaParse cloud service](https://cloud.llamaindex.ai)
+- [LiteParse output examples](references/output-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and examples of text, JSON, and image-file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local document extraction guidance for the `lit` CLI; parsed documents may produce text, JSON with bounding boxes, or page screenshot files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

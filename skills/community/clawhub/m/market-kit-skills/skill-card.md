@@ -1,44 +1,58 @@
-## Description: <br>
-Use when the user needs marketing deliverables such as campaign plans, Xiaohongshu notes, audience positioning, selling-point refinement, reference-grounded copy, or marketing images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user needs marketing deliverables such as campaign plans, Xiaohongshu notes, audience positioning, selling-point refinement, reference-grounded copy, or marketing images.
 
-## Publisher: <br>
-[qinshimeng18](https://clawhub.ai/user/qinshimeng18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qinshimeng18](https://clawhub.ai/user/qinshimeng18)
 
-## Use Case: <br>
-Marketing, content, and growth teams use this skill to turn product or brand context into concrete marketing deliverables, including campaign plans, Xiaohongshu notes, positioning, selling-point refinements, and image-backed content. It supports continued iteration through a JustAI conversation result workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Completing login can store a JustAI API key in plaintext local config and shell startup files. <br>
-Mitigation: Install only when the publisher and JustAI are trusted, review where credentials are stored, and remove the persisted config or shell exports when access is no longer needed. <br>
-Risk: Marketing prompts, brand materials, project names, and generated outputs are sent to JustAI services during generation. <br>
-Mitigation: Avoid submitting sensitive brand or customer data unless the user has approved sharing it with JustAI under the applicable terms. <br>
-Risk: Long-running note or image generation may still be in progress when polling times out. <br>
-Mitigation: Treat running status and polling timeouts as incomplete work, then poll again instead of fabricating final copy, image descriptions, or image links. <br>
+## Use Case:
 
+Marketing, brand, content, and growth teams use this skill to turn campaign ideas, product material, and reference context into deliverable marketing plans, Xiaohongshu notes, selling-point positioning, copy, image-linked results, and follow-up iterations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qinshimeng18/market-kit-skills) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/qinshimeng18) <br>
-- [JustAI Marketing Result Portal](https://justailab.com/marketing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON results from bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Completed results can include structured campaign or note content, image links, a conversation_id for follow-up, and a web_url for viewing the result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can persist a bearer API key in local shell and configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local token persistence is acceptable; prefer a credential manager or remove persisted tokens after use.
+
+Risk: The skill sends marketing prompts, identifiers, and user content to JustAI's remote service.
+
+Mitigation: Avoid submitting sensitive project data unless that service is approved for the data; review the API origin and destination before use.
+
+Risk: The security verdict is suspicious because credential storage and configurable remote transmission need review before installation.
+
+Mitigation: Review the security summary and guidance before deployment, and require confirmation before persisting tokens or transmitting sensitive content.
+
+## Reference(s):
+
+- [Market Kit Skills ClawHub page](https://clawhub.ai/qinshimeng18/skills/market-kit-skills)
+- [JustAI marketing result service](https://justailab.com/marketing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON results from the bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include conversation identifiers, structured marketing results, image URLs, and a web result URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

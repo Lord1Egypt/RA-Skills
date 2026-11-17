@@ -1,42 +1,59 @@
-## Description: <br>
-Baidu Netdisk AIVideoNotes helps agents submit local or online videos to Baidu's AI video note service and retrieve transcript, outline, and image-text notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Netdisk AIVideoNotes creates transcript notes, outline notes, and image-rich notes from local or online videos using Baidu's AI video note APIs.
 
-## Publisher: <br>
-[ide-rea](https://clawhub.ai/user/ide-rea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ide-rea](https://clawhub.ai/user/ide-rea)
 
-## Use Case: <br>
-Developers and agents use this skill to create Baidu AI video-note tasks, poll task status, and return generated notes for education videos, meetings, short-form content analysis, and key information extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected videos, accessible video URLs, task IDs, and generated notes are sent to Baidu or the configured OpenClaw/Baidu proxy environment. <br>
-Mitigation: Use the skill only for content appropriate for that processing path, and avoid confidential, regulated, or proprietary recordings unless Baidu's handling terms meet the user's requirements. <br>
-Risk: The skill requires a Baidu API key. <br>
-Mitigation: Use a dedicated or least-privilege key where possible and keep it in environment configuration rather than command history or source files. <br>
+## Use Case:
 
+Developers and external users use this skill to send video URLs or permitted local videos to Baidu Netdisk AI video-note services, poll task status, and receive generated transcript, outline, or illustrated notes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ide-rea/ai-notes-for-video) <br>
-- [Baidu Qianfan API Base](https://qianfan.baidubce.com/v2) <br>
-- [Baidu AppBuilder BOS Upload Endpoint](https://appbuilder.baidu.com/v2/tools/bos/upload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON-formatted task results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and BAIDU_API_KEY; video-note generation is asynchronous and may require polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Local videos may be uploaded to Baidu services during task creation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with videos you are allowed to send to Baidu, and avoid sensitive local recordings unless the upload behavior is acceptable.
+
+Risk: Requests can be routed through an environment-controlled proxy when DUMATE_SCHEDULER_URL and DUMATE_SESSION_ID are set.
+
+Mitigation: Run the skill in a trusted environment and ensure those environment variables cannot be attacker-controlled.
+
+Risk: The skill requires a Baidu API key for normal operation.
+
+Mitigation: Provide BAIDU_API_KEY only in trusted shells or secret-managed environments and avoid exposing it in logs or shared command history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ide-rea/skills/ai-notes-for-video)
+- [Baidu Qianfan API base](https://qianfan.baidubce.com/v2)
+- [Baidu AppBuilder BOS upload endpoint](https://appbuilder.baidu.com/v2/tools/bos/upload)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and BAIDU_API_KEY; creates tasks, polls status, and prints generated notes or progress messages.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

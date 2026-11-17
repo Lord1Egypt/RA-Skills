@@ -1,5 +1,9 @@
 # Canonical team names (48 teams, 2026 FIFA World Cup)
 
+This file is for the World Cup compatibility path. EPL club names are inferred
+from `GET /matches/epl/schedule/` through `list_epl_teams()` in
+`scripts/wc_client.py`.
+
 > **Authoritative source: `GET /matches/teams/`.** Call `list_teams()` in
 > `scripts/wc_client.py` (12h cached) instead of hardcoding the list below
 > in any new code. The block here is a **fallback** for offline reasoning
@@ -34,4 +38,4 @@ Uruguay, Uzbekistan.
 | 佛得角, Cape Verde Islands | Cape Verde |
 
 Anything not in this list is passed through unchanged; the API will return
-404 if it doesn't match.
+an error if it doesn't match.

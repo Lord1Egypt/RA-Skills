@@ -1,48 +1,64 @@
-## Description: <br>
-Swap tokens, quote expected output, manage Permit2 approvals, and read Uniswap V4 pool state on Base, Ethereum mainnet, and Base Sepolia. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Swap tokens and read pool state on Uniswap V4 across Base, Ethereum mainnet, and Base Sepolia, including pool discovery, quotes, Permit2 approvals, and exact-input swaps.
 
-## Publisher: <br>
-[openclaw-consensus-bot](https://clawhub.ai/user/openclaw-consensus-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[openclaw-consensus-bot](https://clawhub.ai/user/openclaw-consensus-bot)
 
-## Use Case: <br>
-Developers and external agents use this skill to inspect Uniswap V4 pool state, obtain quotes, set Permit2 approvals, and execute exact-input swaps with slippage controls on supported EVM networks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign real wallet transactions. <br>
-Mitigation: Use a dedicated low-balance wallet and manually verify chain, router, token addresses, recipient, amount, and slippage before any write action. <br>
-Risk: The skill can grant broad ERC20 and Permit2 allowances. <br>
-Mitigation: Prefer the documented TypeScript entrypoints, approve only intended tokens, and revoke ERC20 or Permit2 allowances after use. <br>
-Risk: Bundled shell paths handle private keys less safely than the TypeScript entrypoints. <br>
-Mitigation: Avoid scripts/*.sh for write actions and use PRIVATE_KEY only through an environment variable or secret manager. <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect Uniswap V4 pools, estimate swap output, manage Permit2 approvals, and execute exact-input swaps on supported chains.
 
-## Reference(s): <br>
-- [Uniswap V4 deployments](https://docs.uniswap.org/contracts/v4/deployments) <br>
-- [Contract addresses](references/addresses.md) <br>
-- [V4 architecture](references/v4-architecture.md) <br>
-- [V4 encoding reference](references/v4-encoding.md) <br>
-- [Clanker token deployments](https://clanker.gitbook.io/clanker-documentation/general/token-deployments) <br>
-- [Clanker creator rewards and fees](https://clanker.gitbook.io/clanker-documentation/general/creator-rewards-and-fees) <br>
-- [Clanker deployed contracts](https://clanker.gitbook.io/clanker-documentation/references/deployed-contracts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read operations can return pool or quote data; write operations can return transaction hashes and require wallet credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: CHANGELOG, package.json) <br>
+Risk: The skill can create real, long-lived token approvals and sign irreversible transactions when PRIVATE_KEY is provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, review token, amount, recipient, slippage, chain, and spender before write operations, avoid auto-approve unless the allowance risk is understood, and revoke allowances after use.
+
+Risk: Unsafe legacy shell scripts remain in the artifact.
+
+Mitigation: Use the TypeScript entry points under src/ and do not run the legacy shell scripts or bootstrap curl-to-bash recommendation.
+
+Risk: Private keys or transaction details may be exposed through public logs.
+
+Mitigation: Provide PRIVATE_KEY only through environment variables or a secret manager and treat stdout and stderr as public logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openclaw-consensus-bot/skills/uniswap-v4)
+- [Uniswap V4 deployments](https://docs.uniswap.org/contracts/v4/deployments)
+- [Contract addresses](references/addresses.md)
+- [V4 architecture](references/v4-architecture.md)
+- [V4 encoding reference](references/v4-encoding.md)
+- [Clanker token deployments](https://clanker.gitbook.io/clanker-documentation/general/token-deployments)
+- [Clanker creator rewards and fees](https://clanker.gitbook.io/clanker-documentation/general/creator-rewards-and-fees)
+- [Clanker deployed contracts](https://clanker.gitbook.io/clanker-documentation/references/deployed-contracts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and TypeScript command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe read-only checks, transaction preparation, approval setup, or swap execution steps; write operations require private-key-backed signing outside public logs.]
+
+## Skill Version(s):
+
+2.0.4 (source: CHANGELOG.md, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

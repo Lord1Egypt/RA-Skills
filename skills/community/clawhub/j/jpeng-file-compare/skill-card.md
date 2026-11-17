@@ -1,41 +1,54 @@
-## Description: <br>
-Compare two files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare two files.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and automation agents use this skill to compare files from a command-line workflow and return structured comparison results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for COMPARE_API_KEY without explaining what service uses it or whether file contents are transmitted. <br>
-Mitigation: Do not provide the API key or use sensitive files until the publisher documents the key purpose, network behavior, and data handling. <br>
-Risk: The documented command references scripts/file_compare.py, but the artifact does not include that script. <br>
-Mitigation: Require the publisher to supply the missing script and review it before installation or execution. <br>
+## Use Case:
 
+Developers and automation users use this skill to compare two files and receive JSON comparison results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-file-compare) <br>
-- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, shell commands, configuration] <br>
-**Output Format:** [JSON comparison results with shell command and environment variable guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact describes a success flag and data object, and requires COMPARE_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill requires an unexplained COMPARE_API_KEY and does not document service or retention behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide an API key until the service, data handling, and retention behavior are documented.
+
+Risk: Broad file comparison guidance could expose sensitive local files.
+
+Mitigation: Use the skill only for explicitly requested file comparisons and avoid sensitive files unless data flow is documented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-file-compare)
+- [ClawHub publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with bash examples and a JSON result schema]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires COMPARE_API_KEY before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

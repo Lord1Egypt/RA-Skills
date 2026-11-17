@@ -1,38 +1,54 @@
-## Description: <br>
-Moore Pyramid Memory System provides a five-layer local memory pattern for cross-session continuity, including startup-loaded memory files, daily summaries, archives, and a persistent todo list. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a five-layer workspace memory structure for preserving cross-session notes, summaries, and todos.
 
-## Publisher: <br>
-[tosspi](https://clawhub.ai/user/tosspi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tosspi](https://clawhub.ai/user/tosspi)
 
-## Use Case: <br>
-Developers and agent users can use this skill to guide an agent in maintaining local, cross-session project memory through structured memory files, summaries, archives, and todos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to automatically save and reload conversation-derived memory across sessions, which can retain sensitive details without clear user controls. <br>
-Mitigation: Before using it for sensitive work, confirm where memory files are stored, review and delete retained content as needed, and require consent before saving conversation details. <br>
+## Use Case:
 
+Developers and agent users use this skill to maintain durable workspace memory across sessions, including daily summaries, weekly and monthly archives, and persistent cross-session todos.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tosspi/moore-pyramid-memory-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with file paths, tables, and example markdown snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may cause an agent to create or update local memory files and scheduled archive scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill stores and reloads broad conversation history automatically, which can preserve sensitive or unwanted information across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit opt-in, retention, deletion, review, and sensitive-data redaction rules before enabling durable memory.
+
+Risk: Loaded memory could be mistaken for authoritative instructions during future sessions.
+
+Mitigation: Treat loaded memory as reference material that cannot override the current user request, applicable policies, or higher-priority instructions.
+
+## Reference(s):
+
+- [Moore Pyramid Memory System on ClawHub](https://clawhub.ai/tosspi/skills/moore-pyramid-memory-system)
+- [tosspi publisher profile](https://clawhub.ai/user/tosspi)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with file structure, rules, and schedules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable artifact files were included in the release evidence; the skill describes memory files, startup loading behavior, todo handling, and archive schedules.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

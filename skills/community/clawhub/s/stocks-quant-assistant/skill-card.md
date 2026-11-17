@@ -1,45 +1,64 @@
-## Description: <br>
-Monitors configured A-share stocks and funds, analyzes technical indicators and holdings, and sends scheduled stock reports to Feishu or Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stocks Quant Assistant monitors configured China A-share stocks and funds, analyzes technical indicators, tracks positions, and produces scheduled market reports for console, Feishu, or Telegram delivery.
 
-## Publisher: <br>
-[wuliwenjing](https://clawhub.ai/user/wuliwenjing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuliwenjing](https://clawhub.ai/user/wuliwenjing)
 
-## Use Case: <br>
-Individual investors, analysts, and automation-focused users use this skill to monitor configured China A-share stocks and funds, track holdings, and receive scheduled technical-analysis summaries through messaging channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with default China market data sources and Asia/Shanghai scheduling assumptions. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create recurring background jobs through launchd or cron. <br>
-Mitigation: Review installed launchd or cron entries after setup and remove or disable schedules that are not intended. <br>
-Risk: Configured watchlists, holdings, and messaging credentials may be sent to Feishu or Telegram when push channels are enabled. <br>
-Mitigation: Use dedicated low-privilege bot credentials and verify the configured recipients before enabling scheduled pushes. <br>
-Risk: Health-check helper behavior may expose messaging secrets in command output. <br>
-Mitigation: Redact secrets before running health-check scripts or sharing their output. <br>
-Risk: The setup-sleep helper can change system-wide macOS power settings. <br>
-Mitigation: Run the sleep setup script only when the power-setting changes are intentional and reversible. <br>
+## Use Case:
 
+Developers and finance-focused agent users can configure stock and fund watchlists, generate technical-indicator summaries, track positions, and deliver recurring market-monitoring reports. The reports are informational monitoring output and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuliwenjing/stocks-quant-assistant) <br>
-- [Feishu developer console](https://open.feishu.cn/app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style reports, console text, shell commands, and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send reports to configured Feishu or Telegram channels and write local logs/state files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release metadata and artifact skill.yml) <br>
+Risk: Health-check behavior can expose Feishu messaging credentials if real credentials are used before the scripts are fixed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and patch artifact/scripts/health-check.sh to redact app_secret and other tokens before using real credentials; start with console output or test credentials.
+
+Risk: Setup behavior can create persistent launchd or cron scheduled execution that sends market reports to configured recipients.
+
+Mitigation: Review scheduled-job definitions before installation, install in an isolated environment, and remove launchd or cron entries when recurring pushes are no longer intended.
+
+Risk: Privileged launchctl and setup-sleep power-setting guidance can change host behavior beyond report generation.
+
+Mitigation: Avoid sudo launchctl and setup-sleep guidance unless explicitly required and reviewed by the operator.
+
+Risk: Unpinned dependency installation can change runtime behavior across installs.
+
+Mitigation: Use a virtual environment and pin dependencies before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuliwenjing/skills/stocks-quant-assistant)
+- [Publisher profile](https://clawhub.ai/user/wuliwenjing)
+- [Feishu Open Platform app setup](https://open.feishu.cn/app)
+- [Artifact usage guide](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown market report with YAML configuration examples and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print to console or send reports to configured Feishu or Telegram recipients; setup paths can create local logs, state files, and scheduled jobs.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release, artifact/skill.yml, artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

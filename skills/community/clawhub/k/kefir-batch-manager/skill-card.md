@@ -1,41 +1,58 @@
-## Description: <br>
-Comprehensive kefir batch management system with cycle tracking, intelligent reminders, grain health monitoring, and recipe management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive kefir batch management system with cycle tracking, intelligent reminders, grain health monitoring, and recipe management.
 
-## Publisher: <br>
-[p-salmon](https://clawhub.ai/user/p-salmon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[p-salmon](https://clawhub.ai/user/p-salmon)
 
-## Use Case: <br>
-External users and developers use this skill to manage kefir fermentation cycles, calculate ingredient ratios, maintain grain health records, schedule reminders, and troubleshoot batch quality. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bottle-conditioning guidance can create dangerous pressure if followed without sufficient pressure-safe fermentation practices. <br>
-Mitigation: Use only pressure-rated bottles, leave headspace, check pressure frequently, shorten conditioning when needed, refrigerate before opening, and open bottles away from faces with eye and hand protection. <br>
-Risk: Fermentation safety guidance may be relied on for food preparation decisions. <br>
-Mitigation: Review the fermentation safety content before relying on the skill and avoid consuming any batch with suspected contamination. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Kefir de Fruits Recipe Database](references/recipes_database.md) <br>
-- [Kefir Troubleshooting Guide](references/troubleshooting.md) <br>
-- [ClawHub release page](https://clawhub.ai/p-salmon/kefir-batch-manager) <br>
+## Use Case:
 
+External users and developers use this skill to manage kefir fermentation cycles, calculate ingredient ratios, track grain health, maintain batch records, and consult recipe and troubleshooting guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON records and Python command-line script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local fermentation tracking records, ratio calculations, reminders, recipe guidance, and troubleshooting recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The described reminder and dashboard capabilities are broader than the lightweight local scripts in the artifact.
+
+Mitigation: Treat the release as a local batch tracker and ratio calculator unless reminder or dashboard workflows are separately verified.
+
+Risk: Local batch records may be written to kefir_batches.json.
+
+Mitigation: Review stored notes and photo paths before sharing the artifact, and avoid recording sensitive personal information.
+
+Risk: Sealed second fermentation and bottle conditioning can create pressure-related handling risk.
+
+Mitigation: Use pressure-rated bottles, monitor carbonation, refrigerate before opening, and open bottles away from the face.
+
+## Reference(s):
+
+- [Recipes Database](references/recipes_database.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/p-salmon/skills/kefir-batch-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON batch records and Python script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local batch data to kefir_batches.json when the bundled tracker script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

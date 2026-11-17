@@ -1,45 +1,53 @@
-## Description: <br>
-Anti-detection browser automation MCP skill for OpenClaw agents with tools for navigation, interaction, extraction, downloads, profiles, sessions, and stealth web search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anti-detection browser automation MCP skill for OpenClaw agents with 41 tools for navigation, interaction, extraction, downloads, profiles, sessions, and stealth web search.
 
-## Publisher: <br>
-[redf0x1](https://clawhub.ai/user/redf0x1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[redf0x1](https://clawhub.ai/user/redf0x1)
 
-## Use Case: <br>
-Developers and operators use this skill to connect OpenClaw agents to a local CamoFox MCP server for authorized browser automation, content extraction, session/profile handling, downloads, and stealth search workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Stealth browser automation can be misused or applied to systems without authorization. <br>
-Mitigation: Install and use only for systems the operator is authorized to automate. <br>
-Risk: The packaged setup pins camofox-mcp 1.10.0 while security evidence recommends a newer runtime. <br>
-Mitigation: Prefer upgrading the runtime to camofox-mcp 1.13.2 or newer before deployment. <br>
-Risk: The MCP endpoint can expose sensitive browser, session, file, and download actions. <br>
-Mitigation: Keep the endpoint bound to localhost or otherwise authenticated, use disposable profiles, avoid personal or production cookies, and require explicit confirmation before submissions, bulk actions, downloads, or deletions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give OpenClaw agents browser automation over MCP HTTP transport for navigation, interaction, extraction, downloads, session handling, profiles, and stealth web search.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/redf0x1/camofox-mcp) <br>
-- [CamoFox MCP homepage](https://github.com/redf0x1/camofox-mcp#readme) <br>
-- [SKILL.md](SKILL.md) <br>
-- [manifest.yaml](manifest.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke an HTTP MCP server that returns browser snapshots, screenshots, file metadata/content, and browser action results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.10.0 (source: frontmatter, manifest.yaml, changelog released 2026-02-25) <br>
+Risk: This skill provides powerful stealth browser automation capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the intended use requires stealth browser control, and run it in a constrained environment.
+
+Risk: Authenticated-session, cookie import, saved profile, download, deletion, JavaScript execution, and external package execution capabilities can expose sensitive data or affect local files.
+
+Mitigation: Use only accounts and cookies the operator is authorized to access, review the upstream npm package before use, avoid casual import of sensitive cookies, and understand where downloads and saved profiles are stored and deleted.
+
+## Reference(s):
+
+- [CamoFox MCP GitHub README](https://github.com/redf0x1/camofox-mcp#readme)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include browser interaction results, accessibility snapshots, screenshots as base64 PNG, downloaded file metadata/content, profile/session metadata, and extracted links or resources.]
+
+## Skill Version(s):
+
+1.10.0 (source: frontmatter, manifest.yaml, changelog released 2026-02-25, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,49 @@
-## Description: <br>
-Diet Logger records breakfast, lunch, dinner, and snack entries as consistently formatted Markdown files in an Obsidian vault. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logs daily meals to a fixed-format Markdown file in an Obsidian vault.
 
-## Publisher: <br>
-[leo-zzl](https://clawhub.ai/user/leo-zzl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leo-zzl](https://clawhub.ai/user/leo-zzl)
 
-## Use Case: <br>
-People who track meals in Obsidian use this skill to record dated breakfast, lunch, dinner, and snack entries in a fixed Markdown format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meal logs may be written to a disclosed local Obsidian/iCloud folder that is not the user's intended vault. <br>
-Mitigation: Install only if that folder is intended, or edit the configured path before use. <br>
-Risk: Diet entries may persist locally and sync through iCloud. <br>
-Mitigation: Review local storage and sync settings before recording sensitive meal information. <br>
+## Use Case:
 
+External users and their agents use this skill to record breakfast, lunch, dinner, or snack entries and save them as structured daily diet notes.
 
-## Reference(s): <br>
-- [Diet Logger ClawHub Release](https://clawhub.ai/leo-zzl/diet-logger) <br>
-- [leo-zzl ClawHub Publisher Profile](https://clawhub.ai/user/leo-zzl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Text] <br>
-**Output Format:** [Markdown meal log files and short terminal confirmation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes to a predefined local Obsidian/iCloud directory configured in the script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The file-writing script can be steered to overwrite files outside the intended Obsidian folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate dates, reject path separators, avoid following symlinks, and constrain writes to the intended Obsidian daily-notes directory before running it on untrusted meal-log requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leo-zzl/skills/diet-logger)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown notes and command-line script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes meal entries to dated Markdown files in a configured Obsidian daily-notes directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

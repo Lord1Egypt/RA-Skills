@@ -1,46 +1,56 @@
-## Description: <br>
-HTML/CSS to Image helps an agent create images from raw HTML/CSS or public webpages, delete generated images, and retrieve usage through the OOMOL `oo` CLI connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTML/CSS to Image (htmlcsstoimage.com). Use this skill for ANY HTML/CSS to Image request — reading, creating, updating, and deleting data. Whenever a task involves HTML/CSS to Image, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to turn HTML/CSS or webpage URLs into images through a connected HTML/CSS to Image account, manage generated images, and review usage. It is intended for agents that need guided CLI commands and payload construction rather than direct API access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates a connected HTML/CSS to Image account through OOMOL and requires trusted credential handling. <br>
-Mitigation: Install and use it only when the OOMOL connection is intended, and review authentication or connection steps before running them. <br>
-Risk: Image creation actions can change account state and may affect usage or billing. <br>
-Mitigation: Review the exact action payload and expected effect with the user before approving write actions. <br>
-Risk: Delete actions can remove generated images and clear CDN cache. <br>
-Mitigation: Confirm the target image or batch explicitly before running destructive actions. <br>
-Risk: The optional `oo` CLI installer runs remote installation scripts. <br>
-Mitigation: Run the installer only if the CLI is needed and the user trusts OOMOL's installer source. <br>
+## Use Case:
 
+Developers and designers use the connected HTML/CSS to Image service to create images from HTML/CSS or public webpage URLs, retrieve usage information, and manage generated images.
 
-## Reference(s): <br>
-- [HTML/CSS to Image homepage](https://htmlcsstoimage.com) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [HTML/CSS to Image connection settings](https://console.oomol.com/app-connections?provider=htmlcsstoimage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include `oo connector schema` and `oo connector run` commands; connector responses are JSON when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: Setup runs downloaded scripts that have not been audited, and startup synchronization may make broader changes to other agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a reviewed, pinned CLI installation. Set OO_SKILLS_SYNC_DISABLED=1 to disable startup skill synchronization if broader agent changes are unwanted.
+
+Risk: Submitted HTML/CSS is processed through OOMOL, and image creation or deletion changes service data.
+
+Mitigation: Consider whether submitted content is suitable for processing and retain the required approval steps for image creation and deletion.
+
+## Reference(s):
+
+- [HTML/CSS to Image skill listing](https://clawhub.ai/oomol/skills/oo-htmlcsstoimage)
+- [HTML/CSS to Image documentation](https://docs.htmlcsstoimage.com/)
+- [HTML/CSS to Image homepage](https://htmlcsstoimage.com)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Image assets, JSON, Shell commands]
+
+**Output Format:** [JSON action payloads and responses, plus generated image assets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Batch image creation supports up to 25 images per request.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-Provides academic writing assistance for scholarly papers, literature reviews, research methodology, and thesis writing with strict citation and formatting requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides academic-writing assistance for scholarly papers, literature reviews, research methodology, and thesis writing while enforcing Markdown output, academic tone, and citation standards.
 
-## Publisher: <br>
-[doradx](https://clawhub.ai/user/doradx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[doradx](https://clawhub.ai/user/doradx)
 
-## Use Case: <br>
-Developers and external users can use this skill to draft, structure, and review academic writing in Markdown while following formal scholarly tone and citation standards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Academic writing output may contain incorrect or unverifiable citations if source checking is not performed. <br>
-Mitigation: Verify that cited works are real academic sources and that citation links, numbering, and reference entries are accurate before relying on the output. <br>
+## Use Case:
 
+External users and developers use this skill to draft, structure, and review academic writing with formal scholarly style, Markdown formatting, and explicit citation requirements.
 
-## Reference(s): <br>
-- [Academic Writing Test ClawHub listing](https://clawhub.ai/doradx/ddxx-academic-writing-test) <br>
-- [doradx publisher profile](https://clawhub.ai/user/doradx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown wrapped in ama-doc tags, with numbered academic citations when sources are used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Matches the user's language and may include Markdown tables, Mermaid diagrams, and a references section when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Academic-writing outputs can still contain citation errors or unsupported claims if references are not checked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that every cited source is real, academic, reachable, and supports the adjacent claim before relying on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/doradx/skills/ddxx-academic-writing-test)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown, with main content wrapped in ama-doc tags when the skill is active]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include numbered citations, reference lists, Markdown tables, and Mermaid diagrams when useful.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

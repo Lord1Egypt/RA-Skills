@@ -1,44 +1,59 @@
-## Description: <br>
-Pulse TODO provides unified task management and scheduling guidance for AI agents by keeping commitments, reminders, recurring checks, and task selection in one TODO.md workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pulse TODO helps AI agents maintain one workspace TODO.md for commitments, reminders, recurring checks, scheduling, and task selection.
 
-## Publisher: <br>
-[kagura-agent](https://clawhub.ai/user/kagura-agent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kagura-agent](https://clawhub.ai/user/kagura-agent)
 
-## Use Case: <br>
-Developers and agent operators use Pulse TODO to maintain a persistent TODO.md, track commitments, create reminders, and choose the next task by strategic alignment. It is useful when an agent needs a single source of truth for pending work and cron-backed scheduled tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Migration can overwrite or lose existing TODO.md or HEARTBEAT.md content. <br>
-Mitigation: Back up existing TODO.md and HEARTBEAT.md, then merge current tasks into the Pulse TODO format before relying on the new workflow. <br>
-Risk: Incorrect cron changes can create missed, duplicated, or unexpected reminders. <br>
-Mitigation: Review proposed cron changes and keep each repeat or timed TODO entry synchronized with its corresponding OpenClaw cron job. <br>
-Risk: Ambiguous reminder requests can be stored with the wrong timing or recurrence. <br>
-Mitigation: Confirm unclear date, time, timezone, and recurrence details before writing scheduled TODO entries or creating cron jobs. <br>
+## Use Case:
 
+External users and developers can use this skill to make agents capture commitments, maintain a TODO.md, sync scheduled reminders with OpenClaw cron, and choose next tasks by strategic alignment.
 
-## Reference(s): <br>
-- [Pulse TODO setup guide](setup.md) <br>
-- [TODO template](TODO-TEMPLATE.md) <br>
-- [Pulse TODO on ClawHub](https://clawhub.ai/kagura-agent/pulse-todo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TODO entries, setup commands, and configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update TODO.md, HEARTBEAT.md, and OpenClaw cron jobs when the agent acts on reminders or recurring tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata; artifact package.json lists 0.2.0) <br>
+Risk: The skill can cause an agent to persist tasks and change existing TODO.md or HEARTBEAT.md behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up existing TODO.md and HEARTBEAT.md before use, and require confirmation before modifying heartbeat guidance.
+
+Risk: The skill instructs agents to create or remove OpenClaw cron jobs for timed and recurring tasks.
+
+Mitigation: Require confirmation before cron changes and periodically compare TODO.md scheduled entries with the active cron configuration.
+
+Risk: The setup guidance may prompt agents to scan memory or strategy files during migration.
+
+Mitigation: Limit migration to user-approved files and review any imported tasks before they become active.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kagura-agent/skills/pulse-todo)
+- [Setup guide](setup.md)
+- [TODO template](TODO-TEMPLATE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with TODO.md templates and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent task-management guidance for TODO.md and scheduled OpenClaw cron entries.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

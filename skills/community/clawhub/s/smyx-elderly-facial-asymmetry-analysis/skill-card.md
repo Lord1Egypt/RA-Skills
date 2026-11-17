@@ -1,44 +1,59 @@
-## Description: <br>
-Analyzes elderly frontal face images or short videos with facial-landmark detection to estimate facial asymmetry, mouth-corner deviation, risk level, and related report links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes frontal images or short videos of older adults for facial asymmetry and mouth-corner deviation, returning non-diagnostic screening results and risk guidance.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-External caregivers, families, nursing-home staff, and health-monitoring developers use this skill to submit elderly frontal face images or short videos for auxiliary facial asymmetry screening and history-report lookup. The output is a screening aid and does not replace professional medical diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive elderly face images, videos, and health-analysis metadata are processed by the publisher's cloud service. <br>
-Mitigation: Use only with informed consent, avoid unnecessary patient or resident identifiers in inputs, and review the publisher's privacy and retention controls before real-world use. <br>
-Risk: Report history is tied to a locally persisted account identity that may be silently created or reused. <br>
-Mitigation: Review local identity storage and account controls before deployment, and clear or segregate workspace data when switching users or care contexts. <br>
-Risk: The skill provides auxiliary screening signals for possible facial asymmetry and related risk levels, not a medical diagnosis. <br>
-Mitigation: Treat outputs as screening support only and route concerning symptoms or high-risk outputs to qualified medical review. <br>
+## Use Case:
 
+Caregivers and elder-care teams use the skill to review facial asymmetry in images or videos and retrieve prior screening reports, prompting timely medical attention when concerning changes appear.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-elderly-facial-asymmetry-analysis) <br>
-- [API Interface Documentation](references/api_doc.md) <br>
-- [Skill Usage Demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files] <br>
-**Output Format:** [Markdown text with JSON-formatted structured analysis content and report links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include asymmetry metrics, risk level, medical follow-up hint, history records, report export links, and an optional saved output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Elderly face images, videos, and report history are sent to configured cloud services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Obtain consent from the person or caregiver and review the destination service before sharing sensitive media or reports.
+
+Risk: Screening results could be mistaken for a medical diagnosis or delay urgent care.
+
+Mitigation: Treat the results as non-diagnostic; seek immediate medical attention if stroke symptoms are suspected.
+
+Risk: The skill can create or reuse a backend identity and retain its tokens in a local workspace database.
+
+Mitigation: Review or clear the workspace data database if persistent identity tokens are not desired.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/smyx-sunjinhui/skills/smyx-elderly-facial-asymmetry-analysis)
+- [API documentation](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [JSON or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes asymmetry measures, risk-level prompts, and links to reports; historical report listings are available.]
+
+## Skill Version(s):
+
+1.0.12 (source: server-resolved ClawHub release; bundled SKILL.md states 1.0.18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

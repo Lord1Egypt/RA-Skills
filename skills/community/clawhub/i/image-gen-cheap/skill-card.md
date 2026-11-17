@@ -1,43 +1,59 @@
-## Description: <br>
-Generates and edits images through the LaoZhang API, supporting text-to-image prompts, image editing, multiple image models, URL outputs, and local image saves. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image Gen Cheap helps agents generate and edit images through the LaoZhang API using supported text-to-image and image-editing models.
 
-## Publisher: <br>
-[enihsago](https://clawhub.ai/user/enihsago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enihsago](https://clawhub.ai/user/enihsago)
 
-## Use Case: <br>
-Developers and external users use this skill to generate new images from prompts or edit source images through LaoZhang API-backed image models from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and source image URLs are sent to LaoZhang's external API. <br>
-Mitigation: Do not use private images, confidential business material, secrets, regulated data, or private/internal URLs unless that sharing is approved. <br>
-Risk: The skill reads a LaoZhang API token from ~/.laozhang_api_token or a command-line argument. <br>
-Mitigation: Treat the token like a password; keep it out of shared folders, repositories, logs, and generated artifacts. <br>
-Risk: Generated image outputs may contain sensitive content depending on prompts and inputs. <br>
-Mitigation: Review generated outputs before sharing or storing them in collaborative or public locations. <br>
+## Use Case:
 
+Developers and external users use this skill to generate images from text prompts and edit images from image URLs through LaoZhang API-backed scripts. The skill is suited to agent workflows that need image URLs, saved image files, or optional JSON API responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/enihsago/image-gen-cheap) <br>
-- [LaoZhang API registration](https://api.laozhang.ai/register/?aff_code=lfa0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands, API responses, image URLs, and saved image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a LaoZhang API token; generated images may be returned as URLs or base64 and can be saved locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prompts, image URLs, and the LaoZhang bearer token are sent to LaoZhang's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable, and review LaoZhang's policies before submitting sensitive or confidential images.
+
+Risk: API tokens may be exposed if stored loosely or passed directly on the command line.
+
+Mitigation: Store ~/.laozhang_api_token with restrictive permissions such as chmod 600 and avoid putting bearer tokens in shell history.
+
+Risk: Dependency versions are not pinned in the artifact documentation.
+
+Mitigation: Install requests in a pinned or otherwise controlled Python environment before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/enihsago/skills/image-gen-cheap)
+- [LaoZhang API registration](https://api.laozhang.ai/register/?aff_code=lfa0)
+- [LaoZhang chat completions endpoint](https://api.laozhang.ai/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands; scripts print image URLs, optional JSON API responses, and save image files locally.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images default to a generated-images directory; URL-returning models print URLs and base64-returning models are decoded before saving.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version, created 2026-04-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

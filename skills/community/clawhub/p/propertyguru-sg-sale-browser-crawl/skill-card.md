@@ -1,44 +1,55 @@
-## Description: <br>
-Extracts around 50 Singapore for-sale listings from a PropertyGuru search results URL using a real browser session after Cloudflare verification, with listings read from the page's hydrated Next.js data and deduplicated by listing id across sequential pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects about 50 Singapore PropertyGuru sale listings from a search results URL using a real browser session and Next.js page data after Cloudflare verification.
 
-## Publisher: <br>
-[snailb1007](https://clawhub.ai/user/snailb1007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snailb1007](https://clawhub.ai/user/snailb1007)
 
-## Use Case: <br>
-Developers and analysts use this skill to collect a bounded sample of public PropertyGuru Singapore sale listings from a filtered search URL when direct HTTP access is blocked or unreliable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a real browser session to collect public PropertyGuru listing data, which may be inappropriate if used outside the stated URL and listing-count scope. <br>
-Mitigation: Keep crawls bounded to the requested search URL and target count, and review PropertyGuru access terms before repeated or expanded collection. <br>
-Risk: Browser automation can expose the user to local environment or session risks if run in an untrusted setup. <br>
-Mitigation: Use a trusted Playwright environment and review browser session behavior before running the crawl. <br>
-Risk: Cloudflare verification or PropertyGuru page changes can prevent reliable extraction. <br>
-Mitigation: Report verification blocks explicitly and re-check the documented Next.js data path before changing extraction logic. <br>
+## Use Case:
 
+External users, developers, and data analysts use this skill to collect a bounded sample of PropertyGuru Singapore sale listing data from filtered search URLs for review or downstream analysis.
 
-## Reference(s): <br>
-- [Source Notes](references/source-notes.md) <br>
-- [Default PropertyGuru SG Sale Search](https://www.propertyguru.com.sg/property-for-sale?listingType=sale&page=1&isCommercial=false&maxPrice=1400000) <br>
-- [ClawHub Skill Release](https://clawhub.ai/snailb1007/propertyguru-sg-sale-browser-crawl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code or shell command snippets when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill usually guides an agent to collect about 50 unique listing records while preserving source URL, page number, collection time, listing id, and raw listing payload where possible.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill can collect public listing details such as price, address fields, agent, and agency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for searches you are allowed to access and keep collection bounded to the data needed for the task.
+
+Risk: PropertyGuru's Cloudflare verification, page structure, or Next.js payload path may change and block or alter extraction.
+
+Mitigation: Use a real browser session, verify that the results page loaded before extraction, and report verification blocks or missing page data explicitly.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/snailb1007/skills/propertyguru-sg-sale-browser-crawl)
+- [PropertyGuru Default Search URL](https://www.propertyguru.com.sg/property-for-sale?listingType=sale&page=1&isCommercial=false&maxPrice=1400000)
+- [Source Notes](references/source-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Data, Guidance]
+
+**Output Format:** [JSON records or Markdown summary with preserved listing payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Records should preserve source URL, page number, collection timestamp, listing ID, and raw listingData when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

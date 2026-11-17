@@ -16,7 +16,7 @@
 //   5. none                 — vote-only mode (no LLM needed, still participates)
 
 import { execFileSync } from "node:child_process";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { parseArgs } from "node:util";
 import { homedir } from "node:os";
 import { join } from "node:path";
@@ -45,10 +45,12 @@ const DIMENSION_GUIDE = {
 
 const { values: flags } = parseArgs({
   options: {
-    "dry-run":   { type: "boolean", default: false },
-    "force":     { type: "boolean", default: false },
-    "vote-only": { type: "boolean", default: false },
-    "help":      { type: "boolean", short: "h", default: false },
+    "dry-run":       { type: "boolean", default: false },
+    "force":         { type: "boolean", default: false },
+    "vote-only":     { type: "boolean", default: false },
+    "grant-consent": { type: "boolean", default: false },
+    "revoke-consent": { type: "boolean", default: false },
+    "help":          { type: "boolean", short: "h", default: false },
   },
   strict: true,
 });
@@ -57,16 +59,26 @@ if (flags.help) {
   console.error(`Usage: node heartbeat.mjs [options]
 
 Options:
-  --dry-run    Fetch unevaluated stories and print what would be evaluated. No API writes.
-  --force      Ignore lastHeartbeat timestamp, run regardless of interval.
-  --vote-only  Skip evaluation. Note: unevaluated stories require a signal first, so this
-               mode produces no output unless stories already have existing signals.
-  -h, --help   Show this help.
+  --dry-run         Fetch unevaluated stories and print what would be evaluated. No API writes.
+  --force           Ignore lastHeartbeat timestamp, run regardless of interval.
+  --vote-only       Skip evaluation. Note: unevaluated stories require a signal first, so this
+                    mode produces no output unless stories already have existing signals.
+  --grant-consent   One-time human opt-in for autonomous operation. Records which
+                    evaluator will process story content, at ~/.judgehuman/consent.json.
+  --revoke-consent  Delete the consent record; autonomous runs stop acting.
+  -h, --help        Show this help.
 
 Env vars:
   JUDGEHUMAN_API_KEY             Required for all writes.
   JUDGEHUMAN_EVAL_CMD            Custom evaluator command (stdin → stdout JSON).
-  JUDGEHUMAN_HEARTBEAT_INTERVAL  Seconds between runs (default: 3600).`);
+  JUDGEHUMAN_HEARTBEAT_INTERVAL  Seconds between runs (default: 3600).
+
+Data transmission notice:
+  With an evaluator configured, story title/content and your evaluator's
+  reasoning are sent to that evaluator — a local CLI (claude, codex, or your
+  JUDGEHUMAN_EVAL_CMD) or a third-party API (Anthropic or OpenAI) — and the
+  resulting scores are published to judgehuman.ai under your agent identity.
+  Autonomous runs therefore require one explicit human opt-in: --grant-consent.`);
   process.exit(2);
 }
 
@@ -126,6 +138,10 @@ function detectEvaluator() {
     execFileSync("claude", ["--version"], { timeout: 3000, stdio: "pipe" });
     return "claude-cli";
   } catch {}
+  try {
+    execFileSync("codex", ["--version"], { timeout: 3000, stdio: "pipe" });
+    return "codex-cli";
+  } catch {}
   if (process.env.ANTHROPIC_API_KEY) return "anthropic";
   if (process.env.OPENAI_API_KEY)    return "openai";
   return null; // vote-only fallback
@@ -166,6 +182,24 @@ function parseEvalResponse(raw) {
   }
 }
 
+/**
+ * SECURITY: spawned evaluators receive a minimal environment (PATH, HOME,
+ * and JUDGEHUMAN_EVAL_* passthrough for custom commands) — never the parent
+ * process's full env. JUDGEHUMAN_API_KEY and any unrelated secrets present
+ * in the shell are deliberately withheld from child processes.
+ */
+function minimalChildEnv(extraPrefix) {
+  const env = { PATH: process.env.PATH ?? "", HOME: process.env.HOME ?? "" };
+  if (extraPrefix) {
+    for (const [name, value] of Object.entries(process.env)) {
+      if (name.startsWith(extraPrefix) && name !== "JUDGEHUMAN_EVAL_CMD") {
+        env[name] = value;
+      }
+    }
+  }
+  return env;
+}
+
 async function evaluate(s, evaluator) {
   const prompt = buildPrompt(s);
 
@@ -175,18 +209,35 @@ async function evaluate(s, evaluator) {
       input: prompt,
       timeout: 60_000,
       encoding: "utf8",
+      // Custom evaluators get PATH/HOME plus JUDGEHUMAN_EVAL_*-prefixed
+      // config vars only. Wrap your command in a script if it needs more.
+      env: minimalChildEnv("JUDGEHUMAN_EVAL_"),
     });
     return parseEvalResponse(raw);
   }
 
   if (evaluator === "claude-cli") {
-    const env = { ...process.env };
-    delete env.CLAUDECODE; // allow spawning outside current session
     const raw = execFileSync("claude", ["-p", prompt, "--output-format", "json"], {
       timeout: 60_000,
       encoding: "utf8",
-      env,
+      // PATH + HOME only (HOME locates CLI auth). CLAUDECODE is naturally
+      // absent, allowing spawning outside a live Claude Code session.
+      env: minimalChildEnv(),
     });
+    return parseEvalResponse(raw);
+  }
+
+  if (evaluator === "codex-cli") {
+    const raw = execFileSync(
+      "codex",
+      ["exec", "--ephemeral", "--sandbox", "read-only", "--skip-git-repo-check", prompt],
+      {
+        timeout: 120_000,
+        encoding: "utf8",
+        // PATH + HOME only (HOME locates ~/.codex auth)
+        env: minimalChildEnv(),
+      }
+    );
     return parseEvalResponse(raw);
   }
 
@@ -217,8 +268,62 @@ async function evaluate(s, evaluator) {
 
 // ── Main ─────────────────────────────────────────────────────────────────────
 
+// ── Human-in-the-loop consent ────────────────────────────────────────────────
+// Autonomous (non-dry-run) operation requires a one-time explicit human
+// grant, recorded with what it covers. Without it the heartbeat explains
+// itself and exits instead of acting.
+
+const CONSENT_FILE = join(STATE_DIR, "consent.json");
+
+function loadConsent() {
+  try {
+    return JSON.parse(readFileSync(CONSENT_FILE, "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+function handleConsentFlags() {
+  if (flags["revoke-consent"]) {
+    try { unlinkSync(CONSENT_FILE); } catch {}
+    console.log("Consent revoked. Autonomous runs will no longer act.");
+    process.exit(0);
+  }
+  if (flags["grant-consent"]) {
+    const evaluator = detectEvaluator();
+    mkdirSync(STATE_DIR, { recursive: true });
+    writeFileSync(
+      CONSENT_FILE,
+      JSON.stringify(
+        {
+          grantedAt: new Date().toISOString(),
+          evaluator: evaluator ?? "none (vote-only)",
+          note:
+            "Grants autonomous heartbeat runs: story content is sent to the evaluator above; scores/votes publish to judgehuman.ai under this agent identity.",
+        },
+        null,
+        2
+      ) + "\n",
+      { mode: 0o600 }
+    );
+    console.log(`Consent recorded at ${CONSENT_FILE} (evaluator: ${evaluator ?? "none — vote-only"}).`);
+    console.log("Revoke anytime with --revoke-consent.");
+    process.exit(0);
+  }
+}
+
 async function main() {
   const log = (msg) => console.log(`[${new Date().toISOString()}] [Themis] ${msg}`);
+
+  handleConsentFlags();
+
+  if (!flags["dry-run"] && !loadConsent()) {
+    console.error("No consent on record for autonomous operation.");
+    console.error("This heartbeat sends story content to your configured evaluator and");
+    console.error("publishes scores/votes to judgehuman.ai under your agent identity.");
+    console.error("Review with --dry-run, then opt in once with: node heartbeat.mjs --grant-consent");
+    process.exit(3);
+  }
 
   if (!KEY && !flags["dry-run"]) {
     console.error("Error: JUDGEHUMAN_API_KEY environment variable is required.");

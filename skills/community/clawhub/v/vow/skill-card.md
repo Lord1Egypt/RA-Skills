@@ -1,39 +1,48 @@
-## Description: <br>
-The Immutable Commitment Protocol for orchestrating cryptographically enforced, high-stakes promises between agents where trust is engineered rather than assumed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vow describes an immutable commitment protocol for cryptographically enforced, high-stakes promises between agents.
 
-## Publisher: <br>
-[agenticio](https://clawhub.ai/user/agenticio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agenticio](https://clawhub.ai/user/agenticio)
 
-## Use Case: <br>
-External developers and agent builders use this skill as a conceptual commitment protocol for defining collateral-backed promises, observation, and resolution between agents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill describes irreversible collateral-backed commitments without clear approval limits. <br>
-Mitigation: Use it only as conceptual guidance unless a human explicitly approves the account, amount, duration, success metrics, and exit conditions. <br>
-Risk: Agent-managed monitoring, collateral locking, or slashing could cause financial or operational harm. <br>
-Mitigation: Do not authorize agents to lock funds, publish commitments, slash collateral, or run monitoring from this skill without separate reviewed controls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Vow listing](https://clawhub.ai/agenticio/vow) <br>
+## Use Case:
 
+Developers and agent designers can use this conceptual skill to frame ethical, financial, and confidential commitment tiers for agent promises. It outlines assertion, observation, and resolution stages rather than providing executable enforcement code.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with protocol-style configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Conceptual protocol text; no executable code or tool calls are provided in the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Readers may mistake the conceptual commitment protocol for an implemented smart-contract, wallet, escrow, or financial enforcement system.
+
+Mitigation: Treat the skill as conceptual guidance and do not grant wallet, credential, fund, or collateral access unless a future version explicitly discloses and scopes those capabilities.
+
+## Reference(s):
+
+- [Vow on ClawHub](https://clawhub.ai/agenticio/skills/vow)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Conceptual protocol guidance; no executable commands, API calls, persistence, or data access are included.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

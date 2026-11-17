@@ -1,46 +1,62 @@
-## Description: <br>
-Official Google Stitch SDK wrapper for OpenClaw that lets agents generate UI screens from text, apply targeted edits, branch variants, export HTML and images, and track design lineage with screen aliases and append-only event history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stitch Design lets agents use the official Google Stitch SDK to generate UI screens from text, edit existing screens, create variants, export HTML/images, and track screen aliases plus design lineage with local artifacts.
 
-## Publisher: <br>
-[rasimme](https://clawhub.ai/user/rasimme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rasimme](https://clawhub.ai/user/rasimme)
 
-## Use Case: <br>
-Developers and designers use this skill to create, iterate on, review, and export Google Stitch UI concepts from an agent workflow. It is suited for rapid screen and component ideation, visual variants, screenshot delivery, and local design lineage tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Google Stitch API key. <br>
-Mitigation: Provide STITCH_API_KEY only through the agent or shell environment and avoid committing credentials to prompts, design-system files, or local artifacts. <br>
-Risk: Design prompts and optional design-system markdown are sent to Google Stitch, and generated HTML, screenshots, aliases, and event history are retained locally. <br>
-Mitigation: Avoid confidential or regulated content unless that external processing and local retention are acceptable for the project. <br>
-Risk: Generated UI output can contain inaccurate or unrequested labels, copy, layout details, or design elements. <br>
-Mitigation: Review screenshots and exported HTML before using generated designs in product work. <br>
+## Use Case:
 
+Developers, designers, and agents use this skill to turn product briefs into Google Stitch UI screens, review generated screenshots, iterate with edits or variants, and export HTML or images for downstream design work.
 
-## Reference(s): <br>
-- [Skill Homepage](https://github.com/rasimme/stitch-design) <br>
-- [Google Stitch](https://stitch.withgoogle.com) <br>
-- [@google/stitch-sdk](https://www.npmjs.com/package/@google/stitch-sdk) <br>
-- [Prompt Guide](references/prompt-guide.md) <br>
-- [SDK / CLI API Reference](references/sdk-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Code, Files] <br>
-**Output Format:** [Markdown guidance with CLI commands, JSON command output, screenshot URLs, and exported HTML/PNG artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses STITCH_API_KEY, calls Google Stitch endpoints, and writes local runs, state, and latest-screen artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: server release evidence, package.json, CHANGELOG) <br>
+Risk: The CLI does not sufficiently constrain local state paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted project IDs and avoid automation that can choose --project values until the path handling is patched.
+
+Risk: Remote artifact downloads depend on trusted Stitch API response paths.
+
+Mitigation: Treat generated HTML, screenshots, and result metadata as external artifacts and review them before reuse.
+
+Risk: The skill requires a Google Stitch API key.
+
+Mitigation: Install only where STITCH_API_KEY can be scoped and managed appropriately.
+
+## Reference(s):
+
+- [Stitch Design homepage](https://github.com/rasimme/stitch-design)
+- [@google/stitch-sdk package](https://www.npmjs.com/package/@google/stitch-sdk)
+- [Google Stitch](https://stitch.withgoogle.com)
+- [Prompt guide](references/prompt-guide.md)
+- [SDK / CLI API reference](references/sdk-api.md)
+- [Design system registry](design-systems/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI output; generated artifacts include HTML files, PNG screenshots, and result metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+ and STITCH_API_KEY; writes local runs/, state/, and latest-screen.json artifacts.]
+
+## Skill Version(s):
+
+1.2.3 (source: release evidence, package.json, CHANGELOG released 2026-03-29)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,65 @@
-## Description: <br>
-Qclaw Speaker provides Chinese text-to-speech playback for QClaw/OpenClaw using Edge TTS, sherpa-onnx Piper, and Windows SAPI fallback engines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qclaw Speaker provides text-to-speech playback for QClaw/OpenClaw with Edge TTS, local Sherpa-ONNX Piper, and Windows SAPI fallback engines.
 
-## Publisher: <br>
-[forhonourlx](https://clawhub.ai/user/forhonourlx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[forhonourlx](https://clawhub.ai/user/forhonourlx)
 
-## Use Case: <br>
-Developers and end users use this skill to make QClaw/OpenClaw read generated text aloud, choose Chinese voices, configure automatic speech playback, and fall back between online and offline TTS engines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can install Python packages and download TTS model archives. <br>
-Mitigation: Run installation only in environments where package installation and model downloads are approved; prefer pinned dependencies and verified model archives for sensitive deployments. <br>
-Risk: Using the Edge TTS engine may send text to Microsoft's online speech service. <br>
-Mitigation: Use the sherpa-onnx or Windows SAPI engines for offline speech when spoken text may be sensitive. <br>
-Risk: The bundled xiao_ya model card identifies non-commercial dataset licensing for its dataset source. <br>
-Mitigation: Confirm model and dataset license compatibility before using the offline Piper model in commercial deployments. <br>
+## Use Case:
 
+Developers and QClaw/OpenClaw users use this skill to convert assistant responses or supplied text into spoken Chinese audio with online and local fallback engines.
 
-## Reference(s): <br>
-- [Qclaw Speaker on ClawHub](https://clawhub.ai/forhonourlx/qclaw-speaker) <br>
-- [sherpa-onnx Piper xiao_ya model archive](https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-zh_CN-xiao_ya-medium-int8.tar.bz2) <br>
-- [sherpa-onnx Piper chaowen model archive](https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-zh_CN-chaowen-medium-int8.tar.bz2) <br>
-- [sherpa-onnx Piper huayan model archive](https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-zh_CN-huayan-medium.tar.bz2) <br>
-- [xiao_ya model dataset](https://huggingface.co/openspeech/BZNSYP) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON CLI status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local MP3 or WAV audio files and update skill configuration for voice, speed, engine, and auto-speak settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Unsafe installation practices and unverified model downloads can affect the local Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer first, install in an isolated virtual environment, and verify downloaded model sources before use.
+
+Risk: Cloud TTS can expose sensitive text to an online service.
+
+Mitigation: Prefer the offline Sherpa-ONNX or Windows SAPI engines for confidential content.
+
+Risk: Auto-speak can disclose responses in shared or confidential settings.
+
+Mitigation: Keep auto-speak disabled unless the runtime environment is appropriate for audible output.
+
+Risk: The runtime may mutate installed Python package files while applying the ONNX Runtime DLL fix.
+
+Mitigation: Avoid administrator installs and validate the runtime package state before deploying beyond a disposable environment.
+
+## Reference(s):
+
+- [Qclaw Speaker ClawHub release](https://clawhub.ai/forhonourlx/skills/qclaw-speaker)
+- [Bundled Xiao Ya model card](models/vits-piper-zh_CN-xiao_ya-medium-int8/MODEL_CARD)
+- [Sherpa-ONNX Piper Xiao Ya model archive](https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-zh_CN-xiao_ya-medium-int8.tar.bz2)
+- [Sherpa-ONNX Piper Chinese model mirror](https://www.modelscope.cn/models/manyeyes/sherpa-onnx-piper-zh/resolve/master/vits-piper-zh_CN-xiao_ya-medium-int8.tar.bz2)
+- [BZNSYP dataset](https://huggingface.co/openspeech/BZNSYP)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files]
+
+**Output Format:** [CLI output, JSON status, and generated MP3 or WAV audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can update local voice, speed, engine, and auto-speak settings in config.json.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Connects an OpenClaw agent to Zoho CRM through MCP so it can search contacts, list accounts, query records with COQL, and use mcporter-based helper scripts for common CRM operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect your agent to Zoho CRM via MCP to search contacts, list accounts, query records with COQL, and manage CRM data using mcporter with paginated, custom-field-aware helper scripts.
 
-## Publisher: <br>
-[sprintcx](https://clawhub.ai/user/sprintcx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sprintcx](https://clawhub.ai/user/sprintcx)
 
-## Use Case: <br>
-Developers and CRM operators use this skill to connect an OpenClaw agent to Zoho CRM via MCP, configure the required MCP endpoint, search CRM modules, list contacts and accounts, and run COQL queries through mcporter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The ZOHO_MCP_URL endpoint is credential-bearing and could expose CRM access if echoed, logged, or shared. <br>
-Mitigation: Treat the MCP URL like a password, avoid printing the full value, and start with read-only Zoho scopes. <br>
-Risk: The bundled Python scripts invoke mcporter through bash -c with ZOHO_MCP_URL in the shell command, creating command-injection exposure. <br>
-Mitigation: Review before installing and avoid running the helper scripts until they call mcporter without bash -c and validate ZOHO_MCP_URL. <br>
-Risk: Read-write Zoho CRM actions can create or update business records if enabled on the MCP server. <br>
-Mitigation: Enable only the CRM actions needed for the use case and avoid delete actions unless explicitly required. <br>
+## Use Case:
 
+Developers and CRM operators use this skill to connect an agent to Zoho CRM, inspect contacts and accounts, run COQL queries, and prepare controlled CRM read or write workflows through a configured MCP endpoint.
 
-## Reference(s): <br>
-- [Zoho CRM MCP ClawHub page](https://clawhub.ai/sprintcx/skills/zoho-crm-mcp) <br>
-- [Zoho MCP portal](https://mcp.zoho.eu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with bash, JSON, SQL, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ZOHO_MCP_URL endpoint; bundled helper scripts can print table or JSON output from Zoho CRM MCP calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The Zoho MCP URL contains CRM access credentials and can expose customer data if logged, screenshotted, or stored carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat ZOHO_MCP_URL as a secret, avoid echoing it, prefer per-session storage where practical, and rotate it if exposed.
+
+Risk: Broad Zoho OAuth scopes or enabled write/delete tools can let an agent change or remove CRM records beyond the intended workflow.
+
+Mitigation: Start with read-only scopes and enable create, update, or delete tools only for agents and tasks that explicitly require them.
+
+Risk: Fixed temporary-file examples can leave request arguments on disk or collide across sessions.
+
+Mitigation: Prefer the bundled Python helpers or secure, unique temporary files for shell-based JSON arguments.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/sprintcx/skills/zoho-crm-mcp)
+- [Zoho CRM MCP portal](https://mcp.zoho.eu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell commands and Python helper scripts that can print tables or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZOHO_MCP_URL and mcporter; helper scripts may access CRM data according to the configured Zoho OAuth scopes.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

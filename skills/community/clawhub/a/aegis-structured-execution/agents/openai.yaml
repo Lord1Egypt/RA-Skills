@@ -1,0 +1,7 @@
+interface:
+  display_name: "Aegis Structured Execution"
+  short_description: "Structure substantial proof-heavy project execution"
+  default_prompt: "Use $aegis-structured-execution to structure substantial project work with explicit proof and drift handling."
+
+policy:
+  allow_implicit_invocation: false

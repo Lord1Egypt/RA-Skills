@@ -1,41 +1,53 @@
-## Description: <br>
-Audit an OpenClaw agent workspace and generate standardized evaluation reports, scores, and patches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit an OpenClaw agent workspace and generate standardized evaluation reports, scores, and patches.
 
-## Publisher: <br>
-[Theylon](https://clawhub.ai/user/Theylon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[theylon](https://clawhub.ai/user/theylon)
 
-## Use Case: <br>
-Developers and agent operators use Clawditor to audit OpenClaw workspaces for memory quality, retrieval efficiency, productive output, reliability, and goal alignment. The skill produces evidence-backed reports, scorecards, recommendations, and safe patch proposals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Audit outputs may include private context from workspace logs, memory files, or project artifacts. <br>
-Mitigation: Review eval/ outputs before sharing and follow the skill's guidance to report only the presence and file paths of secrets. <br>
-Risk: Running checks in an untrusted project can execute project-controlled code or tests. <br>
-Mitigation: Use sandboxing or explicit approval before running tests, and prefer static inspection for third-party skills or plugins. <br>
-Risk: Draft or zero-filled reports can be mistaken for completed evidence-backed evaluations. <br>
-Mitigation: Treat generated drafts as incomplete until scores, findings, and recommendations are filled with cited evidence and validated against the report schema. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawditor Report Schema](references/report_schema.md) <br>
+## Use Case:
 
+Developers and agent operators use Clawditor to audit OpenClaw workspaces for memory quality, retrieval efficiency, productive output, reliability, and goal alignment. It produces evidence-linked summaries, scorecards, JSON reports, and patch recommendations under an eval workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON reports, shell command guidance, and patch-style code recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes audit outputs under eval/ and may propose concrete diffs for memory structure improvements.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can copy sensitive memory or log snippets into report files.
+
+Mitigation: Run it only on workspaces approved for audit, keep generated reports in a controlled eval directory, and inspect JSON and Markdown outputs before sharing or committing them.
+
+Risk: The audit can be directed to write reports outside the intended workspace or overwrite prior reports.
+
+Mitigation: Review output path and overwrite options before execution, and avoid broad log scanning or overwrite mode unless the target files are understood.
+
+## Reference(s):
+
+- [Clawditor Report Schema](artifact/references/report_schema.md)
+- [Clawditor ClawHub Release](https://clawhub.ai/theylon/skills/clawditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, code, shell commands, guidance]
+
+**Output Format:** [Markdown reports, structured JSON reports, and concrete patch recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended to be written under eval/ as exec_summary.md, scorecard.md, latest_report.json, and optional patch diffs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

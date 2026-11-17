@@ -1,40 +1,54 @@
-## Description: <br>
-Builds custom AI agents with tool integration, memory management, multi-agent collaboration, and deployment command examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Agent Builder helps agents create and deploy custom AI agents with tool integration, memory management, multi-agent collaboration, and deployment commands.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers, product managers, and automation builders use this skill to create task-specific agents for customer support, data collection, and research automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated agents may receive broader tool access or credentials than their task requires. <br>
-Mitigation: Review generated agent configuration before use, connect only necessary tools, and prefer read-only or least-privilege credentials. <br>
-Risk: Deployed agents that send email, query databases, collect data, or continue running after launch may create operational or privacy risk. <br>
-Mitigation: Monitor deployed agents and review behavior against the intended task, permissions, and data handling requirements. <br>
+## Use Case:
 
+Developers, product managers, and automation builders use this skill to scaffold custom AI agents for customer support, data collection, and research automation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-agent-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash command examples, YAML configuration snippets, and conversational examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated agent configuration, tool lists, memory settings, test dialogue, and deployment command suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.52 (source: server release metadata) <br>
+Risk: Generated deployment or agent-run commands may grant agents access to sensitive tools such as email or databases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each tool assignment before execution, start in a test environment, and grant only the minimum permissions needed.
+
+Risk: Built agents may take unintended actions if their goals, permissions, or behavior are not scoped clearly.
+
+Mitigation: Define clear objectives, limit agent permissions, and monitor deployed agents for unexpected behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-agent-builder)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include agent names, tool selections, deployment commands, and generated configuration snippets.]
+
+## Skill Version(s):
+
+1.0.52 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

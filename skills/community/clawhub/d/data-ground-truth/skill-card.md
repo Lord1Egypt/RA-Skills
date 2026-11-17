@@ -1,48 +1,52 @@
-## Description: <br>
-Before presenting numbers in reports or recommendations, verify facts and check values against industry baselines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Before presenting numbers in reports or recommendations, verify facts and check values against industry baselines.
 
-## Publisher: <br>
-[CutTheMustard](https://clawhub.ai/user/CutTheMustard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cutthemustard](https://clawhub.ai/user/cutthemustard)
 
-## Use Case: <br>
-Employees, external users, analysts, and developers use this skill to check factual claims and benchmark business or performance metrics before including numbers in reports, recommendations, or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends claims and metric values to AgentUtil external services. <br>
-Mitigation: Use it only when sharing the specific claims, category identifiers, and metric values with those services is acceptable. <br>
-Risk: Confidential, personal, regulated, or highly sensitive business data could be exposed if included in claims or metric values. <br>
-Mitigation: Avoid submitting sensitive data unless that disclosure has been approved for the use case. <br>
-Risk: Queries may incur costs after the free tiers described by the artifact. <br>
-Mitigation: Review expected query volume and pricing before using the skill in recurring workflows. <br>
+## Use Case:
 
+Developers, analysts, and business users use this skill to fact-check numeric claims and compare business metrics against relevant industry baselines before presenting reports, recommendations, or analysis.
 
-## Reference(s): <br>
-- [AgentUtil](https://agentutil.net) <br>
-- [Verify API](https://verify.agentutil.net/v1/verify) <br>
-- [Norm check API](https://norm.agentutil.net/v1/check) <br>
-- [Norm batch API](https://norm.agentutil.net/v1/batch) <br>
-- [Norm categories API](https://norm.agentutil.net/v1/categories) <br>
-- [ClawHub release page](https://clawhub.ai/CutTheMustard/data-ground-truth) <br>
-- [Publisher profile](https://clawhub.ai/user/CutTheMustard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, analysis, markdown, shell commands, API calls] <br>
-**Output Format:** [Markdown guidance with optional inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include verdicts, freshness notes, percentiles, assessment labels, and baseline ranges returned by external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Individual claims and business metric values are sent to agentutil.net services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when that data sharing is acceptable, and avoid confidential, personal, regulated, or highly sensitive figures unless the service privacy and billing terms have been reviewed.
+
+## Reference(s):
+
+- [AgentUtil](https://agentutil.net)
+- [Verify API](https://verify.agentutil.net/v1/verify)
+- [Norm API](https://norm.agentutil.net/v1/check)
+- [Norm Baseline Categories](https://norm.agentutil.net/v1/categories)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with optional API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include verified facts, benchmark percentile context, anomaly flags, and concise recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

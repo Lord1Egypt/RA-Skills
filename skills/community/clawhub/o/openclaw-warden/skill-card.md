@@ -1,43 +1,59 @@
-## Description: <br>
-OpenClaw Warden verifies local workspace file integrity and scans agent identity, memory, configuration, and skill files for prompt injection patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verifies workspace file integrity and scans agent identity, memory, configuration, and installed skill files for prompt-injection indicators.
 
-## Publisher: <br>
-[AtlasPA](https://clawhub.ai/user/AtlasPA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[atlaspa](https://clawhub.ai/user/atlaspa)
 
-## Use Case: <br>
-Developers and agent users use this skill to create a local integrity baseline, check for unauthorized workspace changes, and scan trusted agent files before relying on them in sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Some commands can restore, roll back, or quarantine workspace files and installed skills, which can overwrite legitimate edits or disable a skill. <br>
-Mitigation: Use report-only commands such as verify, scan, full, and status for routine checks; run restore, rollback, quarantine, or protect only after reviewing target files and keeping backups. <br>
-Risk: Integrity results depend on the current baseline, so an outdated or unreviewed baseline can cause expected changes to appear suspicious or preserve unwanted file states. <br>
-Mitigation: Review findings before acting, accept legitimate file changes intentionally, and refresh the baseline only after the workspace state has been checked. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create local integrity baselines, verify workspace files, and scan agent-readable files for prompt-injection patterns before trusting a workspace session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AtlasPA/openclaw-warden) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
-- [Artifact README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and plain-text scanner reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Python 3 and no network dependency; some actions can modify workspace files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Baseline and accept operations can make compromised or unintended file states look trusted if they are run before review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Create or update baselines only after reviewing the workspace and confirming it is in a known-clean state.
+
+Risk: Protect, restore, rollback, and quarantine operations can overwrite important workspace files or disable installed skills.
+
+Mitigation: Review target paths first, keep backups, and use these commands only when the intended file or skill changes are clear.
+
+Risk: Clean scan results can be incomplete because some security-skill names are exempted by directory name.
+
+Mitigation: Treat clean results as one signal, and manually review high-impact agent identity, memory, and skill files before trusting a workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/atlaspa/skills/openclaw-warden)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and local scan findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally with Python 3 and writes .integrity baseline data in the target workspace.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

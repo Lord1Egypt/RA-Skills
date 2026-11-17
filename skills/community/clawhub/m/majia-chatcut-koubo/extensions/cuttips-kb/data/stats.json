@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-07-25T06:49:17.612Z",
+  "sourceCount": 198,
+  "reviewedCount": 191,
+  "getnoteOnlyCount": 7,
+  "creatorCounts": {
+    "五年剪辑师乐乐": 143,
+    "剪辑师晨晨": 55
+  },
+  "categoryCounts": {
+    "策划与语义": 4,
+    "A-roll与气口": 4,
+    "开头与留存": 4,
+    "字幕系统": 4,
+    "B-roll与证据": 4,
+    "信息图形": 4,
+    "人物与合成": 4,
+    "动效与转场": 4,
+    "声音系统": 4,
+    "场景与版式": 4,
+    "工程与效率": 4,
+    "验收与回滚": 4
+  },
+  "knowledgeItemCount": 48,
+  "machineRuleCount": 14
+}

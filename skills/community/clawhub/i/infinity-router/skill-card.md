@@ -1,46 +1,59 @@
-## Description: <br>
-Routes AI requests across free OpenRouter models for OpenClaw and Claude Code. Auto-discovers, scores, and configures the best free model with a smart fallback chain. Use when the user mentions free AI, OpenRouter, model switching, rate limits, or wants to reduce AI costs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Infinity Router routes AI requests across free OpenRouter chat models for OpenClaw and Claude Code by auto-discovering, scoring, and configuring a primary model with fallbacks.
 
-## Publisher: <br>
-[genoshide](https://clawhub.ai/user/genoshide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[genoshide](https://clawhub.ai/user/genoshide)
 
-## Use Case: <br>
-Developers and engineers use this skill to discover free OpenRouter chat models, choose a tool-capable primary model, and configure OpenClaw or Claude Code with fallbacks that reduce interruptions from rate limits or model failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use OpenRouter API keys and read keys from environment variables or local OpenClaw auth profiles. <br>
-Mitigation: Use a dedicated OpenRouter key where possible and protect auth-profiles.json and OpenClaw configuration files. <br>
-Risk: The skill can edit local OpenClaw or Claude Code model settings. <br>
-Mitigation: Review the target configuration before and after running commands, and run validation mode before writing model selections when reliability matters. <br>
-Risk: Watcher and daemon modes can automatically rotate models and restart OpenClaw after detected failures. <br>
-Mitigation: Avoid watch, daemon, or notify modes unless automatic model rotation, gateway restarts, and optional webhook notifications are acceptable. <br>
+## Use Case:
 
+Developers and external users use Infinity Router to configure OpenClaw or Claude Code with ranked free OpenRouter chat models and fallback chains for model switching, rate-limit handling, and AI cost reduction.
 
-## Reference(s): <br>
-- [Infinity Router on ClawHub](https://clawhub.ai/genoshide/infinity-router) <br>
-- [Publisher Profile](https://clawhub.ai/user/genoshide) <br>
-- [OpenRouter Models API](https://openrouter.ai/api/v1/models) <br>
-- [OpenRouter Chat Completions API](https://openrouter.ai/api/v1/chat/completions) <br>
-- [OpenRouter Keys](https://openrouter.ai/keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local configuration changes for OpenClaw or Claude Code when commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: pyproject.toml and server release metadata) <br>
+Risk: The installer can overwrite globally available infinity-router commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer pipx or a user-local bin directory, avoid running the installer as root, and check for existing infinity-router commands before installing.
+
+Risk: The skill uses OpenRouter API keys and writes AI-tool configuration.
+
+Mitigation: Protect OpenRouter keys as secrets and review OpenClaw or Claude Code configuration changes before applying them.
+
+Risk: Watcher and webhook modes can automatically change model configuration and restart the gateway.
+
+Mitigation: Enable watch or webhook behavior only when automatic rotation and restarts are intended, and use validation before writing model choices.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/genoshide/skills/infinity-router)
+- [OpenRouter Models API](https://openrouter.ai/api/v1/models)
+- [OpenRouter Chat Completions API](https://openrouter.ai/api/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or modify OpenClaw and Claude Code model configuration when installed and executed.]
+
+## Skill Version(s):
+
+2.1.0 (source: release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

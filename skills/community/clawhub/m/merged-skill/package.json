@@ -1,0 +1,16 @@
+{
+  "name": "guizang-social-card-skill",
+  "version": "1.0.0",
+  "description": "![GitHub stars](https://img.shields.io/github/stars/op7418/guizang-social-card-skill?style=flat-square) ![License](https://img.shields.io/github/license/op7418/guizang-social-card-skill?style=flat-square) ![Skill](https://img.shields.io/badge/Skill-Agent-111111?style=flat-square) ![Social Cards](https://img.shields.io/badge/Social-Cards-FF4D6D?style=flat-square) ![Claude Code](https://img.shields.io/badge/Claude%20Code-Supported-6B5B95?style=flat-square) ![Codex](https://img.shields.io/badge/Codex-Supported-222222?style=flat-square)",
+  "main": "index.js",
+  "scripts": {
+    "validate": "node validate-social-deck.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright": "^1.61.1"
+  },
+  "type": "commonjs"
+}

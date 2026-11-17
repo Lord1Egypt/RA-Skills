@@ -1,40 +1,58 @@
-## Description: <br>
-Batch-compresses, resizes, and converts local image files with preview and undo workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image Optimizer Tool helps agents guide users through batch image resizing, compression, and format conversion with preview and undo workflows.
 
-## Publisher: <br>
-[utopiabenben](https://clawhub.ai/user/utopiabenben) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utopiabenben](https://clawhub.ai/user/utopiabenben)
 
-## Use Case: <br>
-Developers and users working with local image folders use this skill to run a Python image optimizer for batch resizing, compression, and format conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup and undo behavior can write or restore local files outside the expected scope. <br>
-Mitigation: Use --preview or --output-dir first, run from a trusted working directory, and avoid --undo in directories containing untrusted .image_optimizer_log.json files. <br>
-Risk: Installing dependencies directly with pip can affect the active Python environment. <br>
-Mitigation: Install Pillow in an isolated Python environment before running the tool on important folders. <br>
+## Use Case:
 
+Developers, content operators, and other external users use this skill to prepare local image optimization commands for batch resizing, quality compression, format conversion, previewing, and undo.
 
-## Reference(s): <br>
-- [Image Optimizer Tool on ClawHub](https://clawhub.ai/utopiabenben/image-optimizer-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command examples for installing Pillow and running the image optimizer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Image operations can overwrite or modify local image files when no output directory is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run preview mode first or set --output-dir to write optimized copies before replacing originals.
+
+Risk: The installer uses an unpinned Pillow dependency.
+
+Mitigation: Install in a virtual environment and pin or review the Pillow version before use.
+
+Risk: Backup path handling has a known bug when targeting images outside the current working directory.
+
+Mitigation: Run the tool from the directory being processed or use --output-dir until backup path handling is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/utopiabenben/skills/image-optimizer-tool)
+- [Publisher profile](https://clawhub.ai/user/utopiabenben)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local file paths, quality settings, image dimensions, output formats, preview mode, undo mode, and output-directory settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill.json, image_optimizer.py VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

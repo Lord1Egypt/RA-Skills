@@ -1,47 +1,65 @@
-## Description: <br>
-BenchClaw runs automated OpenClaw agent benchmarks that fetch tasks, execute them, score performance across capability, configuration, security, hardware, and permission dimensions, and generate reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BenchClaw evaluates OpenClaw agents across capability, configuration, security, hardware, and permission tasks, then produces scores and reports for performance, cost, and safety comparison.
 
-## Publisher: <br>
-[antutuadmin](https://clawhub.ai/user/antutuadmin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antutuadmin](https://clawhub.ai/user/antutuadmin)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to run repeatable agent benchmarks, compare score and throughput, inspect category-level performance, and generate local result reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Benchmark data uploads are enabled by default and may include OpenClaw session metadata plus truncated stdout and stderr snippets. <br>
-Mitigation: Review the upload disclosure before running; use local-only mode by setting upload_to_server=false when leaderboard submission is not desired. <br>
-Risk: The benchmark exercises the OpenClaw agent and mutates shared OpenClaw session state during evaluation. <br>
-Mitigation: Run it in an isolated session or workspace that does not contain sensitive data or active production work. <br>
-Risk: Local reports, cache files, and temp logs may contain benchmark routing metadata and execution output. <br>
-Mitigation: Treat data/ and temp/ artifacts as sensitive, review them before sharing, and remove them when no longer needed. <br>
-Risk: Question fetching still uses the network even when result upload is disabled. <br>
-Mitigation: Run only in environments where outbound HTTPS access to the benchmark service is acceptable. <br>
+## Use Case:
 
+Developers and agent operators use BenchClaw to run a 25-task OpenClaw benchmark, compare score dimensions, and generate local or optionally uploaded leaderboard reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/antutuadmin/benchclaw) <br>
-- [BenchClaw homepage](https://benchclaw.antutu.com) <br>
-- [BenchClaw repository](https://github.com/BenchClaw/benchclaw) <br>
-- [Upload disclosure](UPLOAD_DISCLOSURE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, terminal progress text, local JSON result data, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes benchmark data and logs under data/ and temp/; leaderboard upload is enabled by default unless local-only mode is selected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Remote benchmark questions drive the user's main OpenClaw agent during evaluation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in an isolated disposable OpenClaw profile or workspace with no sensitive files or credentials.
+
+Risk: Leaderboard upload is enabled unless the caller disables it, and submitted per-question output can include truncated stdout or stderr.
+
+Mitigation: Set temp/caller_info.txt to upload_to_server=false unless leaderboard submission is explicitly intended.
+
+Risk: Stdout and stderr sanitization is best effort and may not remove every sensitive value.
+
+Mitigation: Avoid running benchmarks in environments containing secrets, and review generated reports before sharing them.
+
+Risk: Failed uploads can be cached for later submission when upload remains enabled.
+
+Mitigation: Clear cached submissions after failed uploads if the user does not want results submitted later.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/antutuadmin/skills/benchclaw)
+- [BenchClaw homepage](https://benchclaw.antutu.com)
+- [BenchClaw leaderboard](https://benchclaw.antutu.com/leaderboard)
+- [Repository listed in skill metadata](https://github.com/BenchClaw/benchclaw)
+- [Upload disclosure](UPLOAD_DISCLOSURE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown score reports, JSON result data, and concise progress or result text with setup and execution commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local report files and may submit leaderboard data when upload is enabled.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

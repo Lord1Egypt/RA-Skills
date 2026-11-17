@@ -1,39 +1,54 @@
-## Description: <br>
-Get the machine's current public IP address by calling `curl ifconfig.me`. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get the machine's current public IP address by calling `curl ifconfig.me` when the user asks for their IP address, public IP, external IP, or explicitly wants to use ifconfig.me.
 
-## Publisher: <br>
-[hilaraklesantosw-art](https://clawhub.ai/user/hilaraklesantosw-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hilaraklesantosw-art](https://clawhub.ai/user/hilaraklesantosw-art)
 
-## Use Case: <br>
-External users and developers use this skill when they need an agent to report the machine's public outbound IP address using ifconfig.me. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The lookup sends the machine's public IP address and ordinary request metadata to ifconfig.me. <br>
-Mitigation: Use the skill only when that disclosure is acceptable for the environment. <br>
+## Use Case:
 
+Developers and users use this skill to retrieve the current machine's public outbound IP address through ifconfig.me. It is scoped to public IP lookup and not local network discovery, routing diagnostics, interface inspection, or geolocation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hilaraklesantosw-art/get-my-ip) <br>
-- [Project homepage](https://github.com/hilaraklesantosw-art/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Plain text public IP address or a brief error message.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and network access to ifconfig.me.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: The skill makes an external request to ifconfig.me, which exposes the machine's public outbound IP address to that service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when a public IP lookup is intended, and confirm that external IP-check services are allowed in restricted workplace or sensitive network environments.
+
+Risk: The lookup can fail if curl is missing, network access is unavailable, or ifconfig.me is unavailable.
+
+Mitigation: Report that the public IP could not be retrieved and include the brief failure reason when available.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/hilaraklesantosw-art/skills)
+- [ClawHub skill page](https://clawhub.ai/hilaraklesantosw-art/skills/get-my-ip)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text or concise Markdown with an inline shell command when explanation is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns only the public IP by default; includes a brief error reason when curl, the network, or ifconfig.me is unavailable.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter: 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

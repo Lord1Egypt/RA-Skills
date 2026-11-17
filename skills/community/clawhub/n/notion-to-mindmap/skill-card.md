@@ -1,41 +1,58 @@
-## Description: <br>
-Converts a Notion HTML export into local mind map data and a self-contained interactive HTML mind map with search, zoom, expand/collapse, page focusing, and Notion link actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Notion HTML exports into an interactive mind map HTML file with search, zoom, expand and collapse controls, and Notion page link actions.
 
-## Publisher: <br>
-[infniu](https://clawhub.ai/user/infniu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[infniu](https://clawhub.ai/user/infniu)
 
-## Use Case: <br>
-Developers, knowledge workers, and external users use this skill to convert a user-provided Notion index.html export into an interactive browser-based mind map for reviewing page hierarchy, navigating Notion links, and searching exported page titles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated JSON and HTML can contain Notion page titles and Notion page links from the source export. <br>
-Mitigation: Treat generated files as potentially sensitive and share them only with intended recipients. <br>
-Risk: The skill processes user-provided Notion exports locally, so the output inherits the confidentiality of the input export. <br>
-Mitigation: Use trusted local exports and review generated files before storing or publishing them outside the intended workspace. <br>
+## Use Case:
 
+Developers and users who export Notion workspaces as HTML use this skill to convert the exported index into a browsable, searchable mind map. The agent runs the bundled parser and HTML generator, then returns the generated mindmap file.
 
-## Reference(s): <br>
-- [README.md](README.md) <br>
-- [ClawHub release page](https://clawhub.ai/infniu/notion-to-mindmap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, JSON, HTML, Guidance] <br>
-**Output Format:** [Local mindmap_data.json and self-contained mindmap.html files, with brief text status from the conversion scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BeautifulSoup4 and a user-provided Notion HTML export; generated files may contain page titles and Notion page links from the export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A crafted Notion export could inject JavaScript into the generated mindmap.html.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only trusted exports, and open generated HTML in an isolated folder or browser context.
+
+Risk: Generated files are written into the working directory and could overwrite existing mindmap_data.json or mindmap.html files.
+
+Mitigation: Run the conversion in a separate folder and keep backups of important files before generation.
+
+Risk: A custom Notion base URL changes the links embedded in the generated mind map.
+
+Mitigation: Validate any custom Notion base URL before running the generator or sharing the output.
+
+## Reference(s):
+
+- [Notion Mind Map Reference](README.md)
+- [ClawHub skill page](https://clawhub.ai/infniu/skills/notion-to-mindmap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated files: mindmap_data.json and self-contained mindmap.html]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BeautifulSoup4 and a trusted Notion HTML export as input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,60 @@
-## Description: <br>
-Uses the TickFlow Python SDK to retrieve real-time quotes, historical K-line data, and financial data for A-shares, Hong Kong stocks, U.S. stocks, and futures markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the TickFlow Python SDK to retrieve real-time quotes and K-line data for A-share, Hong Kong, U.S. equity, and futures markets.
 
-## Publisher: <br>
-[tickflow-dev](https://clawhub.ai/user/tickflow-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tickflow-dev](https://clawhub.ai/user/tickflow-dev)
 
-## Use Case: <br>
-Developers and analysts use this skill to configure TickFlow SDK access and generate Python examples for retrieving market quotes, K-line history, instrument metadata, and financial data across supported equity and futures markets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup instructions include a shortcut that pipes the uv installer from astral.sh into the shell or PowerShell. <br>
-Mitigation: Prefer installing uv through a trusted package manager when available, or download and inspect the installer before executing it. <br>
-Risk: Full TickFlow access depends on an API key stored in the TICKFLOW_API_KEY environment variable. <br>
-Mitigation: Handle the API key as a normal runtime credential and avoid placing it in scripts, logs, or committed files. <br>
+## Use Case:
 
+Developers, data analysts, and quantitative researchers use this skill to set up TickFlow SDK workflows and generate examples for retrieving market quotes, historical and intraday K-line data, instrument metadata, and financial data.
 
-## Reference(s): <br>
-- [TickFlow homepage](https://tickflow.org) <br>
-- [ClawHub skill page](https://clawhub.ai/tickflow-dev/tickflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, uv, and TICKFLOW_API_KEY for full real-time data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Setup guidance includes install steps that should be reviewed before execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install uv through a trusted package manager or verified release before running TickFlow examples.
+
+Risk: API key setup guidance may encourage storing TICKFLOW_API_KEY in shell startup files.
+
+Mitigation: Store TICKFLOW_API_KEY in a password manager, OS keychain, or local uncommitted environment file.
+
+Risk: Dependency installation can change over time if package versions are not pinned.
+
+Mitigation: Pin and lock Python dependencies for repeatable agent environments.
+
+## Reference(s):
+
+- [TickFlow homepage](https://tickflow.org)
+- [ClawHub TickFlow skill page](https://clawhub.ai/tickflow-dev/skills/tickflow)
+- [uv installer for macOS/Linux](https://astral.sh/uv/install.sh)
+- [uv installer for Windows PowerShell](https://astral.sh/uv/install.ps1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require python3, uv, and TICKFLOW_API_KEY for full real-time data workflows.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

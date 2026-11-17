@@ -1,6 +1,67 @@
 {
-  "ownerId": "kn7exyvq545smns44f7awtj5bx82ddr7",
-  "slug": "social-media-automator",
-  "version": "1.2.0",
-  "publishedAt": 1776675548208
+  "slug": "lobsterlabs-social-media-automator",
+  "name": "Social Media Automator",
+  "displayName": "Social Media Automator 📱",
+  "version": "0.1.0",
+  "author": "LobsterLabs",
+  "authorUrl": "https://clawhub.ai/lobsterlabs",
+  "description": "Automatically generate social media posts from articles. Supports Twitter, LinkedIn, and Instagram.",
+  "longDescription": "This skill transforms your long-form content into engaging social media posts across multiple platforms. Perfect for content marketers, solopreneurs, and agencies who want to scale their social presence.\n\nFeatures:\n- Twitter thread generation (3-10 tweets)\n- LinkedIn post creation\n- Instagram captions with hashtags\n- Multiple variations for A/B testing\n- Scheduling integration ready\n\nThis skill works seamlessly with the SEO Content Engine for full content automation.\n\nIdeal for:\n- Content marketers scaling distribution\n- Solopreneurs building personal brand\n- Agencies managing multiple clients\n- Anyone tired of manual social media posting",
+  "tags": ["social-media", "twitter", "linkedin", "content", "automation", "marketing", "productivity"],
+  "category": "Marketing",
+  "license": "MIT",
+  "homepage": "https://github.com/lobsterlabs/social-media-automator",
+  "repository": "https://github.com/lobsterlabs/social-media-automator",
+  "bugs": "https://github.com/lobsterlabs/social-media-automator/issues",
+  "requirements": {
+    "bins": ["curl"],
+    "env": {
+      "DEFAULT_PLATFORM": {
+        "description": "Default social platform (twitter|linkedin|instagram|all)",
+        "default": "all",
+        "required": false
+      },
+      "THREAD_LENGTH": {
+        "description": "Default Twitter thread length",
+        "default": "5",
+        "required": false
+      }
+    }
+  },
+  "examples": [
+    {
+      "command": "Generate Twitter thread from my article \"10 Best AI Tools\" - 7 tweets",
+      "description": "Create a 7-tweet thread from article"
+    },
+    {
+      "command": "Create LinkedIn post from \"How I Automated My Content Workflow\"",
+      "description": "Generate professional LinkedIn post"
+    },
+    {
+      "command": "Create social media posts from [paste article text]",
+      "description": "Generate posts for all platforms"
+    }
+  ],
+  "pricing": {
+    "type": "free",
+    "services": "This free skill powers LobsterLabs paid social media services. Hire us at lobsterlabs@proton.me"
+  },
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-03-06",
+      "changes": [
+        "Initial release",
+        "Twitter thread generation",
+        "LinkedIn post creation",
+        "Instagram caption support",
+        "Hashtag suggestions"
+      ]
+    }
+  ],
+  "relatedSkills": ["seo-content-engine"],
+  "stars": 0,
+  "downloads": 0,
+  "publishedAt": "2026-03-06T00:00:00Z",
+  "updatedAt": "2026-03-06T00:00:00Z"
 }

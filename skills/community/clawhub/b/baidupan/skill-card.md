@@ -1,42 +1,59 @@
-## Description: <br>
-Baidu Netdisk automation skill for uploading, downloading, listing, syncing, and checking quota through bypy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidupan helps agents manage Baidu Netdisk files through bypy, including upload, download, listing, syncing, authorization, and quota checks.
 
-## Publisher: <br>
-[libin771018-sketch](https://clawhub.ai/user/libin771018-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[libin771018-sketch](https://clawhub.ai/user/libin771018-sketch)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Baidu Netdisk files from an agent workflow, including authorization, uploads, downloads, directory listing, synchronization, and quota checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants the local environment access to a user's Baidu Netdisk account through bypy authorization files. <br>
-Mitigation: Install only when the user trusts bypy, intends to grant that access, and can protect the local ~/.bypy/ authorization files. <br>
-Risk: File transfers, force overwrites, and bidirectional sync can move or replace local and cloud files. <br>
-Mitigation: Review local and cloud paths before execution, avoid --force unless overwrite is intended, and use bidirectional sync only after confirming conflict risk. <br>
+## Use Case:
 
+External users and developers use this skill to authorize bypy and manage Baidu Netdisk files from an agent-assisted shell workflow, including listing, transferring, syncing, and checking quota.
 
-## Reference(s): <br>
-- [ClawHub Baidupan Skill](https://clawhub.ai/libin771018-sketch/baidupan) <br>
-- [bypy Project](https://github.com/houtianze/bypy) <br>
-- [Baidu Netdisk Open Platform](https://pan.baidu.com/union) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user-facing command guidance for bypy-backed Baidu Netdisk operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Authorizing bypy grants access to the user's Baidu Netdisk account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that account access is acceptable, complete authorization intentionally, and protect local bypy credentials such as files under ~/.bypy/.
+
+Risk: Upload, download, sync, and --force operations can change local files or cloud files.
+
+Mitigation: Review local and remote paths before execution, avoid --force unless replacement is intended, and use backups or a test path before bidirectional sync.
+
+Risk: The skill depends on the third-party bypy package.
+
+Mitigation: Pin or vet the bypy package before use in sensitive environments.
+
+## Reference(s):
+
+- [Baidupan ClawHub Release](https://clawhub.ai/libin771018-sketch/skills/baidupan)
+- [bypy Project](https://github.com/houtianze/bypy)
+- [Baidu Netdisk Open Platform](https://pan.baidu.com/union)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the bypy command-line tool and user authorization for Baidu Netdisk access.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

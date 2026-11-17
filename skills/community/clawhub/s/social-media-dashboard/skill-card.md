@@ -1,46 +1,62 @@
-## Description: <br>
-Aggregates creator analytics from Toutiao, CSDN, and Zhihu dashboards and produces Markdown dashboards and reports for social media operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social Media Dashboard helps an agent collect creator analytics and revenue data from Toutiao, CSDN, and Zhihu through browser-assisted workflows and generate Markdown dashboards or reports.
 
-## Publisher: <br>
-[luduoxin](https://clawhub.ai/user/luduoxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luduoxin](https://clawhub.ai/user/luduoxin)
 
-## Use Case: <br>
-Content creators and social media operators use this skill to collect follower, readership, content, and earnings metrics from their own logged-in creator dashboards and turn them into concise Markdown reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a logged-in browser and read private creator dashboard data, including earnings and browser profile data. <br>
-Mitigation: Use a separate browser profile when possible, review each browser automation step before running it, and close Chrome debugging mode after use. <br>
-Risk: Copied dashboard data may contain private or sensitive account information. <br>
-Mitigation: Review and redact collected dashboard data before sending it to an AI or sharing generated reports. <br>
-Risk: Raw cookies or login credentials could expose creator accounts if shared. <br>
-Mitigation: Avoid sharing raw cookies, login credentials, or exported browser profile data. <br>
+## Use Case:
 
+External creators and operators use this skill to consolidate logged-in creator-center metrics, including fans, content performance, reading or playback activity, and revenue. Agents can use the collected data to prepare personal operating dashboards, daily reports, trend summaries, and improvement suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luduoxin/social-media-dashboard) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Toutiao collection notes](artifact/platforms/toutiao.md) <br>
-- [CSDN collection notes](artifact/platforms/csdn.md) <br>
-- [Zhihu collection notes](artifact/platforms/zhihu.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser automation steps, extracted dashboard metrics, JSON snippets, and report templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and artifact clawhub.json) <br>
+Risk: The skill asks an agent or browser to read logged-in creator dashboards that may include private analytics, revenue, and account information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this access is acceptable, keep collected data local when possible, and review or redact reports before sharing them.
+
+Risk: The Chrome remote-debugging helper reuses the normal Chrome profile, which can expose active browser sessions to local debugging clients.
+
+Mitigation: Avoid the helper with a normal browser profile; use a separate temporary profile or manual collection workflow when handling sensitive accounts.
+
+Risk: Cookie and session-based workflows can leak credentials if users paste raw cookies or unredacted session material into chat, terminals, or shared files.
+
+Mitigation: Do not paste raw cookies into chat or terminals, delete unneeded session material, and prefer browser-mediated collection over direct credential handling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luduoxin/skills/social-media-dashboard)
+- [Toutiao collection notes](artifact/platforms/toutiao.md)
+- [CSDN collection notes](artifact/platforms/csdn.md)
+- [Zhihu collection notes](artifact/platforms/zhihu.md)
+- [Dashboard template](artifact/templates/dashboard.md)
+- [Daily report template](artifact/templates/daily-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown reports and dashboards with inline shell, AppleScript, and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include locally collected creator analytics, account metrics, and revenue data that should be reviewed and redacted before sharing.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and artifact/clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

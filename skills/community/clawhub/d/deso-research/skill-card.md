@@ -1,43 +1,58 @@
-## Description: <br>
-Research and analyze content across decentralized social networks (Farcaster, Lens, Nostr, Bluesky) using the deso-ag CLI tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Researches and analyzes content across decentralized social networks (Farcaster, Lens, Nostr, and Bluesky) using the deso-ag CLI tool.
 
-## Publisher: <br>
-[mtple](https://clawhub.ai/user/mtple) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mtple](https://clawhub.ai/user/mtple)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to query decentralized social networks with deso-ag and synthesize trends, topics, high-engagement posts, and cross-network comparisons. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on installing and running the third-party deso-ag npm package. <br>
-Mitigation: Install it only when the package is trusted, and use an isolated environment when extra caution is needed. <br>
-Risk: Optional API keys and Bluesky app-password credentials may be used for fuller network coverage. <br>
-Mitigation: Provide only the credentials needed for the requested networks and avoid including secrets in prompts or searches. <br>
-Risk: Search terms may be sent to external decentralized social-network services. <br>
-Mitigation: Avoid sensitive personal details in queries and tell users which networks are being queried based on available credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [deso-ag npm package](https://www.npmjs.com/package/deso-ag) <br>
-- [deso-ag Command Reference](references/command-reference (1).md) <br>
-- [ClawHub skill page](https://clawhub.ai/mtple/deso-research) <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to search decentralized social networks, inspect trending posts, extract discussion terms, browse Farcaster channels, and synthesize findings for users.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown summaries with source links, supported by deso-ag shell commands and compact JSON results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and trending workflows use compact JSON for agent analysis; term extraction uses JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and runs the external deso-ag npm package.
+
+Mitigation: Review the package and version before global installation, and install only if you trust it.
+
+Risk: Optional Farcaster and Bluesky credentials may be exposed if broad environment secrets are available during execution.
+
+Mitigation: Use scoped or revocable credentials and avoid exposing unrelated environment secrets when running deso-ag.
+
+Risk: Network coverage may be incomplete when API keys are missing, APIs are rate limited, or Nostr is slow or inconsistent.
+
+Mitigation: Tell users which networks were included, retry transient Nostr failures once, and explain missing or rate-limited results.
+
+## Reference(s):
+
+- [deso-ag Command Reference](references/command-reference (1).md)
+- [deso-ag npm package](https://www.npmjs.com/package/deso-ag)
+- [ClawHub skill page](https://clawhub.ai/mtple/skills/deso-research)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash commands and structured JSON-derived summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses compact JSON results from deso-ag for synthesis and may include source post links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

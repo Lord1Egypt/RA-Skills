@@ -1,40 +1,54 @@
-## Description: <br>
-Generate secure random passwords using Python's secrets module with customizable length and character set options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate secure random passwords using Python's secrets module with customizable length and character set options.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and users can use this skill to generate one or more local random passwords with configurable length, symbols, and numbers for account setup or service-account workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated passwords are printed to the terminal and could be exposed through logs, screen sharing, terminal capture, or nearby observers. <br>
-Mitigation: Run the skill in a private terminal, avoid persistent logging, and clear visible output after transferring the password to an appropriate secret store. <br>
-Risk: Documentation examples may include sample passwords or password patterns that should not be reused for real accounts. <br>
-Mitigation: Generate fresh passwords for each account and do not reuse sample strings from documentation or prior terminal output. <br>
+## Use Case:
 
+Developers and external users use this skill to generate one or more random passwords with configurable length and optional number or symbol inclusion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/password-generator-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text passwords and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated passwords are printed to stdout; length, count, symbols, and numbers are user-configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated passwords are printed in the terminal, where they may remain visible in scrollback, logs, or shared sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the generator in a private terminal session, clear terminal history where appropriate, and store generated passwords in a password manager.
+
+Risk: Reusing generated passwords across accounts can increase account compromise impact.
+
+Mitigation: Generate unique passwords per account or service and avoid reuse across important accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/password-generator-pro)
+- [ClawHub publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text password strings with optional Markdown command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated passwords are printed to the terminal and can be customized by length, count, and character set options.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,53 @@
-## Description: <br>
-Track your entire garden with structured memory for plants, zones, tasks, harvests, and climate-aware planning that compounds over seasons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track your entire garden with structured memory for plants, zones, tasks, harvests, and climate-aware planning that compounds over seasons.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to maintain a local garden notebook for plant records, garden zones, activity logs, harvest tracking, climate-aware planning, and problem diagnosis across seasons. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill maintains persistent local garden notes and may save garden information from broad conversational triggers. <br>
-Mitigation: Use it only when a local garden notebook is desired, ask the agent to preview entries before saving, and periodically review ~/garden for records that should not be retained. <br>
-Risk: The skill can optionally write an integration note to workspace memory. <br>
-Mitigation: Only allow workspace memory updates after explicit user consent, and review the proposed memory entry before it is saved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Garden ClawHub skill page](https://clawhub.ai/ivangdavila/garden) <br>
-- [Garden homepage](https://clawic.com/skills/garden) <br>
-- [Setup guide](artifact/setup.md) <br>
-- [Memory template](artifact/memory-template.md) <br>
-- [Plant and activity tracking](artifact/tracking.md) <br>
-- [Climate configuration](artifact/climate-setup.md) <br>
-- [Problem diagnosis](artifact/diagnostics.md) <br>
-- [Rotation and seasonal planning](artifact/planning.md) <br>
+## Use Case:
 
+External users use Garden to help an agent track plants, garden zones, activities, harvests, diagnosis notes, and season-aware planning in local garden memory.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and local Markdown garden records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates local garden notes under ~/garden/ when the user wants persistent tracking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.6 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Garden notes accumulate in a local ~/garden/ folder and may reflect user-specific garden context over time.
+
+Mitigation: Install only when ongoing local garden memory is desired, keep storage local, and ask before writing outside ~/garden/.
+
+Risk: Broad activation or auto-logging language could treat casual plant mentions as trackable garden activity.
+
+Mitigation: During setup, choose direct-invocation mode when the user only wants Garden to activate on explicit requests.
+
+## Reference(s):
+
+- [Garden ClawHub listing](https://clawhub.ai/ivangdavila/skills/garden)
+- [Garden homepage](https://clawic.com/skills/garden)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and local file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and updates local garden memory files when the user consents; no external APIs, telemetry, or network calls are described.]
+
+## Skill Version(s):
+
+1.1.6 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

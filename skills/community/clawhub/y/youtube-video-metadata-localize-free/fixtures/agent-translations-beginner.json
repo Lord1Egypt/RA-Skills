@@ -1,0 +1,33 @@
+{
+  "chinese_audience": "第一次参加骑行露营的中文读者",
+  "audience_adaptation": "初次骑行露营读者使用装包、雨具、绑带等日常中文，不默认理解Bikepacking术语；不新增载重、装备型号或安全保证。",
+  "title": {
+    "original": "Set Up a Bikepacking Kit Without Overpacking",
+    "chinese": "骑行露营怎么装包：避免带太多",
+    "source_url": "https://www.youtube.com/watch?v=offline-bike-kit",
+    "source_field": "title"
+  },
+  "points": [
+    {
+      "index": 0,
+      "original": "Pack the heaviest items close to the frame.",
+      "chinese": "把最重的东西放在靠近车架的位置。",
+      "source_url": "https://www.youtube.com/watch?v=offline-bike-kit",
+      "source_field": "description_points[0]"
+    },
+    {
+      "index": 1,
+      "original": "Keep rain gear accessible.",
+      "chinese": "把雨具放在容易取到的位置。",
+      "source_url": "https://www.youtube.com/watch?v=offline-bike-kit",
+      "source_field": "description_points[1]"
+    },
+    {
+      "index": 2,
+      "original": "Check every strap before riding.",
+      "chinese": "骑车出发前检查每一条绑带。",
+      "source_url": "https://www.youtube.com/watch?v=offline-bike-kit",
+      "source_field": "description_points[2]"
+    }
+  ]
+}

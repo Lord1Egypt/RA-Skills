@@ -1,43 +1,60 @@
-## Description: <br>
-Hidream Aigc helps agents call HiDream/OpenClaw/Vivago image and video generation models through Python and CLI interfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hidream Aigc helps agents call HiDream/OpenClaw image and video generation APIs with prompts, model parameters, and optional local media inputs.
 
-## Publisher: <br>
-[zhy2015](https://clawhub.ai/user/zhy2015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhy2015](https://clawhub.ai/user/zhy2015)
 
-## Use Case: <br>
-Developers and agents use this skill to generate images and videos with supported HiDream/OpenClaw models, including Kling, Sora-2-Pro, Seedance, Minimax Hailuo, Seedream, and Nano Banana. It supports direct Python calls and CLI invocation with credential-based access to the Vivago service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, task metadata, API tokens, and any provided image or video files may be sent to the configured HiDream/Vivago endpoint. <br>
-Mitigation: Use only trusted endpoints, avoid private local files unless upload is intended, and use a dedicated or revocable API token where possible. <br>
-Risk: A custom HIDREAM_ENDPOINT or OPENCLAW_ENDPOINT could redirect requests to an untrusted host. <br>
-Mitigation: Do not set custom endpoint variables unless the host is trusted and expected for the release. <br>
+## Use Case:
 
+Developers and agent operators use this skill to generate images and videos through HiDream/OpenClaw models from Python or CLI workflows, while supplying required credentials and prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhy2015/hidream-api-gen) <br>
-- [Vivago service](https://vivago.ai) <br>
-- [Vivago API token page](https://vivago.ai/platform/token) <br>
-- [Vivago account and credits page](https://vivago.ai/platform/info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, files] <br>
-**Output Format:** [Markdown guidance, Python or shell command snippets, JSON API responses, and saved image or video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media may be downloaded to the skill's local assets directory when a media URL is returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.9 (source: server release evidence) <br>
+Risk: Credential handling is under-disclosed and documented flows may persist or shell-write HIDREAM_AUTHORIZATION tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a process-scoped HIDREAM_AUTHORIZATION value and avoid asking an agent to write tokens with echo commands.
+
+Risk: Endpoint overrides can direct credentialed requests to an untrusted destination.
+
+Mitigation: Do not set HIDREAM_ENDPOINT or OPENCLAW_ENDPOINT unless the destination is fully trusted.
+
+Risk: Generated media is saved as persistent local data under assets/.
+
+Mitigation: Review and manually clean up generated media files when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhy2015/skills/hidream-api-gen)
+- [HiDream/OpenClaw Service](https://vivago.ai)
+- [HiDream/OpenClaw Token Page](https://vivago.ai/platform/token)
+- [HiDream/OpenClaw Account and Credits](https://vivago.ai/platform/info)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with Python and shell snippets, JSON responses, and local media file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated media may be downloaded under assets/; API calls require HIDREAM_AUTHORIZATION.]
+
+## Skill Version(s):
+
+0.1.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

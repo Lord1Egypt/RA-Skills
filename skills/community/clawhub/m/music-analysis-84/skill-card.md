@@ -1,43 +1,63 @@
-## Description: <br>
-Analyzes local audio files to produce tempo, groove, structure, harmonic, timbre, mood, lyric, and timeline reports without external APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze music/audio files locally without external APIs, producing tempo, groove, structure, harmonic, timbre, temporal mood, instrument, and lyric-aware emotional reads from audio files.
 
-## Publisher: <br>
-[dahuangfortoby](https://clawhub.ai/user/dahuangfortoby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dahuangfortoby](https://clawhub.ai/user/dahuangfortoby)
 
-## Use Case: <br>
-Developers, producers, and music reviewers use this skill to inspect audio files, compare mixes, audit track structure, and generate producer-facing notes from local analysis outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled setup script makes persistent shell changes and performs a remote model download. <br>
-Mitigation: Review setup.sh before use, run analysis scripts directly in a controlled environment when possible, and manually vet any ~/.zshrc alias changes. <br>
-Risk: Dependency and model installation can change the local execution environment. <br>
-Mitigation: Use an isolated virtual environment, pin dependencies, and verify the Whisper model download before running analysis on important files. <br>
-Risk: Audio feature and lyric-based interpretations can be approximate or misleading. <br>
-Mitigation: Treat tempo, structure, mood, swing, and lyric-derived readings as review aids and confirm conclusions with human listening. <br>
+## Use Case:
 
+Developers, producers, reviewers, and external users can use this skill to inspect local audio files, compare mixes, audit structure and feel, and generate producer-facing music analysis notes. It is intended for local files or user-supplied audio sources and can emit either human-readable reports or JSON.
 
-## Reference(s): <br>
-- [Music Analysis Skill Page](https://clawhub.ai/dahuangfortoby/music-analysis-84) <br>
-- [Whisper large-v3-turbo model artifact](https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-large-v3-turbo.bin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Human-readable text or JSON reports, with shell commands for running local analysis scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include snapshot, instrument, temporal journey, emotional read, lyrics, synthesis, and aligned timeline sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The installer makes persistent shell-profile changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup.sh before installation and remove or make opt-in the ~/.zshrc alias modification.
+
+Risk: The installer downloads and installs dependencies without strong integrity controls.
+
+Mitigation: Pin dependencies and verify the Whisper model checksum before use.
+
+Risk: The installer uses a hard-coded local skill path.
+
+Mitigation: Fix the install path for the target environment before running setup.sh.
+
+Risk: Running setup with elevated privileges could make unintended persistent changes.
+
+Mitigation: Run setup as a normal user after review, not as an elevated user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dahuangfortoby/skills/music-analysis-84)
+- [ClawHub publisher profile](https://clawhub.ai/user/dahuangfortoby)
+- [Whisper large-v3-turbo model download](https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-large-v3-turbo.bin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Human-readable text or structured JSON reports, optionally written to an output file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local audio file and local audio tooling such as ffmpeg, ffprobe, librosa, numpy, and optional whisper-cli for lyric transcription.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

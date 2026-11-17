@@ -1,43 +1,53 @@
-## Description: <br>
-Pre-trade safety checks: position size limits, leverage validation, consecutive loss locks, volatility gates, exchange balance verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-trade safety checks: position size limits, leverage validation, consecutive loss locks, volatility gates, exchange balance verification. Drop-in risk guard for any trading skill.
 
-## Publisher: <br>
-[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss)
 
-## Use Case: <br>
-External users and developers can use this skill as a pre-trade review prompt before an agent executes or modifies trades. It checks proposed trades against stated risk thresholds for capital exposure, leverage, volatility, loss streaks, and available margin. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may influence whether an agent blocks, resizes, or executes trades. <br>
-Mitigation: Require explicit user confirmation before any trade is blocked, resized, executed, or otherwise modified. <br>
-Risk: The skill promotes an off-platform paid trading service and USDT payment flow. <br>
-Mitigation: Do not send funds or contact the listed Telegram account unless the publisher and service have been independently trusted. <br>
-Risk: The skill is a prompt-based risk check, not a verified trading control system. <br>
-Mitigation: Use it as advisory review only and keep independent trading, margin, and compliance controls in place. <br>
+## Use Case:
 
+External users and agent developers use this skill as a pre-trade gate that checks position sizing, leverage, consecutive losses, volatility, and available exchange balance before a trading agent proceeds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sg345662365-oss/trade-safety-vetter) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/sg345662365-oss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown or plain text risk review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no tools, APIs, or executable scripts were detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The artifact includes a cryptocurrency payment address and Telegram activation path for a claimed pro trading execution feature.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send cryptocurrency or use the Telegram activation path; review any trading execution feature separately through trusted platform channels before installation or use.
+
+Risk: Trading risk checks can be incomplete or misleading if treated as a guarantee of trade safety.
+
+Mitigation: Use the skill only as a pre-trade checklist and keep independent controls for capital limits, leverage, exchange balances, and volatility thresholds.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/sg345662365-oss/skills/trade-safety-vetter)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text]
+
+**Output Format:** [Markdown guidance with checklist thresholds]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, tool calls, or configuration files are included in the artifact.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

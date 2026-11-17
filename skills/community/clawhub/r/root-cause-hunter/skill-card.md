@@ -1,37 +1,52 @@
-## Description: <br>
-Guides agents through a five-phase root-cause investigation process before implementing a fix. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Root Cause Hunter guides agents through a strict five-phase root-cause investigation workflow before implementing fixes.
 
-## Publisher: <br>
-[pengpengliu1212-art](https://clawhub.ai/user/pengpengliu1212-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[pengpengliu1212-art](https://clawhub.ai/user/pengpengliu1212-art)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to keep debugging work evidence-driven: reproduce the issue, inspect recent changes and environment differences, validate one hypothesis at a time, implement the narrow fix, and capture lessons afterward.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Rollback validation could lead to unintended code reverts if treated as permission to change files without review.
+
+Mitigation: Keep user control over any actual revert and use rollback checks only as deliberate diagnostic steps.
+
+Risk: Local debug logs or lesson notes may capture sensitive error output, configuration, or environment details.
+
+Mitigation: Review diagnostic notes before storing them and avoid writing secrets, credentials, or unnecessary private data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill when debugging failures and need the agent to reproduce the issue, inspect recent changes, test a single hypothesis, implement only the root-cause fix, and record lessons after resolution. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to persist debugging notes and lessons without clear user control or scoping. <br>
-Mitigation: Use it only in workspaces where storing logs and lessons is acceptable, and avoid issues involving secrets, credentials, customer data, or sensitive production details unless the workflow is updated to ask before writing memory. <br>
+**Output Format:** [Markdown text with diagnostic steps, hypotheses, commands, and proposed code changes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May recommend local diagnostic logs and lesson notes when useful.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with investigation steps, hypotheses, test plans, and proposed implementation actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask the agent to persist debugging notes and lessons in workspace memory files.] <br>
+1.0.0 (source: server release metadata and artifact skill.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact skill.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

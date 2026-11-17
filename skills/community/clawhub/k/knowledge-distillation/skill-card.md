@@ -1,43 +1,50 @@
-## Description: <br>
-Distills OpenClaw memory, session logs, and generated reports into evidence-backed knowledge points and knowledge leads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distill OpenClaw daily memory, session transcripts, and newly generated report files into new knowledge points and deeper knowledge leads.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and agents use this skill to review workspace-native memory, session, daily-note, and report materials, then produce a dated Markdown distillation of durable knowledge and follow-up leads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input memory, session, and report files may contain sensitive personal, business, or project information. <br>
-Mitigation: Choose input and output directories deliberately, and review the generated Markdown before sharing, committing, or publishing it. <br>
-Risk: Weak or one-off observations could be promoted into durable knowledge without enough support. <br>
-Mitigation: Require a short basis for each knowledge point and keep partial signals in the leads section until they have stronger evidence. <br>
-Risk: The helper script writes dated Markdown drafts to the selected output directory. <br>
-Mitigation: Use an explicit output directory for each run and inspect the draft before treating it as retained knowledge. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to distill local memory files, session logs, daily notes, summaries, and generated reports into evidence-backed knowledge points and leads for further study.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/knowledge-distillation) <br>
-- [Output templates](artifact/references/output-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Dated Markdown file with structured sections for input summary, new knowledge points, knowledge leads, and round conclusions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script creates a dated draft file and leaves evidence-backed completion to the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release, SKILL.md frontmatter, skill.json) <br>
+Risk: The skill reads local memory, session logs, notes, and reports, and may surface sensitive conclusions in its generated Markdown output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that local access is acceptable, and review the generated Markdown file before reusing or sharing it.
+
+## Reference(s):
+
+- [Output Templates](references/output-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/knowledge-distillation)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance, Shell commands]
+
+**Output Format:** [Dated Markdown file with structured sections for input summary, new knowledge points, knowledge leads, and distillation conclusions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script creates a draft that the agent completes from reviewed local source material.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, SKILL.md frontmatter, clawhub.json, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

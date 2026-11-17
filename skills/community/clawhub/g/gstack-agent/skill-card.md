@@ -1,42 +1,53 @@
-## Description: <br>
-GStack Agent provides a role-based software delivery workflow for product planning, architecture review, design, coding, testing, release, monitoring, documentation, and retrospectives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GStack Agent coordinates product planning, engineering review, design review, QA, release, monitoring, documentation, and retrospective workflows through role-specific slash-command guidance.
 
-## Publisher: <br>
-[rocbond](https://clawhub.ai/user/rocbond) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rocbond](https://clawhub.ai/user/rocbond)
 
-## Use Case: <br>
-Developers and product teams use this skill to route common software delivery tasks to specialized agent roles, including product review, engineering review, code review, QA, release preparation, deployment, monitoring, and documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit code from broad prompts. <br>
-Mitigation: Install it only in repositories where agent file writes are acceptable, and use `/qa-only` when report-only testing is needed. <br>
-Risk: Release workflows may push branches, merge PRs, deploy, or revert production changes. <br>
-Mitigation: Require explicit manual approval before rebases, pushes, PR merges, deployments, or production reverts. <br>
-Risk: The artifact includes guard and freeze modes, but sensitive work still depends on users enabling them. <br>
-Mitigation: Use `/guard` or `/freeze` before high-risk work, especially production fixes or scoped edits. <br>
+## Use Case:
 
+Developers and software teams use this skill to guide an agent through product discovery, architecture review, design critique, code review, QA, release, monitoring, benchmarking, documentation, and retrospectives for software-delivery work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rocbond/gstack-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with reports, plans, code edits, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include proposed or applied repository changes depending on the invoked role and user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may make code changes or update project files during review, QA, documentation, and release workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only workflows such as /qa-only when inspection is sufficient, review proposed edits before applying them, and keep normal version-control review in place.
+
+Risk: The skill includes release and deployment workflows that can push branches, merge pull requests, deploy production, or revert changes.
+
+Mitigation: Require explicit manual confirmation before git push, PR merge, deployment, revert, or updates to agent instruction files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rocbond/skills/gstack-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, commands, reports, and file-oriented deliverables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or perform code edits, tests, release actions, deployment checks, and documentation updates depending on the invoked workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

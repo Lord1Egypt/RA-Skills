@@ -1,41 +1,64 @@
-## Description: <br>
-物理实验教练 helps students build physics experiment thinking through guided work on experimental methods, variable control, data analysis, error analysis, and experiment evaluation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A physics lab coach for middle- and high-school learners that teaches experiment design, methods, data analysis, error reasoning, and evaluation, including the 21 required high-school student experiments.
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students and learning-support agents use this skill to coach middle-school physics experiment questions, especially experimental design, controlled variables, data interpretation, error analysis, and rigorous conclusion writing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce incomplete or misleading educational guidance if used without review in assessment or classroom settings. <br>
-Mitigation: Review generated guidance before relying on it for grading, assessment, or formal instruction. <br>
-Risk: Users may share credentials or sensitive student data unnecessarily while using the skill. <br>
-Mitigation: Avoid entering credentials or sensitive personal data unless the skill clearly requires it and the publisher is trusted. <br>
+## Use Case:
 
+External middle- and high-school learners use it to plan physics experiments, control variables, interpret results, analyze errors, and prepare for practical exams. It supports understanding but does not replace supervised hands-on lab practice.
 
-## Reference(s): <br>
-- [物理实验方法深度手册](references/physics-experiment-methods.md) <br>
-- [物理数据分析方法手册](references/physics-data-analysis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with Socratic prompts, tables, and structured explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces educational coaching guidance rather than executable commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The security scan was partial because a referenced runtime path could not be resolved, leaving some evidence incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installed release's referenced files and behavior before enabling it.
+
+Risk: The skill documents cross-skill writeback for learning data.
+
+Mitigation: Check the sharing and pause controls, and enable cross-skill sharing only when it fits the learner's needs.
+
+Risk: The scan reported an unconfirmed Unicode warning.
+
+Mitigation: Review the affected source text if additional assurance is needed.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/qizhitang/skills/xiaozhi-physics-lab-coach)
+- [Physics experiment methods](artifact/references/physics-experiment-methods.md)
+- [Physics data analysis](artifact/references/physics-data-analysis.md)
+- [High-school required labs: first year](artifact/references/physics-hs1-labs.md)
+- [High-school required labs: second and third years](artifact/references/physics-hs2-labs.md)
+- [High-school required labs: elective courses](artifact/references/physics-hs3-labs.md)
+- [Physics lab exam preparation guide](artifact/references/physics-lab-exam-guide.md)
+- [Lab safety guidance](artifact/shared/lab-safety.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Analysis]
+
+**Output Format:** [Conversational text, with structured steps or tables when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Learner-specific explanations and prompts; no files or code produced]
+
+## Skill Version(s):
+
+2.12.7 (source: frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

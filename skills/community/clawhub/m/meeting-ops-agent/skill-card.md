@@ -1,41 +1,57 @@
-## Description: <br>
-Routes meeting notes, transcripts, Feishu docs, wiki pages, or minutes links into approved execution channels for post-meeting follow-through. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route meeting notes, transcripts, Feishu docs, wiki pages, or minutes links into concrete execution channels for post-meeting follow-through, including action extraction, owner assignment, Feishu updates, Bitable tracking, follow-up messages, reminders, and delegated agent work.
 
-## Publisher: <br>
-[xiaonizhou-crypto](https://clawhub.ai/user/xiaonizhou-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaonizhou-crypto](https://clawhub.ai/user/xiaonizhou-crypto)
 
-## Use Case: <br>
-Employees and operations teams use this skill to turn meeting notes or linked Feishu sources into an approved routing plan for action items, owners, deadlines, follow-up messages, trackers, reminders, and delegated agent work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can route sensitive meeting follow-up into Feishu docs, Bitable records, messages, reminders, or delegated agent sessions. <br>
-Mitigation: Install only where those permissions are scoped appropriately and review each routing plan before approval. <br>
-Risk: Outbound messages, bulk record creation, and delegated agent work can affect other people or systems if approved without review. <br>
-Mitigation: Require explicit approval before sending messages, creating large numbers of records, setting reminders, or delegating work. <br>
+## Use Case:
 
+Employees and operators use this skill to turn meeting notes, transcripts, Feishu documents, wiki pages, or minutes links into approved, trackable next steps. It helps prepare routing plans, draft follow-ups, update shared artifacts, create reminders, and hand off deeper work after user approval.
 
-## Reference(s): <br>
-- [Routing Rules](references/routing-rules.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/xiaonizhou-crypto/meeting-ops-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown routing plan with grouped next steps and approval prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce drafted messages, doc sections, Bitable schema proposals, reminder text, or delegated task briefs when direct execution is blocked or awaiting approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Proposed routes could send messages, create many tracker records, or pass meeting context onward before the user has checked them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present a compact routing plan first and execute only the batches the user explicitly approves.
+
+Risk: Unclear owners, destinations, table identifiers, or chat targets could cause follow-up actions to go to the wrong place.
+
+Mitigation: Surface missing inputs under needs-your-choice items and draft the next-best artifact when direct execution is blocked.
+
+Risk: Delegating meeting context to another agent session can expose more context than the task needs.
+
+Mitigation: Keep delegated tasks narrow, include only relevant meeting context, state the required output, and require the delegated session to report back before marking work complete.
+
+## Reference(s):
+
+- [Routing Rules](artifact/references/routing-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown routing plans, drafted messages, doc-ready sections, tracker schema proposals, reminder text, and delegated task briefs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user approval before executing routed actions such as messages, record creation, reminders, or delegated work.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

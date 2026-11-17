@@ -1,40 +1,48 @@
-## Description: <br>
-Helps generate brand names, evaluate naming quality, and prepare preliminary domain and trademark checks for products, companies, or projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-oriented brand name options, evaluates naming strengths and risks, and prompts domain and trademark checks for products, companies, or projects.
 
-## Publisher: <br>
-[yongjie666888](https://clawhub.ai/user/yongjie666888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yongjie666888](https://clawhub.ai/user/yongjie666888)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and builders use this skill to brainstorm and compare Chinese brand names for products, companies, or projects. It helps structure name candidates, assess memorability, pronunciation, industry fit, domain status, and trademark risk prompts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Domain availability and trademark registration suggestions may be incomplete or incorrect if treated as authoritative.
+
+Mitigation: Use the skill output as a planning prompt and independently verify domain status, trademark databases, and legal registrability before launch.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, founders, marketers, and product teams use this skill to brainstorm brand names, compare candidate names against practical naming criteria, and structure early domain and trademark review notes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Brand, domain, or trademark suggestions may be incomplete or misleading if treated as authoritative availability checks. <br>
-Mitigation: Verify candidate names with official domain registrars and trademark databases before registration, launch, or legal reliance. <br>
-Risk: Generated names can carry unintended pronunciation, cultural, or market associations. <br>
-Mitigation: Review shortlisted names with local language, market, and legal stakeholders before selection. <br>
+**Output Format:** [Markdown naming proposal with tables, scored comparisons, recommendations, and domain/trademark check prompts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yongjie666888/brand-naming) <br>
+**Other Properties Related to Output:** [Outputs are naming and evaluation guidance; domain availability and trademark status require independent verification.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown naming proposals with comparison tables and checklist-style review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory and should be verified through official domain registrars and trademark databases before business use.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

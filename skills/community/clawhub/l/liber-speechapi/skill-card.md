@@ -1,50 +1,64 @@
-## Description: <br>
-Liber SpeechAPI handles Telegram voice-message workflows with ASR, concise reply summarization, and Telegram-compatible TTS, and also supports direct text-to-speech and speech-to-text tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Liber SpeechAPI helps agents handle Telegram voice-message workflows, direct text-to-speech generation, and direct speech-to-text transcription through configured ASR and TTS service endpoints.
 
-## Publisher: <br>
-[liberalchang](https://clawhub.ai/user/liberalchang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liberalchang](https://clawhub.ai/user/liberalchang)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an agent to a configured Liber SpeechAPI backend for ASR, TTS, and Telegram voice reply workflows. It is useful when an agent needs to transcribe audio, synthesize spoken replies, or return structured speech-processing results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audio, transcripts, TTS text, and voice-clone reference audio are sent to a configured Liber SpeechAPI backend. <br>
-Mitigation: Use only a trusted HTTPS backend and review its data handling before sending sensitive voice or transcript content. <br>
-Risk: The skill requires LIBER_API_BASE_URL and LIBER_API_KEY credentials. <br>
-Mitigation: Provide credentials from a trusted secret source, avoid workspace .env files for sensitive keys, and do not print or log API keys. <br>
-Risk: Voice cloning can use reference audio from a configured file. <br>
-Mitigation: Enable voice cloning only with clear permission from the speaker and omit clone audio when permission or provenance is unclear. <br>
-Risk: The workflow depends on an external backend service and optional setup scripts. <br>
-Mitigation: Review the backend and its setup scripts before deployment, then verify health checks and authentication against the intended service. <br>
+## Use Case:
 
+Developers and operators use this skill to connect agents to Liber SpeechAPI for voice-message handling, ASR transcription, and TTS generation, including Telegram-compatible OGG/Opus replies and optional voice cloning.
 
-## Reference(s): <br>
-- [Liber SpeechAPI Reference](references/api.md) <br>
-- [Configuration](references/config.md) <br>
-- [Liber SpeechAPI Parameters](references/parameters.md) <br>
-- [Telegram / openclaw Workflow](references/workflow.md) <br>
-- [Liber SpeechAPI upstream project](https://github.com/liberalchang/Liber_SpeechAPI) <br>
-- [insanely-fast-whisper](https://github.com/Vaibhavs10/insanely-fast-whisper) <br>
-- [chatterbox](https://github.com/resemble-ai/chatterbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Text, JSON, Markdown guidance, and audio result URLs or local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [ASR defaults to structured JSON; TTS returns an audio URL and may save a local audio file; Telegram replies use OGG/Opus.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Audio, text, and optional voice-clone samples may be sent to the configured Liber SpeechAPI backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the backend is trusted and prefer HTTPS for service communication.
+
+Risk: Credential handling depends on environment variables and .env files readable by the skill.
+
+Mitigation: Avoid using the bundled .env as production configuration and store only Liber-specific keys where this skill can read them.
+
+Risk: Audio download behavior may need origin review before use with real credentials.
+
+Mitigation: Review or patch the audio download origin check before deploying against sensitive services.
+
+## Reference(s):
+
+- [Liber SpeechAPI ClawHub listing](https://clawhub.ai/liberalchang/skills/liber-speechapi)
+- [Liber SpeechAPI project documentation](https://github.com/liberalchang/Liber_SpeechAPI)
+- [Liber SpeechAPI Reference](references/api.md)
+- [Configuration](references/config.md)
+- [Parameters](references/parameters.md)
+- [Telegram/OpenClaw Workflow](references/workflow.md)
+- [insanely-fast-whisper](https://github.com/Vaibhavs10/insanely-fast-whisper)
+- [chatterbox](https://github.com/resemble-ai/chatterbox)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, files, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, structured JSON, Markdown guidance, shell commands, and audio URLs or saved file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May shorten long replies for voice playback; direct ASR defaults to JSON and direct TTS defaults to WAV, while Telegram voice replies use OGG/Opus.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

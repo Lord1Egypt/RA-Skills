@@ -1,0 +1,390 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/media-release-report.schema.json",
+  "$defs": {
+    "exportRange": {
+      "allOf": [
+        {
+          "$ref": "creator-os-common.schema.json#/$defs/timeRange"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "domain": {
+              "const": "export"
+            }
+          }
+        }
+      ]
+    },
+    "probe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "videoCodec",
+        "width",
+        "height",
+        "pixelFormat",
+        "colorSpace",
+        "frameRate",
+        "timeBase",
+        "audioCodec",
+        "audioChannels",
+        "audioSampleRate",
+        "duration"
+      ],
+      "properties": {
+        "videoCodec": {
+          "type": "string",
+          "minLength": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "pixelFormat": {
+          "type": "string",
+          "minLength": 1
+        },
+        "colorSpace": {
+          "type": "string",
+          "minLength": 1
+        },
+        "frameRate": {
+          "$ref": "creator-os-common.schema.json#/$defs/rate"
+        },
+        "timeBase": {
+          "$ref": "creator-os-common.schema.json#/$defs/rate"
+        },
+        "audioCodec": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audioChannels": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "audioSampleRate": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "duration": {
+          "$ref": "#/$defs/exportRange"
+        }
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "projectId",
+    "runId",
+    "timelineRevision",
+    "planHash",
+    "artifact",
+    "expectedProbe",
+    "actualProbe",
+    "qaPolicy",
+    "audioAnalysis",
+    "visualAnalysis",
+    "privacy",
+    "inspection",
+    "exportAuthorization",
+    "status"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "projectId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "runId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "timelineRevision": {
+      "$ref": "creator-os-common.schema.json#/$defs/revision"
+    },
+    "planHash": {
+      "$ref": "creator-os-common.schema.json#/$defs/sha256"
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifactId",
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "artifactId": {
+          "$ref": "creator-os-common.schema.json#/$defs/identifier"
+        },
+        "path": {
+          "$ref": "creator-os-common.schema.json#/$defs/relativePath"
+        },
+        "sha256": {
+          "$ref": "creator-os-common.schema.json#/$defs/sha256"
+        }
+      }
+    },
+    "expectedProbe": {
+      "$ref": "#/$defs/probe"
+    },
+    "actualProbe": {
+      "$ref": "#/$defs/probe"
+    },
+    "qaPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "loudnessMinLufs",
+        "loudnessMaxLufs",
+        "truePeakMaxDbtp",
+        "maxSilenceUnits",
+        "maxBlackUnits",
+        "maxFreezeUnits"
+      ],
+      "properties": {
+        "loudnessMinLufs": {
+          "type": "number"
+        },
+        "loudnessMaxLufs": {
+          "type": "number"
+        },
+        "truePeakMaxDbtp": {
+          "type": "number"
+        },
+        "maxSilenceUnits": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxBlackUnits": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxFreezeUnits": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "audioAnalysis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "integratedLufs",
+        "truePeakDbtp",
+        "silenceSegments"
+      ],
+      "properties": {
+        "integratedLufs": {
+          "type": "number"
+        },
+        "truePeakDbtp": {
+          "type": "number"
+        },
+        "silenceSegments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/exportRange"
+          }
+        }
+      }
+    },
+    "visualAnalysis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "blackSegments",
+        "freezeSegments"
+      ],
+      "properties": {
+        "blackSegments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/exportRange"
+          }
+        },
+        "freezeSegments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/exportRange"
+          }
+        }
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "risks",
+        "treatments"
+      ],
+      "properties": {
+        "risks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "riskId",
+              "severity",
+              "range"
+            ],
+            "properties": {
+              "riskId": {
+                "$ref": "creator-os-common.schema.json#/$defs/identifier"
+              },
+              "severity": {
+                "enum": [
+                  "critical",
+                  "warning"
+                ]
+              },
+              "range": {
+                "$ref": "#/$defs/exportRange"
+              }
+            }
+          }
+        },
+        "treatments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "treatmentId",
+              "riskId",
+              "range",
+              "evidenceRef"
+            ],
+            "properties": {
+              "treatmentId": {
+                "$ref": "creator-os-common.schema.json#/$defs/identifier"
+              },
+              "riskId": {
+                "$ref": "creator-os-common.schema.json#/$defs/identifier"
+              },
+              "range": {
+                "$ref": "#/$defs/exportRange"
+              },
+              "evidenceRef": {
+                "$ref": "creator-os-common.schema.json#/$defs/identifier"
+              }
+            }
+          }
+        }
+      }
+    },
+    "inspection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "boundaries",
+        "samples"
+      ],
+      "properties": {
+        "boundaries": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "samples": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "sampleId",
+              "position",
+              "reasons",
+              "evidenceRef"
+            ],
+            "properties": {
+              "sampleId": {
+                "$ref": "creator-os-common.schema.json#/$defs/identifier"
+              },
+              "position": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "reasons": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "enum": [
+                    "start",
+                    "end",
+                    "boundary-before",
+                    "boundary",
+                    "boundary-after",
+                    "privacy-start",
+                    "privacy-mid",
+                    "privacy-end"
+                  ]
+                }
+              },
+              "evidenceRef": {
+                "$ref": "creator-os-common.schema.json#/$defs/identifier"
+              }
+            }
+          }
+        }
+      }
+    },
+    "exportAuthorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authorizationId",
+        "actorId",
+        "decision",
+        "artifactHash",
+        "planHash",
+        "recordedAt"
+      ],
+      "properties": {
+        "authorizationId": {
+          "$ref": "creator-os-common.schema.json#/$defs/identifier"
+        },
+        "actorId": {
+          "$ref": "creator-os-common.schema.json#/$defs/identifier"
+        },
+        "decision": {
+          "const": "approved"
+        },
+        "artifactHash": {
+          "$ref": "creator-os-common.schema.json#/$defs/sha256"
+        },
+        "planHash": {
+          "$ref": "creator-os-common.schema.json#/$defs/sha256"
+        },
+        "recordedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "passed",
+        "failed"
+      ]
+    }
+  }
+}

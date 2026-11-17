@@ -1,41 +1,60 @@
-## Description: <br>
-Multi-AI gateway for agents. 50+ models: chat, image, video, TTS, STT, music, search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-AI gateway for agents. 50+ models: chat, image, video, TTS, STT, music, search.
 
-## Publisher: <br>
-[yshuolu](https://clawhub.ai/user/yshuolu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yshuolu](https://clawhub.ai/user/yshuolu)
 
-## Use Case: <br>
-Developers and agent operators use Skillboss to discover and call chat, image, video, text-to-speech, speech-to-text, music, and search models through a single API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, text, image URLs, context, and the API key are sent to a remote SkillBoss/HeyBossAI service. <br>
-Mitigation: Use only with trusted data and confirm the provider's privacy and retention terms before submitting secrets or sensitive internal content. <br>
-Risk: Generated image, video, audio, and TTS results may be returned as remote media URLs. <br>
-Mitigation: Treat returned media URLs as untrusted remote content; download only intentionally, save to a safe location, and review files before reuse. <br>
+## Use Case:
 
+Developers and agent users use Skillboss to list and run multiple AI model types through a single SkillBoss API key, including chat, image, video, text-to-speech, speech-to-text, music, and search tasks.
 
-## Reference(s): <br>
-- [Skillboss ClawHub release](https://clawhub.ai/yshuolu/skillboss-models) <br>
-- [SkillBoss API key portal](https://www.skillboss.co) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Command-line output as plain text, JSON, or media URLs; guidance is Markdown with bash examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and SKILLBOSS_API_KEY; remote model responses and media URLs depend on the selected model or task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: API keys, prompts, chat context, text, and media URLs may be sent to the SkillBoss/HeyBossAI remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that sharing is intended; avoid sensitive proprietary data unless approved.
+
+Risk: The skill requires a SkillBoss API key for remote model calls.
+
+Mitigation: Use a dedicated, revocable key with spending limits and rotate or revoke it when no longer needed.
+
+Risk: Generated media may be returned as URLs for separate download.
+
+Mitigation: Save downloaded media to a non-conflicting filename or output folder and review outputs before reuse.
+
+## Reference(s):
+
+- [ClawHub Skillboss listing](https://clawhub.ai/yshuolu/skills/skillboss-models)
+- [Publisher profile](https://clawhub.ai/user/yshuolu)
+- [SkillBoss](https://www.skillboss.co)
+- [SkillBoss API base](https://api.heybossai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Terminal text, JSON, or media URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and SKILLBOSS_API_KEY; media generation responses may be returned as URLs for separate download.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

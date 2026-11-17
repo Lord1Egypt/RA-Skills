@@ -1,0 +1,442 @@
+# intents.yaml — 声明式意图注册表（v2.6）
+# 格式：每意图定义关键词组、槽位模板、置信阈值、动作处理器、所属大类
+# 三大类：query（查询类）/ action（操作类）/ system（系统类）
+# 多级澄清：≥0.7 直接执行 | 0.4-0.7 反问收窄 | <0.4 转帮助
+
+version: "1.0"
+description: "企业微信语音助手意图注册表 — 20+ 意图，新增意图只改配置不改代码"
+
+# ==========================================
+# 查询类（query）
+# ==========================================
+intents:
+  # --- 查询类 ---
+  query_schedule:
+    category: query
+    display_name: 日程查询
+    keywords:
+      - "日程"
+      - "会议"
+      - "安排"
+      - "行程"
+      - "有什么会"
+      - "几点开会"
+      - "日程安排"
+      - "会议安排"
+      - "什么安排"
+      - "下周"
+      - "下周有什么"
+      - "下周一"
+      - "下周二"
+      - "下周三"
+      - "下周四"
+      - "下周五"
+      - "下周六"
+      - "下周日"
+      - "明天会"
+      - "明天安排"
+      - "后天会"
+      - "今天会议"
+      - "今天的会"
+      - "什么会"
+      - "有哪些会"
+      - "几号有会"
+      - "哪天开会"
+    slot_templates:
+      - name: date
+        type: date
+        required: false
+        default: "今天"
+      - name: person
+        type: string
+        required: false
+    confidence_threshold: 0.4
+    handler: "handle_query_schedule"
+    description: "查询日程安排"
+
+  query_weather:
+    category: query
+    display_name: 天气查询
+    keywords:
+      - "天气"
+      - "气温"
+      - "下雨"
+      - "温度"
+      - "穿什么"
+      - "热不冷"
+      - "天气预报"
+      - "气温多少"
+      - "冷不冷"
+      - "热不热"
+      - "温度多少"
+      - "多少度"
+      - "下不下雨"
+      - "出太阳"
+      - "刮风"
+      - "空气质量"
+      - "湿度"
+      - "雾霾"
+      - "pm2.5"
+    slot_templates:
+      - name: location
+        type: location
+        required: false
+        default: "北京"
+      - name: date
+        type: date
+        required: false
+        default: "今天"
+    confidence_threshold: 0.4
+    handler: "handle_query_weather"
+    description: "查询天气信息"
+
+  query_order:
+    category: query
+    display_name: 订单查询
+    keywords:
+      - "订单"
+      - "查订单"
+      - "订单状态"
+      - "我的订单"
+      - "订单号"
+      - "下单"
+      - "买了什么"
+      - "购买记录"
+      - "消费记录"
+      - "订单进度"
+      - "物流"
+      - "快递"
+      - "到哪了"
+      - "发货了吗"
+      - "什么时候到"
+    slot_templates:
+      - name: order_id
+        type: string
+        required: false
+      - name: date
+        type: date
+        required: false
+    confidence_threshold: 0.4
+    handler: "handle_query_order"
+    description: "查询订单状态和物流"
+
+  query_reimbursement:
+    category: query
+    display_name: 报销进度查询
+    keywords:
+      - "报销"
+      - "报销进度"
+      - "报销单"
+      - "报销状态"
+      - "报销款"
+      - "报销到账"
+      - "费用报销"
+      - "差旅报销"
+      - "发票报销"
+    slot_templates:
+      - name: reimbursement_id
+        type: string
+        required: false
+      - name: date
+        type: date
+        required: false
+    confidence_threshold: 0.4
+    handler: "handle_query_reimbursement"
+    description: "查询报销进度"
+
+  query_knowledge:
+    category: query
+    display_name: 知识问答
+    keywords:
+      - "什么是"
+      - "怎么"
+      - "如何"
+      - "为什么"
+      - "能不能"
+      - "可不可以"
+      - "有没有"
+      - "在哪里"
+      - "什么时候"
+      - "多少钱"
+      - "哪个"
+      - "哪些"
+      - "告诉我"
+      - "解释一下"
+      - "什么意思"
+    slot_templates:
+      - name: topic
+        type: string
+        required: true
+    confidence_threshold: 0.3
+    handler: "handle_query_knowledge"
+    description: "通用知识问答"
+
+  # --- 操作类 ---
+  create_todo:
+    category: action
+    display_name: 创建待办
+    keywords:
+      - "提醒"
+      - "待办"
+      - "任务"
+      - "别忘了"
+      - "记得"
+      - "定时提醒"
+      - "设提醒"
+      - "创建待办"
+      - "定提醒"
+      - "叫我"
+      - "喊我"
+      - "不要忘"
+      - "别忘了带"
+      - "提醒我带"
+      - "通知我"
+      - "到点叫我"
+      - "记得提醒"
+      - "需要注意"
+      - "千万别忘"
+    slot_templates:
+      - name: content
+        type: string
+        required: true
+      - name: time
+        type: datetime
+        required: true
+    confidence_threshold: 0.4
+    handler: "handle_create_todo"
+    description: "创建待办提醒"
+
+  send_message:
+    category: action
+    display_name: 发送消息
+    keywords:
+      - "发消息"
+      - "告诉"
+      - "通知"
+      - "发信息"
+      - "发微信"
+      - "给.*发"
+      - "发给他"
+      - "发给她"
+      - "转告"
+      - "传话"
+      - "跟.*说"
+      - "发条信息"
+      - "发个消息"
+    slot_templates:
+      - name: person
+        type: string
+        required: true
+      - name: content
+        type: string
+        required: true
+    confidence_threshold: 0.4
+    handler: "handle_send_message"
+    description: "发送消息给指定人员"
+
+  return_apply:
+    category: action
+    display_name: 退货申请
+    keywords:
+      - "退货"
+      - "退货申请"
+      - "我要退"
+      - "想退货"
+      - "退掉"
+      - "不想要了"
+      - "退钱"
+      - "退款"
+      - "退费"
+    slot_templates:
+      - name: order_id
+        type: string
+        required: false
+      - name: reason
+        type: string
+        required: false
+    confidence_threshold: 0.4
+    handler: "handle_return_apply"
+    description: "申请退货退款"
+
+  # --- 系统类 ---
+  help:
+    category: system
+    display_name: 帮助
+    keywords:
+      - "帮助"
+      - "能做什么"
+      - "怎么用"
+      - "功能"
+      - "help"
+      - "你可以做什么"
+      - "使用说明"
+      - "教教我"
+      - "告诉我怎么用"
+      - "帮我了解"
+      - "你是干嘛的"
+      - "你的功能"
+    slot_templates: []
+    confidence_threshold: 0.3
+    handler: "handle_help"
+    description: "获取帮助信息"
+
+  exit_voice:
+    category: system
+    display_name: 退出
+    keywords:
+      - "退出"
+      - "不用了"
+      - "谢谢"
+      - "结束"
+      - "再见"
+      - "拜拜"
+      - "先这样"
+      - "好吧"
+      - "好的再见"
+      - "没事了"
+      - "退下"
+    slot_templates: []
+    confidence_threshold: 0.3
+    handler: "handle_exit_voice"
+    description: "退出语音模式"
+
+  greeting:
+    category: system
+    display_name: 问候
+    keywords:
+      - "你好"
+      - "hi"
+      - "hello"
+      - "嗨"
+      - "早上好"
+      - "下午好"
+      - "晚上好"
+      - "在吗"
+      - "在不"
+      - "你是谁"
+      - "你叫什么"
+    slot_templates: []
+    confidence_threshold: 0.3
+    handler: "handle_greeting"
+    description: "问候语"
+
+  time_query:
+    category: query
+    display_name: 时间查询
+    keywords:
+      - "几点"
+      - "时间"
+      - "现在时间"
+      - "今天几号"
+      - "今天星期几"
+      - "当前时间"
+      - "现在几点"
+      - "今日日期"
+    slot_templates: []
+    confidence_threshold: 0.3
+    handler: "handle_time_query"
+    description: "查询当前时间日期"
+
+  transfer_human:
+    category: system
+    display_name: 转接人工
+    keywords:
+      - "转人工"
+      - "人工客服"
+      - "找人工"
+      - "人工服务"
+      - "转接人工"
+      - "人工"
+      - "客服"
+      - "找客服"
+      - "真人"
+      - "人工座席"
+    slot_templates: []
+    confidence_threshold: 0.4
+    handler: "handle_transfer_human"
+    description: "转接人工客服"
+
+  meeting_schedule:
+    category: action
+    display_name: 会议安排
+    keywords:
+      - "安排会议"
+      - "订会议室"
+      - "预约会议"
+      - "创建会议"
+      - "发起会议"
+      - "约个会"
+      - "开会"
+      - "组织会议"
+      - "会议室"
+    slot_templates:
+      - name: date
+        type: date
+        required: true
+      - name: time
+        type: time
+        required: true
+      - name: attendees
+        type: string
+        required: false
+    confidence_threshold: 0.4
+    handler: "handle_meeting_schedule"
+    description: "安排会议/预订会议室"
+
+  complaint:
+    category: action
+    display_name: 投诉建议
+    keywords:
+      - "投诉"
+      - "差评"
+      - "不满意"
+      - "服务态度"
+      - "态度差"
+      - "投诉你们"
+      - "举报"
+      - "建议"
+      - "反馈"
+    slot_templates:
+      - name: content
+        type: string
+        required: true
+    confidence_threshold: 0.4
+    handler: "handle_complaint"
+    description: "提交投诉或建议"
+
+  account_query:
+    category: query
+    display_name: 账户查询
+    keywords:
+      - "账户"
+      - "余额"
+      - "账号"
+      - "积分"
+      - "会员"
+      - "vip"
+      - "等级"
+      - "账户信息"
+      - "个人信息"
+    slot_templates: []
+    confidence_threshold: 0.4
+    handler: "handle_account_query"
+    description: "查询账户信息"
+
+  custom:
+    category: system
+    display_name: 自定义（兜底）
+    keywords: []
+    slot_templates: []
+    confidence_threshold: 0.0
+    handler: "handle_custom"
+    description: "无法识别的意图，尝试通用问答或请求澄清"
+
+# ==========================================
+# 多级澄清策略配置
+# ==========================================
+clarification:
+  high_confidence: 0.7      # ≥此值直接执行
+  medium_confidence: 0.4    # 此值~high_confidence 之间反问收窄
+  # <medium_confidence 直接转帮助
+  max_clarification_rounds: 2  # 最大反问轮次
+  clarification_prompt: "抱歉，我没有完全理解您的意思。您是想："

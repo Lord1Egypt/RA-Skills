@@ -1,38 +1,49 @@
-## Description: <br>
-Reframe a game design problem by isolating the main blocker, imagining it removed, and using that perspective to discover workaround paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reframe a game design problem by isolating the main blocker, imagining it removed, and using that perspective to discover workaround paths.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers and product teams use this skill when one blocker is dominating the discussion. It helps them define the roadblock, imagine the unblocked target state, compare realistic workaround paths, and choose a credible next move. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated recommendations may oversimplify technical, UX, content, or production constraints. <br>
-Mitigation: Review the proposed workaround with the relevant stakeholders before using it to change plans or commit implementation effort. <br>
+## Use Case:
 
+Game designers, product teams, and agents use this skill when one technical, UX, content, or production blocker is dominating discussion. It helps define the roadblock, imagine the desired unblocked state, derive realistic workaround paths, and recommend the most credible next step.
 
-## Reference(s): <br>
-- [GROW-Derived Family Conventions](references/family-conventions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown response with structured sections for roadblock, unblocked reality, workaround paths, and recommendation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Decision-oriented guidance; no external tools or credentials required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The trigger wording may activate the skill in broad conversations about a single blocker.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow the activation description for deployments that require tighter routing.
+
+## Reference(s):
+
+- [GROW-Derived Family Conventions](references/family-conventions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown with structured sections for roadblock definition, unblocked reality, workaround paths, and recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool, file, network, credential, or persistence access is requested by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

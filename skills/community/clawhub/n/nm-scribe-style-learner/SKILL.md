@@ -1,7 +1,7 @@
 ---
 name: style-learner
 description: Extracts writing style patterns from exemplar text into a reusable profile
-version: 1.9.8
+version: 1.10.3
 triggers:
   - style
   - voice
@@ -10,12 +10,12 @@ triggers:
   - learning
   - consistency
   - creating a style guide or learning a specific author's voice
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/scribe", "emoji": "\u270d\ufe0f", "requires": {"config": ["night-market.scribe:shared", "night-market.scribe:slop-detector"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/scribe", "emoji": "\u270d\ufe0f", "requires": {"config": ["night-market.scribe:slop-detector"]}}}
 source: claude-night-market
 source_plugin: scribe
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Style Learning Skill
@@ -26,6 +26,12 @@ is too weak to reproduce a voice.**
 Extract style from exemplar text and codify it as a profile
 that downstream skills (`scribe:doc-generator`,
 `scribe:voice-generate`) can apply consistently.
+
+## When NOT To Use
+
+- Extracting a person's voice from their samples (use
+  `scribe:voice-extract`)
+- Reviewing text against a profile (use `scribe:voice-review`)
 
 ## Approach: Feature Extraction and Exemplar Reference
 
@@ -40,9 +46,9 @@ The skill combines two methods because each fails alone:
 
 Together they form a profile precise enough to score new
 text and rich enough to guide rewrites. Metrics catch what
-exemplars miss; exemplars carry what metrics flatten.
+exemplars miss. Exemplars carry what metrics flatten.
 
-## Required TodoWrite Items
+## Required Progress Items
 
 1. `style-learner:exemplar-collected` - Source texts gathered
 2. `style-learner:features-extracted` - Quantitative metrics computed
@@ -235,8 +241,8 @@ After generating content, run slop-detector to verify:
 
 ## Exit Criteria
 
-- Style profile document created
-- At least 3 exemplar passages included
-- Quantitative metrics extracted
-- Anti-patterns from slop-detector integrated
-- Validation test passed
+- [ ] Style profile document created
+- [ ] At least 3 exemplar passages included
+- [ ] Quantitative metrics extracted
+- [ ] Anti-patterns from slop-detector integrated
+- [ ] Validation test passed

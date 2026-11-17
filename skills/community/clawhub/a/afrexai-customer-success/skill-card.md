@@ -1,42 +1,55 @@
-## Description: <br>
-Complete customer success, retention, and expansion revenue system for B2B SaaS teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and run a B2B SaaS customer success operation covering onboarding, health scoring, QBRs, churn prevention, expansion revenue, and CSM capacity planning.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-SaaS founders, customer success leaders, and revenue operations teams use this skill to design customer lifecycle stages, health scoring, onboarding, QBRs, churn prevention, expansion plays, capacity planning, and metrics dashboards. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Business metrics shared during customer success planning may be sensitive. <br>
-Mitigation: Share only business metrics that are appropriate to put into an agent conversation. <br>
-Risk: Generated ROI, churn, and expansion recommendations may be inaccurate or unsuitable for a specific customer. <br>
-Mitigation: Review generated ROI, churn, and expansion recommendations before using them with customers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-customer-success) <br>
-- [AI Agent Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+SaaS founders, customer success leaders, and revenue operations teams use this skill to design or improve customer success systems for retention, onboarding, health scoring, QBRs, expansion planning, and net revenue retention goals.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and structured plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces customer success planning deliverables such as lifecycle maps, health score models, onboarding checklists, QBR templates, churn playbooks, expansion plays, capacity plans, and metrics dashboard specs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may ask for sensitive business metrics such as ARR, customer count, ACV, team size, churn reasons, and customer health indicators.
+
+Mitigation: Use anonymized or aggregated figures where possible and avoid sharing confidential customer names or account-level details unless the execution environment is approved for that data.
+
+Risk: The artifact links to external AfrexAI resources outside the skill package.
+
+Mitigation: Open external resources only after confirming that the publisher and destination are trusted for the intended business use.
+
+## Reference(s):
+
+- [Customer Success Playbook on ClawHub](https://clawhub.ai/1kalin/skills/afrexai-customer-success)
+- [AI Agent Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown playbook with checklists, tables, templates, and planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Customized from user-provided SaaS stage, ARR, customer count, ACV, CS team size, and churn reasons.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

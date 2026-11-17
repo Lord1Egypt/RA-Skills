@@ -1,43 +1,60 @@
-## Description: <br>
-Helps agents plan, structure, optimize, and report on paid advertising campaigns across Google Ads, Meta, LinkedIn, Twitter/X, TikTok, and related paid media channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents plan, structure, target, optimize, and report on paid advertising campaigns across Google Ads, Meta, LinkedIn, Twitter/X, TikTok, and related platforms.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Marketing teams and business operators use this skill to choose ad platforms, define campaign structure, plan audiences, allocate budgets, evaluate performance metrics, and prepare optimization recommendations for paid media programs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent toward ad-account actions that spend money, change budgets, or alter live campaigns without adequate approval gates. <br>
-Mitigation: Use it as planning guidance unless a human has explicitly approved the target account, campaign, budget, and exact change before execution. <br>
-Risk: Audience targeting, lookalike setup, or retargeting workflows may involve customer lists or other sensitive marketing data. <br>
-Mitigation: Review and approve any customer/contact list use, upload, or sharing before the agent accesses ad platforms or external tools. <br>
+## Use Case:
 
+Employees, external marketers, and operators use this skill to choose paid advertising platforms, structure campaigns, define targeting, plan budgets, review performance, and prepare launch checklists for customer acquisition campaigns.
 
-## Reference(s): <br>
-- [Ad Copy Templates Reference](references/ad-copy-templates.md) <br>
-- [Audience Targeting Reference](references/audience-targeting.md) <br>
-- [Platform Setup Checklists](references/platform-setup-checklists.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/mariokarras/abm-paid-ads) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tables, checklists, campaign structures, and platform-specific recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include budget allocations, audience definitions, campaign naming conventions, optimization steps, reporting metrics, and setup checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact frontmatter lists 1.1.0) <br>
+Risk: The skill may imply direct live ad-account access or campaign changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before making launch, budget, targeting, tracking, or account changes.
+
+Risk: Tracking, retargeting, and customer-list guidance can involve personal data and platform policy obligations.
+
+Mitigation: Confirm legal permission, privacy notice, consent requirements, and platform policy compliance before using these workflows; avoid scraped, purchased, or unpermissioned contact data.
+
+Risk: Paid media recommendations can waste spend if goals, budget, conversion tracking, or landing pages are not validated.
+
+Mitigation: Use pre-launch tracking checks, small tests, pacing reviews, and CPA or ROAS guardrails before scaling.
+
+## Reference(s):
+
+- [Ad Copy Templates Reference](references/ad-copy-templates.md)
+- [Audience Targeting Reference](references/audience-targeting.md)
+- [Platform Setup Checklists](references/platform-setup-checklists.md)
+- [ClawHub Skill Page](https://clawhub.ai/mariokarras/skills/abm-paid-ads)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, checklists, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific campaign structures, targeting recommendations, budget guidance, metric reviews, and launch checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

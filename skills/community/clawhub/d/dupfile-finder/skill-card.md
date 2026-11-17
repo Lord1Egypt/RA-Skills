@@ -1,40 +1,53 @@
-## Description: <br>
-Identify and list duplicate files in a specified directory to help manage and free up storage space. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify and list duplicate files in a specified directory to help manage and free up storage space efficiently.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Users and developers use this skill to scan a chosen local directory and identify files with matching SHA-256 content hashes so they can decide which duplicates to remove. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scanning broad system or sensitive directories can expose file paths and take longer than expected. <br>
-Mitigation: Point the tool at a specific folder and review the printed duplicate list before taking any cleanup action. <br>
-Risk: The usage text names dupfile_finder.py while the artifact contains tool.py. <br>
-Mitigation: Run the bundled tool.py file or rename it to match the usage text before use. <br>
+## Use Case:
 
+Developers and users run this skill to find duplicate files in a chosen local directory so they can review storage usage and decide what to clean up.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/albionaiinc-del/dupfile-finder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text file path listings with command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prints duplicate file groups and their SHA-256 hashes; it does not delete files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The local duplicate-file finder reads file contents under the directories selected for scanning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on directories whose file contents you are comfortable allowing a local script to hash.
+
+Risk: The tool prints duplicate file paths and hashes to the terminal.
+
+Mitigation: Review terminal output before sharing logs or screenshots that may expose local path names.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/skills/dupfile-finder)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text duplicate file listings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports duplicate file hashes and paths; it does not delete files or send data elsewhere according to the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

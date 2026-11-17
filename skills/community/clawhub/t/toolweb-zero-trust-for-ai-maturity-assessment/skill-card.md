@@ -1,42 +1,52 @@
-## Description: <br>
-Evaluates Zero Trust maturity across 6 principles for both Conventional (Infrastructure) and AI Era (Data & Model) dimensions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates Zero Trust maturity across 6 principles for both Conventional (Infrastructure) and AI Era (Data & Model) dimensions.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security architects, CISOs, AI/ML leaders, and enterprise security teams use this skill to submit Zero Trust maturity assessment data, compare conventional infrastructure and AI-era controls, and receive scores and recommendations for remediation planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment inputs may reveal sensitive internal security architecture, control maturity, or AI system details to ToolWeb's API. <br>
-Mitigation: Use pseudonymous session or user identifiers where possible, avoid real secrets or sensitive architecture details unless approved, and confirm endpoint and data-handling terms before using enterprise data. <br>
+## Use Case:
 
+Security architects, CISOs, AI/ML leaders, and enterprise security teams use this skill to submit Zero Trust assessment data and receive maturity scores, principle-level findings, and remediation recommendations for infrastructure and AI environments.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-zero-trust-for-ai-maturity-assessment) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
-- [Kong Route](https://api.toolweb.in/security/zertruforaimatass) <br>
-- [API Docs](https://api.toolweb.in:8161/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, JSON, Guidance] <br>
-**Output Format:** [JSON responses with maturity scores, principle-level results, recommendations, and domain guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses assessment request data supplied by the agent or user; includes optional user identifiers and required session and timestamp fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Assessment submissions may contain sensitive security posture, architecture, or user identifier data and are sent to ToolWeb's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive architecture details and unnecessary user identifiers, and review ToolWeb privacy, retention, and contractual terms before using real enterprise security data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-zero-trust-for-ai-maturity-assessment)
+- [ToolWeb API route](https://api.toolweb.in/security/zertruforaimatass)
+- [ToolWeb API docs](https://api.toolweb.in:8161/docs)
+- [OpenAPI specification](artifact/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON responses with maturity scores, principle-level breakdowns, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires submitting assessment data to ToolWeb's external API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

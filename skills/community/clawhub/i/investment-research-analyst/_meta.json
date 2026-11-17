@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn77xj71s9btkm8smb834sts6583br3x",
-  "slug": "investment-research-analyst",
+  "name": "investment-research-analyst",
+  "description": "Multi-agent investment research framework simulating a professional trading firm. Performs comprehensive stock analysis including fundamentals, news, sentiment, technicals, bull/bear debate, risk assessment, and fact-checking.",
+  "author": "MiniMax",
   "version": "1.0.0",
-  "publishedAt": 1774094410843
+  "trigger": ["公司研究", "股票分析", "投研分析", "investment-research-analyst", "股票研究", "公司分析", "投资研究"]
 }

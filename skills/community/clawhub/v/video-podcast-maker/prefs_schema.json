@@ -285,8 +285,8 @@
               "type": "number",
               "minimum": 0,
               "maximum": 0.3,
-              "default": 0.05,
-              "description": "BGM volume (0-0.3, used in FFmpeg mixing and Remotion bgmVolume)"
+              "default": 0.10,
+              "description": "BGM volume (0-0.3, used in FFmpeg mixing and Remotion bgmVolume). Tuned for narration boost=1.5 + amix normalize=0; gives ~18 dB BGM-vs-narration headroom."
             },
             "track": {
               "type": "string",
@@ -334,6 +334,16 @@
               "type": "boolean",
               "default": true,
               "description": "Include chapter timestamps in publish_info.md"
+            },
+            "heroOpening": {
+              "type": ["string", "null"],
+              "default": null,
+              "description": "Fixed opening line for the hero section (null = topic-driven)"
+            },
+            "outroClosing": {
+              "type": ["string", "null"],
+              "default": null,
+              "description": "Fixed closing line for the outro section (null = platform CTA)"
             }
           }
         }

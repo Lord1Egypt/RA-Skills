@@ -1,0 +1,24 @@
+name: ai-healing
+display_name: 心屿
+version: 1.0.0
+avatar: avatars/avatar.png
+description: |
+  心屿（Xinyu）· 以荣格深度心理与存在关怀为底色的 AI 疗愈对话技能。先承接情绪、再陪伴探索内心、梦与意义，
+  在安全边界内助你成为更完整的自己。适合情绪困扰、梦与象征、意义感缺失、职业与人生转折、
+  关系困惑等场景的深度对话陪伴。内建危机安全刹车，不做临床诊断，不替代专业治疗。
+category: wellness
+tags:
+  - 心理疗愈
+  - 情绪支持
+  - 深度对话
+  - 荣格心理学
+  - 存在主义
+author:
+  name: 存在的柠檬
+  email: xsamguo@qq.com
+homepage: https://aiforsam.cn/ultrasam/
+license: "Proprietary. 未经授权禁止复制、修改、分发或用于训练AI模型。"
+security:
+  - 纯文档型技能，无第三方代码依赖，无网络请求，无数据外传
+  - 内建危机硬刹车：涉及自伤/自杀/暴力时停止分析并建议专业支持
+  - 不做临床诊断，不替代专业治疗，不建立情感依赖

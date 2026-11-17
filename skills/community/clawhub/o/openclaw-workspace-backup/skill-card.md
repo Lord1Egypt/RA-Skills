@@ -1,44 +1,59 @@
-## Description: <br>
-Backs up configured local git workspaces to GitHub branches from .env-defined workspace paths and can report workspace backup status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backs up configured local git workspaces to GitHub branches using .env-defined directories and an OpenClaw daily 03:00 schedule.
 
-## Publisher: <br>
-[zhangpengle](https://clawhub.ai/user/zhangpengle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangpengle](https://clawhub.ai/user/zhangpengle)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to run unattended backups of multiple local git workspaces to dedicated remote branches, then inspect status and recent backup logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform unattended git commits and pushes for every configured workspace, and the security review notes insufficient destination validation or safeguards. <br>
-Mitigation: Before enabling it, inspect every WORKSPACE_<id> path, run git remote -v in each repository, and confirm origin points to a dedicated private backup remote. <br>
-Risk: Configured repositories may contain local files or secrets that would be included in backup commits. <br>
-Mitigation: Review .gitignore and local workspace contents for secrets before running backups. <br>
-Risk: The --force option can rewrite remote branch history. <br>
-Mitigation: Avoid --force unless you are prepared to rewrite the remote backup branch history. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to automate backups of configured local git workspace repositories to dedicated remote branches and to inspect backup status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangpengle/openclaw-workspace-backup) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Python package metadata](artifact/pyproject.toml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Configuration guidance] <br>
-**Output Format:** [Command-line output and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured WORKSPACE_<id> paths and git remotes; may commit and push repository changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Risk: Automated backup can stage, commit, and push all changes from configured workspaces to their configured origins.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every configured workspace path and verify each repository origin before enabling scheduled backups.
+
+Risk: Configured repositories may contain secrets or unintended files that would be pushed during backup.
+
+Mitigation: Scan repositories for secrets and confirm ignore rules before the first backup and after major workspace changes.
+
+Risk: The --force option can overwrite remote branch history.
+
+Mitigation: Avoid --force unless the remote-history impact is understood and accepted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhangpengle/skills/openclaw-workspace-backup)
+- [Artifact Skill Definition](artifact/SKILL.md)
+- [Artifact Agent Guidance](artifact/CLAUDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output, log entries, and concise configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May stage, commit, and push changes from configured git repositories.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata; artifact pyproject.toml reports 0.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

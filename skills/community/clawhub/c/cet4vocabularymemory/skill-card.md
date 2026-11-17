@@ -1,44 +1,61 @@
-## Description: <br>
-基于艾宾浩斯遗忘曲线的英语四级词汇记忆系统，支持新单词学习、测验、智能复习计划、定时提醒和学习进度追踪。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于艾宾浩斯遗忘曲线的英语四级词汇记忆系统，支持新单词学习与测验、智能复习计划、定时提醒和学习进度追踪，适用于中国大学生备考 CET-4。
 
-## Publisher: <br>
-[gangrammer](https://clawhub.ai/user/gangrammer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gangrammer](https://clawhub.ai/user/gangrammer)
 
-## Use Case: <br>
-CET-4 learners use this skill to study new English vocabulary, take quizzes, schedule spaced reviews, and track local progress while preparing for China's College English Test Band 4. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring reminders can create persistent local scheduled jobs or target the wrong OpenClaw account or user. <br>
-Mitigation: Confirm the exact crontab entries, OpenClaw account, target user, and removal steps before enabling reminders. <br>
-Risk: Local study tracking may store user identifiers, study times, and word-memory progress in CSV files. <br>
-Mitigation: Keep the CSV files local, avoid unnecessary personal data, and review the files before sharing or publishing them. <br>
+## Use Case:
 
+External learners and education-focused agents use this skill to guide CET-4 vocabulary study with scheduled learning, quizzes, spaced review, and progress tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gangrammer/cet4vocabularymemory) <br>
-- [CET-4 vocabulary list](references/cet4-vocabulary.md) <br>
-- [Memory algorithm and review schedule](references/memory-algorithm.md) <br>
-- [Schedule configuration](references/schedule-config.md) <br>
-- [Data schema](references/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with study prompts, quiz flows, CSV tracking updates, and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local CSV files for schedule and word-memory status; reminder configuration should be reviewed before enabling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Reminder setup may modify persistent crontab entries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval for the exact schedule, command, and removal method before any cron change; prefer an app-scoped reminder mechanism.
+
+Risk: Reminder commands may send outbound messages from a default account.
+
+Mitigation: Require explicit approval of the account, recipient, and message content before sending or scheduling reminders.
+
+Risk: Reminder examples reference scripts under /root.
+
+Mitigation: Avoid privileged paths unless the user has reviewed and approved the exact script location and execution context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gangrammer/skills/cet4vocabularymemory)
+- [复习计划与记忆算法](references/memory-algorithm.md)
+- [数据库表结构](references/schema.md)
+- [定时任务配置](references/schedule-config.md)
+- [大学英语四级词汇表 (CET-4) 完整版](references/cet4-vocabulary.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with vocabulary tables, quiz prompts, CSV state updates, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent reminder configuration and updates to local CSV study-state files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

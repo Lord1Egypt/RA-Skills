@@ -1,43 +1,57 @@
-## Description: <br>
-Provides a structured Chinese-language workflow for public-information enterprise due diligence, company profiling, risk review, and investment-promotion analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language enterprise due diligence and investment-promotion reports from public business, legal, intellectual-property, procurement, media, recruiting, financing, and industry-chain information.
 
-## Publisher: <br>
-[daviddatamining](https://clawhub.ai/user/daviddatamining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daviddatamining](https://clawhub.ai/user/daviddatamining)
 
-## Use Case: <br>
-Analysts, consultants, investment-promotion teams, and enterprise researchers use this skill to build company due-diligence reports from public registration, ownership, financing, intellectual property, bidding, litigation, penalty, media, recruiting, and industry-chain signals. It is intended to support structured research and screening, with source verification required for factual claims and ratings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ratings, forecasts, migration likelihood, and negotiation suggestions can be mistaken or over-interpreted. <br>
-Mitigation: Treat those outputs as analytical opinions, not legal, financial, or investment advice, and verify cited sources independently before acting. <br>
-Risk: Company due-diligence outputs can become misleading if the target company, scope, or source window is ambiguous. <br>
-Mitigation: Use a clearly named target company and analysis scope, keep the time range explicit, and require source notes for factual claims. <br>
-Risk: Unsupported or unofficial data sources can weaken the reliability of business background reports. <br>
-Mitigation: Prefer official registries, government databases, public filings, company websites, and reputable media, and avoid naming commercial data platforms in the report. <br>
+## Use Case:
 
+Economic-development teams, corporate researchers, investors, supplier reviewers, and partnership teams use this skill to structure public-source company background checks, risk reviews, peer comparisons, and investment-promotion evaluations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daviddatamining/enterprise-due-diligence-plus) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/daviddatamining) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with structured sections, scoring tables, source notes, and strategy recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese-language due-diligence report content; no code, shell commands, credential requests, or persistence behavior are described in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Predictive judgments, risk ratings, and investment-promotion recommendations may be uncertain or unsuitable for high-impact decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as decision support only and have qualified legal, investment, or compliance reviewers assess material conclusions before use.
+
+Risk: Public company records, litigation data, media coverage, and recruiting signals can be incomplete, outdated, or inconsistently reported.
+
+Mitigation: Verify important factual claims against current official registries, court databases, intellectual-property records, procurement portals, and company disclosures.
+
+Risk: The generated report can influence partner screening, supplier review, investment, or government招商 decisions.
+
+Mitigation: Keep source notes, assumptions, and推演 labels visible, and separate factual findings from model-based projections.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/daviddatamining/skills/enterprise-due-diligence-plus)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown report with tables, weighted scoring, ratings, source notes, risk analysis, and strategy recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a company name and supports optional focus area, time range, and peer-comparison inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

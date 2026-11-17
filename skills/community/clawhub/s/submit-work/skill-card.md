@@ -1,40 +1,56 @@
-## Description: <br>
-Submit Work guides an agent through uploading deliverables and submitting completed task work to OpenAnt with text, media keys, proof URLs, or proof hashes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submit completed work for a task on OpenAnt, including text descriptions, deliverable file uploads, and proof links when appropriate.
 
-## Publisher: <br>
-[ant-1984](https://clawhub.ai/user/ant-1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ant-1984](https://clawhub.ai/user/ant-1984)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agents and task workers use this skill to submit completed OpenAnt task work with a summary, uploaded deliverable files, or external proof links.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can upload local deliverable files and submit task work automatically.
+
+Mitigation: Constrain use to explicit OpenAnt submission requests and review which files count as deliverables before execution.
+
+Risk: Sensitive local outputs could be uploaded if they are treated as deliverables.
+
+Mitigation: Exclude secrets, private data, and unrelated local outputs from the deliverable list before upload.
+
+Risk: The skill invokes the OpenAnt CLI with `@latest`, so command behavior may change between reviews.
+
+Mitigation: Use a pinned, reviewed CLI version when deploying the skill in controlled environments.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent workers use this skill after completing an OpenAnt task to identify deliverables, upload files, submit text or proof links, and check or withdraw a recent submission. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send task text and generated files to OpenAnt without final user confirmation. <br>
-Mitigation: Use explicit submission wording, review deliverables before upload where possible, and avoid use in workspaces that may contain sensitive or unrelated artifacts. <br>
-Risk: A text-only submission may omit expected deliverable files. <br>
-Mitigation: Review produced files before submission and upload required deliverables before passing media keys to the submit command. <br>
+**Output Format:** [Markdown guidance with inline shell commands and JSON response examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ant-1984/submit-work) <br>
+**Other Properties Related to Output:** [Submission commands use structured JSON output and may include uploaded file keys, proof URLs, and text summaries.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-oriented CLI outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May upload files and submit task text, media keys, proof URLs, or proof hashes to OpenAnt.] <br>
+0.1.2 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

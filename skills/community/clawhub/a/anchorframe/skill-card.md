@@ -1,43 +1,54 @@
-## Description: <br>
-Anchorframe helps creators turn any topic into a structured content outline using four anchors, MES reasoning, and selectable metaphor styles, with modes for outlines, scripts, review, quotes, PDFs, and images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用方向锚、引擎锚、路径锚、护栏锚构建内容骨架，并用钓鱼、打仗、种田、航海、下棋等隐喻生成大纲、脚本、审查建议、金句、PDF 或海报内容。
 
-## Publisher: <br>
-[xtoyun](https://clawhub.ai/user/xtoyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xtoyun](https://clawhub.ai/user/xtoyun)
 
-## Use Case: <br>
-Content creators, marketers, and writers use this skill to turn a topic into a usable content structure with a clear thesis, operating logic, concrete steps, guardrails, and optional shareable formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can strongly shape the assistant's writing style when invoked. <br>
-Mitigation: Invoke it only when that voice and structure are intended, and review generated content for fit before publishing. <br>
-Risk: PDF, image, and poster modes can create local files and depend on local rendering tools. <br>
-Mitigation: Use file-generation modes only when artifact creation is intended and confirm required tools are installed before requesting those modes. <br>
+## Use Case:
 
+Content creators and marketing writers use this skill to turn a topic into a structured Chinese-language content plan, short-form script, quote set, content review, PDF-ready document, or shareable poster using a fixed four-anchor method and selectable metaphor styles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xtoyun/anchorframe) <br>
-- [Publisher profile](https://clawhub.ai/user/xtoyun) <br>
-- [创作锚 · 四维锚点创作法](artifact/参考手册.md) <br>
-- [沉锚墨迹 visual philosophy](artifact/design-philosophy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown or generated local PDF/image files when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports outline, script, review, quote, PDF, image, and poster modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill applies a strong Chinese-language persona, metaphor system, and visible rationale that may be inappropriate for some contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prompt explicitly for the desired language, tone, output mode, and whether visible rationale should be omitted.
+
+Risk: PDF and poster modes can create local files and may require external tools such as pandoc, wkhtmltopdf, Playwright, or a canvas-design workflow.
+
+Mitigation: Use file-generation modes only in environments where local file creation and the required tools are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xtoyun/skills/anchorframe)
+- [Publisher profile](https://clawhub.ai/user/xtoyun)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown text with optional HTML, PDF, PNG poster, and shell command instructions for file-generation modes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are strongly styled in Chinese and may include visible rationale before the requested content.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

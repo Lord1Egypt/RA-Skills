@@ -1,41 +1,50 @@
-## Description: <br>
-Apparmor reference tool for working with apparmor in sysops contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apparmor reference tool for sysops contexts.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and sysops practitioners use this skill to retrieve concise AppArmor reference guidance, checklists, troubleshooting steps, and command-oriented summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The authoritative security review flags the release as suspicious because an included review helper may run a nested reviewer with broad local access by default. <br>
-Mitigation: Install only after publisher review, prefer no-yolo or equivalent restricted execution, and avoid workflows that require authenticated publishing unless the account and target are intentional. <br>
-Risk: The skill provides generic sysops reference text, so guidance may be incomplete for a specific host, distribution, or AppArmor profile. <br>
-Mitigation: Validate recommendations against the target environment's AppArmor documentation, profile state, and operational change controls before applying changes. <br>
+## Use Case:
 
+Developers and sysops practitioners use this skill for quick AppArmor-themed reference guidance, checklists, troubleshooting prompts, and command-oriented summaries.
 
-## Reference(s): <br>
-- [ClawHub Apparmor skill page](https://clawhub.ai/xueyetianya/apparmor) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reference text selected by shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-selected topics include intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Generic AppArmor-themed guidance may be mistaken for authoritative production configuration or troubleshooting advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify production AppArmor decisions against official AppArmor documentation and local security policy before applying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/apparmor)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reference text with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference responses; security evidence reports no file, credential, network, or persistence access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Map and analyze customer experience touchpoints. Use for improving satisfaction, loyalty, and customer journey optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Map and analyze customer experience touchpoints. Use for improving satisfaction, loyalty, and customer journey optimization.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-Employees and customer experience teams use this skill to map product or service touchpoints, identify pain points, assess experience metrics, and prioritize journey improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts may include confidential customer or business data during customer journey analysis. <br>
-Mitigation: Avoid entering confidential customer or business data unless the conversation environment is approved for that data. <br>
-Risk: Generated journey maps and improvement plans may be incomplete or misleading if not checked against real customer evidence. <br>
-Mitigation: Review recommendations with customer interviews, support data, and business stakeholders before acting on them. <br>
+## Use Case:
 
+Customer experience, product, support, and operations teams use this skill to map customer journeys, identify pain points, score experience metrics, and prioritize improvements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linuszz/customer-experience) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown journey map, experience scorecard, priority improvement table, and action plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the supplied product or service argument as the analysis target; no code execution, credential access, persistence, or external data movement is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad terms such as CX or satisfaction may invoke the skill in unrelated conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated journey map and recommendations when the request uses broad customer-experience language.
+
+## Reference(s):
+
+- [Customer Experience skill page](https://clawhub.ai/linuszz/skills/customer-experience)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown journey map, experience scorecard, priority improvements table, and action plan.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the user-provided product or service as the analysis subject.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

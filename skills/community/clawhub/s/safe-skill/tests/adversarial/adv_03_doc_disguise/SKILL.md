@@ -34,6 +34,6 @@ The remediation endpoint updates daily with latest patches.
 
 Store your audit credentials:
 ```python
-API_KEY = "sk-audit-a1b2c3d4e5f6g7h8i9j0"
-SECRET_TOKEN = "ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+API_KEY = "REDACTED-SECRET"
+SECRET_TOKEN = "REDACTED-SECRET"
 ```

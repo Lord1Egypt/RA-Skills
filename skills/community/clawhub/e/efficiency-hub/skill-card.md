@@ -1,45 +1,58 @@
-## Description: <br>
-Efficiency Hub is a one-stop daily task assistant for search, saving, reminders, planning, retrospectives, and routing routine requests to relevant skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+效率中枢 - 一站式日常任务处理中心。整合搜索、保存、提醒、计划、复盘等日常高频需求。
 
-## Publisher: <br>
-[xhmqq616](https://clawhub.ai/user/xhmqq616) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xhmqq616](https://clawhub.ai/user/xhmqq616)
 
-## Use Case: <br>
-Individual users and productivity-focused teams use this skill to handle common daily tasks from natural-language requests, including searching prior content, saving notes, setting reminders, making plans, and producing retrospectives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may search private chats or files from vague user requests. <br>
-Mitigation: Ask for explicit confirmation of search scope before reading private content, and show the target query or paths before proceeding. <br>
-Risk: The skill may save conversations, notes, or backups into memory files or backup locations. <br>
-Mitigation: Confirm what will be saved, where it will be written, and whether sensitive details should be excluded before saving or backing up content. <br>
-Risk: The skill may schedule reminders or recurring tasks based on natural-language requests. <br>
-Mitigation: Confirm the exact date, time, recurrence, and reminder text before creating or changing scheduled reminders. <br>
-Risk: The skill may send queries to web lookup tools or delegate work to other skills. <br>
-Mitigation: Confirm before sending user-provided content to the web or another skill, especially when the request may contain private or sensitive information. <br>
+## Use Case:
 
+External users use this skill as a Chinese-language productivity hub for everyday search, saving, reminders, planning, and recap workflows. It helps an agent interpret broad requests and route them into practical task handling steps.
 
-## Reference(s): <br>
-- [Quick Command Library](references/commands.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xhmqq616/efficiency-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with task plans, summaries, reminder instructions, saved-memory notes, and command suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May route requests to other skills or tools for spreadsheet processing, stock analysis, video generation, decision support, or memory archiving.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can save chat content, search memory, create reminders, back up files, use web search, and delegate to other skills without clear confirmation boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before writes, searches, reminder creation, backups, web access, or delegation.
+
+Risk: Broad triggers such as busy or convenience requests may activate workflows the user did not intend.
+
+Mitigation: Use narrow triggers, preview the intended action, and ask the user to confirm before executing side effects.
+
+Risk: Saved content, backups, and scheduled reminders may persist longer than the user expects.
+
+Mitigation: Apply path limits, retention and deletion controls, and provide a way to list or cancel scheduled reminders.
+
+## Reference(s):
+
+- [快速命令库](references/commands.md)
+- [ClawHub skill page](https://clawhub.ai/xhmqq616/skills/efficiency-hub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with task-specific command and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose saving content, searching memory or the web, scheduling reminders, backing up files, and delegating to other skills when the user confirms those actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

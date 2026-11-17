@@ -1,41 +1,52 @@
-## Description: <br>
-Monitor F5-TTS distributed training on the 9-GPU mining rig (Local-LLM) without interfering with the process. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor F5-TTS distributed training on the 9-GPU mining rig (Local-LLM) without interfering with the process.
 
-## Publisher: <br>
-[pbseiya](https://clawhub.ai/user/pbseiya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pbseiya](https://clawhub.ai/user/pbseiya)
 
-## Use Case: <br>
-Developers and engineers use this skill to monitor F5-TTS distributed training status on a specific remote GPU rig without changing the running training process. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to SSH into a named remote machine. <br>
-Mitigation: Install only when that host and account are expected, and confirm SSH target details before use. <br>
-Risk: Heartbeat updates may expose more training log detail than needed. <br>
-Mitigation: Review HEARTBEAT.md updates and keep status notes limited to necessary progress, temperature, and ETA information. <br>
-Risk: Monitoring commands could disrupt training if changed into write or process-control actions. <br>
-Mitigation: Keep execution to the listed read-only commands and avoid modifying data, checkpoints, environments, or running processes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pbseiya/f5tts-monitor) <br>
+## Use Case:
 
+Developers and operators use this skill to check GPU utilization, training log progress, and system load for an F5-TTS distributed training run over SSH while avoiding disruption to the running process.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only monitoring posture; heartbeat updates should avoid unnecessary sensitive log details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs the agent to connect by SSH to the Local-LLM host and inspect a live training process.
+
+Mitigation: Confirm the target host and run only the listed monitoring commands so the active training process is not interrupted.
+
+Risk: The skill asks the agent to update HEARTBEAT.md status files after probing training status.
+
+Mitigation: Update status only in a known local project path and avoid modifying training data, checkpoints, or remote environment files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pbseiya/skills/f5tts-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes monitoring commands and local status-update guidance; does not produce code or configuration files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

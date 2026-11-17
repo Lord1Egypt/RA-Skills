@@ -1,37 +1,48 @@
-## Description: <br>
-Provides a daily motivational quote in response to requests for inspiration or quotes for today. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a daily motivational quote in response to requests for inspiration or quotes for today.
 
-## Publisher: <br>
-[RK905](https://clawhub.ai/user/RK905) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rk905](https://clawhub.ai/user/rk905)
 
-## Use Case: <br>
-External users can ask an agent for a motivational quote or a short inspirational response during normal conversation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The broad inspiration trigger may produce a motivational quote when the user intended a more specific response. <br>
-Mitigation: Review trigger behavior before deployment and constrain activation wording if the agent serves workflows where inspiration requests may be ambiguous. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/RK905/geeksdobyte-motivation-skill) <br>
+## Use Case:
 
+External users and agent operators use this skill to have an agent respond to requests for inspiration or a quote for today with a friendly prewritten motivational quote.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text or Markdown conversational response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a small set of prewritten motivational quotes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on vague requests mentioning inspiration even when the user did not explicitly ask for a quote.
+
+Mitigation: Review trigger wording and keep invocation scoped to explicit requests for a motivational quote, a quote for today, or inspiration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rk905/skills/geeksdobyte-motivation-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language response with a motivational quote]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a small prewritten quote list and no external data access.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Search, retrieve, log, and manage past conversations, research, job tasks, and files in Frank's Second Brain knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, retrieve, log, and manage past conversations, research, tasks, files, and delegated jobs in a persistent Second Brain knowledge base.
 
-## Publisher: <br>
-[ryandeangraves](https://clawhub.ai/user/ryandeangraves) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryandeangraves](https://clawhub.ai/user/ryandeangraves)
 
-## Use Case: <br>
-Authorized agents use this skill to search and update a personal external knowledge base, manage Kanban tasks, handle files, and delegate jobs to downstream agents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill connects an agent to a personal external knowledge base with broad read, write, upload, delete, and job-delegation capabilities. <br>
-Mitigation: Install only for the intended owner and review each requested read, write, upload, delete, or delegation action before allowing the agent to execute it. <br>
-Risk: The artifact includes a hardcoded API key for the external service. <br>
-Mitigation: Treat the key and service as privileged, avoid exposing the key in shared logs, and rotate or revoke the key if it is no longer intended to be public. <br>
-Risk: File upload and attachment deletion behavior can expose local files or remove remote content. <br>
-Mitigation: Allow file operations only when explicitly requested and after reviewing the exact local path, destination metadata, and target attachment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Brain Search on ClawHub](https://clawhub.ai/ryandeangraves/brain-search) <br>
-- [ryandeangraves publisher profile](https://clawhub.ai/user/ryandeangraves) <br>
+## Use Case:
 
+External users and agents use this skill to query and update a personal knowledge base, manage Kanban tasks and files, and delegate jobs to sub-agents through HTTP API calls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown or plain text with curl commands and JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include real HTTP responses from the Second Brain API when executed by an agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The published skill includes a reusable API key for a personal remote knowledge base.
+
+Mitigation: Rotate or revoke the shared key before use, and require per-user least-privilege credentials.
+
+Risk: The skill can read, write, upload, delete, and delegate work through remote API calls.
+
+Mitigation: Require explicit user approval for uploads, deletes, and delegation, and limit allowed operations to the task at hand.
+
+Risk: The skill may send local files or conversation context to the remote service.
+
+Mitigation: Define clear limits on what files and context may be transmitted, and redact sensitive information before any upload or logging action.
+
+## Reference(s):
+
+- [Brain Search on ClawHub](https://clawhub.ai/ryandeangraves/skills/brain-search)
+- [Publisher profile](https://clawhub.ai/user/ryandeangraves)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and remote API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live HTTP responses, task identifiers, file identifiers, and entries returned by the remote service.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

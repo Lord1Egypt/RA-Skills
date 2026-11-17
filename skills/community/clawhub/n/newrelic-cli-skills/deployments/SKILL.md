@@ -21,7 +21,7 @@ newrelic apm deployment create \
 ### Optional
 - `--description` — what changed (show in NR UI on charts)
 - `--user` — who/what deployed
-- `--changelog` — detailed change notes
+- `--change-log` — detailed change notes
 
 ---
 
@@ -44,22 +44,27 @@ newrelic apm deployment list --applicationId <APP_ID>
 
 ## GitLab/GitHub CI Integration
 
-Add to your CI pipeline after a successful deploy:
+Check out this skill repository into `vendor/newrelic-cli-skills` in the application CI
+job, set `NEW_RELIC_API_KEY` as a masked secret, and invoke the maintained helper after a
+successful deploy. In GitHub Actions, use a second `actions/checkout` step with
+`repository: vince-winkintel/newrelic-cli-skills` and `path: vendor/newrelic-cli-skills`;
+in GitLab, clone or add the repository as a submodule at the same path. Keep every
+CI-provided value in its own quoted argument:
 
 ```bash
-#!/bin/bash
-# deploy-marker.sh
-APP_ID="${NEW_RELIC_APP_ID}"
-REVISION="${CI_COMMIT_SHORT_SHA:-$(git rev-parse --short HEAD)}"
-DESCRIPTION="${CI_COMMIT_TITLE:-Deployment}"
-USER="${GITLAB_USER_LOGIN:-ci-bot}"
+NEWRELIC_SKILLS_DIR=vendor/newrelic-cli-skills
 
-newrelic apm deployment create \
-  --applicationId "$APP_ID" \
-  --revision "$REVISION" \
-  --description "$DESCRIPTION" \
-  --user "$USER"
+"$NEWRELIC_SKILLS_DIR/scripts/deployment-marker.sh" \
+  "$NEW_RELIC_APP_ID" \
+  "${CI_COMMIT_SHORT_SHA:-$(git rev-parse --short=8 HEAD)}" \
+  "${CI_COMMIT_TITLE:-$(git log -1 --format=%s)}" \
+  "${GITLAB_USER_LOGIN:-${GITHUB_ACTOR:-ci-bot}}"
 ```
+
+The helper requires a decimal application ID, converts tabs and line breaks in text fields
+to spaces, rejects any remaining control characters, and forwards each accepted value as
+a literal argument. Do not generate a script from CI variables and do not pass these
+values through `eval` or `source`.
 
 ---
 
@@ -83,22 +88,14 @@ SINCE 1 week ago
 
 ## Automation: Mark on Every Merge
 
-Script to call from a post-merge webhook or CI step:
+Call the repository helper from a post-merge webhook or CI step rather than copying its
+implementation into generated source. Set `NEWRELIC_SKILLS_DIR` to the explicit checkout
+location shown above; multi-line release descriptions are normalized to one line:
 
 ```bash
-#!/bin/bash
-# Usage: ./deployment-marker.sh <app_id> <revision> <description>
-set -euo pipefail
-
-APP_ID="${1:?app_id required}"
-REVISION="${2:?revision required}"
-DESCRIPTION="${3:-Automated deployment}"
-
-newrelic apm deployment create \
-  --applicationId "$APP_ID" \
-  --revision "$REVISION" \
-  --description "$DESCRIPTION" \
-  --user "steven-openclaw"
-
-echo "Deployment marker recorded: $REVISION → app $APP_ID"
+"$NEWRELIC_SKILLS_DIR/scripts/deployment-marker.sh" \
+  "$NEW_RELIC_APP_ID" \
+  "$RELEASE_REVISION" \
+  "$RELEASE_DESCRIPTION" \
+  "$DEPLOY_USER"
 ```

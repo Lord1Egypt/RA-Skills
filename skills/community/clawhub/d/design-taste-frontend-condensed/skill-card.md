@@ -1,48 +1,64 @@
-## Description: <br>
-Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the right design direction, and ships interfaces that do not look templated. Real design systems when applicable, audit-first on redesigns, strict pre-flight check. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design Taste Frontend guides agents through brief-driven frontend design for landing pages, portfolios, and redesigns, including appropriate design-system choices, audit-first redesigns, and pre-flight quality checks.
 
-## Publisher: <br>
-[akdira](https://clawhub.ai/user/akdira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akdira](https://clawhub.ai/user/akdira)
 
-## Use Case: <br>
-Developers and design-focused agents use this skill to build or redesign landing pages, portfolios, and marketing pages with stronger visual direction, real design-system choices, asset planning, motion discipline, and pre-flight design checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may steer agents toward adding frontend packages or using external visual assets. <br>
-Mitigation: Review proposed install commands, package choices, and external asset URLs before approving project changes. <br>
-Risk: Strong visual-design rules may be inappropriate for dashboards, data tables, or multi-step product UI. <br>
-Mitigation: Apply the skill only to landing pages, portfolios, marketing pages, and relevant redesign surfaces, and override it when the product workflow requires a different interface pattern. <br>
+## Use Case:
 
+Frontend developers and agents use this skill to create landing pages, portfolios, and redesigns with brief-driven visual direction, appropriate design-system choices, accessibility checks, and pre-flight quality review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/akdira/design-taste-frontend) <br>
-- [Material Web](https://github.com/material-components/material-web) <br>
-- [Fluent UI](https://github.com/microsoft/fluentui) <br>
-- [Carbon Design System](https://carbondesignsystem.com/) <br>
-- [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend) <br>
-- [U.S. Web Design System](https://github.com/uswds/uswds) <br>
-- [Tailwind CSS v4](https://tailwindcss.com/blog/tailwindcss-v4) <br>
-- [Radix Themes](https://github.com/radix-ui/themes) <br>
-- [shadcn/ui](https://github.com/shadcn-ui/ui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, install commands, implementation constraints, and frontend code recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to add frontend packages, use generated or web-hosted visual assets, and run design pre-flight checks before final output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may guide agents to add frontend dependencies or run design-system scaffolding commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve dependency installs explicitly, pin package versions where practical, and review generated project changes before committing or deploying.
+
+Risk: The skill may direct agents to use external image, logo, or placeholder asset sources.
+
+Mitigation: Confirm asset licenses, availability, and suitability before using generated or external assets in production.
+
+Risk: Frontend design guidance can produce misleading or inappropriate implementation changes if applied without review.
+
+Mitigation: Review and scan generated code, commands, and configuration before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/akdira/skills/design-taste-frontend-condensed)
+- [Material Web](https://m3.material.io/develop/web)
+- [Fluent UI Web Components](https://learn.microsoft.com/en-us/fluent-ui/web-components/)
+- [Carbon Design System](https://carbondesignsystem.com/)
+- [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend)
+- [U.S. Web Design System](https://github.com/uswds/uswds)
+- [Tailwind CSS v4](https://tailwindcss.com/blog/tailwindcss-v4)
+- [MDN CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend frontend dependencies, design-system packages, asset sources, accessibility checks, and project-specific implementation changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

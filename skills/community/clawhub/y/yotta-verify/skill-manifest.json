@@ -1,0 +1,33 @@
+{
+  "manifestVersion": 1,
+  "slug": "yotta-verify",
+  "name": "元信",
+  "package": "@yottameta/yotta-verify",
+  "version": "0.3.6",
+  "trust": "yottameta",
+  "install": {
+    "idempotent": true
+  },
+  "permissions": {
+    "filesystem": "user-skills-dir",
+    "network": "none",
+    "process": "child-process",
+    "note": "仅调用本包内 Python 扫描脚本；扫描本地文件，不上传数据。"
+  },
+  "auto_apply": {
+    "mode": "hook",
+    "note": "写入技能目录前进行确定性扫描门禁。"
+  },
+  "hooks": [
+    {
+      "event": "before_install",
+      "require_tool": "scan_skill",
+      "condition": "任何家族技能安装或升级进入落位前",
+      "on_fail": "block",
+      "fallback": "wrapper",
+      "evidence": [
+        "audit_log"
+      ]
+    }
+  ]
+}

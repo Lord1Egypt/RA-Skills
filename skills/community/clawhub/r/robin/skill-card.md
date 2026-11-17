@@ -1,44 +1,59 @@
-## Description: <br>
-Save and review notes, quotes, articles, links, images, and video references in a personal commonplace book. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save and review notes, quotes, articles, links, images, and video references in a personal commonplace book.
 
-## Publisher: <br>
-[gniting](https://clawhub.ai/user/gniting) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gniting](https://clawhub.ai/user/gniting)
 
-## Use Case: <br>
-External users and developers use Robin through a host agent to save personal notes, quotes, links, images, and video references into a local commonplace-book library, then search or review those entries later. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved entries may contain personal notes and copied local images. <br>
-Mitigation: Use a dedicated Robin state directory and keep topics_dir and media_dir inside that directory. <br>
-Risk: Move, delete, add, and review operations modify the local Robin library or review state. <br>
-Mitigation: Run commands intentionally, prefer JSON output for agent parsing, and use doctor or selftest checks when library health is uncertain. <br>
-Risk: Scheduled recall can resurface saved personal content automatically. <br>
-Mitigation: Enable scheduled recall only when the user wants automatic resurfacing, and keep active rating flows separate from scheduled recall. <br>
+## Use Case:
 
+External users and agent developers use Robin to maintain a local commonplace book, file useful text and media references by topic, search saved entries, and resurface prior notes for review.
 
-## Reference(s): <br>
-- [Robin ClawHub Release](https://clawhub.ai/gniting/robin) <br>
-- [Robin Guide](docs/guide.md) <br>
-- [Robin Configuration Example](references/robin-config-example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists entries as local Markdown topic files and JSON review state in the configured Robin state directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: ClawHub release metadata) <br>
+Risk: Path configuration and image handling may affect files outside the intended Robin library.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Robin state directory, keep robin-config.json under user control, and set topics_dir and media_dir only to simple relative values such as topics and media.
+
+Risk: Untrusted local image paths may cause unexpected file access or copying.
+
+Mitigation: Only pass local image paths that the user trusts and expects Robin to copy into the configured media directory.
+
+Risk: Entry deletion can remove saved knowledge if the wrong id is supplied.
+
+Mitigation: Confirm entry ids before using delete operations.
+
+## Reference(s):
+
+- [Robin Skill Page](https://clawhub.ai/gniting/skills/robin)
+- [Robin Guide](docs/guide.md)
+- [Robin Config Example](references/robin-config-example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown entries, JSON command output, and human-facing recall text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local filesystem state and can copy accepted image assets into the configured media directory.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

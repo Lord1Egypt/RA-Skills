@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>样张 · 评估矩阵 Harvey ball(原型 33)</title>
+<link rel="stylesheet" href="../assets/theme.css">
+</head>
+<body>
+<div class="slide-container" style="background:var(--off-white);">
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:120px;width:1720px;">
+    <div style="font-size:56px;font-weight:700;line-height:1.2;color:var(--charcoal);">按四项准则,方案 B 是唯一无短板的选择</div>
+  </div>
+  <!-- 表格:方案为行、准则为列;评分格留空,圆饼叠放 -->
+  <table data-object="true" style="position:absolute;left:100px;top:330px;width:1720px;border-collapse:collapse;">
+    <tr style="background:var(--brand-dark);">
+      <th style="width:380px;padding:22px 24px;text-align:left;font-size:22px;font-weight:700;color:#FFFFFF;border:1px solid var(--brand-dark);">方案</th>
+      <th style="width:250px;padding:22px 24px;text-align:center;font-size:22px;font-weight:700;color:#FFFFFF;border:1px solid var(--brand-dark);">实施难度</th>
+      <th style="width:250px;padding:22px 24px;text-align:center;font-size:22px;font-weight:700;color:#FFFFFF;border:1px solid var(--brand-dark);">见效速度</th>
+      <th style="width:250px;padding:22px 24px;text-align:center;font-size:22px;font-weight:700;color:#FFFFFF;border:1px solid var(--brand-dark);">投入</th>
+      <th style="width:250px;padding:22px 24px;text-align:center;font-size:22px;font-weight:700;color:#FFFFFF;border:1px solid var(--brand-dark);">可逆性</th>
+      <th style="padding:22px 24px;text-align:left;font-size:22px;font-weight:700;color:#FFFFFF;border:1px solid var(--brand-dark);">结论</th>
+    </tr>
+    <tr>
+      <td style="padding:36px 24px;font-size:24px;font-weight:700;color:var(--charcoal);border:1px solid var(--border-light);">A 全量替换</td>
+      <td style="border:1px solid var(--border-light);"></td>
+      <td style="border:1px solid var(--border-light);"></td>
+      <td style="border:1px solid var(--border-light);"></td>
+      <td style="border:1px solid var(--border-light);"></td>
+      <td style="padding:36px 24px;font-size:22px;line-height:1.4;color:var(--text-secondary);border:1px solid var(--border-light);">风险集中,不建议</td>
+    </tr>
+    <tr style="background:var(--card-bg);">
+      <td style="padding:36px 24px;font-size:24px;font-weight:700;color:var(--brand-primary);border:1px solid var(--border-light);">B 分产线试点</td>
+      <td style="border:1px solid var(--border-light);"></td>
+      <td style="border:1px solid var(--border-light);"></td>
+      <td style="border:1px solid var(--border-light);"></td>
+      <td style="border:1px solid var(--border-light);"></td>
+      <td style="padding:36px 24px;font-size:22px;line-height:1.4;color:var(--charcoal);border:1px solid var(--border-light);">推荐:无短板</td>
+    </tr>
+    <tr>
+      <td style="padding:36px 24px;font-size:24px;font-weight:700;color:var(--charcoal);border:1px solid var(--border-light);">C 维持现状</td>
+      <td style="border:1px solid var(--border-light);"></td>
+      <td style="border:1px solid var(--border-light);"></td>
+      <td style="border:1px solid var(--border-light);"></td>
+      <td style="border:1px solid var(--border-light);"></td>
+      <td style="padding:36px 24px;font-size:22px;line-height:1.4;color:var(--text-secondary);border:1px solid var(--border-light);">缺口持续扩大</td>
+    </tr>
+  </table>
+  <!-- Harvey ball:满/空 = ellipse(实心/描边);半档 = data-shape="pie" -->
+  <!-- 行中心 y:A 行 466 / B 行 578 / C 行 690;圆 36px → top = 中心 - 18 -->
+  <div data-object="true" data-object-type="shape" data-shape="ellipse" style="position:absolute;left:487px;top:448px;width:36px;height:36px;background:transparent;border:2px solid var(--border-medium);"></div>
+  <div data-object="true" data-object-type="shape" data-shape="pie" style="position:absolute;left:737px;top:448px;width:36px;height:36px;background:var(--brand-dark);"></div>
+  <div data-object="true" data-object-type="shape" data-shape="ellipse" style="position:absolute;left:987px;top:448px;width:36px;height:36px;background:transparent;border:2px solid var(--border-medium);"></div>
+  <div data-object="true" data-object-type="shape" data-shape="ellipse" style="position:absolute;left:1237px;top:448px;width:36px;height:36px;background:transparent;border:2px solid var(--border-medium);"></div>
+
+  <div data-object="true" data-object-type="shape" data-shape="ellipse" style="position:absolute;left:487px;top:560px;width:36px;height:36px;background:var(--brand-dark);"></div>
+  <div data-object="true" data-object-type="shape" data-shape="ellipse" style="position:absolute;left:737px;top:560px;width:36px;height:36px;background:var(--brand-dark);"></div>
+  <div data-object="true" data-object-type="shape" data-shape="pie" style="position:absolute;left:987px;top:560px;width:36px;height:36px;background:var(--brand-dark);"></div>
+  <div data-object="true" data-object-type="shape" data-shape="ellipse" style="position:absolute;left:1237px;top:560px;width:36px;height:36px;background:var(--brand-dark);"></div>
+
+  <div data-object="true" data-object-type="shape" data-shape="ellipse" style="position:absolute;left:487px;top:672px;width:36px;height:36px;background:var(--brand-dark);"></div>
+  <div data-object="true" data-object-type="shape" data-shape="ellipse" style="position:absolute;left:737px;top:672px;width:36px;height:36px;background:transparent;border:2px solid var(--border-medium);"></div>
+  <div data-object="true" data-object-type="shape" data-shape="ellipse" style="position:absolute;left:987px;top:672px;width:36px;height:36px;background:var(--brand-dark);"></div>
+  <div data-object="true" data-object-type="shape" data-shape="pie" style="position:absolute;left:1237px;top:672px;width:36px;height:36px;background:var(--brand-dark);"></div>
+  <!-- 图例:必须写等权与打分方式,否则是伪精确 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:800px;width:1720px;">
+    <div style="font-size:22px;line-height:1.5;color:var(--text-secondary);">● 强　◑ 中等　○ 弱 —— 四项准则等权;评分由三人独立打分取中位数,分歧项复核后定档。</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:860px;width:1720px;">
+    <div style="font-size:22px;line-height:1.5;color:var(--text-secondary);">B 方案在四项准则上均不低于中等,是三案中唯一无短板者;A 在"可逆性"上为弱,一旦失败无退路。</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:990px;width:1720px;">
+    <div style="font-size:16px;line-height:1.5;color:var(--text-tertiary);">来源:2026-07 供应商问卷 + 两轮技术验证;"投入"含首年许可与实施人力(不含内部机会成本)</div>
+  </div>
+</div>
+<template data-slide-notes>
+样张:原型 33 评估矩阵。圆饼是独立叠放对象(不随表格流),改行高必须重算 top;单色深浅,非交通灯。
+</template>
+</body>
+</html>

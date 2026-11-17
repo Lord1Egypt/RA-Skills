@@ -1,43 +1,62 @@
-## Description: <br>
-The agent's wallet for EVM chain transactions and raw signing, enabling agents to create wallets, transfer tokens, swap on DEXs, interact with smart contracts, and sign messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an agent wallet for EVM chain transactions, token transfers, swaps, smart contract interactions, and raw signing without exposing private keys to the agent.
 
-## Publisher: <br>
-[glitch003](https://clawhub.ai/user/glitch003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[glitch003](https://clawhub.ai/user/glitch003)
 
-## Use Case: <br>
-External users and developers use this skill to give an agent policy-controlled wallet capabilities for EVM transfers, token swaps, smart contract interactions, balance checks, and raw message signing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent wallet actions can move funds or sign messages, creating real financial exposure if policies are loose or absent. <br>
-Mitigation: Claim the wallet immediately, configure spending limits, address and token allowlists, and approval requirements before funding it or executing meaningful transactions. <br>
-Risk: Unclaimed wallets can operate without policy limits. <br>
-Mitigation: Do not leave wallets unclaimed; revoke or relink keys if access is lost or ownership is uncertain. <br>
-Risk: Stored scoped API keys and relink tokens can enable wallet operations within policy. <br>
-Mitigation: Protect the credential directory, treat relink tokens as sensitive, and revoke compromised keys from the Vincent service. <br>
+## Use Case:
 
+External developers and agent operators use this skill to create and operate policy-controlled wallets for EVM transfers, swaps, contract calls, and signing workflows.
 
-## Reference(s): <br>
-- [Vincent homepage](https://heyvincent.ai) <br>
-- [ClawHub skill listing](https://clawhub.ai/glitch003/agentwallet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI commands use @vincentai/cli and store scoped wallet credentials in configured paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.70 (source: server release metadata) <br>
+Risk: The skill grants high-impact transaction and signing authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the operator accepts agent wallet capability, configure restrictive policies before funding the wallet, and require human approval for sensitive transactions.
+
+Risk: A created wallet can operate before the human owner claims it and applies policies.
+
+Mitigation: Share and claim the wallet URL immediately, avoid funding unclaimed wallets, and revoke or relink keys when control changes.
+
+Risk: Arbitrary calldata and raw signing can create unintended financial or protocol effects.
+
+Mitigation: Avoid arbitrary calldata and raw signing unless necessary, and review destination addresses, chain IDs, values, calldata, and approval status before execution.
+
+Risk: Using a mutable npm CLI version can change runtime behavior.
+
+Mitigation: Prefer a pinned and verified Vincent CLI version instead of @latest.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/glitch003/skills/agentwallet)
+- [Vincent homepage](https://heyvincent.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes wallet creation, balance checks, transfers, swaps, transaction submission, relinking, and raw signing guidance.]
+
+## Skill Version(s):
+
+1.0.70 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

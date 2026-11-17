@@ -2,6 +2,13 @@
 
 Complete parameter reference for all ~100 tools.
 
+> **Permissions:** read-only tools (`get*`, `list`, `find`, `script.read`,
+> `debug.hierarchy`, `debug.screenshot`, `console.getLogs`) run directly. Every
+> other tool listed here changes the project and is refused unless the gateway
+> was started with `OPENCLAW_EDITOR_ALLOW_DESTRUCTIVE=1` **and** the call passes
+> `confirm: true`. `dryRun: true` previews any call without sending it. See
+> [SKILL.md → Safety and permissions](../SKILL.md#safety-and-permissions).
+
 ## Console Tools (3)
 
 ### console.getLogs

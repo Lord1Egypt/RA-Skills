@@ -1,41 +1,54 @@
-## Description: <br>
-派大星情感陪伴机器人是一个温暖、幽默的情感陪伴 Agent，用简单纯真的方式陪伴用户聊天，并可帮助查看天气。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+派大星情感陪伴机器人 - 一个温暖、幽默的情感陪伴Agent，像海绵宝宝里的派大星一样，用简单纯真的方式陪伴你，还能帮你查看天气。
 
-## Publisher: <br>
-[sutacui](https://clawhub.ai/user/sutacui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sutacui](https://clawhub.ai/user/sutacui)
 
-## Use Case: <br>
-External users can use this skill for casual emotional companionship, light conversation, entertainment, and weather-aware daily reminders. It should be treated as companionship rather than professional mental health, medical, or emergency support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake casual emotional companionship for professional care. <br>
-Mitigation: Position the skill as entertainment and companionship, not professional mental health, medical, or emergency support. <br>
-Risk: Weather requests may require sharing location information with the weather capability. <br>
-Mitigation: Ask only for the location detail needed for the weather query and avoid retaining or reusing it beyond the request. <br>
+## Use Case:
 
+External users use this skill for Chinese-language emotional companionship, casual conversation, playful comfort, and simple weather-related reminders. It is framed as entertainment and supportive companionship, not professional mental-health support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sutacui/patrick-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/sutacui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational text or Markdown responses, with weather lookups when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the weather skill for weather queries; otherwise operates as a markdown-only companion persona.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and openclaw metadata) <br>
+Risk: Users may treat emotional-companion responses as professional mental-health support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as entertainment and supportive companionship, and route crisis, medical, or mental-health needs to qualified professional or emergency resources.
+
+Risk: Weather-related reminders may be incomplete or unsuitable for safety-critical decisions.
+
+Mitigation: Confirm weather and local hazard information with authoritative sources before travel, outdoor work, or other safety-sensitive activity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sutacui/skills/patrick-agent)
+- [ClawHub publisher profile](https://clawhub.ai/user/sutacui)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown or plain text conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may default to Chinese and can include weather-oriented reminders when weather information is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and openclaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

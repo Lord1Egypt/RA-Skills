@@ -1,43 +1,62 @@
-## Description: <br>
-Deploys a three-agent proposal writing system for researching RFP requirements, drafting proposal sections, and reviewing submissions for compliance and win themes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a three-agent proposal writing system for research, drafting, and compliance review of RFP responses.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and proposal operations teams use this skill to configure a coordinated research, drafting, and review pipeline for RFP responses and proposal submissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can send final proposal data to an external webhook endpoint. <br>
-Mitigation: Configure only destinations you control and require deliberate approval before external submission. <br>
-Risk: Setup depends on pilotctl, clawhub, and related Pilot bridge skills. <br>
-Mitigation: Verify binaries and bridge skills come from trusted sources before installation. <br>
-Risk: Proposal drafts may contain sensitive business data. <br>
-Mitigation: Test with non-sensitive data first and avoid using confidential proposal content until the deployment is verified. <br>
+## Use Case:
 
+Developers and proposal operations teams use this skill to configure a three-agent workflow that researches RFP requirements, drafts proposal sections, and reviews submissions for compliance and win themes.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-proposal-writer-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces role-specific setup steps, hostnames, manifests, handshakes, subscriptions, and publish examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The setup installs helper skills without pinned versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the dependent skills before business deployment.
+
+Risk: Proposal and pricing content can be routed to webhook and Slack integrations.
+
+Mitigation: Confirm the exact webhook and Slack destinations and avoid sending confidential proposal or pricing data unless approved.
+
+Risk: Unsafe or ambiguous hostname prefixes can affect peer handshakes and routing.
+
+Mitigation: Use only hostname-safe prefixes and verify the peer handshakes before sending proposal data.
+
+Risk: The setup manifest can persist after the deployment is no longer needed.
+
+Mitigation: Remove ~/.pilot/setups/proposal-writer.json when the deployment is retired.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-proposal-writer-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides role selection, dependent skill installation, host naming, setup manifest creation, and peer handshakes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

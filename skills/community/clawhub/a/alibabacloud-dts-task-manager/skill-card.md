@@ -1,51 +1,69 @@
-## Description: <br>
-Create, view, and manage Alibaba Cloud DTS data migration/synchronization tasks interactively. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, view, and manage Alibaba Cloud DTS data migration and synchronization tasks interactively.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to create, inspect, start, suspend, and release Alibaba Cloud DTS migration or synchronization tasks through guided CLI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, start, suspend, and delete Alibaba Cloud DTS data-migration jobs, which may affect production data flows or incur charges. <br>
-Mitigation: Use a least-privilege RAM role and review every region, source, destination, and job summary before approving creation, start, suspend, or delete actions. <br>
-Risk: Task release is irreversible, and forced deletion of active migration or synchronization jobs can interrupt data movement. <br>
-Mitigation: Query task status before deletion, warn when a task is active, and require explicit double confirmation before release. <br>
-Risk: DTS setup may involve database passwords, access keys, certificates, or private keys. <br>
-Mitigation: Mask secrets in all user-facing output, avoid writing secrets to local files, and provide production credentials only when required for the migration. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to set up, create, inspect, start, suspend, and delete Alibaba Cloud DTS migration or synchronization tasks through guided CLI workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/alibabacloud-dts-task-manager) <br>
-- [Environment Setup](references/setup.md) <br>
-- [Create Data Migration/Synchronization Task](references/create-task.md) <br>
-- [View Task List](references/list-tasks.md) <br>
-- [View Task Status](references/task-status.md) <br>
-- [Start/Resume Task](references/start-task.md) <br>
-- [Suspend (Stop) Task](references/suspend-task.md) <br>
-- [Release (Delete) Task](references/delete-task.md) <br>
-- [RAM Permission Configuration](references/ram-policies.md) <br>
-- [Aliyun CLI Releases](https://github.com/aliyun/aliyun-cli/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown with inline bash commands and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Masks sensitive values in summaries and displayed commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The skill can create postpaid DTS instances and start migration or synchronization jobs that may incur cloud charges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review task settings before execution, require user confirmation for billable actions, and release partially created instances if configuration or startup fails.
+
+Risk: The skill can delete DTS jobs, including active jobs, which may interrupt migrations or synchronization.
+
+Mitigation: Check task status before deletion, clearly warn on active states, and require explicit double confirmation before calling DeleteDtsJob.
+
+Risk: The skill collects database passwords, AccessKey secrets, certificates, and private keys for local CLI and DTS API workflows.
+
+Mitigation: Mask sensitive values in conversation output, avoid writing secrets to files or logs, and only provide high-value credentials when acceptable for the local CLI and DTS API path.
+
+Risk: Broad Alibaba Cloud DTS permissions increase the blast radius of mistakes or misuse.
+
+Mitigation: Use a narrowly scoped RAM user or role with only the required DTS and read-only instance-listing permissions for the intended operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-dts-task-manager)
+- [Publisher profile](https://clawhub.ai/user/sdk-team)
+- [Environment Setup](references/setup.md)
+- [Create Data Migration/Synchronization Task](references/create-task.md)
+- [View Task List](references/list-tasks.md)
+- [View Task Status](references/task-status.md)
+- [RAM Permission Configuration](references/ram-policies.md)
+- [Release (Delete) Task](references/delete-task.md)
+- [Alibaba Cloud CLI releases](https://github.com/aliyun/aliyun-cli/releases)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown with inline bash commands and tabular task summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include masked credentials, DTS instance IDs, job IDs, task status, progress, delay, and Alibaba Cloud CLI commands.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

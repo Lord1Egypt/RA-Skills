@@ -1,0 +1,52 @@
+{
+  "skill_name": "impl-guide",
+  "skill_version": "1.2.0",
+  "eval_version": "2.0.0",
+  "eval_date": "2026-08-13",
+  "purpose": "impl-guide 最小自测集（skill-standard-evaluator D6-04 自测用例；格式 v2：每条用例含 priority 标注，p0_count/p1_count 为逐条统计值，可脚本核验）。完整评测集见 eval/trails/p0-04-impl/ 与 TRAIL-EVAL-SPEC。",
+  "test_cases": {
+    "trigger_positive": [
+      {"id": "TP-01", "input": "生成实现指导", "expect_trigger": true, "assertion": "应触发 impl-guide", "priority": "P0"},
+      {"id": "TP-02", "input": "实现规范", "expect_trigger": true, "assertion": "应触发 impl-guide", "priority": "P0"},
+      {"id": "TP-03", "input": "怎么开始写代码", "expect_trigger": true, "assertion": "应触发 impl-guide（编码准备场景）", "priority": "P1"},
+      {"id": "TP-04", "input": "编码约束是什么", "expect_trigger": true, "assertion": "应触发 impl-guide（三层边界约束能力）", "priority": "P1"},
+      {"id": "TP-05", "input": "根据任务清单出实现计划", "expect_trigger": true, "assertion": "应触发 impl-guide", "priority": "P0"},
+      {"id": "TP-06", "input": "生成测试骨架", "expect_trigger": true, "assertion": "应触发 impl-guide（步骤 D 能力）", "priority": "P1"},
+      {"id": "TP-07", "input": "这个任务的实现步骤", "expect_trigger": true, "assertion": "应触发 impl-guide（分阶段执行策略）", "priority": "P1"},
+      {"id": "TP-08", "input": "边界约束有哪些", "expect_trigger": true, "assertion": "应触发 impl-guide（三层边界约束能力）", "priority": "P1"},
+      {"id": "TP-09", "input": "按阶段给出实现顺序", "expect_trigger": true, "assertion": "应触发 impl-guide（分阶段执行策略）", "priority": "P1"},
+      {"id": "TP-10", "input": "测试要求是什么", "expect_trigger": true, "assertion": "应触发 impl-guide（一致性测试要求能力）", "priority": "P1"}
+    ],
+    "trigger_negative": [
+      {"id": "TN-01", "input": "根据 PRD 生成 Spec", "expect_trigger": false, "assertion": "不应触发 impl-guide（属 spec-writer 边界）", "priority": "P0"},
+      {"id": "TN-02", "input": "审计需求完成情况", "expect_trigger": false, "assertion": "不应触发 impl-guide（属 audit-trace 边界）", "priority": "P0"},
+      {"id": "TN-03", "input": "直接帮我写业务代码", "expect_trigger": false, "assertion": "不应触发 impl-guide（只产出指导，不代写实现）", "priority": "P0"},
+      {"id": "TN-04", "input": "把架构拆成任务", "expect_trigger": false, "assertion": "不应触发 impl-guide（属 task-planner 边界）", "priority": "P0"},
+      {"id": "TN-05", "input": "解析需求文档", "expect_trigger": false, "assertion": "不应触发 impl-guide（属 spec-writer 边界）", "priority": "P0"},
+      {"id": "TN-06", "input": "设计系统架构", "expect_trigger": false, "assertion": "不应触发 impl-guide（属 arch-designer 边界）", "priority": "P0"},
+      {"id": "TN-07", "input": "部署到服务器", "expect_trigger": false, "assertion": "不应触发 impl-guide（部署类）", "priority": "P1"},
+      {"id": "TN-08", "input": "代码评审", "expect_trigger": false, "assertion": "不应触发 impl-guide（代码评审类）", "priority": "P1"},
+      {"id": "TN-09", "input": "数据库迁移", "expect_trigger": false, "assertion": "不应触发 impl-guide（实施类操作）", "priority": "P1"},
+      {"id": "TN-10", "input": "制定排期", "expect_trigger": false, "assertion": "不应触发 impl-guide（属 task-planner 边界）", "priority": "P1"}
+    ],
+    "process_checks": [
+      {"id": "PC-01", "check": "前置依赖：无任务清单时提示先使用 task-planner，不凭 Spec 直接生成", "priority": "P0"},
+      {"id": "PC-02", "check": "上下文完整性检查：上游 CONTEXT-CHECK 标记缺失或数值异常时提示", "priority": "P0"},
+      {"id": "PC-03", "check": "三层边界约束：Always / Ask First / Never 均非空，Never 含安全硬性禁止规则", "priority": "P0"},
+      {"id": "PC-04", "check": "未决项三层传导：Q 编号在 Ask First / Always / Never 中同时出现且可追溯", "priority": "P1"},
+      {"id": "PC-05", "check": "分阶段执行策略：Setup → Core → Advanced → Testing，阶段间串行 + 审查门禁", "priority": "P1"},
+      {"id": "PC-06", "check": "一致性测试要求：从 Spec 验收标准逐条派生，标注类型（功能/性能/安全/数据完整性）与优先级", "priority": "P1"},
+      {"id": "PC-07", "check": "可执行测试骨架：每个 AC 至少 1 个用例，命名 test_ac{AC-ID}_{场景}，框架语法按技术选型适配", "priority": "P1"},
+      {"id": "PC-08", "check": "骨架只生成断言与用例框架，不编写业务逻辑实现", "priority": "P0"},
+      {"id": "PC-09", "check": "输出末尾附加 CONTEXT-CHECK 标记（B/P/T 计数）", "priority": "P0"}
+    ],
+    "safety_checks": [
+      {"id": "SC-01", "check": "无任务清单时禁止直接生成实现指导（明确提示用户）", "priority": "P0"},
+      {"id": "SC-02", "check": "骨架不代写业务实现（桩体留空或抛占位异常）", "priority": "P0"},
+      {"id": "SC-03", "check": "Never 层必须包含安全规则（提交密钥、删除测试等）", "priority": "P0"},
+      {"id": "SC-04", "check": "不做任务规划、不做架构设计（边界互斥）", "priority": "P0"}
+    ]
+  },
+  "p0_count": 18,
+  "p1_count": 15
+}

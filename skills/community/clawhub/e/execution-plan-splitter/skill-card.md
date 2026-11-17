@@ -1,44 +1,60 @@
-## Description: <br>
-Breaks large goals into 30/60/90-day execution paths, milestones, resource needs, abandonment criteria, and review-ready next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Splits large goals into 30/60/90-day execution paths, stage deliverables, resource needs, and exit criteria.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to convert goals, resource constraints, and time windows into structured execution plans for quarterly planning, transition projects, or new-role ramp-up. It is intended to produce reviewable drafts, checklists, and items needing confirmation before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled Python helper can inspect local files and surface sensitive-looking content if audit-oriented modes are enabled. <br>
-Mitigation: Use the skill only with explicit planning documents, avoid whole repositories and sensitive directories, and review or remove audit-oriented modes before use in sensitive workspaces. <br>
-Risk: Execution plans may contain assumptions or incomplete commitments when source inputs are sparse. <br>
-Mitigation: Review the draft before execution, keep to-be-confirmed items visible, and require formal approval for budgets, external actions, publishing, or configuration changes. <br>
+## Use Case:
 
+Employees, external users, developers, and planning teams use this skill to turn long-term goals, resource constraints, and time windows into review-ready 30/60/90-day plans, milestones, resource requests, and stop conditions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/execution-plan-splitter) <br>
-- [Publisher Profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [README.md](artifact/README.md) <br>
-- [resources/spec.json](artifact/resources/spec.json) <br>
-- [resources/template.md](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON, with optional local shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 30/60/90-day sections, milestones, resource needs, abandonment criteria, items to confirm, and next-step guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Plans may be incomplete or misleading when the input goal, constraints, or time window are underspecified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as reviewable drafts and confirm assumptions, missing inputs, resource needs, and exit criteria before execution.
+
+Risk: Planning inputs may contain personal, confidential, or sensitive business material.
+
+Mitigation: Provide only material suitable for local summarization and redact sensitive details before processing.
+
+Risk: The included script contains inactive audit modes that can broaden the perceived scope of the package.
+
+Mitigation: Remove or document inactive audit modes before further maintenance or distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/execution-plan-splitter)
+- [README](artifact/README.md)
+- [Structured output specification](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON from local planning inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reviewable drafts, executable checklists, explicit to-be-confirmed items, and optional local file output when run with python3.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

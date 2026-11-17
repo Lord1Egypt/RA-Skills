@@ -1,6 +1,7 @@
-# Adapter Workflow
+# Adapter And Service Workflow
 
-Use this reference to build a new adapter or simplify an existing one.
+Use this reference to build a new adapter, expose an internal standalone
+service, or simplify an existing integration.
 
 ## 1. Choose the Runtime Shape
 
@@ -12,6 +13,17 @@ Use the smallest shape that can honestly run the host API:
 | Embedded Python, headless | mayapy, Blender background, Houdini hython | `DccServerBase` with inline or blocking dispatcher |
 | External bridge | ZBrush, Photoshop, Unity, proprietary tools | `DccServerBase` plus IPC/WebSocket/HTTP bridge helpers |
 | Editor/game engine | Unreal, Unity | Adapter-owned plugin bridge plus typed skill tools; keep Python optional |
+| Standalone internal service | Asset/review/render APIs, private CLI tools | `DccServerBase` with `instance_type="standalone"`, no DCC PID, and inline typed tools |
+
+When an external bridge uses the public Python `DccBridge` WebSocket server,
+declare `dcc-mcp-core[bridge]`; the base install intentionally does not pull in
+the optional `websockets` transport.
+
+Apply [Python runtime selection](PYTHON_RUNTIME_SELECTION.md) before composing
+an adapter. An embedded host retains its verified interpreter; a Python-free
+official bridge needs no Python payload. If the host lacks Python and the
+adapter needs it, default to the existing DCC-MCP Runtime contract, with an
+authorized installer and verified artifacts rather than an adapter-local bundle.
 
 ## 2. Build the Composition Root
 
@@ -34,7 +46,7 @@ from dcc_mcp_core import DccServerBase, DccServerOptions, HostExecutionBridge
 
 
 class MyDccServer(DccServerBase):
-    def __init__(self, port: int = 8765, dispatcher=None, **kwargs):
+    def __init__(self, port: int | None = None, dispatcher=None, **kwargs):
         bridge = HostExecutionBridge(dispatcher=dispatcher) if dispatcher else None
         options = DccServerOptions.from_env(
             "mydcc",
@@ -48,6 +60,29 @@ class MyDccServer(DccServerBase):
     def _version_string(self) -> str:
         return "unknown"
 ```
+
+Keep `port=None` as the adapter default. Core resolves an explicit argument
+(including `0`) first, then `DCC_MCP_<DCC>_PORT`, then `0` so the OS assigns a
+free loopback port. Clients discover the bound endpoint through FileRegistry
+or the gateway; use an explicit argument or environment value only when a
+fixed direct endpoint is required.
+
+For `HostUiDispatcherBase` subclasses, the bridge creates and attaches the
+native HTTP main-affinity queue automatically. Keep the host timer calling the
+subclass's `drain_queue()`; do not wire a second queue in the adapter.
+
+Guard the adapter's outer startup import with
+`capture_bootstrap_errors(dcc_name, adapter_version=..., min_core_version=...)`.
+It records pre-server failures and re-raises them for the host's native error
+UI. `DccServerBase` captures Python logging and uncaught runtime exceptions
+into the shared log plus `output://` / `events://`; forward host-native console
+callbacks with `server.report_host_error(...)`. Do not install a second sink or
+replace process-wide stdout/stderr.
+
+For a non-DCC standalone service, keep the same composition root but omit
+`HostExecutionBridge`, pass `instance_type="standalone"`, and leave `dcc_pid`
+unset. Follow [INTERNAL_SERVICE_WORKFLOW.md](INTERNAL_SERVICE_WORKFLOW.md); a
+public repository and public catalog entry are not required.
 
 ## 3. Add Progressive Skills
 
@@ -68,6 +103,16 @@ server.register_builtin_actions(minimal_mode=minimal)
 Only eager-load the skills needed for discovery, diagnostics, and a first useful
 scene query. Leave authoring, render, export, and pipeline skills loadable on
 demand.
+
+For ordinary standalone Python adapters installed in a virtual environment,
+leave `DCC_MCP_PYTHON_EXECUTABLE` unset. The subprocess executor resolves an
+explicit override first, then the active PyO3-attached `sys.executable` when it
+is a real Python CLI, and finally `python` on `PATH` for pure-Rust callers. This
+keeps adapter and Core packages visible to Skill scripts even when the virtual
+environment is not first on `PATH`. Core does not auto-select host GUI binaries
+such as Blender, Maya, FreeCAD, or OpenSCAD. Embedded hosts should keep using an
+in-process `HostExecutionBridge`, or set an explicit vendor CLI such as
+`mayapy`, `hython`, or `c4dpy` only when subprocess execution is intentional.
 
 ## 4. Publish Adapter Context
 
@@ -91,7 +136,7 @@ Escalate to core when more than one adapter would need the same helper:
 - resource registration patterns;
 - sidecar/install lifecycle;
 - gateway search/describe/call response shape;
-- app UI automation contracts;
+- UI Control automation contracts;
 - file/artifact handoff;
 - diagnostics, agent trace packets, compact debug negotiation, and issue-report exports.
 

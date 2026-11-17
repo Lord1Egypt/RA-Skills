@@ -1,44 +1,59 @@
-## Description: <br>
-Bioinfo Daily searches PubMed for recent high-impact bioinformatics and oncology papers and generates a Chinese daily report with summaries, highlights, journal metadata, and source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bioinfo Daily generates Chinese daily reports of recent bioinformatics and oncology papers by querying PubMed, filtering high-impact journals, and summarizing selected research highlights.
 
-## Publisher: <br>
-[ShixiangWang](https://clawhub.ai/user/ShixiangWang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shixiangwang](https://clawhub.ai/user/shixiangwang)
 
-## Use Case: <br>
-Researchers, lab teams, and developers use this skill to generate daily literature briefings for bioinformatics, cancer immunology, single-cell sequencing, spatial transcriptomics, and oncology clinical progress. It can be run manually or through scheduled OpenClaw workflows when PubMed API credentials are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PubMed API credentials may be exposed if stored in broadly readable local files. <br>
-Mitigation: Prefer OpenClaw configuration or environment variables; if a .env file is used, limit it to NCBI_EMAIL and NCBI_API_KEY and keep it writable only by trusted users. <br>
-Risk: The optional web_search helper can send research topics to the configured external search provider. <br>
-Mitigation: Avoid confidential or sensitive research topics when using the optional search helper, or run only the PubMed-based workflow in a controlled environment. <br>
-Risk: Scheduled runs can repeatedly call external services and publish or stage generated reports. <br>
-Mitigation: Review the scheduled command, configured channel, and generated report content before enabling automated delivery. <br>
+## Use Case:
 
+Researchers, bioinformatics teams, and oncology teams use this skill to create a daily digest of high-impact PubMed literature across bioinformatics, tumor immunology, single-cell sequencing, spatial transcriptomics, and clinical cancer research.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ShixiangWang/bioinfo-daily-skill) <br>
-- [PubMed E-utilities API](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) <br>
-- [NCBI E-utilities API Key Guidance](https://ncbiinsights.ncbi.nlm.nih.gov/2017/11/02/new-api-keys-for-the-e-utilities/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text and Markdown daily report files with inline article metadata and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes dated report files under /tmp and may print shell commands for retrieving generated Markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: A shell wrapper sources a project-local .env file as shell code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set NCBI_EMAIL and NCBI_API_KEY through OpenClaw config or the process environment, and avoid the project-local .env wrapper path unless the file is created and reviewed locally.
+
+Risk: Documentation claims .env is git-ignored, but the security evidence says that claim is unsupported.
+
+Mitigation: Add and verify a .gitignore before creating any credential file, and keep unrelated secrets out of the skill directory.
+
+Risk: Feishu publishing appears manual or incomplete unless separate upload logic is added.
+
+Mitigation: Treat generated files as manual publishing artifacts or review any added Feishu upload implementation before automation.
+
+## Reference(s):
+
+- [Bioinfo Daily ClawHub listing](https://clawhub.ai/shixiangwang/skills/bioinfo-daily-skill)
+- [PubMed E-utilities API](https://eutils.ncbi.nlm.nih.gov/entrez/eutils)
+- [NCBI E-utilities API keys](https://ncbiinsights.ncbi.nlm.nih.gov/2017/11/02/new-api-keys-for-the-e-utilities/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese daily report text and optional Markdown files with command and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes report artifacts under /tmp/bioinfo_daily_YYYYMMDD.txt and, through the wrapper, /tmp/bioinfo_daily_YYYYMMDD.md.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

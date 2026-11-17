@@ -1,40 +1,58 @@
-## Description: <br>
-Fast TCP port scanner for network reconnaissance and security auditing that scans hosts for open ports, detects common services, and identifies potential attack surface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast TCP port scanner for network reconnaissance and security auditing.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers, security engineers, and operators use this skill to scan authorized hosts or network ranges for open TCP ports, common services, and banners during firewall audits, pre-deployment checks, or security reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Port scanning can affect systems the user is not authorized to test or create noisy network activity. <br>
-Mitigation: Use only on hosts and networks you own or have permission to audit, and keep port ranges, timeout, and worker counts proportionate to the audit. <br>
-Risk: Open-port and banner results can be incomplete or stale. <br>
-Mitigation: Treat scan output as reconnaissance that should be validated before making security or firewall decisions. <br>
+## Use Case:
 
+Developers, security engineers, and operators use this skill to check open TCP ports, identify common services, and audit exposed attack surface on systems they own or are explicitly authorized to test.
 
-## Reference(s): <br>
-- [Port Scanner ClawHub listing](https://clawhub.ai/Johnnywang2001/jrv-port-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text scan report or JSON object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes host, resolved IP, ports scanned, open ports, service labels, and optional banners.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can actively probe arbitrary hosts without explicit authorization safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only against systems you own or are explicitly authorized to test, and review the target before execution.
+
+Risk: Large port ranges or high worker counts can create operational noise or trigger monitoring.
+
+Mitigation: Start with narrow port selections and conservative worker counts, then expand only when the scan scope is approved.
+
+Risk: Banner grabbing sends traffic to open services and may be logged by the target system.
+
+Mitigation: Disable banner grabbing when service probing is not needed or when the authorization scope does not include active service interrogation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnnywang2001/skills/jrv-port-scanner)
+- [Publisher profile](https://clawhub.ai/user/johnnywang2001)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; scanner results are plain text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scanner accepts a target host, optional ports or top-N selection, timeout, worker count, banner toggle, and output format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

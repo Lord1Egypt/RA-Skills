@@ -1,44 +1,55 @@
-## Description: <br>
-推荐高质量的 Agent/RAG 论文；支持 Agent 测评、RAG 测评、Agent 架构和 RAG 架构主题，并自动验证 GitHub 代码与生成结构化报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends recent high-quality Agent and RAG papers from arXiv, verifies public GitHub code links, and produces structured Markdown recommendation reports.
 
-## Publisher: <br>
-[DeviosLang](https://clawhub.ai/user/DeviosLang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devioslang](https://clawhub.ai/user/devioslang)
 
-## Use Case: <br>
-Developers, researchers, and technical readers use this skill to find recent Agent/RAG papers with public GitHub code and receive a concise recommendation report for quick triage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts arXiv and GitHub over the network to search papers and verify repositories. <br>
-Mitigation: Use it only in environments where those outbound public-data requests are acceptable. <br>
-Risk: Recommendation history and generated reports are retained locally under ~/papers. <br>
-Mitigation: Review or delete ~/papers/history.json and ~/papers/recommendations on shared machines or when local research history should not be retained. <br>
-Risk: Paper summaries and engineering suggestions are derived from abstracts and repository metadata, so recommendations can be incomplete or miss paper limitations. <br>
-Mitigation: Review the linked paper, PDF, and repository before relying on a recommendation for technical decisions. <br>
+## Use Case:
 
+Developers, researchers, and technical readers use this skill to find recent Agent and RAG papers with public code, compare paper relevance, and save concise reading reports for follow-up analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DeviosLang/arxiv-paper-recommender) <br>
-- [arXiv API](https://info.arxiv.org/help/api/index.html) <br>
-- [GitHub REST API](https://docs.github.com/rest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown recommendation report with concise terminal summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes recommendation reports under ~/papers/recommendations and keeps local recommendation history under ~/papers/history.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill makes public arXiv and GitHub network requests and writes recommendation reports plus history under ~/papers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only where public network access and local research-history storage are acceptable; review saved files before sharing them.
+
+Risk: Generated reports include fetched arXiv metadata, abstracts, and links that may be inaccurate, stale, or unsafe to trust automatically.
+
+Mitigation: Treat reports as untrusted research assistance and verify paper claims, links, and repository quality before acting on them.
+
+## Reference(s):
+
+- [arXiv API query endpoint](http://export.arxiv.org/api/query)
+- [arXiv abstract pages](https://arxiv.org/abs/{arxiv_id})
+- [GitHub repository API endpoint](https://api.github.com/repos/{owner}/{repo})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown report plus concise terminal summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves recommendation reports and recommendation history under ~/papers.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,69 @@
-## Description: <br>
-ClawVoice lets OpenClaw agents place and receive phone calls, send SMS, guide telephony and voice-provider setup, and capture post-call outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawVoice gives OpenClaw agents phone calling and SMS workflows with guided setup, voice-provider configuration, batch calling, and post-call outcome capture.
 
-## Publisher: <br>
-[neocody](https://clawhub.ai/user/neocody) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neocody](https://clawhub.ai/user/neocody)
 
-## Use Case: <br>
-Developers and OpenClaw users use ClawVoice to connect an agent to Twilio or Telnyx phone service, run inbound and outbound voice or SMS workflows, and receive summaries, transcripts, or campaign reports after calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can call and text real phone numbers, including batch campaigns. <br>
-Mitigation: Require explicit user approval before outbound calls, texts, or campaigns, keep daily and per-call limits enabled, and review consent, recording, retention, and automated-calling requirements before use. <br>
-Risk: The setup flow needs provider API keys, auth tokens, phone numbers, and voice-service credentials. <br>
-Mitigation: Enter secrets through the local setup wizard, environment variables, or a secret manager instead of chat, and rotate any credential that was shared in conversation. <br>
-Risk: Inbound calls, SMS, webhooks, and media streams expose a reachable service. <br>
-Mitigation: Keep tunnel exposure narrow, use provider webhook verification or webhook secrets where supported, avoid placeholder URLs, and run diagnostics before placing calls. <br>
-Risk: Call transcripts, summaries, and notifications can contain personal or sensitive information. <br>
-Mitigation: Disable transcript forwarding and SMS auto-reply unless needed, limit transcript retention, and review post-call destinations such as Telegram, Discord, or Slack. <br>
+## Use Case:
 
+Developers and OpenClaw users use ClawVoice to let an agent place and receive PSTN calls, send SMS messages, run batch call workflows, and capture post-call summaries and transcripts. It is intended for telephony automation where users provide provider credentials, public webhook endpoints, and compliance decisions.
 
-## Reference(s): <br>
-- [ClawVoice ClawHub page](https://clawhub.ai/neocody/clawvoice) <br>
-- [ClawVoice website](https://clawvoice.io) <br>
-- [OpenClaw voice-call plugin documentation](https://docs.openclaw.ai/plugins/voice-call) <br>
-- [Twilio A2P 10DLC guidance](https://www.twilio.com/docs/messaging/guides/10dlc) <br>
-- [Cloudflare Tunnel WebSocket issue referenced by the artifact](https://github.com/cloudflare/cloudflared/issues/1465) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text guidance with CLI commands, configuration values, call or SMS status, transcripts, summaries, and CSV campaign reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate real phone calls and SMS through configured providers; outputs can include call transcripts and post-call notifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata; artifact package metadata lists 1.1.2 and plugin manifest lists 1.0.4) <br>
+Risk: Provider API keys and telephony auth tokens are required for setup and could be exposed if pasted into chat or stored insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the local setup wizard or environment/config secrets for credentials, and avoid sharing provider keys or tokens in agent conversation.
+
+Risk: Call transcripts, summaries, and campaign reports may contain sensitive personal or business information and can be stored locally or sent to notification services.
+
+Mitigation: Disable transcript notification or export features when not needed, protect the voice-memory workspace, and review Telegram, Discord, or Slack recipients before enabling notifications.
+
+Risk: Voice calls and SMS messages are untrusted input channels that may try to influence agent memory or follow-up actions.
+
+Mitigation: Keep restricted tools enabled, set mainMemoryAccess to none for sensitive workspaces, and require explicit review before promoting voice memories to main memory.
+
+Risk: Inbound webhooks and media streams require public endpoints that expose a local service to external traffic.
+
+Mitigation: Avoid inbound public exposure until needed, use webhook signing secrets where available, run diagnostics before calls, and configure only real HTTPS/WSS tunnel URLs.
+
+Risk: Automated calling, SMS, and batch campaigns can create consent, telemarketing, and carrier-registration obligations.
+
+Mitigation: Confirm consent and applicable TCPA, state, and A2P 10DLC requirements before using outbound calling or SMS campaign features.
+
+## Reference(s):
+
+- [ClawHub ClawVoice listing](https://clawhub.ai/neocody/skills/clawvoice)
+- [ClawVoice website](https://clawvoice.io)
+- [npm package: clawvoice](https://www.npmjs.com/package/clawvoice)
+- [OpenClaw voice-call plugin docs](https://docs.openclaw.ai/plugins/voice-call)
+- [Twilio A2P 10DLC messaging guide](https://www.twilio.com/docs/messaging/guides/10dlc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance and plain-text tool responses with structured data, inline shell commands, and CSV campaign reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include call status, SMS status, summaries, transcripts, generated CSV paths, setup instructions, and configuration values.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

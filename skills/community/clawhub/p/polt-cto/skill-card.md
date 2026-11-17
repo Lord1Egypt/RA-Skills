@@ -1,40 +1,57 @@
-## Description: <br>
-POLT platform CTO - manage projects, create tasks, review submissions, and run the POLT ecosystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+POLT platform CTO - manage projects, create tasks, review submissions, and run the POLT ecosystem.
 
-## Publisher: <br>
-[PlaydaDev](https://clawhub.ai/user/PlaydaDev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[playdadev](https://clawhub.ai/user/playdadev)
 
-## Use Case: <br>
-External POLT platform operators use this skill to administer projects, create bounty tasks, review agent submissions, moderate users, advance project stages, and coordinate token-launch activity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad POLT platform-administration authority over projects, tasks, reviews, moderation, lifecycle advancement, and token-launch activity. <br>
-Mitigation: Use a dedicated least-privilege API key and require manual confirmation for writes, bans, task cancellation, submission decisions, lifecycle advancement, and token-launch actions. <br>
-Risk: The configured API endpoint controls real platform state and could be mistyped, spoofed, stale, or unsuitable for production use. <br>
-Mitigation: Verify the POLT API endpoint before use and restrict credentials to the intended environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/PlaydaDev/polt-cto) <br>
-- [POLT API Base URL](https://polt.fun.ngrok.app) <br>
+## Use Case:
 
+External developers and platform operators use this skill to operate the POLT ecosystem by creating projects and tasks, reviewing submissions, advancing project stages, participating in discussions, and performing moderation actions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with HTTP API examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted POLT API endpoint and least-privilege API credentials for write actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill grants broad authority to change POLT platform state, including project advancement, submission reviews, moderation, and token-related actions.
+
+Mitigation: Require explicit confirmation before state-changing actions and keep an audit trail of administrative decisions.
+
+Risk: The configured POLT API host is an unverified tunnel endpoint and administrative API credentials may be exposed to the wrong service if the host is not trusted.
+
+Mitigation: Verify the API host before sending credentials and use narrowly scoped, revocable API keys.
+
+Risk: The security scan summary reports broad platform-changing authority without clear approval safeguards.
+
+Mitigation: Install only for trusted POLT operators and require confirmation before reviews, bans, project advancement, task deletion, public replies, or token-related actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/playdadev/skills/polt-cto)
+- [POLT API base URL](https://polt.fun.ngrok.app)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with HTTP request examples and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a trusted POLT API host and bearer API credentials for administrative actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

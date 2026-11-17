@@ -1,43 +1,59 @@
-## Description: <br>
-Extracts subtitles from YouTube or Bilibili videos, saves the raw transcript, and generates a structured summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract subtitles from YouTube or Bilibili, save the raw transcript, and generate a structured summary.
 
-## Publisher: <br>
-[xiapuyang](https://clawhub.ai/user/xiapuyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiapuyang](https://clawhub.ai/user/xiapuyang)
 
-## Use Case: <br>
-External users and developers use this skill to turn YouTube or Bilibili videos into cleaned transcript files and structured Markdown summaries. It is useful for reviewing video content, extracting key ideas, and preserving video metadata alongside the generated notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically install or update yt-dlp during execution. <br>
-Mitigation: Preinstall a trusted yt-dlp version through your normal package-management process and review any update behavior before running the skill. <br>
-Risk: Bilibili subtitle access may read browser-derived login cookies and store them in a local cookies file. <br>
-Mitigation: Set BILIBILI_COOKIES_FILE to a dedicated restricted path, avoid sharing the file, and delete it after use when persistent access is not needed. <br>
-Risk: Raw transcripts and summaries may be written to local Markdown files without a separate consent prompt. <br>
-Mitigation: Set YOUTUBE_SUBTITLES_DIR to an approved output directory and review generated files before sharing or committing them. <br>
+## Use Case:
 
+External users and developers use this skill to turn YouTube or Bilibili videos into local Markdown transcripts and structured summaries. It is suited for reviewing video content, preserving subtitle text, and generating concise topic-oriented notes from short or long videos.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiapuyang/youtube-subtitle-summary) <br>
-- [Publisher Profile](https://clawhub.ai/user/xiapuyang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files with YAML frontmatter, cleaned transcript text, structured summary sections, and supporting shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write transcript and summary files to the current directory or to YOUTUBE_SUBTITLES_DIR; summary language can be controlled with YOUTUBE_SUBTITLES_SUMMARY_LANG.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can automatically install or update yt-dlp.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the commands before use and prefer a release or local workflow that asks before installing or updating software.
+
+Risk: For Bilibili links, the skill can access Chrome or keychain cookies and store a reusable cookie file in the user's home directory.
+
+Mitigation: Use only when cookie access is acceptable; prefer a temporary or user-supplied cookie file with restrictive permissions.
+
+Risk: The skill depends on subtitles being available from the target video.
+
+Mitigation: Expect the workflow to stop when no manual or auto-generated subtitles are available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiapuyang/skills/youtube-subtitle-summary)
+- [Publisher profile](https://clawhub.ai/user/xiapuyang)
+- [Bilibili](https://www.bilibili.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown transcript and Markdown summary files with YAML frontmatter, plus shell command output during subtitle retrieval.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a raw transcript file and a companion summary file; long transcripts are summarized through chunked map-reduce notes before final synthesis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,58 @@
-## Description: <br>
-Systematic debugging and problem-solving methodology that activates for unexpected errors, service failures, regression bugs, deployment issues, repeated failed fixes, and root-cause verification before proposing fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematic debugging and problem-solving methodology for unexpected errors, service failures, regression bugs, deployment issues, and failed fix attempts.
 
-## Publisher: <br>
-[abczsl520](https://clawhub.ai/user/abczsl520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[abczsl520](https://clawhub.ai/user/abczsl520)
 
-## Use Case: <br>
-Developers, engineers, and agent operators use this skill to follow a structured debugging workflow, identify root causes, avoid patch chains, and verify fixes before deployment or service restart. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Deployment examples can affect production services if applied to the wrong host, path, process manager, or unverified file. <br>
-Mitigation: Before applying server-deployment examples, verify the target machine, file paths, backups, syntax checks, restart command, and health checks. <br>
+## Use Case:
 
+Developers, engineers, and coding agents use this skill to follow a root-cause debugging process before changing code, restarting services, or deploying fixes. It helps avoid patch-chaining, wrong-environment restarts, and temporary workarounds that do not address the underlying failure.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/abczsl520/debug-methodology) <br>
-- [Publisher Profile](https://clawhub.ai/user/abczsl520) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with checklists, decision trees, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory debugging and deployment-safety guidance; it does not execute code by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill includes guidance for server deployment, backups, pushes, and restarts that could affect production systems if applied without approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep normal approval boundaries for real production changes, backups, pushes, and restarts.
+
+Risk: Debugging guidance may lead an agent to propose code or operational changes that are incorrect for the actual environment.
+
+Mitigation: Require root-cause confirmation, one-change-at-a-time testing, syntax checks, health checks, and rollback readiness before deployment.
+
+## Reference(s):
+
+- [Debug Methodology ClawHub Skill Page](https://clawhub.ai/abczsl520/skills/debug-methodology)
+- [OpenClaw Agent Skill Project](https://github.com/openclaw/openclaw)
+- [bug-audit](https://github.com/abczsl520/bug-audit-skill)
+- [codex-review](https://github.com/abczsl520/codex-review)
+- [nodejs-project-arch](https://github.com/abczsl520/nodejs-project-arch)
+- [game-quality-gates](https://github.com/abczsl520/game-quality-gates)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with checklists, decision trees, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces process guidance for debugging and deployment verification; it does not execute commands by itself.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

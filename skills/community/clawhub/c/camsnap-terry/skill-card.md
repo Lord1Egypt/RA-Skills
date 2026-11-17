@@ -1,39 +1,52 @@
-## Description: <br>
-Take camera snapshots and save them to disk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Take camera snapshots from the default webcam and save them to disk.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and end users can invoke this skill when they want an agent to capture a single image from the default webcam and return the saved local file path.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can access the default webcam when invoked.
+
+Mitigation: Install and run it only in contexts where webcam capture is expected and authorized.
+
+Risk: Captured images are saved in the current workspace and may be exposed if the destination folder is shared or writable by others.
+
+Mitigation: Use a private working directory and review output paths before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to capture a single image from the default webcam and save it locally when a user requests a photo or snapshot. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, files]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill activates the default webcam and saves live camera images locally. <br>
-Mitigation: Use it only after a clear user request for a photo, verify the saved path, and delete retained images that should not persist. <br>
-Risk: User-supplied paths are passed through a shell command in a way the security evidence flags as risky. <br>
-Mitigation: Use simple output paths without shell metacharacters and prefer structurally passed or quoted arguments in future revisions. <br>
+**Output Format:** [Plain text status with a local image file path and a saved image file]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Images are saved locally within the current working directory using safe image extensions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown status text with a local image file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a locally saved image file, typically under ./snapshots/ when no output path is supplied.] <br>
+1.0.0 (source: server release metadata and skill frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

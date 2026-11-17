@@ -1,46 +1,63 @@
-## Description: <br>
-Automation Master is a Windows office automation skill for file conversion, batch renaming, Excel data merging, template-based document generation, invoice extraction, and tax reconciliation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automation Master is an office automation suite for file conversion, batch renaming, Excel data merging, template-based document generation, invoice extraction, and tax reconciliation.
 
-## Publisher: <br>
-[mk1350](https://clawhub.ai/user/mk1350) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mk1350](https://clawhub.ai/user/mk1350)
 
-## Use Case: <br>
-Employees and external business users can use this skill to automate common office document workflows, including file conversion, batch renaming, template-based document generation, invoice extraction, and Excel-based tax reconciliation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform broad Windows side effects while processing local documents. <br>
-Mitigation: Run it in an isolated Windows environment with copies of documents and review file operations before deployment. <br>
-Risk: The skill may process sensitive financial, tax, invoice, and identity data. <br>
-Mitigation: Treat generated spreadsheets and logs as sensitive and avoid using the skill on shared workstations. <br>
-Risk: Conversion and printing workflows can interact with LibreOffice processes and shared printer routing. <br>
-Mitigation: Close LibreOffice before conversion and avoid shared printers until process cleanup and printer routing are reviewed. <br>
-Risk: Custom executable paths could expand the execution surface. <br>
-Mitigation: Use trusted default application paths and avoid providing custom executable paths. <br>
+## Use Case:
 
+External business users, finance and accounting teams, HR teams, and data analysts use this skill to automate office file handling, extract structured invoice data, and reconcile tax or business datasets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mk1350/mk1350-automation-master) <br>
-- [Skill README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, text, structured data, configuration] <br>
-**Output Format:** [Generated office files, Excel workbooks, extracted invoice fields, and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Windows-only execution path; some conversions may require LibreOffice or Microsoft Excel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill has broad local execution and file-handling powers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and run it only in an isolated, non-admin Windows environment with dedicated temporary and output directories.
+
+Risk: Document conversion can depend on an external LibreOffice executable.
+
+Mitigation: Restrict the LibreOffice executable path to a trusted administrator-managed binary.
+
+Risk: Dependencies and optional printing behavior can expand the local system impact.
+
+Mitigation: Pin and review dependencies, and disable or remove printing unless explicitly needed.
+
+Risk: Invoice and identity documents may contain confidential information.
+
+Mitigation: Avoid processing confidential invoices or identity documents until logging and cleanup are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mk1350/skills/mk1350-automation-master)
+- [Artifact README](artifact/README.md)
+- [Artifact skill manifest](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Text]
+
+**Output Format:** [JSON status responses with links or paths to generated office files and spreadsheets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce converted documents, renamed files, generated Word or Excel documents, invoice spreadsheets, reconciliation spreadsheets, or print job status.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

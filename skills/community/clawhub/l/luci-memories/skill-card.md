@@ -1,44 +1,57 @@
-## Description: <br>
-Searches a user's Luci-memory media and portrait data, including videos, images, recordings, transcripts, traits, events, relationships, and speeches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search personal video memory, including videos, images, keyframes, transcripts, traits, events, relationships, and speeches, when a user asks about their media, what happened, what was said, who they know, or their personality.
 
-## Publisher: <br>
-[memories-ai-official](https://clawhub.ai/user/memories-ai-official) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[memories-ai-official](https://clawhub.ai/user/memories-ai-official)
 
-## Use Case: <br>
-External users and their agents use this skill to search and retrieve grounded information from personal Luci-memory media, recordings, transcripts, and portrait data. It supports finding relevant memories, events, people, speech, images, and keyframes with filters for time, location, IDs, and people. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can search highly private personal media, recordings, transcripts, traits, relationships, and speech data. <br>
-Mitigation: Install only when the user trusts memories.ai and the publisher with that data, and keep answers grounded in retrieved results. <br>
-Risk: The skill supports plaintext MEMORIES_AI_KEY persistence in the skill directory. <br>
-Mitigation: Prefer supplying MEMORIES_AI_KEY through a secure environment or secret manager, and rotate the key if it is exposed. <br>
-Risk: Broad memory or personality questions can unintentionally trigger sensitive retrieval. <br>
-Mitigation: Confirm ambiguous intent before searching and narrow retrieval by date, person, location, or media ID when possible. <br>
+## Use Case:
 
+Developers and agents use this skill to search a user's personal media memory and portrait data, then answer questions about videos, images, recordings, people, events, relationships, and speech using retrieved results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/memories-ai-official/luci-memories) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/memories-ai-official) <br>
-- [Luci-memory API host](https://skills.memories.ai/luci-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with command outputs and retrieved result lists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MEMORIES_AI_KEY; results may include UTC timestamps, media IDs, transcripts, image bucket/blob references, locations, and similarity scores.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill accesses personal media, transcripts, portrait traits, events, relationships, and speeches through Memories.ai services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user trusts Memories.ai with this personal data and understands that retrieved results may contain sensitive memories or identities.
+
+Risk: The security evidence reports that MEMORIES_AI_KEY may be stored in a plaintext local .env file.
+
+Mitigation: Prefer a protected secret mechanism for MEMORIES_AI_KEY, restrict local file permissions if a .env file is used, and avoid committing or sharing the key.
+
+Risk: The security evidence reports sensitive media exposure through non-expiring unauthenticated image references.
+
+Mitigation: Avoid sharing logs, transcripts, bucket values, or blob values until media URLs are authenticated, expiring, and revocable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/memories-ai-official/skills/luci-memories)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-formatted search results and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include media, transcript, event, trait, relationship, speech, timestamp, location, bucket, and blob fields returned by the Luci-memory APIs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

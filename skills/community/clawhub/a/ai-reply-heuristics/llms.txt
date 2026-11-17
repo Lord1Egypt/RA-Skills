@@ -1,0 +1,13 @@
+# ai-reply-heuristics
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`。
+
+## 关键文件
+
+- [SKILL.md](SKILL.md)：主说明书（frontmatter + 触发条件 + 执行步骤）
+- [AGENTS.md](AGENTS.md)：AI 代理说明书
+- [README.md](README.md)：人类总览（如存在）
+
+## 一句话定位
+
+ai-reply-heuristics — 启发式估计一段文字的 AI 痕迹强度：套话密度/破折号频率/句长均匀度/排比结构 → 0-100 分与三档区间（启发式，不构成判定，附免责）。

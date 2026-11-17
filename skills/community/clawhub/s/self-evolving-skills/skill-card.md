@@ -1,45 +1,51 @@
-## Description: <br>
-Helps an agent turn successful complex tasks into reusable skills for ongoing procedural memory and knowledge accumulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent self-evolution mechanism that helps agents turn successful complex tasks into reusable skills for continuous learning and procedural knowledge accumulation.
 
-## Publisher: <br>
-[tunsuy](https://clawhub.ai/user/tunsuy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tunsuy](https://clawhub.ai/user/tunsuy)
 
-## Use Case: <br>
-Developers and agent builders use this skill to decide when a completed complex workflow should be captured as a reusable skill, then scaffold, maintain, and validate the skill files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to create or overwrite reusable skill files. <br>
-Mitigation: Use a dedicated skills directory and require review before creating or overwriting files. <br>
-Risk: Generated scripts or commands may be unsafe or unsuitable for the user's environment. <br>
-Mitigation: Inspect generated scripts and commands before running them. <br>
-Risk: Incorrect guidance could be preserved as reusable procedural memory. <br>
-Mitigation: Review and validate new or updated skills before deployment. <br>
+## Use Case:
 
+Developers and agent builders use this skill to decide when an agent should preserve a completed workflow as a reusable skill, create the supporting skill files, and validate the resulting skill structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tunsuy/self-evolving-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/tunsuy) <br>
-- [Decision Flow](artifact/references/decision-flow.md) <br>
-- [Skill Format](artifact/references/skill-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional code blocks, file templates, and validation commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed file paths and generated skill content for review before writing or execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can lead an agent to create or modify reusable skills, which may persist incorrect, misleading, or unsafe procedures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the target path and exact diff before creating or updating skill files, and require explicit approval before changing existing skills or scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tunsuy/skills/self-evolving-skills)
+- [Skill deposition decision flow](references/decision-flow.md)
+- [SKILL.md format reference](references/skill-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional skill files, templates, scripts, and validation command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce persistent skill instructions and supporting files when the user approves skill creation or updates.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

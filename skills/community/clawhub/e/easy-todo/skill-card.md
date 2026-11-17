@@ -1,43 +1,57 @@
-## Description: <br>
-Personal TODO list manager. Add tasks with deadlines and priorities, mark them done, set up recurring items, and receive morning and evening summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal TODO list manager. Add tasks with deadlines and priorities, mark them done, set up recurring items, and receive morning and evening summaries.
 
-## Publisher: <br>
-[simenfur](https://clawhub.ai/user/simenfur) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simenfur](https://clawhub.ai/user/simenfur)
 
-## Use Case: <br>
-Individuals and their agents use this skill to maintain a local personal TODO list, track deadlines and priorities, manage recurring tasks, and receive morning or evening summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task titles, notes, and schedules are stored on local disk. <br>
-Mitigation: Do not store secrets or highly sensitive notes in tasks, and review the local todos.md file location before use. <br>
-Risk: Morning and evening briefings depend on the agent environment actually running scheduled commands. <br>
-Mitigation: Confirm scheduled execution support in the host agent before relying on proactive reminders. <br>
-Risk: Changing TODOS_FILE can redirect where task data is written. <br>
-Mitigation: Leave TODOS_FILE unset unless intentionally using a different task-store path. <br>
+## Use Case:
 
+External users use this skill to manage a local personal TODO list through an agent, including one-off tasks, recurring tasks, deadlines, priorities, and scheduled morning and evening summaries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/simenfur/easy-todo) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/simenfur) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Plain text command output and a local Markdown TODO file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and writes task data to a local todos.md file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Automatic reminders and recurring task materialization can create or surface tasks without a direct user prompt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scheduled summary behavior and recurring task settings before enabling automatic execution.
+
+Risk: Important task data is stored in a local todos.md file and may be affected by fragile storage parsing.
+
+Mitigation: Keep backups for important task data and avoid adding untrusted task text or reserved storage markers.
+
+Risk: Changing TODOS_FILE can direct the skill to read or write an unintended local file.
+
+Mitigation: Leave TODOS_FILE at its default or point it only to a dedicated TODO file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simenfur/skills/easy-todo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text CLI responses and Markdown task list updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and local todos.md storage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

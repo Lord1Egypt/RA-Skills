@@ -1,40 +1,54 @@
-## Description: <br>
-Gene系统自动化引擎 — Agent行为规则的退役检查、冷却期管理、主动探测、健康评分。让Agent的规则系统从「人驱动」变成「代码驱动」。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gene Engine automates lifecycle management for agent behavior rules, including retirement checks, cooldown handling, active probing, verification intervals, wake-up-rate calculation, health scoring, metrics logging, JSON summaries, and alerts.
 
-## Publisher: <br>
-[smilepeng0612](https://clawhub.ai/user/smilepeng0612) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smilepeng0612](https://clawhub.ai/user/smilepeng0612)
 
-## Use Case: <br>
-Developers and agent operators use Gene Engine to manage OpenClaw Gene rule lifecycle state, including retirement checks, cooldown recovery, active probing, trigger tracking, and health scoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill rewrites persistent OpenClaw rule memory. <br>
-Mitigation: Back up gene-state.json before recurring use and review early state changes manually. <br>
-Risk: A helper script can execute unintended local Python from crafted input text. <br>
-Mitigation: Avoid untrusted or free-form text in gene-trigger.sh until its Python argument handling is patched. <br>
+## Use Case:
 
+Developers and agent operators use Gene Engine in OpenClaw workspaces to audit and maintain behavior-rule state, identify stale or failing rules, and generate status summaries for heartbeat workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/smilepeng0612/gene-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Terminal text reports with a machine-readable JSON summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Updates OpenClaw Gene state files and appends a metrics log during recurring use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Crafted gene keys or outcome text could execute unintended code while changing persistent agent state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a trusted OpenClaw workspace, do not pass untrusted gene keys or outcome text, and fix the Python interpolation issues before shared or automated use.
+
+Risk: The scripts update gene-state.json and append metrics logs in the OpenClaw workspace.
+
+Mitigation: Review the scripts before installation, keep recoverable copies of workspace state, and restrict execution to the workspace owner.
+
+## Reference(s):
+
+- [Gene Engine on ClawHub](https://clawhub.ai/smilepeng0612/skills/gene-engine)
+- [smilepeng0612 ClawHub profile](https://clawhub.ai/user/smilepeng0612)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text status reports with machine-readable JSON summaries and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Updates gene-state.json and appends metrics to gene-metrics.log in the OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

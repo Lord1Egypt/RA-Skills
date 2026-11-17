@@ -1,49 +1,64 @@
-## Description: <br>
-RealBrowser by Ceki lets an AI agent drive a real Chrome session, either self-hosted or rented from an opted-in marketplace participant, for authorized QA, accessibility, monitoring, support, and data-collection workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lets your AI agent drive a real Chrome session, either your own or one from an opted-in marketplace participant, for authorized QA flows, accessibility audits, synthetic monitoring, support-dashboard automation, and permitted data collection where headless or scripted requests are not enough.
 
-## Publisher: <br>
-[iwedmak](https://clawhub.ai/user/iwedmak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[iwedmak](https://clawhub.ai/user/iwedmak)
 
-## Use Case: <br>
-Developers, QA engineers, accessibility reviewers, and support teams use this skill to run authorized browser workflows on sites they own or are permitted to operate on when a real Chrome session is required. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rent and drive live browser sessions, including click and type actions that may affect real accounts or incur charges. <br>
-Mitigation: Review before installing, require confirmation before renting, clicking, or typing, and keep marketplace sessions stopped when work is complete. <br>
-Risk: One example configuration pre-approves high-impact actions through alwaysAllow. <br>
-Mitigation: Remove or narrow alwaysAllow entries so the agent asks before renting, clicking, typing, scrolling, or stopping sessions. <br>
-Risk: Marketplace sessions are visible to the opted-in host, so confidential pages, credentials, payment data, or private content could be exposed. <br>
-Mitigation: Use Self mode for sensitive workflows and avoid entering secrets or private user data into marketplace sessions. <br>
-Risk: Profile export and import can create sensitive local files containing cookies or session state. <br>
-Mitigation: Treat exported profiles as sensitive session files, store them only where needed, and delete or protect them after use. <br>
-Risk: Real-browser automation can violate site terms, consent expectations, access controls, or local law if used on unauthorized sites. <br>
-Mitigation: Use only on sites where the user has explicit authorization, respect Terms of Service and robots.txt, and do not use it for CAPTCHA or third-party-site automation unless explicitly authorized. <br>
+## Use Case:
 
+Developers, QA engineers, accessibility reviewers, monitoring operators, and support teams use this skill to drive real Chrome sessions on sites they own or are authorized to operate on. It is intended for workflows where JavaScript execution, full page layout, screenshots, browser interaction, or a real user environment is required.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iwedmak/realbrowser) <br>
-- [Ceki dashboard and API key management](https://ceki.me) <br>
-- [Ceki Chrome extension for Self mode](https://browser.ceki.me/install) <br>
-- [ceki-sdk on PyPI](https://pypi.org/project/ceki-sdk/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration, and Python or TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces browser-operation guidance and command examples; live actions depend on the ceki CLI and user-provided API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata, manifest.json, CHANGELOG.md) <br>
+Risk: The installer fetches an unpinned third-party ceki-sdk package and may modify the Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the package source and prefer a pinned SDK version in an isolated environment.
+
+Risk: Marketplace sessions are visible to the remote browser host and may expose sensitive task content.
+
+Mitigation: Use Self mode for sensitive work and do not enter personal credentials, payment data, or private content into marketplace sessions.
+
+Risk: Marketplace rentals can incur real per-minute charges until the session is stopped.
+
+Mitigation: Stop each rental promptly with the documented stop command and monitor active sessions during use.
+
+Risk: Browser automation can violate site rules or legal requirements when used without authorization.
+
+Mitigation: Use the skill only on sites the user owns or is explicitly authorized to operate on, and honor Terms of Service, robots.txt, access controls, and consent preferences.
+
+## Reference(s):
+
+- [ClawHub RealBrowser listing](https://clawhub.ai/iwedmak/skills/realbrowser)
+- [Ceki homepage](https://ceki.me)
+- [ceki-sdk on PyPI](https://pypi.org/project/ceki-sdk/)
+- [Ceki Chrome extension](https://browser.ceki.me/install)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, code snippets, and browser session output files such as screenshots.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill primarily guides agents to invoke the ceki CLI or SDK; browser state may be returned through screenshots, snapshots, chat messages, session identifiers, and local session files.]
+
+## Skill Version(s):
+
+0.1.1 (source: server evidence and manifest.json; changelog released 2026-06-20)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

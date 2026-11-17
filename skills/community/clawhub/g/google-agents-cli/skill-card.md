@@ -1,41 +1,51 @@
-## Description: <br>
-Bootstraps the Google agents-cli experience for scaffolding, building, evaluating, deploying, publishing, and observing ADK agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstraps the Google agents-cli experience for Google Agent Development Kit agent development, including setup for specialized skills covering scaffold, build, evaluate, deploy, publish, and observe workflows.
 
-## Publisher: <br>
-[eliasecchig](https://clawhub.ai/user/eliasecchig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eliasecchig](https://clawhub.ai/user/eliasecchig)
 
-## Use Case: <br>
-Developers use this onboarding skill to install and activate the Google agents-cli toolchain for common Google Agent Development Kit workflows, including project scaffolding, evaluation, deployment, publishing, and observability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup command is unpinned and persistently installs multiple additional agent skills that were not included in this review. <br>
-Mitigation: Verify the package source, pin a known version where possible, and inspect the installed skills before using them. <br>
-Risk: The installed workflow skill may remain always active after setup. <br>
-Mitigation: Confirm how to disable or remove the workflow skill before installing it in a shared or production agent environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to install and hand off to the Google agents-cli toolchain when building, evaluating, deploying, publishing, or observing ADK-based agents.
 
-## Reference(s): <br>
-- [Google agents-cli](https://github.com/google/agents-cli) <br>
-- [uv installation guide](https://docs.astral.sh/uv/getting-started/installation/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May lead the agent to install and activate additional specialized skills after setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The setup command is unpinned and installs multiple additional agent skills that were not included in this review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package and installed skills before use, prefer a pinned verified package version, and run setup in an isolated environment without unnecessary credentials or sensitive project access.
+
+## Reference(s):
+
+- [agents-cli GitHub repository](https://github.com/google/agents-cli)
+- [uv installation guide](https://docs.astral.sh/uv/getting-started/installation/index.md)
+- [ClawHub skill page](https://clawhub.ai/eliasecchig/skills/google-agents-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires agents-cli and uv; setup installs additional specialized skills into the coding-agent environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-AuthLock provides MFA-bound local secret protection using TOTP-based encryption for passwords, certificates, keys, and other sensitive data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AuthLock provides TOTP-bound secret protection for passwords, certificates, keys, and other sensitive data through a local command-line vault.
 
-## Publisher: <br>
-[johnluicn](https://clawhub.ai/user/johnluicn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnluicn](https://clawhub.ai/user/johnluicn)
 
-## Use Case: <br>
-Developers and agent users use authlock to seal local secrets into .authlock vault locations and require a fresh TOTP code before decryption for workflows such as SSH keys, passwords, API tokens, and certificates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The vault stores the TOTP seed locally, so compromise of the .authlock directory can weaken the MFA-bound security model. <br>
-Mitigation: Protect and back up the .authlock directory carefully, restrict local filesystem access, and avoid storing critical production credentials unless the local-seed model is acceptable. <br>
-Risk: Decryption can send plaintext to stdout or files where an agent, shell history, logs, or chat transcript could expose it. <br>
-Mitigation: Require a fresh TOTP code for each decryption, avoid echoing decrypted content, and write plaintext only to explicit user-approved paths or in-memory operations. <br>
-Risk: The --exec path can provide decrypted credentials to arbitrary shell commands. <br>
-Mitigation: Use --exec only with commands the user wrote and trusts, and avoid passing decrypted material to untrusted command strings. <br>
+## Use Case:
 
+Developers and agents use AuthLock to seal, locate, list, decrypt, and optionally route secrets for short-lived operational use while requesting a current TOTP code for each decryption.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnluicn/authlock) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local .authlock configuration and .sealed files; decryption can emit plaintext to stdout, a file, or a trusted execution command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill handles high-value secrets and the security evidence flags misleading protection boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual review before use, keep vault paths tightly scoped, and do not treat stored configuration as strong protection if the vault directory is exposed.
+
+Risk: The artifact supports decrypted output to files and execution through an --exec path.
+
+Mitigation: Avoid --exec, write decrypted material only to explicit low-risk paths, and prefer short-lived in-memory use without echoing plaintext.
+
+Risk: Decryption depends on TOTP and optional PIN handling.
+
+Mitigation: Request a fresh TOTP code for each decryption, avoid caching codes, and review time synchronization and PIN requirements before operational use.
+
+## Reference(s):
+
+- [AuthLock ClawHub skill page](https://clawhub.ai/johnluicn/skills/authlock)
+- [johnluicn ClawHub publisher profile](https://clawhub.ai/user/johnluicn)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command-line examples and local CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write encrypted vault files, decrypted output files, or temporary execution files when invoked through the bundled CLI.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

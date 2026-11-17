@@ -1,7 +1,7 @@
 ---
 name: graph-limitless-mcp
-description: "Query Limitless prediction markets on Base — live odds, trader P&L, whale tracking, market stats, and daily volume from The Graph's decentralized network."
-version: 1.0.0
+description: "Protocol-wide on-chain analytics for Limitless prediction markets on Base — trader P&L, top traders, market and daily volume history, liquidity events, and raw GraphQL, from the Limitless subgraphs on The Graph's decentralized network."
+version: 1.1.0
 homepage: https://github.com/PaulieB14/limitless-subgraphs
 metadata:
   clawdbot:
@@ -27,20 +27,33 @@ Query Limitless prediction markets on Base. Get live market data, trader analyti
 
 ## What's inside
 
+19 tools, all read-only.
+
 | Tool | What it does |
 |------|-------------|
-| `get_platform_stats` | Total markets, volume, trades, users across Simple + NegRisk |
-| `get_markets` | Browse markets with volume, trade counts, resolution status |
-| `search_markets` | Search by keyword or category via Limitless API |
-| `get_market_details` | Deep dive on a specific market — conditions, outcomes, payouts |
-| `get_trades` | Recent trades with USD amounts, buy/sell, maker/taker |
-| `get_user_stats` | Trader profile — volume, trade count, first/last trade |
-| `get_user_trades` | Full trade history for any wallet |
-| `get_user_positions` | Current holdings with token balances |
-| `get_daily_snapshots` | Daily volume, trades, splits, merges, redemptions |
-| `get_market_daily_snapshots` | Per-market daily breakdown |
-| `get_top_traders` | Leaderboard by volume |
-| `get_whale_trades` | Large trades filtered by minimum USD amount |
+| **Protocol-wide** | |
+| `get_global_stats` | Get combined protocol-wide stats across both simple and negrisk markets. |
+| `get_daily_protocol_stats` | Get daily protocol stats (volume, trades, fees, splits, merges, redemptions) across both market types as a time series. |
+| `compare_market_types` | Side-by-side comparison of simple vs negrisk market performance. |
+| `get_recent_activity` | Get a unified feed of all recent on-chain activity: trades, splits, merges, and redemptions across both market types wit |
+| `get_liquidity_events` | Get splits, merges, and redemptions — the liquidity lifecycle events. |
+| `get_conditions` | Get conditions (markets that have been prepared on-chain) with resolution status. |
+| **Markets** | |
+| `search_markets` | Search markets by keyword or category. |
+| `get_market_analytics` | Get full analytics for a specific market by conditionId. |
+| `get_market_trades` | Get trades for a specific market. |
+| `get_market_positions` | Get top position holders for a specific market. |
+| `get_market_daily_snapshots` | Get daily volume, trades, and fees for a specific market over time. |
+| `get_market_lifecycle` | Get the complete lifecycle of a market: creation, trading stats, splits/merges, resolution status, and redemptions — all |
+| **Traders** | |
+| `get_trader_profile` | Get a trader's profile across both simple and negrisk markets. |
+| `get_trader_trades` | Get a trader's recent trades across both market types, enriched with market names. |
+| `get_trader_positions` | Get a trader's current positions across both market types with balances and PnL. |
+| `get_trader_pnl` | Calculate a trader's estimated profit & loss from on-chain data. |
+| `get_top_traders` | Get top traders ranked by volume, trade count, or PnL. |
+| **Escape hatches** | |
+| `get_subgraph_schema` | Get the GraphQL schema for a Limitless subgraph via introspection. |
+| `query_subgraph` | Run a raw GraphQL query against a Limitless subgraph. |
 
 ## Data coverage
 

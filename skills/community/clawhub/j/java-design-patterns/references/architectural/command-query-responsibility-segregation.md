@@ -144,7 +144,7 @@ Trade-Offs:
 - [Implementing Domain-Driven Design](https://amzn.to/3TJN2HH)
 - [Microsoft .NET: Architecting Applications for the Enterprise](https://amzn.to/4aktRes)
 - [Patterns, Principles, and Practices of Domain-Driven Design](https://amzn.to/3vNV4Hm)
-- [CQRS, Task Based UIs, Event Sourcing agh! (Greg Young)](http://codebetter.com/gregyoung/2010/02/16/cqrs-task-based-uis-event-sourcing-agh/)
+- [CQRS, Task Based UIs, Event Sourcing agh! (Greg Young)](http://codebetter.com/gregyoung/2010/02/16/cqrs-taREDACTED-SECRET/)
 - [CQRS (Martin Fowler)](https://martinfowler.com/bliki/CQRS.html)
 - [CQRS for Great Good (Oliver Wolf)](https://www.youtube.com/watch?v=Ge53swja9Dw)
 - [CQRS pattern (Microsoft)](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)

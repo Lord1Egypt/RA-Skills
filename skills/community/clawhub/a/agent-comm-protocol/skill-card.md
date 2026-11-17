@@ -1,40 +1,54 @@
-## Description: <br>
-Standard protocol for reliable task dispatch, status reporting, and result feedback with confirmation, retry, and logging between agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standard protocol for reliable task dispatch, status reporting, and result feedback with confirmation, retry, and logging between agents.
 
-## Publisher: <br>
-[nancliu](https://clawhub.ai/user/nancliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nancliu](https://clawhub.ai/user/nancliu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to standardize inter-agent task assignment, status updates, result reporting, acknowledgements, retries, and exception handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Communication logs may contain sensitive task details or secrets. <br>
-Mitigation: Avoid putting secrets in messages, restrict log file permissions, and define retention or deletion rules for logged conversations. <br>
-Risk: Agents may apply acknowledgement, retry, or exception-reporting steps inconsistently unless the protocol is adopted by all participants. <br>
-Mitigation: Confirm participating agents use the documented message templates, timeout thresholds, and retry limits before relying on the protocol for coordination. <br>
+## Use Case:
 
+Developers and agent operators use this skill to standardize inter-agent task handoff, progress reporting, completion feedback, timeout handling, and exception reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nancliu/agent-comm-protocol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown communication protocol with reusable message templates and timeout tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes acknowledgement, retry, status-reporting, exception-reporting, and communication-log guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Communication logs may persist sensitive task details, secrets, tokens, personal data, or confidential information if users include them in messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure file permissions, redaction, path validation, and retention controls before using the logging convention, and avoid including secrets or confidential data in agent messages.
+
+Risk: Protocol timeouts and retries can create duplicate or stale task messages if recipients process delayed messages without checking status.
+
+Mitigation: Use the confirmation, status tracking, retry limit, and exception-reporting steps together so operators can identify failed, delayed, or repeated handoffs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nancliu/skills/agent-comm-protocol)
+- [Publisher profile](https://clawhub.ai/user/nancliu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown protocol templates and concise operating guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes message templates, timeout thresholds, retry counts, flow steps, and a local communication-log path convention.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

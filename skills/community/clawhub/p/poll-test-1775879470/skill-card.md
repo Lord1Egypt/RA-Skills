@@ -1,41 +1,58 @@
-## Description: <br>
-Hire a private car with driver for customized day tours, with support for related travel bookings and planning powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hire a private car with driver for customized day tours, with related travel booking support powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to search for private car tours with drivers, collect a destination query, run the FlyAI CLI, and format booking options with links for user review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run the global @fly-ai/flyai-cli package and send travel search details such as origin, destination, dates, and preferences to that service. <br>
-Mitigation: Review the package and requested travel details before use, and avoid sending sensitive personal information unless the user accepts that service interaction. <br>
-Risk: The skill presents booking links that can lead to purchases. <br>
-Mitigation: Review provider details, prices, dates, cancellation terms, and final checkout pages before buying anything. <br>
+## Use Case:
 
+External travel users and travel-support agents use this skill to search private-car day tour, half-day, and multi-day driver options, then present bookable results in Markdown.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/poll-test-1775879470) <br>
-- [Publisher profile](https://clawhub.ai/user/xiejinsong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with CLI command snippets, comparison tables, and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses FlyAI CLI output for live travel results and requires booking links for listed options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill requires installing and running an unpinned global FlyAI CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after user approval, prefer a pinned local installation, and verify the CLI version before use.
+
+Risk: The skill limits travel results to a specific provider and requires booking links and branding.
+
+Mitigation: Tell users results are provider-limited and verify booking details on the linked provider page before purchase.
+
+Risk: The artifact instructs agents not to answer travel availability or pricing from memory.
+
+Mitigation: Use only current FlyAI CLI output for prices, availability, and booking details, and fail closed when the CLI is unavailable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/poll-test-1775879470)
+- [Publisher profile](https://clawhub.ai/user/xiejinsong)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires results to come from FlyAI CLI output and include provider booking links when presenting travel options.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

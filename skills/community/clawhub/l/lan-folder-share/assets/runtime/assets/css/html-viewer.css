@@ -1,0 +1,73 @@
+/* Locale: zh-CN (documented in SKILL.md metadata) — part of "Lan Folder Share",
+ * a LAN knowledge-base tool for Chinese-speaking users; comments are Chinese by
+ * design. 语言声明：本文件面向中文用户，注释默认中文。
+ * ---------------------------------------------------------------------------
+ * 知识库 HTML 报告预览（html-viewer.js）—— 右侧内容区 iframe 平铺 */
+
+.kb-html-page {
+  padding-top: 8px;
+}
+.kb-html-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.kb-html-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.kb-html-open {
+  flex: 0 0 auto;
+  padding: 3px 10px;
+  font-size: 12px;
+  color: #4a6ee0;
+  text-decoration: none;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.kb-html-open:hover {
+  background: #e0e7ff;
+  border-color: #4a6ee0;
+}
+.kb-html-frame {
+  display: block;
+  width: 100%;
+  border: 1px solid #e3e8f0;
+  border-radius: 6px;
+  background: #fff;
+}
+
+/* 目录页「网页报告」入口列表（auto-dir-index.js） */
+.kb-dir-html-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.kb-dir-html-item {
+  display: block;
+  padding: 8px 12px;
+  background: #fff;
+  border: 1px solid #e3e8f0;
+  border-radius: 8px;
+  color: #1f2937;
+  text-decoration: none;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.kb-dir-html-item:hover {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+  color: #4a6ee0;
+}

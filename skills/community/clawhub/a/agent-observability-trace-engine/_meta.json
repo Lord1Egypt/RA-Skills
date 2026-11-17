@@ -1,0 +1,31 @@
+{
+  "name": "agent-observability-trace-engine",
+  "version": "1.1.0",
+  "displayName": "OpenClaw Agent Observability & Trace Engine",
+  "description": "Agent observability, tracing, and metrics engine: trace IDs, spans, event taxonomy, secret redaction, latency/bottleneck/token/retry analysis, incident timelines, health scoring, and cross-skill correlation for diagnostics.",
+  "tags": [
+    "observability",
+    "tracing",
+    "metrics",
+    "monitoring",
+    "diagnostics",
+    "debug",
+    "incident",
+    "health"
+  ],
+  "requires": {
+    "bins": [],
+    "env": [],
+    "os": []
+  },
+  "integrations": [
+    "agent-evaluation-benchmark-engine",
+    "openclaw-token-connection-guard",
+    "openclaw-universal-service-access",
+    "openclaw-skill-evolution",
+    "openclaw-auto-skill-orchestrator"
+  ],
+  "slug": "agent-observability-trace-engine",
+  "ownerHandle": "pmuhammadagus-byte",
+  "ownerId": "2ac6cc9cad7905a6b61cf1d685a3a8f1"
+}

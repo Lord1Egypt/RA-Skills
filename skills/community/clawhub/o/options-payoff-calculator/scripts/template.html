@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Options Payoff</title>
+
+<!--
+  Options payoff calculator. Self-contained: no network request is made at view time, no
+  external stylesheet, no script from anywhere else. Everything it draws comes from the two
+  JSON blocks below plus the controls the reader moves.
+
+  BINDING: each of the two JSON blocks below holds exactly one placeholder token, and each
+  token appears exactly once in this whole file, so a plain text replacement is unambiguous.
+  Put the JSON that scripts/prepare_data.mjs printed into the data block, and the small meta
+  object into the meta block, replacing the token text and leaving the surrounding script
+  tags alone. Nothing else in this file should be edited: the Black-Scholes pricing, the skew
+  interpolation and the payoff engine live here so that they are written once and reviewed
+  once, rather than re-derived per render.
+-->
+
+<script type="application/json" id="opc-data">/*__SENTISENSE_DATA__*/</script>
+<script type="application/json" id="opc-meta">/*__SENTISENSE_META__*/</script>
+
+<style>
+:root {
+  color-scheme: light;
+  --navy: #102c44;
+  --gold: #d4a843;
+  --bg: #f7f5ef;
+  --surface: #ffffff;
+  --surface-2: #f0ece1;
+  --border: #ddd6c6;
+  --text: #102c44;
+  --text-dim: #5b6b7c;
+  --up: #1f7a5a;
+  --down: #b4442f;
+  --up-fill: rgba(31, 122, 90, 0.18);
+  --down-fill: rgba(180, 68, 47, 0.16);
+  --band: rgba(212, 168, 67, 0.20);
+  --grid: rgba(16, 44, 68, 0.10);
+  --data: #3182ce;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #0a0a0f;
+    --surface: #0d1117;
+    --surface-2: #131a24;
+    --border: #232c38;
+    --text: #f5f1e6;
+    --text-dim: #93a1b1;
+    --up: #4ec98f;
+    --down: #f2795c;
+    --up-fill: rgba(78, 201, 143, 0.20);
+    --down-fill: rgba(242, 121, 92, 0.18);
+    --band: rgba(212, 168, 67, 0.22);
+    --grid: rgba(245, 241, 230, 0.10);
+    --data: #63b3ed;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.55 ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 24px 16px 40px;
+}
+.wrap { max-width: 880px; margin: 0 auto; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+}
+header.card { padding-bottom: 16px; }
+.title-row {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: 10px 14px; margin-bottom: 4px;
+}
+h1 { font-size: 26px; line-height: 1.2; margin: 0; letter-spacing: -0.01em; }
+.ticker { color: var(--gold); }
+.subtitle { color: var(--text-dim); font-size: 13.5px; margin: 2px 0 0; }
+
+.badge {
+  display: inline-block; font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em;
+  text-transform: uppercase; padding: 3px 9px; border-radius: 999px;
+  border: 1px solid var(--border); color: var(--text-dim); background: var(--surface-2);
+  white-space: nowrap;
+}
+.badge.accent { border-color: var(--gold); color: var(--gold); }
+
+.stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px; margin-top: 18px;
+}
+.stat .k {
+  font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text-dim); margin-bottom: 3px;
+}
+.stat .v { font-size: 19px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.stat .n { font-size: 12px; color: var(--text-dim); margin-top: 1px; }
+
+h2 {
+  font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text-dim); margin: 0 0 3px; font-weight: 600;
+}
+.lede { color: var(--text-dim); font-size: 13px; margin: 0 0 16px; }
+
+.controls {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px 18px; margin-top: 4px;
+}
+.ctl { display: flex; flex-direction: column; gap: 5px; }
+.ctl .k {
+  font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim);
+}
+.ctl .val { font-size: 13px; font-variant-numeric: tabular-nums; color: var(--text); }
+.ctl.hidden { display: none; }
+select, input[type="number"] {
+  font: inherit; font-size: 14px; color: var(--text); background: var(--surface-2);
+  border: 1px solid var(--border); border-radius: 8px; padding: 7px 9px; width: 100%;
+}
+select:focus-visible, input:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+input[type="range"] { width: 100%; accent-color: var(--gold); margin: 4px 0 0; }
+
+.chart-scroll { overflow-x: auto; }
+svg { display: block; max-width: 100%; height: auto; }
+svg text { font-family: inherit; }
+
+.legend {
+  display: flex; flex-wrap: wrap; gap: 8px 18px;
+  margin-top: 12px; font-size: 12.5px; color: var(--text-dim);
+}
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.swatch { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 4px; }
+th, td { text-align: right; padding: 7px 6px; border-bottom: 1px solid var(--border); }
+th:first-child, td:first-child { text-align: left; }
+th {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text-dim); font-weight: 600;
+}
+td { font-variant-numeric: tabular-nums; }
+tr:last-child td { border-bottom: none; }
+.up { color: var(--up); }
+.down { color: var(--down); }
+
+footer { margin-top: 22px; font-size: 12px; color: var(--text-dim); }
+footer p { margin: 0 0 7px; }
+.stamp { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+a { color: var(--gold); }
+.disclaimer {
+  border-top: 1px solid var(--border); padding-top: 11px; margin-top: 11px; line-height: 1.5;
+}
+.error {
+  border: 1px solid var(--border); border-radius: 14px; padding: 22px;
+  background: var(--surface); color: var(--text-dim);
+}
+</style>
+</head>
+<body>
+<div class="wrap" id="root"></div>
+
+<script>
+"use strict";
+
+// ── Bound inputs ───────────────────────────────────────────────────────────────
+// Read from the JSON blocks in <head>. An unbound template renders the "no data" state below
+// rather than drawing an empty diagram that looks like a real one.
+function readJson(id) {
+  var el = document.getElementById(id);
+  if (!el) return null;
+  var raw = (el.textContent || "").trim();
+  // An unbound block still holds a comment-shaped token. Detected by shape rather than by
+  // spelling the token out, so this guard cannot itself become a second copy of it.
+  if (!raw || (raw.slice(0, 2) === "/*" && raw.slice(-2) === "*/")) return null;
+  try { return JSON.parse(raw); } catch (e) { return null; }
+}
+
+var DATA = readJson("opc-data");
+var META = readJson("opc-meta") || {};
+
+// ── Constants, all of them assumptions worth saying out loud ───────────────────
+//
+// RATE is a flat annual risk free rate. It is a constant rather than a served field because
+// nothing on this diagram is sensitive to it at the tenors offered here: at 90 days, moving it
+// a full percentage point moves an at-the-money premium by a few cents. It is not a forecast of
+// anything and it is not the reader's financing cost.
+var RATE = 0.04;
+// The standardized moneyness of a 25 delta strike, which is the inverse normal at 0.75. It is
+// where the served iv25c and iv25p legs are anchored on the skew curve below.
+var Z25 = 0.6744897501960817;
+// How far the skew is allowed to keep bending past the 25 delta anchors before it flattens.
+// Beyond roughly two anchor widths the linear extrapolation stops being defensible, and an
+// uncapped one eventually produces a negative volatility on a deep strike.
+var SKEW_CAP = 2.0;
+// One option contract covers 100 shares. Every dollar figure on the diagram is a position
+// total, so it already carries this multiplier and the contract count.
+var MULTIPLIER = 100;
+
+// ── Black-Scholes, written once ────────────────────────────────────────────────
+//
+// Standard normal cumulative distribution, Zelen and Severo 26.2.17. Absolute error stays
+// under 7.5e-8, which is far finer than anything a premium rounded to the cent can show.
+function normCdf(x) {
+  if (!isFinite(x)) return x > 0 ? 1 : 0;
+  var t = 1 / (1 + 0.2316419 * Math.abs(x));
+  var d = 0.3989422804014327 * Math.exp(-x * x / 2);
+  var p = d * t * (0.319381530 + t * (-0.356563782 + t * (1.781477937 +
+    t * (-1.821255978 + t * 1.330274429))));
+  return x >= 0 ? 1 - p : p;
+}
+
+// European Black-Scholes, no dividend. The two things that makes it wrong for a real listed
+// contract, both stated on the artifact's face: a dividend paying underlying prices its calls
+// slightly cheaper and its puts slightly richer than this, and American exercise carries a
+// small early exercise premium this model has no term for. Both are second order next to the
+// fact that the volatility input is an end of day figure rather than a live quote.
+function blackScholes(kind, S, K, T, sigma, r) {
+  if (!(S > 0) || !(K > 0)) return null;
+  // At expiry, or with no volatility, the model collapses to intrinsic value. Returning that
+  // rather than NaN keeps a degenerate input from poisoning the whole diagram.
+  if (!(T > 0) || !(sigma > 0)) {
+    return kind === "call" ? Math.max(S - K, 0) : Math.max(K - S, 0);
+  }
+  var vt = sigma * Math.sqrt(T);
+  var d1 = (Math.log(S / K) + (r + sigma * sigma / 2) * T) / vt;
+  var d2 = d1 - vt;
+  var disc = Math.exp(-r * T);
+  return kind === "call"
+    ? S * normCdf(d1) - K * disc * normCdf(d2)
+    : K * disc * normCdf(-d2) - S * normCdf(-d1);
+}
+
+// ── The volatility a given strike is priced with ───────────────────────────────
+//
+// The API serves three at-the-money volatilities (about 30, 60 and 90 days) and one pair of 25
+// delta legs, for the near expiry only. That is a level per tenor plus one shape, so the shape
+// is what gets reused: the ratio each 25 delta leg carries against the near at-the-money figure
+// is applied to whichever tenor is selected, bending the volatility linearly in standardized
+// moneyness and flattening past SKEW_CAP anchor widths.
+//
+// This is an interpolation across four served numbers, not a fitted surface, and it is the
+// single largest reason every premium here is labeled modeled. With no 25 delta legs bound, the
+// curve is flat and every strike prices off the at-the-money figure.
+function skewRatio(z) {
+  var iv = DATA.iv || {};
+  if (!(iv.atm30 > 0) || !(iv.call25 > 0) || !(iv.put25 > 0)) return 1;
+  var anchor = z >= 0 ? iv.call25 / iv.atm30 : iv.put25 / iv.atm30;
+  var w = Math.min(Math.abs(z) / Z25, SKEW_CAP);
+  return 1 + (anchor - 1) * w;
+}
+
+function ivFor(strike, tenor) {
+  var atm = tenor.atm, T = tenor.days / 365;
+  if (!(atm > 0) || !(T > 0) || !(DATA.spot > 0) || !(strike > 0)) return atm;
+  var z = Math.log(strike / DATA.spot) / (atm * Math.sqrt(T));
+  return Math.max(atm * skewRatio(z), 0.01);
+}
+
+// ── Expected move, kept identical to the cone this skill's sibling draws ───────
+// move = spot * iv * sqrt(days / 365), calendar days, tilted by the same 25 delta ratios.
+function expectedMove(tenor) {
+  var iv = DATA.iv || {};
+  var up = 1, down = 1;
+  if (iv.call25 > 0 && iv.put25 > 0 && iv.atm30 > 0) {
+    up = iv.call25 / iv.atm30;
+    down = iv.put25 / iv.atm30;
+  }
+  var base = DATA.spot * Math.sqrt(tenor.days / 365);
+  return { up: base * tenor.atm * up, down: base * tenor.atm * down };
+}
+
+// ── Strategies ─────────────────────────────────────────────────────────────────
+//
+// Each entry declares the strike ladder it needs as multiples of the width control, in
+// ascending order, and then wires those strikes into legs. A leg is {type, qty, strike},
+// where qty is positive for long and negative for short, and a stock leg carries an entry
+// price instead of a strike.
+var STRATEGIES = [
+  {
+    id: "long-call", label: "Long call", center: 0, offsets: [0], width: false,
+    blurb: "One call. Loss is capped at what you paid, upside is open ended.",
+    legs: function (k) { return [{ type: "call", qty: 1, strike: k[0] }]; }
+  },
+  {
+    id: "long-put", label: "Long put", center: 0, offsets: [0], width: false,
+    blurb: "One put. Loss is capped at what you paid, and it gains as the underlying falls.",
+    legs: function (k) { return [{ type: "put", qty: 1, strike: k[0] }]; }
+  },
+  {
+    id: "covered-call", label: "Covered call", center: 5, offsets: [0], width: false,
+    blurb: "Long 100 shares against one short call. The premium is collected up front and the " +
+      "upside is sold away above the strike.",
+    legs: function (k) {
+      return [{ type: "stock", qty: 1, entry: DATA.spot }, { type: "call", qty: -1, strike: k[0] }];
+    }
+  },
+  {
+    id: "cash-secured-put", label: "Cash secured put", center: -5, offsets: [0], width: false,
+    blurb: "One short put with the cash to buy the shares set aside. The premium is collected " +
+      "up front and the obligation to buy stands below the strike.",
+    legs: function (k) { return [{ type: "put", qty: -1, strike: k[0] }]; }
+  },
+  {
+    id: "bull-call-spread", label: "Bull call spread", center: 0, offsets: [0, 1], width: true,
+    blurb: "Buy a call, sell a higher one. Cheaper than the call alone, and the gain stops at " +
+      "the short strike.",
+    legs: function (k) {
+      return [{ type: "call", qty: 1, strike: k[0] }, { type: "call", qty: -1, strike: k[1] }];
+    }
+  },
+  {
+    id: "bear-put-spread", label: "Bear put spread", center: 0, offsets: [-1, 0], width: true,
+    blurb: "Buy a put, sell a lower one. Cheaper than the put alone, and the gain stops at the " +
+      "short strike.",
+    legs: function (k) {
+      return [{ type: "put", qty: -1, strike: k[0] }, { type: "put", qty: 1, strike: k[1] }];
+    }
+  },
+  {
+    id: "straddle", label: "Long straddle", center: 0, offsets: [0], width: false,
+    blurb: "A call and a put at the same strike. It needs a move in either direction larger " +
+      "than the combined premium.",
+    legs: function (k) {
+      return [{ type: "put", qty: 1, strike: k[0] }, { type: "call", qty: 1, strike: k[0] }];
+    }
+  },
+  {
+    id: "strangle", label: "Long strangle", center: 0, offsets: [-1, 1], width: true,
+    blurb: "An out of the money call and put. Cheaper than the straddle, and it needs a bigger " +
+      "move to pay.",
+    legs: function (k) {
+      return [{ type: "put", qty: 1, strike: k[0] }, { type: "call", qty: 1, strike: k[1] }];
+    }
+  },
+  {
+    id: "iron-condor", label: "Iron condor", center: 0, offsets: [-2, -1, 1, 2], width: true,
+    blurb: "Sell a put spread and a call spread around the current price. It collects a credit " +
+      "and keeps it while the underlying stays between the short strikes.",
+    legs: function (k) {
+      return [
+        { type: "put", qty: 1, strike: k[0] }, { type: "put", qty: -1, strike: k[1] },
+        { type: "call", qty: -1, strike: k[2] }, { type: "call", qty: 1, strike: k[3] }
+      ];
+    }
+  }
+];
+
+// ── Strikes ────────────────────────────────────────────────────────────────────
+//
+// Strikes are rounded to a conventional increment so the diagram reads like a real order
+// ticket. We serve no options chain, so a rounded strike is a plausible listing, never a
+// confirmed one, and the artifact says so.
+function strikeStep(spot) {
+  if (spot < 25) return 0.5;
+  if (spot < 100) return 1;
+  if (spot < 250) return 2.5;
+  if (spot < 1000) return 5;
+  return 10;
+}
+function roundStrike(x) {
+  var s = strikeStep(DATA.spot);
+  return Math.max(s, Math.round(x / s) * s);
+}
+
+// Build the ladder from a centre strike and a width, then force it strictly increasing by at
+// least one increment. Without that, a narrow width on a coarse increment silently collapses
+// two legs onto the same strike, which turns a spread into a position that is not there.
+function ladder(center, width, offsets) {
+  var step = strikeStep(DATA.spot);
+  var out = offsets.map(function (o) { return roundStrike(center * (1 + o * width)); });
+  for (var i = 1; i < out.length; i++) {
+    if (out[i] <= out[i - 1]) out[i] = out[i - 1] + step;
+  }
+  return out;
+}
+
+// ── The payoff engine ──────────────────────────────────────────────────────────
+//
+// Payoff at expiry is piecewise linear with a kink at every option strike, so every figure
+// below is exact rather than sampled: the extremes and the breakevens are read off the kinks
+// and the end slopes, not scanned for.
+function intrinsic(leg, S) {
+  if (leg.type === "call") return Math.max(S - leg.strike, 0);
+  if (leg.type === "put") return Math.max(leg.strike - S, 0);
+  return S - leg.entry;
+}
+function payoffAt(legs, S) {
+  var v = 0;
+  for (var i = 0; i < legs.length; i++) v += legs[i].qty * intrinsic(legs[i], S);
+  return v;
+}
+/** Net cash paid per share at entry. Positive is a debit, negative is a credit. */
+function netCost(legs) {
+  var c = 0;
+  for (var i = 0; i < legs.length; i++) {
+    if (typeof legs[i].premium === "number") c += legs[i].qty * legs[i].premium;
+  }
+  return c;
+}
+/** Slope of the payoff below the lowest strike, and above the highest. */
+function slopeBelow(legs) {
+  var s = 0;
+  for (var i = 0; i < legs.length; i++) {
+    var l = legs[i];
+    if (l.type === "put") s -= l.qty;
+    else if (l.type === "stock") s += l.qty;
+  }
+  return s;
+}
+function slopeAbove(legs) {
+  var s = 0;
+  for (var i = 0; i < legs.length; i++) {
+    var l = legs[i];
+    if (l.type === "call") s += l.qty;
+    else if (l.type === "stock") s += l.qty;
+  }
+  return s;
+}
+function strikesOf(legs) {
+  var seen = {}, out = [];
+  legs.forEach(function (l) {
+    if (l.type !== "stock" && !seen[l.strike]) { seen[l.strike] = 1; out.push(l.strike); }
+  });
+  return out.sort(function (a, b) { return a - b; });
+}
+
+/** Profit or loss per share at an underlying price of S. */
+function plAt(legs, cost, S) { return payoffAt(legs, S) - cost; }
+
+/**
+ * Exact extremes and breakevens. The underlying cannot go below zero, so the downside is always
+ * bounded in fact even when the strategy is described as open ended; the artifact reports the
+ * value at zero and names the assumption rather than printing "unlimited" for something that is
+ * arithmetically finite.
+ */
+function analyze(legs) {
+  var cost = netCost(legs);
+  var kinks = strikesOf(legs);
+  var nodes = [0].concat(kinks);
+  var vals = nodes.map(function (S) { return plAt(legs, cost, S); });
+  var up = slopeAbove(legs);
+
+  var maxProfit = up > 0 ? Infinity : Math.max.apply(null, vals);
+  var maxLoss = up < 0 ? -Infinity : Math.min.apply(null, vals);
+
+  // Breakevens: exact zero crossings, segment by segment, plus the ray past the last kink.
+  var be = [];
+  for (var i = 0; i + 1 < nodes.length; i++) {
+    var a = vals[i], b = vals[i + 1];
+    if (a === 0) be.push(nodes[i]);
+    if ((a < 0 && b > 0) || (a > 0 && b < 0)) {
+      be.push(nodes[i] + (nodes[i + 1] - nodes[i]) * (-a / (b - a)));
+    }
+  }
+  var last = nodes[nodes.length - 1], lastV = vals[vals.length - 1];
+  if (lastV === 0) be.push(last);
+  else if (up !== 0 && (lastV < 0) === (up > 0)) {
+    var x = last + (-lastV) / up;
+    if (x > last) be.push(x);
+  }
+  be = be.filter(function (v, i, arr) { return arr.indexOf(v) === i; })
+    .sort(function (a, b) { return a - b; });
+
+  return {
+    cost: cost, kinks: kinks, breakevens: be,
+    maxProfit: maxProfit, maxLoss: maxLoss,
+    slopeUp: up, slopeDown: slopeBelow(legs)
+  };
+}
+
+// ── Formatting ─────────────────────────────────────────────────────────────────
+function money(v, dp) {
+  if (typeof v !== "number" || !isFinite(v)) return "n/a";
+  var d = dp === undefined ? 2 : dp;
+  return (v < 0 ? "-$" : "$") + Math.abs(v).toLocaleString("en-US",
+    { minimumFractionDigits: d, maximumFractionDigits: d });
+}
+function money0(v) { return money(v, Math.abs(v) >= 1000 ? 0 : 2); }
+function pct(v, dp) {
+  if (typeof v !== "number" || !isFinite(v)) return "n/a";
+  return (v * 100).toFixed(dp === undefined ? 1 : dp) + "%";
+}
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+function daysBetween(fromIso, toIso) {
+  var a = Date.parse(fromIso + "T00:00:00Z"), b = Date.parse(toIso + "T00:00:00Z");
+  if (isNaN(a) || isNaN(b)) return null;
+  return Math.round((b - a) / 86400000);
+}
+function addDays(iso, n) {
+  var t = Date.parse(iso + "T00:00:00Z");
+  if (isNaN(t)) return null;
+  return new Date(t + n * 86400000).toISOString().slice(0, 10);
+}
+var TIMING_LABEL = {
+  before_open: "before the open",
+  after_close: "after the close",
+  during_market: "during the session",
+  unknown: "time not published"
+};
+
+// ── The diagram ────────────────────────────────────────────────────────────────
+function payoffSvg(legs, an, tenor, mult) {
+  var W = 800, H = 400, PL = 74, PR = 26, PT = 30, PB = 46;
+  var plotW = W - PL - PR, plotH = H - PT - PB;
+
+  var sig = tenor.atm * Math.sqrt(tenor.days / 365);
+  var lo = Math.max(0.01, DATA.spot * (1 - 3 * sig));
+  var hi = DATA.spot * (1 + 3 * sig);
+  an.kinks.forEach(function (k) {
+    lo = Math.min(lo, k * 0.9);
+    hi = Math.max(hi, k * 1.1);
+  });
+  if (!(hi > lo)) return "";
+
+  // Every x that matters: the ends, each kink, each breakeven. The payoff is exactly linear in
+  // between, so a polyline through these points is the curve itself rather than a sample of it,
+  // and clipping at zero is exact because every zero crossing is one of the points.
+  var xs = [lo, hi].concat(an.kinks, an.breakevens)
+    .filter(function (v) { return v >= lo && v <= hi; })
+    .sort(function (a, b) { return a - b; });
+  xs = xs.filter(function (v, i, arr) { return i === 0 || v > arr[i - 1] + 1e-9; });
+  var nodes = xs.map(function (x) { return { x: x, v: plAt(legs, an.cost, x) * mult }; });
+
+  var vLo = Math.min.apply(null, nodes.map(function (n) { return n.v; }));
+  var vHi = Math.max.apply(null, nodes.map(function (n) { return n.v; }));
+  vLo = Math.min(vLo, 0); vHi = Math.max(vHi, 0);
+  var padV = (vHi - vLo) * 0.14 || 1;
+  vLo -= padV; vHi += padV;
+
+  function X(p) { return PL + ((p - lo) / (hi - lo)) * plotW; }
+  function Y(v) { return PT + (1 - (v - vLo) / (vHi - vLo)) * plotH; }
+
+  var parts = [];
+
+  // The expected move band sits behind everything: the range the options market is pricing over
+  // this same tenor, so the diagram is read against it rather than in a vacuum.
+  var em = expectedMove(tenor);
+  var bandLo = Math.max(lo, DATA.spot - em.down), bandHi = Math.min(hi, DATA.spot + em.up);
+  if (bandHi > bandLo) {
+    parts.push('<rect x="' + X(bandLo).toFixed(1) + '" y="' + PT + '" width="' +
+      (X(bandHi) - X(bandLo)).toFixed(1) + '" height="' + plotH + '" fill="var(--band)"/>');
+    parts.push('<text x="' + ((X(bandLo) + X(bandHi)) / 2).toFixed(1) + '" y="' + (PT - 10) +
+      '" text-anchor="middle" font-size="11" font-weight="600" fill="var(--gold)">' +
+      "one standard deviation expected move, " + tenor.days + "d</text>");
+  }
+
+  // Profit and loss value gridlines.
+  var step = (vHi - vLo) / 4;
+  for (var i = 0; i <= 4; i++) {
+    var v = vLo + step * i, y = Y(v);
+    parts.push('<line x1="' + PL + '" y1="' + y.toFixed(1) + '" x2="' + (PL + plotW) +
+      '" y2="' + y.toFixed(1) + '" stroke="var(--grid)" stroke-width="1"/>');
+    parts.push('<text x="' + (PL - 9) + '" y="' + (y + 4).toFixed(1) +
+      '" text-anchor="end" font-size="11" fill="var(--text-dim)">' + money0(v) + "</text>");
+  }
+
+  // Fill between the curve and the break even line, green above and red below.
+  function fill(sign, color) {
+    var d = "M " + X(nodes[0].x).toFixed(1) + " " + Y(0).toFixed(1);
+    nodes.forEach(function (n) {
+      var cv = sign > 0 ? Math.max(n.v, 0) : Math.min(n.v, 0);
+      d += " L " + X(n.x).toFixed(1) + " " + Y(cv).toFixed(1);
+    });
+    d += " L " + X(nodes[nodes.length - 1].x).toFixed(1) + " " + Y(0).toFixed(1) + " Z";
+    parts.push('<path d="' + d + '" fill="' + color + '"/>');
+  }
+  fill(1, "var(--up-fill)");
+  fill(-1, "var(--down-fill)");
+
+  // Break even line.
+  parts.push('<line x1="' + PL + '" y1="' + Y(0).toFixed(1) + '" x2="' + (PL + plotW) +
+    '" y2="' + Y(0).toFixed(1) + '" stroke="var(--text-dim)" stroke-width="1"/>');
+
+  // Strikes, marked where they actually bend the curve.
+  an.kinks.forEach(function (k) {
+    if (k < lo || k > hi) return;
+    parts.push('<line x1="' + X(k).toFixed(1) + '" y1="' + PT + '" x2="' + X(k).toFixed(1) +
+      '" y2="' + (PT + plotH) + '" stroke="var(--border)" stroke-width="1" stroke-dasharray="2 3"/>');
+  });
+
+  // The payoff itself.
+  var line = nodes.map(function (n, i) {
+    return (i ? "L " : "M ") + X(n.x).toFixed(1) + " " + Y(n.v).toFixed(1);
+  }).join(" ");
+  parts.push('<path d="' + line + '" fill="none" stroke="var(--text)" stroke-width="2.2" ' +
+    'stroke-linejoin="round"/>');
+
+  // Where the underlying is now.
+  parts.push('<line x1="' + X(DATA.spot).toFixed(1) + '" y1="' + PT + '" x2="' +
+    X(DATA.spot).toFixed(1) + '" y2="' + (PT + plotH) +
+    '" stroke="var(--data)" stroke-width="1.5" stroke-dasharray="5 4"/>');
+  parts.push('<text x="' + (X(DATA.spot) + 6).toFixed(1) + '" y="' + (PT + 13) +
+    '" font-size="11" font-weight="600" fill="var(--data)">last ' + money(DATA.spot) + "</text>");
+
+  // Break even markers.
+  an.breakevens.forEach(function (b) {
+    if (b < lo || b > hi) return;
+    parts.push('<circle cx="' + X(b).toFixed(1) + '" cy="' + Y(0).toFixed(1) +
+      '" r="4" fill="var(--gold)"/>');
+    parts.push('<text x="' + X(b).toFixed(1) + '" y="' + (Y(0) + 19).toFixed(1) +
+      '" text-anchor="middle" font-size="11" font-weight="600" fill="var(--gold)">' +
+      money(b) + "</text>");
+  });
+
+  // Price axis.
+  parts.push('<line x1="' + PL + '" y1="' + (PT + plotH) + '" x2="' + (PL + plotW) + '" y2="' +
+    (PT + plotH) + '" stroke="var(--border)" stroke-width="1"/>');
+  for (var t = 0; t <= 4; t++) {
+    var p = lo + ((hi - lo) / 4) * t;
+    parts.push('<text x="' + X(p).toFixed(1) + '" y="' + (H - PB + 18) +
+      '" text-anchor="middle" font-size="11" fill="var(--text-dim)">' + money(p, 0) + "</text>");
+  }
+  parts.push('<text x="' + (PL + plotW / 2) + '" y="' + (H - 6) +
+    '" text-anchor="middle" font-size="11" fill="var(--text-dim)">' +
+    esc(DATA.ticker || "underlying") + " price at expiry</text>");
+
+  return '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" role="img" ' +
+    'aria-label="Modeled profit and loss at expiry">' + parts.join("") + "</svg>";
+}
+
+// ── State and render ───────────────────────────────────────────────────────────
+var TENORS = [];
+var STATE = { strategy: "long-call", tenor: 0, center: 0, width: 8, contracts: 1 };
+
+function buildTenors() {
+  var iv = DATA.iv || {};
+  var defs = [{ days: 30, atm: iv.atm30 }, { days: 60, atm: iv.atm60 }, { days: 90, atm: iv.atm90 }];
+  return defs.filter(function (d) { return d.atm > 0; });
+}
+
+function currentStrategy() {
+  for (var i = 0; i < STRATEGIES.length; i++) {
+    if (STRATEGIES[i].id === STATE.strategy) return STRATEGIES[i];
+  }
+  return STRATEGIES[0];
+}
+
+/** Build the priced legs for the current control settings. */
+function buildLegs(strat, tenor) {
+  var center = DATA.spot * (1 + STATE.center / 100);
+  var k = ladder(center, STATE.width / 100, strat.offsets);
+  var legs = strat.legs(k);
+  legs.forEach(function (l) {
+    if (l.type === "stock") { l.premium = 0; l.iv = null; return; }
+    l.iv = ivFor(l.strike, tenor);
+    l.premium = blackScholes(l.type, DATA.spot, l.strike, tenor.days / 365, l.iv, RATE);
+  });
+  return legs;
+}
+
+function statHtml(k, v, n) {
+  return '<div class="stat"><div class="k">' + esc(k) + '</div><div class="v">' + v + "</div>" +
+    (n ? '<div class="n">' + n + "</div>" : "") + "</div>";
+}
+
+function update() {
+  var strat = currentStrategy();
+  var tenor = TENORS[STATE.tenor] || TENORS[0];
+  var legs = buildLegs(strat, tenor);
+  var an = analyze(legs);
+  var mult = MULTIPLIER * STATE.contracts;
+
+  // Show the strike the position actually uses, not the raw slider price: strikes are rounded
+  // to a conventional increment, and a readout that printed the unrounded number would disagree
+  // with every figure below it. A ladder with no leg at the centre (a strangle, a condor) is
+  // described as centred on that price rather than trading at it, because no leg is there.
+  var centerStrike = roundStrike(DATA.spot * (1 + STATE.center / 100));
+  document.getElementById("center-val").textContent =
+    (strat.offsets.indexOf(0) === -1 ? "centred on " : "") + money(centerStrike) +
+    (strat.offsets.indexOf(0) === -1 ? "" : " strike") +
+    " (" + (STATE.center >= 0 ? "+" : "") + STATE.center + "% from last)";
+  document.getElementById("width-val").textContent = STATE.width + "% wide";
+  document.getElementById("width-ctl").className = "ctl" + (strat.width ? "" : " hidden");
+
+  // Position summary.
+  var cost = an.cost * mult;
+  var maxP = an.maxProfit === Infinity ? "open ended" : money0(an.maxProfit * mult);
+  var maxL = an.maxLoss === -Infinity ? "open ended" : money0(an.maxLoss * mult);
+  var beText = an.breakevens.length
+    ? an.breakevens.map(function (b) { return money(b); }).join(" and ")
+    : "none in range";
+
+  // netCost counts option legs only, so a strategy carrying shares would otherwise show a
+  // headline credit next to a table whose cash column is dominated by the stock purchase. Name
+  // that outlay instead of letting the two numbers quietly disagree.
+  var stockLeg = legs.filter(function (l) { return l.type === "stock"; })[0];
+  var costNote = esc(strat.label) + ", " + STATE.contracts +
+    (STATE.contracts === 1 ? " contract" : " contracts");
+  if (stockLeg) {
+    costNote = "options only; the " + (STATE.contracts * MULTIPLIER) + " shares are a separate " +
+      money0(STATE.contracts * MULTIPLIER * stockLeg.entry) + " outlay";
+  }
+
+  document.getElementById("position").innerHTML =
+    statHtml(cost >= 0 ? "Net modeled debit" : "Net modeled credit", money0(Math.abs(cost)),
+      costNote) +
+    statHtml("Break even", esc(beText), "underlying price at expiry") +
+    statHtml("Max profit", '<span class="up">' + maxP + "</span>",
+      an.maxProfit === Infinity ? "no cap above the highest strike" : "at expiry") +
+    statHtml("Max loss", '<span class="down">' + maxL + "</span>",
+      an.maxLoss === -Infinity ? "no cap above the highest strike"
+        // The worst case sits at an underlying of zero only when the position keeps losing as
+        // the underlying falls, which is the short put and long stock shape. A long option is
+        // flat below its strike, so its worst case is reached long before zero and saying
+        // otherwise would overstate how extreme the scenario is.
+        : (an.slopeDown > 0 ? "only if the underlying goes to zero" : "at expiry"));
+
+  document.getElementById("chart").innerHTML = payoffSvg(legs, an, tenor, mult);
+
+  // Legs.
+  var rows = legs.map(function (l) {
+    if (l.type === "stock") {
+      return "<tr><td>Long " + (STATE.contracts * MULTIPLIER) + " shares</td><td>" +
+        money(l.entry) + "</td><td>n/a</td><td>n/a</td><td>" +
+        money0(STATE.contracts * MULTIPLIER * l.entry) + "</td></tr>";
+    }
+    var side = l.qty > 0 ? "Long" : "Short";
+    var n = Math.abs(l.qty) * STATE.contracts;
+    return "<tr><td>" + side + " " + n + " " + l.type + "</td><td>" + money(l.strike) +
+      "</td><td>" + pct(l.iv) + "</td><td>" + money(l.premium) + "</td><td>" +
+      money0(l.qty * l.premium * mult) + "</td></tr>";
+  }).join("");
+  document.getElementById("legs").innerHTML =
+    "<thead><tr><th>Leg</th><th>Strike</th><th>Modeled IV</th><th>Modeled premium</th>" +
+    "<th>Cash</th></tr></thead><tbody>" + rows + "</tbody>";
+
+  // Notes that depend on the selection.
+  var notes = [];
+  var expiry = DATA.asOf ? addDays(DATA.asOf, tenor.days) : null;
+  notes.push("Priced at " + tenor.days + " calendar days from " +
+    (DATA.asOf ? "the session of " + DATA.asOf : "the last session") +
+    (expiry ? ", about " + expiry : "") + ", at an at the money implied volatility of " +
+    pct(tenor.atm) + ".");
+  if (DATA.nextEarnings && DATA.nextEarnings.date && DATA.asOf) {
+    var dd = daysBetween(DATA.asOf, DATA.nextEarnings.date);
+    if (dd !== null && dd >= 0 && dd <= tenor.days) {
+      notes.push("The next report lands on " + DATA.nextEarnings.date + " " +
+        (TIMING_LABEL[DATA.nextEarnings.timing] || "") + ", inside this window. That event is " +
+        "part of why the implied volatility is where it is, so the premiums here already " +
+        "carry it.");
+    }
+  }
+  if (!(DATA.nextEarnings && DATA.nextEarnings.date) && DATA.nextEarningsStatus === "outside_preview") {
+    notes.push("The next report date is not in this snapshot: the free earnings calendar covers " +
+      "the current week only. A report inside this expiry cannot be ruled out, and one that " +
+      "falls inside is part of why the implied volatility is where it is.");
+  }
+  if (!(DATA.iv && DATA.iv.call25 > 0 && DATA.iv.put25 > 0)) {
+    notes.push("No 25 delta legs are bound, so every strike prices off the same at the money " +
+      "volatility and the skew is flat.");
+  }
+  if (DATA.isPreview) {
+    notes.push("This snapshot is the free tier's preview dossier: the month's full dossier " +
+      "allowance is spent, so only the near expiry carries a volatility reading and further " +
+      "tenors are not offered. The full dossier returns with a new calendar month, or on any " +
+      "ticker with a PRO key.");
+  }
+  document.getElementById("notes").innerHTML = notes.map(function (n) {
+    return '<p class="lede" style="margin:0 0 8px">' + esc(n) + "</p>";
+  }).join("");
+}
+
+function shell() {
+  var iv = DATA.iv || {};
+  var out = [];
+
+  out.push('<header class="card"><div class="title-row">' +
+    '<h1>Options payoff <span class="ticker">' + esc(DATA.ticker || "") + "</span></h1>" +
+    '<span class="badge accent">modeled premiums</span>' +
+    (DATA.isPreview ? '<span class="badge">free tier preview</span>' : "") +
+    "</div>" +
+    '<p class="subtitle">' + esc(META.subtitle ||
+      "Profit and loss at expiry, priced from end of day implied volatility rather than " +
+      "quoted from a live options chain.") + "</p>" +
+    '<div class="stats">' +
+    statHtml("Last price", money(DATA.spot), "delayed, not live") +
+    statHtml("At the money IV", pct(iv.atm30),
+      typeof iv.rank1y === "number"
+        ? "rank " + iv.rank1y.toFixed(0) + " of 100 in its own year"
+        : "one year rank still building") +
+    statHtml("25 delta skew", typeof iv.skew25d === "number" ? pct(iv.skew25d, 2) : "n/a",
+      "put volatility less call volatility") +
+    // A missing date is only "not scheduled" when the calendar answered for its whole window.
+    statHtml("Next report",
+      DATA.nextEarnings && DATA.nextEarnings.date ? esc(DATA.nextEarnings.date)
+        : (DATA.nextEarningsStatus === "outside_preview" || DATA.nextEarningsStatus === "unavailable")
+          ? "unknown" : "not scheduled",
+      DATA.nextEarnings && DATA.nextEarnings.date ? esc(TIMING_LABEL[DATA.nextEarnings.timing] || "")
+        : DATA.nextEarningsStatus === "outside_preview" ? "past the free calendar week"
+          : DATA.nextEarningsStatus === "unavailable" ? "calendar not read" : "") +
+    "</div></header>");
+
+  var stratOpts = STRATEGIES.map(function (s) {
+    return '<option value="' + s.id + '">' + esc(s.label) + "</option>";
+  }).join("");
+  var tenorOpts = TENORS.map(function (t, i) {
+    return '<option value="' + i + '">' + t.days + " days, IV " + pct(t.atm) + "</option>";
+  }).join("");
+
+  out.push('<section class="card"><h2>Build the position</h2>' +
+    '<p class="lede" id="blurb"></p>' +
+    '<div class="controls">' +
+    '<label class="ctl"><span class="k">Strategy</span>' +
+    '<select id="strategy">' + stratOpts + "</select></label>" +
+    '<label class="ctl"><span class="k">Expiry</span>' +
+    '<select id="tenor">' + tenorOpts + "</select>" +
+    (TENORS.length < 3
+      ? '<span class="val">only ' + TENORS.length + " tenor bound</span>" : "") + "</label>" +
+    '<label class="ctl"><span class="k">Centre strike</span>' +
+    '<span class="val" id="center-val"></span>' +
+    '<input type="range" id="center" min="-25" max="25" step="1"></label>' +
+    '<label class="ctl" id="width-ctl"><span class="k">Strike spacing</span>' +
+    '<span class="val" id="width-val"></span>' +
+    '<input type="range" id="width" min="2" max="25" step="1"></label>' +
+    '<label class="ctl"><span class="k">Contracts</span>' +
+    '<input type="number" id="contracts" min="1" max="100" step="1" value="1"></label>' +
+    "</div>" +
+    '<div class="stats" id="position"></div></section>');
+
+  out.push('<section class="card"><h2>Profit and loss at expiry</h2>' +
+    '<p class="lede">The curve is the position value at expiry against the underlying price. ' +
+    "The shaded column behind it is the one standard deviation move the options market is " +
+    "pricing over the same window, so the payoff is read against the move that volatility " +
+    "implies.</p>" +
+    '<div class="chart-scroll" id="chart"></div>' +
+    '<div class="legend">' +
+    '<span><i class="swatch" style="background:var(--up-fill)"></i>profit</span>' +
+    '<span><i class="swatch" style="background:var(--down-fill)"></i>loss</span>' +
+    '<span><i class="swatch" style="background:var(--band)"></i>expected move</span>' +
+    '<span><i class="swatch" style="background:var(--gold)"></i>break even</span>' +
+    '<span><i class="swatch" style="background:var(--data)"></i>last price</span>' +
+    "</div></section>");
+
+  out.push('<section class="card"><h2>The legs</h2>' +
+    '<p class="lede">Every premium is modeled with Black-Scholes from the volatility in the ' +
+    "third column, at a flat " + (RATE * 100).toFixed(0) + "% annual rate and no dividend. " +
+    "These are not quotes, and no options chain was read to produce them.</p>" +
+    '<table id="legs"></table>' +
+    '<div style="margin-top:14px" id="notes"></div></section>');
+
+  var stampDate = DATA.generatedAt
+    ? String(DATA.generatedAt).replace("T", " ").slice(0, 16) + " UTC" : "";
+  out.push('<footer><div class="stamp">' +
+    "<span>Data: SentiSense, volatility as of " + esc(DATA.asOf || "the last completed session") +
+    (stampDate ? ". Rendered " + esc(stampDate) : "") + ".</span>" +
+    '<span><a href="https://sentisense.ai">made with SentiSense</a></span></div>' +
+    '<p class="disclaimer">Premiums on this page are modeled with Black-Scholes from end of ' +
+    "day implied volatility, not quoted from an options chain, and the strikes shown are " +
+    "rounded to conventional increments rather than confirmed listings. The model assumes " +
+    "European exercise and no dividend, and it prices from a volatility reading that is a " +
+    "day old. Real fills differ, and the spread you would actually pay is not shown here. " +
+    "Prices are delayed, not live. This is information for research and education only. It " +
+    "is not investment advice, not a recommendation and not a forecast. Options carry risk " +
+    "of loss, including the entire amount paid.</p></footer>");
+
+  return out.join("");
+}
+
+function bind() {
+  var strategy = document.getElementById("strategy");
+  var tenor = document.getElementById("tenor");
+  var center = document.getElementById("center");
+  var width = document.getElementById("width");
+  var contracts = document.getElementById("contracts");
+
+  function syncStrategy(reset) {
+    var s = currentStrategy();
+    document.getElementById("blurb").textContent = s.blurb;
+    if (reset) {
+      STATE.center = s.center;
+      center.value = String(s.center);
+    }
+  }
+
+  strategy.addEventListener("change", function () {
+    STATE.strategy = strategy.value;
+    syncStrategy(true);
+    update();
+  });
+  tenor.addEventListener("change", function () {
+    STATE.tenor = parseInt(tenor.value, 10) || 0;
+    update();
+  });
+  center.addEventListener("input", function () {
+    STATE.center = parseInt(center.value, 10) || 0;
+    update();
+  });
+  width.addEventListener("input", function () {
+    STATE.width = parseInt(width.value, 10) || 8;
+    update();
+  });
+  contracts.addEventListener("input", function () {
+    var n = parseInt(contracts.value, 10);
+    STATE.contracts = n > 0 && n <= 100 ? n : 1;
+    update();
+  });
+
+  strategy.value = STATE.strategy;
+  tenor.value = String(STATE.tenor);
+  width.value = String(STATE.width);
+  contracts.value = String(STATE.contracts);
+  syncStrategy(true);
+}
+
+function render() {
+  var root = document.getElementById("root");
+
+  if (!DATA || typeof DATA !== "object") {
+    root.innerHTML = '<div class="error"><strong>No data bound.</strong><br>' +
+      "This template still holds its placeholder tokens. Run the data command, then replace " +
+      "the data and meta tokens in the two JSON blocks with its output.</div>";
+    return;
+  }
+
+  TENORS = buildTenors();
+  if (!TENORS.length || !(DATA.spot > 0)) {
+    root.innerHTML = '<div class="error"><strong>Not enough data to price a contract.</strong><br>' +
+      "The bound snapshot carries no usable at the money implied volatility or last price for " +
+      esc(DATA.ticker || "this ticker") + ".</div>";
+    return;
+  }
+
+  root.innerHTML = shell();
+  document.title = META.title || ("Options payoff: " + (DATA.ticker || ""));
+  bind();
+  update();
+}
+
+render();
+</script>
+</body>
+</html>

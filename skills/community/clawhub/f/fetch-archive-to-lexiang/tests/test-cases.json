@@ -1,155 +1,95 @@
 [
   {
     "id": "tc-001",
-    "type": "video-transcribe",
-    "name": "Substack嵌入YouTube视频转录+翻译",
-    "date": "2026-06-03",
-    "input": {
-      "url": "https://www.lennysnewsletter.com/p/a-rational-conversation-on-where?utm_source=post-email-title&publication_id=10845&post_id=198591907",
-      "youtube_url": "https://youtu.be/BD3vLtWhT5A",
-      "language": "en",
-      "duration_min": 79.8
-    },
+    "type": "youtube-work-package",
+    "name": "YouTube 下载转录生成标准工作包",
     "steps": [
-      "WebFetch 提取页面中的 YouTube 链接",
-      "yt-dlp 下载视频 (261MB .mp4)",
-      "ffmpeg 提取音频 → WAV 16kHz",
-      "Whisper base 转录 → 1757 segments → 104 paragraphs",
-      "Gemini 2.5 Flash 分批翻译（中英对照）",
-      "乐享：创建日期目录 → 创建标题文件夹 → 上传文字稿(.md) → 上传视频(.mp4)"
+      "yt-dlp 下载视频并提取 description",
+      "Whisper 转录",
+      "生成 source.md 和 meta.json",
+      "非中文包交给 trans-doc-to-md Prepared Markdown Package 模式",
+      "uploader 写入最终 Markdown 页面",
+      "VOD 脚本独立上传视频"
     ],
     "expected_output": {
-      "lexiang_folder": "贾维斯/2026-06-03/A Rational Conversation on Where AI Is Actually Going - Benedict Evans/",
-      "transcript_entry_id": "ec5f2457a75f4db58a62e8419b8e9847",
-      "video_entry_id": "8a76583946e846a6bbac7cc18df60ba8",
-      "transcript_size_bytes": 196265,
-      "paragraphs_count": 104,
-      "translation_success": "104/104"
+      "files": ["source.md", "meta.json"],
+      "source_type": "youtube",
+      "script_translates": false,
+      "markdown_uploader": "upload-markdown-to-lexiang",
+      "media_uploader": "upload_video_via_openapi.py"
     },
-    "coverage": ["2b-substack-embedded-video", "whisper-transcribe", "gemini-translate", "title-folder-structure", "presigned-url-upload", "vod-video-upload"]
+    "coverage": ["youtube", "whisper", "standard-package", "delegated-translation", "vod"]
   },
   {
     "id": "tc-002",
-    "type": "wechat-article",
-    "name": "微信公众号文章（hyperlink一步到位）",
-    "date": "2026-06-02",
-    "input": {
-      "url": "https://mp.weixin.qq.com/s/example-wechat-article",
-      "language": "zh"
-    },
+    "type": "article-work-package",
+    "name": "付费文章 CDP 抓取生成标准工作包",
     "steps": [
-      "file_create_hyperlink 直接导入"
+      "预检 CDP 9222 和登录态",
+      "fetch_article.py 抓取全文与图片",
+      "生成不可变 source.md、images/、meta.json",
+      "内容加工后由 uploader 写入页面"
     ],
     "expected_output": {
-      "method": "file_create_hyperlink",
-      "entry_type": "flink"
+      "files": ["source.md", "meta.json", "images/"],
+      "source_type": "article",
+      "overwrite_different_source": "error"
     },
-    "coverage": ["wechat-hyperlink", "date-folder"]
+    "coverage": ["article", "cdp", "images", "standard-package", "immutable-source"]
   },
   {
     "id": "tc-003",
-    "type": "paid-article",
-    "name": "Substack付费文章（CDP模式）",
-    "date": "2026-05-18",
-    "input": {
-      "url": "https://mp.weixin.qq.com/s/8oUv5H9qvjpq_-aCiJ9f6A",
-      "language": "zh"
-    },
+    "type": "podcast-work-package",
+    "name": "播客 Show Notes 和转录生成标准工作包",
     "steps": [
-      "fetch_article.py 抓取（标准模式/CDP模式）",
-      "entry_import_content 上传纯文本"
+      "抓取 Show Notes",
+      "下载并切分音频",
+      "FunASR 转录",
+      "生成 source.md、meta.json 和音频产物",
+      "编排层分别调用 uploader 和 VOD 脚本"
     ],
     "expected_output": {
-      "title": "OpenAI、Anthropic都开始押注FDE，FDE才是Agent时代的PMF范式",
-      "method": "entry_import_content"
+      "files": ["source.md", "meta.json", "segments.json"],
+      "source_type": "podcast",
+      "script_uploads_markdown": false,
+      "shownotes_before_transcript": true
     },
-    "coverage": ["fetch-article", "chinese-article", "entry-import"]
+    "coverage": ["podcast", "shownotes", "standard-package", "no-inline-upload", "audio-vod"]
   },
   {
     "id": "tc-004",
-    "type": "english-article-translate",
-    "name": "英文文章抓取+中英对照翻译",
-    "date": "2026-06-02",
-    "input": {
-      "url": "https://www.ben-evans.com/benedictevans/example-article",
-      "language": "en"
-    },
+    "type": "non-chinese-processing",
+    "name": "非中文 Prepared Markdown Package 加工",
     "steps": [
-      "fetch_article.py 抓取",
-      "语言检测 → 英文 → Gemini翻译为中英对照",
-      "upload_doc_to_lexiang.py 或 MCP 三步上传"
+      "保留不可变 source.md",
+      "trans-doc-to-md 清洗、翻译并验证完整性",
+      "生成以原文标题命名的最终 Markdown",
+      "uploader 直接渲染富元素标注"
     ],
     "expected_output": {
-      "format": "中英对照（每段英文后紧跟中文翻译）",
-      "method": "presigned-url-upload"
+      "processor": "trans-doc-to-md",
+      "mode": "Prepared Markdown Package",
+      "uploader_min_version": "1.1.0",
+      "normal_mcp_post_render": false
     },
-    "coverage": ["english-article", "gemini-translate", "bilingual-format"]
+    "coverage": ["delegated-processing", "rich-elements", "integrity", "direct-render"]
   },
   {
     "id": "tc-005",
-    "type": "podcast-transcribe",
-    "name": "播客音频转录（小宇宙FM）",
-    "date": "2026-05-26",
-    "input": {
-      "url": "https://www.xiaoyuzhoufm.com/episode/example",
-      "language": "zh",
-      "duration_min": 139
-    },
+    "type": "dedup-and-media",
+    "name": "日期目录去重与媒体独立归档",
     "steps": [
-      "WebFetch 提取播客元信息 + Show Notes",
-      "准备 metadata.json（含 shownotes）+ chapters.json + hotwords.json",
-      "podcast_to_lexiang.py 后台转录（FunASR）",
-      "乐享：创建日期目录 → 创建标题文件夹 → 上传文字稿(.md) → 上传音频(.m4a)"
+      "复用或创建日期目录",
+      "按规范化标题、来源 URL 和类型去重",
+      "视频/播客复用标题目录",
+      "Markdown 页面用 uploader",
+      "媒体用 VOD 脚本"
     ],
     "expected_output": {
-      "lexiang_folder": "贾维斯/<日期>/<播客标题>/",
-      "transcript_type": "file (md)",
-      "audio_type": "audio entry (VOD)",
-      "method": "title-folder + presigned-url + vod-upload"
+      "duplicate_pages": 0,
+      "markdown_entry_type": "page",
+      "media_entry_type": "video|audio"
     },
-    "coverage": ["podcast-funasr", "hotwords", "title-folder-structure", "audio-vod-upload"]
-  },
-  {
-    "id": "tc-006",
-    "type": "large-document",
-    "name": "大文档上传（>30K字符）",
-    "date": "2026-06-03",
-    "input": {
-      "file_size_bytes": 196265,
-      "content_chars": 124196
-    },
-    "steps": [
-      "file_apply_upload → 获取 upload_url + session_id",
-      "curl PUT 上传 .md 文件到 COS",
-      "file_commit_upload 确认"
-    ],
-    "expected_output": {
-      "entry_type": "file",
-      "extension": "md",
-      "method": "presigned-url-3-step"
-    },
-    "coverage": ["large-doc-upload", "presigned-url-upload", "file-update-reupload"]
-  },
-  {
-    "id": "tc-007",
-    "type": "file-update",
-    "name": "已有文件更新（重新上传新版本）",
-    "date": "2026-06-03",
-    "input": {
-      "entry_id": "ec5f2457a75f4db58a62e8419b8e9847",
-      "file_id": "2c882b5b04314193a8774afdb94e7912",
-      "reason": "补翻20段失败翻译后重新上传"
-    },
-    "steps": [
-      "describe_entry 获取 target_id (= file_id)",
-      "file_apply_upload(file_id=..., parent_entry_id=entry_id自身)",
-      "curl PUT 上传新版文件",
-      "file_commit_upload → revision v2"
-    ],
-    "expected_output": {
-      "new_revision_seq": "2",
-      "created_from": "renew"
-    },
-    "coverage": ["file-update", "presigned-url-upload", "version-management"]
+    "coverage": ["date-folder", "dedup", "title-folder", "uploader", "vod"]
   }
 ]

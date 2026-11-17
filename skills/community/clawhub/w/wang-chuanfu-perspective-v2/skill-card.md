@@ -1,40 +1,52 @@
-## Description: <br>
-Wang Chuanfu Perspective V2 is a persona-style strategy skill that responds from a synthesized Wang Chuanfu-inspired viewpoint on technology strategy, vertical integration, cost control, engineering culture, and new-energy vehicle decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simulates a Wang Chuanfu-inspired business strategy perspective for analyzing technology strategy, vertical integration, cost control, new energy vehicles, engineering culture, and long-term decisions.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to explore business and strategy questions through a simulated Wang Chuanfu-inspired perspective, especially around technology strategy, vertical integration, cost leadership, new energy vehicles, brand upgrading, and engineering culture. Outputs should be treated as role-play strategy guidance based on public information, not statements from Wang Chuanfu or BYD.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may mistake simulated first-person advice for actual statements from Wang Chuanfu or BYD.
+
+Mitigation: Disclose that the skill is a simulation based on public information and treat outputs as role-play strategy guidance.
+
+Risk: The role-play framing can remain active longer than intended.
+
+Mitigation: Tell the agent to exit the role when the user says to exit, switch back to normal, or stop role-playing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and business or product strategists use this skill to explore decisions through a Wang Chuanfu-inspired business strategy lens. Treat outputs as roleplay and decision-support framing, not statements from the real person or authoritative investment advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Guidance, Analysis]
 
-## Known Risks and Mitigations: <br>
-Risk: Persona-style responses may be mistaken for Wang Chuanfu's actual views or for authoritative business or investment advice. <br>
-Mitigation: Present outputs as synthesized roleplay, retain disclosure that the skill is based on public information, and verify factual or investment-relevant claims against authoritative sources. <br>
-Risk: Broad trigger phrases may steer ordinary business discussions into the Wang Chuanfu-style persona. <br>
-Mitigation: Use the skill only when that perspective is intended, and exit or disable the persona for general-purpose advice. <br>
+**Output Format:** [Markdown or plain text conversational responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/wang-chuanfu-perspective-v2) <br>
+**Other Properties Related to Output:** [Persona-framed strategy advice; no tool calls, shell commands, configuration, or executable code are produced by the skill itself.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-style strategic analysis based on public-information framing; no code execution, credential use, or external tool access is indicated by the evidence.] <br>
+2.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

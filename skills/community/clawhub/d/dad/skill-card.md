@@ -1,43 +1,59 @@
-## Description: <br>
-Parenting co-pilot for fathers that summarizes child care updates, coordinates schedules, tracks bonding moments, suggests age-appropriate activities, and reminds users it is not medical advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dad.skill is a parenting co-pilot for fathers that summarizes daily child-care updates, coordinates family schedules, tracks bonding moments, suggests age-appropriate activities, and reminds users it is not medical advice.
 
-## Publisher: <br>
-[realteamprinz](https://clawhub.ai/user/realteamprinz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realteamprinz](https://clawhub.ai/user/realteamprinz)
 
-## Use Case: <br>
-Parents and caregivers use this skill to help fathers catch up on child care events, coordinate routines, record parenting observations, and choose practical activities from locally stored family notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Family schedules, child routines, and parenting observations may be sensitive when saved in local plain-text files. <br>
-Mitigation: Confirm the family is comfortable with local storage, avoid saving unnecessary sensitive details, and delete ~/.dad-skill/family/ to remove stored data. <br>
-Risk: The skill discusses child care routines and could be mistaken for medical guidance. <br>
-Mitigation: Keep responses practical and non-medical, and direct health concerns to a pediatrician. <br>
-Risk: Sharing data with companion mom.skill may expose family notes beyond the expected parent workflow. <br>
-Mitigation: Review companion skill data-sharing expectations before syncing or revealing family details. <br>
+## Use Case:
 
+External parents, especially fathers and co-parents, use this skill to stay current on locally logged child-care routines, coordinate schedules and night shifts, and record bonding moments.
 
-## Reference(s): <br>
-- [Dad.skill ClawHub listing](https://clawhub.ai/realteamprinz/dad) <br>
-- [Age-Appropriate Activities Reference](references/age-activities.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and plain-text guidance with local file paths and log templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses parent-provided observations and local Markdown/JSONL files; does not provide medical advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores sensitive child and family notes locally where other users of the same agent environment may be able to read them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in environments where agent users are allowed to see the family notes, and remove ~/.dad-skill/family/ to delete the stored data.
+
+Risk: Broad activation phrases and night-mode behavior may cause the skill to respond during casual parenting questions.
+
+Mitigation: Use explicit invocation habits for briefings, schedule checks, bonding logs, night shift questions, and activity suggestions.
+
+Risk: Child-care guidance could be mistaken for medical advice.
+
+Mitigation: Treat responses as practical family coordination only and consult a pediatrician for illness, diagnosis, treatment, or health concerns.
+
+## Reference(s):
+
+- [Age-Appropriate Activities Reference](references/age-activities.md)
+- [Dad's Bonding Log Template](templates/DAD-LOG.md)
+- [Dad.skill on ClawHub](https://clawhub.ai/realteamprinz/skills/dad)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with local JSONL and Markdown note files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local family notes under ~/.dad-skill/family/ and does not transmit data externally according to the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 游轮船票查询 - ClawHub技能脚本
-零配置即装即用，通过SCF代理调用途牛+高德+飞猪API
+零配置即装即用，通过SCF代理调用途牛+高德API
 4个工具：游轮船票查询、市内交通、景点推荐、酒店推荐
 """
 import os
@@ -14,7 +14,6 @@ from datetime import datetime, timedelta
 # ============ 配置 ============
 TUNIU_PROXY = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
 GAODE_PROXY = "https://1439498936-bl10af74fl.ap-guangzhou.tencentscf.com"
-FLIGGY_PROXY = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
 PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 TIMEOUT = 30
 
@@ -50,9 +49,6 @@ def _call_proxy(url, rtype, params, timeout=None):
 def _call_tuniu(rtype, params):
     return _call_proxy(TUNIU_PROXY, rtype, params)
 
-
-def _call_fliggy(rtype, params, timeout=None):
-    return _call_proxy(FLIGGY_PROXY, rtype, params, timeout=timeout)
 
 
 def _call_gaode(api, params):
@@ -193,7 +189,7 @@ def _clean_res_name(res_name, scenic_name):
 
 def search_cruise(params):
     """查询游轮船票信息，包括游轮名、价格、航线方向和退改政策。"""
-    scenic_name = params.get("scenic_name", "")
+    scenic_name = params.get("scenicName", "")
     if not scenic_name:
         hint_list = "、".join(CRUISE_HINTS[:8])
         return f"请提供游轮线路名称，如：{hint_list}\n\n💡 提示：搜索需要精确关键词，如\"长江三峡游轮\"比\"三峡\"更准确"
@@ -379,10 +375,10 @@ def recommend_attraction(params):
 
     if not city: return "请提供城市名，如：重庆、宜昌、上海"
 
-    # 飞猪search_poi用具体关键词效果更好，没keyword时用城市名
+    # search_poi用具体关键词效果更好，没keyword时用城市名
     search_keyword = keyword if keyword else city
 
-    result = _call_fliggy("search_poi", {"keyword": search_keyword, "city": city})
+    result = _call_tuniu("tuniu_ticket_query", {"scenic_name": search_keyword})
     if isinstance(result, dict) and "error" in result:
         return "景点推荐失败: " + result["error"]
 
@@ -453,7 +449,7 @@ def recommend_hotel(params):
     query = params.get("query", "")
     if not query: return "请描述你的住宿需求，如：重庆朝天门附近酒店，300左右"
 
-    result = _call_fliggy("fliggy_ai_search", {"query": query}, timeout=60)
+    result = _call_tuniu("tuniu_ticket_query", {"query": query}, timeout=60)
     if isinstance(result, dict) and "error" in result:
         return "酒店推荐失败: " + result["error"]
 

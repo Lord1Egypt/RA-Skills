@@ -1,45 +1,63 @@
-## Description: <br>
-Deploy and validate Azure Bicep and ARM templates to manage resources and multi-environment setups, including Azure Container Apps configurations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and validate Azure Bicep and ARM templates to manage resources and multi-environment setups, including Azure Container Apps configurations.
 
-## Publisher: <br>
-[junior-juarez-MSFT](https://clawhub.ai/user/junior-juarez-MSFT) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junior-juarez-msft](https://clawhub.ai/user/junior-juarez-msft)
 
-## Use Case: <br>
-Developers and cloud engineers use this skill to plan, validate, and run Azure CLI and Bicep workflows for Bicep or ARM template deployments across dev, staging, and production environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested deployment commands can create or change live Azure resources and incur cost. <br>
-Mitigation: Confirm the active Azure tenant, subscription, resource group, template, parameter file, and expected cost, then run validation or what-if before deployment. <br>
-Risk: Example Container Apps guidance includes public ingress and placeholder registry secrets. <br>
-Mitigation: Enable public ingress only when required and replace placeholders with managed secret handling rather than hardcoded credentials. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, validate, and run Azure Bicep or ARM deployments across dev, staging, and production environments.
 
-## Reference(s): <br>
-- [Azure Bicep Deploy on ClawHub](https://clawhub.ai/junior-juarez-MSFT/azure-bicep-deploy) <br>
-- [Bicep Build Script](references/bicep-build.md) <br>
-- [Azure Container Apps Reference](references/container-apps.md) <br>
-- [Deploy Script](references/deploy.md) <br>
-- [Validate Script](references/validate.md) <br>
-- [Azure CLI Install Documentation](https://docs.microsoft.com/cli/azure/install-azure-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline Azure CLI, PowerShell, Bicep, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Azure deployment commands and example parameter files that require review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: PowerShell helper examples use command-string execution patterns that can run unintended commands if arguments are not trusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review helper scripts before use and pass arguments directly to Azure CLI commands instead of evaluating assembled command strings.
+
+Risk: Deployment examples can create or change live Azure resources.
+
+Mitigation: Run what-if first, confirm the active tenant and subscription, and use a least-privileged identity in a non-production subscription until reviewed.
+
+Risk: Container Apps examples include public ingress and placeholder registry credentials.
+
+Mitigation: Treat external ingress as internet exposure and avoid hardcoding real registry passwords in templates or parameter files.
+
+## Reference(s):
+
+- [Deploy Script](references/deploy.md)
+- [Validate Script](references/validate.md)
+- [Bicep Build Script](references/bicep-build.md)
+- [Azure Container Apps Reference](references/container-apps.md)
+- [Install Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
+- [Azure deployment parameters schema](https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#)
+- [ClawHub skill page](https://clawhub.ai/junior-juarez-msft/skills/azure-bicep-deploy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Azure CLI, PowerShell, Bicep, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include copy-paste deployment, validation, and build commands that should be reviewed before execution.]
+
+## Skill Version(s):
+
+2.1.0 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

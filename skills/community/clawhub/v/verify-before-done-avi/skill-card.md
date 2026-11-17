@@ -1,39 +1,52 @@
-## Description: <br>
-Prevent premature completion claims, repeated same-pattern retries, and weak handoffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prevent premature completion claims, repeated same-pattern retries, and weak handoffs. Use this skill to improve verification, strategy switching, and blocked-task reporting without changing personality or tone.
 
-## Publisher: <br>
-[aviclaw](https://clawhub.ai/user/aviclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aviclaw](https://clawhub.ai/user/aviclaw)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External developers and agents use this skill to check meaningful evidence before claiming work is complete, switch strategy after repeated low-signal attempts, and provide concise handoffs when blocked.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Agents may spend excessive effort verifying low-stakes tasks.
+
+Mitigation: Apply the skill's effort calibration guidance and use the lightest meaningful check that gives real evidence.
+
+Risk: Agents may be unable to fully verify a task when required runtime, credentials, or context are unavailable.
+
+Mitigation: Use the blocked-task handoff pattern to state what changed, what was checked, what could not be checked, and the remaining uncertainty.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to improve execution discipline by verifying work before claiming completion, switching strategies after repeated ineffective attempts, and providing clearer handoffs when blocked. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested verification steps could include tests, commands, or real integration checks that affect sensitive systems. <br>
-Mitigation: Review proposed tests, commands, and external integration calls before they touch production, account, financial, or other sensitive data. <br>
-Risk: The skill improves completion discipline but cannot independently prove that a task is complete. <br>
-Mitigation: Use lightweight direct checks when possible and explicitly state what was checked, what could not be checked, and any remaining uncertainty. <br>
+**Output Format:** [Markdown guidance with optional commands or code snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [No hidden execution, persistence, credential use, or unrelated data access was identified in the server security summary.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance for agent behavior and response patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not include code, shell commands, persistence, or credential requirements.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

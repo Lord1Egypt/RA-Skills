@@ -1,45 +1,56 @@
-## Description: <br>
-Log in to the SJTU HPC platform as the user to perform job queries, submissions, cancellations, and data management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log in to the SJTU HPC platform (also known as "交我算") as the user to perform job queries, submissions, cancellations, and data management.
 
-## Publisher: <br>
-[taleintervenor](https://clawhub.ai/user/taleintervenor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taleintervenor](https://clawhub.ai/user/taleintervenor)
 
-## Use Case: <br>
-External users with access to the SJTU HPC platform use this skill to manage HPC account settings, inspect queues and jobs, submit or cancel SLURM work, and move data between storage pools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores HPC tokens, SSH keys, and certificates that can grant access to the user's HPC account. <br>
-Mitigation: Install only in a private, trusted workspace and remove or revoke stored tokens, SSH keys, and certificates when they are no longer needed. <br>
-Risk: The skill may require an HPC password to request a new token. <br>
-Mitigation: Avoid pasting passwords into chat when possible; use the temporary-file flow and delete the file after token issuance. <br>
-Risk: Job cancellation, account changes, data deletion, and large transfers can interrupt work or affect user data. <br>
-Mitigation: Confirm these operations explicitly with the user before execution. <br>
+## Use Case:
 
+External SJTU HPC users use this skill to manage account information, query SLURM jobs and partitions, submit or cancel jobs, and move data between hot and cold storage through HPC APIs and SSH entry nodes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/taleintervenor/sjtu-slurm-skill) <br>
-- [Project homepage](https://github.com/SJTU-HPC/SJTU-SLURM-Skill) <br>
-- [SJTU HPC API documentation](https://api.hpc.sjtu.edu.cn/doc/index.html#/) <br>
-- [SJTU HPC account security documentation](https://docs.hpc.sjtu.edu.cn/accounts/security.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and command or API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or refresh HPC token, SSH key, and SSH certificate files in a workspace credentials directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.3 (source: server release evidence) <br>
+Risk: The skill handles reusable HPC passwords, bearer tokens, SSH keys, and certificates stored in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a trusted local environment for an SJTU HPC account the user controls, avoid entering passwords directly in chat, and protect or remove credential files when no longer needed.
+
+Risk: The skill can perform user-level SSH, job, account, and data operations, including actions that may interrupt jobs or affect stored data.
+
+Mitigation: Confirm destructive, account-changing, or job-interrupting actions with the user and verify target partitions, storage paths, and entry nodes before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taleintervenor/skills/sjtu-slurm-skill)
+- [Project homepage](https://github.com/SJTU-HPC/SJTU-SLURM-Skill)
+- [SJTU HPC API documentation](https://api.hpc.sjtu.edu.cn/doc/index.html#/)
+- [SJTU HPC account security documentation](https://docs.hpc.sjtu.edu.cn/accounts/security.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate API calls, SSH sessions, credential setup, and long-running remote job or data operations when used by an agent.]
+
+## Skill Version(s):
+
+0.2.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

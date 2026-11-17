@@ -1,40 +1,57 @@
-## Description: <br>
-Find groups shared between contacts and check group membership. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find groups shared between contacts and check group membership.
 
-## Publisher: <br>
-[MarcosRippel](https://clawhub.ai/user/MarcosRippel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[marcosrippel](https://clawhub.ai/user/marcosrippel)
 
-## Use Case: <br>
-Developers and operators use this skill to query local WhatsApp state for groups associated with a phone number, verify whether a phone number belongs to a specific group, or list known group members when they have a legitimate need to inspect that data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local WhatsApp credential and state files and its outputs can reveal private phone numbers, group IDs, group names, and relationship metadata. <br>
-Mitigation: Install and run it only when you intentionally want an agent to inspect that local WhatsApp state, and keep resulting transcripts and logs access-controlled. <br>
-Risk: The all-members command can broadly enumerate known members across groups. <br>
-Mitigation: Prefer narrow find or check commands for specific questions, and use all-members only when broad enumeration is necessary. <br>
+## Use Case:
 
+Users who manage a local OpenClaw WhatsApp state use this skill to find group memberships for a contact, verify whether a phone number is in a group, or enumerate known group members.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MarcosRippel/whatsapp-common-groups) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [JSON text emitted by a Node.js command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include phone numbers, WhatsApp group IDs, group names, membership status, counts, and error messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can expose private WhatsApp group and contact relationship data from local credential-state files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only where the operator is authorized to inspect that local WhatsApp state, and review results before sharing them.
+
+Risk: The bulk all-members command can enumerate private contact metadata across groups.
+
+Mitigation: Prefer targeted find and check commands; use all-members only when bulk enumeration is explicitly intended and keep result limits narrow.
+
+Risk: Weak scoping can cause the skill to inspect more local WhatsApp state than intended.
+
+Mitigation: Run it with a deliberately scoped OPENCLAW_STATE_DIR and restrict access to credential-state directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marcosrippel/skills/whatsapp-common-groups)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [JSON printed by command-line scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include phone numbers, group identifiers, group names, membership status, and aggregate group counts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,118 @@
+# packs/finance.yaml — 金融机构行业包 (Financial Institution)
+# 本体论智能体 (Ontology Agent) · 天津市微数人工智能科技有限责任公司
+# 零侵入说明：本文件为新增 pack，不改动 24 部门模板、159 动作库、decision/roles/semantic/logic、init.py。
+#
+# ⚠️ 重要：本包所列合规红线为「参考框架、非法律/合规意见」。金融强监管，落地前须由持牌合规/法务核验，
+# 并以最新监管规定与监管批复为准；本包不替代任何法定合规职责。
+
+meta:
+  pack_id: finance
+  display_name: 金融机构 (Financial Institution)
+  version: 0.1.0
+  base_layer_ref: references/semantic.yaml
+  logic_ref: references/logic.yaml
+  decision_ref: references/decision.yaml
+  match_keywords: [银行, 证券, 保险, 基金, 信托, 金融, 持牌, 信用社, 财务公司, 支付, 理财, 资管, 期货, 金融租赁]
+  description: >
+    适用于受金融监管的持牌机构（银行 / 证券 / 保险 / 基金 / 信托 / 期货 / 支付 / 财务公司等）。
+    主包覆盖金融共性（KYC/适当性/产品/风控合规），红线为参考框架非法律意见，须由持牌合规核验。
+
+# ── 一、金融共性实体 ──
+entities_extra:
+  - type: FinancialInstitution
+    extends: Organization
+    properties:
+      - { name: license_type, type: enum, enum: [银行, 证券, 保险, 基金, 信托, 期货, 支付, 财务公司, 金融租赁], required: true, desc: "持牌类型" }
+      - { name: regulated_by, type: string, desc: "监管机构（银保监/证监/人行等）" }
+      - { name: capital_adequacy, type: number, desc: "资本充足率 %" }
+    relations:
+      - { to: Organization, type: belongs_to, cardinality: many-to-one }
+  - type: FinancialProduct
+    extends: Product
+    properties:
+      - { name: risk_level, type: enum, enum: [R1, R2, R3, R4, R5], desc: "产品风险等级" }
+      - { name: suitability, type: string, desc: "适当性要求" }
+      - { name: reg_no, type: string, desc: "产品登记/备案号" }
+  - type: ClientAccount
+    extends: Account
+    properties:
+      - { name: kyc_status, type: enum, enum: [未识别, 已识别, 强化识别], desc: "客户身份识别状态" }
+      - { name: suitability_level, type: enum, enum: [保守, 稳健, 平衡, 进取, 激进], desc: "投资者风险承受" }
+      - { name: aml_list_hit, type: boolean, desc: "是否命中反洗钱名单" }
+  - type: Transaction
+    extends: Task
+    properties:
+      - { name: amount, type: number, desc: "交易金额" }
+      - { name: aml_flag, type: enum, enum: [正常, 可疑, 大额待报], desc: "反洗钱标记" }
+    relations:
+      - { to: ClientAccount, type: related_to, cardinality: many_to_one }
+
+# ── 二、推荐部门 ──
+recommended_departments:
+  - { code: lead,        name: 领导决策 }
+  - { code: admin,       name: 行政综合 }
+  - { code: hr,          name: 人力资源 }
+  - { code: finance,     name: 财税 }
+  - { code: legal,       name: 法务合规 }
+  - { code: rnd,         name: 研发 }
+  - { code: mkt_content, name: 内容营销 }
+  - { code: mkt_dist,    name: 渠道分发 }
+  - { code: mkt_seo,     name: SEO推广 }
+  - { code: sales,       name: 销售 }
+  - { code: data,        name: 数据 }
+  - { code: strategy,    name: 战略 }
+  # 金融相关可选
+  - { code: risk,        name: 风控内控 }      # 风控/合规/资本
+  - { code: it_security, name: IT安全 }        # 数据安全/名单系统
+  - { code: investor,    name: 投融资 }        # 资管/投行/产品
+
+suggested_custom_departments:
+  - { code: aml_compliance, name: 合规与反洗钱, gender_default: male, expertise: "KYC/大额可疑交易报告/名单监控/适当性", when: "持牌经营即建议加（合规刚需）" }
+  - { code: relationship,    name: 客户经理, gender_default: female, expertise: "获客/适当性匹配/存续服务", when: "有零售/对公客户即建议加" }
+  - { code: ib_desk,        name: 投资银行, gender_default: male, expertise: "承销/并购/资管产品设计", when: "有投行业务即建议加" }
+
+# ── 三、默认工作流 ──
+default_workflow: finance_ops
+workflow_bindings:
+  finance_ops:
+    stages: [discovery, design, build, validate, operate, grow]
+    core_loop: [获客与KYC, 适当性匹配, 产品交付, 存续服务, 风控合规, 复盘]
+
+# ── 四、本地化政策钩子 ──
+policy_hooks:
+  region: 全国
+  redline_refs:
+    - compliance_redlines.finance             # AML/适当性/资本监管/数据分级/征信（本 pack 触发，参考非法律意见）
+    - compliance_redlines.tax                 # 发票/完税
+    - compliance_redlines.general             # 个保法最小必要
+  local_services: []
+  note: 红线为参考框架，落地前须持牌合规/法务核验并以最新监管规定为准。
+
+# ── 五、B 层风味 ──
+flavor:
+  default: >-
+    你服务的是受金融监管的持牌机构；合规是生命线，任何动作不得越过监管红线。客户须 KYC 身份识别，
+    产品须与投资者风险承受匹配（适当性），不得向不适当投资者销售；反洗钱名单监控与大额/可疑交易报告刚性。
+    金融账户/证件/交易信息严格脱敏，PII 不写明文。
+  legal: 持牌经营、不得超范围；代销须持牌产品；金融广告不得保本保收益承诺；销售可回溯（双录）。
+  risk: 资本充足率/拨备覆盖率/杠杆率/流动性指标须达标；模型与压力测试留痕；风险事件即时上报。
+  finance: 财务确认须与金融监管报表一致；税务与监管口径差异由合规核对；客户资产隔离。
+  investor: 产品须登记/备案；风险揭示充分；不得承诺收益；存续期信息披露合规。
+  it_security: 金融数据分类分级（C1–C4）；重要/核心数据出境须安全评估；系统须可审计、留痕。
+
+# ── 六、实例化提示 ──
+instance_prompts:
+  - "请描述机构类型与牌照（银行/证券/保险/基金/支付…）及监管机构"
+  - "请介绍机构情况（名称、地区、资本充足率、是否雇人）"
+  - "想搭建哪些部门（默认 12 核心 + 风控/IT安全/投融资；强烈建议加合规与反洗钱）"
+  - "核心业务循环（如 获客 → KYC → 适当性匹配 → 产品交付 → 存续）"
+  - "是否有跨境/数据出境/高净值客户（影响数据与适当性红线）"
+
+# ── 七、金融特有监测信号（配合 monitoring.yaml 的 finance 域）──
+finance_signals:
+  signals:
+    - { id: aml_alert, name: 反洗钱可疑交易, owner: [aml_compliance, risk], desc: "命中名单/大额可疑待报" }
+    - { id: suitability_breach, name: 适当性错配, owner: [aml_compliance, sales], desc: "产品风险与客户承受不匹配" }
+    - { id: capital_drop, name: 资本指标下滑, owner: [risk, finance], desc: "资本充足率/流动性指标逼近下限" }
+    - { id: reg_change, name: 监管新规, owner: [legal, strategy], desc: "监管发文/处罚案例/新规生效" }
+    - { id: complaint_spike, name: 投诉/舆情波动, owner: [mkt_content, csm], desc: "客诉集中/负面舆情" }

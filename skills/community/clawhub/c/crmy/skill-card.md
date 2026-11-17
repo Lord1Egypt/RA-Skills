@@ -1,39 +1,57 @@
-## Description: <br>
-CRMy agent — manages contacts, accounts, deals, and pipeline using the CRMy CRM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CRMy agent manages contacts, accounts, deals, and pipeline using the CRMy CRM, with guidance to search before creating, log meaningful interactions, and suggest next steps.
 
-## Publisher: <br>
-[codycharris](https://clawhub.ai/user/codycharris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codycharris](https://clawhub.ai/user/codycharris)
 
-## Use Case: <br>
-Sales and customer-facing teams use this skill to search, create, update, and summarize CRM contacts, accounts, opportunities, activities, and pipeline status in CRMy. It guides agents to search before creating records, log meaningful interactions, link related CRM objects, and suggest next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent CRM changes, including creating contacts, linking accounts, logging activities, changing deal stages, and performing scoped updates. <br>
-Mitigation: Preview and confirm write actions, especially bulk updates, before allowing the assistant to submit them. <br>
-Risk: The skill sends CRM data and authenticated requests to the configured CRMy server URL. <br>
-Mitigation: Use a trusted CRMy server URL and protect the CRMY API key in configuration, environment variables, and local files. <br>
+## Use Case:
 
+Sales and relationship teams use CRMy to search CRM records, create and update contacts, accounts, and opportunities, log meaningful interactions, summarize pipeline status, and identify next steps.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown or concise text summaries backed by CRMy REST API tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify persistent CRM records when the configured CRMy server accepts authenticated write requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.11 (source: server release metadata and package.json) <br>
+Risk: The skill can perform sensitive CRM write actions such as creating records, advancing opportunities, and logging activities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review agent-requested CRM writes before approval, especially bulk changes or updates to revenue-related records.
+
+Risk: CRMy API keys and CRM data may be exposed if a non-local server URL uses insecure transport or an overly broad key.
+
+Mitigation: Prefer HTTPS server URLs except for local development and configure a least-privilege CRMy API key.
+
+Risk: Untrusted record IDs passed into update tools can target unintended CRM records until the plugin validates UUIDs.
+
+Mitigation: Use search results to confirm record identity and avoid passing untrusted record IDs into update operations.
+
+## Reference(s):
+
+- [CRMy ClawHub skill page](https://clawhub.ai/codycharris/skills/crmy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Concise natural-language responses, with tables or bullets for CRM summaries and tool-backed CRM updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configured CRMy server URL and API key to read and write CRM records.]
+
+## Skill Version(s):
+
+0.5.11 (source: evidence release version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

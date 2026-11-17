@@ -1,12 +1,19 @@
 {
-  "name": "aivideo-api-executor",
-  "version": "1.0.13",
+  "name": "ai-video-maker",
+  "version": "2.1.0",
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=14"
+    "node": ">=20"
+  },
+  "bin": {
+    "aivideo": "scripts/run-workflow.mjs"
   },
   "scripts": {
-    "workflow": "node scripts/run-workflow.mjs"
+    "doctor": "node scripts/run-workflow.mjs --action doctor",
+    "workflow": "node scripts/run-workflow.mjs",
+    "test": "node --test test/*.test.mjs",
+    "verify-release": "node scripts/verify-release.mjs",
+    "build-release": "node ../scripts/build-skill-release.mjs"
   }
 }

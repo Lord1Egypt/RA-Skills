@@ -1,42 +1,54 @@
-## Description: <br>
-NeoBoost GEO 服务 helps users review brand visibility, health, snapshots, AI preference analysis, AI source statistics, and related brand-management data in GEO or NeoBoost. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NeoBoost GEO 服务 helps users query brand visibility, health, snapshots, AI preference analysis, AI source statistics, topic words, prompt words, competitors, materials, aliases, and AI-assisted content generation or optimization in GEO or NeoBoost.
 
-## Publisher: <br>
-[chinaberg](https://clawhub.ai/user/chinaberg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinaberg](https://clawhub.ai/user/chinaberg)
 
-## Use Case: <br>
-External brand, marketing, and GEO operations users use this skill to inspect NeoBoost brand visibility, health, question terms, competitors, content materials, aliases, and AI-assisted content workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a NeoBoost API key. <br>
-Mitigation: Install only when NeoBoost access is intended, keep NEOBOOST_API_KEY secret, and avoid sharing it in prompts or logs. <br>
-Risk: Broad trigger examples may cause the skill to activate for requests that are only loosely related to NeoBoost brand management. <br>
-Mitigation: Use explicit NeoBoost-related requests and review any proposed management actions before applying changes to topics, competitors, materials, or aliases. <br>
+## Use Case:
 
+External business, brand, and marketing users use this skill to request NeoBoost or GEO brand analytics, competitor visibility data, prompt and topic management, and AI-assisted content work.
 
-## Reference(s): <br>
-- [NeoBoost GEO 服务 on ClawHub](https://clawhub.ai/chinaberg/neoboost) <br>
-- [Publisher profile: chinaberg](https://clawhub.ai/user/chinaberg) <br>
-- [NeoBoost homepage](https://neoboost.oneaix.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with optional shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and NEOBOOST_API_KEY for normal use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: frontmatter and server release evidence) <br>
+Risk: Brand, competitor, prompt, and content-generation requests may include sensitive business information processed by the NeoBoost service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with data appropriate for the configured NeoBoost account and privacy expectations.
+
+Risk: The skill requires a NeoBoost API key for access.
+
+Mitigation: Store NEOBOOST_API_KEY in the agent environment, limit access to trusted users, and rotate the key if it is exposed.
+
+## Reference(s):
+
+- [NeoBoost homepage](https://neoboost.oneaix.com)
+- [ClawHub skill page](https://clawhub.ai/chinaberg/skills/neoboost)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown or plain text responses with optional shell commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and a NEOBOOST_API_KEY environment variable for NeoBoost access.]
+
+## Skill Version(s):
+
+0.2.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

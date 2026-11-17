@@ -1,0 +1,415 @@
+{
+  "status": "pass",
+  "relationships": [
+    {
+      "id": "enterprise->vehicle:ent_id",
+      "from": "enterprise",
+      "to": "vehicle",
+      "status": "pass",
+      "from_columns": [
+        "ent_id"
+      ],
+      "to_columns": [
+        "ent_id"
+      ],
+      "cardinality": "1:N",
+      "from_key": {
+        "rows": 15,
+        "null_rows": 0,
+        "duplicate_groups": 0,
+        "unique_nonnull": true
+      },
+      "to_key": {
+        "rows": 240,
+        "null_rows": 0,
+        "duplicate_groups": 15,
+        "unique_nonnull": false
+      }
+    },
+    {
+      "id": "enterprise->person:ent_id",
+      "from": "enterprise",
+      "to": "person",
+      "status": "pass",
+      "from_columns": [
+        "ent_id"
+      ],
+      "to_columns": [
+        "ent_id"
+      ],
+      "cardinality": "1:N",
+      "from_key": {
+        "rows": 15,
+        "null_rows": 0,
+        "duplicate_groups": 0,
+        "unique_nonnull": true
+      },
+      "to_key": {
+        "rows": 320,
+        "null_rows": 0,
+        "duplicate_groups": 15,
+        "unique_nonnull": false
+      }
+    },
+    {
+      "id": "enterprise->check_order:ent_id",
+      "from": "enterprise",
+      "to": "check_order",
+      "status": "pass",
+      "from_columns": [
+        "ent_id"
+      ],
+      "to_columns": [
+        "ent_id"
+      ],
+      "cardinality": "1:N",
+      "from_key": {
+        "rows": 15,
+        "null_rows": 0,
+        "duplicate_groups": 0,
+        "unique_nonnull": true
+      },
+      "to_key": {
+        "rows": 100,
+        "null_rows": 0,
+        "duplicate_groups": 15,
+        "unique_nonnull": false
+      }
+    },
+    {
+      "id": "enterprise->hazard:ent_id",
+      "from": "enterprise",
+      "to": "hazard",
+      "status": "pass",
+      "from_columns": [
+        "ent_id"
+      ],
+      "to_columns": [
+        "ent_id"
+      ],
+      "cardinality": "1:N",
+      "from_key": {
+        "rows": 15,
+        "null_rows": 0,
+        "duplicate_groups": 0,
+        "unique_nonnull": true
+      },
+      "to_key": {
+        "rows": 180,
+        "null_rows": 0,
+        "duplicate_groups": 15,
+        "unique_nonnull": false
+      }
+    },
+    {
+      "id": "enterprise->alert_event:ent_id",
+      "from": "enterprise",
+      "to": "alert_event",
+      "status": "pass",
+      "from_columns": [
+        "ent_id"
+      ],
+      "to_columns": [
+        "ent_id"
+      ],
+      "cardinality": "1:N",
+      "from_key": {
+        "rows": 15,
+        "null_rows": 0,
+        "duplicate_groups": 0,
+        "unique_nonnull": true
+      },
+      "to_key": {
+        "rows": 220,
+        "null_rows": 0,
+        "duplicate_groups": 15,
+        "unique_nonnull": false
+      }
+    },
+    {
+      "id": "enterprise->train_plan:ent_id",
+      "from": "enterprise",
+      "to": "train_plan",
+      "status": "pass",
+      "from_columns": [
+        "ent_id"
+      ],
+      "to_columns": [
+        "ent_id"
+      ],
+      "cardinality": "1:N",
+      "from_key": {
+        "rows": 15,
+        "null_rows": 0,
+        "duplicate_groups": 0,
+        "unique_nonnull": true
+      },
+      "to_key": {
+        "rows": 150,
+        "null_rows": 0,
+        "duplicate_groups": 15,
+        "unique_nonnull": false
+      }
+    },
+    {
+      "id": "enterprise->train_person:ent_id",
+      "from": "enterprise",
+      "to": "train_person",
+      "status": "pass",
+      "from_columns": [
+        "ent_id"
+      ],
+      "to_columns": [
+        "ent_id"
+      ],
+      "cardinality": "1:N",
+      "from_key": {
+        "rows": 15,
+        "null_rows": 0,
+        "duplicate_groups": 0,
+        "unique_nonnull": true
+      },
+      "to_key": {
+        "rows": 500,
+        "null_rows": 0,
+        "duplicate_groups": 15,
+        "unique_nonnull": false
+      }
+    },
+    {
+      "id": "enterprise->alarm:ent_id",
+      "from": "enterprise",
+      "to": "alarm",
+      "status": "pass",
+      "from_columns": [
+        "ent_id"
+      ],
+      "to_columns": [
+        "ent_id"
+      ],
+      "cardinality": "1:N",
+      "from_key": {
+        "rows": 15,
+        "null_rows": 0,
+        "duplicate_groups": 0,
+        "unique_nonnull": true
+      },
+      "to_key": {
+        "rows": 900,
+        "null_rows": 0,
+        "duplicate_groups": 15,
+        "unique_nonnull": false
+      }
+    },
+    {
+      "id": "enterprise->monitor_daily:ent_id",
+      "from": "enterprise",
+      "to": "monitor_daily",
+      "status": "pass",
+      "from_columns": [
+        "ent_id"
+      ],
+      "to_columns": [
+        "ent_id"
+      ],
+      "cardinality": "1:N",
+      "from_key": {
+        "rows": 15,
+        "null_rows": 0,
+        "duplicate_groups": 0,
+        "unique_nonnull": true
+      },
+      "to_key": {
+        "rows": 450,
+        "null_rows": 0,
+        "duplicate_groups": 15,
+        "unique_nonnull": false
+      }
+    },
+    {
+      "id": "enterprise->safety_ledger:ent_id",
+      "from": "enterprise",
+      "to": "safety_ledger",
+      "status": "pass",
+      "from_columns": [
+        "ent_id"
+      ],
+      "to_columns": [
+        "ent_id"
+      ],
+      "cardinality": "1:N",
+      "from_key": {
+        "rows": 15,
+        "null_rows": 0,
+        "duplicate_groups": 0,
+        "unique_nonnull": true
+      },
+      "to_key": {
+        "rows": 200,
+        "null_rows": 0,
+        "duplicate_groups": 15,
+        "unique_nonnull": false
+      }
+    },
+    {
+      "id": "enterprise->meeting_duty:ent_id",
+      "from": "enterprise",
+      "to": "meeting_duty",
+      "status": "pass",
+      "from_columns": [
+        "ent_id"
+      ],
+      "to_columns": [
+        "ent_id"
+      ],
+      "cardinality": "1:N",
+      "from_key": {
+        "rows": 15,
+        "null_rows": 0,
+        "duplicate_groups": 0,
+        "unique_nonnull": true
+      },
+      "to_key": {
+        "rows": 160,
+        "null_rows": 0,
+        "duplicate_groups": 15,
+        "unique_nonnull": false
+      }
+    },
+    {
+      "id": "check_order->check_item:",
+      "from": "check_order",
+      "to": "check_item",
+      "status": "pass",
+      "from_columns": [
+        "order_id"
+      ],
+      "to_columns": [
+        "check_order_id"
+      ],
+      "cardinality": "1:N",
+      "from_key": {
+        "rows": 100,
+        "null_rows": 0,
+        "duplicate_groups": 0,
+        "unique_nonnull": true
+      },
+      "to_key": {
+        "rows": 600,
+        "null_rows": 0,
+        "duplicate_groups": 100,
+        "unique_nonnull": false
+      }
+    },
+    {
+      "id": "check_order->hazard:",
+      "from": "check_order",
+      "to": "hazard",
+      "status": "pass",
+      "from_columns": [
+        "order_id"
+      ],
+      "to_columns": [
+        "check_order_id"
+      ],
+      "cardinality": "1:N",
+      "from_key": {
+        "rows": 100,
+        "null_rows": 0,
+        "duplicate_groups": 0,
+        "unique_nonnull": true
+      },
+      "to_key": {
+        "rows": 180,
+        "null_rows": 0,
+        "duplicate_groups": 80,
+        "unique_nonnull": false
+      }
+    },
+    {
+      "id": "hazard->alert_event:alert_id",
+      "from": "hazard",
+      "to": "alert_event",
+      "status": "pass",
+      "from_columns": [
+        "alert_id"
+      ],
+      "to_columns": [
+        "alert_id"
+      ],
+      "cardinality": "N:1",
+      "from_key": {
+        "rows": 180,
+        "null_rows": 0,
+        "duplicate_groups": 56,
+        "unique_nonnull": false
+      },
+      "to_key": {
+        "rows": 220,
+        "null_rows": 0,
+        "duplicate_groups": 0,
+        "unique_nonnull": true
+      }
+    },
+    {
+      "id": "alert_event->supervise_flow:alert_id",
+      "from": "alert_event",
+      "to": "supervise_flow",
+      "status": "pass",
+      "from_columns": [
+        "alert_id"
+      ],
+      "to_columns": [
+        "alert_id"
+      ],
+      "cardinality": "1:N",
+      "from_key": {
+        "rows": 220,
+        "null_rows": 0,
+        "duplicate_groups": 0,
+        "unique_nonnull": true
+      },
+      "to_key": {
+        "rows": 300,
+        "null_rows": 0,
+        "duplicate_groups": 80,
+        "unique_nonnull": false
+      }
+    },
+    {
+      "id": "vehicle->alarm:veh_id",
+      "from": "vehicle",
+      "to": "alarm",
+      "status": "pass",
+      "from_columns": [
+        "veh_id"
+      ],
+      "to_columns": [
+        "veh_id"
+      ],
+      "cardinality": "1:N",
+      "from_key": {
+        "rows": 240,
+        "null_rows": 0,
+        "duplicate_groups": 0,
+        "unique_nonnull": true
+      },
+      "to_key": {
+        "rows": 900,
+        "null_rows": 0,
+        "duplicate_groups": 240,
+        "unique_nonnull": false
+      }
+    }
+  ],
+  "queries": [],
+  "scope": "declared edges and explicit query paths; uniqueness is not referential coverage or live lineage",
+  "evidence": {
+    "schema_version": "1.0",
+    "created_at": "2026-09-28T14:02:15+00:00",
+    "mode": "sqlite_snapshot",
+    "model_sha256": "a4ec86957bd44d5519b0bafb07ba3d63d215d2f9c354f0fce516c2512f3ce437",
+    "cases_sha256": null,
+    "data_snapshot_sha256": "edcf309e9fa1b7ee0dbd4404f33132f61365a488c0b8331ffba2463b1fffd48f"
+  }
+}

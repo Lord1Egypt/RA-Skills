@@ -1,48 +1,64 @@
-## Description: <br>
-Conduct in-depth analysis and interpretation of articles, extracting core viewpoints, key data, and deep insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conduct in-depth analysis and interpretation of articles, extracting core viewpoints, key data, and deep insights.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to analyze complex articles, evaluate arguments, extract key facts, and produce structured insight reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Permission labels include purchase or crypto capabilities, while the security evidence describes the skill as markdown-only article analysis. <br>
-Mitigation: Use the skill for article summarization and analysis only; do not grant payment, wallet, credential, or broad filesystem permissions unless a future version clearly justifies them. <br>
+## Use Case:
 
+External readers, analysts, and developers use this skill to analyze complex articles, evaluate arguments, extract key data, and produce actionable reading insights.
 
-## Reference(s): <br>
-- [Thinking Models Reference Index](references/index.md) <br>
-- [SCQA Framework](references/scqa.md) <br>
-- [5W2H Analysis](references/5w2h.md) <br>
-- [First Principles](references/first-principles.md) <br>
-- [Six Thinking Hats](references/six-thinking-hats.md) <br>
-- [Critical Thinking](references/critical-thinking.md) <br>
-- [Systems Thinking](references/systems-thinking.md) <br>
-- [Reverse Thinking](references/reverse-thinking.md) <br>
-- [Mental Models](references/mental-models.md) <br>
-- [Comparison Matrix](references/comparison-matrix.md) <br>
-- [Inversion Thinking](references/inversion-thinking.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sections for core viewpoint, key data, deep insights, thinking models applied, and questions for further exploration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat analysis output as verified fact, especially for sensitive, current, legal, medical, or financial material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as analytical assistance and verify claims, data, and conclusions against authoritative sources before relying on them.
+
+Risk: Applying many thinking models can overframe an article or introduce interpretations not supported by the source text.
+
+Mitigation: Keep conclusions tied to quoted or summarized article evidence, and separate facts, assumptions, and opinions in the final report.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/deep-article-analysis)
+- [Thinking Models Reference Index](references/index.md)
+- [SCQA Framework](references/scqa.md)
+- [5W2H Analysis](references/5w2h.md)
+- [First Principles](references/first-principles.md)
+- [Six Thinking Hats](references/six-thinking-hats.md)
+- [Critical Thinking](references/critical-thinking.md)
+- [Systems Thinking](references/systems-thinking.md)
+- [Reverse Thinking](references/reverse-thinking.md)
+- [Mental Models](references/mental-models.md)
+- [Comparison Matrix](references/comparison-matrix.md)
+- [Inversion Thinking](references/inversion-thinking.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis report with headings and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommended sections include core viewpoint, key data, deep insights, applied thinking models, and questions for further exploration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

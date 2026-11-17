@@ -1,41 +1,64 @@
-## Description: <br>
-Guides agents through buying API access with ProxyGate, including checking balances, depositing USDC, finding APIs, proxying requests, streaming responses, tracking usage, withdrawing funds, and rating sellers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pg Buy guides agents through buying API access with ProxyGate, including USDC deposits, API discovery, proxied requests, streaming responses, usage checks, withdrawals, and seller ratings.
 
-## Publisher: <br>
-[jwelten](https://clawhub.ai/user/jwelten) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jwelten](https://clawhub.ai/user/jwelten)
 
-## Use Case: <br>
-External developers and agent operators use this skill to buy API access through ProxyGate and manage buyer-side CLI or SDK workflows. It is intended for balance checks, USDC deposits and withdrawals, API discovery, paid proxy requests, usage review, and seller ratings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent through financial and marketplace actions such as deposits, withdrawals, paid proxy requests, seller ratings, listing changes, tunnel exposure, or job marketplace actions. <br>
-Mitigation: Require explicit user approval before each financial, paid-service, listing, tunnel, or marketplace action, and use a low-balance wallet or limited API key. <br>
-Risk: Proxy requests may send secrets, personal data, proprietary payloads, or other sensitive information through third-party API services. <br>
-Mitigation: Avoid sending sensitive data unless the selected service is intentionally trusted, and keep ProxyGate shield scanning enabled where appropriate. <br>
+## Use Case:
 
+External developers and agent operators use this skill when they want to discover paid APIs and route requests through ProxyGate using either the CLI or SDK. It is most relevant when the workflow includes wallet balance checks, USDC deposits, paid proxy calls, usage review, settlement review, or withdrawals.
 
-## Reference(s): <br>
-- [ProxyGate CLI Command Reference](references/commands.md) <br>
-- [ProxyGate Gateway Docs](https://gateway.proxygate.ai/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline bash and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ProxyGate CLI commands, SDK snippets, request payload examples, and operational checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: The skill can guide ordinary API requests into paid external ProxyGate proxy usage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before every paid proxy request, and show expected cost and target service whenever available.
+
+Risk: The workflow includes real USDC deposits, withdrawals, and withdraw-all actions.
+
+Mitigation: Require explicit confirmation for every deposit, withdrawal, withdraw-all, and withdrawal recovery action before suggesting or executing commands.
+
+Risk: Proxied requests may send secrets or confidential payloads to external API providers.
+
+Mitigation: Do not send secrets, credentials, private keys, or confidential payloads through proxied APIs unless the user explicitly approves the exact data and destination.
+
+Risk: Custom gateway or Solana RPC endpoints may redirect traffic or transaction activity to untrusted infrastructure.
+
+Mitigation: Use default endpoints unless the user confirms that a custom gateway or RPC endpoint is trusted.
+
+## Reference(s):
+
+- [ProxyGate CLI Command Reference](references/commands.md)
+- [ProxyGate Gateway Documentation](https://gateway.proxygate.ai/docs)
+- [ClawHub Skill Page](https://clawhub.ai/jwelten/skills/pg-buy)
+- [Publisher Profile](https://clawhub.ai/user/jwelten)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include paid ProxyGate CLI commands, SDK usage examples, request payload examples, and wallet or gateway configuration guidance.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

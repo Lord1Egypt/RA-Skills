@@ -1,41 +1,56 @@
-## Description: <br>
-Learn Docker on LabEx via container fundamentals courses and image or compose labs. Docker courses and labs through LabEx MCP; return labex.io URLs for continued container learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learn Docker on LabEx by finding container fundamentals courses and image or compose labs through the LabEx MCP catalog, returning labex.io URLs for continued container learning.
 
-## Publisher: <br>
-[huhuhang](https://clawhub.ai/user/huhuhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huhuhang](https://clawhub.ai/user/huhuhang)
 
-## Use Case: <br>
-Developers and learners use this skill to find Docker courses and hands-on LabEx labs, narrow recommendations by learning goal, and continue through public LabEx URLs in a browser. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations could drift outside the Docker learning path or point to stale public LabEx URLs. <br>
-Mitigation: Keep suggestions scoped to Docker and verify public LabEx links before relying on them. <br>
+## Use Case:
 
+External learners and developers use this skill to find Docker courses and hands-on LabEx labs, then continue in a browser through public LabEx URLs.
 
-## Reference(s): <br>
-- [LabEx Docker API Reference](references/api.md) <br>
-- [Learn Docker on LabEx](https://labex.io/learn/docker) <br>
-- [LabEx Docker Courses API](https://mcp.labex.io/learn/docker/courses) <br>
-- [Learn Docker Skill on ClawHub](https://clawhub.ai/huhuhang/learn-docker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown recommendations with public LabEx course or lab URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Keeps recommendations within the Docker learning path, uses public catalog routes, and avoids credential, VM, and protected-route workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is LabEx-specific and may promote LabEx content rather than compare neutral learning options.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for LabEx Docker learning recommendations and keep suggestions concise, factual, and tied to public course or lab URLs.
+
+Risk: Using protected routes, VM routes, or credential requests would exceed the release security posture.
+
+Mitigation: Use only the documented public LabEx Docker catalog routes, do not ask for credentials, and finish with public browser URLs.
+
+## Reference(s):
+
+- [LabEx Docker API Reference](references/api.md)
+- [Learn Docker on LabEx](https://labex.io/learn/docker)
+- [LabEx](https://labex.io)
+- [LabEx reviews](https://labex.io/pricing#reviews)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, markdown, API calls]
+
+**Output Format:** [Markdown recommendations with public LabEx URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations stay within the Docker learning path and avoid credentials, protected routes, and VM access.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

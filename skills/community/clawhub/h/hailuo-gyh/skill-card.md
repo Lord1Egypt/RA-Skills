@@ -1,42 +1,58 @@
-## Description: <br>
-Generates MiniMax Hailuo videos in text-to-video, image-to-video, start/end-frame, and subject-reference modes using a user-supplied MINIMAX_API_KEY. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates videos with MiniMax Hailuo using text prompts, image-to-video, start/end frames, or subject-reference inputs, with MINIMAX_API_KEY supplied by the user.
 
-## Publisher: <br>
-[skydream9527-ctrl](https://clawhub.ai/user/skydream9527-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skydream9527-ctrl](https://clawhub.ai/user/skydream9527-ctrl)
 
-## Use Case: <br>
-Creators and developers use this skill to generate short MiniMax Hailuo video clips from prompts, source images, start/end frames, or subject-reference face images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, image references, and subject-reference face images are sent to MiniMax for generation. <br>
-Mitigation: Use non-sensitive inputs, obtain consent for face images, and review MiniMax data-handling terms before use. <br>
-Risk: Some artifact wording says an API key is built in, but the authoritative security evidence says users should rely on their own MiniMax API key. <br>
-Mitigation: Set MINIMAX_API_KEY in the environment and avoid embedding secrets in skill files, prompts, or shared command history. <br>
+## Use Case:
 
+Developers and creators use this skill to ask an agent for MiniMax Hailuo video-generation commands and configuration guidance across text, image, start/end-frame, and subject-reference workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skydream9527-ctrl/hailuo-gyh) <br>
-- [MiniMax platform](https://platform.minimax.com) <br>
-- [MiniMax API host](https://api.minimaxi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with bash commands; script execution produces MP4 video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3, requests, and MINIMAX_API_KEY; generated videos are downloaded to the requested output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prompts, image URLs, and face-reference URLs may be sent to MiniMax during video generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompts or images, and use subject-reference or face images only with appropriate permission.
+
+Risk: API-key documentation is inconsistent about embedded credentials versus user-provided credentials.
+
+Mitigation: Set your own MINIMAX_API_KEY environment variable and do not rely on an embedded key.
+
+Risk: Running dependency installation in a shared environment can affect other Python projects.
+
+Mitigation: Install requests and run the script in an isolated Python environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skydream9527-ctrl/skills/hailuo-gyh)
+- [MiniMax platform](https://platform.minimax.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated video file paths when commands are run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, requests, and a user-provided MINIMAX_API_KEY.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Binance Alpha new coin launch detector that uses the Binance WebSocket !miniTicker@arr stream to detect new trading pairs and alert when symbols have a valid opening price. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Binance Alpha new coin launch detector. Uses WebSocket to monitor !miniTicker@arr stream and detects new trading pairs immediately when they appear. Maintains known symbols set in memory and triggers alert for new symbols with valid opening price.
 
-## Publisher: <br>
-[manifoldor](https://clawhub.ai/user/manifoldor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manifoldor](https://clawhub.ai/user/manifoldor)
 
-## Use Case: <br>
-Developers, traders, and operators use this skill to monitor public Binance spot market streams for newly appearing trading pairs, review alert history, and inspect monitor status from the terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to Binance WebSocket and REST endpoints during monitoring. <br>
-Mitigation: Run it only in environments where outbound access to Binance is allowed, or contain/block network access according to local policy. <br>
-Risk: The skill stores known symbols and alert history under ~/.config/alpha. <br>
-Mitigation: Review local filesystem policy before installation and remove or contain that state directory if persistent market-monitoring history is not desired. <br>
+## Use Case:
 
+Developers and market-monitoring users use this skill to run a Binance public-market monitor that watches spot ticker streams for newly appearing trading pairs and reviews recent listing alerts.
 
-## Reference(s): <br>
-- [Binance WebSocket API](https://binance-docs.github.io/apidocs/spot/en/#websocket-market-streams) <br>
-- [Binance WebSocket API Reference](references/binance_ws.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/manifoldor/alpha) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script stores known symbols and alert history under ~/.config/alpha and keeps the most recent 100 alerts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The monitor is long-lived and stores symbol baselines and alert history in the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a trusted local environment and review or remove ~/.config/alpha state files when they are no longer needed.
+
+Risk: The skill depends on websocket-client from the Python package ecosystem.
+
+Mitigation: Use a virtual environment and pin websocket-client to a reviewed version before running the monitor.
+
+Risk: Listing alerts can be affected by network instability, API availability, and market-data timing.
+
+Mitigation: Treat alerts as signals to verify against Binance or another trusted market source before acting on them.
+
+## Reference(s):
+
+- [Binance WebSocket API](https://binance-docs.github.io/apidocs/spot/en/#websocket-market-streams)
+- [Binance REST API](https://api.binance.com/api/v3)
+- [miniTicker Docs](references/binance_ws.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and terminal output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime script writes known-symbol and alert-history JSON files under ~/.config/alpha.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

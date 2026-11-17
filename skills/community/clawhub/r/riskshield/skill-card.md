@@ -1,45 +1,58 @@
-## Description: <br>
-RiskShield 案件审批自动化，使用 Playwright 浏览器自动化完成审批，支持 Pass 和 Refuse 两种操作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RiskShield 案件审批自动化。使用 Playwright 浏览器自动化完成审批，支持 Pass/Refuse 两种操作。
 
-## Publisher: <br>
-[haoleizhang](https://clawhub.ai/user/haoleizhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haoleizhang](https://clawhub.ai/user/haoleizhang)
 
-## Use Case: <br>
-Risk operations staff or authorized automation operators use this skill to run case-specific RiskShield approval workflows from the command line. It searches a case, verifies that it is still pending, applies either a Pass decision with a credit amount or a Refuse decision with a refusal code, submits the form, and checks that the case closes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release ships reusable credentials and a saved token. <br>
-Mitigation: Do not install it as-is; rotate exposed credentials and tokens, remove token.json, and use securely injected per-user least-privilege credentials. <br>
-Risk: Debug, extraction, and API scripts can access or modify sensitive case data. <br>
-Mitigation: Remove debug and extraction scripts before deployment, restrict execution to explicitly requested cases, and keep approval activity logged. <br>
-Risk: Automated approval actions can make business-impacting changes. <br>
-Mitigation: Run only in an owned RiskShield environment with authorized operators, auditable approvals, and reversible workflows where possible. <br>
-Risk: Security guidance calls out TLS bypasses. <br>
-Mitigation: Disable TLS bypasses and require standard certificate validation in production use. <br>
+## Use Case:
 
+Operations or risk-review users run this skill to automate RiskShield case approval workflows for pending cases, choosing Pass with a credit amount or Refuse with a refusal code. The skill uses Playwright automation to submit the decision and verify that the case closes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haoleizhang/riskshield) <br>
-- [RiskShield system URL](https://riskshield.dcsuat.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance, Code] <br>
-**Output Format:** [Markdown instructions with inline shell commands and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses case number, approval action, optional refusal code, and optional credit amount as command-line inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release includes reusable credentials and token material for RiskShield access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke exposed credentials and tokens, supply secrets through a managed secret channel, and exclude credential, token, and cookie files from any published package.
+
+Risk: The skill can submit consequential approval or refusal decisions with unsafe defaults.
+
+Mitigation: Remove fixed-case and default-decision behavior, require explicit user-directed case and action input, and run only under an isolated least-privilege account with human review before execution.
+
+Risk: The artifact contains many debug and legacy automation scripts that increase operational ambiguity.
+
+Mitigation: Publish only the vetted entrypoint and required support files, and exclude debug, test, and exploratory scripts from deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/haoleizhang/skills/riskshield)
+- [Publisher Profile](https://clawhub.ai/user/haoleizhang)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and command-line arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a case number, operation, optional refusal code, and optional approval amount as command inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

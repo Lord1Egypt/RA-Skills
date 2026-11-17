@@ -1,42 +1,51 @@
-## Description: <br>
-Search X (Twitter) posts using the xAI API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search X (Twitter) posts using the xAI API when a user wants to find tweets, look up what people are saying on X, or find social media posts about a topic.
 
-## Publisher: <br>
-[blueworldmarketing](https://clawhub.ai/user/blueworldmarketing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blueworldmarketing](https://clawhub.ai/user/blueworldmarketing)
 
-## Use Case: <br>
-Developers and agents use this skill to search X/Twitter posts, filter results by handles or date ranges, and return cited social-media findings for user queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends search queries, filters, and related prompt text to xAI. <br>
-Mitigation: Use it only for queries where third-party sharing with xAI is acceptable, and avoid secrets, regulated data, or proprietary topics. <br>
-Risk: The skill requires an xAI API key. <br>
-Mitigation: Provide the key through XAI_API_KEY or the agent's configured secret storage, and avoid embedding credentials in prompts, command history, or skill files. <br>
+## Use Case:
 
+Developers and external users use this skill to search current X/Twitter posts through the xAI Grok API, including handle filters, excluded handles, date ranges, and optional image or video understanding.
 
-## Reference(s): <br>
-- [xAI X Search documentation](https://docs.x.ai/developers/tools/x-search) <br>
-- [xAI Console](https://console.x.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/blueworldmarketing/x-search-bwm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON response from the helper script, with text results and citation URLs suitable for agent summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and XAI_API_KEY; supports handle filters, excluded handles, date ranges, image understanding, and video understanding.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search terms, filters, and API-authenticated requests are sent to xAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the xAI account and data-handling expectations are appropriate; avoid secrets, private personal data, and confidential internal topics.
+
+## Reference(s):
+
+- [xAI X Search documentation](https://docs.x.ai/developers/tools/x-search)
+- [xAI Console](https://console.x.ai)
+- [ClawHub skill page](https://clawhub.ai/blueworldmarketing/skills/x-search-bwm)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search results and Markdown-ready text with citations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XAI_API_KEY; supports handle include or exclude filters, date ranges, image understanding, and video understanding.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

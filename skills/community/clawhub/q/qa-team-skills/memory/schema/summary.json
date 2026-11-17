@@ -1,0 +1,113 @@
+{
+  "name": "产品索引 (Product Summary)",
+  "description": "每个产品模块的汇总索引文件，用于快速加载历史概况和生成趋势报告",
+  "version": "1.0",
+  "fields": {
+    "product": { "type": "string", "description": "产品/模块名称", "required": true },
+    "last_updated": { "type": "string", "format": "ISO 8601", "required": true },
+    "iteration_count": { "type": "integer", "description": "测试轮次总数" },
+    "test_cases": {
+      "type": "object",
+      "properties": {
+        "total": { "type": "integer", "description": "合并后总用例数" },
+        "versions": { "type": "array", "items": { "type": "string" }, "description": "版本列表，如 v1.0, v1.1" },
+        "by_type": {
+          "type": "object",
+          "description": "按测试类型分布",
+          "properties": {
+            "功能测试": { "type": "integer" },
+            "边界测试": { "type": "integer" },
+            "异常测试": { "type": "integer" },
+            "安全测试": { "type": "integer" },
+            "性能测试": { "type": "integer" },
+            "兼容性测试": { "type": "integer" }
+          }
+        },
+        "by_layer": {
+          "type": "object",
+          "description": "按业务分层分布",
+          "properties": {
+            "核心层": { "type": "integer" },
+            "体验层": { "type": "integer" },
+            "增值层": { "type": "integer" }
+          }
+        },
+        "by_priority": {
+          "type": "object",
+          "properties": {
+            "P0": { "type": "integer" },
+            "P1": { "type": "integer" },
+            "P2": { "type": "integer" },
+            "P3": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "bugs": {
+      "type": "object",
+      "properties": {
+        "total": { "type": "integer" },
+        "by_severity": {
+          "type": "object",
+          "properties": {
+            "致命": { "type": "integer" },
+            "严重": { "type": "integer" },
+            "一般": { "type": "integer" },
+            "建议": { "type": "integer" }
+          }
+        },
+        "by_root_cause": {
+          "type": "object",
+          "description": "按根因分类统计，每次写入时累加",
+          "properties": {
+            "代码缺陷": { "type": "integer" },
+            "配置错误": { "type": "integer" },
+            "权限设计问题": { "type": "integer" },
+            "数据问题": { "type": "integer" },
+            "需求理解偏差": { "type": "integer" },
+            "第三方依赖": { "type": "integer" }
+          }
+        },
+        "recurring_patterns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pattern": { "type": "string", "description": "复发模式描述" },
+              "count": { "type": "integer", "description": "出现次数" },
+              "first_seen": { "type": "string", "format": "ISO 8601" },
+              "last_seen": { "type": "string", "format": "ISO 8601" }
+            }
+          }
+        }
+      }
+    },
+    "standards": {
+      "type": "object",
+      "properties": {
+        "total": { "type": "integer" },
+        "by_category": {
+          "type": "object",
+          "properties": {
+            "checklist": { "type": "integer" },
+            "lession_learned": { "type": "integer" },
+            "best_practice": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "iterations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "version": { "type": "string" },
+          "date": { "type": "string", "format": "ISO 8601" },
+          "new_test_cases": { "type": "integer" },
+          "new_bugs": { "type": "integer" },
+          "fix_rate": { "type": "number" }
+        }
+      }
+    }
+  }
+}

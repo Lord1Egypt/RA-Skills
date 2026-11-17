@@ -1,6 +1,5 @@
-# Performance Max 与 Demand Gen 运营深度指南
+﻿# Performance Max 与 Demand Gen 运营深度指南
 
-> **所属 skill:** siluzan-tso
 > **适用场景:** PMax 效果诊断、asset group 优化建议、PMax 与 Search 蚕食分析、Demand Gen 策略
 > **最后更新:** 2026-04-01
 
@@ -151,7 +150,7 @@ Google 为每个素材分配以下标签：
 
 ### 4.3 文字素材
 
-遵循 RSA 的六主题法则（详见 google-ads-creative-optimization.md）：核心价值主张、产品特性、社会证明、优惠促销、行动号召变体、品牌信任信号。每个主题至少 1 个标题变体。
+短标题按 `google-ads-creative-optimization.md` **1.2 满 15 配方**（先定 B2B/B2C）；长标题/描述按同文件 1.3 与 §八。禁止全是同义卖点，无真实活动不写促销。
 
 ### 4.4 图片素材规格
 
@@ -371,6 +370,7 @@ AI Max for Search 是 Google 在 Search 系列中集成的 AI 优化功能包：
 - `[UI 操作]` **品牌设置（Brand Settings）：** 控制 AI 如何使用品牌名称
 - `[UI 操作]` **网址排除（URL Exclusions）：** 排除不想作为着陆页的页面（如博客、关于我们）
 - `[UI 操作]` **网址规则（URL Rules）：** 限定 AI 只能在特定目录下选择着陆页
+- **勿写系列级匹配类型：** AI Max 开启后不要设置 `Campaign.keyword_match_type`（会被 Google 拒）。可继续改**广告组内单条关键词**的匹配类型。网关 Search PATCH 当前也不写该系列级字段；以后若加写，须先判断 `enable_ai_max`。
 
 ### 10.4 与 PMax 的交互
 

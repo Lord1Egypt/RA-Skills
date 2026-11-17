@@ -1,40 +1,59 @@
-## Description: <br>
-Control Amazon Alexa devices and smart home via the `alexacli` CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Amazon Alexa devices and smart home functions through the `alexacli` CLI for announcements, device control, voice commands, and Alexa queries.
 
-## Publisher: <br>
-[buddyh](https://clawhub.ai/user/buddyh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[buddyh](https://clawhub.ai/user/buddyh)
 
-## Use Case: <br>
-Developers and agent users use this skill to install and operate `alexacli` for Alexa device control, smart-home commands, announcements, audio playback, and Alexa account queries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad access to Alexa devices, smart-home controls, and Alexa account data. <br>
-Mitigation: Install only for trusted use cases, require explicit confirmation before sensitive actions such as locks, thermostats, purchases, alarms, or all-device announcements, and review commands before execution. <br>
-Risk: Alexa configuration and outputs can expose private account, calendar, history, or conversation information. <br>
-Mitigation: Avoid shared machines, protect or remove `~/.alexa-cli/config.json` when finished, and treat Alexa responses and history as private. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Alexa CLI on ClawHub](https://clawhub.ai/buddyh/alexa-cli) <br>
-- [Alexa CLI homepage](https://github.com/buddyh/alexa-cli) <br>
+## Use Case:
 
+Developers and agent operators use this skill to translate user requests into `alexacli` commands for Echo announcements, smart home controls, Alexa questions, audio playback, and Alexa history or conversation lookups.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that return text or JSON from the `alexacli` CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can control real-world Alexa-linked devices, including locks, thermostats, lights, broadcasts, and media playback.
+
+Mitigation: Use explicit device names and confirm lock, thermostat, broadcast, and other physical actions before running commands.
+
+Risk: The skill can expose private Alexa activity, calendar, conversation history, or account data.
+
+Mitigation: Retrieve or echo history, calendar, or conversation data only when the account owner clearly requested it.
+
+Risk: The skill installs and invokes an unpinned third-party CLI that uses an unofficial Alexa API.
+
+Mitigation: Install only when the third-party CLI is trusted, and prefer reviewed or pinned installation sources in managed environments.
+
+## Reference(s):
+
+- [Alexa CLI ClawHub release](https://clawhub.ai/buddyh/skills/alexa-cli)
+- [Alexa CLI project homepage](https://github.com/buddyh/alexa-cli)
+- [Go install module](https://github.com/buddyh/alexa-cli/tree/main/cmd/alexa)
+- [Homebrew tap](https://github.com/buddyh/homebrew-tap)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optional JSON output flags for device, history, and Alexa response queries.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

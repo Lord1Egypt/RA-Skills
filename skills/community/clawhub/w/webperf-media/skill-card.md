@@ -1,42 +1,56 @@
-## Description: <br>
-Webperf Media guides agents through Chrome DevTools audits for image, video, and SVG performance, including LCP, CLS, loading strategy, format, sizing, and priority recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Webperf Media helps agents audit images, videos, and SVGs in Chrome DevTools and produce media performance recommendations for LCP, CLS, lazy loading, formats, priority hints, and asset sizing.
 
-## Publisher: <br>
-[nucliweb](https://clawhub.ai/user/nucliweb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nucliweb](https://clawhub.ai/user/nucliweb)
 
-## Use Case: <br>
-Developers and performance engineers use this skill to audit page media in Chrome DevTools and produce practical recommendations for reducing LCP, CLS, bandwidth, and media loading issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Media audits may expose DOM details and media URLs from logged-in or internal pages to the agent. <br>
-Mitigation: Run the skill only on pages acceptable for DevTools inspection and confirm before follow-up audits when tighter control is needed. <br>
+## Use Case:
 
+Developers and performance engineers use this skill to inspect page media through Chrome DevTools and identify optimizations for image loading, video setup, SVG bitmap usage, and Core Web Vitals impact.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nucliweb/webperf-media) <br>
-- [Publisher profile](https://clawhub.ai/user/nucliweb) <br>
-- [Repository](https://github.com/nucliweb/webperf-snippets) <br>
-- [Script return value schema](references/schema.md) <br>
-- [Snippet descriptions](references/snippets.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Code] <br>
-**Output Format:** [Markdown guidance with structured JSON audit results from Chrome DevTools scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Chrome DevTools MCP evaluation and structured script return values for image, video, and SVG audit findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill inspects media URLs, DOM attributes, and performance resource metadata on the active browser page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on pages selected for audit and avoid sensitive logged-in pages unless that page data can be reviewed by the agent.
+
+Risk: Cross-skill follow-up audits can expand the scope of browser diagnostics beyond the initial media check.
+
+Mitigation: Review proposed follow-up audits before allowing additional browser-page analysis.
+
+## Reference(s):
+
+- [Snippet Descriptions](references/snippets.md)
+- [Script Return Value Schema](references/schema.md)
+- [Webperf Snippets Repository](https://github.com/nucliweb/webperf-snippets)
+- [Webperf Media ClawHub Page](https://clawhub.ai/nucliweb/skills/webperf-media)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown guidance with Chrome DevTools JavaScript snippets and structured audit findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces recommendations from page media diagnostics; does not persist or modify page state.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,61 @@
-## Description: <br>
-Manage Resend email campaigns, contacts, audiences, domains, templates, and transactional sends via the Resend API for inspection, audience management, email creation, sending, and workflow automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Resend email campaigns, contacts, audiences, domains, templates, transactional sends, and related email workflows via the Resend API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers, email operators, and support teams use this skill in OpenClaw to inspect Resend activity, manage audiences and contacts, configure domains, templates, webhooks, and API keys, and send transactional or batch emails through a connected Resend account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates a connected Resend account through ClawLink credentials, so actions can affect contacts, audiences, domains, templates, webhooks, API keys, and outbound email. <br>
-Mitigation: Use a Resend account and permission level appropriate for the intended tasks, verify the connected integration before use, and review write previews carefully. <br>
-Risk: Email sends, destructive changes, webhook updates, and API-key creation or revocation can have irreversible or broad operational effects. <br>
-Mitigation: Require explicit confirmation for write actions, inspect the target resource and intended effect before execution, and prefer read or describe calls before changes. <br>
+## Use Case:
 
+External users and developers use this skill to manage Resend account resources from an agent, including inspecting email activity, maintaining contacts, audiences, domains, templates, webhooks, and API keys, and sending or scheduling emails with explicit confirmation for write actions.
 
-## Reference(s): <br>
-- [Resend API Documentation](https://resend.com/docs/api-reference/introduction) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Dashboard](https://claw-link.dev/dashboard?add=resend) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/resend-mail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON tool-call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup steps, discovery guidance, troubleshooting notes, and Resend tool-call examples; write actions require preview and explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill asks users to activate a third-party plugin with broad authority over the connected Resend account, and the evidence does not pin the plugin version or document exact permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the ClawLink plugin and account permissions before installing, connect only a Resend account you are comfortable managing through ClawLink, and require a clear preview plus explicit approval for high-impact actions.
+
+Risk: Email sends, contact changes, domain changes, webhook changes, deletes, and API key operations can have irreversible or high-impact effects.
+
+Mitigation: Use read and describe steps before write actions, verify the target resource and intended effect, preview the operation, and execute only after explicit user confirmation.
+
+Risk: The available Resend tool catalog may differ from examples in the skill text.
+
+Mitigation: Treat the live catalog as authoritative by listing, searching, or describing Resend tools before choosing a tool or parameters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/resend-mail)
+- [Resend API Documentation](https://resend.com/docs/api-reference/introduction)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=resend-mail)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide connection setup and issue Resend tool calls through ClawLink after live catalog checks, previews, and explicit confirmation for write actions.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

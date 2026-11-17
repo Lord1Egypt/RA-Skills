@@ -11,6 +11,6 @@
   "license": "MIT-0",
   "type": "commonjs",
   "dependencies": {
-    "better-sqlite3": "^12.6.2"
+    "better-sqlite3": "12.6.2"
   }
 }

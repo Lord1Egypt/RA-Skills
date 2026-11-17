@@ -1,0 +1,4 @@
+interface:
+  display_name: "OwlCoda RunKit"
+  short_description: "Run receipt-backed project execution with OwlCoda"
+  default_prompt: "Use $owlcoda-runkit to initialize or operate a receipt-backed project execution."

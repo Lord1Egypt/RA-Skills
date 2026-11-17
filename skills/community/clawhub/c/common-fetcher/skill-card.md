@@ -1,42 +1,53 @@
-## Description: <br>
-Common-Fetcher is a unified collection framework for RSS, web, and API sources with AI scoring, classification, and summarization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Common-Fetcher is a data collection framework for AI agents that supports RSS, web, and API sources with AI scoring, classification, and summarization.
 
-## Publisher: <br>
-[lq707904686](https://clawhub.ai/user/lq707904686) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[lq707904686](https://clawhub.ai/user/lq707904686)
 
-## Use Case: <br>
-Developers and agents use Common-Fetcher to collect and process industry and AI technology information from RSS, web, and API sources, then produce Markdown or JSON outputs with scoring, classification, and summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch from RSS feeds, websites, and APIs, which may collect unauthorized, sensitive, or higher-volume content if configured carelessly. <br>
-Mitigation: Review configured sources before use, keep collection within authorized sources, and configure rate limits and retention. <br>
-Risk: Scheduled runs can create ongoing background collection and file output. <br>
-Mitigation: Disable schedules unless continuous collection is intended and confirm output directories before enabling automated runs. <br>
+## Use Case:
 
+Developers and AI-agent builders use Common-Fetcher to collect industry and AI-technology information from preconfigured or custom RSS, web, and API sources, then generate Markdown or JSON outputs for review or downstream workflows.
 
-## Reference(s): <br>
-- [Common-Fetcher on ClawHub](https://clawhub.ai/lq707904686/common-fetcher) <br>
-- [Publisher profile](https://clawhub.ai/user/lq707904686) <br>
-- [npm package common-fetcher](https://www.npmjs.com/package/common-fetcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration] <br>
-**Output Format:** [Markdown reports, JSON data, CLI output, and Node.js API result objects.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can be configured for industry-specific source sets, custom source files, output paths, and scheduled collection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The release installs a mutable npm command-line package whose reviewed source and exact package version are not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed npm package version before installation, especially in sensitive environments.
+
+Risk: Automated collection can access broad external RSS, web, and API sources and write reports to configured output locations.
+
+Mitigation: Run with limited filesystem and environment access, and configure allowed sources, schedules, output locations, and retention before enabling automation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lq707904686/skills/common-fetcher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown, JSON, command-line examples, TypeScript API examples, and OpenClaw configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may depend on configured sources, schedules, article limits, timeouts, and destination paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

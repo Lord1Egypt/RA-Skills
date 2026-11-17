@@ -1,41 +1,59 @@
-## Description: <br>
-Turns Google Lens and reverse-image-search requests into Dataify Scraper API form submissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Google Lens or reverse-image search from an image, not for text-only Google Images queries.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to prepare and run Google Lens image-search requests through Dataify. The skill shows a parameter confirmation table before calling the API and returns the API response body directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image URLs and search parameters are sent to Dataify. <br>
-Mitigation: Review the pre-call parameter table and avoid private or signed image URLs unless disclosure to Dataify is intended. <br>
-Risk: DATAIFY_API_TOKEN is required for API calls. <br>
-Mitigation: Store the token in a protected environment or secret manager, and do not print Authorization values in previews or final responses. <br>
+## Use Case:
 
+Developers and automation users use this skill to turn an image URL into a Google Lens or reverse-image-search request through Dataify and receive concise result links and fields.
 
-## Reference(s): <br>
-- [Dataify Google Lens API Reference](references/google_lens_api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dataify-server/dataify-google-lens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown parameter table followed by raw Dataify API response text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DATAIFY_API_TOKEN and sends the image URL plus selected search parameters to Dataify after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: Image URLs and selected search parameters are sent to Dataify for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only image URLs appropriate for third-party processing and avoid private or signed image URLs unless necessary.
+
+Risk: A Dataify API token is required for live requests.
+
+Mitigation: Configure the token through DATAIFY_API_TOKEN or a secret manager and avoid passing it with --token where command history or process listings may expose it.
+
+Risk: API calls may consume Dataify account credits.
+
+Mitigation: Use preview or dry-run behavior to review parameters before execution and monitor account credits during repeated use.
+
+## Reference(s):
+
+- [Dataify Google Lens API Reference](artifact/references/google_lens_api.md)
+- [Dataify Scraper API endpoint](https://scraperapi.dataify.com/request)
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-google-lens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with optional inline shell commands; raw JSON or HTML only when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an image URL and Dataify API token for live requests; previews omit credentials.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

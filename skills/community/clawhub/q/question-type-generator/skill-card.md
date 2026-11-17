@@ -1,40 +1,52 @@
-## Description: <br>
-Generates exam-oriented higher mathematics practice questions with adaptive difficulty, answers, and concept analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates exam-oriented higher mathematics questions with adaptive difficulty, answers, difficulty labels, and key concept analysis.
 
-## Publisher: <br>
-[daigxok](https://clawhub.ai/user/daigxok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[daigxok](https://clawhub.ai/user/daigxok)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Students, educators, and exam-prep authors use this skill to generate postgraduate entrance exam-style higher mathematics practice questions with answers, difficulty labels, and concept analysis.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad math-practice prompts may activate the skill when reliable trigger boundaries matter.
+
+Mitigation: Review the trigger wording and manifest formatting before installation.
+
+Risk: Generated questions, solutions, difficulty labels, or concept analysis may be unsuitable for a specific curriculum or exam standard.
+
+Mitigation: Have a qualified math reviewer check generated practice material before instructional or assessment use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Students, educators, and exam-prep authors use this skill to generate higher mathematics practice questions for postgraduate entrance exam preparation, including answers, difficulty labels, and concept analysis. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated math questions or solutions may be incorrect or unclear for the intended audience. <br>
-Mitigation: Review generated problems, answers, and explanations before using them in exams, instruction, or study materials. <br>
-Risk: The trigger phrases may activate the skill on broad math-practice requests. <br>
-Mitigation: Use explicit task wording when invoking the skill and confirm the requested question type, topic, and difficulty. <br>
+**Output Format:** [Markdown or plain text containing question prompts, answer explanations, difficulty ratings, and knowledge point analysis]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daigxok/question-type-generator) <br>
+**Other Properties Related to Output:** [Chinese higher-mathematics exam-practice content; no code execution or external tool output indicated.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown practice questions with answers, difficulty labels, and concept analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Question types include multiple choice, fill-in-the-blank, calculation, proof, and application problems.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

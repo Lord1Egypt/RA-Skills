@@ -1,46 +1,61 @@
-## Description: <br>
-Generate comprehensive API documentation from code with examples, types, and OpenAPI specs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate comprehensive API documentation from code with examples, types, and OpenAPI specs.
 
-## Publisher: <br>
-[michaelatamuk](https://clawhub.ai/user/michaelatamuk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaelatamuk](https://clawhub.ai/user/michaelatamuk)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft REST API reference documentation, OpenAPI specifications, request and response examples, authentication notes, and client usage snippets from local source files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example authentication patterns could be confused with a request for real API keys or OAuth tokens. <br>
-Mitigation: Do not provide real credentials; use placeholders or sanitized examples when asking the skill to document authentication. <br>
-Risk: Generated API documentation or OpenAPI specs may omit behavior or describe code inaccurately. <br>
-Mitigation: Review generated Markdown and OpenAPI output against the actual implementation before publishing or using it for SDK generation, contract tests, or gateway configuration. <br>
+## Use Case:
 
+Developers and API teams use this skill to generate and refresh REST API reference documentation, OpenAPI specifications, examples, and related implementation guidance from local source files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/michaelatamuk/api-doc-builder) <br>
-- [OpenAPI Specification](https://swagger.io/specification/) <br>
-- [Swagger Tools](https://swagger.io/tools/) <br>
-- [Stoplight](https://stoplight.io/) <br>
-- [Google Cloud API Design Guide](https://cloud.google.com/apis/design) <br>
-- [REST API Tutorial](https://restfulapi.net/) <br>
-- [Redoc](https://github.com/Redocly/redoc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and OpenAPI YAML or JSON with code blocks and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include endpoint tables, schemas, request and response examples, authentication notes, rate limit guidance, client snippets, and tool integration commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Optional npm or npx integration commands may install or run third-party tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, pin package versions, and prefer existing project scripts or lockfiles.
+
+Risk: Generated API documentation can be incomplete or misleading if the source code lacks types, validation schemas, or comments.
+
+Mitigation: Review generated docs against the implementation before publishing and add explicit types, validation schemas, or JSDoc where needed.
+
+Risk: Example tokens, API keys, and api.example.com URLs in the documentation could be mistaken for real credentials or endpoints.
+
+Mitigation: Treat these values as placeholders and avoid running examples in environments that contain production credentials.
+
+## Reference(s):
+
+- [OpenAPI Specification](https://swagger.io/specification/)
+- [Swagger Tools](https://swagger.io/tools/)
+- [Stoplight](https://stoplight.io/)
+- [Google Cloud API Design Guide](https://cloud.google.com/apis/design)
+- [REST API Tutorial](https://restfulapi.net/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, OpenAPI YAML or JSON, HTML documentation, Postman collections, and inline command or code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated documentation should be reviewed against the actual API implementation before publishing.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

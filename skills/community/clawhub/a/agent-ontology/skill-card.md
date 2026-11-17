@@ -1,39 +1,55 @@
-## Description: <br>
-Create, update, and query typed entities and relations like Person, Project, and Task in a verifiable knowledge graph with validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, update, and query typed entities and relations such as Person, Project, and Task in a verifiable knowledge graph with validation.
 
-## Publisher: <br>
-[biociao](https://clawhub.ai/user/biociao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biociao](https://clawhub.ai/user/biociao)
 
-## Use Case: <br>
-Developers and agents use this skill to maintain structured local memory as typed graph records, then create, query, relate, and validate entities such as people, projects, tasks, and dependencies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Structured memory is saved locally in an append-only graph file and may persist sensitive information if users enter it. <br>
-Mitigation: Store only intended non-secret information, and avoid passwords, API keys, tokens, or sensitive personal details unless local persistence is deliberate. <br>
+## Use Case:
 
+Developers and agents use this skill to maintain structured local memory as typed entities and relations, then query or traverse that graph for project, task, person, and knowledge-management workflows.
 
-## Reference(s): <br>
-- [Ontology Schema Reference](references/schema.md) <br>
-- [Query Reference](references/queries.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists user-created graph records to local append-only JSONL storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The skill writes persistent local graph memory that may capture sensitive, private, or regulated information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing passwords, API keys, tokens, private messages, or regulated personal data until secret-field rejection, file permission hardening, and deletion/update controls are implemented.
+
+Risk: The security evidence says promised validation and secret protections are not fully enforced.
+
+Mitigation: Review stored fields before use, scan releases before deployment, and add validation and secret-handling controls before using the graph for sensitive workflows.
+
+## Reference(s):
+
+- [Ontology Schema Reference](artifact/references/schema.md)
+- [Query Reference](artifact/references/queries.md)
+- [ClawHub Skill Page](https://clawhub.ai/biociao/skills/agent-ontology)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with CLI examples, JSON graph records, and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces and queries append-only JSONL records in a local ontology graph.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, target metadata, artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -430,3 +430,128 @@ echo '{"style": "PC55", "color": "Black", "size": "L"}' \
 
 The FTP password is **different** from the web-services password. Never guess
 values, and never fall back to another vendor's credentials.
+
+---
+
+## 11. Per-warehouse inventory (PromoStandards v2)
+
+**Prompt:** "Which warehouses have K420 Black small in stock?"
+
+```bash
+echo '{"style": "K420"}' | python3 scripts/sanmar.py get-inventory-levels
+```
+
+**Output (abridged):**
+
+```json
+{
+  "style": "K420",
+  "parts": [
+    {"part_id": "92032", "color": "Black", "size": "S", "total_available": 1045,
+     "warehouses": [
+       {"warehouse_id": "1", "warehouse_name": "Seattle", "quantity": 0},
+       {"warehouse_id": "2", "warehouse_name": "Cincinnati", "quantity": 167},
+       {"warehouse_id": "3", "warehouse_name": "Dallas", "quantity": 179}
+     ]}
+  ],
+  "surface": "sanmar_promostandards", "operation": "getInventoryLevels"
+}
+```
+
+Pass `part_ids` (SanMar unique keys) to limit the response to specific variants.
+For a bulk snapshot of a whole style across warehouses without a live call, use
+`get-inventory-feed` with `{"style": "K420"}` (parses `sanmar_dip.txt`).
+
+---
+
+## 12. Retrieve invoices for a PO (accounts-payable)
+
+**Prompt:** "Pull the SanMar invoice for PO P13189 so we can match and bill it."
+
+```bash
+echo '{"po_number": "P13189"}' | python3 scripts/sanmar.py get-invoices
+```
+
+**Output (abridged):**
+
+```json
+{
+  "query_type": "purchase_order", "query_value": "P13189", "count": 1,
+  "invoices": [
+    {
+      "invoice_number": "12345678", "po_number": "P13189",
+      "sales_order_number": "163291890", "invoice_date": "2024-06-18",
+      "due_date": "2024-07-18", "terms": "NET 30", "total_amount": 192.72,
+      "sub_total": 192.72, "sales_tax": 0.0, "shipping_handling": 0.0,
+      "lines": [{"style": "2000", "color": "Red", "size": "M", "quantity": 16,
+                 "unit_price": 1.84, "amount": 29.44, "unique_key": "263633"}],
+      "common": {
+        "source": "sanmar", "po_number": "P13189", "invoice_number": "12345678",
+        "invoice_date": "2024-06-18", "due_date": "2024-07-18",
+        "is_credit": false, "has_lines": true, "total": 192.72,
+        "charges": {"merchandise": 192.72, "freight": 0.0,
+                    "freight_allowance": 0.0, "sales_tax": 0.0, "discount": null},
+        "lines": [{"item": "2000", "size": "M", "color": "Red", "unit": "EA",
+                   "qty_shipped": 16, "net_price": 1.84, "extension": 29.44}]
+      }
+    }
+  ]
+}
+```
+
+Hand `invoices[].common` to `drivethru-payable-matching` — it's the same
+normalized shape `sportsinc-sportslink` emits, so the PO match runs unchanged.
+Other queries: `{"invoice_number": "12345678"}`, `{"order_date": "2024-06-18"}`,
+`{"start_date": "2024-06-01", "end_date": "2024-06-30"}`, `{"unpaid": true}`.
+An empty `count` for a PO means it hasn't been invoiced yet (SanMar invoices
+after 9 p.m. PT once an order ships — pull the day after).
+
+---
+
+## 13. Parse the FTP Daily Invoice file (batch payables)
+
+**Prompt:** "Import yesterday's SanMar invoices from the FTP drop."
+
+```bash
+# Newest *Invoice_Details* file from the outbound folder over SFTP:
+echo '{}' | python3 scripts/sanmar.py parse-invoice-file
+# …or a specific local/remote file, or the EDI-810 variant:
+echo '{"path": "/data/123456_Invoice_Details-06-18-24.txt"}' \
+  | python3 scripts/sanmar.py parse-invoice-file
+echo '{"remote_path": "/Outbound/338469-810.x12", "edi": true}' \
+  | python3 scripts/sanmar.py parse-invoice-file
+```
+
+Output matches `get-invoices` exactly (native invoices + a `common` block each),
+so the downstream payables flow is identical regardless of source.
+
+---
+
+## 14. Package tracking + shipment-status file
+
+**Prompt:** "Where's PO P13137 — tracking and which boxes shipped?"
+
+```bash
+echo '{"po_number": "P13137"}' | python3 scripts/sanmar.py get-tracking
+```
+
+```json
+{
+  "po_number": "P13137", "complete": true,
+  "shipments": [
+    {"tracking_number": "1Z999...", "carrier": "ups", "shipment_method": "Ground",
+     "ship_date": "2024-01-12T22:44:42-08:00", "sales_order_number": "163260908",
+     "ship_from_city": "Irving", "ship_from_state": "TX",
+     "ship_to_city": "Jacksonville", "ship_to_state": "FL",
+     "items": [{"style": "PC55P", "part_id": "834732", "quantity": 1}]}
+  ]
+}
+```
+
+Query instead by `{"sales_order_number": "163260908"}` or, for a whole day,
+`{"shipment_date": "2024-01-12T00:00:00Z"}` (7-day max). For tracking **plus
+per-line costs** from the nightly ASN file, use `get-shipment-status`:
+
+```bash
+echo '{"po_number": "P13137"}' | python3 scripts/sanmar.py get-shipment-status
+```

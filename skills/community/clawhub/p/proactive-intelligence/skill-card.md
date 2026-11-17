@@ -1,45 +1,54 @@
-## Description: <br>
-Proactive Intelligence helps an agent predict user needs, improve from corrections, maintain structured memory, manage skills, and support skill evolution workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactive Intelligence helps agents anticipate user needs, maintain local memory, learn from corrections, manage skills, and propose or apply skill improvements.
 
-## Publisher: <br>
-[cle87937-code](https://clawhub.ai/user/cle87937-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cle87937-code](https://clawhub.ai/user/cle87937-code)
 
-## Use Case: <br>
-Developers and agent users use this skill to add proactive task follow-through, local long-term memory, structured learning logs, and skill health or evolution workflows to an OpenClaw-style workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory and learning logs can capture or preserve sensitive workspace context. <br>
-Mitigation: Install only when long-term local memory is intended; review memory and .learnings files and remove sensitive or unwanted defaults before use. <br>
-Risk: The initialization script updates workspace Markdown paths and creates state under the home directory and workspace. <br>
-Mitigation: Back up workspace Markdown files before running init.py and inspect diffs after initialization. <br>
-Risk: Skill evolution tools can modify installed skills and agent instruction files with loose scoping. <br>
-Mitigation: Require manual diff review and explicit confirmation before applying fixes, enhancements, or changes to installed skills. <br>
-Risk: Documentation references an init.ps1 path that is not present in the provided artifact. <br>
-Mitigation: Use the reviewed Python init.py path unless a Windows script is supplied and reviewed separately. <br>
+## Use Case:
 
+Developers and agent users use this skill to make an assistant more proactive and self-improving through local memory, structured learning logs, and skill management workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cle87937-code/proactive-intelligence) <br>
-- [Installation Guide](artifact/setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and local file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local memory, learning-log, report, and skill files when its scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.1 (source: artifact/SKILL.md frontmatter and evidence.release.version) <br>
+Risk: The skill can persistently change agent memory, workspace Markdown files, and other installed skills with too little scoping or user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before installation, back up workspace Markdown files and installed skills, and avoid running the initializer or skill-evolver in important workspaces unless persistent memory and cross-skill changes are acceptable.
+
+Risk: Generated memory and .learnings files are long-lived local records that may influence future agent behavior.
+
+Mitigation: Periodically review these files and remove stale, sensitive, or inaccurate records before relying on the skill in ongoing work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cle87937-code/skills/proactive-intelligence)
+- [Setup guide](artifact/setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration paths, and optional JSON reports or local files created by scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent local memory files, structured learning logs, skill backups, and skill health reports when its scripts are run.]
+
+## Skill Version(s):
+
+2.3.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

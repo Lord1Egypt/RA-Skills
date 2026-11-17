@@ -1,44 +1,56 @@
-## Description: <br>
-AIsa Multi Search Engine lets agents run web, academic, Tavily, smart, Perplexity, extraction, and multi-source searches through a single AIsa API key with confidence scoring and synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-source search engine powered by AIsa API that combines Tavily web search, Scholar academic search, Smart hybrid search, and Perplexity deep research through a single AIsa API key.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to gather web, academic, and deep-research results, extract URL content, and synthesize findings with citations or confidence signals for research and source-discovery tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, research topics, supplied URLs, and extracted page content are sent to AIsa and its integrated providers. <br>
-Mitigation: Avoid secrets, internal-only URLs, regulated data, or confidential research unless policy allows external processing. <br>
-Risk: The skill requires an AISA_API_KEY that authorizes external API calls. <br>
-Mitigation: Use a scoped API key, keep it in approved configuration or environment storage, and rotate it if exposed. <br>
-Risk: Search results, citations, and synthesized answers can be incomplete, stale, or misleading. <br>
-Mitigation: Use confidence summaries as triage signals and independently verify important claims against primary sources. <br>
+## Use Case:
 
+Developers and external agent users use this skill to run web, academic, hybrid, Tavily, Perplexity, and multi-source searches from an agent workflow. It is suited for source discovery, research triage, URL content extraction, and confidence-scored search synthesis.
 
-## Reference(s): <br>
-- [AIsa](https://aisa.one) <br>
-- [AIsa API Reference](https://aisa.one/docs/api-reference) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bibaofeng/aisa-multi-search-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with search results, extracted content, synthesized answers, citations, and confidence summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and may call AIsa-backed external search providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata, target metadata, and SKILL.md frontmatter) <br>
+Risk: Search terms, URLs, and extracted content requests are sent to AIsa and its integrated search providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with secrets, private internal URLs, regulated data, or confidential research topics unless that data flow is approved.
+
+Risk: Search and synthesized research outputs may be incomplete, stale, or affected by source quality.
+
+Mitigation: Review cited sources and independently verify important claims before using results for business, legal, medical, security, or financial decisions.
+
+## Reference(s):
+
+- [AIsa](https://aisa.one)
+- [AIsa API Reference](https://aisa.one/docs/api-reference)
+- [AIsa API Documentation](https://docs.aisa.one)
+- [ClawHub Skill Page](https://clawhub.ai/bibaofeng/skills/aisa-multi-search-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text search results with URLs, extracted content, citations, confidence scoring, and optional JSON-like API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and sends user-directed queries, URLs, and extraction requests to AIsa-backed APIs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

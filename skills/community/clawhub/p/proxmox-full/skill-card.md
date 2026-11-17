@@ -1,41 +1,58 @@
-## Description: <br>
-Provides Proxmox VE management guidance for creating, cloning, starting, stopping, snapshotting, backing up, and managing VMs, LXC containers, storage, and templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Proxmox VE management - create/clone/start/stop VMs and LXC containers, manage snapshots, backups, storage, and templates.
 
-## Publisher: <br>
-[mSarheed](https://clawhub.ai/user/mSarheed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[msarheed](https://clawhub.ai/user/msarheed)
 
-## Use Case: <br>
-Developers and infrastructure administrators use this skill to ask an agent for Proxmox VE REST API commands and setup guidance for VM, container, storage, snapshot, backup, and task operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad Proxmox infrastructure actions through an API token. <br>
-Mitigation: Use a dedicated least-privilege token scoped to only the required nodes, pools, or VMs, and keep privilege separation enabled where possible. <br>
-Risk: The documented operations include destructive or disruptive actions such as stop, rollback, delete, purge, restore, clone, and template conversion. <br>
-Mitigation: Require explicit human confirmation before executing disruptive commands and verify node names, VMIDs, storage targets, and backup archives. <br>
-Risk: Example curl commands use certificate bypass for self-signed Proxmox endpoints. <br>
-Mitigation: Trust the Proxmox certificate in the execution environment and avoid using -k once TLS validation is configured. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Proxmox](https://www.proxmox.com/) <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to generate Proxmox VE REST API commands for managing clusters, nodes, virtual machines, LXC containers, snapshots, backups, storage, templates, tasks, and destructive lifecycle operations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and Proxmox API endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, PVE_URL, and PVE_TOKEN; commands should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill provides commands that can stop, roll back, restore, delete, or purge Proxmox resources.
+
+Mitigation: Require explicit human confirmation and verify node, VMID, storage, snapshot, and backup identifiers before executing destructive or disruptive operations.
+
+Risk: The examples use broad Proxmox API access and a token environment variable.
+
+Mitigation: Use a dedicated, least-privilege Proxmox token scoped only to the nodes and actions needed, and keep the token out of logs and shared shell history.
+
+Risk: The artifact demonstrates curl with TLS verification disabled and an example root password for LXC creation.
+
+Mitigation: Keep TLS verification enabled with a trusted CA, and replace password-based container setup with SSH keys or generated secrets.
+
+## Reference(s):
+
+- [Proxmox homepage](https://www.proxmox.com/)
+- [ClawHub skill page](https://clawhub.ai/msarheed/skills/proxmox-full)
+- [Publisher profile](https://clawhub.ai/user/msarheed)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and Proxmox API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, PVE_URL, and a PVE_TOKEN for the target Proxmox VE environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

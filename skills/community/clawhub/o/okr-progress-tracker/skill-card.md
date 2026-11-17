@@ -1,40 +1,52 @@
-## Description: <br>
-Track and evaluate OKR (Objectives and Key Results) progress by parsing OKR definitions from markdown, YAML, or JSON files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and evaluate OKR (Objectives and Key Results) progress by parsing OKR definitions from markdown, YAML, or JSON files, scoring key results, calculating objective health, predicting end-of-quarter outcomes, identifying at-risk goals, and producing actionable recommendations.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, managers, and planning teams use this skill to assess OKR progress, prepare quarterly reviews, identify at-risk objectives, and generate structured status reports with recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: OKR files may contain sensitive company strategy, performance, ownership, or planning information.
+
+Mitigation: Use the skill only on explicit OKR files or directories intended for analysis, and review generated summaries before sharing them.
+
+Risk: Broad OKR-related trigger wording could activate the skill during general business conversations.
+
+Mitigation: Narrow trigger wording or invocation practices when accidental activation would expose sensitive planning context.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Teams, managers, and operators use this skill to evaluate OKR files, score key results, forecast quarter outcomes, identify at-risk objectives, and prepare structured review reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: OKR files can contain confidential company goals, performance metrics, or ownership details. <br>
-Mitigation: Use the skill only on OKR files or folders the agent is intended to read, prefer specific file paths over broad directories, and review reports before sharing. <br>
-Risk: Progress scores, forecasts, and recommendations can be misleading when OKR data is incomplete, stale, or uses inconsistent scoring assumptions. <br>
-Mitigation: Review generated calculations and assumptions against current source data before using the report for planning or performance decisions. <br>
+**Output Format:** [Markdown report with narrative, table, or detailed assessment sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/okr-progress-tracker) <br>
+**Other Properties Related to Output:** [Reports may include executive summaries, per-objective breakdowns, per-key-result metrics, at-risk registers, timeline context, and actionable recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with optional narrative, table, or detailed sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include health scores, pace ratios, forecasts, at-risk summaries, recommendations, and timeline context.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

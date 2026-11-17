@@ -1,37 +1,51 @@
-## Description: <br>
-Opens and modifies TradingView strategy settings on the current chart page, including inputs and strategy properties such as stop loss, take profit, initial capital, commission, and slippage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Open and modify TradingView strategy settings on the current chart page, including inputs and properties such as stop loss, take profit, periods, initial capital, commission, slippage, and order size.
 
-## Publisher: <br>
-[mariuswang007](https://clawhub.ai/user/mariuswang007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mariuswang007](https://clawhub.ai/user/mariuswang007)
 
-## Use Case: <br>
-TradingView users and agents use this skill to adjust settings for an already-loaded strategy on an open chart. It is intended for changing visible strategy inputs and properties through browser automation, not for creating strategies or writing Pine Script. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Browser automation may change financial strategy settings on the wrong TradingView tab, strategy, parameter, or value. <br>
-Mitigation: Before clicking Ok or Apply, confirm the active TradingView tab, strategy name, parameter label, and new value against the visible settings dialog. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariuswang007/tv-strategy-settings) <br>
+## Use Case:
+
+External users and trading strategy operators use this skill to adjust parameters for an already-loaded TradingView strategy through browser automation, using natural-language requests or exact parameter names.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can operate an open TradingView chart UI and change strategy settings.
+
+Mitigation: Install only when agent-driven TradingView UI automation is desired, and review requested parameter changes before relying on updated strategy results.
+
+Risk: Changed strategy settings can affect financial analysis or trading decisions.
+
+Mitigation: Treat recalculated strategy results as decision-support information and independently review them before making financial decisions.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, browser automation commands] <br>
-**Output Format:** [Markdown with browser automation command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces step-by-step browser actions for locating a TradingView chart, opening strategy settings, modifying fields, applying changes, and verifying the result.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline browser automation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Applies to the currently open TradingView chart with a loaded strategy.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Checks ticket updates for accuracy, evidence, privacy, authorization, and risk before allowing changes to customer-visible or internal support records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks ticket updates for accuracy, evidence, privacy, authorization, and risk before allowing changes to customer-visible or internal support records.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Support agents, issue triagers, CRM operators, and customer-facing teams use this skill to check proposed ticket updates before posting comments, changing status, transferring ownership, adjusting priority, closing, reopening, or replying to customers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsupported or misleading ticket updates could be posted when facts, scope, or status are unclear. <br>
-Mitigation: Require evidence for claims and retrieve missing support before posting or mark the update as tentative. <br>
-Risk: Customer-visible replies or public issue comments could expose private data, internal notes, or unrelated ticket history. <br>
-Mitigation: Use a minimal redacted review payload and redact private or sensitive details before external visibility. <br>
-Risk: Status, priority, ownership, SLA, escalation, closure, or reopening changes may be unauthorized or irreversible. <br>
-Mitigation: Require approval for higher-risk or irreversible changes and block unauthorized updates. <br>
+## Use Case:
 
+Support agents and issue triage agents use this skill to review proposed ticket, issue, CRM case, and task updates before changing status or posting customer-visible text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindbomber/aana-ticket-update-checker-skill) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Ticket update checker schema](artifact/schemas/ticket-update-checker.schema.json) <br>
-- [Redacted review payload example](artifact/examples/redacted-ticket-update-checker.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, configuration] <br>
-**Output Format:** [Markdown and structured text checklist with optional JSON review payload] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not execute code, call ticket systems, write files, persist memory, or install dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agents may pause, revise, or block ticket updates until evidence, visibility, privacy, and approval are clear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the gate as a pre-update review step and resolve missing evidence, unclear visibility, private data, or approval gaps before posting or changing status.
+
+Risk: Review payloads could expose logs, secrets, customer records, internal notes, or unrelated ticket history if over-shared.
+
+Mitigation: Send only the minimal redacted payload fields described by the skill and omit raw logs, secrets, customer records, and unrelated history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindbomber/skills/aana-ticket-update-checker-skill)
+- [Publisher profile](https://clawhub.ai/user/mindbomber)
+- [Ticket update checker schema](schemas/ticket-update-checker.schema.json)
+- [Redacted ticket update checker example](examples/redacted-ticket-update-checker.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown with a structured text decision pattern and optional JSON review payload]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; does not execute commands, call services, write files, persist memory, or update tickets on its own.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact manifest lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

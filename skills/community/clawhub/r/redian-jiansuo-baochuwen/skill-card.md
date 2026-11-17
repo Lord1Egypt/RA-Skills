@@ -1,45 +1,64 @@
-## Description: <br>
-定时检索白名单科技公司的近 24 小时热点，生成带来源 URL 的中文纯文字短文，并发送到配置的推送渠道。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedules Chinese plain-text summaries of recent technology and AI news from a configurable company whitelist and sends them to a configured delivery channel.
 
-## Publisher: <br>
-[yuewuya20180928](https://clawhub.ai/user/yuewuya20180928) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuewuya20180928](https://clawhub.ai/user/yuewuya20180928)
 
-## Use Case: <br>
-Users configure this skill to have an agent search whitelisted technology companies on a schedule, summarize recent items in Chinese, and send plain-text updates to channels such as WeChat, Telegram, Slack, or email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring outbound delivery can send generated news summaries to external messaging services or the wrong recipient. <br>
-Mitigation: Set the recipient, delivery channel, and account ID explicitly before enabling the cron job, and remove or replace any fallback recipient values. <br>
-Risk: The skill depends on search API keys and local bot credentials, and its troubleshooting steps include credential reset operations. <br>
-Mitigation: Keep API keys and bot tokens in local secret stores, avoid printing secrets from configuration files, and back up account files before following reset instructions. <br>
-Risk: Generated news summaries may be inaccurate if the agent uses facts outside the search result content. <br>
-Mitigation: Keep the source-URL requirement, whitelist restriction, and content-only summarization rules enabled, and review outputs before relying on them. <br>
+## Use Case:
 
+External users and operators use this skill to schedule recurring Chinese news digests about selected AI and technology companies, with configurable search, article count, length, delivery channel, recipient, and timing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuewuya20180928/redian-jiansuo-baochuwen) <br>
-- [Cron Job 配置详解](artifact/references/cron-config.md) <br>
-- [完整 Prompt模板](artifact/references/prompt.md) <br>
-- [配置变量完整定义](artifact/references/variables.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese plain-text messages, Markdown instructions, shell commands, and cron configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is three short Chinese articles of about 400 characters each, with source URLs and a delivery report; model, search provider, whitelist, article count, schedule, and delivery channel are configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Recurring delivery can send messages to an unintended recipient or schedule if defaults are accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit recipient, delivery account, channel, and schedule before installation, and remove the concrete WeChat recipient fallback.
+
+Risk: Diagnostic commands can expose local API keys or bearer tokens if copied into logs or chat.
+
+Mitigation: Run credential diagnostics only by an administrator, redact tokens and API keys, and avoid printing secrets during normal operation.
+
+Risk: Manual reset steps can delete local bot account state.
+
+Mitigation: Keep bot reset commands out of routine agent instructions and require administrator approval plus a backup before account-state deletion.
+
+Risk: Delivery can silently fail when a bot token expires or a sandboxed channel stops accepting messages.
+
+Mitigation: Monitor cron run history and delivery receipts, rotate expired tokens, and update the cron job's delivery account after re-pairing.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/yuewuya20180928/skills/redian-jiansuo-baochuwen)
+- [Configuration variables](references/variables.md)
+- [Prompt template](references/prompt.md)
+- [Cron job configuration](references/cron-config.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with plain-text message output and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scheduled news message content and operator setup guidance; default article count, length, whitelist, model, search provider, channel, recipient, and cron timing are configurable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

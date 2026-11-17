@@ -1,40 +1,52 @@
-## Description: <br>
-Repeatedly output a string (or 'y' by default) for automated scripts, batch confirmation, and pipeline input generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repeatedly output a string (or 'y' by default) for automated scripts, batch confirmation, and pipeline input generation.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and automation engineers use this skill to generate repeated responses for scripts, prompt confirmation flows, pipeline tests, and other stdin-driven automation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Automatic confirmations can approve installer, setup, or deletion prompts without human review.
+
+Mitigation: Use only with fully understood, trusted, non-destructive commands, and review the receiving command before piping automatic responses into it.
+
+Risk: Unbounded repeated output can hang or flood a pipeline if the receiving process does not terminate.
+
+Mitigation: Use external timeouts or process controls when bounded output is required, and stop the process promptly when the downstream command is complete.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to generate repeated text for pipeline input or scripted confirmation workflows. It should be used only where downstream prompts and command effects have been reviewed. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended confirmation can approve deletion, package management, account changes, legal consent, privileged actions, or other irreversible commands. <br>
-Mitigation: Review the exact downstream command, prompt text, and consequences before piping generated responses into any sensitive operation. <br>
-Risk: The documentation claims options such as --count, --sleep, --hex, --json, and --no-newline that the provided script does not implement. <br>
-Mitigation: Do not rely on those options unless the implementation is fixed and retested; use external controls such as reviewed wrappers or timeouts when bounded output is required. <br>
+**Output Format:** [Markdown guidance with shell command examples and text stream output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/yes-tool) <br>
+**Other Properties Related to Output:** [The bundled command-line behavior emits repeated text until the downstream pipe closes or the process is stopped.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text stream with command examples and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The provided script repeats one string until the process stops; documented flags such as --count, --sleep, --hex, --json, and --no-newline are not implemented in the artifact.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

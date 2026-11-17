@@ -1,47 +1,60 @@
-## Description: <br>
-Collaboratively migrate specific OpenClaw cron jobs onto popular OpenRouter models. Audit cron usage, fetch the current OpenRouter rankings via curl, propose top 4 cheap models, edit the chosen crons, and verify by running them plus checking OpenRouter usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collaboratively migrate specific OpenClaw cron jobs onto popular OpenRouter models. Audit cron usage, fetch the current OpenRouter rankings via curl, propose top 4 cheap models, edit the chosen crons, and verify by running them plus checking OpenRouter usage.
 
-## Publisher: <br>
-[mrmps](https://clawhub.ai/user/mrmps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrmps](https://clawhub.ai/user/mrmps)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to review scheduled cron usage, choose approved OpenRouter model substitutions, update selected jobs, and verify runtime and cost impact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OpenRouter credentials or local OpenClaw auth data could be exposed while checking provider access. <br>
-Mitigation: Confirm only whether credentials exist, avoid printing .env or auth profile contents, and use a secure secret entry method for API keys. <br>
-Risk: Cron edits can change scheduled job behavior or move a job to an unsuitable model. <br>
-Mitigation: Require explicit approval for each cron-to-model mapping, show the updated payload, run the job after editing, and revert if verification fails. <br>
-Risk: Manual cron runs and OpenRouter API calls may execute real workflows or incur usage costs. <br>
-Mitigation: Run only approved jobs, surface errors promptly, and review OpenRouter credits or activity after verification when cost visibility is needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit OpenClaw cron usage, choose cheaper popular OpenRouter models with user approval, update selected cron jobs, and verify each migration with live runs and cost checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrmps/openrouter-crons) <br>
-- [OpenClaw cron CLI](https://docs.openclaw.ai/cli/cron) <br>
-- [OpenClaw cron concepts](https://docs.openclaw.ai/automation/cron-jobs) <br>
-- [OpenClaw and OpenRouter integration](https://openrouter.ai/docs/guides/coding-agents/openclaw-integration) <br>
-- [OpenRouter model rankings API](https://openrouter.ai/api/v1/models?orderby=rank) <br>
-- [OpenRouter credits API](https://openrouter.ai/api/v1/credits) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell command blocks and migration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include approved cron-to-model mappings, verification results, and OpenRouter cost or activity summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: OpenRouter API keys can be exposed in command output, chat transcripts, shell history, or logs during setup and credential checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use presence-only credential checks, avoid pasting API keys into chat, and avoid passing secrets directly as command-line arguments.
+
+Risk: Cron model edits can disrupt scheduled jobs or reduce output quality if the replacement model is unsuitable.
+
+Mitigation: Approve each cron edit only after confirming the old model, new model, intended outcome, verification run, and rollback path.
+
+Risk: Model recommendations can become stale because the skill relies on current OpenRouter rankings and pricing.
+
+Mitigation: Fetch live OpenRouter model rankings before recommending models and present multiple inexpensive options with trade-offs.
+
+## Reference(s):
+
+- [OpenClaw cron CLI](https://docs.openclaw.ai/cli/cron)
+- [OpenClaw cron concepts](https://docs.openclaw.ai/automation/cron-jobs)
+- [OpenClaw and OpenRouter integration](https://openrouter.ai/docs/guides/coding-agents/openclaw-integration)
+- [OpenRouter rankings API](https://openrouter.ai/api/v1/models?orderby=rank)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cron model mappings, verification results, rollback notes, and OpenRouter cost observations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

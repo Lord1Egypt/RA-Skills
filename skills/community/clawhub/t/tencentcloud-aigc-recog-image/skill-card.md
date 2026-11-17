@@ -1,45 +1,60 @@
-## Description: <br>
-TencentCloud Image AIGC Detection helps agents submit an image URL or local image file to Tencent Cloud ImageModeration with IMAGE_AIGC detection and return the service's AI-generated image assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TencentCloud Image AIGC Detection helps agents submit image URLs or supported local image files to Tencent Cloud ImageModeration for AI-generated image detection and receive a structured result.
 
-## Publisher: <br>
-[shawn233](https://clawhub.ai/user/shawn233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawn233](https://clawhub.ai/user/shawn233)
 
-## Use Case: <br>
-Developers and external users use this skill to check whether selected images appear AI-generated, including AI artwork review, image authenticity screening, synthetic media checks, and Deepfake detection workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images or image URLs are processed by Tencent Cloud. <br>
-Mitigation: Install and use the skill only when external Tencent Cloud processing is approved for the image data. <br>
-Risk: Long-lived Tencent Cloud credentials may be exposed if stored in shared shell profiles. <br>
-Mitigation: Use scoped or temporary Tencent Cloud credentials where possible and avoid storing long-lived secrets in shared environments. <br>
-Risk: Private, biometric, regulated, or confidential images could be submitted to an external cloud service. <br>
-Mitigation: Do not submit sensitive images unless the user or organization has explicit approval for that processing. <br>
+## Use Case:
 
+Developers and content review workflows use this skill to check whether an image appears AI-generated. The skill returns a pass, review, or block suggestion with score and label details from Tencent Cloud.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shawn233/tencentcloud-aigc-recog-image) <br>
-- [ImageModeration API reference](references/image_moderation_api.md) <br>
-- [Tencent Cloud ImageModeration documentation](https://cloud.tencent.com/document/product/1125/53273) <br>
-- [Tencent Cloud SDK guide](https://cloud.tencent.com/document/product/1124/100983) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses with concise user-facing guidance and setup commands when configuration is missing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results can include suggestion, label, score, sub-labels, detailed result arrays, error codes, and request IDs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: release evidence) <br>
+Risk: Submitted image URLs or local image contents can be sent to Tencent Cloud for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with images appropriate for Tencent Cloud processing and follow applicable data handling requirements.
+
+Risk: Tencent Cloud SecretId, SecretKey, and BizType are required, and persistent plaintext shell-profile storage can expose credentials.
+
+Mitigation: Prefer short-lived or least-privilege credentials where available, and avoid storing secrets in broadly loaded plaintext files such as shell startup profiles.
+
+Risk: The release security verdict is suspicious because the skill can transmit local images and includes credential-handling guidance that needs review.
+
+Mitigation: Review the skill before installing, use a dedicated virtual environment, and pin or review the Tencent SDK version.
+
+## Reference(s):
+
+- [ImageModeration API reference](references/image_moderation_api.md)
+- [Tencent Cloud ImageModeration documentation](https://cloud.tencent.com/document/product/1125/53273)
+- [Tencent Cloud SDK guide](https://cloud.tencent.com/document/product/1124/100983)
+- [ClawHub skill page](https://clawhub.ai/shawn233/skills/tencentcloud-aigc-recog-image)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSON detection result or JSON setup/error message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results include suggestion, label, score, optional detailed labels, and request ID.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

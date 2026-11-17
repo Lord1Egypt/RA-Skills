@@ -1,41 +1,55 @@
-## Description: <br>
-Query and manage Stripe data via the Stripe API, including charges, customers, invoices, subscriptions, payment intents, refunds, products, and prices, with filtering, pagination, and direct calls to api.stripe.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Native Stripe lets agents query and manage Stripe charges, customers, invoices, subscriptions, payment intents, refunds, products, prices, and balance transactions directly through the Stripe API.
 
-## Publisher: <br>
-[codeninja23](https://clawhub.ai/user/codeninja23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codeninja23](https://clawhub.ai/user/codeninja23)
 
-## Use Case: <br>
-Developers and operators use this skill to query Stripe account data and perform supported Stripe account actions such as creating refunds or updating customer records through the Stripe API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use live Stripe credentials to perform payment-system actions, including refunds and customer updates. <br>
-Mitigation: Use Stripe test keys or restricted keys where possible, and require explicit human approval before refund creation, customer updates, or any POST request to Stripe. <br>
-Risk: Stripe secret keys could be exposed through logs, chat transcripts, or copied command output. <br>
-Mitigation: Keep STRIPE_SECRET_KEY in the environment, do not paste live keys into chats, and redact credentials from logs or shared outputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/codeninja23/native-stripe) <br>
-- [Stripe API Keys](https://dashboard.stripe.com/apikeys) <br>
-- [Stripe API v1 Endpoint](https://api.stripe.com/v1) <br>
+## Use Case:
 
+Developers and account operators use Native Stripe to inspect Stripe account data and perform account actions such as refunds or customer updates from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Formatted terminal tables for list results and JSON for single-object or raw responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and STRIPE_SECRET_KEY; supports a --json flag for raw JSON output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A live Stripe secret key can give an agent access to sensitive account data and financial operations.
+
+Mitigation: Use a restricted Stripe key, start with a test-mode key, and avoid exposing a full live secret key to the agent.
+
+Risk: Refund creation and customer updates are real account-changing operations.
+
+Mitigation: Require explicit confirmation, dry-run behavior, or resource allowlists before using mutation commands in production.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codeninja23/skills/native-stripe)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/codeninja23)
+- [Stripe API Key Dashboard](https://dashboard.stripe.com/apikeys)
+- [Stripe API Base URL](https://api.stripe.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Plain text tables or JSON returned from Stripe API commands, with Markdown setup and usage examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires STRIPE_SECRET_KEY and python3; supports filtering, pagination limits, and optional raw JSON output.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

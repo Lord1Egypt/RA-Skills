@@ -1,41 +1,59 @@
-## Description: <br>
-Track and manage electrochemistry samples from synthesis to characterization with data linking, event logging, search, export, and dashboard visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and manage electrochemistry samples from synthesis to characterization with data linking, event logging, search, export, and dashboard visualization.
 
-## Publisher: <br>
-[xrayxiaoruiyang-pixel](https://clawhub.ai/user/xrayxiaoruiyang-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xrayxiaoruiyang-pixel](https://clawhub.ai/user/xrayxiaoruiyang-pixel)
 
-## Use Case: <br>
-Electrochemistry lab researchers and engineers use this skill to track physical sample inventory, synthesis metadata, characterization file links, experimental events, exports, and dashboards in a local SQLite database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk CSV or JSON imports can overwrite sample records when imported rows reuse existing sample_id values. <br>
-Mitigation: Back up samples.db before bulk imports and review incoming sample_id values for duplicates. <br>
-Risk: Linked file paths and free-text notes are stored in the local database and may reference sensitive lab data. <br>
-Mitigation: Link only relevant files and avoid storing unrelated sensitive details in sample notes or attachment descriptions. <br>
+## Use Case:
 
+Developers, researchers, and lab staff use this skill to manage electrochemistry sample records, attach characterization data, log experimental events, search inventory, export reports, and generate dashboard summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xrayxiaoruiyang-pixel/ec-sample-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/xrayxiaoruiyang-pixel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Command-line text output, CSV, JSON, Markdown reports, SQLite database records, and PNG dashboard files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local samples.db records, config.yaml settings, exported sample files, linked file-path metadata, and dashboard images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Bulk imports can permanently change the local SQLite sample database, including replacing records when sample_id values collide.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up samples.db before imports, inspect incoming sample_id values, and test imports on a copy before using them on lab records.
+
+Risk: CSV exports may create spreadsheet files that are risky to open when records include untrusted values.
+
+Mitigation: Prefer JSON or Markdown exports for untrusted data, or review CSV content before opening it in spreadsheet software.
+
+Risk: Dashboard generation depends on optional plotting packages installed in the local Python environment.
+
+Mitigation: Install optional dashboard dependencies only from trusted, pinned package sources.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xrayxiaoruiyang-pixel/skills/ec-sample-tracker)
+- [Publisher Profile](https://clawhub.ai/user/xrayxiaoruiyang-pixel)
+- [Artifact Skill Documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown or plain text with shell commands and file paths; exported records may be CSV, JSON, Markdown, SQLite, or PNG dashboard files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local outputs can include samples.db, exported sample reports, and sample-dashboard.png.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

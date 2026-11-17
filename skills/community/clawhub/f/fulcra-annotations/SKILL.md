@@ -136,13 +136,7 @@ python3 skills/fulcra-annotations/scripts/fulcra_annotations.py create \
   --tag intake
 ```
 
-For measurements with specialized units, inspect the live schema through the bundled helper before creating the definition and then prefer adding script support over ad hoc API calls:
-
-```bash
-python3 skills/fulcra-annotations/scripts/fulcra_annotations.py measurement-schema
-```
-
-Use `measurement-schema --raw` only for local debugging. Do not paste raw schema output into chat if it includes private account context.
+For measurements with specialized units, inspect the live Fulcra schema through the official CLI or library before creating the definition and then prefer adding reviewed helper support over ad hoc API calls.
 
 Record a scale/numeric/boolean value:
 
@@ -162,22 +156,7 @@ python3 skills/fulcra-annotations/scripts/fulcra_annotations.py recent \
   --limit 20
 ```
 
-Update definition metadata or replace definition tags only after user approval:
-
-```bash
-python3 skills/fulcra-annotations/scripts/fulcra_annotations.py update \
-  --id "<annotation-id>" \
-  --description "Updated description" \
-  --tag workflow \
-  --tag agent
-```
-
-Delete a definition only after user approval:
-
-```bash
-python3 skills/fulcra-annotations/scripts/fulcra_annotations.py delete \
-  --id "<annotation-id>"
-```
+Update or delete definition metadata only through a separate reviewed admin workflow after explicit user approval. The bundled helper intentionally exposes only `list`, `create`, `record`, and `recent`.
 
 Dry-run any write before sending it:
 

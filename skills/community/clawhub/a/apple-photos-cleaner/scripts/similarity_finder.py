@@ -9,21 +9,66 @@ to surface groups of near-identical or thematically similar images.
 
 import math
 import sys
-from typing import Any, Optional
+from typing import Any
 
 from _common import (
     PhotosDB,
     _safe_float,
-    coredata_to_datetime,
+    coredata_to_local,
+    display_name,
     format_size,
+    has_timezone_offset,
+    local_datetime_sql,
+    original_filename_sql,
     run_script,
+    tz_offset_sql,
     validate_year,
 )
+from _schema import FILE_SIZE, ORIGINAL_FILENAME, Degradation, get_schema
+
+# Schema contract (T1.4): see _schema. Missing required → exit 5; missing optional → `degraded`.
+REQUIRED_COLUMNS: tuple[str, ...] = (
+    "ZASSET.ZDATECREATED",
+    "ZASSET.ZFAVORITE",
+    "ZASSET.ZFILENAME",
+    "ZASSET.ZHEIGHT",
+    "ZASSET.ZKIND",
+    "ZASSET.ZLATITUDE",
+    "ZASSET.ZLONGITUDE",
+    "ZASSET.ZTRASHEDSTATE",
+    "ZASSET.ZWIDTH",
+    *FILE_SIZE,
+)
+# The similarity vector. A missing feature counts as 0, which shifts cosine scores, so it is declared.
+FEATURE_COLUMNS: tuple[str, ...] = (
+    "ZPLEASANTCOMPOSITIONSCORE",
+    "ZPLEASANTLIGHTINGSCORE",
+    "ZPLEASANTPATTERNSCORE",
+    "ZFAILURESCORE",
+    "ZNOISESCORE",
+    "ZPLEASANTSYMMETRYSCORE",
+    "ZPLEASANTCOLORHUESCORE",
+    "ZPLEASANTWALLPAPERSCORE",
+    "ZHARMONIOUSCOLORSCORE",
+    "ZIMMERSIVENESSSCORE",
+    "ZINTERACTIONSCORE",
+    "ZPLEASANTPERSPECTIVESCORE",
+    "ZPLEASANTSHARPSCORE",
+    "ZPLEASANTPOSTPROCESSINGSCORE",
+    "ZTASTEFULLYBLURREDSCORE",
+    "ZWELLFRAMEDSUBJECTSCORE",
+    "ZWELLTIMEDSHOTSCORE",
+)
+OPTIONAL_COLUMNS: dict[str, tuple[str, ...]] = {
+    "original_filenames": ORIGINAL_FILENAME,
+    "similarity": ("ZCOMPUTEDASSETATTRIBUTES.ZASSET", "computed.composition"),
+    "similarity_features": tuple(f"ZCOMPUTEDASSETATTRIBUTES.{c}" for c in FEATURE_COLUMNS),
+}
 
 
 def _cosine_similarity(a: list[float], b: list[float]) -> float:
     """Compute cosine similarity between two vectors."""
-    dot = sum(x * y for x, y in zip(a, b))
+    dot = sum(x * y for x, y in zip(a, b, strict=True))
     mag_a = math.sqrt(sum(x * x for x in a))
     mag_b = math.sqrt(sum(x * x for x in b))
     if mag_a == 0 or mag_b == 0:
@@ -38,32 +83,13 @@ def _extract_features(row: dict) -> list[float]:
     Uses quality-related scores and scene classification data that
     Apple Photos computes for every image.
     """
-    feature_keys = [
-        "ZPLEASANTCOMPOSITIONSCORE",
-        "ZPLEASANTLIGHTINGSCORE",
-        "ZPLEASANTPATTERNSCORE",
-        "ZFAILURESCORE",
-        "ZNOISESCORE",
-        "ZPLEASANTSYMMETRYSCORE",
-        "ZPLEASANTCOLORHUESCORE",
-        "ZPLEASANTWALLPAPERSCORE",
-        "ZHARMONIOUSCOLORSCORE",
-        "ZIMMERSIVENESSSCORE",
-        "ZINTERACTIONSCORE",
-        "ZPLEASANTPERSPECTIVESCORE",
-        "ZPLEASANTSHARPSCORE",
-        "ZPLEASANTPOSTPROCESSINGSCORE",
-        "ZTASTEFULLYBLURREDSCORE",
-        "ZWELLFRAMEDSUBJECTSCORE",
-        "ZWELLTIMEDSHOTSCORE",
-    ]
-    return [_safe_float(row.get(key)) for key in feature_keys]
+    return [_safe_float(row.get(key)) for key in FEATURE_COLUMNS]
 
 
 def find_similar_photos(
-    db_path: Optional[str] = None,
+    db_path: str | None = None,
     threshold: float = 0.95,
-    year: Optional[str] = None,
+    year: str | None = None,
     limit: int = 500,
 ) -> dict[str, Any]:
     """
@@ -78,16 +104,19 @@ def find_similar_photos(
     Returns:
         Similar photo groups and summary statistics
     """
-    with PhotosDB(db_path) as conn:
+    with PhotosDB(db_path, require=REQUIRED_COLUMNS, operation="Similarity detection") as conn:
+        name_col = original_filename_sql(get_schema(conn))
         cursor = conn.cursor()
+        tz_available = has_timezone_offset(cursor)
 
         # Check available columns
-        cursor.execute("PRAGMA table_info(ZCOMPUTEDASSETATTRIBUTES)")
-        ca_columns = {row["name"] for row in cursor.fetchall()}
-        has_composition = "ZPLEASANTCOMPOSITIONSCORE" in ca_columns
-
-        if not has_composition:
+        degraded = Degradation(get_schema(conn))
+        degraded.check("original_filenames", *OPTIONAL_COLUMNS["original_filenames"])
+        has_similarity = degraded.check("similarity", *OPTIONAL_COLUMNS["similarity"])
+        degraded.check("similarity_features", *OPTIONAL_COLUMNS["similarity_features"])
+        if not has_similarity:
             return {
+                "degraded": degraded.entries,
                 "error": "Computed asset attributes not available in this database version.",
                 "groups": [],
                 "summary": {"total_compared": 0, "groups_found": 0},
@@ -97,15 +126,16 @@ def find_similar_photos(
         params: list = []
         if year:
             year = validate_year(year)
-            where.append("strftime('%Y', datetime(a.ZDATECREATED + 978307200, 'unixepoch')) = ?")
+            where.append(f"strftime('%Y', {local_datetime_sql(tz_available)}) = ?")
             params.append(year)
 
         # Get photos with computed attributes
         query = f"""
             SELECT
-                a.Z_PK, a.ZFILENAME, a.ZDATECREATED, a.ZFAVORITE,
+                a.Z_PK, a.ZFILENAME, {name_col}, a.ZDATECREATED, a.ZFAVORITE,
                 a.ZLATITUDE, a.ZLONGITUDE, a.ZWIDTH, a.ZHEIGHT,
                 aa.ZORIGINALFILESIZE,
+                {tz_offset_sql(tz_available)} AS tz_offset,
                 ca.*
             FROM ZASSET a
             LEFT JOIN ZADDITIONALASSETATTRIBUTES aa ON a.Z_PK = aa.ZASSET
@@ -125,11 +155,12 @@ def find_similar_photos(
             if all(f == 0.0 for f in features):
                 continue
 
-            created = coredata_to_datetime(rd["ZDATECREATED"])
+            created = coredata_to_local(rd["ZDATECREATED"], rd["tz_offset"])
             photos.append(
                 {
                     "id": rd["Z_PK"],
                     "filename": rd["ZFILENAME"],
+                    "original_filename": rd["original_filename"],
                     "created": created.isoformat() if created else None,
                     "is_favorite": bool(rd.get("ZFAVORITE")),
                     "size": rd.get("ZORIGINALFILESIZE") or 0,
@@ -140,7 +171,7 @@ def find_similar_photos(
             )
 
         # Find similar pairs using cosine similarity
-        groups: dict[int, list[dict]] = {}
+        groups: dict[int, list[int]] = {}
         assigned: set[int] = set()
 
         for i in range(len(photos)):
@@ -169,6 +200,7 @@ def find_similar_photos(
                     {
                         "id": p["id"],
                         "filename": p["filename"],
+                        "original_filename": p["original_filename"],
                         "created": p["created"],
                         "is_favorite": p["is_favorite"],
                         "size": p["size"],
@@ -200,6 +232,7 @@ def find_similar_photos(
         total_extra_photos = sum(g["member_count"] - 1 for g in similar_groups)
 
         return {
+            "degraded": degraded.entries,
             "groups": similar_groups[:100],
             "summary": {
                 "total_compared": len(photos),
@@ -237,7 +270,7 @@ def format_summary(data: dict[str, Any]) -> str:
             lines.append(f"  {i:>3}. {group['member_count']} photos  savings: {group['potential_savings_formatted']}")
             for m in group["members"][:5]:
                 fav = "⭐" if m["is_favorite"] else "  "
-                lines.append(f"       {fav} {m['filename']:40s} {m['size_formatted']:>10}")
+                lines.append(f"       {fav} {display_name(m):40s} {m['size_formatted']:>10}")
 
     return "\n".join(lines)
 
@@ -250,7 +283,7 @@ def main():
             default=0.95,
             help="Similarity threshold 0-1 (default: 0.95 = very similar)",
         )
-        parser.add_argument("--year", help="Filter to specific year (YYYY)")
+        parser.add_argument("--year", help="Filter to specific year (YYYY, local capture time)")
         parser.add_argument(
             "--limit",
             type=int,

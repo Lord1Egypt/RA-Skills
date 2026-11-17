@@ -1,46 +1,63 @@
-## Description: <br>
-ClawRTC helps an agent mine, hold, and spend RustChain RTC tokens through hardware attestation, wallet setup, and signed RTC transfer commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawRTC helps an agent install and manage a RustChain RTC mining client, wallet, and signed RTC transfer commands tied to physical-device attestation.
 
-## Publisher: <br>
-[scottcjn](https://clawhub.ai/user/scottcjn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scottcjn](https://clawhub.ai/user/scottcjn)
 
-## Use Case: <br>
-Developers and agent operators use ClawRTC to configure an RTC wallet, run RustChain mining on eligible physical hardware, inspect miner status, and initiate signed pay, tip, gas, or settlement transfers. It is most relevant where the operator intentionally wants crypto mining and wallet behavior inside an agent environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is a crypto mining and wallet tool that fingerprints the machine, sends stable device identifiers to RustChain infrastructure, and has under-disclosed telemetry. <br>
-Mitigation: Install only on hardware the operator is comfortable identifying to RustChain, review the disclosure before use, and prefer a reviewed release with accurate telemetry disclosure. <br>
-Risk: Wallet keys and exported wallet files may expose funds if mishandled. <br>
-Mitigation: Treat exported wallet files as private keys, store them only in protected locations, and avoid running the wallet flow on shared or untrusted machines. <br>
-Risk: Security evidence flags contradictions between the release's TLS or security claims and observed behavior. <br>
-Mitigation: Avoid BCOS admin credentials with this version and prefer a reviewed or fixed release with normal TLS verification. <br>
+## Use Case:
 
+Developers and AI-agent operators use ClawRTC to configure RTC mining on real hardware, inspect miner status, manage wallets, and submit signed pay, tip, gas, or settlement transfers. It is intended for users who deliberately want a hardware-fingerprinted mining and wallet workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/scottcjn/clawrtc) <br>
-- [PyPI Package](https://pypi.org/project/clawrtc/) <br>
-- [npm Package](https://www.npmjs.com/package/clawrtc) <br>
-- [RustChain](https://rustchain.org) <br>
-- [Block Explorer](https://rustchain.org/explorer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and command descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce wallet, mining, attestation, and transfer guidance that requires local operator review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.0 (source: server release, pyproject.toml, package.json) <br>
+Risk: The release security evidence flags wallet-linked hardware fingerprinting, MAC and hostname collection, cloud metadata probes, and contradictions with stated privacy promises.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on an approved physical host without sensitive credentials, review the data disclosure before mining, and avoid cloud hosts unless the collection behavior is acceptable.
+
+Risk: The release security evidence calls out a plaintext miner endpoint and unresolved TLS verification concerns, including BCOS admin-key exposure risk.
+
+Mitigation: Do not use BCOS certification or admin keys until TLS verification and disclosure issues are fixed, and prefer test nodes or non-sensitive accounts when evaluating transfers.
+
+Risk: The release security evidence notes hidden install telemetry and optional auto-start service behavior that users should review before installation.
+
+Mitigation: Use dry-run and verification modes first, inspect the generated service configuration, and enable background service mode only after explicit approval.
+
+## Reference(s):
+
+- [ClawRTC Skill Page](https://clawhub.ai/scottcjn/skills/clawrtc)
+- [RustChain Network](https://rustchain.org)
+- [RustChain Block Explorer](https://rustchain.org/explorer)
+- [BCOS Verification](https://rustchain.org/bcos/)
+- [PyPI Package](https://pypi.org/project/clawrtc/)
+- [npm Package](https://www.npmjs.com/package/clawrtc)
+- [Coinbase CDP Portal](https://portal.cdp.coinbase.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with CLI commands, configuration steps, and status or transaction guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wallet addresses, signed transfer payload previews, miner status, BCOS scan output, and install or uninstall instructions.]
+
+## Skill Version(s):
+
+1.9.0 (source: server release metadata, pyproject.toml, package.json; clawrtc/__init__.py reports 1.8.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,65 @@
-## Description: <br>
-Tork Guardian is an AI governance and safety layer for OpenClaw agents that redacts sensitive data, enforces tool and network policies, scans skills for vulnerabilities, and generates compliance audit trails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tork Guardian is an AI governance and safety layer for OpenClaw agents that redacts sensitive data, governs tool and network activity, and generates compliance audit trails.
 
-## Publisher: <br>
-[torkjacobs](https://clawhub.ai/user/torkjacobs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[torkjacobs](https://clawhub.ai/user/torkjacobs)
 
-## Use Case: <br>
-Developers and security teams use Tork Guardian to add policy enforcement, PII redaction, network controls, vulnerability scanning, and compliance receipts to OpenClaw agent deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Governed prompt content and security telemetry may be routed to Tork's service under the user's Tork API key. <br>
-Mitigation: Review Tork's retention and processing terms before use with sensitive or regulated data. <br>
-Risk: Cloud service unavailability may affect governance reliability because the evidence guidance identifies current fail-open behavior. <br>
-Mitigation: Use strict or custom network policies and avoid relying on this release where governance must block when the service is unavailable. <br>
+## Use Case:
 
+Developers and operators use this skill to add policy checks, PII redaction, network governance, tool-call review, scanner reports, and compliance receipts to OpenClaw agent workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/torkjacobs/tork-guardian) <br>
-- [README](README.md) <br>
-- [Quick Start](docs/QUICK-START.md) <br>
-- [Network Security](docs/NETWORK-SECURITY.md) <br>
-- [Security Scanner](docs/SCANNER.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with TypeScript snippets, JSON examples, shell commands, and configuration objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce governance decisions, redacted text, compliance receipts, scanner reports, and badge markdown through the documented SDK and CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata and package.json) <br>
+Risk: Prompts, content, and security telemetry may be sent to Tork.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with approved data and credentials, and avoid sending sensitive or regulated content unless the deployment is authorized for that data.
+
+Risk: Security evidence says the SDK protection controls can fail open or be bypassed.
+
+Mitigation: Do not treat it as the sole enforcement boundary; add host, runtime, and policy controls and verify fail-closed behavior before production use.
+
+Risk: Security guidance warns against scanning untrusted source maps through scanFromSource.
+
+Mitigation: Scan only trusted source maps or run scans in an isolated disposable environment with path validation.
+
+Risk: Security guidance requires dependency updates before production use.
+
+Mitigation: Update and audit dependencies during release intake before deploying in production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/torkjacobs/skills/tork-guardian)
+- [Quick Start](docs/QUICK-START.md)
+- [Network Security](docs/NETWORK-SECURITY.md)
+- [Security Scanner](docs/SCANNER.md)
+- [Tork website](https://tork.network)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documentation with TypeScript examples, shell commands, JSON scanner reports, and structured governance decisions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit redacted text, allow/deny decisions, compliance receipt metadata, network activity logs, risk scores, verdicts, and badge markdown.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

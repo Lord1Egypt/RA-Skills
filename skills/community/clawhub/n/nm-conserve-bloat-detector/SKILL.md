@@ -2,7 +2,7 @@
 name: bloat-detector
 description: |
   Detects codebase bloat via dead code, duplication, complexity, and doc bloat scans
-version: 1.9.8
+version: 1.10.3
 triggers:
   - bloat
   - cleanup
@@ -15,7 +15,7 @@ source: claude-night-market
 source_plugin: conserve
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Bloat Detector
@@ -129,8 +129,8 @@ adding skill-specific value.
 
 Skills loaded into model context gain nothing from HTML-style
 Tables of Contents. Detect `## Table of Contents` followed by
-bulleted anchor-link lists. These waste tokens since
-the model reads sequentially, not via hyperlinks.
+bulleted anchor-link lists. These waste tokens because
+the model reads sequentially and never follows the links.
 
 ### Unregistered Module Subdirectories
 
@@ -157,3 +157,21 @@ Also respects: `.gitignore`, `.bloat-ignore`
 - `bloat-auditor` agent - Executes scans
 - `unbloat-remediator` agent - Safe remediation
 - `context-optimization` skill - MECW principles
+- `/bloat-scan` command - User-facing slash command that invokes this
+  skill; there is no separate `bloat-scan` skill
+
+## Exit Criteria
+
+- [ ] At least one tier of scan (Tier 1, 2, or 3) completed and
+  findings listed per bloat category (Code, AI-Generated,
+  Documentation, Dependencies, Git History)
+- [ ] Each finding assigned a confidence level (HIGH/MEDIUM/LOW) and
+  a priority score computed from the formula
+  `(Token_Savings × 0.4) + (Maintenance × 0.3) + (Confidence × 0.2)
+  + (Ease × 0.1)`
+- [ ] No auto-deletions executed without explicit user approval;
+  every proposed removal documented as DELETE, REFACTOR,
+  CONSOLIDATE, or ARCHIVE per `modules/remediation-types.md`
+- [ ] Ecosystem-level patterns checked (alwaysApply accumulation,
+  hook registration gaps, boilerplate footers, ToC bloat) if the
+  scan target contains plugin directories

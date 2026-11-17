@@ -1,0 +1,32 @@
+# Credentials — never commit or package
+.env
+.env.*
+*.env
+.aws/
+credentials
+*.pem
+*.key
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.so
+
+# Test caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# Hermes skill packaging (tests stay in the repo, excluded from installs)
+# .skillignore handles install-time exclusions

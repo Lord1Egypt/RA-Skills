@@ -1,0 +1,33 @@
+{
+  "name": "talaria",
+  "version": "1.0.0",
+  "description": "Talaria — Playwright stealth evasion skill for agents (Hermes, OpenClaw, Cursor, Codex).",
+  "type": "module",
+  "main": "scripts/index.js",
+  "bin": {
+    "talaria": "scripts/cli.js"
+  },
+  "files": [
+    "SKILL.md",
+    "package-lock.json",
+    "scripts",
+    "test",
+    "env.example"
+  ],
+  "scripts": {
+    "setup": "npm ci --ignore-scripts && npm run install-browser",
+    "install-browser": "playwright install chromium",
+    "start": "node scripts/cli.js",
+    "cli": "node scripts/cli.js",
+    "test": "node --test --test-timeout=90000 test/*.e2e.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "1.62.1",
+    "playwright-extra": "4.3.6",
+    "puppeteer-extra-plugin-stealth": "2.11.2"
+  }
+}

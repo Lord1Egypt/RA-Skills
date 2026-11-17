@@ -1,0 +1,87 @@
+{
+  "id": "domain-linkedin",
+  "label": "LinkedIn — Professional Profile Browser",
+  "emoji": "💼",
+  "domain": "linkedin.com",
+  "description": "Extracted from: joeyism/linkedin_scraper v3 (Playwright), ManiMozaffar/linkedIn-scraper, ed-word/Linkedin-Scraper, ceki-marketing session analysis (158 mentions — most scraped domain). Verified 2026-07-16: 1570px login page ('Войти или зарегистрироваться'). HARD phone-gate — SMS required for registration. OAuth bypass (Google/MS) is THEORETICAL — requires a Google account which itself has phone-gate. Realistically: LinkedIn requires phone. Requires auth for any profile/feed content. Heavy lazy-loading — must scroll full height to trigger all sections.",
+  "source_patterns": [
+    "Profile page: must scroll full height to trigger lazy-loaded sections",
+    "Scroll speed: slow, deliberate. 2-4s pause per section (reading)",
+    "'See more' buttons on about/experience: click → 2-3s for expand",
+    "Connection request: click Connect → 2-3s → Add note → type → 1s → Send",
+    "Search results: scroll 1-2s per result, click → 3-5s profile load",
+    "Feed: similar to Twitter but slower (professional content, longer reads)"
+  ],
+  "active_hours": {
+    "description": "Business hours — weekdays, 8-18",
+    "peak": [8, 10, 12, 14, 16],
+    "off_peak_min": 7
+  },
+  "typing": {
+    "wpm": { "min": 60, "max": 90 },
+    "profile": "careful",
+    "think_prob": 0.02,
+    "think_ms": [500, 2000],
+    "backspace_freq": 0.04,
+    "note_typing_wpm": { "min": 45, "max": 70 }
+  },
+  "scroll": {
+    "passes": 3,
+    "description": "Full profile scroll — sections lazy-load. Source: linkedin_scraper v3",
+    "speed_px_per_ms": { "min": 12, "max": 30 },
+    "pause_between_passes_ms": { "min": 2000, "max": 5000 },
+    "depth_per_pass": { "min": 0.4, "max": 0.8 },
+    "scroll_to_bottom_required": true,
+    "scroll_increment_px": { "min": 300, "max": 600 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 2500, "max": 5000 },
+    "pre_click_pause_ms": { "min": 400, "max": 1200 },
+    "inter_action_pause_ms": { "min": 500, "max": 2000 },
+    "post_expand_pause_ms": { "min": 2000, "max": 4000 }
+  },
+  "mouse": {
+    "speed": 0.7,
+    "curvature": 0.15,
+    "jitter": 0.25,
+    "description": "Slow, deliberate — professional context"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "see_more": ".inline-show-more-text__button, button[aria-expanded='false']",
+      "connect_button": "button[aria-label*='Connect']",
+      "message_button": "button[aria-label*='Message']",
+      "profile_section": "section[data-section-id]"
+    },
+    "profile_scroll_strategy": {
+      "description": "Must scroll to bottom to trigger all lazy sections. Do NOT jump-to-bottom — scroll incrementally.",
+      "scroll_increments": 3,
+      "pause_per_increment_ms": { "min": 2000, "max": 4000 },
+      "post_full_scroll_pause_ms": 3000
+    },
+    "requires_login": true,
+    "login": {
+      "pre_login_pause_ms": 3000,
+      "field_pause_ms": { "min": 500, "max": 1200 },
+      "post_login_wait_ms": { "min": 5000, "max": 8000 },
+      "note": "HARD phone-gate. SMS required for registration. OAuth via Google/MS is theoretically possible but requires a Google account — which itself has phone-gate. Realistically: assume phone required. Use existing logged-in sessions when possible (profile export/import).",
+      "bypass_strategy": {
+        "primary": "OAuth via Google (Continue with Google) — requires pre-existing Google account",
+        "alternate": "OAuth via Microsoft (Continue with Microsoft) — same constraint",
+        "reliability": "UNRELIABLE — depends on Google/MS account creation without phone, which is IP-dependent lottery",
+        "recommended_approach": "If you already HAVE a Google/MS account: use OAuth. If not: direct phone registration is the only reliable path."
+      }
+    },
+    "cdp_interaction_pattern": {
+      "description": "LinkedIn is a React SPA. Use Runtime.evaluate with nativeValueSetter for form fields, not Playwright fill().",
+      "value_setter": "Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set.call(el, val); el.dispatchEvent(new Event('input',{bubbles:true})); el.dispatchEvent(new Event('change',{bubbles:true}));",
+      "click_strategy": "Use text-content matching for buttons when selectors fail: [...document.querySelectorAll('button')].find(e => e.textContent.includes('Connect'))?.click()"
+    },
+    "rate_limits": {
+      "connection_requests": "~100/week for new accounts, enforced by 'Connect' button greying out",
+      "search_views": "~25/page view (sales nav)",
+      "profile_views": "~100/24h before 'This profile has been viewed by someone in your network' warning"
+    },
+    "sequence_hint": "navigate linkedin.com → if not logged in: try OAuth (Google/MS) if you have an existing account, else phone registration → navigate profile → scroll top-to-bottom (3 passes, 2-4s pauses) → click 'See more' with text-fallback → scroll again → click Connect/Message via text-content matching → type note → send"
+  }
+}

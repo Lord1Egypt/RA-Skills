@@ -118,8 +118,8 @@ uv run python -c "from ggshield_skill import GGShieldSkill; s = GGShieldSkill();
 Create a test file with fake secrets:
 ```bash
 mkdir -p test-data
-echo 'AWS_KEY="AKIAIOSFODNN7EXAMPLE"' > test-data/secrets.py
-echo 'SLACK_TOKEN="xoxb-1234567890-abcdefghij"' >> test-data/secrets.py
+echo 'AWS_KEY="REDACTED-SECRET"' > test-data/secrets.py
+echo 'SLACK_TOKEN="REDACTED-SECRET"' >> test-data/secrets.py
 ```
 
 Run a scan (loads API key from .env):

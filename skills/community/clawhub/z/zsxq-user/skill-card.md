@@ -1,43 +1,64 @@
-## Description: <br>
-知识星球用户信息与反馈：查看当前登录用户的个人资料、查询跨星球的最近发主题足迹、提交 NPS 反馈（推荐分数 + 建议）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助代理查看当前登录知识星球用户的个人资料、跨星球主题足迹，并在明确确认后提交 NPS 评分和产品建议。
 
-## Publisher: <br>
-[zsxq](https://clawhub.ai/user/zsxq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zsxq](https://clawhub.ai/user/zsxq)
 
-## Use Case: <br>
-Agents supporting Knowledge Planet users use this skill to inspect the current logged-in account, retrieve recent cross-group posting footprints, and prepare or submit user-confirmed NPS feedback to Knowledge Planet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses the user's logged-in zsxq-cli session and may surface private profile or posting-footprint data. <br>
-Mitigation: Install and run it only for accounts where the agent is allowed to access that data, and treat profile JSON and footprint results as private. <br>
-Risk: The NPS shortcut submits a score and written suggestion to Knowledge Planet as an external write action. <br>
-Mitigation: Review the score and suggestion text with the user before execution, keep suggestions within the documented limit, and submit only after explicit confirmation. <br>
+## Use Case:
 
+External users and their agents use this skill to inspect the active 知识星球 account, review recent cross-star posting footprints, and submit product feedback after confirmation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zsxq/zsxq-user) <br>
-- [user +info reference](references/zsxq-user-info.md) <br>
-- [user +footprints reference](references/zsxq-user-footprints.md) <br>
-- [user +nps reference](references/zsxq-user-nps.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI results may be JSON, tables, or short status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authenticated zsxq-cli session; NPS feedback submission should be confirmed by the user before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: frontmatter and server release metadata) <br>
+Risk: NPS feedback is a write operation and may submit user-supplied suggestions to 知识星球 official channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of the score and suggestion before execution, and keep the suggestion within the documented 500-character limit.
+
+Risk: Profile and footprint JSON can expose private account information.
+
+Mitigation: Treat returned user IDs, profile fields, account bindings, and posting history as private user data and avoid unnecessary sharing or logging.
+
+Risk: Shell command construction around NPS suggestions can mishandle user-supplied text.
+
+Mitigation: Prefer direct argument-array execution or carefully quoted arguments instead of interpolating suggestions into shell strings.
+
+Risk: A mutable global zsxq-cli install or upgrade can change behavior unexpectedly.
+
+Mitigation: Use a pinned, reviewed zsxq-cli version when deploying the skill in managed environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zsxq/skills/zsxq-user)
+- [user +info（查看个人资料）](references/zsxq-user-info.md)
+- [user +footprints（查看主题足迹）](references/zsxq-user-footprints.md)
+- [user +nps（提交 NPS 反馈）](references/zsxq-user-nps.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires zsxq-cli and an authenticated 知识星球 account.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

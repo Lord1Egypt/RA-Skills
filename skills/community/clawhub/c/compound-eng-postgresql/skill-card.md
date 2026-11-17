@@ -1,43 +1,61 @@
-## Description: <br>
-PostgreSQL schema design, query optimization, indexing, and administration for work with PostgreSQL, JSONB, partitioning, RLS, CTEs, window functions, and EXPLAIN ANALYZE. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PostgreSQL schema design, query optimization, indexing, and administration. Use when working with PostgreSQL, JSONB, partitioning, RLS, CTEs, window functions, or EXPLAIN ANALYZE.
 
-## Publisher: <br>
-[iliaal](https://clawhub.ai/user/iliaal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iliaal](https://clawhub.ai/user/iliaal)
 
-## Use Case: <br>
-Developers and engineers use this skill for PostgreSQL schema design, query review, indexing strategy, migration safety, full-text search, RLS, operations, and administration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated PostgreSQL guidance may affect production data, availability, or access controls when applied directly. <br>
-Mitigation: Review any generated SQL before running it on production, especially schema migrations, RLS policies, backups, failover, indexes, and bulk updates. <br>
-Risk: The skill provides database administration and migration guidance rather than executable enforcement. <br>
-Mitigation: Use normal change review, testing, backups, and production deployment controls before applying database changes. <br>
+## Use Case:
 
+Developers and database engineers use this skill to design PostgreSQL schemas, review and optimize queries and indexes, and make safer migration and administration decisions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/iliaal/compound-eng-postgresql) <br>
-- [Concurrency patterns](artifact/references/concurrency-patterns.md) <br>
-- [PostgreSQL full-text search](artifact/references/full-text-search.md) <br>
-- [PostgreSQL operations](artifact/references/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with SQL, shell command, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory PostgreSQL guidance; review generated SQL before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.1 (source: server-resolved ClawHub release metadata) <br>
+Risk: The server security assessment flags a mismatch between the stated PostgreSQL purpose and reported evaluation commands, and says the scan is incomplete because a local path-like reference was unresolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the evaluation commands and resolve the flagged reference before running commands.
+
+Risk: The server security assessment says failover advice involving pg_rewind could cause data loss if followed without safeguards.
+
+Mitigation: Before using the failover guidance, verify the source and target, confirm pg_rewind prerequisites, and preserve a recoverable backup.
+
+## Reference(s):
+
+- [Concurrency patterns](artifact/references/concurrency-patterns.md)
+- [Full-text search](artifact/references/full-text-search.md)
+- [Operations](artifact/references/operations.md)
+- [Performance patterns](artifact/references/performance-patterns.md)
+- [Query and index patterns](artifact/references/query-and-index-patterns.md)
+- [Schema and migrations](artifact/references/schema-and-migrations.md)
+- [Security and operations](artifact/references/security-and-operations.md)
+- [PostgreSQL transaction retry guidance](https://www.postgresql.org/docs/18/mvcc-serialization-failure-handling.html)
+- [PostgreSQL multicolumn indexes](https://www.postgresql.org/docs/18/indexes-multicolumn.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with SQL examples and explanatory guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+5.1.6 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

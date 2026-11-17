@@ -1,41 +1,57 @@
-## Description: <br>
-A first aid learning assistant for first aid concepts, CPR, bleeding control, wound care, fractures, bandaging, kit building, and simulated emergency practice, with boundaries against real-time emergency guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A first aid learning assistant for first aid, CPR, bleeding control, wound care, fractures, bandaging, kit planning, and practice scenarios, excluding real-time emergency guidance.
 
-## Publisher: <br>
-[futureidiot](https://clawhub.ai/user/futureidiot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[futureidiot](https://clawhub.ai/user/futureidiot)
 
-## Use Case: <br>
-External users use this skill to learn first aid concepts, practice simulated response scenarios, configure first aid kits, correct common myths, and manage optional daily tips. It is not for active emergencies or diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may try to apply educational first-aid content during an active emergency. <br>
-Mitigation: Install and present the skill only as an educational aid, and preserve the artifact's emergency boundary that redirects real emergencies to emergency services. <br>
-Risk: Daily tips create recurring messages and may not include the usual emergency disclaimer. <br>
-Mitigation: Make the recurring schedule visible to the user, provide a disable path, and avoid treating daily tips as emergency instructions. <br>
+## Use Case:
 
+External users and learners use this skill to study first-aid concepts, practice simulated response scenarios, plan first-aid kit contents, and receive optional daily learning tips. It is educational only and is not intended for real-time emergency care.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/futureidiot/first-aid-kit) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown text with optional JSON-shaped daily tip scheduling configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses begin with an educational safety notice except for configured daily tips, which the artifact says may omit the notice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Medical learning content may include overgeneralized or outdated emergency-care advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the medical content before installing and verify advice against current recognized first-aid or emergency-response guidance.
+
+Risk: Users may confuse practice guidance with advice for a real emergency.
+
+Mitigation: Keep the educational safety notice, avoid real-time emergency instructions, and direct real emergencies to emergency services.
+
+Risk: Enabling daily tips creates a recurring scheduled agent message.
+
+Mitigation: Tell users when the schedule is enabled and provide a clear way to disable or change it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/futureidiot/skills/first-aid-kit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown text with optional scheduled-tip configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should include the educational safety notice and avoid real-time emergency instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

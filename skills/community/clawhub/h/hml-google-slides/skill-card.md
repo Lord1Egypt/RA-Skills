@@ -1,40 +1,62 @@
-## Description: <br>
-Create, edit, and export Google Slides presentations. Use when creating new presentations, adding or updating slides, reading slide content, exporting to PDF/PPTX, or building a deck from scratch. Requires gog auth to be working. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, edit, and export Google Slides presentations for workflows that need new decks, slide updates, content inspection, PDF/PPTX export, or deck creation from scratch.
 
-## Publisher: <br>
-[nethunter](https://clawhub.ai/user/nethunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nethunter](https://clawhub.ai/user/nethunter)
 
-## Use Case: <br>
-Developers and operators use this skill to create, inspect, update, comment on, and export Google Slides presentations through gog CLI commands and the bundled Slides API helper. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Google account credentials and broader Google authority than its Slides-focused purpose requires. <br>
-Mitigation: Use only an intentionally selected Google account, grant the minimum needed scopes, and review gog authentication before running Slides operations. <br>
-Risk: Raw batch updates and comment resolve or reply operations can change presentation content or comment state. <br>
-Mitigation: Review target presentation IDs and JSON batch requests before execution, test risky edits on copies, and require explicit approval before resolving comments or running arbitrary batch operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Google Slides Batch Request Patterns](references/batch_requests.md) <br>
-- [Google Slides API batchUpdate reference](https://developers.google.com/slides/api/reference/rest/v1/presentations/batchUpdate) <br>
+## Use Case:
 
+Agents supporting HML slide workflows use this skill to create, inspect, update, comment-manage, and export Google Slides presentations. It is intended for users who already have a working gog Google account authentication setup.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON request examples, and generated presentation export files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify Google Slides presentations and export decks as PDF or PPTX files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles Google OAuth tokens unsafely and stores an exported token at /tmp/gog_slides_token.json.
+
+Mitigation: Use only an explicitly chosen Google account, revoke and reissue credentials if the temporary token path may already exist, and review token handling before installation.
+
+Risk: The documented re-auth command requests broad Google service access beyond normal Slides work.
+
+Mitigation: Avoid the broad re-auth command unless the requested scopes are approved for the deployment account.
+
+Risk: Batch update requests can make broad or destructive presentation changes.
+
+Mitigation: Review generated batch request JSON before execution and operate on a copy when changing important presentations.
+
+Risk: Comment resolution writes to Google Drive comment threads.
+
+Mitigation: Confirm the target presentation and comment ID before resolving comments or posting replies.
+
+## Reference(s):
+
+- [Google Slides Batch Request Patterns](artifact/references/batch_requests.md)
+- [Google Slides API batchUpdate reference](https://developers.google.com/slides/api/reference/rest/v1/presentations/batchUpdate)
+- [ClawHub skill page](https://clawhub.ai/nethunter/skills/hml-google-slides)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON request examples, and Python helper command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation, editing, comment resolution, and PDF/PPTX export of Google Slides presentations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

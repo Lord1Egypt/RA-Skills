@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn743sdg1xe3mz3gm5ammbjm6x821ety",
-  "slug": "apihz-cn-skill",
-  "version": "1.0.4",
-  "publishedAt": 1773066027707
+  "name": "apihz",
+  "version": "1.0.0",
+  "description": "409+ 企业级 API 接口",
+  "author": "JARVIS",
+  "license": "MIT"
 }

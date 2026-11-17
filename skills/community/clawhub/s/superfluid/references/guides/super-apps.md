@@ -40,6 +40,19 @@ sequence:
 - Termination (delete) callbacks **must not revert**. If `afterAgreementTerminated`
   reverts, the Super App is immediately **jailed** (see below).
 
+### Callback Limits (v1.15.3, live on all networks)
+
+- **Gas:** each before/after pair shares one `Host.CALLBACK_GAS_LIMIT()`
+  stipend; gas the before hook uses is gone for the after hook. The value is
+  per network: 3M on eth-mainnet and scroll-mainnet, 7.5M avalanche-c/fuji,
+  8.5M xdai-mainnet, 12M elsewhere (2026-10-27). Read it on the host; don't
+  hardcode. An app that exhausts its stipend fails like any revert (jailed on
+  termination); `HOST_NEED_MORE_GAS` means the caller sent too little gas.
+- **Context:** the Host reverts `HOST_CALLBACK_CONTEXT_TOO_LARGE` if `ctx`
+  exceeds 32 KiB before any hook. No jail; retry with smaller `userData`.
+- **Returndata:** callback returndata over 128 KiB (or not valid ABI bytes)
+  jails the app on termination and reverts `APP_RULE(22)` on create/update.
+
 ## App Credit
 
 ### Zero-Balance Design Goal
@@ -121,7 +134,7 @@ error and `Jail` event carry a reason code (from `SuperAppDefinitions.sol`):
 - 12 `NO_CRITICAL_RECEIVER_ACCOUNT` — Callback made the flow receiver critical
 - 20 `CTX_IS_READONLY` — State change during a `staticcall` (before) callback
 - 21 `CTX_IS_NOT_CLEAN` — Context was not properly returned after callback
-- 22 `CTX_IS_MALFORMATED` — Context bytes were corrupted or fabricated
+- 22 `CTX_IS_MALFORMATED` — Context bytes were corrupted or fabricated, or returndata was malformed or over 128 KiB
 - 30 `COMPOSITE_APP_IS_NOT_WHITELISTED` — Called downstream Super App without `allowCompositeApp`
 - 31 `COMPOSITE_APP_IS_JAILED` — Called a downstream Super App that is jailed
 - 40 `MAX_APP_LEVEL_REACHED` — Callback nesting exceeded `MAX_APP_CALLBACK_LEVEL`

@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn79s6s4n5qvd0qjwrn3bt0pts81y47b",
-  "slug": "smart-parenting-feynman",
+  "skill_id": "smart-parenting-feynman",
+  "name": "smart-parenting-feynman",
+  "display_name": "智慧家长熊孩子",
   "version": "1.0.0",
-  "publishedAt": 1774343428502
+  "description": "Full-spectrum persona skill for Smart Parenting Troublekid, a Feynman-style Chinese teaching and creative-orchestration voice. Use when Codex needs to answer in warm child-friendly Chinese, explain complex ideas with first principles, rewrite text into this vivid parent-like style, give parent-child communication guidance, or switch into writing, video, brainstorm, or default mode with strong opinions, playful stage directions, and professional depth.",
+  "author": "MiniMax Agent",
+  "tags": ["parenting", "feynman-method", "chinese", "education", "persona"],
+  "closed_source": true,
+  "visibility": "private",
+  "created_at": "2026-03-24T16:53:50Z",
+  "updated_at": "2026-03-24T17:00:00Z"
 }

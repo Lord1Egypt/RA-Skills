@@ -10,8 +10,7 @@ import {
 import {
   getActiveProfile,
   getCredentialsFilePath,
-  getIdentityFilePath,
-  hasStoredAccessKeys,
+  hasStoredApiKey,
   promptInteractiveCredentialsFile,
   writeCredentialsProfile,
 } from './shared/auth.mjs';
@@ -21,13 +20,6 @@ import { parseArgs, getTokenOrExit } from './shared/args.mjs';
 
 const API_COSTS = '/account/costs';
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
-
-function maskSecret(secret) {
-  const s = String(secret || '');
-  if (!s) return '';
-  if (s.length <= 6) return '***';
-  return `${s.slice(0, 3)}***${s.slice(-2)}`;
-}
 
 function maskAccessKey(accessKey) {
   const s = String(accessKey || '');
@@ -53,73 +45,65 @@ Usage:
   node kling.mjs account --bind    (alias of --bind-url, kept for compatibility)
   node kling.mjs account --configure
   node kling.mjs account --import-env
-  node kling.mjs account --import-credentials --access_key_id <ak> --secret_access_key <sk>
+  node kling.mjs account --import-credentials --api_key <api-key>
 
 --costs (default)
-  GET ${API_COSTS}  (Bearer from credentials JWT or KLING_TOKEN)
+  GET ${API_COSTS}  (Bearer from stored API Key or KLING_API_KEY)
   --days, --start_time, --end_time, --resource_pack_name
 
 --bind-url
   init → verify → print URL (manual open) → poll
   --bind is equivalent to --bind-url (compatibility alias)
   --force   Re-bind even if credentials already exist
-  writes ~/.config/kling/.credentials after exchange succeeds
+  writes ~/.config/kling/.credentials after exchange succeeds (API Key)
 
 --import-env
-  Read KLING_ACCESS_KEY_ID + KLING_SECRET_ACCESS_KEY from env and save (no prompt)
+  Read KLING_API_KEY from env and save (no prompt)
 
 --import-credentials
-  Write AK/SK via args in one step, no prompts
+  Write API Key via --api_key in one step, no prompts
 
 --configure
-  Interactive prompts → credentials file (hidden SK on TTY, paste supported)
+  Interactive prompt → credentials file (hidden API Key on TTY, paste supported)
 
 Env:
   KLING_STORAGE_ROOT         Optional storage root for credentials/identity/env files
-  KLING_TOKEN                Session Bearer (not loaded from kling.env; export or agent env)
-  KLING_API_BASE             Optional API origin
-  KLING_ACCESS_KEY_ID        With KLING_SECRET_ACCESS_KEY: used by import-env (not echoed)
-  KLING_SECRET_ACCESS_KEY    (same)`);
+  KLING_API_KEY              Session Bearer (not loaded from kling.env); also used by import-env
+  KLING_API_BASE             Optional API origin`);
 }
 
-function saveCredentialsQuietly(ak, sk, source = 'input') {
-  const savePath = writeCredentialsProfile(getActiveProfile(), String(ak || '').trim(), String(sk || '').trim());
+function saveCredentialsQuietly(apiKey, source = 'input') {
+  const savePath = writeCredentialsProfile(getActiveProfile(), String(apiKey || '').trim());
   console.error(`✓ Credentials saved / 凭证已保存（来源: ${source}；密钥未在日志中输出）`);
   console.error(`  Path / 路径: ${savePath}\n`);
   return {
     savePath,
-    accessKeyMasked: maskAccessKey(ak),
-    secretKeyMasked: maskSecret(sk),
+    apiKeyMasked: maskAccessKey(apiKey),
   };
 }
 
-function getEnvCredentials() {
-  const ak = (process.env.KLING_ACCESS_KEY_ID || '').trim();
-  const sk = (process.env.KLING_SECRET_ACCESS_KEY || '').trim();
-  return { ak, sk };
+function getEnvApiKey() {
+  return (process.env.KLING_API_KEY || '').trim();
 }
 
 export function importCredentialsFromEnv() {
-  const { ak, sk } = getEnvCredentials();
-  if (!ak || !sk) {
+  const apiKey = getEnvApiKey();
+  if (!apiKey) {
     throw new Error(
-      'Set both KLING_ACCESS_KEY_ID and KLING_SECRET_ACCESS_KEY / '
-      + '请同时设置 KLING_ACCESS_KEY_ID 与 KLING_SECRET_ACCESS_KEY',
+      'Set KLING_API_KEY / 请设置 KLING_API_KEY',
     );
   }
-  return saveCredentialsQuietly(ak, sk, 'env');
+  return saveCredentialsQuietly(apiKey, 'env');
 }
 
-export function importCredentialsFromArgs(accessKey, secretKey) {
-  const ak = String(accessKey || '').trim();
-  const sk = String(secretKey || '').trim();
-  if (!ak || !sk) {
+export function importCredentialsFromArgs(apiKey) {
+  const key = String(apiKey || '').trim();
+  if (!key) {
     throw new Error(
-      'import-credentials requires --access_key_id and --secret_access_key / '
-      + 'import-credentials 需要 --access_key_id 与 --secret_access_key',
+      'import-credentials requires --api_key / import-credentials 需要 --api_key',
     );
   }
-  return saveCredentialsQuietly(ak, sk, 'args');
+  return saveCredentialsQuietly(key, 'args');
 }
 
 function parseMs(name, raw) {
@@ -191,7 +175,7 @@ function isPermissionOrServerIssue(errorMessage = '') {
 
 async function runBindUrlAction(args, options = {}) {
   const viaAliasBind = options.viaAliasBind === true;
-  if (!args.force && hasStoredAccessKeys()) {
+  if (!args.force && hasStoredApiKey()) {
     console.error('Credentials already present / 已存在凭证（使用 --force 重新绑定）');
     console.error(`Credentials file / 凭证文件: ${getCredentialsFilePath()}`);
     process.exit(0);
@@ -214,7 +198,7 @@ async function runBindUrlAction(args, options = {}) {
     console.error('  1) Create keys Manually / 手动创建密钥:');
     printConsoleUrls();
     console.error('  2) Set env then: node skills/klingai/scripts/kling.mjs account --import-env');
-    console.error('  3) or Pass args: node skills/klingai/scripts/kling.mjs account --import-credentials --access_key_id <AK> --secret_access_key <SK>\n');
+    console.error('  3) or Pass args: node skills/klingai/scripts/kling.mjs account --import-credentials --api_key <API_KEY>\n');
     process.exit(1);
   }
 }
@@ -260,7 +244,12 @@ export async function main() {
 
   if (action === 'import-credentials') {
     try {
-      importCredentialsFromArgs(args.access_key_id, args.secret_access_key);
+      if (args.access_key_id || args.secret_access_key) {
+        throw new Error(
+          'AK/SK import is no longer supported; use --api_key / 不再支持导入 AK/SK，请使用 --api_key',
+        );
+      }
+      importCredentialsFromArgs(args.api_key);
     } catch (e) {
       console.error(`Error / 错误: ${e?.message || e}`);
       process.exit(1);

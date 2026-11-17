@@ -1,40 +1,54 @@
-## Description: <br>
-Discover hidden correlations between disparate research domains using EVEZ OODA loop architecture for cross-domain connections, emerging technology intersections, threat-pattern review, investment-signal exploration, and innovation mining. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover hidden correlations between disparate research domains using EVEZ OODA loop architecture for cross-domain scoring, verifiable correlation events, and append-only spine records.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers, researchers, analysts, and external users use this skill to structure cross-domain research and surface candidate correlations across technical, security, finance, materials-science, and patent-adjacent domains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated cross-domain correlations can be speculative or misleading, especially in investment, security, legal, patent, or enforcement contexts. <br>
-Mitigation: Require corroborating sources and human review before acting on any generated correlation. <br>
-Risk: The skill covers broad high-stakes domains without executable validation logic. <br>
-Mitigation: Treat outputs as brainstorming and research guidance rather than authoritative decisions. <br>
+## Use Case:
 
+Developers, researchers, analysts, and external users use this skill to frame speculative cross-domain research correlations, technology intersections, threat-pattern comparisons, investment signals, and patent-territory exploration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/evezart/cross-domain-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research analysis and structured guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces candidate correlations and verification prompts; does not execute code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill frames speculative correlations across investment, cybersecurity, patent, and business domains that may be mistaken for verified advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require independent evidence and human review before using outputs for investment, cybersecurity, patent, or business decisions.
+
+Risk: The artifact references an implementation file that is not included in the release package.
+
+Mitigation: Treat the card as documenting a prompt-only research aid unless the missing implementation is separately supplied and reviewed.
+
+## Reference(s):
+
+- [Cross Domain Engine on ClawHub](https://clawhub.ai/evezart/skills/cross-domain-engine)
+- [Publisher profile: evezart](https://clawhub.ai/user/evezart)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured narrative analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces research-framing guidance and correlation analysis; it does not include executable code in the artifact.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Create, manage, and open time capsules by sealing a thought, feeling, decision, or wish and delivering it back later with an AI reflection on what changed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, manage, and open time capsules that preserve a user's message for future delivery with an AI reflection on what changed.
 
-## Publisher: <br>
-[wyatt88](https://clawhub.ai/user/wyatt88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wyatt88](https://clawhub.ai/user/wyatt88)
 
-## Use Case: <br>
-External users use this skill to seal personal notes, decisions, wishes, or letters for a future date, then reopen them with a brief reflection informed by stored capsule context and relevant memories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sealed personal messages and conversation-derived context, then may reuse that context when a capsule opens. <br>
-Mitigation: Only seal content suitable for local storage, and review or limit saved metadata such as context snapshots, query hints, recent topics, and memory-search behavior. <br>
-Risk: Sensitive personal, medical, relationship, or work content may be resurfaced later in an emotionally charged context. <br>
-Mitigation: Review the skill before installing in sensitive environments and avoid sealing secrets or content that should not be stored or automatically resurfaced. <br>
+## Use Case:
 
+External users use this skill to seal personal thoughts, decisions, wishes, or future-self letters and receive them later with a restrained reflection based on available memory context.
 
-## Reference(s): <br>
-- [Time Capsule on ClawHub](https://clawhub.ai/wyatt88/timebottle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell-command-style scheduling examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local time-capsule state and scheduled delivery jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill stores intimate messages and inferred context persistently.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets, regulated information, and highly sensitive personal content unless local plaintext retention is acceptable.
+
+Risk: The skill schedules future agent activity to deliver capsules.
+
+Mitigation: Review scheduled capsule jobs and remove or update them when deleting or changing a capsule.
+
+Risk: The skill searches broad memory context during capsule opening.
+
+Mitigation: Keep reflections scoped to relevant memory results and be explicit when little or no memory context is available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wyatt88/skills/timebottle)
+- [Publisher profile](https://clawhub.ai/user/wyatt88)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with scheduled-agent instructions and JSON state updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores capsule records in local JSON, schedules future delivery, and may use memory search when a capsule opens.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

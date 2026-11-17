@@ -1,0 +1,13 @@
+interface:
+  display_name: "Published release gate"
+  short_description: "Verify exact npm tarball"
+policy:
+  products: ["CHAT", "CODEX"]
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "powmcp-npm-package-preflight"
+      description: "npm Package Check (PowMCP)"
+      transport: "streamable_http"
+      url: "https://powmcp.com/npm-package-preflight/mcp"

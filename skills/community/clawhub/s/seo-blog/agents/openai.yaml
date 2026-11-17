@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lanthome SEO Blog Generator"
+  short_description: "Generate Lanthome SEO blog content"
+  default_prompt: "Use $generating-lanthome-seo-blogs to create an English SEO article, editor-ready HTML, and a cover image from this Lanthome product URL."

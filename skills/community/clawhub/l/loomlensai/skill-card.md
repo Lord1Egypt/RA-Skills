@@ -1,43 +1,59 @@
-## Description: <br>
-Estimate the cost of any AI prompt across 19+ models before you run it. Works with OpenAI, Anthropic, Google, DeepSeek, xAI, MiniMax, and local models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimate the cost of any AI prompt across 19+ models before you run it. Works with OpenAI, Anthropic, Google, DeepSeek, xAI, MiniMax, and local models.
 
-## Publisher: <br>
-[avale-slai](https://clawhub.ai/user/avale-slai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[avale-slai](https://clawhub.ai/user/avale-slai)
 
-## Use Case: <br>
-Developers, engineers, and external users use this skill to estimate prompt costs before running prompts across multiple AI models or production pipelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed package is incomplete because the declared loomlens executable is missing, so prompt handling and SignalLoom API key handling cannot be verified from the artifact. <br>
-Mitigation: Review or obtain the executable before installation, and use a dedicated low-privilege API key with spending limits where available. <br>
-Risk: The installer makes persistent shell profile changes by editing ~/.zshrc. <br>
-Mitigation: Inspect the installer before running it and remove or manually control PATH changes if they are not desired. <br>
-Risk: The installer sends an analytics install ping to api.signalloomai.com. <br>
-Mitigation: Remove or audit the analytics curl call before installing in restricted or privacy-sensitive environments. <br>
+## Use Case:
 
+Developers and AI practitioners use Loomlensai to estimate prompt costs before running prompts across multiple AI models, compare model costs, and optimize production pipeline budgets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/avale-slai/loomlensai) <br>
-- [SignalLoom signup](https://signalloomai.com/signup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text cost breakdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes input, output, and cached token estimates, low/mid/high cost bands, a cheapest-model recommendation, and savings versus the most expensive option.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The installer makes a persistent PATH change in ~/.zshrc.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install.sh before installation and run it only if the persistent shell configuration change is acceptable.
+
+Risk: The installer sends an install analytics ping.
+
+Mitigation: Run install.sh only if install telemetry to Signalloom is acceptable for the deployment environment.
+
+Risk: The declared loomlens executable is required but not supplied in the artifact evidence.
+
+Mitigation: Verify that a legitimate loomlens executable is installed from a trusted source before using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/avale-slai/skills/loomlensai)
+- [Publisher profile](https://clawhub.ai/user/avale-slai)
+- [Signalloom signup](https://signalloomai.com/signup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text cost estimates with model-by-model cost bands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include input, output, and cached token estimates; low, mid, and high cost bands; cheapest model recommendation; and savings comparison.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence; artifact package.json says 1.0.1 and install.sh says 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

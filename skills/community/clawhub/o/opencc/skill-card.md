@@ -1,45 +1,59 @@
-## Description: <br>
-OpenCC converts Chinese text between Simplified, Traditional, Taiwan, Hong Kong, and Japanese Kanji variants with phrase-level and regional terminology support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese character conversion between Simplified and Traditional Chinese plus regional variants for Mainland China, Taiwan, Hong Kong, and Japanese Kanji, using OpenCC conversion modes.
 
-## Publisher: <br>
-[kai-tw](https://clawhub.ai/user/kai-tw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[kai-tw](https://clawhub.ai/user/kai-tw)
 
-## Use Case: <br>
-Developers, writers, and localization workflows use this skill to convert Chinese text across Simplified, Traditional, Taiwan, Hong Kong, and Japanese Kanji variants while preserving regional terminology. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the OpenCC dependency from an untrusted package source could introduce supply-chain risk. <br>
-Mitigation: Install dependencies from a trusted package source and pin or review dependency versions according to the deployment environment. <br>
-Risk: A user-specified output path could overwrite an important file. <br>
-Mitigation: Choose output paths deliberately and review paths before running file-writing conversions. <br>
-Risk: Converted text may be inappropriate for proper nouns, technical terms, or region-specific wording. <br>
-Mitigation: Review converted text when accuracy matters, especially for names, brand terms, and regional terminology. <br>
+## Use Case:
 
+Developers, writers, and localization teams use this skill to convert Chinese text between Simplified, Traditional, Taiwan, Hong Kong, and Japanese Kanji variants while preserving regional terminology expectations.
 
-## Reference(s): <br>
-- [OpenCC Conversion Modes Guide](references/opencc_guide.md) <br>
-- [OpenCC Documentation](https://byvoid.github.io/OpenCC/) <br>
-- [OpenCC GitHub](https://github.com/BYVoid/OpenCC) <br>
-- [ClawHub OpenCC Skill](https://clawhub.ai/kai-tw/opencc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Code, Guidance, Files] <br>
-**Output Format:** [Plain text conversion output with Markdown guidance and Python or shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can read UTF-8 text from arguments, stdin, or an input file and write converted text to stdout or a user-specified output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and pyproject.toml) <br>
+Risk: Regional terminology or phrase-level conversions may not match the intended audience or context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose the documented conversion mode for the target region and review converted output, especially proper nouns, technical terms, and idioms.
+
+Risk: Dependency changes in OpenCC could alter conversion behavior in managed or sensitive environments.
+
+Mitigation: Use a locked or pinned OpenCC dependency and rerun conversion tests before deployment.
+
+Risk: File conversion can overwrite or create output files when the CLI is used with an output path.
+
+Mitigation: Run the CLI only on files intended for conversion and review output paths before execution.
+
+## Reference(s):
+
+- [OpenCC Conversion Modes - Complete Reference](references/opencc_guide.md)
+- [OpenCC GitHub](https://github.com/BYVoid/OpenCC)
+- [OpenCC Documentation](https://byvoid.github.io/OpenCC/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Plain text conversions, Markdown guidance, and inline Python or shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI can read UTF-8 text from arguments, stdin, or input files and can write converted UTF-8 text to stdout or an output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

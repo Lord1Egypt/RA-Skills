@@ -1,7 +1,7 @@
 ---
 name: second-brain-visualizer
-version: 1.6.1
-description: "Reads your raw idea stream — voice notes, fragments, half-sentences — and surfaces the patterns you keep circling without realizing it. Drop anything. Find the signal later."
+version: 1.6.0
+description: "Unload your cognitive baggage. Drop ideas anywhere, find the signal later."
 homepage: https://github.com/highnoonoffice/hno-skills
 source: https://github.com/highnoonoffice/hno-skills/tree/main/second-brain-visualizer
 license: MIT-0
@@ -61,29 +61,58 @@ The visualizer also surfaces:
 
 ---
 
-### How It Works
+## The Clustering Formula
 
-**1. Drop ideas anywhere**
-You already have a channel you use. Voice to text, half a sentence, a project name with no context. Raw is fine. The roughness is the point — it's what unguarded thinking looks like.
+**Step 1 — Raw input becomes atoms**
 
-**2. Parser extracts atoms**
-`references/parser.js` reads your second brain markdown ledger and extracts structured atoms with timestamp, raw text, type, signal, and optional next action.
+Every drop gets parsed into a structured atom: timestamp, verbatim text, type (thought / task / strategy / creative / idea-jar / etc.), signal heat (hot / warm / cool), and whether it's actionable. The roughness is preserved — voice-to-text errors, fragments, incomplete sentences. That's intentional.
 
-**3. Clustering engine reads for intent**
-`references/cluster.js` passes your full atom corpus to an LLM with a custom intent-based prompt. The prompt reads for what you're actually working out, not what words you used. Outputs clusters, tensions, emerging signals, and absences as structured JSON.
+**Step 2 — Atoms are read for intent, not words**
 
-**4. Visualizer shows you the map**
-`references/component.tsx` renders a D3 force-directed graph where nodes are sized by atom count × time spread. Click any node to expand: the base insight, an LLM-generated deeper read in gold, and the full list of atoms that make up the cluster. Tensions, signals, and absences scroll below.
+This is where it diverges from every other note-taking system. The clustering prompt doesn't ask "what words appear frequently?" It asks: what is this person actually working out?
+
+The governing rule: two atoms belong together if they're reaching toward the same underlying question — even if they use completely different language. A note about why Bitcoin rewards people who can wait and a line about what it feels like the half-second before a room full of strangers decides to laugh can belong in the same cluster — if both are reaching toward the same question about what it means to give something your full attention on purpose.
+
+**Step 3 — Categories emerge from mass and direction**
+
+Constraints the prompt enforces:
+
+- Minimum 3 atoms to form a cluster
+- 3–10 clusters total, determined by data (no predetermined slots)
+- No domain labels — not "Technology," not "Business." Names must capture the underlying drive
+- A quiet cluster isn't deleted — it becomes FADING
+
+**Step 4 — Four outputs surface**
+
+| Output | What it is |
+|---|---|
+| Clusters | Named patterns with insight, status (ESTABLISHED / FORMING / FADING), confidence, and time spread in weeks |
+| Emerging signals | Atoms with distinct intent but not enough mass yet to cluster |
+| Tensions | Places where your idea stream is arguing with itself across notes |
+| Absences | Intellectual territory conspicuously missing from your corpus given your overall profile |
+
+The core IP is the prompt instruction: *"Do not impose categories onto the data. Let the categories emerge from the mass and direction of the atoms."* Everything else is scaffolding around that one rule.
 
 ---
 
-### The Core Insight
+<details>
+<summary><em>Technical implementation</em></summary>
 
-Most note-taking tools are mirrors — they show you what you put in. This reads what it means.
+*1. Drop ideas anywhere*
+*You already have a channel you use. Voice to text, half a sentence, a project name with no context. Raw is fine. The roughness is the point — it's what unguarded thinking looks like.*
 
-The clustering prompt is the IP. Intent-based, not keyword-based. A joke reads as a probe. A fragment reads as a question. Two atoms belong together if they reach toward the same underlying question, even if they use completely different language.
+*2. Parser extracts atoms*
+*`references/parser.js` reads your second brain markdown ledger and extracts structured atoms with timestamp, raw text, type, signal, and optional next action.*
 
-Full prompt in `references/cluster.js`.
+*3. Clustering engine reads for intent*
+*`references/cluster.js` passes your full atom corpus to an LLM with a custom intent-based prompt. The prompt reads for what you're actually working out, not what words you used. Outputs clusters, tensions, emerging signals, and absences as structured JSON.*
+
+*4. Visualizer shows you the map*
+*`references/component.tsx` renders a D3 force-directed graph where nodes are sized by atom count × time spread. Click any node to expand: the base insight, an LLM-generated deeper read in gold, and the full list of atoms that make up the cluster. Tensions, signals, and absences scroll below.*
+
+*Full prompt in `references/cluster.js`.*
+
+</details>
 
 ---
 
@@ -178,3 +207,7 @@ The original idea to build a second brain capture system came from a conversatio
 ### License
 
 MIT-0. Copyright (c) 2026 @highnoonoffice. No attribution required.
+
+---
+
+Built by Joseph Voelbel / High Noon Office. Questions or want to build on this? josephvoelbel.com/contact

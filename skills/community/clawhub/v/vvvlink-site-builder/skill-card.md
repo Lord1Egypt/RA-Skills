@@ -1,44 +1,59 @@
-## Description: <br>
-Build and publish websites on vvvlink.com by creating HTML sites, uploading them to the VVVLink API, and publishing them with unique subdomain URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and publishes HTML websites on vvvlink.com by uploading site files to the VVVLink API and publishing unique subdomain URLs.
 
-## Publisher: <br>
-[vladlat](https://clawhub.ai/user/vladlat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vladlat](https://clawhub.ai/user/vladlat)
 
-## Use Case: <br>
-External users and developers use this skill to create, update, and publish static websites, landing pages, portfolios, and business pages through VVVLink. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated sites may be published publicly and may send site-related content to VVVLink. <br>
-Mitigation: Review private, client, legal, and unreleased business content before publishing. <br>
-Risk: The skill creates and stores a VVVLink account credential locally. <br>
-Mitigation: Keep the local VVVLink config protected and do not share the API key. <br>
-Risk: Delete or bulk cleanup requests can remove hosted site versions. <br>
-Mitigation: Confirm the intended site and scope before deleting or cleaning up hosted sites. <br>
+## Use Case:
 
+External users and developers use this skill to create, redesign, upload, and publish static websites, landing pages, portfolios, and business pages to public vvvlink.com URLs.
 
-## Reference(s): <br>
-- [VVVLink API Reference](references/api-reference.md) <br>
-- [Website Development Rules](references/website-development-rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/vladlat/vvvlink-site-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with generated website files, configuration steps, and bash/curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish generated static sites publicly and return hosted vvvlink.com URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.1 (source: release evidence) <br>
+Risk: The skill can create a VVVLink account and store an API key under ~/.vvvlink.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where local credential storage is acceptable, keep the config file private, and avoid sharing logs or files that may expose credentials.
+
+Risk: The skill publishes generated content to a public vvvlink.com URL without a separate confirmation step.
+
+Mitigation: Use it only for content intended to be public, and remove confidential business or personal details before publishing.
+
+Risk: Cleanup actions can delete published or draft sites.
+
+Mitigation: Confirm the exact target site or site ID before allowing deletion.
+
+## Reference(s):
+
+- [VVVLink Site Builder on ClawHub](https://clawhub.ai/vladlat/skills/vvvlink-site-builder)
+- [VVVLink API Reference](references/api-reference.md)
+- [Website Development Rules](references/website-development-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status updates with HTML, CSS, JavaScript, shell commands, and published site URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local site files, store VVVLink credentials, call the VVVLink API, and publish content to public vvvlink.com URLs.]
+
+## Skill Version(s):
+
+1.8.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

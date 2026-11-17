@@ -1,0 +1,37 @@
+{
+  "name": "@yottameta/yotta-anti-shallow",
+  "version": "1.4.4",
+  "description": "Anti-shallow AI output rules engine: force analyze-first / execute-after / self-check, curbing superficial output. Activates on intent for deep analysis, end-to-end verification, root-cause tracing, rigorous execution, meticulous checking; also applies automatically to any task at L3 (complex) and above. Boundaries: quality discipline only; no code execution, no external tools, not a replacement for tests or human review.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-anti-shallow",
+    "code-quality",
+    "reasoning"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "assets",
+    "bin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-anti-shallow.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-anti-shallow": "bin/install.js"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\""
+  }
+}

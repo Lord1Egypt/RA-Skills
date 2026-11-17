@@ -1,42 +1,59 @@
-## Description: <br>
-Fetch and parse news highlights from CCTV News Broadcast (Xinwen Lianbo) for a given date. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and parse news highlights from CCTV News Broadcast (Xinwen Lianbo) for a given date.
 
-## Publisher: <br>
-[williamwang-wh](https://clawhub.ai/user/williamwang-wh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[williamwang-wh](https://clawhub.ai/user/williamwang-wh)
 
-## Use Case: <br>
-External users and agents use this skill to fetch CCTV News Broadcast items for a requested date and summarize the returned highlights. It is useful for date-specific news retrieval from the CCTV/CNTV pages the bundled crawler targets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled crawler makes outbound requests to CCTV/CNTV news pages and sends a hardcoded cookie header. <br>
-Mitigation: Install only in environments where those outbound requests are acceptable, and review or constrain network access before deployment. <br>
-Risk: Unexpected date values may cause failed fetches or unnecessary requests. <br>
-Mitigation: Validate user-provided dates as YYYYMMDD, or resolve relative dates such as today and yesterday before running the crawler. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve CCTV News Broadcast highlights for a requested date and have an agent summarize parsed titles and article content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/williamwang-wh/claw-cctv-news-fetcher) <br>
-- [CCTV News Broadcast day archive](https://tv.cctv.com/lm/xwlb/) <br>
-- [CNTV Xinwen Lianbo archive](https://cctv.cntv.cn/lm/xinwenlianbo/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain-text summary based on JSON crawler results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The crawler prints progress messages and JSON news items for the requested YYYYMMDD date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The crawler can follow page URLs parsed from CCTV pages to unexpected network locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a sandboxed environment and require CCTV-domain URL allowlisting before routine use.
+
+Risk: Outbound requests may hang or process unexpectedly large responses.
+
+Mitigation: Use request timeouts, response-size limits, and bounded concurrency when operating the crawler.
+
+Risk: Hardcoded request headers and cookies may be unnecessary, stale, or inappropriate for some environments.
+
+Mitigation: Review and remove unnecessary hardcoded headers before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/williamwang-wh/skills/claw-cctv-news-fetcher)
+- [CCTV Xinwen Lianbo day archive](https://tv.cctv.com/lm/xwlb/day/)
+- [CNTV Xinwen Lianbo archive](https://cctv.cntv.cn/lm/xinwenlianbo/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Markdown, Guidance]
+
+**Output Format:** [JSON from the crawler followed by a concise Markdown or text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js or Bun and node-html-parser; performs outbound HTTP requests to CCTV pages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn74z1kqmkr4tz75pk3s8y35fd820m7j",
-  "slug": "vt-hash-intel",
-  "version": "1.0.2",
-  "publishedAt": 1772259942185
+  "name": "vt-hash-intel",
+  "version": "2.0.0",
+  "description": "Instantly check if a file, URL, domain, or IP is malicious using VirusTotal. Paste any hash, URL, domain, or IP and get a full threat report with detection ratio, malware family, YARA matches, sandbox verdicts, DNS records, and actionable recommendations.",
+  "author": "",
+  "license": "MIT",
+  "tags": [
+    "security",
+    "virustotal",
+    "threat-intelligence",
+    "malware-analysis",
+    "incident-response",
+    "cybersecurity",
+    "ioc-enrichment",
+    "soc"
+  ],
+  "requires": {
+    "env": ["VT_API_KEY"]
+  }
 }

@@ -1,43 +1,58 @@
-## Description: <br>
-Breaking news and Polymarket market correlation analysis for scanning major news, tracking prediction-market probability changes, and finding related markets and smart-money movements for user-provided events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans breaking news and correlates it with active Polymarket markets, probability changes, volume shifts, and large-order movements.
 
-## Publisher: <br>
-[cnica](https://clawhub.ai/user/cnica) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnica](https://clawhub.ai/user/cnica)
 
-## Use Case: <br>
-External users and analysts use this skill to connect current news with active Polymarket markets, probability movement, volume changes, and public large-order signals. It supports proactive news radar requests and event-specific related-market discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on current web search and market data, so news, probability, volume, or large-order results may be incomplete or unavailable. <br>
-Mitigation: Require source URLs for news items, use only data returned by the shared data layer or Gamma API, and state clearly when data cannot be found. <br>
-Risk: The skill may display public wallet-address trade summaries when analyzing large orders. <br>
-Mitigation: Limit wallet discussion to public market-trade context, mark unverified profiles as unclassified, and avoid inferring real-world identity. <br>
-Risk: The skill relies on a separate polymarket-data-layer dependency for market and trade queries. <br>
-Mitigation: Review the dependency and its connection methods before use, as recommended by the security guidance. <br>
+## Use Case:
 
+External users and agents use this skill to connect current news events with related active Polymarket markets. It helps summarize market probability changes, volume movement, and possible large-order activity for informational news-impact analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cnica/polymarket-predictradar-news-impact-skills) <br>
-- [Polymarket event URL format](https://polymarket.com/event/{slug}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis with news summaries, source links, market links, probability changes, volume summaries, and large-order notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public wallet-address trade summaries when relevant; all probability and volume values should come from the shared data layer or Gamma API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Outputs may be mistaken for financial advice or relied on without checking the underlying market and news data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat summaries as informational analysis and verify cited news, market status, probability, volume, and trade data before acting on them.
+
+Risk: Broad news phrasing or translated entities can route the skill to loosely related markets.
+
+Mitigation: Confirm entity matching, active-market filtering, and non-English translations before relying on the correlation analysis.
+
+Risk: The skill depends on external data-layer availability for market prices, volumes, and large-order classification.
+
+Mitigation: When enrichment or data access is unavailable, omit unsupported claims and clearly label unclassified addresses or missing data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cnica/skills/polymarket-predictradar-news-impact-skills)
+- [Polymarket event pages](https://polymarket.com/event/{slug})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries with market links, probability changes, volume figures, and large-order notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only informational analysis; probability and volume values must come from the referenced market data sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

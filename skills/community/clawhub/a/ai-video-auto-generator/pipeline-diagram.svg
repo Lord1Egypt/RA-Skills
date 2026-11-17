@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 540" width="100%" role="img" aria-label="ai video pipeline architecture diagram">
+<title>ai video pipeline — from script to video, one command</title>
+<desc>Flowchart showing the nine-stage ai-video pipeline; script fix, character assets, scene assets, first frames, video generation, stitch with audio are the highlighted phases. Each stage has verification. Providers pluggable below.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5"
+    markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+<style>
+  .th { font-family: sans-serif; font-size: 14px; font-weight: 500; fill: #1a1a1a; }
+  .ts { font-family: sans-serif; font-size: 12px; font-weight: 400; fill: #444; }
+  .c-gray rect { fill: #f1efe8; stroke: #b4b2a9; }
+  .c-amber rect { fill: #faeeda; stroke: #ef9f27; }
+  .c-purple rect { fill: #eeedfe; stroke: #afa9ec; }
+  .c-blue rect { fill: #e6f1fb; stroke: #85b7eb; }
+  .c-teal rect { fill: #e1f5ee; stroke: #5dcaa5; }
+  .c-coral rect { fill: #faece7; stroke: #f0997b; }
+  .c-green rect { fill: #eaf3de; stroke: #97c459; }
+  .c-red text { fill: #a32d2d; }
+</style>
+
+<!-- Title -->
+<text class="th" x="340" y="30" text-anchor="middle" font-size="15px">ai-video-auto-generator pipeline</text>
+<text class="ts" x="340" y="50" text-anchor="middle" fill="#888">python skills/project-generate/scripts/pipeline.py --mode auto</text>
+
+<!-- Main flow row 1 -->
+<g class="c-gray">
+  <rect x="30" y="80" width="85" height="44" rx="8" stroke-width="0.5"/>
+  <text class="ts" x="72" y="107" text-anchor="middle" dominant-baseline="central" font-size="11px">script.json</text>
+</g>
+<line x1="115" y1="102" x2="143" y2="102" stroke="#444" stroke-width="1" marker-end="url(#arrow)"/>
+
+<g class="c-amber">
+  <rect x="145" y="80" width="90" height="44" rx="8" stroke-width="0.5"/>
+  <text class="ts" x="190" y="102" text-anchor="middle" dominant-baseline="central" font-size="10px">narrative</text>
+  <text class="ts" x="190" y="116" text-anchor="middle" dominant-baseline="central" font-size="10px">12-dim fix</text>
+</g>
+<line x1="235" y1="102" x2="263" y2="102" stroke="#444" stroke-width="1" marker-end="url(#arrow)"/>
+
+<g class="c-purple">
+  <rect x="265" y="80" width="90" height="44" rx="8" stroke-width="0.5"/>
+  <text class="ts" x="310" y="102" text-anchor="middle" dominant-baseline="central" font-size="10px">character</text>
+  <text class="ts" x="310" y="116" text-anchor="middle" dominant-baseline="central" font-size="10px">6-dim verify</text>
+</g>
+<line x1="355" y1="102" x2="383" y2="102" stroke="#444" stroke-width="1" marker-end="url(#arrow)"/>
+
+<g class="c-blue">
+  <rect x="385" y="80" width="85" height="44" rx="8" stroke-width="0.5"/>
+  <text class="ts" x="427" y="102" text-anchor="middle" dominant-baseline="central" font-size="10px">scene</text>
+  <text class="ts" x="427" y="116" text-anchor="middle" dominant-baseline="central" font-size="10px">+ style</text>
+</g>
+<line x1="470" y1="102" x2="498" y2="102" stroke="#444" stroke-width="1" marker-end="url(#arrow)"/>
+
+<g class="c-teal">
+  <rect x="500" y="80" width="90" height="44" rx="8" stroke-width="0.5"/>
+  <text class="ts" x="545" y="102" text-anchor="middle" dominant-baseline="central" font-size="10px">first frames</text>
+  <text class="ts" x="545" y="116" text-anchor="middle" dominant-baseline="central" font-size="10px">50-pt quality</text>
+</g>
+
+<!-- Second row -->
+<line x1="545" y1="124" x2="545" y2="155" stroke="#444" stroke-width="1" marker-end="url(#arrow)"/>
+<g class="c-coral">
+  <rect x="490" y="160" width="110" height="44" rx="8" stroke-width="0.5"/>
+  <text class="ts" x="545" y="182" text-anchor="middle" dominant-baseline="central" font-size="10px">video gen</text>
+  <text class="ts" x="545" y="196" text-anchor="middle" dominant-baseline="central" font-size="10px">55-pt + mood</text>
+</g>
+<line x1="545" y1="204" x2="545" y2="235" stroke="#444" stroke-width="1" marker-end="url(#arrow)"/>
+
+<g class="c-green">
+  <rect x="440" y="240" width="210" height="44" rx="8" stroke-width="0.5"/>
+  <text class="ts" x="545" y="258" text-anchor="middle" dominant-baseline="central" font-size="10px">stitch</text>
+  <text class="ts" x="545" y="274" text-anchor="middle" dominant-baseline="central" font-size="10px">+ tts + bgm + sfx + subtitle</text>
+</g>
+
+<line x1="545" y1="284" x2="545" y2="310" stroke="#444" stroke-width="1" marker-end="url(#arrow)"/>
+
+<rect x="475" y="315" width="140" height="36" rx="18" fill="#eaf3de" stroke="#639922" stroke-width="0.5"/>
+<text class="th" x="545" y="339" text-anchor="middle" dominant-baseline="central" font-size="13px" fill="#27500a">final.mp4</text>
+
+<!-- Repair loop -->
+<path d="M 72 124 Q 72 145 20 145 L 20 200" fill="none" stroke="#888" stroke-width="0.5" stroke-dasharray="3,3"/>
+<text class="ts" x="15" y="150" font-size="9px" fill="#888">auto-repair</text>
+
+<!-- Provider layer -->
+<text class="th" x="30" y="390" font-size="13px">pluggable providers</text>
+<rect x="30" y="400" width="620" height="55" rx="12" fill="#f7f7f7" stroke="#d3d1c7" stroke-width="0.5"/>
+
+<g class="c-gray">
+  <rect x="45" y="410" width="135" height="35" rx="6" stroke-width="0.5"/>
+  <text class="ts" x="112" y="435" text-anchor="middle" dominant-baseline="central" font-size="11px">image: agnes / xiaoyunqiao</text>
+</g>
+<g class="c-gray">
+  <rect x="195" y="410" width="135" height="35" rx="6" stroke-width="0.5"/>
+  <text class="ts" x="262" y="435" text-anchor="middle" dominant-baseline="central" font-size="11px">video: agnes / xiaoyunqiao</text>
+</g>
+<g class="c-gray">
+  <rect x="345" y="410" width="135" height="35" rx="6" stroke-width="0.5"/>
+  <text class="ts" x="412" y="435" text-anchor="middle" dominant-baseline="central" font-size="11px">stitch: hyperframes / ffmpeg</text>
+</g>
+<g class="c-gray">
+  <rect x="495" y="410" width="140" height="35" rx="6" stroke-width="0.5"/>
+  <text class="ts" x="565" y="435" text-anchor="middle" dominant-baseline="central" font-size="11px">tracker: local / feishu</text>
+</g>
+
+<!-- Self-healing -->
+<text class="th" x="30" y="485" font-size="13px">self-healing at every stage</text>
+<rect x="30" y="495" width="620" height="35" rx="8" fill="#e6f1fb" stroke="#378add" stroke-width="0.5"/>
+<text class="ts" x="340" y="517" text-anchor="middle" dominant-baseline="central" font-size="11px" fill="#185fa5">
+fail → classify(5 categories) → strategy → capped retry (max 10) → pass or fail gracefully
+</text>
+</svg>

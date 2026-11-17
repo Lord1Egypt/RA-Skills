@@ -1,43 +1,56 @@
-## Description: <br>
-Guides a Chinese two-step option flow for adult female portrait generation, produces two matched realistic portraits, and can optionally create a video-ready character reference sheet from the first image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide a user through a compact two-step Chinese option flow for adult female portraits, generate two matched realistic images directly, then optionally create a video-ready character reference sheet from the first image.
 
-## Publisher: <br>
-[pddsa](https://clawhub.ai/user/pddsa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pddsa](https://clawhub.ai/user/pddsa)
 
-## Use Case: <br>
-External users use this skill to turn short or fuzzy Chinese beauty-photo requests into guided adult-female portrait outputs with consistent styling. It also supports an optional reference-sheet follow-up for video or motion-design preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security verdict is suspicious because the skill uses a local quota lockout and may direct users to an external WeChat or social-promotion unlock path after quota exhaustion. <br>
-Mitigation: Review before installing, monitor generated user-facing messages, and avoid following off-platform payment, contact, or promotional instructions unless the publisher is trusted. <br>
-Risk: The skill is designed for adult female portrait generation, which can create misuse risk if users request underage, school-age, explicit, or sexualized-youth framing. <br>
-Mitigation: Keep the documented refusal behavior active and limit vague sexy requests to tasteful, non-explicit fashion portrait language. <br>
+## Use Case:
 
+External users use this skill to turn short Chinese portrait requests into guided choices, two realistic adult-female portrait images, and an optional character reference sheet for later video or motion-design preparation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pddsa/beauty-photo-generator) <br>
-- [Conversation Flows](references/conversation_flows.md) <br>
-- [Option Catalog](references/option_catalog.md) <br>
-- [Reference Sheet Prompt](references/reference_sheet_prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Concise Chinese conversational guidance with generated-image instructions and inline shell commands for quota checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces two matched portrait-generation requests by default and one optional character-reference-sheet request when the user asks for it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill uses a bundled Python usage gate that stores local counters and can block generation with an off-platform promotional unlock message.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the usage gate before installation and remove or clearly disclose quota, local state, and promotional contact behavior before normal use.
+
+Risk: The skill is designed for adult female portrait generation and could be misused for underage or explicit requests.
+
+Mitigation: Keep the documented refusal behavior for underage, school-age, sexualized youth, and explicit requests active in deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pddsa/skills/beauty-photo-generator)
+- [Option Catalog](references/option_catalog.md)
+- [Conversation Flows](references/conversation_flows.md)
+- [Reference Sheet Prompt](references/reference_sheet_prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Images, Shell commands]
+
+**Output Format:** [Chinese conversational guidance with generated image outputs and JSON usage-gate responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces exactly two matched portrait images by default and can produce one optional character reference sheet.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

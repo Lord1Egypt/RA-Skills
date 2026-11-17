@@ -1,41 +1,51 @@
-## Description: <br>
-Execute commands with real-time console output while logging all stdin, stdout, and stderr to a customizable log file for monitoring and debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute commands with real-time console output while logging all stdin, stdout, and stderr to a customizable log file for monitoring and debugging.
 
-## Publisher: <br>
-[wangyendt](https://clawhub.ai/user/wangyendt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyendt](https://clawhub.ai/user/wangyendt)
 
-## Use Case: <br>
-Developers and engineers use this skill to run commands while preserving complete stdin, stdout, and stderr logs for builds, long-running scripts, debugging sessions, CI/CD runs, and execution tracing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The logger can record everything typed into arbitrary commands, including passwords, tokens, SSH prompts, sudo input, and production credentials. <br>
-Mitigation: Use it only when full command I/O logging is required, avoid interactive commands that request secrets, and prefer a redacting logger for sensitive workflows. <br>
-Risk: Command logs may contain sensitive operational data and can grow large during verbose or long-running commands. <br>
-Mitigation: Choose a private log path with restricted permissions, ensure sufficient disk space, and rotate or delete logs after review. <br>
-Risk: The release evidence flags the skill as suspicious because its legitimate logging purpose has privacy and credential-exposure risks. <br>
-Mitigation: Verify the actual cmdlogger binary before use and review whether full I/O capture is appropriate for the target environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangyendt/cmdlogger) <br>
+## Use Case:
+
+Developers and engineers use this skill to run commands while preserving a complete stdin, stdout, and stderr log for debugging, build monitoring, CI/CD tracing, and later review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Command I/O logs may include passwords, tokens, private keys, or other sensitive input.
+
+Mitigation: Use only when full logging is intentional; avoid sensitive interactive sessions and choose log paths and retention policies appropriate for the data.
+
+Risk: High-volume commands can produce large log files.
+
+Mitigation: Confirm sufficient disk space and select a log location suitable for large outputs before long-running commands.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command examples and logging guidance; command logs can contain full stdin, stdout, and stderr.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands and log-file guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose command invocations that record full command I/O to disk.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

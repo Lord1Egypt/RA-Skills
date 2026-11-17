@@ -1,43 +1,54 @@
-## Description: <br>
-Control Dyson air purifiers, fans, and heaters via local MQTT. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Dyson air purifiers, fans, and heaters via local MQTT. Use when asked to control Dyson devices, adjust fan speed, set temperature/heat, enable oscillation, or check room temperature/humidity. Requires being on the same WiFi network as the device.
 
-## Publisher: <br>
-[tmustier](https://clawhub.ai/user/tmustier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tmustier](https://clawhub.ai/user/tmustier)
 
-## Use Case: <br>
-External users and smart-home operators use this skill to have an agent control configured Dyson fans, purifiers, and heaters on the same WiFi network, including power, fan speed, oscillation, heat target, night mode, and status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Setup requires Dyson account credentials and stores device credentials locally. <br>
-Mitigation: Run setup only when comfortable entering Dyson credentials, keep ~/.dyson/config.json private, and do not share or commit that file. <br>
-Risk: Commands can change physical device power, airflow, oscillation, and heating settings. <br>
-Mitigation: Review agent-proposed commands before execution, especially heat-related commands and target temperatures. <br>
-Risk: Installing from an untrusted or moving source could run unexpected code. <br>
-Mitigation: Install only from a trusted or pinned source. <br>
+## Use Case:
 
+External users and developers use this skill to control supported Dyson air purifiers, fans, and heaters on the same WiFi network through local MQTT commands after one-time Dyson account setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tmustier/dyson-cli) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, text, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may affect physical device power, airflow, oscillation, heating, and locally stored device credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and pyproject.toml) <br>
+Risk: Saved Dyson device credentials can grant local control of configured devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run setup only when comfortable entering Dyson account credentials and restrict ~/.dyson/config.json to the local user account.
+
+Risk: Heat commands can affect physical device behavior if issued to the wrong device or target temperature.
+
+Mitigation: Confirm the target device before issuing heat commands and verify the requested heating setting before execution.
+
+## Reference(s):
+
+- [README.md](README.md)
+- [libdyson-neon](https://github.com/libdyson-wg/libdyson-neon)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require local network access to the Dyson device and saved credentials in ~/.dyson/config.json.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence, pyproject.toml, src/dyson_cli/__init__.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

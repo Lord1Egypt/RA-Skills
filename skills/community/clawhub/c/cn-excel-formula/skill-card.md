@@ -1,41 +1,59 @@
-## Description: <br>
-Chinese Excel formula assistant that turns natural-language requests into Excel formulas and provides formula explanations, examples, troubleshooting, and optimization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language Excel formula assistant that turns natural-language requests into Excel formulas, explains formulas, lists common formula templates, and diagnoses common formula errors.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-External users and spreadsheet developers use this skill to generate, explain, list, and troubleshoot Excel formulas from Chinese natural-language descriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet descriptions sent with optional AI-enhanced generation may contain confidential business data. <br>
-Mitigation: Use the default local template mode for sensitive data; enable AI-enhanced generation only when the OpenAI account and data handling policy are approved. <br>
-Risk: Generated formulas or diagnostics may not match a workbook's exact structure or spreadsheet locale. <br>
-Mitigation: Review and test formulas on non-critical copies of spreadsheets before relying on results. <br>
+## Use Case:
 
+External users and spreadsheet practitioners use this skill to generate, understand, browse, and troubleshoot Excel formulas from Chinese natural-language requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-excel-formula) <br>
-- [AISoBrand website](https://aisobrand.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style terminal text with Excel formulas, explanations, examples, and diagnostic guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default generation uses local template matching; optional AI-enhanced generation uses OpenAI when the dependency and OPENAI_API_KEY are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server release evidence) <br>
+Risk: Optional AI mode may send the user's formula description to OpenAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using --ai for confidential workbook data, employee information, customer data, or sensitive business context.
+
+Risk: Generated formulas and troubleshooting guidance may be incorrect or incomplete for a specific workbook.
+
+Mitigation: Review and test formulas against representative workbook data before using them in business workflows.
+
+Risk: The release evidence notes an unused or unpinned openpyxl dependency.
+
+Mitigation: Pin or remove unused dependencies before deployment according to the organization's dependency management policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-excel-formula)
+- [AISoBrand website](https://aisobrand.com)
+- [AISoBrand free diagnosis](https://aisobrand.com/free-diagnosis.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with Excel formulas and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language responses; optional AI generation can use OPENAI_API_KEY, while default formula generation uses local template matching.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

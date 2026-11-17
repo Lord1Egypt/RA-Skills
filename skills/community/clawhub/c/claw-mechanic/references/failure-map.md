@@ -82,9 +82,9 @@ Look:
 - `openclaw plugins inspect <id> --json`
 - `openclaw plugins update <id> --dry-run`
 - `openclaw plugins registry --refresh` when install records and disk disagree
-- `~/.openclaw/plugins/installs.json`
+- install records live in the state database; `plugins inspect <id>` shows `registryPath`, install source, spec, and recorded version
 - `~/.openclaw/npm/...`, `~/.openclaw/extensions/...`, global npm root
-- `plugins.allow`, `plugins.deny`, `plugins.bundledDiscovery`, `plugins.load.paths`, `plugins.slots.*`, `plugins.entries.<id>`
+- `plugins.allow`, `plugins.deny`, `plugins.load.paths`, `plugins.slots.*`, `plugins.entries.<id>`
 - gateway logs for plugin load/dependency errors
 
 Fix pattern:
@@ -93,9 +93,58 @@ Fix pattern:
 - For non-bundled plugins, verify the requested version exists in the source registry or ClawHub before reinstalling. After install, compare `plugins inspect <id>` loaded source/version, install record, and `plugins doctor`; do not assume a user-mentioned version is published.
 - If a duplicate plugin ID warning appears, identify every matching manifest and the loaded source before archiving anything. If the warning points at the same canonical source and no second manifest exists, treat it as a possible diagnostic false positive.
 - Use `plugins update <id-or-spec>` for routine upgrades of tracked installs. Use install `--force` only when intentionally replacing the source. Use uninstall only when removing config entries, allowlist rows, and slot assignments is acceptable.
-- If `plugins.allow` is restrictive, verify bundled provider IDs and tool-owning plugin IDs are explicitly allowed; `plugins.bundledDiscovery` can change whether bundled providers bypass or obey the allowlist.
+- If `plugins.allow` is restrictive, verify bundled provider IDs and tool-owning plugin IDs are explicitly allowed. Confirm unfamiliar `plugins.*` keys with `openclaw config schema` before relying on them; removed keys fail as `Unknown config path`.
 - After host updates, a plugin can load at the right version while install records remain floating or stale; pair `plugins inspect` with `security audit --deep` or install-record inspection before declaring official plugin pins clean.
 - Pin/update only the plugin that evidence identifies, then rerun inspect and doctor.
+- Core updates sync only plugin versions compatible with the new core, and `plugins update --all` respects version pins; move a pinned plugin with `plugins update <pkg>@latest`.
+- A third-party plugin update that widens capabilities stops with `requires capability consent`. Show the user what it gains (ClawHub security audit summary) and rerun with `--accept-capabilities` only after an explicit yes; Doctor and `--yes` never grant it.
+- `provenance-invalid` ("OpenClaw can't verify where this plugin came from") on a third-party npm plugin is informational when the plugin is the expected package and loads; confirm load in the gateway log before acting.
+
+## Update Admission, Rehearsal, And Recovery
+
+Symptoms:
+- `openclaw update --dry-run` is clean but the real update fails at `staging` with `retired-state-format`, `state-format: refuse`, or `candidate-admission`.
+- Update fails in `activating — openclaw doctor` with `Legacy update rehearsal was refused: copied data has unsafe ownership or links: <TMPDIR>/openclaw-update-canary-*/...`.
+- After a failed update the package is back on the old version but the gateway crash-loops with `SQLite schema is incomplete or noncanonical`, and the old CLI can no longer run `update`.
+- `npx openclaw@<ver> update` reports `unmanaged-package-install` / `Installation ownership could not be determined`.
+
+Look:
+- The update report under `~/.openclaw/update-reports/` and the unredacted path in `/tmp/openclaw/openclaw-<date>.log` (update output redacts or truncates the offending path).
+- `openclaw --version` vs `<npm-root>/openclaw/package.json` vs the service `ProgramArguments`.
+- `echo $TMPDIR` in the shell that runs the update; the "Snapshot location" line of a successful update names the kind (`explicit-tmpdir` / `system-tmpdir`).
+- Doctor output for "unreferenced legacy ... sidecar" or "Imported N legacy ... into SQLite" lines that repeat on every run.
+
+Fix pattern:
+- A dry run does not run candidate admission. Treat it as a plan preview, never as proof the update will pass.
+- `retired-state-format` checks file presence only: it refuses while any retired file exists, even if a newer Doctor already imported it. When Doctor has labelled the files unreferenced (or imported) and no agent uses an external `agentDir`, move them (never delete) to a dated backup folder outside the state dir with the user's approval, then retry. The "upgrade through <bridge release>" advice only applies to hosts older than that bridge.
+- Expect refusals one class at a time (for example OAuth credential sidecars first, then legacy `cron/runs/*.jsonl` run logs). List every retired-format family on all hosts before the first retry instead of iterating per failure.
+- Run updates with `TMPDIR` pointed at a private directory under the state dir (for example `TMPDIR=$HOME/.openclaw/tmp`). A custom or crowded TMPDIR from the user's shell rc can make the rehearsal copy fail its ownership/link checks on files that are fine on disk.
+- Snapshot the SQLite databases (`state/` and `agents/*/agent/*.sqlite` with their `-wal`/`-shm`) yourself before updating hosts that have customised environments; a rehearsal failure after Doctor started migrating leaves no updater snapshot.
+- Half-migrated state cannot go backwards. Back up the databases as they are, then roll forward with the host's original install method (for npm-global: `npm install -g openclaw@<target>`), and run `openclaw doctor --fix --non-interactive --no-workspace-suggestions` from the new CLI with the private TMPDIR. Doctor finishes the migration and restarts the managed gateway itself; `gateway install --force` is not needed unless the service definition is wrong.
+- `npx openclaw@latest update` cannot adopt an npm-global install; don't burn time on it.
+- On multi-host fleets, update one host first when hosts differ in environment (shell rc, TMPDIR, secret providers, install age), and record gateway downtime per host.
+
+## macOS Session, launchd, And Keychain Traps
+
+Symptoms:
+- Gateway is ready, then receives SIGTERM seconds later, on a fixed cycle; CLI says state is `undergoing offline maintenance`; a `doctor --fix` or other `openclaw` process has PPID 1.
+- CLI over SSH fails with `... is configured as a secret reference but is unavailable in this command path` while the gateway is healthy; `security` reports `User interaction is not allowed`.
+- `launchctl asuser` fails with `Could not switch to audit session ... Operation not permitted`.
+- A macOS OpenClaw app in local mode is rejected by its gateway: `[ws] unauthorized ... auth=none reason=token_missing`.
+
+Look:
+- `launchctl list | grep -v com.apple` — labels of agent-created jobs often do not contain "openclaw".
+- `launchctl print gui/$(id -u)/<label>`: `type = Submitted` plus a high `runs = N` is a `launchctl submit` job; submitted jobs are implicitly KeepAlive and relaunch on every exit.
+- `openclaw config get gateway.auth.token --json` (shows `source`/`provider` only) to see whether secrets come from an exec/keychain provider.
+
+Fix pattern:
+- Relaunch loop from a submitted job: let the current run finish (watch its log for its completion line), then `launchctl remove <label>` immediately so launchd cannot relaunch it. Killing a doctor mid-maintenance is a last resort.
+- Never use `launchctl submit` for one-shot work.
+- To run a CLI command that needs keychain-backed SecretRefs from SSH, run it as a one-shot LaunchAgent in the user's GUI domain, where the keychain is unlocked: a plist with `RunAtLoad=true`, `KeepAlive=false`, `LaunchOnlyOnce=true`, and `StandardOutPath` set to a log; `launchctl bootstrap gui/$(id -u) <plist>`; poll for an exit marker in the log with a deadline (never an unbounded wait); then `launchctl bootout` and delete the plist, even on timeout, and confirm `launchctl list` no longer shows the label. OpenClaw resolves its own secret and the value never passes through the operator. Never extract keychain items or export tokens into env to work around the boundary.
+- Prefer that route over handing commands back to the user when the user asked you to do the work; tell them afterwards what ran and that the job was removed.
+- `plugins update` on recent builds applies live ("Applied plugin updates in Gateway generation N"); restart only if the output or doctor says it is required.
+- A local-mode Mac app cannot resolve exec/keychain SecretRefs and connects without a token. Fix by entering the gateway token in the app's own connection settings (the user does this) or by changing the secret provider; both are the user's decision.
+- Mac app updates (Sparkle) download and stage the new build, then install only when the app quits. A long-running app can sit on a staged update for weeks. Quit it only after both the staged `*.zip` and the `Sparkle.framework/.../Autoupdate` helper exist; quitting earlier discards the staging. Verify with `codesign --verify --deep --strict` and `spctl -a -vv`.
 
 ## Models, Local APIs, And Secrets
 
@@ -134,7 +183,7 @@ Look:
 - `openclaw cron list --all --json`
 - `openclaw cron get <id>`
 - `openclaw cron runs --id <id>`
-- `openclaw tasks audit`
+- `openclaw status --all` for task counts and audit totals
 - gateway logs around scheduler wake and job run IDs
 
 Fix pattern:
@@ -152,18 +201,19 @@ Fix pattern:
 ## Tasks And State Ledger
 
 Symptoms:
-- `tasks audit` reports lost sessions, stale running tasks, queued-task drift, or delivery errors.
+- `status --all` task/audit totals show lost sessions, stale running tasks, queued-task drift, or delivery errors.
 - Gateway/plugin checks are green but sessions, crons, or restarts still look blocked.
 
 Look:
-- `openclaw tasks audit --json`
-- `openclaw tasks maintenance --json`
+- `openclaw status --all` / `openclaw status --json` (task counts and audit totals come from a read-only metadata summary, not a full integrity check)
+- `openclaw audit --agent <id> --after <time>` for activity records and exact-run identity
+- `openclaw sessions --help` for the session store commands on the installed build
 - gateway logs around task restart blockers, delivery failures, and session cleanup
 
 Fix pattern:
-- Use `openclaw tasks maintenance --json` as preview before `--apply`.
-- If audit shows only lost backing-session warnings and no stale running/queued/delivery errors, report it as historical debt unless it blocks current runs.
-- Applying maintenance may prune unrelated history and may not clear lost-session records; get explicit approval before applying on a production host.
+- Older builds had `openclaw tasks audit` / `tasks maintenance`; current builds removed the `tasks` command. Use `status`, `audit`, `sessions`, and Doctor instead, and check `--help` on the installed version before quoting commands.
+- If the summary shows only lost backing-session warnings and no stale running/queued/delivery errors, report it as historical debt unless it blocks current runs.
+- Any cleanup that prunes session or task history needs explicit approval on a production host; preview it first when the command supports a dry run.
 
 ## Approvals And Reviewer
 

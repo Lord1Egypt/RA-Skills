@@ -1,46 +1,62 @@
-## Description: <br>
-ZFS helps agents provide OpenZFS administration guidance for pool management, dataset configuration, snapshots, replication, encryption, performance tuning, health checks, and troubleshooting on Linux and macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZFS filesystem administration, pool management, dataset configuration, snapshots, replication, encryption, performance tuning, and troubleshooting on OpenZFS (Linux and macOS).
 
-## Publisher: <br>
-[mightybyte](https://clawhub.ai/user/mightybyte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mightybyte](https://clawhub.ai/user/mightybyte)
 
-## Use Case: <br>
-Developers, storage administrators, and infrastructure engineers use this skill to plan and operate OpenZFS pools and datasets, including snapshots, replication, encryption, tuning, health checks, and troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Storage commands can modify or destroy real data when pool names, dataset names, disk IDs, snapshots, or force flags are wrong. <br>
-Mitigation: Review every proposed command before execution and verify disk IDs, pool names, dataset names, snapshots, and current backups. <br>
-Risk: Rollback, destroy, forced receive, scheduled automation, passphrase-less SSH keys, and NFS no_root_squash examples carry elevated operational risk. <br>
-Mitigation: Use least-privilege access, confirm intent with dry runs or test systems where available, and avoid applying destructive examples without an operator-approved recovery plan. <br>
-Risk: File-backed pools are unsuitable for production storage. <br>
-Mitigation: Use real block devices with stable identifiers for production and reserve file-backed pools for learning or CI testing only. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ZFS Property Reference](references/properties.md) <br>
-- [ZFS Workload Tuning Guide](references/workload-tuning.md) <br>
-- [ZFS Replication Guide](references/replication.md) <br>
-- [ZFS Troubleshooting Guide](references/troubleshooting.md) <br>
-- [ZFS Platform Notes: Linux vs macOS](references/platform-notes.md) <br>
-- [OpenZFS on OS X](https://openzfsonosx.org) <br>
+## Use Case:
 
+Developers, operators, and storage administrators use this skill to plan, configure, tune, monitor, replicate, and troubleshoot OpenZFS pools and datasets on Linux and macOS systems.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend commands that affect real storage; users should review names, devices, snapshots, and backups before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Replication guidance includes broad passwordless SSH automation and ZFS permissions that can increase operational blast radius.
+
+Mitigation: Use restricted SSH keys, non-interactive accounts, per-replica keys, and only the ZFS permissions required for the specific replication workflow.
+
+Risk: Rollback, destroy, forced receive, and automated pruning commands can cause data loss when applied to the wrong pool, dataset, or snapshot.
+
+Mitigation: Add explicit operator checks, dry runs where supported, target validation, and backup confirmation before destructive ZFS operations.
+
+Risk: File-backed pools are unsuitable for production storage and can hide device errors or weaken reliability guarantees.
+
+Mitigation: Use real block devices for production pools and reserve file-backed pools only for learning, development, CI, or isolated tests.
+
+## Reference(s):
+
+- [ZFS Property Reference](references/properties.md)
+- [ZFS Workload Tuning Guide](references/workload-tuning.md)
+- [ZFS Replication Guide](references/replication.md)
+- [ZFS Troubleshooting Guide](references/troubleshooting.md)
+- [ZFS Platform Notes: Linux vs macOS](references/platform-notes.md)
+- [OpenZFS on OS X](https://openzfsonosx.org)
+- [ZFS on Linux repository package](https://zfsonlinux.org/epel/zfs-release-2-3.el9.noarch.rpm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include shell commands that require administrative review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

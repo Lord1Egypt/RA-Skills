@@ -1,39 +1,56 @@
-## Description: <br>
-Search, scan, and monitor student accommodation availability across Yugo and Aparto providers with semester filters, booking probes, and notification options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches, scans, and monitors student accommodation availability across Yugo and Aparto providers, including room availability, semester options, booking probes, price comparisons, and optional alerts.
 
-## Publisher: <br>
-[gonzalopezgil](https://clawhub.ai/user/gonzalopezgil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gonzalopezgil](https://clawhub.ai/user/gonzalopezgil)
 
-## Use Case: <br>
-External users and agents use this skill to discover student accommodation, compare availability and pricing, probe booking options, and monitor for new matching rooms. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Alerts can be sent to webhook, Telegram, or OpenClaw destinations. <br>
-Mitigation: Use stdout mode when results should stay local, and confirm the destination and expected payload before enabling external notifications. <br>
-Risk: Watch mode and create_job_on_match can create local monitoring state or scheduled follow-up jobs. <br>
-Mitigation: Confirm the monitoring duration, how to stop it, and how to remove saved state or scheduled jobs before enabling those modes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gonzalopezgil/student-rooms) <br>
+## Use Case:
 
+Students, housing searchers, and assisting agents use this skill to find, compare, and monitor student accommodation options across supported Yugo and Aparto cities. It helps users discover properties, scan current availability, probe booking options, and receive alerts for new matches.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, configuration snippets, and JSON result examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured JSON output is recommended for discovery, scanning, booking probes, and match testing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional notification backends may share room-search details with external services.
+
+Mitigation: Use stdout notifications for the most private mode, and enable webhook, Telegram, or OpenClaw notifications only when external alerts are intended.
+
+Risk: Watch mode and cron-job assistance can create ongoing monitoring or follow-up automation.
+
+Mitigation: Enable watch mode, OpenClaw agent mode, or cron-job assistance only after confirming the desired monitoring scope and automation behavior.
+
+Risk: The skill invokes a separate student_rooms CLI.
+
+Mitigation: Confirm that the installed student_rooms CLI is trusted before using the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gonzalopezgil/skills/student-rooms)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, YAML configuration examples, and JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce structured JSON from CLI commands and alert messages through stdout, webhook, Telegram, or OpenClaw notification backends.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

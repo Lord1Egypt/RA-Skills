@@ -1,42 +1,58 @@
-## Description: <br>
-Creates professional motion graphics videos using React and Remotion for commercials, demos, social media, and programmatic video content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates professional motion graphics videos using React and Remotion for commercials, demos, social media, and programmatic video content.
 
-## Publisher: <br>
-[ahqazi-dev](https://clawhub.ai/user/ahqazi-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahqazi-dev](https://clawhub.ai/user/ahqazi-dev)
 
-## Use Case: <br>
-Developers, creators, and marketing teams use this skill to generate Remotion-based video projects for commercials, product demos, social media clips, short films, and other programmatic motion graphics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Brand or product URLs may be sent to Firecrawl for scraping. <br>
-Mitigation: Use only public, non-confidential URLs and confirm before invoking scraping with FIRECRAWL_API_KEY. <br>
-Risk: A local Remotion preview may be exposed through a public Cloudflare URL. <br>
-Mitigation: Require explicit approval before opening a tunnel and avoid previewing confidential or internal projects publicly. <br>
-Risk: The workflow can install dependencies, start development servers, and render generated projects. <br>
-Mitigation: Review generated files and commands before running npm install, dev servers, tunnels, or render commands. <br>
+## Use Case:
 
+Developers and agents use this skill to scaffold and operate Remotion video projects for product demos, commercials, social media clips, short films, and other programmatic video content. It can scrape public brand information with Firecrawl when a product or company URL is provided.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ahqazi-dev/video-generator0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated React/Remotion project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create an output/<project-name>/ Remotion project and share a preview URL when the workflow is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill can expose a local Remotion development server publicly through a Cloudflare tunnel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before opening any tunnel, and use authentication, short-lived access, or other access controls for shared preview URLs.
+
+Risk: The skill runs mutable npm tooling such as create-video and remotion commands.
+
+Mitigation: Pin package versions, prefer locked local dependencies, and review generated project changes before execution or deployment.
+
+Risk: Firecrawl scraping can send supplied URLs and page data to an external service.
+
+Mitigation: Use Firecrawl only with public URLs and do not submit private, internal, confidential, or access-controlled pages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahqazi-dev/skills/video-generator0)
+- [Firecrawl scrape API endpoint](https://api.firecrawl.dev/v1/scrape)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and generated React/Remotion project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create files under output/<project-name>/ and render video only when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill declaration)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

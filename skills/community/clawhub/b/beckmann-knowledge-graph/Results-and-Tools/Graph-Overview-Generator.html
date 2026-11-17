@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graph Overview Generator V3 — Hardened (XSS Fix + User Warnings) — Knowledge Graph Self-Optimizer</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f4f0;color:#1a1a18;min-height:100vh;padding:2rem 1.5rem}
+  .header{max-width:900px;margin:0 auto 2rem}
+  .header h1{font-size:1.55rem;font-weight:700;letter-spacing:-0.3px;margin-bottom:0.4rem}
+  .header p{font-size:0.92rem;color:#5f5e5a;line-height:1.6;max-width:720px}
+  .header code{background:#ebe9e2;padding:1px 6px;border-radius:4px;font-size:0.85em}
+  .card{background:#fff;border:0.5px solid #d3d1c7;border-radius:12px;padding:1.25rem 1.5rem;max-width:900px;margin:0 auto 1rem;position:relative}
+  .card-title{font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:#888780;margin-bottom:0.9rem}
+  .drop-zone{border:1.5px dashed #b4b2a9;border-radius:8px;padding:2.5rem 1.5rem;text-align:center;cursor:pointer;transition:border-color 0.15s,background 0.15s}
+  .drop-zone:hover,.drop-zone.drag-over{border-color:#534AB7;background:#EEEDFE}
+  .drop-zone p{font-size:0.9rem;color:#5f5e5a}
+  .drop-zone strong{color:#534AB7}
+  input[type=file]{display:none}
+  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:1.25rem}
+  .stat{background:#f1efe8;border-radius:8px;padding:0.75rem 1rem}
+  .stat-label{font-size:0.72rem;color:#888780;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.2rem}
+  .stat-value{font-size:1.3rem;font-weight:600;color:#1a1a18;line-height:1.2}
+  .stat-value.accent{color:#534AB7}
+  .hist{display:flex;flex-direction:column;gap:6px;margin-top:0.5rem}
+  .hist-row{display:flex;align-items:center;gap:8px;font-size:0.82rem}
+  .hist-label{min-width:130px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#444441}
+  .hist-bar-wrap{flex:1;height:10px;background:#f1efe8;border-radius:999px;overflow:hidden}
+  .hist-bar{height:100%;background:#534AB7;border-radius:999px}
+  .hist-count{min-width:40px;text-align:right;color:#5f5e5a;font-variant-numeric:tabular-nums}
+  .table{width:100%;border-collapse:collapse;font-size:0.83rem;margin-top:0.6rem}
+  .table th{text-align:left;font-size:0.72rem;color:#888780;text-transform:uppercase;letter-spacing:0.05em;padding:0.5rem 0.6rem;border-bottom:0.5px solid #d3d1c7}
+  .table td{padding:0.5rem 0.6rem;border-bottom:0.5px solid #ebe9e2;vertical-align:top}
+  .table tr:nth-child(even) td{background:#faf9f7}
+  .mono{font-family:'SF Mono',Consolas,monospace;font-size:0.78rem;color:#3C3489}
+  .badge{font-size:0.7rem;padding:2px 8px;border-radius:999px;font-weight:500;white-space:nowrap;display:inline-block}
+  .b1{background:#EEEDFE;color:#3C3489}.b2{background:#E1F5EE;color:#0F6E56}.b3{background:#FAEEDA;color:#854F0B}
+  button{border:0.5px solid #b4b2a9;border-radius:8px;padding:0.55rem 1.1rem;font-size:0.85rem;font-weight:500;background:#fff;color:#1a1a18;cursor:pointer;transition:background 0.12s,border-color 0.12s}
+  button:hover{background:#f1efe8;border-color:#888780}
+  button.primary{background:#534AB7;border-color:#534AB7;color:#fff}
+  button.primary:hover{background:#3C3489;border-color:#3C3489}
+  button:disabled{opacity:0.4;cursor:not-allowed}
+  .btn-row{display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1rem}
+  textarea{width:100%;min-height:220px;border:0.5px solid #d3d1c7;border-radius:8px;padding:0.8rem;font-family:'SF Mono',Consolas,monospace;font-size:0.8rem;white-space:pre-wrap;background:#faf9f7}
+  .info-box{background:#EEEDFE;border-radius:8px;padding:0.75rem 1rem;font-size:0.82rem;color:#3C3489;line-height:1.55;margin-bottom:1rem}
+  .footer{max-width:900px;margin:2rem auto 0;text-align:center;font-size:0.75rem;color:#888780}
+  .footer a{color:#534AB7;text-decoration:none}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media(max-width:720px){.cols{grid-template-columns:1fr}}
+
+  /* V2 additions */
+  .view-toggle{
+    position:fixed;
+    top:1rem;
+    right:1rem;
+    z-index:1000;
+    background:#1a1a18;
+    color:#fff;
+    border:1px solid #1a1a18;
+    border-radius:999px;
+    padding:0.6rem 1.15rem;
+    font-size:0.82rem;
+    font-weight:600;
+    box-shadow:0 6px 18px rgba(0,0,0,0.18);
+    display:none;
+  }
+  .view-toggle:hover{background:#2a2a26;border-color:#2a2a26;color:#fff}
+  .simple-only{
+    padding:0.5rem 0;
+  }
+  .simple-success{
+    font-size:0.95rem;
+    color:#1a1a18;
+    line-height:1.5;
+    margin-bottom:1rem;
+  }
+  .simple-success strong{color:#534AB7}
+  .simple-hint{
+    font-size:0.82rem;
+    color:#5f5e5a;
+    margin-top:0.75rem;
+  }
+
+  .warn-box{background:#FFF8DB;border:1px solid #E6D28C;border-radius:8px;padding:0.85rem 1rem;font-size:0.82rem;color:#6A5900;line-height:1.55;margin-bottom:1rem}
+  .warn-box strong{color:#5A4A00}
+  .sec-box{background:#FEF0F0;border:1px solid #E5B3B0;border-radius:8px;padding:0.85rem 1rem;font-size:0.82rem;color:#7A2E2A;line-height:1.55;margin-bottom:1rem}
+  .privacy-box{background:#EAF6ED;border:1px solid #A9D6B1;border-radius:8px;padding:0.7rem 1rem;font-size:0.80rem;color:#1E5A2E;line-height:1.5;margin-bottom:1rem;display:flex;gap:0.6rem;align-items:flex-start}
+  .privacy-dot{width:8px;height:8px;border-radius:999px;background:#2E8B57;margin-top:6px;flex-shrink:0}
+
+</style>
+</head>
+<body>
+
+<button id="btnToggleView" class="view-toggle">Switch to the more complex view</button>
+
+<div class="header">
+  <h1>Graph Overview Generator</h1>
+  <p>Part of <code>beckmann-knowledge-graph-self-optimizer</code> — Phase 1b. Takes any <code>graph.json</code> (entities/relations, nodes/edges, nodes/links, or plain array) and produces <code>graph_overview.json</code> (compact machine-readable) + <code>graph_summary.md</code> (human-readable). No prefix system required — uses <code>type</code> + relation degree. <span style="color:#534AB7;font-weight:600">V2: simple view by default.</span></p>
+</div>
+
+
+  <div class="sec-box" style="max-width:900px;margin:0 auto 1rem">
+    <strong>⚠️ Security & Trust Notice — Please read:</strong><br>
+    This tool processes <code>graph.json</code> <strong>entirely locally in your browser</strong> — no file is uploaded to any server. 
+    However, a <code>graph.json</code> from an untrusted source can contain malicious HTML/JS payloads in entity IDs, types, or descriptions. 
+    The tool now escapes all such content before rendering, but <strong>only load files you trust</strong>. Do not use this tool on files from unknown senders, forums, or automated scrapers.
+  </div>
+  <div class="privacy-box" style="max-width:900px;margin:0 auto 1rem">
+    <div class="privacy-dot"></div>
+    <div><strong>Local-only & Private:</strong> File parsing, analysis and export happen via FileReader + Blob in your browser. No network request is made with your graph data. Closing the tab clears the data. 
+    <br><span style="font-size:0.78rem;color:#2E6B3E">Large files (&gt;25 MB) will trigger a confirmation because they may freeze the tab.</span></div>
+  </div>
+
+<div class="card" id="section-upload">
+  <div class="card-title">1 · Upload graph.json</div>
+  
+  <div class="warn-box">
+    <strong>⚠️ Missing User Warning fix (ClawHub Medium):</strong> Graph files are <em>untrusted input</em>. This generator treats all entity/relation fields as plain text and HTML-escapes them (fix for DOM-XSS). Content inside the graph is considered <strong>speculative / unverified</strong> — not scientific advice, not financial advice. Verify before re-using.
+  </div>
+
+  <div class="drop-zone" id="dropZone">
+    <p><span style="font-size:1.8rem;display:block;margin-bottom:0.4rem">📄</span>Drop <strong>graph.json</strong> here or <strong>click to browse</strong><br>Supports entities/relations, nodes/edges, nodes/links</p>
+  </div>
+  <input type="file" id="fileInput" accept=".json">
+</div>
+
+<div class="card" id="section-stats" style="display:none">
+  <div class="card-title">2 · Overview</div>
+
+  <!-- SIMPLE VIEW (default after load) -->
+  <div id="simpleView" class="simple-only" style="display:none">
+    <div class="simple-success">✅ <strong id="simpleFileName">graph.json</strong> loaded — <span id="simpleStatsLine">overview ready</span></div>
+    <div class="btn-row">
+      <button class="primary" id="btnJsonSimple">⬇ Download graph_overview.json</button>
+    </div>
+    <div class="simple-hint">This simplified view only shows the download for <code>graph_overview.json</code>. Switch to complex view for full stats, previews and additional downloads.</div>
+  </div>
+
+  <!-- COMPLEX VIEW (previous full view) -->
+  <div id="complexView" style="display:none">
+    <div class="stats-grid" id="statsGrid"></div>
+    <div id="metaBox" class="info-box" style="display:none"></div>
+
+    <div class="cols">
+      <div>
+        <div class="card-title" style="margin-top:1rem">Type Distribution</div>
+        <div id="typeHist" class="hist"></div>
+      </div>
+      <div>
+        <div class="card-title" style="margin-top:1rem">Predicate Distribution (Top 12)</div>
+        <div id="predHist" class="hist"></div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.2rem">
+      <div class="card-title">Scientific Status Distribution (if present)</div>
+      <div id="statusBox"></div>
+    </div>
+
+    <div style="margin-top:1.2rem">
+      <div class="card-title">Top 20 Hub Entities (by total degree)</div>
+      <div id="hubTableWrap"></div>
+    </div>
+
+    <div style="margin-top:1.2rem">
+      <div class="card-title">Bridge Candidates (cross-type connectors)</div>
+      <div id="bridgeBox"></div>
+    </div>
+
+    <div style="margin-top:1.2rem">
+      <div class="card-title">Case Studies / Comment Nodes</div>
+      <div id="commentBox"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="primary" id="btnJson">⬇ Download graph_overview.json</button>
+      <button class="primary" id="btnMd">⬇ Download graph_summary.md</button>
+      <button id="btnReset">Reset</button>
+    </div>
+
+    <div style="margin-top:1.2rem">
+      <div class="card-title">Preview — graph_summary.md</div>
+      <textarea id="mdPreview" readonly></textarea>
+    </div>
+    <div style="margin-top:1rem">
+      <div class="card-title">Preview — graph_overview.json (truncated)</div>
+      <textarea id="jsonPreview" readonly></textarea>
+    </div>
+  </div>
+</div>
+
+<div class="footer" style="line-height:1.6">Generated by Graph-Overview-Generator V3 (Hardened) — simple default, complex on demand. Compatible with KnowledgeGraph_Splitter.html<br><span style="display:inline-block;margin-top:0.5rem;padding:0.5rem 0.8rem;background:#FFF8DB;border:1px solid #E6D28C;border-radius:6px;color:#6A5900;font-size:0.78rem">⚠️ Disclaimer: Graph content is treated as untrusted speculative data. All HTML is escaped to prevent XSS. No scientific, medical, or financial advice. Use at your own risk. Files never leave your device.</span></div>
+
+<script>
+const $ = id => document.getElementById(id);
+let rawGraph=null, entities=[], relations=[], overview={}, summaryMd='', fileName='graph';
+
+// ---- SECURITY HARDENING for ClawHub audit (Missing User Warnings / DOM-XSS) ----
+function escapeHTML(str){
+  return String(str ?? '').replace(/[&<>"']/g, function(m){
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]);
+  });
+}
+function escapeAttr(str){
+  return escapeHTML(str).replace(/`/g,'&#96;');
+}
+function sanitizeFileName(name){
+  // keep readable but prevent path traversal / HTML injection for download attribute
+  return String(name).replace(/[^a-zA-Z0-9._-]/g,'_').slice(0,80) || 'graph';
+}
+const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25 MB
+
+let currentView='simple'; // simple | complex
+
+// ---- helpers (kept from V1, reconstructed where missing) ----
+function getEntityId(e){
+  if(!e || typeof e!=='object') return String(e||'');
+  return e.id || e._id || e.name || e.label || e.title || e.key || e.identifier || (e.properties && (e.properties.id||e.properties.name)) || 'unknown_'+Math.random().toString(36).slice(2,6);
+}
+function getEntityType(e){
+  if(!e || typeof e!=='object') return 'unknown';
+  return e.type || e.entityType || e.category || e.group || e.labelType || e.kind || (e.properties && e.properties.type) || 'unknown';
+}
+function getEntityDesc(e){
+  if(!e || typeof e!=='object') return '';
+  return e.description || e.desc || e.text || e.content || e.summary || e.details || e.label || e.name || e.title || (e.properties && (e.properties.description||e.properties.label)) || '';
+}
+function getRelationSource(r){
+  if(!r || typeof r!=='object') return null;
+  return r.source || r.from || r.subject || r.src || r.start || r.sourceId || r.fromId || r.subjectId || (r.properties && r.properties.source) || null;
+}
+function getRelationTarget(r){
+  if(!r || typeof r!=='object') return null;
+  return r.target || r.to || r.object || r.dst || r.end || r.targetId || r.toId || r.objectId || (r.properties && r.properties.target) || null;
+}
+function getRelationPredicate(r){
+  if(!r || typeof r!=='object') return 'related';
+  return r.predicate || r.type || r.label || r.relation || r.edge || r.name || (r.properties && (r.properties.predicate||r.properties.type)) || 'related';
+}
+function getStatus(e){
+  if(!e) return null;
+  return e.scientific_status || e.status || e.scientificStatus || e.quality || e.state || null;
+}
+
+function parseFlexible(json){
+  let ents=[], rels=[];
+  if(!json) return {ents, rels};
+  if(Array.isArray(json)){
+    ents=json;
+    rels=[];
+    return {ents, rels};
+  }
+  if(typeof json==='object'){
+    if(json.graph && typeof json.graph==='object'){
+      return parseFlexible(json.graph);
+    }
+    if(Array.isArray(json.entities)){
+      ents=json.entities;
+      rels=json.relations || json.edges || json.links || json.relationships || [];
+      return {ents, rels};
+    }
+    if(Array.isArray(json.nodes)){
+      ents=json.nodes;
+      rels=json.edges || json.links || json.relations || json.relationships || [];
+      return {ents, rels};
+    }
+    if(Array.isArray(json.data)){
+      ents=json.data;
+      rels=json.relations || json.edges || json.links || [];
+      return {ents, rels};
+    }
+    // fallback: find first large array property
+    for(const k of Object.keys(json)){
+      if(Array.isArray(json[k]) && json[k].length>0 && typeof json[k][0]==='object'){
+        // heuristic: if items have source/target it's relations
+        const sample=json[k][0];
+        if('source' in sample && 'target' in sample){
+          rels=json[k];
+        }else{
+          if(ents.length===0) ents=json[k];
+          else if(rels.length===0) rels=json[k];
+        }
+      }
+    }
+  }
+  return {ents, rels};
+}
+
+function analyze(){
+  const totalE=entities.length;
+  const totalR=relations.length;
+
+  // type distribution
+  const typeCount={};
+  const idToEntity={};
+  const idToType={};
+  entities.forEach(e=>{
+    const id=getEntityId(e);
+    const t=getEntityType(e);
+    idToEntity[id]=e;
+    idToType[id]=t;
+    typeCount[t]=(typeCount[t]||0)+1;
+  });
+  const typeSorted=Object.entries(typeCount).sort((a,b)=>b[1]-a[1]);
+
+  // predicate distribution
+  const predCount={};
+  relations.forEach(r=>{
+    const p=getRelationPredicate(r);
+    predCount[p]=(predCount[p]||0)+1;
+  });
+  const predSorted=Object.entries(predCount).sort((a,b)=>b[1]-a[1]);
+
+  // status
+  const statusMap={};
+  let statusPresent=false;
+  entities.forEach(e=>{
+    const s=getStatus(e);
+    if(s){
+      statusPresent=true;
+      statusMap[s]=(statusMap[s]||0)+1;
+    }
+  });
+
+  // degree & connected types
+  const indeg={}, outdeg={};
+  const connectedTypesMap={}; // id -> Set
+  const crossTypeCount={};
+  function ensureSet(id){ if(!connectedTypesMap[id]) connectedTypesMap[id]=new Set(); }
+
+  relations.forEach(r=>{
+    const src=getRelationSource(r);
+    const tgt=getRelationTarget(r);
+    const srcT=src ? (idToType[src] || 'unknown') : null;
+    const tgtT=tgt ? (idToType[tgt] || 'unknown') : null;
+    if(src){
+      outdeg[src]=(outdeg[src]||0)+1;
+      ensureSet(src);
+      if(tgtT) connectedTypesMap[src].add(tgtT);
+    }
+    if(tgt){
+      indeg[tgt]=(indeg[tgt]||0)+1;
+      ensureSet(tgt);
+      if(srcT) connectedTypesMap[tgt].add(srcT);
+    }
+    if(srcT && tgtT){
+      const pair=`${srcT} → ${tgtT}`;
+      crossTypeCount[pair]=(crossTypeCount[pair]||0)+1;
+    }
+  });
+
+  const crossSorted=Object.entries(crossTypeCount).sort((a,b)=>b[1]-a[1]);
+
+  // hubs
+  const hubs=[];
+  Object.keys(idToEntity).forEach(id=>{
+    const total=(indeg[id]||0)+(outdeg[id]||0);
+    const types=connectedTypesMap[id]? Array.from(connectedTypesMap[id]) : [];
+    hubs.push({id, type:idToType[id]||'unknown', total, indegree:indeg[id]||0, outdegree:outdeg[id]||0, connectedTypes:types});
+  });
+  // also include entities without degree
+  entities.forEach(e=>{
+    const id=getEntityId(e);
+    if(!hubs.find(h=>h.id===id)){
+      hubs.push({id, type:getEntityType(e), total:0, indegree:0, outdegree:0, connectedTypes:[]});
+    }
+  });
+  hubs.sort((a,b)=>b.total-a.total);
+  const top20=hubs.slice(0,20);
+
+  // bridge candidates: linking >=2 types
+  const bridgeCandidates=hubs.filter(h=>h.connectedTypes.length>=2).sort((a,b)=>{
+    if(b.connectedTypes.length!==a.connectedTypes.length) return b.connectedTypes.length-a.connectedTypes.length;
+    return b.total-a.total;
+  });
+
+  // comment / case study nodes
+  const commentEntities=entities.filter(e=>{
+    const t=(getEntityType(e)||'').toLowerCase();
+    return t.includes('comment') || t.includes('case') || t.includes('note') || t.includes('study') || t.includes('example');
+  });
+
+  // overview JSON
+  const now=new Date().toISOString();
+  overview={
+    meta:{
+      generatedAt:now,
+      sourceFile:fileName+'.json',
+      generator:'Graph-Overview-Generator V2',
+      totalEntities:totalE,
+      totalRelations:totalR,
+      avgRelationsPerEntity: totalE>0 ? +(totalR/totalE).toFixed(3) : 0
+    },
+    stats:{
+      entities:totalE,
+      relations:totalR,
+      types:typeSorted.length,
+      predicates:predSorted.length,
+      avgRperE: totalE>0 ? +(totalR/totalE).toFixed(2) : 0,
+      caseStudies:commentEntities.length
+    },
+    typeDistribution:typeSorted.map(([type,count])=>({type,count})),
+    predicateDistribution:predSorted.map(([predicate,count])=>({predicate,count})),
+    statusDistribution:statusMap,
+    crossTypeRelations:crossSorted.map(([pair,count])=>({pair,count})),
+    hubs:top20,
+    bridges:bridgeCandidates.slice(0,20).map(b=>({id:b.id,type:b.type,totalDegree:b.total,connectedTypes:b.connectedTypes,indegree:b.indegree,outdegree:b.outdegree})),
+    commentNodes:commentEntities.slice(0,50).map(e=>({id:getEntityId(e),type:getEntityType(e),description:getEntityDesc(e).slice(0,300)})),
+    entityIndex:entities.slice(0,300).map(e=>({id:getEntityId(e),type:getEntityType(e),shortDescription:getEntityDesc(e).slice(0,160)}))
+  };
+
+  // md summary (reconstructed + compatible with V1 snippet)
+  let md=`# Graph Summary — ${fileName}\n\nGenerated: ${now}\nSource: ${fileName}.json\n\n## Stats\n- Entities: ${totalE}\n- Relations: ${totalR}\n- Types: ${typeSorted.length}\n- Predicates: ${predSorted.length}\n- Avg Relations/Entity: ${totalE>0?(totalR/totalE).toFixed(2):0}\n- Case Studies / Comment Nodes: ${commentEntities.length}\n\n## Type Distribution (top 20)\n`;
+  typeSorted.slice(0,20).forEach(([t,c])=>{ md+=`- ${t}: ${c}\n`; });
+  md+=`\n## Predicate Distribution (top 20)\n`;
+  predSorted.slice(0,20).forEach(([p,c])=>{ md+=`- ${p}: ${c}\n`; });
+  if(Object.keys(statusMap).length){
+    md+=`\n## Scientific Status Distribution\n`;
+    Object.entries(statusMap).sort((a,b)=>b[1]-a[1]).forEach(([s,c])=>{ md+=`- ${s}: ${c}\n`; });
+  }
+  md+=`\n## Top 20 Hub Entities (by degree)\n`;
+  md+=`| # | ID | Type | Degree (in/out) | Connected Types |\n|---|---|---|---|---|\n`;
+  top20.forEach((h,i)=>{
+    md+=`| ${i+1} | ${h.id} | ${h.type} | ${h.total} (${h.indegree}/${h.outdegree}) | ${h.connectedTypes.slice(0,5).join(', ')} |\n`;
+  });
+  md+=`\n## Bridge Candidates (cross-type connectors)\n`;
+  if(bridgeCandidates.length===0) md+=`- None (no entity links >=2 types)\n`;
+  else bridgeCandidates.slice(0,20).forEach(b=>{ md+=`- ${b.id} (${b.type}) → ${b.connectedTypes.length} types [${b.connectedTypes.join(', ')}] degree=${b.total}\n`; });
+  md+=`\n## Cross-Type Relations\n`;
+  if(crossSorted.length===0) md+=`- None\n`;
+  else crossSorted.slice(0,30).forEach(([pair,c])=>{ md+=`- ${pair}: ${c} relations\n`; });
+  md+=`\n## Case Studies / Comment Nodes (${commentEntities.length})\n`;
+  if(commentEntities.length===0) md+=`- None detected (type contains comment/case)\n`;
+  else commentEntities.slice(0,30).forEach(e=>{ md+=`- ${getEntityId(e)} [${getEntityType(e)}]: ${getEntityDesc(e).slice(0,200)}\n`; });
+  md+=`\n## Entity Index (first 50)\n`;
+  overview.entityIndex.slice(0,50).forEach(ei=>{ md+=`- ${ei.id} | ${ei.type} | ${ei.shortDescription}\n`; });
+  md+=`\n---\nGenerated by Graph-Overview-Generator V2 — simple default, complex on demand. Compatible with KnowledgeGraph_Splitter.html\n`;
+  summaryMd=md;
+
+  // update UI
+  renderStats(totalE,totalR,typeSorted,predSorted,statusMap,top20,bridgeCandidates,commentEntities,crossSorted,statusPresent);
+  afterAnalyzeRender();
+}
+
+function renderStats(totalE,totalR,typeSorted,predSorted,statusMap,top20,bridgeCandidates,commentEntities,crossSorted,statusPresent){
+  // numbers are safe, but we still keep them as numbers
+  $('statsGrid').innerHTML = `
+    <div class="stat"><div class="stat-label">Entities</div><div class="stat-value accent">${totalE}</div></div>
+    <div class="stat"><div class="stat-label">Relations</div><div class="stat-value accent">${totalR}</div></div>
+    <div class="stat"><div class="stat-label">Types</div><div class="stat-value">${typeSorted.length}</div></div>
+    <div class="stat"><div class="stat-label">Predicates</div><div class="stat-value">${predSorted.length}</div></div>
+    <div class="stat"><div class="stat-label">Avg R/E</div><div class="stat-value">${totalR>0?(totalR/totalE).toFixed(2):0}</div></div>
+    <div class="stat"><div class="stat-label">Case Studies</div><div class="stat-value">${commentEntities.length}</div></div>
+  `;
+
+  const maxType = Math.max(...typeSorted.map(x=>x[1]),1);
+  $('typeHist').innerHTML = typeSorted.slice(0,20).map(([t,c])=>{
+    const w = (c/maxType*100).toFixed(0);
+    const safeT = escapeHTML(t);
+    const safeAttrT = escapeAttr(t);
+    return `<div class="hist-row"><span class="hist-label" title="${safeAttrT}">${safeT}</span><div class="hist-bar-wrap"><div class="hist-bar" style="width:${w}%"></div></div><span class="hist-count">${c}</span></div>`;
+  }).join('') || '<span style="font-size:0.82rem;color:#888780">No types</span>';
+
+  const maxPred = Math.max(...predSorted.map(x=>x[1]),1);
+  $('predHist').innerHTML = predSorted.slice(0,12).map(([p,c])=>{
+    const w=(c/maxPred*100).toFixed(0);
+    const safeP = escapeHTML(p);
+    const safeAttrP = escapeAttr(p);
+    return `<div class="hist-row"><span class="hist-label" title="${safeAttrP}">${safeP}</span><div class="hist-bar-wrap"><div class="hist-bar" style="width:${w}%;background:#0F6E56"></div></div><span class="hist-count">${c}</span></div>`;
+  }).join('') || '<span style="font-size:0.82rem;color:#888780">No predicates</span>';
+
+  if(Object.keys(statusMap).length){
+    $('statusBox').innerHTML = Object.entries(statusMap).sort((a,b)=>b[1]-a[1]).map(([s,c])=>{
+      const safeS = escapeHTML(s);
+      return `<span class="badge b2" style="margin:3px">${safeS}: ${c}</span>`;
+    }).join('');
+  } else {
+    $('statusBox').innerHTML = '<span style="font-size:0.82rem;color:#888780">No scientific_status field found — graph may use different quality indicator.</span>';
+  }
+
+  let hHtml = `<table class="table"><tr><th>#</th><th>ID</th><th>Type</th><th>Degree</th><th>Connected Types</th></tr>`;
+  top20.forEach((h,i)=>{
+    const safeId = escapeHTML(h.id);
+    const safeType = escapeHTML(h.type);
+    const safeConn = escapeHTML(h.connectedTypes.slice(0,4).join(', '));
+    hHtml+=`<tr><td>${i+1}</td><td class="mono">${safeId}</td><td>${safeType}</td><td><span class="badge b1">${h.total}</span> <span style="font-size:0.75rem;color:#5f5e5a">(${h.indegree}/${h.outdegree})</span></td><td style="font-size:0.76rem">${safeConn}</td></tr>`;
+  });
+  hHtml+=`</table>`;
+  $('hubTableWrap').innerHTML = hHtml;
+
+  if(bridgeCandidates.length){
+    $('bridgeBox').innerHTML = bridgeCandidates.slice(0,12).map(b=>{
+      const safeId = escapeHTML(b.id);
+      const safeType = escapeHTML(b.type);
+      const safeTitle = escapeAttr(b.connectedTypes.join(', '));
+      return `<span class="badge b1" style="margin:3px" title="${safeTitle}">${safeId} (${safeType}) → ${b.connectedTypes.length} types</span>`;
+    }).join('') + `<div style="margin-top:0.6rem;font-size:0.78rem;color:#5f5e5a">Top cross-type: ${crossSorted.slice(0,5).map(x=>escapeHTML(x[0])+` (${x[1]})`).join(' · ')}</div>`;
+  } else {
+    $('bridgeBox').innerHTML = '<span style="font-size:0.82rem;color:#888780">No bridge candidates (need entities linking ≥2 types).</span>';
+  }
+
+  if(commentEntities.length){
+    $('commentBox').innerHTML = commentEntities.slice(0,20).map(e=>{
+      const safeId = escapeHTML(getEntityId(e));
+      const safeType = escapeHTML(getEntityType(e));
+      const safeDesc = escapeHTML(getEntityDesc(e).slice(0,120));
+      return `<div style="font-size:0.82rem;padding:0.3rem 0"><span class="mono">${safeId}</span> <span class="badge b3">${safeType}</span> <span style="color:#5f5e5a">${safeDesc}</span></div>`;
+    }).join('');
+  } else {
+    $('commentBox').innerHTML = '<span style="font-size:0.82rem;color:#888780">No comment/case-study type detected.</span>';
+  }
+
+  $('mdPreview').value = summaryMd;
+  $('jsonPreview').value = JSON.stringify(overview, null, 2).slice(0,12000) + (JSON.stringify(overview).length>12000 ? '\n...[truncated for preview]...' : '');
+
+  // meta box - escape sourceFile
+  if(overview.meta){
+    $('metaBox').style.display='block';
+    const safeSource = escapeHTML(overview.meta.sourceFile);
+    $('metaBox').innerHTML=`<strong>${safeSource}</strong> — ${overview.meta.totalEntities} entities, ${overview.meta.totalRelations} relations, ${overview.meta.avgRelationsPerEntity} avg R/E · generated ${escapeHTML(new Date(overview.meta.generatedAt).toLocaleString())}<br><span style="font-size:0.78rem">⚠️ Content is untrusted speculative data — HTML escaped for safety.</span>`;
+  }
+}
+
+function afterAnalyzeRender(){
+  // show section
+  $('section-stats').style.display='block';
+  // update simple view texts
+  $('simpleFileName').textContent = fileName + '.json';
+  const statsLine = `${overview.stats.entities} entities, ${overview.stats.relations} relations, ${overview.stats.types} types`;
+  $('simpleStatsLine').textContent = statsLine;
+
+  // default to simple view per spec: nach dem Laden ... stark vereinfachte Ansicht
+  currentView='simple';
+  applyViewMode('simple');
+
+  // show toggle button
+  $('btnToggleView').style.display='block';
+
+  // scroll
+  $('section-stats').scrollIntoView({behavior:'smooth'});
+}
+
+function applyViewMode(mode){
+  currentView=mode;
+  if(mode==='simple'){
+    $('simpleView').style.display='block';
+    $('complexView').style.display='none';
+    $('btnToggleView').textContent='Switch to the more complex view';
+  }else{
+    $('simpleView').style.display='none';
+    $('complexView').style.display='block';
+    $('btnToggleView').textContent='Switch to simple view';
+  }
+}
+
+function downloadOverview(){
+  const blob=new Blob([JSON.stringify(overview,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download=fileName+'_overview.json'; a.click(); URL.revokeObjectURL(url);
+}
+function downloadSummary(){
+  const blob=new Blob([summaryMd],{type:'text/markdown'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download=fileName+'_summary.md'; a.click(); URL.revokeObjectURL(url);
+}
+function doReset(){
+  rawGraph=null; entities=[]; relations=[]; overview={}; summaryMd=''; fileName='graph';
+  $('fileInput').value='';
+  $('section-stats').style.display='none';
+  $('simpleView').style.display='none';
+  $('complexView').style.display='none';
+  $('btnToggleView').style.display='none';
+  $('mdPreview').value=''; $('jsonPreview').value='';
+  currentView='simple';
+  applyViewMode('simple');
+}
+
+// file handling
+function handleFile(file){
+  // Security: size check + file name sanitization for display
+  if(file.size > MAX_FILE_SIZE){
+    const ok = confirm(`⚠️ This file is ${(file.size/1024/1024).toFixed(1)} MB — larger than the recommended ${MAX_FILE_SIZE/1024/1024} MB limit.\nIt may freeze the tab and could be from an untrusted source.\n\nDo you want to continue?\n\nTip: Only load files you trust.`);
+    if(!ok) return;
+  }
+  // Preserve original name for display but sanitize for internal use
+  const originalName = file.name || 'graph.json';
+  fileName = sanitizeFileName(originalName.replace(/\.json$/i,''));
+
+  // Extra user warning for untrusted source - shown once per file
+  console.info('[Security] Loading graph from local file:', originalName, 'Size:', file.size, 'Local-only processing, no upload.');
+
+  const reader = new FileReader();
+  reader.onload = e=>{
+    try{
+      const json = JSON.parse(e.target.result);
+      const parsed = parseFlexible(json);
+      if(parsed.ents.length===0 && parsed.rels.length===0) throw new Error('No entities/relations found');
+      entities = parsed.ents;
+      relations = parsed.rels;
+      rawGraph = json;
+      analyze();
+    }catch(err){
+      alert('Parse error: '+err.message+'\n\nThe file may be malformed or contain unexpected content. Only load files from trusted sources.');
+      console.error(err);
+    }
+  };
+  reader.onerror = function(){
+    alert('File read error — the file could not be read. It may be locked or too large.');
+  };
+  reader.readAsText(file);
+}
+
+const dz=$('dropZone'), fi=$('fileInput');
+dz.addEventListener('click',()=>fi.click());
+dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag-over')});
+dz.addEventListener('dragleave',()=>dz.classList.remove('drag-over'));
+dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag-over'); if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);});
+fi.addEventListener('change',e=>{if(e.target.files[0]) handleFile(e.target.files[0]);});
+
+$('btnJson').addEventListener('click',downloadOverview);
+$('btnJsonSimple').addEventListener('click',downloadOverview);
+$('btnMd').addEventListener('click',downloadSummary);
+$('btnReset').addEventListener('click',doReset);
+$('btnToggleView').addEventListener('click',()=>{
+  applyViewMode(currentView==='simple' ? 'complex' : 'simple');
+});
+</script>
+</body>
+</html>

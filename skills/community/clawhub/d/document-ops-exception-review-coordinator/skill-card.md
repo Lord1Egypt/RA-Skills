@@ -1,40 +1,49 @@
-## Description: <br>
-Coordinate document ops exception review work using memory-first retrieval, native file tools, and the correct scheduler semantics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinate document ops exception review work using memory-first retrieval, native file tools, and the correct scheduler semantics.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Document operations teams and supporting agents use this skill to coordinate exception review work, reuse saved tracker and reminder conventions, and update review trackers consistently. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to use saved memory, read or update local tracker files, and create reminders when the task calls for them. <br>
-Mitigation: Before installing, confirm that these memory, file update, and reminder behaviors are appropriate for the intended workspace. <br>
-Risk: Incorrect scheduler use could create unnecessary ongoing watches or exact-time reminders. <br>
-Mitigation: Follow the task's requested scheduler mode and create heartbeat or cron-style follow-ups only when explicitly needed. <br>
+## Use Case:
 
+Document operations teams and agents use this skill to coordinate exception review tasks with saved memory, local tracker updates, and scheduled follow-up semantics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/document-ops-exception-review-coordinator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain-text coordination guidance with tracker updates and scheduler instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local tracker files and scheduling payloads when the task calls for them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Saved memory may contain sensitive tracker paths, reminder styles, labels, or owner and escalation conventions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the saved document-ops memory namespace before installation or use in shared contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/document-ops-exception-review-coordinator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown summary text with local tracker updates and scheduler instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local tracker files and scheduled reminders when the task explicitly calls for them.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

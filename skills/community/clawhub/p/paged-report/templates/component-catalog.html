@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Component Catalog — Paged Report</title>
+<style>
+/* ============================================
+   Paged Report — Design System v1
+   ============================================ */
+:root {
+  --bg: #fbfcfd;
+  --paper: #ffffff;
+  --ink: #182026;
+  --muted: #626d78;
+  --line: #dde3e8;
+  --line-strong: #1f4e5f;
+  --line-soft: #edf1f4;
+  --accent: #1f4e5f;
+  --accent-dark: #173948;
+  --accent-soft: #eef6f8;
+  --blue: #225b76;
+  --green: #246257;
+  --amber: #80602e;
+  --red: #8a3b35;
+  --soft: #f6f8fa;
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font); line-height: 1.85; font-size: 16px;
+}
+.page { max-width: 960px; margin: 46px auto; padding: 0 34px 60px; }
+
+/* --- REPORT PAGE = one logical page --- */
+.report-page {
+  position: relative;
+  margin: 0 0 30px;
+  padding: 54px 58px 62px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 44px rgba(27,43,54,0.06);
+  /* A4-oriented printable area: 178mm wide × 261mm tall */
+  /* At 96dpi: 673px × 987px */
+  /* With padding (54+62 top/bot, 58*2 sides): content area ~557px × 871px */
+  min-height: 880px; /* screen-space minimum; verify print output */
+}
+.report-page:last-child { margin-bottom: 0; }
+
+/* --- FILL STRATEGY: attempt to push footer down when content fits --- */
+.report-page .spacer { flex: 1; }
+.report-page.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.report-page.flex-col > .content-area { flex: 1; }
+.report-page.flex-col > .footer-area { margin-top: auto; }
+
+/* ============================================
+   COMPONENTS
+   ============================================ */
+
+/* --- C1: HERO (封面) --- */
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding: 0 0 48px;
+  margin-bottom: 58px;
+}
+.hero .eyebrow {
+  margin: 0 0 18px; color: var(--muted);
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+}
+.hero h1 {
+  margin: 0; font-size: 46px; line-height: 1.12; font-weight: 620;
+}
+.hero .subtitle {
+  margin: 26px 0 0; color: var(--muted);
+  font-size: 18px; line-height: 1.75;
+}
+.hero .meta {
+  display: flex; flex-wrap: wrap; gap: 10px 18px;
+  margin-top: 30px; padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.hero .meta span {
+  font-size: 12px; font-weight: 650; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent-dark);
+}
+
+/* --- C2: TOC (目录) --- */
+.toc {
+  margin: 0 0 70px; padding: 28px 0 34px;
+  border-bottom: 1px solid var(--line);
+  border-top: 1px solid var(--line-soft);
+}
+.toc h2 {
+  margin: 0 0 18px; color: var(--accent);
+  font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.22em;
+  border: 0; padding: 0;
+}
+.toc ol {
+  margin: 0; padding: 0; list-style-position: inside;
+  font-size: 15px; column-count: 2; column-gap: 56px;
+}
+.toc li { margin: 8px 0; break-inside: avoid; }
+
+/* --- C3: SECTION --- */
+h2 {
+  margin: 0 0 26px; padding: 0 0 0 24px;
+  border-left: 5px solid var(--accent);
+  font-size: 25px; line-height: 1.28; font-weight: 630;
+}
+h3 {
+  margin: 28px 0 10px; font-size: 15px;
+  line-height: 1.45; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+p { margin: 0 0 24px; line-height: 1.9; }
+ul, ol { margin: 12px 0 0; padding-left: 22px; }
+li { margin: 7px 0; }
+
+/* --- C4: GRID + CARD --- */
+.grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin: 34px 0; }
+.grid.two { grid-template-columns: repeat(2,1fr); }
+.card {
+  padding: 0 0 0 18px;
+  border-left: 2px solid var(--line);
+  background: transparent;
+}
+.card h3 { margin-top: 0; }
+.card p:last-child { margin-bottom: 0; }
+
+/* --- C5: CALLOUT --- */
+.callout {
+  margin: 32px 0; padding: 18px 22px 18px 24px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  background: var(--accent-soft);
+}
+.callout.green { border-left-color: var(--green); background: #eef7f4; }
+.callout.amber { border-left-color: var(--amber); background: #fbf7ed; }
+.callout.red   { border-left-color: var(--red); background: #fbf1f0; }
+
+/* --- C6: TABLE --- */
+table { width: 100%; border-collapse: collapse; margin: 38px 0 44px; font-size: 14.5px; }
+th, td { padding: 15px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+th {
+  background: #f2f6f8; color: var(--accent-dark);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  border-bottom: 2px solid var(--accent);
+}
+tr:last-child td { border-bottom: 0; }
+tbody tr:nth-child(even) td { background: #fbfdfe; }
+
+/* --- C7: TAG --- */
+.tag {
+  display: inline-flex; padding: 2px 7px;
+  border: 1px solid var(--line); font-size: 11px;
+  font-weight: 600; white-space: nowrap;
+}
+.tag.green { background: #eef7f4; border-color: #c9e1da; color: var(--green); }
+.tag.blue  { background: #eef6fb; border-color: #c7dce6; color: var(--blue); }
+.tag.amber { background: #fbf6e9; border-color: #e2d1a9; color: var(--amber); }
+.tag.red   { background: #fbf1f0; border-color: #e0b8b5; color: var(--red); }
+
+/* --- C8: KPI --- */
+.kpi { font-size: 42px; font-weight: 620; line-height: 1.1; }
+.kpi .unit { font-size: 18px; font-weight: 400; color: var(--muted); }
+
+/* --- C9: PROGRESS BAR --- */
+.progress-bar { height: 8px; background: var(--line-soft); overflow: hidden; }
+.progress-bar .fill { height: 100%; background: var(--accent); }
+.progress-bar.green .fill { background: var(--green); }
+.progress-bar.amber .fill { background: var(--amber); }
+.progress-bar.red .fill   { background: var(--red); }
+
+/* --- C10: STATUS ROW (compact status list) --- */
+.status-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 0; border-bottom: 1px solid var(--line-soft);
+}
+.status-row:last-child { border-bottom: 0; }
+.status-row .label { flex: 1; font-size: 15px; }
+.status-row .value { font-weight: 600; }
+
+/* --- C11: FOOTER --- */
+.footer {
+  margin-top: auto; padding-top: 22px;
+  border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 12px; line-height: 1.7;
+}
+
+/* --- C12: DIVIDER --- */
+hr { border: 0; border-top: 1px solid var(--line); margin: 44px 0; }
+
+/* --- C13: COMPARISON TABLE (two-column before/after) --- */
+.compare-table th:first-child { width: 30%; }
+.compare-table .old { color: var(--red); }
+.compare-table .new { color: var(--green); font-weight: 600; }
+
+/* --- C14: CHECKLIST --- */
+.checklist { list-style: none; padding: 0; margin: 20px 0; }
+.checklist li {
+  padding: 10px 0 10px 32px; position: relative;
+  border-bottom: 1px solid var(--line-soft);
+}
+.checklist li::before {
+  content: "☐"; position: absolute; left: 0;
+  font-size: 18px; color: var(--muted);
+}
+.checklist li.done::before { content: "☑"; color: var(--green); }
+
+/* ============================================
+   A4 PRINT STYLES
+   ============================================ */
+@media print {
+  @page { size: A4; margin: 18mm 16mm; }
+
+  body { background: white; font-size: 11pt; line-height: 1.6; color: #000; }
+  .page { max-width: none; margin: 0; padding: 0; }
+
+  .report-page {
+    box-shadow: none; border: 0; padding: 0;
+    margin: 0; min-height: auto; /* let @page control */
+    page-break-after: always;
+  }
+  .report-page:last-child { page-break-after: auto; }
+  .report-page.cover { page-break-after: always; }
+
+  /* Keep things together */
+  section, .callout, .card, .grid, .checklist { page-break-inside: avoid; }
+  h2, h3 { page-break-after: avoid; }
+
+  /* Table: repeat header, keep rows together */
+  table { page-break-inside: auto; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+
+  /* Kill decorative */
+  * { box-shadow: none !important; }
+  a { border-bottom: 0; color: inherit; }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 860px) {
+  .page { max-width: none; margin: 34px auto; padding: 0 16px 52px; }
+  .report-page { padding: 28px 20px 36px; min-height: auto; }
+  h1 { font-size: 32px; }
+  .grid, .grid.two { grid-template-columns: 1fr; }
+  .toc ol { column-count: 1; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ============================================================
+     DEMO: All 14 components in realistic contexts
+     ============================================================ -->
+
+<!-- PAGE 1: COVER -->
+<div class="report-page cover">
+  <div class="hero">
+    <p class="eyebrow">Example Client · 项目报告</p>
+    <h1>组件目录与设计规范</h1>
+    <p class="subtitle">14 个目录条目，接受 5 个 family 标签；A4 print styles 需在目标浏览器中验证</p>
+    <div class="meta">
+      <span>2026-08-31</span>
+      <span>v1.0</span>
+      <span>Design System</span>
+    </div>
+  </div>
+  <nav class="toc">
+    <h2>目录</h2>
+    <ol>
+      <li><a href="#hero">Hero 封面</a></li>
+      <li><a href="#kpis">KPI 指标</a></li>
+      <li><a href="#table">数据表格</a></li>
+      <li><a href="#callout">提示框</a></li>
+      <li><a href="#grid">网格卡片</a></li>
+      <li><a href="#status">状态行</a></li>
+      <li><a href="#compare">对比表</a></li>
+      <li><a href="#checklist">确认清单</a></li>
+    </ol>
+  </nav>
+</div>
+
+<!-- PAGE 2: KPI + TABLE (Data Audit style) -->
+<div class="report-page flex-col">
+  <div class="content-area">
+    <h2 id="kpis">数据概览</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>产品总数</h3>
+        <div class="kpi">598 <span class="unit">SKU</span></div>
+      </div>
+      <div class="card">
+        <h3>图片覆盖率</h3>
+        <div class="kpi">76<span class="unit">%</span></div>
+        <div class="progress-bar green"><div class="fill" style="width:76%"></div></div>
+      </div>
+      <div class="card">
+        <h3>待处理</h3>
+        <div class="kpi">42 <span class="unit">项</span></div>
+        <div class="progress-bar amber"><div class="fill" style="width:30%"></div></div>
+      </div>
+    </div>
+
+    <h2 id="table">详细数据</h2>
+    <table>
+      <thead>
+        <tr><th>品类</th><th>数量</th><th>图片</th><th>价格</th><th>状态</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Bathtubs</td><td>120</td><td>98%</td><td>100%</td><td><span class="tag green">完成</span></td></tr>
+        <tr><td>Vanities</td><td>85</td><td>72%</td><td>100%</td><td><span class="tag amber">进行中</span></td></tr>
+        <tr><td>Taps</td><td>230</td><td>65%</td><td>95%</td><td><span class="tag amber">进行中</span></td></tr>
+        <tr><td>Accessories</td><td>163</td><td>45%</td><td>88%</td><td><span class="tag red">待处理</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Footer placement example; verify in the target browser/PDF -->
+  <div class="footer-area">
+    <p>Example Client · 数据质量报告 · 2026-08-31</p>
+  </div>
+</div>
+
+<!-- PAGE 3: CALLOUT + STATUS (Confirmation style) -->
+<div class="report-page flex-col">
+  <div class="content-area">
+    <h2 id="callout">运费规则说明</h2>
+    <p>以下为当前运费规则，适用于所有新订单。请确认后回复。</p>
+
+    <div class="callout">
+      <strong>默认规则：</strong>订单满 $150 免运费（标准配送）
+    </div>
+    <div class="callout amber">
+      <strong>例外：</strong>大件商品（浴缸、浴室柜）按实际重量计费，不享受免运
+    </div>
+    <div class="callout red">
+      <strong>注意：</strong>部分商品重量数据缺失，系统暂按 1kg 估算。已标记待修正。
+    </div>
+    <div class="callout green">
+      <strong>已解决：</strong>上月发现的重货免运问题已修复，38% 受影响商品已更正。
+    </div>
+
+    <h2 id="status">当前状态</h2>
+    <div class="status-row">
+      <span class="label">运费规则上线</span>
+      <span class="value"><span class="tag green">已完成</span></span>
+    </div>
+    <div class="status-row">
+      <span class="label">重量数据补全</span>
+      <span class="value"><span class="tag amber">进行中 · 62%</span></span>
+    </div>
+    <div class="status-row">
+      <span class="label">实时运价对接</span>
+      <span class="value"><span class="tag">待启动</span></span>
+    </div>
+  </div>
+  <div class="footer">
+    <p>Example Client · 运费确认 · 2026-08-31</p>
+  </div>
+</div>
+
+<!-- PAGE 4: COMPARISON + CHECKLIST (Handoff style) -->
+<div class="report-page flex-col">
+  <div class="content-area">
+    <h2 id="compare">规则变更对比</h2>
+    <table class="compare-table">
+      <thead>
+        <tr><th>项目</th><th>变更前</th><th>变更后</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>免运门槛</td><td class="old">$200</td><td class="new">$150</td></tr>
+        <tr><td>大件计费</td><td class="old">按件固定 $49</td><td class="new">按重量阶梯</td></tr>
+        <tr><td>偏远地区</td><td class="old">不配送</td><td class="new">加收 $25</td></tr>
+        <tr><td>重量数据</td><td class="old">38% 缺失</td><td class="new">100% 已补全</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="checklist">上线确认清单</h2>
+    <ul class="checklist">
+      <li class="done">运费规则已在运营后台配置</li>
+      <li class="done">测试订单 3 笔，运费计算正确</li>
+      <li class="done">大件商品已标记特殊运费标签</li>
+      <li>客户确认邮件已发送</li>
+      <li>监控 7 天，无异常后正式上线</li>
+    </ul>
+  </div>
+  <div class="footer">
+    <p>Example Client · 上线确认 · 2026-08-31 · 请回复确认或提出修改意见</p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

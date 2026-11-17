@@ -10,7 +10,7 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 # 使用已配置的 API Key
-os.environ["OPENAI_API_KEY"] = "sk-sp-e0fb4e4a6dba43fb9bd707b8ef48bd6b"
+os.environ["OPENAI_API_KEY"] = "REDACTED-SECRET"
 os.environ["OPENAI_API_BASE"] = "https://coding.dashscope.aliyuncs.com/v1"
 
 from team_config_multi_model import create_product_team

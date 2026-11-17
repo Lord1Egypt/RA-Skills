@@ -22,7 +22,7 @@ function parseArgs(argv) {
 
 function asNumber(value, fallback) {
   const n = Number(value);
-  return Number.isFinite(n) ? n : fallback;
+  return Number.isFinite(n) && n > 0 ? n : fallback;
 }
 
 function sleep(ms) {
@@ -38,7 +38,7 @@ function failureSuggestions(result) {
   const status = result?.status;
   if (code === "INSUFFICIENT_CREDITS") {
     return [
-      "Reduce duration or switch to a lower-cost model (for example t2v/i2v v1).",
+      "Reduce duration or select a lower-credit configuration documented for the model.",
       "Check account credits and retry after top-up.",
     ];
   }
@@ -46,6 +46,12 @@ function failureSuggestions(result) {
     return [
       "Lower polling frequency and honor Retry-After first.",
       "Keep query requests within 60 req/min/IP.",
+    ];
+  }
+  if (code === "BUDGET_EXCEEDED") {
+    return [
+      "Request a larger explicit budget from the user or choose a cheaper configuration.",
+      "Do not remove the max-credit guard without user authorization.",
     ];
   }
   if (status === "FAILED") {
@@ -70,28 +76,50 @@ function print(result) {
   console.log(JSON.stringify(result, null, 2));
 }
 
+function finish(result, { unfinished = false } = {}) {
+  print(result);
+  if (!result.ok) {
+    process.exitCode = unfinished ? 2 : 1;
+  }
+}
+
 async function runAction(client, args) {
   const action = args.action;
   const taskId = args.taskId;
 
+  if (action === "doctor") {
+    const result = await client.doctor();
+    finish(result);
+    return;
+  }
+
+  if (action === "quote") {
+    if (!args.model) throw new Error("--model is required for --action quote");
+    if (!args.payload) throw new Error("--payload is required for --action quote");
+    const payload = parseJsonText(args.payload, "--payload");
+    const result = await client.quoteGeneration({ model: args.model, payload });
+    finish(result);
+    return;
+  }
+
   if (action === "getStatus") {
     if (!taskId) throw new Error("--taskId is required for --action getStatus");
     const result = await client.getStatus(taskId);
-    print(result);
+    finish(result);
     return;
   }
 
   if (action === "getTask") {
     if (!taskId) throw new Error("--taskId is required for --action getTask");
     const result = await client.getTask(taskId);
-    print(result);
+    finish(result);
     return;
   }
 
   if (action === "cancelTask") {
     if (!taskId) throw new Error("--taskId is required for --action cancelTask");
     const result = await client.cancelTask(taskId);
-    print(result);
+    finish(result);
     return;
   }
 
@@ -109,9 +137,38 @@ async function runCreateAndPoll(client, args) {
 
   // Production mode: only accept runtime payload to avoid stale template files.
   const payload = parseJsonText(payloadText, "--payload");
-  const createResult = await client.createGeneration({ model, payload });
+  if (args.maxCredits === undefined) {
+    throw new Error("--maxCredits is required for billable generation");
+  }
+  const maxCredits = Number(args.maxCredits);
+  if (!Number.isInteger(maxCredits) || maxCredits < 0) {
+    throw new Error("--maxCredits must be a non-negative integer");
+  }
+  const quoteResult = await client.quoteGeneration({ model, payload });
+  if (!quoteResult.ok) {
+    finish(quoteResult);
+    return;
+  }
+  if (Number(quoteResult.data?.credits) > maxCredits) {
+    finish({
+      ok: false,
+      status: "FAILED",
+      taskId: null,
+      data: quoteResult.data,
+      errorCode: "BUDGET_EXCEEDED",
+      errorMessage: `Quoted cost (${quoteResult.data.credits} credits) exceeds --maxCredits ${maxCredits}`,
+      suggestions: failureSuggestions({ errorCode: "BUDGET_EXCEEDED" }),
+    });
+    return;
+  }
+  const createResult = await client.createGeneration({
+    model,
+    payload,
+    maxCredits,
+    idempotencyKey: args.idempotencyKey,
+  });
   if (!createResult.ok) {
-    print({
+    finish({
       ...createResult,
       suggestions: failureSuggestions(createResult),
     });
@@ -119,9 +176,10 @@ async function runCreateAndPoll(client, args) {
   }
 
   const taskId = createResult.taskId;
+  const idempotencyKey = createResult.idempotencyKey;
   const autoPoll = String(args.autoPoll ?? "true") !== "false";
   if (!autoPoll) {
-    print(createResult);
+    finish(createResult);
     return;
   }
 
@@ -138,7 +196,7 @@ async function runCreateAndPoll(client, args) {
     lastStatusResult = statusResult;
 
     if (!statusResult.ok) {
-      print({
+      finish({
         ...statusResult,
         taskId,
         suggestions: failureSuggestions(statusResult),
@@ -149,12 +207,35 @@ async function runCreateAndPoll(client, args) {
     if (TERMINAL_STATUSES.has(statusResult.status)) {
       if (statusResult.status === "COMPLETED") {
         const detailResult = await client.getTask(taskId);
-        print(detailResult.ok ? detailResult : statusResult);
+        if (!detailResult.ok) {
+          finish({
+            ...detailResult,
+            ok: false,
+            status: "COMPLETED",
+            taskId,
+            idempotencyKey,
+            errorCode: "RETRIEVAL_FAILED",
+            errorMessage:
+              detailResult.errorMessage || "Generation completed but output retrieval failed",
+            suggestions: [
+              `Resume retrieval with --action getTask --taskId ${taskId}`,
+              "Do not submit a replacement generation unless retrieval confirms the task failed.",
+            ],
+          });
+          return;
+        }
+        finish({
+          ...detailResult,
+          idempotencyKey,
+          quote: quoteResult.data,
+        });
         return;
       }
-      print({
+      finish({
         ...statusResult,
+        ok: false,
         taskId,
+        idempotencyKey,
         suggestions: failureSuggestions(statusResult),
       });
       return;
@@ -164,14 +245,18 @@ async function runCreateAndPoll(client, args) {
     currentPollMs = nextPollMs(currentPollMs, pollMaxMs);
   }
 
-  print({
-    ok: false,
-    status: lastStatusResult?.status || "PROGRESS",
-    taskId,
-    errorCode: "POLL_TIMEOUT",
-    errorMessage: `Polling exceeded max wait time (${maxWaitMs}ms)`,
-    suggestions: ["Increase --maxWaitMs", "Use async mode: --autoPoll false"],
-  });
+  finish(
+    {
+      ok: false,
+      status: lastStatusResult?.status || "PROGRESS",
+      taskId,
+      idempotencyKey,
+      errorCode: "POLL_TIMEOUT",
+      errorMessage: `Polling exceeded max wait time (${maxWaitMs}ms)`,
+      suggestions: ["Increase --maxWaitMs", "Use async mode: --autoPoll false"],
+    },
+    { unfinished: true },
+  );
 }
 
 async function main() {

@@ -1,47 +1,52 @@
-## Description: <br>
-Deploy websites, landing pages, forms, and dashboards through Sutrena's hosted REST API without git, hosting setup, or a build step. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy websites, landing pages, forms, and dashboards instantly -- no git, no hosting, no build step.
 
-## Publisher: <br>
-[kaichogami](https://clawhub.ai/user/kaichogami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kaichogami](https://clawhub.ai/user/kaichogami)
 
-## Use Case: <br>
-External users and developers use Sutrena to publish pages, lead capture forms, waitlists, hosted forms, and dashboards directly from an agent conversation without setting up hosting or a build pipeline. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create live public pages and hosted forms. <br>
-Mitigation: Review generated content before publication and only publish material intended to be public. <br>
-Risk: Site, form, dashboard, and collected-submission data may be sent to Sutrena. <br>
-Mitigation: Do not submit secrets, regulated personal data, or sensitive business data unless the user has approved that use. <br>
-Risk: Sutrena API keys authorize publishing and account operations. <br>
-Mitigation: Use a Sutrena-specific API key when available and never expose API keys in generated HTML or client-side JavaScript. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaichogami/sutrena) <br>
-- [Sutrena homepage](https://sutrena.com) <br>
-- [Sutrena agent reference](https://sutrena.com/llms-full.txt) <br>
-- [Sutrena API schema](https://sutrena.com/api/schema) <br>
-- [Sutrena OpenAPI spec](https://sutrena.com/api/openapi.json) <br>
-- [Sutrena guides](https://sutrena.com/guides) <br>
-- [Sutrena templates](https://sutrena.com/templates) <br>
+## Use Case:
 
+Developers, builders, and agents use sutrena to publish simple websites, landing pages, forms, waitlists, and dashboards quickly through Sutrena's hosted API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with live URLs, generated page or form content, and JSON API payloads when needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create public pages, hosted forms, dashboards, webhooks, subdomains, uploaded assets, and custom-domain configuration through Sutrena APIs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenClaw metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends website content, form fields, dashboard data, and later form submissions to Sutrena for hosting.
+
+Mitigation: Use it only for content intended for Sutrena, and avoid confidential or regulated data unless Sutrena policies and data-handling requirements have been reviewed.
+
+## Reference(s):
+
+- [Sutrena Homepage](https://sutrena.com)
+- [Sutrena Agent Reference](https://sutrena.com/llms-full.txt)
+- [Sutrena API Schema](https://sutrena.com/api/schema)
+- [Sutrena OpenAPI Specification](https://sutrena.com/api/openapi.json)
+- [ClawHub Skill Page](https://clawhub.ai/kaichogami/skills/sutrena)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with code snippets, JSON request bodies, and live URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create hosted pages, forms, dashboards, and public submission URLs on Sutrena.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

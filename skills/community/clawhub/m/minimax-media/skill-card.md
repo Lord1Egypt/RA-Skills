@@ -1,42 +1,58 @@
-## Description: <br>
-MiniMax Media helps agents generate speech, images, videos, image variations, image-to-video outputs, and music through a unified MiniMax command workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax Media helps agents generate voice, image, video, image-to-video, image-to-image, and music outputs through MiniMax.
 
-## Publisher: <br>
-[lqqk7](https://clawhub.ai/user/lqqk7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lqqk7](https://clawhub.ai/user/lqqk7)
 
-## Use Case: <br>
-Developers and external agent users use this skill to route MiniMax media requests for text-to-speech, image generation, image editing, video generation, image-to-video generation, and music generation through one command-oriented workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports that the skill calls a relative MiniMax helper that is not included in the artifact. <br>
-Mitigation: Review before installing, provide the missing helper only from a trusted source, and avoid running the skill where an unrelated relative helper could be invoked. <br>
-Risk: MiniMax prompts, images, audio, lyrics, and generated media may be sent to an external service. <br>
-Mitigation: Use a limited MiniMax API key and avoid submitting sensitive content unless MiniMax data handling terms are acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to generate MiniMax-powered speech, images, videos, image transformations, and music without managing individual API details.
 
-## Reference(s): <br>
-- [MiniMax API host](https://api.minimaxi.com) <br>
-- [ClawHub MiniMax Media release page](https://clawhub.ai/lqqk7/minimax-media) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lqqk7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and environment variable examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media files are written to the current working directory or an explicit output path when the helper command is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server-resolved release evidence) <br>
+Risk: Prompts, reference images, and generation requests may be sent to the MiniMax API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content that is appropriate to send to MiniMax, and avoid sensitive inputs unless the user has approved that provider.
+
+Risk: Media generation can affect API billing and writes files to either the current directory or the requested output path.
+
+Mitigation: Verify API billing expectations and output paths before running generation requests.
+
+Risk: Some MiniMax errors may be returned in Chinese.
+
+Mitigation: Ask the agent to translate errors when needed before retrying or changing inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lqqk7/skills/minimax-media)
+- [MiniMax API host](https://api.minimaxi.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and media output paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include generated MP3, image, video, or music files in the current directory or at an --output path.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

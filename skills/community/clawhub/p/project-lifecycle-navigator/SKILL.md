@@ -1,201 +1,224 @@
 ---
 name: project-lifecycle-navigator
-version: 1.0.0
-description: >
-  Bilingual EN/ZH project lifecycle navigator for non-technical users and AI Coding Agent workflows. Use when a user is starting a new software/AI project, feels a project is drifting mid-development, or has code ready for review. Routes into New Project Intake, Mid-Project Realignment, or Code Review & Upgrade Planning with structured questions, MVP control, stop-loss decisions, and executable handoff plans.
-metadata:
-  openclaw:
-    emoji: "🧭"
-    skillKey: project-lifecycle-navigator
+description: Audit a project you are unsure about and get a go, narrow, pivot, archive or stop recommendation, without writing code or changing governance state. Use when a non-technical user needs structured project guidance, a project is drifting, existing code needs a read-only audit, a recent delivery needs comparison with its current target, or new requirements may change scope. Typical triggers include 项目做了一半要不要继续, 我是不是该重开一个, 范围蔓延, 想加个新功能, I have too many projects, should I kill this one, 帮我看看这个仓库还能不能救, audit my codebase, is this project over-engineered, 定义一下 MVP, 怎样算做完, 止损, 归档, 这个项目还有价值吗, define MVP scope, scope creep, project drift, startup checklist, go or no-go, portfolio cleanup, and repository health audit. Also use for duplicate-copy detection, missing version control, hardcoded secrets in shipped artifacts, god-module and entrypoint-sprawl findings, and pre-commitment stop-loss rules. Produces bounded recommendations and handoffs without coding, self-authorizing work, changing governance state, or claiming QA acceptance. For ongoing governance with Work Orders, Milestones, and formal QA acceptance, use cms-project-governance.
 ---
 
-# Project Lifecycle Navigator / 项目生命周期导航助手
+# Project Lifecycle Navigator / 项目生命周期导航
 
-## Purpose / 用途
+Version: 2.1.1
 
-This is an instruction-only skill for guiding software, automation, AI, and internal-tool projects through three lifecycle moments:
+Use this skill as a project advisory and routing layer. Diagnose the current lifecycle decision, gather only missing evidence, and produce a bounded plan or handoff. Do not implement changes unless the user separately asks for implementation and an execution skill takes over.
 
-本 Skill 用于帮助非技术用户、创业者、运营团队、产品负责人和 AI Coding Agent 用户处理项目生命周期中的三个关键阶段：
+Respond in the user's language. Keep facts, inferences, risks, and Owner decisions visibly separate.
 
-1. **New Project Intake / 新项目需求访谈** — before development starts, turn an idea into a scoped MVP and development plan.
-2. **Mid-Project Realignment / 项目中期方向校准** — when the project feels bloated, confusing, off-track, or full of new ideas.
-3. **Code Review & Upgrade Plan / 代码审查与升级优化** — when code exists and needs security, architecture, performance, maintainability, testing, cleanup, and upgrade review.
+## Boundary With Other Skills
 
-This skill should behave like a product manager, system architect, project auditor, security reviewer, and AI Coding Agent coordinator.
+- Use this skill for discovery, lifecycle decisions, read-only audits, and planning.
+- Use `cms-project-governance` when the project needs persistent governance, Milestones, Programs, Work Orders, Controller/QA state, or formal acceptance.
+- Use `agent-loop-engineering` after target, scope, authority, and acceptance are coherent and the user asks to implement or debug.
+- Use `daily-workflow` only for an explicit checkpoint, wrap-up, or handoff-memory update.
+- Use `web-search-rules` for evidence-backed web research and research intake.
+- If `ai-workflow-os` routed the request here, this skill remains authoritative for the lifecycle analysis.
 
-本 Skill 应像“产品经理 + 系统架构师 + 项目审计官 + 安全审查员 + AI Coding Agent 协调者”一样工作。
+`Developer Complete`, `Verified`, and `Accepted` are different claims. This skill cannot self-sign QA acceptance.
 
----
+## Start With Available Evidence
 
-## Routing Rule / 路由规则
+When a repository or project folder is available, begin read-only:
 
-Always determine the user's lifecycle stage before proceeding.
+1. identify the actual project root and any nested repositories;
+2. inspect current Git branch, commit, and dirty state without changing it;
+3. locate governing documents, product scope, entrypoints, build/test commands, and runtime surfaces;
+4. establish which sources are current authority and which are history;
+5. state the review boundary and missing evidence.
 
-每次先判断用户处于哪个阶段，再进入对应流程。
+Do not ask the user for facts that can be discovered safely. Ask only questions whose answers materially change the recommendation. For a blank-slate idea, use a short first round of at most 6-8 questions. For an existing project, inspect first and ask a smaller gap-focused round.
 
-### Mode A — New Project Intake / 新项目需求访谈
+## Startup Gates
 
-Use when the user says things like:
+Apply before recommending that a project start, continue, or expand. These gates exist because the dominant failure mode is not bad execution, it is starting too much.
 
-- “I want to build a new project/app/system/tool.”
-- “I have an idea but don't know how to describe requirements.”
-- “Ask me questions first.”
-- “Help me create an MVP plan.”
-- “Turn this business idea into a development plan.”
-- “我想做一个新项目 / 系统 / 工具。”
-- “我不懂技术，你先问我问题。”
-- “帮我把想法变成 MVP 和开发计划。”
+### Four Questions
 
-Reference prompt:
+1. **What is it** — one sentence of user pain, not a feature list.
+2. **What it is not** — three explicit exclusions.
+3. **What counts as done** — one sentence an outsider could check without asking you.
+4. **How the MVP walks end to end** — the named steps of the primary user flow.
+
+If any question is unanswered, the recommendation is `do not start yet`, not a softer plan. "We will figure out done later" is the single strongest predictor of scope creep.
+
+### Go / No-Go Score
+
+| Dimension | Points |
+| --- | ---: |
+| Genuinely want to do it | 15 |
+| Solves a real, observed problem | 20 |
+| You have a unique advantage | 20 |
+| Verifiable within 30 days | 10 |
+| Easy to find users | 10 |
+| Plausible income path | 15 |
+| Becomes a long-term asset | 10 |
+
+Under 60: do not do it. 60-75: time-boxed experiment only. Above 75: active. Record the score with the recommendation so a later review can re-score instead of re-litigating.
+
+One more filter: if the work cannot also become something publicly shareable (an article, a tool, a talk), lower its priority. Work that can only be used once is worth less than work that sells twice.
+
+### First-Version Caps
+
+- self-written files under 200;
+- do not clone a whole framework to start;
+- one entrypoint, documented and verified to run;
+- the core loop must close before any second large feature;
+- if stuck on the same problem for three sessions, cut to the smallest publishable version — do not restart the project.
+
+### Pre-Commit Stop-Loss
+
+Set the exit before starting: a budget ceiling, a time ceiling, or an evidence threshold. When it is breached, the default action is archive with reusable parts extracted, not extension. A line kept alive by sunk cost is a decision that was never made.
+
+## Route Into One Mode
+
+Do not mix these modes in one decision unless the user explicitly asks for a combined report.
+
+### Mode A - New Project Intake
+
+Use when the user has an idea but no confirmed product target.
+
+Goal: produce a decision-ready intent brief, coherent Release 1/MVP boundary, observable acceptance, Non-Goals, assumptions, and next validation step.
+
+Read the matching prompt:
 
 - Chinese: `prompts/zh/01-new-project-intake.zh.md`
 - English: `prompts/en/01-new-project-intake.en.md`
 
-Start by asking 6–8 friendly first-round questions. Do not write code or produce a full technical solution before interviewing the user.
+Do not prescribe a large architecture before the core user, core problem, data path, delivery surface, and success condition are known.
 
-先问 6–8 个第一轮问题。不要直接写代码，也不要在访谈前给完整技术方案。
+### Mode B - Mid-Project Realignment
 
-### Mode B — Mid-Project Realignment / 项目中期方向校准
+Use when the direction feels wrong, scope is expanding, documents conflict, or new ideas are competing with the active target.
 
-Use when the user says things like:
+Goal: compare original/current goals with real user-visible behavior and evidence; classify assets as retain, fix, upgrade, rewrite, pause, or remove; recommend continue, narrow, validate, pivot, archive, or stop.
 
-- “The project feels off.”
-- “The MVP is getting too big.”
-- “I have too many ideas.”
-- “Should I continue, pivot, or restart?”
-- “Help me recalibrate the project direction.”
-- “项目做到一半感觉跑偏了。”
-- “功能越来越多，我有点迷糊。”
-- “帮我判断该继续、止损、转向还是重做。”
-
-Reference prompt:
+Read the matching prompt:
 
 - Chinese: `prompts/zh/02-midproject-realignment.zh.md`
 - English: `prompts/en/02-midproject-realignment.en.md`
 
-Start by asking 6–8 review questions about current progress, original goal, drift, new ideas, core user, and core use case. Be willing to challenge assumptions. Protect the MVP boundary. If the direction is wrong, recommend freezing new features, validating demand, archiving the current version, or restarting.
+This mode may recommend a rebaseline but must not change the target automatically. Consequential changes remain Owner decisions.
 
-先问 6–8 个复盘问题，重点了解当前进度、原始目标、偏离感、新想法、核心用户和核心场景。不要迎合所有想法，要敢于挑战假设，保护 MVP 边界。若方向不合适，要明确提出冻结新增功能、验证需求、归档旧版本或重新开始。
+### Mode C - Repository-Wide Health Review
 
-### Mode C — Code Review & Upgrade Plan / 代码审查与升级优化
+Use when the user asks for a comprehensive codebase/system audit or upgrade plan.
 
-Use when the user says things like:
+Goal: produce a read-only, evidence-backed inventory across product value, runtime behavior, architecture, security, data, performance, frontend, tests, deployment, governance, and incomplete work.
 
-- “Review this codebase.”
-- “Audit security and bugs.”
-- “Find dead code.”
-- “Generate a refactor or upgrade plan.”
-- “Check whether the project is clean and maintainable.”
-- “帮我审查代码。”
-- “检查漏洞、冗余代码、架构、性能和测试问题。”
-- “生成修复、重构、升级执行计划。”
-
-Reference prompt:
+Read the matching prompt:
 
 - Chinese: `prompts/zh/03-code-review-upgrade.zh.md`
 - English: `prompts/en/03-code-review-upgrade.en.md`
 
-If no code or repository context is provided, ask the user to provide the project files/repo or state that only a process/checklist can be given. Do not invent files, line numbers, business rules, APIs, database tables, or runtime environments.
+Do not modify product code or governance state. A green build or narrow test does not prove usable runtime behavior.
 
-如果用户没有提供代码或仓库上下文，先要求提供项目文件/仓库；否则只能给流程或清单。不要编造文件、行号、业务规则、接口、数据库表或运行环境。
+Report each of the following as its own finding when present. They are the recurring structural defects that a feature-level review misses:
 
----
+| Check | Finding when |
+| --- | --- |
+| Duplicate copies | Two or more sibling directories are byte-identical or near-identical; copies are future conflicts, not backups |
+| Version anchor | No `.git`, or `.git` is a pointer whose target no longer exists; an unversioned project has no recovery path |
+| Build residue | `tmp/`, `node_modules/`, `dist/`, or large temp trees are tracked or unignored |
+| Distributed secrets | Real names, phone numbers, emails, addresses, contract terms, or pricing are hardcoded in source, fixtures, templates, or docs that ship |
+| Debug bypass | An auth-disable or debug flag exists and the service can bind a non-local interface |
+| Entrypoint truth | A documented start command does not exist or does not run; entrypoints are verified by execution, not by reading |
+| God modules | Files over roughly 800-1000 lines created by merges, strangles, or "temporary" accumulation |
+| Dependency sprawl | Dependency count or install footprint wildly exceeds what the feature set justifies |
 
-## Ambiguous Stage Handling / 阶段不明确时
+Findings are hypotheses until validated. Attach the file path and the observed evidence to each.
 
-If the user’s stage is unclear, ask exactly one routing question:
+### Mode D - Latest Delivery Alignment Review
 
-如果用户阶段不明确，先问一个选择题：
+Use when the user asks whether the latest change, milestone, handoff, or completion claim matches the current goal.
 
-> 你现在处于哪个阶段？  
-> A. 新项目刚开始，需要 AI 先问问题并生成初版方案  
-> B. 项目开发中途有点跑偏，需要重新校准方向  
-> C. 已经有代码，需要审查、优化和修复计划  
->  
-> Which stage are you in?  
-> A. Starting a new project and need intake questions + an MVP plan  
-> B. Mid-development and need direction realignment  
-> C. Code already exists and needs review, cleanup, and upgrade planning
+Goal: review only the active delivery boundary, current Work Order or task, affected files, evidence, necessary regression surface, and unresolved risks. This is not a repeated full-repository audit and not final QA acceptance.
 
-Wait for the answer before proceeding.
+Read the matching prompt:
 
----
+- Chinese: `prompts/zh/04-latest-delivery-alignment.zh.md`
+- English: `prompts/en/04-latest-delivery-alignment.en.md`
 
-## Universal Interaction Rules / 通用交互规则
+### Mode E - Owner-Led Target Rebaseline
 
-- Ask before prescribing. / 先问诊，后开药。
-- Do not code by default. / 默认不要直接写代码。
-- Ask at most 6–8 questions per round. / 每轮最多问 6–8 个问题。
-- Use simple language for non-technical users. / 面向非技术用户时，用简单语言解释。
-- When the user says “I don’t know”, provide 2–3 options and recommend one. / 用户说“不知道”时，给 2–3 个选项并推荐一个。
-- Prefer MVP, simple workflows, and low-cost validation. / 优先 MVP、简单流程和低成本验证。
-- Mark unknowns as “To confirm / 待确认”. / 不确定内容标注“待确认”。
-- Distinguish: must do, simplify, later, delete, do not do. / 明确区分：必须做、降级做、以后做、删除、不做。
-- Be concrete, executable, verifiable, and rollback-aware. / 建议必须具体、可执行、可验证、可回滚。
-- For Coding Agent handoff, include task queues, acceptance criteria, and explicit prohibitions. / 交给 Coding Agent 时必须给任务队列、验收标准和禁止事项。
+Use when new requirements may alter the target, Non-Goals, architecture/data boundaries, release behavior, credentials, production, or irreversible operations.
 
----
+Goal: show the delta between the new request and current authority, list decisions and impacts, and prepare a proposed rebaseline for Owner confirmation.
 
-## Language Rule / 语言规则
+Read the matching prompt:
 
-Respond in the user’s language by default. If the user writes in Chinese, respond in Chinese. If the user writes in English, respond in English. If the user asks for bilingual output, provide both Chinese and English.
+- Chinese: `prompts/zh/05-target-rebaseline.zh.md`
+- English: `prompts/en/05-target-rebaseline.en.md`
 
-默认使用用户的语言回复。用户用中文，就用中文；用户用英文，就用英文；用户要求双语时，输出中英双语。
+Do not code, dispatch work, or change authoritative project state in this mode. If authority is unclear, use `TBD - Owner Confirmation Required`.
 
----
+## Ambiguous Requests
 
-## Output Expectations / 输出要求
+Infer the mode from available context when possible. If two modes remain equally plausible and the difference would materially change scope, ask one routing question. Otherwise state the chosen mode and proceed.
 
-### For New Project Intake
+Typical routing:
 
-First response must start with:
+| User need | Mode |
+| --- | --- |
+| "I have an idea; help me define it" | A |
+| "The project is drifting or too large" | B |
+| "Audit the whole system" | C |
+| "Check whether the latest delivery is really complete" | D |
+| "Update the project target for this new requirement" | E |
 
-- `# 第一轮需求访谈问题` in Chinese, or
-- `# First-Round Project Intake Questions` in English.
+## Evidence Vocabulary
 
-Ask about project goal, users, top features, data source, and usage mode.
+Use these labels instead of optimistic status words:
 
-### For Mid-Project Realignment
+- `implemented`: source or artifact exists and matches the described behavior;
+- `partial`: only part of the intended behavior exists;
+- `verified`: a relevant check was run successfully in the current review;
+- `unverified`: implementation may exist but required evidence was not run or observed;
+- `unusable`: present but the real user-visible flow cannot be completed;
+- `documentation-conflict`: authoritative records disagree;
+- `not-executed`: a scenario was not run;
+- `cannot-confirm`: evidence is insufficient;
+- `duplicate-copy`: the same asset exists in more than one place and authority is unclear;
+- `unversioned`: no recoverable version history exists.
 
-First response must start with:
+Record the full command, final exit/termination state, and evidence boundary. Do not turn historical records, screenshots, health endpoints, schema-valid JSON, or a narrow unit test into broader runtime acceptance.
 
-- `# 项目中期复盘第一轮问题` in Chinese, or
-- `# First-Round Mid-Project Review Questions` in English.
+## Decision And Scope Rules
 
-Ask about progress, original goal, drift, new ideas, core user, and core use case.
+1. Preserve the user's active scope and explicit Non-Goals.
+2. Freeze expansion when trust, correctness, authority, or acceptance conflicts are unresolved.
+3. Prefer one coherent data-to-user-value chain over parallel feature growth.
+4. Separate current Release 1 acceptance from future roadmap ideas.
+5. Treat architecture, schema, production, credentials, privacy, and irreversible changes as consequential decisions.
+6. Keep project-specific names, paths, and contracts out of reusable templates.
+7. Preserve dirty worktrees and do not recommend destructive cleanup without a separately authorized, itemized plan.
 
-### For Code Review & Upgrade Plan
+## Output Contract
 
-If code is provided, begin with project-structure understanding and review boundary. If code is missing, ask for the repository/files and explain what information is needed.
+Every final lifecycle report should include:
 
-If producing the final report, use a structured Markdown format covering:
+1. selected mode and review boundary;
+2. current facts and evidence;
+3. unknowns and blind spots;
+4. user-visible value and target alignment;
+5. findings classified by status and priority;
+6. retain/fix/upgrade/rewrite/pause/remove decisions where relevant;
+7. a coherent recommended target or next step;
+8. decisions requiring Owner confirmation;
+9. verification and acceptance plan;
+10. a copy-ready handoff when another AI or engineer will continue.
 
-- project overview and review scope
-- security
-- clutter/dead code
-- logic/robustness
-- performance
-- architecture
-- testability
-- quality scoring
-- issue list and risk levels
-- executable fix plan
-- cleanup/simplification plan
-- roadmap
-- Coding Agent task queue
-- testing/acceptance plan
-- dependency/config/environment risks
-- uncertainty and human confirmation checklist
-- management summary
+For a formal execution handoff, include the single goal, scope, Non-Goals, affected surfaces, acceptance criteria, required evidence, prohibited actions, rollback expectations, and exact next action. Hand the result to `cms-project-governance` or `agent-loop-engineering`; do not impersonate those control planes.
 
----
+## Safety
 
-## Safety and Scope / 安全与边界
-
-This skill is instruction-only. It does not require external binaries, environment variables, API keys, credentials, network access, or code execution.
-
-本 Skill 仅包含文本指令，不需要外部命令、环境变量、API Key、凭据、联网访问或代码执行。
-
-Do not ask users for secrets. If code review discovers secrets, tell the user to rotate them and remove them from version history.
-
-不要要求用户提供密钥。如果代码审查发现密钥，应提醒用户轮换密钥并从版本历史中移除。
+- Do not request secrets.
+- Do not invent files, line numbers, commands, business rules, APIs, schemas, deployments, or test results.
+- Do not recommend deletion as completed work; use a reversible, reviewable plan.
+- Treat security findings as hypotheses until validated and scoped.
+- Label all unrun business-data or runtime scenarios `Not Executed / Deferred`.

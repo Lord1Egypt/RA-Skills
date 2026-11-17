@@ -1,45 +1,58 @@
-## Description: <br>
-KRX Stock CLI gives agents zero-config command-line access to Korean Exchange market data, including OHLCV history, latest-close snapshots, market-cap rankings, index histories, and ticker/name lookup in JSON or CSV. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Korean Exchange (KRX) stock market data CLI. Fetch daily OHLCV, latest-close snapshots, market-cap rankings, index histories (KOSPI/KOSDAQ/KOSPI200/KRX100), and ticker↔name lookups for KOSPI/KOSDAQ/KONEX/ETF tickers. Use when a user asks for Korean stock prices, ticker resolution, or KRX market data in JSON or CSV. No API key required.
 
-## Publisher: <br>
-[chloepark85](https://clawhub.ai/user/chloepark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers, quant analysts, retail investors, and fintech builders use this skill to resolve Korean tickers and retrieve scriptable KRX market data for analysis workflows. It is suited to end-of-day market data lookup, ticker search, index history, and CSV or JSON export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency versions are specified with lower bounds, so future dependency changes may affect behavior. <br>
-Mitigation: Install in a virtual environment and pin or review dependency versions before production use. <br>
-Risk: The skill retrieves public market data through upstream sources and may be affected by data delays, schema changes, rate limits, or temporary access errors. <br>
-Mitigation: Back off on rate-limit responses and verify important trading or financial decisions against official KRX or disclosure sources. <br>
-Risk: The CLI is designed for end-of-day and latest-close data, not real-time ticks or order-book data. <br>
-Mitigation: Use a real-time market-data provider for intraday execution, tick, or order-book workflows. <br>
+## Use Case:
 
+Developers, analysts, and agent workflows use this skill to resolve Korean stock tickers and retrieve KRX market data, including OHLCV history, latest-close snapshots, market-cap rankings, index series, and ticker lists. It is intended for scriptable informational market-data lookup rather than trading advice.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/chloepark85/krx-stock-cli) <br>
-- [FinanceDataReader](https://github.com/FinanceData/FinanceDataReader) <br>
-- [Command reference](SKILL.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, CSV, Text] <br>
-**Output Format:** [JSON by default, CSV when requested, and JSON-formatted errors on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [UTF-8 output with Korean text preserved; time-series dates are formatted as YYYY-MM-DD.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Unpinned Python dependency ranges can reduce reproducibility in higher-assurance environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and hash the Python dependencies before installation when reproducibility or supply-chain assurance is required.
+
+Risk: Market-data output may be delayed, incomplete, or unsuitable as the sole basis for trading decisions.
+
+Mitigation: Treat outputs as informational market data and verify material decisions against official KRX disclosures or another authoritative source.
+
+Risk: Public market-data endpoints can rate-limit requests or change response formats.
+
+Mitigation: Keep multi-ticker jobs near the documented request pace, back off on rate-limit responses, and handle upstream errors explicitly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chloepark85/skills/krx-stock-cli)
+- [FinanceDataReader](https://github.com/FinanceData/FinanceDataReader)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, text]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI output is JSON by default or CSV when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python dependencies and network access to public market-data endpoints; no API key is required.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Guides agents through Solidity smart contract upgrades using OpenZeppelin proxy patterns, upgrade plugins, storage layout checks, and safety review steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through upgrading Solidity smart contracts with OpenZeppelin proxy patterns, including UUPS, Transparent, and Beacon workflows, initializer practices, storage-layout safety, and Hardhat or Foundry upgrade validation.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Developers and smart contract engineers use this skill to plan, implement, and review upgradeable Solidity contracts with OpenZeppelin proxy patterns, Hardhat or Foundry upgrades plugins, and storage layout safety checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Solidity upgrade guidance can affect live smart contracts and may lead to unsafe proxy upgrades if applied without project-specific review. <br>
-Mitigation: Treat the skill as technical guidance only; test upgrades on a fork or testnet and manually review admin addresses, storage layout changes, initializer behavior, and upgrade transactions before using it on live contracts. <br>
-Risk: OpenZeppelin upgrade APIs and version-specific restrictions can change over time. <br>
-Mitigation: Verify version-specific details against official OpenZeppelin documentation before following generated commands or code patterns. <br>
+## Use Case:
 
+Developers and smart-contract engineers use this skill to plan and implement upgradeable Solidity contracts with OpenZeppelin proxy patterns, validate storage-layout and initializer safety, and choose Hardhat or Foundry upgrade workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/upgrade-solidity-contracts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code blocks, shell commands, configuration snippets, and safety checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no executable behavior is embedded in the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Dependency installs and Foundry ffi workflows can execute project or package code in the developer environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted development environment, pin dependency versions or commits, and review lockfiles before running generated commands.
+
+Risk: Deployment or upgrade guidance may affect live contracts or expose wallet keys, RPC credentials, or upgrade authority.
+
+Mitigation: Do not run deployments or upgrades against production networks unless explicitly approved; use testnets or local forks and protect privileged credentials.
+
+Risk: Incorrect storage-layout or initializer changes can corrupt proxy state or leave upgradeable implementations unsafe.
+
+Mitigation: Run OpenZeppelin upgrade validation, review storage layout changes, and test the full upgrade path before executing on-chain upgrades.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/upgrade-solidity-contracts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Solidity, JavaScript, TOML, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

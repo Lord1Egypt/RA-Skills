@@ -1,43 +1,51 @@
-## Description: <br>
-Improve systematically by analyzing losses, studying winners, and tracking progress against rivals in any competitive domain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improve systematically by analyzing losses, studying winners, and tracking progress against rivals in any competitive domain.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to turn competitive losses into structured lessons, study rival behavior, and maintain progress logs across games, sports, business, academics, or similar competitive domains. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Competition notes can include confidential business details, sensitive school or health information, or unnecessary personal information about rivals. <br>
-Mitigation: Keep sensitive details out of local tracking files unless the user intentionally chooses to store them. <br>
-Risk: Self-analysis and rival profiles can be incomplete or biased, leading to misleading improvement plans. <br>
-Mitigation: Treat the skill's analysis templates as coaching aids and verify important conclusions with objective evidence, replay review, metrics, or trusted feedback. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/competing) <br>
-- [Deep Loss Analysis](analysis.md) <br>
-- [Domain-Specific Competition](domains.md) <br>
-- [Feedback Loop Mechanics](feedback.md) <br>
-- [Progress Tracking](tracking.md) <br>
+## Use Case:
 
+External users and developers can use this skill to turn competitive outcomes into structured learning loops by analyzing losses, profiling rivals, and tracking progress across gaming, sports, business, academic, or other competitive domains.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with tracking templates and suggested local file structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local notes under ~/competing/ when the user wants persistent progress tracking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Competition logs and rival profiles may contain sensitive business, academic, or personal performance details.
+
+Mitigation: Keep local notes only in storage locations the user trusts, and avoid recording sensitive details unless they are necessary for the improvement workflow.
+
+## Reference(s):
+
+- [Deep Loss Analysis](analysis.md)
+- [Domain-Specific Competition](domains.md)
+- [Feedback Loop Mechanics](feedback.md)
+- [Progress Tracking](tracking.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and reusable templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local note structures and tracking templates; no code execution, credentials, or network access requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

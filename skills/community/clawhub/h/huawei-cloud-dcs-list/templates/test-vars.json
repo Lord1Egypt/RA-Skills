@@ -1,0 +1,32 @@
+{
+  "skill_name": "huawei-cloud-dcs-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "DCS ListInstances — instance list (read-only GET /v2/{project_id}/instances)",
+      "command": "hcloud DCS ListInstances --cli-region={region} --limit=10 --offset=0",
+      "expected": "JSON with instances[] + instance_num (an empty instances[] is a valid result)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "DCS ListInstances — server-side name filter",
+      "command": "hcloud DCS ListInstances --cli-region={region} --name=cache-demo --limit=10 --offset=0",
+      "expected": "matching instance or an empty instances[] array",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "DCS ListInstances — server-side status filter",
+      "command": "hcloud DCS ListInstances --cli-region={region} --status=RUNNING --limit=10 --offset=0",
+      "expected": "running instances or an empty instances[] array",
+      "type": "readonly",
+      "executor": "cli"
+    }
+  ],
+  "env_vars_required": ["HUAWEICLOUD_SDK_AK", "HUAWEICLOUD_SDK_SK"],
+  "notes": "只读操作（ListInstances，GET），无创建/修改/删除风险。上述 CLI 用例验证本 skill 包裹的同一 ListInstances 端点；脚本级输出模式（默认名称清单 / --table / --json / --md / --format md / --md-output）与全部错误分支由 tests/ 下的离线单测（mock hcloud）覆盖。"
+}

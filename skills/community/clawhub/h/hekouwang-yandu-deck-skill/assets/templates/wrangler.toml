@@ -1,0 +1,18 @@
+# 演读 DECK · Cloudflare Pages 配置（落地新项目时拷进 <项目根>/演读DECK/）
+# 首页/每期留言板用到 Pages Functions（functions/）+ D1 数据库（binding=DB）。
+#
+# 落地三步（照做即可，不做留言板可整份删掉本文件）：
+#   1. wrangler d1 create <你的库名>                     → 输出里拿 database_id
+#   2. 把 database_id 填回下面（name/database_name 也换成你自己的）
+#   3. wrangler d1 execute <你的库名> --remote --file=schema.sql   → 建表
+#
+# ⚠️ database_id 不是密钥，但它绑定的是「某个具体 CF 账号下的库」——
+#    别直接用别人的，否则你的站会往别人的库里写留言。
+name = "<your-pages-project>"          # CF Pages 项目名，也决定 <name>.pages.dev 子域
+pages_build_output_dir = "dist"
+compatibility_date = "2024-11-01"
+
+[[d1_databases]]
+binding = "DB"                         # 代码里按这个名字取（functions/api/comments.js 用 env.DB），别改
+database_name = "<your-d1-name>"
+database_id = "<your-d1-database-id>"  # ← wrangler d1 create 后填回

@@ -1,44 +1,55 @@
-## Description: <br>
-Query real-time and historical financial data across equities and crypto, including prices, market moves, metrics, and trends for analysis, alerts, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query real-time and historical financial data across equities and crypto--prices, market moves, metrics, and trends for analysis, alerts, and reporting.
 
-## Publisher: <br>
-[bowen-dotcom](https://clawhub.ai/user/bowen-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bowen-dotcom](https://clawhub.ai/user/bowen-dotcom)
 
-## Use Case: <br>
-External developers and analysts use this skill to query AIsa market data for equities and cryptocurrencies when building research, alerts, reporting, or portfolio-analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses AISA_API_KEY to send market queries to the AIsa API, and API usage may incur costs. <br>
-Mitigation: Use a dedicated or scoped API key when available, keep the key out of prompts and logs, and monitor API usage and credit consumption. <br>
-Risk: Submitted ticker, portfolio-like, or market-interest queries may be visible to the API provider. <br>
-Mitigation: Submit only intended market queries and avoid including unnecessary sensitive portfolio context. <br>
+## Use Case:
 
+External developers and agent builders use this skill to retrieve market data for equities and crypto, including prices, news, financial statements, analyst estimates, SEC filings, interest rates, and screeners.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bowen-dotcom/aisa-market-skill) <br>
-- [Skill documentation](SKILL.md) <br>
-- [README](README.md) <br>
-- [AIsa API Reference](https://docs.aisa.one/reference/) <br>
-- [OpenClaw homepage](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, Python client commands, and JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY; sends user-requested market queries to the AIsa API and may incur API costs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill sends the user's API key and requested tickers, date ranges, and screener filters to AIsa.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated AIsa API key, limit its credit exposure where possible, and avoid submitting sensitive portfolio or strategy details in queries.
+
+Risk: API calls may consume paid credits.
+
+Mitigation: Review commands before execution and monitor returned usage cost and credits remaining.
+
+## Reference(s):
+
+- [AIsa API Reference](https://docs.aisa.one/reference/)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub skill page](https://clawhub.ai/bowen-dotcom/skills/aisa-market-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and Python command examples, plus JSON responses from API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and network access to the AIsa API; API responses may include usage cost and credits remaining.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

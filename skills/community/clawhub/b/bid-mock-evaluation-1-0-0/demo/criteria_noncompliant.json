@@ -1,0 +1,52 @@
+[
+  {
+    "id": "C00",
+    "factor": "企业资质",
+    "score": 6.0,
+    "standard": "须提供 XX品牌 原厂授权书及售后承诺函，否则否决投标。具备电子与智能化一级资质得3分。",
+    "type": "objective",
+    "evidence_required": true,
+    "is_knockout": true,
+    "needs_review": false
+  },
+  {
+    "id": "C01",
+    "factor": "价格分",
+    "score": 20.0,
+    "standard": "价格分占总分20%，按基准价法计算。",
+    "type": "unknown",
+    "evidence_required": false,
+    "is_knockout": false,
+    "needs_review": true
+  },
+  {
+    "id": "C02",
+    "factor": "技术方案",
+    "score": 15.0,
+    "standard": "技术方案优者得满分，方案较好得中高分，无细化档位描述。",
+    "type": "objective",
+    "evidence_required": false,
+    "is_knockout": false,
+    "needs_review": false
+  },
+  {
+    "id": "C03",
+    "factor": "类似业绩",
+    "score": 10.0,
+    "standard": "近三年须具有单项合同金额≥5000万元的类似项目业绩，每提供1个得2分，最多10分。",
+    "type": "objective",
+    "evidence_required": true,
+    "is_knockout": false,
+    "needs_review": false
+  },
+  {
+    "id": "C04",
+    "factor": "本地服务",
+    "score": 9.0,
+    "standard": "在本地设有常驻服务网点得9分，须提供网点租赁合同，否则不得分。",
+    "type": "objective",
+    "evidence_required": true,
+    "is_knockout": true,
+    "needs_review": false
+  }
+]

@@ -1,42 +1,55 @@
-## Description: <br>
-Structural database health scanner that audits schema topology for orphaned tables, missing indexes, nullable foreign keys, circular dependencies, and related issues across PostgreSQL, MySQL, and SQLite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structural database health scanner that audits schema topology for orphaned tables, missing indexes, nullable foreign keys, circular dependencies, and related issues without reading row data.
 
-## Publisher: <br>
-[nlr-ai](https://clawhub.ai/user/nlr-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nlr-ai](https://clawhub.ai/user/nlr-ai)
 
-## Use Case: <br>
-Developers and database engineers use GraphCare to let an agent audit PostgreSQL, MySQL, or SQLite schema topology for structural issues and receive JSON health reports plus plain-language finding explanations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SQLite scans may load an entire local database file despite metadata-only claims. <br>
-Mitigation: Use least-privileged access and review before scanning SQLite databases with sensitive contents. <br>
-Risk: Database connection strings are supplied to the MCP server during scans. <br>
-Mitigation: Use credentials scoped to metadata inspection and avoid privileged production accounts. <br>
+## Use Case:
 
+Developers and database operators use GraphCare through an MCP-capable agent to audit PostgreSQL, MySQL, or SQLite schema topology for structural problems before they affect performance or integrity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nlr-ai/graphcare) <br>
-- [Project homepage from metadata](https://github.com/mind-protocol/graphcare) <br>
-- [Mind Protocol](https://mindprotocol.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Guidance] <br>
-**Output Format:** [JSON health reports and plain-language text explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include detected database type, table list, findings, metrics, severity, impact, and recommended fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, release metadata) <br>
+Risk: SQLite identifier handling flaws and vulnerable database dependencies may affect scan reliability or package safety.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation and prefer an updated release that fixes SQLite identifier handling and vulnerable dependencies.
+
+Risk: Using privileged credentials or untrusted database targets can increase exposure when running a scanner with database connectivity.
+
+Mitigation: Use read-only database credentials and avoid pointing the skill at untrusted MySQL servers or SQLite files.
+
+## Reference(s):
+
+- [GraphCare ClawHub skill page](https://clawhub.ai/nlr-ai/skills/graphcare)
+- [GraphCare homepage](https://github.com/mind-protocol/graphcare)
+- [Publisher profile](https://clawhub.ai/user/nlr-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [MCP tool responses containing JSON audit reports or plain-text finding explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audit reports include detected tables, findings, metrics, and a health score.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

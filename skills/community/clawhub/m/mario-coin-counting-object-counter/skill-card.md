@@ -1,41 +1,52 @@
-## Description: <br>
-Count occurrences of an object in the image using computer vision algorithm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Count occurrences of an object in the image using computer vision algorithm.
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lnj22](https://clawhub.ai/user/lnj22)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to run a local computer vision helper that counts how many times a provided template object appears in an input image.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The command-line interface advertises denoise and super_resolution tool choices that are not implemented.
+
+Mitigation: Use only --tool count unless the publisher updates the script.
+
+Risk: Object counts depend on image similarity, threshold selection, and deduplication distance.
+
+Mitigation: Tune threshold and dedup_min_dist for representative images and review count results before relying on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to count instances of a visual object in an image by running a local OpenCV template-matching script with an example object image. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Analysis, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: Template matching can produce inaccurate counts when the sample object differs from targets in scale, rotation, lighting, occlusion, or threshold sensitivity. <br>
-Mitigation: Use representative object images, tune threshold and dedup_min_dist, and manually review results when counts influence decisions. <br>
-Risk: The script reads local image files supplied by path. <br>
-Mitigation: Run it only on image files you intend to process, use a virtual environment, and install dependencies from trusted sources. <br>
+**Output Format:** [Markdown with inline bash command examples and plain-text count output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lnj22/mario-coin-counting-object-counter) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lnj22) <br>
+**Other Properties Related to Output:** [Runs local image processing on user-provided image files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown with bash command examples and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The count depends on the supplied input image, object image, threshold, and deduplication distance.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

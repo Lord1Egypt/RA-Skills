@@ -1,41 +1,55 @@
-## Description: <br>
-Skill Vetter Optimized helps agents review third-party skills before installation by checking source reputation, permissions, suspicious patterns, and overall risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Vetter Optimized helps agents and reviewers evaluate AI agent skills before installation by checking source trust, permission scope, red flags, and suspicious patterns.
 
-## Publisher: <br>
-[confidentkai](https://clawhub.ai/user/confidentkai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[confidentkai](https://clawhub.ai/user/confidentkai)
 
-## Use Case: <br>
-Developers and agent operators use this skill before installing unknown or third-party skills to perform structured source, code, permission, and risk reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A review aid can miss risky behavior or produce misleading comfort if its output is treated as a complete security guarantee. <br>
-Mitigation: Use it as an initial review aid, manually inspect flagged patterns, and complete a human security review before installing unknown skills. <br>
-Risk: Running the checker across broad private folders can expose more local filenames and metadata than intended. <br>
-Mitigation: Run the checker only against the specific skill directory intended for inspection. <br>
+## Use Case:
 
+Developers, security reviewers, and agent operators use this skill to vet skills from ClawHub, GitHub, or other sources before installation. It provides a structured review protocol, checklist, and helper script for triaging obvious risk signals.
 
-## Reference(s): <br>
-- [Systematic skill review checklist](references/checklist.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/confidentkai/skill-vetter-optimized) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review report with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script emits a local text summary of skill metadata, file counts, script files, and detected risk patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter, changelog, release evidence) <br>
+Risk: The helper script may be mistaken for a complete security scanner.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for quick triage and complete the documented full review before trusting a skill.
+
+Risk: The workflow is Chinese-oriented, which may reduce review accuracy for teams that cannot read the source language.
+
+Mitigation: Use qualified reviewers or translation support so all checklist items, findings, and verdicts are understood before installation.
+
+## Reference(s):
+
+- [Skill Review Checklist](references/checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/confidentkai/skills/skill-vetter-optimized)
+- [Publisher Profile](https://clawhub.ai/user/confidentkai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and checklist-style review output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a skill vetting report with source, author, version, red flags, permission needs, risk level, verdict, and notes.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

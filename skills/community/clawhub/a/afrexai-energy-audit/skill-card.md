@@ -1,42 +1,56 @@
-## Description: <br>
-Commercial building energy audit framework for AI agents that benchmarks consumption, identifies savings opportunities, and builds retrofit roadmaps with ROI analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Commercial building energy audit framework for AI agents that benchmarks energy use, identifies savings opportunities, and builds retrofit roadmaps with ROI analysis.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Facility, operations, and energy-management teams use this skill to assess commercial or industrial buildings, prioritize energy conservation measures, estimate financial returns, and plan phased retrofits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Utility bills and facility records may include account numbers, customer IDs, payment details, or unrelated contact information. <br>
-Mitigation: Provide summarized monthly utility data when possible; if bills are uploaded, redact account numbers, customer IDs, payment details, and unrelated contact information while keeping usage, demand, dates, rates, and costs. <br>
-Risk: Energy savings, incentives, payback, IRR, and lifecycle-cost estimates can be inaccurate when facility inputs, rates, or program data are incomplete or outdated. <br>
-Mitigation: Validate inputs and review recommendations, assumptions, incentive eligibility, and financial calculations before committing capital or operational changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1kalin/afrexai-energy-audit) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Facilities teams, energy managers, and consultants use this skill to assess commercial or industrial buildings, rank energy conservation measures, and prepare an ASHRAE Level II-style retrofit roadmap from utility and facility data.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown energy audit report with benchmarks, prioritized recommendations, financial analysis, and implementation roadmap] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided building, utility, operating, equipment, location, and budget details to produce an ASHRAE Level II-style assessment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Utility bills and facility details can contain account numbers, customer identifiers, contact details, and sensitive operational information.
+
+Mitigation: Provide summarized monthly usage and cost data where possible, and redact utility account numbers, customer IDs, contact details, and nonessential operational details before use.
+
+Risk: Energy savings, incentives, payback, IRR, and lifecycle-cost outputs depend on the accuracy and completeness of supplied facility and utility data.
+
+Mitigation: Have qualified facility, finance, or energy professionals review assumptions and recommendations before procurement, retrofit planning, or financial commitments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-energy-audit)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, analysis]
+
+**Output Format:** [Structured Markdown energy audit report with benchmark results, ranked recommendations, financial analysis, rebates, and an implementation roadmap.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided utility, building, operating, equipment, budget, and location details; produces no executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

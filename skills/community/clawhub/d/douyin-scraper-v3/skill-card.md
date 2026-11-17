@@ -1,43 +1,67 @@
-## Description: <br>
-爬取抖音爆款视频和文案数据，使用 Playwright 自动化浏览器操作，支持搜索关键词、获取热榜、提取视频信息和文案等功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+爬取抖音爆款视频和文案数据，使用 Playwright 自动化浏览器操作，支持搜索关键词、获取热榜、提取视频信息和文案等功能。
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External users and developers use this skill to search Douyin content, retrieve hot-list entries, and export video metadata and copywriting candidates for analysis or downstream content workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use logged-in browser sessions or cookie files for Douyin scraping, creating account, privacy, and platform-policy exposure. <br>
-Mitigation: Run only with explicit authorization, avoid cookie files or logged-in sessions unless required, store cookies as secrets, and remove them after use. <br>
-Risk: The scraper can make live browser requests to Douyin and save scraped results locally. <br>
-Mitigation: Use conservative limits and delays, confirm the activity complies with applicable laws and platform rules, and review saved JSON or CSV files before sharing. <br>
-Risk: When Playwright is unavailable, CAPTCHA appears, or extraction fails, the artifact may return mock data. <br>
-Mitigation: Check whether output is marked as simulated or mock data and verify important results against the live source before relying on them. <br>
+## Use Case:
 
+External developers and agents use this skill to search Douyin keywords, inspect hot-list categories, and summarize video metadata and copywriting signals for review. Use it only where platform rules, account privacy, and scraping permissions are understood.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/terrycarter1985/douyin-scraper-v3) <br>
-- [Playwright documentation](https://playwright.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands; scraper outputs can be printed text, JSON, or CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and hot-list commands accept keyword, category, limit, output path, and json/csv format options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence release.version) <br>
+Risk: The skill runs browser automation with network access and can write local result files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in an environment where outbound access and writable paths are acceptable.
+
+Risk: Cookie files or logged-in browser sessions can expose account and privacy data.
+
+Mitigation: Avoid passing cookies or using a logged-in session unless the operator has explicit authorization and understands the account risk.
+
+Risk: Natural-language requests may be transformed into shell commands.
+
+Mitigation: Invoke the scraper with structured arguments and validate or quote user-supplied keywords before execution.
+
+Risk: CAPTCHA, browser setup failures, or Douyin page changes may produce mock, stale, or incomplete output.
+
+Mitigation: Verify whether results came from live extraction before using them for decisions.
+
+Risk: Frequent scraping can conflict with platform rules or trigger IP and anti-abuse controls.
+
+Mitigation: Respect Douyin rules and applicable law, use request delays, and stop if rate limits or blocking appear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/douyin-scraper-v3)
+- [ClawHub publisher profile](https://clawhub.ai/user/terrycarter1985)
+- [Playwright documentation](https://playwright.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown summaries with shell commands and optional JSON or CSV output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return mock or incomplete data when live extraction is blocked by CAPTCHA, browser setup, or page changes.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

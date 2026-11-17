@@ -1,43 +1,59 @@
-## Description: <br>
-Deploys OpenClaw AI agents to AgentStead cloud hosting and helps create, configure, connect, start, stop, list, and subscribe hosted agents via the AgentStead API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy OpenClaw AI agents to AgentStead cloud hosting and manage them through AgentStead API workflows.
 
-## Publisher: <br>
-[angusmolt](https://clawhub.ai/user/angusmolt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[angusmolt](https://clawhub.ai/user/angusmolt)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create and manage AgentStead-hosted AI agents, configure personalities and model plans, connect messaging channels, and control running agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow handles AgentStead account credentials, saved auth tokens, and messaging bot tokens. <br>
-Mitigation: Prefer the interactive password prompt, avoid passing passwords as command-line arguments, use limited-scope bot tokens, and delete or revoke $HOME/.agentstead-token when it is no longer needed. <br>
-Risk: The skill can trigger billable hosted-agent and ASTD subscription actions. <br>
-Mitigation: Confirm the selected plan, subscription cost, wallet impact, and target agent ID before running create or subscribe commands. <br>
-Risk: The skill asks the agent to create and execute a local shell helper that sends API requests. <br>
-Mitigation: Review the helper before running it and keep network use limited to the intended AgentStead API endpoint. <br>
+## Use Case:
 
+Developers and operators use this skill to create, configure, start, stop, list, and connect AgentStead-hosted agents. It supports channel setup for Telegram, Discord, WhatsApp, and Slack, and includes subscription actions that can deduct funds from an ASTD wallet.
 
-## Reference(s): <br>
-- [AgentStead](https://agentstead.com) <br>
-- [Agentstead Deploy on ClawHub](https://clawhub.ai/angusmolt/agentstead-deploy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash commands and a shell helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API examples for AgentStead account login, agent lifecycle operations, channel setup, and subscription actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release metadata and openclaw.skill.json) <br>
+Risk: AgentStead credentials, auth tokens, and messaging bot tokens may be exposed if pasted into shell history, logs, or shared terminals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the hidden interactive login prompt, avoid placing secrets in shell commands or exported environment variables, store tokens with owner-only permissions, and rotate secrets after testing.
+
+Risk: Subscription commands can deduct ASTD wallet funds.
+
+Mitigation: Manually confirm agent IDs, plan costs, and user intent before running any subscription command.
+
+Risk: The skill executes shell commands and sends HTTPS requests to AgentStead while managing hosted agents and channels.
+
+Mitigation: Review the generated helper script before execution, use least-privilege bot tokens, and install only when real AgentStead or messaging-service credentials are appropriate for the environment.
+
+## Reference(s):
+
+- [Agentstead Deploy on ClawHub](https://clawhub.ai/angusmolt/skills/agentstead-deploy)
+- [AgentStead](https://agentstead.com)
+- [AgentStead Signup](https://agentstead.com/signup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and helper script code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may guide API calls that require AgentStead credentials, bot tokens, and explicit confirmation for wallet-deducting subscription actions.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release metadata and artifact/openclaw.skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

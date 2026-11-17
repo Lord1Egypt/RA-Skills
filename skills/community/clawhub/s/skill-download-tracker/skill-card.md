@@ -1,44 +1,60 @@
-## Description: <br>
-Monitor download counts for your ClawHub-published skills. Track changes over time with automated alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor download counts for your ClawHub-published skills, track changes over time, generate daily, weekly, and monthly reports, and push notifications via Feishu.
 
-## Publisher: <br>
-[tsag1](https://clawhub.ai/user/tsag1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsag1](https://clawhub.ai/user/tsag1)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to monitor ClawHub download counts, record local history, generate daily, weekly, and monthly summaries, and send configured Feishu notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu credentials stored in environment variables or the local .env file are sensitive. <br>
-Mitigation: Restrict access to the tracker data directory and avoid sharing the .env file. <br>
-Risk: Monitored skill slugs, notes, local reports, and Feishu messages can reveal private project names or usage patterns. <br>
-Mitigation: Monitor only slugs and notes that are appropriate to store locally and send to Feishu. <br>
-Risk: The skill executes local Python and shell scripts and calls the ClawHub CLI for each monitored slug. <br>
-Mitigation: Install only when download tracking is intended and review the configured skills.csv before scheduled execution. <br>
+## Use Case:
 
+External ClawHub publishers and developers use this skill to monitor skill download counts, maintain local history, generate trend reports, and optionally send Feishu notifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tsag1/skill-download-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/tsag1) <br>
-- [Feishu Open Platform](https://open.feishu.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text reports with shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local CSV history and report archives, prints summaries to stdout, and sends Feishu notifications when credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Feishu credentials may be exposed if stored in a broadly readable .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a tightly permissioned .env file containing only CLAWHUB_FEISHU_APP_ID, CLAWHUB_FEISHU_APP_SECRET, and CLAWHUB_FEISHU_USER_OPEN_ID.
+
+Risk: Scheduled runs can repeatedly execute the tracker and write local history.
+
+Mitigation: Review the launchd or cron configuration before enabling scheduled collection, and keep tracker data directory permissions limited to the intended user.
+
+Risk: The tracker runs clawhub inspect for every monitored slug and records local download history.
+
+Mitigation: Monitor only intended skill slugs and review the generated CSV, JSON, log, and report files under ~/.openclaw/workspace/data/clawhub-tracker.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tsag1/skills/skill-download-tracker)
+- [Publisher profile](https://clawhub.ai/user/tsag1)
+- [Feishu tenant access token endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu message endpoint](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text output and archived Markdown reports with optional Feishu text notifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local CSV/JSON state and report archives under ~/.openclaw/workspace/data/clawhub-tracker.]
+
+## Skill Version(s):
+
+1.584.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

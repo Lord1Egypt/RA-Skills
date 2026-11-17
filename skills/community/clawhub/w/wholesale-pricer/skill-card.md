@@ -1,45 +1,61 @@
-## Description: <br>
-Calculate optimal wholesale and tiered pricing structures that protect retail margins while incentivizing volume orders, accounting for MOQs, shipping breaks, payment terms, and MAP policy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate optimal wholesale and tiered pricing structures that protect retail margins while incentivizing volume orders, accounting for MOQs, shipping breaks, payment terms, and MAP policy.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External wholesale operators and sales teams use this skill to build wholesale price sheets, tier schedules, MAP policy drafts, payment terms, freight thresholds, and onboarding checklists for retail accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Templates may include sensitive wholesale payment or account fields, including ACH/routing placeholders and internal pricing notes. <br>
-Mitigation: Remove internal notes, avoid embedding live banking details in general price sheets, and collect business documents through secure onboarding or invoicing workflows. <br>
-Risk: Wholesale pricing, MAP, and payment terms can materially affect margin, retailer relationships, and compliance posture. <br>
-Mitigation: Review generated pricing, MAP language, and terms with the responsible commercial, finance, or legal owner before using them with retailers. <br>
+## Use Case:
 
+Employees and external business users use this skill to draft wholesale pricing schedules, MAP policy language, payment terms, first-order promotions, and onboarding checklists for retail partners.
 
-## Reference(s): <br>
-- [Wholesale Price Sheet Template](references/output-template.md) <br>
-- [Tier Math Worked Examples](references/tier-math.md) <br>
-- [Minimum Advertised Price Policy Template](references/map-policy-template.md) <br>
-- [Payment Terms Guide](references/payment-terms-guide.md) <br>
-- [Wholesale Account Onboarding Checklist](assets/wholesale-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leooooooow/wholesale-pricer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance, tables, checklists, and reusable policy or price-sheet templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include draft-sensitive wholesale terms, account details, and payment fields that require review before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Buyer-facing templates may include internal notes that expose floor prices, MDF budgets, commissions, or approval roles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove internal-notes sections and review exported PDFs before sending them to retailers.
+
+Risk: Payment templates may include bank or routing details that should not be shared without approval.
+
+Mitigation: Use only finance-approved payment details and distribution processes.
+
+Risk: Wholesale pricing and MAP drafts may not fit every product category, retailer, or legal environment.
+
+Mitigation: Validate pricing math, account terms, and MAP language with the appropriate business and legal reviewers before use.
+
+## Reference(s):
+
+- [Wholesale Price Sheet Template](references/output-template.md)
+- [Tier Math Worked Examples](references/tier-math.md)
+- [Minimum Advertised Price Policy Template](references/map-policy-template.md)
+- [Payment Terms Guide](references/payment-terms-guide.md)
+- [Wholesale Account Onboarding Checklist](assets/wholesale-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with tables, checklists, and buyer-facing templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review buyer-facing drafts before distribution, especially internal notes and payment details.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

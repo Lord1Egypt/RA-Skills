@@ -1,38 +1,51 @@
-## Description: <br>
-Improve relationships with communication tools, conflict resolution, and connection ideas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improve relationships with communication tools, conflict resolution, and connection ideas
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill to get relationship communication frameworks, conflict resolution guidance, date ideas, check-in prompts, and connection-building suggestions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may invite users to share sensitive personal relationship details. <br>
-Mitigation: Treat responses as relationship guidance rather than professional counseling, and avoid sharing highly sensitive details unless comfortable with the host platform's conversation processing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Relationship Skills on ClawHub](https://clawhub.ai/jhillin8/relationship-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/jhillin8) <br>
+## Use Case:
+
+External users can use this skill to ask an agent for relationship communication frameworks, conflict-resolution structure, date ideas, check-in prompts, and pattern reflection.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad relationship-adjacent triggers may cause users to disclose sensitive personal relationship details.
+
+Mitigation: Ask for only the minimum context needed and avoid sharing sensitive details unless they are necessary for the requested response.
+
+Risk: Relationship guidance may be mistaken for professional counseling or crisis support.
+
+Mitigation: Keep advice practical and non-clinical, and direct users to qualified professional or emergency support for safety, abuse, or mental health crises.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and plain text relationship guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no code execution, tools, or system access indicated by the security evidence.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown conversational guidance with structured prompts and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only responses; no code execution, shell commands, credential access, or persistence are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

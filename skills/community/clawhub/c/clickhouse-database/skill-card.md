@@ -1,40 +1,52 @@
-## Description: <br>
-Provides guidance for using clickhouse-client to connect to ClickHouse databases, run queries and data changes, inspect schemas, execute SQL files, and format results as JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent in using the clickhouse-client CLI to connect to ClickHouse databases, inspect schemas, run SELECT queries, perform data mutations, manage databases and tables, execute batch SQL, and format results as JSON.
 
-## Publisher: <br>
-[429668385](https://clawhub.ai/user/429668385) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[429668385](https://clawhub.ai/user/429668385)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, data engineers, and database operators use this skill to generate ClickHouse CLI commands and guidance for querying, schema inspection, import/export, troubleshooting, and controlled database administration.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill enables an agent to propose live database mutations, DDL, imports, exports, and multiquery scripts against ClickHouse.
+
+Mitigation: Use read-only, least-privilege credentials by default and require explicit approval before INSERT, UPDATE, DELETE, DDL, import, export, or --multiquery execution.
+
+Risk: Database passwords or connection secrets may be exposed through command arguments, process listings, shell history, or logs.
+
+Mitigation: Avoid passing passwords in command arguments; prefer protected environment variables or config files, restrict config permissions, and rotate credentials if process arguments may have been captured.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and database operators use this skill to operate ClickHouse through CLI commands for analytics queries, schema inspection, import and export tasks, and controlled database maintenance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose SQL commands that modify or delete database data. <br>
-Mitigation: Use read-only or least-privilege database roles by default and manually approve INSERT, ALTER UPDATE, ALTER DELETE, and multiquery or script execution. <br>
-Risk: Database commands can target the wrong host, database, or output path. <br>
-Mitigation: Verify the host, database, and connection settings before execution, and avoid exporting sensitive query results to shared temporary paths. <br>
+**Output Format:** [Markdown with inline bash, SQL, and XML code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/429668385/clickhouse-database) <br>
+**Other Properties Related to Output:** [May describe ClickHouse output formats such as TSV, CSV, JSON, and JSONEachRow.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash, SQL, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are command proposals and operational guidance; database results depend on the user's ClickHouse environment.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

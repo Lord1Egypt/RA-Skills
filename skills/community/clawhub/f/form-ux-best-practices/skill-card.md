@@ -1,40 +1,57 @@
-## Description: <br>
-Opinionated form UX and accessibility workflow for signup, checkout, settings, and lead-gen forms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Opinionated form UX and accessibility workflow for signup, checkout, settings, and lead-gen forms.
 
-## Publisher: <br>
-[nicolas-m-design](https://clawhub.ai/user/nicolas-m-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nicolas-m-design](https://clawhub.ai/user/nicolas-m-design)
 
-## Use Case: <br>
-Designers, product managers, developers, and accessibility reviewers use this skill to audit product forms, prioritize UX and accessibility issues, rewrite field copy and validation behavior, and produce implementation-ready form guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Form specs and HTML submitted for review may contain sensitive product, customer, billing, or contact data. <br>
-Mitigation: Only provide files and form content intended for review, and redact unnecessary personal, billing, customer, or proprietary details before running the skill. <br>
-Risk: The optional static HTML helper can miss runtime validation, focus management, mobile behavior, and framework-generated accessibility issues. <br>
-Mitigation: Use the helper as a first-pass check only, then manually verify form behavior, accessibility semantics, validation timing, and mobile ergonomics before shipping. <br>
+## Use Case:
 
+Product teams, designers, developers, and accessibility reviewers use this skill to audit form specs or implementations and produce prioritized UX, accessibility, validation, microcopy, and implementation-readiness guidance.
 
-## Reference(s): <br>
-- [Form UX Canon](artifact/references/canon.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with tables, checklists, optional HTML or React pseudo-code, and optional shell command for the static audit helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the bundled report template order: top issues, field-by-field rewrite, validation and error messaging spec, accessibility checklist, ship-ready checklist, and optional ready-to-ship snippet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The optional local static audit reads form HTML supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on form files intended for review, as recommended by the server security guidance.
+
+Risk: The optional API upload example sends a packaged skill using an API key.
+
+Mitigation: Use the upload command only in environments where sending the package to the OpenAI Skills API is intended and authorized.
+
+Risk: Form recommendations can affect checkout, signup, consent, or accessibility behavior.
+
+Mitigation: Review generated changes against product, legal, privacy, and accessibility requirements before shipping.
+
+## Reference(s):
+
+- [Form UX Canon](references/canon.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with optional semantic HTML or React pseudo-code and optional shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the bundled report template sections for top issues, field rewrites, validation behavior, accessibility checks, ship-ready checks, and optional snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

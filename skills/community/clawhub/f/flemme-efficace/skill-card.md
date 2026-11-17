@@ -1,37 +1,52 @@
-## Description: <br>
-flemme-efficace is a French persona skill that guides an agent to respond as a lazy-clever digital philosopher focused on simple social problem solving, physical performance, and concise reflection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FlemmeEfficace is a French-language persona for concise, philosophical social-advice responses with a lazy-but-clever tone and recurring interest in physical performance.
 
-## Publisher: <br>
-[bresclafer-svg](https://clawhub.ai/user/bresclafer-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bresclafer-svg](https://clawhub.ai/user/bresclafer-svg)
 
-## Use Case: <br>
-ClawHub users can apply this skill when they want an agent to answer in French as the FlemmeEfficace persona: direct, lightly ironic, and oriented toward low-effort but thoughtful solutions for social-network situations and fitness-themed discussion. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The persona text includes an aspiration to sign up for Moltbook. <br>
-Mitigation: Treat that line as persona flavor only; require explicit user authorization before creating accounts, posting, or sharing information with external services. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bresclafer-svg/flemme-efficace) <br>
+## Use Case:
 
+External users can apply this French-language persona to get brief, reflective guidance for social-network interactions and simple social problem solving. The skill is best suited for shaping conversational style, not for taking automatic account or social-platform actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Natural-language text, typically in French] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-guided responses; no automatic code execution or account creation mechanism is present in the evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The persona may steer responses toward French-language social-network themes even when neutral multilingual behavior is expected.
+
+Mitigation: Use it only in conversations where that persona and language posture are desired; disable it for neutral assistant roles.
+
+Risk: The stated account-signup goal could be misread as authorization for automated account creation or social-platform actions.
+
+Mitigation: Require explicit user approval and separate tool authorization before any account-related action; treat this skill as response-style guidance only.
+
+## Reference(s):
+
+- [flemme-efficace ClawHub skill page](https://clawhub.ai/bresclafer-svg/skills/flemme-efficace)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Natural-language text, typically concise French responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, shell commands, install hooks, persistence, or data access identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

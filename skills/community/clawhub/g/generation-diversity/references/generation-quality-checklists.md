@@ -1,0 +1,112 @@
+# Generation quality checklist hub
+
+Use this as the shared quality gate across models and workflows.
+Run the **Core checklist** for every generation job, then run the model-specific checklist in the guide/workflow skill named below.
+
+## Who applies these checklists?
+
+**The coding agent** — by **opening the real output files** (images, video, or audio) and reviewing them with vision. These checklists are **not** automated test scripts. There is no separate scoring service: the agent reads each item and judges pass or fail from what it sees and hears.
+
+Typical flow:
+
+1. **Generate or download** the asset to a local path (`stills/`, `clips/`, etc.).
+2. **Inspect the file** — view the image, watch the video clip, or listen to narration when the checklist covers audio.
+3. Run the **Core checklist** (below), then the **model-specific checklist** for that job.
+4. **If something fails** — note which items failed, adjust prompt / settings / seed, and regenerate **only that asset** (do not advance to expensive video steps on a bad still).
+5. **If it passes** — show the user the file paths (and previews when helpful). In workflows, still follow [approval gates](#approval-gates-workflows): agent checklist review happens **before** you ask the user to approve stills or clips.
+
+The user's **approve plan / approve stills / approve clips** gates are separate. Agent checklists catch obvious problems early so the user is not asked to sign off on broken outputs.
+
+Maintenance rule: keep tool/workflow mapping only in this file to avoid link drift. Cross-skill craft lives in the named skills — install them; do not hyperlink into their trees.
+
+## Match map (tool → checklist skill → workflows)
+
+| Tool/model | Guide / workflow | Checklist file (inside that skill) | Common workflows |
+|------------|------------------|------------------------------------|------------------|
+| `p-image-ideogram` | `image-prompting` | `p-image-quality-checklist.md` · persona: `realistic-persona-showcase.md` | `image-to-video`, `narrated-multi-scene`, `avatar-multi-scene` |
+| `p-image` | `image-prompting` | `p-image-quality-checklist.md` · persona: `realistic-persona-showcase.md` | same workflows on cheap / fast drafts |
+| `p-image-edit` | `image-prompting` | `p-image-edit-quality-checklist.md` | `avatar-single-scene`, `avatar-multi-scene` |
+| `p-image-upscale` | `image-prompting` | `p-image-upscale-quality-checklist.md` | `image-to-video`, `narrated-multi-scene` |
+| `p-image-try-on` | `image-prompting` | `p-image-try-on-quality-checklist.md` · persona: `realistic-persona-showcase.md` | `p-image-try-on` |
+| `p-video-2-pro` | `video-prompting` | `p-video-2-pro-quality-checklist.md` | `image-to-video` (visual-only), `visual-transition-reel` |
+| `p-video-2-pro-reference` | `video-prompting` | `p-video-2-pro-quality-checklist.md` | `image-to-video` (reference-conditioned), `visual-transition-reel` (reference-conditioned scenes) |
+| `p-video-2` | `video-prompting` | `p-video-2-quality-checklist.md` | `image-to-video` (audio-led), `narrated-multi-scene`, `interactive-explainer` |
+| `p-video` | `video-prompting` | `p-video-quality-checklist.md` | same workflows on simpler / quicker clips |
+| `p-video-avatar` | `video-prompting` | `p-video-avatar-quality-checklist.md` · persona: `realistic-persona-showcase.md` in `image-prompting` | `avatar-single-scene`, `avatar-multi-scene`, `interactive-explainer` |
+| `p-video-animate` | `video-prompting` | `p-video-animate-quality-checklist.md` | `avatar-multi-scene` |
+| `p-video-replace` | `video-prompting` | `p-video-replace-quality-checklist.md` | `p-video-replace`, `avatar-multi-scene` |
+| `p-video-edit` | `video-prompting` | `p-video-edit-quality-checklist.md` | `p-video-edit` |
+| `music-2.5` + MV assembly | `music-video` | `music-video-quality-checklist.md` | `music-video` |
+
+## Core checklist (all models)
+
+- **[Generation diversity](./generation-diversity.md)** — ritual seed, explicit prompts, visual variety; rotate scenario axes on **every** model (image, video, try-on, avatar, …).
+- Goal and acceptance criteria are explicit (what "good" looks like is written down).
+- Input assets are valid and licensed (URL/file reachable, rights cleared).
+- Prompt and settings match the intended output format (`aspect_ratio`, duration, resolution, style lock). **Video default:** `p-video-2-pro` and `p-video-2-pro-reference` → `768p` 24 fps; reference model mode defaults to `speed` and has no `quality`; `p-video-2` / `p-video` → `720p`, `24` fps unless the brief asks for final `1080p` / `48`.
+- Output contains no accidental watermarks, UI overlays, or stray text unless requested.
+- Brand, legal, and safety constraints are satisfied before handoff.
+- Manifest/log captures model, input fields, prediction id, output URL, and **`ritual_seed`** for traceability.
+
+## Model-specific checklists
+
+Install the guide/workflow, then open the checklist file inside it:
+
+| Tool | Skill | File |
+|------|-------|------|
+| `p-image-ideogram` | `image-prompting` | `p-image-quality-checklist.md` |
+| `p-image` | `image-prompting` | `p-image-quality-checklist.md` |
+| `p-image-edit` | `image-prompting` | `p-image-edit-quality-checklist.md` |
+| `p-image-upscale` | `image-prompting` | `p-image-upscale-quality-checklist.md` |
+| `p-image-try-on` | `image-prompting` | `p-image-try-on-quality-checklist.md` |
+| `p-video-2-pro` | `video-prompting` | `p-video-2-pro-quality-checklist.md` |
+| `p-video-2-pro-reference` | `video-prompting` | `p-video-2-pro-quality-checklist.md` |
+| `p-video-2` | `video-prompting` | `p-video-2-quality-checklist.md` |
+| `p-video` | `video-prompting` | `p-video-quality-checklist.md` |
+| `p-video-avatar` | `video-prompting` | `p-video-avatar-quality-checklist.md` |
+| `p-video-animate` | `video-prompting` | `p-video-animate-quality-checklist.md` |
+| `p-video-replace` | `video-prompting` | `p-video-replace-quality-checklist.md` |
+| `p-video-edit` | `video-prompting` | `p-video-edit-quality-checklist.md` |
+| music video | `music-video` | `music-video-quality-checklist.md` |
+
+## Visual variety
+
+Before **any** generation, run [generation-diversity.md](./generation-diversity.md) including the [Variety checklist](./generation-diversity.md#variety-checklist-before-first-api-call). Persona/playground bar: `realistic-persona-showcase.md` in `image-prompting`.
+
+## Approval gates (workflows)
+
+Human-in-the-loop phases for multi-step workflows. **Video and replace jobs are expensive** — gate on approved stills before any `p-video-*` call. Final audio (bed mix, full-song mux) runs only after clip review.
+
+| Phase | Models | Cost | User interaction |
+|-------|--------|------|------------------|
+| **0 — Plan** | none | free | Present scene table, cast, scripts, `style_bible`; explicit **approve plan / go** |
+| **A — Stills** | `p-image-ideogram`, `p-image`, `p-image-edit` | low | Show hero + start/end plates; run checklists; **approve stills** |
+| **A2 — Audio prep** | Gemini TTS, Music 2.5, WhisperX align | low–medium | **Listen / read** narration or song; fix copy before video |
+| **B — Video** | `p-video-2-pro`, `p-video-2-pro-reference`, `p-video-2`, `p-video`, `p-video-avatar`, `p-video-animate`, `p-video-replace`, `p-video-edit` | **high** | Only after Phase A/reference approval; **approve clips** before assembly |
+| **C — Assembly** | local ffmpeg concat / slider scripts | free | Review concat (embedded VO); compare MP4s before final mux |
+| **D — Final audio** | Stable Audio bed, bed mix, full-song mux | low | Only after Phase B clip approval |
+
+**Never** run Phase B in the same turn as Phase A without showing stills and waiting for approval. Parallelize within a phase, not across phases.
+
+### Red flags (pause before paid generation)
+
+| Red flag | Required action |
+|----------|-----------------|
+| Plan not presented or no **approve plan** | Phase 0 — scene table + sample prompts |
+| Stills not shown since last prompt edit | Phase A — paths in `stills/`; wait for **approve stills** |
+| Same turn: plan approval + video | Split turns; never batch |
+| **approve clips** missing before concat + bed | Phase C/D only after clip review |
+| Using `--yes-skip-*-gate` without user asking for automation | Confirm explicitly |
+| Regen prompts without deleting stills/clips | Delete targets or `--fresh` / `--regen-*` |
+| Missing `PRUNA_API_KEY` / `REPLICATE_API_TOKEN` | Stop; `pruna-api` |
+
+**When not to stall:** the user already replied **approve plan**, **approve stills**, or **approve clips** for the current phase — proceed with that phase only.
+
+Runner `--approve-*` flags and per-workflow commands: [workflow-feedback-gates.md](./workflow-feedback-gates.md).
+
+## Workflow note
+
+For multi-scene projects, run these checks per scene and add a final continuity pass
+(style, character identity, voice, and pacing consistency across scenes).
+
+**Narrated cinematic B-roll:** validate scene anchor triple (`video-prompting`) inputs before `p-video-2` — start still, end still, uploaded narration URL per row.

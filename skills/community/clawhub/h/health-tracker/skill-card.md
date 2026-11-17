@@ -1,40 +1,54 @@
-## Description: <br>
-Health Tracker helps users record weight, calculate calories, track exercise, set water intake reminders, and generate health reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Health Tracker helps users record weight, calculate calories, track exercise, set water reminders, and generate health reports.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-External users use this skill to manage personal fitness and wellness tracking through CLI-oriented workflows for weight, calories, exercise, hydration, and weekly reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install path relies on an npx ClawHub package source. <br>
-Mitigation: Install only from a trusted ClawHub package source and review the package source before use. <br>
-Risk: The skill discusses personal health data and an optional cloud-sync subscription. <br>
-Mitigation: Confirm where synced health records are stored and whether the storage meets the user's privacy and compliance requirements before enabling cloud sync. <br>
+## Use Case:
 
+External users use this skill to manage personal health tracking workflows, including weight logs, calorie calculations, exercise records, hydration reminders, and weekly reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/health-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is bundled; behavior is described through health-tracking command examples and user-facing guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The documented installer command uses a mutable latest tag.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or verify the clawhub installer version before installation.
+
+Risk: Weight, calorie, exercise, and cloud-sync data may include sensitive personal health information.
+
+Mitigation: Confirm where health data is stored or uploaded before entering personal data, especially when using cloud sync.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaising-openclaw1/skills/health-tracker)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

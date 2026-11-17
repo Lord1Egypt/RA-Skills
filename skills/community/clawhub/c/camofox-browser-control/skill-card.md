@@ -1,44 +1,58 @@
-## Description: <br>
-Control a standalone camofox-browser server over its REST API for tab creation, navigation, page snapshots, clicks, typing, key presses, scrolling, storage-state export, cookie import, and browser automation debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control a standalone camofox-browser server over its REST API, especially when a local or remote service is already running on port 9377. Use for opening tabs, navigating, snapshotting pages, clicking refs, typing into forms, pressing keys, scrolling, exporting storage state, importing cookies, or debugging browser automation against camofox-browser/Camoufox behavior.
 
-## Publisher: <br>
-[lotfinity](https://clawhub.ai/user/lotfinity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lotfinity](https://clawhub.ai/user/lotfinity)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to control an existing local or remote camofox-browser server through REST endpoints and a helper CLI. It supports browser workflows such as opening tabs, taking snapshots, interacting with page refs, navigating directly, and managing cookies or storage state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents broad control over logged-in browser sessions and session artifacts. <br>
-Mitigation: Use it only with trusted camofox-browser servers, supervise sensitive logged-in sessions, and isolate userId and session values per task. <br>
-Risk: API keys, cookies, and exported storage-state files can expose account access. <br>
-Mitigation: Treat CAMOFOX_API_KEY, imported cookies, and storage-state files as secrets; clear persisted browser state when finished. <br>
-Risk: Browser actions can affect live web accounts or submit unintended changes. <br>
-Mitigation: Use the snapshot-after-action workflow, prefer short verified steps, and require manual handling for MFA, CAPTCHA, and brittle authentication flows. <br>
+## Use Case:
 
+Developers and automation agents use this skill to operate a standalone camofox-browser server through REST endpoints for tab management, navigation, page snapshots, form input, session cookies, and storage state workflows.
 
-## Reference(s): <br>
-- [camofox-browser API cheatsheet](references/api-cheatsheet.md) <br>
-- [ClawHub release page](https://clawhub.ai/lotfinity/camofox-browser-control) <br>
-- [Publisher profile](https://clawhub.ai/user/lotfinity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, API calls, configuration] <br>
-**Output Format:** [Markdown with inline shell commands, JSON request examples, and Python helper usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include browser snapshots, REST responses, storage-state guidance, and CLI command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Browser-session cookies and storage_state exports can contain login credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat cookies and storage_state as credentials and use the skill only against a camofox-browser server you control.
+
+Risk: The evaluate endpoint can run scripts in an active browser page.
+
+Mitigation: Avoid /evaluate on sensitive authenticated pages unless explicitly necessary; keep expressions small and targeted.
+
+Risk: Browser automation can affect authenticated sessions or remote pages without enough scoping.
+
+Mitigation: Install and run the skill only for intentional high-trust browser automation and keep --base pointed at a known server.
+
+## Reference(s):
+
+- [camofox-browser API cheatsheet](references/api-cheatsheet.md)
+- [Camofox Browser Control on ClawHub](https://clawhub.ai/lotfinity/skills/camofox-browser-control)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown guidance with JSON request examples and Python helper commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces browser-control guidance and helper CLI/API calls; actions should be verified with fresh page snapshots.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

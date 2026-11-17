@@ -1,0 +1,11 @@
+# V1 依赖列表
+# 核心依赖
+requests>=2.31.0          # HTTP请求（F2模组检索下载）
+psutil>=5.9.0            # 系统检测（F3环境搭建）
+
+# Python 3.11+ 内置 tomllib，无需单独安装
+# tomllib (Python 3.11+ 标准库)  # TOML解析（F1/F3读取mods.toml）
+
+# 可选依赖（按需启用）
+# cfr-decompiler           # JAR反编译（F1 detailed模式）- 需Java运行时
+# Pillow>=10.0.0           # PNG图片校验（F5重打包）

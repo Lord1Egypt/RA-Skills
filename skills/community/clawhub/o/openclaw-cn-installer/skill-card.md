@@ -1,43 +1,61 @@
-## Description: <br>
-OpenClaw Chinese installation helper that checks the local environment, configures DeepSeek, Zhipu GLM, and Alibaba Qwen providers, and tests API connections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Chinese installation and configuration helper that checks the local environment, configures DeepSeek, Zhipu GLM, and DashScope/Qwen credentials, and tests model API connections.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and OpenClaw users, especially Chinese-language users, use this skill to check their local Node.js environment, configure supported domestic AI providers, and verify API connectivity before running OpenClaw. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script stores AI provider API keys in ~/.openclaw/.env on the local machine. <br>
-Mitigation: Use revocable API keys, restrict access to ~/.openclaw/.env, and rotate keys if the skill is removed or the local machine is no longer trusted. <br>
-Risk: Diagnostic scripts run locally and make outbound API calls to configured providers. <br>
-Mitigation: Install only from a trusted publisher, review commands before execution, and avoid sharing logs or screenshots that may include configuration or secret material. <br>
+## Use Case:
 
+Developers and OpenClaw users in Chinese-language environments use this skill to check local prerequisites, configure Chinese AI provider credentials, update OpenClaw model settings, and test API connectivity.
 
-## Reference(s): <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [DeepSeek Platform](https://platform.deepseek.com) <br>
-- [Zhipu AI Platform](https://open.bigmodel.cn) <br>
-- [Alibaba DashScope Console](https://dashscope.console.aliyun.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with command-line output and local configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [User-invoked scripts can create or update ~/.openclaw/.env and ~/.openclaw/config.json, then run outbound API connection checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter, package.json, server release evidence) <br>
+Risk: Provider API keys are stored locally in ~/.openclaw/.env.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict ~/.openclaw/.env permissions to the local user account and avoid sharing the file.
+
+Risk: The installation flow may use a mutable clawhub installer command.
+
+Mitigation: Prefer a pinned installer version when available and review the installed scripts before execution.
+
+Risk: Connection tests send requests to DeepSeek, Zhipu, or DashScope using configured API keys.
+
+Mitigation: Run tests only with intended provider accounts and monitor provider usage or billing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-cn-installer)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [DeepSeek platform](https://platform.deepseek.com)
+- [Zhipu AI platform](https://open.bigmodel.cn)
+- [DashScope console](https://dashscope.console.aliyun.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and Node.js script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include terminal status output, local OpenClaw configuration updates, and provider API connection results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

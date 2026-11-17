@@ -1,42 +1,54 @@
-## Description: <br>
-BlockBeats Skill covers over 1,500 information sources, including AI-driven insights, Hyperliquid on-chain data, and Polymarket market analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BlockBeats Skill covers over 1,500 information sources, including AI-driven insights, Hyperliquid on-chain data, and Polymarket market analytics. It also features robust keyword-based search functionality.
 
-## Publisher: <br>
-[blockbeatsofficial](https://clawhub.ai/user/blockbeatsofficial) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blockbeatsofficial](https://clawhub.ai/user/blockbeatsofficial)
 
-## Use Case: <br>
-External users and developers use this skill to query BlockBeats crypto news, article search, market summaries, on-chain signals, derivatives data, and macro market indicators through the BlockBeats Pro API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad news or market prompts could route generic requests to BlockBeats unintentionally. <br>
-Mitigation: Use explicit wording such as 'BlockBeats crypto news' or 'search BlockBeats for...' when invoking the skill. <br>
-Risk: The skill makes outbound BlockBeats API requests using a BlockBeats API key. <br>
-Mitigation: Install only if you trust BlockBeats, keep the API key scoped and protected, and monitor API usage or quota. <br>
+## Use Case:
 
+External users and agents use this skill to query BlockBeats crypto news, article search, RSS feeds, and read-only market data through the BlockBeats Pro API. It supports market overviews, capital-flow analysis, macro and derivatives summaries, keyword search, and category-specific news retrieval.
 
-## Reference(s): <br>
-- [BlockBeats Skill on ClawHub](https://clawhub.ai/blockbeatsofficial/blockbeats) <br>
-- [BlockBeats Pro API Base URL](https://api-pro.theblockbeats.info) <br>
-- [BlockBeats API Key Application](https://www.theblockbeats.info/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with optional curl commands and API response interpretation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and BLOCKBEATS_API_KEY; formats API responses into crypto news, search results, market data, and market-analysis guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: release evidence; artifact frontmatter reports 1.0.3) <br>
+Risk: The skill sends crypto/news queries and the user's BlockBeats API key to BlockBeats.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data sharing is acceptable, keep the API key scoped and protected, and explicitly confirm ambiguous requests before external calls.
+
+Risk: Market summaries and signals may be interpreted as investment advice.
+
+Mitigation: Treat generated market signals as informational, verify important data independently, and avoid relying on the skill for financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blockbeatsofficial/skills/blockbeats)
+- [BlockBeats Pro API base URL](https://api-pro.theblockbeats.info)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with inline shell command examples and API response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BLOCKBEATS_API_KEY and curl for API requests; generated market signals are informational rather than investment advice.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

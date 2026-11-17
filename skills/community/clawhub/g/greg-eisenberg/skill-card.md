@@ -1,43 +1,57 @@
-## Description: <br>
-Generates content ideas, business strategies, startup concepts, and practical AI-agent workflow guidance in the style of Greg Eisenberg and the Startup Ideas Podcast. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate content ideas, business strategies, startup concepts, Claude Code workflow guidance, and OpenClaw setup advice in the style of Greg Eisenberg's Startup Ideas Podcast.
 
-## Publisher: <br>
-[finnmackay](https://clawhub.ai/user/finnmackay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[finnmackay](https://clawhub.ai/user/finnmackay)
 
-## Use Case: <br>
-External users, founders, creators, and developers use this skill to brainstorm startup ideas, content strategies, monetization paths, market opportunities, and practical Claude Code or OpenClaw workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OpenClaw setup notes may encourage broad browser, messaging, or account access if followed without review. <br>
-Mitigation: Treat setup notes as examples, use dedicated accounts and least-privilege access, keep confirmation prompts enabled, and require human approval before posting content or sending messages. <br>
-Risk: Business and content ideation may produce overconfident recommendations or claims that are unsuitable for publication or investment decisions. <br>
-Mitigation: Review outputs for accuracy, attribution, compliance, and business fit before publishing content or acting on recommendations. <br>
+## Use Case:
 
+External users and developers can use this skill to brainstorm startup ideas, content strategies, market opportunities, monetization plans, Claude Code workflows, and OpenClaw-style AI automation setups.
 
-## Reference(s): <br>
-- [I Fixed OpenClaw So It Actually Works (Full Setup)](references/openclaw-setup.md) <br>
-- [CLAUDE CODE FULL COURSE 4 HOURS: Build & Sell (2026)](references/claude-code-course.md) <br>
-- [OpenClaw setup video](https://www.youtube.com/watch?v=fd4k16REDOU) <br>
-- [Claude Code course video](https://www.youtube.com/watch?v=QoQBzR1NIqI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown prose with structured lists and optional inline commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include startup idea frameworks, content strategy steps, monetization suggestions, and AI-agent setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: OpenClaw setup guidance may encourage high-impact automation involving browser sessions, messaging, email, persistent memory, or scheduled jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review automation plans manually, avoid relaying a main browser session, keep permission prompts enabled, use dedicated low-privilege agent accounts, and require human approval before posting, emailing, messaging, or changing persistent memory and scheduled jobs.
+
+Risk: The release was flagged suspicious by the authoritative security evidence despite being markdown-only.
+
+Mitigation: Install only when Greg Eisenberg-style startup and AI automation advice is specifically desired, and treat OpenClaw setup notes as ideas to review rather than commands to execute automatically.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/finnmackay/skills/greg-eisenberg)
+- [CLAUDE CODE FULL COURSE 4 HOURS: Build & Sell (2026)](https://www.youtube.com/watch?v=QoQBzR1NIqI)
+- [I Fixed OpenClaw So It Actually Works (Full Setup)](https://www.youtube.com/watch?v=fd4k16REDOU)
+- [Claude Code course notes](references/claude-code-course.md)
+- [OpenClaw setup notes](references/openclaw-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown or conversational text with structured recommendations and occasional configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include startup idea frameworks, content strategy outlines, product MVP plans, and AI automation setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

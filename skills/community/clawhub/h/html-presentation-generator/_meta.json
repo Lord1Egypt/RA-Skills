@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7d289fg9rr68tv3e36nb5ajh84d2w5",
-  "slug": "html-presentation-generator",
+  "id": 378623320145988,
   "version": "1.0.0",
-  "publishedAt": 1776560823654
+  "name": "html-presentation-generator",
+  "updated_at": 1773990453234,
+  "platform": "minimax"
 }

@@ -1,0 +1,6 @@
+{
+  "orders": [{"id": "D-3001", "items": [{"sku": "SET-MUG", "quantity": 1, "unit": "套"}, {"sku": "SINGLE-TEA", "quantity": 2}]}],
+  "kits": {"SET-MUG": [{"sku": "MUG-01", "quantity": 1, "unit": "只"}, {"sku": "LID-01", "quantity": 1}]},
+  "gifts": [{"qualifying_sku": "SET-MUG", "min_order_quantity": 1, "sku": "GIFT-BAG", "unit": "个"}],
+  "packaging_rules": []
+}

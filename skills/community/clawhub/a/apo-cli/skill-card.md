@@ -1,44 +1,67 @@
-## Description: <br>
-Search and order pharmacy products from apohealth.de via apo-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and order pharmacy products from apohealth.de via apo-cli, including medication search by name or PZN, product details, category browsing, and cart management.
 
-## Publisher: <br>
-[Lars147](https://clawhub.ai/user/Lars147) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lars147](https://clawhub.ai/user/lars147)
 
-## Use Case: <br>
-External users and agent operators use this skill to search apohealth.de pharmacy products by name or PZN, inspect product details, browse categories, and manage a shopping cart. The user remains responsible for checkout and any medication decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change a live apohealth.de shopping cart. <br>
-Mitigation: Review add, remove, and clear actions before execution; the user completes checkout separately in a browser. <br>
-Risk: Local apo_cookies.json and apo_cart.json files may contain private session or cart data. <br>
-Mitigation: Treat those files as private session data and avoid sharing them. <br>
-Risk: Product search and cart workflows may involve medication-related products. <br>
-Mitigation: Do not use the skill for medical advice; use it only for shopping workflow assistance. <br>
+## Use Case:
 
+External users and agents use this skill for deliberate apohealth.de shopping tasks: searching pharmacy products, reviewing prices and availability, browsing categories, and building a cart for the user to inspect and check out themselves.
 
-## Reference(s): <br>
-- [Apo Cli ClawHub release](https://clawhub.ai/Lars147/apo-cli) <br>
-- [Command Reference](references/commands.md) <br>
-- [apohealth.de](https://www.apohealth.de) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and clickable cart URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include apohealth.de cart URLs and summaries of cart, product, price, and availability information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata; pyproject.toml lists 0.1.0) <br>
+Risk: The skill can change a health-related shopping cart.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for deliberate apohealth.de shopping tasks, show prices to the user, and require user confirmation before cart clearing or other destructive cart changes.
+
+Risk: The skill may be mistaken for medical advice because it searches medication and pharmacy products.
+
+Mitigation: Keep responses limited to shopping, product lookup, pricing, availability, and cart management; do not use the skill for diagnosis, treatment recommendations, or general medical advice.
+
+Risk: Cart cookies and tokens may be written locally in plaintext.
+
+Mitigation: Use reviewed installations in appropriate environments and remove local apo_cookies.json and apo_cart.json files when the cart session should no longer persist.
+
+Risk: The README installation command references a mutable Git source.
+
+Mitigation: Prefer installing a pinned, reviewed revision for production or repeatable deployments.
+
+Risk: Checkout should remain user-controlled.
+
+Mitigation: Build the cart only, provide the apohealth.de cart URL for review, and leave final checkout and purchase completion to the user.
+
+## Reference(s):
+
+- [Apo Cli Skill Page](https://clawhub.ai/lars147/skills/apo-cli)
+- [apohealth.de](https://www.apohealth.de)
+- [Full Command Reference](references/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with command examples, product/cart summaries, and apohealth.de cart URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The agent should show prices, request confirmation before destructive cart actions, and hand checkout to the user with a cart URL.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

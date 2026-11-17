@@ -1,38 +1,53 @@
-## Description: <br>
-Structured work tracking methodology using Plans for creating, managing, reviewing, or delegating significant work across plan lifecycle, folder conventions, approval authority, cross-agent delegation, and task tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured work tracking methodology for creating, managing, reviewing, and delegating significant work plans across individual or multi-agent workflows.
 
-## Publisher: <br>
-[cramtek](https://clawhub.ai/user/cramtek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cramtek](https://clawhub.ai/user/cramtek)
 
-## Use Case: <br>
-Developers, operators, and agent teams use this skill to create concise plan folders, proposal/design/tasks documents, and delegation links for significant multi-step work that needs coordination, approval, or progress tracking. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local plan files may include project details, task context, or other sensitive planning information. <br>
-Mitigation: Avoid placing secrets, credentials, or highly sensitive private data in plan documents, and review stored plans before sharing or publishing a workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cramtek/plans-methodology) <br>
-- [Publisher profile](https://clawhub.ai/user/cramtek) <br>
+## Use Case:
 
+Developers, leads, and agent teams use this skill to create and maintain plan folders, proposal/design/tasks documents, approval states, and delegation links for significant multi-step work.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with plan folder conventions and document templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local plan structure guidance and concise proposal, design, and task templates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Stored plan files can carry stale or incorrect work state across sessions.
+
+Mitigation: Review active and draft plan contents periodically before continuing work from saved state.
+
+Risk: Plan proposals, task lists, or delegation records may encode unapproved decisions or misleading guidance.
+
+Mitigation: Require the documented approval chain to review plan proposals and task ownership before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cramtek/skills/plans-methodology)
+- [Publisher profile](https://clawhub.ai/user/cramtek)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown planning templates and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workspace folder conventions, plan lifecycle states, approval guidance, and delegation patterns; no code execution or external service access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

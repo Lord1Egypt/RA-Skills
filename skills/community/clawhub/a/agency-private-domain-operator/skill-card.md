@@ -1,43 +1,54 @@
-## Description: <br>
-Expert AI agent specializing in private domain operator. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent for WeCom private-domain operations and user lifecycle management.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Marketing and operations teams use this agent for WeCom private-domain operations planning, including SCRM setup, segmented communities, Mini Program commerce integration, lifecycle management, and conversion workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Guidance may affect outbound messages, purchases, group membership changes, or customer-data processing if connected to real WeCom, SCRM, Mini Program, payment, or messaging systems. <br>
-Mitigation: Require human approval before taking operational actions and verify compliance with platform rules and privacy law. <br>
-Risk: Lifecycle and conversion recommendations may involve regulated or sensitive customer communications. <br>
-Mitigation: Review content for the applicable industry and obtain explicit consent before processing personal data or contacting users. <br>
+## Use Case:
 
+Marketing, commerce, and operations teams use this agent to plan WeCom private-domain programs, SCRM configuration, community operations, Mini Program commerce flows, user lifecycle management, and conversion funnel optimization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-private-domain-operator) <br>
-- [AGENTS.md](artifact/AGENTS.md) <br>
-- [IDENTITY.md](artifact/IDENTITY.md) <br>
-- [SOUL.md](artifact/SOUL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML, Python, and SQL examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill with no install steps, code execution, credential requests, or hidden data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Private-domain marketing workflows can involve privacy-sensitive customer identifiers, tags, messaging, and analytics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm clear user notice, explicit consent or another lawful basis, retention limits, and role-based access controls before installation and use.
+
+Risk: WeCom outreach, mass messaging, and regulated-industry content can create compliance or user-experience risk if applied without review.
+
+Mitigation: Follow platform rules, limit unsolicited outreach, avoid contacting users who opt out, and require compliance review for sensitive industries such as finance, healthcare, and education.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-private-domain-operator)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhouqkt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with YAML, Python, and SQL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory operating plans and configuration examples; it does not require binaries or execute tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>可评论的 Canvas 图 · 参考页</title>
+<style>
+  :root { color-scheme: light dark; --bg:#fff; --fg:#111827; --muted:#6b7280;
+          --line:#d1d5db; --node:#dbeafe; --node-line:#1d4ed8; --hot:#f59e0b; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0b1020; --fg:#e5e7eb; --muted:#9ca3af; --line:#374151;
+            --node:#1e3a5f; --node-line:#60a5fa; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  header { padding:16px; border-bottom:1px solid var(--line); }
+  h1 { margin:0 0 4px; font-size:17px; }
+  p  { margin:0; color:var(--muted); font-size:13px; }
+  .bar { display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:12px 16px; border-bottom:1px solid var(--line); }
+  button { font:inherit; padding:6px 12px; border:1px solid var(--line); border-radius:999px;
+           background:transparent; color:inherit; cursor:pointer; }
+  button[aria-pressed="true"] { background:var(--node); border-color:var(--node-line); }
+  #wrap { padding:16px; }
+  /* The canvas is ONE element. Nothing inside it has a DOM node of its own —
+     which is exactly why comments need declared anchors rather than selectors. */
+  canvas { width:100%; max-width:100%; height:auto; display:block; cursor:grab;
+           border:1px solid var(--line); border-radius:8px; touch-action:none; }
+  canvas.dragging { cursor:grabbing; }
+  #hint { padding:0 16px 20px; color:var(--muted); font-size:12px; }
+  code { background:color-mix(in srgb, currentColor 10%, transparent); padding:1px 4px; border-radius:4px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>可评论的 Canvas 图</h1>
+  <p>一个 <code>&lt;canvas&gt;</code>，没有 per-node DOM。评论靠页面自己声明锚点。</p>
+</header>
+
+<div class="bar">
+  <button id="toggle" aria-pressed="false">展开明细</button>
+  <button id="reset">重置视图</button>
+  <span id="status" style="color:var(--muted);font-size:12px"></span>
+</div>
+
+<div id="wrap"><canvas id="graph" width="900" height="380"></canvas></div>
+
+<p id="hint">
+  拖动空白处平移。评论：在 ShareOne 侧栏切到「选择区域」，点节点或框选一片。
+</p>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------------------------------------------------------------------------
+  // The graph. Each node has an id the app owns: stable across redraws, unique
+  // within the page, named after the thing rather than its render order.
+  // ---------------------------------------------------------------------------
+  var NODES = [
+    { id: "cap:委外",        label: "委外资本化额", detail: false, x:  40, y:  40, w: 200, h: 64 },
+    { id: "cap:待坐实",      label: "待坐实金额",   detail: false, x: 300, y:  40, w: 200, h: 64 },
+    { id: "type:供应商",     label: "供应商",       detail: false, x: 560, y:  40, w: 200, h: 64 },
+    { id: "row:供应商/01",   label: "供应商 01",    detail: true,  x: 560, y: 130, w: 200, h: 44 },
+    { id: "row:供应商/02",   label: "供应商 02",    detail: true,  x: 560, y: 186, w: 200, h: 44 },
+    { id: "row:供应商/03",   label: "供应商 03",    detail: true,  x: 560, y: 242, w: 200, h: 44 },
+    { id: "type:合同",       label: "委外合同",     detail: false, x:  40, y: 130, w: 200, h: 64 },
+    { id: "row:合同/W-007",  label: "合同 W-007",   detail: true,  x:  40, y: 220, w: 200, h: 44 },
+    { id: "row:合同/W-008",  label: "合同 W-008",   detail: true,  x:  40, y: 276, w: 200, h: 44 }
+  ];
+
+  var byId = {};
+  NODES.forEach(function (n) { byId[n.id] = n; });
+
+  var view = { detail: false, dx: 0, dy: 0 };
+  var canvas = document.getElementById("graph");
+  var ctx = canvas.getContext("2d");
+
+  function shown() {
+    return NODES.filter(function (n) { return view.detail || !n.detail; });
+  }
+
+  // Screen rect of a node, in the coordinates ShareOne expects: the frame's
+  // viewport, the same space as getBoundingClientRect().
+  function rectOf(n) {
+    var b = canvas.getBoundingClientRect();
+    var k = b.width / canvas.width;   // the canvas is CSS-scaled to fit
+    return {
+      x: b.left + (n.x + view.dx) * k,
+      y: b.top  + (n.y + view.dy) * k,
+      width:  n.w * k,
+      height: n.h * k
+    };
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.lineWidth = 1.5;
+    ctx.font = "16px system-ui, -apple-system, 'Segoe UI', sans-serif";
+    ctx.textBaseline = "middle";
+    var css = getComputedStyle(document.documentElement);
+    shown().forEach(function (n) {
+      var x = n.x + view.dx, y = n.y + view.dy;
+      ctx.fillStyle = css.getPropertyValue("--node").trim() || "#dbeafe";
+      ctx.strokeStyle = css.getPropertyValue("--node-line").trim() || "#1d4ed8";
+      ctx.beginPath();
+      ctx.roundRect ? ctx.roundRect(x, y, n.w, n.h, 8) : ctx.rect(x, y, n.w, n.h);
+      ctx.fill(); ctx.stroke();
+      ctx.fillStyle = css.getPropertyValue("--fg").trim() || "#111827";
+      ctx.fillText(n.label, x + 14, y + n.h / 2);
+    });
+    document.getElementById("status").textContent =
+      shown().length + " / " + NODES.length + " 个节点";
+    report();                          // every redraw re-reports positions
+  }
+
+  function nodeAt(clientX, clientY) {
+    var hit = null;
+    shown().forEach(function (n) {
+      var r = rectOf(n);
+      if (clientX >= r.x && clientX <= r.x + r.width &&
+          clientY >= r.y && clientY <= r.y + r.height) hit = n;
+    });
+    return hit;
+  }
+
+  // ---------------------------------------------------------------------------
+  // ShareOne anchors. Absent when comments are off, or when this file is opened
+  // directly — so every use is behind the same check and the page works alone.
+  // ---------------------------------------------------------------------------
+  function anchors() {
+    return (window.__SHAREONE__ && window.__SHAREONE__.anchors) || null;
+  }
+
+  function report() {
+    var A = anchors();
+    if (!A) return;
+    var visible = {};
+    shown().forEach(function (n) { visible[n.id] = true; });
+    // One entry per anchor, saying exactly one of three things. "hidden" means
+    // this view does not draw it — the reader can change that, and ShareOne will
+    // ask us to. Never report "missing" for it: that says the content is gone.
+    A.report(NODES.map(function (n) {
+      if (!visible[n.id]) return { id: n.id, state: "hidden" };
+      var r = rectOf(n);
+      return { id: n.id, state: "visible", rect: r };
+    }));
+  }
+
+  function installAnchors() {
+    var A = anchors();
+    if (!A) return false;
+
+    // Asked when ShareOne learns which anchors it has comments for, which can
+    // happen after the first draw.
+    A.on("resync", function () { report(); return true; });
+
+    // Asked when a reader focuses a comment whose anchor we are not drawing.
+    // Switch to whatever view shows it, then report again.
+    A.on("reveal", function (ids) {
+      var needsDetail = ids.some(function (id) { return byId[id] && byId[id].detail; });
+      if (needsDetail && !view.detail) setDetail(true);
+      else draw();
+    });
+
+    // A dragged region: answer with the ids inside it. Returning {id, label}
+    // rather than a bare id is what lets the comment read "合同 W-007、合同 W-008"
+    // instead of "2 items" — ShareOne will not invent wording for us.
+    A.on("hittest", function (r) {
+      return shown().filter(function (n) {
+        var b = rectOf(n);
+        return b.x < r.x + r.width && b.x + b.width > r.x &&
+               b.y < r.y + r.height && b.y + b.height > r.y;
+      }).map(function (n) { return { id: n.id, label: n.label }; });
+    });
+
+    report();
+    return true;
+  }
+
+  // The comment bridge and this page are injected independently, so wait for it
+  // rather than assuming an order. Give up quietly: no comments is a valid state.
+  (function waitForBridge(tries) {
+    if (installAnchors() || tries > 60) return;
+    setTimeout(function () { waitForBridge(tries + 1); }, 100);
+  })(0);
+
+  // ---------------------------------------------------------------------------
+  // Interaction. A press that barely moves is a click, not a drag — deciding
+  // that on pointerdown is what makes a whole page unclickable.
+  // ---------------------------------------------------------------------------
+  var DRAG_SLOP = 4;
+  var drag = null;
+
+  canvas.addEventListener("pointerdown", function (e) {
+    if (e.button !== 0) return;
+    drag = { x: e.clientX, y: e.clientY, ox: view.dx, oy: view.dy, id: e.pointerId, moved: false };
+  });
+
+  canvas.addEventListener("pointermove", function (e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (!drag.moved) {
+      if (Math.hypot(dx, dy) < DRAG_SLOP) return;
+      drag.moved = true;
+      canvas.classList.add("dragging");
+      // Capture is an improvement on the gesture, not a precondition for it:
+      // if it fails the pan simply stops at the boundary, so it must not throw
+      // out of this handler and abandon the frame.
+      try { canvas.setPointerCapture(e.pointerId); drag.captured = true; } catch (err) {}
+    }
+    var b = canvas.getBoundingClientRect();
+    var k = canvas.width / b.width;
+    view.dx = drag.ox + dx * k;
+    view.dy = drag.oy + dy * k;
+    draw();
+  });
+
+  canvas.addEventListener("pointerup", function (e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    var wasDrag = drag.moved, captured = drag.captured;
+    drag = null;
+    canvas.classList.remove("dragging");
+    if (captured) { try { canvas.releasePointerCapture(e.pointerId); } catch (err) {} }
+    if (wasDrag) return;                       // a pan is not a pick
+
+    var n = nodeAt(e.clientX, e.clientY);
+    if (!n) return;
+    var A = anchors();
+    // Tell ShareOne what the user picked. The rect only places the composer and
+    // is never stored; the anchor itself is the identity.
+    if (A) A.select({ id: n.id, label: n.label }, rectOf(n));
+  });
+
+  canvas.addEventListener("pointercancel", function () {
+    drag = null;
+    canvas.classList.remove("dragging");
+  });
+
+  function setDetail(on) {
+    view.detail = on;
+    document.getElementById("toggle").setAttribute("aria-pressed", String(on));
+    document.getElementById("toggle").textContent = on ? "收起明细" : "展开明细";
+    draw();
+  }
+
+  document.getElementById("toggle").addEventListener("click", function () { setDetail(!view.detail); });
+  document.getElementById("reset").addEventListener("click", function () {
+    view.dx = 0; view.dy = 0; draw();
+  });
+
+  // Positions are in viewport space, so anything that moves the canvas changes
+  // them. Report on those too, or marks drift away from their nodes.
+  addEventListener("resize", draw);
+  addEventListener("scroll", report, { passive: true });
+
+  draw();
+})();
+</script>
+</body>
+</html>

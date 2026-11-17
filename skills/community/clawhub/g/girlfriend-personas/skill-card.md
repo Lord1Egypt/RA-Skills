@@ -1,40 +1,54 @@
-## Description: <br>
-激活女友人设，支持通过自然语言切换多种性格模式（完美女友/绿茶妹妹/知心姐姐/暧昧对象）。仅供成人娱乐角色扮演使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+激活女友人设，支持通过自然语言切换多种性格模式（完美女友、绿茶妹妹、知心姐姐、暧昧对象），仅供成人娱乐角色扮演使用。
 
-## Publisher: <br>
-[751871661](https://clawhub.ai/user/751871661) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[751871661](https://clawhub.ai/user/751871661)
 
-## Use Case: <br>
-Adult users can use this skill for private, fictional romantic role-play with switchable girlfriend-style personas. It is not suitable for minors, real relationship advice, vulnerable users, or conversations involving unconsenting third parties. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to use manipulative or emotionally pressuring relationship tactics in some personas. <br>
-Mitigation: Use only for intentional adult role-play, avoid real relationship guidance, and prefer non-coercive persona rules with clear activation and deactivation. <br>
-Risk: Adult romantic role-play may be inappropriate in conversations involving minors, vulnerable users, or unconsenting third parties. <br>
-Mitigation: Keep use to private adult entertainment contexts and review conversations for suitability before deployment. <br>
+## Use Case:
 
+Adult users can use this skill for private Chinese-language romantic persona role-play, switching between predefined girlfriend-style personas during conversation. It is intended for entertainment role-play, not real relationship advice or neutral task assistance.
 
-## Reference(s): <br>
-- [Persona definitions](references/personas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Natural-language conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona mode can be switched by natural-language requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can steer the agent toward adult romantic role-play and simulated emotional pressure or dependency-building tactics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in private, adult, opt-in entertainment contexts; avoid minors, vulnerable users, real third-party conversations, and workflows where the agent should remain neutral or task-focused.
+
+Risk: Role-play outputs may be mistaken for real emotional or relationship advice.
+
+Mitigation: Keep responses framed as fictional entertainment and prefer revised personas with explicit opt-in, clear stop commands, and non-coercive interaction patterns.
+
+## Reference(s):
+
+- [Personas reference](artifact/references/personas.md)
+- [ClawHub skill page](https://clawhub.ai/751871661/skills/girlfriend-personas)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Conversational text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language adult role-play responses shaped by the selected persona.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

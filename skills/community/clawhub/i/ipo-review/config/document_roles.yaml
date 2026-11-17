@@ -1,0 +1,25 @@
+roles:
+  prospectus:
+    name: 招股说明书
+    priority: 2
+    keywords: [招股说明书, 招股书]
+  financial_statements:
+    name: 审计报告及财务报表
+    priority: 1
+    keywords: [审计报告, 财务报表]
+  notes:
+    name: 财务报表附注
+    priority: 1
+    keywords: [附注, 财务报表附注]
+  inquiry_round_1:
+    name: 第一轮问询回复
+    priority: 4
+    keywords: [第一轮, 首轮, 一轮, 问询回复]
+  inquiry_round_2:
+    name: 第二轮问询回复
+    priority: 3
+    keywords: [第二轮, 二轮, 问询回复]
+  other:
+    name: 其他文件
+    priority: 9
+    keywords: []

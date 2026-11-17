@@ -1,39 +1,55 @@
-## Description: <br>
-Automated context health management for OpenClaw. Monitors token usage, snapshots memory, and resets sessions to maintain performance. Authored by Sophie. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated context health management for OpenClaw. Monitors token usage, snapshots memory, and resets sessions to maintain performance. Authored by Sophie.
 
-## Publisher: <br>
-[zAyresz](https://clawhub.ai/user/zAyresz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zayresz](https://clawhub.ai/user/zayresz)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to monitor context health, archive session summaries, update long-term memory, and reset local OpenClaw session state when maintenance is needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can delete main OpenClaw session files and restart the gateway without enforcing its stated token threshold. <br>
-Mitigation: Use it only when local session cleanup is intended, and add an enforced threshold plus manual approval before scheduling or using reset behavior. <br>
-Risk: The skill can rewrite OpenClaw memory and archive session summaries. <br>
-Mitigation: Review generated summaries, keep backups, and define a retention policy for archived context data before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sophie Optimizer on ClawHub](https://clawhub.ai/zAyresz/sophie-optimizer) <br>
+## Use Case:
+
+Developers and OpenClaw operators use this skill to archive session state, update long-term memory, and reset the main OpenClaw session when context health needs maintenance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can delete main OpenClaw session files and restart the OpenClaw gateway service.
+
+Mitigation: Require explicit operator confirmation before reset actions and restrict deletion to the intended session directory.
+
+Risk: The skill can rewrite persistent OpenClaw memory with provided summaries.
+
+Mitigation: Review and sanitize summaries before writing them to MEMORY.md.
+
+Risk: The documented token threshold is a safety control, but the executable behavior should be checked before unattended use.
+
+Mitigation: Enforce the documented threshold before archiving or resetting, and avoid cron or heartbeat scheduling until that control is confirmed.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local JSON archives and MEMORY.md updates when the artifact scripts are run.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Terminal status text, JSON archive files, Markdown memory updates, and shell-driven reset actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can run manually or from a scheduler and can optionally trigger a hard session reset.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

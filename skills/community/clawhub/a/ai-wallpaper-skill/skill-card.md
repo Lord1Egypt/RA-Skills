@@ -1,42 +1,59 @@
-## Description: <br>
-Generates an AI image from a user prompt and sets it as the desktop wallpaper on Windows or macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates an AI image from a user prompt, saves it locally, and sets it as the desktop wallpaper on Windows or macOS.
 
-## Publisher: <br>
-[liyulingyue](https://clawhub.ai/user/liyulingyue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liyulingyue](https://clawhub.ai/user/liyulingyue)
 
-## Use Case: <br>
-External users and developers use this skill to generate a custom desktop wallpaper from a prompt, save the image locally, and apply it to Windows or macOS desktops. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallpaper prompts are sent to Baidu AIStudio using the user's access token. <br>
-Mitigation: Use a limited-purpose token and avoid sensitive prompt content. <br>
-Risk: The skill can replace the current desktop wallpaper on supported systems. <br>
-Mitigation: Ask the agent to preview or confirm before applying the generated image when preserving the current wallpaper matters. <br>
+## Use Case:
 
+Developers and end users use this skill to generate desktop wallpaper from a natural-language prompt and apply it automatically on Windows or macOS. It is intended for local desktop customization workflows that can provide a Baidu AIStudio access token.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liyulingyue/ai-wallpaper-skill) <br>
-- [Baidu AIStudio access token](https://aistudio.baidu.com/account/accessToken) <br>
-- [Baidu AIStudio OpenAI-compatible endpoint](https://aistudio.baidu.com/llm/lmapi/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Text feedback with generated PNG file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves the generated wallpaper as assets/wallpaper.png and may replace the current desktop wallpaper after execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: API tokens may be exposed when passed on the command line or sent to an untrusted configured endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use BAIDU_API_KEY from a protected environment, keep the endpoint trusted, and review any --base_url override before execution.
+
+Risk: The skill changes the user's desktop wallpaper and stores the generated image locally.
+
+Mitigation: Run it only after explicit user intent, confirm Windows or macOS support, and inspect or manage assets/wallpaper.png according to local retention needs.
+
+Risk: The Python dependency is declared as openai>=1.0.0, which allows future package versions.
+
+Mitigation: Pin and review dependencies in controlled environments before installation or automated use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liyulingyue/skills/ai-wallpaper-skill)
+- [Baidu AIStudio AccessToken console](https://aistudio.baidu.com/account/accessToken)
+- [Baidu AIStudio OpenAI-compatible endpoint](https://aistudio.baidu.com/llm/lmapi/v3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and a local PNG image output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes assets/wallpaper.png and may change the current desktop wallpaper on supported platforms.]
+
+## Skill Version(s):
+
+1.0.3 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

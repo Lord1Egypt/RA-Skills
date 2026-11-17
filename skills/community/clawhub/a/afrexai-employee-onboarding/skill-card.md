@@ -1,40 +1,57 @@
-## Description: <br>
-Generates structured 90-day employee onboarding plans with checklists, timelines, milestone metrics, buddy programs, manager playbooks, and compliance tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates role-specific 90-day employee onboarding plans with pre-boarding checklists, Day 1 agendas, weekly milestones, manager playbooks, buddy programs, and success metrics.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-HR teams, managers, and operations leads use this skill to draft onboarding packages for new hires across remote, hybrid, or in-office roles. It turns role, team, industry, and tool inputs into pre-boarding tasks, first-week schedules, 30/60/90-day milestones, communications, and tracking templates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Onboarding prompts or drafts may include sensitive employee, tax, background-check, or internal access details. <br>
-Mitigation: Use anonymized or role-level inputs unless the agent environment is approved for that HR data, and keep personal or access information in approved HR and IT systems. <br>
-Risk: Generated compliance, training, and policy timelines may not match a specific employer, jurisdiction, or regulated industry. <br>
-Mitigation: Have HR, legal, IT, and security owners review the generated plan before using it as an operational checklist. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/1kalin/afrexai-employee-onboarding) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+HR teams, people managers, and operations teams use this skill to generate structured onboarding packages for new hires across pre-boarding, Day 1, Week 1, and 30/60/90-day milestones.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Structured Markdown with checklists, tables, workflow outlines, tracking templates, and email sequences] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tailored from role title, department, team structure, work arrangement, industry, and tool requirements.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated onboarding content may not match company policy, local employment rules, or role-specific compliance obligations.
+
+Mitigation: Have HR, legal, or compliance owners review generated plans before using them with employees.
+
+Risk: Access-provisioning checklists can involve credentials, SaaS permissions, VPN access, and badge access.
+
+Mitigation: Validate each access request against least-privilege policy and approved manager or IT authorization.
+
+Risk: Slack workflows, email sequences, and tracking sheets may expose employee information if shared too broadly.
+
+Mitigation: Limit recipients and permissions, and remove sensitive personal data before automating reminders or publishing trackers.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/1kalin/skills/afrexai-employee-onboarding)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown plans, checklists, tables, email drafts, and workflow or database specifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include spreadsheet and Notion database structures; generated materials require HR, privacy, and compliance review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

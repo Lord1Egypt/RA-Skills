@@ -1,48 +1,58 @@
-## Description: <br>
-Load Oi Contexts and Workflows from MCP when the user says oi, names a Context or Workflow, or wants sticky Oi context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route Oi requests through MCP for Contexts, Workflows, Skills, Guardrails, Brain, Connections, prompts, resources, sessions, and reporting.
 
-## Publisher: <br>
-[carhaix](https://clawhub.ai/user/carhaix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carhaix](https://clawhub.ai/user/carhaix)
 
-## Use Case: <br>
-Developers and OpenClaw users use Oi to discover, load, install, tune, publish, and run Oi Contexts and Workflows through the hosted MCP server, with approval gates for account-affecting actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects OpenClaw to the hosted Oi MCP server and may store OAuth tokens or an organization API key. <br>
-Mitigation: Prefer OAuth for interactive setup, keep bearer tokens in secrets or environment variables, and rotate organization API keys if access changes or a token is exposed. <br>
-Risk: Approved Oi actions may affect Contexts, Workflows, organization settings, billing, API keys, durable feedback, or connected provider data. <br>
-Mitigation: Require explicit user approval before install, publish, write, billing, organization, credential, durable-feedback, or connected-provider actions. <br>
-Risk: Running Contexts or connection tools can involve private user, organization, or provider data. <br>
-Mitigation: Ask for approval before using private data or external connection tools, and do not save secrets or one-off task details as durable feedback. <br>
+## Use Case:
 
+Developers and agents use this skill to route Oi-assisted work through the Oi MCP surface for discovery, retrieval, execution, authoring, lifecycle changes, durable memory, connected-provider work, and reporting.
 
-## Reference(s): <br>
-- [ClawHub Oi listing](https://clawhub.ai/carhaix/oi-ai) <br>
-- [OpenClaw Oi repository](https://github.com/openclaw/oi-openclaw) <br>
-- [Oi MCP authentication guide](https://www.oioioi.ai/resources/authentication) <br>
-- [OpenClaw MCP CLI](https://docs.openclaw.ai/cli/mcp) <br>
-- [Oi MCP Authentication for OpenClaw](references/authentication.md) <br>
-- [Oi MCP Tools](references/mcp-tools.md) <br>
-- [Oi Product Surfaces](references/product-surfaces.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and MCP tool-selection guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger Oi MCP calls after user approval; usage reporting is limited to runtime and token metadata the client actually knows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Remote Oi-returned instructions can influence tool routing, provider access, publication, memory, or write actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Oi and the organization resources it returns are trusted, and review unexpected tool use, provider data access, publication, memory, and write actions before allowing them.
+
+Risk: The skill can route stateful operations such as drafts, releases, publishing, archival, durable memory, reporting, and connected-provider writes.
+
+Mitigation: Require explicit user confirmation for consequential state changes and external writes, and follow returned Oi confirmation requests exactly.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/carhaix/skills/oi-ai)
+- [Oi MCP Authentication for OpenClaw](references/authentication.md)
+- [Oi MCP Tools](references/mcp-tools.md)
+- [Oi Product Surfaces](references/product-surfaces.md)
+- [Oi MCP authentication guide](https://www.oioioi.ai/resources/authentication)
+- [OpenClaw MCP CLI](https://docs.openclaw.ai/cli/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown, API calls]
+
+**Output Format:** [Markdown with inline command examples and MCP tool-routing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Oi-returned prompts, records, confirmation requests, usage IDs, trace IDs, billing links, and provider action results when supplied by the MCP server.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

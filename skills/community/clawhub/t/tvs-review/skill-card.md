@@ -1,40 +1,56 @@
-## Description: <br>
-Tvs Review guides agents through scoped code reviews, requiring explicit review boundaries and reporting correctness, security, regression, testing, maintainability, and architecture issues without providing fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tvs Review guides an agent to perform strict Chinese-language code reviews over a user-specified scope, prioritizing correctness, security, regressions, tests, maintainability, and architecture issues while withholding fixes or code changes.
 
-## Publisher: <br>
-[inksnowhailong](https://clawhub.ai/user/inksnowhailong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[inksnowhailong](https://clawhub.ai/user/inksnowhailong)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill when they want a strict code review of a clear file, directory, diff, PR, commit range, or code snippet. It is intended to surface concrete review findings in a sharp Chinese style without providing fixes, sample code, or direct edits.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill uses an intentionally sharp Chinese review style that may be unsuitable for teams expecting neutral feedback.
+
+Mitigation: Use it only when that tone is desired and acceptable for the review context.
+
+Risk: The skill refuses to provide fixes or code changes, so it may not complete remediation workflows on its own.
+
+Mitigation: Pair the review findings with a separate implementation step when fixes are required.
+
+Risk: The skill requires an explicit review scope and will not proceed when the scope is unclear.
+
+Mitigation: Provide a specific file, directory, diff, PR, commit range, or code snippet before requesting review.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill when they want an agent to review a specified file, directory, diff, PR, commit range, or code snippet. It focuses on identifying evidenced issues and test gaps while avoiding repair instructions or code changes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a deliberately sharp review tone that may be inappropriate for teams expecting neutral feedback. <br>
-Mitigation: Use it only where that review posture is desired, or select a more neutral review skill. <br>
-Risk: A code review without a clear scope can produce broad or low-value findings. <br>
-Mitigation: Provide an explicit file, directory, diff, PR, commit range, or code snippet before invoking the review. <br>
+**Output Format:** [Markdown code review report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/inksnowhailong/tvs-review) <br>
+**Other Properties Related to Output:** [Chinese-language review output; requires a clear review scope before analysis]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown review report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the user to provide an explicit review scope before analysis; reports findings by severity and confidence.] <br>
+1.0.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

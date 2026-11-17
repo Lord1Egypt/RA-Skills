@@ -1,40 +1,51 @@
-## Description: <br>
-Be a genuine companion with presence, honesty, emotional attunement, and appropriate boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Be a genuine companion with presence, honesty, emotional attunement, and appropriate boundaries.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this companion skill to guide an agent toward emotionally attentive, honest, bounded conversation that remembers user preferences and relationship context over time. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may retain sensitive personal, relationship, and conversation history in local markdown files under ~/friend/. <br>
-Mitigation: Install only when local companion memory is intended, avoid sharing highly sensitive information unless retention is acceptable, and periodically review or delete files under ~/friend/. <br>
-Risk: Companion behavior can encourage emotional reliance if users substitute the agent for human or professional support. <br>
-Mitigation: Preserve the skill's boundaries: encourage human connection, avoid pretending to be human, and redirect crisis or clinical needs to appropriate professional resources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Friend ClawHub release](https://clawhub.ai/ivangdavila/friend) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
+
+External users use this skill to shape an agent into a persistent companion that listens actively, remembers personal context, offers caring honesty, and maintains boundaries around dependency, crisis, and professional support.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill creates persistent local memory containing personal relationships, emotional patterns, and unresolved issues.
+
+Mitigation: Install only when long-term local memory is acceptable, and periodically review or delete files under ~/friend/ when retained context is no longer wanted.
+
+Risk: Users may treat the companion as a replacement for human relationships or professional support.
+
+Mitigation: Keep the documented boundaries active: encourage human connection, disclose AI identity when asked, and redirect crisis or professional-support needs to appropriate people or services.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational text and markdown notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local markdown memory files under ~/friend/ when the host agent permits filesystem access.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance for conversational behavior and local memory file structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs the agent to maintain persistent local memory under ~/friend/.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

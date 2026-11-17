@@ -1,37 +1,48 @@
-## Description: <br>
-Write Czech that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Czech that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Writers, translators, and agents use this skill to make Czech text sound more natural, casual, and native-like, especially for online or informal contexts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Czech may be too casual for formal or professional situations. <br>
-Mitigation: Review the generated Czech for tone and register before sending, especially when a formal style or Vy address is expected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/czech) <br>
+## Use Case:
 
+External users and developers use this skill to make Czech responses sound more natural, casual, and native-like, especially for internet or peer-to-peer contexts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural-language Czech writing guidance or revised text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed for tone and register before sending, especially in formal contexts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill intentionally pushes casual Czech and may add slang or mild profanity that is inappropriate for business, legal, academic, customer-support, elder, or otherwise formal contexts.
+
+Mitigation: Specify the required formality and ty/vy register before use, and review outputs for audience fit before sending in formal or sensitive contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/czech)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language Czech writing guidance and rewritten text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, external access, persistence, or hidden high-impact behavior identified by ClawHub security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

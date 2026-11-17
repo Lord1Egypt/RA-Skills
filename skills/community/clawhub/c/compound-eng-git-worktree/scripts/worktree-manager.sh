@@ -2,86 +2,211 @@
 
 # Git Worktree Manager
 # Handles creating, listing, switching, and cleaning up Git worktrees
-# KISS principle: Simple, interactive, opinionated
 
 set -e
 
-# Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# Get repo root
-GIT_ROOT=$(git rev-parse --show-toplevel)
+COMMON_DIR=$(realpath -- "$(git rev-parse --git-common-dir)")
+CURRENT_GIT_DIR=$(realpath -- "$(git rev-parse --git-dir)")
+COMMON_BARE=$(git --git-dir="${COMMON_DIR}" rev-parse --is-bare-repository)
+CURRENT_BARE=$(git rev-parse --is-bare-repository)
+if [[ "${CURRENT_BARE}" == true ]]; then
+  CURRENT_ROOT="${COMMON_DIR}"
+else
+  CURRENT_ROOT=$(git rev-parse --show-toplevel)
+fi
+if [[ "${COMMON_BARE}" == true ]]; then
+  GIT_ROOT="${COMMON_DIR}"
+else
+  if [[ "$CURRENT_GIT_DIR" == "$COMMON_DIR" ]]; then
+    GIT_ROOT="$CURRENT_ROOT"
+  elif [[ -f "$COMMON_DIR/whetstone-main-root" ]]; then
+    IFS= read -r GIT_ROOT < "$COMMON_DIR/whetstone-main-root"
+  else
+    IFS= read -r main_record < <(git worktree list --porcelain)
+    GIT_ROOT=${main_record#worktree }
+  fi
+  [[ "$(git -C "$GIT_ROOT" rev-parse --show-toplevel)" == "$GIT_ROOT" ]] || {
+    echo "Error: main checkout unavailable; run create from the main checkout first" >&2
+    exit 1
+  }
+  ROOT_COMMON_DIR=$(git -C "$GIT_ROOT" rev-parse --git-common-dir)
+  if [[ "$ROOT_COMMON_DIR" != /* ]]; then
+    ROOT_COMMON_DIR="$GIT_ROOT/$ROOT_COMMON_DIR"
+  fi
+  [[ "$(realpath -- "$ROOT_COMMON_DIR")" == "$COMMON_DIR" ]] || {
+    echo "Error: cannot resolve the main worktree safely" >&2
+    exit 1
+  }
+fi
 WORKTREE_DIR="$GIT_ROOT/.worktrees"
 
-# Ensure .worktrees is in .gitignore
+resolve_worktree() {
+  local name="$1" candidate registered
+  git check-ref-format --branch "$name" >/dev/null 2>&1 || return 1
+  candidate=$(realpath -e -- "$WORKTREE_DIR/$name") || return 1
+  [[ "$candidate" == "$WORKTREE_DIR/"* ]] || return 1
+  while IFS= read -r registered; do
+    if [[ "$registered" == "worktree $candidate" ]]; then
+      printf '%s\n' "$candidate"
+      return 0
+    fi
+  done < <(git worktree list --porcelain)
+  return 1
+}
+
 ensure_gitignore() {
-  if ! grep -q "^\.worktrees$" "$GIT_ROOT/.gitignore" 2>/dev/null; then
-    echo ".worktrees" >> "$GIT_ROOT/.gitignore"
+  local last_byte
+  [[ "${COMMON_BARE}" == false ]] || return 0
+  if ! grep -qxF '.worktrees' "${GIT_ROOT}/.gitignore" 2>/dev/null; then
+    if [[ -s "${GIT_ROOT}/.gitignore" ]]; then
+      last_byte=$(tail -c 1 -- "${GIT_ROOT}/.gitignore") || return 1
+      if [[ -n "${last_byte}" ]]; then
+        printf '\n' >>"${GIT_ROOT}/.gitignore"
+      fi
+    fi
+    printf '%s\n' '.worktrees' >>"${GIT_ROOT}/.gitignore"
   fi
 }
 
-# Copy .env files from main repo to worktree
 copy_env_files() {
   local worktree_path="$1"
+  local source name dest tmp copied=0 skipped=0
+
+  if [[ "${COMMON_BARE}" == true ]]; then
+    echo "Error: bare repositories have no main checkout for environment files" >&2
+    return 1
+  fi
 
   echo -e "${BLUE}Copying environment files...${NC}"
 
-  # Find all .env* files in root (excluding .env.example which should be in git)
-  local env_files=()
-  for f in "$GIT_ROOT"/.env*; do
-    if [[ -f "$f" ]]; then
-      local basename=$(basename "$f")
-      # Skip .env.example (that's typically committed to git)
-      if [[ "$basename" != ".env.example" ]]; then
-        env_files+=("$basename")
-      fi
-    fi
-  done
-
-  if [[ ${#env_files[@]} -eq 0 ]]; then
-    echo -e "  ${YELLOW}ℹ️  No .env files found in main repository${NC}"
-    return
+  # Destinations sit directly in the worktree root, so the root is the only parent to check.
+  if [[ -L "$worktree_path" || "$(realpath -e -- "$worktree_path")" != "$worktree_path" ]]; then
+    echo -e "  ${RED}Refusing env copy into redirected worktree path: $worktree_path${NC}" >&2
+    return 1
   fi
 
-  local copied=0
-  for env_file in "${env_files[@]}"; do
-    local source="$GIT_ROOT/$env_file"
-    local dest="$worktree_path/$env_file"
-
-    if [[ -f "$dest" ]]; then
-      echo -e "  ${YELLOW}⚠️  $env_file already exists, backing up to ${env_file}.backup${NC}"
-      cp "$dest" "${dest}.backup"
+  for source in "$GIT_ROOT"/.env*; do
+    [[ -e "$source" || -L "$source" ]] || continue
+    name=${source##*/}
+    [[ "$name" != ".env.example" ]] || continue
+    if [[ -L "$source" || ! -f "$source" ]]; then
+      echo -e "  ${YELLOW}Skipped $name: not a regular file in the main checkout${NC}"
+      skipped=$((skipped + 1))
+      continue
     fi
-
-    cp "$source" "$dest"
-    echo -e "  ${GREEN}✓ Copied $env_file${NC}"
+    dest="$worktree_path/$name"
+    # Checked-out content controls the destination; a committed symlink there would redirect the write.
+    if [[ -e "$dest" || -L "$dest" ]]; then
+      echo -e "  ${YELLOW}Skipped $name: already present in the worktree (remove it first to refresh)${NC}"
+      skipped=$((skipped + 1))
+      continue
+    fi
+    tmp=$(mktemp "$worktree_path/.whetstone-env.XXXXXXXXXX") || return 1
+    if ! cat -- "$source" >"$tmp"; then
+      rm -f -- "$tmp"
+      return 1
+    fi
+    mv -n -- "$tmp" "$dest" || :
+    if [[ -e "$tmp" || -L "$dest" || ! -f "$dest" ]]; then
+      rm -f -- "$tmp"
+      echo -e "  ${YELLOW}Skipped $name: destination appeared during copy${NC}"
+      skipped=$((skipped + 1))
+      continue
+    fi
+    echo -e "  ${GREEN}✓ Copied $name${NC}"
     copied=$((copied + 1))
   done
 
-  echo -e "  ${GREEN}✓ Copied $copied environment file(s)${NC}"
+  if [[ $((copied + skipped)) -eq 0 ]]; then
+    echo -e "  ${YELLOW}ℹ️  No .env files found in main repository${NC}"
+    return
+  fi
+  echo -e "  ${GREEN}✓ Copied $copied environment file(s), skipped $skipped${NC}"
 }
 
-# Create a new worktree
+# Env files go only to the default branch or to a local branch that already contains
+# the fetched commit. A branch that exists only on a remote is someone else's code even
+# on origin, and PR heads, fork remotes, tags, and raw SHAs can carry fork commits.
+# Callers must decide before creating any ref, or a new branch named after the base vouches for itself.
+# Ask origin first so a server-side default rename is seen; the cached origin/HEAD
+# is the offline fallback. Read the full ref: --short output is disambiguated
+# against other refs, so a pushed tag can change the shortened spelling.
+remote_default_branch() {
+  local default line
+  while IFS= read -r line; do
+    if [[ "$line" == "ref: refs/heads/"*$'\t'HEAD ]]; then
+      line=${line#ref: refs/heads/}
+      printf '%s\n' "${line%$'\t'HEAD}"
+      return 0
+    fi
+  done < <(GIT_TERMINAL_PROMPT=0 git ls-remote --symref origin HEAD 2>/dev/null)
+  default=$(git symbolic-ref --quiet refs/remotes/origin/HEAD 2>/dev/null) || return 1
+  [[ "$default" == refs/remotes/origin/?* ]] || return 1
+  printf '%s\n' "${default#refs/remotes/origin/}"
+}
+
+base_is_trusted_branch() {
+  local base="$1" base_sha="$2" default
+  case "$base" in
+    refs/*|pull/*|merge-requests/*) return 1 ;;
+  esac
+  git check-ref-format --branch "$base" >/dev/null 2>&1 || return 1
+  [[ -n "$base_sha" ]] || return 1
+  if default=$(remote_default_branch); then
+    [[ "$base" == "$default" || "$base" == "origin/$default" ]] && return 0
+  elif ! git remote get-url origin >/dev/null 2>&1; then
+    # Without an origin remote, no one else can have pushed a main or master here.
+    case "$base" in
+      main|master) return 0 ;;
+    esac
+  fi
+  git show-ref --verify --quiet "refs/heads/$base" || return 1
+  git merge-base --is-ancestor "$base_sha" "refs/heads/$base"
+}
+
 create_worktree() {
-  local branch_name="$1"
-  local from_branch="${2:-main}"
+  local copy_env=1 args=()
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --no-env) copy_env=0 ;;
+      *) args+=("$1") ;;
+    esac
+    shift
+  done
+  local branch_name="${args[0]:-}"
+  local from_branch="${args[1]:-main}"
+  if [[ "${COMMON_BARE}" == true ]]; then
+    copy_env=0
+  fi
 
   if [[ -z "$branch_name" ]]; then
     echo -e "${RED}Error: Branch name required${NC}"
     exit 1
   fi
 
-  local worktree_path="$WORKTREE_DIR/$branch_name"
+  git check-ref-format --branch "$branch_name" >/dev/null || return 1
+  if [[ -L "$WORKTREE_DIR" ]]; then
+    echo "Error: refusing a symlinked worktree directory" >&2
+    return 1
+  fi
 
-  # Check if worktree already exists
+  local worktree_path="$WORKTREE_DIR/$branch_name"
+  if [[ "$(realpath -m -- "$worktree_path")" != "$worktree_path" ]]; then
+    echo "Error: refusing redirected worktree path: $worktree_path" >&2
+    return 1
+  fi
+
   if [[ -d "$worktree_path" ]]; then
     echo -e "${YELLOW}Worktree already exists at: $worktree_path${NC}"
     echo -e "Switch to it instead? (y/n)"
-    read -r response
+    # No stdin (agent/CI): read fails, set -e would abort. Empty answer = decline.
+    read -r response || response=""
     if [[ "$response" == "y" ]]; then
       switch_worktree "$branch_name"
     fi
@@ -92,99 +217,108 @@ create_worktree() {
   echo "  From: $from_branch"
   echo "  Path: $worktree_path"
 
-  # Update main branch
-  echo -e "${BLUE}Updating $from_branch...${NC}"
-  git checkout "$from_branch"
-  git pull origin "$from_branch" || true
+  # Fetch a fresh remote base without touching the caller's checkout.
+  echo -e "${BLUE}Fetching $from_branch from origin...${NC}"
+  local base_sha fetch_marker fetch_ref base_valid=0 base_from_branch=0 branch_like=0
+  fetch_marker=$(mktemp "${TMPDIR:-/tmp}/whetstone-fetch.XXXXXXXXXX") || return 1
+  fetch_ref="refs/whetstone/fetch/${fetch_marker##*/}"
+  case "$from_branch" in
+    refs/*|pull/*|merge-requests/*|origin/*) ;;
+    *) git check-ref-format --branch "$from_branch" >/dev/null 2>&1 && branch_like=1 ;;
+  esac
+  # GIT_TERMINAL_PROMPT=0: fail fast instead of hanging on a credential
+  # prompt blocking on an inherited tty. A non-zero exit (offline, no
+  # remote) falls back to the local branch ref below.
+  # FETCH_HEAD is shared by linked worktrees; a private destination binds this fetch.
+  # An unqualified name resolves a same-named tag before the branch, even with
+  # --no-tags, so branch names are fetched as refs/heads/ first.
+  if [[ "$branch_like" == 1 ]] &&
+    GIT_TERMINAL_PROMPT=0 git fetch --no-tags --refmap= origin "refs/heads/$from_branch:$fetch_ref" 2>/dev/null; then
+    base_sha=$(git rev-parse --verify "$fetch_ref^{commit}") && base_valid=1 && base_from_branch=1
+  elif GIT_TERMINAL_PROMPT=0 git fetch --no-tags --refmap= origin "$from_branch:$fetch_ref"; then
+    base_sha=$(git rev-parse --verify "$fetch_ref^{commit}") && base_valid=1
+  else
+    echo -e "${YELLOW}Fetch failed; branching from local $from_branch instead${NC}"
+    if [[ "$branch_like" == 1 ]] && git show-ref --verify --quiet "refs/heads/$from_branch"; then
+      base_sha=$(git rev-parse --verify "refs/heads/$from_branch^{commit}") && base_valid=1 && base_from_branch=1
+    elif [[ "$from_branch" == origin/* ]] && git show-ref --verify --quiet "refs/remotes/$from_branch"; then
+      base_sha=$(git rev-parse --verify "refs/remotes/$from_branch^{commit}") && base_valid=1 && base_from_branch=1
+    else
+      base_sha=$(git rev-parse --verify --end-of-options "$from_branch^{commit}") && base_valid=1
+    fi
+  fi
+  git update-ref -d "$fetch_ref" || return 1
+  rm -- "$fetch_marker" || return 1
+  [[ "$base_valid" == 1 ]] || return 1
 
-  # Create worktree
+  local env_trusted=0
+  if [[ "$copy_env" == 1 && "$base_from_branch" == 1 ]] && base_is_trusted_branch "$from_branch" "$base_sha"; then
+    env_trusted=1
+  fi
+
   mkdir -p "$WORKTREE_DIR"
   ensure_gitignore
+  if [[ "${COMMON_BARE}" == false ]]; then
+    printf '%s\n' "$GIT_ROOT" > "$COMMON_DIR/whetstone-main-root"
+  fi
 
   echo -e "${BLUE}Creating worktree...${NC}"
-  git worktree add -b "$branch_name" "$worktree_path" "$from_branch"
+  git worktree add -b "$branch_name" "$worktree_path" "$base_sha"
+  [[ "$(git -C "$worktree_path" rev-parse HEAD)" == "$base_sha" ]] || {
+    echo "Error: created worktree does not match fetched/local base $base_sha" >&2
+    return 1
+  }
 
-  # Copy environment files
-  copy_env_files "$worktree_path"
+  if [[ -n "${WORKTREE_SESSION_ID:-}" ]]; then
+    printf '%s\n' "$WORKTREE_SESSION_ID" > "$(git -C "$worktree_path" rev-parse --git-path whetstone-owner)"
+  else
+    echo "Set WORKTREE_SESSION_ID before create to enable session-owned cleanup." >&2
+  fi
+
+  if [[ "${COMMON_BARE}" == true ]]; then
+    echo -e "${YELLOW}Skipped .env copy: bare repository has no main checkout${NC}"
+  elif [[ "${copy_env}" == 0 ]]; then
+    echo -e "${YELLOW}Skipped .env copy (--no-env)${NC}"
+  elif [[ "$env_trusted" == 1 ]]; then
+    copy_env_files "$worktree_path"
+  else
+    echo -e "${YELLOW}Skipped .env copy: $from_branch is not the default branch or a local branch containing this commit.${NC}"
+    echo "  Treat this tree as untrusted: no credentials, no dependency lifecycle scripts."
+  fi
 
   echo -e "${GREEN}✓ Worktree created successfully!${NC}"
+  echo "  Base commit: $base_sha"
   echo ""
-  echo "To switch to this worktree:"
-  echo -e "${BLUE}cd $worktree_path${NC}"
+  echo "Run commands with this worktree as their workdir:"
+  printf 'env -C %q <command>\n' "$worktree_path"
   echo ""
 }
 
-# List all worktrees
 list_worktrees() {
-  echo -e "${BLUE}Available worktrees:${NC}"
-  echo ""
-
-  if [[ ! -d "$WORKTREE_DIR" ]]; then
-    echo -e "${YELLOW}No worktrees found${NC}"
-    return
-  fi
-
-  local count=0
-  for worktree_path in "$WORKTREE_DIR"/*; do
-    if [[ -d "$worktree_path" && -e "$worktree_path/.git" ]]; then
-      count=$((count + 1))
-      local worktree_name=$(basename "$worktree_path")
-      local branch=$(git -C "$worktree_path" rev-parse --abbrev-ref HEAD 2>/dev/null || echo "unknown")
-
-      if [[ "$PWD" == "$worktree_path" ]]; then
-        echo -e "${GREEN}✓ $worktree_name${NC} (current) → branch: $branch"
-      else
-        echo -e "  $worktree_name → branch: $branch"
-      fi
-    fi
-  done
-
-  if [[ $count -eq 0 ]]; then
-    echo -e "${YELLOW}No worktrees found${NC}"
-  else
-    echo ""
-    echo -e "${BLUE}Total: $count worktree(s)${NC}"
-  fi
-
-  echo ""
-  echo -e "${BLUE}Main repository:${NC}"
-  local main_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "unknown")
-  echo "  Branch: $main_branch"
-  echo "  Path: $GIT_ROOT"
+  git worktree list
 }
 
-# Switch to a worktree
 switch_worktree() {
   local worktree_name="$1"
 
   if [[ -z "$worktree_name" ]]; then
-    list_worktrees
-    echo -e "${BLUE}Switch to which worktree? (enter name)${NC}"
-    read -r worktree_name
+    list_worktrees >&2
+    echo "Return the path of which worktree? (enter name)" >&2
+    read -r worktree_name || worktree_name=""
   fi
 
-  local worktree_path="$WORKTREE_DIR/$worktree_name"
-
-  if [[ ! -d "$worktree_path" ]]; then
-    echo -e "${RED}Error: Worktree not found: $worktree_name${NC}"
-    echo ""
-    list_worktrees
-    exit 1
-  fi
-
-  echo -e "${GREEN}Switching to worktree: $worktree_name${NC}"
-  cd "$worktree_path"
-  echo -e "${BLUE}Now in: $(pwd)${NC}"
+  resolve_worktree "$worktree_name" || {
+    echo "Error: registered worktree not found: $worktree_name" >&2
+    return 1
+  }
 }
 
-# Copy env files to an existing worktree (or current directory if in a worktree)
 copy_env_to_worktree() {
   local worktree_name="$1"
   local worktree_path
 
   if [[ -z "$worktree_name" ]]; then
-    # Check if we're currently in a worktree
-    local current_dir=$(pwd)
+    local current_dir="$CURRENT_ROOT"
     if [[ "$current_dir" == "$WORKTREE_DIR"/* ]]; then
       worktree_path="$current_dir"
       worktree_name=$(basename "$worktree_path")
@@ -196,9 +330,7 @@ copy_env_to_worktree() {
       return 1
     fi
   else
-    worktree_path="$WORKTREE_DIR/$worktree_name"
-
-    if [[ ! -d "$worktree_path" ]]; then
+    if ! worktree_path=$(resolve_worktree "$worktree_name"); then
       echo -e "${RED}Error: Worktree not found: $worktree_name${NC}"
       list_worktrees
       return 1
@@ -209,83 +341,58 @@ copy_env_to_worktree() {
   echo ""
 }
 
-# Clean up completed worktrees
 cleanup_worktrees() {
-  if [[ ! -d "$WORKTREE_DIR" ]]; then
-    echo -e "${YELLOW}No worktrees to clean up${NC}"
-    return
+  if [[ $# -eq 0 || -z "${WORKTREE_SESSION_ID:-}" ]]; then
+    echo "Usage: set WORKTREE_SESSION_ID before create; cleanup <owned-name> [owned-name...]" >&2
+    return 1
   fi
-
-  echo -e "${BLUE}Checking for completed worktrees...${NC}"
-  echo ""
-
-  local found=0
+  local name worktree_path owner_file status response
   local to_remove=()
-
-  for worktree_path in "$WORKTREE_DIR"/*; do
-    if [[ -d "$worktree_path" && -e "$worktree_path/.git" ]]; then
-      local worktree_name=$(basename "$worktree_path")
-
-      # Skip if current worktree
-      if [[ "$PWD" == "$worktree_path" ]]; then
-        echo -e "${YELLOW}(skip) $worktree_name - currently active${NC}"
-        continue
-      fi
-
-      found=$((found + 1))
-      to_remove+=("$worktree_path")
-      echo -e "${YELLOW}• $worktree_name${NC}"
+  for name in "$@"; do
+    worktree_path=$(resolve_worktree "$name") || return 1
+    owner_file=$(git -C "$worktree_path" rev-parse --git-path whetstone-owner)
+    if [[ "$CURRENT_ROOT" == "$worktree_path" || ! -f "$owner_file" || "$(cat "$owner_file")" != "$WORKTREE_SESSION_ID" ]]; then
+      echo "Refusing current or unowned worktree: $worktree_path" >&2
+      return 1
     fi
+    status=$(git -C "$worktree_path" status --porcelain --untracked-files=all --ignored=matching) || return 1
+    if [[ -n "$status" ]]; then
+      echo "Refusing worktree with tracked, untracked, or ignored changes: $worktree_path" >&2
+      return 1
+    fi
+    to_remove+=("$worktree_path")
   done
-
-  if [[ $found -eq 0 ]]; then
-    echo -e "${GREEN}No inactive worktrees to clean up${NC}"
-    return
-  fi
-
-  echo ""
-  echo -e "Remove $found worktree(s)? (y/n)"
-  read -r response
-
-  if [[ "$response" != "y" ]]; then
-    echo -e "${YELLOW}Cleanup cancelled${NC}"
-    return
-  fi
-
-  echo -e "${BLUE}Cleaning up worktrees...${NC}"
+  printf 'Remove these session-owned clean worktrees?\n'
+  printf '  %s\n' "${to_remove[@]}"
+  echo "Confirm no process is using them. Remove? (y/n)"
+  read -r response || response=""
+  [[ "$response" == y ]] || return 0
   for worktree_path in "${to_remove[@]}"; do
-    local worktree_name=$(basename "$worktree_path")
-    git worktree remove "$worktree_path" --force 2>/dev/null || true
-    echo -e "${GREEN}✓ Removed: $worktree_name${NC}"
+    git worktree remove "$worktree_path" || return 1
+    printf 'Removed: %s\n' "$worktree_path"
   done
-
-  # Clean up empty directory if nothing left
-  if [[ -z "$(ls -A "$WORKTREE_DIR" 2>/dev/null)" ]]; then
-    rmdir "$WORKTREE_DIR" 2>/dev/null || true
-  fi
-
-  echo -e "${GREEN}Cleanup complete!${NC}"
 }
 
-# Main command handler
 main() {
   local command="${1:-list}"
 
   case "$command" in
     create)
-      create_worktree "$2" "$3"
+      shift
+      create_worktree "$@"
       ;;
     list|ls)
       list_worktrees
       ;;
     switch|go)
-      switch_worktree "$2"
+      switch_worktree "${2:-}"
       ;;
     copy-env|env)
-      copy_env_to_worktree "$2"
+      copy_env_to_worktree "${2:-}"
       ;;
     cleanup|clean)
-      cleanup_worktrees
+      shift
+      cleanup_worktrees "$@"
       ;;
     help)
       show_help
@@ -306,32 +413,42 @@ Git Worktree Manager
 Usage: worktree-manager.sh <command> [options]
 
 Commands:
-  create <branch-name> [from-branch]  Create new worktree (copies .env files automatically)
-                                      (from-branch defaults to main)
+  create [--no-env] <branch-name> [from-branch]
+                                      Create new worktree (from-branch defaults to main)
   list | ls                           List all worktrees
-  switch | go [name]                  Switch to worktree
+  switch | go [name]                  Print registered worktree path for caller workdir
   copy-env | env [name]               Copy .env files from main repo to worktree
                                       (if name omitted, uses current worktree)
-  cleanup | clean                     Clean up inactive worktrees
+  cleanup | clean <name> [...]        Remove named clean worktrees owned by WORKTREE_SESSION_ID
   help                                Show this help message
 
+Bare Repositories:
+  - Create worktrees in <common-git-directory>/.worktrees/<branch-name>
+  - No main checkout exists: create never copies env files; copy-env refuses
+  - Ownership, path checks, and cleanup safeguards remain enabled
+
 Environment Files:
-  - Automatically copies .env, .env.local, .env.test, etc. on create
-  - Skips .env.example (should be in git)
-  - Creates .backup files if destination already exists
-  - Use 'copy-env' to refresh env files after main repo changes
+  - On create, copies .env, .env.local, .env.test, etc. only when from-branch
+    is the default branch, or a local branch that already contains the fetched
+    commit, and --no-env is absent; remote-only branches (origin included),
+    PR refs (pull/*, refs/*), fork remotes, tags, and SHAs get no env files
+  - Skips .env.example (should be in git) and non-regular or symlinked sources
+  - Never overwrites or follows an existing file or symlink in the worktree;
+    remove the worktree copy first to refresh it with 'copy-env'
+  - New copies are mode 600
+  - Pass --no-env for any branch that holds third-party code
 
 Examples:
   worktree-manager.sh create feature-login
   worktree-manager.sh create feature-auth develop
+  worktree-manager.sh create --no-env pr-123 refs/review/pr-123
   worktree-manager.sh switch feature-login
   worktree-manager.sh copy-env feature-login
   worktree-manager.sh copy-env                   # copies to current worktree
-  worktree-manager.sh cleanup
+  worktree-manager.sh cleanup feature-login
   worktree-manager.sh list
 
 EOF
 }
 
-# Run
 main "$@"

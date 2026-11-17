@@ -1,45 +1,70 @@
-## Description: <br>
-MiniMax image generation tool supporting text-to-image and image-to-image generation with 1-9 images per request and customizable aspect ratios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax image generation tool supporting text-to-image and image-to-image workflows, generating 1-9 images per request with customizable aspect ratios.
 
-## Publisher: <br>
-[lixiang92229](https://clawhub.ai/user/lixiang92229) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lixiang92229](https://clawhub.ai/user/lixiang92229)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate images from text prompts or reference images through MiniMax, selecting aspect ratio, output count, style options, and output location. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference images are sent to MiniMax for generation. <br>
-Mitigation: Use only prompts and reference images that are appropriate to share with MiniMax, and avoid private or sensitive reference photos. <br>
-Risk: The skill requires a MiniMax API key and can incur service usage. <br>
-Mitigation: Use a limited MiniMax API key, keep it in the MINIMAX_API_KEY environment variable, and avoid committing credentials. <br>
-Risk: Generated image files and the local call log may expose prompt summaries, counts, aspect ratios, and saved paths if the workspace is shared or synced. <br>
-Mitigation: Choose output paths deliberately and delete generated files or the local log before sharing or syncing the workspace. <br>
+## Use Case:
 
+Developers and external users use this skill to call the MiniMax API for text-to-image and image-to-image generation from prompts or reference images.
 
-## Reference(s): <br>
-- [MiniMax Image Generation API Reference](references/api_en.md) <br>
-- [MiniMax Image Generation API Reference (Chinese)](references/api.md) <br>
-- [MiniMax Platform](https://platform.minimaxi.com) <br>
-- [Project homepage](https://github.com/lixiang92229/lx-minimax-image-generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, API Calls, Shell commands] <br>
-**Output Format:** [JSON responses with image URLs, base64 data, and local image file paths; optional shell command examples for CLI use.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated image URLs may expire after 24 hours; successful calls append a local Markdown usage log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and server release evidence) <br>
+Risk: Prompts and reference images may be sent to MiniMax, and image-to-image use can expose sensitive images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive prompts and reference images, and confirm that MiniMax's service terms and privacy handling fit the intended use.
+
+Risk: Generated images and prompt summaries may be stored locally in output files and a markdown call log.
+
+Mitigation: Use a dedicated output directory, review generated files before sharing or syncing the workspace, and remove logs that contain sensitive usage history.
+
+Risk: The output path can overwrite user-writable files if an agent or user supplies an unsafe path.
+
+Mitigation: Restrict --output to a dedicated image directory and review file paths before execution.
+
+Risk: The downloader can fetch unvalidated image URLs returned by the remote service.
+
+Mitigation: Prefer base64 mode when appropriate or review network access expectations before allowing downloads.
+
+Risk: The skill requires a MiniMax API key managed by the user.
+
+Mitigation: Store MINIMAX_API_KEY in the environment, avoid committing secrets, and use limited or rotating keys where possible.
+
+## Reference(s):
+
+- [MiniMax Image Generation API Reference (English)](references/api_en.md)
+- [MiniMax Image Generation API Reference (Chinese)](references/api.md)
+- [MiniMax Platform](https://platform.minimaxi.com)
+- [MiniMax Image Generation API Endpoint](https://api.minimaxi.com/v1/image_generation)
+- [Project homepage](https://github.com/lixiang92229/lx-minimax-image-generation)
+- [ClawHub skill page](https://clawhub.ai/lixiang92229/skills/lx-minimax-image-generation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, Python examples, and JSON API results containing image URLs, base64 image data, or local file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses MINIMAX_API_KEY; URL-format results may be downloaded to a local output directory and successful calls append a local markdown log.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Translate UI Intent"
+  short_description: "Turn fuzzy UI ideas into consistent build-ready plans"
+  default_prompt: "Use $translate-ui-intent to turn my rough UI idea into a repository-consistent implementation plan and validate the result visually."

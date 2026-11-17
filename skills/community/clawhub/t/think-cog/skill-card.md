@@ -1,42 +1,54 @@
-## Description: <br>
-Think Cog supports conversational brainstorming and strategic thinking with CellCog for reasoning, problem-solving, ideation, planning, and follow-on execution across research, documents, visuals, data, and prototypes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI brainstorming and strategy thinking partner powered by CellCog. Reasoning, problem-solving, ideation, strategic planning — then execution across every modality: research, documents, visuals, data, prototypes. Think, build, review, repeat.
 
-## Publisher: <br>
-[nitishgargiitd](https://clawhub.ai/user/nitishgargiitd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellcog](https://clawhub.ai/user/cellcog)
 
-## Use Case: <br>
-Developers, builders, and teams use Think Cog when a problem is still exploratory: they want to reason through tradeoffs, debug complex issues, brainstorm creative directions, or build a decision framework with a CellCog-powered thinking partner. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and follow-up messages may be shared with the third-party CellCog service. <br>
-Mitigation: Avoid including credentials, customer data, regulated information, or confidential plans unless authorized. <br>
-Risk: The skill requires a CellCog API key. <br>
-Mitigation: Use a revocable key when possible and install only if the CellCog publisher and service are trusted. <br>
+## Use Case:
 
+Developers, strategists, and other agent users use this skill to explore open-ended problems, compare options, and refine plans through an ongoing conversation with CellCog.
 
-## Reference(s): <br>
-- [CellCog](https://cellcog.ai) <br>
-- [Think Cog on ClawHub](https://clawhub.ai/nitishgargiitd/think-cog) <br>
-- [Publisher profile](https://clawhub.ai/user/nitishgargiitd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text responses, often with code or shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CellCog chat sessions and requires python3 plus CELLCOG_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release evidence) <br>
+Risk: Prompts and follow-up messages are sent to CellCog for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only information approved for external processing, exclude secrets, and review the provider's retention terms.
+
+Risk: OpenClaw notifications and the external SDK can affect how tasks are handled.
+
+Mitigation: Understand the background notifier before enabling notifications, and review and pin dependencies where practical.
+
+## Reference(s):
+
+- [CellCog](https://cellcog.ai)
+- [ClawHub skill release](https://clawhub.ai/cellcog/skills/brainstorming-strategy-cellcog)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Conversational text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Iterative responses may include options, tradeoffs, plans, or examples.]
+
+## Skill Version(s):
+
+1.0.18 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

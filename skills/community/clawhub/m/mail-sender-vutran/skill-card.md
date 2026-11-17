@@ -1,40 +1,53 @@
-## Description: <br>
-Sends emails via SMTP with a custom recipient, subject, and body using user-provided SMTP configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send emails via SMTP with a custom subject and body using configured SMTP server credentials.
 
-## Publisher: <br>
-[Jaskies](https://clawhub.ai/user/Jaskies) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaskies](https://clawhub.ai/user/jaskies)
 
-## Use Case: <br>
-Developers and operators use this skill when an agent needs to send a plain-text email through an SMTP provider configured by environment variables or command-line arguments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SMTP credentials are required to send mail and could be exposed if hardcoded or shared in conversation history. <br>
-Mitigation: Use environment variables or command-line arguments only for the intended task, prefer provider app passwords, and avoid storing SMTP secrets in skill files or conversation history. <br>
-Risk: The skill sends real email through the configured SMTP account, so mistaken recipients or message bodies can leave the user's environment. <br>
-Mitigation: Review the recipient, subject, and body before execution and grant credentials only when sending mail is the intended task. <br>
+## Use Case:
 
+Developers and agent users use this skill when they need an agent to send a plain-text email through a configured SMTP account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jaskies/mail-sender-vutran) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and plain-text script status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SMTP server, port, username, password, sender, recipient, subject, and body.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: SMTP credentials can be exposed if a password is supplied as a command-line argument or pasted into conversation history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide SMTP_PASS through a protected environment variable or secret manager, use a provider-specific app password with limited scope, and rotate any exposed credential.
+
+Risk: The skill sends email through the configured account, so incorrect recipient, subject, or body values can result in unintended outbound messages.
+
+Mitigation: Review recipient and message fields before execution and use an SMTP account scoped for the intended sending workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaskies/skills/mail-sender-vutran)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and plain-text send status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SMTP server, port, username, password, sender, recipient, subject, and body values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Generate deterministic unit/integration tests for critical behaviors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate deterministic unit/integration tests for critical behaviors.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Developers and engineers use this skill to create deterministic unit, integration, or end-to-end tests for features, bug fixes, and refactors. It guides behavior identification, boundary selection, fixture setup, test writing, and stable test execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated tests may encode incorrect assumptions or misleading coverage if accepted without review. <br>
-Mitigation: Review generated tests against the intended behavior and acceptance criteria before committing them. <br>
-Risk: Tests could be pointed at real credentials, production services, or live external systems if the user configures them that way. <br>
-Mitigation: Run tests in development or CI environments and avoid real credentials, production services, and live external systems unless intentionally configured. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate focused unit, integration, or end-to-end tests for features, bug fixes, and characterization before refactoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzfshark/axodus-test-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, markdown, guidance] <br>
-**Output Format:** [Markdown with generated or modified test files, run instructions, and fixture or mocking notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be deterministic and reviewed before committing or running in CI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: The release evidence reports a metadata trigger issue that could cause activation outside explicit test-generation requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify or fix trigger metadata before broad use so the skill activates only for explicit test-generation workflows.
+
+Risk: Generated tests can encode incorrect assumptions or unstable dependencies.
+
+Mitigation: Review generated tests before committing them and keep time, network, credentials, and external services deterministic or mocked.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzfshark/skills/axodus-test-generator)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with generated test code, run instructions, and fixture or mocking notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces deterministic test artifacts and review notes; avoids real credentials or real external services by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

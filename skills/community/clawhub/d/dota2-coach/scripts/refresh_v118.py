@@ -15,7 +15,7 @@ from datetime import datetime
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 HEROES_FILE = f'{SCRIPT_DIR}/heroes_db.json'
-BACKUP_DIR = f'{SCRIPT_DIR}/../backup_v117_20260605'
+BACKUP_DIR = f'{SCRIPT_DIR}/../backup_v118_20260731'
 
 def curl_json(url, timeout=30):
     """用 curl 拉取 JSON"""

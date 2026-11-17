@@ -1,42 +1,57 @@
-## Description: <br>
-Bootstraps a fresh OpenClaw install with model routing, gateway token consistency, anti-stall execution rules, a lightweight autonomy loop, and verification gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstraps a fresh OpenClaw install into a reliable execution agent by aligning model routing, gateway tokens, anti-stall behavior, autonomy checks, and verification gates.
 
-## Publisher: <br>
-[Dalomeve](https://clawhub.ai/user/Dalomeve) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dalomeve](https://clawhub.ai/user/dalomeve)
 
-## Use Case: <br>
-Developers and operators use this skill to turn a new OpenClaw instance into a more reliable task-completing setup. It guides model routing, token alignment, anti-stall contracts, periodic self-check routines, verification, and rollback. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change core OpenClaw behavior, including model routing, gateway tokens, provider overrides, execution contracts, memory files, and scheduled checks. <br>
-Mitigation: Review every proposed file change before applying it, create backups first, and keep a rollback list for AGENTS.md, HEARTBEAT.md, memory files, provider overrides, and scheduled jobs. <br>
-Risk: Token values may appear in local audit output while checking gateway token consistency. <br>
-Mitigation: Redact token values before sharing logs, screenshots, or audit output. <br>
-Risk: Persistent anti-stall or autonomy routines can continue running outside the immediate setup task. <br>
-Mitigation: Install only intentionally scoped daily or weekly checks, document each created job, and remove jobs that are not needed after validation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Growth Pack Examples](references/examples.md) <br>
-- [OpenClaw Growth Pack ClawHub Page](https://clawhub.ai/Dalomeve/openclaw-growth-pack) <br>
+## Use Case:
 
+Developers and operators use this skill to configure a new OpenClaw instance for more consistent task execution, provider routing, gateway access, anti-stall behavior, and setup verification.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON and PowerShell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local configuration edits, verification gates, rollback steps, and periodic self-check routines.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes token audit guidance that can print gateway tokens in plaintext.
+
+Mitigation: Do not run token-printing audits as written; check token presence and equality without exposing secret values in logs or chat.
+
+Risk: The skill proposes persistent agent behavior files, memory rules, and scheduled jobs.
+
+Mitigation: Require explicit approval before AGENTS.md, HEARTBEAT.md, memory-rule, cron, or event-schedule changes; define scope, expiration, safe logging, and removal steps.
+
+Risk: Model routing and gateway token changes can break access if applied incorrectly.
+
+Mitigation: Back up configuration before edits, keep one source of truth, restart services deliberately, and verify model and gateway access before considering setup complete.
+
+## Reference(s):
+
+- [OpenClaw Growth Pack examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/dalomeve/skills/openclaw-growth-pack)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON and PowerShell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes rollback and verification checklists; scheduled work, memory rules, and persistent agent behavior require explicit review before use.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

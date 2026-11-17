@@ -1,47 +1,63 @@
-## Description: <br>
-AI-powered accounting knowledge management. Search bookkeeping records, tax preparation documents, audit support files, and financial statement workpapers with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered accounting knowledge management. Search bookkeeping records, tax preparation documents, audit support files, and financial statement workpapers with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Employees and accounting teams use this skill to search organizational accounting knowledge, retrieve context for bookkeeping, tax, audit, reconciliation, and financial statement questions, and identify relevant knowledge owners. It is intended to ground responses in UPLO knowledge sources with citations and classification-aware handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad organizational exports can expose sensitive bookkeeping, tax, audit, and financial statement information. <br>
-Mitigation: Install only for a trusted UPLO instance with an accounting-scoped, least-privilege token, and require explicit user or admin approval before full organizational exports. <br>
-Risk: Conversation logging can retain confidential financial context without clear controls. <br>
-Mitigation: Define redaction, retention, access control, deletion, and audit rules before enabling conversation logging. <br>
-Risk: Accounting or tax outputs may be mistaken for professional advice. <br>
-Mitigation: Surface relevant workpapers and responsible knowledge owners, cite the source account, period, and document, and avoid presenting independent tax advice or accounting opinions. <br>
+## Use Case:
 
+Accounting and finance teams use this skill to search organizational bookkeeping, tax, audit, reconciliation, and financial statement workpaper knowledge through UPLO. It helps agents retrieve grounded accounting context, cite source records, identify knowledge owners, and avoid guessing when the knowledge base lacks an answer.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/RooJenkins/uplo-accounting) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO schemas](https://uplo.ai/schemas) <br>
-- [UPLO Finance related skill](https://clawhub.com/skills/uplo-finance) <br>
-- [UPLO Knowledge Management related skill](https://clawhub.com/skills/uplo-knowledge-management) <br>
-- [UPLO Agriculture related skill](https://clawhub.com/skills/uplo-agriculture) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should cite UPLO sources, respect classification tiers, distinguish estimates from actuals, and avoid fabricating accounting information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill handles sensitive financial and tax records, including searched content, exported organization context, and logged conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for an approved UPLO tenant, use a narrowly scoped token, and treat searched, exported, and logged accounting content as confidential.
+
+Risk: Bulk export and session logging can create retention, redaction, audit, and access-control exposure.
+
+Mitigation: Avoid export_org_context and conversation logging unless the organization has approved retention, redaction, audit, and access controls.
+
+Risk: The MCP server is launched through an unpinned npx runtime, which can introduce mutable runtime code.
+
+Mitigation: Prefer a pinned and reviewed MCP server version before deployment.
+
+Risk: Accounting answers may be incomplete or misleading when the UPLO knowledge base lacks current source material.
+
+Mitigation: Cite source documents, label estimates versus actuals, and say when UPLO does not contain the answer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roojenkins/skills/uplo-accounting)
+- [UPLO](https://uplo.ai)
+- [UPLO schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent responses should cite retrieved UPLO sources and respect classification levels for financial and tax records.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

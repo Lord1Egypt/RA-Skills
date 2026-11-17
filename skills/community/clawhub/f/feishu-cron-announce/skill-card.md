@@ -1,40 +1,54 @@
-## Description: <br>
-Creates scheduled OpenClaw cron jobs that deliver monitoring results to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates scheduled OpenClaw cron announce tasks that push generated monitoring results to Feishu.
 
-## Publisher: <br>
-[bbj375767338-arch](https://clawhub.ai/user/bbj375767338-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bbj375767338-arch](https://clawhub.ai/user/bbj375767338-arch)
 
-## Use Case: <br>
-Developers and operators use this skill to set up recurring OpenClaw monitoring tasks, such as release, weather, or stock checks, and send concise results to a Feishu user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring jobs can repeatedly send results to Feishu on the configured schedule. <br>
-Mitigation: Confirm the cron expression, timezone, prompt, account, and recipient open_id before enabling the job. <br>
-Risk: Outbound Feishu delivery can expose secrets, personal data, or internal-only information to the wrong recipient. <br>
-Mitigation: Avoid prompts that collect sensitive information and verify the Feishu recipient before running or scheduling the job. <br>
+## Use Case:
 
+Developers and operators use this skill to configure recurring OpenClaw monitoring tasks, such as release, weather, or stock checks, and deliver concise results to a Feishu user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bbj375767338-arch/feishu-cron-announce) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and parameter tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes cron schedule, timezone, Feishu channel, recipient open_id, account selection, and delivery verification guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill helps create persistent scheduled agent jobs that can repeatedly send generated results to Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact prompt, cron schedule, recipient open_id, and delivery channel before creating the job, and document how to list and delete the cron job afterward.
+
+Risk: Monitored output could include secrets or private data that would be sent to Feishu.
+
+Mitigation: Avoid including secrets or private data in monitored output and verify that the generated message content is appropriate for the Feishu recipient.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bbj375767338-arch/skills/feishu-cron-announce)
+- [ClawHub publisher profile](https://clawhub.ai/user/bbj375767338-arch)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash command templates and parameter tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes cron timing, Feishu channel, recipient open_id, session isolation, delivery verification, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

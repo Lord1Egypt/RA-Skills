@@ -1,43 +1,57 @@
-## Description: <br>
-Switches OpenClaw between Work/Focus, Personal, Creative, and Do Not Disturb modes, using natural-language or calendar triggers to adjust notifications, memory context, response style, and restore behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Switches OpenClaw between life modes (Work/Focus, Personal, Creative, Do Not Disturb). Triggered by natural language or calendar events. Each mode reshapes notification filtering, memory surface, response style, and auto-restores when the session ends.
 
-## Publisher: <br>
-[Taha2053](https://clawhub.ai/user/Taha2053) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[taha2053](https://clawhub.ai/user/taha2053)
 
-## Use Case: <br>
-External OpenClaw users use this skill to switch their assistant into task-specific life modes that mute selected notifications, load local mode profiles, adjust response style, and restore the previous context after a timer or calendar event. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Packaged scripts may write state outside the advertised skill folder. <br>
-Mitigation: Review the directory layout and script path logic before installation so state files remain inside ~/.openclaw/skills/context-switcher/. <br>
-Risk: Automatic triggers can silently change notification behavior. <br>
-Mitigation: Review or disable auto-triggering before use, especially when accidental notification muting would be disruptive. <br>
-Risk: Do Not Disturb behavior can retain missed-message information locally. <br>
-Mitigation: Review DND logging behavior and clear or disable local logs if retaining missed messages is not acceptable. <br>
+## Use Case:
 
+External users use this skill to switch an OpenClaw assistant between work, personal, creative, and do-not-disturb modes. It adjusts notification handling, mode profile context, response style, session summaries, and restore behavior for the active mode.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Taha2053/context-switcher) <br>
-- [Project homepage](https://github.com/Taha2053/context-switcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text confirmations and summaries, Markdown mode profiles, JSON state, and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local-only mode state is stored in current-context.json; DND sessions may retain a local missed-message log until restore.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Automatic mode changes can affect notifications and local assistant context without an explicit command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable auto-triggering unless calendar and phrase-based activation are desired, and require explicit user confirmation for sensitive contexts.
+
+Risk: Do Not Disturb behavior may silently log incoming messages for later review.
+
+Mitigation: Use DND logging only when needed, disclose where logs are stored, and clear logs after restore.
+
+Risk: Server security evidence reports a path handling issue that can read or write outside the intended context-switcher directory.
+
+Mitigation: Review and fix package layout and path handling before installation so state, profile, and snapshot files remain inside the skill directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taha2053/skills/context-switcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command outputs and JSON-backed local state]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads editable mode profiles and writes local context or snapshot state during mode switching and restore.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

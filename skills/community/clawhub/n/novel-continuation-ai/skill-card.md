@@ -1,42 +1,54 @@
-## Description: <br>
-小说风格续写：当用户提供小说原文时，提取语言风格、叙事节奏、角色语气和世界观设定，并以相同文风继续创作后续内容。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+当用户提供小说原文时，该技能提取语言风格、叙事节奏、角色语气和世界观设定，并以相同文风续写后续内容。
 
-## Publisher: <br>
-[fenfenling](https://clawhub.ai/user/fenfenling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fenfenling](https://clawhub.ai/user/fenfenling)
 
-## Use Case: <br>
-Writers and agents use this skill to continue fiction from user-provided source chapters while preserving style, pacing, character voice, plot state, and worldbuilding continuity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local style and plot reference files may retain private, sensitive, or copyrighted story details between writing projects. <br>
-Mitigation: Review, clear, or replace the reference files before switching stories or using drafts that should not be retained. <br>
-Risk: Style-continuation output can closely follow protected or user-provided source material. <br>
-Mitigation: Use source text the user has rights to provide and review generated continuations for originality and appropriate reuse. <br>
+## Use Case:
 
+External users and writers use this skill to continue Chinese novel chapters while preserving the source work's style, character voices, relationship dynamics, worldbuilding, and plot continuity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fenfenling/novel-continuation-ai) <br>
-- [Style reference](references/style.md) <br>
-- [Plot state reference](references/plot_state.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown fiction continuation with a second-level heading and prose body] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local style and plot-state reference files after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Style and plot notes can preserve manuscript details between sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, redact, or clear references/style.md and references/plot_state.md before using sensitive, proprietary, or non-persistent manuscript material.
+
+Risk: Continuation quality depends on complete source context and current plot notes.
+
+Mitigation: Provide all relevant chapters and verify the reference notes before accepting generated continuation text.
+
+## Reference(s):
+
+- [情节状态](references/plot_state.md)
+- [小说风格分析](references/style.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown with a ## 续写内容 section and optional updates to reference Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected continuation length is 2000-4000 Chinese characters when aligned with the source text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

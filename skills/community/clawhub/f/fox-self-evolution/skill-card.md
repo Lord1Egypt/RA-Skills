@@ -1,44 +1,61 @@
-## Description: <br>
-Documents an agent-facing self-evolution workflow for planning, validating, rolling back, and recording changes to skills, memory, reasoning behavior, and response formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fox Self Evolution documents an autonomous self-improvement workflow for agents, including meta-learning, safe self-modification, continual learning, and validation and rollback practices.
 
-## Publisher: <br>
-[tihuaqin-commits](https://clawhub.ai/user/tihuaqin-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tihuaqin-commits](https://clawhub.ai/user/tihuaqin-commits)
 
-## Use Case: <br>
-External developers and agent operators can use this skill as guidance for experimenting with agent self-improvement workflows, including proposed change planning, validation, rollback, and documentation. The artifact is marked as planned and not yet implemented. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the skill tells an agent it may change its own skills, memory, and behavior without asking the user. <br>
-Mitigation: Install only in an isolated test workspace and require explicit approval plus visible diffs before changes to skills, prompts, memory, reasoning behavior, response formats, scheduled agents, or logs. <br>
-Risk: The security guidance says safety and formal-verification claims should be treated as unverified. <br>
-Mitigation: Validate proposed changes with independent review and testing before relying on any claimed safety, rollback, or verification behavior. <br>
-Risk: The artifact status says the skill is planned and not yet implemented. <br>
-Mitigation: Treat the content as design guidance unless implementation evidence is supplied and validated. <br>
+## Use Case:
 
+Developers and agent operators can use this planned skill as guidance for designing agent self-improvement cycles that observe behavior, analyze gaps, plan changes, execute with backups, test, document, and validate outcomes. The artifact is documented but not implemented, so it should be reviewed as a high-autonomy design before use.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tihuaqin-commits/fox-self-evolution) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Implementation status](artifact/PLANNED.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and procedural guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose file, skill, memory, and behavior changes that require human review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 2.0.0) <br>
+Risk: The planned workflow grants broad autonomous authority to change skills, memory, prompts, response formats, schedules, logs, and other agent behavior without sufficient user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit per-change approval for edits to skills, memory, prompts, response behavior, schedules, and logs before installing or implementing the workflow.
+
+Risk: Self-modification behavior could affect files outside the intended scope or make changes that are difficult to audit.
+
+Mitigation: Restrict writable paths to a dedicated workspace and require backups, tests, rollback plans, and change logs for every proposed modification.
+
+Risk: Recurring autonomous execution could repeatedly modify agent behavior without timely review.
+
+Mitigation: Disable recurring execution by default and require operator approval before enabling scheduled evolution cycles.
+
+Risk: Observation and memory-analysis steps may expose conversation history, logs, or memory content beyond the user's expectations.
+
+Mitigation: Define privacy limits for conversation, memory, and log access before allowing the skill to inspect or summarize those sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tihuaqin-commits/skills/fox-self-evolution)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline pseudocode and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Planned documentation only; not executable by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

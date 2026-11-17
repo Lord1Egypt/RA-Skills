@@ -1,43 +1,59 @@
-## Description: <br>
-Transcribes audio and video files into text using OpenAI's Whisper API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes audio and video files into text using OpenAI's Whisper API.
 
-## Publisher: <br>
-[ahqazi-dev](https://clawhub.ai/user/ahqazi-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahqazi-dev](https://clawhub.ai/user/ahqazi-dev)
 
-## Use Case: <br>
-Developers, operators, and external users can use this skill to convert uploaded or local media files into transcripts, subtitles, captions, or structured transcription output. It supports audio extraction from video, chunked processing for larger files, and optional transcript cleanup or summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected audio or video content is sent to OpenAI for transcription. <br>
-Mitigation: Use only with media the user is comfortable processing through OpenAI, and consider privacy or data-handling requirements before running transcription. <br>
-Risk: The skill requires an OpenAI API key and may expose the key if handled carelessly. <br>
-Mitigation: Provide OPENAI_API_KEY through a secure environment variable or secret manager, and avoid pasting long-lived keys into chat. <br>
-Risk: The transcription script may install Python dependencies at runtime. <br>
-Mitigation: Preinstall or pin dependencies on shared, production, or sensitive machines instead of allowing runtime package installation. <br>
+## Use Case:
 
+External users, developers, and business teams use this skill to convert uploaded or local media files into transcripts, captions, subtitles, JSON transcript data, or follow-on summaries and action items.
 
-## Reference(s): <br>
-- [OpenAI API Keys](https://platform.openai.com/api-keys) <br>
-- [FFmpeg Downloads](https://ffmpeg.org/download.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; generated transcript files in TXT, SRT, VTT, or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include timestamps, subtitle cues, segment metadata, language selection, model selection, chunk size, and prompt context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Media files are sent to OpenAI for transcription.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for media that the user is comfortable sending to OpenAI, and confirm any organizational data-handling requirements before transcription.
+
+Risk: The skill asks for raw OpenAI API keys in chat or command-line arguments.
+
+Mitigation: Configure the API key through a secure environment or secret mechanism and avoid pasting secrets into chat or shell history.
+
+Risk: The skill can modify the Python environment at runtime with unpinned package installs.
+
+Mitigation: Run it in a managed environment with preinstalled, pinned dependencies and ffmpeg already available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahqazi-dev/skills/audio-to-text-and-video-to-text)
+- [OpenAI API keys](https://platform.openai.com/api-keys)
+- [FFmpeg downloads](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text, SRT, VTT, or JSON transcript files, plus setup and post-processing guidance in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include timestamps, segment metadata, captions, summaries, action items, speaker labels, or translations when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

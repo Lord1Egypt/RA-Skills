@@ -4,23 +4,28 @@ Bootstrap secure identity material for Apple Health sync. Not required to just o
 """
 
 import argparse
+import hashlib
 import json
 import os
 import secrets
 import shutil
 import sqlite3
-import subprocess
+import stat
 import sys
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 from urllib import error, request
 from config import (
     APP_CONFIG,
     load_defaults_config,
     load_existing_user_config,
+    open_relay_request,
     resolve_state_dir,
     resolve_user_paths,
+    secure_private_file,
+    secure_state_directory,
     write_user_config,
 )
 from sync_cryptography import (
@@ -41,24 +46,63 @@ from sync_cryptography import (
 )
 
 
+ROTATION_BACKUP_VERSION = 1
+ROTATION_BACKUP_DIRECTORY = "key-backups"
+IDENTITY_CONFIG_KEYS = {
+    "user_id",
+    "protocol_version",
+    "algorithm",
+    "private_key_path",
+    "public_key_path",
+    "public_key_base64",
+    "signing_algorithm",
+    "signing_private_key_path",
+    "signing_public_key_path",
+    "signing_public_key_base64",
+    "encryption_algorithm",
+    "box_algorithm",
+    "encryption_private_key_path",
+    "encryption_public_key_path",
+    "encryption_public_key_base64",
+    "onboarding_fingerprint",
+    "onboarding_payload_json",
+    "onboarding_payload_hex",
+    "qr_payload_path",
+    "qr_png_path",
+    "updated_at",
+}
+IDENTITY_RUNTIME_PREFIXES = ("last_fetch_", "last_unlink_", "last_validation_")
+
+
 def now_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
 
 def secure_json_write(path: Path, value: Dict) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp_path = path.with_suffix(path.suffix + ".tmp")
-    tmp_path.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8")
-    os.chmod(tmp_path, 0o600)
-    tmp_path.replace(path)
+    secure_binary_write(path, (json.dumps(value, indent=2) + "\n").encode("utf-8"))
 
 
 def secure_binary_write(path: Path, value: bytes) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
+    path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
     tmp_path = path.with_suffix(path.suffix + ".tmp")
-    tmp_path.write_bytes(value)
-    os.chmod(tmp_path, 0o600)
-    tmp_path.replace(path)
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL
+    if hasattr(os, "O_NOFOLLOW"):
+        flags |= os.O_NOFOLLOW
+    file_descriptor = None
+    try:
+        file_descriptor = os.open(tmp_path, flags, 0o600)
+        os.fchmod(file_descriptor, 0o600)
+        with os.fdopen(file_descriptor, "wb") as file_handle:
+            file_descriptor = None
+            file_handle.write(value)
+            file_handle.flush()
+            os.fsync(file_handle.fileno())
+        tmp_path.replace(path)
+        secure_private_file(path)
+    finally:
+        if file_descriptor is not None:
+            os.close(file_descriptor)
+        tmp_path.unlink(missing_ok=True)
 
 
 def resolve_mutable_string_setting(existing_config: Dict[str, Any], defaults: Dict[str, Any], key: str) -> str:
@@ -72,9 +116,160 @@ def generate_user_id() -> str:
     return "ahs_" + secrets.token_urlsafe(16).rstrip("=")
 
 
-def ensure_binary(binary_name: str) -> None:
-    if shutil.which(binary_name) is None:
-        raise RuntimeError(f"Missing required binary: {binary_name}")
+def generate_replacement_user_id(previous_user_id: str) -> str:
+    while True:
+        candidate = generate_user_id()
+        if candidate != previous_user_id:
+            return candidate
+
+
+def reset_identity_config(existing_config: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        key: value
+        for key, value in existing_config.items()
+        if key not in IDENTITY_CONFIG_KEYS and not key.startswith(IDENTITY_RUNTIME_PREFIXES)
+    }
+
+
+def read_regular_file_bytes(path: Path) -> bytes:
+    flags = os.O_RDONLY
+    if hasattr(os, "O_NOFOLLOW"):
+        flags |= os.O_NOFOLLOW
+    try:
+        file_descriptor = os.open(path, flags)
+    except OSError as error:
+        raise RuntimeError(f"Cannot read identity artifact safely: {path}") from error
+    try:
+        file_mode = os.fstat(file_descriptor).st_mode
+        if not stat.S_ISREG(file_mode):
+            raise RuntimeError(f"Identity artifact must be a regular file: {path}")
+        with os.fdopen(file_descriptor, "rb") as file_handle:
+            file_descriptor = -1
+            return file_handle.read()
+    finally:
+        if file_descriptor >= 0:
+            os.close(file_descriptor)
+
+
+def identity_artifacts(paths: Dict[str, Path]) -> List[Tuple[str, Path]]:
+    config_dir = paths["config_dir"]
+    secrets_dir = paths["secrets_dir"]
+    return [
+        ("config/config.json", paths["primary_config_path"]),
+        ("config/runtime.json", paths["legacy_user_config_path"]),
+        ("config/public_key.pem", config_dir / "public_key.pem"),
+        ("config/secrets/private_key.pem", secrets_dir / "private_key.pem"),
+        ("config/signing_public_key_v5.pem", config_dir / "signing_public_key_v5.pem"),
+        ("config/secrets/signing_private_key_v5.pem", secrets_dir / "signing_private_key_v5.pem"),
+        ("config/encryption_public_key_v5.pem", config_dir / "encryption_public_key_v5.pem"),
+        ("config/secrets/encryption_private_key_v5.pem", secrets_dir / "encryption_private_key_v5.pem"),
+        ("config/registration-qr.json", config_dir / "registration-qr.json"),
+        ("config/registration-qr.png", config_dir / "registration-qr.png"),
+    ]
+
+
+def required_identity_artifact_names(existing_config: Dict[str, Any]) -> Tuple[str, ...]:
+    if not existing_config:
+        return ()
+    if not str(existing_config.get("user_id", "")).strip():
+        raise RuntimeError("Cannot rotate an existing identity without a user ID in config.json.")
+    try:
+        protocol_version = int(existing_config.get("protocol_version", 4) or 4)
+    except (TypeError, ValueError) as error:
+        raise RuntimeError("Cannot rotate an identity with an invalid protocol version in config.json.") from error
+    if protocol_version not in (4, 5):
+        raise RuntimeError("Cannot rotate an identity with an unsupported protocol version in config.json.")
+    if protocol_version == 5:
+        return (
+            "config/config.json",
+            "config/signing_public_key_v5.pem",
+            "config/secrets/signing_private_key_v5.pem",
+            "config/encryption_public_key_v5.pem",
+            "config/secrets/encryption_private_key_v5.pem",
+        )
+    return (
+        "config/config.json",
+        "config/public_key.pem",
+        "config/secrets/private_key.pem",
+    )
+
+
+def archive_identity_for_rotation(
+    paths: Dict[str, Path],
+    existing_config: Dict[str, Any],
+    replacement_user_id: str,
+) -> Optional[Path]:
+    artifact_candidates = identity_artifacts(paths)
+    available_artifacts = [
+        (relative_path, source_path)
+        for relative_path, source_path in artifact_candidates
+        if source_path.exists() or source_path.is_symlink()
+    ]
+    if not existing_config and not available_artifacts:
+        return None
+
+    available_names = {relative_path for relative_path, _ in available_artifacts}
+    missing_required = [
+        relative_path
+        for relative_path in required_identity_artifact_names(existing_config)
+        if relative_path not in available_names
+    ]
+    if missing_required:
+        raise RuntimeError(
+            "Cannot rotate because the existing identity is incomplete. Restore these artifacts first: "
+            + ", ".join(missing_required)
+        )
+
+    backup_root = paths["config_dir"] / ROTATION_BACKUP_DIRECTORY
+    if backup_root.is_symlink():
+        raise RuntimeError(f"Rotation backup directory must not be a symbolic link: {backup_root}")
+    secure_state_directory(backup_root)
+
+    archive_time = datetime.now(timezone.utc)
+    archive_timestamp = archive_time.replace(microsecond=0).isoformat()
+    archive_name = archive_time.strftime("%Y%m%dT%H%M%S.%fZ")
+    final_backup_dir = backup_root / archive_name
+    staging_dir = Path(tempfile.mkdtemp(prefix=".rotation-", dir=backup_root))
+    os.chmod(staging_dir, 0o700)
+
+    archived_files: List[Dict[str, str]] = []
+    try:
+        for relative_path, source_path in available_artifacts:
+            source_bytes = read_regular_file_bytes(source_path)
+            destination_path = staging_dir / relative_path
+            secure_state_directory(destination_path.parent)
+            secure_binary_write(destination_path, source_bytes)
+            copied_bytes = read_regular_file_bytes(destination_path)
+            if copied_bytes != source_bytes:
+                raise RuntimeError(f"Rotation backup verification failed: {relative_path}")
+            archived_files.append(
+                {
+                    "path": relative_path,
+                    "sha256": hashlib.sha256(source_bytes).hexdigest(),
+                }
+            )
+
+        previous_protocol_version = int(existing_config.get("protocol_version", 4) or 4)
+        manifest = {
+            "archive_version": ROTATION_BACKUP_VERSION,
+            "archived_at": archive_timestamp,
+            "previous_user_id": str(existing_config.get("user_id", "")),
+            "replacement_user_id": replacement_user_id,
+            "previous_protocol_version": previous_protocol_version,
+            "previous_onboarding_fingerprint": str(existing_config.get("onboarding_fingerprint", "")),
+            "files": archived_files,
+        }
+        secure_json_write(staging_dir / "manifest.json", manifest)
+        if final_backup_dir.exists() or final_backup_dir.is_symlink():
+            raise RuntimeError(f"Rotation backup target already exists: {final_backup_dir}")
+        staging_dir.replace(final_backup_dir)
+        secure_state_directory(final_backup_dir)
+        return final_backup_dir
+    except Exception as error:
+        shutil.rmtree(staging_dir, ignore_errors=True)
+        if isinstance(error, RuntimeError):
+            raise
+        raise RuntimeError(f"Failed to archive the existing identity before rotation: {error}") from error
 
 
 def http_post_json(url: str, payload: Dict[str, Any], timeout: int, apikey: str, region: str) -> Dict[str, Any]:
@@ -90,7 +285,7 @@ def http_post_json(url: str, payload: Dict[str, Any], timeout: int, apikey: str,
         method="POST",
     )
     try:
-        with request.urlopen(req, timeout=timeout) as response:
+        with open_relay_request(req, timeout=timeout) as response:
             raw = response.read()
             return json.loads(raw.decode("utf-8"))
     except error.HTTPError as http_error:
@@ -113,7 +308,7 @@ def http_post_binary(url: str, payload: Dict[str, Any], timeout: int, apikey: st
         method="POST",
     )
     try:
-        with request.urlopen(req, timeout=timeout) as response:
+        with open_relay_request(req, timeout=timeout) as response:
             raw = response.read()
             content_type = response.headers.get("Content-Type", "")
             return raw, content_type
@@ -124,7 +319,9 @@ def http_post_binary(url: str, payload: Dict[str, Any], timeout: int, apikey: st
         raise RuntimeError(f"Cannot reach function: {url_error}") from url_error
 
 def ensure_sqlite_schema(sqlite_path: Path) -> None:
-    sqlite_path.parent.mkdir(parents=True, exist_ok=True)
+    sqlite_path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+    if sqlite_path.exists() or sqlite_path.is_symlink():
+        secure_private_file(sqlite_path)
     conn = sqlite3.connect(sqlite_path)
     try:
         conn.execute(
@@ -146,6 +343,7 @@ def ensure_sqlite_schema(sqlite_path: Path) -> None:
         conn.commit()
     finally:
         conn.close()
+    secure_private_file(sqlite_path)
 
 
 def render_qr_via_supabase(
@@ -221,7 +419,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--rotate",
         action="store_true",
-        help="Rotate keys if key files already exist.",
+        help=(
+            "Archive the current identity, then create new keys and a new user ID. "
+            "The previous identity remains available only in the private rotation backup."
+        ),
     )
     parser.add_argument(
         "--protocol",
@@ -239,15 +440,9 @@ def main() -> int:
     paths = resolve_user_paths(state_dir)
     config_dir = paths["config_dir"]
     secrets_dir = paths["secrets_dir"]
-    state_dir.mkdir(parents=True, exist_ok=True)
-    config_dir.mkdir(parents=True, exist_ok=True)
-    secrets_dir.mkdir(parents=True, exist_ok=True)
-
-    try:
-        ensure_binary("openssl")
-    except RuntimeError as error:
-        print(f"Error: {error}", file=sys.stderr)
-        return 1
+    secure_state_directory(state_dir)
+    secure_state_directory(config_dir)
+    secure_state_directory(secrets_dir)
 
     private_key_path = secrets_dir / "private_key.pem"
     public_key_path = config_dir / "public_key.pem"
@@ -262,7 +457,19 @@ def main() -> int:
 
     existing_config = load_existing_user_config(state_dir)
 
-    user_id = existing_config.get("user_id") or generate_user_id()
+    previous_user_id = str(existing_config.get("user_id", "")).strip()
+    rotation_backup_path: Optional[Path] = None
+    rotation_at = ""
+    if args.rotate:
+        user_id = generate_replacement_user_id(previous_user_id)
+        try:
+            rotation_backup_path = archive_identity_for_rotation(paths, existing_config, user_id)
+        except RuntimeError as error:
+            print(f"Error: {error}", file=sys.stderr)
+            return 1
+        rotation_at = now_iso()
+    else:
+        user_id = previous_user_id or generate_user_id()
     resolved_ios_app_link = str(APP_CONFIG["ios_app_link"])
     resolved_storage = (
         args.storage
@@ -286,9 +493,6 @@ def main() -> int:
             generate_legacy_rsa_keys(private_key_path, public_key_path, rotate=args.rotate)
         except RuntimeError as error:
             print(f"Error: {error}", file=sys.stderr)
-            return 1
-        except subprocess.CalledProcessError as error:
-            print(error.stderr.decode("utf-8", errors="replace"), file=sys.stderr)
             return 1
 
         public_key_pem = public_key_path.read_text(encoding="utf-8")
@@ -353,7 +557,7 @@ def main() -> int:
     sqlite_path = state_dir / "health_data.db"
     ensure_sqlite_schema(sqlite_path)
 
-    user_config = dict(existing_config)
+    user_config = reset_identity_config(existing_config) if args.rotate else dict(existing_config)
     user_config.pop("qr_svg_path", None)
     user_config.update(
         {
@@ -365,7 +569,7 @@ def main() -> int:
         "secrets_dir": str(secrets_dir),
         "private_key_path": str(private_key_path),
         "public_key_path": str(public_key_path),
-        "public_key_base64": existing_config.get("public_key_base64", ""),
+        "public_key_base64": user_config.get("public_key_base64", ""),
         "onboarding_fingerprint": onboarding_payload["fingerprint"],
         "onboarding_payload_json": onboarding_payload_compact,
         "onboarding_payload_hex": onboarding_payload_hex,
@@ -393,6 +597,9 @@ def main() -> int:
         user_config["encryption_private_key_path"] = str(v5_key_paths["encryption_private_key_path"])
         user_config["encryption_public_key_path"] = str(v5_key_paths["encryption_public_key_path"])
         user_config["encryption_public_key_base64"] = encryption_public_key_base64
+    if args.rotate:
+        user_config["last_rotation_at"] = rotation_at
+        user_config["last_rotation_backup_path"] = str(rotation_backup_path) if rotation_backup_path else ""
     write_user_config(user_config, state_dir)
 
     print("\nInitialization complete.")
@@ -400,6 +607,10 @@ def main() -> int:
     print(f"Config dir: {config_dir}")
     print(f"User ID: {user_id}")
     print(f"Protocol: v{protocol_version}")
+    if args.rotate:
+        print("Rotation created a new user ID. Existing server data remains associated with the archived identity.")
+        if rotation_backup_path:
+            print(f"Previous identity backup: {rotation_backup_path}")
     print(f"Public key: {active_public_key_path}")
     if protocol_version == 5:
         print(f"Encryption public key: {v5_key_paths['encryption_public_key_path']}")

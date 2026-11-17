@@ -1,41 +1,58 @@
-## Description: <br>
-Compresses PPTX presentations by optimizing embedded images and videos, cleaning redundant data, and repackaging the file to reduce size. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+压缩 PPTX 演示文稿文件体积，通过压缩内嵌图片和视频、清理冗余数据、优化 ZIP 打包等手段显著减小 .pptx 文件大小。
 
-## Publisher: <br>
-[liyifm](https://clawhub.ai/user/liyifm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liyifm](https://clawhub.ai/user/liyifm)
 
-## Use Case: <br>
-Developers, operators, and document owners use this skill to reduce the size of PowerPoint `.pptx` files before sharing, archiving, or uploading them. It is useful when embedded media makes a presentation too large and the user can accept configurable image or video compression. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compression can reduce image or video quality and may remove thumbnails, comments, metadata, or other presentation data depending on selected options. <br>
-Mitigation: Keep the original presentation, inspect the compressed file before relying on it, and use lower compression or disable PNG conversion, video compression, or comment removal when fidelity matters. <br>
-Risk: Video compression depends on an external ffmpeg executable. <br>
-Mitigation: Use a trusted ffmpeg installation, or run with video compression disabled when ffmpeg is unavailable or not trusted. <br>
+## Use Case:
 
+External users and developers use this skill to reduce PPTX presentation size by recompressing embedded images and optional videos, removing selected metadata, and writing a compressed copy. It is useful when an agent needs to prepare smaller presentation files for sharing or storage.
 
-## Reference(s): <br>
-- [PPT压缩 on ClawHub](https://clawhub.ai/liyifm/ppt-compressor) <br>
-- [ffmpeg Windows builds](https://www.gyan.dev/ffmpeg/builds/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Compressed PPTX file with terminal status output and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a new compressed `.pptx`; optional video compression requires a trusted ffmpeg installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata lists 1.1.0) <br>
+Risk: Lossy image and video compression can reduce presentation quality or change media fidelity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the original PPTX and review the compressed output before distribution.
+
+Risk: Optional settings can remove document thumbnails or slide comments.
+
+Mitigation: Use conservative compression settings when comments, thumbnails, or review metadata must be preserved.
+
+Risk: Very large or untrusted PPTX archives can create resource-use or archive-processing risk.
+
+Mitigation: Prefer trusted presentations, avoid unexpectedly large inputs, and run compression in a controlled local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liyifm/skills/ppt-compressor)
+- [ffmpeg Windows builds](https://www.gyan.dev/ffmpeg/builds/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and generated PPTX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local compressed .pptx files and console summaries; video compression depends on ffmpeg availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata; artifact frontmatter metadata lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

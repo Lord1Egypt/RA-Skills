@@ -1,38 +1,49 @@
-## Description: <br>
-Automatically extracts key points from long Chinese or English text using summarize-related keyword triggers or a length trigger. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically extracts key points from long Chinese or English text and returns concise bullet-point summaries.
 
-## Publisher: <br>
-[1466561686](https://clawhub.ai/user/1466561686) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1466561686](https://clawhub.ai/user/1466561686)
 
-## Use Case: <br>
-ClawHub users and agents use this skill to produce concise summaries of long messages, emails, meeting notes, articles, and chat discussions. It supports Chinese and English inputs and can trigger from summarize-related keywords or plain text over 100 characters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Messages over 100 characters can trigger summarization without an explicit summarize request, sending message content to the configured LLM provider. <br>
-Mitigation: Install only when automatic summarization is desired, avoid sending sensitive long messages through the skill, or adjust the length trigger before use. <br>
+## Use Case:
 
+Users and agents use this skill to summarize long messages, emails, meeting notes, articles, and chat transcripts into clear key points and action items.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1466561686/cs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Concise bullet-point summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Mirrors the input language when possible; artifact requests stable, concise output with a 1000-token response cap.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Long messages may be sent to the configured LLM provider for summarization, including messages that exceed the length trigger without an explicit summary request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only where automatic summarization is desired, and avoid submitting confidential, regulated, or private text unless the configured LLM provider is approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1466561686/skills/cs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style bullet-point summary text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the configured LLM provider with temperature 0.3 and a maximum response length of 1000 tokens.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

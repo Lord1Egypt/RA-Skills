@@ -1,43 +1,50 @@
-## Description: <br>
-Segments audio files or folders into fixed-duration clips with optional recursive folder processing while preserving the input folder structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audio-Segmenter helps agents split a single audio file or a folder of audio files into fixed-duration segments while preserving the source folder structure and choosing default output paths.
 
-## Publisher: <br>
-[wangminrui2022](https://clawhub.ai/user/wangminrui2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangminrui2022](https://clawhub.ai/user/wangminrui2022)
 
-## Use Case: <br>
-Developers, content creators, and dataset preparers use this skill to split long audio files or audio folders into shorter fixed-duration clips for speech datasets, karaoke material, cover-song preparation, or media organization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or modify a Python environment, install packages, download ffmpeg, write logs, and generate many output audio files. <br>
-Mitigation: Run it in an isolated environment, preinstall verified dependencies where possible, and confirm input, output, and recursive-processing paths before execution. <br>
-Risk: Automatic dependency and ffmpeg downloads occur without a clear consent boundary. <br>
-Mitigation: Review the dependency installation behavior before use and restrict network access or pre-provision dependencies in managed environments. <br>
+## Use Case:
 
+External users and developers use this skill to prepare speech datasets, karaoke material, cover-song assets, podcasts, or other long audio by slicing inputs into smaller fixed-duration files. The skill supports a required input path plus optional duration, output directory, and recursive folder processing.
 
-## Reference(s): <br>
-- [Audio-Segmenter ClawHub page](https://clawhub.ai/wangminrui2022/audio-segmenter) <br>
-- [Publisher profile](https://clawhub.ai/user/wangminrui2022) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown with inline bash commands and generated audio segment files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs fixed-duration audio clips and may create output directories, logs, a Python environment, and downloaded ffmpeg dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.7 (source: server release metadata) <br>
+Risk: The skill automatically installs Python packages and downloads FFmpeg, which can change the user's Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run in an isolated sandbox or disposable virtual environment, and require pinned dependencies plus verified FFmpeg binaries before using it on sensitive systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangminrui2022/skills/audio-segmenter)
+- [Python documentation](https://www.python.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Configuration guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated audio segment files are written to the selected output directory.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python. The artifact may create or update a virtual environment and download FFmpeg before processing audio.]
+
+## Skill Version(s):
+
+1.1.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

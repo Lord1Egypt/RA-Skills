@@ -1,40 +1,59 @@
-## Description: <br>
-Analyzes OpenClaw SKILL.md files and generates human-friendly usage guides with examples, configuration details, warnings, best practices, recommendations, comparisons, and skill-combination ideas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze OpenClaw SKILL.md files to generate usage guides with examples, best practices, configuration details, common pitfalls, comparisons, and recommendations.
 
-## Publisher: <br>
-[xiaoxiao19810912](https://clawhub.ai/user/xiaoxiao19810912) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoxiao19810912](https://clawhub.ai/user/xiaoxiao19810912)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect installed or local skills and quickly understand how to run them, what they produce, and how they can be combined or compared. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads SKILL.md files and lists filenames in analyzed skill directories, which can expose private project or skill names if pointed at unrelated directories. <br>
-Mitigation: Run it only against intended OpenClaw skill directories and avoid private directories where filename disclosure would matter. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect SKILL.md files and quickly understand how a skill works, how to invoke it, and what examples, configuration details, warnings, and best practices are documented. It also supports bulk skill indexing, skill comparison, combination discovery, and task-based recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiaoxiao19810912/skill-usage-analyzer) <br>
-- [README](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text, Markdown, or JSON reports with optional command examples and generated recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may be printed to stdout or written to a user-selected file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, package.json, CHANGELOG) <br>
+Risk: The skill can enumerate and summarize installed OpenClaw skills, which may expose local skill inventory or workflow details in generated reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in workspaces where that inventory may be inspected, and review generated text, Markdown, or JSON before sharing it.
+
+Risk: The installer can overwrite an existing skill-usage-analyzer directory after user confirmation.
+
+Mitigation: Preserve local changes before approving overwrite prompts during installation.
+
+Risk: Unpinned installation through a package runner can execute a changing ClawHub CLI distribution.
+
+Mitigation: Use a pinned or already trusted ClawHub CLI when installing this release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoxiao19810912/skills/skill-usage-analyzer)
+- [README](README.md)
+- [CHANGELOG](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, Markdown, or JSON reports with command examples and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports and indexes can be printed to stdout or written to a user-specified output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

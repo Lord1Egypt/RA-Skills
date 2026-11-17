@@ -1,40 +1,56 @@
-## Description: <br>
-Track AI agent API calls, analyze token usage, and optimize costs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Lens helps agents track AI API calls, analyze token usage, monitor costs, and generate cost reports for OpenAI, Anthropic, Google, and DeepSeek APIs.
 
-## Publisher: <br>
-[lrg913427-dot](https://clawhub.ai/user/lrg913427-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lrg913427-dot](https://clawhub.ai/user/lrg913427-dot)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use Agent Lens to monitor LLM API spending, inspect token usage, latency, and error trends, and generate reports for cost optimization.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install mutable third-party code from GitHub.
+
+Mitigation: Review the package before installation, pin it to a trusted release or commit, and run it in an isolated environment.
+
+Risk: Local trace data and exports may reveal model usage, costs, timestamps, and prompt-related context.
+
+Mitigation: Restrict access to the local trace database and exported files, avoid recording secrets or unnecessary prompt content, and clean or rotate stored data periodically.
+
+Risk: Cost estimates can differ from actual provider billing because pricing and discounts may vary.
+
+Mitigation: Use reports for operational analysis, then verify material cost decisions against provider billing and current pricing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use Agent Lens to monitor LLM API calls, token usage, latency, errors, and estimated costs across agent workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs users to install an external GitHub package that was not included in the scanned artifact. <br>
-Mitigation: Review or pin the package before installation and install it in a virtual environment. <br>
-Risk: The local SQLite trace database can contain usage, model, cost, timing, and error information. <br>
-Mitigation: Treat the database as potentially sensitive and use the documented cleanup command when retention is no longer needed. <br>
+**Output Format:** [Markdown with code blocks and CLI commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Agent Lens on ClawHub](https://clawhub.ai/lrg913427-dot/gavin-agent-lens) <br>
+**Other Properties Related to Output:** [May include cost-analysis guidance, command suggestions, and code snippets for tracking API usage.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include local CLI commands, Python integration snippets, and cost-analysis workflows.] <br>
+2.1.0 (source: server release metadata and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence and frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

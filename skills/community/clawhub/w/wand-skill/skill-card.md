@@ -1,42 +1,56 @@
-## Description: <br>
-Helps developers integrate and use the Wand UI 2.0 Vue 2 mobile component library with API references, examples, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers integrate and use the Wand UI 2.0 mobile component library in Vue 2 projects, including component APIs, examples, and troubleshooting guidance.
 
-## Publisher: <br>
-[qzhouz](https://clawhub.ai/user/qzhouz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qzhouz](https://clawhub.ai/user/qzhouz)
 
-## Use Case: <br>
-Developers use this skill to ask an agent for Wand UI installation guidance, component API details, Vue examples, and troubleshooting while building mobile H5 interfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on generic mobile form, list, or navigation prompts and provide Wand UI-specific guidance when a project is not using Wand UI. <br>
-Mitigation: Confirm the target framework and component library before applying generated examples. <br>
-Risk: Generated guidance depends on the third-party @weiyi/wand-ui package and its documented APIs. <br>
-Mitigation: Review the package, license, and security posture before using it in production projects. <br>
+## Use Case:
 
+Developers use this skill to ask an agent for Chinese-language Wand UI component integration help, API lookup, Vue 2 code examples, and common mobile UI patterns such as forms, lists, navigation, selectors, and feedback components.
 
-## Reference(s): <br>
-- [Wand UI component API reference](references/components_api.md) <br>
-- [Wand UI quickstart guide](references/quickstart.md) <br>
-- [ClawHub release page](https://clawhub.ai/qzhouz/wand-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Vue, JavaScript, TypeScript, JSON, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language documentation focused on Vue 2 and Wand UI 2.0 mobile components.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; changelog says version bump only) <br>
+Risk: Setup examples install npm packages and plugins.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin reviewed package versions, use a lockfile, and review dependency changes before applying generated setup commands.
+
+Risk: Uploader examples may be adapted into flows that collect user files.
+
+Mitigation: Require normal user consent, file handling controls, and privacy review before using upload patterns in an application.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qzhouz/skills/wand-skill)
+- [Publisher profile](https://clawhub.ai/user/qzhouz)
+- [Wand UI component API reference](references/components_api.md)
+- [Wand UI quickstart guide](references/quickstart.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with Vue, JavaScript, TypeScript, JSON, HTML, CSS, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language documentation guidance for Vue 2 mobile UI development.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,50 @@
-## Description: <br>
-Autonomous pipeline manager that coordinates complete development workflows from planning through validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous pipeline manager that orchestrates the entire development workflow.
 
-## Publisher: <br>
-[baobaodawang-creater](https://clawhub.ai/user/baobaodawang-creater) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baobaodawang-creater](https://clawhub.ai/user/baobaodawang-creater)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate multi-agent project delivery, moving from planning and architecture through development, QA retries, integration, and status reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to give broad code-change authority to an automated background orchestrator with weak scoping and confirmation controls. <br>
-Mitigation: Use it only in a trusted workspace, confirm the target repository and project path before launch, and review generated changes and QA evidence before relying on the result. <br>
-Risk: Autonomous retries and handoffs can amplify an incorrect task interpretation across multiple development phases. <br>
-Mitigation: Start with a clear project specification, monitor status reports for blockers or retry loops, and stop the workflow when the reported plan no longer matches the intended task. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate a full implementation workflow from project analysis through architecture, development, QA retries, integration, and final validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baobaodawang-creater/agents-orchestrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown status reports, task handoffs, QA feedback, and launch commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates specialist agents and may trigger iterative code-change and QA workflows when available in the host agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill coordinates high-agency development workflows, so spawned-agent plans or changes could affect important code or production workflows if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a clearly scoped project specification and review spawned-agent plans and changes before applying them to important code or production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baobaodawang-creater/skills/agents-orchestrator)
+- [Publisher profile](https://clawhub.ai/user/baobaodawang-creater)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, status reports, task handoffs, and implementation instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are generated as a single conversational stream for coordinating specialist agents and reporting progress.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

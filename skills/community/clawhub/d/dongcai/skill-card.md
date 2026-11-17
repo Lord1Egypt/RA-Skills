@@ -1,41 +1,58 @@
-## Description: <br>
-东方财富妙想资讯搜索 helps agents search financial news, announcements, research reports, policy updates, trading rules, and event analysis through an Eastmoney-related search service while reducing reliance on stale or non-authoritative sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+本 Skill 基于东方财富妙想搜索能力，基于金融场景进行信源智能筛选，用于获取涉及时效性信息或特定事件信息的任务，包括新闻、公告、研报、政策、交易规则、具体事件、各种影响分析、以及需要检索外部数据的非常识信息等。避免AI在搜索金融场景信息时，参考到非权威、及过时的信息.
 
-## Publisher: <br>
-[kevinsutianxing](https://clawhub.ai/user/kevinsutianxing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevinsutianxing](https://clawhub.ai/user/kevinsutianxing)
 
-## Use Case: <br>
-Developers and financial-analysis agents use this skill to retrieve current, query-relevant financial information such as news, announcements, research reports, policy updates, trading rules, and event analysis. It is intended for workflows where timely external financial context is needed before answering a user question. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a locally stored MX_APIKEY and sends financial search queries to an external search service. <br>
-Mitigation: Use the skill only when that data flow is acceptable, store the API key in an environment variable, avoid committing credentials, and rotate the key if exposure is suspected. <br>
-Risk: The shell script interpolates the query directly into a JSON request body, which may fail or behave unexpectedly for unusual query text such as embedded quotes. <br>
-Mitigation: Use simple query text or improve JSON escaping before relying on queries that contain special characters. <br>
+## Use Case:
 
+External users and agents use this skill to search Dongfangcaifu Miaoxiang financial information for timely market news, announcements, research reports, policy updates, trading rules, event context, and impact analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kevinsutianxing/dongcai) <br>
-- [Eastmoney-related financial news search API endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/news-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and plain text or JSON API response content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an MX_APIKEY environment variable and network access to the external search endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Financial search queries are sent to a documented remote service together with a user-provided API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sending those queries to the service is acceptable, and provide a limited, revocable API key.
+
+Risk: The current shell script may expose the API key to local process observers during execution.
+
+Mitigation: Run it only in trusted local environments and rotate or revoke the key if local exposure is suspected.
+
+Risk: Queries containing quotes or control characters may be mishandled by the current script.
+
+Mitigation: Review or sanitize query text before execution, especially for copied input or automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kevinsutianxing/skills/dongcai)
+- [DongCai news search API endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/news-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell command usage and remote API response text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally save readable search results to the workspace when used by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

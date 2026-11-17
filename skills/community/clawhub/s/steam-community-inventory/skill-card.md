@@ -1,42 +1,54 @@
-## Description: <br>
-Retrieves Steam inventory data for a user from steamcommunity.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves Steam inventory data for a user from steamcommunity.com.
 
-## Publisher: <br>
-[bluesyparty-src](https://clawhub.ai/user/bluesyparty-src) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bluesyparty-src](https://clawhub.ai/user/bluesyparty-src)
 
-## Use Case: <br>
-Developers and Steam users use this skill to retrieve, page through, and inspect Steam Community inventory data with curl and jq. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to handle a live Steam browser session cookie. <br>
-Mitigation: Treat STEAM_COOKIES like a password: do not share it, avoid shared terminals, logs, screenshots, and persistent shell history, and invalidate the Steam session if it may have been exposed. <br>
-Risk: Repeated Steam Community inventory requests may trigger rate limits or temporary IP bans. <br>
-Mitigation: Use cookies only for the user's own inventory and wait at least 4 seconds between inventory or pagination requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Steam Community Developer Documentation](https://steamcommunity.com/dev) <br>
-- [SteamID Lookup](https://steamid.io) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bluesyparty-src/steam-community-inventory) <br>
-- [Publisher Profile](https://clawhub.ai/user/bluesyparty-src) <br>
+## Use Case:
 
+Developers and Steam users use this skill to retrieve, inspect, summarize, and paginate Steam Community inventory JSON for a SteamID64 and game app ID.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API Calls, Guidance] <br>
-**Output Format:** [Markdown with bash commands, jq examples, and JSON response-field guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, STEAM_ID, and STEAM_COOKIES.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Using STEAM_COOKIES can expose an authenticated Steam web session if the cookie is pasted into shared terminals, logs, or shell history.
+
+Mitigation: Prefer public unauthenticated inventory requests when possible; treat steamLoginSecure like a password, unset it after use, and revoke the session if exposure is suspected.
+
+Risk: The skill's security verdict is suspicious because it asks users to export a live Steam session cookie without enough warning or scoping.
+
+Mitigation: Review the commands before use and limit cookie use to inventory requests where authentication is necessary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bluesyparty-src/skills/steam-community-inventory)
+- [Steam Community developer documentation](https://steamcommunity.com/dev)
+- [steamid.io SteamID lookup](https://steamid.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with curl and jq command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses STEAM_ID and optional STEAM_COOKIES environment variables; inventory responses are JSON from Steam Community endpoints.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

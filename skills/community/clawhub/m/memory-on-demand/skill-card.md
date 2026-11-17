@@ -1,36 +1,49 @@
-## Description: <br>
-按需记忆检索。当用户询问历史相关问题时，自动搜索 memory 和 QMD 获取相关信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically retrieves relevant prior context from memory and session indexes when a user asks history-related questions.
 
-## Publisher: <br>
-[aeoleader](https://clawhub.ai/user/aeoleader) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aeoleader](https://clawhub.ai/user/aeoleader)
 
-## Use Case: <br>
-People using an OpenClaw agent use this skill to retrieve prior QMD and memory entries when they ask history-related questions, then receive organized results without loading memory into every conversation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad history-related prompts may surface prior local memory or QMD history that contains sensitive information. <br>
-Mitigation: Review stored memory sources before use, avoid storing secrets in memory, and ask the agent to confirm before searching when tighter control is needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers use this skill to help an agent recall prior conversations or stored workspace memory only when a history-related request is detected.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with summarized search results and inline shell commands when retrieval is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search is triggered only for history-related prompts and may use QMD search first with memory-file search as a fallback.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automatic history-triggered memory searches may expose prior session or workspace information without clear confirmation or disclosure controls.
+
+Mitigation: Install only where memory and session indexes are scoped to the correct user or workspace, and review retrieved results before using or sharing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aeoleader/skills/memory-on-demand)
+- [Publisher Profile](https://clawhub.ai/user/aeoleader)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with optional shell commands and organized retrieval results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Searches should remain scoped to the active user or workspace memory context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

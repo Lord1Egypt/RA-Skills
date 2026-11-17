@@ -1,39 +1,57 @@
-## Description: <br>
-Use when an agent needs to run GEO/SEO audits through x402geo.com with payment gating, status tracking, and report delivery via MCP or ACP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs paid GEO/SEO audits through x402geo.com with payment handling, status tracking, and report delivery through MCP or ACP.
 
-## Publisher: <br>
-[sagztudio](https://clawhub.ai/user/sagztudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sagztudio](https://clawhub.ai/user/sagztudio)
 
-## Use Case: <br>
-External users and developers use this skill to request paid GEO/SEO audits for a website, track the audit lifecycle, and receive a concise report summary with a public report link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate wallet-based payments for audits, which may spend real funds if automatic payment is enabled. <br>
-Mitigation: Use a wallet with strict spending limits or no real funds, require explicit confirmation for each transaction, and review payment details before proceeding. <br>
+## Use Case:
 
+External users and developers use this skill to request website GEO/SEO audits, complete or authorize payment, monitor audit progress, and receive a concise report summary with a public report link.
 
-## Reference(s): <br>
-- [x402geo service](https://x402geo.com) <br>
-- [ClawHub listing](https://clawhub.ai/sagztudio/x402georeport) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Markdown with payment links, status URLs, report links, and concise audit summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include checkout URLs, progress URLs, provider status, and public report links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The audit workflow sends the user's email address and target website URL to x402geo.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is comfortable sharing those details with x402geo.com before creating the audit request.
+
+Risk: The workflow can involve an agentic wallet payment for the audit.
+
+Mitigation: Confirm the payment amount, wallet, and audit target with the user before approving payment; use the manual checkout link when confirmation or wallet readiness is unclear.
+
+## Reference(s):
+
+- [x402geo service](https://x402geo.com)
+- [x402geo MCP endpoint](https://x402geo.com/api/mcp)
+- [x402geo ACP jobs endpoint](https://x402geo.com/api/acp/jobs)
+- [ClawHub skill page](https://clawhub.ai/sagztudio/skills/x402georeport)
+- [ClawHub publisher profile](https://clawhub.ai/user/sagztudio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or plain text with payment links, status URLs, report links, and concise audit summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include user confirmation prompts before agentic wallet payment and provider status or error details.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

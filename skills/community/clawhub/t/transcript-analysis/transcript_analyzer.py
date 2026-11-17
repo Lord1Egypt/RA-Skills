@@ -43,7 +43,7 @@ if sys.platform == "win32" and hasattr(sys.stdout, "reconfigure"):
 STOCK_ANALYSIS_BASE = "https://stockanalysis.com"
 
 # QVeris API
-QVERIS_API_KEY = "sk-OAk52GSBLKryEWgg-bKP4yoJyRqA6RToSYSTTND7-jg"
+QVERIS_API_KEY = "REDACTED-SECRET"
 QVERIS_BASE = "https://qveris.ai/api/v1"
 TRANSCRIPT_TOOL_ID = "alphavantage.earnings_call_transcript.retrieve.v1.7aca3c4a"
 

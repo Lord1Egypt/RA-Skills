@@ -1,41 +1,58 @@
-## Description: <br>
-Keeps the conversation token-friendly by summarizing recent exchanges, surfacing pending actions, and delivering a compact briefing for each turn before calling the model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keeps conversation context compact by summarizing recent exchanges, surfacing pending actions, and producing a short briefing for the next agent turn.
 
-## Publisher: <br>
-[Davienzomq](https://clawhub.ai/user/Davienzomq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[davienzomq](https://clawhub.ai/user/davienzomq)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep long OpenClaw conversations compact by generating a current Markdown briefing, recent-turn log, and pending-action list before the next model call. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local chat history and generated summaries may contain secrets or regulated personal data if users log sensitive conversations. <br>
-Mitigation: Keep the history short, remove sensitive data before logging, inspect current-summary.md before reuse, and clear the context files when finished. <br>
-Risk: The background monitor can continuously refresh summaries from the local history file. <br>
-Mitigation: Run the monitor only when continuous updates are needed and review the generated summary before using it as model context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Davienzomq/context-gatekeeper) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep long OpenClaw-style sessions manageable by replacing bulky chat history with a compact Markdown summary, pending-action list, and recent-turn log before the next model call.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary files with concise text guidance and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a compact summary, pending-action list, and recent-turn excerpt from local chat history.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Conversation text is written to local files and reused in later prompts.
+
+Mitigation: Avoid secrets, regulated data, credentials, and sensitive business details unless redaction, retention limits, and restrictive file permissions are in place.
+
+Risk: The always-on monitor can continuously rewrite summaries from the conversation history.
+
+Mitigation: Prefer manual, user-approved summary generation unless continuous monitoring is explicitly needed and easy to disable.
+
+Risk: Prior conversation text can carry stale, private, or prompt-injection content into later model calls.
+
+Mitigation: Review the generated summary before use and treat it as untrusted conversation-derived context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davienzomq/skills/context-gatekeeper)
+- [Artifact README](README.md)
+- [Artifact skill definition](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summary file with matching plain-text console output and command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summary sentence count, pending-item count, and recent-turn count are configurable through command-line flags.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata, artifact README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

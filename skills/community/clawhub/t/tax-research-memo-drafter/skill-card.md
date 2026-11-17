@@ -1,42 +1,59 @@
-## Description: <br>
-Drafts U.S. federal tax research memos for licensed CPA, EA, or tax attorney review using FIRAC structure, ranked authority, reliability ratings, and Section 6662 disclosure flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts FIRAC-structured U.S. federal tax research memos for CPA, EA, or tax attorney review, with ranked authority, reliability ratings, and Section 6662/Form 8275 disclosure flags.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-CPAs, EAs, tax attorneys, and supervised staff use this skill to turn a client fact pattern and supplied authorities into a draft U.S. federal tax research memo for return-position support, planning, opinion letters, or IRS controversy work. The draft requires licensed-preparer review and sign-off before reliance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft memos may contain incorrect citations, unsupported assumptions, or misleading tax conclusions in a high-stakes professional domain. <br>
-Mitigation: Use only as a drafting aid for qualified tax professionals; independently verify every citation, factual assumption, authority ranking, reliability rating, and disclosure recommendation before reliance. <br>
-Risk: Client tax facts may include confidential or identifying information. <br>
-Mitigation: Avoid unnecessary client identifiers, use redacted matter labels, and do not include confidential facts in external searches or unrelated tool calls. <br>
+## Use Case:
 
+External licensed tax professionals use this skill to turn a client fact pattern and supplied authorities into a draft U.S. federal tax research memo for return-position support, planning, opinion letters, or IRS controversy work. The memo is intended for licensed-preparer review and sign-off, not standalone tax advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/tax-research-memo-drafter) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft memo with tables, issue analysis, disclosure flag, open questions, and preparer sign-off language] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires fact confirmation, citation verification, adverse-authority review, and licensed-preparer sign-off.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata and CHANGELOG.md, released 2026-05-28) <br>
+Risk: The draft memo could be mistaken for standalone tax advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the draft-only framing, require licensed-preparer review and sign-off, and do not rely on the output without independent professional judgment.
+
+Risk: Incorrect or unverified authorities, citations, conclusions, or disclosure recommendations could affect a tax position.
+
+Mitigation: Independently verify every authority, citation, conclusion, reliability rating, and Section 6662/Form 8275 disclosure recommendation before use.
+
+Risk: Client facts may contain confidential or identifying information.
+
+Mitigation: Use redacted identifiers and avoid sending confidential client data to external tools, searches, or systems outside the memo workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/archlab-space/skills/tax-research-memo-drafter)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown draft memo with structured sections, tables, ratings, disclosure flags, open questions, and sign-off language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-only professional support; requires human verification of facts, authorities, citations, conclusions, and disclosure recommendations.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

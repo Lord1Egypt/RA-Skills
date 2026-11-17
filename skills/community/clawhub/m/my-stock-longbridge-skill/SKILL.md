@@ -1,11 +1,4 @@
----
-name: my_stock_longbridge_skill
-description: 长桥证券(Longbridge)OpenAPI 集成与交易管理技能
-version: 1.0.1
-author: 老大
----
-
-# my_stock_longbridge_skill
+# my_longbridge_mgnt_skill
 
 ## Purpose
 Longbridge OpenAPI integration for automated stock management.

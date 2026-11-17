@@ -1,49 +1,64 @@
-## Description: <br>
-TradeMirrorOS is a workspace-level routing skill for an instruction-only trading journal framework, covering capability mapping, memory architecture, and routing into planning, journaling, review, and behavior-report sub-skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workspace-level routing skill for the Finance Journal framework, covering the capability map, memory architecture, and routing into instruction-only journaling, planning, review, and behavior-reporting sub-skills.
 
-## Publisher: <br>
-[topps-2025](https://clawhub.ai/user/topps-2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[topps-2025](https://clawhub.ai/user/topps-2025)
 
-## Use Case: <br>
-Developers and trading-journal users use this skill to route finance journal tasks, structure trading notes and plans, generate review artifacts, and frame long-term memory recall without automating trade execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading notes, broker exports, ledgers, and database files can contain sensitive financial information. <br>
-Mitigation: Keep broker exports, private ledgers, database files, and runtime or sync tooling under direct user control and outside public package distribution. <br>
-Risk: Review outputs or historical pattern summaries could be mistaken for financial advice or trade execution instructions. <br>
-Mitigation: Treat outputs as review aids, label uncertainty and sample limits, and require user review before any trading decision. <br>
-Risk: Memory recall and bandit-style prioritization can overemphasize sparse or incomplete personal trading history. <br>
-Mitigation: Frame historical matches as precedent or reminders rather than predictions, and keep facts separate from interpretation. <br>
+## Use Case:
 
+Traders and trading-journal users use this skill to route natural-language journal, plan, review, and discipline-analysis requests into structured memory workflows. It helps preserve trade facts, hypotheses, lessons, and behavior patterns as review aids rather than trading signals.
 
-## Reference(s): <br>
-- [TradeMirrorOS ClawHub Page](https://clawhub.ai/topps-2025/trademirroros) <br>
-- [README.md](artifact/README.md) <br>
-- [TRADE_MEMORY_ARCHITECTURE.md](artifact/TRADE_MEMORY_ARCHITECTURE.md) <br>
-- [finance-journal-orchestrator/references/data-contracts.md](artifact/finance-journal-orchestrator/references/data-contracts.md) <br>
-- [finance-journal-orchestrator/references/operating-rhythm.md](artifact/finance-journal-orchestrator/references/operating-rhythm.md) <br>
-- [trade-evolution-engine/references/evolution-algorithms.md](artifact/trade-evolution-engine/references/evolution-algorithms.md) <br>
-- [EverMemOS: A Self-Organizing Memory Operating System for Structured Long-Horizon Reasoning](https://arxiv.org/abs/2601.02163) <br>
-- [HyperMem: Hypergraph Memory for Long-Term Conversations](https://arxiv.org/abs/2604.08256) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Structured text] <br>
-**Output Format:** [Markdown and structured journaling or review payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only outputs; no code execution, credential handling, broker execution, or remote transport.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Trading-review outputs could be mistaken for investment advice or executable trading signals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat plans, reminders, historical matches, and skill-card candidates as review aids; the package explicitly keeps execution and automatic strategy deployment out of scope.
+
+Risk: Private broker exports, ledgers, databases, or journal data could be exposed if users package or share runtime data.
+
+Mitigation: Keep broker exports, private ledgers, databases, `_runtime*`, and vault/runtime data outside public packages and shared artifacts.
+
+Risk: Users could assume the skill performs sync, repository transport, or credentialed operations.
+
+Mitigation: Do not provide secrets, tokens, broker credentials, or remote transport credentials; keep file writes, git operations, sync, and publishing actions under direct user control.
+
+## Reference(s):
+
+- [TradeMirrorOS README](README.md)
+- [Trade Memory Architecture](TRADE_MEMORY_ARCHITECTURE.md)
+- [Data Contracts](finance-journal-orchestrator/references/data-contracts.md)
+- [Operating Rhythm](finance-journal-orchestrator/references/operating-rhythm.md)
+- [Evolution Algorithms](trade-evolution-engine/references/evolution-algorithms.md)
+- [EverOS repository](https://github.com/EverMind-AI/EverOS)
+- [EverMemOS paper](https://arxiv.org/abs/2601.02163)
+- [HyperMem paper](https://arxiv.org/abs/2604.08256)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and structured text with JSON-shaped journaling, planning, review, and behavior-report payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only outputs; does not execute trades, sync repositories, request credentials, or operate broker accounts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

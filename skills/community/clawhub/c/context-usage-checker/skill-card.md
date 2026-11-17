@@ -1,42 +1,59 @@
-## Description: <br>
-Checks the current conversation's estimated token usage, remaining context, usage percentage, progress bar, and threshold-based guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context Usage Checker estimates the current conversation's token use and replies with used tokens, remaining tokens, usage percentage, a progress bar, and threshold-based guidance.
 
-## Publisher: <br>
-[rfdiosuao](https://clawhub.ai/user/rfdiosuao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rfdiosuao](https://clawhub.ai/user/rfdiosuao)
 
-## Use Case: <br>
-Developers and agent users use this skill to inspect current conversation context usage and decide when to continue, compact, or start a new session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Token counts are estimates and may differ from platform-reported usage. <br>
-Mitigation: Treat the output as planning guidance and rely on platform usage reporting for exact limits. <br>
-Risk: The skill reads current session history to estimate context usage. <br>
-Mitigation: Install and run it only in workspaces where inspecting session context is acceptable. <br>
+## Use Case:
 
+Developers and agent users use this skill to check whether a current conversation is approaching the model context limit before continuing, compacting, or starting a new session.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rfdiosuao/context-usage-checker) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [ClawHub](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown status message with token counts, percentage, progress bar, and usage advice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Token counts are estimated from current session history and model-specific context limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, skill.json, source header) <br>
+Risk: The skill reads the current conversation history to estimate token usage, although it reports only aggregate counts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in environments where aggregate context metrics are acceptable and avoid triggering it when conversation history contains information that should not be inspected by utility skills.
+
+Risk: Token counts are estimates and may differ from platform-reported usage.
+
+Mitigation: Treat the result as planning guidance and rely on platform statistics for exact limits when available.
+
+Risk: The trigger phrases are broad and the skill is primarily documented in Chinese.
+
+Mitigation: Review trigger configuration and user-facing language before deployment in multilingual or tightly controlled agent environments.
+
+## Reference(s):
+
+- [Context Usage Checker on ClawHub](https://clawhub.ai/rfdiosuao/skills/context-usage-checker)
+- [Publisher profile](https://clawhub.ai/user/rfdiosuao)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown status message with token counts, percentage, progress bar, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Token counts are estimated from current session history and model-specific context window defaults.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, skill.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

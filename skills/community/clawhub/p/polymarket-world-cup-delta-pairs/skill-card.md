@@ -1,44 +1,62 @@
-## Description: <br>
-Pair NO-advance with YES-winner legs for the same 2026 World Cup team to trade cross-market mispricing. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Pair NO-advance with YES-winner legs for the same 2026 World Cup team to trade cross-market mispricing.
 
-## Publisher: <br>
-[alyna123t](https://clawhub.ai/user/alyna123t) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alyna123t](https://clawhub.ai/user/alyna123t)
 
-## Use Case: <br>
-External users and developers can use this skill to scan 2026 World Cup prediction markets, compare paired advancement and outright-winner prices, and optionally execute small paired trades after reviewing the risk controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live execution can place real-money prediction-market trades using SIMMER_API_KEY. <br>
-Mitigation: Start with dry-run or sim mode, use a dedicated limited-funded account or key, and enable --live only when intentional trading is desired. <br>
-Risk: The included account-status script can read broader Simmer account balance and position data. <br>
-Mitigation: Review the helper script before use and provide only the minimum credential scope needed for the intended account. <br>
-Risk: Disabling safeguards can bypass spread, slippage, and context checks. <br>
-Mitigation: Keep safeguards enabled unless the operator understands which checks are being bypassed and accepts the trading risk. <br>
+## Use Case:
 
+Developers and trading operators use this skill to scan 2026 World Cup prediction markets, identify paired NO-advance and YES-winner opportunities for the same team, and optionally place orders through Simmer-supported venues after reviewing the risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alyna123t/polymarket-world-cup-delta-pairs) <br>
-- [Publisher profile](https://clawhub.ai/user/alyna123t) <br>
-- [Strategy source](https://x.com/zETHerka/status/2061162222156460540) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Command-line text with JSON-backed configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run by default; live mode can place paired market trades when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence; artifact frontmatter says 0.1.0) <br>
+Risk: Live execution can place real-money trades that lose money.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dry-run or sim mode first and use --live only after explicit review and acceptance of trading risk.
+
+Risk: The Simmer API key may grant account access for wallet, positions, and trading actions.
+
+Mitigation: Use a restricted Simmer API key if available and review account status before and after live runs.
+
+Risk: A failed second leg may leave an unhedged position.
+
+Mitigation: Keep safeguards enabled, review fills after live runs, and reconcile exposure before placing additional pairs.
+
+Risk: Local daily budget and cooldown files may not reflect partial or failed execution.
+
+Mitigation: Check actual venue/account state after live attempts and do not rely only on local state files for exposure control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alyna123t/skills/polymarket-world-cup-delta-pairs)
+- [Strategy source](https://x.com/zETHerka/status/2061162222156460540)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus command-line text and JSON configuration output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Simmer APIs and can place live prediction-market trades when run with --live.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

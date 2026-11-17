@@ -1,41 +1,50 @@
-## Description: <br>
-Creates a COMMS.md, a structured communication preferences document for humans and agents, through guided conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a COMMS.md, a structured, queryable document expressing someone's communication preferences for humans and agents.
 
-## Publisher: <br>
-[stedmanhalliday](https://clawhub.ai/user/stedmanhalliday) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stedmanhalliday](https://clawhub.ai/user/stedmanhalliday)
 
-## Use Case: <br>
-Individuals use this skill to articulate communication style, channel preferences, availability rhythms, async voice, boundaries, and interaction protocols in a structured COMMS.md document. Agents can use the resulting document as human-readable context before drafting outreach or coordinating with the person. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The generated COMMS.md can include personal schedule, availability, channel, and boundary details that may be sensitive if published broadly. <br>
-Mitigation: Review the completed document before saving or publishing it, especially schedule, availability, preferred channels, and boundary details. <br>
-Risk: A generic communication preference document may misrepresent the user if the interview answers are too sparse or the draft is accepted without review. <br>
-Mitigation: Use the skill's review and iteration step to remove inaccurate, overly specific, or overly vague statements before placement. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [COMMS.md Template](references/comms-template.md) <br>
-- [Example COMMS.md](references/example.md) <br>
-- [ClawHub skill page](https://clawhub.ai/stedmanhalliday/comms-md) <br>
+## Use Case:
 
+Employees, external users, and agents use this skill to interview someone about communication style, channels, availability, boundaries, and async voice, then draft a COMMS.md in the user's own words.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated COMMS.md draft is intended for user review and revision before saving or publishing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The generated COMMS.md may include personal communication preferences, availability, boundaries, and channel habits that the user may not want public or broadly shared.
+
+Mitigation: Review the final COMMS.md carefully before saving it to a public website, shared workspace, or other broadly accessible location.
+
+## Reference(s):
+
+- [COMMS.md Template](references/comms-template.md)
+- [Example COMMS.md](references/example.md)
+- [ClawHub skill page](https://clawhub.ai/stedmanhalliday/skills/comms-md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown document draft with conversational review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes an interview flow and optional saved COMMS.md document; final content should be reviewed before public or shared use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

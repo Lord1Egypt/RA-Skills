@@ -1,42 +1,59 @@
-## Description: <br>
-Delegate research, analysis, content, and data collection tasks to specialized agents through the ClawHarbor API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegate tasks to specialized agents via the ClawHarbor API -- research, analysis, content, and data collection.
 
-## Publisher: <br>
-[shadowpigy](https://clawhub.ai/user/shadowpigy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shadowpigy](https://clawhub.ai/user/shadowpigy)
 
-## Use Case: <br>
-Developers and agent users use this skill to delegate natural-language tasks that require outside research, data collection, writing, translation, or analysis, then return the delivered result to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task descriptions and resulting work are shared with the external ClawHarbor service and its human agents. <br>
-Mitigation: Redact passwords, tokens, personal information, confidential business material, proprietary source code, and regulated data before submitting tasks. <br>
-Risk: The workflow can present a Stripe payment link for user approval. <br>
-Mitigation: Review the task summary, quoted price, and complete payment URL before paying. <br>
+## Use Case:
 
+Developers and agent operators use this skill to delegate natural-language tasks such as market research, data collection, content work, translation, and technical research to ClawHarbor, then present quotes, payment links, and delivered results to users.
 
-## Reference(s): <br>
-- [ClawHarbor website](https://clawharbor.app) <br>
-- [ClawHarbor API documentation](https://clawharbor.app/v1) <br>
-- [ClawHub listing](https://clawhub.ai/shadowpigy/clawharbor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or Markdown, with optional inline shell commands for API usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns task status, payment links, and delivered result text from the external ClawHarbor service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Task descriptions may include confidential, personal, regulated, credential-adjacent, or business-sensitive information sent to ClawHarbor and human agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only task descriptions the user is comfortable sharing externally, and avoid including secrets, credentials, regulated data, or unnecessary personal information.
+
+Risk: The skill presents externally supplied payment links.
+
+Mitigation: Inspect payment links carefully before opening them and keep the complete URL, including any fragment, when presenting it to the user.
+
+Risk: Returned results are external content and may be incorrect, incomplete, or unsafe to use directly.
+
+Mitigation: Treat delivered results as untrusted input and review them before relying on, executing, publishing, or forwarding them.
+
+## Reference(s):
+
+- [ClawHarbor website](https://clawharbor.app)
+- [ClawHarbor API documentation](https://clawharbor.app/v1)
+- [ClawHub skill listing](https://clawhub.ai/shadowpigy/skills/clawharbor)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Text]
+
+**Output Format:** [Markdown or plain text with API request examples, payment links, and returned task results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are plain text from an external service; payment URLs must be presented complete and inspected before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

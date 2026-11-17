@@ -1,39 +1,54 @@
-## Description: <br>
-Honest Agent guides an agent to track commitments, check replies for unsupported claims, label media and file handling uncertainty, and persist audit records for later review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Honest Agent guides an assistant to track commitments, run pre-response honesty checks, label media and file analysis sources, and keep local audit logs for accountability.
 
-## Publisher: <br>
-[141553](https://clawhub.ai/user/141553) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[141553](https://clawhub.ai/user/141553)
 
-## Use Case: <br>
-Developers and agent users use this skill to make an assistant record commitments, surface unfinished promises, and avoid presenting guesses or unverified media interpretations as facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist and replay conversation-derived commitments and audit entries. <br>
-Mitigation: Install it only when persistent tracking is desired, avoid sensitive conversations unless this storage is acceptable, and review or clear memory/honest-agent/ as needed. <br>
-Risk: Media and file handling may involve OCR or transcription tools that receive user-provided content. <br>
-Mitigation: Use media recognition only with appropriate consent and data handling expectations, and disclose uncertainty when recognition or transcription is unavailable. <br>
+## Use Case:
 
+External users and developers use this skill to make an agent explicitly track promises, avoid unsupported claims, and disclose uncertainty when handling text, files, images, or audio. It is intended for accountability workflows where persistent local commitment and honesty logs are acceptable.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, configuration, JSON files] <br>
-**Output Format:** [Markdown guidance with JSON commitment and audit records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update memory/honest-agent/honest-commitments.json and memory/honest-agent/honest-logs.json when the hosting agent follows the skill instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill persistently records conversation-derived commitments and honesty logs across conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm who can access memory/honest-agent/, define a deletion process, and avoid recording sensitive content unless persistence is intended.
+
+Risk: Broad automatic triggers may record commitments or logs when the user did not explicitly request tracking.
+
+Mitigation: Consider limiting use to explicit commands or reviewing pending entries before retaining them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/141553/skills/honest-agent)
+- [Publisher profile](https://clawhub.ai/user/141553)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, JSON, Files]
+
+**Output Format:** [Markdown guidance with local JSON record updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update honest-commitments.json and honest-logs.json under memory/honest-agent/.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

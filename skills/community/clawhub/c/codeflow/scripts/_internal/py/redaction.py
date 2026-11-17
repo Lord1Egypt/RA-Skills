@@ -50,7 +50,7 @@ def redact_text(text: str, *, strict: bool = False) -> str:
 
     out = text
     out = _RE_PRIVATE_KEY_BLOCK.sub(
-        "-----BEGIN PRIVATE KEY-----\n[REDACTED]\n-----END PRIVATE KEY-----", out
+        "REDACTED-SECRET", out
     )
     out = _RE_DISCORD_WEBHOOK.sub(r"\1" + REDACT_MARK, out)
     out = _RE_TELEGRAM_BOT_URL.sub(r"\1" + REDACT_MARK + r"\3", out)

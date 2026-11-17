@@ -1,40 +1,62 @@
-## Description: <br>
-HTML Slides for OpenClaw helps agents create self-contained HTML slide decks from prompts or PPTX files, with style previews, browser presentation, Vercel deployment, and PDF export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates self-contained HTML slide decks for OpenClaw from user requirements, existing outlines, PPT/PPTX files, or existing HTML presentations.
 
-## Publisher: <br>
-[838997125](https://clawhub.ai/user/838997125) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[838997125](https://clawhub.ai/user/838997125)
 
-## Use Case: <br>
-OpenClaw users can use this skill to turn topics, outlines, existing content, or PPTX files into browser-ready HTML presentations. It supports visual style selection, local preview, optional online sharing, and PDF export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide public Vercel deployment of slide decks, which may expose private or sensitive presentation content. <br>
-Mitigation: Review the complete deck for confidential information before deployment, and use local HTML or PDF export for sensitive material. <br>
-Risk: The skill includes automated local preview, export, and conversion workflows that may create files or run local tooling. <br>
-Mitigation: Run commands only after reviewing the generated files and requested command arguments, especially when converting PPTX files or exporting PDFs. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to create, convert, preview, share, and export browser-based slide presentations with predefined visual styles and responsive layout rules.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/838997125/openclaw-html-slides) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces self-contained HTML presentation files and may guide optional PPTX extraction, Vercel deployment, or PDF export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optional deployment can publish slide content to a public Vercel URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local-only workflows for sensitive presentations and require explicit user confirmation before any upload or public deployment.
+
+Risk: Deployment and export workflows may execute third-party packages through Node.js tooling.
+
+Mitigation: Review commands before execution and prefer pinned, preinstalled dependencies in controlled environments.
+
+Risk: PDF export uses a temporary local server that can expose local presentation files during export.
+
+Mitigation: Run export only in trusted local environments and avoid exporting sensitive decks unless the temporary server risk is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/838997125/skills/openclaw-html-slides)
+- [README](README.md)
+- [HTML Presentation Template](html-template.md)
+- [Style Presets Reference](STYLE_PRESETS.md)
+- [Animation Patterns Reference](animation-patterns.md)
+- [Viewport Base CSS](viewport-base.css)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, and shell command snippets; generated decks are self-contained HTML files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can optionally guide Vercel deployment and PDF export workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

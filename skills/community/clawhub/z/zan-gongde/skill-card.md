@@ -1,43 +1,57 @@
-## Description: <br>
-Zan Gongde automates deliberate OpenClaw token consumption by repeatedly invoking an LLM in visible, silent, TTS, or high-concurrency modes until a token target is reached. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zan Gongde lets OpenClaw users intentionally consume remaining plan tokens by repeatedly prompting the configured LLM, with user-visible, silent, TTS, and high-concurrency modes.
 
-## Publisher: <br>
-[jageri](https://clawhub.ai/user/jageri) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jageri](https://clawhub.ai/user/jageri)
 
-## Use Case: <br>
-OpenClaw users can use this entertainment-oriented skill to intentionally spend unused token quota through repeated LLM calls, with optional visible progress, silent operation, TTS playback, or high-concurrency token burn. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to spend OpenClaw tokens and can consume quota quickly. <br>
-Mitigation: Use it only when token consumption is intentional, start with small visible runs, and set strict token targets before using larger runs. <br>
-Risk: Silent and high-concurrency modes can rapidly consume quota and may exceed the requested target. <br>
-Mitigation: Avoid tollm and ddos modes unless strict limits are set, monitor quota during execution, and keep worker counts low for high-concurrency runs. <br>
-Risk: Manual installation from non-server provenance is not verified by the available release evidence. <br>
-Mitigation: Install from the ClawHub release when possible; separately inspect and trust any manually cloned files before use. <br>
+## Use Case:
 
+External OpenClaw users use this skill to spend unused token quota through automated Buddhist-recitation prompts, including faster high-concurrency token consumption when explicitly requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jageri/zan-gongde) <br>
-- [Publisher profile](https://clawhub.ai/user/jageri) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text responses with inline command examples and progress summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce repeated LLM responses, token-spend progress, summaries, TTS playback instructions, and high-concurrency execution guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.2 (source: server release metadata) <br>
+Risk: The skill intentionally spends OpenClaw tokens and can unexpectedly deplete quota.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when deliberate token consumption is desired; start with low token targets and monitor account usage.
+
+Risk: The high-concurrency mode lacks firm limits and reliable stopping controls.
+
+Mitigation: Avoid high-concurrency runs unless budget and rate-limit approval are explicit, and keep worker counts conservative.
+
+Risk: Token estimates and documented stop controls are not hard safeguards.
+
+Mitigation: Treat displayed counts as estimates and enforce spending limits outside the skill through account or platform controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jageri/skills/zan-gongde)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown progress updates and generated LLM responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mode, token target, and worker count influence response volume, concurrency, and token spend.]
+
+## Skill Version(s):
+
+2.3.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,60 @@
-## Description: <br>
-Build machine-readable service catalogs, knowledge graphs, and UCP/MCP/A2A protocol endpoints so AI shopping agents can discover, evaluate, and transact with services autonomously. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Commerce Discovery. Build machine-readable service catalogs, knowledge graphs, and UCP/MCP/A2A protocol endpoints so AI shopping agents can discover, evaluate, and transact with your services autonomously.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and commerce operators use this skill to design agent-discoverable service catalogs, knowledge graphs, structured data, and UCP/MCP/A2A endpoints for AI shopping agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide asks for sensitive commerce credentials and includes production API examples that can affect marketplace, webhook, trust, and payment-adjacent state if run. <br>
-Mitigation: Start with sandbox or test credentials, avoid live Stripe keys or production signing keys, and require human approval before running examples that update marketplace listings, register webhooks, perform payments, make purchases, or sign identity actions. <br>
+## Use Case:
 
+Developers and commerce teams use this guide to make services discoverable to AI shopping agents through machine-readable catalogs, knowledge graphs, structured data, and UCP/MCP/A2A protocol endpoints.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mirni/greenhelix-agent-commerce-discovery) <br>
-- [GreenHelix Sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API](https://api.greenhelix.net/v1) <br>
-- [Schema.org](https://schema.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guide with Python and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executing guide; examples reference GreenHelix, agent signing, and Stripe credentials supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The guide references sensitive credentials that may not be needed for every example.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only narrowly scoped credentials required for the specific operation, and avoid supplying Stripe or agent signing keys unless that operation explicitly needs them.
+
+Risk: Copyable production patterns may introduce credential handling or file-write risk if reused without review.
+
+Mitigation: Review examples before production use, validate webhook service identifiers, and restrict any copied file-write or marketplace-update behavior to trusted inputs and hosts.
+
+Risk: API examples can be redirected or adapted to untrusted origins.
+
+Mitigation: Pin the GreenHelix API origin to trusted hosts before using the examples with real credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-agent-commerce-discovery)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API endpoint](https://api.greenhelix.net/v1)
+- [Schema.org](https://schema.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guide with code and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executing guide; examples may require user-supplied credentials and review before production use.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

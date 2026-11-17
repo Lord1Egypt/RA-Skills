@@ -1,43 +1,61 @@
-## Description: <br>
-Summarizes completed work, blockers, lessons learned, and next-week plans into reviewable management and execution summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts structured Chinese weekly-review summaries from user-provided work logs, blockers, lessons learned, and next-week plans.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Employees, managers, and operators use this skill to turn weekly task notes, blockers, and plans into a structured Markdown review draft for approval and follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weekly notes may contain sensitive personal, business, or planning information. <br>
-Mitigation: Use only intended local input files, redact sensitive content where appropriate, and review the generated summary before sharing it. <br>
-Risk: The generated review can be incomplete or misleading if the source notes omit work, blockers, or uncertainty. <br>
-Mitigation: Keep source notes attached or traceable and use the skill's confirmation items to resolve gaps before relying on the summary. <br>
-Risk: The helper can write an output report when an output path is provided. <br>
-Mitigation: Choose the output path deliberately and use dry-run or stdout output when reviewing behavior. <br>
+## Use Case:
 
+Employees, managers, and individual contributors use this skill to turn weekly task notes into review-ready management and execution summaries. It is suited for weekly reports, meeting preparation, personal retrospectives, and planning workflows where missing facts should be marked for confirmation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/weekly-review-pilot) <br>
-- [Publisher Profile](https://clawhub.ai/user/52YuanChangXing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown review draft with optional local script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can emit markdown or JSON through the bundled helper script; output is intended for human review before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Weekly review inputs may contain sensitive personal, project, or business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the notes intended for summarization and redact sensitive details before use.
+
+Risk: Draft quality depends on the accuracy and completeness of user-provided logs.
+
+Mitigation: Review the generated draft, confirm missing items, and keep uncertain items in the confirmation section.
+
+Risk: The script's --output option writes to the path provided by the user.
+
+Mitigation: Use stdout or --dry-run for review first, and check the destination path before writing files.
+
+Risk: Additional audit modes exist in the script but are not the active configured workflow.
+
+Mitigation: Leave audit modes disabled unless they receive separate review and clearer documentation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/weekly-review-pilot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown by default; JSON is available through the bundled script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script can print to stdout or write to a user-provided output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

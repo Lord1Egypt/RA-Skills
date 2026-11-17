@@ -1,44 +1,63 @@
-## Description: <br>
-Create and manage Telegram bots for notifications, automation, customer support, group management, and interactive commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage Telegram bots for notifications, automation, customer support, group management, and interactive commands.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and operators use this skill to scaffold and run Telegram bots for notifications, automation, customer support, group administration, and interactive command flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bot script can install an unpinned python-telegram-bot package at runtime. <br>
-Mitigation: Review the script before use and install a pinned dependency yourself in a virtual environment. <br>
-Risk: Custom handler files are loaded as local Python code and can process bot updates. <br>
-Mitigation: Only pass handler files that you wrote or fully trust, and keep the Telegram bot token private. <br>
-Risk: Bots with broad group-admin permissions can affect group members or settings if commands are wrong. <br>
-Mitigation: Test commands with limited permissions before granting group-admin access. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold and run Telegram bots that handle commands, messages, webhooks, polling, inline interactions, group administration, and notifications.
 
-## Reference(s): <br>
-- [Telegram Bot Examples](references/examples.md) <br>
-- [Telegram Bot API](https://core.telegram.org/bots/api) <br>
-- [python-telegram-bot](https://python-telegram-bot.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a user-supplied Telegram bot token and optional local Python handler file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bot script can automatically install an unpinned runtime dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and pin python-telegram-bot in an isolated virtual environment or container before running the script.
+
+Risk: Telegram bot tokens may be exposed when passed as command-line arguments.
+
+Mitigation: Use a safer secret mechanism for tokens and avoid storing or sharing command histories that contain credentials.
+
+Risk: Custom handler files execute trusted Python code inside the bot process.
+
+Mitigation: Only load handler files from trusted sources after review.
+
+Risk: Group administration examples can remove users from chats when the bot has sufficient permissions.
+
+Mitigation: Restrict admin IDs, review group permissions, and test moderation behavior in a controlled chat before deployment.
+
+## Reference(s):
+
+- [Telegram Bot Examples](references/examples.md)
+- [Telegram Bot API](https://core.telegram.org/bots/api)
+- [python-telegram-bot](https://python-telegram-bot.org)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Telegram bot setup steps, handler examples, command usage, and configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

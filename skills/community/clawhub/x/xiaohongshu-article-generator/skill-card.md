@@ -1,44 +1,61 @@
-## Description: <br>
-小红书图文生成技能 - 基于热点话题自动生成小红书风格的图文内容（文案 +HTML+ 图片） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Xiaohongshu-style content packages from hot topics, including copywriting, HTML pages, and image outputs.
 
-## Publisher: <br>
-[shiker1996](https://clawhub.ai/user/shiker1996) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shiker1996](https://clawhub.ai/user/shiker1996)
 
-## Use Case: <br>
-Creators, operators, and agent users use this skill to turn a topic or trend into Xiaohongshu-style copy, mobile HTML pages, and PNG image assets for review and publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and overwrite files in its configured output directory. <br>
-Mitigation: Use a dedicated workspace and keep outputDir values scoped to the intended project directory. <br>
-Risk: The skill may use browser rendering or browser access while generating image assets or trend-informed content. <br>
-Mitigation: Run it in a controlled environment and review generated HTML and PNG files before publishing. <br>
-Risk: Generated social content may include inaccurate, sensitive, or unsuitable claims if the input topic or source context is weak. <br>
-Mitigation: Review copywriting and images for accuracy, compliance, attribution, and publication suitability before use. <br>
+## Use Case:
 
+Content operators, marketers, and agent users can use this skill to turn a topic into a Xiaohongshu-style note package with short-form copy, mobile HTML layouts, and publishable page images.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shiker1996/xiaohongshu-article-generator) <br>
-- [Publisher Profile](https://clawhub.ai/user/shiker1996) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance, generated HTML, copywriting Markdown, and PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a topic-specific output directory containing HTML, copywriting.md, and rendered page images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, SKILL.md frontmatter, package.json, skill.json) <br>
+Risk: Unsafe topic or output path handling may write files outside the intended output folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted topic values, choose an isolated output directory, slug or sanitize topic-derived filenames, and enforce path containment before writing files.
+
+Risk: Unescaped topic or content values may inject active HTML into browser-rendered output.
+
+Mitigation: Escape user-controlled text before HTML generation and review rendered HTML before converting it to images.
+
+Risk: Browser rendering and dependency behavior may expand the execution surface during image conversion.
+
+Mitigation: Pin dependencies, run conversion in a restricted browser context, and avoid workspaces with sensitive writable files until rendering restrictions are in place.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shiker1996/skills/xiaohongshu-article-generator)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [README.md](README.md)
+- [EXAMPLES.md](EXAMPLES.md)
+- [LAYOUT_GUIDE.md](LAYOUT_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Guidance]
+
+**Output Format:** [Markdown guidance plus generated copywriting, HTML, and PNG page files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces topic-scoped output directories with 375x667 Xiaohongshu-style pages rendered as images.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

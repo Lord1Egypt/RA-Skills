@@ -1,39 +1,54 @@
-## Description: <br>
-Step helps agents log daily steps, set fitness goals, chart walking trends, and manage wellness notes through terminal commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log daily steps, set fitness goals, and chart walking trends.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users and developers use Step to run a local command-line tracker for steps, goals, reminders, trends, statistics, and exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Step stores step, goal, reminder, and related wellness notes in plaintext under ~/.local/share/step/. <br>
-Mitigation: Avoid entering highly sensitive medical details, and protect or delete exported files when they are no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to record walking activity, goals, reminders, streaks, milestones, and trend notes in a local terminal-first step log.
 
-## Reference(s): <br>
-- [Step on ClawHub](https://clawhub.ai/bytesagain-lab/step) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal command text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create plaintext log and export files under ~/.local/share/step/ when the generated shell command is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence; artifact files report 2.0.0) <br>
+Risk: The skill persistently stores broad free-form health-related text locally with weak scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for non-sensitive step or fitness notes on a private account and check permissions on ~/.local/share/step before use.
+
+Risk: Exports may not work as documented because the export command is captured by a logging handler.
+
+Mitigation: Verify export behavior and backups before relying on JSON, CSV, or TXT output.
+
+## Reference(s):
+
+- [Step on ClawHub](https://clawhub.ai/bytesagain-lab/skills/step)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Plain text command guidance and terminal output, with optional JSON, CSV, or TXT export files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores entries locally under ~/.local/share/step.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release evidence; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

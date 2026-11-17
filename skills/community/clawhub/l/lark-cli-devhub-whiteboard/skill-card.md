@@ -1,42 +1,57 @@
-## Description: <br>
-Use when creating or updating Feishu/Lark Whiteboards through lark-cli or feishu-cli for a development knowledge hub, including architecture maps, bug investigation paths, task maps, dependency maps, and project knowledge graphs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when creating or updating Feishu/Lark Whiteboards through lark-cli or feishu-cli for a development knowledge hub, including architecture maps, bug investigation paths, task maps, dependency maps, and project knowledge graphs.
 
-## Publisher: <br>
-[afengzi](https://clawhub.ai/user/afengzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afengzi](https://clawhub.ai/user/afengzi)
 
-## Use Case: <br>
-Developers and engineers use this skill to create and update Lark/Feishu whiteboards for development knowledge hubs, including architecture maps, bug investigation paths, release flows, task dependency maps, and project knowledge graphs. Durable whiteboards are paired with Base artifact records so future agents can discover the map without visual inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated whiteboard update commands can overwrite or modify Lark/Feishu boards. <br>
-Mitigation: Use dry-run output first, review generated diagrams and payloads, and scope WHITEBOARD_TOKEN to a board that is acceptable to modify. <br>
-Risk: Generated visual maps can be incomplete, misleading, or hard for future agents to discover. <br>
-Mitigation: Keep diagrams small enough for human scanning, validate locally when possible, and maintain the paired Base Artifacts record with summary and search keywords. <br>
-Risk: External CLI and npm tooling runs local commands and depends on the user's authenticated environment. <br>
-Mitigation: Install only when lark-cli, npx, and the Lark/Feishu account context are trusted for the target workspace. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to create or update Lark/Feishu whiteboards for development knowledge hubs, including architecture maps, release flows, bug diagnosis paths, dependency maps, and project knowledge graphs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afengzi/lark-cli-devhub-whiteboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown with diagram source and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires lark-cli and npx; whiteboard updates should use a scoped WHITEBOARD_TOKEN and dry-run review before writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill invokes an npm package through npx, which executes code from the package ecosystem.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin @larksuite/whiteboard-cli to an exact reviewed version before use.
+
+Risk: Whiteboard rendering and updates may access local project files or Lark credentials.
+
+Mitigation: Run rendering with only needed project access and keep Lark credentials scoped to the target whiteboard.
+
+Risk: Generated OpenAPI JSON or overwrite operations could update an unintended board state.
+
+Mitigation: Review generated JSON, keep dry-run enabled until reviewed, and confirm the remote board after meaningful redraws.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/afengzi/skills/lark-cli-devhub-whiteboard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides local rendering, JSON review, dry-run whiteboard updates, and post-update confirmation.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

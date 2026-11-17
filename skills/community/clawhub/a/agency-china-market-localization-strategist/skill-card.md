@@ -1,40 +1,54 @@
-## Description: <br>
-Expert AI agent for China market localization strategy, trend intelligence, platform-native content planning, and go-to-market execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent specializing in China market localization strategy, trend detection, platform-native content planning, and go-to-market execution.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-External marketers, founders, and agency teams use this skill to turn China-market trend signals into localized product, content, and go-to-market plans for platforms such as Douyin, Xiaohongshu, WeChat, Bilibili, Weibo, and Zhihu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with outputs focused on China-market localization. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Use with live browser, API, ad-account, payment, publishing, outreach, or memory tools could expose confidential business information or trigger spending without clear boundaries. <br>
-Mitigation: Set data-source limits, spend caps, approval requirements, and retention rules before granting those tools. <br>
-Risk: Planning outputs can affect market-entry, content, advertising, or commerce decisions if treated as final authority. <br>
-Mitigation: Review recommendations against current platform policies, local regulatory requirements, and business constraints before execution. <br>
+## Use Case:
 
+External users, marketers, founders, and go-to-market teams use this skill to translate China-market trend signals into localized product, content, channel, and execution plans. It produces advisory strategy outputs that should be checked against current platform, legal, regulatory, and budget sources before business decisions are made.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-china-market-localization-strategist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reports, platform-specific scripts, prioritization tables, and execution checklists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes priority levels, estimated effort, success metrics, and platform-specific recommendations when the user provides data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Trend, platform algorithm, legal, regulatory, and budget recommendations can become stale or inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current sources before making business decisions, publishing regulated claims, or spending money.
+
+Risk: Advisory marketing outputs may be misleading if the user supplies incomplete or outdated market data.
+
+Mitigation: Provide recent platform evidence and have a qualified reviewer check recommendations before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-china-market-localization-strategist)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhouqkt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, tables, scripts, checklists, and advisory guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and may include prioritized actions, estimated effort, success metrics, risk words, and customer-service FAQ drafts.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

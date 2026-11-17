@@ -1,44 +1,57 @@
-## Description: <br>
-Leewow Custom Gifts lets an agent browse customizable products, upload a workspace image, generate an AI product mockup, download preview images, and provide a signed purchase link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse and create custom gifts, including personalized bags, mugs, phone cases, apparel, and other products, by uploading an image to generate an AI-powered product mockup.
 
-## Publisher: <br>
-[yqxu](https://clawhub.ai/user/yqxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yqxu](https://clawhub.ai/user/yqxu)
 
-## Use Case: <br>
-External users and agents use this skill to browse custom gift templates, turn a user-provided image into a product preview, and share the resulting preview image and purchase link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user images to external Leewow and Tencent COS services. <br>
-Mitigation: Use only images that are acceptable to share with those services and avoid sensitive files in the workspace. <br>
-Risk: The skill relies on a Leewow secret key and produces signed purchase or COS URLs. <br>
-Mitigation: Use a narrowly scoped Leewow key, never expose or log CLAW_SK, and treat signed URLs as temporary access credentials. <br>
-Risk: The security review flags broad local configuration, URL-signing, shell-command, and endpoint surfaces. <br>
-Mitigation: Review the skill before installing, avoid untrusted tool inputs, and constrain command templating, environment loading, endpoint allowlisting, and COS presigning before higher-trust use. <br>
+## Use Case:
 
+External users and agents use this skill to browse customizable gift templates, generate product previews from workspace images, and return preview images with purchase links.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yqxu/custom-gifts-leewow) <br>
-- [Publisher Profile](https://clawhub.ai/user/yqxu) <br>
-- [Leewow Service](https://leewow.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, files, guidance] <br>
-**Output Format:** [JSON tool results, local image files, signed URLs, and Markdown or text guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads template and preview images under ~/.openclaw/workspace and requires CLAW_SK plus Leewow/Tencent COS access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: User images are uploaded to Leewow/COS and generated previews are stored locally under ~/.openclaw/workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive images and inform users before upload or preview generation.
+
+Risk: Shell command templates and file-handling could expose local files or credentials if untrusted tool parameters are accepted.
+
+Mitigation: Limit use to trusted operators until commands use safe argument execution and workspace path checks resolve symlinks.
+
+Risk: Loading ~/.openclaw/.env can make unrelated local environment values available during skill execution.
+
+Mitigation: Restrict environment loading to the required Leewow variables and avoid logging credential values.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/yqxu/skills/custom-gifts-leewow)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files, shell commands, guidance]
+
+**Output Format:** [JSON tool outputs with local image paths, task status, and signed purchase URLs, plus agent-facing text captions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads template and preview images under ~/.openclaw/workspace and requires a CLAW_SK credential for Leewow API access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

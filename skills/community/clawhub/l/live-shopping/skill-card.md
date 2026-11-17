@@ -1,40 +1,53 @@
-## Description: <br>
-Helps users filter live-shopping streams, evaluate deals and seller trust signals, and plan flash-deal or red-envelope interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for filtering live shopping streams, handling flash-sale interactions, and claiming red-envelope promotions.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawkk](https://clawhub.ai/user/clawkk)
 
-## Use Case: <br>
-External shoppers use this skill as shopping research assistance to compare live-shopping offers, shipping terms, seller reputation, review signals, and promotion timing before making manual purchase decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live-shopping offers may contain inaccurate prices, misleading seller claims, unclear delivery terms, or unfavorable return policies. <br>
-Mitigation: Verify seller reputation, prices, delivery terms, return policies, and product condition independently before purchase. <br>
-Risk: Automated or delegated checkout could expose payment, account, or order-control risk. <br>
-Mitigation: Keep checkout, payment, and account actions manual and user-controlled. <br>
+## Use Case:
 
+External shoppers use this skill to compare live-shopping deals, seller trust, logistics, after-sales terms, and buyer reviews before deciding whether to purchase. It also provides cautious guidance for flash deals and red-envelope promotions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/clawkk/live-shopping) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured shopping criteria and cautionary notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Shopping research assistance only; security evidence reports no code, hidden automation, credential use, or account-changing behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Users may treat shopping suggestions as purchase authority or disclose sensitive checkout information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as shopping advice only, independently verify sellers and discounts, and never share passwords, payment details, or verification codes.
+
+Risk: Using the guidance for automated purchases or bot-like promotion claiming may violate platform rules.
+
+Mitigation: Use the skill for manual decision support and avoid automated purchasing, bot-like red-envelope grabbing, or other actions prohibited by the shopping platform.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawkk/skills/live-shopping)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory shopping guidance only; no executable code, install hooks, credential handling, or automated purchasing actions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

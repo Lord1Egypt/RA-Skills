@@ -1,44 +1,60 @@
-## Description: <br>
-Retrieves Chinese-language stock quotes, price changes, volume, and market ranking information for stock-related questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries stock data for Eastmoney-style stock questions, including individual quotes, price changes, volume, and market ranking information.
 
-## Publisher: <br>
-[dongchun2008](https://clawhub.ai/user/dongchun2008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dongchun2008](https://clawhub.ai/user/dongchun2008)
 
-## Use Case: <br>
-External users and agents use this skill to answer stock-market lookup questions, including individual quotes, gainers and losers, sector rankings, and watchlist-style summaries. Outputs are for informational market-data convenience, not financial advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Market quotes or rankings may be delayed, unavailable, or inaccurate for time-sensitive decisions. <br>
-Mitigation: Treat results as informational and verify important prices or rankings with a trusted market-data source. <br>
-Risk: Queried stock symbols may be sent to Eastmoney and Sina Finance services. <br>
-Mitigation: Avoid using the skill for sensitive watchlists or private trading intent that should not be shared with third-party data providers. <br>
-Risk: Users may interpret stock lookup output as financial advice. <br>
-Mitigation: Present the output as market-data convenience only and avoid recommendations to buy, sell, or hold securities. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dongchun2008/eastmoney-stock) <br>
-- [Eastmoney quote API endpoint](http://push2.eastmoney.com/api/qt/clist/get) <br>
-- [Eastmoney market grid](http://quote.eastmoney.com/center/gridlist.html) <br>
-- [Sina Finance](http://finance.sina.com.cn) <br>
+## Use Case:
 
+External users and agents use this skill to answer Chinese-language stock questions by fetching individual quotes, sector gain/loss rankings, and watchlist-style stock information. It is suited for informational market lookup, not financial advice or trade execution.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style text reports and JSON-like helper-script responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Market data may be delayed by a few minutes and should be verified before important decisions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security scan reports that the skill is under-disclosed because individual stock quote queries are sent to Sina Finance despite Eastmoney branding.
+
+Mitigation: Disclose the Sina Finance quote source to users and verify returned quote data against a trusted market-data source before relying on it.
+
+Risk: The security scan reports that sector data is fetched from an unencrypted Eastmoney HTTP endpoint.
+
+Mitigation: Run the skill in a trusted environment, avoid submitting sensitive watchlists where network observers are a concern, and switch to HTTPS if the provider supports it.
+
+Risk: The security guidance notes that advertised Hong Kong and U.S. stock support may not work reliably and that market data may be delayed.
+
+Mitigation: Treat results as informational, test supported markets before release, and confirm time-sensitive prices with an authoritative source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dongchun2008/skills/eastmoney-stock)
+- [Publisher profile](https://clawhub.ai/user/dongchun2008)
+- [Eastmoney sector ranking API endpoint](http://push2.eastmoney.com/api/qt/clist/get)
+- [Eastmoney quote center](http://quote.eastmoney.com/center/gridlist.html)
+- [Sina Finance quote API endpoint](https://hq.sinajs.cn/list={code})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands]
+
+**Output Format:** [Markdown-formatted stock quote and sector ranking reports, with command-line text output from Python scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market data depends on external finance endpoints and may be delayed by a few minutes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

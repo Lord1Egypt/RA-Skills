@@ -1,44 +1,60 @@
-## Description: <br>
-Offline local semantic code search using embeddings to find and index code by meaning with llama.cpp, ONNX, or Ollama backends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Offline local semantic code search using embeddings to find and index code by meaning with llama.cpp, ONNX, or Ollama backends.
 
-## Publisher: <br>
-[rizperdana](https://clawhub.ai/user/rizperdana) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rizperdana](https://clawhub.ai/user/rizperdana)
 
-## Use Case: <br>
-Developers and coding agents use this skill to index local projects and search code by semantic meaning rather than exact keywords. It is intended for offline-capable code discovery workflows using local embedding backends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may search or index local project files when enabled with broad triggers. <br>
-Mitigation: Narrow activation triggers and enable it only for repositories or project paths intended for semantic indexing. <br>
-Risk: The documentation includes an embedded installation token. <br>
-Mitigation: Do not reuse embedded tokens from documentation; install through a trusted ClawHub flow or a freshly issued token. <br>
-Risk: Install instructions and activation scope require human review before deployment. <br>
-Mitigation: Review the README and installer files before installation, then scan the installed package in the target environment. <br>
+## Use Case:
 
+Developers and coding agents use this skill to index local codebases and run offline semantic searches by meaning. It helps locate related code using embeddings with local backend options.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rizperdana/semantic-grep) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON or agent installer snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline-capable local code indexing and search guidance; command execution and project-file access depend on the host agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Documentation exposes a credential-like ClawHub token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not reuse the embedded token; revoke it and require user-provided authentication before installation.
+
+Risk: Installation commands fetch an unpinned remote package.
+
+Mitigation: Install a pinned, reviewed semgrepll version with hashes from a trusted package source.
+
+Risk: Indexing source code creates local cached embeddings of project content.
+
+Mitigation: Avoid indexing sensitive code unless cache storage, access controls, and retention are understood.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rizperdana/skills/semantic-grep)
+- [Publisher profile](https://clawhub.ai/user/rizperdana)
+- [Artifact README](artifact/README.md)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and environment configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance is oriented around local execution; indexing code creates cached embeddings of project content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

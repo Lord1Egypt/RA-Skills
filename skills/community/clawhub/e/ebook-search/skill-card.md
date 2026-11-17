@@ -1,41 +1,58 @@
-## Description: <br>
-Search and download ebooks from jbiaojerry.github.io/ebook-treasure-chest by title, author, category, or keywords, with support for epub, mobi, and azw3 results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and download Chinese and English ebooks from jbiaojerry.github.io/ebook-treasure-chest by title, author, category, or keyword.
 
-## Publisher: <br>
-[eyslce](https://clawhub.ai/user/eyslce) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eyslce](https://clawhub.ai/user/eyslce)
 
-## Use Case: <br>
-External users and agent operators use this skill to search a public ebook catalog, browse categories, and surface third-party download links for matching books. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The catalog download disables normal HTTPS certificate and hostname verification. <br>
-Mitigation: Patch the downloader to use default HTTPS verification before relying on catalog results. <br>
-Risk: The skill surfaces third-party ebook download links. <br>
-Mitigation: Review download destinations and applicable rights or policies before opening or sharing links. <br>
+## Use Case:
 
+External users and agents use this skill to search a large ebook catalog, browse categories, and present matching titles with available formats and third-party download links.
 
-## Reference(s): <br>
-- [Ebook Search ClawHub release](https://clawhub.ai/eyslce/ebook-search) <br>
-- [Ebook Treasure Chest catalog JSON](https://jbiaojerry.github.io/ebook-treasure-chest/all-books.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with shell command examples and book search results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include book metadata and third-party download URLs returned from the cached public catalog.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill disables TLS verification while downloading the ebook catalog, so an intercepted connection could replace catalog data or unsafe links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fix TLS verification before use on shared, corporate, public, or otherwise untrusted networks.
+
+Risk: The skill presents third-party ebook download links.
+
+Mitigation: Treat displayed download links as untrusted until verified by the user or deployment owner.
+
+Risk: The skill stores a local ebook catalog cache in the user's home cache directory.
+
+Mitigation: Review cache location and retention expectations before deployment in managed or shared environments.
+
+## Reference(s):
+
+- [Ebook Search ClawHub listing](https://clawhub.ai/eyslce/skills/ebook-search)
+- [Ebook Treasure Chest book database](https://jbiaojerry.github.io/ebook-treasure-chest/all-books.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ebook titles, authors, categories, available formats, and third-party download links.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

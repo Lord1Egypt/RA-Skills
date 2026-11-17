@@ -1,44 +1,61 @@
-## Description: <br>
-上传猫狗照片后，该技能调用 DashScope 多模态模型识别快乐、悲伤、愤怒、恐惧、放松或警觉情绪，并生成包含置信度、解读和雷达图的 HTML 报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+上传猫或狗的照片后，技能使用 DashScope 多模态模型识别快乐、悲伤、愤怒、恐惧、放松或警觉情绪，并生成带置信度、解读和可视化图表的 HTML 报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Pet owners and assistants use this skill to analyze a provided cat or dog photo, summarize the likely emotional state, and produce an HTML report with confidence, visualizations, and interaction suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials and can fall back to OPENAI_API_KEY when DASHSCOPE_API_KEY is absent. <br>
-Mitigation: Use a DashScope-specific DASHSCOPE_API_KEY for this skill and avoid relying on a general-purpose OPENAI_API_KEY. <br>
-Risk: Analyzed pet photos are uploaded to DashScope and embedded in the generated HTML report. <br>
-Mitigation: Only analyze photos the user intends to upload to DashScope, and treat generated reports as files containing the original image. <br>
-Risk: The emotion analysis and suggestions may be wrong or incomplete for signs of pain, fear, aggression, or illness. <br>
-Mitigation: Treat results as informal behavior guidance and consult a veterinarian or qualified professional for concerning symptoms. <br>
+## Use Case:
 
+External users and developers use this skill to inspect a cat or dog photo, summarize a likely momentary emotion, and produce a shareable HTML report with confidence, reasoning, and interaction suggestions.
 
-## Reference(s): <br>
-- [宠物情绪解读知识库](references/emotion_guide.md) <br>
-- [Project homepage](https://github.com/bettermen/pet-emotion) <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/pet-emotion) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown summary plus generated HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a pet image path and a DashScope API key; generated reports embed the analyzed image.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Credential handling can use an unrelated OPENAI_API_KEY if DASHSCOPE_API_KEY is absent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated DashScope key, prefer DASHSCOPE_API_KEY, and avoid running the skill in environments that contain unrelated API keys.
+
+Risk: Pet photos are sent to DashScope for analysis.
+
+Mitigation: Analyze only photos the user is comfortable uploading to that third-party service and avoid sensitive images.
+
+Risk: Generated HTML reports are considered untrusted until the template escaping issue is fixed.
+
+Mitigation: Review or sanitize report content before opening or sharing generated HTML, and run the skill in a constrained environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/pet-emotion)
+- [Project homepage](https://github.com/bettermen/pet-emotion)
+- [宠物情绪解读知识库](references/emotion_guide.md)
+- [DashScope API key console](https://dashscope.console.aliyun.com/apiKey)
+- [DashScope compatible chat completions endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown summary, shell commands, configuration guidance, and generated HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local pet image and a DashScope API key; image data is uploaded to the configured model endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -10,10 +10,9 @@
 import difflib
 import shutil
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import UTC, datetime
 from enum import Enum
 from pathlib import Path
-from typing import Dict, List, Optional
 
 from .agent_logger import get_logger
 from .core import WikiManager, WikiPage
@@ -41,7 +40,7 @@ class ChangeProposal:
     diff: str
     strategy: MergeStrategy
     reason: str
-    backup_path: Optional[Path] = None
+    backup_path: Path | None = None
 
     def to_markdown(self) -> str:
         lines = [
@@ -68,7 +67,7 @@ class ContentMerger:
         page: WikiPage,
         addition: str,
         strategy: MergeStrategy,
-        context: Optional[Dict] = None,
+        context: dict | None = None,
     ) -> str:
         LOG.info("merge: page=%s strategy=%s", page.title, strategy.value)
         """
@@ -107,7 +106,7 @@ class ContentMerger:
             content = self._update_concept_definition(content, addition)
 
         # 追加变更日志
-        today = ctx.get("source_date", datetime.now().strftime("%Y-%m-%d"))
+        today = ctx.get("source_date", datetime.now(UTC).strftime("%Y-%m-%d"))
         log_entry = self._build_changelog_entry(strategy, ctx, addition)
         content = self.append_changelog(content, f"{today}: {log_entry}")
 
@@ -116,7 +115,11 @@ class ContentMerger:
 
     def generate_diff(self, original: str, modified: str) -> str:
         """生成统一的 diff 格式"""
-        LOG.debug("generate_diff: original=%d chars, modified=%d chars", len(original), len(modified))
+        LOG.debug(
+            "generate_diff: original=%d chars, modified=%d chars",
+            len(original),
+            len(modified),
+        )
         original_lines = original.splitlines(keepends=True)
         modified_lines = modified.splitlines(keepends=True)
         # 确保每行以换行结尾
@@ -163,7 +166,10 @@ class ContentMerger:
             level = self._heading_level(section_title)
             insert_idx = len(lines)
             for i in range(section_idx + 1, len(lines)):
-                if self._heading_level(lines[i]) > 0 and self._heading_level(lines[i]) <= level:
+                if (
+                    self._heading_level(lines[i]) > 0
+                    and self._heading_level(lines[i]) <= level
+                ):
                     insert_idx = i
                     break
 
@@ -186,7 +192,12 @@ class ContentMerger:
                 # 在"来源"之前，或末尾
                 source_idx = -1
                 for i, line in enumerate(lines):
-                    if line.strip().lower() in ("## 来源", "## sources", "## 变更日志", "## changelog"):
+                    if line.strip().lower() in (
+                        "## 来源",
+                        "## sources",
+                        "## 变更日志",
+                        "## changelog",
+                    ):
                         source_idx = i
                         break
                 if source_idx >= 0:
@@ -221,7 +232,12 @@ class ContentMerger:
         related_idx = -1
         for i, line in enumerate(lines):
             lower = line.strip().lower()
-            if lower in ("## 相关页面", "## related pages", "## 相关概念", "## related concepts"):
+            if lower in (
+                "## 相关页面",
+                "## related pages",
+                "## 相关概念",
+                "## related concepts",
+            ):
                 related_idx = i
                 break
 
@@ -309,10 +325,10 @@ class ContentMerger:
         for i, line in enumerate(lines):
             stripped = line.strip()
             # 跳过标题和 frontmatter 分隔符
-            if not stripped or stripped.startswith("#") or stripped.startswith("---"):
+            if not stripped or stripped.startswith(("#", "---")):
                 continue
             # 找到第一个内容行，认为是定义句
-            old_def = lines[i]
+            old_def = line
             lines[i] = new_definition
             # 保留旧定义作为注释
             lines.insert(i + 1, f"\n> 历史定义: {old_def}")
@@ -322,19 +338,12 @@ class ContentMerger:
     def _rebuild_page(self, page: WikiPage, new_content: str) -> str:
         """重建完整页面（含更新后的 frontmatter）"""
         fm = dict(page.frontmatter)
-        fm["updated"] = datetime.now().strftime("%Y-%m-%d")
+        fm["updated"] = datetime.now(UTC).strftime("%Y-%m-%d")
 
-        fm_lines = ["---"]
-        for key, value in fm.items():
-            if isinstance(value, list):
-                fm_lines.append(f"{key}:")
-                for v in value:
-                    fm_lines.append(f'  - "{v}"')
-            else:
-                fm_lines.append(f'{key}: "{value}"')
-        fm_lines.append("---")
+        import yaml
 
-        return "\n".join(fm_lines) + "\n\n" + new_content
+        fm_yaml = yaml.safe_dump(fm, allow_unicode=True, sort_keys=False).rstrip()
+        return f"---\n{fm_yaml}\n---\n\n" + new_content
 
     def _heading_level(self, line: str) -> int:
         """返回标题级别（# 数量），不是标题返回 0"""
@@ -351,19 +360,21 @@ class ContentMerger:
                 return level
         return 0
 
-    def _build_changelog_entry(self, strategy: MergeStrategy, ctx: Dict, addition: str) -> str:
+    def _build_changelog_entry(
+        self, strategy: MergeStrategy, ctx: dict, addition: str
+    ) -> str:
         """根据策略生成变更日志条目文本"""
         target = ctx.get("target", "")
         desc = ctx.get("relation_desc", "")
         if strategy == MergeStrategy.LINK_ONLY:
-            return f"添加相关页面链接"
+            return "添加相关页面链接"
         elif strategy == MergeStrategy.APPEND_RELATED:
             return f"添加与 [[{target}]] 的关联 — {desc}"
         elif strategy == MergeStrategy.APPEND_SECTION:
             section = ctx.get("section_title", "新章节")
             return f"补充{section.lstrip('#').strip()} — {addition[:50]}..."
         elif strategy == MergeStrategy.UPDATE_CONCEPT:
-            return f"更新概念定义"
+            return "更新概念定义"
         return "内容更新"
 
 
@@ -408,7 +419,7 @@ class SafeWriter:
             raise ValueError(f"Page not found: {page_path}")
 
         # 创建备份
-        today = datetime.now().strftime("%Y%m%d")
+        today = datetime.now(UTC).strftime("%Y%m%d")
         backup_name = f"{today}-{page_path.stem}.md"
         backup_path = self.backups_dir / backup_name
         # 处理重名
@@ -459,7 +470,7 @@ class SafeWriter:
         LOG.info("rollback complete: restored from %s", backups[0])
         return True
 
-    def list_backups(self, page_path: Path) -> List[Path]:
+    def list_backups(self, page_path: Path) -> list[Path]:
         """列出指定页面的所有备份"""
         stem = page_path.stem
         return sorted(

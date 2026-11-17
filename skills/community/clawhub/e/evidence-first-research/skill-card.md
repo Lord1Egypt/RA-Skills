@@ -1,42 +1,55 @@
-## Description: <br>
-Evidence-First Research guides agents to search prior literature, datasets, protocols, tools, reporting standards, and evidence quality before planning or producing scientific and biomedical work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evidence-first workflow for scientific research, literature review, method selection, study planning, biomedical analysis, and research writing.
 
-## Publisher: <br>
-[zackz2025](https://clawhub.ai/user/zackz2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zackz2025](https://clawhub.ai/user/zackz2025)
 
-## Use Case: <br>
-Developers, researchers, and scientific writers use this skill to make an agent check existing evidence, tools, datasets, protocols, and methodological standards before proposing research plans, analyses, or scientific content. It is especially relevant for medicine, public health, biology, translational research, and other evidence-sensitive workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research or medical guidance may be mistaken for clinical judgment or definitive scientific consensus. <br>
-Mitigation: Use the skill as support for evaluating sources and planning work, not as a substitute for clinical judgment; require current, authoritative sources and explicit uncertainty for high-stakes outputs. <br>
-Risk: Sensitive patient-identifiable information or private research files could be shared with an agent during evidence review. <br>
-Mitigation: Avoid providing patient-identifiable information or sensitive private research files unless that sharing is intended, authorized, and appropriately controlled. <br>
+## Use Case:
 
+Developers, researchers, and scientific writers use this skill to pause before planning or drafting scientific work, search for prior evidence, tools, datasets, protocols, and standards, and choose whether to adopt, adapt, benchmark, or design an approach. It is especially relevant for medicine, public health, biology, translational research, and other domains where evidence quality, safety, and reproducibility matter.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zackz2025/evidence-first-research) <br>
-- [Project Homepage](https://github.com/ZackZ2025/evidence-first-research) <br>
-- [Evidence Evaluation](evidence-evaluation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, analysis] <br>
-**Output Format:** [Markdown or concise text with cited evidence, assumptions, uncertainty, and recommended next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a research checkpoint covering objective, search targets, evidence strength, gaps, selected action mode, risks, and next step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence and frontmatter) <br>
+Risk: Scientific or medical outputs may still rely on incomplete, outdated, conflicting, or weak evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use current authoritative sources, explicitly state evidence strength and uncertainty, and verify medical or regulatory guidance before high-stakes use.
+
+Risk: The skill can slow execution because it asks the agent to search and evaluate evidence before drafting plans or recommendations.
+
+Mitigation: Apply it when evidence quality, safety, or reproducibility matter, and scope the research checkpoint to the decision stakes.
+
+## Reference(s):
+
+- [Evidence Evaluation](artifact/evidence-evaluation.md)
+- [Project homepage](https://github.com/ZackZ2025/evidence-first-research)
+- [ClawHub skill page](https://clawhub.ai/zackz2025/skills/evidence-first-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or concise structured text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a research checkpoint with objective, search targets, evidence strength, gaps, chosen path, risks, assumptions, and next step.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

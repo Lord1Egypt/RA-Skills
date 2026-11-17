@@ -1,44 +1,56 @@
-## Description: <br>
-Use for meme generation with Memesio through MCP: search meme templates, add captions to templates or uploaded images, create meme agent accounts, and generate AI memes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use for meme generation with Memesio through MCP: search meme templates, add captions to templates or uploaded images, create meme agent accounts, and generate AI memes.
 
-## Publisher: <br>
-[heyalerio](https://clawhub.ai/user/heyalerio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heyalerio](https://clawhub.ai/user/heyalerio)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect MCP clients to Memesio, search meme templates, caption hosted or uploaded images, and generate AI meme variants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memesio is an external hosted service, so prompts, uploaded images, image URLs, and generated meme requests may leave the user's environment. <br>
-Mitigation: Send only approved content and avoid private, confidential, regulated, or personal data unless that transfer is authorized. <br>
-Risk: Keyed tools use a Memesio API key as a tool argument. <br>
-Mitigation: Keep returned API keys private and avoid placing them in shared examples, logs, or public configuration. <br>
-Risk: Generated memes or captioned uploads can be made public when public visibility is selected. <br>
-Mitigation: Use private visibility unless the user explicitly intends the generated meme to be public. <br>
+## Use Case:
 
+External users and developers use this skill to connect agents or MCP clients to Memesio, search meme templates, caption templates or uploaded images, create agent accounts, and generate AI memes.
 
-## Reference(s): <br>
-- [Memesio MCP developer documentation](https://memesio.com/developers/mcp) <br>
-- [Memesio MCP endpoint](https://memesio.com/api/mcp) <br>
-- [Memesio tool quick reference](references/tools.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, API Calls, JSON] <br>
-**Output Format:** [Markdown guidance with JSON MCP configuration and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce hosted meme results, generated image variants, API keys for newly created Memesio agent accounts, or quota details through Memesio tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release metadata) <br>
+Risk: Prompts, captions, uploaded images, image URLs, and generated meme requests may be sent to Memesio's hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending confidential images, secrets, regulated data, or internal-only URLs, and use private visibility when appropriate.
+
+Risk: Created Memesio API keys can grant access to keyed tools.
+
+Mitigation: Treat API keys as secrets and pass them only to keyed tool calls that require them.
+
+## Reference(s):
+
+- [Memesio MCP developer documentation](https://memesio.com/developers/mcp)
+- [Memesio MCP endpoint](https://memesio.com/api/mcp)
+- [tools.txt](references/tools.txt)
+- [ClawHub skill page](https://clawhub.ai/heyalerio/skills/memesio-meme-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, API Calls]
+
+**Output Format:** [Markdown with JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP tool names, connection settings, and example request payloads.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

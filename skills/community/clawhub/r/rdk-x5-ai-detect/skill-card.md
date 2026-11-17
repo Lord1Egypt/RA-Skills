@@ -1,38 +1,58 @@
-## Description: <br>
-Runs single AI inference workflows on RDK X5, including YOLO detection, classification, segmentation, face and gesture recognition, pose estimation, open-vocabulary detection, stereo depth, ASR, and lightweight edge LLM launches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through running individual AI inference workflows on RDK X5, including YOLO detection, image classification, segmentation-related models, face, gesture, pose, open-vocabulary detection, stereo depth, ASR, and lightweight on-device LLM launches through TogetheROS.Bot.
 
-## Publisher: <br>
-[katherineedwards2475](https://clawhub.ai/user/katherineedwards2475) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[katherineedwards2475](https://clawhub.ai/user/katherineedwards2475)
 
-## Use Case: <br>
-Developers and RDK X5 operators use this skill to choose and run one prebuilt AI inference workload on the board's BPU through TogetheROS.Bot and ROS 2 launch commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RTSP examples can expose real camera credentials if copied with production usernames or passwords. <br>
-Mitigation: Replace sample credentials with a secure local configuration method, avoid saving camera passwords in shell history or shared files, and keep camera and web visualization endpoints on trusted networks. <br>
+## Use Case:
 
+Developers and engineers use this skill to run or troubleshoot one RDK X5 AI inference algorithm at a time on the board's BPU using ROS 2 launch commands. It is also useful when assessing which pre-built models and lightweight LLM workflows are appropriate for RDK X5.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/katherineedwards2475/rdk-x5-ai-detect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and troubleshooting tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an RDK X5 environment with ros2 and TogetheROS.Bot setup available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The RTSP example includes an inline username and password pattern that users could copy with real credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use protected configuration or a secret source for camera credentials, prefer read-only camera accounts, and avoid committing or sharing RTSP URLs that contain credentials.
+
+Risk: The workflows can access camera, audio, or RTSP streams and expose a local web viewer on port 8000.
+
+Mitigation: Run the viewer only on trusted networks, restrict access to the device, and confirm that capture and streaming comply with local privacy and consent requirements.
+
+Risk: The skill suggests installing Python inference packages as part of the workflow.
+
+Mitigation: Pin package versions and verify package sources before installation, especially on devices used for production or shared demos.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/katherineedwards2475/skills/rdk-x5-ai-detect)
+- [Publisher profile](https://clawhub.ai/user/katherineedwards2475)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and troubleshooting tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands assume an RDK X5 platform with ROS 2, TogetheROS.Bot, BPU-compatible model files, and any required camera or audio hardware already configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

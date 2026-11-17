@@ -1,43 +1,54 @@
-## Description: <br>
-Daily multi-source intelligence digest that proactively scans X, YouTube, Reddit, and GitHub for tools, techniques, and updates relevant to active projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily multi-source intelligence digest that scans X, YouTube, Reddit, GitHub, and web search for tools, techniques, and updates relevant to active projects, then filters results into a short actionable briefing.
 
-## Publisher: <br>
-[pingukim225](https://clawhub.ai/user/pingukim225) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pingukim225](https://clawhub.ai/user/pingukim225)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent produce a daily shortlist of high-signal technical updates for active AI, crypto, content creation, or technical projects. It supports morning briefings by ranking relevant items, explaining why they matter, and suggesting concrete next actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs recurring web and API research that may use external services and credentials. <br>
-Mitigation: Confirm whether automatic daily runs are enabled and use restricted API keys or tokens with the minimum permissions needed. <br>
-Risk: Project keywords may reveal sensitive client names, strategy terms, or internal priorities to external search and API providers. <br>
-Mitigation: Use sanitized keyword sets and avoid confidential terms when configuring monitored project domains. <br>
-Risk: Local digest and seen-URL state files may retain research history over time. <br>
-Mitigation: Periodically review, archive, or clean state files according to the user's data-retention needs. <br>
+## Use Case:
 
+Developers, researchers, and technical project owners use this skill to receive a daily or manually triggered briefing on fast-moving updates across their configured domains. It is suited for monitoring AI, crypto, content creation, and other technical topics without doing manual source-by-source research.
 
-## Reference(s): <br>
-- [03 Tech Scout ClawHub Listing](https://clawhub.ai/pingukim225/03-tech-scout) <br>
-- [pingukim225 ClawHub Profile](https://clawhub.ai/user/pingukim225) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown digest files with ranked items, source notes, links, and suggested actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a daily digest, maintains seen-URL state for deduplication, and may produce partial results when individual sources fail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may periodically query third-party services using configured project keywords.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit manual invocation or a clearly configured schedule when automatic morning runs are not desired, and limit keyword targets to appropriate project domains.
+
+Risk: Local digest and seen-URL files can reveal monitored topics and previously surfaced links.
+
+Mitigation: Store state files only in the intended workspace and delete or rotate them when the digest history is no longer needed.
+
+## Reference(s):
+
+- [03 Tech Scout on ClawHub](https://clawhub.ai/pingukim225/skills/03-tech-scout)
+- [Publisher profile](https://clawhub.ai/user/pingukim225)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown digest file with ranked items, source links, relevance notes, and suggested actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a dated digest and maintains a seen-URL state file for seven-day deduplication.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Analyze Social Media workflows with JustOneAPI, including cross-Platform Search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Social Media workflows with JustOneAPI, including cross-Platform Search.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and external users use this skill to run API-backed social media searches across supported platforms for trend research and monitoring. It helps agents request exact JustOneAPI results with explicit keyword, source, time-range, and pagination parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, filters, time ranges, and the JustOneAPI token are sent to JustOneAPI. <br>
-Mitigation: Avoid sensitive, regulated, or confidential monitoring queries unless authorized, and use a limited-scope or revocable token when available. <br>
-Risk: API credentials may be exposed if pasted into chat messages, screenshots, or logs. <br>
-Mitigation: Keep JUST_ONE_API_TOKEN in the environment and do not include token values in user-facing output. <br>
+## Use Case:
 
+Developers and agents use this skill to run API-backed cross-platform social media searches across sources such as Weibo, WeChat, Zhihu, Douyin, Xiaohongshu, Bilibili, Kuaishou, and news. It is useful for trend research and monitoring with explicit keyword, platform, time-window, and pagination parameters.
 
-## Reference(s): <br>
-- [JustOneAPI API homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_search&utm_content=project_link) <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and sends selected search parameters to JustOneAPI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: release evidence) <br>
+Risk: The skill sends social-media search terms and a JustOneAPI token to api.justoneapi.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege, revocable token and avoid sensitive searches.
+
+Risk: The API token can be exposed through command lines, command logs, or retained full request URLs.
+
+Mitigation: Avoid sharing logs, limit token scope, and rotate the token if command output or URLs may have been retained.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_search&utm_content=project_link)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_search&utm_content=project_link)
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-search)
+- [Publisher profile](https://clawhub.ai/user/justoneapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; selected requests return API JSON from JustOneAPI.]
+
+## Skill Version(s):
+
+1.0.6 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

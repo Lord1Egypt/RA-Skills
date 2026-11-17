@@ -1,38 +1,54 @@
-## Description: <br>
-Market risk co-pilot for equities. Use when you need to scan a watchlist for technical context, fresh headlines, and operational/security red flags, then log a disciplined trading recommendation with follow-up notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Market risk co-pilot for equities. Use when you need to scan a watchlist for technical context, fresh headlines, and operational/security red flags, then log a disciplined trading recommendation with follow-up notes.
 
-## Publisher: <br>
-[yaelsprikut](https://clawhub.ai/user/yaelsprikut) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yaelsprikut](https://clawhub.ai/user/yaelsprikut)
 
-## Use Case: <br>
-External users use this skill to scan equity tickers for technical context, current headlines, operational or security risk flags, and a concise trading-action log. It is decision support for market review, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill summarizes equity risk and trading context, so stale or incorrect prices, headlines, earnings dates, or citations could lead to poor decisions. <br>
-Mitigation: Treat outputs as decision support, not financial advice; confirm market data, headlines, earnings dates, and citations before acting. <br>
+## Use Case:
 
+External users use this skill to review equities watchlists with technical context, recent headline and operational risk flags, and a concise trading decision log.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yaelsprikut/market-pulse-wingman) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with concise per-ticker sections and a decision-log template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should cite source and time for headlines when available, state assumptions when live data is unavailable, and be confirmed against prices, headlines, earnings dates, and citations before trading decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may ask for trading context and use current market or news sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing account credentials or private financial details; provide only the watchlist and context needed for analysis.
+
+Risk: Market recommendations can be incomplete, stale, or wrong.
+
+Mitigation: Treat outputs as decision support, verify prices and headlines with current sources, and make final trading decisions independently.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yaelsprikut/skills/market-pulse-wingman)
+- [Publisher profile](https://clawhub.ai/user/yaelsprikut)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Compact per-ticker market pulse sections with risk flags, recommendation, contingency, and decision-log template.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

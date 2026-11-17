@@ -1,46 +1,59 @@
-## Description: <br>
-Guides agents through planning MillionFinneyHomepage pixel art, preparing IPFS media, and understanding the Ethereum contract claiming process without automatic transaction execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learn how to claim pixels on MillionFinneyHomepage, a 1000x1000 on-chain pixel grid. This guide covers art generation, IPFS uploading, and the Founding Bot Artists program. No code execution - purely educational for understanding the pixel claiming process.
 
-## Publisher: <br>
-[l0c0luke](https://clawhub.ai/user/l0c0luke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[l0c0luke](https://clawhub.ai/user/l0c0luke)
 
-## Use Case: <br>
-External developers, artists, and agent operators use this skill to understand how to prepare pixel artwork, map it onto the MillionFinneyHomepage grid, upload media to IPFS, and review the contract interactions required for pixel claims. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Real wallet signing or ETH spending could occur if a user follows contract guidance without review. <br>
-Mitigation: Keep transaction approval user-controlled, inspect the exact signature text, and use a limited or burner wallet when possible. <br>
-Risk: Incorrect domain, contract address, or pixel coordinates could cause failed uploads, wrong transactions, or irreversible on-chain records. <br>
-Mitigation: Verify the official domain and contract address, re-check pixel availability before purchase, and test with small claims first. <br>
-Risk: Secrets may be exposed if private keys or API keys are pasted into chat or shared with an agent. <br>
-Mitigation: Never paste private keys into chat and keep API keys private; use local wallet tooling and provider-specific secret handling. <br>
-Risk: The helper script writes JSON or CSV files to user-selected paths. <br>
-Mitigation: Choose output paths deliberately and review generated payload files before using them for purchases. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/l0c0luke/millionfinney-homepage) <br>
-- [Million Finney Homepage Contract Reference](references/contract.md) <br>
-- [Pixel Pattern and Artwork Recipes](references/pixel-art.md) <br>
-- [Million Finney Homepage IPFS Upload API](https://millionfinneyhomepage.com/api/ipfs/upload) <br>
+## Use Case:
 
+External users and developers use this skill to understand how MillionFinneyHomepage pixel planning, image-to-pixel conversion, IPFS media attachment, and Ethereum contract interactions work before taking any on-chain action.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with code snippets, command examples, and optional JSON or CSV pixel payload files from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script can emit pixel payload JSON and optional CSV files for user review before any transaction.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes blockchain transaction guidance that can spend ETH and create permanent on-chain records.
+
+Mitigation: Require explicit human approval before signing messages, submitting transactions, purchasing pixels, setting media, or interacting with auctions.
+
+Risk: Wallet private keys, API keys, signed messages, and media upload credentials could be exposed or misused.
+
+Mitigation: Keep secrets out of prompts and shared files, use a dedicated wallet with limited funds, and review any generated code or shell command before execution.
+
+Risk: Pixel media and NFT metadata may be immutable after contract submission.
+
+Mitigation: Preview artwork, verify token IDs and IPFS URIs, test on a testnet or dry run where possible, and start with a small purchase.
+
+## Reference(s):
+
+- [Millionfinney Homepage skill page](https://clawhub.ai/l0c0luke/skills/millionfinney-homepage)
+- [Million Finney Homepage Contract Reference](references/contract.md)
+- [Pixel Pattern & Artwork Recipes](references/pixel-art.md)
+- [Million Finney Homepage IPFS upload API](https://millionfinneyhomepage.com/api/ipfs/upload)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code examples and optional JSON or CSV pixel payload files from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script can convert raster images into pixel payload rows with coordinates, token IDs, colors, and titles.]
+
+## Skill Version(s):
+
+1.2.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

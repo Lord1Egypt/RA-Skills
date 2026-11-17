@@ -1,42 +1,59 @@
-## Description: <br>
-AI-assisted sports betting analysis helper for NBA and football that collects match factors, runs simple prediction logic, and produces probability, risk, and stake guidance for decision support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sports Betting Analyzer helps an agent produce sports betting analysis for NBA and football matches using basic statistics, simple prediction models, risk assessment, and explanatory reports.
 
-## Publisher: <br>
-[nopedijah](https://clawhub.ai/user/nopedijah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nopedijah](https://clawhub.ai/user/nopedijah)
 
-## Use Case: <br>
-External users and agent developers use this skill to request NBA or football matchup analysis, today-style recommendations, or analysis history summaries. The skill is for decision support and should not be treated as reliable betting advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Predictions, value-bet labels, and stake percentages may be unreliable because the skill relies heavily on simulated or random data. <br>
-Mitigation: Treat outputs as illustrative analysis only, verify all data against trusted sources, and do not use the skill as the sole basis for betting decisions. <br>
-Risk: Betting recommendations can create financial or legal risk for users. <br>
-Mitigation: Use conservative limits, avoid automated wagering from this output, and confirm local gambling laws and personal risk constraints before acting. <br>
+## Use Case:
 
+External users and developers use this skill to request match analysis, recommendation-style betting reports, recent-history summaries, and command-line runs for supported NBA and football scenarios. Outputs should be treated as decision support only, not verified wagering advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nopedijah/sports-betting-analyzer) <br>
-- [README](artifact/README.md) <br>
-- [Development Notes](artifact/docs/DEVELOPMENT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown-style analysis reports with optional JSON configuration and local history files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes probabilities, confidence, risk level, suggested stake percentage, factor explanations, and disclaimers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and skill frontmatter) <br>
+Risk: The skill can present gambling recommendations based on simulated or random data rather than verified live sports data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs as entertainment or decision-support text only, verify data independently, and do not rely on generated percentages or recommendations for wagering.
+
+Risk: The bundled scripts can store betting-analysis history and reports locally.
+
+Mitigation: Review or disable local history and report saving before use when betting interests or team names are sensitive.
+
+Risk: The runner can auto-install an unpinned dependency.
+
+Mitigation: Pin and review dependencies before running the installer path in managed or production environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nopedijah/skills/sports-betting-analyzer)
+- [README](artifact/README.md)
+- [Development Notes](artifact/docs/DEVELOPMENT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text reports with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save local analysis history and optional report files when the bundled scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

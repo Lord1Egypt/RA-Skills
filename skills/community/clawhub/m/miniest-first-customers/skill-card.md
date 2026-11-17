@@ -1,38 +1,53 @@
-## Description: <br>
-Helps founders use a minimalist, one-to-one sales playbook to win their first 100 customers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps early-stage founders create a practical strategy for winning their first 100 customers through focused one-to-one sales.
 
-## Publisher: <br>
-[ethan-china](https://clawhub.ai/user/ethan-china) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ethan-china](https://clawhub.ai/user/ethan-china)
 
-## Use Case: <br>
-Founders and early-stage product builders use this skill when they have a product but no customers or need a practical plan for early sales outreach. It helps create prospect lists, personalized outreach, initial pricing, weekly sales goals, and tracking methods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated contact lists or outreach messages may raise privacy, consent, or anti-spam compliance concerns. <br>
-Mitigation: Review all prospects and messages for privacy, consent, and anti-spam compliance before using them. <br>
+## Use Case:
 
+External founders, operators, and startup teams use this skill to plan early customer acquisition before a broad launch. It helps produce prospect lists, personalized outreach, initial pricing, and weekly sales tracking guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ethan-china/miniest-first-customers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with lists and outreach templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces sales target lists, personalized outreach copy, pricing strategy, and weekly tracking suggestions; no code or shell commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may activate for broad sales questions where the user wants general sales advice rather than early-stage customer acquisition coaching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify whether the user is seeking first-customer acquisition guidance before applying the skill's focused one-to-one sales framework.
+
+Risk: Sales guidance may be too generic if the user's product, buyer segment, or pricing context is missing.
+
+Mitigation: Ask for the product, target customer, current traction, price point, and available outreach channels before producing prospect lists or templates.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ethan-china/skills/miniest-first-customers)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown guidance with lists and outreach templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advice-only sales planning content; no code execution, persistence, credential access, or hidden behavior is indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

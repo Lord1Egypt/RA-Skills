@@ -1,0 +1,24 @@
+{
+  "name": "xborder-ecom-guard",
+  "displayName": "跨境电商合规护栏",
+  "version": "1.0.0",
+  "description": "跨境电商（面向美国/欧盟市场）商品详情、广告文案、直播话术、店铺介绍、客服话术发布前的事前合规护栏。实时拦截 6 类高频危险表述——虚假评论与刷单、原产地误导、CE 标识虚假宣称、关税与申报违规、安全合规宣称需核实、跨境广告极限词与疗效宣称，按风险分级给出整改建议。纯本地运行，零网络、零依赖、免费。依据美国 FTC 背书规则（16 CFR 255）、欧盟 GPSR（Regulation (EU) 2023/988）、UCPD（2005/29/EC）、市场监督条例（EU 2019/1020）。与数据跨境系列（xborder-guard/check/audit）不同：本护栏聚焦跨境电商经营合规，非数据出境。",
+  "category": "compliance",
+  "keywords": [
+    "跨境电商",
+    "出口",
+    "美国FTC",
+    "欧盟GPSR",
+    "虚假评论",
+    "原产地",
+    "CE标识",
+    "广告法",
+    "合规护栏",
+    "guard"
+  ],
+  "entry": "scripts/guard.py",
+  "license": "MIT",
+  "author": "成乾智联",
+  "repository": "https://github.com/wwumit/xborder-ecom-guard",
+  "homepage": "https://github.com/wwumit/xborder-ecom-guard"
+}

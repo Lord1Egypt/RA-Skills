@@ -40,25 +40,28 @@ def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8", errors="replace")
 
 
+CJK_CODEPOINT_RANGES = (
+    (0x3400, 0x4DBF),  # CJK Unified Ideographs Extension A
+    (0x3040, 0x309F),  # Hiragana
+    (0x30A0, 0x30FF),  # Katakana
+    (0x31F0, 0x31FF),  # Katakana Phonetic Extensions
+    (0x4E00, 0x9FFF),  # CJK Unified Ideographs
+    (0xAC00, 0xD7AF),  # Hangul Syllables
+    (0x1100, 0x11FF),  # Hangul Jamo
+    (0x3130, 0x318F),  # Hangul Compatibility Jamo
+    (0xA960, 0xA97F),  # Hangul Jamo Extended-A
+    (0xD7B0, 0xD7FF),  # Hangul Jamo Extended-B
+    (0xF900, 0xFAFF),  # CJK Compatibility Ideographs
+    (0x20000, 0x2A6DF),  # CJK Unified Ideographs Extension B
+    (0x2A700, 0x2B73F),  # CJK Unified Ideographs Extension C
+    (0x2B740, 0x2B81F),  # CJK Unified Ideographs Extension D
+    (0x2B820, 0x2CEAF),  # CJK Unified Ideographs Extensions E-F
+)
+
+
 def is_cjk_char(char: str) -> bool:
     code = ord(char)
-    return (
-        0x3400 <= code <= 0x4DBF
-        or 0x3040 <= code <= 0x309F
-        or 0x30A0 <= code <= 0x30FF
-        or 0x31F0 <= code <= 0x31FF
-        or 0x4E00 <= code <= 0x9FFF
-        or 0xAC00 <= code <= 0xD7AF
-        or 0x1100 <= code <= 0x11FF
-        or 0x3130 <= code <= 0x318F
-        or 0xA960 <= code <= 0xA97F
-        or 0xD7B0 <= code <= 0xD7FF
-        or 0xF900 <= code <= 0xFAFF
-        or 0x20000 <= code <= 0x2A6DF
-        or 0x2A700 <= code <= 0x2B73F
-        or 0x2B740 <= code <= 0x2B81F
-        or 0x2B820 <= code <= 0x2CEAF
-    )
+    return any(start <= code <= end for start, end in CJK_CODEPOINT_RANGES)
 
 
 def estimate_context_units(text: str) -> int:
@@ -470,7 +473,10 @@ def skill_install_identities_from_file(skill_md: Path) -> list[str]:
 
 
 def extract_terms(text: str) -> set[str]:
-    raw_terms = re.findall(r"[a-z0-9][a-z0-9+.]*|[\u4e00-\u9fff]{1,}", text.lower().replace("-", " "))
+    raw_terms = re.findall(
+        r"[a-z0-9](?:[a-z0-9+]|\.(?=[a-z0-9]))*|[\u4e00-\u9fff]{1,}",
+        text.lower().replace("-", " "),
+    )
     terms = set()
     for term in raw_terms:
         if term in STOPWORDS:

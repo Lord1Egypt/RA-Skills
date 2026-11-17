@@ -1,42 +1,59 @@
-## Description: <br>
-Control Roku devices via local network (ECP protocol). Use when the user wants to control their Roku TV or streaming device, change channels, launch apps (Netflix, YouTube, Hulu, etc.), navigate menus, adjust volume, play/pause content, search for shows, or power off. Works over LAN with no authentication required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Roku TVs and streaming devices on the local network using Roku ECP for discovery, navigation, playback, app launch, volume, search text, and power commands.
 
-## Publisher: <br>
-[IMaloney](https://clawhub.ai/user/IMaloney) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[imaloney](https://clawhub.ai/user/imaloney)
 
-## Use Case: <br>
-External users and home-automation developers use this skill to discover Roku devices on a trusted local network and send remote-control, app launch, playback, volume, power, text-entry, and status commands through the Roku ECP interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Unauthenticated LAN commands can immediately affect real Roku devices, including navigation, app launch, volume, power, and text entry. <br>
-Mitigation: Use only on trusted local networks and confirm the target Roku IP or friendly name before sending control commands. <br>
-Risk: The skill depends on the Python requests package. <br>
-Mitigation: Install dependencies from a trusted package source before use. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent discover and control approved Roku devices on the same local network, including menu navigation, playback, app launch, volume, power, and search text workflows.
 
-## Reference(s): <br>
-- [Common Roku Apps and Channels](references/common-apps.md) <br>
-- [Roku Remote Keys Reference](references/remote-keys.md) <br>
-- [Roku Device Mapping Example](references/roku.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may send local HTTP requests to Roku devices on port 8060 and may print JSON device, app, or active-app data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill can send unauthenticated commands to Roku devices reachable on the same LAN.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted networks and target approved Roku IP addresses.
+
+Risk: Discovery results on shared or guest networks may include devices the user should not control.
+
+Mitigation: Prefer explicit, trusted Roku IP addresses over untrusted discovery results.
+
+Risk: Power, app launch, volume, and text input commands can disrupt the current viewer experience.
+
+Mitigation: Review disruptive actions before execution.
+
+## Reference(s):
+
+- [Common Roku Apps & Channels](references/common-apps.md)
+- [Roku Remote Keys Reference](references/remote-keys.md)
+- [Roku Device Mapping](references/roku.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target Roku devices reachable on the same LAN and may return JSON-formatted device, app, or active-app data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

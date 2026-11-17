@@ -1,40 +1,53 @@
-## Description: <br>
-根据对话输入的 JD 或通用标准，批量评估简历并输出带颜色评级的表格。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据对话输入的 JD 或通用标准，批量评估简历并输出带颜色评级的表格。
 
-## Publisher: <br>
-[zhengchchen](https://clawhub.ai/user/zhengchchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhengchchen](https://clawhub.ai/user/zhengchchen)
 
-## Use Case: <br>
-Hiring teams and recruiters use this skill to compare resumes in a chosen folder against a job description or default senior frontend engineering criteria. It produces ranked candidate recommendations with scores, ratings, and concise fit notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Candidate resumes can contain personal information and sensitive employment history. <br>
-Mitigation: Use a dedicated folder containing only resumes intended for evaluation, and confirm permission before processing or sharing candidate information. <br>
-Risk: Automated resume scoring may miss context or overstate fit when used as the only hiring signal. <br>
-Mitigation: Treat the generated table as a review aid and have qualified reviewers verify resume facts, scoring criteria, and recommendations before making decisions. <br>
+## Use Case:
 
+Hiring teams and technical reviewers use this skill to evaluate batches of Chinese-language resumes against a provided job description or a default senior frontend engineering rubric, then compare candidates in a ranked Markdown table.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhengchchen/resume-evaluator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, analysis, guidance] <br>
-**Output Format:** [Markdown table with candidate scores, color-coded ratings, extracted resume attributes, technology stack, and concise fit evaluation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sorts candidates by rating priority and score; uses user-provided JD criteria when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release metadata; artifact frontmatter reports 3.0.0) <br>
+Risk: Resume evaluations may include personal candidate details and inferred fit scores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs before sharing and handle candidate information under applicable hiring and privacy practices.
+
+Risk: The skill reads resumes from a user-selected folder.
+
+Mitigation: Use a dedicated folder containing only the resumes intended for evaluation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhengchchen/skills/resume-evaluator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Ranks resumes with scores, fit summaries, and Chinese status ratings.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

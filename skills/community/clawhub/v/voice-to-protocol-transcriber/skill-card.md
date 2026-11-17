@@ -1,41 +1,57 @@
-## Description: <br>
-Record experimental procedures and observations via voice commands during lab work for real-time structured experiment documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record experimental procedures and observations via voice commands during lab work, with real-time transcription for structured experiment documentation.
 
-## Publisher: <br>
-[Lyla0921](https://clawhub.ai/user/Lyla0921) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lyla0921](https://clawhub.ai/user/lyla0921)
 
-## Use Case: <br>
-Researchers and lab staff use this skill to document experiment steps, observations, and notes through voice-style commands or text-mode input, then save structured experiment records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audio or transcripts may include proprietary, regulated, clinical, or personal information. <br>
-Mitigation: Review the skill before installing in sensitive environments, avoid sensitive content unless storage is approved, and require publisher clarification on whether audio or transcripts leave the machine. <br>
-Risk: Local save handling may place experiment records in an unintended or insufficiently protected directory. <br>
-Mitigation: Configure an explicit secure save directory with approved access controls and review stored records before sharing. <br>
+## Use Case:
 
+Researchers, lab staff, and developers use this skill to capture experiment steps, observations, and notes into structured protocol records during laboratory work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lyla0921/voice-to-protocol-transcriber) <br>
-- [Publisher profile](https://clawhub.ai/user/Lyla0921) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, JSON, or plain text experiment records with timestamps and classified entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save records to a configured local directory; default documentation describes Markdown output and the script supports markdown, json, and txt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The security evidence says documentation and install steps do not match the implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and avoid installing dependencies that are not needed by the implementation.
+
+Risk: The security evidence says file-write scope is weakly controlled.
+
+Mitigation: Use a dedicated save directory and confirm storage and retention controls before recording sensitive lab or clinical notes.
+
+Risk: Experiment names and notes may become local filenames or saved protocol content.
+
+Mitigation: Do not pass untrusted experiment names or sensitive notes unless the save location and retention policy are appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lyla0921/skills/voice-to-protocol-transcriber)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, shell commands]
+
+**Output Format:** [Markdown, JSON, plain text files, and console text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Protocol entries include timestamps and classifications such as step, observation, note, start, and end.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

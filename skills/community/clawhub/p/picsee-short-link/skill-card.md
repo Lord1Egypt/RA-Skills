@@ -1,49 +1,65 @@
-## Description: <br>
-PicSee URL shortener via MCP helps agents shorten URLs, generate QR-code links, inspect click analytics, and manage short links through the PicSee MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PicSee Short Link helps agents shorten URLs, generate QR-code links, inspect click analytics, and manage PicSee links through the PicSee MCP server.
 
-## Publisher: <br>
-[picseeinc](https://clawhub.ai/user/picseeinc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[picseeinc](https://clawhub.ai/user/picseeinc)
 
-## Use Case: <br>
-External users, developers, and AI-agent operators use this skill to create short links, choose domains and tags, manage existing links, and retrieve PicSee analytics from MCP-compatible clients. Anonymous use supports one-off URL shortening, while OAuth unlocks account, management, and analytics tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Destination URLs and analytics are sent to PicSee for processing. <br>
-Mitigation: Install only when PicSee is an acceptable processor for the links and analytics involved. <br>
-Risk: Shortened URLs can expose secrets, tokens, or private query parameters if those values are embedded in the destination URL. <br>
-Mitigation: Do not shorten URLs containing secrets or private parameters; review and remove sensitive query values before calling the short-link tool. <br>
-Risk: Authenticated OAuth access can let an agent edit or delete links in the connected PicSee account. <br>
-Mitigation: Require user confirmation before edit or delete actions, and clearly identify the target link before making changes. <br>
-Risk: Migration cleanup commands remove legacy local PicSee token and skill files. <br>
-Mitigation: Review cleanup commands with the user before running them, especially when deleting files under home-directory skill or token paths. <br>
+## Use Case:
 
+Agents and operators use this skill to shorten URLs, choose branded domains, attribute API usage, and retrieve analytics from PicSee inside MCP-compatible clients. Anonymous use supports one-off link creation; OAuth enables link management and analytics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/picseeinc/skills/picsee-short-link) <br>
-- [Publisher profile](https://clawhub.ai/user/picseeinc) <br>
-- [GitHub repository](https://github.com/PicSeeInc/picsee-short-link) <br>
-- [PicSee MCP server](https://api.picsee.io/mcp) <br>
-- [PicSee developer docs](https://picsee.io/developers) <br>
-- [MCP authorization specification](https://modelcontextprotocol.io/specification/draft/basic/authorization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with MCP configuration snippets, shell commands, short-link text, and structured JSON tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [MCP over Streamable HTTP, with optional stdio bridging through mcp-remote; authenticated operations use OAuth 2.1 scopes user:read and user:write.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release evidence and artifact metadata) <br>
+Risk: OAuth authorization can allow the agent to create, edit, delete, and analyze PicSee links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant OAuth only when the user is comfortable connecting the agent to PicSee, and confirm edit or delete operations before changing account links.
+
+Risk: Shortened URLs, query parameters, analytics, or chart data may contain sensitive information.
+
+Mitigation: Do not shorten URLs or render charts that contain secrets, private identifiers, signed parameters, or sensitive analytics.
+
+Risk: The stdio bridge path can depend on an npm package fetched through npx.
+
+Mitigation: Prefer direct Streamable HTTP MCP setup; use the bridge only when needed and pin or control the bridge dependency in managed environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/picseeinc/skills/picsee-short-link)
+- [Publisher profile](https://clawhub.ai/user/picseeinc)
+- [Source repository](https://github.com/PicSeeInc/picsee-short-link)
+- [PicSee MCP server](https://api.picsee.io/mcp)
+- [PicSee OAuth authorization server](https://public-api-oauth.picsee.io)
+- [PicSee website](https://picsee.io)
+- [PicSee developer docs](https://picsee.io/developers)
+- [Model Context Protocol](https://modelcontextprotocol.io)
+- [MCP authorization profile](https://modelcontextprotocol.io/specification/draft/basic/authorization)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown guidance with JSON, TOML, YAML, and shell snippets plus structured MCP tool results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [MCP responses include shortened link strings and analytics JSON; authenticated operations require OAuth user:read/user:write.]
+
+## Skill Version(s):
+
+3.0.2 (source: evidence release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -63,14 +63,14 @@
 
 #### 导入单个媒体到知识库（默认模板 100）
 ```bash
-python scripts/vod_import_media_knowledge.py import \
+python3 scripts/vod_import_media_knowledge.py import \
     --sub-app-id 1500046806 \
     --file-id 5285485487985271487
 ```
 
 #### 指定大模型理解模板
 ```bash
-python scripts/vod_import_media_knowledge.py import \
+python3 scripts/vod_import_media_knowledge.py import \
     --sub-app-id 1500046806 \
     --file-id 5285485487985271487 \
     --definition 100
@@ -78,7 +78,7 @@ python scripts/vod_import_media_knowledge.py import \
 
 #### 导入并等待任务完成
 ```bash
-python scripts/vod_import_media_knowledge.py import \
+python3 scripts/vod_import_media_knowledge.py import \
     --sub-app-id 1500046806 \
     --file-id 5285485487985271487 \
 
@@ -86,7 +86,7 @@ python scripts/vod_import_media_knowledge.py import \
 
 #### 导入并输出 JSON 格式结果
 ```bash
-python scripts/vod_import_media_knowledge.py import \
+python3 scripts/vod_import_media_knowledge.py import \
     --sub-app-id 1500046806 \
     --file-id 5285485487985271487 \
     --json
@@ -94,7 +94,7 @@ python scripts/vod_import_media_knowledge.py import \
 
 #### 预览请求参数（不实际执行）
 ```bash
-python scripts/vod_import_media_knowledge.py import \
+python3 scripts/vod_import_media_knowledge.py import \
     --sub-app-id 1500046806 \
     --file-id 5285485487985271487 \
     --dry-run
@@ -106,14 +106,14 @@ python scripts/vod_import_media_knowledge.py import \
 
 #### 批量导入多个媒体文件
 ```bash
-python scripts/vod_import_media_knowledge.py batch \
+python3 scripts/vod_import_media_knowledge.py batch \
     --sub-app-id 1500046806 \
     --file-ids 528548548798527148 528548548798527149 528548548798527150
 ```
 
 #### 批量导入并输出 JSON 结果
 ```bash
-python scripts/vod_import_media_knowledge.py batch \
+python3 scripts/vod_import_media_knowledge.py batch \
     --sub-app-id 1500046806 \
     --file-ids 528548548798527148 528548548798527149 \
     --definition 100 \
@@ -122,7 +122,7 @@ python scripts/vod_import_media_knowledge.py batch \
 
 #### 批量导入预览
 ```bash
-python scripts/vod_import_media_knowledge.py batch \
+python3 scripts/vod_import_media_knowledge.py batch \
     --sub-app-id 1500046806 \
     --file-ids 528548548798527148 528548548798527149 \
     --dry-run
@@ -134,12 +134,12 @@ python scripts/vod_import_media_knowledge.py batch \
 
 #### 列出可用的大模型理解模板
 ```bash
-python scripts/vod_import_media_knowledge.py templates
+python3 scripts/vod_import_media_knowledge.py templates
 ```
 
 #### 列出模板（指定子应用 ID）
 ```bash
-python scripts/vod_import_media_knowledge.py templates \
+python3 scripts/vod_import_media_knowledge.py templates \
     --sub-app-id 1500046806
 ```
 
@@ -153,7 +153,7 @@ python scripts/vod_import_media_knowledge.py templates \
 ```bash
 #!/bin/bash
 # 1. 上传视频
-RESULT=$(python scripts/vod_upload.py upload \
+RESULT=$(python3 scripts/vod_upload.py upload \
     --file /path/to/video.mp4 \
     --sub-app-id 1500046806 \
     --json)
@@ -161,7 +161,7 @@ FILE_ID=$(echo "$RESULT" | python3 -c "import sys,json; print(json.load(sys.stdi
 
 # 2. 导入到知识库
 if [ -n "$FILE_ID" ]; then
-    python scripts/vod_import_media_knowledge.py import \
+    python3 scripts/vod_import_media_knowledge.py import \
         --sub-app-id 1500046806 \
         --file-id "$FILE_ID" \
 
@@ -174,7 +174,7 @@ fi
 SUB_APP_ID=1500046806
 FILE_IDS="528548548798527148 528548548798527149 528548548798527150"
 
-python scripts/vod_import_media_knowledge.py batch \
+python3 scripts/vod_import_media_knowledge.py batch \
     --sub-app-id $SUB_APP_ID \
     --file-ids $FILE_IDS \
     --definition 100 \

@@ -1,38 +1,49 @@
-## Description: <br>
-Customize the visual appearance of your Orderly DEX with CSS variables, colors, fonts, logos, and TradingView chart styling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Customize the visual appearance of your Orderly DEX with CSS variables, colors, fonts, logos, and TradingView chart styling.
 
-## Publisher: <br>
-[Tarnadas](https://clawhub.ai/user/Tarnadas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tarnadas](https://clawhub.ai/user/tarnadas)
 
-## Use Case: <br>
-Developers use this skill to theme an Orderly DEX by customizing CSS variables, typography, branding assets, TradingView colors, Tailwind configuration, and component-level overrides. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Copied font examples may load Google Fonts in users' browsers, creating a privacy consideration for production deployments. <br>
-Mitigation: Review browser font-loading privacy implications and consider self-hosting fonts for production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Tarnadas/orderly-sdk-theming) <br>
-- [Google Fonts import example](https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap) <br>
+## Use Case:
 
+Developers building an Orderly SDK-based DEX use this skill to customize branding, CSS variables, fonts, logos, PnL share assets, TradingView chart colors, component overrides, and Tailwind configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CSS, HTML, TypeScript, and Tailwind configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only theming reference; no tools, API keys, or MCP servers are required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Using the Google Fonts import example may cause visitors' browsers to contact Google.
+
+Mitigation: Self-host fonts with the local font pattern when privacy, compliance, or third-party request minimization matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tarnadas/skills/orderly-sdk-theming)
+- [Google Fonts CSS import example](https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with CSS, TypeScript, HTML, and configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only theming guidance for Orderly SDK UI customization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

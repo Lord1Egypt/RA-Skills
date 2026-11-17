@@ -1,7 +1,7 @@
 ---
 name: bug-review
 description: Hunts bugs with evidence trails
-version: 1.9.8
+version: 1.10.3
 triggers:
   - bugs
   - defects
@@ -10,37 +10,12 @@ triggers:
   - fixes
   - verification
   - investigating unexpected behavior or before merging code with potential hidden defects
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83d\udd0d", "requires": {"config": ["night-market.pensive:shared", "night-market.imbue:proof-of-work", "night-market.imbue:diff-analysis/modules/risk-assessment-framework"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/pensive", "emoji": "\ud83d\udd0d", "requires": {"config": ["night-market.imbue:proof-of-work", "night-market.imbue:diff-analysis/modules/riREDACTED-SECRET", "night-market.imbue:review-core", "night-market.imbue:structured-output"]}}}
 source: claude-night-market
 source_plugin: pensive
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Quick Start](#quick-start)
-- [When to Use](#when-to-use)
-- [Required TodoWrite Items](#required-todowrite-items)
-- [Progressive Loading](#progressive-loading)
-- [Workflow](#workflow)
-- [Step 1: Detect Languages (`bug-review:language-detected`)](#step-1:-detect-languages-(bug-review:language-detected))
-- [Step 2: Plan Reproduction (`bug-review:repro-plan`)](#step-2:-plan-reproduction-(bug-review:repro-plan))
-- [Step 3: Document Defects (`bug-review:defects-documented`)](#step-3:-document-defects-(bug-review:defects-documented))
-- [Step 4: Prepare Fixes (`bug-review:fixes-prepared`)](#step-4:-prepare-fixes-(bug-review:fixes-prepared))
-- [Step 5: Verification Plan (`bug-review:verification-plan`)](#step-5:-verification-plan-(bug-review:verification-plan))
-- [Defect Classification (Condensed)](#defect-classification-(condensed))
-- [Output Format](#output-format)
-- [Summary](#summary)
-- [Defects Found](#defects-found)
-- [[D1] file.rs:142 - Title](#[d1]-filers:142---title)
-- [Proposed Fixes](#proposed-fixes)
-- [Fix for D1](#fix-for-d1)
-- [Test Updates](#test-updates)
-- [Evidence](#evidence)
-- [Best Practices](#best-practices)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/pensive](https://github.com/athola/claude-night-market/tree/master/plugins/pensive). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Bug Review Workflow
@@ -66,13 +41,14 @@ Systematic bug identification and fixing with language-specific expertise.
 
 - Test coverage audit - use test-review instead
 
-## Required TodoWrite Items
+## Required Progress Items
 
 1. `bug-review:language-detected`
 2. `bug-review:repro-plan`
 3. `bug-review:defects-documented`
 4. `bug-review:fixes-prepared`
 5. `bug-review:verification-plan`
+6. `bug-review:findings-verified`
 
 ## Progressive Loading
 
@@ -147,9 +123,15 @@ Capture evidence:
 - Benchmark comparisons
 - Coverage reports
 
-Document remaining risks using `imbue:diff-analysis/modules/risk-assessment-framework`.
+Document remaining risks using `imbue:diff-analysis/modules/riREDACTED-SECRET`.
 
 Assign owners and deadlines for follow-up items.
+
+### Step 6: Verify Findings Are Grounded (`bug-review:findings-verified`)
+
+Write defects to `.review/findings.json`, run the citation verifier
+(`Skill(imbue:review-core)` Step 5), and drop or label `UNVERIFIED` any
+the verifier rejects.
 
 ## Defect Classification (Condensed)
 
@@ -166,6 +148,7 @@ Assign owners and deadlines for follow-up items.
 ## Defects Found
 ### [D1] file.rs:142 - Title
 - Severity: High
+- Anchor: `verbatim source text at file.rs:142`
 - Root Cause: Logic error
 - Impact: Data corruption possible
 - Fix: [description]
@@ -194,7 +177,10 @@ Assign owners and deadlines for follow-up items.
 
 ## Exit Criteria
 
-- All defects documented with precise references
-- Fixes prepared with test coverage verified
-- Verification plan includes commands and expected outputs
-- Remaining risks assessed and owners assigned
+- [ ] All defects documented with precise references
+- [ ] Every defect carries a `file:line` + verbatim `Anchor`, and
+      `citation_verifier.py` confirmed all citations (exit `0`) or unverified
+      defects were dropped or labeled `UNVERIFIED`
+- [ ] Fixes prepared with test coverage verified
+- [ ] Verification plan includes commands and expected outputs
+- [ ] Remaining risks assessed and owners assigned

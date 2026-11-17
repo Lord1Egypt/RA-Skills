@@ -1,41 +1,56 @@
-## Description: <br>
-Track time with Toggl via the toggl CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track time with Toggl via the toggl CLI for starting and stopping timers, checking the current timer, viewing reports, listing recent entries, and managing time entries.
 
-## Publisher: <br>
-[clvrobj](https://clawhub.ai/user/clvrobj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clvrobj](https://clawhub.ai/user/clvrobj)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to let an agent start and stop Toggl timers, check current tracking status, view reports, list entries, and manage time entries through the toggl CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Toggl API token and workspace configuration for account access. <br>
-Mitigation: Store the Toggl API token securely, keep the config file permission-restricted, and prefer environment or file permissions appropriate to the host. <br>
-Risk: The skill can add, edit, stop, and delete Toggl time entries. <br>
-Mitigation: Require clear user confirmation before account-mutating actions, especially deleting entries with `toggl rm <id>`. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Toggl skill page](https://clawhub.ai/clvrobj/toggl) <br>
-- [Toggl Track profile](https://track.toggl.com/profile) <br>
-- [Toggl Track workspace URL pattern](https://track.toggl.com/{workspace_id}/...) <br>
+## Use Case:
 
+Employees, external users, and developers who use Toggl Track can ask an agent to operate Toggl timers, reports, projects, and time-entry management through the toggl CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Toggl CLI commands that read or modify time entries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on an unpinned global third-party npm CLI with access to the user's Toggl account.
+
+Mitigation: Pin and review a specific CLI package version before installation.
+
+Risk: The Toggl API token is stored locally and could expose account access if file permissions are weak or the token is leaked.
+
+Mitigation: Keep the token file restricted, use environment secrets where appropriate, and rotate the token if exposure is suspected.
+
+Risk: The skill can edit or delete time entries through CLI commands.
+
+Mitigation: Require explicit user confirmation before modifying or deleting time records.
+
+## Reference(s):
+
+- [Toggl Track Profile](https://track.toggl.com/profile)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Toggl CLI commands that access or modify the user's Toggl Track data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

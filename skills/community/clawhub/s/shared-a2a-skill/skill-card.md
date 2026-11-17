@@ -1,41 +1,58 @@
-## Description: <br>
-A2A (Agent2Agent) 协议集成技能，让 OpenClaw 智能体能够与其他实例进行点对点通信，并支持作为 Server 被调用或作为 Client 调用其他智能体。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A2A (Agent2Agent) 协议集成技能，用于让 OpenClaw 智能体与其他实例进行点对点通信，并支持作为 Server 被调用或作为 Client 调用其他智能体。
 
-## Publisher: <br>
-[lilozhao](https://clawhub.ai/user/lilozhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lilozhao](https://clawhub.ai/user/lilozhao)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure peer-to-peer Agent2Agent communication between OpenClaw instances, expose an agent card and JSON-RPC endpoint, call other agents, and optionally publish discovery or observation signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A2A messages may contain sensitive operational, personal, or confidential content. <br>
-Mitigation: Treat messages as sensitive, avoid forwarding secrets or confidential content, and review the skill before enabling it in an agent environment. <br>
-Risk: The Feishu observer path can forward conversations to a group without enough privacy or consent detail in the artifact. <br>
-Mitigation: Keep Feishu integration disabled unless explicitly required, use dedicated low-privilege Feishu credentials, and enable it only with appropriate consent and data-handling controls. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to configure agent-to-agent messaging, expose an A2A server endpoint, call peer agents as a client, and optionally manage registry discovery and Feishu observation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lilozhao/shared-a2a-skill) <br>
-- [Project homepage from artifact metadata](https://gitee.com/lilozhao/shared-a2a-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell, JSON-RPC, Docker, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include endpoint paths, environment variables, network addresses, and integration setup steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.0 (source: ClawHub release evidence) <br>
+Risk: Optional registry and network discovery can expose private agent addresses or topology data if pointed at an untrusted registry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run A2A servers only on trusted networks and avoid publishing private IP or topology data to untrusted registries.
+
+Risk: Feishu notifications can share conversation content with a third-party workspace.
+
+Mitigation: Enable Feishu notifications only for conversations that are acceptable to share with that workspace.
+
+Risk: The security guidance notes that required runtime files may be missing from the released artifact.
+
+Mitigation: Confirm the required runtime files are available from the publisher before installing or running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lilozhao/skills/shared-a2a-skill)
+- [Project homepage](https://gitee.com/lilozhao/shared-a2a-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, curl, JSON-RPC, Docker, environment-variable, and JavaScript snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes A2A server/client setup, static peer configuration, optional registry discovery, and Feishu notification configuration.]
+
+## Skill Version(s):
+
+4.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

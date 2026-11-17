@@ -1,0 +1,4 @@
+interface:
+  display_name: "MoSoCanvas"
+  short_description: "从命题与镜头设计到独立审片，并以 Midjourney 为质量标杆"
+  default_prompt: "Use $mosocanvas to turn my intent into structurally distinct visual directions, prove composition before generation, execute with the best available image tool, independently review the artifact, and benchmark its quality against a dated Midjourney target without imitating it."

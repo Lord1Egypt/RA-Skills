@@ -1,0 +1,293 @@
+{
+ "owner": "you@example.com",
+ "protect": {
+  "subjects": [
+   "\"verification code\"",
+   "\"security code\"",
+   "\"one-time\"",
+   "\"security alert\"",
+   "\"new sign-in\"",
+   "\"new device\"",
+   "\"new login\"",
+   "\"password\"",
+   "invoice",
+   "receipt",
+   "statement",
+   "overdue",
+   "\"past due\"",
+   "unsuccessful",
+   "declined",
+   "suspended",
+   "renew",
+   "renewal",
+   "refund",
+   "\"action needed\"",
+   "\"action required\"",
+   "\"immediate action\"",
+   "abuse",
+   "ticket",
+   "\"login code\"",
+   "验证码",
+   "驗證碼",
+   "安全提醒",
+   "安全通知",
+   "新设备",
+   "登录提醒",
+   "密码",
+   "收据",
+   "账单",
+   "賬單",
+   "发票",
+   "發票",
+   "结单",
+   "欠费",
+   "逾期",
+   "到期",
+   "过期",
+   "续费",
+   "退款",
+   "工单",
+   "需要采取行动",
+   "已删除",
+   "取消"
+  ],
+  "senders": [
+   "email.apple.com",
+   "accounts.google.com",
+   "no-reply-aws@amazon.com"
+  ]
+ },
+ "urgent": {
+  "security_subjects": [
+   "\"security alert\"",
+   "\"new sign-in\"",
+   "\"new device\"",
+   "\"new login\"",
+   "\"unusual activity\"",
+   "\"password changed\"",
+   "\"password reset\"",
+   "\"password recovery\"",
+   "\"security update\"",
+   "安全提醒",
+   "安全通知",
+   "新设备",
+   "新登录",
+   "登录提醒",
+   "异常登录",
+   "密码已更改"
+  ],
+  "risk_subjects": [
+   "overdue",
+   "\"past due\"",
+   "\"payment failed\"",
+   "unsuccessful",
+   "declined",
+   "suspended",
+   "suspension",
+   "terminated",
+   "\"Immediate action\"",
+   "\"Action needed\"",
+   "\"action required\"",
+   "abuse",
+   "phishing",
+   "rejected",
+   "denied",
+   "\"shut down\"",
+   "deletion",
+   "cancelled",
+   "欠费",
+   "逾期",
+   "扣款失败",
+   "支付失败",
+   "服务已暂停",
+   "已终止",
+   "滥用",
+   "被拒",
+   "需要采取行动",
+   "已删除"
+  ],
+  "exclude_senders": [
+   "notifications@github.com",
+   "googleads-noreply@google.com"
+  ]
+ },
+ "bill": {
+  "senders": [
+   "receipts@stripe.com",
+   "invoice+statements@stripe.com"
+  ],
+  "subjects": [
+   "receipt",
+   "invoice",
+   "\"payment confirmation\"",
+   "\"Order Confirmation\"",
+   "\"Order Summary\"",
+   "\"statement is ready\"",
+   "\"received your payment\"",
+   "\"Renewal complete\"",
+   "\"will renew\"",
+   "payout",
+   "refund",
+   "\"payment reminder\"",
+   "收据",
+   "账单",
+   "發票",
+   "发票",
+   "付款成功",
+   "续费成功",
+   "充值成功",
+   "结单",
+   "退款",
+   "即将到期",
+   "请续费"
+  ],
+  "exclude_senders": []
+ },
+ "infra": {
+  "senders": [
+   "notify.cloudflare.com",
+   "noreply@github.com",
+   "notifications@github.com",
+   "sc-noreply@google.com",
+   "no-reply-aws@amazon.com",
+   "CloudPlatform-noreply@google.com",
+   "digitalocean.com",
+   "hetzner.com",
+   "namecheap.com"
+  ],
+  "archive_rules": [
+   {
+    "desc": "Search Console routine reports",
+    "query": "from:sc-noreply@google.com subject:(performance OR \"coverage\" OR congratulations)"
+   }
+  ],
+  "github_noise": true
+ },
+ "apple": {
+  "senders": [
+   "email.apple.com",
+   "noreply@apple.com"
+  ]
+ },
+ "fin": {
+  "txn_senders": [
+   "info.coinbase.com",
+   "notification.examplebank.com",
+   "alerts.examplecard.com",
+   "wise.com",
+   "revolut.com"
+  ],
+  "exclude_compact": [
+   "coinbase.com",
+   "examplebank.com",
+   "examplecard.com",
+   "wise.com",
+   "revolut.com"
+  ],
+  "mkt_senders": [
+   "mail.coinbase.com",
+   "offers.examplebank.com",
+   "marketing.examplecard.com"
+  ],
+  "archive_rules": [
+   {
+    "desc": "broker daily statements",
+    "query": "from:statements.examplebroker.com subject:(\"Daily Statement\")"
+   }
+  ]
+ },
+ "otp": {
+  "subjects": [
+   "\"verification code\"",
+   "\"security code\"",
+   "\"one-time\"",
+   "\"sign-in code\"",
+   "\"login code\"",
+   "OTP",
+   "\"verify your email\"",
+   "验证码",
+   "驗證碼",
+   "校验码",
+   "动态码"
+  ]
+ },
+ "biz": {
+  "query": "from:{alerts@yourcompany.com} OR subject:(YourCompany)",
+  "exclude_senders": [
+   "github.com"
+  ],
+  "archive_query": "from:{test@yourcompany.com} subject:(test)"
+ },
+ "mkt": {
+  "brand_sender_groups": [
+   [
+    "medium.com",
+    "producthunt.com",
+    "substack.com",
+    "dev.to",
+    "skool.com"
+   ],
+   [
+    "email.canva.com",
+    "updates.notion.so",
+    "email.expedia.com",
+    "newsletter.trip.com"
+   ]
+  ],
+  "social_senders": [
+   "redditmail.com",
+   "mail.instagram.com",
+   "facebookmail.com",
+   "ideas.pinterest.com",
+   "linkedin.com"
+  ],
+  "social_exclude_subjects": [
+   "\"replied to\"",
+   "mentioned",
+   "\"new message\"",
+   "回复了你",
+   "新消息"
+  ],
+  "cold_senders": [
+   "cold-outreach-tool.example"
+  ],
+  "kw_subjects": [
+   "coupon",
+   "discount",
+   "\"% off\"",
+   "sale",
+   "deal",
+   "\"limited time\"",
+   "优惠",
+   "优惠券",
+   "折扣",
+   "特惠",
+   "促销",
+   "限时"
+  ],
+  "use_category_promotions": true,
+  "promo_exclude_fin_txn": true,
+  "promo_exclude_senders": [],
+  "use_category_social": true
+ },
+ "extra_rules": [
+  {
+   "desc": "另一个账号转发来的邮件",
+   "label": "转自/work",
+   "query": "deliveredto:you.work@gmail.com"
+  }
+ ],
+ "_readme": "虚构示例(中文用户)。复制成 profiles/<你>.json,按 SKILL.md 第 1 步的发件人普查结果填写。中文关键词只会用在 subject: 里。",
+ "labels": {
+  "urgent": "⚠️需处理",
+  "bill": "💳账单",
+  "infra": "🛠基建",
+  "apple": "🍎Apple",
+  "fin": "📈金融",
+  "otp": "🔐验证码",
+  "biz": "🏢业务",
+  "mkt": "营销",
+  "social": "营销/社交",
+  "cold": "营销/冷邮件"
+ }
+}

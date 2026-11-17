@@ -1,46 +1,61 @@
-## Description: <br>
-Automatic waste detection and cost optimization for every LLM and tool call. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatic waste detection and cost optimization for every LLM and tool call.
 
-## Publisher: <br>
-[philg](https://clawhub.ai/user/philg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[philg](https://clawhub.ai/user/philg)
 
-## Use Case: <br>
-Developers and teams use AgentYield.co to observe LLM and tool-call activity, send redacted telemetry to AgentYield, and identify waste or cost-optimization opportunities without transmitting raw prompts, model outputs, tool inputs, or tool outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends redacted OpenClaw usage telemetry to AgentYield's service for cost analysis. <br>
-Mitigation: Install only when that telemetry flow is intended, review retention and deletion controls, and use a test key for evaluation. <br>
-Risk: The skill requires an AgentYield API key scoped to a user account. <br>
-Mitigation: Keep AGENTYIELD_API_KEY in the environment, prefer ay_test_ keys during evaluation, and revoke unused or exposed keys from AgentYield settings. <br>
+## Use Case:
 
+Developers and teams use this skill to add an observability layer to OpenClaw sessions that reports redacted LLM and tool-call telemetry for cost and waste analysis.
 
-## Reference(s): <br>
-- [AgentYield homepage](https://agentyield.co) <br>
-- [AgentYield skill source](https://agentyield.co/skills/agentyield.md) <br>
-- [AgentYield developer SDK](https://agentyield.co/developer/sdk) <br>
-- [AgentYield retention and privacy controls](https://agentyield.co/privacy) <br>
-- [AgentYield data deletion documentation](https://agentyield.co/docs#data-deletion) <br>
-- [ClawHub skill page](https://clawhub.ai/philg/agentyield) <br>
-- [Publisher profile](https://clawhub.ai/user/philg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, API Calls, Telemetry] <br>
-**Output Format:** [Markdown guidance with JSON event schemas and HTTPS API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGENTYIELD_API_KEY; sends limited, redacted usage telemetry to AgentYield for cost analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter version 0.6.0) <br>
+Risk: Session telemetry leaves the local environment and is sent to AgentYield, including model names, token counts, costs, tool names, timestamps, purpose tags, and salted tool-input hashes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the disclosed telemetry categories before installation and use an ay_test_ API key for evaluation when persistence is not desired.
+
+Risk: The required AGENTYIELD_API_KEY is a bearer credential scoped to an AgentYield user account.
+
+Mitigation: Provide the key only through the AGENTYIELD_API_KEY environment variable, prefer test keys for evaluation, and revoke unused keys from the AgentYield settings page.
+
+Risk: Tool-input hashes can still support repeat detection within a run.
+
+Mitigation: Use the skill's local per-tenant salt behavior and confirm that raw tool inputs, raw outputs, and salt material are not transmitted.
+
+## Reference(s):
+
+- [AgentYield homepage](https://agentyield.co)
+- [AgentYield public skill source](https://agentyield.co/skills/agentyield.md)
+- [AgentYield developer SDK reference](https://agentyield.co/developer/sdk)
+- [AgentYield privacy and retention](https://agentyield.co/privacy)
+- [AgentYield data deletion documentation](https://agentyield.co/docs#data-deletion)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, API calls, text]
+
+**Output Format:** [Markdown instructions with structured JSON telemetry examples and HTTPS API request details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGENTYIELD_API_KEY and sends bounded, redacted checkpoint telemetry to AgentYield.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 0.6.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

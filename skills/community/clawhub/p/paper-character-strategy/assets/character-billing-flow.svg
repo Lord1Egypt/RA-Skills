@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 800" role="img" aria-labelledby="character-billing-title character-billing-desc">
+  <title id="character-billing-title">通用论文查重字符统计与计费流程</title>
+  <desc id="character-billing-desc">Word 字符数仅作预估；上传最终文件后由查重网站解析实际字符数。按篇产品固定一件，按字符产品先校验边界，再按每件字符数向上取整计算金额。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker>
+    <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker>
+    <style>
+      .paper{fill:#f5f5f5}.ink{fill:#2d3142}.muted{fill:#4f5d75}.soft{fill:#7a8399}
+      .rule{stroke:rgba(45,49,66,.16);stroke-width:1}.connector{fill:none;stroke:#4f5d75;stroke-width:1.4;stroke-linejoin:round;stroke-linecap:round}
+      .connector-accent{fill:none;stroke:#eb6c36;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+      .connector-dash{fill:none;stroke:#4f5d75;stroke-width:1.2;stroke-dasharray:5 4;stroke-linejoin:round;stroke-linecap:round}
+      .eyebrow{font:500 12px 'Geist Mono',ui-monospace,monospace;letter-spacing:.18em;fill:#4f5d75}
+      .title{font:400 36px 'Instrument Serif',Georgia,serif;fill:#2d3142}
+      .subtitle{font:400 14px 'Geist',Arial,sans-serif;fill:#4f5d75}
+      .node{fill:#fff;stroke:#2d3142;stroke-width:1.2}.node-soft{fill:rgba(45,49,66,.04);stroke:rgba(45,49,66,.3);stroke-width:1}
+      .node-focal{fill:rgba(235,108,54,.08);stroke:#eb6c36;stroke-width:1.8}.node-stop{fill:rgba(45,49,66,.02);stroke:rgba(45,49,66,.35);stroke-width:1;stroke-dasharray:5 4}
+      .node-name{font:600 16px 'Geist',Arial,sans-serif;fill:#2d3142}.node-sub{font:400 12px 'Geist',Arial,sans-serif;fill:#4f5d75}
+      .mono{font:500 11px 'Geist Mono',ui-monospace,monospace;letter-spacing:.06em;fill:#4f5d75}
+      .label-mask{fill:#f5f5f5}.arrow-label{font:500 11px 'Geist Mono',ui-monospace,monospace;fill:#4f5d75;letter-spacing:.04em}
+      .section-label{font:500 11px 'Geist Mono',ui-monospace,monospace;letter-spacing:.16em;fill:#7a8399}
+      .callout-title{font:600 14px 'Geist',Arial,sans-serif;fill:#2d3142}.callout-copy{font:400 12px 'Geist',Arial,sans-serif;fill:#4f5d75}
+      .formula{font:600 14px 'Geist Mono',ui-monospace,monospace;fill:#2d3142}
+    </style>
+  </defs>
+
+  <rect class="paper" width="1320" height="800"/>
+  <text class="eyebrow" x="72" y="52">PAPER CHECK / CHARACTER BILLING</text>
+  <text class="title" x="72" y="98">先解析，再决定买几件</text>
+  <text class="subtitle" x="72" y="126">Word 统计用于预估；实际金额由查重网站解析出的字符数和当前产品单位决定。</text>
+  <line class="rule" x1="72" y1="150" x2="1248" y2="150"/>
+
+  <!-- connectors first: main path -->
+  <path class="connector" d="M232 236 H276" marker-end="url(#arrow)"/>
+  <path class="connector-accent" d="M468 236 H516" marker-end="url(#arrow-accent)"/>
+  <path class="connector-accent" d="M720 236 H760" marker-end="url(#arrow-accent)"/>
+  <!-- per-article branch -->
+  <path class="connector" d="M840 198 H936" marker-end="url(#arrow)"/>
+  <path class="connector" d="M1028 242 V330" marker-end="url(#arrow)"/>
+  <!-- character branch -->
+  <path class="connector" d="M800 278 V374" marker-end="url(#arrow)"/>
+  <path class="connector" d="M896 418 H948" marker-end="url(#arrow)"/>
+  <path class="connector" d="M1040 462 V514" marker-end="url(#arrow)"/>
+  <path class="connector" d="M1040 566 V638" marker-end="url(#arrow)"/>
+  <!-- invalid boundary branch -->
+  <path class="connector" d="M704 462 V526 H560" marker-end="url(#arrow)"/>
+  <!-- optional supplement note -->
+  <path class="connector-dash" d="M1132 566 H1180 V638" marker-end="url(#arrow)"/>
+  <path class="connector-dash" d="M1180 674 H1132" marker-end="url(#arrow)"/>
+
+  <!-- arrow labels with paper masks -->
+  <rect class="label-mask" x="864" y="178" width="54" height="20" rx="4"/>
+  <text class="arrow-label" x="891" y="192" text-anchor="middle">按篇</text>
+  <rect class="label-mask" x="812" y="300" width="54" height="20" rx="4"/>
+  <text class="arrow-label" x="839" y="314" text-anchor="middle">按字符</text>
+  <rect class="label-mask" x="884" y="440" width="54" height="20" rx="4"/>
+  <text class="arrow-label" x="911" y="454" text-anchor="middle">通过</text>
+  <rect class="label-mask" x="620" y="490" width="54" height="20" rx="4"/>
+  <text class="arrow-label" x="647" y="504" text-anchor="middle">不通过</text>
+  <rect class="label-mask" x="1146" y="582" width="82" height="20" rx="4"/>
+  <text class="arrow-label" x="1187" y="596" text-anchor="middle">额度不足</text>
+
+  <!-- main path nodes -->
+  <rect class="node" x="72" y="192" width="160" height="88" rx="44"/>
+  <text class="node-name" x="152" y="229" text-anchor="middle">开始</text>
+  <text class="mono" x="152" y="251" text-anchor="middle">FILE READY</text>
+
+  <rect class="node-soft" x="276" y="192" width="192" height="88" rx="8"/>
+  <text class="node-name" x="372" y="226" text-anchor="middle">Word 预检</text>
+  <text class="node-sub" x="372" y="248" text-anchor="middle">字符数（不计空格）</text>
+  <text class="mono" x="372" y="268" text-anchor="middle">ESTIMATE ONLY</text>
+
+  <rect class="node-focal" x="516" y="192" width="204" height="88" rx="8"/>
+  <text class="node-name" x="618" y="226" text-anchor="middle">供应商解析</text>
+  <text class="node-sub" x="618" y="248" text-anchor="middle">得到实际字符数 N</text>
+  <text class="mono" x="618" y="268" text-anchor="middle">FINAL FACT</text>
+
+  <polygon class="node" points="800,182 864,236 800,290 736,236"/>
+  <text class="node-name" x="800" y="233" text-anchor="middle" font-size="14">计价模式？</text>
+  <text class="mono" x="800" y="252" text-anchor="middle">MODE</text>
+
+  <rect class="node" x="936" y="154" width="184" height="88" rx="8"/>
+  <text class="node-name" x="1028" y="188" text-anchor="middle">按篇 /篇</text>
+  <text class="node-sub" x="1028" y="210" text-anchor="middle">Q = 1，字符不影响金额</text>
+  <text class="mono" x="1028" y="230" text-anchor="middle">PER_ARTICLE</text>
+
+  <rect class="node" x="704" y="374" width="192" height="88" rx="8"/>
+  <text class="node-name" x="800" y="408" text-anchor="middle">按字符：边界校验</text>
+  <text class="node-sub" x="800" y="430" text-anchor="middle">最低 / 最大字符数</text>
+  <text class="mono" x="800" y="450" text-anchor="middle">VALIDATE N</text>
+
+  <rect class="node-stop" x="368" y="526" width="192" height="88" rx="8"/>
+  <text class="node-name" x="464" y="560" text-anchor="middle">停止并提示边界</text>
+  <text class="node-sub" x="464" y="582" text-anchor="middle">不按默认档位收费</text>
+  <text class="mono" x="464" y="602" text-anchor="middle">REVIEW LIMIT</text>
+
+  <rect class="node" x="948" y="374" width="184" height="88" rx="8"/>
+  <text class="node-name" x="1040" y="408" text-anchor="middle">向上取整</text>
+  <text class="formula" x="1040" y="433" text-anchor="middle">Q = ceil(N ÷ U)</text>
+  <text class="mono" x="1040" y="452" text-anchor="middle">UNIT U</text>
+
+  <rect class="node" x="948" y="514" width="184" height="88" rx="8"/>
+  <text class="node-name" x="1040" y="548" text-anchor="middle">计算主款</text>
+  <text class="formula" x="1040" y="573" text-anchor="middle">AMOUNT = Q × P</text>
+  <text class="mono" x="1040" y="592" text-anchor="middle">PRICE P</text>
+
+  <rect class="node-soft" x="1180" y="638" width="100" height="72" rx="8"/>
+  <text class="node-name" x="1230" y="666" text-anchor="middle" font-size="13">补差</text>
+  <text class="node-sub" x="1230" y="686" text-anchor="middle" font-size="11">按订单开关</text>
+
+  <rect class="node-focal" x="948" y="638" width="184" height="72" rx="8"/>
+  <text class="node-name" x="1040" y="668" text-anchor="middle">支付 / 提交</text>
+  <text class="mono" x="1040" y="690" text-anchor="middle">USER CONFIRMS</text>
+
+  <!-- explanatory panel -->
+  <text class="section-label" x="72" y="676">READ THIS BEFORE QUOTING / 对话中的三条硬规则</text>
+  <rect class="node" x="72" y="696" width="820" height="64" rx="8"/>
+  <text class="callout-copy" x="96" y="722">1. Word 字符数是预估；2. N 只能来自目标供应商解析；3. 按篇不套 ceil(N÷U)。</text>
+  <text class="callout-copy" x="96" y="744">英文单词数、中文字符数和 PDF 页数都不能替代 N；混排稿件也不自行相加。</text>
+  <text class="mono" x="948" y="744">NO PAYMENT DURING COUNT-ONLY</text>
+</svg>

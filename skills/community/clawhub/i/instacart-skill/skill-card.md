@@ -1,42 +1,61 @@
-## Description: <br>
-Place grocery orders on Instacart via browser automation. Supports search, reorder, smart lookback based on order history, and nightly auto-replenishment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Place grocery orders on Instacart via browser automation.
 
-## Publisher: <br>
-[bigdaddyluke](https://clawhub.ai/user/bigdaddyluke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bigdaddyluke](https://clawhub.ai/user/bigdaddyluke)
 
-## Use Case: <br>
-External users and personal automation agents use this skill to manage Instacart shopping sessions, search for groceries, rebuild or replenish carts from order history, and prepare an order for explicit user approval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill controls an authenticated Instacart browser session and can modify the user's shopping cart. <br>
-Mitigation: Use it only with an account you intend the agent to operate, and review cart changes during the session. <br>
-Risk: Automated verification-code retrieval can access mailbox-derived login codes when INSTACART_CODE_EMAIL is configured. <br>
-Mitigation: Leave INSTACART_CODE_EMAIL unset if automated code retrieval is not desired; the skill will ask the user for the code instead. <br>
-Risk: Cart contents, fees, tip, delivery address, or payment method could be wrong before checkout. <br>
-Mitigation: Require explicit approval after reviewing the final cart, totals, address, and payment method before placing an order. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Instacart](https://www.instacart.com) <br>
-- [ClawHub Skill Release](https://clawhub.ai/bigdaddyluke/instacart-skill) <br>
+## Use Case:
 
+External users use this agent skill to build and manage Instacart grocery carts, including search, reorder, smart lookback from order history, and nightly auto-replenishment summaries. The skill requires explicit confirmation before checkout.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown status updates with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces cart summaries, product options, auto-replenishment summaries, and explicit checkout confirmation prompts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can operate an Instacart account with saved delivery address and payment details.
+
+Mitigation: Require explicit user confirmation before placing an order and review item count, subtotal, fees, tip, total, delivery address, and payment method before checkout.
+
+Risk: The skill may retrieve Instacart login verification codes through an authenticated email CLI.
+
+Mitigation: Prefer manually supplied verification codes unless the user trusts the configured gog email access.
+
+Risk: A loosely scoped INSTACART_URL could direct browser automation away from the intended service.
+
+Mitigation: Keep INSTACART_URL restricted to the real Instacart domain before opening the browser.
+
+Risk: Nightly replenishment can make automated cart changes based on order history.
+
+Mitigation: Use external controls for scheduled runs and review all cart changes before any purchase.
+
+## Reference(s):
+
+- [Instacart](https://www.instacart.com)
+- [ClawHub Instacart skill page](https://clawhub.ai/bigdaddyluke/skills/instacart-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw browser, gog CLI when email-code retrieval is enabled, and INSTACART_URL and INSTACART_EMAIL environment variables.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

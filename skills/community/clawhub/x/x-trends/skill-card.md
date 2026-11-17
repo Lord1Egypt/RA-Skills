@@ -1,42 +1,58 @@
-## Description: <br>
-Fetches current top trending topics on X (Twitter) for any country using public aggregators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches current top trending topics on X (Twitter) for any country using public aggregators.
 
-## Publisher: <br>
-[anishtr4](https://clawhub.ai/user/anishtr4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[anishtr4](https://clawhub.ai/user/anishtr4)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to fetch current public X trend names, volumes, ranks, and source links for a selected country or worldwide view. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Returned trend names, volumes, and links are untrusted public web data. <br>
-Mitigation: Review, validate, or sanitize the output before passing it to downstream automation or publishing workflows. <br>
-Risk: The CLI depends on getdaytrends.com availability and page structure. <br>
-Mitigation: Handle empty results and fetch errors explicitly, and avoid treating the output as an authoritative source without corroboration. <br>
-Risk: The package relies on npm dependencies at install and runtime. <br>
-Mitigation: Install from the reviewed release artifact and keep dependency scanning in the normal release process. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve current X trend names, ranks, links, and available volume data for a selected country without logging into X.
 
-## Reference(s): <br>
-- [getdaytrends.com](https://getdaytrends.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands] <br>
-**Output Format:** [Colorized terminal table or JSON array of trend objects.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Trend objects include rank, name, volume, and link when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata; artifact frontmatter and package.json report 1.2.0) <br>
+Risk: The skill fetches and displays third-party web content, which can change, become unavailable, or include unexpected terminal output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Sanitize displayed trend text, use JSON mode for scripted consumption, and review output before using it in downstream automation.
+
+Risk: Network requests currently depend on the public aggregator responding promptly and with a manageable response size.
+
+Mitigation: Add request timeout and response-size limits before using the skill in shared or automated environments.
+
+Risk: Dependency and lockfile age can affect CLI reliability and supply-chain exposure over time.
+
+Mitigation: Update dependencies and regenerate the lockfile before publication or deployment.
+
+## Reference(s):
+
+- [X Trends ClawHub Skill Page](https://clawhub.ai/anishtr4/skills/x-trends)
+- [getdaytrends.com](https://getdaytrends.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands]
+
+**Output Format:** [Colorized terminal table or JSON array]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are limited by user-supplied country and count options, and depend on public getdaytrends.com availability and content.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release evidence; artifact SKILL.md and package.json declare 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

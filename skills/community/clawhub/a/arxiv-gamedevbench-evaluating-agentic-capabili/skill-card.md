@@ -1,43 +1,54 @@
-## Description: <br>
-Learned from arXiv paper GameDevBench: Evaluating Agentic Capabilities Through Game Development. Use this skill to scaffold Node.js experiments based on the paper method. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learned from arXiv paper GameDevBench: Evaluating Agentic Capabilities Through Game Development. Use this skill to scaffold Node.js experiments based on the paper method.
 
-## Publisher: <br>
-[wanng-ide](https://clawhub.ai/user/wanng-ide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wanng-ide](https://clawhub.ai/user/wanng-ide)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold Node.js experiments inspired by the GameDevBench paper and to summarize the paper's evaluation focus for agentic game development work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Source provenance is unavailable for this release. <br>
-Mitigation: Review the artifact files and publisher profile before building on or redistributing the skill. <br>
-Risk: The artifact is a runnable scaffold rather than a finished production implementation. <br>
-Mitigation: Treat the generated Node.js code as a starting point, then implement, test, and review any added behavior before use. <br>
-Risk: The skill requires running a local Node.js script. <br>
-Mitigation: Run it in a controlled environment and inspect JavaScript changes before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanng-ide/arxiv-gamedevbench-evaluating-agentic-capabili) <br>
-- [GameDevBench paper metadata](artifact/paper.json) <br>
-- [Skill source](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold Node.js experiments inspired by the GameDevBench paper and summarize its benchmark framing for agentic game development work.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Node.js shell command examples and scaffold code references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Node.js runtime; the bundled script prints paper metadata and a shortened abstract summary.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is a runnable scaffold, not a complete implementation of the GameDevBench benchmark.
+
+Mitigation: Review the scaffold and add the missing experiment logic before using it for real benchmark evaluation.
+
+Risk: Generated paper summaries may omit details needed for reproducible experiments.
+
+Mitigation: Cross-check the scaffold against the source paper metadata and any authoritative benchmark materials before relying on results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanng-ide/skills/arxiv-gamedevbench-evaluating-agentic-capabili)
+- [Publisher profile](https://clawhub.ai/user/wanng-ide)
+- [GameDevBench paper metadata](artifact/paper.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown and Node.js console output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Node.js runtime and currently behaves as a runnable scaffold rather than a complete benchmark implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

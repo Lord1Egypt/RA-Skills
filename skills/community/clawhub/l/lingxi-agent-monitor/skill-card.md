@@ -1,41 +1,57 @@
-## Description: <br>
-Monitors OpenClaw Agent health, uptime, task status, and system metrics with alerts, memory management, session cleanup, and proactive self-healing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor OpenClaw Agent health, uptime, task status, and system metrics, with alerts for failures, performance degradation, and unusual behavior plus memory management, session cleanup, and proactive self-healing.
 
-## Publisher: <br>
-[nima54851](https://clawhub.ai/user/nima54851) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nima54851](https://clawhub.ai/user/nima54851)
 
-## Use Case: <br>
-Developers and operators use this skill to check OpenClaw Agent uptime, sessions, memory, task queues, tool connectivity, latency, and error rates, then produce health reports, alerts, and self-healing guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic session cleanup and history pruning may remove session data without a clear retention policy. <br>
-Mitigation: Define retention limits before use, archive important session summaries, and require confirmation before deleting or pruning session history. <br>
-Risk: Self-healing actions such as cache clearing, MCP restarts, retries, and provider switching can affect stable tool behavior. <br>
-Mitigation: Enable self-healing conservatively, log each action, and require approval before changing providers or clearing state in production workflows. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor OpenClaw agent uptime, active sessions, memory usage, task queues, MCP connectivity, API latency, and error rates. It produces health reports, alert guidance, and recovery actions for maintaining agent availability.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nima54851/skills/lingxi-agent-monitor) <br>
-- [Publisher Profile](https://clawhub.ai/user/nima54851) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown health reports, JSON configuration examples, cron entries, shell commands, and endpoint descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include alert thresholds, health-check schedules, self-healing actions, and dashboard or metrics endpoint descriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Automatic cleanup, restarts, provider fallback, and recovery actions can change an agent environment without enough user control or scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable self-healing by default, run read-only health checks first, and require confirmation before cleanup, restarts, or provider switching.
+
+Risk: Memory pruning and session cleanup can remove useful working context or records if thresholds are too broad.
+
+Mitigation: Use explicit retention settings, archive summaries before deletion, and review planned cleanup actions before applying them.
+
+Risk: External alert messages can expose secrets, private user content, or sensitive infrastructure details.
+
+Mitigation: Scrub alert payloads, restrict alert channels, and avoid sending raw logs or credentials to notification services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nima54851/skills/lingxi-agent-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown health reports with JSON configuration examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include alert thresholds, scheduled health checks, dashboard endpoint guidance, and self-healing recommendations]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

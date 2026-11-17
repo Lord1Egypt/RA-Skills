@@ -1,64 +1,49 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to this skill will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [7.0.1] - 2026-07-12
 
-## [6.2.0] - 2026-06-03
+### Fixed (SkillSpector 安全审计修复)
+- SSD3 High: 移除 JSON 中的 memory_keywords 字段，改为 memory_keyword_count（仅记录数量）
+- SSD3 High: 推荐理由不再暴露匹配的记忆关键词，改为 generic "记忆碰撞匹配"
+- MCP Tool Poisoning: description 声明完整行为范围（网络/文件/记忆访问/推送）
+- 硬编码 memory 路径改为 TRAE_MEMORY_PATH 环境变量
+- 硬编码 skillhub CLI 路径改为 shutil.which() 动态查找
+- 硬编码 IMA_KB_ID 改为环境变量
+- MCP Least Privilege: SKILL.md 增加权限声明段落
+- Missing User Warnings: README 中英文版增加数据访问/传输警告
+- 凭证安全指引：README 增加环境变量安全使用提示
 
-### 🎉 Major Release: 跨平台融合版 (Cross-Platform Universal Edition)
+## [7.0.0] - 2026-07-12
 
-融合 v6.1 (qclaw 优化版) + v5.0 评审建议 + 双模式增强，作为跨平台通用版发布。
+### Added
+- 7 维度推荐算法（新增 china_first 国内优先 + active_developer 活跃开发者维度）
+- 11 分类搜索 + 6 关键词搜索，扫描量从 340 提升至 1000+ 候选
+- 3 级权重记忆碰撞（project_memory×3 / topics×2 / user_profile×1）
+- 活跃开发者发现机制（按 ownerName 聚合 + 活跃度评分）
+- evaluation/reports API 深度评估（AI 6维评分 + 双实验室安全审计）
+- 三处存放推送（Obsidian inbox / IMA FIM 知识库 / 飞书云文档）
+- TRAE Schedule 定时任务（每天 06:50 北京时间）
+- 简报格式升级（TL;DR / 维度分组 / 能力解读 / 下一步 / 痛点匹配分组）
+- 与 ClawHub Daily 差异化定位
 
-### ✨ Added (新增)
+### Changed
+- 技能名称从 skillhub-cn-daily 改为 SkillHub Daily
+- 扫描策略从纯排行榜改为排行榜+分类搜索+关键词搜索
+- 推荐维度从 6 个扩展到 7 个
 
-- **首次加载必须询问使用模式**（模式 A 常规 / 模式 B Cron）
-- **Cron 模式跳过记忆扫描**：直接使用 prompt 中的痛点
-- **7 个平台提示词模板**：qclaw / WorkBuddy / OpenClaw / Hermes / 纯脚本 / Obsidian / 微信
-- **跨平台凭证搜索**：4 级优先级（环境变量 → 本地 config → qclaw → workbuddy）
-- **推送职责解耦**：外部编排负责推送，Skill 仅生成内容
-- **修复 v6.1 隐藏 bug**：`argparse` 格式化冲突（`%` 字符）
-- **环境版本验证**：Python ≥ 3.10、Node.js ≥ 18
-- **Python 自动回退检测**：当前解释器过低时尝试 python3.10/3.11/3.12
-- **何时不应触发清单**：7 条边界场景
-- **完整中英 README**：参考 eze-is/web-access 范式
+### Fixed
+- china_first 维度增加最低门槛（50 安装或 10 星），避免推荐空壳技能
 
-### 🔧 Changed (变更)
+## [2.0.0] - 2026-07-11
 
-- 描述精简：323 字符 → 230 字符
-- 元数据统一：SKILL.md / _meta.json / plugin.json 全部 6.2.0
-- 添加 `allowed-tools`：Read, Write, Bash, Glob, Grep
-- `User-Agent` 升级为 `SkillHub-Daily/6.2`
-- 隐私保护：所有真实 ID/路径替换为占位符
-- 简报模板通用化（移除个人化示例）
+### Added
+- 使用 skillhub CLI 替代 agent-browser 抓取
+- 6 维度推荐算法
+- 7 天跨维度去重机制
 
-### 🐛 Fixed (修复)
+## [1.0.0] - 2026-07-11
 
-- v6.1 `argparse` 格式化崩溃 bug
-- 版本号不一致问题（SKILL.md 5.0 vs _meta.json 1.0.0）
-- 飞书文档 `create` 后内容为空（增加 `read` 验证步骤）
-
-### 📚 Documentation (文档)
-
-- 新增 `references/setup-wizard.md`：首次安装向导
-- 新增 `references/platform-adapters.md`：跨平台适配
-- 新增 `references/prompt-templates.md`：Cron 模板
-- 新增 `README.md` 中英双语版
-- 完善 `config.md`：环境验证 + Windows Cron + 凭证多路径
-- 完善 `briefing-template.md`：通用化示例
-
-## [6.1.0] - Previous Release
-
-- 独立 `push_to_ima.py` 脚本
-- 独立 `briefing-template.md`
-- README.md
-- .gitignore
-- 痛点来源按调用方式动态选择
-
-## [5.0.0] - Earlier Release
-
-- 基础数据抓取
-- 240 个 Skill 扫描
-- 收藏率 / 潜力分计算
-- 隐藏金子识别
+### Added
+- 初始版本，使用 agent-browser 抓取 SkillHub.cn 排行榜

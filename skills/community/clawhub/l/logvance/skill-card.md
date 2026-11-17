@@ -1,43 +1,49 @@
-## Description: <br>
-Converts UTC or ISO-formatted timestamps in log files to local system time so developers and system administrators can analyze logs more quickly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts UTC or ISO timestamps in logs to local time to simplify log analysis for developers and system administrators.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers and system administrators use Logvance to convert UTC or ISO timestamps in log files or piped log streams into local time, with optional file output for converted logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input logs may contain sensitive operational or personal data. <br>
-Mitigation: Review log contents and handle converted output according to the same data-protection rules used for the original logs. <br>
-Risk: The output option writes to the path supplied by the user. <br>
-Mitigation: Choose the output path deliberately and avoid overwriting important files. <br>
-Risk: Usage examples refer to logvance.py while the shipped script is named tool.py. <br>
-Mitigation: Run tool.py as shipped, or rename it consistently before following the examples. <br>
+## Use Case:
 
+Developers and system administrators use Logvance to convert UTC or ISO-formatted log timestamps into local system time during troubleshooting, monitoring, and incident review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/logvance) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/albionaiinc-del) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text log output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can read from a log file or stdin and can write converted logs to stdout or a specified output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Logs may contain sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process logs locally and avoid sharing converted output with unauthorized services or users.
+
+## Reference(s):
+
+- [Logvance ClawHub skill page](https://clawhub.ai/albionaiinc-del/skills/logvance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Guidance]
+
+**Output Format:** [Plain text logs, optional output file, and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes stdin or a log file locally and can write converted logs to stdout or a specified output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

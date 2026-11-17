@@ -9,7 +9,6 @@ A pre-configured AI Persona setup for software development.
 | File | Purpose |
 |------|---------|
 | `SOUL.md` | Axiom — a direct, technical coding assistant |
-| `HEARTBEAT.md` | Daily ops with CI/CD checks, PR reviews, build status |
 | `KNOWLEDGE.md` | Tech stack reference, code patterns, common issues |
 
 ---
@@ -41,11 +40,6 @@ A pre-configured AI Persona setup for software development.
 - [ ] Update technical preferences
 - [ ] Adjust communication style
 
-### In HEARTBEAT.md:
-- [ ] Add your actual repos and PR links
-- [ ] Configure your CI/CD commands
-- [ ] Set up your monitoring alerts
-
 ### In KNOWLEDGE.md:
 - [ ] Replace tech stack with yours
 - [ ] Add your codebase patterns
@@ -54,10 +48,10 @@ A pre-configured AI Persona setup for software development.
 
 ---
 
-## Example HEARTBEAT Output
+## Example Daily Briefing
 
 ```
-HEARTBEAT — Monday, January 27, 2026, 9:15 AM PST
+DAILY BRIEFING — Monday, January 27, 2026, 9:15 AM PST
 📚 Context: 12k/200k (6%)
 ⚙️ Status: Operational
 
@@ -79,7 +73,6 @@ Loaded yesterday's session. Last worked on auth refactor.
 - Continue auth refactor
 - PR #142 needs review by EOD
 
-HEARTBEAT_OK
 Focus: Complete auth refactor, review PR #142
 ```
 

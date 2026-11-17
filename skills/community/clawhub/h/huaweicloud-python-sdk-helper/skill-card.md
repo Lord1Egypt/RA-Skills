@@ -1,42 +1,55 @@
-## Description: <br>
-Helps developers inspect installed Huawei Cloud Python SDK packages, client classes, API methods, request parameters, SDK class details, and keyword matches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers inspect installed Huawei Cloud Python SDK packages, client classes, API methods, request parameters, and SDK class details with keyword search and JSON output.
 
-## Publisher: <br>
-[jupiter-19](https://clawhub.ai/user/jupiter-19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jupiter-19](https://clawhub.ai/user/jupiter-19)
 
-## Use Case: <br>
-Developers working with Huawei Cloud Python SDK use this skill to quickly locate service packages, client classes, API methods, request fields, response classes, and credential patterns without manually searching documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper imports installed Huawei Cloud SDK modules and can resolve class paths, so untrusted packages or arbitrary module paths could execute code during import. <br>
-Mitigation: Run it in a trusted Python environment, install SDK packages from trusted sources, and avoid arbitrary fully qualified class paths unless the installed module is trusted. <br>
-Risk: Lookup results can be incomplete when a service package, SDK version, client class, or Request metadata is unavailable. <br>
-Mitigation: Confirm missing or unclear API details in Huawei Cloud API Explorer before using the result in production code. <br>
+## Use Case:
 
+Developers and engineers use this skill to quickly locate Huawei Cloud Python SDK services, clients, API methods, request parameters, and model class fields while preparing SDK-based automation or integration code.
 
-## Reference(s): <br>
-- [Huawei Cloud Python SDK GitHub](https://github.com/huaweicloud/huaweicloud-sdk-python-v3) <br>
-- [Huawei Cloud API Explorer](https://apiexplorer.developer.huaweicloud.com/apiexplorer/overview) <br>
-- [Credential Reference](references/knowledge.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON output from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured JSON when the helper script is invoked with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A helper command can load arbitrary local Python modules from user-provided class values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a dedicated virtual environment, use trusted and pinned Huawei SDK packages, and avoid passing arbitrary dotted class names from untrusted text.
+
+Risk: SDK lookup results depend on the packages installed in the local Python environment.
+
+Mitigation: Install only the intended Huawei Cloud SDK packages from a trusted index and verify package versions before relying on generated method or parameter guidance.
+
+## Reference(s):
+
+- [Huawei Cloud SDK Python v3](https://github.com/huaweicloud/huaweicloud-sdk-python-v3)
+- [Huawei Cloud API Explorer](https://apiexplorer.developer.huaweicloud.com/apiexplorer/overview)
+- [Credential Reference](references/knowledge.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on locally installed Huawei Cloud SDK packages and the selected service, client, method, or class query.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,50 @@
-## Description: <br>
-Give AI agents a persistent journal backed by BlueColumn semantic memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gives AI agents a persistent journal backed by BlueColumn semantic memory for logging and recalling observations, decisions, user preferences, and notable events across sessions.
 
-## Publisher: <br>
-[bluecolumnconsulting-lgtm](https://clawhub.ai/user/bluecolumnconsulting-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bluecolumnconsulting-lgtm](https://clawhub.ai/user/bluecolumnconsulting-lgtm)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent store observations, user preferences, decisions, and session notes, then recall that context in later sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Journal entries, preferences, session notes, URLs, or search queries may be stored by the provider's external backend. <br>
-Mitigation: Use the skill only when external storage is acceptable, and avoid saving secrets, credentials, regulated data, or private client information unless retention, deletion, and access controls are documented. <br>
-Risk: The skill requires a BlueColumn API key. <br>
-Mitigation: Store the API key securely, do not log it, and rotate it if it may have been exposed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to persist selected session context, preferences, decisions, and follow-up information so agents can recall it in later sessions.
 
-## Reference(s): <br>
-- [Agent Journal API Reference](references/api.md) <br>
-- [BlueColumn](https://bluecolumn.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/bluecolumnconsulting-lgtm/agent-journal) <br>
-- [Publisher profile](https://clawhub.ai/user/bluecolumnconsulting-lgtm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with inline bash examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a BlueColumn API key and sends journal content to an external backend.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: External persistent memory may store user and session details without clear consent, redaction, retention, or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit consent before storing entries, avoid secrets or regulated data, review summaries before submission, and confirm how memories can be inspected, corrected, deleted, and how the API key can be revoked.
+
+## Reference(s):
+
+- [BlueColumn API Reference](references/api.md)
+- [BlueColumn official docs](https://bluecolumn.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl command examples and JSON request/response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a BlueColumn bc_live_* API key and sends selected journal content to BlueColumn's external service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

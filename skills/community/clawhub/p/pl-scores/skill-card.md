@@ -1,39 +1,55 @@
-## Description: <br>
-Get live Premier League football scores, goal scorers, bookings, and broadcast channels via the ESPN API for English top-flight matches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get live Premier League football scores, goal scorers, bookings, and broadcast channels via ESPN API.
 
-## Publisher: <br>
-[stigg86](https://clawhub.ai/user/stigg86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stigg86](https://clawhub.ai/user/stigg86)
 
-## Use Case: <br>
-External users and agents use this skill to answer Premier League score, result, scorer, booking, and US broadcast-channel questions from live or recent ESPN match data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes an outbound request to ESPN for public Premier League data, so results depend on network availability and ESPN's data freshness. <br>
-Mitigation: Use it only where outbound access to ESPN is acceptable, and treat live scores, bookings, and broadcast details as ESPN-sourced data that may need confirmation for high-stakes uses. <br>
+## Use Case:
 
+External users and agents use this skill to answer questions about current or recent English Premier League scores, scorers, bookings, and US broadcast channels.
 
-## Reference(s): <br>
-- [ESPN Premier League scoreboard API](https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard) <br>
-- [ClawHub release page](https://clawhub.ai/stigg86/pl-scores) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text match summaries with scores, status, scorers, bookings, and broadcast channel details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires internet access to fetch public ESPN Premier League data; no credentials are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Running the skill contacts ESPN, which receives normal request metadata such as IP address and User-Agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in environments where outbound requests to ESPN are acceptable.
+
+Risk: Scores, bookings, and broadcast data depend on ESPN availability and update frequency.
+
+Mitigation: Treat results as live third-party sports data and re-run or verify with an official source when accuracy is critical.
+
+## Reference(s):
+
+- [Premier League Scores Skill Page](https://clawhub.ai/stigg86/skills/pl-scores)
+- [stigg86 Publisher Profile](https://clawhub.ai/user/stigg86)
+- [ESPN Premier League Scoreboard API](https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text scores and event summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches public ESPN data at runtime and prints results locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

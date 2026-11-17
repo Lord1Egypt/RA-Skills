@@ -1,43 +1,55 @@
-## Description: <br>
-Generate WCAG-compliant alt text and detailed image descriptions for accessibility. Pay $0.01 USDC via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate WCAG-compliant alt text and detailed image descriptions for accessibility. Pay $0.01 USDC via x402.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-External developers and agents use this skill to generate concise alt text and longer accessibility descriptions for images in libraries, CMS workflows, and e-commerce product content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends submitted images or image URLs to an external paid API provider. <br>
-Mitigation: Avoid using confidential, regulated, or proprietary media unless the provider's retention, logging, and compliance practices have been separately verified. <br>
-Risk: Each API call requires x402 payment and may spend USDC. <br>
-Mitigation: Use the skill only in contexts where paid external API calls are expected and payment controls are configured. <br>
+## Use Case:
 
+Developers, content teams, and agents use this skill to generate concise alt text and more detailed accessibility descriptions for images in libraries, CMS workflows, or e-commerce catalogs.
 
-## Reference(s): <br>
-- [Ntriq x402 Alt Text API](https://x402.ntriq.co.kr) <br>
-- [x402 Protocol](https://x402.org) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ntriq-gh/ntriq-x402-alt-text) <br>
-- [Publisher Profile](https://clawhub.ai/user/ntriq-gh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Text and JSON API responses, with optional Markdown and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces concise alt text of up to 125 characters plus a detailed image description.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Images or image URLs are sent to ntriq's external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images approved for external processing, and avoid private or sensitive images unless the provider's privacy and retention terms are acceptable.
+
+Risk: Each API call requires a paid x402 transaction.
+
+Mitigation: Verify the x402 payment flow and confirm the disclosed $0.01 USDC per-call cost before installation or automated use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ntriq-gh/skills/ntriq-x402-alt-text)
+- [ntriq X402 homepage](https://x402.ntriq.co.kr)
+- [x402 protocol](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON response containing alt_text and description fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Alt text is intended to be concise, with optional language selection when calling the service.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

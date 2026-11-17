@@ -1,47 +1,62 @@
-## Description: <br>
-Book flights for wine tours to vineyards and wine regions, with related travel booking support for hotels, trains, attractions, itineraries, visas, insurance, and car rental through Fliggy/flyai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights for wine tours to famous vineyards and wine regions, with related support for hotels, trains, attraction tickets, itineraries, visa information, travel insurance, and car rental through Fliggy.
 
-## Publisher: <br>
-[liquanyu123](https://clawhub.ai/user/liquanyu123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liquanyu123](https://clawhub.ai/user/liquanyu123)
 
-## Use Case: <br>
-External travelers and travel agents use this skill to find wine-tour flight options and related travel services from flyai CLI output, then present bookable Markdown results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to install an unpinned global npm package before running searches. <br>
-Mitigation: Require manual approval for installation, review the @fly-ai/flyai-cli package/source, and prefer a pinned version in a controlled environment. <br>
-Risk: The skill sends travel search details to the flyai/Fliggy CLI provider and relies on provider-returned booking links. <br>
-Mitigation: Avoid sensitive travel details unless the provider is trusted, and review booking links before acting on them. <br>
-Risk: The skill runs shell commands to search flights and recover from errors. <br>
-Mitigation: Review generated commands before execution and run them with least privilege. <br>
+## Use Case:
 
+External users and travel-assistant agents use this skill to search and present wine-tour flight options with booking links, route comparisons, and wine-region tips. The skill requires travel answers to be grounded in flyai CLI output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liquanyu123/wine-tour) <br>
-- [Parameter Collection & Output Templates](artifact/references/templates.md) <br>
-- [Scenario Playbooks](artifact/references/playbooks.md) <br>
-- [Failure Recovery](artifact/references/fallbacks.md) <br>
-- [Execution Runbook](artifact/references/runbook.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown flight and travel search results with inline booking links and shell commands for flyai CLI execution or setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results must be based on flyai CLI output and include Book links when returned by the provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can send travel routes and dates to the FlyAI/Fliggy provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the provider is trusted and users are comfortable sharing the relevant travel details.
+
+Risk: The skill directs automatic global npm installation of flyai-cli.
+
+Mitigation: Prefer a pinned, local, reviewed installation in a sandbox instead of automatic global installation.
+
+Risk: The skill executes CLI commands using user-supplied travel fields.
+
+Mitigation: Invoke the CLI with argument arrays and strict parameter validation rather than interpolating user text into shell commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liquanyu123/skills/wine-tour)
+- [Parameter collection and output templates](artifact/references/templates.md)
+- [Scenario playbooks](artifact/references/playbooks.md)
+- [Failure recovery](artifact/references/fallbacks.md)
+- [Execution runbook](artifact/references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown travel results with comparison tables, concise recommendations, and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output; every travel result is expected to include a booking link.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

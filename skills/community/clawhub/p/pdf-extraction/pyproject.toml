@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pdf-extract-cli"
+version = "1.0.0"
+description = "Simple CLI to extract text/tables from PDFs with auto text vs OCR detection"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "AlexHT Hung", email = "AlexHT_Hung@asus.com" }]
+keywords = ["pdf", "ocr", "tesseract", "pdfplumber", "extraction", "cli"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Text Processing",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "pdfplumber>=0.11",
+    "pymupdf>=1.24",
+    "Pillow>=10",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "build", "twine"]
+
+[project.urls]
+Homepage = "https://github.com/alex-ht/pdf-extraction"
+Repository = "https://github.com/alex-ht/pdf-extraction"
+Issues = "https://github.com/alex-ht/pdf-extraction/issues"
+Changelog = "https://github.com/alex-ht/pdf-extraction/releases"
+
+[project.scripts]
+pdf-extract = "pdf_extract.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pdf_extract*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

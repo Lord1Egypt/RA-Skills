@@ -1,39 +1,54 @@
-## Description: <br>
-Parallel file download and optional tar extraction using the pget CLI for single URLs or multifile manifests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pget guides agents to use the pget CLI for high-throughput parallel downloads, multifile manifests, and optional tar extraction.
 
-## Publisher: <br>
-[kelvincai522](https://clawhub.ai/user/kelvincai522) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kelvincai522](https://clawhub.ai/user/kelvincai522)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate pget installation, download, extraction, and multifile manifest commands for high-throughput file transfer workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing a CLI binary with elevated privileges can place unverified code on the system. <br>
-Mitigation: Prefer package-manager installation when available, or verify the release source and checksum when possible; avoid sudo unless system-wide installation is required. <br>
-Risk: Downloads, tar extraction, manifest destination paths, and --force can write or overwrite user-controlled filesystem locations. <br>
-Mitigation: Review URLs, destination paths, extraction targets, and overwrite flags before executing generated pget commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [pget CLI reference](references/pget.md) <br>
+## Use Case:
 
+Developers and engineers use this skill when they need an agent to propose pget commands for faster large-file downloads, multifile batch downloads, or download-and-extract workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command guidance for pget installation, single-file downloads, tar extraction, and multifile manifests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing an unverified latest-release binary with sudo into a system-wide directory can expose the environment to supply-chain or privilege risk.
+
+Mitigation: Prefer a pinned and verified pget release or a trusted package manager, and avoid running the download step with sudo when a user-local install path is sufficient.
+
+Risk: Using --force or archive extraction with an incorrect destination path can overwrite files or place extracted content somewhere unintended.
+
+Mitigation: Review destination paths before execution, avoid --force unless overwrite is intended, and extract archives into a controlled directory.
+
+## Reference(s):
+
+- [pget CLI reference](artifact/references/pget.md)
+- [ClawHub skill page](https://clawhub.ai/kelvincai522/skills/pget)
+- [Publisher profile](https://clawhub.ai/user/kelvincai522)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and concise procedural guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include destination paths, concurrency settings, retry settings, overwrite flags, manifest usage, and archive extraction options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

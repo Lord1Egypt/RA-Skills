@@ -1,44 +1,57 @@
-## Description: <br>
-Generate customizable SVG backgrounds and graphics in tech, minimal, geometric, and abstract styles with selectable color schemes for websites, presentations, social media, and UI decorative elements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate customizable SVG backgrounds and graphics in tech, minimal, geometric, and abstract styles for websites, presentations, social media, and UI decorative elements.
 
-## Publisher: <br>
-[NimaChu](https://clawhub.ai/user/NimaChu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nimachu](https://clawhub.ai/user/nimachu)
 
-## Use Case: <br>
-Developers, designers, and content creators use this skill to generate local SVG backgrounds and decorative graphics for websites, presentations, social posts, and interface mockups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The SVG-to-PNG helper is described by security evidence as misleading and uses a simplified rendering path. <br>
-Mitigation: Treat PNG conversion as a placeholder, verify generated images manually, and use a trusted converter when pixel-accurate output is required. <br>
-Risk: Local scripts write to user-specified output paths and could overwrite existing files. <br>
-Mitigation: Choose output paths deliberately and review target filenames before running generation or conversion commands. <br>
-Risk: Node dependencies such as canvas may be needed for conversion workflows. <br>
-Mitigation: Install dependencies only from trusted package sources and keep the execution environment local and scoped to the asset-generation task. <br>
+## Use Case:
 
+Developers, designers, and content creators use this skill to generate local SVG background assets and optional PNG or presentation-ready variants for websites, presentations, social media, and UI decoration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NimaChu/svg-generator-pro) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated artifacts are SVG files and simplified PNG outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated visuals should be reviewed before use, especially converted PNG outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The advertised SVG-to-PNG conversion may not faithfully render the input SVG.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect generated PNG files manually and use a dedicated SVG renderer when visual fidelity is required.
+
+Risk: Untrusted color or SVG dimension inputs may produce broken or unexpected output.
+
+Mitigation: Use trusted color values and practical dimensions before running the local generation scripts.
+
+Risk: Generated files can overwrite caller-selected output paths.
+
+Mitigation: Write outputs only to paths that are safe to create or replace.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/nimachu/skills/svg-generator-pro)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, guidance]
+
+**Output Format:** [SVG files, optional PNG files, and Markdown or terminal-oriented usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated assets are written to caller-selected local paths; PNG conversion should be checked manually for fidelity.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

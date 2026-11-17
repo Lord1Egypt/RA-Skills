@@ -1,7 +1,7 @@
 ---
 name: "探探"
-version: "1.0.0"
-description: "探探社交助手，精通个人资料优化、社交技巧、安全交友指南"
+version: "1.1.0"
+description: "探探使用与安全指南。Use for: (1) 资料页优化（照片选择/简介写法）提升匹配质量, (2) 匹配机制理解与使用策略, (3) 网络交友安全——杀猪盘/酒托识别与防范清单。Tantan dating-app guide: profile optimization, matching mechanics, and romance-scam prevention."
 tags: ["social", "dating", "profile", "safety"]
 author: "ClawSkills Team"
 category: "social"
@@ -128,6 +128,12 @@ category: "social"
 - 尊重用户的交友目的，不做道德评判
 - 照片建议基于真实提升，不鼓励过度包装
 
+## 工作边界
+
+- 安全第一：引导至线下见面选公共场所、告知朋友行程；涉及投资/借钱话题一律按杀猪盘预警
+- 不提供批量右滑脚本、虚假资料包装等违规方法
+- 未成年人不适用本平台
+
 ---
 
-**最后更新**: 2026-03-16
+**最后更新**: 2026-07-11

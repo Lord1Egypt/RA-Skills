@@ -1,42 +1,57 @@
-## Description: <br>
-Call when creating/updating STYLE_MANIFESTO persona source code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates or updates STYLE_MANIFESTO persona source code that defines a persona's identity, cognition, behavior, and linguistic style.
 
-## Publisher: <br>
-[Ar3ss12](https://clawhub.ai/user/Ar3ss12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ar3ss12](https://clawhub.ai/user/ar3ss12)
 
-## Use Case: <br>
-Developers and persona authors use this skill to create or update STYLE_MANIFESTO persona source code that defines a character's identity, cognitive style, interaction behavior, and linguistic patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can push agents toward persistent psychological profiles of real people, including private trauma or diagnosis-rumor material. <br>
-Mitigation: Use it only for fictional characters, public figures, or people who have consented; avoid private trauma, medical, or diagnosis-rumor profiling. <br>
-Risk: The helper script accepts persona names that are used to create local output paths. <br>
-Mitigation: Sanitize persona names before running the helper and review the target output path before storing generated files. <br>
-Risk: Generated manifestos may contain incorrect, misleading, or sensitive persona claims. <br>
-Mitigation: Review generated manifestos before storing, sharing, or reusing them. <br>
+## Use Case:
 
+Developers and agent builders use this skill to research and synthesize structured persona manifests for content-engine or character-style workflows. It is suited to creating STYLE_MANIFESTO.md deliverables for fictional, historical, or user-provided persona targets.
 
-## Reference(s): <br>
-- [Soul architect ClawHub release](https://clawhub.ai/Ar3ss12/soul-architect-v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown file with supporting shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates personas/<name>/STYLE_MANIFESTO.md; personal mode expects personas/<name>/knowledge_base.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and release changelog) <br>
+Risk: Persona research can produce sensitive psychological or diagnosis-like claims, especially for private or living people.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use consent-aware targets, verify sources carefully, and treat psychological claims as untrusted speculation unless directly supported by reliable evidence.
+
+Risk: The helper script uses the supplied persona name in an output path.
+
+Mitigation: Constrain persona names to safe path characters before running the helper script.
+
+Risk: Personal mode depends on private knowledge-base material.
+
+Mitigation: Keep private inputs out of shared artifacts; the artifact gitignore excludes persona knowledge bases and private persona folders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ar3ss12/skills/soul-architect-v1)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown persona manifesto with optional shell command output and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persona files under personas/<name>; personal mode expects a local knowledge_base.json input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

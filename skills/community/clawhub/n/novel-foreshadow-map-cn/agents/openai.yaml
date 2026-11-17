@@ -1,0 +1,8 @@
+interface:
+  display_name: "伏笔回收清单"
+  short_description: "从章节材料提取伏笔并追踪埋点、兑现状态与建议回收位置"
+  default_prompt: "使用 $novel-foreshadow-map-cn。请粘贴一个章节摘要、场景梗概或短段落；我会只依据这份材料整理伏笔回收清单，缺少上下文会明确列出。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

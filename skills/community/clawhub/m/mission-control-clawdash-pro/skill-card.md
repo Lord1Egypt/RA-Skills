@@ -1,43 +1,58 @@
-## Description: <br>
-Create or update detailed, publish-ready instructions for wiring Mission Control (ClawDash Pro) prebuilt Next.js UI to Open Cloud after purchase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates or updates publish-ready Markdown instructions for wiring the Mission Control (ClawDash Pro) prebuilt Next.js UI to Open Cloud while preserving the existing design and connecting dashboard data domains.
 
-## Publisher: <br>
-[petercsipkay](https://clawhub.ai/user/petercsipkay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[petercsipkay](https://clawhub.ai/user/petercsipkay)
 
-## Use Case: <br>
-External customers and developers use this skill to create publish-ready setup instructions for connecting a purchased ClawDash Pro Next.js dashboard to Open Cloud while preserving the existing UI design. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated setup instructions may be applied in an untrusted or incorrect project directory. <br>
-Mitigation: Run npm commands only inside the trusted purchased Mission Control project and review generated steps before execution. <br>
-Risk: Credential handling mistakes could expose Open Cloud API keys or workspace identifiers. <br>
-Mitigation: Keep .env.local out of source control and use least-privilege Open Cloud API keys. <br>
-Risk: Connected dashboard data may expose token usage, document state, or other workspace information. <br>
-Mitigation: Verify access controls before exposing token usage, document data, or operational dashboard views. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/petercsipkay/mission-control-clawdash-pro) <br>
-- [ClawDash Pro](https://clawdash.pro) <br>
-- [Mission Control Publish Instruction Template](references/publish-instruction-template.md) <br>
+## Use Case:
 
+External customers and developers use this skill to produce setup guides for connecting a purchased Mission Control ClawDash Pro dashboard to Open Cloud, including prerequisites, backend/data wiring prompts, verification, and troubleshooting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline text and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One Markdown instruction file by default; variants only when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated Markdown may include product backlinks, pricing links, or setup claims that need review before publication.
+
+Mitigation: Review the generated document before publishing and confirm all links, claims, and calls to action match the intended release.
+
+Risk: Setup instructions may ask users to configure API keys or .env.local values.
+
+Mitigation: Keep secret values out of published instructions and use placeholders for credentials, workspace IDs, and base URLs.
+
+Risk: Open Cloud integration guidance could accidentally change the prebuilt dashboard UI instead of only wiring backend data.
+
+Mitigation: Retain the design lock acceptance check and verify that visual structure, components, and layout remain unchanged.
+
+## Reference(s):
+
+- [Mission Control Publish Instruction Template](references/publish-instruction-template.md)
+- [ClawDash Pro](https://clawdash.pro)
+- [ClawDash Pro Pricing](https://clawdash.pro/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and text code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically one publish-ready instruction file unless variants are requested; includes a required ClawDash Pro backlink and a pricing CTA when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

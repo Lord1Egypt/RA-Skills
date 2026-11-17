@@ -1,0 +1,39 @@
+{
+  "name": "wiki-framework-builder",
+  "version": "0.1.0",
+  "description": "消费 wiki-intent-scope 产出的 scope.json，选择并重组工程化研究维度（D1-D8），产出固定格式的对外 Word 报告框架、Markdown 报告框架与 JSON 沟通文件，确保内部 L1-L5/D1-D8 路由不出现在面向客户的输出中。",
+  "entrypoint": "SKILL.md",
+  "role": "consumer",
+  "inputs": [
+    {
+      "name": "scope.json",
+      "type": "json",
+      "required": true,
+      "description": "上游 wiki-intent-scope 的任务界定交接文件",
+      "fields": ["normalize", "research_intent", "framework_depth", "scope_caliber", "problem_transform"]
+    }
+  ],
+  "outputs": [
+    { "name": "chat_summary", "type": "text", "description": "框架定位、研究维度梳理、口径与待确认项、下一步建议" },
+    { "name": "report_framework.docx", "type": "docx", "description": "固定格式的对外 Word 报告框架，由 scripts/generate_report_docx.py 生成" },
+    { "name": "report_framework.md", "type": "markdown", "description": "对外 Markdown 报告框架，内容与 Word 一致" },
+    {
+      "name": "report_framework_handoff.json",
+      "type": "json",
+      "description": "携带内部映射、工程化研究维度、口径约束和 definition_research_context 的交接文件"
+    }
+  ],
+  "dependencies": ["wiki-intent-scope"],
+  "used_by": ["industry-definition-research"],
+  "resources": {
+    "references": [
+      "references/engineering_dimension_database.md",
+      "references/external_framework_standard.md",
+      "references/framework_generation_rules.md",
+      "references/output_contract.md"
+    ],
+    "scripts": ["scripts/generate_report_docx.py"],
+    "agents": []
+  },
+  "tags": ["report-framework", "outline-generation", "consulting"]
+}

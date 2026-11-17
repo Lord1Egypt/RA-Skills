@@ -1,50 +1,59 @@
-## Description: <br>
-QuantOracle exposes deterministic quantitative-finance calculators and composite workflows to agents through MCP, covering options pricing, Greeks, risk metrics, portfolio optimization, Monte Carlo, statistics, crypto/DeFi, FX/macro, TVM, strategy backtesting, rebalancing, options strategy selection, and hedging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QuantOracle exposes deterministic quantitative finance calculators and composite workflows to agents over MCP, covering options pricing, Greeks, exotic derivatives, risk metrics, portfolio optimization, Monte Carlo, statistics, crypto/DeFi, FX/macro, time value of money, backtesting, rebalancing, strategy selection, and hedging.
 
-## Publisher: <br>
-[fel123](https://clawhub.ai/user/fel123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fel123](https://clawhub.ai/user/fel123)
 
-## Use Case: <br>
-Developers and agent users use QuantOracle to add quantitative finance calculations, risk analysis, portfolio workflows, and paid composite finance workflows to MCP-compatible agents. It is suited for finance calculation support, not as a substitute for human investment judgment or compliance review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finance and trading calculation inputs are sent to the external QuantOracle API through the MCP server. <br>
-Mitigation: Avoid sending confidential trading, portfolio, or customer data unless that external processing is acceptable for the deployment. <br>
-Risk: Paid composite workflows can settle USDC payments when an x402-capable wallet is enabled. <br>
-Mitigation: Do not enable or provide an x402 wallet unless paid calls are intended; prefer wallet or client-side spending limits for paid workflows. <br>
-Risk: Quantitative finance outputs may be used incorrectly as investment or risk-management decisions. <br>
-Mitigation: Treat outputs as calculation support and require qualified review before financial, trading, or compliance use. <br>
+## Use Case:
 
+Developers and agent users use QuantOracle to run deterministic finance calculations and composite analysis workflows from MCP-compatible clients. It supports pricing, Greeks, risk metrics, optimization, backtesting, hedging, and DeFi/FX/macro calculations without an API key for the free tier.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fel123/quantoracle) <br>
-- [Publisher profile](https://clawhub.ai/user/fel123) <br>
-- [Source repository](https://github.com/QuantOracledev/quantoracle) <br>
-- [Browser calculators](https://quantoracle.dev) <br>
-- [MCP endpoint](https://mcp.quantoracle.dev/mcp) <br>
-- [Full API documentation](https://api.quantoracle.dev/openapi.json) <br>
-- [Endpoint catalog](https://api.quantoracle.dev/tools) <br>
-- [npm package](https://www.npmjs.com/package/quantoracle-mcp) <br>
-- [x402 protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, configuration, shell commands, guidance] <br>
-**Output Format:** [JSON tool responses, Markdown guidance, and shell/configuration snippets for MCP setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call an external QuantOracle API; paid composite workflows require an explicit x402-capable wallet and return 402 when no wallet is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release metadata; artifact frontmatter states 2.4.1) <br>
+Risk: The setup can run the QuantOracle MCP npm package or connect to a hosted MCP endpoint, and the security summary flags the install path as needing review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed package version or reviewed endpoint configuration, and restrict the MCP server's filesystem and environment access before enabling it.
+
+Risk: Paid composite workflows can use wallet-based x402 payments when an x402-capable wallet is provided.
+
+Mitigation: Do not provide an x402 wallet unless paid composite calls are intended, and configure wallet access and spending review outside the skill.
+
+## Reference(s):
+
+- [QuantOracle homepage](https://github.com/QuantOracledev/quantoracle)
+- [Browser calculators](https://quantoracle.dev)
+- [Hosted MCP endpoint](https://mcp.quantoracle.dev/mcp)
+- [npm package](https://www.npmjs.com/package/quantoracle-mcp)
+- [API documentation](https://api.quantoracle.dev/openapi.json)
+- [Endpoint catalog](https://api.quantoracle.dev/tools)
+- [x402 protocol](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance, Configuration]
+
+**Output Format:** [JSON responses from MCP tools, with human-readable financial calculation results and setup guidance in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Free tier is rate-limited to 1,000 calls per IP per day; paid composite workflows use per-call USDC payments through x402 when an x402-capable wallet is provided.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release metadata; artifact frontmatter says 2.4.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

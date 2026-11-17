@@ -1,41 +1,54 @@
-## Description: <br>
-Searches the web through the Turing Baidu proxy for Chinese-language queries, current information from Chinese sources, and Baidu Search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web via the Turing Baidu proxy for Chinese-language, China-focused, or current Baidu Search results.
 
-## Publisher: <br>
-[CAPREaaa](https://clawhub.ai/user/CAPREaaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[capreaaa](https://clawhub.ai/user/capreaaa)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current Baidu search results for Chinese-language research, current events, and source discovery when the agent needs web evidence from Chinese sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and credentials are sent to the configured Turing Baidu proxy. <br>
-Mitigation: Use a trusted API base and a limited API key, and avoid sensitive personal or confidential information in search queries. <br>
-Risk: Returned Baidu snippets are untrusted web content and may be inaccurate or instruction-like. <br>
-Mitigation: Treat returned snippets as sources to verify rather than instructions to execute. <br>
+## Use Case:
 
+Developers and agents use this skill to run Baidu-backed web searches for Chinese-language and China-focused current information, returning structured search results for follow-up research.
 
-## Reference(s): <br>
-- [Turing documentation](https://docs.turing.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/CAPREaaa/turing-baidu-web-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [JSON search results printed to stdout, with Markdown usage examples in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TURING_API_KEY, TURING_CLIENT, and TURING_ENVIRONMENT; supports count and search_recency_filter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Search queries and bearer credentials may be sent to any configured Turing API base URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS Turing API base and consider allowlisting the proxy host before forwarding credentials.
+
+Risk: Sensitive or personal data in search terms may be transmitted to the configured search proxy.
+
+Mitigation: Avoid placing secrets, personal data, or confidential business information in search queries.
+
+## Reference(s):
+
+- [Turing documentation](https://docs.turing.cn)
+- [ClawHub skill page](https://clawhub.ai/capreaaa/skills/turing-baidu-web-search)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON search results printed by a Python command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TURING_API_KEY, TURING_CLIENT, and TURING_ENVIRONMENT; supports result count and recency filters.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

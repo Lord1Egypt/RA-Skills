@@ -1,48 +1,67 @@
-## Description: <br>
-Article Workflow analyzes article URLs, generates summaries, tags, reports, and quality scores, deduplicates repeated URLs, and can archive results to Feishu Docs and Bitable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates article URL fetching, analysis, summarization, tagging, quality scoring, deduplication, and archiving to Feishu Docs and Bitable.
 
-## Publisher: <br>
-[dongnan](https://clawhub.ai/user/dongnan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongnan](https://clawhub.ai/user/dongnan)
 
-## Use Case: <br>
-Teams and individual users use this skill to process one or more shared article links, generate concise summaries and quality scores, and save structured results to Feishu/Bitable for later review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can monitor chat-shared URLs and store article-derived data in Feishu/Bitable. <br>
-Mitigation: Review Feishu permissions, target chats, and Bitable tables before installation, and avoid sensitive or internal content unless affected users have notice and consent. <br>
-Risk: Credentials and table identifiers are required for Feishu/Bitable workflows. <br>
-Mitigation: Replace example credentials with clearly fake placeholders, keep real values in environment variables or local config, and verify that config backups are protected. <br>
-Risk: Cleanup, restore, and bulk update commands may affect local caches, logs, and archived article records. <br>
-Mitigation: Verify paths and target records before running cleanup or bulk update commands, especially in shared or production workspaces. <br>
+## Use Case:
 
+Developers and operators use this skill to process single articles or batches of article URLs from chat or CLI workflows. It produces summaries, tags, analysis reports, quality scores, deduplication checks, and Feishu/Bitable archival records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dongnan/article-workflow) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [User Guide](artifact/README.md) <br>
-- [Configuration Protection Guide](artifact/docs/CONFIG_PROTECTION.md) <br>
-- [Quality Scoring Guide](artifact/docs/quality-score.md) <br>
-- [Security Audit](artifact/docs/SECURITY_AUDIT.md) <br>
-- [Smart Router Implementation](artifact/docs/smart-router-implementation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown status messages, article summaries, quality scores, Feishu/Bitable links, configuration snippets, and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist article-derived records, reports, cover images, logs, caches, and config backups when Feishu/Bitable or local workflows are enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: Credential backups and local configuration files may expose Feishu or Bitable tokens if they are stored or synced carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Feishu/Bitable token, keep the skill in a private directory, and ignore .env, .env.*, .config.backup.json, config.backup.json, and config.local.json.
+
+Risk: Analyzing private or internal URLs can expose content through fetching, summarization, logs, or external storage.
+
+Mitigation: Avoid private/internal URLs unless the fetch tool blocks local and private network destinations and the storage destination is approved for that content.
+
+Risk: Heartbeat automation can forward or process group-chat links without enough operator awareness.
+
+Mitigation: Confirm whether Heartbeat automation is enabled before connecting the skill to group chats.
+
+Risk: Analysis outputs and article metadata are archived to Feishu Docs and Bitable.
+
+Mitigation: Review workspace permissions and destination tables before enabling archival workflows.
+
+## Reference(s):
+
+- [Article Workflow on ClawHub](https://clawhub.ai/dongnan/skills/article-workflow)
+- [Skill Instructions](SKILL.md)
+- [README](README.md)
+- [Configuration Protection Guide](docs/CONFIG_PROTECTION.md)
+- [Security Audit](docs/SECURITY_AUDIT.md)
+- [Quality Scoring](docs/quality-score.md)
+- [Smart Router Implementation](docs/smart-router-implementation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries and reports, chat status text, Feishu document links, Bitable records, and CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-URL analysis and batch analysis with a documented maximum of 5 concurrent subagents.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Model, solve, and analyze steady-state fluid networks using TOML input with scenario-based reliability checks and automatic Markdown reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Models, solves, and analyzes steady-state fluid networks from TOML inputs, including scenario reliability checks and Markdown reporting.
 
-## Publisher: <br>
-[hhl31415](https://clawhub.ai/user/hhl31415) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hhl31415](https://clawhub.ai/user/hhl31415)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn fluid-system descriptions into TOML network models, solve steady-state pressures and flows, and produce scenario reliability reports for hydraulic or piping network analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pressure, flow, reliability, or design conclusions may be incorrect or incomplete for real-world hydraulic and piping decisions. <br>
-Mitigation: Independently validate engineering conclusions with qualified review before operational or industrial use. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert natural-language fluid network requirements into TOML models, solve steady-state pressures and flows, and generate scenario analysis reports for hydraulic or piping network design.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hhl31415/fluid-network-analyzer) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [TOML network definitions, structured analysis results, and Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes node pressures, branch flows, velocities, pressure drops, connectivity paths, and load functionality analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Some skill metadata and examples are Chinese-language only, which may cause misunderstanding for non-Chinese users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Translate or review the YAML examples before installation or use.
+
+Risk: Fluid-network outputs are engineering assistance and may be incomplete or incorrect for real systems.
+
+Mitigation: Have qualified engineers validate TOML models, solver assumptions, pressures, flow results, and reports before operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hhl31415/skills/fluid-network-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [TOML network definitions, structured analysis text, and Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces node pressure tables, branch flow results, connectivity paths, load functionality analysis, and scenario reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

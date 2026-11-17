@@ -1,41 +1,54 @@
-## Description: <br>
-Track medications with dosing schedules and intake history. Use when managing prescriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track medications with dosing schedules and intake history.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-External users can use this skill to record medication names, doses, frequencies, and intake history through local shell commands. It is a lightweight tracker and should not be relied on as a dependable medication reminder. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reminder features are incomplete, so the skill may not reliably indicate when medication is due. <br>
-Mitigation: Use it only as a local log and verify medication timing with a dependable reminder system or clinician-provided schedule. <br>
-Risk: Medication details and intake history are stored in plaintext local files. <br>
-Mitigation: Enter medication details only if plaintext storage in the home directory is acceptable, and protect or delete the data directory as needed. <br>
+## Use Case:
 
+External users and personal agents use this skill to record medication names, doses, schedules, and intake history on a local machine.
 
-## Reference(s): <br>
-- [Medication Reminder on ClawHub](https://clawhub.ai/bytesagain1/medication-reminder) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Files] <br>
-**Output Format:** [Plain text command output and JSON Lines files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores medication and intake records under ~/.local/share/medication-reminder/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and release evidence) <br>
+Risk: Sensitive medication records may be stored as plaintext local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on a private machine or account, restrict access to ~/.local/share/medication-reminder/, and avoid entering sensitive records until privacy controls are reviewed.
+
+Risk: Medication data may be corrupted, misrepresented, or incomplete because of reliability issues in input handling and schedule behavior.
+
+Mitigation: Review records manually and do not rely on the skill for real due-dose reminders until input validation, deletion controls, and schedule logic are fixed.
+
+## Reference(s):
+
+- [Medication Reminder on ClawHub](https://clawhub.ai/bytesagain1/skills/medication-reminder)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and local JSONL records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores medication and intake records under ~/.local/share/medication-reminder/.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,63 @@
-## Description: <br>
-Capture and manage TIL (Today I Learned) entries on OpenTIL using CLI commands for capture, extraction, publishing, editing, search, sync, and account management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture and manage TIL (Today I Learned) entries on OpenTIL from the CLI, including creating, publishing, editing, searching, deleting, syncing, and organizing entries.
 
-## Publisher: <br>
-[biao29](https://clawhub.ai/user/biao29) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[biao29](https://clawhub.ai/user/biao29)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to turn useful technical insights from a conversation or explicit command into OpenTIL entries, then manage drafts, publishing, sync, tags, categories, and account profiles without leaving the CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: An OpenTIL token may allow reading, writing, publishing, and deleting entries. <br>
-Mitigation: Use only the scopes needed for the intended workflow, protect ~/.til/credentials, and rotate the token if it may have been exposed. <br>
-Risk: Conversation content may include secrets, customer data, proprietary details, or incident information that should not be captured or published. <br>
-Mitigation: Review generated entries before syncing or publishing, and decline proactive capture suggestions in sensitive conversations. <br>
-Risk: Management commands can publish, edit, unpublish, or delete OpenTIL entries. <br>
-Mitigation: Require the documented confirmations for publish, edit, unpublish, and delete flows, especially the double confirmation before deletion. <br>
+## Use Case:
 
+Developers and CLI users use this skill to turn technical learnings into OpenTIL entries, publish or save drafts, and manage existing entries without leaving the agent session.
 
-## Reference(s): <br>
-- [OpenTIL Skill Page](https://clawhub.ai/biao29/til) <br>
-- [OpenTIL](https://opentil.ai) <br>
-- [API Reference](references/api.md) <br>
-- [Management Subcommands Reference](references/management.md) <br>
-- [Local Drafts and Sync Protocol](references/local-drafts.md) <br>
-- [Auto-Detection Reference](references/auto-detection.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown entries, CLI status text, local draft files, and OpenTIL API requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can store drafts under ~/.til/drafts/ and credentials under ~/.til/credentials when configured by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.11.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can publish, edit, or delete OpenTIL entries using a persistent token with write and delete authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when comfortable granting those scopes, prefer profile-based credentials over broad shell-profile exports when possible, and review generated content before publishing or destructive actions.
+
+Risk: A broad affirmative response to a proactive TIL suggestion can send conversation-derived content to OpenTIL.
+
+Mitigation: Treat proactive captures as publication events, review the generated entry for sensitive or proprietary details, and decline suggestions that should remain private.
+
+Risk: Incorrect active profile selection can publish content to the wrong OpenTIL account.
+
+Mitigation: Check the active account shown by the skill when multiple profiles are configured and switch profiles before publishing or syncing.
+
+## Reference(s):
+
+- [OpenTIL](https://opentil.ai)
+- [OpenTIL Skill on ClawHub](https://clawhub.ai/biao29/skills/til)
+- [OpenTIL Publisher Profile](https://clawhub.ai/user/biao29)
+- [API Reference](references/api.md)
+- [Management Subcommands Reference](references/management.md)
+- [Auto-Detection Guide](references/auto-detection.md)
+- [Local Drafts & Sync Protocol](references/local-drafts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text responses with optional shell commands and API-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local draft files under ~/.til/drafts and credential profiles under ~/.til/credentials when the user authorizes those flows.]
+
+## Skill Version(s):
+
+1.11.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

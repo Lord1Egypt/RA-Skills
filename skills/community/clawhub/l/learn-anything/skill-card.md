@@ -1,44 +1,57 @@
-## Description: <br>
-Creates personalized learning paths, curated resources, concept summaries, quizzes, and progress tracking for long-term topic mastery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create personalized learning paths, find curated resources, summarize key concepts, generate quizzes, and track progress for effective topic mastery.
 
-## Publisher: <br>
-[thinktankglobalbot](https://clawhub.ai/user/thinktankglobalbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thinktankglobalbot](https://clawhub.ai/user/thinktankglobalbot)
 
-## Use Case: <br>
-Learners, educators, and developers use this skill to turn a subject into milestones, free resources, practice tasks, quizzes, spaced-review prompts, and a local learning journal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Learning journals can accumulate sensitive personal goals, schedules, or study notes. <br>
-Mitigation: Keep journals in the intended workspace and avoid storing sensitive personal details. <br>
-Risk: Referenced helper scripts or integrations missing from the artifact could be substituted from untrusted sources. <br>
-Mitigation: Use only the artifact-provided files or trusted integrations, and do not fetch missing helper scripts from untrusted locations. <br>
+## Use Case:
 
+External learners use this skill to turn a topic into a structured study plan with milestones, curated resources, quizzes, flashcards, and progress tracking for long-term retention.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thinktankglobalbot/learn-anything) <br>
-- [Learning Methods Reference](references/learning-methods.md) <br>
-- [Topic-Specific Templates](references/topic-templates.md) <br>
-- [Anki Flashcard Export Format](references/anki-export.md) <br>
-- [Learning Path Template](assets/learning-path-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown learning plans, summaries, quiz prompts, journal templates, and optional JSON or Markdown quiz output from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local learning-journal.md; no API keys or network services are required by the artifact evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Progress journals and exports may contain personal learning goals, notes, quiz results, or other personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm where files will be written before creating journals or exports, and get user approval before sending data to external tools such as Notion, calendars, or flashcard applications.
+
+Risk: The Anki and export command examples may not work as written.
+
+Mitigation: Review and correct generated command examples before execution, especially file paths, script locations, and supported output formats.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/thinktankglobalbot/skills/learn-anything)
+- [Learning Methods Reference](artifact/references/learning-methods.md)
+- [Topic-Specific Templates](artifact/references/topic-templates.md)
+- [Anki Flashcard Export Format](artifact/references/anki-export.md)
+- [Learning Path Template](artifact/assets/learning-path-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with optional JSON quiz output and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create learning-journal.md, learning path templates, quiz questions, flashcards, and export files when the user approves.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

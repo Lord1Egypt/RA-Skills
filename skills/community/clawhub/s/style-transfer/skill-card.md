@@ -1,43 +1,53 @@
-## Description: <br>
-Extracts a target website's design system and applies it to Vue, React, Next.js, and Tailwind projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts a target website's design system and applies it to Vue, React, Next.js, or Tailwind projects.
 
-## Publisher: <br>
-[babywhale](https://clawhub.ai/user/babywhale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[babywhale](https://clawhub.ai/user/babywhale)
 
-## Use Case: <br>
-Developers and engineers use this skill to transfer the visual language of a reference website into an existing frontend project. It guides extraction of design tokens and integration into Vue, React, Next.js, Tailwind, or plain CSS workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to edit local frontend source files. <br>
-Mitigation: Review generated diffs before committing or deploying changes. <br>
-Risk: The skill may run normal development commands such as package scripts or builds in the target project. <br>
-Mitigation: Use it only in projects where running local development commands is acceptable, especially when the repository is unfamiliar. <br>
-Risk: Transferred styles may introduce incorrect visual changes or integration problems. <br>
-Mitigation: Run the project's build or dev verification commands and inspect the resulting UI before release. <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to transfer a target website's visual system into an existing frontend project. It guides extraction of design tokens, project framework detection, style integration, and build verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/babywhale/style-transfer) <br>
-- [Publisher profile](https://clawhub.ai/user/babywhale) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project-specific file edits and verification commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow instructs agents to run an unpinned third-party npx package that can download and execute changing code with local privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable or version-controlled workspace, pin and review the designlang package before execution, and inspect generated files before importing them.
+
+Risk: Applying extracted design assets can change project styles, Tailwind configuration, HTML font loading, and related frontend files.
+
+Mitigation: Review diffs before accepting changes and run the project's build or development verification commands after integration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/babywhale/skills/style-transfer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose edits to project styles, Tailwind configuration, HTML font loading, and verification commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

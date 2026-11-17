@@ -1,45 +1,63 @@
-## Description: <br>
-Generates a daily financial analysis teaching report with BTC and AAPL chart examples, saves an HTML courseware file, uploads the report, and sends a WeCom message summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a daily financial analysis teaching report, saves an HTML version locally, uploads it for sharing, and sends a WeCom message with charts and technical-analysis summaries for BTC and AAPL.
 
-## Publisher: <br>
-[leozhang1431](https://clawhub.ai/user/leozhang1431) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leozhang1431](https://clawhub.ai/user/leozhang1431)
 
-## Use Case: <br>
-Employees, educators, and developers use this skill to automate a daily financial technical-analysis lesson, including generated HTML courseware, chart images, and a WeCom notification. It is intended for teaching and report delivery workflows, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Embedded WeCom and MinIO credentials may expose messaging or storage accounts. <br>
-Mitigation: Remove embedded credentials, rotate any exposed values, and load secrets only from protected user-controlled configuration. <br>
-Risk: Generated reports may be published to public external storage. <br>
-Mitigation: Make external upload opt-in, use private storage or short-lived links, and review report contents before sharing. <br>
-Risk: Scheduled execution with administrator or highest privileges increases the impact of misuse or compromise. <br>
-Mitigation: Run scheduled tasks as a normal user with the minimum permissions required. <br>
-Risk: Simulated financial data may be mistaken for current market data or investment guidance. <br>
-Mitigation: Clearly label simulated data and keep the teaching disclaimer visible in generated reports and messages. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to schedule daily finance teaching material that combines simulated BTC and AAPL data, charts, trend commentary, and WeCom delivery. It is suited for education and reporting workflows, not for investment advice.
 
-## Reference(s): <br>
-- [Cron setup reference](references/cron-setup.md) <br>
-- [ClawHub skill page](https://clawhub.ai/leozhang1431/wework-financial-daily) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [HTML report file, Markdown WeCom message, chart images, and setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured WeCom and storage credentials; generated market data is simulated unless the user replaces the data source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Embedded WeCom and MinIO credentials are exposed in the release artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke or rotate those values before use, then provide secrets through environment variables or a managed secret store.
+
+Risk: Generated reports may be uploaded to a hard-coded public MinIO path.
+
+Mitigation: Use private storage by default and share reports through short-lived, access-controlled links.
+
+Risk: The scheduling guidance recommends elevated Windows task execution.
+
+Mitigation: Run the scheduled task with the least-privileged account that can generate reports and send messages.
+
+Risk: The generated BTC and AAPL values are simulated but could be mistaken for live market data.
+
+Mitigation: Label reports as simulated unless the data source is replaced with a validated real market-data provider.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leozhang1431/skills/wework-financial-daily)
+- [Cron setup guide](references/cron-setup.md)
+- [Scheduled task configuration guide](README-定时任务配置.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, scheduled-task configuration, WeCom message content, and generated HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report content uses simulated market data unless the script is changed to use a real market-data source.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

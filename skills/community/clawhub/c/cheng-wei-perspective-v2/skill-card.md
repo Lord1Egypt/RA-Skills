@@ -1,41 +1,56 @@
-## Description: <br>
-以程维视角，结构化分析双边市场冷启动、政策套利、资本扩张、并购整合、安全增长及生态战略等平台运营关键要素。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+以程维视角，结构化分析双边市场冷启动、政策套利、资本扩张、并购整合、安全增长及生态战略等平台运营关键要素。
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Developers, operators, founders, and strategy teams use this skill to analyze platform-market questions through a structured Cheng Wei-inspired business strategy lens. It is best suited for two-sided marketplace cold starts, regulatory transition planning, capital-driven expansion, M&A integration, safety-growth tradeoffs, and ecosystem strategy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce simulated first-person strategy guidance that readers could mistake for authentic statements or verified business facts. <br>
-Mitigation: Treat outputs as a business strategy lens, verify factual claims independently, and make clear that the persona response is simulated. <br>
+## Use Case:
 
+Chinese-language users can apply this skill to structure business strategy analysis for two-sided market cold starts, platform growth, capital scaling, mergers, safety tradeoffs, compliance evolution, and ecosystem strategy through a Cheng Wei-inspired lens. Outputs should be treated as synthesized public-information analysis, not verified statements from Cheng Wei or current business, legal, or regulatory advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/cheng-wei-perspective-v2) <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [Classic works reference](artifact/CLASSIC_WORKS.md) <br>
-- [Connections reference](artifact/CONNECTIONS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with structured strategic analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are simulated first-person strategic perspectives and should not be treated as authentic statements from Cheng Wei.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Outputs could be mistaken for direct statements from Cheng Wei or verified business advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label outputs as synthesized public-information analysis and verify important strategic, legal, regulatory, or investment decisions with authoritative sources and qualified reviewers.
+
+Risk: The skill is Chinese-language by default and may be less useful for users expecting another language.
+
+Mitigation: Ask the agent to translate or respond in the desired language when needed.
+
+## Reference(s):
+
+- [Skill source summary](artifact/SKILL.md)
+- [Classic works reference list](artifact/CLASSIC_WORKS.md)
+- [Mental model connections](artifact/CONNECTIONS.md)
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/cheng-wei-perspective-v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown narrative with structured sections or bullets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use first-person Cheng Wei-inspired framing; no code execution, persistence, credential access, or hidden data handling is indicated by the security evidence.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

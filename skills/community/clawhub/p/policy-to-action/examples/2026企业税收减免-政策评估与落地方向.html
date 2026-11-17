@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026年企业税收减免 — 政策评估与落地方向</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: #f5f5f0; color: #2c2c2c; line-height: 1.8; padding: 40px 20px; }
+.container { max-width: 900px; margin: 0 auto; }
+
+.header { background: #fff; border-radius: 12px; padding: 36px 40px; margin-bottom: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.header h1 { font-size: 26px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+.header .subtitle { font-size: 14px; color: #888; }
+.header .divider { width: 48px; height: 3px; background: #e6a23c; margin-top: 16px; border-radius: 2px; }
+
+.section { background: #fff; border-radius: 12px; padding: 32px 40px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.section h2 { font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid #f0f0e8; }
+.section h3 { font-size: 16px; font-weight: 700; color: #333; margin: 18px 0 10px; }
+
+.overview { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.overview-col { background: #fafaf6; border-radius: 8px; padding: 24px; }
+.overview-col h3 { font-size: 16px; font-weight: 700; margin-bottom: 14px; color: #1a1a1a; border-left: 3px solid #e6a23c; padding-left: 10px; }
+.overview-col ul { list-style: none; padding: 0; }
+.overview-col li { padding: 8px 0; font-size: 14px; color: #444; line-height: 1.7; }
+.overview-col li::before { content: "·"; color: #e6a23c; font-weight: bold; margin-right: 8px; }
+
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+th { background: #fafaf6; text-align: left; padding: 10px 14px; font-weight: 600; color: #555; border-bottom: 2px solid #e8e8dc; }
+td { padding: 10px 14px; border-bottom: 1px solid #f0f0e8; color: #444; }
+tr:last-child td { border-bottom: none; }
+
+.highlight { background: #fdf6ec; border-left: 3px solid #e6a23c; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 14px; color: #6b4c1a; }
+
+/* 时间轴 */
+.timeline { position: relative; padding-left: 32px; margin: 20px 0; }
+.timeline::before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #e8e0d0; }
+.timeline-item { position: relative; padding: 10px 0 24px; }
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-dot { position: absolute; left: -28px; top: 13px; width: 14px; height: 14px; border-radius: 50%; background: #e6a23c; border: 3px solid #fdf6ec; box-shadow: 0 0 0 3px #f5f5f0; }
+.timeline-dot.current { background: #f56c6c; border-color: #fef0f0; box-shadow: 0 0 0 3px #fef0f0; }
+.timeline-date { font-size: 13px; font-weight: 700; color: #e6a23c; margin-bottom: 4px; }
+.timeline-date.current-date { color: #f56c6c; }
+.timeline-body { font-size: 14px; color: #444; }
+.timeline-body strong { color: #1a1a1a; }
+
+/* 场景卡片 */
+.scene-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
+.scene-card { background: #fafaf6; border-radius: 10px; padding: 20px; text-align: center; border: 1px solid #f0f0e8; }
+.scene-card .scene-label { font-size: 13px; color: #888; margin-bottom: 6px; }
+.scene-card .scene-revenue { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+.scene-card .scene-save { font-size: 14px; color: #e6a23c; font-weight: 600; }
+.scene-card .scene-save b { font-size: 20px; }
+
+/* 行动卡片 */
+.action-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+.action-card { background: #fafaf6; border-radius: 10px; padding: 20px; border: 1px solid #f0f0e8; position: relative; overflow: hidden; }
+.action-card .priority-badge { position: absolute; top: 0; right: 0; background: #e6a23c; color: #fff; font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 0 10px 0 8px; }
+.action-card .action-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin: 4px 0 10px; padding-right: 50px; }
+.action-card .action-desc { font-size: 13px; color: #666; line-height: 1.8; }
+.action-card .action-meta { display: flex; gap: 16px; margin-top: 12px; font-size: 12px; color: #999; }
+.action-card .action-meta span { background: #f0f0e8; padding: 2px 10px; border-radius: 10px; }
+
+.version { font-size: 12px; color: #bbb; text-align: center; margin-top: 40px; }
+strong { color: #1a1a1a; }
+
+@media (max-width: 640px) {
+  .overview, .scene-cards, .action-cards { grid-template-columns: 1fr; }
+  .section, .header { padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>2026年企业税收减免——政策评估与落地方向</h1>
+  <p class="subtitle">汇报人：[请说明部门]　汇报日期：2026年8月7日</p>
+  <div class="divider"></div>
+</div>
+
+<!-- 第一章：总览 -->
+<div class="section">
+  <h2>一、总览</h2>
+
+  <div class="highlight">
+    <strong>主体画像：</strong>小微企业 · 线上咨询公司 · 增值税小规模纳税人 · 无特殊资质（非高新/非科小）
+  </div>
+
+  <div class="overview">
+    <div class="overview-col">
+      <h3>核心结论</h3>
+      <ul>
+        <li><strong>企业所得税实际税率仅 5%</strong>（年应税所得 ≤300 万全段适用），较一般企业 25% 税率降低八成。</li>
+        <li>作为小规模纳税人，<strong>月销售额 10 万以内增值税全免</strong>，超 10 万部分仅按 1% 征收，政策延续至 2027 年底。</li>
+        <li><strong>六税两费全面减半</strong>（城建税、印花税、教育费附加等），可与其他优惠叠加。</li>
+      </ul>
+    </div>
+    <div class="overview-col">
+      <h3>建议</h3>
+      <ul>
+        <li>控制季度开票节奏，<strong>尽量将月销售额压在 10 万元以内</strong>，即可同时享受增值税全免 + 所得税 5%。</li>
+        <li>申请科技型中小企业入库，解锁研发费用加计扣除 100% 与亏损结转延长至 10 年。</li>
+        <li>利润预估超过 300 万时，提前规划主体拆分或成本归集，确保继续适用小型微利企业认定。</li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="font-size:13px;color:#999;margin-top:16px;">以下为详细分析，供深度参考。</p>
+</div>
+
+<!-- 第二章：政策解码 -->
+<div class="section">
+  <h2>二、政策解码：适用的 2026 年企业税收减免</h2>
+
+  <h3>2.1 企业所得税 — 小型微利企业优惠</h3>
+  <table>
+    <tr><th style="width:35%;">政策要点</th><th>详情</th></tr>
+    <tr><td>政策依据</td><td>财政部 税务总局公告 2023 年第 6 号、第 12 号</td></tr>
+    <tr><td>适用期间</td><td>2023.1.1 — 2027.12.31</td></tr>
+    <tr><td>优惠内容</td><td>年应纳税所得额 ≤300 万，减按 25% 计入，按 20% 税率 → <strong>实际税负 5%</strong></td></tr>
+    <tr><td>认定条件</td><td>年应税所得 ≤300 万 + 从业人数 ≤300 人 + 资产总额 ≤5000 万</td></tr>
+    <tr><td>征收方式</td><td>查账征收、核定征收均可享受</td></tr>
+  </table>
+
+  <h3>2.2 增值税 — 小规模纳税人减免</h3>
+  <table>
+    <tr><th style="width:35%;">政策要点</th><th>详情</th></tr>
+    <tr><td>政策依据</td><td>财政部 税务总局公告 2026 年第 10 号</td></tr>
+    <tr><td>适用期间</td><td>2026.1.1 — 2027.12.31</td></tr>
+    <tr><td>起征点</td><td>月销售额 ≤10 万（季度 ≤30 万）→ <strong>免征增值税</strong></td></tr>
+    <tr><td>征收率优惠</td><td>适用 3% 征收率 → <strong>减按 1%</strong> 征收</td></tr>
+    <tr><td>差额计税</td><td>以不含税余额适用起征点标准</td></tr>
+  </table>
+
+  <h3>2.3 六税两费 — 减半征收</h3>
+  <table>
+    <tr><th style="width:35%;">政策要点</th><th>详情</th></tr>
+    <tr><td>政策依据</td><td>财政部 税务总局公告 2023 年第 12 号</td></tr>
+    <tr><td>适用期间</td><td>2023.1.1 — 2027.12.31</td></tr>
+    <tr><td>优惠内容</td><td>资源税、城建税、房产税、城镇土地使用税、<strong>印花税</strong>、耕地占用税、<strong>教育费附加、地方教育附加</strong> 均减半</td></tr>
+    <tr><td>叠加规则</td><td>已享受其他优惠的可叠加使用</td></tr>
+  </table>
+</div>
+
+<!-- 第三章：主体对标与影响量化 -->
+<div class="section">
+  <h2>三、主体对标与影响量化</h2>
+
+  <h3>3.1 认定匹配</h3>
+  <table>
+    <tr><th>认定条件</th><th>阈值</th><th>该企业状态</th><th>判定</th></tr>
+    <tr><td>年应纳税所得额</td><td>≤ 300 万</td><td>初/成长期通常符合</td><td style="color:#67c23a;">✅</td></tr>
+    <tr><td>从业人数</td><td>≤ 300 人</td><td>远低于此阈值</td><td style="color:#67c23a;">✅</td></tr>
+    <tr><td>资产总额</td><td>≤ 5000 万</td><td>轻资产行业</td><td style="color:#67c23a;">✅</td></tr>
+    <tr><td>小规模纳税人</td><td>年销售 ≤ 500 万</td><td>初/成长期通常符合</td><td style="color:#67c23a;">✅</td></tr>
+  </table>
+
+  <h3>3.2 三个典型场景的节税测算</h3>
+  <div class="scene-cards">
+    <div class="scene-card">
+      <div class="scene-label">起步期</div>
+      <div class="scene-revenue">年营收 60 万</div>
+      <div style="font-size:13px;color:#888;margin-bottom:8px;">利润 15 万</div>
+      <div class="scene-save">年省 <b>3 万</b></div>
+      <div style="font-size:12px;color:#999;margin-top:4px;">增值税全免 + 所得税 5%</div>
+    </div>
+    <div class="scene-card">
+      <div class="scene-label">成长期</div>
+      <div class="scene-revenue">年营收 120 万</div>
+      <div style="font-size:13px;color:#888;margin-bottom:8px;">利润 36 万</div>
+      <div class="scene-save">年省 <b>10.8 万</b></div>
+      <div style="font-size:12px;color:#999;margin-top:4px;">控制在起征点内 + 所得税 5%</div>
+    </div>
+    <div class="scene-card">
+      <div class="scene-label">扩张期</div>
+      <div class="scene-revenue">年营收 200 万</div>
+      <div style="font-size:13px;color:#888;margin-bottom:8px;">利润 60 万</div>
+      <div class="scene-save">年省 <b>16 万</b></div>
+      <div style="font-size:12px;color:#999;margin-top:4px;">1% 增值税 + 所得税 5%</div>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>对比基线：</strong>若无小微企业身份，每 10 万元利润需缴所得税 2.5 万（25%）；享受优惠后仅需 0.5 万（5%）。六税两费额外再减半。
+  </div>
+</div>
+
+<!-- 第四章：优先级排序 -->
+<div class="section">
+  <h2>四、优先级排序与行动建议</h2>
+
+  <div class="action-cards">
+    <div class="action-card">
+      <div class="priority-badge">第 1 优先</div>
+      <div class="action-title">控制季度开票节奏</div>
+      <div class="action-desc">将月均开票控制在 10 万以内，利用增值税起征点实现全额免税。咨询类业务天然可按项目拆分开票，操作性极强。</div>
+      <div class="action-meta"><span>低难度</span><span>年省 1~6 万</span><span>立即执行</span></div>
+    </div>
+    <div class="action-card">
+      <div class="priority-badge">第 2 优先</div>
+      <div class="action-title">申报科技型中小企业</div>
+      <div class="action-desc">登录科技部政务服务平台提交信息表，2026 年受理截止 8.31。入库后研发费用加计扣除 100%，亏损结转延长至 10 年。</div>
+      <div class="action-meta"><span>中等难度</span><span>解锁叠加优惠</span><span>8.31 截止</span></div>
+    </div>
+    <div class="action-card">
+      <div class="priority-badge">第 3 优先</div>
+      <div class="action-title">利润超 300 万时做规划</div>
+      <div class="action-desc">提前评估是否拆分主体、增加合规成本归集，维持小型微利企业资格。5% vs 25% 的税率差，300 万利润差 60 万税额。</div>
+      <div class="action-meta"><span>高难度</span><span>年差达 60 万</span><span>临近触发时</span></div>
+    </div>
+    <div class="action-card">
+      <div class="priority-badge">第 4 优先</div>
+      <div class="action-title">年度汇算清缴前重核认定</div>
+      <div class="action-desc">每年 5 月底前确认从业人数、资产总额、应税所得是否仍满足小微标准，防止资格意外丢失。</div>
+      <div class="action-meta"><span>低难度</span><span>防资格丢失</span><span>每年一次</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 第五章：时间轴 -->
+<div class="section">
+  <h2>五、关键时间节点</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot current"></div>
+      <div class="timeline-date current-date">2026 年 8 月 7 日 · 今天</div>
+      <div class="timeline-body"><strong>确认小规模纳税人身份</strong>，开始执行开票节奏控制</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">2026 年 8 月 31 日</div>
+      <div class="timeline-body"><strong>科技型中小企业评价受理截止</strong>，第 2 优先行动项的最后窗口</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">2026 年 10~12 月</div>
+      <div class="timeline-body"><strong>Q4 关键季：</strong>确保月均开票 ≤10 万，锁定全年增值税优惠资格</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">2027 年 1~3 月</div>
+      <div class="timeline-body"><strong>年度重核窗口：</strong>汇算清缴前重核小微三项指标，确认资格存续</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">2027 年 5 月 31 日</div>
+      <div class="timeline-body"><strong>2026 年度汇算清缴截止</strong>，按 5% 实际税率完成申报</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">2027 年 12 月 31 日</div>
+      <div class="timeline-body"><strong>政策到期节点：</strong>现有小微所得税优惠 + 增值税减免均截止，关注续期动态</div>
+    </div>
+  </div>
+</div>
+
+<div class="version">policy-to-action · 2026 企业税收减免评估 · 基于国家税务总局公开政策整理</div>
+
+</div>
+</body>
+</html>

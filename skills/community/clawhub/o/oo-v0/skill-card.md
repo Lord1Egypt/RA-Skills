@@ -1,42 +1,55 @@
-## Description: <br>
-Operates v0 through an OOMOL-connected account for chat, project, deployment, environment variable, webhook, billing, usage, and account-scope actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate v0 through an OOMOL-connected account to manage chats, projects, deployments, environment variables, hooks, and related data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and teams use this skill to let an agent manage a connected v0 workspace, including creating and updating chats, projects, deployments, environment variables, webhooks, and related account information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform broad v0 account actions, including writes and deletes across chats, projects, deployments, webhooks, environment variables, billing, and account scope. <br>
-Mitigation: Review every write or delete request before approval and confirm the exact target, payload, and expected effect. <br>
-Risk: The skill depends on an OOMOL-connected account and the oo CLI, so use transfers trust to that connector and account connection. <br>
-Mitigation: Install and run it only when you want OOMOL-mediated v0 workspace management, and use the OOMOL CLI installer only if you trust that provider. <br>
+## Use Case:
 
+Developers use this skill to inspect and manage v0 chats, projects, deployments, and settings through their connected v0 account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-v0) <br>
-- [v0 homepage](https://v0.dev) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: Setup runs unverified remote code and may change agent skills without clearly disclosing the scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup first, install a verified CLI release yourself, and disable startup skill synchronization.
+
+Risk: Actions can change or delete v0 workspace data.
+
+Mitigation: Connect only the needed v0 permissions and retain confirmation for writes and deletions.
+
+## Reference(s):
+
+- [v0 API documentation](https://v0.dev/docs/api)
+- [v0](https://v0.dev)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with oo CLI commands and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live action schemas; write and destructive actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

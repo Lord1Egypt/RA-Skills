@@ -1,46 +1,57 @@
-## Description: <br>
-Blind multi-model comparison with architecturally guaranteed de-anonymization. Trigger with "mdls" or "modelshow" for double-blind evaluation of AI model responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ModelShow compares multiple AI model responses through blind judging, ranks the answers, and saves the results for later review.
 
-## Publisher: <br>
-[schbz](https://clawhub.ai/user/schbz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[schbz](https://clawhub.ai/user/schbz)
 
-## Use Case: <br>
-Developers and AI users use ModelShow to send one prompt to multiple configured models, compare their responses with blind judging, and review a scored ranking with judge commentary. It supports fact checking, creative tasks, technical decisions, code review, and brainstorming where comparing model behavior is useful. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and referenced context are sent to all configured models and to a judge model. <br>
-Mitigation: Review config.json before use and include only models approved for the data being evaluated. <br>
-Risk: Full prompts, model responses, rankings, and judge analysis are saved locally after each run. <br>
-Mitigation: Do not use the skill with secrets, regulated data, private code, or confidential documents unless local full-result storage is acceptable; keep the output directory private. <br>
-Risk: The optional web indexer can copy saved result files into a public-facing location. <br>
-Mitigation: Use update_modelshow_index.py only when publication is intentional and the saved outputs have been reviewed. <br>
-Risk: Blind judging reduces label bias but should not be treated as a privacy control. <br>
-Mitigation: Treat anonymization as an evaluation aid and review final rankings before using them for consequential decisions. <br>
+## Use Case:
 
+Developers, evaluators, and other agent users use this skill to compare several configured model responses to the same prompt, reduce name bias through blind judging, and keep Markdown and JSON records of the comparison.
 
-## Reference(s): <br>
-- [ModelShow repository](https://github.com/schbz/modelshow) <br>
-- [ModelShow ClawHub listing](https://clawhub.ai/schbz/modelshow) <br>
-- [schbz ClawHub publisher profile](https://clawhub.ai/user/schbz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Markdown comparison output with saved JSON and Markdown result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs configured models in parallel, judges anonymized responses, returns ranked results with scores and commentary, and saves full outputs to the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Prompts, referenced files, model responses, and judge output may be shared with every configured model and retained in local result files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive inputs unless multi-model sharing and local transcript retention are acceptable; review saved Markdown and JSON outputs before redistribution.
+
+Risk: The optional web indexer can publish saved prompts, responses, and judge output when pointed at a public directory.
+
+Mitigation: Run the indexer only for directories intended for publication and keep private results in a non-public output directory.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/schbz/skills/modelshow)
+- [Publisher profile](https://clawhub.ai/user/schbz)
+- [Project homepage](https://github.com/schbz/modelshow)
+- [README](README.md)
+- [CHANGELOG](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration guidance]
+
+**Output Format:** [Markdown response plus saved JSON and Markdown result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes model rankings, scores, judge commentary, response text, run metadata, and an optional local index when explicitly configured.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

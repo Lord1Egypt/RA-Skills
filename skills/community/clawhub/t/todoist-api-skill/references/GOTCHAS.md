@@ -10,7 +10,7 @@
 - [Bulk safety](#bulk-safety)
 - [Legacy naming in sync](#legacy-naming-in-sync)
 - [Template and upload gaps](#template-and-upload-gaps)
-- [Task and project deep links](#task-and-project-deep-links)
+- [Task and project deep links](#taREDACTED-SECRET)
 - [Plan-gated features](#plan-gated-features)
 
 ## Opaque IDs

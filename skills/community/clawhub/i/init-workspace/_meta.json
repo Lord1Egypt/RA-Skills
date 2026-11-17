@@ -1,6 +1,26 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "init-workspace",
-  "version": "1.1.1",
-  "publishedAt": 1782307802944
+  "name": "init_workspace",
+  "version": "3.0.0",
+  "description": "Initialize personal and team knowledge workspaces.",
+  "author": "mayidan",
+  "language": "python3",
+  "entry": "SKILL.md",
+  "part_of": "paper-kb-v3",
+  "requires": {
+    "env": [
+      "GITEA_URL",
+      "GITEA_ADMIN_TOKEN"
+    ],
+    "context": [
+      "SenderId",
+      "ChatType",
+      "GroupSubject",
+      "MessageSid",
+      "MessageThreadId",
+      "AccountId",
+      "CardActionValue",
+      "CardFormValues",
+      "WasMentioned"
+    ]
+  }
 }

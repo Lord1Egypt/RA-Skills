@@ -1,150 +1,127 @@
 ---
-name: coordinator
-slug: coordinator
-version: 1.0.0
-description: 并行coordinate者role。专职聚合多方Agent输出，减少主Agent单点负载。
-metadata: {"openclaw":{"emoji":"🔀","os":["linux","darwin","win32"]}}
+name: "ai-company"
+slug: "ai-company"
+version: "1.0.0"
+description: "Micro-tier governance skill for small AI agent organizations (1-3 agents). Consolidates 18 enterprise function blocks into two departments, governance-and-delivery and engineering-and-safety, covering strategy, risk, compliance, architecture, safety, and delivery. Ships ten harness code templates, three prompt frameworks, a full error-code catalog, and a scaling specification. Provides two self-contained human-paste prompts (method implementation, robustness checks) usable in any AI chat window. Source files are authored in English; runtime output follows the user's language per the language policy, with English fallback. Includes propose-only self-scaling that evaluates scaling thresholds and proposes tier upgrades up to group. Use when a small team needs enterprise-grade governance, engineering harnesses, PII masking, AIGC disclosure, or tier-upgrade assessment for its agents."
+license: "GPL-3.0"
+author: "AI Company Team"
+tags: [governance, llm-agents, agent-organization, compliance, error-codes, harness-engineering, pii-masking, aigc-disclosure, self-scaling, micro-tier, method-templates, robustness-checks]
+dependencies: []
+triggers:
+  - evaluate scaling threshold
+  - propose tier upgrade
+  - review governance policy
+  - approve quarterly objectives
+  - audit compliance evidence
+  - assess organizational risk
+  - implement method from specification
+  - apply robustness checks to code
+  - mask sensitive data in outputs
+  - generate trace id for audit trail
+  - review error handling design
+  - respond in user language
+  - translate deliverable content
+  - add aigc disclosure to output
+  - package deliverable for release
+interface:
+  inputs:
+    type: object
+    schema:
+      type: object
+      properties:
+        task:
+          type: string
+          description: Task description
+        department:
+          type: string
+          enum: [auto, governance-and-delivery, engineering-and-safety]
+          description: Which department to invoke; omit or "auto" to auto-route
+        output_language:
+          type: string
+          description: Override runtime output language; omit to follow the language decision chain
+        context:
+          type: object
+          description: Optional context information
+      required: [task]
+  outputs:
+    type: object
+    schema: { type: object, properties: { result: { type: string, description: Operation result }, report: { type: object, description: Detailed report data } }, required: [result] }
+errors: []
+error_code_prefixes: [CEO_, CTO_, SCL_]
+language_policy:
+  authoring: en
+  encoding: utf-8
+  output: user-specified
+  fallback: en
+  immutable_tokens: [slug, error_code, field_name, enum_value, file_path, function_name]
+self_scaling:
+  enabled: true
+  state_file: .scaling-state.json
+  spec: references/scaling.md
+  upgrade_policy: propose-only
+  max_tier: group
+permissions:
+  files:
+    read:  ["{WORKSPACE_ROOT}/**", "{SKILL_DIR}/**"]
+    write: ["{WORKSPACE_ROOT}/**"]
+    deny:  ["~/.ssh/**", "~/.aws/**", "~/.config/**", "/etc/**", "{WINDOWS_DIR}/**"]
+  network: []
+  commands: []
+  mcp: [sessions_send, subagents]
+quality:
+  idempotent: true
+metadata:
+  category: enterprise
+  layer: AGENT
+  cluster: governance
+  maturity: STABLE
+  license: GPL-3.0
+  standardized: true
+  scale_tier: micro
+  department_count: 2
+  function_block_count: 18
+  harness_baseline: L3
 ---
 
-# Coordinator — 并行coordinate者
+# AI Company Governance
 
-## role定位
+Micro-tier (XS) LLM agent governance skill for organizations of 1-3 agents: 18 enterprise function blocks consolidated into 2 departments, backed by shared harness templates, a full error-code catalog, and propose-only self-scaling.
 
-coordinate者是 CEO 设立的专业聚合节点，不直接execute具体业务，而是：
-- **收集** 多位 Agent 的输出结果
-- **归类** 按function域分组整理
-- **摘要** 提炼关键信息，剔除冗余
-- **转发** 向 CEO submit结构化合集
+> Source files are authored in English; runtime output follows the user's language (see `language_policy` in the frontmatter). Slugs, error codes, field names, enum values, file paths, and function names are never translated.
 
-## 4大coordinate者role
+## Departments
 
-| coordinate者 | 聚合来源 | 交付给 | 核心responsibility |
-|--------|---------|--------|---------|
-| **财务coordinate者** | CFO + CRO | CEO | 预算/risk/融资全景摘要 |
-| **技术coordinate者** | CTO + CISO + CQO | CEO | 技术/security/质量综合report |
-| **市场coordinate者** | CMO + CPO | CEO | 品牌/舆情/合作伙伴全景 |
-| **运营coordinate者** | COO + CHO | CEO | 运营/人事/资源调度综合 |
+| Slug | Prefix | Scope | Reference |
+|---|---|---|---|
+| `governance-and-delivery` | `CEO_` | Strategy, governance, delivery | [governance-and-delivery.md](references/departments/governance-and-delivery.md) |
+| `engineering-and-safety` | `CTO_` | Architecture, engineering, safety | [engineering-and-safety.md](references/departments/engineering-and-safety.md) |
 
-## coordinate者工作流
+## Shared Resources
 
-```
-CEO 发起任务（涉及多 Agent）
-    ↓
-coordinate者接收任务描述
-    ↓
-向各方 Agent 并行dispatch指令（sessions_spawn / sessions_send）
-    ↓
-收集各方输出（等待 task completion events）
-    ↓
-聚合整理（归类/去重/提炼/排序）
-    ↓
-输出结构化汇总report → submit CEO
-    ↓
-CEO 综合裁决
-```
+| Resource | Contents |
+|---|---|
+| [method-patterns.md](references/method-patterns.md) | Single source of truth for the ten shared code templates and the CRISPE / 3WEH / Five-Element prompt frameworks |
+| [error-codes.md](references/error-codes.md) | Full four-element error-code catalog (code, message, trigger, resolution) for all prefixes |
+| [scaling.md](references/scaling.md) | Tier thresholds, upgrade gating, and alias mapping for self-scaling |
 
-## coordinate者输出格式（standard模板）
+## Error Code Prefixes
 
-```markdown
-# [function域] coordinatereport — {日期}
+| Prefix | Meaning |
+|---|---|
+| `CEO_` | Governance-and-delivery department codes |
+| `CTO_` | Engineering-and-safety department codes |
+| `SCL_` | Self-scaling infrastructure codes (fixed across tiers) |
 
-## 任务Overview
-[来自 CEO 的原始任务描述]
+## Prompts
 
-## 来源 Agent 清单
-| Agent | 状态 | submit时间 |
-|-------|------|---------|
-| CFO | ✅ 完成 | 2026-04-12T10:30 |
-| CRO | ✅ 完成 | 2026-04-12T10:32 |
+| File | Mode | Purpose |
+|---|---|---|
+| [01-implement-method.md](prompts/01-implement-method.md) | `human-paste` | Paste into any AI chat window to have that AI implement one method to this standard |
+| [02-robustness-checks.md](prompts/02-robustness-checks.md) | `human-paste` | Paste into any AI chat window to have that AI run robustness checks on a method |
 
-## 关键discover
-- **财务面**：[CFO 核心discover摘要]
-- **risk面**：[CRO 核心discover摘要]
+## Quick Start
 
-## 决策建议
-1. [优先级排序的行动建议]
-2. [次优先级]
-
-## 需 CEO 裁决事项
-| 事项 | 涉及Agent | 紧迫度 |
-|------|----------|--------|
-| [事项描述] | CFO/CRO | P1 |
-
-## 附件（原始report）
-- CFO report：`knowledge-base/audit/financial/{date}_CFO.md`
-- CRO report：`knowledge-base/audit/financial/{date}_CRO.md`
-```
-
-## coordinate者trigger规则
-
-| trigger条件 | coordinate者role | Description |
-|---------|-----------|------|
-| CEO 任务涉及 ≥3 个 Agent | 按function域指派 | 自动identifyfunction归属 |
-| CFO + CRO 联合参与 | 财务coordinate者 | 合并财务+risk视角 |
-| CTO + CISO + CQO ≥2 个参与 | 技术coordinate者 | 合并技术+security+质量 |
-| CMO + CPO 联合参与 | 市场coordinate者 | 合并品牌+合作 |
-| COO + CHO 联合参与 | 运营coordinate者 | 合并运营+人事 |
-
-## coordinate者execute示例
-
-### 场景：CEO 发起「种子轮融资strategyassess」
-
-```
-coordinate者-财务 接收任务
-    ↓
-并行dispatch：
-├── CFO：融资plandesign + 估值analyze
-├── CRO：融资过程riskassess
-├── CLO：投资人法律compliancereview
-└── CISO：data security尽调准备
-    ↓
-收集4份report → 汇总为「融资strategy综合assess」
-    ↓
-submit CEO → CEO 裁决
-```
-
-### 场景：CEO 发起「技术产品化roadmap评审」
-
-```
-coordinate者-技术 接收任务
-    ↓
-并行dispatch：
-├── CTO：技术架构assess + 里程碑
-├── CISO：securitycompliance要求
-└── CQO：quality standard与验收准则
-    ↓
-汇总 → submit CEO
-```
-
-## 调用接口
-
-### startcoordinate者（由 CEO execute）
-
-```python
-# identify任务涉及的 Agent，按function分配coordinate者
-def assign_coordinator(agent_list: list) -> str:
-    """
-    agent_list: ["CFO", "CRO", "CLO", "CISO"]
-    返回: "coordinator-financial" 或 "coordinator-tech" 等
-    """
-    domains = {
-        "financial": ["CFO", "CRO"],
-        "tech": ["CTO", "CISO", "CQO"],
-        "market": ["CMO", "CPO"],
-        "ops": ["COO", "CHO"]
-    }
-    for domain, agents in domains.items():
-        if len(set(agent_list) & set(agents)) >= 2:
-            return f"coordinator-{domain}"
-    return "direct"  # 无需coordinate者，直接 CEO handle
-```
-
-## 铁律
-
-```
-❌ coordinate者不得自行做决策，只做聚合和摘要
-❌ 不得篡改来源 Agent 的原始结论
-✅ 须等待全部来源 Agent 完成后才能输出汇总
-✅ 须在汇总report中注明各 Agent 的原始submit时间
-✅ 无法收集全部输出时，须inform CEO 并submit部分结果
-```
+1. Invoke the skill with `task` (required) and optionally `department` (`auto` routes automatically); set `output_language` to override the runtime output language.
+2. For implementation standards, use the shared templates in [method-patterns.md](references/method-patterns.md); for failures, look up codes by prefix in [error-codes.md](references/error-codes.md).
+3. To work outside this skill, open [01-implement-method.md](prompts/01-implement-method.md) or [02-robustness-checks.md](prompts/02-robustness-checks.md), fill in the `<placeholders>`, and paste the prompt into any AI chat window.
+4. When the organization grows, ask the skill to evaluate scaling thresholds or propose a tier upgrade; the rules live in [scaling.md](references/scaling.md).

@@ -1,41 +1,49 @@
-## Description: <br>
-Weekly engineering retrospective. What shipped, what broke, what to improve, with concrete action items. Works directly in OpenClaw - no Claude Code session needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weekly engineering retrospective covering what shipped, what broke, what to improve, and concrete action items; works directly in OpenClaw without a Claude Code session.
 
-## Publisher: <br>
-[muthukumaran-k-1](https://clawhub.ai/user/muthukumaran-k-1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[muthukumaran-k-1](https://clawhub.ai/user/muthukumaran-k-1)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to run a weekly retrospective covering shipped work, incidents, improvement opportunities, and up to three concrete action items with owners, deadlines, and definitions of done. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated retrospectives may include sensitive team, incident, or business information. <br>
-Mitigation: Review retrospective content before sharing and limit distribution to the intended audience. <br>
-Risk: Capability metadata includes crypto and purchase tags that do not match the instruction-only skill behavior. <br>
-Mitigation: Treat those tags as inaccurate unless the publisher clarifies them, and rely on the security summary for deployment review. <br>
+## Use Case:
 
+Engineering teams use this skill to facilitate weekly retrospectives that capture shipped work, failures, improvement opportunities, and up to three owned action items. Developers can hand off code-related action items to a Claude Code session when implementation work is needed.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/muthukumaran-k-1/ucts-retro) <br>
-- [Publisher profile](https://clawhub.ai/user/muthukumaran-k-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown conversation guidance with optional inline shell command text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces retrospective prompts, summaries, and action-item guidance; no executable code is bundled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated action items may launch follow-up coding work that changes files outside the retrospective guide.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated action items for scope, owner, deadline, and definition of done before starting a separate coding session.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/muthukumaran-k-1/skills/ucts-retro)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown conversation prompts and structured action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include suggested follow-up Claude Code session instructions for action items that require code changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

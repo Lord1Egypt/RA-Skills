@@ -1,51 +1,68 @@
-## Description: <br>
-Deploy and control AI agents on Hatcher, a managed hosting platform for OpenClaw, Hermes, ElizaOS, and Milady agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and control AI agents on Hatcher, a managed hosting platform for OpenClaw, Hermes, ElizaOS, and Milady agents.
 
-## Publisher: <br>
-[hatcherlabs](https://clawhub.ai/user/hatcherlabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hatcherlabs](https://clawhub.ai/user/hatcherlabs)
 
-## Use Case: <br>
-Developers and operators use this skill to register for Hatcher, create hosted AI agents, manage lifecycle actions, configure platform integrations, and handle tier or addon purchases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides agents through workflows that use HATCHER_KEY, JWTs, platform tokens, wallet credentials, and other sensitive secrets. <br>
-Mitigation: Use scoped test accounts first, store secrets in a secret manager, avoid exposing tokens in shared terminals or logs, and rotate any credential that may have been disclosed. <br>
-Risk: The skill includes payment, wallet-signing, subscription, addon, and credit workflows that can spend funds or alter account billing state. <br>
-Mitigation: Require explicit human confirmation before purchases, tier changes, wallet signing, or hosted checkout handoff, and verify target tier, billing period, amount, and recipient before execution. <br>
-Risk: The skill can create, start, stop, restart, delete, and reconfigure hosted agents and connected social integrations. <br>
-Mitigation: Confirm destructive or public-facing actions with the user, prefer stop over delete when state should be preserved, and test integrations in low-risk channels before enabling production traffic. <br>
-Risk: The security scan summary says the documentation does not provide enough explicit confirmation and secret-handling guardrails for its broad credential, payment, integration, and hosted-agent workflows. <br>
-Mitigation: Treat generated commands as proposals for human review, use low-scope tokens during initial setup, and require approval before public posts, DMs, plugin installs, deletes, or account-changing operations. <br>
+## Use Case:
 
+Developers and operators use this skill to register Hatcher accounts, create hosted agents, manage lifecycle state, configure integrations, and choose payment or tier options.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hatcherlabs/hatcher-skill) <br>
-- [Hatcher homepage](https://hatcher.host) <br>
-- [Hatcher OpenAPI specification](https://api.hatcher.host/openapi.json) <br>
-- [Hatcher skill entry point](https://hatcher.host/skill.md) <br>
-- [Authentication guide](https://hatcher.host/skill/auth.md) <br>
-- [Agent management guide](https://hatcher.host/skill/agents.md) <br>
-- [Pricing and payments guide](https://hatcher.host/skill/pricing.md) <br>
-- [Integrations guide](https://hatcher.host/skill/integrations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl commands, JSON request and response examples, and configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API calls that create accounts, manage hosted agents, install skills or plugins, configure integrations, and initiate payment or wallet flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact frontmatter) <br>
+Risk: The skill can guide creation and operation of live Hatcher agents, including starts, restarts, stops, and deletion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation before lifecycle actions, especially deletion; use stop instead of delete when state should be preserved.
+
+Risk: The skill handles long-lived API keys and integration tokens for Hatcher and connected services.
+
+Mitigation: Use dedicated least-privilege accounts and tokens, avoid exposing secrets in logged shell commands, store credentials securely, and rotate any exposed keys.
+
+Risk: The skill includes payment and tier-change workflows that can spend credits or external funds.
+
+Mitigation: Require explicit human confirmation before purchases, upgrades, addons, wallet transactions, or hosted checkout flows.
+
+Risk: Installing third-party skills or plugins can change a hosted agent's behavior and access.
+
+Mitigation: Review every third-party skill or plugin before installation and install only what the target agent needs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hatcherlabs/skills/hatcher-skill)
+- [Hatcher Homepage](https://hatcher.host)
+- [Hatcher Skill Entry Point](https://hatcher.host/skill.md)
+- [Hatcher Auth Guide](https://hatcher.host/skill/auth.md)
+- [Hatcher Agents Guide](https://hatcher.host/skill/agents.md)
+- [Hatcher Pricing Guide](https://hatcher.host/skill/pricing.md)
+- [Hatcher Integrations Guide](https://hatcher.host/skill/integrations.md)
+- [Hatcher OpenAPI Specification](https://api.hatcher.host/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl examples and JSON request snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API endpoint instructions, lifecycle guidance, integration setup, and payment workflow guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

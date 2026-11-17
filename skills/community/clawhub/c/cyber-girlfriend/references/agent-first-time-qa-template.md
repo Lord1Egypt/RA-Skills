@@ -73,8 +73,9 @@ For each anchor, ask only:
 
 ### 6. Confirmation before writing
 
-> 我会生成两份生活文件：`character-profile.md`、`day-schedule.md`。  
-> 然后创建两个任务：今日日程、`companion-presence`。presence 的 cron 本身只跑 wrapper；wrapper 每轮先 fresh prepare，命中后再启动稳定 companion session，保证媒体回调能回来，也避免旧上下文影响是否发送。
+> 执行前我先确认范围：会写 `config.local.json`、`character-profile.md`、`day-schedule.md` 和运行状态文件；创建或更新 `companion-build-day-schedule`、`companion-presence` 两个定时任务，并把任务名、时间和 payload 类型列给你。投递渠道、账号和目标只显示脱敏值。  
+> 日程生成和命中事件写作会访问公开网页；验收会向刚确认的 owner 目标发送一条可见测试消息。需要暂停时只禁用这两个任务并保留配置和状态；永久删除任务会另行征得你的明确同意。  
+> 请确认后我再执行这些写入、联网搜索、任务变更和一次真实发送。
 
 ## Fast One-Shot Version
 
@@ -85,7 +86,7 @@ When the user wants the shortest possible onboarding, ask this bundle:
 > 2. 她现实里是什么身份：年龄/阶段、学校或工作、城市、常看的内容方向  
 > 3. 有没有必定发生的日常锚点：时间、持续多久、场景、正在做什么  
 > 4. 安静时段，如果没要求我就用默认值  
-> 5. 上面确认后，我会落 `character-profile.md`、`day-schedule.md` 和 presence cron。
+> 5. 我会先预览要写的文件、两个任务的名称/时间/payload、脱敏投递目标、公开搜索和一次测试发送；你明确确认后我才执行。暂停只禁用任务并保留配置/状态，永久删除需另行确认。
 
 ## Ownership Reminder
 

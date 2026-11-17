@@ -1,39 +1,52 @@
-## Description: <br>
-Shuidibao helps users query, compare, and evaluate Shuidibao insurance products, including health, critical illness, medical, life, and accident coverage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shuidibao helps agents explain, compare, and provide purchase guidance for health, critical illness, medical, life, and accident insurance products on the Shuidibao platform.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users considering Shuidibao insurance products use this skill to understand coverage options, compare plans, and prepare for underwriting or purchase decisions. Agents can use it to ask for relevant user context such as age, health status, budget, and existing coverage, then provide concise insurance-product guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may produce insurance guidance that users could mistake for official policy terms or licensed insurance advice.
+
+Mitigation: Tell users to verify current Shuidibao policy documents, exclusions, waiting periods, renewal conditions, and purchase requirements before making a decision.
+
+Risk: The skill may request health, budget, or existing coverage details to tailor recommendations.
+
+Mitigation: Ask only for information needed for the comparison and avoid collecting unnecessary health or financial detail.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to understand Shuidibao insurance products, compare options, and get purchase guidance based on age, health status, budget, and existing coverage. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may disclose personal health, age, budget, insurance coverage, or other sensitive information while seeking product guidance. <br>
-Mitigation: Share only information necessary for the insurance question and avoid unnecessary personal details. <br>
-Risk: Insurance recommendations or product details may be incomplete, outdated, or unsuitable for a user's circumstances. <br>
-Mitigation: Verify product terms with official Shuidibao materials and treat recommendations as guidance rather than licensed insurance or medical advice. <br>
+**Output Format:** [Markdown guidance with product explanations, comparisons, underwriting notes, and purchase considerations.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [No executable code or tool calls are included in the artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Natural-language text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only insurance product guidance; no code, credentials, persistence, or hidden system access.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,61 @@
-## Description: <br>
-Analyze product events, cohorts, releases, dashboards, and experiment insights via the Amplitude Analytics API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze product events, cohorts, releases, dashboards, and experiment insights via the Amplitude Analytics API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Product, data, growth, and engineering teams use this skill to inspect Amplitude event analytics, cohorts, user activity, releases, and experiments from an agent chat workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Amplitude Analytics API](https://amplitude.com/docs/apis) <br>
-- [Amplitude API Reference](https://developers.amplitude.com/) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+Developers, product teams, and analytics operators use this skill to query Amplitude event analytics, cohorts, retention, funnels, releases, dashboards, and experiment insights from an agent workflow.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-shaped tool parameters.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connects an Amplitude account through ClawLink; write, user mapping, cohort upload, and deletion workflows require careful confirmation before execution.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill relies on a third-party ClawLink plugin that stores and injects Amplitude API credentials.
+
+Mitigation: Verify the ClawLink plugin publisher and version before installation, use a dedicated least-privilege Amplitude credential, and revoke the credential when the integration is no longer needed.
+
+Risk: Amplitude write and delete actions can alter analytics state, including irreversible GDPR/CCPA deletion requests, user mapping, cohort changes, releases, and annotations.
+
+Mitigation: Keep write and delete actions opt-in, preview changes first, and require explicit user confirmation for the target resource and intended effect.
+
+Risk: Analytics queries and cohort downloads may expose product usage data or large datasets from the connected Amplitude project.
+
+Mitigation: Scope access to the intended project, prefer filtered or paginated queries, and avoid sharing returned data outside approved workflows.
+
+## Reference(s):
+
+- [Amplitude Analytics API](https://amplitude.com/docs/apis)
+- [Amplitude API Reference](https://developers.amplitude.com/)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/amplitude-analytics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown with inline shell commands and structured API call parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live Amplitude query results, tool previews, error guidance, and confirmation prompts for write or delete operations.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

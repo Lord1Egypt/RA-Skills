@@ -1,49 +1,55 @@
-## Description: <br>
-CPO甲方首席防坑官 helps clients identify vendor traps, assess quotes and acceptance criteria, and produce client-protective execution plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chief Pitfall Officer helps project buyers identify vendor pitfalls, audit commercial and delivery risks, and produce actionable implementation plans.
 
-## Publisher: <br>
-[qomob](https://clawhub.ai/user/qomob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qomob](https://clawhub.ai/user/qomob)
 
-## Use Case: <br>
-Clients, procurement teams, audit officers, and cross-sector project leads use this skill to turn vague project needs into risk-aware vendor selection, quote review, acceptance criteria, and full-lifecycle execution plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store project context in local learning logs. <br>
-Mitigation: Use de-identified inputs, avoid confidential or regulated data unless retention is approved, and review or disable learning files where required. <br>
-Risk: The skill can update its own reference material and future behavior based on project discussions. <br>
-Mitigation: Review generated knowledge changes before relying on them, scan the skill before deployment, and keep a rollback path for reference updates. <br>
+## Use Case:
 
+External project owners, small business leaders, non-technical managers, and procurement stakeholders use this skill to turn vague project needs into buyer-side risk audits, vendor selection criteria, acceptance standards, contingency plans, and execution checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qomob/chief-pitfall-officer) <br>
-- [README.en.md](artifact/README.en.md) <br>
-- [SKILL.en.md](artifact/SKILL.en.md) <br>
-- [Target Audience](artifact/references/target-audience.md) <br>
-- [Industry Adaptation](artifact/references/industry-adaptation.en.md) <br>
-- [Participant Risk Map](artifact/references/participant-risk-map.en.md) <br>
-- [Acceptance Standards](artifact/references/acceptance-standards.en.md) <br>
-- [Pricing Database](artifact/references/pricing-database.en.md) <br>
-- [Legal and Financial Audit](artifact/references/legal-financial-audit.en.md) <br>
-- [Output Templates](artifact/references/output-templates.en.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, html, configuration, guidance] <br>
-**Output Format:** [Markdown by default, with optional complete HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include risk warnings, client action items, vendor evaluation criteria, acceptance checklists, Plan B thresholds, and review log templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can retain local runtime records and learned feedback from user interactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential business details, use de-identified inputs, and review or disable logging before deployment.
+
+Risk: The skill can turn learned feedback into future agent instructions.
+
+Mitigation: Require maintainer review and approval before any knowledge or instruction updates are applied.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/qomob/chief-pitfall-officer)
+- [ClawHub skill page](https://clawhub.ai/qomob/skills/chief-pitfall-officer)
+- [Publisher profile](https://clawhub.ai/user/qomob)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown or HTML report with structured risk audit sections, checklists, tables, and contingency plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask clarification questions before producing the final buyer-side execution plan; requests user inputs be de-identified.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

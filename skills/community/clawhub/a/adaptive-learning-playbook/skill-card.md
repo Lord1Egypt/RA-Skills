@@ -1,40 +1,58 @@
-## Description: <br>
-World-class adaptability, organisational learning, and experimentation strategy skill for Codex and compatible agent runtimes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+World-Class Adaptability & Learning Playbook for market trend awareness, organisational agility, continuous improvement, experimentation culture, knowledge management, competitive intelligence, and pivot strategy.
 
-## Publisher: <br>
-[chilu18](https://clawhub.ai/user/chilu18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chilu18](https://clawhub.ai/user/chilu18)
 
-## Use Case: <br>
-Employees, external advisors, founders, product leaders, and strategy teams use this skill to structure market sensing, organisational learning, experimentation, competitive intelligence, continuous improvement, and pivot decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can shape strategic decisions using broad playbook guidance that may not match the user's market, jurisdiction, data quality, or risk tolerance. <br>
-Mitigation: Review recommendations against current evidence, local regulatory requirements, and accountable human decision makers before acting. <br>
-Risk: AI-assisted knowledge-management and competitive-intelligence workflows could expose confidential strategy, personal data, secrets, or regulated information if connected to unrestricted sources. <br>
-Mitigation: Scope AI workflows to approved documents and sources, exclude sensitive material unless explicitly authorized, and apply normal access controls. <br>
+## Use Case:
 
+Developers, operators, and strategy teams use this skill to get structured guidance for organisational learning, horizon scanning, Kaizen, experimentation, knowledge systems, competitive analysis, and pivot/persevere decisions.
 
-## Reference(s): <br>
-- [Extended Playbook - Adaptability & Learning](references/extended-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with tables, checklists, templates, and decision frameworks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory playbooks, analysis structures, scorecards, and reusable business strategy templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The README recommends mutable, global, confirmation-suppressed installation commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned skills CLI version, install locally, pin the source to a reviewed commit or signed release, and require interactive confirmation.
+
+Risk: The README recommends running a scanner through a mutable latest-version command.
+
+Mitigation: Run scanners in a restricted environment and pin the scanner version before use.
+
+Risk: Strategic playbook guidance can be misapplied if treated as a substitute for local evidence and review.
+
+Mitigation: Validate recommendations against current organisational data, jurisdictional requirements, and human decision-maker review before adoption.
+
+## Reference(s):
+
+- [Extended Playbook - Adaptability & Learning](references/extended-playbook.md)
+- [ClawHub skill page](https://clawhub.ai/chilu18/skills/adaptive-learning-playbook)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with tables, checklists, templates, and concise strategic recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory content and reusable planning templates; no external tool calls or credentials are required by the skill content.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

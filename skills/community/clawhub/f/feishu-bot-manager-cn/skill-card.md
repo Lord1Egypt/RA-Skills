@@ -1,44 +1,59 @@
-## Description: <br>
-Manages Feishu bot accounts and OpenClaw routing bindings, including account-level or group-level routing to existing agents or newly initialized agent workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Feishu bot accounts and routing bindings in OpenClaw, including account-level or group-level routes to existing agents and optional setup of a new agent workspace.
 
-## Publisher: <br>
-[Alex-Shen1121](https://clawhub.ai/user/Alex-Shen1121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alex-shen1121](https://clawhub.ai/user/alex-shen1121)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to add Feishu bot credentials, bind bot or group traffic to an agent, and optionally initialize a new agent workspace for that bot. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu App Secret values may be stored in plaintext OpenClaw config and backup files. <br>
-Mitigation: Use a dedicated Feishu bot secret, restrict permissions on ~/.openclaw, and rotate or remove secrets and backups when they are no longer needed. <br>
-Risk: The skill can change global OpenClaw routing behavior through bindings and session.dmScope. <br>
-Mitigation: Review the generated OpenClaw config before use and confirm the intended account-level or group-level binding. <br>
-Risk: Gateway restart behavior can affect active service sessions. <br>
-Mitigation: Prefer a manual or explicitly confirmed restart and coordinate timing when the Gateway is serving users. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to add Feishu bot credentials, bind bot accounts or group chats to agents, and coordinate the required gateway restart and /feishu auth follow-up.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Alex-Shen1121/feishu-bot-manager-cn) <br>
-- [Feishu OpenClaw Bot Creation Page](https://open.feishu.cn/page/openclaw?form=multiAgent) <br>
-- [New Agent Governance Reference](references/new-agent-governance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update OpenClaw configuration, create backups, adjust Feishu routing bindings, and restart Gateway when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and package.json) <br>
+Risk: The skill can store Feishu App Secrets in OpenClaw configuration and backups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid pasting production secrets into chat or shell history, rotate any exposed secret, and review backup files for plaintext secrets.
+
+Risk: The skill can broaden bot access through DM policy and route bindings.
+
+Mitigation: Verify bot DM policy, allowlists, account-level bindings, and group-level bindings before enabling the account.
+
+Risk: The skill can change global OpenClaw settings and restart the Gateway.
+
+Mitigation: Use it only where the operator is authorized to modify OpenClaw configuration, review the generated changes, and confirm before restart.
+
+## Reference(s):
+
+- [New Agent Governance Rules](references/new-agent-governance.md)
+- [Feishu OpenClaw Bot Creation Page](https://open.feishu.cn/page/openclaw?form=multiAgent)
+- [ClawHub Skill Page](https://clawhub.ai/alex-shen1121/skills/feishu-bot-manager-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and file or configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update OpenClaw configuration, initialize agent workspace files, create backups, and request operator confirmation before gateway restart.]
+
+## Skill Version(s):
+
+1.1.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

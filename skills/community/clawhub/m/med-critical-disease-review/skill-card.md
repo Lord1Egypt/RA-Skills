@@ -1,43 +1,60 @@
-## Description: <br>
-Assesses structured inpatient medical records against 28 critical-disease insurance claim categories by calling a remote assessment service and producing raw JSON plus a natural-language conclusion with evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses structured inpatient medical records against 28 critical-disease insurance claim categories, calls a medical assessment API, and returns raw JSON plus a natural-language conclusion with evidence.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Claims reviewers and insurance operations teams use this skill to prepare evidence-backed critical-disease claim assessments from inpatient medical records. Developers can run the bundled scripts to normalize common record formats before submitting a supported disease review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical-record contents may be sent to a remote assessment service, and the security evidence says the skill's privacy promises do not match the code behavior. <br>
-Mitigation: Use only records you are authorized to process, confirm the remote service's privacy and retention terms, and de-identify sensitive information before running the skill. <br>
-Risk: The scripts can write raw assessment JSON, text summaries, and optional prepared medical-record payloads to local output paths. <br>
-Mitigation: Choose controlled output locations, restrict access to generated files, and delete outputs that are no longer needed. <br>
-Risk: The assessment output supports insurance claim review and could be mistaken for clinical advice. <br>
-Mitigation: Use the output as claim-evidence assistance only; route medical diagnosis or treatment questions to qualified clinicians. <br>
+## Use Case:
 
+Claims operations teams and developers use this skill to submit inpatient medical record data for critical-disease insurance review and produce a conclusion, reasons, and evidence for downstream review. The skill is an insurance-criteria assessment aid and is not a medical diagnosis or treatment tool.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/med-critical-disease-review) <br>
-- [Critical-disease assessment API endpoint](https://shangbao.yunzhisheng.cn/skills/critical-disease/api/v1/assessment/assess/{disease}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, JSON, Files] <br>
-**Output Format:** [Raw JSON response and natural-language text summary, written to files or printed as a preview.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a supported disease code and medical-record input; optional preprocessing supports JSON, PDF, Office documents, spreadsheets, CSV, text, and image inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The security review says the skill handles sensitive medical records and has misleading privacy and persistence claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where operators are authorized to send records to the documented assessment service, and clarify de-identification, retention, endpoint allowlisting, credential handling, and output-file protections before using real patient data.
+
+Risk: The skill stores raw API responses and natural-language assessment results as local files by default.
+
+Mitigation: Use controlled output paths, restrict access to generated files, and avoid storing real patient data unless local storage controls are approved.
+
+Risk: The assessment service requires an API credential for `Authorization: Bearer <LLM_API_KEY>`.
+
+Mitigation: Provide credentials through an approved secret-handling process, avoid hard-coding keys, and limit access to authorized operators.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/med-critical-disease-review)
+- [Publisher profile](https://clawhub.ai/user/unisound-llm)
+- [Assessment service base URL](https://skills-medical.hivoice.cn)
+- [Assessment API endpoint](https://skills-medical.hivoice.cn/api/v1/assessment/assess/{disease})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; runtime outputs are raw JSON and natural-language text files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a disease identifier, an input medical-record artifact or JSON payload, and an API key for the assessment service.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

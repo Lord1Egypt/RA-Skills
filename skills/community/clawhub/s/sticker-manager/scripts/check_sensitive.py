@@ -32,8 +32,8 @@ ALLOWLIST_SNIPPETS = [
     "~/.openclaw/media/inbound/",
     "Private local absolute path",
     "token = \"ghp_example_token_not_real\"",
-    "token = \"ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcd\"",
-    "token = \\\"ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcd\\\"",
+    "token = \"REDACTED-SECRET\"",
+    "token = \\\"REDACTED-SECRET\\\"",
     "line = '/root/EXAMPLE_PATH'",
     "/root/EXAMPLE_PATH/",
 ]

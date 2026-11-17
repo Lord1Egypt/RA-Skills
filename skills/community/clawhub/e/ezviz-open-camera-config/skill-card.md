@@ -1,45 +1,65 @@
-## Description: <br>
-Configures Ezviz cameras through the Ezviz Open API for arming, privacy masking, all-day recording, defense schedules, and motion-detection sensitivity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures Ezviz devices through the Ezviz Open API, including arming, defense plans, privacy shutter, all-day recording, and motion-detection sensitivity.
 
-## Publisher: <br>
-[Ezviz-Open](https://clawhub.ai/user/Ezviz-Open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ezviz-open](https://clawhub.ai/user/ezviz-open)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent run Ezviz camera configuration commands, including arming or disarming, privacy masking, all-day recording, defense scheduling, and motion-detection sensitivity changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes live Ezviz camera settings, including arming, recording, privacy masking, and motion-detection behavior. <br>
-Mitigation: Install only when agent-driven camera configuration is intended, and explicitly review each requested setting change before execution. <br>
-Risk: Ezviz credentials and cached access tokens require careful handling. <br>
-Mitigation: Use dedicated least-privilege credentials, prefer environment variables over command-line secrets, disable EZVIZ_TOKEN_CACHE on shared or high-security machines, and clear the temporary token cache when done. <br>
-Risk: The skill may read OpenClaw configuration files as a credential fallback when environment variables are not set. <br>
-Mitigation: Set EZVIZ_APP_KEY and EZVIZ_APP_SECRET explicitly for the run, and keep any OpenClaw Ezviz configuration isolated from unrelated service credentials. <br>
+## Use Case:
 
+Developers and operators use this skill to configure Ezviz cameras and devices remotely from an agent workflow when they have dedicated Ezviz API credentials and a target device serial.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/Ezviz-Open/ezviz-open-camera-config) <br>
-- [Ezviz-Open publisher profile](https://clawhub.ai/user/Ezviz-Open) <br>
-- [Ezviz device configuration API mapping](references/api-mapping.md) <br>
-- [Ezviz Open API documentation](https://openai.ys7.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Console text and JSON result objects from Python configuration commands, with Markdown guidance in the skill instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Ezviz app credentials and a device serial; may call the Ezviz Open API and cache access tokens in the system temp directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata) <br>
+Risk: Sensitive Ezviz access tokens may persist in a system temp cache, including in cases where users expect caching to be disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated least-privilege Ezviz credentials, avoid shared or high-security hosts, isolate or clear the temp token cache after use, and rotate credentials as needed.
+
+Risk: The skill can change security and privacy affecting device settings such as arming, privacy shutter, recording, and motion detection.
+
+Mitigation: Test on non-critical devices first, verify device support and API permissions, and review requested configuration actions before execution.
+
+Risk: If environment variables are absent, the skill may read Ezviz credentials from OpenClaw config files.
+
+Mitigation: Set explicit Ezviz environment variables for intended credentials or isolate OpenClaw config files in shared environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ezviz-open/skills/ezviz-open-camera-config)
+- [Publisher Profile](https://clawhub.ai/user/ezviz-open)
+- [API Mapping Reference](references/api-mapping.md)
+- [Ezviz Open API Token Documentation](https://openai.ys7.com/help/81)
+- [Ezviz Device Defense Documentation](https://openai.ys7.com/help/701)
+- [Ezviz Defense Plan Documentation](https://openai.ys7.com/help/702)
+- [Ezviz Privacy Shutter Documentation](https://openai.ys7.com/help/707)
+- [Ezviz All-Day Recording Documentation](https://openai.ys7.com/help/713)
+- [Ezviz Motion Detection Configuration Documentation](https://openai.ys7.com/help/715)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute Ezviz Open API requests that modify device configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

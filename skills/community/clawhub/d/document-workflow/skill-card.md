@@ -1,45 +1,54 @@
-## Description: <br>
-Academic paper research workflow for searching, downloading, and analyzing arXiv papers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic paper research workflow for searching, downloading, and analyzing arXiv papers.
 
-## Publisher: <br>
-[yjr-123456](https://clawhub.ai/user/yjr-123456) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yjr-123456](https://clawhub.ai/user/yjr-123456)
 
-## Use Case: <br>
-Developers, researchers, and research assistants use this skill to find academic papers, retrieve PDFs or arXiv LaTeX source, and produce structured summaries from paper source files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An embedded API key is present in the paper search helper. <br>
-Mitigation: Remove the embedded key, require users to provide SEMANTIC_SCHOLAR_API_KEY, and rotate any exposed credential before use. <br>
-Risk: Downloaded archives are extracted without path-safety checks. <br>
-Mitigation: Run the skill in a constrained workspace, use trusted arXiv IDs, and add archive extraction checks that reject unsafe paths before deployment. <br>
-Risk: Download and extraction helpers can write files to user-controlled or default local paths. <br>
-Mitigation: Verify output directories before execution and restrict downloads and extracted source files to an approved workspace. <br>
+## Use Case:
 
+Developers and researchers use this skill to find academic papers, download arXiv source or PDFs, and guide an agent through extracting metadata, methods, experiments, metrics, and structured summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yjr-123456/document-workflow) <br>
-- [Output schema](artifact/references/output_schema.json) <br>
-- [arXiv e-print source endpoint](https://arxiv.org/e-print/{id}) <br>
-- [Semantic Scholar paper search API](https://api.semanticscholar.org/graph/v1/paper/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and structured JSON schemas or results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helper scripts may write downloaded PDFs, extracted LaTeX source directories, or JSON output files when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and artifact _meta.json) <br>
+Risk: Remote paper archives and LaTeX include paths may read or write outside intended folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a contained workspace and avoid untrusted or arbitrary paper sources until archive extraction, LaTeX include resolution, and download destination validation are fixed.
+
+Risk: Search terms are sent to external providers and the package includes a bundled Semantic Scholar API key.
+
+Mitigation: Avoid sensitive search queries and configure a user-controlled Semantic Scholar API key before use.
+
+## Reference(s):
+
+- [Output Schema](artifact/references/output_schema.json)
+- [ClawHub Skill Page](https://clawhub.ai/yjr-123456/skills/document-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON summaries and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured paper summaries follow artifact/references/output_schema.json.]
+
+## Skill Version(s):
+
+1.3.1 (source: evidence.release.version, artifact/_meta.json, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

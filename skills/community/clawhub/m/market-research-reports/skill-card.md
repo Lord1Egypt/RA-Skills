@@ -1,45 +1,63 @@
-## Description: <br>
-Generate comprehensive market research reports (50+ pages) in the style of top consulting firms (McKinsey, BCG, Gartner). Features professional LaTeX formatting, extensive visual generation with scientific-schematics and generate-image, deep integration with research-lookup for data gathering, and multi-framework strategic analysis including Porter's Five Forces, PESTLE, SWOT, TAM/SAM/SOM, and BCG Matrix. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate comprehensive market research reports (50+ pages) with professional LaTeX formatting, extensive visual generation, research-driven market data gathering, and multi-framework strategic analysis including Porter's Five Forces, PESTLE, SWOT, TAM/SAM/SOM, and BCG Matrix.
 
-## Publisher: <br>
-[YumoeZhung](https://clawhub.ai/user/YumoeZhung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yumoezhung](https://clawhub.ai/user/yumoezhung)
 
-## Use Case: <br>
-Employees, external analysts, and developers use this skill to create comprehensive market research reports for market sizing, competitive landscape analysis, due diligence, go-to-market strategy, investment analysis, and strategic planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill writes report folders and may run local Python and LaTeX build commands in a project directory. <br>
-Mitigation: Install and run it only in a trusted workspace, and review generated commands and output paths before execution. <br>
-Risk: Generated market analysis, statistics, citations, and investment-oriented recommendations may be incomplete or inaccurate. <br>
-Mitigation: Review report content, data sources, citations, and assumptions before using outputs for business, investment, or strategic decisions. <br>
-Risk: The workflow depends on referenced helper skills and local LaTeX tooling. <br>
-Mitigation: Use trusted installations for helper skills and build tools, and confirm the PDF compiles cleanly before sharing the report. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/YumoeZhung/market-research-reports) <br>
-- [Data Analysis Patterns for Market Research](references/data_analysis_patterns.md) <br>
-- [Market Research Report Structure Guide](references/report_structure_guide.md) <br>
-- [Visual Generation Guide for Market Research Reports](references/visual_generation_guide.md) <br>
-- [Market Research Report Formatting Guide](assets/FORMATTING_GUIDE.md) <br>
+## Use Case:
 
+Business analysts, strategists, investors, and developers use this skill to create comprehensive market research reports for investment analysis, market sizing, due diligence, go-to-market planning, competitive analysis, and industry research.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with LaTeX report content, shell commands, configuration snippets, and generated report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces professional LaTeX reports intended to be compiled to PDF, with generated visuals and citation-backed research materials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated market data, citations, projections, and recommendations may be incomplete or incorrect.
+
+Mitigation: Verify generated market data, citations, assumptions, and strategic recommendations before using the report for business decisions.
+
+Risk: The skill can create local report folders, image files, LaTeX drafts, and compiled outputs.
+
+Mitigation: Run the skill in a controlled workspace and choose an output directory that can be safely modified.
+
+Risk: The skill may run local Python and LaTeX tooling to generate visuals and compile reports.
+
+Mitigation: Review proposed commands and ensure required local dependencies are installed before execution.
+
+Risk: Some referenced template and style assets may be missing from the package.
+
+Mitigation: Confirm required assets and dependencies are present before relying on a final compiled PDF.
+
+## Reference(s):
+
+- [Report Structure Guide](artifact/references/report_structure_guide.md)
+- [Visual Generation Guide for Market Research Reports](artifact/references/visual_generation_guide.md)
+- [Data Analysis Patterns for Market Research](artifact/references/data_analysis_patterns.md)
+- [Market Research Report Formatting Guide](artifact/assets/FORMATTING_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with LaTeX, BibTeX, shell commands, and report file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create local report folders, PNG figures, LaTeX drafts, BibTeX references, and compiled PDFs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

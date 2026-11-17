@@ -1,43 +1,63 @@
-## Description: <br>
-Personal task manager powered by Things 3 that lets an agent capture, review, organize, reprioritize, search, and manage tasks in the local Things database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Things plus helps an agent capture, review, schedule, update, delete, and summarize personal tasks in Things 3 through the local things CLI.
 
-## Publisher: <br>
-[sars666](https://clawhub.ai/user/sars666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sars666](https://clawhub.ai/user/sars666)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent manage Things 3 tasks through the local `things` CLI, including task capture, scheduling, duplicate checks, updates, deletes, and daily logbook summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify a real personal Things 3 database from broad everyday planning language without requiring confirmation. <br>
-Mitigation: Require confirmation for inferred captures, deletes, bulk edits, and test cleanup runs when deploying in a sensitive personal or shared environment. <br>
-Risk: The skill depends on a third-party Things CLI and may require local database access or a Things auth token. <br>
-Mitigation: Review the third-party CLI before installation, keep THINGS_AUTH_TOKEN in the environment rather than chat, and grant Full Disk Access only when necessary. <br>
+## Use Case:
 
+External users and employees can use this skill to let an agent manage their Things 3 task system, including capturing personal commitments, scheduling reminders, organizing projects and tags, producing daily summaries, and cleaning up tasks after verification.
 
-## Reference(s): <br>
-- [Things Plus Delete-Focused Test Report](artifact/references/report.md) <br>
-- [Things Plus Integrated Test Prompt](artifact/references/test_prompt.md) <br>
-- [ClawHub skill page](https://clawhub.ai/sars666/things-plus) <br>
-- [Publisher profile](https://clawhub.ai/user/sars666) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise task-management summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and modify a local Things 3 database through the `things` CLI; requires the `things` binary and may require THINGS_AUTH_TOKEN for some operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill can create persistent Things 3 tasks from broad conversational planning cues without explicit confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require confirmation before inferred captures, especially when the user did not explicitly ask to add a Things task.
+
+Risk: The skill reads and modifies the user's local Things 3 database.
+
+Mitigation: Install only for users who accept local task database access, and verify writes with read-back before reporting success.
+
+Risk: The setup flow relies on an unpinned third-party things3-cli Homebrew install.
+
+Mitigation: Pin or review the CLI source and version before broad use.
+
+Risk: Full Disk Access may expose more local data than the skill needs for ordinary task operations.
+
+Mitigation: Avoid granting Full Disk Access unless a specific Things database read fails and the access is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sars666/skills/things-plus)
+- [Things Plus Delete-Focused Test Report](artifact/references/report.md)
+- [Things Plus Integrated Test Prompt](artifact/references/test_prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and JSON-derived task summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform local Things 3 reads and writes; write success should be verified by read-back.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

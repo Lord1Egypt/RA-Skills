@@ -1,41 +1,53 @@
-## Description: <br>
-Reads public WeChat Official Account article links and returns the title, account name, publication time, article text, image link markers, and source URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads publicly accessible WeChat public account articles and returns the title, account name, publication time, plain-text body, image link markers, and original URL.
 
-## Publisher: <br>
-[ianen](https://clawhub.ai/user/ianen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ianen](https://clawhub.ai/user/ianen)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to fetch and extract readable content from public mp.weixin.qq.com article URLs for summarization, translation, analysis, or review. It is not intended to search WeChat accounts, browse historical article lists, or access login-only content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Loose URL validation can allow crafted inputs that are not genuine WeChat article URLs to be fetched. <br>
-Mitigation: Use only known-good https://mp.weixin.qq.com/s/... links and prefer an update that parses the URL and requires the hostname to be exactly mp.weixin.qq.com before any network request. <br>
-Risk: The skill performs outbound HTTP fetching from the local environment. <br>
-Mitigation: Install and run it only in environments where outbound requests to supplied article URLs are acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve text from publicly accessible WeChat public account article URLs for reading, summarization, analysis, or translation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ianen/wechat-public-article-reader) <br>
-- [Publisher profile](https://clawhub.ai/user/ianen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON produced by a local Python script, typically relayed in Markdown by the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes original URL, title, author, publication time, extracted content, and image links marked inline when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: URL validation may be bypassed, allowing fetches outside the intended WeChat article host or into internal networks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate that the parsed HTTPS hostname is exactly mp.weixin.qq.com and re-check redirects before trusting the skill in environments with private network access.
+
+Risk: Fetched article pages may fail to parse if WeChat changes page structure or if the article is deleted or requires login.
+
+Mitigation: Treat missing title, account name, publication time, or content as expected failure states and review outputs before downstream summarization or analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ianen/skills/wechat-public-article-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands]
+
+**Output Format:** [Plain text or JSON containing title, account name, publication time, article content, image link markers, and URL.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a publicly accessible mp.weixin.qq.com article URL; no API key or cookie is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,214 +1,135 @@
 ---
 name: iaiops
 description: >-
-  Vendor-neutral, governed industrial/OT data tap + intelligent troubleshooting.
-  Read (and, gated, write) PLCs, controllers, machine tools and IIoT brokers over
-  OPC-UA, Modbus-TCP, Siemens S7comm, Mitsubishi MC, MTConnect, MQTT/Sparkplug B,
-  Allen-Bradley EtherNet/IP, EtherCAT (pysoem/SOEM), SECS/GEM (semiconductor /
-  display fab equipment over HSMS), PROFINET (DCP discovery), and the energy
-  edition (IEC 60870-5-104, DNP3, IEC 61850 MMS) — plus cross-protocol diagnostics
-  ("no-data" dataflow diagnosis, OPC-UA connection self-diagnosis, subscription
-  health, ISA-18.2 alarm bad-actors, tag/historian health, and the AI downtime
-  root-cause copilot) and analytics (OEE/downtime, asset inventory, OPC-UA HDA,
-  change-of-value). Use when the task names any industrial protocol, a
-  PLC/SCADA/HMI/historian/CNC/RTU/IED, a semiconductor/display fab or SECS/GEM
-  equipment, an electrical substation, an opc.tcp:// or mqtt:// endpoint,
-  OEE/downtime, downtime root-cause, or OT asset inventory. Routes to
-  the iaiops MCP server. Read-first; writes are MOC-gated (high risk, dry-run +
-  double-confirm). Do NOT use for IT/network gear, Kubernetes, hypervisors, or
-  backups — those are separate AIops tools.
+  Route industrial/OT data-tap and troubleshooting tasks to the appropriate
+  iaiops edition and governed MCP profile. Use for PLC/SCADA/CNC/RTU/IED,
+  OPC-UA, Modbus, S7, MC, FINS, EtherNet/IP, EtherCAT, PROFINET, SECS/GEM,
+  MTConnect, MQTT/Sparkplug, BACnet, HART, IO-Link and serial sensors; also
+  factory, fab, process, building, water, pharma, clinical, warehouse,
+  renewables and PLCnext work involving OEE, downtime, asset inventory or
+  data quality. Read-first; device writes require MOC and are refused for
+  safety: sis endpoints. Excludes IT/network gear, Kubernetes, hypervisors
+  and backups.
 ---
 
-# iaiops — industrial data tap + intelligent troubleshooting
+# iaiops — ROUTER（识别现场 → 派发 edition skill + MCP profile）
 
-One governed MCP server exposing **90 tools** across 14 industrial protocols plus a
-cross-protocol intelligence layer. Narrow the exposed surface per site with
-`IAIOPS_MCP` (e.g. `IAIOPS_MCP=fab` or `IAIOPS_MCP=opcua,modbus`), or just launch the matching pre-scoped
-script (`iaiops-mcp-opcua`, `iaiops-mcp-fab`, … — sugar over `IAIOPS_MCP`). Every tool runs through the iaiops governance
-harness (audit / budget / risk-tier / undo). **Read-first.** The 6 write tools are
-gated as Management-of-Change: `risk=HIGH`, `dry_run=True` by default, CLI requires
-a double-confirm, the before-value is captured for undo. **Never write to a
-production control system without authorization.** Preview / mock-or-sim validated —
-verify against live equipment. Start with `protocols_supported` to see what's
-configured and `<protocol> doctor` to test a link.
+这是**路由 skill**，本身不含工具表。识别任务的行业/协议 → 转到对应 **edition skill**
+（工具清单、workflow、支持版本矩阵都在那边），并用对应 profile 启动 MCP（`IAIOPS_MCP=<x>`
+环境变量，或等价 sugar 脚本 `iaiops-mcp-<x>`）。现场只暴露 1-2 个协议 + 跨协议脑，
+单会话工具 ~15-30，模型不被淹。
 
-## When to route here
-Task mentions: OPC-UA / opc.tcp, Modbus, Siemens S7 / S7-1200/1500, Mitsubishi /
-MELSEC, MTConnect / CNC machine monitoring, MQTT / Sparkplug B / Unified Namespace,
-Allen-Bradley / ControlLogix / CompactLogix / EtherNet-IP, EtherCAT / CoE / SDO /
-PDO / SOEM, SECS/GEM / SECS-II / HSMS / semiconductor / display fab / wafer / panel
-/ MES equipment / SVID / ECID, PROFINET / DCP / name-of-station, IEC 60870-5-104 /
-IEC-104 / RTU / telecontrol, DNP3 / outstation, IEC 61850 / MMS / IED / substation,
-energy / power / utility SCADA, BACnet / BACnet-IP / building automation / HVAC /
-facility / 厂务 / Who-Is, OEE / downtime, OT asset inventory, "no data / stale
-tag" diagnosis, **downtime root-cause / why did the line stop**, OPC-UA "won't
-connect", subscription drops, alarm flood / ISA-18.2.
+## 路由表（关键词 → edition skill → MCP profile）
 
-## Tools by protocol
+| 任务提到 | edition skill | MCP profile / entrypoint |
+|---|---|---|
+| SECS/GEM · SECS-II · HSMS · 半导体/显示 fab · wafer · panel · MES equipment · SVID/ECID · recipe | **iaiops-fab** | `IAIOPS_MCP=fab` / `iaiops-mcp-fab` |
+| 离散制造产线 · PLC（S7/S7-1200/1500 · 三菱/MELSEC · Allen-Bradley/ControlLogix/CompactLogix · Omron/FINS/SYSMAC CS/CJ/CP/NX）· Modbus · EtherCAT/CoE/SOEM · PROFINET/DCP · MTConnect/CNC 机床 · Sparkplug B/UNS | **iaiops-factory** | `IAIOPS_MCP=factory` / `iaiops-mcp-factory` |
+| 流程工业（化工/食品饮料/原料药合成）· HART/HART-IP · 变送器/阀门定位器 · 过程仪表 · DCS 旁路读取 | **iaiops-process** | `IAIOPS_MCP=process` / `iaiops-mcp-process`（有 UNS 时 `IAIOPS_MCP=process,sparkplug`） |
+| BACnet/BACnet-IP · HVAC/暖通 · BMS/楼宇自控 · 厂务/facility · Who-Is · TrendLog · 供应商半小时电表数据/half-hourly (HH)/MPAN · 基础负荷/非营业时段用电/电价时段 | **iaiops-building** | `IAIOPS_MCP=building` / `iaiops-mcp-building` |
+| 水处理/水厂 · pH · 浊度/turbidity · 电导率/conductivity · 加药/dosing · 泵站/pump station · 曝气 | **iaiops-water** | `IAIOPS_MCP=water` / `iaiops-mcp-water` |
+| 仓储/物流中心 · 输送线/conveyor · 分拣/sorter · AGV/AMR · WMS/WCS · 托盘/穿梭车 · 物料搬运 | **iaiops-warehouse** | `IAIOPS_MCP=warehouse` / `iaiops-mcp-warehouse` |
+| 医院设施/clinical facility · 负压/正压隔离病房 · 医用气体 · 手术室环境 · 医疗 BMS | **iaiops-clinical** | `IAIOPS_MCP=clinical` / `iaiops-mcp-clinical` |
+| 制药/药厂 · GMP · 洁净室/洁净区 · Annex 1 · 压差梯度/pressure cascade · grade A/B/C/D · 尘埃粒子 · EMS/环境监测 · PW/WFI/纯化水/注射用水 · TOC · 生物反应器 · 冻干机 · 灌装线 · CSV/IQ/OQ · Annex 11 · Part 11 · 数据完整性/ALCOA | **iaiops-pharma** | `IAIOPS_MCP=pharma` / `iaiops-mcp-pharma` |
+| 光伏/PV · 逆变器/inverter · 组串/string · 风电/风机 · 场站 SCADA · 新能源电站 | **iaiops-renewables** | `IAIOPS_MCP=renewables` / `iaiops-mcp-renewables` |
+| Phoenix Contact PLCnext / vPLC（虚拟化 PLC，走内建 OPC-UA + Modbus-TCP） | **iaiops-plcnext** | `IAIOPS_MCP=plcnext` / `iaiops-mcp-plcnext` |
+| 接一个传感器 · 传感器描述/profile · IODD 导入 · 读不懂寄存器/单位/字序 · 哨兵值 · Modbus RTU 仪表（RS-485/RS-232） · 串口 ASCII（称重仪表 / 气体分析仪 / 扫码枪）· 串口服务器 · 4–20 mA 经采集模块 · ESP32 传感节点 | **iaiops-sensor** | `IAIOPS_MCP=sensor` / `iaiops-mcp-sensor` |
+| IO-Link · IO-Link master · 智能传感器/executor 参数 · pdin · ISDU（主站 JSON/REST 接口，只读；接入并解码一个传感器、导入 IODD → **iaiops-sensor**） | **iaiops-factory**（楼宇传感器场景 **iaiops-building**） | `IAIOPS_MCP=factory` / 单协议 `IAIOPS_MCP=iolink` / `iaiops-mcp-iolink` |
 
-### OPC-UA (read-only) — opc.tcp endpoints
-- `opcua_server_info` — status, build info, namespace array
-- `opcua_browse` — browse node tree from a node id (bounded depth)
-- `opcua_read_node` — value + datatype + source timestamp + status code
-- `opcua_read_many` — batch read node ids (bounded)
-- `opcua_subscribe_sample` — bounded sampling, then returns (never loops)
-- `opcua_read_alarms` — best-effort active alarm/condition surfacing
-- `opcua_read_history` — Historical Access (HDA): raw history over a [start,end] window
-- `opcua_diagnose_connection` — classify *why* a connect fails (certificate / security
-  policy / auth / firewall / dns / port / config) with the exact fix, not a raw error
-- `health_summary` — classify node-ids vs warn/alarm thresholds
-- `anomaly_scan` — sample a node, flag statistical outliers
+- 单协议深用（只有一种设备）：直接 `IAIOPS_MCP=opcua`（或 modbus/s7/mc/fins/eip/mtconnect/
+  sparkplug/ethercat/secsgem/profinet/bacnet/hart），等价脚本 `iaiops-mcp-<协议>`。
+- 跨行业只问 OEE/停机根因/资产盘点/数据质量：任一 profile 均可 —— 跨协议脑
+  （诊断/OEE/资产/合规）**默认随 server 暴露**，选覆盖现场协议的 profile 即可；
+  纯脑场景可用 `IAIOPS_MCP=brain` / `iaiops-mcp-brain`（只暴露脑，零协议）。
+- 说不清行业但报了协议名：按协议列选含它的最小 profile；都不沾 → `iaiops doctor` +
+  `protocols_supported` 先看现场配置了什么。
 
-### Modbus-TCP (read-only here)
-- `modbus_read_holding` (FC03), `modbus_read_input` (FC04), `modbus_read_coils`
-  (FC01), `modbus_read_discrete` (FC02) — with decode hints
-- `modbus_health_summary` — classify registers vs thresholds
+## 部署（0.10.0 起：无默认，必须选菜单）
 
-### Siemens S7comm (pyS7; S7-300/400/1200/1500)
-- `s7_cpu_info` — CPU identity + run/stop
-- `s7_read_area` — read N items of a type from an S7 memory area
-- `s7_read_db` — read N items from a data block
-- `s7_read_many` — batch raw pyS7 address strings
-- `s7_write_db` — **[WRITE][HIGH][MOC]** write one value to a DB (off by default)
+- **裸启动 `iaiops-mcp`（不设 `IAIOPS_MCP`）不再暴露全部工具**：打印选择菜单到
+  stderr 并 exit 2。必须设 `IAIOPS_MCP=<selection>` 或用预置入口 `iaiops-mcp-<name>`。
+  `IAIOPS_MCP=menu` 显式打印同一菜单（带各 selection 工具数）后退出。
+- `IAIOPS_MCP=all` 仍可**显式**使用（power user；>100 工具时启动日志给洪泛警告）。
+- **多进程站点（1 脑 + N 协议）**：跑一个 `iaiops-mcp-brain`（只脑），协议 server 各自
+  加 `IAIOPS_MCP_NO_BRAIN=1`（如 `IAIOPS_MCP_NO_BRAIN=1 iaiops-mcp-opcua`）去掉脑，
+  避免跨 server 工具重名；`protocols_supported`（发现工具）在 NO_BRAIN 下仍然保留。
 
-### Mitsubishi MC (pymcprotocol 3E; Q/L/iQ)
-- `mc_cpu_status` — MELSEC CPU type/code
-- `mc_read_words` / `mc_read_bits` — batch word/bit devices from a head device
-- `mc_read_many` — random-read scattered word + dword in one request
-- `mc_write_words` — **[WRITE][HIGH][MOC]** write words (off by default)
+## Energy 协议 → 另一个包（不在本 server）
 
-### MTConnect (read-only; all CNC machine tools)
-- `mtconnect_probe` — device model (devices → components → data items)
-- `mtconnect_current` — latest value of every data item (machine snapshot)
-- `mtconnect_sample` — bounded stream of recent observations
-- `mtconnect_assets` — cutting tools / fixtures / programs
-- `mtconnect_oee_snapshot` — availability / execution / mode / program (OEE inputs)
+IEC 60870-5-104 / IEC-104、DNP3 / outstation、IEC 61850 / MMS / IED、变电站/
+substation、电力/能源/utility SCADA → 用独立的 **iaiops-energy**
+（`pip install iaiops-energy`，然后 `iaiops-energy-mcp`；
+github.com/industrial-aiops/industrial-aiops-energy）。它复用本包的 core + 脑；
+monitor-direction only。**不要**尝试用本 server 的 profile 覆盖能源协议。
 
-### MQTT / Sparkplug B / UNS (paho-mqtt; full Tahu protobuf decode)
-- `mqtt_read_topic` — plain MQTT bounded message collect
-- `sparkplug_decode_payload` — decode one raw Sparkplug B payload to metrics
-- `sparkplug_subscribe_sample` — bounded sample w/ full decode + birth/death/seq
-- `sparkplug_node_list` — edge nodes/devices + online state + primary-host STATE
-- `uns_browse` — browse the live topic tree (UNS) under a filter (bounded)
-- `mqtt_publish` — **[WRITE][HIGH][MOC]** publish/command to a topic (off by default)
+## 安全不变量（所有 edition 一致，路由前先记住）
 
-### Allen-Bradley EtherNet/IP (pycomm3; ControlLogix/CompactLogix)
-- `eip_controller_info` — controller identity (proves the CIP link)
-- `eip_list_tags` — discover controller tag list (names/types/structures)
-- `eip_read_tag` — read one tag (or array element) with its type
-- `eip_read_many` — batch read (auto multi-packet)
-- `eip_write_tag` — **[WRITE][HIGH][MOC]** write one tag value (off by default)
+- **Read-first**：默认只读；先 `protocols_supported` 看能力、`iaiops doctor`
+  验链路，再谈读，最后才谈写。
+- **写 = MOC（Management-of-Change）**：The 10 write tools（`s7_write_db`、
+  `mc_write_words`、`fins_write_words`、`mqtt_publish`、`eip_write_tag`、`ethercat_write_sdo`、
+  `ethercat_set_state`、`profinet_dcp_set`、`bacnet_write_property`、`bas_command`）全部
+  `risk=HIGH`、默认 `dry_run=True`、捕获改前值供 undo（`bas_command` 另对生命安全点一律拒绝）。
+  这 10 个是**设备**写。写历史库/时序库那类不改变现场状态的写另计，
+  由 edition skill 逐个列明 —— 别把「10」当成全部写面。
+- **审批**：真实写入需具名审批人 —— CLI `iaiops approve` 双重确认后才放行。
+- **SIS 禁写**：端点标 `safety: sis` 后，所有设备写连 dry-run 预览都拒绝；审批不能覆盖此边界。
+- **未经授权绝不写生产控制系统**；AI 结论仅 advisory，引用真实信号出处，宁可
+  `insufficient_evidence` 不臆测。
+- 各协议的验证状态（✅ 已自测 / 待核实）见 edition skill 的支持版本矩阵，
+  标 `待核实` 的不得当既成事实。
 
-### EtherCAT (pysoem/SOEM; **Linux + root/CAP_NET_RAW + dedicated NIC + real slaves**)
-Optional extra `pip install iaiops[ethercat]`; **no software simulator** (hardware-only,
-macOS unsupported). Tools degrade to a teaching error if pysoem/permission/NIC/bus is missing.
-- `ethercat_master_state` — master/working-counter state + expected vs found slave count
-- `ethercat_slaves` — bus scan: enumerate slaves (id/vendor/product/rev/addr/AL-state)
-- `ethercat_slave_info` — one slave: SM/FMMU config + object-dictionary summary
-- `ethercat_read_sdo` — CoE SDO upload (acyclic mailbox read of an OD entry)
-- `ethercat_read_pdo` — one cyclic snapshot of a slave's input process-data image
-- `ethercat_write_sdo` — **[WRITE][HIGH][MOC]** CoE SDO download (off by default)
-- `ethercat_set_state` — **[WRITE][HIGH][MOC]** AL-state transition (can START/STOP motion; off by default)
+## 先回答「这个站能干什么」，再谈干（0.24.0）
 
-### SECS/GEM (read-only; semiconductor / display fab equipment ↔ host over HSMS)
-Optional extra `pip install iaiops[secsgem]` (or the `iaiops[fab]` bundle). We are the
-HOST (HSMS ACTIVE). SECS/GEM (SEMI E5 SECS-II · E30 GEM · E37 HSMS) is the fab equipment
-↔ MES standard — the entry ticket for panel/semiconductor fabs.
-- `secsgem_equipment_status` — establish the GEM link + Are-You-There (S1F1/F2)
-- `secsgem_list_status_variables` — SVID namelist (S1F11/F12)
-- `secsgem_read_status_variables` — SVID values (S1F3/F4)
-- `secsgem_list_equipment_constants` — ECID namelist (S2F29/F30)
-- `secsgem_read_equipment_constants` — ECID values (S2F13/F14)
-- `secsgem_list_alarms` — alarm list (S5F5/F6): ALID, ALCD, text
-- `secsgem_list_process_programs` — PPID directory (S7F19/F20)
+路由到 edition **之前**，这两条不分行业、任何现场都先跑，而且**零联网**：
 
-> **Fab routing (semiconductor / display, e.g. panel TFT-LCD/OLED).** A fab equipment
-> is two layers: its **internal control** (PLC over S7 / OPC-UA / Modbus) and its
-> **MES-facing** SECS/GEM (HSMS) interface — different jobs, don't conflate. Use
-> `IAIOPS_MCP=fab` (secsgem + opcua + s7 + modbus). Read-first: `secsgem_equipment_status`
-> to confirm the link, then SVID/ECID/alarms; the PLC layer via the S7/OPC-UA tools.
+- **先分路线**：`iaiops onboard status` 从 `config.yaml` 推导这个站在哪条路上 ——
+  **设备直读**（还没有 UNS，或正在建）或 **已在 UNS broker 上**（接入 → 命名空间体检 →
+  选点 → 语义 → 采集 → 提问，**不扫描**：扫描永远识别不出 MQTT）。UNS 路线再按**已存的**
+  `uns-live-audit` 结论分 **B1**（干净）与 **B2**（治理本身就是工作）；没有体检记录时它说
+  「B1/B2 未知」，**agent 不许替它判断**。什么都没配或两种端点都有时，它给出两个选项且一个都
+  不选 —— 把两个都转述给用户，不要替用户挑。
+- 设备路线（`--track devices`）——「这个站走到六步里的哪一步、**下一条命令是什么**」。
+  六步（勘察 → 端点入 config → 每个端点的点表 → 点表**语义** → 采集 → 提问）一直都在，
+  但从来没有东西说过顺序。每次都从本地库和 `config.yaml` 现推，**没有状态文件会过期**：
+  手改过 config.yaml、恢复过备份，答案照样是真的。给人**一条**命令，给五条等于没给。
+- `iaiops onboard draft` —— 把已存的 scan 变成 `config.yaml` 端点草稿，**不写 config.yaml**
+  （和 `tags apply` 一样，人来合并）。只有**已确认**的协议才成为端点：端口开着只说明有人在听，
+  不等于它说这个协议。每个值都写明扫描观测到了什么（S7 实际应答的 slot、MELSEC 自报的
+  `plctype`、OPC-UA 是否有无加密端点/是否要凭据）；**扫描定不下来的字段以注释形式输出**并说明
+  在等什么 —— 不是省略，省略等于让协议默认值悄悄生效（Modbus 网关按 unit 1 读，读的是另一台机器）。
+  `tags:` 恒为空。**草稿里 `value: null` 的字段，agent 不许代填，也不许删掉它的 `caution`。**
+- `iaiops readiness` ——「这个站点今天能跑哪些场景、每个缺口还差什么」，
+  按「补上它能解锁多少」排序。它**只报告，绝不代填**。
+- `iaiops investigate plan` ——「真出事时能走到那八步里的第几步」。缺口分两种，别混：
+  **你还没供**（会直接给出该跑的命令）与 **产品供不了**（标 `not_yet_expressible`）。
+  这两个把人送去完全不同的地方。
 
-### PROFINET (read-only DCP discovery; pnio-dcp, layer-2 raw socket)
-Optional extra `pip install iaiops[profinet]` (or the `iaiops[factory]` bundle). Needs
-raw-socket access (root/admin/CAP_NET_RAW) on the NIC on the PROFINET subnet; `host` is
-THIS machine's IP on that subnet. **Discovery + identify only** — no RT cyclic data, no
-disruptive DCP Set (set-name/ip/blink/reset).
-- `profinet_discover` — DCP IdentifyAll: every station on the segment (name/MAC/IP/role)
-- `profinet_identify_station` — identify one station by its name-of-station
-- `profinet_station_params` — targeted DCP Get by MAC (name + IP suite)
-- `profinet_asset_inventory` — register with IO-controller vs IO-device role decoding
+对一个**已经过去的**窗口逐步走完并留档：`iaiops investigate open|show|list`。
+不碰设备 —— 窗口已经过去，证据就是当时采到的。三条都能 `--report x.html`
+出可转发的自包含文件。
 
-### Energy edition (read-only; electrical substation / utility telecontrol)
-Optional bundle `pip install iaiops[energy]` and `IAIOPS_MCP=energy`. **Monitor direction
-only** — no control commands. **⚠️ Preview / 待核实**: library bindings are mock-tested,
-not verified against live RTUs/IEDs (`iec61850` needs libiec61850 built).
-- **IEC 60870-5-104** (`iaiops[iec104]`): `iec104_connection_info` (link + ASDU CAs),
-  `iec104_interrogate` (general interrogation), `iec104_read_point` (one point by IOA)
-- **DNP3** (`iaiops[dnp3]`): `dnp3_link_status`, `dnp3_integrity_poll` (Class 0/1/2/3 →
-  outstation database grouped by binary/analog/counter)
-- **IEC 61850 MMS** (`iaiops[iec61850]`): `iec61850_device_directory` (model map),
-  `iec61850_browse` (LD/LN/DO children), `iec61850_read` (object-ref + functional constraint)
+两步需要**人先声明**，agent 不许代答：
 
-### Building edition (read-only; facility / HVAC / 厂务 — BACnet/IP)
-Optional bundle `pip install iaiops[building]` and `IAIOPS_MCP=building`. `host` is THIS
-machine's BACnet/IP interface (`ip` or `ip/mask`). **Read-only** — no building-control
-writes. **⚠️ Preview / 待核实**: BAC0 binding not verified against live gear.
-- `bacnet_discover` — Who-Is: devices on the local BACnet/IP network
-- `bacnet_object_list` — a device's object/point list
-- `bacnet_read_property` — one object property (default presentValue)
-- `bacnet_read_points` — presentValue of all analog/binary/multistate points (HVAC snapshot)
+- `iaiops relations declare` —— 产线上下游。D25：线上下游共现是必然，
+  从时间推不出因果，所以只能声明。
+- `iaiops knowledge mount` —— ISO 14224 故障机理库，**可排除、绝不确认**；
+  库里没有这条原因返回 `nothing_known`，**那不是「无异议」**。
 
-## Cross-protocol intelligence
+**点表语义（`role:`）只能人给** —— 哪个位号是产量计数器是工艺知识，猜错会得出一个
+看着合理的 OEE，比报错更糟（D16）。输入口是 `iaiops tags export|apply|page`：
+导出的 `role` 列是**空的**，哪怕紧挨着一个叫 `GoodPartsCounter` 的位号。
+**这一层故意没有 MCP 工具 —— 让 agent 填 role 列正是 D16 禁止的那个猜测。**
+遇到它，把表交给现场的人，不要自己填。
 
-### Diagnostics — `skills` umbrella: troubleshooting
-- `diagnose_dataflow` — localize a "no data" break across an endpoint's reachable hops
-- `downtime_root_cause` — **AI downtime root-cause copilot (flagship)**: correlate alarms /
-  tags / dataflow / machine-state around an incident window into an evidence-cited,
-  **advisory** verdict (read-only; cites only real signals; `insufficient_evidence` over
-  guessing). `downtime_root_cause_live` gathers the evidence itself from an endpoint.
-- `historian_health` — bad-tag / flatline / gap detection over a series
-- `alarm_bad_actors` — ISA-18.2 alarm-flood analysis (rate vs <6/12/30, Pareto
-  offenders, chattering, standing) over an event list
-- `tag_health` — rank tag offenders by bad-quality / flatline / range / anomaly
-- `subscription_health` — sequenced-feed loss/reorder/overload (OPC-UA monitored items
-  or Sparkplug B): sequence gaps, republish-rejection rate, overloaded channels
-- `data_quality_scorecard` — fleet data-TRUST rollup: scores each tag 0-100 on staleness /
-  dead heartbeat / bad-quality / flatline / gaps / anomaly, per endpoint + fleet
-- `heartbeat_health` — first-class heartbeat/watchdog liveness (flatline = dead upstream)
-- `uns_topic_audit` — UNS naming conformance + topic-sprawl governance (casing collisions,
-  scattered leaves, depth outliers, duplicates → clean/minor/sprawling)
-- `uns_schema_drift` — Sparkplug schema drift baseline-vs-current → none/additive/breaking
+UNS 选点可用 `iaiops mqtt point-draft --endpoint <name>`（对应 MCP 入口见
+edition skill）从有界 Sparkplug BIRTH 捕获生成**未确认**点位草稿；
+`role`、`label` 留空，由现场人员确认，命令不写配置。短时捕获不代表点位全集。
 
-### Analytics
-- `oee_compute` — OEE = Availability × Performance × Quality
-- `downtime_events` — detect running→stopped transitions, categorize stoppages
-- `oee_multidim` — aggregate OEE across machine × part × shift
-- `asset_inventory` — actively fingerprint endpoints (vendor/model/firmware/protocol)
-  into an asset register (active discovery, **not** passive SPAN/tap)
-- `monitor_changes` — capture only the value CHANGES of a point over a bounded window
+CLI 与 MCP 是否都有入口以对应 edition skill 的工具表为准；本 skill 只负责路由。
 
-### 信创 / China entry + compliance
-- `compliance_mapping` — 《工控系统网络安全防护指南》 ↔ iaiops governance self-assessment
-  (分区隔离 / 可审计 / 双向认证 / 最小权限 / 数据保护 / 自主可控) with honest status + gaps
-- `historian_push` — write collected telemetry to a domestic TSDB (TDengine / IoTDB);
-  data egress to the operator's own historian, not a control write. See docs/CHINA.md
-  for air-gapped install + 国产 OS/芯/PLC validation matrix (待核实).
+## Setup（各 edition 相同）
 
-### Meta / roadmap
-- `protocols_supported` — capability map (protocols, status, tools, connection params)
-- Roadmap: EtherCAT EoE/FoE/SoE mailbox protocols; EtherNet/IP PLC-5 / SLC (PCCC),
-  Micro800; passive asset discovery; OPC-UA certificate security.
-
-## Setup
-`iaiops init` (interactive wizard, per-protocol prompts) writes
-`~/.iaiops/config.yaml`; credentials go to the encrypted store
-(`~/.iaiops/secrets.enc`, master password via `IAIOPS_MASTER_PASSWORD`). Run
-`iaiops doctor` to probe each configured endpoint. Full per-protocol reference,
-connection params, simulator-test guide, and MCP JSON examples are in the README.
-
-## Safety
-Read-first. The 6 write tools (`s7_write_db`, `mc_write_words`, `mqtt_publish`,
-`eip_write_tag`, `ethercat_write_sdo`, `ethercat_set_state`) default to `dry_run=True`,
-require a CLI double-confirm, and record an undo descriptor from the captured
-before-value/state. EtherCAT state changes can START or STOP machine motion. Do not
-point this at production control systems without authorization. No tool returns secrets.
+`iaiops init` 交互写 `~/.iaiops/config.yaml`；凭据进加密存储
+（`~/.iaiops/secrets.enc`，主密码 `IAIOPS_MASTER_PASSWORD`）。`iaiops doctor`
+逐端点探活。协议参数、模拟器自测、MCP JSON 示例见 README 与各 edition skill。

@@ -1,46 +1,61 @@
-## Description: <br>
-Captures learnings, errors, and corrections so agents can record reusable project knowledge, command failures, missing capabilities, and workflow improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, corrections, feature requests, and recurring practices so coding agents can maintain project-local improvement logs for later review.
 
-## Publisher: <br>
-[mn4223222-afk](https://clawhub.ai/user/mn4223222-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mn4223222-afk](https://clawhub.ai/user/mn4223222-afk)
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain structured learning, error, and feature-request logs that can improve future agent behavior across projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead agents to persist broad conversation, error, and workflow learnings into future-injected memory files. <br>
-Mitigation: Install only when persistent agent memory is desired, keep entries scoped to useful project knowledge, and avoid raw transcripts or private user data. <br>
-Risk: Learning logs or promoted memory files may capture secrets, credentials, environment variables, or unredacted command output. <br>
-Mitigation: Require redaction before logging and do not store secrets, credentials, private user data, raw transcripts, or unredacted command output. <br>
-Risk: Optional hook scripts can add automatic reminders or inspect command output for error patterns. <br>
-Mitigation: Keep hook use opt-in and review hook scripts before enabling them in a workspace. <br>
+## Use Case:
 
+Developers and coding-agent users use this skill to record command failures, user corrections, missing capabilities, knowledge gaps, and better recurring approaches in markdown logs. Teams can review those logs and promote broadly useful guidance into agent context files with human approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mn4223222-afk/be-strong) <br>
-- [OpenClaw integration](references/openclaw-integration.md) <br>
-- [Hooks setup](references/hooks-setup.md) <br>
-- [Logging examples](references/examples.md) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured log templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or updates local learning, error, and feature-request logs when the agent follows the skill workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Routine conversation or tool failures may be converted into persistent agent guidance that changes future behavior too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep logs project-local by default and require explicit human approval before promoting entries into automatically loaded context files.
+
+Risk: Optional command-output error detection can inspect sensitive shell output.
+
+Mitigation: Use the activator-only hook by default, enable command-output detection only when needed, and avoid logging raw outputs, secrets, tokens, environment variables, or full transcripts.
+
+Risk: Cross-session sharing can expose more context than intended.
+
+Mitigation: Use cross-session communication only in trusted environments and share short sanitized summaries instead of raw transcripts or secret-bearing content.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/mn4223222-afk/skills/be-strong)
+- [Entry Examples](artifact/references/examples.md)
+- [Hook Setup Guide](artifact/references/hooks-setup.md)
+- [OpenClaw Integration](artifact/references/openclaw-integration.md)
+- [Agent Skills Specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell snippets and optional hook or configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update project-local .learnings markdown logs and may provide opt-in hook reminders when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,51 +1,68 @@
-## Description: <br>
-面向零技术用户，把网站 / 小程序 demo 需求拆成产品需求、设计需求、技术需求三份文档，并配合 GitHub 与 Vercel / 微信小程序开发工具直接上线部署。 <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+面向零技术用户，把网站 / 小程序 demo 需求拆成产品需求、设计需求、技术需求三份文档，并配合 GitHub 与 Vercel / 微信小程序开发工具 直接上线部署
 
-## Publisher: <br>
-[jhc888007](https://clawhub.ai/user/jhc888007) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhc888007](https://clawhub.ai/user/jhc888007)
 
-## Use Case: <br>
-Non-technical users use this skill to turn a demo website or WeChat mini program idea into product, design, and technical requirement documents for a coding agent. It also guides local runs, GitHub upload, Vercel deployment, and WeChat Developer Tools preview or test release in small step-by-step interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expose .env files, database URLs, API keys, tokens, passwords, private keys, or unredacted screenshots while following setup and deployment steps. <br>
-Mitigation: Keep secrets out of chat and GitHub, enter them only in official Vercel, WeChat, Cursor, or local configuration screens, and rotate anything accidentally exposed. <br>
-Risk: The skill is intended for demo planning and deployment guidance, so its outputs may not meet production reliability, security, or compliance expectations. <br>
-Mitigation: Use the generated documents and setup steps for demos and idea validation, then perform separate production review before relying on the resulting application. <br>
+## Use Case:
 
+Non-technical users and agents use this skill to plan a website or WeChat mini-program demo, produce product/design/technical requirement documents, and receive step-by-step guidance for local runs, GitHub upload, Vercel deployment, or WeChat developer-tool preview.
 
-## Reference(s): <br>
-- [Cursor 与编辑器准备](reference/cursor-and-editor-setup.md) <br>
-- [Frontend Design](reference/frontend-design.md) <br>
-- [GitHub 入门引导](reference/github-onboarding.md) <br>
-- [本地环境排错](reference/local-env-troubleshooting.md) <br>
-- [非技术用户沟通风格](reference/non-tech-communication-style.md) <br>
-- [Vercel 部署引导](reference/vercel-onboarding.md) <br>
-- [微信小程序真机预览与上线体验指南](reference/wechat-miniprogram-onboarding.md) <br>
-- [微信开发者工具与小程序注册指南](reference/wechat-miniprogram-setup.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jhc888007/demo-website-pm) <br>
-- [GitHub Docs](https://docs.github.com/) <br>
-- [Vercel Docs](https://vercel.com/docs) <br>
-- [WeChat Developer Tools Download](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration instructions, Shell commands] <br>
-**Output Format:** [Markdown guidance and requirement documents with occasional inline commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; the skill tells the agent not to output business code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: server release evidence) <br>
+Risk: Generated requirements may permit plaintext password handling in demo authentication flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require generated requirements to forbid plaintext password storage and use appropriate password hashing even for demos.
+
+Risk: Beginner users may run package installation or deployment steps without reviewing dependencies or build behavior.
+
+Mitigation: Review dependencies before npm or pip installation and pause on unfamiliar install scripts, permission prompts, or deployment errors.
+
+Risk: Users may accidentally publish secrets, passwords, AppIDs, environment IDs, or private project details during GitHub, Vercel, or WeChat upload.
+
+Mitigation: Confirm what will become public before upload, keep secrets in local or platform environment variables, and avoid sharing real passwords or unnecessary account identifiers in chat or repositories.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/jhc888007/skills/demo-website-pm)
+- [Cursor and editor setup](artifact/reference/cursor-and-editor-setup.md)
+- [Frontend design](artifact/reference/frontend-design.md)
+- [GitHub onboarding](artifact/reference/github-onboarding.md)
+- [Local environment troubleshooting](artifact/reference/local-env-troubleshooting.md)
+- [Non-technical user communication style](artifact/reference/non-tech-communication-style.md)
+- [Vercel onboarding](artifact/reference/vercel-onboarding.md)
+- [WeChat mini-program onboarding](artifact/reference/wechat-miniprogram-onboarding.md)
+- [WeChat mini-program setup](artifact/reference/wechat-miniprogram-setup.md)
+- [GitHub Docs](https://docs.github.com/)
+- [Vercel Docs](https://vercel.com/docs)
+- [WeChat Developer Tools](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands, configuration]
+
+**Output Format:** [Markdown prose with step-by-step instructions, requirements documents, and occasional inline shell command or configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not directly produce business application code; focuses on planning documents and beginner-friendly execution guidance.]
+
+## Skill Version(s):
+
+1.0.15 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

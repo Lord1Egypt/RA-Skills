@@ -1,50 +1,69 @@
-## Description: <br>
-旅行盲盒 helps users set travel constraints, randomly selects an eligible surprise destination, and prepares a flight, hotel, and attraction plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+旅行盲盒 helps an agent collect travel constraints, build a compliant destination pool, randomly reveal a surprise destination, and produce a trip plan with flight, hotel, and POI options.
 
-## Publisher: <br>
-[hello-ahang](https://clawhub.ai/user/hello-ahang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hello-ahang](https://clawhub.ai/user/hello-ahang)
 
-## Use Case: <br>
-Travelers use this skill to reduce destination choice friction by setting budget, flight-time, schedule, and exclusion constraints, then receiving a surprise destination with a practical itinerary. Agents use it to collect travel preferences, search FlyAI travel data, and present a concise blind-box travel plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose setup commands that install or upgrade the FlyAI CLI globally. <br>
-Mitigation: Review setup commands before execution and prefer a pinned, user-local FlyAI CLI installation. <br>
-Risk: The artifact includes command examples that disable TLS verification. <br>
-Mitigation: Do not run commands with TLS verification disabled unless the user has explicitly reviewed and accepted the risk. <br>
-Risk: Travel profile details may persist in Memory or in ~/.flyai/user-profile.md. <br>
-Mitigation: Save travel preferences only after user confirmation and only when the user is comfortable with persistent storage. <br>
+## Use Case:
 
+External users use this skill to plan surprise trips by setting limits such as budget, travel dates, flight duration, and excluded destinations. The agent searches travel options, randomly selects a destination that fits the constraints, and presents a concise itinerary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hello-ahang/flyai-travel-blindbox) <br>
-- [Workflow](artifact/reference/workflow.md) <br>
-- [Tools](artifact/reference/tools.md) <br>
-- [User profile storage](artifact/reference/user-profile-storage.md) <br>
-- [Random algorithm](artifact/reference/algorithm.md) <br>
-- [Flight search](artifact/reference/search-flight.md) <br>
-- [Hotel search](artifact/reference/search-hotel.md) <br>
-- [POI search](artifact/reference/search-poi.md) <br>
-- [Examples](artifact/reference/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured travel-plan details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include travel profile reads or updates when the user confirms persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill instructs agents to install or run latest-version Node packages and may suggest sudo for installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the FlyAI CLI package identity, version, and integrity before installation; avoid sudo unless the operator has reviewed the command and environment.
+
+Risk: The workflow includes commands with NODE_TLS_REJECT_UNAUTHORIZED=0, which disables TLS certificate verification.
+
+Mitigation: Do not run commands with TLS verification disabled; resolve certificate issues or use a trusted network and package source instead.
+
+Risk: The skill can persist travel preferences, household details, and visited cities through memory tools or a local profile file.
+
+Mitigation: Enable profile storage only after user consent, limit saved data to necessary preferences, and provide a clear way to inspect and delete stored data.
+
+Risk: Travel prices and availability can change after search results are shown.
+
+Mitigation: Treat prices as current estimates and ask the user to verify booking details before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hello-ahang/skills/flyai-travel-blindbox)
+- [FlyAI tool overview](reference/tools.md)
+- [Travel blind-box workflow](reference/workflow.md)
+- [Weighted random destination algorithm](reference/algorithm.md)
+- [Flight search reference](reference/search-flight.md)
+- [Hotel search reference](reference/search-hotel.md)
+- [POI search reference](reference/search-poi.md)
+- [User profile storage](reference/user-profile-storage.md)
+- [Example dialogues](reference/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured travel-plan summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current travel search results, user-confirmed profile data, and randomized destination selection; prices require user review before booking.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

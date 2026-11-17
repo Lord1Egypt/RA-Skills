@@ -1,40 +1,52 @@
-## Description: <br>
-A privacy-first, local-first provenance protocol for agent workflows that emits structured audit records for important decisions, tool calls, state changes, and errors so the host environment can store, verify, and review them safely. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A privacy-first, local-first provenance protocol for agent workflows that emits structured audit records for important decisions, tool calls, state changes, and errors.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[agistack](https://clawhub.ai/user/agistack)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to emit privacy-safe structured audit records for important workflow events, debugging traces, source-aware decision summaries, and approval signals.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Audit records may expose secrets, private data, or hidden reasoning if agents include raw sensitive content.
+
+Mitigation: Emit minimal factual summaries, redact secrets as [SECRET_REDACTED], avoid hidden chain-of-thought, and log sensitive personal data only by category unless explicitly required and authorized.
+
+Risk: Users may assume the skill enforces persistence, retention, encryption, immutability, or approval blocking.
+
+Mitigation: Configure those controls in the host environment; this skill only formats records and emits approval signals.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to emit concise, redacted provenance records for important workflow events, including decisions, tool executions, state changes, failures, and approval signals. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [JSON, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Log records may still reveal sensitive workflow context if stored without appropriate controls. <br>
-Mitigation: Use host-side retention, access control, and redaction policies that match the sensitivity of the workflows being logged. <br>
-Risk: The skill emits approval signals but does not enforce blocking, persistence, encryption, or immutability. <br>
-Mitigation: Rely on the host environment to implement approval gates and storage guarantees before using the records for audit or compliance workflows. <br>
+**Output Format:** [Markdown fenced json block prefixed by [LOG_ENTRY]]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AGIstack/log) <br>
+**Other Properties Related to Output:** [Records should be concise, redacted, source-aware, and limited to important workflow events.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown with a fenced JSON log record prefixed by [LOG_ENTRY]] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Records are expected to be minimal, factual, privacy-safe, and redacted before host storage.] <br>
+1.1.1 (source: skill.json and server release evidence)
 
-## Skill Version(s): <br>
-1.1.1 (source: release evidence and skill.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

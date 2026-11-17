@@ -1,40 +1,58 @@
-## Description: <br>
-E2E automation engineer skill for route smoke checks, HTTP reachability, and lightweight UI confidence validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+E2E automation engineer skill for route smoke checks, HTTP reachability, and lightweight UI confidence validation.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiweline](https://clawhub.ai/user/aiweline)
 
-## Use Case: <br>
-Developers and engineers use this skill to quickly check whether changed routes, pages, or API surfaces still load, route correctly, and avoid obvious 404, 405, authentication, or render failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Route refresh commands and HTTP or browser probes can affect inappropriate environments if run without scope. <br>
-Mitigation: Use the skill in development or test environments and provide a specific route, page, or API target before invoking checks. <br>
-Risk: A reachable page or route smoke pass can be mistaken for full business-logic coverage. <br>
-Mitigation: Treat smoke validation as lightweight confidence only and follow up with deeper acceptance or end-to-end testing when behavior needs proof. <br>
+## Use Case:
 
+Developers and engineers use this skill to quickly check whether changed Weline routes, pages, or API surfaces still load, render, and route correctly before deeper acceptance testing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiweline/e2e-route-ui-smoke) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with concise validation results and inline commands or browser paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports the target route or UI surface, command or smoke path used, observed pass or failure result, and any follow-up required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may run focused route or browser smoke checks and may refresh route registration when routes changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only in the intended Weline project context, and review the command or browser path before execution.
+
+Risk: A passing smoke check does not prove deeper business logic or full end-to-end behavior is correct.
+
+Mitigation: Treat the result as reachability and basic rendering confidence, then run deeper acceptance validation for critical flows.
+
+Risk: Referenced shared Weline guidance may affect how the skill should be applied.
+
+Mitigation: Review the referenced shared project documents when they exist in the target repository.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiweline/skills/e2e-route-ui-smoke)
+- [Publisher profile](https://clawhub.ai/user/aiweline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with route paths, commands, observed results, and pass/failure/follow-up status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include focused HTTP request commands or minimal browser-smoke paths for the affected route or UI surface.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

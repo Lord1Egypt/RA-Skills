@@ -1,38 +1,49 @@
-## Description: <br>
-Configure OpenClaw tool policies, exec security, and per-agent tool restrictions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure OpenClaw tool policies, exec security, and per-agent tool restrictions.
 
-## Publisher: <br>
-[kjvarga](https://clawhub.ai/user/kjvarga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kjvarga](https://clawhub.ai/user/kjvarga)
 
-## Use Case: <br>
-Developers and operators use this skill to configure OpenClaw tool access, exec security, and per-agent or provider-specific restrictions for least-privilege agent setups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent propose persistent OpenClaw tool-policy changes, including broad exec permissions. <br>
-Mitigation: Review gateway config patches or openclaw.json edits before applying them, prefer scoped per-agent or provider-specific policies, and reserve full exec with approvals off for highly trusted agents. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure OpenClaw tool policies, per-agent restrictions, provider-specific rules, plugin tool access, and exec security settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kjvarga/configure-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with JSON and JSON5 configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no code execution is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Proposed tool policy changes may grant broader agent capabilities than intended, especially full gateway exec access or disabled approvals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated config changes before applying them, prefer least-privilege profiles for non-main agents, and keep approvals enabled for sensitive exec access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kjvarga/skills/configure-tools)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Code, Shell commands]
+
+**Output Format:** [Markdown with JSON and JSON5 configuration snippets, command examples, and checklist items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed OpenClaw config patches and least-privilege review checklist items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

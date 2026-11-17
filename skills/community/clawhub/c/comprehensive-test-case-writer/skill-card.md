@@ -1,40 +1,54 @@
-## Description: <br>
-基于需求文档或现有测试用例，帮助设计、评审和优化覆盖功能、性能、安全、易用性、兼容性和异常场景的测试用例。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language assistant workflow for designing, reviewing, and improving comprehensive test cases from PRDs, user stories, API documentation, or existing test cases.
 
-## Publisher: <br>
-[flonerze](https://clawhub.ai/user/flonerze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flonerze](https://clawhub.ai/user/flonerze)
 
-## Use Case: <br>
-QA engineers, developers, and product teams use this skill to turn PRDs, API specs, user stories, or existing test suites into structured Markdown test cases and to identify missing coverage across functional, security, performance, usability, compatibility, exception, and game-specific scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or revised test cases may omit requirements or misstate expected behavior when the supplied PRD, API description, or existing cases are incomplete. <br>
-Mitigation: Review generated cases against authoritative requirements and project acceptance criteria before relying on them. <br>
-Risk: The skill may activate on broad testing language and use provided data as test-design input. <br>
-Mitigation: Confirm intent when testing is mentioned casually, and avoid providing sensitive production data unless it is intended for test design. <br>
+## Use Case:
 
+Developers, QA engineers, and product teams use this skill to turn requirements or existing test cases into structured test case documentation covering functional, performance, security, usability, compatibility, UI, game-specific, and exception scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flonerze/comprehensive-test-case-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown tables and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include test IDs, scenarios, preconditions, steps, expected results, priorities, and test dimensions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Broad trigger terms may activate the skill during general testing discussions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants test-case drafting or review before applying the full workflow when intent is ambiguous.
+
+Risk: The skill is optimized for Chinese-language output, so users needing another language may receive unsuitable default wording.
+
+Mitigation: Ask for or honor an explicit output language when the user, project, or review process requires one.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flonerze/skills/comprehensive-test-case-writer)
+- [Publisher profile](https://clawhub.ai/user/flonerze)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown tables and concise prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs typically include test IDs, scenarios, preconditions, steps, expected results, priorities, and test dimensions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

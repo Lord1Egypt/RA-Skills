@@ -1,48 +1,58 @@
-## Description: <br>
-Captures images from authorized Dahua IoT devices, saves them locally, and sends them to Dahua Cloud AI for image analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures images from Dahua Cloud-connected IoT devices, saves the snapshot locally, and sends the image to Dahua Cloud image analysis for prompts about people, vehicles, objects, safety equipment, smoke, fire, falls, intrusion, and other monitored-scene conditions.
 
-## Publisher: <br>
-[doynkdeveloper](https://clawhub.ai/user/doynkdeveloper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[doynkdeveloper](https://clawhub.ai/user/doynkdeveloper)
 
-## Use Case: <br>
-Developers and operations teams use this skill to capture images from authorized Dahua cameras and ask Dahua Cloud AI to detect people, vehicles, objects, PPE, smoke, fire, falls, or intrusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unauthorized or inappropriate camera capture can expose surveillance images. <br>
-Mitigation: Use the skill only with Dahua devices you are authorized to access and only for approved monitoring or analysis workflows. <br>
-Risk: Dahua Cloud Product ID, Access Key, and Secret Key are sensitive credentials. <br>
-Mitigation: Store credentials in environment variables, use least-privilege Dahua credentials, rotate them regularly, and do not print or share AK/SK values. <br>
-Risk: Captured camera images are saved locally and sent to Dahua Cloud for analysis. <br>
-Mitigation: Confirm the data-sharing posture is acceptable for the deployment and regularly delete unneeded files from captured_images. <br>
-Risk: Troubleshooting commands may echo sensitive environment values in shared or logged terminals. <br>
-Mitigation: Avoid echo-based credential checks on shared systems or terminals with retained logs. <br>
+## Use Case:
 
+Developers, operators, and safety teams use this skill to capture authorized Dahua device camera snapshots and ask Dahua Cloud to analyze the image for operational, inspection, security, and safety-monitoring questions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/doynkdeveloper/dahua-cloud-open-device-image-analysis) <br>
-- [Dahua Cloud Developer Platform](https://open.cloud-dahua.com/) <br>
-- [README.md](artifact/README.md) <br>
-- [FAQ.md](artifact/FAQ.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, JSON-like analysis results, and local image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Dahua Cloud Product ID, Access Key, Secret Key, device serial number, prompt, and optional channel number.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release evidence) <br>
+Risk: The skill handles surveillance images and Dahua Cloud credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for cameras and scenes you are authorized to capture and send to Dahua Cloud, use least-privilege credentials, avoid exposing DAHUA_CLOUD_SK in logs or screenshots, and rotate keys if exposure is suspected.
+
+Risk: Captured images are saved locally and may contain sensitive visual information.
+
+Mitigation: Run the skill from a restricted working directory or dedicated account, treat captured_images as sensitive, and add retention controls appropriate to the deployment.
+
+Risk: The security verdict is suspicious due to under-scoped safety controls around credentials, image handling, logging, and downloaded URLs.
+
+Mitigation: Review before installing, validate device IDs, restrict downloaded URLs where possible, reduce logging of sensitive request data, and pin dependencies.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/doynkdeveloper/skills/dahua-cloud-open-device-image-analysis)
+- [Dahua Cloud Open Platform](https://open.cloud-dahua.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python examples, local image paths, and JSON-like analysis results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Dahua Cloud Product ID, Access Key, and Secret Key environment variables; captures images into captured_images and returns the Dahua Cloud analysis result.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

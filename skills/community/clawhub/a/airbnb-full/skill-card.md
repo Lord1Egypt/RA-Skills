@@ -1,47 +1,59 @@
-## Description: <br>
-Complete Airbnb stay data toolkit via StayingAPI.com for id, URL, and address lookup, sub-resource retrieval, listing search, async batch jobs, job polling, webhook management, account usage, and hosted MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Airbnb toolkit — search, availability, listing detail, price, cross-OTA price comparison and reviews, all in one unified schema.
 
-## Publisher: <br>
-[nikhonit](https://clawhub.ai/user/nikhonit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stayingapi](https://clawhub.ai/user/stayingapi)
 
-## Use Case: <br>
-Developers and agents use this skill when a user explicitly requests Airbnb listing data, listing search, reviews, availability, pricing, host details, account usage, or bulk stay-data workflows through StayingAPI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calls may consume StayingAPI credits. <br>
-Mitigation: Use the skill only for explicit Airbnb stay-data requests, confirm ambiguous intent before calling tools, and set search or batch limits that match the user's need. <br>
-Risk: Listing URLs, addresses, search criteria, and account requests are sent to StayingAPI. <br>
-Mitigation: Review the requested data before use and avoid sending information the user has not asked to look up. <br>
-Risk: Webhook subscriptions can cause future job or cache events to be delivered to a provided URL. <br>
-Mitigation: Create webhooks only for trusted destination URLs and review webhook events before enabling them. <br>
+## Use Case:
 
+Developers and external agents use this skill to retrieve Airbnb and related lodging data through StayingAPI, including search results, availability, listing details, prices, cross-OTA comparisons, and reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nikhonit/skills/airbnb-full) <br>
-- [StayingAPI homepage](https://stayingapi.com) <br>
-- [StayingAPI OpenAPI spec](https://stayingapi.com/openapi.json) <br>
-- [StayingAPI MCP server](https://api.stayingapi.com/mcp) <br>
-- [StayingAPI MCP server card](https://stayingapi.com/.well-known/mcp/server-card.json) <br>
-- [StayingAPI quickstart](https://stayingapi.com/quickstart/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Configuration, Guidance] <br>
-**Output Format:** [Python dict API responses, including JSON-style data or error dictionaries; job results may be requested as JSON, CSV, or NDJSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires STAYINGAPI_KEY and may make outbound requests to StayingAPI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Airbnb-related search details are sent to StayingAPI when the skill makes external API requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data sharing is acceptable, and use sandbox credentials for evaluation before switching to live data.
+
+Risk: The required StayingAPI key could be exposed through shell history, logs, or persistent profile files.
+
+Mitigation: Store the key in an agent or OS secret store when possible, avoid logging it, and rotate or revoke it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/stayingapi/skills/airbnb-full)
+- [StayingAPI Homepage](https://stayingapi.com)
+- [StayingAPI Documentation](https://stayingapi.com/docs)
+- [StayingAPI OpenAPI Contract](https://api.stayingapi.com/openapi.json)
+- [StayingAPI MCP Server](https://mcp.stayingapi.com/mcp)
+- [StayingAPI Pricing](https://stayingapi.com/pricing)
+- [StayingAPI Auth Setup](references/auth-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, JSON, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with REST or MCP calls and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires STAYINGAPI_KEY for API requests; sandbox keys return deterministic fixtures.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

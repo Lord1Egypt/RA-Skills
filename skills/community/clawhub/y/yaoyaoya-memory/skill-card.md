@@ -1,45 +1,57 @@
-## Description: <br>
-Provides a layered persistent memory system for AI assistants, with tagged retrieval, reliability ratings, periodic organization, and configurable IMA knowledge-base synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A memory-system skill that helps AI assistants manage layered persistent memories, tags, cross-session retrieval, periodic organization, and optional IMA knowledge-base synchronization.
 
-## Publisher: <br>
-[taobaoaz](https://clawhub.ai/user/taobaoaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taobaoaz](https://clawhub.ai/user/taobaoaz)
 
-## Use Case: <br>
-Developers and AI-assistant users use this skill to store, retrieve, organize, and synchronize cross-session memories, decisions, project knowledge, and lessons learned. It is most relevant when an assistant needs durable context across conversations or workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist broad personal, project, or workspace memory across sessions. <br>
-Mitigation: Use it only when long-term memory is intended, review memory files regularly, and avoid storing secrets, credentials, private identifiers, health, financial, or confidential business data. <br>
-Risk: IMA synchronization can upload memory content to external notes when enabled and configured. <br>
-Mitigation: Disable IMA sync unless needed, replace default note mappings with destinations under the user's control, and use a limited IMA key. <br>
-Risk: Weak consent or scope controls may cause more information to be retained or synced than expected. <br>
-Mitigation: Require explicit user confirmation before writing or syncing sensitive memory, and review queued content before upload. <br>
+## Use Case:
 
+Developers and agent users use this skill to give assistants a persistent, searchable memory structure for cross-session recall, durable notes, and optional IMA synchronization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taobaoaz/yaoyaoya-memory) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Example configuration](artifact/config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown memory files, JSON configuration, Python helper commands, and concise assistant guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist local memory files and, when configured, synchronize selected content to IMA notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Conversation-derived memories may be stored on disk and synchronized to IMA.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for memory content suitable for local persistence and possible IMA transmission; keep secrets, credentials, private keys, and confidential project files out of memory content.
+
+Risk: The security guidance says enabled=false should not be relied on as a sync block in the current script.
+
+Mitigation: Treat IMA synchronization as potentially active when configured, and review sync settings and credentials before using synchronization commands.
+
+Risk: The synchronization helper can accept a file path for upload.
+
+Mitigation: Avoid using --file with sensitive paths and review the selected file before syncing it to an external knowledge base.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taobaoaz/skills/yaoyaoya-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline commands, configuration snippets, and memory-file conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces memory-management guidance and helper-script usage; persistent memory files and IMA synchronization depend on local configuration and user action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-04-03)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Analyze UGC openings for retention strength and generate improved hook alternatives tuned for TikTok, Reels, and Shorts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes UGC openings for short-form retention strength and generates improved hook alternatives tuned for TikTok, Reels, and Shorts.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0; SKILL.md states CC BY-NC-SA 4.0 for non-commercial use with separate commercial licensing from Razestar <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creators, marketers, and content teams use this skill to diagnose weak short-form video hooks and generate stronger first-three-second alternatives for TikTok, Reels, and Shorts. It is best suited for pre-shoot UGC optimization where the user provides a script or transcript, audience, product angle, and platform context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing hooks may overstate product claims or create compliance-sensitive copy. <br>
-Mitigation: Review generated hooks against product reality, brand requirements, and applicable advertising or platform rules before publication. <br>
-Risk: Commercial reuse may be restricted because the source license text requires a separate paid commercial license from Razestar. <br>
-Mitigation: Confirm license terms with the publisher before commercial deployment or derivative redistribution. <br>
+## Use Case:
 
+Creators, marketers, and content teams use this skill to diagnose short-form UGC hooks, identify first-three-second retention weaknesses, and produce improved variants with delivery notes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Leooooooow/ugc-hook-analyzer) <br>
-- [Output Template](artifact/references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with an executive summary, hook diagnosis table, improved variants, execution notes, and risks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The executive summary is capped at five lines and outputs include clickbait, compliance, and clarity watch-outs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may provide confidential campaign data or regulated product claims while asking for hook review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive campaign information and manually review final marketing claims for compliance before use.
+
+Risk: Generated hooks may overstate product benefits or become clickbait.
+
+Mitigation: Check each hook against product reality, platform rules, and applicable advertising or regulated-claims requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/ugc-hook-analyzer)
+- [Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes an executive summary, hook diagnosis table, improved variants, execution notes, and risks/watch-outs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

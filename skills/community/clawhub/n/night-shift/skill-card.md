@@ -1,46 +1,57 @@
-## Description: <br>
-Queue coding plans during the day, approve them, execute later in isolated worktrees, and inspect reports. Background agentic execution requires an explicitly configured non-interactive runner. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Night Shift queues coding plans for later approval and unattended execution in isolated worktrees, then verifies phases and produces reports.
 
-## Publisher: <br>
-[vardhineediganesh877-ui](https://clawhub.ai/user/vardhineediganesh877-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vardhineediganesh877-ui](https://clawhub.ai/user/vardhineediganesh877-ui)
 
-## Use Case: <br>
-Developers and engineers use Night Shift to queue reviewed coding work, run approved multi-phase tasks later in isolated git worktrees, and inspect reports or diffs before merging, retrying, or continuing work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags broad unattended execution and repository mutation authority. <br>
-Mitigation: Install first in a disposable or low-risk git workspace, prefer dry-run, and inspect reports and diffs before merging. <br>
-Risk: Queued phases may run shell commands, verification commands, or optional coding runners with credentials available in the host environment. <br>
-Mitigation: Review every generated plan and phase before approval, keep production credentials out of the runner environment, and use explicit non-interactive runner configuration. <br>
-Risk: The external-repo copying workflow can reuse source material the user may not own or be licensed to reuse. <br>
-Mitigation: Avoid plan-steal workflows unless the user owns the source or has confirmed permission to reuse it. <br>
+## Use Case:
 
+Developers and engineering power users use Night Shift to queue multi-step coding work, approve plans, run phases later in isolated git worktrees, and review reports or diffs before merging. It is best for deferred repo-centric work where verification and human review are part of the workflow.
 
-## Reference(s): <br>
-- [Night Shift package page](https://clawhub.ai/vardhineediganesh877-ui/night-shift) <br>
-- [Publisher profile](https://clawhub.ai/user/vardhineediganesh877-ui) <br>
-- [Install and setup](INSTALL.md) <br>
-- [Operational reference](REFERENCE.md) <br>
-- [Security model](SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, JSON queue and checkpoint files, shell command invocations, and code diffs in git worktrees] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes runtime state under data/night-shift and may call optional host-provided coding runners when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: frontmatter and server release evidence) <br>
+Risk: Unattended child agents can receive broad host access during approved execution phases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install first in a disposable or dedicated workspace, keep production secrets out of the environment, and sandbox or restrict child runners before using sensitive repositories.
+
+Risk: Filesystem and verification weaknesses may allow generated changes to proceed without enough confidence.
+
+Mitigation: Review plans immediately before execution, use dry-run first, prefer explicit tests or lint checks, and inspect diffs before merging.
+
+Risk: Optional model runners and notifications rely on credentials and CLIs provided by the host environment.
+
+Mitigation: Configure tokens only in local private environment files, confirm notification recipients, and run preflight in the same user or service context used for live execution.
+
+## Reference(s):
+
+- [Night Shift ClawHub skill listing](https://clawhub.ai/vardhineediganesh877-ui/skills/night-shift)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON queue state, and file or worktree changes from approved phases]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, git, and a writable workspace; optional Cursor, Claude, and Telegram integrations depend on host configuration.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

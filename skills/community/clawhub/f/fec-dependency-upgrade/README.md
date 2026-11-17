@@ -1,17 +1,17 @@
-# 依赖升级
+# Front-end diagnostic framework
 
-Frontend dependency upgrade planning, lockfile risk review, major-version migration, CVE remediation, peer dependency handling, and CI verification.
+Unified 5-step diagnostic methodology for frontend issues: build failures, runtime errors, UI anomalies, and API/data problems.
 
 ## Skill
 
-- ID: `fec-dependency-upgrade`
+- ID: `fec-debug-framework`
 - Category: `review-quality`
-- Version: `2.5.0`
-- Source: `skills/fec-dependency-upgrade/SKILL.md`
+- Version: `2.9.0`
+- Source: `skills/fec-debug-framework/SKILL.md`
 
 ## Description
 
-Use when planning, implementing, or reviewing frontend dependency upgrades, package migrations, lockfile changes, major framework version bumps, CVE remediation, peer dependency conflicts, ESM/CJS shifts, build-tool compatibility, or CI verification matrices; Chinese triggers include 依赖升级, 版本升级, lockfile, peer dependency, CVE 修复, 大版本迁移.
+Use when diagnosing frontend build failures, runtime errors, UI anomalies, API/data problems, white screens, request failures, or unexplained production exceptions; Chinese triggers include debugging, debug, troubleshooting, positioning, error reporting, exceptions, white screens, request failures.
 
 ## Usage
 
@@ -19,15 +19,11 @@ Install or import this package with any skill runtime that understands the stand
 
 ## Packaged Files
 
-- [references/dependency-upgrade-workflow.md](references/dependency-upgrade-workflow.md)
+- [references/report-template.md](references/report-template.md)
 
 ## Optional Related Packages
 
-- `@bovinphang/fec-source-driven-development`
-- `@bovinphang/fec-validation-fix`
-- `@bovinphang/fec-refactor-clean`
-- `@bovinphang/fec-security-review`
-- `@bovinphang/fec-monorepo-project-standard`
+- `@bovinphang/fec-dependency-upgrade`
 
 ## License
 

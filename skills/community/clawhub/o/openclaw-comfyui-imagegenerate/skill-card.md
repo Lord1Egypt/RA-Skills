@@ -1,43 +1,55 @@
-## Description: <br>
-Generates images through a local ComfyUI service and sends the generated image and prompt text to a Feishu chat, with no success reply after delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images through a local ComfyUI service and sends them to a Feishu conversation, returning no text after a successful send.
 
-## Publisher: <br>
-[y93442100-beep](https://clawhub.ai/user/y93442100-beep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[y93442100-beep](https://clawhub.ai/user/y93442100-beep)
 
-## Use Case: <br>
-Developers and OpenClaw users can use this skill to generate images from prompts with a local ComfyUI instance and deliver those images into Feishu chats. It is most useful where image generation and chat delivery should be handled as one agent action. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated images and prompt text may be sent to Feishu without a success confirmation. <br>
-Mitigation: Install only where silent Feishu posting is expected and restrict bot permissions to intended chats. <br>
-Risk: The skill runs a helper script from a hard-coded local path that may not match the reviewed package. <br>
-Mitigation: Verify the configured helper directory points to the reviewed draw.py before deployment. <br>
-Risk: Generated images or prompts may remain in the output_images directory. <br>
-Mitigation: Monitor or clean the output directory when prompts or generated images may be sensitive. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/y93442100-beep/openclaw-comfyui-imagegenerate) <br>
-- [README.md](artifact/README.md) <br>
-- [skill.md](artifact/skill.md) <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to generate an image from a prompt with local ComfyUI and deliver it into the current Feishu chat or user conversation. It fits image-generation workflows where successful delivery should be silent and failures should return clear Chinese feedback.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, API Calls, Text] <br>
-**Output Format:** [PNG image files, Feishu message delivery, and text errors; successful Feishu delivery is silent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses prompt text as the primary input, writes generated images under output_images, and depends on a local ComfyUI service plus Feishu bot permissions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill automatically sends generated images to the current Feishu conversation.
+
+Mitigation: Install it only where automatic Feishu delivery is expected and the bot has the intended message-send permissions.
+
+Risk: The skill trusts a hard-coded local script path and uploads the file path printed by that script.
+
+Mitigation: Protect the installed skill directory, verify draw.py is the reviewed script, and constrain uploads to generated image files under output_images.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/y93442100-beep/skills/openclaw-comfyui-imagegenerate)
+- [Artifact README](artifact/README.md)
+- [Artifact skill description](artifact/skill.md)
+- [ComfyUI workflow configuration](artifact/zimage-api.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, image files, shell commands, configuration]
+
+**Output Format:** [PNG image files, Feishu image messages, local file paths, silent NO_REPLY on success, and Chinese error text on failure.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local ComfyUI at 127.0.0.1:8188 and Feishu message-send permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

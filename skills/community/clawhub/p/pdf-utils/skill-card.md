@@ -1,44 +1,62 @@
-## Description: <br>
-PDF Utils enables OCR of image-based PDFs, extraction of arXiv IDs from text or OCR output, and scriptable PDF tasks like merging, splitting, and rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF Utils enables OCR of image-based PDFs, extraction of arXiv IDs from text or OCR output, and scriptable PDF tasks like merging, splitting, and rendering.
 
-## Publisher: <br>
-[wangwllu](https://clawhub.ai/user/wangwllu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangwllu](https://clawhub.ai/user/wangwllu)
 
-## Use Case: <br>
-Developers and researchers use this skill to automate local PDF workflows, including OCR for scanned PDFs, arXiv reference mining, and repeatable merge, split, and page-rendering operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local scripts can read PDFs and write generated OCR text, rendered images, split PDFs, merged PDFs, or downloaded arXiv papers to user-selected paths. <br>
-Mitigation: Run the skill in a virtual environment and use a dedicated output directory to avoid accidental overwrites or mixing generated files with source documents. <br>
-Risk: OCR quality can be poor for handwritten, low-resolution, or very large scanned PDFs, which may lead to incomplete extracted text or references. <br>
-Mitigation: Process large PDFs in page ranges, adjust OCR settings when needed, and manually review extracted references before relying on them. <br>
-Risk: Optional arXiv downloading requires network access and saves downloaded PDFs locally. <br>
-Mitigation: Use downloads only when network access is acceptable and direct output to a controlled folder. <br>
+## Use Case:
 
+Developers and engineers use this skill for local, repeatable PDF processing when they need OCR for scanned PDFs, arXiv reference extraction and download workflows, or scriptable merge, split, and page-render operations.
 
-## Reference(s): <br>
-- [PDF Utils usage reference](references/usage.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wangwllu/pdf-utils) <br>
-- [Publisher profile](https://clawhub.ai/user/wangwllu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local PDF, text, and image files through user-run scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and pyproject.toml) <br>
+Risk: The documented install command bypasses Python package safety protections and uses unpinned dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment with pinned, audited dependencies, and avoid using --break-system-packages unless the environment owner explicitly accepts that tradeoff.
+
+Risk: The arXiv download workflow contacts arXiv and writes downloaded PDFs to the chosen output directory.
+
+Mitigation: Use --download only when network access and local file creation are acceptable, and choose an output directory that can be reviewed and cleaned.
+
+Risk: PDFs from unknown sources are untrusted parser inputs.
+
+Mitigation: Process untrusted PDFs in a constrained local environment and review outputs before relying on extracted text, references, or rendered images.
+
+Risk: OCR and reference parsing can be incomplete for handwriting, low-resolution scans, very large PDFs, corrupt files, or unusual citation formats.
+
+Mitigation: Process large PDFs in page ranges, inspect reference pages when results look partial, and treat OCR/reference extraction as a helper rather than a completeness guarantee.
+
+## Reference(s):
+
+- [PDF Utils Reference](references/usage.md)
+- [ClawHub Skill Page](https://clawhub.ai/wangwllu/skills/pdf-utils)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands and Python code snippets; executed scripts can produce PDFs, images, and text files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local output files such as downloaded arXiv PDFs, OCR text, merged or split PDFs, and rendered page images.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, pyproject.toml, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

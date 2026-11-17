@@ -1,41 +1,53 @@
-## Description: <br>
-Su Hua Perspective V2 provides a Su Hua-inspired strategy persona for analyzing product design, community health, commercialization, lower-tier markets, inclusive algorithms, and tech-for-good decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a public-information-inspired Su Hua perspective for analyzing product, community, commercialization, lower-tier market, inclusive algorithm, and tech-for-good questions.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users and product teams use this skill to generate Su Hua-inspired perspectives on platform strategy, inclusive recommendation design, creator ecosystems, lower-tier markets, community governance, and trust-based commerce. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First-person persona responses can blur attribution and be mistaken for Su Hua's actual views or endorsement. <br>
-Mitigation: Trigger the skill explicitly and include a visible disclaimer that responses are Su Hua-inspired and not statements from Su Hua. <br>
-Risk: Strategic guidance is based on public information and may omit private context or recent changes. <br>
-Mitigation: Treat responses as decision-support framing and verify important claims against current public sources and the user's own business context. <br>
+## Use Case:
 
+External users and developers use this skill to get structured decision guidance framed through Su Hua-inspired mental models for product strategy, community design, commercialization, lower-tier markets, and inclusive algorithms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/su-hua-perspective-v2) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/xiejianjun000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only persona output; responses should keep a visible disclaimer so generated advice is not mistaken for Su Hua's actual views or endorsement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: First-person persona responses about a real person may be mistaken for authentic statements, endorsements, or current private views.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use clear disclosure that outputs are fictionalized, public-information-inspired analysis and should not be represented as Su Hua's own statements.
+
+Risk: Broad trigger phrases may activate the persona during general product, market, community, or commerce prompts.
+
+Mitigation: Review activation criteria before deployment and narrow or disable triggers where first-person persona behavior is not intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/su-hua-perspective-v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona-style responses based on public-information-inspired framing; no executable artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

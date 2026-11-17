@@ -1,42 +1,59 @@
-## Description: <br>
-Sprint OS is a 5-minute sprint operating system for AI agents that runs ASSESS -> PLAN -> SCOPE -> EXECUTE -> MEASURE -> ADAPT -> LOG -> NEXT cycles with optional Convex integration for sprint tracking, metrics, and content deduplication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sprint OS is a 5-minute operating discipline for AI agents that runs ASSESS, PLAN, SCOPE, EXECUTE, MEASURE, ADAPT, LOG, and NEXT cycles with optional Convex-backed sprint tracking.
 
-## Publisher: <br>
-[Batsirai](https://clawhub.ai/user/Batsirai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[batsirai](https://clawhub.ai/user/batsirai)
 
-## Use Case: <br>
-Developers, operators, and agent users use Sprint OS to keep AI agents working in short, logged execution cycles that produce concrete artifacts. It can also log sprint activity locally or to an optional Convex backend for tracking, metrics, and content deduplication. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages sustained autonomous sprint execution and may continue file or network work beyond the user's intended scope. <br>
-Mitigation: Set a clear task scope, sprint limit, and approval rules for file changes, publishing, account actions, and network calls before enabling sprint mode. <br>
-Risk: Local or remote sprint logs can contain sensitive project details, private prompts, customer data, or confidential business information. <br>
-Mitigation: Review log content before sharing, avoid logging secrets or confidential data, and treat generated sprint logs as sensitive records. <br>
-Risk: Optional Convex logging sends sprint details to a configured remote endpoint. <br>
-Mitigation: Enable Convex logging only with a trusted endpoint, add authentication and access controls to the backend, and keep the endpoint configuration under user control. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sprint OS ClawHub Page](https://clawhub.ai/Batsirai/sprint-os) <br>
-- [Convex Documentation](https://convex.dev) <br>
+## Use Case:
 
+External users, developers, and agent operators use Sprint OS to keep AI agents in short execution loops that produce shippable artifacts, measure progress, and record sprint history. It supports local Markdown sprint logs and optional Convex logging for persistent tracking.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with optional shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write sprint-log.md locally and optionally send sprint records to a configured Convex endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automatic sprint logging can capture sensitive project details in local logs or a remote sprint-tracking service.
+
+Mitigation: Review log contents before enabling the workflow for sensitive projects and avoid recording secrets, private customer data, or confidential business details.
+
+Risk: The optional Convex logging backend may allow unwanted reads or writes if deployed without authentication or access controls.
+
+Mitigation: Enable Convex logging only after adding authentication, restricting backend access, and confirming who can read and write sprint records.
+
+Risk: The optional Convex setup depends on external packages and deployment commands.
+
+Mitigation: Pin and review the Convex dependency before running setup commands.
+
+## Reference(s):
+
+- [Sprint OS ClawHub listing](https://clawhub.ai/batsirai/skills/sprint-os)
+- [README](artifact/README.md)
+- [Convex Backend Setup](artifact/scripts/convex-setup.md)
+- [Convex documentation](https://convex.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with optional shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces sprint-loop guidance, sprint-log entries, daily or weekly summaries, and optional Convex logging commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

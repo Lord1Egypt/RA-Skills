@@ -1,46 +1,65 @@
-## Description: <br>
-Enables building and deploying quantum computing applications with Quantinuum, Guppy, Selene, and Fly.io for clinical hackathon projects, quantum web apps, cloud-deployed quantum algorithms, and frontend integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write and run quantum circuits using Quantinuum's Guppy language on the Selene emulator.
 
-## Publisher: <br>
-[arunnadarasa](https://clawhub.ai/user/arunnadarasa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arunnadarasa](https://clawhub.ai/user/arunnadarasa)
 
-## Use Case: <br>
-Developers and hackathon participants use this skill to scaffold Selene/FastAPI quantum backends, deploy them to Fly.io, and connect React/Lovable frontends for clinical or general quantum-computing applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated cloud deployment steps and examples can expose secrets if real API keys are placed in frontend VITE_* variables or uploaded unintentionally. <br>
-Mitigation: Inspect .env files before deployment, keep real secrets backend-only, and use --skip-secrets unless you intentionally want to upload secrets to Fly.io. <br>
-Risk: Public quantum API services may be overused or accessed unexpectedly without access controls. <br>
-Mitigation: Add authentication, restrict CORS, apply rate limits, and review deployment settings before exposing a Selene service publicly. <br>
-Risk: Clinical demos can create privacy or compliance risk if real patient data is used. <br>
-Mitigation: Use only synthetic or de-identified clinical data unless an appropriate compliance plan is in place. <br>
+## Use Case:
 
+Developers and quantum application engineers use this skill to write Guppy circuits, run Selene emulator jobs, manage parameter sweeps, validate quantum results, and plan Nexus workflows with cost and evidence controls.
 
-## Reference(s): <br>
-- [Guppy Guide](references/guppy_guide.md) <br>
-- [Selene API](references/selene_api.md) <br>
-- [Fly.io Configuration](references/flyio_config.md) <br>
-- [Lovable Patterns](references/lovable_patterns.md) <br>
-- [Clinical Use Cases](references/clinical-use-cases.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/arunnadarasa/quantum) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code, shell commands, configuration snippets, and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May scaffold FastAPI backend code, React frontend code, Fly.io configuration, environment setup steps, and deployment commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill guides agents through authenticated Nexus or hardware-backed jobs that can spend credits and leave auth or job state behind.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit live-mode confirmation, target device, max_cost, total budget, account or group choice, and a cleanup plan before any Nexus or hardware-backed run.
+
+Risk: Generated Python or temporary files may be run as part of circuit construction and execution workflows.
+
+Mitigation: Review generated files before execution and prefer pinned dependency versions for Guppy, Selene, pytket, and qnexus workflows.
+
+## Reference(s):
+
+- [Skill source listing](https://arunquantum.lovable.app/skills)
+- [Guppy language](references/guppy-language.md)
+- [Guppy v1 migration](references/guppy-v1-migration.md)
+- [Selene runtime](references/selene-runtime.md)
+- [Driver pattern: parameterized kernels](references/driver-pattern.md)
+- [Parameter sweeps: SweepSpec and SweepRunner](references/sweep-runner.md)
+- [Quantinuum Nexus: submitting real jobs](references/nexus-jobs.md)
+- [Nexus accounts, quotas and access control](references/nexus-admin.md)
+- [Evidence integrity: making a number defensible](references/evidence-integrity.md)
+- [Cross-platform validation and error mitigation hierarchies](references/cross-platform-validation.md)
+- [pytket / TKET compile lane](references/pytket.md)
+- [selene_run v1 schema](references/selene-run-schema.md)
+- [Unified stack cheat sheet](references/stack-cheatsheet.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Python files, JSON result artifacts, and credential-free execution specifications when used by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: target metadata; artifact README notes OpenClaw edition v0.4.11 built 2026-08-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

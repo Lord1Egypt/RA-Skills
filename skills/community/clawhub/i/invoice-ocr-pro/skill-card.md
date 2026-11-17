@@ -1,42 +1,55 @@
-## Description: <br>
-上传发票图片或文件进行 OCR 识别，并返回发票票面结构化信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+发票识别技能用于上传发票图片或文件进行 OCR 识别，并返回发票票面结构化信息。
 
-## Publisher: <br>
-[zxt](https://clawhub.ai/user/zxt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zxt](https://clawhub.ai/user/zxt)
 
-## Use Case: <br>
-External users and business operations teams use this skill to extract invoice numbers, dates, amounts, buyer and seller details, tax information, and line items from PDF, OFD, JPEG, JPG, PNG, or XML invoice files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys may be exposed if pasted into chat or stored persistently in shell startup files or user-level environment settings. <br>
-Mitigation: Set ZXT_API_KEY directly in a trusted local environment or secret manager, use short-lived or revocable credentials where possible, and avoid writing secrets to persistent shell configuration unless that exposure is acceptable. <br>
-Risk: Invoice files and extracted invoice data are sent to a third-party OCR service. <br>
-Mitigation: Use the skill only for invoices the user is authorized to submit to the listed service, and avoid sending sensitive documents unless the service terms and data-handling requirements are acceptable. <br>
+## Use Case:
 
+External users and agents use this skill to upload invoice files and extract structured invoice fields such as invoice number, dates, amounts, buyer and seller details, and line items.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zxt/invoice-ocr-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/zxt) <br>
-- [API key registration service](https://skill.quandianfapiao.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown or plain text with OCR result fields and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns structured invoice fields such as invoice number, date, amounts, buyer and seller details, tax values, remarks, and line items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill sends invoice files to skill.quandianfapiao.com for OCR processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only invoices the user is allowed to transmit to that service and review data handling requirements before processing sensitive documents.
+
+Risk: The security review says the skill asks users to share an API key in chat and persistently writes it into shell configuration without clear consent or safe secret handling.
+
+Mitigation: Use a platform secret manager or per-run environment variable, avoid pasting long-lived API keys into chat, and do not allow automatic modification of ~/.bashrc, ~/.zshrc, or persistent user environment settings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zxt/skills/invoice-ocr-pro)
+- [Publisher profile](https://clawhub.ai/user/zxt)
+- [ZXT invoice OCR service](https://skill.quandianfapiao.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text with structured invoice fields and error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports PDF, OFD, JPEG, JPG, PNG, and XML invoice files up to 10 MB; requires ZXT_API_KEY or an apiKey argument.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

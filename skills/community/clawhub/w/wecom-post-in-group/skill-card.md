@@ -1,43 +1,54 @@
-## Description: <br>
-This skill helps users set up scheduled or recurring content pushes to WeChat Work group webhooks with daily, weekly, monthly, and advanced schedule patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sets up scheduled or recurring content pushes to WeChat Work group webhooks with daily, weekly, monthly, and advanced schedule patterns.
 
-## Publisher: <br>
-[luckyethan](https://clawhub.ai/user/luckyethan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luckyethan](https://clawhub.ai/user/luckyethan)
 
-## Use Case: <br>
-Developers and operations users use this skill to configure recurring messages for WeChat Work group robots. It supports webhook validation, message formatting, schedule selection, and automation setup for routine group notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a WeChat Work group robot webhook that functions like a posting credential. <br>
-Mitigation: Treat webhook URLs and keys like passwords, avoid sharing them in transcripts or logs, and rotate the webhook if it is exposed. <br>
-Risk: A recurring automation can post to the wrong group or at the wrong cadence if the webhook or schedule is misconfigured. <br>
-Mitigation: Confirm the target group, schedule, message content, and activation status before enabling the automation; validate in a non-production group when possible. <br>
-Risk: Validation and test pushes send real messages to the configured WeChat Work group. <br>
-Mitigation: Use a test group for validation when possible, or warn group members before sending a test message to a production group. <br>
+## Use Case:
 
+Employees, developers, and operations teams use this skill to configure recurring WeChat Work group notifications, validate webhook access, format messages, and create scheduled automations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luckyethan/wecom-post-in-group) <br>
-- [Schedule Patterns Reference](references/schedule_patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and automation configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include masked webhook identifiers, RRULE schedule strings, date-guard logic, and formatted WeChat Work text or markdown messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Webhook URLs and keys are reusable secrets and may be exposed through prompts, logs, shell history, or user-facing output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat webhook URLs and keys like passwords: mask them in user-visible summaries, avoid storing them in logs or shell history, and rotate any key that may have been exposed.
+
+Risk: The skill can send live test messages and create recurring active posts to a WeChat Work group.
+
+Mitigation: Require clear user confirmation before any test send or scheduled automation is created, and verify the target group, message content, schedule, and active status before enabling it.
+
+## Reference(s):
+
+- [Schedule Patterns Reference](references/schedule_patterns.md)
+- [ClawHub skill page](https://clawhub.ai/luckyethan/skills/wecom-post-in-group)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and automation configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce live WeChat Work webhook validation or post commands when the user provides a webhook.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Converts user-provided Word documents into a fixed Chinese official-document format using the bundled template settings and deterministic paragraph heuristics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts uploaded Word documents into a fixed Chinese official-document format using the bundled template rules.
 
-## Publisher: <br>
-[Nighmat1220](https://clawhub.ai/user/Nighmat1220) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nighmat1220](https://clawhub.ai/user/nighmat1220)
 
-## Use Case: <br>
-Employees, document operations teams, and agents use this skill to restyle uploaded .docx files into a standard government-style Word format. It is suited for repeatable formatting of titles, body text, headings, tables, attachments, dates, signatures, margins, and font choices before human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The converter runs locally on user-provided Word files and writes a new output file. <br>
-Mitigation: Keep original documents backed up and choose the output path deliberately before running the conversion. <br>
-Risk: Required fonts may be unavailable, preventing faithful formatting. <br>
-Mitigation: Check the missing-font notice, install the listed fonts, and rerun the converter instead of using a partial result. <br>
-Risk: Complex layouts may not be fully captured by deterministic paragraph and table heuristics. <br>
-Mitigation: Manually review converted documents, especially files with unusual sectioning, tables, attachments, or mixed formatting. <br>
+## Use Case:
 
+Employees, external users, and document-preparation agents use this skill to restyle `.docx` files into a prescribed Chinese official-document format and return a converted document when required fonts are available.
 
-## Reference(s): <br>
-- [Format Rules](references/format-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [DOCX file with concise Markdown status or missing-font notice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Python execution against a user-provided .docx file and installed Chinese fonts; complex layouts should be manually reviewed after conversion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Oversized or crafted DOCX files may consume excessive CPU or memory during conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted documents when possible and run conversion in a resource-limited environment for untrusted inputs.
+
+Risk: The converted document may not preserve complex layouts perfectly.
+
+Mitigation: Manually review complex documents after conversion before relying on the output.
+
+Risk: Conversion stops when required fonts are unavailable.
+
+Mitigation: Install the required fonts before use and treat missing-font output as a hard failure rather than a completed conversion.
+
+## Reference(s):
+
+- [Format Rules](artifact/references/format-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/nighmat1220/skills/word-format)
+- [Publisher Profile](https://clawhub.ai/user/nighmat1220)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Shell commands, Guidance]
+
+**Output Format:** [Converted DOCX file with plain-text status or missing-font messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a DOCX input file and the listed fonts; complex layouts should be manually reviewed after conversion.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

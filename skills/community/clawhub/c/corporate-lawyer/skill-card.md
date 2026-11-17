@@ -1,45 +1,57 @@
-## Description: <br>
-AI-powered legal assistant for commercial transactions that provides contract review, transaction advisory, compliance checking, document generation, risk assessment, and negotiation support for business affairs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered legal assistant for commercial transactions that provides contract review, transaction advisory, compliance checking, document generation, risk assessment, and negotiation support for business affairs.
 
-## Publisher: <br>
-[ZhenStaff](https://clawhub.ai/user/ZhenStaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-Businesses, corporate legal departments, law firms, startups, executives, and in-house counsel use this skill to review commercial contracts, assess transaction and compliance risks, draft business legal documents, and prepare negotiation strategy. Its outputs are legal drafting and issue-spotting aids, not final legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generated legal analysis or documents as final legal advice. <br>
-Mitigation: Use the skill only as a drafting and issue-spotting aid, and have qualified counsel review decisions, contracts, and filings before use. <br>
-Risk: Users may submit privileged, highly confidential, or regulated contract and business data. <br>
-Mitigation: Avoid sensitive submissions unless the runtime environment has approved privacy, retention, and access controls for that data. <br>
-Risk: Installation may rely on referenced Python package or GitHub source material. <br>
-Mitigation: Review package metadata and source contents before running install commands in a trusted environment. <br>
+## Use Case:
 
+Corporate legal teams, law firms, startups, business executives, and in-house counsel use this skill to review contracts, assess transaction and compliance risks, draft business legal documents, and prepare negotiation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZhenStaff/corporate-lawyer) <br>
-- [Project repository listed in artifact](https://github.com/ZhenRobotics/openclaw-corporate-lawyer) <br>
-- [Release listed in artifact](https://github.com/ZhenRobotics/openclaw-corporate-lawyer/releases/tag/v0.1.0) <br>
-- [PyPI package listed in artifact](https://pypi.org/project/openclaw-skill-corporate-lawyer/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with structured legal analysis, recommendations, code examples, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include risk scores, issue lists, suggested contract modifications, due diligence checklists, compliance findings, draft document text, and negotiation talking points.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may handle confidential, privileged, personal, regulated, or client legal and business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after verifying package source, data-handling terms, retention practices, and legal compliance; avoid providing sensitive data unless those checks are complete.
+
+Risk: Generated legal analysis, documents, and recommendations may be incomplete or incorrect for a specific matter or jurisdiction.
+
+Mitigation: Treat generated output as informational and have qualified counsel review it before relying on it.
+
+Risk: The release relies on unreviewed mutable Python installation sources.
+
+Mitigation: Install and test in a sandbox or least-privileged environment, avoid root or admin installation, and review the package source before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhenstaff/skills/corporate-lawyer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with legal analysis templates, code examples, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Legal outputs are informational and should be reviewed by qualified counsel.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

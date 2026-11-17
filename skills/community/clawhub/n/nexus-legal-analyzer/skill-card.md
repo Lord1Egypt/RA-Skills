@@ -1,41 +1,54 @@
-## Description: <br>
-Legal RAG with GDPR, EU AI Act compliance, contract analysis, and regulatory monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Legal RAG with GDPR, EU AI Act compliance, contract analysis, and regulatory monitoring.
 
-## Publisher: <br>
-[shuwanito](https://clawhub.ai/user/shuwanito) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuwanito](https://clawhub.ai/user/shuwanito)
 
-## Use Case: <br>
-Legal, compliance, and contract-review users can use this skill to analyze contracts and regulatory materials for GDPR, EU AI Act, jurisprudence, and risk findings with severity and confidence signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used with confidential contracts or compliance materials. <br>
-Mitigation: Confirm the agent's retrieval, citation, and storage tools before use and avoid sharing sensitive material with untrusted services. <br>
-Risk: Legal and regulatory outputs can be incomplete or mistaken. <br>
-Mitigation: Treat results as analysis support, not legal advice, and independently verify cited sources and conclusions. <br>
+## Use Case:
 
+Legal teams, compliance staff, and developers can use this skill to analyze contracts and legal or regulatory questions for GDPR, EU AI Act compliance, jurisprudence search, risk assessment, and improvement proposals.
 
-## Reference(s): <br>
-- [Nexus Legal Analyzer on ClawHub](https://clawhub.ai/shuwanito/nexus-legal-analyzer) <br>
-- [Project homepage](https://github.com/Shuwanito/SkillsMP/tree/main/.claude/skills/nexus-legal-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured findings, citations, severity labels, confidence scores, and improvement proposals.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include source citations and confidence scores; legal conclusions require independent review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and release metadata) <br>
+Risk: Legal-analysis outputs may be mistaken for legal advice or relied on without professional review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as legal research assistance and validate conclusions with qualified legal counsel.
+
+Risk: Sensitive contracts or personal data may be exposed to the agent or configured retrieval/search tools.
+
+Mitigation: Avoid sharing sensitive materials unless the agent and any configured tools are approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shuwanito/skills/nexus-legal-analyzer)
+- [OpenCLAW homepage metadata](https://github.com/Shuwanito/SkillsMP/tree/main/.claude/skills/nexus-legal-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown with severity classifications, confidence scores, source citations, and scored improvement proposals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be treated as legal research assistance rather than legal advice.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

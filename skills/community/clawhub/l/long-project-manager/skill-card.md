@@ -1,42 +1,53 @@
-## Description: <br>
-Create and maintain a persistent file-based workspace for long-running, multi-session, or interruption-sensitive work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and maintain a persistent file-based workspace for long-running, multi-session, or interruption-sensitive work.
 
-## Publisher: <br>
-[TianxiangMa](https://clawhub.ai/user/TianxiangMa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianxiangma](https://clawhub.ai/user/tianxiangma)
 
-## Use Case: <br>
-Developers, researchers, writers, planners, and operations teams use this skill to keep durable project state for work that spans multiple sessions. It helps agents create and update project notes, task lists, decisions, logs, references, and handoff files so work can resume after interruptions or context loss. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill deliberately writes durable project notes to disk, which may preserve sensitive project, personal, or business context across sessions. <br>
-Mitigation: Choose the project location deliberately, review STATUS.md and HANDOFF.md before relying on them, and avoid recording secrets or sensitive personal information unless future sessions should read it. <br>
-Risk: Outdated or vague project notes can cause later sessions to resume from incorrect assumptions. <br>
-Mitigation: Refresh STATUS.md and HANDOFF.md before pausing, and make the next action and first files to read explicit. <br>
+## Use Case:
 
+Developers, researchers, writers, planners, and operations teams use this skill to create and resume durable project workspaces for tasks that span multiple sessions or context resets.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TianxiangMa/long-project-manager) <br>
-- [Packaged README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown project files and concise chat guidance, with occasional shell commands for creating or copying workspace templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates durable local project files such as README.md, STATUS.md, TODO.md, DECISIONS.md, LOG.md, REFERENCES.md, and HANDOFF.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Local project notes may contain secrets, sensitive business details, or private project context if the user asks the agent to record them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the project folder path and avoid writing secrets or sensitive details into generated markdown files unless local storage is acceptable.
+
+Risk: Durable project files can preserve outdated status or decisions if they are not refreshed before pausing work.
+
+Mitigation: Update STATUS.md and HANDOFF.md before stopping so the next session resumes from current project state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianxiangma/skills/long-project-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown files and concise project-state summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates local project note files under projects/<project-name>/ when the user asks for durable project state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Helps agents manage conversation memory with long-term and short-term stores, importance scoring, time decay, retrieval rules, and session-end organization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Strategy helps agents manage conversational memory with long-term and short-term stores, 30-day time decay, 1-5 importance scoring, trigger-based writes, retrieval rules, and silent session cleanup.
 
-## Publisher: <br>
-[Hugoiku](https://clawhub.ai/user/Hugoiku) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hugoiku](https://clawhub.ai/user/hugoiku)
 
-## Use Case: <br>
-Developers and agent users use this skill to decide what conversation details should be remembered, where to store them, and how to retrieve them later with recency-aware weighting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory files can retain sensitive conversation content, contacts, credentials, or project details. <br>
-Mitigation: Do not store API keys, tokens, passwords, or other secrets in .memory files; keep .memory out of source control; and review or redact saved content before reuse. <br>
-Risk: Automatic Kimi API scoring can transmit confidential text to a third-party service. <br>
-Mitigation: Use manual scoring for confidential material, or enable Kimi API scoring only after explicit approval for the data being sent. <br>
-Risk: Silent Agent auto-writes can save conversation details without enough consent, retention, or redaction controls. <br>
-Mitigation: Require manual approval before automatic writes until consent, retention, and redaction practices are documented and enforced. <br>
-Risk: The skill documents helper scripts for scoring, retrieval, cleanup, and indexing, but the artifact only includes the skill instructions. <br>
-Mitigation: Verify or provide the referenced helper scripts before relying on scripted workflows. <br>
+## Use Case:
 
+Developers and agent operators use this skill to decide what conversation details to save, retrieve, decay, archive, or discard across sessions. It is most useful for workflows that need persistent preferences, project notes, decisions, patterns, and recent activity logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Hugoiku/memory-strategy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local .memory files and optional scoring, retrieval, and indexing workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can persist conversation content into long-term and short-term memory, including session-end cleanup behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review what data may be stored, require explicit approval before long-term writes, and disable silent auto-write unless the workflow is trusted.
+
+Risk: The memory layout can store sensitive personal data or secrets in plain text files.
+
+Mitigation: Do not store API keys, tokens, passwords, private keys, or sensitive personal data in memory files.
+
+Risk: Automatic importance scoring may send text to an external Kimi API.
+
+Mitigation: Avoid external scoring for confidential text unless privacy terms, consent, redaction, and retention controls are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hugoiku/skills/memory-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell, YAML, Python, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce memory directory layouts, scoring guidance, retrieval instructions, cleanup reports, and script invocation examples.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

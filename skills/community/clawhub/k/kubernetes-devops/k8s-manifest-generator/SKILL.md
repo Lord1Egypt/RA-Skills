@@ -220,9 +220,7 @@ stringData:
     ...
     -----END CERTIFICATE-----
   tls.key: |
-    -----BEGIN PRIVATE KEY-----
-    ...
-    -----END PRIVATE KEY-----
+    REDACTED-SECRET
 ```
 
 **Security considerations:**

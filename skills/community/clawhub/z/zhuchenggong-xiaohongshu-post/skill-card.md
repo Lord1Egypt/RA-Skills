@@ -1,41 +1,57 @@
-## Description: <br>
-小红书发布技能（文字配图版）- 运营执行专员专用 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书发布技能（文字配图版）- 运营执行专员专用
 
-## Publisher: <br>
-[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design)
 
-## Use Case: <br>
-Operations staff and content creators use this skill to guide a browser-based Xiaohongshu text-with-image posting workflow. It emphasizes human review before selecting generated card style, previewing content, and choosing whether to publish or save a draft. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may be operating in a live Xiaohongshu account and could publish content publicly. <br>
-Mitigation: Require the user to confirm the target account, preview, and explicit choice to publish or save a draft before any final action. <br>
-Risk: Generated image style or title may not match the user's intended post. <br>
-Mitigation: Show screenshots for card style selection and final preview, then proceed only after user approval. <br>
+## Use Case:
 
+运营人员或内容创作者使用该技能在小红书文字配图发布流程中生成配图、选择卡片风格、预览内容，并在用户确认后发布或暂存。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/zhuchenggong-xiaohongshu-post) <br>
-- [Publisher profile](https://clawhub.ai/user/zhuchenggong19851114-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance for browser-based publishing steps and user confirmation checkpoints] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; no API keys or scanner-reported risk findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can lead to publishing content from a Xiaohongshu creator account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval of the preview and final publish or draft choice before taking the final action.
+
+Risk: Generated content or collected source materials may have rights, accuracy, or suitability issues.
+
+Mitigation: Review generated copy, source rights, account context, title, card style, and preview before approving publication.
+
+Risk: Optional material storage in Feishu may expose or retain campaign materials outside Xiaohongshu.
+
+Mitigation: Ask the user before saving materials in Feishu and store only content they approve.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhuchenggong19851114-design/skills/zhuchenggong-xiaohongshu-post)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance for a browser-based Xiaohongshu posting workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation for card style, preview approval, and final publish or draft decision.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

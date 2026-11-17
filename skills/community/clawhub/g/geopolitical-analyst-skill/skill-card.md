@@ -1,54 +1,67 @@
-## Description: <br>
-Live geopolitical intelligence analysis with 39 analytical modules and real-time data integration. No API keys required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Live geopolitical intelligence analysis with 39 analytical modules and real-time data integration.
 
-## Publisher: <br>
-[nimaansari](https://clawhub.ai/user/nimaansari) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nimaansari](https://clawhub.ai/user/nimaansari)
 
-## Use Case: <br>
-External users and analysts use this skill to structure geopolitical assessments, gather public-source context from live data sources, identify intelligence gaps, and produce scenario-oriented analysis for countries, regions, or conflicts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send user-provided topics, country values, and optional ACLED credentials to external public APIs. <br>
-Mitigation: Use only topics and credentials approved for external API disclosure, and review data-flow disclosures before deployment. <br>
-Risk: Geopolitical outputs may be speculative or misleading if treated as authoritative intelligence. <br>
-Mitigation: Use outputs as analytical assistance and require human review, source verification, and confidence checks before operational decisions. <br>
-Risk: Local tracking guidance can write to tracking_log.jsonl. <br>
-Mitigation: Require confirmation before creating or appending tracking logs and review stored content for sensitivity. <br>
-Risk: Documentation claims no credentials are required and lists runtime files that are not present in the artifact. <br>
-Mitigation: Verify runtime file availability and credential requirements before installation or execution. <br>
-Risk: Unpinned dependencies may resolve to different package versions over time. <br>
-Mitigation: Pin and review dependency versions in a controlled environment before deployment. <br>
+## Use Case:
 
+Analysts, policy teams, and researchers use this skill to structure geopolitical assessments, gather live public-source indicators, compare actor behavior, identify intelligence gaps, and produce scenario-oriented analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nimaansari/geopolitical-analyst-skill) <br>
-- [Data Sources Reference](references/sources.md) <br>
-- [Analysis of Competing Hypotheses (ACH)](references/ach.md) <br>
-- [Actor Classification Reference](references/actors.md) <br>
-- [Early Warning System](references/early-warning.md) <br>
-- [Scenario Simulation & Futures Modeling](references/scenario-modeling.md) <br>
-- [Verification Challenge & Verifiability Assessment](references/verification-challenge.md) <br>
-- [Sanctions Evasion & Counter-Sanctions Strategy](references/sanctions-evasion.md) <br>
-- [Longitudinal Tracking Reference](references/tracking.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown analytical guidance with optional shell commands and JSON-like structured assessment fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include confidence scoring, scenario cases, intelligence gaps, live public-source data summaries, and local tracking guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata; artifact frontmatter says 1.1.0) <br>
+Risk: Live public-source queries can send topics, country names, app names, and related parameters outside the local machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only when network disclosure is acceptable, review query contents before execution, and avoid using sensitive operational details in live lookups.
+
+Risk: Optional ACLED credentials may be handled by the included data-fetch script.
+
+Mitigation: Use a virtual environment, prefer environment-based secret handling or protected local prompts, and avoid passing credentials on the command line or storing them in shared logs.
+
+Risk: Sanctions-evasion and verification material can be dual-use or legally sensitive.
+
+Mitigation: Treat those modules as analytical references, require human review, and apply legal, compliance, and policy guardrails before acting on outputs.
+
+Risk: The server security summary says the skill misstates network use, credential requirements, and packaged files.
+
+Mitigation: Validate packaged files and expected network behavior in a controlled environment before installation or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nimaansari/skills/geopolitical-analyst-skill)
+- [Publisher profile](https://clawhub.ai/user/nimaansari)
+- [Sources reference](references/sources.md)
+- [Early-warning reference](references/early-warning.md)
+- [Scenario-modeling reference](references/scenario-modeling.md)
+- [Verification-challenge reference](references/verification-challenge.md)
+- [Sanctions-evasion reference](references/sanctions-evasion.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis with optional JSON data-fetch results and shell or Python usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live public-source queries when data-fetch scripts are run; analytical outputs require human review for uncertainty, source quality, and legal or compliance context.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Turns paper abstracts or introductions into a structured Markdown reading card with problem, method, result, limitation, and citation-draft sections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns a paper abstract or short introduction into a structured Chinese Markdown reading card with placeholders for title, research question, methods, results, limitations, and a citation draft.
 
-## Publisher: <br>
-[wangshengli0421](https://clawhub.ai/user/wangshengli0421) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wangshengli0421](https://clawhub.ai/user/wangshengli0421)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Students and researchers use this skill to convert pasted abstracts or local abstract files into structured reading notes for literature review, paper summaries, and meeting preparation. The generated citation draft and heuristic sections are intended for review against the original paper.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The generated reading card or citation draft may be inaccurate or incomplete if the abstract is sparse or the heuristic sentence split is wrong.
+
+Mitigation: Review the output against the original paper, especially citations, page references, limitations, and claims.
+
+Risk: The local script reads a file path supplied by the user.
+
+Mitigation: Only pass files that the user intends the script to read.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Students and researchers use this skill to turn pasted abstracts or short paper descriptions into quick side-note cards for literature review, seminar preparation, and paper triage. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: The server security verdict is suspicious and notes high-impact moderation workflows with broad local access in the reviewed skill set. <br>
-Mitigation: Install only in a ClawHub maintainer or staff environment, prefer non-yolo autoreview, and double-check moderation targets and reasons before write actions. <br>
-Risk: The generated reading card uses heuristic sentence splitting and may produce incomplete or misleading citation-draft text. <br>
-Mitigation: Treat the card as a study aid only and verify conclusions, limitations, and quoted text against the original paper. <br>
+**Output Format:** [Markdown reading card printed to stdout, with command-line examples for file or text input]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Reads either user-provided text or a local file path and optionally accepts a title.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces heuristic sectioning and a citation-draft excerpt that the user must verify against the original paper.] <br>
+1.0.0 (source: server release evidence and artifact/clawhub.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and clawhub.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

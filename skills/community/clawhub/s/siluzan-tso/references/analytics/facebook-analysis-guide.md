@@ -10,16 +10,16 @@
 
 | 步骤           | 说明                                                                                                                                   |
 | -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| **1. 拉数**    | `facebook-analysis -a <id> --start <s> --end <e> --json-out ./snap-fb`（默认 `--sections overview,ad-sets,platform,country,audience`） |
+| **1. 拉数**    | `facebook-analysis -a <id> --start <s> --end <e> --json-out ./snap-fb --sections overview,daily,country,campaigns,audience`（省略 `--sections` 会拉全部 10 维） |
 | **2. 分析**    | Agent 用脚本读 `report-manifest-<id>.json` 与各 `<section>-<id>.json`，完成聚合与洞察（禁止 Read 业务 JSON、禁止对话里手填数）         |
-| **3. 写 JSON** | 产出 `meta-period-report.json`（`narrative` 必填；HTML 扩展字段按需）                                                                  |
+| **3. 写 JSON** | 产出 `meta-period-report.json`（`fourQuestions` 4 问 + `recommendations` ≥3 卡 + `sections.*.insight`；数值由 render 从快照覆盖） |
 | **4. 渲染**    | `facebook-analysis render --data ./meta-period-report.json --snapshot-dir ./snap-fb --out ./meta-period-report.html`                   |
 
 **禁止**：跳过步骤 3/4 直接交付 Markdown；禁止 Agent 手写 HTML。
 
 ### Excel 分支（仅用户指定时）
 
-用户明确要求 **Excel / xlsx** 时：步骤 1～3 相同；步骤 4 改为 Agent 脚本按 `meta-period-report-excel.md` 写 `.xlsx`，**不**调用 `render`（除非同时要 HTML）。
+用户明确要求 **Excel / xlsx / 表格** 时：步骤 1～3 相同；步骤 4 改为 `facebook-analysis render --format xlsx`（版式见 `meta-period-report-excel.md`）。同时要两种格式：`--format html,xlsx`。
 
 ---
 
@@ -28,10 +28,10 @@
 | Google 默认/常见维度                                                              | Facebook 对应                   | CLI        | 说明                                                                                           |
 | --------------------------------------------------------------------------------- | ------------------------------- | ---------- | ---------------------------------------------------------------------------------------------- |
 | 执行摘要 `overview`                                                               | ✅ 本期/上期环比                | `overview` | 上一周期由后端自动算，勿再拉第二次                                                             |
-| 每日趋势 `daily-metrics`                                                          | ❌ 无接口                       | —          | 报告中注明「Meta 报告无按日 Section」                                                          |
+| 每日趋势 `daily-metrics`                                                          | ✅ 按日                         | `daily`    | `DailySectionData`；别名 `daily-metrics`；不补空日                                             |
 | 月度汇总 `dimension-summary`                                                      | ⚠️ 用 `overview` 单周期汇总代替 | `overview` | 仅 currentPeriod 即全区间汇总                                                                  |
-| 系列 `campaigns`                                                                  | ⚠️ 广告组 + 行上 `campaignName` | `ad-sets`  | 无独立 Campaign Section；可按 `campaignName` 聚合撰写                                          |
-| 设备 `devices`                                                                    | ⚠️ 投放平台 × 版位              | `platform` | `publisherPlatform`（facebook / instagram 等）+ `platformPosition`（feed / facebook_reels 等） |
+| 系列 `campaigns`                                                                  | ✅ 独立系列维                   | `campaigns` | `CampaignSectionData`（`campaignId` / `campaignName` / `objective`）；广告组另拉 `ad-sets`   |
+| 设备 `devices`                                                                    | ✅ 设备 + ⚠️ 平台×版位          | `device` / `platform` | 真设备维用 `device`；`devices` 仍是 platform 旧别名；版位看 `platform`                         |
 | 地域 `geographic`                                                                 | ✅ 国家                         | `country`  | 可选 `--limit N`                                                                               |
 | 关键词 `keywords`                                                                 | ❌ 无                           | —          | 非搜索广告；章节写「不适用」                                                                   |
 | 受众 `audience`                                                                   | ⚠️ 年龄×性别                    | `audience` | 无兴趣/自定义受众列表                                                                          |
@@ -39,7 +39,7 @@
 | 图片/视频素材 `materials`                                                         | ⚠️ DC 素材                      | `material` | 标准账户为空，用 `creative`                                                                    |
 | 搜索词 / 附加信息 / 落地页 / 黄金账户 / 质量分 / 转化动作列表 / 系列类型 / 按小时 | ❌ 无                           | —          | 诊断模板中标注「Facebook 无此数据」                                                            |
 
-**`--sections` 别名**（与 Google 习惯兼容）：`campaigns`→`ad-sets`，`geographic`→`country`，`devices`→`platform`，`ads`→`creative`，`materials`→`material`。
+**`--sections` 别名**：`daily-metrics`→`daily`，`campaign`→`campaigns`，`geographic`→`country`，`devices`→`platform`（旧），`ads`→`creative`，`materials`→`material`。`campaigns` 现为独立 Section，不再映射到 `ad-sets`。
 
 ---
 
@@ -103,9 +103,12 @@
 | section    | 落盘文件             | 根字段                                 | 报告章节要点                                                                                                                                                                                                                |
 | ---------- | -------------------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `overview` | `overview-<id>.json` | `currentPeriod`, `previousPeriod`      | 环比表：消耗、展示、点击、CTR、CPC、转化、CPA、结果、单次成效、reach、frequency；注明 `resultType` / `attributionSetting`                                                                                                   |
+| `daily`    | `daily-<id>.json`    | `days[]`                               | 按日行，`date` 升序，不补空日                                                                                                                                                                                               |
+| `campaigns`| `campaigns-<id>.json`| `campaigns[]`                          | 系列级 spend / results / CPL；含 `campaignId` `campaignName` `objective`                                                                                                                                                    |
 | `ad-sets`  | `ad-sets-<id>.json`  | `adGroups[]`                           | Top 组 by spend；`spendPercentage`；按 `campaignName` 归并；高消耗低结果组                                                                                                                                                  |
 | `platform` | `platform-<id>.json` | `networks[]`                           | **两列维度**：`publisherPlatform`（投放平台）+ `platformPosition`（版位）；`network` 与 `platformPosition` 同值（兼容旧版）。同版位名可能跨平台出现（如 facebook/instagram 均有 `feed`），**禁止**仅用 `network` 当平台汇总 |
 | `country`  | `country-<id>.json`  | `countries[]`                          | Top 国家；`countryOrRegion` 为展示名                                                                                                                                                                                        |
+| `device`   | `device-<id>.json`   | `devices[]`                            | `devicePlatform`：desktop / mobile / unknown                                                                                                                                                                                |
 | `audience` | `audience-<id>.json` | `audiences[]`                          | 年龄×性别矩阵；高/低效人群段                                                                                                                                                                                                |
 | `creative` | `creative-<id>.json` | `creatives[]`                          | 按 `creativeType` 汇总；Top 创意表（adName、title、spend、results、costPerResult）                                                                                                                                          |
 | `material` | `material-<id>.json` | `materials[]`, `dataSource`, `message` | 仅 `dataSource===meta_asset_breakdown` 且有条目时写章节；否则一句说明                                                                                                                                                       |
@@ -117,13 +120,13 @@
 ```bash
 mkdir -p ./snap-fb
 siluzan-tso facebook-analysis -a <id> --start <s> --end <e> --json-out ./snap-fb \
-  --sections overview,ad-sets,platform,country,audience
+  --sections overview,daily,country,campaigns,audience
 ```
 
 叙事结构与 Agent JSON：**`meta-period-report.md`** + **`assets/meta-period-report.schema.json`**。  
-仅 Excel 交付时再读 **`report-templates/meta-period-report-excel.md`**（5 Sheet 版式）。
+仅 Excel 交付时再读 **`report-templates/meta-period-report-excel.md`**，并用 `render --format xlsx`。
 
-可选追加：`--sections material`（DC 账户）。
+可选追加：`--sections ad-sets,platform,device,creative,material`。
 
 国家 Top 10：整次命令加 `--limit 10`（仅 `country` 请求带 limit）。
 
@@ -141,37 +144,24 @@ siluzan-tso facebook-analysis render \
   --out ./meta-period-report.html
 ```
 
-- `--snapshot-dir`：与拉数 `--json-out` 同目录；CLI 自动合并 KPI、平台/国家/受众图表、广告组与受众表格。
-- 模板：`report-templates/meta-period-report.html` 。
-- JSON 字段说明：见 `report-templates/meta-period-report.md` § Agent JSON 结构。
+- `--snapshot-dir`：与拉数 `--json-out` 同目录；CLI 自动合并 KPI、日/国家/系列/受众表格与图表。
+- 模板：`report-templates/meta-period-report.html`（浅色运营版式 + ECharts）。
+- JSON 字段说明：见 `report-templates/meta-period-report.md`。
+- 用户要表格：同一命令加 `--format xlsx`。
 
 ---
 
 ## 优化建议撰写清单（不额外拉数）
 
-**必读** `assets/meta-period-report-rules.md`（对齐 P8 网站诊断：每条建议须**引用当次数字** + **可执行动作**，禁止空话）。
+**必读** `assets/meta-period-report-rules.md`。每条建议须**引用当次数字** + **可执行动作**。
 
-### 三层建议结构
+| JSON 字段 | 要求 |
+| --------- | ---- |
+| `fourQuestions` | 固定 4 问（钱花得值不值 / 谁真的想买 / 广告还新鲜吗 / 用户为什么不留资） |
+| `recommendations` | ≥3 张卡，`title` + `tag` + `items[]` |
+| `sections.*.insight` | daily / country / campaigns / audience 各有 `analysis[]` + `advice[]` |
 
-| 层级      | JSON 字段                      | 要求                                               |
-| --------- | ------------------------------ | -------------------------------------------------- |
-| 固定 4 条 | `narrative.recommendations[]`  | 标题枚举 4 个；每条 content **≥150 字**            |
-| 7 维补充  | `supplementaryRecommendations` | 预算/平台/地域/受众/创意/频次/接口限制 **各 1 条** |
-| 优先级    | `priorityPlan`                 | high/medium/low 各 **≥2 条**                       |
-
-### 7 维数据驱动要点
-
-1. **预算**：高 `spendPercentage` 但 `costPerResult` 差的 Ad Set → 降预算 % / 暂停（写组名与数字）。
-2. **平台/版位**：`publisherPlatform` + `platformPosition` 组合（勿只读 `network`）。
-3. **地域**：高消耗国家转化差 → geo 排除 / 收窄（写国家名与 CPL）。
-4. **受众**：低效 age×gender → 排除或降 bid（写年龄段）。
-5. **创意**：关停高花费低 `results` 的 ad；复制 winner 结构。
-6. **频次**：`frequency` >2.5 + 转化差 → 扩受众或换创意。
-7. **接口限制**：按日/关键词等 — 一句「Meta 接口未提供」，不编造。
-
-### HTML 默认交付（还须填）
-
-`executiveSummary`（3～5 段）、`healthDiagnosis`（四问+红绿灯）、`sections.*.insight`（各 ≥200 字）、`abTests`（≥3）、`actionChecklist` — 见 rules 文档 §四。
+数据驱动抓手：国家 CPL、按日零转化、系列是否共用学习池、年龄×性别线索质量。无关键词维 — 一句「接口未提供」，不编造。
 
 ---
 
@@ -181,4 +171,5 @@ siluzan-tso facebook-analysis render \
 | ------------ | ----------------------------------------------------------------------- |
 | 账户列表     | `list-accounts -m MetaAd -k <id> --json-out <dir>`                      |
 | 余额（若需） | `balance` / `stats`（口径与报告 spend 可能不同，须标注来源）            |
+| 当天/小时巡检 | `facebook-analysis account-status` / `campaign-entities` / `adset-entities` / `ad-entities` / `insights`（见 `hosted-automation-facebook.md`） |
 | 遗留仅总览   | `report meta-overview`（`MetaAd` 路径，不推荐替代 `facebook-analysis`） |

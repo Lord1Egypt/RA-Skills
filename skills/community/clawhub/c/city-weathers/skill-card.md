@@ -1,41 +1,59 @@
-## Description: <br>
-Provides structured weather data including temperature, humidity, wind, precipitation, and clothing advice for specified cities and dates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured weather information for specified cities and dates, including temperature, humidity, wind, precipitation, perceived temperature, and practical advice.
 
-## Publisher: <br>
-[shilingong](https://clawhub.ai/user/shilingong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shilingong](https://clawhub.ai/user/shilingong)
 
-## Use Case: <br>
-Agents use this skill to answer city weather questions by extracting a city and date, then returning structured weather conditions and practical advice. It is useful for weather lookup workflows that need machine-readable output for today, tomorrow, the day after tomorrow, or a seven-day range. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather responses may be simulated or depend on the configured weather provider. <br>
-Mitigation: Confirm whether the deployment uses a real weather provider before relying on results for decisions. <br>
-Risk: City and date queries can disclose location interests to a connected provider. <br>
-Mitigation: Avoid sending locations considered sensitive unless the configured provider is trusted. <br>
+## Use Case:
 
+External users and agents use this skill to parse weather requests by city and date, call or simulate a weather lookup, and return structured weather data with clothing or travel advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shilingong/city-weathers) <br>
-- [API integration notes](artifact/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [JSON object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a city; date defaults to today when omitted. Weather values may come from a configured provider or simulated data depending on deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Weather lookups may send city and date requests to a configured weather provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the selected provider and data-sharing expectations before installation or use.
+
+Risk: API keys could be exposed if placed directly in prompts or examples.
+
+Mitigation: Configure weather provider credentials through the host platform or another secret-management mechanism.
+
+Risk: Simulated weather data may be used when no real API is available.
+
+Mitigation: Use a real weather provider for decisions that require current or accurate weather conditions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shilingong/skills/city-weathers)
+- [API integration notes](artifact/api.md)
+- [Tool schema](artifact/tool.json)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API Calls, Guidance]
+
+**Output Format:** [Structured JSON with weather fields and short human-facing advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [City is required; date defaults to today and supports today, tomorrow, after_tomorrow, or 7d.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

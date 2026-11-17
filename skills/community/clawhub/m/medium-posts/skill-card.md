@@ -1,38 +1,48 @@
-## Description: <br>
-Guides agents in planning, publishing, republishing, and optimizing Medium.com posts with canonical tags, distribution tactics, and Medium-focused SEO. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents that write, publish, republish, or optimize Medium.com posts, including canonical tags, distribution, and Medium SEO.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and content teams use this skill to plan Medium articles, republish existing content with canonical links, and shape Medium-specific SEO, linking, and CTA recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated Medium recommendations may draw on local `.claude` or `.cursor` project context files when they exist.
+
+Mitigation: Review generated publishing guidance before use and avoid storing sensitive content strategy details in project context files that should not influence public articles.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing teams, content strategists, SEO practitioners, and agents use this skill to create or republish Medium posts with keyword-focused titles, article structure or canonical setup, internal links, and CTA placement. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local project-context sections containing keyword or content strategy notes. <br>
-Mitigation: Review local project-context files before use and avoid storing secrets or unrelated confidential strategy notes in the referenced sections. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/medium-posts) <br>
+**Other Properties Related to Output:** [May include title recommendations, article structure, canonical setup guidance, internal link suggestions, and CTA placement.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only output; no code execution, credentials, or automatic posting behavior.] <br>
+1.1.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md metadata.version and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

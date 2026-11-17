@@ -1,43 +1,54 @@
-## Description: <br>
-Generates structured Markdown cheat sheets for requested topics, including checklists, commands or steps, FAQs, examples, and optional save/export guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Chinese-language Markdown cheatsheets from built-in templates or a generic fallback, with guidance for saving the result as a Markdown file.
 
-## Publisher: <br>
-[wanwan2qq](https://clawhub.ai/user/wanwan2qq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanwan2qq](https://clawhub.ai/user/wanwan2qq)
 
-## Use Case: <br>
-Developers, operators, and general OpenClaw users can request quick-reference cheat sheets for technical or non-technical topics, use bundled templates for npm, Git, and OpenClaw skill development, or receive a generated Markdown outline when no template matches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases can activate the skill for generic manual, quick-reference, or configuration-guide requests. <br>
-Mitigation: Confirm the requested topic and whether a cheat-sheet response is intended before relying on or saving the output. <br>
-Risk: Generated cheat sheets may include command examples or file-save redirections that users could copy into a shell. <br>
-Mitigation: Review command examples and output paths before running commands or redirecting generated Markdown to files. <br>
+## Use Case:
 
+External users and developers use this skill to create quick-reference Markdown documents for technical and general topics, including npm publishing, OpenClaw skill development, and common Git commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanwan2qq/cheatsheet-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/wanwan2qq) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can list or search bundled templates and can suggest file-save redirection for Markdown export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated Git recovery advice may include destructive commands such as hard resets or force pushes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated command sequence before copying it, especially for shared branches or work that has not been backed up.
+
+Risk: Broad trigger phrases may activate the skill for generic manual, quick-reference, or configuration-guide requests.
+
+Mitigation: Confirm the requested topic and intended scope before relying on the generated cheatsheet.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wanwan2qq/skills/cheatsheet-generator)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command blocks and checklist sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for user review before saving or copying commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact package.json and README list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

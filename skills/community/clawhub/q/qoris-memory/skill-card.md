@@ -1,45 +1,59 @@
-## Description: <br>
-Legacy ClawHub listing for Qoris Memory that directs users to install the canonical qoris-memory-mcp skill while preserving backward compatibility for existing qoris-memory users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Legacy ClawHub listing that directs users to install qoris-memory-mcp for Qoris persistent MCP-based agent memory.
 
-## Publisher: <br>
-[apps-debug](https://clawhub.ai/user/apps-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apps-debug](https://clawhub.ai/user/apps-debug)
 
-## Use Case: <br>
-Developers and agent operators use this legacy listing to identify the migrated Qoris Memory skill and configure an MCP-backed memory service with QORIS_API_KEY and QORIS_WORKSPACE_ID when continuing to use the old slug. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory content and knowledge documents are sent to and stored by the Qoris MCP service for the configured workspace. <br>
-Mitigation: Use the skill only for data appropriate for that workspace and avoid storing secrets, regulated data, customer records, or confidential prompts unless access controls, retention, deletion, and key rotation have been verified. <br>
-Risk: The skill requires sensitive credentials through QORIS_API_KEY and QORIS_WORKSPACE_ID. <br>
-Mitigation: Provide credentials through environment variables or an approved secrets manager, rotate keys when needed, and do not commit credential values to source control. <br>
-Risk: This is a legacy listing that no longer receives future feature updates. <br>
-Mitigation: Install and review the canonical qoris-memory-mcp listing for new deployments unless backward compatibility with the qoris-memory slug is specifically required. <br>
+## Use Case:
 
+Developers and agent users with existing qoris-memory installs use this legacy listing for backward compatibility while migrating to qoris-memory-mcp. The underlying MCP integration supports explicit memory storage, retrieval, search, update, deletion, and document lookup through Qoris cloud services.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/apps-debug/qoris-memory) <br>
-- [Canonical qoris-memory-mcp listing](https://clawhub.ai/qoris-memory-mcp) <br>
-- [Qoris homepage](https://qoris.ai) <br>
-- [Qoris Memory documentation](https://docs.qoris.ai/memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and environment variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses explicit MCP memory tools and requires QORIS_API_KEY and QORIS_WORKSPACE_ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence, frontmatter, package.json) <br>
+Risk: This is a legacy listing and may not receive future feature updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the canonical qoris-memory-mcp listing for current releases and support.
+
+Risk: Memory content and knowledge documents are stored in Qoris cloud services for the configured workspace.
+
+Mitigation: Confirm Qoris cloud storage is approved for the workspace before saving sensitive, regulated, or confidential data.
+
+Risk: Access depends on a user-provided QORIS_API_KEY.
+
+Mitigation: Keep the API key out of saved memories and rotate it when access should be revoked.
+
+## Reference(s):
+
+- [Qoris homepage](https://qoris.ai)
+- [Qoris Memory documentation](https://docs.qoris.ai/memory)
+- [Canonical qoris-memory-mcp listing](https://clawhub.ai/qoris-memory-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QORIS_API_KEY and QORIS_WORKSPACE_ID; connects to the Qoris MCP server.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

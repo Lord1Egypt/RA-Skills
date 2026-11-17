@@ -1,39 +1,56 @@
-## Description: <br>
-Fetch and read transcripts from YouTube videos. Use when you need to summarize a video, answer questions about its content, or extract information from it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and read transcripts from YouTube videos. Use when you need to summarize a video, answer questions about its content, or extract information from it.
 
-## Publisher: <br>
-[naliehu](https://clawhub.ai/user/naliehu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[naliehu](https://clawhub.ai/user/naliehu)
 
-## Use Case: <br>
-Developers and external users use this skill to fetch YouTube transcripts, summarize video content, answer questions about a video, and extract transcript-based information. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generic triggers may activate this skill for broader video requests beyond YouTube transcript work. <br>
-Mitigation: Use the skill only for YouTube transcript tasks and confirm the requested video workflow before relying on its output. <br>
-Risk: The referenced get_transcript.py helper is not included in the package evidence. <br>
-Mitigation: Verify any separately obtained transcript helper before use and ensure it matches the expected yt-dlp transcript workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [YouTube Watcher on ClawHub](https://clawhub.ai/naliehu/youtube-watcherkx) <br>
+## Use Case:
 
+Developers and external users use this skill to retrieve YouTube video transcripts, then summarize, search, or answer questions from the transcript text.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and transcript-derived text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires yt-dlp in PATH and depends on videos having closed captions or auto-generated subtitles.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on yt-dlp from the user's configured Homebrew or pip sources.
+
+Mitigation: Install yt-dlp only from trusted package sources and keep it updated.
+
+Risk: The inspected package references a transcript script that is not included in the artifact.
+
+Mitigation: Confirm the transcript script is present and works before relying on the skill in an agent workflow.
+
+Risk: Requests outside the stated YouTube transcript purpose may be triggered by broad video-analysis language.
+
+Mitigation: Use the skill only for YouTube transcript retrieval and transcript-grounded summarization or question answering.
+
+## Reference(s):
+
+- [YouTube Watcher on ClawHub](https://clawhub.ai/naliehu/skills/youtube-watcherkx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and transcript-derived text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires yt-dlp and works only when the requested YouTube video has closed captions or auto-generated subtitles.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

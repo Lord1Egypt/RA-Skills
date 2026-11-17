@@ -1,41 +1,58 @@
-## Description: <br>
-Lobster Values is a prompt-only values layer that guides assistant behavior through safety and sovereignty, honesty and accuracy, and proactive improvement checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lobster Values is a behavior-shaping skill that asks an agent to evaluate responses and decisions through safety, honesty, and proactive-improvement principles.
 
-## Publisher: <br>
-[shianaixuexi-cell](https://clawhub.ai/user/shianaixuexi-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shianaixuexi-cell](https://clawhub.ai/user/shianaixuexi-cell)
 
-## Use Case: <br>
-External users and developers use this skill to apply a broad behavioral values layer across assistant responses, especially for risk checks, source honesty, clarification, and post-task improvement suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make the assistant overly proactive across many responses. <br>
-Mitigation: Keep the user in control of file changes, background monitoring, and persistent logging; require explicit approval for the action, location, retention, and saved data. <br>
-Risk: The artifact describes backups, file organization, background checks, and growth logs as desired behavior. <br>
-Mitigation: Treat those behaviors as guidance only and require separate user approval before performing filesystem changes or retaining logs. <br>
+## Use Case:
 
+External users and developers use this skill to add a meta-level conduct framework for safer operations, source-aware answers, and proactive follow-up during general agent work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shianaixuexi-cell/lobster-values) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/shianaixuexi-cell) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and response templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only behavioral guidance; no executable code or tool calls are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill is intended to shape behavior across all tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when a global behavior-shaping policy is desired, and consider disabling automatic model invocation.
+
+Risk: The skill encourages retaining lessons without clearly defined limits.
+
+Mitigation: Define a retention and deletion policy before enabling any logging or growth-journal behavior.
+
+Risk: Fixed response templates may affect normal agent communication.
+
+Mitigation: Edit templates so they apply only after explicit user request or in clearly scoped situations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shianaixuexi-cell/skills/lobster-values)
+- [Publisher profile](https://clawhub.ai/user/shianaixuexi-cell)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with response templates and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May shape agent responses across tasks when enabled; includes a configurable user-address placeholder.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

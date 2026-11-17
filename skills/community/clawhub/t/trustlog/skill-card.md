@@ -1,42 +1,56 @@
-## Description: <br>
-Create, summarize, or verify local human-readable receipts for AI agent work using the @builtbyecho/trustlog CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, summarize, or verify local human-readable receipts for AI agent work using the @builtbyecho/trustlog CLI.
 
-## Publisher: <br>
-[builtbyecho](https://clawhub.ai/user/builtbyecho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[builtbyecho](https://clawhub.ai/user/builtbyecho)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to create, inspect, summarize, verify, and optionally preserve local receipts for AI agent work, especially after tests, builds, handoffs, or risky commands.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to run an unpinned third-party npm CLI in the target project.
+
+Mitigation: Use a pinned or lockfile-managed CLI version, run with minimal environment secrets, and install only after reviewing the package source and release.
+
+Risk: The Vaultline workflow can upload local receipt contents to an external service.
+
+Mitigation: Treat upload as an explicit publication step, inspect receipts before sharing, and provide only the required Vaultline API key for that command.
+
+Risk: Receipts may still contain sensitive project or workflow information after automated redaction.
+
+Mitigation: Inspect generated Markdown and JSON receipts before posting them publicly or handing them to another system.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, engineers, and agent operators use trustlog to create local JSON and Markdown receipts after verification commands, summarize what ran or changed, and verify receipts before sharing handoffs, PR evidence, tickets, or chat updates. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, markdown, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: Receipts may include secrets or sensitive project details even with redaction. <br>
-Mitigation: Review .trustlog files before sharing them outside the local workspace. <br>
-Risk: The optional Vaultline workflow sends a receipt to an external service. <br>
-Mitigation: Use the local receipt workflow by default and upload only when intentionally sharing with a scoped, revocable API key. <br>
-Risk: The skill runs referenced npm tools and wraps user-selected commands. <br>
-Mitigation: Install only when comfortable running the referenced npm packages, prefer non-destructive commands, and verify receipts before using them as final evidence. <br>
+**Output Format:** [Markdown guidance with inline shell and JavaScript code blocks; referenced receipt artifacts are Markdown and JSON files.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [trustlog on ClawHub](https://clawhub.ai/builtbyecho/trustlog) <br>
+**Other Properties Related to Output:** [Receipts are local-first by default; Vaultline upload is an explicit external publication step.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JavaScript upload snippet] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local .trustlog JSON and Markdown receipt files through the referenced CLI; optional Vaultline upload requires VAULTLINE_API_KEY.] <br>
+0.2.3 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.2.3 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

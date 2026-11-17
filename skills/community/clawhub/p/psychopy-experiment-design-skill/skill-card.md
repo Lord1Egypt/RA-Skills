@@ -1,38 +1,53 @@
-## Description: <br>
-Helps users design, build, troubleshoot, and document experimental tasks using PsychoPy, PsychoJS, Pavlovia, or similar online psychology experiment platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users design, build, troubleshoot, and document PsychoPy, PsychoJS, Pavlovia, and similar online psychology experiments.
 
-## Publisher: <br>
-[hoffnung131](https://clawhub.ai/user/hoffnung131) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hoffnung131](https://clawhub.ai/user/hoffnung131)
 
-## Use Case: <br>
-Psychology, cognitive neuroscience, rehabilitation, and behavioral experiment designers use this skill to translate study ideas into PsychoPy Builder structures, condition files, timing plans, data checks, and troubleshooting steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Data-checking or troubleshooting requests may include participant identifiers or sensitive clinical data. <br>
-Mitigation: Remove participant identifiers and unnecessary sensitive clinical details before sharing study outputs with the agent. <br>
+## Use Case:
 
+Psychology, cognitive neuroscience, rehabilitation, and behavioral experiment designers use this skill to plan PsychoPy Builder structures, condition files, timing, response recording, online deployment checks, troubleshooting steps, and research-facing task descriptions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hoffnung131/psychopy-experiment-design-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with ordered sections, example condition-file columns, Builder setup details, and optional code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include practical trial timelines, loop structures, response-recording checks, and concise procedure text for research proposals or ethics applications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated experiment code, Builder settings, condition files, or data checks may be incomplete or incorrect for a real study.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated PsychoPy/PsychoJS code, timing, resources, condition files, and data-checking logic before using them in real data collection.
+
+Risk: Task adaptations for children, older adults, or clinical populations may not fit participant needs or study ethics requirements.
+
+Mitigation: Have qualified researchers or clinicians review instructions, pacing, practice trials, breaks, response windows, and protocol text before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hoffnung131/skills/psychopy-experiment-design-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with structured headings, examples, and occasional code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Builder routine plans, loop nesting, condition-file columns, timing settings, data-checking logic, troubleshooting guidance, and concise protocol prose.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -98,17 +98,17 @@
 
 #### ✅ 模糊搜索名称（主应用，最常用）
 ```bash
-python scripts/vod_search_media.py --names "我的视频"
+python3 scripts/vod_search_media.py --names "我的视频"
 ```
 
 #### 通过 FileId 搜索（主应用）
 ```bash
-python scripts/vod_search_media.py --file-ids 387702292285462759
+python3 scripts/vod_search_media.py --file-ids 387702292285462759
 ```
 
 #### 搜索多个文件名
 ```bash
-python scripts/vod_search_media.py --names "测试视频" "会议录像"
+python3 scripts/vod_search_media.py --names "测试视频" "会议录像"
 ```
 
 ---
@@ -117,28 +117,28 @@ python scripts/vod_search_media.py --names "测试视频" "会议录像"
 
 #### 指定 SubAppId + FileId 搜索
 ```bash
-python scripts/vod_search_media.py \
+python3 scripts/vod_search_media.py \
     --file-ids 387702292285462759 \
     --sub-app-id 1500046806
 ```
 
 #### 指定 SubAppId + 名称模糊搜索
 ```bash
-python scripts/vod_search_media.py \
+python3 scripts/vod_search_media.py \
     --names "测试视频" \
     --sub-app-id 1500046806
 ```
 
 #### ✅ 通过应用名称模糊匹配 + 名称搜索（常用）
 ```bash
-python scripts/vod_search_media.py \
+python3 scripts/vod_search_media.py \
     --names "我的视频" \
     --app-name "测试应用"
 ```
 
 #### 通过应用名称模糊匹配 + FileId 搜索
 ```bash
-python scripts/vod_search_media.py \
+python3 scripts/vod_search_media.py \
     --file-ids 387702292285462759 \
     --app-name "测试应用"
 ```
@@ -150,45 +150,45 @@ python scripts/vod_search_media.py \
 #### 按文件类型搜索
 ```bash
 # 搜索视频
-python scripts/vod_search_media.py --categories Video
+python3 scripts/vod_search_media.py --categories Video
 
 # 搜索图片
-python scripts/vod_search_media.py --categories Image
+python3 scripts/vod_search_media.py --categories Image
 
 # 搜索音频
-python scripts/vod_search_media.py --categories Audio
+python3 scripts/vod_search_media.py --categories Audio
 ```
 
 #### 按标签搜索
 ```bash
-python scripts/vod_search_media.py --tags "体育" "篮球"
+python3 scripts/vod_search_media.py --tags "体育" "篮球"
 ```
 
 #### 按封装格式搜索
 ```bash
-python scripts/vod_search_media.py --names "测试" --media-types mp4
+python3 scripts/vod_search_media.py --names "测试" --media-types mp4
 ```
 
 #### 按文件状态搜索
 ```bash
-python scripts/vod_search_media.py --categories Video --status Normal
+python3 scripts/vod_search_media.py --categories Video --status Normal
 ```
 
 #### 按审核结果搜索
 ```bash
-python scripts/vod_search_media.py --review-results pass
+python3 scripts/vod_search_media.py --review-results pass
 ```
 
 #### 按创建时间范围搜索
 ```bash
-python scripts/vod_search_media.py --names "会议" \
+python3 scripts/vod_search_media.py --names "会议" \
     --create-after "2026-01-01T00:00:00+08:00" \
     --create-before "2026-03-31T23:59:59+08:00"
 ```
 
 #### 按存储类型搜索
 ```bash
-python scripts/vod_search_media.py --storage-classes STANDARD
+python3 scripts/vod_search_media.py --storage-classes STANDARD
 ```
 
 ---
@@ -197,42 +197,42 @@ python scripts/vod_search_media.py --storage-classes STANDARD
 
 #### 按创建时间降序排序
 ```bash
-python scripts/vod_search_media.py --names "测试" \
+python3 scripts/vod_search_media.py --names "测试" \
     --sort-field CreateTime --sort-order Desc
 ```
 
 #### 分页查询
 ```bash
 # 第一页
-python scripts/vod_search_media.py --names "视频" --offset 0 --limit 20
+python3 scripts/vod_search_media.py --names "视频" --offset 0 --limit 20
 
 # 第二页
-python scripts/vod_search_media.py --names "视频" --offset 20 --limit 20
+python3 scripts/vod_search_media.py --names "视频" --offset 20 --limit 20
 ```
 
 #### 只返回基础信息
 ```bash
-python scripts/vod_search_media.py --names "视频" --filters basicInfo
+python3 scripts/vod_search_media.py --names "视频" --filters basicInfo
 ```
 
 #### 返回基础信息和元数据
 ```bash
-python scripts/vod_search_media.py --names "视频" --filters basicInfo metaData
+python3 scripts/vod_search_media.py --names "视频" --filters basicInfo metaData
 ```
 
 #### JSON 格式输出
 ```bash
-python scripts/vod_search_media.py --names "视频" --json
+python3 scripts/vod_search_media.py --names "视频" --json
 ```
 
 #### 详细输出（含 URL）
 ```bash
-python scripts/vod_search_media.py --names "视频" --verbose
+python3 scripts/vod_search_media.py --names "视频" --verbose
 ```
 
 #### 预览请求参数
 ```bash
-python scripts/vod_search_media.py --names "视频" --dry-run
+python3 scripts/vod_search_media.py --names "视频" --dry-run
 ```
 
 ---
@@ -243,19 +243,19 @@ python scripts/vod_search_media.py --names "视频" --dry-run
 
 | 用户自然语言描述 | 对应参数 | 示例命令 |
 |--------------|---------|---------|
-| "音频类型的媒体" / "音频文件" / "音乐" | `--categories Audio` | `python scripts/vod_search_media.py --categories Audio` |
-| "视频类型的媒体" / "视频文件" | `--categories Video` | `python scripts/vod_search_media.py --categories Video` |
-| "图片类型的媒体" / "图片文件" | `--categories Image` | `python scripts/vod_search_media.py --categories Image` |
-| "2026年1月1日之后创建的" / "1月1日以后上传的" | `--create-after "2026-01-01T00:00:00+08:00"` | `python scripts/vod_search_media.py --create-after "2026-01-01T00:00:00+08:00"` |
-| "2026年3月31日之前创建的" | `--create-before "2026-03-31T23:59:59+08:00"` | `python scripts/vod_search_media.py --create-before "2026-03-31T23:59:59+08:00"` |
-| "最多返回5条" / "取前5个" | `--limit 5` | `python scripts/vod_search_media.py ... --limit 5` |
-| "JSON格式输出" / "以JSON返回" | `--json` | `python scripts/vod_search_media.py ... --json` |
-| "mp4格式的" / "flv格式的" | `--media-types mp4` | `python scripts/vod_search_media.py --media-types mp4` |
-| "按创建时间倒序" / "最新的在前" | `--sort-field CreateTime --sort-order Desc` | `python scripts/vod_search_media.py ... --sort-field CreateTime --sort-order Desc` |
+| "音频类型的媒体" / "音频文件" / "音乐" | `--categories Audio` | `python3 scripts/vod_search_media.py --categories Audio` |
+| "视频类型的媒体" / "视频文件" | `--categories Video` | `python3 scripts/vod_search_media.py --categories Video` |
+| "图片类型的媒体" / "图片文件" | `--categories Image` | `python3 scripts/vod_search_media.py --categories Image` |
+| "2026年1月1日之后创建的" / "1月1日以后上传的" | `--create-after "2026-01-01T00:00:00+08:00"` | `python3 scripts/vod_search_media.py --create-after "2026-01-01T00:00:00+08:00"` |
+| "2026年3月31日之前创建的" | `--create-before "2026-03-31T23:59:59+08:00"` | `python3 scripts/vod_search_media.py --create-before "2026-03-31T23:59:59+08:00"` |
+| "最多返回5条" / "取前5个" | `--limit 5` | `python3 scripts/vod_search_media.py ... --limit 5` |
+| "JSON格式输出" / "以JSON返回" | `--json` | `python3 scripts/vod_search_media.py ... --json` |
+| "mp4格式的" / "flv格式的" | `--media-types mp4` | `python3 scripts/vod_search_media.py --media-types mp4` |
+| "按创建时间倒序" / "最新的在前" | `--sort-field CreateTime --sort-order Desc` | `python3 scripts/vod_search_media.py ... --sort-field CreateTime --sort-order Desc` |
 
 > ✅ 示例：用户说"搜索2026年1月1日之后创建的媒体，最多返回5条，JSON格式输出"
 > ```bash
-> python scripts/vod_search_media.py \
+> python3 scripts/vod_search_media.py \
 >     --create-after "2026-01-01T00:00:00+08:00" \
 >     --limit 5 \
 >     --json
@@ -263,7 +263,7 @@ python scripts/vod_search_media.py --names "视频" --dry-run
 >
 > ✅ 示例：用户说"搜索音频类型的媒体，最多返回5条"
 > ```bash
-> python scripts/vod_search_media.py --categories Audio --limit 5
+> python3 scripts/vod_search_media.py --categories Audio --limit 5
 > ```
 
 SearchMedia 和 DescribeMediaInfos 的使用场景对比：
@@ -278,10 +278,10 @@ SearchMedia 和 DescribeMediaInfos 的使用场景对比：
 #### 示例：已知 FileId 精确查询
 ```bash
 # 推荐用 DescribeMediaInfos
-python scripts/vod_describe_media.py --file-id 387702292285462759
+python3 scripts/vod_describe_media.py --file-id 387702292285462759
 
 # 也可以用 SearchMedia
-python scripts/vod_search_media.py --file-ids 387702292285462759
+python3 scripts/vod_search_media.py --file-ids 387702292285462759
 ```
 
 ---

@@ -1,40 +1,62 @@
-## Description: <br>
-Guides agents and users through installing AKShare and using its Python interfaces for financial market and macroeconomic data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use AKShare to retrieve Chinese financial market data for stocks, funds, bonds, futures, foreign exchange, indexes, crypto, and macroeconomic indicators.
 
-## Publisher: <br>
-[anyJohn](https://clawhub.ai/user/anyJohn) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyjohn](https://clawhub.ai/user/anyjohn)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill as a concise AKShare reference for installing the library, validating the environment, and identifying Python APIs for stocks, futures, options, funds, forex, bonds, crypto, and macroeconomic data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AKShare calls may contact public financial-data websites whose availability, formats, and data quality can change. <br>
-Mitigation: Cross-check important results against authoritative sources and validate financial data before using it for decisions. <br>
-Risk: Installing Python packages can introduce dependency or reproducibility risk. <br>
-Mitigation: Use a Python virtual environment, verify the AKShare and pandas package names, and pin versions when reproducibility matters. <br>
+## Use Case:
 
+Developers and finance-data analysts use this skill to identify AKShare installation steps, common APIs, troubleshooting paths, and cautions for retrieving public market and macroeconomic data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/anyJohn/akshare-zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code] <br>
-**Output Format:** [Markdown with shell commands and Python API names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-style guidance; does not execute data retrieval itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: AKShare and pandas are third-party Python dependencies that may change behavior across releases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment, avoid elevated privileges, and pin reviewed package versions where reproducibility matters.
+
+Risk: Financial market data may be delayed, incomplete, or incorrect.
+
+Mitigation: Verify outputs against independent data sources before relying on them for analysis or investment decisions.
+
+Risk: Interface names and supported data endpoints may change over time.
+
+Mitigation: Consult the AKShare changelog and current API list when calls fail or return empty results.
+
+## Reference(s):
+
+- [AKShare complete API list](references/api-list.md)
+- [AKShare documentation](https://akshare.akfamily.xyz/)
+- [AKShare GitHub](https://github.com/akfamily/akshare)
+- [AKShare installation guide](https://akshare.akfamily.xyz/installation.html)
+- [AKShare interface list](https://akshare.akfamily.xyz/tutorial.html)
+- [AKShare changelog](https://akshare.akfamily.xyz/changelog.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AKShare API names, installation commands, troubleshooting guidance, and data-quality cautions.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

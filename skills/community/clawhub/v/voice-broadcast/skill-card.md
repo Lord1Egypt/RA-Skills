@@ -1,39 +1,54 @@
-## Description: <br>
-Voice Broadcast lets an agent read replies aloud through Feishu voice messages, with commands to read the latest reply, enable or disable automatic readout, and mute or unmute playback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Voice Broadcast controls text-to-speech playback for AI replies, including manual reading, automatic voice broadcast, mute, and unmute behavior for Feishu channels.
 
-## Publisher: <br>
-[Gabriel-ZZ](https://clawhub.ai/user/Gabriel-ZZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gabriel-zz](https://clawhub.ai/user/gabriel-zz)
 
-## Use Case: <br>
-External users and teams use this skill when they want assistant replies delivered as Feishu voice audio, especially when reading text is inconvenient or hands-free playback is preferred. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assistant replies may contain sensitive information that becomes audible when converted to Feishu voice audio. <br>
-Mitigation: Use the skill only in contexts where voice playback is acceptable and where recipients understand that replies may be sent as audio. <br>
-Risk: Urgent-content handling can override mute behavior. <br>
-Mitigation: Review or remove the mute override before using the skill in private, medical, regulated, or shared-audio environments. <br>
+## Use Case:
 
+External users use this skill to receive AI responses as voice messages when audio delivery is preferable, such as on iOS or when hands-free access is needed. It supports command-based and automatic playback control within Feishu.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration, API calls] <br>
-**Output Format:** [Agent instructions that produce Feishu voice audio behavior and short text status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains voice broadcast state for automatic readout and mute behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can override mute for undefined urgent content and send Feishu audio despite a silence preference.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the urgent-content broadcast rule before installation and require explicit opt-in or remove the mute override in shared, workplace, or sensitive environments.
+
+Risk: Automatic voice broadcast may expose reply content in Feishu channels where nearby listeners can hear the audio.
+
+Mitigation: Use manual reading or keep mute enabled for sensitive conversations, and limit installation to Feishu contexts where audio playback is appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gabriel-zz/skills/voice-broadcast)
+- [Publisher profile](https://clawhub.ai/user/gabriel-zz)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command-triggered state changes and text-to-speech behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update voice_state.json and send Feishu voice messages when triggered.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

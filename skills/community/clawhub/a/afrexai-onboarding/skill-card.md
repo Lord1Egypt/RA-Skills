@@ -1,42 +1,53 @@
-## Description: <br>
-Systematically onboard new clients with checklists, welcome sequences, milestone tracking, and success metrics. Reduce churn by nailing the first 90 days. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematically onboard new clients with checklists, welcome sequences, milestone tracking, and success metrics.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Customer success teams, account managers, agency owners, and SaaS founders use this skill to draft client onboarding checklists, welcome sequences, kickoff agendas, success metrics, and early risk indicators. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated onboarding content may include incorrect, overbroad, or client-inappropriate guidance. <br>
-Mitigation: Review and adapt checklists, messages, agendas, and metrics before sending them to customers. <br>
-Risk: Optional external links and related-skill install commands may take users outside the current skill. <br>
-Mitigation: Review external links and install commands before using them. <br>
-Risk: Generated onboarding drafts may include confidential client details if those details are supplied in prompts. <br>
-Mitigation: Avoid entering confidential client information unless sharing it with the agent is intended and approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Customer Onboarding on ClawHub](https://clawhub.ai/1kalin/afrexai-onboarding) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Customer success teams, account managers, agency owners, and SaaS founders use this skill to create client onboarding checklists, welcome sequences, kickoff agendas, milestone plans, success metrics, and risk indicators for the first 90 days.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklists, drafted messages, agendas, metric recommendations, and risk summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include suggested ownership and deadlines when relevant.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact promotes additional `clawhub install` commands for separate skills that were not reviewed as part of this release.
+
+Mitigation: Review and verify each additional skill separately before installation, and prefer pinned or verified versions.
+
+Risk: Customer onboarding content can introduce inaccurate timelines, responsibilities, or risk signals if applied without business review.
+
+Mitigation: Have a customer success owner review generated checklists, messages, metrics, and deadlines before using them with clients.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-onboarding)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with checklists, message drafts, agendas, metrics, ownership, and deadlines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces customer onboarding plans and written materials; no executable code is included in the artifact.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

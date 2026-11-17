@@ -1,44 +1,57 @@
-## Description: <br>
-Search, score, and submit AI agent tools from SkillsIndex, including MCP servers, Claude skills, GPT actions, and IDE plugins, with security, utility, maintenance, and uniqueness scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches, scores, and submits AI agent tools from SkillsIndex, including MCP servers, Claude skills, GPT actions, and IDE plugins.
 
-## Publisher: <br>
-[thomasblc](https://clawhub.ai/user/thomasblc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[thomasblc](https://clawhub.ai/user/thomasblc)
 
-## Use Case: <br>
-Developers and agent users use this skill to discover, compare, inspect, and submit AI agent tools from the SkillsIndex directory. It helps agents retrieve tool details, top-rated listings, and security audit information while optionally submitting new tools or email subscriptions to SkillsIndex. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP server runs through npm via npx and makes network requests to SkillsIndex and npmjs.com. <br>
-Mitigation: Review the package and be comfortable with npx execution and outbound HTTPS access before installation. <br>
-Risk: submit_tool and subscribe can send a repository URL, description, or email address to SkillsIndex. <br>
-Mitigation: Review any submit_tool or subscribe action before sending repository details or personal contact information. <br>
+## Use Case:
 
+Developers and agent builders use this MCP skill to discover, compare, and submit AI agent tools using SkillsIndex metadata, ratings, and security checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/thomasblc/skillsindex-mcp) <br>
-- [SkillsIndex Directory](https://skillsindex.dev) <br>
-- [SkillsIndex MCP npm Package](https://www.npmjs.com/package/skillsindex-mcp) <br>
-- [SkillsIndex Source Repository](https://github.com/thomasblc/skillsindex) <br>
-- [SkillsIndex Scoring Methodology](https://skillsindex.dev/methodology/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and text responses with optional JSON-like tool parameters and MCP configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return search results, tool metadata, security scores, audit notes, submission guidance, and subscription confirmation details from SkillsIndex.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill runs an unpinned npm-delivered local MCP server, so reviewed behavior can change after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin skillsindex-mcp to a reviewed exact version and verify npm package and source provenance before enabling it.
+
+Risk: The MCP server performs network calls to SkillsIndex and npm endpoints.
+
+Mitigation: Run the MCP host with minimal filesystem, environment, credential, and network access, and allow only the documented network destinations when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thomasblc/skills/skillsindex-mcp)
+- [SkillsIndex directory](https://skillsindex.dev)
+- [skillsindex-mcp npm package](https://www.npmjs.com/package/skillsindex-mcp)
+- [SkillsIndex source link from skill documentation](https://github.com/thomasblc/skillsindex)
+- [SkillsIndex scoring methodology](https://skillsindex.dev/methodology/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets and tool parameter examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include directory search results, tool detail summaries, security audit summaries, submission guidance, and MCP configuration examples.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Subscribe to WeChat public-account and RSS sources through WeWeRSS, then fetch raw article content for agent-built daily digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WeWeRSS helps agents subscribe to WeChat public accounts and RSS sources through the Open Channel API, then retrieve raw article content for daily digest workflows.
 
-## Publisher: <br>
-[eggyrooch-blip](https://clawhub.ai/user/eggyrooch-blip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eggyrooch-blip](https://clawhub.ai/user/eggyrooch-blip)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure a trusted WeWeRSS instance, create channels, add feed or site sources, and retrieve recent raw article data or Atom feeds for downstream summarization, classification, or daily digest generation with their own LLM. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured WeWeRSS instance may process submitted URLs and article data, including private or internal sources. <br>
-Mitigation: Use a trusted WeWeRSS instance and submit only sources that are intended for that instance to process. <br>
-Risk: Delete commands can remove sources from a channel if the wrong channel or source ID is used. <br>
-Mitigation: Verify channel and source IDs before running delete commands. <br>
+## Use Case:
 
+External users and developers use this skill to manage WeWeRSS channels, add or remove feed sources, retrieve raw articles, and expose an Atom feed for downstream agent summarization or digest workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/eggyrooch-blip/wewerss) <br>
-- [WeWeRSS homepage](https://github.com/punkpeye/wewerss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and a trusted WEWERSS_BASE_URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Using an untrusted WeWeRSS instance or submitting confidential source URLs can expose sensitive feed data to an unauthorized server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted HTTPS, self-hosted, or organization-controlled WeWeRSS instance for sensitive workflows, and submit only sources that server is authorized to fetch and store.
+
+Risk: Running the delete command with the wrong source identifier can remove an intended subscription.
+
+Mitigation: List sources first and verify SOURCE_ID before issuing the delete request.
+
+## Reference(s):
+
+- [WeWeRSS ClawHub Skill](https://clawhub.ai/eggyrooch-blip/skills/wewerss)
+- [WeWeRSS Homepage](https://github.com/punkpeye/wewerss)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash command examples and API response field descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; API responses contain raw article metadata, raw text when available, and Atom XML, with no AI-generated summaries, tags, categories, or scores.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

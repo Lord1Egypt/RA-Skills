@@ -1,54 +1,72 @@
-## Description: <br>
-Bitrefill routes agents to browse or purchase Bitrefill gift cards, mobile top-ups, and eSIMs through the highest-fidelity available channel: residential browser, MCP server, npm CLI, or REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bitrefill routes agents to browse or buy Bitrefill gift cards, mobile top-ups, and eSIMs through the best available channel: browser, MCP, CLI, or REST API.
 
-## Publisher: <br>
-[marcopesani](https://clawhub.ai/user/marcopesani) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marcopesani](https://clawhub.ai/user/marcopesani)
 
-## Use Case: <br>
-External users and developers use this skill to help an agent find, compare, and, with explicit approval, buy Bitrefill digital goods such as gift cards, mobile top-ups, and eSIMs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Bitrefill product availability, payment support, and regional checkout restrictions. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent real purchase authority for instantly delivered digital goods. <br>
-Mitigation: Require explicit confirmation before purchase, keep buy tools out of auto-approval, and use a dedicated low-balance Bitrefill account. <br>
-Risk: The skill may use OAuth tokens, API keys, credential files, or environment variables. <br>
-Mitigation: Prefer OAuth or Authorization-header setup over keys in URLs, protect local credential files, and do not commit secrets or plaintext keys. <br>
-Risk: Gift card codes, eSIM QR codes, and redemption links are cash-like once delivered. <br>
-Mitigation: Handle redemption details in memory when possible, avoid public or shared channels, avoid plaintext logs, and advise prompt redemption. <br>
-Risk: Crypto or x402 payment flows can spend from agent-accessible funds. <br>
-Mitigation: Never provide wallet seed phrases or signing keys to the agent, and bound available balances before enabling autonomous payment flows. <br>
+## Use Case:
 
+Developers and agent users use this skill to search Bitrefill catalog items, prepare purchases, and complete gift card, mobile top-up, or eSIM workflows with explicit spending safeguards.
 
-## Reference(s): <br>
-- [Skill README](SKILL.md) <br>
-- [Bitrefill Website](https://www.bitrefill.com) <br>
-- [Bitrefill Documentation](https://docs.bitrefill.com) <br>
-- [Bitrefill CLI Repository](https://github.com/bitrefill/cli) <br>
-- [MCP Path](references/mcp.md) <br>
-- [CLI Path](references/cli.md) <br>
-- [REST API Path](references/api.md) <br>
-- [Browse Path](references/browse.md) <br>
-- [Spending Safeguards](references/safeguards.md) <br>
-- [Capability Matrix](references/capability-matrix.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline command, JSON, and HTTP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MCP setup, CLI commands, REST calls, purchase confirmations, invoice IDs, and redemption-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release metadata; artifact frontmatter lists 2.1.0) <br>
+Risk: The skill can initiate real-money purchases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance account, require explicit confirmation before each purchase, and keep buy-products out of auto-approve settings.
+
+Risk: API keys or purchase credentials could be exposed through unsafe configuration.
+
+Mitigation: Prefer OAuth or bearer-token headers, avoid API keys in MCP URLs, and do not commit credentials to project files.
+
+Risk: Recurring or automated purchases could continue beyond the user's intent.
+
+Mitigation: Use explicit spending caps, expiration dates, recipient and SKU locks, plus a way to list and cancel recurring jobs.
+
+Risk: Gift card codes, eSIM QR data, and redemption links are cash-like bearer secrets.
+
+Mitigation: Deliver codes only in private text channels, avoid logs and shared documents, and advise prompt secure redemption.
+
+## Reference(s):
+
+- [Bitrefill Skill](https://clawhub.ai/marcopesani/skills/bitrefill)
+- [Bitrefill Website](https://www.bitrefill.com)
+- [Bitrefill Documentation](https://docs.bitrefill.com)
+- [Bitrefill CLI Repository](https://github.com/bitrefill/cli)
+- [Path: MCP](references/mcp.md)
+- [Path: CLI](references/cli.md)
+- [Path: REST API](references/api.md)
+- [Path: Browse the Website](references/browse.md)
+- [Spending Safeguards](references/safeguards.md)
+- [Capability Matrix](references/capability-matrix.md)
+- [Host: OpenClaw](references/host-openclaw.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, shell commands, JSON/TOML configuration snippets, URLs, and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API calls or purchase steps; purchasing requires explicit user confirmation and secure handling of credentials and redemption codes.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release metadata; artifact frontmatter says 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

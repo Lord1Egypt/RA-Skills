@@ -1,41 +1,53 @@
-## Description: <br>
-Turn agent failures into permanent improvements by diagnosing blocked tasks, extracting reusable lessons, and wiring them into local recovery skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-diagnose agent failures, extract reusable recovery patterns, and create local skills to fix recurring blockers while keeping all data private and local.
 
-## Publisher: <br>
-[Dalomeve](https://clawhub.ai/user/Dalomeve) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dalomeve](https://clawhub.ai/user/dalomeve)
 
-## Use Case: <br>
-Developers and agent operators use Phoenix Loop to recover from repeated task blockers by turning diagnosed failure patterns into reusable local skill guidance and verification steps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may persist and reuse local failure context, which could capture sensitive task details if not filtered. <br>
-Mitigation: Review generated memory and skill files, apply the bundled privacy checklist, and remove secrets, credentials, personal data, and user-specific paths before saving or publishing recovery material. <br>
-Risk: Recovery steps derived from logs may be incorrect or unsafe if run automatically. <br>
-Mitigation: Review generated commands and recovery steps before execution, require confirmation for changes, and keep recovery guidance scoped to the diagnosed blocker. <br>
-Risk: Rollback actions can rename or remove local skill files. <br>
-Mitigation: Back up local skill files before using rollback instructions and verify the target path before deleting or disabling generated recovery skills. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Privacy Security Checklist](references/privacy-checklist.md) <br>
+## Use Case:
 
+Developers and agent operators use Phoenix Loop to diagnose recurring blocked or failed tasks, extract reusable recovery patterns, and create local recovery skills while keeping memory and skill data local.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell command and template blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local recovery patterns, skill templates, verification criteria, and rollback guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can alter an agent reusable skill set and memory over time.
+
+Mitigation: Require manual review before writes to skills/local/, memory files, or HEARTBEAT.md, and before enabling any generated recovery skill.
+
+Risk: Memory and task logs may contain sensitive or untrusted content.
+
+Mitigation: Apply the documented privacy checklist and verify redaction before storing or reusing failure patterns.
+
+## Reference(s):
+
+- [Phoenix Loop ClawHub page](https://clawhub.ai/dalomeve/skills/phoenix-loop)
+- [Privacy Security Checklist](artifact/references/privacy-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline command and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local writes to memory files, HEARTBEAT.md, and skills/local/ recovery files; review before applying.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Global price comparison tool with international platform support across Amazon, eBay, AliExpress, Temu, JD, Taobao, Tmall, and Pinduoduo for cross-border shopping decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global price comparison tool with international platform support across Amazon, eBay, AliExpress, Temu, JD, Taobao, Tmall, and Pinduoduo.
 
-## Publisher: <br>
-[sunkinux](https://clawhub.ai/user/sunkinux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sunkinux](https://clawhub.ai/user/sunkinux)
 
-## Use Case: <br>
-External users and shopping assistants use this skill to compare product prices, seller details, shipping estimates, and purchase links across international and Chinese e-commerce platforms before deciding where to buy. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prices, inventory, shipping, taxes, coupons, and seller information may change between search and checkout. <br>
-Mitigation: Verify the seller, final checkout total, shipping, taxes, returns, and availability on the merchant site before buying. <br>
-Risk: Some marketplaces may be login-walled, app-only, region-specific, or sourced from third-party aggregators rather than direct product pages. <br>
-Mitigation: Treat app-only or aggregated results as advisory and search the named product directly inside the marketplace when direct links are unavailable. <br>
-Risk: Cross-border purchases can involve regional compatibility, warranty, language, sizing, or import constraints. <br>
-Mitigation: Check product region/version, warranty terms, size availability, and return policy before purchase. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Price Hunter on ClawHub](https://clawhub.ai/sunkinux/price-hunter) <br>
-- [Publisher profile: sunkinux](https://clawhub.ai/user/sunkinux) <br>
+## Use Case:
 
+External users and shopping assistants use this skill to compare product prices, shipping, seller reputation, and regional availability across global and China-focused e-commerce platforms before deciding where to buy.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown price comparison table or bullet list with inline links and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include normalized currency estimates, seller ratings when available, shipping estimates, direct purchase links when accessible, and notes for platforms that require app search or login.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Product prices, inventory, shipping, taxes, warranty coverage, and seller legitimacy can change or vary by region.
+
+Mitigation: Verify seller reputation, final checkout price, shipping terms, taxes, warranty region, and inventory on the merchant site before acting on the recommendation.
+
+Risk: Some supported platforms may require login, app access, or Chinese-language search terms, which can limit direct links or readability.
+
+Mitigation: Treat missing direct links as expected platform limitations and ask the agent to format results in the user's preferred language when needed.
+
+## Reference(s):
+
+- [Price Hunter on ClawHub](https://clawhub.ai/sunkinux/skills/price-hunter)
+- [sunkinux publisher profile](https://clawhub.ai/user/sunkinux)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown comparison table or bullet list with links and recommendation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include normalized prices, seller ratings, shipping estimates, direct purchase links when available, and platform-specific notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

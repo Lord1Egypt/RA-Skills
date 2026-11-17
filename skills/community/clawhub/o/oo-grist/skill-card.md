@@ -1,43 +1,55 @@
-## Description: <br>
-Operates Grist through an OOMOL-connected account using the oo CLI to read, create, update, and delete data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the oo CLI through OOMOL to read, create, update, and delete data in Grist.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Grist workspaces, documents, tables, columns, and records, and to perform confirmed row mutations through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials through an OOMOL-connected Grist account. <br>
-Mitigation: Install only when the skill name, publisher, and requested permissions match expectations; reconnect or authenticate only after an action fails with a relevant auth or connection error. <br>
-Risk: Write and destructive actions can change or delete Grist records. <br>
-Mitigation: Confirm the exact payload, target records, and intended effect with the user before running write or destructive actions. <br>
+## Use Case:
 
+People and teams using Grist can inspect documents, tables, columns, and records, and add, update, or delete records through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub Grist skill page](https://clawhub.ai/oomol/oo-grist) <br>
-- [Grist homepage](https://www.getgrist.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema lookup before building Grist action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Setup can execute remote code and make broader changes to agent configuration or installed skills without clearly explaining or seeking approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI installer before setup, prefer a reviewed and versioned installation, and disable unwanted automatic skill synchronization.
+
+Risk: Grist requests pass through OOMOL, and write or deletion actions can change user data.
+
+Mitigation: Connect only the Grist resources needed and confirm the exact targets and effects before write or deletion actions.
+
+## Reference(s):
+
+- [Grist](https://www.getgrist.com)
+- [Grist API documentation](https://support.getgrist.com/api/)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Grist data and metadata, Guidance]
+
+**Output Format:** [CLI commands with JSON action payloads and connector responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an installed, authenticated oo CLI and a connected Grist account; write and deletion actions require confirmation of the exact effect.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,52 @@
-## Description: <br>
-Call GET /api/weibo/search-all/v2 for Weibo Keyword Search through JustOneAPI with endDay, endHour, q, startDay, and startHour. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/weibo/search-all/v2 for Weibo Keyword Search through JustOneAPI with endDay, endHour, q, startDay, and startHour.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and analysts use this skill to query Weibo keyword search data through JustOneAPI for trend monitoring, including authors, publish times, and engagement signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a JustOneAPI token and the security evidence flags token handling in leak-prone places. <br>
-Mitigation: Use a scoped token when available, avoid sharing command history or logs that may contain tokens, and rotate the token if exposure is suspected. <br>
-Risk: Search requests send the provided keyword and date window to the JustOneAPI service. <br>
-Mitigation: Review queries before execution and avoid sending sensitive or restricted keywords unless that service is approved for the use case. <br>
+## Use Case:
 
+Developers and agents use this skill to query Weibo keyword search data through JustOneAPI for trend monitoring, including authors, publish times, and engagement signals.
 
-## Reference(s): <br>
-- [Generated Weibo Keyword Search operations](artifact/generated/operations.md) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weibo_search_all&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with optional raw JSON from the API helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and a JUST_ONE_API_TOKEN; required endpoint inputs are q, startDay, startHour, endDay, and endHour.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends Weibo search terms and a JustOneAPI token to api.justoneapi.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, least-privileged token where possible, avoid logging commands or full URLs, and rotate the token if it may have appeared in logs or monitoring.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weibo_search_all&utm_content=project_link)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weibo_search_all&utm_content=project_link)
+- [ClawHub skill listing](https://clawhub.ai/justoneapi/skills/justoneapi-weibo-search-all)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with a shell command example and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN; the token and Weibo search terms are sent to api.justoneapi.com.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

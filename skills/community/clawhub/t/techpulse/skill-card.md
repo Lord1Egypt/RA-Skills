@@ -1,41 +1,54 @@
-## Description: <br>
-TechPulse monitors public Reddit posts for trends across IoT, electric vehicles, games, DIY, and emerging technology topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TechPulse monitors public Reddit hot posts across IoT, electric vehicles, games, DIY, and emerging technology to produce concise trend reports.
 
-## Publisher: <br>
-[voronindenis5](https://clawhub.ai/user/voronindenis5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[voronindenis5](https://clawhub.ai/user/voronindenis5)
 
-## Use Case: <br>
-Developers, entrepreneurs, and technology researchers can use this skill to generate quick trend snapshots from public Reddit communities for IoT, EV, games, DIY, and emerging technology topics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The report is a small snapshot of public Reddit activity and may not represent broader market or technical trends. <br>
-Mitigation: Use it as an initial signal and verify important conclusions against primary sources or broader datasets. <br>
-Risk: Running the skill contacts Reddit's public API from the local environment. <br>
-Mitigation: Run it only in environments where outbound Reddit access is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TechPulse ClawHub release](https://clawhub.ai/voronindenis5/techpulse) <br>
-- [Publisher profile](https://clawhub.ai/user/voronindenis5) <br>
-- [Reddit public API source communities](https://www.reddit.com/) <br>
+## Use Case:
 
+Developers, entrepreneurs, and technology watchers use TechPulse to generate quick category-specific snapshots of public Reddit activity for technology trend discovery.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown-style trend report with post titles, scores, and Reddit links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public Reddit posts when run; no authentication is required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts Reddit's public API, so reports may be incomplete when Reddit is unavailable, rate-limited, or blocked by the runtime environment.
+
+Mitigation: Run it only in environments where public Reddit access is permitted, and treat empty categories as missing source data rather than proof that no trend exists.
+
+Risk: Trend summaries are based on public community posts and scores, which may be noisy, promotional, or misleading.
+
+Mitigation: Review the linked source posts before using the output for product, investment, or business decisions.
+
+## Reference(s):
+
+- [TechPulse ClawHub skill page](https://clawhub.ai/voronindenis5/skills/techpulse)
+- [voronindenis5 ClawHub profile](https://clawhub.ai/user/voronindenis5)
+- [Reddit public API documentation](https://www.reddit.com/dev/api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text trend report with category headings and Reddit post titles and scores; installation and usage guidance may be Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can report all categories or one selected category: iot, ev, games, diy, or tech.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

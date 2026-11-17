@@ -1,44 +1,55 @@
-## Description: <br>
-Installs and configures ocmemog, the OpenClaw durable memory plugin and sidecar, using the package path when available and the public repository installer when needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and configure ocmemog, the OpenClaw durable memory plugin and sidecar.
 
-## Publisher: <br>
-[simbimbo](https://clawhub.ai/user/simbimbo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simbimbo](https://clawhub.ai/user/simbimbo)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install ocmemog, enable the memory-ocmemog plugin, configure the local sidecar endpoint, and validate durable memory behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The source installer path can run changing remote code from the upstream repository. <br>
-Mitigation: Prefer the package install path; use the source fallback only when the repository version is pinned or reviewed. <br>
-Risk: The skill can alter OpenClaw memory settings. <br>
-Mitigation: Review proposed OpenClaw configuration changes before applying them and preserve unrelated plugin configuration. <br>
-Risk: The installer can leave a local memory sidecar service running. <br>
-Mitigation: Verify the sidecar health endpoint after installation and keep removal or shutdown steps available for the chosen install path. <br>
+## Use Case:
 
+Developers and engineers use this skill to install, configure, update, and troubleshoot the ocmemog durable memory plugin and sidecar for OpenClaw. It guides package-based installation first, then source checkout installation when needed, and includes configuration and validation steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simbimbo/ocmemog-installer) <br>
-- [ocmemog GitHub repository](https://github.com/simbimbo/ocmemog.git) <br>
-- [ocmemog v0.1.2 GitHub release](https://github.com/simbimbo/ocmemog/releases/tag/v0.1.2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include installation commands, OpenClaw configuration snippets, validation checks, and troubleshooting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release evidence) <br>
+Risk: The installer can execute mutable remote code and install unpinned dependencies when using the GitHub fallback path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the public package install path or a pinned, audited commit before running the source installer.
+
+Risk: The source installer can start persistent or background sidecar components with limited user gating.
+
+Mitigation: Ask the agent to show files, services, configuration changes, logs, and stop or uninstall steps before starting the sidecar or loading LaunchAgents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simbimbo/skills/ocmemog-installer)
+- [ocmemog GitHub repository](https://github.com/simbimbo/ocmemog.git)
+- [ocmemog GitHub release v0.1.2](https://github.com/simbimbo/ocmemog/releases/tag/v0.1.2)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include health-check and troubleshooting steps for the local ocmemog sidecar.]
+
+## Skill Version(s):
+
+0.1.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Provides expert guidance for branching strategies, commit standards, code review workflows, monorepo management, release automation, and repository health practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Git engineering guidance for branching strategy, commit standards, code review, release automation, monorepo management, repository security, and troubleshooting.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to assess repository health and generate practical Git workflow guidance, including branch strategy, pull request standards, branch protection, release automation, monorepo structure, and recovery playbooks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Git commands can affect repository history or configuration, including rebases, resets, filter-repo cleanup, force pushes, global Git config, hooks, and branch protection changes. <br>
-Mitigation: Before applying commands to an important repository, confirm the target repository and branch, review the exact command, back up or test on a disposable clone when appropriate, and make sure the team agrees with the workflow. <br>
-Risk: The skill provides workflow guidance and templates, so recommendations may not match a team's existing compliance, release, or access-control requirements. <br>
-Mitigation: Treat generated workflow changes as proposals, review them with repository owners, and adapt branch protection, CI, CODEOWNERS, signing, and release settings to the team's policies before rollout. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-git-engineering) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to assess repository health, choose Git workflows, and generate practical branch protection, pull request, CODEOWNERS, CI, release, security, and recovery guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, YAML snippets, templates, checklists, and decision matrices.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory and may include repository-specific commands or configuration examples that should be reviewed before applying.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Some generated Git guidance may include history rewrite, reset, force-push, hook, or global Git configuration commands that can affect repository state or developer environments.
+
+Mitigation: Review commands before execution, prefer repository-local settings, test destructive recovery steps on a disposable clone or branch, and keep branch protection enabled for shared branches.
+
+Risk: Some examples use npx-style commands that can download tooling dynamically.
+
+Mitigation: Prefer pinned local development dependencies or checked-in package scripts before running generated tool commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-git-engineering)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, YAML snippets, shell commands, checklists, and decision tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include repository health scores, branching recommendations, pull request templates, CODEOWNERS rules, CI and release snippets, and recovery playbooks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -16,13 +16,17 @@ added to existing DBs here, mirroring the additive-column precedent (023).
 Plain ADD COLUMN of plain nullable TEXT columns (no DEFAULT, no rebuild, no
 FK-rewrite). Idempotent (SQLite guarded by _sqlite_has_column; Postgres
 ADD COLUMN IF NOT EXISTS). Dialect-aware. SIM-0-validated
-(planning/sap_challenger/_sim0_wave2_rehearsal.py): creation, idempotency, and
+(wave rehearsal harness): creation, idempotency, and
 cross-dialect shape all PASS — the columns are pure additive TEXT, so a
 foundation-only install carries them simply unpopulated.
 """
 import argparse
 import os
 import sqlite3
+
+# M102: adds tables / columns / indexes only — nothing a row held before this
+# run is different afterwards.
+MIGRATION_DATA_CLASS = "none"
 
 DEFAULT_DB_PATH = os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "data.sqlite")
 

@@ -1,43 +1,55 @@
-## Description: <br>
-Guide for creating effective skills, including new skill creation and updates to existing skills with specialized workflows, references, scripts, and other bundled resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.
 
-## Publisher: <br>
-[wangkang5](https://clawhub.ai/user/wangkang5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[wangkang5](https://clawhub.ai/user/wangkang5)
 
-## Use Case: <br>
-Developers and skill authors use this skill to design, initialize, validate, package, and iterate on agent skills. It provides guidance for concise skill instructions, progressive disclosure, bundled resources, and reusable workflow patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts create, validate, and package files in skill directories, so running them against the wrong folder can produce unintended files or packages. <br>
-Mitigation: Run helper scripts only against the intended working folder and review generated or modified files before packaging. <br>
-Risk: Packaged skill archives can include unrelated local files or secrets if they are present inside the selected skill directory. <br>
-Mitigation: Remove secrets and unrelated local files from the skill directory before packaging or sharing a .skill archive. <br>
+## Use Case:
 
+Developers and agent builders use this skill to design, initialize, validate, package, and iterate on agent skills with clear instructions, focused resources, and reusable helper scripts.
 
-## Reference(s): <br>
-- [Workflow Patterns](references/workflows.md) <br>
-- [Output Patterns](references/output-patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wangkang5/slug-wk) <br>
-- [Publisher profile](https://clawhub.ai/user/wangkang5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional generated or packaged files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use bundled Python helper scripts to initialize, validate, or package skill directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Helper scripts may read or write outside the intended skill folder in edge cases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted local skill directories, keep paths simple, and confirm generated or packaged paths before execution.
+
+Risk: Packaging an untrusted skill folder may include unexpected files or symlinked content.
+
+Mitigation: Inspect the target folder and symlinks before packaging, and avoid packaging untrusted skill directories.
+
+## Reference(s):
+
+- [Workflow Patterns](artifact/references/workflows.md)
+- [Output Patterns](artifact/references/output-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/wangkang5/skills/slug-wk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks and optional generated skill files or .skill packages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or package local skill directories when the helper scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,68 @@
-## Description: <br>
-OpenClaw Wallpaper turns a Windows Lively Wallpaper desktop into a persistent OpenClaw chat companion with streaming replies, image input, achievements, and saved conversation context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Wallpaper turns a Lively Wallpaper desktop into an OpenClaw chat surface with streaming replies, image input, achievements, persistent context, reconnect logic, and one-click setup.
 
-## Publisher: <br>
-[femnn](https://clawhub.ai/user/femnn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[femnn](https://clawhub.ai/user/femnn)
 
-## Use Case: <br>
-External users and desktop-agent enthusiasts use this skill to run an OpenClaw-powered wallpaper chat companion on Windows via Lively Wallpaper. It supports streamed text chat, optional image messages, achievement tracking, and local conversation persistence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unauthenticated local HTTP services are exposed broadly and can receive chat, stream, health, and clear-history requests. <br>
-Mitigation: Bind services to 127.0.0.1, restrict CORS to trusted origins, and add authentication before use. <br>
-Risk: The skill stores conversation history locally and can forward text or image content to the OpenClaw Gateway. <br>
-Mitigation: Use only with data you are comfortable storing locally and sending through the configured OpenClaw Gateway. <br>
-Risk: A hardcoded gateway token is present in the bridge server configuration. <br>
-Mitigation: Remove or rotate the token and load credentials from a protected local configuration source. <br>
-Risk: The bundled UI file server and automatic process restart behavior can broaden the local execution and file-serving surface. <br>
-Mitigation: Avoid the unsafe UI server and disable or tightly scope automatic restarts. <br>
+## Use Case:
 
+External users and developers use this skill to install and run a desktop wallpaper chat companion backed by OpenClaw, with streaming conversation, image input, achievement tracking, and persistent session context.
 
-## Reference(s): <br>
-- [OpenClaw Wallpaper on ClawHub](https://clawhub.ai/femnn/openclaw-wallpaper) <br>
-- [Publisher profile: femnn](https://clawhub.ai/user/femnn) <br>
-- [Lively Wallpaper](https://github.com/rocksdanister/lively) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation, JavaScript files, JSON configuration, and streamed text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local HTTP bridge for chat, streaming, health checks, and conversation clearing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: ClawHub release evidence; changelog top entry is 0.2.0, released 2026-03-21) <br>
+Risk: Unauthenticated local network services may be reachable beyond the intended desktop session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind services to 127.0.0.1, add a per-install authentication token, and avoid exposing the bridge on broader network interfaces.
+
+Risk: An embedded gateway token can be reused if the artifact is shared or installed unchanged.
+
+Mitigation: Remove the embedded token and load a user-specific token from local configuration or environment variables at install time.
+
+Risk: Permissive CORS allows unexpected web origins to call the local bridge endpoints.
+
+Mitigation: Restrict allowed origins, methods, and headers to the wallpaper UI and required local clients.
+
+Risk: The UI file server path handling may serve unintended files if requests are not constrained.
+
+Mitigation: Normalize requested paths, reject traversal attempts, and serve only files under the intended wallpaper UI directory.
+
+Risk: Conversation and image-derived data may remain on disk or in browser storage after a user clears the visible chat.
+
+Mitigation: Delete persisted session files and relevant browser storage when clearing data, and document what data is retained.
+
+## Reference(s):
+
+- [OpenClaw Wallpaper release page](https://clawhub.ai/femnn/skills/openclaw-wallpaper)
+- [Lively Wallpaper](https://github.com/rocksdanister/lively)
+- [Lively Wallpaper releases](https://github.com/rocksdanister/lively/releases)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and bundled JavaScript, HTML, CSS, and JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a local wallpaper chat experience that exchanges text and optional image inputs with OpenClaw through local HTTP endpoints.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence, created 2026-03-21; artifact changelog top entry is 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

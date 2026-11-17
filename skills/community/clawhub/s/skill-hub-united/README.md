@@ -208,45 +208,27 @@ suite — open-source skills that help you build better skills, end-to-end:
 
 | Stage | Skill | Status |
 |-------|-------|--------|
-| Creation | `skill-creator` | 🚧 Not yet released |
-| **Install** | **`skill-hub-united`** | ✅ **v1.0.0** |
-| **Audit** | **`glic-check`** | ✅ **v1.0.x** |
-| **Audit** | **`skill-deep-audit`** | ✅ **v1.0.0** |
-| **Audit** | **`skill-release-audit`** | ✅ **v1.0.x** |
-| Release | `skill-release` | 🚧 Not yet released |
-| Testing | `skill-regression` | 🚧 Not yet released |
-| Sediment | `skill-sediment` | 🚧 Not yet released |
+| Creation | [`skill-creator`](https://github.com/anthropics/skills) (upstream) | ✅ Available |
+| Creation | [`skill-build-wizard`](../skill-build-wizard/) | ✅ Released |
+| **Install** | **[`skill-hub-united`](../skill-hub-united/)** | ✅ **Released** |
+| Install | [`skill-hub-query`](../skill-hub-query/) | ✅ Released |
+| Audit | [`glic-check`](../glic-check/) | ✅ Released |
+| Audit | [`skill-deep-audit`](../skill-deep-audit/) | ✅ Released |
+| Audit | [`skill-release-audit`](../skill-release-audit/) | ✅ Released |
+| Release | [`skill-sign`](../skill-sign/) | ✅ Released |
+| Release | [`skill-release-plus`](../skill-release-plus/) | ✅ Released |
+| Documentation | [`skill-introduction`](../skill-introduction/) | ✅ Released |
+| Testing | [`skill-regression`](../skill-regression/) | ✅ Released |
+| Sediment | [`skill-sediment`](../skill-sediment/) | ✅ Released |
+| Opensource | [`opensource-skill-to-github`](../opensource-skill-to-github/) | ✅ Released |
 
-`skill-hub-united`, `glic-check`, `skill-deep-audit`, and `skill-release-audit`
-are installable today. The other entries are roadmap placeholders.
+All suite members are released and installable. Descriptions live in the
+suite README's [Stages table](https://github.com/Songhonglei/build-better-skills#stages);
+per-skill versions live in each skill's `CHANGELOG.md`.
 
 ## Changelog
 
-### v1.0.3 (2026-06-22)
-
-- **New source `skillhub_cn`**: install from [skillhub.cn](https://skillhub.cn)
-  (SkillHub, a China-optimized public hub) via its public REST download API.
-  No auth required. Endpoint contract verified end-to-end.
-
-### v1.0.2 (2026-06-22)
-
-- Docs: full self-hosted `custom` hub guide — server-side contract (exact
-  request URL, accepted zip/tar response, 404/403/JSON-error semantics, archive
-  layout), limitations (no auth headers; gate by network), and a minimal
-  reference server example. No code changes.
-
-### v1.0.1 (2026-06-21)
-
-- Docs: correct the suite stages table (the comprehensive auditor is
-  `skill-deep-audit`, and `skill-release-audit` was added as a third audit
-  tool). No code changes.
-
-### v1.0.0 (2026-06-21)
-
-- Initial open-source release
-- Four sources: clawhub (default), skills.sh, anthropic, and a configurable self-hosted `custom` hub
-- Structured exit codes for conflict / license / multi-skill / missing-config handling
-- Path-traversal-safe extraction and slug validation
+See [CHANGELOG.md](./CHANGELOG.md) for the full version history.
 
 ## License
 

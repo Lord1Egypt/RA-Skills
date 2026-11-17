@@ -1,46 +1,62 @@
-## Description: <br>
-中医养生健康顾问，用于中医辨证、体质辨识、食疗建议、节气养生、穴位保健、中药科普和回访总结等咨询场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Traditional Chinese medicine wellness advisor for constitution assessment, symptom-pattern analysis, food therapy, seasonal wellness, acupoint self-care, and Chinese medicine education.
 
-## Publisher: <br>
-[tix007](https://clawhub.ai/user/tix007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tix007](https://clawhub.ai/user/tix007)
 
-## Use Case: <br>
-External users can use this skill for traditional Chinese medicine wellness guidance, including symptom-oriented pattern analysis, lifestyle and dietary suggestions, acupoint self-care, and follow-up summaries. It is wellness and education oriented and does not replace diagnosis or treatment by licensed clinicians. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can keep persistent local health records and reuse them across later consultations. <br>
-Mitigation: Use it only after confirming the memory location and establishing a process to review, disable, or delete stored profiles, consultation blocks, reflection reports, and evolution logs. <br>
-Risk: Health and wellness guidance may be mistaken for clinical diagnosis or treatment. <br>
-Mitigation: Keep outputs framed as wellness education and route urgent, severe, or persistent symptoms to qualified medical care. <br>
+## Use Case:
 
+External users can use this skill for Traditional Chinese Medicine-oriented wellness guidance, including intake questions, pattern differentiation, lifestyle suggestions, food therapy, acupoint self-care, and educational discussion of classic formulas. It is positioned as wellness and educational support, not as a substitute for clinical diagnosis or treatment by a licensed professional.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tix007/tcm-wellness) <br>
-- [Publisher profile](https://clawhub.ai/user/tix007) <br>
-- [Acupoints reference](references/acupoints.md) <br>
-- [Classic prescriptions reference](references/classic_prescriptions.md) <br>
-- [Memory system reference](references/memory_system.md) <br>
-- [Seasonal diet reference](references/seasonal_diet.md) <br>
-- [Syndrome differentiation reference](references/syndrome_differ.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown wellness guidance with optional shell commands for local memory utilities] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local memory files for health profiles, consultation blocks, reflections, and evolution logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may store sensitive health histories persistently.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in before storing health information, provide deletion and export controls, and avoid persistent medical memory by default.
+
+Risk: Unsafe user-record handling can expose or mix health records in shared or multi-user environments.
+
+Mitigation: Add strong per-user identity binding, validate user IDs, and apply restrictive file permissions before installation in shared environments.
+
+Risk: Wellness guidance can be mistaken for medical diagnosis or treatment.
+
+Mitigation: Keep clinical boundaries visible, avoid prescriptions or drug dosing, and direct users with urgent or serious symptoms to licensed medical care.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tix007/skills/tcm-wellness)
+- [Classic prescriptions reference](references/classic_prescriptions.md)
+- [Acupoints reference](references/acupoints.md)
+- [Syndrome differentiation reference](references/syndrome_differ.md)
+- [Seasonal diet reference](references/seasonal_diet.md)
+- [Memory system reference](references/memory_system.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Files]
+
+**Output Format:** [Markdown wellness guidance with structured sections; optional local memory files created by bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May store user health histories persistently when its memory workflow is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Generates academic figures from PDF or plain-text papers, including architecture diagrams, flowcharts, motivation figures, result charts, captions, and PDF-to-text extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates academic diagrams from PDF or plain-text papers, including paper scans, architecture and flowchart figures, captions, Mermaid topology, Matplotlib charts, and PDF-to-text extraction.
 
-## Publisher: <br>
-[ljk00000](https://clawhub.ai/user/ljk00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljk00000](https://clawhub.ai/user/ljk00000)
 
-## Use Case: <br>
-Researchers, paper authors, and developers use this skill to extract paper text, scan for figure candidates, and generate academic diagrams or result charts with captions for publication drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paper content may be sent to configured external APIs for LLM and image generation. <br>
-Mitigation: Use only papers and API providers approved for the data, and avoid confidential content unless the provider and policy allow it. <br>
-Risk: The Matplotlib result-chart path can execute generated Python code locally. <br>
-Mitigation: Inspect generated Python before execution and run the skill in a restricted virtual environment or sandbox. <br>
-Risk: API keys passed on the command line can be exposed through shell history or process listings. <br>
-Mitigation: Prefer environment variables or OpenClaw configuration for credentials, and avoid command-line secrets. <br>
+## Use Case:
 
+Researchers and developers use this skill to turn paper PDFs or text excerpts into academic figures, topology descriptions, and captions, and to extract PDF text for downstream diagram generation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ljk00000/ynu-papergraphgeneration-qclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, files, configuration] <br>
-**Output Format:** [Generated image files, captions, Mermaid topology text, Matplotlib Python code, and PDF-extracted plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python plus configured API URL and API key environment variables; paper content may be sent to the configured API provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Manuscript text can be sent to configurable external LLM and image services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only papers the user is allowed to share externally, require explicit upload consent, and verify configured endpoints before use.
+
+Risk: Generated chart code can be executed during the Matplotlib results-chart path.
+
+Mitigation: Avoid that path unless execution is sandboxed, or replace executable generated code with structured plotting data.
+
+Risk: Downloaded image outputs and configurable endpoints can expand network and file-handling exposure.
+
+Mitigation: Validate endpoint allowlists and apply bounded image downloads before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ljk00000/skills/ynu-papergraphgeneration-qclaw)
+- [Default image API endpoint](https://api.acedata.cloud/nano-banana/images)
+- [Default chat API endpoint](https://api.acedata.cloud/nano-banana/chat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON scan results, Mermaid topology, captions, Python/Matplotlib code, and generated image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and configured external LLM/image API credentials; manuscript content may be sent to configured services.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

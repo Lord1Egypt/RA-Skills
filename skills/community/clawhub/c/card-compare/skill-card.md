@@ -1,42 +1,52 @@
-## Description: <br>
-Side-by-side comparison of two major-US credit cards across fees, earning rates, credits, transfer partners, and key benefits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Return a side-by-side comparison of two major-US credit cards across fees, earning rates, credits, transfer partners, and key benefits.
 
-## Publisher: <br>
-[jiahongc](https://clawhub.ai/user/jiahongc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jiahongc](https://clawhub.ai/user/jiahongc)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to compare two exact major US credit card variants side by side before deciding which offer better matches their needs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Credit card offers, fees, credits, and eligibility terms may change after the skill performs web research.
+
+Mitigation: Verify important terms directly with the issuer before applying.
+
+Risk: A side-by-side comparison can be mistaken for personalized financial advice.
+
+Mitigation: Use the comparison as factual guidance and review the confidence notes and issuer terms before making a decision.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to compare two exact credit card variants side by side using issuer-first web research and approved secondary sources. It is intended for compact factual comparisons, not personalized financial advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Credit-card names and comparison queries may be sent to web search and fetch services. <br>
-Mitigation: Use the skill only when those queries are acceptable to share with the selected search and fetch providers. <br>
-Risk: Optional Brave API use may consume API quota and requires a sensitive credential. <br>
-Mitigation: Provide BRAVE_API_KEY only when the Brave search path is desired, and manage the key as a normal secret. <br>
-Risk: Credit-card offers, fees, credits, and benefits can change. <br>
-Mitigation: Verify important terms against issuer pages before acting on a comparison. <br>
+**Output Format:** [Markdown with two-column comparison sections and confidence notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiahongc/card-compare) <br>
+**Other Properties Related to Output:** [Uses current web research from issuer pages and limited approved secondary sources; important fees, credits, and eligibility terms should be verified with the issuer before applying.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown comparison report with two-column tables, confidence notes, and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask a clarification question when a card name is ambiguous; may use optional Brave Search API credentials when available.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

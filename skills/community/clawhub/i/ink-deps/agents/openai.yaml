@@ -1,0 +1,4 @@
+interface:
+  display_name: "Read dependency docs"
+  short_description: "Collect docs for a project's dependencies"
+  default_prompt: "Use $ink-deps to collect the docs for this project's main dependencies."

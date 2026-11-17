@@ -1,49 +1,63 @@
-## Description: <br>
-Run document processing workflows using Upstage Document Agent API (v2) for Studio-configured agents and API-defined agents or configs, including file upload, agent/config creation, job execution, and result polling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run document processing workflows using Upstage Document Agent API (v2) for Studio-configured agents and API-defined agents/configs, including file upload, workflow setup, job execution, and result polling.
 
-## Publisher: <br>
-[upstage-deployment](https://clawhub.ai/user/upstage-deployment) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[upstage-deployment](https://clawhub.ai/user/upstage-deployment)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to run Upstage Document Agent workflows that parse, classify, extract, and route document processing jobs through Studio-created or REST-defined agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents and derived outputs are sent to Upstage's API for processing. <br>
-Mitigation: Use only documents approved for external processing, avoid confidential or regulated content unless authorized, and delete uploaded files or jobs when cleanup is appropriate. <br>
-Risk: Agent publishing, resource deletion, or cloning historical jobs can expose or remove workflow resources. <br>
-Mitigation: Require explicit user confirmation before public publishing, deleting resources, or cloning jobs with historical data. <br>
-Risk: The skill requires a sensitive Upstage API credential. <br>
-Mitigation: Read the key from UPSTAGE_API_KEY, avoid hard-coding secrets, and keep credentials out of generated files and logs. <br>
+## Use Case:
 
+Developers and document-automation teams use this skill to run Upstage Studio and Document Agent workflows for document parsing, classification, extraction, and follow-on analysis. It helps agents create or select workflows, submit documents, poll jobs, and save JSON results.
 
-## Reference(s): <br>
-- [Upstage Studio](https://console.upstage.ai/studio) <br>
-- [ClawHub skill page](https://clawhub.ai/upstage-deployment/upstage-studio) <br>
-- [Agents & Configs API](references/agents-and-configs.md) <br>
-- [Files API](references/files.md) <br>
-- [Responses & Jobs API](references/jobs.md) <br>
-- [Step Types](references/step-types.md) <br>
-- [Preset Agents](references/preset-agents.md) <br>
-- [End-to-End Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON files, guidance] <br>
-**Output Format:** [Markdown guidance with Python or curl examples; workflow and per-step results are written as JSON files when the agent runs jobs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires UPSTAGE_API_KEY and may print resolved absolute output paths for generated result files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Documents may be uploaded to Upstage's cloud API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents allowed under the user's Upstage account, retention settings, and data-handling obligations.
+
+Risk: Agent, config, file, job, publishing, and delete actions can alter remote Upstage resources.
+
+Mitigation: Confirm exact resource IDs and intended visibility before create, publish, update, delete, like, or unlike operations.
+
+Risk: Document outputs may contain sensitive extracted text or structured data.
+
+Mitigation: Prefer a private output directory with restricted permissions and avoid predictable temporary paths for confidential results.
+
+## Reference(s):
+
+- [Upstage Studio](https://console.upstage.ai/studio)
+- [Agents & Configs API](references/agents-and-configs.md)
+- [Files API](references/files.md)
+- [Responses & Jobs API](references/jobs.md)
+- [Step Types and Data Parameters](references/step-types.md)
+- [Preset Agents](references/preset-agents.md)
+- [End-to-End Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration, json]
+
+**Output Format:** [Markdown guidance with Python or shell examples and JSON job/result artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write full job results and per-step result JSON files to a resolved output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

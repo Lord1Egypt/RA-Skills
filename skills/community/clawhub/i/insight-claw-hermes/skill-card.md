@@ -1,42 +1,58 @@
-## Description: <br>
-Download, configure, run, verify, and troubleshoot Insight Claw, an A-share self-selected stock analysis pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download, configure, run, verify, and troubleshoot Insight Claw, an A-share self-selected stock analysis pipeline.
 
-## Publisher: <br>
-[geraltjc](https://clawhub.ai/user/geraltjc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geraltjc](https://clawhub.ai/user/geraltjc)
 
-## Use Case: <br>
-Developers and operators use this skill to help Hermes set up, run, verify, and troubleshoot Insight Claw for A-share self-selected stock analysis. The skill guides local validation, configuration, optional GitHub Actions execution, and troubleshooting without treating Insight Claw as an order-execution system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials for LLM analysis and optional data, search, and notification providers. <br>
-Mitigation: Use Hermes secret handling or user-approved local environment configuration; never display, upload, commit, or overwrite raw secret values. <br>
-Risk: The skill can guide dependency installation, repository checkout, local analysis runs, and optional notification or GitHub Actions setup. <br>
-Mitigation: Confirm the target checkout and configuration before execution, run the no-notification validation path first, and enable notification or scheduled workflows only after local reports are verified. <br>
+## Use Case:
 
+Developers, engineers, and analysts use this skill to set up and run Insight Claw for A-share self-selected stock analysis, verify local reports, and troubleshoot provider, credential, and notification issues.
 
-## Reference(s): <br>
-- [Insight Claw Hermes ClawHub release](https://clawhub.ai/geraltjc/insight-claw-hermes) <br>
-- [Insight Claw Quickstart](artifact/references/quickstart.md) <br>
-- [Insight Claw Troubleshooting](artifact/references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, dotenv examples, and verification paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Keeps credentials local and uses no-notification validation before optional notification setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill directs an agent to clone and run mutable remote project code with unhashed dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream project state before installation, pin a reviewed commit and hashed lockfile where possible, and run in a restricted environment with only task-specific credentials.
+
+Risk: Credential values, generated reports, notification payloads, or raw model inputs may contain sensitive information.
+
+Mitigation: Keep secrets local to the checkout or approved secret handling, do not display or commit raw credentials, and upload reports or payloads only with explicit user approval.
+
+Risk: Stock-analysis outputs could be mistaken for independent investment advice or automatic trading instructions.
+
+Mitigation: Ground summaries in generated reports, keep outputs framed as decision-support material for user review, and do not describe the skill as an order-execution system.
+
+## Reference(s):
+
+- [Insight Claw Quickstart](references/quickstart.md)
+- [Insight Claw Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides local setup, credential checks, validation runs, troubleshooting, and expected report files.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

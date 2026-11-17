@@ -1,48 +1,60 @@
-## Description: <br>
-Use when a request needs a real Ubuntu Server browser session with durable site login reuse, bounded manual login recovery, or host-side page inspection for protected sites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a request needs a real Ubuntu Server browser session with durable site login reuse, bounded manual login recovery, or host-side page inspection for protected sites.
 
-## Publisher: <br>
-[LINSUISHENG034](https://clawhub.ai/user/LINSUISHENG034) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linsuisheng034](https://clawhub.ai/user/linsuisheng034)
 
-## Use Case: <br>
-Developers and operators use this skill to open and inspect protected sites in a real Ubuntu Server browser, reuse durable logged-in site sessions, and recover expired or challenged sessions with bounded manual help. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: noVNC access can expose a logged-in browser session to anyone who can reach the service. <br>
-Mitigation: Prefer SSH tunnels or localhost-only exposure, firewall the noVNC port, and stop the assisted overlay after login recovery. <br>
-Risk: Durable browser profiles and session metadata can retain access to protected sites after a task finishes. <br>
-Mitigation: Install only on hosts and networks you control, periodically review stored profiles and session metadata under ~/.agent-browser, and remove profiles that are no longer needed. <br>
-Risk: The skill can act through authenticated browser sessions, so wrong account selection could affect protected resources. <br>
-Mitigation: Use the documented default site identity model and require an explicit session-key before using any non-default identity. <br>
+## Use Case:
 
+Developers and operators use this skill to open, inspect, and continue work in a real Ubuntu Server browser while reusing durable site logins. It supports bounded manual login recovery for protected sites when local recovery cannot clear a login wall or challenge.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LINSUISHENG034/ubuntu-browser-session) <br>
-- [Use Cases](references/use-cases.md) <br>
-- [Assisted Session Flow](references/assisted-session-flow.md) <br>
-- [Session Storage](references/session-manifest.md) <br>
-- [Manual Fallback](references/manual-fallback.md) <br>
-- [Forum/Search Result Enhancements](references/forum-enhancements.md) <br>
-- [Validation Findings](references/validation-findings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit noVNC URLs, CDP page snapshots, session manifest updates, and browser profile state under ~/.agent-browser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: An authenticated browser profile can be exposed over unauthenticated LAN noVNC.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind noVNC to 127.0.0.1 or require SSH tunneling, avoid LAN exposure without authentication, and stop assisted sessions after login recovery.
+
+Risk: Durable browser state can retain access to logged-in sites across agent tasks.
+
+Mitigation: Use trusted session-key values, avoid guessing between identities, and review persistent profile reuse before installing the skill.
+
+## Reference(s):
+
+- [Ubuntu Browser Session ClawHub page](https://clawhub.ai/linsuisheng034/skills/ubuntu-browser-session)
+- [Use Cases](references/use-cases.md)
+- [Assisted Session Flow](references/assisted-session-flow.md)
+- [Session Storage](references/session-manifest.md)
+- [Manual Fallback](references/manual-fallback.md)
+- [Forum/Search Result Enhancements](references/forum-enhancements.md)
+- [Testing Matrix](references/testing-matrix.md)
+- [Validation Findings](references/validation-findings.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON, Markdown, Text]
+
+**Output Format:** [Markdown guidance with bash commands and JSON or text browser inspection output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return noVNC access URLs and Chrome DevTools Protocol inspection results for the active host browser session.]
+
+## Skill Version(s):
+
+1.0.3 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

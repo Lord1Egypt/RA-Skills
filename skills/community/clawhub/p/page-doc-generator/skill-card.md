@@ -1,43 +1,53 @@
-## Description: <br>
-Generate Word documentation from mini-program/uni-app project screenshots and source code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Word documentation from mini-program and uni-app project screenshots and Vue source code.
 
-## Publisher: <br>
-[skyfragments](https://clawhub.ai/user/skyfragments) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skyfragments](https://clawhub.ai/user/skyfragments)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate page-level documentation for mini-program or uni-app projects by pairing Vue page files with screenshots and producing Markdown and DOCX outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated documentation may include private source code, secrets, absolute paths, or sensitive screenshots from the selected project. <br>
-Mitigation: Review the Markdown and DOCX outputs before sharing and run the skill only on projects whose pages and screenshots are appropriate to disclose. <br>
-Risk: Generated files may overwrite same-named documentation outputs in the target directory. <br>
-Mitigation: Choose an output directory where replacing generated Markdown or DOCX files is acceptable, or preserve existing outputs before running the scripts. <br>
-Risk: DOCX conversion depends on a local pandoc installation and may fail when pandoc is unavailable. <br>
-Mitigation: Install pandoc and confirm it is on PATH before using the DOCX conversion step. <br>
+## Use Case:
 
+Developers and engineers use this skill to document mini-program or uni-app pages by pairing local Vue page files with screenshots and producing shareable project documentation.
 
-## Reference(s): <br>
-- [Pandoc](https://pandoc.org/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/skyfragments/page-doc-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, files, shell commands, guidance] <br>
-**Output Format:** [Markdown documentation and DOCX files generated from local project files and screenshots] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated Markdown and DOCX documentation in the selected project or output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated documentation can include screenshots, Vue source snippets, and local project paths that may expose sensitive or proprietary project details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated Markdown or DOCX before sharing it outside the intended team, and remove secrets, proprietary code, or sensitive local paths.
+
+Risk: DOCX conversion depends on a local pandoc executable and may fail or time out if pandoc is unavailable or misconfigured.
+
+Mitigation: Install pandoc, verify it is available in PATH or a configured Windows install location, and keep the generated Markdown as the inspectable source artifact.
+
+## Reference(s):
+
+- [Pandoc documentation](https://pandoc.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and DOCX files with embedded screenshots, page metadata, Vue source snippets, and command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a Markdown source document and can convert it to DOCX with pandoc; Vue files over 500 lines are truncated in the generated documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

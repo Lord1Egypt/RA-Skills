@@ -1,37 +1,54 @@
-## Description: <br>
-Comprehensive electronic components industry factory guide for international buyers that provides information about China's semiconductor, passive component, PCB, connector, and sensor manufacturing clusters, supply chain structure, regional specializations, and 2026 industry trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive electronic components industry factory guide for international buyers, covering China's semiconductor, passive component, PCB, connector, and sensor manufacturing clusters, supply chain structure, regional specializations, and 2026 industry trends.
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-External buyers and sourcing teams use this skill to answer questions about China's electronic components manufacturing clusters, supply chain structure, subsectors, and supplier evaluation practices. It is intended as reference material for market research and sourcing preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Industry statistics, supplier examples, and sourcing recommendations may be outdated or insufficient for procurement decisions. <br>
-Mitigation: Treat outputs as reference material and independently validate suppliers, certifications, and market claims before making business commitments. <br>
+## Use Case:
 
+External electronics buyers, sourcing teams, and developers use this skill to query China's electronic components manufacturing landscape, compare regional clusters and subsectors, and gather supplier-evaluation guidance. Users should treat supplier names and contact details as leads requiring independent verification.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, code] <br>
-**Output Format:** [Natural language answers and structured Python return values backed by local JSON data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local cluster-level industry data without individual factory contacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata and SKILL.md frontmatter) <br>
+Risk: The bundled data can surface supplier names and email contacts that may be incomplete, stale, or unsuitable for automated outreach.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat contacts as unverified leads, confirm vendors through independent due diligence, and require separate user approval and compliance review before outreach.
+
+Risk: The artifact states that it has no individual factory contacts while the bundled data includes a factory contact directory.
+
+Mitigation: Review the packaged data before deployment and disclose contact-directory behavior to users who rely on the skill for sourcing workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/findhappy7/skills/china-electronic-components-factory)
+- [ClawHub publisher profile](https://clawhub.ai/user/findhappy7)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, code]
+
+**Output Format:** [Markdown or structured Python dictionary responses from bundled query functions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers are based on bundled static JSON data last updated 2026-03-13.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

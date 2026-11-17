@@ -1,42 +1,55 @@
-## Description: <br>
-Helps calculate the rate at which trust in a skill or agent is decaying by combining time elapsed since last verification with the rate of change in behavior, permissions, or dependencies, producing a trust velocity score that predicts when a trusted credential will become unreliable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps calculate the rate at which trust in a skill or agent is decaying by combining time elapsed since last verification with the rate of change in behavior, permissions, or dependencies, producing a trust velocity score that predicts when a trusted credential will become unreliable.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Developers, security reviewers, and marketplace operators use this skill to estimate when a skill or agent should be re-reviewed based on elapsed verification time, change velocity, and verification coverage lag. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Trust velocity scores are model-based guidance and can be mistaken for evidence of compromise. <br>
-Mitigation: Use the report as an advisory signal, calibrate decay parameters to the environment, and verify input data independently before acting. <br>
-Risk: curl or python3 use could inspect unintended sources if the agent is given broad targets. <br>
-Mitigation: Allow tool use only for user-specified skills or sources that are intended for analysis, and review external targets before fetching them. <br>
-Risk: Frequent version changes can inflate trust decay even when the changed surface is low impact. <br>
-Mitigation: Review the change velocity breakdown and distinguish meaningful behavior, permission, endpoint, or dependency changes from cosmetic releases. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/trust-velocity-calculator) <br>
-- [Publisher profile](https://clawhub.ai/user/andyxinweiminicloud) <br>
+## Use Case:
+
+Developers, security reviewers, and agent platform operators use this skill to estimate how quickly a skill or agent's trust posture decays after verification as time passes and behavior, permission, endpoint, dependency, or instruction changes accumulate.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The visible artifact describes a methodology and report format rather than a complete implemented calculator, while the metadata declares curl and python3 requirements.
+
+Mitigation: Review future versions before installation if executable helpers, network calls, or automated data collection are added.
+
+Risk: A high trust velocity score can be misread as evidence that a skill is malicious or compromised.
+
+Mitigation: Treat the score as a re-verification and review-prioritization signal, and corroborate it with security review before making enforcement decisions.
+
+Risk: Version histories with frequent superficial releases may inflate change velocity without reflecting meaningful risk.
+
+Mitigation: Calibrate decay parameters to the operating environment and inspect the substance of changes before acting on threshold alerts.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown trust velocity report with text-based scores, projections, change analysis, and recommended actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference curl and python3 when the user asks the agent to analyze user-specified skills or sources.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown trust velocity report with scores, projections, change breakdowns, urgency labels, and recommended actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory trust assessments and projections rather than proof of compromise.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

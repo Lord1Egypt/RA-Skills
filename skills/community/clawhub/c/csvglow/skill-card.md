@@ -1,42 +1,58 @@
-## Description: <br>
-Generate beautiful interactive HTML dashboards from CSV/Excel files with smart insights, auto-detected charts, correlations, and statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate beautiful interactive HTML dashboards from CSV/Excel files with smart insights, auto-detected charts, correlations, and statistics.
 
-## Publisher: <br>
-[Ratnaditya-J](https://clawhub.ai/user/Ratnaditya-J) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ratnaditya-j](https://clawhub.ai/user/ratnaditya-j)
 
-## Use Case: <br>
-Developers, analysts, and data practitioners use csvglow to turn local CSV, TSV, XLS, and XLSX files into self-contained interactive HTML dashboards for visual data exploration and reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports a helper path that can run nested Codex review with sandbox and approval bypass enabled. <br>
-Mitigation: Use the scanner guidance: install only from a trusted publisher, and use --no-yolo or AUTOREVIEW_YOLO=0 unless full-access nested review is explicitly intended. <br>
-Risk: The skill runs a local csvglow binary over user-provided spreadsheet data. <br>
-Mitigation: Verify the installed binary and review generated dashboards before sharing outputs that may include sensitive source data. <br>
+## Use Case:
 
+External users, data analysts, and developers use csvglow to turn CSV, TSV, XLS, and XLSX files into local interactive HTML dashboards for visual exploration and reporting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Ratnaditya-J/csvglow) <br>
-- [csvglow Repository](https://github.com/Ratnaditya-J/csvglow) <br>
-- [csvglow Issues](https://github.com/Ratnaditya-J/csvglow/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands; generated artifact is self-contained HTML] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the csvglow binary; supports CSV, TSV, XLS, and XLSX inputs, with optional MCP server mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, clawhub.json, release metadata) <br>
+Risk: The command may open the generated dashboard in a browser by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented --no-open option when browser launch is not desired.
+
+Risk: The external csvglow binary itself was not independently audited by the security review.
+
+Mitigation: Install csvglow from a trusted source and scan or review the binary before deployment.
+
+Risk: Generated self-contained HTML dashboards may embed information from the input spreadsheet.
+
+Mitigation: Use approved local files and handle generated dashboards according to the sensitivity of the source data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ratnaditya-j/skills/csvglow)
+- [csvglow homepage](https://github.com/ratnaditya-j/csvglow)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target local CSV, TSV, XLS, or XLSX files and may write a self-contained HTML dashboard.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

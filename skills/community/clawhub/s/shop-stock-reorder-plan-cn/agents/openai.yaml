@@ -1,0 +1,8 @@
+interface:
+  display_name: "库存补货清单"
+  short_description: "根据库存、销量和提前期生成可复核的逐SKU补货清单"
+  default_prompt: "使用 $shop-stock-reorder-plan-cn 根据我提供的库存表输出补货建议、公式依据和缺失字段。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

@@ -1,36 +1,54 @@
-## Description: <br>
-Eval Skill is a ClawHub skill release; release evidence was unavailable in this workspace to describe its behavior more specifically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates an agent skill by having three independent child evaluators score it across eight documented quality dimensions and then summarizing the results.
 
-## Publisher: <br>
-[54lynnn](https://clawhub.ai/user/54lynnn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[54lynnn](https://clawhub.ai/user/54lynnn)
 
-## Use Case: <br>
-Agents use this skill when the Eval Skill release is selected. Reviewers should confirm the intended workflow against the release evidence before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Release evidence was unavailable, so the generated card may omit skill-specific behavior, dependencies, or security guidance. <br>
-Mitigation: Validate the card against server-provided evidence before publication and update the description, outputs, references, and risks from that evidence. <br>
+## Use Case:
 
+Developers and skill reviewers use this skill to perform structured reviews of ClawHub agent skills, including scores for functionality, code quality, robustness, security, documentation, dependencies, expected runtime behavior, and overall quality.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No release evidence was available to identify additional output properties.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: target metadata) <br>
+Risk: The skill reads the selected skill directory and forwards full text contents to child evaluators.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid running it on directories that contain secrets, private configuration, credentials, or unrelated sensitive files.
+
+Risk: Adversarial skill text may influence child evaluators during review.
+
+Mitigation: Treat findings about adversarial or untrusted skills cautiously and review the final report before acting on it.
+
+## Reference(s):
+
+- [Evaluation Protocol](references/evaluation-protocol.md)
+- [ClawHub Skill Page](https://clawhub.ai/54lynnn/skills/eval-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, analysis, guidance]
+
+**Output Format:** [Markdown report with score tables, disagreement analysis, consensus strengths and issues, and a final recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report expects each child evaluator to provide a JSON score summary delimited by SCORE_SUMMARY markers.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata; artifact frontmatter says 1.5.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

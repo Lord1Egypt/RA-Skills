@@ -1,42 +1,55 @@
-## Description: <br>
-Provides academic research workflow templates and learning references for topic selection, outlining, writing, reviewing, and response preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI-assisted academic research workflow support for topic planning, paper outlining, drafting, reviewing, and response preparation.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Researchers, students, and academic writing assistants can use this skill to scaffold paper sections, organize a research topic into a dated JSON template, and follow linked learning material for AI-assisted academic workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes dated paper template JSON files locally inside its data folder. <br>
-Mitigation: Run it in a workspace where local data-folder updates are expected, and review generated paper JSON before relying on it. <br>
-Risk: The included learning resources are external Bilibili links and are not part of the scanned skill package. <br>
-Mitigation: Review external learning material separately before treating it as authoritative research guidance. <br>
+## Use Case:
 
+Researchers, students, and academic writers use this skill to generate and reuse structured paper templates while working through AI-assisted research planning, writing, review, and response workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/academic-research-skills) <br>
-- [Academic Research Skills: researcher-led AI academic workflow](https://www.bilibili.com/video/BV1wyLS6nE94) <br>
-- [Academic Research Skills practical tutorial](https://www.bilibili.com/video/BV1YU5c68EjB) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON files, guidance] <br>
-**Output Format:** [Plain text summary with locally written JSON paper templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates a dated paper_<date>.json file in the skill data folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 <br>
+Risk: The release evidence describes this as a basic local template generator, so generated paper sections and sample references may be incomplete or misleading if treated as finished scholarship.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated sections, replace sample references with verified sources, and use the output as drafting support rather than final academic content.
+
+Risk: The artifact writes paper templates to local JSON files in its data directory.
+
+Mitigation: Run it in an appropriate workspace and review generated JSON files before using or sharing them.
+
+## Reference(s):
+
+- [Academic Research Skills ClawHub listing](https://clawhub.ai/534422530/skills/academic-research-skills)
+- [Charaplay: Academic Research Skills AI academic workflow](https://www.bilibili.com/video/BV1wyLS6nE94)
+- [Academic Research Skills tutorial covering topic, outline, writing, review, and response workflows](https://www.bilibili.com/video/BV1YU5c68EjB)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown-oriented guidance and text summaries backed by JSON paper-template files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates local JSON paper template files in the skill data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

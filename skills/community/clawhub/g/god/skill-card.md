@@ -1,38 +1,49 @@
-## Description: <br>
-Equips agents with comparative theology context for explaining concepts of God, divine entities, and divine archetypes across major religions and mythologies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance for explaining gods and divine archetypes across major religions and mythologies, including their roles, symbolism, and cultural contexts.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Developers and agent builders use this skill to give an agent comparative-religion background for educational answers about deities, divine attributes, and common misconceptions across traditions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Religious and historical explanations may be inaccurate, imbalanced, or unsuitable for a specific audience. <br>
-Mitigation: Review the educational content for accuracy, neutrality, and audience fit before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to produce educational explanations of comparative theology, divine archetypes, and common misconceptions across religious and mythological traditions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DuanC-Chao/god) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text explanatory responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code, installs, credentials, data access, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Comparative theology framing may be inaccurate, incomplete, or insensitive across traditions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated religious explanations for accuracy, neutrality, and audience context before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanc-chao/skills/god)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, shell commands, data access, or persistence behavior is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

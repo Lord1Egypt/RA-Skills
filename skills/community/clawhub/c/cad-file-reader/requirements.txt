@@ -1,0 +1,15 @@
+# cad-file-reader 依赖声明
+# 优先使用技能自带 vendor/（ezdxf / ezdwg / fontTools / pyparsing / typing_extensions / openpyxl），
+# 缺失时：python3 -m pip install -r requirements.txt
+ezdxf>=1.4.0
+# 必须使用下方声明的版本下限：低版本对部分大图会把整张图层表解成空名，
+# 导致图层语义全丢——下游按图层找梁线/板填充的算量步骤会直接算不出量。
+ezdwg>=0.17.2
+numpy>=1.24
+fonttools>=4.50
+pyparsing>=3.1
+typing_extensions>=4.10
+openpyxl>=3.1
+python-docx>=1.1
+pdfminer.six>=20231228
+psutil>=5.9

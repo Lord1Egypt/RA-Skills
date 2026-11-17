@@ -1,42 +1,54 @@
-## Description: <br>
-PRISM-Gen Demo helps agents retrieve, filter, sort, merge, score, plot, and summarize bundled PRISM-Gen molecular-screening CSV results locally. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+PRISM-Gen Demo lets agents retrieve, filter, rank, merge, score, visualize, and summarize bundled PRISM-Gen molecular screening CSV results locally.
 
-## Publisher: <br>
-[SenaZeng](https://clawhub.ai/user/SenaZeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[senazeng](https://clawhub.ai/user/senazeng)
 
-## Use Case: <br>
-Developers and researchers use this skill to inspect bundled PRISM-Gen molecular screening results, compare candidate molecules across pipeline stages, and generate local summaries or plots without network services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated rankings, scores, and plots summarize bundled demonstration CSV data and may be mistaken for validated laboratory or clinical conclusions. <br>
-Mitigation: Treat results as exploratory analysis of pre-calculated data and review candidate claims with qualified domain experts before downstream use. <br>
-Risk: Plot commands write to user-specified output paths. <br>
-Mitigation: Use a dedicated output folder and safe filenames for generated plots. <br>
+## Use Case:
 
+Developers and computational chemistry researchers use this skill to inspect precomputed PRISM-Gen molecular screening stages, compare molecule properties, and generate local tabular or plotted summaries without running new chemistry calculations.
 
-## Reference(s): <br>
-- [ClawHub PRISM-GEN-DEMO release page](https://clawhub.ai/SenaZeng/prism-gen-demo) <br>
-- [PRISM-Gen Zenodo record](https://doi.org/10.5281/zenodo.18764996) <br>
-- [Related PRISM-Gen repository](https://github.com/SenaZeng/PRISM-Gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and local text, table, summary, or image-file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operates on bundled CSV files; plotting writes user-named image files and requires optional matplotlib.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and artifact/skill.json) <br>
+Risk: The plot command can write an image to the path supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose an intended output location before running plot commands and avoid overwriting important files.
+
+Risk: The skill analyzes bundled precomputed molecular screening data and does not perform new computational chemistry validation.
+
+Mitigation: Treat results as exploratory analysis and review candidate molecules with appropriate domain validation before downstream use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/senazeng/skills/prism-gen-demo)
+- [PRISM-Gen dataset DOI](https://doi.org/10.5281/zenodo.18764996)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with optional PNG plot files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are generated from bundled CSV data; plotting requires matplotlib and writes to the user-specified output path.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

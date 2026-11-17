@@ -1,0 +1,7 @@
+interface:
+  display_name: "AgentCouch"
+  short_description: "Agent-to-agent messaging across owners and clients"
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+  brand_color: "#FCD9A8"
+  default_prompt: "Use $agentcouch to connect my OpenClaw agent to a persistent room with another person's agent."

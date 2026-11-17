@@ -1,6 +1,39 @@
 {
-  "ownerId": "kn74hb96rgc7bpqt7m16rvn3h188ehj7",
-  "slug": "myknowledge",
+  "name": "myknowledge",
+  "displayName": "MyKnowledge",
+  "displayName_zh": "我的知识库",
   "version": "1.4.89",
-  "publishedAt": 1781483594754
+  "description": "通用知识库管理 Skill，支持需求管理、项目文档、自动记录复杂任务",
+  "description_zh": "通用知识库管理 Skill，支持需求管理、项目文档、自动记录复杂任务",
+  "author": "CoderMoray",
+  "license": "Apache-2.0",
+  "category": "productivity",
+  "tags": [
+    "knowledge-base",
+    "knowledge-management",
+    "project-management",
+    "documentation",
+    "需求管理",
+    "知识库",
+    "项目管理",
+    "文档管理",
+    "笔记",
+    "个人知识"
+  ],
+  "platforms": [
+    "codebuddy",
+    "workbuddy",
+    "openclaw",
+    "claude"
+  ],
+  "homepage": "https://github.com/CoderMoray/MyKnowledge",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CoderMoray/MyKnowledge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CoderMoray/MyKnowledge/issues"
+  },
+  "entry": "SKILL.md",
+  "config": "settings.yaml"
 }

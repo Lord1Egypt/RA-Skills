@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn73vhzz24t2bp0j5tr6scqfn5830nk2",
-  "slug": "taizi-alicloud-ai-image",
-  "version": "1.0.0",
-  "publishedAt": 1773633756764
+  "owner": "cinience",
+  "slug": "alicloud-ai-image-qwen-image",
+  "displayName": "Alicloud Ai Image Qwen Image",
+  "latest": {
+    "version": "1.0.2",
+    "publishedAt": 1770973126208,
+    "commit": "https://github.com/openclaw/skills/commit/a93ae9b4ebb6383e58404f7de019d02ccdc73381"
+  },
+  "history": [
+    {
+      "version": "1.0.1",
+      "publishedAt": 1770768414112,
+      "commit": "https://github.com/openclaw/skills/commit/6e13b6eb21301472bad5e78dc6c7ed9fb1edcf89"
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770768212508,
+      "commit": "https://github.com/openclaw/skills/commit/d15ea99a3a49819bb268e888ef5378d069cdc7b6"
+    }
+  ]
 }

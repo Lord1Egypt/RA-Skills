@@ -1,47 +1,60 @@
-## Description: <br>
-Use when creating cloned voices with Alibaba Cloud Model Studio CosyVoice customization models, especially cosyvoice-v3.5-plus or cosyvoice-v3.5-flash, from reference audio and then reusing the returned voice_id in later TTS calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when creating cloned voices with Alibaba Cloud Model Studio CosyVoice customization models, especially cosyvoice-v3.5-plus or cosyvoice-v3.5-flash, from reference audio and then reusing the returned voice_id in later TTS calls.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare Alibaba Cloud Model Studio CosyVoice voice-enrollment requests from authorized public reference audio and to understand how the returned voice_id is reused in later TTS calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China mainland for cosyvoice-v3.5-plus and cosyvoice-v3.5-flash clone workflows; model support varies for international deployment. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help create reusable cloned voices from audio URLs without proving speaker consent. <br>
-Mitigation: Use only reference audio from speakers who explicitly authorized cloning, and record consent before enrollment. <br>
-Risk: The Alibaba Cloud API key and returned voice_id can enable unauthorized voice operations if exposed. <br>
-Mitigation: Treat DASHSCOPE_API_KEY and voice_id values as sensitive secrets, avoid committing them to repositories, and restrict access to generated outputs. <br>
-Risk: Reference audio URLs and long-lived voice clones can create privacy and lifecycle-management exposure. <br>
-Mitigation: Prefer time-limited sample URLs and confirm Alibaba Cloud retention and deletion options before creating durable cloned voices. <br>
-Risk: Using a different synthesis model from the enrollment target_model can cause later TTS requests to fail. <br>
-Mitigation: Reuse the same target_model family for enrollment and later speech synthesis. <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare CosyVoice voice-clone enrollment requests from public reference audio and to understand how the returned voice_id is reused in later text-to-speech calls.
 
-## Reference(s): <br>
-- [CosyVoice Voice Clone API Reference](references/api_reference.md) <br>
-- [Sources](references/sources.md) <br>
-- [Alibaba Cloud CosyVoice Clone and Design API (Chinese)](https://www.alibabacloud.com/help/zh/model-studio/cosyvoice-clone-design-api) <br>
-- [Alibaba Cloud CosyVoice Clone and Design API (English)](https://www.alibabacloud.com/help/en/model-studio/cosyvoice-clone-design-api) <br>
+### Deployment Geography for Use:
 
+China mainland deployment mode for cosyvoice-v3.5-plus and cosyvoice-v3.5-flash voice cloning; other regions only where Alibaba Cloud Model Studio documents compatible CosyVoice clone support.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request bodies and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a request.json file when using the bundled helper script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Voice cloning can affect speaker identity and consent rights.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only reference audio for which the user has rights and explicit consent from the speaker.
+
+Risk: Reference audio URLs, API responses, and voice_id values can expose sensitive voice-clone assets.
+
+Mitigation: Limit access to these values, avoid publishing them in logs or shared artifacts, and store them only where required.
+
+Risk: Custom voices may persist after enrollment.
+
+Mitigation: Confirm the Alibaba Cloud deletion and retention process before enrolling production voices and delete unused custom voices promptly.
+
+## Reference(s):
+
+- [CosyVoice Voice Clone API Reference](references/api_reference.md)
+- [Sources](references/sources.md)
+- [Alibaba Cloud Model Studio CosyVoice Clone and Design API (Chinese)](https://www.alibabacloud.com/help/zh/model-studio/cosyvoice-clone-design-api)
+- [Alibaba Cloud Model Studio CosyVoice Clone and Design API (English)](https://www.alibabacloud.com/help/en/model-studio/cosyvoice-clone-design-api)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with JSON request bodies and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include target_model, prefix, public voice sample URL, language_hints, optional preprocessing fields, and guidance for handling the returned voice_id.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-Create concise, conversion-oriented demo video scripts and shot-by-shot storyboards for AI SaaS products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create concise, conversion-oriented demo video scripts and shot-by-shot storyboards for AI SaaS products.
 
-## Publisher: <br>
-[changxiyue](https://clawhub.ai/user/changxiyue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[changxiyue](https://clawhub.ai/user/changxiyue)
 
-## Use Case: <br>
-Marketing teams, product teams, founders, and video creators use this skill to turn AI SaaS workflows into short demo scripts, shot-by-shot storyboards, and motion plans. It emphasizes product proof through user input, AI transformation, human review, and completed outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using private product screenshots or workflow details in demo planning may expose customer data, secrets, session cookies, or internal identifiers. <br>
-Mitigation: Use screenshots, static exports, demo data, or a temporary read-only test account, and remove secrets and production customer data before sharing inputs with an agent. <br>
+## Use Case:
 
+External users, marketers, product teams, and developers use this skill to turn AI SaaS products, features, workflows, websites, or UI captures into concise demo scripts, shot-by-shot storyboards, Remotion-ready timelines, and motion guidance.
 
-## Reference(s): <br>
-- [Data Animation and Before / After Rules](references/data-and-comparison.md) <br>
-- [Fintech SaaS Demo Shot-Study Template](references/fintech-shot-study.md) <br>
-- [Motion and Camera Rules](references/motion-and-camera.md) <br>
-- [Real Project Lessons: different. AI Fintech Demo](references/real-project-different-lessons.md) <br>
-- [Real UI Backplate Remotion Workflow](references/real-ui-backplate-remotion.md) <br>
-- [Remotion Layered UI Checklist](references/remotion-layered-ui-checklist.md) <br>
-- [Remotion Motion Parameters](references/remotion-parameters.md) <br>
-- [Scene Transitions](references/scene-transitions.md) <br>
-- [Website To Video Pipeline](references/website-to-video-pipeline.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown scripts, storyboard tables, motion notes, and optional Remotion code or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to a 45-60 second demo unless the user asks for another length.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Private product screenshots, UI captures, or workflow examples may contain secrets, PII, customer records, or confidential product data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sanitized screenshots, staging data, redacted captures, or public product examples when possible.
+
+Risk: Generated demo scripts, storyboards, or video assets may overstate product behavior or include misleading claims.
+
+Mitigation: Review generated copy, visuals, claims, and final assets before sharing or publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/changxiyue/skills/ai-saas-demo-script)
+- [Website To Video Pipeline](references/website-to-video-pipeline.md)
+- [Motion and Camera Rules](references/motion-and-camera.md)
+- [Scene Transitions](references/scene-transitions.md)
+- [Remotion Motion Parameters](references/remotion-parameters.md)
+- [Data Animation and Before / After Rules](references/data-and-comparison.md)
+- [Fintech SaaS Demo Shot-Study Template](references/fintech-shot-study.md)
+- [Remotion Layered UI Checklist](references/remotion-layered-ui-checklist.md)
+- [Real UI Backplate Remotion Workflow](references/real-ui-backplate-remotion.md)
+- [Real Project Lessons: different. AI Fintech Demo](references/real-project-different-lessons.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown scripts, storyboard tables, motion parameters, Remotion timeline guidance, implementation notes, and concise completion summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output targets a 45-60 second AI SaaS demo unless the user requests another length.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

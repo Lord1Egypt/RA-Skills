@@ -1,45 +1,56 @@
-## Description: <br>
-根据主题自动搜索整理信息，生成多风格视频脚本，并调用数字人平台创建完整短视频。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill creates Douyin-oriented short-video content by organizing topic information, drafting scripts in multiple styles, and optionally submitting scripts to avatar-video providers.
 
-## Publisher: <br>
-[chenyang399](https://clawhub.ai/user/chenyang399) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenyang399](https://clawhub.ai/user/chenyang399)
 
-## Use Case: <br>
-Content creators and developers use this skill to turn a topic into organized source notes, short-video scripts, and digital-avatar video generation requests for Douyin-style videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts or source material may be uploaded to third-party avatar video providers. <br>
-Mitigation: Use non-sensitive scripts, confirm the selected provider before running the pipeline, and review the content before any API submission. <br>
-Risk: Provider API calls may incur costs or use credentials beyond the intended scope. <br>
-Mitigation: Use scoped API keys, confirm provider pricing and request behavior, and avoid sharing long-lived credentials. <br>
-Risk: The pipeline writes generated scripts, reports, and provider responses to local output directories. <br>
-Mitigation: Choose an appropriate output directory and review generated files before sharing or retaining them. <br>
+## Use Case:
 
+Creators, marketing teams, and developers use this skill to turn a topic into structured research notes, a short-video script, and an optional avatar-video generation request for Douyin-style content.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chenyang399/douyin-video-create) <br>
-- [HeyGen](https://www.heygen.com) <br>
-- [D-ID](https://www.d-id.com) <br>
-- [Synthesia](https://www.synthesia.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated search results, organized data, scripts, video provider responses, and reports under an output timestamp directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated scripts and video requests may be sent to the selected avatar-video provider when an API key is configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential content unless the user is comfortable with that provider processing it, and review scripts before submission.
+
+Risk: Generated topics, scripts, video request results, and reports are written under the configured output directory.
+
+Mitigation: Choose an appropriate output directory and review generated files before sharing or publishing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenyang399/skills/douyin-video-create)
+- [HeyGen](https://www.heygen.com)
+- [D-ID](https://www.d-id.com)
+- [Synthesia](https://www.synthesia.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown and JSON files, with optional avatar-provider API response JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes search results, organized data, scripts, video request results, and a report under the configured output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Organizes pet vaccination proof into a shareable wallet card, document index, renewal tracker, and missing-proof checklist without giving veterinary advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes pet vaccination proof into a shareable wallet card, document index, renewal tracker, and missing-proof checklist without giving veterinary advice.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External pet owners, handlers, and facility-facing users use this skill to organize vaccine records, rabies certificates, due dates, document indexes, and missing-proof checklists for boarding, grooming, daycare, travel, licensing, housing, adoption, emergency care, or routine record keeping. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used for veterinary or travel-compliance decisions beyond record organization. <br>
-Mitigation: Use it only to organize records; confirm medical questions with a licensed veterinarian and import, boarding, housing, or facility requirements with the relevant authority or requester. <br>
-Risk: Examples in the artifact contradict the stated boundary by implying overdue-vaccine and border-requirement analysis. <br>
-Mitigation: Keep outputs limited to facts shown on supplied records and stated requirements; do not infer revaccination needs, immunity, legal compliance, travel clearance, or acceptance by any authority. <br>
-Risk: Pet and owner records can contain unnecessary identifying information. <br>
-Mitigation: Redact unnecessary owner and pet identifiers from uploaded records and include only details needed for the requested proof packet. <br>
+## Use Case:
 
+External pet owners and caregivers use this skill to organize supplied vaccination proof for boarding, grooming, daycare, travel, licensing, housing, adoption, emergency care, or routine record keeping. It creates administrative summaries, proof tables, document indexes, renewal trackers, requirement checks, and missing-proof lists without veterinary advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/pet-vaccine-record-wallet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Document-only prompt-flow output; no executable code, API calls, network access, or credentials required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Examples may drift into veterinary, revaccination, antibody testing, travel-entry, or facility-acceptance decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only as a record organizer; confirm medical questions with a licensed veterinarian and travel, boarding, licensing, or housing requirements with the requesting authority.
+
+Risk: Shareable wallet cards or full-record links may expose unnecessary owner, clinic, certificate, or pet-identifying information.
+
+Mitigation: Redact unneeded details and make sharing temporary, access-controlled, and limited to the specific requester.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/pet-vaccine-record-wallet)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Artifact acceptance tests](artifact/ACCEPTANCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables and concise plain-text checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only, document-only output; no code execution, API calls, network access, or credentials required.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Provides comprehensive expertise in identifying, investigating, legally addressing, and preventing occupational fraud based on ACFE standards and global data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language fraud examination reference guidance for identifying, investigating, legally assessing, and preventing occupational fraud using ACFE-oriented domains, global fraud data, and China-focused audit guidance.
 
-## Publisher: <br>
-[yjkj999999](https://clawhub.ai/user/yjkj999999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yjkj999999](https://clawhub.ai/user/yjkj999999)
 
-## Use Case: <br>
-Fraud examiners, auditors, compliance professionals, and investigators use this skill as educational reference for identifying fraud schemes, planning authorized investigations, understanding legal and control considerations, and preparing prevention guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal, audit, and investigation guidance may be misapplied if treated as current professional advice. <br>
-Mitigation: Verify guidance against current authoritative sources and qualified professional review before using it for real cases. <br>
-Risk: Real-world investigative methods can create legal, privacy, or employment risk when used without authority. <br>
-Mitigation: Use investigative steps only with proper authorization and within applicable organizational and legal procedures. <br>
+## Use Case:
 
+Fraud examiners, auditors, compliance teams, and agents supporting them use this skill as a Chinese-language reference for fraud typologies, investigation planning, evidence handling, interview approaches, legal considerations, control design, and prevention practices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yjkj999999/fraud-examination-mastery) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational reference material; no system access, credentials, or execution privileges are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Legal, regulatory, and fraud-reporting guidance may vary by jurisdiction or change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify professional use against current law, ACFE materials, organizational policy, and qualified legal or compliance counsel.
+
+Risk: The skill summarizes 2026-source claims and fraud statistics that may require independent confirmation.
+
+Mitigation: Check the underlying source materials and current case data before relying on figures in investigations, reports, or training.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yjkj999999/skills/fraud-examination-mastery)
+- [Artifact README](artifact/README.md)
+- [Artifact skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reference guidance in Chinese with tables, checklists, and structured investigation frameworks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or privileged actions; outputs are advisory reference material.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release.version and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

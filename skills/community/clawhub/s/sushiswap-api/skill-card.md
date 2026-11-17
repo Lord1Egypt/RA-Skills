@@ -1,43 +1,59 @@
-## Description: <br>
-REST API for optimized token swapping, executable transaction generation, swap quoting, pricing, token metadata, and liquidity-source discovery using the SushiSwap Aggregator. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+REST API for optimized token swapping, executable transaction generation, swap quoting, token pricing, token metadata, and liquidity-provider discovery using the SushiSwap Aggregator.
 
-## Publisher: <br>
-[0xMasayoshi](https://clawhub.ai/user/0xMasayoshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xmasayoshi](https://clawhub.ai/user/0xmasayoshi)
 
-## Use Case: <br>
-Developers and agents use this skill to construct SushiSwap REST API requests for quotes, swaps, token prices, token metadata, and supported liquidity sources. It is intended for integrations that need schema-grounded HTTP access to SushiSwap Aggregator behavior rather than assumptions or a JavaScript SDK. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Swap endpoints can generate executable transaction data for financial actions. <br>
-Mitigation: Before signing or submitting a transaction, verify the chain, token addresses, amount, recipient, slippage, fee and fee receiver, referrer, target contract, and transaction value. <br>
-Risk: Using the SwaggerHub mock server instead of the production Sushi API server can produce non-production behavior. <br>
-Mitigation: Pin integrations to https://api.sushi.com for production API calls. <br>
-Risk: API changes can make hardcoded endpoints, parameters, or response shapes stale. <br>
-Mitigation: Re-read references/openapi.yaml before constructing requests and update request construction to match the active schema. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenAPI usage guide](references/OPENAPI.md) <br>
-- [Sushi API OpenAPI schema](references/openapi.yaml) <br>
-- [Sushi API production server](https://api.sushi.com) <br>
+## Use Case:
 
+Developers and external integrators use this skill to build agent workflows that query SushiSwap pricing, quotes, token data, liquidity-provider data, and swap transaction payloads through the SushiSwap REST API.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with HTTP parameters, JSON-oriented response guidance, and code or shell snippets when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be grounded in references/openapi.yaml and should not fabricate transaction calldata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can generate executable crypto swap transaction payloads.
+
+Mitigation: Require explicit review of chain ID, token addresses, sender, recipient, amount, slippage, price impact, fee receiver, tx.to, tx.value, and calldata before wallet approval, signing, or broadcast.
+
+Risk: Agents may construct requests against an unintended or spoofed API endpoint.
+
+Mitigation: Configure clients to use only https://api.sushi.com for live SushiSwap API calls.
+
+Risk: Swap-related requests may omit or misuse the required referrer value.
+
+Mitigation: Require the integrator-supplied referrer parameter for quote and swap endpoints and do not auto-generate, spoof, or omit it.
+
+## Reference(s):
+
+- [OpenAPI usage guide](references/OPENAPI.md)
+- [Sushi API OpenAPI schema](references/openapi.yaml)
+- [Sushi API](https://api.sushi.com)
+- [SwaggerHub API Auto Mocking endpoint](https://virtserver.swaggerhub.com/sushi-labs/sushi/7.0.0)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, code, configuration]
+
+**Output Format:** [Markdown with HTTP request details, JSON-compatible parameters, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the bundled OpenAPI schema as the source of truth for endpoint paths, required parameters, defaults, and response shapes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

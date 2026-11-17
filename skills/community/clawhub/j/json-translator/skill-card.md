@@ -1,41 +1,53 @@
-## Description: <br>
-Translates selected text fields in JSON files, especially description fields, while preserving the original JSON structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+翻译 JSON 文件中的指定文本字段，特别是 description 字段，并保持原始 JSON 结构完整。
 
-## Publisher: <br>
-[JEyeshield](https://clawhub.ai/user/JEyeshield) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeyeshield](https://clawhub.ai/user/jeyeshield)
 
-## Use Case: <br>
-Developers, localization teams, and data maintainers use this skill to translate selected JSON string fields into Chinese, English, Japanese, or Korean while keeping the file structure intact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected JSON field contents are sent to online translation services, which can expose sensitive, regulated, or confidential text. <br>
-Mitigation: Use only on content approved for third-party translation services, and avoid secrets, private customer data, regulated data, and confidential configuration files. <br>
-Risk: The translated JSON file is written to an output path chosen by the user or derived from the input filename. <br>
-Mitigation: Verify the output path before running the skill and review the generated JSON before replacing any source file or relying on the translation. <br>
+## Use Case:
 
+Developers, localization teams, and documentation maintainers use this skill to translate selected string fields in JSON files for product descriptions, API documentation, configuration text, datasets, and internationalization workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JEyeshield/json-translator) <br>
-- [MyMemory translation API](https://api.mymemory.translated.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and a translated UTF-8 JSON file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a translated JSON file and prints progress, previews, missing-field warnings, and completion statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Selected JSON field text is sent to MyMemory for translation and may expose sensitive or proprietary content to a third party.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content approved for third-party translation services; avoid secrets, credentials, personal data, regulated data, proprietary configuration, and internal documents unless that transfer is approved.
+
+Risk: Machine translation can be inaccurate or incomplete, especially for domain-specific text.
+
+Mitigation: Review translated fields before using the output in production, customer-facing material, or regulated workflows.
+
+## Reference(s):
+
+- [MyMemory Translation API](https://api.mymemory.translated.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and generated UTF-8 JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Translated JSON preserves the original structure and marks failed translations while keeping the original text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

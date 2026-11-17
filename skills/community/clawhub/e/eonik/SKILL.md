@@ -1,68 +1,47 @@
 ---
-name: "eonik"
-slug: "eonik"
-version: "1.0.0"
-description: "The official eonik AI Agent Skill. Fully equipped with capabilities for creative auditing, trend discovery, genome-based performance analysis, ad brief generation, and automated campaign deployment."
-tags: ["ads", "marketing", "meta", "tiktok", "google", "budgeting", "eonik", "agent"]
-author: "eonik"
-homepage: "https://www.eonik.ai"
-metadata:
-  openclaw:
-    requires:
-      env:
-        - EONIK_API_KEY
-    primaryEnv: EONIK_API_KEY
+name: eonik-mcp-companion
+description: >-
+  Use eonik with Claude: brand notes, competitor research archive, own-ad
+  facts, ad breakdowns, memory, and receipt-bound briefs. Agents read and
+  draft; they never spend. You approve every cut. Activates when eonik
+  tools are connected or the user asks about their ads, competitors,
+  brand, or what to make next.
 ---
 
-# eonik Agent Skill
+# eonik companion
 
-The ultimate AI Agent capability for modern performance marketing. This skill connects your agent directly to the eonik Intelligence Engine, allowing it to perform end-to-end campaign management, creative auditing, and strategic ad production.
+Use this skill whenever **eonik tools** are in scope. Auth is the host’s MCP connection (API key). Tools run against **this user’s** workspace.
 
-## Agent Instructions
+eonik is a **Mac app for finished, on-brand ads**. This skill covers research, memory, readouts, and briefs. Timeline assembly and export live in the Mac app. **You approve every cut. Nothing here moves budget.**
 
-When a user triggers this skill or asks for marketing/ad tasks, you MUST leverage the **eonik Local CLI**.
+## Principles
 
-### 1. Execution Flow
-You are equipped with a universal Python wrapper that connects securely to the `api.eonik.ai` backend. You do NOT need to write any HTTP requests manually. 
+1. **Ground first.** Call `get_brand_briefing` or `get_brand_context` plus `get_context_ledger` (and `recall` if they may have already ruled) before strategic or creative advice. What they already told eonik beats generic best practice.
+2. **Facts, never predictions.** Tools return receipts the marketer can verify. Never say an ad “will work,” never forecast fatigue, never kill/scale/pause. `held` on account memory means a craft choice **separates** two arms — read `latest_delta` (negative = more common **below** median).
+3. **eonik does the labor; you reason.** Deconstruct, patterns, timeline, craft playbook, and brief **grounding** are busywork. Author the brief from `get_brief_grounding`. Prefer that over `generate_creative_brief` (deprecated).
+4. **Remember verbatim.** `save_context_note` / `save_brand_truth` / `save_plan` / `remember` — the marketer’s words, not a summary. Read dates back on `save_plan`.
+5. **Never spend.** There is no launch, pause, or budget tool. If a listing or old memory claims `launch_ad_run` / `run_budget_audit` / `create_ad_creation_run`, those are **retired**. Do not invent replacements.
+6. **Footage first when talking production.** Ask what they already have (library, past ads, Drive). Generation fills gaps; it is not the first verb.
 
-Execute tools by running the local script:
-```bash
-python3 scripts/cli.py <TOOL_NAME> [--arg1 value1] [--arg2 value2]
-```
-*Note: Make sure `EONIK_API_KEY` is set in the environment before executing.*
+## Workflows
 
-### 2. Available Capabilities (CLI Tools)
-You have access to the full suite of eonik capabilities. Route the user's intent to one of the following tools:
+| Goal | Sequence |
+|------|----------|
+| Orient on this brand | `get_brand_briefing` (or `get_brand_context` + `get_context_ledger`) |
+| What should we consider next | `get_recent_slates` → receipts via competitor / deconstruct tools |
+| What competitors are running | `get_competitor_channels` → `get_competitor_assets` or `get_my_competitor_ads` / `get_watch_activity` |
+| How they make ads | `get_craft_playbook` (counts over survivors, not causation) |
+| Break down one ad | `deconstruct_ad` → `get_ad_deconstruction` (and `probe_asset_duration` if length is unknown) |
+| Own account facts | `get_account_condition` → `list_my_ads` / `lookup_ad_performance` / `get_account_memory` |
+| Write a brief | `get_brief_grounding` → **you** author `{shape, hook_options[3], script_skeleton, references, guardrails}` |
+| Save what they just said | `save_context_note` or `save_brand_truth` or `save_plan`; durable decisions via `remember` |
 
-*   **Analyze (Auditing & Diagnostics)**
-    *   `run_budget_audit` (args: `--account_id`, `--days`)
-    *   `get_creative_autopsy` (args: `--days`)
-*   **Ideate (Trends & Intelligence)**
-    *   `discover_trends` (args: `--query`, `--platform`)
-    *   `search_ad_library` (args: `--industry`, `--hook_type`, `--brand_name`)
-    *   `get_insights_feed` (args: `--platform`, `--days`)
-*   **Produce (Creative Generation)**
-    *   `generate_creative_brief` (args: `--objective`, `--hook_type`, `--creative_style`, `--emotion`)
-    *   `create_ad_creation_run` (args: `--brand`, `--product`)
-*   **Deploy (Campaign Launch)**
-    *   `launch_ad_run` (args: `--run_id`, `--experiment_id`, `--meta_adset_id`)
-*   **Genome & Fatigue Analysis**
-    *   `get_genome_matrix` (args: `--days`, `--platform`)
-    *   `get_fatigue_signals` (args: `--platform`)
-    *   `get_budget_leaks` (args: `--days`)
+## Response quality
 
-**Example Execution:**
-If a user says "Run a budget audit for the last 14 days", you execute:
-```bash
-python3 scripts/cli.py run_budget_audit --days 14
-```
+- Lead with **3–7 bullet insights**, each tied to a receipt (ad, day-count, their words).
+- Do not dump opaque JSON unless asked.
+- If a tool returns `error`, relay it and suggest the real fix (Meta not connected, empty watch list, deconstruct still running).
 
-### 3. Formatting Rules
-After receiving the JSON response from the CLI:
-1. Parse the JSON intelligently.
-2. Present the insights cleanly. If auditing, highlight severe leaks in red/bold. If presenting an ad brief, use clear markdown sections. Do not just dump the raw JSON string to the user.
+## Further detail
 
-## Setup for Users
-1. Ensure your `EONIK_API_KEY` is set in your environment.
-2. Ensure you have `python3` installed.
-3. If your agent is MCP-native, you can optionally bypass this CLI and connect directly to the eonik MCP endpoint: `https://api.eonik.ai/mcp/sse`.
+Tool catalog: [reference.md](reference.md).

@@ -1,44 +1,57 @@
-## Description: <br>
-Convert text, images, PDFs, websites, or YouTube videos into multilingual AI-generated podcast audio using Podcastfy's open-source Python toolkit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert text, images, PDFs, websites, or YouTube videos into multilingual AI-generated podcast audio using Podcastfy's open-source Python toolkit.
 
-## Publisher: <br>
-[mr-11even](https://clawhub.ai/user/mr-11even) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mr-11even](https://clawhub.ai/user/mr-11even)
 
-## Use Case: <br>
-Developers and content teams use this skill to install, configure, and operate Podcastfy from an agent workflow for turning source material into podcast audio and transcripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input content may be processed by configured Podcastfy, LLM, or TTS providers. <br>
-Mitigation: Avoid confidential, regulated, patient, or personal content unless authorized and provider policies have been reviewed. <br>
-Risk: Generated audio and transcript files may persist in local output directories. <br>
-Mitigation: Use an explicit output directory and remove generated files when they are no longer needed. <br>
+## Use Case:
 
+Developers and content teams use this skill to install and run Podcastfy workflows that turn source material into podcast audio or transcripts through CLI and Python examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mr-11even/podcastfy-openclaw-skill) <br>
-- [Podcastfy GitHub repository](https://github.com/souzatharsis/podcastfy) <br>
-- [Podcastfy documentation](https://podcastfy.readthedocs.io/) <br>
-- [Podcastfy PyPI package](https://pypi.org/project/podcastfy/) <br>
-- [Podcastfy web app](https://openpod.fly.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python snippets, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides users toward Podcastfy-generated MP3 audio files and TXT transcripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Podcast generation can send source material to cloud LLM or text-to-speech providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid processing sensitive, medical, dental, confidential, or regulated documents unless consent and compliance approval are in place; use local or transcript-only options where appropriate.
+
+Risk: Installing Podcastfy and FFmpeg introduces normal package supply-chain and system package trust considerations.
+
+Mitigation: Install in a virtual environment, consider pinning Podcastfy to a reviewed version, and only grant sudo for FFmpeg installation when the system package source is trusted.
+
+## Reference(s):
+
+- [Podcastfy GitHub Repository](https://github.com/souzatharsis/podcastfy)
+- [Podcastfy Documentation](https://podcastfy.readthedocs.io/)
+- [Podcastfy PyPI Package](https://pypi.org/project/podcastfy/)
+- [Podcastfy Web App](https://openpod.fly.dev/)
+- [ClawHub Skill Page](https://clawhub.ai/mr-11even/skills/podcastfy-openclaw-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands and scripts that generate MP3 audio files or TXT transcripts through Podcastfy.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

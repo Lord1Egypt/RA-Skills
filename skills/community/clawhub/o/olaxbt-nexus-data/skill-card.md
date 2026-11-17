@@ -1,45 +1,64 @@
-## Description: <br>
-Access OlaXBT Nexus cryptocurrency data APIs for market data, news, KOL tracking, technical indicators, and trading insights using a wallet-linked JWT. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access OlaXBT Nexus cryptocurrency data APIs for market data, news, KOL tracking, technical indicators, and trading insights using a wallet-linked JWT.
 
-## Publisher: <br>
-[OlaXBT-Dev](https://clawhub.ai/user/OlaXBT-Dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olaxbt-dev](https://clawhub.ai/user/olaxbt-dev)
 
-## Use Case: <br>
-External developers and agent builders use this skill to query OlaXBT Nexus crypto data APIs, monitor markets, news, sentiment, and KOL activity, and retrieve trading insight signals through Python or HTTP-backed workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes private-key wallet-signing code despite JWT-only framing. <br>
-Mitigation: Do not provide Ethereum private keys to this package; obtain the JWT outside the skill and use only NEXUS_JWT. <br>
-Risk: A wallet-linked JWT can grant access to OlaXBT Nexus API data and may be exposed through logs or displayed token fragments. <br>
-Mitigation: Treat NEXUS_JWT and any token fragments as sensitive, avoid printing them, and rotate or revoke credentials if exposure is suspected. <br>
-Risk: Custom API URL overrides can redirect authenticated requests to endpoints the user does not control. <br>
-Mitigation: Use the documented default endpoints unless the replacement endpoint is explicitly trusted. <br>
+## Use Case:
 
+External developers and agent builders use this skill to connect OpenClaw agents to OlaXBT Nexus crypto market, news, sentiment, KOL, technical indicator, smart money, and trading insight data using a pre-obtained JWT.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/OlaXBT-Dev/olaxbt-nexus-data) <br>
-- [Nexus Skills API specification](https://github.com/olaxbt/olaxbt-skills-hub/blob/main/skills/nexus/SKILL.md) <br>
-- [Project homepage](https://github.com/olaxbt/olaxbt-nexus-data) <br>
-- [Support](https://github.com/olaxbt/olaxbt-nexus-data/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, API calls] <br>
-**Output Format:** [Python objects, JSON-like API responses, Markdown guidance, and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NEXUS_JWT; optional NEXUS_AUTH_URL and NEXUS_DATA_URL override API endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata; artifact pyproject.toml, CHANGELOG, and clawhub.json list 1.0.0) <br>
+Risk: The release is flagged suspicious because it contains private-key signing code that is under-disclosed relative to the JWT-only user flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented JWT-only path, do not provide wallet private keys to the package, and avoid NexusAuth unless the publisher clarifies and documents that path.
+
+Risk: A JWT bearer token can spend credits or access account-scoped API data.
+
+Mitigation: Keep NEXUS_JWT out of logs and shared configuration, scope access to trusted runtime environments, and rotate or revoke the token if exposure is suspected.
+
+Risk: Configurable auth and data endpoints can receive JWTs if NEXUS_AUTH_URL or NEXUS_DATA_URL is changed.
+
+Mitigation: Leave endpoint overrides unset in production and only override them in trusted test environments.
+
+Risk: The security verdict requires review before deployment.
+
+Mitigation: Install only when the publisher is trusted, review the release evidence, and keep configuration locked down before using the skill with live account credentials.
+
+## Reference(s):
+
+- [OlaXBT Nexus Data ClawHub listing](https://clawhub.ai/olaxbt-dev/skills/olaxbt-nexus-data)
+- [Nexus API auth flow](https://github.com/olaxbt/olaxbt-skills-hub/blob/main/skills/nexus/SKILL.md)
+- [OlaXBT Nexus Data repository](https://github.com/olaxbt/olaxbt-nexus-data)
+- [OlaXBT skill documentation](https://olaxbt.xyz/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, Python snippets, shell commands, and structured API response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NEXUS_JWT and may use optional NEXUS_AUTH_URL or NEXUS_DATA_URL overrides.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence, released 2026-03-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

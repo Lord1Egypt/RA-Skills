@@ -1,43 +1,53 @@
-## Description: <br>
-Ranks domestic and international holiday travel destinations for Chinese public holidays using user preferences and multi-factor travel research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ranks domestic and international holiday travel destinations for Chinese public holidays using user preferences, web research, and an eight-dimension scoring model.
 
-## Publisher: <br>
-[dilicloud11](https://clawhub.ai/user/dilicloud11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dilicloud11](https://clawhub.ai/user/dilicloud11)
 
-## Use Case: <br>
-Travelers and planning assistants use this skill to compare holiday destinations by price, visa convenience, safety, climate, reviews, and experience richness, then generate ranked recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel prices, visa rules, weather, and safety conditions can change after a report is generated. <br>
-Mitigation: Verify time-sensitive recommendations against current booking, visa, weather, and official travel-safety sources before making reservations. <br>
-Risk: The skill asks for departure city, holiday timing, travel preferences, and optional budget. <br>
-Mitigation: Share only the trip details needed for ranking and avoid providing unnecessary personal information. <br>
-Risk: This release describes supporting scripts and reference files that are not included in the artifact. <br>
-Mitigation: Review and scan any future version that adds those scripts or reference files before deployment. <br>
+## Use Case:
 
+External users use this skill to compare where to travel during Chinese public holidays, based on departure city, target holiday, preferred ranking factors, and optional budget. It produces ranked destination recommendations with supporting price, visa, weather, safety, and experience evidence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dilicloud11/holiday-travel-ranker) <br>
-- [Usage guide](artifact/holiday-travel-ranker-使用说明.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown report plus standalone HTML page] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs ranked domestic and international destination lists, scoring tables, destination notes, and personalized travel recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Travel prices, visa policies, weather, and safety conditions can change after report generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated rankings as decision support and verify current booking prices, visa requirements, weather, and safety notices before travel.
+
+Risk: The workflow may run several web searches and create local Markdown and HTML reports.
+
+Mitigation: Invoke it explicitly for structured destination comparison and review generated files before sharing or relying on them.
+
+## Reference(s):
+
+- [Holiday Travel Ranker on ClawHub](https://clawhub.ai/dilicloud11/skills/holiday-travel-ranker)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Code, Guidance]
+
+**Output Format:** [Markdown report and standalone HTML page]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Top 10 domestic and international rankings, dimension-level tables, destination detail cards, and personalized recommendations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

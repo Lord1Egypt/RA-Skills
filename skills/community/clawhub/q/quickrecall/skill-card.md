@@ -1,42 +1,54 @@
-## Description: <br>
-Persistent memory engine for AI agents with semantic recall, hotness prioritization, importance weighting, time decay, and auto-compaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory engine for AI agents with semantic recall, hotness prioritization, importance weighting, time decay, and auto-compaction.
 
-## Publisher: <br>
-[chen-feng123](https://clawhub.ai/user/chen-feng123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chen-feng123](https://clawhub.ai/user/chen-feng123)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add a local, zero-dependency memory store that can write, search, retrieve, compact, and clean up agent memories. It is suited to agents that need persistent recall from a local JSON file without a network service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores user-added memories in a local plaintext JSON file, which can expose sensitive information if secrets or private data are saved. <br>
-Mitigation: Do not store API keys, passwords, private customer data, or other sensitive records; restrict file access to the workspace where the memory store is used. <br>
-Risk: Cleanup, clear, and compact operations can change or remove stored memories. <br>
-Mitigation: Back up MEMORY_STORE.json before running destructive or compaction operations when the memory contents matter. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add local persistent memory with semantic recall, importance weighting, recency scoring, and compaction to Node.js-based agent workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chen-feng123/quickrecall) <br>
-- [Memory Enhancement Engine API Specification](references/API_SPEC.md) <br>
-- [Memory Enhancement Engine Usage Guide](references/USE_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples, shell commands, and JSON-like memory records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists user-added memory content to a local JSON store and returns scored recall results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Persistent local memory can retain sensitive information in MEMORY_STORE.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not store secrets or credentials, review expected storage behavior before installing, and keep backups of MEMORY_STORE.json.
+
+Risk: Compaction can retain or lose user data in ways users should review first.
+
+Mitigation: Avoid running compaction until the behavior is fixed or clearly accepted, and back up MEMORY_STORE.json before compaction.
+
+## Reference(s):
+
+- [Memory Enhancement Engine API Specification](artifact/references/API_SPEC.md)
+- [Memory Enhancement Engine Usage Guide](artifact/references/USE_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No network output; API and CLI use can create or update a local MEMORY_STORE.json file.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

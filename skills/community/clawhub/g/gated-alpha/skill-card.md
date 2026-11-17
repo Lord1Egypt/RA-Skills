@@ -1,43 +1,62 @@
-## Description: <br>
-Discover, filter, and purchase structured crypto alpha calls from Gated Alpha using webhook or polling delivery and pay-per-call x402 payments on Base USDC. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, filter, and purchase structured crypto alpha calls from Gated Alpha. Supports push delivery via webhooks (recommended) or direct polling. Pay-per-call via x402 on Base (USDC). Owner payouts fire onchain within seconds of each purchase.
 
-## Publisher: <br>
-[zich-agent](https://clawhub.ai/user/zich-agent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zich-agent](https://clawhub.ai/user/zich-agent)
 
-## Use Case: <br>
-External developers and agents use this skill to discover crypto alpha calls, filter them by score and risk fields, and purchase selected paid payloads through x402 payments or webhook-triggered workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward real on-chain USDC spending. <br>
-Mitigation: Use a dedicated low-balance wallet, set strict per-transaction and daily caps, log every spend, and require human approval before unattended purchase paths. <br>
-Risk: Webhook-triggered purchase flows may be weakly scoped if payloads are accepted without verification. <br>
-Mitigation: Require signed webhooks, validate and de-duplicate payloads, and allowlist paid endpoints and recipients before purchase execution. <br>
-Risk: Private keys or primary wallet credentials could be exposed or overused in automated payment code. <br>
-Mitigation: Never use a primary wallet key; isolate payment credentials to a dedicated wallet with limited funds and operational monitoring. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Gated Alpha Live API](https://www.gatedalpha.xyz) <br>
-- [Gated Alpha Skill Page](https://clawhub.ai/zich-agent/gated-alpha) <br>
-- [zich-agent Publisher Profile](https://clawhub.ai/user/zich-agent) <br>
+## Use Case:
 
+External agents and developers use this skill to subscribe to or poll Gated Alpha crypto calls, evaluate previews, and purchase selected full payloads through x402 USDC payments.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with HTTP examples, JSON payloads, JavaScript code blocks, and configuration constants] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may lead agents to make on-chain USDC payments and register webhook endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Webhook requests could trigger USDC purchases without clear authentication or spending controls.
+
+Mitigation: Require signed or secret-authenticated webhooks, validate subscription and alpha IDs, and enforce per-purchase and daily USDC limits.
+
+Risk: Wallet private keys and funded wallets are exposed to payment-flow risk.
+
+Mitigation: Use a dedicated low-balance wallet and keep private keys outside source code.
+
+Risk: A received paid URL could direct the agent into unintended purchases.
+
+Mitigation: Construct purchase URLs locally or allowlist the exact Gated Alpha origin before payment.
+
+Risk: Automatic buying can spend funds on low-quality or unwanted alpha.
+
+Mitigation: Require manual approval unless automatic buying is intentionally enabled with tight limits and filtering.
+
+## Reference(s):
+
+- [Gated Alpha Skill on ClawHub](https://clawhub.ai/zich-agent/skills/gated-alpha)
+- [zich-agent Publisher Profile](https://clawhub.ai/user/zich-agent)
+- [Gated Alpha Live API](https://www.gatedalpha.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Code, Configuration]
+
+**Output Format:** [Markdown with HTTP, JSON, and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes webhook and polling flows, x402 purchase examples, filtering guidance, subscription management, and payment constants.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

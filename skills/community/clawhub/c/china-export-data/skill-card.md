@@ -1,46 +1,59 @@
-## Description: <br>
-Access aggregated China export trade statistics sourced from China General Administration of Customs public data, compiled and served through the doumaotong.com REST API. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Query China's official export statistics with analyst-grade metrics across product dashboards, monthly trends, destination-market structure, fastest-growing markets, unit-price bands, industry-chain structure, and product opportunity rankings.
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-Researchers, analysts, students, and small business users can query China export metrics by HS code, destination market, monthly trend, product ranking, and recent historical records for reference and baseline market analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries are sent to doumaotong.com and the provider may log IP addresses, paths, request parameters, and timestamps. <br>
-Mitigation: Use the skill only when sharing trade-research query details with doumaotong.com is acceptable; do not send sensitive business plans or private identifiers in query parameters. <br>
-Risk: The API serves third-party aggregated data with a typical 1-2 month lag and is not a direct government data source. <br>
-Mitigation: Verify important or high-stakes figures against China Customs Statistics or UN Comtrade before relying on them. <br>
-Risk: The skill states that no credentials are required, despite the release being tagged as requiring sensitive credentials. <br>
-Mitigation: Do not provide API keys, tokens, login credentials, or other secrets if prompted while using these endpoints. <br>
+## Use Case:
 
+Developers, analysts, and trade-research agents use this skill to look up China export statistics by HS code, compare destinations and growth signals, examine RMB-denominated unit-price bands, and identify product opportunities.
 
-## Reference(s): <br>
-- [China Customs Statistics](http://stats.customs.gov.cn/indexEn) <br>
-- [doumaotong.com API base URL](https://doumaotong.com) <br>
-- [UN Comtrade Database](https://comtradeplus.un.org/) <br>
-- [UN Comtrade API Documentation](https://comtradeapi.un.org/docs/v1) <br>
-- [U.S. Trade.gov HS Codes Reference](https://www.trade.gov/harmonized-system-hs-codes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with REST endpoint examples and JSON response descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill describes read-only GET endpoints that return export data with code and data fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill contacts doumaotong.com to retrieve China export statistics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where outbound access to DouMaoTong is expected and acceptable.
+
+Risk: Export metrics may be misread as complete real-time trade or financial advice.
+
+Mitigation: Use the skill for HS-code and China export-market analysis, state the covered period and source, and avoid treating outputs as general-purpose trade or financial advice.
+
+Risk: Some endpoints return ranked subsets rather than full rankings.
+
+Mitigation: Disclose Top N limits when presenting results and direct users to the full DouMaoTong report when they need broader coverage.
+
+## Reference(s):
+
+- [DouMaoTong](https://doumaotong.com)
+- [ClawHub skill page](https://clawhub.ai/findhappy7/skills/china-export-data)
+- [Publisher profile](https://clawhub.ai/user/findhappy7)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown responses with source attribution and optional JSON-derived tables or summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should state the data source, RMB currency basis, relevant period, and any Top N subset limits.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

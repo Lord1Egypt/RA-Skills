@@ -1,44 +1,60 @@
-## Description: <br>
-Looks up MOLIT apartment real transaction price data and helps summarize Korean apartment sales by district and contract month. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves MOLIT apartment sale transaction data from data.go.kr and helps summarize recent Korean real estate transactions.
 
-## Publisher: <br>
-[sw326](https://clawhub.ai/user/sw326) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sw326](https://clawhub.ai/user/sw326)
 
-## Use Case: <br>
-Agents use this skill to fetch and summarize South Korean apartment transaction records from the MOLIT data.go.kr API for market checks, trend review, and district comparisons. <br>
-
-### Deployment Geography for Use: <br>
-South Korea <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper script has a code-execution risk when shell parameters are interpolated into inline Python. <br>
-Mitigation: Review or fix the script before installation; pass inputs to Python as argv or environment variables and validate district code, YYYYMM, and row count. <br>
-Risk: Credential handling is confusing and may expose or misplace the data.go.kr API key. <br>
-Mitigation: Use a documented user-owned credential path or environment variable and store the API key with restrictive file permissions such as chmod 600. <br>
-Risk: The skill contacts external data services and may optionally route related requests to search, law, weather, or finance tools. <br>
-Mitigation: Confirm network access and downstream tool use are acceptable for the deployment environment before enabling the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sw326/molit-real-estate) <br>
-- [data.go.kr](https://www.data.go.kr) <br>
-- [MOLIT apartment sale transaction OpenAPI](https://www.data.go.kr/data/15057511/openapi.do) <br>
-- [MOLIT apartment transaction endpoint](https://apis.data.go.kr/1613000/RTMSDataSvcAptTrade/getRTMSDataSvcAptTrade) <br>
+## Use Case:
 
+External users and developers use this skill to look up Korean apartment sale transactions by district code and contract month, then summarize recent trades, price per pyeong, and related context.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with JSON transaction data from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include apartment name, area, floor, price, price per pyeong, transaction date, and related legal or trend notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.2.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security evidence reports that the bundled shell script can run unintended code if crafted arguments are passed to it.
+
+Mitigation: Review and fix the script to validate inputs and pass arguments safely to Python before using it.
+
+Risk: The skill requires a data.go.kr API key stored on disk.
+
+Mitigation: Store the API key with restrictive file permissions or in a secret store, and avoid sharing generated outputs that expose credentials.
+
+Risk: Government transaction data may lag actual real estate activity.
+
+Mitigation: Treat summaries as point-in-time reference data and verify high-impact decisions against authoritative current sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sw326/skills/molit-real-estate)
+- [Publisher profile](https://clawhub.ai/user/sw326)
+- [MOLIT RTMS apartment trade API endpoint](https://apis.data.go.kr/1613000/RTMSDataSvcAptTrade)
+- [data.go.kr](https://www.data.go.kr)
+- [data.go.kr apartment trade OpenAPI listing](https://www.data.go.kr/data/15057511/openapi.do)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with transaction tables, setup instructions, shell commands, and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a data.go.kr API key and district/month query parameters; API responses may be delayed relative to transaction dates.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

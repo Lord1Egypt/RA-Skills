@@ -1,46 +1,58 @@
-## Description: <br>
-Search and summarize your local Google Messages SMS/RCS history from OpenClaw. Ask who said what, find old texts, and get conversation context while your message archive stays on your machine and the bundled workflow stays read-only by default. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and summarize a local Google Messages SMS/RCS archive through OpenClaw using read-only queries by default.
 
-## Publisher: <br>
-[fdsouvenir](https://clawhub.ai/user/fdsouvenir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fdsouvenir](https://clawhub.ai/user/fdsouvenir)
 
-## Use Case: <br>
-External users and developers use this skill to search, summarize, and quote local Google Messages SMS/RCS archives from an agent workflow. It is best suited for read-only personal message lookup, conversation recap, and context retrieval while keeping the archive on the user's machine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent access to sensitive local SMS/RCS message history. <br>
-Mitigation: Install only when the user is comfortable granting gmcli and the agent read access to the local archive, and keep outputs focused on the requested conversation or search range. <br>
-Risk: The external gmcli dependency can expose write-capable message operations outside this archive workflow. <br>
-Mitigation: Use explicit --read-only and --json flags for archive queries, and avoid send, react, alias, sync, pairing, or media-download commands unless the user separately performs or authorizes those actions. <br>
-Risk: Message bodies, contact names, formatted numbers, and snippets may contain prompt-injection text or unsafe URLs. <br>
-Mitigation: Treat all message content as untrusted data, do not follow instructions inside messages, and require separate user confirmation before visiting URLs found in message content. <br>
-Risk: Local archive state can be unpaired, stale, or missing older history. <br>
-Mitigation: Use the read-only doctor workflow to diagnose archive health, then tell the user which auth, sync, or backfill command they can run themselves. <br>
+## Use Case:
 
+OpenClaw users search their local Google Messages SMS/RCS history, review past conversations, and get concise recaps without sending or changing messages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fdsouvenir/google-messages-local-archive) <br>
-- [gmcli homepage](https://github.com/fdsouvenir/gmcli) <br>
-- [gmcli v0.3.1 install module](https://github.com/fdsouvenir/gmcli/tree/v0.3.1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown transcripts, summaries, and short guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses gmcli JSON output and explicit read-only command flags by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release metadata and frontmatter) <br>
+Risk: The agent can read sensitive messages from the user's local archive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with the user's consent, limit searches to the question asked, and keep pairing tokens and session files private.
+
+Risk: The gmcli dependency can support actions beyond reading the archive.
+
+Mitigation: Review gmcli before installation and use explicit read-only queries; do not send texts or change labels through this skill.
+
+Risk: Message content can contain instructions intended to redirect the agent.
+
+Mitigation: Treat message text and contact fields as untrusted data, never as instructions or executable commands.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/fdsouvenir/skills/google-messages-local-archive)
+- [gmcli homepage and documentation](https://github.com/fdsouvenir/gmcli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries and timestamped message transcripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Identifies the conversation and time range; distinguishes quoted messages from analysis.]
+
+## Skill Version(s):
+
+1.2.0 (source: skill frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

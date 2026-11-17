@@ -1,0 +1,772 @@
+{
+  "version": "2.4.0",
+  "source_id": "pku-core",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:02:17.723Z",
+  "entry": {
+    "url": "https://www.lib.pku.edu.cn/",
+    "final_url": "https://www.lib.pku.edu.cn/",
+    "title": "北京大学图书馆",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:02:17.723Z",
+    "identity": {
+      "declared_name": "北京大学图书馆／中文核心期刊要目总览",
+      "hostname": "www.lib.pku.edu.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "馆藏目录检索",
+        "href": "https://opac.lib.pku.edu.cn/",
+        "target": "_blank"
+      },
+      {
+        "text": "论文、书刊、报告检索",
+        "href": "https://pku.summon.serialssolutions.com/#!/",
+        "target": "_blank"
+      },
+      {
+        "text": "数据库导航",
+        "href": "https://dbnav.lib.pku.edu.cn/",
+        "target": "_blank"
+      },
+      {
+        "text": "资源\n2026-06-10\n【试用】德古意特·博睿期刊数据库",
+        "href": "https://www.lib.pku.edu.cn/2xxzzfw/26xwgg/gm/ec3404e29f39418285774f6e28b3a5ff.htm",
+        "target": "_blank"
+      },
+      {
+        "text": "资源\n2026-06-05\n【试用】GALE II 数据库",
+        "href": "https://www.lib.pku.edu.cn/2xxzzfw/26xwgg/gm/daa569f91fdd4770be65e7059e01d54b.htm",
+        "target": "_blank"
+      },
+      {
+        "text": "资源\n2026-05-07\n外文载知 学术同行：2026年春季外文原版学术图书展览即将启动",
+        "href": "https://www.lib.pku.edu.cn/2xxzzfw/26xwgg/gm/ac0ac604c1fa4be298f0622eac87338b.htm",
+        "target": "_blank"
+      },
+      {
+        "text": "利用专利资源进行创新性选题",
+        "href": "https://www.lib.pku.edu.cn/hdrl/364be06fd30045178e23b678e366cdd2.htm",
+        "target": ""
+      },
+      {
+        "text": "AIGC背景下的学术文献检索实用攻略",
+        "href": "https://www.lib.pku.edu.cn/hdrl/0d4050d9b4934680b48d80e39e6f7957.htm",
+        "target": ""
+      },
+      {
+        "text": "特藏资源",
+        "href": "https://www.lib.pku.edu.cn/3wxbz/35tczy/index.htm",
+        "target": "_blank"
+      },
+      {
+        "text": "古籍资源",
+        "href": "https://www.lib.pku.edu.cn/3wxbz/34gwxzy/index.htm",
+        "target": "_blank"
+      },
+      {
+        "text": "校外访问电子资源",
+        "href": "https://dbnav.lib.pku.edu.cn/content/%E6%A0%A1%E5%A4%96%E8%AE%BF%E9%97%AE%E9%A1%BB%E7%9F%A5",
+        "target": "_blank"
+      },
+      {
+        "text": "多媒体资源",
+        "href": "http://media.lib.pku.edu.cn/",
+        "target": "_blank"
+      },
+      {
+        "text": "电子书刊检索",
+        "href": "https://zm8lp2fe5j.search.serialssolutions.com/ejp/?libHash=ZM8LP2FE5J#/search/?searchControl=title&titleType=ALL&filterBy=All&beginPage=0&language=en-US&searchType=title_contains&criteria=",
+        "target": "_blank"
+      },
+      {
+        "text": "数据库导航",
+        "href": "https://dbnav.lib.pku.edu.cn/",
+        "target": "_blank"
+      },
+      {
+        "text": "融入课程服务",
+        "href": "https://www.lib.pku.edu.cn/4whjy/42rrkcfw/index.htm",
+        "target": "_blank"
+      },
+      {
+        "text": "查收查引/检索报告",
+        "href": "https://www.lib.pku.edu.cn/2xxzzfw/22cscy/index.htm",
+        "target": "_blank"
+      },
+      {
+        "text": "古文献资源",
+        "href": "https://www.lib.pku.edu.cn/3wxbz/34gwxzy/index.htm",
+        "target": "_blank"
+      },
+      {
+        "text": "特藏资源",
+        "href": "https://www.lib.pku.edu.cn/3wxbz/35tczy/index.htm",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "检索关键词",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "keyword",
+      "id": "keywords",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    },
+    {
+      "tag": "input",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "检索关键词",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "query",
+      "id": "keywords",
+      "css": "input[name=\"query\"]",
+      "role": null,
+      "form_action": "https://www.lib.pku.edu.cn/cms/web/search/index.jsp",
+      "locator": {
+        "css": "input[name=\"query\"]"
+      },
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    },
+    {
+      "tag": "input",
+      "type": "submit",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "Submit",
+      "id": "",
+      "css": "input[name=\"Submit\"]",
+      "role": null,
+      "form_action": "https://www.lib.pku.edu.cn/cms/web/search/index.jsp",
+      "locator": {
+        "css": "input[name=\"Submit\"]"
+      },
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "Go to slide 1",
+      "label": "",
+      "aria_label": "Go to slide 1",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to slide 1",
+        "exact": true
+      },
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "Go to slide 2",
+      "label": "",
+      "aria_label": "Go to slide 2",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to slide 2",
+        "exact": true
+      },
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "Go to slide 3",
+      "label": "",
+      "aria_label": "Go to slide 3",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to slide 3",
+        "exact": true
+      },
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "Go to slide 4",
+      "label": "",
+      "aria_label": "Go to slide 4",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to slide 4",
+        "exact": true
+      },
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "Go to slide 5",
+      "label": "",
+      "aria_label": "Go to slide 5",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to slide 5",
+        "exact": true
+      },
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "Go to slide 6",
+      "label": "",
+      "aria_label": "Go to slide 6",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to slide 6",
+        "exact": true
+      },
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "Go to slide 1",
+      "label": "",
+      "aria_label": "Go to slide 1",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to slide 1",
+        "exact": true
+      },
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "Go to slide 2",
+      "label": "",
+      "aria_label": "Go to slide 2",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to slide 2",
+        "exact": true
+      },
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "Go to slide 3",
+      "label": "",
+      "aria_label": "Go to slide 3",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to slide 3",
+        "exact": true
+      },
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "Go to slide 4",
+      "label": "",
+      "aria_label": "Go to slide 4",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to slide 4",
+        "exact": true
+      },
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "Go to slide 5",
+      "label": "",
+      "aria_label": "Go to slide 5",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Go to slide 5",
+        "exact": true
+      },
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.lib.pku.edu.cn/",
+      "observed_at": "2026-10-09T09:02:16.581Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "pku-core:record-lookup",
+      "source_id": "pku-core",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.lib.pku.edu.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "检索关键词",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "query",
+          "id": "keywords",
+          "css": "input[name=\"query\"]",
+          "role": null,
+          "form_action": "https://www.lib.pku.edu.cn/cms/web/search/index.jsp",
+          "locator": {
+            "css": "input[name=\"query\"]"
+          },
+          "observed_url": "https://www.lib.pku.edu.cn/",
+          "observed_at": "2026-10-09T09:02:16.581Z"
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "Submit",
+          "id": "",
+          "css": "input[name=\"Submit\"]",
+          "role": null,
+          "form_action": "https://www.lib.pku.edu.cn/cms/web/search/index.jsp",
+          "locator": {
+            "css": "input[name=\"Submit\"]"
+          },
+          "observed_url": "https://www.lib.pku.edu.cn/",
+          "observed_at": "2026-10-09T09:02:16.581Z"
+        },
+        {
+          "tag": "span",
+          "type": null,
+          "text": "Go to slide 1",
+          "label": "",
+          "aria_label": "Go to slide 1",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to slide 1",
+            "exact": true
+          },
+          "observed_url": "https://www.lib.pku.edu.cn/",
+          "observed_at": "2026-10-09T09:02:16.581Z"
+        },
+        {
+          "tag": "span",
+          "type": null,
+          "text": "Go to slide 2",
+          "label": "",
+          "aria_label": "Go to slide 2",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to slide 2",
+            "exact": true
+          },
+          "observed_url": "https://www.lib.pku.edu.cn/",
+          "observed_at": "2026-10-09T09:02:16.581Z"
+        },
+        {
+          "tag": "span",
+          "type": null,
+          "text": "Go to slide 3",
+          "label": "",
+          "aria_label": "Go to slide 3",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to slide 3",
+            "exact": true
+          },
+          "observed_url": "https://www.lib.pku.edu.cn/",
+          "observed_at": "2026-10-09T09:02:16.581Z"
+        },
+        {
+          "tag": "span",
+          "type": null,
+          "text": "Go to slide 4",
+          "label": "",
+          "aria_label": "Go to slide 4",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to slide 4",
+            "exact": true
+          },
+          "observed_url": "https://www.lib.pku.edu.cn/",
+          "observed_at": "2026-10-09T09:02:16.581Z"
+        },
+        {
+          "tag": "span",
+          "type": null,
+          "text": "Go to slide 5",
+          "label": "",
+          "aria_label": "Go to slide 5",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to slide 5",
+            "exact": true
+          },
+          "observed_url": "https://www.lib.pku.edu.cn/",
+          "observed_at": "2026-10-09T09:02:16.581Z"
+        },
+        {
+          "tag": "span",
+          "type": null,
+          "text": "Go to slide 6",
+          "label": "",
+          "aria_label": "Go to slide 6",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to slide 6",
+            "exact": true
+          },
+          "observed_url": "https://www.lib.pku.edu.cn/",
+          "observed_at": "2026-10-09T09:02:16.581Z"
+        },
+        {
+          "tag": "span",
+          "type": null,
+          "text": "Go to slide 1",
+          "label": "",
+          "aria_label": "Go to slide 1",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to slide 1",
+            "exact": true
+          },
+          "observed_url": "https://www.lib.pku.edu.cn/",
+          "observed_at": "2026-10-09T09:02:16.581Z"
+        },
+        {
+          "tag": "span",
+          "type": null,
+          "text": "Go to slide 2",
+          "label": "",
+          "aria_label": "Go to slide 2",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to slide 2",
+            "exact": true
+          },
+          "observed_url": "https://www.lib.pku.edu.cn/",
+          "observed_at": "2026-10-09T09:02:16.581Z"
+        },
+        {
+          "tag": "span",
+          "type": null,
+          "text": "Go to slide 3",
+          "label": "",
+          "aria_label": "Go to slide 3",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to slide 3",
+            "exact": true
+          },
+          "observed_url": "https://www.lib.pku.edu.cn/",
+          "observed_at": "2026-10-09T09:02:16.581Z"
+        },
+        {
+          "tag": "span",
+          "type": null,
+          "text": "Go to slide 4",
+          "label": "",
+          "aria_label": "Go to slide 4",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to slide 4",
+            "exact": true
+          },
+          "observed_url": "https://www.lib.pku.edu.cn/",
+          "observed_at": "2026-10-09T09:02:16.581Z"
+        },
+        {
+          "tag": "span",
+          "type": null,
+          "text": "Go to slide 5",
+          "label": "",
+          "aria_label": "Go to slide 5",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Go to slide 5",
+            "exact": true
+          },
+          "observed_url": "https://www.lib.pku.edu.cn/",
+          "observed_at": "2026-10-09T09:02:16.581Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "pku-core",
+    "quiz_entries": [],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:02:17.723Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/pku-core-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/pku-core-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

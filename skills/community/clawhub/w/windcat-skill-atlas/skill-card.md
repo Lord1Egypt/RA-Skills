@@ -1,42 +1,55 @@
-## Description: <br>
-Skill Atlas helps an agent manage OpenClaw skills by guiding installation, updates, rollback, backups, security review, and loading-layer decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Atlas helps agents manage OpenClaw skills by guiding installation, updates, rollbacks, uninstall, backups, manifest tracking, security review, and loading-layer classification.
 
-## Publisher: <br>
-[guowenjiao54](https://clawhub.ai/user/guowenjiao54) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guowenjiao54](https://clawhub.ai/user/guowenjiao54)
 
-## Use Case: <br>
-Developers and agent users use Skill Atlas to manage local skills, manifests, backups, channels, and layer assignments in an OpenClaw workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide changes to installed skills, manifests, backups, and loading layers, including uninstall, rollback, bulk restore, bulk update, or promotion to resident or core behavior. <br>
-Mitigation: Require explicit confirmation for those operations and review which files will change before allowing them. <br>
-Risk: Incorrect channel, manifest, or layer changes could alter future skill loading behavior. <br>
-Mitigation: Confirm the target skill, channel, version, and layer before applying manifest or loading-rule changes. <br>
+## Use Case:
 
+Developers and agent maintainers use Skill Atlas to organize OpenClaw skill inventories, choose install and update channels, manage backups and rollbacks, and decide whether skills should be core, resident, category, or paused.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guowenjiao54/windcat-skill-atlas) <br>
-- [reference.md](reference.md) <br>
-- [CHANGELOG.md](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with command and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file changes for skill manifests, backups, and installed skill directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can guide agents to install, update, roll back, uninstall, and delete skills, which can change future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the publisher is trusted, and require visible user confirmation for batch restore, batch update, uninstall, rollback, and self-update operations.
+
+Risk: Skill and backup file operations can affect unintended paths if slugs or paths are not constrained.
+
+Mitigation: Validate skill slugs, reject path traversal, and keep file operations inside the managed skills and backups directories.
+
+## Reference(s):
+
+- [Skill Atlas ClawHub listing](https://clawhub.ai/guowenjiao54/skills/windcat-skill-atlas)
+- [Skill Atlas detailed reference](artifact/reference.md)
+- [Skill Atlas changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with code blocks, command templates, JSON examples, and concise agent response patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes skill lifecycle procedures, manifest conventions, backup templates, channel selection rules, and safety review guidance.]
+
+## Skill Version(s):
+
+3.0.0 (source: SKILL.md frontmatter, evidence release metadata, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

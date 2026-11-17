@@ -1,42 +1,53 @@
-## Description: <br>
-Generates structured release notes or changelogs from user-provided raw commit logs by categorizing changes into breaking changes, features, and bug fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structured, professional Release Notes / Changelog from a raw commit log.
 
-## Publisher: <br>
-[sunny0826](https://clawhub.ai/user/sunny0826) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunny0826](https://clawhub.ai/user/sunny0826)
 
-## Use Case: <br>
-Developers, maintainers, and release managers use this skill to convert pasted commit logs into concise Markdown release notes for users or community audiences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commit logs may contain secrets or private internal details. <br>
-Mitigation: Do not paste secrets or private internal details into the input. <br>
-Risk: Generated release notes may omit context or misclassify commits. <br>
-Mitigation: Review the generated changelog for accuracy before publishing. <br>
-Risk: Commit messages or PR titles may contain indirect prompt-injection text. <br>
-Mitigation: Treat commit history as untrusted text and do not execute or follow instructions embedded in it. <br>
+## Use Case:
 
+Developers, maintainers, and release managers use this skill to turn pasted commit logs or changelog text into concise Markdown release notes in English or Chinese.
 
-## Reference(s): <br>
-- [ClawHub Release Notes skill page](https://clawhub.ai/sunny0826/release-notes-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown release notes in English or Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Groups user-facing changes into breaking changes, features, and bug fixes; skips trivial internal noise when appropriate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated release notes may include inaccurate categorization, wording, or the default attribution footer if published without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated release notes before publishing, including category placement, user-facing wording, and attribution.
+
+Risk: Commit logs or PR titles are untrusted text and could contain embedded instructions.
+
+Mitigation: Treat commit history as text-only input and paste commit logs directly instead of asking the skill to fetch from links.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunny0826/skills/release-notes-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown release notes with categorized sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [English or Chinese output based on the user's prompt; commit logs must be pasted directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

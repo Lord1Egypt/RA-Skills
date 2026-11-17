@@ -1,41 +1,66 @@
-## Description: <br>
-Guide for writing, modifying, debugging, or reviewing Python code that uses the Bright Data SDK for scraping, search, datasets, Bright Data APIs, or browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents writing, modifying, debugging, or reviewing Python code that uses the Bright Data Python SDK for scraping, search, datasets, or browser automation.
 
-## Publisher: <br>
-[meirk-brd](https://clawhub.ai/user/meirk-brd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meirk-brd](https://clawhub.ai/user/meirk-brd)
 
-## Use Case: <br>
-Developers and coding agents use this skill to write, modify, debug, and review Python code that uses Bright Data SDK features for web scraping, search results, datasets, Scraper Studio, and browser automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Bright Data examples can initiate scraping, search, dataset export, browser automation, or zone-management workflows that may have authorization, privacy, or billing impact. <br>
-Mitigation: Review the target site or dataset authorization, billing implications, and account settings before running generated code; require explicit user confirmation for zone creation, zone deletion, dataset exports, and browser automation. <br>
-Risk: Generated examples may need Bright Data API tokens or Browser API credentials. <br>
-Mitigation: Load credentials from environment variables or a local secret manager and keep them out of source code, prompts, logs, and committed files. <br>
+## Use Case:
 
+Developers and coding agents use this skill to produce correct Bright Data Python SDK code for web scraping, search, datasets, and browser automation. It emphasizes async client use, context managers, authentication handling, result checks, error handling, and export patterns.
 
-## Reference(s): <br>
-- [Bright Data Python SDK - Full API Reference](references/api-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/meirk-brd/brightdata-python-sdk-best-practices) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated examples may reference Bright Data API tokens, Browser API credentials, paid scraping operations, dataset exports, and zone-management actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Bright Data requests can transmit target URLs, prompts, browser activity, and collected data to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for approved sites and datasets, and confirm that the target data and Bright Data service use fit the applicable policy and terms.
+
+Risk: Generated examples may create or delete Bright Data zones or otherwise change account state.
+
+Mitigation: Require explicit confirmation before running account-changing actions such as zone creation or deletion.
+
+Risk: API tokens and browser credentials can be exposed if they are hardcoded, logged, or committed.
+
+Mitigation: Load credentials from environment variables or approved secret stores, keep them out of logs and code, and review generated snippets before execution.
+
+Risk: The installation guidance uses an unpinned `pip install brightdata-sdk` command.
+
+Mitigation: Use a virtual environment and pin or review the package version before production use.
+
+Risk: Dataset exports can write collected data to local files.
+
+Mitigation: Choose approved output paths and handle exported JSON, CSV, or JSONL files according to data handling requirements.
+
+## Reference(s):
+
+- [Bright Data Python SDK API Reference](references/api-reference.md)
+- [ClawHub skill page](https://clawhub.ai/meirk-brd/skills/brightdata-python-sdk-best-practices)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API usage patterns, credential handling guidance, async/sync client choices, and export recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

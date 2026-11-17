@@ -1,41 +1,58 @@
-## Description: <br>
-Queries Closeli device status through the Closeli Open gateway to determine whether specified devices are online, offline, or sleeping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Closeli device status so agents can determine whether specified devices are online, offline, or sleeping.
 
-## Publisher: <br>
-[closeli-open](https://clawhub.ai/user/closeli-open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[closeli-open](https://clawhub.ai/user/closeli-open)
 
-## Use Case: <br>
-Developers and operators use this skill to check whether Closeli devices are available before live streaming or event queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles an API key and device metadata. <br>
-Mitigation: Keep ~/.openclaw/.env permission-restricted, use a least-privilege API key, and avoid passing keys on the command line. <br>
-Risk: A misconfigured gateway host or disabled TLS verification could expose credentials or device data. <br>
-Mitigation: Verify AI_GATEWAY_HOST before running the skill and leave TLS verification enabled outside development environments. <br>
+## Use Case:
 
+Developers and operators use this skill to check whether specified Closeli devices are available before live streaming or event queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/closeli-open/api-device-status) <br>
-- [Closeli Open gateway host](https://ai-open.icloseli.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON status data from the script, typically rendered by the agent as a Markdown table or concise text message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires device IDs and an AI_GATEWAY_API_KEY configured in ~/.openclaw/.env or supplied with --api-key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: A bearer API key is read from a shared configuration file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege, revocable API key and keep ~/.openclaw/.env owner-readable only.
+
+Risk: The gateway host can be configured, and TLS verification can be disabled.
+
+Mitigation: Confirm AI_GATEWAY_HOST is the intended Closeli gateway and do not set AI_GATEWAY_VERIFY_SSL=false outside isolated development.
+
+Risk: The script fetches device-list metadata to map device IDs to display names.
+
+Mitigation: Review whether exposing device names is appropriate before running the skill in shared or sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/closeli-open/skills/api-device-status)
+- [Closeli AI gateway](https://ai-open.icloseli.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration, JSON, Markdown]
+
+**Output Format:** [JSON from the script, normally summarized by the agent as Markdown or a table for the user.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, httpx, device IDs, and an AI_GATEWAY_API_KEY configured in ~/.openclaw/.env or supplied with --api-key.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

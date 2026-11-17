@@ -20,7 +20,7 @@ def load_config(path):
 def send(webhook_url, book_title, stage, reason):
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     text = (
-        f"⚠️ Book-to-Learn 推送失败通知\n"
+        f"[警告] Book-to-Learn 推送失败通知\n"
         f"时间：{now}\n"
         f"书名：{book_title}\n"
         f"失败阶段：{stage}\n"
@@ -59,7 +59,7 @@ def main():
     book_title = args.book
     if args.config:
         cfg = load_config(args.config)
-        webhook = cfg.get('notifyWebhook', webhook)
+        webhook = cfg.get('notifyWebhook') or webhook  # 空串不能覆盖环境变量
         book_title = cfg.get('bookTitle', book_title)
     if not webhook:
         print(json.dumps({"sent": False, "error": "no webhook configured (set notifyWebhook in config.json or BOOK_LEARN_WEBHOOK env)"}, ensure_ascii=False))

@@ -1,7 +1,7 @@
 ---
 name: skills-eval
 description: Evaluate Claude skill quality through auditing
-version: 1.9.8
+version: 1.10.3
 triggers:
   - evaluation
   - improvement
@@ -11,29 +11,31 @@ triggers:
   - tool-use
   - performance-metrics
   - reviewing or auditing skills
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/abstract", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.modular-skills", "night-market.performance-optimization"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/abstract", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.modular-skills"]}}}
 source: claude-night-market
 source_plugin: abstract
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Skills Evaluation and Improvement
 
-## Table of Contents
+## When NOT To Use
 
-1. [Overview](#overview)
-2. [Quick Start](#quick-start)
-3. [Evaluation Workflow](#evaluation-workflow)
-4. [Evaluation and Optimization](#evaluation-and-optimization)
-5. [Resources](#resources)
+- Writing a new skill (use `abstract:skill-authoring`)
+- Evaluating hooks (use `abstract:hooks-eval`)
+- Evaluating rules (use `abstract:rules-eval`)
 
 ## Overview
 
 This framework audits Claude skills against quality standards to improve performance and reduce token consumption. Automated tools analyze skill structure, measure context usage, and identify specific technical improvements. Run verification commands after each audit to confirm fixes work correctly.
 
-The `skills-auditor` provides structural analysis, while the `improvement-suggester` ranks fixes by impact. Compliance is verified through the `compliance-checker`. Runtime efficiency is monitored by `tool-performance-analyzer` and `token-usage-tracker`.
+The scripts are in `plugins/abstract/scripts/`. `skills_auditor.py` provides
+structural analysis, while `improvement_suggester.py` builds a plan for one
+skill. `compliance_checker.py` reports standards findings.
+`token_usage_tracker.py` and `tool_performance_analyzer.py` measure tokens and
+tool run time.
 
 ## Quick Start
 
@@ -67,7 +69,12 @@ Start with `make audit-all` to inventory skills and identify high-priority targe
 
 ## Evaluation and Optimization
 
-Quality assessments use the `skills-auditor` and `improvement-suggester` to generate detailed reports. Performance analysis focuses on token efficiency through the `token-usage-tracker` and tool performance via `tool-performance-analyzer`. For standards compliance, the `compliance-checker` automates common fixes for structural issues.
+Quality assessments use `skills_auditor.py` and `improvement_suggester.py` to
+generate reports. Performance analysis covers token use through
+`token_usage_tracker.py` and tool run time through
+`tool_performance_analyzer.py`. For standards compliance,
+`compliance_checker.py` reports findings and changes no files. Apply its fixes
+by hand.
 
 ### Scoring and Prioritization
 
@@ -79,13 +86,12 @@ Improvements are prioritized by impact. Critical issues include security vulnera
 
 **Deprecated**: `skills/shared/modules/` directories. Shared modules must be relocated into the consuming skill's own `modules/` directory. The evaluator flags any remaining `skills/shared/` as a structural warning.
 
-**Current**: Each skill owns its modules at `skills/<skill-name>/modules/`. Cross-skill references use relative paths (e.g., `../skill-authoring/modules/anti-rationalization.md`).
+**Current**: Each skill owns its modules at `skills/<skill-name>/modules/`. Cross-skill references use relative paths (e.g., `../skill-authoring/modules/description-writing.md`).
 
 ## Resources
 
 ### Shared Modules: Cross-Skill Patterns
-- **Anti-Rationalization Patterns**: See [anti-rationalization.md](../skill-authoring/modules/anti-rationalization.md)
-- **Enforcement Language**: See [enforcement-language.md](../shared-patterns/modules/workflow-patterns.md)
+- **Skill Selection**: See [skill-selection-judgment.md](../../shared-modules/skill-selection-judgment.md)
 - **Trigger Patterns**: See [trigger-patterns.md](modules/evaluation-criteria.md)
 
 ### Skill-Specific Modules
@@ -102,4 +108,15 @@ Improvements are prioritized by impact. Critical issues include security vulnera
 
 ### Tools and Automation
 - **Tools**: Executable analysis utilities in `scripts/` directory.
-- **Automation**: Setup and validation scripts in `scripts/automation/`.
+
+## Exit Criteria
+
+- [ ] Every audited skill receives a score across all five dimensions (structure compliance,
+  content quality, token efficiency, activation reliability, tool integration) summing to 100.
+- [ ] Any skill with a deprecated `skills/shared/` module reference is listed as a structural
+  warning in the audit output.
+- [ ] `uv run abstract-skills check <skills-dir>` exits 0 for skills reported
+  as passing and 1 for any non-compliant report, confirming compliance agrees
+  with the audit score.
+- [ ] An improvement plan is produced for any skill scoring below 75, with findings ordered by
+  priority: critical > high > medium > low.

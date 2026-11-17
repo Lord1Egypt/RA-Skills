@@ -1,42 +1,55 @@
-## Description: <br>
-Checks and rewrites Amazon product listing copy to flag prohibited or high-risk wording, suggest safer alternatives, and produce Rufus-oriented listing variants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Miaoji Compliance Copy helps agents scan Amazon listing copy for risky claims, suggest safer replacements, and draft Rufus-oriented listing variants.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External sellers, ecommerce operators, and listing copywriters use this skill to review Amazon product titles and bullet points, replace risky claims, add scenario and intent language, and generate multiple compliant copy options for manual publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The compliance report may be mistaken for official Amazon approval or legal advice. <br>
-Mitigation: Treat the output as advisory drafting support and manually verify final listing text before publishing. <br>
-Risk: The bundled Python checker executes local code when run by an agent or user. <br>
-Mitigation: Review the script and run it only in an environment where local code execution is acceptable. <br>
+## Use Case:
 
+Amazon marketplace sellers and ecommerce copywriters use this skill to review product titles and bullet descriptions, identify risky wording, and generate compliant, search-aware rewrite options before manually publishing listing changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/miaoji-compliance-copy) <br>
-- [Banned Words Reference](references/banned-words.md) <br>
-- [Compliance Checker Script](scripts/compliance-checker.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown-style compliance reports and rewritten listing copy, with optional JSON output from the bundled checker script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes compliance scores, matched terms, replacement suggestions, Rufus keyword coverage, search term suggestions, and multiple rewritten copy variants.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: Amazon policy and Rufus scoring guidance is advisory and may not prove current platform compliance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important listing changes against current Amazon policy before publishing.
+
+Risk: Generated rewrites may preserve or introduce unsupported product, comparative, medical, or certification claims.
+
+Mitigation: Have the seller review each suggested change and keep required substantiation for regulated or comparative claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangm-a3/skills/miaoji-compliance-copy)
+- [Publisher profile](https://clawhub.ai/user/wangm-a3)
+- [Banned words reference](artifact/references/banned-words.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown reports and listing rewrite drafts, with optional JSON from the bundled checker script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes compliance issue summaries, replacement suggestions, Rufus keyword coverage, three rewrite variants, and search term suggestions.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

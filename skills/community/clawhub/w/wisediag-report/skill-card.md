@@ -1,45 +1,62 @@
-## Description: <br>
-WiseDiag-Report interprets medical report images or PDFs from local uploads or image URLs using AI-powered OCR, abnormal-indicator detection, and health-advice generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WiseDiag-Report interprets medical report images or PDFs provided as local files or image URLs using WiseDiag OCR and analysis, then highlights detected values, abnormal indicators, and health advice.
 
-## Publisher: <br>
-[wisediag](https://clawhub.ai/user/wisediag) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wisediag](https://clawhub.ai/user/wisediag)
 
-## Use Case: <br>
-External users and agents use this skill to submit medical report images or PDFs to WiseDiag for OCR-backed interpretation, abnormal indicator summaries, and health guidance. It is intended for reference only and not for diagnosis or treatment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical reports, image URLs, and questions are sent to WiseDiag's cloud service for analysis. <br>
-Mitigation: Use the skill only when the user accepts that remote processing, remove personal identifiers where possible, and avoid submitting records that should not leave the user's environment. <br>
-Risk: Saved Markdown reports may contain sensitive health information. <br>
-Mitigation: Treat generated report files as sensitive health records and store, share, or delete them according to the user's privacy requirements. <br>
-Risk: The required WiseDiag API key is a sensitive credential. <br>
-Mitigation: Set WISEDIAG_API_KEY through a temporary environment variable or secret manager instead of committing it or placing it directly in shared shell startup files. <br>
-Risk: The generated interpretation is AI-assisted guidance and may be incomplete or incorrect for medical decisions. <br>
-Mitigation: Present results as reference material only and direct users to a qualified healthcare professional for diagnosis or treatment decisions. <br>
+## Use Case:
 
+External users and developers use this skill to submit medical report images or PDFs to WiseDiag for OCR-based interpretation, abnormal indicator detection, and generated explanatory guidance. It is intended as reference material only and not as a substitute for professional medical diagnosis or treatment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wisediag/wisediag-report) <br>
-- [WiseDiag API key console](https://console.wisediag.com/apiKeyManage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Streaming terminal text plus a saved Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WISEDIAG_API_KEY; accepts up to 5 local files or image URLs per request; saves a .md result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Medical reports and image URLs are sent to WiseDiag cloud services for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user trusts WiseDiag with the report contents and understands that the output is reference guidance, not medical diagnosis.
+
+Risk: The API key is required for requests and could be exposed if handled casually in shell history or shared environments.
+
+Mitigation: Use a temporary environment variable or a dedicated secret manager for WISEDIAG_API_KEY, and avoid printing or committing the key.
+
+Risk: Custom output directories and filenames affect where Markdown results are written locally.
+
+Mitigation: Choose a trusted output directory and avoid custom output names containing path separators or '..' until filename handling is fixed.
+
+Risk: Private or signed image URLs can disclose access to sensitive reports when submitted for remote processing.
+
+Mitigation: Prefer local file upload when appropriate and avoid private or signed URLs unless the user has explicitly accepted that exposure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wisediag/skills/wisediag-report)
+- [WiseDiag API key console](https://console.wisediag.com/apiKeyManage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report saved to a local .md file with streamed terminal text during processing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WISEDIAG_API_KEY; accepts up to 5 local image/PDF files or image URLs per request; supports optional question, output directory, and output filename.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

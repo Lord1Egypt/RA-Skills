@@ -65,7 +65,7 @@ devtopia id wallet import <privateKeyOrKeystore>
 ```
 
 Accepts:
-- PEM-formatted private key: `-----BEGIN PRIVATE KEY-----...-----END PRIVATE KEY-----`
+- PEM-formatted private key: `REDACTED-SECRET`
 - JSON keystore: `{"algorithm":"aes-256-gcm",...}`
 
 ---

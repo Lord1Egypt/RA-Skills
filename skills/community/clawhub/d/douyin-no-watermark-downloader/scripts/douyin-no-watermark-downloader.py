@@ -9,7 +9,18 @@ import re
 logging.basicConfig(level=logging.WARNING)
 log = logging.getLogger(__name__)
 
-import re
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "Referer": "https://www.douyin.com/",
+    "Accept": "*/*",
+}
+
+
+session = requests.Session()
+session.headers.update(HEADERS)
+
+
 def is_allowed_domain(url):
     allowed = r'^(https?://)?([^/]*\.)?(douyin\.com|bilibili\.com|iesdouyin\.com)'
     return re.match(allowed, url) is not None
@@ -23,7 +34,7 @@ def get_real_video_url(share_url, max_retry=3):
     for i in range(max_retry):
         try:
             log.info(f"Requesting API attempt {i+1}/{max_retry}")
-            res = requests.get(api, params=params, timeout=20)
+            res = session.get(api, params=params, timeout=20)
 
             if res.status_code == 200:
                 data = res.json()
@@ -57,13 +68,9 @@ def download_video(video_url, save_dir=None):
     filename = f"douyin_{datetime.now().strftime('%Y%m%d_%H%M%S')}.mp4"
     path = os.path.join(save_dir, filename)
 
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-        "Referer": "https://www.douyin.com/"
-    }
 
     try:
-        resp = requests.get(video_url, headers=headers, stream=True, timeout=600)
+        resp = session.get(video_url, stream=True, timeout=600)
         resp.raise_for_status()
 
         with open(path, "wb") as f:

@@ -1,0 +1,28 @@
+Keelwright
+Copyright (c) 2026 ratingtesting
+
+This project is licensed under MIT-0 (MIT No Attribution).
+SPDX-License-Identifier: MIT-0
+
+You are free to use, modify, and redistribute this software, including for
+commercial purposes, without attribution and without including the license text.
+
+Third-party content adapted into this skill (all OSI-approved permissive):
+
+- Community loop-coding patterns (Ralph loop, execution-loop, match-loop,
+  autoresearch-loop, coding-framework, vibe-coding-guardrails):
+  SPDX-License-Identifier: MIT-0
+- Loop Engineering (maxmilian/loop-engineering): SPDX-License-Identifier: MIT
+- Web defense technique sources:
+  - gweber/hermes-injection-guard: SPDX-License-Identifier: MIT
+  - scastile/hermes-agent-defense: SPDX-License-Identifier: MIT
+  - web-agent-security-gate (ClawHub / OpenClaw community):
+    SPDX-License-Identifier: MIT-0
+
+External CLI tools referenced by name only (not bundled; each carries its own
+license, all OSI-approved permissive: MIT / Apache-2.0 / BSD-2 / ISC / LGPL-2.1):
+jscpd, lizard, scc, madge, import-linter, eslint-plugin-boundaries, knip,
+vulture, dart_code_linter, Gitleaks, Semgrep, GuardDog, OSV-Scanner,
+NVIDIA SkillSpector, nightshift/agent-guard.
+
+Full credits: references/provenance.md

@@ -1,49 +1,61 @@
-## Description: <br>
-Browser Web Search gives agents a unified CLI for searching 55 web platforms and returning structured JSON through OpenClaw browser sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser Web Search lets agents run unified web-search commands across 55 platforms and return structured JSON, including optional OpenClaw browser-session backed adapters.
 
-## Publisher: <br>
-[sipingme](https://clawhub.ai/user/sipingme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sipingme](https://clawhub.ai/user/sipingme)
 
-## Use Case: <br>
-External agents and developers use this skill to query search, news, social, developer, media, finance, and reference sites through one command interface and consume JSON results. Authenticated adapters should be used only when browser-session access is deliberately authorized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let a third-party package operate inside logged-in browser sessions. <br>
-Mitigation: Keep BWS_PUBLIC_ONLY=1 unless authenticated access is required; use a dedicated OpenClaw browser profile and close unrelated tabs before sensitive calls. <br>
-Risk: Sensitive adapters can access account-protected page content through inherited site sessions. <br>
-Mitigation: Enable sensitive access only with BWS_ENABLE_SENSITIVE_TIER=1 plus per-call opt-in and per-site consent; run --dry-run first. <br>
-Risk: A changed or unaudited browser-web-search package could alter runtime behavior. <br>
-Mitigation: Use the pinned browser-web-search@0.4.3 package, verify integrity, install with --ignore-scripts, and re-audit before any package version bump. <br>
-Risk: Unexpected sensitive calls may be hard to detect after the fact. <br>
-Mitigation: Review ~/.bws/audit.log and ~/.bws/consents.json periodically; sensitive calls emit a transparency block before import. <br>
+## Use Case:
 
+Developers and agent builders use this skill to retrieve structured search results, trending content, repository data, videos, transcripts, and other public or authenticated site content through a common command interface.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sipingme/browser-web-search) <br>
-- [Browser Web Search Skill Repository](https://github.com/sipingme/browser-web-search-skill) <br>
-- [browser-web-search Package Repository](https://github.com/sipingme/browser-web-search) <br>
-- [browser-web-search npm Package](https://www.npmjs.com/package/browser-web-search) <br>
-- [Pinned Source Audit Reference](https://github.com/sipingme/browser-web-search/blob/v0.4.3/src/index.ts) <br>
-- [Artifact Security Model](artifact/SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured JSON from bws commands, with optional jq-filtered text and stderr transparency records for sensitive calls.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write metadata-only audit records and consent state under ~/.bws/; sensitive calls require explicit gates and per-site consent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.11 (source: server release evidence; artifact frontmatter reports 0.4.10) <br>
+Risk: The skill can invoke a third-party npm package inside an OpenClaw browser profile, including contexts that may contain authenticated site data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this access is acceptable, keep BWS_PUBLIC_ONLY=1 unless authenticated adapters are intentionally needed, use a dedicated browser profile, and close unrelated logged-in tabs.
+
+Risk: Users may bypass the safer launcher path or safer install flow described by the security evidence.
+
+Mitigation: Use the bws-skill scripts/run.js launcher path rather than direct bws site commands, install browser-web-search@0.4.3 with --ignore-scripts, and retain the pinned integrity checks.
+
+Risk: Sensitive browser-session calls can expose private page content if authorized accidentally or without current review.
+
+Mitigation: Use the sealed sensitive tier, per-call opt-in, platform consent ledger, transparency output, audit log, and --dry-run preflight before real sensitive calls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sipingme/skills/browser-web-search)
+- [browser-web-search-skill repository](https://github.com/sipingme/browser-web-search-skill)
+- [browser-web-search core library](https://github.com/sipingme/browser-web-search)
+- [browser-web-search npm package](https://www.npmjs.com/package/browser-web-search)
+- [Pinned browser-web-search source](https://github.com/sipingme/browser-web-search/blob/v0.4.3/src/index.ts)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON results with command and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapters may support count, sort, jq filtering, id, limit, and page options; sensitive adapters require explicit runtime gates.]
+
+## Skill Version(s):
+
+0.4.11 (source: server release metadata; artifact frontmatter reports 0.4.10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

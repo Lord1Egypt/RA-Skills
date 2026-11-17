@@ -1,44 +1,55 @@
-## Description: <br>
-Soul Searching helps OpenClaw agents browse, install, switch, and manage SOUL.md personality files from the soulsearching.ai directory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse, install, switch, and manage SOUL.md personality files for OpenClaw agents from the soulsearching.ai directory.
 
-## Publisher: <br>
-[stirman](https://clawhub.ai/user/stirman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stirman](https://clawhub.ai/user/stirman)
 
-## Use Case: <br>
-External users and developers use this skill to discover SOUL.md personality files, install them into an OpenClaw local cache, and activate or switch the workspace SOUL.md when changing agent behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote SOUL.md files can change agent behavior after installation or activation. <br>
-Mitigation: Review downloaded SOUL.md content before activation and install only from trusted soulsearching.ai catalog entries. <br>
-Risk: The switch and install --activate commands can replace the workspace SOUL.md. <br>
-Mitigation: Keep the automatic SOUL.md.bak backup and confirm the target workspace before switching souls. <br>
-Risk: Unusual soul IDs could be unsafe if they include path traversal or slash-like values. <br>
-Mitigation: Use normal catalog IDs only and avoid IDs containing slashes, parent-directory segments, or other unexpected path characters. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to browse a remote SOUL.md catalog, install selected personality files, and switch the active workspace SOUL.md.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stirman/soul-searching) <br>
-- [Soul Searching directory](https://soulsearching.ai) <br>
-- [Soul catalog endpoint](https://soulsearching.ai/souls.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads remote SOUL.md content to ~/.openclaw/souls and can copy an installed soul to the workspace SOUL.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Remote catalog entries can persistently replace agent instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only catalog entries from a trusted publisher, review SOUL.md content before activation, and keep a backup of the existing SOUL.md.
+
+Risk: Unsafe soul IDs can escape the intended storage folder.
+
+Mitigation: Avoid unusual catalog IDs until ID validation is added, and review file paths before overwriting or deleting local files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stirman/skills/soul-searching)
+- [soulsearching.ai directory](https://soulsearching.ai)
+- [soulsearching.ai catalog endpoint](https://soulsearching.ai/souls.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash command examples and local SOUL.md file changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May fetch and cache a remote JSON catalog, store selected Markdown files under ~/.openclaw/souls, and copy an installed file to the workspace SOUL.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Skill Picker helps an agent search the skills registry with intent-based queries and recommend suitable skills or skill combinations without installing them autonomously. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Picker helps agents discover and recommend agent skills based on user intent, including skill combinations, while only suggesting install commands for user confirmation.
 
-## Publisher: <br>
-[yao00oo](https://clawhub.ai/user/yao00oo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yao00oo](https://clawhub.ai/user/yao00oo)
 
-## Use Case: <br>
-Developers, employees, and external users use Skill Picker when they want an agent to find suitable skills or skill combinations for a task and present install commands for manual approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can recommend third-party skills that have separate trust and permission profiles. <br>
-Mitigation: Treat each suggested skill as a separate trust decision and check the skill name, source, requested permissions, and need before approving installation. <br>
-Risk: Registry search results may be incomplete, stale, or affected by the query wording. <br>
-Mitigation: Review the presented results and skill pages before installing, and try additional intent-based queries when the fit is unclear. <br>
+## Use Case:
 
+Developers and agent users use this skill to find relevant skills for a task, compare fit, and receive user-run install commands. It is useful when a request would benefit from specialized agent capabilities or a workflow assembled from multiple skills.
 
-## Reference(s): <br>
-- [Skill Picker ClawHub listing](https://clawhub.ai/yao00oo/skill-picker) <br>
-- [Skills registry](https://skills.sh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommends search and install commands for user review; does not autonomously run install commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill may run an unpinned npx skills search command when broad discovery triggers apply.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned or locally installed audited skills CLI when possible, and require user approval before first-time package retrieval or proactive searches.
+
+Risk: Skill recommendations and install commands could be mistaken for approved actions.
+
+Mitigation: Keep installation as an explicit user action and review recommended skills before running any install command.
+
+## Reference(s):
+
+- [ClawHub Skill Picker page](https://clawhub.ai/yao00oo/skills/skill-picker)
+- [Skills registry](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides recommendations, fit rationale, and install commands for the user to run or explicitly confirm.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

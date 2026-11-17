@@ -1,42 +1,58 @@
-## Description: <br>
-Lu Nas Monitor helps agents monitor NAS Docker container status, system resources, service health, logs, and optional alert notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lu Nas Monitor helps Chinese-language users check NAS Docker container status, system resource usage, service health, logs, and optional alerting.
 
-## Publisher: <br>
-[jesson1222-ship-it](https://clawhub.ai/user/jesson1222-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jesson1222-ship-it](https://clawhub.ai/user/jesson1222-ship-it)
 
-## Use Case: <br>
-Developers and NAS administrators use this skill to ask an agent for NAS service checks, including Docker container state, CPU and memory use, disk space, service health, logs, and alert examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Routine monitoring prompts could lead to service-impacting commands such as restarting Docker Compose services. <br>
-Mitigation: Keep monitoring read-only by default and require explicit user approval before any restart or other service-changing command. <br>
-Risk: Logs, hostnames, internal service details, or Telegram alert configuration can expose sensitive NAS information. <br>
-Mitigation: Redact secrets and internal details before sharing outputs, and only use Telegram notifications when that third-party path is acceptable. <br>
+## Use Case:
 
+Developers and NAS operators use this skill to ask an agent for concise Chinese-language monitoring guidance, Docker status checks, resource summaries, log inspection commands, service health checks, and alert setup examples for a NAS environment.
 
-## Reference(s): <br>
-- [Lu Nas Monitor ClawHub page](https://clawhub.ai/jesson1222-ship-it/lu-nas-monitor) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Skill metadata](artifact/_meta.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Docker, system monitoring, log inspection, restart, and Telegram alert command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact/_meta.json, artifact/SKILL.md) <br>
+Risk: Service restart guidance can interrupt running NAS services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review restart commands and target services before execution, and run them only during an acceptable maintenance window.
+
+Risk: Telegram alerting can send NAS status or incident metadata to an external service.
+
+Mitigation: Enable Telegram alerts only after confirming that tokens, chat targets, and external data sharing are acceptable for the environment.
+
+Risk: Monitoring outputs may expose container names, ports, logs, and system capacity.
+
+Mitigation: Limit sharing of generated monitoring output and redact operational details before sending results outside the environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jesson1222-ship-it/skills/lu-nas-monitor)
+- [ClawHub publisher profile](https://clawhub.ai/user/jesson1222-ship-it)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Chinese-language Markdown responses with inline bash commands and monitoring snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Docker status summaries, system resource checks, log commands, restart commands, and optional Telegram alert setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

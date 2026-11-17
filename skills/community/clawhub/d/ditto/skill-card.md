@@ -1,44 +1,60 @@
-## Description: <br>
-Save, search, fetch, and traverse the user's Ditto memory graph. Use whenever the user references "remember", "recall", "what did I", "from my notes", or asks about past conversations and saved knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save, search, fetch, and traverse the user's Ditto memory graph.
 
-## Publisher: <br>
-[ditto](https://clawhub.ai/user/ditto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ditto](https://clawhub.ai/user/ditto)
 
-## Use Case: <br>
-Agents and users use Ditto to save, search, fetch, update, publish, unpublish, and traverse long-term memory and topic graphs when a conversation depends on prior context or durable facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ditto can create persistent third-party memory access and save, retrieve, edit, or publish personal memories. <br>
-Mitigation: Require explicit user confirmation for account setup, saving, searching, updating, publishing, unpublishing, login, logout, and key rotation. <br>
-Risk: The Ditto API key and claim URL can grant access to the user's memory account. <br>
-Mitigation: Treat both values as secrets, share the claim URL rather than the API key, and rotate or log out if either credential may have been exposed. <br>
-Risk: Saving or publishing sensitive content may expose information the user did not intend to persist or share. <br>
-Mitigation: Avoid storing sensitive or confidential content unless the user intends it, and publish memories only after an explicit request. <br>
+## Use Case:
 
+Developers and external users use Ditto to let agents save, retrieve, update, publish, and traverse long-term personal memories and topic relationships across conversations.
 
-## Reference(s): <br>
-- [Ditto homepage](https://heyditto.ai) <br>
-- [Ditto CLI on npm](https://www.npmjs.com/package/@heyditto/cli) <br>
-- [ClawHub skill page](https://clawhub.ai/ditto/ditto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON CLI output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The agent may invoke heyditto commands that create credentials or read, save, edit, publish, and unpublish memories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Agents can save durable personal memories to a third-party cloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use remote memory only when intended, avoid saving sensitive data unless the user approves the exact content, and keep saved memories limited to durable facts that should persist.
+
+Risk: The setup flow can create a claimable account and store an API key in local CLI configuration.
+
+Mitigation: Share only the claim URL, never the API key, and use heyditto logout or remove the saved config key when agent access is no longer wanted.
+
+Risk: Installing the CLI from an unpinned package can change behavior as the package evolves.
+
+Mitigation: Prefer a pinned or reviewed @heyditto/cli version where possible and confirm command behavior with heyditto status or heyditto help before use.
+
+## Reference(s):
+
+- [Ditto homepage](https://heyditto.ai)
+- [@heyditto/cli on npm](https://www.npmjs.com/package/@heyditto/cli)
+- [Ditto ClawHub skill page](https://clawhub.ai/ditto/skills/ditto)
+- [Ditto publisher profile](https://clawhub.ai/user/ditto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command outputs from the Ditto CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the heyditto CLI and DITTO_API_KEY or local CLI config for authentication.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

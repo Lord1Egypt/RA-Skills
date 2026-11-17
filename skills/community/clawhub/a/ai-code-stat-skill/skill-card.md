@@ -1,40 +1,53 @@
-## Description: <br>
-Tracks AI and human code contributions, generates standardized commit messages, and analyzes AI code share across current and historical Git changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI code generation and statistics tool for marking AI-authored and human-authored code, standardizing version commit messages, and reporting AI code ratios.
 
-## Publisher: <br>
-[wgongrui](https://clawhub.ai/user/wgongrui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wgongrui](https://clawhub.ai/user/wgongrui)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to label AI-generated versus human-written code, calculate non-empty line counts and AI percentage, create standardized Git commit messages, and review historical contribution trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The commit flow can stage and commit an entire repository with too little file-level review. <br>
-Mitigation: Before using the commit flow, run git status, inspect the diff, remove secrets or unrelated files, and prefer staging explicit files instead of git add . <br>
-Risk: AI contribution statistics can be misleading if @ai/@human markers are missing, inconsistent, or applied to the wrong changed files. <br>
-Mitigation: Review markers and changed files before relying on reported percentages, and use the analysis-only scripts separately when no commit is needed. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to mark generated and human-authored code with @ai/@human tags, calculate AI code ratios for changed files, generate standardized commit messages, and review historical contribution trends.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wgongrui/ai-code-stat-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with generated commit-message content and optional Python/Git command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Statistics are based on non-empty changed-file lines and @ai/@human markers; commit workflows may execute Git commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; skill frontmatter meta lists 1.0.0) <br>
+Risk: The commit workflow can stage and commit more repository files than it analyzes or shows to the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in repositories where staging every eligible file is acceptable; inspect git status before confirming and avoid secrets, local config files, generated artifacts, or unrelated changes.
+
+Risk: Git command failures may not be checked by the helper scripts before reporting a commit workflow result.
+
+Mitigation: Review command output and verify the final repository state before relying on generated statistics or commit completion.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wgongrui/skills/ai-code-stat-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown and text responses with inline code blocks, generated commit messages, and command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide Python and Git workflows that analyze changed files and create commits after user confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

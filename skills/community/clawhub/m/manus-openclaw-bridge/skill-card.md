@@ -1,47 +1,67 @@
-## Description: <br>
-Connect OpenClaw to Manus task APIs for chat-driven image generation, document/slides jobs, task polling, output collection, and messaging-surface return flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect OpenClaw to Manus task APIs for chat-driven image generation, document/slides jobs, task polling, output collection, and messaging-surface return flows.
 
-## Publisher: <br>
-[t0nyren](https://clawhub.ai/user/t0nyren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[t0nyren](https://clawhub.ai/user/t0nyren)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to route explicit Manus requests from chat surfaces into Manus task APIs, poll for completion, collect generated files, and return images, documents, slides, or concise status summaries to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The slides JSON-to-PPTX conversion path may fetch remote assets and write files outside the documented safety limits. <br>
-Mitigation: Review the converter before installation and avoid running it on untrusted Manus output until HTTPS Manus-host allowlisting, redirect revalidation, size limits, and safe filename handling are enforced. <br>
-Risk: The skill depends on a Manus API key and endpoint configured on the local machine. <br>
-Mitigation: Use a dedicated Manus API key, protect the local config file, and install only when the Manus endpoint and publisher are trusted. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to route clear Manus generation, research, image, document, and slide tasks from chat into Manus APIs, then poll and return files or status back to the current messaging surface.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/t0nyren/manus-openclaw-bridge) <br>
-- [Publisher Profile](https://clawhub.ai/user/t0nyren) <br>
-- [Manus API Documentation](https://open.manus.im/docs) <br>
-- [Setup](references/setup.md) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Chat Patterns](references/chat-patterns.md) <br>
-- [Feishu Return](references/feishu-return.md) <br>
-- [Slides Handling](references/slides.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, JSON, files] <br>
-**Output Format:** [Markdown guidance with bash, Python, Node.js, JSON, and generated file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local environment configuration for Manus API credentials and can save downloaded Manus outputs under the skill workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The release security evidence flags broad handling of credentials, URLs, and file writes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run in a locked-down environment, and keep Manus credentials only in trusted local configuration.
+
+Risk: A misconfigured Manus API base URL could send tasks or credentials to the wrong endpoint.
+
+Mitigation: Set MANUS_API_BASE explicitly to the expected HTTPS Manus endpoint and verify the value before use.
+
+Risk: Automatic chat triggers can launch unintended Manus jobs, especially in group conversations.
+
+Mitigation: Use strict trigger rules, such as bot mentions plus an explicit Manus prefix, before submitting tasks.
+
+Risk: Downloaded outputs and slide JSON may contain untrusted content.
+
+Mitigation: Process returned files cautiously and avoid untrusted slide JSON until downloader and path handling have been reviewed.
+
+## Reference(s):
+
+- [Manus API Documentation](https://open.manus.im/docs)
+- [Manus Tasks API](https://api.manus.ai/v1/tasks)
+- [Setup](references/setup.md)
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [Chat Patterns](references/chat-patterns.md)
+- [Feishu Return](references/feishu-return.md)
+- [Slides Handling](references/slides.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration examples, and JSON result summaries from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local downloaded files under the skill workspace and PPTX files when converting slide JSON outputs.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

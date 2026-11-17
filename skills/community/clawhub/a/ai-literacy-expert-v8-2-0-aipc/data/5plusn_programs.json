@@ -1,0 +1,106 @@
+{
+  "_meta": {
+    "name": "5plusn_programs",
+    "version": "8.2.0-aipc",
+    "module": "module-h-bnbu-sai",
+    "last_updated": "2026-08-24",
+    "source": "https://sai.bnbu.edu.cn/curriculum/Overview.htm"
+  },
+  "institution": {
+    "name_zh": "北京师范大学-香港浸会大学联合国际学院",
+    "name_en": "Beijing Normal-Hong Kong Baptist University (BNBU)",
+    "school_zh": "博雅智能学院",
+    "school_en": "School of Artificial Intelligence (SAI)",
+    "selection": "全校顶尖 5% 新生",
+    "partner_schools": 4,
+    "undergraduate_majors": 29
+  },
+  "programs": [
+    {
+      "id": "CM+N",
+      "name_zh": "计算媒介+N",
+      "name_en": "Computational Media + N",
+      "co_admin": ["博雅智能学院 (SAI)", "文化与创意学院 (SCC)"],
+      "major_directions": [
+        {"code": "CM+AIM", "name_zh": "动画与互动媒体", "name_en": "Animation and Interactive Media"},
+        {"code": "CM+GD", "name_zh": "游戏设计", "name_en": "Game Design"},
+        {"code": "CM+MAD", "name_zh": "媒体艺术与设计", "name_en": "Media Art and Design"}
+      ],
+      "total_credits": {"CM+AIM": 148, "CM+GD": 148, "CM+MAD": 151}
+    },
+    {
+      "id": "DGC+N",
+      "name_zh": "数字全球传播+N",
+      "name_en": "Digital Global Communication + N",
+      "co_admin": ["博雅智能学院 (SAI)", "人文社科学院 (FHSS)"],
+      "major_directions": [
+        {"code": "CGC", "name_zh": "国际传播"},
+        {"code": "DGS", "name_zh": "数字全球研究"},
+        {"code": "DIS", "name_zh": "数字跨文化研究"},
+        {"code": "ELLS", "name_zh": "英语语言文学"},
+        {"code": "GAD", "name_zh": "全球事务与外交"},
+        {"code": "MCOM", "name_zh": "媒体与传播"},
+        {"code": "PRA", "name_zh": "公共关系与广告"},
+        {"code": "TDH", "name_zh": "数字人文"}
+      ],
+      "total_credits": {"CGC": 148, "DGS": 151, "DIS": 151, "ELLS": 151, "GAD": 151, "MCOM": 148, "PRA": 148, "TDH": 151}
+    },
+    {
+      "id": "IBL+N",
+      "name_zh": "智能商业领袖+N",
+      "name_en": "Intelligent Business Leadership + N",
+      "co_admin": ["博雅智能学院 (SAI)", "工商管理学院 (FBM)"],
+      "major_directions": [
+        {"code": "ACCT", "name_zh": "会计学"},
+        {"code": "AE", "name_zh": "应用经济学"},
+        {"code": "BUSA", "name_zh": "商业分析"},
+        {"code": "FIN", "name_zh": "财务学"},
+        {"code": "DMM", "name_zh": "数字媒体管理"},
+        {"code": "EBIS", "name_zh": "电子商务与资讯系统管理"},
+        {"code": "EPIN", "name_zh": "创业与创新管理"},
+        {"code": "MHR", "name_zh": "人力资源管理"},
+        {"code": "MKT", "name_zh": "市场营销管理"}
+      ],
+      "total_credits": {"ACCT": 148, "AE": 155, "BUSA": 151, "FIN": 148, "DMM": 151, "EBIS": 148, "EPIN": 148, "MHR": 148, "MKT": 148}
+    },
+    {
+      "id": "Math+N",
+      "name_zh": "数学+N (2025)",
+      "name_en": "Math + N (2025)",
+      "co_admin": ["博雅智能学院 (SAI)", "理工科技学院 (FST)"],
+      "major_directions": [
+        {"code": "AM", "name_zh": "应用数学"},
+        {"code": "FM", "name_zh": "金融数学"},
+        {"code": "STAT", "name_zh": "统计学"},
+        {"code": "DS", "name_zh": "数据科学"},
+        {"code": "CST", "name_zh": "计算机科学与技术"},
+        {"code": "AI", "name_zh": "人工智能"}
+      ],
+      "total_credits": {"AM": 148, "FM": 151, "STAT": 151, "DS": 148, "CST": 148, "AI": 148}
+    },
+    {
+      "id": "IST+N",
+      "name_zh": "智能科技+N",
+      "name_en": "Intelligent Science and Technology + N",
+      "co_admin": ["博雅智能学院 (SAI)", "理工科技学院 (FST)"],
+      "major_directions": [
+        {"code": "AI", "name_zh": "人工智能"},
+        {"code": "AM", "name_zh": "应用数学"},
+        {"code": "APSY", "name_zh": "应用心理学"},
+        {"code": "CST", "name_zh": "计算机科学与技术"},
+        {"code": "DS", "name_zh": "数据科学"},
+        {"code": "ENVS", "name_zh": "环境科学"},
+        {"code": "FM", "name_zh": "金融数学"},
+        {"code": "FS", "name_zh": "食品科学与工程"},
+        {"code": "STAT", "name_zh": "统计学"}
+      ],
+      "total_credits": {"AI": 148, "AM": 148, "APSY": 148, "CST": 148, "DS": 148, "ENVS": 152, "FM": 151, "FS": 152, "STAT": 151}
+    }
+  ],
+  "summary": {
+    "total_programs": 5,
+    "total_major_directions": 35,
+    "total_credit_range": "148-155",
+    "common_core_total_credits": {"CM+N": "9-15", "DGC+N": "12", "IBL+N": "9-15", "Math+N": "24", "IST+N": "15"}
+  }
+}

@@ -1,40 +1,53 @@
-## Description: <br>
-Multi-target parallel file copy CLI that reads a source once into memory and writes to multiple USB drives concurrently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-target parallel file copy CLI that reads a source once into memory and writes to multiple USB drives concurrently.
 
-## Publisher: <br>
-[dongsheng123132](https://clawhub.ai/user/dongsheng123132) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongsheng123132](https://clawhub.ai/user/dongsheng123132)
 
-## Use Case: <br>
-Developers, operators, and agent users use FastCP to copy the same source directory to multiple mounted drives or destination directories, with options for verification, incremental copying, concurrency control, and dry-run previews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect source or destination paths can copy data to the wrong drive or overwrite expected destination contents. <br>
-Mitigation: Use --dry-run first, confirm every source and destination path, verify drive labels and free space, and review the command before execution. <br>
-Risk: Installing with @latest may fetch a newer package than the reviewed release. <br>
-Mitigation: Pin or review the GitHub package version before installation. <br>
+## Use Case:
 
+Developers, operators, and automation agents use this skill to install and invoke fastcp for copying one source directory to multiple removable drives or target directories, with optional verification, incremental copy, dry-run previews, concurrency control, and JSON output for scripts.
 
-## Reference(s): <br>
-- [FastCP ClawHub Release](https://clawhub.ai/dongsheng123132/fastcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of a file-copy CLI; command execution writes to user-selected destination paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: A normal fastcp command writes to every listed target path, so a mistaken drive letter or mount point could copy files to the wrong destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run fastcp with --dry-run first and confirm each drive letter or mount point before executing a real copy.
+
+Risk: Installing from a moving external source can retrieve code that differs from a previously reviewed release.
+
+Mitigation: Prefer a pinned reviewed version or verify the release checksum before installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dongsheng123132/skills/fastcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, json]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend dry-run, verification, quiet, verbose, concurrency, buffer-size, incremental, preload, and JSON-output flags.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

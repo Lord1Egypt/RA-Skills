@@ -1,40 +1,53 @@
-## Description: <br>
-Screen tenant applications for Massachusetts properties using Fair Housing-compliant criteria covering income, credit, criminal background, rental history, employment, and acceptance or rejection letters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screen tenant applications using Fair Housing compliant criteria for Massachusetts properties, including income verification, credit checks, criminal background review, rental history, and Massachusetts-specific protected classes.
 
-## Publisher: <br>
-[AdamsJB](https://clawhub.ai/user/AdamsJB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adamsjb](https://clawhub.ai/user/adamsjb)
 
-## Use Case: <br>
-External self-managing landlords and property managers use this skill to apply consistent Massachusetts tenant-screening criteria, document decisions, and draft acceptance or adverse-action notices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Massachusetts, United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tenant screening is legally sensitive and may affect housing access. <br>
-Mitigation: Have a qualified human verify current Massachusetts, Fair Housing, and FCRA requirements before making or sending final decisions. <br>
-Risk: Applicant files may contain SSNs, credit reports, background details, or adverse-action reasons. <br>
-Mitigation: Confirm before saving applicant data, protect files containing sensitive information, and delete records when no longer needed. <br>
+## Use Case:
 
+External users, property managers, and self-managing landlords use this skill to evaluate Massachusetts rental applications consistently and draft approval or adverse-action communications. It supports Fair Housing, source-of-income, FCRA, and Massachusetts landlord-tenant screening workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/AdamsJB/homestruk-tenant-screening) <br>
+### Deployment Geography for Use:
 
+Massachusetts, United States
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files] <br>
-**Output Format:** [Markdown guidance and draft letter templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose saving adverse-action drafts as local Markdown files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Generated tenant-screening letters may contain sensitive applicant records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm before saving, avoid unnecessary PII in filenames, store drafts in an access-controlled location, and delete records when no longer needed.
+
+Risk: Tenant-screening criteria can become outdated or misapplied in a regulated housing context.
+
+Mitigation: Verify all screening criteria with current Massachusetts and federal housing law before relying on outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adamsjb/skills/homestruk-tenant-screening)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, files]
+
+**Output Format:** [Markdown guidance and letter templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May draft tenant-screening decisions and rejection letters for local saving by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

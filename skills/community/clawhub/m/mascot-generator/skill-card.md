@@ -1,42 +1,58 @@
-## Description: <br>
-Generates custom brand mascots and cartoon characters from text prompts using the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate custom brand mascots and cartoon characters with AI via the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and creators use this skill to request mascot or cartoon character images for brands, teams, schools, gaming groups, and content channels. The skill is useful when an agent needs to turn a written mascot concept into an image-generation request and return the resulting image URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference UUIDs, and the Neta/TalesOfAI API token are sent to an external image-generation service. <br>
-Mitigation: Use only appropriate prompts and reference IDs for that service, avoid highly confidential brand material, and confirm users are comfortable sharing the token and request data externally. <br>
-Risk: API tokens passed on the command line can be exposed through shell history, logs, or shared terminal output. <br>
-Mitigation: Avoid committing or sharing tokens, clear shell history where needed, and prefer a controlled local execution environment for generated commands. <br>
+## Use Case:
 
+External users and developers use this skill to generate brand mascot or cartoon character concepts from text prompts for businesses, teams, schools, gaming groups, and content channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blammectrappora/mascot-generator) <br>
-- [Neta API token setup](https://www.neta.art/open/) <br>
-- [TalesOfAI API service](https://api.talesofai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text image URL with command-line status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token; supports square, portrait, landscape, and tall image sizes plus an optional reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill sends prompts and optional reference-image identifiers to an external image API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompts, confidential brand material, or internal asset references unless the API use has been approved for that data.
+
+Risk: The Neta API token is passed on the command line.
+
+Mitigation: Clear shell history after use or adapt local usage to an environment variable or secret manager before using a real account token.
+
+Risk: Unreviewed installation sources can introduce supply-chain risk.
+
+Mitigation: Install only from trusted sources and prefer a pinned, reviewed release.
+
+## Reference(s):
+
+- [Mascot Generator ClawHub page](https://clawhub.ai/blammectrappora/skills/mascot-generator)
+- [Neta token setup](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, API Calls]
+
+**Output Format:** [Plain text image URL with command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; supports square, portrait, landscape, and tall image sizes, plus an optional reference image UUID.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

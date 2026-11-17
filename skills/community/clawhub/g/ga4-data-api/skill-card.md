@@ -1,41 +1,54 @@
-## Description: <br>
-Query Google Analytics 4 (GA4) data through the Google Analytics Data API for trends, countries, sources, pages, and conversion analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Google Analytics 4 (GA4) data through the Google Analytics Data API for trends, countries, sources, pages, and conversion analysis.
 
-## Publisher: <br>
-[nanaco666](https://clawhub.ai/user/nanaco666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nanaco666](https://clawhub.ai/user/nanaco666)
 
-## Use Case: <br>
-Developers and analysts use this skill to set up OAuth user authorization for GA4 and query GA4 metrics inside OpenClaw. It helps inspect trends, country and source breakdowns, page activity, and conversion or key-event data while checking account permissions first. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup stores Google Analytics OAuth client and token files under ~/.config/openclaw. <br>
-Mitigation: Treat ga4-client.json and ga4-token.json as sensitive, avoid shared machines, and delete the files or revoke the OAuth grant when access is no longer needed. <br>
-Risk: The installer edits the user's shell startup configuration to set GA4_PROPERTY_ID. <br>
-Mitigation: Review the ~/.bashrc or ~/.zshrc change after installation and remove the exported property ID when it is no longer required. <br>
+## Use Case:
 
+Developers, analysts, and OpenClaw users use this skill to set up OAuth-based GA4 access and query traffic, country, source, page, trend, and conversion-style reports. It is intended for cases where the user already has or can verify access to the target GA4 property.
 
-## Reference(s): <br>
-- [GA4 Data API setup](references/setup.md) <br>
-- [ClawHub release page](https://clawhub.ai/nanaco666/ga4-data-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON query output from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local OAuth client and token files for read-only Google Analytics API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The installer modifies shell startup files to store GA4_PROPERTY_ID.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before running it, or set GA4_PROPERTY_ID manually in a controlled environment.
+
+Risk: OAuth client and token files are stored under ~/.config/openclaw.
+
+Mitigation: Restrict permissions on ga4-client.json and ga4-token.json and use only trusted GA4 property IDs.
+
+## Reference(s):
+
+- [GA4 Data API OpenClaw setup](references/setup.md)
+- [ClawHub skill page](https://clawhub.ai/nanaco666/skills/ga4-data-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON query output from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses OAuth credentials and a GA4 property ID supplied by the user.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

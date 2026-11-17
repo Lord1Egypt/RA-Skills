@@ -1,41 +1,56 @@
-## Description: <br>
-An interactive English writing coach that teaches genre conventions, guides planning and drafting, and gives structured feedback on content, coherence, vocabulary, and grammar across professional, academic, exam, creative, and everyday writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An interactive English writing coach that teaches, drills, and gives detailed feedback across professional emails, academic essays, reports, creative writing, IELTS/TOEFL writing tasks, and everyday communication.
 
-## Publisher: <br>
-[cngvc](https://clawhub.ai/user/cngvc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cngvc](https://clawhub.ai/user/cngvc)
 
-## Use Case: <br>
-External learners, students, professionals, and writing-practice users use this skill to improve English writing through genre instruction, planning support, draft review, targeted revision, and daily writing drills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger examples may make the skill activate for general writing-help requests. <br>
-Mitigation: Confirm that the user wants English writing coaching before applying the full coaching workflow when the request is ambiguous. <br>
-Risk: Scheduled practice may default to English unless the user specifies otherwise. <br>
-Mitigation: Specify the desired language for task explanations or vocabulary notes when configuring or requesting scheduled drills. <br>
+## Use Case:
 
+External learners and employees use this skill to improve English writing through genre instruction, guided planning and drafting, structured feedback, revision practice, and daily writing drills.
 
-## Reference(s): <br>
-- [Genre Teaching Guide](references/genres.md) <br>
-- [Feedback Templates & Error Scripts](references/feedback-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown coaching responses with structured feedback, writing tasks, model examples, revision prompts, and session summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CEFR level estimates, CQVG feedback sections, IELTS/TOEFL-oriented scoring guidance, vocabulary notes, and daily drill prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Pasted drafts may contain sensitive or personal information and may be quoted back during feedback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting confidential content; redact personal details before asking for writing feedback.
+
+Risk: Broad English writing-help requests may activate the coaching workflow even when the user wants only a quick edit.
+
+Mitigation: Confirm the learner's goal, target text type, and desired depth before giving extended coaching.
+
+## Reference(s):
+
+- [English Writing Coach Skill Page](https://clawhub.ai/cngvc/skills/english-writing-coach)
+- [English Writing Coach README](README.md)
+- [Feedback Templates & Error Scripts](references/feedback-templates.md)
+- [Genre Teaching Guide](references/genres.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured plain text coaching responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May quote learner-provided draft text when giving feedback.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

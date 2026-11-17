@@ -1,38 +1,53 @@
-## Description: <br>
-让 AI 不敢摆烂的高压推进 skill。适用于任务反复失败、同一路径微调、想放弃、建议用户手动处理、没验证就下结论等场景。要求主动排查、换路径、拿证据闭环。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PUA Skill pushes an agent to continue stuck tasks with exhaustive, evidence-based investigation, validation, and follow-through.
 
-## Publisher: <br>
-[knifehzh](https://clawhub.ai/user/knifehzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[knifehzh](https://clawhub.ai/user/knifehzh)
 
-## Use Case: <br>
-Developers and agents use this skill when a task is stuck or repeatedly failing and they need a more exhaustive, evidence-based troubleshooting workflow before declaring completion or asking for help. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages more forceful and persistent execution during stuck tasks, which can exceed intended project, time, network, cost, or public-action limits if those limits are not explicit. <br>
-Mitigation: Set clear boundaries for files, commands, network calls, time budget, and externally visible actions, and require explicit approval for destructive, costly, or public changes. <br>
+## Use Case:
 
+Developers and agent users use this skill to prompt an agent to persist through stalled debugging, implementation, or investigation work by broadening the search path, checking assumptions, and reporting objective evidence before closure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/knifehzh/pua-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with optional structured failure reports and command evidence.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; no code, hidden install behavior, credentials, or persistence were found in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Implicit invocation may apply a more assertive troubleshooting posture without an explicit request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep normal tool approvals, workspace boundaries, and review checkpoints in place for file reads, command execution, and user-facing conclusions.
+
+Risk: The skill encourages persistent troubleshooting and may produce forceful guidance that is not appropriate for every task.
+
+Mitigation: Use it for stuck technical work and review outputs for tone, relevance, and evidence before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/knifehzh/skills/pua-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text guidance, often with commands, code snippets, checklists, or structured failure reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May be invoked implicitly according to the artifact policy; no executable code is bundled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Professional quantitative trading system for cryptocurrency - backtesting, paper trading, live trading, and strategy optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quant Trader supports cryptocurrency strategy backtesting, paper trading, live trading, and strategy optimization.
 
-## Publisher: <br>
-[ZhenStaff](https://clawhub.ai/user/ZhenStaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-Developers, trading-system builders, and agent users use this skill to backtest cryptocurrency strategies, optimize parameters, run paper trading, and prepare live-trading commands or code with risk controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide use of exchange API keys for real automated cryptocurrency trading. <br>
-Mitigation: Use paper trading or exchange testnet first, keep API keys withdrawal-disabled and limited to minimum permissions, set small trade limits, and require explicit confirmation before live trading. <br>
-Risk: The package relies on external project code and dependencies that are not included in the skill artifact. <br>
-Mitigation: Review the external project and dependency set before installation or execution, then run scans and tests in an isolated environment. <br>
-Risk: Backtest and optimization results can be overfit or misleading if treated as financial advice. <br>
-Mitigation: Use realistic fees and slippage, perform walk-forward validation, explain uncertainty, and avoid guaranteeing profits or recommending a specific strategy. <br>
+## Use Case:
 
+External developers and trading-system operators use this skill to generate guidance, code examples, shell commands, and configuration for cryptocurrency backtesting, paper trading, live trading, and strategy optimization.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ZhenStaff/quant-trader) <br>
-- [OpenClaw Quant GitHub Repository](https://github.com/ZhenRobotics/openclaw-quant) <br>
-- [OpenClaw Quant ClawHub Page](https://clawhub.ai/ZhenStaff/openclaw-quant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python, YAML, and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include trading strategy examples, backtest and optimization commands, configuration snippets, performance metrics, and safety guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 0.1.0) <br>
+Risk: The skill installs an unpinned external trading project before handling exchange credentials for live trading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository and dependency list, pin or verify the exact revision, and install in a virtual environment before use.
+
+Risk: Live trading with exchange API keys can cause financial loss or credential misuse.
+
+Mitigation: Start with paper trading or testnet, require explicit confirmation before live trading, and use minimum-permission API keys with no withdrawal capability.
+
+## Reference(s):
+
+- [ClawHub Quant Trader skill page](https://clawhub.ai/zhenstaff/skills/quant-trader)
+- [OpenClaw Quant GitHub repository](https://github.com/ZhenRobotics/openclaw-quant)
+- [OpenClaw Quant issues](https://github.com/ZhenRobotics/openclaw-quant/issues)
+- [OpenClaw Quant discussions](https://github.com/ZhenRobotics/openclaw-quant/discussions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code blocks, shell commands, and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include trading commands and configuration that require review before live use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter states 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

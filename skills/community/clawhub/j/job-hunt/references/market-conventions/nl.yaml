@@ -1,0 +1,552 @@
+# Market conventions — Netherlands (nl)
+#
+# Built 2026-08-09 from docs/superpowers/research/2026-08-09/
+# markets.json + review-nl_weu.md. The research key was nl_weu; this table is the
+# Netherlands half of it. Every `published` URL in that research was fetched and
+# every "Verbatim:" string grepped against the fetched text on 2026-08-09.
+#
+# DROPPED
+#   nl-weu-be-single-permit-is-regional — Belgium-only. The market keys are
+#   cn/nl/de/uk/us, so an entry that can only fire on a Belgian posting can never
+#   render, and leaving it invites a Dutch applicant reading Belgian
+#   regional-competence advice. Every Belgian clause in the surviving entries is
+#   cut for the same reason, and with them the joint-committee sentence and its
+#   Federale Overheidsdienst Werkgelegenheid citation in
+#   nl-sector-agreement-sets-the-band: a citation supporting a claim the card no
+#   longer makes is a citation nobody can check the card against.
+#
+# NEXT REVIEW — from review-nl_weu.md's "Important and missing", verbatim. Do not
+# write these into conventions from this comment; a person must check the source
+# first.
+#   1. **The orientation year permit (verified, and it breaks convention 1's frame).** `https://ind.nl/en/residence-permits/work/residence-permit-for-orientation-year`: the applicant files it themselves, and "Your employer does not need a work permit (in Dutch: *tewerkstellingsvergunning* or TWV)." For a recent graduate of an eligible programme this removes the recognised-sponsor gate entirely and widens the employer pool. The entry's `unverified` list does not mention it either — it is not a known gap, it is an unknown one.
+#
+#   2. **The expat scheme's announced reduction.** Covered in convention 3 above. Independently of the constraint problem, an entry that teaches a candidate to evaluate net pay must not silently fix the percentage in the scheme's name during the year before it changes.
+#
+#   3. **College oordelen are not legally binding.** Verified verbatim. The SOURCE-QUALITY NOTE lists NVP and EURES as non-statutory and lists seven sources as official/statutory — and leaves the College out of both lists, so the one source whose status most affects how a candidate acts is the one with no label.
+#
+#   4. **The EU Blue Card.** `unverified` item 9 correctly refuses to describe it from memory. But its absence means a candidate whose salary clears one route's criterion and not the other's has no way to know a second route exists. Research it or state its existence and stop there — the current silence reads as "the highly skilled migrant route is the route".
+#
+#   5. **NVP clause 5.3 — what happens to your data after rejection.** "Voor zover van toepassing worden gegevens afkomstig van een sollicitant binnen vier weken na de afwijzing teruggezonden of vernietigd, tenzij expliciet anders met de sollicitant is overeengekomen", with a re-consent step after a year for retained data and a destruction duty for agencies once mediation ends. This is candidate-facing, concrete, in a source already fetched, and absent from both `application_artifacts` and `interview_shape`.
+#
+#   6. **NVP clause 3.2 — you may ask for a deviation.** Where an organisation uses internet or video applications, or confronts you with other candidates, "mag de sollicitant in het kader van de vertrouwelijkheid om afwijking van de procedure verzoeken." A candidate who does not know a one-way video interview is refusable-with-a-reason cannot exercise it. `interview_shape` covers 3.4 (algorithmic pre-selection) but skips 3.2.
+#
+#   7. **NVP clause 2.6 — how to read an age limit or preference policy in a Dutch posting.** Only permitted where legally allowed, and then "wordt daarvan uitdrukkelijk melding gemaakt in de vacature en wordt de reden daarvan aangegeven". Useful for reading postings; note it names a protected trait, so the shipper must decide whether the constraint blocks it.
+
+
+market: nl
+
+conventions:
+  - id: "nl-recognised-sponsor-gate"
+    text_en: |-
+      For many Netherlands roles that need a work-related residence permit, the deciding factor
+      is the employer, not you. Under the highly skilled migrant (kennismigrant) scheme the IND
+      says: "Only an employer recognised by the IND can apply for your permit" — the employer files
+      it, and you cannot file it yourself. IND publishes a public register of recognised sponsors
+      that anyone can search, listing organisations by name and Chamber of Commerce number. Check
+      the company in that register before you invest in a tailored application; if it is not listed,
+      ask the recruiter at the earliest contact whether they sponsor, because a posting often says
+      nothing either way. Not every route works like this — the IND orientation year permit for
+      graduates of eligible programmes is one you apply for yourself, and during it your employer
+      needs no work permit — so establish which route applies to you before assuming the sponsor
+      gate is the only one. Treat sponsor status as a fact about what the employer is set up to
+      do administratively, not as a fact about you.
+    text_zh: |-
+      荷兰不少需要工作居留许可的岗位，决定权在雇主而不在你。在"高技能移民"(kennismigrant) 路
+      径下，IND 明确写着：只有被 IND 认定为"认可担保方"(recognised sponsor) 的
+      雇主才能提交该许可申请——由雇主提交，你自己无法申请。IND 有一份公开的认可担保方名录，任
+      何人都能查，按公司名和商会注册号列出。投递前先在名录里查这家公司；查不到就尽早直接问对方是否
+      办理担保，因为招聘广告常常两边都不写。但并非所有路径都如此——面向符合条件项目毕业生的 IND"找
+      工作年"(orientation year) 许可由你本人申请，持有期间雇主无需办理工作许可
+      ——所以先确认自己适用哪条路径，再判断雇主门槛是否是唯一门槛。担保资质是关于雇主具备什么行政
+      能力的事实，不是关于你本人的判断。
+    applies_when: "Applying to a Netherlands-based role that would require a Dutch residence permit for work."
+    added: "2026-08-09"
+    review_by: "2027-02-09"
+    source:
+      kind: "published"
+      publisher: "IND (Immigratie- en Naturalisatiedienst)"
+      title: "Highly skilled migrant"
+      url: "https://ind.nl/en/residence-permits/work/highly-skilled-migrant"
+      retrieved: "2026-08-09"
+      quote: "Only an employer recognised by the IND can apply for your permit."
+      note: "The register sentence belongs to the Work register page; the landing page words it differently, so it is cited here and not there."
+      also:
+        - publisher: "IND (Immigratie- en Naturalisatiedienst)"
+          title: "National highly skilled migrant scheme"
+          url: "https://ind.nl/en/about-us/background-articles/national-highly-skilled-migrant-scheme"
+          retrieved: "2026-08-09"
+          quote: "The future employer does this for the highly skilled migrant. Only companies recognised by the IND can submit such an application."
+        - publisher: "IND (Immigratie- en Naturalisatiedienst)"
+          title: "Public register Work"
+          url: "https://ind.nl/en/public-register-recognised-sponsors/public-register-regular-labour-and-highly-skilled-migrants"
+          retrieved: "2026-08-09"
+          quote: "You can use this register to check if the organisation has been recognised by the IND as a sponsor; The public registers are updated once a month."
+        - publisher: "IND (Immigratie- en Naturalisatiedienst)"
+          title: "Residence permit for orientation year"
+          url: "https://ind.nl/en/residence-permits/work/residence-permit-for-orientation-year"
+          retrieved: "2026-08-09"
+          quote: "Your employer does not need a work permit (in Dutch: tewerkstellingsvergunning or TWV)."
+    why: |-
+      Postings advertise the job, not the company's immigration administration. A company that
+      is not a recognised sponsor can post an identical vacancy to one that is, and the difference
+      only surfaces after you have written the letter — or after a first interview. The register
+      exists and is public, but nothing in the posting points to it.
+  - id: "nl-salary-criterion-reset-annually"
+    text_en: |-
+      The highly skilled migrant route carries a salary criterion published by the IND, and the
+      amounts change annually. The amount that counts is the one in force on the date the application
+      is filed; when someone moves to a new employer it is the amount in force on the date the
+      new contract starts. A second test sits alongside the amount: the IND also requires that
+      "The agreed salary is in line with the market rate", which it defines as earning the same
+      as what people in the same job earn on average. So the posted salary band is not only a pay
+      question, it is part of whether the permit application can succeed at all — and a posting
+      can be entirely genuine while its band sits under the criterion for that route. Look up the
+      current figure on the IND "Required amounts income requirements" page before you negotiate,
+      rather than relying on a figure someone quoted last year.
+    text_zh: |-
+      高技能移民路径有一条由 IND 公布的工资门槛，数额每年调整。起作用的是"提交申请当天"生效
+      的那个数额；换雇主时则是新合同生效日的数额。除数额之外还有第二道检验：IND 同时要求"约定
+      薪资须符合市场行情"，其定义是你的薪资与从事同一工作的人的平均水平相当。因此招聘上写的薪资区
+      间不只是钱的问题，它直接关系到许可申请能否成立——一个岗位可以完全真实，而它的薪资区间却够不
+      到该路径的门槛。谈薪之前，请到 IND 的 "Required amounts income
+      requirements" 页面查当年的数额，不要沿用别人去年报的数字。
+    applies_when: "Any Netherlands role where the highly skilled migrant route would be used, and at every salary-negotiation step within it."
+    added: "2026-08-09"
+    review_by: "2027-02-05"
+    source:
+      kind: "published"
+      publisher: "IND (Immigratie- en Naturalisatiedienst)"
+      title: "Required amounts income requirements"
+      url: "https://ind.nl/en/required-amounts-income-requirements"
+      retrieved: "2026-09-05"
+      quote: "The required amounts change every year on January 1"
+      also:
+        - publisher: "IND (Immigratie- en Naturalisatiedienst)"
+          title: "Required amounts income requirements"
+          url: "https://ind.nl/en/required-amounts-income-requirements"
+          retrieved: "2026-09-05"
+          quote: "The highly skilled migrant must meet the required amount that applies on the date of the application; The highly skilled migrant must then meet the required amount applicable on the date on which the employment contract with the new employer commences."
+        - publisher: "IND (Immigratie- en Naturalisatiedienst)"
+          title: "Highly skilled migrant"
+          url: "https://ind.nl/en/residence-permits/work/highly-skilled-migrant"
+          retrieved: "2026-09-05"
+          quote: "The agreed salary is in line with the market rate. In line with the market rate means that you earn the same as what people in the same job earn on average."
+          note: "Re-checked on the review date: this sentence is on the highly skilled migrant conditions page, NOT on the required-amounts page it was cited to. The claim was true and its citation was wrong, which is the failure a review is for."
+    why: |-
+      The posting states a band, not the statutory criterion the band has to clear, and the criterion
+      moves each year. Candidates negotiate as if only the employer's willingness matters, and
+      discover the interaction with the permit only when the offer is drafted — or when an internal
+      move to a new employer resets the test.
+  - id: "nl-expat-scheme-is-an-employer-filing"
+    text_en: |-
+      The tax break widely known by an old percentage nickname is administered by the Belastingdienst
+      under the name expatregeling, and it is not a benefit you claim on arrival. You and the employer
+      complete the request together, and it applies only once the Belastingdienst has issued a
+      decision (beschikking). That decision runs for a capped term, the employer must keep re-testing
+      the income norm while it runs, and moving to a new employer means the new employer and the
+      employee must file a fresh joint request. There is also a prior-residence condition attached
+      to the scheme's definition of an incoming employee, so not every internationally recruited
+      hire qualifies. The exempt percentage and the income thresholds are set per year, and a reduction
+      in the percentage together with a rise in the income norm is scheduled for the start of a
+      coming calendar year — but not yet final: it takes effect only if it passes both Houses. So
+      a rate quoted from an older source can already be wrong, and one quoted from the announcement
+      is not yet law. Read any net-pay figure quoted "with the expat ruling" as conditional until the decision
+      exists, ask whether this employer routinely files it, and check the Belastingdienst page
+      for the year your contract would start.
+    text_zh: |-
+      通常被以旧的百分比昵称称呼的这项税收优惠，荷兰税务局以 expatregeling（来荷雇员
+      优惠）之名管理，它不是你入职后自己去领的福利。必须由你和雇主共同填写申请，并且只有在税务局下
+      发正式决定 (beschikking) 之后才能适用。该决定有最长期限，期间雇主还要持续核验
+      收入门槛；换雇主时，新雇主要和你重新共同提出申请。此外，该制度对"来荷雇员"的定义还附带入职
+      前居住地条件，因此并非所有从境外招聘的人都符合。免税比例和收入门槛按年度设定；已宣布下调比例
+      并同时上调收入门槛，自某个未来自然年年初起算，但尚未最终确定——须先通过参众两院才生效。
+      所以从旧资料里抄来的比例可能已经不对，而从公告里抄来的也还不是法律。雇主报出的"含该优惠"的税后数字，在决定
+      书下来之前都只是条件性的；面试时可以直接问这家雇主是否惯例办理，并按你实际入职的年度到税务局
+      页面核对当年的比例和门槛。
+    applies_when: "Whenever a Netherlands offer is discussed in net-pay terms, or an employer mentions the expat ruling as part of the package."
+    added: "2026-08-09"
+    review_by: "2027-02-05"
+    source:
+      kind: "published"
+      publisher: "Belastingdienst"
+      title: "Voorwaarden voor de expatregeling"
+      url: "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/internationaal/personeel/u_bent_niet_in_nederland_gevestigd_loonheffingen_inhouden/als_u_loonheffingen_gaat_inhouden/extraterritoriale_kosten_en_de_30procentregeling/voorwaarden_voor_de_30procentregeling1/voorwaarden_voor_de_30procentregeling"
+      retrieved: "2026-08-09"
+      quote: "Wij hebben een beschikking afgegeven waaruit blijkt dat u van de expatregeling gebruik kunt maken."
+      note: "The exempt share and the income thresholds sit on the pages cited here and are deliberately not reproduced in the entry: they are set per year, an announced reduction is not yet final, and a figure copied into this table could not be kept current."
+      also:
+        - publisher: "Belastingdienst"
+          title: "Kan ik de expatregeling aanvragen als ik in Nederland kom werken?"
+          url: "https://www.belastingdienst.nl/wps/wcm/connect/nl/wonen-of-werken-buiten-nederland/content/ik-kom-in-nederland-werken-30-procent-regeling-aanvragen"
+          retrieved: "2026-08-09"
+          quote: "Voldoet u aan alle voorwaarden, vul het aanvraagformulier dan samen met uw werkgever in."
+        - publisher: "Belastingdienst"
+          title: "Beschikking: geldigheid en toetsen voorwaarden"
+          url: "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/internationaal/personeel/u_bent_niet_in_nederland_gevestigd_loonheffingen_inhouden/als_u_loonheffingen_gaat_inhouden/extraterritoriale_kosten_en_de_30procentregeling/voorwaarden_voor_de_30procentregeling1/beschikking_geldigheid_en_toetsen_voorwaarden"
+          retrieved: "2026-08-09"
+          quote: "De nieuwe werkgever moet dan samen met de werknemer een nieuw verzoek indienen; U moet tijdens de looptijd van de beschikking toetsen of de werknemer nog aan de inkomensnorm voldoet."
+        - publisher: "Belastingdienst"
+          title: "Definitie ingekomen werknemer"
+          url: "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/internationaal/personeel/u_bent_niet_in_nederland_gevestigd_loonheffingen_inhouden/als_u_loonheffingen_gaat_inhouden/extraterritoriale_kosten_en_de_30procentregeling/voorwaarden_voor_de_30procentregeling1/definitie_ingekomen_werknemer"
+          retrieved: "2026-08-09"
+        - publisher: "Business.gov.nl (Netherlands government information for entrepreneurs)"
+          title: "30% ruling: compensation for expats down to 27%"
+          url: "https://business.gov.nl/amendments/30-percent-ruling-compensation-down-to-27-percent/"
+          retrieved: "2026-08-09"
+          retrieved: "2026-09-05"
+          quote: "From 1 January 2027 you may pay your employee a maximum of 27% of their wages tax-free.; The effective date of this measure is not yet final. Entry into force is subject to its passing through the Lower and Upper Houses."
+    why: |-
+      Recruiters quote take-home pay "with the expat ruling" as if it were automatic, and the scheme
+      has been renamed and repeatedly amended, so second-hand descriptions go stale fast. Nothing
+      in a posting says whether the employer files these requests as a matter of course, whether
+      a prior period in the Netherlands affects eligibility, or that a later job change restarts
+      the process.
+  - id: "nl-sector-agreement-sets-the-band"
+    text_en: |-
+      The salary band may not be the employer's to move. In the Netherlands a collective labour
+      agreement (CAO) can fix pay and other terms for the role, and where the CAO and the individual
+      employment contract contradict each other, the CAO prevails. An employer can be bound to
+      a sector CAO without belonging to the employers' organisation that negotiated it, because
+      the Ministry of Social Affairs and Employment can declare a CAO generally binding for the
+      sector (algemeen verbindend verklaard, AVV). Find out which CAO covers the job, and read
+      the scale, before you name a number — then ask the employer directly which parts of the package
+      it still controls.
+    text_zh: |-
+      薪资区间未必由雇主说了算。在荷兰，集体劳动协议 (CAO) 可以规定该岗位的工资和其他条件；
+      当 CAO 与个人劳动合同冲突时，以 CAO 为准。即使雇主不是签订该 CAO 的雇主协会成
+      员，社会事务与就业部也可以宣布该 CAO 对整个行业"普遍适用"(algemeen verbindend
+      verklaard, AVV)，雇主同样必须执行。报价之前先弄清这份工作归哪个 CAO、并读
+      一下工资表，然后直接问雇主：待遇里还有哪些部分是他们能决定的。
+    applies_when: "Before any salary discussion for a Netherlands role. Whether a CAO covers the job is checkable per employer and sector through the government lookups cited below — check, rather than inferring from the sector."
+    added: "2026-08-09"
+    review_by: "2027-02-09"
+    source:
+      kind: "published"
+      publisher: "Business.gov.nl (Netherlands government information for entrepreneurs)"
+      title: "CAO: Collective Labour Agreement"
+      url: "https://business.gov.nl/regulations/cao/"
+      retrieved: "2026-08-09"
+      quote: "If the CAO and an employment contract contradict each other, the CAO prevails"
+      also:
+        - publisher: "Business.gov.nl (Netherlands government information for entrepreneurs)"
+          title: "CAO: Collective Labour Agreement"
+          url: "https://business.gov.nl/regulations/cao/"
+          retrieved: "2026-08-09"
+          quote: "algemeen verbindend verklaard, AVV"
+    why: |-
+      A posting says "competitive salary" or gives a band; it does not say that a sector-wide agreement,
+      possibly extended to the employer by ministerial decree, already sets the scale and overrides
+      the contract. Candidates then negotiate hard against a number nobody in the room is allowed
+      to change, and miss the negotiation that is actually available: which scale and which step.
+  - id: "nl-motivation-letter-is-scored"
+    text_en: |-
+      For qualified and highly qualified positions the letter is a selection instrument, not a
+      cover note. EURES's Netherlands guidance says that for jobs at a qualified and highly qualified
+      level an application letter with a CV is the standard procedure, that motivation is one of
+      the most important selection criteria for Dutch employers, and that the letter should set
+      out why you are applying, then why you are suitable and motivated, then ask for an interview.
+      It also says the letter is expected in Dutch unless the employer indicates otherwise, that
+      unsolicited applications are very common, and that it is not uncommon to phone a company
+      beforehand provided you have prepared clear questions first. Write to that structure and
+      to this employer, rather than reusing the same letter across employers.
+    text_zh: |-
+      对中高级岗位而言，求职信是选拔工具，不是附言。欧盟 EURES 的荷兰指南写明：中高级岗位的
+      标准投递方式是求职信＋简历；动机是荷兰雇主最重要的筛选标准之一；信里应先说明你为什么应聘，再
+      说明你为什么合适、为什么有动力，最后请求面谈。指南还说明：除非雇主另有说明，求职信默认用荷兰
+      语写；主动投递（未招聘岗位的自荐）在荷兰非常普遍；事先打电话给公司也不算稀奇，前提是你先准备
+      好了明确的问题。请照这个结构、针对这家雇主来写，而不是把同样的信重复投给多家。
+    applies_when: "Any qualified or highly qualified application in the Netherlands."
+    added: "2026-08-09"
+    review_by: "2027-02-09"
+    source:
+      kind: "published"
+      publisher: "EURES (EURopean Employment Services, European Commission)"
+      title: "Living and working conditions: Netherlands"
+      url: "https://eures.europa.eu/living-and-working/living-and-working-conditions/living-and-working-conditions-netherlands_en"
+      retrieved: "2026-08-09"
+      quote: "it is not uncommon to phone a company beforehand; however, make sure you have first prepared a number of clear questions"
+      note: "EURES country guidance is descriptive European Commission material about customary practice, not a legal rule."
+      also:
+        - publisher: "EURES (EURopean Employment Services, European Commission)"
+          title: "Living and working conditions: Netherlands"
+          url: "https://eures.europa.eu/living-and-working/living-and-working-conditions/living-and-working-conditions-netherlands_en"
+          retrieved: "2026-08-09"
+          quote: "for jobs at a qualified and highly qualified level, an application letter with a CV is the standard procedure"
+        - publisher: "EURES (EURopean Employment Services, European Commission)"
+          title: "Living and working conditions: Netherlands"
+          url: "https://eures.europa.eu/living-and-working/living-and-working-conditions/living-and-working-conditions-netherlands_en"
+          retrieved: "2026-08-09"
+          quote: "motivation is one of the most important selection criteria for Dutch employers"
+        - publisher: "EURES (EURopean Employment Services, European Commission)"
+          title: "Living and working conditions: Netherlands"
+          url: "https://eures.europa.eu/living-and-working/living-and-working-conditions/living-and-working-conditions-netherlands_en"
+          retrieved: "2026-08-09"
+          quote: "Unsolicited ('on-spec') job applications are very common in the Netherlands"
+    why: |-
+      Postings say "send your CV and a short motivation", which reads like a formality in markets
+      where the CV carries the decision. It does not say that the letter is weighted as a primary
+      criterion, that a Dutch-language letter is the default unless stated otherwise, or that calling
+      ahead is culturally acceptable rather than pushy.
+  - id: "nl-language-requirement-must-be-justified"
+    text_en: |-
+      A language requirement in a Dutch vacancy can be challenged, which makes it a fair thing
+      to ask about. The Netherlands Institute for Human Rights examined a vacancy for a lecturer
+      post that demanded excellent communication skills in both Dutch and English. It applied the
+      test that indirect discrimination is not prohibited where it is objectively justified by
+      a legitimate aim and the means of achieving it are appropriate and necessary; it accepted
+      the employer's aim as legitimate, and still found that demanding excellent proficiency in
+      both languages was not necessary for that role. Its opinions are authoritative but not legally
+      binding, and that opinion does not tell you how any other employer means its language line.
+      So ask early which specific parts of the work run in Dutch — customers, colleagues, suppliers,
+      documentation — instead of guessing whether the line is decorative or disqualifying.
+    text_zh: |-
+      荷兰招聘广告里的语言要求是可以被质疑的，所以直接问它是合理的。荷兰人权研究所曾审查一则高校讲
+      师岗位的招聘广告，其要求"荷兰语和英语都具备出色沟通能力"。研究所适用的检验标准是：间接区别
+      对待若具备正当目的、且实现该目的的手段适当且必要，则不被禁止；它认可雇主的目的正当，但仍认定
+      "两种语言都要出色"对该岗位并非必要。该机构的裁定具有权威性但不具法律约束力，而且这一份裁定
+      并不能告诉你其他雇主的语言要求是什么意思。所以请尽早直接问：这份工作具体哪些部分要用荷兰语——客
+      户、同事、供应商，还是文档——而不是去猜那行字是摆设还是硬门槛。
+    applies_when: "Any Netherlands posting that mentions Dutch, whether as a requirement or as a preference."
+    added: "2026-08-09"
+    review_by: "2027-02-09"
+    source:
+      kind: "published"
+      publisher: "College voor de Rechten van de Mens (Netherlands Institute for Human Rights)"
+      title: "Oordeel 2022-55, 23 May 2022"
+      url: "https://oordelen.mensenrechten.nl/oordeel/2022-55"
+      retrieved: "2026-08-09"
+      quote: "Indirect onderscheid is niet verboden als dit objectief wordt gerechtvaardigd door een legitiem doel en de middelen voor het bereiken van dat doel passend en noodzakelijk zijn"
+      note: "The College's status is the reason this entry survives rather than being dropped: its opinions are authoritative and not legally binding, and the rendered text says so."
+      also:
+        - publisher: "College voor de Rechten van de Mens (Netherlands Institute for Human Rights)"
+          title: "Oordeel 2022-55, 23 May 2022"
+          url: "https://oordelen.mensenrechten.nl/oordeel/2022-55"
+          retrieved: "2026-08-09"
+          quote: "uitstekende communicatieve vaardigheden in zowel het Nederlands als het Engels"
+        - publisher: "College voor de Rechten van de Mens (Netherlands Institute for Human Rights)"
+          title: "Wat gebeurt er bij het aanvragen van een oordeel bij het College?"
+          url: "https://www.mensenrechten.nl/mensenrechten-voor-jou/discriminatie-en-gelijke-behandeling/discriminatieklachten-en-verzoek"
+          retrieved: "2026-08-09"
+          quote: "Een oordeel van het College is niet juridisch bindend, maar wel gezaghebbend; De rechter moet rekening houden met het oordeel van het College."
+    why: |-
+      A posting gives the language line and no reasoning behind it, so candidates either self-reject
+      on a preference or over-invest in convincing an employer that a hard requirement is negotiable.
+      That there is a published legal standard the requirement has to meet — and therefore a fair,
+      specific question to ask about it — is invisible from the posting.
+  - id: "nl-references-only-with-prior-permission"
+    text_en: |-
+      References are taken with your prior permission, not quietly in the background. The NVP Sollicitatiecode
+      — the Dutch recruitment code of conduct, drawn up in consultation with the Stichting van
+      de Arbeid — provides that where a reference is requested from third parties, or further investigation
+      is necessary, the organisation must ask the applicant for permission in advance, unless permission
+      is not required by law or further regulation. The same code says a mandatory background check,
+      where it applies, belongs in the recruitment profile the organisation draws up for the role,
+      and that information obtained via the internet or social media must, if relevant, be discussed
+      with you with the source explicitly named and with an opportunity to respond. So line up
+      referees before you need them, expect to be asked, and remember the permission is yours to
+      give — you can withhold it for a current employer. The code is a self-regulatory code of
+      conduct with its own complaints body, not a statute: it sets a norm, not an enforceable right.
+    text_zh: |-
+      向第三方索取推荐意见必须事先得到你的同意，不会在背后悄悄做。荷兰招聘行为准则 NVP Sollicitatiecode（
+      与劳动基金会 Stichting van de Arbeid 协商制定）规定：向第三方索取推
+      荐意见、或需要进一步调查时，必须事先征得求职者同意——除非法律或相关法规规定无需征得同意。同
+      一准则还规定：若该岗位存在强制性的背景调查，应写入招聘方为该岗位制定的招聘画像 (wervingsprofiel)；
+      通过互联网或社交媒体获得的信息，如与岗位相关，必须注明来源与你讨论，并给你回应的机会。所以：
+      提前备好推荐人，预期会被征询；同意权在你手上，你可以不同意联系现任雇主。请注意该准则是带投诉
+      机构的行业自律准则，不是法律：它确立的是规范，不是可强制执行的权利。
+    applies_when: "From the point an application reaches later interview rounds in the Netherlands, and whenever an employer or agency asks for referee details."
+    added: "2026-08-09"
+    review_by: "2027-08-09"
+    source:
+      kind: "published"
+      publisher: "NVP (Nederlandse Vereniging voor Personeelsmanagement & Organisatieontwikkeling / HR-netwerk in Nederland)"
+      title: "DE NVP SOLLICITATIECODE — DÉ GEDRAGSCODE VOOR WERVING & SELECTIE, January 2020 edition, clause 4.1"
+      url: "https://www.nvp-hrnetwerk.nl/l/library/download/urn:uuid:bb536fcf-2705-4f57-ae81-076d2b0620be/10062020_nvp_3-luik+folder+sollicitatiecode_defwebnl+(1).pdf"
+      retrieved: "2026-08-09"
+      quote: "Indien een referentie wordt opgevraagd bij derden of indien nader onderzoek noodzakelijk is, wordt daartoe aan de sollicitant vooraf om toestemming gevraagd, tenzij deze toestemming op grond van de wet of nadere regelgeving niet vereist is."
+      note: "A self-regulatory code of conduct with its own complaints body (Klachteninstantie Sollicitatiecode), not a statute. The background-check sentence rests on the recruitment-profile clause cited here, not on the vacancy-wording clause it was originally attached to."
+      also:
+        - publisher: "NVP (Nederlandse Vereniging voor Personeelsmanagement & Organisatieontwikkeling / HR-netwerk in Nederland)"
+          title: "DE NVP SOLLICITATIECODE, January 2020 edition, clause 4.1"
+          url: "https://www.nvp-hrnetwerk.nl/l/library/download/urn:uuid:bb536fcf-2705-4f57-ae81-076d2b0620be/10062020_nvp_3-luik+folder+sollicitatiecode_defwebnl+(1).pdf"
+          retrieved: "2026-08-09"
+          quote: "De verkregen openbare informatie zal, indien relevant, met de sollicitant worden besproken, met uitdrukkelijke vermelding van de bron. De sollicitant wordt in de gelegenheid gesteld hierop te reageren."
+        - publisher: "NVP (Nederlandse Vereniging voor Personeelsmanagement & Organisatieontwikkeling / HR-netwerk in Nederland)"
+          title: "DE NVP SOLLICITATIECODE, January 2020 edition, clause 2.3"
+          url: "https://www.nvp-hrnetwerk.nl/l/library/download/urn:uuid:bb536fcf-2705-4f57-ae81-076d2b0620be/10062020_nvp_3-luik+folder+sollicitatiecode_defwebnl+(1).pdf"
+          retrieved: "2026-08-09"
+          quote: "indien van toepassing: … en/of een verplicht antecedentenonderzoek"
+        - publisher: "NVP (Nederlandse Vereniging voor Personeelsmanagement & Organisatieontwikkeling / HR-netwerk in Nederland)"
+          title: "DE NVP SOLLICITATIECODE, January 2020 edition, first page"
+          url: "https://www.nvp-hrnetwerk.nl/l/library/download/urn:uuid:bb536fcf-2705-4f57-ae81-076d2b0620be/10062020_nvp_3-luik+folder+sollicitatiecode_defwebnl+(1).pdf"
+          retrieved: "2026-08-09"
+          quote: "De code is opgesteld in overleg met de Stichting van de Arbeid"
+    why: |-
+      Postings never describe the screening step. Candidates either volunteer referees far too
+      early, or assume — from markets where quiet back-channel checks are routine — that a current
+      employer may be contacted without warning, and so avoid applying while employed.
+  - id: "nl-pay-range-not-pay-history"
+    text_en: |-
+      Pay history is not supposed to be the anchor here. The NVP Sollicitatiecode states as a founding
+      principle that no payslip from a current or previous employer may be demanded of an applicant.
+      On the EU layer, the EU pay-transparency directive gives applicants a right to receive from
+      the prospective employer the initial pay or its range for the position, based on objective,
+      gender-neutral criteria, together with the relevant provisions of any applicable collective
+      agreement, and provides that an employer shall not ask applicants about their pay history.
+      That right reaches you through national implementing law, and implementation is uneven across
+      member states — the directive's transposition deadline had already passed while the Dutch
+      implementing bill was still before the Tweede Kamer, so check the current national position
+      rather than assuming the right is in force. Practically: ask for the range and the applicable
+      collective-agreement scale, and treat a payslip request as something you may decline.
+    text_zh: |-
+      在这里，过往薪资不应成为定价锚点。荷兰招聘行为准则 NVP Sollicitatiecode 在
+      其基本原则中明确规定：不得要求求职者提供现任或前任雇主的工资单。在欧盟层面，欧盟薪酬透明指令 赋
+      予求职者向潜在雇主索取该岗位起薪或薪资区间（依据客观、性别中立的标准）以及适用集体协议相关条
+      款的权利，并规定雇主不得询问求职者的薪资历史。该权利需通过各国国内立法落地，而各成员国进度不
+      一——该指令的转化期限已过，而荷兰的实施法案当时仍在众议院 (Tweede Kamer) 审
+      议，因此请核对当下的国内法状态，不要假定该权利已生效。实务上：主动索要薪资区间和适用的集体协
+      议工资级别；被要求提供工资单时，你可以拒绝。
+    applies_when: "At first recruiter contact and at every pay discussion in the Netherlands. The payslip rule is a Netherlands-specific self-regulatory norm; the EU directive layer applies across EU member states via national implementing law — do not assume it for non-EU EEA states without checking."
+    added: "2026-08-09"
+    review_by: "2027-01-15"
+    protected_trait_note: "The quoted right requires the initial pay or its range to rest on objective, gender-neutral criteria. The trait names the standard the EMPLOYER's criteria must meet inside a quoted legal test, not an attribute of the reader; dropping it would misquote the very right this entry exists to point at."
+    source:
+      kind: "published"
+      publisher: "NVP (Nederlandse Vereniging voor Personeelsmanagement & Organisatieontwikkeling / HR-netwerk in Nederland)"
+      title: "DE NVP SOLLICITATIECODE, January 2020 edition, clause 1.1"
+      url: "https://www.nvp-hrnetwerk.nl/l/library/download/urn:uuid:bb536fcf-2705-4f57-ae81-076d2b0620be/10062020_nvp_3-luik+folder+sollicitatiecode_defwebnl+(1).pdf"
+      retrieved: "2026-08-09"
+      quote: "van de sollicitant wordt geen salarisstrook van de huidige of vorige werkgever verlangd"
+      note: "The directive's own transposition deadline had passed by the retrieval date while the Dutch bill was still in parliament, which is why the entry tells the reader to check the national position rather than assuming the right is in force."
+      also:
+        - publisher: "EUR-Lex (Publications Office of the European Union)"
+          title: "Directive (EU) 2023/970 of the European Parliament and of the Council of 10 May 2023 to strengthen the application of the principle of equal pay for equal work or work of equal value between men and women through pay transparency and enforcement mechanisms, Article 5"
+          url: "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32023L0970"
+          retrieved: "2026-08-09"
+          quote: "Applicants for employment shall have the right to receive, from the prospective employer, information about: (a) the initial pay or its range, based on objective, gender-neutral criteria, to be attributed for the position concerned; and (b) where applicable, the relevant provisions of the collective agreement applied by the employer in relation to the position"
+        - publisher: "EUR-Lex (Publications Office of the European Union)"
+          title: "Directive (EU) 2023/970 of the European Parliament and of the Council of 10 May 2023 to strengthen the application of the principle of equal pay for equal work or work of equal value between men and women through pay transparency and enforcement mechanisms, Article 5 and Article 34"
+          url: "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32023L0970"
+          retrieved: "2026-08-09"
+          quote: "an employer shall not ask applicants about their pay history during their current or previous employment relationships; Member States shall bring into force the laws, regulations and administrative provisions necessary to comply with this Directive by 7 June 2026."
+        - publisher: "Overheid.nl Wetgevingskalender"
+          title: "Implementatie richtlijn loontransparantie"
+          url: "https://wetgevingskalender.overheid.nl/Regeling/WGK025384"
+          retrieved: "2026-08-09"
+          retrieved: "2026-09-05"
+          quote: "Wetsvoorstel ingediend bij Tweede Kamer; Nota n.a.v. verslag"
+          note: "Re-checked on the review date: still before the Tweede Kamer, and still moving — the most recent step on the calendar was three days before this check. Neither chamber has passed it."
+    why: |-
+      Recruiters in many markets open with "what are you on now?", and a candidate coming from
+      such a market answers it reflexively and anchors themselves. Neither the Dutch recruitment
+      code's payslip rule nor the EU right to a pay range appears in any posting, and the national
+      implementation state is exactly the kind of thing that is impossible to infer from the vacancy.
+  - id: "nl-regulated-profession-needs-formal-recognition"
+    text_en: |-
+      If the role is a regulated profession, a diploma evaluation is not the thing that unlocks
+      it. Business.gov.nl separates the credential evaluation from the recognition: having a foreign
+      diploma evaluated by the Information centre for credential evaluation (IDW) is, in its words,
+      not required, whereas you apply for recognition of your professional qualifications with
+      the competent authority for your profession — and only people who meet the requirements are
+      allowed to work in a regulated profession. The same page points to the European Union's Regulated
+      Professions Database for which professions are regulated in the Netherlands, and to Nuffic's
+      National Contact Point for the status of a foreign diploma. So find the competent authority
+      and what its procedure requires before you rely on any start date: no amount of employer
+      goodwill substitutes for the recognition.
+    text_zh: |-
+      如果岗位属于"受管制职业"(regulated profession)，学历认证并不等于执业
+      资格。荷兰官方 Business.gov.nl 把学历评估和资格承认分开：把国外文凭交给学历
+      评估机构 IDW 评估，按其原话是"并非必需"；而要执业，你需要向该职业的主管机构申请对你专
+      业资格的正式承认——因为只有符合要求的人才被允许从事受管制职业。同一页面指向欧盟 Regulated
+      Professions Database 查询荷兰哪些职业受管制，并指向 Nuffic 的国
+      家联络点了解国外文凭在荷兰的地位。所以请先找到主管机构、弄清其程序要求，再去承诺任何入职日期
+      ：雇主再有诚意也替代不了这项承认。
+    applies_when: "Applying to a role in a regulated profession in the Netherlands (and, with its own competent authorities, elsewhere in the EU/EEA) — for example healthcare professions, teaching, and other professions listed in the EU Regulated Professions Database."
+    added: "2026-08-09"
+    review_by: "2027-08-09"
+    source:
+      kind: "published"
+      publisher: "Business.gov.nl (Netherlands government information for entrepreneurs)"
+      title: "Professional qualifications and diplomas"
+      url: "https://business.gov.nl/regulations/professional-qualifications/"
+      retrieved: "2026-08-09"
+      quote: "Only people who meet the requirements are allowed to work in a regulated profession"
+      also:
+        - publisher: "Business.gov.nl (Netherlands government information for entrepreneurs)"
+          title: "Professional qualifications and diplomas"
+          url: "https://business.gov.nl/regulations/professional-qualifications/"
+          retrieved: "2026-08-09"
+          quote: "You can have your foreign diploma or certificate evaluated by the Information centre for credential evaluation (IDW), but this is not required"
+        - publisher: "Business.gov.nl (Netherlands government information for entrepreneurs)"
+          title: "Professional qualifications and diplomas"
+          url: "https://business.gov.nl/regulations/professional-qualifications/"
+          retrieved: "2026-08-09"
+          quote: "You apply for recognition of your professional qualifications with the competent authority for your profession."
+        - publisher: "Business.gov.nl (Netherlands government information for entrepreneurs)"
+          title: "Professional qualifications and diplomas"
+          url: "https://business.gov.nl/regulations/professional-qualifications/"
+          retrieved: "2026-08-09"
+          quote: "You can find all regulated professions in the Netherlands in the European Union's Regulated Professions Database"
+    why: |-
+      A posting names the qualification it wants and sometimes the register, but not the sequence,
+      the authority, or the fact that a paid diploma evaluation — the thing candidates most often
+      buy first — is the wrong instrument and confers nothing. The delay is discovered after the
+      offer, when it is most expensive.
+
+# The lint reports WARN_UNVERIFIED_OVERLAP on seven of the notes below. Each was read
+# against its entry side by side before this file was committed, and in every case the
+# shared words sit in the half of the note that records what WAS sourced, not in what it
+# disclaims. The disclaimed claims are all absent from the rendered text: no informal
+# language shift or promotion-time hardening (note one), no reference-timing or
+# after-the-offer framing (note two), no scale-step negotiation lever and no figures
+# (note three), no claim that the Dutch right is in force (note four), no half-yearly
+# indexation (note five), no labour-market-test exemption for the highly skilled migrant
+# route (note six — the work-permit sentence in the text is about the orientation year
+# permit and is sourced), and no register-coverage claim (note eight). The threshold is
+# a shared-vocabulary count, so a long note that names its own entry trips it; that is
+# the hint doing its job, and softening a note to silence it would delete a disclaimer.
+unverified:
+  - note: "What \"Dutch is a plus\" means socially and day-to-day inside a team. Only the legal test is sourced (College voor de Rechten van de Mens, Oordeel 2022-55: an unjustified Dutch-language demand in a vacancy was prohibited indirect discrimination). I found no source for the common practical claims — that meetings switch to Dutch informally, that lunch and corridor conversation are Dutch, that \"a plus\" hardens into a requirement at promotion time, or that it is expected you will start learning. Do not state any of those as fact."
+    disclaims: [nl-language-requirement-must-be-justified]
+      # Read side by side on 2026-08-10: the shared words sit in the half of the note
+      # recording what WAS sourced, and the claim it disclaims is absent from the text.
+      # Self-revoking — if the overlap changes, the lint asks for the review again.
+    overlap_reviewed: [discrimination, indirect, language, prohibited, requirement, vacancy]
+  - note: "Timing of reference checks relative to a verbal or written offer. The code establishes the prior-permission rule; it does not say references are contacted only after an offer. The claim in the conventions table is limited to what the code supports (permission first, and permission is yours to withhold)."
+    disclaims: [nl-references-only-with-prior-permission]
+      # Read side by side on 2026-08-10: the shared words sit in the half of the note
+      # recording what WAS sourced, and the claim it disclaims is absent from the text.
+      # Self-revoking — if the overlap changes, the lint asks for the review again.
+    overlap_reviewed: [permission, reference, references, withhold]
+  - note: "Salary negotiation norms: whether an initial offer is expected to be negotiated, typical uplift, whether CAO-bound employers negotiate scale step in practice. Not sourced. No figures of any kind should be attached to this market."
+    disclaims: [nl-sector-agreement-sets-the-band]
+      # Read side by side on 2026-08-10: the shared words sit in the half of the note
+      # recording what WAS sourced, and the claim it disclaims is absent from the text.
+      # Self-revoking — if the overlap changes, the lint asks for the review again.
+    overlap_reviewed: [employers, negotiated, salary]
+  - note: "Dutch implementation of the EU pay transparency directive. Verified: the bill was submitted to the Tweede Kamer on 21-05-2026 and was still in parliament per the Overheid.nl Wetgevingskalender as retrieved 2026-08-09. NOT verified: its final content, commencement date, or whether the applicant-facing rights (pay range before negotiation, no pay-history question) survive unchanged into Dutch law. Anything downstream of this must say \"check the current national position\"."
+    disclaims: [nl-pay-range-not-pay-history]
+      # Read side by side on 2026-08-10: the shared words sit in the half of the note
+      # recording what WAS sourced, and the claim it disclaims is absent from the text.
+      # Self-revoking — if the overlap changes, the lint asks for the review again.
+    overlap_reviewed: [applicant, before, current, directive, history, implementation, national, position, transparency, tweede]
+  - note: "Half-yearly indexation of IND required amounts. A search snippet suggested amounts are adjusted on 1 January and 1 July; the IND page I actually fetched says only that \"The required amounts change every year on January 1\". The convention entry therefore says \"annually\" and nothing more."
+    disclaims: [nl-salary-criterion-reset-annually]
+      # Read side by side on 2026-08-10: the shared words sit in the half of the note
+      # recording what WAS sourced, and the claim it disclaims is absent from the text.
+      # Self-revoking — if the overlap changes, the lint asks for the review again.
+    overlap_reviewed: [amounts, annually, change, required]
+  - note: "Whether the highly skilled migrant route exempts the employer from a labour market test / work permit (TWV). Frequently asserted elsewhere; neither IND page I fetched states it, so it is deliberately absent from this entry."
+    disclaims: [nl-recognised-sponsor-gate]
+      # Read side by side on 2026-08-10: the shared words sit in the half of the note
+      # recording what WAS sourced, and the claim it disclaims is absent from the text.
+      # Self-revoking — if the overlap changes, the lint asks for the review again.
+    overlap_reviewed: [employer, highly, migrant, permit, skilled, whether]
+  - note: "The EU Blue Card as an alternative route, and intra-EU mobility under it. Not researched, not sourced, deliberately omitted rather than described from memory."
+    disclaims: [nl-recognised-sponsor-gate]
+  - note: "Recognised-sponsor register coverage. The register is published and monthly-updated (sourced), but I did not verify what proportion of employers appear in it, nor how quickly a newly recognised employer shows up beyond the page's own note to \"check if your organisation has been added after the next update\". No coverage claim should be made."
+    disclaims: [nl-recognised-sponsor-gate]
+      # Read side by side on 2026-08-10: the shared words sit in the half of the note
+      # recording what WAS sourced, and the claim it disclaims is absent from the text.
+      # Self-revoking — if the overlap changes, the lint asks for the review again.
+    overlap_reviewed: [employer, recognised, register, sponsor]

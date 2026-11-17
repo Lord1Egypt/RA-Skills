@@ -1,51 +1,69 @@
-## Description: <br>
-Faces helps an agent create, compile, compare, compose, and chat through persona-like Faces using the Faces CLI and Faces Platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to create, compile, or chat through a Face, compose personas with boolean formulas, compare minds by semantic similarity, import YouTube videos into a Face, or manage their Faces Platform account.
 
-## Publisher: <br>
-[sybileak](https://clawhub.ai/user/sybileak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sybileak](https://clawhub.ai/user/sybileak)
 
-## Use Case: <br>
-External users and developers use this skill to operate the Faces CLI for account setup, persona creation, source compilation, chat, semantic comparison, boolean composition, billing, and API-key workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send source material, persona attributes, and chat content to the Faces service. <br>
-Mitigation: Use it only when the user intends to share that content, and avoid uploading confidential or third-party material without consent. <br>
-Risk: Persona creation can involve sensitive personal data, including demographic attributes and uploaded documents. <br>
-Mitigation: Minimize sensitive data collection and do not provide government identifiers such as SSNs or tax IDs. <br>
-Risk: Authentication examples include account credentials and API keys. <br>
-Mitigation: Prefer scoped API keys with budgets and expiry, and avoid typing real passwords directly into reusable command-line examples. <br>
-Risk: Registration, compilation, inference, and subscription workflows can incur charges. <br>
-Mitigation: Confirm paid actions with the user, review plan terms, and check balances, quotas, and budgets before use. <br>
+## Use Case:
 
+External users and developers use Faces to create and manage persona-like Faces from source materials, compile documents or transcripts, chat through those personas, compare semantic similarity, compose Faces with boolean formulas, and manage account credentials, billing, quotas, and API keys.
 
-## Reference(s): <br>
-- [Quickstart](references/QUICKSTART.md) <br>
-- [Full command reference](references/REFERENCE.md) <br>
-- [Authentication & Registration](references/AUTH.md) <br>
-- [What is Faces](references/CONCEPTS.md) <br>
-- [Instruction Scope](references/SCOPE.md) <br>
-- [Face Templates](references/TEMPLATES.md) <br>
-- [Accepted Attribute Keys](references/ATTRIBUTES.md) <br>
-- [OAuth - Connect ChatGPT](references/OAUTH.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON-aware CLI output handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the faces CLI, Faces Platform credentials, and internet access to api.faces.sh or the configured FACES_BASE_URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.5 (source: server release metadata) <br>
+Risk: The skill may send selected documents, transcripts, prompts, profile attributes, and account operations to the Faces Platform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm each upload or import with the user and avoid submitting passwords, API keys, SSNs, tax IDs, private addresses, or third-party personal data.
+
+Risk: The skill can use account credentials and API keys for authenticated Faces Platform operations.
+
+Mitigation: Prefer scoped, expiring API keys with budget limits over long-lived account credentials, and store credentials only through documented faces CLI configuration paths.
+
+Risk: The CLI can perform billing, checkout, subscription, quota, and paid token-usage operations.
+
+Mitigation: Require the human to complete payment or checkout steps in a browser and verify plan, balance, quota, and usage before running cost-incurring operations.
+
+Risk: The security scan verdict is suspicious and notes under-disclosed or overbroad behavior around credentials, uploads, billing, OAuth, and persistent persona data.
+
+Mitigation: Review the skill carefully before installing, verify the exact faces-cli package version and publisher, and disable or review local catalog persistence when privacy-sensitive.
+
+## Reference(s):
+
+- [Faces Skill on ClawHub](https://clawhub.ai/sybileak/skills/faces)
+- [Quickstart](references/QUICKSTART.md)
+- [Full command reference](references/REFERENCE.md)
+- [Authentication & Registration](references/AUTH.md)
+- [What is Faces](references/CONCEPTS.md)
+- [OAuth - Connect ChatGPT](references/OAUTH.md)
+- [Face Templates](references/TEMPLATES.md)
+- [Accepted Attribute Keys](references/ATTRIBUTES.md)
+- [Instruction Scope](references/SCOPE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands commonly require the faces CLI, internet access, and a JWT or FACES_API_KEY; --json is used when structured command output is needed.]
+
+## Skill Version(s):
+
+1.6.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

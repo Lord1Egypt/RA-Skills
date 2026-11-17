@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "jarvis-smart-route",
+  "name": "Jarvis Smart Route",
+  "version": "1.0.0",
+  "description": "Opt-in non-custodial best-execution route builder for exact-input Base swaps.",
+  "entrypoint": "scripts/route.mjs",
+  "endpoint": "https://jarvis-orderflow-router.yl124915300.workers.dev/v1/route",
+  "providers": ["0x", "OKX"],
+  "supportedTokens": ["USDC", "WETH", "DAI"],
+  "amountFormat": "human_decimal_exact_input",
+  "output": ["NO_MONETIZABLE_ROUTE", "unsigned_transaction"],
+  "hostExecutionTool": "send_calls",
+  "custody": false,
+  "signs": false,
+  "broadcasts": false,
+  "paysGas": false,
+  "buyerApprovalRequired": true
+}

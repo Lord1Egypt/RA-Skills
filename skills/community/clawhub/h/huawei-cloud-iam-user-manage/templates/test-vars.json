@@ -1,0 +1,88 @@
+{
+  "skill_name": "huawei-cloud-iam-user-manage",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "create-user dry-run (plan only, offline)",
+      "command": "python3 scripts/iam_user_manage.py create-user --name hwtest-demo --description demo --dry-run",
+      "expected": "JSON/text plan with name/enabled, no mutation",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-02",
+      "name": "authorize dry-run (plan only, offline)",
+      "command": "python3 scripts/iam_user_manage.py authorize --user-name hwtest-demo --group-name demo-group --policy-name ReadOnlyAccess --dry-run",
+      "expected": "JSON/text plan with the target group/policies",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-03",
+      "name": "create-user invalid name (validation)",
+      "command": "python3 scripts/iam_user_manage.py create-user --name 1demo --dry-run",
+      "expected": "exit 2 with 参数校验失败 (leading digit rejected)",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-04",
+      "name": "list-users (read-only)",
+      "command": "python3 scripts/iam_user_manage.py list-users --json",
+      "expected": "JSON list of IAM users or empty",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-05",
+      "name": "list-groups (read-only)",
+      "command": "python3 scripts/iam_user_manage.py list-groups --json",
+      "expected": "JSON list of IAM user groups or empty",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-06",
+      "name": "list-policies (read-only)",
+      "command": "python3 scripts/iam_user_manage.py list-policies --json",
+      "expected": "JSON list of identity policies or empty",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-07",
+      "name": "own-script help: iam_user_manage.py",
+      "command": "python3 $PWD/scripts/iam_user_manage.py --help",
+      "expected": "usage text listing all subcommands",
+      "type": "syntax",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-08",
+      "name": "own-script help: ensure_env.py",
+      "command": "python3 $PWD/scripts/ensure_env.py --help",
+      "expected": "usage text",
+      "type": "syntax",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-09",
+      "name": "own-script syntax: ensure_cli.sh",
+      "command": "bash -n $PWD/scripts/ensure_cli.sh",
+      "expected": "no syntax errors",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-10",
+      "name": "own-script syntax: install_cli.sh",
+      "command": "bash -n $PWD/scripts/install_cli.sh",
+      "expected": "no syntax errors",
+      "type": "syntax",
+      "executor": "cli"
+    }
+  ],
+  "env_vars_required": ["HUAWEI_ACCESS_KEY", "HUAWEI_SECRET_KEY"],
+  "notes": "Read-only and syntax cases only. Live KooCLI calls (hcloud IAM ListUsersV5 / ListGroupsV5 / ListPoliciesV5) are documented in SKILL.md and executed by the QA stage with a real backend/credentials. Mutating operations (CreateUserV5 / AddUserToGroupV5 / AttachUserPolicyV5) require --confirm and are exercised offline with the fake backend under tests/, never live during skill development."
+}

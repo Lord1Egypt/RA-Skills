@@ -1,0 +1,208 @@
+{
+  "_meta": {
+    "name": "discipline_tool_stack",
+    "version": "8.2.0-aipc",
+    "module": "module-h-s-discipline-ai",
+    "section": "S2 学科 × AI 工具栈",
+    "last_updated": "2026-08-24"
+  },
+  "description": "5 项目 × 29 专业 × 工具栈（主工具 + 辅助工具 + 实验工具 + 本地工具）",
+  "tool_stack_template": {
+    "main": "主工具（学科核心 AI 工具）",
+    "aux": "辅助工具（跨场景支持）",
+    "experimental": "实验工具（前沿探索）",
+    "local": "本地工具（零上传隐私保护）"
+  },
+  "stacks": {
+    "CM+AIM": {
+      "main": ["AIGC (Kimi/Qwen3/智谱清言)", "p5.js + p5.sound", "Stable Diffusion"],
+      "aux": ["Runway", "Pika"],
+      "experimental": ["AI 视频生成"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "CM+GD": {
+      "main": ["DeepSeek (Cline 辅助编码)", "NeRF", "3D Gaussian Splatting", "Blender"],
+      "aux": ["p5.js (游戏原型)", "MeshLab"],
+      "experimental": ["Unreal Engine MetaHuman"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "CM+MAD": {
+      "main": ["AIGC 工作流", "p5.js (GD3113 创意可视化)", "NeRF"],
+      "aux": ["Adobe Firefly", "Canva AI"],
+      "experimental": ["Midjourney"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "CGC": {
+      "main": ["DeepSeek 跨语言翻译", "跨文化 NLP"],
+      "aux": ["Kimi", "Qwen3"],
+      "experimental": ["多模态翻译"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "DGS": {
+      "main": ["Python NLP (spaCy, NLTK)", "数据可视化"],
+      "aux": ["DeepSeek", "TF-IDF"],
+      "experimental": ["主题建模 (BERTopic)"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "DIS": {
+      "main": ["AI 辅助翻译 (DeepL + LLM)", "文化偏见检测"],
+      "aux": ["Qwen3 跨文化对话"],
+      "experimental": ["多语言 LLM"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "ELLS": {
+      "main": ["LLM 文学分析", "语料库 AI 挖掘"],
+      "aux": ["Kimi 长文本分析"],
+      "experimental": ["风格化写作 LLM"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "GAD": {
+      "main": ["全球数字化转型工具 (AI+IoT+区块链)", "外交舆情 AI"],
+      "aux": ["DeepSeek 政策分析"],
+      "experimental": ["政策 AI 模拟沙盘"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "MCOM": {
+      "main": ["AI 与新闻业 (MCOM4103)", "AIGC 传播", "数据新闻"],
+      "aux": ["Kimi", "Qwen3"],
+      "experimental": ["多模态新闻生成"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "PRA": {
+      "main": ["AIGC 创意", "大数据 + 情感分析", "人机交互设计"],
+      "aux": ["DeepSeek 内容生成"],
+      "experimental": ["AI 虚拟代言人"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "TDH": {
+      "main": ["LLM 文学分析", "Python 文本分析", "数字叙事工具"],
+      "aux": ["Kimi 文学分析"],
+      "experimental": ["数字叙事生成"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "ACCT": {
+      "main": ["AI 财务审核 (Python)", "智能审计"],
+      "aux": ["DeepSeek 财报分析"],
+      "experimental": ["AI 投行分析"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "AE": {
+      "main": ["经济 AI 建模 (Python)", "政策模拟"],
+      "aux": ["DeepSeek 经济分析"],
+      "experimental": ["CGE 模型 + AI"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "BUSA": {
+      "main": ["商业应用编程 (Python EBIS3033)", "AI 与深度学习 (BA2003)", "AI 数据科学管理 (DMM3003)"],
+      "aux": ["Pandas", "Scikit-learn"],
+      "experimental": ["商业大模型"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "FIN": {
+      "main": ["量化推理 (Python + QuantLib)", "金融大模型", "风险评估 AI"],
+      "aux": ["DeepSeek 金融分析"],
+      "experimental": ["算法交易回测平台"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "DMM": {
+      "main": ["AI 数据科学管理 (DMM3003)", "数字内容 AI", "用户画像"],
+      "aux": ["Kimi 内容生成"],
+      "experimental": ["AI 数字内容审核"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "EBIS": {
+      "main": ["推荐系统", "商业应用编程 (EBIS3033)", "AI 电商运营"],
+      "aux": ["Pandas", "Scikit-learn"],
+      "experimental": ["Graph Neural Network 推荐"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "EPIN": {
+      "main": ["AI 创新方法论", "创业 AI 助手", "商业模式 AI 验证"],
+      "aux": ["Kimi 商业画布"],
+      "experimental": ["AI 创业沙盘"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "MHR": {
+      "main": ["AI 招聘", "员工画像", "组织 AI 分析"],
+      "aux": ["DeepSeek HR 分析"],
+      "experimental": ["AI 面试官"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "MKT": {
+      "main": ["AI 营销策略", "客户细分", "智能推荐"],
+      "aux": ["AIGC 广告创意"],
+      "experimental": ["AI 客户旅程"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "AM-Math": {
+      "main": ["符号 AI (SymPy)", "优化算法 AI (SciPy)", "数学建模 AI"],
+      "aux": ["DeepSeek 数学推导"],
+      "experimental": ["AI 形式化证明"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "FM-Math": {
+      "main": ["DeepSeek-R1 本地推理", "QuantLib", "神经网络与深度学习 (AI3003)"],
+      "aux": ["Pandas", "NumPy", "SciPy"],
+      "experimental": ["金融大模型"],
+      "local": ["OpenVINO 加速"]
+    },
+    "STAT-Math": {
+      "main": ["贝叶斯 AI (PyMC)", "数据挖掘 (STAT4073)", "统计学习 (Scikit-learn)"],
+      "aux": ["DeepSeek 统计建模"],
+      "experimental": ["AI 因果推断"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "DS-Math": {
+      "main": ["机器学习全栈 (Scikit-learn + PyTorch)", "AI 数据流水线", "MLOps (MLflow)"],
+      "aux": ["DeepSeek 数据分析"],
+      "experimental": ["AutoML"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "CST-Math": {
+      "main": ["AI 系统开发 (PyTorch)", "深度学习框架 (COMP4163)", "AI 工程化"],
+      "aux": ["HuggingFace Transformers"],
+      "experimental": ["端到端 ML 系统"],
+      "local": ["OpenVINO + NPU 调度"]
+    },
+    "AI-Math": {
+      "main": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)", "神经网络与深度学习 (AI3003)", "NLP (AI3133)"],
+      "aux": ["HuggingFace Transformers"],
+      "experimental": ["多模态 LLM"],
+      "local": ["OpenVINO + NPU 调度"]
+    },
+    "AI-IST": {
+      "main": ["Python 编程 (AI1003)", "AI 导论 (AI2013)", "概率与统计 (AI2033)", "机器学习 (AI3013)"],
+      "aux": ["Pandas", "Scikit-learn"],
+      "experimental": ["深度学习前沿"],
+      "local": ["DeepSeek-R1 + OpenVINO"]
+    },
+    "APSY-IST": {
+      "main": ["认知神经科学 AI (PSY4103)", "行为预测", "AI 心理评估"],
+      "aux": ["DeepSeek 行为分析"],
+      "experimental": ["AI 神经反馈"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "ENVS-IST": {
+      "main": ["环境 AI 监测", "GIS AI (ENV3073)", "碳技术 AI (ENV3193)"],
+      "aux": ["DeepSeek 环境分析"],
+      "experimental": ["气候模型 AI"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    },
+    "FS-IST": {
+      "main": ["食品 AI 研发", "营养 AI 评估", "生信 AI (AI3073)"],
+      "aux": ["DeepSeek 食品分析"],
+      "experimental": ["AI 食品配方"],
+      "local": ["DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)"]
+    }
+  },
+  "common_local_tool": {
+    "name": "DeepSeek-R1-Distill-Qwen-1.5B (OpenVINO)",
+    "deployment": "本地推理",
+    "privacy": "零上传",
+    "specs": {
+      "model_size": "1.5B 参数",
+      "quantization": "INT4",
+      "device_priority": ["NPU", "iGPU", "CPU"]
+    }
+  }
+}

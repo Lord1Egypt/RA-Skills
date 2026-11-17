@@ -1,43 +1,54 @@
-## Description: <br>
-Bootstrap a new OpenClaw agent's memory system in one command by setting up MEMORY.md, daily memory files, HEARTBEAT.md, and USER.md after asking three quick questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstraps an OpenClaw agent memory system by creating starter memory, daily note, heartbeat, and user profile files through an interactive or non-interactive setup command.
 
-## Publisher: <br>
-[stevojarvisai-star](https://clawhub.ai/user/stevojarvisai-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevojarvisai-star](https://clawhub.ai/user/stevojarvisai-star)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to initialize a local agent memory workspace with starter memory, daily note, heartbeat, and user profile files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: USER.md stores basic personal context for future agent sessions. <br>
-Mitigation: Review USER.md after setup and remove sensitive personal details that should not be loaded by future agents. <br>
-Risk: The wizard creates local memory files in the configured workspace. <br>
-Mitigation: Confirm the workspace path before running the wizard, especially when using the --workspace option. <br>
-Risk: The starter HEARTBEAT.md includes default reminder checks that may not match the user's preferences. <br>
-Mitigation: Review HEARTBEAT.md after setup and remove default heartbeat tasks that are not wanted. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to initialize persistent agent memory files when setting up a new workspace or repairing a missing memory system.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/stevojarvisai-star/memory-onboarding-wizard) <br>
-- [GetAgentIQ](https://getagentiq.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files and terminal guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or preserves local MEMORY.md, memory/YYYY-MM-DD.md, HEARTBEAT.md, and USER.md files in the selected workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The generated HEARTBEAT.md can persistently prompt an agent to check email and calendar without a clear opt-in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated HEARTBEAT.md before enabling the skill with email or calendar tools, and remove or explicitly approve recurring checks.
+
+Risk: The wizard writes persistent memory files that future agent sessions may read.
+
+Mitigation: Run the wizard only in a workspace you control and review generated memory files before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stevojarvisai-star/skills/memory-onboarding-wizard)
+- [GetAgentIQ](https://getagentiq.ai)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files and terminal text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes MEMORY.md, memory/YYYY-MM-DD.md, HEARTBEAT.md, and USER.md in the selected workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

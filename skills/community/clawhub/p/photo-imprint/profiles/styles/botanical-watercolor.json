@@ -1,0 +1,63 @@
+{
+  "profile_type": "style",
+  "id": "botanical-watercolor",
+  "version": "1.0.0",
+  "reference_status": "pending-selection",
+  "references": [],
+  "positive_prompt": "Precise botanical watercolor study over faint graphite, airy ivory paper, sparse composition, delicate stems and edges, translucent natural color, disciplined observational detail.",
+  "negative_prompt": "No photographic background, oil-paint impasto, hard digital vector edge, heavy shadow, generated labels, decorative frame, route line, marker, watermark, or collage seam.",
+  "line": {
+    "weight": "hairline",
+    "character": "controlled graphite and watercolor",
+    "color": "warm graphite"
+  },
+  "color": {
+    "saturation": "restrained-natural",
+    "transparency": "medium-high",
+    "temperature": "neutral-warm"
+  },
+  "edges": {
+    "subject": "precise-organic",
+    "crop_marks": false
+  },
+  "finishing_notes": [
+    "preserve fine edges",
+    "keep background nearly unpainted",
+    "avoid global sharpening halos"
+  ],
+  "sample_style_contract_defaults": {
+    "mark_edge_quality": [
+      "controlled graphite hairline",
+      "precise organic watercolor edge"
+    ],
+    "negative_space_rules": [
+      "keep background nearly unpainted",
+      "retain open ivory paper around the specimen"
+    ],
+    "fill_tonal_rules": [
+      "translucent natural color only",
+      "protect fine pale washes"
+    ],
+    "background_cleanliness": [
+      "empty areas match the shared paper master",
+      "no haze, white rectangle, or random speckle field"
+    ],
+    "frame_border_policy": "forbid generated frames, borders, crop edges, and plate seams",
+    "abstraction_level": "disciplined simplification that preserves botanical identity",
+    "generated_page_is_style_reference": false
+  },
+  "plate_normalization": {
+    "mode": "paper-key-soft",
+    "enabled": true,
+    "corner_sample_ratio": 0.04,
+    "background_distance_threshold": 9,
+    "alpha_feather_distance": 26,
+    "preserve_luminance_below": 228,
+    "preserve_saturation_above": 25,
+    "minimum_component_area_px": 2,
+    "border_clear_px": 2,
+    "frame_policy": "forbid",
+    "max_empty_area_noise_ratio": 0.003,
+    "max_corner_alpha_mean": 8
+  }
+}

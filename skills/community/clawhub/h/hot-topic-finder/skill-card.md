@@ -1,42 +1,47 @@
-## Description: <br>
-Helps agents find, recommend, mark, and review hot topics while tracking prior topic usage in a local SQLite history database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds and tracks topic ideas, checks prior use, and recommends fresh topics using local topic history.
 
-## Publisher: <br>
-[Linus995](https://clawhub.ai/user/Linus995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[linus995](https://clawhub.ai/user/linus995)
 
-## Use Case: <br>
-Content creators and external users use this skill to discover topic ideas, check or mark whether a topic has been used, get freshness-aware recommendations, and review recent topic history. It is not a real-time news or crisis-monitoring tool. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores topic history locally, which can expose sensitive content ideas or research topics on the user's machine. <br>
-Mitigation: Avoid recording sensitive topics unless local storage under ~/.openclaw/data/topic_history.db is acceptable, and periodically review or remove stored history when needed. <br>
-Risk: The artifact should not be relied on for live Weibo, Zhihu, Douyin, or other real-time trend monitoring. <br>
-Mitigation: Use it for local topic inspiration and usage tracking, and verify current trends with an appropriate live source before publishing time-sensitive content. <br>
-Risk: The topic-check script behavior is limited and may not reflect arbitrary user-provided topics as documented. <br>
-Mitigation: Confirm check results against the stored topic history before treating a topic as unused. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Linus995/hot-topic-finder) <br>
-- [Publisher profile](https://clawhub.ai/user/Linus995) <br>
+## Use Case:
+
+Creators, content planners, and agents use this skill to generate topic ideas, avoid repeating recently used topics, and review local topic usage history.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The release describes live multi-platform hot-topic monitoring, but the security evidence says the code uses a small built-in topic list and local history database.
+
+Mitigation: Treat recommendations as local helper output, verify trends against current external sources, and do not rely on the skill for real-time news or crisis monitoring.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Console text and concise Markdown with Python script commands and local SQLite topic-history records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and stores topic history under ~/.openclaw/data/topic_history.db.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and writes topic history to a local SQLite database under ~/.openclaw/data/topic_history.db.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

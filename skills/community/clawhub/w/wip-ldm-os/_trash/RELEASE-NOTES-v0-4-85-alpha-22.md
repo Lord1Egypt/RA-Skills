@@ -1,0 +1,1 @@
+Adds a pre-fetch memory policy to the LDM OS install skill so agents fetch the public install document before consulting local memory or prior notes. This targets the dogfood failure where an agent searched `MEMORY.md` before reading the install spec's source-of-truth section.

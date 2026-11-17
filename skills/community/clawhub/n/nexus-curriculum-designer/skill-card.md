@@ -1,41 +1,51 @@
-## Description: <br>
-AI curriculum design with adaptive learning paths, competency-based assessments, and UDL framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI curriculum design with adaptive learning paths, competency-based assessments, and UDL framework.
 
-## Publisher: <br>
-[shuwanito](https://clawhub.ai/user/shuwanito) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuwanito](https://clawhub.ai/user/shuwanito)
 
-## Use Case: <br>
-Educators, curriculum designers, and instructional teams use this skill to map curricula, align learning objectives with Bloom's taxonomy, design adaptive learning paths, and generate competency-based assessments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used with real students, private curriculum materials, or institutional data. <br>
-Mitigation: Clarify source and data-handling expectations before use, and avoid providing student PII or credentials without an appropriate privacy and data-handling agreement. <br>
-Risk: Curriculum recommendations and assessment proposals could be incorrect, incomplete, or mismatched to local requirements. <br>
-Mitigation: Have qualified educators review generated curricula, assessment items, citations, and severity or priority scores before adoption. <br>
+## Use Case:
 
+External education teams and curriculum designers use this skill to map curricula, align learning objectives with Bloom's taxonomy, design adaptive learning paths, and generate competency-based assessments with UDL considerations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shuwanito/nexus-curriculum-designer) <br>
-- [Project homepage](https://github.com/Shuwanito/SkillsMP/tree/main/.claude/skills/nexus-curriculum-designer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown with structured findings, proposals, confidence scores, source citations, and impact/effort scoring] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are classified by severity and proposals include priority scoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and release evidence) <br>
+Risk: Curriculum recommendations, standards alignment, assessments, accessibility adaptations, or citations may be incomplete or inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have qualified educators review generated outputs and require real, checkable sources before using the material in an educational setting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shuwanito/skills/nexus-curriculum-designer)
+- [Publisher profile](https://clawhub.ai/user/shuwanito)
+- [Skill homepage](https://github.com/Shuwanito/SkillsMP/tree/main/.claude/skills/nexus-curriculum-designer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text with findings, proposals, confidence scores, source citations, and impact/effort scoring]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed for standards alignment, assessment quality, accessibility adaptations, and citation reliability before educational use.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Image Reader extracts text from images, screenshots, photos, and other image files using OCR for Chinese and English text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts text from images using OCR, including screenshots, photos, and other image files with Chinese and English text.
 
-## Publisher: <br>
-[rendaixue-byte](https://clawhub.ai/user/rendaixue-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rendaixue-byte](https://clawhub.ai/user/rendaixue-byte)
 
-## Use Case: <br>
-Developers, engineers, and agent users use this skill to read text from screenshots, document photos, diagrams, receipts, invoices, and other image files. It returns extracted text with line-level confidence, bounding boxes, and image metadata for downstream analysis or automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images may contain passwords, financial data, private documents, or confidential screenshots that OCR will extract into text. <br>
-Mitigation: Process only images whose text you intend to expose to the agent workflow, and avoid sensitive images unless disclosure is acceptable. <br>
-Risk: RapidOCR models may download automatically on first use. <br>
-Mitigation: Install and run the skill only in environments where RapidOCR, ONNX Runtime, Pillow, and first-run model downloads are approved. <br>
+## Use Case:
 
+Developers and agents use this skill to extract readable text and line-level OCR metadata from screenshots, document photos, diagrams, receipts, and other images.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rendaixue-byte/rapid-ocr-reader) <br>
-- [Publisher Profile](https://clawhub.ai/user/rendaixue-byte) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON containing extracted text, per-line confidence scores, bounding boxes, line count, errors, and image metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally on user-provided image files; RapidOCR models may download automatically on first use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill installs Python dependencies and may download OCR models on first run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where pip installs and first-run model downloads are acceptable; pin dependency versions and prefetch or verify OCR models for controlled deployments.
+
+Risk: Very large or untrusted image files can create resource-use or processing risks.
+
+Mitigation: Apply file size, image dimension, timeout, and memory limits before running OCR on untrusted images.
+
+Risk: OCR output may be incomplete or inaccurate for low-quality, distorted, handwritten, or language-mismatched images.
+
+Mitigation: Review OCR results before using them for decisions, and preserve confidence scores and source image context when accuracy matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rendaixue-byte/skills/rapid-ocr-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON object containing extracted text, per-line confidence scores, bounding boxes, line count, errors, and image metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [First run may download OCR models; output quality depends on image clarity, OCR model behavior, and available runtime resources.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

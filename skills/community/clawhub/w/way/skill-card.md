@@ -1,42 +1,55 @@
-## Description: <br>
-Shorthand for /whoareyou - show your verified WayID identity card when users ask who the agent is, who owns it, who is responsible for it, or ask to see identity or provenance proof. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shows a verified WayID identity card for identity, ownership, responsibility, and provenance questions.
 
-## Publisher: <br>
-[lineagelabs](https://clawhub.ai/user/lineagelabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lineagelabs](https://clawhub.ai/user/lineagelabs)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent render its WayID identity card in response to identity, ownership, responsibility, or provenance questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local WayID metadata and contact the configured WayID issuer with the agent identifier needed to fetch the identity card. <br>
-Mitigation: Review the configured WayID issuer and local WayID metadata before use in environments where agent identity details are sensitive. <br>
-Risk: The skill recommends installing a separate WayID plugin but does not include that plugin's code. <br>
-Mitigation: Review and scan the WayID plugin separately before installing it. <br>
+## Use Case:
 
+Agents use this skill when a user asks who they are, who owns or runs them, who is responsible for them, or asks to see identity proof. It acts as a shorthand for the WayID identity-card flow.
 
-## Reference(s): <br>
-- [WayID issuer](https://way.je) <br>
-- [WayID claim flow](https://way.je/claim/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lineagelabs/way) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown identity-card response with inline installation guidance when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local WayID metadata and contact the configured WayID issuer to fetch the agent card.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill reads the workspace WayID file and contacts the configured issuer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review wayid.json before use and avoid untrusted or non-HTTPS issuers.
+
+Risk: The optional WayID plugin is a separate mutable package.
+
+Mitigation: Treat plugin installation as an additional trust decision and review it separately before installing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lineagelabs/skills/way)
+- [WayID service](https://way.je)
+- [WayID claim flow](https://way.je/claim/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown identity-card response or concise setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read the local WayID file and contact the configured issuer before rendering.]
+
+## Skill Version(s):
+
+3.3.0 (source: frontmatter, changelog, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

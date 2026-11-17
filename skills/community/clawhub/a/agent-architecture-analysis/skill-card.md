@@ -1,41 +1,55 @@
-## Description: <br>
-Audits an agent codebase against the 12-Factor Agents methodology and reports evidence-backed compliance findings and recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits LLM-powered agent codebases against the 12-Factor Agents methodology and produces evidence-based compliance findings and recommendations.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review LLM-powered agent architectures, compare implementations against the 12-Factor Agents methodology, and plan concrete improvements from file-level evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a user-selected codebase and may include local file snippets in its analysis. <br>
-Mitigation: Run it only on repositories you are authorized to review, and avoid pointing it at secrets or private material you do not want summarized. <br>
-Risk: Architecture recommendations can be misleading if the cited evidence is incomplete or the reviewed codebase omits relevant files. <br>
-Mitigation: Review cited paths, snippets, and recommendations before acting on the report. <br>
+## Use Case:
 
+Developers and engineers use this skill to review LLM-powered or agentic codebases against the 12-Factor Agents framework. It guides structured scanning, per-factor evidence collection, compliance scoring, gap analysis, and prioritized recommendations.
 
-## Reference(s): <br>
-- [12-Factor Agents](https://github.com/humanlayer/12-factor-agents) <br>
-- [Per-Factor Analysis Framework](references/factors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis with summary tables, file citations, snippets, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a codebase_path and can optionally use a docs_path; scoring is gated on cited evidence before Strong, Partial, or Weak ratings are assigned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Architecture findings or recommendations may be incorrect if source evidence is incomplete or interpreted out of context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require file-level evidence for each score and review generated recommendations before applying code changes.
+
+Risk: The skill reads source files under the codebase path provided by the user and runs search commands for evidence.
+
+Mitigation: Run it only on intended repositories and exclude secrets or unrelated private files from the analysis scope.
+
+## Reference(s):
+
+- [Agent Architecture Analysis on ClawHub](https://clawhub.ai/anderskev/skills/agent-architecture-analysis)
+- [12-Factor Agents](https://github.com/humanlayer/12-factor-agents)
+- [Per-Factor Analysis Framework](references/factors.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown report with tables, file references, code snippets, compliance scores, gaps, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided codebase path and may use search commands to gather evidence before scoring.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

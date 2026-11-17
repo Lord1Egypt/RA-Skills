@@ -1,41 +1,58 @@
-## Description: <br>
-Provides Chinese-language EU cross-border e-commerce market reports and strategy recommendations covering hot categories, competitor analysis, product opportunity evaluation, and compliance pre-checks for Amazon Germany, France, and Italy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为中国跨境卖家提供欧盟市场热销品类、竞品分析、选品评估及合规预检的中文市场报告和策略建议。
 
-## Publisher: <br>
-[luongkim20222022-crypto](https://clawhub.ai/user/luongkim20222022-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luongkim20222022-crypto](https://clawhub.ai/user/luongkim20222022-crypto)
 
-## Use Case: <br>
-Chinese cross-border e-commerce sellers use this skill to assess EU market demand, compare competitors, evaluate product ideas, estimate profit potential, and request compliance pre-check guidance for Amazon DE, FR, and IT marketplaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-European Union marketplaces, especially Germany, France, and Italy. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compliance-related analysis may depend on the linked eu-compliance-skill and may involve sensitive product plans or business data. <br>
-Mitigation: Only share sensitive product or business data when the linked compliance skill and surrounding agent environment are trusted. <br>
-Risk: Market, competitor, pricing, and profit guidance can become stale or inaccurate if responses do not use current sources. <br>
-Mitigation: Require cited data sources and timestamps in reports, and review recommendations before using them for commercial decisions. <br>
+## Use Case:
 
+Chinese cross-border e-commerce sellers use this skill to analyze EU Amazon DE, FR, and IT markets, monitor competitors, evaluate product opportunities, estimate profitability, and prepare compliance pre-checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luongkim20222022-crypto/eu-market-analyst) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese Markdown reports with tables, source and time annotations, opportunity analysis, competitor reviews, profit estimates, and compliance notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Compliance-related prompts may involve the linked eu-compliance-skill; responses should identify data sources and timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate on broad product-related phrases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user is asking for EU marketplace analysis before applying the skill's guidance.
+
+Risk: Market data or cited sources may be incomplete, stale, or unsuitable for business decisions.
+
+Mitigation: Check cited market data sources and dates before acting on recommendations.
+
+Risk: The skill may automatically reference a related compliance skill when compliance is discussed.
+
+Mitigation: Review compliance outputs separately before treating them as operational or legal guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luongkim20222022-crypto/skills/eu-market-analyst)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown reports with data tables, source notes, and dated market analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Top 5 category tables, competitor summaries, product opportunity reports, profit estimates, and compliance pre-check notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact version history lists v1.0 dated 2026-04-03)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

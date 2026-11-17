@@ -1,44 +1,60 @@
-## Description: <br>
-Converts user-provided articles, papers, or reports into structured science video script packages with article analysis, platform-specific scripts, shot lists, visual prompts, subtitles, and editing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Article To Science Video converts user-provided articles, papers, or reports into Chinese science video script packages with scripts, storyboards, English visual prompts, subtitles, and editing guidance.
 
-## Publisher: <br>
-[bhlia](https://clawhub.ai/user/bhlia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhlia](https://clawhub.ai/user/bhlia)
 
-## Use Case: <br>
-External creators, educators, and agent users use this skill to turn source articles, papers, or reports into science-video planning packages for short-form platforms or longer Bilibili-style videos. It helps prepare scripts, shot tables, visual-generation prompts, subtitle notes, voiceover copy, BGM guidance, and CapCut assembly notes while leaving final media creation to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided links, pasted text, or local files may contain information the user did not intend to process. <br>
-Mitigation: Use only the source content the user explicitly provides or confirms, and clarify when the request is summarization or translation rather than video-script creation. <br>
-Risk: Generated video scripts and shot plans can overstate, simplify, or drift from the source article if not reviewed. <br>
-Mitigation: Review the article analysis, script, data points, and shot list against the original source before recording, publishing, or generating media assets. <br>
+## Use Case:
 
+External creators, educators, and content teams use this skill to turn articles, academic papers, or reports into structured science video scripts for short-form platforms or Bilibili-style long-form videos. It supports presenter-led and fully AI-assisted production plans while leaving final media creation to the user.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bhlia/article-to-science-video) <br>
-- [Short Video Template](references/short-video-template.md) <br>
-- [Bili Long Video Template](references/bili-long-video-template.md) <br>
-- [Shot List Guide](references/shot-list-guide.md) <br>
-- [Post Production Guide](references/post-production-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown script package with tables, time-coded script sections, English visual prompts, subtitle notes, and editing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only workflow; does not generate video, image, or audio assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may process article links or local files explicitly provided by the user, which can expose private or sensitive source content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content intended for this workflow and avoid providing confidential files or links unless the operating environment is approved for that data.
+
+Risk: Generated scripts, storyboards, and subtitles may misstate scientific claims or add unsupported interpretation.
+
+Mitigation: Review the script package against the original article before recording, publishing, or generating downstream media.
+
+Risk: The skill provides production prompts and editing guidance but does not create final media, so downstream video, image, voice, and music tools can introduce separate rights or safety constraints.
+
+Mitigation: Check the licenses, consent requirements, and usage terms for any generated or sourced media before release.
+
+## Reference(s):
+
+- [Bilibili Long Video Template](references/bili-long-video-template.md)
+- [Post-Production Guide](references/post-production-guide.md)
+- [Short Video Template](references/short-video-template.md)
+- [Shot List Guide](references/shot-list-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown script package with tables, timed narration, storyboards, English visual prompts, subtitles, and editing notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not produce actual video, image, or audio assets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

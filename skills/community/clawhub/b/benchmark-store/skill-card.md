@@ -1,47 +1,62 @@
-## Description: <br>
-Benchmark Store helps initialize benchmark databases, compare skill scores against historical baselines, check Pareto-front regressions, and consult quality grading standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Benchmark Store helps agents initialize benchmark databases, compare skill scores against frozen baselines, inspect Pareto-front regressions, and consult skill evaluation standards.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and evaluation engineers use this skill to maintain local benchmark data, compare candidate skill results with frozen baselines, and identify Pareto-front regressions before release decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Benchmark databases and Pareto state can affect release decisions if corrupted or overwritten. <br>
-Mitigation: Keep benchmark databases and Pareto state in a scoped directory, back them up before add/delete operations, and review comparison output before using it for gate decisions. <br>
-Risk: Hidden-test files, passwords, and decrypted objects can expose sensitive evaluation materials. <br>
-Mitigation: Protect hidden-test assets and passwords, and do not expose proposer-facing code to raw hidden-test objects. <br>
+## Use Case:
 
+Developers and evaluation engineers use this skill to maintain skill benchmark data, compare candidate scores against historical baselines, detect Pareto-front regressions, and consult quality tier standards. It supports benchmark storage and regression context rather than candidate scoring or automated skill improvement.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lanyasheng/benchmark-store) <br>
-- [Benchmark database](data/benchmark-database.md) <br>
-- [Evaluation standards](data/evaluation-standards.md) <br>
-- [Red-team guide](data/red-team-guide.md) <br>
-- [Test cases](data/test-cases.yaml) <br>
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/) <br>
-- [Prompt Injection Attacks](https://learnprompting.org/docs/prompt_hacking/introduction) <br>
-- [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON, SQLite, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local SQLite benchmark databases and Pareto state files when commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata; artifact frontmatter reports 0.1.0) <br>
+Risk: The release includes untrusted execution paths with weak containment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a controlled benchmark environment with enforced sandboxing and timeouts.
+
+Risk: Hidden-test handling should not be treated as trusted for protected evaluations.
+
+Mitigation: Use it for trusted hidden tests only after vetted authenticated encryption is in place.
+
+Risk: Benchmark scoring and deletion behavior can affect baselines and leaderboard data.
+
+Mitigation: Review scoring and deletion actions before use, keep database backups, and require documented evaluator inputs for comparisons.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/skills/benchmark-store)
+- [Publisher Profile](https://clawhub.ai/user/lanyasheng)
+- [Benchmark Database](artifact/data/benchmark-database.md)
+- [Evaluation Standards](artifact/data/evaluation-standards.md)
+- [Red Team Guide](artifact/data/red-team-guide.md)
+- [Test Cases](artifact/data/test-cases.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell command snippets, Python code examples, JSON comparison outputs, and SQLite benchmark records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update benchmark database entries, leaderboard data, and Pareto regression reports.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

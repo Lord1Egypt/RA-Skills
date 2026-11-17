@@ -1,42 +1,55 @@
-## Description: <br>
-Security scanner for ClawHub skills from Gen Digital. Looks up skill safety via the scan API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security scanner for ClawHub skills from Gen Digital that looks up skill safety via the scan API.
 
-## Publisher: <br>
-[rexshang](https://clawhub.ai/user/rexshang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[rexshang](https://clawhub.ai/user/rexshang)
 
-## Use Case: <br>
-Developers and agent users use Skillscanner to check ClawHub skill URLs against Gen Digital's scan API and decide whether to proceed, wait for review, or avoid a skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Skill URLs submitted for scanning are sent to an external scanner service. <br>
-Mitigation: Submit only public ClawHub skill URLs unless the service is approved to receive private or access-controlled artifact URLs. <br>
-Risk: A scanner verdict can miss obfuscated or novel threats, and pending analysis is not a clearance. <br>
-Mitigation: Treat analysis_pending and non-SAFE severities as not cleared, and combine scan results with sandboxing, least privilege, and manual review. <br>
+## Use Case:
 
+Developers and agents use this skill to check the safety status of a ClawHub skill URL before recommending installation or use.
 
-## Reference(s): <br>
-- [Skillscanner on ClawHub](https://clawhub.ai/rexshang/skillscanner) <br>
-- [Agent Trust Hub](https://ai.gendigital.com) <br>
-- [Gen Digital scan lookup API](https://ai.gendigital.com/api/scan/lookup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with bash curl commands and response interpretation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ClawHub skill URL; treats analysis_pending and non-SAFE severities as not cleared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Skill URLs are sent to Gen Digital's scan API for lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing the scanned ClawHub skill URL with that external API is acceptable.
+
+Risk: The scan API verdict is advisory and may not catch obfuscated or novel threats.
+
+Mitigation: Combine the result with sandboxing, least privilege, and manual review before using a skill.
+
+## Reference(s):
+
+- [Skillscanner on ClawHub](https://clawhub.ai/rexshang/skills/skillscanner)
+- [rexshang ClawHub profile](https://clawhub.ai/user/rexshang)
+- [Agent Trust Hub](https://ai.gendigital.com)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and status interpretation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses scan API status and severity fields as advisory input.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

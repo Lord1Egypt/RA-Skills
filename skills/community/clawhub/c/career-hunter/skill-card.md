@@ -1,40 +1,54 @@
-## Description: <br>
-Career Hunter helps users generate and polish resumes, write cover letters, track applications, prepare for interviews, and search for jobs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Job search assistant that generates and polishes resumes, writes cover letters, tracks applications, prepares for interviews, and searches for jobs.
 
-## Publisher: <br>
-[vanthienha199](https://clawhub.ai/user/vanthienha199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vanthienha199](https://clawhub.ai/user/vanthienha199)
 
-## Use Case: <br>
-External job seekers use this skill to manage a job search workflow: building resumes, drafting cover letters, tracking applications, preparing for interviews, and finding current openings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may save sensitive career data such as job targets, referrals, salary notes, resume content, and cover letters in local files. <br>
-Mitigation: Use a private machine or protected folder, review generated content before sharing it, and delete the tracker or documents when no longer needed. <br>
-Risk: Generated resumes, cover letters, or interview answers could include inaccurate or overstated claims if the user does not review them. <br>
-Mitigation: Review every generated document before sharing it and keep claims limited to experience and achievements the user provides. <br>
+## Use Case:
 
+External users use this skill to manage job searches, including resume and cover-letter drafting, application tracking, interview preparation, and finding current job openings.
 
-## Reference(s): <br>
-- [Career Hunter on ClawHub](https://clawhub.ai/vanthienha199/career-hunter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown prose with optional JSON tracker entries and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local resume, cover-letter, and job-tracker files when the agent has filesystem access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can store job-search records and generated application materials on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or delete ~/.openclaw/job-tracker.json, resume.md, and cover-letter files when they are no longer needed, especially on shared machines.
+
+Risk: Generated resumes, cover letters, interview answers, or job-search results may contain incorrect or overstated information.
+
+Mitigation: Review generated materials before use and verify that they only include experience and achievements the user provided.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vanthienha199/skills/career-hunter)
+- [Publisher profile](https://clawhub.ai/user/vanthienha199)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, files, guidance]
+
+**Output Format:** [Markdown, JSON, and plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local resume, cover letter, and application tracker files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

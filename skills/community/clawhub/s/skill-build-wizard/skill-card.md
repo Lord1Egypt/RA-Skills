@@ -1,43 +1,64 @@
-## Description: <br>
-Skill Build Wizard guides agents and users through a four-stage workflow for building production-quality agent skills, from pre-flight checks through release preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end guided workflow for building production-quality agent skills through pre-flight checks, specification confirmation, coding acceptance, and release preparation.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers and skill authors use this skill to structure skill creation, confirm requirements before coding, run acceptance checks, and prepare releases with explicit user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can guide an agent through file creation and eventual skill publication, so unreviewed steps could release incorrect or unintended changes. <br>
-Mitigation: Review and explicitly approve the design, acceptance report, version, changelog, and publish confirmation before allowing release steps. <br>
-Risk: Workspace changes may be difficult to recover if the build starts without version control or continuity planning. <br>
-Mitigation: Run the pre-flight checks, use a version-controlled workspace, and save design context before coding begins. <br>
+## Use Case:
 
+Developers and teams use this skill to guide agent-assisted skill creation from initial workspace checks through design confirmation, implementation review, testing, and release preparation. It is intended for multi-step skill-building work where staged checkpoints and explicit user approvals reduce missed requirements.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/songhonglei/skill-build-wizard) <br>
-- [Pre-flight Checklist](references/checklist-before-start.md) <br>
-- [Coding Acceptance Checklist](references/checklist-coding.md) <br>
-- [Release Prep Checklist](references/checklist-release.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before stage handoffs and release publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact documentation) <br>
+Risk: The pre-check script auto-discovers installed skill paths, which can select an unintended copy when multiple installations are present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scripts from the known installed skill directory or verify the discovered path before execution.
+
+Risk: The workflow coordinates release and publish steps, so skipped confirmation gates could lead to premature publication.
+
+Mitigation: Require the user to review the change summary, acceptance report, preview URL, version, and changelog before replying with the explicit publish confirmation.
+
+Risk: The workflow delegates scaffolding, review, regression testing, audit, and publishing to companion skills.
+
+Mitigation: Verify companion skills are installed from trusted sources before using them in the release flow.
+
+## Reference(s):
+
+- [Pre-flight checks](references/checklist-before-start.md)
+- [Coding acceptance](references/checklist-coding.md)
+- [Release prep](references/checklist-release.md)
+- [skill-creator](https://github.com/anthropics/skills)
+- [skill-regression](https://github.com/Songhonglei/build-better-skills/tree/main/skills/skill-regression)
+- [glic-check](https://github.com/Songhonglei/build-better-skills/tree/main/skills/glic-check)
+- [skill-release-audit](https://github.com/Songhonglei/build-better-skills/tree/main/skills/skill-release-audit)
+- [skill-release-plus](https://github.com/Songhonglei/build-better-skills/tree/main/skills/skill-release-plus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and checklist-driven status reporting]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes staged confirmation gates, acceptance criteria, and on-demand checklist references.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

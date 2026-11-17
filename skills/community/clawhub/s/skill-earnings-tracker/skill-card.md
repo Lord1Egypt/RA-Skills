@@ -1,42 +1,54 @@
-## Description: <br>
-Tracks skill marketplace earnings and performance across ClawHub, EvoMap, ReelMind, and custom sources for reporting and portfolio analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks skill marketplace earnings and performance metrics across ClawHub, EvoMap, ReelMind, and custom manual logs.
 
-## Publisher: <br>
-[KyleChen26](https://clawhub.ai/user/KyleChen26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kylechen26](https://clawhub.ai/user/kylechen26)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to log marketplace metrics, produce weekly or monthly earnings reports, list tracked skills, and export local earnings records. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sensitive earnings, credit balances, customer details, or notes may be written to plaintext local files. <br>
-Mitigation: Keep records non-sensitive, avoid secrets and private customer data in notes, and protect or delete ~/.openclaw/earnings as needed. <br>
-Risk: Automation examples can persist scheduled logging jobs. <br>
-Mitigation: Review the exact cron command before installing it and document how to remove or disable it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill Earnings Tracker on ClawHub](https://clawhub.ai/KyleChen26/skill-earnings-tracker) <br>
-- [ClawHub marketplace](https://clawhub.ai) <br>
-- [EvoMap marketplace](https://evomap.ai/marketplace) <br>
-- [ReelMind](https://reelmind.ai) <br>
+## Use Case:
 
+Developers and marketplace publishers use this skill to log earnings, list tracked skills, generate weekly or monthly reports, export records, and check ClawHub skill statistics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; the included CLI writes JSONL earnings records and JSON exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores monthly JSONL records under ~/.openclaw/earnings when the included CLI is run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Earnings records and exported reports are stored in plaintext while the artifact claims earnings data is encrypted at rest.
+
+Mitigation: Treat ~/.openclaw/earnings and exported reports as sensitive plaintext files; avoid storing secrets, personal data, or customer information in notes and protect or delete exports manually.
+
+Risk: Reports may include real earnings, credits, customer-adjacent notes, or private portfolio information.
+
+Mitigation: Review generated reports before sharing and keep exports in access-controlled storage.
+
+## Reference(s):
+
+- [ClawHub marketplace](https://clawhub.ai)
+- [EvoMap marketplace](https://evomap.ai/marketplace)
+- [ReelMind](https://reelmind.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON/JSONL earnings data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes monthly plaintext JSONL logs under ~/.openclaw/earnings and can export aggregated JSON reports.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

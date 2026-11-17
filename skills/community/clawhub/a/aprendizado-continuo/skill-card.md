@@ -1,42 +1,55 @@
-## Description: <br>
-Captura erros, correcoes e aprendizados automaticamente, promovendo melhorias para AGENTS.md, TOOLS.md e SKILL.md em um sistema de auto-melhoria em portugues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captura erros, correções e aprendizados automaticamente. Promove melhorias para AGENTS.md, TOOLS.md e SKILL.md. Sistema de auto-melhoria em português.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-External developers and Portuguese-speaking agent users use this skill to record errors, user corrections, feature requests, and lessons in Markdown files so recurring issues can be reviewed and promoted into agent guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Captured corrections or lessons can persist inaccurate or unverified guidance into future agent behavior. <br>
-Mitigation: Review each learning entry before saving it and require human approval before promoting changes to AGENTS.md, TOOLS.md, or SKILL.md. <br>
-Risk: Learning records may accidentally capture secrets, private user data, or sensitive operational details. <br>
-Mitigation: Redact sensitive information before writing .learnings records or promoted guidance, and avoid storing secrets or private user data. <br>
+## Use Case:
 
+Developers and external agent users, especially Portuguese-speaking teams, use this skill to record agent errors, user corrections, learnings, and feature requests in structured Markdown notes. The skill helps turn repeated mistakes into reviewed improvements for future agent guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/engsathiago/aprendizado-continuo) <br>
-- [Project homepage](https://github.com/eve-agent/aprendizado-continuo) <br>
-- [Support issues](https://github.com/eve-agent/aprendizado-continuo/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown records and guidance updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates .learnings records and may propose or promote changes to AGENTS.md, TOOLS.md, and SKILL.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Automatically promoted learnings can change future agent behavior through AGENTS.md, TOOLS.md, or SKILL.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a human to review and approve the exact diff and destination before any promotion is applied.
+
+Risk: Captured corrections and learnings may contain incorrect, stale, or unsafe guidance.
+
+Mitigation: Treat captured notes as untrusted until they are validated against the current project context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/engsathiago/skills/aprendizado-continuo)
+- [Project homepage](https://github.com/eve-agent/aprendizado-continuo)
+- [Support issues](https://github.com/eve-agent/aprendizado-continuo/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown notes and guidance with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose writes to .learnings/, AGENTS.md, TOOLS.md, and SKILL.md; review diffs before applying.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

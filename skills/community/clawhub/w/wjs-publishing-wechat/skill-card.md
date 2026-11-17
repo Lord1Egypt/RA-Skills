@@ -1,45 +1,60 @@
-## Description: <br>
-Helps prepare WeChat Official Account articles by lightly polishing drafts, creating title and summary options, generating cover and explanation images, and packaging files for upload. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users lightly polish and prepare WeChat Official Account articles, including title and summary suggestions, cover and illustration generation, article files, and publishing support for mp.weixin.qq.com.
 
-## Publisher: <br>
-[jianshuo](https://clawhub.ai/user/jianshuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jianshuo](https://clawhub.ai/user/jianshuo)
 
-## Use Case: <br>
-Writers, editors, and WeChat account operators use this skill to turn rough Chinese article drafts or notes into a publishable article package with supporting images and upload guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The upload helper can use configured WeChat account credentials to create drafts. <br>
-Mitigation: Confirm the intended WeChat account configuration before running upload-draft.sh, and run it only when a draft should be created. <br>
-Risk: Article content may be sent to external AI or image-generation services when generating images. <br>
-Mitigation: Avoid confidential drafts unless the user accepts sending the article text to the configured image provider. <br>
-Risk: The image-generation dependency is external and unpinned in the artifact instructions. <br>
-Mitigation: Install the dependency only from a trusted source and review it before using this skill. <br>
+## Use Case:
 
+External creators and developers use this skill to turn rough notes, drafts, or speech transcripts into WeChat Official Account article packages while preserving the author's voice. It prepares markdown, HTML, metadata, AI-generated images, and upload or paste guidance for publication workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jianshuo/wjs-publishing-wechat) <br>
-- [Publisher profile](https://clawhub.ai/user/jianshuo) <br>
-- [gpt-image-2-skill dependency](https://github.com/Wangnov/gpt-image-2-skill) <br>
-- [WeChat Official Account backend](https://mp.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown article drafts, HTML content, JSON metadata, PNG image assets, and shell command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an article folder containing original and polished drafts, metadata, cover image, illustration, and upload artifacts when the helper scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence.json release.version) <br>
+Risk: Unpublished article text, titles, and generated assets may be sent to external AI and WeChat services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive drafts before use and confirm that content is appropriate for external processing before image generation or draft upload.
+
+Risk: The workflow depends on an unpinned third-party image-generation wrapper and persistent Codex authentication.
+
+Mitigation: Pin and inspect the gpt-image-2-skill dependency before running it, and review local authentication handling before enabling the image scripts.
+
+Risk: Publishing helpers can upload assets or drafts to a configured WeChat Official Account.
+
+Mitigation: Run upload steps manually, verify the target account configuration, and preview the resulting draft in mp.weixin.qq.com before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jianshuo/skills/wjs-publishing-wechat)
+- [Publisher profile](https://clawhub.ai/user/jianshuo)
+- [WeChat Official Account platform](https://mp.weixin.qq.com)
+- [gpt-image-2-skill dependency](https://github.com/Wangnov/gpt-image-2-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell commands, article markdown, HTML, JSON metadata, and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates article folders containing original.md, article.md, article.html, cover.png, illustration.png, meta.json, and optional draft upload artifacts.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

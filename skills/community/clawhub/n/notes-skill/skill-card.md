@@ -1,42 +1,59 @@
-## Description: <br>
-SQLite-based notes management for OpenClaw agents to create, search, list, archive, and back up local notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A SQLite-based OpenClaw notes management skill that helps an agent create, search, list, archive, and back up local notes.
 
-## Publisher: <br>
-[cocoonovo](https://clawhub.ai/user/cocoonovo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cocoonovo](https://clawhub.ai/user/cocoonovo)
 
-## Use Case: <br>
-OpenClaw users use this skill to let an agent maintain a persistent local notes database, including note creation, search, listing, archiving, and backup rotation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad note-related trigger phrases could cause note actions to happen more easily than intended. <br>
-Mitigation: Use clear note-management commands and confirm before listing, searching, archiving, or backing up notes. <br>
-Risk: The skill stores notes persistently in a local SQLite database, which may include sensitive user content. <br>
-Mitigation: Avoid storing highly sensitive information unless the local environment and backup location are trusted. <br>
+## Use Case:
 
+External users and OpenClaw operators use this skill to manage personal or workspace notes through an AI assistant, including capture, retrieval, organization, archiving, and backup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cocoonovo/notes-skill) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with SQL and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local SQLite database at ~/.openclaw/workspace/notes/notes.db and backup files under ~/.openclaw/workspace/notes/backups/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores notes persistently in a local SQLite database and backups, which can retain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or regulated data, review local file permissions, and confirm backup retention before use.
+
+Risk: Broad note-related triggers can cause the agent to act on ambiguous requests.
+
+Mitigation: Use explicit note commands and confirm intent before creating, archiving, or backing up notes.
+
+Risk: The artifact references initialization and backup scripts that were not included for review.
+
+Mitigation: Install only after reviewing the actual scripts and prefer implementations with parameterized database operations and clear deletion or purge controls.
+
+## Reference(s):
+
+- [Skill instructions](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/cocoonovo/skills/notes-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with SQL and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces notes-management guidance and command examples for local SQLite storage and backups.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

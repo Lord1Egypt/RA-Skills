@@ -1,43 +1,64 @@
-## Description: <br>
-Monitor cryptocurrency prices and trigger alerts when thresholds are hit, with support for BTC, ETH, SOL, and other CoinGecko-listed assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors cryptocurrency prices via the CoinGecko API and helps trigger threshold alerts with optional Telegram notifications.
 
-## Publisher: <br>
-[yongtaop1-sys](https://clawhub.ai/user/yongtaop1-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongtaop1-sys](https://clawhub.ai/user/yongtaop1-sys)
 
-## Use Case: <br>
-External users and developers use this skill to configure cryptocurrency price checks, compare current prices against thresholds, and receive console or Telegram alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script contacts CoinGecko and can send alert messages to Telegram when credentials are configured. <br>
-Mitigation: Review network destinations before use and keep Telegram credentials out of shared files and repositories. <br>
-Risk: Some documented percent-based alert modes are not implemented in the bundled script. <br>
-Mitigation: Use above or below threshold alerts by default, or add and test percent-based condition handling before relying on it. <br>
+## Use Case:
 
+External users, developers, and operators use this skill to check cryptocurrency prices, configure above or below price alerts, and optionally send triggered alerts to Telegram or scheduled monitoring jobs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yongtaop1-sys/crypto-price-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/yongtaop1-sys) <br>
-- [CoinGecko simple price endpoint](https://api.coingecko.com/api/v3/simple/price) <br>
-- [Telegram sendMessage endpoint](https://api.telegram.org/bot{bot_token}/sendMessage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples, Python code, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write triggered alert records or logs when the bundled script is run by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Price queries are sent to CoinGecko.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only where outbound CoinGecko requests are acceptable, and avoid putting sensitive trading context into alert messages.
+
+Risk: Optional Telegram delivery shares alert messages with Telegram.
+
+Mitigation: Configure Telegram delivery only with approved bot tokens and chat IDs, and keep alert text limited to information that is acceptable to send externally.
+
+Risk: The sample cron command writes logs under /tmp and could be run with excessive privileges.
+
+Mitigation: Run scheduled checks as a non-root user and write logs to a private, access-controlled location.
+
+Risk: Percentage-move and configurable file-alert claims are not implemented in the bundled script.
+
+Mitigation: Rely on above and below threshold alerts unless the script is extended and reviewed for those additional behaviors.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yongtaop1-sys/skills/crypto-price-monitor)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/yongtaop1-sys)
+- [CoinGecko API](https://api.coingecko.com/api/v3)
+- [CoinGecko Coins List Endpoint](https://api.coingecko.com/api/v3/coins/list?per_page=250)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples, shell commands, and Python code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optional external API calls to CoinGecko and optional Telegram alert delivery configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

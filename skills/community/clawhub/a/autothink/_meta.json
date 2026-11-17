@@ -1,6 +1,50 @@
 {
-  "ownerId": "kn755yma3eymf79y20met68w4982vd38",
-  "slug": "autothink",
+  "id": "autothink",
+  "name": "AutoThink",
+  "version": "1.0.0",
+  "description": "Automatically adjust OpenClaw's thinking level based on message complexity",
+  "author": "大青龙",
+  "homepage": "https://github.com/openclaw/openclaw-autothink",
+  "repository": "https://github.com/openclaw/openclaw-autothink.git",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "thinking",
+    "reasoning",
+    "automation",
+    "ai"
+  ],
+  "clawdbot": {
+    "emoji": "🧠",
+    "category": "automation",
+    "tags": [
+      "thinking",
+      "reasoning",
+      "auto",
+      "complexity"
+    ],
+    "screenshots": [
+      "screenshots/demo-1.png"
+    ],
+    "install": [
+      {
+        "id": "clawhub",
+        "label": "Install via ClawHub",
+        "command": "clawhub install autothink"
+      }
+    ],
+    "requirements": {
+      "openclaw": ">=2026.3.0",
+      "node": ">=18.0.0"
+    },
+    "features": [
+      "Auto-detects message complexity",
+      "Dynamically switches thinking mode",
+      "Manual override with -h/-l/-m prefixes",
+      "Zero configuration needed"
+    ]
+  },
+  "publishedAt": "2026-03-16T02:22:00Z",
   "version": "2.0.0",
-  "publishedAt": 1773599069045
+  "changelog": "v2.0.0: Persistent mode switching. One-time -h/-l/-m sets thinking mode for entire session. Zero analysis overhead after setup."
 }

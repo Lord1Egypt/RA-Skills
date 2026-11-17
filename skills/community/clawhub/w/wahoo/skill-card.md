@@ -1,51 +1,58 @@
-## Description: <br>
-Wahoo is a creative screenwriting skill based on McKee, Snyder, Harmon, Sorkin, Nolan, and Tarantino methodologies, with a five-dimensional creative engine for generating concepts and screenplay drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creative Screenwriting Master. Based on the world's best screenwriting methodologies (McKee, Snyder, Harmon, Sorkin, Nolan, Tarantino), featuring a five-dimensional creative engine for disruptive concept generation and top-tier screenplay writing capabilities. Not just writing stories, but creating shock and awe.
 
-## Publisher: <br>
-[wenqin1688](https://clawhub.ai/user/wenqin1688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenqin1688](https://clawhub.ai/user/wenqin1688)
 
-## Use Case: <br>
-External writers, filmmakers, and story developers use Wahoo to generate screenplay concepts, develop characters and worlds, structure short films, features, and series, and review drafts against established screenwriting methods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad creative-writing prompts may route to this skill even when the user did not explicitly ask for screenplay methodology. <br>
-Mitigation: Confirm the user wants screenwriting or story-development help before applying Wahoo-specific structure and terminology. <br>
-Risk: Some reference material is Chinese, which can create usability issues for readers expecting English-only guidance. <br>
-Mitigation: Summarize or translate referenced concepts into the user's requested language when presenting outputs. <br>
-Risk: Users may include sensitive unpublished story material in creative-writing requests. <br>
-Mitigation: Avoid sharing confidential unpublished material unless the user is comfortable with the platform's data handling. <br>
+## Use Case:
 
+External creators, screenwriters, and story developers use Wahoo to generate and refine screenplay concepts, story structures, scenes, dialogue, and diagnostics for shorts, feature films, and series.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wenqin1688/wahoo) <br>
-- [Narrative Master Core Methodology](references/methodology/foundation.md) <br>
-- [Narrative Master Five-Dimensional Creative Engine](references/creative/engine.md) <br>
-- [Narrative Master Process](references/creative/process.md) <br>
-- [Narrative Master Knowledge Graph](references/creative/memory.md) <br>
-- [Master Screenwriting Case Library](references/cases/mastercases.md) <br>
-- [Ultra-Short Film Guide](references/formats/ultrashort.md) <br>
-- [Short Film Guide](references/formats/shortfilm.md) <br>
-- [Feature Film Guide](references/formats/feature.md) <br>
-- [Series Guide](references/formats/series.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-formatted creative guidance, outlines, screenplay drafts, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces single-stream creative writing assistance; no tools, API calls, or shell commands were detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Broad story-development prompts may activate the skill unexpectedly, and its language expectations are loose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it with explicit screenwriting intent and specify the desired language, format, and scope.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wenqin1688/skills/wahoo)
+- [Master case studies](artifact/references/cases/mastercases.md)
+- [Five-dimensional creative engine](artifact/references/creative/engine.md)
+- [Narrative knowledge graph](artifact/references/creative/memory.md)
+- [Creative process](artifact/references/creative/process.md)
+- [Feature film guide](artifact/references/formats/feature.md)
+- [TV series guide](artifact/references/formats/series.md)
+- [Short film guide](artifact/references/formats/shortfilm.md)
+- [Ultra-short film guide](artifact/references/formats/ultrashort.md)
+- [Core methodology](artifact/references/methodology/foundation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown screenplay outlines, story diagnostics, beat sheets, and script drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Chinese-heavy output unless the user specifies a preferred language.]
+
+## Skill Version(s):
+
+4.0.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

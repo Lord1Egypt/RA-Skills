@@ -1,44 +1,57 @@
-## Description: <br>
-Looks up current weather, 7-day forecasts, 24-hour hourly conditions, air quality, lifestyle indexes, and supported cities through JisuAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询实时天气、7 天预报、24 小时逐时、空气质量与生活指数，可查城市列表。
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and developers use this skill to answer weather questions for Chinese cities or supported location identifiers, then summarize JisuAPI weather JSON into user-facing guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather queries may disclose location data to JisuAPI, especially when using exact coordinates or IP address. <br>
-Mitigation: Prefer city-name queries where possible and avoid exact coordinates or IP address unless the user specifically needs that lookup. <br>
-Risk: The skill depends on a JisuAPI key and the provider's quota, permissions, and availability. <br>
-Mitigation: Use a dedicated JISU_API_KEY with normal quota controls and handle API errors or quota failures in the agent response. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to query JisuAPI weather data by city, city ID, city code, coordinates, or IP address, then summarize current conditions, forecasts, AQI, hourly weather, and lifestyle indexes for end users.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/jisu-weather) <br>
-- [JisuAPI](https://www.jisuapi.com/) <br>
-- [JisuAPI Weather API](https://www.jisuapi.com/api/weather/) <br>
-- [JisuAPI weather query endpoint](https://api.jisuapi.com/weather/query) <br>
-- [JisuAPI weather city endpoint](https://api.jisuapi.com/weather/city) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON from the weather helper script, typically summarized by the agent as Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; weather lookups may use city, cityid, citycode, latitude/longitude, IP address, or a city-list command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill sends the configured JISU_API_KEY and user-provided city, IP address, or latitude/longitude to JisuAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use city-level lookup unless IP-based or precise-coordinate weather results are intentionally needed, and only install the skill if sharing those inputs with JisuAPI is acceptable.
+
+Risk: Weather calls depend on the external JisuAPI service, account permissions, and request quota.
+
+Mitigation: Configure a valid JisuAPI AppKey, monitor provider quota or permission errors, and handle returned API error JSON before presenting results to users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/jisu-weather)
+- [JisuAPI home page](https://www.jisuapi.com/)
+- [JisuAPI weather API documentation](https://www.jisuapi.com/api/weather/)
+- [JisuAPI weather query endpoint](https://api.jisuapi.com/weather/query)
+- [JisuAPI weather city endpoint](https://api.jisuapi.com/weather/city)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and the JISU_API_KEY environment variable; weather lookups return provider JSON that agents may summarize into natural language.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

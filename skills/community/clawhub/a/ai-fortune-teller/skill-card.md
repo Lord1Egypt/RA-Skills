@@ -1,49 +1,67 @@
-## Description: <br>
-AI Fortune Teller provides entertainment-focused Bazi, tarot, daily fortune, K-line fortune chart, past-life portrait, and future-partner portrait workflows using MiniMax text and image APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Fortune Teller helps an agent produce Chinese fortune-telling, Bazi, tarot, daily fortune, K-line style life-fortune visualization, past-life portrait, and future-partner portrait outputs using MiniMax text and image models.
 
-## Publisher: <br>
-[jackjls](https://clawhub.ai/user/jackjls) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackjls](https://clawhub.ai/user/jackjls)
 
-## Use Case: <br>
-External users use this skill for entertainment-oriented fortune telling, tarot readings, personalized fortune summaries, and generated portrait or chart prompts. Agents can use it to format user inputs, call MiniMax-backed helpers, and return human-readable readings or generated image links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send names, birth details, user questions, and generated prompts to MiniMax. <br>
-Mitigation: Treat inputs as personal data, avoid entering sensitive details, and run the skill only when MiniMax processing is acceptable for the use case. <br>
-Risk: Helper scripts read API settings from the user's Clawd environment file and use the configured MiniMax host. <br>
-Mitigation: Review the environment file before execution and verify MINIMAX_API_HOST points to the intended MiniMax endpoint. <br>
-Risk: Generated K-line and portrait helpers can write reading records to /tmp JSON files. <br>
-Mitigation: Delete generated /tmp result files after use if local retention of reading records is not desired. <br>
-Risk: Fortune-telling and portrait outputs are entertainment content and may be misleading if used for important life, health, financial, or relationship decisions. <br>
-Mitigation: Present outputs as entertainment and encourage users to rely on qualified professional advice for consequential decisions. <br>
+## Use Case:
 
+External users and agents use this skill for entertainment-oriented Bazi readings, tarot interpretations, daily fortune summaries, and related image prompts or generated image links. It is intended for reflective or entertainment use, not professional, medical, legal, financial, or life-decision advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackjls/ai-fortune-teller) <br>
-- [Bazi prompt](references/bazi-prompt.md) <br>
-- [Daily fortune prompt](references/daily-fortune-prompt.md) <br>
-- [K-line generator](references/kline-generator.md) <br>
-- [Tarot prompt](references/tarot-prompt.md) <br>
-- [Usage examples](references/usage-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON, image URLs] <br>
-**Output Format:** [Markdown or plain-text reports, shell command invocations, generated image URLs, and local JSON result files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some generated image links are described by the artifact as time-limited; helper scripts may write result JSON files under /tmp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release evidence, _meta.json) <br>
+Risk: The skill can send names, birth details, questions, and generated prompts to MiniMax.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when users accept that data sharing, and avoid entering sensitive personal information beyond what is needed for the entertainment workflow.
+
+Risk: API credentials and local environment values may be read from $HOME/.clawd/.env during standalone script use.
+
+Mitigation: Keep unrelated secrets out of that file and review local environment configuration before running the scripts.
+
+Risk: Changing MINIMAX_API_HOST can redirect requests to an untrusted endpoint.
+
+Mitigation: Leave MINIMAX_API_HOST unset or set it only to a trusted MiniMax endpoint.
+
+Risk: Fortune, tarot, and portrait outputs may be mistaken for reliable advice.
+
+Mitigation: Present outputs as entertainment and require users to rely on qualified professionals for consequential decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackjls/skills/ai-fortune-teller)
+- [Publisher profile](https://clawhub.ai/user/jackjls)
+- [Bazi prompt](artifact/references/bazi-prompt.md)
+- [Daily fortune prompt](artifact/references/daily-fortune-prompt.md)
+- [K-line generator](artifact/references/kline-generator.md)
+- [Tarot prompt](artifact/references/tarot-prompt.md)
+- [Usage examples](artifact/references/usage-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, image URLs, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown-style fortune reports, shell output, generated image URLs, and JSON result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated image URLs are described by the artifact as valid for 24 hours; standalone scripts require MINIMAX_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

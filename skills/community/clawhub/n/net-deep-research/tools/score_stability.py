@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""URL stability scorer for net-deep-research skill.
+"""URL stability scorer for net-deep-research skill bundle v1.1.0.
 
 Scores a URL's link-rot probability (0-2) purely from its structure.
 Requires Python 3.7+. No dependencies beyond stdlib.
@@ -27,10 +27,19 @@ _RE_GIT_PERMALINK = re.compile(
 )
 
 # Session / temporary tokens
+# (?:^|[?&]) 前缀：urlparse 的 query 不含前导 ?，首参出现在开头而非 [?&] 之后
 _RE_TEMPORARY = re.compile(
-    r"[?&](session|token|temp|tmp|nonce|access_token|refresh_token|jwt)=",
+    r"(?:^|[?&])(session|token|temp|tmp|nonce|access_token|refresh_token|jwt)=",
     re.IGNORECASE,
 )
+
+
+def _host_matches(host: str, domains) -> bool:
+    """精确域名匹配：host 本身或其子域名。
+
+    避免子串匹配误判（如 'content.com' 含子串 't.co'、'max.com' 含 'x.com'）。
+    """
+    return any(host == d or host.endswith("." + d) for d in domains)
 
 
 def _is_git_permalink(parsed) -> tuple[bool, str]:
@@ -55,9 +64,9 @@ def _is_docs_hosting(parsed) -> tuple[bool, str]:
 
 
 def _is_institutional(parsed) -> tuple[bool, str]:
-    """.gov, .edu, or standards-body domain."""
+    """.gov, .edu (incl. country variants like .gov.cn / .gov.uk), or standards-body domain."""
     host = parsed.netloc.lower().rstrip(".")
-    if host.endswith(".gov") or host.endswith(".edu"):
+    if host.endswith((".gov", ".edu")) or ".gov." in host or ".edu." in host:
         return True, "institutional_domain"
     standards = ("rfc-editor.org", "w3.org", "ietf.org", "iso.org", "ieee.org", "acm.org")
     if any(host == s or host.endswith("." + s) for s in standards):
@@ -77,7 +86,7 @@ def _is_package_registry(parsed) -> tuple[bool, str]:
     )
     host = parsed.netloc.lower()
     for path_seg, *hosts in patterns:
-        if path_seg in parsed.path and any(h in host for h in hosts):
+        if path_seg in parsed.path and _host_matches(host, hosts):
             return True, "package_registry"
     return False, ""
 
@@ -105,7 +114,7 @@ _MIRROR_SITES = (
 def _is_known_stable_news(parsed) -> tuple[bool, str]:
     """Well-known tech publication with editorial archiving."""
     host = parsed.netloc.lower()
-    if any(h in host for h in _KNOWN_STABLE_NEWS):
+    if _host_matches(host, _KNOWN_STABLE_NEWS):
         return True, "known_stable_publication"
     return False, ""
 
@@ -113,7 +122,7 @@ def _is_known_stable_news(parsed) -> tuple[bool, str]:
 def _is_third_party_blog(parsed) -> tuple[bool, str]:
     """Blog platform where URLs may change or paywalls appear."""
     host = parsed.netloc.lower()
-    if any(h in host for h in _THIRD_PARTY_BLOGS):
+    if _host_matches(host, _THIRD_PARTY_BLOGS):
         return True, "third_party_blog_platform"
     return False, ""
 
@@ -128,7 +137,7 @@ def _is_official_blog(parsed) -> tuple[bool, str]:
 def _is_mirror(parsed) -> tuple[bool, str]:
     """Archive or mirror site."""
     host = parsed.netloc.lower()
-    if any(h in host for h in _MIRROR_SITES):
+    if _host_matches(host, _MIRROR_SITES):
         return True, "mirror_archive"
     return False, ""
 
@@ -158,7 +167,7 @@ _LINK_SHORTENERS = (
 def _is_social_media(parsed) -> tuple[bool, str]:
     """Social media — posts can be deleted at any time."""
     host = parsed.netloc.lower()
-    if any(h in host for h in _SOCIAL_DOMAINS):
+    if _host_matches(host, _SOCIAL_DOMAINS):
         return True, "social_media"
     return False, ""
 
@@ -166,7 +175,7 @@ def _is_social_media(parsed) -> tuple[bool, str]:
 def _is_link_shortener(parsed) -> tuple[bool, str]:
     """URL shortener — extra layer of indirection, may stop resolving."""
     host = parsed.netloc.lower()
-    if any(h in host for h in _LINK_SHORTENERS):
+    if _host_matches(host, _LINK_SHORTENERS):
         return True, "link_shortener"
     return False, ""
 
@@ -205,7 +214,7 @@ _RULE_EXPLANATIONS = {
     "repo_root":                "GitHub/GitLab repository root — stable as long as repo exists",
     "docs_hosting":             "Hosted on docs.* subdomain, readthedocs, or github.io — static site",
     "docs_path":                "Path contains /docs/ — likely rendered documentation",
-    "institutional_domain":     ".gov or .edu domain — legally required to preserve information",
+    "institutional_domain":     ".gov/.edu domain incl. country variants (.gov.cn, .gov.uk) — legally required to preserve information",
     "standards_body":           "Standards body (W3C, IETF, ISO, IEEE, RFC Editor) — permanent archive",
     "package_registry":         "Package registry permalink (npm, PyPI, crates.io, Maven) — stable",
     "mirror_archive":           "Web Archive or mirror — already preserved",

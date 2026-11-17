@@ -1,43 +1,54 @@
-## Description: <br>
-Extracts structured data from websites and APIs, delivering clean datasets in multiple formats. Handles pagination, deduplication, and data enrichment for reliable business intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured data from websites and APIs into clean CSV and JSON datasets with pagination, deduplication, and enrichment support for business intelligence.
 
-## Publisher: <br>
-[andreataide86](https://clawhub.ai/user/andreataide86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreataide86](https://clawhub.ai/user/andreataide86)
 
-## Use Case: <br>
-External users and developers use this skill to plan, execute, clean, deduplicate, enrich, and deliver structured business datasets from permitted websites and APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing an unverified npm package can execute untrusted local code. <br>
-Mitigation: Verify the cashclaw npm package before installing and prefer a pinned trusted version. <br>
-Risk: Scraping disallowed sources or unnecessary personal data can create legal, privacy, or policy issues. <br>
-Mitigation: Use only public, permitted sources, respect robots.txt and site terms, and avoid collecting personal or sensitive data beyond legitimate business-contact context. <br>
-Risk: High-volume scraping can burden target sites or produce unreliable data. <br>
-Mitigation: Apply rate limiting, define record limits up front, document sources, and deliver only cleaned, deduplicated records with quality checks. <br>
+## Use Case:
 
+External users, developers, and data operators use this skill to scope permitted web or API extraction requests, define schemas, collect bounded datasets, clean and deduplicate records, and deliver business intelligence outputs.
 
-## Reference(s): <br>
-- [Cashclaw Data Scraper on ClawHub](https://clawhub.ai/andreataide86/cashclaw-data-scraper) <br>
-- [cashclaw npm package](https://www.npmjs.com/package/cashclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON/YAML examples, CSV/JSON dataset formats, and extraction-report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce cleaned CSV and JSON datasets plus a Markdown extraction report when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill relies on the unpinned cashclaw npm package, so behavior depends on the installed package version and publisher.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, pin and audit the package version before use, and run it in a constrained environment.
+
+Risk: Scraping can violate robots.txt, website terms, or privacy expectations, especially when business contact data is collected.
+
+Mitigation: Use only permitted sources, respect robots.txt and terms of service, keep record limits narrow, apply rate limits, and avoid personal contact data outside a legitimate business context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andreataide86/skills/cashclaw-data-scraper)
+- [CashClaw npm package](https://www.npmjs.com/package/cashclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files, Markdown]
+
+**Output Format:** [Markdown guidance with inline JSON, YAML, CSV, and bash examples; final extraction deliverables are CSV, JSON, and Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and curl; examples invoke the cashclaw npm package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,60 @@
-## Description: <br>
-Adds academic citation support for Overleaf-style LaTeX papers by analyzing project files, selecting references, inserting citation markers in key sections, and producing an ADD.MD report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds relevant academic citations to research paper projects by inspecting TeX and BibTeX files, inserting citation markers, and producing an ADD.MD report.
 
-## Publisher: <br>
-[oldglycine](https://clawhub.ai/user/oldglycine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oldglycine](https://clawhub.ai/user/oldglycine)
 
-## Use Case: <br>
-Researchers, authors, and developers working on Overleaf-style LaTeX projects use this skill to add relevant paper references, insert citation markers into introduction or related-work sections, and review the resulting ADD.MD citation report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can directly edit manuscript files and overwrite the configured report without a dry run or confirmation step. <br>
-Mitigation: Run it only on a copied project or after a separate backup, inspect target .tex files and output_report before execution, and review diffs before keeping changes. <br>
-Risk: Scholar searches may expose manuscript-derived keywords or paper content context outside the local project. <br>
-Mitigation: Avoid use with confidential manuscripts unless the user approves any Google Scholar queries derived from the paper content. <br>
+## Use Case:
 
+Researchers, students, and writing agents use this skill to add non-duplicate citation markers to Overleaf-style paper projects and document the inserted references in an ADD.MD report.
 
-## Reference(s): <br>
-- [Code Reference](reference/CODE.MD) <br>
-- [Backup Guidance](reference/BACKUP.MD) <br>
-- [Reference Addition Guidance](reference/REFERENCES.MD) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance, Python code, LaTeX citation edits, and ADD.MD report content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify .tex files and write or overwrite the configured ADD.MD report in the target project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence and skill frontmatter metadata) <br>
+Risk: The skill can rewrite paper files and may not create the promised backup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on a copied project or a version-controlled working tree, and verify backups before accepting changes.
+
+Risk: An unchecked report path can overwrite files outside the intended paper project.
+
+Mitigation: Keep the report path relative to the paper project and review the resolved output path before execution.
+
+Risk: Unpinned dependencies and the documented pdflatex pip package may introduce supply-chain or runtime risk.
+
+Mitigation: Use an isolated environment with version-pinned dependencies and independently verify any LaTeX tooling.
+
+## Reference(s):
+
+- [Code Reference](reference/CODE.MD)
+- [Backup Reference](reference/BACKUP.MD)
+- [Citation Reference](reference/REFERENCES.MD)
+- [ClawHub Skill Page](https://clawhub.ai/oldglycine/skills/oldglycine-paper-reference-adder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code and shell commands; the runner writes TeX edits and an ADD.MD report.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify TeX files in the target project and write a report file.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

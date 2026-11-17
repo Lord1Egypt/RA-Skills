@@ -1,44 +1,62 @@
-## Description: <br>
-Laravel Docs Reader gives agents and developers version-aware Laravel documentation lookup, PSR-12 Laravel code skeletons, and Laravel 10/11/12 version-difference guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Laravel Docs Reader gives agents and developers version-aware Laravel documentation lookup, project version detection, PSR-12 code skeleton generation, and Laravel 10/11/12 difference guidance.
 
-## Publisher: <br>
-[relunctance](https://clawhub.ai/user/relunctance) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[relunctance](https://clawhub.ai/user/relunctance)
 
-## Use Case: <br>
-Developers and agent users use this skill while working in Laravel projects to look up version-specific framework guidance, generate conventional Laravel snippets, and check PSR-12 or Laravel 10/11/12 migration differences before editing code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Laravel code or command guidance may be incorrect for a specific application context. <br>
-Mitigation: Review generated code before applying it in a Laravel project. <br>
-Risk: Separate cloned scripts or token-based publish commands could carry risks outside normal skill use. <br>
-Mitigation: Inspect any external repository or script before running cloned PHP tools or token-based publish commands. <br>
+## Use Case:
 
+Developers and coding agents use this skill while working on Laravel projects to retrieve version-specific documentation, generate PSR-12 code skeletons, inspect config, facade, and Artisan references, and compare behavior across Laravel 10, 11, and 12.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/relunctance/laravel-docs-reader) <br>
-- [README](artifact/README.md) <br>
-- [Version Detection Logic](artifact/references/version-detection.md) <br>
-- [Laravel Version Diff (10 / 11 / 12)](artifact/references/version-diff.md) <br>
-- [PSR-12 Coding Standard Quick Reference](artifact/references/psr-12.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown responses with PHP/Laravel code snippets and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include version notes, caveats, and references to bundled Laravel guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill specification) <br>
+Risk: Version detection may inspect Laravel project files and may run Artisan if that feature is implemented.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in trusted project workspaces and review detected versions before applying generated guidance.
+
+Risk: Cache and update behavior may create a local .cache directory and fetch documentation updates from GitHub or Packagist.
+
+Mitigation: Enable network and cache writes only where those actions are acceptable, and review auto-update pull requests before merging.
+
+Risk: The skill may suggest using laravel-package-search for third-party package discovery.
+
+Mitigation: Treat package-search suggestions as optional and review third-party packages independently before installing them.
+
+## Reference(s):
+
+- [Laravel Docs Reader on ClawHub](https://clawhub.ai/relunctance/skills/laravel-docs-reader)
+- [Publisher profile: relunctance](https://clawhub.ai/user/relunctance)
+- [README](artifact/README.md)
+- [Version Detection Logic](artifact/references/version-detection.md)
+- [Laravel Version Diff (10 / 11 / 12)](artifact/references/version-diff.md)
+- [PSR-12 Coding Standard Quick Reference](artifact/references/psr-12.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with inline PHP, shell, JSON, and YAML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Version-aware guidance for Laravel 10, 11, and 12; may include PSR-12 code skeletons, documentation summaries, version notes, and caveats.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact specification)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

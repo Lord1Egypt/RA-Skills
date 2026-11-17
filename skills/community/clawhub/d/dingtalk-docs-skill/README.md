@@ -13,7 +13,7 @@
 | 类别 | 能力 |
 |------|------|
 | **读** | 拉取云端文档正文为 markdown、列出知识库/文件夹文档、按关键词搜索、获取文档元信息、下载钉盘文件与文档附件 |
-| **写** | 推送本地 markdown 到钉钉、覆盖/追加更新文档内容、块级精确编辑（段落/标题/表格等）、上传本地文件（PDF/图片/Word 等） |
+| **写** | 将 Markdown/纯文本推送为可编辑钉钉文档、按原格式上传 HTML/图片/PDF/Office 等文件、将本地图片内联嵌入文档正文、覆盖/追加更新文档内容、块级精确编辑（段落/标题/表格等） |
 | **管理** | 创建文件夹、重命名/移动/复制/删除文档和文件夹、导出文档为 PDF/Word、管理节点成员权限 |
 
 所有操作通过[钉钉官方 MCP Server](https://aihub.dingtalk.com/#/detail?mcpId=9629&detailType=marketMcpDetail) 完成，无需本地脚本，API Key 不会写入代码。
@@ -75,6 +75,7 @@ https://alidocs.dingtalk.com/i/spaces/xxxxx/overview
 
 - *"把 `docs/design.md` 推送到我的钉钉知识库"*
 - *"用本地最新版本更新钉钉上的 PRD 文档"*
+- *"把这篇带本地截图的 markdown 推到钉钉，图片要能正常显示"*
 - *"列出我知识库里的所有文档"*
 - *"在钉钉文档里搜索「认证」"*
 - *"把会议纪要从钉钉拉取到本地"*
@@ -98,7 +99,12 @@ https://alidocs.dingtalk.com/i/spaces/xxxxx/overview
 | **Mermaid 流程图** | ` ```mermaid ` 代码块推送后显示为普通代码块，而非钉钉原生「文本绘图」。推送后需在钉钉编辑器中手动转换。 |
 | **对话上传文件编码** | 非 ASCII 文件（中文等）通过对话上传时可能出现不可逆乱码。请始终提供**本地文件路径**。 |
 | **文档类型** | `create_document` 和 `update_document` 仅支持 **adoc**（文字类型）文档。 |
+| **非 adoc 读取** | `get_document_content` 只可读取 adoc。`axls` 表格需使用当前会话实际可用的表格工具；工具不可用时请直接提供所需内容或导出文件。`dlink` 快捷方式需先解析目标原始 nodeId，并按该 ID 去重。 |
+| **推送类型选择** | Markdown/纯文本默认创建可编辑 adoc；HTML、图片、PDF、Office 等默认按原格式上传到知识库，不会擅自转换。 |
+| **Markdown 大文件** | `.md` / `.markdown` 优先创建 adoc；正文超过 9,500 字符时，先由用户选择分段 adoc 或原样上传 MD 文件。 |
+| **方案不明确** | 文件格式、保留原格式或在线编辑需求不明确时，先确认推送方案；方案确认不替代云端写入前的确认。 |
 | **删除** | 移入回收站（30 天内可恢复），非永久删除。 |
+| **本地图片内联** | 需内联进正文的图片走 `get_doc_attachment_upload_info` → PUT → `download_doc_attachment` 取签名 URL → 写入 `![](签名URL)` 自动转存链路。**统一用签名 URL，勿依赖 `resourceUrl`**（资源不可达时会得到「暂无权限访问」占位插画）。所有写操作串行，推送后做字节级校验。 |
 
 ### 安全性
 
@@ -129,7 +135,7 @@ https://alidocs.dingtalk.com/i/spaces/xxxxx/overview
 | Category | Capabilities |
 |----------|-------------|
 | **Read** | Pull cloud document content as markdown, list knowledge base / folder nodes, search by keyword, get document metadata, download DingTalk Drive files and attachments |
-| **Write** | Push local markdown to DingTalk, overwrite / append document content, block-level precise editing (paragraphs, headings, tables, etc.), upload local files (PDF, images, Word, etc.) |
+| **Write** | Push Markdown/plain text as editable DingTalk documents, upload HTML/images/PDF/Office files in their original formats, inline local images into the document body, overwrite / append document content, and make block-level edits |
 | **Manage** | Create folders, rename / move / copy / delete documents and folders, export documents to PDF or Word, manage node member permissions |
 
 All operations go through [DingTalk's official MCP Server](https://aihub.dingtalk.com/#/detail?mcpId=9629&detailType=marketMcpDetail) — no local scripts or API keys in code.
@@ -191,6 +197,7 @@ Just talk to Claude naturally:
 
 - *"Push `docs/design.md` to my DingTalk knowledge base"*
 - *"Update the PRD document on DingTalk with the latest local version"*
+- *"Push this markdown with local screenshots to DingTalk so the images render inline"*
 - *"List all documents in my knowledge base"*
 - *"Search DingTalk docs for 'authentication'"*
 - *"Pull the meeting notes from DingTalk to local"*
@@ -214,7 +221,12 @@ User request
 | **Mermaid diagrams** | ` ```mermaid ` blocks are pushed as plain code blocks, not DingTalk's native "text drawing" blocks. Manually convert after pushing. |
 | **File encoding on chat upload** | Non-ASCII files (Chinese, etc.) uploaded through the chat may suffer irreversible garbled text. Always provide a **local file path**. |
 | **Document types** | `create_document` and `update_document` only support **adoc** (text document) type. |
+| **Non-adoc reads** | `get_document_content` only reads adoc. `axls` needs a spreadsheet tool that is actually available in the current session; otherwise provide the content or an export. Resolve `dlink` shortcuts to their original node IDs and deduplicate by that ID. |
+| **Push routing** | Markdown/plain text creates editable adoc by default. HTML, images, PDF, and Office files upload in their original formats without implicit conversion. |
+| **Large Markdown** | `.md` / `.markdown` prefers adoc. Above 9,500 characters, the user chooses between segmented adoc and uploading the original MD file. |
+| **Ambiguous routing** | When the format, original-format preservation, or online-editing intent is unclear, the Skill confirms the route before creating or uploading. Route confirmation is separate from write confirmation. |
 | **Deletion** | Moves to trash (recoverable within 30 days), not permanent deletion. |
+| **Inline local images** | Images meant for the body go through `get_doc_attachment_upload_info` → PUT → `download_doc_attachment` (signed URL) → write `![](signedURL)` so DingTalk auto-fetches and re-hosts them. **Always use the signed URL; `resourceUrl` is unreliable** (it yields a "no access" placeholder illustration). Keep writes serial and verify byte-for-byte after pushing. |
 
 ### Security
 

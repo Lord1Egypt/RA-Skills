@@ -1,42 +1,55 @@
-## Description: <br>
-Optical chemical structure recognition workflow for extracting molecule structures and names from images through SciMiner. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optical chemical structure recognition workflow for extracting molecule structures and names from images through SciMiner.
 
-## Publisher: <br>
-[sciminer](https://clawhub.ai/user/sciminer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sciminer](https://clawhub.ai/user/sciminer)
 
-## Use Case: <br>
-Chemists, researchers, and agents working with chemistry documents use this skill to submit chemistry images to SciMiner AlphaExtractor and receive extracted molecule structures, names, task status, and share URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chemistry images and related task results are sent to SciMiner, and successful tasks return share_url result pages. <br>
-Mitigation: Submit only images and results that your organization allows to be processed by SciMiner and exposed through SciMiner result pages. <br>
-Risk: The skill requires a SciMiner API key stored at ~/.config/sciminer/credentials.json. <br>
-Mitigation: Keep the API key out of prompts, logs, and repository files; read it only from the credential file and send it as the documented authentication header. <br>
+## Use Case:
 
+Developers and chemistry researchers use this skill to extract molecular structures and visible molecule names from paper figures, slides, posters, screenshots, or other chemistry images into downstream-ready outputs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sciminer/chemical-recognition) <br>
-- [SciMiner AlphaExtractor API documentation](https://sciminer.tech/tool_api_files/AlphaExtractor_api_doc.md) <br>
-- [SciMiner API key utility](https://sciminer.tech/utility) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown summary with JSON result excerpts and share_url links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SciMiner API key at ~/.config/sciminer/credentials.json and uploads chemistry images to SciMiner; long-running tasks are polled for up to 600 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill uploads user-provided chemistry images to SciMiner while using an API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with images the user is permitted to send to SciMiner; avoid confidential or regulated chemistry content.
+
+Risk: The skill relies on mutable external documentation to define invocation details.
+
+Mitigation: Review the referenced SciMiner API documentation before use and prefer a reviewed or pinned invocation path for higher-assurance deployments.
+
+## Reference(s):
+
+- [SciMiner AlphaExtractor API documentation](https://sciminer.tech/tool_api_files/AlphaExtractor_api_doc.md)
+- [SciMiner tool API documentation index](https://sciminer.tech/tool_api_files/)
+- [αExtractor on ClawHub](https://clawhub.ai/sciminer/skills/chemical-recognition)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with JSON task results, invocation code or shell commands, and SciMiner history URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires gateway-injected SCIMINER_API_KEY; successful task summaries should include history_url links.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

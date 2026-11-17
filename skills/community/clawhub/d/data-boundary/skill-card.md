@@ -1,42 +1,58 @@
-## Description: <br>
-DataGate parses untrusted CSV or JSON through a deterministic tool boundary before model analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DataGate parses untrusted CSV or JSON through a deterministic tool boundary before model analysis.
 
-## Publisher: <br>
-[alan-stratcraftsai](https://clawhub.ai/user/alan-stratcraftsai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alan-stratcraftsai](https://clawhub.ai/user/alan-stratcraftsai)
 
-## Use Case: <br>
-Developers and analysts use this skill to parse local CSV or JSON files before asking an agent to summarize, inspect, or analyze them. It keeps raw external data separate from trusted instructions and asks the agent to reason over bounded structured output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Parsed file paths, sampled values, schema details, and alerts may enter the assistant context. <br>
-Mitigation: Avoid using the skill on sensitive exports unless sharing bounded parser output with the assistant is acceptable. <br>
-Risk: Bounded previews may omit rows or truncate long values needed for full-fidelity analysis. <br>
-Mitigation: Keep default limits for initial inspection, then rerun with purpose-specific limits when more detail is required. <br>
-Risk: Instruction-like text alerts are heuristic labels, not proof that a file is malicious. <br>
-Mitigation: Describe flagged content as suspicious data and do not silently discard rows or fields based only on the alert. <br>
+## Use Case:
 
+Developers and agent users use DataGate to parse local CSV or JSON files through a bounded tool before summarization or analysis, keeping raw file text separated from model instructions.
 
-## Reference(s): <br>
-- [Output Schema](references/output-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance, Analysis] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON parser output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Parser output is bounded by preview row, string length, and input byte limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Parser output includes the absolute input file path, which may expose local path details if shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or redact the source path before sharing parser output outside the local analysis context.
+
+Risk: Bounded previews can omit rows, items, or long strings needed for full-fidelity analysis.
+
+Mitigation: Use purpose-specific preview limits and state when conclusions are based on truncated parser output.
+
+Risk: Instruction-like text findings are heuristic warning labels, not proof that content is malicious.
+
+Mitigation: Treat flagged content as data, cite the alert location when relevant, and avoid silently dropping rows or fields.
+
+## Reference(s):
+
+- [Output Schema](references/output-schema.md)
+- [DataGate ClawHub Skill Page](https://clawhub.ai/alan-stratcraftsai/skills/data-boundary)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and structured JSON parser output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Parser output includes source metadata, summary, schema, alerts, and bounded preview rows.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,56 @@
-## Description: <br>
-Generate images from ChatGPT using Playwright browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images from ChatGPT using Playwright browser automation. Opens ChatGPT, sends prompts, waits for generation, and saves the resulting images.
 
-## Publisher: <br>
-[Amian](https://clawhub.ai/user/Amian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amian](https://clawhub.ai/user/amian)
 
-## Use Case: <br>
-Developers and creative automation users can use this skill to batch-submit image prompts to ChatGPT and save the generated images with a per-prompt results log. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompt files are submitted to ChatGPT under the user's logged-in account. <br>
-Mitigation: Do not include secrets, private personal data, or confidential business material unless that use is acceptable for the account and organization. <br>
-Risk: The results log stores prompt text alongside generation outcomes. <br>
-Mitigation: Protect or delete the output directory when prompt contents or generated images are sensitive. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and content-production users can use this skill to automate ChatGPT image-generation prompts through a browser session and save generated images plus per-prompt results.
 
-## Skill Output: <br>
-**Output Type(s):** [image files, JSONL logs, shell commands, guidance] <br>
-**Output Format:** [PNG image files with a JSONL results log and console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Playwright/Chromium and a ChatGPT account session; generated outputs and prompt logs are written to the selected output directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts and generated content are submitted through a logged-in ChatGPT browser session, which can expose sensitive or regulated input to that account's service context.
+
+Mitigation: Avoid sensitive or regulated prompts unless account and organization policies allow it, and use an isolated browser profile or disposable workspace for stronger separation.
+
+Risk: The workflow depends on Playwright and Chromium browser automation.
+
+Mitigation: Install it only in a trusted environment and pin Playwright with a lockfile before routine use.
+
+Risk: Browser UI automation may fail when ChatGPT page structure, availability, login state, or generation behavior changes.
+
+Mitigation: Review the generated images and results.jsonl log, rerun failed prompts with the start index option, and keep the automation under operator supervision for important batches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amian/skills/chatgpt-image-generation)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands; generated PNG files and JSONL results when executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a prompt file containing either an array of prompts or an object with a prompts array.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

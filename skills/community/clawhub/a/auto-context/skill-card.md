@@ -1,44 +1,52 @@
-## Description: <br>
-Automatically reads relevant project context files before major actions so agents can operate with current situational awareness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically reads relevant project context before major actions, including TODO.md, roadmap.md, handoffs, task plans, and related files, so agents operate with situational awareness.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and AI-agent users use this skill to load TODOs, roadmaps, task plans, handoffs, findings, changelogs, and session notes before starting, resuming, planning, debugging, refactoring, or handing off work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically reads local planning, roadmap, handoff, and session documents that may contain secrets or unrelated confidential notes. <br>
-Mitigation: Install it only in projects where that local context is appropriate for the agent to read, and keep credentials and confidential notes out of those files. <br>
-Risk: Installing from an unpinned source can make the installed behavior harder to review and reproduce. <br>
-Mitigation: Prefer the ClawHub install path or another reviewed, pinned source. <br>
-Risk: Outdated project context can cause the agent to rely on stale plans or obsolete decisions. <br>
-Mitigation: Use the skill's file-age checks and stale-context warnings before relying on loaded context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wpank/auto-context) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/wpank) <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
+## Use Case:
 
+Developers and agent users use this skill to load prioritized project context before starting, implementing, refactoring, debugging, planning, resuming, or handing off work.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown context summary with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads bounded local project planning files and reports stale-context warnings when relevant.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mutable install commands can fetch different content over time.
+
+Mitigation: Install a pinned, reviewed ClawHub version or a specific commit, and review the install command before running it.
+
+Risk: The skill automatically reads local project context files that may contain sensitive or unrelated private notes.
+
+Mitigation: Keep secrets out of TODO.md, roadmap.md, task_plan.md, handoff files, findings, changelogs, and session summaries before enabling the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/auto-context)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown context summary with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stale-file warnings and missing-context notices based on local project files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

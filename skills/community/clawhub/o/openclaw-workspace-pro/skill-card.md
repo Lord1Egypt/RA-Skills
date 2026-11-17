@@ -1,43 +1,66 @@
-## Description: <br>
-Production-ready workspace setup for OpenClaw agents that implements artifact workflows, secrets management, memory compaction, and long-running agent patterns based on OpenAI's Shell + Skills best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sets up an OpenClaw workspace with artifact folders, persistent agent guidance, secrets handling patterns, memory compaction guidance, and long-running work conventions.
 
-## Publisher: <br>
-[Eugene9D](https://clawhub.ai/user/Eugene9D) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[eugene9d](https://clawhub.ai/user/eugene9d)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure OpenClaw workspaces with standard artifact directories, safer credential handling, memory compaction guidance, and long-running agent operating patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent AGENTS.md and TOOLS.md additions may change agent behavior or pre-approve domains that are unsuitable for a workspace. <br>
-Mitigation: Review the installed AGENTS.md and TOOLS.md additions before use and remove any domains or instructions that should require confirmation. <br>
-Risk: Documented uninstall commands can delete artifacts, memory archives, and configuration if run in the wrong workspace. <br>
-Mitigation: Confirm the target workspace and back up artifacts, archives, and configuration before running uninstall commands. <br>
-Risk: The security evidence notes missing .env and .gitignore template files that users should verify or supply. <br>
-Mitigation: Verify that credential templates and gitignore protections exist before storing secrets or committing workspace files. <br>
+## Use Case:
 
+Developers and operators use this skill to bootstrap a structured OpenClaw workspace for long-running agent work, including artifact organization, memory maintenance, and credential handling conventions.
 
-## Reference(s): <br>
-- [OpenAI Shell + Skills + Compaction](https://developers.openai.com/blog/skills-shell-tips) <br>
-- [OpenClaw Workspace Pro on ClawHub](https://clawhub.ai/Eugene9D/openclaw-workspace-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown, Files] <br>
-**Output Format:** [Markdown instructions with shell commands and workspace file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installs workspace directories and documentation templates through a shell script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, changelog, released 2026-02-13) <br>
+Risk: The skill persistently changes future agent instructions by appending workspace guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the AGENTS.md additions before installation and keep only guidance that matches the workspace's operating policy.
+
+Risk: The provided tool guidance includes broad network and task-tracking behavior.
+
+Mitigation: Remove or narrow Vikunja, Telegram, wildcard, and other network permissions unless they are required for the deployment.
+
+Risk: External task updates may expose sensitive project or credential context if used without clear handling rules.
+
+Mitigation: Add explicit approval and redaction rules before allowing agents to send updates to external task or messaging systems.
+
+Risk: Uninstall commands remove workspace files and directories.
+
+Mitigation: Inspect the targets and backups before running the provided rm commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eugene9d/skills/openclaw-workspace-pro)
+- [OpenAI Shell, Skills, and Compaction guidance](https://developers.openai.com/blog/skills-shell-tips)
+- [Artifact README](artifact/README.md)
+- [Memory compaction workflow](artifact/templates/MEMORY-COMPACTION.md)
+- [Workspace agent additions](artifact/templates/AGENTS-additions.md)
+- [Workspace tool additions](artifact/templates/TOOLS-additions.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, markdown, guidance]
+
+**Output Format:** [Markdown guidance and shell commands that install or update workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates workspace directories and templates, appends guidance to AGENTS.md and TOOLS.md when present, and preserves backups for existing files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, SKILL.md frontmatter, package.json, CHANGELOG released 2026-02-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

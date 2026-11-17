@@ -1,43 +1,58 @@
-## Description: <br>
-Find, shortlist, vet, and enrich US real-world engineering firms, including civil, structural, MEP, mechanical, electrical, geotechnical, transportation, environmental, and manufacturing firms, using the ServiceGraph pro_services dataset. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds, shortlists, vets, and enriches US real-world engineering firms across civil, structural, MEP, mechanical, electrical, geotechnical, transportation, environmental, and manufacturing disciplines using the ServiceGraph pro_services dataset.
 
-## Publisher: <br>
-[nostrband](https://clawhub.ai/user/nostrband) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nostrband](https://clawhub.ai/user/nostrband)
 
-## Use Case: <br>
-External users and procurement-focused agents use this skill to identify US engineering services firms, validate ServiceGraph filters, compare brief firm results, and enrich selected firms when the user approves paid unlocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill requires a ServiceGraph API key. <br>
-Mitigation: Keep the key out of chat and load it from the local shell environment or ServiceGraph MCP server. <br>
-Risk: Unlocking firm details can spend ServiceGraph credits. <br>
-Mitigation: Confirm the number of firms and credit cost with the user before calling the unlock endpoint. <br>
-Risk: The skill is scoped to US real-world engineering firms and can be misapplied to software engineering or non-US requests. <br>
-Mitigation: Confirm the request is for real-world engineering procurement in the United States and defer software engineering requests to a software-focused skill. <br>
+## Use Case:
 
+External users and procurement-focused agents use this skill to search, shortlist, validate, and enrich US B2B engineering firm candidates for buildings, infrastructure, energy, and manufacturing projects while excluding software engineering, non-US firms, individual freelancers, and consumer residential requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nostrband/find-engineering-firm) <br>
-- [ServiceGraph API](https://api.servicegraph.co) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, markdown] <br>
-**Output Format:** [Markdown with inline shell commands, ServiceGraph API requests, and firm shortlist guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require a ServiceGraph API key and explicit user approval before paid detail unlocks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter says 0.3.0) <br>
+Risk: ServiceGraph API keys could be exposed if pasted into chat or loaded into model context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a harness-managed ServiceGraph MCP/OAuth flow when available, or keep SERVICEGRAPH_API_KEY in a local environment file or shell environment and do not paste tokens into chat.
+
+Risk: Unlocking firm details spends ServiceGraph credits.
+
+Mitigation: Confirm the selected apex list and estimated credit cost before calling the unlock endpoint.
+
+Risk: Searches can drift into unrelated industries or software-engineering requests if filters are too broad.
+
+Mitigation: Pin industry:engineering_services, validate filters before search, and defer software-engineering or non-US requests to the appropriate workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nostrband/skills/find-engineering-firm)
+- [ServiceGraph API](https://api.servicegraph.co)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown guidance with REST examples, filter DSL snippets, shell commands, and API request details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require SERVICEGRAPH_API_KEY; paid firm-detail unlocks cost 10 credits per firm and should be confirmed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter version 0.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

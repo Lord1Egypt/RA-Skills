@@ -1,44 +1,52 @@
-## Description: <br>
-Helps AI-agent users, skill authors, maintainers, and teams handle GitHub-style development workflows by clarifying requirements, planning implementation steps, producing practical artifacts, and validating results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps AI-agent users and maintainers plan and execute GitHub-style developer workflows, including bug fixes, setup hardening, reliability work, and adjacent skill creation.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Developers, maintainers, skill authors, and AI-agent users use this skill to get practical help with GitHub-style workflows such as bug fixing, setup hardening, reliability improvements, implementation planning, checklists, and verification notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording and implicit invocation may cause the skill to influence common development requests. <br>
-Mitigation: Prefer explicit invocation for sensitive work and review whether the skill is relevant before relying on its output. <br>
-Risk: Developer workflow guidance may include code changes, shell commands, or configuration suggestions that are incorrect for a specific repository. <br>
-Mitigation: Review proposed changes before applying them and run appropriate tests or verification commands in the target environment. <br>
+## Use Case:
 
+Developers, AI-agent users, skill authors, maintainers, and teams use this skill to turn GitHub-style software and data workflow requests into concrete plans, artifacts, checklists, code changes, shell commands, configuration guidance, and verification notes.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [V2EX: multi-agent investment research framework](https://www.v2ex.com/t/1222186) <br>
-- [ClawHub: Github skill demand signal](https://clawhub.ai/skills/github) <br>
-- [Hacker News: sandboxed code execution discussion](https://news.ycombinator.com/item?id=48632192) <br>
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/software-data-github-interact-developer-helper-002325) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with optional inline code, shell commands, checklists, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include assumptions, constraints, validation notes, and follow-up risks when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Broad GitHub/developer workflow triggers may cause the skill to activate for requests that need repository changes, API calls, issue or pull request activity, or command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the agent's proposed actions before allowing repository changes, API calls, issue or pull request activity, or command execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/software-data-github-interact-developer-helper-002325)
+- [Requirement plan](artifact/references/requirement-plan.md)
+- [ClawHub Github skill demand signal](https://clawhub.ai/skills/github)
+- [Hacker News sandbox workflow signal](https://news.ycombinator.com/item?id=48632192)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include reusable checklists, local scripts, verification commands, implementation notes, assumptions, limits, and follow-up risks.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Guides a conversational agent to collect health, lifestyle, occupation, and family-history details, query epidemiology references, and produce an educational major-disease risk timeline with action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-driven health education skill that conversationally collects a user health profile and generates a simulated major-disease distance timeline with warning signals and mitigation actions.
 
-## Publisher: <br>
-[wwbwin](https://clawhub.ai/user/wwbwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwbwin](https://clawhub.ai/user/wwbwin)
 
-## Use Case: <br>
-External users can ask an agent to simulate a personalized major-disease risk timeline for health education, prevention planning, and discussion preparation. The output should be treated as educational guidance, not medical diagnosis or treatment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; outputs rely primarily on China-focused actuarial and cancer statistics unless the agent retrieves region-specific sources. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for sensitive health, lifestyle, occupation, and family-history information. <br>
-Mitigation: Avoid names and precise identifiers, collect only details needed for the educational report, and remind users not to share unnecessary personal information. <br>
-Risk: The skill may use sensitive health details in external searches. <br>
-Mitigation: Ask for confirmation before external searches and use minimized or generalized search terms. <br>
-Risk: The report may be mistaken for medical advice. <br>
-Mitigation: Keep the report framed as health education and direct users with health concerns to qualified medical professionals. <br>
+## Use Case:
 
+External users use this skill to explore a simulated major-disease risk timeline based on conversationally collected health, lifestyle, occupation, region, and family-history details. It is intended for health education and planning conversations, not medical diagnosis, treatment, or urgent care triage.
 
-## Reference(s): <br>
-- [Artifact skill source](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wwbwin/disease-distance-simulator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/wwbwin) <br>
+### Deployment Geography for Use:
 
+Global, with data assumptions primarily focused on China where the referenced actuarial, life-table, and cancer statistics apply.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown educational report with tables and timeline-style visualization] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes health-education disclaimers and should avoid medical diagnosis or treatment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill collects sensitive health, lifestyle, location, occupation, and family-history details and may use them in online searches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit consent before collecting or searching with health details, minimize query specificity, avoid sending detailed personal combinations to search providers, and keep profile data session-limited unless the user opts in.
+
+Risk: The skill may present unvalidated disease-distance predictions as personalized medical urgency.
+
+Mitigation: Frame results as general health education, include clear non-diagnostic language, avoid definitive prognosis claims, and direct users with symptoms or concerns to licensed medical professionals.
+
+Risk: Medical and epidemiological search results can be stale, inconsistent, or mismatched to the user's context.
+
+Mitigation: Prefer authoritative sources, state the data date and population assumptions, and lower confidence or avoid precise estimates when evidence is uncertain.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwbwin/skills/disease-distance-simulator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown health education report with a timeline visualization, risk tables, warning signals, and an action checklist.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should remain educational, cite relevant data assumptions where possible, and avoid presenting simulated disease distance as a diagnosis or prognosis.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

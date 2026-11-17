@@ -1,40 +1,58 @@
-## Description: <br>
-Automatically scan GitHub repositories for open issues with 0 comments, evaluate their value, claim them, and submit PRs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans GitHub for zero-comment open issues, filters candidates by repository signals, stores them in a local queue, and provides a tracker for PR status.
 
-## Publisher: <br>
-[dagangtj](https://clawhub.ai/user/dagangtj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dagangtj](https://clawhub.ai/user/dagangtj)
 
-## Use Case: <br>
-External developers can use this skill to find low-comment GitHub issues, queue candidate work, and track pull request outcomes. It is intended for users who deliberately want GitHub issue automation under their own account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill promotes unattended GitHub issue automation under the user's account without enough approval or repository scoping. <br>
-Mitigation: Run only after setting DRY_RUN=true and AUTO_CLAIM/AUTO_SUBMIT=false, review queued issues manually, and limit use to repositories where the user has permission and understands contribution rules. <br>
-Risk: Cron-based operation can repeatedly scan and queue public GitHub issues before the user has reviewed behavior. <br>
-Mitigation: Avoid scheduled execution until the user has tested the scripts in dry-run mode and confirmed the configured repository, language, and organization filters. <br>
+## Use Case:
 
+Developers and maintainers use this skill to find open GitHub issues, triage candidate repositories, and maintain a local queue or PR-status tracker before deciding whether to engage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dagangtj/auto-bounty-hunter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and shell script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local JSON queue/history files and a log file when the shell scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release is advertised as full issue-claiming and PR-submission automation, while the shipped scripts primarily scan, filter, queue issues, and track PR status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a scanner and local tracker until the documentation and scripts are corrected and any claiming or PR submission steps are verified manually.
+
+Risk: The documentation encourages unattended cron execution and the configuration defaults imply automatic claiming and submitting.
+
+Mitigation: Run with manual review first, avoid cron-based unattended execution, and do not grant broad GitHub permissions unless the workflow has been reviewed and constrained.
+
+Risk: The authoritative security guidance identifies a queue-file update race or symlink issue.
+
+Mitigation: Keep data files in a trusted, access-controlled directory and avoid concurrent runs until queue-file handling is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dagangtj/skills/auto-bounty-hunter)
+- [Publisher profile](https://clawhub.ai/user/dagangtj)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON queue files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses GitHub CLI and jq; writes queue, history, and log files under a local data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

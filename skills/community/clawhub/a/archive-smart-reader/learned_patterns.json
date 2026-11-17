@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "totalOps": 2,
+  "totalErrors": 0,
+  "formatStats": {
+    ".rar": {
+      "count": 2,
+      "totalFiles": 30,
+      "listWorksWithoutTool": true,
+      "contentExtractionNeedsExternalTool": true,
+      "toolAutoDetected": true
+    }
+  },
+  "errorPatterns": {
+    "RarCannotExec": {
+      "symptom": "rarfile 能 list 但 read/extract 报 'Cannot find working tool'",
+      "rootCause": "rarfile 读取/提取内容需外部 unrar/7z 二进制；且工具路径必须写入 rarfile.UNRAR_TOOL 模块全局变量，设置 os.environ 无效（get_cmdline 读取 globals()）",
+      "fix": "实现 _ensure_rar_tool() 自动查找常见位置的 unrar.exe/7za.exe 并 setattr(rarfile,'UNRAR_TOOL'/'SEVENZIP_TOOL', path)，每次 tool_setup(force=True) 重置缓存",
+      "occurrences": 1
+    }
+  },
+  "optimizations": {
+    "preferTempDir": true,
+    "autoCleanup": true,
+    "rarToolSearchPaths": [
+      "<HOME>/Downloads/unrar.exe",
+      "<HOME>/Downloads/7za.exe",
+      "<HOME>/AppData/Local/Temp/unrar.exe",
+      "<HOME>/WorkBuddy/Claw/UnRAR.exe",
+      "C:/tmp_rt/unrar.exe",
+      "C:/tmp_rt/7za.exe",
+      "PATH: unrar / 7za / 7z"
+    ]
+  },
+  "lastUpdated": "2026-07-22T01:05"
+}

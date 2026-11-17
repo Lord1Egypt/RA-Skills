@@ -1,0 +1,29 @@
+{
+  "skill_name": "map-the-work",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use this approved SOP, five recent tickets, and two operator interviews to map how invoice disputes actually move from receipt to resolution before we redesign anything.",
+      "expected_output": "Produces a bounded current-state map and explicitly separates documented, observed, and reported behavior with evidence status.",
+      "assertions": ["Defines trigger, outcome, and scope", "Separates documented, evidenced, and reported views", "Maps actors, decisions, systems, artifacts, and outputs", "Does not redesign the process"]
+    },
+    {
+      "id": 2,
+      "prompt": "Map our onboarding workflow. The procedure shows six steps, but tickets reveal reassignment queues, a shadow spreadsheet, duplicate CRM entry, and repeated returns for missing tax forms.",
+      "expected_output": "Surfaces queues, shadow work, duplicate entry, handoffs, rework, missing inputs, and associated friction rather than reproducing the six-step procedure.",
+      "assertions": ["Captures waits and handoffs", "Captures shadow systems and duplicate entry", "Captures re-entry or rework", "Distinguishes evidence from inference"]
+    },
+    {
+      "id": 3,
+      "prompt": "Three managers describe different approval paths, while the policy specifies one route. Build the current-state map and show what is known.",
+      "expected_output": "Keeps policy and reported variants distinct, marks unresolved claims, and routes material conflicts to reconcile rather than silently choosing a version.",
+      "assertions": ["Does not collapse conflicting accounts", "Labels evidence status", "Uses reconcile only if the disagreement must be resolved", "Names material gaps"]
+    },
+    {
+      "id": 4,
+      "prompt": "Here is a complete, validated current-state specification with every branch and interface. Turn it into an executable automation design.",
+      "expected_output": "Does not remap the process; routes directly to automate-this because current-state understanding is already sufficient.",
+      "assertions": ["Does not invoke map-the-work as a mandatory gate", "Routes to automate-this", "Preserves the supplied process boundary"]
+    }
+  ]
+}

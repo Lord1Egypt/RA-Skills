@@ -1,42 +1,63 @@
-## Description: <br>
-Medication Channel routes medication-channel messages through a deterministic local tracker for logging taken, missed, extra, and completed medication events with timestamp-grounded confirmations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes medication-channel messages through a deterministic local tracker for taken, missed, or extra dose events, timestamp-grounded confirmations, and avoiding reminder-related false logs.
 
-## Publisher: <br>
-[cdmichaelb](https://clawhub.ai/user/cdmichaelb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cdmichaelb](https://clawhub.ai/user/cdmichaelb)
 
-## Use Case: <br>
-External users, operators, and agents use this skill in a dedicated Discord medication channel to log user-reported medication events accurately, avoid fabricated reminder confirmations, and keep source-message timestamps grounded in the configured local timezone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medication history and Discord identifiers are stored in a local plaintext CSV. <br>
-Mitigation: Use a private WORKSPACE with restrictive filesystem permissions, avoid syncing the log to shared backups, and define a retention or deletion process for medication records. <br>
-Risk: Incorrect logging or confirmation could misrepresent whether a medication event occurred. <br>
-Mitigation: Use the provided tracker or Discord wrapper path, require source message timestamps, and avoid confirming a log unless the script path actually wrote the event. <br>
+## Use Case:
 
+External users and operators use this skill to log Discord medication reports through a deterministic script path instead of relying on freeform model judgment. It is intended for timestamp-grounded medication history tracking, not clinical decision support.
 
-## Reference(s): <br>
-- [Medication Channel Rules](references/CHANNEL_RULES.md) <br>
-- [Medication Channel Reference README](references/README.md) <br>
-- [Medication Channel on ClawHub](https://clawhub.ai/cdmichaelb/medication-channel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, short text confirmations, and JSON or CSV outputs from local tracker scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a local plaintext CSV medication log and deduplication state under $WORKSPACE/data; uses source Discord message metadata and makes no network calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The skill stores sensitive medication history and Discord identifiers in a local plaintext CSV log.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a workspace with appropriate file permissions, define retention and deletion practices before real use, and avoid storing the log in shared or synced locations unless that is intentional.
+
+Risk: Unclear or unknown medication messages can be written into the medication log.
+
+Mitigation: Add code-side rejection for unknown events before relying on the tracker, and ask for clarification rather than logging ambiguous messages.
+
+Risk: CSV log contents may be opened in spreadsheet tools.
+
+Mitigation: Sanitize CSV fields before spreadsheet use and review exported logs for formula-like values.
+
+Risk: Installer behavior can change over time if installed without pinning.
+
+Mitigation: Prefer a pinned installer version and verify artifact hashes against the release evidence before deployment.
+
+## Reference(s):
+
+- [Medication Channel Rules](references/CHANNEL_RULES.md)
+- [Medication Channel Reference](references/README.md)
+- [ClawHub Skill Page](https://clawhub.ai/cdmichaelb/skills/medication-channel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Text confirmations, JSON rows, CSV files, and Markdown guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a local CSV medication log and deduplicates entries by source Discord message ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

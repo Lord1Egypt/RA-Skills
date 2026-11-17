@@ -1,43 +1,62 @@
-## Description: <br>
-Helps agents gather user intent and produce structured Seedance 2.0 video generation prompts using guidance for styles, camera language, prompt structure, and common generation issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts a user's natural language video idea into a structured Seedance 2.0 prompt using multimodal references, camera guidance, visual styles, known-issue workarounds, and generation settings.
 
-## Publisher: <br>
-[wfhiew](https://clawhub.ai/user/wfhiew) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wfhiew](https://clawhub.ai/user/wfhiew)
 
-## Use Case: <br>
-External users and creators use this skill to turn natural-language video ideas into structured Seedance 2.0 prompts, including shot planning, reference-asset mapping, audio cues, negative constraints, and generation settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts may reference user-supplied media that could be private or rights-sensitive when used with a third-party video generation platform. <br>
-Mitigation: Use only media that the user is comfortable sending to that platform and has the right to use. <br>
-Risk: Watermark-related prompt guidance can be misused if interpreted as bypassing platform policy or ownership controls. <br>
-Mitigation: Apply watermark guidance only through official platform controls, support channels, or legitimate cleanup of assets the user is authorized to use. <br>
+## Use Case:
 
+External users and video creators use this skill to turn Seedance 2.0 video ideas into complete prompts with mode selection, asset mapping, shot-by-shot direction, audio cues, negative constraints, and known-issue workarounds.
 
-## Reference(s): <br>
-- [Prompt Best Practices - Seedance 2.0](artifact/best-practices.md) <br>
-- [Camera Angles & Movement Reference - Seedance 2.0](artifact/camera-angles.md) <br>
-- [Common Issues & Workarounds - Seedance 2.0](artifact/common-issues.md) <br>
-- [Visual Styles Reference - Seedance 2.0](artifact/styles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prompt template with structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include mode, asset mapping, subject definitions, shot-by-shot prompt text, dialogue or audio cues, negative constraints, generation settings, and known issues to watch.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill may activate for broad video-prompt requests where the user did not explicitly ask for Seedance 2.0.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target generator or ask targeted setup questions before producing a Seedance-specific prompt.
+
+Risk: Reference-asset uploads, culturally specific styles, language choices, and watermark removal can be inappropriate when they do not match the user's intent or rights.
+
+Mitigation: Apply those prompt elements only when the user has supplied the relevant intent, assets, and rights context.
+
+Risk: Prompts can accidentally invoke protected brands, franchise characters, or recognizable likenesses.
+
+Mitigation: Use original descriptive traits instead of protected names, redesign signature features, and add negative constraints for inferable IP terms.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/wfhiew/skills/seedance-2-prompt-optimizer)
+- [Seedance 2.0 Prompt Engineering Skill](artifact/SKILL.md)
+- [Prompt Best Practices - Seedance 2.0](artifact/best-practices.md)
+- [Camera Angles & Movement Reference - Seedance 2.0](artifact/camera-angles.md)
+- [Common Issues & Workarounds - Seedance 2.0](artifact/common-issues.md)
+- [Visual Styles Reference - Seedance 2.0](artifact/styles.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown structured prompt with asset mapping, shot descriptions, constraints, generation settings, and known-issue notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prompt-level safety constraints, reference-asset handling guidance, and mitigation notes for known Seedance 2.0 output issues.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Generates speech with the Jiuma AI API using a selected online voice or a user-provided reference audio sample for voice cloning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Jiuma AI text-to-speech audio from text using either a predefined voice ID or a user-provided reference audio sample for voice cloning.
 
-## Publisher: <br>
-[dddcn1](https://clawhub.ai/user/dddcn1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dddcn1](https://clawhub.ai/user/dddcn1)
 
-## Use Case: <br>
-Developers and agent users use this skill to create TTS audio or clone a permitted voice by sending text and either a Jiuma timbre ID or a reference audio file to Jiuma. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected text and optional reference voice audio to Jiuma for TTS or voice cloning. <br>
-Mitigation: Use it only with text and voice samples you are comfortable sending to Jiuma, and only clone voices you own or have permission to use. <br>
-Risk: Login can save a sensitive Jiuma API key locally. <br>
-Mitigation: Treat the saved key as a secret, avoid shared workspaces, and delete or rotate it when no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to synthesize speech through Jiuma AI, choosing either an existing voice/timbre ID or a reference audio file for voice cloning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dddcn1/jiuma-free-voice-clone) <br>
-- [LOGIN.md](LOGIN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON status objects with command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns generated audio URLs and may write a local voice cache or saved Jiuma API key after login.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: server release evidence) <br>
+Risk: Text prompts and optional reference voice audio are sent to Jiuma AI for speech synthesis or voice cloning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with text and voice samples you are authorized to process through Jiuma AI.
+
+Risk: The login flow can save a Jiuma API key in a local .jiuma/jiuma_api_key file.
+
+Mitigation: Treat the saved API key as a secret, restrict local file permissions, and delete or rotate it when it is no longer needed.
+
+Risk: Saving this skill preference in long-term agent memory may make future use more automatic than intended.
+
+Mitigation: Store the skill in long-term memory only when the user explicitly wants future agents to remember this preference.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dddcn1/skills/jiuma-free-voice-clone)
+- [Jiuma AI login documentation](LOGIN.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON responses with audio URLs, plus Markdown usage guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May cache voice metadata locally and may save a Jiuma API key after login.]
+
+## Skill Version(s):
+
+1.0.14 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

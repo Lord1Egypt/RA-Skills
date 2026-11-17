@@ -1,0 +1,52 @@
+{
+  "skill": "universal-theme",
+  "version": "0.1.0",
+  "source_book": "纽约摄影学院摄影教程 — 美国纽约摄影学院",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "怎么让照片更有意义/更有深度？",
+      "expected_behavior": "调用 universal-theme，讲解普遍性主题的追求方法",
+      "notes": "正面场景：照片意义提升"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "我拍的照片技术没问题但感觉缺少什么",
+      "expected_behavior": "调用 universal-theme，引导思考普遍性主题",
+      "notes": "正面场景：照片缺少深度"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "street photography怎么捕捉有故事感的瞬间？",
+      "expected_behavior": "调用 universal-theme，讲解从个体到普遍性的观察方法",
+      "notes": "正面场景：街头摄影主题"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "这张照片构图怎么样？",
+      "expected_behavior": "不应调用 universal-theme，应调用 photo-three-principles 或 composition-eight-questions",
+      "notes": "跨 skill 混淆诱饵：构图评价问题"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "怎么调出电影感的色调？",
+      "expected_behavior": "后期调色问题，不应调用方法论 skill",
+      "notes": "诱饵：后期调色"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "拍家人日常怎么拍出感觉？",
+      "expected_behavior": "边界模糊——涉及普遍性主题（家庭之爱），但问题较具体。可调用",
+      "notes": "边界：日常摄影的普遍性"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。"
+}

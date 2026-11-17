@@ -1,40 +1,53 @@
-## Description: <br>
-Provides a Pingyin Weilaicheng Douyin topic-planning knowledge base covering project selling points, benchmark account strategy, execution rules, and the short-video-only topic rule. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language knowledge skill for planning Pingyin Weilaicheng Douyin short-video topics using project selling points, benchmark account patterns, and weekly content rules.
 
-## Publisher: <br>
-[a-moon-sudo](https://clawhub.ai/user/a-moon-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a-moon-sudo](https://clawhub.ai/user/a-moon-sudo)
 
-## Use Case: <br>
-Content operations and real-estate marketing teams use this skill to prepare daily Douyin short-video topics, confirm topic reminders, and align scripts with Pingyin Weilaicheng project selling points and benchmark account strategy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill references a specific Feishu target and broad read/write permissions. <br>
-Mitigation: Confirm the Feishu target ID and permissions are expected before installing, and require user approval before posting, pushing, or writing content. <br>
-Risk: Generated content may repeat project claims such as price, location, school, or inventory details that can become outdated. <br>
-Mitigation: Review externally facing content against current project materials before publishing. <br>
+## Use Case:
 
+External marketing and real-estate content teams use this skill to prepare daily Douyin short-video topic ideas for Pingyin Weilaicheng. It keeps planning focused on 18-45 second video scripts rather than live-stream review topics.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/a-moon-sudo/pingyin-weilaicheng-topic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain-text content-planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include short-video topic guidance, timing, benchmark account strategy, project selling points, and Feishu posting reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill includes read/write permissions and auto-load metadata, which may be broader than expected for a passive knowledge reference.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested permissions and auto-load behavior before installation if only passive content-planning guidance is desired.
+
+Risk: The artifact discloses a Feishu push target for the workflow.
+
+Mitigation: Confirm the target is appropriate for the installing workspace before using the skill for Feishu-related content pushes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a-moon-sudo/skills/pingyin-weilaicheng-topic)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance and short-video content planning notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language domain knowledge; no executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Generate complete logo systems with icon, wordmark, lockups, and machine-readable logo metadata from natural language prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenGFX helps agents generate complete logo systems with icon, wordmark, lockups, and production-ready SVG vector assets from natural language prompts.
 
-## Publisher: <br>
-[aklo360](https://clawhub.ai/user/aklo360) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aklo360](https://clawhub.ai/user/aklo360)
 
-## Use Case: <br>
-Designers, developers, and brand builders use this skill to generate production-ready SVG logo systems from natural language brand direction. It helps produce an icon, wordmark, stacked lockup, horizontal lockup, and logo-system JSON for downstream design and implementation workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated brand assets, prompts, or logo metadata could be uploaded to an external endpoint in a service workflow. <br>
-Mitigation: Require explicit user confirmation before uploading generated assets, brand prompts, or metadata outside the local agent workflow. <br>
-Risk: Generated logos may not meet brand, trademark, or production quality requirements without review. <br>
-Mitigation: Review generated SVGs and logo-system metadata before public brand use or downstream publication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenGFX ClawHub Page](https://clawhub.ai/aklo360/opengfx) <br>
-- [Geometric Foundations for Logo Design](references/GEOMETRY.md) <br>
-- [Logo Lockup Construction](references/LOCKUPS.md) <br>
-- [Logo Modernism Principles](references/MODERNISM.md) <br>
-- [Logo System Output Schema](references/OUTPUT_SCHEMA.md) <br>
-- [Typography Guidance](references/TYPOGRAPHY.md) <br>
-- [Logo System Schema URL](https://opengfx.aklo.io/schemas/logo-system.v1.json) <br>
+## Use Case:
 
+Designers, developers, and brand builders use OpenGFX to turn a natural language brand brief into a logo asset set with SVG lockups and machine-readable logo metadata.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with SVG code and JSON metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces icon, wordmark, stacked lockup, horizontal lockup, and logo-system JSON artifacts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata; artifact frontmatter reports 1.3.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated SVG logo assets may be malformed, include live text, or be unsuitable for publication without design review.
+
+Mitigation: Review the generated SVGs and logo-system.json against the artifact's quality checklist before publishing or using them in production.
+
+Risk: Hosted workflows may upload generated logo assets or saved design learnings as part of an automated ACP flow.
+
+Mitigation: Confirm upload handling, retention, and access controls for any hosted workflow before submitting sensitive brand concepts.
+
+## Reference(s):
+
+- [OpenGFX ClawHub Skill Page](https://clawhub.ai/aklo360/skills/opengfx)
+- [Geometric Foundations for Logo Design](artifact/references/GEOMETRY.md)
+- [Logo Lockup Construction](artifact/references/LOCKUPS.md)
+- [Logo Modernism Principles](artifact/references/MODERNISM.md)
+- [Logo System Output Schema](artifact/references/OUTPUT_SCHEMA.md)
+- [Typography for Logo Wordmarks](artifact/references/TYPOGRAPHY.md)
+- [Logo System JSON Schema](https://opengfx.aklo.io/schemas/logo-system.v1.json)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Configuration, Guidance]
+
+**Output Format:** [SVG files, JSON metadata, and concise Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces icon.svg, wordmark.svg, stacked.svg, horizontal.svg, and logo-system.json; generated SVGs should be reviewed before publishing.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata; artifact frontmatter reports 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

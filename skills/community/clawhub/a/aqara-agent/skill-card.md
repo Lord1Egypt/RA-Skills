@@ -1,51 +1,70 @@
-## Description: <br>
-Aqara Agent lets an assistant use the Aqara Open API to manage smart-home spaces, query and control devices, create ambience scenes, manage scenes and automations, and report energy statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aqara Agent helps agents operate Aqara smart-home workflows through natural-language guidance and Aqara Open API CLI calls for account setup, home and device queries, device control, firmware updates, scenes, automations, ambience, weather-scoped recommendations, and energy statistics.
 
-## Publisher: <br>
-[aqara](https://clawhub.ai/user/aqara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aqara](https://clawhub.ai/user/aqara)
 
-## Use Case: <br>
-External users and smart-home operators use this skill to connect an agent to Aqara Home, choose a home, inspect device and room state, send supported device commands, create ambience scenes, manage automations, and review energy usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide an Aqara API credential that can control a smart home. <br>
-Mitigation: Install only from a trusted publisher, verify the login and API URLs, avoid sharing the credential in exposed workspaces or chat history, and rotate or revoke the key if exposure is possible. <br>
-Risk: The skill stores the Aqara credential locally in assets/user_account.json. <br>
-Mitigation: Treat assets/user_account.json as a secret, keep it out of shared logs and source control, and remove or rotate the credential when the workspace is no longer trusted. <br>
-Risk: Supported workflows can change real devices, scenes, firmware, and automations. <br>
-Mitigation: Review command targets before execution and avoid broad or security-sensitive smart-home commands unless the intended home, room, device, scene, or automation is clear. <br>
+## Use Case:
 
+External users, smart-home operators, and developers use this skill to let an agent answer Aqara home questions and prepare or execute supported Aqara Open API actions. It covers account setup, home selection, device status and control, firmware upgrade, ambience and lighting presets, scene and automation workflows, and energy or electricity-cost summaries.
 
-## Reference(s): <br>
-- [Aqara Agent on ClawHub](https://clawhub.ai/aqara/aqara-agent) <br>
-- [Aqara account management](references/aqara-account-manage.md) <br>
-- [Home and space management](references/home-space-manage.md) <br>
-- [Device inquiry](references/devices-inquiry.md) <br>
-- [Device control](references/devices-control.md) <br>
-- [Ambience and lighting effects](references/ambience.md) <br>
-- [Scene management](references/scene-manage.md) <br>
-- [Automation management](references/automation-manage.md) <br>
-- [Automation creation](references/automation-create.md) <br>
-- [Energy statistics](references/energy-statistic.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and concise natural-language summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May issue Aqara Open API calls through bundled Python scripts after the user provides required credentials and selects a home.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: release evidence) <br>
+Risk: The skill stores and uses an Aqara API key that can read and change smart-home state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher is trusted, prefer a least-privilege or revocable key, and restrict permissions on assets/user_account.json.
+
+Risk: Device-control, firmware, scene, and automation workflows can make real changes in a home.
+
+Mitigation: Review device-changing actions and API responses before allowing an agent to execute them.
+
+Risk: Custom API endpoint overrides can redirect Aqara Open API requests.
+
+Mitigation: Avoid AQARA_OPEN_API_URL or disk-based API URL overrides unless the endpoint is fully trusted.
+
+## Reference(s):
+
+- [Skill specification](SKILL.md)
+- [Package README](README.md)
+- [Account management](references/aqara-account-manage.md)
+- [Home and space management](references/home-space-manage.md)
+- [Device inquiry](references/devices-inquiry.md)
+- [Device control](references/devices-control.md)
+- [Device control action table](assets/device_control_action_table.csv)
+- [Ambience and lighting effects](references/ambience.md)
+- [Device firmware configuration](references/devices-config.md)
+- [Scene management](references/scene-manage.md)
+- [Automation management](references/automation-manage.md)
+- [Automation creation](references/automation-create.md)
+- [Energy statistics](references/energy-statistic.md)
+- [Outdoor weather scope](references/weather-forecast.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call local Python scripts that read or change Aqara smart-home state when the user has configured credentials and selected a home.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

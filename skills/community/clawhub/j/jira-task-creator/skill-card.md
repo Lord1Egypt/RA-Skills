@@ -1,45 +1,55 @@
-## Description: <br>
-Creates Jira issues and searches assignable users on a configured Jira server using a user-provided bearer token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage Jira tasks using natural language input, smart user search, batch CSV import, and task analytics with flexible field support.
 
-## Publisher: <br>
-[UlanziCom](https://clawhub.ai/user/UlanziCom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ulanzicom](https://clawhub.ai/user/ulanzicom)
 
-## Use Case: <br>
-Developers and Jira workspace operators use this skill to create Jira issues from structured or natural-language inputs and to look up assignable users for a project. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Jira bearer token to create issues and search users. <br>
-Mitigation: Use a least-privilege token limited to the intended Jira site and projects. <br>
-Risk: Issue creation can send incorrect project, assignee, priority, or due-date values to Jira. <br>
-Mitigation: Review issue details before calling create_issue. <br>
-Risk: Advertised batch creation and analytics behavior may not be fully supported by the provided artifact source. <br>
-Mitigation: Do not rely on batch or analytics features unless their source is obtained and inspected. <br>
+## Use Case:
 
+Developers and operations teams use this skill to create Jira issues, search assignable users, import batches of tasks, and summarize task status from agent-driven workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/UlanziCom/jira-task-creator) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Usage guide](artifact/README.md) <br>
-- [Package metadata](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Configuration guidance] <br>
-**Output Format:** [JSON-like dictionaries for Jira operation results, with Markdown guidance and reports where supported] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Jira base URL and bearer token configuration supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill can send a Jira bearer token and issue or user data to a configured Jira URL, including plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an HTTPS Jira URL you control, use a least-privilege Jira token, and rotate any token that was used over HTTP.
+
+Risk: The skill can perform real Jira write operations through natural-language or batch task creation.
+
+Mitigation: Add a preview and confirmation step before bulk or natural-language issue creation, and treat every successful call as a real Jira write.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ulanzicom/skills/jira-task-creator)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Artifact package metadata](artifact/package.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, configuration snippets, and Jira API result data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform real Jira create and lookup actions when configured with Jira credentials.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

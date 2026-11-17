@@ -1,44 +1,61 @@
-## Description: <br>
-Helps agent users, skill authors, maintainers, and teams create practical workflows, checklists, analyses, and implementation support for Nano Banana Pro-style productivity tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agent users, skill authors, maintainers, and teams create practical Nano Banana Pro-style workflows for bug fixing, setup hardening, reliability improvement, and adjacent skill design.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-External agent users, developers, skill authors, and maintainers use this skill to turn Nano Banana Pro-style productivity requests into concrete workflows, checklists, implementation support, and verification notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger keywords may cause the skill to be selected for unrelated requests. <br>
-Mitigation: Invoke the skill explicitly by full name and narrow or disable implicit invocation when routing accuracy matters. <br>
-Risk: Generated workflows, code, shell commands, or configuration may be incomplete for a user's environment. <br>
-Mitigation: Review generated outputs against the stated success criteria and test changes locally before deployment. <br>
+## Use Case:
 
+Agent users, skill authors, maintainers, and teams use this skill to turn Nano Banana Pro-style workflow demand into concrete plans, checklists, code changes, configuration guidance, and validation notes. It is intended for practical productivity workflows that remain feasible on ordinary CPU or local hardware.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/work-productivity-nano-banana-workflow-helper-002325) <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [Nano Banana Pro demand signal](https://clawhub.ai/skills/nano-banana-pro) <br>
-- [Nano PDF demand signal](https://clawhub.ai/skills/nano-pdf) <br>
-- [Gemini thinking-loop discussion](https://news.ycombinator.com/item?id=48642229) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with optional code, shell command, checklist, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are tailored to the user's immediate request and should include assumptions, validation notes, and remaining risks when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may be auto-selected for loosely related words because its activation wording is overly broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow triggers to the full skill name or specific Nano Banana Pro workflow phrases before relying on implicit activation.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [Work Productivity Nano Banana Workflow Helper on ClawHub](https://clawhub.ai/kyro-ma/skills/work-productivity-nano-banana-workflow-helper-002325)
+- [Kyro Publisher Profile](https://clawhub.ai/user/kyro-ma)
+- [Popular Clawhub skill demand: Nano Pdf has 113,645 downloads](https://clawhub.ai/skills/nano-pdf)
+- [Popular Clawhub skill demand: Nano Banana Pro has 103,904 downloads](https://clawhub.ai/skills/nano-banana-pro)
+- [Gemini models increasingly stucking in thinking loop](https://news.ycombinator.com/item?id=48642229)
+- [Skill Quality Report - 2026-06-23 (NicolasWs)](https://github.com/NicolasWs/awesome-copilot-otel/issues/32)
+- [Skill Quality Report - 2026-06-23 (weiflycc-cmd)](https://github.com/weiflycc-cmd/awesome-copilot/issues/23)
+- [Skill Quality Report - 2026-06-23 (mubaidr)](https://github.com/mubaidr/awesome-copilot/issues/92)
+- [Skill Quality Report - 2026-06-22 (weiflycc-cmd)](https://github.com/weiflycc-cmd/awesome-copilot/issues/22)
+- [Skill Quality Report - 2026-06-22 (NicolasWs)](https://github.com/NicolasWs/awesome-copilot-otel/issues/31)
+- [Skill Quality Report - 2026-06-22 (mubaidr)](https://github.com/mubaidr/awesome-copilot/issues/91)
+- [AI TPC Pulse: 8 New Updates (2026-06-21 to 2026-06-22)](https://github.com/enriquekalven/ai-tpc-agent/issues/59)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with code, shell, or configuration snippets when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tailored artifacts, reusable checklists, workflow plans, analysis, implementation support, validation notes, and follow-up risks.]
+
+## Skill Version(s):
+
+0.1.1 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

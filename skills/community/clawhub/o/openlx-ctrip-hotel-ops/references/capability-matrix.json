@@ -1,0 +1,3236 @@
+{
+  "document_type": "IMPLEMENTATION_AND_EVIDENCE_TRACKER",
+  "reviewed_at": "2026-09-05T18:21:46.305774+00:00",
+  "scope": "RELEASE_0_1_0",
+  "axes": [
+    "implementation",
+    "local_execution",
+    "mock_test",
+    "live_read",
+    "live_write",
+    "backend_readback",
+    "public_readback",
+    "human_delivery"
+  ],
+  "evidence_rules": [
+    "维度独立，不是覆盖旧值的线性升级；失败事件保留历史记录。",
+    "本地运行必须有入口、命令、退出码、实际输出；SKILL.md存在不能通过。",
+    "模拟通过只能填mock_test=MOCK_PASS；真实环境证据不得来自fixture。",
+    "公开平台入口证据仅用于资料核验，不能填业务live_read或public_readback通过。",
+    "权限必须按具体账户、门店、动作、对象、适配版本、日期记录，不能跨账号继承。",
+    "live_write通过需要远端持久化结果；点击超时为UNKNOWN_PENDING_READBACK，先查对象，禁止盲目重试。",
+    "backend_readback与public_readback须关联同一object_id和内容hash；只找到相似标题不能通过。",
+    "NOT_APPLICABLE必须有理由；适用的商业权益不能用此状态逃避验证。",
+    "费用或订单配置草案不是支付发证成功证据；模拟支付和真实交易分别留档。",
+    "人设模块本地样例不算真人服务交付；年度工单及进入写作链路分别验收。",
+    "required_dimensions表示适用证据目标，不是逐层审批链；mock_test单独记录，不强制每项先模拟再实测。"
+  ],
+  "per_axis_pass_status": {
+    "implementation": "IMPLEMENTED_UNVERIFIED",
+    "local_execution": "LOCAL_RUN_PASS",
+    "mock_test": "MOCK_PASS",
+    "live_read": "LIVE_READ_PASS",
+    "live_write": "LIVE_WRITE_PASS",
+    "backend_readback": "BACKEND_READBACK_PASS",
+    "public_readback": "PUBLIC_READBACK_PASS",
+    "human_delivery": "DELIVERY_VERIFIED"
+  },
+  "negative_or_pending_statuses": [
+    "NOT_STARTED",
+    "NOT_RUN",
+    "UNKNOWN",
+    "FAILED",
+    "STALE",
+    "NOT_APPLICABLE",
+    "UNKNOWN_PENDING_READBACK"
+  ],
+  "blocker_statuses": [
+    "NEEDS_ACCOUNT_PERMISSION",
+    "NEEDS_LOGIN",
+    "PLATFORM_LIMITED",
+    "FAILED"
+  ],
+  "capabilities": [
+    {
+      "id": "INSTALL",
+      "title": "独立安装、依赖检查、升级卸载",
+      "advantage_ids": [
+        "ADV-01"
+      ],
+      "acceptance_ids": [
+        "T01",
+        "T40",
+        "T43"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "LOCAL_RUN_PASS",
+          "evidence_ids": [
+            "INSTALL_MAC_LINUX"
+          ],
+          "note": "实际安装及执行，经营输入为MOCK"
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/install.mjs",
+        "scripts/ops.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "LOGIN_EBOOKING",
+      "title": "专属Chrome及商家会话复用",
+      "advantage_ids": [
+        "ADV-01"
+      ],
+      "acceptance_ids": [
+        "T02",
+        "T03",
+        "T04",
+        "T37"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "live_read",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/browser.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "LOGIN_CONTENT",
+      "title": "内容账号独立登录与身份核对",
+      "advantage_ids": [
+        "ADV-01",
+        "ADV-11"
+      ],
+      "acceptance_ids": [
+        "T02",
+        "T04",
+        "T29"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "live_read",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/browser.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "PROPERTY_READ",
+      "title": "门店身份、事实与经营数据读取",
+      "advantage_ids": [
+        "ADV-02",
+        "ADV-03"
+      ],
+      "acceptance_ids": [
+        "T04",
+        "T07",
+        "T12"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "live_read",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/browser.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "HEALTH_AUDIT",
+      "title": "全部已知问题与未知项的经营体检",
+      "advantage_ids": [
+        "ADV-02"
+      ],
+      "acceptance_ids": [
+        "T05",
+        "T06",
+        "T07",
+        "T20"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "LOCAL_RUN_PASS",
+          "evidence_ids": [
+            "INSTALL_MAC_LINUX"
+          ],
+          "note": "实际安装及执行，经营输入为MOCK"
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "PROPERTY_WRITE",
+      "title": "资料字段修改前后对照与确认执行",
+      "advantage_ids": [
+        "ADV-03"
+      ],
+      "acceptance_ids": [
+        "T04",
+        "T12",
+        "T16",
+        "T42"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "scripts/browser.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "ROOM_PRODUCT",
+      "title": "房型、套餐、取消与附加产品诊断",
+      "advantage_ids": [
+        "ADV-04"
+      ],
+      "acceptance_ids": [
+        "T05",
+        "T20"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "live_read",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "PARTIAL",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "PROMOTION_ANALYSIS",
+      "title": "商家及平台补贴、佣金与到手价核算",
+      "advantage_ids": [
+        "ADV-04"
+      ],
+      "acceptance_ids": [
+        "T20"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "PROMOTION_WRITE",
+      "title": "已授权活动配置执行与回读",
+      "advantage_ids": [
+        "ADV-04"
+      ],
+      "acceptance_ids": [
+        "T04",
+        "T16",
+        "T20",
+        "T42"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "scripts/browser.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "INVENTORY_READ",
+      "title": "携程库存、权威库存与范围读取",
+      "advantage_ids": [
+        "ADV-05"
+      ],
+      "acceptance_ids": [
+        "T07",
+        "T18",
+        "T19"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "live_read",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/browser.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "INVENTORY_WRITE",
+      "title": "确认房态修改及有权威库存的至尊自动策略",
+      "advantage_ids": [
+        "ADV-05"
+      ],
+      "acceptance_ids": [
+        "T04",
+        "T15",
+        "T16",
+        "T17",
+        "T18",
+        "T19"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "PARTIAL",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "scripts/browser.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "PMS_AUTHORITY",
+      "title": "PMS库存及价格主从对接",
+      "advantage_ids": [
+        "ADV-05",
+        "ADV-06"
+      ],
+      "acceptance_ids": [
+        "T18",
+        "T19"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "PARTIAL",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "PRICE_READ",
+      "title": "本店价计划、日期与旧价读取",
+      "advantage_ids": [
+        "ADV-06"
+      ],
+      "acceptance_ids": [
+        "T04",
+        "T15"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "live_read",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/browser.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "PRICE_CONFIRM",
+      "title": "所有套餐确认后的基础改价",
+      "advantage_ids": [
+        "ADV-06"
+      ],
+      "acceptance_ids": [
+        "T13",
+        "T14",
+        "T15",
+        "T16",
+        "T17"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "scripts/browser.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "PRICE_STANDARD",
+      "title": "标准版基础规则自动调价",
+      "advantage_ids": [
+        "ADV-06"
+      ],
+      "acceptance_ids": [
+        "T13",
+        "T14",
+        "T15",
+        "T16",
+        "T17",
+        "T18",
+        "T23"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/automation.mjs",
+        "scripts/scheduler.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "REVENUE_SUPREME",
+      "title": "至尊多信号策略、情景比较及调价",
+      "advantage_ids": [
+        "ADV-06"
+      ],
+      "acceptance_ids": [
+        "T07",
+        "T13",
+        "T14",
+        "T15",
+        "T20",
+        "T21",
+        "T23"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "PARTIAL",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "scripts/automation.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "COMPETITOR",
+      "title": "免费比价及付费持续可比追踪",
+      "advantage_ids": [
+        "ADV-07"
+      ],
+      "acceptance_ids": [
+        "T21",
+        "T22"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "live_read",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "scripts/browser.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "DEMAND",
+      "title": "带来源和时效的需求日历",
+      "advantage_ids": [
+        "ADV-08"
+      ],
+      "acceptance_ids": [
+        "T23"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "live_read",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "scripts/browser.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "ORDER_READ",
+      "title": "新单、取消、临近入住及今日接待清单",
+      "advantage_ids": [
+        "ADV-09"
+      ],
+      "acceptance_ids": [
+        "T07",
+        "T19",
+        "T33"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "live_read",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "scripts/browser.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "ORDER_ACCEPT",
+      "title": "确认接单及满足权威库存条件的自动接单",
+      "advantage_ids": [
+        "ADV-09"
+      ],
+      "acceptance_ids": [
+        "T04",
+        "T11",
+        "T16",
+        "T18",
+        "T19"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "PARTIAL",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "scripts/browser.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "REVIEW_READ",
+      "title": "真实点评读取及已回复识别",
+      "advantage_ids": [
+        "ADV-10"
+      ],
+      "acceptance_ids": [
+        "T08",
+        "T09",
+        "T11",
+        "T12"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "live_read",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/browser.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "REVIEW_POSITIVE",
+      "title": "免费授权后明确正向点评自动回复",
+      "advantage_ids": [
+        "ADV-10"
+      ],
+      "acceptance_ids": [
+        "T08",
+        "T09",
+        "T11",
+        "T12",
+        "T16"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "scripts/scheduler.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "REVIEW_CONFIRM",
+      "title": "差评/混合/争议回复版本确认与发布",
+      "advantage_ids": [
+        "ADV-10"
+      ],
+      "acceptance_ids": [
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T16"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "scripts/browser.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "REVIEW_INSIGHT",
+      "title": "点评服务整改及至尊趋势归因",
+      "advantage_ids": [
+        "ADV-10"
+      ],
+      "acceptance_ids": [
+        "T05",
+        "T06",
+        "T45"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "PARTIAL",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "SCHEDULER",
+      "title": "本地定时、限额、恢复追赶、串行与局部急停",
+      "advantage_ids": [
+        "ADV-01",
+        "ADV-07",
+        "ADV-10",
+        "ADV-11"
+      ],
+      "acceptance_ids": [
+        "T11",
+        "T24",
+        "T37",
+        "T41",
+        "T42",
+        "T44"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "PARTIAL",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/daemon.mjs",
+        "scripts/scheduler.mjs",
+        "scripts/automation.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "ASSETS",
+      "title": "文件稳定、哈希去重、授权、事实及合格素材流转",
+      "advantage_ids": [
+        "ADV-11"
+      ],
+      "acceptance_ids": [
+        "T25",
+        "T26",
+        "T27"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "CONTENT_CREATE",
+      "title": "选题、正文、选图、配图、优化与排程",
+      "advantage_ids": [
+        "ADV-11"
+      ],
+      "acceptance_ids": [
+        "T27",
+        "T28",
+        "T29",
+        "T32",
+        "T39"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "PARTIAL",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "scripts/model.mjs",
+        "scripts/automation.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "CAN_OPEN_EDITOR",
+      "title": "实际内容账户打开当前笔记编辑器",
+      "advantage_ids": [
+        "ADV-11"
+      ],
+      "acceptance_ids": [
+        "T28",
+        "T29"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "live_read",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/notes.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "CAN_UPLOAD_IMAGE",
+      "title": "实际内容账户上传合格素材",
+      "advantage_ids": [
+        "ADV-11"
+      ],
+      "acceptance_ids": [
+        "T26",
+        "T29"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/notes.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "CAN_SAVE_DRAFT",
+      "title": "实际内容账户保存草稿",
+      "advantage_ids": [
+        "ADV-11"
+      ],
+      "acceptance_ids": [
+        "T11",
+        "T29"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/notes.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "CAN_SUBMIT",
+      "title": "实际内容账户提交笔记",
+      "advantage_ids": [
+        "ADV-11"
+      ],
+      "acceptance_ids": [
+        "T11",
+        "T28",
+        "T29",
+        "T30"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/notes.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "CAN_READBACK",
+      "title": "后台同一笔记对象及内容回读",
+      "advantage_ids": [
+        "ADV-11"
+      ],
+      "acceptance_ids": [
+        "T16",
+        "T29",
+        "T30"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/notes.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "CAN_READ_PUBLIC_STATUS",
+      "title": "同一笔记公开状态与内容回读",
+      "advantage_ids": [
+        "ADV-11"
+      ],
+      "acceptance_ids": [
+        "T30",
+        "T45"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "local_execution",
+        "public_readback"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/notes.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "PERSONA",
+      "title": "至尊包年每服务年度一次结构化人设进入写作",
+      "advantage_ids": [
+        "ADV-11"
+      ],
+      "acceptance_ids": [
+        "T39"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "scripts/ops.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "SERVICE_TICKET",
+      "title": "至尊首次定制服务的预约交付核销",
+      "advantage_ids": [
+        "ADV-11"
+      ],
+      "acceptance_ids": [
+        "T38"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "human_delivery",
+        "implementation",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "server:src/store.mjs",
+        "server:scripts/service-admin.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "REPORT_FREE",
+      "title": "中文离线完整免费HTML及打印报告",
+      "advantage_ids": [
+        "ADV-12"
+      ],
+      "acceptance_ids": [
+        "T06",
+        "T07",
+        "T20",
+        "T33"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "LOCAL_RUN_PASS",
+          "evidence_ids": [
+            "INSTALL_MAC_LINUX"
+          ],
+          "note": "实际安装及执行，经营输入为MOCK"
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "scripts/ops.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "REPORT_PAID",
+      "title": "标准/至尊去推广署名、趋势及专项报告",
+      "advantage_ids": [
+        "ADV-12"
+      ],
+      "acceptance_ids": [
+        "T31",
+        "T32",
+        "T33",
+        "T36",
+        "T45"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "scripts/ops.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "ACTION_LEDGER",
+      "title": "动作授权、前后值、冲突、幂等与补偿账本",
+      "advantage_ids": [
+        "ADV-03",
+        "ADV-05",
+        "ADV-06",
+        "ADV-09",
+        "ADV-10",
+        "ADV-11",
+        "ADV-12"
+      ],
+      "acceptance_ids": [
+        "T10",
+        "T11",
+        "T15",
+        "T16",
+        "T17",
+        "T37",
+        "T42",
+        "T44"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "PARTIAL",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "scripts/browser.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "LICENSE",
+      "title": "签名许可、绑定、到期、退款与设备迁移",
+      "advantage_ids": [],
+      "acceptance_ids": [
+        "T34",
+        "T35",
+        "T36",
+        "T37",
+        "T41"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "PARTIAL",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "scripts/core.mjs",
+        "server:src/store.mjs",
+        "scripts/licensing.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "PAYMENT",
+      "title": "真实支付、回调验签、幂等及权益快照",
+      "advantage_ids": [],
+      "acceptance_ids": [
+        "T34",
+        "T35",
+        "T36"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "backend_readback",
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "PARTIAL_MOCK_PASS",
+          "evidence_ids": [
+            "LOCAL_TESTS_28"
+          ],
+          "note": "已覆盖局部场景，不代表对应所有T编号整体通过"
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "server:src/bridge.mjs",
+        "server:src/store.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "WEBSITE",
+      "title": "官网页面、12优势、准确安装及真实部署",
+      "advantage_ids": [],
+      "acceptance_ids": [
+        "T05",
+        "T34",
+        "T40",
+        "T46"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution",
+        "public_readback"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "LIVE_WRITE_PASS",
+          "evidence_ids": [
+            "SITE_DEPLOY"
+          ],
+          "note": "仅官网部署，非酒店后台业务写入"
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "PUBLIC_READBACK_PASS",
+          "evidence_ids": [
+            "SITE_DEPLOY"
+          ],
+          "note": "官网HTTPS与health公开回读"
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "server:public/index.html",
+        "server:src/server.mjs"
+      ],
+      "attempts": []
+    },
+    {
+      "id": "RELEASE",
+      "title": "真实仓库、构建物、下载与安装验证",
+      "advantage_ids": [],
+      "acceptance_ids": [
+        "T01",
+        "T40",
+        "T43",
+        "T46"
+      ],
+      "assessment_scope": "0.1.1客户端与官网；账户实测与真人交付单独记录",
+      "target": {
+        "environment": null,
+        "account_id": null,
+        "hotel_id": null,
+        "object_id": null,
+        "software_version": "0.1.1",
+        "adapter_version": null
+      },
+      "required_dimensions": [
+        "implementation",
+        "live_read",
+        "live_write",
+        "local_execution",
+        "public_readback"
+      ],
+      "dimensions": {
+        "implementation": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_ids": [
+            "CODE_0_1_0"
+          ]
+        },
+        "local_execution": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "mock_test": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_read": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "live_write": {
+          "status": "NOT_RUN",
+          "evidence_ids": [],
+          "note": "构建时0.1.1尚待发行；实际发布结果见官网/status.json和GitHub evidence/release-verification.json"
+        },
+        "backend_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        },
+        "public_readback": {
+          "status": "NOT_RUN",
+          "evidence_ids": [],
+          "note": "每个版本发行后另行回读"
+        },
+        "human_delivery": {
+          "status": "NOT_RUN",
+          "evidence_ids": []
+        }
+      },
+      "account_permission": {
+        "status": "NOT_ASSESSED",
+        "evidence_ids": []
+      },
+      "product_entitlement": "RETAINED",
+      "blockers": [],
+      "implementation_files": [
+        "server:scripts/build.mjs",
+        "scripts/install.mjs"
+      ],
+      "attempts": []
+    }
+  ]
+}

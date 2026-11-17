@@ -1,11 +1,20 @@
 # vmware-debug Capabilities
 
-Read-only, offline incident correlation. No network, no credentials, no writes.
+Offline incident correlation. No network, no credentials, no writes to any VMware
+system. This table covers the two stateless correlation tools; the twelve case
+investigation-ledger tools (seven of which write, to the local ledger only) are
+listed in `SKILL.md`, and their response sizes are not yet measured here.
 
 | Tool | What it returns | Typical response tokens |
 |---|---|---|
-| `incident_timeline` | `{event_count, window, spikes:[{start,end,count,zscore}], hypotheses:[{category, score, summary, evidence_count, first_seen, last_seen, sample_text, suggested_check}], next_checks:[...]}` | 300–2000 (scales with hypotheses) |
-| `list_symptom_categories` | `[{category, example_keywords, suggested_check}]` | ~400 |
+| `build_incident_timeline` | `{event_count, window, spikes:[{start,end,count,zscore}], hypotheses:[{category, score, summary, evidence_count, first_seen, last_seen, sample_text, suggested_check}], next_checks:[...]}` | 300–2000 (scales with hypotheses) |
+| `list_symptom_categories` | `{items: [{category, example_keywords, suggested_check}], returned, limit, total, truncated, hint}` | ~400 |
+
+`list_symptom_categories` returns the family list envelope — read the rows from
+`items`. It has no `limit` parameter, which is exactly why the envelope matters:
+`truncated: false` states that this is every category there is, rather than
+leaving a model to guess whether it is holding page one. The catalogue is a
+fixed in-process constant, so `total` is a real count and `limit` is `null`.
 
 ## Correlation engine
 
@@ -21,8 +30,21 @@ Read-only, offline incident correlation. No network, no credentials, no writes.
 
 ## Symptom categories
 
-`storage`, `network`, `compute`, `ha_drs`, `power_lifecycle`, `auth`, `platform`.
+`storage`, `network`, `compute`, `ha_drs`, `host_lifecycle`, `power_lifecycle`,
+`auth`, `platform`, `hardware`, `licensing`, `data_collection`.
 See `references/routing.md` for keyword signatures and the skill each routes to.
+
+`hardware`, `licensing` and `data_collection` were added after real alert titles
+("Host TPM attestation alarm", "License will soon expire", "Objects are not
+receiving data from adapter instance") matched no category at all. A roll-up
+such as "Group population health is degraded" is deliberately left
+uncategorized: it names no subsystem, and the cause is in one of its members.
+
+`host_lifecycle` is a host changing its own availability state — maintenance
+mode, shutdown, reboot, standby, connection loss, sync failure.
+`power_lifecycle` is the VM-level equivalent. They are separate because they are
+separate investigations: the second is a task question for vmware-aiops, the
+first is a cluster, DPM, vLCM or drift question.
 
 ## Design properties
 

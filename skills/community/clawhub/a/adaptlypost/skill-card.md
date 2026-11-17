@@ -1,48 +1,52 @@
-## Description: <br>
-AdaptlyPost lets agents draft, schedule, upload media for, publish, and monitor social media posts across Instagram, X, Bluesky, TikTok, Threads, LinkedIn, Facebook, Pinterest, and YouTube through the AdaptlyPost API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedule, publish, and review social posts across connected accounts, read analytics and inbox items, and respond to comments, messages, and reviews through AdaptlyPost.
 
-## Publisher: <br>
-[tarasshyn](https://clawhub.ai/user/tarasshyn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tarasshyn](https://clawhub.ai/user/tarasshyn)
 
-## Use Case: <br>
-External users and social media operators use this skill to let an agent prepare drafts, schedule posts, upload named media, cross-post to connected accounts, and check post status in AdaptlyPost. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The AdaptlyPost API token can access connected social accounts in the account group. <br>
-Mitigation: Use a dedicated revocable API token, connect only the accounts the agent needs, and store the token in ADAPTLYPOST_API_KEY. <br>
-Risk: Posts can become public, attributable, and difficult to fully retract after publishing. <br>
-Mitigation: Before every post, show the user the content, platforms, timing, and visibility settings and wait for explicit confirmation; prefer drafts for sensitive or uncertain content. <br>
-Risk: Uploaded media receives a public URL as soon as the upload completes. <br>
-Mitigation: Upload only files the user explicitly named, confirm exact paths first, and avoid broad directories such as Downloads, Desktop, or screenshot folders without per-file approval. <br>
-Risk: Bulk or unattended posting can amplify mistakes across many queued posts. <br>
-Mitigation: Confirm a small first batch before larger scheduling runs, and default unattended workflows to drafts unless the exact recurring workflow was pre-authorized. <br>
-Risk: Retrying failed posts or skipped platforms silently can publish duplicate or unintended content. <br>
-Mitigation: Surface errors and skipped platforms to the user and ask before retrying. <br>
+## Use Case:
 
+External users with an AdaptlyPost account use the skill to manage posts and inbox activity on their connected social accounts and review account analytics. It can create drafts, schedule or publish content, and make inbox changes after the user explicitly approves each write action.
 
-## Reference(s): <br>
-- [AdaptlyPost homepage](https://adaptlypost.com) <br>
-- [AdaptlyPost API reference](references/api-reference.md) <br>
-- [Platform-specific configs reference](references/platform-configs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with curl command examples and JSON request/response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ADAPTLYPOST_API_KEY; write actions require user confirmation and named connected accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata; artifact frontmatter lists 1.2.0) <br>
+Risk: ClawScan flags a LinkedIn organization lookup as potentially outside the skill's stated account, posting, analytics, and inbox scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the lookup only when it directly supports the user's requested workflow, and review the results before taking action.
+
+## Reference(s):
+
+- [AdaptlyPost API Reference](references/api-reference.md)
+- [Platform-Specific Configurations](references/platform-configs.md)
+- [AdaptlyPost](https://adaptlypost.com)
+- [AdaptlyPost OpenClaw Plugin](https://github.com/adaptlypost/adaptlypost-openclaw/tree/main/openclaw-plugin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Analytics, API results]
+
+**Output Format:** [Text and structured results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AdaptlyPost API key; write actions need explicit user approval.]
+
+## Skill Version(s):
+
+1.34.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 """
 酒店智能搜索 - ClawHub技能脚本
-数据源：飞猪旅行 + 高德地图（SCF代理），零配置
+数据源：途牛旅行 + 高德地图（SCF代理），零配置
 5合1：酒店搜索 + 万豪搜索/详情/套餐 + 周边餐饮
 """
+import os
 import json
 import urllib.request
 import urllib.error
 
 # ============ 配置 ============
-FLIGGY_PROXY = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
+TUNIU_PROXY = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
 GAODE_PROXY = "https://1439498936-bl10af74fl.ap-guangzhou.tencentscf.com"
-PROXY_TOKEN = "tp_8k2mX9vQ4z"
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 TIMEOUT = 60
 
 _MARRIOTT_BRANDS = [
@@ -29,30 +30,18 @@ _CITIES = [
 
 
 # ============ 代理调用 ============
-def _call_fliggy(rtype, params):
-    body = json.dumps({"type": rtype, "params": params}, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
-    req = urllib.request.Request(
-        FLIGGY_PROXY, data=body,
-        headers={"Content-Type": "application/json", "X-Proxy-Token": PROXY_TOKEN},
-        method="POST",
-    )
+def _call_tuniu(rtype, params):
+    """调用途牛SCF代理"""
+    url = TUNIU_PROXY
+    headers = {"Content-Type": "application/json", "X-Proxy-Token": PROXY_TOKEN}
+    body = {"type": rtype, "params": params}
+    data = json.dumps(body, ensure_ascii=False).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
     try:
-        with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
-            raw = json.loads(r.read().decode("utf-8"))
-            if isinstance(raw, dict) and "code" in raw:
-                if raw.get("code") == 0:
-                    return raw.get("data", raw)
-                else:
-                    return {"error": "SCF proxy error: " + str(raw.get("message", raw))}
-            return raw
-    except urllib.error.HTTPError as e:
-        err = ""
-        try: err = e.read().decode("utf-8", errors="replace")[:200]
-        except: pass
-        return {"error": "proxy error " + str(e.code) + ": " + err}
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read().decode("utf-8"))
     except Exception as e:
-        return {"error": "request error: " + str(e)}
-
+        return {"error": str(e)}
 
 def _call_gaode(api, params):
     body = json.dumps({"type": api, "params": params}).encode("utf-8")
@@ -89,7 +78,7 @@ def _build_tips(current_tool, query=""):
     city = _extract_city(query)
     d = city or "目的地"
     tips_map = {
-        "search_hotels": "📋 附加服务：🏨" + d + "万豪品牌酒店 | 🎫推荐" + d + "景点 | 🍜" + d + "周边餐饮 | 🚄查去" + d + "的火车票 | ✈️查去" + d + "的机票",
+        "search_hotels": "📋 附加服务：🏨" + d + "品牌酒店 | 🎫推荐" + d + "景点 | 🍜" + d + "周边餐饮 | 🚄查去" + d + "的火车票 | ✈️查去" + d + "的机票",
         "search_marriott_hotels": "📋 附加服务：🏨" + d + "更多酒店 | 🎫推荐" + d + "景点 | 🍜" + d + "周边餐饮",
         "get_marriott_hotel_info": "📋 附加服务：🏨搜索更多万豪酒店 | 🎫推荐" + d + "景点 | 🍜" + d + "周边餐饮",
         "search_marriott_packages": "📋 附加服务：🏨搜索更多万豪酒店 | 🎫推荐" + d + "景点 | 🍜" + d + "周边餐饮",
@@ -103,8 +92,8 @@ def _format_ai_text(data):
     inner = data.get("data", data) if isinstance(data, dict) else data
     if isinstance(inner, str):
         text = inner
-        if "飞猪" not in text:
-            text = text.rstrip() + "\n\n数据来源：飞猪旅行"
+        if "途牛" not in text:
+            text = text.rstrip() + "\n\n数据来源：途牛旅行"
         return text
     if isinstance(inner, dict):
         items = inner.get("itemList", [])
@@ -144,7 +133,7 @@ def _format_hotel_list(data):
         if url: lines.append("   预订：" + url)
         lines.append("")
     lines.append("价格实时变动，以实际下单为准")
-    lines.append("数据来源：飞猪旅行")
+    lines.append("数据来源：途牛旅行")
     return "\n".join(lines)
 
 def _format_food_list(data):
@@ -180,50 +169,27 @@ def _format_food_list(data):
 # ============ 工具函数 ============
 
 def search_hotels(params):
-    """酒店搜索：搜索国内酒店，返回实时价格和飞猪预订链接。"""
+    """酒店搜索：搜索国内酒店，返回实时价格和途牛预订链接。"""
     query = params.get("query", "")
     if not query: return "请输入酒店搜索描述，如：三亚亚龙湾亲子酒店"
-    data = _call_fliggy("fliggy_ai_search", {"query": query.strip()})
+    data = _call_tuniu("tuniu_hotel_search", {"query": query.strip()})
     text = _format_ai_text(data)
     return text + _build_tips("search_hotels", query)
 
 
 def search_marriott_hotels(params):
-    """万豪酒店搜索：搜索万豪集团旗下品牌酒店。"""
-    query = params.get("query", "")
-    if not query: return "请输入万豪品牌酒店搜索描述"
-    q = query.strip()
-    if "万豪" not in q and not any(brand in q for brand in _MARRIOTT_BRANDS):
-        q = q + " 万豪"
-    data = _call_fliggy("search_marriott_hotels", {"query": q})
-    inner = data.get("data", data) if isinstance(data, dict) else data
-    if inner is None or (isinstance(inner, dict) and not inner.get("itemList")) or (isinstance(data, dict) and data.get("status") == 0 and data.get("data") is None):
-        data = _call_fliggy("fliggy_ai_search", {"query": q})
-    text = _format_ai_text(data)
-    return text + _build_tips("search_marriott_hotels", query)
+    """万豪酒店搜索：服务已调整"""
+    return "⚠️ 品牌酒店数据专区已调整，建议使用「酒店智能推荐」或「途牛旅行」搜索酒店。"
 
 
 def get_marriott_hotel_info(params):
-    """万豪酒店详情：获取万豪品牌酒店的详细信息。"""
-    query = params.get("query", "")
-    if not query: return "请输入万豪酒店名称"
-    data = _call_fliggy("get_marriott_hotel_info", {"query": query.strip()})
-    if isinstance(data, dict) and (data.get("status") == 1 or (data.get("status") == 0 and data.get("data") is None)):
-        data = _call_fliggy("fliggy_ai_search", {"query": query.strip() + " 详细信息"})
-    text = _format_ai_text(data)
-    return text + _build_tips("get_marriott_hotel_info", query)
+    """万豪酒店详情：服务已调整"""
+    return "⚠️ 品牌酒店数据专区已调整，建议使用「酒店智能推荐」或「途牛旅行」搜索酒店。"
 
 
 def search_marriott_packages(params):
-    """万豪套餐搜索：搜索万豪品牌酒店的套餐产品。"""
-    query = params.get("query", "")
-    if not query: return "请输入万豪酒店套餐搜索描述"
-    data = _call_fliggy("search_marriott_packages", {"query": query.strip()})
-    inner = data.get("data", data) if isinstance(data, dict) else data
-    if inner is None or (isinstance(data, dict) and data.get("status") == 0 and data.get("data") is None):
-        data = _call_fliggy("fliggy_ai_search", {"query": query.strip()})
-    text = _format_ai_text(data)
-    return text + _build_tips("search_marriott_packages", query)
+    """万豪套餐搜索：服务已调整"""
+    return "⚠️ 品牌酒店数据专区已调整，建议使用「酒店智能推荐」或「途牛旅行」搜索酒店。"
 
 
 def search_food(params):

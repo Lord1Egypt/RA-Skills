@@ -1,0 +1,29 @@
+{
+  "name": "lygo-deception-radar",
+  "displayName": "LYGO Deception Radar",
+  "version": "1.0.0",
+  "description": "Public proof dashboard for Ops Detector on labeled discourse samples. Anonymized bands; operational threshold 0.65. Not for doxing.",
+  "slug": "lygo-deception-radar",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-deception-radar",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-deception-radar",
+  "signature": "Delta9Phi963-DECEPTION-RADAR-v1.0.0",
+  "tags": ["latest", "lygo", "radar", "ops-detector", "proof", "security", "public", "openclaw"],
+  "entry": "SKILL.md",
+  "scripts": {
+    "build": "scripts/build_radar_feed.py --write-html",
+    "self_check": "scripts/self_check.py"
+  },
+  "permissions": {
+    "network": false,
+    "subprocess": false,
+    "publish": false
+  },
+  "security": {
+    "public_samples_only": true,
+    "not_for_doxing": true,
+    "no_auto_publish": true,
+    "version": "1.0.0"
+  }
+}

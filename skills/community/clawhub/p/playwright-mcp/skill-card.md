@@ -1,43 +1,60 @@
-## Description: <br>
-Browser automation via Playwright MCP server. Navigate websites, click elements, fill forms, extract data, take screenshots, and perform full browser automation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation via Playwright MCP server. Navigate websites, click elements, fill forms, extract data, take screenshots, and perform full browser automation workflows.
 
-## Publisher: <br>
-[Spiceman161](https://clawhub.ai/user/Spiceman161) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[spiceman161](https://clawhub.ai/user/spiceman161)
 
-## Use Case: <br>
-Developers and automation-focused agents use this skill to control a browser through Playwright MCP for navigation, form interaction, data extraction, screenshots, and browser workflow testing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can interact with logged-in sites, submit forms, upload files, make purchases, change settings, or run page JavaScript. <br>
-Mitigation: Use host allow-lists, avoid unsupervised use on logged-in or high-value accounts, and review actions that submit data, upload files, make purchases, change settings, or execute page JavaScript. <br>
-Risk: The skill depends on Playwright MCP and npx being installed and available in the execution environment. <br>
-Mitigation: Confirm the required binaries before use and install @playwright/mcp and the needed Playwright browsers according to the documented installation steps. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Spiceman161/playwright-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/Spiceman161) <br>
-- [Playwright documentation](https://playwright.dev) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io) <br>
-- [NPM package: @playwright/mcp](https://www.npmjs.com/package/@playwright/mcp) <br>
+## Use Case:
 
+Developers and automation engineers use this skill to configure and operate the Playwright MCP server for browser navigation, form interaction, data extraction, screenshots, and browser automation workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, MCP tool call examples, and Python example code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide browser actions that save screenshots, traces, or videos when Playwright MCP output options are configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to run mutable npm packages for a powerful browser-control MCP server.
+
+Mitigation: Review before installing, prefer pinned package versions or a locked local install, and scan the skill before deployment.
+
+Risk: Browser automation can navigate to untrusted sites or weaken transport validation when misconfigured.
+
+Mitigation: Use allowed-hosts for trusted sites and avoid --ignore-https-errors except in controlled testing.
+
+Risk: Saved screenshots, traces, videos, and form entries can contain sensitive information.
+
+Mitigation: Treat generated browser artifacts and submitted form data as sensitive and apply appropriate retention and access controls.
+
+## Reference(s):
+
+- [Playwright Docs](https://playwright.dev)
+- [MCP Protocol](https://modelcontextprotocol.io)
+- [NPM Package: @playwright/mcp](https://www.npmjs.com/package/@playwright/mcp)
+- [ClawHub Skill Page](https://clawhub.ai/spiceman161/skills/playwright-mcp)
+- [Publisher Profile](https://clawhub.ai/user/spiceman161)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands, MCP tool examples, and Python example code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create browser screenshots, traces, videos, and extracted page data when configured through Playwright MCP.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,51 @@
-## Description: <br>
-知识蒸馏归档工具，将讨论成果按5类分类写入对应知识文档。支持小龙虾命令记忆库、专业工作知识、工作外知识、讨论过程、思维蒸馏五类归档。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge Distill helps an agent organize discussion outcomes into five local Chinese-language Markdown knowledge documents after previewing changes and receiving user confirmation.
 
-## Publisher: <br>
-[mwangxiang](https://clawhub.ai/user/mwangxiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mwangxiang](https://clawhub.ai/user/mwangxiang)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to distill conversation results into a local knowledge base, classify notes across five knowledge documents, and preserve concise conclusions after preview and confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can archive sensitive or private discussion content into local Markdown files. <br>
-Mitigation: Review the preview and destination before confirming a save, and set KNOWLEDGE_BASE_PATH to a private folder for sensitive notes. <br>
-Risk: Incorrectly distilled notes could make the knowledge base misleading or harder to audit. <br>
-Mitigation: Confirm the proposed additions or edits before writing, and keep only concise final conclusions in the destination documents. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mwangxiang/knowledge-distill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mwangxiang) <br>
+## Use Case:
+
+External users can use this skill to preserve useful discussion results, command notes, technical conclusions, research logs, and thinking frameworks in a local knowledge archive.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Sensitive or private discussion content could be archived into local knowledge-base files.
+
+Mitigation: Review the preview carefully before confirming any write, especially when the discussion includes private or sensitive information.
+
+Risk: Incorrectly classified or over-condensed notes could make the archive harder to search or reuse.
+
+Mitigation: Confirm the proposed target document and distilled content before allowing the skill to write.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration instructions] <br>
-**Output Format:** [Markdown notes and preview text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local Markdown knowledge-base files only after user preview and confirmation.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [Text, Markdown, Files, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown text prepared for local knowledge-base files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill previews proposed additions and target files before writing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

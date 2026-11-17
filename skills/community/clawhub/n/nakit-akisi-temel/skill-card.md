@@ -1,41 +1,51 @@
-## Description: <br>
-Şirketler için nakit akışı yönetimi, runway analizi, tahsilat takibi ve vergi/SGK rezerv planlaması için Türkçe rehberlik sağlar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turkish companies use this skill for cash-flow management, runway analysis, receivables tracking, and tax/SGK reserve planning.
 
-## Publisher: <br>
-[ayhanagirgol](https://clawhub.ai/user/ayhanagirgol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayhanagirgol](https://clawhub.ai/user/ayhanagirgol)
 
-## Use Case: <br>
-External users, business owners, and advisors use this skill to answer Turkish SME cash-flow planning questions, build simple cash-flow tables, estimate runway, track receivables, and plan tax or SGK reserves. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Türkiye <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cash-flow, tax, SGK, financing, or legal guidance may be incomplete or outdated for a specific business. <br>
-Mitigation: Verify high-stakes business planning and compliance decisions with a qualified professional and current local rules. <br>
+## Use Case:
 
+Business owners, finance operators, and agents supporting Turkish SMEs use this skill to prepare cash-flow tables, estimate runway, track collections, reserve for tax and SGK obligations, and avoid common cash-management mistakes.
 
-## Reference(s): <br>
-- [Nakit Akışı Rehberi](references/nakit_akis_rehberi.md) <br>
-- [Örnek 6 Aylık Nakit Akış Tablosu ve Runway Hesaplama](references/nakit_akis_tablosu.md) <br>
-- [Nakit ve Vergi Planlamasında Yapılan 10 Temel Hata](references/nakit_hatalari.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ayhanagirgol/nakit-akisi-temel) <br>
+### Deployment Geography for Use:
 
+Turkey
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Turkish-language financial planning guidance based on static Markdown reference material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat general Turkish SME cash-flow and tax/SGK planning guidance as personalized tax, accounting, legal, or investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the output as general planning guidance and verify current Turkish tax/SGK rates or company-specific decisions against official sources or a qualified professional.
+
+## Reference(s):
+
+- [Nakit Akis Rehberi](references/nakit_akis_rehberi.md)
+- [Nakit Akis Tablosu](references/nakit_akis_tablosu.md)
+- [Nakit Hatalari](references/nakit_hatalari.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with tables, formulas, and concise planning steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Scans Norman Finance transactions for potentially missed tax deductions and suggests proper tax categorization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan transactions for potentially missed tax deductions and suggest proper categorization.
 
-## Publisher: <br>
-[stanlee000](https://clawhub.ai/user/stanlee000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stanlee000](https://clawhub.ai/user/stanlee000)
 
-## Use Case: <br>
-Freelancers and small businesses using Norman Finance use this skill to review transactions, identify potentially missed German tax deductions, estimate possible savings, and recategorize transactions only after confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Germany <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reviews sensitive transaction history, company details, and tax settings. <br>
-Mitigation: Install and use it only when the user is comfortable letting the agent inspect the requested Norman Finance records. <br>
-Risk: Accepted recategorization suggestions may affect bookkeeping and tax records. <br>
-Mitigation: Review each suggested SKR04 category and deduction rationale before confirming any change. <br>
-Risk: Estimated tax savings are rough guidance and may not reflect the user's final tax position. <br>
-Mitigation: Treat savings estimates as directional and verify deductions, receipts, business-use portions, and depreciation treatment before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Norman Finance](https://norman.finance) <br>
-- [ClawHub skill page](https://clawhub.ai/stanlee000/norman-tax-deduction-finder) <br>
+## Use Case:
 
+External Norman Finance users, especially German freelancers and small businesses, use this skill to review business transactions for potentially missed deductions, suggested SKR04 categorization, estimated tax impact, and receipt or compliance follow-up.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance, API calls] <br>
-**Output Format:** [Markdown summary with transaction-level recommendations and confirmation-gated categorization actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reviews Norman Finance records for the requested period and should apply recategorization only after user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata) <br>
+Germany
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reviews business finance data and can propose transaction recategorization that may affect tax records.
+
+Mitigation: Confirm the reporting period, jurisdiction, and each proposed transaction recategorization before allowing changes.
+
+Risk: Tax deduction guidance may be incomplete or unsuitable for a user's specific facts.
+
+Mitigation: Treat findings as review support, keep receipts, verify mixed-use allocations, and consult a qualified tax professional for final filing decisions.
+
+## Reference(s):
+
+- [Norman Finance](https://norman.finance)
+- [ClawHub skill listing](https://clawhub.ai/stanlee000/skills/norman-tax-deduction-finder)
+- [Publisher profile](https://clawhub.ai/user/stanlee000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown summary with transaction-level findings, categorization suggestions, and confirmation-gated action guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include estimated deductible amounts and rough tax savings; transaction recategorization is proposed only after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

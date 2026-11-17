@@ -1,41 +1,56 @@
-## Description: <br>
-A markdown-only OpenCode skill that helps users learn and practice a deep-search tip from a Douyin video about using Search instead of Find. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents respond to Chinese-language prompts about the idea that search functions can be more useful than find functions.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and OpenCode users can invoke this skill for guidance on learning and practicing a search-oriented code navigation tip based on the referenced short-form video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate the skill in unrelated conversations. <br>
-Mitigation: Use explicit invocation or narrow triggers before deployment where precise activation matters. <br>
+## Use Case:
 
+Developers and agent users can use this skill as a lightweight Chinese-language prompt aid for deep-search related help and search-versus-find guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/534422530/deep-search-244e83) <br>
-- [Bilibili learning link: Neck Deep - Gold Steps](https://www.bilibili.com/video/BV1bd4y1i7Ls) <br>
-- [Bilibili learning link: Deep Corp](https://www.bilibili.com/video/BV1HToPBWErx) <br>
-- [Bilibili learning link: Deep Sea Horror](https://www.bilibili.com/video/BV1er9MYxEfw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; guidance should be reviewed for relevance before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad Chinese-language triggers may activate the skill more often than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger terms before deployment and narrow them when the skill should only apply to explicit deep-search requests.
+
+Risk: The skill content is minimal and may provide incomplete guidance for complex search tasks.
+
+Mitigation: Treat the skill as a lightweight prompt aid and verify any task-specific recommendations before applying them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/534422530/skills/deep-search-244e83)
+- [Bilibili learning reference: Neck Deep - Gold Steps](https://www.bilibili.com/video/BV1bd4y1i7Ls)
+- [Bilibili learning reference: Deep Corp](https://www.bilibili.com/video/BV1HToPBWErx)
+- [Bilibili learning reference: Deep Sea Horror](https://www.bilibili.com/video/BV1er9MYxEfw)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, tool calls, credential access, persistence, or data-changing behavior is described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

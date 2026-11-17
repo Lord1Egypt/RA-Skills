@@ -1,0 +1,4 @@
+interface:
+  display_name: "Convbox-DiagClaw"
+  short_description: "DTC ecommerce diagnostics with first-party attribution"
+  default_prompt: "Use $convbox-diagclaw to diagnose why my paid media ROAS changed last week."

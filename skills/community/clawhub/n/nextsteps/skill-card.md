@@ -1,46 +1,59 @@
-## Description: <br>
-Append context-aware next-step suggestions after agent responses, including actionable follow-ups, unfinished tasks from memory, and creative lateral suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NextSteps appends context-aware follow-up suggestions after agent responses, surfaces unfinished tasks from local memory, and adapts suggestion count, categories, and format from user feedback.
 
-## Publisher: <br>
-[cindulasai](https://clawhub.ai/user/cindulasai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cindulasai](https://clawhub.ai/user/cindulasai)
 
-## Use Case: <br>
-Developers and agent users use this skill to append concise, context-aware next-step suggestions after responses and to surface relevant unfinished work from local project memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently records inferred preferences, suggestion history, ignored topics, and backlog items in a local .nextsteps folder. <br>
-Mitigation: Add .nextsteps/ to .gitignore, periodically inspect or delete those files, and avoid using the skill where persistent local preference or backlog memory is not acceptable. <br>
-Risk: The documented disable behavior stops visible suggestions but does not fully stop passive backlog tracking. <br>
-Mitigation: When disabling suggestions, also review or remove .nextsteps/BACKLOG.md, or uninstall the skill if passive tracking is not desired. <br>
+## Use Case:
 
+Agent users and developers use this skill to keep conversations moving by adding specific, actionable next-step suggestions after responses. It is useful for recurring project work where unfinished topics, format preferences, and suggestion categories should carry across sessions.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/cindulasai/nextsteps) <br>
-- [Anti-Pattern Rules](references/ANTI-PATTERNS.md) <br>
-- [Category Taxonomy](references/CATEGORIES.md) <br>
-- [Cold-Start Bootstrap Protocol](references/COLD-START.md) <br>
-- [User Customization Protocol](references/CUSTOMIZATION.md) <br>
-- [Security Rules](references/SECURITY.md) <br>
-- [Self-Improvement Engine](references/SELF-IMPROVE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance, Configuration] <br>
-**Output Format:** [Markdown or compact text suggestions appended to agent responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and update local .nextsteps preference, history, and backlog files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can automatically append suggestions to most agent responses, which may interfere with workflows that require a strict response format.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the preference settings before use and disable suggestions for conversations or environments where output shape must remain fixed.
+
+Risk: The skill keeps persistent local memory about selections, ignored suggestions, inferred preferences, and backlog topics.
+
+Mitigation: Avoid enabling persistence in contexts with private cross-channel information, and review the .nextsteps files periodically for sensitive or unwanted entries.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cindulasai/skills/nextsteps)
+- [Category Taxonomy](artifact/references/CATEGORIES.md)
+- [Anti-Pattern Rules](artifact/references/ANTI-PATTERNS.md)
+- [Cold-Start Bootstrap Protocol](artifact/references/COLD-START.md)
+- [User Customization Protocol](artifact/references/CUSTOMIZATION.md)
+- [Security Rules](artifact/references/SECURITY.md)
+- [Self-Improvement Engine](artifact/references/SELF-IMPROVE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or compact text suggestions appended to agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May adapt suggestion count, categories, and format based on user preferences; may maintain local .nextsteps preference, history, and backlog files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

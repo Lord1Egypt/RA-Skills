@@ -1,0 +1,23 @@
+artifact: review_record
+artifact_role: main
+stage: review
+applicable_stages: [review]
+applies_when: 记录本轮范围的评审结果、问题处置与签认。
+schema_version: 5.4.0
+review_id: REVIEW-CORE-001
+baseline_version: "0.1-draft"
+requirement_refs: [REQ-CORE-001]
+reviewed_artifact_refs: [requirements/PRD.md]
+review_type: cross_functional
+status: scheduled
+reviewers: ["{本轮实际评审人}"]
+# 依据需求风险裁剪；跨系统/NFR/迁移保留 architecture，多团队交付再加入 delivery。
+required_review_types: [] # 按已定评审范围填写；开始评审前确定所需角色
+# sign_offs 每项必填 review_type/actor/decision/at/evidence_refs；
+# decision ∈ approve | approve_with_conditions | reject；
+# decision 为 approve_with_conditions 时 conditions 必填且非空。
+sign_offs: []
+# 真实签认后再添加 actor、decision、at、evidence_refs；未评审不能复制批准结论。
+findings: []
+# 发现问题后记录 id、severity、requirement_refs、description、owner、status、disposition。
+conclusion: ""

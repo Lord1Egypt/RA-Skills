@@ -1,42 +1,56 @@
-## Description: <br>
-Manage ad accounts for Guangdiantong and Ocean Engine through browser automation with cookie-based login, account switching, and account status overview. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage ad accounts (广点通, 巨量引擎) via browser automation with cookie login.
 
-## Publisher: <br>
-[wang259797](https://clawhub.ai/user/wang259797) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wang259797](https://clawhub.ai/user/wang259797)
 
-## Use Case: <br>
-Marketing operators and agents use this skill to manage saved Guangdiantong and Ocean Engine ad accounts, open browser login sessions, and review basic account status such as balance, daily spend, budget, and abnormal-account alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reusable ad-platform login cookies are saved locally in plaintext. <br>
-Mitigation: Install only on a trusted machine, restrict filesystem access to the skill data directory, and treat stored account data like passwords. <br>
-Risk: Saved cookies may continue to grant ad-platform access after the original login session. <br>
-Mitigation: Delete saved accounts when they are no longer needed and rotate or revoke sessions from the ad platform if a workspace may have been exposed. <br>
-Risk: Browser automation can open authenticated advertiser or agency consoles with sensitive budget and spend information. <br>
-Mitigation: Use the skill only from private workspaces and avoid shared, synced, or backed-up directories unless cookie storage is encrypted or moved to an OS credential store. <br>
+## Use Case:
 
+External users and operators use this skill to manage Guangdiantong and Ocean Engine advertising accounts, perform QR-code login, reuse saved cookies for one-click access, and view account status summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wang259797/ad-account-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Interactive command-line text with locally stored JSON account data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Launches a Playwright Chromium session for QR-code login and cookie-based account access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill stores reusable ad-platform login cookies in plaintext for high-value advertising accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the saved account data like a password vault: keep it out of shared folders, backups, logs, and source control, and prefer encrypted OS-backed secret storage.
+
+Risk: Saved cookies can allow one-click access to advertising accounts without a fresh login challenge.
+
+Mitigation: Use the skill only in a trusted local environment and prefer versions with explicit delete and reauthentication controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wang259797/skills/ad-account-manager)
+- [Guangdiantong advertiser console](https://e.qq.com/ads)
+- [Guangdiantong agency console](https://e.qq.com/agency)
+- [Ocean Engine ad console](https://ad.oceanengine.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Configuration instructions]
+
+**Output Format:** [Interactive CLI text with browser actions and local JSON account data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Playwright browser automation and stores account records, including cookies, in a local accounts.json file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog, released 2026-04-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

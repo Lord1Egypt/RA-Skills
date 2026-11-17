@@ -1,45 +1,59 @@
-## Description: <br>
-Scar memory, reflex arc, and decision traces for AI agents that learn from failures, block repeated mistakes without LLM calls, and export judgment traces for training data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scar memory, reflex arc, and decision traces for AI agents that records failures, checks proposed actions against past scars, and exports decision data without LLM calls.
 
-## Publisher: <br>
-[aibenyclaude-coder](https://clawhub.ai/user/aibenyclaude-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aibenyclaude-coder](https://clawhub.ai/user/aibenyclaude-coder)
 
-## Use Case: <br>
-Developers and agent engineers use this skill to give agents local scar memory, pre-action reflex checks, narrative handoff records, decision traces, and lightweight safety audits for code and CI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included CI action and repository-audit tooling can inspect broad source trees or remote repositories. <br>
-Mitigation: Review the action before installation, pin it to a reviewed tag or commit, use fixed trusted inputs, and prefer local-only scans unless the repository URL is trusted. <br>
-Risk: Scar, narrative, decision-trace, and training JSONL files can contain sensitive project data. <br>
-Mitigation: Keep memory and training files protected as project data and avoid recording secrets or credentials. <br>
-Risk: Pattern-based reflex and audit checks may miss hazards or block benign work. <br>
-Mitigation: Use the results as pre-execution signals and manually review blocked or high-impact actions before acting. <br>
+## Use Case:
 
+Developers and agent builders use tetra-scar to persist failure lessons, run local reflex checks before actions, audit repositories for common agent failure patterns, and export decision traces for later training workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aibenyclaude-coder/tetra-scar) <br>
-- [Publisher profile](https://clawhub.ai/user/aibenyclaude-coder) <br>
-- [README](artifact/README.md) <br>
-- [GitHub Action metadata](artifact/action.yml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [CLI text, JSON/JSONL files, Markdown reports, Python API outputs, and GitHub Actions summary fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local append-only memory files and audit reports may contain sensitive project context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata; artifact frontmatter says 0.3.0) <br>
+Risk: Repository scanning and CI audit behavior may operate on a broader path set than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a sandbox or trusted repository, restrict scan paths, and review configuration before running it in CI.
+
+Risk: Untrusted GitHub Action inputs or attacker-controlled repository contents can affect what the audit scans.
+
+Mitigation: Pin installer and action versions, avoid passing untrusted action inputs, and do not scan repositories containing attacker-controlled symlinks.
+
+Risk: Persistent scar, narrative, decision trace, and training-data exports can contain sensitive operational history.
+
+Mitigation: Treat memory and exported training data as sensitive, keep them access-controlled, and redact secrets or private incident details before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aibenyclaude-coder/skills/tetra-scar)
+- [Publisher profile](https://clawhub.ai/user/aibenyclaude-coder)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text, Markdown reports, JSON/JSONL files, Python API guidance, shell commands, and GitHub Action configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local JSONL memory and optional training-data exports; the CI action emits score, grade, findings, and a step summary.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence; artifact frontmatter reports 0.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

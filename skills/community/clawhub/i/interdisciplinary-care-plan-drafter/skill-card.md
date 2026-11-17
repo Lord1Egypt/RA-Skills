@@ -1,44 +1,57 @@
-## Description: <br>
-Drafts CMS Conditions of Participation-compliant interdisciplinary care plan documentation for hospice and palliative care teams, including goals of care, comfort care planning, IDT roles, visit frequencies, and compliance flags for licensed clinician and IDT review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts CMS Conditions of Participation-aligned interdisciplinary care plans for hospice and palliative care teams, covering goals-of-care documentation, comfort care planning, IDT role assignments, visit frequencies, and Medicare hospice benefit compliance.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Hospice and palliative care clinicians and interdisciplinary team coordinators use this skill to assemble draft ICP documentation from clinician-led assessments, goals-of-care information, comfort care plans, discipline assignments, visit schedules, and open compliance items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft care plan content could be mistaken for finalized clinical documentation, medical orders, or billing-ready material. <br>
-Mitigation: The skill labels outputs as draft documentation and requires licensed clinician and IDT review and co-signature before care delivery, medical record entry, or Medicare or Medicaid billing use. <br>
-Risk: Sensitive patient information could be entered into the conversation. <br>
-Mitigation: The skill instructs users to collect only patient initials and a case reference and not to record full names, dates of birth, MRNs, addresses, or insurance numbers. <br>
-Risk: Generated symptom, prognosis, code status, or compliance language could be incomplete or clinically misleading. <br>
-Mitigation: The skill requires clinician-supplied assessments, flags uncontrolled symptoms and CMS CoP gaps, avoids generating prognoses or orders, and directs POLST/MOLST and medication decisions to the appropriate clinical workflow. <br>
-Risk: Security review confidence is limited by the supplied scan context. <br>
-Mitigation: Install with normal caution and review the README and SKILL.md for data handling, requested commands, network behavior, credential use, and background behavior before use. <br>
+## Use Case:
 
+External hospice and palliative care teams use this skill to draft initial or updated interdisciplinary care plans from clinician-led assessments, then route the draft for licensed clinician and full IDT review before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/interdisciplinary-care-plan-drafter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown draft care plan, role and visit-frequency table, open-items checklist, and review note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only clinical documentation; requires licensed clinician and IDT review before care delivery, medical record entry, or billing use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and CHANGELOG.md, released 2026-06-01) <br>
+Risk: Healthcare information may include sensitive patient data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only patient initials and a case reference; avoid full names, dates of birth, MRNs, addresses, insurance numbers, or other direct identifiers.
+
+Risk: Draft care-plan content could be mistaken for finalized clinical documentation or care direction.
+
+Mitigation: Treat every output as a draft and require licensed clinician and interdisciplinary team review before medical record entry, care delivery, or billing use.
+
+Risk: Prognosis, medication, and symptom-management content may require clinical judgment outside the skill's authority.
+
+Mitigation: Require clinician-provided prognosis basis and separate physician or APRN workflows for medication orders, care orders, and POLST/MOLST completion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/interdisciplinary-care-plan-drafter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown draft care plan with an open-items checklist and review note]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft documentation only; requires licensed clinician and interdisciplinary team review before care delivery, medical record entry, or billing use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and changelog, released 2026-06-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

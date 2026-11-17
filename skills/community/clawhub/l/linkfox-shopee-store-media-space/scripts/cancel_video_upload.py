@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Shopee Store — cancel_video_upload (v2.media_space.cancel_video_upload)
+Shopee Store — cancel_video_upload
+
 官方: https://open.shopee.com/documents/v2/v2.media_space.cancel_video_upload?module=91&type=1
+
+入参说明见 references/apis/cancel-video-upload.md。
 """
 
 from __future__ import annotations

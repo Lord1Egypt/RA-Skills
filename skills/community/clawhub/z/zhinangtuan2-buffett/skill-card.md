@@ -1,49 +1,64 @@
-## Description: <br>
-Value investment analysis and decision guidance tool following Buffett investment philosophy, covering business understanding, moat analysis, financial health assessment, valuation methods, and behavioral finance reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Value investment analysis and decision guidance tool following Buffett investment philosophy, including business understanding, moat analysis, financial health assessment, valuation methods, and behavioral finance reminders.
 
-## Publisher: <br>
-[e2e5g](https://clawhub.ai/user/e2e5g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[e2e5g](https://clawhub.ai/user/e2e5g)
 
-## Use Case: <br>
-Investors, analysts, and developers use this skill to produce structured Buffett-style investment research for companies, industries, asset allocation questions, and valuation scenarios. It guides the agent to gather current information, assess business quality and moats, calculate owner earnings, compare valuation scenarios, and surface risks and behavioral-finance concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment analysis may contain incorrect, stale, or unsuitable financial guidance. <br>
-Mitigation: Verify financial data against primary sources, current filings, announcements, and reputable market data before relying on the output. <br>
-Risk: Buy, sell, valuation, or position-size guidance may not match the user's jurisdiction, risk tolerance, time horizon, or financial situation. <br>
-Mitigation: Treat outputs as research support rather than qualified financial advice, and review assumptions with appropriate professional judgment. <br>
-Risk: Buffett-style framing and case studies may overemphasize long-term value narratives while underweighting new information or downside scenarios. <br>
-Mitigation: Require explicit risk factors, bear-case assumptions, sensitivity analysis, and behavioral-bias checks before making decisions. <br>
+## Use Case:
 
+External users can use this skill to structure value-investing research on companies, stocks, industries, asset allocation, and valuation questions. It guides business-model review, moat analysis, owner earnings, multi-scenario valuation, and risk assessment while reminding users to verify current financial data independently.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/e2e5g/zhinangtuan2-buffett) <br>
-- [Reference index](references/README.md) <br>
-- [Core investment principles](references/investment-principles.md) <br>
-- [Moat analysis framework](references/moat-analysis.md) <br>
-- [Valuation methods and scenario analysis](references/valuation-methods.md) <br>
-- [Investment case studies](references/case-studies.md) <br>
-- [Risk checklist and behavioral finance](references/risk-checklist.md) <br>
-- [Industry analysis guide](references/industry-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown investment analysis with structured sections, calculations, scenarios, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires current company, market, financial, and industry research before analysis; outputs should disclose assumptions, risks, and that returns are not guaranteed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Users may treat educational value-investing analysis as personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as research support, verify conclusions independently, and avoid trades or allocation changes based solely on the skill.
+
+Risk: Financial data, prices, filings, and industry news used during analysis may be stale or incorrect.
+
+Mitigation: Use current filings, market data, and reliable news sources before completing company, stock, industry, or valuation analysis.
+
+Risk: Position-sizing suggestions can be misused for concentrated or leveraged investments.
+
+Mitigation: Disclose assumptions and downside scenarios, avoid encouraging excessive leverage, and frame position sizing as a risk-management input rather than a directive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/e2e5g/skills/zhinangtuan2-buffett)
+- [Reference index](artifact/references/README.md)
+- [Investment principles](artifact/references/investment-principles.md)
+- [Moat analysis](artifact/references/moat-analysis.md)
+- [Valuation methods](artifact/references/valuation-methods.md)
+- [Risk checklist](artifact/references/risk-checklist.md)
+- [Industry guide](artifact/references/industry-guide.md)
+- [Case studies](artifact/references/case-studies.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with structured sections and calculations when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current market, financial, and news data to be independently verified before users rely on conclusions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

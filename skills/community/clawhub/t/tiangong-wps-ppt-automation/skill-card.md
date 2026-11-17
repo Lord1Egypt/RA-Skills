@@ -1,41 +1,55 @@
-## Description: <br>
-Automates common PowerPoint/WPS Presentation operations on Windows via COM for single-presentation actions, including reading text, notes, and outlines; exporting PDF or images; replacing text; editing slides; unifying fonts or themes; and extracting images or media. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate common PowerPoint/WPS Presentation operations on Windows via COM, including reading text, notes, and outlines; exporting PDFs and images; replacing text; inserting or deleting slides; unifying font, size, and theme; and extracting images or media for single-presentation actions.
 
-## Publisher: <br>
-[Fadeloo](https://clawhub.ai/user/Fadeloo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fadeloo](https://clawhub.ai/user/fadeloo)
 
-## Use Case: <br>
-Developers, analysts, and office automation users use this skill to inspect, export, and modify a single local PowerPoint or WPS Presentation file on Windows through scripted COM commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Extracted slide text, speaker notes, PDFs, and images may contain sensitive presentation content. <br>
-Mitigation: Treat generated text, notes, PDFs, and images as sensitive files and store or share them only in approved locations. <br>
-Risk: Replace, slide editing, font, theme, and export commands can overwrite or materially change presentation outputs. <br>
-Mitigation: Prefer saving modified presentations and exports to new paths, and keep the original presentation unchanged until results are reviewed. <br>
-Risk: The skill depends on local Windows COM automation and pywin32 package installation. <br>
-Mitigation: Install pywin32 only from trusted package sources and use the skill only on Windows systems where PowerPoint or WPS Presentation automation is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Fadeloo/tiangong-wps-ppt-automation) <br>
+## Use Case:
+
+Developers, analysts, and productivity users can use this skill to run single-file PowerPoint or WPS Presentation automation tasks on Windows, such as extracting slide content, exporting presentation assets, and applying controlled edits.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Presentation edit commands can overwrite or materially change local files.
+
+Mitigation: Use explicit output or save paths and keep backups before replace, delete-slide, font, or theme operations.
+
+Risk: Slide text, speaker notes, and exported assets may contain sensitive content that can be written to disk or printed to output.
+
+Mitigation: Avoid exporting notes, slide text, or images from sensitive presentations unless that disclosure and storage location are intended.
+
+Risk: The skill depends on local Windows COM automation and pywin32, so the execution environment affects behavior and trust boundaries.
+
+Mitigation: Install in a normal non-admin Python environment, consider pinning pywin32, and run only on machines with trusted PowerPoint or WPS installations.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples; generated files may be TXT, PDF, PNG images, or PPTX.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally on Windows with PowerPoint or WPS Presentation and pywin32; intended for one presentation at a time.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with command examples, file paths, and generated presentation-related files when commands are executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read, create, export, or modify local presentation, text, PDF, PNG, and image files depending on the selected command.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

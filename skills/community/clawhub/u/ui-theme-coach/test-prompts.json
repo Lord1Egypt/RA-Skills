@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "prompt": "把 OpenClaw 界面改成赛博朋克风",
+    "expected": "问答锁定风格(赛博朋克)+先 Web 调研(视觉特征/配色锚点/字体/反模式/真实案例)→主色派生调色板(:root 令牌)→双保险注入(document 根级 + shadow root 递归套娃)→node --check→交付前验证(Ctrl+Shift+R 生效、静态资源 200)→反馈(测试偏好不落盘)"
+  },
+  {
+    "id": 2,
+    "prompt": "我想要一个温馨的浅色主题",
+    "expected": "问答(宽泛方向,轻调研或直接走内置库)→主色派生浅色调色板(derive-palette.py <hex> --light 亮度反转)→对比度必查配对清单逐对跑(WCAG AA,浅底深字≥4.5:1)→注入→交付前验证(备份+node --check+HTTP 200+强制刷新)→反馈"
+  },
+  {
+    "id": 3,
+    "prompt": "做 MC 像素风主题",
+    "expected": "问答锁定 MC+先 Web 调研 MC 像素风特征(Zpix 字体/PIL 块状噪声纹理/9-slice 按钮/忌渐变)→读 references/styles/pixel-game.md 模板逐条对照→主色派生→双保险注入→node --check+静态资源 200→升级自愈快照(三指纹)→强制刷新验证→反馈"
+  },
+  {
+    "id": 4,
+    "prompt": "试试赛博朋克",
+    "expected": "测试/探索红线：可以正常走调研+注入流程,但「试」不算真偏好——不写 feedback.json/feedback-log 任何偏好条目;只有用户明确表示真正喜欢该风格/配色才落盘;对话中主动说明「本次只是试,不记偏好」"
+  },
+  {
+    "id": 5,
+    "prompt": "随便弄个好看的",
+    "expected": "模糊输入：不能直接开干——先追问风格/色彩/氛围(一次 2-3 个问题);用户仍给不出→推荐默认(通用像素风+深色+一个主色)并说明理由→再走主色派生/注入/验证完整流程"
+  },
+  {
+    "id": 6,
+    "prompt": "换回 MC/还原默认",
+    "expected": "切换/还原路径：先查当前注入主题(heal.sh 检测指纹)→MC 快照在→heal.sh --force mc 换主题(或先 heal.sh uninstall 再注入);还原默认=heal.sh uninstall [主题名] 摘掉注入块;快照目录多主题并存时按主题名选,不灌错;改完强制刷新验收"
+  }
+]

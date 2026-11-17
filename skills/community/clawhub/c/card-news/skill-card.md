@@ -1,39 +1,54 @@
-## Description: <br>
-Return material news about one major-US credit card from the last 3 months, including direct card changes, issuer updates, and major coverage across 11 major US issuers and co-branded hotel and airline cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Return material news about one major-US credit card from the last 3 months, including direct card changes, relevant issuer updates, and major approved-site coverage.
 
-## Publisher: <br>
-[jiahongc](https://clawhub.ai/user/jiahongc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiahongc](https://clawhub.ai/user/jiahongc)
 
-## Use Case: <br>
-External users and agents use this skill to summarize recent material news for one specific major U.S. credit card before card-benefit or issuer-change analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use an optional BRAVE_API_KEY when present. <br>
-Mitigation: Review whether the runtime should expose BRAVE_API_KEY before enabling the skill. <br>
-Risk: Broad trigger phrases such as "recent news" may activate the skill outside a credit-card context. <br>
-Mitigation: Use host routing or user clarification so activation requires a specific credit-card news request. <br>
+## Use Case:
 
+External users and agents use this skill to summarize recent, material news for one exact major-US credit-card variant, focusing on direct card changes, issuer updates, and approved-site coverage from the last three months.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with a news window, numbered recent updates, summary, confidence notes, and sources.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a three-month lookback window and may ask for clarification when the requested card variant is ambiguous.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server-resolved release metadata) <br>
+Risk: Recent card news may be incomplete, outdated, or misinterpreted if public sources change or conflict.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cited issuer or approved secondary sources before relying on the summary for decisions.
+
+Risk: The skill may depend on shared card-policy files that are not included in this artifact.
+
+Mitigation: Install and review the broader card skill set dependencies before deployment.
+
+## Reference(s):
+
+- [Card News on ClawHub](https://clawhub.ai/jiahongc/skills/card-news)
+- [Publisher profile](https://clawhub.ai/user/jiahongc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown sections with hidden source metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a news window, recent updates, summary, and confidence notes.]
+
+## Skill Version(s):
+
+1.0.7 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

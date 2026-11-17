@@ -1,41 +1,57 @@
-## Description: <br>
-Memory-oriented browser automation skill for repeatable web workflows, including login, extraction, bulk actions, form filling, screenshots, and checks across RoxyBrowser, Camoufox, and Chrome. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory-oriented browser automation skill for repeatable web workflows including login, extraction, bulk actions, form filling, screenshots, and checks across RoxyBrowser, Camoufox, and Chrome.
 
-## Publisher: <br>
-[whjstc](https://clawhub.ai/user/whjstc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whjstc](https://clawhub.ai/user/whjstc)
 
-## Use Case: <br>
-Developers and operators use Browsecraft to run repeatable browser workflows through the browsecraft CLI, including page setup, stable interactions, extraction, screenshots, checks, and controlled bulk actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can act inside logged-in sessions and may perform high-impact web actions. <br>
-Mitigation: Keep workflows scoped to user-approved tasks and confirm before purchases, deletions, submissions, public posts, or bulk changes. <br>
-Risk: The skill depends on the external browsecraft-cli package and may connect to browser endpoints or use Roxy credentials. <br>
-Mitigation: Install the CLI only from a trusted source, keep Roxy credentials local, avoid printing secrets, and connect only to trusted browser endpoints. <br>
+## Use Case:
 
+Developers and agents use this skill to drive repeatable browser workflows with BrowseCraft, including opening pages, taking snapshots, interacting with stable element references, filling forms, capturing screenshots, and reporting structured results.
 
-## Reference(s): <br>
-- [Browsecraft on ClawHub](https://clawhub.ai/whjstc/browsecraft) <br>
-- [browsecraft-cli npm package](https://www.npmjs.com/package/browsecraft-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured objective, steps, result, failure reason, and next action.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browsecraft CLI commands and screenshot evidence when the workflow calls for them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The skill relies on an unpinned globally installed npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install browsecraft-cli only from a trusted source, prefer a pinned version or isolated environment, and avoid elevated global installs where possible.
+
+Risk: Browser automation can expose credentials or sensitive page data during web workflows.
+
+Mitigation: Keep credentials in environment or config rather than command lines, avoid printing secrets, and use a dedicated browser profile for sensitive sites or bulk actions.
+
+Risk: Automation may access network destinations outside the intended target workflow.
+
+Mitigation: Ask for confirmation before using network access outside the target website, matching the skill's scope policy.
+
+## Reference(s):
+
+- [Browsecraft on ClawHub](https://clawhub.ai/whjstc/skills/browsecraft)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs agents to return objective, steps, result, failure reason, and next action.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,147 @@
+{
+  "name": "framework-overview",
+  "type": "pipeline",
+  "journal": "nature",
+  "width": "double",
+  "height_mm": null,
+  "dpi": null,
+  "font": "Arial",
+  "font_size_pt": 7,
+  "palette": "okabe-ito",
+  "caption": "图 1  方法总体框架。(a) 双通道输入编码后做跨模态融合，并用一致性约束对齐；(b) 下游任务头输出预测并评估。",
+  "notes": "默认示例图，换成自己的内容直接改 figure.json 或 brief.md。",
+  "panels": [
+    {
+      "id": "a",
+      "title": "输入编码与融合",
+      "caption": "",
+      "nodes": [
+        {
+          "id": "n1",
+          "label": "文本编码",
+          "sub": "BERT-base",
+          "kind": "rounded",
+          "group": "a",
+          "color": null
+        },
+        {
+          "id": "n2",
+          "label": "图像编码",
+          "sub": "ViT-B/16",
+          "kind": "rounded",
+          "group": "a",
+          "color": null
+        },
+        {
+          "id": "n3",
+          "label": "跨模态融合",
+          "sub": "cross-attention ×6",
+          "kind": "rounded",
+          "group": "a",
+          "color": null
+        },
+        {
+          "id": "n4",
+          "label": "一致性约束",
+          "sub": "InfoNCE",
+          "kind": "note",
+          "group": "a",
+          "color": null
+        }
+      ],
+      "edges": []
+    },
+    {
+      "id": "b",
+      "title": "下游任务",
+      "caption": "",
+      "nodes": [
+        {
+          "id": "n5",
+          "label": "分类头",
+          "sub": "linear",
+          "kind": "rounded",
+          "group": "b",
+          "color": null
+        },
+        {
+          "id": "n6",
+          "label": "预测输出",
+          "sub": "top-1 / top-5",
+          "kind": "rounded",
+          "group": "b",
+          "color": null
+        },
+        {
+          "id": "n7",
+          "label": "评估指标",
+          "sub": "Acc / F1",
+          "kind": "box",
+          "group": "b",
+          "color": null
+        }
+      ],
+      "edges": []
+    }
+  ],
+  "edges": [
+    {
+      "from": "n1",
+      "to": "n3",
+      "label": "",
+      "kind": "arrow"
+    },
+    {
+      "from": "n2",
+      "to": "n3",
+      "label": "",
+      "kind": "arrow"
+    },
+    {
+      "from": "n3",
+      "to": "n4",
+      "label": "对齐",
+      "kind": "dashed"
+    },
+    {
+      "from": "n4",
+      "to": "n5",
+      "label": "特征",
+      "kind": "arrow"
+    },
+    {
+      "from": "n5",
+      "to": "n6",
+      "label": "",
+      "kind": "arrow"
+    },
+    {
+      "from": "n6",
+      "to": "n7",
+      "label": "",
+      "kind": "arrow"
+    }
+  ],
+  "layout": {
+    "direction": "left-right",
+    "gap_mm": 6,
+    "node_w_mm": 40,
+    "node_h_mm": 13,
+    "group_gap_mm": 4
+  },
+  "data": {
+    "file": "data/main.csv",
+    "kind": "grouped-bar",
+    "x": "group",
+    "y": [
+      "method_a",
+      "method_b"
+    ],
+    "error": null,
+    "xlabel": "方法",
+    "ylabel": "准确率 (%)",
+    "legend": true,
+    "log": false,
+    "height_mm": null
+  }
+}

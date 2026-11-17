@@ -1,41 +1,58 @@
-## Description: <br>
-DataHub unifies financial data retrieval across market quotes, financial statements, announcements, macroeconomic data, research reports, and investor-relations sources with publish-subscribe routing, caching, and quick access helpers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DataHub Unified Data Layer helps agents retrieve financial market, filing, announcement, macroeconomic, research, and investor-relations data across 14 sources through a publish-subscribe interface with routing, caching, and quick helper functions.
 
-## Publisher: <br>
-[cgxxxxxxxxxxxx](https://clawhub.ai/user/cgxxxxxxxxxxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cgxxxxxxxxxxxx](https://clawhub.ai/user/cgxxxxxxxxxxxx)
 
-## Use Case: <br>
-Developers, data engineers, and financial research teams use this skill to configure and call a unified DataHub layer for market, company, macroeconomic, announcement, research, and investor-relations data. It supports batch retrieval, multi-source comparison, natural-language query helpers, and research workflow integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses API keys and cookies for some financial data providers. <br>
-Mitigation: Store provider credentials in approved secret-management or local environment configuration, avoid committing them, and rotate them if exposed. <br>
-Risk: Financial research queries and identifiers may be sent to external data providers. <br>
-Mitigation: Use approved providers for confidential work, prefer local or explicitly selected sources when privacy matters, and review provider terms before use. <br>
+## Use Case:
 
+Developers and financial research teams use this skill to help an agent configure and call a local DataHub implementation for quotes, financial statements, announcements, macroeconomic series, natural-language financial queries, and multi-source validation workflows.
 
-## Reference(s): <br>
-- [DataHub Unified Data Layer on ClawHub](https://clawhub.ai/cgxxxxxxxxxxxx/datahub-unified) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, shell commands] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions and examples for configuring DataHub paths, API credentials, subscriptions, caching, retries, monitoring, and financial data retrieval workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact frontmatter lists 1.0) <br>
+Risk: The skill relies on a separately configured local DataHub implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the configured DataHub code path is trusted before installing or using the skill.
+
+Risk: Some providers require API keys or cookies for financial data access.
+
+Mitigation: Configure provider credentials only when needed and keep secrets out of prompts, shared logs, and generated examples.
+
+Risk: Financial data requests may trigger outbound queries to configured providers.
+
+Mitigation: Use explicit user requests for data fetching and review configured sources before automated or batch use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cgxxxxxxxxxxxx/skills/datahub-unified)
+- [Skill source: SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill output guides an agent to use configured local DataHub code and provider credentials when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence; artifact frontmatter reports 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

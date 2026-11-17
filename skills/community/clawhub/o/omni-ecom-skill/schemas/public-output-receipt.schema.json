@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/public-output-receipt-2.0.json",
+  "title": "Omni E-commerce Public Output Guard Receipt",
+  "type": "object",
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "status", "scanned", "registered_terms_checked", "artifacts"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "public_output_guard_receipt"},
+    "contract_name": {"const": "omni-ecom.public-output-guard"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.public-output-guard@1.0"], "current_completion_authority": false}},
+    "status": {"const": "public_output_guard_passed"},
+    "scanned": {"type": "array", "items": {"type": "string"}},
+    "registered_terms_checked": {"type": "integer", "minimum": 0},
+    "artifacts": {"type": "array", "minItems": 1}
+  }
+}

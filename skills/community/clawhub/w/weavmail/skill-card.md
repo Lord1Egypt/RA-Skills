@@ -1,40 +1,57 @@
-## Description: <br>
-Use weavmail CLI to manage emails for the current task. Use when you need to read, send, reply to, or move emails as part of completing a task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use weavmail CLI to manage emails for the current task. Use when you need to read, send, reply to, or move emails as part of completing a task.
 
-## Publisher: <br>
-[yankeguo](https://clawhub.ai/user/yankeguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yankeguo](https://clawhub.ai/user/yankeguo)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure weavmail accounts, sync inboxes, read local Markdown copies of messages, and prepare explicit user-approved email actions such as sending, replying, archiving, trashing, or moving messages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can sync private mailboxes and store email contents locally. <br>
-Mitigation: Use only trusted accounts, prefer app-specific revocable credentials, scope syncs with account and limit options where practical, and protect or delete the local mails/ cache after use. <br>
-Risk: The skill can send, reply to, archive, trash, or move real emails. <br>
-Mitigation: Require explicit user approval before any mail-changing action and review every command before it runs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub weavmail skill page](https://clawhub.ai/yankeguo/weavmail) <br>
-- [HEARTBEAT.md](artifact/HEARTBEAT.md) <br>
+## Use Case:
 
+Agents and developers use this skill to configure the weavmail CLI, sync inbox messages into local Markdown files, and send, reply to, archive, trash, or move email as part of a task.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local Markdown email cache files under mails/ after the weavmail CLI syncs mailboxes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles real email credentials.
+
+Mitigation: Use app-specific passwords or OAuth where possible, and avoid putting passwords directly in chat or shell commands.
+
+Risk: The skill can send or modify email, including archive, trash, move, and reply operations.
+
+Mitigation: Require explicit final confirmation before sending, archiving, trashing, or moving any email.
+
+Risk: Syncing without an account argument can operate across all configured accounts.
+
+Mitigation: Restrict commands to a named account when the task should not apply to every configured account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yankeguo/skills/weavmail)
+- [Publisher profile](https://clawhub.ai/user/yankeguo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell command examples and local email files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the uv binary and a configured email account; synced emails are represented as local Markdown files.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

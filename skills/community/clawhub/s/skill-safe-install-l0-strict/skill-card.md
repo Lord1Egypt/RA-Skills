@@ -1,42 +1,57 @@
-## Description: <br>
-Skill Safe Install (L0 Strict) enforces a conservative workflow for safely installing ClawHub/OpenClaw skills by requiring target confirmation, risk review, sandbox verification, explicit consent, and guarded trust-list changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Safe Install (L0 Strict) guides agents through a strict secure-install workflow for ClawHub/OpenClaw skills, including risk review, sandbox verification, and explicit consent gates.
 
-## Publisher: <br>
-[1231qaz2wsx](https://clawhub.ai/user/1231qaz2wsx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1231qaz2wsx](https://clawhub.ai/user/1231qaz2wsx)
 
-## Use Case: <br>
-Developers and operators use this skill when installing or reviewing ClawHub/OpenClaw skills to force identity confirmation, pre-install risk assessment, sandbox installation, and explicit consent before formal install or trust persistence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A target skill may request broad permissions, credentials, command execution, filesystem mutation, or persistent trust-list changes. <br>
-Mitigation: Use the skill's mandatory inspect, risk-rating, sandbox, and explicit consent gates before any formal install or config change. <br>
-Risk: Sandbox installation in a temporary workdir may not provide full isolation from all system effects. <br>
-Mitigation: Treat sandbox results as limited evidence and continue reviewing each target skill's permissions and behavior before approval. <br>
-Risk: Persistent trust-list changes can reduce future review pressure for a skill. <br>
-Mitigation: Skip trust persistence by default and only update allowBundled after explicit user authorization, backup, and rollback guidance. <br>
+## Use Case:
 
+Developers and operators use this skill to have an agent review and install ClawHub/OpenClaw skills through a gated workflow that checks identity, install state, risk, sandbox behavior, consent, and optional trust persistence.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/1231qaz2wsx/skill-safe-install-l0-strict) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with structured step-status lines and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires step-by-step risk rating and consent status before install actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and clawhub.yaml) <br>
+Risk: The workflow can lead an agent to run ClawHub inspection and install commands during a user-directed install review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require exact skill identity, summarize inspection findings, perform a sandbox install first, and obtain explicit approval before formal installation.
+
+Risk: Persistent trust configuration changes can affect future skill loading.
+
+Mitigation: Skip allowBundled writes by default; only write after explicit user request, with a timestamped backup, exact key disclosure, idempotent append, and rollback command.
+
+Risk: If inspection output is unavailable or incomplete, installation risk cannot be evaluated reliably.
+
+Mitigation: Pause the workflow, treat the skill as high risk, and require explicit confirmation before continuing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1231qaz2wsx/skills/skill-safe-install-l0-strict)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown checklist with step-labeled status lines and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit consent gates before formal install or persistent trust changes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact/clawhub.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

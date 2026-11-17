@@ -1,45 +1,60 @@
-## Description: <br>
-Trade Hyperliquid perpetuals through CAI tools for market lookup, preflight checks, order placement, order status, closes, and cancels without Hyperliquid website signup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Hyperliquid perpetuals through CAI using CAI DeFi tools for market discovery, preflight checks, order placement, and order status tracking without separate Hyperliquid website signup.
 
-## Publisher: <br>
-[bernardtai](https://clawhub.ai/user/bernardtai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bernardtai](https://clawhub.ai/user/bernardtai)
 
-## Use Case: <br>
-External users and developers use this skill to guide CAI-enabled Hyperliquid perpetuals onboarding, preflight validation, live order placement, order monitoring, closes, and cancels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live perpetuals trading and deposits can cause financial loss if asset, size, price, direction, or account balance is wrong. <br>
-Mitigation: Require explicit user confirmation before deposits, order placement, closes, and cancels; verify preflight results, asset, size, price, direction, and balances before acting. <br>
-Risk: The skill requires a CAI_API_KEY with platform or full API scope. <br>
-Mitigation: Use the least CAI API scope that supports the workflow, store the key as a secret, and avoid exposing it in prompts, logs, or generated files. <br>
-Risk: Security evidence flags the release as suspicious because live trading and deposits need stronger risk disclosure and confirmation guidance. <br>
-Mitigation: Review the skill carefully before installing and only use it when the operator understands CAI and Hyperliquid perpetuals trading risks. <br>
+## Use Case:
 
+External users and developers use this skill to guide CAI-enabled Hyperliquid perpetual trading workflows, including readiness checks, enrollment, market lookup, preflight validation, order placement, status polling, closing, and cancellation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bernardtai/skills/hyperliquid-with-cai) <br>
-- [CAI Skill Reference](https://cai.com/skill.md) <br>
-- [CAI Tools Manifest](https://cai.com/specs/cai-tools.manifest.json) <br>
-- [CAI Developers](https://cai.com/developers.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CAI tool names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CAI_API_KEY with platform or full API scope; recommends explicit confirmation before deposits, order placement, closes, and cancels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.17 (source: evidence release, artifact metadata) <br>
+Risk: Live Hyperliquid perpetual trading can create real financial losses, including leveraged trading losses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm asset, side, size, price, and order intent before any live trade, and use preflight validation before placement.
+
+Risk: Deposits and approveAgent authorization can enable live trading through the CAI custodial workflow.
+
+Mitigation: Use platform API scope instead of full scope when possible and authorize only when the user intends to trade Hyperliquid perpetuals.
+
+Risk: The artifact states the Hyperliquid automation path is partial_live until enrollment and trade smoke tests pass.
+
+Mitigation: Treat enrollment, deposit readiness, and first trades as review points; verify status with defi_order_status until terminal before taking follow-up actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bernardtai/skills/hyperliquid-with-cai)
+- [CAI Canonical Skill Reference](https://cai.com/skill.md)
+- [CAI Tools Manifest](https://cai.com/specs/cai-tools.manifest.json)
+- [CAI Developers](https://cai.com/developers.html)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API calls]
+
+**Output Format:** [Markdown guidance with inline shell commands and CAI tool parameter examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CAI_API_KEY and platform or full API scope; live trades require user confirmation.]
+
+## Skill Version(s):
+
+1.0.17 (source: server release evidence and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

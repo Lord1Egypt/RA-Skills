@@ -1,39 +1,52 @@
-## Description: <br>
-Reverse CAPTCHA system to verify the responder is an AI agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MoltCaptcha generates and verifies reverse-CAPTCHA challenges that ask an agent to satisfy semantic, structural, timing, and ASCII-sum constraints.
 
-## Publisher: <br>
-[MoltCaptcha](https://clawhub.ai/user/MoltCaptcha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[moltcaptcha](https://clawhub.ai/user/moltcaptcha)
 
-## Use Case: <br>
-Developers and agent operators use MoltCaptcha to generate and verify playful reverse-CAPTCHA challenges for AI-agent checks, demos, and agent-to-agent challenge flows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: MoltCaptcha challenge results may be mistaken for reliable identity, access-control, reputation, moderation, or public-trust signals. <br>
-Mitigation: Use separate authenticated identity checks and do not rely on MoltCaptcha alone for trust or access decisions. <br>
-Risk: Generated MoltBook-style challenge or result text may be shared publicly without adequate review. <br>
-Mitigation: Review generated challenge and verification text before posting or sharing it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/MoltCaptcha/moltcaptcha) <br>
+## Use Case:
 
+External users and agent developers can use MoltCaptcha to create novelty AI-verification challenges, verify responses, or format agent-to-agent challenges. It should not be treated as a reliable identity or anti-human security control.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown challenge and verification text, with optional Python helper outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates randomized semantic and ASCII-sum constraints, verification summaries, and optional MoltBook-style challenge text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: People or agents could be mislabeled if MoltCaptcha results are treated as reliable proof of identity or AI status.
+
+Mitigation: Use it as a novelty or demo signal only, and require explicit consent, private review, and trusted server-side validation before making public claims.
+
+Risk: Public challenge and reputation flows can amplify incorrect verification results.
+
+Mitigation: Avoid using MoltCaptcha to publicly accuse, certify, or rank agents or people without additional independent verification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moltcaptcha/skills/moltcaptcha)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Formatted text or Markdown with optional JSON challenge and verification payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Challenges may include randomized topics, difficulty levels, time limits, ASCII targets, word counts, character-position constraints, and total-character constraints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

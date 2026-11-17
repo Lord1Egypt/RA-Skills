@@ -1,44 +1,57 @@
-## Description: <br>
-BinanceAlert monitors Binance price changes, new listings, Alpha airdrop opportunities, and HODLer announcements, then sends Telegram alerts without requiring a Binance API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BinanceAlert monitors Binance price changes, new listings, Alpha airdrop opportunities, and HODLer announcements, then sends alerts through Telegram without requiring a Binance API key.
 
-## Publisher: <br>
-[cnwpdb](https://clawhub.ai/user/cnwpdb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnwpdb](https://clawhub.ai/user/cnwpdb)
 
-## Use Case: <br>
-Traders, automation operators, and developers use this skill to configure Telegram alerts for public Binance market events and recurring checks. It supports one-off price/change alerts plus scheduled monitoring for listings, Alpha opportunities, and announcements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically reads Telegram credentials from a shared Freqtrade secrets file when present. <br>
-Mitigation: Provide TG_BOT_TOKEN and TG_CHAT_ID through a dedicated skill-specific environment and use a dedicated Telegram bot/chat. <br>
-Risk: Cron or systemd scheduling can create ongoing Telegram alerts and repeated external requests. <br>
-Mitigation: Only configure recurring scheduling when continuous monitoring is intended, and review alert frequency and state-file permissions before deployment. <br>
-Risk: Market, listing, and airdrop alerts may be mistaken for financial advice. <br>
-Mitigation: Treat alerts as informational signals only and review Binance data directly before acting on them. <br>
+## Use Case:
 
+External users and operators use this skill to configure Binance market and announcement checks and receive Telegram notifications for target symbols, listings, Alpha opportunities, and HODLer announcements.
 
-## Reference(s): <br>
-- [BinanceAlert on ClawHub](https://clawhub.ai/cnwpdb/binance-alert) <br>
-- [Skill usage documentation](artifact/SKILL.md) <br>
-- [BinanceAlert script](artifact/scripts/binance_alert.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; script commands emit JSON status or Telegram alert text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 plus TG_BOT_TOKEN and TG_CHAT_ID; can send Telegram messages and persist local alert state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact _meta.json reports 1.0.0) <br>
+Risk: Telegram credentials and chat routing control where market alerts are sent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Telegram bot token and chat ID for this skill, verify the target chat before scheduled use, and avoid sharing unrelated secrets in the same environment file.
+
+Risk: Alert symbols, thresholds, notes, and timestamps may be sent to Telegram.
+
+Mitigation: Avoid placing sensitive notes in alert configuration and review Telegram retention and access controls for the configured chat.
+
+Risk: Market and airdrop alerts can be mistaken for trading or investment advice.
+
+Mitigation: Treat alerts as informational signals and review market conditions independently before acting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cnwpdb/skills/binance-alert)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 plus TG_BOT_TOKEN and TG_CHAT_ID; alerts may be delivered to the configured Telegram chat.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

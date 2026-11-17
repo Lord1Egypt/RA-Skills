@@ -1,43 +1,56 @@
-## Description: <br>
-Intelligent disk space analysis and cleanup tool with safety grading, duplicate detection, and Chinese app cache recognition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent disk space analysis and cleanup tool with safety grading, duplicate detection, and Chinese app cache recognition.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers, operators, and power users use this skill to inspect disk usage, identify duplicate files and caches, and generate safety-graded cleanup recommendations before taking action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup guidance can lead to destructive file operations if applied to the wrong scope. <br>
-Mitigation: Review dry-run counts, confirm the target paths, and approve destructive steps only after the scope and rollback plan are clear. <br>
-Risk: Disk cleanup can remove files that are still needed by users or applications. <br>
-Mitigation: Use preview mode first, prefer trash-based cleanup, keep protected system paths excluded, and review caution-rated items manually. <br>
+## Use Case:
 
+Developers, engineers, and power users use this skill to inspect local disk usage, identify large or duplicate files, and review safety-graded cleanup recommendations before removing files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/disk-sweeper) <br>
-- [cache-patterns.json](references/cache-patterns.json) <br>
-- [file-types.json](references/file-types.json) <br>
-- [protected-paths.json](references/protected-paths.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports, JSON summaries, cleanup previews, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline filesystem analysis with safety labels and explicit confirmation before destructive cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Safety guarantees may not be reliably enforced before scanning, hashing, or deleting files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, use preview-only behavior until paths are inspected, and avoid elevated privileges.
+
+Risk: Protected-path and no-content-reading claims should not be relied on as written.
+
+Mitigation: Manually verify target paths and cleanup candidates before allowing any cleanup mode that changes files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/disk-sweeper)
+- [Protected paths reference](references/protected-paths.json)
+- [Cache patterns reference](references/cache-patterns.json)
+- [File types reference](references/file-types.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown reports with optional JSON summaries and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are based on local filesystem paths, selected scan options, and cleanup mode; cleanup actions should be previewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

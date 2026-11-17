@@ -1,42 +1,56 @@
-## Description: <br>
-Execute core ROS 2 introspection commands to query the ROS graph (topics, nodes, services, actions, parameters). STRICTLY read-only. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute core ROS 2 introspection commands to query the ROS graph, including topics, nodes, services, actions, and parameters.
 
-## Publisher: <br>
-[bigrobinson](https://clawhub.ai/user/bigrobinson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bigrobinson](https://clawhub.ai/user/bigrobinson)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and robotics engineers use this skill to inspect a ROS 2 graph and gather read-only information about topics, nodes, services, actions, parameters, interfaces, and graph visualization.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The safety claims are overstated because strict read-only behavior depends on trusting the local ROS environment and generated configuration.
+
+Mitigation: Install only in trusted ROS environments and avoid deployments that require strict read-only behavior or strong sandboxing until the setup path and command arguments are constrained.
+
+Risk: The configured ROS setup path can be executed unsafely if it is not safely quoted or allowlisted.
+
+Mitigation: Verify or allowlist the generated setup path before use, and review the configuration file created during setup.
+
+Risk: The skill can read live ROS topic and parameter data and can launch rqt_graph.
+
+Mitigation: Use it only on ROS graphs where inspection of topic, parameter, and graph metadata is permitted, and review outputs for sensitive operational data before sharing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and robotics engineers use this skill to inspect ROS 2 topics, nodes, services, actions, parameters, and interfaces without running nodes, calling services, or sending action goals. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Topic echo and parameter dump output may expose sensitive robot or system data. <br>
-Mitigation: Install only in a ROS environment you control and review introspection output before sharing, storing, or acting on it. <br>
-Risk: The rqt_graph command can launch a GUI process. <br>
-Mitigation: Avoid rqt_graph when a GUI process is not desired or not allowed in the execution environment. <br>
-Risk: Setup depends on the detected ROS setup path and writes it into config/config.json. <br>
-Mitigation: Review config/config.json after setup and rerun setup after changing ROS distributions or environments. <br>
+**Output Format:** [Markdown with inline shell commands and command output summaries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bigrobinson/ros2-introspection) <br>
+**Other Properties Related to Output:** [Produces read-only ROS 2 introspection guidance and command invocations through the bundled wrapper.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and ROS 2 command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only ROS 2 introspection results; topic echo and parameter dump output may contain sensitive robot or system data.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

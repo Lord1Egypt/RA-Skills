@@ -1,37 +1,54 @@
-## Description: <br>
-Generates chaotic, meme-filled jokes using Gen Alpha and Gen Z slang, surreal humor, roasts, and short internet-culture-heavy lines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates chaotic, meme-filled jokes using Gen Alpha and Gen Z slang, surreal humor, roasts, and POV-style internet culture scenarios.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Users invoke this skill when they want an agent to produce abrasive, slang-heavy meme jokes, roasts, or POV-style humor for casual entertainment contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intentionally abrasive and slang-heavy, so generated jokes or roasts may be inappropriate in formal, professional, or sensitive settings. <br>
-Mitigation: Use it only where that tone is acceptable and review generated humor before sharing it with a broader audience. <br>
+## Use Case:
 
+External users and agent operators use this skill to generate short, chaotic meme jokes, roasts, and POV-style humor using Gen Alpha and Gen Z internet slang.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses with short jokes, roasts, and POV-style scenarios.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, shell commands, file access, credentials, network access, or persistence are described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can produce edgy, roast-style, or audience-sensitive meme humor.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in contexts where that tone is intended, and review outputs before sharing in professional or sensitive settings.
+
+Risk: The skill relies on fast-moving internet slang that may age quickly or be misunderstood by some audiences.
+
+Mitigation: Keep generated jokes short, context-aware, and reviewed for audience fit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanc-chao/skills/lmao)
+- [ClawHub publisher profile](https://clawhub.ai/user/duanc-chao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text joke responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or external tool calls; tone is intentionally chaotic and slang-heavy.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

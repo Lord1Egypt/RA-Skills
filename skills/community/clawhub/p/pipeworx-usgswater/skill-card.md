@@ -1,39 +1,52 @@
-## Description: <br>
-Provides real-time and historical USGS streamflow and gage height data for rivers, creeks, and streams across the United States. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time and historical USGS streamflow and gage height data for rivers, creeks, and streams across the United States.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers and agents use this skill to look up current USGS monitoring-site readings, search active stream gages by state, and retrieve daily mean streamflow history for US waterways. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: USGS site IDs, state searches, and date-range queries are handled by the Pipeworx gateway. <br>
-Mitigation: Users with strict query-privacy or official-source-only requirements should use a direct USGS integration instead. <br>
+## Use Case:
 
+Developers and agents use this skill to find USGS monitoring sites, retrieve current streamflow and gage height readings, and request historical daily mean streamflow values for water monitoring workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/b-gutman/pipeworx-usgswater) <br>
-- [Pipeworx USGS Water MCP gateway](https://gateway.pipeworx.io/usgswater/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns USGS site readings, stream-gage search results, daily streamflow values, and MCP server configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: USGS water-data queries are routed through the listed Pipeworx gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the gateway is acceptable for the deployment environment and avoid sending private information in tool arguments.
+
+## Reference(s):
+
+- [Pipeworx USGS Water skill page](https://clawhub.ai/b-gutman/skills/pipeworx-usgswater)
+- [Publisher profile](https://clawhub.ai/user/b-gutman)
+- [Pipeworx USGS Water MCP endpoint](https://gateway.pipeworx.io/usgswater/mcp)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API calls, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool responses include site identifiers, coordinates, timestamps, data quality flags, discharge, gage height, and daily mean streamflow values when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

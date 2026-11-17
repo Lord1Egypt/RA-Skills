@@ -1,44 +1,57 @@
-## Description: <br>
-Render Blender files with agent-controlled procedural parameters for synthetic data generation, including render quality metrics and dataset-wide diversity analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SynthClaw helps agents analyze Blender scenes, adjust procedural Value Nodes, render synthetic images or datasets, and return quality metrics such as Naturalness, LPIPS, and dataset diversity.
 
-## Publisher: <br>
-[ayakimovich](https://clawhub.ai/user/ayakimovich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ayakimovich](https://clawhub.ai/user/ayakimovich)
 
-## Use Case: <br>
-Developers and ML/data engineers use SynthClaw to analyze Blender scenes, adjust procedural value nodes, and generate synthetic image datasets with accompanying render metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: SynthClaw opens user-supplied .blend files in Blender while inheriting the caller environment, which can expose local secrets if a file is untrusted. <br>
-Mitigation: Run it only on trusted .blend files or inside a sandbox/container with a scrubbed environment, limited filesystem access, and limited network access. <br>
-Risk: Running Blender workflows in a session with cloud tokens, API keys, or other secrets in environment variables can expose those secrets to untrusted scene execution. <br>
-Mitigation: Use a dedicated low-privilege execution environment and remove cloud tokens, API keys, and other sensitive environment variables before running the skill. <br>
-Risk: The test blend creation script is not intended to run against an existing Blender project. <br>
-Mitigation: Run test blend creation only in a disposable project directory or isolated test workspace. <br>
+## Use Case:
 
+Developers and ML data engineers use this skill to generate controlled synthetic image datasets from prepared Blender files, inspect scene parameters before rendering, and use image quality metrics to guide parameter tuning.
 
-## Reference(s): <br>
-- [SynthClaw Skill Page](https://clawhub.ai/ayakimovich/skills/synthclaw) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Analysis, Guidance] <br>
-**Output Format:** [Rendered image files plus JSON status, metrics, and scene-analysis responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated images, compositor outputs, and dataset artifacts under caller-specified output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.5 (source: frontmatter and pyproject.toml) <br>
+Risk: The skill can run Blender locally on user-selected .blend files and inherits the process environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted .blend files, run the skill in a constrained environment where possible, and avoid exposing secrets through environment variables.
+
+Risk: Dataset rendering can delete TIFF files under the selected output directory during cleanup.
+
+Mitigation: Choose a fresh, dedicated output directory for each run so unrelated TIFF files cannot be removed.
+
+Risk: Complex Blender scenes can be resource-intensive or time out during headless rendering.
+
+Mitigation: Analyze the blend file first, start with EEVEE test renders, and set explicit timeouts or use production Cycles renders when appropriate.
+
+## Reference(s):
+
+- [ClawHub SynthClaw skill page](https://clawhub.ai/ayakimovich/skills/synthclaw)
+
+## Skill Output:
+
+**Output Type(s):** [files, text, configuration, guidance]
+
+**Output Format:** [JSON status objects with rendered image or dataset file paths, logs, scene analysis, and optional metric values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce PNG render outputs, routed compositor outputs, dataset directories, and Naturalness, LPIPS, or Shannon entropy metrics when dependencies and inputs are available.]
+
+## Skill Version(s):
+
+0.2.6 (source: frontmatter and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

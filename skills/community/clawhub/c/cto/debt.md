@@ -1,93 +1,60 @@
 # Technical Debt Management
 
-## What Is Technical Debt
+## What Counts as Debt
 
-Technical debt is **intentional** trade-off: shipping faster now with known shortcuts.
+Debt is an **intentional trade-off**: shipping faster now with known shortcuts. Fowler's quadrant separates the cases — deliberate-prudent ("ship now, we know the cost") is strategy; deliberate-reckless ("no time for design") is malpractice; inadvertent debt is a learning artifact, not a moral failure.
 
-**Not debt:**
-- Bugs (just fix them)
-- Bad code from inexperience (training problem)
-- Outdated patterns (evolution, not debt)
+**Not debt** (different fixes apply):
+- Bugs — just fix them
+- Bad code from inexperience — training problem
+- Yesterday's patterns aging — evolution; only debt if it blocks work today
 
-**Is debt:**
-- Skipped tests to meet deadline
-- Hardcoded config that needs parameterization
-- Monolith that needs decomposition
-- Known performance issues deferred
+**Is debt:** skipped tests to hit a deadline, hardcoded config awaiting parameterization, known performance deferrals, the monolith you've outgrown.
 
-## Debt Tracking
+## Hotspot Rule (the highest-leverage idea in this file)
 
-### Debt Registry
+**Debt in code you never touch costs nothing. Never pay it down.**
 
-Maintain a living document:
+Prioritize by `churn × complexity` (Tornhill's hotspot analysis): rank files by commit frequency, weight by complexity. The intersection — complex AND frequently changed — is where debt charges interest daily. A horrifying module with 2 commits a year is a museum piece; leave it.
 
-| Item | Type | Impact | Interest Rate | Payoff Estimate |
-|------|------|--------|---------------|-----------------|
-| Auth service coupling | Architecture | High | Growing | 2 sprints |
-| Missing API tests | Testing | Medium | Stable | 1 sprint |
-| Legacy payment code | Code quality | Low | Stable | 3 sprints |
+Cheap approximation without tooling: `git log` file-frequency for the last 6 months × your team's "which files do you dread" answer. They converge.
 
-**Interest rate:** How fast does this get worse?
-- Growing = urgent
-- Stable = schedule when convenient
+## Debt Registry
 
-### Debt Types
+| Item | Type | Hotspot? | Interest | Payoff estimate |
+|------|------|----------|----------|-----------------|
+| Auth service coupling | Architecture | Yes — touched weekly | Growing | 2 sprints |
+| Missing API tests | Testing | Yes | Stable | 1 sprint |
+| Legacy payment code | Code | No — frozen | None | Don't |
 
-| Type | Example | Typical Fix |
-|------|---------|-------------|
-| Code | Duplicated logic, unclear naming | Refactor |
-| Architecture | Wrong boundaries, scaling limits | Redesign |
-| Testing | Missing coverage, flaky tests | Add tests |
-| Infrastructure | Manual processes, outdated tools | Automate |
-| Documentation | Missing or stale docs | Update |
+**Interest = how fast it worsens.** Growing (every feature adds coupling) = schedule now. Stable = when convenient. None (cold code) = never.
 
-## Debt Paydown Strategy
+## The 20% Rule — Canonical Definition
 
-### The 20% Rule
+Default **20% of sprint capacity** to maintenance, debt paydown, and developer experience. Scale 10-30%:
+- Young codebase, pre-PMF: ~10% — the code may not live long enough to collect interest
+- Normal operation: 20%
+- Legacy-heavy, post-acquisition, or after a year of "we'll fix it later": ~30% until hotspots cool
 
-Reserve 20% of engineering capacity for:
-- Maintenance
-- Debt paydown
-- Developer experience improvements
+Worked example: 10 engineers × 20% = 2 FTE-equivalents of debt work per sprint, as a standing lane. **Reality check:** if debt items are the first cut every sprint, the budget isn't real — the fix is making it a lane with its own owner, not renegotiating each planning.
 
-**How:** Every sprint includes debt items. Not negotiable.
+## Refactor With Features
 
-### Refactor with Features
+Bundle paydown into feature work touching the same area: feature touches auth → improve auth tests; new endpoint → clean adjacent code. Why: pure refactor sprints lose business support in one quarter; bundled improvements are invisible and therefore unkillable. This also self-enforces the hotspot rule — you only clean what you touch.
 
-Best approach: Fix debt alongside feature work.
+## Rewrites
 
-- Feature touches auth? Improve auth tests.
-- New endpoint? Clean up related code.
-- Deploying service? Fix deploy scripts.
+Almost never (Spolsky's "Things You Should Never Do" — the Netscape rewrite handed the market to IE). Consider only when ALL hold:
+- The old system architecturally cannot support a requirement the business has committed to
+- Strangler-fig extraction (→ `architecture.md`) was evaluated and genuinely can't work
+- Someone on the team has survived a rewrite before
 
-**Why:** Pure refactor sprints lose business support. Bundled improvements don't.
-
-### When to Do Big Rewrites
-
-Almost never. But consider when:
-- Old system literally can't support new requirements
-- Cost of ongoing maintenance exceeds rewrite
-- Team has rewrite experience (rare)
-
-**Reality check:** Rewrites take 2-3x estimated time, and you're maintaining both systems during.
-
-## Preventing Debt
-
-| Practice | Impact |
-|----------|--------|
-| Code review | Catches shortcuts before merge |
-| Definition of done | Tests, docs included |
-| Tech debt budget | Planned capacity |
-| Architecture reviews | Catches structural issues early |
-| Retrospectives | Team identifies pain points |
+Plan for 2-3× the estimate while maintaining both systems and shipping near-zero features. If the CEO hasn't explicitly accepted that feature freeze, the rewrite is not approved — it's just unstarted.
 
 ## Communicating Debt to Business
 
-Don't say: "We have technical debt"
-Say: "This will slow feature delivery by 30% unless we invest 2 sprints"
+Never "we have technical debt" — that's engineering vocabulary asking for charity. State it as an investment case:
 
-**Frame as:**
-- Velocity impact
-- Risk (outages, security)
-- Opportunity cost
-- Concrete investment with concrete return
+> "Checkout changes now take 3 weeks instead of 1. Two sprints of paydown returns us to 1 week — that's every future checkout feature landing 2 weeks sooner."
+
+Frame as: velocity delta (before/after, in weeks) · risk (outage, security exposure) · concrete investment with concrete return. If you can't quantify the velocity delta even roughly, you're guessing too — measure cycle time on that area first.

@@ -1,44 +1,62 @@
-## Description: <br>
-Provides agent guidance for querying Pilot Protocol climate and energy-grid data, including UK carbon intensity, Electricity Maps zones, and Open-Meteo climate data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides access to Pilot Protocol climate and energy-grid service agents for UK carbon intensity, Electricity Maps zones, and Open-Meteo climate data.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and external users use this skill to discover and query climate and energy-grid service agents through Pilot Protocol. It supports real-time carbon intensity, electricity-zone metadata, electricity-mix snapshots, and climate-normal or long-term series requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on external Pilot Protocol tooling and a daemon joined to network 9. <br>
-Mitigation: Install only trusted Pilot Protocol tooling, confirm pilotctl is on PATH, and verify the daemon and network state before use. <br>
-Risk: Remote agents can return external URLs, generated summaries, or data that may be incomplete or misleading. <br>
-Mitigation: Prefer structured /data responses for decisions, inspect upstream_url values, and review generated prose summaries before relying on them. <br>
-Risk: Climate and grid coverage varies by region and source. <br>
-Mitigation: Use /help and a fresh list-agents query to confirm each agent's current schema, coverage, and available filters. <br>
+## Use Case:
 
+Developers and agents use this skill to discover and query Pilot Protocol climate service agents for carbon-intensity feeds, electricity-zone metadata, current electricity mix, and climate time series.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/teoslayer/pilot-service-agents-climate) <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [Pilot skills catalog](https://teoslayer.github.io/pilot-skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, a running Pilot Protocol daemon joined to network 9, and asynchronous inbox polling for agent responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Queries and filters sent through pilotctl may be visible to the remote service agents involved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive or proprietary data in filters or free-text requests, and inspect the target agent's /help contract before use.
+
+Risk: Summary and free-text responses are Gemini-generated prose and may be incomplete or misleading.
+
+Mitigation: Prefer /data structured responses for operational decisions and verify summaries against returned items and upstream source data.
+
+Risk: The documented agent catalog is a snapshot and regional coverage varies.
+
+Mitigation: Run a fresh list-agents query and confirm each selected agent's /help schema before relying on availability or coverage.
+
+Risk: The skill depends on Pilot Protocol setup, pilotctl, network 9 membership, and the list-agents directory agent.
+
+Mitigation: Confirm the local daemon, binary path, network membership, and list-agents reachability before querying service agents.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-climate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, a running Pilot Protocol daemon joined to network 9, and inbox reads for asynchronous agent responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

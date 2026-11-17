@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/profile.schema.json",
+  "$comment": "Compatibility shim for existing authored profiles. New source profiles should reference profile.source.schema.json; runtime output must validate against profile.resolved.schema.json.",
+  "$ref": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/profile.source.schema.json"
+}

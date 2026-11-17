@@ -1,41 +1,54 @@
-## Description: <br>
-Travel Customizer helps collect travel itinerary requirements and save structured trip records in Feishu Bitable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Travel Customizer helps collect travel requirements through conversation and submit structured trip request details to a Feishu Bitable table.
 
-## Publisher: <br>
-[lijingxu007](https://clawhub.ai/user/lijingxu007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijingxu007](https://clawhub.ai/user/lijingxu007)
 
-## Use Case: <br>
-Travel consultants, operators, or customer-facing agents use this skill to collect traveler requirements through chat and submit names, contact details, budgets, destinations, preferences, and special requests to a controlled Feishu Bitable for follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends customer names, phone numbers, budgets, destinations, preferences, and trip details to Feishu Bitable. <br>
-Mitigation: Install only with a controlled destination table, keep Feishu app permissions to the minimum needed, and tell users where their data will be stored before submission. <br>
-Risk: The security review found that the documentation overstates search, update, delete, and privacy-masking behavior. <br>
-Mitigation: Validate supported behavior in your environment and do not rely on those advertised capabilities until the publisher aligns the implementation and documentation. <br>
+## Use Case:
 
+Travel teams can use this skill to collect traveler requirements and submit destination, party size, departure date, budget, preferences, special requests, name, and phone details into a Feishu Bitable table. Treat it as a Feishu lead-capture workflow unless the public instructions and available tool behavior are aligned.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lijingxu007/tcly-c) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Natural-language responses with Feishu Bitable record submissions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials and a destination Base Token and Table ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The public instructions describe itinerary creation, search, update, and deletion, while the security evidence says the available behavior is Feishu lead capture.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as lead capture until documentation and implemented behavior are aligned.
+
+Risk: The skill can submit personal travel and contact details to a third-party Feishu table without enforced confirmation.
+
+Mitigation: Use only a Feishu app and table controlled by the deploying team, restrict collaborators, collect only necessary details, and require explicit user confirmation before submission.
+
+## Reference(s):
+
+- [Travel Customizer on ClawHub](https://clawhub.ai/lijingxu007/skills/tcly-c)
+- [Feishu Open Platform](https://open.feishu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API calls, Configuration guidance]
+
+**Output Format:** [Plain text or Markdown responses with structured Feishu Bitable record submissions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu app credentials, base token, and table ID.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,13 @@
+# ai-cost-cutter
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`。
+
+## 关键文件
+
+- [SKILL.md](SKILL.md)：主说明书（frontmatter + 触发条件 + 执行步骤）
+- [AGENTS.md](AGENTS.md)：AI 代理说明书
+- [README.md](README.md)：人类总览（如存在）
+
+## 一句话定位
+
+当用户说『API账单太贵』『token烧太快』『能不能用本地模型』『批处理怎么省钱』『离线跑AI』，或要把大模型调用从烧钱变省钱时使用。四把刀降本：批处理（高峰调度/合并请求）、本地模型回退（贱活本地跑、贵活才上云）、缓存层（相同请求不重复花钱）、模型路由分级（按任务难度选便宜/贵模型）。附可运行成本估算脚本，输入任务量+模型单价即输出月度账单与三档降本方案的差额。源自 GOSIM 参赛作 cross-machine-offline-taskbox 的离线跑批思路。触发词：AI省钱、降本、token太贵、本地模型、批处理、离线跑AI、模型路由、缓存层、cost cutter、AI成本、API账单。

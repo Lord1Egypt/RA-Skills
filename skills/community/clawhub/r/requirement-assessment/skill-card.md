@@ -1,42 +1,57 @@
-## Description: <br>
-需求细化与工时评估技能。接收用户需求（文本或截图），主动询问澄清问题，分析需求合理性，输出合并的需求清单 + 工时评估表，并创建飞书 Bitable 多维表。适用于项目立项、需求评审、工时估算场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clarifies product requirements from text or screenshots, asks background and technical questions, assesses feasibility and risk, estimates work by role and platform, and creates a Feishu Bitable requirements tracker.
 
-## Publisher: <br>
-[yakov0922](https://clawhub.ai/user/yakov0922) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yakov0922](https://clawhub.ai/user/yakov0922)
 
-## Use Case: <br>
-Product managers, delivery teams, and developers use this skill to clarify project requirements, assess feasibility and delivery risks, estimate role-by-role effort, and create a Feishu Bitable for requirement and estimation tracking. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Requirement assessments may include customer confidential data, budgets, regulated personal data, or internal technical details. <br>
-Mitigation: Redact sensitive information before use and confirm the destination Feishu workspace and sharing permissions. <br>
-Risk: Generated work-hour estimates and AI-assisted reductions may be inaccurate when scope, platform, integrations, or constraints are unclear. <br>
-Mitigation: Require clarifying answers, record uncertainty, and review estimates with the responsible product, engineering, testing, and operations owners. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [需求评估标准](references/评估标准.md) <br>
-- [常见功能模块参考](references/常见功能模块.md) <br>
-- [ClawHub skill page](https://clawhub.ai/yakov0922/requirement-assessment) <br>
-- [Publisher profile](https://clawhub.ai/user/yakov0922) <br>
+## Use Case:
 
+External teams, product managers, and delivery engineers use this skill to turn early project requests into clarified requirements, feasibility notes, role-based effort estimates, and a Feishu Bitable tracker for review.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, API Calls, Text] <br>
-**Output Format:** [Structured text and Feishu Bitable records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a Feishu Bitable when the required workspace and table details are available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive or regulated requirement details may be written into Feishu Bitable records.
+
+Mitigation: Remove credentials, customer PII, confidential contract terms, regulated data, and other restricted information before using the skill.
+
+Risk: Effort estimates can be misleading when requirements, platforms, deadlines, integrations, or compliance constraints are unresolved.
+
+Mitigation: Answer the skill's clarification questions before relying on the estimate, and preserve assumptions and uncertainty in the final review.
+
+Risk: AI-assisted effort reductions may be treated as guaranteed savings.
+
+Mitigation: Use AI-assisted estimates as planning references only and account for human review, revision, and debugging time.
+
+## Reference(s):
+
+- [Requirement assessment standards](references/评估标准.md)
+- [Common function modules](references/常见功能模块.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Guidance, Configuration]
+
+**Output Format:** [Clarifying questions, prose analysis, risk notes, and Feishu Bitable records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Feishu workspace and permission to create Bitable apps and records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

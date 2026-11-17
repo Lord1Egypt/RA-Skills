@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投标报价策略沙盘 · 报价得分测算</title>
+<style>
+  :root{
+    --bg:#f5f7fa; --card:#ffffff; --ink:#1f2933; --sub:#6b7785; --line:#e3e8ef;
+    --accent:#2f6fed; --accent-soft:#eaf1fe; --warn:#d97706; --ok:#16a34a; --danger:#dc2626;
+    --radius:12px; --shadow:0 1px 3px rgba(16,24,40,.06),0 1px 2px rgba(16,24,40,.04);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:24px 18px 64px}
+  header.top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  header.top h1{font-size:22px;margin:0;letter-spacing:.5px}
+  header.top .ver{font-size:12px;color:var(--sub);background:var(--accent-soft);padding:2px 8px;border-radius:99px}
+  .lede{color:var(--sub);font-size:13.5px;margin:0 0 18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:16px;box-shadow:var(--shadow)}
+  .card h2{font-size:15px;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+  .card h2 .tag{font-size:11px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:6px}
+  .hint{font-size:12.5px;color:var(--sub);margin:0 0 12px}
+  label.fld{display:block;margin-bottom:10px}
+  label.fld .lab{display:block;font-size:12.5px;color:var(--sub);margin-bottom:4px}
+  input[type=text],input[type=number],select,textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:14px;background:#fff;color:var(--ink)}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+  @media(max-width:640px){.grid2,.grid3{grid-template-columns:1fr}}
+  .row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+  .row input{flex:1}
+  .btn{appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 14px;border-radius:9px;font-size:13.5px;cursor:pointer;transition:.15s}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.primary:hover{filter:brightness(1.05);color:#fff}
+  .btn.ghost{background:transparent}
+  .btn.sm{padding:5px 10px;font-size:12.5px}
+  .btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:center}
+  th{background:#f8fafc;color:var(--sub);font-weight:600}
+  td.name,th.name{text-align:left}
+  tr.rank1 td{background:#f0f7ff}
+  .pill{display:inline-block;font-size:11px;padding:1px 7px;border-radius:99px;background:#eef2f7;color:var(--sub);margin-left:4px}
+  .pill.warn{background:#fff4e5;color:var(--warn)}
+  .bench{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;margin:8px 0}
+  .bench div{background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:6px 12px}
+  .bench b{color:var(--accent)}
+  .rec{background:var(--accent-soft);border:1px solid #cfe0fd;border-radius:8px;padding:10px 12px;font-size:13.5px;margin-top:10px}
+  .warnbox{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:8px;padding:10px 12px;font-size:13px;margin-top:10px}
+  details.collapsible{margin-bottom:14px}
+  details.collapsible summary{cursor:pointer;font-size:13.5px;color:var(--accent);font-weight:600}
+  .dimrow{display:grid;grid-template-columns:1.4fr .8fr .8fr .8fr auto;gap:8px;align-items:center;margin-bottom:8px}
+  .dimrow input{padding:6px 8px;font-size:13px}
+  .sysbox{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .syschip{font-size:12px;padding:5px 10px;border:1px solid var(--line);border-radius:99px;cursor:pointer;color:var(--sub)}
+  .syschip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .foot{font-size:11.5px;color:var(--sub);text-align:center;margin-top:18px;line-height:1.7}
+  .muted{color:var(--sub);font-size:12px}
+  code.cfg{display:block;white-space:pre-wrap;word-break:break-all;background:#0f172a;color:#cbd5e1;padding:12px;border-radius:8px;font-size:12px;max-height:220px;overflow:auto}
+  .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#0f172a;color:#fff;padding:10px 16px;border-radius:10px;font-size:13px;opacity:0;transition:.25s;pointer-events:none}
+  .toast.show{opacity:.95}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>投标报价策略沙盘</h1>
+    <span class="ver">Bid Pricing Strategy Sandbox · v2.0.0</span>
+  </header>
+  <p class="lede">读取招标/采购文件中的报价评分规则，选方法、填参数与报价，实时测算得分、排名与策略建议。所有计算均在本地浏览器完成，无需联网、数据不外传。无需编写任何代码。</p>
+
+  <!-- 导入配置 -->
+  <div class="card">
+    <h2><span class="tag">方式一</span> 粘贴 AI 给的配置（最简单）</h2>
+    <p class="hint">把 AI 解析招标文件后生成的配置 JSON 粘贴到下面，点「应用并测算」，即可一键完成，无需手动填表。</p>
+    <details class="collapsible">
+      <summary>展开配置输入框</summary>
+      <textarea id="importBox" rows="6" placeholder='{"methodId":"M3","priceDimensions":[{"label":"投标总价","maxScore":30}],"params":{"K":0.04,"K_high":0.5,"K_low":0.3},"bids":{"names":["A","B","C"],"prices":[[100,110,120]]}}'></textarea>
+      <div class="btnrow">
+        <button class="btn primary sm" id="btnApply">应用并测算</button>
+        <button class="btn sm" id="btnClearImport">清空</button>
+      </div>
+    </details>
+  </div>
+
+  <!-- 手动表单 -->
+  <div class="card">
+    <h2><span class="tag">方式二</span> 手动填表</h2>
+    <p class="hint">不会用也没关系：先看 AI 给你的解析结果，再照着填；或直接用上面的「粘贴配置」。</p>
+
+    <div class="row">
+      <div style="flex:2">
+        <label class="fld" style="margin:0">
+          <span class="lab">评分方法</span>
+          <select id="methodSelect"></select>
+        </label>
+      </div>
+      <div style="flex:1">
+        <label class="fld" style="margin:0">
+          <span class="lab">单位</span>
+          <select id="unitInput">
+            <option value="万元">万元</option>
+            <option value="元">元</option>
+          </select>
+        </label>
+      </div>
+      <div style="flex:1">
+        <label class="fld" style="margin:0">
+          <span class="lab">单位数量级</span>
+          <input type="number" id="unitCountInput" value="6" min="1">
+        </label>
+      </div>
+    </div>
+
+    <div class="sysbox" id="sysBox">
+      <span class="muted" style="align-self:center">体系：</span>
+      <span class="syschip active" data-sys="招投标">招投标</span>
+      <span class="syschip" data-sys="政采">政府采购</span>
+    </div>
+
+    <div id="paramFields"></div>
+
+    <!-- M10 多维度编辑器 -->
+    <div id="dimEditor" style="display:none;margin:6px 0 10px">
+      <div class="muted" style="margin-bottom:6px">价格维度（各维度独立计分后加权求和）：</div>
+      <div id="dimRows"></div>
+      <button class="btn sm" id="btnAddDim">+ 增加一个维度</button>
+    </div>
+
+    <label class="fld">
+      <span class="lab">规则摘要（评标办法原文，便于复核）</span>
+      <input type="text" id="descInput" placeholder="例：基准价法-去极值，投标人≥7家去最高1+最低1，高于每1%扣0.5，低于每1%扣0.3">
+    </label>
+
+    <label class="fld">
+      <span class="lab">策略提示（可选，覆盖自动建议）</span>
+      <input type="text" id="recInput" placeholder="留空则用内置策略建议">
+    </label>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin:10px 0 6px">
+      <span class="lab" style="margin:0">投标人及其报价</span>
+      <button class="btn sm" id="btnAddBidder">+ 增加一个投标人</button>
+    </div>
+    <div id="bidders"></div>
+
+    <div class="btnrow">
+      <button class="btn primary" id="btnCalc">测算得分</button>
+      <button class="btn" id="btnReset">重置</button>
+      <button class="btn" id="btnCopyCfg">复制配置 JSON</button>
+      <button class="btn" id="btnExport">导出 CSV</button>
+    </div>
+  </div>
+
+  <!-- 结果 -->
+  <div class="card" id="resultCard" style="display:none">
+    <h2><span class="tag">结果</span> 报价得分测算</h2>
+    <div class="bench" id="benchInfo"></div>
+    <div id="warnSlot"></div>
+    <table id="resultTable"></table>
+    <div class="rec" id="recSlot"></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="tag">免责</span> 重要声明</h2>
+    <p class="muted" style="margin:0;line-height:1.8">
+      · 本测算由内置公式 + 您填写的参数生成，可能存在理解或录入偏差。<br>
+      · 投标决策前务必人工核对招标文件原文中的评分公式与参数。<br>
+      · 本工具只计算「报价得分」维度，技术分/商务分请另行综合判断。<br>
+      · 本工具不构成任何投标建议或中标承诺，报价策略仅供参考。
+    </p>
+  </div>
+
+  <div class="foot">投标报价策略沙盘 · 本地单文件运行 · 无需联网 · 代码由内置引擎提供，用户无需编写</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<!-- ===================== 内置评分引擎（唯一数学真相源，参数化移植自 formula-kb） ===================== -->
+<script id="engine">
+/*ENGINE_START*/
+var META = {
+  M1:{name:"低价优先法（政采法定）",dims:1,fields:[
+    {k:"maxScore",label:"价格权值(满分)",def:30},
+    {k:"deduction",label:"价格扣除比例 %(政采政策优惠，如小微/本国产品)",def:0},
+    {k:"floor",label:"得分下限",def:0}
+  ]},
+  M2:{name:"基准价法-均值",dims:1,fields:[
+    {k:"maxScore",label:"价格权值(满分)",def:40},
+    {k:"K",label:"K值（基准价=均值×(1-K)）",def:0.04},
+    {k:"K_high",label:"高于基准价每1%扣分",def:0.5},
+    {k:"K_low",label:"低于基准价每1%扣分",def:0.3},
+    {k:"floor",label:"得分下限",def:0}
+  ]},
+  M3:{name:"基准价法-去极值",dims:1,fields:[
+    {k:"maxScore",label:"价格权值(满分)",def:40},
+    {k:"K",label:"K值（基准价=去极值均值×(1-K)）",def:0.04},
+    {k:"trimMinCount",label:"去极值触发家数(≥此家才去)",def:7},
+    {k:"trimEach",label:"去最高/最低各几家",def:1},
+    {k:"K_high",label:"高于基准价每1%扣分",def:0.5},
+    {k:"K_low",label:"低于基准价每1%扣分",def:0.3},
+    {k:"floor",label:"得分下限",def:0}
+  ]},
+  M4:{name:"复合基准价",dims:1,fields:[
+    {k:"maxScore",label:"价格权值(满分)",def:40},
+    {k:"alpha",label:"α(均值权重)，控制价权重=1-α",def:0.7},
+    {k:"bidCap",label:"控制价",def:1000},
+    {k:"K_high",label:"高于基准价每1%扣分",def:0.5},
+    {k:"K_low",label:"低于基准价每1%扣分",def:0.3},
+    {k:"floor",label:"得分下限",def:0}
+  ]},
+  M5:{name:"反比法（通信/IT）",dims:1,fields:[
+    {k:"maxScore",label:"价格权值(满分)",def:30},
+    {k:"deduction",label:"价格扣除比例 %(政采政策优惠)",def:0},
+    {k:"floor",label:"得分下限",def:0}
+  ]},
+  M6:{name:"直线内插法",dims:1,fields:[
+    {k:"maxScore",label:"价格权值(满分)",def:40},
+    {k:"a",label:"满分报价上限 a（≤a 得满分）",def:90},
+    {k:"b",label:"报价下限 b（≥b 得 0 分）",def:100},
+    {k:"floor",label:"得分下限",def:0}
+  ]},
+  M7:{name:"λ值法",dims:1,fields:[
+    {k:"maxScore",label:"价格权值(满分)",def:40},
+    {k:"lambda",label:"λ 系数（得分=满分×(1-λ×偏离率)）",def:0.3},
+    {k:"floor",label:"得分下限",def:0}
+  ]},
+  M8:{name:"分段扣分法",dims:1,fields:[
+    {k:"maxScore",label:"价格权值(满分)",def:40},
+    {k:"segs_json",label:"分段阈值与扣分率 JSON（高阶，留空用默认）",def:""},
+    {k:"floor",label:"得分下限",def:0}
+  ]},
+  M9:{name:"合理低价法（含低于成本否决）",dims:1,fields:[
+    {k:"maxScore",label:"价格权值(满分)",def:40},
+    {k:"costFloor",label:"成本预警线（低于则否决/0分）",def:80},
+    {k:"floor",label:"得分下限",def:0}
+  ]},
+  M10:{name:"多价格维度（加权求和）",dims:"multi",fields:[
+    {k:"K_high",label:"各维度高于基准价每1%扣分(默认)",def:0.5},
+    {k:"K_low",label:"各维度低于基准价每1%扣分(默认)",def:0.3},
+    {k:"floor",label:"得分下限",def:0}
+  ]}
+};
+
+function finalize(names, pricesByBidder, totalScores, perDimScores, perDimDev, benchmarkInfos, recommendedPrice, recommendedTotal, recommendationReason){
+  var n = names.length;
+  var results = [];
+  for (var i=0;i<n;i++) results.push({_o:i, name:names[i], prices:pricesByBidder[i], score:totalScores[i]});
+  results.sort(function(a,b){return b.score-a.score;});
+  var ds=[], dev=[];
+  for (var d=0; d<perDimScores.length; d++){ ds.push([]); dev.push([]); }
+  results.forEach(function(r,i){
+    r.rank=i+1;
+    for (var d=0; d<perDimScores.length; d++){ ds[d].push(perDimScores[d][r._o]); dev[d].push(perDimDev[d][r._o]); }
+    delete r._o;
+  });
+  return {
+    results: results,
+    benchmarkInfos: benchmarkInfos,
+    detailScores: ds,
+    deviations: dev,
+    recommendedPrice: recommendedPrice,
+    recommendedTotal: recommendedTotal,
+    recommendationReason: recommendationReason
+  };
+}
+
+function calcDeduction(absDev, segs){
+  var ded=0, prev=0;
+  for (var i=0;i<segs.length;i++){
+    var cap=segs[i].max;
+    var portion=Math.min(absDev, cap)-prev;
+    if (portion>0) ded += portion*segs[i].per;
+    prev=cap;
+    if (absDev<=cap) break;
+  }
+  return ded;
+}
+
+function num(v, def){ var x=parseFloat(v); return isNaN(x)?def:x; }
+
+var METHODS = {
+  M1:function(cfg){
+    var p=cfg.priceDimensions[0].maxScore;
+    var ded=(cfg.params.deduction||0)/100;
+    var prices=cfg.bids.prices[0];
+    var minRaw=Math.min.apply(null,prices);
+    var eff=prices.map(function(x){return x*(1-ded);});
+    var minEff=Math.min.apply(null,eff);
+    var scores=[],dev=[];
+    for (var i=0;i<prices.length;i++){ scores.push(minEff/eff[i]*p); dev.push((prices[i]-minRaw)/minRaw*100); }
+    var rec="低价优先法：报最低价得满分("+p+"分)。成本线以上尽量低；不得低于成本，否则可能被否决。";
+    if (ded>0) rec+="（已按扣除比例 "+ (cfg.params.deduction) +"% 换算后价格参与评审）";
+    return finalize(cfg.bids.names, prices.map(function(x){return [x];}), scores, [scores], [dev],
+      [{label:"评标基准价(最低有效报价·已含扣除)", value:minEff, desc:"满足要求且价格最低的投标报价"}],
+      [minEff], minEff, rec);
+  },
+  M2:function(cfg){
+    var p=cfg.priceDimensions[0].maxScore, P=cfg.params;
+    var K=num(P.K,0.04), Kh=num(P.K_high,0.5), Kl=num(P.K_low,0.3), floor=num(P.floor,0);
+    var prices=cfg.bids.prices[0], n=prices.length, sum=0; for(var i=0;i<n;i++) sum+=prices[i];
+    var benchmark=sum/n*(1-K);
+    var scores=[],dev=[];
+    for(var i=0;i<n;i++){ var d=(prices[i]-benchmark)/benchmark*100; var dd=d>=0?d*Kh:Math.abs(d)*Kl; scores.push(Math.max(floor,p-dd)); dev.push(d); }
+    return finalize(cfg.bids.names, prices.map(function(x){return [x];}), scores,[scores],[dev],
+      [{label:"评标基准价(均值×"+(1-K)+")", value:benchmark, desc:"有效报价算术平均×("+(1-K)+")"}],
+      [benchmark], benchmark, "报基准价得满分("+p+"分)。高扣"+Kh+"/低扣"+Kl+"：略低于基准价策略占优。");
+  },
+  M3:function(cfg){
+    var p=cfg.priceDimensions[0].maxScore, P=cfg.params;
+    var K=num(P.K,0.04), Kh=num(P.K_high,0.5), Kl=num(P.K_low,0.3), floor=num(P.floor,0);
+    var trimMin=num(P.trimMinCount,7), trimEach=num(P.trimEach,1);
+    var orig=cfg.bids.prices[0], n=orig.length;
+    var sorted=orig.slice().sort(function(a,b){return a-b;});
+    var te=(n>=trimMin)?trimEach:0;
+    var trimmed=sorted.slice(te, te>0?sorted.length-te:sorted.length);
+    var sum=0; for(var i=0;i<trimmed.length;i++) sum+=trimmed[i];
+    var benchmark=sum/trimmed.length*(1-K);
+    var scores=[],dev=[];
+    for(var i=0;i<n;i++){ var d=(orig[i]-benchmark)/benchmark*100; var dd=d>=0?Math.abs(d)*Kh:Math.abs(d)*Kl; scores.push(Math.max(floor,p-dd)); dev.push(d); }
+    return finalize(cfg.bids.names, orig.map(function(x){return [x];}), scores,[scores],[dev],
+      [{label:"评标基准价(去极值均值×"+(1-K)+")", value:benchmark, desc:"去最高/最低各"+te+"家后均值×("+(1-K)+")"}],
+      [benchmark], benchmark, "去极值后极端报价不影响基准价→不必刻意压低。报基准价得满分。");
+  },
+  M4:function(cfg){
+    var p=cfg.priceDimensions[0].maxScore, P=cfg.params;
+    var alpha=num(P.alpha,0.7), cap=num(P.bidCap,1000), Kh=num(P.K_high,0.5), Kl=num(P.K_low,0.3), floor=num(P.floor,0);
+    var prices=cfg.bids.prices[0], n=prices.length, sum=0; for(var i=0;i<n;i++) sum+=prices[i];
+    var avg=sum/n; var benchmark=avg*alpha+cap*(1-alpha);
+    var scores=[],dev=[];
+    for(var i=0;i<n;i++){ var d=(prices[i]-benchmark)/benchmark*100; var dd=d>=0?d*Kh:Math.abs(d)*Kl; scores.push(Math.max(floor,p-dd)); dev.push(d); }
+    return finalize(cfg.bids.names, prices.map(function(x){return [x];}), scores,[scores],[dev],
+      [{label:"复合评标基准价", value:benchmark, desc:"有效均值×"+alpha+"+控制价×"+(1-alpha)}],
+      [benchmark], benchmark, "复合基准价含控制价权重，报价贴近基准价最稳。");
+  },
+  M5:function(cfg){
+    var p=cfg.priceDimensions[0].maxScore;
+    var ded=(cfg.params.deduction||0)/100;
+    var prices=cfg.bids.prices[0];
+    var minRaw=Math.min.apply(null,prices);
+    var eff=prices.map(function(x){return x*(1-ded);});
+    var minEff=Math.min.apply(null,eff);
+    var scores=[],dev=[];
+    for (var i=0;i<prices.length;i++){ scores.push(minEff/eff[i]*p); dev.push((prices[i]-minRaw)/minRaw*100); }
+    return finalize(cfg.bids.names, prices.map(function(x){return [x];}), scores,[scores],[dev],
+      [{label:"最低报价基准", value:minEff, desc:"最低报价作为反比基准（非政采法定，常用于通信/IT）"}],
+      [minEff], minEff, "反比法：报最低价得满分。注意不得低于成本。");
+  },
+  M6:function(cfg){
+    var p=cfg.priceDimensions[0].maxScore, P=cfg.params;
+    var a=num(P.a,90), b=num(P.b,100), floor=num(P.floor,0);
+    var prices=cfg.bids.prices[0], n=prices.length, scores=[],dev=[];
+    for(var i=0;i<n;i++){ var x=prices[i], s; if(x<=a) s=p; else if(x>=b) s=0; else s=p*(b-x)/(b-a); scores.push(Math.max(floor,s)); dev.push((x-a)/a*100); }
+    return finalize(cfg.bids.names, prices.map(function(x){return [x];}), scores,[scores],[dev],
+      [{label:"内插区间", value:(a+b)/2, desc:"["+a+","+b+"] 线性内插"}],
+      [a], a, "直线内插：报价≤"+a+"得满分，建议贴近下沿但高于成本。");
+  },
+  M7:function(cfg){
+    var p=cfg.priceDimensions[0].maxScore, P=cfg.params;
+    var lambda=num(P.lambda,0.3);
+    var prices=cfg.bids.prices[0], n=prices.length, sum=0; for(var i=0;i<n;i++) sum+=prices[i];
+    var benchmark=sum/n; var scores=[],dev=[];
+    for(var i=0;i<n;i++){ var d=(prices[i]-benchmark)/benchmark; scores.push(Math.max(0,p*(1-lambda*d))); dev.push(d*100); }
+    return finalize(cfg.bids.names, prices.map(function(x){return [x];}), scores,[scores],[dev],
+      [{label:"评标基准价(均值)", value:benchmark, desc:"有效报价算术平均"}],
+      [benchmark], benchmark, "λ值法：报基准价得满分；λ="+lambda+"越大对偏离越敏感。");
+  },
+  M8:function(cfg){
+    var p=cfg.priceDimensions[0].maxScore, P=cfg.params;
+    var floor=num(P.floor,0);
+    var segs;
+    if (P.segs_json && String(P.segs_json).trim()){ try{ segs=JSON.parse(P.segs_json); }catch(e){ segs=null; } }
+    if (!segs || !segs.length) segs=[{max:3,per:0},{max:5,per:0.5},{max:8,per:1},{max:Infinity,per:2}];
+    var prices=cfg.bids.prices[0], n=prices.length, sum=0; for(var i=0;i<n;i++) sum+=prices[i];
+    var benchmark=sum/n; var scores=[],dev=[];
+    for(var i=0;i<n;i++){ var d=(prices[i]-benchmark)/benchmark*100; var dd=calcDeduction(Math.abs(d),segs); scores.push(Math.max(floor,p-dd)); dev.push(d); }
+    return finalize(cfg.bids.names, prices.map(function(x){return [x];}), scores,[scores],[dev],
+      [{label:"评标基准价(均值)", value:benchmark, desc:"有效报价算术平均"}],
+      [benchmark], benchmark, "分段阶梯扣分：避免落在高扣分段的边界（如恰好 5%、8%）。");
+  },
+  M9:function(cfg){
+    var p=cfg.priceDimensions[0].maxScore, P=cfg.params;
+    var costFloor=num(P.costFloor,80);
+    var prices=cfg.bids.prices[0], n=prices.length, names=cfg.bids.names;
+    var minValid=Infinity, invalid=[];
+    for(var i=0;i<n;i++){ if(prices[i]<costFloor) invalid.push(names[i]); else if(prices[i]<minValid) minValid=prices[i]; }
+    if(minValid===Infinity) minValid=costFloor;
+    var scores=[],dev=[];
+    for(var i=0;i<n;i++){ if(prices[i]<costFloor){ scores.push(0); } else { scores.push(minValid/prices[i]*p); } dev.push((prices[i]-minValid)/minValid*100); }
+    var warn=invalid.length?("⚠️ "+invalid.join("、")+" 报价低于成本预警线("+costFloor+")，可能被否决。"):"";
+    return finalize(cfg.bids.names, prices.map(function(x){return [x];}), scores,[scores],[dev],
+      [{label:"评标基准价(最低有效报价)", value:minValid, desc:"满足成本要求的最低报价"}],
+      [Math.max(minValid,costFloor)], Math.max(minValid,costFloor), warn+"合理低价法：不得低于成本；其余报最低有效价得满分。");
+  },
+  M10:function(cfg){
+    var dims=cfg.priceDimensions, P=cfg.params, names=cfg.bids.names, n=names.length;
+    var dimParams = (P.dimParams && P.dimParams.length===dims.length) ? P.dimParams :
+      dims.map(function(){ return {K_high:num(P.K_high,0.5), K_low:num(P.K_low,0.3)}; });
+    var perDimScores=[], perDimDev=[], benchmarks=[];
+    for(var d=0; d<dims.length; d++){
+      var prices=cfg.bids.prices[d], m=dims[d].maxScore, dp=dimParams[d];
+      var sum=0; for(var i=0;i<n;i++) sum+=prices[i]; var benchmark=sum/n;
+      var ss=[], dd=[];
+      for(var i=0;i<n;i++){ var dev=(prices[i]-benchmark)/benchmark*100; var ded=dev>=0?Math.abs(dev)*dp.K_high:Math.abs(dev)*dp.K_low; ss.push(Math.max(0,m-ded)); dd.push(dev); }
+      perDimScores.push(ss); perDimDev.push(dd); benchmarks.push(benchmark);
+    }
+    var totalScores=[]; for(var i=0;i<n;i++){ var t=0; for(var d=0;d<dims.length;d++) t+=perDimScores[d][i]; totalScores.push(t); }
+    var pricesByBidder=[]; for(var i=0;i<n;i++){ var row=[]; for(var d=0;d<dims.length;d++) row.push(cfg.bids.prices[d][i]); pricesByBidder.push(row); }
+    var benchmarkInfos=dims.map(function(dim,d){ return {label:dim.label+"基准价", value:benchmarks[d], desc:dim.label+"有效均值"}; });
+    var recommendedTotal=benchmarks.reduce(function(a,b){return a+b;},0);
+    var totalMax=dims.reduce(function(a,d){return a+d.maxScore;},0);
+    var reason="各维度独立优化：报各自基准价得各维度满分，合计满分("+totalMax+"分)。";
+    var extra=cfg.recommendation||"";
+    return finalize(names, pricesByBidder, totalScores, perDimScores, perDimDev, benchmarkInfos, benchmarks.slice(), recommendedTotal, (extra?extra+" ":"")+reason);
+  }
+};
+
+if (typeof module!=="undefined" && module.exports){ module.exports={METHODS:METHODS, META:META, finalize:finalize, calcDeduction:calcDeduction}; }
+if (typeof window!=="undefined"){ window.__ENGINE__={METHODS:METHODS, META:META, finalize:finalize, calcDeduction:calcDeduction}; }
+/*ENGINE_END*/
+</script>
+
+<!-- ===================== UI 逻辑 ===================== -->
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var engine = window.__ENGINE__;
+  var state = { dims:[{label:"投标总价",maxScore:30,K_high:0.5,K_low:0.3}], system:"招投标" };
+  var lastOut=null, lastCfg=null;
+
+  function toast(msg){ var t=$("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(function(){t.classList.remove("show");},1600); }
+
+  // 方法下拉
+  (function(){
+    var sel=$("methodSelect");
+    Object.keys(engine.META).forEach(function(mid){
+      var o=document.createElement("option"); o.value=mid; o.textContent=mid+" · "+engine.META[mid].name; sel.appendChild(o);
+    });
+    sel.addEventListener("change", renderParamFields);
+  })();
+
+  // 体系切换
+  Array.prototype.forEach.call(document.querySelectorAll("#sysBox .syschip"), function(chip){
+    chip.addEventListener("click", function(){
+      document.querySelectorAll("#sysBox .syschip").forEach(function(c){c.classList.remove("active");});
+      chip.classList.add("active"); state.system=chip.getAttribute("data-sys");
+    });
+  });
+
+  function renderParamFields(){
+    var mid=$("methodSelect").value, meta=engine.META[mid];
+    var box=$("paramFields"); box.innerHTML="";
+    meta.fields.forEach(function(f){
+      var lab=document.createElement("label"); lab.className="fld";
+      lab.innerHTML='<span class="lab">'+f.label+'</span>';
+      var inp=document.createElement("input");
+      inp.type=(f.k==="segs_json")?"text":"number"; inp.id="pf_"+f.k; inp.value=f.def; inp.step="any";
+      lab.appendChild(inp); box.appendChild(lab);
+    });
+    $("dimEditor").style.display = (meta.dims==="multi") ? "block" : "none";
+    if (meta.dims==="multi") renderDimRows();
+    renderBidders();
+  }
+
+  function renderDimRows(){
+    var box=$("dimRows"); box.innerHTML="";
+    state.dims.forEach(function(d, idx){
+      var row=document.createElement("div"); row.className="dimrow";
+      row.innerHTML=
+        '<input type="text" value="'+d.label+'" data-i="'+idx+'" data-k="label" placeholder="维度名(如投标总价)">'+
+        '<input type="number" value="'+d.maxScore+'" step="any" data-i="'+idx+'" data-k="maxScore" placeholder="满分">'+
+        '<input type="number" value="'+d.K_high+'" step="any" data-i="'+idx+'" data-k="K_high" placeholder="高扣">'+
+        '<input type="number" value="'+d.K_low+'" step="any" data-i="'+idx+'" data-k="K_low" placeholder="低扣">'+
+        '<button class="btn sm" data-del="'+idx+'">删除</button>';
+      box.appendChild(row);
+    });
+    box.querySelectorAll("input[data-k]").forEach(function(inp){
+      inp.addEventListener("input", function(){
+        var i=+inp.getAttribute("data-i"), k=inp.getAttribute("data-k");
+        state.dims[i][k]=(k==="label")?inp.value:parseFloat(inp.value);
+      });
+    });
+    box.querySelectorAll("button[data-del]").forEach(function(b){
+      b.addEventListener("click", function(){
+        if(state.dims.length<=1){ toast("至少保留一个维度"); return; }
+        state.dims.splice(+b.getAttribute("data-del"),1); renderDimRows(); renderBidders();
+      });
+    });
+  }
+  $("btnAddDim").addEventListener("click", function(){
+    state.dims.push({label:"分项"+(state.dims.length+1),maxScore:10,K_high:0.5,K_low:0.3}); renderDimRows(); renderBidders();
+  });
+
+  function renderBidders(){
+    var mid=$("methodSelect").value, meta=engine.META[mid];
+    var nDims = (meta.dims==="multi") ? state.dims.length : 1;
+    var box=$("bidders"); box.innerHTML="";
+    var head=document.createElement("div"); head.className="row"; head.style.fontWeight="600"; head.style.color="var(--sub)"; head.style.fontSize="12.5px";
+    head.innerHTML='<div style="flex:1.4">投标人</div>'+Array.apply(null,Array(nDims)).map(function(_,i){ return '<div style="flex:1">'+(meta.dims==="multi"?state.dims[i].label:"报价")+'</div>'; }).join("");
+    box.appendChild(head);
+    var rows=box.querySelectorAll(".brow").length || 3;
+    var count = box.getAttribute("data-count")? +box.getAttribute("data-count") : 3;
+    box.removeAttribute("data-count");
+    for(var r=0;r<count;r++){
+      var row=document.createElement("div"); row.className="row brow";
+      var name=document.createElement("input"); name.type="text"; name.placeholder="名称"; name.value=["A","B","C","D","E","F"][r]||("投标人"+(r+1)); name.className="bname";
+      row.appendChild(name);
+      for(var i=0;i<nDims;i++){
+        var p=document.createElement("input"); p.type="number"; p.step="any"; p.placeholder="报价"; p.className="bprice"; p.dataset.dim=i; row.appendChild(p);
+      }
+      box.appendChild(row);
+    }
+  }
+  $("btnAddBidder").addEventListener("click", function(){ renderBiddersAddRow(); });
+  function renderBiddersAddRow(){
+    var mid=$("methodSelect").value, meta=engine.META[mid];
+    var nDims = (meta.dims==="multi") ? state.dims.length : 1;
+    var box=$("bidders");
+    var row=document.createElement("div"); row.className="row brow";
+    var name=document.createElement("input"); name.type="text"; name.placeholder="名称"; name.className="bname";
+    name.value="投标人"+(box.querySelectorAll(".brow").length+1); row.appendChild(name);
+    for(var i=0;i<nDims;i++){ var p=document.createElement("input"); p.type="number"; p.step="any"; p.placeholder="报价"; p.className="bprice"; p.dataset.dim=i; row.appendChild(p); }
+    box.appendChild(row);
+  }
+
+  function readForm(){
+    var mid=$("methodSelect").value, meta=engine.META[mid];
+    var P={};
+    meta.fields.forEach(function(f){ P[f.k]=$( "pf_"+f.k ).value; });
+    var priceDimensions;
+    if(meta.dims==="multi"){
+      priceDimensions=state.dims.map(function(d){return {label:d.label, maxScore:numOr(d.maxScore,10)};});
+      P.dimParams=state.dims.map(function(d){return {K_high:numOr(d.K_high,0.5), K_low:numOr(d.K_low,0.3)};});
+    } else {
+      priceDimensions=[{label:"投标报价", maxScore:numOr(P.maxScore,30)}];
+      delete P.maxScore;
+    }
+    var names=[], prices=[];
+    for(var d=0; d<priceDimensions.length; d++) prices.push([]);
+    document.querySelectorAll("#bidders .brow").forEach(function(row){
+      var nm=row.querySelector(".bname").value.trim()||("投标人"+(names.length+1));
+      names.push(nm);
+      row.querySelectorAll(".bprice").forEach(function(inp){
+        var di=+inp.dataset.dim; var v=parseFloat(inp.value); prices[di].push(isNaN(v)?0:v);
+      });
+    });
+    if(!names.length){ toast("请至少填写一个投标人"); return null; }
+    return {
+      methodId:mid, methodName:meta.name, system:state.system,
+      priceDimensions:priceDimensions, defaultUnit:$("unitInput").value, defaultUnitCount:+$("unitCountInput").value,
+      description:$("descInput").value||"", params:P,
+      bids:{names:names, prices:prices}, recommendation:$("recInput").value||""
+    };
+  }
+  function numOr(v,def){ var x=parseFloat(v); return isNaN(x)?def:x; }
+
+  function run(cfg){
+    if(!cfg) return;
+    lastCfg=cfg;
+    var fn=engine.METHODS[cfg.methodId];
+    if(!fn){ toast("未知方法："+cfg.methodId); return; }
+    var out;
+    try{ out=fn(cfg); }catch(e){ toast("计算出错："+e.message); return; }
+    lastOut=out; render(out);
+  }
+
+  function fmt(x, unit){ return (Math.round(x*100)/100) + (unit||""); }
+
+  function render(out){
+    $("resultCard").style.display="block";
+    var bench=$("benchInfo"); bench.innerHTML="";
+    out.benchmarkInfos.forEach(function(b){
+      var d=document.createElement("div"); d.innerHTML="<span class='muted'>"+b.label+"</span><br><b>"+fmt(b.value,$("unitInput").value)+"</b> <span class='muted'>"+b.desc+"</span>"; bench.appendChild(d);
+    });
+    var multi=out.detailScores.length>1;
+    var tbl=$("resultTable");
+    var head="<tr><th class='name'>排名</th><th class='name'>投标人</th>";
+    for(var d=0;d<out.detailScores.length;d++) head+=multi?("<th>"+out.benchmarkInfos[d].label+"维度分</th>"):"<th>报价</th>";
+    head+= multi?"<th>总得分</th>":"<th>得分</th>";
+    head+="<th>偏差率%</th><th>推荐价</th></tr>";
+    var body="";
+    out.results.forEach(function(r,i){
+      var tr="<tr class='"+(i===0?"rank1":"")+"'><td>"+r.rank+"</td><td class='name'>"+r.name+(i===0?" 🥇":"")+"</td>";
+      for(var d=0;d<out.detailScores.length;d++){ tr+= multi?("<td>"+fmt(out.detailScores[d][i],"")+"</td>"):("<td>"+fmt(r.prices[d],$("unitInput").value)+"</td>"); }
+      tr+= "<td><b>"+fmt(r.score,"")+"</b></td>";
+      tr+= "<td>"+fmt(out.deviations[0][i],"")+"</td>";
+      tr+= "<td>"+(multi?out.benchmarkInfos.map(function(b,di){return fmt(b.value,$("unitInput").value);}).join(" / "):fmt(out.recommendedPrice[0],$("unitInput").value))+"</td></tr>";
+      body+=tr;
+    });
+    tbl.innerHTML=head+body;
+    var ws=$("warnSlot");
+    if(out.recommendationReason && out.recommendationReason.indexOf("⚠️")===0){ ws.innerHTML="<div class='warnbox'>"+out.recommendationReason.split("。")[0]+"。</div>"; }
+    else ws.innerHTML="";
+    $("recSlot").innerHTML="💡 策略建议："+out.recommendationReason;
+    window.scrollTo({top:$("resultCard").offsetTop-10, behavior:"smooth"});
+  }
+
+  function exportCSV(){
+    if(!lastOut||!lastCfg){ toast("请先测算"); return; }
+    var out=lastOut, cfg=lastCfg, unit=$("unitInput").value;
+    var rows=[];
+    var h=["排名","投标人"];
+    for(var d=0;d<out.detailScores.length;d++) h.push(out.benchmarkInfos[d].label+(out.detailScores.length>1?"维度分":"报价"));
+    h.push("总得分","偏差率%","推荐价");
+    rows.push(h.join(","));
+    out.results.forEach(function(r,i){
+      var line=[r.rank, r.name];
+      for(var d=0;d<out.detailScores.length;d++) line.push(out.detailScores.length>1?Math.round(out.detailScores[d][i]*100)/100:r.prices[d]);
+      line.push(Math.round(r.score*100)/100, Math.round(out.deviations[0][i]*100)/100, out.recommendationReason.indexOf("⚠️")===0? (out.recommendedPrice.join("/")) : out.recommendedPrice.join("/"));
+      rows.push(line.join(","));
+    });
+    rows.push(""); rows.push("基准价,"+out.benchmarkInfos.map(function(b){return b.label+"="+Math.round(b.value*100)/100+unit;}).join(" | "));
+    rows.push("策略建议,"+out.recommendationReason.replace(/,/g,"，"));
+    var blob=new Blob(["\ufeff"+rows.join("\n")], {type:"text/csv;charset=utf-8"});
+    var a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="报价得分测算.csv"; a.click();
+    toast("已导出 CSV");
+  }
+
+  function applyConfig(json){
+    var cfg; try{ cfg=JSON.parse(json); }catch(e){ toast("配置 JSON 解析失败"); return; }
+    if(!cfg.methodId || !engine.METHODS[cfg.methodId]){ toast("配置缺少合法 methodId"); return; }
+    $("methodSelect").value=cfg.methodId; renderParamFields();
+    var meta=engine.META[cfg.methodId];
+    var P=cfg.params||{};
+    meta.fields.forEach(function(f){ var el=$("pf_"+f.k); if(el && P[f.k]!=null) el.value=P[f.k]; });
+    if(cfg.defaultUnit) $("unitInput").value=cfg.defaultUnit;
+    if(cfg.defaultUnitCount) $("unitCountInput").value=cfg.defaultUnitCount;
+    if(cfg.description) $("descInput").value=cfg.description;
+    if(cfg.recommendation) $("recInput").value=cfg.recommendation;
+    if(cfg.system){ state.system=cfg.system; document.querySelectorAll("#sysBox .syschip").forEach(function(c){ c.classList.toggle("active", c.getAttribute("data-sys")===cfg.system); }); }
+    // 维度
+    if(meta.dims==="multi" && cfg.priceDimensions){
+      state.dims=cfg.priceDimensions.map(function(d,i){ var dp=(cfg.params&&cfg.params.dimParams)?cfg.params.dimParams[i]:null; return {label:d.label, maxScore:d.maxScore, K_high:dp?dp.K_high:0.5, K_low:dp?dp.K_low:0.3}; });
+      renderDimRows();
+    }
+    // 投标人
+    if(cfg.bids){
+      var box=$("bidders"); box.innerHTML="";
+      var nDims=cfg.priceDimensions.length;
+      cfg.bids.names.forEach(function(nm, ri){
+        var row=document.createElement("div"); row.className="row brow";
+        var name=document.createElement("input"); name.type="text"; name.className="bname"; name.value=nm; row.appendChild(name);
+        for(var i=0;i<nDims;i++){ var p=document.createElement("input"); p.type="number"; p.step="any"; p.className="bprice"; p.dataset.dim=i; p.value=(cfg.bids.prices[i]&&cfg.bids.prices[i][ri]!=null)?cfg.bids.prices[i][ri]:""; row.appendChild(p); }
+        box.appendChild(row);
+      });
+    }
+    run(cfg);
+  }
+
+  $("btnCalc").addEventListener("click", function(){ run(readForm()); });
+  $("btnReset").addEventListener("click", function(){ renderParamFields(); $("descInput").value=""; $("recInput").value=""; $("resultCard").style.display="none"; lastOut=null; });
+  $("btnExport").addEventListener("click", exportCSV);
+  $("btnApply").addEventListener("click", function(){ applyConfig($("importBox").value); });
+  $("btnClearImport").addEventListener("click", function(){ $("importBox").value=""; });
+  $("btnCopyCfg").addEventListener("click", function(){
+    var cfg=readForm(); if(!cfg) return;
+    var txt=JSON.stringify(cfg);
+    if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(function(){toast("配置已复制，可发给 AI 或自己留存");}); }
+    else { $("importBox").value=txt; toast("已填入上方输入框，可手动复制"); }
+  });
+
+  // 初始化
+  renderParamFields();
+})();
+</script>
+</body>
+</html>

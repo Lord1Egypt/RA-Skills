@@ -1,40 +1,57 @@
-## Description: <br>
-Use this skill when there are two or more independent research subtopics; it assigns independent topics to parallel agents for simultaneous research to accelerate information gathering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent split independent research subtopics across parallel agents and integrate their findings into a unified report.
 
-## Publisher: <br>
-[mingginwan](https://clawhub.ai/user/mingginwan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mingginwan](https://clawhub.ai/user/mingginwan)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to split reports with independent research sections into focused parallel-agent tasks, then review, cross-check, and integrate the returned findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Parallel subagent prompts may include more private or sensitive context than each subtopic needs. <br>
-Mitigation: Limit each subagent prompt to the background and data needed for that subtopic. <br>
-Risk: Separate research outputs can contain contradictions, unsupported claims, or incompatible terminology. <br>
-Mitigation: Review the combined output, cross-check sources, resolve conflicts, and unify terminology before using the report. <br>
+## Use Case:
 
+External users, employees, developers, and research-oriented agents use this skill to decide when research topics are independent enough to delegate in parallel. It provides a task template and review steps for collecting, cross-checking, and merging parallel research outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mingginwan/data-parallel-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with a reusable research-task template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; no executable code, hidden privileged behavior, or tool calls were found in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may cause an agent to spawn multiple research agents, increasing tool use and review load.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the research questions are clearly independent, and review each agent's output before integration.
+
+Risk: Parallel research outputs can contain inconsistent facts, assumptions, or terminology.
+
+Mitigation: Cross-check returned findings, investigate contradictions, and normalize terminology before using the final report.
+
+Risk: The artifact instructions are currently Chinese-only, which may reduce usability for agents or reviewers that require English instructions.
+
+Mitigation: Confirm the operating agent and reviewer can reliably interpret the Chinese workflow before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mingginwan/skills/data-parallel-research)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown guidance with a reusable agent task template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May lead the host agent to launch multiple independent research agents when the task structure supports parallel work.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

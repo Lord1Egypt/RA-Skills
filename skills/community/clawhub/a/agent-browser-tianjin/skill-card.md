@@ -1,43 +1,60 @@
-## Description: <br>
-A browser automation skill that helps agents navigate pages, inspect interactive elements, click, type, fill forms, capture page state, and manage browser sessions through the agent-browser CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.
 
-## Publisher: <br>
-[tianjin-ren](https://clawhub.ai/user/tianjin-ren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianjin-ren](https://clawhub.ai/user/tianjin-ren)
 
-## Use Case: <br>
-Developers and agents use this skill to automate web workflows such as navigation, form filling, UI testing, structured data extraction, screenshots, recordings, and session reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can control authenticated browser sessions and perform actions such as submissions, uploads, purchases, posts, deletions, or account changes. <br>
-Mitigation: Use isolated browser sessions and require explicit confirmation before high-impact actions. <br>
-Risk: Saved state files, screenshots, PDFs, traces, and recordings can contain cookies, credentials, or private page data. <br>
-Mitigation: Treat saved state and captured media as secrets, store them only in trusted locations, and delete them after use. <br>
-Risk: The skill depends on the external agent-browser package for browser automation behavior. <br>
-Mitigation: Install only when that dependency is trusted and keep the package reviewed and updated. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide agents through browser automation tasks such as opening pages, taking snapshots, interacting with elements, filling forms, managing sessions, and capturing screenshots or recordings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianjin-ren/agent-browser-tianjin) <br>
-- [Publisher profile](https://clawhub.ai/user/tianjin-ren) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON-oriented command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and npm; browser session state and captured media may be written by the underlying CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Saved sessions, cookies, localStorage exports, screenshots, recordings, traces, and state files can contain sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated browser artifacts like secrets, keep them out of repositories, restrict access, and delete them when no longer needed.
+
+Risk: Installing a global browser automation CLI can introduce supply-chain exposure if the upstream package changes or is untrusted.
+
+Mitigation: Install only from a trusted upstream agent-browser release and prefer a reviewed, pinned version or commit.
+
+Risk: Automating sensitive authenticated sites may expose credentials or session state through captured output.
+
+Mitigation: Avoid sensitive authenticated sites unless needed and review outputs before sharing or storing them.
+
+## Reference(s):
+
+- [Agent Browser CLI](https://github.com/vercel-labs/agent-browser)
+- [Agent Browser Skill Issues](https://github.com/TheSethRose/Agent-Browser-CLI)
+- [ClawHub Skill Page](https://clawhub.ai/tianjin-ren/skills/agent-browser-tianjin)
+- [Publisher Profile](https://clawhub.ai/user/tianjin-ren)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce screenshots, PDFs, videos, traces, cookies, localStorage exports, and saved browser state files when the documented CLI commands are used.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

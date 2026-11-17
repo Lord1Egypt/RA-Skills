@@ -1,42 +1,63 @@
-## Description: <br>
-Compétence pour manipuler les fichiers Excel (.xlsx, .xlsm, .csv, .tsv). Utiliser quand l'utilisateur veut : ouvrir, lire, éditer ou créer un fichier tableur ; ajouter des colonnes, calculer des formules, formater, créer des graphiques, nettoyer des données ; convertir entre formats tabulaires. Le livrable doit être un fichier tableur. NE PAS utiliser si le livrable est un document Word, HTML, script Python standalone, ou intégration Google Sheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xlsx Pro helps agents create, edit, format, and validate spreadsheet files, including Excel formulas and optional LibreOffice-based recalculation for XLSX, XLSM, CSV, and TSV workflows.
 
-## Publisher: <br>
-[ricobaboule](https://clawhub.ai/user/ricobaboule) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ricobaboule](https://clawhub.ai/user/ricobaboule)
 
-## Use Case: <br>
-Developers and spreadsheet-focused agents use this skill to create, edit, format, and validate Excel, CSV, and TSV deliverables with Excel formulas preserved instead of Python-hardcoded calculated values. It is especially suited for formula-heavy workbooks and financial-model-style formatting where optional LibreOffice recalculation and error scanning are useful. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: LibreOffice automation can persist a macro in the user's LibreOffice profile. <br>
-Mitigation: Use an isolated container or disposable LibreOffice profile and review or remove the generated macro after use. <br>
-Risk: The helper can load a locally compiled native shim through LD_PRELOAD when the environment needs it. <br>
-Mitigation: Run the skill only in trusted or isolated environments and inspect temporary native artifacts before reuse. <br>
-Risk: Untrusted spreadsheets can exercise LibreOffice parsing and macro-related surfaces. <br>
-Mitigation: Avoid untrusted spreadsheets or process them in a sandbox with restricted filesystem and network access. <br>
+## Use Case:
 
+Developers, analysts, and spreadsheet-focused agents use this skill to generate or modify Excel-compatible workbooks with formulas, formatting, charts, and tabular data conversions. It is especially useful when the deliverable must be a spreadsheet file rather than a standalone script or document.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ricobaboule/xlsx-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples, plus JSON output from recalculation checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces spreadsheet files as the expected user-facing deliverable; recalculation checks may report formula counts and Excel error locations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The recalculation path changes LibreOffice profile state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use an isolated environment or VM, and avoid running it against important LibreOffice profiles until profile changes are explicit or isolated.
+
+Risk: The LibreOffice helper can load a low-level LD_PRELOAD shim in sandboxed environments.
+
+Mitigation: Inspect or disable the shim before use, and run recalculation only in a controlled environment where low-level helper loading is acceptable.
+
+Risk: Spreadsheet files may be modified in place during recalculation.
+
+Mitigation: Keep backups of important spreadsheets and test the workflow on copies before using it on production files.
+
+Risk: Runtime dependencies are not pinned.
+
+Mitigation: Pin Python dependencies and LibreOffice versions in deployment environments before relying on the skill for repeatable production output.
+
+## Reference(s):
+
+- [Xlsx Pro README](artifact/README.md)
+- [Xlsx Pro skill definition](artifact/SKILL.md)
+- [Xlsx Pro ClawHub page](https://clawhub.ai/ricobaboule/skills/xlsx-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples, plus generated spreadsheet files and JSON validation output from the recalculation script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports XLSX, XLSM, CSV, and TSV workflows; optional formula recalculation returns JSON with status, total errors, error summaries, and formula counts.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

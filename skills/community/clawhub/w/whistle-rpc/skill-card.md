@@ -1,44 +1,59 @@
-## Description: <br>
-Production Solana RPC for AI agents. Unlimited JSON-RPC, WebSocket. 1 SOL/month via on-chain payment. No rate limits, no tiers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production Solana RPC for AI agents with unlimited JSON-RPC, WebSocket access, DEX data, historical APIs, and a 1 SOL/month on-chain subscription.
 
-## Publisher: <br>
-[DylanPort](https://clawhub.ai/user/DylanPort) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dylanport](https://clawhub.ai/user/dylanport)
 
-## Use Case: <br>
-Developers and external AI agents use this skill to configure and access hosted Solana JSON-RPC, WebSocket subscriptions, DEX market data, and historical account data through Whistle RPC. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The subscription flow requires a real SOL payment on Solana mainnet. <br>
-Mitigation: Use a dedicated low-value wallet and require explicit human approval for the amount and recipient before signing any transaction. <br>
-Risk: API keys passed in query strings can be exposed through logs or shared URLs. <br>
-Mitigation: Prefer X-API-Key or Authorization headers, and avoid logging full request URLs. <br>
-Risk: The skill depends on whistle.ninja as a hosted RPC provider and references an external npx CLI. <br>
-Mitigation: Install only after accepting that provider dependency and inspect the external CLI separately before running it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DylanPort/whistle-rpc) <br>
-- [Whistle RPC website](https://whistle.ninja) <br>
-- [Whistle RPC tools manifest](https://whistle.ninja/tools.json) <br>
-- [Whistle RPC NPM CLI](https://npmjs.com/package/whistle-rpc) <br>
+## Use Case:
 
+Developers and agent operators use Whistle RPC to connect AI agents to Solana JSON-RPC, WebSocket subscriptions, DEX market data, historical transaction APIs, and paid subscription management.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands] <br>
-**Output Format:** [Markdown with JSON, HTTP, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes subscription and API-key handling guidance; payment flows require explicit human approval before signing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact frontmatter remains 1.0.4) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unpinned npm CLI execution could introduce supply-chain risk.
+
+Mitigation: Pin and verify the npm CLI package before running subscription commands.
+
+Risk: API keys placed in URLs can leak through logs, browser history, or monitoring systems.
+
+Mitigation: Prefer the documented X-API-Key or Authorization header options instead of query parameters.
+
+Risk: Subscription and renewal flows require real SOL payments on mainnet.
+
+Mitigation: Require explicit human confirmation of amount and recipient before signing, and use a dedicated low-value wallet.
+
+## Reference(s):
+
+- [Whistle RPC ClawHub listing](https://clawhub.ai/dylanport/skills/whistle-rpc)
+- [Whistle website](https://whistle.ninja)
+- [Whistle RPC NPM CLI](https://npmjs.com/package/whistle-rpc)
+- [Whistle tools manifest](https://whistle.ninja/tools.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown with endpoint, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include endpoint URLs, API-key placement options, subscription status checks, and human-confirmation guidance for Solana payments.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact frontmatter says 1.0.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

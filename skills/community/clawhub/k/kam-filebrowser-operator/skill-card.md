@@ -1,44 +1,62 @@
-## Description: <br>
-Operate FileBrowser via REST API to authenticate, list, upload, download, share, delete, and organize scoped files, with optional user-management operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate FileBrowser via REST API: authenticate, list, upload, download, share, and manage resources or users within a configured scope, including workflows for scanning and organizing order files.
 
-## Publisher: <br>
-[kami1983](https://clawhub.ai/user/kami1983) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kami1983](https://clawhub.ai/user/kami1983)
 
-## Use Case: <br>
-Developers and operators use this skill to automate FileBrowser REST API workflows, including scoped file listing, upload, download, sharing, deletion, purchase-order discovery, and date-based file organization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad authority over FileBrowser files, including upload, download, sharing, deletion, and organization operations. <br>
-Mitigation: Use a least-privilege FileBrowser account, configure the narrowest practical scope, and review exact file lists before organization or deletion. <br>
-Risk: Admin-capable API operations can manage users when used with an administrator account. <br>
-Mitigation: Avoid admin credentials unless account management is intentional, and reserve administrator tokens for narrowly reviewed tasks. <br>
-Risk: Share links may expose files without requiring login. <br>
-Mitigation: Prefer short-lived share links and revoke links after use. <br>
+## Use Case:
 
+Developers and operators use this skill to automate FileBrowser REST API tasks, manage scoped file operations, create share links, and organize order-related files while preserving clear user approval points for sensitive actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kami1983/kam-filebrowser-operator) <br>
-- [Publisher profile](https://clawhub.ai/user/kami1983) <br>
-- [FileBrowser API reference](artifact/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown, JSON] <br>
-**Output Format:** [Markdown with HTTP examples, curl commands, JSON configuration, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce file lists, numbered download selections, share links, organization summaries, and reasons for files that could not be organized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bulk organization workflows can move or delete files while recreating them in a target path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preview the planned changes and require explicit approval before organizing, overwriting, sharing, or deleting files.
+
+Risk: Examples or API calls that omit the configured scope can operate outside the intended FileBrowser directory.
+
+Mitigation: Use a FileBrowser account restricted server-side to the intended directory, set a narrow scope, and apply that scope to every file operation.
+
+Risk: Credentials, tokens, or local configuration files could be exposed through scripts, logs, uploads, or shared links.
+
+Mitigation: Keep credentials in local configuration or environment variables, do not upload credential files, and avoid logging passwords or tokens.
+
+Risk: Admin-level FileBrowser accounts expand the impact of user-management or file-operation mistakes.
+
+Mitigation: Avoid admin credentials unless user-management tasks are required, and prefer least-privilege accounts for routine file operations.
+
+## Reference(s):
+
+- [FileBrowser API reference](artifact/reference.md)
+- [ClawHub skill page](https://clawhub.ai/kami1983/skills/kam-filebrowser-operator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with HTTP examples, JSON snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file-operation plans, numbered file selections, download or share-link guidance, and summaries of files that could not be organized.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

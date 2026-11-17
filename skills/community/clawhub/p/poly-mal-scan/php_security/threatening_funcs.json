@@ -1,0 +1,290 @@
+[
+  {
+    "name": "eval",
+    "level": 4
+  },
+  {
+    "name": "assert",
+    "level": 4
+  },
+  {
+    "name": "system",
+    "level": 4
+  },
+  {
+    "name": "passthru",
+    "level": 4
+  },
+  {
+    "name": "shell_exec",
+    "level": 4
+  },
+  {
+    "name": "exec",
+    "level": 4
+  },
+  {
+    "name": "popen",
+    "level": 4
+  },
+  {
+    "name": "proc_open",
+    "level": 4
+  },
+  {
+    "name": "pcntl_exec",
+    "level": 4
+  },
+  {
+    "name": "preg_replace",
+    "level": 2
+  },
+  {
+    "name": "create_function",
+    "level": 4
+  },
+  {
+    "name": "call_user_func",
+    "level": 3
+  },
+  {
+    "name": "call_user_func_array",
+    "level": 3
+  },
+  {
+    "name": "array_map",
+    "level": 3
+  },
+  {
+    "name": "usort",
+    "level": 3
+  },
+  {
+    "name": "uksort",
+    "level": 3
+  },
+  {
+    "name": "array_filter",
+    "level": 2
+  },
+  {
+    "name": "preg_replace_callback",
+    "level": 2
+  },
+  {
+    "name": "ReflectionFunction",
+    "level": 3
+  },
+  {
+    "name": "mb_ereg_replace",
+    "level": 2
+  },
+  {
+    "name": "file_put_contents",
+    "level": 3
+  },
+  {
+    "name": "fwrite",
+    "level": 2
+  },
+  {
+    "name": "fputs",
+    "level": 2
+  },
+  {
+    "name": "fopen",
+    "level": 1
+  },
+  {
+    "name": "fread",
+    "level": 1
+  },
+  {
+    "name": "file_get_contents",
+    "level": 1
+  },
+  {
+    "name": "copy",
+    "level": 1
+  },
+  {
+    "name": "rename",
+    "level": 1
+  },
+  {
+    "name": "move_uploaded_file",
+    "level": 2
+  },
+  {
+    "name": "unlink",
+    "level": 1
+  },
+  {
+    "name": "rmdir",
+    "level": 1
+  },
+  {
+    "name": "chmod",
+    "level": 1
+  },
+  {
+    "name": "touch",
+    "level": 1
+  },
+  {
+    "name": "tempnam",
+    "level": 1
+  },
+  {
+    "name": "tmpfile",
+    "level": 1
+  },
+  {
+    "name": "readfile",
+    "level": 1
+  },
+  {
+    "name": "show_source",
+    "level": 1
+  },
+  {
+    "name": "highlight_file",
+    "level": 1
+  },
+  {
+    "name": "phpinfo",
+    "level": 1
+  },
+  {
+    "name": "dl",
+    "level": 2
+  },
+  {
+    "name": "get_defined_vars",
+    "level": 1
+  },
+  {
+    "name": "include",
+    "level": 2
+  },
+  {
+    "name": "include_once",
+    "level": 2
+  },
+  {
+    "name": "require",
+    "level": 2
+  },
+  {
+    "name": "require_once",
+    "level": 2
+  },
+  {
+    "name": "unserialize",
+    "level": 3
+  },
+  {
+    "name": "json_decode",
+    "level": 1
+  },
+  {
+    "name": "base64_decode",
+    "level": 1
+  },
+  {
+    "name": "gzuncompress",
+    "level": 1
+  },
+  {
+    "name": "gzinflate",
+    "level": 1
+  },
+  {
+    "name": "pack",
+    "level": 1
+  },
+  {
+    "name": "unpack",
+    "level": 1
+  },
+  {
+    "name": "hex2bin",
+    "level": 1
+  },
+  {
+    "name": "chr",
+    "level": 1
+  },
+  {
+    "name": "ord",
+    "level": 1
+  },
+  {
+    "name": "register_shutdown_function",
+    "level": 3
+  },
+  {
+    "name": "set_error_handler",
+    "level": 2
+  },
+  {
+    "name": "set_exception_handler",
+    "level": 2
+  },
+  {
+    "name": "mail",
+    "level": 2
+  },
+  {
+    "name": "curl_exec",
+    "level": 1
+  },
+  {
+    "name": "file",
+    "level": 1
+  },
+  {
+    "name": "readgzfile",
+    "level": 1
+  },
+  {
+    "name": "apache_setenv",
+    "level": 1
+  },
+  {
+    "name": "putenv",
+    "level": 2
+  },
+  {
+    "name": "set_time_limit",
+    "level": 1
+  },
+  {
+    "name": "ignore_user_abort",
+    "level": 1
+  },
+  {
+    "name": "sleep",
+    "level": 1
+  },
+  {
+    "name": "usleep",
+    "level": 1
+  },
+  {
+    "name": "extract",
+    "level": 1
+  },
+  {
+    "name": "parse_str",
+    "level": 1
+  },
+  {
+    "name": "compact",
+    "level": 1
+  },
+  {
+    "name": "getenv",
+    "level": 1
+  }
+]

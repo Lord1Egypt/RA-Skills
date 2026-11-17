@@ -1,46 +1,61 @@
-## Description: <br>
-Generate US pre-market outlooks and post-market recaps in a fixed 3-section format using finance news plus structured market-data pages for index snapshots and top gainers/losers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate US pre-market outlooks and post-market recaps in a fixed 3-section format using finance news plus structured market-data pages for index snapshots and top gainers/losers.
 
-## Publisher: <br>
-[kevinksaji](https://clawhub.ai/user/kevinksaji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevinksaji](https://clawhub.ai/user/kevinksaji)
 
-## Use Case: <br>
-External users and employees use this skill to generate concise US market briefings for pre-market outlooks, post-market recaps, or optional scheduled daily delivery. It emphasizes repeatable formatting, source-backed catalysts, and structured market-data sources for index and movers data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled automation may run without the user's intended review or timing if cron jobs are enabled casually. <br>
-Mitigation: Review any OpenClaw cron jobs before enabling automation and require explicit approval when schedule tooling or scope is unclear. <br>
-Risk: Person-specific early-close wording in the artifact may not fit broad sharing. <br>
-Mitigation: Replace person-specific early-close wording with a normal user-approved override before broad distribution. <br>
-Risk: Market data or mover pages can be delayed, stale, rate-limited, or incomplete. <br>
-Mitigation: Prefer structured movers pages for ranking and percentages, label partial or stale data clearly, and use trusted finance sources for catalyst explanations. <br>
+## Use Case:
 
+Market-focused users use this skill to generate one-shot or scheduled US pre-market outlooks and post-market recaps with structured index snapshots, top mover rankings, and concise inline source links.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kevinksaji/us-market-briefing) <br>
-- [Templates](references/templates.md) <br>
-- [US Market Holidays 2026](references/us-market-holidays-2026.md) <br>
-- [Yahoo Finance Gainers](https://finance.yahoo.com/markets/stocks/gainers/) <br>
-- [Yahoo Finance Losers](https://finance.yahoo.com/markets/stocks/losers/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown briefings with inline source links, plus optional shell commands and configuration guidance for scheduled automation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces fixed three-section pre-market or post-market briefings; scheduled automation can skip full US market-closure days using the bundled 2026 holiday check.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: frontmatter and server release evidence) <br>
+Risk: Finance sources and structured market-data pages can be stale, delayed, incomplete, or inconsistent with narrative articles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer structured quote and movers pages for rankings and percentages, use trusted finance/news sources for catalysts, and label partial or stale data clearly.
+
+Risk: Optional scheduled delivery can create or update OpenClaw cron jobs.
+
+Mitigation: Review cron jobs before enabling automation, avoid system cron or external schedulers, and require explicit approval when schedule tooling or scope is unclear.
+
+Risk: The 2026 holiday helper contains a fixed calendar and a user-specific early-close exception.
+
+Mitigation: Confirm holiday behavior before relying on automation and replace user-specific exceptions with explicit user-controlled settings when needed.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/kevinksaji/skills/us-market-briefing)
+- [Briefing templates](references/templates.md)
+- [US market holidays 2026](references/us-market-holidays-2026.md)
+- [Yahoo Finance stock gainers](https://finance.yahoo.com/markets/stocks/gainers/)
+- [Yahoo Finance stock losers](https://finance.yahoo.com/markets/stocks/losers/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown briefings with three fixed sections, inline source links, and optional scheduling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses current web search/fetch for finance sources; optional automation can use OpenClaw cron scheduling and a workspace-local request budget tracker.]
+
+## Skill Version(s):
+
+1.1.5 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

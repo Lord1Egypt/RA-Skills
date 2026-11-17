@@ -1,44 +1,59 @@
-## Description: <br>
-基于官方违禁词库，覆盖公众号、小红书、抖音三大平台审核标准，支持文案、文件、图片、链接多形式输入，快速输出违禁词标记与上下文替换建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于官方违禁词库，覆盖公众号、小红书、抖音三大平台审核标准，支持文案、文件、图片、链接多形式输入，快速输出违禁词标记与上下文替换建议。当接口返回积分不足（code=3210）时，自动唤起支付宝完成充值后继续查询。
 
-## Publisher: <br>
-[if530770](https://clawhub.ai/user/if530770) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[if530770](https://clawhub.ai/user/if530770)
 
-## Use Case: <br>
-External creators, brand marketers, MCN agencies, and content review teams use this skill to check copy, text files, image text, and webpage text for platform-specific prohibited words before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checked copy, extracted file text, fetched webpage text, and the REDFOX_API_KEY may be sent to RedFox or a configured HTTPS gateway. <br>
-Mitigation: Use an ephemeral or revocable API key, avoid submitting secrets or regulated documents, and route requests through an approved HTTPS gateway when required. <br>
-Risk: Persistent shell-profile credential storage can expose the API key to future sessions or other tools on the same account. <br>
-Mitigation: Prefer a managed secret store or session-scoped environment variable, and rotate the key if it is exposed in prompts, logs, or files. <br>
-Risk: URL checking performs outbound network access and may retrieve private or sensitive pages if such links are provided. <br>
-Mitigation: Submit only public or approved URLs, and review link targets before allowing the skill to fetch webpage text. <br>
+## Use Case:
 
+内容创作者、品牌运营人员与内容审核团队可在发布前检查公众号、小红书或抖音文案，查看命中词及结合语境的替换建议。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/if530770/prohibited-word-query) <br>
-- [RedFox service](https://redfox.hk) <br>
-- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with prohibited-word highlights, replacement tables, optimized copy, and occasional shell commands for API-key configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call a remote prohibited-word service and may extract text from files, images, or provided URLs before producing the final report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: ClawHub server release evidence) <br>
+Risk: Automatic recharge can turn untrusted payment details into local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require approval before installing payment helpers and before each recharge; verify payment details and pass payment arguments safely as data.
+
+Risk: API-key setup can expose credentials.
+
+Mitigation: Keep the API key scoped to this integration, never print it, and rotate it if exposed.
+
+Risk: Submitted content may include confidential material sent to RedFox.
+
+Mitigation: Submit confidential material only when authorized to share it with RedFox.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/if530770/skills/prohibited-word-query)
+- [RedFox API key setup](https://redfox.hk/settings/api-keys?source=clawhub)
+- [Alipay recharge workflow](references/alipay-recharge.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-platform check with highlighted terms, contextual replacement suggestions, and an optimized version when needed.]
+
+## Skill Version(s):
+
+1.0.10 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-China Recipe helps users find Chinese recipes, cooking instructions, ingredient lists, meal planning ideas, regional cuisines, dietary preferences, and step-by-step cooking guides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+China Recipe helps agents generate Chinese recipe suggestions, ingredient lists, cooking steps, meal ideas, and cautious nutrition notes from user prompts.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External users and agent operators use this skill to generate Chinese recipe suggestions, ingredient lists, cooking steps, meal ideas, and nutrition-style summaries in Chinese or English. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated recipes, cooking times, and nutrition-style values may be incomplete or inaccurate. <br>
-Mitigation: Review recipes against trusted cooking and nutrition sources, especially for food safety, allergens, medical diets, and serving-size-sensitive decisions. <br>
-Risk: The security evidence summary does not match the recipe behavior described by the artifact. <br>
-Mitigation: Treat the clean scanner verdict and empty risk findings as authoritative for security status, and re-run security review if publication metadata is refreshed. <br>
+## Use Case:
 
+External users and agent operators use this skill to answer Chinese cooking requests, recommend dishes by cuisine or ingredient, and return structured recipe guidance. Health-sensitive nutrition, allergy, and dietary claims should be independently verified.
 
-## Reference(s): <br>
-- [China Recipe on ClawHub](https://clawhub.ai/tobewin/china-recipe) <br>
-- [ToBeWin Publisher Profile](https://clawhub.ai/user/tobewin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown recipe guidance with ingredient lists, cooking steps, tips, and nutrition-style summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May tailor recipes by dish, ingredient, cuisine, difficulty, serving count, dietary preference, and language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Nutrition, dietary, allergy, or other health-sensitive cooking advice may be inaccurate or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify health-sensitive guidance independently before relying on it for meal planning or dietary decisions.
+
+Risk: Generated recipe details may vary because the skill does not document a maintained recipe database.
+
+Mitigation: Cross-check critical ingredients, preparation steps, temperatures, and cooking times for safety and fit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/china-recipe)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown recipe guidance with ingredient lists, cooking steps, cooking tips, and nutrition notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated from the agent's cooking knowledge; no external recipe database or API is documented.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

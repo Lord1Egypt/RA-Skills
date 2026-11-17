@@ -1,39 +1,54 @@
-## Description: <br>
-大六壬排盘与断卦技能，支持月将加时、四课三传、天将神煞和断课分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+大六壬技能生成大六壬排盘、四课三传、天将神煞和断课分析，用于人事占问、失物、出行、婚姻和事业等场景。
 
-## Publisher: <br>
-[dglijin-oss](https://clawhub.ai/user/dglijin-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dglijin-oss](https://clawhub.ai/user/dglijin-oss)
 
-## Use Case: <br>
-External users and agent operators use this skill to generate Chinese Liu Ren divination charts and interpretive guidance for cultural or entertainment-style questions such as lost items, relationships, career, travel, and general fortune-telling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on divination output for serious medical, legal, financial, safety, relationship, career, or travel decisions. <br>
-Mitigation: Use the output only for cultural or entertainment-style interpretation and rely on qualified professional advice for consequential or urgent matters. <br>
-Risk: The release may have runtime or packaging problems because the documented Python script is missing and the included JavaScript does not pass syntax checking. <br>
-Mitigation: Validate installation and execution in a local test environment before depending on the skill in an agent workflow. <br>
+## Use Case:
 
+External users interested in Chinese metaphysics use this skill to produce Da Liu Ren divination charts and entertainment-oriented readings for personal questions such as lost items, travel, relationships, career, exams, or general divination.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style Chinese divination chart and analysis, with optional JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include dates, Liu Ren chart sections, auspicious or inauspicious readings, timing estimates, directions, and recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Users may treat divination output as medical, legal, financial, or other professional advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as entertainment or metaphysics content only and direct users to qualified professionals for consequential decisions.
+
+Risk: Advertised commands and capabilities may not match the shipped files, so documented CLI examples may fail.
+
+Mitigation: Review and test the package in a sandbox before installing or relying on generated commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dglijin-oss/skills/liuren-skill)
+- [Publisher Profile](https://clawhub.ai/user/dglijin-oss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text divination readings with optional JSON structures and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include chart sections, interpretations, timing, directions, and recommendations.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

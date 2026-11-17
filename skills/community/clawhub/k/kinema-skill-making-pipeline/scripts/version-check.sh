@@ -1,5 +1,5 @@
 #!/bin/bash
-# scripts/version-check.sh — 校验 SKILL.md / plugin.json / git tag 版本一致性
+# scripts/version-check.sh — 校验 SKILL.md / Claude manifest / Codex manifest / git tag 版本一致性
 # Usage: ./scripts/version-check.sh [expected-version] [project-dir]
 #   expected-version: 可选，预期的版本号（不含 v 前缀）
 #   project-dir: 可选，项目目录（默认当前目录）
@@ -18,16 +18,25 @@ cd "$PROJECT_DIR"
 # 1. SKILL.md frontmatter version
 SKILL_VER=$(grep '^version:' SKILL.md | head -1 | sed 's/version: *//' | tr -d '[:space:]')
 
-# 2. .claude-plugin/plugin.json version（降级策略：node → python3 → 手动解析）
-#    注意：Windows 上 python3 可能返回非标准 exit code（如 49），需用 || true 防止 set -e 中断
-PLUGIN_VER=""
-if command -v node &>/dev/null; then
-  PLUGIN_VER=$(node -e "console.log(require('./.claude-plugin/plugin.json').version)" 2>/dev/null || true)
-elif command -v python3 &>/dev/null; then
-  PLUGIN_VER=$(python3 -c "import json; print(json.load(open('.claude-plugin/plugin.json'))['version'])" 2>/dev/null || true)
-elif command -v grep &>/dev/null; then
-  PLUGIN_VER=$(grep '"version"' .claude-plugin/plugin.json | head -1 | sed 's/.*"version": *"\([^"]*\)".*/\1/')
-fi
+# 2. Plugin manifest versions（降级策略：python3 → python → node → 手动解析）
+read_json_version() {
+  local path="$1"
+  if [ ! -f "$path" ]; then
+    return 0
+  fi
+  if command -v python3 &>/dev/null; then
+    python3 -c "import json; print(json.load(open('$path', encoding='utf-8-sig'))['version'])" 2>/dev/null || true
+  elif command -v python &>/dev/null; then
+    python -c "import json; print(json.load(open('$path', encoding='utf-8-sig'))['version'])" 2>/dev/null || true
+  elif command -v node &>/dev/null; then
+    node -e "console.log(require('./$path').version)" 2>/dev/null || true
+  else
+    grep '"version"' "$path" | head -1 | sed 's/.*"version": *"\([^"]*\)".*/\1/'
+  fi
+}
+
+CLAUDE_PLUGIN_VER=$(read_json_version .claude-plugin/plugin.json)
+CODEX_PLUGIN_VER=$(read_json_version .codex-plugin/plugin.json)
 
 # 3. 最新 git tag 版本号（去掉 v 前缀）
 TAG_VER=""
@@ -64,9 +73,10 @@ check_match() {
 
 echo "=== Version Check ==="
 echo ""
-check_match "SKILL.md"    "$SKILL_VER"  "$BASE_VER"
-check_match "plugin.json" "$PLUGIN_VER" "$BASE_VER"
-check_match "Latest tag"  "$TAG_VER"    "$BASE_VER"
+check_match "SKILL.md"              "$SKILL_VER"          "$BASE_VER"
+check_match "Claude plugin.json"    "$CLAUDE_PLUGIN_VER"  "$BASE_VER"
+check_match "Codex plugin.json"     "$CODEX_PLUGIN_VER"   "$BASE_VER"
+check_match "Latest tag"            "$TAG_VER"            "$BASE_VER"
 echo ""
 
 if [ "$ALL_MATCH" = true ]; then

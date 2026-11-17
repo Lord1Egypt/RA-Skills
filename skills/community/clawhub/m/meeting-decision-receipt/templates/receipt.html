@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}｜{{ product_title }}</title>
+  <style>
+{{ css }}
+  </style>
+</head>
+<body class="{{ body_class }}">
+  <main class="receipt" aria-labelledby="receipt-title">
+    <header class="receipt-header">
+      <div class="eyebrow">MEETING COMMITMENT AUDIT</div>
+      <div class="meeting-meta">
+        <div class="product-lockup">
+          <h1 id="receipt-title">{{ product_title }}</h1>
+          <p class="product-hook">{{ product_hook }}</p>
+        </div>
+        <div class="receipt-number">MCA / 01</div>
+      </div>
+      <p class="meeting-title">{{ title }}</p>
+      <p class="meeting-date">{{ date }}</p>
+      <p class="intro">{{ intro }}</p>
+      <p class="status-line">{{ status_line }}</p>
+    </header>
+
+    {{ bundle_actions }}
+
+    <section class="decision-grid" aria-label="决策">
+      <article class="panel panel-primary">
+        <h2><span>01</span> 已确认</h2>
+        {{ confirmed_decisions }}
+      </article>
+      <article class="panel">
+        <h2><span>02</span> 暂定</h2>
+        {{ provisional_decisions }}
+      </article>
+      <article class="panel">
+        <h2><span>03</span> 条件决定</h2>
+        {{ conditional_decisions }}
+      </article>
+    </section>
+
+    <section class="panel responsibility">
+      <h2><span>04</span> {{ responsibility_title }}</h2>
+      <div class="responsibility-grid">
+        <div>
+          <h3>已明确</h3>
+          {{ owned_commitments }}
+        </div>
+        <div>
+          <h3>未确认指派</h3>
+          {{ unconfirmed_commitments }}
+        </div>
+        <div>
+          <h3>仅表达意向</h3>
+          {{ tentative_commitments }}
+        </div>
+        <div>
+          <h3>无负责人</h3>
+          {{ unowned_commitments }}
+        </div>
+      </div>
+    </section>
+
+    <section class="panel open-loops">
+      <h2><span>05</span> {{ open_title }}</h2>
+      {{ open_loops }}
+    </section>
+
+    <section class="confirmation" aria-label="会后确认消息">
+      <div class="confirmation-label">复制发群 · 发送前核对</div>
+      <h2>会后确认消息</h2>
+      <div class="confirmation-copy">{{ confirmation_message }}</div>
+    </section>
+
+    <details class="evidence">
+      <summary>查看判断依据</summary>
+      <div class="evidence-body">
+        {{ evidence }}
+      </div>
+    </details>
+
+    <footer>
+      <span>{{ footer }}</span>
+      <span>发送前核对人名和时间</span>
+    </footer>
+  </main>
+</body>
+</html>

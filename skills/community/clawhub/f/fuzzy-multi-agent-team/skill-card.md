@@ -1,43 +1,59 @@
-## Description: <br>
-Fuzzy Multi Agent Team helps an agent spawn and coordinate multiple AI sub-agents to work in parallel on a complex task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spawn and orchestrate multiple coordinated AI sub-agents to work in parallel on complex tasks such as research, content generation, code review, data processing, and decision councils.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-Developers and agent operators use this skill to decompose complex work into coordinated sub-agent workflows for research, content generation, code review, data processing, and decision councils, then collect and synthesize the results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide changes to agent configuration and persistent workspaces. <br>
-Mitigation: Review configuration changes before applying them and use a dedicated workspace with limited access. <br>
-Risk: Persistent or long-running agents can continue using context, permissions, and compute after the initial task. <br>
-Mitigation: Use one-shot mode by default, set timeouts, and enable persistent automation only when it is explicitly needed. <br>
-Risk: Broad Discord permissions can expose unnecessary collaboration surfaces when Discord integration is used. <br>
-Mitigation: Grant only the permissions required for the intended workflow. <br>
+## Use Case:
 
+Developers and agent operators use this skill to decompose large tasks, assign focused work to multiple sub-agents, collect results, and synthesize a single response.
 
-## Reference(s): <br>
-- [Multi-Agent Team Templates](references/team-templates.md) <br>
-- [ClawHub release page](https://clawhub.ai/fuzzyb33s/fuzzy-multi-agent-team) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline command examples and prompt templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces orchestration guidance, sub-agent prompts, session-management commands, and synthesis patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sub-agents can write shared workspace files or return outputs that are incorrect, stale, or inconsistent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review workspace writes and synthesized outputs before relying on them.
+
+Risk: Persistent sub-agent sessions can accumulate context and increase token cost.
+
+Mitigation: Prefer one-shot runs and use persistent sessions only when ongoing collaboration is needed.
+
+Risk: Spawning too many sub-agents at once can make the environment unresponsive.
+
+Mitigation: Batch work into small waves and use clear, focused prompts for each sub-agent.
+
+## Reference(s):
+
+- [Fuzzy Multi Agent Team on ClawHub](https://clawhub.ai/fuzzyb33s/skills/fuzzy-multi-agent-team)
+- [fuzzyb33s publisher profile](https://clawhub.ai/user/fuzzyb33s)
+- [Multi-Agent Team Templates](references/team-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and structured task instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sub-agent prompts, coordination plans, progress summaries, synthesized findings, and workspace file guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,14 @@
+{
+  "strategy": "ECI逆向(热度代理回测)",
+  "mean_hits": 1.23,
+  "random_mean_hits": 1.51,
+  "diff_mean": -0.28,
+  "t_stat": -3.092272236591153,
+  "p_value": 0.0019863059585407683,
+  "significant": true,
+  "bonferroni_threshold": 0.00625,
+  "bonferroni_significant": true,
+  "direction": "worse_than_random",
+  "conclusion": "ECI逆向无正向命中优势, 与理论收益≈0一致; 仅分奖层面有意义",
+  "note": "ECI逆向用历史开奖构造的玩家热度代理(生日号偏好+近期热号)回测, 无历史真实专家推荐; 真实回测需dlt_expert_history.json积累"
+}

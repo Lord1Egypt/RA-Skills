@@ -1,44 +1,54 @@
-## Description: <br>
-Fetches recent CNBC geopolitical news articles, extracts factual market and event details, and posts article briefings to Discord or a Markdown output file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches recent CNBC geopolitical news articles, extracts factual and market-impact details, and formats the results for Discord posting or file output.
 
-## Publisher: <br>
-[dimaschand29](https://clawhub.ai/user/dimaschand29) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dimaschand29](https://clawhub.ai/user/dimaschand29)
 
-## Use Case: <br>
-Developers and analysts use this skill to collect recent CNBC geopolitics articles, extract market-impact and hard-fact snippets, avoid reposting previously sent URLs, and deliver the briefings to Discord or Markdown for monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes a real-looking Discord webhook and directs agents to use it. <br>
-Mitigation: Revoke and remove the bundled webhook, provide a user-controlled secret outside the skill files, and confirm the Discord channel before each run. <br>
-Risk: Running the skill sends CNBC-derived article content and extracted facts to Discord. <br>
-Mitigation: Use an isolated Python environment and treat each execution as publishing content to the selected Discord channel. <br>
-Risk: Scraping and keyword extraction can miss, duplicate, or misclassify article facts and market impact. <br>
-Mitigation: Review generated briefings before relying on them for trading, operational, or decision-support workflows. <br>
+## Use Case:
 
+Agents use this skill to collect recent CNBC geopolitics articles, extract market-relevant facts, and deliver concise markdown briefings. It is aimed at users who monitor geopolitical events, energy markets, and prediction-market-relevant developments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dimaschand29/cnbc-geopolitics-fetcher) <br>
-- [CNBC World](https://www.cnbc.com/world/) <br>
-- [CNBC Finance](https://www.cnbc.com/finance/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [Discord message text and Markdown briefing with article titles, URLs, market impact, and hard facts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Posts each article separately, splits long Discord messages near the 2000-character platform limit, and can write an output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The artifact includes a real-looking Discord webhook credential and examples that route posts through it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the bundled webhook; revoke or replace it and supply any webhook through a local secret or private configuration mechanism.
+
+Risk: Invoking the skill can send scraped CNBC article content and extracted facts to Discord.
+
+Mitigation: Run the skill in an isolated Python environment, review the target webhook before execution, and use file output when external posting is not intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dimaschand29/skills/cnbc-geopolitics-fetcher)
+- [CNBC article URL history](references/sent_urls.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown briefings and Discord messages with article URLs, market-impact text, and hard-fact bullets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write a briefing file and splits Discord posts to fit Discord message-size limits.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

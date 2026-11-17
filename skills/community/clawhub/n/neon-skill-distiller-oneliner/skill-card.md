@@ -1,41 +1,50 @@
-## Description: <br>
-Skill compression reminder in 100 tokens: trigger, action, and result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill compression reminder in 100 tokens - just trigger, action, result.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Developers and skill authors use this skill to compress skill markdown into a minimal reminder that preserves the trigger, action, and result needed by an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Aggressive compression can omit useful instructions or weaken the original skill behavior. <br>
-Mitigation: Review the compressed output against the original skill before replacing it, especially protected patterns and expected behavior. <br>
-Risk: LLM-estimated functionality scores can be approximate or misleading. <br>
-Mitigation: Treat scores as review aids rather than validation results and test the compressed skill on representative tasks. <br>
+## Use Case:
 
+Developers and skill authors use this skill when they want an agent to compress, distill, or reduce a skill's context usage while preserving core trigger, action, and result guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leegitw/neon-skill-distiller-oneliner) <br>
-- [Project homepage](https://github.com/live-neon/skills/tree/main/skill-distiller/oneliner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with a compressed skill, approximate functionality score, token reduction stats, and kept or removed section list.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Functionality scores are LLM-estimated and should be reviewed before replacing an original skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata and artifact frontmatter) <br>
+Risk: Compressed skill output may omit lower-value sections based on LLM judgment and could reduce important context if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the compressed output before replacing any original skill content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leegitw/skills/neon-skill-distiller-oneliner)
+- [Skill source homepage](https://github.com/live-neon/skills/tree/main/skill-distiller/oneliner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with concise compression notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes LLM-estimated functionality scores, token reduction stats, and lists of removed and kept sections.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

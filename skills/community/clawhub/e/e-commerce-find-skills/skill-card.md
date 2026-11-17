@@ -1,40 +1,49 @@
-## Description: <br>
-Searches the LinkFox Skills marketplace for specialized e-commerce skills and guides local installation or updates for platforms such as Amazon, Shopee, TikTok Shop, AliExpress, Lazada, eBay, Walmart, Temu, and Shopify. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search the LinkFox Skills marketplace for e-commerce skills and install selected skills into a local agent workspace.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to find e-commerce-related agent skills by marketplace, task area, or keyword, then install or update the selected skills locally through the LinkFox CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer broad e-commerce requests into installing or updating third-party skills that persist locally. <br>
-Mitigation: Require the agent to show the exact skill slug, source, version, and destination directory before install or update, and avoid bulk updates unless the changes can be inspected and undone. <br>
-Risk: Use depends on trust in the LinkFox marketplace and the linkfoxskill CLI. <br>
-Mitigation: Install only when the marketplace source and CLI behavior are trusted for the target workspace. <br>
+## Use Case:
 
+External users and developers use this skill to find e-commerce-focused agent skills for marketplaces such as Amazon, Shopee, TikTok Shop, AliExpress, Lazada, eBay, Walmart, Temu, and Shopify. It guides search, result review, installation, and update workflows for those skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linkfox-ai/e-commerce-find-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and summarized search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include skill slugs, versions, categories, download counts, and destination directory guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can lead an agent to install or bulk-update skills in a local agent workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target skill, publisher, version, destination workspace, and skill contents before install or update; avoid bulk updates unless all installed skills are trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linkfox-ai/skills/e-commerce-find-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results may include skill names, versions, categories, download counts, and install slugs.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

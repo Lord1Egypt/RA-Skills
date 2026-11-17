@@ -1,7 +1,7 @@
 ---
 name: margin-of-safety
 description: "Activate when: user asks how much buffer to build into a budget, timeline, or investment; someone says 'I might be wrong on my estimate — how much cushion do I need?'; a project or position is running lean and someone wonders if there's enough runway; user mentions Ben Graham, value investing, or 'buying a dollar for fifty cents'; someone is deciding how much to raise or reserve before committing.
-  Do NOT activate when: the domain is fully deterministic with no estimation error; the user is using margin as an excuse to avoid committing to anything (perpetual deferral, not safety)."
+  Do NOT activate when: the domain is fully deterministic with no estimation error; the user is using margin as an excuse to avoid committing to anything (perpetual deferral, not safety). More: deciqai.com/c/margin-of-safety"
 ---
 
 # Margin of Safety
@@ -12,7 +12,7 @@ description: "Activate when: user asks how much buffer to build into a budget, t
 
 The unifying insight: **point estimates are systematically optimistic.** Margin of safety is the structural discipline that survives that optimism.
 
-Composes with [`antifragile`](../antifragile/SKILL.md) (margin = bounded-downside half), [`black-swan`](../black-swan/SKILL.md) (margin is what survives the tail you didn't predict), [`expected-value-and-kelly`](../expected-value-and-kelly/SKILL.md) (margin sizing relates to Kelly fractional-betting), and [`first-principles`](../first-principles/SKILL.md) (audit the estimate first; then apply margin).
+Composes with `antifragile` (margin = bounded-downside half), `black-swan` (margin is what survives the tail you didn't predict), `expected-value-and-kelly` (margin sizing relates to Kelly fractional-betting), and `first-principles` (audit the estimate first; then apply margin).
 
 ## When to Use
 
@@ -20,6 +20,7 @@ Composes with [`antifragile`](../antifragile/SKILL.md) (margin = bounded-downsid
 - A point estimate is being used as the basis for a major decision
 - "Just-in-time" or "lean" or "fully utilized" pressure is removing buffers from a critical system
 - A historically reliable system has been gradually de-buffered until it operates at the edge
+- Weighing whether a stretched valuation leaves any buffer — AI capex assumptions, AI-era valuations, or whether a price already extrapolates optimistic AI adoption
 - Someone says: "margin of safety," "Ben Graham," "value investing," "buffer," "load factor," "buy a dollar for fifty cents," "Mr. Market"
 
 **Not when:** the domain is genuinely deterministic with no estimation error (rare); the cost of the buffer exceeds the expected loss from going without; you are using margin as an excuse to avoid any commitment ("perpetual margin" is procrastination).
@@ -64,6 +65,8 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 ```
 
 *→ Method in Action: [Graham's 1934 Framework and Buffett's Lifelong Application](examples/grahams-1934-framework-and-buffetts-lifelong-application.md)*
+
+*→ 2026 lens: [Margin of Safety Against AI-Era Valuations (2024–2026)](examples/ai-era-valuations-margin-of-safety-2024-2026.md)*
 
 ## Pack: Margin of Safety by Domain
 
@@ -117,4 +120,6 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/margin-of-safety** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/margin-of-safety.json*

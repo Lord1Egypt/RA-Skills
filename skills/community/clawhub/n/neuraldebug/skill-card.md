@@ -1,48 +1,62 @@
-## Description: <br>
-NeuralDebug helps agents debug software in eight languages and inspect LLM or transformer behavior using debugger-backed sessions, interpretability techniques, and LoRA fine-tuning workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NeuralDebug helps agents debug software across eight languages and inspect or fine-tune transformer models using real debuggers, LLM interpretability commands, and LoRA workflows.
 
-## Publisher: <br>
-[dennysun2020](https://clawhub.ai/user/dennysun2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dennysun2020](https://clawhub.ai/user/dennysun2020)
 
-## Use Case: <br>
-Developers and engineers use this skill to diagnose crashes, inspect runtime state, analyze model reasoning, detect hallucination causes, and run targeted LoRA fine-tuning workflows from an agent-assisted debugging interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Debugger and attach workflows can inspect or modify sensitive running processes. <br>
-Mitigation: Use the skill only on programs you are authorized to inspect, avoid attach and write_memory on production processes, and review proposed debugger actions before execution. <br>
-Risk: The TCP debug server can expose powerful debugging controls if reachable by untrusted users. <br>
-Mitigation: Run the server locally and do not expose its port beyond the trusted host or session. <br>
-Risk: Custom LLM analysis and fine-tuning workflows may execute trusted code or write persistent model files. <br>
-Mitigation: Run exec_analysis only from trusted code, review or pin the DeepRhapsody repository commit before installation, and track fine-tuned model outputs that may auto-load later. <br>
+## Use Case:
 
+Developers and engineers use this skill to drive debugger sessions, inspect crashes or runtime state, analyze transformer internals, and run targeted LoRA fine-tuning workflows through agent-readable commands and JSON responses.
 
-## Reference(s): <br>
-- [Repository](https://github.com/DennySun2020/DeepRhapsody) <br>
-- [Documentation](https://github.com/DennySun2020/DeepRhapsody/wiki) <br>
-- [Issues](https://github.com/DennySun2020/DeepRhapsody/issues) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dennysun2020/neuraldebug) <br>
-- [LLM Debugging Reference](references/llm-debugging.md) <br>
-- [LLM Fine-Tuning Reference](references/llm-finetuning.md) <br>
-- [Software Debugging Reference](references/software-debugging.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, JSON] <br>
-**Output Format:** [Markdown with inline shell commands, configuration snippets, and JSON debugger responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and git; some workflows require local debugger tools, model dependencies, or trusted analysis code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks users to install mutable external code before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in an isolated environment after reviewing the cloned repository and dependency changes.
+
+Risk: The skill exposes TCP debug servers and powerful debugger operations.
+
+Mitigation: Bind services to trusted local interfaces, do not expose debug ports to untrusted networks, and require explicit approval before attaching to processes or writing memory.
+
+Risk: LLM analysis and fine-tuning commands can execute model code or create persisted model changes.
+
+Mitigation: Do not run analysis commands on untrusted inputs, and get explicit approval before fine-tuning or persisting model weights across restarts.
+
+## Reference(s):
+
+- [DeepRhapsody Repository](https://github.com/DennySun2020/DeepRhapsody)
+- [DeepRhapsody Documentation](https://github.com/DennySun2020/DeepRhapsody/wiki)
+- [DeepRhapsody Issues](https://github.com/DennySun2020/DeepRhapsody/issues)
+- [Software Debugging Reference](references/software-debugging.md)
+- [LLM Debugging Reference](references/llm-debugging.md)
+- [LLM Fine-Tuning Reference](references/llm-finetuning.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to start local TCP debug servers, attach to processes, inspect runtime state, execute LLM analysis commands, or run fine-tuning workflows.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

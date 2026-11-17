@@ -1,40 +1,62 @@
-## Description: <br>
-Post tweets to Twitter/X via the official API v2 using OAuth 1.0a, including single tweets, threads, replies, and quote tweets with character weight validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post tweets to Twitter/X via the official API v2 (OAuth 1.0a), including single tweets, threads, replies, and quote tweets with automatic character weight validation.
 
-## Publisher: <br>
-[sit-in](https://clawhub.ai/user/sit-in) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sit-in](https://clawhub.ai/user/sit-in)
 
-## Use Case: <br>
-Agents use this skill when a user asks to publish content to Twitter/X, including replies, quote tweets, or multi-post threads. It is suited for users who have configured Twitter/X OAuth credentials and want the agent to post through the official API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent can publish content from the configured Twitter/X account. <br>
-Mitigation: Use dedicated credentials, review final tweet text before posting, and test with TWITTER_DRY_RUN=1. <br>
-Risk: OAuth secrets could be exposed if stored in shared files or logs. <br>
-Mitigation: Keep Twitter/X tokens in environment variables or protected instance configuration and avoid hardcoding credentials in skill files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sit-in/twitter-post) <br>
-- [Twitter/X Developer Portal](https://developer.x.com) <br>
+## Use Case:
 
+External users and agents use this skill to publish Twitter/X posts through the official API, including threads, replies, and quote tweets. It is intended for workflows where tweet content is prepared elsewhere and then posted with user-provided OAuth credentials.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with bash commands; tweet script output is JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Twitter/X OAuth credentials in environment variables; supports dry-run validation before posting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Tweet text may become command execution if callers interpolate user-provided content into a shell command.
+
+Mitigation: Invoke the script through a non-shell argument API or structured stdin/JSON input, and avoid shell string interpolation for tweet content.
+
+Risk: The skill requires read/write Twitter/X OAuth credentials.
+
+Mitigation: Store credentials in environment configuration, never hardcode keys, and install only where posting permissions are acceptable.
+
+Risk: A configured HTTPS proxy can observe or influence network routing.
+
+Mitigation: Leave HTTPS_PROXY unset unless the proxy is controlled and trusted.
+
+Risk: The script can publish public posts to Twitter/X.
+
+Mitigation: Use TWITTER_DRY_RUN=1 first and require explicit confirmation before each live post.
+
+## Reference(s):
+
+- [Twitter/X Developer Portal](https://developer.x.com)
+- [ClawHub skill page](https://clawhub.ai/sit-in/skills/twitter-post)
+- [Publisher profile](https://clawhub.ai/user/sit-in)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Posts are sent to Twitter/X unless dry-run mode is enabled; successful command output includes tweet IDs, URLs, and rate-limit fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

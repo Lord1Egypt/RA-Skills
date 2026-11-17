@@ -1,3 +1,12 @@
+<!-- request-identity:start -->
+**请求身份**：使用已配置的 API Key，并保留本包的 X-Client，携带下列完整身份头；不得沿用其它包的版本或来源。
+```text
+X-Client: zlbx-bidding/2.5.0
+X-Skill-Package: trending-miner-huobiaowang/2.1.10
+X-Skill-Source: clawhub/liu-jiapeng
+```
+<!-- request-identity:end -->
+
 # 市场分析类工具 API 详情
 
 ## 目录
@@ -24,8 +33,8 @@
 | `provinces` | list[str] | 省份列表 |
 | `cities` | list[str] | 城市列表 |
 | `exclude_keywords` | list[str] | 排除关键词 |
-| `min_amount` | float | 最低金额（元） |
-| `max_amount` | float | 最高金额（元） |
+| `min_amount` | float | 最低金额（万元） |
+| `max_amount` | float | 最高金额（万元） |
 | `limit` | int | 返回数量，默认20，最大100 |
 | `sort_field` | str | 排序字段：`count`/`amount`/`pub_time`，默认 `count` |
 
@@ -58,7 +67,7 @@
 {
   "keywords": ["人工智能", "AI"],
   "provinces": ["北京"],
-  "min_amount": 1000000,
+  "min_amount": 100,
   "sort_field": "amount"
 }
 ```
@@ -80,8 +89,8 @@
 | `provinces` | list[str] | 省份列表 |
 | `cities` | list[str] | 城市列表 |
 | `exclude_keywords` | list[str] | 排除关键词 |
-| `min_amount` | float | 最低金额（元） |
-| `max_amount` | float | 最高金额（元） |
+| `min_amount` | float | 最低金额（万元） |
+| `max_amount` | float | 最高金额（万元） |
 | `limit` | int | 返回数量，默认20，最大100 |
 | `sort_field` | str | 排序字段：`count`/`amount`/`pub_time`，默认 `count` |
 
@@ -193,8 +202,8 @@
 | `filters.end_date` | str | 结束日期 |
 | `filters.provinces` | list[str] | 省份列表 |
 | `filters.cities` | list[str] | 城市列表 |
-| `filters.min_money` | float | 最低金额（元） |
-| `filters.max_money` | float | 最高金额（元） |
+| `filters.min_amount` | float | 最低金额（万元） |
+| `filters.max_amount` | float | 最高金额（万元） |
 | `group_by` | list[str] | **必填**，聚合维度 |
 | `metrics` | list[str] | 统计指标，默认 `["count", "sum_amount"]` |
 | `compare_with` | str | 对比类型：`yoy`=同比，`qoq`=环比 |
@@ -359,9 +368,29 @@
 
 | 工具 | 金额参数 | 单位 |
 |------|---------|------|
-| search_bids | `min_amount`, `max_amount` | 元 |
-| query_bids_advanced | `min_money`, `max_money` | 元 |
-| aggregate_bids_advanced | `filters.min_money`, `filters.max_money` | 元 |
-| get_top_brands / get_price_trends | `min_price`, `max_price` | 元 |
+| search_bids | `min_amount`, `max_amount` | **万元** |
+| query_bids_advanced | `min_amount`, `max_amount` | **万元** |
+| search_expiring_projects / search_proposed_projects | `min_amount`, `max_amount` | **万元** |
+| get_company_partners | `min_amount` | **万元** |
+| aggregate_bids_advanced | `filters.min_amount`, `filters.max_amount` | **万元** |
+| get_top_brands / get_price_trends | `min_price`, `max_price` | 元（产品单价，非项目金额） |
 
-响应中 `money` 单位为元，`money_wan` 单位为万元。
+响应侧的元口径字段各接口不同名：标讯搜索是 `money`（对应 `money_wan`）、聚合是
+`sum_amount` / `total_amount`（对应 `sum_amount_wan`）、Top 类是 `total_amount`
+（对应 `total_amount_wan`）、合作伙伴是 `cooperation_amount`（对应 `cooperation_amount_wan`）。
+
+拟建项目（`search_proposed_projects`）与其他工具一致：`money` 是元、`money_wan` 是万元，
+另有 `money_format` 可读串。（2026-09-12 之前这里写着「拟建的 money 本身就是万元」，
+那是错的，且当时 `min_amount` 筛选因此完全失效，见 ADR-0004。）
+
+<!-- package-identity:start -->
+**安装包身份与升级检查**：所有发往知了标讯 API 的请求（包括账户查询）必须额外携带以下两个请求头：
+```text
+X-Skill-Package: trending-miner-huobiaowang/2.1.10
+X-Skill-Source: clawhub/liu-jiapeng
+```
+这些值是当前安装包的固定身份，复用已有API Key时也要携带；不要用X-Client产品版本替代包版本，不要将Key的注册渠道当作安装来源。
+请求鉴权：使用已配置的 API Key，并保留本包的 X-Client。每个会话首次使用本Skill时，在已有凭证可用后先调用免费账户接口 `GET https://mcp-server.zhiliaobiaoxun.com/api_v2/account/balance` 检查升级提醒；该查询不扣积分，不触发购买。
+**版本提醒转达**：响应出现 `skill_update_notice` 时，将其中 `message` 原样转达用户；兼容提示只说明检查版本，不能宣称已确认当前包过期。
+**展示后确认**：只有将提醒发送到用户可见对话之后，才使用同一凭证和请求头，按 `display_ack` 提交 POST 回执（MCP客户端可调用 `confirm_skill_update_display`）（`notice_id` 和 `displayed: true`）。只读取工具响应、在思考中提过、尚未转达时不得确认。不能在展示后调用接口则不确认，服务端继续保留待提醒状态。回执免费，不扣积分；失败不影响查询结果，不向用户展示技术回执。同一会话同一 `notice_id` 只展示一次。
+<!-- package-identity:end -->

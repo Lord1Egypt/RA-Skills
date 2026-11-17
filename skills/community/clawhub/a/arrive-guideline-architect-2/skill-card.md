@@ -1,43 +1,56 @@
-## Description: <br>
-Generate ARRIVE 2.0 compliant animal research protocols with structured experimental design, sample size calculations, and reporting checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate ARRIVE 2.0 compliant animal research protocols with structured experimental design, sample size calculations, and reporting checklists.
 
-## Publisher: <br>
-[theresayao0614-sudo](https://clawhub.ai/user/theresayao0614-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theresayao0614-sudo](https://clawhub.ai/user/theresayao0614-sudo)
 
-## Use Case: <br>
-Researchers, protocol authors, and review-support teams use this skill to draft and validate ARRIVE 2.0 animal research protocols, reporting checklists, sample-size justifications, randomization plans, and ethics-supporting documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scientific, statistical, or ethics content may be incomplete or inappropriate for a specific institution, journal, or study design. <br>
-Mitigation: Review generated protocols, sample-size rationale, ARRIVE checklist coverage, and ethics material manually before relying on them. <br>
-Risk: The skill can read and write local protocol files when the agent is allowed to use local tools. <br>
-Mitigation: Install and run it only in workspaces where local protocol file access is acceptable, and inspect files before using generated outputs. <br>
+## Use Case:
 
+External researchers, institutional reviewers, and developers use this skill to draft or validate ARRIVE 2.0 animal-study protocols, checklists, sample-size rationales, randomization plans, and ethics review materials.
 
-## Reference(s): <br>
-- [Arrive Guideline Architect on ClawHub](https://clawhub.ai/theresayao0614-sudo/arrive-guideline-architect-2) <br>
-- [ARRIVE 2.0 checklist evidence](artifact/arrive_checklist.md) <br>
-- [Example protocol evidence](artifact/example_protocol.md) <br>
-- [Example study brief evidence](artifact/example_study_brief.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown protocols and checklists, JSON study briefs, Python-oriented examples, shell commands, and human-facing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local protocol or checklist files when directed; generated scientific, statistical, and ethics content requires manual review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Generated animal-study protocols may omit study-specific, institution-specific, or species-specific requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated protocols with qualified ethics, veterinary, and statistical reviewers before using them for approvals, experiments, or publication.
+
+Risk: The skill writes generated protocol or checklist files locally, which can overwrite or mix outputs if reused in a shared directory.
+
+Mitigation: Run the skill in a dedicated output directory and set explicit output paths for generated files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/theresayao0614-sudo/skills/arrive-guideline-architect-2)
+- [ARRIVE 2.0 Essential 10 Checklist](artifact/arrive_checklist.md)
+- [Example ARRIVE Protocol](artifact/example_protocol.md)
+- [Example Study Brief](artifact/example_study_brief.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown protocols and checklists, plain-text validation reports, and JSON study-brief inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read local study briefs or protocol files and write generated protocol or checklist files to a user-selected output path.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

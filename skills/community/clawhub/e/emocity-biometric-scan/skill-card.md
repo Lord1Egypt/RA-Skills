@@ -1,43 +1,60 @@
-## Description: <br>
-Guides users to an external, browser-based face-analysis experience for camera, photo, or video-based mood, stress, composure, gaze, micro-expression, and heart-rate estimate feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through an opt-in browser face scan and summarizes stress, mood, and heart-rate estimates, with optional analysis of user-provided media.
 
-## Publisher: <br>
-[gv66co](https://clawhub.ai/user/gv66co) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gv66co](https://clawhub.ai/user/gv66co)
 
-## Use Case: <br>
-External users and developers can use this skill as a guide for trying EmoCity's web-based self-insight and entertainment workflow for facial mood, stress, composure, and related signal summaries. Results should be treated as suggestive feedback, not medical advice, psychological assessment, security screening, or proof of lying. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Camera, microphone, photo, or video-based facial analysis can involve sensitive biometric information and consent concerns. <br>
-Mitigation: Use only your own media or media with consent, review the external site's privacy practices, and avoid sharing unnecessary personal information. <br>
-Risk: Emotion, stress, composure, and heart-rate estimates may be inaccurate or misleading if treated as objective conclusions. <br>
-Mitigation: Frame results as entertainment or self-reflection and do not use them for medical, psychological, forensic, security, hiring, or lie-detection decisions. <br>
-Risk: The skill directs users to an external website outside the agent environment. <br>
-Mitigation: Open the external site only if comfortable with its camera, microphone, analytics, and media-handling practices. <br>
+## Use Case:
 
+Individuals use the skill to request a face scan, compare readings before and after an activity, or play a consent-based group challenge. They can optionally submit their own photo or video for analysis with their own API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gv66co/emocity-biometric-scan) <br>
-- [EmoCity web app](https://emo.city?utm_source=clawhub&utm_medium=skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with plain-language interpretation prompts and external web links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Directs users to an external site and produces summary-style guidance rather than raw biometric data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: Face and voice-derived readings are sensitive, and scanning others without their consent would compromise their privacy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scans only at the user's request and only for the user or other consenting participants.
+
+Risk: Stress and heart-rate estimates or game readings could be mistaken for medical findings or reliable judgments about a person.
+
+Mitigation: Describe results as casual, non-medical estimates; do not use them for diagnosis or definitive claims about someone.
+
+Risk: Optional photo or video analysis uploads sensitive media to EmoPulse through RapidAPI.
+
+Mitigation: Disclose the upload and wait for explicit agreement; use only user-provided, consented media and the user's own environment-provided API key.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/gv66co/skills/fitcheck-workout-readiness)
+- [emo.city browser scan](https://emo.city?utm_source=clawhub&utm_medium=skill)
+- [EmoPulse Face Analysis API](https://rapidapi.com/emocity/api/emopulse-face-analysis)
+- [emo.city privacy policy](https://emo.city/privacy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Plain-language scan summary and structured JSON readings or comparisons]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a before-and-after comparison or a challenge scoreboard; missing heart-rate readings are null.]
+
+## Skill Version(s):
+
+1.5.1 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

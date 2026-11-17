@@ -1,45 +1,55 @@
-## Description: <br>
-Book professional apartment cleaning appointments in San Francisco through the claw.cleaning REST API, including availability checks, customer detail collection, explicit confirmation, booking, and status lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book a professional apartment cleaning in San Francisco via the claw.cleaning REST API, including availability checks, customer detail collection, explicit booking confirmation, and appointment status lookup.
 
-## Publisher: <br>
-[cnnrobrn](https://clawhub.ai/user/cnnrobrn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnnrobrn](https://clawhub.ai/user/cnnrobrn)
 
-## Use Case: <br>
-External customers and their agents use this skill to find available apartment-cleaning slots, prepare a booking summary, and reserve a San Francisco cleaning appointment after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-San Francisco, California, United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Booking details include personal information such as name, email, and home address sent to claw.cleaning. <br>
-Mitigation: Use only when the customer is comfortable sharing those details and review the full booking preview before confirmation. <br>
-Risk: The booking endpoint reserves an appointment immediately after confirmation, even though payment is made later. <br>
-Mitigation: Confirm date, time, address, email, hours, and total cost with the customer before initiating the booking. <br>
-Risk: Availability can change before booking is posted. <br>
-Mitigation: Check current availability before initiating a booking and offer alternatives if the slot is no longer available. <br>
+## Use Case:
 
+External customers use this skill through an agent to check availability and book professional apartment cleaning appointments for San Francisco addresses. The agent collects scheduling details, address, name, and email, confirms the total and payment terms, and then initiates the booking through the claw.cleaning API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cnnrobrn/claw-cleaning) <br>
-- [Publisher profile](https://clawhub.ai/user/cnnrobrn) <br>
-- [claw.cleaning API base URL](https://claw.cleaning) <br>
-- [Full example booking flow](references/booking-flow.md) <br>
+### Deployment Geography for Use:
 
+San Francisco, California, United States
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown responses with JSON request bodies and optional curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an agent with HTTPS request capability; booking is reserved only after explicit customer confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: The status lookup can reveal a customer's home address and appointment schedule when queried with only an email address.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the status lookup only when the requester is clearly the customer, and treat customer contact details, home addresses, and schedules as sensitive.
+
+Risk: The booking endpoint immediately reserves a slot and sends a calendar invite.
+
+Mitigation: Check availability first, show a full booking preview with total cost and payment terms, and obtain explicit customer confirmation before initiating the booking.
+
+## Reference(s):
+
+- [Full Example Booking Flow](references/booking-flow.md)
+- [claw.cleaning API](https://claw.cleaning)
+- [Apartment Cleaning on ClawHub](https://clawhub.ai/cnnrobrn/skills/claw-cleaning)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, shell commands, markdown]
+
+**Output Format:** [Markdown guidance with HTTPS request examples and JSON request or response bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit customer confirmation before creating a booking; status lookup should be used only when the requester is clearly the customer.]
+
+## Skill Version(s):
+
+1.0.7 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

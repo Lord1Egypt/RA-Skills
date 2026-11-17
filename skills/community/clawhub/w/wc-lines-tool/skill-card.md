@@ -1,39 +1,50 @@
-## Description: <br>
-Count lines, blank lines, code lines, and comment lines in text files for code statistics, log file sizing, and document analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Count lines, blank lines, code lines, and comment lines in text files.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to count lines in text, code, logs, and documents for sizing, statistics, and simple CI checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled script may not support the documented file input, filtering, threshold, or JSON options. <br>
-Mitigation: Use it for standard-input line counting unless the implementation is updated and tested against the documented options. <br>
+## Use Case:
 
+Developers and engineers use this skill to count lines in text streams for code statistics, log sizing, and document analysis. The packaged script evidence supports a simple stdin total-line counter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/wc-lines-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, JSON] <br>
-**Output Format:** [Plain text line counts, with documented JSON output for structured results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script reads standard input and prints a numeric line count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The documentation advertises file input, JSON output, threshold checks, blank-line counts, code-line counts, and comment-line counts that are not implemented by the bundled script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the release as a simple stdin total-line counter unless updated; test any advertised option before using it in automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/wc-lines-tool)
+- [ClawHub publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text line count from the bundled script; markdown guidance may include command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script reads stdin and prints the number of input lines.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

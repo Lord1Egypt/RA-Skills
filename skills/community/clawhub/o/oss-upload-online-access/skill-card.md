@@ -1,41 +1,53 @@
-## Description: <br>
-Upload files to Aliyun OSS or Tencent COS and return public access URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload files to Aliyun OSS or Tencent COS and return public access URLs. Use when the user wants to upload files, access files online, upload to OSS, get remote file links, or any phrase implying "upload for online/remote access".
 
-## Publisher: <br>
-[liuhean2021](https://clawhub.ai/user/liuhean2021) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuhean2021](https://clawhub.ai/user/liuhean2021)
 
-## Use Case: <br>
-Developers and agents use this skill to upload local files or URL-fetched files to Aliyun OSS or Tencent COS and return a public HTTPS link for browser access or sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud storage credentials can be mishandled during setup or troubleshooting. <br>
-Mitigation: Use a dedicated least-privilege OSS or COS key scoped to one bucket and path, configure it through platform secrets or local setup, and avoid sharing credential values in chat or logs. <br>
-Risk: Uploaded local or fetched content may become publicly accessible on the internet. <br>
-Mitigation: Upload only content intended for public access, review files before upload, and treat every returned link as public. <br>
-Risk: URL uploads can fetch and publish content from sensitive internal or private locations. <br>
-Mitigation: Avoid URL uploads for internal or sensitive addresses unless network-scope protections are added and reviewed. <br>
+## Use Case:
 
+Developers and other users upload a local file or an HTTP/HTTPS file to Aliyun OSS or Tencent COS and receive a publicly accessible link. The skill checks the returned link before presenting it.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown with shell command examples and returned URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads one file under 100 MB, verifies object existence and public link accessibility, and returns a public HTTPS URL only after validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.0 (source: package.json and server release evidence) <br>
+Risk: The security scan raised concerns about upload visibility, credential handling, and activation scope. Inspection was incomplete, so the available evidence does not establish that the skill is safe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the full upload script before installation; run it only for an explicitly requested upload, and upload only files intended for public access.
+
+Risk: Cloud access credentials are required to upload files.
+
+Mitigation: Keep credential values private, use least-privilege credentials, and do not expose them in conversations, logs, or screenshots.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/liuhean2021/skills/oss-upload-online-access)
+
+## Skill Output:
+
+**Output Type(s):** [Text, URLs]
+
+**Output Format:** [Plain text containing a public HTTPS URL or an error message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The URL is returned only after an accessibility check.]
+
+## Skill Version(s):
+
+1.7.1 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

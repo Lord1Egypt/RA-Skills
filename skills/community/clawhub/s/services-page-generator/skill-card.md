@@ -1,38 +1,50 @@
-## Description: <br>
-Guides agents in creating, optimizing, or auditing services pages for service-based businesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides services page content and structure for service-based businesses, including service organization, conversion goals, essential content, and SEO metadata.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External site builders, marketers, and developers use this skill to plan services-page structure, service descriptions, calls to action, and SEO metadata for consulting, agency, freelance, or professional-services websites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use local project-context files that contain sensitive business details. <br>
-Mitigation: Review local project context before use and avoid carrying confidential details into public services-page copy. <br>
+## Use Case:
 
+Developers, site builders, and content teams use this skill to create, optimize, or audit services pages for consulting, agency, freelance, and other service-based businesses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/services-page-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with structured page recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local project-context files when present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and skill frontmatter) <br>
+Risk: Broad activation wording may route this skill into sitewide planning or adjacent service-page tasks where a more specific skill would fit better.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger wording during installation in large skill sets and prefer specialized page-planning skills for broader website-structure tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/services-page-generator)
+- [Publisher profile](https://clawhub.ai/user/kostja94)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor services-page recommendations using existing project-context files when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

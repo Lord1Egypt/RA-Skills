@@ -1,47 +1,63 @@
-## Description: <br>
-Install, configure, diagnose, and operate the openclaw-mem0 long-term memory plugin for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, configure, diagnose, and operate the openclaw-mem0 long-term memory plugin for OpenClaw agents.
 
-## Publisher: <br>
-[nyrosveil](https://clawhub.ai/user/nyrosveil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nyrosveil](https://clawhub.ai/user/nyrosveil)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to install, configure, and troubleshoot long-term memory for OpenClaw agents in Mem0 platform mode or local open-source mode. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The memory plugin can retain and reuse long-term user information across agent sessions. <br>
-Mitigation: Install it only when persistent memory is desired, avoid storing secrets, and periodically inspect or delete stored memories. <br>
-Risk: Automatic recall or capture may be broader than intended for sensitive workflows. <br>
-Mitigation: Disable autoCapture or autoRecall when opt-in memory behavior is required. <br>
-Risk: Platform mode requires a Mem0 API key. <br>
-Mitigation: Keep the API key in an environment variable rather than hard-coding it in configuration files. <br>
-Risk: Open-source mode depends on local Ollama, Qdrant, and a writable absolute history database path. <br>
-Mitigation: Verify local services are running and set historyDbPath to an absolute writable path before relying on memory storage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [openclaw-mem0 Troubleshooting](references/troubleshooting.md) <br>
-- [Mem0](https://mem0.ai) <br>
-- [Mem0 Platform](https://app.mem0.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/nyrosveil/mem0-config) <br>
-- [Publisher Profile](https://clawhub.ai/user/nyrosveil) <br>
+## Use Case:
 
+Developers and engineers use this skill to set up OpenClaw agent memory with Mem0, choose platform or self-hosted components, configure persistence, run CLI checks, and troubleshoot memory capture or recall issues.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup, diagnostics, and troubleshooting guidance for Mem0-backed OpenClaw memory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automatic long-term memory can store or recall information that may be inappropriate for a given environment.
+
+Mitigation: Review autoCapture, autoRecall, userId scoping, storage location, deletion through memory_forget, and whether platform or self-hosted mode is appropriate before enabling the plugin.
+
+Risk: Self-hosted mode depends on local Ollama and Qdrant services, so unavailable services can prevent memories from being stored or recalled.
+
+Mitigation: Verify Ollama and Qdrant health before use and follow the troubleshooting checks when memory capture or recall fails.
+
+Risk: Using an implicit latest Qdrant container image can weaken supply-chain control.
+
+Mitigation: Pin the Qdrant image version or digest when stricter deployment control is required.
+
+Risk: A relative history database path can cause a SQLITE_CANTOPEN crash loop when OpenClaw runs as a macOS LaunchAgent.
+
+Mitigation: Set historyDbPath to an absolute writable path, and for older plugin versions set both historyDbPath and historyStore explicitly.
+
+## Reference(s):
+
+- [openclaw-mem0 Troubleshooting](references/troubleshooting.md)
+- [Mem0](https://mem0.ai)
+- [Mem0 App](https://app.mem0.ai)
+- [ClawHub skill page](https://clawhub.ai/nyrosveil/skills/mem0-config)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON5 configuration snippets and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OpenClaw plugin installation, Mem0 mode selection, local service checks, CLI usage, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

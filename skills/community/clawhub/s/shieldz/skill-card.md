@@ -1,44 +1,63 @@
-## Description: <br>
-Accept crypto payments with zero setup. Turn a wallet address into a shareable payment link or a reusable tip jar. Non-custodial, no account, no API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Shieldz crypto payment links or tip jars for a user-confirmed wallet and checks payment status through Shieldz.
 
-## Publisher: <br>
-[denizyanbollu](https://clawhub.ai/user/denizyanbollu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[denizyanbollu](https://clawhub.ai/user/denizyanbollu)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent create non-custodial crypto payment links, reusable tip jars, and payment status summaries from a confirmed destination wallet address. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends wallet addresses, payment amounts, memos, optional email addresses, and management tokens to Shieldz network services. <br>
-Mitigation: Install only when that data sharing is acceptable, confirm each payment link or tip jar before creation, and avoid sending unnecessary optional fields. <br>
-Risk: An incorrect or unconfirmed destination wallet address could route funds to the wrong recipient. <br>
-Mitigation: Ask for a wallet address when missing and confirm the destination address with the user before creating a link. <br>
-Risk: Management URLs and tokens can expose payment status and settlement details. <br>
-Mitigation: Treat manage_url and manage_token values as private access links and share them only with authorized users. <br>
+## Use Case:
 
+External users and developers use this skill to create fixed-amount crypto payment links or reusable tip jars for a wallet they explicitly provide and confirm. Agents can also check received payment totals when the user supplies a Shieldz manage token.
 
-## Reference(s): <br>
-- [Shieldz Agents](https://shieldz.cash/agents) <br>
-- [Shieldz MCP Server](https://shieldz.cash/mcp) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash and JSON examples; API responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Shieldz payment URLs, embed snippets, management links, management tokens, and payment status summaries when the agent calls the service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The optional local MCP path downloads and runs a pinned npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the disclosed REST or remote MCP flow; use the local npx path only after review and in a restricted environment.
+
+Risk: External Shieldz calls transmit wallet, chain, asset, amount, memo or title, optional email, and status manage tokens to Shieldz.
+
+Mitigation: Confirm the user's intent and exact fields before every external call, disclose what will be sent, and omit email unless the user explicitly opts in.
+
+Risk: Manage URLs and manage tokens can expose payment totals and settings.
+
+Mitigation: Treat manage URLs and manage tokens as private credentials; do not publish, log, or share them, and only use tokens supplied by the user.
+
+Risk: Ambiguous payment requests could lead to unwanted payment link creation.
+
+Mitigation: Ask for clarification and require explicit confirmation of wallet, chain, asset, amount or suggested amounts, memo or title, and email choice before creation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/denizyanbollu/skills/shieldz)
+- [Shieldz REST API](https://shieldz.cash/api/v1/...)
+- [Shieldz MCP Endpoint](https://shieldz.cash/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Shieldz payment URLs, status summaries, and handling guidance for private manage URLs or manage tokens.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

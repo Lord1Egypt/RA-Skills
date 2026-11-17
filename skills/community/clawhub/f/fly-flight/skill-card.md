@@ -1,45 +1,60 @@
-## Description: <br>
-Query China domestic transport options through one skill for domestic flight or high-speed rail results, departure and arrival times, stations or airports, airline or train details, and public reference fares from open web sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fly Flight queries China domestic flight and high-speed rail options from public web sources, routes requests by transport mode, and returns a shared response shape.
 
-## Publisher: <br>
-[baizhexue](https://clawhub.ai/user/baizhexue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baizhexue](https://clawhub.ai/user/baizhexue)
 
-## Use Case: <br>
-External users and agent developers use this skill to look up China domestic flight and high-speed rail options, including times, route details, filters, and public reference fares. It is intended for travel planning support, not ticket purchase or checkout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security verdict is suspicious because the skill has unsafe parsing and weakened HTTPS checks. <br>
-Mitigation: Install only after reviewing these implementation risks; prefer a version that removes eval-based parsing and restores normal HTTPS certificate verification before routine travel searches. <br>
-Risk: Queries send itinerary details to Tongcheng and 12306 public services. <br>
-Mitigation: Use only when sharing departure, destination, date, and filter details with those public providers is acceptable. <br>
-Risk: Public web pages, fares, availability, and endpoint structures can change or differ from checkout results. <br>
-Mitigation: Treat returned prices and availability as planning references and verify final details with the provider before booking. <br>
+## Use Case:
 
+External users and developers use this skill to compare China domestic flight and high-speed rail options, including departure and arrival times, stations or airports, airlines or train details, and public reference fares.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baizhexue/fly-flight) <br>
-- [Provider public web notes](references/provider-public-web.md) <br>
-- [Tongcheng public flight pages](https://www.ly.com/flights/) <br>
-- [12306 public train endpoints](https://kyfw.12306.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries and JSON transport-result payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may include public reference prices, route timing, station or airport details, transport mode, provider, trip type, outbound options, and optional return options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The flight parser executes external flight-page data as local JavaScript.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only in an isolated environment, and replace eval-based parsing before treating the skill as safe for normal agent use.
+
+Risk: HTTPS protection is weakened for train queries.
+
+Mitigation: Do not rely on train results over untrusted networks until TLS verification is fixed.
+
+Risk: Optional HTTP mode can expose lookup behavior if bound beyond localhost.
+
+Mitigation: Keep HTTP mode on localhost and avoid exposing it to remote networks.
+
+## Reference(s):
+
+- [Fly Flight on ClawHub](https://clawhub.ai/baizhexue/skills/fly-flight)
+- [Provider Public Web Notes](references/provider-public-web.md)
+- [Tongcheng Public Flight Pages](https://www.ly.com/flights/)
+- [12306 Public Train Endpoints](https://kyfw.12306.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands]
+
+**Output Format:** [Markdown summaries backed by JSON transport results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns flight or train options with mode-specific details; public fares are reference prices and may differ from checkout prices.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-AI Crush Simulator is a youth-friendly skill that analyzes crush situations, decodes texts, generates reply options, and recommends thoughtful next moves with a playful, encouraging tone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A fun, safe, youth-friendly skill that helps users navigate crush situations by analyzing situations, decoding texts, generating reply options, and recommending thoughtful next moves.
 
-## Publisher: <br>
-[vajih](https://clawhub.ai/user/vajih) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vajih](https://clawhub.ai/user/vajih)
 
-## Use Case: <br>
-External users use this skill for lightweight, informal coaching about crush situations, text-message interpretation, reply drafting, and choosing respectful next steps. It is framed as entertainment or general social guidance, not certainty about another person's feelings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat relationship guidance or text interpretation as certainty about another person's feelings. <br>
-Mitigation: Keep outputs framed as possible interpretations based on what the user shared, and encourage respectful, direct communication. <br>
-Risk: Users may enter sensitive personal details or describe unsafe relationship situations. <br>
-Mitigation: Advise users to avoid sharing highly sensitive details and to seek adult or trusted-person support for distress, coercion, harassment, large age gaps, or unsafe situations. <br>
+## Use Case:
 
+External users use this skill for lightweight crush and relationship communication guidance, including reading social signals, interpreting ambiguous texts, drafting respectful replies, and choosing a next move. The skill is framed for youth-friendly, G-rated use with no certainty claims about another person's feelings.
 
-## Reference(s): <br>
-- [AI Crush Simulator README](README.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/vajih/ai-crush-simulator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style text with structured sections, scores, reply options, next-step guidance, and disclaimers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pure local heuristic outputs; no external API calls are indicated by the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: Users may treat crush or relationship advice as factual knowledge about another person's feelings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the 'based on what you shared' disclaimer visible and frame all outputs as lightweight suggestions rather than facts or predictions.
+
+Risk: The reply generation feature omits the promised disclaimer.
+
+Mitigation: Add or verify a disclaimer on reply outputs before relying on the skill in user-facing flows.
+
+Risk: Development dependencies may need routine maintenance.
+
+Mitigation: Refresh and review development dependencies before packaging or redistributing the skill.
+
+## Reference(s):
+
+- [AI Crush Simulator on ClawHub](https://clawhub.ai/vajih/skills/ai-crush-simulator)
+- [Publisher profile: vajih](https://clawhub.ai/user/vajih)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured plain text or Markdown with scores, possible readings, reply options, recommendations, tips, and disclaimers.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Heuristic scores are bounded from 0 to 100; reply generation returns Bold, Chill, and Safe options.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

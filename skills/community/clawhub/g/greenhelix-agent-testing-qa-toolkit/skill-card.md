@@ -1,42 +1,59 @@
-## Description: <br>
-A testing guide for multi-agent commerce systems covering integration testing, mock strategies, chaos testing, contract validation, performance benchmarking, CI/CD, and canary releases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a QA guide for multi-agent commerce systems covering integration, end-to-end, chaos, contract, performance, CI/CD, and canary testing strategies.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and QA engineers use this guide to plan and implement testing for multi-agent commerce workflows, including sandbox integration tests, recorded playback, chaos scenarios, contract checks, benchmarks, and progressive release controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copied examples could affect real GreenHelix accounts, funds, escrows, or wallet-affecting workflows if run with production credentials. <br>
-Mitigation: Keep examples in sandbox or staging by default and require explicit approval before production deploys, canary rollouts, escrow releases, or wallet-affecting tests. <br>
-Risk: Recorded test cassettes could capture production keys, secrets, or sensitive account data if created against the wrong environment. <br>
-Mitigation: Never record cassettes with production keys or secrets, and review cassette diffs before committing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and implement stronger QA for multi-agent commerce systems, including recorded integration tests, chaos tests, contract validation, performance benchmarks, CI/CD checks, and canary release controls.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/mirni/greenhelix-agent-testing-qa-toolkit) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API documentation](https://api.greenhelix.net/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guide with Python examples and CI/CD configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executing guide; adapted live examples may require GREENHELIX_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Copy-ready examples handle API keys and bearer headers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox-only, capped credentials; do not use production keys; validate and allowlist API hosts before adding bearer headers.
+
+Risk: Recorded API cassettes may contain account, escrow, balance, transaction, or response-header data.
+
+Mitigation: Redact cassette contents and response headers, review recordings before commit, and never commit unreviewed recordings.
+
+Risk: Financial workflow examples may be adopted into CI without hardening.
+
+Mitigation: Review and harden examples before use in CI, including redirect controls, host allowlists, and budget or credit limits.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mirni/skills/greenhelix-agent-testing-qa-toolkit)
+- [GreenHelix Sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API Documentation](https://api.greenhelix.net/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guide with Python, YAML, and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guide; real API examples may require GREENHELIX_API_KEY.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

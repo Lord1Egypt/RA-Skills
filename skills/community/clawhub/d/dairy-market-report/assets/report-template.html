@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>乳制品市场行情报告 {{REPORT_PERIOD}}</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <header class="report-header">
+    <h1>乳制品市场行情报告</h1>
+    <div class="meta">
+      <span><strong>报告期:</strong> {{REPORT_PERIOD}}</span>
+      <span><strong>报告日期:</strong> {{REPORT_DATE}}</span>
+      <span><strong>出品:</strong> {{AUTHOR}}</span>
+      <span><strong>货币单位:</strong> 元/吨 (CNY/吨), 部分 USD/吨</span>
+    </div>
+  </header>
+
+  <!-- 1. 概览 -->
+  <section class="report-section" id="section-overview">
+    <h2><span class="num">1</span> 乳业整体形势概览</h2>
+    <p class="subtitle">本期 {{REPORT_PERIOD}} 国内国际乳业关键指标快照</p>
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="label">国内生鲜乳均价 (元/公斤)</div>
+        <div class="value">{{RAW_MILK_PRICE}}</div>
+        <div class="delta">YoY {{RAW_MILK_YOY}} | MoM {{RAW_MILK_MOM}}</div>
+      </div>
+      <div class="kpi">
+        <div class="label">国内生鲜乳产量 YTD</div>
+        <div class="value">{{MILK_PRODUCTION_YTD}}</div>
+        <div class="delta">YoY {{MILK_PROD_YOY}}</div>
+      </div>
+      <div class="kpi">
+        <div class="label">乳制品产量 YTD</div>
+        <div class="value">{{DAIRY_PROD_YTD}}</div>
+        <div class="delta">YoY {{DAIRY_PROD_YOY}}</div>
+      </div>
+      <div class="kpi">
+        <div class="label">GDT 价格指数</div>
+        <div class="value">{{GDT_INDEX}}</div>
+        <div class="delta">环比 {{GDT_INDEX_MOM}} | 同比 {{GDT_INDEX_YOY}}</div>
+      </div>
+      <div class="kpi">
+        <div class="label">GDT 成交量 (吨)</div>
+        <div class="value">{{GDT_VOLUME}}</div>
+        <div class="delta flat">事件 {{GDT_EVENT_NO}} ({{GDT_EVENT_DATE}})</div>
+      </div>
+      <div class="kpi">
+        <div class="label">CNY/USD 中间价</div>
+        <div class="value">{{FX_CNY_USD}}</div>
+        <div class="delta flat">月均, 数据源: 中国人民银行</div>
+      </div>
+    </div>
+    <p>{{OVERVIEW_NARRATIVE}}</p>
+    <div class="insight">
+      <div class="tag">AI 解读 / 关键洞察</div>
+      <p>{{OVERVIEW_INSIGHT}}</p>
+    </div>
+    <div class="source">数据来源: {{OVERVIEW_SOURCES}}</div>
+  </section>
+
+  <!-- 2. 国内生鲜乳 -->
+  <section class="report-section" id="section-raw-milk-cn">
+    <h2><span class="num">2</span> 生鲜乳 (国内)</h2>
+    <p class="subtitle">农业农村部 10 主产省监测 + 饲料原料价格</p>
+    <table class="data">
+      <thead>
+        <tr><th>指标</th><th class="num">本期</th><th class="num">同比 YoY</th><th class="num">环比 MoM</th><th>数据源</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>生鲜乳收购均价 (元/公斤)</td><td class="num">{{RAW_PRICE_CN}}</td><td class="num"><span class="pill">{{RAW_PRICE_YOY}}</span></td><td class="num"><span class="pill">{{RAW_PRICE_MOM}}</span></td><td>农业农村部</td></tr>
+        <tr><td>玉米价格 (元/吨)</td><td class="num">{{CORN_PRICE}}</td><td class="num"><span class="pill">{{CORN_YOY}}</span></td><td class="num"><span class="pill">{{CORN_MOM}}</span></td><td>农业农村部</td></tr>
+        <tr><td>豆粕价格 (元/吨)</td><td class="num">{{SOY_PRICE}}</td><td class="num"><span class="pill">{{SOY_YOY}}</span></td><td class="num"><span class="pill">{{SOY_MOM}}</span></td><td>农业农村部</td></tr>
+        <tr><td>青贮价格 (元/吨)</td><td class="num">{{SILAGE_PRICE}}</td><td class="num"><span class="pill">{{SILAGE_YOY}}</span></td><td class="num"><span class="pill">{{SILAGE_MOM}}</span></td><td>艾格农业</td></tr>
+      </tbody>
+    </table>
+    <h3 style="font-size:14px; color:var(--ink-soft); margin-top:18px;">主产区生鲜乳交易参考价 (元/公斤)</h3>
+    <table class="data">
+      <thead><tr><th>省份</th><th class="num">价格</th><th class="num">同比</th><th class="num">环比</th></tr></thead>
+      <tbody>
+        <tr><td>河北</td><td class="num">{{RAW_河北}}</td><td class="num">{{RAW_河北_YOY}}</td><td class="num">{{RAW_河北_MOM}}</td></tr>
+        <tr><td>内蒙古</td><td class="num">{{RAW_内蒙古}}</td><td class="num">{{RAW_内蒙古_YOY}}</td><td class="num">{{RAW_内蒙古_MOM}}</td></tr>
+        <tr><td>黑龙江</td><td class="num">{{RAW_黑龙江}}</td><td class="num">{{RAW_黑龙江_YOY}}</td><td class="num">{{RAW_黑龙江_MOM}}</td></tr>
+        <tr><td>山东</td><td class="num">{{RAW_山东}}</td><td class="num">{{RAW_山东_YOY}}</td><td class="num">{{RAW_山东_MOM}}</td></tr>
+        <tr><td>陕西</td><td class="num">{{RAW_陕西}}</td><td class="num">{{RAW_陕西_YOY}}</td><td class="num">{{RAW_陕西_MOM}}</td></tr>
+        <tr><td>宁夏</td><td class="num">{{RAW_宁夏}}</td><td class="num">{{RAW_宁夏_YOY}}</td><td class="num">{{RAW_宁夏_MOM}}</td></tr>
+        <tr><td>河南</td><td class="num">{{RAW_河南}}</td><td class="num">{{RAW_河南_YOY}}</td><td class="num">{{RAW_河南_MOM}}</td></tr>
+        <tr><td>辽宁</td><td class="num">{{RAW_辽宁}}</td><td class="num">{{RAW_辽宁_YOY}}</td><td class="num">{{RAW_辽宁_MOM}}</td></tr>
+        <tr><td>山西</td><td class="num">{{RAW_山西}}</td><td class="num">{{RAW_山西_YOY}}</td><td class="num">{{RAW_山西_MOM}}</td></tr>
+        <tr><td>甘肃</td><td class="num">{{RAW_甘肃}}</td><td class="num">{{RAW_甘肃_YOY}}</td><td class="num">{{RAW_甘肃_MOM}}</td></tr>
+      </tbody>
+    </table>
+    <p>{{RAW_MILK_NARRATIVE}}</p>
+    <div class="insight">
+      <div class="tag">AI 解读 / 关键洞察</div>
+      <p>{{RAW_MILK_INSIGHT}}</p>
+    </div>
+    <div class="source">数据来源: {{RAW_MILK_SOURCES}}</div>
+  </section>
+
+  <!-- 3. 中国 vs 国外 -->
+  <section class="report-section" id="section-raw-milk-global">
+    <h2><span class="num">3</span> 中国 vs 国外 生鲜乳价格对比</h2>
+    <p class="subtitle">国内外生鲜乳价格同期对比 (折美元/100kg)</p>
+    <table class="data">
+      <thead>
+        <tr><th>国家/地区</th><th class="num">本期 (USD/100kg)</th><th class="num">上月 (USD/100kg)</th><th class="num">3 月前</th><th class="num">6 月前</th><th class="num">同比</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>中国 (农业农村部均价)</td><td class="num">{{CN_PRICE}}</td><td class="num">{{CN_PRICE_M1}}</td><td class="num">{{CN_PRICE_M3}}</td><td class="num">{{CN_PRICE_M6}}</td><td class="num"><span class="pill">{{CN_PRICE_YOY}}</span></td></tr>
+        <tr><td>美国 (USDA All-Milk)</td><td class="num">{{US_PRICE}}</td><td class="num">{{US_PRICE_M1}}</td><td class="num">{{US_PRICE_M3}}</td><td class="num">{{US_PRICE_M6}}</td><td class="num"><span class="pill">{{US_PRICE_YOY}}</span></td></tr>
+        <tr><td>欧盟 (AHDB / Eurostat)</td><td class="num">{{EU_PRICE}}</td><td class="num">{{EU_PRICE_M1}}</td><td class="num">{{EU_PRICE_M3}}</td><td class="num">{{EU_PRICE_M6}}</td><td class="num"><span class="pill">{{EU_PRICE_YOY}}</span></td></tr>
+        <tr><td>新西兰 (Fonterra Farmgate)</td><td class="num">{{NZ_PRICE}}</td><td class="num">{{NZ_PRICE_M1}}</td><td class="num">{{NZ_PRICE_M3}}</td><td class="num">{{NZ_PRICE_M6}}</td><td class="num"><span class="pill">{{NZ_PRICE_YOY}}</span></td></tr>
+        <tr><td>澳大利亚 (Dairy Australia)</td><td class="num">{{AU_PRICE}}</td><td class="num">{{AU_PRICE_M1}}</td><td class="num">{{AU_PRICE_M3}}</td><td class="num">{{AU_PRICE_M6}}</td><td class="num"><span class="pill">{{AU_PRICE_YOY}}</span></td></tr>
+      </tbody>
+    </table>
+    <p>{{GLOBAL_RAW_NARRATIVE}}</p>
+    <div class="insight">
+      <div class="tag">AI 解读 / 关键洞察</div>
+      <p>{{GLOBAL_RAW_INSIGHT}}</p>
+    </div>
+    <div class="source">数据来源: {{GLOBAL_RAW_SOURCES}}</div>
+  </section>
+
+  <!-- 4. 主产国产能 -->
+  <section class="report-section" id="section-production-global">
+    <h2><span class="num">4</span> 主产国家生鲜乳产量</h2>
+    <p class="subtitle">全球主产国生鲜乳月度产量及同比</p>
+    <table class="data">
+      <thead><tr><th>国家</th><th class="num">本期产量</th><th class="num">同比 YoY</th><th class="num">环比 MoM</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>中国 (国家统计局)</td><td class="num">{{PROD_CN}}</td><td class="num"><span class="pill">{{PROD_CN_YOY}}</span></td><td class="num"><span class="pill">{{PROD_CN_MOM}}</span></td><td>{{PROD_CN_NOTE}}</td></tr>
+        <tr><td>新西兰 (DCANZ)</td><td class="num">{{PROD_NZ}}</td><td class="num"><span class="pill">{{PROD_NZ_YOY}}</span></td><td class="num"><span class="pill">{{PROD_NZ_MOM}}</span></td><td>{{PROD_NZ_NOTE}}</td></tr>
+        <tr><td>澳大利亚 (Dairy Australia)</td><td class="num">{{PROD_AU}}</td><td class="num"><span class="pill">{{PROD_AU_YOY}}</span></td><td class="num"><span class="pill">{{PROD_AU_MOM}}</span></td><td>{{PROD_AU_NOTE}}</td></tr>
+        <tr><td>美国 (USDA NASS)</td><td class="num">{{PROD_US}}</td><td class="num"><span class="pill">{{PROD_US_YOY}}</span></td><td class="num"><span class="pill">{{PROD_US_MOM}}</span></td><td>{{PROD_US_NOTE}}</td></tr>
+        <tr><td>欧盟 (Eurostat / 主要国)</td><td class="num">{{PROD_EU}}</td><td class="num"><span class="pill">{{PROD_EU_YOY}}</span></td><td class="num"><span class="pill">{{PROD_EU_MOM}}</span></td><td>{{PROD_EU_NOTE}}</td></tr>
+      </tbody>
+    </table>
+    <p>{{PROD_NARRATIVE}}</p>
+    <div class="insight">
+      <div class="tag">AI 解读 / 关键洞察</div>
+      <p>{{PROD_INSIGHT}}</p>
+    </div>
+    <div class="source">数据来源: {{PROD_SOURCES}}</div>
+  </section>
+
+  <!-- 5. 国内乳制品产量 + 进口 -->
+  <section class="report-section" id="section-prod-import">
+    <h2><span class="num">5</span> 中国乳制品产量 + 进口 YTD</h2>
+    <p class="subtitle">国内分品类产量 + 海关分品类进口 YTD</p>
+    <h3 style="font-size:14px; color:var(--ink-soft);">国内分品类产量 (YTD)</h3>
+    <table class="data">
+      <thead><tr><th>品类</th><th class="num">YTD 产量</th><th class="num">同比</th></tr></thead>
+      <tbody>
+        <tr><td>液体乳</td><td class="num">{{YTD_LIQ}}</td><td class="num"><span class="pill">{{YTD_LIQ_YOY}}</span></td></tr>
+        <tr><td>乳粉</td><td class="num">{{YTD_MILKPOW}}</td><td class="num"><span class="pill">{{YTD_MILKPOW_YOY}}</span></td></tr>
+        <tr><td>酸奶</td><td class="num">{{YTD_YOGURT}}</td><td class="num"><span class="pill">{{YTD_YOGURT_YOY}}</span></td></tr>
+        <tr><td>奶酪及其他</td><td class="num">{{YTD_CHEESE}}</td><td class="num"><span class="pill">{{YTD_CHEESE_YOY}}</span></td></tr>
+      </tbody>
+    </table>
+    <h3 style="font-size:14px; color:var(--ink-soft); margin-top:14px;">进口分品类 (YTD, 海关总署)</h3>
+    <table class="data">
+      <thead><tr><th>品类</th><th class="num">YTD 数量 (吨)</th><th class="num">同比</th><th class="num">YTD 金额 (万美元)</th><th class="num">同比</th></tr></thead>
+      <tbody>
+        <tr><td>大包粉 (WMP+SMP)</td><td class="num">{{IMP_BULK}}</td><td class="num"><span class="pill">{{IMP_BULK_YOY}}</span></td><td class="num">{{IMP_BULK_VAL}}</td><td class="num"><span class="pill">{{IMP_BULK_VAL_YOY}}</span></td></tr>
+        <tr><td>乳清粉</td><td class="num">{{IMP_WHEY}}</td><td class="num"><span class="pill">{{IMP_WHEY_YOY}}</span></td><td class="num">{{IMP_WHEY_VAL}}</td><td class="num"><span class="pill">{{IMP_WHEY_VAL_YOY}}</span></td></tr>
+        <tr><td>奶酪</td><td class="num">{{IMP_CHEESE}}</td><td class="num"><span class="pill">{{IMP_CHEESE_YOY}}</span></td><td class="num">{{IMP_CHEESE_VAL}}</td><td class="num"><span class="pill">{{IMP_CHEESE_VAL_YOY}}</span></td></tr>
+        <tr><td>黄油 / AMF</td><td class="num">{{IMP_BUTTER}}</td><td class="num"><span class="pill">{{IMP_BUTTER_YOY}}</span></td><td class="num">{{IMP_BUTTER_VAL}}</td><td class="num"><span class="pill">{{IMP_BUTTER_VAL_YOY}}</span></td></tr>
+        <tr><td>包装牛奶 / 酸奶</td><td class="num">{{IMP_PACK}}</td><td class="num"><span class="pill">{{IMP_PACK_YOY}}</span></td><td class="num">{{IMP_PACK_VAL}}</td><td class="num"><span class="pill">{{IMP_PACK_VAL_YOY}}</span></td></tr>
+        <tr><td>婴幼儿配方奶粉</td><td class="num">{{IMP_IF}}</td><td class="num"><span class="pill">{{IMP_IF_YOY}}</span></td><td class="num">{{IMP_IF_VAL}}</td><td class="num"><span class="pill">{{IMP_IF_VAL_YOY}}</span></td></tr>
+      </tbody>
+    </table>
+    <p>{{PROD_IMP_NARRATIVE}}</p>
+    <div class="insight">
+      <div class="tag">AI 解读 / 关键洞察</div>
+      <p>{{PROD_IMP_INSIGHT}}</p>
+    </div>
+    <div class="source">数据来源: {{PROD_IMP_SOURCES}}</div>
+  </section>
+
+  <!-- 6. 出口 -->
+  <section class="report-section" id="section-export">
+    <h2><span class="num">6</span> 中国乳制品出口</h2>
+    <p class="subtitle">分品类 + 目的地国家 + 同比/环比</p>
+    <table class="data">
+      <thead><tr><th>品类</th><th class="num">本期数量 (吨)</th><th class="num">同比</th><th class="num">环比</th><th>主要目的地</th></tr></thead>
+      <tbody>
+        <tr><td>婴幼儿配方奶粉</td><td class="num">{{EXP_IF}}</td><td class="num"><span class="pill">{{EXP_IF_YOY}}</span></td><td class="num"><span class="pill">{{EXP_IF_MOM}}</span></td><td>{{EXP_IF_DEST}}</td></tr>
+        <tr><td>液奶</td><td class="num">{{EXP_LIQ}}</td><td class="num"><span class="pill">{{EXP_LIQ_YOY}}</span></td><td class="num"><span class="pill">{{EXP_LIQ_MOM}}</span></td><td>{{EXP_LIQ_DEST}}</td></tr>
+        <tr><td>酸奶</td><td class="num">{{EXP_YOGURT}}</td><td class="num"><span class="pill">{{EXP_YOGURT_YOY}}</span></td><td class="num"><span class="pill">{{EXP_YOGURT_MOM}}</span></td><td>{{EXP_YOGURT_DEST}}</td></tr>
+        <tr><td>奶酪</td><td class="num">{{EXP_CHEESE}}</td><td class="num"><span class="pill">{{EXP_CHEESE_YOY}}</span></td><td class="num"><span class="pill">{{EXP_CHEESE_MOM}}</span></td><td>{{EXP_CHEESE_DEST}}</td></tr>
+        <tr><td>冰淇淋</td><td class="num">{{EXP_ICE}}</td><td class="num"><span class="pill">{{EXP_ICE_YOY}}</span></td><td class="num"><span class="pill">{{EXP_ICE_MOM}}</span></td><td>{{EXP_ICE_DEST}}</td></tr>
+      </tbody>
+    </table>
+    <p>{{EXPORT_NARRATIVE}}</p>
+    <div class="insight">
+      <div class="tag">AI 解读 / 关键洞察</div>
+      <p>{{EXPORT_INSIGHT}}</p>
+    </div>
+    <div class="source">数据来源: {{EXPORT_SOURCES}}</div>
+  </section>
+
+  <!-- 7. 国内现货 -->
+  <section class="report-section" id="section-domestic-spot">
+    <h2><span class="num">7</span> 国内乳制品现货市场价格</h2>
+    <p class="subtitle">国产大包粉 / 黄油 / 乳清 现货参考价</p>
+    <table class="data">
+      <thead><tr><th>品类</th><th class="num">本期 (元/吨)</th><th class="num">同比 YoY</th><th class="num">环比 MoM</th></tr></thead>
+      <tbody>
+        <tr><td>国产全脂奶粉 (WMP)</td><td class="num">{{SPOT_WMP}}</td><td class="num"><span class="pill">{{SPOT_WMP_YOY}}</span></td><td class="num"><span class="pill">{{SPOT_WMP_MOM}}</span></td></tr>
+        <tr><td>国产脱脂奶粉 (SMP)</td><td class="num">{{SPOT_SMP}}</td><td class="num"><span class="pill">{{SPOT_SMP_YOY}}</span></td><td class="num"><span class="pill">{{SPOT_SMP_MOM}}</span></td></tr>
+        <tr><td>国产黄油 / AMF</td><td class="num">{{SPOT_AMF}}</td><td class="num"><span class="pill">{{SPOT_AMF_YOY}}</span></td><td class="num"><span class="pill">{{SPOT_AMF_MOM}}</span></td></tr>
+        <tr><td>浓缩乳清蛋白 (WPC80)</td><td class="num">{{SPOT_WPC}}</td><td class="num"><span class="pill">{{SPOT_WPC_YOY}}</span></td><td class="num"><span class="pill">{{SPOT_WPC_MOM}}</span></td></tr>
+      </tbody>
+    </table>
+    <p>{{SPOT_NARRATIVE}}</p>
+    <div class="insight">
+      <div class="tag">AI 解读 / 关键洞察</div>
+      <p>{{SPOT_INSIGHT}}</p>
+    </div>
+    <div class="source">数据来源: {{SPOT_SOURCES}}</div>
+  </section>
+
+  <!-- 8. GDT ★ -->
+  <section class="report-section" id="section-gdt">
+    <h2><span class="num">8</span> GDT 拍卖 + 入仓成本计算 ★</h2>
+    <p class="subtitle">最近一次 GDT 事件结果 + 合约 2 入仓成本</p>
+    <h3 style="font-size:15px; color:var(--ink-soft); margin-top:0;">8.1 GDT 拍卖结果</h3>
+    <table class="data">
+      <thead>
+        <tr><th>产品</th><th class="num">合约 1 (USD/吨)</th><th class="num">合约 2 (USD/吨)</th><th class="num">合约 3 (USD/吨)</th><th class="num">合约 4 (USD/吨)</th><th class="num">合约 5 (USD/吨)</th><th class="num">合约 6 (USD/吨)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>AMF (无水黄油)</td><td class="num">{{GDT_AMF_C1}}</td><td class="num"><strong>{{GDT_AMF_C2}}</strong></td><td class="num">{{GDT_AMF_C3}}</td><td class="num">{{GDT_AMF_C4}}</td><td class="num">{{GDT_AMF_C5}}</td><td class="num">{{GDT_AMF_C6}}</td></tr>
+        <tr><td>WMP (全脂奶粉)</td><td class="num">{{GDT_WMP_C1}}</td><td class="num"><strong>{{GDT_WMP_C2}}</strong></td><td class="num">{{GDT_WMP_C3}}</td><td class="num">{{GDT_WMP_C4}}</td><td class="num">{{GDT_WMP_C5}}</td><td class="num">{{GDT_WMP_C6}}</td></tr>
+        <tr><td>SMP (脱脂奶粉)</td><td class="num">{{GDT_SMP_C1}}</td><td class="num"><strong>{{GDT_SMP_C2}}</strong></td><td class="num">{{GDT_SMP_C3}}</td><td class="num">{{GDT_SMP_C4}}</td><td class="num">{{GDT_SMP_C5}}</td><td class="num">{{GDT_SMP_C6}}</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px; color:var(--ink-soft);">
+      GDT 价格指数: <strong>{{GDT_INDEX_VAL}}</strong> ({{GDT_INDEX_CHG}}); 成交量: {{GDT_VOLUME_TON}}; 买家数: {{GDT_BUYERS}}.<br>
+      事件 {{GDT_EVENT_NO}}, 拍卖日 {{GDT_EVENT_DATE}}.
+    </p>
+
+    <h3 style="font-size:15px; color:var(--ink-soft);">8.2 合约 2 入仓成本 (CNY/吨)</h3>
+    <div class="gdt-calc">
+      <h3>计算参数</h3>
+      <p style="margin:4px 0;">汇率 (央行中间价, 月均): <strong>1 USD = {{FX_RATE}} CNY</strong> (数据日 {{FX_DATE}})</p>
+      <p style="margin:4px 0;">关税 + 增值税 复合倍数: <strong>1.13</strong>; 进口杂费: <strong>300 元/吨</strong></p>
+      <p class="formula">AMF: (合约2 + 165) × FX × 1.13 + 300</p>
+      <p class="formula">WMP / SMP: (合约2 + 115) × FX × 1.13 + 300</p>
+    </div>
+    <table class="data">
+      <thead>
+        <tr><th>产品</th><th class="num">合约 2 (USD/吨)</th><th class="num">海运 (USD/吨)</th><th class="num">入仓价 (CNY/吨)</th><th class="num">国产现货 (CNY/吨)</th><th class="num">价差 (CNY/吨)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>AMF</td><td class="num">{{LANDED_AMF_C2}}</td><td class="num">165</td><td class="num"><strong>{{LANDED_AMF_CNY}}</strong></td><td class="num">{{LANDED_AMF_DOM}}</td><td class="num"><span class="pill">{{LANDED_AMF_DIFF}}</span></td></tr>
+        <tr><td>WMP</td><td class="num">{{LANDED_WMP_C2}}</td><td class="num">115</td><td class="num"><strong>{{LANDED_WMP_CNY}}</strong></td><td class="num">{{LANDED_WMP_DOM}}</td><td class="num"><span class="pill">{{LANDED_WMP_DIFF}}</span></td></tr>
+        <tr><td>SMP</td><td class="num">{{LANDED_SMP_C2}}</td><td class="num">115</td><td class="num"><strong>{{LANDED_SMP_CNY}}</strong></td><td class="num">{{LANDED_SMP_DOM}}</td><td class="num"><span class="pill">{{LANDED_SMP_DIFF}}</span></td></tr>
+      </tbody>
+    </table>
+    <p>{{GDT_NARRATIVE}}</p>
+    <div class="insight">
+      <div class="tag">AI 解读 / 关键洞察</div>
+      <p>{{GDT_INSIGHT}}</p>
+    </div>
+    <div class="source">数据来源: {{GDT_SOURCES}}</div>
+  </section>
+
+  <!-- 9. 走势预测 -->
+  <section class="report-section" id="section-outlook">
+    <h2><span class="num">9</span> 大宗乳制品价格走势预测</h2>
+    <p class="subtitle">短期 (1–2 月) + 中期 (3–6 月) 国产 / 进口分品种</p>
+    <table class="data">
+      <thead>
+        <tr><th>维度</th><th>国产 WMP</th><th>国产 SMP</th><th>国产黄油 / AMF</th><th>进口 (GDT)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>短期方向</td><td>{{OUT_WMP_SHORT}}</td><td>{{OUT_SMP_SHORT}}</td><td>{{OUT_AMF_SHORT}}</td><td>{{OUT_GDT_SHORT}}</td></tr>
+        <tr><td>中期方向</td><td>{{OUT_WMP_MID}}</td><td>{{OUT_SMP_MID}}</td><td>{{OUT_AMF_MID}}</td><td>{{OUT_GDT_MID}}</td></tr>
+        <tr><td>关键驱动</td><td>{{OUT_WMP_DRV}}</td><td>{{OUT_SMP_DRV}}</td><td>{{OUT_AMF_DRV}}</td><td>{{OUT_GDT_DRV}}</td></tr>
+      </tbody>
+    </table>
+    <p>{{OUTLOOK_NARRATIVE}}</p>
+    <div class="insight">
+      <div class="tag">AI 解读 / 关键洞察</div>
+      <p>{{OUTLOOK_INSIGHT}}</p>
+    </div>
+    <div class="source">数据来源: 综合分析 (基于本报告第 1–8 节数据)</div>
+  </section>
+
+  <!-- 10. AI 深度解读 -->
+  <section class="report-section" id="section-takeaways">
+    <h2><span class="num">10</span> 上月信息深度解读 + Key Takeaways</h2>
+    <p class="subtitle">AI 对本期数据的跨章节综合判断 (5–8 条 numbered insights)</p>
+    <ol>{{TAKEAWAYS_LIST}}</ol>
+    <div class="insight">
+      <div class="tag">综合判断</div>
+      <p>{{TAKEAWAYS_SUMMARY}}</p>
+    </div>
+    <div class="source">数据来源: 本报告综合</div>
+  </section>
+
+  <!-- 11. 深加工创新 -->
+  <section class="report-section" id="section-deep-processing">
+    <h2><span class="num">11</span> 国内乳品深加工创新</h2>
+    <p class="subtitle">乳蛋白 / 脱盐乳清粉 / 乳糖 / 奶酪 / 配方 赛道</p>
+    <p>{{DEEP_NARRATIVE}}</p>
+    <table class="data">
+      <thead><tr><th>细分品类</th><th>关键变化</th><th>代表企业 / 项目</th><th>国产化进展</th></tr></thead>
+      <tbody>{{DEEP_TABLE_ROWS}}</tbody>
+    </table>
+    <div class="insight">
+      <div class="tag">AI 解读 / 关键洞察</div>
+      <p>{{DEEP_INSIGHT}}</p>
+    </div>
+    <div class="source">数据来源: {{DEEP_SOURCES}}</div>
+  </section>
+
+  <!-- 12. 重要事件 + 政策 -->
+  <section class="report-section" id="section-events">
+    <h2><span class="num">12</span> 乳业重要事件 + 政策动态</h2>
+    <p class="subtitle">企业动态 + 国家乳品政策</p>
+    <h3 style="font-size:15px; color:var(--ink-soft);">12.1 乳企重要动态</h3>
+    <ul>{{CORP_EVENTS_LIST}}</ul>
+    <h3 style="font-size:15px; color:var(--ink-soft); margin-top:18px;">12.2 国家乳品政策</h3>
+    <ul>{{POLICY_LIST}}</ul>
+    <div class="insight">
+      <div class="tag">AI 解读 / 关键洞察</div>
+      <p>{{EVENTS_INSIGHT}}</p>
+    </div>
+    <div class="source">数据来源: {{EVENTS_SOURCES}}</div>
+  </section>
+
+  <footer class="report-footer">
+    报告生成: {{REPORT_DATE}} · 模板: dairy-market-report v1.0 · 数据最终解释权归各官方源
+  </footer>
+</main>
+</body>
+</html>

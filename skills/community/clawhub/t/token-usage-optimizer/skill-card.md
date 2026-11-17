@@ -1,47 +1,62 @@
-## Description: <br>
-Maximize your Claude Code subscription value with smart usage monitoring and burn rate optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maximize your Claude Code subscription value with smart usage monitoring and burn rate optimization.
 
-## Publisher: <br>
-[rusel95](https://clawhub.ai/user/rusel95) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[rusel95](https://clawhub.ai/user/rusel95)
 
-## Use Case: <br>
-Developers and Claude Code subscribers use this skill to monitor five-hour and seven-day usage quotas, receive threshold alerts, and judge whether their subscription usage is under, over, or on pace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Claude OAuth tokens and local Claude credential files. <br>
-Mitigation: Review the scripts before installation, restrict token files to owner-only permissions, and rotate tokens if exposure is suspected. <br>
-Risk: The cron workflow can silently interact with local Claude authentication state. <br>
-Mitigation: Use the cron workflow only after review, or run reports manually when automatic credential checks are not acceptable. <br>
-Risk: Browser-token extraction can expose password-equivalent OAuth credentials. <br>
-Mitigation: Prefer Claude CLI authentication and avoid copying browser tokens unless the operational risk is understood. <br>
+## Use Case:
 
+External Claude Code subscribers use this skill to monitor 5-hour session and 7-day weekly quota utilization, receive usage alerts, and adjust daily burn rate against their subscription plan.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rusel95/token-usage-optimizer) <br>
-- [Anthropic OAuth Usage API](references/api-endpoint.md) <br>
-- [Token Extraction Guide](references/token-extraction.md) <br>
-- [Claude Code Subscription Plans](references/plans.md) <br>
-- [Claude Code Pricing](https://claude.ai/pricing) <br>
-- [Anthropic API Docs](https://docs.anthropic.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and plain-text usage reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces cached usage percentages, alert state, and human-readable reports; setup scripts configure local OAuth token storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks users to handle Claude OAuth access and refresh tokens and stores them in plaintext inside the skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the credential flow before installation, keep token files permissioned to owner read/write only, ensure tokens are ignored by source control, and rotate tokens if they were committed, logged, or shared.
+
+Risk: The optional token health check may read or rewrite Claude CLI credentials.
+
+Mitigation: Enable the cron or auto-refresh workflow only after reviewing that behavior and confirming it matches the user's credential-management expectations.
+
+Risk: Usage checks send OAuth bearer tokens to the Anthropic usage endpoint.
+
+Mitigation: Avoid logging command output that could expose tokens, use the built-in cache to reduce request frequency, and run only from trusted local environments.
+
+## Reference(s):
+
+- [Token Usage Optimizer on ClawHub](https://clawhub.ai/rusel95/skills/token-usage-optimizer)
+- [Anthropic OAuth Usage API](references/api-endpoint.md)
+- [Token Extraction Guide](references/token-extraction.md)
+- [Claude Code Subscription Plans](references/plans.md)
+- [Claude Code Pricing](https://claude.ai/pricing)
+- [Anthropic API Docs](https://docs.anthropic.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text reports, KEY=VALUE status lines, and Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses cached usage data by default and may emit one-time threshold or token-expiry alerts.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,57 @@
-## Description: <br>
-Set up, monitor, and optimize bandwidth-sharing nodes across Grass.io, Mysterium Network, Storj, and Honeygain with Docker-based deployment guidance, earnings tracking, and ROI estimates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and manage bandwidth-sharing nodes on Grass.io, Mysterium, Storj, and Honeygain to earn passive crypto income with monitoring and ROI tracking.
 
-## Publisher: <br>
-[mariusfit](https://clawhub.ai/user/mariusfit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mariusfit](https://clawhub.ai/user/mariusfit)
 
-## Use Case: <br>
-External users and developers use this skill to configure and operate passive-income bandwidth-sharing nodes on a Linux server or homelab. It helps generate Docker commands, compose configuration, monitoring steps, and earnings estimates for supported platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent bandwidth-sharing and VPN-node containers can expose the host network through open ports, elevated networking privileges, or exit-node behavior. <br>
-Mitigation: Run nodes only on a dedicated machine or isolated network, and require explicit approval before setup, monitoring, or restart actions are executed. <br>
-Risk: Provider credentials and wallets may be passed to containers or stored in configuration. <br>
-Mitigation: Use official provider workflows where possible, avoid sharing passwords with unofficial containers, and keep secrets in local environment files with restricted access. <br>
-Risk: Unpinned container images or unofficial images may change behavior over time. <br>
-Mitigation: Verify image sources, pin image versions or digests, and review containers before deployment. <br>
-Risk: Bandwidth-sharing services may conflict with provider terms, ISP rules, or local operational policies. <br>
-Mitigation: Review each platform's terms of service and ISP rules before running nodes, especially on VPS, cloud, shared, or residential networks. <br>
+## Use Case:
 
+External users, developers, and homelab operators use this skill to deploy and monitor bandwidth-sharing services, track expected earnings, and manage node uptime across supported platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariusfit/bandwidth-income) <br>
-- [Publisher profile](https://clawhub.ai/user/mariusfit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Docker, shell, and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup commands, Docker Compose snippets, monitoring guidance, status checks, restart steps, and earnings estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/skill.json) <br>
+Risk: The skill guides users toward persistent network-relay containers that may expose sensitive access or affect IP reputation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated, isolated hosts or VLANs, avoid reused credentials, and do not expose management ports publicly.
+
+Risk: Running bandwidth-sharing nodes can create platform, ISP, or abuse-reporting exposure tied to the user's network.
+
+Mitigation: Verify platform terms and ISP rules before deployment, and understand that traffic reputation issues may trace back to the user's IP.
+
+Risk: Unpinned container images or public management endpoints can increase operational and supply-chain risk.
+
+Mitigation: Prefer pinned and verified container images and restrict management interfaces to trusted networks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariusfit/skills/bandwidth-income)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline Bash and YAML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Docker commands, Docker Compose configuration, monitoring guidance, and earnings estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

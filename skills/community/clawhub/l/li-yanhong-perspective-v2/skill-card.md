@@ -1,45 +1,60 @@
-## Description: <br>
-Helps an agent answer strategy, R&D, talent, commercialization, and AI transformation questions through a Li Yanhong-inspired mental-model lens based on public information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供中文的李彦宏风格战略视角，用于围绕技术战略、研发方向、人才建设、技术商业化和 AI 转型生成思考框架与决策启发。
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users can invoke the skill to frame technology strategy, R&D direction, talent-building, commercialization, and AI transformation discussions through a public-information-based Li Yanhong perspective. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Chinese trigger terms such as “技术信仰” or “工程师文化” may activate persona-style responses when that lens is not intended. <br>
-Mitigation: Narrow the trigger configuration or invoke the skill explicitly only when a Li Yanhong-inspired analytical lens is desired. <br>
-Risk: Outputs may be mistaken for Li Yanhong's actual views or predictions. <br>
-Mitigation: Present outputs as an analytical lens derived from public information, not as authoritative statements from the person. <br>
-Risk: License signals differ between server release metadata and artifact frontmatter. <br>
-Mitigation: Confirm the applicable terms before reuse or redistribution; evidence.json lists MIT-0 while the artifact text includes proprietary use-only language. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for a Chinese-language Li Yanhong-style perspective on technology strategy, R&D direction, talent systems, technology commercialization, and AI transformation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/li-yanhong-perspective-v2) <br>
-- [CLASSIC_WORKS.md](artifact/CLASSIC_WORKS.md) <br>
-- [CONNECTIONS.md](artifact/CONNECTIONS.md) <br>
-- [VERIFICATION_TESTS.md](artifact/VERIFICATION_TESTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-style strategic analysis based on public information; no commands, file writes, network calls, or credential handling are described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: evidence.release.version) <br>
+Risk: Generic trigger terms may activate the skill unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger phrasing before deployment and test common adjacent prompts for unintended activation.
+
+Risk: The skill presents an interpretive public-information perspective and cannot predict Li Yanhong's actual views on new questions.
+
+Mitigation: Frame outputs as strategic analysis inspired by public information, and have users verify important business decisions against primary sources and current facts.
+
+Risk: License signals conflict between server release evidence and skill frontmatter.
+
+Mitigation: Confirm the governing release license before publication or redistribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/li-yanhong-perspective-v2)
+- [CLASSIC_WORKS.md](artifact/CLASSIC_WORKS.md)
+- [CONNECTIONS.md](artifact/CONNECTIONS.md)
+- [VERIFICATION_TESTS.md](artifact/VERIFICATION_TESTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text strategic guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language persona-style perspective; no code execution, credential access, persistence, or external data flow is indicated by the security evidence.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

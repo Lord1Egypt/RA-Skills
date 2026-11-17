@@ -1,43 +1,59 @@
-## Description: <br>
-科研学术助手面向学术研究者，支持中英文论文润色、文献综述生成、创新点提炼、文献整理和可选联网文献检索。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+本技能专为学术研究者设计，支持论文润色、文献综述生成、创新点提炼三大核心功能，支持中英文双语，并可在启用联网后检索最新文献。
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Researchers, students, and academic writers use this skill to polish scholarly text, organize literature, draft literature review structures, and extract research contributions from papers or notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded papers, notes, or literature data may contain confidential, unpublished, embargoed, reviewer, regulated, or personally sensitive material. <br>
-Mitigation: Use the skill only with material approved for agent processing, and avoid uploading sensitive research content unless the user has appropriate permission. <br>
-Risk: Optional online literature search may send research topics or queries to external services. <br>
-Mitigation: Enable online search only for topics and queries that are acceptable to disclose externally. <br>
+## Use Case:
 
+Academic researchers, graduate students, and research writers use this skill to polish Chinese or English manuscripts, build literature review frameworks, extract research contributions, and organize literature from uploaded documents or prompts.
 
-## Reference(s): <br>
-- [科研学术助手](https://clawhub.ai/smallkeyboy/research-academic-helper) <br>
-- [润色标准](references/polishing-standards.md) <br>
-- [文献综述写作指南](references/literature-review-guide.md) <br>
-- [论文创新点分析指南](references/innovation-analysis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown, structured reports, comparison tables, generated text, Python utilities, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include polished text, literature matrices, review outlines, innovation summaries, citation-format checks, and file-based analysis reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Uploaded drafts, reviewer comments, grant ideas, patent-sensitive material, or private datasets may contain confidential research information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in an agent environment approved for that data, and avoid sharing sensitive unpublished material unless the environment's data handling is acceptable.
+
+Risk: Online literature search queries may reveal research interests to external services when networking is enabled.
+
+Mitigation: Enable online search only for queries that are acceptable to expose outside the local environment.
+
+Risk: Helper scripts can create local report, JSON, or CSV files next to input files.
+
+Mitigation: Run scripts in an appropriate working directory and review generated files before sharing or committing them.
+
+## Reference(s):
+
+- [论文润色标准参考](references/polishing-standards.md)
+- [文献综述写作指南](references/literature-review-guide.md)
+- [论文创新点分析指南](references/innovation-analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, structured text reports, comparison tables, JSON or CSV files, and shell commands when helper scripts are used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helper scripts may create local report, JSON, or CSV files next to user-provided inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

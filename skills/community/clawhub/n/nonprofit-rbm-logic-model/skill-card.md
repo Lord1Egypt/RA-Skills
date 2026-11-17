@@ -1,43 +1,53 @@
-## Description: <br>
-Builds donor-ready nonprofit RBM logic models, theories of change, logframes, proposal drafts, MEAL indicators, donor-fit reviews, evidence-gap trackers, and submission readiness decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build donor-ready nonprofit RBM logic models, theory of change, logframes, concept notes, LOIs, proposal sections, MEAL indicators, evidence-gap trackers, donor-fit reviews, risk and safeguarding matrices, budget logic summaries, and Go / Conditional Go / No-Go submission decisions.
 
-## Publisher: <br>
-[vassiliylakhonin](https://clawhub.ai/user/vassiliylakhonin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vassiliylakhonin](https://clawhub.ai/user/vassiliylakhonin)
 
-## Use Case: <br>
-Nonprofit program leads, grant writers, MEAL staff, and reviewers use this skill to turn rough project inputs or draft proposals into RBM logic models, logframes, concept notes, LOIs, full proposal sections, risk and safeguarding matrices, budget logic summaries, and Go / Conditional Go / No-Go submission decisions. It is intended for proposal design and readiness review, not for legal advice, accounting sign-off, fabricated donor alignment, or funding-probability guarantees. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proposal outputs may contain unsupported assumptions, weak evidence, or donor-fit gaps if the user provides incomplete project or donor-call information. <br>
-Mitigation: Require source-backed evidence where available, mark unsupported fields as unverified, and verify donor requirements, baselines, targets, budgets, and partner commitments before submission. <br>
-Risk: Users could mistake drafting and readiness guidance for legal, accounting, procurement, or compliance sign-off. <br>
-Mitigation: Treat the skill as a drafting and review aid, and route legal, financial, safeguarding, and compliance decisions to qualified human reviewers before relying on the output. <br>
-Risk: Sensitive proposal content or beneficiary information may be included in user inputs. <br>
-Mitigation: Review privacy, consent, data handling, and safeguarding implications before sharing sensitive material with an agent workflow. <br>
+## Use Case:
 
+Nonprofit program leads, grant writers, MEAL staff, executives, and proposal reviewers use this skill to turn rough project inputs or draft proposals into RBM logic models, logframes, proposal artifacts, MEAL plans, evidence-gap trackers, donor-fit reviews, and submission-readiness decisions. It is intended to support structured drafting and review while keeping donor requirements, evidence gaps, safeguarding concerns, budget logic, and final submission decisions subject to human verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vassiliylakhonin/nonprofit-rbm-logic-model) <br>
-- [Publisher profile](https://clawhub.ai/user/vassiliylakhonin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with tables, decision summaries, proposal artifacts, checklists, and evidence-gap trackers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include explicit assumptions, unverified-field markers, source-backed or reasoning-only evidence modes, and Go / Conditional Go / No-Go verdicts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release evidence) <br>
+Risk: The skill may process sensitive nonprofit strategy, budget, donor, safeguarding, partner, or beneficiary-related information supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the information necessary for the proposal task, avoid sharing secrets or unnecessary personal data, and review outputs before circulating them.
+
+Risk: Proposal artifacts can be misleading if unsupported assumptions, donor requirements, baselines, targets, partner commitments, or budget figures are treated as facts.
+
+Mitigation: Keep human review for donor requirements, legal compliance, accounting, safeguarding, budget logic, and final submission decisions; preserve [UNVERIFIED] markers until evidence is confirmed.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/vassiliylakhonin/skills/nonprofit-rbm-logic-model)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured sections, tables, checklists, and decision labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Go, Conditional Go, or No-Go verdicts, [UNVERIFIED] markers, evidence-needed trackers, and verification plans.]
+
+## Skill Version(s):
+
+1.1.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

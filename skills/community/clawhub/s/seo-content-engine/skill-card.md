@@ -1,39 +1,53 @@
-## Description: <br>
-SEO Content Engine guides agents through keyword research, SERP analysis, outline generation, and SEO-optimized drafting for new articles, landing pages, cornerstone content, and content refreshes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end SEO content creation workflow that researches keywords, analyzes search intent, generates optimized outlines, and produces draft content with on-page SEO best practices.
 
-## Publisher: <br>
-[kambrosgroup](https://clawhub.ai/user/kambrosgroup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kambrosgroup](https://clawhub.ai/user/kambrosgroup)
 
-## Use Case: <br>
-Marketing teams, content strategists, and external creators use this skill to plan and draft search-oriented articles, landing pages, content calendars, and refresh plans. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated SEO drafts may contain outdated statistics, unsupported claims, or weak source links. <br>
-Mitigation: Review claims, statistics, and external links before publishing, especially for current data and competitor analysis. <br>
-Risk: Competitor and SERP analysis may overstate ranking opportunities without current search data. <br>
-Mitigation: Validate keyword volume, difficulty, search intent, and top-ranking pages with current SEO tools before acting on recommendations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kambrosgroup/seo-content-engine) <br>
+## Use Case:
 
+External content creators, marketers, and site owners use this skill to create SEO-focused articles, refresh existing posts, and plan content calendars from keyword and search-intent analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance, checklists, outlines, tables, metadata suggestions, and draft content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SEO claims, statistics, competitor analysis, and external-link suggestions that require review before publication.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: SEO recommendations and statistics can become outdated or inaccurate before publication.
+
+Mitigation: Verify current keyword, SERP, ranking, and statistics data before publishing or refreshing content.
+
+Risk: The skill may produce changes for pages or metadata the user is not authorized to edit.
+
+Mitigation: Apply content and metadata updates only to properties where the user has explicit editing authority.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kambrosgroup/skills/seo-content-engine)
+- [Publisher profile](https://clawhub.ai/user/kambrosgroup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance, checklists, outlines, content calendars, and draft content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SEO metadata suggestions, keyword prioritization notes, article outlines, comparison tables, FAQ sections, and content refresh recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

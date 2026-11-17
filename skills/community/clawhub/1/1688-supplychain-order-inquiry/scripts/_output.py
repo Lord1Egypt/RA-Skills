@@ -16,8 +16,8 @@ def make_output(success: bool, markdown: str, data: dict) -> dict:
 
 
 def print_output(success: bool, markdown: str, data: dict):
-    """打印标准 JSON 输出"""
-    print(json.dumps(make_output(success, markdown, data), ensure_ascii=False, indent=2))
+    """打印标准 JSON 输出（紧凑格式，输出由 agent 解析，无需缩进）"""
+    print(json.dumps(make_output(success, markdown, data), ensure_ascii=False))
 
 
 # 错误类型 -> 行动建议

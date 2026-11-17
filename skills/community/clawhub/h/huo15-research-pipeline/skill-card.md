@@ -1,40 +1,58 @@
-## Description: <br>
-Automates a six-phase research workflow from topic scoping through literature discovery, synthesis, experiment design, analysis, and paper drafting with human checkpoints and local OpenClaw output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language research pipeline that moves a topic through scope definition, literature discovery, synthesis, experiment design, analysis, and paper drafting with human confirmation between phases.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and researchers use this skill to run a structured, human-reviewed research pipeline for a supplied topic and produce phase notes plus a draft academic paper through OpenClaw. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research prompts and topics are sent through the configured OpenClaw LLM service, which may expose sensitive or proprietary research material depending on provider settings. <br>
-Mitigation: Avoid confidential topics unless the configured LLM/provider settings are acceptable for that data. <br>
-Risk: The shell workflow writes generated research files under the user's OpenClaw home directory. <br>
-Mitigation: Invoke the workflow explicitly and review the configured output path before using it in shared or production environments. <br>
+## Use Case:
 
+Developers, researchers, and OpenClaw users use this skill to turn an initial research topic into staged Markdown research artifacts and a draft academic paper. It is intended for workflows where a human reviews each phase before the next phase proceeds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-research-pipeline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown files with terminal prompts and log output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes phase outputs under $HOME/.openclaw/agents/main/agent/kb/raw/research-{topic}-{date}/ and pauses for human confirmation between phases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter is 1.0.2) <br>
+Risk: Research topics, prompts, and generated notes may be sent to the configured OpenClaw LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only environments approved for the research data, and avoid confidential or proprietary topics unless that provider and environment are authorized.
+
+Risk: Generated research outputs are persisted under the OpenClaw knowledge-base path.
+
+Mitigation: Review output locations, access controls, and retention before running the pipeline on sensitive topics.
+
+Risk: Obsidian integration is optional and may not automatically sync results in every environment.
+
+Mitigation: Treat Obsidian export as a manual follow-up unless the local Obsidian command is installed and tested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-research-pipeline)
+- [Publisher profile](https://clawhub.ai/user/zhaobod1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown files and terminal prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates staged research notes, a paper draft, and a log under the configured OpenClaw knowledge-base path.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

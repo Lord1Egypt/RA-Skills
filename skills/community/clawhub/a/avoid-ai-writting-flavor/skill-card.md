@@ -1,37 +1,57 @@
-## Description: <br>
-Use when writing, editing, or reviewing academic papers, especially LLM-drafted papers, to identify and remove patterns that reviewers may associate with AI-written text across citations, punctuation, figures, math notation, and hallucinated references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when writing, editing, or reviewing academic papers, especially LLM-drafted manuscripts, to reduce recognizable AI-written patterns in citations, punctuation, figures, math notation, and reference checking.
 
-## Publisher: <br>
-[lancezpf](https://clawhub.ai/user/lancezpf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lancezpf](https://clawhub.ai/user/lancezpf)
 
-## Use Case: <br>
-Researchers, students, and academic authors use this skill to review manuscripts for common AI-writing signals and to strengthen citation, figure, caption, and notation hygiene before submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Citation checks may require external search or publisher access, and unpublished manuscripts can contain sensitive material. <br>
-Mitigation: Use trusted citation sources and avoid sending private manuscripts to external services unless that matches the user's privacy requirements. <br>
+## Use Case:
 
+Academic writers, reviewers, and editing agents use this skill to revise LLM-assisted manuscripts so common AI-writing signals are removed before submission. It focuses on citation spacing and verification, punctuation style, figure presentation, math notation, and hallucinated-reference checks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance and checklist text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language academic writing checklist; citation verification remains a manual or trusted browsing step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may activate on broad academic writing tasks and its guidance is written in Chinese, which can create language or editing-expectation mismatches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants this Chinese academic-writing cleanup guidance before applying broad rewrites.
+
+Risk: Prescriptive style rules can conflict with venue, advisor, or publisher requirements.
+
+Mitigation: Check final edits against the target venue's style guide and preserve required terminology, citation style, and notation conventions.
+
+Risk: Unverified citations can remain a serious academic integrity risk.
+
+Mitigation: Manually verify every cited work against Google Scholar or publisher records before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lancezpf/skills/avoid-ai-writting-flavor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance and edited prose recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plain Markdown writing guidance; no code execution, persistence, credential access, or hidden execution behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

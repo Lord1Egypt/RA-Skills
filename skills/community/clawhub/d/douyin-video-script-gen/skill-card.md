@@ -1,41 +1,54 @@
-## Description: <br>
-Generates ready-to-read Chinese short-video scripts using a topic research, opening hook, viewpoint, and expansion workflow for Douyin-style videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese Douyin-style short-video read-aloud scripts by guiding topic selection, opening hooks, viewpoint development, and structured script drafting.
 
-## Publisher: <br>
-[silbosu](https://clawhub.ai/user/silbosu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silbosu](https://clawhub.ai/user/silbosu)
 
-## Use Case: <br>
-Creators, marketers, and content teams use this skill to draft Chinese short-video scripts with a hook, structured viewpoints, supporting examples, and a concise ending. It is intended for producing spoken-word scripts that can be read directly or edited before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts may include inaccurate claims, weak attribution, or copyrighted source material from researched articles or comments. <br>
-Mitigation: Review scripts for factual accuracy, attribution needs, and copyright risk before publication. <br>
-Risk: The workflow is tuned for Chinese Douyin and Toutiao-style output, which may not fit every audience or publishing channel. <br>
-Mitigation: Adapt tone, sources, and structure to the intended audience and platform before use. <br>
+## Use Case:
 
+External creators, marketers, and content teams use this skill to draft Chinese short-video scripts for Douyin-style spoken delivery. It helps structure topic research, opening hooks, several developed viewpoints, and a short closing into a directly readable script.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/silbosu/douyin-video-script-gen) <br>
-- [Toutiao search](https://www.toutiao.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown script outline with Chinese prose sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces sections for an opening, four expanded viewpoints, and a closing, with word-count guidance for typical 4- to 7-minute videos.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated scripts may closely follow or reuse ideas from trending articles or high-liked comments without sufficient attribution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source material before publication, add attribution where appropriate, and revise wording to ensure originality.
+
+Risk: Scripts may include inaccurate claims, examples, or data gathered from topical content.
+
+Mitigation: Fact-check claims and update examples against reliable sources before recording or publishing.
+
+## Reference(s):
+
+- [Toutiao](https://www.toutiao.com/)
+- [ClawHub skill page](https://clawhub.ai/silbosu/skills/douyin-video-script-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style structured Chinese video script with sections for opening, viewpoints, and closing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed for read-aloud short-video scripts, with suggested word-count ranges and periodic emotional hooks.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

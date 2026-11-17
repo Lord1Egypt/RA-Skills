@@ -1,45 +1,62 @@
-## Description: <br>
-AI-powered email triage via IMAP (himalaya) or Google API that fetches inbox messages, classifies urgency and category, recommends actions, pulls upcoming calendar events, and generates daily markdown digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered email triage via IMAP (himalaya) or Google API. Fetches inbox, classifies messages by urgency, recommends actions, and generates daily markdown digests.
 
-## Publisher: <br>
-[gruted](https://clawhub.ai/user/gruted) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gruted](https://clawhub.ai/user/gruted)
 
-## Use Case: <br>
-Email users and operators use this skill to triage recent inbox and calendar activity, prioritize urgent messages, choose follow-up actions, and produce a daily markdown digest. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive inbox and calendar contents on a recurring schedule. <br>
-Mitigation: Use only with accounts approved for this processing, limit mailbox and calendar access where possible, and review generated digests before sharing. <br>
-Risk: OAuth credentials, Gmail app passwords, and API keys may expose email, calendar, or AI-service access if stored insecurely. <br>
-Mitigation: Verify requested Google OAuth scopes, store credentials outside shared workspaces, restrict file permissions, and rotate tokens if exposure is suspected. <br>
-Risk: Optional AI classification or summarization may send message content to an external service. <br>
-Mitigation: Disable or restrict AI summarization when external processing is not acceptable, and confirm the configured provider and retention policy before use. <br>
-Risk: Daily markdown digests can persist sensitive email and calendar summaries. <br>
-Mitigation: Write digests only to protected paths, apply limited retention, and avoid appending reports to broadly readable files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gruted/gruted-inbox-triage) <br>
-- [Project repository](https://github.com/gruted/inbox-triage-bot) <br>
-- [Project landing page](https://gruted.github.io/inbox-triage-bot/) <br>
+## Use Case:
 
+Developers and external users use this skill to fetch recent inbox and calendar data, classify email urgency and category, recommend actions, and produce daily triage digests.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown daily digest reports, JSON command output, and bash setup examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports himalaya or Google API email backends, optional AI classification through OPENAI_API_KEY, and scheduled digest generation through cron.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mailbox and calendar access can expose sensitive personal or business information.
+
+Mitigation: Install only when the configured backend's inbox and calendar access is acceptable for the intended environment.
+
+Risk: OAuth credentials, Gmail app passwords, and API keys can grant ongoing account or model-provider access if mishandled.
+
+Mitigation: Keep credentials scoped and private, and review local environment files before use.
+
+Risk: Optional AI classification may send message content through the configured AI data flow.
+
+Mitigation: Disable optional AI classification unless that data flow is acceptable for the emails being triaged.
+
+Risk: Cron configuration can run unattended triage and append recurring local digest files.
+
+Mitigation: Add the cron job only when recurring unattended execution and local digest retention are intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gruted/skills/gruted-inbox-triage)
+- [GitHub project](https://github.com/gruted/inbox-triage-bot)
+- [Project landing page](https://gruted.github.io/inbox-triage-bot/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON-producing command descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate recurring local markdown digest files when configured through cron.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

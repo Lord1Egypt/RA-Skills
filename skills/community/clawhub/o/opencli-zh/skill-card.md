@@ -1,59 +1,81 @@
-## Description: <br>
-Chinese-language agent guidance for using the opencli CLI to access supported websites, desktop apps, and external CLIs for browsing, search, timelines, bookmarks, notifications, trending content, articles, history, and user-confirmed write actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent use the opencli CLI to access supported websites, desktop apps, and external CLIs for browsing, searching, reading feeds, viewing notifications, and performing confirmed platform write actions.
 
-## Publisher: <br>
-[poiskgit](https://clawhub.ai/user/poiskgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[poiskgit](https://clawhub.ai/user/poiskgit)
 
-## Use Case: <br>
-Developers and agent users use this skill to choose safe opencli command paths for supported platforms, summarize read results, and gate public or persistent write actions behind explicit user confirmation. It is especially useful when an agent needs Chinese-language operating guidance for opencli targets and custom adapter fallback workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rely on existing browser sessions for supported websites, which may expose logged-in or account-specific data to commands. <br>
-Mitigation: Install and use it only when the user trusts the opencli package and consents to browser-session access for the target platform. <br>
-Risk: Supported write actions such as posts, replies, likes, follows, comments, deletes, blocks, saves, and subscriptions can be public or irreversible. <br>
-Mitigation: Confirm the target object, submitted content, and external visibility before executing any write action. <br>
-Risk: Custom adapters and related debug flows can persist files under ~/.opencli or inspect browser bridge state, page data, or request traffic. <br>
-Mitigation: Explain the affected browser and filesystem scope, then require explicit user approval before adapter creation, request interception, bridge changes, or persistent writes. <br>
+## Use Case:
 
+Developers and external users use this skill to route Chinese-language browsing, search, social feed, article, history, and notification tasks through opencli when the target platform is supported. It also provides guarded workflows for troubleshooting browser-backed access and creating custom website adapters after explicit user consent.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/poiskgit/opencli-zh) <br>
-- [Publisher profile](https://clawhub.ai/user/poiskgit) <br>
-- [opencli upstream project](https://github.com/nicepkg/opencli) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Fallbacks](guides/fallbacks.md) <br>
-- [Custom Adapters](guides/custom-adapters.md) <br>
-- [Custom Adapters Reference](guides/custom-adapters-reference.md) <br>
-- [Reference Bootstrap](guides/reference-bootstrap.md) <br>
-- [Bilibili target reference](references/bilibili.md) <br>
-- [Google target reference](references/google.md) <br>
-- [Hacker News target reference](references/hackernews.md) <br>
-- [Mtime target reference](references/mtime.md) <br>
-- [Reddit target reference](references/reddit.md) <br>
-- [Twitter / X target reference](references/twitter.md) <br>
-- [Wikipedia target reference](references/wikipedia.md) <br>
-- [Xiaohongshu target reference](references/xiaohongshu.md) <br>
-- [YouTube target reference](references/youtube.md) <br>
-- [Zhihu target reference](references/zhihu.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Simplified Chinese Markdown with inline shell commands, concise summaries, and optional structured opencli output such as JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read workflows may summarize platform results; write workflows require explicit user confirmation before public, persistent, or irreversible actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Browser-backed targets can touch logged-in sessions and account-scoped page data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent before browser-state diagnostics, logged-in page inspection, request interception, or extension changes.
+
+Risk: Custom adapter workflows can create persistent files under ~/.opencli.
+
+Mitigation: Explain the path and persistence impact before writing adapters, and validate any created adapter with minimal opencli commands.
+
+Risk: Global installation of opencli may use an unpinned package version.
+
+Mitigation: Prefer a pinned, reviewed opencli version for managed environments.
+
+Risk: Shell command templates can become unsafe if untrusted site, URL, or goal text is interpolated directly.
+
+Mitigation: Avoid passing untrusted values through shell command strings; quote arguments carefully and ask for confirmation before sensitive actions.
+
+Risk: Platform write actions such as posting, replying, liking, following, deleting, subscribing, or saving can be externally visible or irreversible.
+
+Mitigation: Confirm the target object, submitted content, and external visibility before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/poiskgit/skills/opencli-zh)
+- [opencli upstream repository](https://github.com/nicepkg/opencli)
+- [SKILL.md](artifact/SKILL.md)
+- [Fallbacks guide](artifact/guides/fallbacks.md)
+- [Custom adapters guide](artifact/guides/custom-adapters.md)
+- [Custom adapters reference](artifact/guides/custom-adapters-reference.md)
+- [Reference bootstrap guide](artifact/guides/reference-bootstrap.md)
+- [Google reference](artifact/references/google.md)
+- [Twitter / X reference](artifact/references/twitter.md)
+- [Bilibili reference](artifact/references/bilibili.md)
+- [Xiaohongshu reference](artifact/references/xiaohongshu.md)
+- [Zhihu reference](artifact/references/zhihu.md)
+- [YouTube reference](artifact/references/youtube.md)
+- [Wikipedia reference](artifact/references/wikipedia.md)
+- [Hacker News reference](artifact/references/hackernews.md)
+- [Reddit reference](artifact/references/reddit.md)
+- [Mtime reference](artifact/references/mtime.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Concise Simplified Chinese Markdown with inline shell commands and optional JSON output requests.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run opencli commands, summarize command results, and request explicit confirmation before write actions, browser-state diagnostics, or persistent adapter changes.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

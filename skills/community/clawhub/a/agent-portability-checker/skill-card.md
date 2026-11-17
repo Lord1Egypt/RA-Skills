@@ -1,40 +1,51 @@
-## Description: <br>
-Audit agent skills for platform lock-in and cross-agent compatibility, including hardcoded platform paths, missing environment-variable support, and platform-specific dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits agent skills for platform lock-in and cross-agent compatibility, including hardcoded platform paths, missing data-directory support, and platform-specific dependencies.
 
-## Publisher: <br>
-[99rebels](https://clawhub.ai/user/99rebels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[99rebels](https://clawhub.ai/user/99rebels)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit agent skill directories for cross-agent portability issues and to apply supported fixes before distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fix mode performs direct text replacements in the selected skill directory and does not create backups. <br>
-Mitigation: Run audit mode first, use --fix only on skill directories intended for modification, and review the resulting diff before relying on the changes. <br>
+## Use Case:
 
+Developers and release maintainers use this skill to audit agent skill directories for cross-agent portability issues and optionally apply automatic fixes for hardcoded paths, user-agent strings, and SKILL.md path references.
 
-## Reference(s): <br>
-- [Portability Checklist](references/checklist.md) <br>
-- [Channel Formatting](references/formatting.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/99rebels/agent-portability-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Code] <br>
-**Output Format:** [Markdown or terminal text for audit summaries, JSON for structured audit output, and code/text edits when fix mode is explicitly used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fix mode performs direct text replacements and should be reviewed with a diff after execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release evidence and script VERSION) <br>
+Risk: Auto-fix mode can rewrite skill files without strong containment, confirmation, backup, or diff support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use audit-only mode for untrusted skills; run --fix only on copied or version-controlled directories after reviewing the planned changes and avoiding directories with symlinks or important unrelated files.
+
+## Reference(s):
+
+- [Portability Checklist](artifact/references/checklist.md)
+- [Channel Formatting](artifact/references/formatting.md)
+- [ClawHub Skill Page](https://clawhub.ai/99rebels/skills/agent-portability-checker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Guidance]
+
+**Output Format:** [Plain text or Markdown audit summaries, optional structured JSON, and file edits when auto-fix mode is used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audit-only mode reports findings; --fix can rewrite auto-fixable skill files.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release metadata and audit.py VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

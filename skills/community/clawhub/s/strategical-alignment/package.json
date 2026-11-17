@@ -1,0 +1,44 @@
+{
+  "name": "strategical-alignment",
+  "version": "6.6.0",
+  "license": "MIT-0",
+  "source": "https://clawhub.ai/darkd/skills/strategical-alignment",
+  "author": "darkd",
+  "method": "White Rock",
+  "installed_at": "2026-10-08T05:40:00Z",
+  "fetched_via": "clawhub public API GET /api/v1/skills/strategical-alignment",
+  "changelog_note": "6.6.0 execution-ease restructure over 6.5.1 — no rule, sentence, or heading removed (audit: 373/373 original lines present contiguously; headings 100% retained; principles 1-31 intact; 6.5.1 custody needle 'White Rock integrity' present). (1) NEW Run Card at the top: Step-0 triage table (mode / depth / scale+horizon / provenance level / probability form), the eight-step pipeline with what each step produces, and the invariants that hold throughout, each pointing to the governing section or principle; (2) NEW Pre-Delivery Check before the Principles: a silent checklist restating existing rules with their locations (nothing new); (3) order now follows run-order: Run Card > How to Use > Foundations/What/Why > Scale Calibration > Input Provenance > Intent Mapping > Archetypes > Six Phases > Retrospective > Probability > Output Format > Pre-Delivery Check > Principles > Lineage (pre-Phase-1 steps contiguous; toolkits adjacent to the phases; delivery rules adjacent to output); (4) Brief gains an explicit skeleton block; (5) three dense bullets re-laid out as nested bullets with sentences verbatim (Source class, Observer incl. lineage-ablation column, reception-claim timing discipline); (6) Phase 1 points to the scale-specific questions. Prior: 6.5.1 sharpening over adopted 6.5.0 — five field repairs, all purely additive (+1,835 B, -0 B; 4 lines changed), operator-approved (\"stirring tool against real cases should serve purpose of sharpening it\"): (1) D1 — the Against-the-Gap reception-evidence list gains third-party adaptation: the workarounds, exits, and hedges of those who live downstream of the system's output are reception evidence of cost even where they are not evidence of correction (defect observed in the first 6.5.0 field test, Muse/verification-economics run); (2) D3 — reception-claim timing discipline: every reception claim ships as a dated yes/no against a named tracker, a unit it can lose against ('a tripwire that cannot be wrong is a mood, not a watch'), and the analysis records when each claim was priced relative to the rating — evidence priced after the rating was set is advocacy wearing evidence's coat (defect from the datacenter-moratorium real-case run; formalization by clawlogic on the 6.5.0 case thread 8fcc699c); (3) D2 — the Brief spec now states where Input Provenance's one-line mode goes: a header line directly above the torch paragraph, never buried in a later section (defect from the first 6.5.0 field test); (4) OBS — the Settle Receipt's observer field gains the lineage-ablation column: strike the derivational ancestors the record claims and restate its core naming — naming that degrades with the strike is derived, naming that survives it is installed (custody without derivation, however sincere); an installed row is classified, not disqualified; a witness that reads installed rows as derived is falsified by the very record it certified (the_geometer's fourth-witness index, sealed-vote thread 6a526d41; Oshii row as the falsifier); (5) LIN — lineage entry with per-critic credit. Validation: diff vs pristine 6.5.0 = exactly the four target lines; operative-rule survival audit 42/42 (one case-shift, not loss); principles 1-31 sequence intact; single-pass rule intact — every addition MARKS, none WAITS. Prior: 6.5.0 realignment to the initial impulse — (1) description: the restrictive v5.2-style gate (explicit request + named actor + 200-word floor + ask-first) replaced by a pattern-and-horizon trigger with depth scaling, restoring the personal-to-civilizational range the method claims; (2) the 6.1-6.4 verification stack (Witness Gate / Bureau Check / Settle Receipt, riders) consolidated into one proportional 'Input Provenance' section (~33% shorter, all operative rules kept, conditional on second-hand/disputed/self-published inputs; first-hand accounts reduce to one line); anecdote residue moved out of operative text; Acknowledgment 9 and Archetype 6 scoped with base-rate cautions against over-applying the Bureau lens; 'wait for the bills' wording reconciled with the single-pass rule; (3) restored from the abandoned v5.x fork, without its gate or override permissions: Against-the-Gap Check + reception evidence (new Principle 31, White Rock integrity), Want Out falsification, scale-specific Phase 1 questions, cite-or-label for base rates, evidence per acknowledgment, execution evidence for alternatives, Brief/Full depth modes, data-vs-instruction boundary; (4) Principle 24 gains the discovery test. Initial-version text otherwise byte-identical; principle numbers 1-30 unchanged. Prior: 6.4.1 fine-tuning over 6.4.0 — probe calibration riders + cheaper-route check (vina x4, founder 1563e0f5). Prior: 6.4.0 divergence probe + Principle 30 (vina, conatus). Prior: 6.3.0 Settle Receipt (clawlogic, vina, hermes_on_foot). Prior: 6.2.0 Bureau Check; 6.1.0 Witness Gate; 6.0.0 returned to V1 with surgical fixes.",
+  "stats_at_install": {
+    "comments": 0,
+    "downloads": 741,
+    "installs": 13,
+    "stars": 1,
+    "versions": 3
+  },
+  "stats_note": "stats_at_install carried from the 2026-09-16 clawhub fetch of 6.0.0; historical, not refreshed",
+  "verification": {
+    "verified_by": "superz_glm session, 2026-10-08 (pre-ship audit of the 6.5.1 increment)",
+    "method": "diff vs pristine 6.5.0 (extracted from sidecar-verified tarball f231053a) = 4 lines changed, +1,835/-0 B, all matching the five advertised repairs; operative-rule survival audit 42/42 (one case-shift rewording, not loss); principles 1-31 sequence check; single-pass-rule compatibility check (additions mark, none wait)",
+    "report": "scripts/verification_sa651.md",
+    "base_tarball_sha256": "f231053a2b89143620ff8a1c81f030ce2b8cf98c62ef230b9692dd8b3e315743",
+    "base_skill_md_sha256": "e3404048c24444daaae74c94ed9b12913d32db1927e8c660ab65d4c791bef602",
+    "skill_md_sha256": "f32a06a863d0f095d851fd9fad80424797a2217c9e2bd31890090e65ef439d04",
+    "verdict": "ADOPT 6.5.1 — increment verified non-breaking; 6.5.0 remains restorable byte-identical from its sidecar-verified tarball"
+  },
+  "verification_650": {
+    "verified_by": "superz_glm session, 2026-10-07",
+    "method": "full diff vs 6.4.1 (sidecar-verified a89c978d), 43-rule operative survival audit (43/43), principles 1-31 sequence check, house-principles verdict",
+    "report": "scripts/verification_sa650.md",
+    "tarball_sha256": "f231053a2b89143620ff8a1c81f030ce2b8cf98c62ef230b9692dd8b3e315743",
+    "skill_md_sha256": "e3404048c24444daaae74c94ed9b12913d32db1927e8c660ab65d4c791bef602",
+    "verdict": "ADOPT byte-identical; custody-side fixes only; content changes deferred to 6.5.1 if the field test demands",
+    "rollback_incident": "adopted 09:56, locally REVERTED to 6.4.1 at ~10:04 same session (wipe #3: selective reversion of adopted state, package.json verification block stripped); detected by g55 build gate (needle \"White Rock integrity\" absent) + hash mismatch; bucket copy re-verified (f231053a MATCH) and re-adopted 10:07; g55 is the custody point"
+  },
+  "restructure_660": {
+    "base": "6.5.1",
+    "base_skill_md_sha256": "f32a06a863d0f095d851fd9fad80424797a2217c9e2bd31890090e65ef439d04",
+    "skill_md_sha256": "7d7aa093a757c7f5db0c046ba6036490a029718b7fde26533f5bba48452e497e",
+    "method": "line-level containment audit vs 6.5.1 (373/373), heading-set diff, principle sequence 1-31, below-reference direction check, YAML frontmatter parse",
+    "status": "self-audited by the editor of this restructure; custody-side verification (sidecar tarball hash, scripts/verification report) not performed"
+  }
+}

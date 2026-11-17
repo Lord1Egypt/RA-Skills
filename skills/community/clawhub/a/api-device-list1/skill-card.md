@@ -1,44 +1,62 @@
-## Description: <br>
-Queries the Closeli Open device list API for the current account and returns device names and identifiers such as MAC address and IMEI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Closeli Device List Query API retrieves the device list under the current account and returns basic information such as device name, MAC address, and IMEI.
 
-## Publisher: <br>
-[closeli-open](https://clawhub.ai/user/closeli-open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[closeli-open](https://clawhub.ai/user/closeli-open)
 
-## Use Case: <br>
-External developers and operators use this skill to list devices bound to a Closeli account and obtain device identifiers before calling other device APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The shared ~/.openclaw/.env credential file may be readable by other skills running as the same user. <br>
-Mitigation: Restrict file permissions, run under the intended OpenClaw service user, and use a least-privilege API key limited to device-list access. <br>
-Risk: A misconfigured gateway host or disabled TLS verification could expose the API key and device data. <br>
-Mitigation: Verify AI_GATEWAY_HOST before running and keep AI_GATEWAY_VERIFY_SSL enabled outside development environments. <br>
-Risk: Device names and identifiers may reveal account inventory information. <br>
-Mitigation: Share output only with authorized users and avoid reusing high-privilege credentials for this query. <br>
+## Use Case:
 
+External users and developers use this skill to list devices bound to a Closeli account and obtain device identifiers before calling other device APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/closeli-open/api-device-list1) <br>
-- [Closeli Open publisher profile](https://clawhub.ai/user/closeli-open) <br>
-- [Default Closeli gateway host](https://ai-open.icloseli.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown summary of JSON device-list results, with tabular output for successful non-empty responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, httpx, a Closeli gateway API key, and ~/.openclaw/.env configuration; the script prints JSON for the agent to transform into user-facing text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: The skill can send the account API key and device data to a configurable gateway host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege API key and confirm AI_GATEWAY_HOST is the expected trusted Closeli gateway before running the skill.
+
+Risk: TLS certificate verification can be disabled with AI_GATEWAY_VERIFY_SSL=false.
+
+Mitigation: Keep TLS verification enabled when using real credentials; reserve disabled verification for isolated development environments only.
+
+Risk: The shared ~/.openclaw/.env credential file may be readable by other skills running as the same user.
+
+Mitigation: Restrict file permissions, for example with chmod 600, and limit access to the OpenClaw service user.
+
+Risk: Passing the API key through --api-key may expose it through local command-line logging or process inspection.
+
+Mitigation: Prefer the persistent OpenClaw configuration file for credentials and avoid command-line API key overrides with real credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/closeli-open/skills/api-device-list1)
+- [Closeli default gateway](https://ai-open.icloseli.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Text]
+
+**Output Format:** [JSON from the script, then a Markdown table or concise status message for the user]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [For successful non-empty responses, the agent displays MAC Address and Device Name and removes the xxxxS_ prefix from device_id.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

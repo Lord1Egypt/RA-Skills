@@ -1,39 +1,54 @@
-## Description: <br>
-Daily curated quote from philosophers, leaders, and thinkers - with author context and why it resonates today. Bilingual EN/CN shareable visual card. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily curated quote from philosophers, leaders, and thinkers - with author context and why it resonates today. Bilingual EN/CN shareable visual card.
 
-## Publisher: <br>
-[jiajiaoy](https://clawhub.ai/user/jiajiaoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiajiaoy](https://clawhub.ai/user/jiajiaoy)
 
-## Use Case: <br>
-External users and agents use this skill to generate a daily bilingual quote card with author context, a short interpretation, and optional scheduled morning or evening quote prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional scheduled push reminders can send daily messages to a configured user and channel if enabled. <br>
-Mitigation: Confirm the target userId, channel, and scheduler entries before enabling push reminders, and use the documented off command when reminders are no longer needed. <br>
+## Use Case:
 
+External users use this skill to generate a daily bilingual inspirational quote card with author context, a short explanation, and shareable visual presentation. Users can also opt into morning and evening push prompts through supported messaging channels.
 
-## Reference(s): <br>
-- [Daily Quote on ClawHub](https://clawhub.ai/jiajiaoy/daily-quote) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bilingual quote text, generated single-file HTML, and optional shell commands for push scheduling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a daily-quote.html output file and may emit scheduler commands when push reminders are enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The optional push system can create persistent morning and evening scheduled messages through external channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable push only when recurring delivery is intended, confirm the selected channel and recipient, and verify the jobs can be removed.
+
+Risk: Per-user push settings are stored by the helper scripts.
+
+Mitigation: Review where user settings are stored before enabling push and remove stored settings when disabling recurring delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiajiaoy/skills/daily-quote)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with generated single-file HTML and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a shareable bilingual quote card and optional recurring push configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

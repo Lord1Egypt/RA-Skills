@@ -1,40 +1,54 @@
-## Description: <br>
-Generates a concise daily brief with Beijing weather and Baidu trending topics when requested or on a daily schedule. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+My Daily Brief generates a concise daily brief with Beijing weather and Baidu hot-search topics.
 
-## Publisher: <br>
-[JokerZeng](https://clawhub.ai/user/JokerZeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jokerzeng](https://clawhub.ai/user/jokerzeng)
 
-## Use Case: <br>
-External users can ask for a quick daily brief covering Beijing weather and Baidu hot-search topics. The skill is not intended for detailed weather forecasts or in-depth news analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The trigger schedule is inconsistent across the evidence, which may cause unexpected automatic daily briefings. <br>
-Mitigation: Confirm the intended schedule before enabling automatic runs. <br>
-Risk: The skill contacts public weather and Baidu pages when it runs. <br>
-Mitigation: Use it only in environments where those external public web requests are acceptable. <br>
+## Use Case:
 
+External users use this skill to get a quick China-focused daily brief with Beijing weather and current Baidu hot-search topics. It is not intended for detailed weather forecasts or in-depth news analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JokerZeng/my-daily-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [Markdown-like daily brief with weather and ranked trending-topic lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public weather data and Baidu trending topics when run; no API credentials are indicated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The schedule wording is inconsistent between the metadata and the workflow text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended trigger time before relying on scheduled execution.
+
+Risk: The brief is fixed to Beijing weather and Baidu hot-search results.
+
+Mitigation: Use it for China-focused daily briefs, or edit the skill to request location and news-source preferences before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jokerzeng/skills/my-daily-brief)
+- [wttr.in Beijing weather endpoint](https://wttr.in/Beijin?format=3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown-style daily brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a weather line and a numbered list of Baidu hot-search titles.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

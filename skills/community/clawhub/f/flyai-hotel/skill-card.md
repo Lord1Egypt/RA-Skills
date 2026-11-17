@@ -1,44 +1,60 @@
-## Description: <br>
-Searches and compares Fliggy hotel listings by destination, landmark proximity, lodging type, dates, star rating, bed type, sorting, and CNY nightly price cap, returning structured results with images and booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and compares Fliggy MCP hotel listings by destination, nearby POI, lodging type, dates, star rating, bed type, sort order, and CNY nightly price cap, returning structured results with images and booking/detail links.
 
-## Publisher: <br>
-[zuckonit](https://clawhub.ai/user/zuckonit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuckonit](https://clawhub.ai/user/zuckonit)
 
-## Use Case: <br>
-External users and agents use this skill to search and compare hotel, homestay, and inn options near destinations or landmarks, apply budget and stay filters, and produce a concise booking handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends hotel destinations, dates, budgets, and filters to the third-party FlyAI/Fliggy service. <br>
-Mitigation: Use it only when comfortable sharing those travel search details with that service, and avoid adding sensitive personal information that is not needed for the search. <br>
-Risk: Hotel detail links can lead to booking or purchase flows. <br>
-Mitigation: Verify price, fees, dates, cancellation terms, and provider details on the linked page before paying. <br>
-Risk: A FlyAI API key could be exposed if pasted into shared prompts or logs. <br>
-Mitigation: Store API keys in local configuration or secret storage and redact them from logs and screenshots. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to find, compare, and present hotel or lodging options near cities, districts, landmarks, or attractions with practical filters such as dates, room type, rating, and nightly budget.
 
-## Reference(s): <br>
-- [search-hotel reference](artifact/references/search-hotel.md) <br>
-- [FlyAI homepage](https://open.fly.ai/) <br>
-- [ClawHub skill page](https://clawhub.ai/zuckonit/flyai-hotel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown responses with command snippets and structured JSON hotel data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include hotel images from mainPic and booking links from detailUrl when returned by the service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill relies on a globally installed third-party npm CLI that can change outside this artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned or local CLI install when available, avoid elevated install privileges, and review the package before deployment.
+
+Risk: The CLI may store FLYAI_API_KEY in its configuration.
+
+Mitigation: Treat the key as a secret, avoid logging real credentials, and rotate the key if it is exposed.
+
+Risk: Hotel images and booking/detail links are rendered from provider output without validation.
+
+Mitigation: Verify provider domains and booking details before entering travel, account, or payment information.
+
+## Reference(s):
+
+- [search-hotel reference](references/search-hotel.md)
+- [fly.ai homepage](https://open.fly.ai/)
+- [ClawHub skill page](https://clawhub.ai/zuckonit/skills/flyai-hotel)
+- [ClawHub publisher profile](https://clawhub.ai/user/zuckonit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with hotel comparison tables, image links, booking/detail links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Consumes line-delimited JSON from the flyai search-hotel command and presents selected fields such as mainPic and detailUrl.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact metadata reports 1.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

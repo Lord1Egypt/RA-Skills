@@ -1,45 +1,64 @@
-## Description: <br>
-AI Agent Training Manual is an onboarding guide for OpenClaw agents covering operating principles, workspace conventions, communication, tool use, cron and heartbeat automation, common mistakes, recommended skills, and an onboarding checklist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A markdown onboarding manual that helps new OpenClaw agents learn operating principles, workspace conventions, communication practices, tool usage, cron and heartbeat routines, common mistakes, recommended skills, and an onboarding checklist.
 
-## Publisher: <br>
-[harrot90-code](https://clawhub.ai/user/harrot90-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrot90-code](https://clawhub.ai/user/harrot90-code)
 
-## Use Case: <br>
-Developers, agent operators, and teams use this skill to onboard or retrain OpenClaw agents with practical working norms, safety checks, and setup checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The manual encourages agents to locate credential material such as tokens. <br>
-Mitigation: Require explicit user approval and a narrow task scope before credential discovery; never expose, copy, or reuse credentials outside the authorized workflow. <br>
-Risk: The manual includes guidance for public document sharing and outbound messages. <br>
-Mitigation: Require user confirmation of recipients, access permissions, and content before external sharing or messaging. <br>
-Risk: The manual asks agents to delete setup files and manage persistent memory. <br>
-Mitigation: Use reversible deletion where available and confirm any file deletion or persistent memory update with the user unless a prior policy authorizes it. <br>
-Risk: The manual teaches recurring cron and heartbeat automation. <br>
-Mitigation: Create recurring automation only with explicit user approval, clear schedule and delivery settings, and routine checks for failures or unwanted messages. <br>
+## Use Case:
 
+Developers and agent operators use this skill as a human-readable onboarding manual for new OpenClaw agents. It provides training guidance, operational checklists, and examples for building reliable agent work habits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrot90-code/agent-training-manual) <br>
-- [Publisher profile](https://clawhub.ai/user/harrot90-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, tables, command examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable training material for agents; includes operational checklist and setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and README) <br>
+Risk: The manual teaches persistent automation and cron routines with too little scoping or approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit automation guidance before installation; require explicit approval before creating cron jobs and verify delivery targets, time zones, and error monitoring.
+
+Risk: The manual discusses local memory, logs, backups, and user context that may contain sensitive information.
+
+Mitigation: Add retention, redaction, and access rules for memory, logs, and backups; restrict sensitive memory access to appropriate private sessions.
+
+Risk: The manual includes broad token-search guidance and global package installation examples.
+
+Mitigation: Remove broad token-search commands from live agent instructions and replace global unpinned installs with scoped, pinned, reviewed installation steps.
+
+Risk: The manual covers external communications such as messages, documents, and email.
+
+Mitigation: Require user confirmation before sending or sharing externally, and check recipients, permissions, formatting, and privacy-sensitive content before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrot90-code/skills/agent-training-manual)
+- [Publisher profile](https://clawhub.ai/user/harrot90-code)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documents with headings, checklists, tables, and inline shell or JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-facing training guidance rather than executable automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

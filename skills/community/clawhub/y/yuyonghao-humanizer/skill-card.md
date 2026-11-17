@@ -1,42 +1,55 @@
-## Description: <br>
-Humanizer helps agents rewrite AI-sounding text into more natural human-written prose while preserving meaning and intended voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Humanizer helps agents identify and rewrite AI-sounding prose so text reads more natural while preserving meaning and voice.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Employees, external users, and writers use this skill to edit or review text that should sound more natural and less like AI-generated prose. It is suited for rewriting drafts, documents, and agent-authored responses while keeping the original meaning and intended tone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may alter neutrality, authorship stance, or exact wording in sensitive documents. <br>
-Mitigation: Review diffs before accepting edits, especially for legal, policy, academic, or quoted material. <br>
-Risk: Humanizing text can obscure that content was generated or substantially assisted by AI. <br>
-Mitigation: Use the skill only where rewriting is appropriate and keep any required disclosure or attribution intact. <br>
+## Use Case:
 
+External users and writers use this skill to revise drafted text, remove common AI-writing patterns, and preserve the intended meaning and voice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yuyonghao-123/yuyonghao-humanizer) <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text with rewritten text and optional change summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include a concise summary of edits when helpful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can be used to rewrite documents to reduce visible AI-assistance markers in contexts that require disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where this editing is allowed, and follow academic, workplace, platform, and compliance disclosure rules.
+
+Risk: Automated rewrites may change tone, nuance, or factual meaning.
+
+Mitigation: Review suggested edits against the original text before accepting or publishing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-humanizer)
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text rewrite with an optional summary of changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; output depends on the input text and requested voice.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and target metadata; artifact frontmatter lists 2.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

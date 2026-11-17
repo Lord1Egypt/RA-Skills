@@ -1,40 +1,57 @@
-## Description: <br>
-Saves, lists, and restores session or project context summaries as local Markdown files so users can resume work across account switches, cleared sessions, or new conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Saves, restores, and lists local Markdown summaries for chat-session handoffs and project continuity.
 
-## Publisher: <br>
-[bayllech](https://clawhub.ai/user/bayllech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bayllech](https://clawhub.ai/user/bayllech)
 
-## Use Case: <br>
-OpenClaw users use this skill to preserve working context in local session slots or project summaries and later restore the concise state, decisions, files, commands, risks, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local handoff summaries can accidentally include secrets, credentials, or sensitive personal data. <br>
-Mitigation: Review summaries before saving and omit tokens, keys, cookies, full account credentials, and unnecessary sensitive details. <br>
-Risk: Reusing a session slot or project name overwrites the previous local summary. <br>
-Mitigation: Use clear, specific slot or project names and confirm the target before saving when prior context should be preserved. <br>
+## Use Case:
 
+Developers and agent users use this skill to preserve work state across account switches, cleared sessions, new chats, or project handoffs by saving concise local session or project summaries and restoring them later.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bayllech/context-handoff) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown summaries and concise text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local session summaries under handoffs/sessions/<slot>.md and project summaries under projects/<project-name>.md when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Unsafe slot or project names could cause the agent to read or overwrite unintended Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use simple names without slashes, '..', or other path characters, and verify resolved paths remain inside the intended handoff or project directories before reading or writing.
+
+Risk: Default overwrite behavior could replace an existing saved context unexpectedly.
+
+Mitigation: Confirm the target slot or project name before saving and ask before overwriting existing files when the prior content may matter.
+
+Risk: Saved summaries could accidentally include secrets or sensitive account material.
+
+Mitigation: Exclude tokens, keys, cookies, complete credentials, and other sensitive values from generated summaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bayllech/skills/context-handoff)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries and concise text responses with local file paths or shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes or reads local Markdown files for session slots and project summaries; default behavior overwrites the current saved summary unless the user asks to append.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

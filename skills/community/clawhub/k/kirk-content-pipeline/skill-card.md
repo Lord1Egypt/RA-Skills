@@ -1,51 +1,61 @@
-## Description: <br>
-Create KSVC-validated Twitter content from analyst research PDFs, including long threads, quick takes, breaking news posts, personal commentary, and victory-lap posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates KSVC-validated Twitter/X content from analyst research PDFs, including long threads, quick takes, breaking-news reactions, personal commentary, victory laps, and other market commentary formats.
 
-## Publisher: <br>
-[lukerspace](https://clawhub.ai/user/lukerspace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lukerspace](https://clawhub.ai/user/lukerspace)
 
-## Use Case: <br>
-Analysts and content operators use this skill to turn research PDFs into source-checked social media drafts. The workflow combines extraction, cross-document synthesis, KSVC holdings checks, claim audits, cross-validation, stylization, human review, and publication artifacts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow uses symlinks to expose local PDF folders to subagents. <br>
-Mitigation: Approve symlinks only to the specific PDF folder needed for the run, and remove the symlink after the task is complete. <br>
-Risk: The extraction-cache helper loads pickle state, which can execute unsafe payloads if the state file is untrusted. <br>
-Mitigation: Run the helper only on RLM state files generated locally for the current task and kept in a trusted task folder. <br>
-Risk: Drafts may contain incorrect holdings, source excerpts, chart details, or market claims before review. <br>
-Mitigation: Manually review holdings, source excerpts, generated metadata, and any chart decisions before publishing or sharing externally. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Kirk Content Pipeline source](artifact/SKILL.md) <br>
-- [RLM Extraction Cache System](artifact/scripts/README-extraction-cache.md) <br>
-- [Extraction Cache Builder](artifact/scripts/build_extraction_cache.py) <br>
-- [Kirk Voice Guide](artifact/references/kirk-voice.md) <br>
-- [Citrini7 Style Reference](artifact/references/citrini7-style.md) <br>
-- [Jukan05 Patterns Reference](artifact/references/jukan05-patterns.md) <br>
-- [Serenity Style Reference](artifact/references/serenity-style.md) <br>
-- [Zephyr Patterns Reference](artifact/references/zephyr-patterns.md) <br>
-- [TWSE Code Query API](https://www.twse.com.tw/en/api/codeQuery?query=3443) <br>
-- [KSVC Holdings API](https://kicksvc.online/api/twse-model2) <br>
-- [Yahoo Finance Chart API](https://query1.finance.yahoo.com/v8/finance/chart/6285.TW?interval=1d&range=1d) <br>
+## Use Case:
 
+Developers and content operators use this skill to turn research PDFs into source-checked market commentary drafts with holdings checks, audit steps, voice stylization, and publish-ready thread packaging.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown drafts and metadata, shell command snippets, JSON extraction caches, and review checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human approval before publication; generated caches should remain task-specific.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security scan reports unsafe pickle loading from auto-discovered local RLM state files.
+
+Mitigation: Run the cache builder only on fully trusted state.pkl files and prefer an explicit approved-file import flow for state inputs.
+
+Risk: The security scan reports a deliberate symlink workaround around subagent file-access limits.
+
+Mitigation: Remove or replace the symlink workaround with an approved file-access process before deployment.
+
+Risk: Financial content, holdings claims, and investment-position language can be incorrect or misleading if drafts are published without review.
+
+Mitigation: Manually review final content, holdings references, audit outputs, and investment-position language before copying drafts to shared thread folders.
+
+## Reference(s):
+
+- [Kirk Voice Guide](references/kirk-voice.md)
+- [Serenity Style](references/serenity-style.md)
+- [Citrini7 Style](references/citrini7-style.md)
+- [Jukan Patterns](references/jukan05-patterns.md)
+- [Zephyr Patterns](references/zephyr-patterns.md)
+- [RLM Extraction Cache System](scripts/README-extraction-cache.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown drafts, JSON extraction caches, audit reports, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for manual review before publishing; final thread packages may include clean post text, internal metadata, audit notes, and chart assets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

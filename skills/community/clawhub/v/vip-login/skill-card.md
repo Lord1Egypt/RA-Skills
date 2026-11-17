@@ -1,42 +1,59 @@
-## Description: <br>
-Provides a Vipshop QR-code login flow that shows a scannable login QR code, polls for confirmation, and saves the resulting session cookies for other Vipshop skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a QR-code login flow for Vipshop accounts, showing a login QR code, polling for confirmation, and saving the resulting local session for other Vipshop skills.
 
-## Publisher: <br>
-[vip](https://clawhub.ai/user/vip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vip](https://clawhub.ai/user/vip)
 
-## Use Case: <br>
-External users and agents use this skill to authenticate a Vipshop account through QR-code scanning so other Vipshop workflows can reuse the saved session. Developers can also use its scripts and integration guide to add QR-login and cookie reuse to related Vipshop skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reusable Vipshop account cookies are saved locally and can be read by other Vipshop skills. <br>
-Mitigation: Install only from a trusted publisher, use trusted companion skills, treat ~/.vipshop-user-login/tokens.json as a login credential, and delete it or run logout when session reuse is no longer wanted. <br>
-Risk: The QR-login flow creates a real authenticated Vipshop session. <br>
-Mitigation: Use the skill only when the user intentionally starts Vipshop login, show the QR image directly for user verification, and avoid shared machines for account sessions. <br>
+## Use Case:
 
+External users and developers use this skill to authenticate a Vipshop account by scanning a QR code so agents and related Vipshop skills can make authenticated Vipshop requests.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vip/vip-login) <br>
-- [Vipshop QR login API reference](references/api_reference.md) <br>
-- [Vipshop login integration guide](references/integration_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown QR image instructions, text status messages, machine-readable JSON QR payload, and a local JSON cookie file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores reusable Vipshop session cookies at ~/.vipshop-user-login/tokens.json for use by related skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill stores reusable Vipshop login cookies on disk for later use by other skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat ~/.vipshop-user-login/tokens.json like an active login cookie, keep it on trusted machines only, and use logout or file removal when access is no longer needed.
+
+Risk: Saved cookies can be reused across related local Vipshop skills with limited scoping controls.
+
+Mitigation: Install and run only trusted Vipshop skills that require this session, and review which skills can read the local token directory.
+
+Risk: Python dependencies are declared with lower-bound versions rather than fully pinned versions.
+
+Mitigation: Install dependencies in an isolated environment with pinned or reviewed package versions before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vip/skills/vip-login)
+- [Vipshop QR login API reference](artifact/references/api_reference.md)
+- [Vipshop login integration guide](artifact/references/integration_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell command and JSON snippets; scripts can emit machine-readable JSON markers for QR image display.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces and reuses a local Vipshop login session file for downstream Vipshop skills.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

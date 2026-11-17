@@ -1,48 +1,63 @@
-## Description: <br>
-Post-mortem analysis for AI agent failures. Capture state, reconstruct timelines, identify root causes. When your agent breaks, know what happened, why, and how to prevent it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post-mortem analysis for AI agent failures that captures workspace state, reconstructs timelines, and identifies likely root causes.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and operators use Incident Replay to capture local workspace snapshots around agent failures, reconstruct timelines, classify likely causes, and produce reports for manual remediation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally copies workspace file contents, logs, and decision traces into local incident data. <br>
-Mitigation: Set WORKSPACE_ROOT narrowly, exclude secrets and private directories, and keep generated incident_data outside synced or shared folders. <br>
-Risk: Generated reports and snapshots may contain sensitive local workspace context. <br>
-Mitigation: Review generated Markdown, JSON, and snapshot files before sharing or committing them. <br>
-Risk: Untrusted or path-like output values can direct report files to unintended locations. <br>
-Mitigation: Use controlled local output paths and avoid accepting report output paths from untrusted sources. <br>
-Risk: Root cause classification is heuristic and may confuse correlation with causation. <br>
-Mitigation: Treat findings as investigative guidance and require human review before remediation. <br>
+## Use Case:
 
+Developers and agent operators use Incident Replay to capture before and after workspace snapshots, compare file changes, detect incident triggers, reconstruct timelines, and generate post-mortem reports for AI agent failures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/incident-replay) <br>
-- [Publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [README.md](artifact/README.md) <br>
-- [LIMITATIONS.md](artifact/LIMITATIONS.md) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, JSON records, terminal text, and local workspace snapshot files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local configuration and writes snapshots, incidents, and reports under the configured data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata; artifact frontmatter remains 1.0.5) <br>
+Risk: The skill can copy broad workspace file contents into persistent local incident data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set a narrow WORKSPACE_ROOT, exclude secrets and unrelated projects, and review generated snapshots and reports before sharing or committing them.
+
+Risk: Snapshot data may include credentials, logs, agent memory, or other sensitive local files if configured too broadly.
+
+Mitigation: Aggressively configure EXCLUDE_PATTERNS for secrets, credentials, logs, agent memory, generated incident data, and any files outside the intended investigation scope.
+
+Risk: Workspaces writable by untrusted users can affect what the forensic snapshot captures.
+
+Mitigation: Run the tool only in trusted local workspaces and avoid using it in shared or untrusted writable directories.
+
+Risk: Root cause classification is heuristic and cannot prove causation.
+
+Mitigation: Treat classifications and remediation as investigative guidance, then verify findings with human review before taking corrective action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/incident-replay)
+- [README](README.md)
+- [Limitations](LIMITATIONS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and JSON incident reports, JSON snapshots, and command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates persistent local incident data and reports under the configured data directory.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release; artifact frontmatter remains 1.0.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

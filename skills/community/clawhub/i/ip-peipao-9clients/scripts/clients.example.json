@@ -1,0 +1,11 @@
+[
+  {"id": "客户A", "tier": "L1", "paid_status": "未付款", "days_since_action": 12, "blocker": "无行动", "direction": "决策顾问类", "next_action": "交3个目标客户名单"},
+  {"id": "客户B", "tier": "L2", "paid_status": "399元已付", "days_since_action": 4, "blocker": "没方向，虚假安全感", "direction": "幕后军师类", "next_action": "本周发1条方向主题内容"},
+  {"id": "客户C", "tier": "L3", "paid_status": "2999元待定", "days_since_action": 6, "blocker": "观望未付", "direction": "企业陪跑", "next_action": "约20分钟诊断通话"},
+  {"id": "客户D", "tier": "L2", "paid_status": "517元已付", "days_since_action": 2, "blocker": "输出易断，流量不稳", "direction": "个人IP内容", "next_action": "确认固定发布日，排下周选题"},
+  {"id": "客户E", "tier": "L2", "paid_status": "388元已付", "days_since_action": 9, "blocker": "找方向与内耗", "direction": "细分人群决策陪跑", "next_action": "交整理10个案例"},
+  {"id": "客户F", "tier": "L2", "paid_status": "598元已付", "days_since_action": 5, "blocker": "需要落地", "direction": "创始人IP升级", "next_action": "本周做1个案例诊断"},
+  {"id": "客户G", "tier": "L2", "paid_status": "600元已付", "days_since_action": 8, "blocker": "缺差异化", "direction": "避坑指南内容+引流变现", "next_action": "交10个坑点清单"},
+  {"id": "客户H", "tier": "L2", "paid_status": "700元已付", "days_since_action": 3, "blocker": "案例进度慢", "direction": "案例标准化", "next_action": "本周再跑3个案例+1次同行拆解"},
+  {"id": "客户I", "tier": "L2", "paid_status": "388元已付", "days_since_action": 7, "blocker": "卡在判断逻辑梳理", "direction": "Agent判断标准", "next_action": "交出判断标准初稿"}
+]

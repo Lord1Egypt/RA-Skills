@@ -1,40 +1,52 @@
-## Description: <br>
-Extracts clean Markdown content from user-provided URLs, including JavaScript-rendered single-page apps and concurrent multi-URL scraping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts clean, LLM-optimized Markdown from one or more URLs, including JavaScript-rendered pages, using Firecrawl.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch web pages that the user identifies and save or inspect cleaned Markdown, links, JSON, screenshots, or raw page content. It is intended for static pages and JavaScript-rendered pages, with guidance to escalate to browser interaction only when scraping is insufficient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ad hoc npx execution can run an unpinned Firecrawl CLI version. <br>
-Mitigation: Prefer a verified or pinned Firecrawl CLI before allowing an agent to run scrape commands. <br>
-Risk: Scraping private or authenticated pages can process and save sensitive content locally. <br>
-Mitigation: Use the skill only for URLs the user intends to process, and avoid private or authenticated pages unless local storage is acceptable. <br>
+## Use Case:
 
+External users, developers, and agents use this skill when they already have URLs and need Firecrawl commands to scrape web pages into Markdown or JSON for downstream analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/firecrawl-scrape-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and option tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may write local Markdown or JSON files under .firecrawl when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version text) <br>
+Risk: The skill allows unpinned third-party CLI execution through npx, which can run code that has not been audited for this release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the npx allowance or pin Firecrawl to an audited exact version, and run scraping with limited filesystem, credential, and network exposure.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/yang1002378395-cmyk/skills/firecrawl-scrape-cn)
+- [firecrawl-search](../firecrawl-search/SKILL.md)
+- [firecrawl-browser](../firecrawl-browser/SKILL.md)
+- [firecrawl-download](../firecrawl-download/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples; Firecrawl commands may produce Markdown or JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single or multiple URLs; scraped outputs are commonly saved under .firecrawl/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

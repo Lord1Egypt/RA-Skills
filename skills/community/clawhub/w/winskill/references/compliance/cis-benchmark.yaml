@@ -1,0 +1,63 @@
+---
+version: "1.0.0"
+updated: "2026-08-24"
+standard: "CIS Benchmark"
+description: "Center for Internet Security - Windows Server 安全基线（精选关键控制项）"
+---
+
+items:
+  - id: "CIS-1.1.1"
+    category: 密码策略
+    item: 密码最小长度≥14
+    level: Level 1
+    module: module-05
+    check: "net accounts | Select-String 'Minimum password length'"
+    expected: ">= 14"
+
+  - id: "CIS-1.1.2"
+    category: 密码策略
+    item: 密码复杂度已启用
+    level: Level 1
+    module: module-05
+    check: "Get-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Lsa' -Name PasswordComplexity"
+    expected: "PasswordComplexity = 1"
+
+  - id: "CIS-2.2.1"
+    category: 账户策略
+    item: Guest 账户已禁用
+    level: Level 1
+    module: module-16
+    check: "Get-LocalUser -Name 'Guest' | Select-Object Enabled"
+    expected: "Enabled = False"
+
+  - id: "CIS-2.3.1.1"
+    category: 登录策略
+    item: 限制空密码登录
+    level: Level 1
+    module: module-16
+    check: "Get-ItemProperty -Path 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Lsa' -Name LimitBlankPasswordUse"
+    expected: "LimitBlankPasswordUse = 1"
+
+  - id: "CIS-5.1"
+    category: 系统服务
+    item: Windows Update 服务运行中
+    level: Level 1
+    module: module-08
+    check: "Get-Service -Name wuauserv | Select-Object Status"
+    expected: "Status = Running"
+
+  - id: "CIS-9.1"
+    category: 防火墙
+    item: 所有防火墙配置文件已启用
+    level: Level 1
+    module: module-21
+    check: "Get-NetFirewallProfile | Select-Object Name, Enabled"
+    expected: "全部 Enabled = True"
+
+  - id: "CIS-17.1"
+    category: 审计策略
+    item: 登录事件审计（成功+失败）
+    level: Level 1
+    module: module-10
+    check: "auditpol /get /subcategory:'Logon'"
+    expected: "Success and Failure"

@@ -1,43 +1,57 @@
-## Description: <br>
-Ecwid Ecommerce documents Ecwid REST API v3 workflows for store data including products, orders, customers, categories, discount coupons, promotions, abandoned carts, and store profile. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ecwid REST API v3 integration for managing e-commerce store data including products, orders, customers, categories, discount coupons, promotions, abandoned carts, and store profile.
 
-## Publisher: <br>
-[droneitgroup](https://clawhub.ai/user/droneitgroup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[droneitgroup](https://clawhub.ai/user/droneitgroup)
 
-## Use Case: <br>
-Developers and store operators use this skill to let an agent query Ecwid store data and prepare API requests for catalog, order, customer, promotion, cart, coupon, and profile workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ecwid order, customer, and cart queries can expose customer personal data such as email addresses, phone numbers, billing or shipping addresses, tracking numbers, and private admin notes. <br>
-Mitigation: Use responseFields to limit returned data and redact customer personal data before sharing outputs. <br>
-Risk: A broad Ecwid secret token or enabled write methods can give an agent more store access than intended. <br>
-Mitigation: Use a read-only token with the smallest required scopes where possible, keep HTTP methods to GET for read-only use, and avoid full admin tokens unless write access is intentional. <br>
+## Use Case:
 
+Store operators, ecommerce teams, and developers use this skill to query Ecwid REST API v3 documentation and prepare HTTP requests for store profile, catalog, order, customer, coupon, promotion, and abandoned cart data.
 
-## Reference(s): <br>
-- [Ecwid API Reference](https://docs.ecwid.com/api-reference) <br>
-- [Ecwid API Authentication](https://docs.ecwid.com/api-reference/rest-api/authentication) <br>
-- [Publisher Homepage](https://github.com/droneitgroup) <br>
-- [Ecwid Ecommerce ClawHub Release](https://clawhub.ai/droneitgroup/ecwid-ecommerce) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with HTTP endpoint examples, curl commands, and API parameter tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include guidance for limiting Ecwid API responses with responseFields and for handling JSON API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Ecwid API tokens can expose sensitive store, order, and customer data if granted broad access or shared in logs and chats.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a read-only, least-privilege token, avoid exposing customer PII, and rotate the token if exposure is suspected.
+
+Risk: Enabling write HTTP methods can mutate production store data.
+
+Mitigation: Keep HTTP methods limited to GET unless store mutation is intentional and tested first in a sandbox or test store.
+
+## Reference(s):
+
+- [Ecwid REST API reference](https://docs.ecwid.com/api-reference)
+- [Ecwid REST API authentication](https://docs.ecwid.com/api-reference/rest-api/authentication)
+- [Publisher profile](https://clawhub.ai/user/droneitgroup)
+- [Skill page](https://clawhub.ai/droneitgroup/skills/ecwid-ecommerce)
+- [Publisher homepage](https://github.com/droneitgroup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP endpoint details and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Ecwid REST API paths, query parameters, response field descriptions, scope guidance, and bearer-token setup instructions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Semantic Shield helps agents and developers check AI skills, plugins, and MCP tools for safety by querying trust scores, risk levels, threat details, and install recommendations from a third-party advisory API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic Shield lets agents and developers query an API for safety scores, risk levels, threat details, and install recommendations before using AI skills, plugins, or MCP tools.
 
-## Publisher: <br>
-[simplysemantics](https://clawhub.ai/user/simplysemantics) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[simplysemantics](https://clawhub.ai/user/simplysemantics)
 
-## Use Case: <br>
-Developers, AI agent builders, and security teams use this skill to check whether a skill, plugin, or MCP tool has a vetted safety profile before installation or use. It can also submit public skill identifiers or URLs for expert review when no existing verdict is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party advisory service and API quota, so results may be unavailable or incomplete when credentials, quota, or service availability fail. <br>
-Mitigation: Use a revocable Semantic Shield API key, monitor lookup and inquiry quota, and handle authentication, quota, not-found, and temporary service errors before making install decisions. <br>
-Risk: Validation requests can transmit skill identifiers, provider names, and optional public URLs to the Semantic Shield service. <br>
-Mitigation: Submit only public skill identifiers or public listing URLs, and do not send secrets, private repositories, internal URLs, source code, environment variables, or personal data. <br>
-Risk: A third-party safety score can be useful context but should not be the only control for high-impact or sensitive tool installation. <br>
-Mitigation: Combine Semantic Shield results with local review, organizational policy, and independent security checks before installing or enabling high-impact tools. <br>
+## Use Case:
 
+Developers, agent builders, and security teams use this skill to check the trust profile of AI skills, plugins, and MCP tools before installation or autonomous use. They can also submit unvetted public skills for expert evaluation.
 
-## Reference(s): <br>
-- [Semantic Shield product page](https://www.simplysemantics.com/semantic-shield.html) <br>
-- [ClawHub listing](https://clawhub.ai/simplysemantics/semantic-shield) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Markdown trust reports with API request guidance and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SEMANTIC_SHIELD_API_KEY and returns safety scores, risk levels, threat summaries, and recommendations based on submitted skill identifiers, providers, or public URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill depends on an external SaaS service and requires a vendor API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped, revocable Semantic Shield API key and review vendor availability and privacy requirements before relying on the service in production workflows.
+
+Risk: Validation requests send skill identifiers, provider names, and optional public skill URLs to the service.
+
+Mitigation: Submit only public skill metadata and do not include private repositories, internal URLs, secrets, source code, or user personal data.
+
+## Reference(s):
+
+- [Semantic Shield product page](https://www.simplysemantics.com/semantic-shield.html)
+- [Semantic Shield ClawHub listing](https://clawhub.ai/simplysemantics/skills/semantic-shield)
+- [Simply Semantics publisher profile](https://clawhub.ai/user/simplysemantics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown trust reports with API request guidance and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SEMANTIC_SHIELD_API_KEY and uses skill_id, provider, and optional public skill_url inputs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

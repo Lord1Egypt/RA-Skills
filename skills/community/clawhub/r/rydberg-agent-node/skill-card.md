@@ -1,47 +1,55 @@
-## Description: <br>
-Deploys and manages a ProbeChain Rydberg testnet Agent node, including installation, startup, status checks, logs, balance checks, and Agent registration commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys a ProbeChain Rydberg testnet Agent node and provides commands to install, start, verify, stop, and inspect the node.
 
-## Publisher: <br>
-[ProbeBuilders](https://clawhub.ai/user/ProbeBuilders) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[probebuilders](https://clawhub.ai/user/probebuilders)
 
-## Use Case: <br>
-Developers and node operators use this skill to install, start, monitor, and manage a local ProbeChain Rydberg testnet Agent node across macOS, Linux, and Windows via WSL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads or builds node software and starts a long-running local background process. <br>
-Mitigation: Review the GitHub source or release being used, run it only on machines intended for a ProbeChain Rydberg Agent testnet node, and monitor ~/rydberg-agent/node.log. <br>
-Risk: The skill stores a local node password and unlocks the node account through local IPC. <br>
-Mitigation: Use a unique node password, keep generated files private, and avoid exposing sensitive admin or personal APIs over HTTP. <br>
-Risk: The skill writes blockchain data, logs, scripts, and credentials under ~/rydberg-agent. <br>
-Mitigation: Review generated files, keep filesystem permissions restricted, and stop the node process before removing local node data. <br>
-Risk: The skill uses outbound network access for release downloads, source builds, genesis data, and bootnode connectivity. <br>
-Mitigation: Run it only on networks where that access is expected and verify release checksums or signatures when they are available. <br>
+## Use Case:
 
+Developers and node operators use this skill to deploy and manage a ProbeChain Rydberg testnet Agent node on macOS, Linux, or Windows through WSL.
 
-## Reference(s): <br>
-- [ProbeChain homepage](https://probechain.org) <br>
-- [ProbeChain Rydberg repository](https://github.com/ProbeChain/Rydberg-Mainnet) <br>
-- [Rydberg Agent Node on ClawHub](https://clawhub.ai/ProbeBuilders/rydberg-agent-node) <br>
-- [Go downloads](https://go.dev/dl/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with shell command blocks and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces install, start, stop, status, log, balance, and re-registration guidance; may request a local node password.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.1 (source: server release metadata; artifact frontmatter reports 2.5.0) <br>
+Risk: The skill installs and runs a hot local blockchain node while handling node credentials and a local keystore.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value testnet account and machine profile, do not reuse passwords, and treat ~/rydberg-agent/password.txt and the keystore as sensitive.
+
+Risk: The setup fetches release artifacts and network configuration during installation.
+
+Mitigation: Review the generated start-bg.sh before running it, prefer immutable pinned releases, verify downloaded artifacts, and validate bootnode data where possible.
+
+## Reference(s):
+
+- [ProbeChain homepage](https://probechain.org)
+- [Rydberg Mainnet repository](https://github.com/ProbeChain/Rydberg-Mainnet)
+- [ClawHub skill page](https://clawhub.ai/probebuilders/skills/rydberg-agent-node)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes node status output, install/start/stop/log commands, and operational guidance.]
+
+## Skill Version(s):
+
+2.5.1 (source: server release metadata; artifact frontmatter remains 2.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

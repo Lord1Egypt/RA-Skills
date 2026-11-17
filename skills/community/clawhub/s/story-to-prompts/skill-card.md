@@ -1,43 +1,52 @@
-## Description: <br>
-Convert story synopses or single-scene descriptions into high-quality text-to-image prompts with multi-scene and single-scene modes, scored prompt outputs, and bilingual versions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts story synopses or single-scene descriptions into scored, bilingual text-to-image prompts for storyboard and image generation workflows.
 
-## Publisher: <br>
-[ggke](https://clawhub.ai/user/ggke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ggke](https://clawhub.ai/user/ggke)
 
-## Use Case: <br>
-Creators, designers, and developers use this skill to convert a story outline or a single scene description into ready-to-use text-to-image prompts. It is useful for storyboard prompt generation, image-series planning, and bilingual prompt drafting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided story details may be repeated in generated prompts. <br>
-Mitigation: Avoid providing private story details that should not appear in prompt output. <br>
-Risk: Generated prompts may be used with downstream image-generation systems that have separate policy or licensing requirements. <br>
-Mitigation: Review downstream image-generation policy and licensing constraints before using style references or generated prompts commercially. <br>
+## Use Case:
 
+External users, creators, and developers use this skill to turn story outlines or single-scene descriptions into coherent prompt sets with shot language, composition guidance, negative prompts, scoring, and bilingual output.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ggke/story-to-prompts) <br>
-- [Shot Types Reference](references/shot-types.md) <br>
-- [Composition Patterns Reference](references/composition-patterns.md) <br>
-- [Style Parameters Reference](references/style-params.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Text] <br>
-**Output Format:** [Markdown sections containing scene descriptions, bilingual text-to-image prompts, negative prompts, scores, strengths, and improvements] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated directly in the detected or requested primary language with a secondary bilingual prompt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release evidence) <br>
+Risk: The skill automatically produces polished bilingual image prompts without a confirmation step, so style, language preference, or negative-prompt choices may not match the user's intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts before using them with an image model and adjust style, language, and negative-prompt terms as needed.
+
+## Reference(s):
+
+- [Story to Prompts Skill Page](https://clawhub.ai/ggke/skills/story-to-prompts)
+- [Composition Patterns Reference](references/composition-patterns.md)
+- [Shot Types Reference](references/shot-types.md)
+- [Style Parameters Reference](references/style-params.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with bilingual prompt sections, negative prompts, and quality scores]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Multi-scene mode produces one section per image; single-scene mode produces one final prompt set.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

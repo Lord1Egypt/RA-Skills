@@ -1,41 +1,53 @@
-## Description: <br>
-Basic sample size calculator for clinical research planning with common statistical scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Basic sample size calculator for clinical research planning with common statistical scenarios.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External researchers, clinicians, and study-design teams use this skill to estimate preliminary sample sizes for grant proposals, study planning, and statistics education. Outputs should be treated as planning aids for qualified review, not clinical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The calculator can produce misleading planning estimates if inputs or statistical assumptions are wrong. <br>
-Mitigation: Use results as preliminary planning aids and have a qualified reviewer verify assumptions before relying on them for clinical research decisions. <br>
-Risk: Unpinned numpy and scipy dependencies may change behavior across environments. <br>
-Mitigation: Install in a virtual environment and pin reviewed dependency versions or use a lockfile for reproducible execution. <br>
+## Use Case:
 
+Clinical researchers, study planners, and educators use this skill to estimate sample sizes for early clinical study planning across common statistical scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/sample-size-basic) <br>
-- [Publisher profile](https://clawhub.ai/user/aipoch-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text CLI output with sample size estimates and statistical assumptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns required sample size per group, total sample size, and summary text for supported statistical scenarios.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Invalid or out-of-range statistical inputs may crash the tool or produce unreliable calculations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate inputs before execution and review outputs as preliminary planning estimates rather than final clinical study determinations.
+
+Risk: Scientific dependency versions can affect production reliability.
+
+Mitigation: Install in an isolated Python environment and review or pin numpy and scipy before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/sample-size-basic)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text CLI output with numeric sample size estimates and statistical assumptions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires numeric inputs for test choice, alpha, power, and scenario-specific effect parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

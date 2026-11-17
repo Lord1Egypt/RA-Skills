@@ -1,46 +1,63 @@
-## Description: <br>
-Tezos Skill provides expert Tezos blockchain development guidance for security-first smart contract development, FA1.2/FA2 token standards, gas optimization, and production deployment patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides expert Tezos blockchain development guidance for security-first smart contract development, FA1.2/FA2 token standards, gas optimization, and production deployment patterns.
 
-## Publisher: <br>
-[efekucuk](https://clawhub.ai/user/efekucuk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[efekucuk](https://clawhub.ai/user/efekucuk)
 
-## Use Case: <br>
-Developers and engineers use this skill when building Tezos L1 smart contracts, implementing token standards, reviewing security patterns, optimizing gas usage, and planning testnet or mainnet deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Blockchain deployment examples can trigger real financial actions or irreversible on-chain contract creation when run against mainnet. <br>
-Mitigation: Before approving octez-client commands, confirm the network, account, contract address, transfer amount, burn cap, and dry-run status; only approve mainnet deployment when the user intends to spend real XTZ. <br>
-Risk: Smart contract guidance may be applied to high-value production contracts without sufficient independent review. <br>
-Mitigation: Use the skill's testing, simulation, and security review guidance before mainnet deployment, and obtain professional audit coverage for high-value contracts. <br>
+## Use Case:
 
+Developers and engineers use this skill when building Tezos L1 smart contracts, implementing FA1.2/FA2 token standards, optimizing gas usage, reviewing contract security, and preparing deployments.
 
-## Reference(s): <br>
-- [ClawHub Tezos Skill](https://clawhub.ai/efekucuk/tezos) <br>
-- [Tezos Docs](https://docs.tezos.com) <br>
-- [LIGO](https://ligolang.org) <br>
-- [OpenTezos](https://opentezos.com) <br>
-- [Tezos Token Standards](https://gitlab.com/tezos/tzip) <br>
-- [TzKT Explorer](https://tzkt.io) <br>
-- [Tezos Testnet Registry](https://teztnets.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Tezos smart contract examples, testing workflows, deployment commands, and security review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Broad command authority and blockchain CLI usage can enable package installation or Tezos actions that spend fees, originate contracts, transfer assets, or target mainnet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the ClawHub-reviewed version or a pinned, checksummed release; remove or narrow npm access; and require explicit confirmation before any octez-client action with financial or mainnet impact.
+
+Risk: Production-oriented deployment guidance can be misapplied to live Tezos contracts without adequate review.
+
+Mitigation: Run comprehensive tests and dry runs on Shadownet, review contract security boundaries, and obtain professional audit coverage for high-value contracts before mainnet deployment.
+
+Risk: The included FA2 operator pattern is reported as unsafe because authorization is not scoped to token_id.
+
+Mitigation: Do not copy the FA2 operator pattern as-is; fix token_id-scoped authorization and add tests for operator permissions before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/efekucuk/skills/tezos)
+- [Tezos Docs](https://docs.tezos.com)
+- [LIGO](https://ligolang.org)
+- [OpenTezos](https://opentezos.com)
+- [Tezos Token Standards](https://gitlab.com/tezos/tzip)
+- [TzKT Explorer](https://tzkt.io)
+- [Tezos Testnet Registry](https://teztnets.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline LIGO and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include smart contract examples, security checklists, deployment steps, and blockchain CLI commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

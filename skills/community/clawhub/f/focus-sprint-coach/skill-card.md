@@ -1,38 +1,52 @@
-## Description: <br>
-Turn 'I should work' into 'I'm in the zone': a cognitive sprint coach that helps users start, sustain, and optimize deep focus through activation rituals, distraction shields, and post-sprint reflection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn 'I should work' into 'I'm in the zone': a cognitive sprint coach that helps you start, sustain, and optimize deep focus through activation rituals, distraction shields, and post-sprint reflection.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external users, and knowledge workers use this skill to diagnose focus barriers and run personalized deep-work sprints with activation rituals, distraction defenses, recovery routines, and reflection.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat productivity and attention-difficulty coaching as medical or mental-health care.
+
+Mitigation: Present the skill as focus-management support only and direct users to qualified professionals for persistent or significant attention, anxiety, depression, or trauma-related concerns.
+
+Risk: The skill may ask about work habits, distractions, energy patterns, and attention difficulties.
+
+Mitigation: Limit shared details to what is needed for focus coaching and avoid unnecessary sensitive personal, health, workplace, or family information.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill as an AI-guided productivity coach for focus assessment, personalized sprint planning, activation rituals, distraction defense, recovery, and reflection. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask about focus struggles, work habits, distractions, and ADHD-friendly preferences, which can include sensitive personal or health-adjacent information. <br>
-Mitigation: Avoid sharing sensitive personal or medical details, and consult a qualified professional for persistent attention, anxiety, depression, or other clinical concerns. <br>
+**Output Format:** [Markdown coaching plans with optional structured JSON profiles and checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Focus Sprint Coach on ClawHub](https://clawhub.ai/harrylabsj/focus-sprint-coach) <br>
+**Other Properties Related to Output:** [No code execution, credential access, network behavior, or persistence was identified in the inspected artifacts.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text, Configuration] <br>
-**Output Format:** [Markdown and plain-text coaching plans with checklists, sprint settings, reflection prompts, and example scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured focus profile JSON examples and bilingual usage examples.] <br>
+1.0.0 (source: frontmatter, skill.json, release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

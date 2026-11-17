@@ -29,7 +29,7 @@ description: "BA Master Agent —— 将模糊的概念需求转化为结构化�
 | 项目 | 说明 |
 |------|------|
 | 🔌 **触发方式** | 你可以对我说“我需要制作一份需求规格说明书”或同语义语句，即激活该技能 |
-| 📥 **输入要求** | 一个模糊的产品/系统/功能概念——哪怕只有一句话 |
+| 📥 **输入要求** | 一份概要需求说明文档（描述项目背景/目标/功能范围），或一个模糊的产品/系统/功能概念（无文档时将先提示提供） |
 | 📤 **输出结果** | **概念版需求规格说明书**（11 章结构 + Mermaid 流程图/ER图/架构图） |
 | 🎯 **适合你** | 你有想法但不清楚怎么写成需求 |
 
@@ -98,8 +98,8 @@ description: "BA Master Agent —— 将模糊的概念需求转化为结构化�
 该智能体有以下技能：
 
 - **requirements-elicitation** — 需求澄清与结构化输出（v1.1.0）
-  - 🔌 通过 MCP Tool `requirements_elicitation` 调用（阶段化：每次调用传入 `context` 指定 `stage`，8阶段逐步产出）
-  - **首次启动调度约定**：启动本技能的首次 Tool 调用**必须**传 `context='{"stage":"init"}'`，服务端会返回一条路径确认 `[ASK]`。客户端 Agent 将问题呈现给用户，拿到用户路径回复后，以 `context='{"stage":"root_purpose"}'` 发起第二次调用，并在 user message 首行以 `基准路径：{路径}` 明确告知服务端。禁止跳过 init 直接调用 root_purpose。
+  - 🔌 通过 MCP Tool `requirements_elicitation` 调用（阶段化：每次调用传入 `context` 指定 `stage`，9阶段逐步产出）
+  - **首次启动调度约定**：启动本技能的首次 Tool 调用**必须**传 `context='{"stage":"init"}'`，服务端会返回一条路径确认 `[ASK]`。客户端 Agent 将问题呈现给用户，拿到用户路径回复后，以 `context='{"stage":"pre_input"}'` 发起第二次调用（检查上下文中是否存在概要需求说明文档）。pre_input 通过后，以 `context='{"stage":"root_purpose"}'` 发起第三次调用，并在 user message 首行以 `基准路径：{路径}` 明确告知服务端。禁止跳过 init/pre_input 直接调用 root_purpose。
   - 从模糊概念到结构化 PRD 的完整需求澄清流程，涵盖根目的发现、领域知识检索、三维度需求澄清（场景/价值/约束）、结构化文档输出
   - 核心产出：概念版需求规格说明书
 

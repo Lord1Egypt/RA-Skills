@@ -1,44 +1,56 @@
-## Description: <br>
-Analyzes fixed-camera classroom video or image inputs to produce class-level engagement scores, emotion distributions, anonymous low-engagement seat coordinates, heatmap links, and teacher-facing suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes classroom video to estimate group-level student emotions and engagement, identify low-engagement seat locations, and provide teachers with heatmaps and teaching suggestions.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-Educators, school operators, and smart-classroom developers use this skill to analyze classroom camera footage for aggregate engagement trends and real-time teaching support. Use requires appropriate consent and data-processing controls for student video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Student classroom video and derived engagement reports are sensitive, especially when minors are involved. <br>
-Mitigation: Use only where the school or organization has explicit consent and a data-processing agreement covering cloud upload, retention, deletion, access controls, and permitted uses. <br>
-Risk: The release is framed as anonymous and real-time, while security evidence reports persistent identity state, token storage, and cloud history retrieval. <br>
-Mitigation: Confirm identity linkage, token storage, report retention, deletion behavior, and access controls with the publisher before deployment. <br>
-Risk: Emotion and engagement outputs could be misused as individual student evaluation or profiling. <br>
-Mitigation: Restrict outputs to aggregate teaching support and anonymous seat-level prompts; do not use them for student performance evaluation, parent communication, public ranking, or psychological diagnosis. <br>
+## Use Case:
 
+Teachers and classroom operators can use the skill to review group-level engagement patterns and adjust lesson pacing. Its seat-level prompts should remain anonymous teaching aids, not assessments of individual students.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-classroom-engagement-analysis-analysis) <br>
-- [API documentation](references/api_doc.md) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and tables, JSON API responses, report links, heatmap image URLs, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include cloud-hosted report links and heatmap image URLs returned by the analysis API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.3) <br>
+Risk: The security evidence rates the skill suspicious and says the scan is partial, citing concerns about account and credential handling, privacy and permissions, and video processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those behaviors and confirm where video and results are sent before use; limit access and retention, and follow the documented school and parent consent requirements for minors.
+
+Risk: Facial-expression estimates and seat-level engagement cues can be mistaken for reliable judgments about a student.
+
+Mitigation: Treat results as short-term classroom discussion aids only; do not use them for student performance decisions, public rankings, or individual psychological conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-classroom-engagement-analysis-analysis)
+- [Classroom engagement API and privacy constraints](references/api_doc.md)
+- [API request and error details](skills/smyx_analysis/references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance, Report links]
+
+**Output Format:** [Structured JSON analysis results, Markdown report listings, and text suggestions with report links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include class-level engagement scores, estimated emotion distributions, anonymous seat coordinates, heatmaps, and teaching suggestions.]
+
+## Skill Version(s):
+
+1.0.17 (source: server-resolved release version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

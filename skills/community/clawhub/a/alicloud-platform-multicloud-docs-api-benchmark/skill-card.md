@@ -1,43 +1,60 @@
-## Description: <br>
-Benchmark similar product documentation and API documentation across Alibaba Cloud, AWS, Azure, GCP, Tencent Cloud, Volcano Engine, and Huawei Cloud. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Benchmark similar product documentation and API documentation across Alibaba Cloud, AWS, Azure, GCP, Tencent Cloud, Volcano Engine, and Huawei Cloud.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers, documentation teams, and cloud platform teams use this skill to compare product documentation and API documentation across major cloud providers, then produce score rankings and prioritized improvement actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags unnecessary Alibaba Cloud credential setup for a public documentation benchmarking workflow. <br>
-Mitigation: Review before installing, use the skill only for public documentation benchmarking and local report generation, and do not provide Alibaba Cloud access keys unless a specific reviewed command requires them. <br>
-Risk: The benchmark can rely on auto-discovered documentation links, which may miss authoritative pages or produce low-confidence comparisons. <br>
-Mitigation: Pin official provider links with the documented --<provider>-links options and review the generated evidence JSON before using recommendations. <br>
+## Use Case:
 
+Developers and documentation teams use this skill to compare similar product documentation and API references across major cloud providers. It helps rank documentation quality, identify integration blockers, and produce prioritized improvement recommendations.
 
-## Reference(s): <br>
-- [Review rubric](artifact/references/review-rubric.md) <br>
-- [Scoring profiles](artifact/references/scoring.json) <br>
-- [Benchmark presets](artifact/references/presets.json) <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/alicloud-platform-multicloud-docs-api-benchmark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report and JSON evidence files, with concise text recommendations and runnable shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes benchmark_evidence.json and benchmark_report.md under output/alicloud-platform-multicloud-docs-api-benchmark/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill asks for Alibaba Cloud credentials although the documented benchmark is documentation-only.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run without cloud access keys unless a revised version explains why credentials are required and limits them to read-only scope.
+
+Risk: URL filtering may allow unintended internal or arbitrary fetches when links come from untrusted input.
+
+Mitigation: Run in a sandbox with restricted outbound network access and use only trusted, pinned official documentation URLs.
+
+Risk: Automated discovery can return low-confidence or incomplete documentation matches.
+
+Mitigation: Prefer user-pinned authoritative links and review generated rankings and recommendations before using them for decisions.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/cinience/skills/alicloud-platform-multicloud-docs-api-benchmark)
+- [Review rubric](references/review-rubric.md)
+- [Scoring configuration](references/scoring.json)
+- [LLM platform preset](references/presets.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown report and JSON evidence files, with concise agent guidance and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes benchmark_report.md and benchmark_evidence.json under output/alicloud-platform-multicloud-docs-api-benchmark/.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Openclaw Memory Master helps agents organize, analyze, retrieve, and curate memory content with smart classification, tagging, deduplication, importance scoring, relation discovery, and GraphRAG-style retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI memory management system that helps agents organize, analyze, retrieve, curate, and compact persistent memory with classification, tagging, deduplication, importance scoring, relation discovery, and GraphRAG-style recall.
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add structured memory management, curation, retrieval, and reporting behavior to AI agents that need persistent local memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary reports an incoherent package layout, which can make installation, testing, or runtime behavior unreliable. <br>
-Mitigation: Review the package layout before installing and ask the publisher for a valid, reproducible package structure. <br>
-Risk: The server security guidance flags sensitive-memory handling and capability tags for wallet and sensitive credentials. <br>
-Mitigation: Avoid storing secrets, wallet material, health details, or highly sensitive personal memories until privacy documentation, local-only controls, and retention/deletion controls are clarified. <br>
-Risk: Artifact behavior includes cleanup, deletion, and archive operations for memory data. <br>
-Mitigation: Require explicit confirmation or archive behavior before cleanup and back up memory stores before enabling deletion workflows. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add persistent memory workflows: capturing raw memory, filtering sensitive content, compacting and curating memory files, retrieving relevant entries, scoring importance, and discovering relationships between memories.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cp3d1455926-svg/openclaw-memory-master) <br>
-- [Artifact Skill Documentation](artifact/SKILL.md) <br>
-- [Development Plan](artifact/DEV_PLAN_v4.3.0.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces memory curation guidance, API examples, configuration patterns, and local file-oriented memory operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.3.0 (source: server release metadata, artifact frontmatter) <br>
+Risk: Broad persistent memory handling may retain private user content or sensitive personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandboxed memory paths, avoid secrets and sensitive personal data, and verify sensitive-data filtering before deployment.
+
+Risk: Memory curation and cleanup behavior can write, update, or delete local files.
+
+Mitigation: Review retention settings and target directories, run on test data first, and keep backups for memory stores that matter.
+
+Risk: Security evidence reports unsafe packaging and weak controls around sensitive data.
+
+Mitigation: Manually review package contents before install or execution, and require explicit approval for any background cleanup, migration, or file-retention task.
+
+## Reference(s):
+
+- [Openclaw Memory Master on ClawHub](https://clawhub.ai/cp3d1455926-svg/skills/openclaw-memory-master)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Development plan v4.3.0](artifact/DEV_PLAN_v4.3.0.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and JavaScript examples, shell commands, configuration notes, JSON-like analysis results, and generated memory or wiki files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist, compact, update, or delete local memory files depending on configuration and command used.]
+
+## Skill Version(s):
+
+4.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-PDF splitting and PDF-to-Word conversion tools implemented in Node.js. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF splitting and PDF-to-Word conversion tools implemented in Node.js.
 
-## Publisher: <br>
-[daguniang](https://clawhub.ai/user/daguniang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[daguniang](https://clawhub.ai/user/daguniang)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to split selected PDF page ranges into new PDFs or convert PDF text into simple .docx files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads source PDFs and writes output files on local paths, so an incorrect output path could overwrite important files.
+
+Mitigation: Use explicit output paths in a workspace directory and avoid writing over important existing files.
+
+Risk: The supplied security guidance notes a vulnerable transitive nanoid dependency in the npm dependency set.
+
+Mitigation: Review, update, or pin dependencies before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to split selected page ranges from PDFs and convert PDF text into simple Word documents through local Node.js utilities. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local PDFs and writes generated files to user-selected paths, so an existing output file could be overwritten. <br>
-Mitigation: Confirm the input PDF, output folder, output filename, and page range before running the tool. <br>
-Risk: The skill depends on local npm packages for PDF parsing, PDF manipulation, and DOCX generation. <br>
-Mitigation: Install only after reviewing the listed npm dependencies and running the skill in an environment appropriate for local document processing. <br>
+**Output Format:** [PDF and DOCX files with status text or JSON-like status objects]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [PDF Simple Tool on ClawHub](https://clawhub.ai/daguniang/pdf-simple-tool) <br>
+**Other Properties Related to Output:** [PDF-to-Word conversion extracts text into a simple DOCX and does not preserve complex PDF layout.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Node.js function calls and local PDF or DOCX file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-selected PDF path and writes a user-selected PDF or DOCX output path.] <br>
+1.2.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

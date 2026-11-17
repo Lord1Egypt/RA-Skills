@@ -1,44 +1,61 @@
-## Description: <br>
-Kling 1.6 video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `kling-1.6/standard`, `kling-1.6/pro`, text-to-video, image-to-video, start and end frame guidance, elements with reference images, duration, aspect ratio, negative prompt, cfg scale, polling, and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents prepare and submit Kling 1.6 video generation requests through PoYo, including text-to-video, image-to-video, element reference workflows, polling guidance, and webhook guidance.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare, submit, and follow up on PoYo Kling 1.6 video-generation jobs for text-to-video, image-to-video, first/last-frame, and element-reference workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill submits prompts, image URLs, callback URLs, and API credentials to PoYo endpoints. <br>
-Mitigation: Use it only when PoYo is the intended provider, keep POYO_API_KEY in a server-side environment, and review payloads before submission. <br>
-Risk: Private prompts, source images, reference images, or callback URLs may expose sensitive information to PoYo or the callback receiver. <br>
-Mitigation: Avoid sending private content unless the user trusts PoYo and the callback receiver for that data. <br>
-Risk: Live API submission can create asynchronous video-generation tasks and external network activity. <br>
-Mitigation: Make live calls only from a trusted shell after explicit user approval, then save the returned task_id for controlled polling or webhook follow-up. <br>
+## Use Case:
 
+Developers and agents use this skill to build PoYo Kling 1.6 video-generation payloads, submit trusted requests with a server-side API key, and plan polling or webhook follow-up for asynchronous video jobs.
 
-## Reference(s): <br>
-- [PoYo Kling 1.6 API Reference](references/api.md) <br>
-- [PoYo Kling 1.6 Documentation](https://docs.poyo.ai/api-manual/video-series/kling-1-6) <br>
-- [PoYo Kling 1.6 Model Page](https://poyo.ai/models/kling-1-6) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON payloads and bash curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model selection, request payload summaries, submitted task IDs, and polling or webhook next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts, image URLs, and callback URLs are submitted to PoYo as part of video-generation requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only data the user trusts PoYo to process, and avoid confidential prompts, private source images, private reference images, or private callback URLs unless that trust decision is explicit.
+
+Risk: The helper script reads POYO_API_KEY from the environment and sends it to the PoYo API.
+
+Mitigation: Keep POYO_API_KEY server-side, avoid logging or exposing it in browser code, shared shells, screenshots, or chat output, and rotate the key if exposure is suspected.
+
+Risk: Using the helper on shared machines can expose payload details or secrets through local process inspection or monitoring tools.
+
+Mitigation: Run submissions only from trusted shell environments and prefer backend secret management for production workflows.
+
+## Reference(s):
+
+- [PoYo Kling 1.6 Model Page](https://poyo.ai/models/kling-1-6)
+- [PoYo Kling 1.6 API Documentation](https://docs.poyo.ai/api-manual/video-series/kling-1-6)
+- [PoYo API Key Page](https://poyo.ai/dashboard/api-key)
+- [Local API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/coolhackboy/skills/poyo-kling-1-6)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with JSON payload examples and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model selection, request parameters, a final payload, returned task_id, and polling or webhook next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

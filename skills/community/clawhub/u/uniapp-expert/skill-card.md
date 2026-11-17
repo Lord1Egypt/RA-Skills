@@ -1,45 +1,68 @@
-## Description: <br>
-uniapp-expert helps agents provide uni-app cross-platform development guidance, Vue 2 to Vue 3 migration support, and WeChat Mini Program automated testing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A uni-app cross-platform development skill covering Vue 2 and Vue 3 development, Vue 2 to Vue 3 migration, and WeChat Mini Program automated testing.
 
-## Publisher: <br>
-[include5943](https://clawhub.ai/user/include5943) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[include5943](https://clawhub.ai/user/include5943)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and implement uni-app and Vue migration work, select Vue 3 patterns, configure WeChat DevTools automation, and draft testing scripts or reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Testing utilities may collect or print runtime, device, route, page, screenshot, report, or application data. <br>
-Mitigation: Use only test projects or sanitized test accounts, avoid real user data and credentials, and review generated files and console output before sharing. <br>
-Risk: Automated form scenarios may handle credentials or other sensitive inputs if pointed at production-like apps. <br>
-Mitigation: Run automation against controlled test builds and use disposable or sanitized credentials in scripted input steps. <br>
+## Use Case:
 
+Developers use this skill to build uni-app applications, migrate Vue 2 uni-app code to Vue 3, and prepare local WeChat Mini Program automation tests. It provides implementation guidance, migration checklists, code examples, and test automation setup steps.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/include5943/uniapp-expert) <br>
-- [uni-app official documentation](https://uniapp.dcloud.io/) <br>
-- [Vue official documentation](https://vuejs.org/) <br>
-- [WeChat DevTools CLI documentation](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html) <br>
-- [Vue expert mobile hybrid reference](artifact/skills/vue-expert/references/mobile-hybrid.md) <br>
-- [WeChat Mini Program automation API reference](artifact/skills/weapp-automated-testing/references/api_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks, command examples, configuration snippets, and optional JSON or Markdown report templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local test scripts, screenshots, console-log exports, page data, route information, and JSON or Markdown reports when using the embedded WeChat automation utilities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: The included automation workflow runs local Python and Node scripts against WeChat DevTools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in a disposable or low-privilege development environment and review generated scripts before execution.
+
+Risk: Unsafe code-generation paths in the automation scripts could run unintended local JavaScript.
+
+Mitigation: Do not pass untrusted endpoint, selector, or test-step values into automation runs.
+
+Risk: Automation testing can expose local credentials, app data, or production-like Mini Program traffic.
+
+Mitigation: Avoid real credentials and production data during testing; pin npm dependencies used by the automation stack.
+
+Risk: Mini Program domain validation may be disabled during local testing.
+
+Mitigation: Re-enable domain validation after testing and before using the project in normal development or release workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/include5943/skills/uniapp-expert)
+- [uni-app official documentation](https://uniapp.dcloud.io/)
+- [Vue official documentation](https://vuejs.org/)
+- [WeChat DevTools CLI documentation](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)
+- [WeChat Mini Program automation API reference](skills/weapp-automated-testing/references/api_reference.md)
+- [Vue Expert Composition API reference](skills/vue-expert/references/composition-api.md)
+- [Vue Expert state management reference](skills/vue-expert/references/state-management.md)
+- [Vue reactivity reference](skills/vue/reactivity.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, command examples, and configuration checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local test scripts and screenshots when used with WeChat DevTools automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

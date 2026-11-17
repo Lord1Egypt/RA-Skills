@@ -1,41 +1,66 @@
-## Description: <br>
-Simulates decision-making perspectives, debates, meeting participation, and role-card drafts for named Delonix executives based on curated internal role profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simulates Delonix executive decision perspectives, debates, and meeting participation using role cards, decision-chain heuristics, and confidence labels.
 
-## Publisher: <br>
-[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu)
 
-## Use Case: <br>
-Internal business users can ask for simulated executive viewpoints, debate summaries, meeting reactions, or new role-card drafts for Delonix strategy, operations, membership, AI investment, and asset-management decisions. Outputs should be treated as AI simulations, not real statements by the named people. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may build or reuse profiles of real executives from internal Feishu messages, documents, colleague input, and decision records without clear consent or data-handling controls. <br>
-Mitigation: Install only in a controlled internal environment where the organization and named individuals have authorized the specific Feishu sources; limit inputs to approved documents and avoid private chats or personnel-adjacent evaluations. <br>
-Risk: Generated outputs could be mistaken for actual executive positions or shared beyond the intended audience. <br>
-Mitigation: Keep the AI-simulation disclaimer visible, do not share outputs publicly, and do not treat generated viewpoints as real executive statements. <br>
+## Use Case:
 
+Developers and business users can ask an agent to generate simulated executive viewpoints, multi-person debate reports, meeting reactions, or new role-card drafts for Delonix strategy, operations, membership, AI investment, asset management, and cost-control questions.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/chaoliuzhu/dalao) <br>
-- [黎柱 · 蒸馏角色卡](references/lizhu.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured sections, confidence labels, and AI-simulation disclaimers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include role viewpoints, debate reports, meeting reactions, decision-chain rationale, quotes, confidence ratings, or role-card drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The skill may use private or internal communications to create reusable executive profiles without clear authorization, minimization, or retention controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in an approved internal environment with documented authorization from the organization or data owner, and restrict Feishu access to explicitly approved documents and channels.
+
+Risk: Role simulations could be mistaken for real statements or used as colleague assessments.
+
+Mitigation: Keep the required simulated-viewpoint label on outputs, prohibit private or one-to-one chats and colleague assessments by default, and require human review before sharing or archiving outputs.
+
+Risk: Generated role profiles may retain sensitive source material longer than needed.
+
+Mitigation: Apply review, redaction, retention, and deletion controls before archiving any role profiles.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chaoliuzhu/skills/dalao)
+- [Publisher profile](https://clawhub.ai/user/chaoliuzhu)
+- [黎柱蒸馏角色卡](artifact/references/lizhu.md)
+- [张琦 role source](https://www.feishu.cn/docx/P1mFd800MoyDGGxpiQ3c9rU2nCe)
+- [毛新凯 role source](https://delonix.feishu.cn/docx/EQoedHHcyozLVhxCCmici2MDnPc)
+- [李和聪 role source](https://www.feishu.cn/docx/SUUvdYKCho23qGxqN7BcBs78nWc)
+- [郑南雁 role source](https://delonix.feishu.cn/docx/EqQ7d4akgoMqWpxSdyZcks6WnOe)
+- [段纹瑾 role source](https://www.feishu.cn/docx/RetJdTk0IoAz7Px45ZBc00Dpngd)
+- [孟令航 role source](https://delonix.feishu.cn/docx/VOMidRzFxoJZ0Nx5R6CcGebtnjh)
+- [韩俏帆 role source](https://delonix.feishu.cn/docx/Ew9CdUrVAoBWoexLDUMcQSodnNg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured simulated viewpoints, debate reports, meeting reactions, and YAML-style role-card drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are expected to label simulated viewpoints, include confidence ratings, and cite decision-chain basis from the role cards.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

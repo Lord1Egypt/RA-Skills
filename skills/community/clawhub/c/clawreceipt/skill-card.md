@@ -1,46 +1,54 @@
-## Description: <br>
-Use this skill to extract receipt information, record expenses, track budgets, and manage financial receipts using the ClawReceipt CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to extract receipt information, record expenses, track budgets, and manage financial receipts using the ClawReceipt CLI.
 
-## Publisher: <br>
-[SakuraKo-IRS](https://clawhub.ai/user/SakuraKo-IRS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sakurako-irs](https://clawhub.ai/user/sakurako-irs)
 
-## Use Case: <br>
-External users and OpenClaw agents use ClawReceipt to record receipt details, track monthly spending against a budget, list receipt history, and export local financial records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Receipt data, the SQLite database, and exported CSV/XLSX files may contain private financial records. <br>
-Mitigation: Store generated data locally in a trusted environment and handle database and export files as private financial records. <br>
-Risk: Unpinned Python dependencies can change behavior over time. <br>
-Mitigation: Install in a trusted virtual environment and pin dependencies before regular use. <br>
-Risk: Receipt fields extracted by an agent can be incomplete or incorrect before they are saved. <br>
-Mitigation: Review date, store, amount, category, and optional time values before running the add command. <br>
-Risk: The interactive TUI can block an automated agent session. <br>
-Mitigation: Use non-interactive add, budget, list, or alert commands for agent workflows and reserve the TUI for manual use. <br>
+## Use Case:
 
+External OpenClaw users and agents use ClawReceipt to record receipt details, check monthly spending against a budget, update the budget, list stored receipts, and guide manual dashboard or export workflows.
 
-## Reference(s): <br>
-- [ClawReceipt ClawHub Page](https://clawhub.ai/SakuraKo-IRS/clawreceipt) <br>
-- [ClawReceipt README](artifact/README.md) <br>
-- [ClawReceipt Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local SQLite receipt records and CSV or XLSX exports when the corresponding CLI commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can persist and export sensitive financial records with weak safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat local receipt databases and exported CSV or Excel files as sensitive, and require explicit user confirmation before adding receipts or changing budgets.
+
+Risk: Unpinned dependencies may change behavior across installations.
+
+Mitigation: Install in an isolated virtual environment and review or pin dependencies before deployment.
+
+## Reference(s):
+
+- [ClawReceipt ClawHub skill page](https://clawhub.ai/sakurako-irs/skills/clawreceipt)
+- [sakurako-irs publisher profile](https://clawhub.ai/user/sakurako-irs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown or plain text with inline shell commands and CLI output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist receipt and budget data locally and may guide CSV or Excel export through the interactive TUI.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Access the YouTube Analytics API through Maton-managed OAuth to retrieve channel reports and manage video, playlist, and channel analytics groups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents retrieve YouTube channel analytics reports and manage video, playlist, and channel groups through a connected account.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Developers and agents use this skill to query YouTube channel metrics such as views, watch time, subscribers, revenue, and performance by dimensions like day, country, or video. It also guides management of YouTube Analytics groups when the user has authorized the connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Maton API key and connected OAuth account can expose YouTube Analytics data for authorized channels. <br>
-Mitigation: Keep MATON_API_KEY private, install only when the agent should access YouTube Analytics through Maton, and scope use to the intended connected account. <br>
-Risk: Requests may target the wrong YouTube Analytics account when multiple Maton connections exist. <br>
-Mitigation: List active connections and include the correct Maton-Connection header whenever multiple accounts are available. <br>
-Risk: Group management operations can create, update, delete, add, or remove analytics groups and group items. <br>
-Mitigation: Require the agent to list and confirm exact groups, items, and intended effects before any create, update, delete, or removal action. <br>
+## Use Case:
 
+Creators, analysts, and developers use this skill to review channel performance by date, country, or video and to manage analytics groups for connected YouTube accounts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/byungkyu/youtube-analytics-api) <br>
-- [Maton Homepage](https://maton.ai) <br>
-- [YouTube Analytics API Overview](https://developers.google.com/youtube/analytics) <br>
-- [YouTube Analytics API Reference](https://developers.google.com/youtube/analytics/reference) <br>
-- [YouTube Analytics Metrics](https://developers.google.com/youtube/analytics/metrics) <br>
-- [YouTube Analytics Dimensions](https://developers.google.com/youtube/analytics/dimensions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with JSON examples and inline Python, JavaScript, and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and an authorized YouTube Analytics connection; API responses are JSON from the proxied YouTube Analytics service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Connecting an account exposes its authorized YouTube Analytics data to the integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm account connections with the user, choose only needed OAuth scopes, and use the pinned CLI.
+
+Risk: Group changes or hosted automations can modify analytics organization or run without further prompts.
+
+Mitigation: Obtain separate approval for each write, hosted function, and trigger before enabling it.
+
+Risk: Trigger destinations can continuously forward connected-account or event data to third parties.
+
+Mitigation: Confirm the exact destination and data shared; avoid third-party forwarding unless the user explicitly trusts it.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/byungkyu/skills/youtube-analytics-api)
+- [Maton](https://maton.ai)
+- [YouTube Analytics API documentation](https://developers.google.com/youtube/analytics)
+- [YouTube Analytics API reference](https://developers.google.com/youtube/analytics/reference)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with analytics summaries, API examples, and setup instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include channel metrics and group details available to the authorized connection.]
+
+## Skill Version(s):
+
+1.2.6 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

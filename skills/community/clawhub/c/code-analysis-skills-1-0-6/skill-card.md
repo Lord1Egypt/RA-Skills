@@ -1,45 +1,63 @@
-## Description: <br>
-Analyzes Git repositories to compare developer commit patterns, work habits, development efficiency, code style, code quality, and slacking indicators, then generates data-driven evaluations with scores, grades, strengths, weaknesses, and actionable suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill analyzes Git repositories to compare developer commit patterns, work habits, development efficiency, code style, code quality, and slacking behaviors, then generates scores, grades, strengths, weaknesses, and actionable suggestions.
 
-## Publisher: <br>
-[kongbai233](https://clawhub.ai/user/kongbai233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kongbai233](https://clawhub.ai/user/kongbai233)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to analyze one Git repository or a directory of repositories, compare contributor behavior and code-health metrics, and produce reports for review or self-improvement. It supports author filtering, date ranges, branch selection, and Markdown, JSON, HTML, or PDF outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Developer privacy and consent risk from analyzing personal activity patterns in Git history. <br>
-Mitigation: Run the skill only on repositories the user is authorized to analyze and obtain informed consent from affected developers before reviewing individual-level results. <br>
-Risk: Scores, grades, leaderboards, or slacking labels could be misused for punitive personnel decisions. <br>
-Mitigation: Use results for aggregate insight, self-review, or engineering discussion only; do not use them for HR, compensation, discipline, or public shaming. <br>
-Risk: Generated reports may contain personal work-pattern data. <br>
-Mitigation: Store reports securely, limit access to appropriate reviewers, and avoid public sharing. <br>
-Risk: Broad recursive scans may collect more repository and contributor data than needed. <br>
-Mitigation: Set an explicit repository path, author list, and date range, and use recursive scanning only when necessary. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to analyze one or more authorized Git repositories, compare contributor activity patterns, and generate structured developer insight reports. It is intended for repository health and team-process review, not direct HR or punitive decision-making.
 
-## Reference(s): <br>
-- [Metrics Guide](references/metrics-guide.md) <br>
-- [PyDriller](https://github.com/ishepard/pydriller) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, HTML, PDF, Shell commands, Guidance] <br>
-**Output Format:** [Markdown, JSON, HTML, PDF, and concise natural-language guidance with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write report files when an output path or multi-format output is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and pyproject.toml) <br>
+Risk: The skill evaluates identifiable developers and uses slacking labels that could be misread as HR facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with informed consent and treat scores as repository signals for process review, not as performance, compensation, or disciplinary evidence.
+
+Risk: Broad recursive scans can include private repositories or data outside the intended scope.
+
+Mitigation: Run analysis only on repositories the user is authorized to inspect and avoid broad --scan-all runs on private directory trees.
+
+Risk: Generated reports may contain personal activity data and sensitive repository information.
+
+Mitigation: Keep reports private, store them securely, and prefer Markdown or JSON, or sanitized HTML/PDF, when analyzing untrusted repositories.
+
+Risk: Unpinned dependencies and optional HTML/PDF rendering paths can increase production deployment risk.
+
+Mitigation: Pin dependencies before production use and review rendered HTML or PDF output before sharing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kongbai233/skills/code-analysis-skills-1-0-6)
+- [Metrics Guide](references/metrics-guide.md)
+- [PyDriller](https://github.com/ishepard/pydriller)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, HTML, JSON, or PDF reports with optional CLI commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include developer-level scores, grades, leaderboards, metric tables, strengths, weaknesses, and suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and pyproject.toml; ClawHub package slug code-analysis-skills-1-0-6)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

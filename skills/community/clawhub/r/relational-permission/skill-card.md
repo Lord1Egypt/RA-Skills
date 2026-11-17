@@ -1,39 +1,50 @@
-## Description: <br>
-Relational Permission guides an agent to manage consent and safety boundaries by narrowing or ending interactions that risk coercion, profiling, irreversible harm, or distress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Relational Permission provides a consent, privacy, memory, exit, and accountability framework for agents and communities designing harm-reducing interactions among humans, communities, creative intelligences, and ecological systems.
 
-## Publisher: <br>
-[OtherPowers](https://clawhub.ai/user/OtherPowers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[otherpowers](https://clawhub.ai/user/otherpowers)
 
-## Use Case: <br>
-Agents and developers use this skill to keep interactions consent-centered: it pauses, narrows, refuses, or dissolves exchanges when safety, autonomy, ecological, or anti-profiling boundaries are at risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may cause an agent to pause, narrow scope, or refuse some high-risk or boundary-unclear interactions. <br>
-Mitigation: Review the skill against the intended workflow and treat scope contraction or refusal as expected safety behavior. <br>
-Risk: Crisis inference could become intrusive if expanded beyond imminent bodily danger. <br>
-Mitigation: Keep crisis checks narrow, temporary, and trace-free, with no profiling or persistent state. <br>
+## Use Case:
 
+Developers, agents, and community stewards use this skill when designing or reviewing systems that need consent-aware permission, refusal, silence, exit, local memory, and accountability patterns without surveillance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OtherPowers/relational-permission) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only safety and consent constraints; no code execution, credentials, persistence, or data access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Readers may treat cryptographic, ledger, attestation, and zero-retention language as implemented guarantees.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those statements as design guidance unless a separate implementation proves the properties.
+
+## Reference(s):
+
+- [Relational Permission ClawHub page](https://clawhub.ai/otherpowers/skills/relational-permission)
+- [NOAA PMEL Blue Whale Sounds](https://www.pmel.noaa.gov/acoustics/whales/sounds/sounds_whales_blue.html)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown and plain-language guidance with optional structured design patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable framework guidance; cryptographic, ledger, attestation, and zero-retention statements require separate implementation evidence before operational reliance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact heading)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

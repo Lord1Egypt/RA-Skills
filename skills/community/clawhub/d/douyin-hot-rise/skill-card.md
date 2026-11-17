@@ -1,43 +1,55 @@
-## Description: <br>
-Fetches real-time Douyin rising hot-topic data through the disclosed Douyin billboard API using an AZT_API_KEY credential. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+调用抖音上升热点榜接口，获取实时热点上升趋势数据，并通过随附的 Python 脚本返回排名、标题、热度和状态信息。
 
-## Publisher: <br>
-[kyriswu](https://clawhub.ai/user/kyriswu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyriswu](https://clawhub.ai/user/kyriswu)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve and summarize current Douyin rising hot-topic rankings, optionally filtering by page, size, sort order, topic tag, or keyword. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an AZT_API_KEY and sends it to the devtool.uk/coze-js-api service. <br>
-Mitigation: Use a scoped or low-privilege key, keep it in the AZT_API_KEY environment variable rather than chat logs, and rotate it if exposed. <br>
-Risk: Results and availability depend on a third-party API and current Douyin trend data. <br>
-Mitigation: Treat returned rankings as live external data, check API errors before relying on output, and retry later for network or service failures. <br>
+## Use Case:
 
+External users and developers use this skill to fetch and summarize Douyin rising hot topic lists, with optional paging, sorting, category, and keyword filters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kyriswu/douyin-hot-rise) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kyriswu) <br>
-- [Douyin hot rise API endpoint](https://coze-js-api.devtool.uk/douyin/billboard/fetch_hot_rise_list) <br>
-- [Devtool plugin and API key information](https://devtool.uk/plugin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown summary of API request status and returned trend items; optional raw JSON from the helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AZT_API_KEY credential and sends request parameters to a third-party API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: AZT_API_KEY can be exposed if passed as a command-line argument or recorded in shell history or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a managed secret or the AZT_API_KEY environment variable, and rotate any key previously exposed in shell history or logs.
+
+Risk: The skill sends the API key and query filters to coze-js-api.devtool.uk/devtool.uk.
+
+Mitigation: Install and run the skill only when those service operators are trusted for the submitted data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kyriswu/skills/douyin-hot-rise)
+- [Douyin hot rise API endpoint](https://coze-js-api.devtool.uk/douyin/billboard/fetch_hot_rise_list)
+- [Devtool plugin documentation](https://devtool.uk/plugin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown summary with optional raw JSON output from the bundled Python script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AZT_API_KEY; supports page, page_size, order, sentence_tag, and keyword filters.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

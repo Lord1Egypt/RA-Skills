@@ -1,49 +1,65 @@
-## Description: <br>
-Enables agents to check, open, bind, and unbind Alipay AI payment authorization through the alipay-bot CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alipay Authenticate Wallet helps an agent check, open, authorize, bind, or unbind Alipay AI payment wallet capability through the alipay-bot CLI.
 
-## Publisher: <br>
-[alipay](https://clawhub.ai/user/alipay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alipay](https://clawhub.ai/user/alipay)
 
-## Use Case: <br>
-External users and payment-enabled agents use this skill to manage Alipay AI payment authorization, including status checks, wallet binding, authorization-code handling, and wallet unbinding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill manages Alipay AI payment authorization and can bind or close wallet authorization. <br>
-Mitigation: Install and run it only when the user deliberately wants agent-managed Alipay payment authorization, and treat bind-wallet or close-wallet requests as payment-authorization changes. <br>
-Risk: The release installs a local alipay-bot CLI from npm that remains on PATH. <br>
-Mitigation: Review the npm install prompt, require the pinned package and integrity check, and do not proceed if the package integrity check fails. <br>
+## Use Case:
 
+External users and agent developers use this skill to guide Alipay wallet authorization flows, including checking wallet status, opening payment capability, binding an authorization code, revoking authorization, and escalating unresolved issues to feedback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alipay/alipay-authenticate-wallet) <br>
-- [Publisher profile](https://clawhub.ai/user/alipay) <br>
-- [GitHub homepage](https://github.com/alipay/payment-skills) <br>
-- [npm package](https://www.npmjs.com/package/@alipay/agent-payment) <br>
-- [CLI setup](artifact/references/cli-setup.md) <br>
-- [Environment variables](artifact/references/env-vars.md) <br>
-- [Output rules](artifact/references/output-rules.md) <br>
-- [Image output](artifact/references/image-output.md) <br>
-- [Security notes](artifact/references/security.md) <br>
-- [Feedback flow](artifact/references/feedback.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown text with CLI command execution and occasional image handoff instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI JSON responses are consumed internally; user-facing CLI Markdown and authorization URLs must be preserved exactly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11-beta.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill grants the agent high-impact authority over wallet authorization, including binding, closing, or unbinding payment capability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the publisher and package are trusted, and require explicit user confirmation before closing or unbinding payment capability.
+
+Risk: Server security evidence reports unsafe command construction in the artifact.
+
+Mitigation: Fix command handling to pass user values as safe arguments rather than shell strings before relying on the skill in sensitive payment-account workflows.
+
+Risk: The skill installs and executes a persistent local npm CLI.
+
+Mitigation: Review before installing and verify the fixed package version and integrity value before executing the CLI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alipay/skills/alipay-authenticate-wallet)
+- [Alipay payment-skills homepage](https://github.com/alipay/payment-skills)
+- [Alipay agent-payment npm package](https://www.npmjs.com/package/@alipay/agent-payment)
+- [CLI setup](references/cli-setup.md)
+- [Environment variables](references/env-vars.md)
+- [Output rules](references/output-rules.md)
+- [Image output rules](references/image-output.md)
+- [Security and design notes](references/security.md)
+- [Feedback process](references/feedback.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and user-facing CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include payment or authorization links and image paths returned by the CLI; CLI output is intended to be relayed without rewriting.]
+
+## Skill Version(s):
+
+1.0.11-beta.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

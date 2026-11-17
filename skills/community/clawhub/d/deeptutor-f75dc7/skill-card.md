@@ -1,41 +1,55 @@
-## Description: <br>
-从抖音视频学习: deeptutor — deeptutor本地部署与桌面版对比 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从抖音视频学习: deeptutor — deeptutor本地部署与桌面版对比
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and learners use this Chinese-language reference skill for guidance about deeptutor local deployment and desktop-version comparison based on cited video material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad deeptutor trigger may activate the skill for users who do not want Chinese-language deeptutor guidance. <br>
-Mitigation: Use or publish a narrower trigger set when users need only a specific deeptutor workflow or language. <br>
+## Use Case:
 
+External users and developers use this Chinese-language skill to ask an agent for deeptutor help, especially comparing local deployment with the desktop version.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/deeptutor-f75dc7) <br>
-- [Bilibili reference BV1cVk7BdE8J](https://www.bilibili.com/video/BV1cVk7BdE8J) <br>
-- [Bilibili reference BV1fD421M7Rr](https://www.bilibili.com/video/BV1fD421M7Rr) <br>
-- [Bilibili reference BV1CJ4m1b7wi](https://www.bilibili.com/video/BV1CJ4m1b7wi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language reference guidance; no executable code or hidden system access is reported in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release metadata) <br>
+Risk: The skill is minimal and may provide low-detail guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a starting prompt and verify deeptutor deployment details against current product or project documentation before acting.
+
+Risk: The artifact includes video-derived references, and at least one listed reference may not be directly about deeptutor.
+
+Mitigation: Review referenced videos for relevance before relying on them for technical decisions.
+
+## Reference(s):
+
+- [Bilibili video BV1cVk7BdE8J](https://www.bilibili.com/video/BV1cVk7BdE8J)
+- [Bilibili video BV1fD421M7Rr](https://www.bilibili.com/video/BV1fD421M7Rr)
+- [Bilibili video BV1CJ4m1b7wi](https://www.bilibili.com/video/BV1CJ4m1b7wi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language deeptutor learning guidance; no executable behavior is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Creates beautiful HTML slides using Reveal.js via CDN. Outputs a single HTML file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates beautiful HTML slides using Reveal.js via CDN. Outputs a single HTML file.
 
-## Publisher: <br>
-[tomowang](https://clawhub.ai/user/tomowang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomowang](https://clawhub.ai/user/tomowang)
 
-## Use Case: <br>
-Developers and content authors use this skill to turn presentation requirements into a standalone Reveal.js HTML slide deck with sections, speaker notes, media, code, math, and layout helpers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated slide decks load normal presentation assets from third-party CDNs. <br>
-Mitigation: Review the generated HTML before use, especially for sensitive or offline presentations, and ask for locally bundled assets when remote CDN loading is not acceptable. <br>
+## Use Case:
 
+Developers, creators, and presentation authors use this skill to generate standalone Reveal.js HTML slide decks from provided presentation content, including sections, speaker notes, media, code, math, and fragments.
 
-## Reference(s): <br>
-- [Reveal.js 5.0.4 CDN assets](https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/) <br>
-- [Reveal.js documentation](https://revealjs.com) <br>
-- [MathJax 3 CDN asset](https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Markdown, Guidance] <br>
-**Output Format:** [Standalone HTML file with Reveal.js sections and optional markdown slide content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated decks use Reveal.js and related plugins from remote CDNs unless the user asks for locally bundled assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Generated slide decks load Reveal.js, plugins, MathJax, stylesheets, and possibly media from public CDNs when opened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For confidential presentations or offline use, replace CDN links with local pinned assets before sharing or presenting.
+
+## Reference(s):
+
+- [Reveal.js CDN Assets](https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [HTML file content with optional Markdown slide sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single standalone HTML slide deck that loads Reveal.js and related plugins from public CDNs.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

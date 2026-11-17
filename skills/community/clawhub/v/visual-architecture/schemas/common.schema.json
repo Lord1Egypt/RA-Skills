@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/LeoStehlik/visual-architecture/schemas/common.schema.json",
+  "title": "visual-architecture common primitives",
+  "type": "object",
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "required": ["source"],
+      "properties": {
+        "source": { "type": "string" },
+        "line": { "type": "integer", "minimum": 1 },
+        "lines": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "type": "integer", "minimum": 1 }
+        },
+        "commit": { "type": "string" },
+        "confidence": { "enum": ["high", "medium", "low"] },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "node": {
+      "type": "object",
+      "required": ["id", "label", "kind", "x", "y"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "kind": { "enum": ["service", "llm", "agent", "memory"] },
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "evidence": {
+          "oneOf": [
+            { "$ref": "#/$defs/evidence" },
+            { "type": "array", "items": { "$ref": "#/$defs/evidence" } }
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "edge": {
+      "type": "object",
+      "required": ["from", "to", "kind"],
+      "properties": {
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "kind": { "enum": ["primary-data", "memory-write", "control"] },
+        "label": { "type": "string" },
+        "source_side": { "enum": ["left", "right", "top", "bottom"] },
+        "target_side": { "enum": ["left", "right", "top", "bottom"] },
+        "via": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["x", "y"],
+            "properties": {
+              "x": { "type": "number" },
+              "y": { "type": "number" }
+            }
+          }
+        },
+        "evidence": {
+          "oneOf": [
+            { "$ref": "#/$defs/evidence" },
+            { "type": "array", "items": { "$ref": "#/$defs/evidence" } }
+          ]
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

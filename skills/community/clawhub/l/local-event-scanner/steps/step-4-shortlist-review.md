@@ -31,12 +31,7 @@ Turn scored candidates into the final user-facing event shortlist.
 
 ## 1. Event Title
 
-- Label:
-- Why it fits:
-- Caveats:
-- Next action:
-- Source:
-- Confidence:
+[Format according to the Required Explanation in `scoring-rubric.md`, with a potential extra line per event indicating the calendar availability discovered in step 3.]
 ```
 
 ## Run Notes

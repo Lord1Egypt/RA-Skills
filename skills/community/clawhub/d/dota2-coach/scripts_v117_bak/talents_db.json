@@ -1,0 +1,2796 @@
+{
+  "antimage": [
+    {
+      "level": 10,
+      "left": "+3 Health Regen",
+      "right": "+200 Mana Void Radius"
+    },
+    {
+      "level": 15,
+      "left": "+9%/18% Persecutor Min/Max Movement Slow",
+      "right": "+0.2 Mana Void Damage Multiplier"
+    },
+    {
+      "level": 20,
+      "left": "+125 Blink Cast Range",
+      "right": "+0.8s Mana Void Stun"
+    },
+    {
+      "level": 25,
+      "left": "-1s Blink Cooldown",
+      "right": "-50s Mana Void Cooldown"
+    }
+  ],
+  "axe": [
+    {
+      "level": 10,
+      "left": "+3s Culling Blade Kill Buff Bonus Duration",
+      "right": "+8% Movement Speed per active Battle Hunger"
+    },
+    {
+      "level": 15,
+      "left": "+8 Battle Hunger Damage Per Second",
+      "right": "+10 Berserker's Call Armor"
+    },
+    {
+      "level": 20,
+      "left": "+15 Strength",
+      "right": "+40 Counter Helix Damage"
+    },
+    {
+      "level": 25,
+      "left": "+85 Berserker's Call AoE",
+      "right": "+150 Culling Blade Damage"
+    }
+  ],
+  "bane": [
+    {
+      "level": 10,
+      "left": "+125 Brain Sap Cast Range",
+      "right": "+20% Enfeeble Cast Range Reduction"
+    },
+    {
+      "level": 15,
+      "left": "+13 Enfeeble Damage Per Second",
+      "right": "+5% Fiend's Grip Max Mana Drain"
+    },
+    {
+      "level": 20,
+      "left": "-3s Nightmare Cooldown",
+      "right": "+30 Movement Speed"
+    },
+    {
+      "level": 25,
+      "left": "+275 Brain Sap Damage/Heal",
+      "right": "+3s Fiend's Grip Duration"
+    }
+  ],
+  "bloodseeker": [
+    {
+      "level": 10,
+      "left": "+200 Health",
+      "right": "+30 Bloodrage Attack Speed"
+    },
+    {
+      "level": 15,
+      "left": "-0.7% Bloodrage Max Health DPS",
+      "right": "+100 Blood Rite Damage"
+    },
+    {
+      "level": 20,
+      "left": "+400 Rupture Cast Range",
+      "right": "+15 Agility"
+    },
+    {
+      "level": 25,
+      "left": "+3s Blood Rite Silence Duration",
+      "right": "+15% Max Thirst Move Speed"
+    }
+  ],
+  "crystal_maiden": [
+    {
+      "level": 10,
+      "left": "+200 Health",
+      "right": "+12 Intelligence"
+    },
+    {
+      "level": 15,
+      "left": "+100 Frostbite Cast Range",
+      "right": "-4.5s Crystal Nova Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+20% Glacial Guard Mana Spent To Barrier",
+      "right": "+50 Freezing Field Damage"
+    },
+    {
+      "level": 25,
+      "left": "+1s Frostbite Duration",
+      "right": "+300 Crystal Nova Damage"
+    }
+  ],
+  "drow_ranger": [
+    {
+      "level": 10,
+      "left": "-18% Frost Arrows Mana Cost",
+      "right": "+1 Multishot Arrow Per Wave"
+    },
+    {
+      "level": 15,
+      "left": "+75 Attack Range",
+      "right": "-6s Multishot Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "50% Gust Self Movement Speed",
+      "right": "+25% Multishot Damage"
+    },
+    {
+      "level": 25,
+      "left": "+8% Marksmanship Chance",
+      "right": "+2 Multishot Waves"
+    }
+  ],
+  "earthshaker": [
+    {
+      "level": 10,
+      "left": "+25 Base Damage",
+      "right": "+75 Fissure Damage"
+    },
+    {
+      "level": 15,
+      "left": "+200 Fissure Range",
+      "right": "+50 Aftershock Damage"
+    },
+    {
+      "level": 20,
+      "left": "+50 Echo Damage",
+      "right": "+65% Enchant Totem Damage"
+    },
+    {
+      "level": 25,
+      "left": "-50% Echo Slam Cooldown",
+      "right": "-1.5s Enchant Totem Cooldown"
+    }
+  ],
+  "juggernaut": [
+    {
+      "level": 10,
+      "left": "-12s Healing Ward Cooldown",
+      "right": "-1s Bladeform Stack Gain Interval"
+    },
+    {
+      "level": 15,
+      "left": "-15s Omnislash Cooldown",
+      "right": "45 Movement Speed During Blade Fury"
+    },
+    {
+      "level": 20,
+      "left": "+15% Blade Dance Crit Damage",
+      "right": "+120 Blade Fury Damage Per Second"
+    },
+    {
+      "level": 25,
+      "left": "+1s Omnislash Duration",
+      "right": "+40% Blade Dance Lifesteal"
+    }
+  ],
+  "mirana": [
+    {
+      "level": 10,
+      "left": "-2s Starstorm Cooldown",
+      "right": "+150 Leap Distance"
+    },
+    {
+      "level": 15,
+      "left": "Moonlight Shadow gives +20% Evasion",
+      "right": "+90 Leap Attack Speed"
+    },
+    {
+      "level": 20,
+      "left": "+200 Starstorm Damage",
+      "right": "+40 Celestial Quiver Damage"
+    },
+    {
+      "level": 25,
+      "left": "+2 Multishot Sacred Arrows",
+      "right": "-30s Moonlight Shadow Cooldown"
+    }
+  ],
+  "morphling": [
+    {
+      "level": 10,
+      "left": "+15% Magic Resistance",
+      "right": "+12s Morph Duration"
+    },
+    {
+      "level": 15,
+      "left": "+250 Waveform Range",
+      "right": "+75 Attack Range"
+    },
+    {
+      "level": 20,
+      "left": "-3s Adaptive Strike Cooldown",
+      "right": "+15 Agility"
+    },
+    {
+      "level": 25,
+      "left": "-40% Waveform Cooldown",
+      "right": "+35 Strength"
+    }
+  ],
+  "nevermore": [
+    {
+      "level": 10,
+      "left": "+30 Shadowraze Stack Damage",
+      "right": "+30 Feast of Souls Attack Speed"
+    },
+    {
+      "level": 15,
+      "left": "+2 Presence Armor Reduction",
+      "right": "+2 Feast of Souls Souls Collected Per Hero"
+    },
+    {
+      "level": 20,
+      "left": "+5 Necromastery Max Souls",
+      "right": "+0.2s Requiem Fear per line"
+    },
+    {
+      "level": 25,
+      "left": "Feast of Souls Grants +30% Cast Speed",
+      "right": "Shadowraze Applies Attack Damage"
+    }
+  ],
+  "phantom_lancer": [
+    {
+      "level": 10,
+      "left": "+1s Spirit Lance Slow Duration",
+      "right": "+3% Juxtapose Illusion Trigger Chance"
+    },
+    {
+      "level": 15,
+      "left": "50% Illusion Spirit Lance Damage",
+      "right": "+125 Doppelganger Cast Range"
+    },
+    {
+      "level": 20,
+      "left": "+100 Spirit Lance Damage",
+      "right": "-70% Juxtapose Illusion Damage Taken"
+    },
+    {
+      "level": 25,
+      "left": "-4s Doppelganger Cooldown",
+      "right": "+2s Illusory Armaments Duration"
+    }
+  ],
+  "puck": [
+    {
+      "level": 10,
+      "left": "+40 Illusory Orb Damage",
+      "right": "+1.25s Waning Rift Silence Duration"
+    },
+    {
+      "level": 15,
+      "left": "-15s Dream Coil Cooldown",
+      "right": "+60 Waning Rift Damage"
+    },
+    {
+      "level": 20,
+      "left": "-2.5s Waning Rift Cooldown",
+      "right": "+200 Initial/Break Dream Coil Damage"
+    },
+    {
+      "level": 25,
+      "left": "Dream Coil Pierces Debuff Immunity",
+      "right": "+350 Waning Rift Radius/Max Distance"
+    }
+  ],
+  "pudge": [
+    {
+      "level": 10,
+      "left": "+5 Armor",
+      "right": "+10% Rot Slow"
+    },
+    {
+      "level": 15,
+      "left": "+8% Spell Lifesteal",
+      "right": "+%bonus_damage% Meat Hook Damage"
+    },
+    {
+      "level": 20,
+      "left": "+0.75s Dismember Duration",
+      "right": "-4s Meat Hook Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "1.5x Dismember Damage/Heal",
+      "right": "1.5x Flesh Heap and Meat Shield bonuses"
+    }
+  ],
+  "razor": [
+    {
+      "level": 10,
+      "left": "+0.75s Plasma Field Slow Duration",
+      "right": "+4 Armor"
+    },
+    {
+      "level": 15,
+      "left": "+5 Static Link Damage Steal",
+      "right": "+12 Strength"
+    },
+    {
+      "level": 20,
+      "left": "+30% Storm Surge Slow and Damage",
+      "right": "-0.1s Eye of the Storm Strike Interval"
+    },
+    {
+      "level": 25,
+      "left": "Creates A Second Plasma Field Delayed By 0.8s",
+      "right": "Static Link Steals Attack Speed"
+    }
+  ],
+  "sand_king": [
+    {
+      "level": 10,
+      "left": "+12% Stinger Slow",
+      "right": "+100 Caustic Finale Radius"
+    },
+    {
+      "level": 15,
+      "left": "+25 Sand Storm Damage Per Second",
+      "right": "+200 Burrowstrike Cast Range"
+    },
+    {
+      "level": 20,
+      "left": "-3s Burrowstrike Cooldown",
+      "right": "+6 Epicenter Pulses"
+    },
+    {
+      "level": 25,
+      "left": "+125 Stinger Damage",
+      "right": "35% Sand Storm Slow and Blind"
+    }
+  ],
+  "storm_spirit": [
+    {
+      "level": 10,
+      "left": "-20% Overload Attack/Movement Speed Slow",
+      "right": "+1.5 Mana Regen"
+    },
+    {
+      "level": 15,
+      "left": "+250 Health",
+      "right": "+60 Static Remnant Damage"
+    },
+    {
+      "level": 20,
+      "left": "+0.2s Electric Vortex Duration",
+      "right": "-1.25s Static Remnant Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "2x Overload Attack Bounce",
+      "right": "450 Distance Auto Remnant in Ball Lightning"
+    }
+  ],
+  "sven": [
+    {
+      "level": 10,
+      "left": "+5s Warcry Duration",
+      "right": "+20% God's Strength Slow Resistance"
+    },
+    {
+      "level": 15,
+      "left": "-12s God's Strength Cooldown",
+      "right": "+25% Great Cleave Damage"
+    },
+    {
+      "level": 20,
+      "left": "-25% Storm Hammer Cooldown and Mana Cost",
+      "right": "+8 Warcry Armor"
+    },
+    {
+      "level": 25,
+      "left": "+50% God's Strength Damage",
+      "right": "+1s Storm Hammer Stun Duration"
+    }
+  ],
+  "tiny": [
+    {
+      "level": 10,
+      "left": "+150 Avalanche Cast Range",
+      "right": "+8 Strength"
+    },
+    {
+      "level": 15,
+      "left": "-8% Grow Attack Speed Reduction",
+      "right": "+90 Avalanche Damage"
+    },
+    {
+      "level": 20,
+      "left": "+60 Tree Grab Base Damage",
+      "right": "Toss Requires No Target"
+    },
+    {
+      "level": 25,
+      "left": "-8s Avalanche Cooldown",
+      "right": "2 Toss Charges"
+    }
+  ],
+  "vengefulspirit": [
+    {
+      "level": 10,
+      "left": "+150 Nether Swap Enemy Damage",
+      "right": "+100 Magic Missile Cast Range"
+    },
+    {
+      "level": 15,
+      "left": "-3 Wave of Terror Armor",
+      "right": "+0.3s Magic Missile Stun Duration"
+    },
+    {
+      "level": 20,
+      "left": "Wave Of Terror Steals 25% Of Reduced Damage And Armor",
+      "right": "-2s Magic Missile Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "+16% Vengeance Aura Base Damage Bonus",
+      "right": "-18s Nether Swap Cooldown"
+    }
+  ],
+  "windrunner": [
+    {
+      "level": 10,
+      "left": "+1s Powershot Slow Duration",
+      "right": "+0.75s Windrun Duration"
+    },
+    {
+      "level": 15,
+      "left": "+40 Tailwind Max Movespeed",
+      "right": "-15% Powershot Reduction"
+    },
+    {
+      "level": 20,
+      "left": "+0.75s Shackleshot Duration",
+      "right": "-%bonus_focusfire_damage_reduction% Focus Fire Damage Reduction"
+    },
+    {
+      "level": 25,
+      "left": "Powershot Executes Enemy Heroes Under 15% Max HP",
+      "right": "Focus Fire Kills Advance Cooldown by 18s"
+    }
+  ],
+  "zuus": [
+    {
+      "level": 10,
+      "left": "+1 Heavenly Jump Target",
+      "right": "+200 Health"
+    },
+    {
+      "level": 15,
+      "left": "+75 Thundergod's Wrath Damage",
+      "right": "-20% Arc Lightning Mana Cost / Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+60 Arc Lightning Damage",
+      "right": "+0.5s Lightning Bolt Ministun"
+    },
+    {
+      "level": 25,
+      "left": "325 AoE Lightning Bolt",
+      "right": "3 Heavenly Jump Charges"
+    }
+  ],
+  "kunkka": [
+    {
+      "level": 10,
+      "left": "+1s Admiral's Rum Buff Duration",
+      "right": "Tidebringer applies 60% slow for 1s"
+    },
+    {
+      "level": 15,
+      "left": "+25% Torrent Damage/Knock Up Duration",
+      "right": "+75 Tidebringer Damage"
+    },
+    {
+      "level": 20,
+      "left": "-4s Torrent Cooldown",
+      "right": "+80% Tidebringer Cleave Damage"
+    },
+    {
+      "level": 25,
+      "left": "+100 Spell Area of Effect",
+      "right": "Tidebringer Ignores 25% Armor"
+    }
+  ],
+  "lina": [
+    {
+      "level": 10,
+      "left": "+25 Damage",
+      "right": "-3s Dragon Slave Cooldown"
+    },
+    {
+      "level": 15,
+      "left": "5% Fiery Soul Magic Resist Per Stack",
+      "right": "+110 Light Strike Array Damage"
+    },
+    {
+      "level": 20,
+      "left": "-20s Laguna Blade Cooldown",
+      "right": "+10/1% Fiery Soul Per Stack"
+    },
+    {
+      "level": 25,
+      "left": "+1s Slow Burn Duration",
+      "right": "150% Attack Crit On Targets Affected By Slow Burn"
+    }
+  ],
+  "lion": [
+    {
+      "level": 10,
+      "left": "+10% Mana Drain Slow",
+      "right": "+20 Movement Speed"
+    },
+    {
+      "level": 15,
+      "left": "-2.5s Hex Cooldown",
+      "right": "+15% To Hell And Back Debuff/Spell Amp"
+    },
+    {
+      "level": 20,
+      "left": "+20 Finger of Death Damage Per Kill",
+      "right": "Earth Spike affects a 30 degree cone"
+    },
+    {
+      "level": 25,
+      "left": "+250 AoE Hex",
+      "right": "+600 Earth Spike cast range/travel distance"
+    }
+  ],
+  "shadow_shaman": [
+    {
+      "level": 10,
+      "left": "+170 Shackles Total Damage",
+      "right": "+1.75 Mana Regen"
+    },
+    {
+      "level": 15,
+      "left": "+160 Serpent Wards Attack Range",
+      "right": "Hex Breaks"
+    },
+    {
+      "level": 20,
+      "left": "+1.5s Shackles Duration",
+      "right": "+50% Serpent Wards Max HP"
+    },
+    {
+      "level": 25,
+      "left": "+250 Ether Shock Damage",
+      "right": "+1 Ward Attack Targets"
+    }
+  ],
+  "slardar": [
+    {
+      "level": 10,
+      "left": "+2s Guardian Sprint Duration",
+      "right": "+30 Bash of the Deep Damage"
+    },
+    {
+      "level": 15,
+      "left": "+250 Health",
+      "right": "-3 Corrosive Haze Armor"
+    },
+    {
+      "level": 20,
+      "left": "+125 Slithereen Crush Damage",
+      "right": "+16% Seaborn Sentinel Bonus Attack Damage"
+    },
+    {
+      "level": 25,
+      "left": "-3s Slithereen Crush Cooldown",
+      "right": "Corrosive Haze Undispellable"
+    }
+  ],
+  "tidehunter": [
+    {
+      "level": 10,
+      "left": "+10% Anchor Smash Damage Reduction",
+      "right": "+20% Gush Slow"
+    },
+    {
+      "level": 15,
+      "left": "+90 Gush Damage",
+      "right": "-15s Ravage Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "Kraken Shell Cleanse triggers Anchor Smash",
+      "right": "-4 Gush Armor"
+    },
+    {
+      "level": 25,
+      "left": "+1s Ravage Stun Duration",
+      "right": "Anchor Smash affects buildings"
+    }
+  ],
+  "witch_doctor": [
+    {
+      "level": 10,
+      "left": "-25% Voodoo Restoration Mana Per Second",
+      "right": "+200 Health"
+    },
+    {
+      "level": 15,
+      "left": "-3s Paralyzing Cask Cooldown",
+      "right": "+4s Maledict Duration"
+    },
+    {
+      "level": 20,
+      "left": "Maledict bursts deal 75% damage in a 800 AoE ",
+      "right": "+1% Target Max Health Voodoo Restoration Heal"
+    },
+    {
+      "level": 25,
+      "left": "+6 Paralyzing Cask Bounces",
+      "right": "+40 Death Ward Damage"
+    }
+  ],
+  "lich": [
+    {
+      "level": 10,
+      "left": "+10% Frost Shield Damage Reduction",
+      "right": "+125 Frost Blast Radius and Area Damage"
+    },
+    {
+      "level": 15,
+      "left": "+0.3s Sinister Gaze Duration",
+      "right": "-3.5s Frost Blast Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "2 Frost Shield Charges",
+      "right": "Chain Frost on Death"
+    },
+    {
+      "level": 25,
+      "left": "Frost Shield Provides +50 HP Regen",
+      "right": "Chain Frost Unlimited Bounces"
+    }
+  ],
+  "riki": [
+    {
+      "level": 10,
+      "left": "+50 Smoke Screen Radius",
+      "right": "+10% Cloak and Dagger Movement Speed"
+    },
+    {
+      "level": 15,
+      "left": "15% of Riki's Base damage added to Tricks of the Trade",
+      "right": "-3s Smoke Screen Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+0.3 Backstab Multiplier",
+      "right": "-1s Blink Strike Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "-4s Tricks of the Trade Cooldown",
+      "right": "+500 Blink Strike Cast Range"
+    }
+  ],
+  "enigma": [
+    {
+      "level": 10,
+      "left": "+10 Eidolon Attack Speed",
+      "right": "+50 Black Hole Damage Per Second"
+    },
+    {
+      "level": 15,
+      "left": "+250 Health",
+      "right": "+100 Event Horizon Radius"
+    },
+    {
+      "level": 20,
+      "left": "+200 Midnight Pulse Radius",
+      "right": "+40 Eidolon Damage"
+    },
+    {
+      "level": 25,
+      "left": "+4 Malefice Instances",
+      "right": "+4 Demonic Summoning Eidolons"
+    }
+  ],
+  "tinker": [
+    {
+      "level": 10,
+      "left": "+1s March of the Machines Duration",
+      "right": "+10% Manacost/Manaloss Reduction"
+    },
+    {
+      "level": 15,
+      "left": "+100 Deploy Turrets Tinker Knockback",
+      "right": "+50 Laser Damage"
+    },
+    {
+      "level": 20,
+      "left": "+60 Deploy Turrets Missile Damage",
+      "right": "-0.5s Keen Conveyance Channel Time"
+    },
+    {
+      "level": 25,
+      "left": "250 AoE Laser",
+      "right": "-0.25s Time to Rearm"
+    }
+  ],
+  "sniper": [
+    {
+      "level": 10,
+      "left": "+50 Take Aim Passive Attack Range",
+      "right": "+30 Headshot Damage"
+    },
+    {
+      "level": 15,
+      "left": "+45 Attack Speed During Take Aim",
+      "right": "+150 Assassinate Damage"
+    },
+    {
+      "level": 20,
+      "left": "+2s Take Aim Duration",
+      "right": "+%bonus_shrapnel_damage% Shrapnel Damage"
+    },
+    {
+      "level": 25,
+      "left": "-30s Shrapnel Charge Restore Time",
+      "right": "+50 Max Headshot Knockback Distance"
+    }
+  ],
+  "necrolyte": [
+    {
+      "level": 10,
+      "left": "-2.5s Ghost Shroud Cooldown",
+      "right": "+2s Sadist Stack Duration"
+    },
+    {
+      "level": 15,
+      "left": "+15% Ghost Shroud Movement Slow",
+      "right": "+60 Death Pulse Heal"
+    },
+    {
+      "level": 20,
+      "left": "+75 Spell Area of Effect",
+      "right": "+20% Heartstopper Regen Reduction"
+    },
+    {
+      "level": 25,
+      "left": "+0.3 Reaper's Scythe Damage Per Missing HP",
+      "right": "-2.5s Death Pulse Cooldown"
+    }
+  ],
+  "warlock": [
+    {
+      "level": 10,
+      "left": "+4% Fatal Bonds Damage",
+      "right": "+50 Upheaval Radius"
+    },
+    {
+      "level": 15,
+      "left": "+8 Upheaval Attack Speed per second on Allies",
+      "right": "+150 Shadow Word AoE"
+    },
+    {
+      "level": 20,
+      "left": "25% Damage Resistance for Chaotic Offering Golems",
+      "right": "+45 Upheaval Damage"
+    },
+    {
+      "level": 25,
+      "left": "Summons a Golem on death",
+      "right": "+4 Fatal Bonds Targets"
+    }
+  ],
+  "beastmaster": [
+    {
+      "level": 10,
+      "left": "+4 Armor",
+      "right": "+1.5% Wild Axes Damage Amp Per Stack"
+    },
+    {
+      "level": 15,
+      "left": "+15 Movespeed to Beastmaster and his summons",
+      "right": "+200 Primal Roar Cast Range"
+    },
+    {
+      "level": 20,
+      "left": "+30 Damage to Beastmaster and his summons",
+      "right": "+250 Health to Beastmaster and his summons"
+    },
+    {
+      "level": 25,
+      "left": "No Wild Axes Cooldown",
+      "right": "-25s Primal Roar Cooldown"
+    }
+  ],
+  "queenofpain": [
+    {
+      "level": 10,
+      "left": "+35 Attack Speed against Shadow Striked units",
+      "right": "+7 Strength"
+    },
+    {
+      "level": 15,
+      "left": "-1s Shadow Strike Damage Interval",
+      "right": "+30 Damage"
+    },
+    {
+      "level": 20,
+      "left": "+115 Scream of Pain Damage",
+      "right": "-45s Sonic Wave Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "-2s Blink Cooldown",
+      "right": "+250 Sonic Wave Damage"
+    }
+  ],
+  "venomancer": [
+    {
+      "level": 10,
+      "left": "-5s Venomous Gale CD",
+      "right": "15% Poison Sting Health Regen Reduction"
+    },
+    {
+      "level": 15,
+      "left": "+75 Noxious Plague Spread Radius",
+      "right": "+7% Poison Sting Slow"
+    },
+    {
+      "level": 20,
+      "left": "+40% Snakebite Damage",
+      "right": "-2s Plague Ward Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "Snakebite Undispellable",
+      "right": "2.5x Plague Ward HP/Damage"
+    }
+  ],
+  "faceless_void": [
+    {
+      "level": 10,
+      "left": "+6 Time Dilation DPS Per Cooldown",
+      "right": "+0.5s Time Walk Backtrack Duration"
+    },
+    {
+      "level": 15,
+      "left": "+35 Time Lock Damage",
+      "right": "+125 Time Walk Range"
+    },
+    {
+      "level": 20,
+      "left": "+100 Attack Speed during Chronosphere",
+      "right": "-1.25s Time Walk Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "+20% Backtrack Chance",
+      "right": "+140 Chronosphere AoE"
+    }
+  ],
+  "skeleton_king": [
+    {
+      "level": 10,
+      "left": "+10% Vampiric Spirit Lifesteal",
+      "right": "+2s Wraithfire Blast Slow Duration"
+    },
+    {
+      "level": 15,
+      "left": "+0.75s Wraithfire Blast Stun Duration",
+      "right": "+300 Health"
+    },
+    {
+      "level": 20,
+      "left": "+50 Attack Speed",
+      "right": "+5 Bone Guard Skeletons Spawned"
+    },
+    {
+      "level": 25,
+      "left": "-2s Mortal Strike Cooldown",
+      "right": "Reincarnation Casts Wraithfire Blast"
+    }
+  ],
+  "death_prophet": [
+    {
+      "level": 10,
+      "left": "+75 Silence AoE",
+      "right": "+200 Health"
+    },
+    {
+      "level": 15,
+      "left": "+50 Attack Speed",
+      "right": "-2.5s Crypt Swarm Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+6 Exorcism Spirits",
+      "right": "+30 Spirit Siphon Damage/Heal"
+    },
+    {
+      "level": 25,
+      "left": "-22s Spirit Siphon Replenish Time",
+      "right": "Deaths During Exorcism Extend Duration By +8s"
+    }
+  ],
+  "phantom_assassin": [
+    {
+      "level": 10,
+      "left": "+0.6s Phantom Strike Duration",
+      "right": "-2s Stifling Dagger Cooldown"
+    },
+    {
+      "level": 15,
+      "left": "+20% Immaterial Evasion",
+      "right": "+15% Stifling Dagger Damage"
+    },
+    {
+      "level": 20,
+      "left": "+200 Phantom Strike Cast Range",
+      "right": "+60 Phantom Strike Attack Speed"
+    },
+    {
+      "level": 25,
+      "left": "+10% Coup de Grace chance",
+      "right": "Triple Strike Stifling Dagger"
+    }
+  ],
+  "pugna": [
+    {
+      "level": 10,
+      "left": "-1s Nether Blast Cooldown",
+      "right": "+2 Nether Ward Health"
+    },
+    {
+      "level": 15,
+      "left": "+30% Decrepify Movement Speed To Allies",
+      "right": "+250 Health"
+    },
+    {
+      "level": 20,
+      "left": "+15% Life Drain Heal",
+      "right": "+1.5s Decrepify Duration"
+    },
+    {
+      "level": 25,
+      "left": "+200 Nether Blast Damage",
+      "right": "+1.9 Nether Ward Damage Per Mana"
+    }
+  ],
+  "templar_assassin": [
+    {
+      "level": 10,
+      "left": "+1.5s Meld Debuff Duration",
+      "right": "+10% Psionic Trap Slow"
+    },
+    {
+      "level": 15,
+      "left": "+225 Meld Attack Range",
+      "right": "+3 Psionic Traps"
+    },
+    {
+      "level": 20,
+      "left": "Refraction Dispels",
+      "right": "+4 Meld Armor Reduction"
+    },
+    {
+      "level": 25,
+      "left": "0.8s Meld Hit Bash",
+      "right": "+4 Refraction Instances"
+    }
+  ],
+  "viper": [
+    {
+      "level": 10,
+      "left": "+1s Viper Strike Duration",
+      "right": "+15 Corrosive Skin Damage Per Second"
+    },
+    {
+      "level": 15,
+      "left": "+20/40 Nethertoxin Min/Max Damage",
+      "right": "+15% Poison Attack Slow / Damage"
+    },
+    {
+      "level": 20,
+      "left": "+70 Viper Strike DPS",
+      "right": "+0.35 Predator Damage Per Missing Health"
+    },
+    {
+      "level": 25,
+      "left": "Nethertoxin Radius increases by 25 every 0.5s",
+      "right": "-50% Viper Strike Mana Cost / Cooldown"
+    }
+  ],
+  "luna": [
+    {
+      "level": 10,
+      "left": "-5% Moon Glaives Damage Reduction",
+      "right": "+0.5s Lucent Beam Ministun"
+    },
+    {
+      "level": 15,
+      "left": "+1 Lunar Orbit Glaive",
+      "right": "+80 Lucent Beam Damage"
+    },
+    {
+      "level": 20,
+      "left": "-40s Eclipse Cooldown",
+      "right": "1.5x Lunar Orbit Damage / Speed"
+    },
+    {
+      "level": 25,
+      "left": "+25/50 Lunar Blessing Allied/Self Damage",
+      "right": "Lucent Beam Hits An Additional Target"
+    }
+  ],
+  "dragon_knight": [
+    {
+      "level": 10,
+      "left": "+15 Damage",
+      "right": "-2s Breathe Fire Cooldown"
+    },
+    {
+      "level": 15,
+      "left": "+0.4s Dragon Tail Stun",
+      "right": "+300 Health"
+    },
+    {
+      "level": 20,
+      "left": "+150 Elder Dragon Form Attack Range",
+      "right": "+200 Breathe Fire Damage"
+    },
+    {
+      "level": 25,
+      "left": "+12 Dragon Blood HP Regen/Armor",
+      "right": "+50% Wyrm's Wrath Bonuses"
+    }
+  ],
+  "dazzle": [
+    {
+      "level": 10,
+      "left": "+200 Poison Touch Attack Range",
+      "right": "+1.75 Mana Regen"
+    },
+    {
+      "level": 15,
+      "left": "+45 Shadow Wave Heal / Damage",
+      "right": "+5s Nothl Projection Duration"
+    },
+    {
+      "level": 20,
+      "left": "-3s Shallow Grave Cooldown",
+      "right": "+75 Poison Touch DPS"
+    },
+    {
+      "level": 25,
+      "left": "+40% Poison Touch Slow",
+      "right": "+1 Weave Armor Reduction/Increase"
+    }
+  ],
+  "rattletrap": [
+    {
+      "level": 10,
+      "left": "+1.5 Mana Regen",
+      "right": "+75 Hookshot Damage"
+    },
+    {
+      "level": 15,
+      "left": "-10s Hookshot Cooldown",
+      "right": "+25 Battery Assault Damage"
+    },
+    {
+      "level": 20,
+      "left": "Rocket Flare True Sight",
+      "right": "+80 Power Cogs Mana Burn"
+    },
+    {
+      "level": 25,
+      "left": "3 Rocket Flare Charges",
+      "right": "-0.25s Battery Assault Interval"
+    }
+  ],
+  "leshrac": [
+    {
+      "level": 10,
+      "left": "+1.5 Mana Regen",
+      "right": "+4 Armor"
+    },
+    {
+      "level": 15,
+      "left": "+80 Lightning Storm Damage",
+      "right": "+10% Damage Reduction during Pulse Nova"
+    },
+    {
+      "level": 20,
+      "left": "Diabolic Edict Hits An Additional Target",
+      "right": "+30 Pulse Nova Damage"
+    },
+    {
+      "level": 25,
+      "left": "+20 Diabolic Edict Explosions",
+      "right": "Pulse Nova triggers Lightning Storm"
+    }
+  ],
+  "furion": [
+    {
+      "level": 10,
+      "left": "-10s Nature's Call Cooldown",
+      "right": "+25 Wrath of Nature Base Damage"
+    },
+    {
+      "level": 15,
+      "left": "+50 Treant Movement Speed",
+      "right": "+100 Teleportation Barrier"
+    },
+    {
+      "level": 20,
+      "left": "-15s Wrath of Nature Cooldown",
+      "right": "+170 Sprout Damage"
+    },
+    {
+      "level": 25,
+      "left": "Removed Teleportation Cooldown",
+      "right": "3x Treant HP/Damage"
+    }
+  ],
+  "life_stealer": [
+    {
+      "level": 10,
+      "left": "+4 All Attributes",
+      "right": "+20 Movement Speed"
+    },
+    {
+      "level": 15,
+      "left": "+175 Infest Damage",
+      "right": "50 Attack Speed on Open Wounds Target"
+    },
+    {
+      "level": 20,
+      "left": "+12% Infest Target Movespeed/Health",
+      "right": "+25% Open Wounds Lifesteal"
+    },
+    {
+      "level": 25,
+      "left": "+1% Feast Heal and Damage",
+      "right": "+1s Rage Duration"
+    }
+  ],
+  "dark_seer": [
+    {
+      "level": 10,
+      "left": "+15% Wall of Replica Illusion Damage",
+      "right": "+65 Ion Shell Radius"
+    },
+    {
+      "level": 15,
+      "left": "+75 Vacuum AoE",
+      "right": "-1.5s Surge Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "-40s Wall of Replica Cooldown",
+      "right": "+50 Ion Shell Damage"
+    },
+    {
+      "level": 25,
+      "left": "2 Ion Shell Charges ",
+      "right": "350 AoE Surge"
+    }
+  ],
+  "clinkz": [
+    {
+      "level": 10,
+      "left": "+1s Strafe Duration",
+      "right": "-4s Skeleton Walk Cooldown"
+    },
+    {
+      "level": 15,
+      "left": "+50 Attack Range",
+      "right": "-%bonus_AbilityChargeRestoreTime%s Death Pact Charge Restore Time"
+    },
+    {
+      "level": 20,
+      "left": "+40 Strafe Attack Speed",
+      "right": "+400 Death Pact Bonus Health"
+    },
+    {
+      "level": 25,
+      "left": "-9s Strafe Cooldown",
+      "right": "Searing Arrows Multishot"
+    }
+  ],
+  "omniknight": [
+    {
+      "level": 10,
+      "left": "+200 Repel Cast Range",
+      "right": "+30 Base Damage"
+    },
+    {
+      "level": 15,
+      "left": "-0.5s Hammer of Purity Cooldown",
+      "right": "-20s Guardian Angel Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+150 Degen Aura Radius",
+      "right": "-3s Purification Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "+160 Purification Damage/Heal",
+      "right": "+75% Hammer of Purity Bonus Base Damage"
+    }
+  ],
+  "enchantress": [
+    {
+      "level": 10,
+      "left": "+5 Armor for Enchantress and her units",
+      "right": "+30 Movespeed during Nature's Attendants"
+    },
+    {
+      "level": 15,
+      "left": "+30 Attack Speed for Enchantress and her units",
+      "right": "+8 Nature's Attendants Heal"
+    },
+    {
+      "level": 20,
+      "left": "+9 Nature's Attendants Wisps",
+      "right": "+150 Health / +25 Damage  for Enchantress and her units"
+    },
+    {
+      "level": 25,
+      "left": "+6.5% Impetus Damage",
+      "right": "+80 Untouchable Attack Slow"
+    }
+  ],
+  "huskar": [
+    {
+      "level": 10,
+      "left": "+0.75s Inner Fire Duration",
+      "right": "+2s Life Break Slow Duration"
+    },
+    {
+      "level": 15,
+      "left": "+5 Burning Spear Burn Damage",
+      "right": "+12% Lifesteal"
+    },
+    {
+      "level": 20,
+      "left": "+30% Berserker's Blood Regen",
+      "right": "-5s Life Break Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "+6s Burning Spear Duration",
+      "right": "+22% Life Break Damage"
+    }
+  ],
+  "night_stalker": [
+    {
+      "level": 10,
+      "left": "-1s Void Cooldown",
+      "right": "+10 Crippling Fear DPS"
+    },
+    {
+      "level": 15,
+      "left": "+25 Dark Ascension Damage",
+      "right": "20% Hunter in the Night Status Resistance"
+    },
+    {
+      "level": 20,
+      "left": "+75 Crippling Fear Radius",
+      "right": "+15 Strength"
+    },
+    {
+      "level": 25,
+      "left": "+100 Midnight Feast Lifesteal",
+      "right": "-40s Dark Ascension Cooldown"
+    }
+  ],
+  "broodmother": [
+    {
+      "level": 10,
+      "left": "+80 Spawn Spiderlings Damage",
+      "right": "+20% Insatiable Hunger Lifesteal"
+    },
+    {
+      "level": 15,
+      "left": "+5 Incapacitating Bite Attack Bonus",
+      "right": "+175 Spiderlings Health"
+    },
+    {
+      "level": 20,
+      "left": "-6s Spin Web Charge Restore Time",
+      "right": "+20% Incapacitating Bite Slow/Miss Chance"
+    },
+    {
+      "level": 25,
+      "left": "-0.15s BAT during Insatiable Hunger",
+      "right": "+7% Spin Web Move Speed and Ignore Speed Limit"
+    }
+  ],
+  "bounty_hunter": [
+    {
+      "level": 10,
+      "left": "+0.6s Shuriken Toss Slow",
+      "right": "+30 Damage"
+    },
+    {
+      "level": 15,
+      "left": "-30% Damage Taken in Shadow Walk",
+      "right": "+50 Track Gold"
+    },
+    {
+      "level": 20,
+      "left": "Track Grants Shared Vision",
+      "right": "+50 Jinada Gold Steal"
+    },
+    {
+      "level": 25,
+      "left": "+250 Shuriken Toss Damage",
+      "right": "No Cooldown on Jinada"
+    }
+  ],
+  "weaver": [
+    {
+      "level": 10,
+      "left": "+50 Shukuchi Movement Speed",
+      "right": "+7 Strength"
+    },
+    {
+      "level": 15,
+      "left": "+90 Shukuchi Damage",
+      "right": "+2 Swarm Attacks to Kill"
+    },
+    {
+      "level": 20,
+      "left": "+60 Bonus Damage On Geminate",
+      "right": "+0.5 Swarm Armor Reduction Per Attack"
+    },
+    {
+      "level": 25,
+      "left": "-3s Shukuchi Cooldown",
+      "right": "+1 Geminate Attack"
+    }
+  ],
+  "jakiro": [
+    {
+      "level": 10,
+      "left": "+30 Liquid Fire Attack Speed Slow",
+      "right": "+75 Ice Path Damage"
+    },
+    {
+      "level": 15,
+      "left": "+175 Attack Range",
+      "right": "-3.5s Dual Breath Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+0.4s Ice Path Stun Duration",
+      "right": "+25 Macropyre Damage"
+    },
+    {
+      "level": 25,
+      "left": "+100% Dual Breath Damage and Range",
+      "right": "+3% Liquid Frost and Fire Max Health Damage"
+    }
+  ],
+  "batrider": [
+    {
+      "level": 10,
+      "left": "+5% Firefly Max Movement Speed Bonus",
+      "right": "+1s Smoldering Resin Duration"
+    },
+    {
+      "level": 15,
+      "left": "+30 Firefly Damage Per Second",
+      "right": "+0.75% Sticky Napalm Movement Slow"
+    },
+    {
+      "level": 20,
+      "left": "Attacks apply 1 Stack of Sticky Napalm",
+      "right": "-6s Flamebreak Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "+0.75s Flaming Lasso Duration",
+      "right": "Flamebreak applies 4 Sticky Napalm Stacks"
+    }
+  ],
+  "chen": [
+    {
+      "level": 10,
+      "left": "+75 Penitence Damage",
+      "right": "+25% Zealot Health/Damage"
+    },
+    {
+      "level": 15,
+      "left": "+12% Holy Persuasion Damage",
+      "right": "+15% Penitence Slow"
+    },
+    {
+      "level": 20,
+      "left": "+15% Divine Favor Heal Amplification",
+      "right": "+1300 Holy Persuasion Minimum Health"
+    },
+    {
+      "level": 25,
+      "left": "Hand of God applies a Strong Dispel",
+      "right": "Hand of God Fully Heals Chen and His Creeps"
+    }
+  ],
+  "spectre": [
+    {
+      "level": 10,
+      "left": "-3s Spectral Dagger Cooldown",
+      "right": "+12 Desolate Damage"
+    },
+    {
+      "level": 15,
+      "left": "+1s Shadow Step Duration",
+      "right": "+80 Spectral Dagger Damage"
+    },
+    {
+      "level": 20,
+      "left": "+300 Health",
+      "right": "+15% Spectral Dagger Slow/Bonus"
+    },
+    {
+      "level": 25,
+      "left": "+15% All Spectre Illusion Damage",
+      "right": "+4% Dispersion"
+    }
+  ],
+  "ancient_apparition": [
+    {
+      "level": 10,
+      "left": "+300 Chilling Touch Attack Range",
+      "right": "+30 Cold Feet Damage Per Second"
+    },
+    {
+      "level": 15,
+      "left": "-2s Ice Vortex Cooldown",
+      "right": "+250 Cold Feet Break Distance"
+    },
+    {
+      "level": 20,
+      "left": "+4s Ice Blast Frostbitten Duration",
+      "right": "+80 Chilling Touch Damage"
+    },
+    {
+      "level": 25,
+      "left": "450 AoE Cold Feet",
+      "right": "+4% Ice Blast Kill Threshold"
+    }
+  ],
+  "doom_bringer": [
+    {
+      "level": 10,
+      "left": "+10% Magic Resistance",
+      "right": "+0.2s Infernal Blade Stun Duration"
+    },
+    {
+      "level": 15,
+      "left": "+7% Scorched Earth Movement Speed",
+      "right": "+1.5% Infernal Blade Max HP As Damage"
+    },
+    {
+      "level": 20,
+      "left": "-10s Doom Cooldown",
+      "right": "+66 Damage"
+    },
+    {
+      "level": 25,
+      "left": "Doom applies Mute",
+      "right": "Permanent Scorched Earth"
+    }
+  ],
+  "ursa": [
+    {
+      "level": 10,
+      "left": "+9s Fury Swipes Reset Time",
+      "right": "+1.75 Mana Regen"
+    },
+    {
+      "level": 15,
+      "left": "+0.5% Maul Health As Damage",
+      "right": "+25% Enrage Status Resistance"
+    },
+    {
+      "level": 20,
+      "left": "+300 Earthshock Radius",
+      "right": "+6 Fury Swipes Damage"
+    },
+    {
+      "level": 25,
+      "left": "Earthshock has 2 Charges",
+      "right": "+3 Overpower Attacks"
+    }
+  ],
+  "spirit_breaker": [
+    {
+      "level": 10,
+      "left": "+500 Night Vision",
+      "right": "+4 Armor"
+    },
+    {
+      "level": 15,
+      "left": "-3s Bulldoze Cooldown",
+      "right": "+60 Charge of Darkness Bonus Speed"
+    },
+    {
+      "level": 20,
+      "left": "+8%/+2% Empowering Haste Movespeed Bonus",
+      "right": "Bulldoze 375 All Damage Barrier"
+    },
+    {
+      "level": 25,
+      "left": "+20% Greater Bash Damage",
+      "right": "-4s Charge of Darkness Cooldown"
+    }
+  ],
+  "gyrocopter": [
+    {
+      "level": 10,
+      "left": "+25% Homing Missile Damage",
+      "right": "+150 Health"
+    },
+    {
+      "level": 15,
+      "left": "+0.3s Homing Missile Stun Duration",
+      "right": "+25 Flak Cannon Damage"
+    },
+    {
+      "level": 20,
+      "left": "+3 Flak Cannon Attacks",
+      "right": "+14 Rocket Barrage Damage"
+    },
+    {
+      "level": 25,
+      "left": "-4s Flak Cannon Cooldown",
+      "right": "-40s Call Down Cooldown"
+    }
+  ],
+  "alchemist": [
+    {
+      "level": 10,
+      "left": "+1% Corrosive Weaponry Slow / Damage Reduction Per Stack",
+      "right": "+150 Unstable Concoction Radius"
+    },
+    {
+      "level": 15,
+      "left": "+1 Acid Spray Armor Reduction",
+      "right": "Greevil's Greed provides +3 Damage per stack"
+    },
+    {
+      "level": 20,
+      "left": "-0.1s Chemical Rage Base Attack Time",
+      "right": "+400 Unstable Concoction Max Damage"
+    },
+    {
+      "level": 25,
+      "left": "+50 Chemical Rage Movement Speed",
+      "right": "+50 Chemical Rage Regeneration"
+    }
+  ],
+  "invoker": [
+    {
+      "level": 10,
+      "left": "+50 Ice Wall DPS",
+      "right": "-5s Tornado Cooldown"
+    },
+    {
+      "level": 15,
+      "left": "+25 Alacrity Damage/Speed",
+      "right": "-6s Cold Snap Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+2 Chaos Meteors",
+      "right": "+50% Forged Spirit Armor Reduction"
+    },
+    {
+      "level": 25,
+      "left": "Radial Deafening Blast",
+      "right": "2x Quas/Wex/Exort Active Bonuses"
+    }
+  ],
+  "silencer": [
+    {
+      "level": 10,
+      "left": "+25 Attack Speed",
+      "right": "+7% Suffer In Silence Silenced Target Damage"
+    },
+    {
+      "level": 15,
+      "left": "-15s Global Silence Cooldown",
+      "right": "+2s/+1s Arcane Curse Base/Penalty Duration"
+    },
+    {
+      "level": 20,
+      "left": "+40s Glaives of Wisdom Int Steal Duration",
+      "right": "250 AoE Last Word"
+    },
+    {
+      "level": 25,
+      "left": "+30% Glaives of Wisdom Damage",
+      "right": "+2s Global Silence Duration"
+    }
+  ],
+  "obsidian_destroyer": [
+    {
+      "level": 10,
+      "left": "+100 Astral Imprisonment Cast Range",
+      "right": "+200 Mana"
+    },
+    {
+      "level": 15,
+      "left": "+5% Essence Flux Mana Restored",
+      "right": "+0.8% of Current Mana as Movement Speed"
+    },
+    {
+      "level": 20,
+      "left": "-10s Objurgation Cooldown",
+      "right": "+10% Astral Imprisonment Mana Capacity Steal"
+    },
+    {
+      "level": 25,
+      "left": "+1.5% Arcane Orb Damage",
+      "right": "-60s Sanity's Eclipse Cooldown"
+    }
+  ],
+  "lycan": [
+    {
+      "level": 10,
+      "left": "+3 Howl Armor Reduction",
+      "right": "+10 Wolves Damage"
+    },
+    {
+      "level": 15,
+      "left": "+350 Summon Wolves Health",
+      "right": "-15s Shapeshift Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+7s Shapeshift Duration",
+      "right": "+25% Feral Impulse Damage"
+    },
+    {
+      "level": 25,
+      "left": "Howl Reduces Total Attack Damage",
+      "right": "-%bonus_wolf_bat% Summon Wolves BAT"
+    }
+  ],
+  "brewmaster": [
+    {
+      "level": 10,
+      "left": "+14 Brewlings Base Damage",
+      "right": "+2/1s Drunken Brawler Brew Up / Extend Duration"
+    },
+    {
+      "level": 15,
+      "left": "+40% Cinder Brew Damage/Duration",
+      "right": "+600 Brewlings Health"
+    },
+    {
+      "level": 20,
+      "left": "-15s Primal Split Cooldown",
+      "right": "+110 Attack Speed"
+    },
+    {
+      "level": 25,
+      "left": "1.5x Drunken Brawler Stance Bonuses",
+      "right": "Cinder Brew applies Fear when ignited"
+    }
+  ],
+  "shadow_demon": [
+    {
+      "level": 10,
+      "left": "+15% Shadow Poison Damage",
+      "right": "+8 Strength"
+    },
+    {
+      "level": 15,
+      "left": "+20 Movement Speed",
+      "right": "-1s Shadow Poison Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+15% Disseminate Shared Damage",
+      "right": "-20s Demonic Purge Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "Demonic Purge Applies Shadow Poison",
+      "right": "2 Charges of Disruption"
+    }
+  ],
+  "lone_druid": [
+    {
+      "level": 10,
+      "left": "-25s Summon Spirit Bear Cooldown",
+      "right": "+20 Entangle Root Damage Per Second"
+    },
+    {
+      "level": 15,
+      "left": "-5s Savage Roar Cooldown",
+      "right": "+12 Agility"
+    },
+    {
+      "level": 20,
+      "left": "+150 Savage Roar Radius",
+      "right": "+55 Attack Speed"
+    },
+    {
+      "level": 25,
+      "left": "True Form provides 70% Slow Resistance",
+      "right": "+0.6s Entangle Root Duration"
+    }
+  ],
+  "chaos_knight": [
+    {
+      "level": 10,
+      "left": "+30% Chaos Strike Lifesteal",
+      "right": "+225 Reality Rift Pull Distance"
+    },
+    {
+      "level": 15,
+      "left": "-3s Chaos Bolt Cooldown",
+      "right": "+10 Strength"
+    },
+    {
+      "level": 20,
+      "left": "+0.6 Min/Max Chaos Bolt Duration",
+      "right": "Reality Rift Pierces Spell Immunity"
+    },
+    {
+      "level": 25,
+      "left": "+10% Chaos Strike Chance",
+      "right": "-125% Phantasm Illusion Incoming Damage"
+    }
+  ],
+  "meepo": [
+    {
+      "level": 10,
+      "left": "+7 Strength",
+      "right": "-1.5s Earthbind Cooldown"
+    },
+    {
+      "level": 15,
+      "left": "+15% Evasion",
+      "right": "+40 Poof Damage"
+    },
+    {
+      "level": 20,
+      "left": "Earthbind grants True Strike on Targets",
+      "right": "+6 Ransack Health Steal"
+    },
+    {
+      "level": 25,
+      "left": "+400 Health",
+      "right": "-.75s Poof Cast Duration"
+    }
+  ],
+  "treant": [
+    {
+      "level": 10,
+      "left": "+4 Living Armor Heal Per Second",
+      "right": "+50 Base Damage"
+    },
+    {
+      "level": 15,
+      "left": "+10% Leech Seed Damage to Healing",
+      "right": "+25 Nature's Grasp Damage"
+    },
+    {
+      "level": 20,
+      "left": "+20 Living Armor Damage Block",
+      "right": "+80 Leech Seed Bonus Damage"
+    },
+    {
+      "level": 25,
+      "left": "-3s Leech Seed Cooldown",
+      "right": "450 AoE Living Armor"
+    }
+  ],
+  "ogre_magi": [
+    {
+      "level": 10,
+      "left": "+10 Ignite Burn Damage",
+      "right": "+2/0.01 Dumb Luck Mana/Mana Regen Per Strength"
+    },
+    {
+      "level": 15,
+      "left": "+80 Damage",
+      "right": "+20/35 Bloodlust / Self Attack Speed"
+    },
+    {
+      "level": 20,
+      "left": "+30 Strength",
+      "right": "+175 Fireblast Damage"
+    },
+    {
+      "level": 25,
+      "left": "17% Fireblast chance on attack",
+      "right": "+10% Multicast Chance"
+    }
+  ],
+  "undying": [
+    {
+      "level": 10,
+      "left": "+30 Decay Damage",
+      "right": "-15s Tombstone Cooldown"
+    },
+    {
+      "level": 15,
+      "left": "+12 Soul Rip Damage/Heal",
+      "right": "+20 Zombie Damage"
+    },
+    {
+      "level": 20,
+      "left": "-2s Decay Cooldown",
+      "right": "+4 Tombstone Attacks to Destroy"
+    },
+    {
+      "level": 25,
+      "left": "+50% Flesh Golem Strength Bonus",
+      "right": "Tombstone On Death"
+    }
+  ],
+  "rubick": [
+    {
+      "level": 10,
+      "left": "-2s Telekinesis Cooldown",
+      "right": "+200 Health"
+    },
+    {
+      "level": 15,
+      "left": "-50% Stolen Spells Mana Cost",
+      "right": "-3s Fade Bolt Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+12% Fade Bolt Damage Reduction",
+      "right": "Telekinesis Landing Deals 300 Damage"
+    },
+    {
+      "level": 25,
+      "left": "2x Curiosity Bonuses",
+      "right": "+40% Spell Amp For Stolen Spells"
+    }
+  ],
+  "disruptor": [
+    {
+      "level": 10,
+      "left": "+20 Movement Speed",
+      "right": "+15 Thunder Strike Damage per Strike"
+    },
+    {
+      "level": 15,
+      "left": "+15%/300 Glimpse Distance To Damage/Max",
+      "right": "+60 Static Storm Max DPS"
+    },
+    {
+      "level": 20,
+      "left": "+1s Kinetic Field Duration",
+      "right": "+75 Static Storm Radius"
+    },
+    {
+      "level": 25,
+      "left": "2 Glimpse Charges",
+      "right": "+6 Thunder Strike Strikes"
+    }
+  ],
+  "nyx_assassin": [
+    {
+      "level": 10,
+      "left": "+25% Spiked Carapace Damage Reflect",
+      "right": "+0.2s Impale Stun Duration"
+    },
+    {
+      "level": 15,
+      "left": "+50 Vendetta Damage",
+      "right": "-3s Mind Flare Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+0.6s Spiked Carapace Stun Duration",
+      "right": "+140 Impale Damage"
+    },
+    {
+      "level": 25,
+      "left": "600 Mind Flare Radius",
+      "right": "+80 Agility"
+    }
+  ],
+  "naga_siren": [
+    {
+      "level": 10,
+      "left": "+125 Reel In Pull Speed",
+      "right": "+30% Rip Tide Damage"
+    },
+    {
+      "level": 15,
+      "left": "+10% Mirror Image Damage",
+      "right": "-75% Mirror Image Illusion Damage Taken"
+    },
+    {
+      "level": 20,
+      "left": "-25s Song of the Siren Cooldown",
+      "right": "+1 Mirror Image Illusion"
+    },
+    {
+      "level": 25,
+      "left": "-10s Mirror Image Cooldown",
+      "right": "+25 Agility"
+    }
+  ],
+  "keeper_of_the_light": [
+    {
+      "level": 10,
+      "left": "+40% Blinding Light Miss",
+      "right": "-2s Illuminate Cooldown"
+    },
+    {
+      "level": 15,
+      "left": "+25% Spirit Form Bright Speed Bonus",
+      "right": "+90 Blinding Light Damage"
+    },
+    {
+      "level": 20,
+      "left": "+15s Spirit Form Duration",
+      "right": "+10% Solar Bind Magic Resistance Reduction"
+    },
+    {
+      "level": 25,
+      "left": "Chakra Magic Strong Dispels",
+      "right": "+200 Illuminate Damage"
+    }
+  ],
+  "wisp": [
+    {
+      "level": 10,
+      "left": "+1.5s Overcharge Duration",
+      "right": "+8 Strength"
+    },
+    {
+      "level": 15,
+      "left": "+5% Tether Movement Speed",
+      "right": "+50% Spirits Hero Damage"
+    },
+    {
+      "level": 20,
+      "left": "+0.2% Overcharge Max HP Regen Bonus",
+      "right": "-30s Relocate Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "-2s Relocate Cast Delay",
+      "right": "Attack Tethered Ally's Target (50% damage)"
+    }
+  ],
+  "visage": [
+    {
+      "level": 10,
+      "left": "-1s Soul Assumption Cooldown",
+      "right": "+6 Visage and Familiars Base Damage"
+    },
+    {
+      "level": 15,
+      "left": "+2s Grave Chill Duration",
+      "right": "Soul Assumption Hits 3 Targets"
+    },
+    {
+      "level": 20,
+      "left": "+30 Soul Assumption Damage Per Charge",
+      "right": "+1 Armor Corruption to Visage and Familiars"
+    },
+    {
+      "level": 25,
+      "left": "-2s Gravekeeper's Cloak Recovery Time",
+      "right": "+1 Familiar"
+    }
+  ],
+  "slark": [
+    {
+      "level": 10,
+      "left": "-0.75s Dark Pact Cooldown",
+      "right": "+0.5s Pounce Leash"
+    },
+    {
+      "level": 15,
+      "left": "+70 Dark Pact Damage",
+      "right": "+30 Shadow Dance Regen"
+    },
+    {
+      "level": 20,
+      "left": "+20s Essence Shift Duration",
+      "right": "+100 Shadow Dance Attack Speed"
+    },
+    {
+      "level": 25,
+      "left": "+1.5s Shadow Dance Duration",
+      "right": "+1 Agility gain/stolen per Essence Shift Stack"
+    }
+  ],
+  "medusa": [
+    {
+      "level": 10,
+      "left": "+20% Gorgon's Grasp Radius",
+      "right": "+12% Stone Gaze Bonus Physical Damage"
+    },
+    {
+      "level": 15,
+      "left": "+1 Gorgon's Grasp Volley",
+      "right": "-4s Mystic Snake Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+40% Mystic Snake Damage / Mana Gain",
+      "right": "+12% Split Shot Outgoing Damage"
+    },
+    {
+      "level": 25,
+      "left": "+2.5s Stone Gaze Duration",
+      "right": "+40 Intelligence"
+    }
+  ],
+  "troll_warlord": [
+    {
+      "level": 10,
+      "left": "+2.5s Whirling Axes Debuff Duration",
+      "right": "+20 Berserker's Rage Movement Speed"
+    },
+    {
+      "level": 15,
+      "left": "+4 Fervor Attack Speed",
+      "right": "+1s Battle Trance Duration"
+    },
+    {
+      "level": 20,
+      "left": "Allies Receive Battle Trance Attack Speed",
+      "right": "+160 Whirling Axes Damage"
+    },
+    {
+      "level": 25,
+      "left": "Whirling Axes Pierce Magic Immunity",
+      "right": "Battle Trance Strong Dispels"
+    }
+  ],
+  "centaur": [
+    {
+      "level": 10,
+      "left": "+4 Health Regen",
+      "right": "+15 Movement Speed"
+    },
+    {
+      "level": 15,
+      "left": "+10 Strength",
+      "right": "+30% Double Edge Strength Damage"
+    },
+    {
+      "level": 20,
+      "left": "+45 Retaliate Damage",
+      "right": "-25s Stampede Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "Gains Retaliate Aura",
+      "right": "+0.8s Hoof Stomp Duration"
+    }
+  ],
+  "magnataur": [
+    {
+      "level": 10,
+      "left": "+1.5 Mana Regen",
+      "right": "+1.25s Skewer Slow Duration"
+    },
+    {
+      "level": 15,
+      "left": "+12 All Attributes per hero hit with Reverse Polarity",
+      "right": "-5s Skewer Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+125 Shockwave Damage",
+      "right": "+15% Skewer Damage Per Distance Travelled"
+    },
+    {
+      "level": 25,
+      "left": "Shockwave Returns to Magnus",
+      "right": "+0.8s Reverse Polarity Stun Duration"
+    }
+  ],
+  "shredder": [
+    {
+      "level": 10,
+      "left": "+0.25 Reactive Armor Regeneration Per Stack",
+      "right": "+1.5 Mana Regen"
+    },
+    {
+      "level": 15,
+      "left": "+2% Whirling Death Stat Loss",
+      "right": "+6 Max / +1 Hero Attack Reactive Armor Stacks"
+    },
+    {
+      "level": 20,
+      "left": "Exposure Therapy Heals for 10 HP Per Tree Destroyed",
+      "right": "+5% Chakram Slow"
+    },
+    {
+      "level": 25,
+      "left": "+75 Whirling Death Tree Bonus Damage",
+      "right": "+75% Timber Chain Range/Projectile Speed"
+    }
+  ],
+  "bristleback": [
+    {
+      "level": 10,
+      "left": "+25 Attack Speed",
+      "right": "+1.5 Mana Regen"
+    },
+    {
+      "level": 15,
+      "left": "+250 Goo Cast Range",
+      "right": "+8%/4% Bristleback Back/Side Damage Reduction"
+    },
+    {
+      "level": 20,
+      "left": "+25 Health Regen",
+      "right": "+20 Quill Stack Damage"
+    },
+    {
+      "level": 25,
+      "left": "-25 Bristleback Damage Threshold",
+      "right": "+%bonus_damage_per_stack% Warpath Damage Per Stack"
+    }
+  ],
+  "tusk": [
+    {
+      "level": 10,
+      "left": "+2s Tag Team Duration",
+      "right": "+0.75s Walrus Punch Stun Duration"
+    },
+    {
+      "level": 15,
+      "left": "+325 Health",
+      "right": "+120 Snowball Damage"
+    },
+    {
+      "level": 20,
+      "left": "-6s Snowball Cooldown",
+      "right": "+75% Walrus Punch Crit"
+    },
+    {
+      "level": 25,
+      "left": "Ice Shards slow by 50% and deal 110 DPS",
+      "right": "12% Chance Walrus Punch"
+    }
+  ],
+  "skywrath_mage": [
+    {
+      "level": 10,
+      "left": "+1.5 Mana Regen",
+      "right": "+125 Arcane Bolt Cast Range"
+    },
+    {
+      "level": 15,
+      "left": "-6s Ancient Seal Cooldown",
+      "right": "+20% Concussive Shot Slow"
+    },
+    {
+      "level": 20,
+      "left": "Global Concussive Shot",
+      "right": "+10% Ancient Seal Increased Magic Damage"
+    },
+    {
+      "level": 25,
+      "left": "+1.5x Arcane Bolt Int Multiplier",
+      "right": "+400 Mystic Flare Damage"
+    }
+  ],
+  "abaddon": [
+    {
+      "level": 10,
+      "left": "+25 Curse of Avernus DPS",
+      "right": "Aphotic Shield provides +8 HP Regen"
+    },
+    {
+      "level": 15,
+      "left": "-10s Borrowed Time Cooldown",
+      "right": "+35 Mist Coil Damage / Heal"
+    },
+    {
+      "level": 20,
+      "left": "+80 Aphotic Shield Barrier Amount",
+      "right": "100 Borrowed Time Immolation DPS"
+    },
+    {
+      "level": 25,
+      "left": "+65 Curse of Avernus Attack Speed Bonus",
+      "right": "350 AoE Mist Coil"
+    }
+  ],
+  "elder_titan": [
+    {
+      "level": 10,
+      "left": "+2.5% Astral Spirit Bonus Move Speed Per Hero",
+      "right": "+150 Echo Stomp Wake Damage"
+    },
+    {
+      "level": 15,
+      "left": "+75 Echo Stomp Damage",
+      "right": "20% of Bonus Movement Speed as Attack Speed"
+    },
+    {
+      "level": 20,
+      "left": "+30 Astral Spirit Bonus Damage per Hero",
+      "right": "+150 Natural Order Radius"
+    },
+    {
+      "level": 25,
+      "left": "-60s Earth Splitter Cooldown",
+      "right": "+100% Cleave"
+    }
+  ],
+  "legion_commander": [
+    {
+      "level": 10,
+      "left": "-2s Overwhelming Odds Cooldown",
+      "right": "+1 Outfight Them! Armor"
+    },
+    {
+      "level": 15,
+      "left": "+40 Press The Attack HP Regen",
+      "right": "+35 Overwhelming Odds Damage per Hero"
+    },
+    {
+      "level": 20,
+      "left": "+0.75s Duel Duration",
+      "right": "-1 Moment of Courage Attacks To Trigger"
+    },
+    {
+      "level": 25,
+      "left": "+100% Moment of Courage Lifesteal",
+      "right": "Duel Refreshes Cooldown On Victory"
+    }
+  ],
+  "techies": [
+    {
+      "level": 10,
+      "left": "+15% Magic Resistance",
+      "right": "-2s Proximity Mines Cooldown"
+    },
+    {
+      "level": 15,
+      "left": "+175 Blast Off! Damage",
+      "right": "+25% Reactive Tazer Buff and Disarm Duration"
+    },
+    {
+      "level": 20,
+      "left": "+160 Sticky Bomb Damage",
+      "right": "-15s Blast Off! Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "+253 Damage",
+      "right": "-0.8s Proximity Mines Activation Delay"
+    }
+  ],
+  "ember_spirit": [
+    {
+      "level": 10,
+      "left": "+12 Damage",
+      "right": "+165 Flame Guard Barrier Amount"
+    },
+    {
+      "level": 15,
+      "left": "+100% Flame Guard Damage Per Second",
+      "right": "+0.8s Searing Chains Duration"
+    },
+    {
+      "level": 20,
+      "left": "+50 Sleight of Fist Hero Damage",
+      "right": "+50 Searing Chains Damage"
+    },
+    {
+      "level": 25,
+      "left": "2 Sleight of Fist Charges",
+      "right": "-12s Remnant Charge Restore Time"
+    }
+  ],
+  "earth_spirit": [
+    {
+      "level": 10,
+      "left": "-2s Boulder Smash Cooldown",
+      "right": "+150 Rolling Boulder Distance"
+    },
+    {
+      "level": 15,
+      "left": "+0.3s Rolling Boulder Stun Duration",
+      "right": "+80 Boulder Smash Damage"
+    },
+    {
+      "level": 20,
+      "left": "+30% Magnetize Damage & Duration",
+      "right": "+175% Rolling Boulder Damage from Strength"
+    },
+    {
+      "level": 25,
+      "left": "Earth Spirit Magnetizes himself",
+      "right": "+250 Geomagnetic Grip Remnant Damage"
+    }
+  ],
+  "abyssal_underlord": [
+    {
+      "level": 10,
+      "left": "+5% Invading Force Movement Bonus/Damage Reduction",
+      "right": "+15s Atrophy Aura Duration"
+    },
+    {
+      "level": 15,
+      "left": "Pit of Malice Slows by 20%",
+      "right": "-5s Firestorm Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+0.6% Firestorm Burn Damage",
+      "right": "+10% Atrophy Aura Attack Damage Reduction/Gain"
+    },
+    {
+      "level": 25,
+      "left": "+0.4s Pit of Malice Root",
+      "right": "160 DPS in 700 Radius Around Fiend's Gate"
+    }
+  ],
+  "terrorblade": [
+    {
+      "level": 10,
+      "left": "+1s Reflection Duration",
+      "right": "-2s Conjure Image Cooldown"
+    },
+    {
+      "level": 15,
+      "left": "-10s Metamorphosis Cooldown",
+      "right": "-25% Sunder Minimum HP Swap"
+    },
+    {
+      "level": 20,
+      "left": "+10 All Attributes",
+      "right": "+8s Conjure Image Duration"
+    },
+    {
+      "level": 25,
+      "left": "-30s Sunder Cooldown",
+      "right": "+30s Metamorphosis Duration"
+    }
+  ],
+  "phoenix": [
+    {
+      "level": 10,
+      "left": "+25% Icarus Dive Slow",
+      "right": "+1% Dying Light Missing Health as Damage"
+    },
+    {
+      "level": 15,
+      "left": "+20 Fire Spirits Damage Per Second",
+      "right": "+25 Health Regen"
+    },
+    {
+      "level": 20,
+      "left": "+1.5% Max Health Sun Ray Damage",
+      "right": "+0.6s Supernova Stun Duration"
+    },
+    {
+      "level": 25,
+      "left": "+2 Supernova Hit Count",
+      "right": "+1000 Icarus Dive Cast Range"
+    }
+  ],
+  "oracle": [
+    {
+      "level": 10,
+      "left": "+0.5s Fortune's End Duration",
+      "right": "+8 Armor False Promise"
+    },
+    {
+      "level": 15,
+      "left": "+100 Fortune's End Radius",
+      "right": "+25% Purifying Flames Enemy Damage"
+    },
+    {
+      "level": 20,
+      "left": "-20s False Promise Cooldown",
+      "right": "-1s Purifying Flames Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "Fortune's End constantly Dispels",
+      "right": "+1.5s False Promise Duration"
+    }
+  ],
+  "winter_wyvern": [
+    {
+      "level": 10,
+      "left": "+20 HP/s Cold Embrace Heal",
+      "right": "+35 Damage"
+    },
+    {
+      "level": 15,
+      "left": "+3s Arctic Burn Debuff Duration",
+      "right": "+175 Splinter Blast Shatter Radius"
+    },
+    {
+      "level": 20,
+      "left": "+15% Arctic Burn Slow",
+      "right": "+100 Splinter Blast Damage"
+    },
+    {
+      "level": 25,
+      "left": "+60 Winter's Curse Attack Speed ",
+      "right": "Splinter Blast 1s Stun"
+    }
+  ],
+  "arc_warden": [
+    {
+      "level": 10,
+      "left": "+200 Flux Cast Range",
+      "right": "+200 Health"
+    },
+    {
+      "level": 15,
+      "left": "+20% Flux Slow",
+      "right": "+25 Magnetic Field Attack Speed"
+    },
+    {
+      "level": 20,
+      "left": "+30s Spark Wraith Duration",
+      "right": "-4s Magnetic Field Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "+1 Runic Infusion All Attributes Bonus",
+      "right": "+240 Spark Wraith Damage"
+    }
+  ],
+  "monkey_king": [
+    {
+      "level": 10,
+      "left": "+300 Tree Dance Cast Range",
+      "right": "+0.2s Boundless Strike Stun Duration"
+    },
+    {
+      "level": 15,
+      "left": "0 Cooldown Primal Spring",
+      "right": "+110 Jingu Mastery Damage"
+    },
+    {
+      "level": 20,
+      "left": "Jingu Mastery Undispellable",
+      "right": "+60% Boundless Strike Critical Damage"
+    },
+    {
+      "level": 25,
+      "left": "-1 Jingu Mastery Required Hits",
+      "right": "Additional Wukong's Command Ring"
+    }
+  ],
+  "dark_willow": [
+    {
+      "level": 10,
+      "left": "+1s Bedlam Duration",
+      "right": "+12 Intelligence"
+    },
+    {
+      "level": 15,
+      "left": "+30 Bedlam Damage",
+      "right": "-20s Terrorize Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+1.5s Shadow Realm Duration",
+      "right": "-7s Bramble Maze CD"
+    },
+    {
+      "level": 25,
+      "left": "+2 Bedlam Attack Targets",
+      "right": "500 Terrorize Impact Damage"
+    }
+  ],
+  "pangolier": [
+    {
+      "level": 10,
+      "left": "+3 Lucky Shot Armor Reduction",
+      "right": "+200 Swashbuckle Slash Range"
+    },
+    {
+      "level": 15,
+      "left": "-2s Swashbuckle Cooldown",
+      "right": "+125 Shield Crash Barrier"
+    },
+    {
+      "level": 20,
+      "left": "+2s Rolling Thunder Duration",
+      "right": "-1.5s Shield Crash Cooldown"
+    },
+    {
+      "level": 25,
+      "left": "+20% Attack Damage as Swashbuckle Damage",
+      "right": "-15s Rolling Thunder Cooldown"
+    }
+  ],
+  "grimstroke": [
+    {
+      "level": 10,
+      "left": "+65 Phantom's Embrace DPS",
+      "right": "-4s Ink Swell Cooldown"
+    },
+    {
+      "level": 15,
+      "left": "+25% Soulbind Spell Damage",
+      "right": "+15% Ink Swell Movement Speed"
+    },
+    {
+      "level": 20,
+      "left": "+80% Stroke of Fate Damage",
+      "right": "+3 Hits to Kill Phantom"
+    },
+    {
+      "level": 25,
+      "left": "+150 Ink Swell Radius",
+      "right": "+70% Stroke of Fate Speed and Travel Range"
+    }
+  ],
+  "hoodwink": [
+    {
+      "level": 10,
+      "left": "+50 Bushwhack Damage",
+      "right": "+175 Health"
+    },
+    {
+      "level": 15,
+      "left": "+1 Scurry Ability Charge",
+      "right": "+10 Agility"
+    },
+    {
+      "level": 20,
+      "left": "Sharpshooter Provides Vision While Charging",
+      "right": "+2 Acorn Shot Bounces"
+    },
+    {
+      "level": 25,
+      "left": "+400 Sharpshooter Max Damage",
+      "right": "2 Acorn Shot Charges"
+    }
+  ],
+  "void_spirit": [
+    {
+      "level": 10,
+      "left": "+1.5 Mana Regen",
+      "right": "+40 Resonant Pulse Damage"
+    },
+    {
+      "level": 15,
+      "left": "+20% Resonant Pulse Barrier",
+      "right": "+65 Aether Remnant Damage"
+    },
+    {
+      "level": 20,
+      "left": "Outer Dissimilate Ring",
+      "right": "-3s Astral Step Charge Restore Time"
+    },
+    {
+      "level": 25,
+      "left": "140% Astral Step Crit",
+      "right": "Dissimilate Roots for 2s"
+    }
+  ],
+  "snapfire": [
+    {
+      "level": 10,
+      "left": "+70 Scatterblast Damage",
+      "right": "+35 Mortimer Kisses Burn DPS"
+    },
+    {
+      "level": 15,
+      "left": "+2 Lil' Shredder attacks",
+      "right": "-4s Firesnap Cookie Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+2 Lil' Shredder Targets",
+      "right": "2 Firesnap Cookie Charges"
+    },
+    {
+      "level": 25,
+      "left": "+60% Lil' Shredder Attack Damage",
+      "right": "+8 Mortimer Kisses Launched"
+    }
+  ],
+  "mars": [
+    {
+      "level": 10,
+      "left": "+100 God's Rebuke Distance",
+      "right": "+1.5 Mana Regen"
+    },
+    {
+      "level": 15,
+      "left": "-2.5s God's Rebuke Cooldown",
+      "right": "+100 Spear Of Mars Damage"
+    },
+    {
+      "level": 20,
+      "left": "+70 Arena Of Blood Spear Damage",
+      "right": "+0.5s Spear of Mars Stun"
+    },
+    {
+      "level": 25,
+      "left": "God's Rebuke +65% Crit",
+      "right": "Arena Of Blood Grants Team +180 HP Regen"
+    }
+  ],
+  "ringmaster": [
+    {
+      "level": 10,
+      "left": "+1 Impalement Arts Charge",
+      "right": "+75 Tame the Beasts Radius"
+    },
+    {
+      "level": 15,
+      "left": "Impalement Arts Penetrates One Target",
+      "right": "Debuff Immunity While Channeling Tame the Beasts"
+    },
+    {
+      "level": 20,
+      "left": "+1s Impalement Arts Bleed and Slow Duration",
+      "right": "+75/+300 Tame the Beasts Min/Max Damage"
+    },
+    {
+      "level": 25,
+      "left": "+100 Wheel Radius and Range",
+      "right": "Escape Act Grants Strong Dispel and Flying"
+    }
+  ],
+  "dawnbreaker": [
+    {
+      "level": 10,
+      "left": "+25% Luminosity Critical Strike Damage",
+      "right": "Celestial Hammer Trail Grants Movement Speed to Allies"
+    },
+    {
+      "level": 15,
+      "left": "+40% Celestial Hammer Trail/Hammer Damage",
+      "right": "-20s Solar Guardian Cooldown"
+    },
+    {
+      "level": 20,
+      "left": "+150 Solar Guardian Radius",
+      "right": "-1 Luminosity Attacks Required"
+    },
+    {
+      "level": 25,
+      "left": "-4s Starbreaker Cooldown",
+      "right": "+80% Celestial Hammer Cast Range/Speed"
+    }
+  ],
+  "marci": [
+    {
+      "level": 10,
+      "left": "+1.5s Dispose Slow Duration",
+      "right": "+50 Rebound Landing Radius"
+    },
+    {
+      "level": 15,
+      "left": "+100 Dispose Damage",
+      "right": "+20% Bodyguard Damage"
+    },
+    {
+      "level": 20,
+      "left": "+0.75s Rebound Stun Duration",
+      "right": "+15% Unleash Movement Speed"
+    },
+    {
+      "level": 25,
+      "left": "Unleash Duration Extended By 6s On Kill",
+      "right": "Bodyguard Strong Dispels"
+    }
+  ],
+  "primal_beast": [
+    {
+      "level": 10,
+      "left": "+25 Damage",
+      "right": "+25% Magic Resistance During Trample"
+    },
+    {
+      "level": 15,
+      "left": "-5s Trample Cooldown",
+      "right": "+6 Uproar Armor Per Stack"
+    },
+    {
+      "level": 20,
+      "left": "+20% Trample Attack Multiplier",
+      "right": "Basic Self-Dispel on Uproar Cast"
+    },
+    {
+      "level": 25,
+      "left": "Colossal 2x Bonuses During Trample",
+      "right": "+67% Pulverize Duration"
+    }
+  ],
+  "muerta": [
+    {
+      "level": 10,
+      "left": "+300 Dead Shot Cast Range",
+      "right": "+20 Attack Speed"
+    },
+    {
+      "level": 15,
+      "left": "+3% Max HP Regen while inside The Calling",
+      "right": "+15 Intelligence"
+    },
+    {
+      "level": 20,
+      "left": "+2s Pierce the Veil Duration",
+      "right": "The Calling summons 2 additional revenants"
+    },
+    {
+      "level": 25,
+      "left": "+20% Gunslinger chance",
+      "right": "2 Dead Shot Charges"
+    }
+  ],
+  "kez": [
+    {
+      "level": 10,
+      "left": "+12% Magic Resistance",
+      "right": "+50 Raptor Dance Radius"
+    },
+    {
+      "level": 15,
+      "left": "+2s Falcon Rush Duration",
+      "right": "+1 Raptor Dance Strike"
+    },
+    {
+      "level": 20,
+      "left": "+4% Kazurai Katana Damage Per Second",
+      "right": "40 Bonus Attack Speed During Falcon Rush"
+    },
+    {
+      "level": 25,
+      "left": "+80% Shodo Sai Critical Strike",
+      "right": "+1 Echo Slash Attack"
+    }
+  ],
+  "largo": [
+    {
+      "level": 10,
+      "left": "+15 Frogstomp Damage",
+      "right": "2.5x Catchy Lick Health Regen"
+    },
+    {
+      "level": 15,
+      "left": "1% Croak of Genius Max Health DPS",
+      "right": "+100 Catchy Lick Cast Range / +50 Pull Distance"
+    },
+    {
+      "level": 20,
+      "left": "+200 Catchy Lick Damage",
+      "right": "50% Groovin' Armor Aura"
+    },
+    {
+      "level": 25,
+      "left": "+30% Amphibian Rhapsody Song Effects",
+      "right": "2 Catchy Lick Charges"
+    }
+  ]
+}

@@ -1,41 +1,58 @@
-## Description: <br>
-Validate emails, URLs, phones, dates, and custom patterns for input checks and rule enforcement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate emails, URLs, phones, dates, and custom patterns. Use when sanitizing input, verifying form fields, checking formats, or enforcing rules.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and agents use this skill to validate common input formats, check file syntax, and enforce simple data quality rules during development or operational workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URL and domain checks can make outbound HTTP requests or DNS lookups for supplied inputs. <br>
-Mitigation: Run network-checking commands only when outbound requests are acceptable for the target environment and input. <br>
-Risk: The JSON and YAML file validators have unsafe filename handling that could execute unintended code for untrusted or oddly named files. <br>
-Mitigation: Avoid using the JSON or YAML validators on untrusted filenames until filename handling is fixed. <br>
+## Use Case:
 
+Developers and agents use Validator to check common input formats and file syntax before accepting or processing user-supplied data.
 
-## Reference(s): <br>
-- [Validator on ClawHub](https://clawhub.ai/xueyetianya/validator) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Validation commands may return non-zero exit codes for invalid inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: JSON and YAML file validation can execute unintended commands when given crafted filenames.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix filename handling before broad deployment, and avoid validating untrusted JSON or YAML filenames.
+
+Risk: URL and domain validation may make outbound network requests.
+
+Mitigation: Run in a constrained environment and disable or isolate network access when checking untrusted URLs or domains.
+
+Risk: Credit-card validation accepts payment card numbers on the command line.
+
+Mitigation: Use only test card numbers and avoid entering real payment card data.
+
+## Reference(s):
+
+- [Validator on ClawHub](https://clawhub.ai/xueyetianya/skills/validator)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Terminal text and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform HTTP status checks for URLs when curl is available and DNS lookups for domains when dig is available.]
+
+## Skill Version(s):
+
+3.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

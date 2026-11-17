@@ -1,40 +1,52 @@
-## Description: <br>
-Track daily calories and macros in Obsidian, with profile initialization (sex/height/weight/goal) and goal-based target checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track daily calories and macros in Obsidian, with profile initialization (sex/height/weight/goal) and goal-based target checks.
 
-## Publisher: <br>
-[abstract-sum](https://clawhub.ai/user/abstract-sum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abstract-sum](https://clawhub.ai/user/abstract-sum)
 
-## Use Case: <br>
-External users and agents use this skill to initialize a nutrition profile, log meals with calorie and macro estimates into an Obsidian vault, and check whether daily intake meets configured targets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The profile setup script can run unintended local code if crafted input is passed to it. <br>
-Mitigation: Review before installing, use only trusted simple profile values, and prefer a fixed version that passes inputs through environment variables or JSON encoding. <br>
-Risk: Nutrition logs and profiles may contain personal health data in the local Obsidian vault. <br>
-Mitigation: Keep the vault private and apply local access controls appropriate for health-related records. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abstract-sum/nutrition-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/abstract-sum) <br>
+## Use Case:
 
+External users use this skill to initialize nutrition profiles, log meals, and check daily calorie and macro targets in an Obsidian vault.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash command examples and text status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes nutrition profile JSON and monthly Obsidian Markdown logs under the configured vault.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Input-handling flaws in the scripts could execute local code or write outside the intended Obsidian folder.
+
+Mitigation: Review before installing, use only trusted inputs, validate language/date/numeric fields, quote heredocs, and ensure generated paths stay inside the intended vault.
+
+Risk: Nutrition profile and meal data are stored persistently and may sync through the user's Obsidian setup.
+
+Mitigation: Use a controlled vault and confirm the vault's sync and access settings before logging sensitive health-related data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abstract-sum/skills/nutrition-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and shell commands that create or update Obsidian meal logs and a JSON nutrition profile]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports zh-CN and en-US localized script output.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

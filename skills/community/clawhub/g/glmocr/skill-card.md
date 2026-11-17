@@ -1,43 +1,60 @@
-## Description: <br>
-Extract text from images and PDFs using the GLM-OCR API, including tables, formulas, and handwriting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract text from images and PDFs using the GLM-OCR API, including table recognition, formula extraction, and handwriting recognition.
 
-## Publisher: <br>
-[jaredforreal](https://clawhub.ai/user/jaredforreal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaredforreal](https://clawhub.ai/user/jaredforreal)
 
-## Use Case: <br>
-Developers, agents, and document-processing users use this skill to extract Markdown text, tables, formulas, and layout details from images, screenshots, scanned documents, and PDFs through the GLM/Zhipu OCR service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images, PDFs, or document URLs are sent to the GLM/Zhipu OCR service for extraction. <br>
-Mitigation: Use only for documents that policy permits sending to that provider, and avoid highly confidential or regulated content unless explicitly approved. <br>
-Risk: The ZHIPU_API_KEY may be stored locally in the skill's .env file. <br>
-Mitigation: Keep the .env file out of shared folders and version control, and protect the API key as a sensitive credential. <br>
+## Use Case:
 
+Developers and agents use GLM-OCR to extract Markdown text from screenshots, scanned documents, photos, images, and PDFs through the GLM-OCR service.
 
-## Reference(s): <br>
-- [GLM-OCR skill homepage](https://github.com/zai-org/GLM-OCR/tree/main/skills/glmocr) <br>
-- [GLM-OCR GitHub repository](https://github.com/zai-org/GLM-OCR) <br>
-- [Output schema](references/output_schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jaredforreal/glmocr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [JSON envelope containing extracted Markdown text, layout details, raw API response data, source metadata, and error details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print results to stdout or save them to a JSON file; local image and PDF inputs are encoded and submitted to the fixed GLM/Zhipu OCR endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: release evidence) <br>
+Risk: Selected images, PDFs, or URLs are sent to the GLM-OCR service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content approved for external OCR processing, and avoid submitting sensitive files unless the service and data handling are acceptable.
+
+Risk: The ZHIPU_API_KEY credential is required and could be exposed if entered directly in shell history or committed in a .env file.
+
+Mitigation: Store the key in an environment variable or protected .env file, keep it out of version control, and rotate it if exposure is suspected.
+
+Risk: Dependency behavior can change over time because the artifact declares requests>=2.31.0.
+
+Mitigation: Pin and review dependencies before deployment in stricter or production-controlled environments.
+
+## Reference(s):
+
+- [GLM-OCR skill homepage](https://github.com/zai-org/GLM-OCR/tree/main/skills/glmocr)
+- [GLM-OCR GitHub repository](https://github.com/zai-org/GLM-OCR)
+- [Output schema](references/output_schema.md)
+- [BigModel API keys](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [JSON envelope containing extracted Markdown text, layout details, source metadata, and error details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZHIPU_API_KEY; GLM_OCR_TIMEOUT is optional; CLI output can be printed or saved to a JSON file.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Access unsecured credit lines for AI agents on the Arc Network using the Credex Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access unsecured credit lines for AI agents on the Arc Network using the Credex Protocol.
 
-## Publisher: <br>
-[capGoblin](https://clawhub.ai/user/capGoblin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[capgoblin](https://clawhub.ai/user/capgoblin)
 
-## Use Case: <br>
-Developers and agent operators use this skill to check credit status, borrow or repay USDC, manage liquidity provider positions, and bridge USDC between Arc Testnet and Base Sepolia. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent access to a raw wallet private key for live DeFi actions. <br>
-Mitigation: Use a dedicated low-value or testnet wallet, keep the private key out of shared logs, and review commands before execution. <br>
-Risk: Borrow, repay, approval, deposit, withdrawal, and bridge commands can trigger irreversible financial transactions. <br>
-Mitigation: Manually confirm transaction intent, amount, destination chain, pool contract, and agent URL before running transaction commands. <br>
-Risk: Misconfigured pool contract or agent service endpoints can route actions to unintended services or contracts. <br>
-Mitigation: Verify CREDEX_POOL_ADDRESS and CREDEX_AGENT_URL before each run and use only local or trusted agent endpoints. <br>
+## Use Case:
 
+Developers and agent operators use this skill to check Credex credit status, borrow or repay USDC, provide liquidity, withdraw LP shares, and bridge USDC between Arc Testnet and Base Sepolia.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/capGoblin/credex-protocol) <br>
-- [Credex Protocol Contract Reference](references/contracts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [JSON from CLI commands, with Markdown setup guidance and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require wallet and RPC configuration and may submit financial transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill handles wallet signing authority for lending, liquidity, repayment, withdrawal, and bridge actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated low-value test wallet, avoid production private keys, and require explicit user confirmation for every fund-moving command.
+
+Risk: Transactions may target an unexpected pool contract, chain, or bridge route if configuration is wrong.
+
+Mitigation: Verify the exact pool contract, token address, RPC endpoint, and source and destination chains before approvals, deposits, repayments, withdrawals, or bridge actions.
+
+Risk: Ad hoc command execution can bypass the dependency lockfile and change runtime behavior.
+
+Mitigation: Prefer the package scripts and locked dependency set supplied with the artifact.
+
+## Reference(s):
+
+- [Credex Protocol Contract Reference](references/contracts.md)
+- [ClawHub Skill Page](https://clawhub.ai/capgoblin/skills/credex-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON command output with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require wallet and network configuration before transaction execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

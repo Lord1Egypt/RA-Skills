@@ -1,42 +1,51 @@
-## Description: <br>
-Local STT and TTS on macOS using native Apple capabilities. Speech-to-text via yap (Apple Speech.framework), text-to-speech via say + ffmpeg. Fully offline, no API keys required. Includes voice quality detection and smart voice selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local STT and TTS on macOS using native Apple capabilities.
 
-## Publisher: <br>
-[STRRL](https://clawhub.ai/user/STRRL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[strrl](https://clawhub.ai/user/strrl)
 
-## Use Case: <br>
-Developers and OpenClaw users on macOS use this skill to transcribe local audio, generate speech audio from text, and inspect available macOS voices without API keys or cloud services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Audio transcripts may appear in stdout and generated speech audio remains on disk. <br>
-Mitigation: Avoid highly sensitive content unless that local exposure is acceptable, choose custom output paths deliberately, and remove generated files when they are no longer needed. <br>
-Risk: The skill depends on macOS-only commands and Homebrew-installed tools. <br>
-Mitigation: Install only on macOS and verify the yap, say, osascript, and optional ffmpeg dependencies before use. <br>
+## Use Case:
 
+Developers and agent users use this skill to transcribe local audio files and generate spoken audio on macOS without cloud services or API keys.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/STRRL/macos-local-voice) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [yap speech-to-text dependency](https://github.com/finnvoor/yap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Plain text stdout, file paths, and generated audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [TTS writes audio files locally, using OGG/Opus when ffmpeg is available and AIFF otherwise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A custom TTS output path can overwrite audio files outside the intended outbound media folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default output path, do not let untrusted content choose output_path, and restrict future output paths to ~/.openclaw/media/outbound with traversal and absolute-path checks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/strrl/skills/macos-local-voice)
+- [OpenClaw](https://openclaw.ai)
+- [yap](https://github.com/finnvoor/yap)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, file paths, and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally on macOS; TTS writes AIFF or OGG audio files and STT writes transcripts to stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

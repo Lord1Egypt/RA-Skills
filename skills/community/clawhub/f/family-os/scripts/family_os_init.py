@@ -576,7 +576,7 @@ def main() -> int:
     parser.add_argument("--config", default=str(DEFAULT_CONFIG))
     parser.add_argument("--language", default="auto", help="Template language, e.g. auto, zh-CN, en-US, ja, ko, es, fr, de, pt.")
     parser.add_argument("--archive-existing", action="store_true")
-    parser.add_argument("--ask-before-sensitive-write", action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument("--aREDACTED-SECRET", action=argparse.BooleanOptionalAction, default=True)
     args = parser.parse_args()
 
     workspace = Path(args.workspace).expanduser().resolve()

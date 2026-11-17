@@ -1,45 +1,58 @@
-## Description: <br>
-Converts spreadsheet rows into structured task objects for Jira, Markdown, or JSON outputs while preserving field mapping and validating input and output formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts spreadsheet rows into structured task objects for Jira, Markdown, or JSON formats.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers and workflow maintainers use this skill to convert CSV-style spreadsheet rows into structured task representations for Jira imports, Markdown tables, or JSON task lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is flagged suspicious because it asks for an unexplained API key and underspecifies write behavior. <br>
-Mitigation: Do not provide an API key unless the publisher names the service, explains why it is needed, and discloses what spreadsheet data is sent. <br>
-Risk: Spreadsheet contents may contain sensitive data or secrets. <br>
-Mitigation: Review inputs before conversion, use explicit input and output paths, and inspect generated Jira, Markdown, or JSON before importing it into another system. <br>
-Risk: Conversion defaults can affect downstream task fields such as status or priority. <br>
-Mitigation: Validate field mappings and review defaulted values before using the converted task output operationally. <br>
+## Use Case:
 
+Developers and operations users use this skill to convert spreadsheet or CSV task rows into structured Jira, Markdown, or JSON task outputs while preserving field mapping and validation warnings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjipeng977/convert-spreadsheet-rows) <br>
-- [Publisher profile](https://clawhub.ai/user/wangjipeng977) <br>
-- [Declared metadata source: MiniMax-AI skills](https://github.com/MiniMax-AI/skills) <br>
-- [Skill reference index](references/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown, JSON, Jira-oriented text, or concise guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write converted output to an explicit output path when the helper script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and changelog, released 2026-05-27; SKILL.md metadata says 1.0) <br>
+Risk: The release security summary says the documentation asks for an unspecified API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide API keys unless the publisher documents the exact service and data flow; prefer local CSV parsing without secrets when possible.
+
+Risk: Markdown or Jira output generated from untrusted spreadsheets may be manipulated before import.
+
+Mitigation: Prefer JSON output for reviewable structure, or inspect generated Markdown and Jira text before importing it into another system.
+
+Risk: The security verdict is suspicious because the documentation overstates capabilities compared with the simple local conversion behavior.
+
+Mitigation: Review the skill before installing and validate generated task data against the destination workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjipeng977/skills/convert-spreadsheet-rows)
+- [Metadata source: MiniMax-AI skills](https://github.com/MiniMax-AI/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown tables, JSON task objects, Jira-style task text, or written output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Consumes local CSV rows with Python standard library parsing; generated Markdown or Jira text should be inspected before import.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata and CHANGELOG, released 2026-05-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

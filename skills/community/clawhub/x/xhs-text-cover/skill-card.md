@@ -1,47 +1,60 @@
-## Description: <br>
-Xhs helps agents draft Xiaohongshu titles and post copy, generate simple cover images, and assist with publishing, search, and engagement workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xhs helps agents draft Xiaohongshu titles and post copy, generate simple cover images, and guide publishing, search, and engagement actions through a local Xiaohongshu MCP service.
 
-## Publisher: <br>
-[luckychay](https://clawhub.ai/user/luckychay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luckychay](https://clawhub.ai/user/luckychay)
 
-## Use Case: <br>
-External creators and account operators use this skill to create Xiaohongshu-ready content, generate cover images, and manage posting or engagement actions through an agent-assisted workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act through a real Xiaohongshu account for posts, comments, likes, favorites, and product-related actions. <br>
-Mitigation: Require a preview and explicit user confirmation before any account-changing action. <br>
-Risk: The workflow may use browser cookies or QR login state for account access. <br>
-Mitigation: Prefer QR login, avoid pasting browser cookies when possible, and delete stored cookies after use. <br>
-Risk: The workflow depends on a persistent local MCP service and a downloaded Xiaohongshu MCP release. <br>
-Mitigation: Verify the downloaded release before use and confirm operators know how to stop the service. <br>
+## Use Case:
 
+Content creators and operators use this skill to create Xiaohongshu-ready titles, post copy, cover images, and guided account actions such as publishing, search, comments, likes, and favorites.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luckychay/xhs-text-cover) <br>
-- [Publisher profile](https://clawhub.ai/user/luckychay) <br>
-- [Title guide](references/title-guide.md) <br>
-- [Content guide](references/content-guide.md) <br>
-- [Cover guide](references/cover-guide.md) <br>
-- [Xiaohongshu MCP releases](https://github.com/xpzouying/xiaohongshu-mcp/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local cover image files and structured MCP tool arguments for user-confirmed platform actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A third-party Xiaohongshu MCP binary can control an authenticated account from the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only pinned and checksum-verified releases, run the service as an unprivileged user or inside a container, and avoid installing it as a root-level system service.
+
+Risk: Stored Xiaohongshu session cookies can act like passwords if exposed.
+
+Mitigation: Avoid pasting raw browser cookies when possible, restrict file access to cookie storage, and rotate or delete cookies after use.
+
+Risk: Publishing, commenting, liking, and favoriting actions can affect a real social account.
+
+Mitigation: Require user confirmation and payload review before each account action, especially public posts and engagement actions.
+
+## Reference(s):
+
+- [Content Guide](references/content-guide.md)
+- [Cover Guide](references/cover-guide.md)
+- [Title Guide](references/title-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/luckychay/skills/xhs-text-cover)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, generated post text, and optional local image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cover images are generated as local 1080x1440 image files when ImageMagick is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-PKU Info Spider helps agents work on a Rust CLI for crawling WeChat Official Account articles, including QR login, account search, article fetching, and article-to-Markdown conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WeChat Official Account article crawler CLI tool for working on the Rust info-spider crate, including WeChat QR login, account search, article fetching, and article-to-Markdown conversion.
 
-## Publisher: <br>
-[wjsoj](https://clawhub.ai/user/wjsoj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjsoj](https://clawhub.ai/user/wjsoj)
 
-## Use Case: <br>
-Developers and engineers use this skill when maintaining or debugging the info-spider CLI, especially its WeChat QR login flow, account search, article fetching, and Markdown scraping workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WeChat MP session files can contain sensitive token, fingerprint, or bizuin values. <br>
-Mitigation: Treat ~/.config/info-spider/ and related logs as sensitive, avoid sharing session data, and clear sessions with logout when work is complete. <br>
-Risk: Scraping WeChat Official Account content may be restricted by platform terms or local rules. <br>
-Mitigation: Use scraping features only where allowed, review the applicable terms before collecting content, and keep crawler behavior within permitted limits. <br>
+## Use Case:
 
+Developers and engineers use this skill when maintaining or debugging the info-spider CLI, especially workflows for authenticated WeChat MP access, Official Account search, article retrieval, and Markdown scraping.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wjsoj/pku-info-spider) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code and command examples when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference info-spider CLI options and local session/configuration paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Authenticated WeChat scraping may access content or accounts without adequate authorization boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for accounts and content the operator is authorized to access, and document those boundaries before use.
+
+Risk: Stored session artifacts such as tokens, fingerprints, and account identifiers can expose authenticated access if mishandled.
+
+Mitigation: Protect local session files as credentials, avoid sharing them, and clear sessions when access is no longer needed.
+
+Risk: Anti-crawler delay and bypass guidance can encourage platform-control evasion.
+
+Mitigation: Apply explicit request limits, follow applicable platform terms, and avoid workflows intended to bypass access controls.
+
+## Reference(s):
+
+- [PKU Info Spider on ClawHub](https://clawhub.ai/wjsoj/skills/pku-info-spider)
+- [wjsoj ClawHub profile](https://clawhub.ai/user/wjsoj)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese user-facing strings, JSON or JSONL output guidance, and Markdown conversion guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

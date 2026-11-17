@@ -5,7 +5,7 @@
 ## Table of Contents
 - [Cassandra Unchained Debut (November 2025)](#cassandra-unchained-debut-november-2025)
 - [Fannie Mae / Housing Market (March 2026)](#fannie-mae--housing-market-march-2026)
-- [Elon Musk / SpaceX Nasdaq Debate (April 2026)](#elon-musk--spacex-nasdaq-debate-april-2026)
+- [Elon Musk / SpaceX Nasdaq Debate (April 2026)](#elon-muREDACTED-SECRET)
 - [China Tech Allocation (2024)](#china-tech-allocation-2024)
 - [GameStop — Before the Meme Stock Era](#gamestop--before-the-meme-stock-era)
 - [Bitcoin / Crypto Stance (2021–2026)](#bitcoin--crypto-stance-20212026)

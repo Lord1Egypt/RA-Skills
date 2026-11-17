@@ -1,52 +1,60 @@
-## Description: <br>
-Web Novel Master helps agents plan, draft, polish, and validate serialized Chinese web novels across fast, professional, and industrial workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web Novel Master helps agents plan, draft, polish, and validate Chinese web-novel projects across Fast, Professional, and Industrial writing workflows.
 
-## Publisher: <br>
-[tinylion1024](https://clawhub.ai/user/tinylion1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tinylion1024](https://clawhub.ai/user/tinylion1024)
 
-## Use Case: <br>
-External writers, editors, and creative teams use this skill to turn web-novel concepts into outlines, character and world materials, chapter drafts, polishing passes, hooks, and release-readiness checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create local project folders, chapter files, planning JSON, and preference records. <br>
-Mitigation: Review the generated writing plan before long drafting runs and choose the workspace where local files should be created. <br>
-Risk: The skill may remember creative preferences and creation history in user-preferences.json. <br>
-Mitigation: Delete or reset user-preferences.json when preference retention is not desired. <br>
-Risk: Some genre references include coercive-romance or threat-heavy templates. <br>
-Mitigation: Treat those templates as optional genre references and review generated scenes for suitability before use. <br>
+## Use Case:
 
+External writers, creative teams, and agent users use this skill to structure, draft, revise, and quality-check serial web fiction in genres such as urban power fantasy, cultivation fantasy, rebirth, and romance.
 
-## Reference(s): <br>
-- [Web Novel Master on ClawHub](https://clawhub.ai/tinylion1024/web-novel-master) <br>
-- [Mode Selector](references/flows/Mode_Selector.md) <br>
-- [Shared Infrastructure](references/flows/Shared_Infrastructure.md) <br>
-- [Chapter Writing Guide](references/guides/Chapter-Writing-Guide.md) <br>
-- [Checklist](references/Check/Checklist.md) <br>
-- [Market Data](references/Data/Market-Data.md) <br>
-- [Excitement Point Guide](references/Plot/Excitement-Point-Guide.md) <br>
-- [Emotional Rhythm Guide](references/Plot/Emotional-Rhythm-Guide.md) <br>
-- [Scene Template Library](references/Plot/Scene-Template-Library.md) <br>
-- [Character Building](references/Role/Character-Building.md) <br>
-- [Content Expansion](references/Materials/Content-Expansion.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, local project files, planning JSON, chapter drafts, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local project folders, chapter files, writing plans, and user-preferences.json during agent-assisted writing workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Project file creation can escape the intended project folder if a project name contains path characters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable workspace, sanitize project names, reject slashes, backslashes, absolute paths, and .. components, and confirm any write outside ./web-novels/.
+
+Risk: Industrial mode can run multi-agent drafting without repeated confirmation.
+
+Mitigation: Require explicit user confirmation before enabling Industrial mode or multi-agent drafting, and review generated tasks and files before continuing.
+
+## Reference(s):
+
+- [Web Novel Master README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Mode Selector](artifact/references/flows/Mode_Selector.md)
+- [Shared Infrastructure](artifact/references/flows/Shared_Infrastructure.md)
+- [Chapter Writing Guide](artifact/references/guides/Chapter-Writing-Guide.md)
+- [Opening Formula](artifact/references/Plot/Opening-Formula.md)
+- [Excitement Point Guide](artifact/references/Plot/Excitement-Point-Guide.md)
+- [Chapter Word Count Script](artifact/scripts/check_chapter_wordcount.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with optional JSON project metadata and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local writing project files, including project plans and chapter drafts.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

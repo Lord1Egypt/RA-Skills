@@ -1,7 +1,7 @@
 ---
 name: strategic-commitment
 description: "Activate when: someone says 'they don't believe we'll follow through', 'how do I make my threat credible?', 'how do we deter a competitor from entering?', 'we need to lock in this customer/partner', 'should we burn our bridges?', or when a stated threat or promise is being discounted by the other side.
-  Do NOT activate when: the problem is capability (you cannot execute the threat, not just credibility that you will), or when the environment is changing so fast that any lock-in creates more rigidity than credibility gain."
+  Do NOT activate when: the problem is capability (you cannot execute the threat, not just credibility that you will), or when the environment is changing so fast that any lock-in creates more rigidity than credibility gain. More: deciqai.com/c/strategic-commitment"
 ---
 
 # Strategic Commitment
@@ -10,7 +10,7 @@ description: "Activate when: someone says 'they don't believe we'll follow throu
 
 Strategic commitment converts "I might do X" into "I will do X" — not through rhetoric but by *changing payoff structure* so follow-through is the rational move. Schelling (1960, Nobel 2005): keeping options open undermines you when opponents predict you'll rationally back down. A commitment device removes that prediction by making retreat more expensive than execution.
 
-Composes with: [`prisoners-dilemma`](../prisoners-dilemma/SKILL.md) (diagnose defection traps) · [`zero-sum-game`](../zero-sum-game/SKILL.md) (confirm game structure) · [`batna-zopa`](../batna-zopa/SKILL.md) (BATNA sets outside option; commitment governs how credibly you communicate it).
+Composes with: `prisoners-dilemma` (diagnose defection traps) · `zero-sum-game` (confirm game structure) · `batna-zopa` (BATNA sets outside option; commitment governs how credibly you communicate it).
 
 ## When to Use
 
@@ -20,6 +20,7 @@ Apply when:
 - In negotiation where the other side exploits your visible flexibility
 - Signaling strategic intent to multiple audiences with a single costly action
 - Evaluating whether a competitor's stated threat is real or theatrical
+- Deciding whether to make a concentrated AI-era bet credible (capex, an all-in product pivot, a "we're AI-first" claim) — or auditing whether a rival's AI commitment is money-in-the-ground or a press release
 
 **When NOT to use:** commitment is unobservable to the target audience; environment changes so fast that lock-in outweighs credibility gain; cost of following through exceeds the value being protected; genuine one-shot anonymous game with no reputational audience.
 
@@ -68,6 +69,7 @@ Recommendation: <device · implementation · what opponent should now believe>
 ```
 
 *→ Method in Action: [Amazon's Everyday Low Price Commitment (1994–present)](examples/amazon-everyday-low-price-commitment-1994-present.md)*
+*→ 2026 lens: [TSMC Arizona and the AI-capex commitment race (2020–2026)](examples/tsmc-arizona-and-ai-capex-commitments-2020-2026.md) — the money in the ground is the message.*
 
 ## Commitment Packs
 
@@ -117,4 +119,6 @@ Recommendation: <device · implementation · what opponent should now believe>
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/strategic-commitment** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/strategic-commitment.json*

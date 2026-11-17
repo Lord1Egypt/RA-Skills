@@ -1,39 +1,48 @@
-## Description: <br>
-Guides agents through a measurement-driven performance tuning workflow covering goals, baselines, profiling, targeted changes, verification, and regression prevention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep performance tuning workflow-goals and measurement, profiling, hotspots, caching and concurrency trade-offs, system-specific tuning (DB, GC, network), and verification.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to investigate latency, throughput, resource saturation, and efficiency issues with a measurement-driven tuning workflow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Applying performance recommendations directly to production systems can affect reliability or user experience.
+
+Mitigation: Use baselines, realistic load tests, canaries, and operational metrics before broad rollout.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to investigate latency, throughput, resource saturation, efficiency, and cost issues with a staged workflow based on measurement, profiling, targeted changes, verification, and regression prevention. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Performance changes can harm correctness, reliability, or production stability if applied without review. <br>
-Mitigation: Review proposed changes before applying them to production, especially caching, concurrency, database tuning, and rollout decisions. <br>
-Risk: Optimization based on weak evidence can target the wrong bottleneck or hide regressions. <br>
-Mitigation: Use baseline measurements, profiling evidence, before-and-after comparison, canary checks, and regression guards where feasible. <br>
+**Output Format:** [Markdown checklist and structured workflow guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Documentation-only guidance; no tools, scripts, credentials, or runtime integrations are declared.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; performance advice should be verified against measurements before production changes.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

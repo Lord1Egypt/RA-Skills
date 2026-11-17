@@ -1,41 +1,62 @@
-## Description: <br>
-Supports end-to-end Landing Zone migration from AWS, Alibaba Cloud, GCP, Huawei Cloud, and Azure to Tencent Cloud by using a remote MCP server to scan source cloud resources, fill migration surveys, generate design documents, and generate Terraform code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LZ Create supports migrations from AWS, Alibaba Cloud, GCP, Huawei Cloud, and Azure to a Tencent Cloud Landing Zone by using a remote MCP server to scan source cloud resources, complete migration survey inputs, generate design documentation, and generate Terraform code.
 
-## Publisher: <br>
-[awaili](https://clawhub.ai/user/awaili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[awaili](https://clawhub.ai/user/awaili)
 
-## Use Case: <br>
-Cloud architects, migration engineers, and developers use this skill to automate Tencent Cloud Landing Zone migration planning and implementation from supported source clouds. It helps discover source resources, complete migration surveys, generate design documentation, and produce Terraform for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for cloud credentials and sends credential-bearing files to a remote MCP server over plain HTTP. <br>
-Mitigation: Use only a trusted MCP server and network path, prefer verified HTTPS or a self-hosted endpoint, and provide short-lived read-only credentials scoped to the exact accounts and regions needed. <br>
-Risk: Credential-bearing sessions and generated migration artifacts may expose sensitive cloud information if mishandled. <br>
-Mitigation: Keep session IDs private, rotate credentials after use, and review all generated documents and Terraform before applying or sharing them. <br>
+## Use Case:
 
+Cloud architects and migration engineers use this skill to run a Tencent Cloud Landing Zone migration workflow: generate or complete survey inputs, scan source cloud resources, query Tencent Cloud specifications, and produce design documentation and Terraform configuration.
 
-## Reference(s): <br>
-- [MCP API Reference](references/mcp_api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/awaili/lzcreate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated artifacts include Excel survey files, Markdown design documents, and Terraform code.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses remote MCP sessions; review generated documents and Terraform before using them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Cloud credentials and infrastructure data may be sent to a fixed remote MCP server over plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS or self-hosted MCP endpoint, and avoid sending production secrets to the default plaintext endpoint.
+
+Risk: Long-lived or broadly scoped cloud credentials could expose more access than the migration workflow needs.
+
+Mitigation: Use short-lived, read-only, tightly scoped credentials and rotate or revoke them after the session.
+
+Risk: Uploaded questionnaires, scan results, generated files, and session IDs may be accessible to the remote service during the session lifetime.
+
+Mitigation: Treat uploaded and generated content as remotely accessible, avoid including unnecessary sensitive data, and protect session IDs.
+
+Risk: Passing secrets directly on command lines can expose them through shell history or process listings.
+
+Mitigation: Prefer credential files or safer secret-handling workflows instead of pasting secrets into command-line arguments.
+
+## Reference(s):
+
+- [MCP API Reference](references/mcp_api.md)
+- [ClawHub Skill Page](https://clawhub.ai/awaili/skills/lzcreate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash commands; generated files include Excel surveys, Markdown design documents, resource inventories, and Terraform configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a session-based remote MCP workflow; generated workspace files can be listed and downloaded.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

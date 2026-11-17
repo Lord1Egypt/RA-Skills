@@ -1,42 +1,52 @@
-## Description: <br>
-Queries Chinese couplets by upper- or lower-line keyword and can return random couplets using the Jike Data API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Chinese couplets from Jike API by keyword or returns a random couplet.
 
-## Publisher: <br>
-[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn)
 
-## Use Case: <br>
-External users and agents use this skill to search for Chinese couplets by keyword or retrieve a random couplet for writing, recommendation, or explanation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Couplet search keywords and the Jike AppKey are sent to jikeapi.cn. <br>
-Mitigation: Install only when that data sharing is acceptable and avoid placing the AppKey in shared environments. <br>
-Risk: Setting JIKE_API_BASE_URL can redirect requests to an alternate API endpoint. <br>
-Mitigation: Leave JIKE_API_BASE_URL unset unless the alternate endpoint is intentionally trusted. <br>
+## Use Case:
 
+External users and agents use this skill to search for Chinese couplets by upper-line or lower-line keywords, or to retrieve a random couplet for writing, recommendation, or explanation tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/jike-couplet-query) <br>
-- [Jike Data homepage](https://www.jikeapi.cn/) <br>
-- [Jike couplet query API endpoint](https://api.jikeapi.cn/v1/couplet/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Terminal table text or JSON API response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a JIKE_COUPLET_QUERY_KEY or JIKE_APPKEY credential; JSON output is available with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can send the Jike API key and couplet keywords to an environment-selected API base URL if JIKE_API_BASE_URL is set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when use of a Jike API key is acceptable, and leave JIKE_API_BASE_URL unset unless the destination is trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/skills/jike-couplet-query)
+- [Publisher profile](https://clawhub.ai/user/jikeapi-cn)
+- [Jike API homepage](https://www.jikeapi.cn/)
+- [Jike couplet query endpoint](https://api.jikeapi.cn/v1/couplet/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain-text table output or JSON from a Python CLI.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Jike AppKey. Text table output truncates long fields; JSON output preserves the API payload.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,49 @@
-## Description: <br>
-Customer acquisition and marketing automation expert. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Customer acquisition and marketing automation expert.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users and marketing teams use this skill to plan customer acquisition strategies, analyze markets, optimize conversion funnels, manage marketing channels, design lead nurturing workflows, and evaluate CAC/ROI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent using this planning skill may later request access to advertising, CRM, email, analytics, payment, or crypto-related accounts. <br>
-Mitigation: Grant only narrow access and require explicit confirmation before spending budget or changing live campaigns. <br>
+## Use Case:
 
+External marketing teams, growth operators, and consultants use this skill to develop acquisition strategies, analyze markets, optimize funnels, and design lead nurturing and marketing automation workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, workflow templates, tables, and planning checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, install scripts, credential requests, persistence, or live action instructions are present in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Marketing guidance may involve third-party marketing platforms, analytics accounts, ad spend, or customer data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep platform access, analytics use, campaign spending, and customer data handling user-approved and scoped to the task before applying recommendations.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/openlark/skills/auto-acquisition)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with checklists, tables, formulas, and task templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or tool calls are included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

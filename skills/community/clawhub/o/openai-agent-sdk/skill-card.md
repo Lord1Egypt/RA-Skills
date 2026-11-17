@@ -1,41 +1,61 @@
-## Description: <br>
-Build multi-agent AI systems with OpenAI Agents SDK. Create, orchestrate, and manage AI agents with tools, handoffs, guardrails, and tracing. Supports 100+ LLMs via LiteLLM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build multi-agent AI systems with OpenAI Agents SDK using tools, handoffs, guardrails, tracing, and LiteLLM-backed model integrations.
 
-## Publisher: <br>
-[sendwealth](https://clawhub.ai/user/sendwealth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sendwealth](https://clawhub.ai/user/sendwealth)
 
-## Use Case: <br>
-Developers and engineers use this skill to learn and apply OpenAI Agents SDK patterns for multi-agent orchestration, tool calling, handoffs, guardrails, tracing, and reusable Python templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The calculator tool example uses Python eval and can execute arbitrary code if copied or run as written. <br>
-Mitigation: Review examples before use, replace eval with a safe arithmetic parser, and treat API keys, traces, conversation history, and event data as sensitive. <br>
+## Use Case:
 
+Developers and engineers use this skill to create OpenAI Agents SDK applications, including multi-agent routing, tool calling, handoffs, guardrails, tracing, voice agents, and reusable agent templates.
 
-## Reference(s): <br>
-- [OpenAI Agents SDK documentation](https://openai.github.io/openai-agents-python/) <br>
-- [OpenAI Agents SDK GitHub repository](https://github.com/openai/openai-agents-python) <br>
-- [OpenAI Agents SDK PyPI package](https://pypi.org/project/openai-agents/) <br>
-- [OpenAI Agents SDK examples](https://github.com/openai/openai-agents-python/tree/main/examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes example files and reusable Python templates for agent workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill includes an eval-based calculator example that can execute arbitrary Python code if copied directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the eval-based calculator before use with a constrained parser, allowlisted operations, or another safe computation implementation.
+
+Risk: Agent runs may expose API keys, traces, or conversation history through logs or debugging output.
+
+Mitigation: Keep API keys out of logs and sanitize traces, debug output, and conversation history before sharing or storing them.
+
+Risk: Unpinned or broadly ranged dependencies can change behavior over time.
+
+Mitigation: Install dependencies in an isolated environment and pin package versions for production deployments.
+
+## Reference(s):
+
+- [OpenAI Agents SDK documentation](https://openai.github.io/openai-agents-python/)
+- [OpenAI Agents SDK GitHub repository](https://github.com/openai/openai-agents-python)
+- [OpenAI Agents SDK examples](https://github.com/openai/openai-agents-python/tree/main/examples)
+- [openai-agents on PyPI](https://pypi.org/project/openai-agents/)
+- [ClawHub skill page](https://clawhub.ai/sendwealth/skills/openai-agent-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes examples and templates for Python >=3.10 with openai-agents >=0.1.0.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

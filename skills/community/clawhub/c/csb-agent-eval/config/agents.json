@@ -1,0 +1,142 @@
+{
+  "registry": {
+    "local": "http://172.28.0.4:3099",
+    "public": "http://47.121.28.125:3099"
+  },
+  "skillServer": "http://172.28.0.4:3098",
+  "self": {
+    "name": "若兰",
+    "emoji": "🌸",
+    "host": "172.28.0.4",
+    "port": 3100
+  },
+  "agents": {
+    "ruolan": {
+      "name": "若兰 🌸",
+      "host": "172.28.0.4",
+      "port": 3100,
+      "trust": 3
+    },
+    "axuan": {
+      "name": "阿轩 🔧",
+      "host": "172.28.0.5",
+      "port": 3100,
+      "trust": 3
+    },
+    "jeason": {
+      "name": "Jeason 💼",
+      "host": "172.28.0.6",
+      "port": 3300,
+      "trust": 3
+    },
+    "mingde": {
+      "name": "明德 📜",
+      "host": "47.121.28.125",
+      "port": 3100,
+      "trust": 3
+    },
+    "moqiu": {
+      "name": "墨丘 🧙",
+      "host": "172.28.0.7",
+      "port": 3100,
+      "trust": 2
+    },
+    "zhouji": {
+      "name": "舟楫 🚤",
+      "host": "172.28.0.27",
+      "port": 3100,
+      "trust": 2
+    },
+    "xiaoxia": {
+      "name": "小虾 🦐",
+      "host": "172.28.0.12",
+      "port": 3100,
+      "trust": 2
+    },
+    "kai": {
+      "name": "恺 🌿",
+      "host": "172.28.0.13",
+      "port": 3100,
+      "trust": 2
+    },
+    "sunian": {
+      "name": "苏念 ✨",
+      "host": "118.126.65.27",
+      "port": 3100,
+      "trust": 2
+    },
+    "qingyi": {
+      "name": "清漪 💧",
+      "host": "106.12.36.177",
+      "port": 3100,
+      "trust": 2
+    },
+    "yanxi": {
+      "name": "言蹊 🌸",
+      "host": "47.113.190.254",
+      "port": 3600,
+      "trust": 2
+    },
+    "che": {
+      "name": "澈 🌊",
+      "host": "172.28.0.127",
+      "port": 4100,
+      "trust": 2
+    },
+    "qiming": {
+      "name": "启明 🌟",
+      "host": "172.28.0.114",
+      "port": 4099,
+      "trust": 2
+    },
+    "mingjing": {
+      "name": "明镜 🔍",
+      "host": "host.docker.internal",
+      "port": 4399,
+      "trust": 2,
+      "tags": [
+        "internal",
+        "review-only"
+      ]
+    },
+    "ruochen": {
+      "name": "若辰 💧",
+      "host": "host.docker.internal",
+      "port": 3200,
+      "trust": 2,
+      "tags": [
+        "internal"
+      ]
+    },
+    "yanzhi": {
+      "name": "言直 🔎",
+      "host": "host.docker.internal",
+      "port": 4199,
+      "trust": 2,
+      "tags": [
+        "internal"
+      ]
+    },
+    "cheng": {
+      "name": "澄 🔍",
+      "host": "host.docker.internal",
+      "port": 4299,
+      "trust": 2,
+      "tags": [
+        "internal"
+      ]
+    },
+    "siyuan": {
+      "name": "思源 🌱",
+      "host": "172.28.0.44",
+      "port": 3601,
+      "trust": 3
+    },
+    "jingge": {
+      "name": "鲸歌 🐋",
+      "host": "172.28.0.130",
+      "port": 4150,
+      "trust": 2
+    }
+  }
+}

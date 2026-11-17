@@ -1,0 +1,24 @@
+{
+  "schema_version": "1",
+  "algorithm": "sha256",
+  "version": "0.1.16",
+  "generated_at": "2026-07-14T12:16:25Z",
+  "repository": "prompt-security/clawsec",
+  "files": {
+    "advisories/feed.json": {
+      "sha256": "191426ca2139d0627ef313d9a1ee6ef418bc72930464050564794be90c25970a",
+      "size": 1397065,
+      "path": "advisories/feed.json"
+    },
+    "advisories/feed.json.sig": {
+      "sha256": "590b9f2ef792f7b56395d48a3202af8e25b8ee88b176a119b9323e54615cbd20",
+      "size": 88,
+      "path": "advisories/feed.json.sig"
+    },
+    "advisories/feed-signing-public.pem": {
+      "sha256": "44b3abba8f2fe5b22a516fe33ca7dbd09f7d1dcf007d6526033b406b1969d958",
+      "size": 113,
+      "path": "advisories/feed-signing-public.pem"
+    }
+  }
+}

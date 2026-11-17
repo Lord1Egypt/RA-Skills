@@ -1,46 +1,63 @@
-## Description: <br>
-Backup, restore, and manage encrypted OpenClaw agent snapshots using the Keep My Claw API for configuration, workspace files, and credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup, restore, and manage encrypted OpenClaw agent snapshots using the Keep My Claw API for configuration, workspace files, credentials, cron jobs, and multi-agent configs.
 
-## Publisher: <br>
-[Ryce](https://clawhub.ai/user/Ryce) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryce](https://clawhub.ai/user/ryce)
 
-## Use Case: <br>
-OpenClaw users and agent operators use this skill to configure encrypted off-site backups, run backup and restore workflows, list snapshots, prune old backups, and migrate agent state between machines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can back up credentials, workspace files, cron jobs, and other sensitive OpenClaw state to an off-site service. <br>
-Mitigation: Install only when full-agent encrypted backup is intended; review the file list before first upload, use an agent-scoped API key where possible, and keep API keys and passphrases out of chat logs. <br>
-Risk: Restores can overwrite existing local OpenClaw files. <br>
-Mitigation: Preview the backup contents, confirm the target agent and backup ID, and test restore on a non-production machine or fresh profile before replacing active data. <br>
-Risk: Pruning can delete remote backup snapshots. <br>
-Mitigation: List available backups first, choose a retention count deliberately, and keep at least one known-good recovery snapshot before pruning. <br>
-Risk: Losing the encryption passphrase makes encrypted backups unrecoverable. <br>
-Mitigation: Store the recovery email, account password, API key, and encryption passphrase in a password manager outside the backed-up machine before relying on the backups. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure off-site encrypted backups, restore agent state on a new machine, schedule backup runs, list snapshots, and prune old backups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ryce/keepmyclaw) <br>
-- [Keep My Claw documentation](https://keepmyclaw.com/docs.html) <br>
-- [Keep My Claw service](https://keepmyclaw.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing operational guidance for backup, restore, listing, pruning, account setup, credential handling, and scheduled backup workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release evidence) <br>
+Risk: The skill can initiate signup, payment, API-key creation, and uploads to a paid off-site backup service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before registration, payment, account changes, API-key creation, or uploading backups.
+
+Risk: Backups may include sensitive OpenClaw workspace files, credentials, cron jobs, and agent configuration.
+
+Mitigation: Review backup scope before upload, prefer an agent-scoped API key, and keep recovery credentials outside chat logs.
+
+Risk: Restoring a backup can overwrite existing OpenClaw files and should not be trusted blindly.
+
+Mitigation: Avoid restoring untrusted backups; verify the selected snapshot and require human approval before restore on machines with existing data.
+
+Risk: Losing the local encryption passphrase makes encrypted backups unrecoverable.
+
+Mitigation: Store the passphrase in a password manager or other durable location outside the backed-up machine.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/ryce/skills/keepmyclaw)
+- [Keep My Claw documentation](https://keepmyclaw.com/docs.html)
+- [Keep My Claw website](https://keepmyclaw.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes backup, restore, list, prune, setup, scheduling, and recovery guidance.]
+
+## Skill Version(s):
+
+1.4.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

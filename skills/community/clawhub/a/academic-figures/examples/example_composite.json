@@ -1,0 +1,4 @@
+{"layout": [1, 2],
+ "panels": [
+   {"type": "bar", "data": {"labels": ["A", "B", "C"], "series": {"S1": [1.0, 2.0, 1.5]}}, "title": "Panel A", "pos": [0, 0]},
+   {"type": "line", "data": {"labels": ["t0", "t1", "t2"], "series": {"S2": [1.0, 2.5, 2.0]}}, "title": "Panel B", "pos": [0, 1]}]}

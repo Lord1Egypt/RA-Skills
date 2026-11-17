@@ -1,49 +1,65 @@
-## Description: <br>
-Enriches existing leads, contacts, and company lists with B2B data, including emails, phone numbers, firmographics, technographics, and job details, for single records, inline lists, and bulk CSV workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enriches existing leads, contacts, and company lists with B2B emails, phone numbers, firmographics, technographics, job details, and CSV export workflows using Explorium AgentSource.
 
-## Publisher: <br>
-[haroExplorium](https://clawhub.ai/user/haroExplorium) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[haroexplorium](https://clawhub.ai/user/haroexplorium)
 
-## Use Case: <br>
-External users and business operations teams use this skill to enrich CRM leads, contacts, company lists, and CSV files with B2B contact and company data for data hygiene, list cleaning, and data append workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles lead lists, contact details, company records, and request metadata that may include personal or sensitive business data. <br>
-Mitigation: Use it only with authorized data, disclose remote enrichment to affected workflows where required, and send only the fields needed for the requested enrichment. <br>
-Risk: The skill sends search filters, entity IDs, and optional request metadata to the Explorium API. <br>
-Mitigation: Confirm the user is comfortable sending the requested data to Explorium before API calls, and avoid --call-reasoning unless the user explicitly agrees. <br>
-Risk: API key handling can expose credentials if users paste keys into chat or store them insecurely. <br>
-Mitigation: Use EXPLORIUM_API_KEY or a secret manager, never request API keys in chat, and prefer secure local configuration with restricted file permissions. <br>
-Risk: The workflow discovers and executes a local CLI path, which can be risky if the path is unexpected. <br>
-Mitigation: Verify the resolved agentsource.py path before running commands and install only from a trusted publisher. <br>
-Risk: The CLI writes enrichment results to /tmp/agentsource_*.json, which may retain contact or company data after use. <br>
-Mitigation: Delete temporary agentsource JSON files after enrichment and avoid printing full bulk result files into chat. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Enrichment Reference](artifact/references/enrichments.md) <br>
-- [Events Reference](artifact/references/events.md) <br>
-- [Filter Reference](artifact/references/filters.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/haroExplorium/explorium-lead-enrichment) <br>
-- [Explorium AgentSource API](https://api.explorium.ai/v1/) <br>
+## Use Case:
 
+External users, sales operations teams, and CRM operators use this skill to enrich single contacts, company lists, inline records, and CSV files with lead and company data before review and export.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown responses with inline shell commands and JSON or CSV file outputs from the CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI results are written to temporary JSON files and may be exported to CSV.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Lead, contact, company, and optional request text may be sent to Explorium.
+
+Mitigation: Use only datasets approved for this external service and avoid sensitive customer or contact records unless data-sharing requirements are satisfied.
+
+Risk: API keys can be exposed through command-line configuration or echoed setup prompts.
+
+Mitigation: Prefer environment variables or a managed secret store, never paste keys into agent chat, and rotate any key that may have been exposed.
+
+Risk: Enrichment results and CSV exports can contain personal or business-sensitive data in temporary or download files.
+
+Mitigation: Review output paths, restrict file access, remove temporary result files after use, and inspect exported CSVs before sharing or importing them.
+
+Risk: The skill discovers a local CLI from broad filesystem locations before execution.
+
+Mitigation: Verify the resolved CLI path points to the expected installed AgentSource tool before running enrichment commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/haroexplorium/skills/explorium-lead-enrichment)
+- [Publisher Profile](https://clawhub.ai/user/haroexplorium)
+- [Explorium API Endpoint](https://api.explorium.ai/v1/)
+- [Enrichment Reference](references/enrichments.md)
+- [Filter Reference](references/filters.md)
+- [Events Reference](references/events.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands, structured enrichment previews, JSON intermediates, and optional CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses EXPLORIUM_API_KEY and sends search filters, entity IDs, and optional request metadata to https://api.explorium.ai/v1/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

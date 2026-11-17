@@ -1,41 +1,61 @@
-## Description: <br>
-Query and troubleshoot a RaspAP access point via its local REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and troubleshoot a RaspAP access point via its local REST API.
 
-## Publisher: <br>
-[naamah75](https://clawhub.ai/user/naamah75) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[naamah75](https://clawhub.ai/user/naamah75)
 
-## Use Case: <br>
-Network administrators and technical operators use this skill to inspect RaspAP access point status, clients, DHCP, DNS, firewall, VPN, and related diagnostics through the local REST API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses RaspAP API credentials and may expose API keys or raw configuration secrets if handled carelessly. <br>
-Mitigation: Keep the API key private, prefer RASPAP_API_KEY or RASPAP_KEY_FILE, rely on default redaction, and summarize only non-secret configuration fields before sharing output. <br>
-Risk: Restart, reload, or configuration changes can interrupt Wi-Fi, DHCP, DNS, routing, firewall, OpenVPN, or WireGuard service. <br>
-Mitigation: Default to read-only checks and ask for explicit approval before any disruptive action or network service change. <br>
-Risk: Querying an unintended device can expose local network information or affect systems the user does not administer. <br>
-Mitigation: Use this only for RaspAP devices the user administers and verify RASPAP_HOST before making API requests. <br>
+## Use Case:
 
+Developers and network administrators use this skill to inspect RaspAP access point status, clients, DHCP, DNS, firewall, VPN, and networking diagnostics through the local REST API.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [API output is redacted by default; raw configuration output should be used only when explicitly needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: RaspAP API keys and raw configuration data can expose network secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the API key in an environment variable or key file, avoid printing it, rely on redacted output by default, and use raw output only when explicitly needed.
+
+Risk: Restart, reload, or configuration actions can interrupt Wi-Fi, DHCP, DNS, routing, firewall, OpenVPN, or WireGuard service.
+
+Mitigation: Default to read-only checks and require explicit approval before any action that could affect network services.
+
+Risk: Raw configuration endpoints may reveal passphrases, certificates, private keys, credentials, or auth file names.
+
+Mitigation: Avoid raw configuration endpoints unless necessary; when inspection is unavoidable, summarize only non-secret fields.
+
+Risk: The referenced raspap-api helper is not included in this artifact.
+
+Mitigation: Confirm the helper exists locally and comes from a trusted source before relying on it.
+
+## Reference(s):
+
+- [ClawHub RaspAP skill page](https://clawhub.ai/naamah75/skills/raspap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON endpoint summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to read-only diagnostics and redacted sensitive JSON fields; raw configuration output requires explicit need.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

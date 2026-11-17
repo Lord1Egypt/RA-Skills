@@ -1,46 +1,57 @@
-## Description: <br>
-Tracks Kalshi event contract prices, order book depth, recent trades, and American-odds conversions across prediction-market categories without executing trades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks Kalshi event contract prices, order book depth, recent trades, and American odds conversions across sports, politics, economics, weather, finance, and entertainment markets without executing trades.
 
-## Publisher: <br>
-[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Kalshi prediction-market events, prices, liquidity, recent trades, and odds conversions for sports, politics, economics, weather, finance, and entertainment markets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Kalshi API key for authenticated market-data requests. <br>
-Mitigation: Use a dedicated or least-privilege API key if available and keep the key out of chat transcripts, logs, and committed files. <br>
-Risk: Future edits could expand the skill beyond read-only market-data operations. <br>
-Mitigation: Review future versions for order-placement or account-management endpoints before installation or execution. <br>
-Risk: Market prices, order books, and recent trades can be stale, thin, or volatile. <br>
-Mitigation: Report volume, open interest, close time, top-of-book depth, and bid/ask spread so users can judge liquidity and timing. <br>
+## Use Case:
 
+External users, developers, and market analysts use this skill to query Kalshi prediction markets, inspect prices, liquidity, and recent trades, and compare contract prices with sportsbook-style American odds.
 
-## Reference(s): <br>
-- [Kalshi](https://kalshi.com/) <br>
-- [Kalshi Tracker Tutorial](https://agentbets.ai/guides/openclaw-kalshi-tracker-skill/) <br>
-- [OpenClaw Skills Series](https://agentbets.ai/guides/#openclaw-skills) <br>
-- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rsquaredsolutions2026/kalshi-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Analysis, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and KALSHI_API_KEY for authenticated read-only Kalshi API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The agent needs access to a Kalshi API key for read-only market queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped or revocable key if Kalshi supports it, and rotate or revoke the key when access is no longer needed.
+
+Risk: The skill runs commands that contact Kalshi's API with the configured credential.
+
+Mitigation: Review generated commands before running them and keep the key out of shared logs, transcripts, and committed files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rsquaredsolutions2026/skills/kalshi-tracker)
+- [Kalshi](https://kalshi.com/)
+- [AgentBets Kalshi Tracker Guide](https://agentbets.ai/guides/openclaw-kalshi-tracker-skill/)
+- [OpenClaw Skills Series](https://agentbets.ai/guides/#openclaw-skills)
+- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-shaped API summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and KALSHI_API_KEY; performs read-only Kalshi API queries.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

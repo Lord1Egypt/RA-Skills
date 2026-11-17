@@ -1,43 +1,60 @@
-## Description: <br>
-Super Spec guides agents through a Chinese-language fusion workflow that checks for Superpowers and spec-kit dependencies and walks developers through planning, specification, TDD, debugging, review, and branch completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super Spec guides developers through a Chinese-language Superpowers and Spec-Driven Development workflow, including dependency checks and an 11-step development process.
 
-## Publisher: <br>
-[haoy2025](https://clawhub.ai/user/haoy2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haoy2025](https://clawhub.ai/user/haoy2025)
 
-## Use Case: <br>
-Developers and agent users use this skill to launch a guided software-development process that combines Superpowers quality workflows with spec-kit's specification-driven steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on separately installed Superpowers and spec-kit skills, so dependency behavior is outside this release. <br>
-Mitigation: Review the linked dependency repositories and the files copied into `.claude/skills/` before relying on the workflow. <br>
-Risk: Broad prompts such as "start" or "continue" could be interpreted as workflow commands when the skill is invoked unintentionally. <br>
-Mitigation: Invoke the skill explicitly, such as with `/super-spec`, and confirm the intended entry point before following workflow guidance. <br>
+## Use Case:
 
+Developers use Super Spec to coordinate ideation, specification, clarification, planning, task breakdown, TDD, debugging, verification, review, and branch completion across the Superpowers and spec-kit workflows.
 
-## Reference(s): <br>
-- [Super Spec on ClawHub](https://clawhub.ai/haoy2025/super-spec) <br>
-- [super-spec GitHub link listed in skill metadata](https://github.com/haoy2025/super-spec) <br>
-- [Superpowers dependency](https://github.com/obra/superpowers) <br>
-- [spec-kit dependency](https://github.com/github/spec-kit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with slash-command references and installation links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language workflow launcher; no code execution or credential handling declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill asks users to install separate Superpowers and spec-kit dependencies from GitHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those dependency repositories and install them only from expected, trusted sources before using this workflow.
+
+Risk: Workflow guidance can lead to incorrect specifications, plans, tests, or code review conclusions if followed without judgment.
+
+Mitigation: Review generated specs, plans, tasks, tests, and implementation changes before applying them to a project.
+
+Risk: The workflow is designed for Chinese-language interaction and may be unsuitable for users who cannot review Chinese instructions reliably.
+
+Mitigation: Confirm the operating team can understand and review the Chinese-language guidance before adoption.
+
+## Reference(s):
+
+- [Super Spec ClawHub listing](https://clawhub.ai/haoy2025/skills/super-spec)
+- [Super Spec metadata source link](https://github.com/haoy2025/super-spec)
+- [Superpowers dependency](https://github.com/obra/superpowers)
+- [spec-kit dependency](https://github.com/github/spec-kit)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline commands and dependency links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language workflow coordinator; requires separate superpowers and spec-kit skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; skill metadata declares 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,1119 @@
+{
+  "meta": {
+    "start_date": "2026-08-31",
+    "end_date": "2026-09-06",
+    "period": "week",
+    "period_label": "周报 · 2026-W36（2026-08-31/2026-09-06）",
+    "days": 7,
+    "timed_free": {
+      "hy3": "2026-10-31"
+    }
+  },
+  "traces": [
+    {
+      "session_id": "sess_0008",
+      "model_key": "glm-4.7-flash",
+      "model_name": "glm-4.7-flash",
+      "exec_model": "glm-5.2",
+      "channel": "openrouter-free",
+      "total_tokens": 102462,
+      "input_tokens": 79184,
+      "output_tokens": 23278,
+      "cached_tokens": 58986,
+      "effective_tokens": 49374.6,
+      "input_cost": 0.0396,
+      "output_cost": 0.0466,
+      "total_cost": 0.0862,
+      "effective_cost": 0.0597,
+      "date": "2026-08-31",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0002",
+      "model_key": "glm-5.2",
+      "model_name": "glm-5.2",
+      "exec_model": "glm-4.7-flash",
+      "channel": "gateway",
+      "total_tokens": 224359,
+      "input_tokens": 192964,
+      "output_tokens": 31395,
+      "cached_tokens": 126255,
+      "effective_tokens": 110729.5,
+      "input_cost": 0.0965,
+      "output_cost": 0.0628,
+      "total_cost": 0.1593,
+      "effective_cost": 0.1025,
+      "date": "2026-08-31",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0007",
+      "model_key": "auto",
+      "model_name": "kimi-k2.6",
+      "exec_model": "glm-4.7-flash",
+      "channel": "router",
+      "total_tokens": 281382,
+      "input_tokens": 182475,
+      "output_tokens": 98907,
+      "cached_tokens": 57647,
+      "effective_tokens": 229499.7,
+      "input_cost": 0.0912,
+      "output_cost": 0.1978,
+      "total_cost": 0.289,
+      "effective_cost": 0.2631,
+      "date": "2026-08-31",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0006",
+      "model_key": "kimi-k2.6",
+      "model_name": "deepseek-v4-pro",
+      "exec_model": "deepseek-v4-pro",
+      "channel": "gateway",
+      "total_tokens": 143777,
+      "input_tokens": 122926,
+      "output_tokens": 20851,
+      "cached_tokens": 92844,
+      "effective_tokens": 60217.399999999994,
+      "input_cost": 0.0615,
+      "output_cost": 0.0417,
+      "total_cost": 0.1032,
+      "effective_cost": 0.0614,
+      "date": "2026-08-31",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0013",
+      "model_key": "glm-5.2",
+      "model_name": "deepseek-v4-pro",
+      "exec_model": "deepseek-v4-pro",
+      "channel": "openrouter-free",
+      "total_tokens": 170561,
+      "input_tokens": 106443,
+      "output_tokens": 64118,
+      "cached_tokens": 38460,
+      "effective_tokens": 135947.0,
+      "input_cost": 0.0532,
+      "output_cost": 0.1282,
+      "total_cost": 0.1814,
+      "effective_cost": 0.1641,
+      "date": "2026-08-31",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0018",
+      "model_key": "glm-5.2",
+      "model_name": "kimi-k2.6",
+      "exec_model": "glm-5.2",
+      "channel": "openrouter-free",
+      "total_tokens": 145037,
+      "input_tokens": 119342,
+      "output_tokens": 25695,
+      "cached_tokens": 88055,
+      "effective_tokens": 65787.5,
+      "input_cost": 0.0597,
+      "output_cost": 0.0514,
+      "total_cost": 0.1111,
+      "effective_cost": 0.0715,
+      "date": "2026-08-31",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0023",
+      "model_key": "glm-5.2",
+      "model_name": "glm-5.2",
+      "exec_model": "glm-4.7-flash",
+      "channel": "router",
+      "total_tokens": 194254,
+      "input_tokens": 126854,
+      "output_tokens": 67400,
+      "cached_tokens": 81999,
+      "effective_tokens": 120454.9,
+      "input_cost": 0.0634,
+      "output_cost": 0.1348,
+      "total_cost": 0.1982,
+      "effective_cost": 0.1613,
+      "date": "2026-08-31",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0013",
+      "model_key": "deepseek-v4-pro",
+      "model_name": "kimi-k2.6",
+      "exec_model": "deepseek-v4-pro",
+      "channel": "gateway",
+      "total_tokens": 121428,
+      "input_tokens": 70916,
+      "output_tokens": 50512,
+      "cached_tokens": 58143,
+      "effective_tokens": 69099.29999999999,
+      "input_cost": 0.0355,
+      "output_cost": 0.101,
+      "total_cost": 0.1365,
+      "effective_cost": 0.1103,
+      "date": "2026-08-31",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0023",
+      "model_key": "glm-5.2",
+      "model_name": "auto",
+      "exec_model": "glm-4.7-flash",
+      "channel": "openrouter-free",
+      "total_tokens": 190592,
+      "input_tokens": 143132,
+      "output_tokens": 47460,
+      "cached_tokens": 100493,
+      "effective_tokens": 100148.3,
+      "input_cost": 0.0716,
+      "output_cost": 0.0949,
+      "total_cost": 0.1665,
+      "effective_cost": 0.1213,
+      "date": "2026-09-01",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0009",
+      "model_key": "auto",
+      "model_name": "glm-4.7-flash",
+      "exec_model": "deepseek-v4-pro",
+      "channel": "gateway",
+      "total_tokens": 155592,
+      "input_tokens": 114175,
+      "output_tokens": 41417,
+      "cached_tokens": 65919,
+      "effective_tokens": 96264.9,
+      "input_cost": 0.0571,
+      "output_cost": 0.0828,
+      "total_cost": 0.1399,
+      "effective_cost": 0.1102,
+      "date": "2026-09-01",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0013",
+      "model_key": "deepseek-v4-pro",
+      "model_name": "glm-5.2",
+      "exec_model": "glm-4.7-flash",
+      "channel": "openrouter-free",
+      "total_tokens": 134250,
+      "input_tokens": 110043,
+      "output_tokens": 24207,
+      "cached_tokens": 86166,
+      "effective_tokens": 56700.59999999999,
+      "input_cost": 0.055,
+      "output_cost": 0.0484,
+      "total_cost": 0.1034,
+      "effective_cost": 0.0646,
+      "date": "2026-09-01",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0013",
+      "model_key": "kimi-k2.6",
+      "model_name": "glm-4.7-flash",
+      "exec_model": "deepseek-v4-pro",
+      "channel": "gateway",
+      "total_tokens": 180359,
+      "input_tokens": 132490,
+      "output_tokens": 47869,
+      "cached_tokens": 91850,
+      "effective_tokens": 97694.0,
+      "input_cost": 0.0662,
+      "output_cost": 0.0957,
+      "total_cost": 0.1619,
+      "effective_cost": 0.1206,
+      "date": "2026-09-01",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0024",
+      "model_key": "auto",
+      "model_name": "kimi-k2.6",
+      "exec_model": "auto",
+      "channel": "router",
+      "total_tokens": 208230,
+      "input_tokens": 114651,
+      "output_tokens": 93579,
+      "cached_tokens": 71471,
+      "effective_tokens": 143906.1,
+      "input_cost": 0.0573,
+      "output_cost": 0.1872,
+      "total_cost": 0.2445,
+      "effective_cost": 0.2123,
+      "date": "2026-09-01",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0003",
+      "model_key": "glm-5.2",
+      "model_name": "glm-5.2",
+      "exec_model": "glm-4.7-flash",
+      "channel": "openrouter-free",
+      "total_tokens": 145624,
+      "input_tokens": 107493,
+      "output_tokens": 38131,
+      "cached_tokens": 65110,
+      "effective_tokens": 87025.0,
+      "input_cost": 0.0537,
+      "output_cost": 0.0763,
+      "total_cost": 0.13,
+      "effective_cost": 0.1007,
+      "date": "2026-09-02",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0013",
+      "model_key": "kimi-k2.6",
+      "model_name": "auto",
+      "exec_model": "kimi-k2.6",
+      "channel": "openrouter-free",
+      "total_tokens": 167271,
+      "input_tokens": 91938,
+      "output_tokens": 75333,
+      "cached_tokens": 60480,
+      "effective_tokens": 112839.0,
+      "input_cost": 0.046,
+      "output_cost": 0.1507,
+      "total_cost": 0.1967,
+      "effective_cost": 0.1695,
+      "date": "2026-09-02",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0001",
+      "model_key": "glm-5.2",
+      "model_name": "auto",
+      "exec_model": "deepseek-v4-pro",
+      "channel": "openrouter-free",
+      "total_tokens": 208418,
+      "input_tokens": 115906,
+      "output_tokens": 92512,
+      "cached_tokens": 94633,
+      "effective_tokens": 123248.3,
+      "input_cost": 0.058,
+      "output_cost": 0.185,
+      "total_cost": 0.243,
+      "effective_cost": 0.2004,
+      "date": "2026-09-02",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0006",
+      "model_key": "kimi-k2.6",
+      "model_name": "glm-5.2",
+      "exec_model": "deepseek-v4-pro",
+      "channel": "openrouter-free",
+      "total_tokens": 173795,
+      "input_tokens": 139174,
+      "output_tokens": 34621,
+      "cached_tokens": 66260,
+      "effective_tokens": 114161.0,
+      "input_cost": 0.0696,
+      "output_cost": 0.0692,
+      "total_cost": 0.1388,
+      "effective_cost": 0.109,
+      "date": "2026-09-02",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0028",
+      "model_key": "deepseek-v4-pro",
+      "model_name": "auto",
+      "exec_model": "auto",
+      "channel": "gateway",
+      "total_tokens": 183374,
+      "input_tokens": 96832,
+      "output_tokens": 86542,
+      "cached_tokens": 82072,
+      "effective_tokens": 109509.2,
+      "input_cost": 0.0484,
+      "output_cost": 0.1731,
+      "total_cost": 0.2215,
+      "effective_cost": 0.1846,
+      "date": "2026-09-02",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0025",
+      "model_key": "auto",
+      "model_name": "glm-5.2",
+      "exec_model": "auto",
+      "channel": "router",
+      "total_tokens": 189193,
+      "input_tokens": 148019,
+      "output_tokens": 41174,
+      "cached_tokens": 92308,
+      "effective_tokens": 106115.8,
+      "input_cost": 0.074,
+      "output_cost": 0.0823,
+      "total_cost": 0.1563,
+      "effective_cost": 0.1148,
+      "date": "2026-09-03",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0012",
+      "model_key": "deepseek-v4-pro",
+      "model_name": "glm-4.7-flash",
+      "exec_model": "glm-5.2",
+      "channel": "gateway",
+      "total_tokens": 200637,
+      "input_tokens": 178085,
+      "output_tokens": 22552,
+      "cached_tokens": 65378,
+      "effective_tokens": 141796.8,
+      "input_cost": 0.089,
+      "output_cost": 0.0451,
+      "total_cost": 0.1341,
+      "effective_cost": 0.1047,
+      "date": "2026-09-03",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0016",
+      "model_key": "glm-5.2",
+      "model_name": "auto",
+      "exec_model": "glm-4.7-flash",
+      "channel": "gateway",
+      "total_tokens": 229051,
+      "input_tokens": 198729,
+      "output_tokens": 30322,
+      "cached_tokens": 69831,
+      "effective_tokens": 166203.1,
+      "input_cost": 0.0994,
+      "output_cost": 0.0606,
+      "total_cost": 0.16,
+      "effective_cost": 0.1286,
+      "date": "2026-09-03",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0017",
+      "model_key": "auto",
+      "model_name": "kimi-k2.6",
+      "exec_model": "glm-4.7-flash",
+      "channel": "openrouter-free",
+      "total_tokens": 266655,
+      "input_tokens": 174592,
+      "output_tokens": 92063,
+      "cached_tokens": 69675,
+      "effective_tokens": 203947.5,
+      "input_cost": 0.0873,
+      "output_cost": 0.1841,
+      "total_cost": 0.2714,
+      "effective_cost": 0.24,
+      "date": "2026-09-03",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0022",
+      "model_key": "deepseek-v4-pro",
+      "model_name": "kimi-k2.6",
+      "exec_model": "auto",
+      "channel": "router",
+      "total_tokens": 163587,
+      "input_tokens": 102730,
+      "output_tokens": 60857,
+      "cached_tokens": 55412,
+      "effective_tokens": 113716.2,
+      "input_cost": 0.0514,
+      "output_cost": 0.1217,
+      "total_cost": 0.1731,
+      "effective_cost": 0.1482,
+      "date": "2026-09-04",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0011",
+      "model_key": "glm-5.2",
+      "model_name": "auto",
+      "exec_model": "auto",
+      "channel": "gateway",
+      "total_tokens": 134213,
+      "input_tokens": 81720,
+      "output_tokens": 52493,
+      "cached_tokens": 35533,
+      "effective_tokens": 102233.3,
+      "input_cost": 0.0409,
+      "output_cost": 0.105,
+      "total_cost": 0.1459,
+      "effective_cost": 0.1299,
+      "date": "2026-09-04",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0021",
+      "model_key": "glm-5.2",
+      "model_name": "glm-4.7-flash",
+      "exec_model": "glm-5.2",
+      "channel": "gateway",
+      "total_tokens": 128670,
+      "input_tokens": 107728,
+      "output_tokens": 20942,
+      "cached_tokens": 36907,
+      "effective_tokens": 95453.7,
+      "input_cost": 0.0539,
+      "output_cost": 0.0419,
+      "total_cost": 0.0958,
+      "effective_cost": 0.0792,
+      "date": "2026-09-04",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0009",
+      "model_key": "kimi-k2.6",
+      "model_name": "glm-4.7-flash",
+      "exec_model": "auto",
+      "channel": "gateway",
+      "total_tokens": 165906,
+      "input_tokens": 136619,
+      "output_tokens": 29287,
+      "cached_tokens": 83131,
+      "effective_tokens": 91088.09999999999,
+      "input_cost": 0.0683,
+      "output_cost": 0.0586,
+      "total_cost": 0.1269,
+      "effective_cost": 0.0895,
+      "date": "2026-09-04",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0026",
+      "model_key": "kimi-k2.6",
+      "model_name": "kimi-k2.6",
+      "exec_model": "glm-4.7-flash",
+      "channel": "gateway",
+      "total_tokens": 295220,
+      "input_tokens": 199695,
+      "output_tokens": 95525,
+      "cached_tokens": 116542,
+      "effective_tokens": 190332.2,
+      "input_cost": 0.0998,
+      "output_cost": 0.191,
+      "total_cost": 0.2908,
+      "effective_cost": 0.2384,
+      "date": "2026-09-04",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0014",
+      "model_key": "kimi-k2.6",
+      "model_name": "glm-5.2",
+      "exec_model": "glm-5.2",
+      "channel": "gateway",
+      "total_tokens": 151907,
+      "input_tokens": 75409,
+      "output_tokens": 76498,
+      "cached_tokens": 38653,
+      "effective_tokens": 117119.29999999999,
+      "input_cost": 0.0377,
+      "output_cost": 0.153,
+      "total_cost": 0.1907,
+      "effective_cost": 0.1733,
+      "date": "2026-09-04",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0004",
+      "model_key": "glm-4.7-flash",
+      "model_name": "glm-4.7-flash",
+      "exec_model": "glm-4.7-flash",
+      "channel": "openrouter-free",
+      "total_tokens": 220017,
+      "input_tokens": 155544,
+      "output_tokens": 64473,
+      "cached_tokens": 121379,
+      "effective_tokens": 110775.9,
+      "input_cost": 0.0778,
+      "output_cost": 0.1289,
+      "total_cost": 0.2067,
+      "effective_cost": 0.1521,
+      "date": "2026-09-04",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0009",
+      "model_key": "kimi-k2.6",
+      "model_name": "glm-4.7-flash",
+      "exec_model": "glm-5.2",
+      "channel": "router",
+      "total_tokens": 205974,
+      "input_tokens": 167601,
+      "output_tokens": 38373,
+      "cached_tokens": 92704,
+      "effective_tokens": 122540.4,
+      "input_cost": 0.0838,
+      "output_cost": 0.0767,
+      "total_cost": 0.1605,
+      "effective_cost": 0.1188,
+      "date": "2026-09-04",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0018",
+      "model_key": "glm-5.2",
+      "model_name": "glm-5.2",
+      "exec_model": "glm-4.7-flash",
+      "channel": "gateway",
+      "total_tokens": 102296,
+      "input_tokens": 75666,
+      "output_tokens": 26630,
+      "cached_tokens": 52306,
+      "effective_tokens": 55220.6,
+      "input_cost": 0.0378,
+      "output_cost": 0.0533,
+      "total_cost": 0.0911,
+      "effective_cost": 0.0676,
+      "date": "2026-09-05",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0028",
+      "model_key": "kimi-k2.6",
+      "model_name": "glm-5.2",
+      "exec_model": "glm-4.7-flash",
+      "channel": "router",
+      "total_tokens": 240192,
+      "input_tokens": 156539,
+      "output_tokens": 83653,
+      "cached_tokens": 92172,
+      "effective_tokens": 157237.2,
+      "input_cost": 0.0783,
+      "output_cost": 0.1673,
+      "total_cost": 0.2456,
+      "effective_cost": 0.2041,
+      "date": "2026-09-05",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0026",
+      "model_key": "kimi-k2.6",
+      "model_name": "deepseek-v4-pro",
+      "exec_model": "kimi-k2.6",
+      "channel": "openrouter-free",
+      "total_tokens": 121738,
+      "input_tokens": 50565,
+      "output_tokens": 71173,
+      "cached_tokens": 23215,
+      "effective_tokens": 100844.5,
+      "input_cost": 0.0253,
+      "output_cost": 0.1423,
+      "total_cost": 0.1676,
+      "effective_cost": 0.1572,
+      "date": "2026-09-05",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0010",
+      "model_key": "glm-4.7-flash",
+      "model_name": "glm-5.2",
+      "exec_model": "auto",
+      "channel": "openrouter-free",
+      "total_tokens": 279479,
+      "input_tokens": 195691,
+      "output_tokens": 83788,
+      "cached_tokens": 76882,
+      "effective_tokens": 210285.2,
+      "input_cost": 0.0978,
+      "output_cost": 0.1676,
+      "total_cost": 0.2654,
+      "effective_cost": 0.2308,
+      "date": "2026-09-05",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0002",
+      "model_key": "glm-5.2",
+      "model_name": "auto",
+      "exec_model": "kimi-k2.6",
+      "channel": "openrouter-free",
+      "total_tokens": 220122,
+      "input_tokens": 192133,
+      "output_tokens": 27989,
+      "cached_tokens": 143866,
+      "effective_tokens": 90642.59999999999,
+      "input_cost": 0.0961,
+      "output_cost": 0.056,
+      "total_cost": 0.1521,
+      "effective_cost": 0.0874,
+      "date": "2026-09-05",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0017",
+      "model_key": "glm-5.2",
+      "model_name": "glm-4.7-flash",
+      "exec_model": "glm-5.2",
+      "channel": "openrouter-free",
+      "total_tokens": 229866,
+      "input_tokens": 189231,
+      "output_tokens": 40635,
+      "cached_tokens": 63227,
+      "effective_tokens": 172961.7,
+      "input_cost": 0.0946,
+      "output_cost": 0.0813,
+      "total_cost": 0.1759,
+      "effective_cost": 0.1474,
+      "date": "2026-09-05",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0029",
+      "model_key": "auto",
+      "model_name": "glm-4.7-flash",
+      "exec_model": "auto",
+      "channel": "openrouter-free",
+      "total_tokens": 118643,
+      "input_tokens": 67815,
+      "output_tokens": 50828,
+      "cached_tokens": 36773,
+      "effective_tokens": 85547.29999999999,
+      "input_cost": 0.0339,
+      "output_cost": 0.1017,
+      "total_cost": 0.1356,
+      "effective_cost": 0.1191,
+      "date": "2026-09-05",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0019",
+      "model_key": "auto",
+      "model_name": "deepseek-v4-pro",
+      "exec_model": "deepseek-v4-pro",
+      "channel": "gateway",
+      "total_tokens": 146439,
+      "input_tokens": 71491,
+      "output_tokens": 74948,
+      "cached_tokens": 49645,
+      "effective_tokens": 101758.5,
+      "input_cost": 0.0357,
+      "output_cost": 0.1499,
+      "total_cost": 0.1856,
+      "effective_cost": 0.1633,
+      "date": "2026-09-06",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0005",
+      "model_key": "deepseek-v4-pro",
+      "model_name": "kimi-k2.6",
+      "exec_model": "deepseek-v4-pro",
+      "channel": "gateway",
+      "total_tokens": 183646,
+      "input_tokens": 132361,
+      "output_tokens": 51285,
+      "cached_tokens": 60802,
+      "effective_tokens": 128924.2,
+      "input_cost": 0.0662,
+      "output_cost": 0.1026,
+      "total_cost": 0.1688,
+      "effective_cost": 0.1414,
+      "date": "2026-09-06",
+      "call_count": 1
+    },
+    {
+      "session_id": "sess_0019",
+      "model_key": "glm-5.2",
+      "model_name": "glm-5.2",
+      "exec_model": "auto",
+      "channel": "gateway",
+      "total_tokens": 132509,
+      "input_tokens": 52441,
+      "output_tokens": 80068,
+      "cached_tokens": 35276,
+      "effective_tokens": 100760.6,
+      "input_cost": 0.0262,
+      "output_cost": 0.1601,
+      "total_cost": 0.1863,
+      "effective_cost": 0.1704,
+      "date": "2026-09-06",
+      "call_count": 1
+    }
+  ],
+  "sessions": [
+    {
+      "id": "sess_0001",
+      "title": "生成报告",
+      "task_type": "技能开发",
+      "created_at": "2026-08-31T10:59:00+08:00",
+      "cwd": "~/WorkBuddy/project-b"
+    },
+    {
+      "id": "sess_0002",
+      "title": "实现新功能",
+      "task_type": "内容生成",
+      "created_at": "2026-08-31T13:18:00+08:00",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "id": "sess_0003",
+      "title": "调试 bug",
+      "task_type": "研究学习",
+      "created_at": "2026-08-31T19:19:00+08:00",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "id": "sess_0004",
+      "title": "其他任务",
+      "task_type": "研究学习",
+      "created_at": "2026-08-31T12:59:00+08:00",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "id": "sess_0005",
+      "title": "分析数据",
+      "task_type": "技能开发",
+      "created_at": "2026-08-31T09:56:00+08:00",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "id": "sess_0006",
+      "title": "其他任务",
+      "task_type": "研究学习",
+      "created_at": "2026-08-31T10:17:00+08:00",
+      "cwd": "~/WorkBuddy/project-b"
+    },
+    {
+      "id": "sess_0007",
+      "title": "生成报告",
+      "task_type": "内容生成",
+      "created_at": "2026-08-31T19:21:00+08:00",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "id": "sess_0008",
+      "title": "其他任务",
+      "task_type": "自动化配置",
+      "created_at": "2026-08-31T21:16:00+08:00",
+      "cwd": "~/WorkBuddy/project-b"
+    },
+    {
+      "id": "sess_0009",
+      "title": "写周报",
+      "task_type": "代码开发",
+      "created_at": "2026-08-31T09:40:00+08:00",
+      "cwd": "~/WorkBuddy/project-b"
+    },
+    {
+      "id": "sess_0010",
+      "title": "写周报",
+      "task_type": "代码开发",
+      "created_at": "2026-08-31T08:21:00+08:00",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "id": "sess_0011",
+      "title": "其他任务",
+      "task_type": "技能开发",
+      "created_at": "2026-08-31T10:47:00+08:00",
+      "cwd": "~/WorkBuddy/project-b"
+    },
+    {
+      "id": "sess_0012",
+      "title": "生成报告",
+      "task_type": "自动化配置",
+      "created_at": "2026-08-31T14:35:00+08:00",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "id": "sess_0013",
+      "title": "实现新功能",
+      "task_type": "代码开发",
+      "created_at": "2026-08-31T22:44:00+08:00",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "id": "sess_0014",
+      "title": "生成报告",
+      "task_type": "代码开发",
+      "created_at": "2026-08-31T21:23:00+08:00",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "id": "sess_0015",
+      "title": "调试 bug",
+      "task_type": "内容生成",
+      "created_at": "2026-08-31T08:19:00+08:00",
+      "cwd": "~/WorkBuddy/project-b"
+    },
+    {
+      "id": "sess_0016",
+      "title": "实现新功能",
+      "task_type": "技能开发",
+      "created_at": "2026-08-31T11:43:00+08:00",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "id": "sess_0017",
+      "title": "其他任务",
+      "task_type": "代码开发",
+      "created_at": "2026-08-31T13:49:00+08:00",
+      "cwd": "~/WorkBuddy/project-b"
+    },
+    {
+      "id": "sess_0018",
+      "title": "生成报告",
+      "task_type": "自动化配置",
+      "created_at": "2026-08-31T10:59:00+08:00",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "id": "sess_0019",
+      "title": "分析数据",
+      "task_type": "内容生成",
+      "created_at": "2026-08-31T22:26:00+08:00",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "id": "sess_0020",
+      "title": "分析数据",
+      "task_type": "自动化配置",
+      "created_at": "2026-08-31T22:21:00+08:00",
+      "cwd": "~/WorkBuddy/project-b"
+    },
+    {
+      "id": "sess_0021",
+      "title": "其他任务",
+      "task_type": "自动化配置",
+      "created_at": "2026-08-31T20:15:00+08:00",
+      "cwd": "~/WorkBuddy/project-b"
+    },
+    {
+      "id": "sess_0022",
+      "title": "分析数据",
+      "task_type": "自动化配置",
+      "created_at": "2026-08-31T09:24:00+08:00",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "id": "sess_0023",
+      "title": "调试 bug",
+      "task_type": "内容生成",
+      "created_at": "2026-08-31T11:52:00+08:00",
+      "cwd": "~/WorkBuddy/project-b"
+    },
+    {
+      "id": "sess_0024",
+      "title": "写周报",
+      "task_type": "技能开发",
+      "created_at": "2026-08-31T21:50:00+08:00",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "id": "sess_0025",
+      "title": "分析数据",
+      "task_type": "代码开发",
+      "created_at": "2026-08-31T18:12:00+08:00",
+      "cwd": "~/WorkBuddy/project-b"
+    },
+    {
+      "id": "sess_0026",
+      "title": "写周报",
+      "task_type": "技能开发",
+      "created_at": "2026-08-31T21:04:00+08:00",
+      "cwd": "~/WorkBuddy/project-b"
+    },
+    {
+      "id": "sess_0027",
+      "title": "写周报",
+      "task_type": "自动化配置",
+      "created_at": "2026-08-31T16:25:00+08:00",
+      "cwd": "~/WorkBuddy/project-b"
+    },
+    {
+      "id": "sess_0028",
+      "title": "实现新功能",
+      "task_type": "代码开发",
+      "created_at": "2026-08-31T22:16:00+08:00",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "id": "sess_0029",
+      "title": "生成报告",
+      "task_type": "技能开发",
+      "created_at": "2026-08-31T08:06:00+08:00",
+      "cwd": "~/WorkBuddy/project-b"
+    }
+  ],
+  "automation_runs": [
+    {
+      "task_name": "AI 日报看板",
+      "result_success": true,
+      "date": "2026-09-02",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "task_name": "AI 日报看板",
+      "result_success": true,
+      "date": "2026-09-04",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "task_name": "AI 日报看板",
+      "result_success": false,
+      "date": "2026-09-04",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "task_name": "token 用量巡检",
+      "result_success": true,
+      "date": "2026-09-05",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "task_name": "token 用量巡检",
+      "result_success": true,
+      "date": "2026-09-04",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "task_name": "Skill 健康检查",
+      "result_success": true,
+      "date": "2026-09-05",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "task_name": "Skill 健康检查",
+      "result_success": true,
+      "date": "2026-09-01",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "task_name": "Skill 健康检查",
+      "result_success": true,
+      "date": "2026-08-31",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "task_name": "Skill 健康检查",
+      "result_success": true,
+      "date": "2026-09-02",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "task_name": "Skill 健康检查",
+      "result_success": true,
+      "date": "2026-09-05",
+      "cwd": "~/WorkBuddy/project-a"
+    },
+    {
+      "task_name": "AI 周报生成",
+      "result_success": true,
+      "date": "2026-09-02",
+      "cwd": "~/WorkBuddy/project-a"
+    }
+  ],
+  "session_credits": [],
+  "skill_usage": {
+    "skills": {
+      "git-push-sandbox": {
+        "usage_count_in_range": 9,
+        "last_used": "2026-09-02"
+      },
+      "skill-creator": {
+        "usage_count_in_range": 7,
+        "last_used": "2026-09-02"
+      },
+      "github": {
+        "usage_count_in_range": 7,
+        "last_used": "2026-09-05"
+      },
+      "ai-weekly": {
+        "usage_count_in_range": 5,
+        "last_used": "2026-09-04"
+      },
+      "recommend-experts": {
+        "usage_count_in_range": 3,
+        "last_used": "2026-09-01"
+      },
+      "agent-analytics-report": {
+        "usage_count_in_range": 7,
+        "last_used": "2026-09-05"
+      },
+      "skillhub-publish": {
+        "usage_count_in_range": 7,
+        "last_used": "2026-09-05"
+      },
+      "ta[REDACTED_SK_KEY]": {
+        "usage_count_in_range": 3,
+        "last_used": "2026-09-04"
+      }
+    }
+  },
+  "outputs": [
+    {
+      "name": "analysis.xlsx",
+      "ext": "xlsx",
+      "date": "2026-09-06",
+      "size": "7.MB"
+    },
+    {
+      "name": "report.html",
+      "ext": "html",
+      "date": "2026-08-31",
+      "size": "3.MB"
+    },
+    {
+      "name": "script.py",
+      "ext": "py",
+      "date": "2026-09-06",
+      "size": "315.KB"
+    },
+    {
+      "name": "trace-log.docx",
+      "ext": "docx",
+      "date": "2026-09-06",
+      "size": "6.MB"
+    }
+  ],
+  "daily_tokens": {
+    "2026-08-31": {
+      "total": 1740000
+    },
+    "2026-09-01": {
+      "total": 3540000
+    },
+    "2026-09-02": {
+      "total": 1440000
+    },
+    "2026-09-03": {
+      "total": 1740000
+    },
+    "2026-09-04": {
+      "total": 1580000
+    },
+    "2026-09-05": {
+      "total": 2380000
+    },
+    "2026-09-06": {
+      "total": 2490000
+    }
+  },
+  "summary": {
+    "active_day_count": 7,
+    "active_days": [
+      "2026-08-31",
+      "2026-09-01",
+      "2026-09-02",
+      "2026-09-03",
+      "2026-09-04",
+      "2026-09-05",
+      "2026-09-06"
+    ],
+    "total_sessions": 29,
+    "total_traces": 40,
+    "total_automation_runs": 11,
+    "successful_automation_runs": 10,
+    "total_outputs": 4,
+    "skills_used": 8,
+    "total_tokens": 20128500,
+    "total_input_tokens": 5964000,
+    "total_output_tokens": 8946000,
+    "total_cached_tokens": 5218500
+  },
+  "task_token_stats": [],
+  "top_tasks": [],
+  "cost_anomalies": {},
+  "savings_insights": []
+}

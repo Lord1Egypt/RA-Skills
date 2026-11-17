@@ -6,9 +6,9 @@
  *   2. "I want to receive N USDC" → --usdc <amount>  (strict receive)
  *
  * Usage:
- *   npx tsx skills/check-balance/swap-xlm-to-usdc.ts --xlm 10 [base flags]
- *   npx tsx skills/check-balance/swap-xlm-to-usdc.ts --usdc 1
- *   npx tsx skills/check-balance/swap-xlm-to-usdc.ts --usdc 5 --slippage 0.02
+ *   ./node_modules/.bin/tsx skills/check-balance/swap-xlm-to-usdc.ts --xlm 10 [base flags]
+ *   ./node_modules/.bin/tsx skills/check-balance/swap-xlm-to-usdc.ts --usdc 1
+ *   ./node_modules/.bin/tsx skills/check-balance/swap-xlm-to-usdc.ts --usdc 5 --slippage 0.02
  *
  * Confirmation gates:
  *   - Mainnet always prompts unless --yes.
@@ -118,7 +118,7 @@ async function confirm(prompt: string): Promise<boolean> {
  * Execute the XLM↔USDC swap. Exported so callers (e.g. onboard)
  * can invoke this in-process instead of spawning a child tsx call.
  * The CLI entry point at the bottom wraps this for direct
- * `npx tsx swap-xlm-to-usdc.ts` invocations.
+ * `./node_modules/.bin/tsx swap-xlm-to-usdc.ts` invocations.
  */
 export async function runSwap(inputs: RunInputs): Promise<void> {
   const { base, secret, args } = inputs;
@@ -138,7 +138,7 @@ export async function runSwap(inputs: RunInputs): Promise<void> {
   );
   if (!hasTrustline) {
     console.error("❌ No USDC trustline on this account.");
-    console.error("   Run: npx tsx skills/check-balance/add-trustline.ts");
+    console.error("   Run: ./node_modules/.bin/tsx skills/check-balance/add-trustline.ts");
     process.exit(1);
   }
 

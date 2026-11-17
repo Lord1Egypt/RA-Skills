@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0",
+  "checked_at": "2026-11-09T00:00:00Z",
+  "window_open": false,
+  "status": "none",
+  "current_window": null,
+  "last_window": {"id": "codex-speed-window-2026-11-08-codex"},
+  "prediction": {"level": "low", "probability_24h": 0.3, "updated_at": "2026-11-09T00:00:00Z"}
+}

@@ -1,42 +1,55 @@
-## Description: <br>
-Monitors the OpenClaw gateway every 3 hours, automatically restarts it when unresponsive, diagnoses startup issues, and rotates logs with 7-day retention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors the OpenClaw gateway every 3 hours, restarts it when unresponsive, diagnoses startup issues, and rotates logs with seven-day retention.
 
-## Publisher: <br>
-[shirley6692026](https://clawhub.ai/user/shirley6692026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shirley6692026](https://clawhub.ai/user/shirley6692026)
 
-## Use Case: <br>
-Developers and operators use this skill to keep a local OpenClaw gateway available by installing an unattended monitor that checks status, restarts failed services, logs activity, and rotates old logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs an unattended recurring watchdog for a local OpenClaw gateway. <br>
-Mitigation: Review the cron entry and gateway_monitor.sh before installation, and confirm how to remove or disable the scheduled job. <br>
-Risk: The monitor can restart the gateway and terminate matching OpenClaw gateway processes. <br>
-Mitigation: Use it only on machines where automatic restarts and broad process termination are acceptable, and avoid shared or production hosts unless this behavior is approved. <br>
-Risk: The security verdict is suspicious because the release gives limited user-control and safety documentation for unattended service control. <br>
-Mitigation: Treat installation as privileged operational automation, review the logs after deployment, and keep a manual recovery path available. <br>
+## Use Case:
 
+Developers and operators who run OpenClaw use this skill to install scheduled health checks that restart the gateway when it stops responding and preserve operational logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shirley6692026/gateway-monitor-auto-restart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and operation guidance for cron-based local gateway monitoring; installed scripts write logs under ~/.openclaw/logs/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata and package.json) <br>
+Risk: Installation creates an indefinite scheduled monitor that can restart or re-register the OpenClaw gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted, access-controlled path, inspect the crontab entry before use, and remove the cron entry manually if automatic recovery is no longer desired.
+
+Risk: The monitor can kill matching gateway processes and has weak safeguards for shared or production systems.
+
+Mitigation: Review gateway_monitor.sh before enabling it, confirm the process match targets only the intended gateway, and limit use to systems where automatic gateway recovery is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shirley6692026/skills/gateway-monitor-auto-restart)
+- [README](artifact/README.md)
+- [Skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may install a cron-based monitor and gateway restart workflow that writes logs under ~/.openclaw/logs.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

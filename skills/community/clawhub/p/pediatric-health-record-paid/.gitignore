@@ -1,0 +1,16 @@
+# ===== Secrets：绝不入库 =====
+.env
+*.pem
+*.key
+
+# ===== Python =====
+__pycache__/
+*.pyc
+*.pyo
+
+# ===== 虚拟环境 / 构建 =====
+venv/
+.venv/
+
+# ===== 系统文件 =====
+.DS_Store

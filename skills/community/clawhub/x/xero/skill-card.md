@@ -1,48 +1,65 @@
-## Description: <br>
-Xero API integration with managed OAuth for managing contacts, invoices, payments, accounts, bank transactions, and financial reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents access Xero accounting data through Maton to manage contacts, invoices, payments, and accounts and retrieve financial reports.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-External users and developers use this skill to interact with Xero accounting data through Maton-managed OAuth. It helps retrieve and modify contacts, invoices, payments, accounts, bank transactions, and financial reports after the user approves write operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access or modify financial records in a connected Xero account through Maton-proxied API calls. <br>
-Mitigation: Confirm the target resource, amounts, and intended effect before approving any create, update, or delete operation. <br>
-Risk: MATON_API_KEY grants access to Maton-managed Xero connections and must be treated as a sensitive credential. <br>
-Mitigation: Store the key securely, avoid exposing it in logs or shared shell history, and revoke unused Maton or Xero connections. <br>
-Risk: Using the wrong Xero connection can send accounting requests to the wrong tenant or account. <br>
-Mitigation: When multiple Xero connections exist, set the Maton-Connection header and verify the selected connection before issuing requests. <br>
+## Use Case:
 
+People managing a connected Xero account can ask an agent to look up accounting records and reports or, with explicit approval, create or update records and set up automations.
 
-## Reference(s): <br>
-- [ClawHub Xero Skill](https://clawhub.ai/byungkyu/xero) <br>
-- [Xero API Overview](https://developer.xero.com/documentation/api/accounting/overview) <br>
-- [Xero Contacts API](https://developer.xero.com/documentation/api/accounting/contacts) <br>
-- [Xero Invoices API](https://developer.xero.com/documentation/api/accounting/invoices) <br>
-- [Xero Payments API](https://developer.xero.com/documentation/api/accounting/payments) <br>
-- [Xero Reports API](https://developer.xero.com/documentation/api/accounting/reports) <br>
-- [Maton](https://maton.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline shell, Python, JavaScript, HTTP, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and a connected Xero OAuth account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Access to sensitive Xero accounting data may exceed the task's needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Authorize only the needed account and the narrowest available OAuth scopes; disclose only the requested data.
+
+Risk: Changes to invoices, payments, or other records can affect financial data.
+
+Mitigation: Prefer read-only requests and confirm each write with the user before execution.
+
+Risk: Hosted functions and trigger destinations can maintain ongoing access or forward data.
+
+Mitigation: Require separate approval for automation and destinations, and confirm what data will flow and where.
+
+Risk: Raw API keys can be exposed when used outside the Maton CLI.
+
+Mitigation: Prefer OAuth through the CLI; when a key is unavoidable, keep it out of commands, files, and logs.
+
+## Reference(s):
+
+- [Xero skill release](https://clawhub.ai/byungkyu/skills/xero)
+- [Maton](https://maton.ai)
+- [Maton documentation](https://docs.maton.ai)
+- [Xero Accounting API overview](https://developer.xero.com/documentation/api/accounting/overview)
+- [Scheduled trigger reference](artifact/references/time/triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with command, code, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the connected Xero account and its authorized scopes.]
+
+## Skill Version(s):
+
+1.2.5 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

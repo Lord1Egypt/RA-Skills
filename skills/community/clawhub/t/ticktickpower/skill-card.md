@@ -1,44 +1,60 @@
-## Description: <br>
-Manage TickTick tasks and projects from the command line with OAuth2 auth, batch operations, and rate limit handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage TickTick tasks and projects from the command line with OAuth2 auth, batch operations, and rate limit handling.
 
-## Publisher: <br>
-[hfarazi](https://clawhub.ai/user/hfarazi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hfarazi](https://clawhub.ai/user/hfarazi)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent manage TickTick tasks and projects through a local CLI, including authentication, listing, creation, updates, completion, batch abandonment, and file attachment workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores TickTick OAuth credentials and optional browser session cookies locally, and the session cookie should be treated like a password. <br>
-Mitigation: Install only when local credential storage is acceptable, keep the credential file private, and avoid adding a session cookie unless attachment upload is required. <br>
-Risk: The attachment workflow can upload arbitrary local files to TickTick when a valid session cookie is configured. <br>
-Mitigation: Review attachment commands before execution and attach only files the user intentionally wants uploaded. <br>
-Risk: The server security verdict is suspicious because the attachment feature uses a browser session cookie outside the OAuth flow. <br>
-Mitigation: Require human review before deployment and follow the server guidance for cookie handling and file upload consent. <br>
+## Use Case:
 
+Developers, operators, and agent workflows use this skill to create, update, complete, abandon, list, and attach files to TickTick tasks and projects through a CLI.
 
-## Reference(s): <br>
-- [TickTick Developer Center](https://developer.ticktick.com/manage) <br>
-- [TickTick Open API](https://developer.ticktick.com/api) <br>
-- [ClawHub release page](https://clawhub.ai/hfarazi/ticktickpower) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI commands may read or write TickTick tasks and projects and may upload local files when attachment credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact pyproject.toml reports 0.1.0) <br>
+Risk: The CLI persists OAuth credentials, refresh tokens, and optional browser-session cookies in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the TickTick config file as highly sensitive, keep restrictive file permissions, and avoid storing a browser session cookie unless attachment upload is necessary.
+
+Risk: Attachment upload uses a TickTick browser-session cookie and can upload local files to tasks.
+
+Mitigation: Require explicit user approval before file uploads and avoid passing real client secrets or session values on the command line.
+
+Risk: Bulk abandon operations can modify multiple TickTick tasks with limited guardrails.
+
+Mitigation: Require explicit user approval before bulk task changes and verify task IDs with JSON task listings before execution.
+
+## Reference(s):
+
+- [TickTick Developer Center](https://developer.ticktick.com/manage)
+- [TickTick Open API](https://developer.ticktick.com/api)
+- [ClawHub Skill Page](https://clawhub.ai/hfarazi/skills/ticktickpower)
+- [Publisher Profile](https://clawhub.ai/user/hfarazi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI supports machine-readable JSON output for task and project operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

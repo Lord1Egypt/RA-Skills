@@ -4,13 +4,14 @@
 login.py — 配置并验证火一五 Odoo 登录凭据，保存到个人 tools.md
 
 用法
-  交互式（用户自己跑，密码不回显）：
-      python3 login.py
+  交互式（推荐用户自己跑，API Key 优先）：
+      python3 login.py          # 交互式，提示选择 ①地址 ②数据库 ③账号 ④认证方式(API Key/密码) ⑤凭据
 
   非交互（推荐 Claude 用：secret 走 stdin，避免出现在命令行历史 / ps）：
-      printf '%s' "$ODOO_PASSWORD" | python3 login.py set \
-          --login zhaobod1@163.com --secret-stdin
+      printf '%s' "$ODOO_API_KEY" | python3 login.py set \
+          --login zhaobod1@163.com --auth-type apikey --secret-stdin
       # 省略的 url/db 默认 https://www.huo15.com / huo15
+      # 推荐 --auth-type apikey；默认 password 不推荐
 
   其它：
       python3 login.py show     # 显示当前配置（secret 脱敏）
@@ -18,8 +19,8 @@ login.py — 配置并验证火一五 Odoo 登录凭据，保存到个人 tools.
 
 安全
   - 凭据写入 ~/.huo15/tools.md（可用 HUO15_TOOLS_MD 改路径），文件权限 600。
-  - 强烈建议用 Odoo「API Key」而非登录密码：登录 Odoo → 偏好设置 → 账户安全 →
-    新建 API 密钥，--auth-type apikey。API Key 可随时吊销，泄漏风险远低于主密码。
+  - ⭐ 推荐使用 Odoo「API Key」：登录 Odoo → 偏好设置 → 账户安全 → 新建 API 密钥。
+    API Key 可随时吊销，泄漏风险远低于主密码。交互模式默认选 API Key。
 """
 
 from __future__ import annotations
@@ -43,7 +44,7 @@ def _read_secret(args) -> str:
             "⚠️  通过 --secret 明文传参会留在 shell 历史/进程列表，建议改用 --secret-stdin。\n"
         )
         return args.secret
-    label = "API Key" if getattr(args, "auth_type", "password") == "apikey" else "密码"
+    label = "密码" if getattr(args, "auth_type", "apikey") == "password" else "API Key"
     return getpass.getpass(f"请输入 Odoo {label}（输入时不显示）：")
 
 
@@ -60,6 +61,21 @@ def _verify_and_save(cfg: dict) -> int:
     return uid
 
 
+def _prompt_auth_type(default: str = "apikey") -> str:
+    """交互选择认证方式：apikey（推荐）或 password。"""
+    choices = {
+        "1": "apikey",
+        "2": "password",
+    }
+    default_key = "1" if default == "apikey" else "2"
+    label = {"1": "API Key（推荐，可吊销）", "2": "登录密码（不推荐，风险较高）"}
+    prompt = f"④ 认证方式 —— 选 {', '.join(f'{k}={label[k]}' for k in label)} [默认 {default_key}]："
+    ans = input(prompt).strip()
+    if not ans:
+        return choices[default_key]
+    return choices.get(ans, choices[default_key])
+
+
 def cmd_interactive():
     cfg = load_config()
     print("初始化火一五 Odoo 连接 —— 依次输入 4 项（方括号内为默认值，直接回车采用）\n")
@@ -69,11 +85,13 @@ def cmd_interactive():
         or cfg.get("db") or DEFAULTS["db"]
     login = input(f"③ 账号（邮箱或用户名）[{cfg.get('login') or ''}]: ").strip() \
         or cfg.get("login", "")
-    secret = getpass.getpass("④ 密码（或 API Key，输入时不显示）: ")
+    auth_type = _prompt_auth_type(cfg.get("auth_type", "apikey"))
+    secret_label = "API Key" if auth_type == "apikey" else "密码"
+    secret = getpass.getpass(f"⑤ 请输入 Odoo {secret_label}（输入时不显示，推荐 API Key 可吊销）: ")
     if not login or not secret:
-        raise OdooError("账号和密码不能为空。")
+        raise OdooError("账号和认证凭据不能为空。")
     cfg.update(url=url, db=db, login=login,
-               auth_type=cfg.get("auth_type", "password"),
+               auth_type=auth_type,
                transport=cfg.get("transport", "xmlrpc"), secret=secret)
     _verify_and_save(cfg)
 
@@ -97,6 +115,24 @@ def cmd_show():
     print(f"URL       : {cfg.get('url')}")
     print(f"DB        : {cfg.get('db')}")
     print(f"Login     : {cfg.get('login') or '(未配置)'}")
+
+
+def cmd_save_key(args):
+    """一键保存 API Key（企微聊天中用户发送 Key 后调用）。"""
+    cfg = load_config()
+    cfg["url"] = args.url or cfg.get("url") or DEFAULTS["url"]
+    cfg["db"] = args.db or cfg.get("db") or DEFAULTS["db"]
+    cfg["auth_type"] = "apikey"
+    cfg["transport"] = args.transport or cfg.get("transport") or "xmlrpc"
+    if args.login:
+        cfg["login"] = args.login
+    if not cfg.get("login"):
+        raise OdooError("缺少账号：用 --login 指定。")
+    data = sys.stdin.read().strip()
+    if not data:
+        raise OdooError("stdin 没有读到 API Key。请通过管道传入：printf '%%s' \"<key>\" | login.py save-key --login xxx")
+    cfg["secret"] = data
+    _verify_and_save(cfg)
     print(f"Auth type : {cfg.get('auth_type')}")
     print(f"Transport : {cfg.get('transport')}")
     print(f"Secret    : {mask(cfg.get('secret'))}")
@@ -119,7 +155,7 @@ def build_parser():
     s.add_argument("--url")
     s.add_argument("--db")
     s.add_argument("--login")
-    s.add_argument("--auth-type", dest="auth_type", default="password",
+    s.add_argument("--auth-type", dest="auth_type", default="apikey",
                    choices=["password", "apikey"])
     s.add_argument("--transport", default="xmlrpc",
                    choices=["xmlrpc", "jsonrpc"])
@@ -127,9 +163,16 @@ def build_parser():
     s.add_argument("--secret-stdin", dest="secret_stdin", action="store_true",
                    help="从标准输入读 secret（推荐）")
 
-    sub.add_parser("init", help="交互式初始化：依次提示输入 地址/数据库/账号/密码")
+    sub.add_parser("init", help="交互式初始化：依次提示输入 地址/数据库/账号/认证方式/凭据")
     sub.add_parser("show", help="显示当前配置（secret 脱敏）")
     sub.add_parser("test", help="测试已保存的连接")
+
+    sk = sub.add_parser("save-key", help="一键保存 API Key（stdin 读入，自动检测工作区）")
+    sk.add_argument("--url", help="Odoo 地址（默认 www.huo15.com）")
+    sk.add_argument("--db", help="数据库名（默认 huo15）")
+    sk.add_argument("--login", required=True, help="Odoo 登录账号")
+    sk.add_argument("--transport", default="xmlrpc", choices=["xmlrpc", "jsonrpc"],
+                    help="传输协议")
     return p
 
 
@@ -139,6 +182,8 @@ def main(argv=None):
     try:
         if args.cmd == "set":
             cmd_set(args)
+        elif args.cmd == "save-key":
+            cmd_save_key(args)
         elif args.cmd == "show":
             cmd_show()
         elif args.cmd == "test":

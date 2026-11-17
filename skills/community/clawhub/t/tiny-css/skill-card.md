@@ -1,40 +1,53 @@
-## Description: <br>
-Tiny CSS guides agents to write minimal, browser-native CSS for personal sites, prototypes, simple landing pages, and other intentionally lean projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write minimal, efficient CSS for small or minimalist projects by trusting the browser instead of fighting it.
 
-## Publisher: <br>
-[mikemai2awesome](https://clawhub.ai/user/mikemai2awesome) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikemai2awesome](https://clawhub.ai/user/mikemai2awesome)
 
-## Use Case: <br>
-Developers and agents use this skill to produce small, accessible CSS stylesheets and targeted CSS guidance while avoiding resets, base font-size overrides, hard-coded default colors, pixel spacing, and physical layout properties. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally discourages resets, default colors, base font-size declarations, and larger-project CSS conventions, which may conflict with established design systems. <br>
-Mitigation: Use it for small or intentionally lean projects; for teams, token systems, component libraries, or many CSS files, review output against project conventions or use a broader CSS workflow. <br>
-Risk: CSS snippets can affect accessibility if applied without checking user preference and high-contrast behavior. <br>
-Mitigation: Review generated CSS for preserved browser defaults, reduced-motion handling, forced-colors support, and logical properties before shipping. <br>
+## Use Case:
 
+Developers and agents use this skill to produce lean CSS guidance and small base stylesheets for personal sites, prototypes, simple landing pages, and intentionally minimal projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikemai2awesome/tiny-css) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with CSS code blocks and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; outputs are CSS recommendations or snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata; SKILL.md metadata version is 1.0) <br>
+Risk: Minimal CSS guidance may be insufficient for projects with multiple developers, component libraries, design tokens, or many CSS files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only for small or intentionally lean projects; choose a fuller CSS architecture skill when the project needs shared conventions or a design system.
+
+Risk: CSS recommendations can still create visual or accessibility regressions if applied without checking the target page.
+
+Mitigation: Review generated CSS in the browser and test relevant accessibility preferences such as reduced motion, forced colors, contrast, and color scheme.
+
+## Reference(s):
+
+- [Tiny CSS ClawHub Skill](https://clawhub.ai/mikemai2awesome/skills/tiny-css)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown with CSS code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces concise CSS recommendations and optional stylesheet snippets; it does not execute commands or access external services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

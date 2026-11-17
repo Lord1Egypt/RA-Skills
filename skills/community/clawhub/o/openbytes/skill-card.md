@@ -1,43 +1,60 @@
-## Description: <br>
-End-to-end OpenBytes network API workflows for AI agents, covering wallet signature authentication, on-chain top-up checks, consumer API key lifecycle operations, model inference through the gateway, and balance and usage queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenBytes provides end-to-end network API workflows for wallet signature-based authentication, on-chain top-up monitoring, consumer API key management, model inference, and balance or usage queries.
 
-## Publisher: <br>
-[viyozc](https://clawhub.ai/user/viyozc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viyozc](https://clawhub.ai/user/viyozc)
 
-## Use Case: <br>
-Developers and operators use this skill to automate or debug OpenBytes API workflows, including wallet login, API key management, top-up verification, model requests, balance checks, usage review, and parent-wallet connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet private keys, session tokens, API keys, signatures, authorization headers, and personal data may be exposed if an agent generates, prints, stores, or receives secrets during troubleshooting. <br>
-Mitigation: Use a trusted wallet for signing, keep private keys outside the agent, store API keys in secret managers or environment variables, and redact secrets from logs and shared outputs. <br>
-Risk: Incorrect gateway URLs, contract addresses, chain IDs, parent-wallet relationships, transaction amounts, approvals, deposits, API-key creation, or revocation can affect funds or account access. <br>
-Mitigation: Manually verify these values against trusted sources before executing commands or transactions, and review every generated curl command before running it. <br>
+## Use Case:
 
+Developers and operators use this skill to automate or debug OpenBytes API workflows, including wallet authentication, top-up verification, API key lifecycle management, model calls, and balance or usage checks.
 
-## Reference(s): <br>
-- [OpenBytes gateway API](https://gateway.openbytes.ai) <br>
-- [ethers.js Wallet.createRandom documentation](https://docs.ethers.org/v6/api/wallet/#Wallet-createRandom) <br>
-- [viem createWallet documentation](https://viem.sh/docs/actions/wallet/createWallet.html) <br>
-- [Base Sepolia RPC endpoint](https://sepolia.base.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell, JavaScript, TypeScript, and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational instructions and example HTTP requests; users must supply their own wallet, token, API key, chain, and endpoint values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated wallet private keys, API keys, session tokens, or unredacted API responses could be exposed in chat or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not let an agent generate or display wallet private keys, keep API responses redacted, and store credentials only in user-controlled secure storage.
+
+Risk: API-key creation, revocation, on-chain top-up, or parent-wallet linking commands can affect account access or funds.
+
+Mitigation: Require explicit user confirmation before running any credential lifecycle, top-up, or wallet-linking command.
+
+Risk: Wallet signature flows can fail or bind the wrong relationship if message contents, casing, timestamp, or signer are incorrect.
+
+Mitigation: Have the user perform signatures in their wallet and verify exact message text, normalized addresses, and timestamp window before submission.
+
+## Reference(s):
+
+- [OpenBytes Gateway API](https://gateway.openbytes.ai)
+- [ethers.js Wallet.createRandom](https://docs.ethers.org/v6/api/wallet/#Wallet-createRandom)
+- [viem createWallet](https://viem.sh/docs/actions/wallet/createWallet.html)
+- [Base Sepolia RPC](https://sepolia.base.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl commands, JSON examples, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command templates containing placeholders for user-provided wallet addresses, session tokens, API keys, and base URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

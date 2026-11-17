@@ -1,49 +1,58 @@
-## Description: <br>
-Generate images & videos with AIsa. Gemini 3 Pro Image (image) + Qwen Wan 2.6 (video) via one API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images and videos with AIsa using Gemini 3 Pro Image and Qwen Wan 2.6 through one API key.
 
-## Publisher: <br>
-[AIsaDocs](https://clawhub.ai/user/AIsaDocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-Developers, AI agents, content creators, and businesses use this skill to generate images and videos through AIsa with one API key, including creating media files, starting video tasks, polling task status, and downloading completed videos. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference image URLs, task IDs, and API usage are sent to AIsa. <br>
-Mitigation: Install only if you trust AIsa and the publisher with this data, and review prompts and reference URLs before sending requests. <br>
-Risk: API usage can consume paid quota or incur billing charges. <br>
-Mitigation: Monitor AIsa billing or quota and choose generation settings such as duration and resolution deliberately. <br>
-Risk: Passing the API key on the command line can expose it through shell history or process listings. <br>
-Mitigation: Prefer the AISA_API_KEY environment variable over the --api-key command-line option. <br>
-Risk: The --download option writes generated media to local paths. <br>
-Mitigation: Use --download only with expected generated media and review the output path before writing files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIsaDocs/openclaw-aisa-llm-image-video-qwen-wan26-gemini-3-pro-image) <br>
-- [AIsa API Reference](https://aisa.mintlify.app/api-reference/introduction) <br>
-- [AIsa llms.txt](https://aisa.mintlify.app/llms.txt) <br>
-- [Gemini GenerateContent documentation](https://aisa.mintlify.app/api-reference/chat/chat-api/google-gemini-chat.md) <br>
-- [AIsa video generation documentation](https://aisa.mintlify.app/api-reference/aliyun/video/video-generation.md) <br>
-- [AIsa task polling documentation](https://aisa.mintlify.app/api-reference/aliyun/video/task.md) <br>
-- [OpenClaw homepage](https://openclaw.ai) <br>
+## Use Case:
 
+Developers, agents, content creators, and businesses use this skill to generate images and create, poll, and optionally download video generation tasks through the AIsa API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and Python client usage; generated media is saved as image or MP4 files when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, curl, and AISA_API_KEY; video generation uses asynchronous tasks and optional local download.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, reference image URLs, and the AISA API key are sent to the AIsa API.
+
+Mitigation: Use the skill only when AIsa is the intended media provider, keep AISA_API_KEY secret, and avoid private prompts or sensitive image URLs unless that handling is acceptable.
+
+Risk: Generated image or video downloads may overwrite files at the selected output path.
+
+Mitigation: Choose output filenames deliberately and avoid paths that contain important existing files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aisadocs/skills/openclaw-aisa-llm-image-video-qwen-wan26-gemini-3-pro-image)
+- [OpenClaw](https://openclaw.ai)
+- [AIsa API Reference](https://aisa.mintlify.app/api-reference/introduction)
+- [AIsa llms.txt](https://aisa.mintlify.app/llms.txt)
+- [Gemini GenerateContent documentation](https://aisa.mintlify.app/api-reference/chat/chat-api/google-gemini-chat.md)
+- [AIsa video generation documentation](https://aisa.mintlify.app/api-reference/aliyun/video/video-generation.md)
+- [AIsa video task documentation](https://aisa.mintlify.app/api-reference/aliyun/video/task.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown instructions with shell examples, Python client commands, JSON API responses, and generated media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, curl, and AISA_API_KEY; generated image or video downloads may write local output files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

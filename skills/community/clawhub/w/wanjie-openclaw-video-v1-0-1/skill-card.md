@@ -1,47 +1,62 @@
-## Description: <br>
-Generates videos from natural-language prompts through the Wanjie Ark Veo model service for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short videos from natural-language prompts through the Wanjie Ark Veo model service in OpenClaw.
 
-## Publisher: <br>
-[liangshenghzj888-stack](https://clawhub.ai/user/liangshenghzj888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liangshenghzj888-stack](https://clawhub.ai/user/liangshenghzj888-stack)
 
-## Use Case: <br>
-OpenClaw users can trigger video generation from chat by sending a supported video prompt. The skill submits the request to Wanjie, monitors the background job, and returns or records the generated video link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the first API key from ~/.openclaw/openclaw.json and sends video prompts to Wanjie. <br>
-Mitigation: Install only after confirming that the selected API key is the intended Wanjie key and that prompt content may be sent to that service. <br>
-Risk: The skill can run detached background jobs and its documentation claims recurring monitoring without clear disable or uninstall steps. <br>
-Mitigation: Review running processes and any scheduled task behavior after installation, and remove the skill if background execution is not acceptable. <br>
-Risk: Returned links may be opened automatically in the local browser. <br>
-Mitigation: Use in an environment where automatic browser opening is acceptable, or review and modify that behavior before running the skill. <br>
-Risk: The skill writes logs, raw responses, and result links under its script directory. <br>
-Mitigation: Inspect and clear those files when they may contain sensitive prompts, service responses, or generated media links. <br>
-Risk: The helper interface may install the requests dependency automatically if it is missing. <br>
-Mitigation: Prefer installing dependencies explicitly in a controlled Python environment before invoking the skill. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to trigger Veo video generation from chat prompts and retrieve generated video links without manually invoking command-line tools.
 
-## Reference(s): <br>
-- [Wanjie Ark model service](https://www.wjark.com/) <br>
-- [ClawHub release page](https://clawhub.ai/liangshenghzj888-stack/wanjie-openclaw-video-v1-0-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, API Calls, Guidance] <br>
-**Output Format:** [Plain text status messages plus local result and log files containing task status or a video URL.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs video generation asynchronously and may open the returned video URL in a browser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: manifest.json and server release evidence) <br>
+Risk: The skill reads a local OpenClaw model-provider configuration that contains API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege API key and review credential access before installation.
+
+Risk: The skill sends prompts and an API key to the Wanjie endpoint.
+
+Mitigation: Avoid submitting sensitive prompts unless the Wanjie service is approved for the intended data.
+
+Risk: The skill starts detached background work and may install dependencies at runtime.
+
+Mitigation: Review background task and dependency behavior, including any scheduled monitor, before deployment.
+
+Risk: The skill can automatically open provider-returned links.
+
+Mitigation: Inspect generated result links and run the skill in an environment where automatic browser opening is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liangshenghzj888-stack/skills/wanjie-openclaw-video-v1-0-1)
+- [Wanjie Ark model service](https://www.wjark.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance and chat replies with local status/result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces background video-generation requests, writes local log and result files, and may open provider-returned video links.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

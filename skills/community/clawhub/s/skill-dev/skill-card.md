@@ -1,42 +1,54 @@
-## Description: <br>
-This skill helps agents analyze, repair, validate, and record improvements to existing skill files when defects, missing workflow steps, logic errors, or lessons learned are identified. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill开发优化助手。当发现技能有漏洞/流程缺失/逻辑错误/经验教训需要沉淀时触发。自动分析问题、定位根源、修改技能、回归验证并记录影响。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to diagnose problems in existing skills, make scoped edits, run regression checks, and record the impact of changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent edits to skill files and memory notes when broad trigger phrases match. <br>
-Mitigation: Use it only where skill-maintenance edits are intended, narrow the trigger conditions, and require a dry-run diff or explicit confirmation before applying changes. <br>
-Risk: Incorrect repairs could introduce misleading rules or regressions into skills. <br>
-Mitigation: Review diffs, run regression checks, and scan updated skills before deployment. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to analyze defects or missing workflow steps in existing skills, apply targeted skill-file updates, run regression checks, and record the impact of changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/skill-dev) <br>
-- [Project homepage](https://github.com/bettermen/skill-dev-scene) <br>
-- [README.md](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with proposed or applied file edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update SKILL.md, scripts, references, changelog, or MEMORY.md when the host agent permits edits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill can direct an agent to actively edit other skills and persistent memory without asking first.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before SkillManage modify actions or MEMORY.md writes, prefer workspace-scoped memory, and review each proposed change before applying it.
+
+Risk: Incorrect fixes or undocumented workflow changes could be persisted into reusable skill instructions.
+
+Mitigation: Review and scan modified skill files before deployment, and keep edits limited to SKILL.md, scripts, references, and intended memory records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/skill-dev)
+- [Project homepage](https://github.com/bettermen/skill-dev-scene)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with targeted skill-file edits and validation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or apply changes to SKILL.md, scripts, references, and workspace-scoped memory records.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

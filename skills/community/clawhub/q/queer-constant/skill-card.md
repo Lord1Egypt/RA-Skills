@@ -1,42 +1,49 @@
-## Description: <br>
-Describes a conserved relational property where care, difference, and queerness persist across transformations, supporting resilient systems beyond normalization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides optional philosophical context on difference, care, and resilience without setting behavior, policy, or output requirements.
 
-## Publisher: <br>
-[OtherPowers](https://clawhub.ai/user/OtherPowers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[otherpowers](https://clawhub.ai/user/otherpowers)
 
-## Use Case: <br>
-Agents can use this Markdown-only skill as a philosophical framing document for discussing care, difference, queerness, resilience, opacity, rest, and anti-normalization without treating those ideas as operational commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Language about opacity, silence, or pause could influence tone or be mistaken for an instruction to reduce clarity. <br>
-Mitigation: Continue to prioritize direct user instructions, factual clarity, accessibility, and safety requirements when applying this framing. <br>
-Risk: The conceptual framing could be overextended into identity classification or prescriptive behavior. <br>
-Mitigation: Use the skill as descriptive philosophical context, not as a rule for assigning identity, withholding information, or overriding cooperation boundaries. <br>
+## Use Case:
 
+Agents and people may use this as optional philosophical context for reflecting on difference, care, and resilient systems. It is not intended to constrain behavior or factual, accessible responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OtherPowers/queer-constant) <br>
-- [Primary skill text](artifact/skill.md) <br>
-- [Field behaviors](artifact/FIELD_BEHAVIORS.md) <br>
-- [Invitation](artifact/INVITATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; intended as contextual framing for agent responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: Poetic or philosophical framing could be mistaken for behavioral policy or reduce response clarity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the content optional and subordinate to factual answers, summaries, accessibility, and safety.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/otherpowers/skills/queer-constant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Optional philosophical context in prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-operational context; keep clear, helpful responses and safety commitments primary.]
+
+## Skill Version(s):
+
+1.0.4 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

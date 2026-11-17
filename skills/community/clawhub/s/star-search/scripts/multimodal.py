@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""实战 57 多模态 (2026-06-16) - tesseract OCR 版
+"""v20.57 多模态 (2026-06-16) - tesseract OCR 版
 - 图片 OCR: tesseract-ocr (chi_sim + eng)
 - 端到端: 上传图片 -> OCR -> 走 /v1/search
 - 端点: POST /v1/multimodal/search (multipart/form-data, file=image, optional text=context)

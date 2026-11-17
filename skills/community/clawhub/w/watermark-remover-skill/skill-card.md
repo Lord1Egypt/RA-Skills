@@ -1,44 +1,63 @@
-## Description: <br>
-This skill helps an agent submit user-selected images to a local watermark-removal GUI through configured input and output folders, then return the processed file paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates watermark-removal image processing by submitting images to a configured local GUI watch folder and collecting completed output files.
 
-## Publisher: <br>
-[muxiazi](https://clawhub.ai/user/muxiazi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[muxiazi](https://clawhub.ai/user/muxiazi)
 
-## Use Case: <br>
-External users and agent operators use this skill to automate watermark-removal jobs through an already-running local GUI for images they own or have permission to modify. It is intended for single-image and batch workflows where the agent can place files in a monitored input directory and read results from the configured output directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can be misused on images the user does not own or have permission to modify. <br>
-Mitigation: Use the skill only for authorized images and confirm rights before processing shared or third-party media. <br>
-Risk: The skill depends on a separate local GUI and exact input/output folder configuration, so jobs may fail or time out when the GUI is closed, monitoring is disabled, or paths differ. <br>
-Mitigation: Run the built-in check command before processing and keep dedicated, matching folders configured in both the GUI and config file. <br>
-Risk: Using the move option can remove originals from their source location. <br>
-Mitigation: Prefer copy mode, keep backups of important images, and use move mode only when deletion of the source files is intentional. <br>
+## Use Case:
 
+Developers and agent users use this skill to process single images or image batches through a locally running watermark-removal GUI. It is intended for environments where the GUI is already installed, configured, and monitoring matching input and output folders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/muxiazi/watermark-remover-skill) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON, Files] <br>
-**Output Format:** [Markdown guidance with shell commands, optional JSON result files, and processed image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local GUI program with directory monitoring enabled and configured input/output folders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill depends on an external local GUI application whose source and integrity are not established by the bundled artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the GUI only when the operator trusts and can verify that application.
+
+Risk: A user-controlled task subdirectory can resolve outside the configured watch folder.
+
+Mitigation: Use automatically generated task subdirectories, avoid passing user-controlled values to --subdir, and prefer a hardened version that rejects absolute paths, '..' components, and resolved paths outside input_dir.
+
+Risk: The --move option can remove original input files while submitting them for processing.
+
+Mitigation: Prefer copying files and use --move only when backups exist and the deletion behavior is intended.
+
+Risk: Shared GUI input and output folders can mix tasks or expose files between users.
+
+Mitigation: Use dedicated input and output folders and keep per-task subdirectories enabled for isolation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/muxiazi/skills/watermark-remover-skill)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns processed image paths, undetected-watermark paths, pending files, elapsed time, and exit codes when run through the bundled CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

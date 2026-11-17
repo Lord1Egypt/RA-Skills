@@ -4,8 +4,6 @@ description: Guide users through native limit orders on Solana via `nansen trade
 metadata:
   openclaw:
     requires:
-      env:
-        - NANSEN_API_KEY
       bins:
         - nansen
     primaryEnv: NANSEN_API_KEY
@@ -15,6 +13,11 @@ metadata:
         bins: [nansen]
 allowed-tools: Bash(nansen:*)
 ---
+## Authentication
+
+Nansen account API calls accept a selected `nansen:api` browser session or conventional API key with the same permissions. `NANSEN_API_KEY` takes precedence; optional `primaryEnv` preserves configured-key injection. Run `nansen auth status` for offline selection. Cached access expiry alone permits automatic renewal during an authorized task. Stop on anonymous selection, invalid state, blocked/uncertain renewal or actual auth failure; never drop a credential or fall back to anonymous x402 payment. Browser login does not grant wallet signing, privileged service identity or a persistent MCP integration key. Preserve all confirmation, signing, sanctions and geographic checks below. Browser login is enabled in production within the [documented platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope).
+
+
 
 # Limit Orders
 
@@ -38,7 +41,7 @@ distinct paths — pick the one that matches the user's chain:
 - The wallet must hold the sell token plus a small amount of SOL for fees.
 - For the alert fallback: a notification channel (Telegram chat ID, Slack or
   Discord webhook, or generic webhook URL).
-- `NANSEN_API_KEY`. Smart alerts are internal-only; non-internal users get 404.
+- A selected nansen:api browser session or conventional API key for smart alerts; existing endpoint restrictions still apply.
 - First-time `trade limit-order create` auto-registers a trading vault and
   caches a JWT at `~/.nansen/limit-order-auth.json` for ~23h.
 
@@ -97,11 +100,11 @@ Constraints (all enforced server-side — surface errors to the user as-is):
 nansen trade limit-order list                    # default
 nansen trade limit-order list --state active     # only open
 nansen trade limit-order list --state past       # filled or cancelled
-nansen trade limit-order list --mint <mintAddr>  # filter by token
+nansen trade limit-order list --token <mintAddr> # filter by token
 nansen trade limit-order list --limit 50 --offset 0 --dir desc
 ```
 
-Options: `--state active|past`, `--mint <addr>`, `--limit <n>` (default 20),
+Options: `--state active|past`, `--token <addr>`, `--limit <n>` (default 20),
 `--offset <n>`, `--sort <field>`, `--dir asc|desc` (default `desc`),
 `--wallet <name>`.
 
@@ -113,6 +116,17 @@ nansen trade limit-order cancel --order <orderId>
 
 Cancelling submits a withdrawal transaction; surface the tx signature from the
 CLI output so the user can verify on Solscan.
+
+### Preview and confirm
+
+`create` and `cancel` accept `--dry-run` (print the plan and exit 0; no API
+request, no signature, nothing submitted) and `--yes`/`-y` (skip the
+confirmation prompt, same as `NANSEN_YES=1`). The prompt only appears in an
+interactive terminal; agents and CI run unprompted, unless the user set
+`NANSEN_REQUIRE_CONFIRM=1`: then a non-terminal run without `--yes` fails with
+`CONFIRMATION_REQUIRED` before any request, so show the `--dry-run` plan and
+re-run with `--yes` only after the user approves. Use `--dry-run` to show the
+user what will be created or cancelled before running it for real.
 
 ### Update
 

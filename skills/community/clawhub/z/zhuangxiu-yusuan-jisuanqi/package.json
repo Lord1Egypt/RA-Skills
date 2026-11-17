@@ -1,0 +1,11 @@
+{
+  "name": "zhuangxiu-yusuan-jisuanqi",
+  "version": "1.1.0",
+  "description": "装修预算计算器：输入建筑面积/户型/新房旧房/半包全包，基于西安真实工程预算参考价估算装修总预算区间。",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": ["装修", "预算", "装修报价", "半包全包", "装修避坑"],
+  "license": "MIT"
+}

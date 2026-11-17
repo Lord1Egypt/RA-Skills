@@ -1,41 +1,59 @@
-## Description: <br>
-Generates and edits images from text prompts or input images using the APIYI-hosted Gemini/NanoBanana2 image endpoint with configurable aspect ratio and resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates or edits images from text prompts or source images through APIYI's NanoBanana2 proxy service, with selectable aspect ratios and 1K, 2K, or 4K resolution.
 
-## Publisher: <br>
-[wuchubuzai2018](https://clawhub.ai/user/wuchubuzai2018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuchubuzai2018](https://clawhub.ai/user/wuchubuzai2018)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent create new images or edit supplied images for social media, ecommerce, marketing, presentations, personal creative work, and image retouching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, selected input images, and the APIYI bearer token are sent to the APIYI-hosted Gemini image endpoint. <br>
-Mitigation: Use the APIYI_API_KEY environment variable where possible, avoid sensitive personal or confidential prompts and images, and confirm the provider/model data-handling terms before use. <br>
-Risk: Passing the API key on the command line can expose it through shell history or process inspection. <br>
-Mitigation: Prefer APIYI_API_KEY over --api-key and rotate credentials if a key may have been exposed. <br>
+## Use Case:
 
+Developers and creators use this skill to generate new images or edit existing images from natural-language prompts, including social media assets, marketing visuals, wallpapers, posters, and image restoration or style-transfer tasks.
 
-## Reference(s): <br>
-- [Common usage scenarios](references/scene.md) <br>
-- [APIYI service](https://api.apiyi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APIYI_API_KEY or --api-key; supports text-to-image and image-to-image requests, up to 14 input images, 14 aspect ratios, and 1K/2K/4K resolution options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Prompts and selected source images are sent to APIYI's remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential prompt text and sensitive images unless that remote processing is acceptable for the use case.
+
+Risk: API keys may be exposed if passed directly on the command line.
+
+Mitigation: Use the APIYI_API_KEY environment variable instead of command-line key arguments when possible.
+
+Risk: Generated output paths are local file writes controlled by command arguments.
+
+Mitigation: Review output filenames and directories before execution to avoid overwriting or writing files in unintended locations.
+
+## Reference(s):
+
+- [Common use scenarios](references/scene.md)
+- [APIYI service](https://api.apiyi.com/)
+- [ClawHub skill page](https://clawhub.ai/wuchubuzai2018/skills/nano-banana-2-image-gen)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APIYI_API_KEY; generated or edited images are written to local output paths chosen by the command arguments.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

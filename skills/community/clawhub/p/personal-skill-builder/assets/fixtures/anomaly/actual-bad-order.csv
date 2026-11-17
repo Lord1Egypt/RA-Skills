@@ -1,0 +1,7 @@
+id,group,quantity,day,note
+A02,before,未知,2030-01-12,数量无效，原因：数量越界
+A08,before,5,2030-01-08,
+A07,before,5,2030-01-09,
+A01,before,2,2030-01-05,
+A09,on-or-after,1,2030-01-20,
+A10,unknown,3,未知,日期无效

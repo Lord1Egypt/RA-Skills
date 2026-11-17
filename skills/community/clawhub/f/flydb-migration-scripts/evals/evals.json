@@ -1,0 +1,84 @@
+{
+  "skill_name": "flydb-migration-scripts",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我们项目 db/migration 下已经有 V1__init.sql 到 V3__add_orders.sql，现在要给 orders 表加一列 remark，帮我写下迁移脚本。",
+      "expected_output": "新建 V4__orders_add_remark.sql（跟随既有递增整数风格），不改 V1-V3；SQL 内容为对应方言的 ALTER TABLE 加列；交付前建议 validate 与 --dry-run migrate 核对。",
+      "files": [],
+      "assertions": [
+        "新建了 V4 前缀的新脚本而不是修改既有 V3 脚本",
+        "命名符合 V<版本>__<描述>.sql 且描述用小写下划线",
+        "交付前建议了 validate 或 --dry-run migrate 校验",
+        "没有直接执行写入数据库的 migrate 命令"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "V2__create_user.sql 已经在生产库执行过了，但里面少建了一个索引，我直接把这个文件改了补上索引行不行？",
+      "expected_output": "明确拒绝直接修改已应用的 V2 脚本：会触发 FLYDB-2003 checksum 不一致，影响所有已执行环境；正确做法是新增 V4（或下一个版本）脚本补建索引。若用户坚持修改，说明后果（需 repair 对齐）并要求明确确认。",
+      "files": [],
+      "assertions": [
+        "明确指出不能修改已应用的版本化脚本及原因（checksum/FLYDB-2003）",
+        "给出用新版本脚本承载变更的替代方案",
+        "没有直接动手修改 V2 文件"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "跑迁移报 [FLYDB-2005] 旧式 R 前缀命名，目录里有 R1__sync_view.sql 和 R2__refresh_summary.sql，怎么改？",
+      "expected_output": "解释 0.2 起 R 不带版本号且无兼容开关；R1/R2 若是可重复脚本改名为 R__sync_view.sql、R__refresh_summary.sql（若语义是回退脚本则改 U<版本>__）；注意两个 R 改名后描述不同不冲突；建议 validate 复核。",
+      "files": [],
+      "assertions": [
+        "给出正确的改名方案（可重复脚本用 R__，回退脚本用 U<版本>__）",
+        "说明 FLYDB-2005 没有兼容开关，必须改名",
+        "改名后建议了 validate 或 dry-run 复核"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "我们有几百个按日期的迁移脚本散在 db/migration 根目录，想按 20230531 这样的日期目录重新组织，每天一个目录，怎么弄？",
+      "expected_output": "给出目录版本重组方案：按日期目录归置脚本（20230531/V20230531.1__x.sql 等）；配置 version-source=directory、migration-order=directory-version；说明文件版本必须属于目录版本族否则 FLYDB-2001；关键风险提示：已应用脚本的相对路径变化影响历史对账，重组前先确认并列过渡或与用户确认影响；建议重组后 info/validate 核对无 MISSING。",
+      "files": [],
+      "assertions": [
+        "给出了目录版本模式的目录结构与配套配置（version-source=directory、migration-order=directory-version）",
+        "提到文件版本必须属于目录版本族的约束",
+        "提示了已应用脚本相对路径变化/MISSING 风险并建议先确认影响",
+        "建议重组后用 validate 或 info 核对"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "validate 报 [FLYDB-2009] 未定义占位符，说 V5__report.sql 里的 ${workDate} 没定义。这个 ${workDate} 是我们报表系统运行时才填充的模板变量，不是迁移参数。",
+      "expected_output": "识别这是业务运行时模板被误识别为迁移占位符；正确建议是 placeholder-replacement=false 让 ${workDate} 原样入库，而不是为它配一个假的占位符值；说明该开关同时作用于真实迁移和 dry-run，且会使其他占位符配置在该次执行失效。",
+      "files": [],
+      "assertions": [
+        "区分了迁移占位符与业务运行时模板两种情况",
+        "建议 placeholder-replacement=false 而不是为 workDate 赋值",
+        "提到该开关对 dry-run 同样生效或使其他占位符失效的影响"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "文件有 V20260625__a.sql、V20260625.3__b.sql、R__view.sql。想范围执行到 20260625 并包含当天子版本，怎么配置？",
+      "expected_output": "用 family-range 包含结束版本族；普通 range 不含 .3，显式版本选择排除 R，核对 dry-run 的预期集合。",
+      "files": [],
+      "assertions": [
+        "区分 range 与 family-range",
+        "提到 R 不在显式版本选择内",
+        "不使用全部 SQL 文件数作为计划数"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "V8 混合 DDL 和 INSERT 在生产失败，记录 success=false，能直接改文件然后 repair 重跑吗？",
+      "expected_output": "先保存失败快照并核验已落库对象与事务结果，未成功不代表整体回滚。形成修正方案后由用户授权历史修复与执行。",
+      "files": [],
+      "assertions": [
+        "不把 success=false 当作未提交证明",
+        "repair 不撤销已执行 SQL",
+        "先核验现场再修正"
+      ]
+    }
+  ]
+}

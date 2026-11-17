@@ -1,42 +1,54 @@
-## Description: <br>
-Create and manage OpenClaw scheduled tasks for reminders, periodic notifications, and automated workflows using OpenClaw Cron API or system crontab. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage OpenClaw scheduled tasks for reminders, periodic notifications, and automated workflows using the OpenClaw Cron API or system crontab.
 
-## Publisher: <br>
-[chowlee-cc](https://clawhub.ai/user/chowlee-cc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chowlee-cc](https://clawhub.ai/user/chowlee-cc)
 
-## Use Case: <br>
-Developers and operators use this skill to create, manage, test, and troubleshoot scheduled OpenClaw agent tasks, reminders, Feishu notifications, and shell-script cron workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Misconfigured scheduled tasks can send recurring messages to unintended Feishu recipients. <br>
-Mitigation: Verify the schedule, account, recipient ID, and message content, then test with a safe target before enabling recurring delivery. <br>
-Risk: Old scheduled jobs can continue running after they are no longer needed. <br>
-Mitigation: Periodically list, disable, or remove OpenClaw Cron and system crontab jobs that are no longer required. <br>
+## Use Case:
 
+Developers and operators use this skill to create, validate, and troubleshoot one-time reminders, recurring OpenClaw agent tasks, Feishu delivery jobs, and system crontab workflows.
 
-## Reference(s): <br>
-- [Scheduled Tasks Skill Page](https://clawhub.ai/chowlee-cc/scheduled-tasks) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes OpenClaw Cron commands, crontab entries, troubleshooting checks, and shell script templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.7 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Scheduled jobs can persist or run repeatedly at unintended times if cron expressions, time zones, or job IDs are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each cron expression, time zone, job ID, and enablement state before use; validate new jobs with OpenClaw cron list, manual run, and run-history checks.
+
+Risk: Feishu delivery examples can send messages to unintended recipients or include sensitive content.
+
+Mitigation: Review recipient IDs, reply accounts, channels, and message bodies before running examples, and avoid sending sensitive content unless that is intended.
+
+## Reference(s):
+
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [Troubleshooting Guide](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and shell scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce crontab entries, OpenClaw cron commands, troubleshooting checklists, and small shell scripts.]
+
+## Skill Version(s):
+
+2.1.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

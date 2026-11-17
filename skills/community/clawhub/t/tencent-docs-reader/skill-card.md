@@ -1,41 +1,57 @@
-## Description: <br>
-Reads Tencent Docs spreadsheets through browser automation and returns selected sheet content as tab-separated text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads publicly shared Tencent Docs spreadsheets through agent-browser copy and paste and returns tab-separated text.
 
-## Publisher: <br>
-[cm-wenge](https://clawhub.ai/user/cm-wenge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cm-wenge](https://clawhub.ai/user/cm-wenge)
 
-## Use Case: <br>
-Developers and agents use this skill to read accessible Tencent Docs spreadsheet tabs for data extraction, weekly report checks, summaries, and monitoring workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation copies Tencent Docs spreadsheet content through the clipboard, which can expose sensitive sheet data if used on documents the user is not authorized to read. <br>
-Mitigation: Use the skill only on spreadsheets the user is authorized to access, and run it only where clipboard-based browser automation is approved. <br>
-Risk: The packaged weekly-report helper can send personnel status names to an external webhook when that workflow is intentionally configured. <br>
-Mitigation: Avoid running scripts/check_weekly_report.py or setting WECOM_WEBHOOK_URL unless that reporting workflow and destination are approved. <br>
+## Use Case:
 
+Developers and agents use this skill to read public Tencent Docs spreadsheet data, select a tab when needed, and return the content as tab-separated text for follow-on analysis or automation.
 
-## Reference(s): <br>
-- [Tencent Docs Reader ClawHub page](https://clawhub.ai/cm-wenge/tencent-docs-reader) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands] <br>
-**Output Format:** [Tab-separated plain text, optionally saved to a file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Tencent Docs spreadsheet the user is authorized to read and a running agent-browser daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: Browser automation can read document contents from the target Tencent Docs page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted document URLs, validate URLs manually, and avoid sensitive documents unless the browser environment is controlled.
+
+Risk: The package includes a weekly-report workflow that can send employee names to a configured webhook.
+
+Mitigation: Review or remove check_weekly_report.py before use and do not set WECOM_WEBHOOK_URL unless that notification behavior is intended.
+
+Risk: The reader depends on Tencent Docs UI behavior and agent-browser copy-paste automation.
+
+Mitigation: Test against representative spreadsheets before relying on the output, especially after Tencent Docs interface changes or for large sheets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cm-wenge/skills/tencent-docs-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, guidance]
+
+**Output Format:** [Plain text with tab-separated rows; optionally saved to a text file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.x and agent-browser; output depends on the visible spreadsheet content and selected tab.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,8 +1,8 @@
 ---
 name: "今日头条"
-version: "1.0.0"
-description: "今日头条创作助手，精通头条号运营、内容创作、热点追踪、数据分析"
-tags: ["news", "content", "creation", "toutiao"]
+version: "1.1.0"
+description: "今日头条创作与运营方法论。Use for: (1) 按四大标题公式产出并自查头条标题, (2) 用三种高完读率结构写文章/微头条, (3) 按推荐算法逻辑（冷启动/标签匹配/互动权重）诊断展现量与点击率数据, (4) 账号定位与发布时间规划。Toutiao content methodology: headline formulas, retention-optimized structures, recommendation-algorithm-informed diagnostics."
+tags: ["toutiao", "content", "writing", "algorithm", "operation"]
 author: "ClawSkills Team"
 category: "news"
 ---
@@ -285,6 +285,15 @@ category: "news"
 5. **账号规划**："我想做 [领域] 的头条号，帮我规划定位和内容方向"
 6. **追热点**："[热点事件] 怎么写头条文章，给我几个角度"
 
+## 工作边界
+
+- 标题公式是提高点击率的手段，不是标题党许可——夸张失实的标题会被
+  平台"标题党"识别降权，得不偿失
+- 平台算法权重与收益政策随时调整，具体数值（千次阅读单价等）以
+  头条号后台实时数据为准，本文只保证方法论层面的有效性
+- 数据诊断需要用户提供真实后台数据（展现/点击率/完读率），
+  凭空猜测数据没有意义
+
 ---
 
-*最后更新: 2026-03-16*
+*最后更新: 2026-07-11*

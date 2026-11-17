@@ -1,38 +1,48 @@
-## Description: <br>
-Close sales deals consistently as a solopreneur with guidance for decision-stage prospects, stalled deals, closing scripts, contract-to-payment handoff, and post-close relationship setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Close sales deals consistently as a solopreneur by using decision-stage guidance, closing scripts, stall recovery tactics, contract-to-payment handoff steps, and post-close relationship setup.
 
-## Publisher: <br>
-[JK-0001](https://clawhub.ai/user/JK-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-0001](https://clawhub.ai/user/jk-0001)
 
-## Use Case: <br>
-External solopreneurs and sales-focused operators use this skill to move qualified prospects from proposal or decision stage to signed agreement, recover stalled opportunities, and set up the client relationship after the close. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sales scripts could be misused in conversations outside a legitimate buying process. <br>
-Mitigation: Use the skill only with prospects who are actually evaluating a purchase and adapt the language to the real business context. <br>
-Risk: Urgency, results, contract terms, invoices, or payment details could become misleading if copied without review. <br>
-Mitigation: Keep urgency and outcome claims truthful, and review contracts, invoices, and payment terms before sending them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and solopreneurs use this skill when a prospect is at the decision stage and they need practical guidance for closing, recovering stalled deals, moving from contract to payment, and starting the client relationship well.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown-style sales playbook with scripts, checklists, and step-by-step guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, external tools, credentials, or persistent access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives business advice involving contracts, invoices, pricing claims, and urgency, which may not fit every user's legal obligations, ethics, market, or sales context.
+
+Mitigation: Review and adapt the scripts before use, especially statements about availability, ROI, payment terms, deadlines, and contract or invoice handling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jk-0001/skills/closing-deals)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with scripts, checklists, and step-by-step sales playbook sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, tool calls, persistence, hidden data access, or security-relevant runtime behavior.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

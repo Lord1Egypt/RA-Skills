@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    泳道图模板
+    横向泳道分区 + 流程节点跨泳道连线
+    占位符说明：
+      {{BG_COLOR}} {{TEXT_COLOR}} {{TITLE_COLOR}} {{SUBTITLE_COLOR}}
+      {{ACCENT_COLOR}} {{ACCENT2_COLOR}} {{ACCENT3_COLOR}} {{BORDER_COLOR}}
+      {{NODE_FILL}} {{NODE_STROKE}} {{ARROW_COLOR}} {{FONT_FAMILY}}
+
+    语义形状：开始/结束=圆角矩形(rx=20)，步骤=矩形，决策=菱形
+    LLM 生成时参考此结构，自由增减泳道和流程节点。
+  -->
+
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ARROW_COLOR}}"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="450" y="35" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="20" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- ====== 泳道外框 ====== -->
+  <rect x="20" y="50" width="860" height="390" rx="8"
+        fill="none" stroke="{{BORDER_COLOR}}" stroke-width="1.5"/>
+
+  <!-- ====== 泳道 1（顶部） ====== -->
+  <rect x="20" y="50" width="860" height="120" rx="8"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.04"/>
+  <rect x="20" y="160" width="860" height="10"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.04"/>
+  <!-- 泳道标签 -->
+  <rect x="20" y="50" width="80" height="120"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.12" rx="8"/>
+  <rect x="80" y="50" width="20" height="120"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.12"/>
+  <text x="60" y="115" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{ACCENT_COLOR}}"
+        transform="rotate(-90,60,115)">{{LANE_1}}</text>
+
+  <!-- 泳道分隔线 -->
+  <line x1="20" y1="170" x2="880" y2="170" stroke="{{BORDER_COLOR}}" stroke-width="1.5"/>
+
+  <!-- ====== 泳道 2（中间） ====== -->
+  <rect x="20" y="170" width="80" height="130"
+        fill="{{ACCENT2_COLOR}}" fill-opacity="0.12"/>
+  <text x="60" y="240" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{ACCENT2_COLOR}}"
+        transform="rotate(-90,60,240)">{{LANE_2}}</text>
+
+  <!-- 泳道分隔线 -->
+  <line x1="20" y1="300" x2="880" y2="300" stroke="{{BORDER_COLOR}}" stroke-width="1.5"/>
+
+  <!-- ====== 泳道 3（底部） ====== -->
+  <rect x="20" y="300" width="80" height="140"
+        fill="{{ACCENT3_COLOR}}" fill-opacity="0.12" rx="0"/>
+  <text x="60" y="375" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{ACCENT3_COLOR}}"
+        transform="rotate(-90,60,375)">{{LANE_3}}</text>
+
+  <!-- ====== 流程节点 ====== -->
+
+  <!-- 开始（泳道1，圆角矩形） -->
+  <rect x="120" y="90" width="100" height="36" rx="18"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.2" stroke="{{ACCENT_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="170" y="113" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{START}}</text>
+
+  <!-- Step 1（泳道1） -->
+  <rect x="270" y="85" width="130" height="46" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="335" y="107" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{STEP_1}}</text>
+  <text x="335" y="122" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{STEP_1_DESC}}</text>
+
+  <!-- Start → Step 1 -->
+  <line x1="220" y1="108" x2="268" y2="108" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 2（泳道2 — 跨泳道） -->
+  <rect x="270" y="205" width="130" height="46" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT2_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="335" y="227" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{STEP_2}}</text>
+  <text x="335" y="242" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{STEP_2_DESC}}</text>
+
+  <!-- Step 1 → Step 2（跨泳道垂直） -->
+  <line x1="335" y1="131" x2="335" y2="203" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 决策（泳道2，菱形） -->
+  <polygon points="500,228 545,200 590,228 545,256"
+           fill="{{ACCENT2_COLOR}}" fill-opacity="0.15" stroke="{{ACCENT2_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="545" y="232" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{TEXT_COLOR}}">{{DECISION}}</text>
+
+  <!-- Step 2 → Decision -->
+  <line x1="400" y1="228" x2="498" y2="228" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Decision YES → Step 3（泳道3，跨泳道） -->
+  <rect x="480" y="335" width="130" height="46" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT3_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="545" y="357" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{STEP_3}}</text>
+  <text x="545" y="372" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{STEP_3_DESC}}</text>
+
+  <line x1="545" y1="256" x2="545" y2="333" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="555" y="293" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{ACCENT_COLOR}}">{{YES_LABEL}}</text>
+
+  <!-- Decision NO → Step 4（泳道1，回到上方） -->
+  <rect x="650" y="85" width="130" height="46" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="715" y="107" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{STEP_4}}</text>
+  <text x="715" y="122" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{STEP_4_DESC}}</text>
+
+  <line x1="590" y1="220" x2="715" y2="133" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="665" y="170" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{ACCENT3_COLOR}}">{{NO_LABEL}}</text>
+
+  <!-- Step 3 → Step 5（泳道3） -->
+  <rect x="680" y="335" width="130" height="46" rx="6"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT3_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="745" y="357" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="12" font-weight="bold" fill="{{TEXT_COLOR}}">{{STEP_5}}</text>
+  <text x="745" y="372" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="9" fill="{{SUBTITLE_COLOR}}">{{STEP_5_DESC}}</text>
+
+  <line x1="610" y1="358" x2="678" y2="358" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 4 → 合流到 Step 5（从泳道1跨到泳道3） -->
+  <line x1="780" y1="108" x2="820" y2="108" stroke="{{ARROW_COLOR}}" stroke-width="1.5"/>
+  <line x1="820" y1="108" x2="820" y2="358" stroke="{{ARROW_COLOR}}" stroke-width="1.5"/>
+  <line x1="820" y1="358" x2="812" y2="358" stroke="{{ARROW_COLOR}}" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- 结束（泳道3） -->
+  <rect x="695" y="405" width="100" height="30" rx="15"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.2" stroke="{{ACCENT_COLOR}}" stroke-width="2"/>
+  <text x="745" y="424" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="11" font-weight="bold" fill="{{TEXT_COLOR}}">{{END}}</text>
+
+  <line x1="745" y1="381" x2="745" y2="403" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ====== 图例 ====== -->
+  <rect x="20" y="455" width="420" height="35" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="35" y="477" font-family="{{FONT_FAMILY}}"
+        font-size="9" font-weight="bold" fill="{{TITLE_COLOR}}">图例:</text>
+
+  <rect x="65" y="468" width="22" height="12" rx="6"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.2" stroke="{{ACCENT_COLOR}}" stroke-width="1"/>
+  <text x="95" y="478" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">开始/结束</text>
+
+  <rect x="148" y="468" width="22" height="12" rx="3"
+        fill="{{NODE_FILL}}" stroke="{{NODE_STROKE}}" stroke-width="1"/>
+  <text x="178" y="478" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">流程步骤</text>
+
+  <polygon points="233,474 243,468 253,474 243,480"
+           fill="{{ACCENT2_COLOR}}" fill-opacity="0.15" stroke="{{ACCENT2_COLOR}}" stroke-width="1"/>
+  <text x="263" y="478" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">决策判断</text>
+
+  <line x1="310" y1="474" x2="336" y2="474" stroke="{{ARROW_COLOR}}" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="346" y="478" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">流程方向</text>
+
+  <rect x="390" y="468" width="14" height="12"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.12"/>
+  <text x="412" y="478" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">泳道区域</text>
+</svg>

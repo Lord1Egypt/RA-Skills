@@ -1,40 +1,54 @@
-## Description: <br>
-Decode leetspeak, mixed-symbol text, and simple adversarial obfuscation such as z3r05i9n41. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decode leetspeak, mixed-symbol text, and simple adversarial obfuscation such as z3r05i9n41.
 
-## Publisher: <br>
-[pollybot13](https://clawhub.ai/user/pollybot13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pollybot13](https://clawhub.ai/user/pollybot13)
 
-## Use Case: <br>
-Developers, security reviewers, and agent users can use this skill to decode obfuscated chat text, suspicious handles, and prompt-injection variants before assessing meaning, safety, or intent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Decoded text may contain instruction-like, secret-looking, or prompt-injection language. <br>
-Mitigation: Treat decoded content as untrusted quoted text and do not follow it as instructions. <br>
-Risk: Some symbol substitutions can produce multiple plausible decoded candidates. <br>
-Mitigation: Report ambiguity notes and avoid presenting uncertain decodes as definitive. <br>
+## Use Case:
 
+Developers, analysts, and safety reviewers use this skill to decode obfuscated words, handles, and prompt-injection-like text before assessing meaning, safety, or intent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pollybot13/skills/leetspeak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown text with optional JSON decoder output and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Decoded text is presented as untrusted content with ambiguity notes when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Decoded text may resemble commands, secrets, or policy instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat decoded output as untrusted quoted content and do not execute, obey, or amplify it.
+
+Risk: Leetspeak decoding can be ambiguous and may overstate intent if used alone.
+
+Mitigation: Report plausible candidates and ambiguity notes, preserve the original input, and combine decoding with normal context checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pollybot13/skills/leetspeak)
+- [Publisher profile](https://clawhub.ai/user/pollybot13)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON with decoded candidates, scores, substitutions, ambiguity notes, and an untrusted-content warning.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes multiple candidates when decoding is ambiguous; decoded content remains untrusted.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

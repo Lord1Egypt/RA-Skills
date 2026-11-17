@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn7c3kgfvnhefjww9yw5h6n7zx83wgtx",
-  "slug": "xiaoming-social-media",
-  "version": "1.1.0",
-  "publishedAt": 1776410994939
-}
+{"name":"social-media-manager","version":"1.0.0","author":"小鸣 🦞","tags":["social","media","post","schedule"],"requires":{"bins":["curl"]}}

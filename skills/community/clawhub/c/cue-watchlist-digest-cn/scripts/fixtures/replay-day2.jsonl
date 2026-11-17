@@ -1,0 +1,4 @@
+{"code": "999901", "date": "2026-10-09", "kind": "new", "leg": "回购", "name": "示例股份", "title": "关于以集中竞价交易方式回购股份进展的公告", "type": "回购进展", "url": "http://www.cninfo.example/disc/999901-buyback-1009"}
+{"code": "999902", "date": "2026-10-10", "kind": "new", "leg": "激励", "name": "样本集团", "title": "关于限制性股票第二个解锁期解锁上市的公告", "type": "股权激励解锁", "url": "http://www.cninfo.example/disc/999902-unlock-1010"}
+{"code": "999998", "date": "2026-10-10", "kind": "new", "leg": "披露", "title": "关于回购股份事项前十大股东持股情况的公告", "type": "公告", "url": "http://www.cninfo.example/disc/999998-top10"}
+{"code": "999901", "date": "2026-10-12", "kind": "new", "leg": "监管", "name": "示例股份", "title": "关于对示例股份有关责任人予以监管关注的决定", "type": "监管措施", "url": "http://www.sse.example/measure/999901-1012"}

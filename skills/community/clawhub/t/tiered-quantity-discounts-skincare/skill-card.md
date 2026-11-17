@@ -1,40 +1,53 @@
-## Description: <br>
-Designs margin-aware tiered quantity-break discounts for DTC skincare and beauty stores, including tier rules, discount tables, PDP/cart copy, and measurement plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs tiered quantity-break discounts for DTC skincare and beauty stores, including margin-safe tier tables, PDP and cart copy, implementation guidance, and a measurement plan.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-Skincare and beauty merchants and ecommerce teams use this skill to design buy-more-save-more offers that increase basket size while preserving margin. It produces clear tier rules, implementation guidance, customer-facing copy, and a measurement plan for PDP and cart promotions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tier recommendations could erode margin or conflict with promo-stacking rules if applied without merchant-specific data. <br>
-Mitigation: Verify proposed tiers against real gross margins, stacking rules, and ecommerce platform settings before making live pricing changes. <br>
-Risk: The skill may be used for adjacent AOV questions where quantity breaks are not the right promotion mechanic. <br>
-Mitigation: Use it only for relevant quantity or stock-up discount scenarios, and choose another promotion or conversion approach when the scenario does not fit. <br>
+## Use Case:
 
+External DTC skincare and beauty merchants use this skill to plan buy-more-save-more offers that raise AOV while preserving gross margin. It helps define product scope, discount tiers, margin checks, on-site copy, implementation notes, and validation metrics.
 
-## Reference(s): <br>
-- [Margin and Tier Guidelines](references/margin_and_tiers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown with tables and concise copy blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes tier rules, margin checks, PDP/cart copy, and validation metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Discount recommendations can erode gross margin if unit economics, stacking rules, or promotion constraints are incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate suggested tiers against actual gross margin, minimum margin floors, and platform promotion rules before implementing them.
+
+Risk: A general AOV request may not include enough detail to choose product scope or tier depth confidently.
+
+Mitigation: Collect product scope, gross margin, current units per order, platform, stacking constraints, and campaign goals before finalizing the offer.
+
+## Reference(s):
+
+- [Margin and Tier Guidelines](references/margin_and_tiers.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown with tier tables, copy blocks, implementation notes, and measurement plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes margin checks and concrete promotion guardrails when pricing and margin inputs are available.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

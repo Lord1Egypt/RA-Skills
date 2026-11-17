@@ -1,0 +1,11 @@
+{
+  "fotos_folder": "cerebro/fotos",
+  "fotos_folder_alternativa": "cerebro/fotos",
+  "default_motor": "higgsfield",
+  "default_model": "nano_banana_2",
+  "default_resolution": "2k",
+  "default_aspect_ratio": "9:16",
+  "output_folder_definitivo": "entregables/historias",
+  "last_used": "",
+  "notas": "MI ADN VISUAL: 3-5 fotos curadas y tageadas del usuario (default). MIS SELFIES: pool grande sin tags, para variedad. Si ninguna de las dos carpetas existe, PREGUNTA al usuario dónde tiene sus fotos — no inventes una ruta. Output PNG final va a entregables/historias/ para subir directo a IG."
+}

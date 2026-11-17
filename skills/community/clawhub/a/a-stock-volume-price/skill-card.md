@@ -1,40 +1,48 @@
-## Description: <br>
-通过成交量判断价格走势真实性，避免被"诱多"或"诱空"，用于A股技术分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过成交量判断价格走势真实性，避免被"诱多"或"诱空"。用于A股技术分析。
 
-## Publisher: <br>
-[haohanyang92](https://clawhub.ai/user/haohanyang92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[haohanyang92](https://clawhub.ai/user/haohanyang92)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Chinese-speaking external users analyzing A-share market moves use this skill to check whether volume supports a breakout, reversal, or selloff and to flag possible false upside or downside signals.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may mistake volume-price heuristics for personalized investment advice or automated trading authority.
+
+Mitigation: Treat outputs as educational market commentary, verify conclusions independently, and do not place trades solely on this skill's guidance.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users discussing A-share technical analysis use this skill to compare volume changes with price action and evaluate whether moves look effective, weak, or potentially misleading. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Trading conclusions may be mistaken for personalized financial advice. <br>
-Mitigation: Treat the output as general technical-analysis education and verify any trading decision with broader research, risk limits, and qualified guidance. <br>
-Risk: Volume-price rules can produce false signals when used without broader market context. <br>
-Mitigation: Cross-check conclusions against additional market data and avoid relying on the skill as the sole basis for buy, chase, or position-building decisions. <br>
+**Output Format:** [Natural-language Chinese market-analysis guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haohanyang92/a-stock-volume-price) <br>
+**Other Properties Related to Output:** [Educational technical-analysis heuristics; no code execution, installs, data access, or persistence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or plain text market-analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational A-share volume-price analysis; no code, tools, or account access.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

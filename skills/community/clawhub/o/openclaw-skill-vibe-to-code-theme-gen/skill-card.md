@@ -1,39 +1,54 @@
-## Description: <br>
-Generates a color palette and CSS variables based on a descriptive atmosphere. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a color palette and CSS variables based on a descriptive atmosphere.
 
-## Publisher: <br>
-[liverock](https://clawhub.ai/user/liverock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liverock](https://clawhub.ai/user/liverock)
 
-## Use Case: <br>
-Developers and designers use VibeTheme to turn a short atmosphere description into paste-ready theme output for CSS, Tailwind, or VS Code settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The user's vibe prompt is sent to OpenRouter for LLM generation. <br>
-Mitigation: Avoid entering secrets, private client names, proprietary product details, or sensitive business context in the vibe text. <br>
+## Use Case:
 
+Developers and designers use this skill to turn an atmosphere prompt into theme snippets for CSS, Tailwind, or VS Code settings.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liverock/openclaw-skill-vibe-to-code-theme-gen) <br>
-- [OpenRouter Chat Completions API](https://openrouter.ai/api/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Configuration] <br>
-**Output Format:** [CSS, JSON, or JavaScript configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The optional format parameter selects css, tailwind, or vscode output; unrecognized formats fall back to css.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The vibe prompt is sent to OpenRouter, which can expose sensitive branding, client, or unreleased product details if users include them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enter secrets, client names, unreleased product details, or confidential branding prompts.
+
+Risk: Model-generated CSS, Tailwind, or VS Code output may contain incorrect or unsuitable color and font values.
+
+Mitigation: Review generated theme output before using it in a project or editor configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liverock/skills/openclaw-skill-vibe-to-code-theme-gen)
+- [OpenRouter chat completions endpoint](https://openrouter.ai/api/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Configuration]
+
+**Output Format:** [CSS variables, Tailwind configuration JSON, or VS Code settings JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated from a required vibe string and optional css, tailwind, or vscode format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

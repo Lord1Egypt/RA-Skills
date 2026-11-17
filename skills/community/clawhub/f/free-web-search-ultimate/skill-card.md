@@ -1,41 +1,54 @@
-## Description: <br>
-Universal Search-First Knowledge Acquisition Plugin for LLMs that enables real-time web search and deep page browsing via MCP or CLI, with support for text, news, images, books, and videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal Search-First Knowledge Acquisition Plugin for LLMs that enables real-time web search and deep page browsing via MCP or CLI.
 
-## Publisher: <br>
-[wd041216-bit](https://clawhub.ai/user/wd041216-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wd041216-bit](https://clawhub.ai/user/wd041216-bit)
 
-## Use Case: <br>
-Developers and agent builders use this skill to make an LLM agent search the live web, browse source pages, and cite current sources for factual or time-sensitive questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Web search and page browsing can send queries, URLs, and page context to external services. <br>
-Mitigation: Avoid submitting secrets, private URLs, or sensitive internal pages to search or browse commands. <br>
-Risk: The optional MCP setup installs a package from the referenced project homepage. <br>
-Mitigation: Review or pin the referenced package before enabling the MCP setup. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add live web search, page browsing, and source-cited retrieval behavior to LLM agents for current or factual questions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wd041216-bit/free-web-search-ultimate) <br>
-- [Project homepage](https://github.com/wd041216-bit/free-web-search-ultimate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and browse commands may also be requested with JSON output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-11.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill encourages broad external web searches, which can expose sensitive query terms, internal URLs, or private document-derived context to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid enabling it for prompts containing secrets, proprietary information, internal URLs, or private documents unless derived queries and URLs are approved for external use.
+
+Risk: The setup guidance installs an executable MCP server from an unpinned GitHub source.
+
+Mitigation: Use a pinned and reviewed revision, install it in an isolated environment, and review the package before enabling it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wd041216-bit/skills/free-web-search-ultimate)
+- [Homepage](https://github.com/wd041216-bit/free-web-search-ultimate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source URLs, search queries, MCP setup snippets, and browsing guidance.]
+
+## Skill Version(s):
+
+11.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

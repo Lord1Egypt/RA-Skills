@@ -1,40 +1,53 @@
-## Description: <br>
-Choose and architect storage systems for applications with the right tradeoffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Choose and architect storage systems for applications with the right tradeoffs.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose storage patterns for application data, uploads, CDN caching, retention, costs, and backups. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Storage architecture advice can affect production data durability, cost, retention, uploads, and backup choices. <br>
-Mitigation: Review proposed architecture changes before applying them to real systems, especially for user data, compliance retention, and recovery requirements. <br>
-Risk: Upload and storage recommendations may be misapplied without environment-specific validation. <br>
-Mitigation: Validate file handling, lifecycle policies, access controls, and restore procedures against the target cloud provider and application requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/storage) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+Developers and engineers use this skill to choose storage patterns for application data, uploads, caching, backups, retention, cost control, and regional deployment tradeoffs.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, automation, credential access, or persistence behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Storage architecture recommendations may not match a user's cloud provider, compliance obligations, cost model, or production constraints.
+
+Mitigation: Review recommendations against current provider documentation, compliance requirements, projected usage, and operational constraints before implementation.
+
+Risk: Upload, retention, backup, and regional storage choices can create security, legal, or data-loss exposure if applied without environment-specific review.
+
+Mitigation: Validate file handling, lifecycle policies, backup restoration, and data locality decisions with security, legal, and operations stakeholders before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/storage)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference guidance only; no commands, data access, or file changes are requested by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -556,7 +556,7 @@ class PrivacyManager:
             if not classification.should_store:
                 continue
 
-            if self._config.default_storage_policy == StoragePolicy.ANONYMOUS:
+            if self._config.default_storage_policy == StoragePolicy.ANONYMIZED:
                 if classification.anonymized_value:
                     result[field_name] = classification.anonymized_value
                 else:
@@ -758,7 +758,7 @@ PRIVACY_NOTICE_TEMPLATE: str = """
 privacy_manager.get_config()
 
 # 设置存储策略（不存储/匿名化存储）
-privacy_manager.set_storage_policy(StoragePolicy.ANONYMOUS)
+privacy_manager.set_storage_policy(StoragePolicy.ANONYMIZED)
 
 # 禁止特定类型记忆存储
 privacy_manager.set_blocked_categories(["emotional", "narrative"])

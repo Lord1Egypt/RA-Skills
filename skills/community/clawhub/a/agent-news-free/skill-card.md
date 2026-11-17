@@ -1,41 +1,54 @@
-## Description: <br>
-A free AI-enriched global news stream for agents, provided by agentnewsapi.com and powered by $ANA on Solana. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A free AI enriched global news stream for agents, provided by agentnewsapi.com. Powered by $ANA on Solana.
 
-## Publisher: <br>
-[agentnewsdev](https://clawhub.ai/user/agentnewsdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentnewsdev](https://clawhub.ai/user/agentnewsdev)
 
-## Use Case: <br>
-External agents and developers use this skill to fetch delayed, structured global news signals for monitoring events, categories, and sentiment. It is suited for workflows that can tolerate free-tier limits and independently verify returned news content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to agentnewsapi.com and returned news data may be incomplete, delayed, or unsuitable as authoritative advice. <br>
-Mitigation: Use non-sensitive queries and corroborate returned stories before relying on them for financial, operational, or news decisions. <br>
-Risk: Free-tier access is delayed and rate-limited, which can affect time-sensitive agent workflows. <br>
-Mitigation: Design workflows to tolerate the 20-minute delay, 1 request per minute rate limit, and 100-story maximum. <br>
+## Use Case:
 
+External users and agent developers use this skill to fetch free, delayed Agent News API signals for monitoring global news, market-moving events, sentiment, entities, and categories.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/agentnewsdev/agent-news-free) <br>
-- [Agent News API homepage](https://agentnewsapi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON emitted by a Node.js CLI, with usage guidance in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Free-tier responses are delayed by 20 minutes, rate-limited to 1 request per minute, and capped at 100 stories per request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter and package.json report 1.2.0) <br>
+Risk: Query terms and limit values are sent to agentnewsapi.com when the skill fetches news.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive or confidential query terms and review network use before deployment.
+
+Risk: The skill returns third-party news data that may be delayed, incomplete, or unsuitable for automated decisions without review.
+
+Mitigation: Treat returned signals as informational input and apply downstream validation or human review for high-impact use cases.
+
+## Reference(s):
+
+- [Agent News API homepage](https://agentnewsapi.com)
+- [ClawHub skill page](https://clawhub.ai/agentnewsdev/skills/agent-news-free)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Free tier returns delayed news signals, is limited to 1 request per minute, and accepts limit and optional query parameters.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

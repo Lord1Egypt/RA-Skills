@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn76kcpexvdkcfr9jpnfpgqrs5847tw5",
-  "slug": "xianyu-auto-lister",
+  "name": "xianyu-auto-lister",
   "version": "1.0.0",
-  "publishedAt": 1775323776032
+  "description": "闲鱼自动上架助手",
+  "author": "全能虾大王",
+  "license": "MIT"
 }

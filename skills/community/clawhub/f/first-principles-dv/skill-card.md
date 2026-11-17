@@ -1,39 +1,53 @@
-## Description: <br>
-Helps an agent decompose assumptions, stress-test them, identify ground truths, and rebuild a topic or decision from first principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a structured first-principles analysis framework for decomposing assumptions, stress-testing them, identifying ground truths, and rebuilding conclusions from those foundations.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-External users, developers, and teams use this skill to structure analysis of decisions, strategies, assumptions, and topics where conventional wisdom should be challenged. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may cause the skill to shape ordinary analysis requests more often than intended. <br>
-Mitigation: Invoke it explicitly for first-principles work, or disable it when a lighter analysis format is preferred. <br>
-Risk: The skill can produce confident strategic, investment, product, or career analysis that may still depend on incomplete or unverified assumptions. <br>
-Mitigation: Treat outputs as decision support, verify important facts independently, and review assumptions before acting on high-impact recommendations. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for rigorous first-principles analysis of topics, decisions, strategies, assumptions, investment theses, product strategy, or career moves. The skill is intended to produce a phase-based analysis that separates inherited thinking from supported ground truths.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis with phase headers, numbered assumptions, and classification markers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only; no file, network, account, or system access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Broad trigger wording may cause the agent to apply the full first-principles framework to general requests for breakdowns or analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill explicitly when that structure is desired, and disable or avoid it when a lighter response is needed.
+
+Risk: Analysis may become misleading if assumptions, source audits, or reconstructed conclusions are not grounded in evidence available to the agent.
+
+Mitigation: Review important conclusions before relying on them, especially for strategic, financial, career, or product decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawdiri-ai/skills/first-principles-dv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured phase headers, numbered assumptions, classification markers, and decision guidance when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a fixed five-phase analysis structure; no tool use or code execution is requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-系统分析国家战略、技术趋势、资本流向和区域资源，识别未来3-5年最具潜力的产业方向及招商布局建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+围绕新兴产业发现、未来产业布局、产业趋势研判、赛道价值评估及区域产业机会识别等需求，系统分析国家战略导向、技术创新趋势、资本流向变化、产业发展周期及区域承载能力，识别未来3-5年具有成长潜力和招商价值的产业方向。
 
-## Publisher: <br>
-[daviddatamining](https://clawhub.ai/user/daviddatamining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daviddatamining](https://clawhub.ai/user/daviddatamining)
 
-## Use Case: <br>
-产业研究人员、园区招商团队、产业规划人员和投资决策支持团队可用此技能识别新兴产业机会、评估赛道价值、判断区域适配性，并形成面向招商和产业布局的中文洞察报告。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Industry and investment recommendations may be affected by forecast uncertainty or incomplete public data. <br>
-Mitigation: Treat outputs as decision support, verify cited sources, and review conclusions before planning, investment, or招商 decisions. <br>
-Risk: Web-based policy, market, and financing evidence may become stale or conflict across sources. <br>
-Mitigation: Require current authoritative sources in the generated report and validate key figures against official policy documents, industry reports, filings, or trusted financial data. <br>
+## Use Case:
 
+Industry researchers, planners, investment attraction teams, and strategy consultants use this skill to produce Chinese-language industry opportunity reports for emerging-industry screening, regional fit analysis, sector prioritization, and招商 planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daviddatamining/industry-opportunity-identifier) <br>
-- [Publisher profile](https://clawhub.ai/user/daviddatamining) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese Markdown industry opportunity report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses optional user parameters for target region, industry scope, time horizon, and focus count; relies on web-based public source research.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Web-backed industry research can rely on stale, incomplete, or weakly sourced public information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require source citations in generated reports and verify important claims against authoritative policy, market, financing, and company sources before use.
+
+Risk: The skill produces advisory business judgments that may be mistaken if treated as definitive investment or policy direction.
+
+Mitigation: Use outputs as decision support and have qualified reviewers validate assumptions, regional constraints, and recommendations before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daviddatamining/skills/industry-opportunity-identifier)
+- [Publisher profile](https://clawhub.ai/user/daviddatamining)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown industry insight report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report content is tailored by target region, industry scope, time horizon, and focus count when provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

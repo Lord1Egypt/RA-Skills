@@ -1,45 +1,58 @@
-## Description: <br>
-爬取小红书笔记和评论内容，支持关键词搜索和基础舆情分析，通常需要本地登录小红书账号运行。 <br>
+## Description:
 
-This skill is for research and development only. <br>
+Helps agents guide local Xiaohongshu note and comment collection, keyword search, and basic public-opinion analysis that requires a logged-in account or a paid API option.
 
-## Publisher: <br>
-[featherjiaxin-oss](https://clawhub.ai/user/featherjiaxin-oss) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[featherjiaxin-oss](https://clawhub.ai/user/featherjiaxin-oss)
 
-## Use Case: <br>
-Developers and analysts use this skill to collect Xiaohongshu notes and comments for keyword-based public-opinion review and simple engagement-based sentiment summaries. It is intended for controlled research and development workflows that can manage account, platform-rule, and data-retention obligations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crawler use may violate Xiaohongshu rules, applicable privacy law, or account expectations if run aggressively or without authorization. <br>
-Mitigation: Use a dedicated account, keep crawl rates low, follow platform terms and local law, and stop collection when access limits or login challenges appear. <br>
-Risk: Exports may contain personal or sensitive user-generated content from notes, comments, images, or videos. <br>
-Mitigation: Minimize collected fields, secure local Excel/SQLite/media outputs, restrict sharing, and delete datasets when no longer needed. <br>
-Risk: Referenced external crawler repositories or APIs may change behavior after release. <br>
-Mitigation: Inspect external code before running it, pin dependencies or commits where possible, and run in a virtual environment. <br>
+## Use Case:
 
+Developers, analysts, and operators use this skill to understand how to run Xiaohongshu crawling workflows for keyword search, comment collection, exported datasets, and lightweight engagement-based sentiment summaries. Users should review platform permissions and run the workflow only in an isolated local environment with an appropriate account or approved API provider.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/featherjiaxin-oss/xhs-crawler) <br>
-- [redbooks referenced project](https://github.com/xiaofuqing13/redbooks) <br>
-- [jiang-xiaohongshu-crawler referenced project](https://github.com/upJiang/jiang-xiaohongshu-crawler) <br>
-- [TikHub API Python SDK referenced project](https://github.com/TikHub/TikHub-API-Python-SDK) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce local crawler setup steps and exports such as Excel, SQLite, images, videos, and text summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may require account sessions and unreviewed third-party crawler code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, a separate browser profile, and a dedicated low-privilege Xiaohongshu account where allowed; review and pin exact code and dependencies before execution.
+
+Risk: Collected comments, IP region, author details, databases, and media can contain sensitive or personal data.
+
+Mitigation: Restrict access to exported files, avoid shared token or session storage, and delete collected data when it is no longer needed.
+
+Risk: Scraping Xiaohongshu may violate platform rules or create account enforcement risk if run too aggressively or without permission.
+
+Mitigation: Confirm allowed use before crawling, keep request rates conservative, and prefer approved API access where available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/featherjiaxin-oss/skills/xhs-crawler)
+- [ClawHub publisher profile](https://clawhub.ai/user/featherjiaxin-oss)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell command snippets and Python code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When a crawler is run locally, downstream artifacts may include Excel files, SQLite databases, and downloaded images or videos.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

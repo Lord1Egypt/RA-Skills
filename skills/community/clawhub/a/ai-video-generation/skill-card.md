@@ -1,45 +1,57 @@
-## Description: <br>
-Generates AI videos from prompts, images, audio, and media URLs using inference.sh CLI access to Google Veo, Seedance, Wan, Grok, OmniHuman, Fabric, HunyuanVideo, and related video models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI videos with Google Veo, Seedance, Wan, Grok, and 40+ other models through the inference.sh CLI.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-Developers, creators, and marketing teams use this skill to generate or transform video content for social media, marketing, explainers, product demos, avatars, lipsync, upscaling, foley sound, and media assembly workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The quick start uses a remote CLI installer. <br>
-Mitigation: Install only when inference.sh is trusted, and prefer the documented manual checksum-verification path when possible. <br>
-Risk: Prompts, private images, internal URLs, audio, or video may be processed by inference.sh and its model providers. <br>
-Mitigation: Avoid submitting confidential media or sensitive prompts unless the account, provider processing, and data handling terms are acceptable for the use case. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Ai Video Generation Skill on ClawHub](https://clawhub.ai/okaris/ai-video-generation) <br>
-- [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI Installer](https://cli.inference.sh) <br>
-- [inference.sh CLI Checksums](https://dist.inference.sh/cli/checksums.txt) <br>
-- [Running Apps](https://inference.sh/docs/apps/running) <br>
-- [Streaming Results](https://inference.sh/docs/api/sdk/streaming) <br>
-- [Content Pipeline Example](https://inference.sh/docs/examples/content-pipeline) <br>
+## Use Case:
 
+Developers, creators, and marketing teams use this skill to generate video content, animate source images, create avatar or lipsync clips, upscale videos, add foley sound, and assemble media workflows through inference.sh commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI inputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve prompts, image URLs, audio URLs, video URLs, and model-specific options passed to inference.sh apps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill documentation includes a remote pipe-to-shell installer and unpinned package commands that could execute code that was not reviewed with this release.
+
+Mitigation: Use a pinned, inspectable CLI installation path with published checksums or signatures, avoid privileged shells for installation, and review optional related-skill installs separately.
+
+Risk: Prompts, media, private URLs, and account credentials may be processed by inference.sh or model providers when commands are run.
+
+Mitigation: Do not submit sensitive prompts, media, private URLs, credentials, or regulated data unless the user accepts the relevant provider processing terms.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/okaris/skills/ai-video-generation)
+- [inference.sh](https://inference.sh)
+- [Running Apps](https://inference.sh/docs/apps/running)
+- [Streaming Results](https://inference.sh/docs/api/sdk/streaming)
+- [Content Pipeline Example](https://inference.sh/docs/examples/content-pipeline)
+- [CLI Checksums](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may submit prompts, images, audio, video, and URLs to inference.sh-hosted apps or third-party model providers.]
+
+## Skill Version(s):
+
+0.1.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

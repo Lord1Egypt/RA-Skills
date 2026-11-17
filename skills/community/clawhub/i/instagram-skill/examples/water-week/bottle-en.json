@@ -1,0 +1,58 @@
+{
+ "theme": {
+  "preset": "editorial",
+  "mode": "dark",
+  "headline_font": "sans",
+  "accent": "#4FD1E8",
+  "name": "Earth in Numbers",
+  "handle": "@earthinnumbers"
+ },
+ "slides": [
+  {
+   "type": "cover",
+   "title": "All of Earth's water in a *1-liter* bottle",
+   "kicker": "How much of it would be river?",
+   "image": "media/earth.jpg",
+   "alt": "Cover over a NASA photo of Earth: all of Earth's water in a 1-liter bottle. How much of it would be river?"
+  },
+  {
+   "type": "stat",
+   "number": "35 ml",
+   "body": "is all that's left of a 1-liter bottle of Earth's water once you *pour out the oceans*",
+   "source": "USGS Water Science School",
+   "alt": "Put all of Earth's water in a 1-liter bottle and pour out the oceans: 35 ml is left. Source: USGS."
+  },
+  {
+   "type": "list",
+   "title": "Where those 35 ml are",
+   "marker": "number",
+   "items": [
+    "Ice caps and glaciers: 17.4 ml",
+    "Groundwater: 16.9 ml, more than half of it salty",
+    "Ground ice and permafrost: 0.22 ml",
+    "Lakes: 0.13 ml",
+    "Soil, air, swamps, rivers and living things: 0.03 ml"
+   ],
+   "alt": "Where those 35 ml are: ice caps and glaciers 17.4 ml, groundwater 16.9 ml (more than half salty), ground ice and permafrost 0.22 ml, lakes 0.13 ml, soil, air, swamps, rivers and living things 0.03 ml."
+  },
+  {
+   "type": "stat",
+   "number": "25 ml",
+   "body": "of the bottle is fresh water: *17.4 ml* is ice and 7.6 ml is underground",
+   "source": "USGS Water Science School",
+   "alt": "25 ml of the bottle is fresh water: 17.4 ml is ice and 7.6 ml is underground. Source: USGS."
+  },
+  {
+   "type": "stat",
+   "number": "0.002 ml",
+   "body": "for every river on Earth: less than *a tenth of one drop*",
+   "source": "USGS Water Science School",
+   "alt": "0.002 ml for every river on Earth: less than a tenth of one drop. Source: USGS."
+  },
+  {
+   "type": "cta",
+   "title": "Save this for your next quiz night",
+   "alt": "Save this for your next quiz night."
+  }
+ ]
+}

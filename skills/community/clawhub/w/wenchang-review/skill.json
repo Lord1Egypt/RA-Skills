@@ -1,0 +1,22 @@
+{
+  "slug": "wenchang-review",
+  "title": "Wenchang Review",
+  "category": "content",
+  "summary": "Diagnoses drafts and recommends publish, edit, rewrite, platform switch, or stop-investing decisions.",
+  "keywords": [
+    "content review",
+    "draft diagnosis",
+    "editing",
+    "publishing readiness"
+  ],
+  "user_needs": [
+    "diagnose whether a draft is worth publishing",
+    "find minimum fixes before rewriting",
+    "edit a draft without losing its core argument"
+  ],
+  "source_dir": "skills/content/wenchang-review",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

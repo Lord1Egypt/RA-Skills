@@ -1,44 +1,50 @@
-## Description: <br>
-Helps API developers and backend teams generate, improve, and validate OpenAPI or Swagger documentation for REST APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps backend, platform, and API teams generate, improve, and validate OpenAPI or Swagger documentation for REST APIs.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-API developers, backend teams, developer-experience teams, and maintainers use this skill to create practical OpenAPI or Swagger documentation workflows, checklists, examples, and validation notes for REST APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broader API-related requests because its triggers are loose. <br>
-Mitigation: Use it for OpenAPI, Swagger, REST API documentation, and developer-experience documentation tasks, and confirm the request matches that scope before relying on its output. <br>
-Risk: Generated documentation guidance can be incomplete or misleading if the available API behavior, schemas, authentication rules, or examples are incomplete. <br>
-Mitigation: Review generated specs, examples, and commands against the service implementation and run validation or contract checks before publishing. <br>
+## Use Case:
 
+API developers, backend and platform teams, developer-experience teams, and maintainers use this skill to plan, write, improve, or validate REST API documentation with OpenAPI or Swagger. It can produce tailored guidance, workflows, checklists, analysis, or implementation support based on the user's API context.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [Skill README](README.md) <br>
-- [Create the Developer Integration Guide Which Includes the API Reference, OpenAPI Spec & Quickstart](https://github.com/Savitura/Savitools/issues/21) <br>
-- [PR 4 - API Contract Cleanup](https://github.com/DashFin-FarDb/financial-asset-relationship-db/issues/1274) <br>
-- [OpenAPI Interface Specification: Better Performance and Maintainability](https://segmentfault.com/a/1190000043968971) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with checklists, code snippets, shell commands, configuration examples, and validation notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is bundled; outputs should be reviewed before being treated as authoritative API contracts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Broad software and developer-experience trigger terms may activate the skill for requests unrelated to API documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for explicit OpenAPI, Swagger, or REST API documentation tasks, and clarify the requested documentation outcome when the request is ambiguous.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/openapi-docs-generator)
+- [Requirement Plan](references/requirement-plan.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown, Code]
+
+**Output Format:** [Markdown, with code, workflows, or checklists when appropriate]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tailored to the user's API context; may include a reusable workflow, checklist, implementation artifact, and verification steps.]
+
+## Skill Version(s):
+
+0.20261117.40425 (source: server-resolved ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

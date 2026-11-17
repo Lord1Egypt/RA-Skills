@@ -1,46 +1,56 @@
-## Description: <br>
-Use this Lever skill for reading, creating, and updating Lever data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the oo CLI to read Lever postings, opportunities, and notes, and create notes on opportunities.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect Lever connector schemas and operate Lever opportunities, postings, and opportunity notes through the oo CLI. It supports read actions and creating opportunity notes, with confirmation expected before write actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write actions can change Lever opportunity records. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before running actions tagged [write]. <br>
-Risk: A command may fail because the oo CLI is not installed, authentication is missing, the Lever connection is expired or incomplete, or billing blocks execution. <br>
-Mitigation: Use the documented first-time setup steps only after the matching failure occurs, then retry the intended action. <br>
-Risk: Connector inputs may drift from the static action descriptions. <br>
-Mitigation: Fetch the live action schema with `oo connector schema` before constructing a payload. <br>
+## Use Case:
 
+Recruiting teams and agents use this skill to retrieve Lever postings, opportunities, and notes, and to add notes to opportunities through a connected Lever account.
 
-## Reference(s): <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Lever homepage](https://www.lever.co) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-lever) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before execution; write actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: Setup may execute unverified remote code and introduce broader agent changes without clear approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI installation separately, approve a specific verified release, and use OO_SKILLS_SYNC_DISABLED to suppress startup synchronization if desired.
+
+Risk: Creating an opportunity note changes Lever data.
+
+Mitigation: Connect only the intended Lever account and confirm the note-writing payload before execution.
+
+## Reference(s):
+
+- [Lever](https://www.lever.co)
+- [Lever API documentation](https://hire.lever.co/developer/documentation)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON action responses with concise text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Response fields depend on the selected Lever action.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

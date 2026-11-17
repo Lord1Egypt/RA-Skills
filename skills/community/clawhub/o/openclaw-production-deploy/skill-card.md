@@ -1,50 +1,69 @@
-## Description: <br>
-Provides OpenClaw local and production deployment guidance, including service registration, autostart configuration, monitoring, performance tuning, backup, and recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance and scripts for deploying the OpenClaw chat interface locally and in production, including service registration, startup configuration, monitoring, performance tuning, backup, and recovery.
 
-## Publisher: <br>
-[ynxiyan](https://clawhub.ai/user/ynxiyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ynxiyan](https://clawhub.ai/user/ynxiyan)
 
-## Use Case: <br>
-Developers and operators use this skill to plan and execute an OpenClaw production deployment with environment checks, service setup, monitoring, backup, and troubleshooting steps. It is intended for teams that need repeatable local or server deployment instructions rather than an interactive application runtime. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The deployment helper can make persistent privileged system changes such as service registration, autostart configuration, and systemd or launchd setup. <br>
-Mitigation: Review commands before execution, test in an isolated environment first, and run production changes only under normal change-control procedures. <br>
-Risk: The security review notes unsafe, under-scoped deployment behavior and a service entrypoint that should be verified before use. <br>
-Mitigation: Verify and fix the service entrypoint, confirm generated service files, and validate the resulting OpenClaw process before enabling automatic restart. <br>
-Risk: The artifact handles sensitive credentials and exposes services on network interfaces when configured for production access. <br>
-Mitigation: Keep authentication enabled, use a strong token, prefer HTTPS for remote access, and avoid disabling authentication outside isolated tests. <br>
-Risk: The artifact may use unpinned OpenClaw, npm, Git, or registry behavior during installation. <br>
-Mitigation: Use pinned OpenClaw, npm, and Git versions, avoid persistent npm registry changes, and record installed versions for rollback. <br>
+## Use Case:
 
+Developers and operators use this skill to configure an OpenClaw chat interface for local or production use across Windows, Linux, and macOS. It helps set up system services, startup behavior, monitoring, troubleshooting, backup, and recovery workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ynxiyan/openclaw-production-deploy) <br>
-- [OpenClaw deployment guide](https://docs.openclaw.ai/deployment) <br>
-- [OpenClaw production deployment](https://docs.openclaw.ai/deployment/production) <br>
-- [OpenClaw performance guide](https://docs.openclaw.ai/performance) <br>
-- [OpenClaw security guide](https://docs.openclaw.ai/security) <br>
-- [OpenClaw GitHub discussions](https://github.com/openclaw/openclaw/discussions) <br>
-- [Bilibili tutorial referenced by artifact](https://www.bilibili.com/video/BV1VkQBBfEcd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include deployment steps, generated service configuration, monitoring commands, backup guidance, and troubleshooting instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package combines persistent service setup with scripts that the security evidence describes as unsafe or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and repair the package before installing, and replace the systemd installer with a dedicated gateway service that does not rerun the deployment script.
+
+Risk: The deployment guidance can expose the web UI broadly on the network.
+
+Mitigation: Default the web UI to localhost unless TLS and firewall allowlists are configured.
+
+Risk: OpenClaw installation steps may use unpinned versions or default-branch code.
+
+Mitigation: Pin exact OpenClaw versions and avoid running unreviewed latest or default-branch code.
+
+Risk: Production token files may be created or referenced during setup.
+
+Mitigation: Protect token files with restrictive permissions and review token handling before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ynxiyan/skills/openclaw-production-deploy)
+- [Production Setup Guide](artifact/docs/PRODUCTION-SETUP.md)
+- [Bilibili OpenClaw Chat Interface Tutorial](https://www.bilibili.com/video/BV1VkQBBfEcd)
+- [OpenClaw Deployment Guide](https://docs.openclaw.ai/deployment)
+- [OpenClaw Production Deployment](https://docs.openclaw.ai/deployment/production)
+- [OpenClaw Performance Documentation](https://docs.openclaw.ai/performance)
+- [OpenClaw Security Guide](https://docs.openclaw.ai/security)
+- [OpenClaw GitHub Discussions](https://github.com/openclaw/openclaw/discussions)
+- [OpenClaw Issue Tracker](https://github.com/openclaw/openclaw/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, configuration snippets, and JavaScript deployment scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes production deployment guidance, environment checks, service setup commands, monitoring guidance, backup and recovery steps, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version notes)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

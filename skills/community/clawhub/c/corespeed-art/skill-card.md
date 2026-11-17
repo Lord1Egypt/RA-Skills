@@ -1,59 +1,77 @@
-## Description: <br>
-Generate video, images, audio, and music using 40+ AI models via fal.ai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate video, images, audio, and music using 40+ AI models via fal.ai.
 
-## Publisher: <br>
-[jiweiyuan](https://clawhub.ai/user/jiweiyuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiweiyuan](https://clawhub.ai/user/jiweiyuan)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to generate or transform media with fal.ai-hosted image, video, audio, music, upscaling, background-removal, and lip-sync models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a fal.ai API key and can spend fal.ai credits when generation jobs are submitted. <br>
-Mitigation: Use a revocable API key, monitor fal.ai usage, and run only generation requests the user has approved. <br>
-Risk: Prompts, URLs, images, videos, or audio selected for a job are sent to fal.ai or upstream model providers for processing. <br>
-Mitigation: Avoid sensitive or regulated media unless external processing is acceptable for the user's use case. <br>
+## Use Case:
 
+Creators, developers, and agent users use this skill to generate or transform images, videos, speech, music, sound effects, and media utilities through fal.ai model endpoints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiweiyuan/corespeed-art) <br>
-- [fal.ai API keys](https://fal.ai/dashboard/keys) <br>
-- [PEP 723 inline script metadata](https://peps.python.org/pep-0723/) <br>
-- [uv](https://github.com/astral-sh/uv) <br>
-- [Beatoven Music Generation](references/beatoven-music.md) <br>
-- [BRIA RMBG 2.0](references/bria-rmbg.md) <br>
-- [FLUX](references/flux.md) <br>
-- [GPT Image 1.5](references/gpt.md) <br>
-- [Kling Video](references/kling.md) <br>
-- [LTX 2.3](references/ltx.md) <br>
-- [MiniMax Speech-02 HD](references/minimax-speech.md) <br>
-- [Nano Banana](references/nanobanana.md) <br>
-- [Pixverse Video](references/pixverse.md) <br>
-- [Qwen Image](references/qwen.md) <br>
-- [Recraft V4](references/recraft.md) <br>
-- [Seedream](references/seedream.md) <br>
-- [Sora 2](references/sora.md) <br>
-- [Sync Lipsync 2.0](references/sync-lipsync.md) <br>
-- [Topaz Upscale](references/topaz.md) <br>
-- [Veo 3.1](references/veo.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media files are saved locally by the bundled fal.ai helper script when the agent runs it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The skill can upload local media and prompts to fal.ai endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, revocable fal.ai API key and provide only media and prompts suitable for third-party cloud processing.
+
+Risk: The helper can download generated media and write files to local paths.
+
+Mitigation: Run it in a restricted workspace, keep outputs in a dedicated directory, and add path, file-type, size, endpoint, and URL allowlists before unattended use.
+
+Risk: Dependency and endpoint behavior may change at execution time.
+
+Mitigation: Pin dependencies and review endpoint parameters before production or automated workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiweiyuan/skills/corespeed-art)
+- [Publisher profile](https://clawhub.ai/user/jiweiyuan)
+- [uv installation reference](https://github.com/astral-sh/uv)
+- [PEP 723 inline script metadata](https://peps.python.org/pep-0723/)
+- [fal.ai API keys](https://fal.ai/dashboard/keys)
+- [Beatoven Music Generation](references/beatoven-music.md)
+- [BRIA RMBG 2.0](references/bria-rmbg.md)
+- [FLUX](references/flux.md)
+- [GPT Image 1.5](references/gpt.md)
+- [Kling Video](references/kling.md)
+- [LTX 2.3](references/ltx.md)
+- [MiniMax Speech-02 HD](references/minimax-speech.md)
+- [Nano Banana](references/nanobanana.md)
+- [Pixverse v5](references/pixverse.md)
+- [Qwen Image 2 Pro](references/qwen.md)
+- [Recraft V4 Pro](references/recraft.md)
+- [Seedream](references/seedream.md)
+- [Sora 2](references/sora.md)
+- [Lipsync v2](references/sync-lipsync.md)
+- [Topaz Upscale](references/topaz.md)
+- [Veo 3.1](references/veo.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local media output paths after invoking fal.ai endpoints; generated media is saved to user-selected files.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

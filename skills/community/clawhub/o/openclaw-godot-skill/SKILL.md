@@ -1,11 +1,29 @@
 ---
 name: godot-plugin
-description: Control Godot Editor via OpenClaw Godot Plugin. Use for Godot game development tasks including scene management, node manipulation, input simulation, debugging, and editor control. Triggers on Godot-related requests like inspecting scenes, creating nodes, taking screenshots, testing gameplay, or controlling the editor.
+version: 1.2.10
+description: Control Godot Editor via OpenClaw Godot Plugin. Use for Godot game development tasks including scene management, node manipulation, input simulation, debugging, and editor control. Can modify, save, and delete scenes/nodes and capture project metadata and screenshots — destructive operations should be confirmed with the user. Use only on explicit Godot Editor requests like inspecting scenes, creating nodes, taking screenshots, testing gameplay, or controlling the editor, in trusted local projects.
+homepage: https://github.com/TomLeeLive/openclaw-godot-skill
+author: Tom Jaejoon Lee
+disableModelInvocation: true
 ---
 
 # Godot Plugin Skill
 
 Control Godot 4.x Editor through 30 built-in tools. Supports 80+ node types.
+
+## Connection Modes
+
+### Mode A: OpenClaw Gateway (Remote)
+For Telegram, Discord, and other OpenClaw channels:
+- Plugin connects TO Gateway via WebSocket
+- Gateway URL: configurable in Godot dock UI
+- Best for: remote access, mobile messaging
+
+### Mode B: MCP Bridge (Local)
+For Claude Code, Cursor, and local AI tools:
+- Built-in HTTP server in Godot Plugin
+- Start: Click "Start MCP" in dock UI (port 27183)
+- Add to Claude Code: `claude mcp add godot -- node <path>/MCP~/index.js`
 
 ## First-Time Setup
 
@@ -179,3 +197,18 @@ When publishing to ClawHub, you can configure `disableModelInvocation`:
 **Reason:** During Godot development, it's useful for AI to autonomously perform supporting tasks like checking scene tree, taking screenshots, and inspecting nodes.
 
 **When to use `true`:** For sensitive tools (payments, deletions, message sending, etc.)
+
+As of v1.2.10 this skill ships with `disableModelInvocation: true` — it runs only on explicit user request.
+
+## Security & Privacy Disclosure
+
+This skill drives a live Godot Editor. Full disclosure of capabilities and current limitations:
+
+- **Local HTTP bridge has no authentication (current limitation)**: the MCP bridge (port 27183) accepts requests without auth or origin restriction. **Keep it bound to localhost and never expose the port on shared or public networks** — any local process could otherwise send editor commands. Token authentication and origin allow-listing are on the roadmap.
+- **Destructive operations** — confirm with the user before: modifying/deleting nodes, saving scenes, simulating input. Keep the project under version control before automation sessions.
+- **Data visibility**: tools can read and transmit project name, engine version, scene structure, script contents, and viewport screenshots to the connected agent. Don't use on projects whose contents must not leave the machine.
+- **Trigger scope**: routine-sounding requests ("clean up the scene", "save everything") map to state-changing editor operations — confirm once before the first state-changing call in a session.
+
+## License
+
+Apache-2.0 — See LICENSE.md

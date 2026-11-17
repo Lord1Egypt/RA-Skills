@@ -1,42 +1,55 @@
-## Description: <br>
-US travel planning expert that helps users find the best deals on flights, hotels, rental cars, and vacation packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+US travel planning expert that helps users find the best deals on flights, hotels, rental cars, and vacation packages.
 
-## Publisher: <br>
-[xiaoxty](https://clawhub.ai/user/xiaoxty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoxty](https://clawhub.ai/user/xiaoxty)
 
-## Use Case: <br>
-External travelers and travel planners use this skill to compare flights, hotels, rental cars, and vacation packages, then get concise booking options, timing guidance, and credit card points suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with guidance focused on U.S. travel markets. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel prices, fees, policies, availability, and booking links can change or be misstated by third-party travel sites. <br>
-Mitigation: Confirm the final total, cancellation terms, baggage or resort fees, and site legitimacy before entering personal, loyalty, reservation, or payment details. <br>
-Risk: When web search is unavailable, the skill cannot provide real-time prices. <br>
-Mitigation: State that limitation clearly and provide general platform recommendations, booking timing strategy, credit card optimization, and cost-saving tips instead. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to compare current prices for flights, hotels, rental cars, and vacation packages across booking platforms. It also provides booking timing guidance, money-saving tips, and credit card points optimization advice.
 
-## Reference(s): <br>
-- [Travel Deal Finder on ClawHub](https://clawhub.ai/xiaoxty/travel-deals) <br>
-- [Booking Platforms Reference](artifact/booking-platforms.md) <br>
-- [Booking Timing & Strategy Guide](artifact/timing-strategy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with concise headings, bullet lists, prices when searched, booking links when available, and money-saving tips.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses current web search for specific prices when available; otherwise provides clearly labeled general travel guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Travel queries may be sent to web search and may return third-party booking links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing unnecessary sensitive details in searches, and verify website authenticity before signing in or entering loyalty or payment information.
+
+Risk: Prices, fees, availability, and cancellation terms can change across travel sites.
+
+Mitigation: Confirm the final total price, fees, cancellation terms, and booking conditions directly on the booking site before purchase.
+
+## Reference(s):
+
+- [Booking Platforms Reference](artifact/booking-platforms.md)
+- [Booking Timing & Strategy Guide](artifact/timing-strategy.md)
+- [Travel Deal Finder on ClawHub](https://clawhub.ai/xiaoxty/skills/travel-deals)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with concise bullet lists and booking links when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference current web search results and third-party booking sites when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

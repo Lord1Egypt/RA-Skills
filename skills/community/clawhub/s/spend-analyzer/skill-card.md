@@ -1,39 +1,53 @@
-## Description: <br>
-Analyze AWS Cost & Usage Reports to identify top cost drivers, waste, and anomalies across all linked accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze AWS Cost & Usage Reports to identify top cost drivers, waste, and anomalies across all linked accounts.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-External users and FinOps practitioners use this skill to analyze user-provided AWS billing exports or summarized spend data, identify major cost drivers and anomalies, and prioritize savings actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AWS billing exports can contain access keys, account IDs, resource names, tags, or other sensitive identifiers. <br>
-Mitigation: Remove AWS access keys, secret keys, session tokens, unrelated identifiers, and sensitive tags before sharing data in the agent session. <br>
-Risk: The skill includes AWS CLI examples that could expose billing and organization metadata if run with broad permissions. <br>
-Mitigation: Run any CLI examples yourself using a least-privilege read-only AWS role, and share only the resulting exported data needed for analysis. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/anmolnagpal/spend-analyzer) <br>
+## Use Case:
 
+FinOps practitioners, cloud engineers, and account owners use this skill to analyze exported AWS billing data, identify cost drivers and anomalies, and prioritize savings actions without granting account access.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with tables, bullet lists, and inline AWS CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output depends on user-provided AWS billing exports or summarized spend data; the skill does not directly access AWS.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: AWS billing exports and Cost Explorer output can reveal account names, service usage, spending patterns, and business activity.
+
+Mitigation: Use only exported billing data or redacted read-only command output, and remove sensitive account details that are not needed for analysis.
+
+Risk: Providing AWS credentials or secret keys would expose account access unnecessarily.
+
+Mitigation: Do not provide credentials, access keys, or secret keys; the skill is instruction-only and does not require direct AWS access.
+
+## Reference(s):
+
+- [Spend Analyzer ClawHub listing](https://clawhub.ai/anmolnagpal/skills/spend-analyzer)
+- [Anmol Nagpal ClawHub profile](https://clawhub.ai/user/anmolnagpal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with tables, bullet lists, and optional inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an executive summary, top cost drivers table, anomaly flags, and a ranked savings action list.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

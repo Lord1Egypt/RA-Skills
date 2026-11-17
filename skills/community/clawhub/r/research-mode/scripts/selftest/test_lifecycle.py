@@ -617,7 +617,7 @@ def test_stale_lock_detection_and_recovery(root: Path) -> None:
 def test_begin_recovers_after_scheduled_worker_timeout_before_lock_timeout(
     root: Path,
 ) -> None:
-    task_id = "task-worker-timeout-stale"
+    task_id = "taREDACTED-SECRET"
     json_out(
         run(
             "create",
@@ -684,7 +684,7 @@ def test_begin_recovers_after_scheduled_worker_timeout_before_lock_timeout(
 def test_lock_uses_worker_timeout_from_begin_not_later_schedule_change(
     root: Path,
 ) -> None:
-    task_id = "task-worker-timeout-frozen"
+    task_id = "taREDACTED-SECRET"
     json_out(
         run(
             "create",

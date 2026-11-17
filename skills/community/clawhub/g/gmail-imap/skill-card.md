@@ -1,42 +1,55 @@
-## Description: <br>
-Read, search, send, trash, move, and label Gmail via IMAP using Gmail address and Google App Password environment variables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, search, send, trash, move, and label Gmail via IMAP using Gmail address and Google App Password environment variables, with no Google API key required.
 
-## Publisher: <br>
-[scottgl9](https://clawhub.ai/user/scottgl9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scottgl9](https://clawhub.ai/user/scottgl9)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent access Gmail mailboxes for inbox review, search, message reading, sending, moving, labeling, and trashing messages through IMAP and SMTP. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports that a UID-handling mismatch could cause the agent to read, move, or trash the wrong email. <br>
-Mitigation: Install only for trusted agents, manually verify UID behavior before destructive actions, and review read, move, and trash operations carefully. <br>
-Risk: The skill requires Gmail credentials that can access mailbox contents and send or modify email. <br>
-Mitigation: Use a dedicated, revocable Google App Password and avoid sharing the credential with untrusted agents or workspaces. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent read, search, send, move, label, and trash Gmail messages through IMAP and SMTP with credentials supplied through environment variables.
 
-## Reference(s): <br>
-- [Gmail IMAP Reference](references/gmail-imap-reference.md) <br>
-- [ClawHub Gmail IMAP Skill](https://clawhub.ai/skills/gmail-imap) <br>
-- [Google App Passwords](https://myaccount.google.com/apppasswords) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May display email metadata, message bodies, send status, and move/trash confirmations; requires Gmail credential environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Moving or trashing email can affect the wrong message if message identifiers are mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review actions before execution, use stable IMAP UIDs, and confirm message metadata before move or trash commands.
+
+Risk: The skill depends on a Gmail App Password stored in environment variables.
+
+Mitigation: Use a dedicated Google App Password, protect GMAIL_IMAP_USER and GMAIL_IMAP_PASSWORD, and avoid printing or logging credential values.
+
+## Reference(s):
+
+- [Gmail IMAP Reference](references/gmail-imap-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/skills/gmail-imap)
+- [Google App Passwords](https://myaccount.google.com/apppasswords)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command output from the Gmail helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GMAIL_IMAP_USER and GMAIL_IMAP_PASSWORD environment variables; commands may access, send, move, label, or trash Gmail messages.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

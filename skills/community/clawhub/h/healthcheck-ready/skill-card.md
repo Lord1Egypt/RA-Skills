@@ -1,39 +1,52 @@
-## Description: <br>
-Performs a quick local host readiness check and reports basic disk, CPU, memory, process, and service status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs a quick risk posture check on the host and provides a concise snapshot of OpenClaw security and readiness status.
 
-## Publisher: <br>
-[ankou11](https://clawhub.ai/user/ankou11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ankou11](https://clawhub.ai/user/ankou11)
 
-## Use Case: <br>
-Developers and operators use this skill to get a quick local readiness snapshot before investigating host or OpenClaw service issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Health-check output may expose process, service, and host capacity details. <br>
-Mitigation: Keep results local and redact host-specific details before sharing output outside the operating team. <br>
-Risk: A clean local snapshot may be mistaken for proof that OpenClaw is fully current or hardened. <br>
-Mitigation: Treat the output as basic diagnostics and pair it with environment-specific security review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ankou11/healthcheck-ready) <br>
+## Use Case:
 
+Developers and operators use this skill to run a lightweight local readiness snapshot for disk, CPU, memory, key services, and OpenClaw process presence. It is best suited for quick status checks and starter customization rather than authoritative hardening proof.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text status output from local shell checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports local host metrics and service presence; does not perform remediation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The health-check output can be overbroad or imprecise and should not be treated as proof that OpenClaw is patched or hardened.
+
+Mitigation: Use it only as a lightweight local status snapshot and confirm patching or hardening with authoritative controls before making security decisions.
+
+Risk: The output may expose process names, usernames, service presence, and local resource details.
+
+Mitigation: Avoid sharing the output in public or untrusted channels and redact environment-specific details when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ankou11/skills/healthcheck-ready)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text status report with shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local process names, usernames, disk, CPU, memory, and service presence signals.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

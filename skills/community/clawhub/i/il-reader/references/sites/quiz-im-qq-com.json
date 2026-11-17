@@ -1,0 +1,573 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-im-qq-com",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:07:19.784Z",
+  "entry": {
+    "url": "https://im.qq.com",
+    "final_url": "https://im.qq.com/index/#/",
+    "title": "QQ-轻松做自己",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:07:19.784Z",
+    "identity": {
+      "declared_name": "QQ截图/录屏",
+      "hostname": "im.qq.com",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "打开菜单",
+      "label": "",
+      "aria_label": "打开菜单",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "打开菜单",
+        "exact": true
+      },
+      "observed_url": "https://im.qq.com/index/#/",
+      "observed_at": "2026-10-09T09:07:19.586Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "首页",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "首页",
+        "exact": true
+      },
+      "observed_url": "https://im.qq.com/index/#/",
+      "observed_at": "2026-10-09T09:07:19.586Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "产品下载",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "产品下载",
+        "exact": true
+      },
+      "observed_url": "https://im.qq.com/index/#/",
+      "observed_at": "2026-10-09T09:07:19.586Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "账号服务",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "账号服务",
+        "exact": true
+      },
+      "observed_url": "https://im.qq.com/index/#/",
+      "observed_at": "2026-10-09T09:07:19.586Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "版本日志",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "版本日志",
+        "exact": true
+      },
+      "observed_url": "https://im.qq.com/index/#/",
+      "observed_at": "2026-10-09T09:07:19.586Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "QQ故事",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "QQ故事",
+        "exact": true
+      },
+      "observed_url": "https://im.qq.com/index/#/",
+      "observed_at": "2026-10-09T09:07:19.586Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "QQ会员",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "QQ会员",
+        "exact": true
+      },
+      "observed_url": "https://im.qq.com/index/#/",
+      "observed_at": "2026-10-09T09:07:19.586Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-im-qq-com:product-capability",
+      "source_id": "quiz-im-qq-com",
+      "task_kind": "product-capability",
+      "status": "entry_observed",
+      "parameters": [
+        "product",
+        "client_platform",
+        "feature",
+        "menu_or_setting"
+      ],
+      "instructions": [
+        "先确认网页版/桌面版/插件的具体产品和版本，再打开本题功能菜单或官方帮助读取选项；不提交生成、付费或个人信息。"
+      ],
+      "transitions": {},
+      "entry_url": "https://im.qq.com/index/#/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "打开菜单",
+          "label": "",
+          "aria_label": "打开菜单",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "打开菜单",
+            "exact": true
+          },
+          "observed_url": "https://im.qq.com/index/#/",
+          "observed_at": "2026-10-09T09:07:19.586Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "首页",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "首页",
+            "exact": true
+          },
+          "observed_url": "https://im.qq.com/index/#/",
+          "observed_at": "2026-10-09T09:07:19.586Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "产品下载",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "产品下载",
+            "exact": true
+          },
+          "observed_url": "https://im.qq.com/index/#/",
+          "observed_at": "2026-10-09T09:07:19.586Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "账号服务",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "账号服务",
+            "exact": true
+          },
+          "observed_url": "https://im.qq.com/index/#/",
+          "observed_at": "2026-10-09T09:07:19.586Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "版本日志",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "版本日志",
+            "exact": true
+          },
+          "observed_url": "https://im.qq.com/index/#/",
+          "observed_at": "2026-10-09T09:07:19.586Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "QQ故事",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "QQ故事",
+            "exact": true
+          },
+          "observed_url": "https://im.qq.com/index/#/",
+          "observed_at": "2026-10-09T09:07:19.586Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "QQ会员",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "QQ会员",
+            "exact": true
+          },
+          "observed_url": "https://im.qq.com/index/#/",
+          "observed_at": "2026-10-09T09:07:19.586Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    },
+    {
+      "id": "quiz-im-qq-com:official-guidance",
+      "source_id": "quiz-im-qq-com",
+      "task_kind": "official-guidance",
+      "status": "entry_observed",
+      "parameters": [
+        "topic",
+        "official_publisher",
+        "version",
+        "target_statement"
+      ],
+      "instructions": [
+        "优先发布机构的当前原文/官方帮助，核查完整陈述及版本，不引用题库答案作为依据。"
+      ],
+      "transitions": {},
+      "entry_url": "https://im.qq.com/index/#/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "打开菜单",
+          "label": "",
+          "aria_label": "打开菜单",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "打开菜单",
+            "exact": true
+          },
+          "observed_url": "https://im.qq.com/index/#/",
+          "observed_at": "2026-10-09T09:07:19.586Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "首页",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "首页",
+            "exact": true
+          },
+          "observed_url": "https://im.qq.com/index/#/",
+          "observed_at": "2026-10-09T09:07:19.586Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "产品下载",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "产品下载",
+            "exact": true
+          },
+          "observed_url": "https://im.qq.com/index/#/",
+          "observed_at": "2026-10-09T09:07:19.586Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "账号服务",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "账号服务",
+            "exact": true
+          },
+          "observed_url": "https://im.qq.com/index/#/",
+          "observed_at": "2026-10-09T09:07:19.586Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "版本日志",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "版本日志",
+            "exact": true
+          },
+          "observed_url": "https://im.qq.com/index/#/",
+          "observed_at": "2026-10-09T09:07:19.586Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "QQ故事",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "QQ故事",
+            "exact": true
+          },
+          "observed_url": "https://im.qq.com/index/#/",
+          "observed_at": "2026-10-09T09:07:19.586Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "QQ会员",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "QQ会员",
+            "exact": true
+          },
+          "observed_url": "https://im.qq.com/index/#/",
+          "observed_at": "2026-10-09T09:07:19.586Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-140"
+    ],
+    "example_ids": [
+      "2025-M40-Q1",
+      "2026-M40-Q1",
+      "PT1-Q29",
+      "KH-Q016",
+      "KH-Q077"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:07:19.784Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-im-qq-com-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-im-qq-com-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

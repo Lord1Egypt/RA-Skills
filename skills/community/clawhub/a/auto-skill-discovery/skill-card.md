@@ -1,42 +1,58 @@
-## Description: <br>
-Automatically searches ClawHub for matching skills when no local skill fits, presents options, and installs a user-approved choice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically discovers, searches, and installs ClawHub skills for OpenClaw when no local skill matches the user's request.
 
-## Publisher: <br>
-[lpb123](https://clawhub.ai/user/lpb123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lpb123](https://clawhub.ai/user/lpb123)
 
-## Use Case: <br>
-Agents and developers use this skill to discover ClawHub skills for unsupported requests, present relevant options, and install a selected skill only after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing third-party skills can introduce untrusted scripts, permissions, or behavior. <br>
-Mitigation: Review each suggested skill, including scripts and requested permissions, before approving installation. <br>
-Risk: Search results may include skills that are irrelevant to the user's request or not trusted by the user. <br>
-Mitigation: Present concise options and install only the single skill the user explicitly chooses. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to find relevant ClawHub skills when their current environment lacks a specialized capability, then review and install one selected skill with confirmation.
 
-## Reference(s): <br>
-- [Skill Discovery on ClawHub](https://clawhub.ai/lpb123/auto-skill-discovery) <br>
-- [lpb123 publisher profile](https://clawhub.ai/user/lpb123) <br>
-- [ClawHub public skill registry](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with concise lists and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before installing a suggested skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can route users toward installing public-registry skills without enough provenance or security review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when registry-based discovery is intended, and review the publisher, exact version, files, permissions, and instructions before approving installation.
+
+Risk: No server-resolved GitHub import provenance is stored for this version.
+
+Mitigation: Do not infer repository provenance from the skill text; rely on server release metadata and inspect the artifact before use.
+
+Risk: Immediate use of newly installed unknown skills can expose the agent to unreviewed instructions.
+
+Mitigation: Inspect the installed SKILL.md before use and prefer a new session or restart after installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lpb123/skills/auto-skill-discovery)
+- [ClawHub Registry](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Presents search results, install commands, and post-install next steps; does not install without user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

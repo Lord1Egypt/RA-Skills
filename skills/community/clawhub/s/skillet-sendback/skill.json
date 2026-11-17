@@ -1,0 +1,8 @@
+{
+  "id": "sendback",
+  "version": "0.1.1",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh sendback"
+  ],
+  "trust_level": "workspace"
+}

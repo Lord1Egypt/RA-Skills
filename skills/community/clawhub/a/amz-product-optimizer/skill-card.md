@@ -1,48 +1,57 @@
-## Description: <br>
-Helps optimize Amazon product listings by extracting hot keywords, improving product titles, generating detail image prompts, and monitoring main-image CTR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to optimize Amazon product listings, generate product images, improve titles, monitor CTR, and automate end-to-end Amazon product optimization workflows.
 
-## Publisher: <br>
-[simoncai519](https://clawhub.ai/user/simoncai519) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simoncai519](https://clawhub.ai/user/simoncai519)
 
-## Use Case: <br>
-External sellers, product managers, and cross-border e-commerce teams use this skill to optimize Amazon listing titles, image generation workflows, and CTR monitoring from product data files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated titles or image URLs could be incorrect or unsuitable for publication. <br>
-Mitigation: Review generated titles and image URLs before publishing listing updates. <br>
-Risk: The workflow may update local JSON or CSV product files. <br>
-Mitigation: Use a backup or version-controlled product file before applying generated changes. <br>
-Risk: Product files may contain private business metrics or supplier cost data. <br>
-Mitigation: Avoid including supplier costs or private business metrics unless they are required for the optimization task. <br>
-Risk: Recurring CTR monitoring may continue running after setup. <br>
-Mitigation: Enable recurring monitoring only after confirming how the schedule runs and stops. <br>
-Risk: The image generation workflow may use external services. <br>
-Mitigation: Confirm external-service use is acceptable before sending product information for image generation. <br>
+## Use Case:
 
+External sellers, product managers, and cross-border e-commerce teams use this skill to research product keywords, improve listing titles, generate scene-based product image prompts, and monitor main-image CTR.
 
-## Reference(s): <br>
-- [Optimization Guide](references/optimization-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/simoncai519/amz-product-optimizer) <br>
-- [Publisher Profile](https://clawhub.ai/user/simoncai519) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with structured workflow parameters and product-file update recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce optimized titles, image prompt guidance, image URLs, CTR reports, and recommended updates for JSON or CSV product files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may update the supplied product JSON/CSV file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Create a backup or write optimized output to a new file before applying changes to important business data.
+
+Risk: The skill may use external keyword sources and Taobao MCP for image generation.
+
+Mitigation: Review external-service use and generated image outputs before publishing listing changes.
+
+Risk: Optional CTR monitoring may create recurring operational checks.
+
+Mitigation: Confirm the monitoring schedule and disable or adjust daily checks when they are not needed.
+
+## Reference(s):
+
+- [Optimization Guide](references/optimization-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured listing recommendations and JSON/CSV product-file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update the supplied product JSON/CSV file, use Taobao MCP for image generation, and produce CTR monitoring recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,6 @@
+interface:
+  display_name: "OceanToken Setup"
+  short_description: "Run Codex or your app on OceanToken"
+  default_prompt: "Use $oceantoken-setup to connect this project (or Codex itself) to the OceanToken API."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,16 @@
+{
+  "name": "ClipToNote",
+  "color": "Blue",
+  "steps": [
+    {
+      "do": "note.append",
+      "entity": "收件箱",
+      "text": "{clipboard}"
+    },
+    {
+      "do": "notify",
+      "WFNotificationActionTitle": "已存好",
+      "WFNotificationActionBody": "剪贴板内容已追加到「收件箱」"
+    }
+  ]
+}

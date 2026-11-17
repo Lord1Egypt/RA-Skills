@@ -3,6 +3,13 @@
 # Superseded by GeneralDistributionAgreementV1 (GDA), which supports both
 # instant and streaming distributions through a unified pool model.
 #
+# SOFT-FROZEN (v1.15.3; live on every network as of 2026-10-27): createIndex,
+# updateIndex, distribute, updateSubscription and approveSubscription revert
+# IDA_NEW_ACTIVITY_FROZEN. claim, revokeSubscription and deleteSubscription
+# still work; existing balances are preserved. Exception: optimism-mainnet and
+# optimism-sepolia stay active (Super DCA) with a 32 approved-subscription cap.
+# Check per network: NEW_ACTIVITY_FROZEN() and MAX_NUM_SUBSCRIPTIONS().
+#
 # NOTE: emits/errors mappings are traced from source code — verify against implementation.
 # Proxy/upgradability functions (castrate, updateCode, getCodeAddress, proxiableUUID)
 # are omitted — they belong to the UUPSProxiable / AgreementBase layer.
@@ -29,13 +36,13 @@ meta:
       avalanche-c: "0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2"
       celo-mainnet: "0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA"
       scroll-mainnet: "0x4112557F0F228A18654d3C39599421DE9F61144d"
-      degenchain: "0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E"
+      arc-mainnet: "0xBDa1B20e5deef07AA19C2Af5c8a3430642b2C366"
     testnet:
       avalanche-fuji: "0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782"
       base-sepolia: "0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea"
       eth-sepolia: "0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea"
       optimism-sepolia: "0x51BDA2C5F627d456E282257710F4A4b6Eb094A52"
-      scroll-sepolia: "0x296556422F44F19E5d216CBf98348A03BDc445E7"
+      arc-testnet: "0x73a4A5B5CBa803D90f9cEE00F60523d48ddd53e2"
 
 # == Abbreviations ==
 # ctx  — context (Superfluid call context bytes, carries msg.sender and userData)
@@ -70,7 +77,7 @@ createIndex:
   outputs:
     - newCtx: bytes
   emits: [IndexCreated]
-  errors: [IDA_INDEX_ALREADY_EXISTS]
+  errors: [IDA_NEW_ACTIVITY_FROZEN, IDA_INDEX_ALREADY_EXISTS]
 
 updateIndex:
   # Set the index value directly. Must not decrease.
@@ -87,7 +94,7 @@ updateIndex:
   outputs:
     - newCtx: bytes
   emits: [IndexUpdated]
-  errors: [IDA_INDEX_DOES_NOT_EXIST, IDA_INDEX_SHOULD_GROW, IDA_INSUFFICIENT_BALANCE]
+  errors: [IDA_NEW_ACTIVITY_FROZEN, IDA_INDEX_DOES_NOT_EXIST, IDA_INDEX_SHOULD_GROW, IDA_INSUFFICIENT_BALANCE]
 
 distribute:
   # Convenience wrapper around updateIndex. Advances indexValue by amount / totalUnits.
@@ -105,7 +112,7 @@ distribute:
   outputs:
     - newCtx: bytes
   emits: [IndexUpdated]
-  errors: [IDA_INDEX_DOES_NOT_EXIST, IDA_INSUFFICIENT_BALANCE]
+  errors: [IDA_NEW_ACTIVITY_FROZEN, IDA_INDEX_DOES_NOT_EXIST, IDA_INSUFFICIENT_BALANCE]
 
 # == Subscription Management ==
 # Subscribers approve/revoke subscriptions; publishers set units and can delete subscriptions.
@@ -130,7 +137,7 @@ approveSubscription:
   outputs:
     - newCtx: bytes
   emits: [IndexSubscribed, SubscriptionApproved]
-  errors: [IDA_INDEX_DOES_NOT_EXIST, IDA_SUBSCRIPTION_ALREADY_APPROVED]
+  errors: [IDA_NEW_ACTIVITY_FROZEN, IDA_INDEX_DOES_NOT_EXIST, IDA_SUBSCRIPTION_ALREADY_APPROVED, IDA_TOO_MANY_SUBSCRIPTIONS]
 
 revokeSubscription:
   # Revoke (unapprove) a previously approved subscription for ctx.msgSender.
@@ -164,7 +171,7 @@ updateSubscription:
   outputs:
     - newCtx: bytes
   emits: [IndexUnitsUpdated, SubscriptionUnitsUpdated]
-  errors: [IDA_ZERO_ADDRESS_SUBSCRIBER, IDA_INDEX_DOES_NOT_EXIST]
+  errors: [IDA_NEW_ACTIVITY_FROZEN, IDA_ZERO_ADDRESS_SUBSCRIBER, IDA_INDEX_DOES_NOT_EXIST]
 
 deleteSubscription:
   # Delete a subscriber's subscription entirely. Only the publisher can call this.
@@ -311,13 +318,20 @@ agreementType:
     - bytes32
 
 MAX_NUM_SUBSCRIPTIONS:
-  # Maximum number of approved subscriptions a subscriber can hold (256).
-  # Limited by the slots bitmap implementation (uint256 = 256 bits).
+  # Maximum approved subscriptions per subscriber per token: 256 (bitmap limit),
+  # 32 where IDA is still active (Optimism, v1.15.3). Constructor immutable.
   # More subscriptions = higher gas cost on balanceOf/realtimeBalanceOf,
   # which iterates all approved subscriptions.
   mutability: view
   outputs:
     - uint32
+
+NEW_ACTIVITY_FROZEN:
+  # True if new IDA activity is frozen (v1.15.3; false only on Optimism).
+  # Absent on pre-v1.15.3 logic (call reverts).
+  mutability: view
+  outputs:
+    - bool
 
 SLOTS_BITMAP_LIBRARY_ADDRESS:
   # Address of the SlotsBitmapLibrary used for subscription slot tracking.
@@ -459,6 +473,9 @@ errors:
   - IDA_SUBSCRIPTION_IS_NOT_APPROVED   # cannot revoke a pending subscription
   - IDA_ZERO_ADDRESS_SUBSCRIBER        # subscriber cannot be address(0)
   - IDA_OPERATION_NOT_ALLOWED          # only publisher can delete a subscription
+  - IDA_TOO_MANY_SUBSCRIPTIONS         # subscriber at MAX_NUM_SUBSCRIPTIONS approved slots
+  # Soft-freeze (v1.15.3)
+  - IDA_NEW_ACTIVITY_FROZEN            # new activity disabled on this network
   # Super App / Host
   - AGREEMENT_BASE_ONLY_HOST           # call not routed through the Host contract
   # SafeCast (inherited from OpenZeppelin)

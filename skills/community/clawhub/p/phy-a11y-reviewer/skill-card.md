@@ -1,49 +1,62 @@
-## Description: <br>
-无障碍访问审查专家。基于 WCAG 2.2 AA 标准检查网页可访问性问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language WCAG 2.2 AA accessibility review checklist and report format for web pages.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers, designers, and QA reviewers use this skill to review web pages and UI code against WCAG 2.2 AA accessibility expectations and produce prioritized remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad accessibility-related wording when an audit is not intended. <br>
-Mitigation: Phrase requests clearly when you do or do not want an accessibility audit. <br>
-Risk: Accessibility findings can be incomplete or require context that automated or prompt-based review cannot fully verify. <br>
-Mitigation: Validate important findings with WCAG 2.2 AA manual checks and established tools such as axe, WAVE, Lighthouse, and contrast testing. <br>
+## Use Case:
 
+Developers, designers, and QA reviewers use this skill to inspect web pages and code against WCAG 2.2 AA and produce a structured accessibility audit report with issues, severity, and remediation suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-a11y-reviewer) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [WCAG 2.2 Quick Reference](https://www.w3.org/WAI/WCAG22/quickref/) <br>
-- [A11Y Project Checklist](https://www.a11yproject.com/checklist/) <br>
-- [Accessible.org WCAG Checklist](https://accessible.org/wcag/) <br>
-- [WebAIM](https://webaim.org/) <br>
-- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) <br>
-- [axe DevTools](https://www.deque.com/axe/) <br>
-- [WAVE](https://wave.webaim.org/) <br>
-- [Lighthouse](https://developers.google.com/web/tools/lighthouse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown accessibility audit report with issue tables, severity labels, automated test summaries, manual checklist items, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are organized by WCAG POUR principle and include locations, WCAG criteria, severity, and suggested fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence.release.version) <br>
+Risk: Broad accessibility-related triggers may activate the skill when a user expected another accessibility workflow or language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants a Chinese-language WCAG 2.2 AA review before applying the checklist.
+
+Risk: Checklist-based accessibility review may miss issues that require live page inspection, assistive-technology testing, or scanner output.
+
+Mitigation: Use the report as review guidance and validate findings with automated checks, keyboard navigation, screen reader testing, contrast checks, and human review.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-a11y-reviewer)
+- [WCAG 2.2 Quick Reference](https://www.w3.org/WAI/WCAG22/quickref/)
+- [A11Y Project Checklist](https://www.a11yproject.com/checklist/)
+- [Accessible.org WCAG Checklist](https://accessible.org/wcag/)
+- [WebAIM](https://webaim.org/)
+- [axe DevTools](https://www.deque.com/axe/)
+- [WAVE](https://wave.webaim.org/)
+- [Lighthouse](https://developers.google.com/web/tools/lighthouse)
+- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured WCAG 2.2 AA audit report with summary, issue tables, severity levels, automated and manual test results, and recommendations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

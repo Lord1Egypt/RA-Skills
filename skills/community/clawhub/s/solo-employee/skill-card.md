@@ -1,41 +1,54 @@
-## Description: <br>
-A general employee-role agent skill that helps an agent receive tasks from a CEO coordinator, clarify requirements, execute work, report results, and handle follow-up within a five-turn limit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solo Employee guides an OpenClaw agent to act as an employee that receives CEO-assigned tasks, clarifies unclear requirements, produces structured deliverables, and handles follow-up refinement within a five-turn limit.
 
-## Publisher: <br>
-[Moistenxx](https://clawhub.ai/user/Moistenxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moistenxx](https://clawhub.ai/user/moistenxx)
 
-## Use Case: <br>
-Solo operators and agent-workflow builders use this skill to make an agent act as an employee that accepts assigned work from a CEO-style coordinator, asks concise clarification questions, produces structured deliverables, and responds to follow-up requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CEO/coordinator prompt and workspace SOUL.md role file determine the task and role the agent follows. <br>
-Mitigation: Keep those inputs trusted and review assigned tasks before relying on the agent's output. <br>
-Risk: A five-turn conversation limit can force a partial result when requirements remain unclear or external dependencies block completion. <br>
-Mitigation: Require the agent to state blockers, open questions, and partial-completion status before the limit is reached. <br>
+## Use Case:
 
+Employees and agent builders use this skill to make an OpenClaw agent operate as a task-executing employee in a solo-company workflow coordinated by a CEO agent. It helps the agent parse assigned work, ask for clarification when needed, return structured Markdown deliverables, and report completion status.
 
-## Reference(s): <br>
-- [Employee SOUL.md Template](references/employee_soul_template.md) <br>
-- [Solo Employee ClawHub Release](https://clawhub.ai/Moistenxx/solo-employee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Structured Markdown responses with task status, deliverables, clarifying questions, and optional code blocks or tables when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limits employee-coordinator exchanges to five turns and expects the workspace SOUL.md role file to define the employee's specialization and communication style.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: A user could try to gain coordinator authority by prefixing a message with '[CEO]' or '【任务分配】'.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep platform, system, safety, and user-approval rules above the skill, and only treat CEO-style task prefixes as authoritative when the coordinator is already trusted.
+
+Risk: The five-turn workflow limit can force a response before all ambiguity is resolved.
+
+Mitigation: When the limit is reached or external dependencies block completion, report the current deliverable, unresolved assumptions, and remaining confirmation needs clearly.
+
+## Reference(s):
+
+- [Employee SOUL.md role template](references/employee_soul_template.md)
+- [Solo Employee ClawHub release](https://clawhub.ai/moistenxx/skills/solo-employee)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with structured status sections and optional fenced code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses follow employee-reporting templates, include completion status, and are limited to at most five interaction rounds with the CEO coordinator.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

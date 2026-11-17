@@ -1,152 +1,267 @@
 ---
 name: canonry
-description: "Agent-first AEO operating platform."
-metadata:
-  {
-    "agent":
-      {
-        "emoji": "📡",
-        "requires": { "bins": ["canonry"] },
-        "install":
-          [
-            {
-              "id": "npm",
-              "kind": "npm",
-              "package": "@ainyc/canonry",
-              "bins": ["canonry"],
-              "label": "Install canonry globally",
-              "command": "npm install -g @ainyc/canonry"
-            },
-            {
-              "id": "npx",
-              "kind": "npx",
-              "package": "@ainyc/canonry",
-              "bins": ["canonry"],
-              "label": "Run canonry via npx",
-              "command": "npx @ainyc/canonry@latest init"
-            }
-          ],
-      },
-  }
+description: "Navigate Canonry through connected MCP tools or the `cnry` CLI to inspect evidence, diagnose changes, plan measurement, review integrations, and report results. Use this optional host-native skill for CLI workflows and detailed references; connected MCP users can operate through canonry_help without installing a local runtime or skill."
 ---
 
-# Canonry
+<!-- Generated from docs/agent-operations/v1.md by pnpm guide:sync. Do not edit. -->
 
-Agent-first open-source AEO (Answer Engine Optimization) operating platform. Track how AI answer engines **mention** your brand in answers and **cite** your domain in sources across Gemini, ChatGPT, Claude, and Perplexity, then act on the signal through the content engine and integrations.
+# Canonry Operations Guide v1
 
-**Website:** [canonry.ai](https://canonry.ai) | **Org:** [ainyc.ai](https://ainyc.ai) | **Docs:** [github.com/AINYC/canonry](https://github.com/AINYC/canonry)
+Canonry is an agent-first AI visibility platform. MCP is the universal entry
+point for connected agents. Host-native skills are optional upgrades, not a
+prerequisite or a permission mechanism.
 
-**CLI:** invoke as `cnry` (short form) or `canonry` — both ship with the npm package and are interchangeable. Examples in this skill use `cnry`.
+## Connect and choose a route
 
-## When to Use
+Read the initialization guidance, then call `canonry_help` with an `intent`:
+`status`, `diagnose`, `operations`, `prospecting`, `measurement`, `integrations`,
+`reports`, or a short task
+description. Select an accessible project with `canonry_projects_list` before
+using its exact name in project tools. Inspect each listed tool's input schema;
+help suggests tool names, not invented arguments or authorization.
 
-- Tracking brand **mentions** in AI answer text and **citations** in source links across providers
-- Expanding the tracked-query basket from an ICP description (`cnry discover run`)
-- Running technical SEO audits (14‑factor scoring)
-- Implementing structured data (JSON‑LD)
-- Diagnosing indexing gaps via Google Search Console / Bing Webmaster Tools
-- Wiring server-side traffic (Cloud Run, WordPress, Vercel) and GA4 referrals into a single AEO signal
-- Optimizing `llms.txt`, sitemaps, robots.txt for AI crawlers
-- Submitting URLs to Google Indexing API and Bing IndexNow
-- Analyzing competitor citation patterns
+Help returns a versioned, compact route: connection `mode`, available `next`
+tools, workflow guidance, approval boundaries, and this guide's URL. It performs
+no provider calls, reads no project data, and changes no permissions.
+`next` lists stored reads. Optional `actions` lists loaded tools for work that
+requires approval; listing an action does not authorize or execute it.
+`includeCatalog: true` additionally returns toolkit details when needed.
 
-## Core Philosophy
+Analysis routes also return `playbooks`: Canonry's analyst playbooks for that
+work, the same files its built-in agent reads. Read each one before
+interpreting results. `canonry_help({ playbook: "<slug>" })` returns its full
+text, a note on using it over MCP, and every available slug. Playbooks are
+guidance, not permission.
 
-- **Measure outcomes** — AI models are black boxes; track mentions + citations, don't assume causality
-- **Signal over noise** — Focus on high‑intent queries; avoid granular targeting until base visibility exists
-- **CLI‑native** — API‑driven changes over manual CMS clicks; faster, repeatable, auditable
+Hosted connections use a fixed catalog. Help only suggests tools offered by that
+connection; it never tells a hosted agent to dynamically load a toolkit. A
+progressive local stdio connection may return `loadToolkits`: call
+`canonry_load_toolkit` with one returned name, await it, then call help again.
+Loading only changes local tool discovery, never server authority.
 
-## What Canonry Measures (Vocabulary)
+The optional `canonry://agent-operations/v1` MCP resource contains this same
+guide. If the host cannot read resources or open links, continue through help.
+Do not install a plugin, local runtime, or skill merely to use connected MCP.
+An installed Codex or Claude Canonry skill contains a generated copy of this
+guide plus links to host-native references. It does not replace runtime help.
 
-Two parallel signals are tracked per (query × provider) snapshot. They are independent — a model can do either, both, or neither — never conflate them.
+## Vocabulary and evidence
 
-| Term | Means | Headline metric |
-|---|---|---|
-| **mentioned** | The project's brand or domain appears in the LLM's **answer text** (the prose the model returns). | **Mention Coverage** — share of (query × provider) snapshots where the brand was mentioned. **Mention Share** is the project's share among the cited+mentioned set vs competitors. |
-| **cited** | The project's domain appears in the LLM's **source links** (the grounding citations returned alongside the answer). | **Citation Coverage** — share of snapshots where the domain was in the source list. |
+- **Mentioned** means the brand appears in answer text. **Cited** means its
+  domain appears in source links. Either, both, or neither can occur; never
+  compute one signal from the other.
+- `answerMentioned: null` means not checked, not false. Missing runs and empty
+  populations mean no measurement, not zero visibility.
+- Preserve project, time window, provider, requested/served model, location,
+  sample size, and query class when comparing evidence. Use server-returned
+  metrics; do not invent a score from incompatible populations.
+- Simple projects and Advanced portfolios share the workflow. For Advanced
+  results, preserve Property, Target, market, plan revision, and class scope.
+  Groups organize navigation; do not infer an unrequested fan-out.
+- Research is isolated evidence, not tracked measurement. A probe still spends
+  quota and persists evidence but is excluded from normal tracking metrics.
 
-Configure `spec.brandAliases` on the project (or pass via `cnry apply`) so the mention detector catches "Meta" alongside "Facebook", etc. The downloadable report (`cnry report`) and the dashboard both lead with Mention Coverage; Citation Coverage rides as the secondary gauge.
+## Workflows
 
-## How to Operate
+**Status:** read the stored overview and freshness first. Say when evidence is
+missing instead of silently creating it.
 
-A canonry engagement follows the same loop regardless of project size:
+**Setup:** Page Health needs no answer-engine provider; AI Visibility does.
+After a Page Health result on an install with no provider (a `NO_PROVIDER`
+notice, or doctor's `providers.none-configured`), propose AI Visibility setup
+as the next step. The operator adds the provider key in the dashboard or in
+their own terminal; never ask for it in chat.
+Rerunning `canonry bootstrap` after a provider change reloads saved provider
+settings on a matching running local server and reports whether they became
+active. If the server is offline, start it to apply the saved settings. For an
+explicit reload of the connected server's own config, use
+`canonry settings reload-providers` or `canonry_providers_reload` with install
+administrator authority. Remote servers are never reloaded automatically by
+bootstrap, and a local server that belongs to another install is left alone.
+Ports and database settings still need a restart.
 
-1. **Diagnose** — Run a baseline sweep (`cnry run <project> --wait`) and a technical audit (`cnry technical-aeo run <project> --wait`, then `cnry technical-aeo score <project> --format json`). The audit crawls every page in the project's sitemap (auto-discovered from `/sitemap.xml`, the sitemap index, or `robots.txt`) so readiness reflects the whole site, not just one page, and persists the score to the dashboard. Read Mention Coverage first, Citation Coverage second. See `references/aeo-analysis.md`.
-2. **Prioritize** — Triage by impact: indexing gaps → schema gaps → content gaps → query strategy. Branded-term losses are urgent.
-3. **Execute** — Apply fixes via the canonry CLI or platform integrations. Use `--dry-run` on supported mutations (`cnry project delete`, `cnry query replace`, `cnry backfill ...`) to preview before committing. See `references/canonry-cli.md` for the full command catalog and `references/wordpress-integration.md` for the WordPress workflow.
-4. **Monitor** — Re-run sweeps weekly (`cnry run --all --wait` fans out across every project). Correlate visibility shifts with deployments and competitor moves.
-5. **Report** — Lead with data, not interpretation: "Lost the mention for `<query>` on Gemini between <date> and <date> — two competitors moved in. Here's what to fix." For a one-command client-facing summary, run `cnry report <project>` to generate a self-contained HTML bundle (mention + citation hero, competitor landscape, GSC + GA4 performance, insights, suggested next queries). Same payload is available via `--format json` and the `canonry_report` MCP tool.
+**Diagnose:** inspect stored history and comparable evidence. Explain what
+changed separately from why it might have changed. A hypothesis is not a
+measured cause. Propose bounded verification if stored evidence is insufficient.
 
-**Verifying without polluting metrics**: when you need to test something on your own initiative — "did the latest provider deploy work?", "is this regression reproducible?", "would this query actually surface us?" — use `cnry run <project> --probe --provider <p> --query "..."`. Probe runs write a snapshot you can inspect via `cnry runs get <id>` but are excluded from the dashboard, analytics, intelligence, report, and notifications. Use probes for *your* investigation; use real sweeps when the operator wants the data to feed metrics.
+**Site Health:** read `canonry_site_health_issues` for stored technical findings,
+affected-page counts and example URLs, then `canonry_site_health_issue_pages`
+for a selected issue's remaining pages. Pin subsequent reads to the returned
+run. Inspect coverage and omissions: a passing score can still have findings,
+an older scan may lack cross-page evidence, and a partial scan cannot establish
+site-wide absence. Advisory findings require judgment before proposing a repair.
+Audit evidence informs technical repairs and existing-page recommendations;
+it does not itself establish a new-blog opportunity or authorize any edit.
 
-## Surgical Reads
+**Prospecting:** generate a one-shot company snapshot without creating a project.
+Inspect stored provider settings first. Agree on the company, domain, selected
+providers, and queries before starting the quota-spending snapshot action.
+Browser-only selection requires manual queries. Progressive stdio help offers
+the discovery toolkit when this connection permits snapshots; load it, then
+call help again. Fixed catalogs offer only already available actions. Read-only
+and restricted connections must not bypass missing snapshot access.
 
-When you need a specific value rather than a full payload, use the dot-path getter:
+**Measurement:** inspect the existing setup and results before proposing edits.
+Keep research, query tracking, plan publication, and sweep execution separate.
+For direct research, submit the final editable query text in one context. For a
+reviewed batch, submit each explicit destination with its final text and one
+idempotency key. Pattern substitution happens in the client before either
+request; choosing a market or Property records a destination only and never
+rewrites a query or creates an automatic fan-out. `research.run` does not
+authorize saving patterns, changing tracking, publishing plans, or settings.
+Use a supported preview where available, inspect its exact destination and
+revision, then seek approval for the actual change. A preview may itself require
+write permission; never treat a dry-run flag as a universal safety guarantee.
 
-```bash
-cnry get <project> scores.mentionShare.value
-cnry get <project> scores.mentionCoverage.value
-cnry get <project> insights[0].severity
-cnry get <project> --from report scores.citationCoverage.value
-```
+**Integrations:** inspect stored connection state and snapshot freshness first.
+Provider configuration evidence does not prove a browser event fired or a
+conversion was recorded. Connection, resource selection, refresh/sync, and live
+reads are separate actions. Credentials belong in the operator's secure setup
+flow, never in chat, tool arguments, reports, or public guidance.
 
-`cnry get` resolves a path into the project's overview (default) or any registered source (`report`, `traffic`, `discovery`, etc.). Returns scalar values without forcing the agent to grep through a 30 KB JSON dump.
+**Reports:** use saved evidence for the requested period and scope. Keep mention
+and citation signals separate, include dates and sample sizes, and state missing
+or stale inputs. For Advanced Property mention rankings, use
+`canonry_measurement_portfolio_summary` and its `mentionRanking.strongest`,
+`.weakest`, and `.excluded` lists. It defaults to non-brand questions; state the
+returned class and report branded results separately. An unavailable portfolio
+aggregate does not invalidate available Property mention rates. Flag excluded
+Properties individually; do not silently replace mention ranking with citation
+ranking. Compact `nextCursor` completes only `pageList`; use `list` to enumerate
+one ranking, markets, observed names or cited domains, preserving filters.
+First-page sibling lists are bounded summaries. Keep sample sizes and ties
+visible. Preparing a report does not
+authorize new measurement.
 
-## Common Starting Points
+## Authority and approval
 
-- **New site, 0 citations** → submit to GSC/Bing first; basic LocalBusiness/Service schema; `llms.txt`; trim to 8–12 high-intent queries. See `references/indexing.md`.
-- **Established site, regression** → diff canonry runs to find the loss window; verify schema is intact; resubmit affected URLs. See `references/aeo-analysis.md`.
-- **Empty / generic query basket** → describe the ICP and let discovery expand: `cnry discover run <project> --icp "..." --wait`, then `cnry discover promote <session-id>` to adopt the cited + aspirational queries. Multi-location projects can geo-constrain with `--locations <label,...>`.
-- **Multi-county targeting** → reference counties in `areaServed` schema and `llms.txt`; do not split into per-county queries until base visibility exists.
+### Agent operations
 
-## Google Analytics 4
+Use `canonry_key_self` (CLI `canonry key whoami --format json`) to inspect the
+current credential's scopes, project boundary, and host-derived `operator`
+authority without exposing its token. Missing `operator` means unapproved.
+`canonry_settings_get` and
+`canonry_telemetry_get` describe the connected server, not the agent's local
+machine. Telemetry reports configured preference, effective state, and any
+environment override; inspecting status never creates an anonymous identifier.
+After approval, `canonry_telemetry_update` changes that preference and
+`canonry_provider_settings_update` changes an already-configured provider's
+model/quota. Both require `settings.write`; neither accepts credentials.
+Server telemetry reads and updates additionally require operator authority.
+Ordinary audit-history reads omit internal telemetry events and their state.
 
-GA4 is a first-class signal alongside citation tracking. Connect once with `cnry ga connect <project> --property-id <id> --key-file <path>`; `cnry ga sync` then pulls daily landing-page traffic, AI-referral sessions across 10 known providers (chatgpt, perplexity, claude, gemini, openai, anthropic, copilot, phind, you.com, meta.ai), and social referrals split into Organic vs Paid via GA4's `channelGroup` — and persists everything into four DB tables (`gaTrafficSnapshots`, `gaAiReferrals`, `gaSocialReferrals`, `gaTrafficSummaries`). All read commands query that local store, so they are fast and quotaless once a sync has run. AI referrals are tracked across three GA4 attribution dimensions (session source / first-user source / manual UTM) and joined to landing pages, so you can see which page each AI provider sent traffic to. Use `cnry ga traffic` for the current snapshot, `cnry ga attribution --trend` for a unified channel-share overview with biggest-mover deltas, and `cnry ga ai-referral-history` / `cnry ga social-referral-history` for daily series. See `references/canonry-cli.md` for the full command catalog and return-shape details.
+Operator authority is deny-by-default and separate from customer admin roles.
+The deployment owner must approve a dedicated, instance-wide API key's ID in
+the server environment variable `CANONRY_OPERATOR_KEY_IDS` (comma-separated IDs),
+then restart the server. Empty/unset approves nobody; wildcards are invalid.
+Keep the bearer private to internal operators; never approve a customer-held or
+shared proxy/bootstrap key. Use `logs.read` for read-only diagnostics, adding
+`settings.write` only when telemetry control is required. Ordinary key creation,
+account roles, OAuth consent, and caller headers cannot grant operator status.
+Revoking an approved key invalidates it immediately. Host enrollment is a trust
+bootstrap step, intentionally unavailable through customer-facing APIs.
+API, CLI, and MCP enforce the same boundary; MCP hides internal tools unless
+the server confirms operator authority, including in explicit read-only mode.
+Project analytics, research, and normal project permissions are unchanged.
 
-## Server-Side Traffic
+`canonry_logs_list` reads bounded, redacted runtime events from both the
+application logger and Fastify request/error logging. It requires an
+instance-wide `logs.read` grant (or wildcard) and a host-approved direct bearer.
+Browser sessions, OAuth/delegated credentials, customer admins, and project-scoped
+keys cannot use it, even with a project filter or a matching allowlist ID.
+A `logs.read`-only key is read-only automatically, without a
+second `read` marker. Named `*.read` scopes cannot grant mutations; an explicit
+write grant is needed and remains subject to its route gates. Returned messages
+are sanitized and bounded; raw request or response bodies, headers, cookies,
+provider payloads, and stacks are not
+part of the queryable surface. The same secret-redaction policy runs before
+console output and storage. Do not deliberately log secrets: redaction is a
+defense in depth, not permission to put credentials into diagnostic strings.
+Opaque escaped payloads containing secret assignments are omitted when safe
+partial masking cannot be guaranteed; correlate their retained error codes and IDs.
 
-When the project ships behind a server you control, wire crawler + AI-referral evidence directly from the edge: `cnry traffic connect cloud-run | wordpress | vercel <project> ...` writes credentials to `~/.canonry/config.yaml`, `cnry traffic sync` pulls and classifies logs into hourly buckets, and `cnry traffic events / sources / status` expose the rollups. See `references/server-side-traffic.md` for adapter-specific setup.
+File-backed hosts retain runtime logs in SQLite across restarts, bounded to
+10,000 events and seven days. In-memory hosts report `retention: "process"`.
+Filter by `actor`, `requestId`, `runId`, `projectId`, `module`, `level`, or an
+inclusive `since`/`until` interval. Keep filters unchanged when resuming an
+opaque cursor; retention eviction can invalidate it. Inspect `retentionPolicy`,
+`captureErrors`, `dropped`, `truncated`, and `retention` before drawing
+conclusions. Missing logs are not proof that an action did not happen. Use
+`canonry_project_history` or `canonry_history_global` for persistent audit events;
+offset pages have deterministic ordering but are not snapshots of concurrent writes.
 
-**Vercel gotcha:** a freshly connected Vercel source captures only going-forward traffic — `lastSyncedAt` is seeded to NOW to avoid the 30-day default window exceeding Vercel's ~14-day request-logs retention (which would otherwise throw on every first sync). Use `cnry traffic backfill <project> --source <id> --days N` for historical recovery. If an idle Vercel/Cloud Run source has been failing long enough that `lastSyncedAt` aged past retention, unstick it with `cnry traffic reset <project> --source <id> --advance-to-now`.
+Audit `actor` comes from authenticated identity (`user:<id>` or `api-key:<id>`),
+not a caller-supplied header. A delegated MCP credential records its originating
+user as actor and the actual credential in `credentialId`. `requestId` correlates
+HTTP events; `userAgent` and `actorSession` are bounded, untrusted client hints,
+never identity or permission grants. Older audit rows are not backfilled with
+identities the server cannot prove.
 
-## Local AEO (Google Business Profile)
+Both shipped HTTP hosts issue restart-safe UUID request IDs and return them in
+`x-request-id`. Use that value to correlate a CLI/API failure with log entries;
+HTTP diagnostics retain the method and route template, not raw URL parameters.
+Request-bound loggers retain completion attribution, while generic background
+continuations stop inheriting caller identity after the response completes.
+Capture covers the owning server process after initialization, not arbitrary
+console output, other worker processes, or host/container logs. Run one server
+instance per process and database, as required by the single-tenant deployment
+model; this is not a cross-tenant or distributed log collector.
 
-For businesses with a physical location or service area, Google Business Profile is the local-AEO signal source — reviews, search-keyword impressions, daily performance metrics, and (for hotels) structured amenities + booking CTAs all feed how AI engines answer local-intent queries. Connect with `cnry gbp connect <project>`, discover locations with `cnry gbp locations discover <project>`, and pick which sync with `cnry gbp locations select/deselect`.
+For CLI use, settings reads are remote. Google setup and telemetry retain their
+local defaults: pass `--target server` explicitly to configure the connected
+server. `schedule list <project>` lists all schedule kinds, and
+`notify events --target server` discovers the server's event catalog.
 
-**Hard prerequisites and gotchas — read `references/google-business-profile.md` before attempting setup:** GBP requires a Google access-form approval (0 QPM until granted), the only OAuth scope is the write-capable `business.manage`, **reviews live on a separately-gated legacy v4 API that the Basic approval does NOT grant** (and can't be self-enabled), and the **Q&A API was retired (2025-11-03)**. Keyword data is heavily privacy-redacted (often 100% for small businesses); an empty place-action profile is a real AEO finding to surface, but an empty lodging result is a verify-not-a-gap (the Lodging API can return 0 readable groups even when the owner-facing "Hotel details" panel has amenities set). The reference doc has the full setup walkthrough, the real-world data shapes, and the troubleshooting matrix.
+MCP returns legacy text JSON plus structured results. Objects keep their shape;
+arrays use `{items: [...]}` in `structuredContent`, and scalars use `{value: ...}`.
+Errors preserve the existing envelope and CLI exit codes: HTTP 4xx (including
+429 policy limits) use exit 1; HTTP 5xx use exit 2. Server-provided `Retry-After`
+and request IDs are exposed as `retryAfterMs` and `requestId` when available;
+clients do not infer retryability from HTTP 429 or retry automatically.
+For a write with an ambiguous outcome, inspect saved state or its receipt before
+retrying; a retry hint is not proof that repeating a write is safe.
 
-## Built-in Analyst (Aero)
+### Action boundaries
 
-Canonry ships a built-in agent — Aero — for users who don't already have one. Drive it from the CLI:
+Start with stored evidence. Before a live provider read, sweep, probe, research
+run, sync, write, or externally visible action, obtain approval covering its
+exact target, action, and bounded work. Approval already given for that exact
+operation need not be asked for again, but does not extend to more projects,
+larger batches, retries with new identities, or recurring work.
 
-```bash
-cnry agent ask <project> "what changed since the last sweep?"
-cnry agent ask <project> "..." --provider claude --scope read-only
-cnry agent memory list <project>          # durable project notes
-```
+HTTP GET and MCP `readOnlyHint` describe aspects of an operation, not its cost
+or permission. Provider discovery, account reads, and live diagnostics may
+consume quota even when labeled read-only. If the tool's effect is unclear,
+inspect its description and request direction before calling it.
 
-Aero also wakes unprompted after every `run.completed` so insights and regressions get analyzed without a user click. Users who already run their own agent (Claude Code, Codex, custom) wire webhooks instead: `cnry agent attach <project> --url <webhook-url>` subscribes to `run.completed`, `insight.critical`, `insight.high`, `citation.gained`.
+Authentication, role/scope checks, project restrictions, quotas, and guarded
+approval receipts are enforced by the server. Help, skills, resources, and tool
+visibility cannot grant authority. Never change credentials, endpoints, or
+project identifiers to work around a missing tool or a `403` response.
 
-## Boundaries & Safety
+For guarded ads writes, inspect unresolved operation receipts before retrying.
+Use the receipt's supported recovery action; do not replay a mutation under a
+new identity. An executor cannot create or widen its own human approval grant.
+On ambiguous results, exhausted bounds, or refusal, stop and report what is
+known and what permission or operator action is needed.
 
-- **Never touch live WordPress without explicit approval**
-- **Back up `~/.canonry/config.yaml` before any config edit**
-- **Never fabricate mention or citation data** — if a sweep hasn't run, say so; never coerce `answerMentioned` null → false (null = "not checked")
-- **Client data stays private** — canonry repo is public; no real domains in issues
-- **Respect API rate limits** — batch operations, avoid tight loops
+## Version and source
 
-## References
+This public, versioned document is the source for initialization guidance,
+intent routes, the optional resource, and generated Canonry `SKILL.md` files.
+Guide v1 may receive compatible clarifications; incompatible routing contracts
+require a new guide version. The running server's help describes its actual
+catalog and remains usable without fetching this document.
 
-| File | Read when |
-|---|---|
-| `references/canonry-cli.md` | Looking up specific canonry commands, flags, or JSON return shapes |
-| `references/aeo-analysis.md` | Interpreting sweep output, diagnosing regressions, planning content fixes |
-| `references/indexing.md` | Submitting URLs, checking GSC/Bing coverage, fixing indexing gaps |
-| `references/wordpress-integration.md` | Connecting to WordPress, editing pages, pushing staging → live |
-| `references/server-side-traffic.md` | Wiring server-log evidence (Cloud Run, WordPress, Vercel adapters) for AI Visibility — Server-Side. Connect, sync, manage sources, troubleshoot. |
-| `references/google-business-profile.md` | Connecting Google Business Profile for local AEO: access-form approval, GCP API enablement, the v4-reviews access gate, hotel lodging/place-action signals, data shapes, troubleshooting. |
+## Optional host-native references
 
----
+Read only references relevant to the requested task. They are not required for MCP operation.
 
-**Tools:** canonry v4+, @ainyc/aeo-audit v1.3+  
-**Website:** [canonry.ai](https://canonry.ai) | **Org:** [ainyc.ai](https://ainyc.ai) | **Reference:** [AINYC AEO Methodology](https://ainyc.ai/aeo-methodology)
+- [CLI commands and JSON return shapes](references/canonry-cli.md)
+- [Interpreting stored evidence and regressions](references/aeo-analysis.md)
+- [Indexing workflow after inspection and approval](references/indexing.md)
+- [Approved WordPress workflow](references/wordpress-integration.md)
+- [Server-side traffic setup and diagnosis](references/server-side-traffic.md)
+- [Google Business Profile prerequisites](references/google-business-profile.md)
+- [Google Ads and GTM evidence boundaries](references/google-marketing.md)
+- [Tracking AI traffic to visits and conversions](references/ai-traffic-tracking.md)

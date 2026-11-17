@@ -11,9 +11,9 @@ from common import make_request, print_json_output
 
 # 地理类型到API端点的映射
 GEO_ENDPOINTS = {
-    'country': '/common/country/list',
-    'province': '/common/province/list',
-    'city': '/common/city/list'
+    'country': '/agent/common/country/list',
+    'province': '/agent/common/province/list',
+    'city': '/agent/common/city/list'
 }
 
 
@@ -81,7 +81,8 @@ def get_geography_list(geo_type, country_id=None):
             "status": "fail",
             "total": 0,
             "list": [],
-            "error_msg": response.get('msg', '未知错误')
+            "error_msg": response.get('msg', '未知错误'),
+            "requestId": response.get('requestId')
         }
 
     geo_list = response.get('data', {}).get('list', [])
@@ -92,7 +93,8 @@ def get_geography_list(geo_type, country_id=None):
         "status": "success",
         "total": len(geo_list),
         "list": geo_list,
-        "error_msg": ""
+        "error_msg": "",
+        "requestId": response.get('requestId')
     }
 
 

@@ -1,47 +1,64 @@
-## Description: <br>
-Prediction Market Trader helps agents analyze Kalshi prediction markets by authenticating to the API, scanning markets, de-vigging Sofascore odds, calculating probabilities, sizing positions, and preparing or executing order actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prediction Market Trader is a Kalshi trading toolkit for API authentication, market scanning, Sofascore de-vigging, true probability calculation, Kelly sizing, and order execution.
 
-## Publisher: <br>
-[merjua14](https://clawhub.ai/user/merjua14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[merjua14](https://clawhub.ai/user/merjua14)
 
-## Use Case: <br>
-External users and developers use this skill to evaluate prediction-market opportunities, compare Kalshi prices with de-vigged odds, apply Kelly-style sizing, and manage trading risk. It is intended for workflows where a human reviews market data and approves any account action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use real Kalshi account credentials to place or cancel live orders. <br>
-Mitigation: Require explicit human approval before every order or cancellation and use the skill only with accounts intended for this workflow. <br>
-Risk: Kalshi private keys are highly sensitive and may authorize account actions. <br>
-Mitigation: Store credentials in environment variables or a secrets manager, avoid logging keys, and rotate credentials if exposure is suspected. <br>
-Risk: The documented dry-run workflow depends on a trading script that is not present in the artifact. <br>
-Mitigation: Do not rely on dry-run behavior unless the missing script is supplied, reviewed, and tested before use. <br>
-Risk: Automated market matching or stale odds can produce incorrect trade decisions. <br>
-Mitigation: Verify event matches by name, re-check current odds immediately before action, and document source data and edge calculations. <br>
+## Use Case:
 
+Developers and prediction market analysts use this skill to evaluate Kalshi markets, compare prices with de-vigged external odds, size candidate trades, and prepare or execute orders with explicit safeguards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/merjua14/prediction-market-trader) <br>
-- [Lessons Learned](references/lessons-learned.md) <br>
-- [Kalshi Market Categories & Series Tickers](references/market-categories.md) <br>
-- [Risk Management Rules](references/risk-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe API calls and trade-sizing calculations; any live trading action should require human approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can support live financial actions on Kalshi, including placing or canceling orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only or test credentials where possible and require explicit human confirmation, dry-run defaults, order-size limits, and exposure checks before any live order action.
+
+Risk: Private Kalshi credentials or RSA keys could be exposed if pasted into shell history or shared agent context.
+
+Mitigation: Use a secrets manager or protected key file, avoid pasting private keys into shell history, and rotate credentials after testing or accidental exposure.
+
+Risk: Fragile market-participant matching can produce incorrect trades or misleading edge calculations.
+
+Mitigation: Require reliable participant matching by stable identifiers or full names, deduplicate equivalent positions, and manually review matched markets before execution.
+
+Risk: Fast-moving odds and stale market data can make calculated edges obsolete before execution.
+
+Mitigation: Re-check source odds, Kalshi price, fees, and liquidity immediately before trading, and avoid execution when the edge has closed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/merjua14/skills/prediction-market-trader)
+- [Market Categories](artifact/references/market-categories.md)
+- [Risk Rules](artifact/references/risk-rules.md)
+- [Lessons Learned](artifact/references/lessons-learned.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and JavaScript examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API requests, market-edge calculations, position sizing guidance, and trade/order recommendations that require review before live execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

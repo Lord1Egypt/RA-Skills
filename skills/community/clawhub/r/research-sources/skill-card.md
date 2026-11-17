@@ -1,40 +1,52 @@
-## Description: <br>
-Helps agents select and organize information sources for content ideation, competitor monitoring, industry tracking, market intelligence, content research, and topic research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents choose and organize information sources for content ideation, competitor monitoring, and industry tracking.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketing teams, content strategists, and business researchers use this skill to plan source categories, shortlist public information sources, and set monitoring cadence for ideation, competitor tracking, and industry monitoring.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad research-source phrasing may invoke the skill for adjacent research requests.
+
+Mitigation: Confirm the user's intended use case and keep the response focused on public source selection for marketing and monitoring workflows.
+
+Risk: Source recommendations can become stale over time.
+
+Mitigation: Prefer source categories and a reviewed shortlist, then update specific examples periodically.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing, content, and strategy users use this skill to choose high-signal source categories and source shortlists for content ideation, competitor monitoring, and industry tracking. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Recommended external sources may be stale, biased, low quality, or unsuitable for the user's locale or industry. <br>
-Mitigation: Review suggested sources for authority, freshness, coverage, and language or locale fit before relying on them. <br>
-Risk: Any browsing or monitoring performed from the source list uses the permissions of the user's normal agent tools. <br>
-Mitigation: Review external sources before opening, monitoring, or incorporating them into downstream research workflows. <br>
+**Output Format:** [Markdown with tables and bullet lists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/research-sources) <br>
+**Other Properties Related to Output:** [Produces source-category selections, shortlists, and scan cadence recommendations; it does not run code or request sensitive access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown with tables and concise source shortlists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically includes use case, source category selection, a 5-15 source shortlist, and scan cadence.] <br>
+1.1.1 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,64 @@
-## Description: <br>
-Multi-model council review that spawns 3-5 independent AI reviewers and applies mechanical synthesis so votes decide the final verdict, not orchestrator opinion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-model council review that spawns 3-5 independent AI reviewers and applies mechanical synthesis so votes decide the final verdict rather than orchestrator opinion.
 
-## Publisher: <br>
-[zurbrick](https://clawhub.ai/user/zurbrick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zurbrick](https://clawhub.ai/user/zurbrick)
 
-## Use Case: <br>
-Developers and engineers use this skill to obtain structured multi-model review for code, plans, architecture, and high-risk technical decisions before merge, deployment, or commitment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review inputs may be processed by multiple external model providers, exposing secrets, regulated data, private customer data, or proprietary code. <br>
-Mitigation: Use only approved providers and data classes, redact sensitive inputs before review, and prefer a local or single-provider mode when provider exposure is not acceptable. <br>
+## Use Case:
 
+Developers and engineers use Council v2 to get independent model reviews of code, plans, architectures, and multi-option decisions before merge, deployment, or other high-impact commitments.
 
-## Reference(s): <br>
-- [Council v2 ClawHub listing](https://clawhub.ai/zurbrick/council-v2) <br>
-- [Review Types](references/review-types.md) <br>
-- [Role Prompts](references/role-prompts.md) <br>
-- [JSON Schemas](references/schema.md) <br>
-- [Synthesis Rules](references/synthesis-rules.md) <br>
-- [OpenClaw model docs](https://docs.openclaw.ai/concepts/models) <br>
-- [OpenRouter](https://openrouter.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Markdown] <br>
-**Output Format:** [Markdown instructions, shell command examples, and structured JSON review and synthesis outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reviewer outputs are expected to follow the skill's JSON schema; synthesis includes vote-driven results, critical blocks, conditions, minority report, and exit codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: frontmatter and server release evidence) <br>
+Risk: JSON mode can execute crafted Python code when untrusted input is serialized into the generated orchestration payload.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use `--format json` with untrusted input until heredoc serialization is fixed; use text mode or trusted, reviewed inputs only.
+
+Risk: Review content may be sent to multiple external model providers, which can expose secrets, proprietary code, customer data, or security-sensitive plans.
+
+Mitigation: Submit only data approved for every configured provider, redact sensitive material, and run reviewer sessions with minimal read-only context.
+
+Risk: Reviewer JSON and synthesis results can be malformed or misleading if trusted without validation.
+
+Mitigation: Require strict reviewer JSON validation, inspect critical findings and minority reports, and re-run or substitute failing reviewers before relying on the synthesis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zurbrick/skills/council-v2)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [OpenClaw model docs](https://docs.openclaw.ai/concepts/models)
+- [OpenRouter](https://openrouter.ai)
+- [Review types](references/review-types.md)
+- [Role prompts](references/role-prompts.md)
+- [Council v2 JSON schemas](references/schema.md)
+- [Mechanical synthesis rules](references/synthesis-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown orchestration prompts and JSON synthesis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reviewer orchestration prompts, structured synthesis with verdicts, critical blocks, minority reports, anti-consensus checks, and exit codes.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

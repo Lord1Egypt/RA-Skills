@@ -1,46 +1,66 @@
-## Description: <br>
-Save URLs to a YouMind board from an agent, terminal, or CI/CD workflow using the YouMind CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save any URL to a YouMind board from an agent workflow using the YouMind CLI.
 
-## Publisher: <br>
-[DophinL](https://clawhub.ai/user/DophinL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dophinl](https://clawhub.ai/user/dophinl)
 
-## Use Case: <br>
-External users and developers use this skill to save webpages, articles, videos, and documents into a YouMind board from chat, terminal, or automation workflows after configuring the YouMind CLI and YOUMIND_API_KEY. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad command permissions and may install and run the YouMind CLI. <br>
-Mitigation: Review the allowed commands before installation, approve any global npm install yourself, and restrict command permissions where your agent platform supports it. <br>
-Risk: The skill uses YOUMIND_API_KEY for authentication. <br>
-Mitigation: Store the API key in configuration or environment variables, keep it out of chat, and rotate it if exposure is suspected. <br>
-Risk: Submitted URLs are saved to YouMind and may contain confidential or tokenized information. <br>
-Mitigation: Only submit links you are comfortable storing in YouMind, and avoid confidential or credential-bearing URLs. <br>
+## Use Case:
 
+External users and developers use this skill to save webpages, articles, videos, and documents into a YouMind board from an agent or terminal workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DophinL/youmind-web-clipper) <br>
-- [YouMind CLI package](https://www.npmjs.com/package/@youmind-ai/cli) <br>
-- [Setup guide](references/setup.md) <br>
-- [Error handling guide](references/error-handling.md) <br>
-- [YouMind skills gallery](https://youmind.com/skills?utm_source=youmind-web-clipper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command and CLI call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the youmind CLI, npm for installation, and YOUMIND_API_KEY for authenticated saves.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-provided URLs are sent to and stored in YouMind.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for URLs intended for YouMind storage and avoid private, signed, or sensitive links.
+
+Risk: The workflow installs the YouMind CLI globally without a pinned package version.
+
+Mitigation: Review or pin the CLI package before global installation in managed environments.
+
+Risk: The skill asks for YouMind account access through YOUMIND_API_KEY.
+
+Mitigation: Configure the API key outside chat and do not paste secrets into agent conversations.
+
+Risk: Broad trigger phrases may invoke the skill for generic save or bookmark requests.
+
+Mitigation: Use explicit YouMind-scoped commands when invoking the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dophinl/skills/youmind-web-clipper)
+- [YouMind CLI package](https://www.npmjs.com/package/@youmind-ai/cli)
+- [Setup](references/setup.md)
+- [Error Handling](references/error-handling.md)
+- [YouMind issue tracker](https://github.com/YouMindInc/youmind/issues)
+- [Publisher profile](https://clawhub.ai/user/dophinl)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and YouMind links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the YouMind CLI and YOUMIND_API_KEY; sends user-provided URLs to YouMind for storage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

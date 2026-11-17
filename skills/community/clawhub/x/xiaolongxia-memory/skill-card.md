@@ -1,43 +1,56 @@
-## Description: <br>
-Xiaolongxia Memory Manager helps AI agents preserve continuity with a two-track memory system that combines daily Markdown diaries, periodic distillation, and a long-term MEMORY.md file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiaolongxia Memory Manager helps agents set up a dual-track memory workflow using daily journals and a curated MEMORY.md file for session continuity.
 
-## Publisher: <br>
-[lg-haha](https://clawhub.ai/user/lg-haha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lg-haha](https://clawhub.ai/user/lg-haha)
 
-## Use Case: <br>
-Developers and agent builders use this skill to configure persistent local memory for AI assistants, including daily logs, long-term memory extraction, session-start context loading, and cross-platform prompt templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The memory workflow can create persistent local records of conversations, preferences, and project context. <br>
-Mitigation: Review generated MEMORY.md and memory/*.md files regularly, store only appropriate information, and avoid secrets, credentials, regulated data, or highly sensitive personal details. <br>
-Risk: Generated memory files may be unintentionally shared through version control or synced folders. <br>
-Mitigation: Keep MEMORY.md and memory/*.md out of shared sync or version control unless sharing is intentional and reviewed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure persistent memory for AI assistants, including daily journals, long-term memory extraction, session-start context loading, and periodic maintenance. It is suited for OpenClaw and other agent platforms that can follow Markdown-based operating instructions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lg-haha/xiaolongxia-memory) <br>
-- [Memory Template](references/记忆模板.md) <br>
-- [Memory Distillation Example](references/提炼示例.md) <br>
-- [General Memory Prompt Template](references/通用prompt模板.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions and prompt templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for local MEMORY.md, memory/YYYY-MM-DD.md, and heartbeat-state.json files when applied by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Persistent workspace memory can store broad user and project details across sessions without clear opt-in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in before enabling memory, keep memory files out of source control, and avoid storing secrets or regulated personal data.
+
+Risk: Long-term memory and daily journals can retain stale or unnecessary information.
+
+Mitigation: Review stored entries regularly and define a clear process to delete or disable MEMORY.md and daily journals.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/lg-haha/skills/xiaolongxia-memory)
+- [Memory extraction examples](references/提炼示例.md)
+- [MEMORY.md template](references/记忆模板.md)
+- [General memory prompt template](references/通用prompt模板.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces memory file structures, prompt snippets, and maintenance guidance for persistent workspace memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

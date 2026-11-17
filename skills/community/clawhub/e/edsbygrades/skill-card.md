@@ -1,42 +1,56 @@
-## Description: <br>
-Fetches Edsby student data to generate grade reports, provide bi-weekly summaries with tips, and sync assignments to Google Calendar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Edsby student data to generate grade reports, provide bi-weekly improvement summaries, and sync assignments to Google Calendar.
 
-## Publisher: <br>
-[Lystea11](https://clawhub.ai/user/Lystea11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lystea11](https://clawhub.ai/user/lystea11)
 
-## Use Case: <br>
-Students or their supporting agents use this skill to pull Edsby classes, grades, and assignments, produce student-facing grade reports and improvement summaries, and place assignment due dates on Google Calendar. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles private student records from an authenticated Edsby session. <br>
-Mitigation: Use a dedicated browser profile, limit access to trusted users, and avoid exposing session state or fetched grade and assignment data. <br>
-Risk: The skill can create Google Calendar events using persistent credentials. <br>
-Mitigation: Review Google OAuth scopes, prefer a separate calendar, protect or avoid plaintext token files, and revoke credentials when no longer needed. <br>
-Risk: Repeated daily sync may create duplicate or unwanted calendar events because deduplication and cleanup behavior is not clearly documented. <br>
-Mitigation: Review calendar changes after initial runs and avoid repeated scheduled sync until duplicate-event and revoke behavior is understood. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Lystea11/edsbygrades) <br>
-- [Publisher profile](https://clawhub.ai/user/Lystea11) <br>
+## Use Case:
 
+Students and education-support users use this skill to collect class, grade, and assignment information from Edsby, generate progress reports, and create Google Calendar due-date events.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, plain text status messages, Google Calendar event writes, and structured Edsby data objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Edsby browser session state and Google Calendar credentials configured through environment variables and local token files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive school data and account credentials with too little user control and protection.
+
+Mitigation: Review before installing, keep Google tokens and the Edsby browser profile out of shared folders and source control, and use secure credential storage.
+
+Risk: Assignment sync can affect a user's primary Google Calendar.
+
+Mitigation: Use a dedicated Google Calendar and grant the least Google OAuth scope possible.
+
+Risk: Scheduled or repeated sync may create duplicate or unintended calendar events without confirmation controls.
+
+Mitigation: Avoid scheduled or repeated sync until confirmation, duplicate prevention, and credential handling have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lystea11/skills/edsbygrades)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, structured data, API calls]
+
+**Output Format:** [Markdown reports, status strings, structured JavaScript objects, and Google Calendar event creation requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Edsby host configuration, Google OAuth credentials, a browser context path, and a Google Calendar target.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact SKILL.md and package.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

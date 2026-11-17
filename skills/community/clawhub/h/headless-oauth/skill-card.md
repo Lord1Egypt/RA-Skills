@@ -1,43 +1,60 @@
-## Description: <br>
-Authorize OAuth CLI tools on a headless server where the agent and user are on separate machines, using pasted redirects, device flow, or manual callback relay patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents authorize OAuth CLI tools on headless servers by coordinating browser-based login, device-flow codes, or manual callback relay between the remote server and the user's local browser.
 
-## Publisher: <br>
-[igorivanter](https://clawhub.ai/user/igorivanter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[igorivanter](https://clawhub.ai/user/igorivanter)
 
-## Use Case: <br>
-Developers and engineers use this skill to complete OAuth authorization for command-line tools running on VPS or headless servers. It helps agents explain the remote/local browser split, collect user-provided codes or redirect URLs, and relay callbacks to the expected local endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth codes, redirect URLs, tokens, and keyring passwords can grant account access if exposed. <br>
-Mitigation: Treat them as secrets, relay redirect URLs only to the expected localhost callback, and avoid placing credentials in shell history, persistent environment variables, or startup files. <br>
-Risk: A manual callback relay can send an authorization response to the wrong local endpoint if the URL is not checked. <br>
-Mitigation: Prefer device-flow login when available and verify the localhost host, port, path, code, and state before running relay commands. <br>
+## Use Case:
 
+Developers and operators use this skill when an agent must complete OAuth login for CLI tools on a VPS or other server without a browser. It provides reusable guidance for generated authorization URLs, device-flow codes, and manual localhost callback relay.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/igorivanter/headless-oauth) <br>
-- [Project homepage](https://github.com/IgorIvanter/headless-oauth) <br>
-- [gog CLI documentation](https://github.com/steipete/gogcli) <br>
-- [GitHub device login](https://github.com/login/device) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; output may include OAuth URLs, one-time codes, redirect URLs, and localhost callback relay commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: Copied OAuth callback URLs can contain sensitive authorization codes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat callback URLs as sensitive and verify the expected localhost host, port, and callback path before relaying them.
+
+Risk: Manual callback relay asks the agent to forward a user-supplied OAuth URL with curl.
+
+Mitigation: Relay only the expected callback URL for the active OAuth command, and avoid persisting related secrets or keyring credentials in shell configuration.
+
+Risk: Installing with an unpinned @latest package can change installer behavior over time.
+
+Mitigation: Prefer pinned installer versions for repeatable installation.
+
+## Reference(s):
+
+- [Headless OAuth homepage](https://github.com/IgorIvanter/headless-oauth)
+- [gog CLI documentation](https://github.com/steipete/gogcli)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub skill page](https://clawhub.ai/igorivanter/skills/headless-oauth)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and troubleshooting tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes user-facing authorization instructions and security cautions for handling OAuth callback URLs.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata; artifact frontmatter says 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

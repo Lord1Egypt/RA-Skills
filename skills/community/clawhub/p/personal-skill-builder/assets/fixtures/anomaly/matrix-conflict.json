@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "checker": "check_conflict_retention.py",
+  "contract": "conflict-case-good.json",
+  "mutants": [
+    {
+      "id": "raw-neg",
+      "class": "unknown-shown-as-raw",
+      "file": "conflict-good.csv",
+      "ops": [
+        {
+          "op": "set",
+          "where": {
+            "id": "A06",
+            "source_line": "8"
+          },
+          "column": "quantity",
+          "value": "-1"
+        }
+      ]
+    },
+    {
+      "id": "qty-dropped",
+      "class": "quantity-dropped",
+      "file": "conflict-good.csv",
+      "ops": [
+        {
+          "op": "set",
+          "where": {
+            "id": "A03",
+            "source_line": "5"
+          },
+          "column": "quantity",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "note-dropped",
+      "class": "note-dropped",
+      "file": "conflict-good.csv",
+      "ops": [
+        {
+          "op": "set",
+          "where": {
+            "id": "A03",
+            "source_line": "5"
+          },
+          "column": "note",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "line-plus1",
+      "class": "line-wrong",
+      "file": "conflict-good.csv",
+      "ops": [
+        {
+          "op": "shift_int",
+          "where": {
+            "id": "A03"
+          },
+          "column": "source_line",
+          "delta": 1
+        }
+      ]
+    },
+    {
+      "id": "line-data-base",
+      "class": "line-wrong",
+      "file": "conflict-good.csv",
+      "ops": [
+        {
+          "op": "shift_int",
+          "where": {
+            "id": "A06"
+          },
+          "column": "source_line",
+          "delta": -1
+        }
+      ]
+    },
+    {
+      "id": "version-dropped",
+      "class": "version-dropped",
+      "file": "conflict-good.csv",
+      "ops": [
+        {
+          "op": "delete_row",
+          "where": {
+            "id": "A06",
+            "source_line": "9"
+          }
+        }
+      ]
+    },
+    {
+      "id": "entity-dropped",
+      "class": "entity-dropped",
+      "file": "conflict-good.csv",
+      "ops": [
+        {
+          "op": "delete_row",
+          "where": {
+            "id": "A06",
+            "source_line": "8"
+          }
+        },
+        {
+          "op": "delete_row",
+          "where": {
+            "id": "A06",
+            "source_line": "9"
+          }
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    "conflict-delivery"
+  ]
+}

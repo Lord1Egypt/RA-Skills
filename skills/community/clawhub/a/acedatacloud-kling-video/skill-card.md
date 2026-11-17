@@ -1,41 +1,59 @@
-## Description: <br>
-Generates AI videos through AceDataCloud's Kuaishou Kling API for text-to-video, image-to-video, video extension, and motion-control workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Kling video and commercial-media generation using AceDataCloud's API, including text and image prompts, storyboards, motion control, talking photos, and lip sync.
 
-## Publisher: <br>
-[Germey](https://clawhub.ai/user/Germey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acedatacloud](https://clawhub.ai/user/acedatacloud)
 
-## Use Case: <br>
-Developers and creators use this skill to have an agent produce practical guidance and request examples for generating Kling videos through AceDataCloud, including text-to-video, image-to-video, video extension, motion control, and task polling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, media URLs, task data, and callback URLs are sent to AceDataCloud/Kling. <br>
-Mitigation: Use only provider-approved data and avoid sensitive, regulated, private, or internal-only URLs unless the organization has approved the provider. <br>
-Risk: The skill requires an ACEDATACLOUD_API_TOKEN for API access. <br>
-Mitigation: Store the token in a protected environment or secrets manager and do not commit, log, or share it. <br>
+## Use Case:
 
+Creators and developers use this skill to prepare Kling video-generation requests, configure API access, and follow up on asynchronous media tasks through AceDataCloud.
 
-## Reference(s): <br>
-- [Kling Video on ClawHub](https://clawhub.ai/Germey/acedatacloud-kling-video) <br>
-- [AceDataCloud Kling video API endpoint](https://api.acedata.cloud/kling/videos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with bash, curl, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ACEDATACLOUD_API_TOKEN and sends generation prompts, media URLs, task data, and optional callback URLs to AceDataCloud/Kling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter metadata version 1.0) <br>
+Risk: Prompts, media URLs, audio, and callback URLs are sent to AceDataCloud.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only inputs you are authorized to share with the service.
+
+Risk: An exposed API key can permit unauthorized requests.
+
+Mitigation: Keep the key in the documented local environment or shell environment, out of prompts and repositories, and restrict allowed APIs where possible.
+
+Risk: Video generation can incur charges, including from repeated requests while a task is still running.
+
+Mitigation: Review current pricing and poll the existing task ID rather than submitting the same request again.
+
+## Reference(s):
+
+- [Kling Video on ClawHub](https://clawhub.ai/acedatacloud/skills/kling)
+- [AceDataCloud API key setup](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
+- [AceDataCloud async task guidance](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/async-tasks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Code]
+
+**Output Format:** [Markdown with shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requests may return task IDs requiring follow-up; generated videos are returned by the external service.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

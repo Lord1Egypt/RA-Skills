@@ -63,7 +63,7 @@ cat output/AI-Daily-$(date +%Y-%m-%d).md
 export TAVILY_API_KEY="tvly-xxxxxxxxxxxxxxxxxxxx"
 
 # Alibaba Cloud API Key - 用于 LLM 处理（可选）
-export ALIBABA_CLOUD_API_KEY="sk-xxxxxxxxxxxxxxxxxxxx"
+export ALIBABA_CLOUD_API_KEY="REDACTED-SECRET"
 
 # GitHub Token - 用于提高限流（可选）
 export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"

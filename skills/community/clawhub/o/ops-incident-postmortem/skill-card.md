@@ -1,41 +1,49 @@
-## Description: <br>
-Generates structured, blame-free incident postmortem reports from logs, timeline data, and incident metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structured, blame-free incident postmortem reports from logs, timeline data, and incident metadata.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, SREs, and incident response teams use this skill to draft postmortems, reconstruct timelines from logs and structured incident data, check for blameful language, and produce action-item-focused incident review reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may include sensitive incident details from logs, timelines, and metadata. <br>
-Mitigation: Review generated reports before sharing and provide only the incident files and output paths intended for processing. <br>
-Risk: The skill reads local input files and can write report files to a requested output path. <br>
-Mitigation: Run it only on trusted local incident inputs and choose output paths deliberately. <br>
+## Use Case:
 
+Developers, SREs, and incident managers use this skill to draft post-incident reviews from logs, timelines, and incident metadata, including root cause analysis, impact summaries, lessons learned, and action items.
 
-## Reference(s): <br>
-- [Postmortem Templates & Guidelines](artifact/references/templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/ops-incident-postmortem) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, HTML, Shell commands, Guidance] <br>
-**Output Format:** [Markdown, HTML, JSON, or terminal text reports; may write output files when an output path is provided] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports can include incident details, parsed log events, timelines, root cause analysis, impact summaries, lessons learned, and action items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated HTML reports can preserve executable markup from incident data or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted inputs, prefer markdown or JSON output for untrusted incident data, and avoid opening generated HTML reports until user-controlled fields are escaped or sanitized.
+
+## Reference(s):
+
+- [Postmortem Templates & Guidelines](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, HTML, JSON, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write generated reports to stdout or to a requested output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

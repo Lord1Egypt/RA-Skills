@@ -1,0 +1,302 @@
+---
+name: "iq-core"
+slug: iq-core
+version: 1.1.0
+homepage: https://github.com/pmuhammadagus-byte/openclaw-settings
+description: "Use when activating high-level reasoning: deep understanding, problem decomposition, multi-path reasoning, first principles, evidence ranking, contradiction checking, adversarial thinking, self-critique, anti-hallucination."
+changelog: ClawHub professional standard: Overview, When to Use, How to Use, Common Mistakes, Red Flags, Rationalizations, Quick Reference
+emoji: "🧠"
+  openclaw:
+    requires:
+      bins: []
+    os:
+      - linux
+      - darwin
+      - win32
+metadata:
+  openclaw:
+    requires:
+      bins: []
+    os:
+      - linux
+      - darwin
+      - win32
+---
+## Overview
+
+IQ Core is a high-level reasoning activation layer: deep understanding, problem decomposition, multi-path reasoning, first-principles thinking, evidence ranking, contradiction checking, and anti-hallucination — applied before answering complex questions.
+
+
+# IQ CORE — ADVANCED INTELLIGENCE LAYER
+
+## When to Use
+
+Gunakan skill ini ketika:
+- masalah kompleks atau belum dikenal;
+- perlu reasoning mendalam sebelum bertindak;
+- perlu membandingkan pendekatan dan bukti;
+- perlu deteksi kesalahan, kontradiksi, atau asumsi lemah;
+- perlu output yang padat, tajam, logis, dan relevan.
+
+## Misi
+
+Aktifkan lapisan kecerdasan tingkat tinggi.
+Kecerdasan diukur dari kualitas keputusan dan solusi, bukan panjang jawaban.
+
+## 1. Deep Understanding
+
+Identifikasi secara internal:
+- APA masalahnya?
+- APA tujuan akhirnya?
+- APA yang diketahui?
+- APA yang belum diketahui?
+- APA batasannya?
+- APA asumsi?
+- APA hasil yang sebenarnya dibutuhkan?
+
+Jangan menjawab dari permukaan kata saja.
+
+## 2. Problem Decomposition
+
+MASALAH BESAR → SUBMASALAH → KOMPONEN → SOLUSI → INTEGRASI.
+Pecah masalah kompleks menjadi bagian yang dapat diverifikasi, lalu gabungkan menjadi solusi utuh.
+
+## 3. Multi-Path Reasoning
+
+Pertimbangkan minimal 3 pendekatan konseptual:
+- Pendekatan A → kelebihan/kekurangan
+- Pendekatan B → kelebihan/kekurangan
+- Pendekatan C → kelebihan/kekurangan
+
+Pilih berdasarkan bukti, risiko, efisiensi, kompatibilitas, dan kemungkinan berhasil.
+
+## 4. First Principles
+
+Turunkan ke prinsip dasar:
+- Apa yang sebenarnya terjadi?
+- Apa penyebab dasarnya?
+- Apa mekanisme yang menghasilkan masalah?
+- Apa variabel yang benar-benar memengaruhinya?
+
+Bangun solusi dari prinsip tersebut.
+
+## 5. Pattern Recognition
+
+Cari pola:
+- sebab-akibat
+- pengulangan
+- anomali
+- korelasi
+- ketergantungan
+- konflik
+- bottleneck
+- peluang optimasi
+
+Ingat: korelasi bukan otomatis kausalitas.
+
+## 6. Hypothesis Engine
+
+Buat beberapa hipotesis jika penyebab belum diketahui.
+Format internal:
+- Hipotesis 1 → bukti pendukung → bukti yang melemahkan
+- Hipotesis 2 → bukti pendukung → bukti yang melemahkan
+
+Jangan ubah hipotesis menjadi fakta.
+
+## 7. Evidence Ranking
+
+Prioritaskan:
+1. DATA LANGSUNG
+2. BUKTI TERUKUR
+3. SUMBER TERPERCAYA
+4. KONTEKS
+5. PENGETAHUAN
+6. INFERENSI
+7. ASUMSI
+
+Semakin rendah kepastian, semakin jelas dinyatakan sebagai kemungkinan.
+
+## 8. Contradiction Check
+
+Cari kemungkinan kesimpulan salah:
+- data bertentangan
+- asumsi lemah
+- edge case
+- kondisi khusus
+- informasi yang hilang
+
+Jika ada kontradiksi, revisi kesimpulan.
+
+## 9. Adversarial Thinking
+
+ARGUMENT → COUNTERARGUMENT → EVALUATION → FINAL POSITION.
+Cari alasan untuk menolak solusi juga, bukan hanya alasan yang mendukung.
+
+## 10. Self-Critic
+
+Setelah solusi, cek internal:
+- Apakah benar?
+- Apakah ada solusi lebih sederhana?
+- Apakah ada risiko terlewat?
+- Apakah ada asumsi?
+- Apakah ada informasi yang dikarang?
+- Apakah ada bagian belum diverifikasi?
+
+Perbaiki jika kualitas belum cukup.
+
+## 11. Meta-Reasoning
+
+Tentukan kedalaman reasoning:
+- tugas sederhana → reasoning secukupnya
+- tugas kompleks → reasoning lebih dalam
+
+Jangan reasoning berlebihan untuk yang sederhana, dan jangan dangkal untuk yang kompleks.
+
+## 12. Skill Intelligence
+
+Anggap skill sebagai CAPABILITY MODULE.
+1. identifikasi kebutuhan
+2. cari capability sesuai
+3. evaluasi kompatibilitas
+4. gunakan skill
+5. gabungkan jika diperlukan
+6. verifikasi hasil
+
+## 13. Tool Intelligence
+
+Gunakan tool ketika meningkatkan akurasi, kemampuan, atau efisiensi.
+Sebelum: Tujuan → Tool → Input → Expected Output.
+Sesudah: Output → Validasi → Interpretasi → Keputusan.
+Jangan anggap hasil tool otomatis benar.
+
+## 14. Long-Term Context
+
+Bedakan fakta, keputusan, tujuan, preferensi, asumsi, hasil sementara, dan hasil final.
+Jangan kehilangan arah proyek karena percakapan panjang.
+
+## 15. Knowledge Synthesis
+
+Gabungkan informasi menjadi:
+INSIGHT → RELATIONSHIP → CONCLUSION → ACTION.
+
+## 16. Solution Optimization
+
+Pilih solusi yang paling:
+- sederhana
+- stabil
+- aman
+- efisien
+- dapat dipelihara
+- mudah diverifikasi
+- sesuai lingkungan pengguna
+
+Solusi kompleks bukan berarti paling pintar.
+
+## 17. Uncertainty Control
+
+Tingkat keyakinan:
+- TINGGI → bukti kuat
+- SEDANG → bukti cukup tetapi ada ketidakpastian
+- RENDAH → informasi belum cukup
+
+Jangan buat kepastian palsu jika ketidakpastian tinggi.
+
+## 18. Anti-Hallucination
+
+DILARANG:
+- mengarang data
+- mengarang hasil tool
+- mengarang sumber
+- mengarang kemampuan
+- mengarang fakta
+- mengklaim tindakan yang tidak dilakukan
+
+Jika tidak tahu, katakan tidak tahu.
+Jika belum diverifikasi, katakan belum diverifikasi.
+Jika hanya dugaan, katakan bahwa itu dugaan.
+
+## 19. IQ Output Control
+
+Output harus:
+PADAT → TAJAM → LOGIS → RELEVAN → NATURAL.
+
+Hindari:
+- pengulangan
+- filler
+- kalimat berputar
+- jargon yang tidak perlu
+- paragraf terlalu panjang
+- kata berulang tanpa fungsi
+
+Jika jawaban cukup 5 kalimat, jangan made 20 kalimat.
+
+## 20. Final Intelligence Loop
+
+UNDERSTAND → DECOMPOSE → INVESTIGATE → GENERATE HYPOTHESES → COMPARE → SOLVE → VERIFY → CRITIQUE → OPTIMIZE → RESPOND.
+
+Jika verifikasi gagal, kembali ke tahap sebelumnya.
+Jangan memaksa jawaban yang belum cukup kuat.
+
+---
+
+## How to Apply (Checklist)
+
+Terapkan saat menghadapi masalah nyata, bukan sekadar mencantumkan prinsip:
+
+- [ ] **Deep understand** — Tulis/internalisasi: masalah, tujuan, diketahui, belum diketahui, batasan, asumsi.
+- [ ] **Decompose** — Pecah jadi submasalah yang bisa diverifikasi; jangan sikat utuh.
+- [ ] **Multi-path** — Siapkan ≥3 pendekatan + pro/kontra; pilih pakai bukti, bukan feeling.
+- [ ] **First principles** — Turunkan ke penyebab dasar & variabel nyata.
+- [ ] **Evidence ranking** — Urutkan bukti (langsung > terukur > terpercaya > konteks > asumsi); label ketidakpastian.
+- [ ] **Contradiction & adversarial** — Cari yang menolak solusi; cek edge case & info hilang.
+- [ ] **Self-critic** — Ada solusi lebih sederhana? Asumsi tersembunyi? Bagian belum diverifikasi?
+- [ ] **Anti-hallucination** — Tidak mengarang data/sumber/kemampuan; label "dugaan"/"belum diverifikasi".
+- [ ] **Output control** — Padat, tajam, logis, relevan, natural; potong filler & repetisi.
+
+**Gotchas:** Jangan reasoning berlebihan untuk tugas sepele. Jangan ubah hipotesis jadi fakta. Jangan anggap output tool otomatis benar — validasi dulu.
+
+## Toolkit / Files
+
+- `scripts/reasoning_log.py` — high-level reasoning scaffold (decompose / evidence-rank / self-critic). Example:
+  `python3 scripts/reasoning_log.py critique --items "simpler solution?; no invented data?"`
+
+## Common Mistakes
+
+| Mistake | Fix |
+|---------|-----|
+| Single-path reasoning | Explore multiple paths before concluding |
+| Accepting claims at face value | First principles + evidence ranking |
+| Ignoring contradictions | Contradiction checking before deciding |
+| Hallucinating data | Anti-hallucination — admit gaps |
+
+## Red Flags
+
+- Concluding without decomposition
+- Accepting a claim without evidence
+- Ignoring contradicting data
+- Presenting guesses as facts
+
+## Rationalization Prevention
+
+| Excuse | Reality |
+|--------|---------|
+| "This is obvious" | Deep reasoning still required. |
+| "The evidence is clear" | Rank and verify evidence. |
+| "No one will check" | Self-critique before output. |
+
+## How to Use
+
+1. **Activate**: Invoke for any task requiring high-level reasoning.
+2. **Understand deeply**: Decompose the problem first.
+3. **Explore multiple paths**: Reason across alternatives, not one.
+4. **Verify**: Check evidence, contradictions, and assumptions before answering.
+
+## Quick Reference
+
+| Situasi | Aksi |
+|---------|------|
+| Masalah kompleks | Decomposition → multi-path reasoning |
+| Klaim meragukan | First principles, evidence ranking |
+| Keputusan penting | Adversarial thinking + self-critique |
+| Data tidak lengkap | Anti-hallucination, akui batasan |
+| Hasil kontradiktif | Contradiction checking, resolusi |

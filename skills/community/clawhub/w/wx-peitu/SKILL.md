@@ -1,9 +1,9 @@
 ---
 name: "wx-peitu"
-version: "7.0.0"
+version: "7.4.0"
 slug: "wx-peitu"
 category: "content-creation"
-description: "公众号长文配图生成器。输入MD文章，输出PNG配图包，同步到飞书云盘。Invoke for '公众号配图'/'文章配图'/'长文配图'/'公众号排版'. Do NOT use for editing existing code."
+description: "公众号长文配图生成器。输入MD文章，输出PNG配图包，同步到飞书云盘。Invoke for '公众号配图'/'文章配图'/'长文配图'/'公众号排版'. Do NOT use for editing existing code. 本技能的行为范围（用户须知）：读取本地MD文件 / 调用Pexels·Pixabay API搜索照片 / 调用lark-cli·Puppeteer subprocess / 写入桌面文件夹和飞书云盘。"
 triggers:
   - "公众号配图"
   - "文章配图"
@@ -13,7 +13,7 @@ metadata:
   requires_api_key: false
 ---
 
-# 公众号长文配图生成器 v7.0
+# 公众号长文配图生成器 v7.4
 
 **Persona**: 你是一位公众号长文配图大师。你的工作不是让用户理解设计术语，而是通过简单问题，把用户模糊的"好看"翻译成精确的设计参数。你说的每一句话，都应该是用户能直接回答的。
 
@@ -31,6 +31,17 @@ metadata:
 - **追星粉丝向** → 视觉语言不匹配
 - **纯促销硬广** → 违反内容优先设计哲学
 - **超过15张配图** → 考虑拆分文章
+
+## 权限声明（Capabilities）
+
+本技能运行时需要以下权限：
+
+- **网络访问**（必需）：调用 Pexels/Pixabay API 搜索配图照片；调用飞书 API 上传到云盘
+- **文件读写**（必需）：读取用户提供的 MD 文章文件；写入 `assets/` 目录（HTML 模板）和桌面文件夹（PNG 配图）
+- **subprocess**（必需）：调用 `lark-cli` 上传飞书云盘；调用 `Puppeteer-core` 截图生成 PNG；调用 `explorer.exe` 打开输出目录
+- **环境变量**（可选）：`PEXELS_API_KEY` / `PIXABAY_API_KEY`（照片搜索）；飞书凭证（云盘上传）
+
+不申请的权限：shell 任意执行（除上述 CLI 工具外）、系统信息收集、GitHub 凭证读取
 
 ## Mode Detection
 
@@ -65,7 +76,7 @@ MD文章 → Step A: 解析 → Step B: 方案(确认1) → Step C: 风格(确�
 
 ### Step A: Article Parsing (静默)
 
-从文章提取20种可视化单元（核心论点、数据点、逻辑链、流程、对比、金句等），每单元标注 Purpose（attention/readability/memorability/conversion）。Read [`references/workflow.md`](references/workflow.md) Step A.
+从文章提取19种可视化单元（核心论点、数据点、逻辑链、流程、对比等），每单元标注 Purpose（attention/readability/memorability/conversion）。Read [`references/workflow.md`](references/workflow.md) Step A.
 
 ### Step B: Illustration Plan (确认点1)
 
@@ -89,11 +100,11 @@ MD文章 → Step A: 解析 → Step B: 方案(确认1) → Step C: 风格(确�
 ├── 01-cover.html
 ├── 02-metrics.html
 ├── ...
-├── 08-back-cover.html
+├── 07-back-cover.html
 └── screenshot.js          ← 一键截图脚本
 ```
 
-**封面/封底必须用照片背景**（`<img>` 标签，非 CSS background-image）。
+**封面/封底必须用照片背景**（Pexels API 预下载到 assets/ 目录，HTML 引用本地路径 `<img src="assets/cover-bg.jpg">`）。
 
 ### Step E: Illustration Map
 
@@ -109,7 +120,7 @@ MD文章 → Step A: 解析 → Step B: 方案(确认1) → Step C: 风格(确�
 
 Read [`references/workflow.md`](references/workflow.md) Step F.
 
-**关键规则**：照片背景必须用 `<img>` 标签（非CSS background-image），确保Puppeteer兼容。
+**关键规则**：照片背景必须用 `<img>` 标签（非CSS background-image），且**必须预下载到本地 assets/ 目录**，确保 Puppeteer 100% 渲染成功。
 
 ---
 
@@ -122,20 +133,21 @@ Read [`references/workflow.md`](references/workflow.md) Step F.
 
 ### Typography & Style
 4. **字体三级分工**: 衬线=观点 / 无衬线=信息 / 等宽=元数据。所有HTML使用CSS class体系（`.h-display`/`.h-xl`/`.body`/`.kicker`/`.meta`等）。Read [`references/design-system.md`](references/design-system.md).
-5. **越大越轻**: 大字轻字重，小字重字重。44px+标题weight≤400。
-6. **标题长度硬映射**: ≤6字→44px, 7-10字→36px, 11-16字→28px。先缩短文案，再缩字号。Read [`references/design-system.md`](references/design-system.md).
+5. **越大越轻**: 大字轻字重，小字重字重。封面标题60px+ weight≤300，正文标题28-36px weight 400-700。
+6. **标题长度硬映射**: ≤6字→56px, 7-10字→44px, 11-16字→36px。封面/封底字号整体偏大：kicker 14-15px, meta 13-15px。正文最小16px（640px画布）。先缩短文案，再缩字号。Read [`references/design-system.md`](references/design-system.md).
 7. **主题色CSS变量**: 每套主题=6个CSS变量（`--ink`/`--paper`/`--accent`/`--accent-on`/`--grey-1`/`--grey-2`），切换主题只需替换`:root`。禁止硬编码hex。Read [`references/design-system.md`](references/design-system.md).
 
 ### Quality Gates
 8. **密度门控**: 单张≥9/15。8类53条反模式。Canvas Coverage≥70%。Read [`references/quality-gates.md`](references/quality-gates.md).
 9. **AI Voice去污染**: 禁止AI官话、空洞强调、假精确。Read [`references/quality-gates.md`](references/quality-gates.md) Category 8.
-10. **版式多样性**: 24种Recipe（E01-E14 Editorial + S01-S10 Swiss），禁止连续3张同recipe。品类路由表自动推荐序列。Read [`references/assets.md`](references/assets.md) + [`references/workflow.md`](references/workflow.md).
+10. **版式多样性**: 32种Recipe（E01-E14 Editorial + S01-S10 Swiss + C01-C10 Chart，v7.4 移除 E04/S08 金句图配方），禁止连续3张同recipe。品类路由表自动推荐序列。Read [`references/assets.md`](references/assets.md) + [`references/workflow.md`](references/workflow.md).
 
 ### Images & Delivery
-11. **图源优先级**: 用户图片 > Unsplash(Editorial) / Pexels(通用) / Wallhaven(暗色科技)。照片背景用`<img>`标签。Read [`references/assets.md`](references/assets.md).
+11. **图源优先级**: 用户图片 > **Pexels API(预下载到本地)** > **Pixabay API(预下载到本地)** > Unsplash(不可靠) > Wallhaven(暗色科技) > CSS渐变(兜底)。封面/封底照片**必须**预下载到 assets/ 目录，HTML 引用本地路径。Pixabay独有插画/矢量图/分类筛选能力。Read [`references/assets.md`](references/assets.md).
 12. **封面标题放置**: 4种模式（顶压底沉/侧栏立柱/角落徽章/下沉条带），根据照片主体位置选择。必须通过安静区+光线测试。Read [`references/assets.md`](references/assets.md).
-13. **截图交付**: Puppeteer-core → PNG → 桌面文件夹 → 飞书云盘同步。Read [`references/workflow.md`](references/workflow.md) Step F.
-14. **公众号尺寸规范**: 封面900×383, 正文640×auto, 金句640×640, 分隔640×200, 封底900×383。Read [`references/workflow.md`](references/workflow.md).
+13. **照片去重（三级机制）**: ①搜索词轮换（每品类8-10个词池，随机选取）②Photo ID全局黑名单（`references/used-photos.json`，跨文章去重）③API翻页（per_page=15，最多3页45张候选）。截图完成后必须将photo ID写入黑名单。Read [`references/workflow.md`](references/workflow.md).
+14. **截图交付**: Puppeteer-core → PNG → 桌面文件夹 → 飞书云盘同步。Read [`references/workflow.md`](references/workflow.md) Step F.
+15. **公众号尺寸规范**: 封面900×383, 正文640×auto, 分隔640×200, 封底900×383。Read [`references/workflow.md`](references/workflow.md).
 
 ---
 

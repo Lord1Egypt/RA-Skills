@@ -47,7 +47,13 @@ This document recognises the contributions of individuals and organisations to t
 ### SNP Panel Research & Validation
 *Contributors who provided literature review or SNP suggestions*
 
-(To be updated as community contributions accumulate)
+- **krudo-taco**
+  - Identified and corrected the `rs4988235` (MCM6 / lactase persistence) entry: the risk and
+    reference alleles were reversed, the additive scoring model was wrong for a recessive trait,
+    and the citation pointed to an unrelated paper.
+  - Contributed the `inheritance: dominant_protective` scoring model and its test coverage.
+  - Originally contributed to the ClawBio `nutrigx` skill (ClawBio/ClawBio@1163f49, MIT licence);
+    adapted here with thanks.
 
 ---
 
@@ -280,12 +286,12 @@ Date: YYYY-MM-DD
 ## Questions About Attribution?
 
 - **Email**: david@nutrigenomics.dev
-- **GitHub Issues**: https://github.com/clawbio/nutrigenomics/issues
-- **Discussions**: https://github.com/clawbio/nutrigenomics/discussions
+- **GitHub Issues**: https://github.com/drdaviddelorenzo/nutrigenomics/issues
+- **Discussions**: https://github.com/drdaviddelorenzo/nutrigenomics/discussions
 
 ---
 
-*Last updated: February 28, 2026*
-*Nutrigenomics v0.2.0-openclaw*
+*Last updated: 12 September 2026*
+*Nutrigenomics v0.3.4*
 
 **Thank you for making personalised nutrigenomics accessible to everyone! 🧬💚**

@@ -1,41 +1,54 @@
-## Description: <br>
-Runs shell commands inside a dedicated tmux session named claw, returns captured command output, and blocks commands that match its dangerous-command checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs shell commands inside a dedicated tmux session named 'claw', returning command output and prompting before destructive commands.
 
-## Publisher: <br>
-[fresh3](https://clawhub.ai/user/fresh3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fresh3](https://clawhub.ai/user/fresh3)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent run local shell commands in a dedicated tmux session and read back terminal output. It is intended for workflows where direct local shell access is explicitly desired. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides raw local shell access through an agent tool, and the release security summary says its safety controls and tmux boundary are weak for that level of access. <br>
-Mitigation: Install only when agent shell execution is intentionally required; run it in a constrained workspace with least-privilege permissions. <br>
-Risk: The security guidance warns against relying on dangerous-command detection and using the skill around secrets or sensitive directories. <br>
-Mitigation: Do not treat the dangerous-command checks as a sandbox; keep secrets and sensitive directories out of scope and require explicit human review for high-impact commands. <br>
+## Use Case:
 
+Developers and agents use this skill to run shell commands in a dedicated tmux session named 'claw' and read back command output while keeping that work separate from other tmux sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fresh3/taizi-claw-shell) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/fresh3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [JSON object containing the submitted command and captured tmux pane output, or an error object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the tmux session named claw and captures recent pane output after command execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill provides broad shell authority and may expose sensitive files, credentials, or network access if installed in a privileged environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a tightly sandboxed environment with no sensitive files, credentials, or network access.
+
+Risk: User-supplied shell input may execute outside the stated tmux boundary and the current safety controls are weak.
+
+Mitigation: Call tmux with argument arrays instead of shell strings and add real user approval or stricter command policy before trusting the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fresh3/skills/taizi-claw-shell)
+- [Publisher profile](https://clawhub.ai/user/fresh3)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [JSON object containing the submitted command and captured terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns captured output from the latest tmux pane contents after command execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

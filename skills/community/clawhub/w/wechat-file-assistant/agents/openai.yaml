@@ -1,0 +1,4 @@
+interface:
+  display_name: "微信文件助手"
+  short_description: "搜索本地微信文件，并继续完成总结、比较和整理等实际任务"
+  default_prompt: "使用 $wechat-file-finder 查找本地微信文件，并继续完成我要求的文件处理任务。"

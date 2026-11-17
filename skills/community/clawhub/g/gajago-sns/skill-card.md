@@ -1,46 +1,65 @@
-## Description: <br>
-Gajago Sns helps create Korean SNS copy, images, and 20-second videos for Instagram, Facebook, and Band from /가자고 text, keywords, or images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Korean SNS copy, images, and optional 20-second videos for Gyeonggi Provincial Office of Education Startup and Employment Support Center posts triggered by /가자고.
 
-## Publisher: <br>
-[sang-su0916](https://clawhub.ai/user/sang-su0916) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sang-su0916](https://clawhub.ai/user/sang-su0916)
 
-## Use Case: <br>
-External communications and education-support staff can use this skill to transform source text, keywords, and optional images into channel-specific Korean promotional posts for Instagram, Facebook, and Band. It also supports image and short video asset generation workflows for campaign publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact exposes a Gemini API key. <br>
-Mitigation: Remove the key from the skill, rotate the exposed credential, and require users to provide their own secret through environment configuration. <br>
-Risk: The skill can run local tools, start a local web app, and rely on fixed personal filesystem paths. <br>
-Mitigation: Replace hardcoded personal paths with user-selected inputs, document required dependencies, and require explicit user confirmation before starting local services or opening folders. <br>
-Risk: Generated content may be sent externally through Telegram or other publishing workflows. <br>
-Mitigation: Require a clear review and confirmation step before sending or publishing any generated copy, image, or video asset. <br>
-Risk: The skill references external services and downloadable media. <br>
-Mitigation: Declare external service dependencies and network downloads so installers can review data flow, licensing, and operational requirements before use. <br>
+## Use Case:
 
+Communications staff and agents use this skill to turn Korean source text, keywords, and optional photos into channel-specific Instagram, Facebook, and Band promotional content. It can also guide creation of branded image assets and a short slideshow video.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sang-su0916/gajago-sns) <br>
-- [Publisher profile](https://clawhub.ai/user/sang-su0916) <br>
-- [SoundHelix sample music dependency](https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown instructions with inline shell commands and generated SNS copy, image, video, and text file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates platform-specific copy for Instagram, Facebook, and Band; may create PNG images, MP4 video, and text summaries when supporting tools and local assets are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The artifact exposes a Gemini API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke the exposed key, remove it from the skill text, and require users to provide GEMINI_API_KEY through their own environment.
+
+Risk: The skill uses hardcoded local paths, outputs, and background service commands.
+
+Mitigation: Make input paths, output directories, and service startup explicit user-configurable options before installation or execution.
+
+Risk: Generated content may be shared through Telegram or other third-party channels.
+
+Mitigation: Require an explicit opt-in before external sharing and clearly show which files or messages will be sent.
+
+Risk: The workflow may download external media for background music.
+
+Mitigation: Bundle approved media or verify downloaded files with integrity checks before use.
+
+Risk: Video scripts include hardcoded local photos and scene text.
+
+Mitigation: Update the scripts to honor user-supplied inputs and fail clearly when required inputs are missing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sang-su0916/skills/gajago-sns)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, channel-specific SNS copy, and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Instagram, Facebook, and Band copy; image asset instructions; and an optional 20-second MP4 slideshow workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

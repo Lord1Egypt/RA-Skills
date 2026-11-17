@@ -38,7 +38,7 @@ If `docker-container-rerun` is missing or broken, fix that first before using th
 
 ### Required MEMORY.md structure
 
-This skill parses container recreate commands from the section header below inside `MEMORY.md`:
+This skill parses container recreate commands from the section header below inside `MEMORY.md`, or dynamically follows modular memory files referenced in `MEMORY.md` (e.g. `memory/docker_containers_recreate.md`):
 
 ```md
 ## 已记住的 Docker 容器固定重建命令

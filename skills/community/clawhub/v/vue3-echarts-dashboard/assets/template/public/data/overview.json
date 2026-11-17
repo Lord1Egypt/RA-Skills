@@ -1,0 +1,9 @@
+{
+  "updatedAt": "2026-09-22 10:00:00",
+  "metrics": [
+    { "key": "total", "label": "总访问量", "value": 1289450, "unit": "次" },
+    { "key": "online", "label": "在线人数", "value": 8421, "unit": "人" },
+    { "key": "order", "label": "今日订单", "value": 3627, "unit": "单" },
+    { "key": "amount", "label": "成交金额", "value": 1893452, "unit": "元", "prefix": "¥" }
+  ]
+}

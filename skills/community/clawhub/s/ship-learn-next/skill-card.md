@@ -1,40 +1,49 @@
-## Description: <br>
-Transforms passive learning content into concrete Ship-Learn-Next cycles with shippable reps, reflection prompts, and next-step planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms learning content into shippable, actionable plans by breaking lessons into concrete Ship-Learn-Next cycles focused on building, reflecting, and iterating.
 
-## Publisher: <br>
-[freegm866-design](https://clawhub.ai/user/freegm866-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freegm866-design](https://clawhub.ai/user/freegm866-design)
 
-## Use Case: <br>
-External users and developers use this skill to turn transcripts, articles, tutorials, course notes, or goals into specific build cycles. It helps define a quest, plan the first shippable rep, map follow-up reps, and connect actions back to the source material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create Markdown plan files more eagerly than some users expect. <br>
-Mitigation: Review the proposed file path before saving, or ask the agent to show plans inline first. <br>
-Risk: A saved plan can include commitments or timelines that the user has not confirmed. <br>
-Mitigation: Confirm the first rep, deadline, and save location with the user before writing the final plan file. <br>
+## Use Case:
 
+Developers, creators, and learners use this skill to turn transcripts, articles, tutorials, course notes, or similar learning material into a saved Markdown plan with a concrete first shipping rep, reflection prompts, and future iterations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freegm866-design/ship-learn-next) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown plan with structured sections, checklists, action steps, and reflection questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save a Markdown plan file using the skill's filename convention.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks the agent to save generated plans to disk, which can persist sensitive transcript, note, or learning-goal content in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with material the user is comfortable storing, and review or remove saved Markdown plans when the source content is sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freegm866-design/skills/ship-learn-next)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown plan saved as a .md file, with a brief user-facing summary and follow-up questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a Ship-Learn-Next quest overview, reps 1-5, action steps, success criteria, reflection questions, timelines, and source-material connections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

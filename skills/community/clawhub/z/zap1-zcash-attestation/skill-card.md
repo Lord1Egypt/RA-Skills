@@ -1,45 +1,62 @@
-## Description: <br>
-Provides Zcash-anchored attestation for agent messages, commands, session events, lifecycle events, proof verification, and policy-related audit records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Zcash-backed attestation tools and hooks for OpenClaw agents to record messages, commands, session changes, and proof checkpoints with a remote ZAP1 service.
 
-## Publisher: <br>
-[skndrs](https://clawhub.ai/user/skndrs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skndrs](https://clawhub.ai/user/skndrs)
 
-## Use Case: <br>
-Developers and operators use this skill to attach a verifiable audit trail to agent activity, inspect ZAP1 proof status, and query attestation records. It is most relevant for agents that need external proof checkpoints or policy-related accountability records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can continuously send hashes of agent activity to a remote attestation service, creating a persistent external audit trail. <br>
-Mitigation: Install only when that audit trail is intended, use a trusted or self-hosted apiUrl, and set proofInterval to 0 if checkpoint messages are unwanted. <br>
-Risk: Write operations and API-key provisioning can use configured credentials, including administrative credentials if supplied. <br>
-Mitigation: Use a least-privilege ZAP1 key and avoid configuring admin credentials unless key provisioning is explicitly required. <br>
-Risk: Policy rules are not a standalone enforcement guarantee unless the host agent wires the policy evaluator into tool execution. <br>
-Mitigation: Confirm the host agent invokes evaluatePolicy before relying on blockedTools or restrictedTools for execution control. <br>
+## Use Case:
 
+Developers and operators use this skill to add proof-oriented Zcash attestation, verification, and lifecycle lookup workflows to OpenClaw agents. It is intended for agents where message, command, session, and policy-related activity should be recorded or checked through a ZAP1 service.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/skndrs/zap1-zcash-attestation) <br>
-- [ZAP1 protocol](https://github.com/Frontier-Compute/zap1) <br>
-- [ZAP1 protocol specification](https://github.com/Frontier-Compute/zap1/blob/main/ONCHAIN_PROTOCOL.md) <br>
-- [ZAP1 verifier](https://pay.frontiercompute.io/verify.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration guidance] <br>
-**Output Format:** [JSON API responses, checkpoint text, and Markdown configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit proof checkpoints into agent messages when configured; read-only tools work without an API key, while attestation and administrative actions require credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata, package.json) <br>
+Risk: The security review says the skill submits agent messages, command activity, session changes, and related hashes to a ZAP1 service and may create durable proof records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this telemetry is intended, configure a trusted HTTPS apiUrl, and avoid sending sensitive activity unless durable remote attestation is acceptable.
+
+Risk: The security review says advertised policyRules should not be treated as automatic access control unless enforcement is separately wired and tested.
+
+Mitigation: Validate policy enforcement in the host agent's tool dispatch path before relying on blockedTools or restrictedTools for safety controls.
+
+Risk: The security review flags admin key creation and remote event creation as sensitive operations.
+
+Mitigation: Use tightly scoped API keys, avoid admin keys unless required, rotate keys according to local policy, and review created events before using them as authoritative records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skndrs/skills/zap1-zcash-attestation)
+- [Publisher profile](https://clawhub.ai/user/skndrs)
+- [ZAP1 protocol repository](https://github.com/Frontier-Compute/zap1)
+- [ZAP1 on-chain protocol specification](https://github.com/Frontier-Compute/zap1/blob/main/ONCHAIN_PROTOCOL.md)
+- [Zcash ZIP draft PR 1243](https://github.com/zcash/zips/pull/1243)
+- [ZAP1 verifier](https://pay.frontiercompute.io/verify.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with JSON configuration examples, shell commands, and JSON tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include proof hashes, proof bundles, anchor status, lifecycle records, event summaries, decoded memo data, and checkpoint text injected into an agent session.]
+
+## Skill Version(s):
+
+0.2.1 (source: ClawHub release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

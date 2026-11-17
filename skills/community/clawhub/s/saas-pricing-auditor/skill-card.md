@@ -1,40 +1,50 @@
-## Description: <br>
-Audits SaaS pricing pages and returns a scored review, targeted rewrites, value-metric guidance, and a ranked A/B test backlog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits SaaS pricing pages and returns a scored review, concrete rewrite suggestions, value-metric guidance, and a ranked A/B test backlog.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Growth, product, and go-to-market teams use this skill to evaluate SaaS pricing pages, redesign tiers, choose pricing metrics, and prioritize conversion or packaging tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing, packaging, or A/B test recommendations could affect revenue or customer conversion if implemented without business review. <br>
-Mitigation: Review recommendations with the relevant business owner and validate material changes through controlled experiments before rollout. <br>
-Risk: Metadata includes crypto and purchasing capability tags that are not supported by the skill behavior. <br>
-Mitigation: Do not grant wallet, payment, purchasing, or transactional permissions based on those metadata tags. <br>
+## Use Case:
 
+Growth, product, marketing, and revenue teams use this skill to review SaaS pricing pages, redesign tiers, choose pricing metrics, decide between trials and freemium, and prioritize pricing experiments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/saas-pricing-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown scorecard with recommendations and prioritized test backlog] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 1-10 scores across nine pricing-page dimensions, specific rewrite suggestions, value-metric recommendations, and a ranked A/B test queue.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Pricing, conversion-rate, and ARR-lift recommendations may be inaccurate for a specific market, customer segment, or business model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the recommendations as strategic heuristics, validate them against business data, and test material pricing changes before broad rollout.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/saas-pricing-auditor)
+- [ClawHub publisher profile](https://clawhub.ai/user/charlie-morrison)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a 1-10 scorecard, prioritized rewrites, value-metric recommendation, and ranked A/B test backlog.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

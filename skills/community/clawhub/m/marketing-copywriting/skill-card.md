@@ -1,40 +1,52 @@
-## Description: <br>
-Generate marketing copy, emails, and promotional content based on customer personas with multi-style rewriting capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate marketing copy, emails, and promotional content based on customer personas with multi-style rewriting capabilities.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[1970168137](https://clawhub.ai/user/1970168137)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketing and business teams use this skill to draft and rewrite promotional copy, emails, and campaign materials for specific customer personas. It also supports business users who need structured recommendations, implementation guidance, and review-ready marketing deliverables.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks for business context, data, documents, requirements, and target audience information, which could lead users to provide secrets, customer personal data, regulated records, or confidential documents.
+
+Mitigation: Redact unnecessary sensitive information and obtain approval before sharing confidential, regulated, customer, or credential-like data.
+
+Risk: The skill provides broad business-writing and compliance-oriented recommendations that may be too general for specialized industries or regulated marketing contexts.
+
+Mitigation: Have domain experts review outputs before use, especially where legal, financial, medical, regulatory, or brand-compliance requirements apply.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing and business users use this skill to generate copy, emails, promotional content, and rewritten variants from customer personas, business context, and audience requirements. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Marketing, compliance, financial, legal, or strategic claims may be inaccurate or unsuitable for a specific business context. <br>
-Mitigation: Review outputs against brand rules, industry standards, and qualified legal, compliance, financial, or strategic guidance before use. <br>
-Risk: Inputs may include confidential business context, budgets, regulatory records, or sensitive customer data. <br>
-Mitigation: Share only the minimum necessary context and avoid sensitive customer or business data unless the deployment environment is approved for it. <br>
+**Output Format:** [Markdown prose with structured lists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1970168137/marketing-copywriting) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include analysis, recommendations, ready-to-use copy, implementation steps, and best practices.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,60 @@
-## Description: <br>
-Helps manage macOS service persistence and restart recovery using LaunchAgent, tmux bootstrap scripts, wrapper daemons, and service registry updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers manage macOS LaunchAgent, tmux bootstrap, and wrapper daemon patterns so services can recover after reboot.
 
-## Publisher: <br>
-[darwin7381](https://clawhub.ai/user/darwin7381) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darwin7381](https://clawhub.ai/user/darwin7381)
 
-## Use Case: <br>
-Developers and operators use this skill to add, upgrade, diagnose, and restore persistent macOS services across LaunchAgent, tmux bootstrap, and wrapper-daemon patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact is designed for login-time and crash-recovery persistence on macOS. <br>
-Mitigation: Review every LaunchAgent and shell script before loading it, and install only when persistent service recovery is intended. <br>
-Risk: The included Claude Telegram wrapper uses permission-bypass flags and auto-confirms trust prompts. <br>
-Mitigation: Remove permission-bypass flags and require manual trust confirmation before deployment. <br>
-Risk: Bundled scripts contain user-specific paths and service definitions. <br>
-Mitigation: Replace hardcoded paths and service entries with values for the target machine before use. <br>
-Risk: Some development services may bind to externally reachable interfaces. <br>
-Mitigation: Bind development servers to localhost unless remote access is explicitly required. <br>
+## Use Case:
 
+Developers and operators use this skill to add, migrate, diagnose, and recover persistent macOS services across LaunchAgent and tmux-based tiers.
 
-## Reference(s): <br>
-- [Service Persistence Release Page](https://clawhub.ai/darwin7381/service-persistence) <br>
-- [Bootstrap Script Template](references/bootstrap-template.md) <br>
-- [LaunchAgent plist Template](references/launchagent-template.md) <br>
-- [Service Registry Specification](references/registry-spec.md) <br>
-- [Wrapper Daemon Script Template](references/wrapper-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON registry entries, plist templates, and shell script snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose persistent macOS LaunchAgents, tmux sessions, service registry updates, and wrapper daemons.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can create user-level macOS autorun services that restart processes after reboot or failure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated LaunchAgent, bootstrap, and wrapper changes before loading them, and document how to unload each LaunchAgent and stop related tmux sessions.
+
+Risk: The included behavior references a persistent remote Claude/Telegram agent with bypassed approvals and automatic trust confirmation.
+
+Mitigation: Remove permission-bypass flags, disable automatic trust confirmation, and restrict Telegram or channel access before use.
+
+Risk: Registry-driven service entries can launch arbitrary commands or expose development services beyond the local machine.
+
+Mitigation: Validate registry values before generating scripts and prefer localhost bindings for development services.
+
+## Reference(s):
+
+- [LaunchAgent plist template](references/launchagent-template.md)
+- [Bootstrap script template](references/bootstrap-template.md)
+- [Service registry specification](references/registry-spec.md)
+- [Wrapper daemon script template](references/wrapper-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with inline shell commands and plist, JSON, and shell script templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose macOS LaunchAgent plist files, tmux session commands, service registry JSON updates, and shell scripts.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

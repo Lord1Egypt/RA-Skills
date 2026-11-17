@@ -1,44 +1,64 @@
-## Description: <br>
-Kannaka Memory gives agents persistent local memory, recall, dream consolidation, audio perception, and optional swarm coordination through a Rust CLI and OpenClaw tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kannaka Memory gives agents persistent wave-based memory, recall, dream consolidation, audio perception, and optional QueenSync swarm coordination through a Rust CLI and OpenClaw tools.
 
-## Publisher: <br>
-[NickFlach](https://clawhub.ai/user/NickFlach) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickflach](https://clawhub.ai/user/nickflach)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add persistent memory, memory search, status reporting, dream-style consolidation, audio ingestion, and optional swarm synchronization to OpenClaw agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installed extension can execute unsafe shell commands from tool inputs. <br>
-Mitigation: Review the installer and generated extension before use, test in an isolated environment, pin the upstream source being built, and require argument-array process execution with strict input validation before normal use. <br>
-Risk: Swarm commands and non-local Ollama endpoints can send activity or text outside the machine. <br>
-Mitigation: Keep swarm features and remote Ollama endpoints disabled unless that data sharing is intended, and configure endpoints explicitly for the deployment environment. <br>
-Risk: Memory deletion and networked actions may change persistent agent state or external state. <br>
-Mitigation: Use confirmations or operator review for deletion and networked actions, and keep backups of important memory files. <br>
+## Use Case:
 
+Developers and agent operators use Kannaka Memory to add persistent local memory, semantic recall, dream consolidation, memory status metrics, audio perception, and optional swarm synchronization to OpenClaw agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NickFlach/kannaka-memory) <br>
-- [Kannaka Memory install source](https://github.com/NickFlach/kannaka-memory) <br>
-- [Rust toolchain](https://rustup.rs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown setup instructions and tool text or JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists memory to a local HRM file by default; swarm and remote Ollama settings can send activity or text to configured services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release evidence) <br>
+Risk: The installer creates a persistent OpenClaw extension with a command-injection flaw and builds unpinned remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix the generated extension before installation and prefer a pinned, verified upstream source or signed release.
+
+Risk: Swarm commands can publish presence or phase state to the configured NATS server.
+
+Mitigation: Treat swarm mode as remote data sharing and use it only with an approved NATS endpoint and appropriate disclosure expectations.
+
+Risk: Memory deletion can remove persisted local memory.
+
+Mitigation: Back up the Kannaka data directory and require confirmation expectations before enabling destructive memory operations.
+
+Risk: Text may be sent to a remote Ollama endpoint when OLLAMA_URL points outside localhost.
+
+Mitigation: Keep OLLAMA_URL local unless remote embedding processing has been reviewed and approved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nickflach/skills/kannaka-memory)
+- [Publisher Profile](https://clawhub.ai/user/nickflach)
+- [Kannaka Memory Source](https://github.com/NickFlach/kannaka-memory)
+- [Rust Toolchain](https://rustup.rs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration snippets, and tool-output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local memory data under the configured Kannaka data directory and can emit memory search results, status reports, IDs, metrics, and swarm state.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

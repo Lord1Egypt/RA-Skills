@@ -1,42 +1,56 @@
-## Description: <br>
-Document to Markdown converter - convert DOCX, PPTX, Excel files to Markdown. Use when extracting content from Word documents, PowerPoint presentations, or Excel spreadsheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document to Markdown converter - convert DOCX, PPTX, Excel files to Markdown.
 
-## Publisher: <br>
-[tanis90](https://clawhub.ai/user/tanis90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanis90](https://clawhub.ai/user/tanis90)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to extract readable Markdown from Word, PowerPoint, and Excel documents for review, summarization, or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents are uploaded to MinerU's cloud API for processing. <br>
-Mitigation: Use only with documents approved for cloud processing; avoid confidential, regulated, or highly sensitive files unless that processing has been approved. <br>
-Risk: The workflow depends on the external mineru-open-api CLI package. <br>
-Mitigation: Pin, verify, or approve the CLI package in managed environments before use. <br>
+## Use Case:
 
+Developers, analysts, and other external users use this skill to extract content from Word, PowerPoint, and Excel documents into Markdown for review, summarization, analysis, or reuse.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tanis90/slides-to-markdown) <br>
-- [MinerU homepage](https://mineru.net) <br>
-- [MinerU CLI download page](https://mineru.net/ecosystem?tab=cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Basic flash extraction accepts selected Office files or URLs and is documented with a 10MB or 20-page limit; larger or precision extraction requires authenticated CLI use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Documents are uploaded to MinerU's cloud API for processing, which may expose confidential content to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with documents appropriate for third-party cloud processing, review MinerU privacy terms before handling sensitive material, and prefer a pinned or reviewed CLI version.
+
+Risk: The basic extraction path has documented file size and page limits.
+
+Mitigation: Keep basic extraction inputs within the 10 MB or 20 page limit, or use the authenticated extraction workflow only after confirming its terms and requirements.
+
+## Reference(s):
+
+- [MinerU](https://mineru.net)
+- [MinerU CLI](https://mineru.net/ecosystem?tab=cli)
+- [ClawHub Skill Page](https://clawhub.ai/tanis90/skills/slides-to-markdown)
+- [Publisher Profile](https://clawhub.ai/user/tanis90)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs converted document text, tables, and document structure; embedded images may be replaced with placeholders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

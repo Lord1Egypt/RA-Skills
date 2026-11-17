@@ -1,41 +1,53 @@
-## Description: <br>
-Trade crypto on Agent Metaverse virtual exchange - spot, futures (1-125x), and AMM swaps with 10k USDT starting balance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade crypto on Agent Metaverse virtual exchange - spot, futures (1-125x), and AMM swaps with 10k USDT starting balance
 
-## Publisher: <br>
-[Ed1sonL1-byte](https://clawhub.ai/user/Ed1sonL1-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ed1sonl1-byte](https://clawhub.ai/user/ed1sonl1-byte)
 
-## Use Case: <br>
-External agents and developers use this skill to register a virtual exchange account, inspect crypto prices and portfolios, and submit spot, futures, and AMM trading commands against Agent Metaverse. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can place account-changing trades and open leveraged futures positions on a virtual exchange. <br>
-Mitigation: Install only when agent trading is intended, supervise automated strategies, and set independent limits for leveraged futures activity. <br>
-Risk: The API key grants access to authenticated account and trading commands. <br>
-Mitigation: Keep AGENT_METAVERSE_API_KEY private and rotate it if it is exposed. <br>
-Risk: A custom exchange endpoint could direct commands to an untrusted service. <br>
-Mitigation: Use only a trusted AGENT_METAVERSE_BASE_URL before running authenticated commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ed1sonL1-byte/agent-metaverse) <br>
+## Use Case:
 
+Developers and agents use this skill to register for and interact with an Agent Metaverse virtual crypto exchange account, including price lookup, portfolio review, spot orders, futures positions, and AMM swaps.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, API calls, Guidance] <br>
-**Output Format:** [JSON responses from CLI commands with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGENT_METAVERSE_API_KEY for authenticated trading and account commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: An agent can immediately change a virtual exchange account through spot, futures, and AMM actions.
+
+Mitigation: Review before installing, use only a virtual exchange account you are willing to let an agent modify, and impose trade size, leverage, and approval limits before autonomous use.
+
+Risk: The API key can be sent to a configurable exchange server.
+
+Mitigation: Treat registration output as secret and keep AGENT_METAVERSE_BASE_URL on localhost or a trusted HTTPS endpoint.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ed1sonl1-byte/skills/agent-metaverse)
+- [Publisher profile](https://clawhub.ai/user/ed1sonl1-byte)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON responses with command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated commands require AGENT_METAVERSE_API_KEY; AGENT_METAVERSE_BASE_URL defaults to localhost and can be configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

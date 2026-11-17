@@ -1,44 +1,60 @@
-## Description: <br>
-Local HTTP bridge for Mineflayer-based live control of a Minecraft Java bot, including state reads and in-game actions such as movement, mining, crafting, following, and chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local HTTP bridge for Mineflayer-based live control of a Minecraft Java bot, including status, inventory, position, movement, mining, crafting, following, chat, and guarded slash-command actions.
 
-## Publisher: <br>
-[en1r0py1865](https://clawhub.ai/user/en1r0py1865) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[en1r0py1865](https://clawhub.ai/user/en1r0py1865)
 
-## Use Case: <br>
-Developers and external users use this skill to connect an agent-controlled bot to a live Minecraft Java world, inspect live bot state, and issue bounded in-game actions through the local bridge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local control API is unauthenticated and can issue live bot actions. <br>
-Mitigation: Keep the bridge bound to localhost, do not expose the port publicly, and stop the bridge when it is no longer needed. <br>
-Risk: The slash-command endpoint can change the world or other players' experience if the bot has elevated permissions. <br>
-Mitigation: Avoid granting operator or cheat-level permissions unless required, and prefer dedicated server administration tools for administrative commands. <br>
+## Use Case:
 
+Developers and external users use this skill to connect an agent to a live Minecraft Java world, read bot state, and issue in-game bot actions through a local bridge.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/en1r0py1865/minecraft-bridge) <br>
-- [Project Homepage](https://github.com/en1r0py1865/minecraft-skill) <br>
-- [Minecraft Bridge API Specification](artifact/references/api-spec.md) <br>
-- [Minecraft Bridge Dependency Guide](artifact/references/dependency-guide.md) <br>
-- [Minecraft Bridge Troubleshooting](artifact/references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline shell commands, HTTP endpoint guidance, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup and runtime guidance for a Minecraft bridge; actions affect the connected game world when the bridge is running.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill exposes an unauthenticated local bot-control service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the bridge bound to localhost, do not expose the bridge port, and stop the service when finished.
+
+Risk: The slash-command endpoint can affect a Minecraft server if the bot account has elevated permissions.
+
+Mitigation: Use a non-operator bot account and avoid POST /command except in worlds where server-changing commands are acceptable.
+
+Risk: Routine use depends on npm packages for live Minecraft automation.
+
+Mitigation: Review or pin npm dependencies before routine use.
+
+## Reference(s):
+
+- [Minecraft Bridge API Specification](references/api-spec.md)
+- [Minecraft Bridge Dependency Guide](references/dependency-guide.md)
+- [Minecraft Bridge Troubleshooting](references/troubleshooting.md)
+- [Project homepage](https://github.com/en1r0py1865/minecraft-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration values, and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local HTTP endpoint calls and concise status summaries from bridge responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence and artifact bridgeVersion)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,65 @@
-## Description: <br>
-memU provides persistent memory infrastructure for 24/7 agents, replacing flat-file memory with a three-layer Resource -> Memory Item -> Memory Category architecture for lower-token, proactive context retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory infrastructure for 24/7 agents that packages memU integration guidance, examples, and configuration for long-term context retrieval.
 
-## Publisher: <br>
-[ProjectSnowWork](https://clawhub.ai/user/ProjectSnowWork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[projectsnowwork](https://clawhub.ai/user/projectsnowwork)
 
-## Use Case: <br>
-Developers and agent engineers use this skill to integrate memU into long-running agents that need persistent, structured memory across days, weeks, or months. It helps replace flat conversation-history storage with retrieval, examples, and configuration guidance for in-memory, PostgreSQL/pgvector, or hosted memU deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Long-lived memory may store sensitive or regulated user data across sessions. <br>
-Mitigation: Define retention, deletion, and data-classification rules before use, and avoid storing secrets or regulated data unless the deployment is approved for that data. <br>
-Risk: Example configurations send memory extraction and retrieval requests to external OpenAI-compatible providers. <br>
-Mitigation: Use only data you are allowed to send to the configured provider, or route chat and embedding calls to local or self-hosted OpenAI-compatible endpoints for sensitive deployments. <br>
-Risk: Debug or operational logs could expose memory content, prompts, identifiers, or connection details. <br>
-Mitigation: Disable or redact debug logging in production and review log sinks before connecting real user or operational data. <br>
-Risk: Persistent memory accumulates unless retention is managed separately. <br>
-Mitigation: Implement cleanup, expiration, and user deletion workflows around memU storage before relying on it for 24/7 production agents. <br>
+## Use Case:
 
+Developers and agent engineers use this skill to integrate memU as a long-term memory layer for always-on agents that need persistent context, scoped retrieval, and examples for OpenClaw or generic agent loops.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ProjectSnowWork/memu) <br>
-- [Official memU repository](https://github.com/NevaMind-AI/memU) <br>
-- [Official memU README](https://github.com/NevaMind-AI/memU#readme) <br>
-- [memU English documentation](https://github.com/NevaMind-AI/memU/blob/main/readme/README_en.md) <br>
-- [memU benchmark results](https://memu.pro/benchmark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and an OpenAI-compatible API key; PostgreSQL with pgvector is optional for persistent storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, SKILL.md frontmatter, and METADATA.yaml) <br>
+Risk: Long-term memory can retain sensitive user or customer data beyond the current session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect explicit consent, redact sensitive inputs, and define retention and deletion controls before storing personal, regulated, email, log, or customer data.
+
+Risk: Example PostgreSQL setup uses default credentials and a public port binding.
+
+Mitigation: Use non-default credentials, restrict network exposure, and run databases in isolated environments with pinned dependencies.
+
+Risk: Retrieved memory can be stale, poisoned, or scoped to the wrong user or tenant.
+
+Mitigation: Scope every memorize and retrieve call by user or tenant, enforce tenant isolation, and treat retrieved memory as untrusted reference data rather than system instructions.
+
+Risk: The examples require API credentials for LLM and embedding calls.
+
+Mitigation: Use scoped environment variables, rotate keys regularly, and avoid writing secrets into prompts, memory payloads, logs, or shared configuration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/projectsnowwork/skills/memu)
+- [memU Repository](https://github.com/NevaMind-AI/memU)
+- [memU English Documentation](https://github.com/NevaMind-AI/memU/blob/main/readme/README_en.md)
+- [memU Benchmark Results](https://memu.pro/benchmark)
+- [memU Cloud API](https://api.memu.so)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples require python3 and OPENAI_API_KEY; persistent deployments may use PostgreSQL with pgvector.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

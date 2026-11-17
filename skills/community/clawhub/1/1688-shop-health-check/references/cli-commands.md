@@ -7,12 +7,18 @@
 {"success": bool, "markdown": str, "data": {...}}
 ```
 
+### 通用参数
+
+| 参数 | 必填 | 说明 |
+|------|------|------|
+| `--NEWTON_SHOP_LOGIN_ID` | 否 | 店铺登录ID（值为 `get_bindlist` 返回的对应店铺 `loginId`），用于指定查询的店铺。Agent 单独调用单店铺命令查询非当前 AK 默认店铺时必须传入。不传时使用当前 AK 对应的默认店铺 |
+
 ---
 
-## 1. `seller_trade_code_index` — 店铺交易核心指标（总盘）
+## 1. `alibaba.1688.seller.trade.code.index` — 店铺交易核心指标（总盘）
 
 ```bash
-python3 {baseDir}/cli.py seller_trade_code_index [--date_type <DATE_TYPE>] [--device <DEVICE>]
+python3 {baseDir}/cli.py alibaba.1688.seller.trade.code.index [--date_type <DATE_TYPE>] [--device <DEVICE>] [--NEWTON_SHOP_LOGIN_ID <LOGIN_ID>]
 ```
 
 **用途**：总盘分析**第一优先级接口**，判断店铺整体健康度、规模、效率、质量、新老客结构和下单到支付衔接情况。
@@ -41,10 +47,10 @@ python3 {baseDir}/cli.py seller_trade_code_index [--date_type <DATE_TYPE>] [--de
 
 ---
 
-## 2. `seller_import_abnormal_offer` — 异常商品（风险定位）
+## 2. `alibaba.1688.seller.import.abnormal.offer` — 异常商品（风险定位）
 
 ```bash
-python3 {baseDir}/cli.py seller_import_abnormal_offer [--date_type <DATE_TYPE>] [--device <DEVICE>]
+python3 {baseDir}/cli.py alibaba.1688.seller.import.abnormal.offer [--date_type <DATE_TYPE>] [--device <DEVICE>] [--NEWTON_SHOP_LOGIN_ID <LOGIN_ID>]
 ```
 
 **用途**：风险定位**关键接口**，判断问题主要来自流量、转化还是同时恶化，识别对店铺拖累最大的异常商品。
@@ -69,10 +75,10 @@ python3 {baseDir}/cli.py seller_import_abnormal_offer [--date_type <DATE_TYPE>] 
 
 ---
 
-## 3. `seller_top_offer` — 优秀商品榜单（多榜单）
+## 3. `alibaba.1688.seller.top.offer` — 优秀商品榜单（多榜单）
 
 ```bash
-python3 {baseDir}/cli.py seller_top_offer [--order_by <ORDER_BY>] [--range_type <RANGE_TYPE>] [--device <DEVICE>] [--page_size <N>]
+python3 {baseDir}/cli.py alibaba.1688.seller.top.offer [--order_by <ORDER_BY>] [--date_type <DATE_TYPE> | --range_type <RANGE_TYPE>] [--device <DEVICE>] [--order <desc|asc>] [--page <N>] [--page_size <N>] [--index_code <INDEX_CODE>] [--NEWTON_SHOP_LOGIN_ID <LOGIN_ID>]
 ```
 
 **⚠️ 重要约束**：本接口**必须按需多次调用**，单次只能拉取一种榜单。
@@ -106,10 +112,10 @@ python3 {baseDir}/cli.py seller_top_offer [--order_by <ORDER_BY>] [--range_type 
 
 ---
 
-## 4. `seller_activity_registered_info` — 活动参与及效果
+## 4. `alibaba.1688.seller.activity.registered.info` — 活动参与及效果
 
 ```bash
-python3 {baseDir}/cli.py seller_activity_registered_info
+python3 {baseDir}/cli.py alibaba.1688.seller.activity.registered.info [--NEWTON_SHOP_LOGIN_ID <LOGIN_ID>]
 ```
 
 **用途**：分析活动是否有效，是否带来流量、订单和 GMV，是否优于同行基准，是否存在"有曝光无成交"或"高产出活动可复制"。
@@ -133,10 +139,10 @@ python3 {baseDir}/cli.py seller_activity_registered_info
 
 ---
 
-## 5. `seller_customer_business_province` — 客户地域分布
+## 5. `alibaba.1688.seller.customer.business.province` — 客户地域分布
 
 ```bash
-python3 {baseDir}/cli.py seller_customer_business_province [--date_type <DATE_TYPE>] [--page_size <N>]
+python3 {baseDir}/cli.py alibaba.1688.seller.customer.business.province [--date_type <DATE_TYPE>] [--page_size <N>] [--NEWTON_SHOP_LOGIN_ID <LOGIN_ID>]
 ```
 
 **用途**：分析客户地域集中度、核心区域依赖、区域覆盖面、潜在扩展区域。
@@ -152,10 +158,10 @@ python3 {baseDir}/cli.py seller_customer_business_province [--date_type <DATE_TY
 
 ---
 
-## 6. `seller_customer_detail` — 头部老客户明细
+## 6. `alibaba.1688.seller.customer.detail` — 头部老客户明细
 
 ```bash
-python3 {baseDir}/cli.py seller_customer_detail [--date_type <DATE_TYPE>] [--buyer_type <TYPE>] [--order_by <ORDER_BY>] [--page_size <N>]
+python3 {baseDir}/cli.py alibaba.1688.seller.customer.detail [--date_type <DATE_TYPE>] [--buyer_type <TYPE>] [--order_by <ORDER_BY>] [--page_size <N>] [--NEWTON_SHOP_LOGIN_ID <LOGIN_ID>]
 ```
 
 **用途**：分析店铺是否依赖少数头部老客户，头部老客是否持续活跃，复购盘是否稳固，是否存在高价值客户近期走弱风险。
@@ -180,10 +186,10 @@ python3 {baseDir}/cli.py seller_customer_detail [--date_type <DATE_TYPE>] [--buy
 
 ---
 
-## 7. `get_traffic_trend` — 逐日流量趋势数据
+## 7. `alibaba.1688.get.traffic.trend` — 逐日流量趋势数据
 
 ```bash
-python3 {baseDir}/cli.py get_traffic_trend --query_date <QUERY_DATE> [--days <DAYS>]
+python3 {baseDir}/cli.py alibaba.1688.get.traffic.trend --query_date <QUERY_DATE> [--days <DAYS>] [--NEWTON_SHOP_LOGIN_ID <LOGIN_ID>]
 ```
 
 **用途**：获取逐日流量趋势数据，用于分析流量波动趋势、识别异常波动、判断流量健康度。
@@ -203,10 +209,10 @@ python3 {baseDir}/cli.py get_traffic_trend --query_date <QUERY_DATE> [--days <DA
 
 ---
 
-## 8. `get_core_metrics` — 店铺核心指标同行对比及趋势数据
+## 8. `alibaba.1688.get.core.metrics` — 店铺核心指标同行对比及趋势数据
 
 ```bash
-python3 {baseDir}/cli.py get_core_metrics [--date_type <DATE_TYPE>]
+python3 {baseDir}/cli.py alibaba.1688.get.core.metrics [--date_type <DATE_TYPE>] [--NEWTON_SHOP_LOGIN_ID <LOGIN_ID>]
 ```
 
 **用途**：获取店铺核心指标的同行对比数据及趋势数据，用于判断店铺在行业中的位置、指标健康度、增长趋势。
@@ -249,7 +255,208 @@ python3 {baseDir}/cli.py get_core_metrics [--date_type <DATE_TYPE>]
 
 ---
 
-## 9. `configure` — 配置 AK
+## 9. `shop_health_check` — 店铺健康检查（订单履约/合规扣分/买家评价）
+
+```bash
+python3 {baseDir}/cli.py shop_health_check --code <order_risk|shop_punish|feedback> [--NEWTON_SHOP_LOGIN_ID <LOGIN_ID>]
+```
+
+**用途**：店铺健康检查聚合工具，单命令通过 `--code` 路由到三个模块。`order_risk`（订单履约）与 `feedback`（买家评价）服务**成交维度**，`shop_punish`（合规扣分）服务**风险维度**。仅透传后端业务数据，Agent 侧自行加工。
+
+**参数**：
+
+| 参数 | 必填 | 说明 |
+|------|------|------|
+| `--code` | 是 | 模块编码，枚举 `order_risk` / `shop_punish` / `feedback` |
+| `--NEWTON_SHOP_LOGIN_ID` | 否 | 目标店铺 loginId，多店铺查询时传入 |
+
+> **口径说明**：本工具返回为**实时快照**，非近 7/30 天周期口径，结论与报告中需区分标注。
+
+### 9.1 `--code order_risk`（订单履约）
+
+返回 `data` 结构：
+
+| 字段 | 含义 |
+|------|------|
+| `overview.pending_ship_cnt` | 待发货订单数 |
+| `overview.pending_payment_cnt` | 待付款订单数 |
+| `overview.pending_receive_cnt` | 待收货订单数 |
+| `overview.pending_custom_payment_cnt` | 待处理定制付款订单数 |
+| `timeout_risk.about_to_timeout_cnt` | 即将发货超时订单数 |
+| `timeout_risk.already_timeout_cnt` | 已发货超时订单数 |
+| `timeout_risk.about_to_timeout_orders` | 即将超时订单 Top5（按剩余时长升序） |
+| `timeout_risk.already_timeout_orders` | 已超时订单 Top5（按超时时长降序） |
+
+每条订单明细字段：
+
+| 字段 | 含义 |
+|------|------|
+| `order_id` | 订单号 |
+| `product_name` | 首个商品名（截断 30 字） |
+| `amount_yuan` | 订单金额（元，字符串） |
+| `send_hour` | 承诺发货时长 |
+| `left_time` | 距发货截止剩余时效（仅即将超时订单） |
+| `overdue_time` | 已超时时长（仅已超时订单） |
+
+### 9.2 `--code shop_punish`（合规扣分）
+
+返回 `data` 结构：
+
+| 字段 | 含义 |
+|------|------|
+| `punish_score` | 违规扣分 |
+| `fake_times` | 假货次数 |
+| `punish_warning.cnt` | 违规预警总数 |
+| `punish_warning.new_cnt` | 新增违规数 |
+| `punish_warning.deal_url` | 处理链接 |
+| `punish_warning.list` | 待处理违规明细（仅 PENDING，按 `punish_time` 倒序） |
+| `item_alert.cnt` | 商品预警数 |
+| `item_alert.list` | 商品预警明细 |
+| `legal_alert.cnt` | 司法预警数 |
+| `legal_alert.admin_case` | 行政案件数 |
+| `legal_alert.law_case` | 司法案件数 |
+| `legal_alert.deal_url` | 处理链接 |
+
+`punish_warning.list` 每项：`punish_id` / `rule_type`（违规规则类型） / `punish_status` / `punish_time` / `is_new` / `deal_url`。
+
+`item_alert.list` 每项：`item_id` / `item_title` / `risk_lev1_name`（一级风险） / `risk_lev2_name`（二级风险） / `warning_left_time`（预警剩余时长） / `deal_url`。
+
+### 9.3 `--code feedback`（买家评价）
+
+返回 `data` 结构：
+
+| 字段 | 含义 |
+|------|------|
+| `rating_overview.total_cnt` | 评价总数 |
+| `rating_overview.distribution` | 1~5 分档分布，每项 `rate`（分档） / `cnt`（数量） |
+| `rating_overview.low_score_cnt` | 低分（≤3 分）数量 |
+| `rating_overview.low_score_ratio` | 低分占比（百分比字符串，如 `12.50%`） |
+| `negative_feedback.cnt` | 负面反馈数 |
+| `negative_feedback.items` | 负面反馈明细，每项 `item_name`（商品名） / `feedback`（反馈内容） |
+| `positive_cnt` | 正面反馈数 |
+
+---
+
+## 10. `alibaba.1688.get.traffic.overview` — 全店流量概览
+
+```bash
+python3 {baseDir}/cli.py alibaba.1688.get.traffic.overview --query_date <QUERY_DATE> [--NEWTON_SHOP_LOGIN_ID <LOGIN_ID>]
+```
+
+**用途**：获取全店流量概览数据（访客规模、流量总览），服务**流量维度**，与 `alibaba.1688.get.channel.traffic` 配合完成全店流量构成分析。
+
+**参数**：`--query_date` 必填，传**昨日日期**（格式 YYYY-MM-DD）；`--NEWTON_SHOP_LOGIN_ID` 可选。
+
+> 接口透传后端业务数据（`data`），字段结构随接口返回，Agent 侧自行解析。
+
+---
+
+## 11. `alibaba.1688.get.channel.traffic` — 各渠道流量
+
+```bash
+python3 {baseDir}/cli.py alibaba.1688.get.channel.traffic --query_date <QUERY_DATE> [--NEWTON_SHOP_LOGIN_ID <LOGIN_ID>]
+```
+
+**用途**：获取各渠道流量数据（搜索 / 推荐 / 广告等渠道构成与占比），服务**流量维度**。根据渠道占比决定后续下钻方向。
+
+**参数**：`--query_date` 必填，传**昨日日期**（格式 YYYY-MM-DD）；`--NEWTON_SHOP_LOGIN_ID` 可选。
+
+> 接口透传后端业务数据（`data`），字段结构随接口返回。
+
+---
+
+## 12. `alibaba.1688.get.search.channel.detail` — 搜索渠道深度下钻
+
+```bash
+python3 {baseDir}/cli.py alibaba.1688.get.search.channel.detail --query_date <QUERY_DATE> [--NEWTON_SHOP_LOGIN_ID <LOGIN_ID>]
+```
+
+**用途**：搜索渠道深度下钻，分析搜索流量来源与转化承接，服务**流量维度**。建议在 `alibaba.1688.get.channel.traffic` 确认搜索占比较高时下钻。
+
+**参数**：`--query_date` 必填，传**昨日日期**（格式 YYYY-MM-DD）；`--NEWTON_SHOP_LOGIN_ID` 可选。
+
+> 接口透传后端业务数据（`data`），字段结构随接口返回。
+
+---
+
+## 13. `alibaba.1688.get.recommend.channel.detail` — 推荐渠道深度下钻
+
+```bash
+python3 {baseDir}/cli.py alibaba.1688.get.recommend.channel.detail --query_date <QUERY_DATE> [--NEWTON_SHOP_LOGIN_ID <LOGIN_ID>]
+```
+
+**用途**：推荐渠道深度下钻，分析推荐流量来源与承接，服务**流量维度**。建议在推荐占比较高时下钻。
+
+**参数**：`--query_date` 必填，传**昨日日期**（格式 YYYY-MM-DD）；`--NEWTON_SHOP_LOGIN_ID` 可选。
+
+> 接口透传后端业务数据（`data`），字段结构随接口返回。
+
+---
+
+## 14. `alibaba.1688.get.ad.channel.detail` — 广告渠道深度下钻
+
+```bash
+python3 {baseDir}/cli.py alibaba.1688.get.ad.channel.detail --query_date <QUERY_DATE> [--NEWTON_SHOP_LOGIN_ID <LOGIN_ID>]
+```
+
+**用途**：广告渠道深度下钻，分析广告渠道流量与转化。**流量维度与广告维度共享**（两维度任一需要时均调用一次即可）。
+
+**参数**：`--query_date` 必填，传**昨日日期**（格式 YYYY-MM-DD）；`--NEWTON_SHOP_LOGIN_ID` 可选。
+
+> 接口透传后端业务数据（`data`），字段结构随接口返回。
+
+---
+
+## 15. `alibaba.1688.get.product.status` — 商品状态检查
+
+```bash
+python3 {baseDir}/cli.py alibaba.1688.get.product.status --query_date <QUERY_DATE> [--NEWTON_SHOP_LOGIN_ID <LOGIN_ID>]
+```
+
+**用途**：检查商品搜索降权 / 下架等状态，服务**商品维度**。可与异常商品、优秀商品榜单交叉验证。
+
+**参数**：`--query_date` 必填，传**昨日日期**（格式 YYYY-MM-DD）；`--NEWTON_SHOP_LOGIN_ID` 可选。
+
+> 接口透传后端业务数据（`data`），字段结构随接口返回。
+
+---
+
+## 16. `alibaba.1688.get.industry.benchmark` — 行业大盘对比数据
+
+```bash
+python3 {baseDir}/cli.py alibaba.1688.get.industry.benchmark --query_date <QUERY_DATE> [--NEWTON_SHOP_LOGIN_ID <LOGIN_ID>]
+```
+
+**用途**：行业大盘对比数据查询，用于将本店表现与行业大盘对比，服务**广告维度**。
+
+**参数**：`--query_date` 必填，传**昨日日期**（格式 YYYY-MM-DD）；`--NEWTON_SHOP_LOGIN_ID` 可选。
+
+> 接口透传后端业务数据（`data`），字段结构随接口返回。
+
+---
+
+## 17. `get_bindlist` — 多店铺绑定关系列表
+
+```bash
+python3 {baseDir}/cli.py get_bindlist
+```
+
+**用途**：获取当前用户的多店铺绑定关系列表，是**多店铺批量体检的入口** —— 先取绑定列表，再对每个 `loginId` 逐店传 `--NEWTON_SHOP_LOGIN_ID` 诊断。
+
+**参数**：无（仅需已配置 AK）。
+
+**关键字段**（`data` 为绑定店铺数组，每项包含）：
+
+| 字段 | 含义 |
+|------|------|
+| `companyName` | 店铺公司名 |
+| `loginId` | 店铺登录 ID（用作其他单店铺命令的 `--NEWTON_SHOP_LOGIN_ID` 参数值） |
+| `userId` | 用户 ID |
+| `isOwner` | 是否为店铺负责人 |
+
+---
+
+## 18. `configure` — 配置 AK
 
 ```bash
 python3 {baseDir}/cli.py configure [YOUR_AK]

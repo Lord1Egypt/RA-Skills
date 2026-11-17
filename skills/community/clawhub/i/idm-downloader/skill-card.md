@@ -1,37 +1,53 @@
-## Description: <br>
-Downloads large files through Internet Download Manager (IDM) on Windows using COM automation or IDM's command-line interface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download large files using IDM (Internet Download Manager) on Windows when a user provides a URL and wants IDM-based downloading.
 
-## Publisher: <br>
-[foxcatt](https://clawhub.ai/user/foxcatt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[foxcatt](https://clawhub.ai/user/foxcatt)
 
-## Use Case: <br>
-Developers and external users use this skill when they want an agent to start IDM downloads for user-provided URLs on Windows, especially for large files where IDM resume and acceleration are useful. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start an IDM download immediately and write downloaded content to disk. <br>
-Mitigation: Confirm the URL, filename, and save directory before running the skill, and use it only for intended downloads. <br>
+## Use Case:
 
+Developers and users on Windows use this skill to start IDM downloads from URLs, optionally choosing an output directory and filename. It is suited to large files where IDM download acceleration and resumption are useful.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May start IDM immediately and report download status or failure through console output and process exit code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can start downloads from user-provided URLs and write to a user-selected output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target URL and output path before running the downloader.
+
+Risk: The optional pywin32 dependency enables Windows COM automation for IDM.
+
+Mitigation: Install pywin32 only from a trusted, pinned source, preferably in a virtual environment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/foxcatt/skills/idm-downloader)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and Python script references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces commands and guidance for launching IDM downloads; actual file transfer is performed by the local IDM installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

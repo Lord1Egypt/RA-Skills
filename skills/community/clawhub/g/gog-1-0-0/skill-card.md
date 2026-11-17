@@ -1,43 +1,57 @@
-## Description: <br>
-Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
 
-## Publisher: <br>
-[Sieyer](https://clawhub.ai/user/Sieyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sieyer](https://clawhub.ai/user/sieyer)
 
-## Use Case: <br>
-Developers and technical users use this skill to prepare and run gog CLI commands for Google Workspace tasks such as email search and sending, calendar event lookup, Drive search, contact listing, Sheets updates, and Docs export. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The gog CLI can access or modify Google account data after OAuth access is granted. <br>
-Mitigation: Review requested OAuth scopes and connect only the accounts and services needed for the task. <br>
-Risk: Commands can send email, create calendar events, modify Drive or Docs content, or update, append, and clear Sheets data. <br>
-Mitigation: Require explicit user approval before running commands that create, send, update, append, clear, or otherwise modify Google Workspace data. <br>
-Risk: The skill depends on an external gog binary and Homebrew tap. <br>
-Mitigation: Install only when the user trusts the gog CLI and the Homebrew tap steipete/tap/gogcli. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Gog CLI homepage](https://gogcli.sh) <br>
-- [ClawHub release page](https://clawhub.ai/Sieyer/gog-1-0-0) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Sieyer) <br>
+## Use Case:
 
+Developers and workspace operators use this skill to run gog CLI commands for Gmail, Calendar, Drive, Contacts, Sheets, and Docs workflows after OAuth setup.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-oriented command options such as --json and --no-input for scripting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install an unpinned third-party CLI before use.
+
+Mitigation: Review the gog CLI source and Homebrew formula before installing, and install from a trusted source.
+
+Risk: The skill requires OAuth access to sensitive Google Workspace data across Gmail, Calendar, Drive, Contacts, Sheets, and Docs.
+
+Mitigation: Grant only the Google services needed for the task, use a separate or restricted account where practical, and revoke OAuth tokens if credentials or the CLI may have been exposed.
+
+Risk: OAuth client secrets and tokens can expose workspace data if shared or committed.
+
+Mitigation: Keep client_secret.json and token material out of source control, shared folders, and logs.
+
+## Reference(s):
+
+- [gog homepage](https://gogcli.sh)
+- [ClawHub skill page](https://clawhub.ai/sieyer/skills/gog-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The guidance expects the third-party gog binary, OAuth credentials, and optional JSON output flags for scripting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

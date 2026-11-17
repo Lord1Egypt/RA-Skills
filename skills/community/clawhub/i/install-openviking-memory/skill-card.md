@@ -1,43 +1,58 @@
-## Description: <br>
-Installs and configures the OpenViking long-term memory plugin for OpenClaw, including prerequisite checks, plugin installation, wizard configuration, gateway restart, verification, and uninstall guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and configures the OpenViking long-term memory plugin for OpenClaw, including prerequisite checks, server connection setup, plugin installation, gateway restart, verification, multi-tenant setup, multi-instance guidance, and uninstall support.
 
-## Publisher: <br>
-[linqiang391](https://clawhub.ai/user/linqiang391) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linqiang391](https://clawhub.ai/user/linqiang391)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install, configure, verify, operate, and uninstall OpenViking long-term memory for an existing OpenViking server through guided conversation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installed plugin can archive OpenClaw conversation content to an OpenViking server for later recall. <br>
-Mitigation: Use only with a trusted OpenViking server and avoid testing with real sensitive data unless that storage and recall behavior is intended. <br>
-Risk: The setup may require an API key for the OpenViking server. <br>
-Mitigation: Prefer a scoped user API key instead of a broad root key, and provide account and user IDs when root-key multi-tenant scoping is required. <br>
-Risk: The fallback installer path downloads and installs a package through npm if ClawHub installation is unavailable. <br>
-Mitigation: Review the fallback path before use when policy requires installation only through ClawHub. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to connect an existing OpenViking server to OpenClaw so agents can archive conversations and recall relevant long-term memory across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linqiang391/install-openviking-memory) <br>
-- [OpenViking project homepage](https://github.com/volcengine/OpenViking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Collects a server URL, optional API key, optional agent prefix, and conditional account and user IDs for root-key deployments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can run mutable remote npm code through the fallback installation path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the ClawHub-managed plugin install path or a pinned, reviewed installer before allowing the fallback npx helper.
+
+Risk: The configured memory plugin may archive and recall chat content across sessions.
+
+Mitigation: Use only with a trusted OpenViking server, avoid storing secrets or personal data, and ensure users understand persistent memory behavior before installation.
+
+Risk: The skill requires trust in the OpenViking server and npm helper publisher.
+
+Mitigation: Install only after confirming the server operator and helper package publisher are trusted for the deployment.
+
+## Reference(s):
+
+- [OpenViking](https://github.com/volcengine/OpenViking)
+- [ClawHub Skill Page](https://clawhub.ai/linqiang391/skills/install-openviking-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown]
+
+**Output Format:** [Markdown with shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run OpenClaw and npm installation commands, write OpenClaw plugin configuration, restart the OpenClaw gateway, and verify status with JSON output.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

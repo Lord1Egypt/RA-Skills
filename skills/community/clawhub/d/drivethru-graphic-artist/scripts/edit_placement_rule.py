@@ -17,10 +17,10 @@ Subcommands:
     edit_placement_rule.py show [--category C] [--placement P]
     edit_placement_rule.py add <category> <placement> \
         --width-ratio F --x-center-ratio F --y-top-ratio F \
-        [--rotation-deg F] [--max-height-ratio F]
+        [--rotation-deg F] [--max-height-ratio F] [--side-pad-ratio F]
     edit_placement_rule.py update <category> <placement> \
         [--width-ratio F] [--x-center-ratio F] [--y-top-ratio F] \
-        [--rotation-deg F] [--max-height-ratio F]
+        [--rotation-deg F] [--max-height-ratio F] [--side-pad-ratio F]
     edit_placement_rule.py remove <category> <placement>
 
 After any mutation the helper prints a JSON receipt.
@@ -47,6 +47,10 @@ _RATIO_BOUNDS = {
     "y_top_ratio": (0.0, 1.0),
     "rotation_deg": (-180.0, 180.0),
     "max_height_ratio": (0.01, 1.5),
+    # Calculated horizontal safe-margin: fraction of the print box left empty on
+    # EACH side after the art is trimmed to content (keeps a full-front print off
+    # the garment edges). 0 disables it.
+    "side_pad_ratio": (0.0, 0.45),
 }
 
 
@@ -112,10 +116,27 @@ def _cmd_show(rules: dict, category: str | None, placement: str | None) -> dict:
     return {category: {placement: bucket[placement]}}
 
 
+def _validate_orientation(placement: str, rule: dict) -> None:
+    """Left/right placement names are the WEARER's. On a flat front photo the
+    wearer's left is the IMAGE's right, so left_* needs x_center_ratio > 0.5 and
+    right_* needs < 0.5. Refuse a mirrored rule instead of storing it."""
+    side = placement.split("_", 1)[0]
+    if side not in ("left", "right") or "back" in placement:
+        return
+    x = float(rule["x_center_ratio"])
+    if (side == "left" and x < 0.5) or (side == "right" and x > 0.5):
+        other = "right" if side == "left" else "left"
+        raise SystemExit(
+            f"ERROR: '{placement}' is the wearer's {side}, which is the IMAGE's "
+            f"{other} on a front photo — x_center_ratio must be "
+            f"{'> 0.5' if side == 'left' else '< 0.5'} (got {x}).")
+
+
 def _cmd_add(rules: dict, category: str, placement: str, rule: dict) -> dict:
     _validate_slug(category, "category")
     _validate_slug(placement, "placement")
     _validate_rule(rule)
+    _validate_orientation(placement, rule)
     bucket = rules.setdefault(category, {})
     if placement in bucket:
         raise SystemExit(
@@ -133,6 +154,7 @@ def _cmd_update(rules: dict, category: str, placement: str, patch: dict) -> dict
         )
     merged = {**bucket[placement], **patch}
     _validate_rule(merged)
+    _validate_orientation(placement, merged)
     bucket[placement] = merged
     return merged
 
@@ -156,6 +178,8 @@ def _rule_from_args(args) -> dict:
     }
     if getattr(args, "max_height_ratio", None) is not None:
         rule["max_height_ratio"] = float(args.max_height_ratio)
+    if getattr(args, "side_pad_ratio", None) is not None:
+        rule["side_pad_ratio"] = float(args.side_pad_ratio)
     return rule
 
 
@@ -171,8 +195,10 @@ def _patch_from_args(args) -> dict:
         patch["rotation_deg"] = float(args.rotation_deg)
     if getattr(args, "max_height_ratio", None) is not None:
         patch["max_height_ratio"] = float(args.max_height_ratio)
+    if getattr(args, "side_pad_ratio", None) is not None:
+        patch["side_pad_ratio"] = float(args.side_pad_ratio)
     if not patch:
-        raise SystemExit("ERROR: no fields to update. Pass at least one of --width-ratio / --x-center-ratio / --y-top-ratio / --rotation-deg / --max-height-ratio.")
+        raise SystemExit("ERROR: no fields to update. Pass at least one of --width-ratio / --x-center-ratio / --y-top-ratio / --rotation-deg / --max-height-ratio / --side-pad-ratio.")
     return patch
 
 
@@ -198,6 +224,8 @@ def main() -> None:
     add.add_argument("--rotation-deg", type=float, default=0.0)
     add.add_argument("--max-height-ratio", type=float, default=None,
                      help="Optional: cap print height as a fraction of the garment bbox height (fits a location's height box)")
+    add.add_argument("--side-pad-ratio", type=float, default=None,
+                     help="Optional: calculated horizontal safe-margin, as a fraction of the print box left empty on EACH side after the art is trimmed to content (e.g. 0.06). Keeps a full-front print off the garment edges.")
 
     update = sub.add_parser("update", help="Update fields on an existing rule")
     update.add_argument("category")
@@ -208,6 +236,8 @@ def main() -> None:
     update.add_argument("--rotation-deg", type=float, default=None)
     update.add_argument("--max-height-ratio", type=float, default=None,
                         help="Optional: cap print height as a fraction of the garment bbox height")
+    update.add_argument("--side-pad-ratio", type=float, default=None,
+                        help="Optional: calculated horizontal safe-margin, as a fraction of the print box left empty on EACH side after the art is trimmed to content (e.g. 0.06). 0 disables it.")
 
     remove = sub.add_parser("remove", help="Remove a rule")
     remove.add_argument("category")

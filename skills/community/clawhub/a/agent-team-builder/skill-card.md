@@ -1,43 +1,59 @@
-## Description: <br>
-Guide users through building a custom multi-agent team on OpenClaw, from role design to workspace files, routing bindings, channel configuration, and collaboration rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through building a custom multi-agent team on OpenClaw, from role design to workspace files, routing bindings, channel configuration, and collaboration rules.
 
-## Publisher: <br>
-[superjavason](https://clawhub.ai/user/superjavason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[superjavason](https://clawhub.ai/user/superjavason)
 
-## Use Case: <br>
-Developers and advanced OpenClaw users use this skill to design custom multi-agent setups and generate proposed OpenClaw configuration, workspace files, routing bindings, collaboration rules, and shared-memory guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated examples may grant broad command, filesystem, session, and shared-memory authority to OpenClaw agents. <br>
-Mitigation: Review generated configuration before use, narrow each agent's tool allowlist, prefer workspace-only filesystem access, and avoid storing secrets in shared files. <br>
-Risk: Multi-agent routing or agent-to-agent settings can create unintended replies, delegation, or loops. <br>
-Mitigation: Use explicit allowlists, specific mention patterns, low max ping-pong limits, loop detection, and explicit approval for exec or restart steps. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agent Team Builder on ClawHub](https://clawhub.ai/superjavason/agent-team-builder) <br>
-- [Agent-to-Agent Communication](references/agent-communication.md) <br>
-- [Architecture Corrections](references/architecture-corrections.md) <br>
-- [OpenClaw Team Example](references/openclaw-team-example.json5) <br>
-- [Team Shared Memory](references/team-shared-memory.md) <br>
+## Use Case:
 
+Developers and advanced OpenClaw users use this skill to design multi-agent teams and generate OpenClaw configuration, workspace files, shared-memory setup, setup commands, and quick-start guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with JSON5 configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated examples can include placeholder tokens and broad permissions; review and narrow them before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated OpenClaw examples may grant broad file, command, network, and session-history access.
+
+Mitigation: Review and narrow each generated configuration before use; prefer workspaceOnly:true, per-agent sandboxing, and least-privilege tool allowlists.
+
+Risk: Agent-to-agent messaging and all-session visibility can expose context across agents or create unwanted cross-agent flows.
+
+Mitigation: Deny outbound sessions_send by default, avoid all-session history visibility unless temporarily needed, and keep ping-pong limits low.
+
+Risk: Shared memory can spread sensitive or unreliable coordination data across agents.
+
+Mitigation: Keep secrets and session keys out of shared files, review shared-memory updates, and treat shared memory as untrusted coordination data.
+
+## Reference(s):
+
+- [Agent-to-Agent Communication Reference](references/agent-communication.md)
+- [Architecture Corrections Reference](references/architecture-corrections.md)
+- [OpenClaw Team Example Configuration](references/openclaw-team-example.json5)
+- [Team Shared Memory Reference](references/team-shared-memory.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON5 configuration examples and bash command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workspace file templates, OpenClaw configuration snippets, shared-memory setup instructions, and verification commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,34 @@
+part: CC2652R
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: SimpleLink CC (multiprotocol SoC, Cortex-M4F)
+main_page: https://www.ti.com/product/CC2652R
+datasheet_path_expected: ../../embedded_dev/ti/datasheet/CC2652R_datasheet.pdf
+created_at: '2026-06-21T10:46:00+08:00'
+specs:
+  ble_version: '5.2'
+  ram: 80 kB
+  cores: ARM Cortex-M4
+  standby_current_ua: 0.94
+  shutdown_current_na: 150
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 5 spec fields extracted from datasheet, byte-equal to existing\
+  \ spec values. See link_status: verified_2026-06-28 (extractor-match)."
+- SimpleLink CC2652R, Cortex-M4F, multi-protocol (BLE/Thread/Zigbee/Matter).
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet PDF: 4/5 spec fields matched
+  (80%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-06-28T09:26:17+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

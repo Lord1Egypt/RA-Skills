@@ -1,47 +1,61 @@
-## Description: <br>
-Baidu Netdisk file-management skill for uploading, downloading, transferring, sharing, listing, searching, moving, copying, renaming, and creating folders through the bdpan CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bdpan Storage helps agents manage Baidu Netdisk files, including upload, download, transfer, sharing, listing, search, move, copy, rename, folder creation, login, logout, installation, update, and uninstall workflows.
 
-## Publisher: <br>
-[may-yaha](https://clawhub.ai/user/may-yaha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[may-yaha](https://clawhub.ai/user/may-yaha)
 
-## Use Case: <br>
-Developers and agent users use this skill to manage Baidu Netdisk files from an agent workflow, including cloud file operations, share-link transfers, login, logout, install, update, and uninstall flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First use may download and run a local bdpan CLI installer. <br>
-Mitigation: Approve installer and updater use explicitly, review the script behavior and target paths, and prefer a trusted or sandboxed environment for first installation. <br>
-Risk: The skill keeps a persistent Baidu login token on the local machine. <br>
-Mitigation: Use it only on trusted machines, never expose the token or configuration file contents, and log out or uninstall when access is no longer needed. <br>
-Risk: Cloud file operations and share-link actions can affect Baidu Netdisk content. <br>
-Mitigation: Confirm source paths, destination paths, overwrite choices, and share-link operations before execution, especially for move, rename, upload, download, transfer, and share actions. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent operate within a Baidu Netdisk application directory for file transfer, sharing, search, organization, and account session management tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/may-yaha/bdpan-storage) <br>
-- [Authentication Guide](reference/authentication.md) <br>
-- [bdpan CLI Command Reference](reference/bdpan-commands.md) <br>
-- [Examples](reference/examples.md) <br>
-- [Usage Notes](reference/notes.md) <br>
-- [Troubleshooting](reference/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bdpan command output, JSON command output summaries, confirmation prompts, and setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill can download and execute native installers or updates from Baidu-hosted endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the publisher and Baidu-hosted endpoints are trusted, require human approval before first install and every update, and review downloaded binaries in security-sensitive environments.
+
+Risk: Update and uninstall flows can modify or delete local skill, binary, and configuration files.
+
+Mitigation: Avoid unattended update or uninstall options, keep install and config directories under user-controlled paths, and confirm destructive actions before running them.
+
+Risk: Baidu Netdisk authorization and local token storage can expose account data if used on shared or untrusted machines.
+
+Mitigation: Do not authorize accounts on shared or untrusted hosts, protect local configuration files, and log out after use on any machine that is not fully controlled.
+
+## Reference(s):
+
+- [Bdpan command reference](reference/bdpan-commands.md)
+- [Authentication guide](reference/authentication.md)
+- [Usage examples](reference/examples.md)
+- [Troubleshooting guide](reference/troubleshooting.md)
+- [Development notes and safety notices](reference/notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent actions may invoke local shell scripts and the bdpan CLI; file operations are intended to stay within the Baidu Netdisk application directory.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

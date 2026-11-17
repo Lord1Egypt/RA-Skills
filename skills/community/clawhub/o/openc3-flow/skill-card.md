@@ -1,41 +1,57 @@
-## Description: <br>
-Get all CI/CD flows from Open-C3 platform. Returns the complete list of flows in the system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get all CI/CD flows from Open-C3 platform. Returns the complete list of flows in the system.
 
-## Publisher: <br>
-[lijinfeng2011](https://clawhub.ai/user/lijinfeng2011) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijinfeng2011](https://clawhub.ai/user/lijinfeng2011)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to inventory CI/CD flows configured in an Open-C3 deployment, including flow counts, service tree grouping, and source addresses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an Open-C3 app name and app key that can list CI/CD flows. <br>
-Mitigation: Keep config.env private, restrict file permissions, and use a read-only or least-privilege app key when available. <br>
-Risk: The generated flow inventory can expose sensitive infrastructure and pipeline metadata. <br>
-Mitigation: Run the skill only against trusted Open-C3 instances and treat the output as sensitive operational information. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to list Open-C3 CI/CD flows across service trees, including IDs, names, source addresses, total counts, and grouping statistics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lijinfeng2011/openc3-flow) <br>
-- [Publisher profile](https://clawhub.ai/user/lijinfeng2011) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown table with summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, Open-C3 URL, app name, and app key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires an Open-C3 application key and can expose sensitive configuration if setup is insecure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep config.env private with restrictive permissions, never commit or share APP_KEY, and prefer a least-privileged read-only application key.
+
+Risk: Using an untrusted Open-C3 endpoint or untrusted config.env can expose credentials or cause the script to use unsafe configuration.
+
+Mitigation: Use only trusted Open-C3 instances, configure OPEN_C3_URL with HTTPS, and inspect any config.env file before use.
+
+Risk: The generated flow listing can reveal CI/CD pipeline names, service-tree structure, and source repository addresses.
+
+Mitigation: Share output only with users who are authorized to view Open-C3 flow and service-tree metadata.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lijinfeng2011/skills/openc3-flow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown table and summary text, with shell commands and configuration guidance when setup is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, OPEN_C3_URL, APP_NAME, and APP_KEY; the Open-C3 API response is parsed into a flow table grouped by service tree.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

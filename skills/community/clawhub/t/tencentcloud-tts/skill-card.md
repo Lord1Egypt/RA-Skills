@@ -1,44 +1,59 @@
-## Description: <br>
-TencentCloud TTS converts text into MP3 or WAV speech files using Tencent Cloud Text-to-Speech with configurable voice and output settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TencentCloud TTS helps agents convert text into MP3 or WAV speech files using Tencent Cloud Text-to-Speech with configurable voice type, format, and output path.
 
-## Publisher: <br>
-[jizhouli](https://clawhub.ai/user/jizhouli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jizhouli](https://clawhub.ai/user/jizhouli)
 
-## Use Case: <br>
-Developers and agent workflows use this skill to turn short text into local speech audio files through Tencent Cloud TTS. It also helps configure Tencent Cloud credentials, voice type, audio codec, and output file paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Tencent Cloud API credentials are required and could be exposed if placed in shared shells, logs, or source files. <br>
-Mitigation: Use environment variables or a secret manager, scope the key to speech synthesis where possible, and rotate credentials if they may have been exposed. <br>
-Risk: Text submitted for synthesis is sent to Tencent Cloud for processing. <br>
-Mitigation: Do not submit confidential, regulated, or sensitive text unless Tencent Cloud processing is acceptable for the use case. <br>
-Risk: Generated audio can overwrite an existing local file when an output path is reused. <br>
-Mitigation: Choose explicit output filenames or directories that will not overwrite important files. <br>
+## Use Case:
 
+Developers and agents use this skill to synthesize short text prompts into speech files through Tencent Cloud TTS, including basic setup, credential configuration, and example usage.
 
-## Reference(s): <br>
-- [Tencent Cloud Text-to-Speech Documentation](https://cloud.tencent.com/document/product/1073) <br>
-- [Tencent Cloud TTS API Error Codes](https://cloud.tencent.com/document/api/1073/37996) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jizhouli/tencentcloud-tts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance, Python code examples, shell commands, JSON-style status dictionaries, and MP3 or WAV audio files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated audio is written to the requested output file path; text is sent to Tencent Cloud TTS for synthesis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Input text is sent to Tencent Cloud for speech synthesis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, personal data, or regulated content unless Tencent Cloud processing is approved for the use case.
+
+Risk: The output filename can overwrite local files if pointed at an existing path.
+
+Mitigation: Restrict output filenames to a dedicated audio directory and check for existing files before writing.
+
+Risk: Configuration helpers may print partial credential values in logs or shared terminals.
+
+Mitigation: Use dedicated low-privilege Tencent Cloud credentials and avoid running configuration checks where logs are visible to others.
+
+## Reference(s):
+
+- [Tencent Cloud Text-to-Speech Documentation](https://cloud.tencent.com/document/product/1073)
+- [Tencent Cloud TTS API Error Codes](https://cloud.tencent.com/document/api/1073/37996)
+- [ClawHub Skill Page](https://clawhub.ai/jizhouli/skills/tencentcloud-tts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; generated audio files are MP3 or WAV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill sends input text to Tencent Cloud TTS and writes synthesized audio to a user-specified local file path.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

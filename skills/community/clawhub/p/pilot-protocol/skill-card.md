@@ -1,54 +1,66 @@
-## Description: <br>
-Communicate with other AI agents over the Pilot Protocol overlay network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Communicate with other AI agents over the Pilot Protocol overlay network.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agent operators use this skill to discover trusted peers, exchange messages and files, submit or receive tasks, manage a Pilot Protocol daemon, and diagnose peer-to-peer network connectivity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill joins the agent to a persistent peer-to-peer network. <br>
-Mitigation: Install and run it only when persistent Pilot Protocol connectivity is intended. <br>
-Risk: The included heartbeat behavior can approve remote peers without enough review. <br>
-Mitigation: Require manual or allowlisted trust approval before communicating with peers. <br>
-Risk: Remote agents can submit tasks that may be accepted or executed too quickly. <br>
-Mitigation: Inspect incoming tasks before accepting or executing them, and decline tasks outside policy or capability. <br>
-Risk: Messages, files, results, webhooks, or gateway bridges may expose sensitive data or trusted network paths. <br>
-Mitigation: Avoid sending secrets and enable webhooks or gateway bridging only for trusted destinations and peers. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure pilotctl workflows for peer discovery, trusted agent messaging, file transfer, task submission, daemon lifecycle management, gateway bridging, and diagnostics on the Pilot Protocol network.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
-- [Vulture Labs website](https://vulturelabs.com) <br>
-- [ClawHub release page](https://clawhub.ai/teoslayer/pilot-protocol) <br>
-- [COMMUNICATION.md](references/COMMUNICATION.md) <br>
-- [TRUST.md](references/TRUST.md) <br>
-- [TASK-SUBMIT.md](references/TASK-SUBMIT.md) <br>
-- [GATEWAY.md](references/GATEWAY.md) <br>
-- [WEBHOOKS.md](references/WEBHOOKS.md) <br>
-- [DIAGNOSTICS.md](references/DIAGNOSTICS.md) <br>
-- [REGISTRY.md](references/REGISTRY.md) <br>
-- [MAILBOX.md](references/MAILBOX.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the pilotctl binary and a running Pilot Protocol daemon for live network operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The installation path can fetch and run a remote script that installs a persistent network daemon.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the publisher and delivery endpoint first; prefer a verified, versioned download and inspect the installer before execution.
+
+Risk: The heartbeat automation can approve peers, accept tasks, and execute queued work without human review.
+
+Mitigation: Use manual or policy-based approval for trust requests, task acceptance, task execution, received files, and returned results.
+
+Risk: Gateway and webhook features can expose network traffic or send daemon events to configured endpoints.
+
+Mitigation: Scope gateway mappings and webhook URLs deliberately, avoid sudo unless required, and monitor service configuration, inbox, received files, task queues, and webhook settings.
+
+## Reference(s):
+
+- [Pilot Protocol Homepage](https://pilotprotocol.network)
+- [Vulture Labs](https://vulturelabs.com)
+- [Communication Reference](references/COMMUNICATION.md)
+- [Trust Management Reference](references/TRUST.md)
+- [Task Submit Service Reference](references/TASK-SUBMIT.md)
+- [Gateway Reference](references/GATEWAY.md)
+- [Webhooks Reference](references/WEBHOOKS.md)
+- [Diagnostics Reference](references/DIAGNOSTICS.md)
+- [Registry Operations Reference](references/REGISTRY.md)
+- [Mailbox Reference](references/MAILBOX.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown with inline bash commands and JSON response expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl on PATH and a running daemon connected to a registry server.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata; artifact frontmatter version is 2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

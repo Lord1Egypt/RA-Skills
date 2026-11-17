@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7ax5z74zbmyeya8hjxk5dmdd83ma9w",
-  "slug": "mckinsey-presentation-generator",
+  "id": 378623320146002,
   "version": "1.0.0",
-  "publishedAt": 1774510427567
+  "name": "mckinsey-presentation-generator",
+  "updated_at": 1773991046964,
+  "platform": "minimax"
 }

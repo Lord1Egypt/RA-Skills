@@ -1,0 +1,18 @@
+# 中国移动新消息（5G 消息 / RCS）通用 AI / CLI 配置
+server_url: "wss://5gvas01.cmicmaap.com/gtw-ai/openclaw/ws/msg"
+upload_base_url: "https://5gvas01.cmicmaap.com/gtw-ai/openclaw/api"
+protocol_version: "2.0"
+
+# 默认只允许从此目录向外发送本地文件，避免 Agent 被诱导读取任意本地文件。
+max_upload_mb: 200
+max_download_mb: 50
+
+# listen 时的来源过滤。留空时仅显示收到的消息，不做任何自动执行；
+# 若后续接 bridge，请务必填写手机号/来源 ID 白名单，不建议使用 "*"。
+allow_from: []
+
+# 默认不自动下载远端媒体，避免 SSRF/磁盘占用风险。
+auto_download_media: false
+# 开启自动下载时，仅允许这些域名。按实际服务端返回的媒体域名补充。
+media_host_allowlist:
+  - "5gvas01.cmicmaap.com"

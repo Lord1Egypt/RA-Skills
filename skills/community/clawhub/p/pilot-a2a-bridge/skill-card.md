@@ -1,41 +1,57 @@
-## Description: <br>
-Bridge A2A (Agent-to-Agent) protocol messages over Pilot tunnels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bridge A2A (Agent-to-Agent) protocol messages over Pilot tunnels.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and engineers use this skill to bridge Agent-to-Agent messages through Pilot's encrypted overlay network when agents need reliable cross-network communication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incoming A2A messages may be untrusted or malformed. <br>
-Mitigation: Validate sender identity, message type, payload schema, and size before allowing an agent to act on a message. <br>
-Risk: Networked messaging can expose sensitive data to remote agents or deployments. <br>
-Mitigation: Use the skill only with trusted pilotctl and Pilot daemon deployments, and avoid sending secrets unless approved by the deployment policy. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect A2A agents across different networks by routing messages through Pilot's overlay network. It is intended for multi-agent systems that need reliable messaging when agents are not on the same local network.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-a2a-bridge) <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Code, Guidance] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl on PATH, a running Pilot daemon, and A2A-compatible agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Remote A2A messages may trigger task processing from untrusted senders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted Pilot peers only, apply sender allowlists, and validate message schemas before processing tasks.
+
+Risk: Unbounded payloads or long-running task processing can affect listener reliability.
+
+Mitigation: Constrain payload size, processing time, and listener behavior under explicit user control.
+
+Risk: Unsafe JSON serialization in outbound responses can produce malformed or misleading messages.
+
+Mitigation: Serialize outbound JSON with safe tooling instead of manual string interpolation.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the pilot-protocol skill, pilotctl on PATH, a running pilotctl daemon, and A2A-compatible agents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

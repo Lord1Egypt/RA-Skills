@@ -1,43 +1,62 @@
-## Description: <br>
-Scrapes Amazon product data from ASINs using browseract.com automation API and performs surgical competitive analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes Amazon product data from ASINs using browseract.com automation API and performs surgical competitive analysis.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External users and developers use this skill to compare Amazon products by ASIN, collect competitor product data, and generate pricing, rating, review, specification, moat, and vulnerability analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: ASIN research targets and related workflow inputs are sent to BrowserAct. <br>
-Mitigation: Install only if this data transfer is acceptable for the intended use case, and avoid submitting sensitive or restricted research targets. <br>
-Risk: The skill requires a BrowserAct API key and may load it from the environment or a .env file. <br>
-Mitigation: Use a dedicated API key where possible and protect local environment files from disclosure. <br>
-Risk: The default output behavior can overwrite amazon_analysis.csv, amazon_analysis.md, and amazon_analysis.json in the selected output directory. <br>
-Mitigation: Choose an output directory where those filenames can be safely replaced, or move prior reports before running the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phheng/amazon-competitor-analyzer) <br>
-- [BrowserAct](https://browseract.com) <br>
-- [BrowserAct API Settings](https://www.browseract.com/reception/integrations) <br>
+## Use Case:
 
+External developers, product teams, and marketplace analysts use this skill to compare Amazon ASINs for pricing, specifications, review patterns, market positioning, moats, and competitor vulnerabilities.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI guidance plus CSV, Markdown, and JSON report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires one or more Amazon ASINs, a BrowserAct API key, and an output directory; generated report filenames use the amazon_analysis base name.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.6 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: ASINs are sent to BrowserAct for browser automation.
+
+Mitigation: Use the skill only with ASINs you are comfortable sending to BrowserAct.
+
+Risk: API keys may be exposed if passed directly on the command line.
+
+Mitigation: Prefer BROWSERACT_API_KEY via the environment or a protected .env file instead of --api-key.
+
+Risk: Generated reports may contain untrusted marketplace content, especially in CSV output.
+
+Mitigation: Treat generated CSV and report files as untrusted when opening them in spreadsheet or document tools.
+
+Risk: Report files are written to the configured output directory.
+
+Mitigation: Choose the output directory intentionally before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phheng/skills/amazon-competitor-analyzer)
+- [BrowserAct](https://browseract.com)
+- [BrowserAct API settings](https://www.browseract.com/reception/integrations)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, CSV, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text plus local CSV, Markdown, and JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires one or more ASINs, a BrowserAct API key, and an output directory for generated reports.]
+
+## Skill Version(s):
+
+0.1.6 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Guide sleep tracker buyers through form factor, sensor needs, and health goals to determine the exact specs - SpO2, HRV, battery life, compatibility - they need. Brand-neutral. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide sleep tracker buyers through form factor, sensor needs, and health goals to determine the exact specs they need, including SpO2, HRV, battery life, and compatibility.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users use this skill to choose a sleep tracker based on health goals, comfort, device ecosystem, privacy preferences, subscription tolerance, and region. It guides an agent through a structured consultation that produces prioritized specifications and a small set of matching product suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product recommendations may become stale or omit current prices, subscription terms, availability, warranty coverage, or privacy policy changes. <br>
-Mitigation: Treat suggestions as starting points and verify current product specs, pricing, subscription terms, availability, warranty, and privacy policies before buying. <br>
-Risk: Sleep tracker data may be mistaken for medical diagnosis or treatment advice. <br>
-Mitigation: Use consumer sleep trackers as wellness tools only; seek clinical evaluation for sleep apnea, heart concerns, or treatment decisions. <br>
+## Use Case:
 
+External users use this skill to get brand-neutral, structured buying guidance for sleep trackers based on health goals, wearing comfort, phone ecosystem, privacy preferences, subscription tolerance, and region. The agent produces prioritized specifications and up to five matching product suggestions while avoiding medical diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/sleep-tracker-buying-consultant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown consultation questions, prioritized recommendations, risk notes, and product suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code, credentials, persistence, external APIs, or automatic purchase behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks health-adjacent questions to tailor buying advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users the information is used only for the consultation and that the skill itself does not collect, store, or transmit it.
+
+Risk: A user may treat consumer sleep tracker guidance as medical diagnosis or treatment advice.
+
+Mitigation: Keep medical caveats visible and direct users with sleep apnea, heart rhythm, or other clinical concerns to a qualified medical professional.
+
+Risk: Product availability, pricing, subscriptions, and model specifications can change after release.
+
+Mitigation: Have the agent tell users to verify current product details, warranty terms, and regional availability before purchasing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/sleep-tracker-buying-consultant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown consultation with prioritized specification lists and product suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Brand-neutral buying guidance; no external APIs, runtime dependencies, code execution, persistence, credential access, or hidden data handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

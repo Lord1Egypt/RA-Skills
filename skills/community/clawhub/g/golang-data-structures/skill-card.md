@@ -1,49 +1,61 @@
-## Description: <br>
-Golang data structures: slices, maps, arrays, container/list/heap/ring, strings.Builder versus bytes.Buffer, generic collections, pointers, and copy semantics for choosing and optimizing Go data structures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Golang data structures - slices (internals, capacity growth, preallocation, slices package), maps (internals, hash buckets, maps package), arrays, container/list/heap/ring, strings.Builder vs bytes.Buffer, generic collections, pointers (unsafe.Pointer, weak.Pointer), and copy semantics.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose, implement, and optimize Go data structures while reasoning about memory layout, allocation cost, access patterns, and standard-library container tradeoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated guidance or code changes could introduce incorrect data-structure choices, unsafe pointer misuse, or performance regressions. <br>
-Mitigation: Review proposed code and explanations, run Go tests and benchmarks where relevant, and apply unsafe pointer patterns only when they match the documented Go rules. <br>
-Risk: The skill can suggest local Go, golangci-lint, and git commands that may affect a working tree. <br>
-Mitigation: Inspect commands before execution and run them in a trusted workspace with normal source-control safeguards. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose and optimize Go data structures, implement generic containers, work with standard container packages, and reason about slice, map, pointer, and copy semantics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/samber/golang-data-structures) <br>
-- [Project Homepage](https://github.com/samber/cc-skills-golang) <br>
-- [Slice Internals Deep Dive](references/slice-internals.md) <br>
-- [Map Internals Deep Dive](references/map-internals.md) <br>
-- [Container Packages and String Builders](references/containers.md) <br>
-- [Writing Generic Data Structures](references/generics.md) <br>
-- [Pointer Types Deep Dive](references/pointers.md) <br>
-- [Go Data Structures](https://research.swtch.com/godata) <br>
-- [The Go Memory Model](https://go.dev/ref/mem) <br>
-- [Effective Go](https://go.dev/doc/effective_go) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown with Go code examples and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits or Go tooling commands for projects using Go.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata and skill frontmatter) <br>
+Risk: Low-level memory guidance may lead to unsafe.Pointer or weak pointer code that is incorrect if applied mechanically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated low-level code carefully against the Go unsafe and weak pointer rules before merging.
+
+Risk: Generated changes to Go data-structure choices can alter correctness, allocation behavior, or performance.
+
+Mitigation: Run the project's normal Go tests and relevant benchmarks before accepting proposed code edits.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/samber/cc-skills-golang)
+- [Slice Internals](references/slice-internals.md)
+- [Map Internals Deep Dive](references/map-internals.md)
+- [Container Packages and String Builders](references/containers.md)
+- [Writing Generic Data Structures](references/generics.md)
+- [Pointer Types Deep Dive](references/pointers.md)
+- [Go Data Structures (Russ Cox)](https://research.swtch.com/godata)
+- [The Go Memory Model](https://go.dev/ref/mem)
+- [Effective Go](https://go.dev/doc/effective_go)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Go code examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Go file edits, diagnostics, and data-structure selection guidance for projects with Go source files.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

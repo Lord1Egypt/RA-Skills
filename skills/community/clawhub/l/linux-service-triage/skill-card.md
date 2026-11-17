@@ -1,39 +1,53 @@
-## Description: <br>
-Diagnoses common Linux service issues using logs, systemd/PM2, file permissions, Nginx reverse proxy checks, and DNS sanity checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses common Linux service issues using logs, systemd/PM2, file permissions, Nginx reverse proxy checks, and DNS sanity checks.
 
-## Publisher: <br>
-[KOwl64](https://clawhub.ai/user/KOwl64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kowl64](https://clawhub.ai/user/kowl64)
 
-## Use Case: <br>
-Developers and operators use this skill to triage failing or unreachable Linux services, interpret supplied logs and status output, and plan minimal fixes for systemd, PM2, permissions, Nginx, DNS, and related service issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reloads, restarts, permission changes, and systemd service creation can affect service availability or persistence. <br>
-Mitigation: Review proposed commands before execution, require explicit user approval for changes, and prefer validation steps such as nginx -t and port checks before reloads. <br>
-Risk: Troubleshooting based on incomplete logs or status output can lead to an incorrect fix plan. <br>
-Mitigation: Ask for missing logs, status output, service names, ports, and configuration snippets before recommending changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Linux Service Triage Commands](references/triage-commands.md) <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose failing Linux services, PM2 processes, Nginx reverse proxy issues, DNS problems, and file permission errors, then plan minimal fixes and verification steps.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Structured triage report with optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only by default; exact fix commands are provided only when explicitly requested and safe.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Administrative repair commands can change service state, Nginx configuration, or file ownership and permissions.
+
+Mitigation: Keep diagnosis read-only by default, require explicit approval before changes, test Nginx configuration before reload, and include verification and rollback steps.
+
+Risk: Incomplete logs, status output, or service details can lead to an incorrect root-cause assessment.
+
+Mitigation: Ask for missing logs or status output before concluding, and ground the triage report in evidence supplied by the user.
+
+## Reference(s):
+
+- [Linux Service Triage Commands](references/triage-commands.md)
+- [ClawHub skill page](https://clawhub.ai/kowl64/skills/linux-service-triage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown triage report with optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exact fix commands are provided only when explicitly requested and safe.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

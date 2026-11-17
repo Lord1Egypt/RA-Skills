@@ -1,41 +1,54 @@
-## Description: <br>
-Generates structured illustration prompts for novel chapters by analyzing story context, character references, tone, and visual style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小说章节配图生成器。自动检索项目中的角色设定和已有插画，为指定章节生成风格统一、角色一致的插图Prompt。AI按需判断是否添加漫画文字层（无气泡无字框）。
 
-## Publisher: <br>
-[fslong520](https://clawhub.ai/user/fslong520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fslong520](https://clawhub.ai/user/fslong520)
 
-## Use Case: <br>
-Authors and creative teams use this skill to turn novel chapters or scene excerpts into one to three consistent image-generation prompts. It helps preserve character appearance, story tone, visual style, composition, lighting, and optional in-scene text treatment across a series. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local novel project files to infer character details, style references, and prior illustration records. <br>
-Mitigation: Use it only in project workspaces where that story context is appropriate for the agent to inspect. <br>
-Risk: The skill may write reusable character notes for future prompt consistency. <br>
-Mitigation: Review generated notes and prompt outputs before committing them to a project or using them in downstream image-generation workflows. <br>
+## Use Case:
 
+External creators and writing-focused agent users use this skill to turn novel chapters or scene excerpts into consistent illustration prompts. It searches for character references, style history, and prior illustration notes, then proposes 1-3 scene prompts aligned to the chapter's mood.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fslong520/brushtrace) <br>
-- [Source skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Structured Markdown, JSON prompt objects, and plain text prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one to three illustration prompts per chapter or scene; prompts may include optional embedded text-layer guidance and aspect-ratio controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata; artifact frontmatter lists 1.2.0) <br>
+Risk: The skill may scan a broad project area while looking for character descriptions, style references, and prior illustration records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in novel-writing projects where that search is expected, and provide explicit chapter and reference paths before execution.
+
+Risk: The skill may write reusable character data or other project outputs without narrow limits.
+
+Mitigation: Require confirmation and a specific output file before any project write-back.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fslong520/skills/brushtrace)
+- [Publisher Profile](https://clawhub.ai/user/fslong520)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, and plain text illustration prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 1-3 structured prompts and may include an optional comic text layer with placement, font, and scene-integration guidance.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata; artifact frontmatter says 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

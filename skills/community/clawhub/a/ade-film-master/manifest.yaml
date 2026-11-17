@@ -1,0 +1,52 @@
+name: 阿德影视制作大师
+slug: ade-film-master
+version: 1.0.0
+description: 专业级影视制作全流程助手,涵盖剧本改编、AI 绘画资产提示词(场景四视图、人物全身像)、AI 视频分镜提示词三大阶段,支持脱敏改编与 PDF 输出。适用于专业短剧、电影预告片、AI 视频生成项目。
+category: content
+author: 火眼阿德
+homepage: https://github.com/HuoYanAde/ade-film-master
+license: MIT
+icon: assets/icon.png
+
+triggers:
+  - 影视制作
+  - 剧本改编
+  - 影视剧本
+  - 短剧脚本
+  - 分镜脚本
+  - 分镜提示词
+  - 场景四视图
+  - 人物全身像
+  - AI 视频制作
+  - 即梦
+  - Midjourney
+  - Stable Diffusion
+  - Seedance
+
+tags:
+  - 影视
+  - 剧本
+  - 分镜
+  - AI 绘画
+  - AI 视频
+  - 提示词
+  - 后期制作
+  - 内容创作
+
+permissions:
+  - 文件读写(剧本、提示词、PDF 输出)
+  - 调用 headless Chrome 生成 PDF
+  - 无网络请求
+
+inputs:
+  - 小说/故事/文章/创意大纲文本
+  - 处理模式选择(扩写 / 保持)
+  - 是否启用脱敏处理
+  - 是否导出 PDF
+
+outputs:
+  - 标准格式影视剧本
+  - 场景四视图 AI 绘画提示词
+  - 人物全身像 AI 绘画提示词
+  - 15 秒批次的 AI 视频分镜提示词
+  - 结构化 PDF(剧本/分镜)

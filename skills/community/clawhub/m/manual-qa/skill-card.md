@@ -1,40 +1,50 @@
-## Description: <br>
-Generates practical manual QA checklists from code changes, separating terminal-verifiable checks from steps that need human judgment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a manual QA checklist from code changes for PRs, commits, branches, staged changes, and review workflows.
 
-## Publisher: <br>
-[felipefreitag](https://clawhub.ai/user/felipefreitag) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[felipefreitag](https://clawhub.ai/user/felipefreitag)
 
-## Use Case: <br>
-Developers and reviewers use this skill to turn PRs, commits, branches, staged changes, or unstaged diffs into concrete QA steps. It helps separate checks an agent can run in the terminal from interactive, visual, authenticated, or real-device checks that need a human. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested agent-run QA steps could touch external services, databases, authenticated sessions, or production-like data when the underlying code change involves them. <br>
-Mitigation: Review proposed commands before approving execution and avoid production credentials, irreversible operations, or sensitive targets unless explicitly authorized. <br>
-Risk: A generated QA checklist can miss behavior outside the reviewed diff or misclassify checks that require human judgment. <br>
-Mitigation: Use the checklist as review guidance and keep human verification for interactive, visual, authenticated, email, mobile, and real-device flows. <br>
+## Use Case:
 
+Developers and reviewers use this skill to turn code changes into practical manual QA checklists. It separates terminal-verifiable checks from human-only verification and covers happy paths, error paths, and edge cases.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/felipefreitag/manual-qa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown numbered checklist with labels for agent-testable and human-testable steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pass/fail results for agent-run steps when the user approves execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may inspect local git diffs or PR diffs when asked to create QA guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on changes intended for review, and require confirmation before running agent-testable commands.
+
+## Reference(s):
+
+- [ClawHub Manual QA skill page](https://clawhub.ai/felipefreitag/skills/manual-qa)
+- [ClawHub publisher profile](https://clawhub.ai/user/felipefreitag)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown numbered checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Separates agent-testable steps from human-only testing steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

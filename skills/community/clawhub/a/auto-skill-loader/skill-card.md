@@ -1,42 +1,57 @@
-## Description: <br>
-Auto Skill Loader detects a task's intent, matches an appropriate installed skill, and can load or route work while respecting core, protected, and dynamic skill levels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Skill Loader helps an agent discover local OpenClaw skills, classify them by protection level, and select candidate skills for task-driven loading or routing.
 
-## Publisher: <br>
-[zqleslie](https://clawhub.ai/user/zqleslie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zqleslie](https://clawhub.ai/user/zqleslie)
 
-## Use Case: <br>
-Developers and agent operators use this skill to help an agent discover installed OpenClaw skills, select a relevant skill for a user request, preview matches, and optionally route work to another agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically choose and load other installed skills, which gives it broad influence over which instructions handle a user request. <br>
-Mitigation: Install it only when automatic skill selection is intended, review available workspace and global skills first, and use dryRun or strict matching for higher-control environments. <br>
-Risk: Optional agent routing can delegate work to another agent when enabled. <br>
-Mitigation: Disable routing unless delegation is needed, and avoid using the skill with untrusted local skills or agents. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep skill loading lightweight by scanning available skills, filtering core and protected skills, and surfacing dynamic candidates for task matching. It is suited to OpenClaw environments where automatic skill discovery and optional agent routing are part of the workflow.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/zqleslie/auto-skill-loader) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with optional shell commands, YAML configuration, and JSON output from the helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run in dry-run mode to preview matching behavior before loading a skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: SKILL.md frontmatter, package.json, server release evidence) <br>
+Risk: The skill can automatically load and follow other local skill instructions with broad task triggers and limited user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where local skill directories are trusted and require explicit confirmation before loading newly discovered or changed skills.
+
+Risk: Automatic routing can forward tasks in environments where routing is enabled.
+
+Mitigation: Disable routing unless needed and review routing behavior before deployment.
+
+Risk: Using a floating installer version can reduce release assurance.
+
+Mitigation: Use a pinned installer version instead of @latest for higher assurance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zqleslie/skills/auto-skill-loader)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline commands, configuration examples, and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May list loadable, protected, and core skills; dry-run and JSON modes are available through the bundled Node.js script.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

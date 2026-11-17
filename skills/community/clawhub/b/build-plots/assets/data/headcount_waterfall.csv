@@ -1,0 +1,7 @@
+step,kind,value
+Start,total,100
+Hires,delta,30
+Transfers In,delta,8
+Transfers Out,delta,-12
+Exits,delta,-10
+End,total,116

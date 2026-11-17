@@ -1,41 +1,52 @@
-## Description: <br>
-Helps agents design, audit, and optimize sales compensation plans for sales roles, including quotas, OTE splits, accelerators, clawbacks, SPIFs, and multi-role structures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs, audits, and optimizes sales compensation plans for quota setting, OTE splits, accelerators, clawbacks, SPIFs, and multi-role plan structures.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Revenue leaders, sales operations teams, founders, and finance reviewers use this skill to draft or evaluate sales compensation plans and model incentives before rollout. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill provides compensation benchmarks and plan recommendations that may not match company policy, jurisdictional requirements, or finance constraints. <br>
-Mitigation: Review outputs with legal, HR, finance, and sales leadership before using them for real compensation decisions. <br>
-Risk: The artifact includes benchmark figures and business claims that may become outdated or may not reflect a specific market segment. <br>
-Mitigation: Validate benchmark assumptions against current internal data and trusted compensation sources before finalizing a plan. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1kalin/afrexai-sales-compensation) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+Revenue leaders, sales operations teams, founders, and CFOs use this skill to design or review sales compensation plans, model quota and cost scenarios, and check incentive structures before rollout.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text guidance with tables, formulas, checklists, and plan recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces business guidance that should be reviewed against company policy and applicable legal, HR, and finance requirements before real compensation decisions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Compensation guidance and benchmark figures may be inaccurate, outdated, or unsuitable for a specific company, role, jurisdiction, or pay policy.
+
+Mitigation: Verify benchmark numbers and have sales operations, finance, HR, legal, and tax stakeholders review plans before real compensation decisions.
+
+Risk: Promotional outbound links may influence or distract from compensation planning decisions.
+
+Mitigation: Review outbound links before sharing or relying on them.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/1kalin/skills/afrexai-sales-compensation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown prose with tables, checklists, formulas, and scenario guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; benchmark numbers and compensation recommendations should be verified before use in real compensation decisions.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

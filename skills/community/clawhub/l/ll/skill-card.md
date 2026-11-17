@@ -1,45 +1,64 @@
-## Description: <br>
-Amap location-service skill for POI search, route planning, travel planning, nearby search, and heatmap data visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amap location-service skill for POI search, nearby search, route planning, travel planning, and heatmap or map-link generation.
 
-## Publisher: <br>
-[zhangyanFE](https://clawhub.ai/user/zhangyanFE) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangyanfe](https://clawhub.ai/user/zhangyanfe)
 
-## Use Case: <br>
-External users and developers use this skill to search Amap places, find nearby locations, plan walking, driving, cycling, or transit routes, build travel itineraries, and generate map or heatmap visualization links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Amap API keys may be exposed or overused if saved in local configuration or shared in prompts. <br>
-Mitigation: Set AMAP_WEBSERVICE_KEY in the environment, use a limited-quota key, and avoid sharing keys in conversation history or generated files. <br>
-Risk: Location requests, home/work addresses, routes, and heatmap data URLs can reveal sensitive personal or business information. <br>
-Mitigation: Avoid submitting private locations or private heatmap data unless intended, and review any generated Amap URLs before sharing them. <br>
-Risk: The skill depends on axios for outbound web requests. <br>
-Mitigation: Install with a reviewed lockfile or patched axios version before deployment. <br>
+## Use Case:
 
+Developers and external agent users use this skill to answer map-search requests, find nearby places, plan routes by travel mode, assemble city travel plans, and produce Amap visualization links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangyanFE/ll) <br>
-- [Amap Web Service API overview](https://lbs.amap.com/api/webservice/summary) <br>
-- [Create an Amap application and key](https://lbs.amap.com/api/webservice/create-project-and-key) <br>
-- [Amap POI Search API documentation](https://lbs.amap.com/api/webservice/guide/api-advanced/newpoisearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with Amap URLs, shell command examples, and JSON API results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, axios, and AMAP_WEBSERVICE_KEY for Amap Web Service calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json; artifact frontmatter lists 2.0.0) <br>
+Risk: The security summary flags an unsafe shell command pattern for raw user-provided locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the JavaScript axios helpers or another structured HTTP client that URL-encodes parameters, and review any generated curl command before execution.
+
+Risk: The security summary flags weak API-key storage through local configuration.
+
+Mitigation: Use AMAP_WEBSERVICE_KEY or AMAP_KEY from the environment or a managed secret store, and avoid saving or committing config.json.
+
+Risk: Heatmap workflows can expose or load user-provided data URLs.
+
+Mitigation: Use only public, non-sensitive, trusted heatmap data URLs.
+
+Risk: The scanner guidance recommends dependency review before sensitive use.
+
+Mitigation: Pin and audit axios before installing the skill in a sensitive workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhangyanfe/skills/ll)
+- [Amap Web Service API Overview](https://lbs.amap.com/api/webservice/summary)
+- [Create an Amap Application and Key](https://lbs.amap.com/api/webservice/create-project-and-key)
+- [Amap POI Search API Documentation](https://lbs.amap.com/api/webservice/guide/api-advanced/newpoisearch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with URLs, command examples, JavaScript snippets, and JSON API data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an Amap Web Service API key and Node.js with axios for API-backed workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata; artifact SKILL.md frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

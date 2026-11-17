@@ -1,6 +1,27 @@
 {
   "ownerId": "kn79vaxf67865vvvgkvydaf1j58257a6",
   "slug": "memory-never-forget",
-  "version": "4.1.3",
-  "publishedAt": 1776525675140
+  "version": "4.12",
+  "publishedAt": 1772618033287,
+  "tags": [
+    "memory",
+    "ai",
+    "cognition",
+    "three-stage-memory",
+    "atkinson-shiffrin",
+    "context",
+    "short-term-memory",
+    "long-term-memory",
+    "session-management",
+    "productivity",
+    "dream-verification",
+    "memory-palace",
+    "active-memory"
+  ],
+  "changelog": {
+    "4.12": "Dual-Layer Dream Verification — Official Dream (12:30) + Refined Verify (13:00) cross-checking. Hallucination and memory drift prevention. Verification reports in memory/dreaming/verify/. Complete rewrite in English for ClawHub.",
+    "4.11": "Full OpenClaw 4.11 integration, Active Memory + Memory Palace + Dream Consolidation",
+    "3.2": "Memory sublimation system, 5-phase consolidation (Orient, Gather, Consolidate, Prune, Sublimate)",
+    "1.0.0": "Initial release — Atkinson-Shiffrin three-stage memory model"
+  }
 }

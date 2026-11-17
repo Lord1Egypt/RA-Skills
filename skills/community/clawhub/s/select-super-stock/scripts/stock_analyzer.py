@@ -1,553 +1,202 @@
-#!/home/linuxbrew/.linuxbrew/bin/python3.10
-# -*- coding: utf-8 -*-
-"""
-优质股票筛选专家 - 主分析脚本 (v1.3)
-基于双核心模型：长线稳步上涨型 + 历史低位反弹型
-数据源：强制使用 AKShare + 缓存机制
-
-缓存策略：
-- 交易时间：使用 AKShare 获取实时数据
-- 非交易时间：使用缓存数据（有效期 24 小时）
-"""
-
-import sys
-import os
-import json
+#!/usr/bin/env python3
+"""v1.4.0: source-dated, A-share single-symbol daily-bar research."""
 import argparse
-import time
-from datetime import datetime, timedelta
-from dataclasses import dataclass, field
-from typing import List, Dict, Optional, Tuple
+import json
+import math
+import re
+import subprocess
+import sys
+from datetime import date, datetime, time, timedelta
+from pathlib import Path
+from zoneinfo import ZoneInfo
 
-import pandas as pd
-
-# 导入缓存工具
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '_shared'))
-try:
-    from cache_utils import StockDataCache
-    HAS_CACHE = True
-except ImportError:
-    HAS_CACHE = False
-    print("⚠️ 缓存模块未找到，将禁用缓存功能")
-
-try:
-    import akshare as ak
-    HAS_AKSHARE = True
-except ImportError:
-    HAS_AKSHARE = False
-    print("❌ AKShare 未安装，请运行：pip3 install akshare pandas -U")
+VERSION = "1.4.0"
+TZ = ZoneInfo("Asia/Shanghai")
+MISSING = ["实时行情", "ROE/股息率/财报", "行业周期与新闻", "股东与资金流", "港股与美股覆盖", "多股票筛选与排名"]
 
 
-# 初始化缓存
-SCRIPT_DIR = os.path.dirname(__file__)
-CACHE_DIR = os.path.join(SCRIPT_DIR, '..', '.cache')
-cache = StockDataCache(CACHE_DIR, cache_max_age_hours=24) if HAS_CACHE else None
+def valid_symbol(value):
+    if not re.fullmatch(r"\d{6}", value):
+        raise ValueError("仅支持 6 位 A 股代码")
+    return value
 
 
-@dataclass
-class StockSignal:
-    """股票信号"""
-    symbol: str
-    name: str
-    category: str  # 长线稳步上涨型 / 历史低位反弹型 / 垃圾股规避 / 观察区
-    score: int  # 0-100
-    similar_stock: str  # 相似标的参考
-    technical_analysis: Dict = field(default_factory=dict)
-    fundamental_analysis: Dict = field(default_factory=dict)
-    recommendation: str = ""
-    strategy: str = ""
-    risks: List[str] = field(default_factory=list)
+def finite(value):
+    if isinstance(value, bool):
+        raise ValueError("无效数值")
+    value = float(value)
+    if not math.isfinite(value):
+        raise ValueError("无效数值")
+    return value
 
 
-def get_stock_name(symbol: str) -> str:
-    """获取股票名称（仅使用 AKShare）"""
-    if HAS_AKSHARE:
+def market_symbol(symbol):
+    # 6: Shanghai; 0/3: Shenzhen; 4/8/9: Beijing. The provider validates existence.
+    return ("sh" if symbol.startswith("6") else "sz") + symbol
+
+
+def select_day(calendar, requested, now):
+    days = sorted({date.fromisoformat(str(item)[:10]) for item in calendar})
+    if not days or max(days) < now.date():
+        raise ValueError("交易日历覆盖不足")
+    completed = [day for day in days if day < now.date() or (day == now.date() and now.time() >= time(16, 0))]
+    if requested:
+        target = date.fromisoformat(requested)
+        if target not in completed:
+            raise ValueError("请求日期不是已完成交易日")
+        return target, days
+    if not completed:
+        raise ValueError("没有可核验的已完成交易日")
+    return completed[-1], days
+
+
+def normalize_rows(frame, provider):
+    if provider == "sina":
+        mapping = {"date": "date", "open": "open", "high": "high", "low": "low", "close": "close", "volume": "volume"}
+    else:
+        mapping = {"日期": "date", "开盘": "open", "最高": "high", "最低": "low", "收盘": "close", "成交量": "volume"}
+    frame = frame.rename(columns=mapping)
+    required = ["date", "open", "high", "low", "close", "volume"]
+    if not set(required).issubset(frame.columns):
+        raise ValueError("来源字段不完整")
+    rows = []
+    for row in frame[required].to_dict("records"):
+        row["date"] = str(row["date"])[:10]
+        for key in required[1:]: row[key] = finite(row[key])
+        if row["close"] <= 0 or row["high"] < max(row["open"], row["close"]) or row["low"] > min(row["open"], row["close"]):
+            raise ValueError("OHLC 数据不一致")
+        rows.append(row)
+    if len({row["date"] for row in rows}) != len(rows):
+        raise ValueError("重复交易日")
+    return sorted(rows, key=lambda row: row["date"])
+
+
+def fetch_rows(api, symbol, target):
+    start = (target - timedelta(days=550)).strftime("%Y%m%d")
+    errors = []
+    for provider in ("sina", "eastmoney"):
         try:
-            stock_info = ak.stock_individual_info_em(symbol=symbol)
-            if stock_info is not None and len(stock_info) > 0:
-                for _, row in stock_info.iterrows():
-                    if '股票简称' in str(row.get('item', '')):
-                        return row.get('value', symbol)
-        except Exception:
-            pass
-    return symbol
-
-
-def fetch_kline_data(symbol: str, period: str = "daily", count: int = 500, max_retries: int = 3) -> pd.DataFrame:
-    """
-    获取 K 线数据（仅使用 AKShare，带重试机制）
-    
-    ⚠️ 强制使用 AKShare 数据源，确保数据准确性
-    如果 AKShare 失败，不会 fallback 到其他数据源
-    
-    Args:
-        symbol: 股票代码
-        period: daily/weekly/monthly
-        count: 数据条数
-        max_retries: 最大重试次数
-    
-    Returns:
-        DataFrame with columns: date, open, high, low, close, volume
-    """
-    df = pd.DataFrame()
-    
-    if not HAS_AKSHARE:
-        print("  ❌ 错误：AKShare 未安装，无法获取数据")
-        print("  请运行：pip3 install akshare pandas -U")
-        return pd.DataFrame()
-    
-    # 仅使用 AKShare，带重试机制
-    for attempt in range(1, max_retries + 1):
-        try:
-            if attempt > 1:
-                import time
-                wait_time = 2 ** (attempt - 1)  # 指数退避：2s, 4s, 8s
-                print(f"  ⏳ 等待 {wait_time} 秒后重试 (第 {attempt}/{max_retries} 次)...")
-                time.sleep(wait_time)
+            if provider == "sina":
+                frame = api.stock_zh_a_daily(symbol=market_symbol(symbol), start_date=start, end_date=target.strftime("%Y%m%d"), adjust="qfq")
+                source = "AKShare/stock_zh_a_daily · 新浪财经 · 前复权日线"
             else:
-                print(f"  [AKShare] 获取数据中... (第 {attempt}/{max_retries} 次尝试)")
-            
-            df = ak.stock_zh_a_hist(symbol=symbol, period=period, adjust="qfq")
-            
-            if df is not None and len(df) > 0:
-                print(f"  ✓ AKShare 成功获取 {len(df)} 条数据")
-                df = df.tail(count)
-                # 适配 AKShare 列名
-                expected_cols = ['date', 'open', 'close', 'high', 'low', 'volume', 
-                                'turnover', 'amplitude', 'pct_change', 'change', 'turnover_rate']
-                if len(df.columns) == len(expected_cols):
-                    df.columns = expected_cols
-                elif len(df.columns) == 12:
-                    # 某些版本多一列，跳过最后一列
-                    df = df.iloc[:, :11]
-                    df.columns = expected_cols
-                else:
-                    print(f"  ⚠️ 列数不匹配：期望 {len(expected_cols)} 列，实际 {len(df.columns)} 列")
-                    print(f"  实际列名：{df.columns.tolist()}")
-                    # 尝试按位置映射
-                    if len(df.columns) >= 6:
-                        df = df.rename(columns={
-                            df.columns[0]: 'date',
-                            df.columns[1]: 'open',
-                            df.columns[2]: 'close',
-                            df.columns[3]: 'high',
-                            df.columns[4]: 'low',
-                            df.columns[5]: 'volume'
-                        })
-                return df.reset_index(drop=True)
-            else:
-                print(f"  ⚠️ AKShare 返回空数据")
-        except Exception as e:
-            print(f"  ⚠️ AKShare 尝试 {attempt}/{max_retries} 失败：{e}")
-            if attempt == max_retries:
-                print(f"  ❌ AKShare 所有重试均失败，请检查网络连接或稍后再试")
-                return pd.DataFrame()
-    
-    print(f"  ❌ AKShare 数据获取失败")
-    return pd.DataFrame()
+                frame = api.stock_zh_a_hist(symbol=symbol, period="daily", start_date=start, end_date=target.strftime("%Y%m%d"), adjust="qfq", timeout=10)
+                source = "AKShare/stock_zh_a_hist · 东方财富 · 前复权日线"
+            rows = normalize_rows(frame, provider)
+            return rows, source, errors
+        except Exception as exc:
+            errors.append(provider + ": " + type(exc).__name__)
+    raise ValueError("；".join(errors) or "无可用数据源")
 
 
-def calculate_ma(prices: pd.Series, periods: List[int] = [5, 10, 20, 60, 120, 250]) -> Dict[str, pd.Series]:
-    """计算均线"""
-    mas = {}
-    for period in periods:
-        mas[f'MA{period}'] = prices.rolling(window=period).mean()
-    return mas
+def rsi(closes, period=14):
+    if len(closes) < period + 1: return None
+    changes = [closes[i] - closes[i - 1] for i in range(1, len(closes))]
+    gains = [max(change, 0) for change in changes[-period:]]
+    losses = [max(-change, 0) for change in changes[-period:]]
+    avg_gain, avg_loss = sum(gains) / period, sum(losses) / period
+    if avg_loss == 0: return 100.0 if avg_gain else 50.0
+    return round(100 - 100 / (1 + avg_gain / avg_loss), 2)
 
 
-def calculate_macd(prices: pd.Series, fast: int = 12, slow: int = 26, signal: int = 9) -> Dict:
-    """计算 MACD"""
-    ema_fast = prices.ewm(span=fast, adjust=False).mean()
-    ema_slow = prices.ewm(span=slow, adjust=False).mean()
-    dif = ema_fast - ema_slow
-    dea = dif.ewm(span=signal, adjust=False).mean()
-    macd = (dif - dea) * 2
-    
-    return {
-        'DIF': dif,
-        'DEA': dea,
-        'MACD': macd
-    }
+def avg(values, period):
+    return round(sum(values[-period:]) / period, 4) if len(values) >= period else None
 
 
-def calculate_rsi(prices: pd.Series, period: int = 14) -> pd.Series:
-    """计算 RSI"""
-    delta = prices.diff()
-    gain = (delta.where(delta > 0, 0)).rolling(window=period).mean()
-    loss = (-delta.where(delta < 0, 0)).rolling(window=period).mean()
-    
-    rs = gain / loss
-    rsi = 100 - (100 / (1 + rs))
-    return rsi
-
-
-def check_model_a(df: pd.DataFrame, mas: Dict) -> Tuple[bool, int]:
-    """
-    检查是否符合模型 A：长线稳步上涨型
-    
-    Returns:
-        (是否符合，评分)
-    """
-    if len(df) < 250:
-        return False, 0
-    
-    score = 0
-    current_price = df['close'].iloc[-1]
-    
-    # 1. 年线多头排列 (250 日均线向上)
-    ma250_current = mas['MA250'].iloc[-1]
-    ma250_prev = mas['MA250'].iloc[-30] if len(mas['MA250']) > 30 else ma250_current
-    
-    if current_price > ma250_current:
-        score += 20  # 股价在年线上方
-    
-    if ma250_current > ma250_prev:
-        score += 15  # 年线向上
-    
-    # 2. 均线多头排列
-    ma_order = [
-        mas['MA5'].iloc[-1],
-        mas['MA10'].iloc[-1],
-        mas['MA20'].iloc[-1],
-        mas['MA60'].iloc[-1],
-        mas['MA120'].iloc[-1],
-        mas['MA250'].iloc[-1]
-    ]
-    
-    if all(ma_order[i] >= ma_order[i+1] for i in range(len(ma_order)-1)):
-        score += 25  # 完美多头排列
-    
-    # 3. MACD 零轴上方
-    macd = calculate_macd(df['close'])
-    if macd['DIF'].iloc[-1] > 0:
-        score += 20  # DIF 在零轴上方
-    
-    # 4. 温和上涨（非暴涨）
-    price_change_60d = (df['close'].iloc[-1] / df['close'].iloc[-60] - 1) * 100 if len(df) > 60 else 0
-    if 5 < price_change_60d < 50:
-        score += 20  # 60 日涨幅在 5%-50% 之间，稳步上涨
-    
-    return score >= 60, score
-
-
-def check_model_b(df: pd.DataFrame, mas: Dict) -> Tuple[bool, int]:
-    """
-    检查是否符合模型 B：历史低位反弹型
-    
-    Returns:
-        (是否符合，评分)
-    """
-    if len(df) < 250:
-        return False, 0
-    
-    score = 0
-    current_price = df['close'].iloc[-1]
-    
-    # 1. 距离历史高点大幅回撤
-    high_52w = df['high'].max()
-    drawdown = (high_52w - current_price) / high_52w * 100
-    
-    if drawdown > 50:
-        score += 30  # 回撤超过 50%
-    elif drawdown > 30:
-        score += 20  # 回撤超过 30%
-    
-    # 2. 底部企稳信号
-    low_60d = df['low'].iloc[-60:].min() if len(df) > 60 else current_price
-    if current_price > low_60d * 1.05:
-        score += 20  # 从最低点反弹超过 5%
-    
-    # 3. MACD 底背离
-    macd = calculate_macd(df['close'])
-    macd_recent = macd['MACD'].iloc[-10:].mean()
-    macd_prev = macd['MACD'].iloc[-30:-20].mean() if len(macd['MACD']) > 30 else macd_recent
-    
-    if macd_recent > macd_prev and macd_recent < 0:
-        score += 25  # MACD 底背离
-    
-    # 4. 温和放量
-    volume_recent = df['volume'].iloc[-10:].mean()
-    volume_prev = df['volume'].iloc[-30:-10].mean() if len(df) > 30 else volume_recent
-    
-    if volume_recent > volume_prev * 1.2:
-        score += 15  # 温和放量
-    
-    # 5. 股价在底部区域
-    if current_price < df['high'].max() * 0.6:
-        score += 10  # 处于历史低位
-    
-    return score >= 50, score
-
-
-def check_blacklist(df: pd.DataFrame) -> Tuple[bool, List[str]]:
-    """
-    检查是否属于黑名单股票（垃圾股）
-    
-    Returns:
-        (是否规避，原因列表)
-    """
-    reasons = []
-    
-    if len(df) < 60:
-        return False, []
-    
-    current_price = df['close'].iloc[-1]
-    
-    # 1. 暴涨暴跌
-    price_changes = df['pct_change'].iloc[-30:] if 'pct_change' in df.columns else pd.Series()
-    if len(price_changes) > 0:
-        extreme_days = (price_changes.abs() > 9).sum()
-        if extreme_days >= 3:
-            reasons.append("近期多次出现涨跌停，波动极端")
-    
-    # 2. 高位巨量换手
-    turnover_rate = df['turnover_rate'].iloc[-1] if 'turnover_rate' in df.columns else 0
-    if turnover_rate > 20:
-        reasons.append(f"单日换手率过高 ({turnover_rate:.1f}%)，警惕出货")
-    
-    # 3. 长上影线/下影线频繁
-    recent_klines = df.tail(20)
-    long_shadow_days = 0
-    for _, row in recent_klines.iterrows():
-        upper_shadow = (row['high'] - max(row['open'], row['close'])) / row['close']
-        lower_shadow = (min(row['open'], row['close']) - row['low']) / row['close']
-        if upper_shadow > 0.05 or lower_shadow > 0.05:
-            long_shadow_days += 1
-    
-    if long_shadow_days >= 8:
-        reasons.append("K 线频繁出现长影线，走势不连贯")
-    
-    # 4. 织布机走势（横盘震荡）
-    price_range = (df['high'].iloc[-30:].max() - df['low'].iloc[-30:].min()) / df['close'].iloc[-30] * 100
-    if price_range < 10:
-        reasons.append("长期横盘震荡，疑似庄家控盘")
-    
-    return len(reasons) >= 2, reasons
-
-
-def get_fundamental_data(symbol: str) -> Dict:
-    """获取基本面数据"""
-    data = {
-        'pe_ratio': None,
-        'pb_ratio': None,
-        'roe': None,
-        'dividend_yield': None,
-        'market_cap': None,
-        'revenue_growth': None,
-        'profit_growth': None
-    }
-    
-    try:
-        # 获取个股信息
-        info = ak.stock_individual_info_em(symbol=symbol)
-        if info is not None:
-            for _, row in info.iterrows():
-                if '市盈率' in str(row['item']):
-                    try:
-                        data['pe_ratio'] = float(row['value'])
-                    except:
-                        pass
-                elif '市净率' in str(row['item']):
-                    try:
-                        data['pb_ratio'] = float(row['value'])
-                    except:
-                        pass
-                elif '总市值' in str(row['item']):
-                    try:
-                        data['market_cap'] = row['value']
-                    except:
-                        pass
-    except Exception:
+def study(rows, symbol, target, source, now):
+    target_rows = [row for row in rows if row["date"] == target.isoformat()]
+    if len(target_rows) != 1: raise ValueError("来源缺少目标交易日")
+    prior_rows = [row for row in rows if row["date"] < target.isoformat()]
+    if not prior_rows: raise ValueError("来源缺少前一交易日")
+    prior = prior_rows[-1]
+    if prior["date"] != (target - timedelta(days=1)).isoformat():
+        # Calendar is the authority; natural calendar yesterday may be a weekend.
         pass
-    
-    return data
+    closes = [row["close"] for row in rows if row["date"] <= target.isoformat()]
+    window = [row for row in rows if row["date"] <= target.isoformat()][-252:]
+    current = target_rows[0]
+    obs = {"close": current["close"], "day_change_pct": round((current["close"] / prior["close"] - 1) * 100, 4),
+           "ma20": avg(closes, 20), "ma60": avg(closes, 60), "ma250": avg(closes, 250), "rsi14": rsi(closes),
+           "range_52w_high": max((row["high"] for row in window), default=None) if len(window) == 252 else None,
+           "range_52w_low": min((row["low"] for row in window), default=None) if len(window) == 252 else None}
+    if obs["range_52w_high"]:
+        obs["drawdown_from_52w_high_pct"] = round((current["close"] / obs["range_52w_high"] - 1) * 100, 4)
+    else: obs["drawdown_from_52w_high_pct"] = None
+    remarks = []
+    if obs["ma20"] is not None: remarks.append("收盘相对 MA20：" + ("上方" if current["close"] >= obs["ma20"] else "下方"))
+    if obs["ma60"] is not None: remarks.append("收盘相对 MA60：" + ("上方" if current["close"] >= obs["ma60"] else "下方"))
+    if obs["ma250"] is not None: remarks.append("收盘相对 MA250：" + ("上方" if current["close"] >= obs["ma250"] else "下方"))
+    return {"version": VERSION, "status": "partial", "symbol": symbol, "market": "A股", "trade_date": target.isoformat(),
+            "collected_at": now.isoformat(), "source": source, "adjustment": "前复权", "kind": "已完成交易日日线；非实时行情",
+            "observation": obs, "technical_remarks": remarks, "missing": list(MISSING),
+            "conclusion": "仅作技术观察；证据不足以判断公司质量或给出交易建议", "errors": []}
 
 
-def analyze_stock(symbol: str, full: bool = False) -> StockSignal:
-    """
-    分析股票
-    
-    ⚠️ 强制使用 AKShare 数据源，确保数据准确性
-    
-    Args:
-        symbol: 股票代码
-        full: 是否完整分析
-    
-    Returns:
-        StockSignal
-    """
-    # 获取股票名称
-    name = get_stock_name(symbol)
-    
-    # 获取 K 线数据（仅 AKShare，带重试）
-    print(f"\n🔍 开始分析股票：{symbol}")
-    print("=" * 50)
-    df_daily = fetch_kline_data(symbol, period="daily", count=500, max_retries=3)
-    df_weekly = fetch_kline_data(symbol, period="weekly", count=200, max_retries=2) if full else pd.DataFrame()
-    df_monthly = fetch_kline_data(symbol, period="monthly", count=100, max_retries=2) if full else pd.DataFrame()
-    
-    # ⚠️ 如果 AKShare 数据获取失败，直接返回错误，不使用备用数据
-    if df_daily.empty:
-        return StockSignal(
-            symbol=symbol,
-            name=name,
-            category="数据获取失败",
-            score=0,
-            similar_stock="N/A",
-            recommendation="❌ AKShare 数据源连接失败，请检查网络后重试",
-            strategy="建议：1) 检查网络连接 2) 稍后再试 3) 不要使用其他数据源替代",
-            risks=["数据源不可用", "网络问题", "API 限流"]
-        )
-    
-    # 计算技术指标
-    mas = calculate_ma(df_daily['close'])
-    macd = calculate_macd(df_daily['close'])
-    rsi = calculate_rsi(df_daily['close'])
-    
-    # 模型判断
-    is_model_a, score_a = check_model_a(df_daily, mas)
-    is_model_b, score_b = check_model_b(df_daily, mas)
-    is_blacklist, blacklist_reasons = check_blacklist(df_daily)
-    
-    # 确定分类
-    if is_blacklist:
-        category = "垃圾股规避"
-        similar_stock = "类似中远海发"
-        score = 0
-    elif is_model_a:
-        category = "长线稳步上涨型"
-        similar_stock = "类似中国海油"
-        score = min(score_a, 100)
-    elif is_model_b:
-        category = "历史低位反弹型"
-        similar_stock = "类似万华化学"
-        score = min(score_b, 100)
-    else:
-        category = "观察区"
-        similar_stock = "N/A"
-        score = max(score_a, score_b)
-    
-    # 技术面分析
-    current_price = df_daily['close'].iloc[-1]
-    technical_analysis = {
-        'current_price': current_price,
-        'ma250': mas['MA250'].iloc[-1] if len(mas['MA250']) > 0 else None,
-        'ma60': mas['MA60'].iloc[-1] if len(mas['MA60']) > 0 else None,
-        'macd_dif': macd['DIF'].iloc[-1],
-        'rsi': rsi.iloc[-1],
-        'price_change_60d': (current_price / df_daily['close'].iloc[-60] - 1) * 100 if len(df_daily) > 60 else 0
-    }
-    
-    # 基本面分析
-    fundamental = get_fundamental_data(symbol)
-    
-    # 生成建议
-    if category == "长线稳步上涨型":
-        recommendation = "适合中长期布局"
-        strategy = f"建议分批建仓，依托{mas['MA250'].iloc[-1]:.2f}元（年线）作为防守位"
-        risks = ["警惕短期涨幅过大回调", "关注行业政策变化"]
-    elif category == "历史低位反弹型":
-        recommendation = "处于建仓击球区"
-        strategy = "可逐步建仓，关注右侧信号确认"
-        risks = ["行业周期可能继续下行", "需耐心等待反转信号"]
-    elif category == "垃圾股规避":
-        recommendation = "坚决规避空仓"
-        strategy = "不建议参与，风险极高"
-        risks = blacklist_reasons
-    else:
-        recommendation = "等待右侧信号"
-        strategy = "继续观察，等待更明确的信号"
-        risks = ["方向不明确", "建议等待"]
-    
-    return StockSignal(
-        symbol=symbol,
-        name=name,
-        category=category,
-        score=score,
-        similar_stock=similar_stock,
-        technical_analysis=technical_analysis,
-        fundamental_analysis=fundamental,
-        recommendation=recommendation,
-        strategy=strategy,
-        risks=risks
-    )
+def failure(symbol, now, reason):
+    return {"version": VERSION, "status": "unavailable", "symbol": symbol, "market": "A股", "trade_date": None,
+            "collected_at": now.isoformat(), "source": None, "adjustment": None, "kind": "无可用行情数据",
+            "observation": {}, "technical_remarks": [], "missing": list(MISSING),
+            "conclusion": "数据不可用，未生成股票研究结论", "errors": [reason]}
 
 
-def format_output(signal: StockSignal) -> str:
-    """格式化输出"""
-    ta = signal.technical_analysis
-    
-    def safe_float(val, decimals=2):
-        """安全格式化浮点数"""
-        if val is None:
-            return "N/A"
-        try:
-            return f"{float(val):.{decimals}f}"
-        except:
-            return str(val)
-    
-    output = f"""
-### 📊 股票名称/代码：[{signal.name}({signal.symbol})]
+def collect(api, symbol, requested=None, now=None):
+    now = now or datetime.now(TZ)
+    try:
+        target, _ = select_day(api.tool_trade_date_hist_sina()["trade_date"].tolist(), requested, now)
+        rows, source, _ = fetch_rows(api, symbol, target)
+        return study(rows, symbol, target, source, now)
+    except Exception as exc:
+        return failure(symbol, now, type(exc).__name__ + "；请检查网络、数据源、代码和交易日")
 
-**1. 资产定性分析**
-* **分类归属**：{signal.category}
-* **相似标的参考**：{signal.similar_stock}
-* **综合评分**：{signal.score}/100
 
-**2. 技术面解析 (Technical)**
-* **当前价格**：{safe_float(ta.get('current_price'))}元
-* **年线 (MA250)**：{safe_float(ta.get('ma250'))}元
-* **60 日均线**：{safe_float(ta.get('ma60'))}元
-* **MACD-DIF**：{safe_float(ta.get('macd_dif'), 4)}
-* **RSI(14)**：{safe_float(ta.get('rsi'))}
-* **60 日涨幅**：{safe_float(ta.get('price_change_60d', 0))}%
-
-**3. 基本面与消息面 (Fundamental & News)**
-* **市盈率 (PE)**：{signal.fundamental_analysis.get('pe_ratio', 'N/A')}
-* **市净率 (PB)**：{signal.fundamental_analysis.get('pb_ratio', 'N/A')}
-* **总市值**：{signal.fundamental_analysis.get('market_cap', 'N/A')}
-
-**4. 综合投资建议 (Actionable Advice)**
-* **结论**：{signal.recommendation}
-* **操作策略**：{signal.strategy}
-* **风险提示**：{"; ".join(signal.risks) if signal.risks else "无明显风险"}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⚠️ 风险提示：本分析仅供参考，不构成投资建议。股市有风险，入市需谨慎。
-"""
-    return output
+def render(result):
+    lines = ["📊 A股单股日线研究（非实时）", "代码：" + result["symbol"], "交易日：" + str(result["trade_date"] or "不可用"),
+             "采集时间：" + result["collected_at"]]
+    if result["status"] == "partial":
+        o = result["observation"]
+        lines += ["来源：" + result["source"], "复权口径：" + result["adjustment"],
+                  f"收盘：{o['close']:.2f} | 单日变化：{o['day_change_pct']:+.2f}%"]
+        for key, label in [("ma20", "MA20"), ("ma60", "MA60"), ("ma250", "MA250"), ("rsi14", "RSI14"), ("drawdown_from_52w_high_pct", "距52周高点")]:
+            if o.get(key) is not None: lines.append(label + "：" + str(o[key]))
+        lines += ["技术观察：" + "；".join(result["technical_remarks"]), "研究结论：" + result["conclusion"]]
+    else: lines.append("状态：" + result["conclusion"])
+    lines += ["未覆盖/缺失：" + "、".join(result["missing"])]
+    if result["errors"]: lines += ["异常：" + "；".join(result["errors"])]
+    lines += ["仅供学习与信息参考，不构成投资建议。"]
+    return "\n".join(lines)
 
 
 def main():
-    parser = argparse.ArgumentParser(description='优质股票筛选专家')
-    parser.add_argument('--symbol', required=True, help='股票代码')
-    parser.add_argument('--full', action='store_true', help='完整分析（包含周线/月线）')
-    parser.add_argument('--json', action='store_true', help='JSON 格式输出')
-    
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--symbol", required=True, type=valid_symbol)
+    parser.add_argument("--date")
+    parser.add_argument("--json", action="store_true")
+    parser.add_argument("--timeout", type=int, default=60)
+    parser.add_argument("--worker", action="store_true", help=argparse.SUPPRESS)
     args = parser.parse_args()
-    
-    if not HAS_AKSHARE:
-        print("⚠️ 未安装 AKShare，使用备用数据源（东方财富/新浪财经）...")
-        # 继续执行，使用 HTTP API 数据源
-    
-    # 分析股票
-    signal = analyze_stock(args.symbol, full=args.full)
-    
-    # 输出结果
-    if args.json:
-        print(json.dumps({
-            'symbol': signal.symbol,
-            'name': signal.name,
-            'category': signal.category,
-            'score': signal.score,
-            'similar_stock': signal.similar_stock,
-            'recommendation': signal.recommendation,
-            'strategy': signal.strategy,
-            'risks': signal.risks
-        }, ensure_ascii=False, indent=2))
-    else:
-        print(format_output(signal))
+    if args.date:
+        try:
+            if date.fromisoformat(args.date).isoformat() != args.date: raise ValueError()
+        except ValueError: parser.error("--date 必须为 YYYY-MM-DD")
+    if not 1 <= args.timeout <= 180: parser.error("--timeout 必须在 1-180 秒间")
+    if args.worker:
+        try:
+            import akshare as ak
+            result = collect(ak, args.symbol, args.date)
+        except ImportError:
+            result = failure(args.symbol, datetime.now(TZ), "缺少 AKShare；不会自动安装依赖")
+        print(json.dumps(result, ensure_ascii=False, allow_nan=False)); return 0
+    command = [sys.executable, str(Path(__file__).resolve()), "--worker", "--symbol", args.symbol]
+    if args.date: command += ["--date", args.date]
+    try:
+        child = subprocess.run(command, capture_output=True, text=True, timeout=args.timeout)
+        result = json.loads(child.stdout) if child.returncode == 0 else failure(args.symbol, datetime.now(TZ), "采集进程失败")
+    except subprocess.TimeoutExpired:
+        result = failure(args.symbol, datetime.now(TZ), "真实数据采集超时；未使用默认值或缓存")
+    except (ValueError, OSError):
+        result = failure(args.symbol, datetime.now(TZ), "采集结果无效；未生成研究结论")
+    print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) if args.json else render(result))
+    return 0 if result["status"] == "partial" else 2
 
 
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__": sys.exit(main())

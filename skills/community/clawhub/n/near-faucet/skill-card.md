@@ -1,42 +1,55 @@
-## Description: <br>
-OpenClaw skill for requesting NEAR testnet tokens via faucet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw skill for requesting NEAR testnet tokens and checking NEAR testnet account balances.
 
-## Publisher: <br>
-[shaiss](https://clawhub.ai/user/shaiss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shaiss](https://clawhub.ai/user/shaiss)
 
-## Use Case: <br>
-Developers use this skill to request NEAR testnet tokens and check testnet account balances from an agent workflow or command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: NEAR testnet account IDs entered into the skill are sent to NEAR testnet services. <br>
-Mitigation: Use only testnet account identifiers and avoid entering sensitive production account information. <br>
-Risk: The release documentation advertises status tracking, default account configuration, and local rate limiting that the artifact does not implement. <br>
-Mitigation: Treat request and balance commands as the supported behavior for this version, and independently track rate limits or request status when needed. <br>
+## Use Case:
 
+Developers and NEAR testnet users use this skill to request testnet NEAR tokens and check account balances during testnet development workflows.
 
-## Reference(s): <br>
-- [NEAR Testnet Faucet](https://wallet.testnet.near.org/) <br>
-- [NEAR CLI Documentation](https://docs.near.org/tools/near-cli) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shaiss/near-faucet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses NEAR testnet account identifiers supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Documentation claims status checking and rate limiting, but the security evidence says those features are overstated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a testnet faucet requester and balance checker only; do not rely on it to enforce rate limits or track request status unless those features are added elsewhere.
+
+Risk: The skill sends account identifiers to NEAR testnet faucet and RPC services.
+
+Mitigation: Use it only with NEAR testnet accounts and review command output before acting on faucet or balance results.
+
+## Reference(s):
+
+- [NEAR Testnet Faucet](https://wallet.testnet.near.org/)
+- [NEAR CLI Documentation](https://docs.near.org/tools/near-cli)
+- [ClawHub Skill Page](https://clawhub.ai/shaiss/skills/near-faucet)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requests use NEAR testnet services and return command-line status text.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

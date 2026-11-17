@@ -1,43 +1,58 @@
-## Description: <br>
-Transcribe audio or video files using the TextOps/Modal API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes audio or video files into text using the TextOps/Modal API.
 
-## Publisher: <br>
-[netanelrotem](https://clawhub.ai/user/netanelrotem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanelrotem](https://clawhub.ai/user/netanelrotem)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to convert local or URL-hosted audio and video files into text transcripts, with optional speaker separation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recordings, links, filenames, job IDs, and transcript content are sent to TextOps for processing. <br>
-Mitigation: Use the skill only for media that may be shared with TextOps, and avoid private or tokenized URLs unless necessary. <br>
-Risk: Generated transcript files may contain sensitive audio content and are saved locally. <br>
-Mitigation: Delete or secure generated transcript files when the audio is sensitive. <br>
-Risk: The TEXTOPS_API_KEY credential is required to run the transcription workflow. <br>
-Mitigation: Keep TEXTOPS_API_KEY in an environment variable rather than chat or files. <br>
+## Use Case:
 
+Developers and external users can use this skill to transcribe local or URL-based audio and video files, optionally with speaker separation, and receive saved JSON and text transcript files.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/netanelrotem/transcribe-he) <br>
-- [Publisher profile](https://clawhub.ai/user/netanelrotem) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text transcripts, JSON transcript files, and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill saves both .json and .txt transcript files and reports the generated file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Selected media, URL metadata, and the TextOps API key are sent to the TextOps/cloud transcription service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for recordings whose confidentiality requirements are compatible with that service.
+
+Risk: Generated JSON and text transcript files are left on disk.
+
+Mitigation: Store outputs in an appropriate location and delete transcript files when retention is no longer needed.
+
+Risk: Transcript text may contain untrusted instructions spoken by a third party.
+
+Mitigation: Treat transcript contents as quoted data, not as instructions for the agent to follow.
+
+## Reference(s):
+
+- [TextOps API keys](https://text-ops-subs.com/api/keys)
+- [transcribe-he on ClawHub](https://clawhub.ai/netanelrotem/skills/transcribe-he)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands, plus generated JSON and plain text transcript files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TEXTOPS_API_KEY; transcription output should be treated as untrusted third-party content.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Enrich company and contact lists with public data, including firmographics, technographics, social profiles, funding history, employee count estimates, deduplication, and lead scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enrich company and contact lists with public data such as firmographics, technographics, social profiles, funding history, and employee count estimates, then clean, deduplicate, and score leads from raw CSV or JSON inputs.
 
-## Publisher: <br>
-[tktk-ai](https://clawhub.ai/user/tktk-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tktk-ai](https://clawhub.ai/user/tktk-ai)
 
-## Use Case: <br>
-Sales, growth, and CRM teams use this skill to enrich raw company or contact lists with public firmographic, technographic, contact, and lead-scoring data before review and import. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Company and contact enrichment can involve privacy obligations, source terms, or sensitive personal data. <br>
-Mitigation: Use only lawful and permitted public sources, avoid sensitive personal data, and confirm that the intended data processing is allowed before installation and use. <br>
-Risk: Incorrect enrichment or lead scores can misdirect outreach or contaminate CRM records. <br>
-Mitigation: Verify enriched records before operational use and test CRM imports in small batches or a sandbox. <br>
+## Use Case:
 
+Revenue, sales operations, and marketing teams use this skill to turn raw company names, domains, or contact lists into enriched, deduplicated, scored records for CRM import and lead prioritization.
 
-## Reference(s): <br>
-- [Field Definitions](references/field-definitions.md) <br>
-- [Default Lead Scoring Model](references/scoring-model.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tktk-ai/data-enrichment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, csv, json, guidance] <br>
-**Output Format:** [Markdown tables and CSV/JSON-ready enriched records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include lead scores, fit tags, confidence labels, CRM-compatible column headers, and source-aware review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release and frontmatter) <br>
+Risk: Contact enrichment can process personal data without a lawful basis or collect more fields than needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for legitimate business lead-enrichment workflows, confirm a lawful basis before processing contact data, and request only necessary fields.
+
+Risk: Public-source enrichment can conflict with source terms or include sensitive personal data.
+
+Mitigation: Respect source terms such as LinkedIn's and avoid collecting or storing sensitive personal data.
+
+Risk: Enriched records may be incomplete, stale, or incorrect before CRM import.
+
+Mitigation: Verify enriched records and confidence signals before importing or acting on the data.
+
+## Reference(s):
+
+- [Data Enrichment ClawHub Skill Page](https://clawhub.ai/tktk-ai/skills/data-enrichment)
+- [Enrichment Field Definitions](references/field-definitions.md)
+- [Default Lead Scoring Model](references/scoring-model.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, CSV, JSON, guidance]
+
+**Output Format:** [Markdown tables, CSV rows, JSON records, or CRM-compatible tabular exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include lead scores, fit tags, source notes, and confidence fields; users should verify records before CRM import.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

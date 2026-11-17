@@ -1,44 +1,58 @@
-## Description: <br>
-Generate AWS cost CSVs from a user-provided service list. Use when someone supplies an item list + AWS region and needs per-item pricing plus totals via AWS Price List API or bulk pricing JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AWS cost CSVs from a user-provided service list. Use when someone supplies an item list + AWS region and needs per-item pricing plus totals via AWS Price List API or bulk pricing JSON.
 
-## Publisher: <br>
-[crazylion](https://clawhub.ai/user/crazylion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[crazylion](https://clawhub.ai/user/crazylion)
 
-## Use Case: <br>
-Developers, cloud engineers, and FinOps users use this skill to turn AWS service item lists into itemized pricing CSVs with per-line costs and totals. It can use live AWS Price List API queries or cached bulk pricing JSON for On-Demand and Reserved terms. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API mode can use the active AWS profile and call the AWS Price List API. <br>
-Mitigation: Use a least-privilege AWS profile limited to pricing:GetProducts and verify the active profile before running API mode. <br>
-Risk: Bulk mode downloads and caches large pricing JSON files locally. <br>
-Mitigation: Use a dedicated cache directory and refresh cached data intentionally with the provided cache controls. <br>
-Risk: The output CSV path is user-selected and could overwrite an existing file. <br>
-Mitigation: Choose an output filename that will not overwrite important files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AWS Pricing Cheat Sheet](references/api_reference.md) <br>
-- [AWS Price List API endpoint](https://api.pricing.us-east-1.amazonaws.com/) <br>
-- [AWS bulk pricing file pattern](https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/current/ap-northeast-1/index.json) <br>
-- [ClawHub release page](https://clawhub.ai/crazylion/aws-price-csv) <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to convert YAML or JSON AWS service item lists into per-item cost CSVs and total estimates. It supports live AWS Price List API lookups and cached or user-supplied bulk pricing JSON for On-Demand and Reserved pricing.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, CSV files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated CSV output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CSV rows include item-level pricing details and a TOTAL row.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may use configured AWS CLI credentials and contact AWS pricing services.
+
+Mitigation: Use read-only AWS pricing permissions and prefer bulk or cached pricing data when live API access is not required.
+
+Risk: The skill writes CSV output and cache files based on user-supplied inputs and pricing data.
+
+Mitigation: Write outputs to an expected directory and review generated files before sharing or using them downstream.
+
+Risk: Generated CSV values are not neutralized for spreadsheet formulas when inputs or bulk JSON are not fully trusted.
+
+Mitigation: Treat CSVs as untrusted, inspect suspicious cell values, and sanitize formula-like prefixes before opening in spreadsheet software.
+
+## Reference(s):
+
+- [AWS Pricing Cheat Sheet](references/api_reference.md)
+- [AWS Price List API endpoint](https://api.pricing.us-east-1.amazonaws.com/)
+- [AWS bulk pricing JSON URL pattern](https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/{service}/current/{region}/index.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated CSV contains item rows and a TOTAL row with USD pricing details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

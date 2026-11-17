@@ -1,0 +1,51 @@
+{
+  "name": "@yottameta/yotta-dev-mcp",
+  "version": "0.2.8",
+  "description": "YuanKai (yotta-dev-mcp) - deterministic local development tools exposed over stdio MCP: repo_map, system_model, architecture_review, impact_analysis, verify_change, self_test, run_adapter, find_code, compress_output, review_code, review_diff, mcp_doctor, scan_secrets, scan_dependencies, check_publish_readiness, run_checks, scaffold_skill and workflow_state. Reads an optional .yotta/architecture.json contract plus .yotta/verification.json policy for architecture reviews, change impact cones and the L0-L5 evidence ledger. Optional explicit adapters integrate import-linter, dependency-cruiser and Repomix without auto-install or network access. Python 3.8+ standard library, offline by default; writes and command execution require explicit flags.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yottaskills",
+    "mcp",
+    "developer-tools",
+    "code-review",
+    "verification"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "NOTICE",
+    "VERSION",
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "install.sh",
+    "server.json",
+    ".review-allowlist.json",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "!scripts/test_*.py",
+    "!**/__pycache__",
+    "!**/*.pyc",
+    "!**/*.pyo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-dev-mcp.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-dev-mcp": "bin/yotta-dev-mcp.js",
+    "yotta-dev-mcp-install": "bin/install.js"
+  },
+  "scripts": {
+    "test": "python scripts/test_dev_contract.py && python scripts/test_dev_adapters.py && python scripts/test_dev_engine.py && python scripts/test_mcp_doctor.py && python scripts/test_installer_containment.py && python scripts/test_yotta_dev_mcp.py"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

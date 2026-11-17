@@ -1,0 +1,298 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-fj-library",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:08:32.857Z",
+  "entry": {
+    "url": "https://www.fjlib.net/",
+    "final_url": "https://www.fjlib.net/",
+    "title": "福建省图书馆",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:08:32.857Z",
+    "identity": {
+      "declared_name": "福建省图书馆",
+      "hostname": "www.fjlib.net",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "资源\nRESOURCES",
+        "href": "https://www.fjlib.net/#page2",
+        "target": ""
+      },
+      {
+        "text": "书目检索",
+        "href": "javascript:void(0);",
+        "target": ""
+      },
+      {
+        "text": "数字资源\nDigital Resources",
+        "href": "https://s.fjlib.net:6443/interlibSSO/main/reader",
+        "target": "_blank"
+      },
+      {
+        "text": "地方特色资源",
+        "href": "https://www.fjlib.net/zy/szzy/zjzy/",
+        "target": "_blank"
+      },
+      {
+        "text": "古籍数据库",
+        "href": "https://www.fjlib.net/zy/szzy/gjsjk/",
+        "target": "_blank"
+      },
+      {
+        "text": "经济数据库",
+        "href": "https://www.fjlib.net/zy/szzy/jjsjk/",
+        "target": "_blank"
+      },
+      {
+        "text": "少儿数据库",
+        "href": "https://www.fjlib.net/zy/szzy/sesjk/",
+        "target": "_blank"
+      },
+      {
+        "text": "艺术数据库",
+        "href": "https://www.fjlib.net/zy/szzy/yysjk/",
+        "target": "_blank"
+      },
+      {
+        "text": "其他数据库",
+        "href": "https://www.fjlib.net/zy/szzy/qtsjk/",
+        "target": "_blank"
+      },
+      {
+        "text": "数字资源证",
+        "href": "https://www.fjlib.net/fw/jyfw/xymybz/",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "key",
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.fjlib.net/search",
+      "locator": null,
+      "observed_url": "https://www.fjlib.net/",
+      "observed_at": "2026-10-09T09:08:32.700Z"
+    },
+    {
+      "tag": "input",
+      "type": "submit",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.fjlib.net/search",
+      "locator": null,
+      "observed_url": "https://www.fjlib.net/",
+      "observed_at": "2026-10-09T09:08:32.700Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "输入您想搜索的关键字",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "输入您想搜索的关键字",
+      "name": "q",
+      "id": "sub3Con",
+      "css": "#sub3Con",
+      "role": null,
+      "form_action": "https://opac.fjlib.net/opac/search",
+      "locator": {
+        "css": "#sub3Con"
+      },
+      "observed_url": "https://www.fjlib.net/",
+      "observed_at": "2026-10-09T09:08:32.700Z"
+    },
+    {
+      "tag": "input",
+      "type": "submit",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://opac.fjlib.net/opac/search",
+      "locator": null,
+      "observed_url": "https://www.fjlib.net/",
+      "observed_at": "2026-10-09T09:08:32.700Z"
+    },
+    {
+      "tag": "input",
+      "type": "button",
+      "text": "高级搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.fjlib.net/",
+      "observed_at": "2026-10-09T09:08:32.700Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "1970年",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "1970年",
+        "exact": true
+      },
+      "observed_url": "https://www.fjlib.net/",
+      "observed_at": "2026-10-09T09:08:32.700Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-fj-library:catalog-holdings",
+      "source_id": "quiz-fj-library",
+      "task_kind": "catalog-holdings",
+      "status": "entry_observed",
+      "parameters": [
+        "title",
+        "author",
+        "edition",
+        "language",
+        "library",
+        "holding_field"
+      ],
+      "instructions": [
+        "用本题书名、作者、版本和语言查馆藏；在馆藏明细读取索书号、馆藏地和复本，不将不同版次默认为同一记录。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.fjlib.net/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "输入您想搜索的关键字",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "输入您想搜索的关键字",
+          "name": "q",
+          "id": "sub3Con",
+          "css": "#sub3Con",
+          "role": null,
+          "form_action": "https://opac.fjlib.net/opac/search",
+          "locator": {
+            "css": "#sub3Con"
+          },
+          "observed_url": "https://www.fjlib.net/",
+          "observed_at": "2026-10-09T09:08:32.700Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "1970年",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "1970年",
+            "exact": true
+          },
+          "observed_url": "https://www.fjlib.net/",
+          "observed_at": "2026-10-09T09:08:32.700Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [],
+    "example_ids": [
+      "PT1-Q42"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:08:32.857Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-fj-library-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-fj-library-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

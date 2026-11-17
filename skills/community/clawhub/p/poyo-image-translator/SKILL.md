@@ -1,10 +1,15 @@
----
+﻿---
 name: poyo-image-translator
 description: Image Translator on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `poyo-ai/image-translator`, translating text inside images, `image_urls`, `source_language`, `target_language`, async status polling, callbacks, and server-side integration.
 metadata: {"openclaw":{"homepage":"https://poyo.ai/models/image-translator","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Image Translator
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/image-translator>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Image Translator jobs on PoYo. It helps agents prepare image translation payloads, submit async tasks, and explain server-side polling or webhook handling.
 

@@ -1,0 +1,39 @@
+{
+  "retentionDays": 90,
+  "autoClean": false,
+  "maintainEvery": 7,
+  "categories": [
+    "core",
+    "daily",
+    "temporary"
+  ],
+  "sensitivePatterns": [
+    "ghp_[A-Za-z0-9]",
+    "github_pat_[A-Za-z0-9_]",
+    "sk-[A-Za-z0-9]",
+    "xoxb-[A-Za-z0-9-]",
+    "AKIA[0-9A-Z]{16}",
+    "(?i)bearer\\s+[A-Za-z0-9._-]+",
+    "(?i)api[_-]?key",
+    "(?i)password",
+    "(?i)passwd",
+    "(?i)secret",
+    "(?i)token",
+    "BEGIN [A-Z ]*PRIVATE KEY",
+    "(?i)authorization:",
+    "(?i)set-cookie",
+    "(?i)session[_-]?id",
+    "(?i)\\b(?:postgres|mysql|redis|mongodb)://[^\\s]*:[^\\s]*@"
+  ],
+  "schedule": "0 22 * * *",
+  "lastDistill": null,
+  "autoWrite": false,
+  "autoWriteNote": "true 时定时蒸馏会自动落盘（写前备份、只写根 MEMORY.md + memory/*.md + memory/archive/*.md）；开启前需向用户明示并取得同意。默认 false = 只生成报告。 / When true, scheduled distillation writes unattended (backup first; whitelisted paths only: root MEMORY.md, memory/*.md, memory/archive/*.md). Enable only after telling the user and getting consent. Default false = report only.",
+  "writeWhitelist": [
+    "MEMORY.md",
+    "memory/*.md",
+    "memory/archive/*.md"
+  ],
+  "archiveBeforeOverwrite": true,
+  "language": "文档/输出默认中文，语言可选（回答跟随用户语言）/ Docs default to Chinese; language is optional."
+}

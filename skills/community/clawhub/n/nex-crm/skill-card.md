@@ -1,44 +1,58 @@
-## Description: <br>
-Chat-native Customer Relationship Management system designed for one-person agencies, freelancers, and small Belgian businesses managing multiple client relationships and complex sales pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nex CRM helps agents manage local prospect records, sales pipeline stages, activities, follow-ups, reminders, and CRM exports for freelancers and small businesses.
 
-## Publisher: <br>
-[nexaiguy](https://clawhub.ai/user/nexaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexaiguy](https://clawhub.ai/user/nexaiguy)
 
-## Use Case: <br>
-External users and small-business operators use this skill to manage prospects, sales pipeline stages, activity history, follow-up reminders, and CRM exports through an agent-operated local CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prospect, contact, notes, interaction history, and deal data are stored locally and may include sensitive business information. <br>
-Mitigation: Install only when local storage under ~/.nex-crm is acceptable, restrict filesystem access to that directory, and back it up according to the user's data policy. <br>
-Risk: CSV or JSON exports can expose customer and deal data if placed in shared or synced folders. <br>
-Mitigation: Treat exports as sensitive files and confirm the destination and intent before generating or sharing them. <br>
-Risk: Ambiguous agent requests could create, update, or export CRM records unexpectedly. <br>
-Mitigation: Ask the user to confirm before write, stage-change, reminder, or export operations when the request is unclear. <br>
+## Use Case:
 
+Freelancers, one-person agencies, and small businesses use this skill through an agent to add and update prospects, log sales activities, monitor follow-ups, and export CRM data from a local SQLite database.
 
-## Reference(s): <br>
-- [Nex CRM README](README.md) <br>
-- [Nex AI homepage](https://nex-ai.be) <br>
-- [ClawHub skill page](https://clawhub.ai/nexaiguy/nex-crm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, CSV, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text summaries, optional JSON command output, CSV or JSON exports, and shell commands for local CRM operations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands operate on local SQLite data under ~/.nex-crm and may create export files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: CRM records and exports may contain contact details, notes, messages, reminders, deal values, and other sensitive business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep ~/.nex-crm private, treat backups and CSV/JSON exports as sensitive records, and review exported files before sharing them.
+
+Risk: The setup script creates local files under ~/.nex-crm and ~/.local/bin and upgrades pip from the configured package index.
+
+Mitigation: Review setup.sh before installation and run it only in a user-controlled environment with a trusted package index.
+
+Risk: Natural-language parsing can place CRM details into the wrong field or activity type.
+
+Mitigation: Review parsed prospect and activity records after creation, and use structured command flags for important updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nexaiguy/skills/nex-crm)
+- [Nex AI homepage](https://nex-ai.be)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, files]
+
+**Output Format:** [Plain text CLI output, JSON responses for selected commands, and CSV or JSON export files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local CRM data and exports are written under ~/.nex-crm; command output includes a Nex CRM footer for agents to omit in user-facing summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

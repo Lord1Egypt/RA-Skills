@@ -1,40 +1,54 @@
-## Description: <br>
-Provides database performance optimization guidance for SQL query tuning, index strategy, execution-plan analysis, ORM tuning, connection pools, locks, and monitoring across PostgreSQL, MySQL, and SQLite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Database Optimization helps agents analyze database performance issues, optimize SQL, design indexes, inspect query plans, tune ORM usage, and adjust connection pools for PostgreSQL, MySQL, and SQLite.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Developers and engineers use this Chinese-language skill to diagnose slow queries, design indexes, interpret query plans, tune ORM access patterns, adjust connection pools, and investigate locking or monitoring issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested SQL or database setting changes may affect availability, performance, or data integrity if applied directly. <br>
-Mitigation: Review each recommendation against the actual schema, test in a controlled environment, keep backups, and require approval before running changes such as CREATE INDEX, SET GLOBAL, or CREATE EXTENSION. <br>
-Risk: Optimization advice can be misleading without current measurements from the target database. <br>
-Mitigation: Collect baselines, query plans, and monitoring data before changing indexes, SQL, ORM loading behavior, or connection-pool settings. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose slow queries, improve index strategy, review query plans, tune ORM behavior, adjust connection pools, investigate locks, and monitor PostgreSQL, MySQL, and SQLite database performance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/database-optimization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with SQL and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated SQL, schema changes, or database settings may be unsuitable for a production workload.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review execution plans, test changes in staging, back up important data, and obtain DBA approval before applying production schema changes or global database settings.
+
+Risk: Performance recommendations may be misleading without workload measurements.
+
+Mitigation: Establish baseline metrics, apply changes incrementally, and verify performance after each change.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/paudyyin/skills/database-optimization)
+- [Skill Source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SQL, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory database tuning recommendations; review and test before applying.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

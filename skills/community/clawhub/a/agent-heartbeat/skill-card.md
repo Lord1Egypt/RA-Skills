@@ -1,39 +1,52 @@
-## Description: <br>
-Agent Heartbeat helps configure periodic OpenClaw agent heartbeat tasks for status checks, task review, updates, and lightweight scheduled maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent 心跳配置技能 — 配置 OpenClaw Agent 的定期心跳机制，保持在线状态，自动检查任务和更新。适用于需要长期运行的 Agent 任务。
 
-## Publisher: <br>
-[nyxun123](https://clawhub.ai/user/nyxun123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nyxun123](https://clawhub.ai/user/nyxun123)
 
-## Use Case: <br>
-Developers and agent operators use this skill to define HEARTBEAT.md schedules for OpenClaw agents that need recurring task checks, online status updates, message checks, cleanup, backup, or remote sync guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recurring heartbeat tasks can repeat cleanup, backup, or sync actions outside the intended scope. <br>
-Mitigation: Approve exact directories and remote destinations, avoid destructive cleanup by default, and keep heartbeat tasks lightweight and idempotent. <br>
-Risk: Scheduled tasks can continue running after they are no longer appropriate. <br>
-Mitigation: Add logging for heartbeat activity and maintain a simple way to pause or disable the schedule. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nyxun123/agent-heartbeat) <br>
+## Use Case:
 
+Developers and operators use this skill to configure recurring OpenClaw Agent heartbeat tasks for status checks, scheduled maintenance, backups, synchronization, and notifications.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with configuration examples, shell command snippets, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no code runs on install.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recurring heartbeat tasks may perform backups, remote synchronization, or notifications outside the user's intended scope.
+
+Mitigation: Before using examples, define allowed files, remote systems, recipients, and execution frequency.
+
+Risk: Heartbeat tasks can become disruptive if they are long-running, non-idempotent, or fail without visibility.
+
+Mitigation: Keep heartbeat tasks lightweight and idempotent, isolate failures from normal agent operation, and log heartbeat execution for debugging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nyxun123/skills/agent-heartbeat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline markdown, bash, and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-Manages storage, naming, classification, and verification for user-provided files and agent-generated outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart File Manager helps agents organize user-provided and generated files into standardized workspace folders with naming, classification, move, initialization, verification, and cleanup scripts.
 
-## Publisher: <br>
-[buptlihang](https://clawhub.ai/user/buptlihang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[buptlihang](https://clawhub.ai/user/buptlihang)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to keep user input files and generated outputs organized under predictable workspace folders by file type. It provides shell-script workflows for initializing folders, copying files into classified locations, checking structure, and cleaning a known nested-output issue.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can broadly reorganize workspace files and remove nested output directories without enough validation, confirmation, or recovery safeguards.
+
+Mitigation: Use it only in a controlled workspace and add explicit confirmation, safe filename validation, no-clobber behavior, checked moves, and non-recursive cleanup before using it on important or shared files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to organize user input files and generated outputs into predictable workspace folders, apply naming conventions, and run validation or cleanup scripts before handing files back to users. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The repair flow can delete /workspace/my_outputs/output after attempting to move nested output files, which may remove valuable generated outputs if the move did not preserve them as expected. <br>
-Mitigation: Review and back up /workspace/my_outputs/output before running fix-nested.sh, and use the skill only when explicit file organization is intended. <br>
-Risk: move.sh copies arbitrary local paths into managed workspace folders without stronger path validation. <br>
-Mitigation: Avoid passing sensitive or unintended local paths to move.sh until safer validation is added. <br>
+**Output Format:** [Markdown guidance with inline bash commands and shell script outputs]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Smart File Manager on ClawHub](https://clawhub.ai/buptlihang/smart-file-manager) <br>
+**Other Properties Related to Output:** [Uses a fixed /workspace directory layout for user_input_files and my_outputs.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides workspace file organization conventions and scripts for initialization, movement, verification, and nested-output cleanup.] <br>
+1.2.0 (source: server release metadata and SKILL.md metadata)
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and skill metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

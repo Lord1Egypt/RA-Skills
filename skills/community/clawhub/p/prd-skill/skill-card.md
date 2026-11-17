@@ -1,39 +1,53 @@
-## Description: <br>
-Generate structured Product Requirements Documents (PRD) from natural language user requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structured Product Requirements Documents (PRD) from natural language user requirements.
 
-## Publisher: <br>
-[tc1993](https://clawhub.ai/user/tc1993) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tc1993](https://clawhub.ai/user/tc1993)
 
-## Use Case: <br>
-Product managers, developers, and agent users use this skill to turn app ideas or feature requests into a structured PRD covering product overview, functional requirements, user flows, technical specifications, and non-functional requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move from PRD generation into downstream development or QA activity without an explicit approval checkpoint. <br>
-Mitigation: Require the agent to return the PRD for review and ask for explicit approval before saving files, sending session messages, or invoking dev-skill or qa-skill. <br>
+## Use Case:
 
+Product managers, founders, and developers use this skill to turn natural-language app or feature ideas into structured PRDs covering functional requirements, user flows, technical specifications, and implementation details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tc1993/prd-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/tc1993) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown PRD with structured section headers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save a timestamped PRD file and hand the PRD to downstream development and QA skills when allowed by the agent workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can save PRDs and start downstream development workflow steps without an explicit confirmation gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user confirmation before writing PRDs to disk or sending generated requirements to other skills or sessions.
+
+Risk: Generated PRDs may contain incorrect assumptions or sensitive business details from the user's requirements.
+
+Mitigation: Review generated PRDs before downstream implementation and avoid forwarding sensitive content unless the user has approved it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tc1993/skills/prd-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown PRD with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prioritized requirements, user flows, technical specifications, assumptions, and downstream workflow guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

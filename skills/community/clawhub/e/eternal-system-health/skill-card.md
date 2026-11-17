@@ -1,42 +1,57 @@
-## Description: <br>
-System health monitoring and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+System health monitoring and reports.
 
-## Publisher: <br>
-[eternal0404](https://clawhub.ai/user/eternal0404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eternal0404](https://clawhub.ai/user/eternal0404)
 
-## Use Case: <br>
-Developers and operators use this skill to run local CPU, memory, disk, process, and network health checks and generate system health reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The diagnostic script reads local system state, including host, disk, network, and process details. <br>
-Mitigation: Run it only on systems where that local diagnostic information is appropriate to inspect. <br>
-Risk: Saved reports may contain host and process details that should not be exposed in shared, synced, or world-readable locations. <br>
-Mitigation: Choose a private output path and review the report before sharing it. <br>
-Risk: The network check performs a DNS lookup to google.com. <br>
-Mitigation: Use the skill only when that external DNS lookup is acceptable for the environment. <br>
+## Use Case:
 
+Developers and operators use this skill to check local CPU, memory, disk, process, and network health and generate system-health reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eternal0404/eternal-system-health) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and terminal report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local report file when the user provides an output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated reports can expose host details, IP addresses, mount information, and process command snippets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit report sharing and storage, and redact sensitive host or process details before external use.
+
+Risk: Network health checks perform an external DNS lookup to google.com.
+
+Mitigation: Run network checks only where that lookup is acceptable, or use category-specific checks that do not require network probing.
+
+Risk: Running with elevated privileges can reveal more local system and process information than necessary.
+
+Mitigation: Run with least privilege unless elevated access is specifically required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eternal0404/skills/eternal-system-health)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with bash command examples and plain-text system health reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include host details, IP addresses, mount information, and process command snippets; optional output writes reports to a file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

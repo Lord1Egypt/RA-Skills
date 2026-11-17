@@ -1,41 +1,62 @@
-## Description: <br>
-Create and manage automation workflows for repetitive tasks such as scheduled data syncs, chained API calls, triggered actions, if-this-then-that automation, and multi-step business workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage automation workflows for repetitive tasks. Use when user needs to schedule periodic data sync, chain API calls, set up triggered actions, build if-this-then-that style automation, or create multi-step business workflows.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and operators use this skill to define YAML-based workflows that run scheduled or triggered actions such as HTTP requests, Telegram notifications, transformations, and data sync jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Daemon scheduling is unsafe for production automation. <br>
-Mitigation: Avoid daemon mode until scheduling is fixed; test workflows with one-time runs before deployment. <br>
-Risk: Network and secret-handling behavior is under-scoped for real workflows. <br>
-Mitigation: Use only trusted workflow YAML, provide a minimal environment file with only required secrets, restore normal HTTPS verification, and add destination allowlists, rate limits, and approval checks before connecting to messaging, webhooks, or business APIs. <br>
+## Use Case:
 
+Developers and operations teams use this skill to define YAML workflows for scheduled jobs, API call chains, webhook-style actions, notifications, transformations, and data sync tasks.
 
-## Reference(s): <br>
-- [Automation Workflow Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/flow-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with YAML and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include workflow YAML, command invocations, and operational setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Unattended workflow execution can send requests or messages to destinations defined by workflow files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review workflow files before execution and use explicit allowlists for network destinations.
+
+Risk: Workflow actions may expose environment secrets when broad environment variables are available.
+
+Mitigation: Run with the minimum required environment and avoid exposing secrets unless the workflow and destination are trusted.
+
+Risk: Weakened HTTPS verification can reduce protection for network requests.
+
+Mitigation: Require HTTPS verification before using the skill with secrets or business data.
+
+Risk: Daemon mode can run workflows repeatedly without close supervision.
+
+Mitigation: Avoid daemon mode until scheduling behavior is reviewed and constrained.
+
+## Reference(s):
+
+- [Automation Workflow Examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/flow-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML examples, Python commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to create workflow files and run the bundled workflow script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,685 @@
+{
+  "type": "token-lab-template",
+  "version": 1,
+  "name": "tool-search",
+  "description": "Full Schema (Baseline) vs Regex Search (Top 5) vs BM25 Search (Top 5) vs Semantic Search (Top 5)",
+  "config": {
+    "unit": "K",
+    "baselineId": "plan-1",
+    "plans": [
+      {
+        "id": "plan-1",
+        "name": "Full Schema (Baseline)",
+        "description": "Full schema loading: preload {{toolsTotalCount}} schemas; {{turnTotalCount}} turns; compact at {{compressionThresholdToken}}K tokens.",
+        "color": "#5869d9",
+        "estimateDuration": true,
+        "simulation": {
+          "flow": {
+            "initial": [
+              {
+                "type": "action",
+                "text": "agent prompt",
+                "token": "initialContext.agentPromptToken",
+                "durationSeconds": 0
+              },
+              {
+                "type": "action",
+                "text": "skills discover list",
+                "token": "skillsTotalCount * skillIndexToken",
+                "durationSeconds": 0
+              },
+              {
+                "type": "action",
+                "text": "tools discover list",
+                "token": "toolsTotalCount * toolsIndexToken",
+                "durationSeconds": 0
+              },
+              {
+                "type": "action",
+                "text": "tools schema list",
+                "token": "toolsTotalCount * toolSchemaToken",
+                "durationSeconds": 0
+              }
+            ],
+            "turn": [
+              {
+                "type": "action",
+                "text": "user_message",
+                "token": "userMessageToken",
+                "durationSeconds": 0
+              },
+              {
+                "type": "llm",
+                "text": "read_skills_plan",
+                "token": "readSkillPlanToken",
+                "durationSeconds": 1.8
+              },
+              {
+                "type": "action",
+                "text": "read_skills",
+                "token": "skillDetailToken * turnAvgSkillsCount",
+                "durationSeconds": 0.3
+              },
+              {
+                "type": "llm",
+                "text": "call_tools_plan",
+                "token": "callToolsPlanToken",
+                "durationSeconds": 1.8
+              },
+              {
+                "type": "action",
+                "text": "call_tools",
+                "token": "toolResultToken * turnAvgToolsCount",
+                "durationSeconds": 1
+              },
+              {
+                "type": "llm",
+                "text": "agent_result",
+                "token": "agentResult",
+                "durationSeconds": 1.8
+              }
+            ]
+          },
+          "variables": {
+            "searchTopK": {
+              "label": "Schemas returned per search",
+              "value": 5
+            },
+            "searchPlanOutput": {
+              "label": "Search planning output (K)",
+              "value": 0.1
+            }
+          },
+          "initialContext": {
+            "agentPromptToken": 4
+          },
+          "turnTotalCount": 100,
+          "expectedPrefixCacheHitRate": 0.9,
+          "skillsTotalCount": 30,
+          "toolsTotalCount": 120,
+          "turnAvgSkillsCount": 0.33,
+          "turnAvgToolsCount": 1.5,
+          "skillIndexToken": 0.1,
+          "toolsIndexToken": 0.013,
+          "toolSchemaToken": 0.51,
+          "userMessageToken": 0.1,
+          "skillDetailToken": 3,
+          "toolResultToken": 3,
+          "readSkillPlanToken": 0.1,
+          "schemaPlanToken": 0.1,
+          "callToolsPlanToken": 0.3,
+          "agentResult": 1,
+          "compressionThresholdType": "TOKEN",
+          "compressionThresholdToken": 100,
+          "compressionThresholdTurnCount": 10,
+          "compressionTargetToken": 2,
+          "compressionKeepTurns": 1
+        },
+        "model": {
+          "name": "Demo Model (Illustrative Rates)",
+          "currency": "$",
+          "inputCachedPrice": 0.2,
+          "inputNotCachedPrice": 2,
+          "outputPrice": 8
+        },
+        "pricing": {
+          "id": "custom",
+          "label": "Illustrative Pricing (Not a Live Quote)",
+          "source": "",
+          "date": "",
+          "note": "Illustrative rates only. Replace with the target model's USD prices per million tokens."
+        },
+        "useGlobal": {
+          "turnTotalCount": true,
+          "skillsTotalCount": true,
+          "toolsTotalCount": true,
+          "turnAvgSkillsCount": true,
+          "turnAvgToolsCount": true,
+          "expectedPrefixCacheHitRate": true,
+          "skillIndexToken": true,
+          "toolsIndexToken": true,
+          "toolSchemaToken": true,
+          "userMessageToken": true,
+          "skillDetailToken": true,
+          "toolResultToken": true,
+          "readSkillPlanToken": true,
+          "schemaPlanToken": true,
+          "callToolsPlanToken": true,
+          "agentResult": true,
+          "compressionThresholdTurnCount": true,
+          "compressionThresholdToken": true,
+          "compressionKeepTurns": true,
+          "compressionTargetToken": true,
+          "compressionThresholdType": true,
+          "initialContext.agentPromptToken": true,
+          "model": true,
+          "variables.searchTopK": true,
+          "variables.searchPlanOutput": true
+        }
+      },
+      {
+        "id": "plan-2",
+        "name": "Regex Search (Top 5)",
+        "description": "Regex: retrieve Top {{searchTopK}} from {{toolsTotalCount}} tools; {{turnTotalCount}} turns; compact at {{compressionThresholdToken}}K tokens.",
+        "color": "#d99b61",
+        "estimateDuration": true,
+        "simulation": {
+          "flow": {
+            "initial": [
+              {
+                "type": "action",
+                "text": "agent prompt",
+                "token": "initialContext.agentPromptToken",
+                "durationSeconds": 0
+              },
+              {
+                "type": "action",
+                "text": "skills discover list",
+                "token": "skillsTotalCount * skillIndexToken",
+                "durationSeconds": 0
+              },
+              {
+                "type": "action",
+                "text": "tools discover list",
+                "token": "toolsTotalCount * toolsIndexToken",
+                "durationSeconds": 0
+              }
+            ],
+            "turn": [
+              {
+                "type": "action",
+                "text": "user_message",
+                "token": "userMessageToken",
+                "durationSeconds": 0
+              },
+              {
+                "type": "llm",
+                "text": "read_skills_plan",
+                "token": "readSkillPlanToken",
+                "durationSeconds": 1.8
+              },
+              {
+                "type": "action",
+                "text": "read_skills",
+                "token": "skillDetailToken * turnAvgSkillsCount",
+                "durationSeconds": 0.3
+              },
+              {
+                "type": "llm",
+                "text": "Generate Regex search query",
+                "token": "searchPlanOutput",
+                "durationSeconds": 1.8
+              },
+              {
+                "type": "action",
+                "text": "Regex search results (schemas)",
+                "token": "toolSchemaToken * searchTopK",
+                "durationSeconds": 0.15
+              },
+              {
+                "type": "llm",
+                "text": "call_tools_plan",
+                "token": "callToolsPlanToken",
+                "durationSeconds": 1.8
+              },
+              {
+                "type": "action",
+                "text": "call_tools",
+                "token": "toolResultToken * turnAvgToolsCount",
+                "durationSeconds": 1
+              },
+              {
+                "type": "llm",
+                "text": "agent_result",
+                "token": "agentResult",
+                "durationSeconds": 1.8
+              }
+            ]
+          },
+          "variables": {
+            "searchTopK": {
+              "label": "Schemas returned per search",
+              "value": 5
+            },
+            "searchPlanOutput": {
+              "label": "Search planning output (K)",
+              "value": 0.1
+            }
+          },
+          "initialContext": {
+            "agentPromptToken": 4
+          },
+          "turnTotalCount": 100,
+          "expectedPrefixCacheHitRate": 0.9,
+          "skillsTotalCount": 30,
+          "toolsTotalCount": 120,
+          "turnAvgSkillsCount": 0.33,
+          "turnAvgToolsCount": 1.5,
+          "skillIndexToken": 0.1,
+          "toolsIndexToken": 0.013,
+          "toolSchemaToken": 0.51,
+          "userMessageToken": 0.1,
+          "skillDetailToken": 3,
+          "toolResultToken": 3,
+          "readSkillPlanToken": 0.1,
+          "schemaPlanToken": 0.1,
+          "callToolsPlanToken": 0.3,
+          "agentResult": 1,
+          "compressionThresholdType": "TOKEN",
+          "compressionThresholdToken": 100,
+          "compressionThresholdTurnCount": 10,
+          "compressionTargetToken": 2,
+          "compressionKeepTurns": 1
+        },
+        "model": {
+          "name": "Demo Model (Illustrative Rates)",
+          "currency": "$",
+          "inputCachedPrice": 0.2,
+          "inputNotCachedPrice": 2,
+          "outputPrice": 8
+        },
+        "pricing": {
+          "id": "custom",
+          "label": "Illustrative Pricing (Not a Live Quote)",
+          "source": "",
+          "date": "",
+          "note": "Illustrative rates only. Replace with the target model's USD prices per million tokens."
+        },
+        "useGlobal": {
+          "turnTotalCount": true,
+          "skillsTotalCount": true,
+          "toolsTotalCount": true,
+          "turnAvgSkillsCount": true,
+          "turnAvgToolsCount": true,
+          "expectedPrefixCacheHitRate": true,
+          "skillIndexToken": true,
+          "toolsIndexToken": true,
+          "toolSchemaToken": true,
+          "userMessageToken": true,
+          "skillDetailToken": true,
+          "toolResultToken": true,
+          "readSkillPlanToken": true,
+          "schemaPlanToken": true,
+          "callToolsPlanToken": true,
+          "agentResult": true,
+          "compressionThresholdTurnCount": true,
+          "compressionThresholdToken": true,
+          "compressionKeepTurns": true,
+          "compressionTargetToken": true,
+          "compressionThresholdType": true,
+          "initialContext.agentPromptToken": true,
+          "model": true,
+          "variables.searchTopK": true,
+          "variables.searchPlanOutput": true
+        }
+      },
+      {
+        "id": "plan-3",
+        "name": "BM25 Search (Top 5)",
+        "description": "BM25: retrieve Top {{searchTopK}} from {{toolsTotalCount}} tools; {{turnTotalCount}} turns; compact at {{compressionThresholdToken}}K tokens.",
+        "color": "#449b87",
+        "estimateDuration": true,
+        "simulation": {
+          "flow": {
+            "initial": [
+              {
+                "type": "action",
+                "text": "agent prompt",
+                "token": "initialContext.agentPromptToken",
+                "durationSeconds": 0
+              },
+              {
+                "type": "action",
+                "text": "skills discover list",
+                "token": "skillsTotalCount * skillIndexToken",
+                "durationSeconds": 0
+              },
+              {
+                "type": "action",
+                "text": "tools discover list",
+                "token": "toolsTotalCount * toolsIndexToken",
+                "durationSeconds": 0
+              }
+            ],
+            "turn": [
+              {
+                "type": "action",
+                "text": "user_message",
+                "token": "userMessageToken",
+                "durationSeconds": 0
+              },
+              {
+                "type": "llm",
+                "text": "read_skills_plan",
+                "token": "readSkillPlanToken",
+                "durationSeconds": 1.8
+              },
+              {
+                "type": "action",
+                "text": "read_skills",
+                "token": "skillDetailToken * turnAvgSkillsCount",
+                "durationSeconds": 0.3
+              },
+              {
+                "type": "llm",
+                "text": "Generate BM25 search query",
+                "token": "searchPlanOutput",
+                "durationSeconds": 1.8
+              },
+              {
+                "type": "action",
+                "text": "BM25 search results (schemas)",
+                "token": "toolSchemaToken * searchTopK",
+                "durationSeconds": 0.2
+              },
+              {
+                "type": "llm",
+                "text": "call_tools_plan",
+                "token": "callToolsPlanToken",
+                "durationSeconds": 1.8
+              },
+              {
+                "type": "action",
+                "text": "call_tools",
+                "token": "toolResultToken * turnAvgToolsCount",
+                "durationSeconds": 1
+              },
+              {
+                "type": "llm",
+                "text": "agent_result",
+                "token": "agentResult",
+                "durationSeconds": 1.8
+              }
+            ]
+          },
+          "variables": {
+            "searchTopK": {
+              "label": "Schemas returned per search",
+              "value": 5
+            },
+            "searchPlanOutput": {
+              "label": "Search planning output (K)",
+              "value": 0.1
+            }
+          },
+          "initialContext": {
+            "agentPromptToken": 4
+          },
+          "turnTotalCount": 100,
+          "expectedPrefixCacheHitRate": 0.9,
+          "skillsTotalCount": 30,
+          "toolsTotalCount": 120,
+          "turnAvgSkillsCount": 0.33,
+          "turnAvgToolsCount": 1.5,
+          "skillIndexToken": 0.1,
+          "toolsIndexToken": 0.013,
+          "toolSchemaToken": 0.51,
+          "userMessageToken": 0.1,
+          "skillDetailToken": 3,
+          "toolResultToken": 3,
+          "readSkillPlanToken": 0.1,
+          "schemaPlanToken": 0.1,
+          "callToolsPlanToken": 0.3,
+          "agentResult": 1,
+          "compressionThresholdType": "TOKEN",
+          "compressionThresholdToken": 100,
+          "compressionThresholdTurnCount": 10,
+          "compressionTargetToken": 2,
+          "compressionKeepTurns": 1
+        },
+        "model": {
+          "name": "Demo Model (Illustrative Rates)",
+          "currency": "$",
+          "inputCachedPrice": 0.2,
+          "inputNotCachedPrice": 2,
+          "outputPrice": 8
+        },
+        "pricing": {
+          "id": "custom",
+          "label": "Illustrative Pricing (Not a Live Quote)",
+          "source": "",
+          "date": "",
+          "note": "Illustrative rates only. Replace with the target model's USD prices per million tokens."
+        },
+        "useGlobal": {
+          "turnTotalCount": true,
+          "skillsTotalCount": true,
+          "toolsTotalCount": true,
+          "turnAvgSkillsCount": true,
+          "turnAvgToolsCount": true,
+          "expectedPrefixCacheHitRate": true,
+          "skillIndexToken": true,
+          "toolsIndexToken": true,
+          "toolSchemaToken": true,
+          "userMessageToken": true,
+          "skillDetailToken": true,
+          "toolResultToken": true,
+          "readSkillPlanToken": true,
+          "schemaPlanToken": true,
+          "callToolsPlanToken": true,
+          "agentResult": true,
+          "compressionThresholdTurnCount": true,
+          "compressionThresholdToken": true,
+          "compressionKeepTurns": true,
+          "compressionTargetToken": true,
+          "compressionThresholdType": true,
+          "initialContext.agentPromptToken": true,
+          "model": true,
+          "variables.searchTopK": true,
+          "variables.searchPlanOutput": true
+        }
+      },
+      {
+        "id": "plan-4",
+        "name": "Semantic Search (Top 5)",
+        "description": "Semantic: retrieve Top {{searchTopK}} from {{toolsTotalCount}} tools; {{turnTotalCount}} turns; compact at {{compressionThresholdToken}}K tokens.",
+        "color": "#9a76c3",
+        "estimateDuration": true,
+        "simulation": {
+          "flow": {
+            "initial": [
+              {
+                "type": "action",
+                "text": "agent prompt",
+                "token": "initialContext.agentPromptToken",
+                "durationSeconds": 0
+              },
+              {
+                "type": "action",
+                "text": "skills discover list",
+                "token": "skillsTotalCount * skillIndexToken",
+                "durationSeconds": 0
+              },
+              {
+                "type": "action",
+                "text": "tools discover list",
+                "token": "toolsTotalCount * toolsIndexToken",
+                "durationSeconds": 0
+              }
+            ],
+            "turn": [
+              {
+                "type": "action",
+                "text": "user_message",
+                "token": "userMessageToken",
+                "durationSeconds": 0
+              },
+              {
+                "type": "llm",
+                "text": "read_skills_plan",
+                "token": "readSkillPlanToken",
+                "durationSeconds": 1.8
+              },
+              {
+                "type": "action",
+                "text": "read_skills",
+                "token": "skillDetailToken * turnAvgSkillsCount",
+                "durationSeconds": 0.3
+              },
+              {
+                "type": "llm",
+                "text": "Generate semantic search query",
+                "token": "searchPlanOutput",
+                "durationSeconds": 1.8
+              },
+              {
+                "type": "action",
+                "text": "Semantic search results (schemas)",
+                "token": "toolSchemaToken * searchTopK",
+                "durationSeconds": 0.4
+              },
+              {
+                "type": "llm",
+                "text": "call_tools_plan",
+                "token": "callToolsPlanToken",
+                "durationSeconds": 1.8
+              },
+              {
+                "type": "action",
+                "text": "call_tools",
+                "token": "toolResultToken * turnAvgToolsCount",
+                "durationSeconds": 1
+              },
+              {
+                "type": "llm",
+                "text": "agent_result",
+                "token": "agentResult",
+                "durationSeconds": 1.8
+              }
+            ]
+          },
+          "variables": {
+            "searchTopK": {
+              "label": "Schemas returned per search",
+              "value": 5
+            },
+            "searchPlanOutput": {
+              "label": "Search planning output (K)",
+              "value": 0.1
+            }
+          },
+          "initialContext": {
+            "agentPromptToken": 4
+          },
+          "turnTotalCount": 100,
+          "expectedPrefixCacheHitRate": 0.9,
+          "skillsTotalCount": 30,
+          "toolsTotalCount": 120,
+          "turnAvgSkillsCount": 0.33,
+          "turnAvgToolsCount": 1.5,
+          "skillIndexToken": 0.1,
+          "toolsIndexToken": 0.013,
+          "toolSchemaToken": 0.51,
+          "userMessageToken": 0.1,
+          "skillDetailToken": 3,
+          "toolResultToken": 3,
+          "readSkillPlanToken": 0.1,
+          "schemaPlanToken": 0.1,
+          "callToolsPlanToken": 0.3,
+          "agentResult": 1,
+          "compressionThresholdType": "TOKEN",
+          "compressionThresholdToken": 100,
+          "compressionThresholdTurnCount": 10,
+          "compressionTargetToken": 2,
+          "compressionKeepTurns": 1
+        },
+        "model": {
+          "name": "Demo Model (Illustrative Rates)",
+          "currency": "$",
+          "inputCachedPrice": 0.2,
+          "inputNotCachedPrice": 2,
+          "outputPrice": 8
+        },
+        "pricing": {
+          "id": "custom",
+          "label": "Illustrative Pricing (Not a Live Quote)",
+          "source": "",
+          "date": "",
+          "note": "Illustrative rates only. Replace with the target model's USD prices per million tokens."
+        },
+        "useGlobal": {
+          "turnTotalCount": true,
+          "skillsTotalCount": true,
+          "toolsTotalCount": true,
+          "turnAvgSkillsCount": true,
+          "turnAvgToolsCount": true,
+          "expectedPrefixCacheHitRate": true,
+          "skillIndexToken": true,
+          "toolsIndexToken": true,
+          "toolSchemaToken": true,
+          "userMessageToken": true,
+          "skillDetailToken": true,
+          "toolResultToken": true,
+          "readSkillPlanToken": true,
+          "schemaPlanToken": true,
+          "callToolsPlanToken": true,
+          "agentResult": true,
+          "compressionThresholdTurnCount": true,
+          "compressionThresholdToken": true,
+          "compressionKeepTurns": true,
+          "compressionTargetToken": true,
+          "compressionThresholdType": true,
+          "initialContext.agentPromptToken": true,
+          "model": true,
+          "variables.searchTopK": true,
+          "variables.searchPlanOutput": true
+        }
+      }
+    ],
+    "globalSimulation": {
+      "initialContext": {
+        "agentPromptToken": 4
+      },
+      "variables": {
+        "searchTopK": {
+          "label": "Schemas returned per search",
+          "value": 5
+        },
+        "searchPlanOutput": {
+          "label": "Search planning output (K)",
+          "value": 0.1
+        }
+      },
+      "turnTotalCount": 100,
+      "skillsTotalCount": 30,
+      "toolsTotalCount": 120,
+      "turnAvgSkillsCount": 0.33,
+      "turnAvgToolsCount": 1.5,
+      "expectedPrefixCacheHitRate": 0.9,
+      "skillIndexToken": 0.1,
+      "toolsIndexToken": 0.013,
+      "toolSchemaToken": 0.51,
+      "userMessageToken": 0.1,
+      "skillDetailToken": 3,
+      "toolResultToken": 3,
+      "readSkillPlanToken": 0.1,
+      "schemaPlanToken": 0.1,
+      "callToolsPlanToken": 0.3,
+      "agentResult": 1,
+      "compressionThresholdTurnCount": 10,
+      "compressionThresholdToken": 100,
+      "compressionKeepTurns": 1,
+      "compressionTargetToken": 2,
+      "compressionThresholdType": "TOKEN",
+      "estimateDuration": true
+    },
+    "globalModelId": "custom",
+    "globalModel": {
+      "model": {
+        "name": "Demo Model (Illustrative Rates)",
+        "currency": "$",
+        "inputCachedPrice": 0.2,
+        "inputNotCachedPrice": 2,
+        "outputPrice": 8
+      },
+      "pricing": {
+        "id": "custom",
+        "label": "Illustrative Pricing (Not a Live Quote)",
+        "source": "",
+        "date": "",
+        "note": "Illustrative rates only. Replace with the target model's USD prices per million tokens."
+      }
+    },
+    "baselineMode": "manual"
+  }
+}

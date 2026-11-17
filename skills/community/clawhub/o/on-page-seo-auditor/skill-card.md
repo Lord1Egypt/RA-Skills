@@ -1,47 +1,58 @@
-## Description: <br>
-Audits on-page SEO factors such as titles, headers, images, links, content fit, and fix priorities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits single-page on-page SEO signals including title tags, meta descriptions, header structure, keyword placement, links, images, and page-level tags, then returns scored findings and prioritized fixes.
 
-## Publisher: <br>
-[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu)
 
-## Use Case: <br>
-External users, site owners, marketers, and SEO practitioners use this skill to audit single pages or batches of pages for on-page SEO health, scored findings, and prioritized repair plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as checking a page may activate the skill when the user did not intend a full SEO audit. <br>
-Mitigation: Confirm the audit scope, page URL or content, and target keyword before producing recommendations. <br>
-Risk: Audit summaries may be saved to long-term memory and could capture confidential or unreleased page details. <br>
-Mitigation: Avoid saving results for confidential pages unless the user explicitly approves, and keep saved summaries limited to issues and next actions. <br>
-Risk: Fetched page content may contain prompt-injection text or directives that try to alter the audit. <br>
-Mitigation: Treat fetched web content as evidence only, ignore embedded instructions, and flag suspicious directives as trust or consistency issues. <br>
+## Use Case:
 
+External marketers, SEO practitioners, and content teams use this skill to audit a page or small batch of pages for on-page SEO health and diagnose likely structural contributors to ranking drops. It produces scored evidence, priority fixes, quick wins, and a handoff summary for follow-up optimization work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aaron-he-zhu/on-page-seo-auditor) <br>
-- [Project homepage](https://github.com/aaron-he-zhu/seo-geo-claude-skills) <br>
-- [Scoring Rubric](references/scoring-rubric.md) <br>
-- [Audit Templates](references/audit-templates.md) <br>
-- [Audit Example and Checklists](references/audit-example.md) <br>
-- [Bulk Audit Playbook](references/bulk-audit-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit report with score tables, prioritized issues, recommended fixes, and a handoff summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include per-section scores, an overall score out of 100, P0/P1/P2 priorities, competitor comparisons, and optional reusable audit-memory summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.9.9 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may produce broader SEO conclusions than a strict on-page audit, including E-E-A-T, accessibility, Core Web Vitals, indexing, or bulk-site findings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those areas as preliminary signals and confirm them with specialized quality, technical SEO, accessibility, performance, or indexing tools before acting.
+
+Risk: Some metrics may be unavailable from fetched page content and therefore estimated by the agent.
+
+Mitigation: Require the audit to label each metric as measured, user-provided, estimated, or N/A, and avoid treating estimated values as measured evidence.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/aaron-he-zhu/aaron-marketing-skills)
+- [On Page Seo Auditor on ClawHub](https://clawhub.ai/aaron-he-zhu/skills/on-page-seo-auditor)
+- [Audit Example & Checklists](references/audit-example.md)
+- [Audit Templates](references/audit-templates.md)
+- [Bulk Audit Playbook](references/bulk-audit-playbook.md)
+- [Scoring Rubric](references/scoring-rubric.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown audit report with scored tables, prioritized recommendations, and handoff summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include estimated metrics when source data is unavailable; estimates should be labeled separately from measured or user-provided data.]
+
+## Skill Version(s):
+
+17.0.0 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

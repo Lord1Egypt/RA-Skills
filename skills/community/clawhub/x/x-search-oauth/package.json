@@ -1,0 +1,32 @@
+{
+  "name": "x-search-oauth",
+  "version": "0.2.5",
+  "description": "CLI for OAuth-backed X/Twitter search through xAI x_search.",
+  "type": "module",
+  "bin": {
+    "x-search-oauth": "./bin/x-search-oauth.js",
+    "xso": "./bin/x-search-oauth.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "x-search",
+    "twitter",
+    "xai",
+    "oauth",
+    "cli",
+    "openclaw"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  }
+}

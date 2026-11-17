@@ -1,42 +1,54 @@
-## Description: <br>
-Use this orchestration skill to choose the right AFOL provider skill for catalog lookup, marketplace pricing, collection management, valuation, and cross-provider workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this orchestration skill to choose the right AFOL provider skill for catalog lookup, marketplace pricing, collection management, valuation, and cross-provider workflows.
 
-## Publisher: <br>
-[musketyr](https://clawhub.ai/user/musketyr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[musketyr](https://clawhub.ai/user/musketyr)
 
-## Use Case: <br>
-AFOL collectors and agents use this skill to route broad LEGO catalog, marketplace, collection, valuation, and cross-provider questions to the appropriate provider skill. It helps choose read-only lookup, valuation, marketplace comparison, or guarded collection workflows without calling provider APIs directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security summary reports broader authority than typical routing tasks need. <br>
-Mitigation: Review the bundle before installation and avoid unrestricted nested agent execution unless that authority is acceptable. <br>
-Risk: The skill relies on provider credentials for some workflows, and credentials can expose private collection, account, store, order, or sales-ledger data. <br>
-Mitigation: Use credential-readiness checks without printing secret values, summarize private data, and require explicit user approval plus provider dry-run/yes guards before any write. <br>
+## Use Case:
 
+Developers and AFOL collection agents use this skill to route broad LEGO collector requests to the right provider skill for catalog lookup, marketplace pricing, collection management, valuation, and cross-provider ID workflows.
 
-## Reference(s): <br>
-- [AFOL router prompt](references/prompts/afol-router.txt) <br>
-- [AFOL OpenAPI placeholder](references/openapi/afol.yaml) <br>
-- [ClawHub AFOL listing](https://clawhub.ai/musketyr/afol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON CLI output and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The local CLI returns deterministic JSON for routing and credential-readiness checks without printing secret values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Provider skills may access private collection, marketplace, store, order, valuation, or sales-ledger data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit provider credentials, summarize private data, and avoid exposing raw account or collection payloads.
+
+Risk: An agent could treat available credentials as permission to make marketplace or collection changes.
+
+Mitigation: Require explicit current-conversation user approval, review the exact provider command, and use dry-run plus provider guard flags before any write.
+
+## Reference(s):
+
+- [AFOL Router Prompt](references/prompts/afol-router.txt)
+- [AFOL Metadata OpenAPI Placeholder](references/openapi/afol.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes tasks to provider skills; the local CLI reports routing and credential readiness without calling provider APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

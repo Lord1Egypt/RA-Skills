@@ -1,0 +1,52 @@
+{
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "CCI namespace list (read-only)",
+      "command": "hcloud CCI ListCoreV1Namespace --cli-region=cn-north-4 --limit=1",
+      "type": "readonly",
+      "executor": "cli",
+      "expected": "JSON NamespaceList with items[]"
+    },
+    {
+      "id": "TC-02",
+      "name": "CCI pods across all namespaces (read-only)",
+      "command": "hcloud CCI ListCoreV1PodForAllNamespaces --cli-region=cn-north-4 --limit=1",
+      "type": "readonly",
+      "executor": "cli",
+      "expected": "JSON PodList with items[]"
+    },
+    {
+      "id": "TC-03",
+      "name": "CCI pods in a namespace (read-only)",
+      "command": "hcloud CCI ListCoreV1NamespacedPod --cli-region=cn-north-4 --namespace=default --limit=1",
+      "type": "readonly",
+      "executor": "cli",
+      "expected": "JSON PodList scoped to the namespace"
+    },
+    {
+      "id": "TC-04",
+      "name": "CCI deployments across all namespaces (read-only)",
+      "command": "hcloud CCI ListAppsV1DeploymentForAllNamespaces --cli-region=cn-north-4 --limit=1",
+      "type": "readonly",
+      "executor": "cli",
+      "expected": "JSON DeploymentList with items[]"
+    },
+    {
+      "id": "TC-05",
+      "name": "CCI deployments in a namespace (read-only)",
+      "command": "hcloud CCI ListAppsV1NamespacedDeployment --cli-region=cn-north-4 --namespace=default --limit=1",
+      "type": "readonly",
+      "executor": "cli",
+      "expected": "JSON DeploymentList scoped to the namespace"
+    },
+    {
+      "id": "TC-06",
+      "name": "CCI namespace operation CLI syntax",
+      "command": "hcloud CCI ListCoreV1Namespace --cli-region=cn-north-4 --help",
+      "type": "syntax",
+      "executor": "cli",
+      "expected": "KooCLI usage text, no error"
+    }
+  ]
+}

@@ -7,7 +7,17 @@ import sys
 
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        description="Set OBS static website hosting via Huawei OBS Python SDK"
+        description=(
+            "Set OBS static website hosting via Huawei OBS Python SDK. "
+            "NOTE: this is a WRITE operation. It reads cloud credentials from "
+            "(in priority order) CLI flags, HW_ACCESS_KEY/HW_SECRET_KEY/HW_SECURITY_TOKEN "
+            "environment variables, or the local ~/.obsutilconfig file, and then makes "
+            "remote network calls that modify the specified bucket's website "
+            "configuration (setBucketWebsite) and register the custom domain on that "
+            "bucket (setBucketCustomDomain). It never uploads/modifies objects and never "
+            "exports your credentials. Confirm the bucket name and custom domain before "
+            "running. Use --yes to skip the interactive confirmation."
+        )
     )
     p.add_argument("bucket_name", help="OBS bucket name")
     p.add_argument("endpoint", help="OBS endpoint, e.g. https://obs.<region>.myhuaweicloud.com")
@@ -37,6 +47,31 @@ def build_parser() -> argparse.ArgumentParser:
         "--obsutil-config",
         default=str(Path.home() / ".obsutilconfig"),
         help="obsutil config file path (default: ~/.obsutilconfig)",
+    )
+    p.add_argument(
+        "--certificate",
+        default="",
+        help="HTTPS certificate (PEM) to attach to the custom domain. Requires --private-key and --certificate-name.",
+    )
+    p.add_argument(
+        "--private-key",
+        default="",
+        help="Private key (PEM) matching --certificate. Requires --certificate and --certificate-name.",
+    )
+    p.add_argument(
+        "--certificate-name",
+        default="",
+        help="Certificate name (3-63 chars) for the custom domain HTTPS binding.",
+    )
+    p.add_argument(
+        "--certificate-id",
+        default="",
+        help="CCM certificate ID (16 chars) from Cloud Certificate Manager, alternative to PEM direct upload.",
+    )
+    p.add_argument(
+        "--yes",
+        action="store_true",
+        help="Skip the interactive confirmation. Use with care: the script still performs a remote write.",
     )
     return p
 
@@ -71,12 +106,47 @@ def pick_credential(cli_val: str, env_val: str, cfg: dict[str, str], cfg_keys: t
     return ""
 
 
+def build_cert_info(
+    name: str, certificate: str, private_key: str, certificate_id: str
+) -> dict[str, str]:
+    cert_info: dict[str, str] = {"name": name}
+    if certificate or private_key:
+        if not certificate or not private_key:
+            raise SystemExit(
+                "--certificate and --private-key must be provided together "
+                "when attaching a PEM certificate"
+            )
+        cert_info["certificate"] = certificate
+        cert_info["privateKey"] = private_key
+    elif certificate_id:
+        cert_info["certificateId"] = certificate_id
+    else:
+        raise SystemExit(
+            "--certificate-name requires either --certificate/--private-key "
+            "or --certificate-id"
+        )
+    return cert_info
+
+
 def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
     custom_domain = args.custom_domain.strip()
     if not custom_domain:
         parser.error("--custom-domain must not be blank")
+
+    cert_info: dict[str, str] | None = None
+    if args.certificate_name:
+        if not (3 <= len(args.certificate_name) <= 63):
+            parser.error("--certificate-name must be 3-63 characters long")
+        if args.certificate_id and len(args.certificate_id) != 16:
+            parser.error("--certificate-id must be a 16-character CCM certificate ID")
+        cert_info = build_cert_info(
+            args.certificate_name.strip(),
+            args.certificate,
+            args.private_key,
+            args.certificate_id.strip(),
+        )
 
     cfg = read_obsutil_config(args.obsutil_config)
     access_key = pick_credential(
@@ -116,6 +186,40 @@ def main() -> int:
         )
         return 2
 
+    # Runtime disclosure before any write (security compliance):
+    # - declare where credentials were read from (without printing values)
+    # - declare the remote write this invocation is about to perform
+    cred_sources = []
+    if args.access_key or args.secret_key:
+        cred_sources.append("CLI flags (--access-key/--secret-key)")
+    if os.getenv("HW_ACCESS_KEY") or os.getenv("HW_SECRET_KEY"):
+        cred_sources.append("environment variables (HW_ACCESS_KEY/HW_SECRET_KEY)")
+    if not cred_sources:
+        cred_sources.append("local ~/.obsutilconfig")
+    print(
+        "disclosure: credentials read from: " + "; ".join(cred_sources),
+        file=sys.stderr,
+    )
+    print(
+        f"disclosure: about to WRITE remote OBS configuration for bucket '{args.bucket_name}': "
+        "setBucketWebsite (index document) and setBucketCustomDomain "
+        f"(register custom domain '{custom_domain}'). This changes production-facing "
+        "website/dns configuration; no object content is uploaded or modified.",
+        file=sys.stderr,
+    )
+    if not args.yes:
+        try:
+            answer = input(
+                f"Type 'yes' to confirm and apply the write to bucket '{args.bucket_name}' "
+                f"with custom domain '{custom_domain}': "
+            )
+        except EOFError:
+            print("confirmation cancelled (no input). Pass --yes to skip this prompt.", file=sys.stderr)
+            return 2
+        if answer.strip().lower() not in ("yes", "y"):
+            print("confirmation cancelled.", file=sys.stderr)
+            return 2
+
     try:
         from obs import ObsClient, WebsiteConfiguration, IndexDocument, ErrorDocument  # type: ignore  # noqa: E501
     except Exception as exc:  # noqa: BLE001
@@ -142,7 +246,12 @@ def main() -> int:
             website = WebsiteConfiguration(indexDocument=index_doc)
         website_resp = client.setBucketWebsite(args.bucket_name, website)
 
-        custom_domain_resp = client.setBucketCustomDomain(args.bucket_name, custom_domain)
+        if cert_info:
+            custom_domain_resp = client.setBucketCustomDomain(
+                args.bucket_name, custom_domain, certificateInfo=cert_info
+            )
+        else:
+            custom_domain_resp = client.setBucketCustomDomain(args.bucket_name, custom_domain)
     except Exception as exc:  # noqa: BLE001
         print(f"OBS configuration failed: {exc}", file=sys.stderr)
         return 1
@@ -162,7 +271,8 @@ def main() -> int:
         )
         return 1
 
-    print("ok")
+    https_mode = " with HTTPS certificate" if cert_info else ""
+    print(f"ok: website hosting configured, custom domain {custom_domain} registered{https_mode}")
     return 0
 
 

@@ -1,0 +1,8 @@
+{
+  "id": "special",
+  "version": "0.1.0",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh special"
+  ],
+  "trust_level": "workspace"
+}

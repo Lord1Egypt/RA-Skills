@@ -1,44 +1,61 @@
-## Description: <br>
-Capture, extract, and organize received invoices with automatic OCR, provider detection, and searchable archive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Files, checks, and audits received invoices using OCR and e-invoice XML, duplicate and fraud checks, VAT deduction support, and a searchable local archive.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees, external professionals, and small-business operators use this skill to capture invoices from email, uploads, photos, PDFs, or trusted invoice portals, extract invoice fields, validate them, and maintain a searchable local archive for review and reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoice PDFs and extracted metadata may contain tax IDs, addresses, payment references, amounts, and long-retained business records. <br>
-Mitigation: Protect ~/invoices with appropriate local permissions, backups, and access controls; redact personal data before sharing exports. <br>
-Risk: Broad email monitoring or untrusted invoice portal URLs could collect or download unintended sensitive content. <br>
-Mitigation: Use a dedicated invoice mailbox, folder, or label for automation, and provide only trusted invoice portal URLs. <br>
-Risk: OCR, field extraction, provider detection, duplicate detection, or tax math may be incomplete or incorrect. <br>
-Mitigation: Review low-confidence required fields, validation failures, duplicate alerts, and tax discrepancies before relying on the archive for accounting or tax filings. <br>
+## Use Case:
 
+External users and business operators use this skill to file received invoices, validate supplier and tax details, track payments and disputes, prepare VAT or accountant-facing summaries, and search a local invoice archive.
 
-## Reference(s): <br>
-- [Invoices ClawHub listing](https://clawhub.ai/ivangdavila/invoices) <br>
-- [Invoice processing workflow](process.md) <br>
-- [Invoice data extraction](extraction.md) <br>
-- [Search and reporting](search.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with structured JSON metadata examples, local file paths, and report/export descriptions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Organizes invoice PDFs and extracted metadata under ~/invoices; may produce CSV summaries, ZIP archives, and status reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill maintains a persistent local invoice archive and accounting memory under ~/Clawic/data/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that local storage behavior is desired, and review generated archive entries and memory updates before relying on them.
+
+Risk: VAT summaries, supplier changes, generated filings, and recurring due outputs can affect tax, payment, or accountant-facing decisions.
+
+Mitigation: Review those outputs before use and route tax-sensitive or payment-sensitive decisions to the appropriate accountant, tax adviser, or approval process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/invoices)
+- [Clawic skill page](https://clawic.com/skills/invoices)
+- [SKILL.md](artifact/SKILL.md)
+- [Capture workflow](artifact/capture.md)
+- [Extraction workflow](artifact/extraction.md)
+- [Validation workflow](artifact/validation.md)
+- [Filing workflow](artifact/filing.md)
+- [VAT and deductibility workflow](artifact/vat.md)
+- [Period close workflow](artifact/period-close.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance and local plain-text accounting records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local invoice archive entries, ledger rows, VAT summaries, filing guidance, dispute notes, supplier memory, and accountant handoff material.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

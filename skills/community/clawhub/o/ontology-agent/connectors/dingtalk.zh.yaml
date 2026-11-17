@@ -1,0 +1,25 @@
+# connectors/dingtalk.yaml — 钉钉连接预留（stub）
+# 本体论智能体 (Ontology Agent) · 天津市微数人工智能科技有限责任公司
+# 状态：stub（暂未实现）。为 Phase 6 企业客户出现时填充真实现。
+# 设计原则：仅定义接入契约，不绑定具体实现，避免 MVP 阶段过度设计。
+
+meta:
+  connector: dingtalk
+  status: stub
+  trigger: "出现企业客户、需接入真实人员与 IM 时填充实现"
+
+integration:
+  type: robot_webhook          # 钉钉自定义机器人 / 企业内部应用
+  webhook_env: DINGTALK_WEBHOOK
+  secret_env: DINGTALK_SECRET  # 加签密钥
+  message_types: [text, markdown, action_card]
+
+bindings:
+  - role: employee             # 绑定 roles.yaml 的 employee 角色
+    scope: "department/{dept}/shared"
+  - event: task_assigned       # 任务分派推送到对应员工钉钉
+  - event: approval_request    # 审批请求（如报税）推送给 owner
+
+note: >
+  连接企业人员 = 给每位真实员工创建 employee role（见 roles.yaml），
+  消息经 webhook 推送到其钉钉；企业实例即「多 employee 各自作用域不同的 instance」。

@@ -52,7 +52,7 @@ Version: 1.2.1
 
 ### 使用工具
 - **MiniMax M2.5 API**
-- API Key：`sk-cp-kL-C0rYerwRmd7yrI52akm6WfDLabsz3HfO7tQB2K1488-cwzmJ4rQNn-VcndSwEEy9EBxRlEFbZ8DhbYl_rOZ3uHuI3WI0vFysdtLfxi3sW2eLY`
+- API Key：`REDACTED-SECRET`
 -VFHciOd API 網址：`https://api.minimax.io/v1/text/chatcompletion_v2`
 
 ### 支援的風格

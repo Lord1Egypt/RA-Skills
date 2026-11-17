@@ -1,0 +1,4 @@
+: 1700000000:0;l3 --flag
+: 1699999999:0;other-cmd thing
+: 1700000001:0;echo hi
+: 1700000500:0;loose-tool subcmd

@@ -1,11 +1,11 @@
 # Release Tier Checks
 
-The release tier runs a full ecosystem audit across all 17
-plugins. Requires plan mode for parallel agent dispatch.
+The release tier runs a full ecosystem audit across every
+plugin. Requires plan mode for parallel agent dispatch.
 
 ## Scope
 
-All 17 plugins, regardless of git diff. This is the
+Every plugin under `plugins/`, regardless of git diff. This is the
 pre-release validation gate.
 
 ## Additional Checks (Beyond PR Tier)
@@ -47,6 +47,9 @@ Run `python3 plugins/sanctum/scripts/meta_evaluation.py`
 to validate that evaluation-related skills (skills-eval,
 hooks-eval, rules-eval) meet their own quality standards.
 
+If `plugins/sanctum/scripts/meta_evaluation.py` is absent (a marketplace
+install, not a checkout), skip this step and say so.
+
 ### 6. Cross-Plugin Dependency Validation
 
 Regenerate the dependency map and compare with the committed
@@ -65,12 +68,12 @@ Requires plan mode (4+ agents rule). Suggested grouping:
 
 | Agent | Plugins | Focus |
 |-------|---------|-------|
-| 1 | abstract, leyline | Foundation layer |
+| 1 | abstract, leyline, herald | Foundation layer |
 | 2 | sanctum, imbue, conserve | Core infrastructure |
-| 3 | attune, conjure, hookify | Workflow plugins |
-| 4 | pensive, memory-palace, minister | Domain specialists |
-| 5 | parseltongue, egregore, spec-kit | Language/pipeline |
-| 6 | scribe, scry, archetypes | Media/docs/patterns |
+| 3 | attune, conjure, hookify, egregore | Workflow plugins |
+| 4 | pensive, memory-palace, minister, gauntlet | Domain specialists |
+| 5 | parseltongue, spec-kit, tome, oracle | Language/pipeline/research |
+| 6 | scribe, scry, archetypes, cartograph, phantom | Media/docs/patterns |
 
 Each agent runs full PR-tier checks on its plugins plus
 the release-specific checks.
@@ -80,7 +83,7 @@ the release-specific checks.
 ```
 Plugin Review (release tier) - vX.Y.Z
 Date: YYYY-MM-DD
-Plugins: 17/17
+Plugins: N/N
 
 ECOSYSTEM HEALTH
 Plugin          test  lint  type  skills hooks  bloat  grade
@@ -101,7 +104,7 @@ Largest: attune (3,920 chars, 23.1%)
 DEPENDENCY MAP
 Status: current (no drift)
 
-Verdict: PASS (17/17 plugins healthy)
+Verdict: PASS (N/N plugins healthy)
 ```
 
 ## Verdict Rules

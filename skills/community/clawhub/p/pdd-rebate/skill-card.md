@@ -1,46 +1,57 @@
-## Description: <br>
-Helps users use a rebate assistant for authorization and tutorials, Taobao/JD/Pinduoduo product-link rebates, product search, balance checks, and withdrawal flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+拼多多返利 helps an agent guide users through WeChat authorization, convert Taobao, JD, and Pinduoduo product links into rebate links, search for rebate-eligible products, check rebate balances, and submit withdrawals after user confirmation.
 
-## Publisher: <br>
-[skyfile](https://clawhub.ai/user/skyfile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skyfile](https://clawhub.ai/user/skyfile)
 
-## Use Case: <br>
-External users use this skill to learn and authorize the rebate workflow, submit supported shopping links, search for products, and manage rebate balance or withdrawal actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use local AI model API credentials and send raw shopping messages to the configured model provider. <br>
-Mitigation: Install only if the publisher and configured model provider are trusted, and avoid sending sensitive personal or financial details in shopping requests. <br>
-Risk: The rebate workflow sends product links, openId, balance, and withdrawal data to an external rebate backend. <br>
-Mitigation: Review and accept the rebate backend and withdrawal flow before installation; confirm withdrawal actions before submitting them. <br>
-Risk: The security verdict is suspicious because the skill handles account balance and withdrawal flows. <br>
-Mitigation: Review the skill before deployment and scan updates before enabling new releases. <br>
+## Use Case:
 
+External users use this skill through an agent to receive rebate setup guidance, product search results, rebate links, balance information, and withdrawal flow support for supported Chinese shopping platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skyfile/pdd-rebate) <br>
-- [Rebate service endpoint](https://rebate-skill.io.mlj130.com) <br>
-- [WeChat authorization page](https://xiaomaxiangshenghuo.io.mlj130.com/authlogin.html) <br>
-- [Official account follow page](https://xiaomaxiangshenghuo.io.mlj130.com/follow.html) <br>
-- [Rebate details page](https://xiaomaxiangshenghuo.io.mlj130.com/rebate-details.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown user responses with JSON diagnostics from command-line scripts when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes S01 authorization/tutorial, S02 link rebate, and S03 product search workflows; script stdout is intended to be returned directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill connects to rebate and model-provider services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the configured service and model provider endpoints are trusted.
+
+Risk: The skill uses WeChat/OpenID-linked account data and stores account-linked state locally.
+
+Mitigation: Install it only in workspaces where local files are protected and account-linked data handling is acceptable.
+
+Risk: The skill can submit a withdrawal after a typed confirmation.
+
+Mitigation: Review withdrawal amount and account state before sending the confirmation phrase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skyfile/skills/pdd-rebate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown user-facing replies, with JSON available from diagnostic CLI paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product links, rebate links or tokens, balance information, authorization links, and withdrawal status messages when returned by the configured rebate service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

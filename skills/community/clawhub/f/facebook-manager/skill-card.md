@@ -1,47 +1,64 @@
-## Description: <br>
-Facebook Manager helps an OpenClaw agent manage Facebook Pages and selected account-backed workflows through Meta Graph API guidance, including page posts, comments, Messenger replies, insights, group reading, page search, and token setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Facebook Manager helps agents manage Facebook Page and User Token workflows with guidance for Page posting, comment replies, Messenger replies, insights, group reading, page search, public post search, and access-token setup.
 
-## Publisher: <br>
-[trustydev212](https://clawhub.ai/user/trustydev212) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trustydev212](https://clawhub.ai/user/trustydev212)
 
-## Use Case: <br>
-External developers and social-media operators use this skill to configure an OpenClaw agent for Facebook Page administration, Messenger interactions, Graph API checks, and limited Facebook group or public-content discovery. The skill is most relevant when the operator already controls the relevant Meta app, page, and access tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to use powerful Facebook Page or User Tokens for posting, messaging, deleting, replying, and reading social data. <br>
-Mitigation: Use a dedicated least-privileged Meta app and token, avoid personal User Tokens unless they are required, and require explicit user confirmation before any write, delete, messaging, reply, or private/social-data read action. <br>
-Risk: Access tokens and refresh workflows could expose account or page authority if shared, logged, or automated without review. <br>
-Mitigation: Keep tokens out of logs and shared prompts, review any refresh script or cron job before use, and rotate or revoke tokens if exposure is suspected. <br>
-Risk: The release evidence reports a suspicious security verdict due to broad authority and limited scoping guidance. <br>
-Mitigation: Install only when the operator intentionally grants Facebook page or account authority to the agent and has reviewed the requested permissions against the intended workflow. <br>
+## Use Case:
 
+External users and developers use this skill to configure Facebook Page and User access tokens, then get API guidance, shell commands, and configuration examples for Facebook Page management, Messenger replies, insights, group workflows, and public search workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/trustydev212/facebook-manager) <br>
-- [OpenClaw Viet Nam community](https://zalo.me/g/lajsqc334jqc5fezevvo) <br>
-- [Setup guide](references/setup-guide.md) <br>
-- [API reference](references/api-reference.md) <br>
-- [Meta Graph API documentation](https://developers.facebook.com/docs/graph-api/) <br>
-- [Meta permissions documentation](https://developers.facebook.com/docs/permissions/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration examples and inline bash or curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Facebook Graph API requests and token-handling instructions that require user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Powerful long-lived Facebook Page and User tokens can enable posting, messaging, reading, deletion, or account access if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the minimum Meta scopes needed, avoid pasting tokens into chats or logs, store tokens outside plaintext configuration when possible, and restrict access to the runtime environment.
+
+Risk: Generated Graph API calls can post, delete, reply, or send Messenger messages on behalf of a Page.
+
+Mitigation: Require manual confirmation before any post, deletion, comment reply, or Messenger send, and review targets and message content before execution.
+
+Risk: The token refresh example updates local OpenClaw configuration and may be unsafe on shared or sensitive systems.
+
+Mitigation: Treat the cron refresh example as illustrative and replace it with an approved secret-management workflow before operational use.
+
+## Reference(s):
+
+- [Setup Guide](artifact/references/setup-guide.md)
+- [Facebook Graph API Reference](artifact/references/api-reference.md)
+- [Meta Graph API Documentation](https://developers.facebook.com/docs/graph-api/)
+- [Meta Permissions Documentation](https://developers.facebook.com/docs/permissions/)
+- [Meta Graph API Explorer](https://developers.facebook.com/tools/explorer/)
+- [Meta Access Token Debugger](https://developers.facebook.com/tools/debug/accesstoken/)
+- [OpenClaw Viet Nam Community](https://zalo.me/g/lajsqc334jqc5fezevvo)
+- [ClawHub Skill Page](https://clawhub.ai/trustydev212/skills/facebook-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples, shell commands, and curl-based API examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Facebook Page/User tokens and curl; mutating actions should be manually reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter declares 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

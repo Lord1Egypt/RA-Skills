@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 产品升级规划"
+  short_description: "按评论证据规划产品升级方向"
+  default_prompt: "使用 $amazon-product-upgrade-planner 根据 Amazon 商品详情和评论规划产品升级方向。"

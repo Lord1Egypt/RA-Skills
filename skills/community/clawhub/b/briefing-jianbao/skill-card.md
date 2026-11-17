@@ -1,43 +1,58 @@
-## Description: <br>
-Briefing-pro turns URLs, uploaded files, images, or pasted text into a one-page briefing slide that can be exported as PNG, PDF, or HTML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Briefing-pro turns content from URLs, files, text, or images into one-page slide briefings that can be exported as PNG, PDF, or HTML.
 
-## Publisher: <br>
-[nonlinearHuman](https://clawhub.ai/user/nonlinearHuman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nonlinearhuman](https://clawhub.ai/user/nonlinearhuman)
 
-## Use Case: <br>
-External users, employees, and developers can use this skill to convert supplied source material into a compact visual briefing for sharing, archiving, or presentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may fetch supplied URLs and parse uploaded files to create briefing output. <br>
-Mitigation: Avoid using sensitive documents unless the user is comfortable with that content being parsed and rendered. <br>
-Risk: The generic trigger term "摘要" may activate the skill when a user only intended a basic summary. <br>
-Mitigation: Consider narrowing the trigger phrase before deployment in environments where accidental activation would be disruptive. <br>
-Risk: Generated briefing slides may omit nuance from the source material because the skill uses fast rule-based extraction. <br>
-Mitigation: Review the generated briefing before sharing, archiving, or presenting it. <br>
+## Use Case:
 
+Developers and end users can use this skill to convert source material into concise, shareable briefing slides for summaries, insights, and presentation assets.
 
-## Reference(s): <br>
-- [frontend-slides](https://clawhub.com/skill/frontend-slides) <br>
-- [Briefing-pro ClawHub release](https://clawhub.ai/nonlinearHuman/briefing-jianbao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance, files] <br>
-**Output Format:** [Briefing slide content rendered as HTML, PNG image, or PDF with agent-facing guidance as text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports A4 portrait and 16:9 widescreen slide sizes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Untrusted webpage or file content could execute code inside generated briefing pages because the slide templates render user-derived fields through dynamic HTML.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted source pages and documents until templates escape all user-derived fields and avoid innerHTML for untrusted content.
+
+Risk: Rendering previews, screenshots, or PDFs from generated HTML can expose the browser environment to hostile content.
+
+Mitigation: Render previews and exports in a restricted browser environment.
+
+Risk: Private URLs or sensitive files may be fetched and parsed while building a briefing.
+
+Mitigation: Avoid submitting confidential sources unless the execution environment and generated outputs are approved for that data.
+
+## Reference(s):
+
+- [Briefing-pro ClawHub listing](https://clawhub.ai/nonlinearhuman/skills/briefing-jianbao)
+- [frontend-slides ClawHub skill](https://clawhub.com/skill/frontend-slides)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated HTML, browser screenshot, or print-to-PDF workflow outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce PNG screenshots, PDF exports, or HTML slide files from extracted source content.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

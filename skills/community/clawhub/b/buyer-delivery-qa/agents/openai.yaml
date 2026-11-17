@@ -1,0 +1,3 @@
+interface:
+  display_name: "Buyer Delivery QA"
+  short_description: "Verify digital buyer-file and access claims"

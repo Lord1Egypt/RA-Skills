@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "网页划线对话 · 小虾",
+  "version": "1.5.5",
+  "description": "点工具栏图标弹出可拖动对话浮层；读取网页选区(含 iframe/微信读书)与系统剪切板(含输入法复制)，发送时自动收进上下文，直接和 AI 对话。基于 CodeBuddy Agent SDK。",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "网页对话 · 小虾（点我打开）",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["activeTab", "scripting", "storage", "clipboardRead", "alarms"],
+  "host_permissions": ["http://localhost/*", "http://127.0.0.1/*"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["panel.html", "panel.js", "panel.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

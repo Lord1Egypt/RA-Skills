@@ -1,41 +1,53 @@
-## Description: <br>
-Token消耗监控优化 helps QClaw/OpenClaw users inspect local session logs, summarize token use, detect abnormal spending patterns, and generate optimization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Token消耗监控优化工具，面向QClaw/OpenClaw用户读取会话日志、统计Token消耗、检测异常模式、提供优化建议并生成消耗趋势报告。
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and QClaw/OpenClaw users use this skill to review token consumption, identify spikes or repeated failures, and choose practical changes that reduce waste. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local QClaw/OpenClaw session logs can contain prompts, responses, or other sensitive text. <br>
-Mitigation: Run the skill only when comfortable inspecting those local logs, and review any generated reports before sharing them. <br>
-Risk: The referenced token_stats.py helper is not bundled in this release. <br>
-Mitigation: Inspect the local token_stats.py script before executing the documented commands. <br>
+## Use Case:
 
+Developers and QClaw/OpenClaw users use this skill to review local session log token consumption, identify abnormal spikes or repeated failures, and receive concise optimization guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/qclaw-token-monitor) <br>
-- [freedompixels publisher profile](https://clawhub.ai/user/freedompixels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell command examples and tabular token summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local token usage reports from QClaw/OpenClaw session logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill reads local QClaw/OpenClaw session logs, which may contain sensitive usage context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when local session-log access is acceptable for the environment.
+
+Risk: The documented token_stats.py helper script is referenced by commands but is not included in the reviewed artifact.
+
+Mitigation: Inspect the actual local helper script before executing the example commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/qclaw-token-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and tabular token-usage summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference generated local token-usage JSON files and local session-log paths.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

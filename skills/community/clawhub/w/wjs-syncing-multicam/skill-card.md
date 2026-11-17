@@ -1,42 +1,58 @@
-## Description: <br>
-Aligns two or more video or audio recordings of the same event to a common timeline and produces lightweight `.sync.json` sidecars without modifying the original media. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aligns two or more video or audio recordings of the same event to a shared timeline and writes lightweight `.sync.json` sidecars without re-encoding originals.
 
-## Publisher: <br>
-[jianshuo](https://clawhub.ai/user/jianshuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jianshuo](https://clawhub.ai/user/jianshuo)
 
-## Use Case: <br>
-Creators, editors, and production engineers use this skill to align multicamera and separate-audio recordings before downstream editing, especially when sources start at different times or cover only part of an event. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes user-selected local media and writes `.sync.json` sidecars next to those files. <br>
-Mitigation: Run it only on intended media directories and review generated sidecars before using them in downstream editing workflows. <br>
-Risk: The workflow depends on local ffmpeg, ffprobe, Python, NumPy, and SciPy installations. <br>
-Mitigation: Use trusted package sources and verify those local dependencies before running the scripts on important media. <br>
-Risk: The documentation contains a stale note about `_synced.MOV` output that conflicts with the current sidecar-only behavior reported by the security evidence. <br>
-Mitigation: Treat `.sync.json` sidecars as the authoritative output, check the working directory for unexpected media files, and update the documentation before relying on it operationally. <br>
+## Use Case:
 
+Developers and media engineers use this skill to compute timeline offsets for multi-camera or separate-audio recordings and produce sidecar metadata that downstream tools can apply with ffmpeg or editing workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jianshuo/wjs-syncing-multicam) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON sidecar schema examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The companion scripts write `.sync.json` sidecars next to the selected media files; original media files are intended to remain unchanged.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill reads user-selected media files and runs local ffmpeg/ffprobe on them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on media the user intends to process and rely on trusted local ffmpeg/ffprobe installations.
+
+Risk: The skill creates or updates `.sync.json` files beside the selected recordings.
+
+Mitigation: Run it in the intended project directory and review or back up existing sidecars before replacing them.
+
+Risk: The documentation contains a stale contradictory line about `_synced.MOV` output.
+
+Mitigation: Treat `.sync.json` sidecars as the authoritative output and verify generated metadata before downstream editing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jianshuo/skills/wjs-syncing-multicam)
+- [Skill source documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and `.sync.json` sidecar files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one sync sidecar per input media file; originals are intended to remain unchanged.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,21 @@
+name: aimegeo-citation-monitor
+slug: aimegeo-citation-monitor
+display_name: AI 提及与引用复测
+description: "从真实AI回答和原生引用复测品牌提及、链接引用及同题前后变化。用户跟踪发布表现或整理监测历史时使用；结合免费的aimeGeo持续补采、改稿配图、多账号发布，再按相同条件保留下一批证据。"
+version: "1.0.2"
+icon: icon-512.png
+license: MIT-0
+repository: "https://github.com/xxjrq/aimegeo-citation-monitor"
+tags:
+  - geo
+  - ai-search
+  - brand-monitoring
+  - citation-analysis
+  - before-after-comparison
+  - offline-analysis
+trigger_words:
+  - 检测AI有没有提到我的品牌
+  - 比较发布前后的AI引用
+  - 汇总AI监测历史
+  - 引用复测
+self_test: python3 scripts/self_test.py

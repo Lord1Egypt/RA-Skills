@@ -1,49 +1,66 @@
-## Description: <br>
-End-to-end Xiaohongshu operations including account positioning, topic research, content production, publishing workflows, comment replies, viral-copy drafting, and post-incident recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end Xiaohongshu operations including positioning, topic research, content production, publish execution, comment handling, viral-copy workflows, and post-incident recovery.
 
-## Publisher: <br>
-[saybanet](https://clawhub.ai/user/saybanet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saybanet](https://clawhub.ai/user/saybanet)
 
-## Use Case: <br>
-External creators and operators use this skill to run supervised Xiaohongshu account workflows: positioning an account, researching topics, drafting posts, preparing publish flows, checking comments, drafting replies, and recovering from failed automation steps. It is intended for human-reviewed social-media operations rather than unattended posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide live Xiaohongshu account actions, including preparing posts and replies. <br>
-Mitigation: Keep a human approval step before publishing or sending replies, and stop when the platform shows rate-limit, frequency, or send-failure warnings. <br>
-Risk: The install guide prints a local gateway token that could grant access if shared. <br>
-Mitigation: Redact token output, avoid sharing setup logs or screenshots, and rotate or reissue the token if it is exposed. <br>
-Risk: Viral-copy workflows can create copyright, impersonation, or platform-policy risk if they reuse source text or images too closely. <br>
-Mitigation: Use structure-level and style-only adaptation, avoid reusing original images or wording, and manually review every draft before publication. <br>
-Risk: Persistent browser access to a logged-in social account can affect account integrity and reputation. <br>
-Mitigation: Use a dedicated account or profile where appropriate, monitor account state, and revoke credentials or browser sessions when the skill is no longer needed. <br>
+## Use Case:
 
+External creators, operators, and agent users can use this skill to plan Xiaohongshu account positioning, generate post drafts, prepare publishing flows, manage comment replies, and recover from browser automation failures. It is especially suited to repeatable content operations where human confirmation is expected before publishing or replying.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/saybanet/sayba-xiaohongshu-ops) <br>
-- [XHS runtime rules](references/xhs-runtime-rules.md) <br>
-- [XHS publish flows](references/xhs-publish-flows.md) <br>
-- [XHS comment operations](references/xhs-comment-ops.md) <br>
-- [XHS viral-copy workflow](references/xhs-viral-copy-flow.md) <br>
-- [XHS evaluate patterns](references/xhs-eval-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with structured checklists, draft copy, inline code blocks, shell commands, and browser-operation steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may prepare live account actions, but posting and comment replies should remain human-reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup guidance includes a remote install script and non-interactive risk acceptance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup before execution, prefer pinned and verified OpenClaw installation steps, and avoid piping remote scripts directly to a shell.
+
+Risk: Gateway startup and terminal output may expose local tokens or account-control access.
+
+Mitigation: Keep the gateway local and optional, avoid sharing terminal output that contains tokens, and rotate or clear device tokens when pairing state changes.
+
+Risk: Publishing and replying workflows can act on a Xiaohongshu account.
+
+Mitigation: Use a test account first, stop at publish-confirmation checkpoints, require human confirmation before publishing or replying, and keep default reply cadence to one send per turn.
+
+Risk: Viral-copy workflows may create content too close to a source note.
+
+Mitigation: Use structure-level or style-only adaptation, avoid reusing original text or images, and regenerate assets when the result is too similar.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/saybanet/skills/sayba-xiaohongshu-ops)
+- [XHS Runtime Rules](references/xhs-runtime-rules.md)
+- [XHS Publish Flows](references/xhs-publish-flows.md)
+- [XHS Comment Ops](references/xhs-comment-ops.md)
+- [XHS Viral Copy Flow](references/xhs-viral-copy-flow.md)
+- [XHS Evaluate Patterns](references/xhs-eval-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured sections, short post copy, hashtags, image prompts, and occasional bash or JavaScript snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include account-positioning variables, content drafts, reply text, risk notes, browser-operation checkpoints, and publish-confirmation status.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

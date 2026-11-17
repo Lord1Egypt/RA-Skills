@@ -1,0 +1,15 @@
+'''
+25基金下单例子
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+def handlebar(ContextInfo):
+    if not ContextInfo.is_last_bar():
+        return
+
+    # 申购 中证500指数ETF  
+    passorder(60, 1101, 'test', '510030.SH', 5, 0, 1, 2, ContextInfo)  
+    
+    # 赎回 中证500指数ETF
+    passorder(61, 1101, 'test', '510030.SH', 5, 0, 1, 2, ContextInfo)  
+
+

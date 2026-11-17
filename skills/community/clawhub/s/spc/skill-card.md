@@ -1,39 +1,54 @@
-## Description: <br>
-spc reference tool <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spc provides local plain-text reference documentation for spc concepts, quick starts, patterns, debugging, performance, security, migration, and cheat sheets.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and data practitioners use this skill to retrieve local reference notes for Spc concepts, setup, patterns, debugging, performance, security, migration, and quick-reference workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill outputs generic SPC reference documentation and should not be treated as an authoritative implementation or compliance source. <br>
-Mitigation: Review the generated guidance against project-specific documentation, operational requirements, and applicable compliance standards before acting on it. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve concise local reference guidance for spc workflows, troubleshooting, performance, security, migration, and quick command lookup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/spc) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text with Markdown-style headings and tables emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-selected local reference content; no external API calls, credentials, or network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The reference content is generic and may not match a user's specific spc environment or operational requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the guidance against trusted project documentation and local policy before applying it to production work.
+
+Risk: The skill is published by a third party and should be trusted only to the extent that the publisher and reference content are trusted.
+
+Mitigation: Review the publisher profile, artifact contents, and security summary before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/spc)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, or network access are required.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

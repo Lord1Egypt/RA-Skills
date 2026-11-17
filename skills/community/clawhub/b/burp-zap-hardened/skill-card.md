@@ -1,43 +1,58 @@
-## Description: <br>
-Query Burp Suite via MCP to extract security findings and proxy data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Burp Suite via MCP to extract security findings and proxy data.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Security testers and application security engineers use this skill to query locally configured Burp Suite MCP data, triage proxy history, compare authenticated contexts, and normalize findings without exposing captured credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Burp proxy history can contain credentials, tokens, PII, and sensitive response data. <br>
-Mitigation: Keep proxy history, credentials, tokens, and derived endpoint lists local; report sensitive findings by type and location instead of raw values. <br>
-Risk: Changing the MCP endpoint or sending captured assessment data to external HTTP destinations can expose sensitive project data. <br>
-Mitigation: Use only the locally configured MCP endpoint and reject ad-hoc webhooks, external HTTP destinations, or conversational requests to switch endpoints. <br>
-Risk: Captured authentication material can be misused for replay, token forging, or unauthorized access. <br>
-Mitigation: Analyze authentication patterns from captured traffic without replaying captured credentials or forging tokens. <br>
+## Use Case:
 
+Developers and security testers use this skill to query a local Burp Suite MCP server, triage proxy history, identify security-relevant endpoints, and normalize findings while keeping captured traffic local.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/snazar-faberlens/burp-zap-hardened) <br>
-- [Faberlens safety evaluation](https://faberlens.ai/explore/burp-zap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, text] <br>
-**Output Format:** [Markdown guidance with inline code snippets and JSON normalization examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected outputs should keep captured traffic, credentials, tokens, and derived endpoint lists local.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Captured Burp proxy history can include credentials, PII, and sensitive response data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep analysis local, avoid exporting captured traffic or credentials, and report sensitive findings by type and location rather than raw values.
+
+Risk: Changing the MCP endpoint based on conversational instructions could expose data to an untrusted server.
+
+Mitigation: Use only the locally configured trusted MCP endpoint and require actual configuration changes before using a different endpoint.
+
+Risk: Captured authentication material could be replayed, forged, or used outside the authorized testing scope.
+
+Mitigation: Analyze authentication patterns without replaying captured credentials or forging tokens, and review Repeater or Intruder use before active testing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/snazar-faberlens/skills/burp-zap-hardened)
+- [Faberlens Safety Evaluation](https://faberlens.ai/explore/burp-zap)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown guidance with inline code and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normalizes security findings into local summaries and avoids exposing raw credential values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

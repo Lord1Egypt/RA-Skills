@@ -1,46 +1,58 @@
-## Description: <br>
-PDF and image OCR that converts a single PDF or image into Markdown via the WiseDiag cloud API with table recognition and multi-column layout support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WiseDiag MedOCR converts one PDF or image file into Markdown through the WiseDiag cloud OCR API, including text extraction, table recognition, and multi-column layout support.
 
-## Publisher: <br>
-[wisediag](https://clawhub.ai/user/wisediag) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wisediag](https://clawhub.ai/user/wisediag)
 
-## Use Case: <br>
-External users and developers use this skill to OCR a single PDF or image through WiseDiag and receive the extracted content as a local Markdown file. It is intended for non-sensitive documents unless WiseDiag's terms and data handling meet the user's requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents are uploaded to WiseDiag's cloud OCR service for processing. <br>
-Mitigation: Use the skill only for documents appropriate for WiseDiag's terms and data handling, and use an offline OCR workflow for confidential medical, financial, legal, credential, or minor-related documents. <br>
-Risk: The WiseDiag API key can be exposed if persisted in shell startup files or shared logs. <br>
-Mitigation: Prefer a session-only environment export or a secret manager, and avoid adding the API key to ~/.zshrc or ~/.bashrc on shared systems. <br>
-Risk: Unpinned dependencies may resolve to different package versions over time. <br>
-Mitigation: Install in a locked or otherwise patched environment and review dependency updates before deployment. <br>
-Risk: Large or unsupported inputs may fail or produce incomplete OCR results. <br>
-Mitigation: Process one supported PDF or image at a time, keep inputs within the documented size and page limits, and lower DPI when server timeouts occur. <br>
+## Use Case:
 
+External users and developers use this skill to extract text, tables, and document layout from a single PDF or image. The skill uploads the file to WiseDiag for OCR processing and saves the returned Markdown locally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wisediag/wisediag-medocr) <br>
-- [WiseOCR project homepage](https://github.com/wisediag/WiseOCR) <br>
-- [WiseDiag API key management](https://console.wisediag.com/apiKeyManage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown output file with CLI commands and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes one PDF or image per command and saves one Markdown file locally, under ~/.openclaw/workspace/WiseOCR by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.26 (source: server-resolved release metadata) <br>
+Risk: Uploaded files are sent to WiseDiag's cloud OCR service, which can expose sensitive or confidential document contents to a third-party processor.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for files you are comfortable sending to WiseDiag, and use an offline OCR tool for sensitive personal, financial, medical, credential, or minor-related documents.
+
+Risk: The output-name handling can write Markdown outside the stated output folder when the --name value contains slashes, absolute paths, or '..'.
+
+Mitigation: Use simple filename stems for --name and avoid slashes, absolute paths, and '..' until the filename handling is fixed.
+
+Risk: Weak API-key storage guidance can lead users to keep WiseDiag credentials in shell startup files.
+
+Mitigation: Set the API key only for the current session or use a secret manager instead of storing it directly in shell startup files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wisediag/skills/wisediag-medocr)
+- [WiseDiag API key management](https://console.wisediag.com/apiKeyManage)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown file plus command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes one PDF or image at a time; default output path is ~/.openclaw/workspace/WiseOCR/{name}.md.]
+
+## Skill Version(s):
+
+1.0.26 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

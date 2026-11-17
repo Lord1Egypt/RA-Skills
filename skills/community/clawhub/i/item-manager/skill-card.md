@@ -1,42 +1,53 @@
-## Description: <br>
-Recognizes natural-language item storage statements, records locations and expiry dates, categorizes items, and confirms suspected name corrections before changing them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically records and retrieves item storage locations from natural Chinese-language statements, with expiry tracking, reminders, categorization, and user-confirmed name validation.
 
-## Publisher: <br>
-[adderwar-bot](https://clawhub.ai/user/adderwar-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adderwar-bot](https://clawhub.ai/user/adderwar-bot)
 
-## Use Case: <br>
-Users and agents use this skill to record, query, list, and receive expiry reminders for personal item storage locations through natural-language Chinese prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Chinese trigger phrases can cause normal conversation to be interpreted as item-management input, saving private item or location details. <br>
-Mitigation: Use the skill in a dedicated item-management context or with explicit item-management phrasing, and review or delete stored records after use. <br>
-Risk: The skill stores item names, storage locations, categories, and expiry dates that may be sensitive. <br>
-Mitigation: Install only where that data retention is acceptable and avoid recording sensitive items or locations. <br>
+## Use Case:
 
+External users use this skill to maintain a lightweight inventory of where personal items are stored, then query locations, categories, and upcoming expirations in natural Chinese.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adderwar-bot/item-manager) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Natural-language responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include item locations, category lists, and expiry reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Item and location records can reveal sensitive household, personal, food, or medicine details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing sensitive item or location details unless the user is comfortable retaining them in the agent's memory.
+
+Risk: Broad natural-language Chinese triggers may interpret casual statements as inventory updates.
+
+Mitigation: Review stored records periodically and confirm corrections when the skill flags uncertain item names.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/adderwar-bot/skills/item-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Natural-language responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stored item locations, category listings, and expiry reminders based on user-provided records.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

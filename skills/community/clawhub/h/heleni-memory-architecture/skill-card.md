@@ -1,40 +1,61 @@
-## Description: <br>
-Heleni Memory Architecture guides PA agents in maintaining long-term memory with fact and deduction tagging, session summaries, project memory files, and memory compaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Heleni Memory Architecture guides PA agents in maintaining persistent memory through deductive memory entries, session summaries, project files, and long-term memory promotion rules.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-External users and agent developers use this skill to guide PA agents that maintain MEMORY.md, daily logs, project memory files, and recurring memory review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested recurring review jobs may rewrite memory and agent-instruction files or commit changes without continuous human review. <br>
-Mitigation: Enable the crons only when unattended edits are acceptable, require human review before commits or pushes, and audit affected files regularly. <br>
-Risk: Deduced memories can encode incorrect or stale assumptions about a user. <br>
-Mitigation: Keep secrets out of memory files, label inferred entries clearly, and periodically review or remove [DEDUCED] memories that are unsupported or outdated. <br>
+## Use Case:
 
+External users and developers use this skill to help an agent decide what to remember, where to write it, and when to promote conversational context into long-term memory. It is intended for PA-style agents that maintain memory files and periodic self-review workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/netanel-abergel/heleni-memory-architecture) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update memory files, agent instruction files, and git history when its suggested review and compaction workflows are enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Persistent self-review jobs and instruction-file edits can change agent behavior without enough user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed cron jobs and require user approval before unattended edits to MEMORY.md, AGENTS.md, SKILL.md, or related behavior files.
+
+Risk: Memory files can accumulate sensitive or inaccurate long-term context.
+
+Mitigation: Follow the skill's stated exclusion rule for secrets and credentials, review memory writes, and compact or correct stale entries regularly.
+
+Risk: The artifact proposes sourcing a local .context file in shell.
+
+Mitigation: Use a data-only configuration format instead of shell-sourcing configuration, especially when the file may be edited by an agent.
+
+Risk: The artifact recommends committing and pushing memory changes to Git.
+
+Mitigation: Confirm the Git destination and inspect memory diffs before committing or pushing persistent memory files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/netanel-abergel/skills/heleni-memory-architecture)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and memory-entry templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes file-writing conventions for memory logs, project memory, long-term memory, and scheduled self-review workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

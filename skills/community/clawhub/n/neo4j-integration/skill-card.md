@@ -1,50 +1,60 @@
-## Description: <br>
-Connect to Neo4j graph databases and execute Cypher queries for storing, querying, and managing knowledge graph data using the property graph model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Neo4j and Cypher guidance, examples, and connector-style code for storing, querying, and managing knowledge graph data with the property graph model.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan Neo4j-backed knowledge graph work, including Cypher queries, node and relationship modeling, indexing, transactions, and connector configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included Python connector reports successful Neo4j operations while simulating connection, query, transaction, and index behavior. <br>
-Mitigation: Replace or rewrite the connector around the official Neo4j driver and validate behavior against a test Neo4j database before using it for real workloads. <br>
-Risk: Cypher examples include create, update, delete, index, and bulk operations that can change or remove graph data if run directly. <br>
-Mitigation: Review each query, use least-privileged credentials, test in a non-production database, and require explicit approval before destructive operations. <br>
-Risk: Neo4j credentials and connection settings are required, and sample snippets show credentials inline. <br>
-Mitigation: Load credentials from a secrets manager or environment variables, avoid committing secrets, and restrict logging of connection details. <br>
-Risk: Sample connection configuration includes trusting all certificates. <br>
-Mitigation: Use validated TLS settings and trusted certificate authorities for encrypted connections instead of accepting all certificates. <br>
+## Use Case:
 
+Developers and engineers use this skill to draft Cypher queries, model Neo4j graph data, and understand common database patterns for knowledge graph applications. It can also guide setup, transaction handling, indexing, bulk import, and result mapping work.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fisa712/neo4j-integration) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/fisa712) <br>
-- [ClawHub Homepage](https://clawhub.com) <br>
-- [Neo4j Integration README](README.md) <br>
-- [Neo4j Design Patterns](references/neo4j-patterns.md) <br>
-- [Neo4j Examples](examples/neo4j-examples.md) <br>
-- [Neo4j Connector Script](scripts/neo4j_connector.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and Cypher code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Neo4j connection settings, Cypher snippets, result-shape descriptions, and implementation cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The bundled connector simulates Neo4j operations and may report success without proving that live database writes, deletes, transactions, or audits occurred.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat scripts/neo4j_connector.py as mock or demo code and validate any production connector against the official Neo4j driver and a non-production database before live use.
+
+Risk: Cypher examples include destructive delete patterns and import/export operations that can affect live graph data or expose approved data paths if copied directly.
+
+Mitigation: Use least-privilege credentials, test on non-production data, confirm DELETE or DETACH DELETE targets, and restrict APOC exports to approved data and paths.
+
+Risk: Example connection snippets include placeholder passwords that could encourage hardcoded credentials.
+
+Mitigation: Replace sample credentials with managed secrets or environment-specific credential handling before running against a real Neo4j instance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fisa712/skills/neo4j-integration)
+- [Neo4j Integration - Design Patterns](artifact/references/neo4j-patterns.md)
+- [Neo4j Integration - Examples](artifact/examples/neo4j-examples.md)
+- [ClawHub](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Cypher and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include database query examples, connector usage notes, configuration snippets, and security guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

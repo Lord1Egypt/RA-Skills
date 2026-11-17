@@ -1,38 +1,57 @@
-## Description: <br>
-Test and debug CORS (Cross-Origin Resource Sharing) configurations on live URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test and debug CORS (Cross-Origin Resource Sharing) configurations on live URLs, including CORS headers, preflight OPTIONS requests, allowed origins, methods, headers, security posture, and generated framework configurations.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers and engineers use this skill to test CORS headers, debug preflight OPTIONS behavior, audit common CORS misconfigurations, and generate framework-specific CORS configuration snippets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit and test modes make live network requests to target systems, which may appear in logs or monitoring and may be inappropriate without permission. <br>
-Mitigation: Use the skill only against domains you own or are explicitly authorized to test. <br>
+## Use Case:
 
+Developers and engineers use this skill to test live URLs for CORS behavior, debug browser CORS failures, audit common CORS misconfigurations, and draft framework-specific CORS configuration snippets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Johnnywang2001/cors-tester) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Command-line text and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May make live HTTP and OPTIONS requests to supplied URLs when testing or auditing CORS behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send test and audit requests to user-provided URLs, including multiple CORS probe origins.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against systems you own or have permission to test.
+
+Risk: Generated server configuration snippets may be incomplete or unsafe for a specific production environment.
+
+Mitigation: Treat generated configuration as a draft and validate it with the target framework or server configuration checker before deployment.
+
+Risk: User-controlled origin, method, header, or URL values could lead to misleading tests or unsafe copied configuration.
+
+Mitigation: Review inputs before execution and avoid feeding attacker-controlled values into configuration generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnnywang2001/skills/cors-tester)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May contact user-provided URLs and print CORS header analysis, audit findings, or draft configuration snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

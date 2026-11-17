@@ -1,43 +1,58 @@
-## Description: <br>
-Database index advisor that statically analyzes ORM query patterns to predict missing indexes, cross-references existing model and migration index definitions, ranks recommendations by query frequency, and outputs CREATE INDEX SQL plus per-ORM migration snippets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Phy Db Index Advisor statically scans ORM query patterns and existing index definitions to recommend missing database indexes before they become production bottlenecks.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and engineers use this skill to scan application source code for ORM query patterns that may need database indexes before deployment. It helps prioritize missing-index recommendations and produce reviewable SQL or ORM migration snippets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs embedded local Python over a repository path and reads source files during analysis. <br>
-Mitigation: Run it only against the intended repository, avoid broad home-directory scans, and review the embedded script before use when local execution risk matters. <br>
-Risk: Generated CREATE INDEX SQL or ORM migration snippets may be incomplete or inappropriate for a specific production database workload. <br>
-Mitigation: Treat output as recommendations, review with normal database change controls, test in staging, and validate important queries with EXPLAIN ANALYZE before production rollout. <br>
-Risk: Static analysis can miss dynamic query construction and may not select optimal composite indexes. <br>
-Mitigation: Use higher minimum-count thresholds for noisy projects and manually review columns that frequently appear together in filters, joins, or ordering clauses. <br>
+## Use Case:
 
+Developers and database engineers use this skill to scan application source code for repeated WHERE, ORDER BY, and JOIN patterns, then review generated index SQL and ORM migration snippets before staging or production rollout.
 
-## Reference(s): <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-db-index-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with SQL, ORM migration snippets, shell commands, and optional JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations should be reviewed and validated against the target database before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence and artifact frontmatter) <br>
+Risk: The skill reads local project source files to analyze ORM query and migration patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on codebases you are allowed to inspect and handle scan results under the same controls as the source code.
+
+Risk: Suggested indexes can affect database locks, storage use, write performance, and production query behavior.
+
+Mitigation: Have a database owner review recommendations, test them in staging, and plan production rollout carefully.
+
+Risk: Static analysis can miss dynamic filters or recommend a single-column index where a composite index is more appropriate.
+
+Mitigation: Review query plans with runtime evidence such as EXPLAIN ANALYZE and tune thresholds before acting on findings.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill listing](https://clawhub.ai/phy041/skills/phy-db-index-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with SQL and ORM migration snippets; optional JSON scanner output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can report CI pass or fail status when critical missing indexes are detected.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

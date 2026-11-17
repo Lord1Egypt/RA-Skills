@@ -1,42 +1,51 @@
-## Description: <br>
-Quantics Bank is a project guide for a multi-source quantitative question-bank site, covering question sources, repository structure, commands, formula-rendering constraints, and public deployment details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quantics Bank is a project guide for a multi-source quantitative question bank, covering source datasets, repository structure, common npm commands, formula-rendering constraints, and public deployment details.
 
-## Publisher: <br>
-[aznikline](https://clawhub.ai/user/aznikline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aznikline](https://clawhub.ai/user/aznikline)
 
-## Use Case: <br>
-Developers and project maintainers use this skill to understand, operate, extend, and deploy the Quantics Bank quantitative question-bank project. It helps them locate data sources and repository paths, run data-fetch/build/test/deploy commands, and preserve formula-rendering constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Production deployment commands can publish the current build to Vercel if run without checking the active account, project, output directory, and intent. <br>
-Mitigation: Confirm the current directory, Vercel account, target project, build output, and production intent before running deploy commands. <br>
-Risk: Data-fetch commands contact external question sources and may update generated project data. <br>
-Mitigation: Run fetch and build commands from the expected repository, account for external network access, then validate and review generated data changes before deployment. <br>
+## Use Case:
 
+Developers and maintainers use this skill to understand, run, extend, validate, and deploy the Quantics Bank quantitative question bank project.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aznikline/quantics-bank) <br>
-- [Quantics Bank GitHub repository](https://github.com/aznikline/Quantics-Bank) <br>
-- [Quantics Bank public site](https://quantics-bank.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes project paths, data-source notes, operational commands, and deployment guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The documented Vercel production deployment command could publish the site immediately.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the Vercel account, target project, local build contents, and intended public release before running production deployment; prefer a pinned Vercel CLI with preview or approval steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aznikline/skills/quantics-bank)
+- [Quantics Bank public site](https://quantics-bank.vercel.app)
+- [Quantics Bank GitHub repository](https://github.com/aznikline/Quantics-Bank)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes project links, command sequences, repository paths, deployment notes, and formula-rendering constraints.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

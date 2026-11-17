@@ -1,48 +1,63 @@
-## Description: <br>
-Patchright-based browser automation with bot detection bypass for interacting with local web applications, testing localhost or dev servers, taking screenshots, and performing UI interactions on private networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patchright-based browser automation with bot detection bypass for interacting with local web applications, testing localhost or private-network dev servers, taking screenshots, and performing UI interactions.
 
-## Publisher: <br>
-[smallnest](https://clawhub.ai/user/smallnest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[smallnest](https://clawhub.ai/user/smallnest)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to automate browser checks against local applications, dev servers, and private-network web apps. It supports frontend debugging, screenshot capture, UI interaction, and pre-deployment verification workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automate broad browser actions beyond local testing. <br>
-Mitigation: Use it only on sites and applications you own or are authorized to test, and keep workflows scoped to localhost, dev servers, or private networks. <br>
-Risk: Raw page scripting can execute arbitrary JavaScript in the active browser page. <br>
-Mitigation: Review scripts before execution and avoid running untrusted JavaScript or payloads copied from unknown pages. <br>
-Risk: Screenshots and extracted page data may capture sensitive information. <br>
-Mitigation: Avoid real credentials and production accounts, and store generated screenshots or result files in controlled locations. <br>
-Risk: The background server keeps a browser session available after commands complete. <br>
-Mitigation: Check server status during use and stop the server after each session. <br>
-Risk: The Patchright dependency changes the browser automation trust boundary. <br>
-Mitigation: Pin, review, and update the Patchright dependency according to your organization's dependency review process. <br>
+## Use Case:
 
+Developers and engineers use this skill to drive browser automation for QA, end-to-end testing, frontend debugging, visual verification, and pre-deployment checks in local or private development environments.
 
-## Reference(s): <br>
-- [Patchright Skill Reference](reference.md) <br>
-- [Patchright Scripts](scripts/README.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/smallnest/patchright-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON command payloads; scripts may create screenshots or search-result JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Browser sessions may persist through the local server until explicitly stopped.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill exposes a persistent, unauthenticated browser-control service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a trusted local environment, stop the server when finished, and add authentication or URL allowlists before broader use.
+
+Risk: Browser navigation and JavaScript execution can operate beyond the intended local-testing purpose.
+
+Mitigation: Limit use to intended localhost, dev-server, or private-network targets and avoid sensitive logged-in sessions.
+
+Risk: Screenshots and extracted page data may capture sensitive information.
+
+Mitigation: Choose screenshot output paths carefully and review generated artifacts before sharing or retaining them.
+
+Risk: The dependency is specified with a broad lower bound.
+
+Mitigation: Pin and review the Patchright dependency before installation or release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/smallnest/skills/patchright-skill)
+- [Patchright Skill Reference](reference.md)
+- [Patchright Scripts](scripts/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce screenshots or extracted page data through the local browser automation scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

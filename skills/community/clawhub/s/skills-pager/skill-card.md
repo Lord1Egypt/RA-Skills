@@ -1,43 +1,59 @@
-## Description: <br>
-Builds or reuses compact navigation indexes for large, multi-file, or layered skills so agents can load only the relevant sections instead of rereading full sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds or reuses a compact navigation index for large, multi-file, or layered skills so an agent can load only the sections needed instead of rereading the full source.
 
-## Publisher: <br>
-[haoh51918-lgtm](https://clawhub.ai/user/haoh51918-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haoh51918-lgtm](https://clawhub.ai/user/haoh51918-lgtm)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create or reuse a workspace-local index for large skills, reducing repeated source reads while keeping original skill files authoritative. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled script can write outside the intended index directory if given an unsafe skill ID. <br>
-Mitigation: Review before installing if agents may run bundled scripts; use simple slug-like skill IDs, avoid path separators or `..`, and inspect generated `.skill-index` files before relying on them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create or reuse compact navigation indexes for large agent skills, especially when only a subset of a skill needs to be loaded for a task.
 
-## Reference(s): <br>
-- [Initial Mapping](references/initial-mapping.md) <br>
-- [Lookup Patterns](references/lookup-patterns.md) <br>
-- [Map Layout](references/map-layout.md) <br>
-- [Map Quality](references/map-quality.md) <br>
-- [Mapping Policy](references/mapping-policy.md) <br>
-- [Refresh Policy](references/refresh-policy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and generated workspace index files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create `.skill-index/registry.json` and `.skill-index/skills/<skill-id>/index.md` in the workspace root when the scaffold script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The companion script can write outside the intended index directory if given a crafted skill ID.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only simple skill IDs made of letters, numbers, dots, underscores, or hyphens, and do not pass user-supplied or path-like values such as ../name until validation is added.
+
+Risk: The skill creates persistent .skill-index files in the workspace.
+
+Mitigation: Install and use it only where persistent navigation files in the workspace root are acceptable, and review generated indexes before relying on them.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/haoh51918-lgtm/skills/skills-pager)
+- [Initial Mapping](references/initial-mapping.md)
+- [Lookup Patterns](references/lookup-patterns.md)
+- [Pager Map Layout](references/map-layout.md)
+- [Map Quality](references/map-quality.md)
+- [Mapping Policy](references/mapping-policy.md)
+- [Refresh Policy](references/refresh-policy.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional generated workspace index files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent .skill-index/registry.json and .skill-index/skills/<skill-id>/index.md files in the workspace root.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

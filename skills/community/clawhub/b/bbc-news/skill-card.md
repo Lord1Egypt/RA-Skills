@@ -1,41 +1,53 @@
-## Description: <br>
-Fetch and display BBC News stories from various sections and regions via RSS feeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and display BBC News stories from various sections and regions via RSS feeds.
 
-## Publisher: <br>
-[ddrayne](https://clawhub.ai/user/ddrayne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ddrayne](https://clawhub.ai/user/ddrayne)
 
-## Use Case: <br>
-External users and developers use this skill to fetch current BBC headlines from top-level, topic-specific, UK regional, and world regional RSS feeds in text or JSON form. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires network access to BBC RSS feeds. <br>
-Mitigation: Allow network access only where live BBC headline fetching is intended and restrict egress to the documented BBC RSS feed domains when possible. <br>
-Risk: The skill requires a manual install of the feedparser Python dependency. <br>
-Mitigation: Install feedparser from a trusted package source in an isolated Python environment before using the skill. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve current BBC headlines from top-level, UK regional, and world regional RSS feeds in text or JSON form.
 
-## Reference(s): <br>
-- [BBC News RSS Feeds](references/feeds.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ddrayne/bbc-news) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [Plain text headline lists or JSON arrays] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports selecting a BBC section or region and limiting the number of returned stories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill makes outbound HTTPS requests to BBC RSS feed URLs when news is requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an environment where this network access is expected and permitted.
+
+Risk: The skill depends on the feedparser Python package.
+
+Mitigation: Use a virtual environment and pin feedparser to a reviewed version before installation.
+
+## Reference(s):
+
+- [BBC News RSS Feeds](references/feeds.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands]
+
+**Output Format:** [Plain text headlines or JSON arrays of story objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Section and limit options control the category and number of RSS stories returned.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

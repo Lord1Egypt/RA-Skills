@@ -1,40 +1,56 @@
-## Description: <br>
-Creates structured Gitee pull requests by gathering branch and repository details, analyzing branch differences, drafting a Conventional Commits title and Markdown body, and submitting the PR through a configured Gitee MCP Server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user asks to create a PR, open a pull request, "create-pr", "submit a pull request", or "open a merge request". Requires Gitee MCP Server to be configured.
 
-## Publisher: <br>
-[oschina](https://clawhub.ai/user/oschina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[oschina](https://clawhub.ai/user/oschina)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers use this skill to draft a structured Gitee pull request from branch differences and create it through a configured Gitee MCP server.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The create_pull action publishes repository-visible PR content.
+
+Mitigation: Review the generated PR title, body, source branch, and target branch before creation.
+
+Risk: Missing or incorrect repository and branch details can create a pull request against the wrong target.
+
+Mitigation: Confirm repository owner, repository name, source branch, and target branch with the user before invoking create_pull.
+
+Risk: The skill depends on a configured Gitee MCP server to read branch differences and create the pull request.
+
+Mitigation: Use only a trusted, intended Gitee MCP server configuration for repositories where PR creation is permitted.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers use this skill to create Gitee pull requests with a clear title, structured description, testing notes, and optional issue-closing text. It is intended for workflows where a configured Gitee MCP Server can compare branches and create the PR. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, API Calls, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create a real Gitee pull request using the user's configured access. <br>
-Mitigation: Before creation, review the owner, repository, source branch, target branch, title, body, and any issue-closing text. <br>
-Risk: A broad or misconfigured Gitee token could allow unintended repository changes through the MCP setup. <br>
-Mitigation: Install and run the skill only with a trusted Gitee MCP configuration and appropriately scoped credentials. <br>
+**Output Format:** [Markdown PR title and body with Gitee MCP create_pull parameters]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oschina/gitee-create-pr) <br>
+**Other Properties Related to Output:** [Requires repository owner, repository name, source branch, target branch, and an optional issue number.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown PR title and body plus a pull request link after creation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include issue-closing text when the user provides a linked issue number.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

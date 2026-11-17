@@ -1,46 +1,61 @@
-## Description: <br>
-Automate DolphinDB Docker deployment with auto architecture detection (ARM64/x86_64), smart memory allocation (50% rule), and full data persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate DolphinDB Docker deployment with auto architecture detection (ARM64/x86_64), smart memory allocation (50% rule), and full data persistence.
 
-## Publisher: <br>
-[ugpoor](https://clawhub.ai/user/ugpoor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugpoor](https://clawhub.ai/user/ugpoor)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy and operate DolphinDB in Docker on macOS or Linux with architecture detection, memory sizing, persistent data storage, and version selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Docker container can receive broad host configuration access through the /etc mount. <br>
-Mitigation: Remove the /etc mount when possible, narrowly scope it when required, and make any required mount read-only. <br>
-Risk: The deployment script changes Docker state and can stop or replace an existing container named dolphindb. <br>
-Mitigation: Check for an existing dolphindb container before running the skill and use a dedicated container name and data directory for this deployment. <br>
-Risk: DolphinDB service ports may be reachable beyond the intended host. <br>
-Mitigation: Bind service ports to localhost or firewall them unless remote access is intentionally required. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate commands and guidance for deploying DolphinDB in Docker on macOS or Linux, including architecture selection, memory sizing, persistent data setup, and basic validation.
 
-## Reference(s): <br>
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) <br>
-- [DolphinDB Documentation](https://dolphindb.cn/) <br>
-- [DolphinDB Docker Hub](https://hub.docker.com/u/dolphindb) <br>
-- [DolphinDB GitHub](https://github.com/dolphindb) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ugpoor/dolphindb-docker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Docker deployment guidance for macOS and Linux hosts that have Docker available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release metadata) <br>
+Risk: The security summary says the deployment gives the container broad writable access to host system configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and modify the deployment before real use; remove the full /etc mount or replace it with minimal read-only license files.
+
+Risk: The security guidance notes that Docker image selection is under-scoped.
+
+Mitigation: Pin and verify Docker image digests before running generated deployment commands.
+
+Risk: The deployment exposes DolphinDB service ports and makes host and Docker changes.
+
+Mitigation: Bind ports to localhost unless remote access is intentional, restrict the data directory to a dedicated path, and avoid elevated privileges.
+
+## Reference(s):
+
+- [DolphinDB Docker Skill on ClawHub](https://clawhub.ai/ugpoor/skills/dolphindb-docker)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [DolphinDB Documentation](https://dolphindb.cn/)
+- [DolphinDB Docker Hub](https://hub.docker.com/u/dolphindb)
+- [DolphinDB GitHub](https://github.com/dolphindb)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash, Docker, and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference Docker image tags, host data paths, memory limits, exposed ports, and validation commands.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

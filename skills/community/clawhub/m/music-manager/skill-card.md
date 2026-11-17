@@ -1,39 +1,52 @@
-## Description: <br>
-A music download manager that searches YouTube or Bilibili, downloads audio, converts it to MP3, and stores it in a local music library by category. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Music Manager downloads audio from YouTube or Bilibili, converts it to MP3, and organizes files in a local music library by category.
 
-## Publisher: <br>
-[2771096196](https://clawhub.ai/user/2771096196) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[2771096196](https://clawhub.ai/user/2771096196)
 
-## Use Case: <br>
-Developers and agent users can use this skill to search for music or pass a YouTube/Bilibili URL, then download the audio as an MP3 into a chosen local category folder. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The downloader can access local browser cookies when browser-based authentication is enabled. <br>
-Mitigation: Set BROWSER = None unless authenticated downloads are required, and avoid using a main browser profile for downloads. <br>
-Risk: Unsafe category input can place downloaded files outside the intended music library. <br>
-Mitigation: Use only simple category names and reject absolute paths or values containing ../ before running the script. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2771096196/music-manager) <br>
+## Use Case:
 
+External users and agent operators use this skill to find or download music from YouTube or Bilibili, convert it to MP3, and store it under a chosen local category.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline bash commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces MP3 files in a configured local music directory when the download script is run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The downloader reads Chrome browser cookies by default for yt-dlp authenticated downloads.
+
+Mitigation: Set BROWSER = None before use unless authenticated downloads are required, and review whether browser-cookie access is acceptable for the environment.
+
+Risk: Untrusted category names can redirect downloaded files outside the intended music folder.
+
+Mitigation: Use reviewed, trusted category names and confirm the printed download destination before running the download.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2771096196/skills/music-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local MP3 files produced by the download script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local yt-dlp and ffmpeg installation; authenticated downloads may use browser cookies when enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Optimize e-commerce operations with AI. Input: sales data, ad spend, inventory levels. Output: attribution analysis, ad ROI report, inventory reorder plan, pricing recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize e-commerce operations with AI. Input: sales data, ad spend, inventory levels. Output: attribution analysis, ad ROI report, inventory reorder plan, pricing recommendations.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-E-commerce operators and developers use this skill to calculate marketing attribution, ad ROI, inventory reorder points, pricing scenarios, cohort retention, and funnel drop-offs from provided business metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business recommendations may be inaccurate when the supplied sales, ad spend, inventory, pricing, or funnel inputs are incomplete or stale. <br>
-Mitigation: Review outputs against source business systems before changing budgets, reorder quantities, prices, or retention campaigns. <br>
-Risk: The skill creates a local data directory at ~/.local/share/bytesagain-ecom-ops. <br>
-Mitigation: Run it in an environment where that local user data path is acceptable, and remove the directory if no local persistence is desired. <br>
-Risk: Marketplace capability tags are broader than the inspected behavior. <br>
-Mitigation: Review the commands before installation and do not grant external purchasing or network permissions unless separately justified. <br>
+## Use Case:
 
+E-commerce operators and developers use this skill to calculate attribution, campaign ROI, inventory reorder points, pricing options, cohort retention, and funnel drop-off metrics for Shopify, WooCommerce, Amazon, TikTok Shop, and multi-channel stores.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-ecom-ops) <br>
-- [BytesAgain skills](https://bytesagain.com/skills) <br>
-- [BytesAgain feedback](https://bytesagain.com/feedback/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text reports from shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local data directory at ~/.local/share/bytesagain-ecom-ops.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Outputs are advisory e-commerce calculations and may be misleading if source metrics are incomplete or inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against source business data before changing budgets, pricing, inventory orders, or customer-retention programs.
+
+Risk: Invalid, zero, or malformed numeric inputs may cause command failures instead of clean validation errors.
+
+Mitigation: Validate numeric inputs before execution and rerun commands with corrected values when the script exits with an error.
+
+Risk: Inputs may include sensitive customer or store performance data.
+
+Mitigation: Use the minimum necessary data and avoid passing sensitive customer-level data unless it is required for the analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-ecom-ops)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style terminal reports with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory e-commerce metric calculations and recommendations from user-supplied numeric inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Guide users buying a laptop through targeted questions on use case, portability, display, OS, and region to determine the exact CPU, RAM, storage, GPU, and display specs they need, without sales bias. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users buying a laptop through targeted questions on use case, portability, display, OS, and region to determine the exact CPU, RAM, storage, GPU, and display specs they need - no sales bias.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External laptop buyers use this skill to work through a structured consultation and receive unbiased specification guidance before comparing products. It helps an agent ask targeted questions, translate answers into non-negotiable, recommended, and optional laptop specs, and provide up to five product suggestions as research starting points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product suggestions can become outdated or differ by market. <br>
-Mitigation: Treat suggested models as research starting points and verify current specs, prices, availability, regional warranty coverage, and authorized service options before purchasing. <br>
-Risk: The consultation may be mistaken for a purchasing workflow. <br>
-Mitigation: Do not provide payment details or account credentials; the skill does not need them and does not make purchases. <br>
+## Use Case:
 
+External users use this skill to get a structured laptop-buying consultation that turns their workload, portability, display, battery, operating system, and regional needs into practical specifications. It helps users evaluate laptops independently and treats product suggestions as starting points rather than endorsements.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/arbazex/laptop-buying-consultant) <br>
-- [Homepage](https://github.com/arbazex/personal-tech-buying-consultants/tree/master/laptop-buying-consultant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational questions followed by structured Markdown spec lists and up to five product suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external APIs, environment variables, or runtime dependencies are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The consultation asks for regional information that may be more precise than a user wants to share.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users can provide a country or region instead of an exact city when privacy matters.
+
+Risk: Laptop model availability, pricing, warranty support, and exact specifications can vary by market and change over time.
+
+Mitigation: Treat suggested products as starting points and verify current local availability, warranty coverage, and specifications before purchase.
+
+Risk: Incomplete answers can lead to laptop specifications that are too weak, too costly, or mismatched to required software.
+
+Mitigation: The skill should ask targeted follow-up questions before producing final recommendations when critical buying context is missing or conflicting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arbazex/skills/laptop-buying-consultant)
+- [Skill Homepage](https://github.com/arbazex/personal-tech-buying-consultants/tree/master/laptop-buying-consultant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational questions followed by structured Markdown recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include up to five product suggestions after required specification guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

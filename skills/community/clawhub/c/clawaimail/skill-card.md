@@ -1,45 +1,60 @@
-## Description: <br>
-Give your AI agent a real email address. Send, receive, and manage emails via API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your AI agent a real email address. Send, receive, and manage emails via API.
 
-## Publisher: <br>
-[joansongjr](https://clawhub.ai/user/joansongjr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joansongjr](https://clawhub.ai/user/joansongjr)
 
-## Use Case: <br>
-Developers and agent operators use Clawaimail to give agents a real email inbox, send and receive messages, search mail, inspect account usage, and manage inboxes through MCP tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent real send and delete authority over a ClawAIMail account. <br>
-Mitigation: Use a dedicated limited API key and require human approval before sending email or deleting inboxes. <br>
-Risk: Some ordinary-looking actions can create a remote inbox as a side effect when no inbox_id is provided. <br>
-Mitigation: Pass explicit inbox IDs where possible and review tool call parameters before execution. <br>
-Risk: Running the package without verifying the source can expose an email account API key to untrusted code. <br>
-Mitigation: Verify the npm package and version before running it, and rotate the API key if exposure is suspected. <br>
+## Use Case:
 
+Developers and external agent users use ClawAIMail to give AI tools an API-backed email inbox, send messages, read and search mail, and manage inboxes from MCP clients.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/joansongjr/clawaimail) <br>
-- [ClawAIMail API documentation](https://clawaimail.com/docs/) <br>
-- [ClawAIMail website](https://clawaimail.com) <br>
-- [npm package: clawaimail-mcp](https://www.npmjs.com/package/clawaimail-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Configuration] <br>
-**Output Format:** [MCP tool responses containing JSON serialized as text, plus setup configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWAIMAIL_API_KEY; tools can send email, read and search messages, delete inboxes, and may auto-create a default inbox when inbox_id is omitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.8 (source: server release metadata) <br>
+Risk: The MCP server needs an API key that can access and mutate ClawAIMail email data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, revocable, least-privilege key and avoid connecting sensitive mailboxes.
+
+Risk: The skill can send email and permanently delete inboxes.
+
+Mitigation: Require human confirmation before sending messages or deleting inboxes.
+
+Risk: The install command may resolve the latest npm package instead of a reviewed exact package version.
+
+Mitigation: Pin the npm package to a reviewed exact version before deployment.
+
+## Reference(s):
+
+- [ClawAIMail Website](https://clawaimail.com)
+- [ClawAIMail API Docs](https://clawaimail.com/docs/)
+- [clawaimail-mcp npm Package](https://www.npmjs.com/package/clawaimail-mcp)
+- [ClawHub Skill Page](https://clawhub.ai/joansongjr/skills/clawaimail)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Configuration, Shell commands]
+
+**Output Format:** [MCP text responses containing formatted JSON, plus Markdown setup guidance with command and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a CLAWAIMAIL_API_KEY secret for API-backed email operations.]
+
+## Skill Version(s):
+
+0.2.8 (source: evidence.release.version; artifact versions differ: SKILL.md 0.2.7, package.json/server.json 0.2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

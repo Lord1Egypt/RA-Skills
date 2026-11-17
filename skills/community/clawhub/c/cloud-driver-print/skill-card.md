@@ -1,50 +1,70 @@
-## Description: <br>
-用于局域网打印机场景的客户端技能。打印 DOCX/EXCEL/PPT/PDF/图片等类型文件 到网络打印机（9100端口），支持发现、驱动搜索、云端上传、云端转打印数据并通过 9100 下发。Agent 自动化场景下一行命令搞定。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A client-side printing skill for LAN printers that helps agents discover printers, search drivers, upload DOCX, Excel, PPT, PDF, and image files to a cloud rendering service, and send rendered print data to network printers on port 9100.
 
-## Publisher: <br>
-[zimsoft](https://clawhub.ai/user/zimsoft) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zimsoft](https://clawhub.ai/user/zimsoft)
 
-## Use Case: <br>
-Developers and automation agents use this skill to discover LAN printers, select cloud printer drivers, upload printable documents for conversion, and submit rendered print data to network printers. It is intended for DOCX, spreadsheet, presentation, PDF, and image printing workflows where cloud-assisted driver rendering is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads documents and printer metadata to any.webprinter.cn for cloud-assisted conversion and rendering. <br>
-Mitigation: Use it only with files and printer metadata that are approved for that provider, and avoid confidential or regulated documents unless the provider's handling, retention, and access controls have been reviewed. <br>
-Risk: The skill can use CDF_PRINT_API_KEY or other sensitive credentials for cloud print requests. <br>
-Mitigation: Scope credentials to the minimum required access, store them in the environment rather than source files, and rotate or revoke them if they are exposed. <br>
-Risk: The skill can submit real print jobs to LAN printers over TCP/9100. <br>
-Mitigation: Require the operator or calling agent to confirm target printer, file, copies, color, and duplex settings before running print commands in shared or production environments. <br>
-Risk: Raw TCP/9100 fallback behavior can send binary data directly to printers and may disrupt devices if used incorrectly. <br>
-Mitigation: Use the documented cloud rendering path and reserve raw TCP/9100 fallback testing for trusted test printers only. <br>
+## Use Case:
 
+Developers and automation agents use this skill to automate document printing to known or newly discovered LAN printers, including driver lookup, cloud conversion, print rendering, and delivery of rendered data to the printer.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zimsoft/cloud-driver-print) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zimsoft) <br>
-- [EPSON L6270 Series access reference](artifact/references/epson-l6270-experience.md) <br>
-- [_pfs empty fileUrl debug notes](artifact/references/pfs-empty-fileurl-debug.md) <br>
-- [Printer identification with ipptool](artifact/references/printer-identification-ipptool.md) <br>
-- [Cloud print API troubleshooting notes](artifact/references/session-20260515-pfs-cvturl.md) <br>
-- [Cloud print service](https://any.webprinter.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local printer records and may submit real print jobs to a target network printer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill uploads user documents to a cloud print service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with non-sensitive documents until explicit upload and print confirmation is added.
+
+Risk: The skill sends live print jobs to network printers.
+
+Mitigation: Run it only against trusted printers and require users or operators to confirm target printer IP, driver, and print settings before execution.
+
+Risk: A cloud-returned fileUrl could expose the API token if the URL scheme or host is not validated before download.
+
+Mitigation: Validate the fileUrl scheme and trusted host before attaching Authorization headers or downloading rendered print data.
+
+Risk: Rendered print downloads may be unexpectedly large or empty.
+
+Mitigation: Bound download sizes and fail closed when rendered data is empty before sending anything to the printer.
+
+Risk: Local document conversion uses a shared temporary directory.
+
+Mitigation: Use a private temporary directory for conversions and clean converted files after printing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zimsoft/skills/cloud-driver-print)
+- [Printer identification with ipptool](references/printer-identification-ipptool.md)
+- [EPSON L6270 Series integration notes](references/epson-l6270-experience.md)
+- [_pfs empty fileUrl troubleshooting](references/pfs-empty-fileurl-debug.md)
+- [Cloud print API troubleshooting log](references/session-20260515-pfs-cvturl.md)
+- [Cloud print service](https://any.webprinter.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May upload source documents to a cloud print service, download rendered print data, and send rendered data to a LAN printer.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

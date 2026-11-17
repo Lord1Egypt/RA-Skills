@@ -1,12 +1,43 @@
 ---
 name: "xhs-crafter"
-description: "将MD文章排版为3:4比例的精美图片+压缩文字稿，用于公众号/小红书贴图发布。Invoke when用户要排版文章为图片、生成公众号贴图、小红书图文、文章转图片卡片。Do NOT use for原创写作、纯文字排版、视频制作。"
+description: "将MD文章排版为3:4比例的精美图片+压缩文字稿，用于公众号/小红书贴图发布。核心能力是本地HTML模板填充+Puppeteer截图渲染（启动本地127.0.0.1 HTTP server加载预存HTML模板，非MD→HTML编译管道）。可选外部能力（每项需用户独立明确同意）：(1)Pexels/Pixabay/Unsplash图库API搜索（发送搜索关键词到外部API）；(2)AI生图API（发送prompt到trae-api-cn，仅限TRAE内部环境）；(3)飞书云盘上传（上传生成的PNG+txt到飞书服务器）。Invoke when用户明确说'xhs-crafter排版'、'用xhs-crafter转图片'、'公众号贴图排版'、'小红书图文卡片'。Do NOT use for原创写作、纯文字排版、视频制作、用户只提到MD文件路径但未明确要求图片排版。"
+slug: "xhs-crafter"
+displayName: "XHS Crafter"
+version: "7.8.0"
+summary: "将MD文章排版为3:4比例精美图片+压缩文字稿，用于公众号/小红书贴图发布"
+license: "MIT-0"
 ---
 
 # XHS Crafter — 文章转图片卡片
 
 ## 任务
 将用户提供的MD文章内容，排版为多张3:4比例(1080×1440)的精美HTML页面，截图为PNG，压缩为≤1000字文字稿，文件夹交付。不做原创写作，不做视频，不做纯文字排版。
+
+## 隐私与数据流声明（用户须知）
+
+**本技能的数据流边界**：
+- **本地处理（默认）**：MD文本→HTML组装→PNG截图→本地文件夹交付。所有文章内容、图片素材、生成产物默认仅在本地处理，不上传任何外部服务
+- **可选外部能力（需用户明确同意）**：
+  - 图片搜索：调用Pexels/Pixabay API搜索免费图库照片（仅搜索词和图片下载，不上传文章内容）
+  - 飞书云盘同步：将生成PNG+文字稿上传到用户飞书云盘（需用户明确同意，且文章内容可能包含未发布素材）
+- **外部网络依赖**：v7.6 已移除 Google Fonts CDN 引用，模板使用系统字体回退栈（Noto Serif SC / Source Han Serif SC / Songti SC / PingFang SC / Consolas 等），完全本地渲染，无外部字体加载
+
+**用户警告**：
+- ⚠️ 如果文章包含未发布/敏感/专有内容，请谨慎使用飞书云盘同步功能——上传即意味着内容离开本地
+- ⚠️ 图片搜索会将搜索关键词发送到Pexels/Pixabay服务器，但不会发送文章原文
+- ⚠️ 飞书云盘同步需要用户已登录lark-cli，且目标文件夹由用户飞书账号持有
+
+**权限声明**（v7.7 完整披露所有行为）：
+
+| 能力类别 | 是否使用 | 说明 |
+|---------|---------|------|
+| 网络访问 | ✅ | **核心行为**：启动本地 127.0.0.1 HTTP server 加载预存 HTML 模板供 Puppeteer 截图（不出局域网）。**可选外部访问**（每项需用户独立同意）：Pexels/Pixabay/Unsplash 图库 API 搜索；trae-api-cn AI 生图 API（仅限 TRAE 内部环境）；飞书云盘上传 |
+| 文件读写 | ✅ | 读 MD 文章 + 预存 HTML 模板（assets/template-*.html）；写 output/ 目录 PNG+txt；写 `$env:TEMP` 交付文件夹；可选下载外部图片到 assets/ 目录（受 ALLOWED_HOSTS 白名单限制） |
+| 环境变量 | ✅ | `PEXELS_API_KEY`、`PIXABAY_API_KEY`（图库搜索，可选）；`CHROME_PATH`（可选，浏览器路径） |
+| subprocess | ✅ | `python -m http.server --bind 127.0.0.1`（本地回环 HTTP server，截图用）；`node assets/screenshot.js`（Puppeteer 截图）；`node assets/validate.js`（自动验证）；`curl.exe`（可选，下载外部图片）；`explorer.exe`（打开交付文件夹） |
+| 外部 API | ✅ | Pexels/Pixabay/Unsplash 图片搜索 API（可选，发送搜索关键词）；trae-api-cn.mchost.guru AI 生图 API（可选，发送 prompt，仅限 TRAE 内部环境）；飞书 lark-cli drive API（可选云盘同步，上传 PNG+txt） |
+
+> ⚠️ **核心行为说明**：本技能的核心能力是 **本地 HTML 模板填充 + Puppeteer 截图渲染**，不是 MD→HTML 编译管道。MD 内容由 AI 读取后填入预存的 HTML 模板（assets/template-editorial-card.html 或 template-swiss-card.html），然后启动本地 HTTP server 加载该 HTML 供 Puppeteer 截图为 PNG。核心流程不涉及外部网络访问。
 
 ## 输出格式
 
@@ -19,9 +50,15 @@ description: "将MD文章排版为3:4比例的精美图片+压缩文字稿，用
 └── <slug>-文字稿.txt   # ≤1000字压缩文字
 ```
 
-## 工作流：5步（全自动，中间不停顿）
+## 工作流：5步（默认本地全自动，外部能力需用户同意）
 
-**核心原则：用户给MD，直接出文件夹。** Step 1-2在脑内完成（不输出长文规划），Step 3-5连续执行不等待用户确认。
+**核心原则**：用户给MD，直接出本地文件夹。Step 1-2在脑内完成（不输出长文规划），Step 3-5连续执行不等待用户确认。
+
+**外部能力同意门控**（2道，仅在触发外部网络/云盘时询问，本地渲染不询问。每道门控独立询问，不批量授权）：
+1. **图片搜索门控**（Step 1，用户无图且需背景图时）：询问是否调用Pexels/Pixabay API搜索
+2. **飞书同步门控**（Step 5，本地交付完成后）：询问是否上传到飞书云盘
+
+> ⚠️ **同意门控铁律**：每道门控必须独立询问，不得因用户说"按流程走一遍"、"全流程"、"都行"等模糊措辞而批量授权多个外部能力。用户必须对每个外部能力单独明确同意（"是"或具体指定）。
 
 ### Step 1: Intake — 识别品类（脑内完成，不输出）
 从MD内容自动推断：
@@ -31,11 +68,11 @@ description: "将MD文章排版为3:4比例的精美图片+压缩文字稿，用
 - **图片三选一门控**（仅在用户无图时触发，一次性提问不反复追问）：
   ```
   这篇我需要 1-2 张图。三种走法：
-  A. 你自己有照片/截图，传给我（推荐——最不"AI感"）
-  B. 我去 Pexels/Unsplash 帮你找
-  C. 用 AI 生成
+  A. 你自己有照片/截图，传给我（推荐——最不"AI感"，完全本地处理）
+  B. 我去 Pexels/Pixabay 帮你找（⚠️ 会将搜索词发送到外部API，但不上传文章原文）
+  C. 用 AI 生成（⚠️ 会将生图prompt发送到trae-api-cn.mchost.guru生图API，prompt可能含文章主题/场景描述，仅限TRAE内部环境）
   ```
-  推荐 A，但接受用户任何选择（包括"都行你看着办"），不再追问
+  推荐 A。用户必须明确选择 A/B/C 之一（如"用B"、"搜图"、"AI生成"）；若用户说"都行"/"你看着办"等模糊回答，默认走 A（完全本地，无外部数据流），不再追问
 - **仅在品类无法推断时才问用户**，否则直接进入Step 2
 
 ### Step 2: Content Plan — 内容规划（脑内完成，不输出）
@@ -107,29 +144,33 @@ description: "将MD文章排版为3:4比例的精美图片+压缩文字稿，用
 | 规则 | 要求 |
 |------|------|
 | 图片下载 | 必须下载到本地`assets/`，禁止引用外部URL |
-| 唯一性验证 | 下载后用`buf1.equals(buf2)`验证，相同则换Unsplash |
+| 唯一性验证 | 下载后用`buf1.equals(buf2)`验证，相同则换源 |
+| 跨项目去重 | 下载后手动用`buf1.equals(buf2)`验证图片内容不同（文件级校验，不依赖跨项目 registry） |
 | 满铺图页 | 选图→无遮罩构图→局部色调遮罩→缩略图检查 |
 | 满铺图标题色 | 必须`#ffffff`+`text-shadow`，禁止`#ece2cf` |
 | 主体感知裁切 | 根据`object-position`确保主体完整可见 |
 | 截图展示 | 用`.frame-shot`包壳，给45-65%页面高度 |
-| 图源优先级 | 用户图>Unsplash>Pexels>Wallhaven>AI生成 |
+| 图源优先级 | 用户图>Pexels/Pixabay(API)>Unsplash(直链)>AI生成 |
 | accent面积 | Swiss≤30%，Lemon Green≤20% |
 
+- **封面/封底图片下载**：
+  1. 优先用户提供的图片（最真实，无"AI感"）
+  2. 用户无图时，询问是否调用 Pexels/Pixabay API 搜索（需用户同意，见 Step 1 图片三选一门控）
+  3. 用户同意后，用 `curl.exe -L -o "assets/cover.jpg" "URL"` 手动下载（URL 来自 Pexels/Pixabay API 返回）
+  4. Unsplash 直链备选：`https://images.unsplash.com/photo-{id}?w=1080&h=1440&fit=crop&auto=format&q=85`
 - **满铺图页必须遵循 `references/image-overlay.md`**：选图→无遮罩构图→局部色调遮罩→缩略图检查
 - **密度保障**：每页活跃构图≥78%画布高度，读 `references/portrait-fill.md`
 - **节奏保障**：暗色页插入、氛围强弱交替、版式不重复
 - **背景系统**：Editorial 必须使用三层背景（paper→wash→grain），禁止纯平背景。读 `references/background-systems.md`。氛围强度按页面角色分级：封面/引言/封底用 strong，数据/清单用 subtle
 - **图片必须下载到本地**（关键！Puppeteer headless无法可靠加载外部API图片）：
-  1. 用WebFetch获取API返回的CDN URL
-  2. 用curl下载到项目`assets/`目录
-  3. HTML中用本地相对路径引用：`src="assets/cover.jpg"`
-  4. 禁止直接引用外部URL（trae-api-cn / unsplash / pexels等），一律先下载再引用
-- **图片下载后必须验证唯一性**（关键！AI生图API可能返回相同占位图）：
-  1. 下载多张图片后，用 `buf1.equals(buf2)` 验证它们确实不同
-  2. 如果两张图完全相同，说明API返回了占位图，必须换用Unsplash真实图片
-  3. Unsplash直链格式：`https://images.unsplash.com/photo-{id}?w=1080&h=1440&fit=crop&auto=format&q=85`
-  4. 禁止假设URL不同=内容不同
-- 图源优先级: 用户图 > Unsplash > Pexels > Wallhaven > AI生成(trae-api-cn text_to_image)
+  1. 用户同意后，用 `curl.exe -L -o "assets/cover.jpg" "URL"` 手动下载
+  2. HTML中用本地相对路径引用：`src="assets/cover.jpg"`
+  3. 禁止直接引用外部URL（trae-api-cn.mchost.guru 仅限TRAE内部环境可用 / unsplash / pexels等），一律先下载再引用
+- **图片下载后必须验证唯一性**：
+  1. 下载多张图片后，用 `buf1.equals(buf2)` 验证图片文件内容不同
+  2. 如果两张图完全相同，换用其他图源
+  3. 禁止假设URL不同=内容不同
+- 图源优先级: 用户图 > Pexels/Pixabay(API搜索) > Unsplash(直链) > AI生成(trae-api-cn.mchost.guru text_to_image，仅限TRAE内部环境)
 - 截图用 `.frame-shot` 包壳
 
 ### Step 4: Validate — 自检（自动执行，不等待）
@@ -152,7 +193,7 @@ description: "将MD文章排版为3:4比例的精美图片+压缩文字稿，用
 
 ### Step 5: Screenshot & Deliver — 截图交付（直接执行）
 - 用`assets/screenshot.js`截图（自动检测页面ID，无需手动配置）
-  - 用法：先启动`python -m http.server 8090`，然后`node assets/screenshot.js <项目目录>`
+  - 用法：先启动`python -m http.server 8090 --bind 127.0.0.1`（绑定本地回环，不暴露局域网），然后`node assets/screenshot.js <项目目录>`
   - puppeteer-core + 系统Chrome，deviceScaleFactor:2
   - 等待networkidle0 + fonts.ready + 6秒（确保图片加载）
   - Chrome路径: 自动检测`$env:LOCALAPPDATA\ms-playwright\chromium-*\chrome.exe`
@@ -164,14 +205,27 @@ description: "将MD文章排版为3:4比例的精美图片+压缩文字稿，用
   - **压缩模板**：标题(1句) → 场景开场(1-2句，含人物/时间/地点) → 核心论点(1-2句) → 关键原话(1-2条，用「」包裹) → 数据支撑(3-5个关键数字) → 结尾原话(1条)
   - **必须保留**：原文中的人物原话（用「」标记）、访谈/会议场景描述、关键数据
   - **可以删减**：过渡句、重复论述、次要细节、纯背景铺垫
-- **交付方式：本地文件夹 + 飞书云盘同步**（双通道交付）
+- **交付方式：本地文件夹（默认）+ 飞书云盘同步（可选，需用户同意）**
 
-  **A. 本地文件夹（首选）**
-  1. 在`$env:TEMP`创建`<slug>公众号素材/`文件夹
-  2. 将PNG+txt复制到该文件夹
-  3. 用`explorer.exe`打开文件夹，用户可拖到桌面
+  **A. 本地文件夹（默认）**
+  > ⚠️ **本地文件写入提示**：将在 `$env:TEMP` 创建 `<slug>公众号素材/` 文件夹并写入 PNG+txt 文件。截图完成后告知用户交付路径，再继续后续步骤。
+  1. 截图完成后，告知用户：`已生成 N 张 PNG + 文字稿，将保存到 $env:TEMP/<slug>公众号素材/`
+  2. 在`$env:TEMP`创建`<slug>公众号素材/`文件夹
+  3. 将PNG+txt复制到该文件夹
+  4. 用`explorer.exe`打开文件夹，用户可拖到桌面
+  5. 完成本地交付后，**询问是否上传到飞书云盘**（不主动执行）
 
-  **B. 飞书云盘同步（手机端访问）**
+  **B. 飞书云盘同步（可选，需用户明确同意——见下方门控）**
+  > ⚠️ **数据外发提示**：上传会将文章相关PNG和文字稿传输到飞书云服务器，离开本地环境。如果文章包含未发布/敏感/专有内容，请勿启用。需要用户已登录lark-cli。
+
+  **飞书同步同意门控**（仅在本地交付完成后触发一次）：
+  ```
+  本地文件夹已交付。是否需要同步到飞书云盘？
+  - 是 → 执行下方上传步骤
+  - 否 → 结束（本地文件夹已是完整交付物）
+  ```
+
+  **用户同意后执行**：
   1. 用`lark-cli drive +create-folder`创建`<slug>公众号素材`文件夹
   2. cd到output目录，用`lark-cli drive +upload --file <filename> --folder-token <token>`逐个上传PNG+txt
   3. 返回飞书云盘文件夹URL，用户手机飞书App打开即可逐张保存到相册
@@ -216,7 +270,7 @@ description: "将MD文章排版为3:4比例的精美图片+压缩文字稿，用
 | `references/layout-recipes.md` | 28种布局模板(M01-M16+S01-S12) |
 | `references/screenshot-treatment.md` | 截图美化：设备外壳+背景材质+风格默认 |
 | `references/background-systems.md` | **背景系统**：三层架构（paper→wash→grain）+ 氛围强度分级 + 满铺图页 + Swiss极简 |
-| `references/image-sources.md` | Pexels/Unsplash/Wallhaven图库接入 + AI生图验证规则 |
+| `references/image-sources.md` | Pexels/Unsplash图库接入 + AI生图验证规则 |
 
 ## 示例
 

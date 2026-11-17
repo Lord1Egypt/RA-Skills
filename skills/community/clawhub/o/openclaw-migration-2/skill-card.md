@@ -1,40 +1,53 @@
-## Description: <br>
-Migrate a user's OpenClaw customization footprint into Hermes Agent, including compatible memories, SOUL.md, command allowlists, user skills, selected workspace assets, and a report of items that could not be migrated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Migrate a user's OpenClaw customization footprint into Hermes Agent, including compatible memories, SOUL.md, command allowlists, user skills, selected workspace assets, and a report of items that could not be migrated.
 
-## Publisher: <br>
-[AgungPrabowo123](https://clawhub.ai/user/AgungPrabowo123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agungprabowo123](https://clawhub.ai/user/agungprabowo123)
 
-## Use Case: <br>
-Developers and Hermes Agent users use this skill to plan and run an OpenClaw-to-Hermes migration with dry-run previews, conflict choices, and post-run reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The migration helper can move API keys or tokens when secret-related options are enabled or when compatible configuration categories are included. <br>
-Mitigation: Run a dry run first, use user-data mode unless secret migration is intentional, and inspect any imported .env or configuration changes before keeping them. <br>
-Risk: The migration can change personal Hermes state, including SOUL.md, memories, command allowlists, imported skills, workspace instructions, and selected workspace assets. <br>
-Mitigation: Back up ~/.hermes, resolve conflicts explicitly, and review report.json, summary.md, imported skills, command allowlists, memories, SOUL.md, workspace instructions, and .env changes after execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to migrate an OpenClaw setup into Hermes Agent with dry-run previews, conflict handling, and a structured migration report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AgungPrabowo123/openclaw-migration-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured migration-report summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local file migration, configuration updates, dry-run inspection, conflict handling, and review of generated reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The migration can copy sensitive tokens or environment values in ways broader than the user-facing instructions imply.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run a dry run first, avoid modes that copy tokens unless explicitly acceptable, and protect the target Hermes .env with owner-only permissions.
+
+Risk: Imported command allowlist entries can persist broad execution permissions.
+
+Mitigation: Inspect command allowlist entries before importing them and remove entries that are not needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agungprabowo123/skills/openclaw-migration-2)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown, text]
+
+**Output Format:** [Markdown with inline shell commands and structured migration summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide file migration, configuration updates, conflict choices, dry-run review, and post-run reporting.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

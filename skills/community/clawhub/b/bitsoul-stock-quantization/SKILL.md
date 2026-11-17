@@ -90,9 +90,12 @@ token 可前往 <https://www.aicodingyard.com> 免费注册申请，并配置在
 
 ## 安装
 
-使用前先安装 Python 依赖，依赖参考assets/requirements
+使用前先安装 Python 依赖：
 
-首次安装需要执行初始化操作，在设置好BITSOUL_TOKEN后，请进行初始化操作，可参考scripts/data_fetcher
+```bash
+pip install -r assets/requirements.txt
+```
+首次安装需要执行初始化操作，在设置好BITSOUL_TOKEN后，请运行scripts/data_fetcher.py
 
 # 注意事项
 * api接口文档主要参考 references/API_FOR_LLM.md 对应的代码文件是scripts/stock_api.py 和 scripts/define.py

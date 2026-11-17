@@ -1,41 +1,50 @@
-## Description: <br>
-Automates Blender via Python scripts to create 3D assets, renders, and animations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Blender via Python scripts to create 3D assets, renders, and animations.
 
-## Publisher: <br>
-[FlayZz](https://clawhub.ai/user/FlayZz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flayzz](https://clawhub.ai/user/flayzz)
 
-## Use Case: <br>
-Developers and designers use this skill to have an agent generate Blender Python automation for 3D assets, renders, animations, and GLB/GLTF web exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Blender automation can run local Python rendering scripts and write generated assets into project folders. <br>
-Mitigation: Review generated scripts and commands before execution, and specify a dedicated output folder or unique filenames when existing assets must be preserved. <br>
-Risk: The workflow depends on local Blender and PowerShell binaries being available. <br>
-Mitigation: Confirm the required binaries are installed and available before relying on the skill for asset generation. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate Blender Python scripts, run background renders, and export web-ready 3D assets such as GLB or GLTF files for project use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FlayZz/visual-automation) <br>
-- [FlayZz publisher profile](https://clawhub.ai/user/FlayZz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with Python script snippets, shell commands, and asset path guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Blender Python scripts and generated visual assets in project asset folders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Generated Blender scripts can write rendered assets directly into project folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated scripts and output paths before execution, especially in important workspaces.
+
+## Reference(s):
+
+- [ClawHub Visual Automation Skill Page](https://clawhub.ai/flayzz/skills/visual-automation)
+- [ClawHub flayzz Publisher Profile](https://clawhub.ai/user/flayzz)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with Python and shell command snippets; generated files may include rendered images, animations, GLB, or GLTF assets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Blender and pwsh binaries when executing the workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

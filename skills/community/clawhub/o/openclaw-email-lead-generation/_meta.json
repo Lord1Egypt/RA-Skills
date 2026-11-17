@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn70jf7w9b0nqceqq2zgc2b4qx80c681",
-  "slug": "openclaw-email-lead-generation",
+  "name": "email-lead-gen",
   "version": "1.0.1",
-  "publishedAt": 1771573203971
+  "description": "OpenClaw Email Lead Generation — complete outreach and pipeline system. v1.0.1: timezone support, per-domain rate limits, email warmup, compliance/unsubscribe, audit logging, inbound HTML stripping, credential security hardening, temp-file email body.",
+  "author": "Jeff J Hunter",
+  "homepage": "https://jeffjhunter.com",
+  "license": "MIT",
+  "tags": ["leadgen", "email", "outreach", "pipeline", "crm", "sales", "leads", "sequences", "cron", "automation"],
+  "emoji": "🎯"
 }

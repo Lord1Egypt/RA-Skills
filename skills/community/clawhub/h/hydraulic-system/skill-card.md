@@ -1,41 +1,58 @@
-## Description: <br>
-Guides users in Chinese through generating hydraulic and pneumatic system CAD production sheets using the Jixietools guest workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates CAD drawings for hydraulic and pneumatic systems through a guided Chinese workflow that collects parameters, calls the JixieTools API, and tracks production-sheet status.
 
-## Publisher: <br>
-[liv09370](https://clawhub.ai/user/liv09370) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liv09370](https://clawhub.ai/user/liv09370)
 
-## Use Case: <br>
-External users and engineering teams use this skill to collect hydraulic and pneumatic system parameters, call Jixietools APIs, review calculated values, and create a guest-accessible CAD production sheet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Design parameters are sent to jixietools.com and the generated result link is guest-accessible. <br>
-Mitigation: Use only data appropriate for that service, and avoid confidential engineering details unless the service's privacy and access controls meet the user's needs. <br>
-Risk: The workflow relies on external API availability and responses for calculations and production-sheet creation. <br>
-Mitigation: Review returned parameters and output links with the user before treating generated CAD production sheets as final. <br>
+## Use Case:
 
+External users and developers use this skill to guide creation of hydraulic and pneumatic CAD drawing production sheets on JixieTools, including product selection, parameter collection, calculation review, incremental edits, and status polling.
 
-## Reference(s): <br>
-- [Jixietools API base URL](https://jixietools.com/api/v1) <br>
-- [ClawHub release page](https://clawhub.ai/liv09370/hydraulic-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API calls] <br>
-**Output Format:** [Chinese Markdown with tables, inline shell commands, API responses, progress updates, and result links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates guest-accessible Jixietools production-sheet links after user-provided parameters are submitted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: Shell commands may be assembled from user-entered or API-provided values, creating command-injection exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a structured HTTP client or safely serialized request payloads instead of shell templates, and review generated commands before execution.
+
+Risk: Engineering inputs and production-sheet identifiers are sent to jixietools.com.
+
+Mitigation: Avoid entering confidential engineering data unless the user accepts sending that data to the external service.
+
+Risk: Polling the production-sheet status too frequently can create unnecessary service load.
+
+Mitigation: Keep the documented 5-second polling interval and stop polling once the production sheet reaches a final status.
+
+## Reference(s):
+
+- [Hydraulic System ClawHub Skill Page](https://clawhub.ai/liv09370/skills/hydraulic-system)
+- [JixieTools API Base URL](https://jixietools.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls]
+
+**Output Format:** [Chinese Markdown with tables, inline shell commands, JSON examples, and status links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains filename and guest_code state across calculation, production-sheet creation, and polling steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

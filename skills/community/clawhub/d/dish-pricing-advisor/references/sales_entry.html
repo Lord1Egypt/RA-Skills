@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>菜单销量数据录入与分析</title>
+<!-- 纯本地单文件：无任何外部脚本/网络请求，数据全程不出浏览器 -->
+<style>
+  :root{
+    --bg:#f5f7fa; --card:#ffffff; --ink:#1f2937; --muted:#6b7280;
+    --line:#e5e7eb; --brand:#2563eb; --brand2:#0ea5e9; --good:#16a34a;
+    --warn:#d97706; --bad:#dc2626; --soft:#eff6ff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.55;padding:24px}
+  .wrap{max-width:1080px;margin:0 auto}
+  h1{font-size:22px;margin:0 0 4px}
+  h2{font-size:17px;margin:28px 0 10px;padding-left:10px;border-left:4px solid var(--brand)}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:8px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px;
+    box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+  button{background:var(--brand);color:#fff;border:0;border-radius:8px;padding:8px 14px;font-size:13px;cursor:pointer}
+  button.ghost{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+  button.sec{background:var(--muted)}
+  input[type=file]{font-size:13px}
+  textarea{width:100%;height:90px;border:1px solid var(--line);border-radius:8px;padding:8px;font-family:monospace;font-size:12px}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin-top:6px}
+  th,td{border:1px solid var(--line);padding:6px 8px;text-align:left}
+  th{background:var(--soft);font-weight:600}
+  td input{border:1px solid var(--line);border-radius:6px;padding:4px;width:100%}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:8px 0}
+  .stat{background:var(--soft);border-radius:10px;padding:12px}
+  .stat .k{color:var(--muted);font-size:12px}
+  .stat .v{font-size:20px;font-weight:700;margin-top:2px}
+  .bar{background:var(--line);border-radius:6px;height:18px;position:relative;overflow:hidden;min-width:80px}
+  .bar > span{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--brand2))}
+  .barlbl{display:flex;align-items:center;gap:8px;margin:4px 0}
+  .barlbl .nm{width:90px;flex:none}
+  .barlbl .pc{width:54px;flex:none;text-align:right;color:var(--muted);font-size:12px}
+  .finding{background:#fffbeb;border-left:4px solid var(--warn);padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px}
+  .advice{border-left:4px solid var(--brand);background:var(--soft);padding:8px 12px;border-radius:6px;margin:6px 0;font-size:13px}
+  .hidden{display:none}
+  svg{width:100%;height:200px;background:#fff;border:1px solid var(--line);border-radius:8px}
+  .foot{color:var(--muted);font-size:12px;margin-top:20px;border-top:1px dashed var(--line);padding-top:10px}
+  .tag{display:inline-block;padding:1px 7px;border-radius:99px;font-size:11px;background:#fee2e2;color:var(--bad)}
+  .tag.up{background:#dcfce7;color:var(--good)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>📊 菜单销量数据录入与分析</h1>
+  <div class="sub">三种录入方式：① 手动填表　② 粘贴 Excel/CSV 文本（Tab 分隔）　③ 上传 .csv 文件（Excel 数据请先「另存为 .csv」）。分析全部在浏览器本地完成，无任何外部网络请求，数据不上传。</div>
+
+  <div class="card">
+    <div class="toolbar">
+      <button onclick="loadSample()">加载示例</button>
+      <button class="ghost" onclick="addRow()">+ 新增一行</button>
+      <span style="flex:1"></span>
+      <label class="sec" style="padding:8px 12px;border-radius:8px;color:#fff;cursor:pointer">
+        上传 CSV<input type="file" id="file" accept=".csv" onchange="handleFile(event)" style="display:none">
+      </label>
+      <button onclick="analyze()">▶ 开始分析</button>
+    </div>
+    <div class="sub">支持列：日期、菜品、品类、时段、销量（销售额可选）。表头可用中文或英文，顺序不限。</div>
+    <textarea id="paste" placeholder="也可在此粘贴从 Excel 复制的数据（Tab 分隔），再点『从粘贴区载入』"></textarea>
+    <div class="toolbar" style="margin-top:8px">
+      <button class="ghost" onclick="fromPaste()">从粘贴区载入</button>
+      <button class="ghost" onclick="clearAll()">清空</button>
+    </div>
+    <div style="max-height:320px;overflow:auto">
+      <table id="grid">
+        <thead><tr>
+          <th style="width:120px">日期</th><th style="width:130px">菜品</th>
+          <th style="width:90px">品类</th><th style="width:80px">时段</th>
+          <th style="width:80px">销量</th><th style="width:90px">销售额(可选)</th><th style="width:40px"></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="result" class="hidden">
+    <h2>1. 销量数据概览</h2>
+    <div class="card"><div class="cards" id="overview"></div></div>
+
+    <h2>2. 菜品畅销 / 滞销排名</h2>
+    <div class="card">
+      <div class="sub">畅销 Top 5</div>
+      <table id="topT"></table>
+      <div class="sub" style="margin-top:10px">滞销 Bottom</div>
+      <table id="slowT"></table>
+    </div>
+
+    <h2>3. 销量趋势变化</h2>
+    <div class="card">
+      <div id="trendNote" class="sub"></div>
+      <svg id="trend" viewBox="0 0 680 200" preserveAspectRatio="none"></svg>
+    </div>
+
+    <h2>4. 品类占比</h2>
+    <div class="card" id="catBars"></div>
+
+    <h2>5. 时段分布</h2>
+    <div class="card" id="periodBars"></div>
+
+    <h2>6. 关键发现</h2>
+    <div class="card" id="findings"></div>
+
+    <h2>7. 滞销菜品优化建议</h2>
+    <div class="card" id="advice"></div>
+
+    <h2>8. 菜单结构调整建议</h2>
+    <div class="card" id="struct"></div>
+
+    <div class="toolbar">
+      <button class="ghost" onclick="exportJSON()">导出 JSON</button>
+      <button class="ghost" onclick="exportCSV()">导出 CSV</button>
+    </div>
+  </div>
+
+  <div class="foot">
+    本报告为描述性统计（排名/趋势/占比/分布），不含成本与利润维度。结合「菜单工程定价模块」（补充食材成本/售价）可进一步输出波士顿矩阵与盈利级建议。数据仅留存在本地浏览器。
+  </div>
+</div>
+
+<script>
+const SAMPLE = [
+  ["2026-07-01","招牌酸菜鱼","主菜","午市",58],
+  ["2026-07-01","招牌酸菜鱼","主菜","晚市",66],
+  ["2026-07-01","鲜榨橙汁","饮品","午市",62],
+  ["2026-07-01","鲜榨橙汁","饮品","晚市",71],
+  ["2026-07-01","秘制炖蹄花","主菜","午市",2],
+  ["2026-07-01","秘制炖蹄花","主菜","晚市",3],
+  ["2026-07-02","招牌酸菜鱼","主菜","午市",61],
+  ["2026-07-02","招牌酸菜鱼","主菜","晚市",70],
+  ["2026-07-02","鲜榨橙汁","饮品","午市",64],
+  ["2026-07-02","鲜榨橙汁","饮品","晚市",73],
+  ["2026-07-02","秘制炖蹄花","主菜","午市",1],
+  ["2026-07-02","秘制炖蹄花","主菜","晚市",2],
+];
+
+function addRow(vals){
+  const tb=document.querySelector('#grid tbody');
+  const tr=document.createElement('tr');
+  const def=vals||["","","未分类","全天","",""];
+  def.forEach((v,i)=>{
+    const td=document.createElement('td');
+    const inp=document.createElement('input');
+    inp.value=v;
+    td.appendChild(inp); tr.appendChild(td);
+  });
+  const td=document.createElement('td');
+  const b=document.createElement('button');
+  b.textContent='×'; b.className='sec'; b.style.padding='2px 8px';
+  b.onclick=()=>tr.remove();
+  td.appendChild(b); tr.appendChild(td);
+  tb.appendChild(tr);
+}
+function clearAll(){document.querySelector('#grid tbody').innerHTML='';}
+function loadSample(){clearAll();SAMPLE.forEach(r=>addRow(r));}
+
+function parseDate(s){
+  if(!s) return null;
+  s=String(s).trim();
+  const fmts=["YYYY-MM-DD","YYYY/MM/DD","MM-DD","MM/DD","YYYYMMDD"];
+  const norm=s.replace(/\//g,'-');
+  let m=norm.match(/(\d{4})-(\d{2})-(\d{2})/);
+  if(m) return new Date(+m[1],+m[2]-1,+m[3]);
+  m=norm.match(/(\d{4})(\d{2})(\d{2})/);
+  if(m) return new Date(+m[1],+m[2]-1,+m[3]);
+  m=norm.match(/(\d{2})-(\d{2})/);
+  if(m) return new Date(2000,+m[1]-1,+m[2]);
+  return null;
+}
+function num(x){ if(x===""||x==null) return null; const v=parseFloat(String(x).replace(/[^\d.\-]/g,'')); return isNaN(v)?null:v; }
+
+function collect(){
+  const rows=[...document.querySelectorAll('#grid tbody tr')];
+  const recs=[];
+  rows.forEach(tr=>{
+    const c=[...tr.querySelectorAll('input')];
+    const dish=c[1].value.trim();
+    const qty=num(c[4].value);
+    if(!dish||qty==null||qty<0) return;
+    recs.push({
+      date:parseDate(c[0].value), dateRaw:c[0].value,
+      dish, category:c[2].value.trim()||"未分类",
+      period:c[3].value.trim()||"全天",
+      qty, rev:num(c[5].value)
+    });
+  });
+  return recs;
+}
+
+function fromPaste(){
+  const t=document.getElementById('paste').value.trim();
+  if(!t) return;
+  clearAll();
+  t.split(/\n+/).forEach(line=>{
+    const cells=line.split(/\t|,/).map(s=>s.trim());
+    if(cells.length<2) return;
+    // 尝试识别表头
+    addRow(cells.slice(0,6));
+  });
+  // 若首行疑似表头则删除
+  const first=document.querySelector('#grid tbody tr');
+  if(first){
+    const head=first.querySelectorAll('input')[1].value;
+    if(/菜品|菜名|name|dish/i.test(head)) first.remove();
+  }
+}
+
+function handleFile(e){
+  const f=e.target.files[0]; if(!f) return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    const data=ev.target.result;
+    const rows=csvToRows(data);
+    ingestRows(rows);
+  };
+  reader.readAsText(f);
+}
+function csvToRows(text){
+  return text.split(/\n+/).map(l=>l.split(/[,;\t]/).map(s=>s.trim()));
+}
+function ingestRows(rows){
+  if(!rows||!rows.length) return;
+  // 表头识别
+  const head=rows[0].map(h=>String(h).toLowerCase());
+  const map={date:-1,dish:-1,cat:-1,period:-1,qty:-1,rev:-1};
+  head.forEach((h,i)=>{
+    if(/日期|date|day/.test(h)) map.date=i;
+    if(/菜品|菜名|name|dish/.test(h)) map.dish=i;
+    if(/品类|类别|category/.test(h)) map.cat=i;
+    if(/时段|餐段|period/.test(h)) map.period=i;
+    if(/销量|份|数量|qty|quantity|sales/.test(h)) map.qty=i;
+    if(/销售额|营收|revenue/.test(h)) map.rev=i;
+  });
+  const hasH = (map.dish>=0||map.qty>=0);
+  const start=hasH?1:0;
+  clearAll();
+  for(let r=start;r<rows.length;r++){
+    const row=rows[r];
+    const dish = map.dish>=0?row[map.dish]:row[1];
+    const qty = map.qty>=0?row[map.qty]:row[4];
+    if(!dish||qty===""||qty==null) continue;
+    addRow([
+      map.date>=0?row[map.date]:"",
+      dish||"",
+      map.cat>=0?row[map.cat]:"未分类",
+      map.period>=0?row[map.period]:"全天",
+      qty||"",
+      map.rev>=0?row[map.rev]:""
+    ]);
+  }
+}
+
+// ---------- 分析 ----------
+function analyze(){
+  const recs=collect();
+  if(recs.length<1){alert('请先录入至少一条有效的销量数据（需含菜品与销量）。');return;}
+  const out=compute(recs);
+  render(out);
+  document.getElementById('result').classList.remove('hidden');
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+
+function compute(recs){
+  const totalQty=recs.reduce((s,r)=>s+r.qty,0);
+  const dates=[...new Set(recs.filter(r=>r.date).map(r=>r.date.getTime()))].sort();
+  const dateArr=dates.map(t=>new Date(t));
+  const nDays=dateArr.length;
+  const dishes=[...new Set(recs.map(r=>r.dish))];
+  // 排名
+  const bd={};
+  recs.forEach(r=>{const d=bd[r.dish]=bd[r.dish]||{dish:r.dish,qty:0,rev:0};d.qty+=r.qty;if(r.rev)d.rev+=r.rev;});
+  const ranked=Object.values(bd).sort((a,b)=>b.qty-a.qty);
+  ranked.forEach(d=>{d.share=d.qty/totalQty;d.avg= d.qty/nDays;});
+  const avgDish=totalQty/ranked.length;
+  const slow=ranked.filter(d=>d.qty<avgDish*0.5).sort((a,b)=>a.qty-b.qty).slice(0,5);
+  const slowFinal= slow.length?slow:ranked.slice(-5);
+  // 趋势
+  const daily={};recs.forEach(r=>{if(r.date)daily[r.date.getTime()]=(daily[r.date.getTime()]||0)+r.qty;});
+  const dailySeries=dateArr.map(d=>[d,daily[d.getTime()]||0]);
+  let trendOverall=null;
+  if(dailySeries.length>=2){const f=dailySeries[0][1],l=dailySeries[dailySeries.length-1][1];trendOverall=f?(l-f)/f:0;}
+  const rising=[],falling=[];
+  dishes.forEach(name=>{
+    const dr=recs.filter(r=>r.dish===name&&r.date).sort((a,b)=>a.date-b.date);
+    if(dr.length>=2){
+      const h=Math.floor(dr.length/2);
+      const first=dr.slice(0,h).reduce((s,r)=>s+r.qty,0);
+      const second=dr.slice(h).reduce((s,r)=>s+r.qty,0);
+      const ch=first?(second-first)/first:0;
+      if(ch>0.1) rising.push({dish:name,change:ch});
+      if(ch<-0.1) falling.push({dish:name,change:ch});
+    }
+  });
+  rising.sort((a,b)=>b.change-a.change);falling.sort((a,b)=>a.change-b.change);
+  // 品类
+  const bc={};recs.forEach(r=>{const c=bc[r.category]=bc[r.category]||{category:r.category,qty:0,set:new Set()};c.qty+=r.qty;c.set.add(r.dish);});
+  const catList=Object.values(bc).map(c=>({category:c.category,qty:c.qty,share:c.qty/totalQty,n:c.set.size,avg:c.qty/c.set.size})).sort((a,b)=>b.qty-a.qty);
+  // 时段
+  const bp={};recs.forEach(r=>{const p=bp[r.period]=bp[r.period]||{period:r.period,qty:0};p.qty+=r.qty;});
+  const periodList=Object.values(bp).map(p=>({period:p.period,qty:p.qty,share:p.qty/totalQty})).sort((a,b)=>b.qty-a.qty);
+  const peak=periodList[0]?periodList[0].period:"—";
+
+  const findings=[];
+  if(ranked[0])findings.push(`销量冠军为「${ranked[0].dish}」，累计 ${ranked[0].qty} 份，占全菜单 ${(ranked[0].share*100).toFixed(1)}%，存在一定集中度。`);
+  if(ranked.length>1&&ranked[ranked.length-1].qty>0)findings.push(`滞销末端为「${ranked[ranked.length-1].dish}」，仅 ${ranked[ranked.length-1].qty} 份，约为冠军的 ${(ranked[ranked.length-1].qty/ranked[0].qty*100).toFixed(1)}%。`);
+  if(trendOverall!=null){const dir=trendOverall>=0?'上升':'下滑';findings.push(`整体日销量由 ${dailySeries[0][1]} 升至 ${dailySeries[dailySeries.length-1][1]} 份，区间整体${dir} ${(Math.abs(trendOverall)*100).toFixed(1)}%。`);}
+  if(catList[0])findings.push(`品类集中度：${catList[0].category} 占比 ${(catList[0].share*100).toFixed(1)}%（${catList[0].n} 道），${catList[0].share>0.5?'品类结构偏单一，建议丰富其他品类':'品类结构较均衡'}。`);
+  if(peak&&peak!=='全天')findings.push(`高峰时段为「${peak}」，贡献 ${(periodList[0].share*100).toFixed(1)}% 销量，建议在该时段强化备货与前厅主推。`);
+  if(rising.length)findings.push(`上升趋势菜品：${rising.slice(0,3).map(t=>t.dish).join('、')}，可重点培养为下一波招牌。`);
+  if(falling.length)findings.push(`下滑预警菜品：${falling.slice(0,3).map(t=>t.dish).join('、')}，需排查原因（季节/口味/竞品/陈列）。`);
+
+  return {recs,totalQty,nDays,dateMin:dateArr[0],dateMax:dateArr[dateArr.length-1],
+    avgDaily:totalQty/nDays,ranked,top:ranked.slice(0,5),slow:slowFinal,avgDish,
+    dailySeries,trendOverall,rising,falling,catList,periodList,peak,findings};
+}
+
+function render(o){
+  // 概览
+  document.getElementById('overview').innerHTML=`
+    <div class="stat"><div class="k">菜品数</div><div class="v">${o.recs.length?new Set(o.recs.map(r=>r.dish)).size:0}</div></div>
+    <div class="stat"><div class="k">统计天数</div><div class="v">${o.nDays}</div></div>
+    <div class="stat"><div class="k">总销量(份)</div><div class="v">${o.totalQty}</div></div>
+    <div class="stat"><div class="k">日均销量</div><div class="v">${Math.round(o.avgDaily)}</div></div>`;
+  // 排名
+  const topRows=o.top.map((d,i)=>`<tr><td>${i+1}</td><td>${d.dish}</td><td>${d.qty}</td><td>${(d.share*100).toFixed(1)}%</td><td>${Math.round(d.avg)}</td></tr>`).join('');
+  document.getElementById('topT').innerHTML=`<thead><tr><th>排名</th><th>菜品</th><th>累计销量</th><th>占比</th><th>日均</th></tr></thead><tbody>${topRows}</tbody>`;
+  const slowRows=o.slow.map(d=>`<tr><td>${d.dish}</td><td>${d.qty}</td><td>${(d.share*100).toFixed(1)}%</td><td>${Math.round(d.avg)}</td></tr>`).join('');
+  document.getElementById('slowT').innerHTML=`<thead><tr><th>菜品</th><th>累计销量</th><th>占比</th><th>日均</th></tr></thead><tbody>${slowRows}</tbody>`;
+  // 趋势
+  document.getElementById('trendNote').innerHTML=o.trendOverall!=null?`整体日销量趋势：区间整体${o.trendOverall>=0?'上升':'下滑'} <b>${(Math.abs(o.trendOverall)*100).toFixed(1)}%</b>`:'数据不足（需≥2个交易日）无法判定趋势。';
+  drawTrend(o.dailySeries);
+  // 品类
+  document.getElementById('catBars').innerHTML=o.catList.map(c=>`
+    <div class="barlbl"><span class="nm">${c.category}</span>
+    <span class="bar"><span style="width:${(c.share*100).toFixed(0)}%"></span></span>
+    <span class="pc">${(c.share*100).toFixed(1)}%</span></div>
+    <div class="sub">销量 ${c.qty} 份 · ${c.n} 道 · 均销 ${Math.round(c.avg)} 份/道</div>`).join('');
+  // 时段
+  const ph=o.periodList.length>1||(o.periodList[0]&&o.periodList[0].period!=='全天');
+  document.getElementById('periodBars').innerHTML= ph? o.periodList.map(p=>`
+    <div class="barlbl"><span class="nm">${p.period}</span>
+    <span class="bar"><span style="width:${(p.share*100).toFixed(0)}%"></span></span>
+    <span class="pc">${(p.share*100).toFixed(1)}%</span></div>`).join('')+
+    `<div class="sub">高峰时段：<b>${o.peak}</b></div>`
+    : '<div class="sub">数据未含时段字段，跳过时段分布分析。</div>';
+  // 发现
+  document.getElementById('findings').innerHTML=o.findings.map(f=>`<div class="finding">${f}</div>`).join('');
+  // 建议
+  document.getElementById('advice').innerHTML=o.slow.map(d=>{const [a,n]=slowAdvice(d,o);return `<div class="advice"><b>${d.dish}</b>（${d.qty} 份）— <span class="tag">${a}</span> ${n}</div>`;}).join('');
+  // 结构
+  document.getElementById('struct').innerHTML=structAdvice(o).map(s=>`<div class="advice">${s}</div>`).join('');
+  window.__last=o;
+}
+function slowAdvice(d,o){
+  if(d.share<0.02)return['下架 / 替换','销量占比极低（<2%），长期占用菜单位与后厨产能，建议直接下架或以新菜替换。'];
+  if(d.share<0.05)return['重做 or 重推','销量偏低，先小批量测试改良（口味/份量/摆盘）或由服务员主推，观察 2 周无起色则下架。'];
+  return['调位 / 组合','销量中等偏下，建议调整至菜单黄金视线位或加入套餐组合，提升曝光与连带率。'];
+}
+function structAdvice(o){
+  const out=[];
+  if(o.catList[0]&&o.catList[0].share>0.5)out.push(`<b>品类多元化</b>：${o.catList[0].category} 占比 ${(o.catList[0].share*100).toFixed(1)}% 过高，结构偏单一；建议引入 1-2 道其他品类菜品分散风险。`);
+  if(o.rising.length)out.push(`<b>培育上升款</b>：${o.rising.slice(0,3).map(t=>t.dish).join('、')} 呈上升趋势，建议加大曝光（菜单置顶/前厅主推/套餐绑定）。`);
+  if(o.falling.length)out.push(`<b>抢救下滑款</b>：${o.falling.slice(0,3).map(t=>t.dish).join('、')} 持续下滑，需排查季节/口味/竞品/陈列原因，必要时重做或下架。`);
+  if(o.peak&&o.peak!=='全天')out.push(`<b>时段运营</b>：高峰「${o.peak}」贡献 ${(o.periodList[0].share*100).toFixed(1)}% 销量，建议在该时段强化备货、人员排班与前厅主推。`);
+  if(o.top[0]&&o.top[0].share>0.3)out.push(`<b>降低依赖</b>：销量冠军「${o.top[0].dish}」占比 ${(o.top[0].share*100).toFixed(1)}% 过高，存在单品依赖风险；可通过第二招牌分流。`);
+  if(!out.length)out.push('当前菜单销量结构较为均衡，无紧急结构性风险；维持现有节奏并持续监控趋势即可。');
+  return out;
+}
+function drawTrend(series){
+  const svg=document.getElementById('trend');
+  if(!series.length){svg.innerHTML='';return;}
+  const W=680,H=200,pad=30;
+  const vals=series.map(s=>s[1]);
+  const max=Math.max(...vals),min=Math.min(...vals);
+  const span=(max-min)||1;
+  const n=series.length;
+  const pts=series.map((s,i)=>{
+    const x=pad+(W-2*pad)*(n>1?i/(n-1):0.5);
+    const y=H-pad-(H-2*pad)*((s[1]-min)/span);
+    return [x,y];
+  });
+  const line=pts.map(p=>p.join(',')).join(' ');
+  const labels=series.map((s,i)=>`<text x="${pts[i][0]}" y="${H-10}" font-size="9" fill="#6b7280" text-anchor="middle">${s[0].getMonth()+1}/${s[0].getDate()}</text>`).join('');
+  const dots=pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="#2563eb"/>`).join('');
+  svg.innerHTML=`<polyline points="${line}" fill="none" stroke="#2563eb" stroke-width="2"/>
+    <line x1="${pad}" y1="${H-pad}" x2="${W-pad}" y2="${H-pad}" stroke="#e5e7eb"/>
+    ${dots}${labels}`;
+}
+function exportJSON(){
+  if(!window.__last)return;
+  const o=window.__last;
+  const data={overview:{totalQty:o.totalQty,nDays:o.nDays,avgDaily:Math.round(o.avgDaily)},
+    ranking:o.ranked.map(d=>({dish:d.dish,qty:d.qty,share:+(d.share*100).toFixed(1)})),
+    trend:o.trendOverall,findings:o.findings};
+  download('menu_sales.json',JSON.stringify(data,null,2),'application/json');
+}
+function exportCSV(){
+  if(!window.__last)return;
+  const o=window.__last;
+  let s="菜品,累计销量,占比%\n"+o.ranked.map(d=>`${d.dish},${d.qty},${(d.share*100).toFixed(1)}`).join('\n');
+  download('menu_sales.csv',s,'text/csv');
+}
+function download(name,content,type){
+  const blob=new Blob([content],{type});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();
+}
+// 初始化示例
+loadSample();
+</script>
+</body>
+</html>

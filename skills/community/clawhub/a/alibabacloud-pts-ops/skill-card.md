@@ -1,54 +1,67 @@
-## Description: <br>
-Alibaba Cloud PTS (Performance Testing Service) scenario-based skill for creating and managing stress testing scenarios, supporting both PTS native HTTP/HTTPS stress testing and JMeter-based stress testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Cloud PTS (Performance Testing Service) scenario-based skill for creating and managing PTS native HTTP/HTTPS and JMeter stress testing scenarios.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and performance engineers use this skill to create, run, monitor, verify, and clean up Alibaba Cloud PTS stress testing scenarios for HTTP/HTTPS and JMeter workloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stress tests can send significant traffic to target systems and may affect availability if aimed at unauthorized or production targets. <br>
-Mitigation: Use the skill only for systems the user owns or is authorized to test, confirm target URLs and load settings before starting, and begin with low concurrency. <br>
-Risk: Cloud permissions can create, start, stop, and delete PTS and JMeter scenarios. <br>
-Mitigation: Use least-privilege RAM users or temporary roles and grant only the PTS actions required for the intended workflow. <br>
-Risk: Debug logs, scenario definitions, JMeter files, or test data may contain secrets or personal data. <br>
-Mitigation: Avoid real secrets or personal data in scenarios and treat debug logs and test artifacts as sensitive. <br>
-Risk: PTS scene names are not unique and blind retries after timeouts can create duplicate scenarios or duplicate test runs. <br>
-Mitigation: Track SceneId values, check existing status before writes, and disambiguate uncertain outcomes with the user before retrying. <br>
+## Use Case:
 
+Developers and cloud operations engineers use this skill to create, run, monitor, verify, and clean up Alibaba Cloud PTS native and JMeter stress testing scenarios through Aliyun CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/alibabacloud-pts-ops) <br>
-- [Aliyun CLI installation and configuration](references/cli-installation-guide.md) <br>
-- [PTS API and CLI command reference](references/related-apis.md) <br>
-- [PTS RAM permission policies](references/ram-policies.md) <br>
-- [PTS operation verification methods](references/verification-method.md) <br>
-- [PTS scene JSON structure reference](references/pts-scene-json-reference.md) <br>
-- [Skill acceptance criteria](references/acceptance-criteria.md) <br>
-- [Alibaba Cloud CLI documentation](https://help.aliyun.com/zh/cli/) <br>
-- [Alibaba Cloud PTS API overview](https://help.aliyun.com/zh/pts/developer-reference/api-pts-2020-10-20-overview) <br>
-- [Create a PTS stress testing scenario](https://help.aliyun.com/zh/pts/performance-test-pts-2-0/user-guide/create-a-stress-testing-scenario-6) <br>
-- [Create a JMeter scenario](https://help.aliyun.com/zh/pts/performance-test-pts-2-0/user-guide/create-a-jmeter-scenario) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Aliyun CLI command guidance and scenario JSON examples for user-approved PTS operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: release evidence) <br>
+Risk: Persistent Aliyun CLI automatic plugin installation can expand trust for future CLI use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a verified, pinned Aliyun CLI installation method and avoid global automatic plugin installation unless that persistent trust expansion is accepted.
+
+Risk: Stress testing can send high-impact traffic to target systems.
+
+Mitigation: Run tests only against systems the user owns or is explicitly authorized to test, use a narrowly scoped RAM role, and require explicit confirmation before execution.
+
+Risk: Scenario JSON and debug logs may expose credentials or sensitive test data.
+
+Mitigation: Avoid real credentials in scenario JSON and redact debug logs before sharing.
+
+## Reference(s):
+
+- [Aliyun CLI Installation and Configuration Guide](references/cli-installation-guide.md)
+- [PTS Scene JSON Reference](references/pts-scene-json-reference.md)
+- [PTS RAM Policies](references/ram-policies.md)
+- [PTS Related APIs and CLI Commands](references/related-apis.md)
+- [PTS Verification Methods](references/verification-method.md)
+- [Acceptance Criteria: PTS Stress Testing Scenario Skill](references/acceptance-criteria.md)
+- [Official Aliyun CLI Documentation](https://help.aliyun.com/zh/cli/)
+- [PTS API Documentation](https://help.aliyun.com/zh/pts/developer-reference/api-pts-2020-10-20-overview)
+- [Create a Stress Testing Scenario](https://help.aliyun.com/zh/pts/performance-test-pts-2-0/user-guide/create-a-stress-testing-scenario-6)
+- [Create a JMeter Scenario](https://help.aliyun.com/zh/pts/performance-test-pts-2-0/user-guide/create-a-jmeter-scenario)
+- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-pts-ops)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance includes user confirmation, idempotency checks, verification steps, and cleanup practices for PTS and JMeter scenarios.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

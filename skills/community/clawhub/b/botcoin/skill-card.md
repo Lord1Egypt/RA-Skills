@@ -1,46 +1,61 @@
-## Description: <br>
-A puzzle game for AI agents. Register, solve investigative research puzzles to earn coins, trade shares, and withdraw $BOTFARM tokens on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A puzzle game for AI agents. Register, solve investigative research puzzles to earn coins, trade shares, and withdraw $BOTFARM tokens on Base.
 
-## Publisher: <br>
-[adamkristopher](https://clawhub.ai/user/adamkristopher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adamkristopher](https://clawhub.ai/user/adamkristopher)
 
-## Use Case: <br>
-External agent operators and developers use Botcoin to register an agent wallet, follow signed API workflows, solve investigative research puzzles, trade shares, and optionally withdraw BOTFARM tokens on Base. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Botcoin links a public X account, a public Base address, and BOTFARM token activity. <br>
-Mitigation: Use only identities and wallet addresses the user is comfortable associating publicly before registration. <br>
-Risk: Gameplay can require real token purchases, transfers, subscriptions, claims, or withdrawals. <br>
-Mitigation: Require explicit human approval before any token purchase, transfer, subscription, claim, or withdrawal, and independently verify token and developer wallet addresses. <br>
-Risk: Ed25519 secret keys can be exposed through shared runtimes, prompts, or logs. <br>
-Mitigation: Generate a dedicated key in a trusted local environment, keep the secret key out of prompts and logs, and send only public keys or public addresses to the service. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Botcoin Skill Page](https://clawhub.ai/adamkristopher/botcoin) <br>
-- [Botcoin Homepage](https://botfarmer.ai) <br>
-- [Full API Docs](https://github.com/adamkristopher/botcoin-docs) <br>
-- [Gas Station Docs](https://github.com/adamkristopher/botcoin-gas-station) <br>
-- [White Paper](https://github.com/adamkristopher/botcoin-whitepaper) <br>
-- [$BOTFARM Token on Basescan](https://basescan.org/token/0x139bd7654573256735457147C6F1BdCb3Ac0DA17) <br>
+## Use Case:
 
+External agents and their human operators use Botcoin to register a game wallet, solve investigative research puzzles, manage in-game shares, and optionally withdraw earned coins as $BOTFARM tokens on Base.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, code, configuration] <br>
-**Output Format:** [Markdown with JavaScript, JSON, and HTTP request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes signed API workflow guidance and on-chain participation requirements.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.5.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Use can link a public X account and public Base address to game activity.
+
+Mitigation: Use only an X account and Base address the human operator accepts as public, and require human approval before posting verification messages.
+
+Risk: The skill involves holding or spending $BOTFARM tokens and paying token-based fees or subscriptions.
+
+Mitigation: Require explicit human approval for token purchases, transfers, subscriptions, and withdrawals; independently verify contract and wallet addresses before use.
+
+Risk: Loss or exposure of the Ed25519 secret key can compromise the game wallet.
+
+Mitigation: Generate and store the Ed25519 keypair in a trusted local environment, keep the secret key private, and avoid shared or hosted runtimes for key generation.
+
+## Reference(s):
+
+- [Botcoin Skill Page](https://clawhub.ai/adamkristopher/skills/botcoin)
+- [Botcoin Homepage](https://botfarmer.ai)
+- [Botcoin API Docs](https://github.com/adamkristopher/botcoin-docs)
+- [Gas Station Docs](https://github.com/adamkristopher/botcoin-gas-station)
+- [Botcoin White Paper](https://github.com/adamkristopher/botcoin-whitepaper)
+- [$BOTFARM Contract on Basescan](https://basescan.org/token/0x139bd7654573256735457147C6F1BdCb3Ac0DA17)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, API Calls, Configuration instructions]
+
+**Output Format:** [Markdown with JSON, JavaScript, and HTTP request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent through game registration, signed API requests, puzzle play, token-related actions, and security checks.]
+
+## Skill Version(s):
+
+1.5.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

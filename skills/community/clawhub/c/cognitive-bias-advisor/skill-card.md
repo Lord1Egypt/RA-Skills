@@ -1,55 +1,66 @@
-## Description: <br>
-Cognitive Bias Advisor is a Chinese-language coaching skill that routes decision-making, learning, action, communication, influence, and management questions into cognitive-bias diagnostics and practical strategy outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cognitive Bias Adivsor helps users diagnose cognitive biases across decision-making, learning, action, communication, influence, and management, then produces structured assessments, strategy recommendations, and suggested phrasing.
 
-## Publisher: <br>
-[jacksu](https://clawhub.ai/user/jacksu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacksu](https://clawhub.ai/user/jacksu)
 
-## Use Case: <br>
-External users and employees can use this skill to examine choices, learning blocks, procrastination, communication, persuasion, and team-management situations through cognitive-bias prompts. The skill helps surface bias signals and returns structured, actionable strategy guidance without making the final decision for the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may activate the skill during ordinary decision, communication, or management conversations. <br>
-Mitigation: Confirm the user's intended domain before starting the diagnostic flow and allow the user to decline or switch domains. <br>
-Risk: Persuasion and influence templates could be used to pressure, mislead, or manipulate people. <br>
-Mitigation: Use the templates only in transparent, non-coercive situations and preserve the skill's stated principles of no harm, transparency, and reciprocal self-checking. <br>
-Risk: Users may disclose sensitive personal, workplace, financial, or health details while seeking advice. <br>
-Mitigation: Ask for only the minimum context needed and avoid collecting unnecessary sensitive details. <br>
-Risk: Bias diagnoses and strategy outputs may be mistaken for professional advice or a final decision. <br>
-Mitigation: Frame outputs as advisory prompts for user reflection and avoid deciding on the user's behalf. <br>
+## Use Case:
 
+External users and workplace practitioners use this skill to structure cognitive-bias self-checks and receive practical strategies for decisions, learning, execution, communication, influence, and management. The skill supports reflection and planning, but it does not make decisions for the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jacksu/skills/cognitive-bias-advisor) <br>
-- [README](artifact/README.md) <br>
-- [Skill workflow](artifact/SKILL.md) <br>
-- [Decision domain workflow](artifact/references/domain-decision.md) <br>
-- [Learning domain workflow](artifact/references/domain-learning.md) <br>
-- [Action domain workflow](artifact/references/domain-action.md) <br>
-- [Communication domain workflow](artifact/references/domain-communication.md) <br>
-- [Influence domain workflow](artifact/references/domain-influence.md) <br>
-- [Management domain workflow](artifact/references/domain-management.md) <br>
-- [Doubt-avoidance tendency reference](artifact/references/bias-doubt-avoidance.md) <br>
-- [Inconsistency-avoidance tendency reference](artifact/references/bias-inconsistency-avoidance.md) <br>
-- [Liking/loving tendency reference](artifact/references/bias-liking-tendency.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown coaching responses with structured question cards, diagnostic summaries, and strategy recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language outputs; may use interactive selection cards where supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.2 (source: ClawHub release metadata; artifact frontmatter reports 2.8.0) <br>
+Risk: A documented install path points to a different package name than the ClawHub release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only the ClawHub package named cognitive-bias-advisor unless the separate package has been independently verified.
+
+Risk: Influence and persuasion modules can produce operational tactics that may be misused in coercive communication.
+
+Mitigation: Use those modules only for transparent, non-harmful communication that respects the other person's autonomy.
+
+Risk: Broad decision, learning, and communication triggers may activate the workflow for loosely related user requests.
+
+Mitigation: Confirm the user's intended domain before applying a diagnostic workflow or generating recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jacksu/skills/cognitive-bias-advisor)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Decision domain workflow](artifact/references/domain-decision.md)
+- [Learning domain workflow](artifact/references/domain-learning.md)
+- [Action domain workflow](artifact/references/domain-action.md)
+- [Communication domain workflow](artifact/references/domain-communication.md)
+- [Influence domain workflow](artifact/references/domain-influence.md)
+- [Management domain workflow](artifact/references/domain-management.md)
+- [Bias checklists and strategies](artifact/references/checklists-and-strategies.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, option-card prompts, diagnostic summaries, strategy checklists, and suggested phrasing]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language coaching workflow with domain routing and staged diagnostic questions]
+
+## Skill Version(s):
+
+2.10.2 (source: server release metadata; artifact frontmatter reports 2.11.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

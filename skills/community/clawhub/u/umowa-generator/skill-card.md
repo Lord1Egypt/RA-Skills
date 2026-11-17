@@ -1,42 +1,64 @@
-## Description: <br>
-Generates Polish civil-law contract drafts for individuals and small businesses, including mandate, specific-work, rental, sales, and preliminary agreement templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UmowaGenerator helps users in Poland generate Polish legal contract templates for common agreements such as service, work-for-hire, rental, preliminary purchase, and vehicle sale contracts.
 
-## Publisher: <br>
-[tomasz-pedzierski-infinity](https://clawhub.ai/user/tomasz-pedzierski-infinity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomasz-pedzierski-infinity](https://clawhub.ai/user/tomasz-pedzierski-infinity)
 
-## Use Case: <br>
-Individuals, small businesses, and agents assisting Polish users can use this skill to draft common contract templates from party details, subject matter, payment terms, dates, and property or vehicle information. Generated contracts should be reviewed before signing or relying on them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Poland <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Contract drafts may be incomplete, outdated, or unsuitable for a specific legal situation. <br>
-Mitigation: Review generated contracts with appropriate legal judgment before relying on them. <br>
-Risk: Drafting contracts can involve sensitive personal, tax, address, payment, property, or vehicle data. <br>
-Mitigation: Use placeholders while drafting and enter real data only when needed. <br>
-Risk: PRO payment, PDF export, and email-sending workflows are described but are outside the reviewed code. <br>
-Mitigation: Verify how any separate payment, export, or email workflow stores and transmits personal data before using it. <br>
+## Use Case:
 
+External users, individuals, and small businesses in Poland use this skill to draft contract templates by providing party details, agreement type, subject matter, compensation, and dates. The generated documents should be treated as templates for review rather than legal advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tomasz-pedzierski-infinity/umowa-generator) <br>
+### Deployment Geography for Use:
 
+Poland
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown contract drafts, with optional Python console output and usage commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include placeholders for personal, payment, property, or vehicle details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated contracts may be mistaken for legal advice or final legally sufficient documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated contracts as templates and have a qualified reviewer validate them before relying on them.
+
+Risk: The workflow asks for personal identifiers and address data, including PESEL, NIP, names, and residential addresses.
+
+Mitigation: Minimize personal data entered into prompts, avoid unnecessary sharing, and handle generated documents according to applicable privacy requirements.
+
+Risk: The reviewed artifact advertises PRO PDF and email capabilities without evidence of a secure implemented workflow.
+
+Mitigation: Verify PDF or email handling separately before using those features for sensitive contracts.
+
+Risk: Several command-line paths appear broken according to the security review guidance.
+
+Mitigation: Run local tests and manually review generated output before relying on command-line results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomasz-pedzierski-infinity/skills/umowa-generator)
+- [ClawHub publisher profile](https://clawhub.ai/user/tomasz-pedzierski-infinity)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Artifact generator script](artifact/umowa_generator.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text contract-template content, with optional Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content may include Polish personal-data fields such as PESEL, NIP, names, and addresses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact script header)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

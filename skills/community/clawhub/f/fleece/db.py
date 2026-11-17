@@ -21,7 +21,8 @@ CREATE TABLE IF NOT EXISTS cards (
     rewards      TEXT    NOT NULL DEFAULT '',
     expiration   TEXT    NOT NULL DEFAULT '',
     image_url    TEXT    NOT NULL DEFAULT '',
-    date_added   TEXT    NOT NULL DEFAULT (date('now'))
+    date_added   TEXT    NOT NULL DEFAULT (date('now')),
+    fee_date     TEXT    NOT NULL DEFAULT ''
 );
 CREATE TABLE IF NOT EXISTS profile (
     key   TEXT PRIMARY KEY,
@@ -44,7 +45,7 @@ PROFILE_FIELDS = {
 }
 
 _COLUMNS = ("id", "name", "last_four", "annual_fee", "credit_limit",
-            "rewards", "expiration", "image_url", "date_added")
+            "rewards", "expiration", "image_url", "date_added", "fee_date")
 
 
 @contextmanager
@@ -62,6 +63,9 @@ def init_db() -> None:
     """Create tables if they don't exist. Safe to call on every startup."""
     with _conn() as con:
         con.executescript(_SCHEMA)
+        cols = {row[1] for row in con.execute("PRAGMA table_info(cards)")}
+        if "fee_date" not in cols:
+            con.execute("ALTER TABLE cards ADD COLUMN fee_date TEXT NOT NULL DEFAULT ''")
 
 
 def _row_to_dict(row: sqlite3.Row) -> dict:
@@ -108,9 +112,9 @@ def add_card(card: dict) -> None:
             con.execute(
                 """
                 INSERT INTO cards (name, last_four, annual_fee, credit_limit,
-                                   rewards, expiration, image_url, date_added)
+                                   rewards, expiration, image_url, date_added, fee_date)
                 VALUES (:name, :last_four, :annual_fee, :credit_limit,
-                        :rewards, :expiration, :image_url, :date_added)
+                        :rewards, :expiration, :image_url, :date_added, :fee_date)
                 """,
                 {
                     "name":         card.get("name", ""),
@@ -121,6 +125,7 @@ def add_card(card: dict) -> None:
                     "expiration":   card.get("expiration", ""),
                     "image_url":    card.get("image_url", ""),
                     "date_added":   card.get("date_added", ""),
+                    "fee_date":     card.get("fee_date", ""),
                 },
             )
         except sqlite3.IntegrityError:
@@ -216,6 +221,39 @@ def profile_as_context(cards: list[str] | None = None) -> str:
         parts.append(f"Current cards: {', '.join(cards)}")
 
     return " | ".join(parts) if parts else ""
+
+
+# ---------------------------------------------------------------------------
+# Renewal schedule
+# ---------------------------------------------------------------------------
+
+def get_renewal_schedule() -> list[dict]:
+    """Return cards with fee_date set, sorted by days until next annual fee renewal.
+
+    Each dict includes the card's fields plus:
+      next_renewal  — ISO date of the next renewal (this year or next)
+      days_until    — integer days from today
+    """
+    import datetime
+    today = datetime.date.today()
+    schedule = []
+    for card in get_cards():
+        fee_date = card.get("fee_date", "")
+        if not fee_date:
+            continue
+        try:
+            month, day = map(int, fee_date.split("-"))
+            next_renewal = datetime.date(today.year, month, day)
+            if next_renewal < today:
+                next_renewal = datetime.date(today.year + 1, month, day)
+            schedule.append({
+                **card,
+                "next_renewal": next_renewal.isoformat(),
+                "days_until":   (next_renewal - today).days,
+            })
+        except (ValueError, AttributeError):
+            continue
+    return sorted(schedule, key=lambda x: x["days_until"])
 
 
 # ---------------------------------------------------------------------------

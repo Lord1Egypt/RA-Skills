@@ -1,40 +1,53 @@
-## Description: <br>
-Summarize Telegram channel messages by topic with structured output. Used by executor sub-agents spawned by telegram-parser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize Telegram channel messages by topic with structured output. Used by executor sub-agents spawned by telegram-parser.
 
-## Publisher: <br>
-[sergeykolbasuk](https://clawhub.ai/user/sergeykolbasuk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergeykolbasuk](https://clawhub.ai/user/sergeykolbasuk)
 
-## Use Case: <br>
-Developers and operators using a Telegram parsing workflow can use this skill to have executor agents turn channel message batches into concise, topic-grouped Russian summaries with structured handling for job postings and technical news. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram credentials or message batches may expose channel content outside the intended scope. <br>
-Mitigation: Before installing or running the workflow, confirm that only the intended channels and date ranges are available to the agent. <br>
-Risk: Summaries may omit or condense details from Telegram posts. <br>
-Mitigation: Use the generated digest for triage and review the original message batch when exact wording, links, or full context matter. <br>
+## Use Case:
 
+Executor sub-agents use this skill to read Telegram message batches and produce concise, topic-grouped summaries in Russian. It is intended for summarizing channel updates, technical news, announcements, and job postings from batches supplied by a separate orchestrator.
 
-## Reference(s): <br>
-- [Telegram Summary on ClawHub](https://clawhub.ai/sergeykolbasuk/telegram-summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style structured summary text in Russian] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries are grouped by topic, capped at about five topics per digest, and omit post links unless explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Telegram message content and account access can include sensitive or unintended channel data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only intended message batches and limit any Telethon session or account access to appropriate channels before installing or running the skill.
+
+Risk: Concise topic grouping can omit nuance from source posts or merge distinct updates.
+
+Mitigation: Review source messages before using summaries for operational or business decisions, especially when the summary covers jobs, compensation, or rapidly changing news.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sergeykolbasuk/skills/telegram-summary)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown summary in Russian]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes channel, date or period, message count, topic sections, and optional job-posting bullets; links are omitted unless explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

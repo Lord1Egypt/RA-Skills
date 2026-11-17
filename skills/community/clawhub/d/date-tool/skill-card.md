@@ -1,38 +1,50 @@
-## Description: <br>
-Display the current local date and time from the command line using a user-supplied strftime format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Display the current local date and time from the command line in a user-supplied format.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and agents use this skill to produce simple current local date/time strings for command-line workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill text advertises timezone conversion, timestamp parsing, and date-difference calculations, but the included script only formats the current local time. <br>
-Mitigation: Treat this release as a local current-date formatter unless those additional workflows are tested or implemented. <br>
+## Use Case:
 
+Developers and command-line users use this skill to generate formatted current local date and time strings for logs, scripts, or quick checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/date-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or Markdown with inline shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Formats the current local datetime using Python strftime-compatible format strings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The documentation advertises timezone conversion, date differences, and timestamp parsing, but the included script only formats the current local datetime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for current local date/time formatting unless those advertised capabilities are implemented and reviewed in a later release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/date-tool)
+- [Publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text date/time strings and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Formats the current local datetime using Python strftime-compatible format strings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

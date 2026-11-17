@@ -1,39 +1,50 @@
-## Description: <br>
-Computes SHA-1 160-bit cryptographic hash values for file integrity checking and data fingerprinting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compute SHA-1 160-bit cryptographic hash values for files or piped input.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and operators use this skill to calculate SHA-1 hashes for local files when checking integrity or creating data fingerprints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation describes piped input and -b/-t options, but the scanned implementation only hashes a file path or the default a.txt file. <br>
-Mitigation: Run the skill with an explicit file path and do not rely on piped input or -b/-t behavior unless the skill is updated. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate SHA-1 fingerprints for files or byte streams when they need a legacy hash or non-security identifier.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/sha1-tool) <br>
-- [Publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text hash output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a 40-character hexadecimal SHA-1 digest for the selected local file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: SHA-1 is not appropriate for security-sensitive integrity, authenticity, or tamper-detection decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only for legacy fingerprints or non-security file identification; use SHA-256, SHA-512, HMAC, or digital signatures for security-sensitive workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/sha1-tool)
+- [Publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text SHA-1 hexadecimal digest, with Markdown guidance when explaining usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [SHA-1 digests are 160-bit values represented as 40 hexadecimal characters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

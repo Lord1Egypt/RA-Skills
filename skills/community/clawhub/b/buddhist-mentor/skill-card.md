@@ -1,48 +1,60 @@
-## Description: <br>
-A Buddhist philosophy mentoring skill that guides users through staged learning, core terminology, scripture themes, reflection, and practical life application. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Buddhist learning mentor that guides users through core concepts, scripture themes, staged study, reflective questioning, and practical application.
 
-## Publisher: <br>
-[mikewongonline](https://clawhub.ai/user/mikewongonline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikewongonline](https://clawhub.ai/user/mikewongonline)
 
-## Use Case: <br>
-External users and learners use this skill for structured Buddhist study, concept review, scripture-oriented discussion, reflective exercises, and gentle application of Buddhist ideas to everyday questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to remember Buddhist study progress and personal turning points, which may include sensitive personal reflections. <br>
-Mitigation: Use only with clear memory review and deletion controls, and avoid storing sensitive medical, mental-health, relationship, political, or intimate details. <br>
-Risk: Users may describe distress while seeking Buddhist guidance. <br>
-Mitigation: Preserve the artifact's boundary that the agent is an academic mentor and should direct users to qualified medical or mental-health professionals for serious concerns. <br>
+## Use Case:
 
+Learners and agents supporting Buddhist education use this skill to structure conversations around Buddhist terminology, scripture interpretation, staged learning, reflection, and everyday application. The skill is intended for educational mentorship, not medical, psychological, or definitive spiritual authority.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikewongonline/buddhist-mentor) <br>
-- [Publisher profile](https://clawhub.ai/user/mikewongonline) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Glossary.md](artifact/01_Core/Glossary.md) <br>
-- [Behavior_Constraints.md](artifact/02_Protocols/Behavior_Constraints.md) <br>
-- [Memory_Management.md](artifact/02_Protocols/Memory_Management.md) <br>
-- [Reflection_Protocol.md](artifact/02_Protocols/Reflection_Protocol.md) <br>
-- [Learning_Flow.md](artifact/03_Guides/Learning_Flow.md) <br>
-- [Modern_Bridge.md](artifact/03_Guides/Modern_Bridge.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational guidance and structured learning prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include staged learning summaries, reflective questions, scripture references, and practice-oriented homework.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill may ask an agent to remember personal learning details or life turning points without clear user controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with agents that disclose memory behavior and let users review or delete saved memories; avoid storing sensitive personal details.
+
+Risk: Users discussing distress could mistake Buddhist educational guidance for medical or psychological advice.
+
+Mitigation: Keep responses framed as educational mentorship and direct users with serious distress to qualified medical or mental health professionals.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mikewongonline/skills/buddhist-mentor)
+- [Skill Overview](artifact/SKILL.md)
+- [Buddhist Terminology Glossary](artifact/01_Core/Glossary.md)
+- [Behavior Constraints and Guardrails](artifact/02_Protocols/Behavior_Constraints.md)
+- [Memory and Forgetting Management](artifact/02_Protocols/Memory_Management.md)
+- [Reflection and Growth Cycle](artifact/02_Protocols/Reflection_Protocol.md)
+- [Buddhist Knowledge Learning Flowchart](artifact/03_Guides/Learning_Flow.md)
+- [Cross-Disciplinary Bridge](artifact/03_Guides/Modern_Bridge.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown conversational responses with structured questions, study steps, concept summaries, and practice prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese or bilingual explanations, scripture references, reflective questions, and short follow-up assignments.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

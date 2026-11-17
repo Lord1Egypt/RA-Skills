@@ -1,49 +1,54 @@
-## Description: <br>
-Amber gives OpenClaw agents phone capabilities for inbound answering, call screening, confirmed scheduling, optional outbound calling, and phone-task workflows configured through a short setup wizard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your agent a phone number. Amber answers calls, places confirmed outbound calls, completes phone tasks, logs transcripts, and exposes MCP tools.
 
-## Publisher: <br>
-[batthis](https://clawhub.ai/user/batthis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[batthis](https://clawhub.ai/user/batthis)
 
-## Use Case: <br>
-Developers and operators use Amber to add phone workflows to OpenClaw or MCP-capable agents, including call screening, confirmed scheduling, call history, CRM lookup, contacts lookup, and prepared outbound calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT No Attribution
 
-## Known Risks and Mitigations: <br>
-Risk: Amber handles sensitive communications and can retain or enrich caller data through call logs, transcripts, CRM records, calendar access, contacts lookup, and MCP tools. <br>
-Mitigation: Operate it as a sensitive communications system: disclose AI call handling and logging where required, set retention and deletion practices, review or correct CRM data, and limit Apple Contacts export to names and phone numbers unless extra fields are needed. <br>
-Risk: Provider credentials, webhook secrets, local runtime files, and local dashboards can expose phone, transcript, CRM, calendar, contacts, or account access if mishandled. <br>
-Mitigation: Use dedicated Twilio and OpenAI credentials, protect runtime/.env, rotate secrets as needed, keep bridge/dashboard/MCP access restricted to trusted local users, and review dependency or configuration changes before deployment. <br>
-Risk: Outbound calling and calendar updates can affect external people or operator commitments. <br>
-Mitigation: Keep code-enforced confirmation gates enabled, use operator approval for outbound calls, require explicit confirmation before calendar writes, and escalate payment or financial-commitment requests to the human operator. <br>
+## Use Case:
 
+Operators using OpenClaw or a configured MCP client use Amber to screen incoming calls, place confirmed outbound calls, book appointments, take messages, and review call history.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/batthis/amber-phone-agent) <br>
-- [Publisher Profile](https://clawhub.ai/user/batthis) <br>
-- [Source Homepage](https://github.com/batthis/amber-openclaw-voice-agent) <br>
-- [Amber Skill Documentation](SKILL.md) <br>
-- [Runtime Bridge Documentation](runtime/README.md) <br>
-- [Architecture Notes](references/architecture.md) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Interactive Setup Demo](https://asciinema.org/a/l1nOHktunybwAheQ) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce setup steps, runtime configuration guidance, MCP tool usage guidance, and local operational notes for phone, CRM, calendar, contacts, and call-history workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.5.39 (source: server release evidence) <br>
+Risk: ClawScan flags CRM access risks, privacy and control weaknesses, and capabilities it considers insufficiently disclosed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether calendar, CRM, and contact-export features are needed; check how records and call data are handled and confirm screening controls before use.
+
+Risk: The scan was partial: 51 of 74 components were fully inspected, with some analyzers degraded.
+
+Mitigation: Treat the scan as incomplete and review the components and data flows relevant to the features you plan to enable.
+
+## Reference(s):
+
+- [Amber ClawHub listing](https://clawhub.ai/batthis/skills/amber-phone-agent)
+- [Publisher profile](https://clawhub.ai/user/batthis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, API Calls]
+
+**Output Format:** [Voice interaction text and structured MCP tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include call status and history, transcripts, calendar availability, contact lookup, and CRM data when enabled.]
+
+## Skill Version(s):
+
+5.5.54 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

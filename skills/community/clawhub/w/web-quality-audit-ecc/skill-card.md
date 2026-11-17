@@ -1,45 +1,62 @@
-## Description: <br>
-Comprehensive web quality audit covering performance, accessibility, SEO, best practices, and browser automation testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive web quality audit covering performance, accessibility, SEO, best practices, and browser automation testing.
 
-## Publisher: <br>
-[huamu668](https://clawhub.ai/user/huamu668) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[huamu668](https://clawhub.ai/user/huamu668)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit websites and web projects for performance, accessibility, SEO, best practices, and browser-based validation issues before release or during ongoing quality review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can expose private page content, authentication state, screenshots, traces, or storage data to the agent during audits. <br>
-Mitigation: Use the skill only on pages the agent is allowed to inspect, avoid sensitive logged-in or regulated pages unless intended, and delete generated screenshots, snapshots, traces, and storage-state files after review. <br>
-Risk: Automated audit findings and browser-derived checks can be incomplete or misleading for production decisions. <br>
-Mitigation: Review findings manually, validate high-impact recommendations in a real browser, and run established accessibility, performance, SEO, and security checks before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit websites and web projects for performance, accessibility, SEO, best practices, and real-browser behavior. It returns prioritized findings with concrete recommendations and examples for remediation.
 
-## Reference(s): <br>
-- [Web Quality Audit on ClawHub](https://clawhub.ai/huamu668/web-quality-audit-ecc) <br>
-- [PinchTab Documentation](https://pinchtab.com/docs) <br>
-- [PinchTab GitHub](https://github.com/pinchtab/pinchtab) <br>
-- [Lighthouse](https://developers.google.com/web/tools/lighthouse) <br>
-- [Web Vitals](https://web.dev/vitals/) <br>
-- [axe DevTools](https://www.deque.com/axe/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown audit findings with inline code examples, shell commands, checklists, and JSON-style script output where applicable.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are grouped by severity and category, with summaries and recommended priorities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: PinchTab installation guidance may introduce supply-chain risk if run from an unreviewed or unpinned source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the PinchTab source and use pinned, verified releases; avoid curl-to-bash installation.
+
+Risk: Browser-control services can expose local browsing actions or page content if reachable beyond the local machine.
+
+Mitigation: Bind browser-control services to 127.0.0.1 and use an isolated browser profile with no saved credentials.
+
+Risk: Automated screenshots, text extraction, clicks, form fills, or JavaScript evaluation may affect authenticated or production sites.
+
+Mitigation: Require explicit approval before those actions on authenticated or production sites.
+
+## Reference(s):
+
+- [Web Quality Audit Skill Page](https://clawhub.ai/huamu668/skills/web-quality-audit-ecc)
+- [PinchTab Documentation](https://pinchtab.com/docs)
+- [PinchTab GitHub](https://github.com/pinchtab/pinchtab)
+- [Lighthouse](https://developers.google.com/web/tools/lighthouse)
+- [Web Vitals](https://web.dev/vitals/)
+- [axe DevTools](https://www.deque.com/axe/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with structured findings, code examples, shell commands, and optional JSON from the analyzer script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are categorized by severity and web quality area.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

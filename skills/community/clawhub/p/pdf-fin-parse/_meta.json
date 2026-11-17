@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn7fgkte3qrwnm93h63mkvpf3187cg34",
-  "slug": "pdf-fin-parse",
-  "version": "1.0.2",
-  "publishedAt": 1779792405662
+  "owner": "zhuyijun",
+  "slug": "pdf-finance-parser",
+  "displayName": "PDF Finance Parser (LAS + finance post-processing)",
+  "latest": {
+    "version": "0.3.0",
+    "notes": "engine switched from VLM-direct to LAS operator; added 6-layer finance post-processing (HTML-table parser / multi-header / cross-page merger / numeric normalizer / terms aligner / business-rule validator); OmniDocBench-style evaluation (TEDS / Edit_dist) + cross-page metrics (X-TEDS / CPR / MHC); HTML visualization report."
+  },
+  "history": [
+    {"version": "0.2.0", "notes": "rewrite: rule-based parsing removed; all extraction delegated to multimodal VLM"},
+    {"version": "0.1.0", "notes": "initial rule-based version (preserved under _legacy/)"}
+  ]
 }

@@ -1,38 +1,53 @@
-## Description: <br>
-Guides frontend agents through an observe-first debugging workflow for CSS, layout, and component behavior issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UI/front-end debugging methodology that makes agents inspect CSS, layout, and component behavior before changing code, reducing blind trial-and-error.
 
-## Publisher: <br>
-[chrsh44e](https://clawhub.ai/user/chrsh44e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chrsh44e](https://clawhub.ai/user/chrsh44e)
 
-## Use Case: <br>
-Developers and frontend agents use this skill to diagnose UI issues with DevTools or Playwright, understand the relevant mechanism, make a minimal fix, and verify affected scenarios before submitting changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Debugging with DevTools or Playwright can expose secrets, personal data, customer information, or create local screenshots of sensitive pages. <br>
-Mitigation: Inspect only the minimum data needed, avoid capturing secrets or personal information, and review or remove local screenshots and logs before sharing or committing them. <br>
+## Use Case:
 
+Developers and engineering agents use this skill when debugging frontend UI behavior, CSS, layout, or component interaction issues. It guides them through observing runtime behavior, understanding the mechanism, finding the root cause, making the smallest fix, and verifying related scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chrsh44e/ui-debug-methodology) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown with checklists, diagnostic steps, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce debugging observations, minimal fix recommendations, verification notes, and local screenshot commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger wording may cause the workflow to activate for many frontend issues and slow down simple fixes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply it when UI behavior, CSS, layout, or component interaction debugging is needed, and keep the investigation focused on the five-step workflow.
+
+Risk: Skipping runtime observation or final verification could preserve an incorrect diagnosis or incomplete UI fix.
+
+Mitigation: Use DevTools or Playwright to inspect the actual DOM, styles, and behavior before editing, then verify the original issue and related scenarios after the fix.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chrsh44e/skills/ui-debug-methodology)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Code]
+
+**Output Format:** [Markdown with checklists and JavaScript Playwright snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable files; the skill provides a frontend debugging workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

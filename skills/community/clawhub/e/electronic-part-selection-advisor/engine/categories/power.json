@@ -1,0 +1,888 @@
+{
+  "schema_version": "1.0",
+  "kind": "ppj-category",
+  "category": "power",
+  "display": "电源管理 / 开关稳压",
+  "verdict_prefix": "PM",
+  "source_version": "1.2",
+  "normative_source": "references/power-pin-to-pin-judgment.md",
+  "source_section_map": {
+    "verdicts": "§2",
+    "topology": "§2.2（v1.2 起两轴：拓扑类别 + 整流方式）",
+    "mechanical": "§3.1",
+    "positional": "§3.2",
+    "impact": "§4（L2 复核清单）",
+    "derating": "§5（含热阻 θJA / Pd 折算）",
+    "secondary": "§5b（Pw1–Pw6）",
+    "synthesis": "§6.1",
+    "legal_exit": "§2.2 / §7 附则",
+    "l2_checklist": "§6.5 L2 工程复核清单",
+    "misuse_guard": "§8"
+  },
+  "stages": {
+    "prerequisite": null,
+    "mechanical": {
+      "title": "机械测试项（封装类）",
+      "decides": "封装可互换性",
+      "boundary_rule": "机械能装 → PM-A / PM-B / 改板方案（入口 A）三者之一；机械装不上 → PM-C 或改板方案（入口 B）。两处都先答「改板能不能救」。",
+      "tolerance_priority": [
+        "① 双方 datasheet 标注的明确公差值 → 直接采用",
+        "② datasheet 只给标称值未给公差 → 按 JEDEC 通用公差表",
+        "③ datasheet 标注为 BSC → BSC 本身即『标称值 + 由通用公差表约束』"
+      ],
+      "tests": [
+        {
+          "id": "T1",
+          "item": "封装族",
+          "threshold": "同族（SOT23-6 / SOT89 / SOIC-8 / DFN 视为不同族）",
+          "tolerance_source": "—"
+        },
+        {
+          "id": "T2",
+          "item": "本体宽 E1",
+          "threshold": "双方公差区间重叠即过",
+          "tolerance_source": "①datasheet → ②JEDEC"
+        },
+        {
+          "id": "T3",
+          "item": "封装长 D",
+          "threshold": "双方公差区间重叠即过",
+          "tolerance_source": "同 T2"
+        },
+        {
+          "id": "T4",
+          "item": "引脚总跨 E",
+          "threshold": "双方公差区间重叠即过",
+          "tolerance_source": "同 T2"
+        },
+        {
+          "id": "T5",
+          "item": "引脚间距 e",
+          "threshold": "标称值相同即过",
+          "tolerance_source": "—"
+        },
+        {
+          "id": "T6",
+          "item": "本体总高 A",
+          "threshold": "候选件 max ≤ 原件 max",
+          "tolerance_source": "—"
+        },
+        {
+          "id": "T7",
+          "item": "脚数",
+          "threshold": "必须相同",
+          "tolerance_source": "—"
+        }
+      ],
+      "test_notes": {
+        "T1": "开关稳压常见封装 SOT23-6 / SOT89 / TSOT23-6 / SOIC-8 / DFN-8 / QFN 各自成族；跨族即机械不可装 → 落 PM-C 候补，须再按 rework_routing 分流（可改板救 → 改板方案入口 B；不可 → PM-C）。",
+        "T5": "判标称值是否相同；BSC 与具体数值视为同一标称体系。"
+      }
+    },
+    "positional": {
+      "title": "引脚功能等价判定（T8，PMIC FCT）",
+      "input_basis": "两份原厂 datasheet 的引脚功能描述",
+      "equivalence": "功能类别相同 ∧ 电气角色相容。两者缺一即不对应（计入 k）。",
+      "fct": [
+        {
+          "code": "PWR-IN",
+          "label": "电源输入 / 功率输入端",
+          "common_symbols": "VIN / PVIN / VCC",
+          "basis": "datasheet 引脚功能定义表（Pin Functions / 引脚描述）；引脚具体含义以实际型号 datasheet 为准"
+        },
+        {
+          "code": "SW",
+          "label": "开关节点",
+          "common_symbols": "SW / LX / PHASE",
+          "basis": "datasheet 引脚功能定义表（Pin Functions / 引脚描述）；引脚具体含义以实际型号 datasheet 为准"
+        },
+        {
+          "code": "BST",
+          "label": "自举 / 高端驱动",
+          "common_symbols": "BST / BOOT",
+          "basis": "datasheet 引脚功能定义表（Pin Functions / 引脚描述）；引脚具体含义以实际型号 datasheet 为准"
+        },
+        {
+          "code": "FB",
+          "label": "反馈（误差放大输入）",
+          "common_symbols": "FB / VFB",
+          "basis": "datasheet 引脚功能定义表（Pin Functions / 引脚描述）；引脚具体含义以实际型号 datasheet 为准"
+        },
+        {
+          "code": "COMP",
+          "label": "补偿节点",
+          "common_symbols": "COMP / VC",
+          "basis": "datasheet 引脚功能定义表（Pin Functions / 引脚描述）；引脚具体含义以实际型号 datasheet 为准"
+        },
+        {
+          "code": "EN",
+          "label": "使能",
+          "common_symbols": "EN / SHDN / RUN",
+          "basis": "datasheet 引脚功能定义表（Pin Functions / 引脚描述）；引脚具体含义以实际型号 datasheet 为准"
+        },
+        {
+          "code": "PGOOD",
+          "label": "电源好指示",
+          "common_symbols": "PGOOD / PG",
+          "basis": "datasheet 引脚功能定义表（Pin Functions / 引脚描述）；引脚具体含义以实际型号 datasheet 为准"
+        },
+        {
+          "code": "BIAS",
+          "label": "偏置 / 逻辑电源",
+          "common_symbols": "VCC / BIAS / VDD",
+          "basis": "datasheet 引脚功能定义表（Pin Functions / 引脚描述）；引脚具体含义以实际型号 datasheet 为准"
+        },
+        {
+          "code": "GND",
+          "label": "地 / 0V 参考",
+          "common_symbols": "GND / AGND / PGND",
+          "basis": "datasheet 引脚功能定义表（Pin Functions / 引脚描述）；引脚具体含义以实际型号 datasheet 为准"
+        },
+        {
+          "code": "NC",
+          "label": "无功能（内部无连接）",
+          "common_symbols": "NC / DNC / N.C.",
+          "basis": "datasheet 引脚功能定义表（Pin Functions / 引脚描述）；引脚具体含义以实际型号 datasheet 为准"
+        },
+        {
+          "code": "SS",
+          "label": "软启动",
+          "common_symbols": "SS / TR / SOFTSTART",
+          "basis": "datasheet 引脚功能定义表（Pin Functions / 引脚描述）；引脚具体含义以实际型号 datasheet 为准"
+        },
+        {
+          "code": "RT/FSW",
+          "label": "开关频率设置",
+          "common_symbols": "RT / FSW / FREQ",
+          "basis": "datasheet 引脚功能定义表（Pin Functions / 引脚描述）；引脚具体含义以实际型号 datasheet 为准"
+        },
+        {
+          "code": "ILIM",
+          "label": "限流设置",
+          "common_symbols": "ILIM / LIM / ISET",
+          "basis": "datasheet 引脚功能定义表（Pin Functions / 引脚描述）；引脚具体含义以实际型号 datasheet 为准"
+        },
+        {
+          "code": "MODE",
+          "label": "模式选择",
+          "common_symbols": "MODE / FCCM / DCM",
+          "basis": "datasheet 引脚功能定义表（Pin Functions / 引脚描述）；引脚具体含义以实际型号 datasheet 为准"
+        },
+        {
+          "code": "SYNC",
+          "label": "同步输入 / 输出",
+          "common_symbols": "SYNC / CLKOUT",
+          "basis": "datasheet 引脚功能定义表（Pin Functions / 引脚描述）；引脚具体含义以实际型号 datasheet 为准"
+        }
+      ],
+      "fct_notes": [
+        "代码列是机器判定键；常见符号列仅参考，不作判定。",
+        "NB：即便同号脚 FCT 相同，Vref / EN 极性 / 补偿类型仍须 L2 复核（§6.5），不在本阶段判定。",
+        "未列出引脚（如 SLEW / PGOOD 延时设定 / 独立 BIAS 设定）须人工归入最接近类别并在输出中注明归类依据；无法归类的，该脚判为 ⚠️ 未判定，整闸不得出 PM-A/B/C（§3.2）。"
+      ],
+      "role_compatibility": [
+        {
+          "code": "PWR-IN",
+          "criterion": "绝对最大额定电压是否覆盖工作点",
+          "incompatible": "候选件耐压低于原件"
+        },
+        {
+          "code": "SW",
+          "criterion": "开关电流 / 电压能力",
+          "incompatible": "候选件能力低于原件"
+        },
+        {
+          "code": "FB",
+          "criterion": "Vref 基准电压是否一致",
+          "incompatible": "Vref 不同 → 分压电阻须重算（L2-1）"
+        },
+        {
+          "code": "COMP",
+          "criterion": "内补 / 外补类型",
+          "incompatible": "外部补偿须重配 RC（L2-3）"
+        },
+        {
+          "code": "EN",
+          "criterion": "极性 active-high/low",
+          "incompatible": "极性相反须改接（L2-6）"
+        },
+        {
+          "code": "PGOOD",
+          "criterion": "开漏 / 推挽",
+          "incompatible": "输出类型不同须改上拉（L2-6）"
+        },
+        {
+          "code": "GND",
+          "criterion": "是否同一 0V 参考",
+          "incompatible": "功率地 / 模拟地划分不同"
+        },
+        {
+          "code": "NC",
+          "criterion": "必须双方都是 NC",
+          "incompatible": "任一方有功能 → 已在 Step 2 判为类别不对应"
+        }
+      ],
+      "steps": [
+        "1. 取原件与候选 datasheet 的引脚定义表，逐脚对齐功能类别（fct）",
+        "2. 标注每脚功能角色（电源/地/信号/控制/空脚/预留）",
+        "3. 逐脚比对：功能类别一致→计入 k；不一致→判 out_of_scope 或降格",
+        "4. 输出逐脚明细表（脚号 / 两边功能类别 / 差异性质 / 是否计入 k）"
+      ],
+      "output_format": "逐脚明细表：脚号 | 原功能类别 | 候选功能类别 | 差异性质 | 计入 k(Y/N)"
+    },
+    "derating": {
+      "title": "降额闸（含热阻折算）",
+      "formula": "候选件绝对最大额定 ≥ 原件绝对最大额定（相对比较）",
+      "threshold": 0.8,
+      "threshold_display": "≤ 80%",
+      "data_source": "两份原厂 datasheet 的绝对最大额定栏",
+      "missing_handling": "缺项 → ⚠️ 数据缺失",
+      "abs_max_keys": [
+        "Vin_max",
+        "Iout_max",
+        "Vsw_max",
+        "Pd_max"
+      ],
+      "thermal_note": "除 Vin/Iout/Vsw 外须核算 Pd × θJA：Tj = Ta + Pd×θJA ≤ 原件 Tj_max；同封装不同 θJA 须逐项比对，不得仅看封装名。",
+      "allowed_states": [
+        "pass",
+        "fail",
+        "missing"
+      ],
+      "forbidden_states": [
+        "untested"
+      ],
+      "notes": [
+        "降额闸结论与判定并列给出，不合并、不互相抵消。PM-A 但降额不过 → 输出『需评估 —— 降额超线，须豁免』。",
+        "⚠️ 数据缺失 只能输出「需评估」，禁止「有条件通过」。",
+        "abs max 为原厂规格数据，客户无法实测获得 → 须写明索取途径或按 JEDEC 推断并标注推断值。"
+      ]
+    },
+    "secondary": {
+      "title": "性能闸（Pw1–Pw6，越低越好）",
+      "allowed_states": [
+        "pass",
+        "fail",
+        "untested"
+      ],
+      "comparison_discipline": [
+        "每个数进比对表必须带三标签：① 供电条件 ② 温度条件 ③ 负载条件",
+        "typ 只跟 typ 比，max 只跟 max 比，温区必须一致",
+        "对方没给的条件 = 缺口，不许用相邻条件的值代填"
+      ],
+      "params": [
+        {
+          "id": "Pw1",
+          "param": "热阻 θJA",
+          "direction": "候选件 ≤ 原件",
+          "gap": "任一方未给 → ⚠️ 待实测"
+        },
+        {
+          "id": "Pw2",
+          "param": "静态电流 Iq",
+          "direction": "候选件 ≤ 原件",
+          "gap": "任一方未给 → ⚠️ 待实测"
+        },
+        {
+          "id": "Pw3",
+          "param": "导通电阻 Rds_on（集成开关）",
+          "direction": "候选件 ≤ 原件",
+          "gap": "任一方未给 → ⚠️ 待实测"
+        },
+        {
+          "id": "Pw4",
+          "param": "压差 Vdo（LDO 型 / 线性级）",
+          "direction": "候选件 ≤ 原件",
+          "gap": "任一方未给 → ⚠️ 待实测"
+        },
+        {
+          "id": "Pw5",
+          "param": "关断电流 Ioff",
+          "direction": "候选件 ≤ 原件",
+          "gap": "任一方未给 → ⚠️ 待实测"
+        },
+        {
+          "id": "Pw6",
+          "param": "输出噪声 / 纹波",
+          "direction": "候选件 ≤ 原件",
+          "gap": "任一方未给 → ⚠️ 待实测"
+        }
+      ],
+      "conclusion": [
+        {
+          "case": "Pw1–Pw6 全部满足",
+          "gate": "pass"
+        },
+        {
+          "case": "任一项已核实不满足",
+          "gate": "fail",
+          "action": "输出「需评估 —— 性能不满足（列明 Pw#）」"
+        },
+        {
+          "case": "任一项双方均未给",
+          "gate": "untested",
+          "note": "闸不得记『过』也不得记『不过』"
+        },
+        {
+          "case": "任一项一方未给",
+          "gate": "untested",
+          "note": "不得默认对方更好或更差"
+        }
+      ]
+    },
+    "legal_exit": {
+      "title": "无独立改板 / 改线出口（外围重选已内嵌于 PM-A/B/C 判定）",
+      "is_pm_verdict": false,
+      "note": "开关稳压的外围重选（电感 / 输出电容 / FB 分压 / 补偿网络）是 PM 判定的固有组成部分，不另设改板 / 改线出口；拓扑不一致（类别 / 整流方式两轴）唯一落『存在不满足项』（Power PPJ §2.2），复杂 PMIC（I²C / 寄存器定义）落『无法判定（缺输入 / 不属 L1 范围）』或交 L2。",
+      "mutex": "PM-A/B/C 与『存在不满足项 / 无法判定』互斥，不存在中间态。"
+    }
+  },
+  "topology": {
+    "title": "拓扑一致性闸（两轴，Power PPJ v1.2 新增整流方式轴）",
+    "source": "§2.2",
+    "decides": "候选与原件是否属同一功能类别；不一致 → 唯一出口「范围外·拓扑不一致」，不走 PM-C、不走改板方案",
+    "boundary_rule": "本闸先于机械闸执行：类别不同的候选，脚位对上也无可直换意义。",
+    "axes": {
+      "topology_type": {
+        "note": "有序匹配：buck-boost 必须先于 buck（「buck-boost」含「buck」子串）",
+        "buck-boost": [
+          "buck-boost",
+          "升降压"
+        ],
+        "flyback": [
+          "flyback",
+          "反激"
+        ],
+        "boost": [
+          "boost",
+          "升压"
+        ],
+        "buck": [
+          "buck",
+          "降压"
+        ],
+        "sepic": [
+          "sepic"
+        ],
+        "ldo": [
+          "ldo",
+          "线性",
+          "低压差"
+        ]
+      },
+      "rectification": {
+        "note": "整流方式（同步 / 非同步）属功能根本不同：续流路径一条走内置低边 MOS、一条走外置肖特基二极管。匹配按**最早出现位置**——「非同步」含「同步」子串，固定关键词顺序会误判",
+        "异步": [
+          "非同步",
+          "异步",
+          "asynchronous",
+          "async"
+        ],
+        "同步": [
+          "同步整流",
+          "同步",
+          "synchronous",
+          "sync"
+        ]
+      }
+    },
+    "matching_rules": [
+      "拓扑类别轴与整流方式轴各自独立判定；**任一轴双方都给且不同 → 拓扑不一致**",
+      "任一方未给某一轴 → 该轴不判失败（记待核），不把缺数据当不符",
+      "整流方式轴按关键词在串中最早出现的位置定值，不按关键词表顺序"
+    ],
+    "single_exit": "拓扑不一致只有一个出口 = 范围外·拓扑不一致（输出「存在不满足项」）；与改板可行性三态无关。"
+  },
+  "synthesis_table": {
+    "dimensions": [
+      "verdict",
+      "derating_gate",
+      "secondary_gate",
+      "customer_verification"
+    ],
+    "rows": [
+      {
+        "verdict": "PM-A",
+        "derating_gate": "过",
+        "secondary_gate": "过",
+        "customer_verification": "任意",
+        "wording": "有条件通过（PM-A：引脚级可直插；功率级环路 / 热 / Vref 须 L2 复核）"
+      },
+      {
+        "verdict": "PM-A",
+        "derating_gate": "过",
+        "secondary_gate": "⚠️ 待实测",
+        "customer_verification": "任意",
+        "wording": "有条件通过（PM-A：功率级参数待实测，且须 L2 复核）",
+        "must_attach": "§6.3 实测方案"
+      },
+      {
+        "verdict": "PM-A",
+        "derating_gate": "❌ 不过",
+        "secondary_gate": "❌ 不过",
+        "customer_verification": "任意",
+        "wording": "需评估（降额超线 + 性能不满足，两条理由并列，列明 abs max 缺口项与 Pw#）"
+      },
+      {
+        "verdict": "PM-A",
+        "derating_gate": "❌ 不过",
+        "secondary_gate": "任意",
+        "customer_verification": "任意",
+        "wording": "需评估（降额超线，须豁免；列明 abs max 缺口项）"
+      },
+      {
+        "verdict": "PM-A",
+        "derating_gate": "⚠️ 数据缺失",
+        "secondary_gate": "任意",
+        "customer_verification": "任意",
+        "wording": "需评估（降额数据缺失，须索取 abs max 后重跑）"
+      },
+      {
+        "verdict": "PM-A",
+        "derating_gate": "任意",
+        "secondary_gate": "❌ 不过",
+        "customer_verification": "任意",
+        "wording": "需评估（性能不满足，列明 Pw#）"
+      },
+      {
+        "verdict": "PM-B",
+        "derating_gate": "任意",
+        "secondary_gate": "任意",
+        "customer_verification": "任意",
+        "wording": "需评估（封装兼容、k 处不对应且改板也无法对应，差异影响未判定，须实测 + L2 复核）",
+        "must_attach": "§4 四栏 + §6.5 L2 清单"
+      },
+      {
+        "verdict": "改板方案",
+        "derating_gate": "任意",
+        "secondary_gate": "任意",
+        "customer_verification": "任意",
+        "wording": "需人工核算（可经改板 / 飞线 / 转接板达成对应，非引脚级直插，须重新判定改制后板级）——入口 A（引脚可装且 k>0）与入口 B（引脚不可装但可改板救）均落本行。本行与 PM-C 行互斥：判别口径为先问「改板能不能救」，能 → 本行，不能 → PM-C 行（内部结论档位：非 Pin-to-Pin）",
+        "must_attach": "改制说明 + 重新判定入口"
+      },
+      {
+        "verdict": "PM-C",
+        "derating_gate": "任意",
+        "secondary_gate": "任意",
+        "customer_verification": "任意",
+        "wording": "不可直换（机械不可装：封装 / 脚数不符，**且改板亦无法达成对应**）。分流规则：若经评估可经改板 / 飞线 / 转接板达成对应 → 该候选本就不属 PM-C，改走「改板方案」行（**入口 B**，§2.2）；若不可 → 留在本行。两者互斥，同一候选只出现其中一行；**不得用机械可装与否来分流**"
+      },
+      {
+        "verdict": "范围外·拓扑不一致",
+        "derating_gate": "任意",
+        "secondary_gate": "任意",
+        "customer_verification": "任意",
+        "wording": "存在不满足项（buck ↔ boost ↔ 反激 ↔ LDO 等拓扑类别不一致，或同步 ↔ 非同步整流方式不一致；脚位对上亦无意义；唯一出口，不走 PM-C）（内部结论档位：需评估）"
+      },
+      {
+        "verdict": "范围外·复杂 PMIC",
+        "derating_gate": "任意",
+        "secondary_gate": "任意",
+        "customer_verification": "任意",
+        "wording": "无法判定（缺输入 / 不属 L1 范围，交 L2）（内部结论档位：非 PP）",
+        "must_attach": "§6.5 L2 清单"
+      },
+      {
+        "verdict": "⚠️ 未判定",
+        "derating_gate": "任意",
+        "secondary_gate": "任意",
+        "customer_verification": "任意",
+        "wording": "需评估（缺输入，须索取原厂引脚定义表 / 封装图 / abs max 后重跑）",
+        "must_attach": "缺失输入清单"
+      },
+      {
+        "verdict": "任一",
+        "derating_gate": "—",
+        "secondary_gate": "—",
+        "customer_verification": "未过",
+        "wording": "不得出现「可直接替」"
+      }
+    ]
+  },
+  "impact_analysis": {
+    "title": "差异影响四栏（本栏名源自 PMIC PPJ 标准 §4）",
+    "trigger": "k > 0（PM-B）",
+    "columns": [
+      {
+        "id": "functional",
+        "label": "差异引脚的功能影响",
+        "missing": "→ 差异影响未判定",
+        "note": "该脚在新电路中接什么、接错会导致什么具体后果（如 EN 缺失 → 无法使能）",
+        "source": "两份原厂 datasheet 的引脚描述 + 绝对最大额定"
+      },
+      {
+        "id": "peripheral",
+        "label": "外围电路兼容性（含 FB 分压 / 补偿 / fsw→L/C）",
+        "missing": "→ 差异影响未判定",
+        "note": "FB 分压电阻、补偿 RC、电感 / 输出电容是否须重选；原外围元件换料后是否仍成立",
+        "source": "原理图 + PCB 文件（须查图，不许推测）"
+      },
+      {
+        "id": "logic",
+        "label": "逻辑电平与时序兼容（EN / PGOOD 极性）",
+        "missing": "→ 差异影响未判定",
+        "note": "使能 / PGOOD 的极性（active-high/low）、开漏 / 推挽是否匹配",
+        "source": "两份 datasheet 规格表"
+      },
+      {
+        "id": "stress",
+        "label": "电气应力与可靠性（θJA / Pd）",
+        "missing": "→ 差异影响未判定",
+        "note": "差异脚及受影响脚的电压 / 电流是否超新器件额定；θJA × Pd 温升是否超结温",
+        "source": "两份 datasheet 绝对最大额定"
+      }
+    ],
+    "notes": [
+      "本四栏与通用层 engine.json 的 impact_analysis.contract 配套：栏名与来源以本文件为准，通用层不得内设默认栏名。",
+      "PMIC 的差异影响多由 L2 工程师承接（§6.5 复核清单），本四栏为 L1 标准化输出，不代填客户原理图 / PCB。"
+    ]
+  },
+  "l2_checklist": [
+    {
+      "id": "L2-1",
+      "item": "FB / Vref 分压重算",
+      "why": "Vref 不同 → 分压电阻须按新 Vref 重算，脚位对上≠板子对",
+      "close": "工程师按候选 Vref 重算 FB 分压，确认输出电压精度"
+    },
+    {
+      "id": "L2-2",
+      "item": "fsw → 电感 / 电容重选",
+      "why": "fsw 不同 → 外部 L/C 可能须重选，原 BOM 须评估",
+      "close": "工程师按候选 fsw 重算 L 值、输出电容的 ESR 与容值"
+    },
+    {
+      "id": "L2-3",
+      "item": "补偿网络重配",
+      "why": "外部补偿（TYPE II/III）→ RC 网络须重配；内部补偿则免",
+      "close": "工程师确认补偿类型，外部补偿须重算 RC"
+    },
+    {
+      "id": "L2-4",
+      "item": "环路稳定性上机验证",
+      "why": "标准不判环路；同料不同拓扑 / 不同补偿 → 稳定性须实测",
+      "close": "工程师做负载阶跃 / 波特图实测"
+    },
+    {
+      "id": "L2-5",
+      "item": "热设计 / θJA 实测算算",
+      "why": "同封装不同 θJA；Pd 估算须上机复核",
+      "close": "工程师按实际 Pd × θJA 核算 Tj，热像仪实测"
+    },
+    {
+      "id": "L2-6",
+      "item": "EN / PGOOD 极性确认",
+      "why": "active-high/low、开漏/推挽差异 → 逻辑接法须改",
+      "close": "工程师核对使能与 PGOOD 极性、上拉配置"
+    },
+    {
+      "id": "L2-7",
+      "item": "保护阈值核对",
+      "why": "OVP / OCP / SCP / OTP 阈值须 ≥ 原件或标注",
+      "close": "工程师核对保护动作点与系统保护协调"
+    },
+    {
+      "id": "L2-8",
+      "item": "软启动时间 tss 核对",
+      "why": "tss 不同 → 上电时序可能不满足系统要求",
+      "close": "工程师核对 tss 与系统上电时序裕量"
+    },
+    {
+      "id": "L2-9",
+      "item": "UVLO 阈值核对",
+      "why": "UVLO 不同 → 系统启动 / 关断点可能偏移",
+      "close": "工程师核对 UVLO 上升 / 下降阈值与系统协调"
+    },
+    {
+      "id": "L2-10",
+      "item": "限流阈值 ILIM 核对",
+      "why": "ILIM 不同 → 过流保护点可能不匹配",
+      "close": "工程师核对 ILIM 与系统过流保护协调"
+    },
+    {
+      "id": "L2-11",
+      "item": "MODE 逻辑电平核对",
+      "why": "MODE 脚高 / 低电平定义可能不同（FCCM / DCM）",
+      "close": "工程师核对 MODE 接法与期望工作模式"
+    }
+  ],
+  "misuse_guard": {
+    "title": "常见错误用法（自检）",
+    "source": "§8",
+    "purpose": "机器可检的误用清单：引擎在生成结论与报告后按本清单自检，命中即报错；不得以「报告已生成」掩盖命中项。",
+    "columns": [
+      {
+        "id": "id",
+        "label": "编号",
+        "missing": "—"
+      },
+      {
+        "id": "wrong",
+        "label": "错误用法",
+        "missing": "—"
+      },
+      {
+        "id": "correct",
+        "label": "正确做法",
+        "missing": "—"
+      },
+      {
+        "id": "consequence",
+        "label": "后果",
+        "missing": "—"
+      },
+      {
+        "id": "check",
+        "label": "机读检查点",
+        "missing": "—"
+      }
+    ],
+    "items": [
+      {
+        "id": "M-01",
+        "wrong": "把 PM-A 读成「可直接替」",
+        "correct": "PM-A 仅表示机械可装 + 逐脚/逐位 FCT 全对应（k=0），封顶结论「满足但有待实测项」",
+        "consequence": "误放行；未实测的环路稳定性/温升/纹波被当作已验证",
+        "check": "verdict==PM-A 时，结论文本不得含放行语；tier 上限须为「满足但有待实测项」"
+      },
+      {
+        "id": "M-02",
+        "wrong": "降额 ❌ 不过仍写「有条件通过」",
+        "correct": "降额闸与性能闸为 AND 关系，任一 ❌ 即不得出现任何形式的条件通过",
+        "consequence": "违反 §6.1 全局兜底",
+        "check": "derating_gate==❌不过 或 secondary_gate==❌不过 时，结论文本不得含「有条件通过」"
+      },
+      {
+        "id": "M-03",
+        "wrong": "「改板可行性」未评估即判 PM-B",
+        "correct": "未声明即落「⚠️ 未判定」，按 §2.1 走「需评估」，交人工分流",
+        "consequence": "把「尚未评估」当成「改板也救不了」，误判 PM-B",
+        "check": "k>0 且 key_params._改板可行性 为空/无法解析 时，verdict 不得为 PM-B / 改板方案"
+      },
+      {
+        "id": "M-04",
+        "wrong": "把改板方案写成「PM-B 但可凑合用」",
+        "correct": "改板方案不套用 PM 档位；允许重映射会使 PM-B 退化为 PM-C（§7 附则）",
+        "consequence": "档位体系失去可分辨性",
+        "check": "verdict==改板方案 时，档位名不得同时出现 PM-"
+      },
+      {
+        "id": "M-05",
+        "wrong": "拓扑不一致（buck↔boost、同步↔非同步）只比 FCT 得出 PM-A",
+        "correct": "先过拓扑一致性闸（两轴：拓扑类别 + 整流方式），任一轴不一致直接判「存在不满足项（拓扑不一致）」",
+        "consequence": "电感/电容/反馈网络全部错配（类别不同），或续流路径实现方式不同、外置二极管焊盘作废（整流方式不同），误放行",
+        "check": "_拓扑 两轴（类别 / 整流方式）任一不一致时 verdict 不得为 PM-A"
+      },
+      {
+        "id": "M-06",
+        "wrong": "多通道 PMIC 只判其中一组即定整机档",
+        "correct": "按 §3.2 分组判定，**再按 §3.2 severity_order 取严宽度最高的一组**（PM-A < 改板方案 < PM-B < PM-C < 范围外·拓扑不一致）汇总；不得自定序",
+        "consequence": "其余通道的失效被掩盖",
+        "check": "声明通道组数（identity._通道组数 / key_params._通道组数 / 候选顶层 / case 顶层 四处任一）时：① 输出的通道组判定条数须等于声明组数；② 整机 verdict 须等于各组中 severity 最大者；③ 任一组为⚠️ 未判定时整机须为⚠️ 未判定（缺输入优先，须先于「是否在序表内」判定）；④ 声明了组数却跑不出任何分组结果 → 报错，不得静默放过。未声明 → 记 manual（单通道件本不需分组判定）"
+      },
+      {
+        "id": "M-07",
+        "wrong": "铭牌/符号名相似即认定引脚等价",
+        "correct": "按 §3.2 FCT 逐脚/逐位比对电气属性（电压域、方向、上下拉、阈值）",
+        "consequence": "符号同名但功能不同，接入即损坏",
+        "check": "k 的计算须来自 FCT 比对结果，不得由名称相似度推断"
+      },
+      {
+        "id": "M-08",
+        "wrong": "LDO（含无 SW / BST / COMP 的线性类）投入本标准判定",
+        "correct": "归通用半导体 PPJ（判别口径：不含外置功率级的开关器件）；复杂 PMIC（I²C / 寄存器定义）落「无法判定」或 L2",
+        "consequence": "判据集不适用，结论无效",
+        "check": "coverage_check_power 判为非开关类时，须落「标准覆盖外」而非 PM 档位"
+      },
+      {
+        "id": "M-09",
+        "wrong": "功耗估算一律套 Buck 公式",
+        "correct": "按 §5 分拓扑选公式：Buck / Boost / Buck-Boost 各用各的",
+        "consequence": "估算值失真，L2 复核输入错误",
+        "check": "功耗估算须先读 _拓扑 再选公式分支"
+      },
+      {
+        "id": "M-10",
+        "wrong": "把判据表中的「任意」读作「待判定」",
+        "correct": "「任意」= 该闸态组合不参与本行判定；「待判定」= 输入缺失，须走 ⚠️ 未判定",
+        "consequence": "把不适用项当成缺数据，报告充满假缺口",
+        "check": "synthesis_table.rows[].{derating_gate,secondary_gate,customer_verification} 为「任意」时，不得生成对应缺口提示"
+      },
+      {
+        "id": "M-11",
+        "wrong": "报告只写档位不写标准版本号",
+        "correct": "按 §6.4 写明现行版本号、输出日期、判定人",
+        "consequence": "结论不可追溯，无法按 §7.2 复核",
+        "check": "品类投影 source_version 须非空（唯一有效值＝现行版）；judge 层另校标准版本号 / 输出日期 / 判定人，任一缺失即命中并在报告头部标红。出报告默认 日期＝当天、判定人＝公司；显式传空按缺失处理（保留自测能力）"
+      },
+      {
+        "id": "M-12",
+        "wrong": "对外材料出现「可直接替」「可下批量订单」",
+        "correct": "结论只写「满足判据 / 满足但有待实测项 / 存在不满足项 / 无法判定（缺输入）」",
+        "consequence": "越过标准定位，形成放行承诺",
+        "check": "全文扫描放行语词表，命中数须为 0"
+      },
+      {
+        "id": "M-13",
+        "wrong": "各节自定严宽序，或用「优先于」表述档位关系",
+        "correct": "一律引用 §3.2 severity_order（PM-A < 改板方案 < PM-B < PM-C < 范围外·拓扑不一致），取 severity 最大者；表述只用「严宽度低/高」",
+        "consequence": "同一组多通道按不同节定档会得出相反结论；「优先于」方向不可辨（更优 or 更严）",
+        "check": "全文扫描「优先于」与自定序写法；命中即报错。符号方向须与 severity_order 一致（PM-C 不得排在 PM-A 之前）"
+      },
+      {
+        "id": "M-14",
+        "wrong": "拓扑不一致判成 PM-C，或因机械也不可装而改判 PM-C",
+        "correct": "拓扑不一致只有一个出口 =「范围外·拓扑不一致」行，输出「存在不满足项」（§1 / §2.2 / §6.1 三处同口径）",
+        "consequence": "结论措辞错位（「存在不满足项」被降成「不可直换」），且掩盖「功能根本不同」这一真实原因",
+        "check": "verdict 含「拓扑不一致」时，其出口 tier 必须是「范围外·拓扑不一致」或等价标记，不得为 PM-C / PM-A / PM-B"
+      },
+      {
+        "id": "M-15",
+        "wrong": "机械不可装不查改板可行性就直接判 PM-C",
+        "correct": "机械不可装本身不定档，须按 §2.1 三态表分流：可改板（飞线 / 转接板 / 换封装焊盘）→ 改板方案（入口 B）；不可改板 → PM-C；未判定 → ⚠️ 未判定（§3.1 / §6.1 同口径）",
+        "consequence": "把有救的候选误判为不可救——如 SOT23-6 ↔ SOT89 视具体设计靠飞线 / 转接板可能可救，判 PM-C 等于凭空否决可行替代",
+        "check": "机械检查不过（mechanical_state 为不过）时，verdict 不得直接为 PM-C；须与改板可行性三态一致：可行 → 改板方案（入口 B）、不可行 → PM-C、缺失或不可解析 → ⚠️ 未判定。**双命中（k>0 且机械不过）时按 rework_routing.both_hit 取更严出口**，并须核对 verdict 与该更严出口一致"
+      }
+    ],
+    "auto_checked": "M-01–M-05、M-08、M-10–M-15（M-06 条件性：case 未声明通道组数时不可判定）",
+    "manual_only": "M-07（k 需比对留痕）、M-09（功耗估算在估算器内部）—— 依赖候选级不可见的过程数据，属结构性不可自动判定，非漏检"
+  },
+  "multi_channel_tiering": {
+    "source": "§3.2",
+    "scope": "多通道开关稳压整机定档（多组引脚各自判 T8 后汇总）",
+    "precedence": "缺输入优先：任一组为 ⚠️ 未判定 / 无法判定 → 整机落「需评估」，不得取其他组档位代替",
+    "severity_order": {
+      "note": "唯一权威表；§1 / §6.1 / §8 及 misuse_guard 均引用本表，各处不得自定序",
+      "direction": "严宽度递增（从宽松到严格）；一律用「严宽度低/高」表述，**禁用「优先于」**（中文可读成更优或更严）",
+      "table": [
+        {
+          "severity": 1,
+          "label": "最低（最宽松）",
+          "tier": "PM-A",
+          "is_pm_tier": true,
+          "meaning": "引脚级可直插（封顶「满足但有待实测项」，功率级须 L2 复核）"
+        },
+        {
+          "severity": 2,
+          "label": "低",
+          "tier": "改板方案",
+          "is_pm_tier": false,
+          "meaning": "可经改板 / 飞线 / 转接板达成对应（非引脚级可直插）；入口 A（引脚可装且 k>0）与入口 B（引脚不可装但可改板救）均可落到本档"
+        },
+        {
+          "severity": 3,
+          "label": "中",
+          "tier": "PM-B",
+          "is_pm_tier": true,
+          "meaning": "k > 0 且改板也无法对应"
+        },
+        {
+          "severity": 4,
+          "label": "高",
+          "tier": "PM-C",
+          "is_pm_tier": true,
+          "meaning": "机械不可装，且改板亦无法达成对应"
+        },
+        {
+          "severity": 5,
+          "label": "最高（最严格）",
+          "tier": "范围外·拓扑不一致",
+          "is_pm_tier": false,
+          "meaning": "拓扑与原件不同（buck↔boost↔反激↔LDO，或同步↔非同步整流），脚位对上亦无意义（§2.2）"
+        }
+      ],
+      "rule": "定档 = 取严宽度最高的那一组（severity 最大者）",
+      "why_rework_before_pmB": "PM-B 是「改板也救不了」，改板方案是「可以改板救」→ 后者更宽松，故 ② < ③",
+      "why_pmC_strictest": "PM-C 与改板方案的机械可装性相同（两者都可能是机械不可装），差别只在「改板能不能救」：能救 → 改板方案（②），救不了 → PM-C（④）。**不得用机械可装与否来分流**（§6.1 说明区）。",
+      "why_topology_strictest": "不是「装不上」或「改板能救」，而是功能根本不同——外围电感、电容、反馈网络、补偿全须重算，改板无从谈起。整流方式不同（同步↔非同步）同理：续流路径一条在内置 MOS、一条在外置肖特基二极管，外置二极管焊盘作废或平白多一颗外置器件，效率与 EMI 特性全变",
+      "topology_single_exit": "拓扑不一致只有一个出口 = 范围外·拓扑不一致（输出「存在不满足项」）；不归 PM-C、不走改板方案。§1 / §2.2 / §6.1 三处同此口径。"
+    },
+    "examples": [
+      "一组 PM-A + 一组 PM-B → 整机 PM-B",
+      "一组 PM-A + 一组 改板方案 → 整机 改板方案",
+      "一组 改板方案 + 一组 PM-B → 整机 PM-B（PM-B 严于改板方案）",
+      "一组 PM-C + 一组 改板方案 → 整机 PM-C",
+      "一组 拓扑不一致 + 一组 PM-A → 整机 范围外·拓扑不一致",
+      "一组 PM-A + 一组 ⚠️ 未判定 → 整机 需评估（缺输入优先）"
+    ],
+    "note": "PM-C 只出现在「机械」层，与逐脚 k 值无关；k 值再大也不会退化成 PM-C。「改板方案」与「范围外·拓扑不一致」都不是 PM 档位（§2.2）；落在该位只表示整机结论取该出口，不得据此输出 PM-A/B/C 任一档。"
+  },
+  "coverage": {
+    "source": "§0.1",
+    "in_scope": [
+      "开关稳压（buck / boost / buck-boost / 反激）",
+      "多通道开关稳压（每通道独立 FB / COMP / SW / BST，无 I²C 配置）"
+    ],
+    "out_of_scope": [
+      {
+        "category": "LDO 线性稳压器",
+        "includes": "含无 SW / BST / COMP 的线性类",
+        "criterion": "不含外置功率级的开关器件",
+        "route": "通用半导体 PPJ"
+      },
+      {
+        "category": "复杂 PMIC",
+        "includes": "带 I²C 配置 / 寄存器定义不同 / 无引脚可比；含靠寄存器分配输出轨的多轨",
+        "criterion": "功能由寄存器而非引脚决定 → 引脚级判据不适用",
+        "route": "无法判定 或 L2，不得套用 PM 档位"
+      }
+    ],
+    "multi_rail_boundary": "多轨本身不是排除项：每轨由标准 FCT 引脚控制且无 I²C → 属多通道开关稳压，进本文件按 §3.2 分组判定"
+  },
+  "rework_routing": {
+    "source": "§2.1",
+    "note": "机器判不出飞线能否救，须由判定者声明三态；缺数据填「未判定」，不得留空",
+    "scenarios": [
+      {
+        "scenario": "k > 0（同号脚不对应）",
+        "可行": "改板方案（入口 A）",
+        "不可行": "PM-B",
+        "未判定": "⚠️ 未判定"
+      },
+      {
+        "scenario": "机械不可装（PM-C 候补）",
+        "可行": "改板方案（入口 B，该候选本就不属 PM-C）",
+        "不可行": "PM-C",
+        "未判定": "⚠️ 未判定"
+      }
+    ],
+    "difference": "两场景差别只在「不可行」那一格：k>0 不可行 → PM-B；机械不可装不可行 → PM-C。「可行」（均为改板方案，仅入口不同）与「未判定」两格完全相同。",
+    "both_hit": {
+      "rule": "同一候选同时满足「k > 0」与「机械不可装」时（强制）：两场景**各自独立**取三态，再按 §3.2 严宽度序取更严的出口",
+      "cases": [
+        "两场景都判「可行」→ 改板方案（两入口不并行，输出一个「改板方案」）",
+        "任一场景判「不可行」→ 按更严的「不可行」出口定档：k>0 不可行 → PM-B；机械不可装不可行 → PM-C；两场景都不可行 → PM-C（PM-C 严于 PM-B）",
+        "任一场景判「未判定」→ ⚠️ 未判定（缺输入优先，不得用另一场景结论代替）"
+      ],
+      "opposite_values": "两场景的改板可行性可以相反（如 k>0 经飞线可救、但封装不可装救不了）→ 整机取 PM-C（机械不可装不可行）",
+      "cite_which": "引用时须写明取自哪个场景，如「PM-C（机械不可装场景不可行）」；不得只写「改板不可行」而不分场景",
+      "input_fields": {
+        "shared": "_改板可行性（两场景同值时用；不构成分场景声明）",
+        "per_scenario": "_改板可行性_机械 / _改板可行性_引脚",
+        "dict_form": "_改板可行性: {\"机械\": \"...\", \"引脚\": \"...\"}"
+      },
+      "why_per_scenario": "单字段无法表达「机械不可行 / k>0 可行」这种相反组合——会被误读成两场景同值，把本该落 PM-C 的候选错判成「改板方案」"
+    },
+    "entries": "入口 A = 引脚可装且 k>0；入口 B = 引脚不可装但可经改板 / 飞线 / 转接板 / 换封装焊盘救（§2.2）",
+    "topology_excluded": "拓扑不一致不走本表——固定出「范围外」，与改板可行性无关。",
+    "not_verdict_is_not_pmB": "「未判定」不得输出 PM-A/PM-B/PM-C 任一档，只落「需评估」（同通用 PPJ §6.0）"
+  },
+  "sample_size_requirements": {
+    "minima": [
+      {
+        "covers": [
+          "Pw1",
+          "Pw2",
+          "Pw3",
+          "Pw4",
+          "Pw5",
+          "Pw6"
+        ],
+        "min": 3,
+        "unit": "pcs",
+        "note": "跨至少 2 个 lot，同 lot 多颗不反映批次差异"
+      }
+    ],
+    "sampling_rule": "样品须跨片号/lot 抽取；破坏性测试（如 ESD、寿命）共用同批样品，须单独记录",
+    "non_sampled": []
+  }
+}

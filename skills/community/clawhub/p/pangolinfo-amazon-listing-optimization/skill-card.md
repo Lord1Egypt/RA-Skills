@@ -1,44 +1,50 @@
-## Description: <br>
-Helps agents optimize Amazon listings by gathering competitor product data and reviews, then drafting titles, bullet points, backend search terms, VOC analysis, and optional IP-risk reports with Pangolinfo tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps Amazon sellers and operators optimize listings by using competitor product data, review-derived customer pain points, keyword placement, backend search terms, and IP compliance checks to produce copy-ready listing content.
 
-## Publisher: <br>
-[pangolinfo](https://clawhub.ai/user/pangolinfo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pangolinfo](https://clawhub.ai/user/pangolinfo)
 
-## Use Case: <br>
-External sellers, operators, and agent users use this skill to rewrite and optimize Amazon listing copy from competitor listings, review signals, category data, and optional IP checks. It is intended for listing optimization workflows, not product research, daily monitoring, or single-ASIN lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Pangolinfo credentials and may cache access in local configuration or environment variables. <br>
-Mitigation: Prefer API keys over account passwords, store keys only in the intended Pangolinfo configuration path or environment variable, and remove cached keys when access is no longer needed. <br>
-Risk: Tool calls can consume Pangolinfo credits, especially review, AI search, and Rufus-style query workflows. <br>
-Mitigation: Use the skill's fast mode by default, present cost and time estimates before slow or higher-cost calls, and monitor Pangolin credit usage. <br>
-Risk: Generated listing and IP-risk guidance may be incomplete or unsuitable for final legal or marketplace compliance decisions. <br>
-Mitigation: Review copy before publishing, verify trademark or design-patent concerns independently, and consult qualified IP counsel before major production or inventory decisions. <br>
+## Use Case:
 
+External Amazon marketplace sellers and commerce operators use this skill to rewrite and optimize product listings, including titles, bullet points, backend search terms, and review-informed positioning. The skill is intended for workflows that combine Amazon product evidence with human review before publishing to Seller Central.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pangolinfo/pangolinfo-amazon-listing-optimization) <br>
-- [Pangolinfo publisher profile](https://clawhub.ai/user/pangolinfo) <br>
-- [Pangolinfo website](https://www.pangolinfo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown with structured listing drafts, tables, and inline tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Amazon title drafts, five bullet points, backend search terms, VOC matrices, category warnings, IP-risk notes, and setup guidance for Pangolinfo credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: A real Pangolinfo API key could be exposed if credentials are placed in URLs, logs, or model-visible transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer MCP or runtime-managed authentication, keep credentials out of URLs and generated text, and review the skill before installing it in environments that contain a real Pangolinfo key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pangolinfo/skills/pangolinfo-amazon-listing-optimization)
+- [Pangolinfo publisher profile](https://clawhub.ai/user/pangolinfo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown listing analysis and copy drafts with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Amazon listing titles, bullet points, backend search terms, VOC analysis, category notes, and IP compliance guidance for human review.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

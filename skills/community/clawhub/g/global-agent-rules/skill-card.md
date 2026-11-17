@@ -1,38 +1,58 @@
-## Description: <br>
-Shared behavioral rules for ALL Donald's agents. Universal: correction protocol, time check, pre-action checklist, learning loop, mistake breaker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shared behavioral rules for ALL Donald's agents. Universal: correction protocol, time check, pre-action checklist, learning loop, mistake breaker.
 
-## Publisher: <br>
-[donald-g-beckett](https://clawhub.ai/user/donald-g-beckett) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[donald-g-beckett](https://clawhub.ai/user/donald-g-beckett)
 
-## Use Case: <br>
-External users and agent operators use this skill to give agents shared behavioral standards for correction handling, time awareness, pre-action checks, learning from mistakes, and maintaining shared user memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to automatically store and reuse sensitive personal details in shared memory. <br>
-Mitigation: Install only with explicit consent rules, clear limits on what may be saved, access controls for who can read the profile, and review and deletion controls. <br>
+## Use Case:
 
+Developers and operators use this skill to apply shared agent behavior rules for corrections, time checks, pre-action checks, learning logs, mistake prevention, and model routing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/donald-g-beckett/skills/global-agent-rules) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown instructions for agent behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides persistent behavioral rules and memory-handling guidance rather than executable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: This skill can shape every agent's behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and deploy only where the global behavior is intentional.
+
+Risk: This skill can push sensitive personal facts into shared memory.
+
+Mitigation: Install only with clear consent, access limits, and deletion controls for shared profile data.
+
+Risk: This skill can route private work to another model without visible notice.
+
+Mitigation: Require clear model-routing consent and policy before using it for private workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/donald-g-beckett/skills/global-agent-rules)
+- [ClawHub publisher profile](https://clawhub.ai/user/donald-g-beckett)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration]
+
+**Output Format:** [Markdown instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Global behavioral rules that may affect shared memory, local and cloud resource access, and model routing.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

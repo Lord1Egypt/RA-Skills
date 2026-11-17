@@ -1,46 +1,64 @@
-## Description: <br>
-Build Word literature reviews from BibTeX, RIS, CSL JSON, CSV/TSV, or plain reference lists with GB/T 7714, APA, MLA, Chicago, IEEE, Vancouver, or Harvard bibliography formatting and clickable Word REF citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build Word literature reviews from BibTeX, RIS, CSL JSON, CSV/TSV, or plain reference lists with GB/T 7714, APA, MLA, Chicago, IEEE, Vancouver, or Harvard bibliography formatting and clickable Word REF citations.
 
-## Publisher: <br>
-[stephenlzc](https://clawhub.ai/user/stephenlzc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stephenlzc](https://clawhub.ai/user/stephenlzc)
 
-## Use Case: <br>
-Developers, students, and researchers use this skill to turn curated literature metadata into Chinese or English Word literature-review DOCX files with numeric REF citations, bibliography formatting, and structural validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated bibliography text, source selection, or citation formatting may be academically inaccurate for a specific institution or publication style. <br>
-Mitigation: Manually review the generated bibliography and DOCX for academic accuracy, punctuation, capitalization, and institutional requirements before submission. <br>
-Risk: The skill processes user-provided reference files and may write DOCX or temporary outputs. <br>
-Mitigation: Provide only source files intended for agent access and choose explicit output paths. <br>
+## Use Case:
 
+Developers and writing agents use this skill to turn curated literature sources into Chinese or English Word literature reviews with structured citations, bibliography formatting, and DOCX cross-reference validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stephenlzc/bibtex-literature-review) <br>
-- [Input formats](references/input-formats.md) <br>
-- [Review JSON specification](references/review-json-spec.md) <br>
-- [OOXML REF fields](references/ooxml-ref-fields.md) <br>
-- [Citation styles](references/citation-styles.md) <br>
-- [Workflow](references/workflow.md) <br>
-- [Acceptance criteria](references/acceptance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON contracts, Python command examples, and DOCX generation or validation instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or validate DOCX files through bundled scripts when the host agent is asked to create a document.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package includes an unrelated agent memory-context block.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the AGENTS.md memory-context block before installation, or confirm the target agent will not load it.
+
+Risk: DOCX validation processes local document archives without evidence of archive size or file-count limits.
+
+Mitigation: Run the validator only on trusted DOCX files until archive limits are added.
+
+Risk: Bibliography formatting and metadata normalization may not satisfy strict publication or institution-specific requirements without review.
+
+Mitigation: Manually review final bibliography punctuation, capitalization, proper nouns, missing fields, and institution-specific formatting before delivery.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/stephenlzc/skills/bibtex-literature-review)
+- [Workflow](references/workflow.md)
+- [Supported Input Formats](references/input-formats.md)
+- [Citation and Bibliography Styles](references/citation-styles.md)
+- [GB/T 7714 from BibTeX](references/gbt7714-bibtex.md)
+- [Review JSON Specification](references/review-json-spec.md)
+- [Word REF Fields and Bibliography Numbering](references/ooxml-ref-fields.md)
+- [Acceptance Criteria](references/acceptance.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON review data, and generated DOCX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Word REF citations, superscript numeric citation markers, automatic numbered bibliography paragraphs, and validation results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,54 @@
-## Description: <br>
-AI neon art generator that transforms any subject into stunning neon-lit artwork via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates neon-lit artwork from text descriptions using the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-Developers and end users use this skill to generate neon-styled images from text prompts for profile pictures, wallpapers, social media content, and digital art projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference IDs, and the Neta API token are sent to an external image generation service. <br>
-Mitigation: Avoid confidential prompt content and use a revocable or limited-scope Neta token when possible. <br>
-Risk: Passing tokens on the command line can expose them through shell history or process listings. <br>
-Mitigation: Prefer short-lived tokens, clear shell history where appropriate, and avoid running the command on shared systems. <br>
-Risk: Image generation depends on the external API and may fail, be moderated, or time out. <br>
-Mitigation: Handle nonzero exits and missing URLs in calling workflows, and retry only after checking API status and prompt policy constraints. <br>
+## Use Case:
 
+External users and developers use this skill to generate neon-styled images from text prompts via the Neta API for profile images, wallpapers, social media content, and digital art.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blammectrappora/neon-art-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/blammectrappora) <br>
-- [Neta AI token and service page](https://www.neta.art/open/) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Text, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; the script prints a direct image URL to stdout.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token, accepts an optional size and reference image UUID, and polls the external image API until a URL is returned or the request times out.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The prompt, optional reference UUID, and Neta token are sent to api.talesofai.com for image generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited Neta token, run the skill only on trusted machines, and avoid submitting sensitive prompts or reference identifiers.
+
+Risk: A floating npx install command can install code that differs from the reviewed release.
+
+Mitigation: Prefer the ClawHub install path or another pinned, reviewed source.
+
+## Reference(s):
+
+- [Neta API access](https://www.neta.art/open/)
+- [ClawHub skill page](https://clawhub.ai/blammectrappora/skills/neon-art-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [Plain text image URL printed to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; optional size and reference UUID parameters affect the generated image.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

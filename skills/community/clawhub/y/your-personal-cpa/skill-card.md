@@ -1,40 +1,54 @@
-## Description: <br>
-你的私人CPA is a Chinese CPA reference skill covering accounting practice, Chinese tax law, audit theory and practice, and accounting information systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+你的私人CPA——中国会计+税法+审计+会计信息系统综合知识库，覆盖初级/中级/高级会计实务、18个税种、审计理论与实务、会计信息系统四大模块。
 
-## Publisher: <br>
-[jiuge897](https://clawhub.ai/user/jiuge897) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiuge897](https://clawhub.ai/user/jiuge897)
 
-## Use Case: <br>
-External users, CPA candidates, and finance professionals use this skill as a Chinese-language reference for accounting entries, tax calculations, audit scenarios, financial reporting, and accounting information systems questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad accounting-related triggers may activate on generic ERP, database, SAP, Oracle, or SQL questions outside the intended accounting context. <br>
-Mitigation: Confirm that the answer is being framed in the intended accounting, tax, audit, or accounting information systems context before relying on it. <br>
-Risk: Chinese accounting and tax reference answers may be incomplete for a user's specific facts or current local requirements. <br>
-Mitigation: Treat outputs as study and reference guidance, and verify important accounting, tax, or audit decisions against authoritative sources or a qualified professional. <br>
+## Use Case:
 
+External finance, tax, audit, and CPA exam users use this skill for China-focused accounting, tax, audit, and accounting information system questions. It helps with journal entries, tax calculation workflows, audit procedure selection, report opinion reasoning, ERP process guidance, and quick review of CPA knowledge areas.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiuge897/skills/your-personal-cpa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language Markdown or plain text answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers are intended as reference guidance for accounting, tax, audit, and accounting information systems contexts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Accounting, tax, and audit guidance may be incomplete, outdated, or not suitable for a specific filing, engagement, or business fact pattern.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify outputs against current official rules and consult a qualified professional before taking accounting, tax, audit, or compliance action.
+
+Risk: The broad trigger scope can cause the skill to activate across many finance, tax, audit, and ERP-related prompts.
+
+Mitigation: Use specific prompts and review whether the skill's China-focused CPA knowledge base is appropriate for the user's jurisdiction and task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiuge897/skills/your-personal-cpa)
+- [ClawHub publisher profile](https://clawhub.ai/user/jiuge897)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with structured explanations, calculations, journal entries, procedural steps, and occasional SQL or ERP configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [China-focused accounting, tax, audit, and accounting information system knowledge; users should verify current rules before acting.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

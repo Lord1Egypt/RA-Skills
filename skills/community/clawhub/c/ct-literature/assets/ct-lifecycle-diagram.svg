@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 832" width="680" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB',Arial,sans-serif">
+<rect x="0" y="0" width="680" height="832" fill="#FFFFFF"/>
+<text x="14" y="24" font-size="17" font-weight="800" fill="#3C3489">ct 全线技能 · 临床试验全生命周期功能分配</text>
+<text x="14" y="42" font-size="10" fill="#6B7280">纵向流程 · 7 阶段 · 卡片矩阵(每卡：名称 + 单行功能描述) · 按 A/B 两档配色 · 与 ct-base/BASE.md §1.5+§11 一致</text>
+<circle cx="30" cy="83.0" r="16" fill="#FFFFFF" stroke="#3A5BC7" stroke-width="2.5"/>
+<text x="30" y="89.0" font-size="15" font-weight="800" text-anchor="middle" fill="#3A5BC7">总</text>
+<rect x="52" y="72" width="616" height="22" rx="6" fill="#F4F5F8"/>
+<text x="64" y="88" font-size="14.5" font-weight="900" fill="#1F2430">总入口 · 临床试验顾问</text>
+<rect x="52.0" y="100.0" width="148.0" height="46" rx="6" fill="#3A5BC7"/>
+<text x="61.0" y="120.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-advisor</text>
+<text x="61.0" y="137.0" font-size="10.5" fill="#F2F2F2">方法学&amp;法规顾问</text>
+  <g transform="translate(0,74)">
+<line x1="30" y1="52" x2="30" y2="686" stroke="#9AA0AE" stroke-width="3"/>
+<path d="M25 678 L30 686 L35 678 Z" fill="#9AA0AE"/>
+<line x1="12" y1="686" x2="12" y2="52" stroke="#6B5FC7" stroke-width="2.5" stroke-dasharray="6 5"/>
+<path d="M7 60 L12 52 L17 60 Z" fill="#6B5FC7"/>
+<text x="19" y="369.0" font-size="9.5" fill="#6B5FC7" font-weight="700">上市后</text>
+<text x="19" y="381.0" font-size="9.5" fill="#6B5FC7" font-weight="700">监测环 ↺</text>
+<circle cx="30" cy="83.0" r="16" fill="#FFFFFF" stroke="#3C3489" stroke-width="2.5"/>
+<text x="30" y="89.0" font-size="15" font-weight="800" text-anchor="middle" fill="#3C3489">①</text>
+<rect x="52" y="72" width="616" height="22" rx="6" fill="#F4F5F8"/>
+<text x="64" y="88" font-size="14.5" font-weight="900" fill="#1F2430">立项·可行性 / 公开情报</text>
+<rect x="52.0" y="100.0" width="148.0" height="46" rx="6" fill="#3A5BC7"/>
+<text x="61.0" y="120.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-registry</text>
+<text x="61.0" y="137.0" font-size="10.5" fill="#F2F2F2">全球试验注册检索</text>
+<rect x="208.0" y="100.0" width="148.0" height="46" rx="6" fill="#3A5BC7"/>
+<text x="217.0" y="116.0" font-size="11.5" font-weight="700" fill="#FFFFFF">ct-pipeline</text>
+<text x="217.0" y="131.0" font-size="9.5" fill="#F2F2F2">情报聚合+景观+会议</text>
+<rect x="364.0" y="100.0" width="148.0" height="46" rx="6" fill="#3A5BC7"/>
+<text x="373.0" y="120.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-safety</text>
+<text x="373.0" y="137.0" font-size="10.5" fill="#F2F2F2">FAERS 信号检测</text>
+<rect x="520.0" y="100.0" width="148.0" height="46" rx="6" fill="#3A5BC7"/>
+<text x="529.0" y="120.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-literature</text>
+<text x="529.0" y="137.0" font-size="10.5" fill="#F2F2F2">系统文献综述检索</text>
+<circle cx="30" cy="172.0" r="16" fill="#FFFFFF" stroke="#3C3489" stroke-width="2.5"/>
+<text x="30" y="178.0" font-size="15" font-weight="800" text-anchor="middle" fill="#3C3489">②</text>
+<rect x="52" y="161" width="616" height="22" rx="6" fill="#F4F5F8"/>
+<text x="64" y="177" font-size="14.5" font-weight="900" fill="#1F2430">方案设计</text>
+<rect x="52.0" y="189.0" width="148.0" height="46" rx="6" fill="#E8770B"/>
+<text x="61.0" y="209.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-protocol</text>
+<text x="61.0" y="226.0" font-size="10.5" fill="#F2F2F2">试验方案骨架/ICH</text>
+<rect x="208.0" y="189.0" width="148.0" height="46" rx="6" fill="#3A5BC7"/>
+<text x="217.0" y="209.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-samplesize</text>
+<text x="217.0" y="226.0" font-size="10.5" fill="#F2F2F2">样本量与检验效能</text>
+<rect x="364.0" y="189.0" width="148.0" height="46" rx="6" fill="#FBFBFD" stroke="#EEF0F4" stroke-dasharray="3 3"/>
+<rect x="520.0" y="189.0" width="148.0" height="46" rx="6" fill="#FBFBFD" stroke="#EEF0F4" stroke-dasharray="3 3"/>
+<circle cx="30" cy="261.0" r="16" fill="#FFFFFF" stroke="#3C3489" stroke-width="2.5"/>
+<text x="30" y="267.0" font-size="15" font-weight="800" text-anchor="middle" fill="#3C3489">③</text>
+<rect x="52" y="250" width="616" height="22" rx="6" fill="#F4F5F8"/>
+<text x="64" y="266" font-size="14.5" font-weight="900" fill="#1F2430">伦理·入组</text>
+<rect x="52.0" y="278.0" width="148.0" height="46" rx="6" fill="#E8770B"/>
+<text x="61.0" y="298.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-eligibility</text>
+<text x="61.0" y="315.0" font-size="10.5" fill="#F2F2F2">入排标准资格判定</text>
+<rect x="208.0" y="278.0" width="148.0" height="46" rx="6" fill="#FBFBFD" stroke="#EEF0F4" stroke-dasharray="3 3"/>
+<rect x="364.0" y="278.0" width="148.0" height="46" rx="6" fill="#FBFBFD" stroke="#EEF0F4" stroke-dasharray="3 3"/>
+<rect x="520.0" y="278.0" width="148.0" height="46" rx="6" fill="#FBFBFD" stroke="#EEF0F4" stroke-dasharray="3 3"/>
+<circle cx="30" cy="350.0" r="16" fill="#FFFFFF" stroke="#3C3489" stroke-width="2.5"/>
+<text x="30" y="356.0" font-size="15" font-weight="800" text-anchor="middle" fill="#3C3489">④</text>
+<rect x="52" y="339" width="616" height="22" rx="6" fill="#F4F5F8"/>
+<text x="64" y="355" font-size="14.5" font-weight="900" fill="#1F2430">数据采集</text>
+<rect x="52.0" y="367.0" width="148.0" height="46" rx="6" fill="#E8770B"/>
+<text x="61.0" y="387.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-ecrf</text>
+<text x="61.0" y="404.0" font-size="10.5" fill="#F2F2F2">CRF/eCRF 字段映射</text>
+<rect x="208.0" y="367.0" width="148.0" height="46" rx="6" fill="#FBFBFD" stroke="#EEF0F4" stroke-dasharray="3 3"/>
+<rect x="364.0" y="367.0" width="148.0" height="46" rx="6" fill="#FBFBFD" stroke="#EEF0F4" stroke-dasharray="3 3"/>
+<rect x="520.0" y="367.0" width="148.0" height="46" rx="6" fill="#FBFBFD" stroke="#EEF0F4" stroke-dasharray="3 3"/>
+<circle cx="30" cy="439.0" r="16" fill="#FFFFFF" stroke="#3C3489" stroke-width="2.5"/>
+<text x="30" y="445.0" font-size="15" font-weight="800" text-anchor="middle" fill="#3C3489">⑤</text>
+<rect x="52" y="428" width="616" height="22" rx="6" fill="#F4F5F8"/>
+<text x="64" y="444" font-size="14.5" font-weight="900" fill="#1F2430">数据管理·质控</text>
+<rect x="52.0" y="456.0" width="148.0" height="46" rx="6" fill="#E8770B"/>
+<text x="61.0" y="476.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-datacheck</text>
+<text x="61.0" y="493.0" font-size="10.5" fill="#F2F2F2">数据清洗与核查</text>
+<rect x="208.0" y="456.0" width="148.0" height="46" rx="6" fill="#E8770B"/>
+<text x="217.0" y="476.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-sdtm</text>
+<text x="217.0" y="493.0" font-size="10.5" fill="#F2F2F2">原始→SDTM 转换</text>
+<rect x="364.0" y="456.0" width="148.0" height="46" rx="6" fill="#E8770B"/>
+<text x="373.0" y="476.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-adam</text>
+<text x="373.0" y="493.0" font-size="10.5" fill="#F2F2F2">SDTM→ADaM 衍生</text>
+<rect x="520.0" y="456.0" width="148.0" height="46" rx="6" fill="#E8770B"/>
+<text x="529.0" y="476.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-statrev</text>
+<text x="529.0" y="493.0" font-size="10.5" fill="#F2F2F2">统计审阅(消费DC)</text>
+<circle cx="30" cy="528.0" r="16" fill="#FFFFFF" stroke="#3C3489" stroke-width="2.5"/>
+<text x="30" y="534.0" font-size="15" font-weight="800" text-anchor="middle" fill="#3C3489">⑥</text>
+<rect x="52" y="517" width="616" height="22" rx="6" fill="#F4F5F8"/>
+<text x="64" y="533" font-size="14.5" font-weight="900" fill="#1F2430">统计分析</text>
+<rect x="52.0" y="545.0" width="148.0" height="46" rx="6" fill="#E8770B"/>
+<text x="61.0" y="565.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-analysis</text>
+<text x="61.0" y="582.0" font-size="10.5" fill="#F2F2F2">试验内统计分析</text>
+<rect x="208.0" y="545.0" width="148.0" height="46" rx="6" fill="#E8770B"/>
+<text x="217.0" y="565.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-tlf</text>
+<text x="217.0" y="582.0" font-size="10.5" fill="#F2F2F2">三线表/图/表生成</text>
+<rect x="364.0" y="545.0" width="148.0" height="46" rx="6" fill="#FBFBFD" stroke="#EEF0F4" stroke-dasharray="3 3"/>
+<rect x="520.0" y="545.0" width="148.0" height="46" rx="6" fill="#FBFBFD" stroke="#EEF0F4" stroke-dasharray="3 3"/>
+<circle cx="30" cy="617.0" r="16" fill="#FFFFFF" stroke="#3C3489" stroke-width="2.5"/>
+<text x="30" y="623.0" font-size="15" font-weight="800" text-anchor="middle" fill="#3C3489">⑦</text>
+<rect x="52" y="606" width="616" height="22" rx="6" fill="#F4F5F8"/>
+<text x="64" y="622" font-size="14.5" font-weight="900" fill="#1F2430">报告·申报·上市后</text>
+<rect x="52.0" y="634.0" width="148.0" height="46" rx="6" fill="#E8770B"/>
+<text x="61.0" y="654.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-csr</text>
+<text x="61.0" y="671.0" font-size="10.5" fill="#F2F2F2">CSR 报告撰写</text>
+<rect x="208.0" y="634.0" width="148.0" height="46" rx="6" fill="#E8770B"/>
+<text x="217.0" y="654.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-submission</text>
+<text x="217.0" y="671.0" font-size="10.5" fill="#F2F2F2">eCTD 申报包生成</text>
+<rect x="364.0" y="634.0" width="148.0" height="46" rx="6" fill="#3A5BC7"/>
+<text x="373.0" y="654.0" font-size="12.5" font-weight="700" fill="#FFFFFF">ct-safety</text>
+<text x="373.0" y="671.0" font-size="10.5" fill="#F2F2F2">上市后 PV 监测环</text>
+<rect x="520.0" y="634.0" width="148.0" height="46" rx="6" fill="#FBFBFD" stroke="#EEF0F4" stroke-dasharray="3 3"/>
+<line x1="12" y1="708" x2="668" y2="708" stroke="#E2E5EE"/>
+<text x="12" y="714" font-size="12" font-weight="800" fill="#3C3489">两档图例</text>
+<rect x="12" y="720" width="14" height="14" rx="3" fill="#3A5BC7"/>
+<text x="32" y="731" font-size="10" fill="#333">A · 输入非涉密</text>
+<rect x="157" y="720" width="14" height="14" rx="3" fill="#E8770B"/>
+<text x="177" y="731" font-size="10" fill="#333">B · 输入涉密</text>
+  </g>
+</svg>

@@ -1,49 +1,64 @@
-## Description: <br>
-CNIPA撤三（连续三年不使用）双轨证据引擎，用于构建答辩证据链并执行质证审计。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CNIPA撤三（连续三年不使用）双轨证据引擎：答辩证据链构建 + 质证审计（SJ-6 + IRAC + 风险A-E）。
 
-## Publisher: <br>
-[jisngzhongling](https://clawhub.ai/user/jisngzhongling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Commercial License <br>
+## Publisher:
 
+[jisngzhongling](https://clawhub.ai/user/jisngzhongling)
 
-## Use Case: <br>
-Trademark and legal operations professionals use this skill to process local evidence for China trademark non-use cancellation matters, generate defense or cross-examination materials, and review period coverage, evidence mapping, and risk level. It supports local CLI, desktop, and Web UI workflows for document production and human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Commercial License
 
-## Known Risks and Mitigations: <br>
-Risk: Local file controls and evidence processing can expose sensitive case materials or overwrite generated outputs. <br>
-Mitigation: Run the skill in a dedicated virtual environment on trusted evidence files, keep outputs outside evidence directories, and review generated documents and validation JSON before submission. <br>
-Risk: The local Web UI or desktop server could expose case files if bound beyond localhost. <br>
-Mitigation: Keep the Web UI bound to 127.0.0.1 and do not expose the desktop or web server on a network unless access controls are reviewed. <br>
-Risk: The organize-directory workflow includes cleanup behavior that can remove files in the chosen target directory. <br>
-Mitigation: Use --organize-dir only with a disposable output folder and confirm the path before running. <br>
-Risk: Generated evidence assessments and legal documents may be incomplete or incorrect if source evidence is missing, noisy, or misclassified. <br>
-Mitigation: Treat outputs as technical support rather than legal advice, verify evidence mappings manually, and require professional review before case submission. <br>
+## Use Case:
 
+Trademark and IP professionals use this skill to organize evidence, generate defense or cross-examination materials, and review risk for China trademark non-use cancellation matters. It provides technical and methodological support and does not replace legal review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jisngzhongling/jiang-irac-nonuse-evidence) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/jisngzhongling) <br>
-- [README](artifact/README.md) <br>
-- [Install Guide](artifact/INSTALL.md) <br>
-- [Legal Disclaimer](artifact/DISCLAIMER.md) <br>
-- [License](artifact/LICENSE.txt) <br>
+### Deployment Geography for Use:
 
+China (CNIPA trademark non-use proceedings)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, JSON diagnostics, DOCX reports, XLSX casebooks, and merged PDF evidence bundles] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local evidence indexes, defense reasons, risk reports, validation JSON files, audit logs, and rule-profile records for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The local WebUI can expose sensitive case data and logs if made reachable from a network-accessible host or used before read endpoints require authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the WebUI bound to 127.0.0.1 and avoid network-accessible hosts until read endpoints enforce authentication.
+
+Risk: The skill writes case material, OCR cache, generated documents, diagnostic JSON, and logs to disk.
+
+Mitigation: Use a private output directory that is not unintentionally shared, synced, or reused across unrelated matters.
+
+Risk: Unpinned dependencies can make production installs less reproducible.
+
+Mitigation: Pin and review dependencies before production deployment when reproducible installs are required.
+
+Risk: Generated legal documents and risk assessments may be incomplete or unsuitable for a specific filing.
+
+Mitigation: Have a qualified professional review the evidence mapping, generated documents, and submission decision before filing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisngzhongling/skills/jiang-irac-nonuse-evidence)
+- [README](artifact/README.md)
+- [Installation and run guide](artifact/INSTALL.md)
+- [Legal disclaimer](artifact/DISCLAIMER.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance plus generated DOCX/PDF/TXT/HTML case files and JSON audit artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes case outputs, OCR cache, logs, rule profiles, reason chains, and validation JSON files to a user-selected local output directory.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata and artifact/SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

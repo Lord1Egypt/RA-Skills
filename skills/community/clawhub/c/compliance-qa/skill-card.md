@@ -1,42 +1,61 @@
-## Description: <br>
-RAG-enhanced compliance Q&A with regulatory interpretation guardrails, source attribution, and escalation triggers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RAG-enhanced compliance Q&A with regulatory interpretation guardrails, source attribution, and escalation triggers.
 
-## Publisher: <br>
-[dangsllc](https://clawhub.ai/user/dangsllc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dangsllc](https://clawhub.ai/user/dangsllc)
 
-## Use Case: <br>
-Employees, compliance staff, and reviewers use this skill to answer questions from supplied compliance documents, with citations, explicit context gaps, and escalation cues for active incidents or high-stakes legal/compliance decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat document-grounded compliance answers as legal advice or rely on them for high-stakes decisions. <br>
-Mitigation: Treat outputs as an aid only and escalate active incidents, contradictions, or high-stakes compliance decisions to qualified counsel or compliance staff. <br>
-Risk: Sensitive compliance materials or URLs could be supplied to the skill without proper authorization. <br>
-Mitigation: Provide only documents and URLs the user is authorized to share. <br>
-Risk: The provided context may be incomplete or contradictory. <br>
-Mitigation: Require citations for claims, explicitly flag context gaps, and recommend human review when documents conflict or do not answer the question. <br>
+## Use Case:
 
+Developers, compliance teams, and other authorized users use this skill to answer compliance questions from user-provided documents with citations, caveats, confidence labels, and escalation triggers. It is intended as document-grounded assistance and not as legal advice.
 
-## Reference(s): <br>
-- [Compliance Qa ClawHub listing](https://clawhub.ai/dangsllc/compliance-qa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with summary, analysis, caveats, confidence, and escalation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses citations to supplied documents and flags insufficient context instead of filling gaps from general knowledge.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: The skill may read sensitive compliance documents supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only documents needed for the question and avoid sharing unrelated or unnecessary sensitive material.
+
+Risk: Users may over-rely on outputs for legal or compliance decisions.
+
+Mitigation: Treat responses as document-grounded assistance, not legal advice, and route active incidents or critical non-compliance questions to qualified human review.
+
+Risk: Insufficient or conflicting source context can lead to incomplete answers.
+
+Mitigation: Require citations, explicit context gaps, confidence labels, and escalation when the provided documents do not support a clear answer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dangsllc/skills/compliance-qa)
+- [Publisher profile](https://clawhub.ai/user/dangsllc)
+- [Rote Compliance Skills](https://github.com/Rote-Compliance/rote-compliance-skills)
+- [Rote Compliance](https://rotecompliance.com)
+- [Dang's Solutions](https://dangssolutions.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown with cited summary, detailed analysis, context gaps, confidence, and escalation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Grounded in user-provided compliance documents; not legal advice.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

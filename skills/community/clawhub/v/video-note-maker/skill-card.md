@@ -1,42 +1,63 @@
-## Description: <br>
-提取视频音频，分段转写生成详细笔记和整理版，并可发送处理完成通知。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提取视频音频，分段转写生成详细笔记和整理版，并可发送邮件通知以完成视频到笔记的工作流程。
 
-## Publisher: <br>
-[fang232629](https://clawhub.ai/user/fang232629) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fang232629](https://clawhub.ai/user/fang232629)
 
-## Use Case: <br>
-Students and knowledge workers use this skill to turn local educational videos into transcripts and Markdown study notes. It is aimed at Chinese-language video workflows using ffmpeg and Whisper, with optional email or Feishu progress notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically email local video filenames, paths, output paths, and file sizes. <br>
-Mitigation: Use it only on videos whose filenames and paths are acceptable to share by email, and avoid auto mode until the outbound email behavior is reviewed. <br>
-Risk: Generated notes may include content that does not accurately reflect the input video. <br>
-Mitigation: Verify generated notes against the transcript before using them for study, publication, or decision-making. <br>
-Risk: Helper monitor scripts include hard-coded local paths and process-killing behavior. <br>
-Mitigation: Do not run monitor helper scripts unless the hard-coded paths and process management behavior are acceptable in the target environment. <br>
+## Use Case:
 
+Learners, educators, and agents processing course videos use this skill to extract audio, transcribe segmented video content, and produce Markdown study notes with optional completion notifications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fang232629/video-note-maker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown notes, transcript text files, and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes temporary audio and transcript files plus final Markdown notes; may send email or Feishu notifications when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release includes monitor and start scripts tied to a hard-coded external workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or ignore those scripts unless the target workspace is trusted and the paths have been reviewed.
+
+Risk: Intermediate audio and transcript files may remain in tmp directories even where documentation claims cleanup.
+
+Mitigation: Run the workflow in a dedicated video directory, review generated tmp and done folders, and delete sensitive intermediate files after use.
+
+Risk: Completion email can include local file path metadata.
+
+Mitigation: Configure email delivery only for trusted recipients or disable notification behavior for sensitive video paths.
+
+Risk: The note organizer can produce notes that do not faithfully reflect the transcript.
+
+Mitigation: Review generated Markdown against the transcript or source video before using it for study, documentation, or decision-making.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fang232629/skills/video-note-maker)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes, transcript text files, shell command guidance, and local configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates tmp and done directories near the processed videos and may send completion notifications when mail or webhook settings are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-SiliconFlow API integrates SiliconFlow media-generation capabilities for text-to-image, image-to-image, text-to-video, image-to-video, and text-to-speech workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SiliconFlow API helps agents generate images, videos, and Chinese speech through SiliconFlow after the user configures an API key.
 
-## Publisher: <br>
-[mr-j-j](https://clawhub.ai/user/mr-j-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mr-j-j](https://clawhub.ai/user/mr-j-j)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure a SiliconFlow API key and run shell commands that generate images, videos, speech audio, list models, and check asynchronous video jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a SiliconFlow API key locally in .sf-config.json. <br>
-Mitigation: Keep the config file private, restrict filesystem access, and remove the file when the key is no longer needed. <br>
-Risk: Prompts, speech text, and selected image files are sent to SiliconFlow for generation. <br>
-Mitigation: Avoid confidential or regulated content unless SiliconFlow is approved for that data and use case. <br>
-Risk: Temporary request files and generated outputs may remain under /tmp. <br>
-Mitigation: Clean /tmp request and output files after use, especially when working with sensitive images or text. <br>
-Risk: Generation calls consume the user's SiliconFlow account balance. <br>
-Mitigation: Review prompts, durations, and model choices before running commands, particularly for video generation. <br>
+## Use Case:
 
+External users and developers use this skill to call SiliconFlow for text-to-image, image-to-image, text-to-video, image-to-video, video status checks, text-to-speech, and model listing workflows.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/mr-j-j/siliconflow-api) <br>
-- [SiliconFlow](https://siliconflow.cn) <br>
-- [SiliconFlow API models endpoint](https://api.siliconflow.cn/v1/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Text] <br>
-**Output Format:** [Bash command invocations with generated image, video, and audio files plus status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SiliconFlow API key; generated outputs and temporary request files may be written under /tmp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User prompts, images, and text are sent to a third-party SiliconFlow API for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with non-sensitive prompts, images, and text, and review data-handling requirements before deployment.
+
+Risk: The authoritative security review reports unsafe scripting that can execute injected Python from crafted prompts in image-to-image or image-to-video flows.
+
+Mitigation: Do not pass untrusted prompt content to image-to-image or image-to-video commands until the Python construction is fixed and reviewed.
+
+Risk: The skill stores a SiliconFlow API key locally and generated media can incur SiliconFlow billing.
+
+Mitigation: Store the API key with restrictive file permissions, monitor usage, and confirm billing impact before running generation commands.
+
+## Reference(s):
+
+- [SiliconFlow](https://siliconflow.cn)
+- [SiliconFlow API base URL](https://api.siliconflow.cn/v1)
+- [ClawHub skill page](https://clawhub.ai/mr-j-j/skills/siliconflow-api)
+- [Publisher profile](https://clawhub.ai/user/mr-j-j)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, API calls, Files, Text, Guidance]
+
+**Output Format:** [Markdown with inline bash commands; generated media is saved as PNG, MP4, or MP3 files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a locally stored SiliconFlow API key, sends prompts and input media to a third-party API, and may consume account balance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,60 @@
-## Description: <br>
-Global Debt & Fiscal Explorer lets agents query national debt, government revenue, public expenditure, fiscal balance, and debt service data for countries or regions through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global Debt & Fiscal Explorer helps agents query national debt, government revenue, public expenditure, fiscal balance, debt service, and debt sustainability indicators for countries or regions through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External users and developers use this skill to request World Bank fiscal and debt indicators, compare countries or regions, and assess debt sustainability trends through AgentPMT. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fiscal-data queries are sent to AgentPMT and each query may spend 30 credits. <br>
-Mitigation: Use the skill intentionally for AgentPMT-backed World Bank fiscal indicators and keep inputs scoped to the country, region, fiscal aspect, and time period needed. <br>
-Risk: Fiscal indicators can have country-specific gaps or lag the current year. <br>
-Mitigation: Check returned dates and availability summaries before relying on a result for analysis or decisions. <br>
+## Use Case:
 
+External users, developers, and research analysts use this skill to retrieve fiscal indicators, compare countries, review debt sustainability signals, and prepare AgentPMT MCP or REST calls for the debt-fiscal-management product.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/global-debt-fiscal-explorer) <br>
-- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/debt-fiscal-management) <br>
-- [Action Schema](artifact/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and remote fiscal-data responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries may return indicator values, time series, fiscal balance assessments, debt sustainability assessments, and data availability summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Setup guidance includes unpinned remote installer commands that could change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the publisher and package version before installation, and prefer OpenClaw or ClawHub installation routes where possible.
+
+Risk: The skill routes usage through AgentPMT as an external paid fiscal-data service.
+
+Mitigation: Install only when that external service relationship is acceptable, and keep secrets, wallet material, signatures, and payment headers out of prompts and logs.
+
+Risk: Fiscal data availability varies by country and the latest World Bank indicators may lag the current year.
+
+Mitigation: Check returned dates, data availability summaries, and live schema details before using results for high-stakes fiscal analysis.
+
+## Reference(s):
+
+- [AgentPMT marketplace: debt-fiscal-management](https://www.agentpmt.com/marketplace/debt-fiscal-management)
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/global-debt-fiscal-explorer)
+- [Generated action schema](artifact/schema.md)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with JSON request examples and shell command setup snippets; remote tool responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defines one paid AgentPMT action, query_fiscal_data, with optional country_or_region, fiscal_aspect, calculate_debt_ratios, and time_period parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

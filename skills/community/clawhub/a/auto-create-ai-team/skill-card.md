@@ -1,43 +1,51 @@
-## Description: <br>
-Auto Create AI Team generates local ai-team folders and Markdown configuration, team-member, progress, and workflow files for single, dual, or custom project team structures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates local AI team directory structures and Markdown configuration files for projects with single, dual, or custom team modes and Chinese or English output.
 
-## Publisher: <br>
-[sylvanxiao](https://clawhub.ai/user/sylvanxiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sylvanxiao](https://clawhub.ai/user/sylvanxiao)
 
-## Use Case: <br>
-Developers and project maintainers use this skill to scaffold local AI-team documentation for a project, including team roles, model settings, progress tracking, and workflow notes. It is intended for offline project setup where users want generated Markdown files they can inspect and edit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ai-team files can replace or conflict with existing files in a project's ai-team directory. <br>
-Mitigation: Run the script on a test copy or review the target ai-team directory before execution, especially when existing project documentation must be preserved. <br>
-Risk: Generated WORKFLOW.md content may include data-sharing and automation language that does not match the user's governance expectations. <br>
-Mitigation: Review and edit WORKFLOW.md before using it as operational guidance. <br>
+## Use Case:
 
+Developers use this skill to scaffold local ai-team folders, team member documentation, workflow documentation, and progress tracking for generic, web app, ecommerce, or mobile app projects without external services.
 
-## Reference(s): <br>
-- [Auto Create AI Team on ClawHub](https://clawhub.ai/sylvanxiao/auto-create-ai-team) <br>
-- [Publisher profile](https://clawhub.ai/user/sylvanxiao) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Local Markdown files and command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates files under the selected project's ai-team directory using user-selected team type, project type, language, member, and model settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata) <br>
+Risk: The skill writes generated files and optional logs to filesystem paths selected at runtime, and the security summary says file-writing behavior is broader than documentation says.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted project directories, avoid elevated privileges, avoid external --log-file paths, and review generated ai-team documentation before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sylvanxiao/skills/auto-create-ai-team)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown files and JSON configuration generated under a local ai-team directory, plus CLI status text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes files under the user-specified project path; supports zh/en language output and single, dual, or custom team modes.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

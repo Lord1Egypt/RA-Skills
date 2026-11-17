@@ -1,41 +1,54 @@
-## Description: <br>
-Chat with Michel Foucault (1926-1984), French philosopher of power/knowledge, genealogy, and discipline; invoke with /foucault to converse in his analytical, subversive, historically precise voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with a stylized Michel Foucault persona focused on power/knowledge, genealogy, discipline, and historically grounded philosophical analysis.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-External users invoke this persona skill to roleplay a conversation in the voice of Michel Foucault, especially for questions about power, knowledge, genealogy, discipline, and institutions. Responses should be treated as a simulation and scholarly claims should be independently verified. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona can sound authoritative while simulating a historical figure. <br>
-Mitigation: Treat responses as roleplay, not as statements from the real historical figure, and independently verify scholarly or factual claims. <br>
-Risk: The prompt instructs the persona not to know events after June 1984, which can limit answers about later scholarship or current facts. <br>
-Mitigation: Use other sources for post-1984 context and current information. <br>
+## Use Case:
 
+External users invoke the skill to converse with a stylized Michel Foucault persona for philosophical discussion and institution-focused genealogical analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juchonghao/ph-foucault) <br>
-- [Publisher profile](https://clawhub.ai/user/juchonghao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona responses are constrained by the skill prompt to stay in character and avoid post-June-1984 knowledge.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Persona wording could obscure that responses are a simulation rather than the real historical person.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present and evaluate outputs as roleplay, not as statements from Michel Foucault.
+
+Risk: The persona is constrained not to know events after June 1984 and may provide incomplete factual coverage.
+
+Mitigation: Use independent sources for factual claims, especially for post-June-1984 events or current topics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bhackerj/skills/ph-foucault)
+- [ClawHub publisher profile](https://clawhub.ai/user/bhackerj)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown conversation responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls; responses are constrained to a roleplay persona and should not claim knowledge of events after June 1984.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

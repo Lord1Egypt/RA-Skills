@@ -1,42 +1,59 @@
-## Description: <br>
-Advertised as an inverter and VFD parameter calculator, but security evidence identifies this release as a local note/data utility with add, list, search, remove, export, stats, and config commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inverter and VFD parameter calculator. Use when json inverter tasks, csv inverter tasks, checking inverter status.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and operators can use this skill as a shell-driven local data-store utility for recording, listing, searching, removing, exporting, and configuring entries. Security evidence says not to rely on it for electrical, inverter, VFD, equipment status, or operational decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as an inverter or VFD calculator, but the security evidence identifies it as a local data-store utility. <br>
-Mitigation: Use it only for local note/data tasks and do not rely on it for electrical calculations, equipment status, or operational decisions. <br>
-Risk: Entries and configuration can persist under ~/.inverter or another INVERTER_DIR path and may be exported or deleted by command. <br>
-Mitigation: Avoid storing secrets or sensitive operational details, review the data directory before export, and back up needed data before remove or delete workflows. <br>
+## Use Case:
 
+Developers and engineers can use this skill to inspect and run the bundled command wrapper for inverter-related status, local entries, search, export, statistics, and configuration. Security evidence says it should not be relied on as an inverter/VFD calculator or real status checker until corrected.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/inverter) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain-lab) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may persist JSONL data and configuration under the INVERTER_DIR path, defaulting to ~/.inverter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The advertised inverter/VFD calculator purpose does not match the inspected local data-store behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the artifact before installation and do not rely on it for inverter calculations or real equipment status checks until the behavior is corrected.
+
+Risk: The skill stores, exports, and deletes local entries under the configured data directory.
+
+Mitigation: Use a dedicated INVERTER_DIR, avoid storing sensitive values, and review exported files before sharing.
+
+Risk: Security guidance identifies an unsafe config command plus sed and serialization issues.
+
+Mitigation: Fix configuration update handling and data serialization before normal use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain-lab/skills/inverter)
+- [BytesAgain Homepage](https://bytesagain.com)
+- [BytesAgain Publisher Profile](https://clawhub.ai/user/bytesagain-lab)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output and Markdown command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local data directory configured by INVERTER_DIR; default is ~/.inverter/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

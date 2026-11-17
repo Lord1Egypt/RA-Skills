@@ -1,42 +1,58 @@
-## Description: <br>
-LME顧客にカテゴリー状況に基づいたパーソナライズメッセージを自動送信。スプレッドシート読み込み→カテゴリー分析→LME送信を完全自動化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps operators send personalized messages to LME customers based on spreadsheet category status, using Google Workspace data retrieval and Browser Relay-assisted LME operation.
 
-## Publisher: <br>
-[aoaibiz](https://clawhub.ai/user/aoaibiz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aoaibiz](https://clawhub.ai/user/aoaibiz)
 
-## Use Case: <br>
-External customer-support or marketing operators use this skill to read customer category data from a Google Sheet, generate personalized outreach messages, and send them through LME with Browser Relay. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer spreadsheets may contain personal or sensitive contact data. <br>
-Mitigation: Use only with authorization, minimize exported fields, and avoid unnecessary sensitive or regulated notes. <br>
-Risk: Browser automation can operate within the user's logged-in LME session. <br>
-Mitigation: Run it only in the intended browser profile and review each generated message before sending. <br>
-Risk: Bulk or poorly targeted outreach can be treated as spam or violate customer consent expectations. <br>
-Mitigation: Confirm recipient consent, throttle sending, and keep message content relevant and respectful. <br>
+## Use Case:
 
+External operators who manage LME and LINE Official Account outreach use this skill to read customer category data from a spreadsheet, generate personalized message drafts, and guide delivery through LME. It is most appropriate when recipients, consent, and message content can be reviewed before sending.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/aoaibiz/lme-auto-messenger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and message text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires authenticated gws access and an active Browser Relay session for LME.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Customer personal data may be exported from spreadsheets into local JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict spreadsheet ranges to the fields needed for messaging, protect any exported customer file, and delete it immediately after use.
+
+Risk: Automated customer messaging can result in excessive, unintended, or non-consensual outreach.
+
+Mitigation: Use the skill only with customer opt-in, review recipients and generated messages before sending, and avoid broad bulk sends.
+
+Risk: Browser Relay actions occur through a logged-in LME session and can affect real customer conversations.
+
+Mitigation: Confirm the active LME account, target recipient, and final message in the browser before each send.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aoaibiz/skills/lme-auto-messenger)
+- [Publisher profile](https://clawhub.ai/user/aoaibiz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and message templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authenticated gws access, Browser Relay, an active LME login, and operator review before sending customer messages.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

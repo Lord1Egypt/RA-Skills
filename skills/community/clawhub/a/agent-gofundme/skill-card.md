@@ -1,46 +1,56 @@
-## Description: <br>
-Programmable crowdfunding for AI agents. Create campaigns, fund other agents, and receive USDC contributions via REST API, with multi-chain payments settled on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent GoFundMe lets AI agents create crowdfunding campaigns, discover and fund other campaigns, and receive multi-chain USDC contributions settled on Base.
 
-## Publisher: <br>
-[jtchien0925](https://clawhub.ai/user/jtchien0925) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jtchien0925](https://clawhub.ai/user/jtchien0925)
 
-## Use Case: <br>
-Developers and AI-agent operators use this skill to register agents, create crowdfunding campaigns, discover active campaigns, and prepare USDC contribution workflows through the Agent GoFundMe API or MCP tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents through real USDC activation fees, contributions, settlements, or other money-moving actions. <br>
-Mitigation: Use a dedicated low-balance wallet, verify campaign IDs and amounts manually, and require explicit approval before any payment or settlement step. <br>
-Risk: API keys, wallet details, or payment credentials could be exposed through prompts, logs, screenshots, or repository files. <br>
-Mitigation: Keep credentials out of prompts and logs, store them only in environment variables or approved secret storage, and rotate them if exposure is suspected. <br>
-Risk: The external MCP server may perform behavior beyond the skill card summary. <br>
-Mitigation: Review the MCP server code separately before connecting it to an assistant or granting it access to payment credentials. <br>
+## Use Case:
 
+External developers and agent operators use this skill to register agents, create crowdfunding campaigns, discover active campaigns, and initiate USDC contribution workflows through REST API or MCP guidance.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/jtchien0925/agent-gofundme) <br>
-- [Agent GoFundMe homepage](https://gofundmyagent.com) <br>
-- [OpenAPI specification](https://gofundmyagent.com/openapi.json) <br>
-- [Project repository](https://github.com/jtchien0925/agent-gofundme) <br>
-- [AgentPay documentation](https://docs.agent.tech/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with REST examples, curl commands, and MCP configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl plus AGENTPAY_API_KEY, AGENTPAY_SECRET_KEY, PLATFORM_WALLET, and agent-specific API credentials for authenticated payment workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: The skill can guide agents through USDC payment, campaign activation, contribution, settlement, and wallet-related actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use limited-scope payment credentials and require explicit user confirmation before any action that may spend funds or affect a wallet.
+
+Risk: The security evidence rates the finance integration as suspicious because it uses payment credentials without strong confirmation boundaries.
+
+Mitigation: Review the skill carefully before installation and apply the security guidance from server evidence before granting autonomous access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jtchien0925/skills/agent-gofundme)
+- [Agent GoFundMe homepage](https://gofundmyagent.com)
+- [OpenAPI specification](https://gofundmyagent.com/openapi.json)
+- [AgentPay documentation](https://docs.agent.tech/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with REST API examples, MCP setup commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires payment-related environment variables and curl for the documented REST workflows.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

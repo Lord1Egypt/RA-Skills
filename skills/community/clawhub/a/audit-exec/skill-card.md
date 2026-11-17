@@ -1,40 +1,53 @@
-## Description: <br>
-Audits OpenClaw exec command transcripts, flags high- and medium-risk command patterns, applies a configurable whitelist, and prints a risk-level report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits OpenClaw exec commands across platforms, flags high-risk operations, applies whitelist filtering, and produces a risk-ranked execution report.
 
-## Publisher: <br>
-[gaodaabao](https://clawhub.ai/user/gaodaabao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaodaabao](https://clawhub.ai/user/gaodaabao)
 
-## Use Case: <br>
-Developers and operators use this skill to review recent OpenClaw shell command history for destructive operations, privilege changes, downloads, package installs, and other commands that may require investigation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit reads local OpenClaw command transcripts, which may contain secrets, private paths, or operational details. <br>
-Mitigation: Use an explicit transcript path when possible and review generated reports for sensitive content before sharing them. <br>
-Risk: Whitelist rules can cause risky commands to be reported as OK. <br>
-Mitigation: Review and tighten whitelist entries before relying on the audit result, especially broad regex patterns. <br>
+## Use Case:
 
+Developers and operators use this skill to audit recent OpenClaw exec commands, classify risky operations, and produce a report for manual review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaodaabao/audit-exec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and a plaintext audit report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local transcript JSONL and applies regex risk rules plus whitelist entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Whitelist matching can incorrectly hide dangerous commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the OK or whitelisted section as advisory only and manually review transcript commands, especially compound commands.
+
+Risk: The skill reads local OpenClaw command transcripts that may contain sensitive command history.
+
+Mitigation: Run it only in trusted environments and avoid sharing generated reports without reviewing them for sensitive commands or paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gaodaabao/skills/audit-exec)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain-text or Markdown-style audit report with command counts, risk labels, timestamps, and reasons.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reviews recent transcript entries and separates high-risk, medium-risk, low-risk, and whitelisted commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

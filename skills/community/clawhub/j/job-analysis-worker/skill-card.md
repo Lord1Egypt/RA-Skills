@@ -1,48 +1,61 @@
-## Description: <br>
-A Chinese-language study aid for Chapter 3 worker-oriented job analysis methods, including JEM, PAQ, TTAS, ARS, ORP, AET, JCI, cognitive task analysis, personality-oriented job analysis, KSAOs, traits, and related textbook concepts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+在对话中辅助学习"工作分析/Job Analysis"第 3 章"Worker-Oriented Methods"，覆盖 JEM、PAQ、TTAS、ARS、ORP、AET、JCI、cognitive task analysis、personality-oriented job analysis、Big Five/PPRF 等 worker-oriented job analysis 方法和相关概念。
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Students and instructors use this skill for Chinese-language tutoring, review, and applied exercises about worker-oriented job analysis methods. It supports concept explanations, method comparisons, KSAO identification, JEM-style scoring walkthroughs, and case-based study help. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Capability tags list crypto and purchase-related labels that do not match the artifact behavior. <br>
-Mitigation: Treat those labels as inaccurate metadata and rely on artifact review plus the security summary, which found a text-only study helper with no executable behavior. <br>
-Risk: Job-analysis explanations may be misapplied to real employment selection, compensation, or legal decisions. <br>
-Mitigation: Use the skill for coursework and study support; have qualified HR, industrial-organizational psychology, or legal reviewers assess any real-world employment use. <br>
+## Use Case:
 
+External learners and employees use this skill for Chinese-language study support on worker-oriented job analysis methods, including concept review, method comparison, textbook examples, KSAO judgments, JEM scoring, and assignment help. It is scoped to Chapter 3 worker-oriented methods and should defer broader textbook topics to the appropriate material.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/junwugit/job-analysis-worker) <br>
-- [Overview](references/overview.md) <br>
-- [Job Element Method](references/jem.md) <br>
-- [Position Analysis Questionnaire](references/paq.md) <br>
-- [Cognitive Task Analysis](references/cta.md) <br>
-- [Personality-Oriented Job Analysis](references/personality.md) <br>
-- [Trait Methods](references/trait-methods.md) <br>
-- [Equipment Methods](references/equipment-methods.md) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational Markdown study guidance and worked examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language responses with progressive disclosure and textbook-grounded terminology.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: Users may expect coverage outside Chapter 3 or a language other than Chinese.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask explicitly for another language or for material outside Chapter 3, and verify broader topics against the relevant source material.
+
+Risk: Study-oriented explanations of job analysis methods could be mistaken for operational employment or legal guidance.
+
+Mitigation: Use the skill for learning and drafting support; have qualified HR, industrial-organizational, or legal reviewers approve any real selection, assessment, or accommodation use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/junwugit/skills/job-analysis-worker)
+- [Cognitive Task Analysis (CTA)](references/cta.md)
+- [AET and JCI Equipment Methods](references/equipment-methods.md)
+- [Chapter 3 Examples](references/examples.md)
+- [Job Element Method (JEM)](references/jem.md)
+- [Worker-Oriented Methods Overview](references/overview.md)
+- [Position Analysis Questionnaire (PAQ)](references/paq.md)
+- [Personality-Oriented Job Analysis and PPRF](references/personality.md)
+- [TTAS, ARS, and ORP](references/trait-methods.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown conversational responses, often in Chinese, with short explanations, comparison tables, examples, and scoring walkthroughs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; responses are textbook-focused and chapter-scoped.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

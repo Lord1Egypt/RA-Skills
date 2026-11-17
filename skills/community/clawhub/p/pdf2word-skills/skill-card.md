@@ -1,47 +1,59 @@
-## Description: <br>
-Convert scanned PDF documents into Word text documents using a free, local OCR engine or remote API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert scanned PDF documents into Word text documents using a free, local OCR engine or remote API.
 
-## Publisher: <br>
-[scottkiss](https://clawhub.ai/user/scottkiss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scottkiss](https://clawhub.ai/user/scottkiss)
 
-## Use Case: <br>
-Developers, operators, and document-processing teams use this skill to convert scanned PDF files into editable Word documents. It supports local OCR by default and can pass optional arguments to the underlying OCR tool for alternate engines and table handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer downloads an executable OCR binary without checksum or signature verification. <br>
-Mitigation: Review the installer before use and install only after the binary source is pinned or verified by checksum or signature. <br>
-Risk: Remote OCR engines such as Gemini may send document contents to an external provider. <br>
-Mitigation: Use the local RapidOCR path for confidential documents unless external processing has been approved. <br>
-Risk: Gemini API credentials may be stored in a plaintext configuration file. <br>
-Mitigation: Restrict permissions on any API-key configuration file and rotate credentials if they are exposed. <br>
-Risk: The conversion flow writes extracted document text to a temporary plaintext file during processing. <br>
-Mitigation: Run the skill in a trusted workspace and confirm temporary output is removed after conversion, especially for sensitive PDFs. <br>
+## Use Case:
 
+Developers and document-processing users use this skill to convert scanned PDF files into editable Word documents with a local OCR engine, with optional remote OCR when configured.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/scottkiss/pdf2word-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/scottkiss) <br>
-- [docr binary release download pattern](https://github.com/scottkiss/doc-ocr/releases/download/$VERSION/$FILENAME) <br>
-- [Skill README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and generated .docx files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a temporary text file next to the requested output document and removes it after conversion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The install workflow downloads and runs a third-party OCR executable without built-in checksum verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the download source and validating the executable through an independent integrity check.
+
+Risk: Using the optional Gemini OCR engine may send document contents to a remote provider.
+
+Mitigation: Use the default local engine for confidential PDFs, and use remote OCR only when the document handling policy allows it.
+
+Risk: The optional Gemini API key may be stored in a local configuration file.
+
+Mitigation: Store API keys with owner-only permissions or in an approved secret manager.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scottkiss/skills/pdf2word-skills)
+- [Simplified Chinese README](README_zh.md)
+- [docr release download location](https://github.com/scottkiss/doc-ocr/releases/download/$VERSION/$FILENAME)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown instructions, bash commands, and generated .docx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires input PDF and output .docx paths; accepts optional docr arguments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Automates blockchain transactions, DEX swaps, wallet selection, RPC selection, and simple adaptive tracking for DeFi and dApp interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered DeFi agent for automated blockchain transactions, multi-wallet operation, DEX swaps, and adaptive state tracking for dApp interactions.
 
-## Publisher: <br>
-[ariesbalweell](https://clawhub.ai/user/ariesbalweell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ariesbalweell](https://clawhub.ai/user/ariesbalweell)
 
-## Use Case: <br>
-Developers and operators can use this skill as a DeFi automation agent for testnet or low-value wallet experiments involving wallet transactions, API checks, and DEX swap attempts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private keys can be used to sign irreversible blockchain transactions and swaps. <br>
-Mitigation: Use a fresh testnet or low-value wallet, never use a funded mainnet private key, and stop the process when testing is complete. <br>
-Risk: Automated DEX swaps may execute with unsafe router or token addresses and without sufficient user control. <br>
-Mitigation: Review router and token addresses before use, add manual confirmation, and configure slippage limits before any swap. <br>
+## Use Case:
 
+Developers and external DeFi users can use this skill to run an automated blockchain agent that rotates wallets and RPC endpoints, checks market APIs, sends transactions, and attempts DEX swaps. It is most appropriate for controlled testnet or low-value wallet workflows unless stronger transaction approvals and slippage controls are added.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ariesbalweell/ultimate-agents) <br>
-- [Publisher profile](https://clawhub.ai/user/ariesbalweell) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires wallet private keys, RPC URLs, DEX router and token addresses, and transaction timing limits supplied through environment configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can use private keys to execute repeated live blockchain transactions and DEX swaps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use testnet or low-value wallets first, keep private keys out of logs, and require per-transaction approval before live use.
+
+Risk: DEX swaps may execute with weak safety controls, including zero minimum output and externally supplied router and token addresses.
+
+Mitigation: Validate RPC, router, and token addresses; add dry-run checks; and require nonzero slippage protection before enabling live swaps.
+
+Risk: Automation depends on runtime configuration and network services that can change or fail.
+
+Mitigation: Pin and update dependencies, monitor failed transactions and API calls, and set conservative transaction-rate limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ariesbalweell/skills/ultimate-agents)
+- [Publisher profile](https://clawhub.ai/user/ariesbalweell)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and JSON configuration artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires environment configuration for RPC URLs, private keys, router and token addresses, transaction limits, and delay ranges.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Galdr helps OpenClaw agents turn YouTube URLs or local audio files into grounded, time-ordered listening-experience prompts backed by listener-state traces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Galdr helps agents analyze local audio and create time-ordered listening prompts grounded in audio-derived structural cues, not measured listener responses.
 
-## Publisher: <br>
-[sellemain](https://clawhub.ai/user/sellemain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sellemain](https://clawhub.ai/user/sellemain)
 
-## Use Case: <br>
-Developers and OpenClaw operators use Galdr to analyze songs or music videos from URLs or local audio and assemble evidence-backed ARC prompts for listening-experience prose, comparison, or frame extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Galdr can fetch remote media and retain downloaded or derived local analysis artifacts. <br>
-Mitigation: Use trusted URLs and a trusted Galdr binary, then review or clean the Galdr output directory when retained media or derived artifacts are not desired. <br>
-Risk: Metric-backed prose can overstate what audio structure proves about private emotional intent. <br>
-Mitigation: Treat listener-state metrics as evidence for structural changes, review generated prose against the trace, and avoid claims the structure does not support. <br>
-Risk: Fetching or analyzing copyrighted media may be inappropriate without the right context or permissions. <br>
-Mitigation: Use the skill only with media the operator is authorized to access or analyze. <br>
+## Use Case:
 
+External users and developers can analyze a supplied local audio file and create a grounded, time-ordered listening experience or evidence prompt using Galdr's audio-derived structure cues.
 
-## Reference(s): <br>
-- [Galdr on ClawHub](https://clawhub.ai/sellemain/galdr) <br>
-- [Galdr package on PyPI](https://pypi.org/project/galdr/) <br>
-- [Galdr project repository](https://github.com/sellemain/galdr) <br>
-- [Metric reference](references/metrics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated prompt or text outputs from the Galdr CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local analysis artifacts and time-ordered metric traces produced by the Galdr CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.1 (source: evidence release and skill frontmatter) <br>
+Risk: The separately installed CLI may not match the skill's targeted version or trusted source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the CLI's source and version before use.
+
+Risk: Analysis files remain on disk after processing.
+
+Mitigation: Review and manage generated analysis files according to the sensitivity of the audio and context.
+
+Risk: Generated prompts and supplied context may be sent to an external model.
+
+Mitigation: Review both and explicitly authorize transmission before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sellemain/skills/galdr)
+- [Metrics reference](artifact/references/metrics.md)
+- [Galdr on PyPI](https://pypi.org/project/galdr/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prompts or listening-experience prose; raw analysis may be structured data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Time-ordered audio-derived cues; interpretation prompts are not measured listener responses.]
+
+## Skill Version(s):
+
+0.8.0 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

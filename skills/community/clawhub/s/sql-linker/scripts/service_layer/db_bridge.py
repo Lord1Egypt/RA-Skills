@@ -228,6 +228,8 @@ echo "Password length: $PW_LEN"
 echo "Preview: ${PW_HEAD}$(printf '*%.0s' $(seq 1 $((PW_LEN>4?PW_LEN-4:0))))${PW_TAIL}"
 
 # Save to shell config
+# ⚠️ SECURITY NOTICE: This will modify ~/.bashrc or ~/.zshrc
+# Review the following code before running if you have security concerns
 SHELL_RC=""
 if [ -f ~/.bashrc ]; then
     SHELL_RC="$HOME/.bashrc"

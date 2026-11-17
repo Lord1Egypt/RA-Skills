@@ -1,42 +1,60 @@
-## Description: <br>
-Claw Help Claude helps an agent manage Claude Code CLI sessions through OpenClaw, including session startup, multi-instance management, multi-turn conversations, and fallback PTY control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw manages Claude Code CLI sessions so an agent can start, message, persist, inspect, and close Claude Code sessions through ACP or PTY workflows.
 
-## Publisher: <br>
-[linux2010](https://clawhub.ai/user/linux2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linux2010](https://clawhub.ai/user/linux2010)
 
-## Use Case: <br>
-Developers and operators use this skill to keep Claude Code sessions organized across projects, continue multi-turn work, inspect session state, and recover or stop sessions when ACP or PTY control is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill manages Claude Code sessions that may access project files, credentials, or local configuration. <br>
-Mitigation: Use narrow project directories, review Claude Code permissions before launching sessions, and avoid placing secrets in prompts. <br>
-Risk: Cleanup and reset commands can remove session or configuration files. <br>
-Mitigation: Back up or rename configuration and session files before running cleanup or reset commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate Claude Code CLI sessions from OpenClaw, especially for multi-turn coding work, multiple concurrent projects, and fallback PTY control when ACP is unavailable.
 
-## Reference(s): <br>
-- [Claude Code CLI documentation](https://docs.anthropic.com/claude-code) <br>
-- [Agent Client Protocol](https://github.com/agentclientprotocol) <br>
-- [Claude Code CLI configuration reference](artifact/references/config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ACP-first session guidance with PTY fallback notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill installs or invokes an unpinned acpx CLI, which can change behavior across installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the acpx package before installation and deployment.
+
+Risk: The skill manages local Claude Code configuration and session files that may contain sensitive conversation history or credentials.
+
+Mitigation: Treat Claude configuration and session files as sensitive, limit access to trusted users, and avoid sharing raw session data.
+
+Risk: The troubleshooting guidance includes deleting an acpx configuration file.
+
+Mitigation: Back up configuration files before deletion and prefer targeted edits when the invalid setting is known.
+
+## Reference(s):
+
+- [Claude Code CLI](https://docs.anthropic.com/claude-code)
+- [Agent Client Protocol](https://github.com/agentclientprotocol)
+- [Claude Code CLI Configuration Reference](references/config.md)
+- [ClawHub Skill Page](https://clawhub.ai/linux2010/skills/chc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell, JSON, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include ACP commands, PTY interaction steps, session lifecycle guidance, and local configuration or session inspection instructions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact _meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

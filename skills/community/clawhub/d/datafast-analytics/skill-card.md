@@ -1,40 +1,58 @@
-## Description: <br>
-Query DataFast website analytics and visitor data via the DataFast API for metrics, time series, realtime stats, breakdowns, visitor details, and goal/payment management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query DataFast website analytics and visitor data via the DataFast API for metrics, time series, realtime stats, breakdowns, visitor details, and goal/payment management.
 
-## Publisher: <br>
-[bennyqp](https://clawhub.ai/user/bennyqp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bennyqp](https://clawhub.ai/user/bennyqp)
 
-## Use Case: <br>
-External users and developers use this skill to query DataFast analytics, inspect visitor and realtime metrics, and manage goals or payments through the DataFast API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a DataFast API key stored locally and sent to DataFast over HTTPS for authenticated requests. <br>
-Mitigation: Protect the key file, avoid pasting the key into prompts, and prefer least-privilege credentials if DataFast supports them. <br>
-Risk: The skill can create or delete goals and payments through POST and DELETE requests. <br>
-Mitigation: Require a clear preflight summary, exact filters or time range, and explicit user confirmation before any destructive action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [DataFast homepage](https://datafa.st) <br>
-- [ClawHub skill page](https://clawhub.ai/bennyqp/datafast-analytics) <br>
+## Use Case:
 
+Developers and website operators use this skill to query DataFast analytics, inspect visitor activity, summarize realtime or historical metrics, and manage goals or payments through the DataFast API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with tables and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes pagination details when available and requires preflight summaries before destructive requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can delete DataFast goals or payments.
+
+Mitigation: Require explicit human approval for every delete request, including exact filters, time range, and final URL without the API key.
+
+Risk: The skill uses a DataFast API key that may expose analytics and visitor details.
+
+Mitigation: Use the least-privilege or read-only key available, store it with owner-only permissions, and avoid pasting the secret into chat prompts.
+
+Risk: Broad time ranges or vague delete scopes could affect more records than intended.
+
+Mitigation: Confirm destructive scope in plain language and require additional confirmation for all-time deletion requests.
+
+## Reference(s):
+
+- [DataFast homepage](https://datafa.st)
+- [DataFast API base URL](https://datafa.st/api/v1/)
+- [ClawHub skill page](https://clawhub.ai/bennyqp/skills/datafast-analytics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include pagination details, totals, conversion or revenue metrics, and confirmation prompts for destructive actions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

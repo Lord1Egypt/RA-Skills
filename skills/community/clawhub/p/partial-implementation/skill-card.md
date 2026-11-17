@@ -1,39 +1,50 @@
-## Description: <br>
-Code returned as done is actually a stub, such as a placeholder body, TODO comment, or function that claims completion without real logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code returned as "done" is actually a stub - a placeholder body, a TODO comment, or a function that claims completion without real logic.
 
-## Publisher: <br>
-[mvogt99](https://clawhub.ai/user/mvogt99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mvogt99](https://clawhub.ai/user/mvogt99)
 
-## Use Case: <br>
-Developers and coding agents use this skill to identify code that has been marked complete even though it still contains stubbed, placeholder, or nonfunctional implementation bodies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may cause an agent to scrutinize diffs and test behavior more strictly for placeholder implementations. <br>
-Mitigation: Review flagged code paths against the task requirements and run relevant end-to-end checks before accepting the implementation. <br>
+## Use Case:
 
+Developers and coding agents use this skill to catch placeholder implementations before work is marked complete. It guides review of changed functions, diff searches for stub markers, and runtime checks that confirm requested behavior is implemented.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mvogt99/partial-implementation) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mvogt99) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance and checklist-style review criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No hidden execution, data access, or persistence identified in the server security review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may flag intentional placeholders or out-of-scope work as incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each hit against the task requirements and document any genuinely deferred work instead of silently leaving stubs.
+
+## Reference(s):
+
+- [ClawHub Skill Release](https://clawhub.ai/mvogt99/skills/partial-implementation)
+- [Publisher Profile](https://clawhub.ai/user/mvogt99)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Shell commands]
+
+**Output Format:** [Markdown guidance with inline code and search commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable tooling is bundled; outputs are review guidance and suggested checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

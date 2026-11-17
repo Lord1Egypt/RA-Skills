@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/profile.resolved.schema.json",
+  "title": "Majia ChatCut Koubo resolved profile",
+  "description": "Runtime profile contract. Resolved profiles are complete, canonical, and never contain extends.",
+  "allOf": [
+    {
+      "$ref": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/profile.source.schema.json"
+    },
+    {
+      "type": "object",
+      "required": [
+        "schemaVersion",
+        "policyVersion",
+        "profileId",
+        "profileVersion",
+        "status",
+        "provenance",
+        "timeline",
+        "captions",
+        "audio",
+        "terminologyFile"
+      ],
+      "not": {
+        "type": "object",
+        "required": [
+          "extends"
+        ]
+      },
+      "properties": {
+        "$schema": {
+          "const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/profile.resolved.schema.json"
+        },
+        "schemaVersion": {
+          "const": "2.0.0"
+        },
+        "status": {
+          "$ref": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/profile.source.schema.json#/$defs/canonicalStatus"
+        },
+        "provenance": {
+          "$ref": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/profile.source.schema.json#/$defs/provenance"
+        },
+        "terminology": {
+          "$ref": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/profile.source.schema.json#/$defs/openObject"
+        },
+        "timeline": {
+          "allOf": [
+            {
+              "$ref": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/profile.source.schema.json#/$defs/timelineSource"
+            },
+            {
+              "type": "object",
+              "required": [
+                "width",
+                "height",
+                "fps"
+              ]
+            }
+          ]
+        },
+        "captions": {
+          "allOf": [
+            {
+              "$ref": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/profile.source.schema.json#/$defs/captionsSource"
+            },
+            {
+              "type": "object",
+              "required": [
+                "sourceVariant",
+                "maxCharactersPerLine",
+                "displayOverridePolicy"
+              ],
+              "properties": {
+                "displayOverridePolicy": {
+                  "type": "object",
+                  "required": [
+                    "maxReplacementCharacters"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "anyOf": [
+        {
+          "type": "object",
+          "required": [
+            "presenterWindow"
+          ]
+        },
+        {
+          "type": "object",
+          "required": [
+            "presenter"
+          ]
+        }
+      ],
+      "if": {
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "const": "validated"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "provenance": {
+            "type": "object",
+            "required": [
+              "validatedTimelineRevisions",
+              "validatedSourceRevisions"
+            ],
+            "properties": {
+              "validatedTimelineIds": {
+                "type": "array",
+                "minItems": 1
+              },
+              "validatedTimelineRevisions": {
+                "type": "object",
+                "minProperties": 1
+              },
+              "validatedSourceRevisions": {
+                "type": "object",
+                "minProperties": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

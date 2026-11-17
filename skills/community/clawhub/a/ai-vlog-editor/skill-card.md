@@ -1,43 +1,58 @@
-## Description: <br>
-Scenario-focused Sparki skill for editing vlog-style videos while using the latest official Sparki setup, API-key, and upload workflow guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scenario-focused Sparki skill for editing vlog-style videos while using the latest official Sparki setup, API-key, and upload workflow guidance.
 
-## Publisher: <br>
-[fischerlam](https://clawhub.ai/user/fischerlam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fischerlam](https://clawhub.ai/user/fischerlam)
 
-## Use Case: <br>
-External creators and agents use this skill to turn raw daily-life, travel, and lifestyle footage into cleaner vlog-style edits with prompts and Sparki upload/run guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a Sparki API key locally and uses it for remote cloud video editing workflows. <br>
-Mitigation: Use a dedicated Sparki API key with limited value when possible, avoid syncing the config directory to backups or dotfiles, and rotate the key if exposed. <br>
-Risk: The skill sends videos and reference media to Sparki's cloud service. <br>
-Mitigation: Install only when users are comfortable uploading those media assets to Sparki and avoid using sensitive footage without appropriate approval. <br>
-Risk: The workflow can download remote media and write to local output paths. <br>
-Mitigation: Choose output paths deliberately, review files before bulk workflows, and confirm before deleting uploaded assets. <br>
+## Use Case:
 
+External creators and agents use this skill to turn local vlog, travel, daily-life, and lifestyle video footage into creator-style edits through Sparki's cloud workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fischerlam/ai-vlog-editor) <br>
-- [Sparki homepage](https://sparki.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; Sparki CLI commands return JSON and may download video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SPARKI_API_KEY for authenticated Sparki cloud workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Video files and prompts are sent to Sparki cloud processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for footage and prompts that are acceptable to process through Sparki, and use local tools when privacy or offline processing is required.
+
+Risk: The setup command can store the Sparki API key in local plaintext configuration.
+
+Mitigation: Prefer providing SPARKI_API_KEY through the environment instead of saving the key with setup.
+
+Risk: The workflow uploads the local file path selected by the agent or user.
+
+Mitigation: Confirm the exact video path before upload.
+
+## Reference(s):
+
+- [AI Vlog Editor on ClawHub](https://clawhub.ai/fischerlam/skills/ai-vlog-editor)
+- [Sparki homepage](https://sparki.io)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Sparki setup, upload, edit, polling, and download guidance; the CLI can return task IDs, status, result URLs, and downloaded video files.]
+
+## Skill Version(s):
+
+1.0.12 (source: SKILL.md frontmatter, release metadata, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

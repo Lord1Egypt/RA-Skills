@@ -1,45 +1,60 @@
-## Description: <br>
-YouTube Channel Management uploads File Manager videos, updates video metadata, privacy, localizations, thumbnails, captions, playlists, playlist items, channel sections, channel branding, watermarks, and discovers YouTube categories and capabilities through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through uploading and managing videos, captions, playlists, and channel settings on a connected YouTube account through AgentPMT.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External developers and agents use this skill to manage a connected YouTube channel through AgentPMT remote tool calls, including uploads, metadata updates, playlists, captions, thumbnails, branding, watermarks, and capability discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish, schedule, update, or delete YouTube content, so incorrect parameters could affect public channel content. <br>
-Mitigation: Require explicit confirmation of resource IDs and intended privacy, publish, notification, and deletion settings before executing high-impact actions. <br>
-Risk: Upload, thumbnail, caption, and watermark actions depend on File Manager file IDs and the connected YouTube account. <br>
-Mitigation: Verify the intended file IDs, account, and channel before invoking upload-related actions. <br>
-Risk: Some YouTube Studio-only surfaces are not available through the public API. <br>
-Mitigation: Check live schema or capabilities before production use and avoid promising unsupported changes such as cards, end screens, or custom in-video linked-video elements. <br>
+## Use Case:
 
+Channel managers and developers use this skill to guide an agent in uploading videos and maintaining video metadata, captions, playlists, and channel branding for an AgentPMT-connected YouTube channel.
 
-## Reference(s): <br>
-- [YouTube Channel Management Schema](artifact/schema.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/youtube-channel-management) <br>
-- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/youtube-api) <br>
-- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON, API Calls, Configuration] <br>
-**Output Format:** [Markdown instructions with JSON tool-call examples and schema tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote AgentPMT tool calls require connected account setup and File Manager file IDs for upload-related actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Public uploads, privacy changes, and subscriber notifications can expose content or alert an audience unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual confirmation before public uploads, privacy changes, or subscriber notifications.
+
+Risk: Deleting videos, captions, playlists, or channel sections and changing branding can have high-impact effects without clear rollback guidance.
+
+Mitigation: Require manual confirmation for branding changes and every delete or remove action; review the target before proceeding.
+
+Risk: Unpinned installation examples may retrieve a different skill version.
+
+Mitigation: Prefer OpenClaw installation routes or version-pinned setup commands over floating npx examples.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/agentpmt/skills/youtube-channel-management)
+- [AgentPMT YouTube Channel Management marketplace page](https://www.agentpmt.com/marketplace/youtube-api)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [YouTube Channel Management schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON tool-call arguments]
+
+**Output Format:** [Text with JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions require a connected account; media uploads use File Manager file IDs.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

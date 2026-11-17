@@ -1,46 +1,58 @@
-## Description: <br>
-Reviews pull requests with scope validation, requirements compliance, and line comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews pull requests with scope validation, requirements compliance, and line comments.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review GitHub or GitLab pull and merge requests against stated scope, requirements, version consistency, hygiene, and review quality expectations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide posting review comments, creating issues, publishing insights, and retaining review knowledge outside the local chat. <br>
-Mitigation: Require explicit approval before posting to PRs, creating issues, publishing insights, or retaining knowledge-capture entries. <br>
-Risk: The security scan flags under-scoped external posting and persistent knowledge-capture behavior for user review. <br>
-Mitigation: Disable broad triggers where possible and use --no-capture unless persistent knowledge capture is intended. <br>
+## Use Case:
 
+Developers and reviewers use this skill to check GitHub or GitLab pull requests against stated requirements, classify findings by scope, and prepare review reports and line comments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-pr-review) <br>
-- [OpenClaw metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [GitHub PR comment patterns](artifact/modules/github-comments.md) <br>
-- [Knowledge capture module](artifact/modules/knowledge-capture.md) <br>
-- [PR hygiene module](artifact/modules/pr-hygiene.md) <br>
-- [Version validation module](artifact/modules/version-validation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review reports with inline shell command examples and optional PR or issue comments.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include classified findings, scope compliance checks, version validation results, backlog items, and knowledge-capture summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: ClawHub release evidence) <br>
+Risk: The security review rates the skill suspicious for unsafe handling of review evidence; the scan is partial and some referenced paths were unresolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the unresolved paths and review how evidence and local files are handled before installing or using the skill.
+
+Risk: The security review reports publishing and tracking beyond the stated review purpose, persistent reviewer records, and an unverified discussion-posting helper.
+
+Mitigation: Check the destinations and behavior of posting and record-keeping steps, and use them only when you intend to publish or retain that information.
+
+Risk: The skill may access local files and Git identity information during review workflows.
+
+Mitigation: Run it only in a workspace and account context whose files and Git identity you are comfortable making available to its review workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-pr-review)
+- [Project homepage (metadata.clawdis.homepage)](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown review report with findings, recommendations, and line comments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also prepare backlog issue text and capture review knowledge when those workflow steps are used.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter, ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

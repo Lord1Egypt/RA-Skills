@@ -1,40 +1,53 @@
-## Description: <br>
-Placeholder skill for text-to-image workflows on skills.video. Use when the user is asking about t2i generation and the concrete API contract has not been implemented yet. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Placeholder skill for text-to-image workflows on skills.video. Use when the user is asking about t2i generation and the concrete API contract has not been implemented yet.
 
-## Publisher: <br>
-[skills-video](https://clawhub.ai/user/skills-video) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skills-video](https://clawhub.ai/user/skills-video)
 
-## Use Case: <br>
-Developers and external users use this placeholder skill to handle text-to-image requests on skills.video while the concrete API contract is unavailable. It guides the agent to explain the limitation, look for verified provider documentation, and avoid inventing request fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The placeholder has no verified text-to-image API contract, endpoint, payload template, or helper command. <br>
-Mitigation: Tell users that t2i is currently a placeholder, check for model-specific OpenAPI or documentation, and avoid inventing unsupported request fields. <br>
-Risk: A future implementation may add endpoints, credentials, helper commands, polling, or file and network behavior. <br>
-Mitigation: Review and scan any later version before deployment, especially changes that introduce executable behavior or credential handling. <br>
+## Use Case:
 
+External users and developers use this placeholder to handle text-to-image requests for skills.video without fabricating unsupported API details while the real API contract is unavailable.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/skills-video/t2i) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; the skill explains placeholder status and requests exact model or endpoint details only when needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may expect text-to-image generation even though this release is only a placeholder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users that t2i is not implemented yet and avoid inventing undocumented request fields, endpoints, or image parameters.
+
+Risk: Future versions that add endpoints, commands, credentials, or polling behavior could introduce new security and reliability risks.
+
+Mitigation: Review and rescan any future implementation before treating it as an executable image-generation workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/skills-video/skills/t2i)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API calls, files, shell commands, or image outputs are produced by the placeholder.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Run Claude Code tasks in headless mode with `claude -p` through the local `cc-task-runner.sh` wrapper, including model switching, JSON output capture, structured schema checks, multi-file artifact validation, and glob matching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs Claude Code tasks in headless mode through a local runner wrapper with model selection, structured output checks, artifact validation, retry/fallback support, and task inspection commands.
 
-## Publisher: <br>
-[zwd0313](https://clawhub.ai/user/zwd0313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zwd0313](https://clawhub.ai/user/zwd0313)
 
-## Use Case: <br>
-Developers and engineers use this skill to run non-interactive Claude Code jobs for coding, review, analysis, report generation, and file-producing tasks with structured output and artifact validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill normalizes unattended Claude Code automation with permission bypasses and depends on an unbundled local runner script. <br>
-Mitigation: Install only when that automation is intended, review or trust the local runner script, use a temporary dedicated work directory, avoid bypassPermissions for untrusted prompts or repositories, keep secrets out of prompts, inspect generated artifacts, and clean stored task state after sensitive runs. <br>
+## Use Case:
 
+Developers and engineers use this skill to run non-interactive Claude Code tasks for coding, review, analysis, report generation, and file-producing workflows that need schema or artifact validation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zwd0313/claude-task-runner) <br>
-- [Runner Usage Reference](references/runner-usage.md) <br>
-- [Task Schema Example](references/task-schema-example.json) <br>
-- [BigModel Anthropic-compatible API](https://open.bigmodel.cn/api/anthropic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, Markdown, JSON] <br>
-**Output Format:** [Markdown with inline bash commands and JSON schema examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or validate files through the external local runner when the invoking agent follows the skill instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can launch unattended local Claude Code tasks that write files and run Bash.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a dedicated trusted workspace with explicit approval, sandboxing, and validation of expected paths and artifacts.
+
+Risk: The documented bypassPermissions mode can reduce interactive permission checks for unreviewed prompts or repositories.
+
+Mitigation: Avoid bypassPermissions for unreviewed inputs and prefer explicit approval or tighter permission settings unless the workspace and task are trusted.
+
+Risk: A task may claim success while failing to produce required files or structured output.
+
+Mitigation: Use --json-schema-file with --expect-file, --expect-contains, or --expect-glob, and treat validation failures as real task failures.
+
+## Reference(s):
+
+- [Runner Usage Reference](references/runner-usage.md)
+- [Task Schema Example](references/task-schema-example.json)
+- [Run Task Example Script](scripts/run-task-example.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON schema examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task status, logs, result inspection commands, file expectation checks, glob checks, and structured JSON output contracts.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Researches whether a proposed concept has already been implemented and summarizes the current state using multilingual keywords, multi-engine cross-validation, and multidimensional search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research whether a concept has been implemented and its current state using multi-language keywords, multi-engine cross-validation, and multi-dimensional search.
 
-## Publisher: <br>
-[leeshunee](https://clawhub.ai/user/leeshunee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leeshunee](https://clawhub.ai/user/leeshunee)
 
-## Use Case: <br>
-External users and developers use this skill to check whether an idea has existing solutions, compare related projects or papers, and produce a structured concept-research report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GNU General Public License v3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Searches and fetched pages may expose research topics or prompts to external search engines and websites. <br>
-Mitigation: Avoid confidential concepts unless the user trusts the search workflow and review search terms before running broad or deep exploration. <br>
-Risk: Cloned repositories, downloaded papers, and fetched web pages can contain untrusted content. <br>
-Mitigation: Treat downloaded materials as evidence only and do not run cloned code without a separate review. <br>
-Risk: Concept-research summaries can be incomplete, outdated, or misleading if the search results are weak. <br>
-Mitigation: Cross-check high-relevance results across search engines and include original links in the final report. <br>
+## Use Case:
 
+Developers, product builders, and researchers use this skill to evaluate whether an idea already has implementations, compare existing solutions, and summarize opportunities before building or choosing an approach.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leeshunee/kinema-concept-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown research report with summary tables and local project notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save research notes, cloned repositories, and downloaded papers under projects/research-{uuid}/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill may search the web, fetch pages, clone selected repositories, download papers, and save local research artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review targets before clone or download actions, and install only from pinned or trusted marketplace revisions when possible.
+
+Risk: Research results can include incomplete, stale, or misleading information from external sources.
+
+Mitigation: Cross-check important findings across multiple sources before using them for product, legal, or investment decisions.
+
+## Reference(s):
+
+- [Kinema's Concept Re-Search Onboarding](references/ONBOARDING.md)
+- [searxng-search-cli](https://github.com/KinemaClawWorkspace/searxng-search-cli)
+- [ClawHub skill page](https://clawhub.ai/leeshunee/skills/kinema-concept-research)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance, Configuration, Text]
+
+**Output Format:** [Markdown report with summarized findings, links, and inline shell commands for setup or validation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local research artifacts under projects/research-{uuid}.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -16,9 +16,9 @@ params、task_id 必须指定其一，不能同时指定时
 - productTags（字符串数组）：产品类别标签
 ### 公司筛选
 - seller（字符串）：供应商公司名称
-- sellerCompanyId（整数）：供应商公司ID
+- sellerId（整数）：供应商公司ID
 - buyer（字符串）：采购商公司名称
-- buyerCompanyId（整数）：采购商公司ID
+- buyerId（整数）：采购商公司ID
 ### 地理筛选
 - sellerCountryCodes（数组）：供应商国家代码
 - buyerCountryCodes（数组）：采购商国家代码
@@ -48,7 +48,7 @@ params、task_id 必须指定其一，不能同时指定时
 - tradeDate：交易日期（毫秒时间戳）
 
 ### 公司标识
-- sellerCompanyId/buyerCompanyId：公司ID
+- sellerCompanyId/buyerCompanyId：公司ID（响应字段名与请求参数 sellerId/buyerId 不同，请勿混用）
 - seller/buyer：公司名称
 
 ### 贸易指标

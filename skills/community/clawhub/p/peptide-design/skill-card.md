@@ -1,42 +1,55 @@
-## Description: <br>
-Peptide design, docking, and peptide property analysis tools exposed through SciMiner. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Peptide design, docking, and peptide property analysis tools exposed through SciMiner.
 
-## Publisher: <br>
-[sciminer](https://clawhub.ai/user/sciminer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sciminer](https://clawhub.ai/user/sciminer)
 
-## Use Case: <br>
-Developers, computational biologists, and peptide-design researchers use this skill to run SciMiner peptide docking, sequence-design, validation, and property-analysis workflows from documented SciMiner API tool docs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a SciMiner API key stored locally. <br>
-Mitigation: Store the key only at ~/.config/sciminer/credentials.json, do not print or commit it, and rotate it if exposure is suspected. <br>
-Risk: SciMiner calls may upload user-selected scientific sequences, structures, or datasets to the service. <br>
-Mitigation: Review selected files before invocation and do not submit confidential inputs unless SciMiner's data handling terms fit the use case. <br>
+## Use Case:
 
+Developers and scientists use this skill to design, dock, validate, and analyze peptides with SciMiner tools, including peptide property calculations and liability checks.
 
-## Reference(s): <br>
-- [ClawHub Peptide Design](https://clawhub.ai/sciminer/peptide-design) <br>
-- [SciMiner Tool API Files](https://sciminer.tech/tool_api_files/) <br>
-- [SciMiner API Key Utility](https://sciminer.tech/utility) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summaries with inline JSON, invocation code or commands, task IDs, and SciMiner share_url links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local SciMiner API key and may upload user-selected scientific input files to SciMiner.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: release evidence) <br>
+Risk: The skill relies on mutable remote SciMiner Markdown documentation to determine API payloads and invocation steps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected SciMiner tool documentation before execution and use only trusted endpoints, headers, upload fields, and parameters.
+
+Risk: The skill uses a SciMiner API key and may upload user-provided structures or files to the remote service.
+
+Mitigation: Use a scoped SciMiner API key and avoid submitting sensitive unpublished structures or files unless the remote documentation and endpoints are independently trusted.
+
+## Reference(s):
+
+- [Peptide Design on ClawHub](https://clawhub.ai/sciminer/skills/peptide-design)
+- [SciMiner Tool API Files](https://sciminer.tech/tool_api_files/)
+- [SciMiner API Key Utility](https://sciminer.tech/utility)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, API Calls, Markdown]
+
+**Output Format:** [Markdown with JSON snippets, code blocks, and SciMiner share_url links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SciMiner task identifiers and result links for long-running jobs.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

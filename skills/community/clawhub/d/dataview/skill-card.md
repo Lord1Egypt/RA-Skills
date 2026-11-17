@@ -1,41 +1,54 @@
-## Description: <br>
-Dataview records and reviews local notes about data operations from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dataview provides Bash commands for recording, viewing, searching, and exporting local logs of data-operation activity.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and data practitioners use this skill to record local notes about data operations such as ingesting, transforming, querying, filtering, validating, and exporting activity logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is described as a CSV and JSON explorer, but security evidence says it behaves primarily as a local data-operation logbook. <br>
-Mitigation: Use it for tracking operation notes rather than parsing or analyzing sensitive datasets, and verify expected behavior before relying on it for data exploration. <br>
-Risk: Inputs are saved under ~/.local/share/dataview and may include sensitive notes, file paths, credentials, or dataset details. <br>
-Mitigation: Avoid entering secrets, credentials, private dataset contents, or sensitive file paths unless local persistence is acceptable. <br>
+## Use Case:
 
+Developers and engineers can use Dataview as a lightweight local tracker for data inspection and processing notes. It should not be treated as a full CSV or JSON query engine.
 
-## Reference(s): <br>
-- [Dataview on ClawHub](https://clawhub.ai/bytesagain-lab/dataview) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local file path guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled command writes local timestamped logs and can export accumulated entries as JSON, CSV, or text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: User-entered data-operation notes may be stored in plaintext local logs and included in later searches or exports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enter secrets, proprietary data snippets, or sensitive queries unless plaintext local storage under ~/.local/share/dataview is acceptable.
+
+Risk: The release is presented as CSV and JSON exploration, but the security evidence says the artifact behaves as a persistent local activity logger.
+
+Mitigation: Use this skill only for activity logging and verify any real data analysis with a dedicated CSV or JSON parser or query tool.
+
+## Reference(s):
+
+- [Dataview ClawHub Skill Page](https://clawhub.ai/bytesagain-lab/skills/dataview)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Plain text CLI output and local JSON, CSV, or text export files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists command entries and history under ~/.local/share/dataview when commands are run.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

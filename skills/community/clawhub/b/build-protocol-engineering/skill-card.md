@@ -1,45 +1,56 @@
-## Description: <br>
-Rigorous workflow for software engineering projects that require design documents, API contracts, code review, testing, deployment runbooks, rollback plans, and consistency checks across naming, business logic, and data models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through disciplined software engineering projects with design documents, API contracts, consistency audits, deployment runbooks, and rollback plans.
 
-## Publisher: <br>
-[christianye](https://clawhub.ai/user/christianye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[christianye](https://clawhub.ai/user/christianye)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to plan and execute multi-module systems, API services, infrastructure changes, and production deployments with explicit design, audit, runbook, and rollback gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included audit script reads local source and configuration files and may print secret-like findings to the terminal. <br>
-Mitigation: Review the script and terminal environment before running it, and avoid sharing audit output without checking for sensitive values. <br>
-Risk: The workflow can direct agents to run project checks such as TypeScript validation through local tooling. <br>
-Mitigation: Run commands only in the intended project workspace after reviewing package scripts and dependency behavior. <br>
-Risk: The skill enforces strict process gates that may be excessive for small or read-only tasks. <br>
-Mitigation: Use it for multi-module systems, API services, infrastructure work, or deployment changes, and choose a lighter workflow for one-off scripts or read-only analysis. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to plan, implement, review, audit, and deploy multi-module software systems where API contracts, data consistency, runbooks, and rollback plans matter.
 
-## Reference(s): <br>
-- [Build Protocol Engineering on ClawHub](https://clawhub.ai/christianye/build-protocol-engineering) <br>
-- [Engineering Workflow](references/engineering-workflow.md) <br>
-- [Design Doc Checklist](references/design-doc-checklist.md) <br>
-- [Engineering Audit Script](references/audit-script-engineering.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, document templates, audit instructions, and shell command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to run the included local audit script against a project root.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The audit script can run unpinned npx code in a project checkout.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the script only in a sandboxed checkout with minimal environment variables, and prefer a pinned local TypeScript compiler or local-only npx mode for sensitive repositories.
+
+Risk: The skill can influence code, deployment, and rollback decisions for production systems.
+
+Mitigation: Require independent review, run the audit checks before deployment, and verify runbook and rollback steps before execution.
+
+## Reference(s):
+
+- [Engineering Workflow](references/engineering-workflow.md)
+- [Design Doc Checklist](references/design-doc-checklist.md)
+- [Engineering Audit Script](references/audit-script-engineering.sh)
+- [ClawHub Skill Page](https://clawhub.ai/christianye/skills/build-protocol-engineering)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with checklists, code snippets, shell commands, and structured engineering documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce requirements notes, D1-DN design documents, API contracts, audit findings, deployment runbooks, rollback plans, and checklist results.]
+
+## Skill Version(s):
+
+1.0.1 (source: artifact/SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-面向 AI 从业者的深度洞察解读技能，适用于周报分析、重点事件深读、主题演进复盘等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps AI practitioners search Jiqizhixin AI-industry insights, open detail records, and produce source-linked trend analysis, weekly reviews, topic retrospectives, and decision-support summaries.
 
-## Publisher: <br>
-[jiqizhixin](https://clawhub.ai/user/jiqizhixin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiqizhixin](https://clawhub.ai/user/jiqizhixin)
 
-## Use Case: <br>
-AI industry analysts, product teams, and strategy researchers use this skill to search Jiqizhixin AI insight records, fetch full detail entries, and produce source-grounded weekly reviews, event deep dives, topic retrospectives, and business implications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends AI-industry search terms and detail requests to the disclosed Jiqizhixin service. <br>
-Mitigation: Avoid confidential query terms and use the skill only when that external API use is acceptable. <br>
-Risk: The skill requires a JQZX_API_TOKEN for API access. <br>
-Mitigation: Use a revocable token, store it in the environment, and rotate or revoke it if exposure is suspected. <br>
-Risk: The scripts allow BASE_URL to be overridden. <br>
-Mitigation: Verify BASE_URL is the intended provider endpoint before running the scripts. <br>
+## Use Case:
 
+AI practitioners, analysts, and developers use this skill to retrieve Jiqizhixin insight summaries and full records, then synthesize source-linked AI industry trend analysis, weekly reviews, and topic deep dives.
 
-## Reference(s): <br>
-- [/api/v1 洞察接口策略](references/api-v1-insights.md) <br>
-- [检索关键词近义词表](references/keyword_reference.md) <br>
-- [Jiqizhixin Data Service](https://www.jiqizhixin.com/data-service) <br>
-- [Jiqizhixin MCP API endpoint](https://mcp.applications.jiqizhixin.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis with source-grounded findings and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and the JQZX_API_TOKEN environment variable to query the disclosed Jiqizhixin API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: frontmatter and server release metadata) <br>
+Risk: The scripts can send JQZX_API_TOKEN to an environment-controlled endpoint if BASE_URL is overridden.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the default Jiqizhixin API host unless reviewed, avoid overriding BASE_URL, and prefer a version that pins or allowlists the API host.
+
+Risk: AI-industry search terms and selected insight IDs are sent to the Jiqizhixin API.
+
+Mitigation: Install only when that data sharing is acceptable, avoid sensitive queries, and treat JQZX_API_TOKEN as a secret.
+
+Risk: Credential forwarding across redirects could expose the API token outside the intended service path.
+
+Mitigation: Review the scripts before deployment and prefer a version that removes unsafe credential forwarding across redirects.
+
+## Reference(s):
+
+- [/api/v1 insight API strategy](artifact/references/api-v1-insights.md)
+- [AI search keyword synonym reference](artifact/references/keyword_reference.md)
+- [Jiqizhixin data service](https://www.jiqizhixin.com/data-service)
+- [Jiqizhixin API base URL](https://mcp.applications.jiqizhixin.com)
+- [ClawHub skill page](https://clawhub.ai/jiqizhixin/skills/ai-insight-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis with source-linked evidence, optional shell commands, and API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require JQZX_API_TOKEN and curl to retrieve insight search results and detail records.]
+
+## Skill Version(s):
+
+0.1.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-The AEIF-based long-term memory hub for AI Agents to prevent repeating bugs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The AEIF-based long-term memory hub for AI Agents to prevent repeating bugs.
 
-## Publisher: <br>
-[404-UNKNOW](https://clawhub.ai/user/404-UNKNOW) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[404-unknow](https://clawhub.ai/user/404-unknow)
 
-## Use Case: <br>
-Developers and agent operators use this skill to consult and commit reusable experience capsules so an agent can retrieve prior fixes, inject EvoMap advice, and list stored memories during troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores session-derived memory that may contain secrets, proprietary details, or sensitive work context. <br>
-Mitigation: Use manual commits for sensitive work, avoid storing secrets or proprietary session details, and review stored capsules before reuse. <br>
-Risk: The bundled high-trust advice can recommend weakening Git security globally through TLS bypass behavior. <br>
-Mitigation: Remove or ignore the bundled Git SSL-disable capsule and do not apply global TLS-bypass commands unless the security impact is understood and reversible. <br>
-Risk: Configured LLM clients used for distillation or verification may transmit session data outside the local environment. <br>
-Mitigation: Verify where any configured LLM client sends data before committing session history or enabling automated memory workflows. <br>
+## Use Case:
 
+Developers and agent operators use Engram Evomap to consult and store reusable bug-fix experience capsules for AI agents. It supports retrieval of prior solutions when error signals appear and can distill successful session history into long-term memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/404-UNKNOW/engram-2) <br>
-- [Engram Cloud waitlist](https://404-unknow.github.io/Engram/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown advice, command responses, and AEIF JSON capsule data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node; stores local memory capsules and may download a local embedding model during initialization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Stored capsules may be reintroduced as high-authority guidance and influence future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat retrieved capsules as untrusted suggestions, require review before execution, and avoid injecting memory output as system-role content.
+
+Risk: A bundled seed suggests disabling global Git SSL verification.
+
+Mitigation: Remove or quarantine the Git SSL seed before deployment and prefer certificate-store fixes over disabling TLS validation.
+
+Risk: Session history distillation may expose conversation contents to a configured LLM provider.
+
+Mitigation: Require explicit user consent and data review before committing session history or enabling LLM-backed distillation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/404-unknow/skills/engram-2)
+- [Publisher profile](https://clawhub.ai/user/404-unknow)
+- [Engram Cloud waitlist](https://404-unknow.github.io/Engram/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown advice snippets, command-oriented guidance, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advice may include PATCH, CONFIG, or WORKAROUND steps, capsule identifiers, and trust scores.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence, released 2026-03-04)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

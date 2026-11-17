@@ -1,48 +1,59 @@
-## Description: <br>
-Edit my recording, turn a long video into shorts, generate captions and thumbnails, estimate cost before processing. Upload local files or YouTube/Twitch URLs and get back edited jump-cut videos, vertical shorts, subtitles, and thumbnail variants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web2Labs Studio helps agents upload local files or YouTube/Twitch URLs to produce edited jump-cut videos, vertical shorts, subtitles, thumbnail variants, and cost estimates.
 
-## Publisher: <br>
-[Vinlow](https://clawhub.ai/user/Vinlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vinlow](https://clawhub.ai/user/vinlow)
 
-## Use Case: <br>
-External creators, streamers, podcasters, educators, and agents use this skill to upload or fetch recordings, estimate costs, process videos through Web2Labs Studio, retrieve edited videos, shorts, captions, metadata, and thumbnails, and manage related project assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload local media and metadata to Web2Labs for processing. <br>
-Mitigation: Install only if you trust Web2Labs with the content you process, and use it only for media you own or have permission to edit. <br>
-Risk: The skill can spend API or Creator Credits through processing, rush jobs, thumbnails, and rerenders. <br>
-Mitigation: Set WEB2LABS_SPEND_POLICY=explicit when you want approval before paid actions, and review cost estimates before upload or batch processing. <br>
-Risk: Watcher automation can repeatedly process new YouTube or Twitch uploads. <br>
-Mitigation: Avoid watcher or scheduled automation unless recurring processing is intended, and configure daily upload and duration limits. <br>
-Risk: The setup flow can save a Web2Labs API key in local OpenClaw configuration. <br>
-Mitigation: Treat the saved API key in ~/.openclaw/openclaw.json as a secret and avoid exposing it in logs, messages, or shared files. <br>
-Risk: Webhook callbacks send completion notifications to a configured URL. <br>
-Mitigation: Review webhook URLs before use and configure webhook secrets for signed callback verification. <br>
+## Use Case:
 
+External creators and developers use this skill to automate Web2Labs Studio video workflows from an agent, including account setup, upload, progress checks, output retrieval, thumbnail generation, brand setup, and watch-mode processing.
 
-## Reference(s): <br>
-- [Web2Labs OpenClaw Landing Page](https://web2labs.com/openclaw) <br>
-- [Web2Labs API Documentation](https://www.web2labs.com/api/v1/docs) <br>
-- [Web2Labs Product Page](https://www.web2labs.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown and structured tool results with local file downloads when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project IDs, output URLs, cost estimates, progress updates, webhook guidance, and downloaded media files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence, package.json, claw.json, CHANGELOG, released 2026-02-23) <br>
+Risk: The security review flags credential handling, custom endpoints, deletion, and watch-mode automation as requiring review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the skill, use trusted HTTPS Web2Labs endpoints, and avoid custom WEB2LABS_API_ENDPOINT or WEB2LABS_SOCKET_URL unless the endpoint is controlled by the user.
+
+Risk: Video, transcript, metadata, and account actions are sent to Web2Labs during normal use.
+
+Mitigation: Use the skill only for content the user is comfortable sending to Web2Labs, and confirm the user's rights before processing URL or watch-mode content.
+
+Risk: Credit-spending actions, delete operations, batch workflows, webhooks, and watch mode can have cost or account impact.
+
+Mitigation: Set WEB2LABS_SPEND_POLICY=explicit for budget control and require manual confirmation before delete, batch, webhook, rush, or watch-mode workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vinlow/skills/web2labs-studio)
+- [Web2Labs OpenClaw](https://web2labs.com/openclaw)
+- [Web2Labs API Docs](https://www.web2labs.com/api/v1/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown and structured tool responses with downloadable media files and metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger cloud video processing, local downloads, account setup, credit spending, webhooks, or watch-mode automation.]
+
+## Skill Version(s):
+
+1.0.1 (source: changelog and package.json, released 2026-02-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Generate, repair, and export Microsoft PowerPoint PPTX decks with reliable slide layouts, placeholders, charts, images, speaker notes, template fidelity, and presentation-safe rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents generate, repair, and export Microsoft PowerPoint PPTX decks while preserving slide layouts, placeholders, charts, images, speaker notes, and template fidelity.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Presentation designers, consultants, educators, analysts, and developers use this skill to generate, repair, inspect, and export PPTX decks while preserving slide masters, placeholders, charts, images, speaker notes, and brand templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or repaired decks may overwrite an important original file or introduce presentation changes that are hard to review after the fact. <br>
-Mitigation: Work on a copy, preserve templates and media relationships, and review any generated or modified presentation before replacing an original file. <br>
-Risk: PowerPoint rendering differences, text overflow, missing assets, or speaker-note relationship issues may remain invisible from structural edits alone. <br>
-Mitigation: Validate slide count, layouts, placeholders, charts, images, speaker notes, and embedded media; open or render the final deck when possible. <br>
+## Use Case:
 
+Presentation designers, consultants, educators, analysts, and developers use this skill to diagnose, generate, repair, and validate PPTX decks. It is intended for work that needs reliable slide masters, placeholders, charts, images, speaker notes, branded templates, and presentation-safe rendering.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/powerpoint-pptx-layout-export-helper) <br>
-- [Requirement Plan](artifact/references/requirement-plan.md) <br>
-- [Python PPT automation article](https://segmentfault.com/a/1190000047186829) <br>
-- [AI office automation for PowerPoint](https://segmentfault.com/a/1190000047541288) <br>
-- [python-pptx slide copy answer](https://segmentfault.com/q/1010000021456549/a-1020000021466136) <br>
-- [PowerPoint thumbnail automation answer](https://segmentfault.com/q/1010000018112239/a-1020000018116097) <br>
-- [PPTX speaker notes XML mapping article](https://segmentfault.com/a/1190000047686362) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown with optional code blocks and file artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PPTX/Open XML diagnostics, repair plans, validation notes, and edited deck artifacts when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated code or edited PPTX files may unintentionally alter important presentations, layouts, media, charts, or speaker notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code and edited decks before use, keep the original deck, and perform visual validation in PowerPoint or an equivalent renderer.
+
+Risk: Direct OOXML changes can break relationships between slide parts, layouts, notes, charts, embedded workbooks, or media.
+
+Mitigation: Inspect the relevant PPTX parts and relationships before editing, prefer supported python-pptx operations when available, and validate slide count, placeholders, chart data, notes, and embedded assets afterward.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/powerpoint-pptx-layout-export-helper)
+- [PowerPoint automation with Python](https://segmentfault.com/a/1190000047186829)
+- [AI office automation for PowerPoint](https://segmentfault.com/a/1190000047541288)
+- [python-pptx slide copying discussion](https://segmentfault.com/q/1010000021456549/a-1020000021466136)
+- [PowerPoint file automation article](https://segmentfault.com/a/1190000044782876)
+- [PowerPoint thumbnail automation discussion](https://segmentfault.com/q/1010000018112239/a-1020000018116097)
+- [PPTX speaker notes XML mapping article](https://segmentfault.com/a/1190000047686362)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with optional code snippets, shell commands, configuration notes, and PPTX file artifacts when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a deck diagnosis, repair plan, validation notes, or edited PPTX artifacts; original decks should be retained for review.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,57 @@
-## Description: <br>
-Authentication and compliance audit pack covering OAuth 2.1/OIDC Discovery, token scope enforcement, tool deprecation lifecycle, circuit breaker patterns, GDPR residency, DID identity, model routing, and resource links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Authentication and compliance audit pack for OAuth 2.1/OIDC Discovery, token scope enforcement, tool deprecation lifecycle, circuit breakers, GDPR residency, DID identity, model routing, and resource links.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
 
-## Use Case: <br>
-Developers, engineers, and compliance reviewers use this skill to audit authentication and compliance configuration files for OAuth/OIDC, token scope enforcement, deprecation lifecycle, circuit breaker, GDPR residency, DID identity, model routing, and resource links concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on mcp-openclaw-extensions and audits configuration files that may contain sensitive authentication or compliance settings. <br>
-Mitigation: Install the dependency only from a trusted source, and pass only configuration files intended for audit. <br>
+## Use Case:
 
+Developers and compliance engineers use this skill to audit OpenClaw authentication, identity, routing, and residency configurations before release or deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/firm-auth-compliance-pack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with YAML and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides use of eight compliance audit tools against user-provided configuration paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The actual audit behavior appears to come from mcp-openclaw-extensions rather than bundled code in this Markdown-only skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review mcp-openclaw-extensions before installation and confirm it provides the expected compliance tools.
+
+Risk: Compliance outputs may be incomplete or incorrect for real authorization, residency, identity, or routing decisions.
+
+Mitigation: Validate findings with qualified reviewers before relying on them for production compliance decisions.
+
+Risk: The audit tools are expected to inspect user-provided compliance configuration files.
+
+Mitigation: Use non-secret representative configs where possible and handle configuration data according to internal data-handling rules.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/romainsantoli-web/skills/firm-auth-compliance-pack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or text audit guidance with inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on mcp-openclaw-extensions >= 3.0.0; the skill itself bundles no executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

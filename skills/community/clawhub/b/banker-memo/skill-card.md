@@ -1,42 +1,55 @@
-## Description: <br>
-Generate an investment-banker-grade research memo (analysis.md + slides-outline.md + data-provenance.md) from CN raw-data/ snapshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates investment-banker-grade research memos, slide outlines, and data-provenance files from China-focused raw-data snapshots.
 
-## Publisher: <br>
-[jackdark425](https://clawhub.ai/user/jackdark425) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackdark425](https://clawhub.ai/user/jackdark425)
 
-## Use Case: <br>
-Developers and analysts use this skill to turn prepared CN company raw-data snapshots into a banker-grade research memo, slide outline, and data-provenance file. It is intended for A-share, H-share, or non-listed Chinese companies with the required raw-data inputs already populated. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated valuation ranges, credit terms, peer estimates, and investment conclusions may be incorrect or unsuitable for decision-making. <br>
-Mitigation: Have a qualified human verify all estimates, source traces, valuation assumptions, credit recommendations, and final conclusions before relying on the output. <br>
-Risk: Using the workflow on missing, untrusted, or mismatched raw-data inputs can produce incomplete or misleading memo content. <br>
-Mitigation: Run it only on the intended prepared raw-data directory, review the generated prompt and selected paths, and validate outputs with the referenced strict audit gates. <br>
-Risk: The skill is CN-focused and may not fit US-listed firms or quick fact-sheet workflows. <br>
-Mitigation: Use the skill only for A-share, H-share, or non-listed Chinese company research cases that need the full banker memo workflow. <br>
+## Use Case:
 
+Developers and analysts use this skill to run a China-focused banker-memo workflow against validated raw-data snapshots for A-share, H-share, or non-listed Chinese companies. It produces a research memo, slide blueprint, and source-provenance record for review.
 
-## Reference(s): <br>
-- [Banker Prompt Template](artifact/references/banker_prompt_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files with prompt text and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces analysis.md, slides-outline.md, and data-provenance.md with strict source tracing expectations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.6 (source: server release evidence) <br>
+Risk: Untrusted filenames, paths, parameters, or JSON snapshots can be embedded into the generated prompt and processed by an agent with file-write access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted raw-data only, avoid attacker-supplied filenames or snapshots, and restrict the agent to read only the validated raw-data directory and write only the chosen output directory.
+
+Risk: The security verdict requires review before use because the workflow can generate investment and credit analysis from supplied data.
+
+Mitigation: Review outputs before relying on them, run the strict provenance and authenticity checks described by the artifact, and use a fresh output directory for each run.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jackdark425/skills/banker-memo)
+- [Banker Prompt Template](artifact/references/banker_prompt_template.md)
+- [Build Banker Prompt Helper](artifact/scripts/build_banker_prompt.py)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files with prompt guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces analysis.md, slides-outline.md, and data-provenance.md in the chosen output directory; expects validated raw-data snapshots as input.]
+
+## Skill Version(s):
+
+0.9.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

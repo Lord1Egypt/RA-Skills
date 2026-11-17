@@ -1,40 +1,53 @@
-## Description: <br>
-Product-grade semantic memory layer for AI agents using LanceDB, with long-term memory, semantic search, Core Identity management, and conversation distillation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Andrew Memory Layer is a semantic long-term memory skill for AI agents that uses LanceDB to store and search memories, manage Core Identity, and distill conversations.
 
-## Publisher: <br>
-[panyuugit](https://clawhub.ai/user/panyuugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panyuugit](https://clawhub.ai/user/panyuugit)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add persistent semantic memory, identity retrieval, and conversation distillation to OpenClaw agents. It is intended for agents that need to remember user facts, retrieve past context, or maintain continuity across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists user facts and conversation-derived memories in a local LanceDB directory. <br>
-Mitigation: Install only when long-term agent memory is desired, avoid storing secrets or confidential data, and review or remove ~/.andrew-memory/data when memories must be cleared. <br>
-Risk: In API mode, memory or conversation text may be sent to MiniMax for embeddings or distillation. <br>
-Mitigation: Use local Ollama mode for private work or when conversation text should not leave the local environment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give an OpenClaw agent persistent memory, semantic recall, Core Identity retrieval, and conversation distillation across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/panyuugit/andrew-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration] <br>
-**Output Format:** [OpenClaw tool response text with JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local LanceDB memory records and may call MiniMax or local Ollama services depending on configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Memory text, search queries, and conversation transcripts may be sent to MiniMax or to a configured local LLM endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local mode for sensitive use, keep localLlmUrl restricted to a trusted loopback Ollama service, and avoid storing secrets or regulated data.
+
+Risk: The skill can persist long-term memories and update Core Identity without a clear approval boundary.
+
+Mitigation: Require human review before identity changes, vector regeneration, or storing sensitive memories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/panyuugit/skills/andrew-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration]
+
+**Output Format:** [Plain text tool responses with JSON-like tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores durable LanceDB memory and Core Identity records in the configured data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

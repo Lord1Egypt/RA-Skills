@@ -1,42 +1,58 @@
-## Description: <br>
-Queries MiniMax Coding Plan token usage, reset timing, and quota information by automating a local Chrome browser session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries a MiniMax Coding Plan page through a local Chrome browser session and reports token usage, reset timing, and quota details.
 
-## Publisher: <br>
-[ljzxzxl](https://clawhub.ai/user/ljzxzxl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljzxzxl](https://clawhub.ai/user/ljzxzxl)
 
-## Use Case: <br>
-Developers and MiniMax Coding Plan users use this skill to check current token usage, remaining reset time, and quota details before continuing work that depends on available MiniMax capacity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls a real local Chrome Default profile and can interact with the user's MiniMax account. <br>
-Mitigation: Run it only in a dedicated browser profile or environment where browser session access is acceptable. <br>
-Risk: The skill can store or reuse MiniMax login credentials in a plaintext local memory file. <br>
-Mitigation: Avoid saving passwords in the workspace, remove minimax-login.txt if created, and rotate credentials if they were stored unexpectedly. <br>
-Risk: The skill may leave a token-usage screenshot at /tmp/minimax-token-query.png. <br>
-Mitigation: Delete the screenshot after use if it contains sensitive account or quota information. <br>
+## Use Case:
 
+Developers and MiniMax Coding Plan users can use this skill to check current token usage, reset time, and remaining quota before continuing work that depends on MiniMax capacity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ljzxzxl/minimax-token-used-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Console text with structured JSON fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May open and operate a local Chrome Default profile and may save a screenshot to /tmp/minimax-token-query.png.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill can reuse a real Chrome browser profile and operate an authenticated MiniMax session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a trusted local environment and review browser automation actions before relying on the result.
+
+Risk: The release evidence says the skill can store a MiniMax password in a plaintext OpenClaw memory file.
+
+Mitigation: Prefer an existing browser session or an OS keychain-backed secret store, and avoid persisting account passwords in plaintext.
+
+Risk: The skill may request login factors and leave an account screenshot in /tmp.
+
+Mitigation: Provide login codes only when intentionally initiating a quota check, and remove temporary screenshots after use.
+
+## Reference(s):
+
+- [MiniMax Coding Plan management page](https://platform.minimaxi.com/user-center/payment/coding-plan)
+- [ClawHub skill page](https://clawhub.ai/ljzxzxl/skills/minimax-token-used-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Console text with a JSON quota summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports used_percent, reset_minutes, quota window, prompt allowance, and timestamp when available.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

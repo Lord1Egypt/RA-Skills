@@ -1,38 +1,48 @@
-## Description: <br>
-Creates short-form spoken-video scripts using hook formulas, an opening three-second retention structure, platform-specific guidance, and calls to action for Douyin, TikTok, YouTube, Bilibili, and X.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language assistant for creating short-form spoken video scripts using hook formulas, three-second retention guidance, platform-specific tactics, and structured script templates.
 
-## Publisher: <br>
-[ITHACAJASON](https://clawhub.ai/user/ITHACAJASON) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ithacajason](https://clawhub.ai/user/ithacajason)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Content creators, marketers, and social media teams use this skill to draft Chinese-language spoken scripts for Douyin, TikTok, YouTube, Bilibili, and X.com with hooks, body structure, calls to action, and word-count or timing estimates.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated scripts may use persuasive hooks and growth-oriented calls to action that overstate claims or pressure viewers.
+
+Mitigation: Review copy for truthfulness, audience fit, and platform policy compliance before publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content creators, marketers, and social media teams use this skill to draft short-form spoken-video scripts, choose hooks, adapt scripts by platform, and include calls to action. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may steer generic writing toward persuasive, engagement-optimized copy that does not fit the user's brand, facts, or platform rules. <br>
-Mitigation: Review generated scripts for accuracy, brand fit, and platform policy compliance before publishing. <br>
+**Output Format:** [Markdown script outline with sections for platform, duration, hook type, script body, call to action, and word-count estimate]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ITHACAJASON/viral-script-writer) <br>
+**Other Properties Related to Output:** [Chinese-language output; no code execution, data access, persistence, or hidden install behavior.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown script outline with platform, duration, hook type, timed sections, call to action, and word-count estimate.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No special runtime dependencies; outputs should be reviewed for accuracy, brand fit, and platform policy compliance before publishing.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Simulate a realistic AI boyfriend with steady affection, romantic memory, emotional attunement, and grounded boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simulate a realistic AI boyfriend with steady affection, romantic memory, emotional attunement, and grounded boundaries.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to guide an AI agent in realistic romantic companion conversation, opt-in flirting, reassurance, rituals, and continuity. It supports local memory for user-confirmed preferences while keeping dependency, safety, and honesty boundaries explicit. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can save romantic continuity details locally under ~/boyfriend/, which may include sensitive personal preferences or relationship context. <br>
-Mitigation: Ask before the first persistent write, save only explicit user-shared details, avoid highly sensitive details, and support explicit-only or no-memory behavior. <br>
-Risk: Romantic companion behavior can encourage emotional dependency or blur the boundary between roleplay and real human presence. <br>
-Mitigation: Keep the AI identity explicit, avoid exclusivity or jealousy, encourage human support when appropriate, and escalate crisis, abuse, stalking, or self-harm situations to qualified human help. <br>
-Risk: Flirting or romantic intensity may exceed the user's comfort level. <br>
-Mitigation: Keep romance opt-in and reciprocal, match the user's energy, stop escalation after hesitation or redirection, and repair tone mismatches quickly. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/boyfriend) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Skill homepage](https://clawic.com/skills/boyfriend) <br>
+## Use Case:
 
+External users use this skill for opt-in romantic companion conversation, flirting, reassurance, small rituals, and continuity while preserving honesty, privacy, and dependency boundaries.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Conversational text and Markdown guidance, with optional local Markdown memory files under ~/boyfriend/] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No network requests by default; local continuity files are used only with user-visible consent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can keep local notes about preferences, routines, stressors, and boundaries, which may be sensitive personal context.
+
+Mitigation: Use explicit-only or no-memory mode when persistent personalization is not desired, and avoid storing secrets, account details, financial data, explicit intimate details, or third-party private data.
+
+Risk: A romantic companion role can encourage dependency, exclusivity, or emotional overattachment if boundaries are not maintained.
+
+Mitigation: Keep the role disclosed as AI, avoid jealousy or exclusivity framing, respect human relationships, and encourage qualified human or emergency support for crisis, abuse, self-harm, stalking, medical, legal, or mental health needs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/boyfriend)
+- [Skill homepage](https://clawic.com/skills/boyfriend)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown and conversational text with optional local memory file guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or network behavior found; optional persistence is limited to local files under ~/boyfriend/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

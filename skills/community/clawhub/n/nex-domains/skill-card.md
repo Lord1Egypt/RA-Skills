@@ -1,40 +1,62 @@
-## Description: <br>
-Nex Domains helps agents manage a local domain portfolio by tracking registrars, DNS records, WHOIS data, SSL certificate expiry, health checks, costs, client assignments, and CSV or JSON exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nex Domains helps agents manage a local domain portfolio, monitor DNS and SSL status, run WHOIS and health checks, sync Cloudflare zones, and export portfolio reports.
 
-## Publisher: <br>
-[nexaiguy](https://clawhub.ai/user/nexaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexaiguy](https://clawhub.ai/user/nexaiguy)
 
-## Use Case: <br>
-Domain managers, DevOps teams, web agencies, and system administrators use this skill to inventory domains, monitor expiration and SSL status, inspect DNS and WHOIS details, sync Cloudflare zones, and export portfolio data for reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use Cloudflare and registrar credentials and stores domain, DNS, client, cost, and portfolio details locally. <br>
-Mitigation: Use least-privilege API tokens, protect registrar credentials and private keys, and restrict access to the local data directory and exported files. <br>
-Risk: Removing a domain from tracking or exporting portfolio data can affect operational records or expose sensitive business details. <br>
-Mitigation: Confirm intent before running removal commands and review export destinations before sharing or storing generated CSV or JSON files. <br>
+## Use Case:
 
+External developers, DevOps teams, system administrators, domain managers, and web agencies use this skill to track domain inventories, check DNS and SSL health, monitor renewals, sync Cloudflare records, and create CSV or JSON portfolio exports.
 
-## Reference(s): <br>
-- [Nex AI homepage](https://nex-ai.be) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Plain text responses with optional CSV or JSON export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local storage and optional Cloudflare or TransIP credentials when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can probe arbitrary domains with WHOIS, DNS, HTTP, and SSL checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run checks only against domains the user is authorized to inspect, and avoid internal or confidential hostnames unless the deployment context explicitly allows it.
+
+Risk: Cloudflare sync can use API credentials to import zone and DNS data.
+
+Mitigation: Use a least-privilege Cloudflare API token, keep credentials in environment variables or a secret manager, and rotate tokens if exposed.
+
+Risk: Portfolio exports and the local database may contain sensitive domain, client, cost, and DNS information.
+
+Mitigation: Restrict permissions on the local data directory, protect exported CSV or JSON files, and share exports only with intended recipients.
+
+Risk: Removing a domain deletes local portfolio records without a confirmation step.
+
+Mitigation: Confirm the target domain with the user before running remove commands and keep backups for important portfolios.
+
+## Reference(s):
+
+- [Nex Domains on ClawHub](https://clawhub.ai/nexaiguy/skills/nex-domains)
+- [Nex AI homepage](https://nex-ai.be)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Plain text terminal output, with optional CSV or JSON export files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing responses should summarize CLI results and avoid exposing local database paths or credential values.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

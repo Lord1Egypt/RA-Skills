@@ -1,41 +1,48 @@
-## Description: <br>
-Writes agent-prepared document text into Qdrant, performing chunking, embedding, and vector storage without fetching or refining source content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ingests agent-prepared document text into a Qdrant knowledge base by chunking content, generating embeddings, and writing vectors; it does not fetch or refine source content.
 
-## Publisher: <br>
-[Seal-Re](https://clawhub.ai/user/Seal-Re) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seal-re](https://clawhub.ai/user/seal-re)
 
-## Use Case: <br>
-Developers and engineers use this skill to ingest already-processed text into a Qdrant-backed retrieval knowledge base. It is suited for RAG pipelines where fetching, extraction, and summarization are handled by other tools. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Ingested text is sent to the configured embedding provider. <br>
-Mitigation: Set EMBED_BASE_URL and EMBED_API_KEY explicitly, and use only an embedding provider approved for the document sensitivity. <br>
-Risk: Ingested content is stored persistently in Qdrant and existing points for the same doc_id are deleted before upsert. <br>
-Mitigation: Use unique doc_id values, maintain backups for important collections, and confirm the target collection before running ingestion. <br>
-Risk: Credential fallback can use OPENAI_API_KEY when EMBED_API_KEY is absent. <br>
-Mitigation: Prefer a dedicated EMBED_API_KEY for this skill and avoid relying on OPENAI_API_KEY unless the configured embedding endpoint is actually OpenAI. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Seal-Re/rag-ingest) <br>
+## Use Case:
 
+Developers and agents use this skill to persist already-processed document text into Qdrant for later retrieval. It is intended for RAG knowledge-base ingestion after upstream tools have handled fetching, extraction, and summarization.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text CLI status output with persistent Qdrant vector records as the primary side effect.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node, QDRANT_URL, and EMBED_API_KEY; accepts document content through --content or stdin.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Document chunks and embedding credentials may be sent to the configured embedding service, and defaults can route OPENAI_API_KEY to a non-OpenAI endpoint.
+
+Mitigation: Use dedicated low-privilege embedding keys, explicitly set EMBED_BASE_URL with the matching key, avoid unrelated OPENAI_API_KEY values in the runtime environment, and ingest confidential data only when that storage and embedding flow is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seal-re/skills/rag-ingest)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell command examples and parameter descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node plus QDRANT_URL and EMBED_API_KEY-compatible embedding credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

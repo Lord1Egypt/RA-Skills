@@ -1,40 +1,54 @@
-## Description: <br>
-Fenbi is a Chinese education assistant for civil-service exam preparation, administrative aptitude testing, essay writing, teacher qualification exams, and study planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fenbi is a civil-service and teacher-exam preparation assistant for study planning, question-practice strategy, essay guidance, and Fenbi product-line selection.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Students and exam candidates use this skill to plan study schedules, review Chinese civil-service and teacher-qualification exam topics, and receive structured explanations for practice questions and essay preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exam dates, policies, and current-affairs material may change after the skill content was published. <br>
-Mitigation: Verify official exam schedules, policies, and current-affairs details with authoritative sources before relying on them. <br>
-Risk: Personalized study planning can involve sensitive schedule or progress details. <br>
-Mitigation: Share only the personal schedule or study-progress information needed for customization. <br>
+## Use Case:
 
+External learners and exam-prep users use this skill to plan Chinese civil-service, teacher-qualification, and public-institution exam preparation, practice by module, review mistakes, and choose Fenbi study products. It provides general study guidance and directs users to official announcements for current recruitment policies, score lines, registration dates, and other authoritative facts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/fenbi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text study guidance, plans, frameworks, and worked explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, external access, credential use, or hidden behavior is evident in the security review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Exam recruitment policies, registration dates, score lines, and current-affairs details may be outdated or jurisdiction-specific.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify those facts against official announcements before relying on the skill's guidance.
+
+Risk: The skill provides general study methods and cannot guarantee exam outcomes.
+
+Mitigation: Adapt plans using the user's available study time, practice results, and mock-exam performance.
+
+## Reference(s):
+
+- [Fenbi Skill Page](https://clawhub.ai/zhangifonly/skills/fenbi)
+- [zhangifonly Publisher Profile](https://clawhub.ai/user/zhangifonly)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown prose with structured study plans, exam-prep strategies, and answer guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or hidden data access; users should verify time-sensitive exam policies and dates with official sources.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

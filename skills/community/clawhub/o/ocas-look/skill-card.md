@@ -1,46 +1,66 @@
-## Description: <br>
-Converts user-provided images into validated, decision-ready action drafts for events, meal macros, places, products, receipts, documents, and civic reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts user-provided images into validated, decision-ready action drafts across domains such as events, meal photos, places, products, receipts, documents, and civic issues, with reverse image search support via Yandex and Google.
 
-## Publisher: <br>
-[indigokarasu](https://clawhub.ai/user/indigokarasu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indigokarasu](https://clawhub.ai/user/indigokarasu)
 
-## Use Case: <br>
-External users and agent operators use Look to turn photos of real-world objects, documents, receipts, signs, meals, places, and flyers into one to three action drafts for review and confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes potentially sensitive images and writes journals and extracted entity signals. <br>
-Mitigation: Install only where this data handling is acceptable, review retention settings, and confirm sensitive actions before execution. <br>
-Risk: The skill registers a daily self-update job that can replace its own code without explicit per-update approval or integrity checks. <br>
-Mitigation: Disable or remove the cron update and use manual, reviewed updates pinned to trusted releases. <br>
+## Use Case:
 
+External users and developers use Look to turn user-provided images into validated action drafts for events, meals, places, products, receipts, documents, and civic reports. It is intended for image-to-action workflows, not generic OCR, computer vision research, surveillance, or image generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/indigokarasu/ocas-look) <br>
-- [Command reference](references/command_reference.md) <br>
-- [Decision policy](references/decision_policy.md) <br>
-- [Domain playbooks](references/domain_playbooks.md) <br>
-- [Schemas](references/schemas.md) <br>
-- [Storage and config](references/storage_and_config.md) <br>
-- [Journal](references/journal.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-like action drafts, decision records, journals, and execution receipts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft-first outputs and requires explicit confirmation before high-risk execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata and skill.json) <br>
+Risk: Images or image metadata may be uploaded to third-party services for reverse image search.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before public image uploads and disable reverse search where that data sharing is not acceptable.
+
+Risk: The skill declares a silent daily self-update path.
+
+Mitigation: Disable or remove the cron/self-update path, pin a reviewed release, and review updates before deployment.
+
+Risk: The skill has documented false-trigger risk outside image-to-action workflows.
+
+Mitigation: Load it only for user-provided images intended to become action drafts, not for general OCR or image analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/indigokarasu/skills/ocas-look)
+- [README](README.md)
+- [Skill definition](SKILL.md)
+- [Look Core Workflow](references/workflow.md)
+- [Look Domain Playbooks](references/domain_playbooks.md)
+- [Look Schemas](references/schemas.md)
+- [Look Decision Policy](references/decision_policy.md)
+- [Reverse Image Search Reference](references/google-image-source-search.md)
+- [Credential Files Reference](references/credential-files.md)
+- [Self-Update Procedure](references/self_update.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries with structured JSON action drafts, decision records, execution receipts, and journal records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-first workflow; high-risk actions require explicit confirmation before execution.]
+
+## Skill Version(s):
+
+2.3.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

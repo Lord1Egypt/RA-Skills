@@ -1,41 +1,58 @@
-## Description: <br>
-Interact with XPR Network on-chain governance: view communities, proposals, vote with weighted tokens, and create proposals paying community fees. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with XPR Network on-chain governance: view communities and proposals, inspect votes, cast votes, and create proposals on the gov contract.
 
-## Publisher: <br>
-[paulgnz](https://clawhub.ai/user/paulgnz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[paulgnz](https://clawhub.ai/user/paulgnz)
 
-## Use Case: <br>
-External users and developers use this skill to inspect XPR Network governance communities, proposals, vote records, and global governance configuration. With explicit confirmation and XPR signing credentials, it can cast governance votes or create proposals that pay the required community fee. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Confirmed write operations can sign XPR governance votes and proposal transactions, including fee-paying proposal creation. <br>
-Mitigation: Review transaction details before setting confirmed=true, and use a limited XPR account instead of a main wallet where possible. <br>
-Risk: The security review flagged under-disclosed private-key environment variables for write operations. <br>
-Mitigation: Install only after review, keep XPR private keys out of shared environments, and use read-only tools when signing is not required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paulgnz/governance) <br>
-- [XPR Governance website](https://gov.xprnetwork.org) <br>
-- [XPR Governance proposal API](https://gov.api.xprnetwork.org/api/v1/proposals) <br>
+## Use Case:
 
+Developers, governance operators, and XPR Network participants use this skill to inspect governance state, review proposal details and votes, and perform confirmed on-chain voting or proposal creation actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, API calls, guidance] <br>
-**Output Format:** [Tool responses with governance data and transaction results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only tools query public governance data; write tools require confirmed=true and configured XPR signing credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.11 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can sign irreversible XPR mainnet governance votes and proposal-fee transactions using private-key environment variables.
+
+Mitigation: Use only an account and permission intended for governance actions, prefer a narrowly scoped permission over a general active key, and review proposal IDs, candidates, vote weights, fees, and account details before setting confirmed=true.
+
+Risk: Proposal creation spends the applicable community fee and posts a public on-chain action.
+
+Mitigation: Check the community proposal fee, strategy, voting system, content ID, and voting window against the governance site or API before confirming proposal creation.
+
+Risk: The install metadata does not clearly declare the private-key environment variables required for write operations.
+
+Mitigation: Document XPR_PRIVATE_KEY, XPR_ACCOUNT, and XPR_PERMISSION in deployment procedures and avoid supplying signing credentials when only read-only governance tools are needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paulgnz/skills/governance)
+- [XPR Network governance website](https://gov.xprnetwork.org)
+- [XPR Network governance API](https://gov.api.xprnetwork.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Guidance]
+
+**Output Format:** [JSON-like tool responses with concise text fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read tools return governance records; write tools return transaction IDs or validation errors after explicit confirmation.]
+
+## Skill Version(s):
+
+0.2.11 (source: server release evidence; artifact skill.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

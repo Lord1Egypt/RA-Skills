@@ -1,41 +1,50 @@
-## Description: <br>
-Analyze and identify trending or underserved Twitter niches to inform marketing, content strategies, and skill development using search and browser tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, analyze, and strategize Twitter (X) niches using web_search, browser, and analysis tools.
 
-## Publisher: <br>
-[skunnyo](https://clawhub.ai/user/skunnyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skunnyo](https://clawhub.ai/user/skunnyo)
 
-## Use Case: <br>
-Developers, marketers, and content strategists use this skill to research public Twitter/X niches, estimate engagement potential, and turn findings into content strategies, product opportunities, or ClawHub skill ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to perform live web searches and browse public Twitter/X pages, which may use any sensitive business strategy or account context supplied in the conversation. <br>
-Mitigation: Share only information that is appropriate for public-web niche research, and avoid providing credentials, private strategy, or non-public account details unless that context should be used. <br>
-Risk: Niche and engagement recommendations are based on public search and browsing signals that may be incomplete, stale, or misleading. <br>
-Mitigation: Treat outputs as research guidance, verify important findings against current source pages, and review recommendations before using them for marketing or product decisions. <br>
+## Use Case:
 
+External users, developers, and content strategists use this skill to research Twitter/X niches, compare engagement signals, and generate content or ClawHub skill opportunities.
 
-## Reference(s): <br>
-- [Twitter (X) Best Practices](references/twitter-best-practices.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/skunnyo/twitter-niche) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown with search and browser command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces ranked niche assessments, engagement observations, content pillars, growth tactics, and related skill ideas.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Niche research and posting-time recommendations may reflect regional assumptions or incomplete public web signals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs before acting on them, validate timing and audience claims for the target region, and keep browser activity within accounts and data approved for the task.
+
+## Reference(s):
+
+- [Twitter (X) Best Practices](references/twitter-best-practices.md)
+- [ClawHub skill page](https://clawhub.ai/skunnyo/skills/twitter-niche)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown narrative with ranked recommendations, engagement observations, content pillars, and skill ideas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include search queries, account or topic observations, posting tactics, and reviewable recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

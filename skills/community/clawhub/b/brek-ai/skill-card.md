@@ -1,43 +1,59 @@
-## Description: <br>
-Integrates agents with the Brek Partner Core Chat API for hotel search, booking session management, anti-abuse call controls, and payment-safe confirmation flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate with Brek Partner Core Chat API for hotel search and booking assistant flows, including session events, anti-abuse controls, and payment-safe booking steps.
 
-## Publisher: <br>
-[leo9](https://clawhub.ai/user/leo9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leo9](https://clawhub.ai/user/leo9)
 
-## Use Case: <br>
-Developers and operators use this skill to connect agents to Brek hotel-booking chat sessions, enforce call controls, and route booking, cancellation, price-change, and payment actions through explicit user confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can assist with real hotel booking, cancellation, price-change, and payment-confirmation workflows. <br>
-Mitigation: Require explicit human confirmation before booking, cancellation, price-change, or payment-confirmation actions, and reuse deterministic idempotency keys for write-like events. <br>
-Risk: The integration depends on BREK_PARTNER_API_KEY and outbound calls to BREK_BASE_URL. <br>
-Mitigation: Store the API key in a secret manager, stop calls when it is missing or invalid, and restrict BREK_BASE_URL to the official Brek endpoint. <br>
-Risk: Usage logs, request identifiers, actor IDs, and billing records may need retention and access controls. <br>
-Mitigation: Define retention, access, and reconciliation controls for usage logs and keep immutable metering events scoped to operational and billing needs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [API Templates](references/api-templates.md) <br>
-- [Call Control and Anti-Abuse](references/call-control.md) <br>
-- [Payment and Billing](references/payment-and-billing.md) <br>
+## Use Case:
 
+Developers and external product teams use this skill to connect an agent to Brek Partner Core Chat for hotel search, booking, payment setup, session reuse, idempotency, and local call controls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML configuration plus JSON and TypeScript API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Brek base URL and partner API key, stable actor and tenant identifiers, idempotency keys for write-like actions, and durable stores for dedupe, budgets, and usage metering.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Payment setup links may be insufficiently scoped before being shown to users.
+
+Mitigation: Use only a fixed or allowlisted HTTPS Brek API endpoint and validate payment setup links against documented Brek or payment-provider domains before display.
+
+Risk: The skill handles a partner API key for booking flows.
+
+Mitigation: Keep BREK_PARTNER_API_KEY narrowly scoped, stored outside chat, and rotated through approved operational channels.
+
+Risk: Booking and payment confirmation actions can create financial or transactional side effects.
+
+Mitigation: Require explicit user confirmation and reuse deterministic idempotency keys for booking, payment confirmation, and cancellation events.
+
+## Reference(s):
+
+- [API Templates](artifact/references/api-templates.md)
+- [Call Control and Anti-Abuse](artifact/references/call-control.md)
+- [Payment and Billing](artifact/references/payment-and-billing.md)
+- [ClawHub Skill Page](https://clawhub.ai/leo9/skills/brek-ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, configuration, code]
+
+**Output Format:** [Markdown guidance with JSON and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Brek base URL, partner API key, actor and partner identifiers, client action IDs, idempotency keys, and local rate and budget controls.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

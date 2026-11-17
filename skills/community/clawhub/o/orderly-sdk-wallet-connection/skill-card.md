@@ -1,39 +1,53 @@
-## Description: <br>
-Comprehensive guide to integrating wallet connection in Orderly Network DEX applications, supporting both EVM (Ethereum, Arbitrum, etc.) and Solana wallets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive guide to integrating wallet connection in Orderly Network DEX applications, supporting both EVM (Ethereum, Arbitrum, etc.) and Solana wallets.
 
-## Publisher: <br>
-[Tarnadas](https://clawhub.ai/user/Tarnadas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tarnadas](https://clawhub.ai/user/tarnadas)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate Orderly Network wallet connection flows into DEX applications, including EVM and Solana wallet setup, chain switching, authentication guards, and account state handling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security scan reported a suspicious posture because a review helper may launch another agent with unrestricted local access. <br>
-Mitigation: Run review workflows without yolo mode, keep `AUTOREVIEW_YOLO=0`, and require explicit confirmation before moderation, publishing, deployment, or migration commands. <br>
-Risk: The skill provides wallet and authentication integration guidance for trading applications, where incorrect setup can block access or connect users to the wrong network. <br>
-Mitigation: Review chain IDs, network selection, wallet provider configuration, and authentication guards before using the guidance in production. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Tarnadas/orderly-sdk-wallet-connection) <br>
+## Use Case:
 
+Developers building Orderly Network DEX applications use this skill to add wallet connection, multi-chain wallet support, chain switching, authentication state handling, and related UI integration.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with TypeScript, TSX, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet connection and social login can share wallet addresses, chain/account metadata, and authentication details with wallet or identity providers.
+
+Mitigation: Clearly tell users what wallet or identity providers receive before connection or login, and review package and provider settings before release.
+
+Risk: Account setup, chain switching, and trading-enablement flows can affect user accounts if triggered without clear consent.
+
+Mitigation: Keep wallet, account, chain-switching, account creation, and trading-enablement actions behind explicit user confirmation and clear UI state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tarnadas/skills/orderly-sdk-wallet-connection)
+- [Publisher profile](https://clawhub.ai/user/tarnadas)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with TypeScript/TSX and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes package installation commands, provider configuration examples, wallet state usage patterns, chain switching guidance, and best practices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

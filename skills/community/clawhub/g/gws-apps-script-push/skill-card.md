@@ -1,39 +1,52 @@
-## Description: <br>
-Google Apps Script: Upload local files to an Apps Script project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Apps Script: Upload local files to an Apps Script project.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and engineers use this skill to prepare shell commands for uploading local Google Apps Script source files to a selected Apps Script project. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The push command replaces all files in the target Apps Script project. <br>
-Mitigation: Confirm the project ID, source directory, and user intent before executing the command. <br>
-Risk: The command depends on the local gws CLI and Google account authentication. <br>
-Mitigation: Use a trusted gws CLI installation and verify it is authenticated to the intended Google account before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Gws Apps Script Push on ClawHub](https://clawhub.ai/googleworkspace-bot/gws-apps-script-push) <br>
+## Use Case:
 
+Developers and Google Workspace administrators use this skill to guide an agent through uploading local Apps Script source files to a specified Google Apps Script project with the gws CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI and a target Apps Script project ID.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The push operation can overwrite every file in the target Google Apps Script project.
+
+Mitigation: Confirm the script ID and source directory with the user before executing the command.
+
+Risk: The skill depends on the local gws CLI and shared authentication setup.
+
+Mitigation: Use it only in environments where the gws CLI installation and authentication context are trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/googleworkspace-bot/skills/gws-apps-script-push)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI; the push command can replace all files in the target Apps Script project.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

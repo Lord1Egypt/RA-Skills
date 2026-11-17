@@ -1,43 +1,51 @@
-## Description: <br>
-Generate dynamic videos based on a single first frame image and prompts using Jimeng. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate dynamic videos with Jimeng from a single first-frame image and a prompt.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and agent users use this skill to call the dLazy Jimeng image-to-video service from a shell workflow, supplying a prompt and first-frame image to generate a dynamic video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key, which may be stored in local CLI configuration or supplied through an environment variable. <br>
-Mitigation: Use the dLazy login or auth flow intentionally, restrict local config access to the current OS user, and rotate or revoke the key from the dLazy dashboard if exposure is suspected. <br>
-Risk: Prompts and selected local image files are sent to dLazy-hosted API and media storage endpoints for generation. <br>
-Mitigation: Avoid using sensitive media or prompts unless upload to dLazy is acceptable for the user and organization. <br>
+## Use Case:
 
+Developers and creators can submit a first-frame image and prompt to generate a Jimeng video through dLazy's hosted service.
 
-## Reference(s): <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-jimeng-i2v-first) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [JSON responses and Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media is returned as hosted output URLs; asynchronous runs can return a generateId for later polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The security scan was partial and did not establish the relationship between the login command and the video-generation purpose; some referenced details were unavailable for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI and its authentication behavior, and confirm the service purpose before installing or authenticating.
+
+## Reference(s):
+
+- [dLazy service](https://dlazy.com)
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [CLI repository listed in skill metadata](https://github.com/dlazy-ai/cli)
+
+## Skill Output:
+
+**Output Type(s):** [Video assets, JSON, Shell commands]
+
+**Output Format:** [Generated video URL and JSON task or result data; command-line invocation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Video generation accepts a first-frame image, prompt, and optional duration; output may be asynchronous.]
+
+## Skill Version(s):
+
+1.3.41 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

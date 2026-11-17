@@ -1,41 +1,54 @@
-## Description: <br>
-Synthesize invariant principles from 3+ sources - find the core that survives across all expressions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synthesize invariant principles from 3+ sources - find the core that survives across all expressions.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Developers, writers, and knowledge-management users apply this skill to synthesize three or more related sources into invariant principle candidates with supporting evidence. It is useful for creating Golden Master candidates while preserving the need for human judgment before treating any candidate as canonical. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation is inconsistent about whether the skill writes a local requires_review.md file containing derived review notes. <br>
-Mitigation: Treat use on highly sensitive source text as potentially persistent unless the author clarifies output-only behavior, and review any local files the agent proposes to create or update. <br>
-Risk: Golden Master candidates can be mistaken for verified truth even though they are pattern-analysis outputs. <br>
-Mitigation: Review the source evidence and apply human judgment before using any synthesized principle as a canonical reference. <br>
+## Use Case:
 
+Developers, writers, and knowledge-management teams use this skill to synthesize three or more related sources into candidate invariant principles and Golden Master candidates for human review.
 
-## Reference(s): <br>
-- [Skill homepage](https://github.com/live-neon/skills/tree/main/pbd/principle-synthesizer) <br>
-- [ClawHub skill page](https://clawhub.ai/leegitw/principle-synthesizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown guidance with JSON schema examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces invariant principles, Golden Master candidates, source evidence, synthesis metrics, and next steps when supported by the input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter lists 1.0.2) <br>
+Risk: Source text supplied for synthesis may be processed by the configured LLM service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in an agent environment approved for the sensitivity of the source text.
+
+Risk: The evidence notes a documentation inconsistency about possible review-file persistence.
+
+Mitigation: Clarify whether drifted items are written to requires_review.md before using highly sensitive inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leegitw/skills/principle-synthesizer)
+- [Project homepage](https://github.com/live-neon/skills/tree/main/pbd/principle-synthesizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces candidate principles, evidence summaries, synthesis metrics, next steps, and optional share text when Golden Master candidates are found.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact frontmatter reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

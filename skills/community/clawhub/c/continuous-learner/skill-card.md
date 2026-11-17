@@ -1,40 +1,60 @@
-## Description: <br>
-Continuous Learner orchestrates a local continuous-learning pipeline that collects insights, updates a knowledge base, analyzes trends, generates skills, and outputs reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates a continuous learning pipeline that collects insights, ingests knowledge, analyzes trends, generates skills, and reports results.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and automation operators use this skill to run or inspect a local learning workflow that gathers source material, updates local knowledge, derives trends, and generates Markdown reports or new skill artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger broad workflow and skill-generation behavior through external local code that is not packaged for review. <br>
-Mitigation: Install and run it only in an environment where the external db/continuous_learner.py implementation has been reviewed and is expected. <br>
-Risk: Daemon mode can run continuously and consume local resources or keep changing local knowledge and generated artifacts. <br>
-Mitigation: Avoid daemon mode unless a clear stop procedure, interval, permissions boundary, and resource limits are in place. <br>
+## Use Case:
 
+Developers and operators can use this skill to run or inspect a local continuous learning workflow that turns collected insights into knowledge updates, trend analysis, generated skills, and Markdown reports.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/534422530/continuous-learner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-like status or pipeline results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return status data, one-shot pipeline results, daemon-mode instructions, generated skill artifacts, and Markdown reports depending on the invoked command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill runs an unbundled local Python module outside the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and control the external continuous_learner.py file before installation or execution.
+
+Risk: Daemon mode and continuous-learning behavior can create ongoing background activity.
+
+Mitigation: Use explicit run or status commands by default, and enable daemon mode only after confirming the expected background behavior.
+
+Risk: A writable external implementation directory can change the skill's runtime behavior after review.
+
+Mitigation: Lock down write access to the referenced db directory and monitor changes to the external implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/continuous-learner)
+- [vLLM continuous batching source material](https://www.bilibili.com/video/BV1gEVdzRETm)
+- [Present Continuous Tense source material](https://www.bilibili.com/video/BV11T4y1f7Xm)
+- [Continuous Deployment Strategies source material](https://www.bilibili.com/video/BV1jdftBREoH)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON status objects and Markdown reports, with command guidance for running the local pipeline]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill delegates execution to a local continuous_learner.py module outside the reviewed artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

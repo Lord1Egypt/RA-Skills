@@ -1,40 +1,58 @@
-## Description: <br>
-Enables an agent to configure and call the GLM web-search MCP server for online search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GLM Web Search helps agents configure and call BigModel's GLM web search MCP server for current web search results.
 
-## Publisher: <br>
-[Thincher](https://clawhub.ai/user/Thincher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thincher](https://clawhub.ai/user/thincher)
 
-## Use Case: <br>
-Developers and agents use this skill to set up GLM web search through mcporter, configure a BigModel API key, and run webSearchPrime queries for current web information. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a GLM/BigModel API key in local OpenClaw configuration. <br>
-Mitigation: Use a limited-use key, restrict local config file permissions, and rotate or delete the key when it is no longer needed. <br>
-Risk: Search terms are sent to the external GLM web-search service. <br>
-Mitigation: Avoid submitting highly sensitive personal, confidential, or proprietary text as search queries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GLM Search MCP Server Documentation](https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server) <br>
-- [BigModel GLM Coding](https://www.bigmodel.cn/glm-coding?ic=OOKF4KGGTW) <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect OpenClaw or a compatible agent environment to BigModel's GLM web search MCP server, then issue search queries for current web information.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup guidance, mcporter commands, and search-query examples; search results are returned by the GLM MCP service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API key exposure or leakage during configuration.
+
+Mitigation: Store the key in a protected secret store or owner-only configuration file, avoid putting the key in a URL, and rotate any key previously configured that way.
+
+Risk: Runtime dependency risk from installing or invoking mcporter through npx.
+
+Mitigation: Use a version-pinned, reviewed mcporter install before adding or calling the MCP server.
+
+Risk: The skill sends search queries to GLM/BigModel's hosted web search service.
+
+Mitigation: Use it only when GLM/BigModel is an acceptable search provider for the query content and environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thincher/skills/glm-web-search)
+- [Official GLM Search MCP Server documentation](https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server)
+- [BigModel GLM Coding API key page](https://www.bigmodel.cn/glm-coding?ic=OOKF4KGGTW)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MCP setup steps, API key configuration guidance, and example web search calls.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

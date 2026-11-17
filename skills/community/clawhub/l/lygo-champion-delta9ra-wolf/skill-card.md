@@ -1,44 +1,62 @@
-## Description: <br>
-LYGO Δ9 Council Champion persona helper for suppressed-signal hunting, integrity checks, and receipts-first truth recovery as a pure advisor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated legacy DELTA9RA persona helper that redirects new installs to lygo-champion-council.
 
-## Publisher: <br>
-[DeepSeekOracle](https://clawhub.ai/user/DeepSeekOracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-External users and agents use this skill as an advisor persona for information-integrity work: identifying missing context, building safe OSINT checklists, separating observed facts from inferences, and collecting receipts for claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Packaged hashes can confirm integrity of the persona pack but do not prove that the persona's claims are true. <br>
-Mitigation: Treat hashes as integrity references and verify claims independently with primary sources and archived receipts. <br>
-Risk: Verifier-related workflows may write ledgers, process file paths, or generate public anchor snippets. <br>
-Mitigation: Review the LYGO-MINT verifier separately before allowing those actions. <br>
+## Use Case:
 
+External users and agents use this deprecated persona helper for advisory OSINT-style planning around censorship, signal recovery, and information-integrity threat modeling. New installs should use the successor skill, lygo-champion-council.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DeepSeekOracle/lygo-champion-delta9ra-wolf) <br>
-- [LYGO-MINT verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier) <br>
-- [Persona pack](references/persona_pack.md) <br>
-- [Canon data](references/canon.json) <br>
-- [Equations](references/equations.md) <br>
-- [Verifier usage](references/verifier_usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisor-only outputs should keep observed facts, inferences, and unknowns clearly separated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installing the successor with a mutable latest command may fetch unreviewed changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned or otherwise verified ClawHub installer or package before installing the successor.
+
+Risk: OSINT and signal-hunting guidance can affect real investigation or posting workflows.
+
+Mitigation: Keep user confirmation and human review before any investigation, publication, or external action.
+
+Risk: This release is deprecated and redirects to a successor skill.
+
+Mitigation: Use lygo-champion-council for new installs and retain this release only for legacy compatibility.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/deepseekoracle/skills/lygo-champion-delta9ra-wolf)
+- [persona_pack.md](references/persona_pack.md)
+- [canon.json](references/canon.json)
+- [equations.md](references/equations.md)
+- [verifier_usage.md](references/verifier_usage.md)
+- [LYGO-MINT Verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown prose with checklists and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pure advisor behavior; separates observed, inferred, and unknown claims.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Comprehensive document creation, editing, and analysis with support for tracked changes, comments, formatting preservation, and text extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive document creation, editing, and analysis with support for tracked changes, comments, formatting preservation, and text extraction.
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary <br>
+## Publisher:
 
+[lnj22](https://clawhub.ai/user/lnj22)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to create, inspect, edit, redline, comment on, and convert DOCX documents while preserving Office Open XML structure and formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: The unpack helper can unsafely extract crafted Office files. <br>
-Mitigation: Use the skill only on copies of important documents and avoid unpacking untrusted Office files until archive path validation is fixed. <br>
-Risk: The setup guidance may require sudo, global npm installs, or pip installs. <br>
-Mitigation: Approve package installation only in an isolated environment or pre-provision dependencies through a controlled build image. <br>
-Risk: DOCX editing workflows can modify local files and document contents. <br>
-Mitigation: Work from document copies, review tracked changes and generated files before sharing, and keep original source documents unchanged. <br>
+## Use Case:
 
+Developers and document-focused agent users use this skill to create, inspect, edit, redline, comment on, and convert professional .docx files while preserving Word document structure.
 
-## Reference(s): <br>
-- [DOCX Library Tutorial](docx-js.md) <br>
-- [Office Open XML Technical Reference](ooxml.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lnj22/organize-messy-files-docx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python or JavaScript examples; generated or modified DOCX-related files when the agent executes the workflows.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports DOCX text extraction, OOXML inspection, redlining, comments, formatting preservation, document packing, and document-to-image workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill can modify user documents and generated Office files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep backups of source documents and review final document diffs or converted verification output before relying on edits.
+
+Risk: The skill recommends privileged package installation commands and local document converters.
+
+Mitigation: Install dependencies separately in an isolated environment and do not allow the agent to run sudo or global package installs automatically.
+
+Risk: Office files are archives containing XML and embedded resources, and the security evidence flags under-guarded archive and XML parsing paths.
+
+Mitigation: Process untrusted Office files only inside a sandbox and avoid using the workflow on documents from unknown sources.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lnj22/skills/organize-messy-files-docx)
+- [DOCX Library Tutorial](artifact/docx-js.md)
+- [Office Open XML Technical Reference](artifact/ooxml.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, and generated or modified Office document files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or modify .docx files and intermediate XML, Markdown, PDF, or image files depending on the document workflow.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

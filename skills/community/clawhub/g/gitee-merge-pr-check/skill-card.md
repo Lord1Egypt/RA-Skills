@@ -1,39 +1,54 @@
-## Description: <br>
-Checks whether a Gitee pull request is ready to merge and, after explicit confirmation, can merge it through a configured Gitee MCP Server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks whether a Gitee pull request is ready to merge through a configured Gitee MCP server and can merge it after explicit user confirmation.
 
-## Publisher: <br>
-[oschina](https://clawhub.ai/user/oschina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oschina](https://clawhub.ai/user/oschina)
 
-## Use Case: <br>
-Developers and maintainers use this skill to evaluate Gitee pull request readiness by checking PR status, reviewer feedback, comments, and changed files before deciding whether to merge. When checks pass, the skill asks for explicit confirmation before using the configured Gitee MCP Server to merge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform a repository merge through the configured Gitee MCP Server, which can change the target repository history. <br>
-Mitigation: Confirm the repository, PR number, merge method, account permissions, and explicit user approval before approving a merge. <br>
-Risk: The skill depends on Gitee MCP access to inspect PR details, comments, diffs, and merge status. <br>
-Mitigation: Install it only in environments where the agent is allowed to use the configured Gitee MCP Server for PR review and merging. <br>
+## Use Case:
 
+Developers and repository maintainers use this skill to assess Gitee pull request readiness, review PR status, comments, approvals, and changed files, then merge only after explicit confirmation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown merge-readiness report with confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires repository owner, repository name, PR number, and access to a configured Gitee MCP Server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: A confirmed merge is irreversible and may affect the wrong repository, pull request, or target branch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before confirming a merge, verify the repository, PR number, target branch, CI status, and review state.
+
+Risk: The skill depends on configured Gitee MCP access that may have permission to merge pull requests.
+
+Mitigation: Install and enable it only for intended repositories and use Gitee credentials with the minimum permissions required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oschina/skills/gitee-merge-pr-check)
+- [Publisher profile](https://clawhub.ai/user/oschina)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown merge readiness report with a confirmation prompt when a merge is appropriate]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request a Gitee merge action only after explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

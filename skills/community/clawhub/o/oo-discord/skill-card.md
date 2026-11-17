@@ -1,42 +1,56 @@
-## Description: <br>
-Discord lets an agent read and manage Discord data through an OOMOL-connected account using the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Discord through an OOMOL-connected account to read, create, update, and delete supported data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect Discord account, guild, invite, connection, entitlement, and public key data, and to perform approved Discord account-related updates through the OOMOL connector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a connected Discord account and may perform write or destructive actions. <br>
-Mitigation: Confirm the exact payload and effect before write actions, and get explicit user approval before destructive actions. <br>
-Risk: Connector access depends on OOMOL-managed credentials and first-time oo CLI setup. <br>
-Mitigation: Install only if you trust OOMOL as the connector provider, and run installer, authentication, or connection steps only when a command fails for that setup reason. <br>
+## Use Case:
 
+External users and developers can use this skill to access supported Discord account, guild, invite, and application data through their connected OOMOL account, and to update or remove application role-connection data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-discord) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Discord Homepage](https://discord.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with oo CLI shell commands and JSON connector payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetch the live connector schema before building payloads; user confirmation is required for write actions and explicit approval is required for destructive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence.release.version and frontmatter metadata.version) <br>
+Risk: First-time setup can run a remote CLI installer whose source and integrity were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI installation separately and use a version whose source and integrity you can verify before allowing setup.
+
+Risk: The skill documents automatic skill installation and synchronization at startup.
+
+Mitigation: Review the CLI synchronization behavior and set OO_SKILLS_SYNC_DISABLED to disable startup synchronization when appropriate.
+
+## Reference(s):
+
+- [Discord API documentation](https://docs.discord.com/developers/)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON API responses and shell command instructions with Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Response fields vary by Discord action and its input schema.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

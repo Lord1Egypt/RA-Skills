@@ -1,39 +1,50 @@
-## Description: <br>
-Automatically checks and verifies consequential claims before response to prevent confident errors and ensure accuracy and safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically checks and verifies consequential claims before response to prevent confident errors and ensure accuracy and safety.
 
-## Publisher: <br>
-[ariffazil](https://clawhub.ai/user/ariffazil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ariffazil](https://clawhub.ai/user/ariffazil)
 
-## Use Case: <br>
-Agents and developers use this skill to self-check consequential or high-confidence answers before delivery. It guides source, uncertainty, contradiction, reversibility, and safety checks so claims are better supported and risks are surfaced. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may make answers more cautious or slower because it asks the agent to verify important claims before responding. <br>
-Mitigation: Use it for consequential, high-confidence, quantitative, or disputed claims where the added verification step is worth the latency. <br>
-Risk: The skill encourages use of configured search and memory tools for verification. <br>
-Mitigation: Review available search and memory tools before deployment so verification queries use approved sources and data access paths. <br>
+## Use Case:
 
+Developers and agent operators use this skill to prompt an agent to check consequential claims, evidence, uncertainty, contradictions, reversibility, and safety before delivering an answer.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional command snippets and verification summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Encourages source checks, memory checks, reasoning traces, confidence labels, and uncertainty labels before consequential claims are returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Automatic persistent-memory checks may run without clear consent, scope, or redaction limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where automatic searches and persistent-memory checks are acceptable, and add explicit consent, scoping, and redaction rules before allowing long-term memory access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ariffazil/skills/self-verify)
+- [Publisher profile](https://clawhub.ai/user/ariffazil)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown checklist with concise verification notes and inline shell-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces evidence, confidence, and uncertainty labels for consequential claims.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Professional career roadmap platform that generates personalized learning paths for bioinformatics specialists based on skills assessment and career goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional career roadmap platform that generates personalized learning paths for bioinformatics specialists based on skills assessment and career goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External users, developers, and training organizations use this skill to request personalized bioinformatics learning paths, specialization options, and career roadmaps from submitted skills, experience, and goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitting detailed career, skills, goals, or employment information to the provider may expose personal or confidential context. <br>
-Mitigation: Confirm the provider's privacy terms and request destination before use, and share only the minimum information needed to generate the roadmap. <br>
+## Use Case:
 
+External users, career changers, students, working professionals, and training teams use this skill to request personalized bioinformatics career roadmaps, specialization paths, and learning curricula from an external API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-bioinformatics) <br>
-- [Bioinformatics API Docs](https://api.mkkpro.com:8179/docs) <br>
-- [Bioinformatics API Route](https://api.mkkpro.com/career/bioinformatics) <br>
-- [OpenAPI Specification](artifact/openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, JSON] <br>
-**Output Format:** [JSON API responses and Markdown summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Roadmap output is based on the assessment data, skills, experience, and career goals submitted by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Career goals, skills, experience, timestamps, session IDs, and optional user IDs are sent to the provider's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering unnecessary personal, employment, or sensitive health-related information unless the provider's privacy and retention terms meet your needs.
+
+Risk: Generated career roadmap content may be incomplete or unsuitable for a user's exact education, employment, or organizational requirements.
+
+Mitigation: Review roadmap recommendations before relying on them for training, hiring, academic, or career decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-bioinformatics)
+- [API Docs](https://api.mkkpro.com:8179/docs)
+- [Kong Route](https://api.mkkpro.com/career/bioinformatics)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown or JSON-style API request and response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include personalized roadmap phases, topics, resources, specialization recommendations, and next steps returned by the provider API.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and OpenAPI metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

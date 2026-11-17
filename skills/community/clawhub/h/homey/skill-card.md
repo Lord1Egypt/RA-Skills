@@ -1,46 +1,62 @@
-## Description: <br>
-Control Athom Homey smart home devices via local (LAN/VPN) or cloud APIs. List/control devices, trigger flows, query zones. Works with Homey Pro, Cloud, and Bridge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Athom Homey smart home devices via local (LAN/VPN) or cloud APIs, including listing and controlling devices, triggering flows, and querying zones.
 
-## Publisher: <br>
-[maxsumrall](https://clawhub.ai/user/maxsumrall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[maxsumrall](https://clawhub.ai/user/maxsumrall)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent inspect and control Athom Homey smart-home devices, zones, and flows through local or cloud APIs. It is intended for device listing, state queries, automation triggers, and explicit smart-home control actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: State-changing commands can control physical smart-home devices, including locks, thermostats, lights, appliances, and automation flows. <br>
-Mitigation: Confirm the exact device or flow and intended action before execution; prefer snapshot and list commands first, and use extra caution for unlocks, thermostat changes, appliances, and flow triggers. <br>
-Risk: Homey local and cloud tokens grant device-control authority. <br>
-Mitigation: Enter tokens through prompt or stdin where possible, protect the Homey config file, and avoid shared machines unless file permissions and token scope are acceptable. <br>
-Risk: Fuzzy matching can target the wrong device or flow when names are similar or ambiguous. <br>
-Mitigation: Use JSON listings and stable IDs for critical actions; review returned candidates when a command reports an ambiguous match. <br>
+## Use Case:
 
+External users, developers, and automation operators use this skill to let an agent inspect and control Homey smart-home devices, zones, and flows through a local or cloud CLI.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/maxsumrall/homey) <br>
-- [homeycli Documentation](https://maxsumrall.github.io/homeycli/) <br>
-- [Command Reference](docs/commands.md) <br>
-- [Output Contract](docs/output.md) <br>
-- [Homey Developer Tools](https://tools.developer.homey.app/api/clients) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration guidance] <br>
-**Output Format:** [CLI commands with JSON output when --json is used, plus human-readable terminal text for non-JSON commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stable JSON success and error envelopes are documented for agent use; state-changing commands can affect real Homey devices and flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: package.json, CHANGELOG, server release metadata) <br>
+Risk: The skill can perform high-impact physical-device actions through Homey, including locks, flows, thermostats, and other state-changing commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before sensitive state changes and prefer exact device or flow IDs over fuzzy names.
+
+Risk: Local discovery and saved HTTP addresses can expose smart-home control paths on untrusted LANs or VPNs.
+
+Mitigation: Use the skill only in trusted environments, prefer secure and verified endpoints where available, and avoid saving discovered HTTP addresses on untrusted networks.
+
+Risk: Homey local API keys and cloud tokens grant access to smart-home data and controls.
+
+Mitigation: Protect tokens as secrets, provide them through secure configuration, and rotate or clear them if exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/maxsumrall/skills/homey)
+- [Homey CLI Documentation](https://maxsumrall.github.io/homeycli/)
+- [Homey Developer Tools API Clients](https://tools.developer.homey.app/api/clients)
+- [Output Contract](docs/output.md)
+- [Command Reference](docs/commands.md)
+- [Errors and Exit Codes](docs/errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports stable JSON output for agent parsing when commands are run with --json.]
+
+## Skill Version(s):
+
+1.1.2 (source: evidence.release.version, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

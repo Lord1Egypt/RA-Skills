@@ -1,40 +1,59 @@
-## Description: <br>
-Smart Meeting Assistant automates meeting audio transcription, structured meeting summary generation, and action item extraction from recordings or transcripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Meeting Assistant transcribes meeting audio, generates structured meeting minutes, and extracts action items from transcripts using the AstronClaw API.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Employees, external collaborators, and developers can use this skill to turn meeting recordings or prepared transcripts into transcripts, meeting minutes, and action-item lists. It is intended for post-meeting documentation workflows that rely on the configured AstronClaw API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting recordings and transcripts are sent to the configured AstronClaw API endpoint. <br>
-Mitigation: Use the skill only when provider terms, retention behavior, participant consent, and meeting confidentiality requirements are acceptable. <br>
-Risk: The skill requires a sensitive API credential and supports a configurable API base URL. <br>
-Mitigation: Protect ASTRONCLAW_API_KEY and verify ASTRONCLAW_API_BASE before processing recordings or transcripts. <br>
+## Use Case:
 
+Employees and external collaborators use this skill to turn meeting recordings or transcripts into transcripts, meeting summaries, and action-item JSON for follow-up workflows.
 
-## Reference(s): <br>
-- [AstronClaw API Reference](references/api_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Text transcripts, Markdown meeting summaries, JSON todo lists, and shell-oriented usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write transcript, summary, and todo files with timestamped names when the full pipeline is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Meeting recordings, transcripts, summaries, and action items may contain confidential or regulated information that is sent to AstronClaw or the configured enterprise endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for meetings approved for that endpoint, avoid sensitive or regulated recordings unless organizational policy permits it, and document retention expectations before use.
+
+Risk: A custom ASTRONCLAW_API_BASE can direct uploaded meeting data and the API token to an untrusted service.
+
+Mitigation: Do not set ASTRONCLAW_API_BASE to an untrusted URL; prefer a hardened version that validates the API host and requires HTTPS.
+
+Risk: Network requests without explicit timeout behavior can hang or fail unclearly during transcription, summarization, or todo extraction.
+
+Mitigation: Prefer a hardened version that uses request timeouts and warns users before upload.
+
+## Reference(s):
+
+- [AstronClaw API Reference](references/api_reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/smallkeyboy/skills/smart-meeting-assistant)
+- [AstronClaw API Base](https://api.astronclaw.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Plain text transcripts, Markdown meeting minutes, JSON action items, and command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The full pipeline writes timestamped transcript, summary, and todo files to the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

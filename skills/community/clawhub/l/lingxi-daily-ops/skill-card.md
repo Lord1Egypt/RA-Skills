@@ -1,45 +1,52 @@
-## Description: <br>
-Complete daily operations automation for GitHub projects, including GitHub interactions, daily report generation, trending watch, health checks, and multi-platform social publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete daily operations automation for GitHub projects, including automated GitHub interactions, daily report generation, trending watch, and multi-platform social publishing.
 
-## Publisher: <br>
-[nima54851](https://clawhub.ai/user/nima54851) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nima54851](https://clawhub.ai/user/nima54851)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and project maintainers use this skill to automate recurring GitHub operations, monitor trending projects, generate daily Markdown reports, run health checks, and publish operational digests to configured channels.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can automate public GitHub actions under the user's identity and asks for broad GitHub account access.
+
+Mitigation: Use a fine-grained, least-privilege token or GitHub App credential, review target repositories and publishing channels, and require dry-run or manual approval before scheduled runs.
+
+Risk: The documented configuration stores a GitHub token in a local JSON file.
+
+Mitigation: Avoid plaintext token storage where possible and restrict configuration file permissions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and project maintainers use this skill to schedule routine GitHub operations, monitor project topics, generate daily markdown reports, and prepare social digests. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automate public GitHub and social actions, including stars, comments, issue updates, and publishing. <br>
-Mitigation: Review configured repositories, comment templates, publishing channels, and schedules before enabling automation. <br>
-Risk: The skill requests GitHub access that may affect repositories or account activity. <br>
-Mitigation: Use fine-grained, least-privilege GitHub tokens and store secrets outside committed files. <br>
-Risk: Scheduled automation can repeatedly post low-quality or unintended public content. <br>
-Mitigation: Require human review for generated comments and social posts until behavior is validated for the target projects. <br>
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nima54851/skills/lingxi-daily-ops) <br>
-- [GitHub](https://github.com) <br>
-- [GitHub API](https://api.github.com) <br>
-- [ZeroGPU platform](https://platform.zerogpu.ai) <br>
+**Other Properties Related to Output:** [Produces operational reports, scheduled workflow guidance, trigger commands, and configuration guidance for GitHub and social publishing automation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and configuration-oriented text with command triggers and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate operational summaries, GitHub activity plans, health-check status, and social publishing drafts based on configured targets.] <br>
+1.0.0 (source: server release metadata and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

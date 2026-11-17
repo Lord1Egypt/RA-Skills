@@ -1,45 +1,56 @@
-## Description: <br>
-Operate Delighted through an OOMOL-connected account to read, create, update, delete, and unsubscribe Delighted people and retrieve metrics and survey data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Delighted through the connected OOMOL account to read survey data and metrics, create or update people, manage unsubscribes, and delete records.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External developers and operators use this skill to manage Delighted account data through the OOMOL oo CLI, including metrics, people, bounced or unsubscribed lists, survey responses, and guarded write or destructive actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a connected Delighted account through the OOMOL oo CLI. <br>
-Mitigation: Install and use it only when OOMOL CLI access to the Delighted account is intended. <br>
-Risk: Create or update actions can change Delighted account data. <br>
-Mitigation: Review the exact JSON payload and expected effect before approving write actions. <br>
-Risk: Delete and unsubscribe actions can remove survey history or suppress future contact. <br>
-Mitigation: Confirm the target person and get explicit approval before running destructive actions. <br>
+## Use Case:
 
+Employees and developers use this skill to work with people, survey responses, and metrics in a connected Delighted account. It supports reading data, creating or updating people, unsubscribing people, and deleting records; state-changing actions require confirmation as described in the skill.
 
-## Reference(s): <br>
-- [ClawHub Delighted skill page](https://clawhub.ai/oomol/oo-delighted) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Delighted homepage](https://delighted.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill metadata) <br>
+Risk: The first-time setup fallback may execute downloaded software, and managed-skill synchronization may change skills installed for other agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, and check managed-skill synchronization settings before using setup.
+
+Risk: Delighted account data passes through OOMOL, while the remote installers and hosted connector implementation were not verified.
+
+Mitigation: Connect only the intended Delighted account and consider this data flow when choosing which account to use.
+
+## Reference(s):
+
+- [Delighted skill release](https://clawhub.ai/oomol/skills/oo-delighted)
+- [Delighted](https://delighted.com)
+- [Delighted API documentation](https://app.delighted.com/docs/api)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON responses and concise natural-language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read actions return account data; changes and deletions require confirmation according to the skill.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

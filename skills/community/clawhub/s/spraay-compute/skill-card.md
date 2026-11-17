@@ -1,45 +1,56 @@
-## Description: <br>
-Rent GPU compute, run AI model inference, and buy prepaid compute-futures credits paid in USDC over x402 without API keys or accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pay-per-call GPU rental and AI inference via the Spraay x402 gateway, with prepaid compute-futures for discounted repeated jobs.
 
-## Publisher: <br>
-[plagtech](https://clawhub.ai/user/plagtech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[plagtech](https://clawhub.ai/user/plagtech)
 
-## Use Case: <br>
-Developers and agents use this skill to estimate costs, rent GPU or model-inference compute, generate media or embeddings, and manage prepaid compute-futures balances through the Spraay x402 gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause an agent with a funded wallet to spend USDC on paid compute or prepaid compute-futures deposits. <br>
-Mitigation: Require explicit user approval and spending caps before paid requests, deposits, or refunds. <br>
-Risk: Broad trigger guidance may route generic inference or media-generation requests to paid endpoints. <br>
-Mitigation: Prefer free estimate and model-list endpoints first, and avoid configuring this skill as the default handler for generic AI requests. <br>
+## Use Case:
 
+Developers and agent operators use this skill when they explicitly want to route GPU jobs, model inference, or prepaid compute-credit workflows through Spraay's paid x402 gateway.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/plagtech/spraay-compute) <br>
-- [Publisher profile](https://clawhub.ai/user/plagtech) <br>
-- [Spraay gateway](https://gateway.spraay.app) <br>
-- [x402 discovery catalog](https://gateway.spraay.app/.well-known/x402.json) <br>
-- [Endpoint reference](references/endpoints.md) <br>
-- [Quickstart examples](examples/quickstart.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with endpoint descriptions and inline code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May lead an agent to make paid x402 requests using a funded USDC wallet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Paid calls and compute-futures deposits can spend or lock real USDC from a funded wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated wallet with limited funds, check free estimates before paid calls, and require explicit confirmation before deposits or other paid operations.
+
+Risk: Autonomous agents could trigger unwanted spending if the skill is activated too broadly.
+
+Mitigation: Use the skill only for explicit Spraay or x402 compute requests and require human approval before paid actions.
+
+## Reference(s):
+
+- [Spraay x402 Gateway](https://gateway.spraay.app)
+- [Spraay x402 Discovery Catalog](https://gateway.spraay.app/.well-known/x402.json)
+- [ClawHub Skill Page](https://clawhub.ai/plagtech/skills/spraay-compute)
+- [Publisher Profile](https://clawhub.ai/user/plagtech)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with HTTP endpoint examples and shell-oriented requirements]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May lead an agent to make paid x402 requests that spend real USDC when the user confirms paid operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

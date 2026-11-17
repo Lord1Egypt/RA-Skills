@@ -386,6 +386,37 @@
 
 ---
 
+### ⛰️ 黄山（Huangshan / Yellow Mountain）
+
+> 📖 **完整攻略**：[Huangshan Travel Guide 2026: Yellow Mountain After the New East Gate Opening](https://www.pandamate.wiki/destinations/huangshan-travel-guide-2026.html)
+
+**特点**：UNESCO 世界文化与自然双遗产，2026-06-11 新东门（East Gate）+ 东海缆车（Donghai Cable Car）启用，是夏日海云（sea-of-clouds）概率最高的窗口期（60-85%）。
+
+**必去景点**：
+- 迎客松（Yingke Song）：黄山地标，世界最著名松树
+- 光明顶：黄山第二高峰，海拔 1860m，看日出日落
+- 西海大峡谷：黄山最美峡谷，"梦幻景区"
+- 宏村 + 西递：徽派建筑古村落，UNESCO 世界文化遗产，距黄山南门 1h
+- 始信峰 + 狮子峰：黄山秀色精华
+
+**2026 重要变化**：
+- 🆕 **新东门开放**（2026-06-11）：绕开南门人流，可直达云谷寺-白鹅岭，节省 1.5h 排队
+- 🆕 **东海缆车**：亚洲最长索道之一（6.6km），单程约 8 分钟，直达山顶
+- 🆕 **夏季海云季**：6-8 月清晨 5:30-7:30 出现概率 60-85%
+
+**住宿建议**：
+- 山顶酒店（北海宾馆 / 西海饭店）：看日出必备，但贵（¥1500-3000/晚）
+- 山脚汤口镇：性价比高（¥300-800/晚），适合 2 天行程
+- 宏村/西递民宿：徽派建筑体验（¥400-1200/晚）
+
+**交通**：
+- 高铁：黄山北站（杭州 1.5h / 上海 2.5h / 南京 2h）
+- 机场：黄山屯溪机场（距汤口 1h）
+
+**建议行程**：2-3 天（山顶 1 晚 + 宏村 1 晚）
+
+---
+
 ### 敦煌
 - 莫高窟：世界遗产¥238（预约）
 - 鸣沙山月牙泉：¥110
@@ -406,7 +437,7 @@
 
 ## UNESCO美食之都（中国7座，2026最新）
 
-> 📖 **深度攻略**：[China Regional Cuisines 2026 Guide](https://www.pandamate.wiki/food/china-regional-cuisines-2026.html) · [Guangzhou Morning Tea 2026](https://www.pandamate.wiki/food/guangzhou-morning-tea-2026.html)
+> 📖 **深度攻略**：[China's 7 UNESCO Cities of Gastronomy: The Foreigner's Tasting Map (2026)](https://www.pandamate.wiki/food/china-unesco-cities-gastronomy-2026.html) · [China Regional Cuisines 2026 Guide](https://www.pandamate.wiki/food/china-regional-cuisines-2026.html) · [China Food City Showdown: Chengdu vs Guangzhou vs Xi'an](https://www.pandamate.wiki/food/china-food-city-showdown-2026.html) · [Guangzhou Morning Tea 2026](https://www.pandamate.wiki/food/guangzhou-morning-tea-2026.html)
 
 | 加入年份 | 城市 | 代表菜系 |
 |---------|------|---------|
@@ -423,6 +454,7 @@
 - ⚠️ **扬州早茶**：比广州更精致，本地人推荐富春茶社
 - ⚠️ **泉州2026新晋**：UNESCO认证带来游客激增，建议提前订住宿
 - ⚠️ **成都**：2026年亚洲50佳餐厅 + LV亚洲首店 The Hall 开业
+- 💡 **美食城市决策**：看完 7 城仍难选？看 [Chengdu vs Guangzhou vs Xi'an 决策指南](https://www.pandamate.wiki/food/china-food-city-showdown-2026.html)
 
 ---
 
@@ -447,6 +479,10 @@
 ## 🌏 入境游新趋势主题游（2026最新）
 
 > 📖 **深度攻略**：[China Active Immersion 2026: Factory Tours, Robot Cafés, Weaving Villages](https://www.pandamate.wiki/blog/china-active-immersion-2026.html)
+>
+> 📖 **2026夏季爆火**：[Challenge Travel in China 2026: 10 Wild Challenges & 5 Black-Horse Cities](https://www.pandamate.wiki/blog/challenge-travel-china-2026.html) — 24小时不用现金/20美元吃遍夜市/凌晨3点city walk 等
+>
+> 📖 **Japan → China 转移**（2026-07-01 日本签证费暴涨 400%）：[China Instead of Japan Summer 2026](https://www.pandamate.wiki/blog/china-instead-of-japan-summer-2026.html)
 
 **主动沉浸式体验（80%+ 游客追求）**：
 - 工厂参观（比亚迪/海尔/茅台）
@@ -454,6 +490,28 @@
 - 编织村落（贵州/江苏）
 - 茶园住宿（武夷山/西湖龙井）
 - 定制游同比+400%
+
+**挑战式旅行（2026年6月爆火趋势）**：
+- 24小时不用现金（已被微信/支付宝全面支持）
+- 20美元吃遍夜市（中国夜市性价比无敌）
+- 凌晨3点独自 city walk（"中国是世界上最安全的国家之一"）
+- 1天1省高铁冲刺（CRH 网密度世界第一）
+- 跟本地人学做一道菜（饺子/拉坯/面食）
+
+**🔥 8大暗黑马美食城市**（外国游客搜索增长 200%+）：
+
+> 📖 **完整攻略**：[8 Chinese Cities Where the Food Will Surprise You](https://www.pandamate.wiki/blog/china-dark-horse-food-cities-2026.html)
+
+| 城市 | 特色菜 | 必吃 |
+|------|--------|------|
+| **贵阳** | 黔菜 | 酸汤鱼/丝娃娃/肠旺面 |
+| **山西（大同/太原）** | 晋菜 | 刀削面/过油肉/莜面栲栳栳 |
+| **福州** | 闽菜（海鲜） | 佛跳墙/鱼丸/锅边糊 |
+| **昆明** | 滇菜 | 过桥米线/汽锅鸡/野生菌火锅 |
+| **扬州** | 淮扬菜 | 早茶/蟹粉狮子头/干丝 |
+| **潮汕（汕头）** | 粤东菜 | 牛肉火锅/粿条/卤鹅 |
+| **郑州** | 豫菜 | 胡辣汤/烩面/灌汤包 |
+| **长沙** | 湘菜 | 臭豆腐/剁椒鱼头/糖油粑粑 |
 
 ---
 

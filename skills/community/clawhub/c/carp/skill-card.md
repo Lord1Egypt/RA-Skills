@@ -1,41 +1,66 @@
-## Description: <br>
-Manage a local CARP interface for secure, verified agent-to-agent commerce workflows over CARP endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a local CARP interface for ADILOS trust setup, queue polling, encrypted agent-to-agent requests, menus, results, answers, CABEZON customer workflow, and secure commerce/escrow workflows through local or LAN CARP endpoints.
 
-## Publisher: <br>
-[bitsanity](https://clawhub.ai/user/bitsanity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bitsanity](https://clawhub.ai/user/bitsanity)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure IF_URL and run CARP curl workflows for registration, polling, request submission, result posting, answer retrieval, and menu lookup through a trusted local or LAN interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CARP curl commands may send request bodies, cookies, keys, and results to the configured IF_URL endpoint. <br>
-Mitigation: Set IF_URL only to a localhost or trusted LAN CARP interface and treat request bodies, cookies, and keys as sensitive. <br>
-Risk: Queue polling or request automation can repeat operations unintentionally if loops are too aggressive. <br>
-Mitigation: Use idempotent polling loops with backoff when automating CARP queue reads. <br>
+## Use Case:
 
+Developers and operators use this skill to deploy and manage CARP interfaces, establish ADILOS and CABEZON trust relationships, process CARP queues, and coordinate encrypted agent-to-agent service or commerce workflows.
 
-## Reference(s): <br>
-- [CARP reference implementation](https://github.com/bitsanity/agent-crvp) <br>
-- [CARP on ClawHub](https://clawhub.ai/bitsanity/carp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and IF_URL; commands target a user-configured local or LAN CARP interface.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill involves operating a CARP CGI service with mutable npm dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and lock dependencies before deployment and run the service under a dedicated low-privilege account.
+
+Risk: Plaintext public endpoints can expose CARP traffic and administrative surfaces.
+
+Mitigation: Prefer loopback or trusted LAN endpoints, avoid plaintext public exposure where possible, and keep administrative endpoints off untrusted reverse proxies.
+
+Risk: Private keys and agent identity material are required for CARP operation.
+
+Mitigation: Store private keys outside public paths, never log or return them, and rotate the identity immediately if a private key is exposed.
+
+Risk: Persistent monitoring and queue polling can trigger repeated external effects if boundaries are unclear.
+
+Mitigation: Make cron or monitoring opt-in, keep a clear disable path, and record request state before processing consuming queue reads.
+
+## Reference(s):
+
+- [CARP skill page](https://clawhub.ai/bitsanity/skills/carp)
+- [agent-crvp reference implementation](https://github.com/bitsanity/agent-crvp)
+- [CABEZON concierge and directory](https://github.com/bitsanity/cabezon)
+- [Nautilus registrar](https://github.com/bitsanity/nautilus)
+- [clawface escrower](https://github.com/bitsanity/clawface)
+- [glassfish reputation agent](https://github.com/bitsanity/glassfish)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, JavaScript snippets, and operational checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for local or LAN CARP endpoints and does not itself execute network, cryptographic, or blockchain actions.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

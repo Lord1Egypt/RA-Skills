@@ -1,44 +1,61 @@
-## Description: <br>
-Compares proposal documents and produces structured differences, hidden costs, risks, and recommendations for decision workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares multiple proposal documents and produces differences, hidden costs, risks, and recommendations for decision workflows.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to compare proposal, procurement, or technical selection options against stated constraints and evaluation criteria. It helps produce reviewable Markdown that separates facts from inferred recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proposal comparisons may include incorrect, incomplete, or sensitive information if the input material is flawed or confidential. <br>
-Mitigation: Use only proposal files intended for processing, review the generated report before sharing or acting on it, and redact sensitive material when appropriate. <br>
-Risk: Recommendations can be mistaken for objective facts when they are based on limited proposal evidence. <br>
-Mitigation: Keep factual comparisons separate from inferred advice and list missing information as items to confirm. <br>
+## Use Case:
 
+External users, employees, and decision teams use this skill to compare proposals for reviews, procurement decisions, or technical selection. It produces an auditable Markdown draft that separates facts from inferred recommendations and calls out missing information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/proposal-comparator) <br>
-- [README.md](artifact/README.md) <br>
-- [resources/spec.json](artifact/resources/spec.json) <br>
-- [resources/template.md](artifact/resources/template.md) <br>
-- [examples/example-output.md](artifact/examples/example-output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON report; may include a local python3 command when execution is available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports are intended to be reviewed before sharing or acting on them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release metadata) <br>
+Risk: Proposal inputs can include sensitive commercial or personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only local files the user is comfortable sharing with the agent, and redact sensitive details before use when needed.
+
+Risk: The skill may write a report to a user-selected output path when the local script is run.
+
+Mitigation: Review the output path before execution or use dry-run/stdout behavior when a persistent file is not needed.
+
+Risk: Generated recommendations may overstate conclusions when source proposals lack evidence or constraints.
+
+Mitigation: Keep facts separate from inferred advice, preserve missing-information sections, and review recommendations before making decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/proposal-comparator)
+- [README](artifact/README.md)
+- [Specification](artifact/resources/spec.json)
+- [Output Template](artifact/resources/template.md)
+- [Example Output](artifact/examples/example-output.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown or JSON report generated from local input files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language structured comparison report with sections for comparison dimensions, pros and cons, hidden costs, risks, recommendations, reservations, and follow-up items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

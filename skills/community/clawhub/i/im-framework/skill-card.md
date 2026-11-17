@@ -1,45 +1,60 @@
-## Description: <br>
-Reference, explain, and apply the Immanent Metaphysics framework by Forrest Landry using bundled ontology reference files and source links to mflb.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference, explain, and apply Forrest Landry's Immanent Metaphysics framework using bundled ontology references and live source text from mflb.com.
 
-## Publisher: <br>
-[kapslap](https://clawhub.ai/user/kapslap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kapslap](https://clawhub.ai/user/kapslap)
 
-## Use Case: <br>
-External users and developers use this skill to answer questions about Immanent Metaphysics, trace concepts or derivation chains, and ground responses in Forrest Landry source URLs. It is intended for IM-specific explanation, citation, and application tasks rather than general philosophy advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact evidence includes schema.yaml and section-anchors.json, while the skill text also refers to graph.jsonl and whitebook-map.jsonl. <br>
-Mitigation: Verify the installed release contains the needed reference files before relying on graph searches or structural map workflows. <br>
-Risk: Broad philosophy or ethics wording may activate the skill outside its intended Immanent Metaphysics use case. <br>
-Mitigation: Use it when the request explicitly asks for IM, Forrest Landry source grounding, or named framework concepts. <br>
-Risk: The skill directs agents to fetch and quote public mflb.com source pages. <br>
-Mitigation: Verify fetched text against the source URL and clearly label direct quotes, close paraphrases, and agent synthesis. <br>
+## Use Case:
 
+Developers, researchers, and external users can use this skill to find, cite, explain, and apply concepts from Forrest Landry's Immanent Metaphysics framework. It is intended for source-grounded reference work, concept tracing, and labeled synthesis rather than unsupported attribution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kapslap/im-framework) <br>
-- [An Immanent Metaphysics source text](https://mflb.com/8192) <br>
-- [Ontology schema](references/schema.yaml) <br>
-- [Section anchors](references/section-anchors.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with citations, direct quotes, explanatory prose, and occasional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require fetching mflb.com source pages and distinguishing direct citation, close paraphrase, and agent synthesis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata) <br>
+Risk: The skill may fetch public mflb.com pages during use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it where public web access is acceptable, and review fetched citations before relying on them.
+
+Risk: Some reference files described by the skill text appear to be missing from the inspected artifact.
+
+Mitigation: Confirm packaged references before deployment and avoid relying on absent files for source grounding.
+
+Risk: Broad trigger wording may activate the skill for loosely related metaphysics or ethics requests.
+
+Mitigation: Use the skill only when the user asks for Immanent Metaphysics or explicitly wants claims grounded in this framework.
+
+## Reference(s):
+
+- [An Immanent Metaphysics](https://mflb.com/8192)
+- [Ontology schema](references/schema.yaml)
+- [Section anchors](references/section-anchors.json)
+- [IM Framework on ClawHub](https://clawhub.ai/kapslap/skills/im-framework)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with citations, quoted source excerpts, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should distinguish direct citation, close paraphrase, and agent synthesis.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

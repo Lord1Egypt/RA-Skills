@@ -1,40 +1,60 @@
-## Description: <br>
-Generates customized DevSecOps implementation roadmaps based on organizational assessment data and maturity level analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates customized DevSecOps implementation roadmaps based on organizational assessment data and maturity level analysis.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security leaders, DevOps engineers, and engineering managers use this skill to generate a tailored DevSecOps maturity roadmap from organizational assessment data. The roadmap includes maturity scoring, prioritized actions, tool suggestions, goals, and success metrics for improving security practices in the software development lifecycle. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may send sensitive organizational security posture details to a third-party service. <br>
-Mitigation: Use sanitized or approved organizational information and avoid submitting secrets, exact vulnerability details, internal system names, sensitive architecture notes, or personally identifying user IDs unless authorized and the service operator is trusted. <br>
+## Use Case:
 
+Security leaders, DevOps engineers, and engineering managers use this skill to generate DevSecOps maturity roadmaps from organizational assessment data. It helps teams prioritize security program improvements, tooling, metrics, and near-term and long-term goals.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-devsecops-roadmap) <br>
-- [API Docs](https://api.mkkpro.com:8113/docs) <br>
-- [Kong Route](https://api.mkkpro.com/career/devsecops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary with structured roadmap details; source API response is JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include maturity scores, priority actions, short-term and long-term goals, step analysis, recommended tools, success metrics, session ID, and timestamp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and openapi.json) <br>
+Risk: Assessment answers can expose sensitive internal security posture, architecture, and process maturity information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove unnecessary identifiers, avoid secrets and detailed internal architecture, and share production organizational data only after vendor and data-handling terms are approved.
+
+Risk: The skill sends detailed internal security posture information to a third-party API without enough privacy or retention disclosure.
+
+Mitigation: Review the vendor, privacy terms, and retention practices before installing or using the skill with real company data.
+
+Risk: Roadmap recommendations may be incomplete or unsuitable for a specific regulated environment.
+
+Mitigation: Have qualified security and compliance stakeholders review generated priorities, tooling choices, and metrics before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-devsecops-roadmap)
+- [OpenAPI specification](artifact/openapi.json)
+- [API documentation](https://api.mkkpro.com:8113/docs)
+- [Kong route](https://api.mkkpro.com/career/devsecops)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON roadmap response with maturity scoring, narrative summary, priorities, goals, step analysis, recommended tools, and success metrics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires structured assessment data across 13 DevSecOps dimensions plus session metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and openapi.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

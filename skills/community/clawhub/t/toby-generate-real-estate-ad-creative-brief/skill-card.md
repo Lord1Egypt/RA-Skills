@@ -1,44 +1,55 @@
-## Description: <br>
-Plan campaign visuals and hooks for real estate promotions. Use when working on paid campaign planning for real estate teams, brokers, listing marketers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan campaign visuals and hooks for real estate promotions for paid campaign planning by real estate teams, brokers, and listing marketers.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External real estate teams, brokers, and listing marketers use this skill to plan paid campaign creative, including audience goals, visual direction, messaging hooks, and refinement steps before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill declares broad Bash and local file read access that is not explained by its real-estate ad brief purpose. <br>
-Mitigation: Review the exact ClawHub package before installation and decline shell commands or broad local file reads unless they are intentionally needed for the specific task. <br>
-Risk: README installation details reference a mismatched manual source. <br>
-Mitigation: Use the reviewed ClawHub release rather than installing from the README's manual GitHub source. <br>
-Risk: Ad creative recommendations may be incomplete, inaccurate, or unsuitable for external publication. <br>
-Mitigation: Review campaign claims, audience targeting, fair-housing compliance, and brand requirements before publishing or automating campaign execution. <br>
+## Use Case:
 
+External real estate teams, brokers, and listing marketers use this skill to draft concise creative briefs for paid property marketing campaigns, including audience, goal, visual direction, and messaging hooks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-real-estate-ad-creative-brief) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-real-estate-ad-creative-brief) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ad creative brief guidance, campaign messaging hooks, visual planning notes, and review recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad Bash command access despite its writing-focused purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or tightly scope Bash access for normal ad-brief drafting workflows.
+
+Risk: Generated real estate campaign briefs may contain inaccurate, noncompliant, or misleading claims if published without review.
+
+Mitigation: Review all generated briefs before publishing or automating campaign work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-real-estate-ad-creative-brief)
+- [SkillBoss skill page](https://www.skillboss.co/skills/generate-real-estate-ad-creative-brief)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured brief text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated campaign guidance should be reviewed before external publication or automated campaign use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 ---
 name: linkedin-employee-advocacy
-description: Plan, launch, and operate a LinkedIn employee advocacy program for a marketing team. Covers 14-day launch playbook, authentic-voice posting at scale, brand guideline governance with optional review, per-post time budgeting, team posting cadence benchmarks, and ROI measurement (team reach, engagement, pipeline impact). Triggers on "employee advocacy", "team posting program", "scale LinkedIn across marketing team", "brand amplification", "advocacy ROI", "get the team posting", "employee-generated content".
+description: Stand up and run a LinkedIn employee advocacy program for a marketing or sales team. Covers 14-day launch playbook, brand-guideline governance, per-post time budget, cadence benchmarks, and team ROI (reach, engagement, pipeline). Triggers on "employee advocacy", "get the team posting", "scale LinkedIn across team", "advocacy ROI".
 ---
 
 # LinkedIn Employee Advocacy
@@ -123,4 +123,5 @@ Stand up a marketing-team LinkedIn advocacy program that scales without killing 
 - `linkedin-post-writer` — each team member uses this for individual drafts
 - `linkedin-profile-optimizer` — team profiles should match before the program launches (otherwise profile clicks convert poorly)
 - `linkedin-content-planner` — each team member gets their own pillar mix
-- `linkedin-thread-engagement` — track which team members' comments drive inbound
+- `linkedin-thread-monitor` — track which team members' comments drive author replies
+- `linkedin-engager-analytics` — see who's engaging with each team member's posts

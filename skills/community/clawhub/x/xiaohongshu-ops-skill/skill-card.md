@@ -1,51 +1,71 @@
-## Description: <br>
-Xiaohongshu Ops Skill helps an agent plan, analyze, draft, publish-prep, reply, and review Xiaohongshu account operations through OpenClaw browser workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents run Xiaohongshu account operations, including account positioning, topic research, content drafting, publish preparation, comment handling, post-review, and reusable knowledge-base updates.
 
-## Publisher: <br>
-[dongjie-oss](https://clawhub.ai/user/dongjie-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongjie-oss](https://clawhub.ai/user/dongjie-oss)
 
-## Use Case: <br>
-Social media operators, creators, and agent developers use this skill to run Xiaohongshu workflows for account positioning, feed and account analysis, topic ideation, content drafting, publish preparation, comment replies, and post-run knowledge capture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a real Xiaohongshu account and perform posting or replying workflows. <br>
-Mitigation: Use preview or draft mode for posts and replies, and require explicit confirmation before any live posting or reply is sent. <br>
-Risk: The skill requires sensitive credentials and may expose gateway tokens in shared terminals or logs. <br>
-Mitigation: Review the installer before running it and avoid displaying, pasting, or logging tokens in shared environments. <br>
-Risk: The skill may persist or mutate account operational notes. <br>
-Mitigation: Require explicit confirmation before knowledge-base writes and review retained notes for sensitive account or campaign information. <br>
+## Use Case:
 
+External users, creators, and operators use this skill to guide Xiaohongshu account analysis, topic ideation, draft generation, publishing preparation, comment replies, and post-task review. It is especially oriented toward repeatable social-media operations that require platform-specific tone, browser workflow discipline, and local knowledge-base records.
 
-## Reference(s): <br>
-- [Xiaohongshu Ops Skill on ClawHub](https://clawhub.ai/dongjie-oss/xiaohongshu-ops-skill) <br>
-- [OpenClaw browser tool documentation](https://docs.openclaw.ai/tools/browser) <br>
-- [XHS runtime rules](references/xhs-runtime-rules.md) <br>
-- [XHS account analysis](references/xhs-account-analysis.md) <br>
-- [XHS home feed analysis](references/xhs-home-feed-analysis.md) <br>
-- [XHS topic ideation](references/xhs-topic-ideation.md) <br>
-- [XHS viral copy flow](references/xhs-viral-copy-flow.md) <br>
-- [XHS publish flows](references/xhs-publish-flows.md) <br>
-- [XHS comment operations](references/xhs-comment-ops.md) <br>
-- [XHS knowledge base](references/xhs-knowledge-base.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured checklists, content drafts, analysis summaries, inline code, shell commands, and local knowledge-base notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May operate a real Xiaohongshu account through OpenClaw browser automation and may persist operational notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The installer may run remote installers and install global packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before running it and avoid the one-click script unless the remote installers and packages are trusted.
+
+Risk: Gateway tokens may be printed, shared, or left active in the local environment.
+
+Mitigation: Rotate any exposed gateway token, confirm the gateway is bound locally, and verify the service can be removed.
+
+Risk: Operational records may contain local account activity, drafts, comments, screenshots, or other sensitive work history.
+
+Mitigation: Add real gitignore rules before using the knowledge base and keep records limited to reusable, non-sensitive summaries.
+
+Risk: Publishing and reply workflows can affect a real Xiaohongshu account.
+
+Mitigation: Use a dedicated account or profile when possible and require explicit user confirmation before any post or reply is sent.
+
+## Reference(s):
+
+- [Xiaohongshu Ops Skill on ClawHub](https://clawhub.ai/dongjie-oss/skills/xiaohongshu-ops-skill)
+- [OpenClaw Browser Tool Documentation](https://docs.openclaw.ai/tools/browser)
+- [XHS Account Analysis](references/xhs-account-analysis.md)
+- [XHS Home Feed Analysis](references/xhs-home-feed-analysis.md)
+- [XHS Topic Ideation](references/xhs-topic-ideation.md)
+- [XHS Viral Copy Flow](references/xhs-viral-copy-flow.md)
+- [XHS Publish Flows](references/xhs-publish-flows.md)
+- [XHS Comment Ops](references/xhs-comment-ops.md)
+- [XHS Runtime Rules](references/xhs-runtime-rules.md)
+- [XHS Knowledge Base](references/xhs-knowledge-base.md)
+- [XHS Eval Patterns](references/xhs-eval-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured templates, code snippets, shell commands, and optional local Markdown knowledge-base records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include Xiaohongshu titles, drafts, hashtags, reply text, account diagnostics, content-operation SOPs, publish checklists, browser-action guidance, and local review records.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

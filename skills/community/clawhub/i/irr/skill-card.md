@@ -1,38 +1,50 @@
-## Description: <br>
-Irr reference tool. Use when working with irr in finance contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Irr reference tool. Use when working with irr in finance contexts.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers, analysts, and agents can use this skill to retrieve concise IRR-related finance reference sections, formulas, risk notes, glossary entries, and checklist-style guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The finance reference content is generic and may not be reliable for IRR calculations, compliance, investment decisions, or downstream agent workflows. <br>
-Mitigation: Independently verify formulas, compliance guidance, and investment-related outputs against authoritative finance sources before relying on them. <br>
+## Use Case:
 
+Developers, analysts, and finance practitioners use this skill for quick IRR-oriented reference material, including formulas, risk categories, regulatory prompts, glossary terms, and due diligence checklists.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reference text with CLI command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-specific finance reference sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Financial and regulatory reference content may be generic or stale if used for investment, compliance, or business decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify formulas, regulations, and decision guidance against current authoritative financial and regulatory sources before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/irr)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text emitted by local shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no detected credential, API, MCP, persistence, or data movement behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

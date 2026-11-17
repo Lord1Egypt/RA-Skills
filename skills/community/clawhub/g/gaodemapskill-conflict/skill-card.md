@@ -1,43 +1,59 @@
-## Description: <br>
-A skill to interact with Gaode Map (AMap) for location search and route planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill to interact with Gaode Map (AMap) for location search and route planning.
 
-## Publisher: <br>
-[Beelkic](https://clawhub.ai/user/Beelkic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beelkic](https://clawhub.ai/user/beelkic)
 
-## Use Case: <br>
-Developers and agents use this skill to search Gaode Map places, geocode addresses, and plan driving, walking, bicycling, or transit routes through a Python command-line tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Map queries, addresses, coordinates, route details, and the AMap API key are sent to Gaode/AMap. <br>
-Mitigation: Avoid highly sensitive locations unless needed, use the AMAP_API_KEY environment variable, and review the data sharing implications before installation. <br>
-Risk: Passing the API key on the command line can expose it through shell history or process listings. <br>
-Mitigation: Store AMAP_API_KEY in the environment or agent configuration instead of using the --key argument. <br>
+## Use Case:
 
+Developers and external agents use this skill to search points of interest, geocode addresses, and plan routes through Gaode Map (AMap). It is intended for location lookup and route-planning workflows that can send queries and route endpoints to AMap.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Beelkic/gaodemapskill-conflict) <br>
-- [Beelkic publisher profile](https://clawhub.ai/user/Beelkic) <br>
-- [AMap Console](https://console.amap.com/) <br>
-- [AMap REST API endpoint](https://restapi.amap.com/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses from a Python command-line tool, with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python, the requests package, and an AMAP_API_KEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Map searches, addresses, route endpoints, and geocoding inputs are sent to Gaode/AMap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable for the deployment context.
+
+Risk: The AMap API key may be exposed if passed on the command line or stored insecurely.
+
+Mitigation: Prefer AMAP_API_KEY from a protected environment or secret manager and avoid passing the key with --key.
+
+Risk: The Python dependency list does not pin requests.
+
+Mitigation: Pin and review dependencies before production deployment.
+
+## Reference(s):
+
+- [AMap Console](https://console.amap.com/)
+- [AMap REST API endpoint](https://restapi.amap.com/v3)
+- [ClawHub skill page](https://clawhub.ai/beelkic/skills/gaodemapskill-conflict)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON responses from a Python command-line tool, with Markdown command examples in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python, requests, and AMAP_API_KEY; supports search and route actions with driving, walking, bicycling, and transit modes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

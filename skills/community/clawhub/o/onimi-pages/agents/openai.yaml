@@ -1,0 +1,11 @@
+interface:
+  display_name: "Onimi Pages & Slides"
+  short_description: "Create, edit, save and publish Pages or Slides."
+  default_prompt: "Use $onimi-pages to create or continue my Page or Slides and verify the result before saving or publishing as requested."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "onimi-pages"
+      description: "Onimi cloud drafts, governed resources and publication with browser OAuth."
+      transport: "streamable_http"
+      url: "https://onimi.ai/mcp"

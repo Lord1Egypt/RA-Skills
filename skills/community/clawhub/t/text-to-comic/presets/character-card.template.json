@@ -1,0 +1,23 @@
+{
+  "_readme": "自定义角色卡模板。复制本文件到 characters/cards/<slug>.json 后填写；compile_prompt.py / validate_panel_plan.py 会自动加载 characters/cards/ 下的所有卡片，按 character_id 或 name 匹配分镜里的角色。填写要点：hair / eyewear / build / face 至少填一项（决定能锁定哪些锚点）；must_keep 用英文短语写；hard_anchors 留空则从 appearance 自动推导。也可用 scripts/character_card.py init 生成。",
+  "version": "1.0.0",
+  "source_doc": "characters/custom-<slug>.md",
+  "reference_image": "",
+  "notes": "把「这个角色绝不能变的部分」写进 appearance 的 hair / eyewear / build / face，其余字段（outfit / accent_color）按场景可换。",
+  "character": {
+    "character_id": "char_your_id",
+    "name": "角色名",
+    "appearance": {
+      "age_presentation": "",
+      "hair": "",
+      "face": "",
+      "eyewear": "",
+      "outfit": "",
+      "accent_color": "",
+      "build": "",
+      "vibe": ""
+    },
+    "must_keep": []
+  },
+  "hard_anchors": []
+}

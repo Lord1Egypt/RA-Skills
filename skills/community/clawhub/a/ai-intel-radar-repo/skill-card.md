@@ -1,51 +1,63 @@
-## Description: <br>
-Build a high-signal AI intelligence brief from fresh web sources, with separate daily and weekly formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds high-signal AI intelligence briefs from fresh web sources, with separate daily and weekly formats for AI news, trend monitoring, market and technical updates, and actionable scouting reports.
 
-## Publisher: <br>
-[YIKAILucas](https://clawhub.ai/user/YIKAILucas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yikailucas](https://clawhub.ai/user/yikailucas)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to generate concise daily or weekly AI intelligence briefs in Chinese for trend monitoring, technical scouting, market updates, and business decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI news summaries can contain outdated, uncertain, or misleading claims from public sources. <br>
-Mitigation: Verify important business or technical claims against the cited links, especially items marked as "待验证" or based on secondary commentary. <br>
-Risk: Low source freshness can make a daily or weekly brief overstate the amount of meaningful change. <br>
-Mitigation: Prefer primary and official sources, include timestamps when available, and use the short "低变化日" fallback when reliable updates are limited. <br>
+## Use Case:
 
+Business users, product leaders, analysts, and developers use this skill to receive concise Chinese-first daily or weekly AI intelligence briefs. It is intended for monitoring fresh AI news, technical movement, market signals, risks, opportunities, and near-term actions.
 
-## Reference(s): <br>
-- [AI Intel Radar Sources](references/sources.md) <br>
-- [ClawHub skill page](https://clawhub.ai/YIKAILucas/ai-intel-radar-repo) <br>
-- [OpenAI News](https://openai.com/news) <br>
-- [Anthropic News](https://www.anthropic.com/news) <br>
-- [Google DeepMind Blog](https://deepmind.google/discover/blog/) <br>
-- [Meta AI Blog](https://ai.meta.com/blog/) <br>
-- [Microsoft AI Blog](https://blogs.microsoft.com/ai/) <br>
-- [arXiv cs.AI recent](https://arxiv.org/list/cs.AI/recent) <br>
-- [arXiv cs.CL recent](https://arxiv.org/list/cs.CL/recent) <br>
-- [arXiv cs.LG recent](https://arxiv.org/list/cs.LG/recent) <br>
-- [Papers with Code](https://paperswithcode.com/) <br>
-- [Hugging Face Blog](https://huggingface.co/blog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown brief with source links and Chinese daily or weekly sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source links per item when available, marks uncertain claims as "待验证", and returns a short "低变化日" summary when reliable updates are limited.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+Risk: Briefings rely on fresh public web sources, so results may include stale, duplicated, or uncertain claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer official and primary sources, include source links and timestamps where available, flag uncertain claims as "待验证", and return a low-change-day summary when reliable updates are limited.
+
+Risk: Business judgments and action recommendations could be mistaken for definitive market guidance.
+
+Mitigation: Treat outputs as scouting briefs, verify important claims against cited sources, and review recommendations before operational decisions.
+
+## Reference(s):
+
+- [AI Intel Radar Sources](references/sources.md)
+- [OpenAI News](https://openai.com/news)
+- [Anthropic News](https://www.anthropic.com/news)
+- [Google DeepMind Blog](https://deepmind.google/discover/blog/)
+- [Meta AI Blog](https://ai.meta.com/blog/)
+- [Microsoft AI Blog](https://blogs.microsoft.com/ai/)
+- [arXiv Artificial Intelligence](https://arxiv.org/list/cs.AI/recent)
+- [arXiv Computation and Language](https://arxiv.org/list/cs.CL/recent)
+- [arXiv Machine Learning](https://arxiv.org/list/cs.LG/recent)
+- [Papers with Code](https://paperswithcode.com/)
+- [Hugging Face Blog](https://huggingface.co/blog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown brief with cited source links and concise Chinese prose by default]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily mode produces fast news, technical depth, business judgment, and actions; weekly mode produces trends, opportunities, risks, and top actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

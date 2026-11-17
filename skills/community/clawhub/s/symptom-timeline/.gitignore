@@ -1,0 +1,4 @@
+symptom_db.json
+*.json
+__pycache__/
+*.pyc

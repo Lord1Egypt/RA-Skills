@@ -1,40 +1,59 @@
-## Description: <br>
-Uses a local helper script and GMNCODE API key as a fallback for image understanding when the built-in OpenClaw image tool is unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses a local GMNCODE image-analysis script as a fallback when the built-in image tool is unavailable and GMNCODE_API_KEY is configured.
 
-## Publisher: <br>
-[io2077](https://clawhub.ai/user/io2077) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[io2077](https://clawhub.ai/user/io2077)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route image-description, character-identification, style-analysis, and screenshot-understanding tasks through a local GMNCODE helper when the standard image tool is not working. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an unreviewed local helper script that can send images and prompts to GMNCODE. <br>
-Mitigation: Review the helper script before installation and use the skill only with images approved for GMNCODE processing. <br>
-Risk: The skill requires GMNCODE_API_KEY, which could expose broader account access if mishandled. <br>
-Mitigation: Use a limited-scope API key and manage it through the local environment rather than embedding it in skill files or prompts. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect local images, screenshots, and character or style references when built-in media understanding is unavailable in an environment with GMNCODE_API_KEY configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/io2077/local-gmncode-vision) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Image prompts are sent through a local helper that uses GMNCODE_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill tells the agent to run an unbundled local script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect and trust the local script before use, and run it only in controlled workspaces.
+
+Risk: Images and prompts may be sent to GMNCODE, and GMNCODE_API_KEY is exposed to the script process.
+
+Mitigation: Avoid sensitive images or prompts unless external processing is approved, and protect or scope GMNCODE_API_KEY appropriately.
+
+Risk: Image identity or source guesses can be uncertain.
+
+Mitigation: Present uncertain results as estimates and do not describe visual style similarity as confirmed source attribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/io2077/skills/local-gmncode-vision)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text, often including a shell command invocation and image-analysis results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The output should state uncertainty when identification is unclear and avoid treating style similarity as confirmed provenance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

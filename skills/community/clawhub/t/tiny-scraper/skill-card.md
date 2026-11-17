@@ -1,41 +1,54 @@
-## Description: <br>
-TinyScraper helps an agent mirror a simple static website by downloading same-domain HTML, JavaScript, CSS, and static assets for offline browsing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TinyScraper mirrors simple static websites by downloading same-domain HTML, JavaScript, CSS, and static assets for offline browsing.
 
-## Publisher: <br>
-[alukardo](https://clawhub.ai/user/alukardo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alukardo](https://clawhub.ai/user/alukardo)
 
-## Use Case: <br>
-Developers and agents use TinyScraper when asked to download, mirror, or offline-save a simple static website. It is best suited to same-domain static pages and assets, with dry-run support for previewing crawl scope before downloading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The cleanup command can recursively delete paths built from unvalidated user input. <br>
-Mitigation: Use TinyScraper only in a sandbox or disposable workspace and avoid cleanup with manually supplied or untrusted domain values until the publisher validates deletion stays inside the mirror directory. <br>
-Risk: Mirroring a site can download content beyond the intended scope or from sites the user is not authorized to crawl. <br>
-Mitigation: Run dry-run first, set crawl limits where possible, and crawl only sites the user is allowed to mirror. <br>
+## Use Case:
 
+Developers and agents use TinyScraper to preview and mirror authorized simple static websites into local files for offline browsing or archival review.
 
-## Reference(s): <br>
-- [TinyScraper Format Specification](references/SPEC.md) <br>
-- [ClawHub TinyScraper Release Page](https://clawhub.ai/alukardo/tiny-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local mirrored website files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces crawl progress logs and writes mirrored content under tmp/mirrors/{domain}.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The crawler can make arbitrary HTTP requests from the agent environment and create many local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for trusted, authorized sites, preview crawl scope with dry-run where possible, and run it in a contained workspace.
+
+Risk: Unsafe path handling can write or delete outside the intended mirror folder.
+
+Mitigation: Review the skill before installation and avoid the cleanup command until path validation and containment checks are added.
+
+## Reference(s):
+
+- [TinyScraper Format Specification](references/SPEC.md)
+- [ClawHub Skill Page](https://clawhub.ai/alukardo/skills/tiny-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, progress text, and local mirrored website files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local mirror directories under the configured workspace and preserves external links instead of downloading them.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

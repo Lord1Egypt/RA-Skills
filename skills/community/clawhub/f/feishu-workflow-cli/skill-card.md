@@ -1,41 +1,57 @@
-## Description: <br>
-Orchestrate complex Feishu/Lark workflows using the official lark CLI for reporting, project management, meeting automation, document collaboration, and cross-domain operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates Feishu/Lark workflows with the official lark CLI by chaining commands for reporting, project tracking, meeting automation, approvals, document collaboration, and data pipelines.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Employees, developers, and operations teams use this skill to plan and execute Feishu/Lark workflows that combine chat, docs, Base, Sheets, calendar, mail, tasks, meetings, wiki, drive, and approvals. It helps an agent choose workflow templates, compose command chains, and apply safety checks before performing authenticated business actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated workflows can send messages or email, share links, update records, create approvals, and join or monitor meetings. <br>
-Mitigation: Require explicit user confirmation before send, share, meeting, approval, record-update, or external-email actions, and verify recipients and link permissions before execution. <br>
-Risk: Automating reports or meeting workflows may expose confidential business content. <br>
-Mitigation: Avoid confidential meetings or reports unless the organization has approved the automation controls and the agent is operating under appropriate access permissions. <br>
+## Use Case:
 
+Developers and operations teams use this skill to plan and run authenticated Feishu/Lark CLI workflows that collect data, create collaboration artifacts, notify stakeholders, and coordinate follow-up actions.
 
-## Reference(s): <br>
-- [Feishu Workflow CLI on ClawHub](https://clawhub.ai/lm203688/feishu-workflow-cli) <br>
-- [Lark CLI Changelog](https://github.com/larksuite/cli/blob/main/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include workflow steps, command examples, prerequisite checks, and confirmation prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Authenticated Feishu/Lark automation can send messages and email, create or modify documents and tasks, schedule calendar events, join meetings, and initiate approval workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recipients, meeting authorization, approval actions, generated document links, and cross-platform sends before execution; require explicit confirmation for destructive actions.
+
+Risk: Broad account permissions can expose or alter business data across Feishu/Lark domains.
+
+Mitigation: Use a minimally privileged account, pin and review the lark CLI version, and run workflows in an isolated environment.
+
+Risk: Cross-domain workflows may distribute private or incorrect data if source records, transformations, or destinations are wrong.
+
+Mitigation: Validate source data, transformed outputs, destination audiences, and access permissions before sending messages, email, documents, or reports.
+
+## Reference(s):
+
+- [Lark CLI changelog](https://github.com/larksuite/cli/blob/main/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Feishu/Lark workflow plans, CLI command sequences, validation steps, and safety checkpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

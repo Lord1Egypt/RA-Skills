@@ -1,40 +1,52 @@
-## Description: <br>
-Generate, validate, and tighten Content Security Policy (CSP) headers for web applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, validate, and tighten Content Security Policy (CSP) headers for web applications by analyzing pages, discovering resource origins, building least-privilege policies, testing violations, and planning report-only to enforcement migration.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and security engineers use this skill to generate, validate, and harden Content Security Policy headers for web applications before moving from report-only monitoring to enforcement.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may lead an agent to make web requests to user-specified sites during CSP analysis.
+
+Mitigation: Use it only on domains you own or are authorized to test, and avoid localhost, private network addresses, admin panels, and sensitive internal services.
+
+Risk: Generated CSP policies may miss dynamically loaded resources or allow overly broad sources if analysis inputs are incomplete.
+
+Mitigation: Deploy report-only first, monitor CSP reports, fix observed violations, and review any unsafe-inline, unsafe-eval, wildcard, or data: allowances before enforcement.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and security engineers use this skill to inspect authorized web applications, draft least-privilege CSP headers, validate existing policies, and plan report-only to enforcement migrations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes commands that fetch web pages and JavaScript assets for CSP analysis. <br>
-Mitigation: Use the commands only on sites you own or are authorized to test, and review each host before running network requests. <br>
-Risk: A generated CSP can block required resources or leave risky allowances if deployed without validation. <br>
-Mitigation: Deploy generated policies in report-only mode first, monitor violations, fix findings, and move to enforcement only after review. <br>
+**Output Format:** [Markdown with CSP headers, shell commands, JavaScript middleware examples, and security recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/csp-policy-generator) <br>
+**Other Properties Related to Output:** [May include report-only and enforcement CSP variants, migration steps, warnings, and nonce or hash implementation examples.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with CSP header examples, command snippets, and code/configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include report-only and enforcement policies, nonce or hash examples, migration steps, and warnings for weak CSP directives.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

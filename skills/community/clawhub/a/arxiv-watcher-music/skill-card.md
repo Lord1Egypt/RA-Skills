@@ -1,40 +1,57 @@
-## Description: <br>
-Searches and summarizes ArXiv papers for recent research, specific topics, and daily AI paper summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and summarizes arXiv papers for music-generation research, including recent research, topic-specific queries, and daily AI paper summaries.
 
-## Publisher: <br>
-[nomorecoding](https://clawhub.ai/user/nomorecoding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nomorecoding](https://clawhub.ai/user/nomorecoding)
 
-## Use Case: <br>
-Developers and researchers use this skill to run structured ArXiv searches for music generation research, deduplicate paper results, and preserve an audit trail of queries and findings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow creates local audit files and paper lists under domain-derived output paths. <br>
-Mitigation: Review the intended domain and output directory before running the workflow, and avoid path values containing traversal such as ../. <br>
-Risk: The bundled search script builds an ArXiv API request from user-provided query text. <br>
-Mitigation: Treat the script as a targeted ArXiv helper, review query input before execution, and avoid using it as a hardened general-purpose URL builder. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nomorecoding/arxiv-watcher-music) <br>
-- [ArXiv API query endpoint](https://export.arxiv.org/api/query) <br>
+## Use Case:
 
+Developers, researchers, and research assistants use this skill to search arXiv for music-generation papers, deduplicate results, capture paper metadata, and maintain an audit trail of search activity.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON paper-list output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local research audit files under research/{domain}/search_results when the workflow is executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search logs and paper lists are saved locally and may retain sensitive query terms or research interests.
+
+Mitigation: Use the skill in a project workspace and avoid sensitive or proprietary query terms when local persistence is a concern.
+
+Risk: The curl helper accepts query and count inputs directly.
+
+Mitigation: Prefer bounded, simple search counts and review the generated API command or script before execution until input handling is hardened.
+
+Risk: Weak relevance keywords and broad arXiv queries can return papers that need human review before inclusion in a research summary.
+
+Mitigation: Review matched keywords, deduplicated paper metadata, and the search log before relying on the resulting paper list.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nomorecoding/skills/arxiv-watcher-music)
+- [arXiv API Query Endpoint](https://export.arxiv.org/api/query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands]
+
+**Output Format:** [Markdown search logs and JSON paper lists, with optional shell/API command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local files under research/{domain}/search_results when used as documented.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

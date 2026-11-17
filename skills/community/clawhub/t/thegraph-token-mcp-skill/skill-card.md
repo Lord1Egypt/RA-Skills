@@ -1,44 +1,60 @@
-## Description: <br>
-Use The Graph Token API MCP through UXC for token metadata, wallet balances, transfers, holders, pools, and market data with help-first inspection and Token API specific JWT bearer auth binding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use The Graph Token API MCP through UXC for token metadata, wallet balances, transfers, holders, pools, and market data with help-first inspection and Token API specific JWT bearer auth binding.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect and query The Graph Token API MCP for token metadata, wallet balances, transfers, holders, pools, and market data. It guides setup of a dedicated Token API JWT credential and encourages narrow, help-first API calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A compromised or untrusted local UXC tool could affect command execution or credential handling. <br>
-Mitigation: Verify that the local `uxc` installation is trusted before using the skill. <br>
-Risk: Reusing another The Graph credential or storing the wrong token type can cause authentication failures or unintended credential exposure. <br>
-Mitigation: Use a dedicated The Graph Token API JWT from the The Graph Market dashboard and keep it separate from other The Graph credentials. <br>
-Risk: Wallet addresses, token contracts, and queried assets are sent to The Graph's API. <br>
-Mitigation: Query only addresses and assets that the user is comfortable sharing with the API provider, and start with narrow requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
-- [The Graph Token API MCP endpoint](https://token-api.mcp.thegraph.com/) <br>
-- [The Graph Market dashboard](https://thegraph.market/dashboard) <br>
-- [ClawHub skill page](https://clawhub.ai/jolestar/thegraph-token-mcp-skill) <br>
+## Use Case:
 
+Developers and agents use this skill to configure UXC access to The Graph Token API MCP and query token metadata, wallet balances, transfers, holders, pools, and market data with operation-level help before execution.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented API guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses help-first MCP inspection and expects JSON response envelopes from UXC.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A The Graph Token API JWT could be confused with another The Graph credential or reused in the wrong binding.
+
+Mitigation: Store the Token API JWT separately, bind it only to token-api.mcp.thegraph.com, and verify the active UXC credential binding before use.
+
+Risk: Token and wallet queries are sent to The Graph's MCP endpoint.
+
+Mitigation: Review the intended query data before execution, start with narrow token or wallet requests, and remove or rotate the UXC binding when access is no longer needed.
+
+Risk: Endpoint operation names or argument shapes may change over time.
+
+Mitigation: Inspect host and operation help before execution and parse stable JSON envelope fields such as ok, kind, protocol, data, and error.
+
+## Reference(s):
+
+- [Usage Patterns](references/usage-patterns.md)
+- [The Graph Token API MCP endpoint](https://token-api.mcp.thegraph.com/)
+- [The Graph Market dashboard](https://thegraph.market/dashboard)
+- [ClawHub skill page](https://clawhub.ai/jolestar/skills/thegraph-token-mcp-skill)
+- [jolestar publisher profile](https://clawhub.ai/user/jolestar)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and MCP operation names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance favors JSON envelope parsing and narrow read queries before broader scans.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

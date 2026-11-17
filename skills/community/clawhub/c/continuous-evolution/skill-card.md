@@ -1,41 +1,53 @@
-## Description: <br>
-Automatically records task experience, analyzes skill gaps, updates capability scores, and generates priority evolution tasks after agent task execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically records task outcomes, analyzes capability gaps, updates capability scoring, and queues improvement tasks for an OpenClaw agent workflow.
 
-## Publisher: <br>
-[zenmejiang-commits](https://clawhub.ai/user/zenmejiang-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zenmejiang-commits](https://clawhub.ai/user/zenmejiang-commits)
 
-## Use Case: <br>
-Developers and agent operators use this skill to persist post-task experience, track capability assessments, and queue follow-up improvement work when audit scores indicate gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists task details and results, which can expose sensitive prompts, credentials, proprietary data, or private user content if used without controls. <br>
-Mitigation: Use it only with appropriate redaction and retention controls, and avoid running it on sensitive task content unless those controls are in place. <br>
-Risk: The skill automatically creates P1 follow-up evolution tasks from low audit scores. <br>
-Mitigation: Manually review generated evolution tasks before execution so proposed changes do not introduce incorrect guidance or unsafe behavior. <br>
+## Use Case:
 
+Agent operators and developers use this skill to log task experience, track audit-score-based capability progress, and create improvement follow-up tasks after agent runs.
 
-## Reference(s): <br>
-- [Continuous Evolution ClawHub listing](https://clawhub.ai/zenmejiang-commits/continuous-evolution) <br>
-- [Publisher profile](https://clawhub.ai/user/zenmejiang-commits) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown logs, JSON task and assessment files, and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes experience logs, gap lists, capability assessments, and P1 evolution task queue entries under the agent workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.yaml, CHANGELOG, server release metadata) <br>
+Risk: Task descriptions, execution results, and audit scores may be written into shared OpenClaw memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompts, secrets, proprietary code, and personal data unless redaction and retention controls are added.
+
+Risk: Low audit scores can create queued follow-up tasks automatically.
+
+Mitigation: Add an approval gate before generated evolution tasks are executed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zenmejiang-commits/skills/continuous-evolution)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown experience logs, JSON capability and queue files, and shell status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes daily experience and gap files, updates a capability assessment JSON file, and may create priority evolution task JSON files from audit scores.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, skill.yaml, CHANGELOG released 2026-03-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

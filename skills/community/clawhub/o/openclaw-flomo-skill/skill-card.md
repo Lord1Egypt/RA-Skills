@@ -1,44 +1,56 @@
-## Description: <br>
-Read and write flomo memos on macOS, including recent memo retrieval, local cache search, and new memo creation through an incoming webhook or URL scheme. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and write flomo memos on macOS through the local flomo desktop login state, incoming webhook, or URL scheme.
 
-## Publisher: <br>
-[DoTheWorkNow](https://clawhub.ai/user/DoTheWorkNow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dotheworknow](https://clawhub.ai/user/dotheworknow)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent retrieve, search, tag-filter, summarize, and create Flomo memos on a macOS system where the Flomo desktop app is installed and logged in. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read private Flomo memos using the local Flomo desktop login state. <br>
-Mitigation: Install and run it only in trusted agent environments, and avoid sharing local Flomo configuration or access tokens. <br>
-Risk: The skill can create new Flomo memos through a webhook or URL scheme. <br>
-Mitigation: Review memo write and verification commands before execution, especially when an agent proposes content to write. <br>
-Risk: Changing FLOMO_API_BASE or webhook settings can send requests or memo content to a non-Flomo destination. <br>
-Mitigation: Keep API base and webhook settings pointed at trusted Flomo endpoints unless a reviewer has explicitly approved the override. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/DoTheWorkNow/openclaw-flomo-skill) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Flomo API base](https://flomoapp.com/api/v1) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent fetch, search, filter by tag, summarize, and create flomo memos on a logged-in macOS desktop.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command output may include memo content, tags, timestamps, webhook write status, and verification check results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill accesses a logged-in flomo account and private memos.
+
+Mitigation: Install only if this account access is acceptable, review commands before execution, and do not share local flomo configuration or tokens.
+
+Risk: Webhook write and verification flows can create real memos in the user's account.
+
+Mitigation: Review write and verify commands before running them, and run webhook verification only when creating a test memo is acceptable.
+
+Risk: Changing FLOMO_API_BASE can redirect authenticated API calls.
+
+Mitigation: Use the default flomo API base unless an alternate endpoint has been explicitly reviewed and trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dotheworknow/skills/openclaw-flomo-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON tool output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads may return memo content, tags, timestamps, and HTML-derived text; write and verify flows can create real flomo memos.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Browse and search Hacker News, including story lists, item details, comments, user profiles, Algolia search results, and "Who is hiring?" threads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse and search Hacker News, including top, new, best, Ask HN, Show HN, job posts, item details, comments, user profiles, Algolia search, and "Who is hiring?" threads.
 
-## Publisher: <br>
-[gchapim](https://clawhub.ai/user/gchapim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gchapim](https://clawhub.ai/user/gchapim)
 
-## Use Case: <br>
-Developers, researchers, and external users can use this skill to browse public Hacker News content, inspect comments and user profiles, search posts or comments, and find current hiring threads from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms and requested Hacker News identifiers are sent to public Hacker News and Algolia APIs. <br>
-Mitigation: Avoid entering sensitive private terms or confidential identifiers in HN searches or lookups. <br>
-Risk: The CLI depends on local tools and network access to public APIs. <br>
-Mitigation: Confirm curl, jq, and python3 are installed and review commands before execution in restricted environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hacker News API Reference](references/api.md) <br>
-- [Hacker News Firebase API](https://hacker-news.firebaseio.com/v0/) <br>
-- [Algolia Hacker News Search API](https://hn.algolia.com/api/v1/) <br>
+## Use Case:
 
+External users and developers use this skill to browse, search, and retrieve Hacker News stories, comments, user profiles, and hiring threads from public APIs without authentication.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON] <br>
-**Output Format:** [Plain text or JSON returned by CLI commands, commonly summarized by the agent in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only public API results; commands support configurable limits, filters, and raw JSON output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs a local shell script that makes unauthenticated network requests to Hacker News and Algolia.
+
+Mitigation: Review the script before deployment and allow outbound requests only to the disclosed public APIs in restricted environments.
+
+Risk: The script depends on curl, jq, and python3 and does not declare a formal permission boundary.
+
+Mitigation: Install dependencies from trusted sources and run the skill in a least-privilege shell or sandbox when stricter controls are required.
+
+## Reference(s):
+
+- [Hacker News skill page](https://clawhub.ai/gchapim/skills/hackernews)
+- [gchapim publisher profile](https://clawhub.ai/user/gchapim)
+- [Hacker News API Reference](references/api.md)
+- [Hacker News Firebase API](https://hacker-news.firebaseio.com/v0/)
+- [Algolia Hacker News Search API](https://hn.algolia.com/api/v1/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Plain text or JSON from CLI commands, often summarized in Markdown by the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports raw JSON output with --json; default output is human-readable terminal text.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

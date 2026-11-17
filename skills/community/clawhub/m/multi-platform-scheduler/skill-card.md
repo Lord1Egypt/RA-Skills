@@ -1,41 +1,54 @@
-## Description: <br>
-Professional multi-platform social media content scheduler for Twitter, LinkedIn, Instagram, TikTok, YouTube, and more with unified content calendar, smart scheduling, and cross-platform analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional multi-platform social media content scheduler for Twitter, LinkedIn, Instagram, TikTok, YouTube, and more.
 
-## Publisher: <br>
-[ahmed181283](https://clawhub.ai/user/ahmed181283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahmed181283](https://clawhub.ai/user/ahmed181283)
 
-## Use Case: <br>
-Marketing, communications, and social media teams use this skill to plan, optimize, schedule, and analyze content across multiple social platforms from a unified workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduling or publishing to the wrong social account, platform, content, or time can create business or reputational harm. <br>
-Mitigation: Confirm every target account, platform, content item, time zone, and publishing action before scheduling or posting. <br>
-Risk: Social platform credentials, OAuth tokens, and delegated account permissions can expose real social accounts if handled carelessly. <br>
-Mitigation: Use platform-approved OAuth or delegated access with minimal scopes, and do not paste secrets or tokens into chat. <br>
-Risk: Exported audience, engagement, competitor, or analytics data can contain sensitive business information. <br>
-Mitigation: Treat exported reports and analytics as sensitive business data and share them only with authorized recipients. <br>
+## Use Case:
 
+Marketing teams, social media managers, and content operators use this skill to plan, schedule, optimize, and analyze content across multiple social platforms from a unified workflow.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with structured schedules, content plans, analytics summaries, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific timing, formatting, account-connection, approval-workflow, and analytics guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and clawhub.json) <br>
+Risk: Connecting real social accounts can grant posting permissions and access to analytics, audience, and campaign export data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm required profiles and integrations before use, prefer least-privilege tokens, restrict team roles, and get organizational approval for business accounts.
+
+Risk: Scheduled or optimized content may be inappropriate, inaccurate, or outside brand and compliance requirements if published without review.
+
+Mitigation: Use approval workflows and human review before publishing campaigns or recurring content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahmed181283/skills/multi-platform-scheduler)
+- [Publisher profile](https://clawhub.ai/user/ahmed181283)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with structured schedules, campaign plans, reports, and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific content calendars, posting recommendations, analytics summaries, and workflow checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

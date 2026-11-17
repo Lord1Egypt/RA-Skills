@@ -1,40 +1,53 @@
-## Description: <br>
-Book locksmith services through Lokuli MCP. Use when user needs to find and book locksmith. Triggers on requests like "book a locksmith", "find locksmith near me", or any locksmith service request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Locksmith helps users find locksmith services, check availability, and create bookings through Lokuli's MCP server.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to search for locksmith providers, check appointment availability, and create a locksmith service booking through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create a real locksmith booking through a third-party service. <br>
-Mitigation: Require explicit user confirmation before calling create_booking, including provider, service, time, expected cost, and cancellation terms. <br>
-Risk: The booking flow can transmit personal contact details to Lokuli. <br>
-Mitigation: Confirm the exact customer name, email, and phone number with the user before sending them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Locksmith on ClawHub](https://clawhub.ai/edwardrodriguez703-design/book-locksmith) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users and agents use this skill to search for locksmith providers by location, check availability, and create a booking after collecting required customer contact details.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May search providers, check availability, and prepare booking requests that include customer contact details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Booking details, including customer name, email, and phone number, may be sent to the third-party Lokuli service.
+
+Mitigation: Tell the user that booking details will go to Lokuli, ask before collecting contact details, and collect only the information required for the booking.
+
+Risk: The skill can create a locksmith booking without explicit final-confirmation instructions in the artifact.
+
+Mitigation: Ask the user to confirm the provider, service, time slot, and contact details before calling create_booking.
+
+## Reference(s):
+
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-locksmith)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls]
+
+**Output Format:** [Markdown with JSON-RPC request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May collect location, provider, service, time slot, name, email, and phone details needed for locksmith booking.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

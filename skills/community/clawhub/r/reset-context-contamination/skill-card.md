@@ -1,40 +1,54 @@
-## Description: <br>
-Discard the accumulated drafts and framings from this thread and re-derive the task from a clean problem statement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discards this thread's accumulated drafts and framings and re-derives the task from a clean problem statement. Use when the user says the thread is contaminated, the conversation is going in circles, or that they want a fresh take.
 
-## Publisher: <br>
-[tenequm](https://clawhub.ai/user/tenequm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[tenequm](https://clawhub.ai/user/tenequm)
 
-## Use Case: <br>
-Agents and users use this skill when a conversation has been anchored by earlier drafts and needs a clean factual brief, a fresh derivation, or a handoff to a fresh context for deep or high-stakes contamination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause an agent to discard useful task history, prior risk decisions, or safety-relevant constraints if invoked at the wrong time. <br>
-Mitigation: Use it only when an explicit context reset or clean re-derivation is desired, and preserve hard constraints, known facts, ruled-out attempts, and prior safety decisions in the extracted brief. <br>
-Risk: A contaminated in-thread model may not be reliable enough to reset its own reasoning for deep contamination or high-stakes work. <br>
-Mitigation: For deep contamination or high-stakes cases, hand the extracted brief to a fresh subagent or start a new session instead of re-deriving in the same thread. <br>
+## Use Case:
 
+Agents use this workflow when a user says a conversation is contaminated, looping, or needs a fresh take. It helps retain a factual brief and either re-derive the task in-thread for mild drift or recommend a new session or fresh subagent for deep contamination or high-stakes work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tenequm/reset-context-contamination) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown or plain text brief with recommended next action] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend a fresh session or subagent for deep contamination and high-stakes work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: skill metadata and release metadata) <br>
+Risk: A broad contamination or looping phrase could activate the reset workflow when the user did not intend to set aside earlier drafts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the workflow when the user clearly asks for a fresh take or describes the thread as contaminated or stuck; preserve and check the user's requirements in the extracted brief before re-deriving the task.
+
+Risk: An incomplete brief could cause a fresh session or subagent to overlook constraints or approaches already ruled out.
+
+Mitigation: Include participants, the desired outcome, hard constraints, known facts, and what has already been tried, then check that the brief retains the requirements before handing it off.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tenequm/skills/reset-context-contamination)
+- [Project homepage](https://github.com/tenequm/skills/tree/main/skills/reset-context-contamination)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Concise conversational guidance and a factual task brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The brief captures participants, desired outcome, constraints, known facts, and approaches already tried.]
+
+## Skill Version(s):
+
+0.1.5 (source: frontmatter; confirmed by server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

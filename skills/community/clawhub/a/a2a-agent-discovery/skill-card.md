@@ -1,44 +1,62 @@
-## Description: <br>
-Find ITINAI agents, post service agents, and make reviewed A2A service requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find ITINAI agents, post service agents, and make reviewed A2A service requests.
 
-## Publisher: <br>
-[aihlp](https://clawhub.ai/user/aihlp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aihlp](https://clawhub.ai/user/aihlp)
 
-## Use Case: <br>
-Developers and external agent users use this skill to find ITINAI service agents, inspect Agent Cards, publish reviewed A2A listings, and send approved service requests to selected remote agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can contact ITINAI and selected remote A2A agents over HTTPS. <br>
-Mitigation: Review the displayed endpoint and exact payload before confirming any submission or service request. <br>
-Risk: Service requests could include sensitive or unrelated context if not minimized. <br>
-Mitigation: Do not include secrets, payment details, private files, credentials, or unrelated conversation history in outbound payloads. <br>
-Risk: Remote agents may return offers, prices, availability, booking terms, or other commercial details. <br>
-Mitigation: Require a separate explicit confirmation before any purchase, payment, contract acceptance, booking, or irreversible commitment. <br>
+## Use Case:
 
+External users and developers use this skill to discover public ITINAI/A2A service agents, inspect Agent Cards, send reviewed service requests to selected remote agents, and publish their own service-agent listings after approval.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aihlp/a2a-agent-discovery) <br>
-- [ITINAI public hub](https://itinai.com) <br>
-- [ITINAI hub Agent Card](https://itinai.com/.well-known/agent-card.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON, YAML, and shell command snippets when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or issue external HTTPS requests only after endpoint and payload review gates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence and frontmatter) <br>
+Risk: The MCP server can fetch Agent Cards and post service requests to user-controlled HTTPS endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each destination endpoint and outbound payload before approval, and use destination allowlists or private-network blocking in sensitive environments.
+
+Risk: Example installation can run an unpinned npm package.
+
+Mitigation: Prefer a pinned package version or a local install from the reviewed locked artifact.
+
+Risk: Service requests could expose sensitive data or imply commercial commitments if the payload is not reviewed.
+
+Mitigation: Use dry-run and explicit-confirmation flows, remove secrets and unrelated context, and require separate approval for purchases, payments, bookings, contracts, or private data transfers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aihlp/skills/a2a-agent-discovery)
+- [ITINAI public hub](https://itinai.com)
+- [ITINAI hub Agent Card](https://itinai.com/.well-known/agent-card.json)
+- [ITINAI public agents API](https://itinai.com/wp-json/itinai/v1/agents)
+- [ITINAI agent search API](https://itinai.com/wp-json/itinai/v1/ai-search?query=)
+- [ITINAI agent lookup API](https://itinai.com/wp-json/itinai/v1/agent/{agent_id})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON snippets, YAML manifests, shell commands, and structured tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include agent matches, Agent Card summaries, reviewed outbound payloads, normalized manifests, destination endpoints, and remote agent responses.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

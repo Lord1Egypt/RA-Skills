@@ -53,8 +53,32 @@ This flow must be idempotent. If validation or the watchdog fails, stop with `NO
 - When Daniel says "memorize this" or similar, run `references/MEMORY_COMMIT.md`.
 - When he says "let's continue" after a reset, reload `memory/now.md`, `memory/open-loops.md`, and the relevant topic files before acting.
 
+## Trigger Gate
+
+Every task loads the small always-on policy. The **full** context pipeline is
+required only when one or more of these are true:
+
+- persistent memory or a prior decision is materially relevant;
+- the work is complex, risky, production-facing, or otherwise depends on
+  historical context for correctness;
+- the user explicitly asks for debug, audit, tracing, receipts, or an evidence
+  dump.
+
+For a routine, self-contained task where persistent memory is not needed:
+
+- record retrieval mode as `not_needed`;
+- answer or act directly;
+- do not require a Retrieval Bundle, Context Pack, lint, artifact persistence,
+  or a pipeline-specific footer;
+- do not block the task because memory tooling is unavailable.
+
+If the agent is unsure whether history materially affects the result, retrieve
+the smallest relevant context. If needed history is unavailable, use fresh
+read-only evidence or ask one targeted question. Stop the affected action only
+when its correctness genuinely depends on that missing historical state.
+
 ## Runtime Modes
-Every task must follow `references/RUNTIME_CHECKLIST.md`.
+Apply `references/RUNTIME_CHECKLIST.md` when the full pipeline is triggered.
 
 Modes:
 - `normal` - compact day-to-day operation
@@ -73,9 +97,11 @@ The agent must record retrieval mode internally as one of:
 - `not_needed`
 
 If semantic memory is unavailable, not attempted, or degraded to file/keyword retrieval:
-- normal mode must say so compactly in the footer
-- debug/audit mode must include the reason
-- operational checks that depend on semantic recall must stop with `NOT EXECUTED: memory/embedding gap`
+- use file/keyword fallback when it is sufficient;
+- in normal mode, mention the limitation only when it materially affects the result;
+- in debug/audit mode, include the reason;
+- stop only an operational check whose correctness specifically depends on
+  semantic recall, with `NOT EXECUTED: memory/embedding gap`.
 
 Normal footer shape:
 
@@ -97,14 +123,21 @@ Until approved, the watchdog prints JSON only.
 
 ## Operating Procedure
 1. Load `memory/always_on.md`.
-2. Route the message deterministically using `references/router.yml`.
-3. Retrieve relevant snippets from memory; prefer semantic/hybrid memory search when persistent memory is relevant.
-4. Build a Retrieval Bundle object that matches the schema and records retrieval mode.
-5. Compress to a Context Pack using `references/compressor_prompt.txt`.
-6. Lint the Context Pack. If lint fails, fall back to raw retrieved snippets.
-7. Call the main reasoning model with always-on policy + Context Pack + user message.
-8. For `debug` and `audit`, persist artifacts described in `references/RUNTIME_ARTIFACTS.md`.
-9. Emit evidence according to the active runtime mode.
+2. Apply the Trigger Gate.
+3. For `not_needed` work, answer or act directly within the always-on
+   safety and authority rules.
+4. For triggered work, route the message deterministically using
+   `references/router.yml`.
+5. Retrieve relevant snippets; prefer semantic/hybrid memory search when
+   persistent memory is relevant.
+6. Build a Retrieval Bundle that records retrieval mode.
+7. Compress to a Context Pack and lint it. If lint fails, fall back to raw
+   retrieved snippets.
+8. Call the main reasoning model with always-on policy + Context Pack + user
+   message.
+9. For `debug` and `audit`, persist artifacts described in
+   `references/RUNTIME_ARTIFACTS.md`.
+10. Emit evidence according to the active runtime mode.
 
 ## What To Read / Use
 - Router + caps: `references/router.yml`

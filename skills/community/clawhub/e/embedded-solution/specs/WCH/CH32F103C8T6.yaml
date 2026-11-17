@@ -1,0 +1,52 @@
+part: CH32F103C8T6
+link_status: product-page-removed_2026-06-30 (no-datasheet, no-product-page)
+expected_family: WCH CH32F103 — STM32F103-compatible ARM Cortex-M3 MCU
+main_page: https://www.wch-ic.com/products/CH32F103.html
+datasheet_path_expected: ../../embedded_dev/wch/datasheet/CH32F103_datasheet.pdf
+datasheet_source_note: 'CH32F103 product page returned 404 on 2026-06-30
+  (wch-ic.com has removed the page). Datasheet PDF is also not in catalog
+  (only CH32V003/CH32V103/CH32V307 PDFs are present in embedded_dev/wch/
+  datasheet/). No public mirror confirmed yet. Specs below are from WCH
+  general documentation and the CH32F103 product registration in the
+  catalog state table.'
+specs:
+  cores:
+  - Arm Cortex-M3 @ up to 72 MHz
+  compatibility:
+  - Pin-to-pin compatible with STM32F103C8T6 (LQFP48)
+  peripherals:
+    usb: USB 2.0 FS device
+    can: 1x CAN 2.0B (on some variants)
+    uart: 3x USART
+    i2c: 2x I2C
+    spi: 2x SPI
+    adc: 10-channel 12-bit ADC
+    timers: 4 sets
+    io_pins: 37 (LQFP48)
+  memory:
+    flash: 64 KB
+    sram: 20 KB
+  package: LQFP48
+unverified:
+- exact_clock_frequency_per_variant
+- exact_active_mode_current_per_mhz
+- exact_package_pin_count
+- operating_temperature_c
+- usb_fs_or_hs
+- exact_memory_size_per_variant
+notes:
+- 'Placeholder yaml created on 2026-06-30 — wch-ic.com has removed both
+  the product page (404) and the datasheet is not in our catalog. Specs
+  above are from the product registration in the catalog state table
+  and WCH general documentation, not from datasheet extraction.'
+- 'Use case: STM32F103 drop-in replacement (pin-to-pin compatible) at
+  lower cost. WCH positioning vs STM32F103: 5-10× cheaper at qty 1000.'
+- 'Open gap: needs manual datasheet download from wch-ic.com once the
+  product page is restored, or from alibaba/LCSC distributors that
+  bundle datasheet with their product listings.'
+- 'Family differentiator vs CH32V003: F103 is ARM Cortex-M3, V003 is
+  RISC-V. Pin-compatible layout but different ISA + toolchain.'
+extracted_at: '2026-06-30T00:55:00+08:00'
+extracted_from_pages: []
+extraction_method: catalog-registration (no datasheet / no product page)
+extraction_source: None (placeholder, awaiting datasheet re-acquisition)

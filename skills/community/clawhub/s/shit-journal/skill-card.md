@@ -1,40 +1,53 @@
-## Description: <br>
-Randomly推荐 S.H.I.T Journal (构石期刊) 的恶搞学术论文。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Randomly recommends satirical S.H.I.T Journal (构石期刊) papers in response to Chinese or English prompts for humorous academic paper suggestions.
 
-## Publisher: <br>
-[FasenChen](https://clawhub.ai/user/FasenChen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fasenchen](https://clawhub.ai/user/fasenchen)
 
-## Use Case: <br>
-External users can ask an agent to recommend a random parody academic paper from S.H.I.T Journal and receive a formatted summary with available paper details and DOI information. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to visit shitjournal.org for parody academic content. <br>
-Mitigation: Install and use it only when browsing that site for parody academic recommendations is acceptable. <br>
-Risk: Broad trigger phrases such as "random paper" may invoke the skill unexpectedly. <br>
-Mitigation: Use explicit requests that name S.H.I.T Journal or this skill when asking for recommendations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [S.H.I.T Journal preprints](https://shitjournal.org/preprints) <br>
-- [ClawHub skill page](https://clawhub.ai/FasenChen/shit-journal) <br>
+## Use Case:
 
+External users ask an agent for a random humorous or satirical academic paper recommendation from S.H.I.T Journal. The skill guides the agent to browse the disclosed site, choose an available paper, and present the recommendation with title, author details, summary, DOI, and section.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown recommendation with paper title, author details, date, category, abstract, DOI, and source zone when available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may ask the agent to browse an external parody academic website and randomly select among available paper listings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad prompts such as requests for a random paper may invoke the skill and browse a site that may show 18+ content or consent gating.
+
+Mitigation: Use the skill only where satirical S.H.I.T Journal browsing is intended, and have the agent respect site consent gates and user suitability before presenting content.
+
+Risk: Some papers may require login or may be unavailable in the selected section.
+
+Mitigation: If a selected paper or section cannot be accessed, switch to another available section or clearly state that full details could not be retrieved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fasenchen/skills/shit-journal)
+- [S.H.I.T Journal preprints](https://shitjournal.org/preprints)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown recommendation with paper metadata, summary, DOI, and selected section]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The recommendation depends on currently accessible content from the disclosed S.H.I.T Journal website.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

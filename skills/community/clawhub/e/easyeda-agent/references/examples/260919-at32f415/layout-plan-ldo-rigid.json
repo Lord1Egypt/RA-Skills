@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "units": "mil",
+  "coordinateSemantic": "footprint-anchor",
+  "minGapMil": 6,
+  "apply": {
+    "project": "ceshi",
+    "doc": "2e719e9419653c72"
+  },
+  "modules": [
+    {
+      "id": "ldo-rigid-transform",
+      "strategy": "rigid",
+      "copperPolicy": "require-board-empty",
+      "anchorRef": "U2",
+      "members": [
+        {"ref": "U2", "allowedRotationsDeg": [0, 90, 180, 270], "side": "top"},
+        {"ref": "C3", "allowedRotationsDeg": [0, 90, 180, 270], "side": "top"},
+        {"ref": "C4", "allowedRotationsDeg": [0, 90, 180, 270], "side": "top"},
+        {"ref": "C5", "allowedRotationsDeg": [0, 90, 180, 270], "side": "top"},
+        {"ref": "C6", "allowedRotationsDeg": [0, 90, 180, 270], "side": "top"}
+      ],
+      "search": {
+        "offsetsMil": [
+          {"xMil": 300, "yMil": 0, "label": "translate-right"},
+          {"xMil": 0, "yMil": 300, "label": "translate-up"}
+        ],
+        "rotationDeltasDeg": [0, 90, 180, 270]
+      },
+      "pinAssignments": [
+        {"memberRef": "C3", "memberPad": "1", "ownerRef": "U2", "ownerPad": "3", "source": "原理图.pdf 第1页：输入10uF→VIN"},
+        {"memberRef": "C4", "memberPad": "1", "ownerRef": "U2", "ownerPad": "3", "source": "原理图.pdf 第1页：输入100nF→VIN"},
+        {"memberRef": "C5", "memberPad": "1", "ownerRef": "U2", "ownerPads": ["2", "4"], "source": "原理图.pdf 第1页：输出10uF→VOUT/TAB等电位焊盘组"},
+        {"memberRef": "C6", "memberPad": "1", "ownerRef": "U2", "ownerPads": ["2", "4"], "source": "原理图.pdf 第1页：输出100nF→VOUT/TAB等电位焊盘组"}
+      ]
+    }
+  ]
+}

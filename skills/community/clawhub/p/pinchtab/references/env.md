@@ -13,12 +13,14 @@ For agent workflows, most runtime behavior should be configured through `config.
 
 ## Targeting remote servers
 
-Use the `--server` CLI flag instead of environment variables:
+Use the `--server` CLI flag instead of environment variables, and pair it with that host's credential — without one, the CLI falls back to `PINCHTAB_TOKEN` or the local config's `server.token`, which the remote host rejects as `bad_token`:
 
 ```bash
-pinchtab --server http://192.168.1.50:9867 snap
-pinchtab --server https://pinchtab.com snap
+PINCHTAB_TOKEN=<that-host-token> pinchtab --server http://192.168.1.50:9867 snap
+PINCHTAB_TOKEN=<that-host-token> pinchtab --server https://pinchtab.com snap
 ```
+
+There is deliberately no `--token` flag: a credential in argv is visible to every user on the host via the process list and lands in shell history, so the env-var form is the supported pairing.
 
 ## What is intentionally not listed
 

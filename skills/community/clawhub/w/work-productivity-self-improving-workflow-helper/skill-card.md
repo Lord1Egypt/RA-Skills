@@ -1,41 +1,51 @@
-## Description: <br>
-Helps agent users and skill authors turn self-improving or proactive-agent productivity requests into concrete workflows, artifacts, checklists, analyses, code changes, and verification notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps AI agent users and skill teams turn self-improving and proactive workflow needs into practical plans, artifacts, and reliability improvements.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-AI-agent users, skill authors, maintainers, and teams use this skill to structure productivity requests around self-improving or proactive-agent workflows. It helps clarify outcomes, produce actionable plans or artifacts, and validate the result against stated success criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad implicit triggers may activate the skill for loosely related productivity requests. <br>
-Mitigation: Prefer explicit invocation or tighter routing settings when available, and review the generated plan or artifact before applying it. <br>
+## Use Case:
 
+AI agent users, skill authors, maintainers, and teams use this skill to adapt self-improving and proactive patterns into practical workflows, plans, checklists, analyses, and implementation support, then review the result against the stated goal.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/work-productivity-self-improving-workflow-helper) <br>
-- [Requirement plan](artifact/references/requirement-plan.md) <br>
-- [Self-improving agent demand signal](https://clawhub.ai/skills/self-improving-agent) <br>
-- [Proactive agent demand signal](https://clawhub.ai/skills/proactive-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Natural-language responses, Markdown checklists or plans, and code or command snippets when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, limits, validation notes, and follow-up risks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release evidence) <br>
+Risk: Broad activation wording may invoke the skill for requests outside its intended workflow context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check that the request concerns work productivity, self-improving workflows, or related practical support before applying the skill; narrow trigger wording if configuring invocation behavior.
+
+## Reference(s):
+
+- [Requirement plan](artifact/references/requirement-plan.md)
+- [Self-Improving Agent](https://clawhub.ai/skills/self-improving-agent)
+- [Proactive Agent](https://clawhub.ai/skills/proactive-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Checklists, Analysis, Code]
+
+**Output Format:** [Tailored prose and Markdown artifacts, with checklists, plans, analyses, or code as appropriate.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapted to the user's stated outcome; may include a verification note and remaining risks or follow-up work.]
+
+## Skill Version(s):
+
+0.20261114.40627 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

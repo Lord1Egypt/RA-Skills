@@ -1,43 +1,65 @@
-## Description: <br>
-Access Patrick's expertise library for executive decision infrastructure. List, fetch, and manage structured expertise with context variables. Use for executive briefings, decision framing, and strategic analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Patrick's expertise library for executive decision infrastructure, including executive briefings, decision framing, commitment tracking, team health analysis, and strategic planning.
 
-## Publisher: <br>
-[MCSH](https://clawhub.ai/user/MCSH) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mcsh](https://clawhub.ai/user/mcsh)
 
-## Use Case: <br>
-Executives, operators, and supporting agents use this skill to fetch licensed Patrick expertise templates for briefings, decision framing, strategic analysis, and continuity workflows with optional context variables. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad company context and operational data access. <br>
-Mitigation: Use only explicitly approved, task-specific company data and avoid blanket access to Slack, JIRA, calendars, Git history, or operational files. <br>
-Risk: License handling may expose credentials if pasted into chat. <br>
-Mitigation: Configure the Patrick license through a local secure path where possible and avoid sharing license tokens in conversation. <br>
-Risk: The install flow downloads and runs a third-party CLI and may configure scheduled jobs. <br>
-Mitigation: Review the install script, verify the downloaded CLI and checksum, and enable cronjobs only after confirming exactly what they run and what data they can access. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Patrick homepage](https://patrickbot.io) <br>
-- [Patrick skill on ClawHub](https://clawhub.ai/MCSH/patrick) <br>
-- [Patrick portal](https://portal.patrickbot.io) <br>
+## Use Case:
 
+Developers and AI-agent operators use this skill to fetch licensed Patrick executive expertise templates, provide company context, run the templates through an LLM, and optionally store structured results for continuity.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and CLI-oriented text with optional structured JSON from fetched expertise] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires patrick-cli, a Patrick license, and approved context data for the selected expertise.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requests broad access to company data before running Patrick expertise.
+
+Mitigation: Approve each company data source explicitly and limit the agent to the minimum files needed for the selected expertise workflow.
+
+Risk: License-token handling in the artifact asks users to paste a license into chat.
+
+Mitigation: Use a local secret mechanism or direct CLI configuration, and do not paste license tokens into chat transcripts.
+
+Risk: The install flow downloads mutable latest executables, including curl-to-bash guidance.
+
+Mitigation: Avoid curl-to-bash/latest installs for production; require pinned, signed artifacts and verify checksums before execution.
+
+Risk: Patrick workflows may send or store executive and company context through a third-party service.
+
+Mitigation: Use the skill only after confirming trust in the Patrick publisher and service for the relevant company data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mcsh/skills/patrick)
+- [Publisher profile](https://clawhub.ai/user/mcsh)
+- [Patrick website](https://patrickbot.io)
+- [Patrick portal downloads](https://portal.patrickbot.io/downloads/latest/)
+- [artifact/SKILL.md](artifact/SKILL.md)
+- [artifact/install.md](artifact/install.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON examples; Patrick CLI responses may be structured JSON, markdown, or mixed content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the patrick-cli binary and a Patrick license; some workflows read local company context and may send or store results through the Patrick service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Use when a user asks an agent to do web research, source discovery, citation-backed reporting, page extraction, crawling, or browser-rendered research using the BuiltByEcho Research npm package. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user asks an agent to do web research, source discovery, citation-backed reporting, page extraction, crawling, or browser-rendered research using the BuiltByEcho Research npm package.
 
-## Publisher: <br>
-[builtbyecho](https://clawhub.ai/user/builtbyecho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[builtbyecho](https://clawhub.ai/user/builtbyecho)
 
-## Use Case: <br>
-Developers and research agents use this skill to run web research workflows, discover and inspect sources, crawl or render pages, extract structured fields, and produce citation-backed reports. It can also guide installation and use of the @builtbyecho/research npm package. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Networked research may collect or summarize sensitive source material. <br>
-Mitigation: Use clear target limits, review gathered material before sharing it, and avoid entering secrets or private content into research prompts. <br>
-Risk: Optional upload of reports or traces to Vaultline can expose research artifacts to a third-party service. <br>
-Mitigation: Upload only after explicit approval and after reviewing the report or trace bundle for sensitive information. <br>
-Risk: Browser rendering and crawling can interact with site controls or terms of service. <br>
-Mitigation: Do not bypass CAPTCHA, login walls, paywalls, robots or ToS restrictions, or other access controls. <br>
-Risk: Citation-backed generated prose can still contain incorrect or misleading conclusions. <br>
-Mitigation: Verify citations and source claims before using results for high-stakes or public decisions. <br>
+## Use Case:
 
+Developers and agents use this skill to run local-first web research workflows, discover and extract sources, render JavaScript-heavy pages, crawl sites, and produce citation-backed reports.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/builtbyecho/builtbyecho-research) <br>
-- [BuiltByEcho Research homepage](https://github.com/BuiltByEcho/research) <br>
-- [BuiltByEcho publisher profile](https://clawhub.ai/user/builtbyecho) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include citation-backed reports, research traces, extracted structured fields, crawl outputs, and installation or configuration steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.4 (source: server release metadata) <br>
+Risk: The skill asks agents to run npm-based research tooling with network and browser access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer pinning @builtbyecho/research to the reviewed version and run it with limited filesystem and environment access.
+
+Risk: The skill includes a durable upload workflow for reports or trace bundles.
+
+Mitigation: Require explicit review and redaction before uploading research artifacts to Vaultline or any external storage.
+
+Risk: Research output may contain incorrect or misleading citations or source summaries.
+
+Mitigation: Review generated reports and verify citations before using the output for high-stakes decisions.
+
+## Reference(s):
+
+- [BuiltByEcho Research homepage](https://github.com/BuiltByEcho/research)
+- [ClawHub skill page](https://clawhub.ai/builtbyecho/skills/builtbyecho-research)
+- [BuiltByEcho publisher profile](https://clawhub.ai/user/builtbyecho)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include traceable research reports, extracted fields, crawl output, and source citations.]
+
+## Skill Version(s):
+
+0.5.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

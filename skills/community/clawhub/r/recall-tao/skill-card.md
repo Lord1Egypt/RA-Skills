@@ -1,43 +1,63 @@
-## Description: <br>
-抖音自动回复技能，通过浏览器自动化连接抖音创作者中心，监控评论，并基于关键词、敏感词过滤、评论分类和可配置 AI 辅助生成回复。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+桃噗噗回复助手 helps agents monitor Douyin Creator Center comments, classify and filter them, and draft or post compliant replies through browser automation.
 
-## Publisher: <br>
-[hexiuqian](https://clawhub.ai/user/hexiuqian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hexiuqian](https://clawhub.ai/user/hexiuqian)
 
-## Use Case: <br>
-External creators and operators use this skill to monitor Douyin Creator Center comments, classify incoming comments, apply keyword and sensitive-word rules, and prepare or send account replies with rate limits and logging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can post replies from a logged-in Douyin account. <br>
-Mitigation: Use manual approval or draft-only operation where possible, and confirm that automated replies comply with Douyin rules and the account owner's risk tolerance. <br>
-Risk: The skill can retain session and activity data through browser state, monitor state, and logs. <br>
-Mitigation: Restrict where session files, state files, and logs are stored; review retention settings and remove sensitive data when it is no longer needed. <br>
-Risk: The skill includes stealth and human-mimicry behavior such as browser flags and randomized delays. <br>
-Mitigation: Review and disable stealth browser flags or human-mimicry behavior before deployment unless it is explicitly permitted by platform rules. <br>
+## Use Case:
 
+External Douyin account operators and their agents use this skill to monitor creator comments, apply keyword and sensitive-word rules, generate replies, and manage public reply workflows across videos and accounts.
 
-## Reference(s): <br>
-- [抖音自动回复监控助手](artifact/references/monitoring_guide.md) <br>
-- [Douyin Creator Center comment management](https://creator.douyin.com/creator-micro/interactive/comment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript snippets, shell-style commands, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces browser automation guidance and configuration for monitoring comments, filtering content, rate limiting replies, and maintaining logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill can act from an authenticated Douyin account and post public replies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manual review or draft mode and approve reply text before posting.
+
+Risk: Browser settings include sandbox-disabling and anti-detection flags while login state may be persisted.
+
+Mitigation: Remove sandbox-disabling and anti-detection flags, and protect or disable persisted login state.
+
+Risk: AI-generated reply text may be placed into executable browser JavaScript.
+
+Mitigation: Treat generated replies as data, sanitize or escape them, and avoid direct interpolation into evaluate scripts.
+
+Risk: Browser automation may navigate beyond the intended account workflow.
+
+Mitigation: Restrict navigation to Douyin Creator Center URLs required for comment and content management.
+
+## Reference(s):
+
+- [Douyin Auto Reply Monitoring Guide](artifact/references/monitoring_guide.md)
+- [Douyin Creator Center Comment Management](https://creator.douyin.com/creator-micro/interactive/comment)
+- [Douyin Creator Center Content Management](https://creator.douyin.com/creator-micro/content/manage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline browser commands, JavaScript snippets, JSON configuration, and generated reply text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May operate from an authenticated Douyin account; use review controls before public posting.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

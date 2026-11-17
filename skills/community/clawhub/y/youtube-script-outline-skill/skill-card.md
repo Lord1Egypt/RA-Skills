@@ -1,39 +1,58 @@
-## Description: <br>
-Guides structured help for YouTube Script Outline using clear templates, checks, and safe defaults (category: Content & Video). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for YouTube Script Outline using clear templates, checks, and safe defaults (category: Content & Video).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-External creators and content teams use this skill to structure YouTube script outlines, critique draft wording, and produce reusable planning checklists without requesting private data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste secrets, sensitive personal information, or copyrighted material they do not have rights to use. <br>
-Mitigation: Prompt for goals and constraints without secrets, keep PII minimal, and use only notes the user has rights to provide. <br>
-Risk: The optional PayPal donation link may be mistaken for a runtime requirement. <br>
-Mitigation: Treat the donation link as optional support information and not as part of skill execution or installation. <br>
+## Use Case:
 
+Content creators, editors, and agents use this skill to turn a YouTube video goal, audience, tone, and notes into a concise script-outline plan, reusable checklist, next actions, and optional draft copy blocks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise plans, numbered checklists, next-action lists, and optional editable draft copy blocks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release metadata) <br>
+Risk: Broad trigger wording may activate the skill for general content-planning requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user is asking for YouTube script-outline help before applying the skill's structure.
+
+Risk: The skill may process pasted notes that include private or sensitive information.
+
+Mitigation: Ask users to omit secrets and keep personally identifiable information minimal, as stated in the skill inputs.
+
+Risk: A disclosed PayPal donation link is present in the skill content.
+
+Mitigation: Treat the donation link as optional support information and unrelated to runtime behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullah944/skills/youtube-script-outline-skill)
+- [Publisher profile](https://clawhub.ai/user/abdullah944)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with a concise plan, numbered checklist, next actions, and optional draft copy blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not require external scraping; asks users to avoid secrets and keep pasted notes minimally sensitive.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, metadata, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

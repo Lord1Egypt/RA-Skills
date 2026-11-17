@@ -1,40 +1,50 @@
-## Description: <br>
-Use the mcporter CLI to list, configure, authenticate, and call MCP servers and tools directly over HTTP or stdio, including ad-hoc servers, config edits, and CLI or type generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.
 
-## Publisher: <br>
-[pratiknarola](https://clawhub.ai/user/pratiknarola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pratiknarola](https://clawhub.ai/user/pratiknarola)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate MCP servers from a terminal, inspect server schemas, invoke tools, manage OAuth and configuration, run a daemon, and generate CLIs or TypeScript interfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MCP servers, URLs, OAuth sessions, stdio commands, and generated CLIs can expose credentials or execute trusted-code surfaces. <br>
-Mitigation: Use the skill only with trusted servers and commands, review what will run or receive data, avoid passing secrets unless necessary, and remove stale config entries or stop the daemon when no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate MCP servers from an agent workflow: listing servers, inspecting schemas, authenticating, editing configuration, running daemons, calling tools, and generating CLI or TypeScript interfaces.
 
-## Reference(s): <br>
-- [MCPorter homepage](http://mcporter.dev) <br>
-- [ClawHub skill page](https://clawhub.ai/pratiknarola/mcporter-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/pratiknarola) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill recommends machine-readable JSON output where useful and covers OAuth, local config, stdio commands, daemon control, and code generation workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can guide agents to authenticate, edit mcporter configuration, run daemon commands, use stdio commands, and call authenticated or remote MCP tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the mcporter npm package is trusted, review commands before execution, and pay special attention to auth, config, daemon, stdio, and remote-server calls.
+
+## Reference(s):
+
+- [MCPorter homepage](http://mcporter.dev)
+- [ClawHub skill page](https://clawhub.ai/pratiknarola/skills/mcporter-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Code, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend JSON output for machine-readable mcporter results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

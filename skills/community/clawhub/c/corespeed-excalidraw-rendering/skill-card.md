@@ -1,42 +1,55 @@
-## Description: <br>
-Render Excalidraw (.excalidraw) files to PNG images and take screenshots of web pages using headless Chrome via the brow CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render Excalidraw (.excalidraw) files to PNG images and take screenshots of web pages using headless Chrome via the brow CLI.
 
-## Publisher: <br>
-[zypher-agent](https://clawhub.ai/user/zypher-agent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zypher-agent](https://clawhub.ai/user/zypher-agent)
 
-## Use Case: <br>
-Developers and agents use this skill to render Excalidraw diagrams as PNG files and capture website screenshots through the brow CLI. It is useful when a workflow needs a saved image artifact rather than an in-chat diagram or page preview. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup path uses an unpinned remote installer for the brow CLI and downloads a managed Chrome browser. <br>
-Mitigation: Install only after trusting the brow CLI source, review the installer in environments that require change control, and run the managed browser install in an approved local cache. <br>
-Risk: Screenshot commands can capture sensitive page content when pointed at authenticated or private URLs. <br>
-Mitigation: Use explicit, user-chosen files, URLs, and output paths, and avoid screenshotting sensitive authenticated pages unless local capture is intended. <br>
+## Use Case:
 
+Developers and other agent users use this skill to render Excalidraw diagrams into PNG files and capture web page screenshots through the brow CLI.
 
-## Reference(s): <br>
-- [Corespeed brow CLI](https://github.com/corespeed-io/brow) <br>
-- [Corespeed skills support](https://github.com/corespeed-io/skills/issues) <br>
-- [Corespeed](https://corespeed.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and saved image path guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides rendering to local PNG files and instructs the agent to report the saved path without reading generated images back.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The installer runs an unverified remote shell script with the user's privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and install brow only through a trusted, pinned, and verifiable source.
+
+Risk: The screenshot capability can access URLs supplied during use.
+
+Mitigation: Use screenshot capture only for trusted external URLs and avoid internal services or sensitive local addresses.
+
+## Reference(s):
+
+- [brow CLI](https://github.com/corespeed-io/brow)
+- [Corespeed](https://corespeed.io)
+- [Corespeed skills support](https://github.com/corespeed-io/skills/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and saved file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce PNG image files through the brow CLI; the skill instructs agents to report saved paths rather than read generated images back.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

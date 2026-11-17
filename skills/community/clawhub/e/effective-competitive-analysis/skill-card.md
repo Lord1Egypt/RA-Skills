@@ -1,46 +1,57 @@
-## Description: <br>
-Provides a structured competitive analysis framework, tools, and templates for professional competitor research based on Zhang Zaiwang's Effective Competitive Analysis methodology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a systematic competitive analysis framework based on Zhang Zaiwang's methodology, with goal clarification, competitor selection, analysis canvases, and report templates.
 
-## Publisher: <br>
-[caperszhang](https://clawhub.ai/user/caperszhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caperszhang](https://clawhub.ai/user/caperszhang)
 
-## Use Case: <br>
-Product managers, founders, strategists, and business analysts use this skill to scope competitive analysis goals, select competitors, gather market intelligence, compare product and business dimensions, and produce actionable recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competitive analysis inputs may include confidential strategy, financial, customer, or roadmap details. <br>
-Mitigation: Limit shared inputs to information appropriate for the agent environment and redact sensitive business data when possible. <br>
-Risk: Competitor research or reverse engineering can violate legal, contractual, or platform terms if performed improperly. <br>
-Mitigation: Use lawful sources and methods, and review planned research against applicable contracts, policies, and legal requirements. <br>
-Risk: Competitive recommendations can be misleading if based on incomplete or low-confidence market information. <br>
-Mitigation: Validate key claims against reliable sources and label uncertain findings before using recommendations for business decisions. <br>
+## Use Case:
 
+External product managers, founders, analysts, and strategy teams use this skill to scope competitive analysis goals, compare market and product competitors, and turn findings into structured recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/caperszhang/effective-competitive-analysis) <br>
-- [Competitive Canvas Template](templates/competitive-canvas-template.md) <br>
-- [Goal Clarification Template](templates/goal-clarification-template.md) <br>
-- [Lean Canvas Template](templates/lean-canvas-template.md) <br>
-- [Strategy Canvas Template](templates/strategy-canvas-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, canvases, matrices, and strategic recommendation summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided product, competitor, market, and goal context; no executable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Competitive analysis may involve competitor, market, user, financial, or internal planning information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential business data unless it is intended for use in the analysis workflow.
+
+Risk: Market intelligence and strategic recommendations may be incomplete or misleading if sources are unreliable.
+
+Mitigation: Verify collected information, distinguish source reliability, and review conclusions before using them for business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caperszhang/skills/effective-competitive-analysis)
+- [Competitive Canvas Template](templates/competitive-canvas-template.md)
+- [Competitive Analysis Goal Clarification Template](templates/goal-clarification-template.md)
+- [Lean Canvas Template](templates/lean-canvas-template.md)
+- [Strategy Canvas Template](templates/strategy-canvas-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports, canvases, matrices, and recommendation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, or automated data access is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

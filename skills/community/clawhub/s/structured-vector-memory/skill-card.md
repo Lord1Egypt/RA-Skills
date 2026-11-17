@@ -1,41 +1,54 @@
-## Description: <br>
-Structured Vector Memory helps OpenClaw users manage layered agent memory with LanceDB Pro, scheduled daily summaries, weekly distillation, deduplication, scoped recall, and archiving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured Vector Memory (SVM) helps an OpenClaw agent maintain layered long-term memory using LanceDB Pro retrieval, scheduled memory summaries, deduplication, scope separation, and archive workflows.
 
-## Publisher: <br>
-[kylin19860916](https://clawhub.ai/user/kylin19860916) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kylin19860916](https://clawhub.ai/user/kylin19860916)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to set up and operate a structured memory workflow that captures important decisions, writes daily summaries, distills long-term memory, and separates memories by scope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can repeatedly review conversations and change persistent agent memory without clear per-action approval. <br>
-Mitigation: Enable cron and autoCapture/autoRecall only after reviewing which sessions may be summarized, and require manual review for changes to MEMORY.md, SYSTEM_GUIDE.md, archived memories, or vector-memory deletions. <br>
-Risk: The workflow depends on memory-lancedb-pro and Jina for conversation-derived memory storage and retrieval. <br>
-Mitigation: Audit the separate plugin and Jina data handling before deployment, and avoid storing sensitive sessions unless the environment permits it. <br>
+## Use Case:
 
+Developers and power users use this skill to set up and operate an OpenClaw memory system that captures decisions, summarizes recent sessions, distills long-term memory, and separates memory by scope.
 
-## Reference(s): <br>
-- [AGENTS.md memory rules template](references/agents-rules.md) <br>
-- [ClawHub skill page](https://clawhub.ai/kylin19860916/structured-vector-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scheduled memory-maintenance instructions, HEARTBEAT task prompts, and human-readable memory summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release evidence) <br>
+Risk: Scheduled jobs repeatedly inspect conversation history and maintain long-term memory without enough user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the scripts manually before enabling cron, keep autoCapture and autoRecall disabled until needed, and define retention and deletion procedures.
+
+Risk: The weekly maintenance workflow can update persistent agent memory and control files, including SYSTEM_GUIDE.md.
+
+Mitigation: Require explicit review before allowing updates to control files and keep backups before memory distillation or archive changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kylin19860916/skills/structured-vector-memory)
+- [AGENTS.md memory rules template](references/agents-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes cron task templates that append memory-maintenance instructions to persistent workspace files.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

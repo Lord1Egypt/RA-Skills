@@ -1,41 +1,54 @@
-## Description: <br>
-Provides curl-based access to EODHD financial data APIs for company profiles, market prices, fundamentals, economic data, exchange information, and alternative datasets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides access to EODHD financial data APIs for company profiles, market prices, fundamentals, economic data, exchange information, and alternative datasets through curl-based REST API requests.
 
-## Publisher: <br>
-[mancubus77](https://clawhub.ai/user/mancubus77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mancubus77](https://clawhub.ai/user/mancubus77)
 
-## Use Case: <br>
-External users and developers use this skill to route financial-market questions to EODHD REST endpoints and compose curl requests for company profiles, prices, fundamentals, economic indicators, news, options, insider transactions, and exchange data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial research inputs and API credentials are sent to EODHD when requests are executed. <br>
-Mitigation: Use a dedicated or limited EODHD API token and keep the token out of chat transcripts, command echoes, and logs. <br>
-Risk: EODHD data freshness, rate limits, and costs depend on the account and endpoint used. <br>
-Mitigation: Check EODHD rate limits, usage, plan costs, and data freshness before relying on returned market data. <br>
+## Use Case:
 
+Developers and analysts use this skill to retrieve financial market, company, fundamentals, calendar, news, sentiment, macroeconomic, options, and exchange data from EODHD APIs. It is most useful when an agent needs concrete curl commands and endpoint-selection guidance for EODHD-backed financial data tasks.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/mancubus77/eodhd-curl) <br>
-- [EODHD API base URL](https://eodhd.com/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and an EODHD_API_TOKEN environment variable; responses are requested as JSON when supported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: API-token handling can reveal the user's EODHD key in logs, terminal history, transcripts, or full request URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Read the token from EODHD_API_TOKEN, avoid printing full tokenized URLs, prefer constrained tokens, monitor quota usage, and rotate the token if it appears in logs or transcripts.
+
+Risk: Large or broad financial data requests can consume quota or return excessive data.
+
+Mitigation: Use explicit date ranges, limits, filters, and the EODHD usage endpoint to control request size and monitor subscription limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mancubus77/skills/eodhd-curl)
+- [EODHD API base URL](https://eodhd.com/api/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline curl command examples and endpoint guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and the EODHD_API_TOKEN environment variable.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata); skill frontmatter reports 1.0.0
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

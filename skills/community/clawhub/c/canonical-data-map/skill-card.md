@@ -1,40 +1,56 @@
-## Description: <br>
-Single source of truth for all paths, naming conventions, and data formats across the OpenClaw Greek Accounting system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Single source of truth for all paths, naming conventions, and data formats across the OpenClaw Greek Accounting system.
 
-## Publisher: <br>
-[satoshistackalotto](https://clawhub.ai/user/satoshistackalotto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[satoshistackalotto](https://clawhub.ai/user/satoshistackalotto)
 
-## Use Case: <br>
-Developers and operators of OpenClaw Greek Accounting use this reference skill to keep agents aligned on canonical data directories, naming conventions, schemas, audit records, encryption expectations, and ownership boundaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory, chat, audit, and proposal workflows may store sensitive accounting or identity data longer or more broadly than intended. <br>
-Mitigation: Define and enforce redaction, encryption, access control, retention, deletion, and user-notice rules before using the skill with real client, payroll, banking, tax, or auth data. <br>
-Risk: Memory-feedback proposals could carry sensitive operational details into GitHub pull requests. <br>
-Mitigation: Require human review and scanning of every memory-feedback proposal before merge, and prevent proposals from including secrets, client identifiers, or regulated records. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Canonical Data Map on ClawHub](https://clawhub.ai/satoshistackalotto/canonical-data-map) <br>
-- [OpenClaw Greek Accounting homepage](https://github.com/satoshistackalotto/openclaw-greek-accounting) <br>
+## Use Case:
 
+Developers and operators of the OpenClaw Greek Accounting system use this skill as a reference map for canonical data directories, file naming, data formats, validation rules, audit logging, encryption expectations, and skill responsibility boundaries.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reference document with directory maps, JSON examples, YAML examples, and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENCLAW_DATA_DIR for the documented setup commands; the skill itself is reference-only and does not require binaries or credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata; artifact frontmatter lists document version 1.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The data map standardizes long-term memory and audit logging that may contain sensitive accounting activity.
+
+Mitigation: Require encryption for /data/memory and /data/system/logs/audit before production use.
+
+Risk: Memory, audit, and chat/session records may retain sensitive values longer than users expect.
+
+Mitigation: Define retention and deletion controls, redact sensitive values from memory and audit records, and disclose chat/session retention to users.
+
+Risk: The documented GitHub proposal workflow could introduce incorrect or misleading skill changes if automated output is accepted without review.
+
+Mitigation: Keep proposal creation human-approved and rate-limited, and require review before any generated change is merged.
+
+## Reference(s):
+
+- [Canonical Data Map on ClawHub](https://clawhub.ai/satoshistackalotto/skills/canonical-data-map)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown reference documentation with inline shell commands and structured path examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the OPENCLAW_DATA_DIR environment variable for the documented data-root convention.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

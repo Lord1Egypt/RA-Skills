@@ -1,41 +1,54 @@
-## Description: <br>
-Generate cinematic miniature-world rescue scenes with image and video creation via SJinn, featuring tiny figurines saved by a giant hand. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate cinematic miniature-world rescue scenes with image and video creation via SJinn, featuring tiny figurines saved by a giant hand.
 
-## Publisher: <br>
-[jax-explorer](https://clawhub.ai/user/jax-explorer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jax-explorer](https://clawhub.ai/user/jax-explorer)
 
-## Use Case: <br>
-External users and creators use this skill to turn a miniature rescue scenario into structured image and video prompts and run the SJinn workflow to create portrait-format media assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scene descriptions and generated media are processed and hosted by SJinn. <br>
-Mitigation: Use the skill only when SJinn data handling and retention terms are acceptable for the prompt content. <br>
-Risk: Prompts may include private, proprietary, or sensitive details supplied by the user. <br>
-Mitigation: Remove sensitive details before generation and avoid using confidential scenarios in prompts. <br>
+## Use Case:
 
+External creators and agent users use Mini Rescue to turn a rescue scenario, object, or theme into cinematic miniature rescue image and video prompts, then generate the assets through SJinn.
 
-## Reference(s): <br>
-- [Server-resolved GitHub source](https://github.com/jax-explorer/sjinn-professional-skills/tree/main/skills/viral-video/mini-rescue) <br>
-- [ClawHub skill page](https://clawhub.ai/jax-explorer/skills/mini-rescue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls] <br>
-**Output Format:** [Markdown prompt sections plus generated image and video URLs or task IDs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SJinn image and video generation tasks when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: User scenarios are submitted to SJinn for image and video generation, which may involve provider-side processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including private, proprietary, or sensitive details in mini rescue scenarios.
+
+Risk: Automatic image and video task creation may incur provider-side billing depending on the SJinn account setup.
+
+Mitigation: Confirm SJinn account limits, billing settings, and task intent before installing or invoking the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jax-explorer/skills/mini-rescue)
+- [Server-resolved GitHub provenance](https://github.com/jax-explorer/sjinn-professional-skills/tree/main/skills/viral-video/mini-rescue)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown sections containing an image prompt, a five-sentence video prompt, generation details, and generated asset links or task IDs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a 9:16 image prompt for SJinn nano-banana-2 and a 9:16, 10-second quality video prompt for SJinn seedance2.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

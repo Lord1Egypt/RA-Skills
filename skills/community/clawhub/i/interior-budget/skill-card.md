@@ -1,40 +1,54 @@
-## Description: <br>
-Automatically generates interior design budget spreadsheets by project type, space, and client/project details using standardized templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generates Chinese interior-design budget spreadsheets by space and project type from standardized templates and project details.
 
-## Publisher: <br>
-[137984917-cyber](https://clawhub.ai/user/137984917-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[137984917-cyber](https://clawhub.ai/user/137984917-cyber)
 
-## Use Case: <br>
-Design studio staff, project managers, and developers use this skill to create editable Excel budget workbooks for home, office, and restaurant interior projects from project name, client, address, area, and type inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated workbooks may contain project, client, address, and studio contact details. <br>
-Mitigation: Use an explicit output path, review the workbook before sharing, and remove or update contact details when they are not appropriate for the recipient. <br>
-Risk: The tool depends on openpyxl to create Excel files. <br>
-Mitigation: Install openpyxl from a trusted package source before running the generator. <br>
+## Use Case:
 
+Interior design practitioners and project coordinators use this skill to generate structured Excel budget workbooks for home, office, and food-service renovation projects. It captures project name, client, address, area, and project type, then outputs space-by-space line items for later quantity, price, total, and brand entry.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/137984917-cyber/interior-budget) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Excel workbook plus command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated workbooks contain project, client, address, area, budget-line, tax, total, and studio contact fields; openpyxl is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata and artifact/skill.json) <br>
+Risk: The interactive script can write to a local default desktop path when no output path is provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or explicitly set the output path before running the generator.
+
+Risk: Generated examples or shared workbooks may include client names, addresses, phone numbers, or private template paths.
+
+Mitigation: Remove or replace private client and project details before publishing or sharing generated files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/137984917-cyber/skills/interior-budget)
+- [Publisher Profile](https://clawhub.ai/user/137984917-cyber)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Excel workbook file with command-line or interactive console guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated workbooks leave quantity, unit price, total, and brand note fields open for review and completion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

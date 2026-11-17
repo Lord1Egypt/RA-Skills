@@ -1,42 +1,56 @@
-## Description: <br>
-Creates public-safe Skool growth teardown posts, reply packs, consultation CTAs, and next-post plans from validated public Skool Discovery/About data without using private member data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create public-safe Skool growth teardown posts from validated public community snapshots.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External community operators and growth marketers use this skill to draft Skool growth teardown posts, opt-in reply templates, consultation scopes, and follow-up post ideas from validated public or aggregate community data.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated marketing copy could overstate growth, revenue, ranking, or conversion outcomes.
+
+Mitigation: Review the draft before use and keep claims limited to validated public or aggregate data with clear caveats.
+
+Risk: Using private Skool member data, DMs, emails, paid content, cookies, or hidden community content could expose sensitive information.
+
+Mitigation: Provide only public metadata, public About or Discovery data, creator-owned notes, or aggregate placeholders.
+
+Risk: Cold outreach or automated posting could violate consent expectations.
+
+Mitigation: Use consent-first CTAs and opted-in reply scripts only; do not automate posting, commenting, or messaging.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External community owners and marketers use this skill to turn public Skool community snapshots into consent-first teardown posts, opt-in replies, consultation scope, and future post ideas. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Private Skool data, credentials, cookies, session tokens, screenshots with names, or hidden community content could be included in inputs. <br>
-Mitigation: Use only public Discovery cards, public About pages, creator-owned notes, and aggregate metrics; replace private or sensitive details with public metadata or aggregate placeholders. <br>
-Risk: Generated outreach copy could be mistaken for permission to post, comment, or message automatically. <br>
-Mitigation: Keep posting, commenting, and messaging as separate user-approved actions, and use inbound-DM scripts only for people who have opted in. <br>
-Risk: Growth claims could overstate the evidence or imply guaranteed joins, revenue, conversion, retention, or rank. <br>
-Mitigation: Limit claims to the measured public candidate set, include data caveats, and avoid promising outcomes. <br>
+**Output Format:** [Markdown with structured post copy, reply templates, consultation scope, and validation caveat]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zack-dev-cm/skool-growth-teardown-poster) <br>
+**Other Properties Related to Output:** [Outputs are intended for review and approval before posting or messaging.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a post title, main post draft, pinned comment, reply templates, inbound-DM script for opted-in people only, consultation scope, next-post ideas, and validation caveat.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

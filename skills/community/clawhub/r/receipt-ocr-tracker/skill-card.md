@@ -1,42 +1,56 @@
-## Description: <br>
-Receipt OCR Tracker helps an agent run a local Python OCR workflow that extracts receipt text with Tesseract and writes parsed expense data to CSV for review or import into spreadsheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Receipt OCR Tracker helps an agent run Tesseract OCR on receipt photos and convert recognized receipt lines into expense CSV output for freelancers and small businesses.
 
-## Publisher: <br>
-[skunnyo](https://clawhub.ai/user/skunnyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[skunnyo](https://clawhub.ai/user/skunnyo)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers can use this skill to process receipt images, extract dates and amounts, and prepare expense records for spreadsheet import or business tracking.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Receipt OCR and simple parsing can produce inaccurate or unsafe expense CSV records.
+
+Mitigation: Inspect generated CSV rows and totals before importing them into Google Sheets or using them for business records.
+
+Risk: Receipt images and extracted expense data may contain sensitive personal or business information.
+
+Mitigation: Use the skill only on receipts that are acceptable to store and process locally.
+
+Risk: The script writes an expenses.csv file in the current working directory.
+
+Mitigation: Run it from an intended output directory and confirm it will not overwrite an important file.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, freelancers, and small-business operators use this skill to process receipt images into expense CSV output and a short human-readable summary. Developers and agents can also use it as local command guidance for running the bundled OCR script. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Receipt images and parsed expenses may contain sensitive personal or business information. <br>
-Mitigation: Run the OCR workflow locally, keep generated CSV files in an appropriate directory, and redact or review output before sharing or importing it into external tools. <br>
-Risk: The OCR script writes expenses.csv in the current working directory, which can overwrite an existing file with the same name. <br>
-Mitigation: Run the script in a working directory where replacing expenses.csv is acceptable, or rename existing files before execution. <br>
-Risk: OCR and regex parsing can produce inaccurate dates, items, amounts, taxes, or totals, especially for blurry receipts. <br>
-Mitigation: Review the CSV and Markdown summary against the original receipt before using the data for accounting, reimbursement, or tax records. <br>
+**Output Format:** [Markdown guidance with shell commands and CSV-oriented expense output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skunnyo/receipt-ocr-tracker) <br>
+**Other Properties Related to Output:** [Produces local receipt-derived expense data that should be reviewed before importing into spreadsheets or business records.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands plus local CSV output from the OCR script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script writes expenses.csv in the current working directory and prints a short text sample.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

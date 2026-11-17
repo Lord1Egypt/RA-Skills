@@ -1,42 +1,59 @@
-## Description: <br>
-Internal setup hook that provisions gogcli with Google OAuth credentials supplied by an external orchestrator over the OpenClaw `skills.setup` RPC. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Internal setup hook that provisions gogcli with Google OAuth credentials supplied by an external orchestrator over the OpenClaw `skills.setup` RPC. Not user-facing — for Google Workspace command usage, see the upstream `gog` skill which loads alongside this one.
 
-## Publisher: <br>
-[maverick](https://clawhub.ai/user/maverick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick](https://clawhub.ai/user/maverick)
 
-## Use Case: <br>
-Developers and operators use this skill to provision gogcli OAuth state non-interactively for Google Workspace access through the companion upstream `gog` skill. It is intended for install and credential-rotation workflows, not for direct agent-facing commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup hook handles Google OAuth client secrets and refresh tokens and persists credential state through gogcli. <br>
-Mitigation: Install only where an orchestrator is expected to provide these credentials, protect the container filesystem, and use a non-empty per-instance GOG_KEYRING_PASSWORD. <br>
-Risk: Running setup with a stale or unintended refresh token can overwrite existing gogcli authentication state. <br>
-Mitigation: Run setup only after a fresh intended OAuth authorization callback provides a new refresh token. <br>
+## Use Case:
 
+Developers and operators use this setup hook to provision or rotate Google OAuth credentials for gogcli through OpenClaw's setup flow. It prepares the configuration used by the separate upstream `gog` skill, which provides Google Workspace commands.
 
-## Reference(s): <br>
-- [gogcli homepage](https://github.com/openclaw/gogcli) <br>
-- [Upstream gog skill](https://github.com/openclaw/openclaw/blob/main/skills/gog/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/maverick/maverick-gog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell command behavior documented in setup scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No direct agent-facing command output; setup imports OAuth credentials into gogcli-managed local state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The gogcli OAuth client-secret file is stored in plaintext on disk, even when a keyring password is configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted provisioning service and restrict access to credential files, the container filesystem, and backups.
+
+Risk: An empty GOG_KEYRING_PASSWORD leaves the refresh-token keyring without at-rest encryption, and the variable must be set consistently for setup and runtime.
+
+Mitigation: Set a strong, nonempty per-instance password and make it available consistently during setup and runtime.
+
+Risk: Rerunning setup with a stale refresh token can replace a token gogcli has already rotated and break the integration.
+
+Mitigation: Run setup only when a newly issued refresh token is available from a completed authorization flow.
+
+## Reference(s):
+
+- [gogcli project](https://github.com/openclaw/gogcli)
+- [OpenClaw gog skill documentation](https://github.com/openclaw/openclaw/blob/main/skills/gog/SKILL.md)
+- [ClawHub release page](https://clawhub.ai/maverick/skills/maverick-gog)
+
+## Skill Output:
+
+**Output Type(s):** [Configuration]
+
+**Output Format:** [gogcli OAuth credential and account configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Setup-time configuration; the skill exposes no agent-callable commands.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

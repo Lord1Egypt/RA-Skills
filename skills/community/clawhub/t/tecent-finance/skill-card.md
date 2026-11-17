@@ -1,39 +1,57 @@
-## Description: <br>
-Get stock prices, quotes, and compare stocks using Tencent Finance API with no API key required, supporting US stocks, China A-Shares, Hong Kong stocks, and major cryptocurrencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get stock prices, quotes, and compare stocks using Tencent Finance API. No API key required. Supports US stocks, China A-Shares, Hong Kong stocks. Optimized for use in mainland China.
 
-## Publisher: <br>
-[pz325](https://clawhub.ai/user/pz325) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pz325](https://clawhub.ai/user/pz325)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to check market prices, request detailed quotes, compare tickers, and search stock or cryptocurrency symbols through Tencent Finance-backed CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Making or symlinking the tfin executable globally can expose users to the wrong executable if the source path is not verified. <br>
-Mitigation: Confirm that tfin comes from the expected skill artifact before running chmod or creating a global symlink. <br>
-Risk: Ticker searches and watchlist-like queries may be sent to Tencent Finance when commands are executed. <br>
-Mitigation: Avoid using the skill for private watchlists or sensitive ticker query patterns if external market-data requests are a concern. <br>
+## Use Case:
 
+Developers and analysts use this skill to retrieve stock prices, detailed quotes, comparisons, and symbol searches through Tencent Finance for US, China A-share, Hong Kong, and major crypto symbols.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key is required; command execution may query Tencent Finance for requested ticker symbols.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The package contains documentation only, so the described CLI implementation may be absent or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the tfin implementation exists and works before relying on the skill for financial information.
+
+Risk: Manual setup can involve installing Python packages or creating command symlinks.
+
+Mitigation: Install dependencies in a virtual environment and avoid running pip or symlink commands with elevated privileges.
+
+Risk: Financial quote data can be incomplete, delayed, or unavailable for unsupported symbols or markets.
+
+Mitigation: Validate symbols and confirm material financial decisions against authoritative market data sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pz325/skills/tecent-finance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and tabular financial data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require local Python dependencies and network access to Tencent Finance API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

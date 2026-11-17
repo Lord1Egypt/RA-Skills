@@ -1,47 +1,62 @@
-## Description: <br>
-Controls and monitors ROS 2 robots directly via rclpy CLI for topics, services, actions, parameters, nodes, lifecycle management, controllers, diagnostics, battery status, system health checks, and related ROS 2 operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls and monitors ROS 2 robots through a structured rclpy CLI for topics, services, actions, parameters, lifecycle nodes, controllers, diagnostics, bags, components, and launch or run workflows.
 
-## Publisher: <br>
-[adityakamath](https://clawhub.ai/user/adityakamath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[adityakamath](https://clawhub.ai/user/adityakamath)
 
-## Use Case: <br>
-Developers, robotics engineers, and external agent operators use this skill to let an AI agent inspect, configure, and operate ROS 2 robots through a structured rclpy command interface. It supports live graph discovery, robot motion workflows, diagnostics, package inspection, launch and run management, component control, and emergency stop handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad live-robot control, including motion, controller changes, process launches, and emergency stop behavior. <br>
-Mitigation: Install only in a controlled ROS 2 environment where the operator expects agent control of hardware, and require human confirmation for motion, controller changes, process launches, and any other hardware-affecting action. <br>
-Risk: The skill can manage persistent ROS 2 launch, run, and component sessions. <br>
-Mitigation: Review active sessions before and after use, route session termination through the documented command groups, and require confirmation before starting or killing long-running robot processes. <br>
-Risk: The release includes a Discord workflow that can send files outside the robot environment. <br>
-Mitigation: Review the Discord workflow before use, restrict or remove bot-token access if external sharing is not required, and require human confirmation for file upload. <br>
+## Use Case:
 
+Developers and robotics engineers use this skill to let agents inspect, operate, and troubleshoot live ROS 2 robot systems through JSON-producing CLI commands. It supports discovery, motion-related publishing, service and action calls, parameter changes, lifecycle and controller operations, diagnostics, bag inspection, and package or launch workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/adityakamath/ros2-skill) <br>
-- [README](README.md) <br>
-- [CLI Reference](references/CLI.md) <br>
-- [Command Reference](references/COMMANDS.md) <br>
-- [Examples](references/EXAMPLES.md) <br>
-- [Rules](references/RULES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are expected to be run through scripts/ros2_cli.py and return JSON; the skill requires python3, ros2, rclpy, and a sourced ROS 2 environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata and changelog, released 2026-03-24) <br>
+Risk: The skill can move physical robots, change controller state, and start background sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a controlled ROS 2 environment where operators can physically stop the robot and understand the authority granted to the agent.
+
+Risk: The skill includes file-transfer behavior that may send local files externally through Discord uploads.
+
+Mitigation: Use Discord upload features only where external file transfer is approved, and keep bot credentials locked down.
+
+Risk: The security evidence reports broad autonomous robot and file-transfer authority with unsafe command and file handling.
+
+Mitigation: Review and scan the skill before deployment, restrict runtime permissions, and operate it only in trusted robotics environments.
+
+## Reference(s):
+
+- [ClawHub ROS 2 Skill](https://clawhub.ai/adityakamath/skills/ros2-skill)
+- [README](README.md)
+- [Rules](references/RULES.md)
+- [Commands](references/COMMANDS.md)
+- [Examples](references/EXAMPLES.md)
+- [CLI Reference](references/CLI.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON command results with concise Markdown or text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require python3, ros2, rclpy, and a sourced ROS 2 environment.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence and changelog; artifact frontmatter lists 1.0.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

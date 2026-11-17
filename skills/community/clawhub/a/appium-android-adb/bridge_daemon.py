@@ -3,11 +3,11 @@
 Persistent Appium session daemon for 12306 bridge.
 
 Runs as a background process holding one Appium session.
-Accepts JSON commands on stdin, returns JSON responses on stdout.
+Accepts JSON commands via a private per-user IPC dir, returns JSON responses.
 Keeps the session alive between commands — no per-call session overhead.
 
 Start:   python3 bridge_daemon.py &
-Stop:    echo '{"action":"quit"}' > /tmp/bridge_cmd
+Stop:    echo '{"action":"quit"}' > ~/.cache/appium-bridge/bridge_cmd
 
 Or use the bridge_daemon.sh wrapper to send commands.
 """
@@ -24,20 +24,93 @@ warnings.filterwarnings("ignore", message=".*urllib3 v2.*OpenSSL.*")
 os.environ["PYTHONWARNINGS"] = "ignore"
 
 APPIUM_URL = "http://127.0.0.1:4723"
+APPIUM_BIND = "127.0.0.1"      # loopback only — never expose device control to the LAN
 PACKAGE = os.environ.get("BRIDGE_PACKAGE", "com.MobileTicket")
-CMD_FILE = Path("/tmp/bridge_cmd")
-RESP_FILE = Path("/tmp/bridge_resp")
-LOCK_FILE = Path("/tmp/bridge.lock")
+
+
+def _ipc_dir() -> Path:
+    """Private per-user IPC dir (0700). Shared /tmp files are an under-scoped
+    IPC surface for device-control commands; keep them owned and private."""
+    if os.environ.get("XDG_RUNTIME_DIR"):
+        d = Path(os.environ["XDG_RUNTIME_DIR"]) / "appium-bridge"
+    else:
+        d = Path.home() / ".cache" / "appium-bridge"
+    d.mkdir(parents=True, exist_ok=True)
+    os.chmod(d, 0o700)
+    return d
+
+
+IPC_DIR = _ipc_dir()
+CMD_FILE = IPC_DIR / "bridge_cmd"
+RESP_FILE = IPC_DIR / "bridge_resp"
+LOCK_FILE = IPC_DIR / "bridge.lock"
+
+
+def _safe_read(path: Path) -> str | None:
+    """Read an IPC file only if it is owned by the current user and not
+    group/world-writable (rejects foreign or tamperable files)."""
+    try:
+        st = path.stat()
+    except FileNotFoundError:
+        return None
+    if st.st_uid != os.getuid() or (st.st_mode & 0o022):
+        return None
+    try:
+        return path.read_text()
+    except OSError:
+        return None
+
+
+def _safe_write(path: Path, text: str):
+    """Write an IPC file with 0600 perms."""
+    path.write_text(text)
+    os.chmod(path, 0o600)
+
+
+def _grab_screenshot(dest: Path) -> bool:
+    """Capture the screen into `dest`. True on success.
+
+    Preferred path is `adb exec-out`, which streams the PNG over USB without
+    writing anything to the device's shared storage. The two-step
+    `screencap` + `pull` fallback is kept for older platform-tools but now
+    deletes its device-side file — previously every capture left a screenshot
+    in /sdcard forever, outside the private-directory retention this skill
+    documents (ClawHub review finding [T09]).
+    """
+    import subprocess
+    try:
+        with open(dest, "wb") as fh:
+            subprocess.run(["adb", "exec-out", "screencap", "-p"],
+                           stdout=fh, timeout=10, check=False)
+        if dest.stat().st_size > 0:
+            return True
+    except (OSError, subprocess.SubprocessError):
+        pass
+    device_path = "/sdcard/bridge_scr.png"
+    try:
+        subprocess.run(["adb", "shell", "screencap", "-p", device_path],
+                       capture_output=True, timeout=10)
+        subprocess.run(["adb", "pull", device_path, str(dest)],
+                       capture_output=True, timeout=10)
+    finally:
+        subprocess.run(["adb", "shell", "rm", "-f", device_path],
+                       capture_output=True, timeout=10)
+    return dest.exists() and dest.stat().st_size > 0
+
 
 _driver = None
 
 
 def _ensure_appium():
+    """Start Appium if not already running.
+
+    Returns the Popen handle if WE started it (caller should terminate it
+    after use), or None if it was already running."""
     import subprocess, urllib.request
     try:
         r = urllib.request.urlopen(f"{APPIUM_URL}/status", timeout=2)
         if r.status == 200:
-            return
+            return None
     except Exception:
         pass
     # Auto-detect Android SDK path (Linux vs macOS)
@@ -54,14 +127,21 @@ def _ensure_appium():
     if not android_home:
         android_home = os.path.expanduser("~/android-sdk")  # Linux default
 
-    subprocess.Popen(
-        ["appium", "--allow-insecure", "all", "--relaxed-security",
-         "--log", "/tmp/appium.log"],
+    proc = subprocess.Popen(
+        # No insecure features needed: the daemon only uses standard
+        # UiAutomator2 commands (find/click, mobile: clickGesture/scrollGesture).
+        #
+        # --address 127.0.0.1: Appium drives a device that the client already
+        # owns, so there is no reason for it to listen beyond loopback. Without
+        # this it binds broadly and exposes a full Android-control API to the
+        # local network — exactly what the ClawHub review flagged as [T05].
+        ["appium", "--address", APPIUM_BIND, "--log", str(IPC_DIR / "appium.log")],
         env={**os.environ, "ANDROID_HOME": android_home,
              "ANDROID_SDK_ROOT": android_home},
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     )
     time.sleep(4)
+    return proc
 
 
 def _get_driver():
@@ -78,15 +158,6 @@ def _get_driver():
             _driver = None
         except Exception:
             _driver = None
-
-    # Cold start 12306 if needed
-    import subprocess
-    r = subprocess.run(["adb", "shell", "pidof", PACKAGE], capture_output=True, text=True, timeout=15)
-    if not r.stdout.strip():
-        subprocess.run(
-            ["adb", "shell", "monkey", "-p", PACKAGE, "-c", "android.intent.category.LAUNCHER", "1"],
-            capture_output=True, timeout=10)
-        time.sleep(2)
 
     options = UiAutomator2Options()
     options.platform_name = "Android"
@@ -253,11 +324,8 @@ def cmd_tap_bounds(args):
     y = (int(nums[1]) + int(nums[3])) // 2
     try:
         driver.execute_script("mobile: clickGesture", {"x": x, "y": y})
-    except Exception:
-        # Fallback: tap via ADB if gesture click fails
-        import subprocess
-        subprocess.run(["adb", "shell", "input", "tap", str(x), str(y)],
-                       capture_output=True, timeout=5)
+    except Exception as e:
+        return {"ok": False, "error": f"clickGesture failed: {str(e)[:200]}"}
     time.sleep(0.5)
     return {"ok": True, "tapped": f"({x},{y})", "bounds": bounds}
 
@@ -271,10 +339,8 @@ def cmd_tap_coords(args):
         return {"ok": False, "error": "missing x,y coordinates"}
     try:
         driver.execute_script("mobile: clickGesture", {"x": x, "y": y})
-    except Exception:
-        import subprocess
-        subprocess.run(["adb", "shell", "input", "tap", str(x), str(y)],
-                       capture_output=True, timeout=5)
+    except Exception as e:
+        return {"ok": False, "error": f"clickGesture failed: {str(e)[:200]}"}
     time.sleep(0.5)
     return {"ok": True, "tapped": f"({x},{y})"}
 
@@ -436,16 +502,15 @@ def cmd_js_scroll(args):
 
 
 def cmd_screenshot(_args):
-    """Take a screenshot of the phone and save to /tmp/screen.png.
+    """Take a screenshot of the phone and save into the private IPC dir.
     Returns the file path so the caller can read it for visual verification
-    or OCR-based position detection."""
-    import subprocess
-    path = "/tmp/screen.png"
-    subprocess.run(["adb", "shell", "screencap", "-p", "/sdcard/scr.png"],
-                   capture_output=True, timeout=10)
-    subprocess.run(["adb", "pull", "/sdcard/scr.png", path],
-                   capture_output=True, timeout=10)
-    return {"ok": True, "path": path}
+    or OCR-based position detection. Nothing is left on the device."""
+    path = IPC_DIR / "screen.png"
+    if not _grab_screenshot(path):
+        return {"ok": False,
+                "error": "screenshot returned no data — device asleep, or the "
+                         "screen is FLAG_SECURE (locked keyguard / secure keyboard)"}
+    return {"ok": True, "path": str(path)}
 
 
 def cmd_type(args):
@@ -458,7 +523,8 @@ def cmd_type(args):
         el.click()
         time.sleep(0.2)
         el.send_keys(text)
-        return {"ok": True, "typed": text}
+        # Never echo typed content (may include credentials/PII)
+        return {"ok": True, "typed_length": len(text)}
     except Exception as e:
         return {"ok": False, "error": str(e)[:200]}
 
@@ -483,13 +549,15 @@ def cmd_ocr_tap(args):
     off_y = args.get("tap_offset_y", 30)
     side = args.get("side", "")
 
-    # Take screenshot
-    subprocess.run(["adb", "shell", "screencap", "-p", "/sdcard/ocr_scr.png"],
-                   capture_output=True, timeout=10)
-    subprocess.run(["adb", "pull", "/sdcard/ocr_scr.png", "/tmp/ocr_scr.png"],
-                   capture_output=True, timeout=10)
+    # Screenshot into the private IPC dir (may contain sensitive data).
+    # _grab_screenshot streams via `adb exec-out`, so nothing lands on the device.
+    shot_path = str(IPC_DIR / "ocr_scr.png")
+    if not _grab_screenshot(IPC_DIR / "ocr_scr.png"):
+        return {"ok": False,
+                "error": "screenshot returned no data — device asleep, or the "
+                         "screen is FLAG_SECURE (locked keyguard / secure keyboard)"}
 
-    img = Image.open("/tmp/ocr_scr.png")
+    img = Image.open(shot_path)
     data = pytesseract.image_to_data(img, lang="chi_sim+eng",
                                      output_type=pytesseract.Output.DICT,
                                      config="--psm 6 --oem 3")
@@ -518,8 +586,13 @@ def cmd_ocr_tap(args):
             tap_x = x + w // 2 + off_x
             tap_y = y + h // 2 + off_y
 
-            subprocess.run(["adb", "shell", "input", "tap", str(tap_x), str(tap_y)],
-                           capture_output=True, timeout=5)
+            try:
+                # `driver` used to be an undefined name here — this path raised
+                # NameError the moment OCR actually matched (ClawHub [SDI-4]).
+                driver = _get_driver()
+                driver.execute_script("mobile: clickGesture", {"x": tap_x, "y": tap_y})
+            except Exception as e:
+                return {"ok": False, "error": f"clickGesture failed: {str(e)[:200]}"}
 
             return {"ok": True, "found": text, "position": {"x": x, "y": y},
                     "tapped": {"x": tap_x, "y": tap_y}, "confidence": conf}
@@ -596,7 +669,7 @@ ACTIONS = {
 def run_daemon():
     """Main loop: watch CMD_FILE for commands, write responses to RESP_FILE."""
     global _driver
-    LOCK_FILE.write_text(str(os.getpid()))
+    _safe_write(LOCK_FILE, str(os.getpid()))
 
     # Clean up on exit
     import atexit, signal
@@ -621,15 +694,15 @@ def run_daemon():
     while True:
         if CMD_FILE.exists():
             try:
-                raw = CMD_FILE.read_text().strip()
-                CMD_FILE.unlink()
-                if not raw:
+                raw = _safe_read(CMD_FILE)
+                CMD_FILE.unlink(missing_ok=True)
+                if not raw or not raw.strip():
                     continue
                 cmd = json.loads(raw)
                 action = cmd.get("action", "dump")
                 args = cmd.get("args", {})
             except (json.JSONDecodeError, ValueError):
-                RESP_FILE.write_text(json.dumps({"ok": False, "error": "invalid json"}))
+                _safe_write(RESP_FILE, json.dumps({"ok": False, "error": "invalid json"}))
                 continue
 
             if action == "quit":
@@ -637,7 +710,7 @@ def run_daemon():
                     _driver.quit()
                 except Exception:
                     pass
-                RESP_FILE.write_text(json.dumps({"ok": True, "message": "daemon stopped"}))
+                _safe_write(RESP_FILE, json.dumps({"ok": True, "message": "daemon stopped"}))
                 break
 
             handler = ACTIONS.get(action, lambda a: {"ok": False, "error": f"unknown: {action}"})
@@ -651,7 +724,7 @@ def run_daemon():
                 except Exception as e2:
                     result = {"ok": False, "error": str(e2)[:300]}
 
-            RESP_FILE.write_text(json.dumps(result, ensure_ascii=False, default=str))
+            _safe_write(RESP_FILE, json.dumps(result, ensure_ascii=False, default=str))
 
         time.sleep(0.1)
 
@@ -659,7 +732,11 @@ def run_daemon():
 # ─── CLI wrapper (for backwards compatibility) ──────────────────────────
 
 def run_one_shot():
-    """Single command mode — send to daemon, wait for response."""
+    """Single command mode.
+
+    If an explicit --daemon is running, send the command over IPC.
+    Otherwise run the action in-process with a short-lived session and quit —
+    no persistent bridge is left running (safer default)."""
     if len(sys.argv) < 2:
         print(json.dumps({"ok": False, "error": "usage: bridge_daemon.py <action> [json_args]"}))
         sys.exit(1)
@@ -673,21 +750,47 @@ def run_one_shot():
             print(json.dumps({"ok": False, "error": "invalid json args"}))
             sys.exit(1)
 
-    # Send command to daemon
-    cmd = json.dumps({"action": action, "args": args})
-    CMD_FILE.write_text(cmd)
+    if _daemon_alive():
+        # Send command to daemon
+        cmd = json.dumps({"action": action, "args": args})
+        _safe_write(CMD_FILE, cmd)
 
-    # Wait for response
-    deadline = time.time() + 60
-    while time.time() < deadline:
-        if RESP_FILE.exists():
-            resp = RESP_FILE.read_text().strip()
-            RESP_FILE.unlink()
-            print(resp)
-            return
-        time.sleep(0.1)
+        # Wait for response
+        deadline = time.time() + 60
+        while time.time() < deadline:
+            if RESP_FILE.exists():
+                resp = _safe_read(RESP_FILE)
+                RESP_FILE.unlink(missing_ok=True)
+                if resp is not None:
+                    print(resp.strip())
+                    return
+            time.sleep(0.1)
 
-    print(json.dumps({"ok": False, "error": "daemon timeout"}))
+        print(json.dumps({"ok": False, "error": "daemon timeout"}))
+        return
+
+    # No daemon — run in-process and release the session immediately.
+    # If we started Appium ourselves, stop it afterwards (no services left).
+    global _driver
+    appium_proc = _ensure_appium()
+    handler = ACTIONS.get(action, lambda a: {"ok": False, "error": f"unknown: {action}"})
+    try:
+        result = handler(args)
+    except Exception as e:
+        result = {"ok": False, "error": str(e)[:300]}
+    finally:
+        try:
+            if _driver is not None:
+                _driver.quit()
+        except Exception:
+            pass
+        if appium_proc is not None:
+            try:
+                appium_proc.terminate()
+                appium_proc.wait(timeout=5)
+            except Exception:
+                pass
+    print(json.dumps(result, ensure_ascii=False, default=str))
 
 
 def _daemon_alive():
@@ -695,7 +798,10 @@ def _daemon_alive():
     if not LOCK_FILE.exists():
         return False
     try:
-        pid = int(LOCK_FILE.read_text().strip())
+        raw = _safe_read(LOCK_FILE)
+        if raw is None:
+            return False
+        pid = int(raw.strip())
         os.kill(pid, 0)  # Signal 0 = just check if process exists
         return True
     except (ValueError, OSError, ProcessLookupError):
@@ -706,15 +812,4 @@ if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "--daemon":
         run_daemon()
     else:
-        # Auto-start daemon if not running, then send command
-        if not _daemon_alive():
-            import subprocess
-            LOCK_FILE.unlink(missing_ok=True)
-            proc = subprocess.Popen(
-                [sys.executable, __file__, "--daemon"],
-                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-            )
-            # Daemon writes its own PID to LOCK_FILE on startup
-            time.sleep(4)  # Wait for daemon to start + pre-warm session
-
         run_one_shot()

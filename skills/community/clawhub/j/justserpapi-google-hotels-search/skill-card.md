@@ -1,42 +1,55 @@
-## Description: <br>
-Call GET /api/v1/google/hotels/search for Google SERP Hotels Search through Just Serp API with check_in_date, check_out_date, and query. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/v1/google/hotels/search for Google SERP Hotels Search through Just Serp API with check_in_date, check_out_date, and query.
 
-## Publisher: <br>
-[justserpapi](https://clawhub.ai/user/justserpapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justserpapi](https://clawhub.ai/user/justserpapi)
 
-## Use Case: <br>
-Developers and agents use this skill to query Google hotel search data through Just Serp API for destinations, dates, prices, ratings, availability, and travel-comparison filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hotel search terms, travel dates, destinations, and filters are sent to Just Serp API using the user's API key. <br>
-Mitigation: Use the skill only when sharing those search parameters with Just Serp API is acceptable, and avoid sensitive travel plans unless that sharing is approved. <br>
-Risk: The skill requires a JUST_SERP_API_KEY credential. <br>
-Mitigation: Provide the key through the environment and avoid pasting key values into chat messages, screenshots, or logs. <br>
+## Use Case:
 
+Developers and agents use this skill to query Just Serp API for Google Hotels search results by destination or hotel name and check-in/check-out dates. It supports travel comparison and hospitality market analysis using returned prices, ratings, and availability details.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justserpapi/justserpapi-google-hotels-search) <br>
-- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_hotels_search&utm_content=project_link) <br>
-- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_hotels_search&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with optional raw JSON response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY and sends hotel search parameters to Just Serp API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Hotel search details are sent to Just Serp API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing the submitted destination, dates, and filters with Just Serp API is acceptable.
+
+Risk: The helper accepts JUST_SERP_API_KEY through command-line arguments during execution.
+
+Mitigation: Run on trusted systems, avoid logging invocation commands, scope the API key where possible, and rotate the key if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justserpapi/skills/justserpapi-google-hotels-search)
+- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_hotels_search&utm_content=project_link)
+- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_hotels_search&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, JSON]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and the JUST_SERP_API_KEY environment variable; the endpoint requires query, check_in_date, and check_out_date.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

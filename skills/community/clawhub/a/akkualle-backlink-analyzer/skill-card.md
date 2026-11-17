@@ -1,41 +1,55 @@
-## Description: <br>
-Backlink-Analyse fuer Off-Page SEO. Identifiziere toxic links, entdecke Link-Building Opportunities und analysiere Competitor-Backlinks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backlink-Analyse fuer Off-Page SEO: identifies toxic links, surfaces link-building opportunities, and analyzes competitor backlinks.
 
-## Publisher: <br>
-[akkualle](https://clawhub.ai/user/akkualle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akkualle](https://clawhub.ai/user/akkualle)
 
-## Use Case: <br>
-External SEO practitioners and site owners use this skill to audit backlink profiles, identify potentially toxic links, compare competitor backlinks, assess anchor-text distribution, and plan link-building outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill references an external backlink-analyzer command, but the artifact contains no executable crawler or analyzer implementation. <br>
-Mitigation: Verify the publisher and the command source before installing or running any external backlink analysis tool. <br>
-Risk: Incorrect disavow recommendations or outreach messages can affect search rankings and business reputation. <br>
-Mitigation: Manually review disavow files, backlink classifications, and outreach drafts before using them. <br>
+## Use Case:
 
+SEO practitioners, marketers, and site owners use this skill to audit backlink profiles, compare competitors, identify risky links, and prepare link-building outreach or disavow guidance.
 
-## Reference(s): <br>
-- [Link Quality Rubric](references/link-quality-rubric.md) <br>
-- [Outreach Templates](references/outreach-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide users in preparing backlink audits, disavow-review notes, competitor link-gap analysis, and outreach messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Outreach guidance could be used with unlawful contact data, excessive follow-ups, or spam-like messaging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only lawful public business contact data, personalize outreach, stop after declines or opt-outs, and limit follow-ups.
+
+Risk: Incorrect disavow recommendations can affect search visibility.
+
+Mitigation: Manually review any disavow file before uploading and keep records of removals, rationale, and changes.
+
+## Reference(s):
+
+- [Link Quality Rubric](references/link-quality-rubric.md)
+- [Outreach Templates](references/outreach-templates.md)
+- [ClawHub skill page](https://clawhub.ai/akkualle/skills/akkualle-backlink-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with backlink analysis summaries, command examples, outreach templates, and disavow-file guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is included in the artifact; outputs should be reviewed before SEO or outreach actions are taken.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

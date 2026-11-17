@@ -1,6 +1,6 @@
 ---
 name: comparative-advantage
-description: "Activate when: user says 'should I do this myself or delegate,' 'I'm the best at X so I should do it,' 'should we outsource or build in-house,' 'how should we divide work on the team,' 'is it worth hiring someone for this.' Do NOT activate when: the situation is genuinely single-task with no trade-off; the user is asking about competitive strategy between companies (use Porter's Five Forces instead)."
+description: "Activate when: user says 'should I do this myself or delegate,' 'I'm the best at X so I should do it,' 'should we outsource or build in-house,' 'how should we divide work on the team,' 'is it worth hiring someone for this.' Do NOT activate when: the situation is genuinely single-task with no trade-off; the user is asking about competitive strategy between companies (use Porter's Five Forces instead). More: deciqai.com/c/comparative-advantage"
 ---
 
 # Comparative Advantage
@@ -11,13 +11,13 @@ Mutually beneficial specialization depends on *relative* productivity, not absol
 
 Proved by David Ricardo (1817); called "the only proposition in economics that is both true and non-obvious" by Paul Samuelson (1969).
 
-Composes with [`opportunity-cost`](../opportunity-cost/SKILL.md), [`pareto-principle`](../pareto-principle/SKILL.md), [`circle-of-competence`](../circle-of-competence/SKILL.md), [`theory-of-constraints`](../theory-of-constraints/SKILL.md).
+Composes with `opportunity-cost`, `pareto-principle`, `circle-of-competence`, `theory-of-constraints`.
 
 ## When to Use
 
 - Founder time allocation across activities; team division of labor
 - Build vs. buy / in-house vs. outsource decisions
-- M&A decisions; international operations / supply chain design
+- M&A decisions; international operations / supply chain design (e.g. AI-chip re-shoring, chip export controls, semiconductor vertical integration)
 - Personal career or skill specialization decisions
 
 **Not when:** situation is genuinely single-task (no B to trade off); transaction costs swamp any gains; alternative producer's capacity is fully constrained.
@@ -63,7 +63,8 @@ Recommendation: P1 specializes in ___ | P2 specializes in ___
 Caveats / re-eval trigger: ___
 ```
 
-*→ Method in Action: [Ricardo 1817 England-Portugal + Modern Applications](examples/ricardo-1817-england-portugal-modern-applications.md)*
+*→ Method in Action: [Ricardo 1817 England-Portugal + Modern Applications](examples/ricardo-1817-england-portugal-modern-applications.md) · [Samuelson's Lawyer and Typist](examples/samuelson-lawyer-typist-delegation.md)*
+*→ 2026 lens: [The AI-chip supply chain — ASML, TSMC, Nvidia (2024–2026)](examples/ai-chip-supply-chain-2024-2026.md)*
 
 ## Pack: Application Patterns
 
@@ -112,4 +113,6 @@ Caveats / re-eval trigger: ___
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/comparative-advantage** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/comparative-advantage.json*

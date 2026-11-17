@@ -1,43 +1,58 @@
-## Description: <br>
-Convert WeChat Official Account articles to clean Markdown files with locally downloaded images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert WeChat Official Account articles to clean Markdown files with locally downloaded images.
 
-## Publisher: <br>
-[soar999](https://clawhub.ai/user/soar999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soar999](https://clawhub.ai/user/soar999)
 
-## Use Case: <br>
-Developers and AI agents use this skill to convert one or more WeChat Official Account articles into structured Markdown with article metadata and local image assets for downstream reading, archiving, or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches WeChat pages, may download a Camoufox browser, and depends on third-party Python packages. <br>
-Mitigation: Install it in a virtual environment, review or pin dependencies, and run it in a network environment appropriate for fetching the target articles. <br>
-Risk: The skill writes Markdown, images, and possible debug artifacts under the chosen output path. <br>
-Mitigation: Use a dedicated output directory and review generated files before relying on them or sharing them. <br>
-Risk: WeChat may block automated access, rate-limit requests, or show CAPTCHA verification pages. <br>
-Mitigation: Use the documented non-headless/manual verification flow when needed and retry later when rate-limited. <br>
+## Use Case:
 
+Developers, engineers, and AI agents use this skill to convert WeChat Official Account articles into reusable Markdown, including article metadata, code blocks, media references, and optional local image copies.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/soar999/wechat-article-for-ai) <br>
-- [Camoufox](https://github.com/nichochar/camoufox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files] <br>
-**Output Format:** [Markdown files with YAML frontmatter, local image assets, and plain text CLI or MCP status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes output under the selected output directory and can preserve remote image URLs when image download is disabled or fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Broad network access and file-writing behavior can affect unintended local paths or services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a sandbox or low-privilege environment and set a dedicated output directory for generated Markdown, images, and debug HTML.
+
+Risk: Article-controlled image URLs may trigger requests to unintended internal or external services.
+
+Mitigation: Avoid processing untrusted article URLs with image downloads enabled; use --no-images for unknown content.
+
+Risk: Runtime dependencies and the Camoufox browser artifact are downloaded or loaded outside the skill source.
+
+Mitigation: Pin and review dependencies and the Camoufox browser artifact before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soar999/skills/wechat-article-for-ai)
+- [Camoufox project](https://github.com/nichochar/camoufox)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files with YAML frontmatter and local image assets; MCP tools return text summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates per-article output directories, supports batch conversion, and can skip local image downloads with --no-images.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

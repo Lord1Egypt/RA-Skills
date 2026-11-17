@@ -1,49 +1,68 @@
-## Description: <br>
-Generate production-ready REST API endpoints to expose graph database operations, queries, and data management capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate production-ready REST API endpoints to expose graph database operations, queries, and data management capabilities.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate REST API wrappers for graph databases, including CRUD endpoints, relationship endpoints, query endpoints, authentication patterns, validation, error handling, and API documentation scaffolding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated database APIs may expose sensitive graph data or mutation endpoints without adequate access control. <br>
-Mitigation: Require authentication and authorization before deployment, apply role-based permissions, and add deletion safeguards for destructive operations. <br>
-Risk: Arbitrary query endpoints can permit unsafe or overly broad database access. <br>
-Mitigation: Avoid arbitrary query endpoints where possible, parameterize database queries, validate request schemas, and restrict allowed query patterns. <br>
-Risk: Example server and webhook patterns can become unsafe if copied directly into production. <br>
-Mitigation: Bind local development servers to localhost, restrict webhook targets, require HTTPS, and review generated scaffolding as a starting point rather than a deployable system. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate and review REST API wrappers for graph databases, including CRUD, relationship, query, traversal, authentication, pagination, and documentation patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fisa712/rest-api-wrapper-generator) <br>
-- [REST API Design Patterns](references/rest-api-patterns.md) <br>
-- [REST API Wrapper Examples](examples/rest-api-examples.md) <br>
-- [REST API Best Practices](https://restfulapi.net/) <br>
-- [FastAPI Documentation](https://fastapi.tiangolo.com/) <br>
-- [Express.js Guide](https://expressjs.com/) <br>
-- [MDN HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) <br>
-- [Swagger RESTful API Design](https://swagger.io/resources/articles/best-practices-in-api-design/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with code blocks, API endpoint examples, JSON configuration, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are scaffolding for graph database REST APIs and should be reviewed before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill presents itself as production-ready, while security evidence says it should be treated as a scaffold/reference for powerful query and data-mutation APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated APIs before deployment and require real authentication, authorization, rate limiting, audit logging, and least-privilege database credentials.
+
+Risk: Generated custom query endpoints and examples can expose graph queries or destructive data mutations if accepted without controls.
+
+Mitigation: Use parameterized or allowlisted graph queries, validate all inputs, restrict destructive operations, and require role checks for sensitive endpoints.
+
+Risk: Webhook and external callback patterns can introduce unsafe outbound requests.
+
+Mitigation: Validate webhook URLs, restrict allowed destinations where appropriate, and log callback activity for review.
+
+Risk: Install guidance includes unpinned framework dependencies.
+
+Mitigation: Pin and scan dependencies before using generated services in a deployment pipeline.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fisa712/skills/rest-api-wrapper-generator)
+- [REST API Design Patterns](references/rest-api-patterns.md)
+- [REST API Wrapper Examples](examples/rest-api-examples.md)
+- [REST API Best Practices](https://restfulapi.net/)
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [Express.js Guide](https://expressjs.com/)
+- [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+- [RESTful API Design](https://swagger.io/resources/articles/best-practices-in-api-design/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code snippets, HTTP examples, JSON schemas, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce API endpoint scaffolds, OpenAPI-style documentation structures, request and response examples, and deployment-oriented configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

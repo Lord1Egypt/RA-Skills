@@ -1,40 +1,54 @@
-## Description: <br>
-Scans skills, files, and folders for potential data leaks, privacy risks, and suspicious behavior by checking for network calls, file access, process spawning, and environment variable access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Leak Detector scans skills, files, or folders for potential data leaks, privacy risks, and suspicious behavior by detecting network calls, file access, process spawning, and environment variable access.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to triage skills, files, or folders for possible data-leak and privacy-risk patterns before installation or sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Static pattern matching can miss issues or flag benign code as risky. <br>
-Mitigation: Use results as preliminary triage and review the scanned code and report before relying on the assessment. <br>
-Risk: Broad scans may inspect private files or sensitive directories. <br>
-Mitigation: Run it against specific files, folders, or named skills and review reports before sharing them. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to perform static checks on agent skills, files, or folders before installation or deployment. It produces a risk-oriented report that highlights possible network, file, process, and environment-variable access patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobewin/data-leak-detector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text security report with risk score and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static-analysis results are advisory and should be reviewed before sharing or relying on them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill reads target folders and files during static analysis, so sensitive content in scanned paths may be exposed to the agent performing the scan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on folders you are comfortable letting the agent inspect, or isolate and minimize the scan target before use.
+
+Risk: The release evidence notes an avoidable unused watchdog dependency.
+
+Mitigation: Review, remove, or decline the unused dependency before installation, or install the skill in an isolated environment.
+
+## Reference(s):
+
+- [Data Leak Detector on ClawHub](https://clawhub.ai/tobewin/skills/data-leak-detector)
+- [ToBeWin publisher profile](https://clawhub.ai/user/tobewin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text security report with risk scores, category breakdowns, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static-analysis output only; no runtime monitoring or external API calls are described.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

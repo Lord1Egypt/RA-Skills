@@ -1,45 +1,55 @@
-## Description: <br>
-Helps agents search Google News through the Apify Google News Scraper actor and retrieve article metadata, summaries, and limited article content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Google News through an Apify actor to collect news article metadata, summaries, article URLs, and available article content with region, language, date, and result-count controls.
 
-## Publisher: <br>
-[futurizerush](https://clawhub.ai/user/futurizerush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[futurizerush](https://clawhub.ai/user/futurizerush)
 
-## Use Case: <br>
-Developers, analysts, and newsroom-adjacent teams use this skill to configure Apify runs for Google News search, monitor topics, collect recent headlines, and fetch structured article results for downstream analysis or summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes Google News scraping through Apify and a named third-party actor. <br>
-Mitigation: Install only if that third-party service use is acceptable, and review the actor's cost and data-retention behavior before production use. <br>
-Risk: The examples include API-token authentication and show token values in request URLs. <br>
-Mitigation: Use a dedicated or least-privilege Apify token where possible, and prefer header-based authentication when adapting the examples. <br>
-Risk: News monitoring topics or query lists may reveal sensitive business interests or investigations. <br>
-Mitigation: Avoid sensitive monitoring topics unless the agent environment and Apify account are approved for that data. <br>
+## Use Case:
 
+Developers and analysts use this skill to configure and run Google News searches through Apify for monitoring topics, gathering recent headlines, and retrieving structured article data for downstream review or summarization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/futurizerush/apify-google-news) <br>
-- [Publisher profile](https://clawhub.ai/user/futurizerush) <br>
-- [Apify Google News Scraper actor](https://apify.com/futurizerush/google-news-scraper?fpr=rush) <br>
-- [Apify API documentation](https://docs.apify.com/api/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with Python and bash examples plus JSON result schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APIFY_API_TOKEN; returns Google News result arrays with article metadata, source fields, timestamps, summaries, and articleContent snippets when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence; artifact frontmatter is 0.1.0) <br>
+Risk: Search terms and request details are sent to Apify and the named third-party actor.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive search terms unless the user accepts that Apify and the actor publisher may process them.
+
+Risk: The examples place the Apify token in request URLs, which can expose credentials through logs, history, or monitoring systems.
+
+Mitigation: Use a narrowly scoped, revocable Apify token and prefer Authorization headers instead of token query parameters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/futurizerush/skills/apify-google-news)
+- [Apify actor page](https://apify.com/futurizerush/google-news-scraper?fpr=rush)
+- [Apify API v2 documentation](https://docs.apify.com/api/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with Python and bash examples plus JSON result descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The described Apify dataset items use camelCase fields and may include article content truncated to about 2000 characters.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

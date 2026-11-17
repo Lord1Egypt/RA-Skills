@@ -1,45 +1,60 @@
-## Description: <br>
-Run the BTCD collateralization flow on PGP chain for BTCD loans, order creation and taking, BTC collateral locking, BTC proof submission, BTCD token claims, and loan repayment on the PGP network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run the BTCD collateralization flow on PGP chain. Use when the user asks to run a BTCD loan, collateralization flow, create/take orders, lock BTC, submit proofs, claim BTCD tokens, or repay loans on the PGP network.
 
-## Publisher: <br>
-[contact-nbwfoundation](https://clawhub.ai/user/contact-nbwfoundation) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[contact-nbwfoundation](https://clawhub.ai/user/contact-nbwfoundation)
 
-## Use Case: <br>
-Developers and operators use this skill to run a BTCD collateralization lifecycle on the PGP chain, including setup, order management, BTC collateral locking, proof submission, BTCD claiming, and repayment when explicitly requested. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bundled scripts use EVM and BTC private keys and can broadcast irreversible wallet transactions. <br>
-Mitigation: Use only dedicated, limited-balance wallets and review dependencies, private key handling, network settings, balances, contract addresses, and transaction details before execution. <br>
-Risk: The collateralization flow is stateful; running steps out of order or without checking state can create unsafe transaction behavior. <br>
-Mitigation: Review state/flow-state.json before each step, run steps sequentially, and rely on the existing BTC transaction resume behavior instead of starting a new lock step. <br>
-Risk: The repay step closes the loan position and unlocks collateral, which may be premature for the user's intent. <br>
-Mitigation: Run repayment only when the user explicitly requests it and after confirming the calculated repayment amount, token approval, and BTC repayment transaction. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/contact-nbwfoundation/btcd-skill-beta) <br>
-- [Publisher profile](https://clawhub.ai/user/contact-nbwfoundation) <br>
-- [PGP chain explorer](https://pgp.elastos.io/tx/<hash>) <br>
-- [PGP gas swap](https://swap.pgpgas.org) <br>
-- [BTCD arbitrators subgraph](https://graph.eadd.co/subgraphs/name/btcd-arbitrators-pgp) <br>
+## Use Case:
 
+Developers and operators use this skill to run a sequential BTCD collateralization lifecycle on the PGP (Elastos) chain, including order creation, order taking, BTC collateral locking, proof submission, BTCD claiming, and explicit user-requested repayment.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration values, and Node.js execution steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces sequential operational guidance for a stateful wallet and transaction workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and scripts/package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles real private keys and mainnet funds, and scanner evidence reports weak secret and transaction-safety controls.
+
+Mitigation: Review scripts before installation, use wallets funded with only the minimum necessary amount, and do not reuse high-value private keys in the .env file.
+
+Risk: Scanner guidance flags reruns and setup resets as dangerous until state handling is fixed.
+
+Mitigation: Inspect state/flow-state.json before every step, avoid shared or CI environments, and treat reruns as requiring manual review of existing state and transaction IDs.
+
+Risk: Blockchain transaction destinations and amounts can move irreversible funds.
+
+Mitigation: Confirm all transaction destinations, collateral amounts, fees, and repayment actions manually before approving prompts or signing transactions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/contact-nbwfoundation/skills/btcd-skill-beta)
+- [PGP Gas Swap](https://swap.pgpgas.org)
+- [PGP Chain Explorer](https://pgp.elastos.io/tx/<hash>)
+- [Primary PGP RPC Endpoint](https://api.elastos.io/pg)
+- [BTCD Arbitrators PGP Subgraph](https://graph.eadd.co/subgraphs/name/btcd-arbitrators-pgp)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Code]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces step-by-step execution guidance for a bundled Node.js workflow that writes local flow state and submits blockchain transactions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

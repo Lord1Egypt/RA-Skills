@@ -1,44 +1,64 @@
-## Description: <br>
-AI agent toolkit for Solana - launch tokens, play poker, link your agent identity to mintyouragent.com, read agent personality files for profile linking, and manage a local wallet through a pure Python CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MintYourAgent is a pure Python CLI skill for Solana agents to launch pump.fun tokens, play poker with SOL stakes, link agent identity, and manage a local wallet in ~/.mintyouragent/.
 
-## Publisher: <br>
-[operatingdev](https://clawhub.ai/user/operatingdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[operatingdev](https://clawhub.ai/user/operatingdev)
 
-## Use Case: <br>
-External developers and AI-agent operators use this skill to create and manage a Solana wallet, launch pump.fun tokens, play agent poker with SOL stakes, link agent identity, and automate wallet-oriented CLI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and stores a Solana wallet under ~/.mintyouragent/ and can expose signing keys through setup or export output. <br>
-Mitigation: Use a dedicated low-balance wallet, protect ~/.mintyouragent/ and RECOVERY_KEY.txt, and avoid logging JSON setup or export output. <br>
-Risk: Launch, poker, transfer, and signing commands can spend funds or authorize wallet activity. <br>
-Mitigation: Prefer devnet and --dry-run during evaluation, keep mainnet balances minimal, and avoid unattended --yes or --skip-balance-check use. <br>
-Risk: API, RPC, and SSL environment variables can redirect traffic or weaken transport checks. <br>
-Mitigation: Review SOUL_API_URL, SOUL_SSL_VERIFY, HELIUS_RPC, and SOLANA_RPC_URL before funding a wallet or running mainnet commands. <br>
+## Use Case:
 
+External developers and AI agents use this skill to manage a dedicated Solana wallet, launch tokens, inspect balances and limits, play wallet-authenticated poker, and link an agent profile to MintYourAgent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/operatingdev/mintyouragent) <br>
-- [MintYourAgent agent documentation](https://www.mintyouragent.com/for-agents) <br>
-- [MintYourAgent website](https://www.mintyouragent.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with CLI commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The CLI can write command results to files and supports text, JSON, CSV, and table-style output modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.6.3 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can handle real-money Solana transactions for token launches, poker deposits, transfers, and initial buys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, test on devnet or with dry-run flows first, and avoid value-bearing actions until the human confirms the amount, network, and destination.
+
+Risk: Local wallet and recovery files grant wallet control if exposed.
+
+Mitigation: Treat wallet.json, RECOVERY_KEY.txt, backups, and console or JSON key output as full wallet-control secrets, and keep them outside logs, prompts, shared workspaces, and source control.
+
+Risk: Skipping confirmations, running headless or AI-controlled actions, using custom endpoints, or disabling SSL verification can increase transaction and data-exposure risk.
+
+Mitigation: Do not use --yes, headless mode, AI buy decisions, custom API/RPC endpoints, or SSL-disable settings for value-bearing actions unless the user has explicitly reviewed the risk.
+
+Risk: Linking soul or profile data can associate an agent identity summary with the wallet and MintYourAgent service.
+
+Mitigation: Link profile data only when the user is comfortable with that association and has reviewed the extracted identity information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/operatingdev/skills/mintyouragent)
+- [MintYourAgent documentation](https://www.mintyouragent.com/for-agents)
+- [MintYourAgent website](https://www.mintyouragent.com)
+- [Project repository](https://github.com/operatingdev/mintyouragent-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, terminal output, and optional JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify local wallet, configuration, recovery, audit, history, and backup files under ~/.mintyouragent/ when commands are executed.]
+
+## Skill Version(s):
+
+3.6.3 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

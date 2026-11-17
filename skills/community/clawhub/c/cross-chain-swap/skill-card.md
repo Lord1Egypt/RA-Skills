@@ -1,39 +1,56 @@
-## Description: <br>
-Execute a cross-chain token swap via Uniswap's bridge infrastructure. Handles quoting, safety validation, bridge monitoring, and destination confirmation. Use when the user wants to swap tokens across different chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute a cross-chain token swap via Uniswap's bridge infrastructure, including quoting, safety validation, bridge monitoring, and destination confirmation.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-External users and developers use this skill to request token swaps across supported chains, with the agent handling quoting, route checks, bridge monitoring, and a final execution report. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can delegate real cross-chain fund movement without clearly requiring final approval after the exact quote, fees, slippage, recipient, and transaction data are known. <br>
-Mitigation: Require the agent or wallet to show the exact source and destination chains, tokens, amount, recipient, route, estimated received amount, fees, slippage, transaction data, and irreversibility, then obtain explicit user approval or wallet signing before funds move. <br>
-Risk: Cross-chain bridge operations can take time to settle and may become stuck or fail. <br>
-Mitigation: Monitor bridge status through settlement, report delays clearly, and provide recovery instructions or source-wallet balance checks when settlement is delayed or fails. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/cross-chain-swap) <br>
+## Use Case:
 
+Developers and external users use this skill to request token swaps between supported chains through a single workflow that validates chains and tokens, obtains a route, monitors bridge settlement, and reports the final destination result.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain-text execution report with source and destination amounts, fees, settlement time, transaction identifiers, and risk or safety status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires exact chain, token, amount, recipient, route, fee, slippage, and transaction details to be reviewed before funds move.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Cross-chain swaps can move assets and incur irreversible financial loss if the route, token addresses, chain IDs, fees, slippage, minimum received amount, recipient, or approval transaction are wrong.
+
+Mitigation: Require explicit user review of the complete route and final wallet transaction approval before any swap execution, and test with a small amount first.
+
+Risk: The provided installation paths rely on mutable remote installers or sources.
+
+Mitigation: Use pinned, verified installer versions and immutable skill sources before installing or deploying the skill.
+
+Risk: Bridge settlement can be delayed or fail, requiring user-visible recovery guidance.
+
+Mitigation: Monitor bridge status through completion and surface clear recovery instructions if settlement is delayed or the bridge operation fails.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/cross-chain-swap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain-text execution reports with transaction identifiers, amounts, fees, settlement status, warnings, and recovery guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports source and destination amounts, gas and bridge fees, settlement time, source transaction, bridge identifier, destination transaction, and risk and safety status when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

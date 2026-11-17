@@ -1,46 +1,57 @@
-## Description: <br>
-A Chinese-language math coaching skill that guides students through problem solving, error analysis, concept questions, exam review, and similar practice without directly giving complete answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向初高中学生的数学解题教练，通过分级追问帮助学生理解单题、订正错误并练习同类题，也支持学生明确提出时的考前梳理。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students and learning assistants use this skill for math problem coaching, wrong-answer analysis, concept clarification, pre-exam review, and guided generation of similar practice questions. It is designed to ask diagnostic questions and validate understanding rather than provide direct complete solutions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to store or reuse problem history, weak points, and exam-related study context through learning DNA and math error DNA dependencies. <br>
-Mitigation: Review the dependent personalization skills and their data handling expectations before deployment. <br>
-Risk: The photo-based workflow depends on multimodal vision or OCR support that may misread math problem images. <br>
-Mitigation: Ask the learner to confirm recognized problem text and conditions before coaching begins. <br>
-Risk: A tutoring workflow can accidentally reveal complete answers instead of coaching the learner. <br>
-Mitigation: Keep the skill's no-direct-answer rule and require guided questions, student reasoning, and similar-problem verification. <br>
+## Use Case:
 
+初中和高中学生可用它拆解单道数学题、订正错误、练习同类题，或在明确提出时进行考前梳理。默认只在当前会话引导；读取档案、归档和提醒须由学生当轮明确开启。
 
-## Reference(s): <br>
-- [CLAW Template Extensions](references/claw-templates-extended.md) <br>
-- [Math Socratic Guide](references/math-socrates-guide.md) <br>
-- [Four-Step Photo Method State Machine](references/photo-4step-statemachine.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/qizhitang/xiaozhi-math-problem-solving-coach) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/qizhitang) <br>
+### Deployment Geography for Use:
 
+China (mainland curriculum defaults)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational guidance, question prompts, study summaries, and practice problems] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language tutoring workflow; may use multimodal/OCR support for problem images when the host agent provides it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Optional cross-session record reads and handoffs can involve student learning data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep use session-only by default; require the documented current-session consent before record reads, writes, or sharing, and honor the pause and sharing controls.
+
+Risk: The security assessment is partial and medium confidence, with scope and language-choice issues and an unresolved local reference.
+
+Mitigation: Review the reported issues and verify the missing reference for the intended use; treat the benign verdict as an assessment of available evidence, not a guarantee.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qizhitang/skills/xiaozhi-math-problem-solving-coach)
+- [Hint ladder](artifact/shared/hint-ladder.md)
+- [AI-generated problem checks](artifact/shared/ai-item-check.md)
+- [Four-step problem-solving workflow](artifact/references/photo-4step-statemachine.md)
+- [Socratic question guide](artifact/references/math-socrates-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Chinese tutoring dialogue, mathematical notation, structured study outlines, practice questions, and consent-based JSON handoff entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses graduated hints and similar-problem practice; generated questions are checked before presentation.]
+
+## Skill Version(s):
+
+2.12.7 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Baidu Nearby / 百度能力集合 provides Baidu web search, route planning, and nearby-place lookup through Python command-line scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Nearby provides Baidu web search, Baidu Map route planning, and nearby place recommendations for location-oriented queries.
 
-## Publisher: <br>
-[longjf25](https://clawhub.ai/user/longjf25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longjf25](https://clawhub.ai/user/longjf25)
 
-## Use Case: <br>
-Developers and agents use this skill to run Baidu web searches, plan travel routes, and find nearby places such as restaurants, attractions, hotels, shopping, and transit points. The map and nearby-place tools require a Baidu LBS API key and send the requested locations or coordinates to Baidu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, addresses, coordinates, route endpoints, nearby-place categories, and the Baidu API key are sent to Baidu when the tools are used. <br>
-Mitigation: Use a dedicated restricted Baidu key, monitor quota, and avoid entering highly sensitive personal locations unless that disclosure is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to search Baidu, plan routes, and find nearby restaurants, attractions, hotels, shops, transportation, and other places.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/longjf25/baidu-nearby) <br>
-- [Baidu LBS API key console](https://lbsyun.baidu.com/apiconsole/key) <br>
-- [Baidu LBS Platform](https://lbsyun.baidu.com/) <br>
+### Deployment Geography for Use:
 
+China for map and nearby-place workflows; web search usage depends on Baidu service availability.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text and Markdown with shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command output may include Baidu search results, route summaries, nearby-place listings, distances, addresses, and error messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Search terms, addresses, coordinates, and the Baidu API key may be sent to Baidu services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid highly sensitive searches or locations unless external sharing with Baidu is acceptable, and provide credentials through environment variables.
+
+Risk: Route and place recommendations depend on external Baidu service responses and location-service limits.
+
+Mitigation: Review returned routes and place recommendations before relying on them for travel or operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/longjf25/skills/baidu-nearby)
+- [Baidu LBS Open Platform](https://lbsyun.baidu.com/)
+- [Baidu LBS API key console](https://lbsyun.baidu.com/apiconsole/key)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Command-line text and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Baidu LBS API key for route planning and nearby place search.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

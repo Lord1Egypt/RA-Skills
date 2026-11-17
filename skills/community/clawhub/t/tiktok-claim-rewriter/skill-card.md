@@ -1,40 +1,50 @@
-## Description: <br>
-Rewrite risky TikTok product claims into safer and clearer language without losing persuasion. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Rewrite risky TikTok product claims into safer and clearer language without losing persuasion.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketing, compliance, and social content teams use this skill to review TikTok product scripts before publishing, identify risky claim language, and rewrite lines into safer persuasive alternatives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Rewritten product claims could still be misleading, unsubstantiated, or misaligned with platform policy. <br>
-Mitigation: Have a human verify each final claim against available substantiation, TikTok policy, and the product's approved proof boundaries before publishing. <br>
-Risk: Commercial use may conflict with the visible non-commercial license terms in the artifact. <br>
-Mitigation: Confirm the authoritative license and obtain any required commercial license before business use. <br>
+## Use Case:
 
+Marketing, compliance, and content teams use this skill to check TikTok product scripts before publishing, identify risky claim language, and rewrite it into clearer safer alternatives that stay within supplied proof boundaries.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown tables and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a risky line map, safer rewrites, and an alternative phrase bank.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Rewritten claims may still be unsupported, misleading, or noncompliant if the user provides incomplete proof boundaries or omits platform and advertising requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat rewrites as drafting assistance, provide accurate factual boundaries, and perform separate platform, legal, or advertising-compliance review before publishing high-risk claims.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/tiktok-claim-rewriter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with risk-map tables, rewrite tables, and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces drafting assistance for safer claim language; outputs should be reviewed against supplied evidence, platform policy, and advertising-compliance requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

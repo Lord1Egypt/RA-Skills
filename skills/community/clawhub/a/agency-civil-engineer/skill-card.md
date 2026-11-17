@@ -1,41 +1,54 @@
-## Description: <br>
-Expert AI agent specializing in civil engineer. From The Agency (github.com/msitarzewski/agency-agents). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent specializing in civil engineering, including structural analysis, geotechnical evaluation, construction documentation, and building code compliance.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Engineers and technical reviewers use this skill for civil and structural engineering guidance, including structural analysis, geotechnical evaluation, construction documentation, and building code compliance across international standards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Civil and structural engineering guidance may be incorrect, incomplete, or unsuitable for a specific jurisdiction, site condition, or life-safety decision. <br>
-Mitigation: Use outputs as drafting and review support only; require review and sign-off by a licensed engineer before relying on calculations, drawings, specifications, or code interpretations. <br>
-Risk: Project memory claims may lead users to share confidential site, client, or infrastructure details. <br>
-Mitigation: Avoid entering sensitive project details unless the platform's session and memory handling are acceptable for the project. <br>
+## Use Case:
 
+Developers, engineers, and technical teams use this agent as a drafting and analysis aid for civil and structural engineering questions, including code-aware calculations, geotechnical review, construction documentation, and compliance matrices. Outputs are not a substitute for review and sign-off by a properly licensed engineer in the project jurisdiction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-civil-engineer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhouqkt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with calculations, checklists, assumptions, and code or standards references when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable install steps or credential access are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may produce high-stakes civil or structural engineering guidance that is incorrect, incomplete, or misleading if treated as approved design work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs only as drafting and analysis aids; require independent checking and sign-off by a properly licensed engineer before construction, permitting, shop drawing approval, site acceptance, or certification.
+
+Risk: The skill describes retaining project-specific parameters, which may include sensitive client, site, soil, structural, or authority information.
+
+Mitigation: Avoid storing sensitive project details unless the platform's memory and data handling behavior is acceptable; redact confidential project information where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-civil-engineer)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhouqkt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with engineering calculations, checklists, design notes, and code-reference guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool execution or external API calls required; outputs require professional review for high-stakes engineering use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Monitor recent changes and view the agent leaderboard on Clarity Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor recent changes and view the agent leaderboard on Clarity Protocol.
 
-## Publisher: <br>
-[clarityprotocol](https://clawhub.ai/user/clarityprotocol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[clarityprotocol](https://clawhub.ai/user/clarityprotocol)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch recent Clarity Protocol findings or annotations, poll for updates since a timestamp, and inspect agent contribution rankings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends query timestamps, optional filters, and optionally CLARITY_API_KEY to clarityprotocol.io. <br>
-Mitigation: Use a scoped or revocable API key and run the polling commands only when recurring Clarity Protocol API calls are intended. <br>
-Risk: Repeated polling can create recurring network requests to Clarity Protocol. <br>
-Mitigation: Poll at the documented interval or slower, and stop polling when updates are no longer needed. <br>
+## Use Case:
 
+Developers and agents use this skill to monitor new Clarity Protocol findings and annotations since a timestamp and to view agent contribution leaderboard data.
 
-## Reference(s): <br>
-- [Clarity Protocol](https://clarityprotocol.io) <br>
-- [Clarity Protocol API](https://clarityprotocol.io/api/v1) <br>
-- [Clarity Changes on ClawHub](https://clawhub.ai/clarityprotocol/clarity-changes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [JSON or plain-text summaries from command-line scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only API results; optional CLARITY_API_KEY may increase rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, frontmatter) <br>
+Risk: Running the scripts contacts clarityprotocol.io and may send CLARITY_API_KEY as an X-API-Key header when that environment variable is set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where outbound requests to clarityprotocol.io are acceptable, and review the environment before execution.
+
+Risk: Frequent polling can hit the documented Clarity Protocol rate limits.
+
+Mitigation: Use the documented polling pattern and retain the returned until timestamp for the next request.
+
+## Reference(s):
+
+- [Clarity Protocol](https://clarityprotocol.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON or plain-text summaries from Python command-line scripts, with Markdown usage guidance in the skill file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires internet access to clarityprotocol.io; CLARITY_API_KEY is optional and increases documented rate limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

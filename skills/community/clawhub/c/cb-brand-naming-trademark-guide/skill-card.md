@@ -1,40 +1,55 @@
-## Description: <br>
-Generates and evaluates brand names across languages using cultural-safety checks, naming scorecards, and trademark-readiness preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and evaluate brand names across languages with cultural safety checks and trademark-readiness preparation.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Founders, brand teams, product marketers, and localization managers use this skill to create naming briefs, evaluate candidate names for foreign markets, and prepare trademark-readiness packets for qualified counsel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat preliminary trademark, domain, SEO, or cultural screening as verified availability. <br>
-Mitigation: Label findings as preliminary and dated; require user-provided authoritative search results and qualified trademark counsel before commercial adoption. <br>
-Risk: Some examples overstate what the skill can verify without live or user-provided authoritative sources. <br>
-Mitigation: Do not claim a name, domain, or handle is available unless supported by dated results from USPTO, EUIPO, WIPO, KIPRIS, registrars, marketplace, or handle-search sources. <br>
+## Use Case:
 
+External founders, brand teams, product marketers, and localization managers use this skill to create naming briefs, evaluate candidate names across markets, and prepare trademark-readiness packets for qualified review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/cb-brand-naming-trademark-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklists, scorecards, tables, and comparison matrices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Trademark, domain, SEO, and cultural-screening results are preliminary unless supported by dated authoritative sources and qualified local review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Trademark, domain, social-handle, SEO, or cultural-risk outputs may be mistaken for final availability or legal clearance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those findings as preliminary unless the user provides dated results from authoritative tools, and require qualified local trademark review before launch.
+
+Risk: Some examples imply that checks can prove availability more strongly than the skill can support on its own.
+
+Mitigation: Use the skill for structured brainstorming and preparation, and state availability as unknown until checked against current authoritative sources.
+
+## Reference(s):
+
+- [Skill Source](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Acceptance Criteria](artifact/ACCEPTANCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured briefs, scorecards, checklists, and comparison matrices]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Availability, trademark, domain, SEO, and cultural-risk findings should be labeled preliminary unless backed by dated authoritative sources.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, skill.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Támogatja magyar nyelvű szövegek elemzését, összefoglalását, kulcsszó- és entitáskinyerését, valamint érzelem- és témaazonosítását. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Magyar nyelvű szövegek elemzését, összefoglalását, kulcsszó- és entitáskinyerését, valamint érzelem- és témaazonosítását segíti.
 
-## Publisher: <br>
-[Izsook](https://clawhub.ai/user/Izsook) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[izsook](https://clawhub.ai/user/izsook)
 
-## Use Case: <br>
-Developers, analysts, and content teams use this skill to summarize Hungarian text, extract keywords and entities, identify topics, and assess sentiment in Hungarian-language content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill text references helper scripts and extra reference files that are not included in the artifact. <br>
-Mitigation: Treat those files as unavailable unless they are supplied and separately reviewed. <br>
-Risk: Hungarian text analysis outputs may be incomplete or context-sensitive for idioms, ambiguous words, sentiment, and entity recognition. <br>
-Mitigation: Review generated summaries, keywords, entities, topics, and sentiment against the original Hungarian text before relying on them. <br>
+## Use Case:
 
+Developers, analysts, and Hungarian-language content teams use this skill to guide summarization, keyword extraction, topic identification, sentiment analysis, and entity extraction for Hungarian text.
 
-## Reference(s): <br>
-- [Magyar Szövegértés - Best Practices](references/szovegertes.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Izsook/magyar-szovegfeldolgoz-s) <br>
-- [Publisher profile](https://clawhub.ai/user/Izsook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or plain text with optional code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the requested text-processing task and supplied Hungarian input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact references stopword, regex, NER, and script files that are not included.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those references as unavailable unless supplied separately; rely only on the bundled Markdown guidance and verify any generated processing logic before use.
+
+Risk: Hungarian NLP outputs such as summaries, sentiment labels, and entity lists can be incomplete or context-sensitive.
+
+Mitigation: Review outputs against the source text, especially where idioms, negation, ambiguous words, dates, or named entities affect decisions.
+
+## Reference(s):
+
+- [Magyar Szövegértés - Best Practices](references/szovegertes.md)
+- [ClawHub skill page](https://clawhub.ai/izsook/skills/magyar-szovegfeldolgoz-s)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with illustrative Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable files are included in the release artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Portable Codebase Argus agent playbook for evidence-first multi-agent review of GitHub pull requests, CI failures, GitHub Actions logs, GitHub App webhook review, /argus PR comment commands, autofix branch planning, OpenAI/Claude/Gemini/Codex provider tribunals, downstream merge/rebase work, and long-lived fork sync against an upstream repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codebase Argus is a portable, evidence-first playbook for reviewing GitHub pull requests, CI failures, downstream fork integrations, webhook review flows, and autofix plans.
 
-## Publisher: <br>
-[aaronz345](https://clawhub.ai/user/aaronz345) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronz345](https://clawhub.ai/user/aaronz345)
 
-## Use Case: <br>
-Developers and engineers use this skill to review GitHub pull requests, CI failures, GitHub Actions logs, and downstream fork integration work with evidence-first review steps and optional multi-provider analysis. It also guides GitHub App webhook review, /argus comment commands, and cautious autofix or sync planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or running the referenced Codebase Argus checkout may execute code from an external repository. <br>
-Mitigation: Pin and inspect the checkout before installation or execution, and install only when the referenced repository is trusted. <br>
-Risk: GitHub, GitHub App, and AI provider credentials can expose private repositories, CI logs, or source content if over-scoped or mishandled. <br>
-Mitigation: Use read-only or least-privileged GitHub tokens, limit GitHub App access to intended repositories, protect provider API keys, and send private code or logs to providers only when permitted. <br>
-Risk: Automated PR and webhook workflows can post review comments or act on repository events if configured too broadly. <br>
-Mitigation: Keep webhook secrets configured, restrict app installation scope, and require explicit user direction before approve, merge, push, or PR-creation actions. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to guide evidence-based review of pull requests, CI logs, webhook-driven review flows, and long-lived fork synchronization. It helps turn repository and CI evidence into review findings, root-cause analysis, command plans, and constrained autofix or sync guidance.
 
-## Reference(s): <br>
-- [Codebase Argus homepage](https://github.com/AaronZ345/codebase-argus) <br>
-- [ClawHub skill page](https://clawhub.ai/aaronz345/codebase-argus) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/aaronz345) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration examples, review findings, and command plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference optional GitHub, GitHub App, OpenAI, Anthropic, and Gemini credentials when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release evidence) <br>
+Risk: Repository data, CI logs, and credentials may be exposed when using GitHub or AI provider integrations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run only from a trusted checkout, prefer read-only and least-privilege credentials, and review CI logs and diffs for secrets before using provider or tribunal modes.
+
+Risk: Webhook deployment or sync execution can post comments, push branches, or open pull requests when configured with the relevant credentials and flags.
+
+Mitigation: Reserve webhook deployment and sync execution for repositories where those actions are acceptable, and require explicit execution, push, and create-PR flags before making remote changes.
+
+Risk: Model-only review claims may be low confidence or unsupported by concrete repository evidence.
+
+Mitigation: Treat outputs as review assistance and manually verify low-confidence claims before reporting them as facts or acting on them.
+
+## Reference(s):
+
+- [Codebase Argus repository homepage](https://github.com/AaronZ345/codebase-argus)
+- [Codebase Argus ClawHub skill page](https://clawhub.ai/aaronz345/skills/codebase-argus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, code snippets, configuration examples, and structured review findings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CI root-cause analysis, pull request review findings, webhook setup guidance, and dry-run sync or autofix plans; posting, pushing, merging, or execution requires explicit user direction.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

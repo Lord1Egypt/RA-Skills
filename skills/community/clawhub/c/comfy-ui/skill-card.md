@@ -1,40 +1,53 @@
-## Description: <br>
-Generate high-quality images through a local ComfyUI instance for private image generation on user-controlled hardware and custom workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality images through a user-configured local ComfyUI server with optional custom workflow JSON files.
 
-## Publisher: <br>
-[dihan](https://clawhub.ai/user/dihan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dihan](https://clawhub.ai/user/dihan)
 
-## Use Case: <br>
-Developers, creators, and agent users use this skill to generate images through a ComfyUI server they control, including custom workflow JSON files when needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Using an untrusted ComfyUI endpoint can expose prompts, workflows, or generated outputs outside the user's controlled environment. <br>
-Mitigation: Configure the skill only with a ComfyUI server you control, and avoid third-party endpoints. <br>
-Risk: Workflow and file handling are broader than the documentation bounds. <br>
-Mitigation: Do not pass sensitive JSON files as workflows; review workflow paths and sanitize downloaded filenames before broad use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dihan/comfy-ui) <br>
-- [Publisher profile](https://clawhub.ai/user/dihan) <br>
+## Use Case:
 
+External users, developers, and creative operators use this skill to send prompts and optional workflow JSON to their own ComfyUI server and retrieve locally saved image outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; the helper script returns a local generated image path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires COMFYUI_SERVER_ADDRESS and a running ComfyUI server; optional workflow JSON can be supplied.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A server-controlled filename can cause local files to be written outside the intended image folder.
+
+Mitigation: Use only trusted local ComfyUI servers and harden downloads by sanitizing filenames and verifying that resolved output paths stay inside image-gens/.
+
+Risk: Prompts and workflow content are sent to the configured ComfyUI server.
+
+Mitigation: Use non-sensitive prompts and workflows, and document the configured server before running generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dihan/skills/comfy-ui)
+- [Publisher profile](https://clawhub.ai/user/dihan)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and script output paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved locally under image-gens/ by the helper script.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Human-in-the-loop MCP feedback collector with task queue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Human-in-the-loop MCP feedback collector that pauses agent work for browser-based feedback and can auto-dequeue queued tasks.
 
-## Publisher: <br>
-[2019-02-18](https://clawhub.ai/user/2019-02-18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2019-02-18](https://clawhub.ai/user/2019-02-18)
 
-## Use Case: <br>
-Developers and AI agent users use this skill to pause an agent workflow for human confirmation, collect browser-based feedback, and optionally dispatch queued follow-up tasks before the agent continues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The feedback UI and WebSocket server can expose saved feedback and send instructions to the agent if reachable without authentication. <br>
-Mitigation: Set FEEDBACK_TOKEN, restrict access with a firewall, and do not expose port 18061 publicly. <br>
-Risk: Queued tasks are returned to the agent as instructions to execute. <br>
-Mitigation: Review queued tasks before enabling auto-dequeue or using the tool on shared networks. <br>
-Risk: Feedback history is persisted locally and may contain sensitive information. <br>
-Mitigation: Review, rotate, or delete feedback-history.json regularly and avoid sending secrets through feedback. <br>
-Risk: The evidence guidance notes that the browser flow may not forward FEEDBACK_TOKEN to API or WebSocket calls. <br>
-Mitigation: Test the browser flow carefully when relying on FEEDBACK_TOKEN before using the skill in a shared environment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to pause automated work for human confirmation, collect browser-based feedback, and continue through queued tasks when a workflow needs interactive review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2019-02-18/skill-feedback-collector) <br>
-- [Publisher profile](https://clawhub.ai/user/2019-02-18) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration] <br>
-**Output Format:** [MCP tool text responses with Markdown setup guidance and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns human feedback text, feedback-mode status text, or the next queued task as a single response stream.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; package.json reports 1.0.0) <br>
+Risk: The default browser control panel can expose feedback history and controls to clients that can reach the service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on localhost or a trusted, firewalled network, and set a strong FEEDBACK_TOKEN for shared or public deployments.
+
+Risk: Feedback and queued tasks may contain sensitive information and are persisted locally.
+
+Mitigation: Avoid placing secrets in feedback, and regularly review or clear feedback-history.json.
+
+Risk: Queued browser or API tasks can steer subsequent agent work.
+
+Mitigation: Apply the agent's normal safety, review, and confirmation rules to queued tasks before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2019-02-18/skills/skill-feedback-collector)
+- [Publisher profile](https://clawhub.ai/user/2019-02-18)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, configuration]
+
+**Output Format:** [Plain text MCP tool responses with setup guidance in Markdown documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return human feedback text or an auto-dequeued task; local conversation history is retained up to 500 entries.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

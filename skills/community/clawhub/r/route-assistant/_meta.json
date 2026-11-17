@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn79d4b6gqzp97667xjffkvbhn80pzj1",
+  "owner": "user",
   "slug": "route-assistant",
-  "version": "1.4.0",
-  "publishedAt": 1772446659442
+  "displayName": "Route Assistant",
+  "latest": {
+    "version": "1.0.0",
+    "description": "智能出行路线助手，自动识别地名和出行路线"
+  }
 }

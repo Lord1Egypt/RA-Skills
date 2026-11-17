@@ -1,38 +1,52 @@
-## Description: <br>
-A clean, reliable system resource monitor for CPU load, RAM, Swap, and Disk usage. Optimized for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A clean, reliable system resource monitor for CPU load, RAM, Swap, and Disk usage, optimized for OpenClaw.
 
-## Publisher: <br>
-[Passersss](https://clawhub.ai/user/Passersss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[passersss](https://clawhub.ai/user/passersss)
 
-## Use Case: <br>
-Developers and operators use this skill to request concise local server health reports covering CPU load, memory, swap, disk usage, and uptime. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent runs a local shell script to inspect host resource metrics. <br>
-Mitigation: Review the included script before installation and run it only in environments where reading uptime, memory, swap, and root disk usage is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Passersss/system-resource-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/Passersss) <br>
+## Use Case:
 
+Developers and operators use this skill to answer system health questions by running a local, read-only resource report for CPU load, memory, swap, disk usage, and uptime.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text system resource report with optional Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports local host metrics from uptime, free, and df without network transmission according to the provided security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad requests such as system status or server health could invoke local metric collection unintentionally.
+
+Mitigation: Use the skill only when local system health reporting is expected, and review agent routing for broad system-status phrases.
+
+Risk: The skill exposes basic local machine resource status to the requesting agent session.
+
+Mitigation: Deploy only where sharing CPU, memory, swap, disk, and uptime information with the agent is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/passersss/skills/system-resource-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown or terminal-style text summarizing local system resource metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports local uptime, CPU load averages, RAM usage, swap usage, and root disk usage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,51 +1,68 @@
-## Description: <br>
-Reviews marketing content against FTC, HIPAA, GDPR, SEC 482, SEC Marketing, CCPA, COPPA, and CAN-SPAM using structured rule references with source URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews marketing content, emails, landing pages, privacy policies, images, and URLs against FTC, HIPAA, GDPR, SEC 482, SEC Marketing, CCPA, COPPA, and CAN-SPAM rules with cited sources.
 
-## Publisher: <br>
-[arberx](https://clawhub.ai/user/arberx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[arberx](https://clawhub.ai/user/arberx)
 
-## Use Case: <br>
-External users, developers, and compliance reviewers use this skill to pre-review marketing copy, emails, landing pages, privacy policies, and draft disclosures against supported regulatory frameworks. The outputs are compliance guidance for human review, not final legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided URL fetching may access private or access-controlled pages if the user supplies them. <br>
-Mitigation: Only provide URLs intended for review and avoid private or access-controlled pages unless deliberate. <br>
-Risk: Compliance findings or drafted disclosures could be mistaken for final legal advice. <br>
-Mitigation: Use outputs as pre-review guidance and route final decisions through compliance or legal reviewers. <br>
+## Use Case:
 
+Marketing, privacy, legal, and compliance teams use this skill to review marketing copy, emails, landing pages, privacy policies, images, or URLs against structured regulatory rules. It produces preliminary findings, cited rule explanations, compliance checklists, and draft disclosure language for human review.
 
-## Reference(s): <br>
-- [Agent Instructions](references/instructions.md) <br>
-- [CAN-SPAM Rules](references/rules-can-spam.json) <br>
-- [CCPA Rules](references/rules-ccpa.json) <br>
-- [COPPA Rules](references/rules-coppa.json) <br>
-- [FTC Claims Rules](references/rules-ftc-claims.json) <br>
-- [FTC Dark Patterns Rules](references/rules-ftc-dark-patterns.json) <br>
-- [FTC Endorsements Rules](references/rules-ftc-endorsements.json) <br>
-- [GDPR Rules](references/rules-gdpr.json) <br>
-- [HIPAA Rules](references/rules-hipaa.json) <br>
-- [SEC 482 Rules](references/rules-sec-482.json) <br>
-- [SEC Marketing Rules](references/rules-sec-marketing.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/arberx/compliance-officer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown compliance reviews, email reviews, privacy policy checklists, rule explanations, rule tables, and draft disclosure language with citations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch user-provided URLs when network access is available; findings are pre-review guidance for human legal or compliance review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and claw.json) <br>
+Risk: The skill can fetch user-provided URLs during review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use URL review only for public pages that are intended to be fetched by the agent.
+
+Risk: Compliance findings may be incomplete or incorrect if treated as legal determinations.
+
+Mitigation: Treat outputs as preliminary compliance guidance and route final decisions through qualified compliance or legal reviewers.
+
+Risk: The install command in the artifact is not pinned to a specific installer version.
+
+Mitigation: Install only from a trusted ClawHub or registry path and prefer pinned or verified installer versions when available.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arberx/skills/compliance-officer)
+- [Agent Instructions](references/instructions.md)
+- [CAN-SPAM Rules](references/rules-can-spam.json)
+- [CCPA Rules](references/rules-ccpa.json)
+- [COPPA Rules](references/rules-coppa.json)
+- [FTC Claims Rules](references/rules-ftc-claims.json)
+- [FTC Dark Patterns Rules](references/rules-ftc-dark-patterns.json)
+- [FTC Endorsements Rules](references/rules-ftc-endorsements.json)
+- [GDPR Rules](references/rules-gdpr.json)
+- [HIPAA Rules](references/rules-hipaa.json)
+- [SEC 482 Rules](references/rules-sec-482.json)
+- [SEC Marketing Rules](references/rules-sec-marketing.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports with findings, rule citations, suggested fixes, rule explanations, rule tables, or draft disclosure text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [URL review requires network access; findings are preliminary and should be reviewed by compliance or legal teams.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and claw.json; SKILL.md metadata.version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

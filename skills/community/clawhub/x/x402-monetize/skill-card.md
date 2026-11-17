@@ -1,40 +1,49 @@
-## Description: <br>
-Creates paid API endpoints using the x402 micropayment protocol by wrapping existing Zo skills and tools behind per-request payment walls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates paid API endpoints using the x402 micropayment protocol by wrapping existing Zo skills and tools behind per-request payment walls.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
 
-## Use Case: <br>
-Developers and operators use this skill to expose existing scripts, Zo skills, or tools as paid HTTP API endpoints using x402 payment middleware. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes running an always-available paid API service from the user's environment. <br>
-Mitigation: Review whether that service exposure is intended before installation or deployment. <br>
-Risk: x402 payment configuration, wallet or payout settings, endpoint data sources, and financial outputs can affect real payments or user-facing financial results. <br>
-Mitigation: Verify payment configuration, payout details, endpoint data sources, and financial outputs before making endpoints available to others. <br>
+## Use Case:
 
+Developers use this skill to turn existing Python scripts or Zo tools into HTTP API endpoints protected by x402 per-request payment middleware. It is aimed at monetizing API calls that return trading signals, flow alerts, market analysis, or similar service responses.
 
-## Reference(s): <br>
-- [x402 quickstart for sellers](https://docs.x402.org/getting-started/quickstart-for-sellers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance describes paid endpoint setup, example routes, payment flow, and service operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: evidence release metadata and artifact frontmatter) <br>
+Risk: The skill asks users to run an unreviewed external Node.js server that exposes paid, always-on API endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing or running it, inspect /home/workspace/MoneyMachine/x402_server/index.js, verify its dependencies and payment recipient configuration, and confirm that exposing the service from the environment is acceptable.
+
+## Reference(s):
+
+- [x402 Quickstart for Sellers](https://docs.x402.org/getting-started/quickstart-for-sellers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe configuration for a long-running paid API service on port 4020.]
+
+## Skill Version(s):
+
+1.0.15 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

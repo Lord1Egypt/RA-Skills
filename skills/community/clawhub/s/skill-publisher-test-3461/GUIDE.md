@@ -39,7 +39,7 @@ ClawHub Token: clh_xxxxx...
 3. 点击 "Generate token"
 4. **立即复制** (只显示一次！)
 
-**格式**：`ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+**格式**：`REDACTED-SECRET`
 
 ### 2. ClawHub Token
 

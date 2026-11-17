@@ -1,42 +1,55 @@
-## Description: <br>
-Instruction-only compliance checker for AI outputs that detects jailbreaks, prompt injection, regulatory issues, unsafe financial or medical advice, and privacy issues entirely within the agent context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DCL Policy Enforcer helps agents review LLM or agent outputs for policy, safety, jailbreak, quality, and regulatory-theme concerns using a paid DCL Trust Oracle service or a free local checklist.
 
-## Publisher: <br>
-[daririnch](https://clawhub.ai/user/daririnch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daririnch](https://clawhub.ai/user/daririnch)
 
-## Use Case: <br>
-AI agent builders, LLM pipeline teams, and compliance reviewers use this skill to locally check generated text against policy checklists before delivery. It is suited for reviewing AI outputs against safety, privacy, and regulated-domain guardrails without sending text outside the agent context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the skill's compliance verdict as legal, medical, financial, or regulatory certification. <br>
-Mitigation: Use it as a local checklist and have qualified reviewers compare the policy criteria and verdicts against the applicable requirements before relying on them. <br>
-Risk: Instruction-only checklist analysis can miss context-specific issues or produce false positives. <br>
-Mitigation: Apply human review for regulated or high-impact outputs, especially when the verdict affects delivery, user rights, financial decisions, or health-related content. <br>
+## Use Case:
 
+Developers and agent operators use this skill to gate risky agent actions, screen outputs for jailbreak or safety issues, and create audit evidence for policy decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daririnch/dcl-policy-enforcer) <br>
-- [Fronesis Labs privacy policy](https://fronesislabs.com/#privacy) <br>
-- [DCL Security Suite](https://hub.fronesislabs.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with a JSON verdict schema] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only local checklist; no network, credential, privileged access, persistence, or code execution behavior indicated by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence; artifact text states 2.0.0) <br>
+Risk: Live policy checks can send evaluated outputs to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact secrets and personal data before live checks, or use the free local checklist when data should not leave the agent context.
+
+Risk: Paid MCP calls can trigger wallet payments.
+
+Mitigation: Configure wallet budgets, spending limits, or manual approval before enabling the live MCP server.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daririnch/skills/dcl-policy-enforcer)
+- [DCL Trust Oracle MCP endpoint](https://mcp.fronesislabs.com/mcp)
+- [Fronesis Labs DCL Security Suite](https://hub.fronesislabs.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands, code, text]
+
+**Output Format:** [Markdown with JSON and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May instruct an agent to call a paid remote MCP policy-check service or use a free instruction-only checklist.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release evidence; artifact frontmatter states 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

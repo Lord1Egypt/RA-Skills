@@ -1,43 +1,52 @@
-## Description: <br>
-Document Reader extracts text from common document formats and selected files inside ZIP, TAR, RAR, and 7z archives for agent analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document Reader extracts text from PDF, DOCX, XLSX, PPTX, RTF, ODT, HTML, plain text, and selected files inside common archives for agent analysis.
 
-## Publisher: <br>
-[xiaoyaliu00](https://clawhub.ai/user/xiaoyaliu00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xiaoyaliu00](https://clawhub.ai/user/xiaoyaliu00)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, engineers, and agent users use this skill to read common office documents, text files, and files stored inside archives so the extracted content can be analyzed or processed by an agent.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Archive handling and document extraction can expose the agent environment to untrusted or oversized files.
+
+Mitigation: Use the skill only on files the user intends the agent to read, avoid untrusted oversized archives, and review extracted content before relying on it.
+
+Risk: The documented dependency installation command can install packages system-wide.
+
+Mitigation: Install dependencies in an isolated virtual environment or container before running the document reader.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to inspect office documents, text files, and selected archive members without manually converting or extracting them first. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local documents or archive members selected by the user or agent, which may expose confidential content in shared environments. <br>
-Mitigation: Run it only against intended files in an isolated environment and avoid processing confidential files on shared machines. <br>
-Risk: Broad document and archive parsing can carry risk when inputs are untrusted or malformed. <br>
-Mitigation: Avoid untrusted archives and documents, keep parser dependencies updated, and review extracted content before relying on it. <br>
-Risk: Archive member reads use temporary files, and the security guidance calls out implementation risk around temporary file handling. <br>
-Mitigation: Patch the script to use secure temporary files before handling sensitive material. <br>
+**Output Format:** [Plain text or JSON emitted by a command-line document reader, with Markdown documentation and shell command examples.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page: document-reader](https://clawhub.ai/xiaoyaliu00/document-reader) <br>
-- [ClawHub publisher profile: xiaoyaliu00](https://clawhub.ai/user/xiaoyaliu00) <br>
+**Other Properties Related to Output:** [Can list archive contents or read a specified file from an archive; long text output may be truncated in human-readable mode.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, json] <br>
-**Output Format:** [Plain text or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Archive reads require an explicit inner path; long text output may be truncated in the command-line display.] <br>
+1.0.0 (source: frontmatter and server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

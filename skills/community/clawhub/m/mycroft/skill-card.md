@@ -1,43 +1,56 @@
-## Description: <br>
-EPUB and ebook ingestion, local vector index, and Q&A CLI for books. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EPUB and ebook ingestion, local vector index, and Q&A CLI for books.
 
-## Publisher: <br>
-[fabe](https://clawhub.ai/user/fabe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fabe](https://clawhub.ai/user/fabe)
 
-## Use Case: <br>
-Developers and readers use this skill to install and operate the mycroft CLI for ingesting EPUBs and ebooks, building a local vector index, searching passages, and asking questions about books. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs an external CLI package. <br>
-Mitigation: Confirm @fs/mycroft is the package the user intends to trust before installation or execution. <br>
-Risk: Book ingestion and question answering use an OpenAI API key and may process private or proprietary book content. <br>
-Mitigation: Use an API key appropriate for this workload and avoid ingesting sensitive books unless external processing is acceptable. <br>
-Risk: The CLI supports forced deletion of indexed books. <br>
-Mitigation: Require explicit confirmation before allowing an agent to run delete commands with --force. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fabe/mycroft) <br>
-- [mycroft homepage](https://github.com/fabe/mycroft) <br>
-- [npm package @fs/mycroft](https://www.npmjs.com/package/@fs/mycroft) <br>
+## Use Case:
 
+Developers and readers use this skill to configure and operate the mycroft CLI for ingesting EPUBs and ebooks, building a local vector index, searching passages, and asking questions about book content.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the mycroft CLI and OPENAI_API_KEY for embedding-backed ask, search, and chat workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs an unpinned external npm CLI that executes with access to user-provided credentials and local book data.
+
+Mitigation: Review the npm package source and install a pinned, audited version before use.
+
+Risk: Commands that use OPENAI_API_KEY may process book content through external API calls.
+
+Mitigation: Provide only API keys and ebook paths that are appropriate for this workflow and data handling context.
+
+Risk: The delete command can bypass confirmation when run with --force.
+
+Mitigation: Avoid --force in scripted runs unless the target book ID and deletion behavior have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fabe/skills/mycroft)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance assumes the mycroft CLI is installed and OPENAI_API_KEY is available when embeddings, Q&A, search, or chat commands require it.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

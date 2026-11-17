@@ -1,42 +1,59 @@
-## Description: <br>
-中国快递物流查询工具，可查询顺丰、圆通、中通、申通、韵达、京东、EMS等中国快递公司的物流信息，并展示物流轨迹，无需API Key。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国快递物流查询工具，用于查询顺丰、圆通、中通、申通、韵达、京东、EMS 等中国快递公司的物流状态和轨迹，无需 API Key。
 
-## Publisher: <br>
-[huanyuai](https://clawhub.ai/user/huanyuai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huanyuai](https://clawhub.ai/user/huanyuai)
 
-## Use Case: <br>
-External users and agents use this skill to look up Chinese courier tracking status and present current delivery state, tracking history, and a Kuaidi100 detail link. It is intended for explicit package-tracking requests where the user provides a tracking number and, when needed, the courier code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tracking numbers, and sometimes a phone-number last-four suffix for some SF lookups, are sent to Kuaidi100. <br>
-Mitigation: Use the skill only for explicit courier tracking requests and avoid collecting or sending extra personal details unless the carrier lookup requires them. <br>
-Risk: Frequent repeated lookups may cause temporary blocking or stale/no-result responses. <br>
-Mitigation: Avoid repeated queries for the same tracking number more often than the documented 30-minute interval. <br>
+## Use Case:
 
+External users and agents use this skill to look up Chinese courier package status, logistics history, and detail links from a tracking number, with optional manual carrier selection when auto-detection is unreliable.
 
-## Reference(s): <br>
-- [Courier Codes Reference](references/courier-codes.md) <br>
-- [Kuaidi100 Query Endpoint](https://www.kuaidi100.com/query) <br>
-- [ClawHub Skill Page](https://clawhub.ai/huanyuai/cn-express-tracker-noapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text with inline shell commands and tracking results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes courier name, tracking number, current status, timestamped tracking events, and a Kuaidi100 detail link when data is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Package tracking numbers, and sometimes courier-specific helper details such as phone-number suffixes, are sent to kuaidi100.com for lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm user intent before lookup and avoid using the skill for requests outside Chinese courier tracking contexts.
+
+Risk: Very frequent repeated lookups can lead to short-term blocking by the external tracking service.
+
+Mitigation: Follow the skill guidance to avoid repeatedly querying the same tracking number within short intervals.
+
+Risk: Carrier auto-detection can be wrong or unavailable for some tracking numbers.
+
+Mitigation: Ask the user to confirm the courier company and rerun the query with an explicit carrier code when results are missing or inconsistent.
+
+## Reference(s):
+
+- [中国快递公司代码参考表](references/courier-codes.md)
+- [ClawHub skill page](https://clawhub.ai/huanyuai/skills/cn-express-tracker-noapi)
+- [kuaidi100 query endpoint](https://www.kuaidi100.com/query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text tracking summaries with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include carrier name, tracking number, current status, reverse-chronological logistics events, and a kuaidi100 detail link.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

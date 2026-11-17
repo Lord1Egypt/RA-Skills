@@ -1,11 +1,11 @@
 # ISYS\_HeaderMenuSub1MenuItem interface
 
-顶部二级菜单项
+Top-level secondary menu item
 
 ## Signature
 
 ```typescript
-interface ISYS_HeaderMenuSub1MenuItem 
+interface ISYS_HeaderMenuSub1MenuItem
 ```
 
 ## Properties
@@ -14,116 +14,107 @@ interface ISYS_HeaderMenuSub1MenuItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [icon?](./ISYS_HeaderMenuSub1MenuItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-_(Optional)_ 菜单项图标
-
+_(Optional)_ Menu item icon
 
 </td></tr>
 <tr><td>
 
 [id](./ISYS_HeaderMenuSub1MenuItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-菜单项 ID，不可重复
-
+Menu item ID, cannot be repeated
 
 </td></tr>
 <tr><td>
 
 [menuItems?](./ISYS_HeaderMenuSub1MenuItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[ISYS\_HeaderMenuSub2MenuItem](./ISYS_HeaderMenuSub2MenuItem.md) \| null&gt;
 
-
 </td><td>
 
-_(Optional)_ 子菜单项
-
+_(Optional)_ Sub-menu item
 
 </td></tr>
 <tr><td>
 
 [registerFn?](./ISYS_HeaderMenuSub1MenuItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
+</td><td>
+
+_(Optional)_ Registration method name (the method needs to be exported in the extension entry file)
+
+</td></tr>
+<tr><td>
+
+[shortcutKey?](./ISYS_HeaderMenuSub1MenuItem.md)
 
 </td><td>
 
-_(Optional)_ 注册方法名称（需要在扩展入口文件导出该方法）
+</td><td>
 
+[TSYS\_ShortcutKeys](../types/TSYS_ShortcutKeys.md)
+
+</td><td>
+
+_(Optional)_ 局部快捷键
 
 </td></tr>
 <tr><td>
 
 [title](./ISYS_HeaderMenuSub1MenuItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-菜单项标题
-
+Menu item title
 
 </td></tr>
 </tbody></table>
@@ -136,7 +127,7 @@ string
 
 # ISYS\_HeaderMenuSub1MenuItem.icon property
 
-菜单项图标
+Menu item icon
 
 ## Signature
 
@@ -148,7 +139,7 @@ icon?: string;
 
 # ISYS\_HeaderMenuSub1MenuItem.id property
 
-菜单项 ID，不可重复
+Menu item ID, cannot be repeated
 
 ## Signature
 
@@ -160,7 +151,7 @@ id: string;
 
 # ISYS\_HeaderMenuSub1MenuItem.menuItems property
 
-子菜单项
+Sub-menu item
 
 ## Signature
 
@@ -168,11 +159,27 @@ id: string;
 menuItems?: Array<ISYS_HeaderMenuSub2MenuItem | null>;
 ```
 
+### shortcutkey
+
+# ISYS\_HeaderMenuSub1MenuItem.shortcutKey property
+
+局部快捷键
+
+## Signature
+
+```typescript
+shortcutKey?: TSYS_ShortcutKeys;
+```
+
+## Remarks
+
+ADD since EDA v5.0
+
 ### title
 
 # ISYS\_HeaderMenuSub1MenuItem.title property
 
-菜单项标题
+Menu item title
 
 ## Signature
 
@@ -189,7 +196,7 @@ title: string;
 
 # ISYS\_HeaderMenuSub1MenuItem.registerFn property
 
-注册方法名称（需要在扩展入口文件导出该方法）
+Registration method name (the method needs to be exported in the extension entry file)
 
 ## Signature
 

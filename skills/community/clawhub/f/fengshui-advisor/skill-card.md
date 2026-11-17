@@ -1,43 +1,60 @@
-## Description: <br>
-Fengshui Advisor provides Chinese feng shui guidance using Bazhai life-gua calculations and Xuan Kong flying-star layouts to suggest auspicious directions and space-planning adjustments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fengshui Advisor analyzes Eight Mansions and Xuan Kong Flying Star feng shui using birth year, sex, and optional home orientation to produce directional auspiciousness, Flying Star charts, and layout guidance.
 
-## Publisher: <br>
-[eamanc-lab](https://clawhub.ai/user/eamanc-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eamanc-lab](https://clawhub.ai/user/eamanc-lab)
 
-## Use Case: <br>
-Individuals, home-office users, and agents assisting them use this skill to calculate personal feng shui directions, analyze home orientation, and receive layout suggestions for rooms, furniture, and activity areas. It is advisory and intended for self-exploration rather than medical, legal, financial, or structural building decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may save birth year, sex, home orientation, floor, move-in year, and analysis cache details in a local MEMORY.md file. <br>
-Mitigation: Use it only where that local memory is acceptable; on shared machines, review or delete MEMORY.md after the session. <br>
-Risk: Feng shui output is advisory, and the reference rules include self-noted table inconsistencies. <br>
-Mitigation: Treat recommendations as self-exploration, verify important calculations, and do not use the skill as a substitute for professional advice or structural decisions. <br>
+## Use Case:
 
+External users use this skill to generate Chinese-language feng shui reports, directional consultations, and space layout recommendations from personal birth-year/sex inputs and optional residence orientation details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eamanc-lab/fengshui-advisor) <br>
-- [Project homepage](https://github.com/eamanc-lab/fortune-telling-skills) <br>
-- [Calculation rules](references/calculation-rules.md) <br>
-- [Interpretation guide](references/interpretation-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown reports, tables, concise answers, and optional local MEMORY.md updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses deterministic rule lookups plus language-model synthesis; no external API dependency is disclosed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The skill can persist birth year, sex, residence details, and derived feng shui classifications in local memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where cross-session profile storage is acceptable, or require explicit confirmation before writing MEMORY.md and minimize stored fields.
+
+Risk: The skill can reuse another fortune-hub memory profile without clear user consent.
+
+Mitigation: Require explicit consent before reading external memory and confirm imported fields with the user before use.
+
+Risk: Feng shui recommendations may be mistaken for professional medical, legal, financial, or structural advice.
+
+Mitigation: Keep outputs framed as entertainment and self-exploration, and direct users to qualified professionals for regulated or structural decisions.
+
+## Reference(s):
+
+- [Calculation Rules](references/calculation-rules.md)
+- [Interpretation Guide](references/interpretation-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/eamanc-lab/skills/fengshui-advisor)
+- [Project Homepage](https://github.com/eamanc-lab/fortune-telling-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown reports or concise answers with tables, calculation steps, and layout recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update MEMORY.md with birth year, sex, derived feng shui classifications, and optional residence details.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

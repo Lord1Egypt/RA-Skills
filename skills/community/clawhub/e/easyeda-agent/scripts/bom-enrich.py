@@ -32,7 +32,7 @@ def read_text(path):
 
 
 def load_mpn_map(parts_path):
-    spec = json.load(open(parts_path))
+    spec = json.load(open(parts_path, encoding='utf-8'))
     out = {}
     for p in spec.get('parts', {}).values():
         mpn = p.get('mpn')

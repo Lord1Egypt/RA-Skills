@@ -1,47 +1,62 @@
-## Description: <br>
-Provides Korean tax and tax-saving guidance by routing questions across 10 tax intents and producing Flash or Deep-Dive reports grounded in Korean law and official tax sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Korea-focused tax guidance skill that routes common tax questions across ten intents and produces concise Flash guidance with optional Deep-Dive analysis based on official tax-law and National Tax Service sources.
 
-## Publisher: <br>
-[sw326](https://clawhub.ai/user/sw326) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sw326](https://clawhub.ai/user/sw326)
 
-## Use Case: <br>
-External users ask Korean tax questions about filing, deductions, VAT, property tax, inheritance or gift tax, withholding, disputes, and beginner tax concepts. The skill helps an agent classify the request, gather needed facts, consult official-source tiers, and return informational guidance with clear disclaimers. <br>
-
-### Deployment Geography for Use: <br>
-South Korea <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general tax guidance as professional tax advice. <br>
-Mitigation: Keep outputs informational, include the tax-advice disclaimer, and direct users to NTS, Hometax, or a tax professional for case-specific decisions. <br>
-Risk: Tax rates, deadlines, deductions, and forms can change. <br>
-Mitigation: Verify current amounts and deadlines against official Korean tax sources before acting. <br>
-Risk: Tax questions may involve sensitive identity or financial information. <br>
-Mitigation: Avoid collecting unnecessary identifiers, credentials, resident registration numbers, or full financial records. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sw326/tax-guide) <br>
-- [Intent router](references/intent_router.md) <br>
-- [Output templates](references/output_templates.md) <br>
-- [Source tiers](references/source_tiers.md) <br>
-- [Tax guide playbook](playbook.md) <br>
-- [Korean tax law reference](https://www.law.go.kr/법령/소득세법) <br>
-- [National Tax Service](https://www.nts.go.kr) <br>
+## Use Case:
 
+External users and agents use this skill to answer Korean tax, filing, deduction, VAT, property tax, inheritance, gift tax, withholding, and tax-dispute questions with structured guidance. It is intended for general information and should not replace advice from a qualified tax professional or official tax authority.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tax guidance with Flash and optional Deep-Dive sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes informational-tax disclaimers and should be verified against NTS, Hometax, law.go.kr, or a tax professional before users act on deadlines, amounts, or case-specific interpretations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+South Korea
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Tax rates, deadlines, and filing procedures may be outdated or incomplete for a user's exact facts.
+
+Mitigation: Treat outputs as general information and verify current requirements against official National Tax Service, HomeTax, or law.go.kr sources before acting.
+
+Risk: Broad Korean tax triggers may route adjacent questions into tax mode when clarification would be more appropriate.
+
+Mitigation: Confirm the tax topic and required facts when the user's request is ambiguous or missing key details.
+
+Risk: Users may disclose unnecessary personal financial details while asking for tax guidance.
+
+Mitigation: Ask only for the minimum facts needed and avoid collecting sensitive identifiers or unnecessary account-level details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sw326/skills/tax-guide)
+- [Publisher profile](https://clawhub.ai/user/sw326)
+- [Intent router](artifact/references/intent_router.md)
+- [Output templates](artifact/references/output_templates.md)
+- [Source tiers](artifact/references/source_tiers.md)
+- [National Tax Service](https://www.nts.go.kr)
+- [Korean law portal](https://www.law.go.kr/법령/소득세법)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Korean Markdown guidance with a Flash section and optional Deep-Dive section]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a general-information tax disclaimer and asks a single clarification question when required tax facts are missing.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

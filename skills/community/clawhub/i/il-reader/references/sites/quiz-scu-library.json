@@ -1,0 +1,108 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-scu-library",
+  "status": "blocked",
+  "checked_at": "2026-10-09T09:08:31.723Z",
+  "entry": {
+    "url": "https://lib.scu.edu.cn/",
+    "final_url": "https://lib.scu.edu.cn/",
+    "title": "四川大学图书馆",
+    "status": "empty_or_loading_document",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:08:31.723Z",
+    "identity": {
+      "declared_name": "四川大学图书馆",
+      "hostname": "lib.scu.edu.cn",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [],
+  "recipes": [
+    {
+      "id": "quiz-scu-library:navigation-membership",
+      "source_id": "quiz-scu-library",
+      "task_kind": "navigation-membership",
+      "status": "blocked",
+      "parameters": [
+        "product",
+        "section",
+        "category",
+        "target_item"
+      ],
+      "instructions": [
+        "进入本题指定栏目/分类，读取当前子类和可见成员；不能用截断列表证明不存在。"
+      ],
+      "transitions": {},
+      "entry_url": "https://lib.scu.edu.cn/",
+      "controls": [],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "empty_or_loading_document",
+      "detail": "观察时未加载可读正文或搜索控件，未确认检索可用。"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [],
+    "example_ids": [
+      "KH-Q036"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:08:31.723Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-scu-library-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-scu-library-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

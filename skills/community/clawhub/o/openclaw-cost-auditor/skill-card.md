@@ -1,39 +1,52 @@
-## Description: <br>
-OpenClaw Cost Auditor helps agents inspect local OpenClaw log files and estimate token usage and cost. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks and reports OpenClaw API usage, model costs, token consumption, and forecast spending with optimization recommendations.
 
-## Publisher: <br>
-[GBlockChainNetwork](https://clawhub.ai/user/GBlockChainNetwork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gblockchainnetwork](https://clawhub.ai/user/gblockchainnetwork)
 
-## Use Case: <br>
-Developers and operators can use this skill to audit a chosen OpenClaw log directory, count token entries, and estimate spend from local log data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The documentation advertises reporting, alerts, PDF output, and API integrations that are not supported by the provided artifact files. <br>
-Mitigation: Treat those advertised capabilities as unverified unless the publisher supplies reviewed files that implement them. <br>
-Risk: The script reads log files from the directory supplied by the user, defaulting to /var/log/openclaw. <br>
-Mitigation: Run it only against the OpenClaw log directory intended for audit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GBlockChainNetwork/openclaw-cost-auditor) <br>
+## Use Case:
 
+Developers and operators use this skill to audit OpenClaw logs for API spend, token usage, top cost drivers, and spending forecasts. It can also surface optimization guidance such as quantization or pruning recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and concise Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script prints total tokens and an estimated cost using a fixed per-token rate.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: OpenClaw logs can contain operational or user activity data.
+
+Mitigation: Use the skill only for intended OpenClaw cost audits and review the log directory before sharing or processing logs.
+
+Risk: Cost estimates may be inaccurate because the bundled script applies a fixed $10 per million tokens rate.
+
+Mitigation: Validate provider pricing and billing assumptions before using estimates for financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gblockchainnetwork/skills/openclaw-cost-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and cost summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include token totals, estimated costs, forecasts, and optimization recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact heading)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Project Lifecycle Navigator"
+  short_description: "Navigate project scope, drift, and reviews"
+  default_prompt: "Use $project-lifecycle-navigator to identify the correct lifecycle review mode, inspect available evidence, and produce a bounded project decision or handoff without changing code or claiming acceptance."
+policy:
+  allow_implicit_invocation: true

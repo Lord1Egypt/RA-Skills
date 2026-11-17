@@ -1,44 +1,56 @@
-## Description: <br>
-Run Twitter/X research, monitoring, watchlists, and OAuth-gated posting through AIsa. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Twitter/X research, monitoring, watchlists, and OAuth-gated posting through AIsa.
 
-## Publisher: <br>
-[baofeng-tech](https://clawhub.ai/user/baofeng-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baofeng-tech](https://clawhub.ai/user/baofeng-tech)
 
-## Use Case: <br>
-External users and agent operators use this skill to research Twitter/X activity, monitor trends or watchlists, and publish approved posts through AIsa OAuth workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Normal authorize command output can expose the raw AISA_API_KEY. <br>
-Mitigation: Do not paste authorize or post command output into chats, tickets, logs, or transcripts; rotate AISA_API_KEY if it has already been exposed. <br>
-Risk: Twitter/X research, OAuth posting flow, post content, uploaded media, and the API key are handled by AIsa's relay. <br>
-Mitigation: Install and run the skill only when the user trusts AIsa with that data, and send only media files the user explicitly selected for upload. <br>
-Risk: The skill can publish externally to Twitter/X. <br>
-Mitigation: Require explicit user approval before posting and do not claim success until the API returns a confirmed publish result. <br>
+## Use Case:
 
+External users and developers use this skill to research Twitter/X activity, monitor competitors or watchlists, and run user-approved OAuth posting workflows through AIsa.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baofeng-tech/aisa-twitter-api-command-center-slot1) <br>
-- [AIsa homepage](https://aisa.one) <br>
-- [AIsa Twitter OAuth](references/post_twitter.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output from bundled Python clients] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; posting, OAuth authorization, and media upload requests are sent through AIsa.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can expose the AISA API key in command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid running it where stdout is logged, do not paste logs publicly, and rotate the key if it may have been printed.
+
+Risk: Posting and media uploads can publish user content publicly through the AIsa Twitter/X relay.
+
+Mitigation: Require explicit user approval before posting, upload only files the user intentionally provided, and confirm API success before claiming publication.
+
+## Reference(s):
+
+- [AIsa Twitter OAuth](references/post_twitter.md)
+- [AIsa Homepage](https://aisa.one)
+- [ClawHub Skill Page](https://clawhub.ai/baofeng-tech/skills/aisa-twitter-api-command-center-slot1)
+- [baofeng-tech Publisher Profile](https://clawhub.ai/user/baofeng-tech)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses AISA_API_KEY and can send approved media files to the AIsa Twitter/X relay.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

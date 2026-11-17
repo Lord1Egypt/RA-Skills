@@ -1,48 +1,61 @@
-## Description: <br>
-Transform YouTube videos into podcast-style voice summaries using ElevenLabs TTS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform YouTube videos into podcast-style voice summaries using ElevenLabs TTS.
 
-## Publisher: <br>
-[Franciscoandsam](https://clawhub.ai/user/Franciscoandsam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[franciscoandsam](https://clawhub.ai/user/franciscoandsam)
 
-## Use Case: <br>
-External users and agent operators use this skill to turn YouTube links into concise text summaries or podcast-style audio summaries with configurable length and voice options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The backend requires API keys for ElevenLabs, Supadata, and OpenRouter. <br>
-Mitigation: Store keys outside prompts and skill text, restrict access to the backend environment, and rotate keys if they are exposed. <br>
-Risk: Summarization and text-to-speech rely on third-party services that may process submitted YouTube content. <br>
-Mitigation: Avoid private, sensitive, or regulated content unless the operator has reviewed and accepted the relevant service terms and data handling. <br>
-Risk: External backend dependencies and npm packages can change independently of this skill release. <br>
-Mitigation: Review the backend repository and lock or scan dependencies before deployment. <br>
-Risk: Usage of third-party transcript, model, and voice services can incur variable costs. <br>
-Mitigation: Set spending limits or quotas where supported and monitor usage for unexpected volume. <br>
+## Use Case:
 
+External users and developers use this skill to turn YouTube URLs into short spoken summaries, text summaries, teaser text, and key takeaways through a configured backend service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Franciscoandsam/youtube-voice-summarizer-elevenlabs) <br>
-- [Publisher profile](https://clawhub.ai/user/Franciscoandsam) <br>
-- [ElevenLabs](https://elevenlabs.io) <br>
-- [Supadata](https://supadata.ai) <br>
-- [OpenRouter](https://openrouter.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Audio URL] <br>
-**Output Format:** [Markdown responses with curl examples, JSON API results, text summaries, key points, and MP3 audio URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a deployed backend service and API keys for ElevenLabs, Supadata, and OpenRouter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill asks users to run an unpinned external backend with API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the backend before installation, pin it to a known commit, prefer npm ci with a lockfile, and run it in a restricted environment.
+
+Risk: YouTube URLs, transcripts, summaries, and generated audio may be handled by ElevenLabs, Supadata, OpenRouter, and the configured backend.
+
+Mitigation: Avoid submitting private or sensitive YouTube links unless that third-party processing is acceptable.
+
+Risk: API keys for ElevenLabs, Supadata, and OpenRouter can create spend or data-access exposure if leaked or over-scoped.
+
+Mitigation: Use narrowly scoped, revocable keys with spending limits and rotate them if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/franciscoandsam/skills/youtube-voice-summarizer-elevenlabs)
+- [Publisher profile](https://clawhub.ai/user/franciscoandsam)
+- [ElevenLabs](https://elevenlabs.io)
+- [Supadata](https://supadata.ai)
+- [OpenRouter](https://openrouter.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON API response examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an MP3 audio URL, teaser text, full summary, and key points when the backend job completes; can also produce text-only summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release, SKILL.md frontmatter, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Diagnoses prompt quality and asks targeted clarification questions so an agent can produce more accurate, actionable, and rigorous answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses prompt quality and asks targeted clarification questions so an agent can provide more accurate, actionable, and rigorous answers.
 
-## Publisher: <br>
-[evafan7](https://clawhub.ai/user/evafan7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[evafan7](https://clawhub.ai/user/evafan7)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agent builders use this skill to improve underspecified prompts before an answer is generated. It is most useful when the request lacks clear output expectations, needed context, constraints, or success criteria.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may add extra back-and-forth on underspecified prompts.
+
+Mitigation: Use the documented PROCEED ANYWAY option when an answer should be generated from available context.
+
+Risk: Direct prompt-quality challenges can slow simple tasks or feel overly strict when the user already accepts uncertainty.
+
+Mitigation: Apply the enhancement loop only when missing context would materially affect answer quality, and stop after the user declines to add more information.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to improve underspecified requests before answer generation, especially when they need clearer output expectations, missing context, success criteria, or risk checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may interrupt immediate answer generation by asking clarification questions when a request is underspecified. <br>
-Mitigation: Use it when answer quality depends on precise requirements, and allow the user to proceed when they do not want to add more context. <br>
-Risk: Prompt-quality feedback can be overly forceful if applied to simple or already clear requests. <br>
-Mitigation: Keep challenges specific to missing information and answer directly when the prompt passes the quality checks. <br>
+**Output Format:** [Markdown prompt-quality diagnosis, clarification questions, or direct answer guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evafan7/self-improving-question-system-for-better-results) <br>
+**Other Properties Related to Output:** [May ask up to three clarification rounds before answering unless the user chooses to proceed with available context.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask targeted clarification questions before answering; stops when quality is sufficient, the user chooses to proceed, or the loop limit is reached.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

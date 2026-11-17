@@ -1,40 +1,53 @@
-## Description: <br>
-Search and add TV shows to Sonarr. Supports monitor options, search-on-add. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and add TV shows to Sonarr with monitor options and search-on-add support.
 
-## Publisher: <br>
-[jordyvandomselaar](https://clawhub.ai/user/jordyvandomselaar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jordyvandomselaar](https://clawhub.ai/user/jordyvandomselaar)
 
-## Use Case: <br>
-External users and media-library operators use this skill to search for TV shows, add them to a configured Sonarr library, check whether shows already exist, and remove library entries when directed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can remove Sonarr library entries and can delete associated media files when the delete-files option is used. <br>
-Mitigation: Approve removal commands only when the target show is correct, and use delete-files only when media deletion is intended. <br>
-Risk: The skill uses a Sonarr API key stored in a local credential file. <br>
-Mitigation: Protect the credential file, verify the configured URL points to the intended Sonarr instance, and rotate the API key if it is exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jordyvandomselaar/sonarr) <br>
-- [Publisher profile](https://clawhub.ai/user/jordyvandomselaar) <br>
+## Use Case:
 
+External users and developers use this skill to search Sonarr for TV shows, add selected series to a Sonarr library, check existing library entries, and remove shows when requested.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, JSON, and Markdown links with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq, a configured Sonarr URL, and a Sonarr API key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can remove shows from Sonarr and can use --delete-files, which may delete media managed by Sonarr.
+
+Mitigation: Confirm removal and file deletion explicitly before running the command; avoid --delete-files unless the user has approved deletion.
+
+Risk: The skill requires a Sonarr API key in local configuration, and logs may expose operational details.
+
+Mitigation: Keep the Sonarr config file private and rotate the API key if process logs may have captured command arguments or credentials.
+
+## Reference(s):
+
+- [ClawHub Sonarr skill page](https://clawhub.ai/jordyvandomselaar/skills/sonarr)
+- [jordyvandomselaar publisher profile](https://clawhub.ai/user/jordyvandomselaar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands, plain-text command output, and JSON output for search-json.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq plus a Sonarr URL and API key in local configuration.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

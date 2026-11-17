@@ -1,40 +1,53 @@
-## Description: <br>
-Guides Chinese reading-comprehension practice by diagnosing common mistakes, analyzing questions from the examiner's perspective, and coaching students toward structured answer reasoning instead of giving direct answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps students understand modern Chinese reading passages and express text-supported answers in clear, exam-ready language.
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students, tutors, and education assistants use this skill to break down modern Chinese reading-comprehension passages, identify recurring answer mistakes, and practice answer structures based on question intent and scoring points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/qizhitang/xiaozhi-chinese-reading-decoder) <br>
-- [语文错因维度表](references/chinese-error-dimension-table.md) <br>
-- [阅读理解五大坑专项训练策略](references/pit-training.md) <br>
-- [现代文各题型出题逻辑与答题模板详解](references/question-type-library.md) <br>
+Upper primary students with an adult present, middle school students, and high school students use this skill to read modern Chinese narratives, essays, arguments, informational texts, and multimodal materials. It helps them identify question goals, find textual evidence, review errors, and organize their own answers.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured diagnostic prompts, question analysis, and answer-organization coaching] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, hidden network use, credential handling, or persistence reported by the security evidence.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The scanner reports that student learning assessments may be retained without a privacy notice, authorization check, or retention limits.
+
+Mitigation: Before use, consider whether the surrounding app provides clear notice, appropriate authorization, access controls, and retention limits for student profiles. The scan was partial because one local reference could not be resolved.
+
+## Reference(s):
+
+- [Chinese Reading Error Dimensions](artifact/references/chinese-error-dimension-table.md)
+- [High School Chinese Reading Guide](artifact/references/chinese-hs-reading.md)
+- [Reading Pit Training](artifact/references/pit-training.md)
+- [Question Type Library](artifact/references/question-type-library.md)
+- [ClawHub Release Page](https://clawhub.ai/qizhitang/skills/xiaozhi-chinese-reading-decoder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Analysis, Guidance]
+
+**Output Format:** [Conversational text with structured feedback and hints]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Progressive hints; asks students to attempt the original question before giving feedback and does not provide the original answer in advance.]
+
+## Skill Version(s):
+
+2.12.7 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

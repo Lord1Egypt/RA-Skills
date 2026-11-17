@@ -1,40 +1,53 @@
-## Description: <br>
-Converts Kazakh text bidirectionally between Cyrillic and Arabic scripts, with optional file processing and custom dictionary management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kazakh Convert helps agents convert Kazakh text between Cyrillic and Arabic scripts, including direct text conversion, file-based conversion, and user dictionary management.
 
-## Publisher: <br>
-[ayden76](https://clawhub.ai/user/ayden76) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayden76](https://clawhub.ai/user/ayden76)
 
-## Use Case: <br>
-Developers and agents use this skill to convert Kazakh text, documents, or snippets between Cyrillic and Arabic writing systems and to maintain custom replacement dictionaries for recurring terms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input and output file paths may expose or overwrite local files if chosen carelessly. <br>
-Mitigation: Use explicit paths in a controlled workspace and avoid pointing the skill at sensitive files. <br>
-Risk: Custom dictionary entries persist and can change future conversion results. <br>
-Mitigation: Review dictionary additions, deletions, and list output before relying on repeated conversions. <br>
+## Use Case:
 
+Developers and agents use this skill to convert Kazakh text between Cyrillic and Arabic scripts in chat workflows, local files, and repeatable command-line tasks. It also supports maintaining a local custom dictionary for preferred word-level corrections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ayden76/kazakh-convert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Plain text conversion output, Markdown guidance, and command-line examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read from stdin or input files, write converted text to stdout or output files, and persist custom dictionary entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: User-supplied input, output, and dictionary paths access the local filesystem and output or dictionary operations can overwrite files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit, task-scoped paths and avoid pointing --input, --output, or --dict at sensitive or unrelated files.
+
+Risk: Script conversion quality depends on the bundled mapping rules and any user dictionary entries.
+
+Mitigation: Review converted text before publication or downstream use, and add dictionary entries only for verified corrections.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ayden76/skills/kazakh-convert)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text or Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read UTF-8 input text from arguments, stdin, or local files and may write converted text or user dictionary updates to local paths supplied by the user.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Send native voice messages to WeCom using Windows TTS. Converts text to speech and sends as voice message (not audio file). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send native voice messages to WeCom using Windows TTS and convert text to speech as a native voice message rather than an audio file.
 
-## Publisher: <br>
-[fanqisyx](https://clawhub.ai/user/fanqisyx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanqisyx](https://clawhub.ai/user/fanqisyx)
 
-## Use Case: <br>
-Developers and operators using OpenClaw with WeCom use this skill to convert text into native voice-message media and send it to a selected WeCom recipient from a Windows environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real WeCom voice messages, including to a default recipient if no recipient is supplied. <br>
-Mitigation: Use only trusted, controlled inputs and confirm the recipient explicitly before execution. <br>
-Risk: The script builds local PowerShell and shell commands from user-provided text. <br>
-Mitigation: Review before installing or running; prefer an implementation that escapes PowerShell content and uses argument-array process execution. <br>
-Risk: Generated media may contain sensitive dictated content and can remain on disk after sending. <br>
-Mitigation: Avoid sensitive text unless required and clean up generated WAV and AMR files after delivery. <br>
+## Use Case:
 
+Developers and operators use this skill to generate WeCom voice messages from text on Windows systems. It is intended for workflows that need text converted to speech with Windows System.Speech, converted to AMR, and sent through WeCom using OpenClaw.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fanqisyx/wecom-voice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, API Calls, Guidance] <br>
-**Output Format:** [Command-line execution that generates WAV and AMR media files and sends a WeCom voice message.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Windows System.Speech, FFmpeg, OpenClaw, and access to the local OpenClaw media directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated audio is sent externally through WeCom and the current behavior can use an under-disclosed default recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit recipient and clearly confirm the destination before sending.
+
+Risk: The authoritative security evidence reports command-injection flaws in message text and recipient handling.
+
+Mitigation: Use argument-safe process APIs and validate or escape untrusted text and recipient values before execution.
+
+Risk: Temporary speech and media files may remain on disk.
+
+Mitigation: Remove temporary files after sending or store them in a secured location with clear retention behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fanqisyx/skills/wecom-voice)
+- [Publisher profile](https://clawhub.ai/user/fanqisyx)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Configuration instructions]
+
+**Output Format:** [Node.js CLI execution that creates WAV and AMR voice media and sends a WeCom voice message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Windows System.Speech, FFmpeg, OpenClaw, and a WeCom target recipient.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

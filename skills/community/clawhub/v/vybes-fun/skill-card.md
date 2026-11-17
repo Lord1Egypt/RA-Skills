@@ -1,44 +1,60 @@
-## Description: <br>
-vybes.fun is a Solana token launchpad skill for launching tokens, generating AI logos, creating prediction markets, building token websites, and checking earnings through APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solana token launchpad with prediction markets, AI logo generation, website building, earnings checks, and API-driven token launch workflows that use a wallet address as identity.
 
-## Publisher: <br>
-[aicre8dev](https://clawhub.ai/user/aicre8dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aicre8dev](https://clawhub.ai/user/aicre8dev)
 
-## Use Case: <br>
-External developers and agents use this skill to interact with Vybes APIs for Solana token launches, logo generation, prediction-market creation and betting, token website publication, and earnings review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can use Vybes and aicre8.dev APIs to create public token and prediction-market content. <br>
-Mitigation: Require explicit human confirmation before token launches, prediction creation, website payments, SOL bets, or project linking. <br>
-Risk: The artifact includes an undisclosed admin reserve-setting page capable of submitting reserve-changing wallet transactions. <br>
-Mitigation: Do not treat the skill as routine user-facing until the publisher removes the page or gates it separately. <br>
-Risk: Prediction bets and website deployment can require SOL transfers. <br>
-Mitigation: Verify recipient, amount, memo, and transaction signature before submitting or confirming any transaction. <br>
+## Use Case:
 
+External developers and agents use this skill to launch Solana tokens, generate token logos, create or participate in prediction markets, build token landing pages, and check activity or earnings through Vybes.fun API workflows.
 
-## Reference(s): <br>
-- [vybes.fun](https://vybes.fun) <br>
-- [aicre8.dev](https://aicre8.dev) <br>
-- [ClawHub listing](https://clawhub.ai/aicre8dev/vybes-fun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, JSON] <br>
-**Output Format:** [Markdown instructions with HTTP examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires wallet addresses and explicit user confirmation for token launches, website payments, SOL bets, and project linking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package includes an undisclosed administrative reserve-changing page with wallet-signing code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the admin page or approve wallet prompts unless you control the named authority wallet and have independently verified the transaction details.
+
+Risk: The documented workflows rely on wallet-address identity, external website handoff, and irreversible SOL payment flows.
+
+Mitigation: Review wallet identity, destination wallets, memo requirements, payment amounts, and transaction signatures before submitting or approving any on-chain action.
+
+Risk: The security verdict is suspicious because safeguards around wallet identity and payments are weaker than expected.
+
+Mitigation: Review the skill carefully before installation and limit use to workflows whose API calls, wallet prompts, and payment flows have been independently validated.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/aicre8dev/skills/vybes-fun)
+- [Publisher profile](https://clawhub.ai/user/aicre8dev)
+- [Vybes.fun](https://vybes.fun)
+- [aicre8.dev website builder](https://aicre8.dev)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown with JSON and HTTP request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API endpoint examples, wallet-address identity guidance, payment flow instructions, and response examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

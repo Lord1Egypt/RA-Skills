@@ -1,41 +1,50 @@
-## Description: <br>
-Feature Implementation guides an agent through TDD-driven feature work by reading planning documents, executing staged or change-request development, and validating work through tests and acceptance checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through TDD-driven feature implementation from existing requirements, technical plans, and task-planning documents.
 
-## Publisher: <br>
-[cping6](https://clawhub.ai/user/cping6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cping6](https://clawhub.ai/user/cping6)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to implement planned feature stages or change requests with a strict RED-GREEN-REFACTOR workflow. It is intended for codebases that already have requirements, technical design, and task-planning documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to change project files, update task documents, and produce completion reports. <br>
-Mitigation: Invoke it with an explicit feature stage or change request, review proposed file changes before committing, and run the requested tests and acceptance checks. <br>
-Risk: Incorrect or incomplete planning documents can lead the agent to implement the wrong behavior. <br>
-Mitigation: Confirm the requirements, technical plan, task plan, and acceptance criteria are present and current before starting implementation. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to implement planned feature stages with a strict RED-GREEN-REFACTOR loop, then validate acceptance criteria in the appropriate real environment before marking work complete.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cping6/feature-implementation) <br>
-- [Stage completion report template](artifact/assets/stage-completion-report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code, command, and file-change outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update task documents and generate stage completion reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill directs an agent to edit code, run tests, update planning files, and create development reports, so incorrect specs or task plans can lead to incorrect implementation work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced requirements, technical plan, and task-planning documents before invoking the skill, and require the stated TDD and acceptance checks before marking work complete.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/cping6/skills/feature-implementation)
+- [Stage completion report template](assets/stage-completion-report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with code, shell commands, file edits, and generated reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update project source files, tests, planning documents, and stage-completion reports as part of the requested implementation task.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

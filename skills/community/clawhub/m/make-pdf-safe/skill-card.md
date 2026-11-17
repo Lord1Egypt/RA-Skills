@@ -1,41 +1,60 @@
-## Description: <br>
-Flatten a PDF into a non-interactive safe version by uploading it to the Solutions API, polling until completion, then returning a download URL for the flattened PDF. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Flatten a PDF into a non-interactive safe version by uploading it to the Solutions API, polling until completion, then returning a download URL for the flattened PDF.
 
-## Publisher: <br>
-[CrossServiceSolutions](https://clawhub.ai/user/CrossServiceSolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[crossservicesolutions](https://clawhub.ai/user/crossservicesolutions)
 
-## Use Case: <br>
-Developers and document-handling teams use this skill to flatten PDFs before sharing or archiving them, reducing interactive PDF features while returning a downloadable flattened file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The selected PDF and API key are sent to the Solutions API for processing. <br>
-Mitigation: Use this skill only with documents and credentials approved for that provider, and avoid confidential, regulated, or highly sensitive PDFs unless its privacy, retention, and access controls have been reviewed. <br>
-Risk: A custom base URL could send documents and credentials to an unintended destination. <br>
-Mitigation: Keep the default Solutions API base URL unless the alternate destination is intentionally trusted and approved. <br>
+## Use Case:
 
+External users and developers use this skill to upload PDFs to the Solutions API and receive flattened, non-interactive PDFs for sharing or archival workflows where active PDF features should be reduced.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/CrossServiceSolutions/make-pdf-safe) <br>
-- [Solutions API Registration](https://login.cross-service-solutions.com/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [JSON result with job status and download URL, often accompanied by concise Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a PDF file and Solutions API bearer token; may return error JSON if authentication, upload, polling, or validation fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: PDF contents are uploaded to the Cross-Service-Solutions API for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for PDFs the user is comfortable sending to that provider, and avoid confidential or regulated documents unless the provider is approved for the use case.
+
+Risk: An unvalidated base URL override could send PDFs and the API key to an unintended server.
+
+Mitigation: Prefer SOLUTIONS_API_KEY, avoid --base-url or SOLUTIONS_BASE_URL unless the exact HTTPS endpoint is trusted, and validate or remove endpoint overrides before deployment.
+
+Risk: The dependency declaration is broad rather than pinned.
+
+Mitigation: Pin and review dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crossservicesolutions/skills/make-pdf-safe)
+- [CrossServiceSolutions publisher profile](https://clawhub.ai/user/crossservicesolutions)
+- [Solutions API registration](https://login.cross-service-solutions.com/register)
+- [Solutions API endpoint](https://api.xss-cross-service-solutions.com/solutions/solutions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [Structured JSON containing job status, file name, and download URL; error responses are also JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a download URL for the flattened PDF after polling the remote job.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

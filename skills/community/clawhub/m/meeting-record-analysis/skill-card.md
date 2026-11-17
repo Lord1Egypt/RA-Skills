@@ -1,44 +1,59 @@
-## Description: <br>
-Converts meeting audio into structured meeting minutes using speech recognition, transcript cleanup, LLM summarization, and optional voice-summary generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts uploaded meeting audio into structured meeting minutes using ASR transcription, transcript cleanup, LLM summarization, and optional TTS voice summaries.
 
-## Publisher: <br>
-[cows21](https://clawhub.ai/user/cows21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cows21](https://clawhub.ai/user/cows21)
 
-## Use Case: <br>
-Employees and external users can use this skill to turn uploaded meeting recordings into concise structured minutes with topics, discussion points, decisions, action items, and a cleaned transcript. It is useful when a meeting needs a JSON record and, optionally, an audio summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting audio, transcripts, and optional summary text are sent to configured external ASR, LLM, and TTS providers. <br>
-Mitigation: Use only approved providers for the meeting data involved, use dedicated API keys, and avoid highly confidential or regulated recordings unless those providers are cleared. <br>
-Risk: Generated minutes and optional MP3 summaries are saved locally and may contain sensitive meeting content. <br>
-Mitigation: Store outputs in an approved location, restrict access, and delete JSON or MP3 files when they are no longer needed. <br>
-Risk: LLM-generated summaries may omit context or state uncertain points too confidently. <br>
-Mitigation: Review the generated decisions and action items against the cleaned transcript before using them as an official meeting record. <br>
+## Use Case:
 
+External users and developers use this skill to turn meeting recordings into structured minutes with topics, discussion points, decisions, action items, cleaned transcript text, and an optional voice-summary file path.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cows21/meeting-record-analysis) <br>
-- [Output Schema](references/output_schema.md) <br>
-- [Prompt Templates](references/prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, audio] <br>
-**Output Format:** [JSON object with optional MP3 voice-summary file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns topic, discussion_points, decisions, action_items, cleaned_transcript, and voice_summary_path; also saves a local JSON output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Meeting recordings and derived text may contain sensitive information and are sent to configured ASR, LLM, and optional TTS providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approved enterprise endpoints and API keys, and avoid sensitive meetings unless provider retention and compliance terms are acceptable.
+
+Risk: Generated minutes may misstate decisions, action items, or responsibilities.
+
+Mitigation: Review generated minutes before relying on decisions or action items.
+
+Risk: The optional voice summary can create an additional local audio artifact containing meeting content.
+
+Mitigation: Store generated outputs only in approved locations and delete files when they are no longer needed.
+
+## Reference(s):
+
+- [Output Schema](references/output_schema.md)
+- [Prompt Templates](references/prompts.md)
+- [ClawHub skill page](https://clawhub.ai/cows21/skills/meeting-record-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Files]
+
+**Output Format:** [JSON object printed to stdout and saved as a local JSON file; optional MP3 voice-summary file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes topic, discussion_points, decisions, action_items, cleaned_transcript, and voice_summary_path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

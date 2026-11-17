@@ -1,42 +1,55 @@
-## Description: <br>
-Advanced filesystem operations - listing, searching, batch processing, and directory analysis for Clawdbot <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced filesystem operations - listing, searching, batch processing, and directory analysis for Clawdbot.
 
-## Publisher: <br>
-[1215656](https://clawhub.ai/user/1215656) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[1215656](https://clawhub.ai/user/1215656)
 
-## Use Case: <br>
-Developers and agent operators use this skill to list, search, copy, visualize, and analyze local files and directories from a Clawdbot workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests local filesystem read/write capability, and server security evidence reports inconsistent path scoping. <br>
-Mitigation: Use only explicit, narrow target directories; avoid elevated privileges; and confirm allowed and denied paths before installation or execution. <br>
-Risk: Server security evidence reports that the package is missing the executable it claims to run. <br>
-Mitigation: Do not rely on the advertised safety controls until the executable source is present in the package and matches the declared permissions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to list, search, copy, visualize, and analyze files and directories from a Clawdbot workflow.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/1215656/1215656-clawdbot-filesystem-1-0-2) <br>
-- [Publisher profile](https://clawhub.ai/user/1215656) <br>
-- [Node.js runtime](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with command examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return tabular, tree, list, or JSON-formatted filesystem information depending on command options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: package.json, skill.json, artifact metadata) <br>
+Risk: Agent-accessible filesystem read/write and copy operations can affect local workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for workflows that need filesystem access and keep agent access limited to the intended workspace.
+
+Risk: Overwrite-capable copy operations can replace existing files.
+
+Mitigation: Use dry-run previews before bulk copy operations and review overwrite targets before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1215656/skills/1215656-clawdbot-filesystem-1-0-2)
+- [Publisher profile](https://clawhub.ai/user/1215656)
+- [Node.js runtime](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return table, tree, list, or JSON-style filesystem summaries depending on command options.]
+
+## Skill Version(s):
+
+1.0.2 (source: package.json, skill.json, _meta.json; ClawHub release metadata: 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

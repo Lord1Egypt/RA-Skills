@@ -97,7 +97,7 @@ Create `.plan-flow.yml` in your project root:
 ```yaml
 ai:
   provider: claude
-  anthropic_api_key: sk-ant-api03-your-key-here
+  anthropic_api_key: REDACTED-SECRET
 ```
 
 ## Requirements

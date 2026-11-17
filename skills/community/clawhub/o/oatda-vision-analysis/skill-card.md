@@ -1,42 +1,59 @@
-## Description: <br>
-Analyze images using vision-capable AI models through OATDA's unified API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze images using vision-capable AI models through OATDA's unified API for descriptions, OCR, diagrams, charts, screenshots, and photos.
 
-## Publisher: <br>
-[devcsde](https://clawhub.ai/user/devcsde) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devcsde](https://clawhub.ai/user/devcsde)
 
-## Use Case: <br>
-Developers and agents use this skill to send HTTPS or data URI images to OATDA's vision API for image descriptions, OCR, and analysis of screenshots, diagrams, charts, and photos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images, screenshots, OCR targets, prompts, and related request data are sent to OATDA and may be processed by downstream model providers. <br>
-Mitigation: Use the skill only when sharing the selected image and prompt with OATDA is acceptable; avoid sensitive documents, secrets, regulated data, and private internal screenshots unless approved. <br>
-Risk: The skill requires an OATDA API key for outbound API calls. <br>
-Mitigation: Keep the API key revocable, avoid printing it, and verify only that it exists or show a short prefix when troubleshooting. <br>
+## Use Case:
 
+Developers and agent users use this skill to route image-analysis requests to OATDA-supported vision models, including OCR, visual description, and chart or screenshot interpretation.
 
-## Reference(s): <br>
-- [OATDA](https://oatda.com) <br>
-- [OATDA image analysis API endpoint](https://oatda.com/api/v1/llm/image) <br>
-- [ClawHub skill page](https://clawhub.ai/devcsde/oatda-vision-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model response text, token usage, and cost information returned by OATDA.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server-resolved release evidence) <br>
+Risk: Image URLs and prompts are sent to OATDA and downstream model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential screenshots, documents, or regulated data unless the user has approval for that transfer.
+
+Risk: The shell command template can mix user-supplied prompt text with an API-key-bearing request.
+
+Mitigation: Review commands before execution and prefer constructing JSON payloads with jq or a typed client.
+
+Risk: The skill reads OATDA_API_KEY from the environment or local credentials.
+
+Mitigation: Never print the full API key and verify only that a key is present before making requests.
+
+## Reference(s):
+
+- [OATDA](https://oatda.com)
+- [OATDA image analysis endpoint](https://oatda.com/api/v1/llm/image)
+- [ClawHub skill page](https://clawhub.ai/devcsde/skills/oatda-vision-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON examples and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include token usage and cost fields returned by the OATDA API.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

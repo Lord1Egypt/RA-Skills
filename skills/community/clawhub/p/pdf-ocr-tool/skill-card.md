@@ -1,50 +1,62 @@
-## Description: <br>
-Intelligent PDF and image to Markdown converter using Ollama GLM-OCR with smart content detection for text, tables, and figures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent PDF and image to Markdown converter using Ollama GLM-OCR with smart content detection for text, tables, and figures.
 
-## Publisher: <br>
-[TsukiSama9292](https://clawhub.ai/user/TsukiSama9292) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tsukisama9292](https://clawhub.ai/user/tsukisama9292)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert PDFs and single images into structured Markdown through a local OCR workflow. It is suited for documents that contain text, tables, figures, or mixed page layouts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installer and prerequisite setup may run external installation commands that need review. <br>
-Mitigation: Review install steps before execution and prefer trusted package-manager or vendor-documented installation paths. <br>
-Risk: OCR requests and outputs may contain confidential document content, especially when using non-local Ollama endpoints. <br>
-Mitigation: Keep Ollama on localhost for sensitive documents or use only trusted servers and network paths. <br>
-Risk: Generated or temporary images may preserve original document content. <br>
-Mitigation: Handle generated images as sensitive artifacts and delete them when they are no longer needed. <br>
+## Use Case:
 
+Developers and document-processing teams use this skill to convert PDFs and images into structured Markdown while preserving text, table, and figure content where the OCR model can identify it.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TsukiSama9292/pdf-ocr-tool) <br>
-- [Ollama API Documentation](https://docs.ollama.com/api/generate) <br>
-- [GLM-OCR Model Page](https://ollama.com/library/glm-ocr) <br>
-- [poppler-utils](https://poppler.freedesktop.org/) <br>
-- [uv Package Manager](https://github.com/astral-sh/uv) <br>
-- [Text prompt template](prompts/text.md) <br>
-- [Table prompt template](prompts/table.md) <br>
-- [Figure prompt template](prompts/figure.md) <br>
-- [Mixed-content prompt template](prompts/mixed.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown documents generated from PDF or image OCR, with optional extracted image files and CLI configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv, Ollama, and pdftoppm; supports text, table, figure, mixed, and auto processing modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: ClawHub release evidence and _meta.json; pyproject.toml lists 1.1.0) <br>
+Risk: Install paths include shell commands and installer guidance that should be reviewed before execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted package-manager or verified installer paths, review hook scripts before running them, and avoid running setup as root unless required.
+
+Risk: OCR processing sends document page images to the configured Ollama service.
+
+Mitigation: Process sensitive documents only against a trusted local Ollama service or another endpoint approved for the data being handled.
+
+Risk: PDF conversion writes generated PNG page images near the source PDF and removes matching generated files after processing.
+
+Mitigation: Run conversion in a working directory that does not contain important PNG files whose names match the PDF page prefix.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tsukisama9292/skills/pdf-ocr-tool)
+- [Publisher profile](https://clawhub.ai/user/tsukisama9292)
+- [Ollama API documentation](https://docs.ollama.com/api/generate)
+- [GLM-OCR model page](https://ollama.com/library/glm-ocr)
+- [poppler-utils](https://poppler.freedesktop.org/)
+- [uv package manager](https://github.com/astral-sh/uv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files generated from OCR results, with command-line usage and configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can process PDFs page by page or images directly; supports text, table, figure, mixed, and auto modes.]
+
+## Skill Version(s):
+
+1.3.0 (source: ClawHub release metadata and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,63 @@
-## Description: <br>
-Bilingual interview preparation skill for Business Analysis, BI, and Data Analyst roles, covering methodology explanations, STAR project storytelling, real interview Q&A, business cases, and salary negotiation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bilingual interview prep skill for Business Analysis, BI, and Data Analysis roles, covering RFM, PSM, DID, STAR storytelling, real interview Q&A, and salary negotiation.
 
-## Publisher: <br>
-[emilyzhou1638-blip](https://clawhub.ai/user/emilyzhou1638-blip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emilyzhou1638-blip](https://clawhub.ai/user/emilyzhou1638-blip)
 
-## Use Case: <br>
-External candidates and career-coaching users use this skill to prepare for Business Analysis, BI, and Data Analyst interviews in Chinese or English. It helps structure answers, explain analytical methodologies, practice project stories, solve business cases, and negotiate offers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive employer-confidential interview, project, compensation, or offer details while seeking coaching. <br>
-Mitigation: Avoid sharing confidential employer information unless it is necessary for the coaching task, and prefer explicit manual invocation when the host supports it. <br>
-Risk: Interview coaching examples may be overgeneralized or mismatched to a specific role, company, or market. <br>
-Mitigation: Treat generated answers as drafts and adapt them to the user's actual experience, target role, and local market conditions before use. <br>
+## Use Case:
 
+External candidates and job seekers use this skill to prepare for Business Analysis, BI, and Data Analyst interviews with bilingual answer frameworks, methodology explanations, project storytelling templates, business-case practice, resume guidance, and salary negotiation scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emilyzhou1638-blip/mianshi-jingyan) <br>
-- [Business case guide](references/business_cases.md) <br>
-- [Interview question guide](references/interview_questions.md) <br>
-- [Methodology guide](references/methodologies.md) <br>
-- [Project storytelling guide](references/project_storytelling.md) <br>
-- [Resume tips](assets/resume_tips.md) <br>
-- [Salary negotiation guide](assets/salary_negotiation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with bilingual Chinese and English coaching text, templates, tables, and sample answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool calls or credentialed integrations were detected in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Salary negotiation and offer-prep content may be mistaken for personalized legal, immigration, financial, or compensation advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill output as general interview-preparation guidance and verify legal, immigration, financial, and compensation decisions with qualified sources or professionals.
+
+Risk: Broad interview-related prompts may invoke the skill more often than expected.
+
+Mitigation: Use the skill for BA, BI, Data Analyst, project-storytelling, methodology, resume, and offer-negotiation preparation, and make clear when guidance is general rather than role-specific.
+
+Risk: Reusable resume, interview, and negotiation templates may invite users to include sensitive personal or employer information.
+
+Mitigation: Avoid entering confidential employer data, private candidate details, or non-public interview content unless the deployment environment is approved for that data.
+
+## Reference(s):
+
+- [Business Case Problem-Solving Guide](artifact/references/business_cases.md)
+- [Interview Question Bank by Category](artifact/references/interview_questions.md)
+- [Data Analytics Methodology Deep-Dives](artifact/references/methodologies.md)
+- [Project Storytelling Frameworks and Examples](artifact/references/project_storytelling.md)
+- [Resume Optimization Tips](artifact/assets/resume_tips.md)
+- [Salary Negotiation Strategies](artifact/assets/salary_negotiation.md)
+- [ClawHub Skill Page](https://clawhub.ai/emilyzhou1638-blip/skills/mianshi-jingyan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Bilingual Markdown guidance with reusable answer templates, checklists, tables, and interview scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese or English response posture follows the user's prompt language; no tool, API, code execution, or shell-command output is indicated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

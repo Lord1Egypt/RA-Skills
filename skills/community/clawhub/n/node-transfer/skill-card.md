@@ -1,47 +1,65 @@
-## Description: <br>
-High-speed, memory-efficient file transfer between OpenClaw nodes using Node.js native streams and token-secured HTTP streaming without Base64 encoding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-speed, memory-efficient file transfer between OpenClaw nodes using Node.js native streams and token-secured HTTP streaming without Base64 encoding.
 
-## Publisher: <br>
-[EisonMe](https://clawhub.ai/user/EisonMe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[eisonme](https://clawhub.ai/user/eisonme)
 
-## Use Case: <br>
-Developers and engineers use this skill to transfer large files between OpenClaw nodes without loading whole files into memory or encoding payloads as Base64. It provides deployment, installation-check, sender, and receiver workflows for stream-based node-to-node transfers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Transfers can expose local files over plaintext HTTP between nodes. <br>
-Mitigation: Use the skill only on trusted or VPN-protected networks, avoid sensitive files unless transport protection is in place, and confirm the exact source and destination paths before transfer. <br>
-Risk: The deployment workflow generates PowerShell and uses persistent helper scripts on nodes. <br>
-Mitigation: Review generated PowerShell before execution, avoid untrusted custom install directories, and remove helper scripts when they are no longer needed. <br>
-Risk: Incorrect node or path selection could send or write the wrong file. <br>
-Mitigation: Verify source node, destination node, input path, output path, and install directory before each transfer. <br>
+## Use Case:
 
+Developers and engineers use this skill to deploy, verify, and run streamed file transfers between OpenClaw nodes while avoiding Base64 payload overhead and large in-memory file handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/EisonMe/node-transfer) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Node Transfer Latency Investigation Report](artifact/INVESTIGATION_REPORT.md) <br>
-- [Contributing Proposal](artifact/CONTRIBUTING_PROPOSAL.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command snippets; runtime helper scripts emit JSON status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses source and destination node identifiers, file paths, install directory, generated transfer URL, one-time token, timeout, and progress/status fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/package.json) <br>
+Risk: Remote deployment and installation checks can perform privileged operations on OpenClaw nodes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted, controlled node environments and treat deploy.js and ensure-installed.js as privileged operations.
+
+Risk: Plain HTTP streaming can expose transferred data on untrusted networks even when token-protected.
+
+Mitigation: Avoid transferring sensitive files over untrusted networks and restrict sender exposure with firewall or interface controls.
+
+Risk: Incorrect source or destination paths can transfer unintended files or write to the wrong location.
+
+Mitigation: Validate source and destination paths before each transfer.
+
+Risk: Security evidence notes unresolved PowerShell quoting and executable manifest issues.
+
+Mitigation: Review and fix those deployment and manifest issues before relying on the skill in sensitive workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eisonme/skills/node-transfer)
+- [README](artifact/README.md)
+- [Complete usage guide](artifact/SKILL.md)
+- [Core integration proposal](artifact/CONTRIBUTING_PROPOSAL.md)
+- [Investigation report](artifact/INVESTIGATION_REPORT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline JavaScript, shell commands, PowerShell deployment scripts, and JSON status or transfer results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact includes executable Node.js scripts that can emit JSON transfer metadata, progress updates, version checks, and generated deployment commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata, package.json, version.js)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

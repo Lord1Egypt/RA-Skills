@@ -1,42 +1,61 @@
-## Description: <br>
-Agent Browser provides headless browser automation commands for agents to navigate sites, interact with elements, capture pages, extract data, test web apps, download files, and automate browser tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headless browser automation CLI for AI agents. Use when interacting with websites: navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, scraping, testing web apps, downloading files, or automating browser tasks.
 
-## Publisher: <br>
-[bodietron](https://clawhub.ai/user/bodietron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bodietron](https://clawhub.ai/user/bodietron)
 
-## Use Case: <br>
-Developers and agents use this skill to drive browser sessions for web interaction, testing, data extraction, screenshots, downloads, and stateful login workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent-driven browser automation can affect accounts, browser sessions, local files, uploads, downloads, and account-changing forms. <br>
-Mitigation: Use an isolated browser profile, enable domain and action limits, and require explicit approval for logins, saved auth state, file access, uploads, downloads, and submitting account-changing forms. <br>
-Risk: The setup script installs a global npm package and Chromium dependencies. <br>
-Mitigation: Pin or verify the npm package before installation and run setup only in an environment intended for browser automation. <br>
-Risk: Large or unbounded page output can flood an agent context or expose untrusted content. <br>
-Mitigation: Enable content boundaries and output limits such as AGENT_BROWSER_CONTENT_BOUNDARIES and AGENT_BROWSER_MAX_OUTPUT. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [agent-browser command reference](artifact/references/commands.md) <br>
-- [ClawHub skill page](https://clawhub.ai/bodietron/openclaw-agent-browser) <br>
+## Use Case:
 
+Developers and agents use this skill to automate browser workflows such as web navigation, form submission, application testing, screenshots, downloads, data extraction, and session reuse through the agent-browser CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with bash command examples and command-reference text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may create browser state, screenshots, PDFs, downloads, and extracted page text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can control a browser, submit forms, download files, and run page JavaScript through the agent-browser CLI.
+
+Mitigation: Use domain allowlists, action policies, content boundaries, and human review for sensitive browsing or form-submission workflows.
+
+Risk: The skill supports credential handling and reusable browser state, which can expose accounts if saved state files are mishandled.
+
+Mitigation: Avoid saving credentials or auth state unless needed, store state files securely, and treat saved state like passwords.
+
+Risk: The skill can connect to existing Chrome profiles and access local files when those modes are enabled.
+
+Mitigation: Use an isolated browser profile and avoid attaching the skill to an everyday Chrome profile or broad local file paths.
+
+Risk: The setup script installs agent-browser globally with npm and downloads Chromium without a pinned package version.
+
+Mitigation: Review the installer before use or install a pinned, isolated version in a controlled environment.
+
+## Reference(s):
+
+- [Agent Browser ClawHub Page](https://clawhub.ai/bodietron/skills/openclaw-agent-browser)
+- [agent-browser Command Reference](references/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser snapshots, screenshots, PDFs, downloaded files, saved session state, extracted page text, and command output when the CLI is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

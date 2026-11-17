@@ -1,46 +1,57 @@
-## Description: <br>
-小红书视频/图文自动上传 skill。当用户需要登录小红书、校验账号或上传内容时使用。基于 social-auto-upload 项目，OPclaw 自动准备运行环境，无需用户手动安装。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书视频/图文自动上传 skill。当用户需要登录小红书、校验账号或上传内容时使用。基于 social-auto-upload 项目，OPclaw 自动准备运行环境，无需用户手动安装。
 
-## Publisher: <br>
-[kukuoai](https://clawhub.ai/user/kukuoai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kukuoai](https://clawhub.ai/user/kukuoai)
 
-## Use Case: <br>
-Creators, operators, and agent users use this skill to prepare Xiaohongshu login state, check account cookies, and publish video or image-note posts through guided shell commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download and run unpinned third-party automation code. <br>
-Mitigation: Review and pin the social-auto-upload source before use, and install only from trusted repository or mirror hosts. <br>
-Risk: Login cookies created by the workflow are account credentials. <br>
-Mitigation: Use a dedicated Xiaohongshu account or isolated browser profile and protect generated cookie files as secrets. <br>
-Risk: Upload commands can publish content to Xiaohongshu. <br>
-Mitigation: Require manual preview and confirmation before running commands that publish or schedule posts. <br>
+## Use Case:
 
+External creators and operators use this skill to guide an agent through Xiaohongshu login checks and video or image-note publishing through the social-auto-upload CLI. It helps prepare the local runtime, choose the correct subcommand, and troubleshoot account, cookie, media, and scheduling issues.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kukuoai/deepsop-xiaohongshu-ai) <br>
-- [social-auto-upload](https://github.com/dreammis/social-auto-upload) <br>
-- [CLI Contract](references/cli-contract.md) <br>
-- [Runtime Requirements](references/runtime-requirements.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide login, cookie checks, environment setup, and content upload commands for Xiaohongshu.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: First use can download and run third-party social-auto-upload code, dependencies, and a Chromium browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and verified upstream commit, install only from a trusted source, and avoid mirror or fork fallbacks unless they are explicitly trusted.
+
+Risk: The skill can publish content through a user's Xiaohongshu account using local cookie or session state.
+
+Mitigation: Confirm the exact account, media files, title, tags, and schedule before upload, and require the user to complete login locally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kukuoai/skills/deepsop-xiaohongshu-ai)
+- [social-auto-upload upstream project](https://github.com/dreammis/social-auto-upload)
+- [Runtime requirements](references/runtime-requirements.md)
+- [CLI contract](references/cli-contract.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell commands and example code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include account-specific command arguments, media paths, tags, schedule values, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Generates platform-specific social scripts from long-form video content, including TikTok hooks, Instagram Reels captions, LinkedIn posts, Twitter/X threads, and email sequences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate platform-specific social scripts from long-form video content, including TikTok hooks, Instagram Reels captions, LinkedIn posts, Twitter/X threads, and email sequences.
 
-## Publisher: <br>
-[ncreighton](https://clawhub.ai/user/ncreighton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncreighton](https://clawhub.ai/user/ncreighton)
 
-## Use Case: <br>
-Creators, marketers, and content teams use this skill to convert owned long-form videos into draft social posts, short-form scripts, email sequences, and platform-specific posting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require OpenAI, YouTube, and other service credentials. <br>
-Mitigation: Store credentials in environment variables or approved secret stores, and keep real keys out of prompts, source control, shared terminals, and screenshots. <br>
-Risk: Video content or transcripts may contain private, confidential, or personal information that could be sent to external providers. <br>
-Mitigation: Process only content the user is authorized to repurpose, review provider data-handling requirements, and redact sensitive material before sharing transcripts or recordings. <br>
-Risk: Drafts may be connected to publishing, scheduling, email, or notification workflows. <br>
-Mitigation: Require explicit human confirmation before any connected tool posts, schedules, emails, or notifies others, and review generated content for accuracy, rights, and platform policy fit. <br>
+## Use Case:
 
+External creators, marketers, and content teams use this skill to turn long-form videos, webinars, or recordings into platform-specific social posts, short-form video scripts, and email copy. It is intended for repurposing content the user is authorized to process.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ncreighton/video-repurposing-script-generator) <br>
-- [OpenAI API Keys](https://platform.openai.com/api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with scripts, captions, post drafts, email copy, configuration examples, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include timestamps, hashtags, posting-time suggestions, engagement estimates, and channel-specific variants.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill may process video or transcript content through external transcription and generation services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with recordings the user is authorized to process and avoid confidential or regulated content unless external processing has been approved.
+
+Risk: The skill advertises API-connected posting, scheduling, and distribution workflows that could affect public channels.
+
+Mitigation: Keep publishing credentials unconfigured unless outbound actions are explicitly intended, and require human review before posting or scheduling generated content.
+
+Risk: Generated social copy may be inaccurate, misleading, or unsuitable for platform policies.
+
+Mitigation: Review generated scripts, captions, claims, hashtags, and calls to action against the source video and applicable platform rules before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ncreighton/skills/video-repurposing-script-generator)
+- [Publisher Profile](https://clawhub.ai/user/ncreighton)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration, shell commands]
+
+**Output Format:** [Markdown with platform-specific script drafts, captions, post copy, setup guidance, and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include timestamps, hashtag suggestions, posting-time guidance, calls to action, and platform-specific variants.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

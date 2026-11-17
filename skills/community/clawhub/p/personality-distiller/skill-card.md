@@ -1,42 +1,60 @@
-## Description: <br>
-Personality Distiller automatically distills a name, vague requirement, link, existing skill, or local corpus into a complete agent persona file pack through research and framework extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personality Distiller turns a name, vague requirement, web link, existing skill, or local corpus into a complete agent persona file pack through research, framework extraction, and templated persona writing.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and agent users use this skill to convert source material about a person, thinking model, existing skill, web page, or local corpus into a structured persona for an agent workspace. It is intended for persona generation workflows that need research, extraction, mapping, and a final review step before overwriting persona files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local corpus files that may contain sensitive personal material. <br>
-Mitigation: Provide only the specific files or folders intended for analysis and avoid secrets or highly sensitive personal material unless that exposure is deliberate. <br>
-Risk: The skill is designed to overwrite persistent workspace persona files. <br>
-Mitigation: Back up existing persona files and require explicit confirmation before any overwrite. <br>
+## Use Case:
 
+Agent builders and workspace users use this skill to distill people, thinking frameworks, web content, existing skills, or local writing into a structured persona for an agent. It produces the six persona files needed to shape identity, behavior, relationship model, tools, and proactive rhythms.
 
-## Reference(s): <br>
-- [Deep Research Guide for Persona Distillation](artifact/references/research-guide.md) <br>
-- [Persona Dimensions & Mapping Guide](artifact/references/persona-dimensions.md) <br>
-- [Thinking Frameworks Catalog](artifact/references/frameworks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown persona file pack with summary guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates SOUL.md, IDENTITY.md, USER.md, AGENTS.md, TOOLS.md, and HEARTBEAT.md for the workspace after the required confirmation workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can overwrite persistent workspace persona and behavior files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up existing persona files before use and review the complete generated diff before accepting the replacement.
+
+Risk: Private local sources or tokenized URLs used for distillation can expose sensitive context.
+
+Mitigation: Restrict local analysis to explicitly chosen non-sensitive paths and avoid private or tokenized URLs unless the workspace is approved for that data.
+
+Risk: Generated AGENTS.md safety rules and HEARTBEAT.md proactive behavior can affect future agent conduct.
+
+Mitigation: Manually inspect generated safety boundaries and proactive routines before deployment.
+
+## Reference(s):
+
+- [Personality Distiller ClawHub page](https://clawhub.ai/openlark/skills/personality-distiller)
+- [Thinking Frameworks Catalog](references/frameworks.md)
+- [Persona Dimensions & Mapping Guide](references/persona-dimensions.md)
+- [Deep Research Guide for Persona Distillation](references/research-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown persona files plus a concise summary card]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes SOUL.md, IDENTITY.md, USER.md, AGENTS.md, TOOLS.md, and HEARTBEAT.md in the workspace root.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

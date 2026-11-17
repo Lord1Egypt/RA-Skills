@@ -1,41 +1,53 @@
-## Description: <br>
-Monitors CPU, memory, disk, network, uptime, process status, and threshold alerts for local system health reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor system metrics like CPU, memory, disk, and network.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect local Linux host health, monitor resource usage continuously, configure simple threshold alerts, and export status snapshots as JSON for dashboards or reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Process listings and JSON status output can expose sensitive command-line arguments, secrets, usernames, or internal filesystem paths. <br>
-Mitigation: Review and redact monitor output before sharing it outside the intended operational context. <br>
-Risk: The skill inspects local host metrics and process details. <br>
-Mitigation: Install and run it only in environments where local system inspection is acceptable. <br>
-Risk: Continuous watch mode keeps collecting and displaying system status until stopped. <br>
-Mitigation: Stop watch mode when monitoring is complete. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Linux server health, monitor CPU, memory, disk, network, uptime, load, and process status, and configure simple resource-threshold alerts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash examples; monitor output is plain text status or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Watch mode streams repeated status snapshots until stopped.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Status or JSON output can include process command lines that may reveal tokens, paths, or operational details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with the least-privileged account and avoid forwarding process output to broad logs or dashboards unless it is removed or redacted.
+
+Risk: The security review flagged the skill as suspicious because process command lines can be exposed even when a user asks for narrower metrics.
+
+Mitigation: Review before installing on shared, production, or privileged systems and limit use to systems where process visibility is appropriate.
+
+## Reference(s):
+
+- [System Monitor ClawHub release](https://clawhub.ai/dinghaibin/skills/dinghaibin-system-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Status output may include system metrics, alert messages, and top-process command lines.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

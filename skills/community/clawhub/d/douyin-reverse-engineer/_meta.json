@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn770adgw7zfre844p85gwkr1h84hsrm",
-  "slug": "douyin-reverse-engineer",
+  "name": "douyin-reverse-engineer",
   "version": "2.0.0",
-  "publishedAt": 1775798504379
+  "description": "从抖音视频URL反推AI绘画提示词和分镜脚本表格，支持锈湖风格大模型改写",
+  "dependencies": {
+    "skills": [
+      "doubao-video-analyzer",
+      "video-downloader"
+    ]
+  }
 }

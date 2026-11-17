@@ -1,50 +1,61 @@
-## Description: <br>
-Build agent credential wallets with Verifiable Intent, SD-JWT delegation chains, cross-protocol presentation (AP2/UCP/ACP/x402), eIDAS 2.0 EUDI compliance, and reputation-bound credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build agent credential wallets with Verifiable Intent, SD-JWT delegation chains, cross-protocol presentation for AP2, UCP, ACP, and x402, eIDAS 2.0 EUDI compliance, and reputation-bound credentials using detailed Python examples.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and engineers use this guide to design agent credential wallets, delegation chains, and credential presentation flows for agent commerce systems that integrate with GreenHelix APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide is documentation-only, but its examples should be treated as live state-changing code if executed. <br>
-Mitigation: Use sandbox credentials or a least-privilege GreenHelix API key, verify GREENHELIX_API_URL before running snippets, and review each request before execution. <br>
-Risk: The verifier examples are illustrative and are not sufficient as production credential verification logic. <br>
-Mitigation: Add real DID resolution, signature verification, disclosure checks, expiration checks, revocation checks, and constraint-chain validation before production use. <br>
-Risk: The skill references a sensitive credential environment variable, GREENHELIX_API_KEY. <br>
-Mitigation: Store the key securely, avoid committing it, rotate it as needed, and scope it to only the required GreenHelix access. <br>
+## Use Case:
 
+Developers and engineers use this guide to design agent credential wallets for delegated authorization, selective disclosure credentials, cross-protocol presentation, EUDI-related flows, reputation binding, and revocation patterns. The examples are production-framed but should be treated as conceptual until replaced with audited identity, payment, compliance, and approval controls.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/mirni/greenhelix-agent-credential-wallets) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix A2A Commerce Gateway API](https://api.greenhelix.net/v1) <br>
-- [Agent delegation credential schema](https://greenhelix.net/credentials/agent-delegation/v1) <br>
-- [Verifiable intent credential schema](https://greenhelix.net/credentials/verifiable-intent/v1) <br>
-- [EUDI delegation credential schema](https://greenhelix.net/credentials/eudi-delegation/v1) <br>
-- [Reputation-bound delegation credential schema](https://greenhelix.net/credentials/reputation-bound-delegation/v1) <br>
-- [Dispute evidence credential schema](https://greenhelix.net/credentials/dispute-evidence/v1) <br>
-- [Related GreenHelix production hardening skill](https://clawhub.ai/skills/greenhelix-agent-production-hardening) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guide with Python examples and API request patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; examples may call GreenHelix APIs if a user runs them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release and frontmatter) <br>
+Risk: Production-framed financial credential examples contain serious security and safety gaps if copied directly into commerce, identity, payment, or compliance workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a conceptual guide and replace credential handling, verification, endpoint, budget, EUDI, and SCA logic with audited standards-compliant implementations before production use.
+
+Risk: The referenced GREENHELIX_API_KEY can provide read/write access to purchased API tools.
+
+Mitigation: Scope, rotate, and protect the API key, use sandbox credentials where possible, and require explicit human approval before any real transaction or delegated spend.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-agent-credential-wallets)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API endpoint](https://api.greenhelix.net/v1)
+- [Agent delegation credential schema](https://greenhelix.net/credentials/agent-delegation/v1)
+- [Verifiable intent credential schema](https://greenhelix.net/credentials/verifiable-intent/v1)
+- [EUDI delegation credential schema](https://greenhelix.net/credentials/eudi-delegation/v1)
+- [Reputation-bound delegation credential schema](https://greenhelix.net/credentials/reputation-bound-delegation/v1)
+- [Dispute evidence credential schema](https://greenhelix.net/credentials/dispute-evidence/v1)
+- [GreenHelix agent production hardening skill](https://clawhub.ai/skills/greenhelix-agent-production-hardening)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guide with Python examples, inline shell commands, API request patterns, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guide; references GREENHELIX_API_KEY for GreenHelix gateway access.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

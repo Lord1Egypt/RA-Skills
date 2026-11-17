@@ -1,12 +1,16 @@
 # 报告交付风格指南
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
+运行范围：默认在当前会话顺序分析并输出 Markdown；用户要求多 Agent 且宿主允许时才委派。用户请求文件导出后才生成当前授权报告；遵循 SKILL.md 的工具范围、隐私规则与语言选择，不扫描历史报告或保存额外日志。
+
 用于把人生岔路模拟结果整理成终端用户能保存、复读和继续追问的交付版本。
 
 ## 默认交付
 
 - 基础对话内给 Markdown 报告。
-- 有文件能力时优先给可浏览 HTML 用户报告。
-- 用户需要留档、转发或打印时，优先交付 HTML，并提示用户用浏览器保存。
+- 用户请求文件交付且宿主允许时，生成可浏览 HTML 用户报告。
+- 用户请求留档或打印时，可交付 HTML；转发需另行授权。
 
 ## 用户版 HTML 阅读流
 

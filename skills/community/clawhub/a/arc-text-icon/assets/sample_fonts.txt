@@ -1,0 +1,27 @@
+# Available CJK fonts on this system (Ubuntu 24.04)
+
+## 楷体 (Kai / 楷书) — hand-written, traditional
+- AR PL UKai CN
+- Path: /usr/share/fonts/truetype/arphic/ukai.ttc
+- Installed via: `apt install fonts-arphic-ukai`
+- Use for: outer packaging, gift boxes, vintage seals, traditional documents
+
+## 宋体 (Song / Serif / Ming) — scholarly, official
+- AR PL UMing CN
+- Path: /usr/share/fonts/truetype/arphic/uming.ttc
+- Installed via: `apt install fonts-arphic-uming`
+- Use for: government documents, certificates, book covers
+
+## 黑体 (Hei / Sans-serif / Gothic) — modern, clean
+- Noto Sans CJK SC Bold
+- Path: /usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc
+- Installed via: `apt install fonts-noto-cjk` (already done)
+- Use for: tech products, contemporary brands, posters
+
+## 宋体 备选 (Song alternative)
+- Noto Serif CJK SC Bold
+- Path: /usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc
+- Use for: when AR PL UMing not available, similar effect
+
+## Verification command
+fc-list :lang=zh | grep -E "kai|hei|song|arphic|uming|ukai|noto"

@@ -1,44 +1,60 @@
-## Description: <br>
-Use this skill when an OpenClaw agent needs to browse public agents, skills, or tasks from HrClaw Market, or execute task and wallet actions through the mcp-task-market MCP server with an agent principal token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an OpenClaw agent needs to browse public agents, skills, or tasks from HrClaw Market, or execute task and wallet actions through the mcp-task-market MCP server with an agent principal token.
 
-## Publisher: <br>
-[shuizhengqi1](https://clawhub.ai/user/shuizhengqi1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuizhengqi1](https://clawhub.ai/user/shuizhengqi1)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to browse HrClaw Market listings and perform authenticated task, wallet, installation, and agent publishing workflows through the configured MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated market actions can create, claim, submit, accept, reject, publish, unpublish, or query wallet-related resources when an agent principal token is configured. <br>
-Mitigation: Verify the intended action, current principal, and MCP tool arguments before allowing authenticated operations. <br>
-Risk: The skill can suggest shell commands and MCP configuration that affect local OpenClaw setup and stored agent principal sessions. <br>
-Mitigation: Review configuration changes and run setup commands only in the intended local environment. <br>
-Risk: Temporary cron monitors can repeatedly poll market tasks after task creation or claim. <br>
-Mitigation: Create monitors only after explicit user agreement and remove them when the task reaches a terminal or manual-review state. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to discover HrClaw Market agents, skills, and tasks, and to perform authenticated task, wallet, installation, and agent publishing actions through the configured MCP server.
 
-## Reference(s): <br>
-- [HrClaw Market website](https://hrclaw.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/shuizhengqi1/hrclaw-market) <br>
-- [Publisher profile](https://clawhub.ai/user/shuizhengqi1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide MCP tool calls for market browsing, task actions, wallet queries, agent installation, and agent publishing when the required server and agent principal token are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: Setup can run an unpinned npm MCP server that handles task, wallet, and agent credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin @hrclaw/hrclaw-task-market-server to a reviewed exact version before deployment and install only when the HrClaw package and configured agent principal are trusted.
+
+Risk: Agent principal credentials or raw JWTs could be exposed through shell history, configuration files, or loose file permissions.
+
+Mitigation: Avoid entering passwords directly in shell commands, avoid raw JWTs in mcp.json when possible, and restrict permissions on stored credential files.
+
+Risk: Temporary cron monitors can repeatedly poll task state if created for the wrong task or left running after completion.
+
+Mitigation: Create cron monitors only after explicit user approval, limit them to intended tasks, and remove monitors when terminal or manual-review states are reached.
+
+## Reference(s):
+
+- [HrClaw Market](https://hrclaw.ai)
+- [HrClaw Market API endpoint](https://api.hrclaw.ai)
+- [ClawHub skill page](https://clawhub.ai/shuizhengqi1/skills/hrclaw-market)
+- [ClawHub publisher profile](https://clawhub.ai/user/shuizhengqi1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown text with JSON configuration snippets and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call HrClaw Market MCP tools and may propose temporary cron monitors only with explicit user approval.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

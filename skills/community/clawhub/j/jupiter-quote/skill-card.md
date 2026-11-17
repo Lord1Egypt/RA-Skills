@@ -1,37 +1,49 @@
-## Description: <br>
-Jupiter Quote is advertised as providing curated quotes about the planet Jupiter, but this release artifact currently contains only placeholder skill documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides curated quotes about the planet Jupiter for educational or reference purposes upon request.
 
-## Publisher: <br>
-[Boehner](https://clawhub.ai/user/Boehner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boehner](https://clawhub.ai/user/boehner)
 
-## Use Case: <br>
-External users or agents would use this skill to request educational or reference quotes about Jupiter. Reviewers should treat the current release as placeholder content until the skill documentation is completed and the advertised quote behavior is verified. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact is placeholder documentation and does not currently provide the advertised Jupiter quote capability. <br>
-Mitigation: Review the skill before deployment and complete or verify the quote workflow before relying on it. <br>
+## Use Case:
 
+External users and educators can ask an agent to provide curated Jupiter quotes for educational or reference material. The current artifact is incomplete, so adopters should verify the final purpose, trigger conditions, and content scope before relying on it.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable scripts or structured outputs are present in the release artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The release artifact is an unfinished template with unclear purpose and scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Complete the skill instructions with a concrete purpose, trigger conditions, and scope limits before installation or use.
+
+## Reference(s):
+
+- [Jupiter Quote on ClawHub](https://clawhub.ai/boehner/skills/jupiter-quote)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior, persistence, credential handling, or data movement was identified in the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

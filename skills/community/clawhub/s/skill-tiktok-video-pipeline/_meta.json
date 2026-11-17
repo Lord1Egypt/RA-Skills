@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7dj907h1ps8kt92wbdspr01d820vzf",
-  "slug": "skill-tiktok-video-pipeline",
+  "name": "skill-tiktok-video-pipeline",
   "version": "2.0.0",
-  "publishedAt": 1772403093048
+  "description": "End-to-end TikTok ad video pipeline. Product image → Runway/Veo video → slowmo → caption overlay → final MP4.",
+  "author": "Zero2Ai-hub",
+  "license": "MIT"
 }

@@ -1,41 +1,55 @@
-## Description: <br>
-GramGate helps agents and automation access a real Telegram account over REST or MCP for reading history, searching chats, joining groups, clicking inline buttons, and sending messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Telegram gateway for AI agents and automation. Use GramGate to access a real Telegram account over REST or MCP: read channels and history, search across chats, click inline buttons, join groups, and send messages as a user account rather than a bot.
 
-## Publisher: <br>
-[zakirovdmr](https://clawhub.ai/user/zakirovdmr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zakirovdmr](https://clawhub.ai/user/zakirovdmr)
 
-## Use Case: <br>
-Developers, operators, and support or CRM automation teams use GramGate to give agents structured Telegram user-account read/write access for channel monitoring, research collection, Telegram bot flow testing, and Telegram workflow operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can exercise broad read and write access through a real Telegram user account. <br>
-Mitigation: Use a dedicated Telegram account, restrict which agents can connect, and require human approval for sending, deleting, joining, forwarding, reacting, voting, or clicking inline buttons. <br>
-Risk: Exposing the gateway beyond localhost can allow remote access to Telegram account capabilities. <br>
-Mitigation: Keep the service bound to localhost unless network exposure is required, and add bearer-token authentication before exposing it. <br>
+## Use Case:
 
+Developers and operators use GramGate to give agents structured Telegram read/write access through REST or MCP for channel monitoring, content workflows, Telegram E2E testing, support, CRM, and notification flows.
 
-## Reference(s): <br>
-- [GramGate GitHub repository](https://github.com/zakirovdmr/gramgate) <br>
-- [GramGate ClawHub listing](https://clawhub.ai/zakirovdmr/gramgate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a running GramGate service; REST and MCP endpoints are local by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Risk: The skill enables sensitive Telegram account read/write automation, including sending, editing, deleting, joining, leaving, pinning, reacting, and button-click actions as the user account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when real Telegram account access is intended, review write-side tasks before execution, and write only when the task requires it.
+
+Risk: Exposing GramGate beyond localhost could broaden access to a real Telegram account.
+
+Mitigation: Keep the service bound to localhost when possible, and require authentication and rate limits if it is exposed.
+
+## Reference(s):
+
+- [GramGate ClawHub skill page](https://clawhub.ai/zakirovdmr/skills/gramgate)
+- [GramGate GitHub repository](https://github.com/zakirovdmr/gramgate)
+- [zakirovdmr ClawHub publisher profile](https://clawhub.ai/user/zakirovdmr)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with inline bash code blocks and endpoint examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 according to ClawHub metadata.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

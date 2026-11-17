@@ -1,43 +1,58 @@
-## Description: <br>
-Runs a pre-flight FRAT for pilots, dispatchers, chief pilots, and instructors by walking PAVE plus IMSAFE, scoring risk, mapping Green/Yellow/Red, and producing a draft FRAT log with mitigations while preserving the PIC's final go/no-go authority. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a pre-flight FRAT for pilots, dispatchers, chief pilots, or flight-school instructors by walking PAVE and IMSAFE, scoring risk, mapping Green/Yellow/Red status, and producing a draft FRAT log with mitigations and dispatch guidance.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Aviation operators, pilots-in-command, dispatchers, chief pilots, and flight-school instructors use this skill to structure a pre-flight risk assessment, document hazards and mitigations, and identify the appropriate operational review path. It supports but does not replace the qualified PIC's and operator's final authority. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The assessment can be misleading if flight, weather, NOTAM, regulatory, maintenance, or operator inputs are incomplete or stale. <br>
-Mitigation: Use current official sources supplied by the user and require qualified PIC, dispatcher, chief pilot, director of operations, or maintenance review as applicable. <br>
-Risk: A draft FRAT log could be mistaken for a flight release, dispatch authorization, or final go/no-go decision. <br>
-Mitigation: Keep the draft banner and authority language intact, and preserve final decision authority with the PIC and operator roles. <br>
-Risk: Operational, aircraft, route, or passenger details may be sensitive. <br>
-Mitigation: Collect only details needed for the assessment, avoid unnecessary passenger or personal details, and redact aircraft identifiers as directed by the skill. <br>
+## Use Case:
 
+Pilots, dispatchers, chief pilots, and flight-school instructors use this skill to structure pre-flight and re-FRAT risk assessments for Part 91, 135, 137, 141, public-use, or business-aviation flights. The skill supports SMS documentation and mitigation planning while keeping final go/no-go authority with the pilot-in-command and operator roles.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Skill Instructions](SKILL.md) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown draft FRAT log with scored tables, risk color, named hazards, mitigations, dispatch-authority recommendation, and review banner] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The output is explicitly draft decision support and relies on user-supplied current aviation, weather, NOTAM, maintenance, and operator information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Users could mistake the draft FRAT log for flight authorization or final go/no-go advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the output explicitly marked as draft decision-support and leave final authority with the PIC, dispatcher, chief pilot, maintenance, or director of operations as applicable.
+
+Risk: The assessment may be incomplete or stale if weather, NOTAMs, TFRs, MEL items, fatigue, route, passengers, or mission conditions change.
+
+Mitigation: Require current official sources and operator procedures, and rerun the FRAT whenever material inputs change before takeoff.
+
+Risk: Incorrect regulatory, airworthiness, or maintenance interpretation could affect a high-stakes aviation decision.
+
+Mitigation: Use the skill as a structured checklist only; maintenance, airworthiness, regulatory compliance, and dispatch decisions remain with qualified human roles and the operator's procedures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/flight-risk-assessment-frat)
+- [Skill README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown FRAT log with tables, scored rationale, mitigations, and dispatch-authority recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft only; requires current official sources, operator procedures, and human decision authority.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

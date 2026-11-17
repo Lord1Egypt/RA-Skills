@@ -1,42 +1,57 @@
-## Description: <br>
-Captures agent learnings, errors, corrections, and feature requests in Markdown logs so future sessions can improve project guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, feature requests, corrections, knowledge gaps, and recurring best practices in Markdown so agents can promote durable improvements into project memory.
 
-## Publisher: <br>
-[f1zzyw](https://clawhub.ai/user/f1zzyw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[f1zzyw](https://clawhub.ai/user/f1zzyw)
 
-## Use Case: <br>
-Developers and agent operators use this skill to record corrections, failed commands, missing capabilities, and reusable practices. They can review those logs and promote broadly applicable entries into project instruction files after review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning logs and promoted instruction files can influence future agent behavior. <br>
-Mitigation: Review entries before promotion and require user approval before changing AGENTS.md, CLAUDE.md, SOUL.md, TOOLS.md, or Copilot instruction files. <br>
-Risk: Conversation-derived logs may capture secrets or private transcript details. <br>
-Mitigation: Do not record credentials or sensitive transcript content, and redact logs before keeping or sharing them. <br>
-Risk: Optional external repo files or hooks may change agent behavior if enabled without review. <br>
-Mitigation: Inspect external files and hook scripts before enabling them, and decide in advance which files the skill may modify. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/f1zzyw/s1kasl-askdjna) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+## Use Case:
 
+Developers and agent operators use this skill to record corrections, command failures, feature requests, knowledge gaps, and reusable practices as Markdown learning logs. They can then review those logs and promote durable lessons into project or workspace memory.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or updates local .learnings/*.md logs and may propose promotion into agent instruction files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent learning logs can capture sensitive conversation details, command errors, private project context, or secrets.
+
+Mitigation: Review entries before retention, redact secrets and private context, and prefer project-scoped .learnings files.
+
+Risk: Optional hooks and promotion workflows can carry unreviewed or incorrect learnings into future agent instructions.
+
+Mitigation: Require manual review before enabling hooks or promoting entries, avoid automatic promotion into instruction files, and verify hook scripts from the installed package.
+
+Risk: Incorrect or stale learnings may persist and influence future agent behavior.
+
+Mitigation: Keep entries status-tracked, resolve or retire outdated notes, and review promoted guidance before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/f1zzyw/skills/s1kasl-askdjna)
+- [Agent Skills Specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent learning, error, and feature-request entries for agent workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

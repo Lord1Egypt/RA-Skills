@@ -76,9 +76,9 @@ def read_database_tables(config_file: str = "text-to-sql-config.json", generate_
                 print(f"Auto-converted database URL to use pymysql driver")
             
             # Create database engine
-            # print(db_url)
+            print(db_url)
             engine = create_engine(db_url)
-            # print(engine)
+            print(engine)
             # Extract database name from database URL
             def _extract_db_name(url):
                 if 'mysql' in url.lower():
@@ -183,14 +183,18 @@ def read_database_tables(config_file: str = "text-to-sql-config.json", generate_
                 return result
             
             db_name = _extract_db_name(db_url)
-            # print(db_name)
+            print(db_name)
             # Get inspector
-            inspector = inspect(engine)
-            # print(inspector)
+            try:
+                inspector = inspect(engine)
+                print(inspector)
+            except Exception as e:
+                print(f"Failed to create inspector: {str(e)}")
+                
             
             # Get all table names
             table_names = inspector.get_table_names()
-            # print(table_names)
+            print(table_names)
             # Get structure information for each table
             for table_name in table_names:
                 # Normalize table name to "database.table" format
@@ -325,7 +329,7 @@ def read_database_tables(config_file: str = "text-to-sql-config.json", generate_
         try:
             import requests
             
-            api_url = "https://asksql.ucap.com.cn/"
+            api_url = "https://asksql.ai/"
             generate_url = f"{api_url.rstrip('/')}/ask/api/generate_database_knowledge"
             
             print(f"Calling API to generate database knowledge...")
@@ -336,6 +340,7 @@ def read_database_tables(config_file: str = "text-to-sql-config.json", generate_
                     files = {
                         'excel_file': (os.path.basename(excel_file), f)
                     }
+                    print(files)
                     data = {
                         'format': 'json',
                         'generate_knowledge': 'true'

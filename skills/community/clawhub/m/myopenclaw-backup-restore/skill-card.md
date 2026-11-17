@@ -1,43 +1,58 @@
-## Description: <br>
-Cross-platform backup and restore for OpenClaw across Windows, macOS, and Linux, with dry-run previews, pre-restore snapshots, credential permission hardening, and browser-based local management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MyOpenClaw Backup Restore provides cross-platform backup, restore, migration, and browser-based management for OpenClaw state using Node.js.
 
-## Publisher: <br>
-[beyound87](https://clawhub.ai/user/beyound87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[beyound87](https://clawhub.ai/user/beyound87)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to create portable snapshots, migrate OpenClaw state between machines, and recover from data loss. It is intended for environments where the operator can protect backups that contain credentials, sessions, and configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Backup archives can contain bot tokens, API keys, session credentials, and other sensitive OpenClaw state. <br>
-Mitigation: Treat archives like password vaults: store them securely, transfer them only over encrypted channels, never commit them publicly, and restore only archives you created or fully trust. <br>
-Risk: The browser management server handles backup upload, download, and restore workflows over a network-accessible listener. <br>
-Mitigation: Keep the server on localhost or a trusted network or tunnel, require a strong token, and prefer environment-based or Authorization-header tokens over URL tokens. <br>
-Risk: Restore operations overwrite OpenClaw state and may reintroduce executable scripts, credentials, or stale configuration from an archive. <br>
-Mitigation: Run dry-run preview first, keep the automatic pre-restore snapshot, review the archive source, and confirm destructive restores only when the restored state is expected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/beyound87/myopenclaw-backup-restore) <br>
-- [OpenClaw Backup - What Gets Saved](references/what-gets-saved.md) <br>
-- [MyClaw.ai](https://myclaw.ai) <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to create portable backups, preview and restore archives, migrate OpenClaw installations across operating systems, and recover from local data loss.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands; scripts create backup archives and restore OpenClaw files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and read/write access to ~/.openclaw; optional local HTTP server listens for browser-based management.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Backup archives can contain bot tokens, API keys, session credentials, and other sensitive OpenClaw state.
+
+Mitigation: Store archives securely, transfer them only over encrypted channels, use only backups you created and trust, and rotate any tokens exposed through a backup or server URL.
+
+Risk: The HTTP management server handles credential-bearing archives and can expose backup upload or download paths if published beyond the local machine.
+
+Mitigation: Do not expose the server beyond localhost, always require a strong token, and avoid plain HTTP transfer for backup archives.
+
+Risk: Restore can place persistent code, configuration, credentials, and channel state into ~/.openclaw.
+
+Mitigation: Treat restore as equivalent to installing persistent local state, review archive origin before use, run a dry-run preview first, and keep the automatic pre-restore snapshot.
+
+## Reference(s):
+
+- [OpenClaw Backup - What Gets Saved](references/what-gets-saved.md)
+- [ClawHub skill page](https://clawhub.ai/beyound87/skills/myopenclaw-backup-restore)
+- [MyClaw.ai](https://myclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated backup archives]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; operations read and write ~/.openclaw and may start a token-protected HTTP server when requested.]
+
+## Skill Version(s):
+
+3.0.2 (source: ClawHub release evidence, created 2026-03-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

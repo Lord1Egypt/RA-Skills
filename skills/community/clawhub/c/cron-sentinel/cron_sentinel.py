@@ -21,6 +21,16 @@ Usage:
 
 State lives in ~/.cron-sentinel/state.json (override with --state or $CRON_SENTINEL_STATE).
 All timestamps are stored in UTC so it stays correct across timezones and DST.
+
+Safety and scope:
+  - `wrap` runs only the command given after `--`, directly as an argument list
+    (shell=False). Nothing is passed through a shell, fetched, or eval'd.
+  - `crontab` only PRINTS lines for the user to review and paste. This tool never
+    edits a crontab, creates scheduled tasks, or installs anything.
+  - No network access, no third-party dependencies, runs as the current user with no elevated privileges.
+  - The state file is written owner-only (0600, directory 0700). Common secret
+    patterns in captured output are redacted before saving, and --no-output-tail
+    skips saving output entirely.
 """
 from __future__ import annotations
 
@@ -36,6 +46,22 @@ from pathlib import Path
 
 DEFAULT_STATE = os.environ.get("CRON_SENTINEL_STATE", "~/.cron-sentinel/state.json")
 DUR_RE = re.compile(r"(\d+)\s*([smhdw])", re.I)
+NAME_RE = re.compile(r"[A-Za-z0-9._-]{1,64}")
+CRON_FIELD_RE = re.compile(r"[0-9A-Za-z*/,\-]+")
+CRON_MACROS = {"@yearly", "@annually", "@monthly", "@weekly", "@daily", "@midnight", "@hourly", "@reboot"}
+TAIL_CHARS = 2000
+
+# Secret-looking values are masked before output is written to the state file.
+SECRET_PATTERNS = [
+    re.compile(r"(?i)\b(password|passwd|pwd|secret|token|api[_-]?key|access[_-]?key|auth[_-]?token|client[_-]?secret)\b(\s*[:=]\s*)(\S+)"),
+    re.compile(r"(?i)\b(bearer|basic)(\s+)([A-Za-z0-9._~+/=-]{8,})"),
+    re.compile(r"(AKIA|ASIA)[0-9A-Z]{16}"),
+    re.compile(r"\b(ghp|gho|ghu|ghs|ghr|github_pat)_[A-Za-z0-9_]{20,}"),
+    re.compile(r"\b(sk|pk|rk)-[A-Za-z0-9_-]{16,}"),
+    re.compile(r"\bxox[abprs]-[A-Za-z0-9-]{10,}"),
+    re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----.*?-----END [A-Z ]*PRIVATE KEY-----", re.S),
+    re.compile(r"://([^:/@\s]+):([^@/\s]+)@"),
+]
 UNIT_SEC = {"s": 1, "m": 60, "h": 3600, "d": 86400, "w": 604800}
 
 
@@ -103,10 +129,33 @@ def load_state(path: Path) -> dict:
 
 
 def save_state(path: Path, state: dict) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
+    """Atomically write the state file, readable only by the current user."""
+    path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
     tmp = path.with_suffix(".tmp")
-    tmp.write_text(json.dumps(state, indent=2))
+    fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+    with os.fdopen(fd, "w") as f:
+        f.write(json.dumps(state, indent=2))
+    try:
+        os.chmod(tmp, 0o600)  # in case the tmp file already existed with looser bits
+    except OSError:
+        pass
     tmp.replace(path)  # atomic on POSIX
+
+
+def redact_secrets(text: str) -> str:
+    """Mask values that look like credentials before they're stored."""
+    for pat in SECRET_PATTERNS:
+        if pat.groups >= 3:
+            text = pat.sub(lambda m: f"{m.group(1)}{m.group(2)}[REDACTED]", text)
+        elif pat.pattern.startswith("://"):
+            text = pat.sub("://[REDACTED]@", text)
+        else:
+            text = pat.sub("[REDACTED]", text)
+    return text
+
+
+def valid_name(name: str) -> bool:
+    return bool(NAME_RE.fullmatch(name or ""))
 
 
 # --------------------------------------------------------------------------- #
@@ -116,6 +165,9 @@ def save_state(path: Path, state: dict) -> None:
 def cmd_wrap(args) -> int:
     if not args.command:
         print("No command given. Put it after `--`, e.g. wrap --name x -- echo hi", file=sys.stderr)
+        return 2
+    if not valid_name(args.name):
+        print("--name may only contain letters, digits, dot, underscore and hyphen (max 64).", file=sys.stderr)
         return 2
     sp = state_path(args.state)
     state = load_state(sp)
@@ -130,15 +182,18 @@ def cmd_wrap(args) -> int:
     exit_code, tail = 1, ""
     for attempt in range(1, attempts + 1):
         try:
+            # Argument list with shell=False: the command is executed directly,
+            # never interpreted by a shell, so its text can't inject extra commands.
             proc = subprocess.run(
                 args.command,
+                shell=False,
                 capture_output=True,
                 text=True,
                 timeout=args.timeout or None,
             )
             exit_code = proc.returncode
             out = (proc.stdout or "") + (proc.stderr or "")
-            tail = "\n".join(out.splitlines()[-15:])[-2000:]
+            tail = "" if args.no_output_tail else redact_secrets("\n".join(out.splitlines()[-15:]))[-TAIL_CHARS:]
             # pass through so wrapping stays transparent in logs/pipelines
             if proc.stdout:
                 sys.stdout.write(proc.stdout)
@@ -265,21 +320,44 @@ def cmd_status(args) -> int:
 # crontab: emit a ready-to-paste line
 # --------------------------------------------------------------------------- #
 
+def valid_schedule(schedule: str) -> bool:
+    parts = (schedule or "").split()
+    if len(parts) == 1 and parts[0].lower() in CRON_MACROS:
+        return True
+    return len(parts) == 5 and all(CRON_FIELD_RE.fullmatch(p) for p in parts)
+
+
+def _cron_escape(line: str) -> str:
+    # In a crontab, an unescaped % ends the command and starts stdin.
+    return line.replace("%", "\\%")
+
+
 def cmd_crontab(args) -> int:
+    """Print crontab lines for the user to review. Never installs them."""
     if not args.command:
         print("Provide the command after `--`.", file=sys.stderr)
         return 2
-    script = os.path.abspath(__file__)
-    py = sys.executable or "python3"
+    if not valid_name(args.name):
+        print("--name may only contain letters, digits, dot, underscore and hyphen (max 64).", file=sys.stderr)
+        return 2
+    if not valid_schedule(args.schedule):
+        print('--schedule must be 5 cron fields (e.g. "0 3 * * *") or a macro like @daily.', file=sys.stderr)
+        return 2
+    if args.expect_every and parse_duration(args.expect_every) is None:
+        print("--expect-every must be a duration like 30m, 12h, 1d or 1w.", file=sys.stderr)
+        return 2
+    script = _shquote(os.path.abspath(__file__))
+    py = _shquote(sys.executable or "python3")
     inner = " ".join(_shquote(c) for c in args.command)
-    expect = f" --expect-every {args.expect_every}" if args.expect_every else ""
-    retries = f" --retries {args.retries}" if args.retries else ""
-    line = (f'{args.schedule} {py} {script} wrap --name {args.name}{expect}{retries} '
-            f'-- {inner}')
-    print("# Paste into your crontab (crontab -e). Then have Sentinel watch them:")
+    expect = f" --expect-every {_shquote(args.expect_every)}" if args.expect_every else ""
+    retries = f" --retries {int(args.retries)}" if args.retries else ""
+    line = _cron_escape(f"{args.schedule} {py} {script} wrap --name {args.name}{expect}{retries} -- {inner}")
+    watchdog = f"*/30 * * * * {py} {script} check || true  # pipe to your notifier"
+    print("# Cron Sentinel does not edit your crontab. Review these lines, then add them")
+    print("# yourself with `crontab -e` if they look right.")
     print(line)
-    print(f"# And a watchdog that alerts on failures/silence every 30 min:")
-    print(f'*/30 * * * * {py} {script} check || true  # pipe to your notifier')
+    print("# Watchdog that reports failures/silence every 30 min:")
+    print(watchdog)
     return 0
 
 
@@ -304,6 +382,8 @@ def main(argv=None):
     pw.add_argument("--expect-every", help="Cadence for overdue detection, e.g. 1d, 12h, 1w.")
     pw.add_argument("--retries", type=int, default=0)
     pw.add_argument("--timeout", type=int, default=0, help="Per-attempt timeout seconds (0 = none).")
+    pw.add_argument("--no-output-tail", action="store_true",
+                    help="Don't save any of the command's output to the state file.")
     pw.add_argument("command", nargs=argparse.REMAINDER, help="Command after `--`.")
 
     pc = sub.add_parser("check", help="Report failed or overdue jobs (exit 1 if any).")

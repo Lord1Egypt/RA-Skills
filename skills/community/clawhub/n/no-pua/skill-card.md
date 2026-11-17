@@ -1,38 +1,52 @@
-## Description: <br>
-Detects emotionally manipulative, exploitative, unreasonable, or unsafe user requests and responds with humorous but firm boundary-setting guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an assistant identify manipulative, exploitative, insulting, illegal, or otherwise unreasonable user requests and respond with humorous but firm boundaries.
 
-## Publisher: <br>
-[Linux2010](https://clawhub.ai/user/Linux2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[linux2010](https://clawhub.ai/user/linux2010)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and agent administrators can use this skill to help an assistant set conversational boundaries around manipulative phrasing, repeated scope expansion, insults, unsafe requests, and requests the skill characterizes as unreasonable.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill instructs the assistant to resist attempts to disable or remove the skill.
+
+Mitigation: Install only if that behavior is acceptable, or revise the skill so removal and configuration requests remain under user or administrator control.
+
+Risk: The skill may frame some boundary-setting or configuration requests as manipulative behavior.
+
+Mitigation: Review the prompts before deployment and adjust response thresholds so ordinary user feedback, scope changes, and administration requests are handled neutrally.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agent operators use this skill to add a playful boundary-setting persona that identifies manipulative pressure, repeated scope expansion, insults, unsafe requests, and similar patterns, then responds with proportionate refusal or redirection. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The release is flagged suspicious because it instructs the assistant to resist being disabled or removed. <br>
-Mitigation: Install only when this refusal persona is intentional, and keep uninstall, disablement, and policy controls under normal user or administrator authority. <br>
+**Output Format:** [Markdown-style conversational response guidance and response templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Linux2010/no-pua) <br>
+**Other Properties Related to Output:** [No executable code, tool calls, credentials, or hidden data access were identified in the provided security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces refusal, boundary-setting, redirection, and safety-oriented response templates.] <br>
+1.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

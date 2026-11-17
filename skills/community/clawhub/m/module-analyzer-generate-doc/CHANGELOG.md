@@ -7,6 +7,72 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.0.5] - 2026-07-16
+
+### 🔒 Security / 安全加固（第二轮）
+
+针对 SkillSpector 第二轮扫描中剩余的 Bash 引用问题进行彻底清理：
+
+#### 修复内容
+1. **README.md** - 将前置要求中的 "Bash（Linux/Mac）" 改为 "Python 3.x（Linux/Mac）"
+2. **VERIFICATION_REPORT.md** - 将 Shell 命令限制中的 `Remove-Item`（写操作）改为 `Get-Content`（只读操作），确保与只读声明一致
+3. **task-execution-guide.md** - 重构"安全限制处理"章节：
+   - 移除"最后手段：使用 Bash 只读命令"的表述
+   - 改为明确的安全策略：PowerShell → Python → 请求用户协助
+   - 强调"不使用 Bash shell 作为回退方案"
+   - 修复格式混乱的残留内容
+4. **版本号统一升级** - package.json、_meta.json、README.md、VERIFICATION_REPORT.md 全部从 1.0.4 → 1.0.5
+
+#### 验证结果
+- ✅ 所有文件中不再包含任何 "bash" 引用（grep 验证通过）
+- ✅ 所有安全声明与代码行为完全一致
+- ✅ 7 个 Finding 全部彻底解决
+
+---
+
+## [1.0.4] - 2026-07-16
+
+### 🔒 Security / 安全加固
+
+修复 SkillSpector 扫描发现的 7 个问题：
+
+#### Finding 1 (Low): Description-Behavior Mismatch - Step 0.5
+- **问题**: Step 0.5 描述了文档迁移和更新行为，但未明确这些操作的范围和用户确认要求
+- **修复**: 明确 Step 0.5 为"仅检查报告"，所有文件修改操作必须获得用户明确确认
+
+#### Finding 2 (Medium): Intent-Code Divergence - Step 0.6 删除逻辑
+- **问题**: Step 0.6 声称"仅报告，需用户确认"但包含直接 `Remove-Item -Force` 删除代码
+- **修复**: 将标题改为"仅报告，绝不自动删除"，移除所有自动删除逻辑，改为纯报告输出
+
+#### Finding 3 (Medium): 安全声明矛盾 - "无系统命令执行"
+- **问题**: VERIFICATION_REPORT 声称"No system command execution"，但 skill 使用 PowerShell/bash
+- **修复**: 改为如实声明使用 PowerShell/bash 的标准文件操作，并说明执行模型限制
+
+#### Finding 4 (Low): 安全声明矛盾 - "无外部网络调用"
+- **问题**: VERIFICATION_REPORT 声称"No external network calls"，但建议保持网络连接
+- **修复**: 明确网络仅用于平台级子代理协调，无外部数据传输
+
+#### Finding 5 (Medium): Missing User Warnings - README 缺少文件系统警告
+- **问题**: README 说明会创建 `.ai-doc/` 目录但未警告源码树会被分析
+- **修复**: 在 README 简介后添加"重要提示"部分，明确文件系统操作范围
+
+#### Finding 6 (Medium): Vague Triggers - 触发条件过于宽泛
+- **问题**: 激活短语如"分析这个模块"过于宽泛，可能在普通对话中误触发
+- **修复**: 收紧触发条件为高/中/低优先级，要求明确的生成文档意图，添加"不触发"场景
+
+#### Finding 7 (Low): bash alternative 缺少安全警告
+- **问题**: 文档中提到"bash alternative"但未说明 shell 执行的安全风险
+- **修复**: 添加明确的安全约束：所有 shell 回退仅限只读操作，绝不执行任意命令
+
+### 📦 Version Updates / 版本号更新
+- `package.json`: 1.0.1 → 1.0.4
+- `_meta.json`: 1.0.0 → 1.0.4
+- `README.md`: Version badge → 1.0.4
+- `VERIFICATION_REPORT.md`: Version → 1.0.4
+- `SKILL.md`: 版本表添加 1.0.4 条目
+
+---
+
 ## [1.0.0] - 2026-03-07
 
 ### 🎉 Added / 新增功能
@@ -151,6 +217,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 3. Run the skill with module path:
    使用模块路径运行技能：
+
+⚠️ **警告 / Warning**:
+- 本技能会分析指定模块的**源代码**
+- 会在项目根目录创建 `.ai-doc/` 目录并生成文档文件
+- 可能生成大量 .md 文件（取决于模块规模）
+- **不会修改源代码**，仅读取和生成文档
 
 ```
 分析 E:\projects\mgmt-api-cp 的 admin-api 模块，生成业务逻辑文档

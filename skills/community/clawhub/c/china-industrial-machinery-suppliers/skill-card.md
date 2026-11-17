@@ -1,39 +1,55 @@
-## Description: <br>
-Comprehensive industrial machinery industry suppliers guide for international buyers - provides detailed information about China's machine tools, construction machinery, agricultural equipment, packaging lines, robotics, and other industrial machinery manufacturing clusters, supply chain structure, regional specializations, and industry trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive industrial machinery suppliers guide for international buyers, covering China's machine tools, construction machinery, agricultural equipment, packaging lines, robotics, manufacturing clusters, supply chain structure, regional specializations, and 2026 industry trends.
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-External buyers and sourcing teams use this skill to understand China's industrial machinery manufacturing clusters, subsectors, supply chain structure, and supplier evaluation considerations before making procurement decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market data, supplier examples, and 2026 industry claims may be incomplete, stale, or unsuitable for a specific procurement decision. <br>
-Mitigation: Treat outputs as reference material and independently verify important sourcing decisions with current primary sources and supplier due diligence. <br>
+## Use Case:
 
+External buyers, sourcing teams, and developers use this skill to explore China's industrial machinery sectors, compare regional manufacturing clusters, understand supply chain structure, and get supplier evaluation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/findhappy7/china-industrial-machinery-suppliers) <br>
-- [Publisher profile](https://clawhub.ai/user/findhappy7) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Natural-language guidance and structured Python dictionary/list results from local reference data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local cluster-level reference data; does not include individual supplier contacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Supplier, certification, policy, or market claims may be incomplete, outdated, or unsuitable for a specific procurement decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as an informational sourcing aid and independently verify claims before making business decisions.
+
+Risk: The release evidence notes an absent allowed-tools declaration.
+
+Mitigation: Review the skill before deployment; the security evidence reports that inspected code is local and read-only.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/findhappy7/skills/china-industrial-machinery-suppliers)
+- [Skill documentation](artifact/SKILL.md)
+- [Bundled industrial machinery data](artifact/data.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Natural-language answers and Python dictionaries from bundled JSON data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local read-only data access; security evidence reports no network access, credential use, persistence, or system modification.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

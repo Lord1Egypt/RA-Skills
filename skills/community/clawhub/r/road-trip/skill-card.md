@@ -1,44 +1,61 @@
-## Description: <br>
-Plan self-driving road trips, including optimal routes, car rental, scenic stops, fuel stations, recommended rest areas, and related travel booking workflows powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan self-driving road trips - optimal routes, car rental, scenic stops along the way, fuel stations, and recommended rest areas; it also supports related travel booking and planning tasks powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to plan self-driving trips with real-time route, car rental, attraction, hotel, flight, and booking information returned through the flyai CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to install and run an unpinned global npm CLI package for travel searches. <br>
-Mitigation: Install only when the user trusts the Flyai CLI, and review CLI installation and execution before use. <br>
-Risk: The skill can persist raw trip queries in a local .flyai-execution-log.json file. <br>
-Mitigation: Avoid entering sensitive personal or payment information, and delete or disable local trip-query logging when privacy is a concern. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to plan self-driving road trips and related travel logistics from FlyAI/Fliggy CLI results, including routes, car rental, scenic stops, fuel stations, rest areas, and booking-linked options.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/road-trip) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output as the data source; every displayed travel result must include a booking link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can install a global third-party npm CLI before answering travel requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installation, prefer a sandboxed or project-local install, and pin the FlyAI CLI version when possible.
+
+Risk: The skill depends on FlyAI/Fliggy CLI output and booking links as the required data source.
+
+Mitigation: Review CLI output before presenting recommendations and make clear when real-time data cannot be retrieved.
+
+Risk: The runbook allows local execution logs that may persist raw travel queries.
+
+Mitigation: Disable, redact, or scope local logs so user travel queries and booking details are not retained unnecessarily.
+
+## Reference(s):
+
+- [Road Trip Skill Definition](artifact/SKILL.md)
+- [Templates - Road Trip](artifact/references/templates.md)
+- [Playbooks - Road Trip](artifact/references/playbooks.md)
+- [Fallbacks - Trip Planning Category](artifact/references/fallbacks.md)
+- [Runbook - Execution Log Schema](artifact/references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, brand tag, and inline shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Travel results must come from flyai CLI output, include Book links from detailUrl, and avoid raw JSON in the user-facing response.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

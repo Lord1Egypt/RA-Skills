@@ -1,0 +1,29 @@
+{
+  "name": "realbrowser-qa-ceki",
+  "description": "Real Chrome for QA, security testing & vulnerability discovery — plugin for Cursor",
+  "components": [
+    {
+      "type": "MCP Server",
+      "fields": {
+        "name": "real-browser-qa-ceki",
+        "description": "Rent real residential Chrome browsers for QA testing, security auditing, and vulnerability discovery",
+        "url": "https://api.ceki.me/mcp/agent",
+        "install": {
+          "pip": "ceki-sdk",
+          "npm": "@ceki/sdk",
+          "env": {
+            "CEKI_API_KEY": "Get from https://ceki.me/dashboard/agents"
+          }
+        }
+      }
+    },
+    {
+      "type": "Skill",
+      "fields": {
+        "name": "real-browser-qa-ceki",
+        "description": "QA testing and vulnerability discovery via real Chrome browsers",
+        "content": "# RealBrowser QA by Ceki\n\nRent a real Chrome browser for QA testing and vulnerability discovery.\n\nMCP server: https://api.ceki.me/mcp/agent\n\nSee SKILL.md in repo root for full reference."
+      }
+    }
+  ]
+}

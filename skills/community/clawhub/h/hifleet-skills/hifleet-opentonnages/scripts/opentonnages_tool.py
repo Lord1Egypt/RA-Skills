@@ -15,8 +15,17 @@ from pathlib import Path
 from typing import Any, Optional
 
 _SCRIPT_DIR = Path(__file__).resolve().parent
-if str(_SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(_SCRIPT_DIR))
+_SKILLS_SCRIPTS = Path(__file__).resolve().parents[2] / "scripts"
+for _p in (_SCRIPT_DIR, _SKILLS_SCRIPTS):
+    if str(_p) not in sys.path:
+        sys.path.insert(0, str(_p))
+
+from charter_contact_dedup import dedupe_unlock_payload
+from charter_enrich_helpers import (
+    enrich_response_usable,
+    normalize_cargo_row_for_enrich,
+    normalize_vessel_row_for_enrich,
+)
 
 DEFAULT_CHARTER_BASE = "https://api.hifleet.com/openclaw/vessel/charter"
 DEFAULT_LINER_BASE = "https://api.hifleet.com/openclaw/vessel/charter/liner"
@@ -187,6 +196,43 @@ def paginated_search(
     }
 
 
+def _http_get_json(url: str, headers: Optional[dict[str, str]] = None, timeout: int = 90) -> dict[str, Any]:
+    req = urllib.request.Request(url, method="GET", headers=headers or {})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return json.loads(resp.read().decode("utf-8"))
+
+
+def port_suggest(keyword: str, *, size: int = 1) -> dict[str, Any]:
+    """GET {liner}/ports/suggest — resolve portId for params.portid."""
+    cfg = load_config()
+    api_key = cfg["api_key"]
+    if not api_key:
+        return {"ok": False, "error": "missing hifleet_api_key"}
+    kw = (keyword or "").strip()
+    if not kw:
+        return {"ok": False, "error": "keyword required (English port name)"}
+    qs = urllib.parse.urlencode(
+        {"keyword": kw, "from": 0, "size": max(1, size), "api_key": api_key}
+    )
+    url = f"{cfg['liner_base']}/ports/suggest?{qs}"
+    headers = {"api_key": api_key}
+    try:
+        resp = _http_get_json(url, headers=headers)
+    except urllib.error.HTTPError as e:
+        try:
+            detail = e.read().decode("utf-8", errors="replace")
+        except Exception:
+            detail = str(e)
+        return {"ok": False, "error": f"HTTP {e.code}", "detail": detail}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+    data = resp.get("data")
+    ports: list[dict[str, Any]] = []
+    if isinstance(data, list):
+        ports = [x for x in data if isinstance(x, dict)]
+    return {"ok": True, "keyword": kw, "ports": ports, "payload": resp}
+
+
 def _http_post_empty(url: str, timeout: int = 90) -> dict[str, Any]:
     req = urllib.request.Request(url, data=b"", method="POST")
     with urllib.request.urlopen(req, timeout=timeout) as resp:
@@ -225,12 +271,16 @@ def fetch_contacts(data_id: str, *, kind: str = "vessel") -> dict[str, Any]:
         return {"ok": False, "error": f"HTTP {e.code}", "detail": detail}
     except Exception as e:
         return {"ok": False, "error": str(e)}
+    deduped = dedupe_unlock_payload(resp)
     return {
         "ok": True,
         "dataId": rid,
         "kind": kind,
         "typeCode": type_code,
         "contacts": resp,
+        "contacts_deduped": deduped.get("contacts_deduped", []),
+        "deduped_count": deduped.get("deduped_count", 0),
+        "original_contact_count": deduped.get("original_contact_count", 0),
     }
 
 
@@ -264,14 +314,40 @@ def enrich_row(
     url = cfg["enrich_url"]
     if "?" not in url:
         url = f"{url}?{urllib.parse.urlencode({'api_key': api_key})}"
-    body: dict[str, Any] = {"kind": kind, "row": row}
+
+    k = (kind or "").strip().lower()
+    imo: Any = None
+    mmsi: Any = None
+    if k in ("cargo", "g"):
+        mapped_row = normalize_cargo_row_for_enrich(row)
+    else:
+        mapped_row, imo, mmsi = normalize_vessel_row_for_enrich(row)
+
+    body: dict[str, Any] = {
+        "kind": "cargo" if k in ("cargo", "g") else "vessel",
+        "source": "parse_schema",
+        "row": mapped_row,
+        "include_archive": True,
+        "charter_api_base": cfg["api_base"],
+    }
+    if imo:
+        body["imo"] = imo
+    if mmsi:
+        body["mmsi"] = mmsi
     if query_port:
         body["query_port"] = query_port
     try:
         resp = _http_post_json(url, body)
     except Exception as e:
         return {"ok": False, "error": str(e)}
-    return {"ok": True, "enrich": resp}
+    if not enrich_response_usable(resp):
+        return {
+            "ok": False,
+            "error": resp.get("message") or resp.get("error") or resp.get("msg") or "enrich_empty",
+            "enrich": resp,
+            "request_row": mapped_row,
+        }
+    return {"ok": True, "enrich": resp, "request_row": mapped_row}
 
 
 def cmd_search_vessels(args: argparse.Namespace) -> int:
@@ -312,6 +388,12 @@ def cmd_search_cargo(args: argparse.Namespace) -> int:
     return 0 if result.get("ok") else 1
 
 
+def cmd_ports_suggest(args: argparse.Namespace) -> int:
+    result = port_suggest(args.keyword, size=args.size)
+    print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+    return 0 if result.get("ok") else 1
+
+
 def cmd_fetch_contacts(args: argparse.Namespace) -> int:
     if args.all_from_file:
         data = json.loads(Path(args.all_from_file).read_text(encoding="utf-8"))
@@ -347,6 +429,11 @@ def cmd_enrich(args: argparse.Namespace) -> int:
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description="hifleet-opentonnages public vessel/cargo search")
     sub = p.add_subparsers(dest="cmd", required=True)
+
+    pp = sub.add_parser("ports-suggest", help="GET {liner}/ports/suggest → portId")
+    pp.add_argument("--keyword", required=True, help="English port name e.g. Tianjin")
+    pp.add_argument("--size", type=int, default=1)
+    pp.set_defaults(func=cmd_ports_suggest)
 
     sv = sub.add_parser("search-vessels", help="POST /vessels/search (full pagination)")
     sv.add_argument("--keyword", default="")

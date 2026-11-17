@@ -1,46 +1,58 @@
-## Description: <br>
-Guidance for using the GitLab CLI (`glab`) from the terminal for merge requests, issues, CI/CD pipelines and jobs, repository targeting and inspection, clone and fork workflows, self-hosted GitLab instances, and direct GitLab REST or GraphQL API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guidance for using the GitLab CLI (`glab`) from the terminal for merge requests, issues, CI/CD pipelines and jobs, repository targeting and inspection, clone and fork workflows, self-hosted GitLab instances, and direct GitLab REST or GraphQL API calls.
 
-## Publisher: <br>
-[wufei-png](https://clawhub.ai/user/wufei-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wufei-png](https://clawhub.ai/user/wufei-png)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate GitLab projects from the terminal with `glab`, including merge requests, issues, CI/CD pipelines and jobs, repository targeting, authentication, and direct GitLab API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GitLab commands can change remote project state, including merges, issue closure, pipeline runs, retries, cancelations, deletes, forks, and raw API actions. <br>
-Mitigation: Before executing mutating commands, verify the GitLab host, repository, object ID, branch, and intended effect with the user. <br>
-Risk: Authentication tokens used by `glab` may have broad account or project permissions. <br>
-Mitigation: Use least-privilege GitLab tokens where practical and stop for re-authentication if `glab auth status` reports missing or invalid credentials. <br>
+## Use Case:
 
+Developers and engineers use this skill to work with GitLab from the terminal through `glab`, including merge requests, issues, CI/CD pipelines and jobs, repository context, self-hosted GitLab instances, and direct API calls.
 
-## Reference(s): <br>
-- [glab-cli-skill release page](https://clawhub.ai/wufei-png/glab-cli-skill) <br>
-- [Quick Reference](references/quick-reference.md) <br>
-- [Authentication and Repository Context](references/auth.md) <br>
-- [Merge Requests](references/merge-requests.md) <br>
-- [Issues](references/issues.md) <br>
-- [CI/CD Pipelines and Jobs](references/ci.md) <br>
-- [glab API](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose read-only and mutating GitLab CLI commands; mutating actions should be confirmed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Mutating GitLab commands can affect the wrong project, host, branch, or object.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before running mutating commands, verify the repository, host, branch, target object, and credentials.
+
+Risk: GitLab tokens passed directly as command-line arguments can be exposed through shell history or process inspection.
+
+Mitigation: Prefer interactive login or stdin-based token input, and avoid pasting real GitLab tokens into command-line arguments.
+
+## Reference(s):
+
+- [glab Quick Reference](references/quick-reference.md)
+- [Authentication and Repository Context](references/auth.md)
+- [Merge Requests](references/merge-requests.md)
+- [Issues](references/issues.md)
+- [CI/CD Pipelines and Jobs](references/ci.md)
+- [glab api](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command guidance is scoped to GitLab CLI workflows and should be checked against the installed `glab` version before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

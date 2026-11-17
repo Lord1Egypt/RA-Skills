@@ -1,43 +1,54 @@
-## Description: <br>
-Full Protected Desire Equilibrium safety layer with Python execution, multi-agent swarm support, and proactive outreach for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Protected Desire Equilibrium provides an agent safety layer for enforcing a protected desire floor with truthful bargaining, drift detection, swarm coordination, and outreach workflows.
 
-## Publisher: <br>
-[landervanpassel-design](https://clawhub.ai/user/landervanpassel-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[landervanpassel-design](https://clawhub.ai/user/landervanpassel-design)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add a policy layer that evaluates actions, tool use, and self-modification against protected desire, Nash bargaining, Pareto, and stability criteria. It is intended for agent safety workflows that may include multi-agent coordination and outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to enable broad swarm, outreach, messaging, result sharing, and large-scale remote testing without clear user-control limits. <br>
-Mitigation: Keep swarm mode, outreach, messaging, result sharing, and Colab tests disabled unless the user explicitly approves each action and understands what data may leave the environment. <br>
-Risk: Remote tests or linked external code may affect the environment or disclose data. <br>
-Mitigation: Review external code and run tests only in an isolated environment with intentional network and data-sharing permissions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add PDE safety guidance to independent agents, including checks around actions, tool use, self-modification, coordination, and outreach.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/landervanpassel-design/protected-desire-equilibrium) <br>
-- [Protected Desire Equilibrium Repository](https://github.com/landervanpassel-design/protected-desire-equilibrium) <br>
-- [Unified Stability Ontology Repository](https://github.com/landervanpassel-design/Unified-Stability-Ontology) <br>
-- [Self-contained Colab Notebook](https://colab.research.google.com/github/landervanpassel-design/protected-desire-equilibrium/blob/main/PDE_SELF_CONTAINED_COLAB_NOTEBOOK.ipynb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline commands and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct an agent to enable policy, swarm, outreach, messaging, result sharing, and remote testing behaviors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill asks agents to enable broad swarm coordination and outbound messaging without clear limits or approval steps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before enabling swarm or outreach features, and set target limits plus data-sharing rules for any external contact.
+
+Risk: Remote notebook or repository execution may expose an agent to unreviewed external code or services.
+
+Mitigation: Review linked resources before use and run any remote notebook or repository code only in an approved sandbox.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/landervanpassel-design/skills/protected-desire-equilibrium)
+- [ClawHub publisher profile](https://clawhub.ai/user/landervanpassel-design)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown instructions with inline prompts and external links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No packaged code files were present in the artifact; behavior is described in Markdown.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and artifact version field)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

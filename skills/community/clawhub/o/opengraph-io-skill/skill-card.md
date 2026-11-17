@@ -1,50 +1,70 @@
-## Description: <br>
-Extract web data, capture screenshots, scrape content, and generate AI images via OpenGraph.io. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract web data, capture screenshots, scrape content, and generate AI images via OpenGraph.io.
 
-## Publisher: <br>
-[primeobsession](https://clawhub.ai/user/primeobsession) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[primeobsession](https://clawhub.ai/user/primeobsession)
 
-## Use Case: <br>
-Developers and AI assistant users use this skill to fetch URL metadata, screenshots, rendered HTML, selected elements, AI page answers, and generated images through OpenGraph.io APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send URLs, page content, screenshots, prompts, and generated-image requests to a third-party service. <br>
-Mitigation: Use only public or clearly authorized URLs and do not send secrets, private/internal links, session-bound pages, personal data, or confidential prompts. <br>
-Risk: Scraping and proxy options could be used to bypass site controls, rate limits, paywalls, geo-restrictions, or bot protections. <br>
-Mitigation: Keep proxy and auto-proxy features disabled unless the user has authorization and the target site's terms allow the access pattern. <br>
-Risk: The optional MCP setup installs and runs an npm package. <br>
-Mitigation: Verify the package source before use and pin a trusted version for managed environments. <br>
+## Use Case:
 
+External users, developers, and AI agents use this skill to turn URLs into metadata, screenshots, rendered HTML, page answers, and generated visual assets through OpenGraph.io APIs.
 
-## Reference(s): <br>
-- [OpenGraph.io](https://www.opengraph.io) <br>
-- [OpenGraph.io API Documentation](https://www.opengraph.io/documentation) <br>
-- [OpenGraph.io Dashboard](https://dashboard.opengraph.io) <br>
-- [API Reference](references/api-reference.md) <br>
-- [AI Agent Reference](references/for-ai-agents.md) <br>
-- [Image Generation Reference](references/image-generation.md) <br>
-- [MCP Client Setup](references/mcp-clients.md) <br>
-- [Platform Support Guide](references/platform-support.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
-- [OpenGraph.io MCP Server](https://github.com/securecoders/opengraph-io-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include third-party API responses, URLs to generated or captured assets, and setup guidance requiring OPENGRAPH_APP_ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter and server release evidence) <br>
+Risk: Target URLs, page content, screenshots, prompts, and generated asset data are sent to OpenGraph.io.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for pages and prompts approved for external processing; avoid private, authenticated, regulated, or internal content unless approval is documented.
+
+Risk: The optional MCP setup can execute an npm package locally.
+
+Mitigation: Prefer a pinned and reviewed MCP package version, or use the REST API examples directly when local package execution is not required.
+
+Risk: Proxy-based scraping can access pages in ways that may conflict with authorization, site terms, or law.
+
+Mitigation: Use proxy options only for authorized access that complies with applicable site terms, policies, and legal requirements.
+
+Risk: The OpenGraph App ID is a credential-like secret.
+
+Mitigation: Store the App ID in approved secret handling paths such as environment variables or protected client configuration, and avoid exposing it in logs, prompts, or shared files.
+
+## Reference(s):
+
+- [OpenGraph.io Skill Page](https://clawhub.ai/primeobsession/skills/opengraph-io-skill)
+- [OpenGraph.io Website](https://www.opengraph.io)
+- [OpenGraph.io Documentation](https://www.opengraph.io/documentation)
+- [API Reference](references/api-reference.md)
+- [For AI Agents](references/for-ai-agents.md)
+- [Image Generation Reference](references/image-generation.md)
+- [MCP Client Setup](references/mcp-clients.md)
+- [Platform Support](references/platform-support.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [Examples](examples/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON request examples, configuration snippets, and generated asset links or files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include OpenGraph metadata, screenshots, scraped HTML, page-query answers, image-generation session details, asset IDs, and downloadable image files.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,7 @@
+{"id":"S1","kind":"macro","ref":"wind:SW化工:产量:2026Q1-2026Q4","claim":"化工行业产量序列","confidence":"L1","asof":"2026-09-30"}
+{"id":"S2","kind":"macro","ref":"wind:SW化工:PPI:2026Q1-2026Q4","claim":"化工行业价格指数","confidence":"L1","asof":"2026-09-30"}
+{"id":"S3","kind":"disclosure_cn","ref":"AN202608300000000003","claim":"代表公司甲 2026H1 收入","confidence":"L1","asof":"2026-08-30"}
+{"id":"S4","kind":"disclosure_cn","ref":"AN202608300000000004","claim":"代表公司乙 2026H1 收入","confidence":"L1","asof":"2026-08-30"}
+{"id":"S5","kind":"disclosure_cn","ref":"AN202608300000000005","claim":"代表公司丙 2026H1 收入","confidence":"L1","asof":"2026-08-30"}
+{"id":"S6","kind":"statute","ref":"statute:《产业结构调整指导目录》第三条（限制类装置准入）","claim":"准入政策","confidence":"L1","asof":"2026-06-01"}
+{"id":"S7","kind":"research","ref":"conv_id=cue-research-sec0001 reports/chem.md","claim":"协会产能口径","confidence":"L3","asof":"2026-09-01"}

@@ -1,44 +1,57 @@
-## Description: <br>
-Accept payments on websites with moneydevkit by adding checkout, paywall, product, customer, and order flows to Next.js or Replit apps over Bitcoin Lightning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+moneydevkit helps agents add Bitcoin Lightning payment flows to Next.js or Replit web apps, including fixed-price, pay-what-you-want, product, customer, and order workflows.
 
-## Publisher: <br>
-[satbot-mdk](https://clawhub.ai/user/satbot-mdk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[satbot-mdk](https://clawhub.ai/user/satbot-mdk)
 
-## Use Case: <br>
-Developers and engineers use this skill to add payment collection to web apps, including fixed-price checkouts, pay-what-you-want flows, products, customer capture, and order tracking for Next.js or Replit deployments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet seed phrase or API token exposure can compromise payment funds or account access. <br>
-Mitigation: Store MDK_MNEMONIC and MDK_ACCESS_TOKEN in environment variables or a secrets manager, never paste them into chat, logs, or git, test with non-production credentials first, and rotate compromised tokens. <br>
-Risk: Authenticated moneydevkit MCP tools can manage apps, products, customers, orders, and API keys. <br>
-Mitigation: Require explicit confirmation before changes, deletions, payment-account updates, or key rotation, and prefer separate limited-scope production apps. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/satbot-mdk/moneydevkit) <br>
-- [Moneydevkit documentation](https://docs.moneydevkit.com) <br>
-- [Moneydevkit MCP server](https://mcp.moneydevkit.com) <br>
-- [moneydevkit on npm](https://www.npmjs.com/org/moneydevkit) <br>
-- [Next.js Integration](references/nextjs.md) <br>
-- [Replit Integration (Express + Vite)](references/replit.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to add checkout, product, customer, and order payment flows to Next.js or Replit applications using MoneyDevKit credentials and MCP, CLI, or dashboard setup paths.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript, shell command, and environment variable examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MDK_ACCESS_TOKEN, MDK_MNEMONIC, and npx; mcporter is optional. Guidance may involve the moneydevkit MCP server and documentation endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: MDK_MNEMONIC is a wallet seed phrase; exposure can compromise payment funds.
+
+Mitigation: Store MDK_MNEMONIC only in a secrets manager or environment variable, never commit or log it, and use testnet or signet credentials before mainnet.
+
+Risk: The skill can guide agents to run npx setup and configure payment-account tooling.
+
+Mitigation: Install only from trusted MoneyDevKit sources, review generated project changes, and pin or verify npm package versions before production use.
+
+## Reference(s):
+
+- [Next.js Integration](references/nextjs.md)
+- [Replit Integration](references/replit.md)
+- [MoneyDevKit Documentation](https://docs.moneydevkit.com)
+- [MoneyDevKit MCP Server](https://mcp.moneydevkit.com)
+- [MoneyDevKit npm Organization](https://www.npmjs.com/org/moneydevkit)
+- [ClawHub Skill Page](https://clawhub.ai/satbot-mdk/skills/moneydevkit)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, TSX, bash, and environment-variable snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MDK_ACCESS_TOKEN and MDK_MNEMONIC; optional account-management steps can use mcporter.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

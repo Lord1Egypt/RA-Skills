@@ -1,43 +1,58 @@
-## Description: <br>
-Create a Website in 4 Minutes Designed to Bring Clients from ChatGPT, Gemini & Modern Search <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates complete, responsive websites from brief natural language business descriptions using EvoWeb's hosted generation service.
 
-## Publisher: <br>
-[galizki](https://clawhub.ai/user/galizki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[galizki](https://clawhub.ai/user/galizki)
 
-## Use Case: <br>
-External users and developers use this skill to turn concise business or project descriptions into hosted EvoWeb websites, including live and editor links. It supports both API-key-based creation and a registration-link flow when the user does not yet have an EvoWeb API key. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Website descriptions are sent to EvoWeb, and the no-key onboarding flow can place the prompt in a registration URL. <br>
-Mitigation: Avoid including secrets, credentials, regulated personal data, confidential plans, or other sensitive information in prompts. <br>
-Risk: Direct website creation uses the user's EvoWeb API key and may consume account credits. <br>
-Mitigation: Use only the intended EvoWeb account, confirm the user wants to create or retry a site, and communicate that generations may use credits. <br>
-Risk: Generated sites are hosted by EvoWeb and may remain live while the account is active. <br>
-Mitigation: Review generated content and editor settings before sharing public live URLs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [EvoWeb Website Builder](https://evoweb.ai/?utm_source=claw&utm_medium=skill&utm_campaign=website&utm_content=v1.0) <br>
-- [EvoWeb API Base URL](https://api.evoweb.ai/openapi/api/v1) <br>
-- [ClawHub Skill Page](https://clawhub.ai/galizki/evoweb-ai) <br>
+## Use Case:
 
+External users and developers use this skill to turn a concise business or project description into a generated live website and editor link through EvoWeb. It supports direct API use with an EvoWeb API key and a registration-link workflow when no API key is available.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, code, configuration, guidance] <br>
-**Output Format:** [Markdown responses with JSON API payloads, URLs, and generated website code hosted by EvoWeb] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVOWEB_API_KEY for direct API creation; users without an API key can use a pre-filled registration URL.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Website descriptions, business details, and generated site content are sent to and hosted by EvoWeb.
+
+Mitigation: Do not include secrets, credentials, private customer data, or confidential launch plans unless sharing them with EvoWeb is acceptable.
+
+Risk: Direct API use requires an EvoWeb API key.
+
+Mitigation: Keep EVOWEB_API_KEY in environment configuration and do not paste or expose the key in prompts, generated pages, or user-facing responses.
+
+Risk: Website generation may consume EvoWeb account credits and generated sites remain hosted on EvoWeb infrastructure.
+
+Mitigation: Confirm the account, billing, and hosting expectations before creating or remaking a site.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/galizki/skills/evoweb-ai)
+- [EvoWeb homepage and API key registration](https://evoweb.ai/?utm_source=claw&utm_medium=skill&utm_campaign=website&utm_content=v1.0)
+- [EvoWeb API base URL](https://api.evoweb.ai/openapi/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown text with JSON API payloads, polling status updates, and generated website URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EVOWEB_API_KEY for direct API use; without it, the skill produces a prefilled EvoWeb registration link.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

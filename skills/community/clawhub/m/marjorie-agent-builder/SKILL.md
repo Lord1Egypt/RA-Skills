@@ -58,7 +58,7 @@ Use templates from `references/templates.md` but tailor content to the answers.
 Ensure the generated agent includes:
 
 - Explicit ask-before-destructive rule.
-- Explicit ask-before-outbound-messages rule.
+- Explicit aREDACTED-SECRET rule.
 - Stop-on-CLI-usage-error rule.
 - Max-iteration / loop breaker guidance.
 - Group chat etiquette.

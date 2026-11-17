@@ -1,46 +1,65 @@
-## Description: <br>
-Generate AI videos with Luma Dream Machine via the AceDataCloud API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through creating and extending Luma Dream Machine videos through AceDataCloud's API.
 
-## Publisher: <br>
-[Germey](https://clawhub.ai/user/Germey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acedatacloud](https://clawhub.ai/user/acedatacloud)
 
-## Use Case: <br>
-Developers, creators, and agent users use this skill to generate videos from text prompts, animate reference images, or extend existing videos through AceDataCloud's Luma Dream Machine API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generation prompts, image URLs, video IDs, and related metadata are sent to AceDataCloud/Luma. <br>
-Mitigation: Use the skill only for data approved for external processing and review the provider's privacy and retention terms before confidential work. <br>
-Risk: The required API token could be exposed through prompts, logs, shared shells, or copied examples. <br>
-Mitigation: Use a dedicated AceDataCloud token, keep it in environment variables or a secrets manager, and avoid pasting tokens into prompts or shared artifacts. <br>
-Risk: Public start or end image URLs may expose private assets or internal network locations. <br>
-Mitigation: Use only approved public assets and avoid private, signed, or internal URLs in generation requests. <br>
-Risk: Prompt enhancement can alter the user's intended video content. <br>
-Mitigation: Set enhancement to false for literal prompts and review generated outputs before publication or downstream use. <br>
+## Use Case:
 
+Developers and creators use this skill to prepare text-to-video, image-to-video, and video-extension requests and follow up on generation tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Germey/acedatacloud-luma-video) <br>
-- [AceDataCloud Luma video endpoint](https://api.acedata.cloud/luma/videos) <br>
-- [AceDataCloud Luma MCP server](https://luma.mcp.acedata.cloud/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request examples, parameter guidance, authentication setup, polling guidance, and MCP tool names.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Video prompts, public reference image URLs, and task data are sent to AceDataCloud.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only data you are comfortable sending under your account and avoid sensitive reference images.
+
+Risk: The AceDataCloud API key may be exposed in prompts or committed files.
+
+Mitigation: Keep the key out of prompts and repositories, store it in an environment file, and use a restricted key where available.
+
+Risk: Resubmitting an asynchronous generation request to check progress may incur another charge.
+
+Mitigation: Poll the existing task ID rather than submitting the same request again.
+
+Risk: The optional mcp-luma package adds third-party software to the environment.
+
+Mitigation: Verify the package before installing it.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/acedatacloud/skills/luma)
+- [AceDataCloud key setup and first run](https://github.com/AceDataCloud/Skills#first-run-with-clawhub-and-openclaw)
+- [AceDataCloud authentication guidance](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
+- [AceDataCloud asynchronous task guidance](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/async-tasks.md)
+- [AceDataCloud MCP server guidance](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/mcp-servers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides API requests and task polling; generated videos are returned by the external service, not by this skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

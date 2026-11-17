@@ -1,44 +1,60 @@
-## Description: <br>
-GrowthLoop helps users refine habit goals, break them into daily plans, track check-ins, adjust difficulty, receive reminders, and view progress across up to five habits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GrowthLoop helps users turn habit goals into practical 28-day plans, track daily check-ins, adjust difficulty, view progress, and receive reminders for up to five habits.
 
-## Publisher: <br>
-[chestnuuutli](https://clawhub.ai/user/chestnuuutli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chestnuuutli](https://clawhub.ai/user/chestnuuutli)
 
-## Use Case: <br>
-External users use this skill as a personal habit coach to turn goals into practical daily routines, record progress, receive check-in reminders, and review habit summaries or visualizations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores habit history locally, which may include sensitive personal routines or notes. <br>
-Mitigation: Use the configured local data directory intentionally and avoid entering secrets or sensitive personal details in habit notes. <br>
-Risk: Reminder checks may surface habit status during conversations or through external schedulers. <br>
-Mitigation: Enable cron, webhooks, or other external reminder schedulers only when automated reminders are desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chestnuuutli/28-day-goal-supervisor) <br>
-- [Publisher profile](https://clawhub.ai/user/chestnuuutli) <br>
-- [Coaching style guide](references/coaching_style.md) <br>
-- [Edge case handling guide](references/edge_cases.md) <br>
-- [Plan generation rules](references/plan_generation_rules.md) <br>
-- [Goal rationalization guide](references/rationalization_guide.md) <br>
+## Use Case:
 
+External users use this agent to create habit goals, refine them into feasible plans, record daily progress, and review summaries or visualizations. It is suited to personal productivity workflows where local tracking and coaching-style reminders are acceptable.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI examples, JSON command responses, text summaries, and optional SVG visualizations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores habit history locally in a JSON file and can provide reminder configuration guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores habit goals, notes, reminders, and some coaching conversation history locally in plaintext.
+
+Mitigation: Use a private data directory with restrictive filesystem permissions and avoid entering sensitive health, work, or personal details.
+
+Risk: The skill automatically checks and may update reminder state across conversations.
+
+Mitigation: Review or disable heartbeat reminder behavior if unrelated conversations should not access or mutate habit reminder state.
+
+Risk: External or scheduled reminder paths can expose data or trigger habit checks outside the current chat context.
+
+Mitigation: Enable cron, launchd, GitHub Actions, or endpoint-based reminders only after reviewing the schedule, data directory, and endpoint exposure.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chestnuuutli/skills/28-day-goal-supervisor)
+- [Coaching Style Guide](artifact/references/coaching_style.md)
+- [Edge Case Handling Guide](artifact/references/edge_cases.md)
+- [Plan Generation Rules](artifact/references/plan_generation_rules.md)
+- [Goal Rationalization Guide](artifact/references/rationalization_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text guidance with optional CLI commands, JSON-backed records, text charts, and SVG progress visualizations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and stores habit data locally in plaintext unless the user configures a protected data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,52 @@
-## Description: <br>
-Convert data between hexadecimal and other formats. Use for debugging binary data, examining file headers, and working with hex dumps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert data between hexadecimal and other formats. Use for debugging binary data, examining file headers, and working with hex dumps.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill for byte-level inspection, binary debugging, file header checks, and hex dump workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A user may pass a sensitive local file path and receive its contents as hexadecimal output.
+
+Mitigation: Run it only on files intended for inspection and avoid sharing generated hex dumps when file contents are sensitive.
+
+Risk: The documentation describes decoding and base conversion examples, while the bundled script evidence only shows hexadecimal encoding.
+
+Mitigation: Verify the installed command supports the needed operation before relying on decode or base conversion examples.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to convert text, numbers, and byte streams to hexadecimal representations while debugging binary data, inspecting file headers, or working with hex dumps. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Server security evidence marks this release as suspicious because the reviewed bundle was associated with maintainer automation behavior that could bypass normal review controls. <br>
-Mitigation: Install only if the publisher is trusted and review any generated commands or write-capable actions before execution. <br>
+**Output Format:** [Markdown with inline bash code blocks and hexadecimal text output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/hex-tool) <br>
+**Other Properties Related to Output:** [The bundled script reads stdin or an explicitly provided local file path and prints hexadecimal text.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and plain text conversion results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command examples or hexadecimal strings depending on the requested conversion.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

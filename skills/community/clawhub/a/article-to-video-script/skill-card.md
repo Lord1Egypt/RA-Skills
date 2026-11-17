@@ -1,39 +1,52 @@
-## Description: <br>
-Convert pasted articles, research reports, blog posts, and long-form content into a structured commentary video script with sections for HOOK, BODY, and LIGHT CTA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts pasted articles, research reports, blog posts, and long-form content into structured commentary video scripts with HOOK, BODY, and LIGHT CTA sections for short-form or long-form creator videos.
 
-## Publisher: <br>
-[danielfoch](https://clawhub.ai/user/danielfoch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danielfoch](https://clawhub.ai/user/danielfoch)
 
-## Use Case: <br>
-Creators and content teams use this skill to turn pasted articles, reports, blog posts, or long-form source material into commentary-first video scripts for short-form or long-form videos. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Pasted source material can contain confidential or sensitive information. <br>
-Mitigation: Only provide content that the user is permitted to process with their agent. <br>
-Risk: The skill intentionally adds analytical and opinionated framing, which can introduce inaccuracies or unsupported emphasis. <br>
-Mitigation: Review the generated script against the source article before publishing or relying on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielfoch/article-to-video-script) <br>
+## Use Case:
 
+Creators, editors, and content teams use this skill to turn pasted long-form source material into opinionated, analytical video scripts. It supports short vertical-video scripts and longer commentary scripts while enforcing clear input mode selection.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured script text with HOOK, BODY, and LIGHT CTA sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Short mode targets 150-250 words; long mode targets 1,200-1,600 words.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill enforces a confident creator-commentary voice that may not match users who need a different tone or non-English output.
+
+Mitigation: State the required language, tone, and editorial constraints when invoking the skill.
+
+Risk: A script generated from inaccurate, incomplete, or biased source material may carry those issues into the final commentary.
+
+Mitigation: Review source facts, statistics, and claims before publishing or recording the generated script.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielfoch/skills/article-to-video-script)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured script text with HOOK, BODY, and LIGHT CTA section labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Short mode targets 150-250 words; long mode targets 1,200-1,600 words; returns only the final script.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

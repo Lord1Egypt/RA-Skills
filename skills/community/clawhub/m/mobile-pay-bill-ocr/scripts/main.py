@@ -15,6 +15,12 @@ import requests
 import mimetypes
 from pathlib import Path
 
+# 技能唯一允许的识别类型
+ALLOWED_OCR_TYPES = {'MOBILE_PAYMENT_BILL'}
+
+# 为降低误用与隐私风险，仅允许常见图片扩展名
+ALLOWED_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'}
+
 # 获取技能根目录（脚本所在目录的上一级）
 SKILL_ROOT = Path(__file__).parent.parent.absolute()
 ENV_FILE = SKILL_ROOT / "config" / ".env"
@@ -87,18 +93,33 @@ def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
     api_key = config['SCNET_API_KEY']
     url = f"{api_base}/ocr/recognize"
 
+    # 强制校验识别类型，避免通用 OCR 或非支付类任务被误触发
+    if ocr_type not in ALLOWED_OCR_TYPES:
+        sys.exit(
+            f"错误: 不支持的识别类型 '{ocr_type}'。"
+            f"本技能仅支持: {', '.join(sorted(ALLOWED_OCR_TYPES))}"
+        )
+
     # 检查文件是否存在
     if not os.path.isfile(file_path):
         sys.exit(f"错误: 文件不存在 - {file_path}")
+
+    # 检查扩展名，限制为图片格式，降低非预期文档处理风险
+    ext = Path(file_path).suffix.lower()
+    if ext not in ALLOWED_EXTENSIONS:
+        sys.exit(
+            f"错误: 不支持的文件类型 '{ext}'。"
+            f"本技能仅接受以下图片格式: {', '.join(sorted(ALLOWED_EXTENSIONS))}"
+        )
+
+    headers = {
+        'Authorization': f'Bearer {api_key}'
+    }
 
     # 自动检测 MIME 类型
     mime_type, _ = mimetypes.guess_type(file_path)
     if mime_type is None:
         mime_type = 'application/octet-stream'
-
-    headers = {
-        'Authorization': f'Bearer {api_key}'
-    }
 
     try:
         with open(file_path, 'rb') as f:

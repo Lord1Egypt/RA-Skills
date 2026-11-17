@@ -1,0 +1,1363 @@
+collection: FBNEO
+sort-by: 10
+shortname: fbneo
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/fbneo_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 2020bb
+file: 2020bb.zip
+assets.box_front: Imgs/2020bb.png
+description: 《2020bb》，由 SNK / Pallas 出品，FBNeo 街机 平台。
+publisher: SNK / Pallas
+game: 64street
+file: 64street.zip
+assets.box_front: Imgs/64street.png
+description: 《64street》，由 Jaleco 出品，1991 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1991
+game: abcop
+file: abcop.zip
+assets.box_front: Imgs/abcop.png
+description: 《abcop》，由 Sega 出品，1990 年发行，FBNeo 街机 平台。
+publisher: Sega
+release: 1990
+game: aeroboto
+file: aeroboto.zip
+assets.box_front: Imgs/aeroboto.png
+description: 《aeroboto》，由 Jaleco (Williams license) 出品，1984 年发行，FBNeo 街机 平台。
+publisher: Jaleco (Williams license)
+release: 1984
+game: airass
+file: airass.zip
+assets.box_front: Imgs/airass.png
+description: 《airass》，由 Irem 出品，1993 年发行，FBNeo 街机 平台。
+publisher: Irem
+release: 1993
+game: airattck
+file: airattck.zip
+assets.box_front: Imgs/airattck.png
+description: 《airattck》，由 Comad 出品，1996 年发行，FBNeo 街机 平台。
+publisher: Comad
+release: 1996
+game: altbeast
+file: altbeast.zip
+assets.box_front: Imgs/altbeast.png
+description: 《altbeast》，由 Sega 出品，1988 年发行，FBNeo 街机 平台。
+publisher: Sega
+release: 1988
+game: androdun
+file: androdun.zip
+assets.box_front: Imgs/androdun.png
+description: 《androdun》，由 Visco 出品，FBNeo 街机 平台。
+publisher: Visco
+game: arcadian
+file: arcadian.zip
+assets.box_front: Imgs/arcadian.png
+description: 《arcadian》，由 NMK 出品，1994 年发行，FBNeo 街机 平台。
+publisher: NMK
+release: 1994
+game: argus
+file: argus.zip
+assets.box_front: Imgs/argus.png
+description: 《argus》，由 NMK (Jaleco license) 出品，1986 年发行，FBNeo 街机 平台。
+publisher: NMK (Jaleco license)
+release: 1986
+game: astyanax
+file: astyanax.zip
+assets.box_front: Imgs/astyanax.png
+description: 《astyanax》，由 Jaleco 出品，1989 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1989
+game: asurabus
+file: asurabus.zip
+assets.box_front: Imgs/asurabus.png
+description: 《asurabus》，由 Fuuki 出品，2001 年发行，FBNeo 街机 平台。
+publisher: Fuuki
+release: 2001
+game: aztarac
+file: aztarac.zip
+assets.box_front: Imgs/aztarac.png
+description: 《aztarac》，由 Centuri 出品，1983 年发行，FBNeo 街机 平台。
+publisher: Centuri
+release: 1983
+game: ballbros
+file: ballbros.zip
+assets.box_front: Imgs/ballbros.png
+description: 《ballbros》，由 East Technology 出品，1992 年发行，FBNeo 街机 平台。
+publisher: East Technology
+release: 1992
+game: baryon
+file: baryon.zip
+assets.box_front: Imgs/baryon.png
+description: 《baryon》，由 The Game Factory 出品，1995 年发行，动作类游戏，FBNeo 街机 平台。
+publisher: The Game Factory
+developer: The Game Factory
+release: 1995
+genre: Action
+game: batsugun
+file: batsugun.zip
+assets.box_front: Imgs/batsugun.png
+description: 《batsugun》，由 Toaplan 出品，1993 年发行，FBNeo 街机 平台。
+publisher: Toaplan
+release: 1993
+game: bayroute
+file: bayroute.zip
+assets.box_front: Imgs/bayroute.png
+description: 《bayroute》，由 Sunsoft / Sega 出品，1989 年发行，FBNeo 街机 平台。
+publisher: Sunsoft / Sega
+release: 1989
+game: bermudat
+file: bermudat.zip
+assets.box_front: Imgs/bermudat.png
+description: 《bermudat》，由 SNK 出品，FBNeo 街机 平台。
+publisher: SNK
+developer: SNK
+game: bestbest
+file: bestbest.zip
+assets.box_front: Imgs/bestbest.png
+description: 《bestbest》，由 SunA 出品，1994 年发行，FBNeo 街机 平台。
+publisher: SunA
+release: 1994
+game: bigrun
+file: bigrun.zip
+assets.box_front: Imgs/bigrun.png
+description: 《bigrun》，由 Jaleco 出品，1989 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1989
+game: blazeon
+file: blazeon.zip
+assets.box_front: Imgs/blazeon.png
+description: 《blazeon》，由 A.I (Atlus license) 出品，1992 年发行，FBNeo 街机 平台。
+publisher: A.I (Atlus license)
+release: 1992
+game: blazstar
+file: blazstar.zip
+assets.box_front: Imgs/blazstar.png
+description: 《blazstar》，由 Yumekobo 出品，FBNeo 街机 平台。
+publisher: Yumekobo
+game: bloodwar
+file: bloodwar.zip
+assets.box_front: Imgs/bloodwar.png
+description: 《bloodwar》，由 Kaneko 出品，1994 年发行，FBNeo 街机 平台。
+publisher: Kaneko
+release: 1994
+game: bluehawk
+file: bluehawk.zip
+assets.box_front: Imgs/bluehawk.png
+description: 《bluehawk》，由 Dooyong 出品，1993 年发行，FBNeo 街机 平台。
+publisher: Dooyong
+release: 1993
+game: bonkadv
+file: bonkadv.zip
+assets.box_front: Imgs/bonkadv.png
+description: 《bonkadv》，由 Kaneko (Hudson Soft / Red license) 出品，1994 年发行，FBNeo 街机 平台。
+publisher: Kaneko (Hudson Soft / Red license)
+release: 1994
+game: brapboys
+file: brapboys.zip
+assets.box_front: Imgs/brapboys.png
+description: 《brapboys》，由 Kaneko 出品，1992 年发行，FBNeo 街机 平台。
+publisher: Kaneko
+release: 1992
+game: btlkroad
+file: btlkroad.zip
+assets.box_front: Imgs/btlkroad.png
+description: 《btlkroad》，由 Psikyo 出品，1994 年发行，FBNeo 街机 平台。
+publisher: Psikyo
+release: 1994
+game: burglarx
+file: burglarx.zip
+assets.box_front: Imgs/burglarx.png
+description: 《burglarx》，由 Unico 出品，1997 年发行，FBNeo 街机 平台。
+publisher: Unico
+release: 1997
+game: burningfp
+file: burningfp.zip
+assets.box_front: Imgs/burningfp.png
+description: 《burningfp》，由 SNK 出品，FBNeo 街机 平台。
+publisher: SNK
+game: chameleo
+file: chameleo.zip
+assets.box_front: Imgs/chameleo.png
+description: 《chameleo》，由 Robert F. Litt 出品，1988 年发行，动作类游戏，FBNeo 街机 平台。
+publisher: Robert F. Litt
+developer: Robert F. Litt
+release: 1988
+genre: Action
+game: charlien
+file: charlien.zip
+assets.box_front: Imgs/charlien.png
+description: 《charlien》，由 Mitchell 出品，1995 年发行，FBNeo 街机 平台。
+publisher: Mitchell
+release: 1995
+game: chimerab
+file: chimerab.zip
+assets.box_front: Imgs/chimerab.png
+description: 《chimerab》，由 Jaleco 出品，1993 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1993
+game: cischeat
+file: cischeat.zip
+assets.box_front: Imgs/cischeat.png
+description: 《cischeat》，由 Jaleco 出品，1990 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1990
+game: citycon
+file: citycon.zip
+assets.box_front: Imgs/citycon.png
+description: 《citycon》，由 Jaleco 出品，1985 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1985
+game: cruisin
+file: cruisin.zip
+assets.box_front: Imgs/cruisin.png
+description: 《cruisin》，由 Jaleco (Kitkorp license) 出品，1985 年发行，FBNeo 街机 平台。
+publisher: Jaleco (Kitkorp license)
+release: 1985
+game: crush
+file: crush.zip
+assets.box_front: Imgs/crush.png
+description: 《crush》，由 Richard Kelly 出品，2001 年发行，动作类游戏，FBNeo 街机 平台。
+publisher: Richard Kelly
+developer: Richard Kelly
+release: 2001
+genre: Action
+game: cutefght
+file: cutefght.zip
+assets.box_front: Imgs/cutefght.png
+description: 《cutefght》，由 SemiCom 出品，1998 年发行，FBNeo 街机 平台。
+publisher: SemiCom
+release: 1998
+game: cybattlr
+file: cybattlr.zip
+assets.box_front: Imgs/cybattlr.png
+description: 《cybattlr》，由 Jaleco 出品，1993 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1993
+game: dankuga
+file: dankuga.zip
+assets.box_front: Imgs/dankuga.png
+description: 《dankuga》，由 Taito Corporation 出品，1994 年发行，FBNeo 街机 平台。
+publisher: Taito Corporation
+release: 1994
+game: dday
+file: dday.zip
+assets.box_front: Imgs/dday.png
+description: 《dday》，由 Impressions Games 出品，1994 年发行，模拟类游戏，FBNeo 街机 平台。
+publisher: Impressions Games
+developer: Impressions Games
+release: 1994
+genre: Simulation
+game: deadconx
+file: deadconx.zip
+assets.box_front: Imgs/deadconx.png
+description: 《deadconx》，由 Taito Corporation Japan 出品，1992 年发行，FBNeo 街机 平台。
+publisher: Taito Corporation Japan
+release: 1992
+game: demonwld
+file: demonwld.zip
+assets.box_front: Imgs/demonwld.png
+description: 《demonwld》，由 Toaplan 出品，1990 年发行，FBNeo 街机 平台。
+publisher: Toaplan
+release: 1990
+game: dogyuun
+file: dogyuun.zip
+assets.box_front: Imgs/dogyuun.png
+description: 《dogyuun》，由 Toaplan 出品，1992 年发行，FBNeo 街机 平台。
+publisher: Toaplan
+release: 1992
+game: doubledr
+file: doubledr.zip
+assets.box_front: Imgs/doubledr.png
+description: 《doubledr》，由 Technos Japan 出品，FBNeo 街机 平台。
+publisher: Technos Japan
+game: dragnblz
+file: dragnblz.zip
+assets.box_front: Imgs/dragnblz.png
+description: 《dragnblz》，由 Psikyo 出品，2000 年发行，FBNeo 街机 平台。
+publisher: Psikyo
+release: 2000
+game: dynagear
+file: dynagear.zip
+assets.box_front: Imgs/dynagear.png
+description: 《dynagear》，由 Sammy 出品，1993 年发行，FBNeo 街机 平台。
+publisher: Sammy
+release: 1993
+game: dynduke
+file: dynduke.zip
+assets.box_front: Imgs/dynduke.png
+description: 《dynduke》，由 Seibu Kaihatsu 出品，1989 年发行，FBNeo 街机 平台。
+publisher: Seibu Kaihatsu
+release: 1989
+game: edf
+file: edf.zip
+assets.box_front: Imgs/edf.png
+description: 《edf》，由 Goo Y.H. 出品，1994 年发行，动作类游戏，FBNeo 街机 平台。
+publisher: Goo Y.H.
+developer: Goo Y.H.
+release: 1994
+genre: Action
+game: eightman
+file: eightman.zip
+assets.box_front: Imgs/eightman.png
+description: 《eightman》，由 SNK / Pallas 出品，FBNeo 街机 平台。
+publisher: SNK / Pallas
+game: exerion
+file: exerion.zip
+assets.box_front: Imgs/exerion.png
+description: 《exerion》，由 Jaleco 出品，1983 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1983
+game: explbrkr
+file: explbrkr.zip
+assets.box_front: Imgs/explbrkr.png
+description: 《explbrkr》，由 Kaneko 出品，1992 年发行，FBNeo 街机 平台。
+publisher: Kaneko
+release: 1992
+game: fantland
+file: fantland.zip
+assets.box_front: Imgs/fantland.png
+description: 《fantland》，由 Electronic Devices Italy 出品，FBNeo 街机 平台。
+publisher: Electronic Devices Italy
+game: fantzn2x
+file: fantzn2x.zip
+assets.box_front: Imgs/fantzn2x.png
+description: 《fantzn2x》，由 Sega / M2 出品，2008 年发行，FBNeo 街机 平台。
+publisher: Sega / M2
+release: 2008
+game: fbfrenzy
+file: fbfrenzy.zip
+assets.box_front: Imgs/fbfrenzy.png
+description: 《fbfrenzy》，由 SNK 出品，FBNeo 街机 平台。
+publisher: SNK
+game: fcombat
+file: fcombat.zip
+assets.box_front: Imgs/fcombat.png
+description: 《fcombat》，由 Jan Nyman 出品，1999 年发行，模拟类游戏，FBNeo 街机 平台。
+publisher: Jan Nyman
+developer: Jan Nyman
+release: 1999
+genre: Simulation
+game: finalizr
+file: finalizr.zip
+assets.box_front: Imgs/finalizr.png
+description: 《finalizr》，由 Konami 出品，1985 年发行，FBNeo 街机 平台。
+publisher: Konami
+release: 1985
+game: firehawk
+file: firehawk.zip
+assets.box_front: Imgs/firehawk.png
+description: 《firehawk》，由 ESD 出品，2001 年发行，FBNeo 街机 平台。
+publisher: ESD
+release: 2001
+game: fireshrk
+file: fireshrk.zip
+assets.box_front: Imgs/fireshrk.png
+description: 《fireshrk》，由 Toaplan 出品，1990 年发行，FBNeo 街机 平台。
+publisher: Toaplan
+release: 1990
+game: fixeight
+file: fixeight.zip
+assets.box_front: Imgs/fixeight.png
+description: 《fixeight》，由 Toaplan 出品，1992 年发行，FBNeo 街机 平台。
+publisher: Toaplan
+release: 1992
+game: flytiger
+file: flytiger.zip
+assets.box_front: Imgs/flytiger.png
+description: 《flytiger》，由 Dooyong 出品，1992 年发行，FBNeo 街机 平台。
+publisher: Dooyong
+release: 1992
+game: formatz
+file: formatz.zip
+assets.box_front: Imgs/formatz.png
+description: 《formatz》，由 Jaleco 出品，1984 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1984
+game: funkyjet
+file: funkyjet.zip
+assets.box_front: Imgs/funkyjet.png
+description: 《funkyjet》，由 Mitchell 出品，1992 年发行，FBNeo 街机 平台。
+publisher: Mitchell
+release: 1992
+game: galaxygn
+file: galaxygn.zip
+assets.box_front: Imgs/galaxygn.png
+description: 《galaxygn》，由 Electronic Devices Italy 出品，1989 年发行，FBNeo 街机 平台。
+publisher: Electronic Devices Italy
+release: 1989
+game: gangwars
+file: gangwars.zip
+assets.box_front: Imgs/gangwars.png
+description: 《gangwars》，由 Alpha Denshi Co. 出品，1989 年发行，FBNeo 街机 平台。
+publisher: Alpha Denshi Co.
+release: 1989
+game: garoup
+file: garoup.zip
+assets.box_front: Imgs/garoup.png
+description: 《garoup》，由 SNK 出品，FBNeo 街机 平台。
+publisher: SNK
+game: gekiridn
+file: gekiridn.zip
+assets.box_front: Imgs/gekiridn.png
+description: 《gekiridn》，由 Taito Corporation 出品，1995 年发行，FBNeo 街机 平台。
+publisher: Taito Corporation
+release: 1995
+game: ghox
+file: ghox.zip
+assets.box_front: Imgs/ghox.png
+description: 《ghox》，由 Toaplan 出品，1991 年发行，FBNeo 街机 平台。
+publisher: Toaplan
+release: 1991
+game: gigandes
+file: gigandes.zip
+assets.box_front: Imgs/gigandes.png
+description: 《gigandes》，由 East Technology 出品，1989 年发行，FBNeo 街机 平台。
+publisher: East Technology
+release: 1989
+game: ginganin
+file: ginganin.zip
+assets.box_front: Imgs/ginganin.png
+description: 《ginganin》，由 Jaleco 出品，1987 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1987
+game: gnbarich
+file: gnbarich.zip
+assets.box_front: Imgs/gnbarich.png
+description: 《gnbarich》，由 Psikyo 出品，2001 年发行，FBNeo 街机 平台。
+publisher: Psikyo
+release: 2001
+game: goalx3
+file: goalx3.zip
+assets.box_front: Imgs/goalx3.png
+description: 《goalx3》，由 Visco 出品，FBNeo 街机 平台。
+publisher: Visco
+game: goldbug
+file: goldbug.zip
+assets.box_front: Imgs/goldbug.png
+description: 《goldbug》，由 Century Electronics 出品，FBNeo 街机 平台。
+publisher: Century Electronics
+developer: Century Electronics
+game: gowcaizr
+file: gowcaizr.zip
+assets.box_front: Imgs/gowcaizr.png
+description: 《gowcaizr》，由 Technos Japan 出品，FBNeo 街机 平台。
+publisher: Technos Japan
+game: grdnstrm
+file: grdnstrm.zip
+assets.box_front: Imgs/grdnstrm.png
+description: 《grdnstrm》，由 Afega (Apples Industries license) 出品，1998 年发行，FBNeo 街机 平台。
+publisher: Afega (Apples Industries license)
+release: 1998
+game: grindstm
+file: grindstm.zip
+assets.box_front: Imgs/grindstm.png
+description: 《grindstm》，由 Toaplan 出品，1992 年发行，FBNeo 街机 平台。
+publisher: Toaplan
+release: 1992
+game: gulfstrm
+file: gulfstrm.zip
+assets.box_front: Imgs/gulfstrm.png
+description: 《gulfstrm》，由 Dooyong 出品，1991 年发行，FBNeo 街机 平台。
+publisher: Dooyong
+release: 1991
+game: gulfwar2
+file: gulfwar2.zip
+assets.box_front: Imgs/gulfwar2.png
+description: 《gulfwar2》，由 Comad 出品，1991 年发行，FBNeo 街机 平台。
+publisher: Comad
+release: 1991
+game: gunbird
+file: gunbird.zip
+assets.box_front: Imgs/gunbird.png
+description: 《gunbird》，由 Psikyo 出品，1994 年发行，FBNeo 街机 平台。
+publisher: Psikyo
+release: 1994
+game: gunbird2
+file: gunbird2.zip
+assets.box_front: Imgs/gunbird2.png
+description: 《gunbird2》，由 Psikyo 出品，1998 年发行，FBNeo 街机 平台。
+publisher: Psikyo
+release: 1998
+game: gundamex
+file: gundamex.zip
+assets.box_front: Imgs/gundamex.png
+description: 《gundamex》，由 Banpresto 出品，1994 年发行，FBNeo 街机 平台。
+publisher: Banpresto
+release: 1994
+game: gundealr
+file: gundealr.zip
+assets.box_front: Imgs/gundealr.png
+description: 《gundealr》，由 Dooyong 出品，FBNeo 街机 平台。
+publisher: Dooyong
+developer: Dooyong
+game: gunmast
+file: gunmast.zip
+assets.box_front: Imgs/gunmast.png
+description: 《gunmast》，由 Metro 出品，1994 年发行，FBNeo 街机 平台。
+publisher: Metro
+release: 1994
+game: hachamfb
+file: hachamfb.zip
+assets.box_front: Imgs/hachamfb.png
+description: 《hachamfb》，由 bootleg 出品，1991 年发行，FBNeo 街机 平台。
+publisher: bootleg
+release: 1991
+game: hamaway
+file: hamaway.zip
+assets.box_front: Imgs/hamaway.png
+description: 《hamaway》，由 Sega / Santos 出品，1991 年发行，FBNeo 街机 平台。
+publisher: Sega / Santos
+release: 1991
+game: hangzo
+file: hangzo.zip
+assets.box_front: Imgs/hangzo.png
+description: 《hangzo》，由 Hot-B 出品，1992 年发行，FBNeo 街机 平台。
+publisher: Hot-B
+release: 1992
+game: hook
+file: hook.zip
+assets.box_front: Imgs/hook.png
+description: 《hook》，由 Irem 出品，1992 年发行，FBNeo 街机 平台。
+publisher: Irem
+release: 1992
+game: hunchbak
+file: hunchbak.zip
+assets.box_front: Imgs/hunchbak.png
+description: 《hunchbak》，由 Century Electronics 出品，1983 年发行，FBNeo 街机 平台。
+publisher: Century Electronics
+release: 1983
+game: ironclad
+file: ironclad.zip
+assets.box_front: Imgs/ironclad.png
+description: 《ironclad》，由 Saurus 出品，FBNeo 街机 平台。
+publisher: Saurus
+game: jchan
+file: jchan.zip
+assets.box_front: Imgs/jchan.png
+description: 《jchan》，由 Kaneko 出品，1995 年发行，FBNeo 街机 平台。
+publisher: Kaneko
+release: 1995
+game: jchan2
+file: jchan2.zip
+assets.box_front: Imgs/jchan2.png
+description: 《jchan2》，由 Kaneko 出品，1995 年发行，FBNeo 街机 平台。
+publisher: Kaneko
+release: 1995
+game: jjsquawk
+file: jjsquawk.zip
+assets.box_front: Imgs/jjsquawk.png
+description: 《jjsquawk》，由 Athena / Able 出品，1993 年发行，FBNeo 街机 平台。
+publisher: Athena / Able
+release: 1993
+game: joemacr
+file: joemacr.zip
+assets.box_front: Imgs/joemacr.png
+description: 《joemacr》，由 Data East Corporation 出品，1994 年发行，FBNeo 街机 平台。
+publisher: Data East Corporation
+release: 1994
+game: kazan
+file: kazan.zip
+assets.box_front: Imgs/kazan.png
+description: 《kazan》，由 Jaleco 出品，1988 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1988
+game: kbash
+file: kbash.zip
+assets.box_front: Imgs/kbash.png
+description: 《kbash》，由 Toaplan / Atari 出品，1993 年发行，FBNeo 街机 平台。
+publisher: Toaplan / Atari
+release: 1993
+game: kbash2
+file: kbash2.zip
+assets.box_front: Imgs/kbash2.png
+description: 《kbash2》，由 bootleg 出品，1999 年发行，FBNeo 街机 平台。
+publisher: bootleg
+release: 1999
+game: kingdmgp
+file: kingdmgp.zip
+assets.box_front: Imgs/kingdmgp.png
+description: 《kingdmgp》，由 Raizing / Eighting 出品，FBNeo 街机 平台。
+publisher: Raizing / Eighting
+developer: Raizing / Eighting
+game: kizuna
+file: kizuna.zip
+assets.box_front: Imgs/kizuna.png
+description: 《kizuna》，由 SNK 出品，FBNeo 街机 平台。
+publisher: SNK
+game: kov
+file: kov.zip
+assets.box_front: Imgs/kov.png
+description: 《kov》，由 IGS 出品，1999 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 1999
+game: kov115
+file: kov115.zip
+assets.box_front: Imgs/kov115.png
+description: 《kov115》，由 IGS 出品，1999 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 1999
+game: kov2
+file: kov2.zip
+assets.box_front: Imgs/kov2.png
+description: 《kov2》，由 IGS 出品，2000 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 2000
+game: kov2100
+file: kov2100.zip
+assets.box_front: Imgs/kov2100.png
+description: 《kov2100》，由 IGS 出品，2000 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 2000
+game: kov2106
+file: kov2106.zip
+assets.box_front: Imgs/kov2106.png
+description: 《kov2106》，由 IGS 出品，2000 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 2000
+game: kov2p
+file: kov2p.zip
+assets.box_front: Imgs/kov2p.png
+description: 《kov2p》，由 IGS 出品，2001 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 2001
+game: kov2p202
+file: kov2p202.zip
+assets.box_front: Imgs/kov2p202.png
+description: 《kov2p202》，由 IGS 出品，2001 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 2001
+game: kov2p204
+file: kov2p204.zip
+assets.box_front: Imgs/kov2p204.png
+description: 《kov2p204》，由 IGS 出品，2001 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 2001
+game: kov4p
+file: kov4p.zip
+assets.box_front: Imgs/kov4p.png
+description: 《kov4p》，FBNeo 街机 平台。
+game: kovplus
+file: kovplus.zip
+assets.box_front: Imgs/kovplus.png
+description: 《kovplus》，由 IGS 出品，1999 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 1999
+game: kovqhsgs
+file: kovqhsgs.zip
+assets.box_front: Imgs/kovqhsgs.png
+description: 《kovqhsgs》，由 bootleg (WDF) 出品，2008 年发行，FBNeo 街机 平台。
+publisher: bootleg (WDF)
+release: 2008
+game: kovsgqyza
+file: kovsgqyza.zip
+assets.box_front: Imgs/kovsgqyza.png
+description: 《kovsgqyza》，由 bootleg 出品，1999 年发行，FBNeo 街机 平台。
+publisher: bootleg
+release: 1999
+game: kovsh
+file: kovsh.zip
+assets.box_front: Imgs/kovsh.png
+description: 《kovsh》，由 IGS 出品，1999 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 1999
+game: kovsh101
+file: kovsh101.zip
+assets.box_front: Imgs/kovsh101.png
+description: 《kovsh101》，由 IGS 出品，1999 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 1999
+game: kovsh102
+file: kovsh102.zip
+assets.box_front: Imgs/kovsh102.png
+description: 《kovsh102》，由 IGS 出品，1999 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 1999
+game: kovsh103
+file: kovsh103.zip
+assets.box_front: Imgs/kovsh103.png
+description: 《kovsh103》，由 IGS 出品，1999 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 1999
+game: kovsh4p
+file: kovsh4p.zip
+assets.box_front: Imgs/kovsh4p.png
+description: 《kovsh4p》，FBNeo 街机 平台。
+game: kovshp
+file: kovshp.zip
+assets.box_front: Imgs/kovshp.png
+description: 《kovshp》，由 IGS 出品，2004 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 2004
+game: kovytzy
+file: kovytzy.zip
+assets.box_front: Imgs/kovytzy.png
+description: 《kovytzy》，由 IGS 出品，1999 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 1999
+game: kyros
+file: kyros.zip
+assets.box_front: Imgs/kyros.png
+description: 《kyros》，由 Alpha Denshi Co. (World Games Inc. license) 出品，1987 年发行，FBNeo 街机 平台。
+publisher: Alpha Denshi Co. (World Games Inc. license)
+release: 1987
+game: lastday
+file: lastday.zip
+assets.box_front: Imgs/lastday.png
+description: 《lastday》，由 Dooyong 出品，1990 年发行，FBNeo 街机 平台。
+publisher: Dooyong
+release: 1990
+game: lomakai
+file: lomakai.zip
+assets.box_front: Imgs/lomakai.png
+description: 《lomakai》，由 Jaleco 出品，1988 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1988
+game: metalb
+file: metalb.zip
+assets.box_front: Imgs/metalb.png
+description: 《metalb》，由 Taito Corporation Japan 出品，1991 年发行，FBNeo 街机 平台。
+publisher: Taito Corporation Japan
+release: 1991
+game: momoko
+file: momoko.zip
+assets.box_front: Imgs/momoko.png
+description: 《momoko》，由 Jaleco 出品，1986 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1986
+game: mugsmash
+file: mugsmash.zip
+assets.box_front: Imgs/mugsmash.png
+description: 《mugsmash》，由 Electronic Devices Italy / 3D Games England 出品，FBNeo 街机 平台。
+publisher: Electronic Devices Italy / 3D Games England
+game: mwarr
+file: mwarr.zip
+assets.box_front: Imgs/mwarr.png
+description: 《mwarr》，由 Elettronica Video-Games 出品，FBNeo 街机 平台。
+publisher: Elettronica Video-Games
+game: naughtyb
+file: naughtyb.zip
+assets.box_front: Imgs/naughtyb.png
+description: 《naughtyb》，由 Jaleco 出品，1982 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1982
+game: ncommand
+file: ncommand.zip
+assets.box_front: Imgs/ncommand.png
+description: 《ncommand》，由 Alpha Denshi Co. 出品，FBNeo 街机 平台。
+publisher: Alpha Denshi Co.
+game: neocup98
+file: neocup98.zip
+assets.box_front: Imgs/neocup98.png
+description: 《neocup98》，由 SNK 出品，FBNeo 街机 平台。
+publisher: SNK
+game: olds
+file: olds.zip
+assets.box_front: Imgs/olds.png
+description: 《olds》，由 IGS 出品，1998 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 1998
+game: olds100a
+file: olds100a.zip
+assets.box_front: Imgs/olds100a.png
+description: 《olds100a》，由 IGS 出品，1998 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 1998
+game: olds103t
+file: olds103t.zip
+assets.box_front: Imgs/olds103t.png
+description: 《olds103t》，由 bootleg 出品，1998 年发行，FBNeo 街机 平台。
+publisher: bootleg
+release: 1998
+game: oldsplus
+file: oldsplus.zip
+assets.box_front: Imgs/oldsplus.png
+description: 《oldsplus》，由 IGS 出品，2004 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 2004
+game: orlegend
+file: orlegend.zip
+assets.box_front: Imgs/orlegend.png
+description: 《orlegend》，由 IGS 出品，1997 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 1997
+game: orlegend111c
+file: orlegend111c.zip
+assets.box_front: Imgs/orlegend111c.png
+description: 《orlegend111c》，由 IGS 出品，1997 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 1997
+game: orlegendc
+file: orlegendc.zip
+assets.box_front: Imgs/orlegendc.png
+description: 《orlegendc》，由 IGS 出品，1997 年发行，FBNeo 街机 平台。
+publisher: IGS
+release: 1997
+game: overtop
+file: overtop.zip
+assets.box_front: Imgs/overtop.png
+description: 《overtop》，由 ADK 出品，FBNeo 街机 平台。
+publisher: ADK
+game: ozmawars
+file: ozmawars.zip
+assets.box_front: Imgs/ozmawars.png
+description: 《ozmawars》，由 SNK 出品，1979 年发行，FBNeo 街机 平台。
+publisher: SNK
+release: 1979
+game: p47
+file: p47.zip
+assets.box_front: Imgs/p47.png
+description: 《p47》，由 Jaleco 出品，1988 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1988
+game: p47mus
+file: p47mus.zip
+assets.box_front: Imgs/p47mus.png
+description: 《p47mus》，FBNeo 街机 平台。
+game: pinbo
+file: pinbo.zip
+assets.box_front: Imgs/pinbo.png
+description: 《pinbo》，由 Jaleco 出品，1984 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1984
+game: pipibibs
+file: pipibibs.zip
+assets.box_front: Imgs/pipibibs.png
+description: 《pipibibs》，由 Toaplan 出品，1991 年发行，FBNeo 街机 平台。
+publisher: Toaplan
+release: 1991
+game: plegendsj
+file: plegendsj.zip
+assets.box_front: Imgs/plegendsj.png
+description: 《plegendsj》，由 Atlus 出品，1995 年发行，FBNeo 街机 平台。
+publisher: Atlus
+release: 1995
+game: plusalph
+file: plusalph.zip
+assets.box_front: Imgs/plusalph.png
+description: 《plusalph》，由 Jaleco 出品，1989 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1989
+game: pollux
+file: pollux.zip
+assets.box_front: Imgs/pollux.png
+description: 《pollux》，由 Dooyong 出品，1991 年发行，FBNeo 街机 平台。
+publisher: Dooyong
+release: 1991
+game: popflame
+file: popflame.zip
+assets.box_front: Imgs/popflame.png
+description: 《popflame》，由 Jaleco 出品，1982 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1982
+game: progress
+file: progress.zip
+assets.box_front: Imgs/progress.png
+description: 《progress》，由 Chuo Co. Ltd 出品，1984 年发行，FBNeo 街机 平台。
+publisher: Chuo Co. Ltd
+release: 1984
+game: psychic5
+file: psychic5.zip
+assets.box_front: Imgs/psychic5.png
+description: 《psychic5》，由 Jaleco / NMK 出品，1987 年发行，FBNeo 街机 平台。
+publisher: Jaleco / NMK
+release: 1987
+game: psychos
+file: psychos.zip
+assets.box_front: Imgs/psychos.png
+description: 《psychos》，由 SNK 出品，1987 年发行，FBNeo 街机 平台。
+publisher: SNK
+release: 1987
+game: pturn
+file: pturn.zip
+assets.box_front: Imgs/pturn.png
+description: 《pturn》，由 Jaleco 出品，1984 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1984
+game: pulstar
+file: pulstar.zip
+assets.box_front: Imgs/pulstar.png
+description: 《pulstar》，由 Aicom 出品，FBNeo 街机 平台。
+publisher: Aicom
+game: puzzledp
+file: puzzledp.zip
+assets.box_front: Imgs/puzzledp.png
+description: 《puzzledp》，由 Visco 出品，FBNeo 街机 平台。
+publisher: Visco
+game: quizdai2
+file: quizdai2.zip
+assets.box_front: Imgs/quizdai2.png
+description: 《quizdai2》，由 SNK 出品，FBNeo 街机 平台。
+publisher: SNK
+game: quizdaisk
+file: quizdaisk.zip
+assets.box_front: Imgs/quizdaisk.png
+description: 《quizdaisk》，由 SNK / Viccom 出品，FBNeo 街机 平台。
+publisher: SNK / Viccom
+game: r2dx
+file: r2dx.zip
+assets.box_front: Imgs/r2dx.png
+description: 《r2dx》，FBNeo 街机 平台。
+game: ragnagrd
+file: ragnagrd.zip
+assets.box_front: Imgs/ragnagrd.png
+description: 《ragnagrd》，由 Saurus 出品，FBNeo 街机 平台。
+publisher: Saurus
+game: raiden2
+file: raiden2.zip
+assets.box_front: Imgs/raiden2.png
+description: 《raiden2》，由 Seibu Kaihatsu (Fabtek license) 出品，1993 年发行，FBNeo 街机 平台。
+publisher: Seibu Kaihatsu (Fabtek license)
+release: 1993
+game: raiden2dx
+file: raiden2dx.zip
+assets.box_front: Imgs/raiden2dx.png
+description: 《raiden2dx》，由 Seibu Kaihatsu 出品，1993 年发行，FBNeo 街机 平台。
+publisher: Seibu Kaihatsu
+release: 1993
+game: rallybik
+file: rallybik.zip
+assets.box_front: Imgs/rallybik.png
+description: 《rallybik》，由 Toaplan / Taito Corporation 出品，1988 年发行，FBNeo 街机 平台。
+publisher: Toaplan / Taito Corporation
+release: 1988
+game: rodland
+file: rodland.zip
+assets.box_front: Imgs/rodland.png
+description: 《rodland》，由 Jaleco 出品，FBNeo 街机 平台。
+publisher: Jaleco
+developer: Jaleco
+game: rohga
+file: rohga.zip
+assets.box_front: Imgs/rohga.png
+description: 《rohga》，由 Data East Corporation 出品，1991 年发行，FBNeo 街机 平台。
+publisher: Data East Corporation
+release: 1991
+game: rygar
+file: rygar.zip
+assets.box_front: Imgs/rygar.png
+description: 《rygar》，由 Tecmo 出品，1986 年发行，FBNeo 街机 平台。
+publisher: Tecmo
+release: 1986
+game: s1945
+file: s1945.zip
+assets.box_front: Imgs/s1945.png
+description: 《s1945》，由 Psikyo 出品，1995 年发行，FBNeo 街机 平台。
+publisher: Psikyo
+release: 1995
+game: s1945ii
+file: s1945ii.zip
+assets.box_front: Imgs/s1945ii.png
+description: 《s1945ii》，由 Psikyo 出品，1997 年发行，FBNeo 街机 平台。
+publisher: Psikyo
+release: 1997
+game: s1945iii
+file: s1945iii.zip
+assets.box_front: Imgs/s1945iii.png
+description: 《s1945iii》，由 Psikyo 出品，1999 年发行，FBNeo 街机 平台。
+publisher: Psikyo
+release: 1999
+game: s1945p
+file: s1945p.zip
+assets.box_front: Imgs/s1945p.png
+description: 《s1945p》，由 Psikyo 出品，FBNeo 街机 平台。
+publisher: Psikyo
+game: samesame2
+file: samesame2.zip
+assets.box_front: Imgs/samesame2.png
+description: 《samesame2》，由 Toaplan 出品，1989 年发行，FBNeo 街机 平台。
+publisher: Toaplan
+release: 1989
+game: saturnzi
+file: saturnzi.zip
+assets.box_front: Imgs/saturnzi.png
+description: 《saturnzi》，由 Zilec Electronics / Jaleco 出品，1983 年发行，FBNeo 街机 平台。
+publisher: Zilec Electronics / Jaleco
+release: 1983
+game: sbasebal
+file: sbasebal.zip
+assets.box_front: Imgs/sbasebal.png
+description: 《sbasebal》，由 Alpha Denshi Co. (SNK of America license) 出品，1989 年发行，FBNeo 街机 平台。
+publisher: Alpha Denshi Co. (SNK of America license)
+release: 1989
+game: schmeisr
+file: schmeisr.zip
+assets.box_front: Imgs/schmeisr.png
+description: 《schmeisr》，由 Hot-B 出品，1993 年发行，FBNeo 街机 平台。
+publisher: Hot-B
+release: 1993
+game: sdgndmps
+file: sdgndmps.zip
+assets.box_front: Imgs/sdgndmps.png
+description: 《sdgndmps》，由 Banpresto / Bandai 出品，1991 年发行，FBNeo 街机 平台。
+publisher: Banpresto / Bandai
+release: 1991
+game: searchey
+file: searchey.zip
+assets.box_front: Imgs/searchey.png
+description: 《searchey》，由 Yun Sung 出品，1999 年发行，FBNeo 街机 平台。
+publisher: Yun Sung
+release: 1999
+game: searchp2
+file: searchp2.zip
+assets.box_front: Imgs/searchp2.png
+description: 《searchp2》，由 Yun Sung 出品，1999 年发行，FBNeo 街机 平台。
+publisher: Yun Sung
+release: 1999
+game: selfeena
+file: selfeena.zip
+assets.box_front: Imgs/selfeena.png
+description: 《selfeena》，由 East Technology 出品，1991 年发行，FBNeo 街机 平台。
+publisher: East Technology
+release: 1991
+game: sengoku
+file: sengoku.zip
+assets.box_front: Imgs/sengoku.png
+description: 《sengoku》，由 SNK 出品，FBNeo 街机 平台。
+publisher: SNK
+game: sengoku2
+file: sengoku2.zip
+assets.box_front: Imgs/sengoku2.png
+description: 《sengoku2》，由 SNK 出品，FBNeo 街机 平台。
+publisher: SNK
+game: sengoku3
+file: sengoku3.zip
+assets.box_front: Imgs/sengoku3.png
+description: 《sengoku3》，由 Noise Factory / SNK 出品，FBNeo 街机 平台。
+publisher: Noise Factory / SNK
+game: skyfox
+file: skyfox.zip
+assets.box_front: Imgs/skyfox.png
+description: 《skyfox》，由 Jaleco (Nichibutsu USA license) 出品，1987 年发行，FBNeo 街机 平台。
+publisher: Jaleco (Nichibutsu USA license)
+release: 1987
+game: slapfighb1
+file: slapfighb1.zip
+assets.box_front: Imgs/slapfighb1.png
+description: 《slapfighb1》，由 bootleg 出品，1986 年发行，FBNeo 街机 平台。
+publisher: bootleg
+release: 1986
+game: snowbro2
+file: snowbro2.zip
+assets.box_front: Imgs/snowbro2.png
+description: 《snowbro2》，由 Hanafram 出品，1994 年发行，FBNeo 街机 平台。
+publisher: Hanafram
+release: 1994
+game: snowbro3
+file: snowbro3.zip
+assets.box_front: Imgs/snowbro3.png
+description: 《snowbro3》，由 Syrmex 出品，2002 年发行，FBNeo 街机 平台。
+publisher: Syrmex
+release: 2002
+game: snowbros
+file: snowbros.zip
+assets.box_front: Imgs/snowbros.png
+description: 《snowbros》，由 Toaplan 出品，1990 年发行，FBNeo 街机 平台。
+publisher: Toaplan
+release: 1990
+game: snowbros3
+file: snowbros3.zip
+assets.box_front: Imgs/snowbros3.png
+description: 《snowbros3》，FBNeo 街机 平台。
+game: soldam
+file: soldam.zip
+assets.box_front: Imgs/soldam.png
+description: 《soldam》，由 Jaleco 出品，1992 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1992
+game: soldivid
+file: soldivid.zip
+assets.box_front: Imgs/soldivid.png
+description: 《soldivid》，由 Psikyo 出品，1997 年发行，FBNeo 街机 平台。
+publisher: Psikyo
+release: 1997
+game: spec2k
+file: spec2k.zip
+assets.box_front: Imgs/spec2k.png
+description: 《spec2k》，由 Yona Tech 出品，2000 年发行，FBNeo 街机 平台。
+publisher: Yona Tech
+release: 2000
+game: ssideki4
+file: ssideki4.zip
+assets.box_front: Imgs/ssideki4.png
+description: 《ssideki4》，由 SNK 出品，FBNeo 街机 平台。
+publisher: SNK
+game: sstingry
+file: sstingry.zip
+assets.box_front: Imgs/sstingry.png
+description: 《sstingry》，由 Alpha Denshi Co. 出品，1986 年发行，FBNeo 街机 平台。
+publisher: Alpha Denshi Co.
+release: 1986
+game: sstriker
+file: sstriker.zip
+assets.box_front: Imgs/sstriker.png
+description: 《sstriker》，由 Raizing 出品，FBNeo 街机 平台。
+publisher: Raizing
+developer: Raizing
+game: stagger1
+file: stagger1.zip
+assets.box_front: Imgs/stagger1.png
+description: 《stagger1》，由 Afega 出品，1998 年发行，FBNeo 街机 平台。
+publisher: Afega
+release: 1998
+game: stdragon
+file: stdragon.zip
+assets.box_front: Imgs/stdragon.png
+description: 《stdragon》，由 Jaleco 出品，1989 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1989
+game: stlforce
+file: stlforce.zip
+assets.box_front: Imgs/stlforce.png
+description: 《stlforce》，由 Electronic Devices Italy / Ecogames S.L. Spain 出品，1994 年发行，FBNeo 街机 平台。
+publisher: Electronic Devices Italy / Ecogames S.L. Spain
+release: 1994
+game: stratof
+file: stratof.zip
+assets.box_front: Imgs/stratof.png
+description: 《stratof》，由 Tecmo 出品，1991 年发行，FBNeo 街机 平台。
+publisher: Tecmo
+release: 1991
+game: suprtrio
+file: suprtrio.zip
+assets.box_front: Imgs/suprtrio.png
+description: 《suprtrio》，由 Gameace 出品，1994 年发行，FBNeo 街机 平台。
+publisher: Gameace
+release: 1994
+game: suratk
+file: suratk.zip
+assets.box_front: Imgs/suratk.png
+description: 《suratk》，由 Konami 出品，1990 年发行，FBNeo 街机 平台。
+publisher: Konami
+release: 1990
+game: swatpolc
+file: swatpolc.zip
+assets.box_front: Imgs/swatpolc.png
+description: 《swatpolc》，由 ESD 出品，2001 年发行，FBNeo 街机 平台。
+publisher: ESD
+release: 2001
+game: tdragon
+file: tdragon.zip
+assets.box_front: Imgs/tdragon.png
+description: 《tdragon》，由 NMK (Tecmo license) 出品，1991 年发行，FBNeo 街机 平台。
+publisher: NMK (Tecmo license)
+release: 1991
+game: tdragon2
+file: tdragon2.zip
+assets.box_front: Imgs/tdragon2.png
+description: 《tdragon2》，由 NMK 出品，1993 年发行，FBNeo 街机 平台。
+publisher: NMK
+release: 1993
+game: tengai
+file: tengai.zip
+assets.box_front: Imgs/tengai.png
+description: 《tengai》，由 Psikyo 出品，1996 年发行，FBNeo 街机 平台。
+publisher: Psikyo
+release: 1996
+game: tengaij
+file: tengaij.zip
+assets.box_front: Imgs/tengaij.png
+description: 《tengaij》，由 Psikyo 出品，1996 年发行，FBNeo 街机 平台。
+publisher: Psikyo
+release: 1996
+game: tharrier
+file: tharrier.zip
+assets.box_front: Imgs/tharrier.png
+description: 《tharrier》，由 UPL 出品，1989 年发行，FBNeo 街机 平台。
+publisher: UPL
+release: 1989
+game: thndrx2
+file: thndrx2.zip
+assets.box_front: Imgs/thndrx2.png
+description: 《thndrx2》，由 Konami 出品，1991 年发行，FBNeo 街机 平台。
+publisher: Konami
+release: 1991
+game: thoop
+file: thoop.zip
+assets.box_front: Imgs/thoop.png
+description: 《thoop》，由 Gaelco 出品，1992 年发行，FBNeo 街机 平台。
+publisher: Gaelco
+release: 1992
+game: thunderx
+file: thunderx.zip
+assets.box_front: Imgs/thunderx.png
+description: 《thunderx》，由 Konami 出品，1988 年发行，FBNeo 街机 平台。
+publisher: Konami
+release: 1988
+game: timelimt
+file: timelimt.zip
+assets.box_front: Imgs/timelimt.png
+description: 《timelimt》，由 Chuo Co. Ltd 出品，1983 年发行，FBNeo 街机 平台。
+publisher: Chuo Co. Ltd
+release: 1983
+game: tkdensho
+file: tkdensho.zip
+assets.box_front: Imgs/tkdensho.png
+description: 《tkdensho》，由 Tecmo 出品，1996 年发行，FBNeo 街机 平台。
+publisher: Tecmo
+release: 1996
+game: tnk3
+file: tnk3.zip
+assets.box_front: Imgs/tnk3.png
+description: 《tnk3》，由 SNK 出品，1985 年发行，FBNeo 街机 平台。
+publisher: SNK
+release: 1985
+game: tpgolf
+file: tpgolf.zip
+assets.box_front: Imgs/tpgolf.png
+description: 《tpgolf》，由 SNK 出品，FBNeo 街机 平台。
+publisher: SNK
+game: truxton
+file: truxton.zip
+assets.box_front: Imgs/truxton.png
+description: 《truxton》，由 Toaplan / Taito Corporation 出品，1988 年发行，FBNeo 街机 平台。
+publisher: Toaplan / Taito Corporation
+release: 1988
+game: truxton2
+file: truxton2.zip
+assets.box_front: Imgs/truxton2.png
+description: 《truxton2》，由 Toaplan 出品，FBNeo 街机 平台。
+publisher: Toaplan
+developer: Toaplan
+game: tshingen
+file: tshingen.zip
+assets.box_front: Imgs/tshingen.png
+description: 《tshingen》，由 Jaleco 出品，1988 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1988
+game: twinactn
+file: twinactn.zip
+assets.box_front: Imgs/twinactn.png
+description: 《twinactn》，由 Afega 出品，1995 年发行，FBNeo 街机 平台。
+publisher: Afega
+release: 1995
+game: twincobr
+file: twincobr.zip
+assets.box_front: Imgs/twincobr.png
+description: 《twincobr》，由 Toaplan / Taito Corporation 出品，1987 年发行，FBNeo 街机 平台。
+publisher: Toaplan / Taito Corporation
+release: 1987
+game: twineag2
+file: twineag2.zip
+assets.box_front: Imgs/twineag2.png
+description: 《twineag2》，由 Seta 出品，1994 年发行，FBNeo 街机 平台。
+publisher: Seta
+release: 1994
+game: twinspri
+file: twinspri.zip
+assets.box_front: Imgs/twinspri.png
+description: 《twinspri》，由 ADK / SNK 出品，FBNeo 街机 平台。
+publisher: ADK / SNK
+game: unclepoo
+file: unclepoo.zip
+assets.box_front: Imgs/unclepoo.png
+description: 《unclepoo》，由 Diatec 出品，1983 年发行，FBNeo 街机 平台。
+publisher: Diatec
+release: 1983
+game: valtric
+file: valtric.zip
+assets.box_front: Imgs/valtric.png
+description: 《valtric》，由 NMK (Jaleco license) 出品，1986 年发行，FBNeo 街机 平台。
+publisher: NMK (Jaleco license)
+release: 1986
+game: vaportra
+file: vaportra.zip
+assets.box_front: Imgs/vaportra.png
+description: 《vaportra》，由 Data East Corporation 出品，1989 年发行，FBNeo 街机 平台。
+publisher: Data East Corporation
+release: 1989
+game: vmetal
+file: vmetal.zip
+assets.box_front: Imgs/vmetal.png
+description: 《vmetal》，由 Excellent System 出品，1995 年发行，FBNeo 街机 平台。
+publisher: Excellent System
+release: 1995
+game: wb3
+file: wb3.zip
+assets.box_front: Imgs/wb3.png
+description: 《wb3》，由 Sega / Westone 出品，1988 年发行，FBNeo 街机 平台。
+publisher: Sega / Westone
+release: 1988
+game: wildplt
+file: wildplt.zip
+assets.box_front: Imgs/wildplt.png
+description: 《wildplt》，由 Jaleco 出品，1992 年发行，FBNeo 街机 平台。
+publisher: Jaleco
+release: 1992
+game: wrofaero
+file: wrofaero.zip
+assets.box_front: Imgs/wrofaero.png
+description: 《wrofaero》，由 Yang Cheng 出品，1993 年发行，FBNeo 街机 平台。
+publisher: Yang Cheng
+release: 1993
+game: zeropnt
+file: zeropnt.zip
+assets.box_front: Imgs/zeropnt.png
+description: 《zeropnt》，由 Unico 出品，1998 年发行，FBNeo 街机 平台。
+publisher: Unico
+release: 1998
+game: zeropnt2
+file: zeropnt2.zip
+assets.box_front: Imgs/zeropnt2.png
+description: 《zeropnt2》，由 Unico 出品，1999 年发行，FBNeo 街机 平台。
+publisher: Unico
+release: 1999
+game: zeroteam
+file: zeroteam.zip
+assets.box_front: Imgs/zeroteam.png
+description: 《zeroteam》，由 Seibu Kaihatsu (Fabtek license) 出品，1993 年发行，FBNeo 街机 平台。
+publisher: Seibu Kaihatsu (Fabtek license)
+release: 1993
+game: zeroteams
+file: zeroteams.zip
+assets.box_front: Imgs/zeroteams.png
+description: 《zeroteams》，由 Seibu Kaihatsu 出品，1993 年发行，FBNeo 街机 平台。
+publisher: Seibu Kaihatsu
+release: 1993
+game: zerotm2k
+file: zerotm2k.zip
+assets.box_front: Imgs/zerotm2k.png
+description: 《zerotm2k》，由 Seibu Kaihatsu 出品，2000 年发行，FBNeo 街机 平台。
+publisher: Seibu Kaihatsu
+release: 2000
+game: zzyzzyxx
+file: zzyzzyxx.zip
+assets.box_front: Imgs/zzyzzyxx.png
+description: 《zzyzzyxx》，由 Cinematronics / Advanced Microcomputer Systems 出品，1982 年发行，FBNeo 街机 平台。
+publisher: Cinematronics / Advanced Microcomputer Systems
+release: 1982
+game: 三国战纪-一统中原
+file: 三国战纪-一统中原.zip
+assets.box_front: Imgs/三国战纪-一统中原.png
+description: 《三国战纪-一统中原》，FBNeo 街机 平台。
+game: 三国战纪-乱世枭雄
+file: 三国战纪-乱世枭雄.zip
+assets.box_front: Imgs/三国战纪-乱世枭雄.png
+description: 《三国战纪-乱世枭雄》，FBNeo 街机 平台。
+game: 三国战纪-正宗PLUS
+file: 三国战纪-正宗PLUS.zip
+assets.box_front: Imgs/三国战纪-正宗PLUS.png
+description: 《三国战纪-正宗PLUS》，FBNeo 街机 平台。
+game: 三国战纪-风云再起
+file: 三国战纪-风云再起.zip
+assets.box_front: Imgs/三国战纪-风云再起.png
+description: 《三国战纪-风云再起》，FBNeo 街机 平台。
+game: 三国战纪2-群雄争霸
+file: 三国战纪2-群雄争霸.zip
+assets.box_front: Imgs/三国战纪2-群雄争霸.png
+description: 《三国战纪2-群雄争霸》，FBNeo 街机 平台。
+game: 三国战纪2
+file: 三国战纪2.zip
+assets.box_front: Imgs/三国战纪2.png
+description: 《三国战纪2》，FBNeo 街机 平台。
+game: 西游释厄传
+file: 西游释厄传.zip
+assets.box_front: Imgs/西游释厄传.png
+description: 《西游释厄传》，FBNeo 街机 平台。
+game: 西游释厄传2-群魔乱舞
+file: 西游释厄传2-群魔乱舞.zip
+assets.box_front: Imgs/西游释厄传2-群魔乱舞.png
+description: 《西游释厄传2-群魔乱舞》，FBNeo 街机 平台。
+game: 西游释厄传SUPER
+file: 西游释厄传SUPER.zip
+assets.box_front: Imgs/西游释厄传SUPER.png
+description: 《西游释厄传SUPER》，FBNeo 街机 平台。

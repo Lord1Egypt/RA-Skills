@@ -1,49 +1,70 @@
-## Description: <br>
-Syncs Xiaohongshu and Zhihu favorites into an Obsidian vault using CookieCloud session state, hctec scraping skills, classification rules, Markdown export, and optional OpenClaw cron setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synchronizes Xiaohongshu and Zhihu favorites into Obsidian by guiding setup, CookieCloud authentication, hctec scraper dependencies, classification rules, Markdown export, and optional OpenClaw cron generation.
 
-## Publisher: <br>
-[sunfang1cn](https://clawhub.ai/user/sunfang1cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunfang1cn](https://clawhub.ai/user/sunfang1cn)
 
-## Use Case: <br>
-Developers and individual users use this skill to install, configure, diagnose, archive, classify, export, and schedule syncing of social-platform favorites into Obsidian. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles browser session cookies and Obsidian credentials. <br>
-Mitigation: Keep CookieCloud credentials, raw cookies, Obsidian passwords, encryption keys, logs, and exported content private on the user's machine; prefer interactive Obsidian login and do not paste secrets into chat. <br>
-Risk: The skill installs and patches unpinned third-party scraping dependencies. <br>
-Mitigation: Install only if the publisher, hctec scraping skills, CookieCloud, and obsidian-headless are trusted; review or pin the external hctec dependency before scheduled use. <br>
-Risk: Generated cron jobs can repeatedly run sync and export workflows. <br>
-Mitigation: Review generated cron payloads before enabling them and start with manual sync checks before scheduled operation. <br>
+## Use Case:
 
+External users and developers use this skill to install, configure, diagnose, and automate a workflow that archives social-platform favorites into an Obsidian vault.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunfang1cn/xhs-zh-sync-obsidian) <br>
-- [First install guide](references/first-install.md) <br>
-- [CookieCloud authentication guide](references/auth.md) <br>
-- [Dependency guide](references/dependencies.md) <br>
-- [Obsidian sync guide](references/obsidian-sync.md) <br>
-- [Cron guide](references/cron.md) <br>
-- [CookieCloud](https://github.com/easychen/CookieCloud) <br>
-- [hctec collection skills dependency](https://github.com/hc-tec/my-collection-skills/tree/main/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with bash commands and generated JSON/YAML configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local configuration files, Obsidian Markdown exports, media assets, and OpenClaw cron payloads when the user runs the recommended commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Browser cookies and CookieCloud credentials can expose Xiaohongshu or Zhihu sessions if copied into chat, logs, or shared artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep cookiecloud.env, raw cookies, logs, state files, downloaded notes, images, and vault exports local; avoid pasting Obsidian or encryption passwords into chat and rotate any credentials exposed in logs.
+
+Risk: A remotely exposed CookieCloud service can make browser login state reachable outside the intended machine or network.
+
+Mitigation: Use a dedicated local CookieCloud instance when possible, bind it to localhost or a protected network, and restrict permissions on cookiecloud.env.
+
+Risk: The sync workflow installs and runs third-party hctec scraper skills and Python/Node dependencies.
+
+Mitigation: Review and pin dependency versions and inspect downloaded third-party skills before running sync or cron automation.
+
+Risk: Automated cron sync can repeatedly access logged-in social accounts and write personal content into an Obsidian vault.
+
+Mitigation: Start with small manual syncs, confirm exported content and vault location, then enable scheduled jobs only with expected platforms, times, and notification behavior.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sunfang1cn/skills/xhs-zh-sync-obsidian)
+- [First Install](references/first-install.md)
+- [CookieCloud Authentication](references/auth.md)
+- [Configuration](references/config.md)
+- [Dependencies](references/dependencies.md)
+- [Obsidian Sync](references/obsidian-sync.md)
+- [Cron](references/cron.md)
+- [Obsidian Layout](references/obsidian-layout.md)
+- [CookieCloud](https://github.com/easychen/CookieCloud)
+- [hctec Collection Skills](https://github.com/hc-tec/my-collection-skills/tree/main/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands; scripts produce JSON status and Obsidian Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local runtime configuration, CookieCloud environment files, raw JSON state, downloaded media, and Obsidian vault content on the user's machine.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

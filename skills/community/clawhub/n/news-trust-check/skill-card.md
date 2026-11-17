@@ -1,41 +1,57 @@
-## Description: <br>
-Verify suspicious news, announcements, screenshots, and viral claims using a high-trust source pool (official channels + Chinese mainstream media + international mainstream media + fact-check sites). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify suspicious news, announcements, screenshots, and viral claims using a high-trust source pool of official channels, Chinese and international mainstream media, and fact-checking sites.
 
-## Publisher: <br>
-[helloeveryworlds](https://clawhub.ai/user/helloeveryworlds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[helloeveryworlds](https://clawhub.ai/user/helloeveryworlds)
 
-## Use Case: <br>
-External users, analysts, and support teams use this skill to assess whether suspicious news, viral screenshots, announcements, or circulating messages are credible and what action to take. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fact-checking output could be mistaken for a guarantee on sensitive financial, legal, medical, security, or urgent money-transfer claims. <br>
-Mitigation: Use the skill as a fact-checking aid and verify sensitive claims directly with official sources before acting. <br>
-Risk: The helper script may miss context because it scores only keyword indicators. <br>
-Mitigation: Treat helper output as an initial risk screen and base the final verdict on cross-checked official, mainstream media, and fact-check sources. <br>
+## Use Case:
 
+Employees, external users, and analysts use this skill to triage suspicious claims, viral messages, screenshots, announcements, and possible scams by checking official, mainstream media, and fact-checking sources before acting.
 
-## Reference(s): <br>
-- [High-Trust Source Pool (CN + Global)](references/high-trust-sources.md) <br>
-- [ClawHub release page](https://clawhub.ai/helloeveryworlds/news-trust-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, JSON] <br>
-**Output Format:** [Markdown structured verdict with optional JSON risk score from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The Python helper is a quick keyword risk screen only; final trust judgments should rely on verified sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: A verdict could be misleading if it is based on screenshots, forwarded text, or weak secondary sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require cited official or reputable sources before treating important financial, security, legal, or public claims as reliable.
+
+Risk: The optional keyword scorer can miss context-dependent scams or overstate risk from keyword matches.
+
+Mitigation: Use the scorer only as triage scaffolding and complete the source-based verification workflow before recommending action.
+
+Risk: Money-transfer, credential, token, cookie, OTP, or impersonation claims can create immediate user harm.
+
+Mitigation: Apply a stronger proof threshold, flag these claims as high risk first, and advise users not to share sensitive information or send funds without official confirmation.
+
+## Reference(s):
+
+- [High-Trust Source Pool](references/high-trust-sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Structured Markdown verdict with evidence, feasibility, risk flags, and recommended action; optional JSON keyword risk score from the helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script requires non-empty text input and provides keyword-based scaffolding rather than final source verification.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

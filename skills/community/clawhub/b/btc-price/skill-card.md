@@ -1,41 +1,58 @@
-## Description: <br>
-Fetches OKX public spot prices for specified cryptocurrency symbols, displays them in USD, and preserves the user's input order. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches public OKX spot prices for requested cryptocurrency symbols, displays USD-denominated prices in input order, and supports text or JSON output.
 
-## Publisher: <br>
-[chgy123](https://clawhub.ai/user/chgy123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chgy123](https://clawhub.ai/user/chgy123)
 
-## Use Case: <br>
-Developers, agents, and end users use this skill to answer cryptocurrency price lookup requests with current OKX spot prices for user-provided symbols. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Price queries are sent to OKX, which exposes requested symbols to a third-party market data service and depends on that service's availability. <br>
-Mitigation: Use the skill for public market lookups only, avoid sending sensitive trading intent, and verify critical prices against another trusted source. <br>
-Risk: The skill depends on a local Python environment with the requests package installed. <br>
-Mitigation: Install dependencies from trusted package sources and run the command in a controlled environment before relying on the output. <br>
+## Use Case:
 
+Developers and agent users use this skill to answer cryptocurrency price questions by running a small OKX market-data lookup helper for specified symbols. It is suited to public spot-price lookups where live exchange data is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chgy123/btc-price) <br>
-- [OKX public market API](https://www.okx.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text price list or JSON array from a Python CLI command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and the requests package; contacts OKX public market endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The helper makes live HTTPS requests to OKX, so availability, latency, and returned prices depend on an external market-data service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Allow outbound access to www.okx.com only when live public price lookup is intended, and verify important prices against another trusted source before acting on them.
+
+Risk: The Python dependency is declared as a lower-bound requests version rather than a pinned version.
+
+Mitigation: Pin and scan the dependency in managed deployments before installing the skill.
+
+Risk: The usage examples include an install path that may not match every runtime environment.
+
+Mitigation: Confirm the local skill path before running the example command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chgy123/skills/btc-price)
+- [OKX public market endpoint host](https://www.okx.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text price list or JSON array from a Python command-line helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns one result per requested symbol, preserving input order and selecting USDT, then USDC, then USD spot pairs when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

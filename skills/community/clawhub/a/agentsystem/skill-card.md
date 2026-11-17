@@ -1,48 +1,60 @@
-## Description: <br>
-Self-improving AI agent framework with autonomous learning, skill creation, self-evolution, persistent memory, and proactive nudges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HerClaw Agent System is a self-improving AI agent framework for autonomous learning, generated skill creation, persistent memory, proactive nudges, and self-evolution.
 
-## Publisher: <br>
-[281862066-a11y](https://clawhub.ai/user/281862066-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[281862066-a11y](https://clawhub.ai/user/281862066-a11y)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add local memory, pattern recording, skill generation, self-evolution workflows, and scheduled nudges to an agent workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Self-modifying behavior and skill generation can introduce unwanted or misleading agent behavior. <br>
-Mitigation: Use in a controlled single-user workspace and review generated skills before activation. <br>
-Risk: Persistent memory can store user history and sensitive context. <br>
-Mitigation: Avoid sensitive data unless consent, retention, and deletion controls are in place. <br>
-Risk: Remote sync and deployment paths may act outside the local workspace if credentials are configured. <br>
-Mitigation: Do not set hub, staging, or production deployment tokens unless remote sync or deployment is intended. <br>
-Risk: Backups, cleanup, rollback, skill creation, and deployment can alter local state. <br>
-Mitigation: Require explicit approval before running these actions. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add local memory, pattern recording, workflow optimization, generated-skill creation, nudges, and self-evolution routines to an AI agent.
 
-## Reference(s): <br>
-- [Memory System Documentation](references/memory-system.md) <br>
-- [Pattern Recording Documentation](references/pattern-recording.md) <br>
-- [Workflow Optimization Documentation](references/workflow-optimization.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/281862066-a11y/agentsystem) <br>
-- [Publisher Profile](https://clawhub.ai/user/281862066-a11y) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code, configuration examples, and shell command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local files, memory records, skill drafts, deployment records, backups, and rollback records when its scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Persistent memory can retain user inputs, context, preferences, and derived facts without sufficient published scoping safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a controlled single-user environment unless explicit consent gates, per-user data isolation, secret redaction, and retention controls are added.
+
+Risk: Generated skills, scheduled nudges, backups, deletion, sync, and deployment actions may run with inadequate user-control safeguards.
+
+Mitigation: Require human approval before generated skills, nudges, backups, deletion, sync, or deployment are executed.
+
+Risk: Optional remote upload and deployment paths can transmit generated skill content or behavior models to configured endpoints.
+
+Mitigation: Restrict remote endpoints with HTTPS allowlists, scoped credentials, safe path validation, and reviewable audit logs before enabling networked features.
+
+## Reference(s):
+
+- [Memory System Documentation](references/memory-system.md)
+- [Pattern Recording Guide](references/pattern-recording.md)
+- [Workflow Optimization Guide](references/workflow-optimization.md)
+- [Workflow Templates](assets/templates/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and YAML examples; scripts may create local JSON, SQLite, and SKILL.md files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist local memory, pattern records, nudges, generated skills, backups, and optional sync or deployment results.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

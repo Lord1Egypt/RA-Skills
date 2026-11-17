@@ -5,31 +5,41 @@ from __future__ import annotations
 import base64
 import json
 from typing import Any
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, quote, urlparse
 
 from kiota_abstractions.base_request_configuration import RequestConfiguration
 
 
-def encode_cursor(skip: int) -> str:
-    """Encode a skip value into an opaque base64 cursor."""
-    payload = json.dumps({"skip": skip})
-    return base64.urlsafe_b64encode(payload.encode()).decode()
+def encode_cursor_payload(data: dict[str, Any]) -> str:
+    """Encode a cursor payload dict as an opaque base64 cursor.
+
+    Paging owns ``skip`` / ``skiptoken``; a tool may add its own keys to pin
+    the scope a listing was made in (``calendar_read`` stores the calendar), so
+    a follow-up page cannot drift to a different scope.
+    """
+    return base64.urlsafe_b64encode(json.dumps(data).encode()).decode()
 
 
-def decode_cursor(cursor: str) -> int:
-    """Decode a cursor back to a skip value.
+def decode_cursor_payload(cursor: str) -> dict[str, Any]:
+    """Decode an opaque cursor back to its payload dict.
 
-    Raises ValueError if cursor is invalid or tampered.
+    Raises ValueError("Invalid pagination cursor") for anything that is not a
+    base64-encoded JSON object — including base64's own padding errors, which
+    are ValueErrors with a message ("Incorrect padding") that tells an agent
+    nothing about which argument was wrong.
     """
     try:
-        payload = base64.urlsafe_b64decode(cursor.encode()).decode()
-        data = json.loads(payload)
-        skip = data["skip"]
-        if not isinstance(skip, int) or skip < 0:
-            raise ValueError("Invalid skip value in cursor")
-        return skip
-    except (KeyError, json.JSONDecodeError, UnicodeDecodeError) as e:
-        raise ValueError(f"Invalid pagination cursor: {cursor}") from e
+        data = json.loads(base64.urlsafe_b64decode(cursor.encode()).decode())
+    except (ValueError, UnicodeDecodeError) as e:  # binascii.Error is a ValueError
+        raise ValueError("Invalid pagination cursor") from e
+    if not isinstance(data, dict):
+        raise ValueError("Invalid pagination cursor")
+    return data
+
+
+def encode_cursor(skip: int) -> str:
+    """Encode a skip value into an opaque base64 cursor."""
+    return encode_cursor_payload({"skip": skip})
 
 
 def wrap_nextlink(odata_next_link: str | None) -> str | None:
@@ -80,15 +90,22 @@ def apply_pagination(
     query_params["$top"] = count
 
     if cursor:
-        try:
-            payload = base64.urlsafe_b64decode(cursor.encode()).decode()
-            data = json.loads(payload)
-            if "skip" in data:
-                query_params["$skip"] = data["skip"]
-            elif "skiptoken" in data:
-                query_params["$skiptoken"] = data["skiptoken"]
-        except (json.JSONDecodeError, UnicodeDecodeError) as e:
-            raise ValueError("Invalid pagination cursor") from e
+        data = decode_cursor_payload(cursor)
+        if "skip" in data:
+            skip = data["skip"]
+            # Caller-held state that goes into a URL: only the non-negative
+            # count this server wrote is accepted. `bool` is excluded because
+            # it is an `int` subclass, and `true` is not a count.
+            if not isinstance(skip, int) or isinstance(skip, bool) or skip < 0:
+                raise ValueError("Invalid pagination cursor")
+            query_params["$skip"] = skip
+        elif "skiptoken" in data:
+            token = data["skiptoken"]
+            # Caller-held state that goes into a URL: anything but the
+            # non-empty string Graph issued is refused here, before any request.
+            if not isinstance(token, str) or not token:
+                raise ValueError("Invalid pagination cursor")
+            query_params["$skiptoken"] = token
 
     return query_params
 
@@ -132,3 +149,30 @@ def build_request_config(
         setattr(qp, attr, value)
 
     return RequestConfiguration(query_parameters=qp)
+
+
+async def get_page(builder: Any, query_params_class: type, params: dict[str, Any]) -> Any:
+    """GET one page from ``builder``, including a ``$skiptoken`` from a cursor.
+
+    ``build_request_config`` cannot carry ``$skiptoken``: no typed ``users/*``
+    query-parameters class has the field, and their URL templates stop at
+    ``$top``, so the token is dropped and a cursor from a listing Graph pages
+    by ``$skiptoken`` fetches page one again (a message ``$search`` pages no
+    other way). Graph's ``@odata.nextLink`` for such a page is the request it
+    answered plus ``$skiptoken``, so that is what is sent: the URL the builder
+    makes from the typed parameters, with the token appended as one
+    percent-encoded query value. The token can change nothing else about the
+    request: not the host, the path or another parameter. ``params`` comes
+    from ``apply_pagination``, which has already refused a token that is not a
+    non-empty string.
+    """
+    params = dict(params)
+    skiptoken = params.pop("$skiptoken", None)
+    config = build_request_config(query_params_class, params)
+    if skiptoken is None:
+        return await builder.get(request_configuration=config)
+    info = builder.to_get_request_information(config)
+    info.path_parameters["baseurl"] = builder.request_adapter.base_url
+    url = info.url
+    separator = "&" if "?" in url else "?"
+    return await builder.with_url(f"{url}{separator}%24skiptoken={quote(skiptoken, safe='')}").get()

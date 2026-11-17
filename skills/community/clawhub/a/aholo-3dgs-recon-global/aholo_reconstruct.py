@@ -4,7 +4,7 @@
 """
 Aholo 3D Reconstruction Skill — International (OpenAPI v1, global gateway)
 
-Flow (Aholo Open Platform global site, gateway https://api.aholo3d.com, world APIs under /global prefix):
+Flow (Aholo Open Platform global site, gateway https://api.aholo.ai, world APIs under /global prefix):
 1) GET /global/asset/v1/token
 2) OUS direct / multipart upload (/ous/api/* has no /global prefix; globalDomain often https://ous-sg.kujiale.com)
 3) POST /global/world/v1/reconstructions or /global/world/v1/generations
@@ -29,11 +29,10 @@ from urllib3.util.retry import Retry
 
 
 SITE_CONFIG = {
-    "base_url": "https://api-beta.aholo3d.com",
-    "token_base_url": "https://api.aholo3d.com",
+    "base_url": "https://api.aholo.ai",
     "path_prefix": "/global",
-    "viewer_url_template": "https://studio.aholo3d.com/3dgs-model/{world_id}",
-    "api_keys_url": "https://labs.aholo3d.com/api-keys",
+    "viewer_url_template": "https://reality.aholo.ai/3dgs-model/{world_id}",
+    "api_keys_url": "https://labs.aholo.ai/api-keys",
     "skill_script_path": ".cursor/skills/aholo-3dgs-reconstruction-global/aholo_reconstruct.py",
 }
 
@@ -104,7 +103,6 @@ def _format_hint(error_msg: str) -> str:
 
 class AholoClient:
     BASE_URL = SITE_CONFIG["base_url"]
-    TOKEN_BASE_URL = SITE_CONFIG["token_base_url"]
 
     @staticmethod
     def _is_open_api_error(payload: Any) -> bool:
@@ -217,7 +215,7 @@ class AholoClient:
         return {"ous-token-v2": self.ous_token}
 
     def get_upload_token(self) -> Dict[str, Any]:
-        url = f"{self.TOKEN_BASE_URL}{PATH_UPLOAD_TOKEN}"
+        url = f"{self.BASE_URL}{PATH_UPLOAD_TOKEN}"
         with step_timer("fetch upload token"):
             try:
                 resp = self.session.get(url, headers=self._auth_headers(), timeout=30, verify=self.verify_ssl)

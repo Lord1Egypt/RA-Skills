@@ -1,47 +1,61 @@
-## Description: <br>
-Parse PDF or Markdown files into structured HTML posters with multi-modal output formats, or generate poster and slide images through configured LLM and image-generation providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse PDF or Markdown files into structured HTML posters with multi-modal output formats, or generate poster and slide images through Gemini image generation.
 
-## Publisher: <br>
-[yuriyanzexuan](https://clawhub.ai/user/yuriyanzexuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuriyanzexuan](https://clawhub.ai/user/yuriyanzexuan)
 
-## Use Case: <br>
-Developers and content automation users can use this skill to convert PDFs or Markdown into styled HTML posters and export them as PDF, PNG, DOCX, or PPTX. Users can also generate poster and slide images when approved LLM and image-generation providers are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Full PDFs, Markdown, tables, captions, and images may be sent to configured third-party LLM or image-generation providers. <br>
-Mitigation: Use only approved providers for the data being processed, avoid confidential or regulated documents unless those providers are authorized, and choose simple or local rendering when remote processing is unnecessary. <br>
-Risk: The installer can make broad local system changes, including Python, UV, system libraries, and Playwright Chromium setup. <br>
-Mitigation: Review install.sh before execution, prefer trusted or pinned installation paths, and run the skill in an isolated environment. <br>
-Risk: API keys and endpoint values are required for remote model modes. <br>
-Mitigation: Review .env carefully, keep credentials out of version control, and scope keys to the minimum permissions needed. <br>
+## Use Case:
 
+Developers and content teams use this skill to transform PDF or Markdown source material into styled HTML posters, converted document outputs, and generated poster or slide imagery.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yuriyanzexuan/mm-output) <br>
-- [Artifact README](artifact/README.md) <br>
-- [MM Output README](artifact/mm_output/README.md) <br>
-- [OpenAI API endpoint](https://api.openai.com/v1) <br>
-- [Astral UV](https://github.com/astral-sh/uv) <br>
-- [Marker PDF](https://github.com/Hadlay-Zhang/marker.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown and command-line workflow guidance that produces local HTML, PDF, PNG, DOCX, PPTX, and image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.12+, UV, Playwright Chromium, document inputs, output directory selection, and provider API keys for LLM or image-generation modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Installer and dependency setup can change the local environment and includes curl-to-shell installation behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run in a sandbox or disposable environment, avoid running install.sh as root, and replace curl-to-shell installation with verified packages where possible.
+
+Risk: The HTML rendering and document conversion pipeline can expose users to unsafe content when processing untrusted documents.
+
+Mitigation: Only process trusted documents unless JavaScript is disabled and generated HTML is sanitized before conversion.
+
+Risk: Dependency choices include vulnerable pins or unpinned Git-sourced components according to release security guidance.
+
+Mitigation: Remove or pin Git dependencies and update vulnerable dependency pins before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuriyanzexuan/skills/mm-output)
+- [Artifact README](artifact/README.md)
+- [MMOutput README](artifact/mm_output/README.md)
+- [UV package manager](https://github.com/astral-sh/uv)
+- [Marker PDF dependency](https://github.com/Hadlay-Zhang/marker.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, configuration examples, generated HTML, PDF, PNG, DOCX, PPTX, and image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Python 3.12, LLM or image-generation API credentials, and Chromium-compatible rendering dependencies.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

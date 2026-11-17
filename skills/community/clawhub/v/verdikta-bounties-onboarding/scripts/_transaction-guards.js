@@ -1,0 +1,220 @@
+// Pure transaction validation. No wallet, environment, API, or signing imports.
+import { Interface, getAddress, ZeroAddress, parseEther, keccak256, Transaction } from 'ethers';
+import abi from './bounty-escrow.abi.json' with { type: 'json' };
+import deployments from './deployments.json' with { type: 'json' };
+export { abi, deployments };
+export const iface = new Interface(abi);
+// The bot API key and bounty data go only to the API origin reviewed for each network in deployments.json.
+// An unset URL means that origin; any other URL is refused, so a changed .env cannot redirect the key.
+export function reviewedApiOrigin(network, configured) {
+  const docsUrl = deployments[network]?.docsUrl;
+  if (!docsUrl) throw new Error(`No reviewed API origin for network ${network}`);
+  const origin = docsUrl.replace(/\/api\/docs$/, '');
+  if (configured && configured.trim().replace(/\/+$/, '') !== origin) throw new Error(`Use the reviewed network API origin ${origin}; refusing ${configured}`);
+  return origin;
+}
+export const uint = (value, name, max = (1n << 256n) - 1n) => {
+  if (!['string', 'number', 'bigint'].includes(typeof value) || (typeof value === 'number' && !Number.isSafeInteger(value))) throw new Error(`${name} must be an exact integer`);
+  if (!/^(0|[1-9][0-9]*)$/.test(String(value))) throw new Error(`${name} must be an unsigned integer`);
+  const n = BigInt(value);
+  if (n > max) throw new Error(`${name} exceeds range`);
+  return n;
+};
+export function targetFor(config) {
+  if (config.procurementMode === 'OPEN') {
+    if (config.targetHunter && getAddress(config.targetHunter) !== ZeroAddress) throw new Error('OPEN cannot specify a supplier');
+    return ZeroAddress;
+  }
+  if (config.procurementMode !== 'TARGETED' || !config.targetHunter) throw new Error('Explicit OPEN or TARGETED procurementMode required');
+  const target = getAddress(config.targetHunter);
+  if (target === ZeroAddress) throw new Error('TARGETED requires a nonzero supplier');
+  return target;
+}
+export function creationTerms(config) {
+  if (typeof config.bountyAmount !== 'string' || ['creatorDeterminationPayment','arbiterDeterminationPayment'].some(k => config[k] != null && typeof config[k] !== 'string')) throw new Error('ETH amounts must be decimal strings');
+  const targetHunter = targetFor(config);
+  const requestedClass = uint(config.classId, 'classId', (1n << 64n) - 1n);
+  const threshold = uint(config.threshold, 'threshold', 100n);
+  const window = uint(config.creatorAssessmentWindowSeconds ?? 0, 'creator assessment window', (1n << 64n) - 1n);
+  const creator = parseEther(String(config.creatorDeterminationPayment ?? config.bountyAmount));
+  const arbiter = parseEther(String(config.arbiterDeterminationPayment ?? config.bountyAmount));
+  if (creator <= 0n || arbiter <= 0n || creator >= 1n << 128n || arbiter >= 1n << 128n) throw new Error('Invalid determination payment');
+  if (window === 0n && creator !== arbiter) throw new Error('No-window payments must be equal');
+  const value = creator > arbiter ? creator : arbiter;
+  if (parseEther(String(config.bountyAmount)) !== value) throw new Error('bountyAmount must equal maximum determination payment');
+  const o = config.oracle;
+  if (!o) throw new Error('Explicit oracle settings required');
+  const oracle = { maxOracleFee: uint(o.maxOracleFee, 'oracle fee'), alpha: uint(o.alpha, 'alpha', 1000n), estimatedBaseCost: uint(o.estimatedBaseCost, 'base cost'), maxFeeBasedScaling: uint(o.maxFeeBasedScaling, 'scaling', 1000n) };
+  if (!oracle.maxOracleFee || oracle.estimatedBaseCost >= oracle.maxOracleFee || !oracle.maxFeeBasedScaling) throw new Error('Invalid oracle settings');
+  // A whole-hour window, or an exact deadline for terms that name a date (a wager's settlement deadline).
+  let submissionDeadline = null;
+  if (config.submissionDeadline != null) {
+    if (config.submissionWindowHours != null) throw new Error('Use submissionDeadline or submissionWindowHours, not both');
+    submissionDeadline = exactDeadline(config.submissionDeadline);
+  } else {
+    const hours = Number(config.submissionWindowHours);
+    if (!Number.isSafeInteger(hours) || hours <= 0 || !Number.isSafeInteger(hours * 3600) || BigInt(hours * 3600) <= window + 2n) throw new Error('Submission window must be whole hours');
+  }
+  if (window % 3600n !== 0n) throw new Error('Creator assessment window must be whole hours');
+  return { params: { requestedClass, threshold, targetHunter, creatorDeterminationPayment: creator, arbiterDeterminationPayment: arbiter, creatorAssessmentWindowSize: window, oracle }, value, submissionDeadline };
+}
+// Unix seconds, or ISO-8601 UTC ending in Z ("2026-10-22T00:00:00Z"). The server encodes this second exactly.
+export function exactDeadline(value) {
+  if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?Z$/.test(value)) {
+    const ms = Date.parse(value);
+    if (Number.isFinite(ms)) return BigInt(ms / 1000);
+  }
+  if (typeof value === 'number' || (typeof value === 'string' && /^[0-9]+$/.test(value))) {
+    const seconds = uint(value, 'submission deadline', (1n << 64n) - 1n);
+    if (seconds >= 100000000000n) throw new Error('submissionDeadline looks like milliseconds; use unix seconds');
+    return seconds;
+  }
+  throw new Error('submissionDeadline must be unix seconds or an ISO-8601 UTC time such as 2026-10-22T00:00:00Z');
+}
+export function bindCreation(config, response, { recovery = false, apiCreatedAt } = {}) {
+  const { params, value, submissionDeadline: exact } = creationTerms(config);
+  const job = response.job;
+  if (!recovery && (job?.onChain || job?.txHash || response.message?.startsWith('Reusing existing job'))) throw new Error('Existing creation detected; reconcile its identity instead of funding a duplicate');
+  if (!response.success || !job || job.jobId == null || !response.onChain?.transaction) throw new Error('API creation response drift');
+  if (!/^[A-Za-z0-9]{46,100}$/.test(job.evaluationCid || '')) throw new Error('Invalid evaluation CID');
+  const deadline = uint(job.submissionCloseTime, 'server deadline', (1n << 64n) - 1n);
+  const opened = uint(job.submissionOpenTime, 'server open time');
+  if (exact != null) { if (deadline !== exact) throw new Error('Server deadline differs from the exact submissionDeadline'); }
+  else if (deadline - opened !== BigInt(Number(config.submissionWindowHours) * 3600)) throw new Error('Server deadline window drift');
+  if (!recovery) {
+    const now = BigInt(Math.floor(Date.now() / 1000));
+    const drift = opened - (apiCreatedAt == null ? now : uint(apiCreatedAt, 'local API creation time'));
+    if (deadline - now <= params.creatorAssessmentWindowSize + 302n) throw new Error('Server deadline leaves less than five minutes for submissions before the assessment window');
+    if (drift < -900n || drift > 900n) throw new Error('Server open time differs from the local clock at API creation by more than 15 minutes');
+  }
+  if (Number(job.threshold) !== Number(config.threshold)) throw new Error('Server threshold drift');
+  return { params: { ...params, evaluationCid: job.evaluationCid, submissionDeadline: deadline }, value, transaction: response.onChain.transaction };
+}
+export function verifyTransaction(tx, { network, method, args, value = 0n, maxValueWei }) {
+  const deployment = deployments[network];
+  if (!deployment || Number(tx?.chainId) !== deployment.chainId) throw new Error('Transaction chain mismatch');
+  if (getAddress(tx.to) !== getAddress(deployment.address)) throw new Error('Transaction destination mismatch');
+  if (uint(tx.value, 'transaction value') !== BigInt(value)) throw new Error('Transaction value mismatch');
+  if (maxValueWei == null || BigInt(value) > uint(maxValueWei, 'value cap')) throw new Error('Transaction exceeds value cap');
+  // Exact re-encoding also rejects unexpected selectors, argument drift and trailing data.
+  if (!method || !Array.isArray(args) || tx.data?.toLowerCase() !== iface.encodeFunctionData(method, args).toLowerCase()) throw new Error('Transaction calldata/ABI drift');
+  return { to: deployment.address, data: tx.data, value: BigInt(value), chainId: deployment.chainId };
+}
+export async function verifyDeployment(network, provider, docs) {
+  const d = deployments[network];
+  if (!d || Number((await provider.getNetwork()).chainId) !== d.chainId || Number(docs?.contract?.chainId) !== d.chainId) throw new Error('Deployment chain mismatch');
+  if (getAddress(docs.contract.address) !== getAddress(d.address)) throw new Error('Live destination drift; maintainer review required');
+  const code = await provider.getCode(d.address);
+  if (code === '0x' || keccak256(code) !== d.codeHash) throw new Error('Live contract bytecode drift');
+  for (const name of ['createBounty', 'prepareSubmission', 'requiredPrepay']) {
+    const signature = docs.contract.functions?.[name]?.signature;
+    if (!signature || new Interface([`function ${signature}`]).getFunction(name).selector !== iface.getFunction(name).selector) throw new Error('Live ABI selector drift');
+  }
+  return d.address;
+}
+
+export function verifyCreatedBounty(bounty, expected, creator) {
+  if (getAddress(bounty.creator) !== getAddress(creator)) throw new Error('Created bounty creator mismatch');
+  for (const [key, value] of Object.entries(expected)) {
+    if (key === 'oracle') {
+      for (const [field, term] of Object.entries(value)) if (BigInt(bounty.oracle[field]) !== term) throw new Error(`Created bounty oracle ${field} mismatch`);
+    } else if (key === 'targetHunter') {
+      if (getAddress(bounty[key]) !== getAddress(value)) throw new Error('Created bounty target mismatch');
+    } else if (typeof value === 'bigint' ? BigInt(bounty[key]) !== value : bounty[key] !== value) throw new Error(`Created bounty ${key} mismatch`);
+  }
+}
+
+// Used both immediately after local signing and before rebroadcasting saved bytes.
+export function verifySignedTransaction(raw, expected, creator, policy, hash) {
+  const tx = Transaction.from(raw);
+  if (!tx.isSigned() || getAddress(tx.from) !== getAddress(creator)) throw new Error('Saved transaction has wrong creator or no signature');
+  if (hash && tx.hash !== hash) throw new Error('Saved transaction hash mismatch');
+  verifyTransaction(tx, { ...expected, maxValueWei: policy.maxValueWei });
+  if (tx.type !== 2 || tx.gasLimit > uint(policy.maxGasLimit, 'gas cap') ||
+      tx.maxFeePerGas > uint(policy.maxFeePerGasWei, 'fee cap') ||
+      tx.maxPriorityFeePerGas > uint(policy.maxPriorityFeePerGasWei, 'priority cap') ||
+      tx.maxPriorityFeePerGas > tx.maxFeePerGas || tx.accessList?.length) throw new Error('Saved transaction exceeds gas/fee policy or changes transaction type');
+  if (tx.value + tx.gasLimit * tx.maxFeePerGas > uint(policy.maxTotalWei, 'total cap')) throw new Error('Saved transaction exceeds total cap');
+  return tx;
+}
+
+// Clearing before a close. closeExpiredBounty reverts "active evaluation - finalize first" while any claim is pending,
+// and in a wager only the opponent can submit, so a rejected claim nobody finalized would hold the creator's refund.
+// The creator of an open bounty past its deadline may resolve those claims with exactly these two gas-only calls, which
+// cannot change who wins. A close never finalizes a passing result (that pays the claimant) or one not stored yet.
+export const CLEARING_METHODS = Object.freeze(['finalizeSubmission', 'failTimedOutSubmission']);
+const SCORE_SCALE = 1_000_000n, SCORE_DIVISOR = 10_000n;
+/** The escrow's pass rule (_scoreVector): scores = [DONT_FUND, FUND] on SCORE_SCALE; FUND / SCORE_DIVISOR >= threshold. */
+export function resultPasses(scores, threshold) {
+  if (!Array.isArray(scores) || scores.length !== 2) return false;
+  const [reject, accept] = scores.map((s) => BigInt(s));
+  if (reject > SCORE_SCALE || accept > SCORE_SCALE) return false;
+  return accept / SCORE_DIVISOR >= BigInt(threshold);
+}
+/** Throws unless signer created the bounty, it is open and chainNow (latest block time) is at or past its deadline. */
+export function assertClearable({ bounty, signer, chainNow }) {
+  if (getAddress(bounty.creator) !== getAddress(signer)) throw new Error(`Only the bounty's creator ${getAddress(bounty.creator)} clears its claims before a close; this wallet is ${getAddress(signer)}`);
+  if (Number(bounty.status) !== 0) throw new Error('The bounty is no longer open');
+  if (BigInt(chainNow) < BigInt(bounty.submissionDeadline)) throw new Error(`The bounty's deadline ${new Date(Number(bounty.submissionDeadline) * 1000).toISOString()} has not passed: it cannot be closed, or its claims cleared, before then`);
+}
+/**
+ * The clearing call for one pending submission: { method } (one of CLEARING_METHODS), { wait } (still being
+ * evaluated) or { stop } (the close cannot go ahead). next = nextAction(), result = getOracleResult().
+ */
+export function clearingCall({ bounty, signer, chainNow, submissionId, next, result }) {
+  assertClearable({ bounty, signer, chainNow });
+  const id = `Submission ${submissionId}`;
+  if (next === 'FORCE_FAIL') return { method: 'failTimedOutSubmission' };
+  if (next === 'AWAIT_ORACLE') return { wait: `${id} is still being evaluated` };
+  if (next === 'FINALIZE' || next === 'AWAIT_EARLIER') {
+    if (!result?.hasResult) return { stop: `${id}: its jury round timed out with enough answers but no stored result, so finalizing it would decide the claim now and pay the claimant if it passes. Finalize it only with the owner's agreement (claim_bounty.js), then close` };
+    const accept = result.scores?.length === 2 ? Number(BigInt(result.scores[1]) / SCORE_DIVISOR) : null;
+    if (resultPasses(result.scores, bounty.threshold)) return { stop: `${id} passed its evaluation (acceptance ${accept}, threshold ${bounty.threshold}): finalizing it pays the claimant, so this bounty cannot be closed` };
+    return next === 'FINALIZE' ? { method: 'finalizeSubmission' } : { wait: `${id} waits for an earlier evaluation` };
+  }
+  return { stop: `${id}: unexpected next action ${next}` };
+}
+
+// Owner withdrawals: the only transactions not sent to the escrow. ETH goes straight to the owner address recorded at
+// onboarding; LINK (left in older wallets by the retired swap) only as an exact transfer to it from the reviewed token.
+export const ownerTransferTokens = {
+  base: { LINK: { address: '0x88Fb150BDc53A65fe94Dea0c9BA0a6dAf8C6e196', decimals: 18 } },
+  'base-sepolia': { LINK: { address: '0xE4aB69C077896252FAFBD49EFD26B5D171A32410', decimals: 18 } },
+};
+export const erc20 = new Interface(['function balanceOf(address) view returns (uint256)', 'function decimals() view returns (uint8)', 'function transfer(address to, uint256 amount) returns (bool)']);
+export function ownerAddress(value) {
+  let address;
+  try { address = getAddress(String(value ?? '').trim()); } catch { throw new Error(`Invalid owner address: ${value}`); }
+  if (address === ZeroAddress) throw new Error('The owner address is the zero placeholder; no owner is recorded');
+  return address;
+}
+export function ownerTransferFields({ network, owner, asset, amount }) {
+  const deployment = deployments[network], recipient = ownerAddress(owner), value = uint(amount, 'withdrawal amount');
+  if (!deployment) throw new Error(`Unsupported network ${network}`);
+  if (value === 0n) throw new Error('Withdrawal amount must be positive');
+  const token = asset === 'ETH' ? null : ownerTransferTokens[network]?.[asset];
+  if (asset !== 'ETH' && !token) throw new Error(`No reviewed ${asset} token on ${network}`);
+  return token
+    ? { to: token.address, value: 0n, data: erc20.encodeFunctionData('transfer', [recipient, value]), chainId: deployment.chainId }
+    : { to: recipient, value, data: '0x', chainId: deployment.chainId };
+}
+export function verifyOwnerTransfer(tx, expected) {
+  const fields = ownerTransferFields(expected);
+  if (Number(tx?.chainId) !== fields.chainId) throw new Error('Transaction chain mismatch');
+  if (getAddress(tx.to) !== getAddress(fields.to)) throw new Error('Transaction destination mismatch');
+  if (uint(tx.value, 'transaction value') !== fields.value) throw new Error('Transaction value mismatch');
+  if ((tx.data || '0x').toLowerCase() !== fields.data.toLowerCase()) throw new Error('Transaction calldata mismatch');
+  return fields;
+}
+// No value cap: the funds return to the owner. Gas, fee and total-execution caps still apply.
+export function verifySignedOwnerTransfer(raw, expected, from, policy) {
+  const tx = Transaction.from(raw);
+  if (!tx.isSigned() || getAddress(tx.from) !== getAddress(from)) throw new Error('Signed withdrawal has the wrong signer or no signature');
+  verifyOwnerTransfer(tx, expected);
+  if (tx.type !== 2 || tx.gasLimit > uint(policy.maxGasLimit, 'gas cap') ||
+      tx.maxFeePerGas > uint(policy.maxFeePerGasWei, 'fee cap') ||
+      tx.maxPriorityFeePerGas > uint(policy.maxPriorityFeePerGasWei, 'priority cap') ||
+      tx.maxPriorityFeePerGas > tx.maxFeePerGas || tx.accessList?.length) throw new Error('Signed withdrawal exceeds gas/fee policy or changes transaction type');
+  if (tx.gasLimit * tx.maxFeePerGas > uint(policy.maxTotalWei, 'total cap')) throw new Error('Signed withdrawal exceeds total cap');
+  return tx;
+}

@@ -1,44 +1,59 @@
-## Description: <br>
-Blackboard helps an agent generate structured prompts for vertical dark poster-style images with centered Chinese marker lettering, high-contrast accent colors, optional branding, and reusable composition variants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates vertical 9:16 dark blackboard-style poster image prompts with bold handwritten-marker Chinese text, high-contrast accent colors, and reusable layout guidance.
 
-## Publisher: <br>
-[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo)
 
-## Use Case: <br>
-External users, designers, and content creators use this skill to turn a topic or reference request into a dark 9:16 poster image prompt and output plan. It is especially focused on Chinese headline posters with handwritten marker-style text and reusable layout templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Chinese text in images may be inaccurate or unsuitable for final publication. <br>
-Mitigation: Review the generated image and overlay precise production text when exact wording is required. <br>
-Risk: Image-generation provider configuration may require sensitive API keys or messaging permissions. <br>
-Mitigation: Review provider and messaging configuration before granting credentials or send permissions. <br>
-Risk: The skill has usability concerns about activation conditions and language expectations. <br>
-Mitigation: State the desired language, poster topic, and style constraints explicitly in the user prompt. <br>
+## Use Case:
 
+External users and creative operators use this skill to turn poster or cover-image requests into structured prompts for Chinese blackboard-style vertical social graphics. The skill is best suited for slogan, tutorial-cover, campaign, and brand-style poster drafts where users can review and refine generated text.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zmy1006-sudo/blackboard) <br>
-- [Blackboard style guide](references/style-guide.md) <br>
-- [Blackboard layout templates](references/layout-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, files, guidance] <br>
-**Output Format:** [Markdown guidance with image-generation prompt text and an expected poster image file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets portrait 9:16 poster images at 2K resolution and includes the complete English prompt for reuse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and release evidence) <br>
+Risk: Generated poster text may be inaccurate, malformed, or unsuitable for formal publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated Chinese text and overlay precise final typography before production use.
+
+Risk: Confidential campaign or brand details may be included in the generated image and returned prompt.
+
+Mitigation: Avoid confidential inputs unless the user is comfortable with the image and prompt being returned through the configured messaging channel.
+
+Risk: The skill may trigger on broad poster or cover-image requests.
+
+Mitigation: Confirm the requested visual style before invoking the blackboard poster workflow when user intent is ambiguous.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zmy1006-sudo/skills/blackboard)
+- [Blackboard style guide](artifact/references/style-guide.md)
+- [Layout templates](artifact/references/layout-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, API calls, image]
+
+**Output Format:** [Markdown-style response with an image-generation request, generated image file path, and reusable English prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 9:16 poster imagery at the requested image-generation resolution; Chinese text in generated images should be reviewed before formal use.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

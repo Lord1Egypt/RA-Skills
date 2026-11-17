@@ -1,41 +1,54 @@
-## Description: <br>
-Automatically finds Bilibili's hottest current-season anime from the past week, groups recommendations by genre, and summarizes each title's premise and update status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动抓取 Bilibili 最近一周热门当季新番，按类型整理简介、更新时间和追番建议。
 
-## Publisher: <br>
-[Elijah-Pi](https://clawhub.ai/user/Elijah-Pi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elijah-pi](https://clawhub.ai/user/elijah-pi)
 
-## Use Case: <br>
-External users use this skill to get current Bilibili seasonal anime recommendations, including weekly hot titles, genre groupings, concise summaries, update status, and suggested watch order. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad anime recommendation prompts may trigger a Bilibili current-season workflow when the user wants recommendations outside Bilibili or outside currently airing shows. <br>
-Mitigation: Clarify the requested platform and season before using the skill for general anime recommendation requests. <br>
-Risk: Popularity, episode, and update-status data can change quickly and may be uncertain in public web results. <br>
-Mitigation: Include the data date and source, prefer official Bilibili information, and mark uncertain metrics as approximate. <br>
+## Use Case:
 
+External users use this skill to ask for current Bilibili seasonal anime recommendations and receive a genre-grouped Markdown ranking with summaries and update status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Elijah-Pi/bilibili-anime) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Elijah-Pi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown recommendation report with rankings, genre sections, summaries, update status, and source/date notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses current public web results; uncertain popularity metrics should be marked approximate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata reports 1.1) <br>
+Risk: Current anime popularity and update data may change quickly or be unavailable from official Bilibili pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer official Bilibili data where available, use trusted anime sources secondarily, and mark uncertain metrics with approximate or reference-value wording.
+
+Risk: The skill may answer in Chinese-formatted Markdown or activate for broad anime recommendation requests.
+
+Mitigation: Adjust trigger and language instructions before installation if the deployment needs Bilibili-specific activation or another response language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elijah-pi/skills/bilibili-anime)
+- [Publisher profile](https://clawhub.ai/user/elijah-pi)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown document in Chinese with ranked sections, genre tables, summaries, update status, and recommendation order.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses current web search and fetch results; uncertain popularity metrics should be marked as approximate or reference values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

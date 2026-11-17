@@ -38,6 +38,43 @@ HUB_BASE="$HUB_URL"
 # Supported values:
 #   skillhub_cn   -> https://api.skillhub.cn (public read-only API, no auth)
 SKILL_HUB_PROVIDER="${SKILL_HUB_PROVIDER:-}"
+
+# ---------- Cross-platform temp-file helper (BSD/GNU mktemp) ----------
+# macOS ships BSD mktemp, which lacks GNU's --suffix and needs -t templates
+# without X's handled differently; historical scripts used `mktemp ... ||
+# mktemp -t name`, which breaks on GNU ("too few X's in template") and on
+# older BSDs alike. This helper uses the only form both families support:
+# an explicit template ending in XXXXXX. All scripts must create temp
+# files/dirs through it — never call mktemp directly — so GNU-only flags
+# cannot sneak back in.
+# Usage:
+#   shq_mktemp            -> ${TMPDIR:-/tmp}/shq.XXXXXX      (file)
+#   shq_mktemp <prefix>  -> ${TMPDIR:-/tmp}/<prefix>.XXXXXX (file)
+#   shq_mktemp -d [pfx]  -> same, but a directory
+# Prefix must match [A-Za-z0-9._-] (guards against `/` or leading `-`
+# being injected into the template argument).
+shq_mktemp() {
+  local want_dir=0
+  local -a names=()
+  local arg
+  for arg in "$@"; do
+    if [[ "$arg" == "-d" ]]; then
+      want_dir=1
+    else
+      names+=("$arg")
+    fi
+  done
+  local tmpl="${names[0]:-shq}"
+  if [[ ! "$tmpl" =~ ^[A-Za-z0-9._-]+$ ]]; then
+    echo "shq_mktemp: invalid template name: $tmpl" >&2
+    return 2
+  fi
+  if [[ "$want_dir" == 1 ]]; then
+    mktemp -d "${TMPDIR:-/tmp}/${tmpl}.XXXXXX"
+  else
+    mktemp "${TMPDIR:-/tmp}/${tmpl}.XXXXXX"
+  fi
+}
 SKILLHUB_CN_BASE="https://api.skillhub.cn"
 # Note: search/list uses /api/skills (NO /v1/), different from detail/versions.
 SKILLHUB_CN_SEARCH_BASE="https://api.skillhub.cn/api/skills"
@@ -111,7 +148,7 @@ shcn_search() {
   fi
 
   local tmp http_code
-  tmp="$(mktemp)"
+  tmp="$(shq_mktemp)"
   http_code="$(curl -sSL --max-time 30 -o "$tmp" -w "%{http_code}" \
     "${SKILLHUB_CN_SEARCH_BASE}?${qs}" 2>/dev/null || echo "000")"
   case "$http_code" in
@@ -164,7 +201,7 @@ shcn_detail() {
     return 2
   fi
   local body http_code tmp
-  tmp="$(mktemp)"
+  tmp="$(shq_mktemp)"
   http_code="$(curl -sSL --max-time 30 -o "$tmp" -w "%{http_code}" \
     "${SKILLHUB_CN_BASE}/api/v1/skills/${slug}" 2>/dev/null || echo "000")"
   case "$http_code" in
@@ -202,7 +239,7 @@ shcn_versions() {
     return 2
   fi
   local http_code tmp
-  tmp="$(mktemp)"
+  tmp="$(shq_mktemp)"
   http_code="$(curl -sSL --max-time 30 -o "$tmp" -w "%{http_code}" \
     "${SKILLHUB_CN_BASE}/api/v1/skills/${slug}/versions" 2>/dev/null || echo "000")"
   case "$http_code" in
@@ -513,7 +550,7 @@ legacy_path_for() {
 
 setup_legacy_notice() {
   local marker
-  marker="$(mktemp 2>/dev/null || mktemp -t skill-hub-notice)"
+  marker="$(shq_mktemp shq-notice)"
   rm -f "$marker"
   export _LEGACY_NOTICE_MARKER="$marker"
   trap 'rm -f "${_LEGACY_NOTICE_MARKER:-}"' EXIT
@@ -522,7 +559,7 @@ setup_legacy_notice() {
 show_legacy_notice() {
   local marker="${_LEGACY_NOTICE_MARKER:-}"
   if [[ -z "$marker" ]]; then
-    marker="$(mktemp 2>/dev/null || mktemp -t skill-hub-notice)"
+    marker="$(shq_mktemp shq-notice)"
     rm -f "$marker"
   fi
   if [[ -f "$marker" ]]; then
@@ -547,8 +584,8 @@ _http_get() {
   local token="${2:-}"
 
   local tmp_body tmp_status
-  tmp_body="$(mktemp)"
-  tmp_status="$(mktemp)"
+  tmp_body="$(shq_mktemp)"
+  tmp_status="$(shq_mktemp)"
 
   local -a curl_opts=(-fsS --max-time 30 -o "$tmp_body" -w "%{http_code}")
   if [[ -n "$token" ]]; then

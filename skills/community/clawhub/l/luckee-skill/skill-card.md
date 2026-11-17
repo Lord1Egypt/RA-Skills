@@ -1,41 +1,55 @@
-## Description: <br>
-Operate the Luckee AI e-commerce assistant via the luckee-tool OpenClaw plugin for Amazon seller advertising diagnosis, keyword research, competitor analysis, listing optimization, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate the Luckee AI e-commerce assistant through the luckee-tool OpenClaw plugin for Amazon seller advertising diagnosis, keyword research, competitor analysis, listing optimization, and reporting.
 
-## Publisher: <br>
-[xing89qs](https://clawhub.ai/user/xing89qs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xing89qs](https://clawhub.ai/user/xing89qs)
 
-## Use Case: <br>
-External Amazon sellers, e-commerce operators, and supporting developers use this skill to install, configure, authenticate, and run Luckee AI queries for advertising, product, competitor, keyword, and listing workflows through OpenClaw. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs mutable external code for the Luckee plugin and CLI. <br>
-Mitigation: Review and pin trusted plugin and CLI versions before installation, and disable automatic CLI installation when tighter change control is required. <br>
-Risk: The skill handles persistent seller tokens and channel credentials. <br>
-Mitigation: Use sender-specific tokens where possible, avoid shared default tokens, redact tokens in all outputs, and limit channel credentials to the minimum scopes needed. <br>
+## Use Case:
 
+Amazon sellers and their supporting agents use this skill to install, configure, authenticate, and operate Luckee through OpenClaw. It supports ad diagnosis, ASIN and keyword research, competitor analysis, listing optimization, business data analysis, and structured reporting.
 
-## Reference(s): <br>
-- [Luckee Skill Reference](artifact/reference.md) <br>
-- [Luckee Skill Release Page](https://clawhub.ai/xing89qs/luckee-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands, JSON snippets, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include authentication, token management, plugin installation, troubleshooting, and Luckee query invocation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2026210402 (source: server release evidence) <br>
+Risk: The security evidence says the skill installs mutable third-party code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the GitHub plugin version and luckee-cli version, or disable automatic CLI installation and install reviewed packages manually before deployment.
+
+Risk: Authentication tokens can be set through chat or configuration and are persisted across gateway restarts.
+
+Mitigation: Prefer browser OAuth over sending live tokens in chat or command lines, use restricted OpenClaw service accounts, redact tokens in logs, and rotate any token that may have appeared in logs, chat history, or shell history.
+
+## Reference(s):
+
+- [Luckee Skill reference](artifact/reference.md)
+- [Luckee OpenClaw plugin repository](https://github.com/motse-ai/luckee-openclaw-plugin.git)
+- [ClawHub Luckee Skill page](https://clawhub.ai/xing89qs/skills/luckee-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce setup steps, troubleshooting guidance, token-handling instructions, and Luckee query results through OpenClaw when the plugin is available.]
+
+## Skill Version(s):
+
+0.1.2026210402 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

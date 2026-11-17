@@ -1,45 +1,61 @@
-## Description: <br>
-飞书增强套件 - 深度集成飞书文档、多维表格、消息和日历的自动化操作。适用于需要高效办公自动化的中文用户。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书增强套件 helps Chinese-language users automate Feishu document, Bitable, messaging, and calendar workflows.
 
-## Publisher: <br>
-[LiJie298](https://clawhub.ai/user/LiJie298) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lijie298](https://clawhub.ai/user/lijie298)
 
-## Use Case: <br>
-Employees, operators, and developers use this skill to automate Feishu documents, Bitable records, messaging, and calendar-related office workflows for Chinese-language teams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles powerful Feishu app credentials. <br>
-Mitigation: Use a least-privilege Feishu app and store FEISHU_APP_ID and FEISHU_APP_SECRET in an environment or secret-management mechanism rather than prompt-visible notes. <br>
-Risk: Automated Feishu messages and bulk Bitable record creation can affect team data or notify unintended recipients. <br>
-Mitigation: Review recipients, table IDs, and payloads before sending messages or creating records in bulk. <br>
-Risk: The publisher is low-trust-tier third-party evidence, even though the security verdict is clean. <br>
-Mitigation: Install only when the publisher is trusted and the Feishu automation capabilities are needed. <br>
+## Use Case:
 
+Developers and office automation users use this skill to configure Feishu app access, create or update Feishu content, batch-create Bitable records, send messages, and support calendar-related workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/LiJie298/feishu-enhanced) <br>
-- [Feishu tenant access token API endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu Bitable batch-create records API endpoint](https://open.feishu.cn/open-apis/bitable/v1/apps/$app_token/tables/$table_id/records/batch_create) <br>
-- [Feishu message send API endpoint](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=$receive_id_type) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq, plus authorized Feishu app credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The skill handles powerful Feishu App ID and App Secret credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Feishu app and store credentials in environment variables or a secret manager instead of TOOLS.md.
+
+Risk: Token generation and API calls may expose sensitive credentials or bearer tokens in logged environments.
+
+Mitigation: Avoid running token commands where shell history, terminal logs, or CI logs capture command output.
+
+Risk: Automated record creation and message sending can affect workspace data or notify unintended recipients if scopes or inputs are too broad.
+
+Mitigation: Limit Feishu app scopes to the needed record-creation and message-sending permissions and review target identifiers before bulk actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lijie298/skills/feishu-enhanced)
+- [Publisher profile](https://clawhub.ai/user/lijie298)
+- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu Bitable batch create records API](https://open.feishu.cn/open-apis/bitable/v1/apps/$app_token/tables/$table_id/records/batch_create)
+- [Feishu messages API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=$receive_id_type)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and Feishu app credentials with only the scopes needed for the intended automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, package.json, and SKILL.md body)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

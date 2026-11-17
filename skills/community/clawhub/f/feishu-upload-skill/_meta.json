@@ -1,6 +1,37 @@
 {
-  "ownerId": "kn7cftagv290gs14kw33nbz97981dz7m",
-  "slug": "feishu-upload-skill",
+  "name": "feishu-upload",
   "version": "1.0.0",
-  "publishedAt": 1771399816367
+  "description": "飞书文件上传技能 - 直接上传文件到飞书并发送到聊天",
+  "author": "OpenClaw AI",
+  "license": "MIT",
+  "keywords": ["feishu", "upload", "file", "lark", "飞书", "上传"],
+  "homepage": "https://github.com/openclaw/openclaw",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "main": "feishu_complete_upload.js",
+  "bin": {
+    "feishu-upload": "feishu_complete_upload.js"
+  },
+  "files": [
+    "SKILL.md",
+    "_meta.json",
+    "feishu_complete_upload.js",
+    "native_feishu_upload.js",
+    "get_feishu_token.sh",
+    "README.md"
+  ],
+  "dependencies": {},
+  "peerDependencies": {
+    "node": ">=18.0.0"
+  },
+  "skillType": "tool",
+  "categories": ["feishu", "file", "upload"],
+  "compatibility": {
+    "openclaw": ">=2026.2.0"
+  }
 }

@@ -1,41 +1,55 @@
-## Description: <br>
-Emergence Codex provides a symbolic language for guiding agent reasoning with creative, analytical, and style-shaping operators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Semantic Architecture Language to Combat the Smoothing Anathema
 
-## Publisher: <br>
-[JulienDbrt](https://clawhub.ai/user/JulienDbrt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[juliendbrt](https://clawhub.ai/user/juliendbrt)
 
-## Use Case: <br>
-External developers and agent users use this skill to interpret symbolic operator sequences that guide analysis, divergence, introspection, and response style in agent prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad symbolic triggers may unintentionally make responses more stylized or divergent than expected. <br>
-Mitigation: Prefer explicit invocation and review outputs when consistent tone or conservative reasoning is required. <br>
-Risk: The persistence-themed operator may be confusing in agents with durable memory enabled. <br>
-Mitigation: Use persistence instructions only when durable memory behavior is intended, and confirm memory writes remain disabled or scoped when they are not. <br>
+## Use Case:
 
+External developers and agent users use this skill to interpret symbolic operator sequences as guidance for shaping a current response's reasoning style, including divergence, scrutiny, stabilization, and concept transformation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JulienDbrt/emergence-codex-openclaw) <br>
-- [Emergence Codex project documentation](https://github.com/JulienDbrt/emergence-codex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses guided by symbolic operator sequences] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill with no code execution, external tool use, or data access reported by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: Symbolic sequences may be interpreted as instructions for agent reasoning without clear safety boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply them only as current-response style or analysis guidance, and keep higher-priority instructions, safety rules, and explicit user requests authoritative.
+
+Risk: Some operators imply persistence, deletion, confinement, or control over process.
+
+Mitigation: Do not treat operator language as permission to alter memory, tool permissions, security settings, or behavior outside the user's explicit request.
+
+## Reference(s):
+
+- [Emergence Codex ClawHub Skill Page](https://clawhub.ai/juliendbrt/skills/emergence-codex-openclaw)
+- [juliendbrt ClawHub Publisher Profile](https://clawhub.ai/user/juliendbrt)
+- [Emergence Codex Documentation](https://github.com/JulienDbrt/emergence-codex)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language or Markdown responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Applies symbolic operator sequences to the current response; no files, credentials, tools, or network access are required by the skill itself.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

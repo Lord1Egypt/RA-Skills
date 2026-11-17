@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "purpose": "规范拒坏类别档案。矩阵必须声明适用档案，类别集合由档案决定，作者只能用带原因的 not_applicable 排除某一类，不能缩小集合。",
+  "profiles": {
+    "table-delivery": ["unknown-shown-as-raw", "unknown-shown-as-zero", "invalid-date-shown-as-raw", "valid-value-unknownified", "value-dropped", "order-swapped", "row-dropped", "group-wrong"],
+    "conflict-delivery": ["unknown-shown-as-raw", "quantity-dropped", "note-dropped", "line-wrong", "version-dropped", "entity-dropped"],
+    "source-line-physical": ["line-end-instead-of-start", "blank-line-ignored", "record-ordinal-as-line"],
+    "requirement-trace": ["rule-weakened", "rule-removed", "scope-narrowed"],
+    "restricted-scope": ["fragment-left-in-item", "fragment-left-in-note", "fragment-left-in-reminder", "keep-content-deleted", "partial-digits-left"]
+  }
+}

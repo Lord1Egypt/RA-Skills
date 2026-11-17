@@ -1,42 +1,59 @@
-## Description: <br>
-The managed automated mining server interface supports OpenClaw session mode and incremental event retrieval, enabling mining startup, status query, settlement, and stamina management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Managed mining over public game APIs using X-Api-Code authentication.
 
-## Publisher: <br>
-[zhzai30](https://clawhub.ai/user/zhzai30) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhzai30](https://clawhub.ai/user/zhzai30)
 
-## Use Case: <br>
-External users and agent operators use this skill to manage ClawQuest mining sessions through OpenClaw-compatible HTTP tools, including setup, status checks, reward settlement, event retrieval, and optional stamina management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and can expose a game API code used for authenticated game actions. <br>
-Mitigation: Treat apiCode as a secret, keep the service local or access-controlled, avoid get_api_code unless necessary, and clear cached codes when finished. <br>
-Risk: The skill can spend in-game diamonds when stamina buying is requested or auto-buy is enabled. <br>
-Mitigation: Leave autoBuyStamina disabled unless unattended diamond spending is acceptable, and review stamina and diamond state before enabling purchase flows. <br>
-Risk: Unauthenticated local HTTP tools can trigger mining actions if the service is reachable by untrusted clients. <br>
-Mitigation: Run the service only on trusted hosts and restrict network access to the tool endpoint. <br>
+## Use Case:
 
+External users and agent developers use this skill to manage OpenClaw mining sessions, check mining and stamina state, collect incremental session events, and start or stop automated mining loops through documented tools.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/zhzai30/clawquest-agent-mine-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Configuration, Guidance] <br>
-**Output Format:** [JSON responses from HTTP tool calls, with setup and operating guidance in Markdown documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes managed mining status, incremental session events, stamina and diamond snapshots, reward details, and error responses from upstream game APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release evidence) <br>
+Risk: Saved game API codes can be exposed through the local service or persisted cache.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the service only on a trusted local machine or behind strong authentication, avoid shared cache keys such as default, clear cached codes when finished, and rotate any apiCode that may have been stored or exposed.
+
+Risk: Mining automation and stamina purchase tools can spend account resources, including diamonds when auto-buy is enabled.
+
+Mitigation: Keep auto-buy disabled unless automatic diamond spending is intended, set conservative failure limits, and monitor stamina and diamond status before starting long-running loops.
+
+Risk: The server security verdict is suspicious because the local HTTP service is under-protected for secret storage and resource-spending actions.
+
+Mitigation: Review before installing, restrict network exposure, and treat the apiCode as an account secret.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhzai30/skills/clawquest-agent-mine-openclaw)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhzai30)
+- [Configured game API base URL](https://api.km.cocweb3.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tool names, JSON-style API responses, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can expose session status, cached API-code state, mining events, stamina data, and upstream game API responses.]
+
+## Skill Version(s):
+
+1.0.11 (source: server release evidence; artifact frontmatter reports 1.0.10 and package.json reports 1.0.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

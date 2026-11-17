@@ -1,43 +1,58 @@
-## Description: <br>
-Processes PDF, Excel, CSV, JPG, and PNG financial documents for Indian CA firms, extracting text, tables, and fields such as GSTIN, invoice numbers, totals, and dates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes financial documents for Indian CA firms by routing PDF, Excel, CSV, JPG, and PNG uploads to local parsers or OCR and extracting text, tables, and fields such as GSTIN, invoice numbers, totals, and dates.
 
-## Publisher: <br>
-[purvik6062](https://clawhub.ai/user/purvik6062) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[purvik6062](https://clawhub.ai/user/purvik6062)
 
-## Use Case: <br>
-External accounting and tax professionals can use this skill to route uploaded financial files to local processors, extract document text and structured fields, and prepare summaries or follow-up questions for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-India <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive financial documents may be included in model context or logs. <br>
-Mitigation: Use the skill only on explicitly selected files and avoid payroll, tax IDs, bank details, or client records unless that exposure is acceptable. <br>
-Risk: Broad file handling may process unrelated attachments. <br>
-Mitigation: Limit invocation to user-selected PDF, Excel, CSV, JPG, JPEG, and PNG files that are intended for document extraction. <br>
-Risk: OCR and heuristic extraction can misread numbers or fields in low-quality scans. <br>
-Mitigation: Treat low-confidence OCR and extracted numeric fields as draft results and ask the user to confirm them before relying on them. <br>
+## Use Case:
 
+External users, developers, and accounting teams can use this skill to process uploaded Indian financial, tax, banking, and audit documents, then use the extracted text, tables, field values, and summaries to answer document-specific questions. The skill is most relevant when an agent needs local processing for PDFs, spreadsheets, CSV exports, and scanned document images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/purvik6062/ca-file-processor) <br>
-- [Publisher profile](https://clawhub.ai/user/purvik6062) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON dictionaries from local processor scripts, with extracted text, tables, fields, summaries, confidence notes, and error messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports PDF, XLSX, XLS, CSV, JPG, JPEG, and PNG inputs; CSV rows and spreadsheet rows are capped, and OCR results may require human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter says 1.0.1) <br>
+Risk: Sensitive financial, tax, banking, and payroll data can be processed automatically from uploads and passed into the agent context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for explicit user-initiated uploads, disable broad automatic attachment triggers, and prefer redacted or summary-only outputs for PAN, GSTIN, account, and payroll fields.
+
+Risk: Untrusted document parsing and OCR can expose environments to stale or vulnerable parsing dependencies.
+
+Mitigation: Review the skill before use with real client records and update vulnerable or stale parser dependencies before processing untrusted files.
+
+Risk: OCR and field extraction can produce low-confidence or incorrect numeric values.
+
+Mitigation: Flag low-confidence OCR results and require user confirmation before relying on extracted numeric fields.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/purvik6062/skills/ca-file-processor)
+- [Declared Project Homepage](https://github.com/purvik6062/ca-file-processor)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Structured JSON dictionaries with extracted text, tables, field values, summaries, confidence labels, and error fields for agent use.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include large document contents and are capped or previewed by individual processors for CSV, Excel, PDF, and image inputs.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata; artifact frontmatter lists 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,261 +1,218 @@
 ---
 name: xiaohongshu-data-insight
-description: 小红书数据洞察大师｜支持关键词搜索/笔记详情获取，无需登录您的小红书账号，可获取小红书笔记数据，轻松达成爆款挖掘、竞品分析、趋势洞察等
+description: "小红书公开数据只读技能：关键词搜笔记、爆款选题、笔记详情、评论舆情、博主作品、粉丝获赞与收藏，输出 JSON，不登录不发布。触发词：小红书、小红薯、xhs、rednote、笔记链接、博主主页、竞品监控、KOL筛选、评论分析。用户要查小红书笔记、评论、选题、竞品或舆情时使用；抖音、快手、B站、微博、公众号不要用本技能。"
 license: MIT
+version: 1.2.2
+category: 数据分析
+homepage: https://www.guaikei.com
 metadata:
   openclaw:
-    type: command
-    runtime: "nodejs@16.14.0+"
-    version: "1.0.0"
+    emoji: "📕"
+    primaryEnv: GUAIKEI_API_TOKEN
     requires:
       bins:
-        - "node"
+        - node
       env:
-        - "GUAIKEI_API_TOKEN"
-    env_desc:
-      GUAIKEI_API_TOKEN: "小红书数据API访问令牌；需联系开发者wx 13395823479 获取"
-    category: "数据分析/内容创作"
-    tags:
-      [
-        "xiaohongshu",
-        "Xiaohongshu Keyword Search",
-        "Xiaohongshu Note Details Query",
-        "Xiaohongshu Data Crawler",
-        "Xiaohongshu Competitor Monitoring",
-      ]
-    keywords:
-      [
-        "Xiaohongshu",
-        "Market Research",
-        "Data Mining",
-        "Market Research",
-        "Competitor Analysis",
-        "Xiaohongshu Keyword Search",
-        "Xiaohongshu Note Details Query",
-        "Xiaohongshu Comment Analysis",
-        "Xiaohongshu Competitor Monitoring",
-      ]
-    examples:
-      - "搜索'数据分析'的热门小红书笔记: node src/xiaohongshu/search-cli.js 数据分析 --type 1 --sort 2 --limit 10"
-      - "分析这篇小红书笔记的评论区情绪: node src/xiaohongshu/detail-cli.js 'https://www.xiaohongshu.com/explore/xxx?xsec_token=yyy'"
-      - "监控小红书'数据挖掘'关键词(最新排序+图文类型): node src/xiaohongshu/search-cli.js --keyword '数据挖掘' --type 2 --sort 1"
-    capabilities:
-      - "检索小红书关键词相关笔记（支持多维度筛选，输出结构化数据）"
-      - "解析小红书笔记链接，提取详情数据（含互动、评论、内容信息）"
-      - "分析笔记评论区情绪倾向，输出量化分析结果"
-      - "监控关键词热度趋势，生成时间维度的热度数据"
-      - "输出Markdown/JSON格式数据，支持运营报表直接复用"
-    input_schema:
-      search:
-        required: ["keyword"]
-        properties:
-          keyword:
-            {
-              type: "string",
-              minLength: 2,
-              maxLength: 50,
-              description: "搜索关键词，2-50个汉字，避免特殊符号",
-            }
-          type:
-            {
-              type: "integer",
-              enum: [0, 1, 2],
-              default: 0,
-              description: "0-全部，1-视频，2-图文",
-            }
-          sort:
-            {
-              type: "integer",
-              enum: [0, 1, 2, 3, 4],
-              default: 0,
-              description: "0-综合，1-最新，2-最多点赞，3-最多评论，4-最多收藏",
-            }
-          limit:
-            {
-              type: "integer",
-              minimum: 1,
-              maximum: 60,
-              default: 10,
-              description: "搜索数量",
-            }
-          output:
-            {
-              type: "string",
-              enum: ["json", "markdown"],
-              default: "json",
-              description: "输出格式",
-            }
-      detail:
-        required: ["url"]
-        properties:
-          url:
-            {
-              type: "string",
-              pattern: "^(https://www.xiaohongshu.com/explore/|https://xhslink.com/m/)",
-              description: "小红书笔记链接，支持完整链接（含xsec_token）或短链接",
-            }
-    output_schema:
-      search_result:
-        {
-          type: "array",
-          items:
-            {
-              type: "object",
-              properties:
-                {
-                  note_id: "string",
-                  title: "string",
-                  like_count: "integer",
-                  comment_count: "integer",
-                  collect_count: "integer",
-                  content_type: "string",
-                  link: "string",
-                },
-            },
-        }
-      detail_result:
-        {
-          type: "object",
-          properties:
-            {
-              note_info: "object",
-              comment_analysis: "object",
-              interaction_data: "object",
-            },
-        }
-    invocation_example:
-      - command: "node src/xiaohongshu/search-cli.js 数据分析 --type 1 --sort 2 --limit 10"
-        input: { keyword: "数据分析", type: 1, sort: 2, limit: 10 }
-        output_type: "json"
-        description: "获取10条数据分析相关的小红书热门视频笔记"
+        - GUAIKEI_API_TOKEN
+  enabled: true
+  type: command
+  runtime: "nodejs@16.14.0+"
+  requires:
+    bins: ["node"]
+    env: ["GUAIKEI_API_TOKEN"]
+  env_desc:
+    GUAIKEI_API_TOKEN: "小红书数据 API 访问令牌。未配置时无法调用接口；可通过 https://www.guaikei.com 开通。"
+  keywords:
+    - "小红书"
+    - "小红薯"
+    - "xhs"
+    - "rednote"
+    - "小红书搜索"
+    - "小红书笔记"
+    - "小红书评论"
+    - "小红书博主"
+    - "爆款选题"
+    - "竞品分析"
+    - "KOL筛选"
+    - "评论舆情"
+    - "xiaohongshu"
+  category:
+    - "Integrations"
+    - "Research"
+    - "Creative"
+    - "内容创作"
+    - "数据分析"
+    - "商业运营"
+  tags:
+    - "小红书"
+    - "小红书搜索"
+    - "小红书笔记"
+    - "小红书评论"
+    - "小红书博主"
+    - "小红书运营"
+    - "小红书数据分析"
+    - "爆款选题"
+    - "竞品分析"
+    - "KOL筛选"
+    - "评论舆情分析"
+    - "内容选题调研"
+    - "趋势洞察"
+    - "种草营销"
+    - "新媒体运营"
+    - "关键词搜索"
+    - "评论分析"
+    - "选题调研"
+    - "爆款挖掘"
+    - "小红书内容创作"
+    - "小红书营销"
+  schemas:
+    - name: "输出信封"
+      file: "assets/output_envelope.schema.json"
+    - name: "搜索入参"
+      file: "assets/search_cli_req.schema.json"
+    - name: "搜索出参"
+      file: "assets/search_cli_resp.schema.json"
+    - name: "详情入参"
+      file: "assets/detail_cli_req.schema.json"
+    - name: "详情出参"
+      file: "assets/detail_cli_resp.schema.json"
+    - name: "评论入参"
+      file: "assets/comment_cli_req.schema.json"
+    - name: "评论出参"
+      file: "assets/comment_cli_resp.schema.json"
+    - name: "作品入参"
+      file: "assets/post_cli_req.schema.json"
+    - name: "作品出参"
+      file: "assets/post_cli_resp.schema.json"
+  examples:
+    - "帮我找最近一周小红书『露营装备』的高赞图文笔记 → node src/xiaohongshu/search-cli.js --keyword '露营装备' --type 2 --sort 2 --time 2 --limit 20"
+    - "这条小红书笔记评论区在吐槽什么 → node src/xiaohongshu/comment-cli.js --url 'https://www.xiaohongshu.com/explore/xxx?xsec_token=yyy' --limit 20"
+    - "看这个小红书博主最近 30 条作品发什么 → node src/xiaohongshu/post-cli.js --url 'https://www.xiaohongshu.com/user/profile/xxx?xsec_token=yyy' --limit 30"
+    - "分析这篇小红书爆款笔记为什么火 → node src/xiaohongshu/detail-cli.js --url 'https://www.xiaohongshu.com/explore/xxx?xsec_token=yyy'"
+    - "监控『多巴胺穿搭』最新动态 → node src/xiaohongshu/search-cli.js --keyword '多巴胺穿搭' --sort 1 --time 1 --limit 40"
+    - "这个小红书博主多少粉丝 → node src/xiaohongshu/post-cli.js --url 'https://www.xiaohongshu.com/user/profile/xxx' --limit 0"
+    - "只要这篇笔记近 30 天的评论 → node src/xiaohongshu/comment-cli.js --url 'https://www.xiaohongshu.com/explore/xxx' --expired_at 30 --limit 20"
 ---
 
-# 📊 小红书数据洞察大师 - 爆款挖掘与竞品分析专家
+# 📕 小红书数据洞察大师 - 爆款挖掘与竞品分析专家
 
-## 一、工具概述
+小红书公开数据只读：关键词搜笔记、笔记详情、评论、博主作品与粉丝数据；输出结构化 JSON。适用于选题、竞品、KOL、舆情。
 
-### 1.1 核心价值
+## 1. ⚠️ 执行前置（每次必过）
 
-小红书数据挖掘工具，无需登录小红书账号即可获取笔记数据，通过数据驱动实现爆款挖掘、竞品分析、趋势洞察、KOL 筛选等核心目标，覆盖内容创作、品牌营销、市场分析全场景。
+1. **先 `cd` 到本 SKILL.md 所在目录**，再执行 `node src/xiaohongshu/*.js`。
+2. **确认 `GUAIKEI_API_TOKEN` 已配置**。未配置 → 不执行，走 `AUTH_REQUIRED`（见 §7 / [errors.md](references/errors.md)），禁止先跑「试试看」。
+3. **一次只跑一条命令，等进程自己结束**。查询最多约 20 次退避，只算等待大约 15 分钟。stderr「处理中」不是失败。**未退出前不要判定失败，不要并发/重复同一命令。**
+4. **必填参数不齐先追问**（话术见 [ask.md](references/ask.md)），禁止猜测关键词或链接。
 
-### 1.2 核心能力矩阵
+> 开通[小红书洞察与竞品分析助手](https://www.guaikei.com) TOKEN。配 TOKEN / 落盘 / FAQ → [faq.md](references/faq.md)。
 
-| 能力模块        | 核心功能                     | 解决痛点                         |
-| :-------------- | :--------------------------- | :------------------------------- |
-| **🔍 爆款挖掘** | 热门笔记发现、高互动内容检索 | 找不到选题灵感，不知道什么内容火 |
-| **🕵️ 竞品分析** | 对标账号监控、笔记表现追踪   | 竞品涨粉快的原因及策略不明确     |
-| **👥 KOL 筛选** | 博主粉丝画像、互动率分析     | 投放博主选择难，担心数据造假     |
-| **📈 趋势监控** | 关键词热度追踪、话题趋势分析 | 错过热点，无法预判市场风向       |
+## 2. 💎 价值与典型场景（10 秒判断该不该用）
 
-### 1.3 适用人群
+| 你是谁 | 你要做的事 | 用哪个命令 |
+| --- | --- | --- |
+| 创作者 / 运营 | 找爆款选题、看高赞图文共同点 | `search-cli.js --sort 2` |
+| 品牌 / 投放 | 监控已知博主发文与互动 | `post-cli.js`（要作品须显式 `--limit`） |
+| 内容分析 | 看一篇笔记正文、图片、互动 | `detail-cli.js` |
+| 舆情 / 客服 | 评论区在吐槽还是在夸 | `comment-cli.js` |
+| MCN / 商务 | 看粉丝、获赞、收藏 | `post-cli.js --limit 0` |
 
-小红书内容创作者 / 运营、品牌营销 / 市场人员、数据分析师、MCN 机构 / 博主经纪人。
+**何时用**：用户提小红书/小红薯/xhs/rednote，并要搜、看、分析公开数据；或给了笔记/主页/短链/id。
 
-## 1.4 核心使用场景
+**何时不用**：只写文案不查数；平台是抖音/快手/B 站/微博/公众号；要登录、私密、草稿、创作者/商业化后台。
 
-| 场景         | 具体价值                                                   |
-| ------------ | ---------------------------------------------------------- |
-| 内容创作选题 | 输入关键词筛选「最多点赞」笔记，快速定位爆款选题方向       |
-| 品牌竞品监控 | 分析竞品账号 / 笔记的互动数据、内容风格，制定差异化策略    |
-| KOL投放筛选  | 解析 KOL 笔记真实互动率，规避数据造假的博主                |
-| 市场趋势分析 | 定时监控关键词「最新排序」，捕捉热点风向并提前布局内容     |
-| 数据报表生成 | 输出 Markdown 格式结果，直接嵌入运营周报，减少手动整理成本 |
+**为什么用它**：只读、不登录；零第三方依赖；按量单次最多 1 万条；stdout 纯 JSON、日志走 stderr。
 
-## 二、快速使用指南
+> **合规**：调用会把关键词/链接发到 `www.guaikei.com`。不上传本地文件。仅公开数据，限个人/团队内部分析。
 
-### 2.1 前置条件
+## 3. 🎯 识别卡（选命令，命中即停）
 
-- 安装Node.js 16.14.0 及以上版本
-- 配置环境变量 `GUAIKEI_API_TOKEN`（默认TOKEN仅用于体验，私有TOKEN需申请）
+| 用户要什么 | 命令 | 最少要有 |
+| --- | --- | --- |
+| 搜笔记、爆款、选题 | `node src/xiaohongshu/search-cli.js` | `--keyword` |
+| 一篇笔记的正文 / 为什么火 | `node src/xiaohongshu/detail-cli.js` | 笔记链接或 24 位笔记 id |
+| 一篇笔记的评论 / 舆情 | `node src/xiaohongshu/comment-cli.js` | 笔记链接或 24 位笔记 id |
+| 博主作品、粉丝、获赞 | `node src/xiaohongshu/post-cli.js` | 主页链接或 24/29 位 `user_id` |
 
-### 2.2 环境配置
+- 正文和评论都要：先 `detail-cli`，再 `comment-cli`。
+- 24 位 id / 短链类型不明：先追问（[ask.md](references/ask.md)），禁止两个命令都试。
+- App 分享文案可整段粘贴给 `--url`，命令会自动抽链（保留 `xsec_token`）。
 
-```bash
-# 验证Node.js版本
-node -v
+## 4. 🛠️ 命令一行例（详参下沉）
 
-# Linux/Mac配置环境变量
-export GUAIKEI_API_TOKEN="你的令牌"
-
-# Windows配置环境变量
-set GUAIKEI_API_TOKEN="你的令牌"
-```
-
-### 2.3 核心命令使用
-
-#### 2.3.1 小红书关键词搜索
+> **详参 / 枚举**：需要确认取值时再读 [options.md](references/options.md) 。**不要每次都读。**  
+> 注意：`-t` = 内容类型，`-i` = 发布时间。`--time 2` = 一周内；`--sort 2` = 最多点赞。
 
 ```bash
-# 基础语法
-node src/xiaohongshu/search-cli.js <关键词> [选项]
-
-# 完整选项说明
---keyword -k <关键词>: 搜索关键词（必填，2-50个汉字，避免特殊符号）
---type -t <0/1/2>: 内容类型，0-全部（默认），1-视频，2-图文
---sort -s <0-4>: 排序规则，0-综合（默认），1-最新，2-最多点赞，3-最多评论，4-最多收藏
---limit -l <1-60>: 搜索数量，1-60（默认10）
---output -o <json/markdown>: 输出格式（默认json）
---help -h: 显示帮助信息
-
-# 使用示例
-
-#搜索“数据挖掘”最多点赞的20条笔记
-node src/xiaohongshu/search-cli.js "数据挖掘" --sort 2 --limit 20
-#搜索“数据分析”的图文笔记，输出Markdown格式
-node src/xiaohongshu/search-cli.js --keyword "数据分析" --type 2 --output markdown
-#爆款挖掘：数据分析（图文+最多点赞）
-node src/xiaohongshu/search-cli.js "数据分析" --type 2 --sort 2
-#趋势监控：数据挖掘（最新排序）（定时执行）
-node src/xiaohongshu/search-cli.js "数据挖掘" --sort 1
+node src/xiaohongshu/search-cli.js --keyword "露营装备" --type 2 --sort 2 --time 2 --limit 20
+node src/xiaohongshu/search-cli.js --keyword "多巴胺穿搭" --sort 1 --time 1 --limit 40
+node src/xiaohongshu/detail-cli.js --url "https://www.xiaohongshu.com/explore/xxx?xsec_token=yyy"
+node src/xiaohongshu/comment-cli.js --url "https://www.xiaohongshu.com/explore/xxx" --limit 20
+node src/xiaohongshu/comment-cli.js --url "https://www.xiaohongshu.com/explore/xxx" --expired_at 30 --limit 20
+node src/xiaohongshu/post-cli.js --url "https://www.xiaohongshu.com/user/profile/xxx" --limit 30
+node src/xiaohongshu/post-cli.js --url "https://www.xiaohongshu.com/user/profile/xxx" --limit 0
 ```
 
-#### 2.3.2 小红书笔记详情查询
+**数量 / 套餐**：搜索默认 **20**；评论默认 **10**；博主不传 `--limit` 默认 **0**（只有博主信息）。不要擅自抓 10000。技能硬上限 10000（按量）。**包月**超限 → `PLAN_LIMIT`：搜索 ≤40，作品 ≤30，评论 ≤20；详情无此条数限制。
 
-```bash
-# 基础语法
-node src/xiaohongshu/detail-cli.js <笔记链接> [选项]
+口语 → flag 对照 → [routing.md](references/routing.md)。
 
-# 选项说明
---url -u <笔记链接>: 笔记链接（支持https://www.xiaohongshu.com/explore/xxx 或 http://xhslink.com/m/xxx）
---help -h: 显示帮助信息
+## 5. 🔀 意图路由（按序命中即停）
 
-# 链接格式要求
-1. 完整链接：必须包含 xsec_token 参数（如 https://www.xiaohongshu.com/explore/xxx?xsec_token=yyy）
-2. 短链接：https://xhslink.com/m/xxx（自动兼容，无需手动解析）
-❌ 错误：链接含空格、无xsec_token的完整链接会直接报错
-
-# 使用示例
-node src/xiaohongshu/detail-cli.js "https://www.xiaohongshu.com/explore/xxx?xsec_token=yyy"
-node src/xiaohongshu/detail-cli.js --url "http://xhslink.com/m/xxx"
+```
+1. 评论/留言/舆情 + 对象是一篇笔记 → comment-cli
+2. 作品/主页/账号/博主/粉丝/获赞 → post-cli
+3. 一篇笔记的标题/正文/图片/互动 → detail-cli
+4. 有关键词且无以上信号 → search-cli
+5. 都不明确 → 先追问（ask.md）
 ```
 
-## 三、数据合规说明
+消歧：`/user/profile/` → 只能 post；`/explore/` 或 `/discovery/item/` + 评论 → comment，+ 正文 → detail，都没说 → 追问。选题可先 `search --sort 2 --time 2 --limit 30`，再对挑出的笔记跑详情。竞品看作品必须显式 `--limit`。
 
-✅ 仅抓取小红书**公开可见**内容，无隐私数据泄露风险
-✅ 本技能不登录小红书账号，仅依赖API获取公开数据
-✅ 数据仅用于商业分析参考，需遵守小红书平台使用条款
-✅ 所有输出数据均做脱敏处理，不涉及用户个人信息
-✅ 本工具依赖第三方 API 进行数据获取。数据仅供参考，第三方服务可能存在不稳定或接口变更的情况。请勿用于高频爬虫或侵犯用户隐私的场景
-⚠️ 高频调用（如1分钟>10次）可能触发API频率限制
+## 6. 📜 输出（摘要）
 
-## 四、技术说明
+- stdout = 统一 JSON 信封；stderr = 日志。向用户**只摘关键字段**，勿整份粘贴。
+- `status=empty` + `NO_MATCH` 退出码 0，**不是失败**。
+- `results`：搜/评论 = 数组；详情 = 单对象；作品 = `{note,user}`。
+- 互动数是字符串；比较前先转数字。
 
-- 系统：Windows/Linux/MacOS（仅需 Node.js，无额外依赖）
-- 运行环境：Node.js 16.14.0+，需提前配置 `GUAIKEI_API_TOKEN` 环境变量
-- 网络：需正常访问网络，国内服务器无需代理
-- 权限：普通用户权限即可运行，无需管理员权限
+完整信封与形态 → [contract.md](references/contract.md)。Schema 在 `assets/`。
 
-### 4.1 日志说明
+## 7. 🚨 错误应对（摘要）
 
-- 运行时会输出彩色日志：INFO(蓝色)、SUCCESS(绿色)、WARN(黄色)、ERROR(红色)；
-- 启动时会打印工具Banner，方便确认是否正确执行；
-- 所有任务结果会自动保存到 `logs/` 目录（按时间+关键词/链接命名）。
+| error_code | 退出码 | Agent |
+| --- | --- | --- |
+| `AUTH_*` | 3 | **禁止重试**；引导官网配 TOKEN |
+| `PLAN_LIMIT` | 1 | **禁止同参重试**；降 limit 须用户同意（搜≤40 / 作品≤30 / 评论≤20） |
+| `INSUFFICIENT_BALANCE` / `DAILY_LIMIT` | 1 | **禁止同参重试**；充值或明日/调限额 |
+| `RATE_LIMITED` | 1 | **禁止立即重试** |
+| `INVALID_*` | 1/2 | 换词/换链/按 help 改一次；禁止擅自改默认再跑 |
+| `NO_MATCH` | 0 | 如实无结果 |
+| `TIMEOUT` / `NETWORK_ERROR` | 1 | 同参续等最多 1 次（搜/作品/评论约 20 分钟、详情约 19 分钟复用）；禁止改参「重做」 |
 
-## 五、版本更新日志
+全表 → [errors.md](references/errors.md)。
 
-### v1.0.0
+## 8. 🛑 硬性禁止
 
-- 首发上线：实现小红书关键词搜索、小红书笔记详情与评论获取自动化工具。
-- 支持热门笔记挖掘、竞品分析、趋势监控等核心商业分析功能。
-- 增加多选项参数（类型、排序、输出格式、搜索数量）灵活定制搜索。
-- 提供开放式命令行用法与使用示例，适配 Node.js 16.14.0+ 环境。
+- 不得编造数据；不得把空结果说成有结果。
+- 不得未征得同意就自动改搜索条件重试；不得编造关键词或链接。
+- `AUTH_*` / `PLAN_LIMIT` / `INSUFFICIENT_BALANCE` / `RATE_LIMITED` / `DAILY_LIMIT` 后不得同参或立即重试。
+- 不得把 stderr 原文转述给用户；不得整份 JSON 贴回对话。
+- 不得做登录态/私密获取或任何写操作。
+- 不得在未 cd 到技能目录时执行 `node src/xiaohongshu/*.js`。
+- 24 位 id / 短链类型不明时，不得两个命令都试。
+
+## 9. 📚 何时读 references（入口总表）
+
+| 时机 | 打开 |
+| --- | --- |
+| 确认枚举/参数取值 | [options.md](references/options.md) |
+| 口语指令 → flag / 链接消歧 | [routing.md](references/routing.md) |
+| 信封 / `results` 形态 | [contract.md](references/contract.md) |
+| 完整错误表 | [errors.md](references/errors.md) |
+| 缺参追问话术 | [ask.md](references/ask.md) |
+| 环境 / FAQ | [faq.md](references/faq.md) |
+| 逐步排障问答 | [troubleshooting.md](references/troubleshooting.md) |
+| 版本变更 | [changelog.md](references/changelog.md) |
+| 技术人员总览 | [readme.md](readme.md) |
+| 机器可校验 Schema | `assets/*.schema.json` |

@@ -1,39 +1,52 @@
-## Description: <br>
-HERMES is an AI agent collaboration and evolution system that advertises proactive skill prediction, dynamic skill composition, branch-based version control, and decentralized trust features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HERMES is an AI agent knowledge-sharing and evolution platform for proactive skill prediction, dynamic composition, branch-based versioning, and decentralized trust.
 
-## Publisher: <br>
-[samsan521](https://clawhub.ai/user/samsan521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[samsan521](https://clawhub.ai/user/samsan521)
 
-## Use Case: <br>
-Developers and agent builders can use this skill as a HERMES command-line and JavaScript entry point for predicted task support, skill composition, version-tree operations, and trust scoring. Review the release before operational use because the shipped artifact references modules that are not included. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release claims HERMES core modules that are missing from the artifact, so the advertised behavior cannot be fully reviewed or run as shipped. <br>
-Mitigation: Ask the publisher for the missing hermes-* module source and corrected CLI metadata before running it or connecting it to real agent workflows, private data, or trusted automation. <br>
-Risk: The package has a suspicious security verdict due to incompleteness rather than observed theft or destructive behavior. <br>
-Mitigation: Review the package before installation and keep it isolated from sensitive data or trusted automation until the missing source is supplied and reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/samsan521/hermes-full) <br>
+## Use Case:
 
+Developers and agent builders use HERMES to plan and compose agent skills, manage skill evolution through branches and merges, and evaluate decentralized trust signals for agent collaboration workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI commands expose prediction, composition, trust lookup, leaderboard, and test flows when the referenced modules are available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The visible CLI and JavaScript entrypoints may fail at runtime because required local HERMES modules are not included in the reviewed artifact.
+
+Mitigation: Verify that the installed package includes the required HERMES modules and run the included tests in an isolated environment before relying on the skill.
+
+Risk: Chinese-language documentation and output may make review or operation difficult for teams that require English-language materials.
+
+Mitigation: Have a qualified reviewer translate or validate the documentation and command behavior before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samsan521/skills/hermes-full)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JavaScript API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language package; reviewed entrypoints require local HERMES modules that are not included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

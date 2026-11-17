@@ -5,6 +5,7 @@ const {
   DEFAULT_SERVER_HOST,
   DEFAULT_SERVER_PORT,
   DEFAULT_REQUEST_TIMEOUT_SECONDS,
+  BROWSER_OPERATION_BY_ID,
   isLoopbackHost,
 } = require('@js-eyes/protocol');
 const {
@@ -15,7 +16,7 @@ const {
 } = require('./policy');
 
 const DEFAULT_SERVER_URL = `ws://${DEFAULT_SERVER_HOST}:${DEFAULT_SERVER_PORT}`;
-const WS_SUBPROTOCOL_PREFIX = 'jse-token.';
+const browserWireAction = (id) => BROWSER_OPERATION_BY_ID[id].wireAction;
 
 class PolicyBlockError extends Error {
   constructor(message, info = {}) {
@@ -72,33 +73,12 @@ function tryReadServerToken() {
   }
 }
 
-// 活跃的 BrowserAutomation 实例集合；进程退出信号只注册一次，避免每个实例都挂
-// SIGINT/SIGTERM/exit 造成 MaxListenersExceededWarning 与 listener 泄漏。
-const _activeAutomations = new Set();
-let _processHooksInstalled = false;
-
-function _installProcessHooksOnce() {
-  if (_processHooksInstalled) return;
-  _processHooksInstalled = true;
-  const cleanup = () => {
-    for (const bot of Array.from(_activeAutomations)) {
-      try { bot.disconnect(); } catch {}
-    }
-  };
-  try {
-    process.on('SIGINT', cleanup);
-    process.on('SIGTERM', cleanup);
-    process.on('exit', cleanup);
-  } catch {
-    // Best-effort: some sandboxed runtimes may forbid process.on.
-  }
-}
-
 class BrowserAutomation {
   constructor(serverUrl, options = {}) {
     this.serverUrl = this._normalizeWsUrl(serverUrl || DEFAULT_SERVER_URL);
     this.logger = options.logger || console;
     this.defaultTimeout = options.defaultTimeout || DEFAULT_REQUEST_TIMEOUT_SECONDS;
+    this.connectTimeout = options.connectTimeout || 10;
     if (Object.prototype.hasOwnProperty.call(options, 'token')) {
       this.token = options.token || null;
     } else if (process.env.JS_EYES_SERVER_TOKEN) {
@@ -126,8 +106,6 @@ class BrowserAutomation {
       this.policy.setTabLookup((tabId) => this._lookupTabUrl(tabId));
     }
 
-    _installProcessHooksOnce();
-    _activeAutomations.add(this);
   }
 
   _normalizeWsUrl(url) {
@@ -150,13 +128,9 @@ class BrowserAutomation {
     this._connectPromise = new Promise((resolve, reject) => {
       this._wsState = 'connecting';
       const params = new URLSearchParams({ type: 'automation' });
-      if (this.token) params.set('token', this.token);
       const wsUrl = `${this.serverUrl}?${params.toString()}`;
 
-      const sanitizedUrl = `${this.serverUrl}?type=automation${this.token ? '&token=***' : ''}`;
-      this.logger.info(`[JS-Eyes] 正在连接: ${sanitizedUrl}`);
-
-      const protocols = this.token ? [WS_SUBPROTOCOL_PREFIX + this.token] : undefined;
+      this.logger.info(`[JS-Eyes] 正在连接: ${wsUrl}`);
       
       // Extract host from wsUrl for Origin header (loopback only)
       let originHeader = null;
@@ -176,9 +150,7 @@ class BrowserAutomation {
           : undefined;
 
       try {
-        this.ws = protocols
-          ? new WebSocket(wsUrl, protocols, wsOptions)
-          : new WebSocket(wsUrl, wsOptions);
+        this.ws = new WebSocket(wsUrl, wsOptions);
       } catch (err) {
         this._wsState = 'disconnected';
         this._connectPromise = null;
@@ -191,9 +163,9 @@ class BrowserAutomation {
           this.ws.terminate();
           this._wsState = 'disconnected';
           this._connectPromise = null;
-          reject(new Error('WebSocket 连接超时 (10s)'));
+          reject(new Error(`WebSocket 连接超时 (${this.connectTimeout}s)`));
         }
-      }, 10000);
+      }, this.connectTimeout * 1000);
 
       this.ws.on('open', () => {
         this.logger.info('[JS-Eyes] TCP 连接已建立，等待服务端确认...');
@@ -213,7 +185,7 @@ class BrowserAutomation {
 
           this.ws.removeAllListeners('message');
           this.ws.on('message', (data) => this._handleMessage(data));
-          resolve();
+          resolve(undefined);
         }
       });
 
@@ -259,8 +231,6 @@ class BrowserAutomation {
     this._wsState = 'disconnected';
     this._connectPromise = null;
     this._clientId = null;
-
-    _activeAutomations.delete(this);
 
     this.logger.info('[JS-Eyes] 已断开连接');
   }
@@ -357,10 +327,12 @@ class BrowserAutomation {
     const requestId = this._generateRequestId();
     const timeoutSec = options.timeout || this.defaultTimeout;
 
-    const message = { type: action, requestId, ...payload };
-    if (options.target) {
-      message.target = options.target;
-    }
+    const message = {
+      type: action,
+      requestId,
+      ...payload,
+      ...(options.target ? { target: options.target } : {}),
+    };
 
     return new Promise((resolve, reject) => {
       const timeoutId = setTimeout(() => {
@@ -390,7 +362,7 @@ class BrowserAutomation {
 
   async _lookupTabUrl(tabId) {
     try {
-      const data = await this._sendRequest('get_tabs', {}, { timeout: 5 });
+      const data = await this._sendRequest(browserWireAction('tabs.list'), {}, { timeout: 5 });
       const tabs = data?.data?.tabs || [];
       const target = tabs.find((t) => Number(t.id) === Number(tabId) || Number(t.tabId) === Number(tabId));
       if (!target) return null;
@@ -424,7 +396,7 @@ class BrowserAutomation {
   }
 
   async getTabs(options = {}) {
-    const response = await this._sendRequest('get_tabs', {}, options);
+    const response = await this._sendRequest(browserWireAction('tabs.list'), {}, options);
     const data = response.data || { browsers: [], tabs: [], activeTabId: null };
     if (this.policy) {
       this.policy.recordTabs(data.tabs || [], data.activeTabId);
@@ -433,7 +405,7 @@ class BrowserAutomation {
   }
 
   async listClients(options = {}) {
-    const response = await this._sendRequest('list_clients', {}, options);
+    const response = await this._sendRequest(browserWireAction('clients.list'), {}, options);
     return response.data?.clients || [];
   }
 
@@ -447,7 +419,7 @@ class BrowserAutomation {
     if (tabId !== null) payload.tabId = parseInt(tabId, 10);
     if (windowId !== null) payload.windowId = parseInt(windowId, 10);
 
-    const response = await this._sendRequest('open_url', payload, options);
+    const response = await this._sendRequest(browserWireAction('url.open'), payload, options);
     if (this.policy && response?.tabId && url) {
       this.policy.recordTabs([{ id: response.tabId, url }]);
       this.policy.egress.allowSession(url);
@@ -456,11 +428,11 @@ class BrowserAutomation {
   }
 
   async closeTab(tabId, options = {}) {
-    await this._sendRequest('close_tab', { tabId: parseInt(tabId, 10) }, options);
+    await this._sendRequest(browserWireAction('tab.close'), { tabId: parseInt(tabId, 10) }, options);
   }
 
   async getTabHtml(tabId, options = {}) {
-    const response = await this._sendRequest('get_html', { tabId: parseInt(tabId, 10) }, options);
+    const response = await this._sendRequest(browserWireAction('page.html'), { tabId: parseInt(tabId, 10) }, options);
     const html = response.html;
     if (this.policy && html) {
       this.policy.recordFetchedHtml(html);
@@ -474,7 +446,7 @@ class BrowserAutomation {
     if (decision.decision !== 'allow') {
       this._blockFromPolicy(decision, 'executeScript');
     }
-    const response = await this._sendRequest('execute_script', {
+    const response = await this._sendRequest(browserWireAction('script.execute'), {
       tabId: parseInt(tabId, 10),
       code,
     }, options);
@@ -486,7 +458,7 @@ class BrowserAutomation {
     if (decision.decision !== 'allow') {
       this._blockFromPolicy(decision, 'injectCss');
     }
-    await this._sendRequest('inject_css', {
+    await this._sendRequest(browserWireAction('style.inject'), {
       tabId: parseInt(tabId, 10),
       css,
     }, options);
@@ -497,7 +469,7 @@ class BrowserAutomation {
     if (decision.decision !== 'allow') {
       this._blockFromPolicy(decision, 'getCookies');
     }
-    const response = await this._sendRequest('get_cookies', { tabId: parseInt(tabId, 10) }, options);
+    const response = await this._sendRequest(browserWireAction('cookies.read'), { tabId: parseInt(tabId, 10) }, options);
     const cookies = response.cookies || [];
     if (this.policy) {
       return this.policy.tagCookiesReturn(cookies, { source: 'getCookies', tabId });
@@ -514,7 +486,7 @@ class BrowserAutomation {
     if (options.includeSubdomains !== undefined) {
       payload.includeSubdomains = options.includeSubdomains;
     }
-    const response = await this._sendRequest('get_cookies_by_domain', payload, options);
+    const response = await this._sendRequest(browserWireAction('cookies.readDomain'), payload, options);
     const cookies = response.cookies || [];
     if (this.policy) {
       return this.policy.tagCookiesReturn(cookies, { source: 'getCookiesByDomain', domain });
@@ -523,7 +495,7 @@ class BrowserAutomation {
   }
 
   async getPageInfo(tabId, options = {}) {
-    const response = await this._sendRequest('get_page_info', { tabId: parseInt(tabId, 10) }, options);
+    const response = await this._sendRequest(browserWireAction('page.info'), { tabId: parseInt(tabId, 10) }, options);
     return response.data || {};
   }
 
@@ -539,7 +511,7 @@ class BrowserAutomation {
     if (options.targetSelector) {
       payload.targetSelector = options.targetSelector;
     }
-    const response = await this._sendRequest('upload_file_to_tab', payload, options);
+    const response = await this._sendRequest(browserWireAction('file.upload'), payload, options);
     return response.uploadedFiles || [];
   }
 
@@ -550,7 +522,7 @@ class BrowserAutomation {
     if (Number.isFinite(options.quality)) payload.quality = options.quality;
     if (options.fullPage !== undefined) payload.fullPage = !!options.fullPage;
 
-    const response = await this._sendRequest('capture_screenshot', payload, options);
+    const response = await this._sendRequest(browserWireAction('screenshot.capture'), payload, options);
     return {
       tabId: response.tabId,
       windowId: response.windowId ?? null,

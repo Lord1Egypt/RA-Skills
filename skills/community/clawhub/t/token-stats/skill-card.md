@@ -1,40 +1,53 @@
-## Description: <br>
-Token Stats scans OpenClaw session JSONL files and reports prompt, cache, and output token usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token Stats scans OpenClaw session JSONL files and reports prompt, cache-read, cache-write, output, and total token usage.
 
-## Publisher: <br>
-[ASauler](https://clawhub.ai/user/ASauler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asauler](https://clawhub.ai/user/asauler)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to measure token consumption across local session history, including daily totals, per-session rankings, cache usage, and date-filtered reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw session history, which may contain sensitive usage context. <br>
-Mitigation: Run it only in trusted local environments and avoid sharing generated reports unless the session-derived information is appropriate to disclose. <br>
-Risk: Using --include-deleted can include deleted or backup session files in reports. <br>
-Mitigation: Use --include-deleted only when intentionally reconstructing full history, and review the resulting report before distribution. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect local session-history token consumption, including daily totals, per-session rankings, cache usage, and output-token totals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ASauler/token-stats) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON token-usage reports with shell commands for running the local script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can include global totals, daily breakdowns, per-session rankings, date ranges, and optional deleted or backup session files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads local OpenClaw session-history files, which may contain sensitive usage context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when local session-history access is acceptable for token-usage reporting.
+
+Risk: Loose activation and path scoping may be unsuitable in shared or prompt-injection-prone environments.
+
+Mitigation: Invoke it only for explicit OpenClaw token-statistics requests and review or tighten --agent path handling before shared-environment use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asauler/skills/token-stats)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands]
+
+**Output Format:** [Plain text report or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include global summaries, date ranges, daily breakdowns, and top session rankings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

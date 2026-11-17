@@ -1,48 +1,62 @@
-## Description: <br>
-Monitors competitor pricing, tracks market price trends, configures price alerts, and prepares pricing strategy reports for B2B export businesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors competitor pricing, market price trends, price alerts, and B2B export pricing strategy reports.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External business users and pricing analysts use this skill to monitor competitor prices, analyze market price changes, configure alerts, and draft pricing strategy reports for B2B export products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires TRADEGPT_API_KEY and sends business pricing context to external YunlvAI APIs. <br>
-Mitigation: Install only if the user trusts YunlvAI with the API key and pricing context, and store the credential in the intended environment variable. <br>
-Risk: Competitor monitoring may involve data sources the user is not authorized to access. <br>
-Mitigation: Configure monitored products, competitors, alert recipients, frequency, retention, and data sources deliberately, and avoid unauthorized monitoring sources. <br>
-Risk: Pricing recommendations can be wrong or incomplete if source data is delayed, noisy, or only indicative. <br>
-Mitigation: Review generated recommendations against original data sources, costs, order terms, and business constraints before changing prices. <br>
+## Use Case:
 
+External business users and pricing analysts use this skill to compare competitor prices, monitor market movement, configure alerts, and prepare pricing strategy reports for B2B export sales.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/yunlv-price-monitor) <br>
-- [YunlvAI Homepage](https://yunlvai.com) <br>
-- [YunlvAI TradeGPT API](https://api.yunlvai.com) <br>
-- [Customs Price Data API](https://data.yunlvai.com) <br>
-- [Competitor List Template](references/competitor_list_template.md) <br>
-- [Price Analysis Report Template](references/price_analysis_report.md) <br>
-- [Pricing Strategy Guide](references/pricing_strategy_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration, guidance] <br>
-**Output Format:** [Markdown reports and guidance with structured JSON examples and monitoring configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference external pricing APIs, local monitoring data, generated reports, and alert configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact metadata lists 1.0.0) <br>
+Risk: The skill uses external YunlvAI-related APIs and may send product, competitor, market, and pricing context outside the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data sharing is acceptable, protect the TRADEGPT_API_KEY, and limit submitted context to what is needed for the analysis.
+
+Risk: Price alerts may disclose competitive or commercial information to unintended recipients.
+
+Mitigation: Configure email and WhatsApp alerts only for recipients the user controls and review recipient lists before enabling automated notifications.
+
+Risk: Generated pricing recommendations can be incomplete or misleading if source prices are delayed, estimated, or not actual transaction prices.
+
+Mitigation: Review recommendations against current source data, costs, order terms, and business constraints before changing prices.
+
+## Reference(s):
+
+- [Competitor Monitoring Template](references/competitor_list_template.md)
+- [Price Analysis Report Template](references/price_analysis_report.md)
+- [Pricing Strategy Guide](references/pricing_strategy_guide.md)
+- [YunlvAI Homepage](https://yunlvai.com)
+- [YunlvAI TradeGPT API](https://api.yunlvai.com)
+- [Customs Price Data API](https://data.yunlvai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured JSON-style report examples and configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include price-monitoring setup, alert recommendations, and pricing reports that should be reviewed before business action.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

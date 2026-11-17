@@ -1,40 +1,59 @@
-## Description: <br>
-Provides a structured AI programming workflow framework for TDD, code review, refactoring, documentation, debugging, and acceptance testing across local coding agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured AI programming workflows for local coding agents, including test-driven development, code review, refactoring, documentation, debugging, and acceptance testing.
 
-## Publisher: <br>
-[yantianlong-01](https://clawhub.ai/user/yantianlong-01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yantianlong-01](https://clawhub.ai/user/yantianlong-01)
 
-## Use Case: <br>
-Developers and engineers use this skill to apply Superpowers workflow concepts and install guidance in local AI coding tools. It supports TDD, code review, refactoring, documentation, debugging, and acceptance-testing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External clone or plugin-install examples may add persistent behavior to a local coding tool. <br>
-Mitigation: Verify the upstream Superpowers repository and review installed files before running clone or plugin-install commands. <br>
+## Use Case:
 
+Developers and coding-agent users use this skill to orient local AI coding tools around Superpowers workflows for TDD, code review, refactoring, documentation, debugging, and acceptance testing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yantianlong-01/yantianlong-superpowers) <br>
-- [Superpowers GitHub repository](https://github.com/obra/superpowers) <br>
-- [Superpowers OpenCode quick start](https://lzw.me/docs/opencodedocs/zh/obra/superpowers/start/quick-start/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no bundled executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installing a mutable third-party agent plugin without pinning or verification can expose users to unreviewed upstream changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream project before installing and prefer a pinned release or commit from a trusted source.
+
+Risk: Symlinking a mutable working directory can cause the installed skill behavior to change unexpectedly.
+
+Mitigation: Avoid symlinking mutable directories unless you control them and can review changes before use.
+
+Risk: The skill can guide agents toward commands or project-file changes in local development environments.
+
+Mitigation: Confirm the coding agent requires user approval before running commands or modifying project files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yantianlong-01/skills/yantianlong-superpowers)
+- [Superpowers GitHub repository](https://github.com/obra/superpowers)
+- [Superpowers quick start](https://lzw.me/docs/opencodedocs/zh/obra/superpowers/start/quick-start/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tables, links, and inline shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides local coding-agent workflows and installation steps; it does not execute installation steps by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

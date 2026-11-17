@@ -1,43 +1,54 @@
-## Description: <br>
-SnowVoice TTS helps agents use a local SnowVoice Studio and Qwen3-TTS setup to synthesize Chinese speech, clone authorized voices, design voices, and return generated audio paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Chinese text-to-speech skill based on Qwen3-TTS that helps agents convert text to speech, clone voices, design new voices, and generate dialogue voiceover audio through the SnowVoice CLI.
 
-## Publisher: <br>
-[webkubor](https://clawhub.ai/user/webkubor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[webkubor](https://clawhub.ai/user/webkubor)
 
-## Use Case: <br>
-Developers, creators, and agents use this skill to convert Chinese text into speech, list available voices, clone authorized voice personas, or design new voice styles through a local SnowVoice CLI workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup can run an installer from a mutable upstream GitHub repository. <br>
-Mitigation: Install only after reviewing the upstream installer, confirming the install path, and trusting the SnowVoice Studio project. <br>
-Risk: Voice cloning can be misused when the voice owner has not authorized use. <br>
-Mitigation: Use cloning only with permission from the voice owner and review generated audio before distribution. <br>
-Risk: The setup downloads large persistent model files locally. <br>
-Mitigation: Confirm disk space and model storage location before setup, and run the status check before generation. <br>
+## Use Case:
 
+Developers and agents use this skill to turn Chinese text prompts into local speech audio, choose or clone existing personas, design new voice styles, and retrieve the generated output file path.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/webkubor/snowvoice-tts) <br>
-- [SnowVoice Studio repository](https://github.com/webkubor/snowvoice-studio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [JSON status messages, shell commands, and generated audio file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local SnowVoice Studio installation, large model downloads, and macOS Apple Silicon according to the artifact documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Setup runs an unpinned remote installer from the SnowVoice upstream repository with broad user-level command authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; only run setup after trusting the upstream repository, inspect the cloned installer first, and prefer a pinned, verified release.
+
+Risk: Automatic setup could be triggered during a casual text-to-speech request.
+
+Mitigation: Require explicit user confirmation before running setup or model downloads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/webkubor/skills/snowvoice-tts)
+- [SnowVoice Studio project link declared by the skill](https://github.com/webkubor/snowvoice-studio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-style command results that include generated audio file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can trigger local setup, model downloads, voice listing, voice cloning, and voice design; generated audio is written under the SnowVoice output directory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

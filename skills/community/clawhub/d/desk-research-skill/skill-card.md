@@ -1,47 +1,61 @@
-## Description: <br>
-Structured desk research workflow for market, company, policy, product, and competitor questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured desk research workflow for market, company, policy, product, and competitor questions. Use when a user asks for secondary research, landscape scans, evidence-based summaries, source triangulation, or insight synthesis from public information.
 
-## Publisher: <br>
-[draco-kzn](https://clawhub.ai/user/draco-kzn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[draco-kzn](https://clawhub.ai/user/draco-kzn)
 
-## Use Case: <br>
-Analysts, interns, consultants, and strategy teams use this skill to scope secondary research, triangulate public sources, synthesize findings, and produce concise evidence-backed recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research output may contain outdated, weakly supported, or misleading claims if sources are not checked carefully. <br>
-Mitigation: Verify dates, source quality, and corroboration for major claims before using the output for decisions. <br>
-Risk: Some case-summary labels may appear in Chinese unless the user asks for a different language. <br>
-Mitigation: Specify the desired output language and review generated section labels before sharing. <br>
+## Use Case:
 
+External users, analysts, interns, and strategy teams use this skill to structure secondary research into sourced market, company, policy, product, or competitor analysis with reliability tags, evidence tables, confidence levels, and next verification steps.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/draco-kzn/desk-research-skill) <br>
-- [Methodology](references/methodology.md) <br>
-- [Deep Writing Patterns](references/deep-writing-patterns.md) <br>
-- [Output Template](references/output-template.md) <br>
-- [Quality Checklist](references/quality-checklist.md) <br>
-- [GOV.UK User Research Service Manual](https://www.gov.uk/service-manual/user-research) <br>
-- [Desk Research](https://en.wikipedia.org/wiki/Desk_research) <br>
-- [IBM Market Research Overview](https://www.ibm.com/think/topics/market-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research brief with evidence tables, confidence tags, risks, falsification checks, and next verification steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are structured for decision support and require source dates, reliability labels, and clear separation of facts, interpretations, and unknowns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Public-source desk research can include stale, weakly corroborated, or conflicting claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require source dates, reliability tags, at least two independent sources for key claims, and explicit uncertainty notes before using conclusions.
+
+Risk: Some supporting guidance is written in Chinese and may influence labels or wording in case summaries.
+
+Mitigation: Specify the desired output language and review section labels and summary phrasing before publication or client use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/draco-kzn/skills/desk-research-skill)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/draco-kzn)
+- [Desk Research Methodology Notes](references/methodology.md)
+- [Deep Desk Research Writing Patterns](references/deep-writing-patterns.md)
+- [Desk Research Output Template](references/output-template.md)
+- [Desk Research Quality Checklist](references/quality-checklist.md)
+- [GOV.UK Service Manual: User Research](https://www.gov.uk/service-manual/user-research)
+- [Wikipedia: Desk Research](https://en.wikipedia.org/wiki/Desk_research)
+- [IBM Think: Market Research](https://www.ibm.com/think/topics/market-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research brief with evidence table, confidence tags, risks, falsification criteria, and verification steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise 9-part structure for decision-oriented desk research]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

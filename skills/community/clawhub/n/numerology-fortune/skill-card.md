@@ -1,44 +1,56 @@
-## Description: <br>
-Analyzes numerology profiles using the Pythagorean system, calculating core numbers and personal cycles from a birth date and full legal name with calculation steps shown for verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a user's Pythagorean numerology profile from birth date and full legal name, including core numbers, personal cycles, calculation steps, and reflective interpretation.
 
-## Publisher: <br>
-[eamanc-lab](https://clawhub.ai/user/eamanc-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eamanc-lab](https://clawhub.ai/user/eamanc-lab)
 
-## Use Case: <br>
-External users use this skill to request Pythagorean numerology readings, including Life Path, Expression, Soul Urge, Personality, Birthday, and personal cycle numbers. The skill is intended for entertainment and personal reflection, not professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may save and silently reuse a user's full legal name, birth date, and derived numerology profile. <br>
-Mitigation: Ask for explicit consent before writing or reusing MEMORY.md; for one-time readings, instruct the agent not to write memory and delete any existing saved profile data. <br>
-Risk: Users could treat numerology interpretations as professional advice. <br>
-Mitigation: Present readings as entertainment and personal reflection only, and direct users to qualified professionals for medical, legal, financial, or other major decisions. <br>
+## Use Case:
 
+External users can request numerology readings, single-number explanations, or personal cycle guidance for entertainment and personal reflection. The skill calculates values from provided or previously saved profile data and returns human-readable interpretations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eamanc-lab/numerology-fortune) <br>
-- [Publisher profile](https://clawhub.ai/user/eamanc-lab) <br>
-- [Project homepage](https://github.com/eamanc-lab/fortune-telling-skills) <br>
-- [Numerology Calculation Rules](references/calculation-rules.md) <br>
-- [Number Meanings Reference](references/number-meanings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Markdown numerology report with calculation steps; optional local MEMORY.md profile cache] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires birth date for Life Path and cycle numbers; requires full legal name in English for name-based core numbers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill stores and silently reuses a user's full legal name and birth date in plaintext local memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, use only with explicit consent to save profile data, and provide a clear way to inspect, update, or delete stored profile information.
+
+Risk: Numerology output may be mistaken for factual prediction or professional advice.
+
+Mitigation: Keep readings framed as entertainment and personal exploration, and preserve the disclaimer that major life decisions should rely on rational judgment and professional consultation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eamanc-lab/skills/numerology-fortune)
+- [Project homepage](https://github.com/eamanc-lab/fortune-telling-skills)
+- [Numerology Calculation Rules](references/calculation-rules.md)
+- [Number Meanings Reference](references/number-meanings.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Markdown report with calculation steps, interpretations, and optional local MEMORY.md profile cache]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires birth date for core calculations and full legal name in English for name-based numbers.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and target metadata; artifact metadata states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

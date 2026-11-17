@@ -1,47 +1,66 @@
-## Description: <br>
-Data-driven pricing strategy engine for Amazon sellers that analyzes ASINs, pricing landscape, competitors, trends, and profit scenarios to produce RAISE, HOLD, or LOWER recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon Pricing Command Center is a ZooData-backed pricing strategy skill for Amazon sellers that auto-detects leaf categories from ASINs and produces RAISE, HOLD, or LOWER guidance with profit simulation.
 
-## Publisher: <br>
-[apiclaw](https://clawhub.ai/user/apiclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apiclaw](https://clawhub.ai/user/apiclaw)
 
-## Use Case: <br>
-Amazon sellers and operators use this skill to evaluate product pricing from ASIN inputs, compare category and competitor signals, and review profit-aware pricing recommendations. It supports single-product and batch pricing analysis using APIClaw data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Amazon ASINs, competitor context, pricing inputs, and business assumptions to APIClaw. <br>
-Mitigation: Use it only with data appropriate for APIClaw processing, avoid unrelated confidential inputs, and validate recommendations with additional business sources before acting. <br>
-Risk: The bundled CLI requires an APIClaw key and can consume paid or limited API credits. <br>
-Mitigation: Use a dedicated APIClaw key with limited credits, store it in the APICLAW_API_KEY environment variable, and monitor reported API usage. <br>
-Risk: Pricing recommendations are based on sampled API data and estimates such as lower-bound sales and estimated FBA fees. <br>
-Mitigation: Treat recommendations as decision support, verify fees and current marketplace conditions, and review every RAISE, HOLD, or LOWER signal before changing prices. <br>
+## Use Case:
 
+Amazon sellers and ecommerce operators use this skill to evaluate product pricing from one or more ASINs, compare competitors, simulate profit scenarios, and decide whether to raise, hold, or lower prices. Developers and agents use it to run a scoped ZooData CLI workflow that requires a ZOODATA_API_KEY.
 
-## Reference(s): <br>
-- [Amazon Pricing Command Center](https://clawhub.ai/apiclaw/amazon-pricing-command-center) <br>
-- [APIClaw API Key Setup](https://apiclaw.io/en/api-keys) <br>
-- [APIClaw](https://apiclaw.io) <br>
-- [APIClaw OpenAPI Base URL](https://api.apiclaw.io/openapi/v2) <br>
-- [APIClaw API Docs](https://api.apiclaw.io/api-docs) <br>
-- [Market Entry Analyzer API Field Reference](references/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown pricing analysis with tables, data provenance, API usage, and optional shell command execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output language matches the user's input language and includes confidence labels for conclusions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and release evidence) <br>
+Risk: The configured ZooData API key could be exposed if ZOODATA_BASE_URL is overridden unsafely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep ZOODATA_BASE_URL unset so the default HTTPS ZooData endpoint is used, or set it only to an endpoint you fully control and have reviewed.
+
+Risk: The skill sends ASINs, keywords, category paths, marketplace/date filters, and numeric filters to ZooData and consumes API credits.
+
+Mitigation: Install and run the skill only if you trust ZooData and the publisher with that data, and confirm estimated credit usage before broad or batch analyses.
+
+Risk: A floating install command can pull a different release than the reviewed artifact.
+
+Mitigation: Prefer a pinned or otherwise verified release whose hash and version match the reviewed evidence.
+
+Risk: Pricing recommendations can be incomplete or misleading if treated as the sole basis for business decisions.
+
+Mitigation: Use the report as decision support, review its confidence labels and provenance table, and validate material pricing changes with additional sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/apiclaw/skills/amazon-pricing-command-center)
+- [Skill metadata homepage](https://github.com/SerendipityOneInc/ZooData-Skills)
+- [ZooData](https://zoodata.ai)
+- [ZooData API documentation](https://api.zoodata.ai/api-docs)
+- [ZooData CLI Contract](references/cli-contract.md)
+- [ZooData API Field Reference](references/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown pricing report with endpoint provenance, API usage tables, and inline shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports match the user's language and include confidence labels, data provenance, API credit usage, and a decision-support disclaimer.]
+
+## Skill Version(s):
+
+1.1.8 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

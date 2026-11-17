@@ -1,43 +1,58 @@
-## Description: <br>
-A mathematical assistant that uses LaTeX input to run scientific calculations, solve equations and inequalities, and return detailed calculation steps through Xiaoyuan AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A mathematical assistant that supports scientific calculations, equation solving, inequality solving, and step-by-step calculation explanations using LaTeX input.
 
-## Publisher: <br>
-[liutengky](https://clawhub.ai/user/liutengky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liutengky](https://clawhub.ai/user/liutengky)
 
-## Use Case: <br>
-External users and developers can use this skill to ask an agent for LaTeX-formatted arithmetic, scientific calculations, equation solving, inequality solving, and step-by-step math explanations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends each user-entered math expression to Xiaoyuan/Yuanfudao's remote calculation service. <br>
-Mitigation: Avoid entering confidential financial figures, proprietary formulas, private homework or work data, personal information, or other sensitive expressions. <br>
-Risk: The helper script depends on the Python requests package being available in the runtime. <br>
-Mitigation: Confirm the agent environment has requests installed before relying on the skill in a workflow. <br>
-Risk: Calculation accuracy and availability depend on the remote service response. <br>
-Mitigation: Review important answers before using them for high-stakes or irreversible decisions. <br>
+## Use Case:
 
+Developers, students, and other external users can use this skill to run LaTeX-formatted mathematical calculations, solve equations and inequalities, and receive step-by-step explanations through an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/liutengky/xiaoyuan-calc) <br>
-- [Xiaoyuan/Yuanfudao calculation API endpoint](https://xyst.yuanfudao.com/solar-calcbot/api/auto-solve?_productId=631) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown usage guidance with bash examples; calc.py prints JSON results returned by the calculation service.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LaTeX-formatted math input and may include a language parameter such as en or zh.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Calculation inputs are sent to an external service and may include confidential formulas, private coursework, business data, or research values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive data and confirm that remote processing is acceptable before installing or using the skill.
+
+Risk: Raw calculation input is logged, which may expose sensitive formulas in console output or retained execution logs.
+
+Mitigation: Use non-sensitive inputs or remove raw input logging before deployment in environments that retain or share logs.
+
+Risk: The skill depends on a remote calculator service, so requests may fail, stall, or return unavailable results.
+
+Mitigation: Avoid using the skill in workflows that cannot tolerate remote-service latency or failure, and review results before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liutengky/skills/xiaoyuan-calc)
+- [Xiaoyuan calculator API endpoint](https://xyst.yuanfudao.com/solar-calcbot/api/auto-solve?_productId=631)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [JSON calculation results with text usage guidance and error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LaTeX-formatted input and accepts an optional language argument.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

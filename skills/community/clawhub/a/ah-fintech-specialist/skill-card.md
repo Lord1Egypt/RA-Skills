@@ -1,43 +1,54 @@
-## Description: <br>
-Provides fintech reference guidance for payment systems, regulatory compliance, security and fraud prevention, financial technologies, and financial data analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fintech Specialist helps agents provide conceptual guidance for payment systems, regulatory compliance, security and fraud prevention, financial technologies, and financial data analytics.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and financial technology teams use this skill for guidance on payment integrations, compliance considerations, security controls, fraud prevention, blockchain and DeFi patterns, and financial analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment and DeFi examples may be unsuitable for production use without domain review. <br>
-Mitigation: Have payment, security, smart-contract, and compliance specialists review adapted implementations before handling real funds, card data, credentials, or customer records. <br>
-Risk: Fintech guidance may omit jurisdiction-specific legal or regulatory obligations. <br>
-Mitigation: Validate payment, KYC, AML, privacy, and reporting requirements with legal and compliance teams for the deployment region. <br>
-Risk: Example code references sensitive credentials, wallet operations, purchases, and OAuth-style integrations. <br>
-Mitigation: Use managed secrets, least-privilege access, test environments, audits, and security scans before connecting adapted code to live services. <br>
+## Use Case:
 
+Developers, product teams, and fintech reviewers use this skill for high-level fintech architecture, payment workflows, compliance considerations, fraud prevention, and illustrative payment or DeFi code examples. Outputs should be treated as conceptual guidance and reviewed before use with regulated data or real funds.
 
-## Reference(s): <br>
-- [Fintech Specialist Code Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/ah-fintech-specialist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with example code and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include educational payment, compliance, security, and DeFi examples that require specialist review before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Financial code examples may be mistaken for production-ready payment or DeFi implementations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for conceptual fintech discussion only, and require authentication, authorization, tenant boundaries, redacted logging, test-only payment credentials during development, SafeERC20-style token handling, complete collateral and health-factor logic, and independent security review before handling real funds or regulated data.
+
+Risk: Generated compliance or security guidance may not satisfy the requirements of a specific jurisdiction, regulator, payment provider, or deployment environment.
+
+Mitigation: Have qualified legal, compliance, and security reviewers validate generated guidance against the applicable regulations, standards, providers, and operational controls before implementation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-fintech-specialist)
+- [Fintech Specialist Code Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with prose and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include illustrative TypeScript, Node.js, Solidity, API integration, compliance, and architecture guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

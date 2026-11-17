@@ -1,40 +1,54 @@
-## Description: <br>
-Collects and ranks recent AI news across product launches, research, funding, policy, open source, and community trends, then returns Chinese summaries with source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects AI news from broad public web sources, ranks items by heat, and returns Chinese summaries with original links.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-Developers, analysts, and external users can use this skill to collect current AI industry news and produce a ranked Chinese digest with source links. It is suited for broad monitoring across product launches, research papers, funding, policy, open source projects, and community-driven trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may perform multiple public web searches and page fetches while preparing a news digest. <br>
-Mitigation: Use public or otherwise authorized sources, respect paywalls and site terms, and keep search volume appropriate for the environment. <br>
-Risk: News summaries can become incomplete or misleading if based on too few sources or unverified community signals. <br>
-Mitigation: Cross-check notable items across multiple sources and preserve original links so readers can inspect the underlying reports. <br>
+## Use Case:
 
+External users and agents use this skill to gather current AI product, research, business, policy, open-source, and community news, then receive a ranked Chinese Markdown digest with source links.
 
-## Reference(s): <br>
-- [AI news source recommendations](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown news digest in Chinese with ranked items, short summaries, source links, and collection metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 15-25 ranked news items and depends on public web search and page fetching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may browse many external news, newsletter, forum, and social sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated links and source domains before acting on or redistributing the digest.
+
+Risk: The skill is designed to output Chinese summaries.
+
+Mitigation: Adapt the output language requirements before deployment if the intended audience needs another language.
+
+## Reference(s):
+
+- [Recommended AI News Sources](references/sources.md)
+- [ClawHub Skill Page](https://clawhub.ai/quincygunter/skills/quincy-ai-news-collector)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown news digest with ranked items, short summaries, source links, and collection metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill targets 15-25 deduplicated news items and records search count, covered dimensions, and update time.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,6 +2,15 @@
 
 from __future__ import annotations
 
+if __name__ == "__main__" and __package__ is None:
+    import os
+    import sys
+
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from recamera_intellisense._cli import main
+
+    raise SystemExit(main())
+
 import base64
 import time
 from typing import Any, Dict, Optional
@@ -16,7 +25,7 @@ PATH_START = "/cgi-bin/entry.cgi/record/capture/start"
 PATH_STOP = "/cgi-bin/entry.cgi/record/capture/stop"
 
 FORMAT_IMAGE = "JPG"
-OUTPUT_FALLBACK = "/mnt/rc_mmcblk0p8/reCamera"
+OUTPUT_FALLBACK = "/mnt/rc_mmcblk0p8/DCIM/100RECAM"
 _POLL_INTERVAL_S = 0.5
 _DEFAULT_TIMEOUT_S = 5.0
 _TERMINAL = {"COMPLETED", "FAILED", "INTERRUPTED", "CANCELED"}
@@ -34,7 +43,7 @@ def _parse_event(d: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-def get_capture_status(device_name: str) -> Dict[str, Any]:
+def get_capture_status(device_name: Optional[str] = None) -> Dict[str, Any]:
     """Current capture state (includes the last event, if any)."""
     dev = _config.resolve(device_name)
     d = _http.get_json(dev, PATH_STATUS) or {}
@@ -47,9 +56,9 @@ def get_capture_status(device_name: str) -> Dict[str, Any]:
 
 
 def _validate_output_dir(output: Optional[str]) -> Optional[str]:
-    """Validate that ``output`` is an absolute on-device directory path.
+    """Validate that `output` is an absolute on-device directory path.
 
-    ``sOutput`` is the directory on the *camera's* filesystem where the
+    `sOutput` is the directory on the *camera's* filesystem where the
     capture is written (the device supplies the file name); it is **not** a
     local destination. Callers who want the bytes locally should use
     :func:`capture_image` or fetch the resulting file afterwards.
@@ -63,14 +72,14 @@ def _validate_output_dir(output: Optional[str]) -> Optional[str]:
     if not output.startswith("/"):
         raise ValueError(
             f"'output' must be an absolute on-device directory path; got {output!r}. "
-            "Use get_storage_status to find a mount path (e.g. '/mnt/rc_mmcblk0p8/reCamera'), "
+            "Use get_storage_status to find a mount path (e.g. '/mnt/rc_mmcblk0p8/DCIM/100RECAM'), "
             "or omit 'output' to use the selected storage slot."
         )
     return output
 
 
 def start_capture(
-    device_name: str,
+    device_name: Optional[str] = None,
     *,
     output: Optional[str] = None,
     format: str = FORMAT_IMAGE,
@@ -78,10 +87,10 @@ def start_capture(
 ) -> Dict[str, Any]:
     """Start a capture; returns the initial capture event.
 
-    ``output`` is an **on-device directory** (not a local path). Omit it to
+    `output` is an **on-device directory** (not a local path). Omit it to
     auto-resolve from the currently selected storage slot. The device picks
     the file name; retrieve the resulting file with :func:`files.fetch_file`
-    using the event's ``output_directory`` + ``file_name``.
+    using the event's `output_directory` + `file_name`.
     """
     output = _validate_output_dir(output)
     dev = _config.resolve(device_name)
@@ -113,7 +122,7 @@ def start_capture(
     return _parse_event(capture)
 
 
-def stop_capture(device_name: str) -> None:
+def stop_capture(device_name: Optional[str] = None) -> None:
     """Stop the running capture (no-op for JPG)."""
     dev = _config.resolve(device_name)
     resp = _http.post_json(dev, PATH_STOP)
@@ -121,13 +130,13 @@ def stop_capture(device_name: str) -> None:
 
 
 def capture_image(
-    device_name: str,
+    device_name: Optional[str] = None,
     *,
     output: Optional[str] = None,
     timeout: float = _DEFAULT_TIMEOUT_S,
 ) -> Dict[str, Any]:
-    """Start a JPG capture, poll to completion (terminal states ``COMPLETED/FAILED/INTERRUPTED/CANCELED``),
-    fetch the file via the daemon, and return ``{event, path, size, content_base64}``.
+    """Start a JPG capture, poll until terminal (`COMPLETED`/`FAILED`/`INTERRUPTED`/`CANCELED`),
+    fetch the file via the daemon, and return `{event, path, size, content_base64}`.
     """
     # Resolve output dir via current storage status if not supplied.
     if output is None:
@@ -140,7 +149,7 @@ def capture_image(
                 base = slot["mount_path"].rstrip("/")
                 data_dir = slot.get("data_dir", "").strip("/")
                 output = f"{base}/{data_dir}" if data_dir else base
-        except Exception:
+        except RecameraError:
             output = None
     output = output or OUTPUT_FALLBACK
 
@@ -160,6 +169,7 @@ def capture_image(
     from .files import fetch_file
 
     blob = fetch_file(device_name, path=remote, raw=True)
+    assert isinstance(blob, bytes)  # raw=True contract
     return {
         "event": final,
         "path": remote,
@@ -173,13 +183,4 @@ COMMANDS = {
     "start_capture": start_capture,
     "stop_capture": stop_capture,
     "capture_image": capture_image,
-}
-COMMAND_SCHEMAS = {
-    "get_capture_status": {"required": {"device_name"}, "optional": set()},
-    "start_capture": {
-        "required": {"device_name"},
-        "optional": {"output", "format", "video_length_seconds"},
-    },
-    "stop_capture": {"required": {"device_name"}, "optional": set()},
-    "capture_image": {"required": {"device_name"}, "optional": {"output", "timeout"}},
 }

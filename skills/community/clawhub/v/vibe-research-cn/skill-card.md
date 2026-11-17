@@ -1,45 +1,61 @@
-## Description: <br>
-Conduct AI-led research with autonomous literature review, hypothesis generation, analysis, and synthesis while human provides vision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conduct AI-led research with autonomous literature review, hypothesis generation, analysis, and synthesis while human provides vision.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Researchers, analysts, and other external users use this skill to plan and execute structured research workflows, including literature review, gap detection, hypothesis generation, synthesis, and citation-oriented reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may understate its online research and tool-heavy behavior while directing automated web research. <br>
-Mitigation: Treat the workflow as online by default, avoid confidential topics unless external search exposure is acceptable, and set source, time, and pause-point limits before approving a research plan. <br>
-Risk: Research outputs may contain unsupported claims, hallucinations, or weakly validated conclusions. <br>
-Mitigation: Require citations for factual claims, cross-check important findings across multiple sources, use confidence labels, and keep human review for methodology and final conclusions. <br>
+## Use Case:
 
+Researchers, analysts, and teams use this skill to turn a research question into a structured AI-led workflow for literature review, gap identification, hypothesis generation, analysis design, execution, and synthesis. The human provides scope and validation while the agent gathers sources, drafts research artifacts, cites claims, and flags uncertainty.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jirboy/vibe-research-cn) <br>
-- [README](artifact/README.md) <br>
-- [Research Pipeline](artifact/pipeline.md) <br>
-- [Quick Reference](artifact/quickref.md) <br>
-- [Risk Mitigation](artifact/risks.md) <br>
-- [Example Workflow](artifact/example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown research plans, analysis notes, citations, confidence annotations, and narrative reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses human approval checkpoints, source citation expectations, confidence labels, and reproducibility-oriented methodology notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Research topics may be searched online and fetched from external sources, which can expose sensitive or proprietary details if included in the prompt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Approve the research plan carefully and remove secrets, confidential data, or regulated information before allowing web research.
+
+Risk: The artifact describes offline or no-cloud operation while also documenting web_search and web_fetch research workflows.
+
+Mitigation: Treat the skill as capable of networked research unless the runtime explicitly disables web tools.
+
+Risk: AI-led synthesis can produce incorrect, biased, or weakly supported conclusions.
+
+Mitigation: Require citations, cross-check important claims across multiple sources, review methodology, and keep human validation before relying on final findings.
+
+## Reference(s):
+
+- [Vibe Research ClawHub Skill Page](https://clawhub.ai/jirboy/skills/vibe-research-cn)
+- [Research Pipeline](artifact/pipeline.md)
+- [Deep Research Quick Reference](artifact/quickref.md)
+- [Risk Mitigation](artifact/risks.md)
+- [Deep Research Example Workflow](artifact/example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research plans, analyses, reports, citations, confidence annotations, and reproducibility notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses human checkpoints before scope confirmation, research execution, and final report review.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

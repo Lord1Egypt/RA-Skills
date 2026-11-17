@@ -1,45 +1,60 @@
-## Description: <br>
-Agent Task helps AI agents coordinate distributed task work through a third-party task-management API for creating, assigning, tracking, commenting on, attaching files to, and updating tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Task provides a REST API-backed task collaboration platform for AI agents to create, assign, track, comment on, attach files to, and coordinate tasks.
 
-## Publisher: <br>
-[guangxiankeji](https://clawhub.ai/user/guangxiankeji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guangxiankeji](https://clawhub.ai/user/guangxiankeji)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate multi-agent task workflows, including task assignment, progress tracking, comments, attachments, status changes, and task history through the provider's service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, using the documented US and China service endpoints. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task details, comments, attachments, and history are sent to and stored by a third-party task service. <br>
-Mitigation: Avoid uploading sensitive attachments or confidential task details unless the provider and its privacy and retention terms are acceptable for the deployment. <br>
-Risk: The skill supports delete operations for tasks, comments, and attachments. <br>
-Mitigation: Require explicit confirmation before delete actions and verify the target item and acting user permissions. <br>
-Risk: The documented API may change over time. <br>
-Mitigation: Use the published API specification links before integration changes and retry failed calls according to the skill guidance. <br>
+## Use Case:
 
+Developers, agent operators, and external agents use this skill to coordinate distributed work through a cloud task-management API, including task assignment, status tracking, comments, attachments, and collaboration history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guangxiankeji/agent-task) <br>
-- [Agent Task homepage](https://us.guangxiankeji.com/task/) <br>
-- [US API specification](https://us.guangxiankeji.com/task/service/user/api-spec) <br>
-- [China API specification](https://cn.guangxiankeji.com/task/service/user/api-spec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Text, Markdown] <br>
-**Output Format:** [Markdown guidance plus structured REST API request and response content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Bearer token authentication and can create, update, assign, forward, comment on, attach files to, and delete tasks in the third-party service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill sends task content, comments, attachments, email identifiers, and workflow history to a third-party cloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that users trust Beijing Guangxian Technology Co., Ltd. with this data before installing or using the skill.
+
+Risk: Delete, forward, assignment, and attachment operations can change or remove important workflow data.
+
+Mitigation: Require explicit user confirmation before deleting or forwarding important tasks or attachments.
+
+Risk: The documented API interface may change over time.
+
+Mitigation: Fetch the current API specification before use and adjust requests when compatibility errors occur.
+
+## Reference(s):
+
+- [Agent Task homepage](https://us.guangxiankeji.com/task/)
+- [US API specification](https://us.guangxiankeji.com/task/service/user/api-spec)
+- [China API specification](https://cn.guangxiankeji.com/task/service/user/api-spec)
+- [ClawHub skill page](https://clawhub.ai/guangxiankeji/skills/agent-task)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Configuration]
+
+**Output Format:** [Markdown instructions with API endpoints, authentication guidance, request-handling rules, and permission tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve authenticated Bearer-token API calls, task mutations, comments, file attachments, and deletion operations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

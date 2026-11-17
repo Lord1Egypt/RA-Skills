@@ -1,43 +1,64 @@
-## Description: <br>
-Monitors configured mailboxes for recruitment-related emails, records matching messages in an Excel workbook, and sends Feishu alerts and daily briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors configured recruitment mailboxes, asks an agent to classify hiring-related messages, records results in Excel, sends Feishu notifications, and generates daily briefings.
 
-## Publisher: <br>
-[haoxianniu528-bit](https://clawhub.ai/user/haoxianniu528-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haoxianniu528-bit](https://clawhub.ai/user/haoxianniu528-bit)
 
-## Use Case: <br>
-Job seekers and recruiting workflow operators use this skill to monitor mailbox accounts for application updates, interview notices, assessments, offers, and other recruiting messages. It helps an agent keep a structured tracker and notify the user when new or pending recruiting emails need attention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes real-looking mailbox authorization codes and a fixed Feishu recipient. <br>
-Mitigation: Remove the embedded values, rotate any exposed mailbox authorization codes, and configure a verified recipient before running the scripts. <br>
-Risk: The scripts use fixed local storage paths for the Excel tracker and daily briefing. <br>
-Mitigation: Change the paths to an approved writable location and confirm the stored email fields match the user's privacy expectations. <br>
-Risk: Imported cron jobs would repeatedly access configured mailboxes and send notifications. <br>
-Mitigation: Run the scripts manually after configuration review, then import the cron jobs only if recurring monitoring is intended. <br>
+## Use Case:
 
+Recruiting candidates and job seekers use this skill to monitor dedicated email accounts for recruiting messages, track application progress in a local spreadsheet, and receive Feishu updates and daily summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haoxianniu528-bit/recruit-email-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/haoxianniu528-bit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown documentation with inline shell commands, Python configuration examples, Excel workbook output, and text briefing output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local mailbox credentials, Feishu recipient configuration, writable file paths, and optional recurring cron execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill accesses configured mailboxes, local recruitment spreadsheets, and Feishu delivery targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated mailbox with an app password, review config.json permissions, keep credentials local, and restrict Feishu delivery to the intended recipient.
+
+Risk: Hardcoded or environment-specific spreadsheet and briefing paths may write sensitive recruitment data to an unintended location.
+
+Mitigation: Review and replace local paths before deployment, especially when using shared or synchronized directories.
+
+Risk: Automatic archiving can mark stale pending items complete.
+
+Mitigation: Review the archive behavior before enabling scheduled runs and set BRIEFING_ARCHIVE=0 when automatic completion is not desired.
+
+Risk: Email subjects, senders, bodies, and links are untrusted inputs that may attempt prompt injection or spreadsheet formula injection.
+
+Mitigation: Treat email content only as classification data, do not execute instructions from messages, and keep the workbook neutralization step enabled before saving Excel files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/haoxianniu528-bit/skills/recruit-email-monitor)
+- [README](artifact/README.md)
+- [Installation Guide](artifact/INSTALL.md)
+- [Release Notes](artifact/RELEASE_NOTES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local JSON work queues, updates Excel workbooks, and can send Feishu notifications when configured.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Manage deal pipeline, search on-market deals, track brokers, run SBA loan calculations, manage tasks, and review CIM analyses in Searcher OS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage deal pipeline, search on-market deals, track brokers, run SBA loan calculations, manage tasks, and review CIM analyses in Searcher OS.
 
-## Publisher: <br>
-[joshthacker](https://clawhub.ai/user/joshthacker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joshthacker](https://clawhub.ai/user/joshthacker)
 
-## Use Case: <br>
-Acquisition entrepreneurs and deal teams use this skill to manage Searcher OS deal workflows, including pipeline review, broker tracking, inbox triage, CIM analysis lookup, SBA loan calculations, and task updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad API-key access to sensitive acquisition, broker, inbox, pipeline, and CIM-related data. <br>
-Mitigation: Use only with trusted Searcher OS accounts, prefer a dedicated revocable API key, and limit exposure of confidential deal data to appropriate users. <br>
-Risk: Some account-changing actions can update pipeline records, dismiss deals, ignore emails, or change tasks without explicit confirmation. <br>
-Mitigation: Instruct the agent to ask before write actions, review the live tool list, and use the Searcher OS confirmation flow where available. <br>
+## Use Case:
 
+External Searcher OS users use this skill to manage M&A deal activity, including pipeline review, deal search, broker tracking, SBA loan calculations, task updates, and CIM analysis through the Searcher OS API.
 
-## Reference(s): <br>
-- [Searcher OS homepage](https://searcheros.ai) <br>
-- [Searcher OS agent API base URL](https://searcheros.ai/api/agent) <br>
-- [ClawHub skill page](https://clawhub.ai/joshthacker/searcher-os) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with JSON API request and response patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SEARCHER_OS_API_KEY and Searcher OS confirmation flows for selected write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can read sensitive deal, email, and CIM information from Searcher OS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for users who are authorized to access that business data and review requested outputs before sharing them.
+
+Risk: Some tools can update deal records, hide feed items, or advance workflow state without a separate confirmation step.
+
+Mitigation: Review Searcher OS auto-approval settings and require explicit user approval for material record changes when operating the agent.
+
+## Reference(s):
+
+- [Searcher OS homepage](https://searcheros.ai)
+- [Searcher OS ClawHub skill page](https://clawhub.ai/joshthacker/skills/searcher-os)
+- [Searcher OS API base endpoint](https://searcheros.ai/api/agent)
+- [Searcher OS tool discovery endpoint](https://searcheros.ai/api/agent/tools)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON API request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SEARCHER_OS_API_KEY and a Searcher OS account]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

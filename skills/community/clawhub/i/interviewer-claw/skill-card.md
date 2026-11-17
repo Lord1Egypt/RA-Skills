@@ -1,43 +1,55 @@
-## Description: <br>
-Conducts rigorous, structured interviews to stress-test a plan, design, or idea by walking every branch of the decision tree until reaching shared understanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts structured Socratic interviews to stress-test plans, designs, or ideas until ambiguities, decisions, risks, and open branches are captured.
 
-## Publisher: <br>
-[chris-graffagnino](https://clawhub.ai/user/chris-graffagnino) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris-graffagnino](https://clawhub.ai/user/chris-graffagnino)
 
-## Use Case: <br>
-Developers, product teams, and planners use this skill to stress-test plans, designs, or ideas through a structured interview that resolves ambiguities, documents decisions, and surfaces risks before execution. For software projects, it can turn interview decisions into spec-kit-compatible planning artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect plans, specifications, and related project documents during interview or review workflows. <br>
-Mitigation: Install and use it only in workspaces where that project context is appropriate for the assistant to inspect. <br>
-Risk: The spec-kit flow can create persistent project documentation that may guide later implementation. <br>
-Mitigation: Review proposed file paths and generated content before relying on the artifacts for implementation. <br>
+## Use Case:
 
+Developers, planners, and external users use this skill to pressure-test software or non-software plans through a phased interview, then synthesize decisions, open items, and risks. For software projects, it can produce spec-kit-compatible markdown artifacts after user confirmation.
 
-## Reference(s): <br>
-- [Questioning Techniques Reference](references/techniques.md) <br>
-- [Spec-Kit Output Reference](references/speckit.md) <br>
-- [GitHub spec-kit](https://github.com/github/spec-kit) <br>
-- [ClawHub skill page](https://clawhub.ai/chris-graffagnino/interviewer-claw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown conversation output and optional spec-kit-compatible Markdown project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read user-provided project documents during review flows and may create persistent specification files during the spec-kit flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can ask the agent to inspect plans, documents, or project artifacts as part of an extended interview.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with documents intended for review and avoid providing sensitive material that should not be analyzed in the session.
+
+Risk: For software projects, the skill can prepare spec-kit files that may affect project direction if accepted without review.
+
+Mitigation: Review generated artifacts and confirm proposed file writes before allowing the agent to create or update project files.
+
+## Reference(s):
+
+- [Questioning Techniques Reference](artifact/references/techniques.md)
+- [Spec-Kit Output Reference](artifact/references/speckit.md)
+- [GitHub Spec Kit](https://github.com/github/spec-kit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown questions, structured summaries, and optional spec-kit artifact files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Asks one question at a time and requires confirmation before writing generated spec-kit files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

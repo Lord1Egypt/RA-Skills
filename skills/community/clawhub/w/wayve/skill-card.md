@@ -1,49 +1,69 @@
-## Description: <br>
-Wavye helps solopreneurs use AI agents for weekly planning, time audits, durable memory, automation routines, and life-pillar balance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wayve helps solopreneurs use AI agents for weekly planning, time audits, automation discovery, persistent coaching memory, daily briefs, and life-pillar balance.
 
-## Publisher: <br>
-[Skoppert](https://clawhub.ai/user/Skoppert) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skoppert](https://clawhub.ai/user/skoppert)
 
-## Use Case: <br>
-External solopreneurs use this skill to connect an AI agent with Wayve planning, knowledge, audit, coaching, and automation workflows. It supports recurring rituals such as daily briefs, weekly planning, wrap-ups, time audits, life scans, and business strategy reviews through the Wayve CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives the agent broad persistent access to sensitive personal, business, scheduling, and audit data in the user's Wayve account. <br>
-Mitigation: Install only when the user is comfortable with that storage model, and review or delete saved knowledge regularly. <br>
-Risk: The skill depends on secrets such as WAYVE_API_KEY, Telegram bot tokens, and Slack or Discord webhooks. <br>
-Mitigation: Treat all tokens and webhook URLs as secrets, prefer dedicated limited channels, and rotate credentials if exposed. <br>
-Risk: Automation creation and planning-data changes can affect reminders, routines, or stored planning records. <br>
-Mitigation: Require explicit user confirmation before creating automations or deleting planning data. <br>
+## Use Case:
 
+External users and developers use this skill to connect an AI agent to the Wayve CLI for solopreneur planning, coaching, time-audit analysis, activity management, knowledge storage, and automation setup.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Skoppert/wayve) <br>
-- [Wayve homepage](https://www.gowayve.com) <br>
-- [Wayve CLI setup documentation](https://www.gowayve.com/docs/cli-setup) <br>
-- [Wayve CLI setup guide](references/setup-guide.md) <br>
-- [Wayve CLI command reference](references/tool-reference.md) <br>
-- [Automations guide](references/automations.md) <br>
-- [Knowledge and learning system](references/knowledge-learning.md) <br>
-- [Time audit workflow](references/time-audit.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with Wayve CLI commands and JSON-oriented command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the wayve CLI and WAYVE_API_KEY for flows that read or persist Wayve account data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server evidence release.version) <br>
+Risk: The skill uses the Wayve CLI to read, store, and change sensitive planning, schedule, health, family, coaching, and business context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the integration and use explicit confirmation before saving sensitive memories or changing planning data.
+
+Risk: The skill depends on a floating npm package reference for the Wayve CLI.
+
+Mitigation: Consider pinning the CLI to a reviewed version before use in a controlled or commercial environment.
+
+Risk: Automation setup can involve notification channels and delivery credentials such as bot tokens or webhooks.
+
+Mitigation: Avoid pasting secrets into command lines where possible, confirm channel configuration with the user, and rotate exposed tokens.
+
+## Reference(s):
+
+- [Wayve homepage](https://www.gowayve.com)
+- [Wayve CLI setup](https://www.gowayve.com/docs/cli-setup)
+- [Setup Guide](references/setup-guide.md)
+- [Wayve CLI Command Reference](references/tool-reference.md)
+- [Automations](references/automations.md)
+- [Knowledge and Learning System](references/knowledge-learning.md)
+- [Coaching Playbook](references/coaching-playbook.md)
+- [Time Audit](references/time-audit.md)
+- [Daily Brief](references/daily-brief.md)
+- [Fresh Start](references/fresh-start.md)
+- [Wrap Up](references/wrap-up.md)
+- [Life Scan](references/life-audit.md)
+- [Solopreneur Strategic Framework](references/solopreneur-framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown conversation with Wayve CLI shell commands and JSON-backed results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the wayve CLI, WAYVE_API_KEY, and user confirmation before creating automations or saving sensitive memories.]
+
+## Skill Version(s):
+
+1.0.13 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

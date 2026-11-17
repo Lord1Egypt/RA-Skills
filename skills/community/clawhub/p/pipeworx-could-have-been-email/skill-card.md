@@ -1,41 +1,55 @@
-## Description: <br>
-Analyzes meeting transcripts to determine whether the discussion could have been an email, returning filler word counts and decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes meeting transcripts to determine whether the discussion could have been handled as an email and returns filler-word counts and decisions.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users and developers use this skill to send meeting transcripts to a remote Pipeworx/StupidAPIs MCP service and receive a concise assessment of whether the meeting could have been handled by email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting transcripts may contain confidential or sensitive information sent to the remote Pipeworx/StupidAPIs service. <br>
-Mitigation: Use the skill only when the remote service is trusted, and redact confidential meeting details before submitting transcripts. <br>
-Risk: The skill requires sensitive credentials for API access. <br>
-Mitigation: Use a dedicated API key where possible and avoid exposing secrets in transcripts or agent context. <br>
+## Use Case:
 
+Employees and teams use this skill to evaluate meeting transcript text and decide whether a meeting could have been replaced by an email. It also reports filler-word counts to help summarize meeting quality signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-could-have-been-email) <br>
-- [Publisher profile](https://clawhub.ai/user/brucegutman) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns filler word count and decision-oriented analysis; requires an X-API-Key for the remote service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Meeting transcripts may contain confidential, regulated, customer, credential, or highly sensitive business content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review provider privacy and retention practices before use, and avoid submitting sensitive transcript text without organizational approval.
+
+Risk: The skill sends user-provided meeting transcript text to an external MCP service.
+
+Mitigation: Use only with transcripts that are appropriate to share with the disclosed external service.
+
+## Reference(s):
+
+- [Pipeworx could-have-been-email skill page](https://clawhub.ai/brucegutman/skills/pipeworx-could-have-been-email)
+- [brucegutman publisher profile](https://clawhub.ai/user/brucegutman)
+- [Pipeworx could-have-been-email MCP endpoint](https://gateway.pipeworx.io/could-have-been-email/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or text guidance with JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns transcript analysis decisions and filler-word counts from an external MCP service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Digital Singer turns a NuwaAI digital avatar into a karaoke-style singing performer with lip-synced vocals, synchronized accompaniment, duet flow, scoring, and blind box rewards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Digital Singer helps users run a NuwaAI avatar karaoke experience that lip-syncs avatar singing to vocal audio, plays accompaniment, supports duet battles, and returns playful scores and rewards.
 
-## Publisher: <br>
-[jianglingling007](https://clawhub.ai/user/jianglingling007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jianglingling007](https://clawhub.ai/user/jianglingling007)
 
-## Use Case: <br>
-External users and developers use this skill to run a local avatar karaoke battle experience where a NuwaAI avatar sings one half of a song and the user sings the other half. It supports browser-based setup, microphone input, song playback, and lighthearted scoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles microphone audio, chat text, and avatar credentials, and the security summary says these may be sent to NuwaAI and DashScope/Qwen. <br>
-Mitigation: Use only on a trusted local machine, review data handling before use, and avoid sharing sensitive audio or chat content. <br>
-Risk: The security guidance identifies API key handling as an area needing review before installation. <br>
-Mitigation: Replace any bundled provider keys, rotate exposed keys, and use low-value or dedicated API credentials until credential storage is reviewed. <br>
-Risk: The security verdict is suspicious, with guidance to review before installing. <br>
-Mitigation: Scan and inspect the release before deployment, and confirm local API protections and credential storage before using valuable accounts. <br>
+## Use Case:
 
+External users and developers use this skill to set up and run a browser-based NuwaAI digital avatar singer for karaoke-style duet battles with prepared song audio, microphone input, and an OpenAI-compatible LLM host.
 
-## Reference(s): <br>
-- [Digital Singer ClawHub page](https://clawhub.ai/jianglingling007/digital-singer) <br>
-- [Publisher profile](https://clawhub.ai/user/jianglingling007) <br>
-- [NuwaAI](https://nuwaai.com) <br>
-- [DashScope OpenAI-compatible chat completions endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup instructions and runtime guidance for a local browser karaoke experience.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: Credentials and local control endpoints may be exposed by the local server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the server before installing, rotate or remove bundled API keys, protect or remove token and configuration endpoints, and store NuwaAI credentials outside web-served paths.
+
+Risk: Audio conversion and song-file handling may allow unsafe local execution or file use.
+
+Mitigation: Replace shell-form FFmpeg execution with argument-based execution and restrict conversion to an explicit allowlist of prepared song files.
+
+Risk: Microphone audio and chat text are sent to external providers.
+
+Mitigation: Inform users before use and only run the skill when sending microphone audio to NuwaAI and chat text to the configured LLM provider is acceptable.
+
+## Reference(s):
+
+- [Digital Singer ClawHub release page](https://clawhub.ai/jianglingling007/skills/digital-singer)
+- [NuwaAI](https://nuwaai.com)
+- [DashScope OpenAI-compatible chat completions endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and operation guidance for a local browser-based singing avatar workflow.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,375 @@
+{
+  "_meta": "标准来源注册表。key=标准代号前缀(base, 去_T 后, 如 GB/QX/DB11/DB4403)。level 取值: 国家/行业/地方。portal=省级/行业专属平台(公开汇总+联网核验, 2026-08, 部分站点可能更新域名, 以实际访问为准); aggregator=全国统一平台(兜底, 永远可用)。各地全文公开程度不一, 强制/公开推荐性多可下载, 部分仅目录。深圳(DB4403)为计划单列市子级代码示例, 其他子级市(如广州DB4401)未列时由脚本自动回退到省级(DB44)。MVP 纯分类不依赖这些链接; Phase2 采集层可用。",
+  "_platforms": {
+    "nationalPlatform": "https://std.samr.gov.cn/",
+    "nationalPdf": "https://openstd.samr.gov.cn/",
+    "industryPlatform": "https://hbba.sacinfo.org.cn",
+    "localPlatform": "https://dbba.sacinfo.org.cn"
+  },
+  "national": {
+    "GB": {
+      "name": "国家标准",
+      "level": "国家",
+      "portal": "https://std.samr.gov.cn/",
+      "pdf": "https://openstd.samr.gov.cn/"
+    }
+  },
+  "industry": {
+    "QX": {
+      "name": "气象",
+      "level": "行业"
+    },
+    "JB": {
+      "name": "机械",
+      "level": "行业"
+    },
+    "JC": {
+      "name": "建材",
+      "level": "行业"
+    },
+    "JG": {
+      "name": "建筑工业",
+      "level": "行业"
+    },
+    "JT": {
+      "name": "交通",
+      "level": "行业"
+    },
+    "DL": {
+      "name": "电力",
+      "level": "行业"
+    },
+    "DZ": {
+      "name": "地震",
+      "level": "行业"
+    },
+    "HG": {
+      "name": "化工",
+      "level": "行业"
+    },
+    "HJ": {
+      "name": "环境保护",
+      "level": "行业"
+    },
+    "LB": {
+      "name": "旅游",
+      "level": "行业"
+    },
+    "LD": {
+      "name": "劳动安全",
+      "level": "行业"
+    },
+    "LS": {
+      "name": "粮食",
+      "level": "行业"
+    },
+    "LY": {
+      "name": "林业",
+      "level": "行业"
+    },
+    "MH": {
+      "name": "民用航空",
+      "level": "行业"
+    },
+    "MT": {
+      "name": "煤炭",
+      "level": "行业"
+    },
+    "MZ": {
+      "name": "民政",
+      "level": "行业"
+    },
+    "NY": {
+      "name": "农业",
+      "level": "行业"
+    },
+    "QB": {
+      "name": "轻工",
+      "level": "行业"
+    },
+    "QC": {
+      "name": "汽车",
+      "level": "行业"
+    },
+    "SB": {
+      "name": "商业",
+      "level": "行业"
+    },
+    "SC": {
+      "name": "水产",
+      "level": "行业"
+    },
+    "SH": {
+      "name": "石油化工",
+      "level": "行业"
+    },
+    "SJ": {
+      "name": "电子",
+      "level": "行业"
+    },
+    "SL": {
+      "name": "水利",
+      "level": "行业"
+    },
+    "SN": {
+      "name": "商品检验",
+      "level": "行业"
+    },
+    "SY": {
+      "name": "石油天然气",
+      "level": "行业"
+    },
+    "TB": {
+      "name": "铁路运输",
+      "level": "行业"
+    },
+    "WB": {
+      "name": "物资管理",
+      "level": "行业"
+    },
+    "WH": {
+      "name": "文化",
+      "level": "行业"
+    },
+    "WM": {
+      "name": "对外贸易",
+      "level": "行业"
+    },
+    "WS": {
+      "name": "卫生",
+      "level": "行业"
+    },
+    "XB": {
+      "name": "稀土",
+      "level": "行业"
+    },
+    "YB": {
+      "name": "黑色冶金",
+      "level": "行业"
+    },
+    "YC": {
+      "name": "烟草",
+      "level": "行业"
+    },
+    "YD": {
+      "name": "通信",
+      "level": "行业"
+    },
+    "YS": {
+      "name": "有色冶金",
+      "level": "行业"
+    },
+    "YY": {
+      "name": "医药",
+      "level": "行业"
+    },
+    "YZ": {
+      "name": "邮政",
+      "level": "行业"
+    },
+    "ZY": {
+      "name": "中医",
+      "level": "行业"
+    }
+  },
+  "local": {
+    "DB11": {
+      "name": "北京",
+      "level": "地方",
+      "portal": "http://scjgj.beijing.gov.cn",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB12": {
+      "name": "天津",
+      "level": "地方",
+      "portal": "http://scjg.tj.gov.cn",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB13": {
+      "name": "河北",
+      "level": "地方",
+      "portal": "http://scjgj.hebei.gov.cn/",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB14": {
+      "name": "山西",
+      "level": "地方",
+      "portal": "https://scjgj.shanxi.gov.cn/gzzt/bzgl/dfbzcx/index.shtml",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB15": {
+      "name": "内蒙古",
+      "level": "地方",
+      "portal": "http://www.imisinfo.cn/#/localstand",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB21": {
+      "name": "辽宁",
+      "level": "地方",
+      "portal": "https://scjg.ln.gov.cn/",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB22": {
+      "name": "吉林",
+      "level": "地方",
+      "portal": "http://scjg.jl.gov.cn/",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB23": {
+      "name": "黑龙江",
+      "level": "地方",
+      "portal": "http://www.hlj.gov.cn",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB31": {
+      "name": "上海",
+      "level": "地方",
+      "portal": "http://fw.scjgj.sh.gov.cn",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB32": {
+      "name": "江苏",
+      "level": "地方",
+      "portal": "http://scjgj.jiangsu.gov.cn",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB33": {
+      "name": "浙江",
+      "level": "地方",
+      "portal": "http://zjamr.zj.gov.cn",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB34": {
+      "name": "安徽",
+      "level": "地方",
+      "portal": "http://bzxx.ahbz.org.cn",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB35": {
+      "name": "福建",
+      "level": "地方",
+      "portal": "http://pt.fjbz.org.cn:8060",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB36": {
+      "name": "江西",
+      "level": "地方",
+      "portal": "http://www.jxbz.org.cn/list.aspx?nid=11",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB37": {
+      "name": "山东",
+      "level": "地方",
+      "portal": "http://amr.shandong.gov.cn",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB41": {
+      "name": "河南",
+      "level": "地方",
+      "portal": "http://www.hndb41.com",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB42": {
+      "name": "湖北",
+      "level": "地方",
+      "portal": "http://scjg.hubei.gov.cn",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB43": {
+      "name": "湖南",
+      "level": "地方",
+      "portal": "http://amr.hunan.gov.cn",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB44": {
+      "name": "广东",
+      "level": "地方",
+      "portal": "https://amr.gd.gov.cn/standard/",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB45": {
+      "name": "广西",
+      "level": "地方",
+      "portal": "http://scjdglj.gxzf.gov.cn/",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB46": {
+      "name": "海南",
+      "level": "地方",
+      "portal": "https://amr.hainan.gov.cn/",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB50": {
+      "name": "重庆",
+      "level": "地方",
+      "portal": "http://scjgj.cq.gov.cn",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB51": {
+      "name": "四川",
+      "level": "地方",
+      "portal": "http://scjgj.sc.gov.cn",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB52": {
+      "name": "贵州",
+      "level": "地方",
+      "portal": "https://amr.guizhou.gov.cn/",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB53": {
+      "name": "云南",
+      "level": "地方",
+      "portal": "https://www.ynstdinfo.net/fi_FI/web/guest/index",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB54": {
+      "name": "西藏",
+      "level": "地方",
+      "portal": "http://amr.xizang.gov.cn/index.htm",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB61": {
+      "name": "陕西",
+      "level": "地方",
+      "portal": "https://snamr.shaanxi.gov.cn/",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB62": {
+      "name": "甘肃",
+      "level": "地方",
+      "portal": "http://scjg.gansu.gov.cn",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB63": {
+      "name": "青海",
+      "level": "地方",
+      "portal": "http://www.qhzlbz.cn/list-1227.html",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB64": {
+      "name": "宁夏",
+      "level": "地方",
+      "portal": "https://jst.nx.gov.cn/zwgk/zcwjk/gcjsbz/",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB65": {
+      "name": "新疆",
+      "level": "地方",
+      "portal": "http://scjgj.xinjiang.gov.cn",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB71": {
+      "name": "台湾(中国)",
+      "level": "地方",
+      "portal": "http://www.cnsonline.com.tw/",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    },
+    "DB4403": {
+      "name": "深圳",
+      "level": "地方",
+      "portal": "https://amr.sz.gov.cn/xxgk/qt/ztlm/dzszbz/szsdfbz/",
+      "aggregator": "https://dbba.sacinfo.org.cn"
+    }
+  }
+}

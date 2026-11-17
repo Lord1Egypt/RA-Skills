@@ -1,40 +1,50 @@
-## Description: <br>
-Flesh Renderer turns structured vn-outline beats into embodied, in-character prose for the Vietnamese "viết full" workflow using strict point-of-view filtering and companion lore and lexicon skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Immersive prose rendering engine for the "viết full" task that transforms outline data into in-character prose using strict point-of-view filtering, sensory vocabulary, and world detail.
 
-## Publisher: <br>
-[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev)
 
-## Use Case: <br>
-Writers and narrative agents use this skill to turn an outline into highly embodied Vietnamese prose constrained to character-local sensory perspective. It is intended for explicit adult fiction workflows and references companion skills for vocabulary, lore filtering, and point-of-view rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed for highly explicit adult fiction, including degrading and coercive sexual imagery. <br>
-Mitigation: Install and invoke it only in environments where that content style is intentional, permitted, and appropriately gated. <br>
-Risk: Prompt-only guidance can still steer an agent toward unwanted or policy-inappropriate prose if invoked accidentally. <br>
-Mitigation: Review the skill before deployment and limit invocation to appropriate writing workflows. <br>
+## Use Case:
 
+External users and creative-writing agents use this skill to expand structured narrative outlines into immersive first-person or close point-of-view prose while preserving sensory anchoring and avoiding omniscient narration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaibazax-dev/vn-fullwrite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; server security evidence reports no code, install actions, credential access, persistence, or network behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Generated content may include highly explicit sexualized violence or degrading prose without built-in safeguards for consent, minors, or sexual abuse content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installation and restrict use to contexts with explicit safety policy enforcement, age and consent safeguards, and human review of generated content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaibazax-dev/skills/vn-fullwrite)
+- [ClawHub publisher profile](https://clawhub.ai/user/kaibazax-dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain prose text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces narrative prose from outline input; the release evidence describes no code execution or data-access behavior.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

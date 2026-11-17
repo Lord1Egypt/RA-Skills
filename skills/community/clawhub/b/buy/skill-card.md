@@ -1,43 +1,55 @@
-## Description: <br>
-Research purchases, compare prices, detect scams, and negotiate better deals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research purchases, compare prices, detect scams, and negotiate better deals.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to research purchases, compare market prices, identify scam signals, decide whether to buy, wait, or walk away, and draft negotiation or cancellation talking points. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Shopping recommendations may be incorrect, stale, or based on unreliable seller information. <br>
-Mitigation: Verify prices, recent sold listings, seller legitimacy, payment terms, and return policies before acting. <br>
-Risk: Negotiation or cancellation guidance could lead users to expose account details or lose control of a transaction. <br>
-Mitigation: Keep purchase, payment, cancellation, and account actions under user control, and avoid sharing credentials or unnecessary account details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Buy on ClawHub](https://clawhub.ai/ivangdavila/buy) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Data Sources by Category](artifact/sources.md) <br>
-- [Category-Specific Guidance](artifact/categories.md) <br>
-- [Negotiation Tactics](artifact/tactics.md) <br>
+## Use Case:
 
+External users use this skill to evaluate purchases, compare market prices, identify scam signals, decide whether to buy, wait, or walk away, and prepare negotiation scripts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown recommendations, checklists, comparisons, and scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include buy, wait, or walk-away recommendations, scam red flags, savings calculations, and negotiation or cancellation talking points.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may ask for budget, timeline, subscription, or purchase details while helping with shopping and negotiation decisions.
+
+Mitigation: Share only the details needed for the analysis and avoid sensitive account, payment, or personal information unless intentionally required.
+
+Risk: Purchase recommendations can be affected by incomplete, stale, or misleading market information.
+
+Mitigation: Check recent sold prices, compare multiple sources, and confirm seller terms before making a purchase or negotiation decision.
+
+## Reference(s):
+
+- [Category-Specific Guidance](artifact/categories.md)
+- [Data Sources by Category](artifact/sources.md)
+- [Negotiation Tactics](artifact/tactics.md)
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/buy)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with recommendations, comparison notes, red flags, and negotiation scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include buy, wait, or walk-away recommendations and estimated savings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Perspective Transform Visualizer helps agents configure and open an interactive Three.js page for viewing translation, rotation, scale, shear, and perspective transforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perspective Transform Visualizer helps agents configure and open an interactive Three.js page for visualizing 2D translation, rotation, scale, shear, and perspective transforms in 3D.
 
-## Publisher: <br>
-[yu-zhengzheng](https://clawhub.ai/user/yu-zhengzheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yu-zhengzheng](https://clawhub.ai/user/yu-zhengzheng)
 
-## Use Case: <br>
-Developers, educators, and learners use this skill to visualize 2D perspective transformations, adjust matrix or slider parameters, and inspect the resulting 3D view for teaching or manual debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The packaged local page loads a third-party visitor-counter script even though the visualizer is presented as offline-capable. <br>
-Mitigation: Remove or disable the visitor-counter script before using the local page when a local-only or offline workflow is required. <br>
+## Use Case:
 
+Developers, educators, and learners use this skill to inspect perspective transform parameters, edit a 3x3 matrix or slider-based configuration, and view the resulting 3D visualization locally or through the hosted page.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yu-zhengzheng/perspective-transform-visualizer) <br>
-- [Online visualizer](https://yu-zhengzheng.github.io/perspective_transform_visualizer/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript configuration snippets and browser-opening commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update the local HTML configuration before opening the visualizer or direct the user to the hosted demo for remote-device use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The visualization page silently loads an unrelated remote visitor-counter script that can run third-party code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or disable the busuanzi visitor-counter script before using the page through a local web server or hosted version.
+
+Risk: The skill may edit its bundled index.html to set initial visualization parameters and may open an external GitHub Pages URL for remote-device scenarios.
+
+Mitigation: Review requested configData changes before saving the file and confirm hosted-page use when the user is on a remote device.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yu-zhengzheng/skills/perspective-transform-visualizer)
+- [Online visualizer](https://yu-zhengzheng.github.io/perspective_transform_visualizer/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or text guidance with inline configuration values, code edits, and browser-opening commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update the bundled index.html configData values before opening the local or hosted visualizer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

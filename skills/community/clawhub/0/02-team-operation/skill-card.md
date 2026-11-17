@@ -1,41 +1,53 @@
-## Description: <br>
-Community group-buying team leader operations guidance covering recruitment, segmentation, incentives, training, platform comparisons, churn warning signals, and supporting tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language community group-buying team-operations guidance covering group leader recruitment, tiering, incentives, training, platform comparisons, churn warning signs, templates, checklists, and supporting calculator code examples.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-External operators and community group-buying team managers use this skill to structure team leader recruitment, grading, incentives, training, retention, and operational review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real operations may involve IDs, business licenses, bank details, contracts, storefront photos, WeChat data, and customer information. <br>
-Mitigation: Use consent, access controls, and applicable privacy and financial-data compliance; avoid pasting raw personal or banking data into shared prompts or logs. <br>
-Risk: Operational recommendations and calculator snippets may be applied to live business decisions without local review. <br>
-Mitigation: Review assumptions, commission rules, and retention thresholds against the operator's current policies before using outputs in production. <br>
+## Use Case:
 
+External operators, platform operations teams, and group leader managers use this skill to design and review community group-buying leader recruitment, segmentation, incentive, training, retention, and churn-response workflows. It is scoped to team operations and does not cover product selection or supply-chain management.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nic-yuan/02-team-operation) <br>
-- [Publisher profile](https://clawhub.ai/user/nic-yuan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with tables, checklists, templates, and local Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only operations content with optional local calculator snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The workflows may involve identity, bank card, storefront, social-group, competitor-monitoring, or other sensitive business or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect and process that data only with proper authorization, minimize what is collected, and protect it according to applicable privacy and business-data controls.
+
+Risk: Operational recommendations and example benchmarks may be applied to real commercial decisions without local validation.
+
+Mitigation: Review the guidance against current business conditions, contracts, platform policies, and local legal requirements before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/02-team-operation)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with Chinese-language operational playbooks, templates, checklists, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes simple calculator examples for commission, churn risk, and recruitment funnel analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

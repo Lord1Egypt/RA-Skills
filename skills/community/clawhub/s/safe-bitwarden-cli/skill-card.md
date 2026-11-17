@@ -1,44 +1,56 @@
-## Description: <br>
-Industrial-grade secure bridge to Bitwarden that copies passwords and TOTP codes with zero-trust kernel-level piping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Industrial-grade secure bridge to Bitwarden. Copy passwords and TOTP codes with Zero-trust kernel-level piping.
 
-## Publisher: <br>
-[chyern](https://clawhub.ai/user/chyern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chyern](https://clawhub.ai/user/chyern)
 
-## Use Case: <br>
-Developers and Bitwarden CLI users use this skill to let an agent search vault item metadata and copy selected passwords or TOTP codes to the native clipboard without printing the secret in agent output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent can search Bitwarden item names and usernames. <br>
-Mitigation: Use the skill only where exposing vault metadata to the agent is acceptable. <br>
-Risk: Copied passwords or TOTP codes may remain in clipboard history or sync services. <br>
-Mitigation: Disable clipboard history and clipboard sync for sensitive use, and clear the clipboard after use. <br>
-Risk: BW_SESSION grants access to the unlocked Bitwarden vault. <br>
-Mitigation: Protect BW_SESSION like a password and unset or expire it when the workflow is complete. <br>
+## Use Case:
 
+Developers and agent users use this skill to search Bitwarden vault item metadata and copy selected passwords or TOTP codes to the native system clipboard through the Bitwarden CLI.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/chyern/safe-bitwarden-cli) <br>
-- [Project homepage](https://github.com/chyern/Agent-Skills) <br>
-- [Bitwarden CLI](https://github.com/bitwarden/clients/tree/master/apps/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [JSON objects or arrays for setup and search results, plus plain text status messages for copy actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BW_SESSION and Bitwarden CLI; selected passwords and TOTP codes are copied to the native OS clipboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release metadata, SKILL.md frontmatter, manifest.json) <br>
+Risk: Passwords and TOTP codes are copied into the system clipboard, where clipboard history, shared sessions, monitoring, or remote desktop tooling may expose secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on trusted local systems, disable or clear clipboard history, avoid shared or monitored environments, and clear or harden the clipboard after copying secrets.
+
+Risk: An active BW_SESSION lets the agent search Bitwarden item metadata and trigger password or TOTP copy operations.
+
+Mitigation: Keep BW_SESSION local, confirm the intended item before copy or TOTP actions, and lock or expire the Bitwarden session when finished.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chyern/skills/safe-bitwarden-cli)
+- [Publisher profile](https://clawhub.ai/user/chyern)
+- [Agent-Skills homepage](https://github.com/chyern/Agent-Skills)
+- [Bitwarden CLI](https://github.com/bitwarden/clients/tree/master/apps/cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output from setup/search actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Bitwarden CLI session token in BW_SESSION and an OS clipboard command such as pbcopy, clip, xclip, or wl-copy.]
+
+## Skill Version(s):
+
+1.6.0 (source: SKILL.md frontmatter, manifest.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

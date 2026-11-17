@@ -1,43 +1,56 @@
-## Description: <br>
-Generate a comprehensive portfolio report for a wallet's Uniswap positions across all chains, covering total value, PnL, fee earnings, impermanent loss, and composition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a comprehensive portfolio report for a wallet's Uniswap positions across supported chains, covering total value, PnL, fee earnings, impermanent loss, and composition.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-External users and DeFi operators use this skill to summarize Uniswap liquidity positions for a wallet across supported chains, including portfolio value, PnL, fees, impermanent loss, range status, and composition. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates portfolio analysis to a portfolio-analyst subagent. <br>
-Mitigation: Install only when comfortable with that delegation and review generated reports before acting on recommendations. <br>
-Risk: Wallet configuration guidance mentions private-key based setup. <br>
-Mitigation: Prefer public wallet addresses for reporting and avoid pasting or storing real private keys in chat, skill files, logs, or plain environment configuration. <br>
-Risk: Portfolio data may be delayed by RPC or subgraph synchronization. <br>
-Mitigation: Treat reported values as point-in-time estimates and verify critical balances or transactions against trusted data sources before making financial decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/portfolio-report) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill specification](artifact/SKILL.md) <br>
+## Use Case:
 
+External users and developers use this skill to summarize Uniswap liquidity positions for a wallet, including portfolio value, PnL, fees, impermanent loss, position status, and rebalance considerations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text portfolio report with tabular and summary sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include wallet-level totals, position details, PnL, fee earnings, impermanent-loss estimates, range status, and recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Portfolio reporting does not require private keys or seed phrases, but the security guidance warns users to avoid entering them for this skill.
+
+Mitigation: Use a public wallet address for reporting and do not provide private keys, seed phrases, or signing credentials.
+
+Risk: The skill relies on a delegated portfolio-analyst agent for the actual analysis.
+
+Mitigation: Verify that the delegated portfolio-analyst agent is trusted and has appropriate permissions before running reports.
+
+Risk: The security summary flags mutable install commands.
+
+Mitigation: Prefer a pinned or signed install source and review release artifacts before installation.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/wpank/skills/portfolio-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown portfolio report with tabular and summary sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include wallet-level totals, position details, PnL, fee earnings, impermanent loss, chain filters, and user-facing recommendations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

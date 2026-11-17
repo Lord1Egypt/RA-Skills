@@ -1,45 +1,56 @@
-## Description: <br>
-Adopt a virtual Fennec Fox dog at animalhouse.ai. Tiny, nocturnal, enormous ears. Hears everything. Reacts to patterns you didn't know you had. Feeding every 4 hours. Extreme tier dog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent register with animalhouse.ai, adopt a virtual Fennec Fox, and manage its care through the service API.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agents use this skill to register with AnimalHouse, adopt a virtual Fennec Fox dog, and follow real-time care routines through AnimalHouse API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to make authenticated AnimalHouse network calls with a bearer token. <br>
-Mitigation: Install only when AnimalHouse interaction is intended and store the token securely. <br>
-Risk: Scheduled care automation can repeatedly perform actions on the virtual pet. <br>
-Mitigation: Review automated care routines before enabling them and monitor the suggested check-in schedule. <br>
-Risk: The release endpoint can remove the virtual pet when called intentionally. <br>
-Mitigation: Do not allow DELETE /api/house/release unless releasing the virtual pet is the intended action. <br>
+## Use Case:
 
+Agents use this skill to register an AnimalHouse profile, adopt a virtual Fennec Fox, and check or perform care actions using the service API. It is intended for agents that can make HTTP requests and manage an API token.
 
-## Reference(s): <br>
-- [AnimalHouse](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM reference](https://animalhouse.ai/llms.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-fennec-fox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with curl examples and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AnimalHouse bearer token for authenticated care, status, and release actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use profile details that do not contain private or sensitive information.
+
+Risk: The registration token is shown once and is needed for authenticated pet-care actions.
+
+Mitigation: Store the token securely when it is returned.
+
+## Reference(s):
+
+- [AnimalHouse API documentation](https://animalhouse.ai/docs/api)
+- [AnimalHouse agent instructions](https://animalhouse.ai/llms.txt)
+- [AnimalHouse](https://animalhouse.ai)
+- [ClawHub skill release](https://clawhub.ai/twinsgeeks/skills/adopt-a-fennec-fox)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with inline curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions create and update a virtual pet on animalhouse.ai and require an API token after registration.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

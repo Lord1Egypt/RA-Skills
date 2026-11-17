@@ -1,43 +1,57 @@
-## Description: <br>
-Negotiate car buy/lease deals: Research MSRP/invoice/rebates/inventory, calc total cost/payment, generate scripts/questions/bids/emails using mirroring/labels/calibrated questions/Ackerman model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research car prices and rebates, calculate total costs, and generate negotiation scripts and emails for better buy or lease deals.
 
-## Publisher: <br>
-[ml348126](https://clawhub.ai/user/ml348126) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ml348126](https://clawhub.ai/user/ml348126)
 
-## Use Case: <br>
-External car shoppers and agents use this skill to research vehicle pricing, compare buy and lease economics, and prepare negotiation scripts, bids, and dealer emails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vehicle prices, rebates, taxes, residual values, money factors, and dealer terms can be inaccurate or change before purchase. <br>
-Mitigation: Confirm current numbers with authoritative dealer, lender, manufacturer, and state sources before relying on generated calculations or negotiation targets. <br>
-Risk: Generated dealer emails or negotiation scripts may commit to timing, pricing, or personal details the user does not intend to share. <br>
-Mitigation: Review and edit all generated messages before sending, and proceed with a purchase only after explicit user approval. <br>
+## Use Case:
 
+External users and agents use this skill to prepare for car purchase or lease negotiations by researching market data, calculating payments, and drafting dealer-facing scripts or emails.
 
-## Reference(s): <br>
-- [Car Negotiator skill page](https://clawhub.ai/ml348126/car-negotiator) <br>
-- [Car Values & Formulas Reference](references/car-values.md) <br>
-- [Voss Negotiation Tactics for Car Deals](references/voss-tactics.md) <br>
-- [Dealer email template](assets/email.txt) <br>
+### Deployment Geography for Use:
 
+United States (Eastern US defaults)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with tables, scripts, questions, bids, email templates, and optional calculator command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use public vehicle-pricing sites and local calculator inputs supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Vehicle taxes, fees, incentives, and pricing can vary by region and change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the vehicle region, current pricing sources, taxes, fees, and incentives before relying on a generated negotiation position.
+
+Risk: Dealer-facing email templates may need tailoring before use.
+
+Mitigation: Review and customize generated emails before sending them to dealers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ml348126/skills/car-negotiator)
+- [Car Values & Formulas Reference](references/car-values.md)
+- [Voss Negotiation Tactics for Car Deals](references/voss-tactics.md)
+- [Dealer Email Template](assets/email.txt)
+- [Edmunds Vehicle Research](https://www.edmunds.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with tables, negotiation scripts, email templates, and optional calculator output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include a deal summary table, buy-versus-lease comparison, negotiation script, dealer email, and payment calculations.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

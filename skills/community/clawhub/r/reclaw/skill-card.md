@@ -1,41 +1,54 @@
-## Description: <br>
-Use when accessing memory, recording information, searching prior context, or managing subjects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when accessing memory, recording information, searching prior context, or managing subjects.
 
-## Publisher: <br>
-[maxpetretta](https://clawhub.ai/user/maxpetretta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxpetretta](https://clawhub.ai/user/maxpetretta)
 
-## Use Case: <br>
-Developers and OpenClaw users use Reclaw to access persistent memory, search prior context, record user-specific facts, decisions, tasks, and questions, and manage subject history across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can retain user-specific information across sessions. <br>
-Mitigation: Install only when persistent memory is desired, and periodically inspect or remove stored memory if the environment supports it. <br>
-Risk: Historical imports and transcript retrieval may expose sensitive prior conversation content. <br>
-Mitigation: Review the Reclaw/OpenClaw runtime and imported histories before use, and limit transcript retrieval to cases where the prior context is needed. <br>
+## Use Case:
 
+External users and developers use Reclaw to search remembered context, record user-specific facts, decisions, tasks, and questions, manage subject histories, and retrieve prior session context in OpenClaw.
 
-## Reference(s): <br>
-- [Reclaw ClawHub listing](https://clawhub.ai/maxpetretta/reclaw) <br>
-- [Reclaw homepage](https://github.com/maxpetretta/reclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenClaw environment with the Reclaw plugin and openclaw binary available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.3.11-3 (source: release evidence) <br>
+Risk: The skill automatically persists and indexes user-specific conversation context, which can include sensitive personal, business, or client information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where persistent memory is desired; review Reclaw storage, deletion, and access controls before using it with sensitive information.
+
+Risk: Append-only memory and generated subject projections can retain older entries alongside later corrections.
+
+Mitigation: State corrections clearly, mark tasks done explicitly, and refresh or remove Reclaw memory data when retained context is no longer appropriate.
+
+## Reference(s):
+
+- [Reclaw repository](https://github.com/maxpetretta/reclaw)
+- [ClawHub skill page](https://clawhub.ai/maxpetretta/skills/reclaw)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown with inline bash commands and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the openclaw binary and a Reclaw plugin registered in the current OpenClaw environment for live memory tools.]
+
+## Skill Version(s):
+
+2026.3.11-3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

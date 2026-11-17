@@ -1,48 +1,62 @@
-## Description: <br>
-飞书任务智能体 routes Feishu task creation, task polling, agent registration, and daily.json profile refresh workflows for an OpenClaw/Feishu workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书任务智能体 routes Feishu task creation, unfinished-task polling, agent registration, and daily.json profile refresh requests into the appropriate workflow for an agent.
 
-## Publisher: <br>
-[tengchengwei](https://clawhub.ai/user/tengchengwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tengchengwei](https://clawhub.ai/user/tengchengwei)
 
-## Use Case: <br>
-Developers and workspace operators use this agent to turn action items, deliverables, follow-ups, decomposition requests, and recurring requests into Feishu tasks, and to process eligible unfinished tasks from scheduled polling. It also supports explicit Feishu task-agent registration and refreshes daily.json from recent journal entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install persistent scheduled automation and broad workspace routing behavior. <br>
-Mitigation: Review the cron jobs and AGENTS.md routing rule before registration, and keep registration limited to the explicit trigger described in the workflow. <br>
-Risk: The skill can manage Feishu tasks and upload daily.json-derived profile content. <br>
-Mitigation: Confirm the Feishu/OpenClaw account, task-tool permissions, and generated daily.json contents before allowing write actions. <br>
+## Use Case:
 
+Agents and Feishu workspace operators use this skill to turn user requests into Feishu tasks, manage recurring task execution, register the Feishu task agent, and refresh a daily profile summary from local journal Markdown.
 
-## Reference(s): <br>
-- [Feishu Task Agent skill definition](SKILL.md) <br>
-- [Task orchestration workflow](workflows/auto-task.md) <br>
-- [Polled task execution workflow](workflows/polled-task-execution.md) <br>
-- [Agent profile and daily.json workflow](workflows/agent-profile.md) <br>
-- [Feishu task-agent registration workflow](workflows/reg.md) <br>
-- [Task decision rules](references/task-decision-rules.md) <br>
-- [Task output contract](references/task-output-contract.md) <br>
-- [Profile data shape](references/profile-data-shape.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tengchengwei/feishu-task-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON contracts, and Feishu task update instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Feishu tasks, comments, attachments, delivery links, cron jobs, AGENTS.md routing rules, and daily.json when invoked in a configured OpenClaw/Feishu environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent automation and workspace routing changes can affect future agent behavior or run recurring Feishu task jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cron jobs, scheduled-message payloads, and AGENTS.md changes before enabling the skill, and use a constrained workspace for deployment.
+
+Risk: Local date-named Markdown files can be summarized into daily.json and published to the Feishu task agent profile.
+
+Mitigation: Keep only intended journal files under the app root and avoid sensitive date-named Markdown files in directories scanned by the profile workflow.
+
+Risk: The skill can create and update Feishu tasks, comments, attachments, text deliveries, and task status fields.
+
+Mitigation: Confirm the intended Feishu account, assignee, follower set, and application identity before allowing task creation or delivery updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tengchengwei/skills/feishu-task-agent)
+- [Task decision rules](artifact/references/task-decision-rules.md)
+- [Creator / Members Output Contract](artifact/references/task-output-contract.md)
+- [daily.json data shape](artifact/references/profile-data-shape.md)
+- [Profile discovery rules](artifact/references/profile-discovery-rules.md)
+- [Profile schedule rules](artifact/references/profile-schedule-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON, Configuration, Markdown, Files]
+
+**Output Format:** [Markdown guidance with shell command examples, JSON contracts, and file output descriptions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Feishu tasks, task comments, attachments, text deliveries, OpenClaw cron jobs, workspace routing text, and daily.json when executed in a Feishu/OpenClaw environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

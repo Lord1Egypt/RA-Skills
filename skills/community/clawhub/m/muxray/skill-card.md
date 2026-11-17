@@ -1,46 +1,61 @@
-## Description: <br>
-Inspect tmux panes as JSON: snapshot, diff, and classify Claude/Codex/Copilot agent state across the whole fleet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Inspect tmux panes as JSON: snapshot, diff, and classify Claude/Codex/Copilot agent state across the whole fleet.
 
-## Publisher: <br>
-[dandriscoll](https://clawhub.ai/user/dandriscoll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dandriscoll](https://clawhub.ai/user/dandriscoll)
 
-## Use Case: <br>
-Developers and engineers use Muxray to supervise local tmux panes running terminal coding agents, check program state, wait for settled states, and summarize changes without pasting raw terminal dumps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tmux pane text may include secrets or sensitive terminal output. <br>
-Mitigation: Inspect only panes relevant to the user request, prefer classification summaries, and redact obvious secrets before sharing pane excerpts. <br>
-Risk: The skill depends on an external muxray binary installed via Go. <br>
-Mitigation: Review or trust the upstream muxray project before installation and ensure both muxray and tmux are available in the host or sandbox where the agent runs. <br>
-Risk: Raw snapshot and diff output can expose more terminal content than needed. <br>
-Mitigation: Use read-only wrapper commands, prefer no-raw snapshots where practical, and summarize only the few relevant changed lines. <br>
+## Use Case:
 
+Developers and engineers use Muxray to inspect tmux panes running terminal coding agents, classify each pane's program and state, and summarize snapshots or diffs without scraping raw terminal bytes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dandriscoll/muxray) <br>
-- [Publisher Profile](https://clawhub.ai/user/dandriscoll) <br>
-- [Muxray Homepage](https://github.com/dandriscoll/muxray) <br>
-- [JSON Contract Reference](references/json-contract.md) <br>
-- [Inspect Agent Example](examples/inspect-agent.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers classification summaries and redacted pane excerpts over raw pane dumps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The default Go install target uses a mutable @latest version, which may change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned muxray release or verified binary before deployment.
+
+Risk: The README mentions a curl pipe-to-shell installer that executes remote installation code.
+
+Mitigation: Do not use the README curl | sh installer in managed environments; use the reviewed Go install path or a pinned release artifact.
+
+Risk: Fleet-wide scans can expose tmux pane text that may contain secrets or unrelated user content.
+
+Mitigation: Use targeted pane commands for single-pane questions, reserve scan for explicit fleet-wide inspection, and summarize or redact raw pane text.
+
+## Reference(s):
+
+- [Muxray ClawHub Listing](https://clawhub.ai/dandriscoll/skills/muxray)
+- [Muxray GitHub Repository](https://github.com/dandriscoll/muxray)
+- [Muxray JSON Contract](references/json-contract.md)
+- [Inspect Agent Example](examples/inspect-agent.md)
+- [AgentSkills Format](https://agentskills.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-oriented interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Muxray command results are JSON on stdout with JSON errors on stderr; pane excerpts may require redaction before reporting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

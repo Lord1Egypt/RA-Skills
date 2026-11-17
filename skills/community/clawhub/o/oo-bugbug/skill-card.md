@@ -1,43 +1,56 @@
-## Description: <br>
-BugBug helps agents inspect BugBug connector schemas, read workspace data, and run BugBug tests through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the OOMOL-connected oo CLI to read BugBug suites, tests, profiles, and run history, and to run tests.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, QA engineers, and support agents use this skill to inspect BugBug action schemas, read suites, tests, profiles, and test-run data, and launch BugBug test runs through a connected workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute BugBug tests even though its short description emphasizes searching and reading data. <br>
-Mitigation: Use it only where launching BugBug test runs is acceptable, and require explicit user confirmation before invoking run_test. <br>
-Risk: The skill depends on the oo CLI, OOMOL sign-in, and a connected BugBug account. <br>
-Mitigation: Do not initiate installation, sign-in, or connection setup proactively; perform those steps only after a matching failure and explicit user confirmation. <br>
+## Use Case:
 
+Developers and QA teams use this skill to inspect BugBug workspaces, retrieve test details and run history, and execute selected tests through their connected account.
 
-## Reference(s): <br>
-- [BugBug homepage](https://bugbug.io) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub BugBug skill page](https://clawhub.ai/oomol/oo-bugbug) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the oo CLI, an OOMOL sign-in, and a connected BugBug workspace; some actions can launch BugBug test runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Fallback setup executes downloaded code without verification or explicit installation approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a reviewed, pinned oo CLI yourself and require approval for host changes. Review its automatic skill synchronization; set OO_SKILLS_SYNC_DISABLED=1 to disable startup sync.
+
+Risk: Running a BugBug test changes remote workspace state.
+
+Mitigation: Review the requested test run and retain confirmation before executing it.
+
+## Reference(s):
+
+- [BugBug API documentation: running tests via API](https://docs.bugbug.io/running-tests/running-via-api)
+- [BugBug](https://bugbug.io)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [BugBug skill on ClawHub](https://clawhub.ai/oomol/skills/oo-bugbug)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [Structured JSON results with text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The returned records and status depend on the selected BugBug action.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Generate Xiaohongshu-style Chinese social posts on career growth, side hustles, and AI tools with hot-post analysis, title and body rewrites, hashtags, image suggestions, and A/B variants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Xiaohongshu-style Chinese social posts on career growth, side hustles, and AI tools with catchy titles, rewrites, tags, image suggestions, hot-post analysis, and A/B variants.
 
-## Publisher: <br>
-[xiaonizhou-crypto](https://clawhub.ai/user/xiaonizhou-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaonizhou-crypto](https://clawhub.ai/user/xiaonizhou-crypto)
 
-## Use Case: <br>
-Content creators, marketers, and operators use this skill to draft and refine Xiaohongshu-native Chinese posts for workplace growth, side-hustle, and AI-tool topics. It helps analyze post structure, generate title options, produce body copy, suggest hashtags, recommend images, and create variants for testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may contain unsupported claims about income, career outcomes, side hustles, or AI-tool results. <br>
-Mitigation: Review and verify claims before publishing, especially where the content discusses earnings, professional outcomes, or tool performance. <br>
-Risk: Hot-post analysis and rewriting can drift into copying protected or platform-specific source language too closely. <br>
-Mitigation: Use the skill for structure, angle, and pacing only, then review the final copy for originality before publication. <br>
-Risk: The default style is Chinese Xiaohongshu-native content, which may not match every audience or platform. <br>
-Mitigation: Explicitly request another language, platform style, or tone when the default Xiaohongshu-style Chinese output is not desired. <br>
+## Use Case:
 
+External creators, marketers, and operators use this skill to draft Xiaohongshu-native Chinese social posts from hot posts, topics, rough notes, product angles, or examples. It helps produce short virality analysis, title options, body copy, hashtags, image suggestions, and variant sets for testing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaonizhou-crypto/xhs-content) <br>
-- [Standard creation template](references/prompt.md) <br>
-- [Title and hook reference](references/hooks.md) <br>
-- [Example inputs and outputs](references/examples.md) <br>
-- [Case studies](references/case-studies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style Chinese content sections with title options, post body, hashtags, image suggestions, and optional analysis.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primarily produces Xiaohongshu-style Chinese social content; no command execution, credential access, persistence, or hidden data handling is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated posts are naturally Chinese and Xiaohongshu-specific, which may be inappropriate for other channels, audiences, or languages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the target language, channel, and format when they differ from Xiaohongshu, and review the output before publishing.
+
+Risk: Hot-post analysis or mimicry requests could produce copy that follows a source post too closely.
+
+Mitigation: Use source posts for structure and pacing only, then review the generated text for originality and remove copied phrasing.
+
+Risk: Social content about side hustles, AI tools, or productivity can overstate outcomes if user-provided claims are weak.
+
+Mitigation: Verify concrete claims, earnings, timelines, and tool results before publishing, and keep outcome language measured.
+
+## Reference(s):
+
+- [Prompt Template](references/prompt.md)
+- [Hooks Reference](references/hooks.md)
+- [Examples](references/examples.md)
+- [Case Studies](references/case-studies.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown with Chinese post copy, title lists, hashtags, and image suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to 3-5 titles, one 300-500 word body draft, 15 hashtags, and three image suggestions unless the user asks for another shape.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

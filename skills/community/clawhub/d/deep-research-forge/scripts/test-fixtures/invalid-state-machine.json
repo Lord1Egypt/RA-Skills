@@ -1,0 +1,55 @@
+{
+  "research_sprint_id": "rs002",
+  "cycle_number": 1,
+  "tasks_summary": {
+    "total": 4,
+    "completed": 2,
+    "in_progress": 1,
+    "blocked": 1
+  },
+  "tasks": [
+    {
+      "task_id": "rt-bad-accepted",
+      "state": "accepted",
+      "max_cycles": 3,
+      "cycle_count": 1,
+      "state_log": [
+        {"from": "planned", "to": "spawned"},
+        {"from": "spawned", "to": "researching"},
+        {"from": "researching", "to": "produced"},
+        {"from": "produced", "to": "verifying"},
+        {"from": "verifying", "to": "accepted"}
+      ]
+    },
+    {
+      "task_id": "rt-bad-retry",
+      "state": "retrying",
+      "max_cycles": 3,
+      "cycle_count": 2,
+      "state_log": [
+        {"from": "planned", "to": "spawned"},
+        {"from": "spawned", "to": "researching"},
+        {"from": "researching", "to": "produced"},
+        {"from": "produced", "to": "verifying"},
+        {"from": "verifying", "to": "retrying"}
+      ]
+    },
+    {
+      "task_id": "rt-max-cycles",
+      "state": "researching",
+      "max_cycles": 3,
+      "cycle_count": 5,
+      "state_log": []
+    },
+    {
+      "task_id": "rt-bad-transition",
+      "state": "accepted",
+      "max_cycles": 3,
+      "cycle_count": 1,
+      "state_log": [
+        {"from": "planned", "to": "accepted"}
+      ]
+    }
+  ],
+  "next_action": ""
+}

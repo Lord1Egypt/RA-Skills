@@ -1,44 +1,59 @@
-## Description: <br>
-Read a local ghcli archive of Google Health API data for Fitbit/Google health accounts. Uses read-only local JSON queries and never calls Google Health directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read a local ghcli archive of Google Health API data for Fitbit/Google health accounts. Uses read-only local JSON queries and never calls Google Health directly.
 
-## Publisher: <br>
-[fdsouvenir](https://clawhub.ai/user/fdsouvenir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fdsouvenir](https://clawhub.ai/user/fdsouvenir)
 
-## Use Case: <br>
-External users and developers use this skill to answer health, activity, sleep, heart, body, and device/source questions from a local ghcli Google Health/Fitbit archive while keeping archive access read-only and date-bounded. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent query sensitive local health archive data. <br>
-Mitigation: Keep queries date-bounded, use ghcli read-only flags for archive access, and avoid dumping broad archive contents. <br>
-Risk: Setup, login, sync, or export commands can change credentials, refresh local data, or expose archive contents. <br>
-Mitigation: Approve those commands only when the user explicitly asks for that action. <br>
-Risk: Health data may be stale or incomplete and could be misread as medical advice. <br>
-Mitigation: Mention data freshness when relevant and do not make medical claims or diagnoses. <br>
+## Use Case:
 
+External users and developers use this skill to query locally archived Google Health and Fitbit history through ghcli while keeping routine health queries read-only and date-bounded.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fdsouvenir/google-health-local-archive) <br>
-- [Publisher profile](https://clawhub.ai/user/fdsouvenir) <br>
-- [ghcli project](https://github.com/fdsouvenir/ghcli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and summarized local JSON query results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only ghcli queries should be date-bounded; setup, login, sync, and export commands are proposed or run only after explicit user request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence; artifact frontmatter reports 1.0.4) <br>
+Risk: The skill can expose sensitive local health and Fitbit archive data when queried.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this access is intended, keep queries date-bounded, and avoid broad archive dumps.
+
+Risk: Setup, login, sync, and export actions have broader effects than read-only archive queries.
+
+Mitigation: Run only read-only ghcli diagnostics and queries by default, and require an explicit user request before setup, login, sync, or export.
+
+Risk: Health archive contents may be stale or incomplete.
+
+Mitigation: Mention data freshness when it affects an answer and ask the user before running any sync action.
+
+## Reference(s):
+
+- [Google Health Local Archive on ClawHub](https://clawhub.ai/fdsouvenir/skills/google-health-local-archive)
+- [ghcli GitHub repository](https://github.com/fdsouvenir/ghcli)
+- [ghcli Go install module](https://github.com/fdsouvenir/ghcli/tree/v1.0.4)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON-oriented command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are scoped to local ghcli archive queries and should use --json --read-only unless the user explicitly asks for setup, login, sync, or export.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

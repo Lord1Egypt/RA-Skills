@@ -1,6 +1,6 @@
-﻿{
-  "name": "aitablet",
-  "version": "1.0.8",
+{
+  "name": "aispeech_ainote",
+  "version": "1.2.0",
   "description": "OpenClaw skill for 思必驰办公产品skill: note/todo/database/knowledge/hotword APIs",
   "license": "MIT-0",
   "homepage": "https://aiworks.cn",

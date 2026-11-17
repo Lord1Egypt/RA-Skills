@@ -1,42 +1,57 @@
-## Description: <br>
-Designs autonomous agent loops for repeatable tasks using triggers, agent actions, approval gates, output routing, memory, and ready-to-use loop templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users design autonomous yes/no agent loops with triggers, approval gates, output routing, memory choices, templates, and deployment checklists.
 
-## Publisher: <br>
-[flynndavid](https://clawhub.ai/user/flynndavid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[flynndavid](https://clawhub.ai/user/flynndavid)
 
-## Use Case: <br>
-Founders, developers, and operations teams use this skill to convert repeated manual workflows into agent loops with clear triggers, approval models, destinations, and memory rules. It is suited for planning automations such as standup digests, lead qualification, pull request reminders, revenue snapshots, and content queue capture. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Loops may send external messages, write records, or make irreversible changes without sufficient review. <br>
-Mitigation: Require human approval for external messages, confidential data, account or business-record changes, and irreversible actions. <br>
-Risk: Loop designs may route sensitive data to Slack, Notion, email, webhooks, or other destinations. <br>
-Mitigation: Review each loop's data sensitivity, write access, and output destination before installation or deployment. <br>
-Risk: Silent discard rules can hide submissions that contributors expect to be reviewed. <br>
-Mitigation: Replace silent discard behavior with a visible review queue or audit trail when submitters expect consideration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flynndavid/agentic-loop-designer) <br>
-- [Publisher profile](https://clawhub.ai/user/flynndavid) <br>
+## Use Case:
 
+Founders, operators, and developers use this skill to turn repeatable workflows such as standup digests, lead qualification, PR reminders, revenue snapshots, and content intake into agent loop designs with clear trigger, approval, output, and memory decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with configuration blocks, decision trees, scoring matrices, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces loop designs and deployment guidance; it does not execute automations directly.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Templates may encourage automatic sharing or writing of internal, personal, revenue, or private engineering data.
+
+Mitigation: Require human approval before any loop sends or writes outputs containing personnel, customer, revenue, or private engineering data.
+
+Risk: Loops may target the wrong Slack channels, Notion databases, recipients, or connected accounts if configuration is not scoped carefully.
+
+Mitigation: Verify destinations and connected accounts before deployment and use least-privilege credentials for each integration.
+
+Risk: Loop memory may retain data beyond what the workflow actually needs.
+
+Mitigation: Define exactly what memory may store, how long it persists, and when it is deleted before enabling recurring runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flynndavid/skills/agentic-loop-designer)
+- [Publisher profile](https://clawhub.ai/user/flynndavid)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown with loop templates, decision trees, scoring matrices, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Slack, Notion, GitHub, Linear, Stripe, and webhook setup guidance depending on the selected loop.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

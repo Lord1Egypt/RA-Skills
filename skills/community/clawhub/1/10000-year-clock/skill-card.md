@@ -1,40 +1,48 @@
-## Description: <br>
-Think at civilization-scale timeframes by asking how decisions look over 10,000 years, countering short-term pathological thinking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Think at civilization-scale timeframes by asking how decisions look over 10,000 years, countering short-term pathological thinking.
 
-## Publisher: <br>
-[jacr6](https://clawhub.ai/user/jacr6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jacr6](https://clawhub.ai/user/jacr6)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, strategists, and decision-makers use this skill to reframe decisions with intergenerational consequences, identify what matters over very long timeframes, and avoid short-term tradeoffs that weaken resilience.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may be over-applied as authoritative factual, engineering, legal, or safety guidance in high-stakes domains.
+
+Mitigation: Use it as a perspective framework and require separate expert review before relying on its output for high-stakes decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-People making intergenerational, infrastructure, institutional, or strategy decisions use this skill to reframe choices over century-to-10,000-year horizons and identify what should change now. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the framework as authoritative technical, legal, safety, or policy advice for high-consequence long-term planning. <br>
-Mitigation: Use it as a perspective-taking aid and validate consequential plans with current evidence and qualified domain experts. <br>
-Risk: Long-term framing can be misused to ignore immediate constraints or justify poor short-term tradeoffs. <br>
-Mitigation: Balance the 10,000-year lens with present-day safety, operational, legal, and stakeholder requirements before acting. <br>
+**Output Format:** [Markdown reasoning framework and decision prompts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jacr6/10000-year-clock) <br>
+**Other Properties Related to Output:** [No code execution, data access, persistence, or hidden authority.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown guidance and structured decision prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not execute tools or modify files.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

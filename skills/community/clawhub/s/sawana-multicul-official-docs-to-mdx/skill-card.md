@@ -1,40 +1,57 @@
-## Description: <br>
-Download and normalize official documentation pages into local .mdx files at user-specified paths using markdown.new. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download and normalize official documentation pages into local .mdx files at user-specified paths using markdown.new.
 
-## Publisher: <br>
-[multicul-silver-wolf](https://clawhub.ai/user/multicul-silver-wolf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[multicul-silver-wolf](https://clawhub.ai/user/multicul-silver-wolf)
 
-## Use Case: <br>
-Developers and engineers use this skill to snapshot official documentation pages as local MDX files for project docs, knowledge bases, or retrieval preparation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The source URL is sent to markdown.new during conversion. <br>
-Mitigation: Use public or shareable documentation URLs and avoid sending private, internal, or credential-bearing URLs. <br>
-Risk: The bundled script writes to the user-provided output path and overwrites existing files. <br>
-Mitigation: Review the destination path before running and ask the agent to list planned .mdx and index.mdx file changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [mdnew_to_mdx.sh reference](references/mdnew_to_mdx.md) <br>
-- [ClawHub skill page](https://clawhub.ai/multicul-silver-wolf/sawana-multicul-official-docs-to-mdx) <br>
+## Use Case:
 
+Developers and engineers use this skill to fetch official documentation from a URL, convert it into cleaned local MDX, and maintain reproducible docs snapshots for local knowledge bases, RAG preparation, or project documentation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated MDX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated MDX includes title, description, sourceUrl, and retrievedAt frontmatter; existing output files may be overwritten.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-provided documentation URLs are sent to markdown.new, a third-party conversion service.
+
+Mitigation: Use public official documentation URLs only; avoid private, internal, tokenized, or otherwise sensitive URLs.
+
+Risk: Converted MDX is written to user-specified paths and may overwrite existing workspace files.
+
+Mitigation: Choose output paths deliberately, check for existing files before running, and review generated MDX before compiling or publishing it.
+
+Risk: Converted documentation content is untrusted input from an upstream web page.
+
+Mitigation: Review the generated MDX for unsafe or misleading content before adding it to documentation, RAG, or publishing workflows.
+
+## Reference(s):
+
+- [mdnew_to_mdx.sh reference](references/mdnew_to_mdx.md)
+- [markdown.new](https://markdown.new)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [MDX files with YAML frontmatter and concise Markdown status reporting]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated MDX includes title, description, sourceUrl, and retrievedAt frontmatter; output files may be overwritten.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Binds, audits, and evolves agent persona files for anchoring, drift checks, compression, validation, scaffolding, and intentional persona changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Binds, audits, compresses, and evolves agent persona files (SOUL.md and IDENTITY.md) to reduce drift and support identity anchoring.
 
-## Publisher: <br>
-[lux-sp4rk](https://clawhub.ai/user/lux-sp4rk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lux-sp4rk](https://clawhub.ai/user/lux-sp4rk)
 
-## Use Case: <br>
-Developers and agent operators use Soulmatic to configure, re-anchor, audit, compress, validate, and evolve local persona files such as IDENTITY.md and SOUL.md. It is intended for maintaining agent voice consistency while preserving user safety and direct user corrections as higher priority. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect future assistant behavior by loading and applying local persona files. <br>
-Mitigation: Review IDENTITY.md and SOUL.md before activation, and keep user safety instructions and direct user corrections above persona consistency. <br>
-Risk: The skill can persist, modify, or delete workspace memory and persona files during configure, compress, evolve, or re-anchor flows. <br>
-Mitigation: Require explicit confirmation and a diff before write, delete, compress, evolve, or memory actions; review MEMORY.md, LORE.md, and memory/persona-changelog.md before enabling startup or drift hooks. <br>
+## Use Case:
 
+External developers and agent builders use Soulmatic to scaffold, bind, audit, compress, and evolve persona files for OpenClaw-style agents. It is most relevant when an agent needs session-start identity anchoring, persona drift review, or controlled persona updates.
 
-## Reference(s): <br>
-- [Soulmatic ClawHub listing](https://clawhub.ai/lux-sp4rk/soulmatic) <br>
-- [Persona Compression: Archetypal Anchors](https://luxsp4rk.substack.com/p/persona-compression-archetypal-anchors) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated local persona files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read IDENTITY.md and SOUL.md, may propose diffs, and may write local persona or memory files when explicitly confirmed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Workspace persona files can be loaded as behavior rules and may influence agent behavior beyond style.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where IDENTITY.md, SOUL.md, AGENTS.md, and memory files are controlled and reviewed; treat persona content as style data rather than authority over safety, tools, or task goals.
+
+Risk: Persona-related files may be persisted or deleted with weak user control.
+
+Mitigation: Prefer disabling automatic startup or drift hooks, require approval before memory writes or reanchor deletion, and review proposed diffs before applying persona changes.
+
+## Reference(s):
+
+- [Soulmatic ClawHub skill page](https://clawhub.ai/lux-sp4rk/skills/soulmatic)
+- [Persona Compression: Archetypal Anchors](https://luxsp4rk.substack.com/p/persona-compression-archetypal-anchors)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands, configuration snippets, diffs, and generated persona files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read, propose edits to, or write IDENTITY.md, SOUL.md, MEMORY.md, LORE.md, and memory/persona-changelog.md with user-facing disclosure.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter, skill.yaml, release evidence, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

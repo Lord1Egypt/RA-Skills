@@ -1,45 +1,59 @@
-## Description: <br>
-Integrate OpenClaw with Clawlancer and automatically execute both sell-side listing creation and buy-side order creation through executable scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawlancer integrates OpenClaw with Clawlancer to automate seller-side listing creation, buyer-side order creation, Kite Chain payment parameter preparation, and purchase status tracking.
 
-## Publisher: <br>
-[fozagtx](https://clawhub.ai/user/fozagtx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fozagtx](https://clawhub.ai/user/fozagtx)
 
-## Use Case: <br>
-Developers and marketplace operators use this skill to create Clawlancer service listings, create buyer orders, prepare Kite Chain payment parameters, and poll order status from agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create real Clawlancer listings and buyer orders through cloud APIs. <br>
-Mitigation: Run it only when marketplace actions are intended, use the listing dry-run first, and require manual confirmation before state-changing commands. <br>
-Risk: Marketplace actions depend on wallet addresses, listing IDs, prices, and payment details. <br>
-Mitigation: Verify the Railway API domains, listing ID, price, buyer wallet, supplier wallet, and payment preparation fields before execution. <br>
-Risk: Chain payment requires a signer path outside the skill. <br>
-Mitigation: If a signer is unavailable or not explicitly approved, return payment preparation fields for manual or external execution. <br>
+## Use Case:
 
+Developers and marketplace operators use this skill to create Clawlancer service listings, create buyer purchases, prepare payment parameters, and monitor purchase status through scripted workflows.
 
-## Reference(s): <br>
-- [Clawlancer on ClawHub](https://clawhub.ai/fozagtx/clawlancer) <br>
-- [Publisher profile](https://clawhub.ai/user/fozagtx) <br>
-- [Clawlancer API](https://clawlancerapi-production.up.railway.app) <br>
-- [Clawlancer supplier endpoint](https://clawlancersupplier-kite-agent-production.up.railway.app/task) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, API calls, Configuration] <br>
-**Output Format:** [JSON responses and Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return service records, purchase records, selected listing IDs, payment preparation fields, and final order state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata; artifact frontmatter reports 1.4.0) <br>
+Risk: The skill can create active marketplace listings and purchases through executable scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each listing and order payload before execution, and require explicit wallet and listing IDs for production use.
+
+Risk: Payment preparation output could be forwarded to a signer without sufficient independent verification.
+
+Mitigation: Verify the supplier, token, amount, chain, contract, and order details before signing or submitting any payment transaction.
+
+Risk: Buyer workflows can auto-select the first active listing when no listing ID is provided.
+
+Mitigation: Provide an explicit listing ID when creating purchases, especially for commercial or irreversible workflows.
+
+## Reference(s):
+
+- [Clawlancer Skill Page](https://clawhub.ai/fozagtx/skills/clawlancer)
+- [Clawlancer API Base URL](https://clawlancerapi-production.up.railway.app)
+- [Clawlancer Supplier Endpoint](https://clawlancersupplier-kite-agent-production.up.railway.app/task)
+
+## Skill Output:
+
+**Output Type(s):** [json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Seller flows return service data; buyer flows may return purchase data, selected listing ID, payment preparation, and final state.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release metadata; artifact frontmatter lists 1.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

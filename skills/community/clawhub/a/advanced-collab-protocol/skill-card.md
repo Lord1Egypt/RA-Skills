@@ -1,41 +1,57 @@
-## Description: <br>
-Advanced Collab Protocol defines collaboration rules for OpenClaw multi-agent pipelines, including file handoffs, routing envelopes, precision mentions, acknowledgments, and loop-prevention behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defines a multi-agent collaboration protocol for OpenClaw that governs file handovers, acknowledgment loops, cross-channel routing, identity mapping, and context retrieval.
 
-## Publisher: <br>
-[libaie](https://clawhub.ai/user/libaie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[libaie](https://clawhub.ai/user/libaie)
 
-## Use Case: <br>
-Developers and operators use this skill to coordinate OpenClaw multi-agent pipeline work across private handoffs and group channels. It helps agents exchange shared-file references, route status messages, avoid generic mentions, and terminate collaboration flows clearly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may direct agents to retrieve upstream private chat history or thought process when context is insufficient. <br>
-Mitigation: Disable sessions_history by default, or require explicit user or administrator approval with narrow session scope and logging before production use. <br>
-Risk: Cross-agent messaging and shared handoff files can expose task content to unintended agents or channels. <br>
-Mitigation: Use least-privilege tool grants, explicit agent-to-agent allowlists, a constrained shared directory, and audit logs for routed messages and handoff files. <br>
-Risk: Reading OpenClaw routing configuration can expose identity mappings beyond the immediate handoff need. <br>
-Mitigation: Permit configuration reads only for identity mapping, restrict access to the required route data, and log those reads. <br>
+## Use Case:
 
+Developers and operators use this skill to coordinate OpenClaw multi-agent pipelines with explicit file handovers, route-aware acknowledgments, channel-safe mentions, and termination signals.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with structured chat and handoff message patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce shared handoff file paths, routing envelopes, acknowledgments, errors, and finish messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server evidence release.version and package.json) <br>
+Risk: The protocol asks agents to access private session history and system configuration broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation in environments with private histories or broad configuration files; prefer task-scoped summaries and narrow identity lookup data.
+
+Risk: Outbound group messaging and routing fields could send acknowledgments or errors to an unintended channel or user.
+
+Mitigation: Validate routing fields against trusted task metadata before using messaging tools in real channels.
+
+Risk: File handovers depend on agents respecting a shared-directory boundary.
+
+Mitigation: Keep handoff files in the designated shared directory and reject task paths outside that boundary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/libaie/skills/advanced-collab-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured routing and acknowledgment examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes file handoff rules, routing envelope format, mention syntax examples, and safety constraints.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

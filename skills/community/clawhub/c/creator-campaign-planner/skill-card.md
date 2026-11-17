@@ -1,46 +1,58 @@
-## Description: <br>
-Plans KOL/KOC creator collaboration schedules, content reuse, follow-up cadence, and goal mapping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans KOL/KOC collaboration cadence, material reuse, follow-up timing, and goal mapping for creator and influencer campaign workflows.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Marketing, growth, and creator operations teams use this skill to draft reviewable creator campaign plans from audience, budget, channel, and timing inputs. It helps structure collaboration goals, creator tiers, content cadence, asset reuse, risk controls, review items, and recap metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local helper reads user-selected files or directories, which may include sensitive campaign, creator, or personal data. <br>
-Mitigation: Use scoped input files, avoid broad directories, and redact sensitive material before processing. <br>
-Risk: Generated campaign plans may be incomplete, inaccurate, or unsuitable for a specific platform, jurisdiction, or brand policy. <br>
-Mitigation: Treat outputs as review drafts and verify claims, compliance requirements, creator fit, and publication decisions before external use. <br>
-Risk: The skill can optionally write a report file when an output path is supplied. <br>
-Mitigation: Choose an explicit output location and review generated files before sharing, publishing, or using them operationally. <br>
+## Use Case:
 
+External marketing, growth, and creator operations teams use this skill to turn audience, budget, channel, and timing inputs into reviewable creator-campaign plans with goals, creator tiers, content cadence, material reuse, risk controls, and review metrics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/creator-campaign-planner) <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
-- [Campaign Planning Spec](resources/spec.json) <br>
-- [Output Template](resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON campaign-planning brief, with optional shell command guidance for local execution.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local input files or directories; may write a report file when an output path is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: User-provided files may contain sensitive or unrelated information that could be summarized into the report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Point the skill only at intended campaign-planning inputs and redact personal or sensitive material before use.
+
+Risk: Campaign drafts could be mistaken for guaranteed performance outcomes or compliant launch instructions.
+
+Mitigation: Keep outputs as reviewable drafts, avoid promises of advertising results, and review proposed plans for platform, legal, and brand compliance before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/creator-campaign-planner)
+- [Skill README](artifact/README.md)
+- [Structured planning specification](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+- [Example input](artifact/examples/example-input.md)
+- [Example output](artifact/examples/example-output.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Structured Markdown draft, with optional JSON or Markdown report output from the bundled local script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local user-provided input; can write an optional report file; supports dry-run review.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

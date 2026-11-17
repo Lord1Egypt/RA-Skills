@@ -1,38 +1,52 @@
-## Description: <br>
-Download an entire website as local files in markdown, screenshots, or multiple formats per page by combining Firecrawl site mapping and scraping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download an entire website as local files, including markdown, screenshots, or multiple formats per page, by combining site mapping and scraping into organized local directories.
 
-## Publisher: <br>
-[eohmig](https://clawhub.ai/user/eohmig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[eohmig](https://clawhub.ai/user/eohmig)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to save websites or documentation sections as organized local files for offline reference, bulk content extraction, or review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can run an unpinned npm-resolved Firecrawl CLI.
+
+Mitigation: Use it only when the Firecrawl package source is trusted, and review the command before execution.
+
+Risk: Bulk downloads can write many files to disk while skipping confirmation.
+
+Mitigation: Set explicit target domains, include or exclude paths, and page limits before running automated downloads.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and technical users use this skill to save websites, documentation, or selected site sections as organized local files for offline access or reference. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Files, Markdown, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Mapping or downloading a large website can consume bandwidth and create many local files. <br>
-Mitigation: Use page limits and include or exclude path filters before running downloads, and avoid private or restricted sites unless authorized. <br>
+**Output Format:** [Markdown guidance with Firecrawl CLI command examples and local file outputs]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eohmig/firecrawl-download) <br>
+**Other Properties Related to Output:** [Produces nested local directories under .firecrawl/ and may include markdown, links, screenshots, or multiple files per page.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with Firecrawl shell commands and local output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create nested directories under .firecrawl/ containing page content, links, and screenshots depending on selected formats.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

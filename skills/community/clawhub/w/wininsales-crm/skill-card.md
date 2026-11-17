@@ -1,39 +1,59 @@
-## Description: <br>
-Helps agents support WininSales CRM sales operations, including customer search, duplicate checks, ownership lookup, customer creation, follow-up records, assignment, sharing, public-pool recovery, leads, opportunities, contracts, payments, expiry reminders, inactive-customer lists, product lookup, employee lookup, performance analysis, and daily reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when users need WininSales CRM sales operations, including customer search, duplicate checks, ownership lookup, customer creation, follow-up records, assignment, sharing, lead and opportunity management, contracts, payments, expiry reminders, inactive-customer lists, product lookup, employee lookup, performance analysis, or daily reports.
 
-## Publisher: <br>
-[hijasongithub](https://clawhub.ai/user/hijasongithub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hijasongithub](https://clawhub.ai/user/hijasongithub)
 
-## Use Case: <br>
-Sales representatives, sales managers, and CRM operations staff use this skill to query and update WininSales CRM records, manage customers and leads, review contracts and payments, analyze performance, and draft daily reports. It is intended for CRM workflows performed under the user's own CRM authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and update CRM records using the user's CRM authorization. <br>
-Mitigation: Install only when the agent should operate WininSales CRM with the current account's permissions, and confirm every write action before submission. <br>
-Risk: CRM workflows may involve sensitive customer data, record IDs, employee assignments, or credentials. <br>
-Mitigation: Review customer names, employee targets, and record IDs carefully, and avoid storing long-lived tokens or sensitive customer data in reusable files. <br>
+## Use Case:
 
+Sales representatives, sales managers, and CRM operations staff use this skill to query and update WininSales CRM records, manage leads and opportunities, review contracts and payments, identify renewal or inactivity risks, and draft daily sales reports.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with structured summaries, confirmation prompts, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CRM record summaries, risk notices, next-step recommendations, and write-action confirmation requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: The skill can read and change sensitive CRM records under the user's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted WininSales CRM endpoints, keep CRM permissions scoped to the user, and require explicit confirmation before each write action.
+
+Risk: Examples use token-in-URL and shared temporary-file patterns.
+
+Mitigation: Pass tokens through protected secrets or authorization headers and use unique protected temporary files when shell examples are adapted.
+
+Risk: CRM outputs may contain customer contact details, contract information, or other sensitive sales data.
+
+Mitigation: Limit operations to clearly identified CRM records and mask sensitive contact fields in displayed results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hijasongithub/skills/wininsales-crm)
+- [WininSales CRM login](https://www.wininsales.com/login)
+- [WininSales MCP API endpoint](https://www.wininsales.com/mcp_api/mcp?token=)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with CRM summaries, confirmation prompts, daily-report prose, and inline shell/API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Displayed CRM results should mask sensitive contact fields; write actions require explicit user confirmation before submission.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

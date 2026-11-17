@@ -1,44 +1,64 @@
-## Description: <br>
-QMD Memory enables local hybrid memory search and embedding for OpenClaw workspaces using QMD, local models, and optional shared MCP access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables OpenClaw agents to use local QMD hybrid memory search, embeddings, and re-ranking to reduce API-based memory search costs.
 
-## Publisher: <br>
-[asabovetech](https://clawhub.ai/user/asabovetech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[asabovetech](https://clawhub.ai/user/asabovetech)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure local memory search, refresh indexes and embeddings, estimate API cost savings, and optionally run a shared QMD MCP server for multiple agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local indexing can include sensitive markdown files from an OpenClaw workspace. <br>
-Mitigation: Keep secrets out of indexed folders and review the configured QMD collections before relying on search results. <br>
-Risk: Setup performs a global npm install and downloads roughly 2GB of local model files. <br>
-Mitigation: Review setup.sh first, run it as a normal user rather than root, and confirm disk and network expectations before installation. <br>
-Risk: The optional MCP server shares local memory over a localhost service. <br>
-Mitigation: Start the server only when shared agent access is intended and confirm how to stop or remove it before enabling ongoing use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up local memory search over workspace files, refresh indexes and embeddings, estimate savings, and optionally run QMD as a shared MCP server.
 
-## Reference(s): <br>
-- [QMD Memory on ClawHub](https://clawhub.ai/asabovetech/qmd-memory) <br>
-- [QMD project](https://github.com/tobi/qmd) <br>
-- [As Above Technologies](https://asabove.tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May configure local QMD collections, refresh local indexes, start an optional local MCP server, and report estimated savings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release version and artifact skill.json) <br>
+Risk: Setup installs mutable third-party QMD code globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run setup only as a normal user, avoid sudo, and review the QMD package and install command before executing setup.
+
+Risk: The skill indexes local OpenClaw workspace data into QMD collections.
+
+Mitigation: Confirm the workspace path and collection scope before setup, and remove or exclude sensitive files from indexed locations.
+
+Risk: The skill may download about 2GB of local models during embedding.
+
+Mitigation: Confirm disk, bandwidth, and model-source expectations before running the initial embedding step.
+
+Risk: The optional QMD MCP server can run as a daemon on localhost.
+
+Mitigation: Start the server only when multi-agent sharing is needed, inspect daemon status, and stop it when shared memory access is no longer required.
+
+## Reference(s):
+
+- [QMD Memory on ClawHub](https://clawhub.ai/asabovetech/skills/qmd-memory)
+- [As Above Technologies ClawHub Profile](https://clawhub.ai/user/asabovetech)
+- [QMD Project](https://github.com/tobi/qmd)
+- [QMD Memory Skill Issues](https://github.com/asabove/qmd-memory-skill/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can install QMD globally, create local collections, index workspace files, generate embeddings, refresh indexes, estimate API cost savings, and start a local MCP server.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact skill.json, artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

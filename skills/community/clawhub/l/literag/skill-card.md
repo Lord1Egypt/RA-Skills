@@ -1,44 +1,62 @@
-## Description: <br>
-LiteRAG lets agents index, search, inspect, and benchmark large external documentation corpora using independent SQLite knowledge libraries with keyword and vector hybrid retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local retrieval skill for large documentation corpora using independent SQLite knowledge libraries with keyword plus vector hybrid search.
 
-## Publisher: <br>
-[mozi1924](https://clawhub.ai/user/mozi1924) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mozi1924](https://clawhub.ai/user/mozi1924)
 
-## Use Case: <br>
-Developers and agents use LiteRAG to keep large external documentation corpora out of main agent memory while still retrieving, inspecting, indexing, checking status, and benchmarking retrieval quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vector retrieval can send indexed document chunks and search queries to the configured embedding endpoint. <br>
-Mitigation: Inspect .literag/knowledge-libs.json before use and set embedding.baseUrl only to a trusted local or remote endpoint. <br>
-Risk: Configured library paths may index more files than intended. <br>
-Mitigation: Review each library path and exclude rule before indexing so LiteRAG only processes the intended documentation corpus. <br>
+## Use Case:
 
+Developers and agents use LiteRAG to index, search, inspect, benchmark, and tune retrieval over large external documentation corpora without placing those corpora in main agent memory.
 
-## Reference(s): <br>
-- [ClawHub LiteRAG release](https://clawhub.ai/mozi1924/literag) <br>
-- [LiteRAG usage](references/usage.md) <br>
-- [LiteRAG configuration reference](references/configuration.md) <br>
-- [LiteRAG optimization playbook](references/optimization-playbook.md) <br>
-- [LiteRAG agent prompt templates](references/agent-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON payloads from CLI tools] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and inspect commands operate against configured SQLite knowledge libraries under workspace .literag paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: frontmatter, skill manifest, server release metadata) <br>
+Risk: Workspace configuration can cause LiteRAG to read broad local paths, including content that should not be indexed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review .literag/knowledge-libs.json before indexing, restrict source paths to intended documentation, and use excludes for sensitive or irrelevant files.
+
+Risk: A configured remote OpenAI-compatible embedding endpoint may receive document text, queries, and bearer tokens.
+
+Mitigation: Use a trusted local embedding endpoint by default, or explicitly approve the remote endpoint and credentials before indexing or searching.
+
+Risk: The sqlite-vec dependency affects vector search behavior and production risk.
+
+Mitigation: Pin or review sqlite-vec before production use and verify the selected Python and SQLite runtime support the expected vector backend.
+
+## Reference(s):
+
+- [LiteRAG ClawHub Release](https://clawhub.ai/mozi1924/skills/literag)
+- [LiteRAG Homepage](https://github.com/little-jax/literag)
+- [Usage Guide](references/usage.md)
+- [Configuration Reference](references/configuration.md)
+- [Agent Prompt Templates](references/agent-prompts.md)
+- [Optimization Playbook](references/optimization-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON result payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and inspect commands can emit literag.search.v2 and literag.inspect.v1 payloads; indexes and metadata are stored in workspace-local SQLite libraries.]
+
+## Skill Version(s):
+
+0.2.2 (source: frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -327,7 +327,7 @@ delivered server-side, so no agent runs and it works 24/7.
 
 ```bash
 relay forward --type public --bucket to-slack \
-  https://hooks.slack.com/services/T000/B000/XXXX
+  REDACTED-SECRET
 ```
 
 The CLI configures it and exits. Pair with a function to reshape the payload.

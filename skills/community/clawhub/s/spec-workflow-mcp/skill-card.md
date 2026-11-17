@@ -1,40 +1,53 @@
-## Description: <br>
-Serve spec-driven dev tools via MCP for AI-assisted workflows. Use when adding tasks, planning iterations, tracking completion, reviewing quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Serves spec-driven development workflow tools via MCP for adding tasks, planning iterations, tracking completion, and reviewing quality.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage spec-driven development workflows from an agent-assisted command line, including task capture, sprint planning, progress tracking, review notes, reminders, prioritization, timelines, reports, weekly reviews, search, status checks, and exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow notes are stored as plaintext local files and may contain sensitive project details if users enter them. <br>
-Mitigation: Do not enter passwords, API keys, customer data, or confidential plans; periodically review or delete ~/.local/share/spec-workflow-mcp when the history is no longer needed. <br>
-Risk: The bundled shell script creates and updates files in the configured data directory. <br>
-Mitigation: Review the script and DATA_DIR setting before execution, and run it only in an environment where local workflow logging is acceptable. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to record spec tasks, sprint plans, progress updates, review notes, reminders, priorities, and weekly retrospectives in local text logs from the command line.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/spec-workflow-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Plain text and Markdown guidance with shell command examples; the bundled script can write plaintext logs and export JSON, CSV, or TXT files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores workflow notes as plaintext under ~/.local/share/spec-workflow-mcp by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Workflow notes are stored as plaintext under the user's home directory and may contain sensitive project data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enter passwords, tokens, confidential customer data, regulated information, or other sensitive material into logged entries.
+
+Risk: CSV exports can carry unsafe spreadsheet content if entries include formulas or command-like values.
+
+Mitigation: Review exported CSV files before opening them in spreadsheet software, and sanitize values that begin with formula-triggering characters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/spec-workflow-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text command output and markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores workflow entries as local plaintext logs and can export collected entries as json, csv, or txt.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

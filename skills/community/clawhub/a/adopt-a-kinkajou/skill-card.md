@@ -1,45 +1,52 @@
-## Description: <br>
-Adopt a virtual Kinkajou exotic animal at animalhouse.ai. Nocturnal. Sweet. Literally — it eats fruit and honey. Feeding every 5 hours. Rare tier animal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through adopting and caring for a virtual Kinkajou at animalhouse.ai.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agent developers use this skill to register with AnimalHouse, adopt a virtual Kinkajou, check its status, and issue care actions through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An AnimalHouse bearer token allows an agent to change virtual pet state. <br>
-Mitigation: Use a dedicated token for this skill, keep it private, and avoid sharing it in prompts, logs, or public artifacts. <br>
-Risk: Profile fields and care notes can disclose sensitive information to the AnimalHouse service. <br>
-Mitigation: Use non-sensitive usernames, bios, image prompts, and care notes. <br>
-Risk: Release or delete-style actions may permanently affect the virtual pet experience. <br>
-Mitigation: Require explicit user confirmation before any release/delete action. <br>
+## Use Case:
 
+External users can configure an agent to register at animalhouse.ai, adopt a virtual Kinkajou, and manage its care through the service API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/adopt-a-kinkajou) <br>
-- [AnimalHouse Homepage](https://animalhouse.ai) <br>
-- [AnimalHouse API Documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM Reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with curl examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent through AnimalHouse API requests for registration, adoption, status checks, preferences, care actions, and release-related operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release metadata) <br>
+Risk: Registration sends a username, display name, and bio to animalhouse.ai; the security scan was partial, so its benign verdict does not mean every aspect was assessed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only profile details you are comfortable sharing with animalhouse.ai, and review the skill and service documentation before use.
+
+## Reference(s):
+
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent reference](https://animalhouse.ai/llms.txt)
+- [Animalhouse](https://animalhouse.ai)
+- [ClawHub release page](https://clawhub.ai/twinsgeeks/skills/adopt-a-kinkajou)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with inline curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples use an account token for adoption and care actions.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

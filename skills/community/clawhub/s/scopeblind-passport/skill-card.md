@@ -1,49 +1,62 @@
-## Description: <br>
-Signed access control for OpenClaw agents that wraps MCP tool calls through protect-mcp to add per-tool policies, signed receipts, trust tiers, and local activity digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ScopeBlind Passport wraps OpenClaw MCP tool calls through protect-mcp to add per-tool policies, signed receipts, trust tiers, and local activity reporting.
 
-## Publisher: <br>
-[tomjwxf](https://clawhub.ai/user/tomjwxf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomjwxf](https://clawhub.ai/user/tomjwxf)
 
-## Use Case: <br>
-Developers and agent operators use this skill to wrap OpenClaw MCP servers with local access-control policies, signed receipts, and audit summaries. It supports compliance-oriented review of agent actions and optional enforcement policies for higher-risk tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local signing keys, gateway configuration, and receipt logs may expose sensitive agent activity or integrity material if synced or committed. <br>
-Mitigation: Protect keys/gateway.json, protect-mcp configuration, and receipt files from source control and cloud sync as recommended by the security guidance. <br>
-Risk: Unpinned npm package installation can change the behavior of the local MCP gateway or verifier over time. <br>
-Mitigation: Pin or verify the protect-mcp, @scopeblind/passport, and verifier packages before serious use. <br>
-Risk: Shadow mode records activity but does not block risky tool calls. <br>
-Mitigation: Enable enforce mode with a narrow policy when blocking or approvals are required. <br>
-Risk: Passport, digest, and receipt outputs can disclose local tool-use history. <br>
-Mitigation: Use explicit user requests before showing passport, digest, or receipt data. <br>
+## Use Case:
 
+Developers and agent operators use this skill to wrap OpenClaw MCP servers so tool calls are logged, policy-checked, rate-limited, and recorded with independently verifiable receipts. It is suited for audit, compliance, approval, and daily activity review workflows around agent tool use.
 
-## Reference(s): <br>
-- [ScopeBlind Passport on ClawHub](https://clawhub.ai/tomjwxf/scopeblind-passport) <br>
-- [protect-mcp on npm](https://www.npmjs.com/package/protect-mcp) <br>
-- [@veritasacta/verify on npm](https://www.npmjs.com/package/@veritasacta/verify) <br>
-- [ScopeBlind documentation](https://www.scopeblind.com/docs) <br>
-- [ScopeBlind receipt verifier](https://www.scopeblind.com/verify) <br>
-- [protect-mcp GitHub project](https://github.com/scopeblind/protect-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local receipt, digest, policy, approval, and signing-key files created by protect-mcp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.1 (source: server release metadata) <br>
+Risk: Mutable npm execution and unpinned package references can change the code executed during installation or runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and lock protect-mcp and @scopeblind/passport package versions before deployment.
+
+Risk: Some policy packs allow unknown tools by default, which may leave sensitive MCP servers exposed if tool names are not explicitly covered.
+
+Mitigation: Review the generated MCP configuration, verify every exposed tool name is covered, and use strict or default-deny policies for sensitive servers.
+
+Risk: Session-scoped approvals can allow trusted tools for longer than a single request.
+
+Mitigation: Prefer one-time approvals for sensitive actions and reserve 24-hour approvals for tools that are intentionally trusted.
+
+## Reference(s):
+
+- [ScopeBlind Passport on ClawHub](https://clawhub.ai/tomjwxf/skills/scopeblind-passport)
+- [protect-mcp on npm](https://www.npmjs.com/package/protect-mcp)
+- [@veritasacta/verify on npm](https://www.npmjs.com/package/@veritasacta/verify)
+- [ScopeBlind documentation](https://www.scopeblind.com/docs)
+- [ScopeBlind receipt verifier](https://www.scopeblind.com/verify)
+- [protect-mcp GitHub project](https://github.com/scopeblind/protect-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces MCP wrapping instructions, policy pack selection guidance, approval flow commands, and receipt status or digest commands.]
+
+## Skill Version(s):
+
+0.4.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

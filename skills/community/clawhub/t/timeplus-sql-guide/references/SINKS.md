@@ -149,7 +149,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS s3_archive
 SETTINGS
     type       = 's3',
     url        = 's3://my-bucket/timeplus/events/',
-    aws_access_key_id     = 'AKIAIOSFODNN7EXAMPLE',
+    aws_access_key_id     = 'REDACTED-SECRET',
     aws_secret_access_key = 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
     format     = 'Parquet';
 ```
@@ -164,7 +164,7 @@ For HTTP webhooks, use a remote UDF as the push mechanism:
 -- Create a remote function that POSTs to your webhook
 CREATE REMOTE FUNCTION send_alert(payload string)
 RETURNS string
-URL 'https://hooks.slack.com/services/xxx/yyy/zzz'
+URL 'REDACTED-SECRET'
 AUTH_METHOD 'none';
 
 -- Call in a streaming query or view
@@ -235,7 +235,7 @@ curl -X POST "http://${TIMEPLUS_HOST}:8000/api/v1beta2/sinks" \
     "type": "slack",
     "query": "SELECT * FROM alerts WHERE severity = '"'"'critical'"'"'",
     "properties": {
-      "url": "https://hooks.slack.com/services/xxx/yyy/zzz"
+      "url": "REDACTED-SECRET"
     }
   }'
 ```

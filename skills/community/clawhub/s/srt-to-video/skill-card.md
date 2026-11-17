@@ -1,41 +1,54 @@
-## Description: <br>
-Convert SRT subtitle files into Remotion typing-animation videos with character-by-character text reveal and cinematic animated backgrounds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert SRT subtitle files into Remotion typing-animation videos with character-by-character text reveal and cinematic animated backgrounds.
 
-## Publisher: <br>
-[0x00000003](https://clawhub.ai/user/0x00000003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0x00000003](https://clawhub.ai/user/0x00000003)
 
-## Use Case: <br>
-Developers and video creators use this skill to turn standard SRT subtitle files into local Remotion projects with timed typewriter captions and animated backgrounds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing and rendering the generated Remotion project may require npm network access and executes local project scripts. <br>
-Mitigation: Review generated files first, then run npm install and render commands in a normal project directory or sandbox appropriate for the user's environment. <br>
-Risk: The artifact templates may not include every Remotion entry or composition file needed for a runnable project. <br>
-Mitigation: Confirm the generated project contains the required entry, composition, package, and TypeScript files before previewing or rendering. <br>
+## Use Case:
 
+Developers and video creators use this skill to convert standard SRT subtitle files into a Remotion React project that renders timed typewriter-style subtitle videos with animated backgrounds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0x00000003/srt-to-video) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/0x00000003) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with TypeScript/React project files and npm command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local Remotion project structure intended for preview and rendering after dependency installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The template installs Remotion packages with confirmed critical security advisories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Update remotion, @remotion/cli, and related Remotion packages to 4.0.410 or newer, regenerate the lockfile, and run npm audit before installation or rendering.
+
+Risk: Untrusted SRT files are used to generate and render a local video project.
+
+Mitigation: Review SRT input before use and render in a contained project directory with only the files needed for the job.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0x00000003/skills/srt-to-video)
+- [Publisher profile](https://clawhub.ai/user/0x00000003)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and JSON project files plus shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a Remotion project scaffold for rendering an MP4 video from SRT subtitle timing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

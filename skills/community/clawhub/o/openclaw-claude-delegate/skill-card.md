@@ -1,44 +1,62 @@
-## Description: <br>
-OpenClaw Claude Delegate gives OpenClaw agents a local Claude Code delegation lane with dispatch, polling, results, resume support, bounded work directories, and an optional non-root runner. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an OpenClaw skill and CLI wrapper for delegating work to a locally authenticated Claude Code worker with dispatch, polling, result retrieval, resume, profile-based workspace scoping, and optional non-root execution.
 
-## Publisher: <br>
-[henryclaw007-lgtm](https://clawhub.ai/user/henryclaw007-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[henryclaw007-lgtm](https://clawhub.ai/user/henryclaw007-lgtm)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to delegate selected work to a locally authenticated Claude Code worker while keeping task tracking, resume, and workspace scoping inside their OpenClaw workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let OpenClaw agents run work through a locally authenticated Claude Code account with broad local execution capability. <br>
-Mitigation: Install it only when that delegation path is intentional, use a dedicated non-root runner where possible, and keep profiles scoped to specific project directories. <br>
-Risk: Credential handling can copy or source sensitive Claude authentication material for runner execution. <br>
-Mitigation: Use separate runner credentials where practical, review copied credentials during setup, and revoke or remove them when uninstalling. <br>
-Risk: Remote installer and notification hooks can execute local shell commands. <br>
-Mitigation: Prefer the native skill installer or a reviewed local clone over curl-to-bash, and avoid --notify-cmd unless the command source is fully trusted. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to route selected tasks to a local Claude Code worker while keeping task dispatch, monitoring, results, resume, and workspace profile selection explicit.
 
-## Reference(s): <br>
-- [Claude Delegate setup](references/setup.md) <br>
-- [OpenClaw Claude Delegate README](README.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/henryclaw007-lgtm/openclaw-claude-delegate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration snippets, and task-status text from local CLI workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured local profiles and Claude Code authentication; task execution may create local logs and result files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.6 (source: package.json and server release evidence) <br>
+Risk: The delegated Claude worker can have broad file and command authority in configured workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrow project profiles, review the selected workdir and add_dirs values, and avoid the packaged HOME workspace for routine use.
+
+Risk: The non-root runner setup can copy privileged Claude credentials into another account.
+
+Mitigation: Do not copy root Claude credentials into a runner unless that boundary change is intentional and reviewed.
+
+Risk: Remote bootstrap paths such as curl-to-bash or unpinned npx increase supply-chain exposure.
+
+Mitigation: Prefer a reviewed local install or a pinned release before running installer scripts.
+
+Risk: Notification hooks can execute arbitrary local commands.
+
+Mitigation: Treat --notify-cmd values as local code execution and only use reviewed commands.
+
+## Reference(s):
+
+- [Claude Delegate setup](references/setup.md)
+- [OpenClaw Claude Delegate ClawHub listing](https://clawhub.ai/henryclaw007-lgtm/skills/openclaw-claude-delegate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, shell command output, and JSON task result records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Task runs can produce status, session, cost, duration, model, and result metadata through the local runner.]
+
+## Skill Version(s):
+
+0.2.6 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

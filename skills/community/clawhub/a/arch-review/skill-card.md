@@ -1,40 +1,49 @@
-## Description: <br>
-Stress-test designs before they ship: constraints, trade-offs, failure modes, and ADR-worthy decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stress-test designs before they ship across constraints, trade-offs, failure modes, and ADR-worthy decisions for ADRs, big refactors, and new services.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review architecture proposals, major refactors, new services, and ADR-worthy decisions before implementation. It helps clarify goals and constraints, surface risks, compare alternatives, and leave decisions traceable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture review inputs may include sensitive details about trust boundaries, secrets, or supply chain dependencies. <br>
-Mitigation: Provide architectural descriptions rather than actual secrets, credentials, or production-sensitive values. <br>
-Risk: Review guidance can be incomplete or misleading when goals, constraints, current pain, or alternatives are missing. <br>
-Mitigation: Supply goals, non-goals, users, SLAs, constraints, current pain points, and alternatives before acting on recommendations. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to challenge architecture proposals, clarify constraints, identify operational and security risks, and produce ADR-ready review notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/arch-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown review notes with summaries, risk lists, mitigations, experiments, and open questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; guidance depends on the architecture context provided by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Architecture review feedback may be mistaken for final approval or complete security assurance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as advisory, have the owning team review recommendations before adoption, and use a dedicated security review or pentest for security-critical designs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/arch-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown review notes with summaries, ranked risks, mitigations, experiments, and open questions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory architecture review output; security comments are architecture-level and not a full penetration test.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

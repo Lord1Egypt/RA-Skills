@@ -1,43 +1,55 @@
-## Description: <br>
-Summarizes URLs, PDFs, images, audio, and YouTube links through a configurable CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes URLs, PDFs, images, audio files, and YouTube links with a configurable CLI.
 
-## Publisher: <br>
-[seeu1688](https://clawhub.ai/user/seeu1688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seeu1688](https://clawhub.ai/user/seeu1688)
 
-## Use Case: <br>
-Developers and external users use this skill to summarize web pages, local files, media, and YouTube content with selectable model providers and output controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided files, private URLs, or media may be sent to configured model providers or optional extraction services. <br>
-Mitigation: Avoid confidential inputs unless the selected provider and optional Firecrawl or Apify services are approved for that data. <br>
-Risk: The skill requires API credentials for model providers and optional extraction services. <br>
-Mitigation: Set only the API keys required for the current workflow and avoid sharing unnecessary credentials with the runtime environment. <br>
-Risk: Installation depends on a third-party Homebrew tap. <br>
-Mitigation: Review the Homebrew tap before installation when it is not already trusted. <br>
+## Use Case:
 
+Developers and content reviewers use this skill to summarize web pages, local documents, media files, and YouTube links from an agent workflow with configurable model and output options.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seeu1688/summarize-xhs) <br>
-- [Summarize homepage](https://summarize.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Text or JSON summaries, with Markdown guidance and inline shell commands for setup and use.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summary length, output token limit, extraction mode, provider model, and optional fallback extraction services are configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill relies on an unpinned third-party CLI install source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or otherwise verify the summarize binary and Homebrew tap before installation.
+
+Risk: Submitted content may be sent to the active model provider or fallback extraction service.
+
+Mitigation: Avoid confidential or regulated inputs unless the provider and fallback path are approved; use narrowly scoped API keys.
+
+## Reference(s):
+
+- [Summarize homepage](https://summarize.sh)
+- [ClawHub skill page](https://clawhub.ai/seeu1688/skills/summarize-xhs)
+- [ClawHub publisher profile](https://clawhub.ai/user/seeu1688)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI outputs plain text or JSON summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summary length, token limit, extraction mode, fallback services, YouTube mode, and model can be configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

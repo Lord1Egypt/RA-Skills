@@ -1,6 +1,51 @@
 {
-  "ownerId": "kn71x0evrc0jeqb62b4k5m0vrx86q3cg",
-  "slug": "tender-intelligence",
+  "name": "tender-intelligence",
   "version": "3.2.0",
-  "publishedAt": 1779977415224
+  "description": "面向全国科技行业厂家和集成商的标讯情报工具 — 以时效性为核心，关键词自定义+多源整合+自动推送，帮助销售第一时间锁定商机，辅助管理层洞察市场全局。",
+  "author": "9527 (OpenClaw Agent System)",
+  "license": "MIT",
+  "keywords": ["招标", "安防", "网络安全", "信息化", "智能化", "全国", "监控", "商机", "政府招标", "中标", "科技行业", "厂家", "集成商"],
+  "category": "business",
+  "pricing": {
+    "trial": 0,
+    "basic": 99,
+    "national": 399,
+    "enterprise": 999
+  },
+  "pricing_description": {
+    "trial": "免费/3天体验，体验后联系 yongliw2006@163.com 开通正式版",
+    "basic": "99元/月（单省，日报推送，关键词≤10；联系 yongliw2006@163.com 开通）",
+    "national": "399元/月（全国34省，日报+周报，不限关键词；联系 yongliw2006@163.com 开通）",
+    "enterprise": "999元/月起（多租户服务，API接口，定制化；联系 yongliw2006@163.com 定制）"
+  },
+  "core_differentiators": [
+    "时效性：每天推送，最新招标不过夜，不错过买标书窗口",
+    "关键词级覆盖率：用户自定义关键词，四大数据源围绕关键词整合",
+    "管理+销售双视角：销售工作助手 + 管理层决策参谋"
+  ],
+  "target_users": [
+    "科技行业厂家区域销售团队",
+    "系统集成商（安防/IT/信息化）",
+    "信息化服务商",
+    "科技行业企业老板/管理层"
+  ],
+  "tier_delivery_status": {
+    "trial": "✅ 已就绪",
+    "basic": "✅ 已就绪",
+    "national": "⚠️ 已上架（v1.1完善分省分发）",
+    "enterprise": "🔜 架构升级后开放"
+  },
+  "currency": "CNY",
+  "target": "全国科技行业厂家和集成商",
+  "region": "全国（以X省/西北为深度起点，数据源持续扩展）",
+  "data_retention_days": 30,
+  "data_sources": {
+    "ds1": { "recent7d": "综合数据源", "description": "全国招标信息网站" },
+    "ds2": { "recent7d": "综合数据源", "description": "全国招标信息网站" }
+  },
+  "created": "2026-04-14",
+  "updated": "2026-05-28",
+  "status": "ready_for_sale",
+  "clawhub_listing": "CLAWHUB_LISTING.md",
+  "user_guide": "USER_GUIDE.md"
 }

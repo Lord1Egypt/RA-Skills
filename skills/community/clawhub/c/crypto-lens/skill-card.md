@@ -1,45 +1,68 @@
-## Description: <br>
-CryptoLens provides paid cryptocurrency comparison, technical charting, and AI-style market analysis for selected crypto assets using Hyperliquid and CoinGecko market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CryptoLens provides paid, AI-driven cryptocurrency comparison and technical analysis with indicator summaries and dark-theme PNG charts.
 
-## Publisher: <br>
-[Godofbush](https://clawhub.ai/user/Godofbush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[godofbush](https://clawhub.ai/user/godofbush)
 
-## Use Case: <br>
-External users and agents use this skill to compare two to five cryptocurrencies, generate single-asset technical analysis charts, and receive scored market analysis with chart output. The skill requires a BNB Chain billing wallet or user ID for SkillPay charging before each command. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The paid SkillPay flow sends the user's billing wallet or user ID to SkillPay before command execution. <br>
-Mitigation: Use only when the user understands the paid flow and has provided the billing identifier they want associated with charges. <br>
-Risk: Server security evidence reports contradictory pricing evidence for the compare command. <br>
-Mitigation: Verify the actual SkillPay charge for compare before use, especially before running comparisons repeatedly. <br>
-Risk: Market-data queries are sent to third-party providers. <br>
-Mitigation: Avoid submitting sensitive portfolio context beyond the coin symbols and duration needed for the requested analysis. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CryptoLens on ClawHub](https://clawhub.ai/Godofbush/crypto-lens) <br>
-- [Publisher Profile](https://clawhub.ai/user/Godofbush) <br>
-- [SkillPay](https://skillpay.me) <br>
-- [CoinGecko API](https://api.coingecko.com/api/v3/simple/price?ids={ids}&vs_currencies={currency}) <br>
-- [Hyperliquid Info API](https://api.hyperliquid.xyz/info) <br>
+## Use Case:
 
+External users and agents use CryptoLens to compare 2-5 crypto assets, generate single-coin technical-analysis charts, and request scoring-based market signal summaries after SkillPay billing.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Files, Text, Guidance] <br>
-**Output Format:** [JSON containing text_plain and optional chart_path, with PNG chart files referenced for media display] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may create PNG chart files under /tmp and may return a SkillPay payment_url when billing balance is insufficient.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is a paid release that sends a wallet-based billing identifier to SkillPay before execution.
+
+Mitigation: Install only when users understand the billing flow, provide wallet identifiers deliberately, and can verify any payment_url before topping up.
+
+Risk: The security review reports an embedded reusable billing API key and insufficiently controlled charge handling.
+
+Mitigation: Rotate and remove the embedded billing key, make exact charges verifiable before use, and restrict execution until billing behavior is reviewed.
+
+Risk: The skill sends token queries to external market-data services and writes chart/cache files under /tmp.
+
+Mitigation: Use it only where external market-data requests are acceptable, and secure or clean temporary outputs that may reveal queried assets.
+
+Risk: Dependencies are version-ranged rather than pinned.
+
+Mitigation: Pin and review Python dependencies before production deployment.
+
+Risk: Documentation states each command costs 1 token, while the compare command has a script comment indicating 5 tokens.
+
+Mitigation: Confirm the active SkillPay dashboard pricing and user-facing billing disclosure before enabling paid use.
+
+## Reference(s):
+
+- [CryptoLens ClawHub listing](https://clawhub.ai/godofbush/skills/crypto-lens)
+- [Publisher profile: godofbush](https://clawhub.ai/user/godofbush)
+- [SkillPay billing service](https://skillpay.me)
+- [CoinGecko API](https://api.coingecko.com/api/v3)
+- [Hyperliquid API endpoint](https://api.hyperliquid.xyz/info)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON with text_plain summaries and chart_path values for PNG charts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a payment_url when balance is insufficient; chart outputs are written under /tmp.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

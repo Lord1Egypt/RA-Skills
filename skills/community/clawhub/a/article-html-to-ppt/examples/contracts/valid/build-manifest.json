@@ -1,0 +1,31 @@
+{
+  "schema_version": "2.0",
+  "build_id": "build-001",
+  "deck_id": "deck-001",
+  "profile": "standard",
+  "builder": "python-pptx",
+  "builder_profile": "standard",
+  "status": "planned",
+  "contract_refs": {
+    "ppt_ir": "ppt-ir.json",
+    "style_contract": "style-contract.json",
+    "asset_manifest": "asset-manifest.json",
+    "qa_report": "qa-report.json"
+  },
+  "stages": {
+    "content_locked": true,
+    "ppt_ir_validated": true,
+    "style_validated": true,
+    "built": false,
+    "rendered": false,
+    "read_back": false,
+    "qa_passed": false
+  },
+  "outputs": {},
+  "metrics": {
+    "logical_slide_count": 2,
+    "physical_slide_count": null
+  },
+  "warnings": [],
+  "errors": []
+}

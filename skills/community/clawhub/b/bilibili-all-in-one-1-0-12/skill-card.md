@@ -1,44 +1,58 @@
-## Description: <br>
-A comprehensive Bilibili toolkit that integrates hot trending monitoring, video downloading, video watching/playback, subtitle downloading, and video publishing capabilities into a single unified skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive Bilibili toolkit that integrates hot trending monitoring, video downloading, video watching/playback, subtitle downloading, and video publishing capabilities into a single skill.
 
-## Publisher: <br>
-[hollowings](https://clawhub.ai/user/hollowings) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hollowings](https://clawhub.ai/user/hollowings)
 
-## Use Case: <br>
-Developers and creators use this skill to monitor Bilibili trends, inspect video metrics, download videos or subtitles, retrieve playback information, and manage authenticated publishing workflows from a CLI or Python API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated operations require sensitive Bilibili session cookies that can affect the user's account. <br>
-Mitigation: Install only if the publisher is trusted, use a test account for evaluation, and prefer environment variables or in-memory credentials over saved credential files. <br>
-Risk: Upload, edit, schedule, and delete actions can change content on Bilibili. <br>
-Mitigation: Require explicit user confirmation before account-changing publishing actions. <br>
-Risk: Dependency versions are range-based, which can reduce reproducibility. <br>
-Mitigation: Pin dependencies before deployment in controlled environments. <br>
+## Use Case:
 
+External users and developers use this skill to monitor Bilibili trends, inspect video metrics, download videos or subtitles, retrieve playback information, and manage Bilibili publishing workflows from an agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hollowings/bilibili-all-in-one-1-0-12) <br>
-- [Publisher profile](https://clawhub.ai/user/hollowings) <br>
-- [Project homepage](https://github.com/wscats/bilibili-all-in-one) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON-like command results, Python API results, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create downloaded video, audio, subtitle, or credential files when the user invokes those actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: artifact frontmatter); release package version 1.0.0 (source: server evidence) <br>
+Risk: The skill handles sensitive Bilibili session cookies for authenticated downloads and publishing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a test Bilibili account, avoid providing cookies unless authenticated features are required, prefer environment variables or in-memory parameters, and run the skill in an isolated environment.
+
+Risk: Publishing actions can upload, edit, schedule, draft, or delete videos on a real Bilibili account.
+
+Mitigation: Review every publishing or deletion request before execution and verify the target account, video ID, files, title, tags, schedule time, and other metadata.
+
+Risk: Security guidance reports that cookies may be sent when fetching an unvalidated subtitle URL.
+
+Mitigation: Do not use subtitle downloading with credentials until URL validation and unauthenticated subtitle fetching are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hollowings/skills/bilibili-all-in-one-1-0-12)
+- [Project homepage](https://github.com/wscats/bilibili-all-in-one)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with CLI/Python examples, JSON-like action results, playback URLs, downloaded media files, subtitle files, and publishing status messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions may make HTTPS requests to Bilibili and YouTube oEmbed endpoints and may write downloaded videos, audio, subtitles, or converted subtitle files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and artifact metadata identify upstream skill version 1.0.12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Deployment request — content-only ZIP URL",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["content"],
+  "properties": {
+    "content": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://f\\.devtool\\.uk/downloads/.+\\.zip$",
+      "description": "由 f.devtool.uk 返回的 ZIP HTTPS 地址；host 必须为 f.devtool.uk，路径必须以 /downloads/ 开头且不带 query/hash。部署端必须自行执行来源 allowlist、下载、大小、哈希和压缩包安全校验。"
+    }
+  }
+}

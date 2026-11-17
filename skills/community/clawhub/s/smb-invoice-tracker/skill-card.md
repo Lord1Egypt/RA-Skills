@@ -1,43 +1,59 @@
-## Description: <br>
-Local invoice tracking ledger with optional LLM-generated reminder text for manually adding invoices, tracking outstanding or paid status, and generating cash flow reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SMB Invoice Tracker helps freelancers and small businesses manually track invoices, review paid and outstanding status, generate cash flow reports, and optionally draft reminder text with MiniMax.
 
-## Publisher: <br>
-[jzargona](https://clawhub.ai/user/jzargona) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jzargona](https://clawhub.ai/user/jzargona)
 
-## Use Case: <br>
-Freelancers and small businesses use this skill to maintain a local invoice ledger, review payment status, generate cash flow reports, and draft reminder text for manual review before sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reminder history and Gmail authorization states may be mistaken for proof that a reminder was delivered or Gmail scanning is fully active. <br>
-Mitigation: Verify delivery and integration status outside the skill before relying on reminder or Gmail-related state for business decisions. <br>
-Risk: LLM reminder generation can send payer names, amounts, due dates, and notes to MiniMax when MINIMAX_API_KEY is configured. <br>
-Mitigation: Avoid LLM reminder generation for sensitive invoices unless that data sharing is acceptable, and review generated reminder text before sending. <br>
-Risk: The local invoice ledger may contain customer or business-sensitive data. <br>
-Mitigation: Periodically review, protect, or delete the files stored under ~/.openclaw/smb-invoice-tracker/ according to the user's data-retention needs. <br>
+## Use Case:
 
+Freelancers and small-business operators use this skill through an agent to add invoices, review outstanding or paid status, produce cash-flow reports, and draft reminder messages for manual review.
 
-## Reference(s): <br>
-- [SMB Invoice Tracker listing](https://clawhub.ai/jzargona/skills/smb-invoice-tracker) <br>
-- [Reference Docs](references/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Command-line text output plus local JSON ledger and configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes invoice and configuration data under ~/.openclaw/smb-invoice-tracker/; optional reminder generation may send invoice fields to MiniMax when MINIMAX_API_KEY is set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Invoice records are stored locally under ~/.openclaw/smb-invoice-tracker and may be visible to other users on shared systems if filesystem permissions are loose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted machines and restrict permissions on the invoice tracker directory when storing business invoice data.
+
+Risk: Optional LLM reminder generation sends payer, amount, due date, and note fields to the MiniMax API.
+
+Mitigation: Do not generate LLM reminders for sensitive invoices unless that data sharing is acceptable; review generated reminder text before sending it manually.
+
+Risk: Gmail scanning, WhatsApp reminders, Stripe payment detection, Telegram digests, and CSV export are not implemented in this release.
+
+Mitigation: Treat this release as a manual local invoice tracker and do not rely on it for automated collection, payment reconciliation, or messaging workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jzargona/skills/smb-invoice-tracker)
+- [Reference docs](references/README.md)
+- [Marketplace listing copy](references/marketing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Plain-text CLI output, local JSON ledger files, and optional reminder text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores invoice and configuration data locally under ~/.openclaw/smb-invoice-tracker; optional reminder generation sends invoice fields to MiniMax only when MINIMAX_API_KEY is set.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

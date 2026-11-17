@@ -1,40 +1,53 @@
-## Description: <br>
-Reverse-engineers high-quality, reusable prompts from messy conversations, vague requests, or rough user descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reverse-engineers high-quality, reusable prompts from messy conversations, vague requests, or rough user descriptions.
 
-## Publisher: <br>
-[goutham-nekkalapu](https://clawhub.ai/user/goutham-nekkalapu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goutham-nekkalapu](https://clawhub.ai/user/goutham-nekkalapu)
 
-## Use Case: <br>
-External users and developers use this skill to turn messy conversations, vague task descriptions, or reusable workflows into portable, parameterized prompts with concise excavation notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Accepted skill changes can influence future agent behavior. <br>
-Mitigation: Review every proposed diff before approving installation or durable skill-file changes. <br>
-Risk: Generated prompts may encode incorrect assumptions from ambiguous or incomplete user input. <br>
-Mitigation: Check the excavation notes and customize placeholders, constraints, and assumptions before reusing the prompt. <br>
+## Use Case:
 
+External users and developers use this skill to turn messy conversations, vague task descriptions, or rough workflow notes into reusable, portable prompts with brief notes about assumptions and customization points.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goutham-nekkalapu/prompt-archeologist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with copy-friendly prompt code blocks and concise notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reusable prompts with placeholders and customization guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may summarize sensitive conversation context into a reusable prompt shown in chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid invoking it around sensitive context unless that context can safely be restated in the generated prompt.
+
+Risk: Vague source material may cause the generated prompt to encode assumptions.
+
+Mitigation: Review the excavation notes and customize placeholders, constraints, and assumptions before reusing the prompt.
+
+## Reference(s):
+
+- [Prompt Archeologist ClawHub listing](https://clawhub.ai/goutham-nekkalapu/skills/prompt-archeologist)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with a copy-ready prompt code block and brief excavation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include placeholders for reusable inputs and concise notes about source signals, assumptions, and customization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -760,7 +760,7 @@ function parseArgs() {
 function loadLLMKey(): string {
   if (process.env.LLM_PROVIDER === 'claude') return process.env.ANTHROPIC_KEY || ''
   if (process.env.LLM_PROVIDER === 'gemini') return process.env.GEMINI_KEY || ''
-  return 'sk-2d29b4fb236b40908c54a9517f86d504'
+  return 'REDACTED-SECRET'
 }
 
 async function selectAnswerWithLLM(

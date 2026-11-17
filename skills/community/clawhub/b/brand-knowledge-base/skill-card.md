@@ -1,48 +1,67 @@
-## Description: <br>
-Build a reusable brand knowledge package from uploaded brand documents and/or a filled intake form. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a reusable brand knowledge package from uploaded brand documents and/or a filled intake form.
 
-## Publisher: <br>
-[ljseeking](https://clawhub.ai/user/ljseeking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljseeking](https://clawhub.ai/user/ljseeking)
 
-## Use Case: <br>
-External teams, developers, and brand operators use this skill to turn company materials or intake forms into a reusable brand single source of truth for downstream agents, RAG, FAQ, sales support, content generation, and AI search workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected brand documents and intake content are sent to the configured OpenAI-compatible provider. <br>
-Mitigation: Use only an approved provider, review OPENAI_BASE_URL before use, and exclude confidential, regulated, customer-sensitive, or secret-containing documents unless that provider is approved for them. <br>
-Risk: The output directory may include a local source_bundle.md copy of submitted materials. <br>
-Mitigation: Store generated outputs in an approved location, review files before sharing, and remove source bundles when they are no longer needed. <br>
-Risk: Generated brand knowledge may contain missing fields, assumptions, or unverified claims. <br>
-Mitigation: Review the analysis report, resolve follow-up questions, and confirm all marked fields before publishing or loading outputs into production systems. <br>
-Risk: The skill requires OPENAI_API_KEY for the configured LLM provider. <br>
-Mitigation: Provide credentials through environment management and avoid committing API keys or local .env files. <br>
+## Use Case:
 
+Brand, marketing, support, and knowledge operations teams use this skill to convert company materials or a structured intake form into a reusable brand single source of truth for downstream content, sales, FAQ, RAG, and agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ljseeking/brand-knowledge-base) <br>
-- [Publisher profile](https://clawhub.ai/user/ljseeking) <br>
-- [Skill README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Manifest](artifact/manifest.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON, YAML, Markdown, llms.txt, FAQ, glossary, standard messaging, analysis report, and intake templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Missing or weakly supported brand fields are marked for confirmation and paired with follow-up questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Uploaded brand materials and intake data are sent in full to the configured OpenAI-compatible API provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only organization-approved API providers and avoid uploading secrets, confidential customer records, regulated data, or unredacted transcripts.
+
+Risk: A raw source_bundle.md may be kept in the output directory.
+
+Mitigation: Review and remove or protect source_bundle.md before sharing outputs or loading them into production workflows.
+
+Risk: Pinned document-processing dependencies may need security updates before PDF processing.
+
+Mitigation: Review and update vulnerable pinned dependencies before processing PDFs.
+
+Risk: Generated brand claims may be incomplete or require verification when source materials are sparse.
+
+Mitigation: Keep human review in the publication workflow and resolve fields marked as pending confirmation before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ljseeking/skills/brand-knowledge-base)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Manifest](artifact/manifest.json)
+- [Brand knowledge schema](artifact/templates/brand_knowledge_base.json)
+- [Intake guidance](artifact/prompts/intake.md)
+- [Extraction guidance](artifact/prompts/extraction.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, YAML, guidance]
+
+**Output Format:** [Generated files including brand_knowledge_base.json, brand_knowledge_base.yaml, brand_knowledge_base.md, faq.md, glossary.md, standard_messaging.md, llms.txt, analysis_report.md, and optional intake templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May retain source_bundle.md containing the raw supplied materials when building from source inputs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

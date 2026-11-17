@@ -1,39 +1,58 @@
-## Description: <br>
-Generates a clean WhatsApp pairing QR code PNG from a running OpenClaw agent and delivers it to the user through the active conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a clean WhatsApp pairing QR code PNG from a running OpenClaw agent and deliver it to the user through the active conversation channel.
 
-## Publisher: <br>
-[seanblanchfield](https://clawhub.ai/user/seanblanchfield) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seanblanchfield](https://clawhub.ai/user/seanblanchfield)
 
-## Use Case: <br>
-People linking an agent to WhatsApp use this skill to generate a time-limited pairing QR code PNG and send it through the active conversation so it can be scanned immediately. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The generated WhatsApp pairing QR code can link an account if it is posted to the wrong conversation or scanned by the wrong person. <br>
-Mitigation: Generate it only after the user confirms they are ready, send it only in the intended private conversation, confirm the destination before posting, and delete the temporary image after use. <br>
-Risk: The Mattermost thread delivery path uses a local Mattermost bearer token for authenticated file upload and posting. <br>
-Mitigation: Install only in environments that trust this skill with that token, review the token access scope before use, and prefer the normal message delivery path when thread-specific posting is not required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seanblanchfield/jentic-whatsapp-qr) <br>
+## Use Case:
 
+External users and developers use this skill when an agent needs to start a WhatsApp device-linking flow, generate the short-lived pairing QR as a PNG, and send it back through the current channel.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PNG file plus concise user-facing instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a short-lived WhatsApp pairing QR code image and sends scanning guidance to the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill initiates a WhatsApp device-linking session after user confirmation.
+
+Mitigation: Require explicit user readiness before running the QR generation command, and treat the resulting QR as short-lived account-linking material.
+
+Risk: Mattermost thread delivery reads a stored bearer token from local OpenClaw configuration and uses direct API calls to upload and post the QR.
+
+Mitigation: Use a brokered or narrowly scoped messaging tool where available; otherwise restrict and rotate the Mattermost token used for this workflow.
+
+Risk: The QR code expires quickly, and delays can cause failed or repeated linking attempts.
+
+Mitigation: Start the generation script immediately after confirmation and tell the user the process takes about 25 to 28 seconds before the roughly 60-second scan window.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seanblanchfield/skills/jentic-whatsapp-qr)
+- [Mattermost file upload endpoint used by the skill](https://mattermost.claw.jentic.ai/api/v4/files)
+- [Mattermost posts endpoint used by the skill](https://mattermost.claw.jentic.ai/api/v4/posts)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Files]
+
+**Output Format:** [Markdown instructions with bash and Python snippets; the runtime workflow produces a PNG QR code file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The QR code is time-sensitive, with artifact guidance stating it expires in about 60 seconds and the capture script takes about 25 to 28 seconds.]
+
+## Skill Version(s):
+
+1.3.0 (source: server-resolved release metadata, released 2026-03-03)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

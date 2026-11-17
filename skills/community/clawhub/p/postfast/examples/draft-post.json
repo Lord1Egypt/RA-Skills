@@ -1,7 +1,7 @@
 {
   "posts": [
     {
-      "content": "Draft idea — finalize and schedule from the PostFast dashboard.",
+      "content": "Draft idea: finalize and schedule from the PostFast dashboard.",
       "mediaItems": [
         { "key": "image/YOUR_UPLOAD_KEY.png", "type": "IMAGE", "sortOrder": 0 }
       ],

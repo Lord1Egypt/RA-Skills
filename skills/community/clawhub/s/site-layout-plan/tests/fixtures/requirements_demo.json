@@ -1,0 +1,13 @@
+{
+  "schema": "site-layout-requirements/v1",
+  "project": "合成示例项目",
+  "coord_unit": "m",
+  "assumptions": ["合成需求：主体 42m×20m，位于场地中部。"],
+  "building": {
+    "footprint": [[29, 20], [71, 20], [71, 40], [29, 40]]
+  },
+  "preferences": {
+    "resident_side": "N",
+    "noise_sensitive": true
+  }
+}

@@ -1,44 +1,57 @@
-## Description: <br>
-基于A股技术面×消息面×基本面的六维共振分析助手，支持选股诊断、个股诊断、策略学习三大功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于A股技术面×消息面×基本面的六维共振分析助手，支持选股诊断、个股诊断、策略学习三大功能。
 
-## Publisher: <br>
-[19823801199](https://clawhub.ai/user/19823801199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[19823801199](https://clawhub.ai/user/19823801199)
 
-## Use Case: <br>
-External users use this skill for Chinese-language A-share stock screening, individual stock diagnosis, and strategy learning through a six-dimension analysis framework. It structures technical, news, and fundamental signals into diagnostic reports and risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce actionable buy, sell, position-size, or stop-loss guidance for stocks while presenting itself as an analysis framework. <br>
-Mitigation: Treat outputs as unverified decision support, not professional financial advice, and require human review before any trading decision. <br>
-Risk: Casual or ambiguous finance prompts may trigger trading-style recommendations. <br>
-Mitigation: Use the skill only when Chinese-language A-share stock analysis is deliberately requested and avoid automatic use for broad finance conversations. <br>
-Risk: The artifact notes that analysis may rely on historical or delayed public information. <br>
-Mitigation: Verify current market data, announcements, and financial filings from authoritative sources before relying on any diagnosis. <br>
+## Use Case:
 
+External users can use this Chinese-language A-share analysis skill to structure stock screening, individual holding reviews, and strategy learning across technical, news, and fundamental dimensions. It is intended as an educational analysis framework, not regulated financial advice.
 
-## Reference(s): <br>
-- [Skill source artifact](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/19823801199/six-dimension-quant) <br>
-- [Publisher profile](https://clawhub.ai/user/19823801199) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown diagnostic reports and explanatory guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language A-share analysis; may include ratings, risk notes, position guidance, and stop-loss references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: Users may treat stock ratings, position suggestions, or buy/sell language as professional financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as educational analysis only, require independent judgment, and recommend qualified professional advice for regulated investment decisions.
+
+Risk: Market, announcement, or financial data used during analysis may be delayed, incomplete, or stale.
+
+Mitigation: Verify current prices, filings, announcements, and market data from authoritative sources before acting.
+
+Risk: The framework is designed for Chinese A-share analysis and may be unsuitable for other markets or languages.
+
+Mitigation: Use the skill only for Chinese-language A-share educational analysis unless separately adapted and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/19823801199/skills/six-dimension-quant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown diagnostic reports and educational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language A-share stock analysis; no code execution, persistence, credential access, or hidden execution behavior indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

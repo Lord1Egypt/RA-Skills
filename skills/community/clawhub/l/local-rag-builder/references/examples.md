@@ -6,14 +6,10 @@
 # 1. 环境检测
 cd ~/.workbuddy/skills/local-rag-builder
 python scripts/rag_env_setup.py --auto-install
-# 输出: ✅ Python 3.11.8  |  ✅ chromadb 0.5.0  |  ✅ sentence-transformers 2.5.0
-# 输出: 环境就绪，共安装 12/12 个依赖
 
 # 2. 下载嵌入模型
 python scripts/embedding_model_manager.py --interactive
-# 输出: 选择模型 [1] BAAI/bge-small-zh-v1.5 (133MB)
-# 输出: 开始从 modelscope 下载... 133.2 MB | 5.2 MB/s | 100%
-# 输出: ✅ 下载完成，路径: .../models/bge-small-zh-v1___5
+# 选择 1: BAAI/bge-small-zh-v1.5
 
 # 3. 导入测试文档
 echo "# 测试文档
@@ -22,12 +18,9 @@ RAG 即检索增强生成，是一种结合检索和生成的技术。
 
 # 4. 智能体调用（技能模式）
 python scripts/rag_skill.py --query "什么是 RAG？" --json
-# 输出: {"context": [{"content": "RAG 即检索增强生成...", "score": 0.89, "source": "test_doc.md"}], "kb": "default"}
 
 # 5. 独立问答（需外部 LLM）
 python scripts/rag_standalone.py --query "什么是 RAG？"
-# 输出: [检索到 3 条相关文档，最高分 0.89]
-# 输出: RAG（Retrieval-Augmented Generation）是一种结合检索和生成的 NLP 技术...
 ```
 
 ## 示例 2：Web 界面操作

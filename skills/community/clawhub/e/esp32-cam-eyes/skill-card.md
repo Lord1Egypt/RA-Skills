@@ -1,40 +1,62 @@
-## Description: <br>
-Set up ESP32-S3-CAM modules as visual sensors for OpenClaw agents, including hardware identification, firmware flashing, WiFi configuration, and HTTP camera server deployment with PlatformIO and Arduino. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up ESP32-S3-CAM modules as visual sensors for OpenClaw agents, covering hardware identification, firmware flashing, WiFi configuration, and HTTP camera server deployment with PlatformIO and Arduino.
 
-## Publisher: <br>
-[p697](https://clawhub.ai/user/p697) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[p697](https://clawhub.ai/user/p697)
 
-## Use Case: <br>
-Developers and builders use this skill to configure ESP32-S3-CAM hardware as physical vision sensors for OpenClaw agents, including flashing firmware, confirming the sensor type, and testing snapshot or stream endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The resulting camera server may expose private images on a local network or fallback hotspot if used without access controls. <br>
-Mitigation: Use the camera only on a trusted isolated guest or IoT network, do not expose it to the internet, and add authentication or other access controls before using it in private spaces. <br>
-Risk: Firmware examples require WiFi credentials, which could be accidentally committed or reused if real values are placed in source files. <br>
-Mitigation: Keep credentials out of shared source, use placeholders in committed files, and replace the fallback access point password with a strong unique value. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure ESP32-S3-CAM hardware as OpenClaw vision sensors, flash camera firmware, expose capture and stream endpoints, and troubleshoot board or sensor issues.
 
-## Reference(s): <br>
-- [ESP32-S3-CAM Setup Guide](references/setup-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, configuration snippets, and firmware code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes hardware-specific setup, flashing, camera endpoint, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Live camera endpoints may expose images without authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated IoT or isolated network, avoid port-forwarding the camera, and restrict access to trusted clients or add authentication before deployment.
+
+Risk: The example fallback access point uses predictable credentials.
+
+Mitigation: Replace fallback AP credentials with a unique strong secret or disable AP fallback.
+
+Risk: Wildcard CORS can broaden browser access to camera endpoints.
+
+Mitigation: Remove wildcard CORS unless it is required for a trusted integration.
+
+Risk: Real WiFi credentials can be exposed if shared in source code.
+
+Mitigation: Keep credentials out of shared files and use local placeholders, secret storage, or deployment-specific configuration.
+
+## Reference(s):
+
+- [ESP32-S3-CAM Setup Guide](references/setup-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/p697/skills/esp32-cam-eyes)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, INI, Python, and C++ code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes hardware-specific pin mappings, camera endpoint descriptions, firmware examples, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

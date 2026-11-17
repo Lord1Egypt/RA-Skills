@@ -1,0 +1,87 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string"},
+    "question": {"type": "string"},
+    "type": {"type": "string", "enum": ["single", "multiple", "judge", "unknown"]},
+    "status": {"type": "string", "enum": ["verified", "partial", "unverified", "blocked", "conflict"]},
+    "answer": {"type": "array", "items": {"type": "string"}},
+    "answer_labels": {"type": "array", "items": {"type": "string"}},
+    "explanation": {"type": "string"},
+    "option_evaluations": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "label": {"type": "string"}, "text": {"type": "string"},
+          "verdict": {"type": "string", "enum": ["supported", "refuted", "unknown"]},
+          "reason": {"type": "string"}
+        },
+        "required": ["label", "text", "verdict", "reason"]
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "name": {"type": "string"}, "url": {"type": "string"},
+          "query": {"type": "string"}, "field": {"type": "string"},
+          "evidence": {"type": "string"}, "locator": {"type": "string"},
+          "retrieved_at": {"type": "string"}
+        },
+        "required": ["name", "url", "query", "field", "evidence", "locator", "retrieved_at"]
+      }
+    },
+    "needs_review": {"type": "array", "items": {"type": "string"}},
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "code": {"type": "string", "enum": ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9"]},
+          "stage": {"type": "string"},
+          "input": {"type": "string"},
+          "action": {"type": "string"},
+          "output": {"type": "string"},
+          "status": {"type": "string", "enum": ["ok", "empty", "blocked", "error", "skipped"]},
+          "reason": {"type": "string"}
+        },
+        "required": ["code", "action", "output", "status"]
+      }
+    },
+    "sites": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "properties": {
+          "name": {"type": "string"},
+          "url": {"type": "string"},
+          "purpose": {"type": "string"},
+          "query": {"type": "string"},
+          "status": {"type": "string", "enum": ["ok", "empty", "blocked", "error"]},
+          "locator": {"type": "string"},
+          "retrieved_at": {"type": "string"},
+          "profile": {"type": "string"},
+          "note": {"type": "string"}
+        },
+        "required": ["name", "url", "purpose", "status", "retrieved_at"]
+      }
+    },
+    "artifacts": {"type": "array", "items": {"type": "string"}},
+    "gaps": {"type": "array", "items": {"type": "string"}},
+    "review_level": {"type": "string", "enum": ["T0", "T1", "T2"]},
+    "searched_at": {"type": "string"},
+    "confidence": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "score": {"type": "integer", "minimum": 0, "maximum": 100},
+        "level": {"type": "string", "enum": ["high", "medium", "low"]},
+        "basis": {"type": "string", "minLength": 1}
+      },
+      "required": ["score", "level", "basis"]
+    }
+  },
+  "required": ["id", "question", "type", "status", "answer", "answer_labels", "explanation", "option_evaluations", "sources", "needs_review", "searched_at", "confidence"]
+}

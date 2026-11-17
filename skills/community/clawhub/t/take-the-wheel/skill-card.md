@@ -1,41 +1,49 @@
-## Description: <br>
-Guides a user through creative or planning work by having the agent ask one focused question at a time until a complete result is produced. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reverses roles by having the agent ask one focused question at a time to guide users through scripts, plans, briefs, strategies, and similar creative or planning work until completion.
 
-## Publisher: <br>
-[Harvnk](https://clawhub.ai/user/Harvnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harvnk](https://clawhub.ai/user/harvnk)
 
-## Use Case: <br>
-Developers, creators, marketers, and planners use this skill when they want structured, question-led help creating scripts, briefs, plans, strategies, calendars, launches, or outlines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic trigger phrases may activate the skill when the user did not intend to start a guided workflow. <br>
-Mitigation: Use explicit activation language and stop or redirect the agent if the workflow starts unintentionally. <br>
-Risk: The skill is designed to make the agent forceful and question-led, which may steer a task more than the user expects. <br>
-Mitigation: Keep human review over the direction and final output, and redirect the agent when its questions no longer match the intended task. <br>
+## Use Case:
 
+Creators, marketers, operators, and planners use this skill when they need structured guidance to turn an open-ended idea into a script, brief, plan, strategy, calendar, launch outline, or similar deliverable.
 
-## Reference(s): <br>
-- [Take The Wheel on ClawHub](https://clawhub.ai/Harvnk/take-the-wheel) <br>
-- [Harvnk publisher profile](https://clawhub.ai/user/Harvnk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Conversational Markdown with questions, summaries, and final task output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Question-led interaction; asks one question at a time and summarizes progress before continuing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad trigger phrases such as "guide me" may activate this guided-question mode when a user did not intend to use it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the more specific "take the wheel" trigger or adjust trigger wording where configurable.
+
+## Reference(s):
+
+- [Take The Wheel ClawHub listing](https://clawhub.ai/harvnk/skills/take-the-wheel)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Conversational Markdown with focused questions, progress summaries, and final deliverable text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill changes interaction style only; no code execution, data access, persistence, or external tool use is indicated by the provided security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

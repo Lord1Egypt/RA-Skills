@@ -1,0 +1,28 @@
+{
+  "schema_version": "skillet.evals.v1",
+  "skill_name": "plate",
+  "evals": [
+    {
+      "id": "scrub-private-ip",
+      "prompt": "Scrub this draft before I post it:\n\nWe hit the API at 192.168.1.50 last night and it worked.\n",
+      "expected_output": "A hit table that flags the private IP, proposes an RFC 5737 or RFC 2544 documentation-range replacement, and waits for confirmation before rewriting the draft.",
+      "files": [],
+      "assertions": [
+        "The output identifies a private IP address as an infrastructure leak",
+        "The proposed replacement uses an RFC 5737 or RFC 2544 documentation range, not an invented invalid IP",
+        "The output presents findings for confirmation and does not claim the draft was silently rewritten"
+      ]
+    },
+    {
+      "id": "scrub-em-dash-and-trailer",
+      "prompt": "Clean this commit message before I push:\n\nFix the timeout — users were stuck.\n\nCo-Authored-By: Demo Model <demo@example.com>\n",
+      "expected_output": "Flags the em dash and the Co-Authored-By trailer with concrete replacements, and asks before applying edits.",
+      "files": [],
+      "assertions": [
+        "The output flags an em dash as a writing-convention violation",
+        "The output flags a Co-Authored-By trailer for removal",
+        "The output proposes replacements or deletions rather than leaving both issues unmentioned"
+      ]
+    }
+  ]
+}

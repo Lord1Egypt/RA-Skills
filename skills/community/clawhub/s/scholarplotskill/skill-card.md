@@ -1,44 +1,54 @@
-## Description: <br>
-ScholarPlot AI Academic Figure Generator connects via MCP to generate and edit SCI-standard figures, including line charts, bar charts, heatmaps, neural network architectures, and experimental flowcharts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ScholarPlot AI Academic Figure Generator connects via MCP to generate and edit SCI-standard figures, including line charts, bar charts, heatmaps, neural network architectures, and experimental flowcharts.
 
-## Publisher: <br>
-[peizhou](https://clawhub.ai/user/peizhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[peizhou](https://clawhub.ai/user/peizhou)
 
-## Use Case: <br>
-Researchers and MCP-compatible agent users use this skill to generate and edit publication-oriented academic figures from natural language prompts and supplied data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Figure prompts, edit instructions, and supplied research data may be sent to figure.thirdme.com through MCP. <br>
-Mitigation: Avoid submitting confidential or unpublished data unless the service terms are acceptable for the use case. <br>
-Risk: The skill requires an API key tied to user subscription and quota. <br>
-Mitigation: Keep the API key private and store it only in the local MCP client configuration. <br>
-Risk: Broad or ambiguous edit requests can modify the wrong figure attributes. <br>
-Mitigation: Use specific prompts and edit instructions, especially when changing an existing figure. <br>
+## Use Case:
 
+Researchers and MCP-compatible agent users use this skill to generate or edit academic figures from natural language prompts, structured chart data, or figure edit instructions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/peizhou/scholarplotskill) <br>
-- [ScholarPlot official website](https://figure.thirdme.com) <br>
-- [ScholarPlot MCP documentation](https://figure.thirdme.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, configuration, code, guidance] <br>
-**Output Format:** [Markdown with figure links, metadata summaries, optional figure code, and MCP configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated figure URLs, 300dpi or SVG output metadata, and edit results from the external ScholarPlot MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Figure descriptions, edit instructions, and provided data values are sent to the remote figure.thirdme.com service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting confidential manuscripts, patient data, proprietary datasets, or unpublished results until the provider's privacy and retention commitments are reviewed.
+
+Risk: The MCP server URL embeds an API key that is tied to subscription usage and quota.
+
+Mitigation: Keep MCP configuration files private, do not share the full configured URL, and rotate the API key if it is exposed in logs or public repositories.
+
+## Reference(s):
+
+- [ScholarPlot MCP Documentation](https://figure.thirdme.com/mcp)
+- [ScholarPlot Website](https://figure.thirdme.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with figure URLs, metadata summaries, optional editable figure code, and MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated figures may be available as 300dpi images or SVG vector output through the remote ScholarPlot service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

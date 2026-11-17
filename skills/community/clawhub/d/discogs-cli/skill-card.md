@@ -1,45 +1,58 @@
-## Description: <br>
-An OpenClaw skill to manage a user's vinyl record collection on Discogs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An OpenClaw skill to manage a user's vinyl record collection on Discogs.
 
-## Publisher: <br>
-[jrojas537](https://clawhub.ai/user/jrojas537) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jrojas537](https://clawhub.ai/user/jrojas537)
 
-## Use Case: <br>
-External users and agents use this skill to query and manage a Discogs vinyl collection and wantlist from a Go command-line interface. It supports collection listing, Discogs search, album art retrieval, local valuation cache workflows, and wantlist add or remove actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The installer path may need review before use. <br>
-Mitigation: Review or fix the installer path before running the installer. <br>
-Risk: The skill stores a Discogs username and personal access token in a local config file. <br>
-Mitigation: Use a revocable Discogs token and protect ~/.config/discogs-cli/config.yaml. <br>
-Risk: Wantlist add and remove commands mutate a user's Discogs account state. <br>
-Mitigation: Confirm exact release IDs before running wantlist add or remove commands. <br>
-Risk: Collection valuation data and album art are cached locally. <br>
-Mitigation: Treat local cache files and album art as user collection data and remove them when no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to query and manage a Discogs vinyl collection, search the Discogs catalog, fetch release details and album art, manage a wantlist, and calculate collection value from a local cache.
 
-## Reference(s): <br>
-- [Discogs Cli on ClawHub](https://clawhub.ai/jrojas537/discogs-cli) <br>
-- [Go installation documentation](https://go.dev/doc/install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Terminal text, tabular command output, local cache files, and album art media paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Go, a Discogs username, and a Discogs personal access token stored in local configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: release metadata and package.json) <br>
+Risk: The skill stores a reusable Discogs account token in local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped token, avoid entering it in commands that may be logged, and check permissions on ~/.config/discogs-cli/config.yaml.
+
+Risk: Wantlist commands can modify the user's Discogs account.
+
+Mitigation: Confirm the target release ID and intended add or remove action before running wantlist mutation commands.
+
+Risk: Sync and album-art commands create local cache files.
+
+Mitigation: Review where cache files are written and periodically remove stale local data when it is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jrojas537/skills/discogs-cli)
+- [Go installation documentation](https://go.dev/doc/install)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Text, Files]
+
+**Output Format:** [Markdown with bash command examples, CLI text tables, and local media/cache file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Go, a Discogs username, and a Discogs personal access token for authenticated collection and wantlist commands.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

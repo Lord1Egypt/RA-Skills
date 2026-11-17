@@ -1,42 +1,58 @@
-## Description: <br>
-Send a photo or image URL to Mixtiles for ordering wall tiles by uploading it and returning a ready-to-order cart link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send a photo to Mixtiles for ordering wall tiles. Use when a user forwards/sends a photo and wants to order it as a Mixtile, add it to their Mixtiles cart, or says "mixtile this", "make this a tile", or similar. Also handles image URLs.
 
-## Publisher: <br>
-[SaharCarmel](https://clawhub.ai/user/SaharCarmel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[saharcarmel](https://clawhub.ai/user/saharcarmel)
 
-## Use Case: <br>
-External users use this skill when they want to turn one or more local photos or image URLs into Mixtiles cart links for customization and ordering. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected photos or image URLs are uploaded to Cloudinary and used in a Mixtiles cart link. <br>
-Mitigation: Use the skill only with photos the user intends to send to Mixtiles, and confirm the exact file or URL before running it. <br>
-Risk: Batch mode can upload multiple selected photos in one run. <br>
-Mitigation: Confirm the full batch input list before execution. <br>
-Risk: Optional fallback upload settings can send image URLs to a custom endpoint. <br>
-Mitigation: Set the fallback upload URL and key only for an endpoint the user trusts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SaharCarmel/mixtiles-it) <br>
-- [Publisher profile](https://clawhub.ai/user/SaharCarmel) <br>
+## Use Case:
 
+External users use this skill to turn one or more photos or image URLs into a Mixtiles cart link for customization and ordering. Agents use it when a user explicitly asks to add a photo to a Mixtiles cart or uses similar intent.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text cart URL with brief user-facing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce one cart link containing one or more photos.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Photos are uploaded to Cloudinary and sent to Mixtiles, which can expose personal or sensitive images.
+
+Mitigation: Use only images the user explicitly wants to upload; avoid sensitive images and confirm user intent before running the script.
+
+Risk: The script can fetch arbitrary image URLs, creating privacy and network-fetch risks.
+
+Mitigation: Avoid private or internal URLs and require stronger URL-fetch protections, image validation, and download size limits before deployment.
+
+Risk: No license is provided in server evidence or artifact files.
+
+Mitigation: Confirm license and terms before commercial distribution or installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/saharcarmel/skills/mixtiles-it)
+- [Mixtiles photo order page](https://www.mixtiles.com/photos)
+- [Cloudinary image upload endpoint](https://api.cloudinary.com/v1_1/{cloud}/image/upload)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text cart URL with optional Markdown and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local file paths or public image URLs and optional size or batch arguments.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

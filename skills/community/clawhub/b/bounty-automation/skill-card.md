@@ -1,42 +1,58 @@
-## Description: <br>
-Multi-platform bounty automation for scanning, filtering, claiming, and submitting pull requests across GitHub, Opire, Algora, and OpenTask. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-platform bounty automation system for GitHub, Opire, Algora, and OpenTask that scans, filters, claims, and submits pull requests for bounty tasks.
 
-## Publisher: <br>
-[mkcash](https://clawhub.ai/user/mkcash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mkcash](https://clawhub.ai/user/mkcash)
 
-## Use Case: <br>
-Developers and maintainers use this skill to configure an agent workflow that periodically scans bounty sources, filters likely tasks, and runs claim-to-PR automation with status notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended bounty automation can use connected GitHub and OpenTask accounts to bid, claim work, modify code, push branches, open pull requests, post payment details, and send QQ notifications. <br>
-Mitigation: Use this only when that automation is intended, restrict token scopes, protect credential files, and require manual approval before bids, claims, pushes, pull requests, or payment comments. <br>
-Risk: The installer writes recurring OpenClaw cron jobs and can replace existing cron configuration. <br>
-Mitigation: Back up existing OpenClaw cron jobs before running the installer and review the generated schedules, targets, and notification destination. <br>
-Risk: Artifact evidence includes default QQ and payment/contact values that may not match the deploying user. <br>
-Mitigation: Replace QQ chat identifiers and payment or contact values before enabling the scheduled workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill to automate scanning, filtering, claiming, implementation, and pull request submission for bounty tasks across GitHub, Opire, Algora, and OpenTask.
 
-## Reference(s): <br>
-- [Deployment Guide](references/DEPLOY_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces cron setup guidance and agent workflow instructions; generated actions should be reviewed before account operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Persistent scheduled jobs can repeatedly act with user credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when unattended bounty automation is intended, review the cron entries before enabling them, and avoid overwriting existing cron configuration.
+
+Risk: Automation may bid, modify repositories, push code, create comments, and open pull requests with real account side effects.
+
+Mitigation: Require manual approval before any bid, commit, push, comment, or pull request creation, and use narrowly scoped protected tokens.
+
+Risk: Default QQ delivery and fixed payment or branding text may send output to the wrong recipient or publish incorrect payment details.
+
+Mitigation: Remove the hard-coded QQ default and replace fixed payment or branding text before use.
+
+## Reference(s):
+
+- [Deployment Guide](references/DEPLOY_GUIDE.md)
+- [ClawHub Skill Page](https://clawhub.ai/mkcash/skills/bounty-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, JSON configuration snippets, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce account-affecting automation instructions for scheduled scans, bids, repository changes, commits, pushes, comments, and pull requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,6 +2,7 @@ const https = require("https");
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
+const { randomBytes } = require("crypto");
 
 const DEFAULT_TIMEOUT = 30000;
 const MAX_RETRIES = 2;
@@ -15,18 +16,73 @@ function normalizeBaseUrl(baseUrl) {
   return /^[a-z][a-z0-9+.-]*:\/\//i.test(value) ? value : `http://${value}`;
 }
 
+function multipartName(value) {
+  const name = String(value);
+  if (/[\r\n\x00]/.test(name)) throw new Error("Multipart names must not contain CR, LF, or NUL");
+  return name.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+}
+
+function rejectRemovedParameters(data, replacements) {
+  for (const [key, replacement] of Object.entries(replacements)) {
+    if (Object.prototype.hasOwnProperty.call(data, key)) {
+      throw new Error(`Unsupported parameter ${key}. ${replacement}`);
+    }
+  }
+}
+
+const REMOVED_CHAT_PARAMETERS = {
+  legacy: "Use the current streaming format.",
+  conversation_id: "Use session_id.",
+  pass_all_history: "Use pass_all_history_messages.",
+};
+
+function validateChunkUpdate(data) {
+  if (data.available !== undefined && ![true, false, 0, 1, "0", "1"].includes(data.available)) {
+    throw new Error("available must be 0, 1, true, or false");
+  }
+  if (data.image_update_mode !== undefined) {
+    if (!["append", "replace", "remove"].includes(data.image_update_mode)) {
+      throw new Error("image_update_mode must be append, replace, or remove");
+    }
+    if (data.image_update_mode !== "remove" && !data.image_base64) {
+      throw new Error("image_base64 is required for append or replace");
+    }
+    if (data.image_update_mode === "remove" && data.image_base64 !== undefined) {
+      throw new Error("Do not supply image_base64 when removing an image");
+    }
+  }
+}
+
 class RagflowClient {
   constructor(baseUrl, apiKey, options = {}) {
     if (!baseUrl) throw new Error("RAGFLOW_URL is required");
     if (!apiKey) throw new Error("RAGFLOW_API_KEY is required");
     this.baseUrl = normalizeBaseUrl(baseUrl);
     this.apiKey = apiKey;
+    this.allowDestructive = options.allowDestructive === true;
     this.apiPrefix = "/api/v1";
     this.timeout = options.timeout || DEFAULT_TIMEOUT;
     this.maxRetries = options.maxRetries !== undefined ? options.maxRetries : MAX_RETRIES;
   }
 
+  _assertDestructiveAllowed(method, endpoint, payload = {}) {
+    payload = payload || {};
+    const route = this._buildUrl(endpoint).pathname.replace(/^\/api\/v1/, "");
+    const deletesResources = method.toUpperCase() === "DELETE";
+    // Starting parsing clears old chunks and tasks before scheduling new work.
+    const reparse = method.toUpperCase() === "POST" && /^\/datasets\/[^/]+\/chunks$/.test(route);
+    const metadataChange = /\/metadata\/update$|\/documents\/metadatas$/.test(route) &&
+      (Boolean(payload.deletes?.length) || !payload.selector?.document_ids?.length);
+    const purgeIngestion = route === "/documents/ingest" && String(payload.run ?? "1") === "1" && Boolean(payload.delete);
+    if (!this.allowDestructive && (deletesResources || reparse || metadataChange || purgeIngestion)) {
+      const error = new Error("Destructive operation requires explicit confirmation: use --confirm-destructive in the CLI or allowDestructive: true on a dedicated client after verifying the target.");
+      error.code = "CONFIRMATION_REQUIRED";
+      throw error;
+    }
+  }
+
   async request(method, endpoint, options = {}) {
+    this._assertDestructiveAllowed(method, endpoint, options.json);
     const isMultipart = options.files && options.files.length > 0;
 
     const headers = {
@@ -35,7 +91,7 @@ class RagflowClient {
 
     let body;
     if (isMultipart) {
-      const boundary = "----FormBoundary" + Math.random().toString(36).slice(2);
+      const boundary = "----FormBoundary" + randomBytes(24).toString("hex");
       headers["Content-Type"] = `multipart/form-data; boundary=${boundary}`;
       body = this._buildMultipart(options.files, options.json || {}, boundary);
     } else if (options.json) {
@@ -51,7 +107,16 @@ class RagflowClient {
     const attempts = this.maxRetries + 1;
     for (let attempt = 1; attempt <= attempts; attempt++) {
       try {
-        return await this._doRequest(method, endpoint, headers, body, options.timeout, options.apiPrefix);
+        return await this._doRequest(
+          method,
+          endpoint,
+          headers,
+          body,
+          options.timeout,
+          options.apiPrefix,
+          options.rawResponse,
+          options.fileResponse
+        );
       } catch (err) {
         lastError = err;
         if (this._isRetryable(err) && attempt < attempts) {
@@ -94,7 +159,7 @@ class RagflowClient {
     return err;
   }
 
-  _doRequest(method, endpoint, headers, body, timeoutOverride, apiPrefix = this.apiPrefix) {
+  _doRequest(method, endpoint, headers, body, timeoutOverride, apiPrefix = this.apiPrefix, rawResponse = false, fileResponse = false) {
     const url = this._buildUrl(endpoint, apiPrefix);
     const timeout = timeoutOverride || this.timeout;
 
@@ -104,9 +169,42 @@ class RagflowClient {
         const chunks = [];
         res.on("data", (c) => chunks.push(c));
         res.on("end", () => {
-          const raw = Buffer.concat(chunks).toString("utf-8");
+          const bytes = Buffer.concat(chunks);
+          const raw = bytes.toString("utf-8");
+          if (fileResponse) {
+            let data;
+            try { data = JSON.parse(raw); } catch { /* Binary file. */ }
+            const disposition = res.headers["content-disposition"] || "";
+            const apiError = !disposition && data && typeof data.code === "number" && data.code !== 0;
+            if (res.statusCode < 200 || res.statusCode >= 300 || apiError) {
+              const err = new Error(data?.message || `HTTP ${res.statusCode}`);
+              err.status = res.statusCode;
+              err.code = data?.code;
+              reject(err);
+              return;
+            }
+            const encodedName = disposition.match(/filename\*=UTF-8''([^;]+)/i)?.[1];
+            let name = disposition.match(/filename="([^"]+)"|filename=([^;]+)/i)?.slice(1).find(Boolean) || "";
+            if (encodedName) {
+              try { name = decodeURIComponent(encodedName); } catch { /* Use plain filename. */ }
+            }
+            resolve({ content: bytes.toString("base64"), encoding: "base64", name,
+              content_type: res.headers["content-type"] || "application/octet-stream", size: bytes.length });
+            return;
+          }
           try {
             const data = JSON.parse(raw);
+            if (rawResponse) {
+              if (res.statusCode >= 200 && res.statusCode < 300) {
+                resolve(data);
+              } else {
+                const err = new Error(data.message || `HTTP ${res.statusCode}`);
+                err.status = res.statusCode;
+                err.response = data;
+                reject(err);
+              }
+              return;
+            }
             if (data.code === 0) {
               resolve(data.data !== undefined ? data.data : {});
             } else {
@@ -149,13 +247,13 @@ class RagflowClient {
     const parts = [];
     for (const [key, value] of Object.entries(fields)) {
       parts.push(Buffer.from(
-        `--${boundary}\r\nContent-Disposition: form-data; name="${key}"\r\n\r\n${value}`
+        `--${boundary}\r\nContent-Disposition: form-data; name="${multipartName(key)}"\r\n\r\n${value}`
       ));
       parts.push(Buffer.from("\r\n"));
     }
     for (const file of files) {
       const filePath = typeof file === "object" ? file.path : file;
-      const basename = typeof file === "object" && file.name ? file.name : path.basename(filePath);
+      const basename = multipartName(typeof file === "object" && file.name ? file.name : path.basename(filePath));
       const content = fs.readFileSync(filePath);
       const header = `--${boundary}\r\nContent-Disposition: form-data; name="file"; filename="${basename}"\r\nContent-Type: application/octet-stream\r\n\r\n`;
       parts.push(Buffer.from(header, "utf-8"));
@@ -167,9 +265,7 @@ class RagflowClient {
   }
 
   async _streamRequest(method, endpoint, json, options = {}) {
-    if (typeof options === "number") {
-      options = { timeout: options };
-    }
+    this._assertDestructiveAllowed(method, endpoint, json);
     const url = this._buildUrl(endpoint, options.apiPrefix || this.apiPrefix);
     const body = JSON.stringify(json);
     const timeout = options.timeout || this.timeout * 3;
@@ -329,15 +425,22 @@ class RagflowClient {
   // ── Document Download ──
 
   async downloadDocument(datasetId, documentId) {
-    return this.request("GET", `/datasets/${datasetId}/documents/${documentId}`);
+    return this.request("GET", `/datasets/${datasetId}/documents/${documentId}`, { fileResponse: true });
   }
 
   async downloadDocumentById(documentId) {
-    return this.request("GET", `/documents/${documentId}`);
+    return this.request("GET", `/documents/${documentId}`, { fileResponse: true });
   }
 
   async previewDocument(documentId) {
-    return this.request("GET", `/documents/${documentId}/preview`);
+    return this.request("GET", `/documents/${documentId}/preview`, { fileResponse: true });
+  }
+
+  async ingestDocuments(documentIds, options = {}) {
+    const run = options.run !== undefined ? String(options.run) : "1";
+    const payload = { doc_ids: documentIds, run };
+    if (options.delete !== undefined) payload.delete = Boolean(options.delete);
+    return this.request("POST", "/documents/ingest", { json: payload });
   }
 
   // ── Chunk / Parsing ──
@@ -378,11 +481,10 @@ class RagflowClient {
   }
 
   async getChunk(datasetId, documentId, chunkId) {
-    const result = await this.listChunks(datasetId, documentId, { id: chunkId });
-    const chunks = result?.chunks || (Array.isArray(result) ? result : []);
-    const chunk = chunks.find((item) => item.id === chunkId) || chunks[0];
-    if (!chunk) throw new Error(`Chunk not found: ${datasetId}/${chunkId}`);
-    return chunk;
+    return this.request(
+      "GET",
+      `/datasets/${datasetId}/documents/${documentId}/chunks/${chunkId}`
+    );
   }
 
   async _existingChunkIds(datasetId, documentId, chunkIds) {
@@ -448,27 +550,51 @@ class RagflowClient {
   }
 
   async updateChunk(datasetId, documentId, chunkId, data) {
+    validateChunkUpdate(data);
     return this.request(
-      "PUT",
+      "PATCH",
       `/datasets/${datasetId}/documents/${documentId}/chunks/${chunkId}`,
       { json: data }
     );
   }
 
+  async getDocumentStructureGraph(datasetId, documentId) {
+    return this.request("GET", `/datasets/${datasetId}/documents/${documentId}/structure/graph`);
+  }
+
+  async deleteDocumentStructureGraph(datasetId, documentId) {
+    return this.request("DELETE", `/datasets/${datasetId}/documents/${documentId}/structure/graph`);
+  }
+
   // ── Retrieval ──
 
   async retrieve(params) {
+    rejectRemovedParameters(params, { top_k: "Use knn_top_k.", doc_ids: "Use document_ids.", size: "Use page_size." });
     return this.request("POST", "/retrieval", { json: params });
+  }
+
+  async updateMetadata(datasetId, data) {
+    return this.request("POST", `/datasets/${datasetId}/metadata/update`, { json: data });
   }
   // ── Connector ──
 
-  async listConnectors(datasetId, params = {}) {
+  async listConnectors(params = {}) {
     const query = this._buildQuery(params);
-    return this.request("GET", `/datasets/${datasetId}/connectors?${query.toString()}`);
+    return this.request("GET", `/connectors?${query.toString()}`);
   }
 
-  async createConnector(datasetId, data) {
-    return this.request("POST", `/datasets/${datasetId}/connectors`, { json: data });
+  async createConnector(data) {
+    for (const field of ["name", "source", "config"]) {
+      if (!data[field]) throw new Error(`${field} is required`);
+    }
+    for (const field of ["refresh_freq", "prune_freq", "timeout_secs"]) {
+      const value = data[field];
+      if (value !== undefined && !(typeof value === "number" && Number.isSafeInteger(value)) &&
+          !(typeof value === "string" && /^[+-]?\d+$/.test(value.trim()) && Number.isSafeInteger(Number(value)))) {
+        throw new Error(`${field} must be an integer`);
+      }
+    }
+    return this.request("POST", `/connectors`, { json: data });
   }
 
   async getConnector(connectorId) {
@@ -486,11 +612,27 @@ class RagflowClient {
   // ── RAPTOR ──
 
   async runRaptor(datasetId) {
-    return this.request("POST", `/datasets/${datasetId}/run_raptor`);
+    return this.request("POST", `/datasets/${datasetId}/index?type=raptor`);
   }
 
   async traceRaptor(datasetId) {
-    return this.request("GET", `/datasets/${datasetId}/trace_raptor`);
+    return this.request("GET", `/datasets/${datasetId}/index?type=raptor`);
+  }
+
+  async getKnowledgeGraph(datasetId) {
+    return this.request("GET", `/datasets/${datasetId}/graph`);
+  }
+
+  async deleteKnowledgeGraph(datasetId) {
+    return this.request("DELETE", `/datasets/${datasetId}/graph`);
+  }
+
+  async runGraphRag(datasetId) {
+    return this.request("POST", `/datasets/${datasetId}/index?type=graph`);
+  }
+
+  async traceGraphRag(datasetId) {
+    return this.request("GET", `/datasets/${datasetId}/index?type=graph`);
   }
 
   // ── Chat Assistant ──
@@ -531,6 +673,14 @@ class RagflowClient {
     return this.request("POST", `/chats/${chatId}/sessions`, { json: data });
   }
 
+  async getSession(chatId, sessionId) {
+    return this.request("GET", `/chats/${chatId}/sessions/${sessionId}`);
+  }
+
+  async updateSession(chatId, sessionId, data) {
+    return this.request("PATCH", `/chats/${chatId}/sessions/${sessionId}`, { json: data });
+  }
+
   async deleteSessions(chatId, ids) {
     return this.request("DELETE", `/chats/${chatId}/sessions`, { json: { ids } });
   }
@@ -538,6 +688,7 @@ class RagflowClient {
   // ── Chat (Conversation) ──
 
   async chat(chatId, sessionId, question, params = {}) {
+    rejectRemovedParameters(params, REMOVED_CHAT_PARAMETERS);
     return this._streamRequest(
       "POST", `/chat/completions`,
       { chat_id: chatId, question, session_id: sessionId, ...params }
@@ -545,6 +696,7 @@ class RagflowClient {
   }
 
   async chatSession(chatId, sessionId, data = {}) {
+    rejectRemovedParameters(data, REMOVED_CHAT_PARAMETERS);
     const payload = { ...data, chat_id: chatId, session_id: sessionId };
     if (!payload.question && payload.messages) {
       const userMessages = Array.isArray(payload.messages)
@@ -553,8 +705,8 @@ class RagflowClient {
       const lastUserMessage = userMessages[userMessages.length - 1];
       if (lastUserMessage) payload.question = lastUserMessage.content;
     }
-    // v0.26.0: preserve messages when pass_all_history_messages is set
-    if (!payload.pass_all_history_messages && !payload.pass_all_history) {
+    // preserve messages when pass_all_history_messages is set
+    if (!payload.pass_all_history_messages) {
       delete payload.messages;
     }
     if (!payload.question) {
@@ -670,10 +822,10 @@ class RagflowClient {
   }
 
   async ensureEmbeddedChatSession(chatId, beta, data = {}) {
+    rejectRemovedParameters(data, REMOVED_CHAT_PARAMETERS);
     if (data.session_id) return data.session_id;
     const bootstrap = { ...data, question: "", stream: true };
     delete bootstrap.session_id;
-    delete bootstrap.conversation_id;
     const result = await this._streamRequest("POST", `/chatbots/${chatId}/completions`, bootstrap, { authToken: beta });
     if (!result.session_id) {
       throw new Error("Embedded chat did not return a session_id during session bootstrap");
@@ -682,6 +834,7 @@ class RagflowClient {
   }
 
   async embeddedChat(chatId, beta, data = {}) {
+    rejectRemovedParameters(data, REMOVED_CHAT_PARAMETERS);
     if (data.stream === false || data.stream === "false") {
       return this.request("POST", `/chatbots/${chatId}/completions`, { authToken: beta, json: data });
     }
@@ -699,17 +852,14 @@ class RagflowClient {
 
   async listModels(params = {}) {
     const query = this._buildQuery(params);
-    return this.request("GET", `/llm/my_llms?${query.toString()}`, {
-      apiPrefix: "/v1",
-    });
-  }
-
-  // ── Tenant Models (v0.26.0) ──
-
-  async listAddedModels(params = {}) {
-    const query = this._buildQuery(params);
     const suffix = query.toString();
     return this.request("GET", `/models${suffix ? `?${suffix}` : ""}`);
+  }
+
+  // ── Tenant Models ──
+
+  async listAddedModels(params = {}) {
+    return this.listModels(params);
   }
 
   async listDefaultModels() {
@@ -720,7 +870,7 @@ class RagflowClient {
     return this.request("PATCH", "/models/default", { json: data });
   }
 
-  // ── Model Providers (v0.26.0) ──
+  // ── Model Providers ──
 
   async listProviders(params = {}) {
     const query = this._buildQuery(params);
@@ -761,6 +911,9 @@ class RagflowClient {
   }
 
   async createProviderInstance(providerName, data) {
+    if (typeof data.instance_name !== "string" || !/^[0-9A-Za-z_-]+$/.test(data.instance_name)) {
+      throw new Error("instance_name must contain only ASCII letters, digits, underscores, or hyphens");
+    }
     return this.request("POST", `/providers/${encodeURIComponent(providerName)}/instances`, { json: data });
   }
 
@@ -814,6 +967,10 @@ class RagflowClient {
     return this.request("GET", "/system/version");
   }
 
+  async getSystemHealth() {
+    return this.request("GET", "/system/healthz", { rawResponse: true });
+  }
+
   async getLogLevels() {
     return this.request("GET", "/system/config/log");
   }
@@ -864,26 +1021,7 @@ class RagflowClient {
 
 }
 
-function loadEnv() {
-  const envPath = path.resolve(__dirname, "..", ".env");
-  if (fs.existsSync(envPath)) {
-    const content = fs.readFileSync(envPath, "utf-8");
-    for (const line of content.split("\n")) {
-      const trimmed = line.trim();
-      if (!trimmed || trimmed.startsWith("#")) continue;
-      const eq = trimmed.indexOf("=");
-      if (eq > 0) {
-        const key = trimmed.slice(0, eq);
-        if (process.env[key] === undefined || process.env[key] === "") {
-          process.env[key] = trimmed.slice(eq + 1);
-        }
-      }
-    }
-  }
-}
-
 function createClient(options = {}) {
-  loadEnv();
   return new RagflowClient(
     process.env.RAGFLOW_URL,
     process.env.RAGFLOW_API_KEY,

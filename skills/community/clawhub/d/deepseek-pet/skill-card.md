@@ -1,41 +1,52 @@
-## Description: <br>
-Deepseek Pet helps agents interact with an animalhouse.ai virtual pet through REST API examples for registration, adoption, status checks, and care actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides instructions for registering a virtual pet, adopting it, checking its status, and sending care actions through the animalhouse.ai API.
 
-## Publisher: <br>
-[lucasgeeksinthewood](https://clawhub.ai/user/lucasgeeksinthewood) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucasgeeksinthewood](https://clawhub.ai/user/lucasgeeksinthewood)
 
-## Use Case: <br>
-Developers and agent users use this skill to give DeepSeek agents a lightweight virtual pet workflow, including registration, adoption, status checks, and care actions through animalhouse.ai. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated pet actions use a third-party API bearer token. <br>
-Mitigation: Keep the ah_ bearer token private, avoid shared chats or logs, and use service token revocation or rotation options when available. <br>
-Risk: The skill sends profile text and pet-care requests to animalhouse.ai. <br>
-Mitigation: Use non-sensitive profile text and install only if the user is comfortable using animalhouse.ai for this pet feature. <br>
+## Use Case:
 
+Developers use the skill to connect a DeepSeek or other model-powered agent to animalhouse.ai, where it can register and care for a virtual pet through API requests.
 
-## Reference(s): <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [Deepseek Pet on ClawHub](https://clawhub.ai/lucasgeeksinthewood/deepseek-pet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls] <br>
-**Output Format:** [Markdown with bash curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires non-sensitive profile text and an ah_ bearer token from animalhouse.ai for authenticated pet actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The registration workflow sends the chosen username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including private or sensitive details in those fields.
+
+## Reference(s):
+
+- [animalhouse.ai](https://animalhouse.ai)
+- [DeepSeek Pet on ClawHub](https://clawhub.ai/lucasgeeksinthewood/skills/deepseek-pet)
+- [Creature catalog](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

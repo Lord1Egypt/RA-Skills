@@ -1,44 +1,55 @@
-## Description: <br>
-Antibody engineering workflow combining ANARCI, BioPhi, IgFold, FoldX, and Rosetta tools through SciMiner. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Antibody engineering workflow combining ANARCI, BioPhi, IgFold, FoldX, and Rosetta tools through SciMiner.
 
-## Publisher: <br>
-[sciminer](https://clawhub.ai/user/sciminer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sciminer](https://clawhub.ai/user/sciminer)
 
-## Use Case: <br>
-Developers, computational biologists, and antibody engineers use this skill to plan and run sequence de-risking, humanization, structure prediction, relaxation, developability profiling, mutation analysis, and candidate ranking workflows through SciMiner tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SciMiner tool calls may submit antibody sequences, structures, or other user-provided research data to an external service. <br>
-Mitigation: Confirm data-sharing expectations before submitting jobs and review returned share URLs before distributing them. <br>
-Risk: Credential handling mistakes could expose the SciMiner API key. <br>
-Mitigation: Keep the key only in ~/.config/sciminer/credentials.json, do not print or persist it, and stop if the credential file is missing or malformed. <br>
-Risk: Candidate-ranking or mutation guidance may be incorrect or incomplete for wet-lab, regulatory, or clinical decisions. <br>
-Mitigation: Treat outputs as computational decision support and have qualified domain experts review candidate changes before experimental or downstream use. <br>
+## Use Case:
 
+Developers and antibody engineering teams use this skill to plan SciMiner-based antibody sequence numbering, humanization, structure prediction, relaxation, developability profiling, mutation scanning, and redesign workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sciminer/antibody-engineering) <br>
-- [SciMiner tool API files](https://sciminer.tech/tool_api_files/) <br>
-- [SciMiner API key utility](https://sciminer.tech/utility) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown summaries with JSON snippets, code examples, and SciMiner share URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SciMiner API key stored outside the repository and may return long-running task identifiers with share URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill reads a local SciMiner API key and may upload selected antibody sequence or structure data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data handling is acceptable, keep the credential outside the repository, and avoid exposing the API key in prompts, logs, or files.
+
+Risk: Mutable remote Markdown tool documentation can influence authenticated request construction and code execution.
+
+Mitigation: Use a reviewed or pinned copy of API schemas when possible, enforce the expected SciMiner endpoint, strip credentials on redirects, and treat remote documentation as reference text.
+
+## Reference(s):
+
+- [SciMiner tool API files](https://sciminer.tech/tool_api_files/)
+- [SciMiner API key utility](https://sciminer.tech/utility)
+- [Antibody Engineering on ClawHub](https://clawhub.ai/sciminer/skills/antibody-engineering)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with generated request code, shell commands, configuration guidance, JSON result references, and share URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read a local SciMiner API key and upload selected antibody sequence or structure data to SciMiner.]
+
+## Skill Version(s):
+
+1.0.6 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

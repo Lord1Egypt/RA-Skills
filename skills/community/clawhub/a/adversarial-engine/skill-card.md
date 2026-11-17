@@ -1,44 +1,63 @@
-## Description: <br>
-Adversarial Engine coordinates four model roles to debate a topic, generate and verify Python code, use knowledge retrieval, and stop when an arbiter judges convergence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adversarial Engine coordinates four model roles to debate a topic, generate and check implementation code, challenge weaknesses, and decide when a proposal has converged.
 
-## Publisher: <br>
-[timo2026](https://clawhub.ai/user/timo2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timo2026](https://clawhub.ai/user/timo2026)
 
-## Use Case: <br>
-Developers and engineers use this skill to run structured adversarial reviews of architecture, implementation, and security tradeoffs, with optional code execution and real-time debate updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute AI-generated Python locally. <br>
-Mitigation: Run it only in an isolated environment and disable code execution unless a real sandbox is in place. <br>
-Risk: The skill exposes networked server behavior and WebSocket endpoints. <br>
-Mitigation: Bind servers to localhost unless remote access is explicitly required and reviewed. <br>
-Risk: Prompts and retrieved knowledge-base content can be sent to an external LLM and stored locally. <br>
-Mitigation: Avoid sensitive topics or knowledge-base files and review data-handling expectations before use. <br>
-Risk: The artifact includes an embedded API key. <br>
-Mitigation: Remove the embedded key, rotate it, and use a managed secret source before deployment. <br>
+## Use Case:
 
+Developers and technical teams use this skill to run adversarial multi-model reviews of architecture and implementation ideas, including security critique, code generation, code validation, and a final consensus summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/timo2026/adversarial-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-like status messages with optional Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external LLM APIs, execute generated Python locally, broadcast WebSocket updates, and persist debate records when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: Embedded credentials may expose external model-provider access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove embedded keys, rotate any exposed credentials, and require runtime secret injection from a managed secret store.
+
+Risk: Generated Python code execution can run unsafe commands or access local resources.
+
+Mitigation: Disable generated-code execution by default or run it only in a strongly isolated sandbox with per-run approval, resource limits, and no sensitive filesystem or network access.
+
+Risk: Unauthenticated HTTP and WebSocket endpoints can expose debate controls and outputs to unintended clients.
+
+Mitigation: Bind services to localhost unless explicitly needed, add authentication and rate limits, restrict CORS, and prevent broadcasts across unrelated users or sessions.
+
+Risk: Local knowledge-base snippets may be stored or sent to external model providers without clear controls.
+
+Mitigation: Document what local content is retrieved, persisted, and sent externally; filter sensitive data and require operator approval for external sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/timo2026/skills/adversarial-engine)
+- [Publisher profile](https://clawhub.ai/user/timo2026)
+- [DashScope-compatible chat completions endpoint](https://coding.dashscope.aliyuncs.com/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown-style debate transcript, Python code blocks, API/WebSocket JSON messages, and persisted session records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated Python code, model reasoning text when returned by providers, token and latency metadata, convergence scores, and retrieved local knowledge snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

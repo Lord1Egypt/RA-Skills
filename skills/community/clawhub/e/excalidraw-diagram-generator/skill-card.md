@@ -1,45 +1,59 @@
-## Description: <br>
-Generate Excalidraw diagrams from natural language descriptions and output .excalidraw JSON files that can be opened in Excalidraw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates editable Excalidraw diagrams as .excalidraw JSON files from natural-language requests for flowcharts, relationship diagrams, mind maps, architecture diagrams, and related diagram types.
 
-## Publisher: <br>
-[elihuvillaraus](https://clawhub.ai/user/elihuvillaraus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[elihuvillaraus](https://clawhub.ai/user/elihuvillaraus)
 
-## Use Case: <br>
-Developers, designers, and technical teams use this skill to turn process descriptions, system relationships, data flows, class structures, sequence flows, and other concepts into editable Excalidraw diagrams. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional icon workflows can involve local helper scripts and externally downloaded icon libraries. <br>
-Mitigation: Inspect helper scripts before running them and keep icon libraries inside the skill's intended libraries directory. <br>
-Risk: Generated diagrams may expose sensitive architecture, workflow, or business details from the user's prompt. <br>
-Mitigation: Review generated diagrams before sharing and remove sensitive details when the prompt includes confidential information. <br>
-Risk: Complex requests can produce crowded or misleading diagrams. <br>
-Mitigation: Review the output for accuracy and split large diagrams into focused sub-diagrams when needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/elihuvillaraus/excalidraw-diagram-generator) <br>
-- [Excalidraw JSON Schema Reference](references/excalidraw-schema.md) <br>
-- [Excalidraw Element Types Guide](references/element-types.md) <br>
-- [Excalidraw](https://excalidraw.com) <br>
-- [Excalidraw Libraries](https://libraries.excalidraw.com/) <br>
+## Use Case:
 
+External users, developers, and teams use this skill to turn descriptions of processes, systems, data flows, object models, or relationships into editable Excalidraw diagrams.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [.excalidraw JSON files with a short Markdown summary and opening or setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated diagrams should use readable text, unique element IDs, consistent colors, and reasonable element counts for clarity.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated diagrams may contain inaccurate relationships, crowded layouts, or overlapping elements.
+
+Mitigation: Review the .excalidraw file before sharing or relying on it, keep diagrams focused, and split complex requests into smaller diagrams.
+
+Risk: Optional icon-library workflows may require downloading .excalidrawlib files and running local setup or helper commands.
+
+Mitigation: Review downloaded library sources and command paths before running setup, and use basic shapes when icon libraries are not installed or trusted.
+
+Risk: The inspected package references helper scripts for icon handling that are not included in the artifact.
+
+Mitigation: Confirm helper scripts exist in the installed skill before following script-based icon instructions.
+
+## Reference(s):
+
+- [Excalidraw JSON Schema Reference](references/excalidraw-schema.md)
+- [Excalidraw Element Types Guide](references/element-types.md)
+- [Excalidraw](https://excalidraw.com)
+- [Excalidraw Libraries](https://libraries.excalidraw.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [.excalidraw JSON files with concise Markdown summaries, opening instructions, and optional shell command snippets for icon-library setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated diagrams should keep element counts manageable, use unique element IDs, avoid overlapping elements, and use Excalifont for text elements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

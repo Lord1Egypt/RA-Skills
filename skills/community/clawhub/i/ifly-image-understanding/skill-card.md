@@ -1,43 +1,54 @@
-## Description: <br>
-ifly-image-understanding analyzes images and answers questions using iFlytek Spark Vision over its WebSocket API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+iFlytek Image Understanding analyzes images and answers questions about their content using the iFlytek Spark Vision WebSocket API.
 
-## Publisher: <br>
-[qingzhe2020](https://clawhub.ai/user/qingzhe2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qingzhe2020](https://clawhub.ai/user/qingzhe2020)
 
-## Use Case: <br>
-Developers and external users use this skill to send a local JPG or PNG image with a natural-language question to iFlytek Spark Vision and receive an image-understanding answer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images and questions are sent to iFlytek for processing. <br>
-Mitigation: Use only images approved for that provider and avoid highly sensitive content unless the deployment has explicit approval. <br>
-Risk: Credentials and billing quota are required for the iFlytek API. <br>
-Mitigation: Use a dedicated iFlytek app and API key where possible, store credentials in environment variables, and monitor usage or billing. <br>
-Risk: The package includes a local Claude settings file that is not needed for normal use. <br>
-Mitigation: Ignore or remove the stray .claude local settings file before deployment if it is not part of the target environment. <br>
+## Use Case:
 
+Developers and agents use this skill to describe JPG, JPEG, and PNG images or ask targeted questions about image content through iFlytek Spark Vision. It supports general description, OCR-style questions, object identification, chart interpretation, model selection, token limits, and optional raw API frame output.
 
-## Reference(s): <br>
-- [iFlytek Console](https://console.xfyun.cn) <br>
-- [iFlytek Image Understanding Service](https://console.xfyun.cn/services/image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text answer by default, with optional raw WebSocket JSON frames] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IFLY_APP_ID, IFLY_API_KEY, and IFLY_API_SECRET; accepts JPG, JPEG, or PNG images up to 4MB; max response tokens are configurable up to 8192.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The artifact includes a project-local Claude settings file that grants unrelated file-read and packaging command permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove artifact/.claude/settings.local.json before installing, especially in Claude environments that honor local permission files.
+
+Risk: Images and prompts are sent to iFlytek's remote service for analysis.
+
+Mitigation: Avoid submitting sensitive images or prompts unless that third-party transfer is acceptable for the intended use case.
+
+## Reference(s):
+
+- [iFlytek Image Understanding Service Documentation](https://console.xfyun.cn/services/image)
+- [iFlytek Console](https://console.xfyun.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text image answers, optional raw WebSocket JSON frames, and Markdown usage examples with shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires IFLY_APP_ID, IFLY_API_KEY, and IFLY_API_SECRET environment variables; accepts .jpg, .jpeg, and .png images up to 4MB with max_tokens from 1 to 8192.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

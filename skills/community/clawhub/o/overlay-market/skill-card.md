@@ -1,44 +1,59 @@
-## Description: <br>
-Trade leveraged perpetual futures on Overlay Protocol (BSC), scan markets, analyze prices with technical indicators, check wallet balance, encode build and unwind transactions, and monitor positions with PnL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade leveraged perpetual futures on Overlay Protocol (BSC), scan markets, analyze prices with technical indicators, check wallet balance, encode build and unwind transactions, and monitor positions with PnL.
 
-## Publisher: <br>
-[arthurka-o](https://clawhub.ai/user/arthurka-o) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arthurka-o](https://clawhub.ai/user/arthurka-o)
 
-## Use Case: <br>
-External users and developers use this skill to research Overlay Protocol markets on BSC, prepare leveraged perpetual futures transactions, review wallet and position state, and optionally sign and broadcast approved transactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign and broadcast real BSC transactions when configured with a private key. <br>
-Mitigation: Prefer an external signer, smart-contract account, or dedicated low-value wallet, and review every generated transaction before broadcasting. <br>
-Risk: The approval script can create unlimited USDT approvals by default. <br>
-Mitigation: Pass a specific approval amount and confirm the spender and amount before signing. <br>
-Risk: Trading commands can open or close leveraged positions with real funds. <br>
-Mitigation: Confirm the destination, market, position ID, direction, leverage, collateral, and slippage before executing or piping output to send.js. <br>
+## Use Case:
 
+External users and developers use this skill to research Overlay Protocol markets on BSC, prepare leveraged perpetual futures trades, review wallet balances and positions, and create transactions for signing.
 
-## Reference(s): <br>
-- [Overlay app](https://app.overlay.market) <br>
-- [Overlay documentation](https://docs.overlay.market) <br>
-- [ClawHub skill page](https://clawhub.ai/arthurka-o/overlay-market) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON transaction objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Build and unwind scripts write unsigned transaction JSON to stdout and human-readable review details to stderr; send.js returns transaction status JSON after broadcasting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release evidence and SKILL.md metadata) <br>
+Risk: Mainnet trading and bundled transaction signing can put wallet funds at risk if transactions are not reviewed before signing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every transaction before signing, prefer an external signer or restricted smart account, and use a dedicated low-value wallet.
+
+Risk: Approving unlimited USDT spending can expose more funds than intended.
+
+Mitigation: Use a custom approval amount unless unlimited approval is deliberate and appropriate for the wallet.
+
+Risk: Piping unknown transaction JSON into the bundled sender could sign an unintended transaction.
+
+Mitigation: Only send transaction JSON produced by reviewed skill commands and inspect the target, data, value, and chain ID before broadcasting.
+
+## Reference(s):
+
+- [Overlay App](https://app.overlay.market)
+- [Overlay Documentation](https://docs.overlay.market)
+- [ClawHub skill page](https://clawhub.ai/arthurka-o/skills/overlay-market)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON transaction objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Build and unwind scripts can emit unsigned BSC transaction JSON; send.js can return broadcast transaction status JSON.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

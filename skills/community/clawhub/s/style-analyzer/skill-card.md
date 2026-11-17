@@ -1,41 +1,58 @@
-## Description: <br>
-Style Analyzer analyzes writing-style characteristics and generates a Voice Profile YAML file for capturing author style, creating voice profiles, and analyzing sentence, vocabulary, rhythm, and sentiment features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes writing style features and generates a Voice Profile configuration for capturing author style, creating Voice Profiles, and analyzing text characteristics.
 
-## Publisher: <br>
-[yuzhihui886](https://clawhub.ai/user/yuzhihui886) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuzhihui886](https://clawhub.ai/user/yuzhihui886)
 
-## Use Case: <br>
-Developers and writers use this skill to analyze reference text and produce a Voice Profile configuration that can guide consistent style in fiction or prompt-building workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The LLM analysis mode can send selected input text to DashScope when DASHSCOPE_API_KEY is configured. <br>
-Mitigation: Use scripts/analyze_style.py for local-only analysis, and run scripts/analyze_style_llm.py only when external processing of the selected text is acceptable. <br>
-Risk: Confidential drafts, business documents, or personal data may be exposed if they are analyzed through the LLM mode. <br>
-Mitigation: Avoid submitting sensitive text to the LLM mode unless that external processing has been reviewed and approved. <br>
-Risk: Unpinned Python dependencies can reduce repeatability in sensitive environments. <br>
-Mitigation: Pin and review dependencies before installing or running the skill in a controlled environment. <br>
+## Use Case:
 
+Developers and writing-tool users use this skill to analyze reference text and produce a reusable YAML Voice Profile for style-consistent novel or prompt workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with shell commands; generated analysis is saved as YAML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The local analyzer can write sentence, vocabulary, rhythm, and voice profile fields; the LLM analyzer writes a voice profile and analysis notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The optional LLM analyzer can send up to 8,000 characters of user text to DashScope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented local analyzer for sensitive text, and run the LLM analyzer only when the upload is intended and permitted under the provider's terms.
+
+Risk: Dependencies are not pinned in requirements.txt.
+
+Mitigation: Install in an isolated environment and pin or review dependency versions before production use.
+
+Risk: Rule-based style metrics and rhetorical-device detection may be incomplete or inaccurate.
+
+Mitigation: Review generated Voice Profiles before reuse and provide text samples of at least 500 characters as recommended by the skill documentation.
+
+## Reference(s):
+
+- [ClawHub Style Analyzer skill page](https://clawhub.ai/yuzhihui886/skills/style-analyzer)
+- [DashScope chat completions endpoint used by optional LLM analyzer](https://coding.dashscope.aliyuncs.com/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, shell commands]
+
+**Output Format:** [YAML file plus terminal text report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The local analyzer writes voice profile, sentence, vocabulary, and rhythm metrics; the optional LLM analyzer writes a voice profile and analysis notes.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

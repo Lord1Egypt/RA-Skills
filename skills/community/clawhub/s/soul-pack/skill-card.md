@@ -1,43 +1,58 @@
-## Description: <br>
-Export, import, and list SOUL packages for OpenClaw agents to manage reusable persona bundles and agent workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Export and import SOUL packages for OpenClaw agents. Use when creating a reusable persona package (SOUL.md + preview.md + manifest.json), installing a soul package into a new/existing agent workspace, or batch listing local soul packages for a Soul marketplace workflow.
 
-## Publisher: <br>
-[juan-xin-cai](https://clawhub.ai/user/juan-xin-cai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[juan-xin-cai](https://clawhub.ai/user/juan-xin-cai)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to package a workspace SOUL.md into a reusable bundle, import a bundle into an agent workspace, and list local packages for sharing or marketplace workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Imported SOUL packages can replace an existing persona or introduce unreviewed persona content. <br>
-Mitigation: Review SOUL.md before importing, use a test workspace for packages from others, and use --force only when replacement is intended. <br>
-Risk: Exported packages may include private paths or sensitive persona content. <br>
-Mitigation: Inspect SOUL.md, preview.md, and manifest.json before sharing packages and remove secrets or private workspace details. <br>
-Risk: Importing a package changes local workspace files and may register an OpenClaw agent. <br>
-Mitigation: Run in a controlled workspace and confirm the target agent name and workspace path before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Soul package manifest schema](schema/manifest.schema.v0.1.json) <br>
-- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema) <br>
-- [ClawHub skill page](https://clawhub.ai/juan-xin-cai/soul-pack) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to export reusable SOUL persona packages, import them into agent workspaces, and list local soul packages for marketplace-style workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and generated package files, including SOUL.md, preview.md, manifest.json, and .tar.gz archives.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local workspace files and may register an OpenClaw agent when importing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Imported SOUL packages can add unreviewed agent instructions to a workspace.
+
+Mitigation: Install only trusted packages, review SOUL.md before import, and validate behavior with a test agent first.
+
+Risk: Using --force can overwrite an existing workspace SOUL.md.
+
+Mitigation: Avoid --force unless the workspace has been backed up and the overwrite is intentional.
+
+Risk: Exported archives can include local workspace paths in package metadata and preview text.
+
+Mitigation: Review archives before sharing and avoid distributing packages when embedded local paths are sensitive.
+
+## Reference(s):
+
+- [Soul Pack on ClawHub](https://clawhub.ai/juan-xin-cai/skills/soul-pack)
+- [Soul Package Manifest Schema](schema/manifest.schema.v0.1.json)
+- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash commands and generated package files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exports SOUL.md, preview.md, manifest.json, and tar.gz archives; imports can write SOUL.md, preview.md, and soul-manifest.json into a workspace.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

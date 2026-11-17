@@ -1,38 +1,50 @@
-## Description: <br>
-Symptom checker that helps users assess health symptoms, understand possible causes, and decide whether to seek medical care. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Symptom checker that helps users assess health symptoms, understand possible causes, and decide whether to seek medical care.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
 
-## Use Case: <br>
-External users can use this skill to describe physical symptoms, answer clarifying questions, and receive general guidance on possible common causes and when to seek medical care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Health triage guidance could be mistaken for a medical diagnosis or emergency-care instruction. <br>
-Mitigation: Frame responses as general information, recommend professional diagnosis, and direct users to urgent or emergency care for severe, worsening, unusual, or urgent symptoms. <br>
+## Use Case:
 
+External users use this skill to discuss physical symptoms, answer clarifying questions about severity and duration, and receive general non-diagnostic guidance about whether to monitor symptoms or seek medical care.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiwenbing/symptom-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with clarifying questions, possible causes, and care-seeking recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [General health information only; not a medical diagnosis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may mistake general symptom guidance for a medical diagnosis or emergency triage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses explicitly non-diagnostic, advise consultation with a licensed clinician, and direct severe, sudden, or emergency symptoms to emergency services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiwenbing/skills/symptom-check)
+- [ClawHub publisher profile](https://clawhub.ai/user/jiwenbing)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [General health guidance only; not a medical diagnosis.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

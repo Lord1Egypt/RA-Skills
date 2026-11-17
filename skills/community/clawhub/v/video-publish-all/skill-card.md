@@ -1,45 +1,56 @@
-## Description: <br>
-全平台视频发布汇总。对比四大国内视频平台（小红书、抖音、B站、视频号）的发布规则和步骤，提供最佳发布策略。自动选择最适合的平台组合。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for comparing and publishing videos across Xiaohongshu, Douyin, Bilibili, and WeChat Channels, including platform rules, upload requirements, and best-practice sequencing.
 
-## Publisher: <br>
-[Johnnyxu820](https://clawhub.ai/user/Johnnyxu820) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johnnyxu820](https://clawhub.ai/user/johnnyxu820)
 
-## Use Case: <br>
-External creators and social media operators use this skill to prepare publishing guidance for videos across Xiaohongshu, Douyin, Bilibili, and WeChat Channels. It helps compare platform constraints, choose a publishing sequence, and confirm title and video requirements before posting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent may prepare or initiate public video posts to external social platforms. <br>
-Mitigation: Require explicit confirmation of the account, target platforms, video file, title, description, tags, and final publish action before anything is posted. <br>
-Risk: A stale or incorrect published-record path may cause duplicate-posting checks to be unreliable. <br>
-Mitigation: Confirm the local published.json path and inspect the existing record before relying on duplicate-publish guidance. <br>
-Risk: Platform-specific title, file-size, or format limits may block publication if not checked. <br>
-Mitigation: Validate the video and title against each selected platform's requirements before upload. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Johnnyxu820/video-publish-all) <br>
-- [Xiaohongshu video publishing portal](https://creator.xiaohongshu.com/publish/publish?source=official&target=video) <br>
-- [Douyin video publishing portal](https://creator.douyin.com/creator-micro/content/post/video) <br>
-- [Bilibili video upload portal](https://member.bilibili.com/platform/upload/video/frame) <br>
-- [WeChat Channels post creation portal](https://channels.weixin.qq.com/platform/post/create) <br>
+## Use Case:
 
+External creators and operators use this skill to plan and coordinate video publishing across major Chinese video platforms while checking platform-specific title, file, and workflow requirements.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with tables, examples, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local video and published-record paths supplied by the user or skill evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: _meta.json and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill guides public video posting across multiple third-party accounts, which can expose content publicly or affect account standing if used without review.
+
+Mitigation: Confirm the video, title, description, hashtags, target platforms, and account consequences before allowing any publish action, especially all-platform posting.
+
+Risk: Platform-specific title length, file size, file format, and account workflow requirements can cause failed or unintended publishes.
+
+Mitigation: Check each selected platform's current requirements before submission and adapt titles or files for the most restrictive platform.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnnyxu820/skills/video-publish-all)
+- [Xiaohongshu creator video publish](https://creator.xiaohongshu.com/publish/publish?source=official&target=video)
+- [Douyin creator video post](https://creator.douyin.com/creator-micro/content/post/video)
+- [Bilibili creator upload](https://member.bilibili.com/platform/upload/video/frame)
+- [WeChat Channels post create](https://channels.weixin.qq.com/platform/post/create)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with tables, examples, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes platform comparison guidance and publish-readiness checks; does not include executable integration code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

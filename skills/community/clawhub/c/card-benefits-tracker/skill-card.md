@@ -1,41 +1,57 @@
-## Description: <br>
-Track and maximize credit card benefits (monthly, quarterly, yearly). Manage cards, log benefit usage, get reminders for expiring perks, see ROI summaries, and optimize spending categories for maximum rewards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and maximize credit card benefits (monthly, quarterly, yearly). Manage cards, log benefit usage, get reminders for expiring perks, see ROI summaries, and optimize spending categories for maximum rewards.
 
-## Publisher: <br>
-[softtrymee](https://clawhub.ai/user/softtrymee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[softtrymee](https://clawhub.ai/user/softtrymee)
 
-## Use Case: <br>
-External users use this skill to track credit-card perks, log monthly, quarterly, and yearly benefit usage, receive reminders for expiring credits, review annual-fee ROI, and compare spending categories across tracked cards. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores card names, annual fees, membership dates, benefit details, and usage history in local JSON files. <br>
-Mitigation: Install only if local storage of this financial-planning data is acceptable, and do not store card numbers, bank logins, API keys, or other secrets in the tracker. <br>
-Risk: Optional web lookups can send card names, benefit questions, or spending categories to a search provider. <br>
-Mitigation: Approve web lookups only when that disclosure is acceptable, and verify discovered benefit details against issuer sources before saving updates. <br>
-Risk: ROI and spending-category recommendations can be wrong when issuer benefits, cashback rates, or user-entered data are outdated. <br>
-Mitigation: Treat recommendations as planning guidance and confirm current issuer terms before changing cards, benefits, or spending behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/softtrymee/card-benefits-tracker) <br>
+## Use Case:
 
+External users use this agent skill to maintain a local record of credit card benefits, usage, renewal timing, and reward categories so they can capture expiring perks and evaluate annual fee ROI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown summaries with tables, JSON command results, and CLI command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON files for card catalogs and period tracking; web lookups are optional and should be confirmed before saving benefit or rewards data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores and updates a local financial profile, including card ownership, benefit usage, dates, fees, and reward preferences.
+
+Mitigation: Review the skill before installation and avoid adding sensitive account numbers or credentials to card, benefit, or notes fields.
+
+Risk: The tracking command can read or replace JSON files outside the data folder when given unsafe tracking-period values.
+
+Mitigation: Validate tracking periods strictly as YYYY_MM before running tracking commands, and fix path handling before deploying the skill for regular use.
+
+Risk: Benefit and cashback details discovered through web search may be outdated or inaccurate.
+
+Mitigation: Confirm benefit amounts, frequencies, activation requirements, and cashback rates with the user or authoritative card issuer sources before saving them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/softtrymee/skills/card-benefits-tracker)
+- [ClawHub publisher profile](https://clawhub.ai/user/softtrymee)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries, JSON command results, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may summarize local card, benefit, usage, renewal, and reward-category data.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

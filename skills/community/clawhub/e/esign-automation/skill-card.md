@@ -1,43 +1,54 @@
-## Description: <br>
-Automates eSignGlobal contract signing workflows through the eSignGlobal CLI, including draft envelope creation, sender view links, sending, reminders, cancellation, downloads, PDF signature verification, template rendering, contract comparison, attachment management, CC recipients, and signer changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates eSignGlobal contract signing workflows through the eSignGlobal CLI, including draft envelopes, sender links, sending, status checks, reminders, cancellation, downloads, signature verification, template rendering, contract comparison, attachments, CC recipients, and signer management.
 
-## Publisher: <br>
-[esign-cn-open-source](https://clawhub.ai/user/esign-cn-open-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[esign-cn-open-source](https://clawhub.ai/user/esign-cn-open-source)
 
-## Use Case: <br>
-External users and developers use this skill to operate eSignGlobal e-signature workflows from an agent, including preparing and sending envelopes, checking status, managing recipients and attachments, rendering templates, comparing PDFs, downloading completed documents, and verifying signed PDFs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent can initiate sensitive e-signature actions such as sending, cancelling, reminding, or changing recipients. <br>
-Mitigation: Verify the exact PDF, envelope ID, recipients, and requested action with the user before running the CLI command. <br>
-Risk: The skill depends on an eSignGlobal API key for account-backed operations. <br>
-Mitigation: Use a scoped API key where possible and do not print, store, or persist the API key in agent output or files. <br>
-Risk: The skill invokes an external CLI through npx for contract workflows. <br>
-Mitigation: For sensitive contract work, preinstall or pin a reviewed version of the eSignGlobal CLI before use. <br>
+## Use Case:
 
+External users and developers use this skill to send and manage e-signature workflows for PDF contracts, templates, recipients, reminders, downloads, signature validation, and document comparisons in eSignGlobal.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/esign-cn-open-source/esign-automation) <br>
-- [eSignGlobal website](https://www.esignglobal.com?source=agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with inline shell commands and JSON command arguments; external CLI responses may be returned as JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18 or later, the eSignGlobal CLI through npx, and ESIGNGLOBAL_APIKEY for API-backed actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.5 (source: frontmatter and server release metadata) <br>
+Risk: The skill handles contracts, signer details, PDFs, and an API key while invoking an unpinned third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, vetted version of the eSignGlobal CLI from a controlled source, provide a least-privilege ESIGNGLOBAL_APIKEY, and expose only the specific PDFs required for the task.
+
+Risk: Send, template render, contract compare, and related workflows may transmit documents and recipient details to eSignGlobal.
+
+Mitigation: Confirm user intent before actions that upload, send, compare, or modify envelopes, and use only deployments approved for the documents and recipient data involved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/esign-cn-open-source/skills/esign-automation)
+- [eSignGlobal website](https://www.esignglobal.com?source=agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON command arguments, URLs, and formatted status or signature summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ESIGNGLOBAL_APIKEY and user-provided envelope IDs, file keys, signer details, and absolute PDF file paths.]
+
+## Skill Version(s):
+
+1.7.5 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

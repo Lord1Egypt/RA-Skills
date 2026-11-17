@@ -1,41 +1,55 @@
-## Description: <br>
-Drafts, restructures, reviews, and optionally submits GitHub issues from findings, bugs, security reviews, regressions, feature requests, or technical debt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when drafting, restructuring, reviewing, or submitting GitHub issues from investigation findings, bugs, security reviews, regressions, feature requests, or technical debt; selects the right issue shape and keeps evidence, impact, recommendations, and acceptance criteria appropriate to the issue type.
 
-## Publisher: <br>
-[xiluoduyu](https://clawhub.ai/user/xiluoduyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiluoduyu](https://clawhub.ai/user/xiluoduyu)
 
-## Use Case: <br>
-Developers and maintainers use this skill to turn investigation findings, bugs, security concerns, feature requests, or technical debt into actionable GitHub issues with appropriate evidence, impact, recommendations, and acceptance criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Issue submission can expose secrets, private credentials, or sensitive exploit details if the user-provided issue body is not reviewed. <br>
-Mitigation: Before submitting, confirm the target repository and review the issue title and body for secrets, private credentials, and excessive exploit detail. <br>
+## Use Case:
 
+Developers and maintainers use this skill to turn investigation notes, bugs, security findings, regressions, feature requests, or technical debt into structured GitHub issues with evidence, impact, recommendations, and acceptance criteria. When explicitly requested, it can help submit an issue after confirming repository details and reviewing sensitive content.
 
-## Reference(s): <br>
-- [Issue Writer on ClawHub](https://clawhub.ai/xiluoduyu/issue-writer) <br>
-- [Bug Or Regression Issue Shape](references/bug-issue.md) <br>
-- [Epic Or Technical Debt Issue Shape](references/epic-issue.md) <br>
-- [Security Issue Shape](references/security-issue.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown issue drafts with optional inline shell commands for GitHub submission] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce issue titles, issue bodies, acceptance criteria, recommendations, and user-reviewed submission commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Generated issue bodies may include private details, secrets, or excessive exploit detail when source findings contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact issue bodies before posting, especially for security findings.
+
+Risk: Optional submission can create GitHub issues using the user's existing GitHub authentication.
+
+Mitigation: Submit only after confirming the target repository, title, labels, and issue body.
+
+## Reference(s):
+
+- [Bug Or Regression Issue Shape](references/bug-issue.md)
+- [Epic Or Technical Debt Issue Shape](references/epic-issue.md)
+- [Security Issue Shape](references/security-issue.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown issue drafts with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create GitHub issues only when explicitly requested and authenticated GitHub tooling is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

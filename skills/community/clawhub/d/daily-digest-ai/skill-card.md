@@ -1,47 +1,64 @@
-## Description: <br>
-Fetches curated technology RSS feeds, uses an external AI provider to score and summarize articles, and generates a structured daily Markdown digest with translated titles, categories, trend highlights, and visual statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches RSS feeds from 92 top Hacker News blogs curated by Karpathy plus 3 Chinese tech media sources, uses AI to score and filter articles, and generates a daily digest in Markdown with Chinese-translated titles, category grouping, trend highlights, and visual statistics.
 
-## Publisher: <br>
-[richball876](https://clawhub.ai/user/richball876) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richball876](https://clawhub.ai/user/richball876)
 
-## Use Case: <br>
-Developers and technology readers use this skill to generate a daily RSS digest of recent technical articles, including AI-assisted scoring, summaries, category grouping, trends, and charts. It is intended for technology blog and RSS sources rather than real-time news APIs or non-technical topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends RSS article metadata and generated prompts to the configured external AI provider. <br>
-Mitigation: Use a provider and API key approved for the intended environment, and avoid using it for private or sensitive source material. <br>
-Risk: The skill can persist an API key and preferences in a local config file for convenience. <br>
-Mitigation: Use a dedicated low-limit API key and review or delete ~/.hn-daily-digest/config.json when the digest workflow is no longer needed. <br>
-Risk: Generated summaries and trend assessments may be incomplete, stale, or misleading. <br>
-Mitigation: Treat the digest as an AI-written triage aid and verify important claims against the original linked articles. <br>
+## Use Case:
 
+Developers and technical readers use this skill to create a daily RSS-based technology news digest from curated engineering, AI, security, and Chinese technology media sources. The skill helps an agent collect recent articles, score and categorize them with an AI provider, and write a structured Markdown report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/richball876/daily-digest-ai) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Digest script](artifact/scripts/digest.ts) <br>
-- [Hacker News Popularity Contest 2025](https://refactoringenglish.com/tools/hn-popularity/) <br>
-- [Bun runtime](https://bun.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown digest file with tables, Mermaid charts, ASCII charts, article summaries, plus command and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and an OpenAI-compatible or Gemini API key; can save configuration under ~/.hn-daily-digest/config.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: API keys may be persisted in plaintext configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing long-lived production keys, use restricted keys with quota limits, and remove saved configuration when it is no longer needed.
+
+Risk: Article titles, descriptions, and URLs are sent to the selected AI provider for scoring and summarization.
+
+Mitigation: Use only approved AI providers and avoid running the workflow on private or sensitive feed content.
+
+Risk: Runtime installation through unpinned npx execution can introduce supply-chain uncertainty.
+
+Mitigation: Verify or preinstall Bun in the execution environment before running the digest script.
+
+Risk: Generated digest content may contain incorrect summaries or unwanted footer text.
+
+Mitigation: Review the Markdown digest before sharing or publishing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richball876/skills/daily-digest-ai)
+- [Hacker News Popularity Contest 2025](https://refactoringenglish.com/tools/hn-popularity/)
+- [Bun runtime](https://bun.sh)
+- [Google AI Studio API keys](https://aistudio.google.com/apikey)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown digest file with terminal status output and setup prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes digest-YYYYMMDD.md by default or a caller-specified output path; digest language can be Chinese or English.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

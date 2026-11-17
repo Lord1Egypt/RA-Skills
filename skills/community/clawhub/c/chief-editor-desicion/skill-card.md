@@ -1,42 +1,57 @@
-## Description: <br>
-AI agent for chief editor decision reporting tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports chief editor decision reporting tasks by collecting provided source material and producing a structured decision narrative.
 
-## Publisher: <br>
-[teamolab](https://clawhub.ai/user/teamolab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[teamolab](https://clawhub.ai/user/teamolab)
 
-## Use Case: <br>
-External users and editors use this skill to collect information from supplied attachments and source URLs, then produce a long-form decision narrative with a conclusion, MECE logic, a Mermaid tree diagram, charts, and cited references. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to read supplied attachments and visit selected links found inside them, which can expose confidential or sensitive material. <br>
-Mitigation: Use it only with material the user is authorized to process, avoid confidential documents unless a review gate is available, and inspect the generated report before submission. <br>
-Risk: The citation instructions can make attachment-derived research appear directly sourced from original URLs. <br>
-Mitigation: Verify cited URLs against the provided source material and require reviewer approval before relying on or publishing the report. <br>
-Risk: The skill creates and submits a long decision report with limited user control during the workflow. <br>
-Mitigation: Require human review before final submission and check the conclusion, supporting logic, charts, and references for accuracy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/teamolab/chief-editor-desicion) <br>
-- [Publisher profile](https://clawhub.ai/user/teamolab) <br>
+## Use Case:
 
+External users can use this skill to produce detailed decision narrative reports from provided attachments and selected source URLs, including a decision conclusion, Mermaid tree diagram, MECE logic breakdown, charts, and cited references.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown report with Mermaid diagram, charts, and inline URL citations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a detailed decision narrative report and submits it as an attachment file; source material should be reviewed before submission.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may read every provided attachment, which can expose confidential documents, secrets, private research logs, or personal data.
+
+Mitigation: Review and redact inputs before use, and avoid providing sensitive material unless explicit handling controls are in place.
+
+Risk: The skill may visit URLs discovered inside attachments, including internal or untrusted links.
+
+Mitigation: Require URL review or an allowlist before scraping discovered links.
+
+Risk: The skill can produce and submit a detailed decision report without enough user control over data handling.
+
+Mitigation: Require human review of report content, citations, and destination before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teamolab/skills/chief-editor-desicion)
+- [Publisher profile](https://clawhub.ai/user/teamolab)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with Mermaid diagram, charts, and inline URL citations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed to produce a long-form decision report and submit it as an attachment when the required tools are available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

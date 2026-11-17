@@ -1,42 +1,59 @@
-## Description: <br>
-Search for music via Brave Search and play it on Sonos speakers, with support for playback, current-track lookup, and speaker discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for music via Brave Search and play it on Sonos speakers. Supports play, current track, and speaker discovery.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External users and developers use this skill to search Spotify track results through Brave Search and control playback on Sonos speakers on their local network. It can also report the current track and list discovered speakers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can discover Sonos speakers on the local network and control playback. <br>
-Mitigation: Install it only in environments where local speaker discovery and playback control are acceptable, and confirm the target speaker before playback commands. <br>
-Risk: Speaker discovery output may include local device IP addresses. <br>
-Mitigation: Avoid sharing logs or command output when they include local network device details. <br>
+## Use Case:
 
+External users and developers use this skill to search Spotify tracks through Brave Search, play matches on local Sonos speakers, inspect the current track, and discover available speakers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/sonos-music-search-skill) <br>
-- [ClawDIS homepage](https://clawhub.com/skills/sonos-music-search-skill) <br>
-- [Brave Search API](https://brave.com/search/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Code, Configuration] <br>
-**Output Format:** [Plain text CLI status messages and JavaScript object results, with Markdown usage examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BRAVE_API_KEY and at least one Sonos speaker on the same local network.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: evidence.json release.version and package.json) <br>
+Risk: Mutable npm install guidance and unpinned dependencies may install code that differs from the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install an exact reviewed package version with a lockfile where possible and review dependency updates before deployment.
+
+Risk: The Brave Search credential is required for operation.
+
+Mitigation: Scope BRAVE_API_KEY to this skill and avoid sharing it with unrelated tools or environments.
+
+Risk: Speaker discovery can expose local Sonos device names and IP addresses.
+
+Mitigation: Use the skill only on trusted networks and avoid publishing speaker inventory output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/sonos-music-search-skill)
+- [ClawHub homepage listing](https://clawhub.com/skills/sonos-music-search-skill)
+- [Brave Search API](https://brave.com/search/api/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [CLI text output and JavaScript API return objects, with Markdown usage guidance in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BRAVE_API_KEY, Node.js 18 or later, and a Sonos speaker on the same local network.]
+
+## Skill Version(s):
+
+1.1.1 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Interview Pro helps users prepare for interviews with mock interviews, question prediction, resume optimization, and interview feedback across industries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interview Pro helps agents prepare users for interviews with job analysis, predicted questions, mock interviews, resume optimization, and feedback reports across industries.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tobewin](https://clawhub.ai/user/tobewin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Job seekers and career-support agents use this skill to prepare for interviews, practice likely questions, refine resumes, and generate post-interview feedback.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Optional integration examples use package install commands that could resolve moving latest versions.
+
+Mitigation: Verify the referenced skills and clawhub package publisher before running the commands, and prefer pinned versions for deployment.
+
+Risk: Interview, salary, market, and feedback guidance may be incomplete or stale for a specific employer or role.
+
+Mitigation: Review generated preparation plans against current job descriptions, employer information, and the user's actual resume before relying on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Job seekers and interview coaches use this skill to analyze roles, predict likely interview questions, run mock interviews, improve resumes, and produce structured feedback reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance, shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Interview preparation can involve resumes, job histories, compensation details, and confidential employer information. <br>
-Mitigation: Redact unnecessary sensitive details before sharing materials, including home addresses, ID numbers, compensation records, and confidential employer information. <br>
-Risk: Companion skills used for resume generation, research, or report creation may have separate permissions or behavior. <br>
-Mitigation: Review and scan companion skills before installing or using them in the same workflow. <br>
+**Output Format:** [Markdown and structured text with optional shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobewin/interview-pro) <br>
+**Other Properties Related to Output:** [Produces interview preparation plans, mock interview prompts, resume optimization advice, and interview analysis reports.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured interview plans, questions, resume suggestions, and feedback reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill with no required binaries, environment variables, external dependencies, or network access.] <br>
+1.2.1 (source: release evidence)
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,76 +1,60 @@
-# bbc-skill · Bilibili Comment Collector
+# bbc-skill · 哔哩哔哩评论采集
 
-[中文文档](README_CN.md) · [Online Docs](https://agents365-ai.github.io/bbc-skill/)
+[English README](README_EN.md) · [Online Docs](https://agents365-ai.github.io/bbc-skill/zh.html)
 
-> Built for Bilibili UP主 (content creators): fetch every comment on your own
-> videos and feed them to Claude Code / Codex / Gemini / any agent for
-> sentiment / keyword / audience analysis.
+> UP 主专属：一键拉取自己视频的全部评论，交给 Claude Code / Codex / Gemini / 任何 agent 做情感 / 关键词 / 受众分析。
 
-- 🐍 **Zero dependencies** — Python 3.9+ standard library only, no `pip install`
-- 💬 **Complete** — top-level + nested + pinned comments, nothing skipped
-- 📊 **Video metadata** — title, view/like/coin/favorite counts, tags included
-- 🤖 **Agent-native CLI** — stable stdout JSON envelope, NDJSON stderr
-  progress, distinct exit codes, dry-run, schema introspection
-- 🧑‍🎤 **Batch mode** — fetch every video of a UP主 sequentially (one at a time,
-  5-10s randomised cooldown between videos)
-- 🔐 **Delegated auth** — human logs in once, agent just consumes the cookie;
-  no browser automation
-- ♻️ **Resumable** — re-running the same BV skips completed pages; `--since`
-  for incremental monitoring
-- 📁 **Analysis-friendly** — `comments.jsonl` + `summary.json` + `raw/` archive
+- 🐍 **零依赖** — 只用 Python 3.9+ 标准库，不需要 `pip install`
+- 💬 **完整评论** — 顶级评论 + 楼中楼 + 置顶评论，一条不落
+- 📊 **视频元数据** — 标题、播放、点赞、投币、收藏、标签一起拉
+- 🤖 **Agent-native CLI** — stdout 稳定 JSON envelope，stderr NDJSON 进度，exit code 分类、dry-run、schema 自描述
+- 🧑‍🎤 **批量模式** — 一个命令拉 UP 主全部视频评论，串行处理（一个视频一个视频来，视频之间随机休眠 5-10s）
+- 🔐 **认证委托** — 人登录 / agent 使用；纯 cookie 文件，不做浏览器自动化
+- ♻️ **断点续传** — 重跑同一 BV 自动跳过已拉页；`--since` 支持增量
+- 📁 **分析友好输出** — `comments.jsonl` + `summary.json` + `raw/` 归档
 
-## Multi-Platform Support
+## 多平台支持
 
-Follows the [Agent Skills](https://agentskills.io) spec. Works with every
-major AI coding agent:
+遵循 [Agent Skills](https://agentskills.io) 规范，兼容主流 AI coding agent：
 
-| Platform | Status | Details |
-|----------|--------|---------|
-| **Claude Code** | ✅ Full support | Native `SKILL.md` format |
-| **OpenAI Codex** | ✅ Full support | `agents/openai.yaml` sidecar file |
-| **OpenClaw / ClawHub** | ✅ Full support | `metadata.openclaw` namespace |
-| **Hermes Agent** | ✅ Full support | `metadata.hermes` namespace |
-| **Opencode** | ✅ Full support | Reads `~/.claude/skills/` automatically |
-| **SkillsMP** | ✅ Indexed | GitHub topics configured |
+| 平台 | 状态 | 说明 |
+|------|------|------|
+| **Claude Code** | ✅ 原生支持 | 标准 SKILL.md 格式 |
+| **OpenAI Codex** | ✅ 原生支持 | `agents/openai.yaml` sidecar |
+| **OpenClaw / ClawHub** | ✅ 原生支持 | `metadata.openclaw` 命名空间 |
+| **Hermes Agent** | ✅ 原生支持 | `metadata.hermes` 命名空间 |
+| **Opencode** | ✅ 原生支持 | 复用 `~/.claude/skills/` |
+| **SkillsMP** | ✅ 索引中 | GitHub topics 配置齐全 |
 
-## ⚠️ Responsible Use
+## ⚠️ 合理使用声明
 
-**Please read and accept these guidelines before using this tool.**
+**请阅读并遵守以下准则，否则请不要使用本工具。**
 
-- ✅ **Personal, low-volume, legal use only**: analyze comments on **your own**
-  videos, or assist another creator with their explicit authorization.
-- ✅ **Respect the built-in throttling**: 1s per request, 5-10s random
-  cooldown between videos in batch mode. Do not patch these out.
-- ❌ **Do NOT use for**:
-  - Mass-scraping strangers' videos
-  - Building derivative data products for resale or public redistribution
-  - Bypassing rate limits, spoofing User-Agents, using proxy pools to evade
-    anti-bot systems
-  - High-frequency automation (e.g. daily full re-scans of the same channel)
-  - Harassment, doxxing, coordinated attacks, or targeting specific users
-- 📜 **Comply with Bilibili's ToS** and [robots.txt](https://www.bilibili.com/robots.txt).
-  For commercial/organization use, switch to the official
-  [Bilibili Open Platform](https://openhome.bilibili.com/) APIs.
-- 🔒 **Data minimization**: fetch → analyze → delete. Do not retain raw data
-  long-term, and do not share files containing user IDs or IP locations.
-- 🎯 **The tool is designed for one-shot analyses**, not long-term
-  surveillance.
+- ✅ **仅限个人、少量、合法使用**：分析**你自己**视频的评论，或获得 UP 主明确授权后协助分析。
+- ✅ **保持节制**：批量模式已内置 5-10s 随机间隔和 1s 每请求节流；请不要修改源码绕过这些限制。
+- ❌ **禁止滥用场景**：
+  - 大规模爬取陌生 UP 的视频评论
+  - 构建二级数据产品对外出售 / 公开发布
+  - 绕过速率限制、伪造 User-Agent、使用代理池规避风控
+  - 高频自动化任务（每日多次全量扫描同一 UP 主的所有视频）
+  - 把采集到的数据用于骚扰、网络暴力、人肉、定向引战
+- 📜 **遵守 B 站用户协议** 与 [robots](https://www.bilibili.com/robots.txt)；商业场景请走 [B 站开放平台](https://openhome.bilibili.com/) 官方 API。
+- 🔒 **数据最小化原则**：拉完就分析；不要无限期留存、也不要把含用户个人信息（UID、IP 属地）的 raw 数据分享出去。
+- 🎯 **读完即删的工作流更健康**：本工具设计就是为了「一次分析一批视频」，不是为了搞长期监控。
 
-> This project is not affiliated with bilibili.com. Any account-level risk
-> control, bans, or legal consequences are the user's responsibility. When
-> in doubt about whether a specific use case is allowed — **don't run it**.
+> 本项目作者与 bilibili.com 无任何关联。使用本工具造成的任何账号风控、封禁、法律后果由使用者自行承担。如果你不确定某个使用场景是否合规，**请不要跑**。
 
 ---
 
-## Install
+## 安装
 
 ### Claude Code
 
 ```bash
-# Global install (available in all projects)
+# 全局安装
 git clone https://github.com/Agents365-ai/bbc-skill.git ~/.claude/skills/bbc-skill
 
-# Project-level install
+# 项目级安装
 git clone https://github.com/Agents365-ai/bbc-skill.git .claude/skills/bbc-skill
 ```
 
@@ -78,17 +62,17 @@ git clone https://github.com/Agents365-ai/bbc-skill.git .claude/skills/bbc-skill
 
 ```bash
 git clone https://github.com/Agents365-ai/bbc-skill.git ~/.agents/skills/bbc-skill
-# Project-level
+# 项目级
 git clone https://github.com/Agents365-ai/bbc-skill.git .agents/skills/bbc-skill
 ```
 
 ### OpenClaw / ClawHub
 
 ```bash
-# Via ClawHub
+# 通过 ClawHub 包管理器
 clawhub install bbc-skill
 
-# Manual
+# 手动安装
 git clone https://github.com/Agents365-ai/bbc-skill.git ~/.openclaw/skills/bbc-skill
 ```
 
@@ -96,7 +80,7 @@ git clone https://github.com/Agents365-ai/bbc-skill.git ~/.openclaw/skills/bbc-s
 
 ```bash
 git clone https://github.com/Agents365-ai/bbc-skill.git ~/.config/opencode/skills/bbc-skill
-# Or reuse an existing ~/.claude/skills/bbc-skill — Opencode reads that path too
+# 或直接复用已有的 ~/.claude/skills/bbc-skill
 ```
 
 ### Hermes Agent
@@ -111,183 +95,172 @@ git clone https://github.com/Agents365-ai/bbc-skill.git ~/.hermes/skills/data/bb
 skills install bbc-skill
 ```
 
-### Standalone CLI (no skill)
+### 直接命令行用（不走 skill）
 
 ```bash
 git clone https://github.com/Agents365-ai/bbc-skill.git && cd bbc-skill
 ./scripts/bbc --help
-# Or add to PATH
+# 或加入 PATH
 export PATH="$PWD/scripts:$PATH"
 ```
 
-### Installation paths summary
+### 安装路径一览
 
-| Platform | Global path | Project path |
-|----------|-------------|--------------|
+| 平台 | 全局路径 | 项目级路径 |
+|------|----------|------------|
 | Claude Code | `~/.claude/skills/bbc-skill/` | `.claude/skills/bbc-skill/` |
 | OpenAI Codex | `~/.agents/skills/bbc-skill/` | `.agents/skills/bbc-skill/` |
 | OpenClaw / ClawHub | `~/.openclaw/skills/bbc-skill/` | `skills/bbc-skill/` |
 | Opencode | `~/.config/opencode/skills/bbc-skill/` | `.opencode/skills/bbc-skill/` |
-| Hermes Agent | `~/.hermes/skills/data/bbc-skill/` | Via `external_dirs` config |
-| SkillsMP | N/A (installed via CLI) | N/A |
+| Hermes | `~/.hermes/skills/data/bbc-skill/` | 通过 `external_dirs` 配置 |
+| SkillsMP | N/A（CLI 安装） | N/A |
 
 ---
 
-## Quick start
+## 一分钟上手
 
-### Step 1 · Export your Bilibili cookie
+### 第 1 步 · 导出 B 站 cookie
 
-Bilibili's comment API rate-limits and returns thin data for unauthenticated
-requests. For full UP主 analysis you must authenticate with a cookie.
+> **为什么要 cookie**：B 站评论 API 对未登录请求会限速且缺字段。UP 主做自己视频分析需要完整数据，所以必须带 cookie。
 
-**Recommended**: the open-source Chrome extension
-[**Get cookies.txt LOCALLY**](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc)
-— runs entirely locally, uploads nothing.
+**推荐方式**：Chrome 插件 [**Get cookies.txt LOCALLY**](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc)（开源、完全本地、不上传任何数据）。
 
-1. Install **Get cookies.txt LOCALLY** from the Chrome Web Store.
-2. Visit [https://www.bilibili.com](https://www.bilibili.com) and confirm you
-   are logged in (avatar visible top-right).
-3. Click the extension icon → **Export** → download
-   `www.bilibili.com_cookies.txt`.
-4. Save it somewhere convenient, e.g. `~/Downloads/bilibili_cookies.txt`.
+1. Chrome 商店安装 **Get cookies.txt LOCALLY**
+2. 打开 [https://www.bilibili.com](https://www.bilibili.com)，**确认自己已登录**（右上角有头像）
+3. 点插件图标 → **Export** → 下载 `www.bilibili.com_cookies.txt`
+4. 把文件放到你方便的位置，例如 `~/Downloads/bilibili_cookies.txt`
 
-**Other options**:
-- Firefox: [cookies.txt](https://addons.mozilla.org/firefox/addon/cookies-txt/)
-  add-on.
-- Edge: the same Chrome extension works.
-- Manual: DevTools F12 → Application → Cookies → copy the `SESSDATA` value,
-  then `export BBC_SESSDATA="<value>"`.
+**其他导出方式**：
+- Firefox：安装 [cookies.txt](https://addons.mozilla.org/firefox/addon/cookies-txt/) 插件，操作类似
+- Edge：同 Chrome 插件（Edge 兼容 Chrome 扩展）
+- 命令行手动：浏览器 F12 → Application → Cookies → 复制 `SESSDATA` 值，然后 `export BBC_SESSDATA="值"`
 
-**Do not share `SESSDATA`** — it authorizes full account access.
+**不要**分享 `SESSDATA` —— 泄露等于账号被盗。
 
-### Step 2 · Verify the cookie works
+### 第 2 步 · 验证 cookie 能用
 
 ```bash
 ./scripts/bbc cookie-check --cookie-file ~/Downloads/bilibili_cookies.txt
 ```
 
-Expected:
+期望输出：
 ```json
 {"ok": true, "data": {"mid": 441831884, "uname": "探索未至之境", "vip": true, "level": 5, ...}}
 ```
 
-If it fails: confirm you are currently logged in at bilibili.com, re-export
-the cookie, and retry.
+失败？检查：
+- 确认 bilibili.com **当前已登录**（cookie 导出时处于登录态）
+- `SESSDATA` 不要手动改动
+- 两周未登录可能过期，重新登录一次再导出
 
-### Step 3 · Fetch comments
+### 第 3 步 · 拉你的视频评论
 
 ```bash
 ./scripts/bbc fetch BV1NjA7zjEAU \
   --cookie-file ~/Downloads/bilibili_cookies.txt
 ```
 
-URLs are accepted too:
+也可以直接传 URL：
 
 ```bash
 ./scripts/bbc fetch "https://www.bilibili.com/video/BV1NjA7zjEAU/"
 ```
 
-Output lives in `./bilibili-comments/BV1NjA7zjEAU/`:
+输出在 `./bilibili-comments/BV1NjA7zjEAU/`：
 
 ```
 bilibili-comments/BV1NjA7zjEAU/
-├── comments.jsonl      # flat JSONL — one comment per line
-├── summary.json        # video meta + aggregated stats + top-N
-├── raw/                # archived API responses
-└── .bbc-state.json     # resume / incremental state
+├── comments.jsonl      # 主数据，每行一条评论
+├── summary.json        # 视频元数据 + 统计 + Top-N
+├── raw/                # 原始 API 响应归档
+└── .bbc-state.json     # 断点 & 增量标记
 ```
 
 ---
 
-## Environment variables
+## 环境变量（免反复传参）
 
 ```bash
 export BBC_COOKIE_FILE="$HOME/Downloads/bilibili_cookies.txt"
-./scripts/bbc fetch BV1NjA7zjEAU
+./scripts/bbc fetch BV1NjA7zjEAU      # 自动读取
 ```
 
-Or pass `SESSDATA` directly:
+或者直接传 SESSDATA：
 
 ```bash
-export BBC_SESSDATA="<value from DevTools>"
+export BBC_SESSDATA="从 F12 复制的值"
 ./scripts/bbc fetch BV1NjA7zjEAU
 ```
 
 ---
 
-## Analysis workflow with Claude Code
+## 给 Claude Code 用的分析工作流
 
-After fetch completes, ask Claude something like:
+拉完之后告诉 Claude：
 
-> Read `./bilibili-comments/BV1NjA7zjEAU/summary.json` first — give me the
-> overall picture: video stats, comment distribution, top 20 liked. Then
-> I'll direct what to analyze next.
+> 读取 `./bilibili-comments/BV1NjA7zjEAU/summary.json`，先给我看整体情况：视频基础数据、评论分布、Top 20 热评。然后我会告诉你接下来分析什么。
 
-Claude follows this path:
+Claude 会按这个路径做：
 
-1. **Read `summary.json` first** (a few KB) — video title, stats, time
-   distribution, IP distribution, top-N comments.
-2. **Sample `comments.jsonl` on demand** — each line is a flat JSON record;
-   `Grep` for keywords, `head/tail` for chronology, sort by `like` for
-   hot-comment analysis.
-3. **Typical analyses**:
-   - Sentiment: positive / negative / neutral ratio
-   - Keyword frequency (excluding stopwords)
-   - UP interaction audit: filter `is_up_reply=true`, see which threads you
-     replied to vs. missed
-   - Geographic breakdown from `ip_location`
-   - Feedback evolution: bucket `ctime_iso` by week/month
-   - Super-fan detection: group by `mid`, rank by comment count
-   - Negative-review triage: high `like` + negative keywords
+1. **先读 `summary.json`**（几 KB）建立全局认知：视频标题、播放量、评论数、时间分布、IP 分布、Top-N 热评 / 回复数
+2. **按需采样 `comments.jsonl`** —— 每行一条 JSON，可以 `Grep` 关键词、`head`/`tail` 看最新最早、按 `like` 排序取头部
+3. **典型分析方向**：
+   - **情感倾向**：正面 / 负面 / 中性占比
+   - **高频词**：除了停用词以外的主题词
+   - **UP 主互动**：`is_up_reply=true` 的评论，看你回了哪些、哪些漏回
+   - **地域分布**：`ip_location` 直方图
+   - **反馈演变**：按 `ctime_iso` 分周 / 月，看发布后一周 vs 长尾
+   - **铁粉识别**：按 `mid` 聚合，同一用户评论多次的名单
+   - **差评筛查**：`like` 高且含 "垃圾/太水/不行" 类词的评论
 
 ---
 
-## Commands
+## 命令参考
 
 ### `bbc fetch <BV|URL>`
 
 ```
---max N                 Cap top-level comments (default: all)
---since <date>          Only fetch comments newer than this (ISO, e.g. 2026-04-01)
---output <dir>          Output directory (default ./bilibili-comments/<BV>/)
---cookie-file <path>    Netscape cookie file
---browser <name>        auto / firefox / chrome / edge / safari
---format json|table     stdout format
---dry-run               Preview request plan, no network calls
---force                 Ignore resume state, refetch everything
+--max N                每个视频顶级评论上限（默认全拉）
+--since <日期>         只拉这个时间后的新评论（ISO 格式，如 2026-04-01）
+--output <dir>         输出目录（默认 ./bilibili-comments/<BV>/）
+--cookie-file <path>   cookie 文件路径
+--browser <name>       auto / firefox / chrome / edge / safari
+--format json|table    stdout 格式
+--dry-run              预览请求计划，不发网络
+--force                忽略断点，重头抓
 ```
 
-### `bbc fetch-user <UID>` *(coming soon)*
+### `bbc fetch-user <UID>` *(即将开放)*
 
-Batch fetch across a UP主's entire video catalog.
+批量拉 UP 主所有视频的评论。
 
 ### `bbc summarize <dir>`
 
-Rebuild `summary.json` from an existing `comments.jsonl`.
+从已有 `comments.jsonl` 重建 `summary.json`（当你手动修改了原始数据时有用）。
 
 ### `bbc cookie-check`
 
-Validate the cookie and print the logged-in user.
+验证 cookie 可用性，打印登录用户信息。
 
 ### `bbc schema [command]`
 
-Return JSON schema for a command (param types, exit codes, error codes).
+返回命令的 JSON schema（参数类型、exit code 映射、错误码）。供 agent 自描述用。
 
 ### Exit codes
 
-| Code | Meaning |
+| 码 | 含义 |
 |---|---|
-| 0 | Success |
-| 1 | Runtime / API error |
-| 2 | Auth error (cookie invalid / missing) |
-| 3 | Validation error (bad parameter) |
-| 4 | Network error (timeout / retries exhausted) |
+| 0 | 成功 |
+| 1 | 运行时 / B站 API 错误 |
+| 2 | 认证错误（cookie 无效 / 过期） |
+| 3 | 参数校验错误（BV 格式错等） |
+| 4 | 网络错误（超时、重试耗尽） |
 
 ---
 
-## Output schemas
+## 输出格式说明
 
-### `comments.jsonl` record
+### `comments.jsonl` 单条记录
 
 ```json
 {
@@ -296,12 +269,12 @@ Return JSON schema for a command (param types, exit codes, error codes).
   "parent": 0,
   "root": 0,
   "mid": 71171081,
-  "uname": "user nickname",
+  "uname": "蓝忘今宵-_-YS",
   "user_level": 4,
   "vip": false,
   "ctime": 1776521119,
   "ctime_iso": "2026-04-18T06:25:19+00:00",
-  "message": "...",
+  "message": "已关注 求指教",
   "like": 1,
   "rcount": 0,
   "ip_location": "河北",
@@ -312,96 +285,42 @@ Return JSON schema for a command (param types, exit codes, error codes).
 }
 ```
 
-- `parent=0` → top-level; otherwise `rpid` of the parent comment
-- `top_type`: 0=normal, 1=UP pinned, 2=editor pinned
-- `is_up_reply`: true if the comment was authored by the video owner
+- `parent=0` → 顶级评论；否则指向父评论 rpid
+- `top_type`：0=普通, 1=UP 置顶, 2=热评置顶
+- `is_up_reply`：是否是 UP 主本人回复
 
-### `summary.json` fields
+### `summary.json` 字段一览
 
-- `video`: title, description, stats, tags, cover URL, owner
-- `counts`: total, top-level, nested, pinned, unique users, UP replies,
-  completeness ratio
-- `time_distribution`: earliest/latest timestamps, daily histogram
-- `top_liked`: top-N comments by like count
-- `top_replied`: top-N top-level comments by reply count
-- `ip_distribution`: histogram of IP provinces
+- `video`：标题、简介、播放量、点赞、投币、收藏、标签、封面 URL、UP 主
+- `counts`：总数、顶级数、楼中楼数、置顶数、唯一用户数、UP 回复数、完整度
+- `time_distribution`：最早 / 最晚评论时间、按天分布
+- `top_liked`：Top N 点赞评论
+- `top_replied`：Top N 被回复评论
+- `ip_distribution`：IP 属地分布
 
-See `references/agent-contract.md` for the full schema.
-
----
-
-## Limits & caveats
-
-- **Read-only** — never posts, edits, or deletes. Safety tier: `open`.
-- **Rate** — 1s between top-level requests, 0.5s for nested. ~5000 comments
-  takes 10-15 minutes.
-- **Anti-bot** — HTTP 412 triggers exponential backoff (3 retries).
-- **Completeness** — the `completeness` field in `summary.json` compares
-  fetched vs. declared counts; values below 1.0 indicate deleted comments
-  or API inconsistency.
-- **Anonymous not supported** — UP主 analysis requires a valid cookie.
+详细 schema 见 `DESIGN.md § 6`。
 
 ---
 
-## References
+## 限制 & 注意事项
 
-- [SKILL.md](./SKILL.md) — skill trigger + usage guide for Claude
-- [references/api-endpoints.md](./references/api-endpoints.md) — Bilibili
-  API fields used
-- [references/agent-contract.md](./references/agent-contract.md) — envelope /
-  exit code / schema contract
+- **只读** — 本工具不发布 / 修改 / 删除任何评论，安全分层为 `open`
+- **速率** — 每请求间隔 1s（顶级）/ 0.5s（楼中楼），5000 条约 10-15 分钟
+- **反风控** — 连续多次抓取可能触发 HTTP 412，已内建指数退避重试 3 次
+- **完整度** — summary 中 `completeness` 显示实拉 / 接口声称总数；<1.0 说明有被删评论或接口不一致
+- **不支持匿名** — UP 主分析必须带 cookie；未登录请求返回字段不完整
 
 ---
 
-## Contributing
+## 相关文档
 
-Suggestions, bug reports, and pull requests are all welcome. If you have
-ideas — new analysis workflows, better anti-bot defaults, additional
-platform support, documentation fixes — feel free to
-[open an issue](https://github.com/Agents365-ai/bbc-skill/issues) or
-submit a PR directly.
-
-This skill is community-friendly: every contribution, no matter how small,
-helps make it better for everyone.
+- [SKILL.md](./SKILL.md) — 给 Claude 的触发 & 使用指引
+- [DESIGN.md](./DESIGN.md) — 设计决策、字段 schema、agent 契约
+- [references/api-endpoints.md](./references/api-endpoints.md) — 所用 B 站接口字段
+- [references/agent-contract.md](./references/agent-contract.md) — envelope / exit code / schema 契约
 
 ---
 
 ## License
 
 MIT
-
----
-
-## Support
-
-If this skill helps you, consider supporting the author:
-
-<table>
-  <tr>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/qrcode/wechat-pay.png" width="180" alt="WeChat Pay">
-      <br>
-      <b>WeChat Pay</b>
-    </td>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/qrcode/alipay.png" width="180" alt="Alipay">
-      <br>
-      <b>Alipay</b>
-    </td>
-    <td align="center">
-      <img src="https://raw.githubusercontent.com/Agents365-ai/images_payment/main/qrcode/buymeacoffee.png" width="180" alt="Buy Me a Coffee">
-      <br>
-      <b>Buy Me a Coffee</b>
-    </td>
-  </tr>
-</table>
-
----
-
-## Author
-
-**Agents365-ai** &mdash; building open-source skills for AI coding agents.
-
-- Bilibili: https://space.bilibili.com/441831884
-- GitHub: https://github.com/Agents365-ai
-- Skills: [drawio-skill](https://github.com/Agents365-ai/drawio-skill) · [asta-skill](https://github.com/Agents365-ai/asta-skill) · [paper-fetch](https://github.com/Agents365-ai/paper-fetch) · [more →](https://github.com/Agents365-ai)

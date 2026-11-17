@@ -1,43 +1,60 @@
-## Description: <br>
-Creates and manages local identity, short-term interaction logs, and consolidated Markdown memory files for physically anchored autonomous agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and manages local files that persist an autonomous agent's physical anchor, identity record, short-term interaction log, and consolidated long-term memory.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers running local or edge autonomous agents use this skill to initialize and maintain physically anchored memory files for identity, daily interaction logs, and periodic local memory consolidation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist conversation details, preferences, environmental observations, and physical-anchor context to local files. <br>
-Mitigation: Use explicit opt-in, visible logging status, redaction for secrets and personal data, retention limits, restrictive file permissions, and inspect, pause, and delete controls before broad use. <br>
-Risk: Short-term interaction logs may be consolidated into long-term memory files. <br>
-Mitigation: Run only in a controlled local or edge environment and review consolidated files against the intended retention and deletion policy. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add a local, physically anchored memory record to an autonomous agent. It is intended for environments where interaction history and physical-context data should remain on the host or edge node.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/spacesq/taohuayuan-md-skill-en) <br>
-- [Publisher profile](https://clawhub.ai/user/spacesq) <br>
-- [Taohuayuan V2.0 whitepaper](artifact/taohuayuan_md_whitepaper_en.md) <br>
-- [Developer guide](artifact/readme.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, JSON, files, guidance] <br>
-**Output Format:** [Local Markdown and JSON files with developer guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates taohuayuan.md, hippocampus_logs.json, and dated consolidated memory files under memory_files/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: evidence.json release, package.json, changelog) <br>
+Risk: The skill can persist broad user interaction history and physical-context information in local memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the storage directory private, avoid recording secrets or precise personal data, and review memory entries before consolidation or reuse.
+
+Risk: Persistent memories may be reused by another agent without adequate consent or filtering.
+
+Mitigation: Require explicit review before loading, sharing, or consolidating memory files across agents.
+
+Risk: The release evidence flags missing clear deletion and consent controls for retained local memory.
+
+Mitigation: Define a retention and deletion process before deployment, and give users a way to inspect and remove stored memories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/taohuayuan-md-skill-en)
+- [README](readme.md)
+- [Taohuayuan.md V2.0 whitepaper](taohuayuan_md_whitepaper_en.md)
+- [Sample taohuayuan.md record](samples/taohuayuan.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python-generated local Markdown and JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local taohuayuan.md, hippocampus_logs.json, and memory_files outputs when run.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata, package.json, changelog released 2026-05-24)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

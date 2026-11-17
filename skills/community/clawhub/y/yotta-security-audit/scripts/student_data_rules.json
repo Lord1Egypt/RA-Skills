@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0",
+  "pack_version": "2026.09.1",
+  "notes": "默认学生数据隐私规则包（元安教育版）。规则与词表均为只读数据，不执行任何表达式；各级别为风险提示分级，不构成法律定性。",
+  "field_vocab": {
+    "student_name": ["姓名", "学生姓名", "名字"],
+    "id_card": ["身份证", "身份证号", "证件号", "证件号码"],
+    "student_no": ["学籍号", "学籍编号", "考生号", "考号", "报名号"],
+    "phone": ["手机", "手机号", "电话", "联系电话", "联系方式"],
+    "address": ["住址", "家庭住址", "家庭地址", "居住地址", "通讯地址"],
+    "birth": ["出生日期", "出生年月", "生日"],
+    "guardian": ["家长", "监护人", "父亲", "母亲"],
+    "score": ["成绩", "分数", "得分", "总分", "排名", "名次"],
+    "health": ["病史", "健康状况", "健康", "残疾", "残障", "过敏", "心理", "情绪", "就医"],
+    "welfare": ["低保", "建档立卡", "资助", "孤儿", "单亲", "留守", "贫困"],
+    "biometric": ["人脸", "指纹", "照片", "人脸识别"]
+  },
+  "content_rules": [
+    {
+      "id": "EDU-ID-001",
+      "title": "身份证号明文",
+      "category": "direct_identifier",
+      "severity": "critical",
+      "kind": "id_card",
+      "remediation": "从名单中移除该字段；确需保存时加密存储并限制流转范围"
+    },
+    {
+      "id": "EDU-ID-002",
+      "title": "手机号",
+      "category": "direct_identifier",
+      "severity": "high",
+      "kind": "phone",
+      "remediation": "评估留存必要性；对外分发前先脱敏"
+    },
+    {
+      "id": "EDU-ID-003",
+      "title": "邮箱",
+      "category": "direct_identifier",
+      "severity": "medium",
+      "kind": "email",
+      "remediation": "评估留存必要性；对外分发前先脱敏"
+    },
+    {
+      "id": "EDU-SA-004",
+      "title": "显式未成年人标记",
+      "category": "sensitive_attribute",
+      "severity": "critical",
+      "kind": "keyword_any",
+      "keywords": ["未成年", "儿童", "未满十四周岁"],
+      "remediation": "按不满十四周岁未成年人个人信息处理规则复核告知与监护人同意；建议用元规对相关条款做确定性审查"
+    }
+  ],
+  "field_rules": [
+    {
+      "id": "EDU-ID-004",
+      "title": "学籍号 / 考生号字段",
+      "category": "direct_identifier",
+      "severity": "medium",
+      "field": "student_no",
+      "value_kind": "alnum",
+      "remediation": "确认编号留存必要性；对外分发前替换为内部代号"
+    },
+    {
+      "id": "EDU-QI-002",
+      "title": "出生日期",
+      "category": "quasi_identifier",
+      "severity": "high",
+      "field": "birth",
+      "value_kind": "any",
+      "remediation": "评估是否必须保留到日；对外分发前只保留必要粒度"
+    },
+    {
+      "id": "EDU-QI-003",
+      "title": "家庭住址",
+      "category": "quasi_identifier",
+      "severity": "high",
+      "field": "address",
+      "value_kind": "any",
+      "remediation": "评估是否必须保留到门牌级；对外分发前只保留必要粒度（如市级）"
+    },
+    {
+      "id": "EDU-QI-004",
+      "title": "家长联系方式",
+      "category": "quasi_identifier",
+      "severity": "high",
+      "field": "guardian",
+      "value_kind": "phone",
+      "remediation": "按最小必要留存；对外分发前先脱敏"
+    },
+    {
+      "id": "EDU-SA-001",
+      "title": "健康与身心状况",
+      "category": "sensitive_attribute",
+      "severity": "critical",
+      "field": "health",
+      "value_kind": "any",
+      "remediation": "属于敏感个人信息：限制流转范围、加密存储，并复核告知与同意文本"
+    },
+    {
+      "id": "EDU-SA-002",
+      "title": "资助与家庭境况",
+      "category": "sensitive_attribute",
+      "severity": "critical",
+      "field": "welfare",
+      "value_kind": "any",
+      "remediation": "属于敏感个人信息：限制流转范围、加密存储，并复核告知与同意文本"
+    },
+    {
+      "id": "EDU-SA-003",
+      "title": "生物识别信息",
+      "category": "sensitive_attribute",
+      "severity": "critical",
+      "field": "biometric",
+      "value_kind": "any",
+      "remediation": "属于敏感个人信息：确认采集依据与单独同意，限制流转范围并加密存储"
+    }
+  ],
+  "combo_rules": [
+    {
+      "id": "EDU-QI-001",
+      "title": "姓名 + 成绩组合",
+      "category": "quasi_identifier",
+      "severity": "high",
+      "fields": ["student_name", "score"],
+      "remediation": "对外分发前匿名化学生标识，只保留统计结论与必要证据"
+    }
+  ],
+  "path_rules": [
+    {
+      "id": "EDU-HR-001",
+      "title": "出本机路径（云同步 / 网盘 / 即时通讯）",
+      "category": "handling_risk",
+      "severity": "high",
+      "match": "substring",
+      "patterns": ["OneDrive", "Dropbox", "坚果云", "Nutstore", "百度网盘", "WeChat Files", "微信文件", "QQ接收", "QQ 接收"],
+      "require_content_hit": true,
+      "remediation": "把学生数据移出同步盘 / 网盘 / 聊天工具目录；需要协作时只分发脱敏结论"
+    },
+    {
+      "id": "EDU-HR-003",
+      "title": "AI 工具 / 临时目录",
+      "category": "handling_risk",
+      "severity": "medium",
+      "match": "segment",
+      "patterns": ["uploads", ".tmp", "tmp", "temp"],
+      "require_content_hit": true,
+      "remediation": "确认该目录不会被上传或长期留存；处理后及时清理"
+    }
+  ],
+  "filename_rules": [
+    {
+      "id": "EDU-HR-002",
+      "title": "文件名疑似含姓名且与成绩 / 评语相关",
+      "category": "handling_risk",
+      "severity": "high",
+      "keywords": ["成绩", "评语", "诊断", "名单", "花名册", "学籍"],
+      "surnames": ["王", "李", "张", "刘", "陈", "杨", "黄", "赵", "吴", "周", "徐", "孙", "马", "朱", "胡", "郭", "何", "林", "高", "罗", "郑", "梁", "谢", "宋", "唐", "许", "韩", "冯", "邓", "曹", "彭", "曾", "肖", "田", "董", "袁", "潘", "于", "蒋", "蔡", "余", "杜", "叶", "程", "苏", "魏", "吕", "丁", "任", "沈", "姚", "卢", "姜", "崔", "钟", "谭", "陆", "汪", "范", "金", "石", "廖", "贾", "夏", "韦", "付", "方", "白", "邹", "孟", "熊", "秦", "邱", "江", "尹", "薛", "闫", "段", "雷", "侯", "龙", "史", "陶", "黎", "贺", "顾", "毛", "郝", "龚", "邵", "万", "钱", "严", "覃", "武", "戴", "莫", "孔", "向", "汤"],
+      "remediation": "文件名不带学生姓名；改用班级 + 用途 + 日期的命名方式"
+    }
+  ]
+}

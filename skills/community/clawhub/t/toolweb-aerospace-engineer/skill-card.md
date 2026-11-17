@@ -1,40 +1,57 @@
-## Description: <br>
-Professional Aerospace Engineering Career Roadmap Platform that generates personalized career paths and specialization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Aerospace Engineering Career Roadmap Platform that generates personalized career paths and specialization guidance.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Engineering students, career changers, and aerospace professionals use this skill to generate personalized aerospace engineering roadmaps, compare specializations, and retrieve structured learning paths from the provider's API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The provider API receives career history, skills, goals, session IDs, and optional user IDs. <br>
-Mitigation: Use pseudonymous identifiers where possible and avoid sending unnecessary sensitive employment or identity details unless the provider's privacy and retention practices are acceptable. <br>
+## Use Case:
 
+Engineering students, career changers, and aerospace professionals use this skill to generate personalized career roadmaps, specialization recommendations, learning paths, and next-step guidance based on experience, skills, and goals.
 
-## Reference(s): <br>
-- [Aerospace Engineer API Docs](https://api.mkkpro.com:8200/docs) <br>
-- [Aerospace Engineer API Route](https://api.mkkpro.com/career/aerospace-engineer) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-aerospace-engineer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, configuration] <br>
-**Output Format:** [JSON responses described in Markdown API documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces roadmap phases, objectives, courses, timelines, specializations, and learning-path data based on submitted assessment details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Career goals, skills, experience, session identifiers, timestamps, and optional user identifiers may be sent to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal, employer-confidential, export-controlled, or proprietary project details unless the provider and its data handling practices are trusted.
+
+Risk: Generated career roadmaps and learning paths may be incomplete or unsuitable for a user's employer, jurisdiction, or professional licensing context.
+
+Mitigation: Treat roadmap output as planning guidance and review it against current employer policies, education requirements, certification requirements, and domain-specific constraints before acting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-aerospace-engineer)
+- [Aerospace Engineer API Docs](https://api.mkkpro.com:8200/docs)
+- [Aerospace Engineer API Route](https://api.mkkpro.com/career/aerospace-engineer)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance, JSON, Markdown]
+
+**Output Format:** [JSON responses and concise Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Roadmap responses may include specialization, phases, objectives, courses, estimated timeline, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

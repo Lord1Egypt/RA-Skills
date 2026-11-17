@@ -1,39 +1,52 @@
-## Description: <br>
-Imports browser bookmark HTML exports and turns them into a deduplicated, categorized, time-sorted Markdown knowledge base with optional dead-link checking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Imports a browser bookmark HTML file and transforms it into a structured, categorized, and time-sorted Markdown knowledge base with deduplication, optional dead-link checking, and customizable classification rules.
 
-## Publisher: <br>
-[farhigh233](https://clawhub.ai/user/farhigh233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[farhigh233](https://clawhub.ai/user/farhigh233)
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to convert browser bookmark exports into organized Markdown files for review, search, cleanup, and personal knowledge-base workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bookmark exports can contain private, intranet, account-specific, or token-bearing URLs. <br>
-Mitigation: Process exports locally, review generated Markdown before sharing, and avoid publishing output that contains sensitive links. <br>
-Risk: The optional link-checking mode contacts every bookmarked URL and may reveal private browsing or internal-resource information to remote servers. <br>
-Mitigation: Use link checking only for exports that are safe to probe externally, and avoid it for intranet, confidential, or tokenized URLs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/farhigh233/bookmark-organizer) <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to convert browser bookmark exports into categorized Markdown files for review, search, cleanup, and reuse as a local knowledge base.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates categorized Markdown files, summary files, duplicate/link reports, and optional dead-link results based on local bookmark input.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional dead-link checking can contact every saved bookmark URL from the user's machine, including private or internal URLs.
+
+Mitigation: Run without --check-links for sensitive bookmark exports, or review and remove private URLs before enabling link checks.
+
+Risk: Generated Markdown can include bookmark titles and URLs that may contain sensitive or misleading content.
+
+Mitigation: Review generated reports before publishing them or using them as input to another agent.
+
+## Reference(s):
+
+- [Bookmark Organizer on ClawHub](https://clawhub.ai/farhigh233/skills/bookmark-organizer)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown files and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces categorized bookmark lists, summary reports, and optional dead-link reports in a user-selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

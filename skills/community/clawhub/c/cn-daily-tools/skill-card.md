@@ -1,41 +1,53 @@
-## Description: <br>
-A Chinese daily utilities skill for weather forecasts, exchange-rate lookups, news summaries, and package tracking without API-key setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文日常工具集：天气预报、汇率查询、新闻摘要、快递追踪。适合中文用户日常使用，无需API密钥，开箱即用。Use when Chinese users need weather forecasts, currency exchange rates, news summaries, or package tracking in Chinese.
 
-## Publisher: <br>
-[27555402-spec](https://clawhub.ai/user/27555402-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[27555402-spec](https://clawhub.ai/user/27555402-spec)
 
-## Use Case: <br>
-Chinese-speaking users use this skill to ask an agent for everyday weather, currency conversion, news-summary, and package-tracking assistance in Chinese. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live web lookups for weather, exchange rates, news, or delivery status may return stale, unavailable, or source-dependent information. <br>
-Mitigation: Have the agent identify the lookup source and timestamp when reporting current information, and ask users to verify important decisions against authoritative services. <br>
-Risk: Package tracking requests may include personal delivery details. <br>
-Mitigation: Avoid sharing sensitive tracking numbers or personal delivery information unless the user accepts the lookup source and privacy tradeoff. <br>
+## Use Case:
 
+Chinese-speaking users use this skill to ask an agent for daily utility help with weather forecasts, currency exchange, Chinese news summaries, and package tracking in Chinese.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/27555402-spec/cn-daily-tools) <br>
-- [Publisher profile](https://clawhub.ai/user/27555402-spec) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown responses with concise summaries, recommendations, and source links when news is summarized.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No scripts, install hooks, credentials, persistence, or hidden behavior were found in the inspected artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Weather, exchange rates, news, and package tracking can be inaccurate or stale if the agent's runtime sources or tools are unavailable or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use current, reputable live sources where available and present uncertainty or source links for time-sensitive answers.
+
+Risk: The skill defaults to Chinese-language interaction, which may not fit users expecting another language.
+
+Mitigation: Confirm the user's preferred language when the request is not clearly in Chinese.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/27555402-spec/skills/cn-daily-tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown-style responses with concise summaries, links when available, and direct recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on live runtime sources or tools for weather, exchange rates, news, and package tracking accuracy.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

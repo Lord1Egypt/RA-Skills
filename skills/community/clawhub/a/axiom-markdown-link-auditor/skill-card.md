@@ -1,41 +1,55 @@
-## Description: <br>
-Markdown link auditor that finds broken internal links, optionally checks external links with HEAD requests, and reports link audit results for documentation maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts links from Markdown content and can optionally run HTTP HEAD checks to report unreachable external links.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kofna3369](https://clawhub.ai/user/kofna3369)
 
-## Use Case: <br>
-Developers and documentation maintainers use this skill to audit Markdown files before publishing, gate CI on broken links, and identify orphaned documentation pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote link checks contact third-party URLs from the user's environment. <br>
-Mitigation: Leave remote checking disabled for private repositories or sensitive drafts unless outbound requests to those external links are acceptable. <br>
-Risk: The auditor reads the Markdown files supplied by the user. <br>
-Mitigation: Run it only on documentation paths intended for audit and avoid pointing it at unrelated sensitive files. <br>
+## Use Case:
 
+Developers and documentation maintainers use this skill to extract Markdown links, review link counts and line locations, and optionally check external HTTP(S) targets before publishing documentation or running CI checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kofna3369/axiom-markdown-link-auditor) <br>
-- [Publisher profile](https://clawhub.ai/user/kofna3369) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell and Python examples; the bundled auditor can emit text or JSON reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional remote URL checking sends HEAD requests to external sites; JSON output is available for CI integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The artifact claims internal link validation, orphan-page reporting, and directory auditing capabilities that are not supported by the implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for simple Markdown link extraction and optional external status checks until those capabilities are implemented and tested.
+
+Risk: Optional remote checks issue HTTP HEAD requests for links found in Markdown, which can contact untrusted or sensitive network destinations.
+
+Mitigation: Run remote checks only on trusted documents and networks where outbound requests to discovered URLs are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kofna3369/skills/axiom-markdown-link-auditor)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text or JSON audit report with link counts, link types, URLs, line numbers, and optional remote status results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses deterministic local parsing; optional remote checks issue HTTP HEAD requests with a timeout.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

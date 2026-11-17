@@ -1,41 +1,58 @@
-## Description: <br>
-将 PDF 中包含“显示日期”的页面切割成单独文件，并按原文件名与页码命名。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将PDF中包含 显示日期 的页面切割成单独的文件，新文件以原文件名_页数命名。当用户需要从PDF中提取包含特定日期标识的页面时使用。
 
-## Publisher: <br>
-[hanw2039](https://clawhub.ai/user/hanw2039) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanw2039](https://clawhub.ai/user/hanw2039)
 
-## Use Case: <br>
-Business users and developers can use this skill to generate Python code and command-line guidance for extracting PDF pages that contain the keyword “显示日期”. It supports single-file and batch workflows, with optional OCR guidance for scanned PDFs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Batch mode processes every PDF in the selected directory and generated output names may overwrite existing files. <br>
-Mitigation: Run the workflow on copies of important PDFs and choose an empty or dedicated output directory before batch processing. <br>
-Risk: OCR support depends on locally installed OCR dependencies and may miss or misread scanned text. <br>
-Mitigation: Install dependencies from trusted package managers and review extracted pages before relying on the results. <br>
+## Use Case:
 
+External users and document-processing teams use this skill to generate Python code and command-line guidance for extracting PDF pages that contain the keyword "显示日期". It supports single-file and directory batch workflows, with optional OCR for scanned PDFs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hanw2039/split-pdf-by-pages) <br>
-- [Tesseract OCR for Windows](https://github.com/UB-Mannheim/tesseract/wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, guidance] <br>
-**Output Format:** [Markdown with Python and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local PDF files when the generated Python workflow is run by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated scripts install and use PDF/OCR dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies only from trusted package sources, preferably inside a virtual environment.
+
+Risk: Generated scripts process local PDFs and may write sensitive document pages to an output directory.
+
+Mitigation: Run the script only on PDFs and directories you choose, and use a private output folder for sensitive documents.
+
+Risk: Output files can overwrite existing files with the same generated names.
+
+Mitigation: Check the output directory before running the script or choose a fresh destination folder.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanw2039/skills/split-pdf-by-pages)
+- [UB Mannheim Tesseract OCR installer wiki](https://github.com/UB-Mannheim/tesseract/wiki)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with Python code blocks and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces PDF-processing implementation guidance; generated scripts may write output PDF files and can overwrite existing files with matching names.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

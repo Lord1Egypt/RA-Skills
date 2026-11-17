@@ -1,0 +1,52 @@
+{
+  "skill": "continuation-patterns",
+  "version": "0.1.0",
+  "source_book": "期货市场技术分析 — 约翰·墨菲",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "上涨途中出现一个对称三角形，这是整理还是会反转？",
+      "expected_behavior": "激活 continuation-patterns，说明持续形态多沿原趋势突破，并看所处趋势阶段",
+      "notes": "三角整理定性"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "急涨之后横着收出个小旗形，后面还能继续涨吗？",
+      "expected_behavior": "激活 continuation-patterns，解释为旗形中继，完成后续涨概率高",
+      "notes": "旗形中继"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "这图形高点越来越高低点越来越低，是不是喇叭形？还能跟突破吗？",
+      "expected_behavior": "激活 continuation-patterns，提示喇叭形是反转预警、机械突破易受挫",
+      "notes": "喇叭形"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "头肩底颈线突破了，目标位到哪里？",
+      "expected_behavior": "不应激活本 skill（反转形态），应激活 reversal-patterns",
+      "notes": "跨 skill 混淆：应触发 reversal-patterns"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这个前高一直压着价格，是不是阻力位？",
+      "expected_behavior": "不应激活本 skill（通用阻挡），应激活 trend-tools",
+      "notes": "诱饵：支撑阻挡"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "矩形箱体震荡很久了，突破之后是继续原趋势还是反转？",
+      "expected_behavior": "激活本 skill 并说明矩形多为持续、但需看所处趋势阶段与突破方向，不武断",
+      "notes": "边界：持续vs反转取决于位置"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "should-not-trigger-01 指向 reversal-patterns；should-not-trigger-02 指向 trend-tools。"
+}

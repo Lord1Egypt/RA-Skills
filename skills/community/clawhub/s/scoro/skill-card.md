@@ -1,41 +1,63 @@
-## Description: <br>
-This skill integrates with Scoro API v2 for time tracking, task management, utilization reporting, team status reports, and billable corrections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scoro API v2 integration for time tracking, task management, utilization reporting, team status reports, and billable corrections.
 
-## Publisher: <br>
-[germainsafari](https://clawhub.ai/user/germainsafari) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[germainsafari](https://clawhub.ai/user/germainsafari)
 
-## Use Case: <br>
-Developers and business operations users use this skill to query Scoro tasks, time entries, hours, utilization, and team status, and to prepare billable-status corrections with explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Scoro API key may grant broad access to sensitive company records. <br>
-Mitigation: Use a least-privileged Scoro key and require the agent to show exact records before using company data. <br>
-Risk: Modify and delete endpoints could change or remove business records beyond the main time-tracking workflow. <br>
-Mitigation: Require explicit user confirmation and a preview of planned changes before any modify or delete request. <br>
+## Use Case:
 
+Employees, managers, and operations teams use this skill to query Scoro tasks and time entries, prepare utilization and team status reports, and correct billable status on time entries with explicit authorization.
 
-## Reference(s): <br>
-- [Scoro API v2](https://api.scoro.com/api/v2) <br>
-- [ClawHub Scoro release page](https://clawhub.ai/germainsafari/scoro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCORO_API_KEY and SCORO_COMPANY_URL; modifying or deleting records requires explicit user permission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A configured Scoro API key can give the agent broad access to company tasks, time entries, users, projects, contacts, and financial records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Scoro API key and do not enable finance, contact, modify, or delete permissions unless the deployment explicitly requires them.
+
+Risk: A configurable company URL could send the API key to the wrong endpoint if it is misconfigured.
+
+Mitigation: Verify SCORO_COMPANY_URL is exactly the organization's HTTPS Scoro tenant API URL before enabling the skill.
+
+Risk: Team reports can expose sensitive employee productivity and utilization data.
+
+Mitigation: Require clear user authorization for team reporting and limit access to users who are allowed to view employee time data.
+
+Risk: Billable-status corrections and other modify or delete actions can change business records.
+
+Mitigation: Require explicit user confirmation before any modifying action and review the target record IDs before execution.
+
+## Reference(s):
+
+- [Scoro API v2](https://api.scoro.com/api/v2)
+- [ClawHub Scoro Skill](https://clawhub.ai/germainsafari/skills/scoro)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/germainsafari)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON, shell, and PowerShell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide API calls that read or modify Scoro records when configured with a Scoro API key and tenant URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

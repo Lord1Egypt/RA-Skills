@@ -1,42 +1,55 @@
-## Description: <br>
-字幕菌（zimujun）：从主流视频平台链接提取视频文案/字幕文本。适用于 YouTube、TikTok/抖音、小红书、Bilibili 等平台。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+字幕菌 (zimujun) extracts transcript or subtitle text from mainstream video platform links, including YouTube, TikTok/Douyin, Xiaohongshu, and Bilibili.
 
-## Publisher: <br>
-[kyriswu](https://clawhub.ai/user/kyriswu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyriswu](https://clawhub.ai/user/kyriswu)
 
-## Use Case: <br>
-External users and agents use this skill to extract transcript or subtitle text from supported video platform links, including YouTube, TikTok/Douyin, Xiaohongshu, and Bilibili. The skill can either run the zimujun npm command or direct users to the hosted transcript page. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive API key and the artifact includes language suggesting that users may paste the key into chat. <br>
-Mitigation: Set `ZMJ_API_KEY` only in a local environment or approved secret manager, do not paste it into chat, and rotate the key if it has been shared. <br>
-Risk: Video links and transcript requests may be processed by the zimujun/devtool service and npm code is fetched at runtime. <br>
-Mitigation: Use the skill only for content appropriate for that third-party service, review the service before submitting sensitive links, and approve runtime npm execution in the target environment. <br>
+## Use Case:
 
+External users and developers use this skill to turn a video URL or shared video text into a transcript-style result. It normalizes the URL, invokes the zimujun npm package, and returns the extracted text or the service error.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kyriswu/zimujun) <br>
-- [Web transcript entry](https://devtool.uk/video-transcript) <br>
-- [API key information](https://devtool.uk/plugin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell command guidance and transcript or error fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a video URL or share text; npm command usage requires a ZMJ_API_KEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.18 (source: server release evidence) <br>
+Risk: The skill documentation suggests sending ZMJ_API_KEY through chat in one fallback path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not paste the API key into chat; configure ZMJ_API_KEY locally through a secure environment or secret manager.
+
+Risk: The skill runs zimujun@latest from the live npm registry.
+
+Mitigation: Prefer a pinned package version or a reviewed local installation before using the skill in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kyriswu/skills/zimujun)
+- [Web transcript entry point](https://devtool.uk/video-transcript)
+- [API key information](https://devtool.uk/plugin)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown result with video_url, status, transcript content, and error text when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, npx, the zimujun npm package, and a locally configured ZMJ_API_KEY.]
+
+## Skill Version(s):
+
+1.0.18 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

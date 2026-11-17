@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dining demand research"
+  short_description: "Compare public restaurant availability snapshots"
+  default_prompt: "Use $dining-demand-research to build a dated restaurant availability shortlist."

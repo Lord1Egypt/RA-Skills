@@ -1,0 +1,76 @@
+{
+  "id": "twist-demo-003",
+  "name": "Demo: response modification",
+  "version": "1.0",
+  "description": "Modify response bodies, status codes, headers, and HTML elements",
+  "rules": [
+    {
+      "id": "override-status",
+      "name": "Force 500 for error testing",
+      "enabled": true,
+      "priority": 10,
+      "stage": "response",
+      "match": {
+        "allOf": [
+          {"type": "urlContains", "value": "/force-error"}
+        ]
+      },
+      "actions": [
+        {"type": "setStatus", "statusCode": 500}
+      ]
+    },
+    {
+      "id": "replace-text",
+      "name": "Replace production hostname in body",
+      "enabled": true,
+      "priority": 8,
+      "stage": "response",
+      "match": {
+        "allOf": [
+          {"type": "urlContains", "value": "example.com"}
+        ]
+      },
+      "actions": [
+        {"type": "replaceBodyText", "search": "prod.example.com", "replace": "localhost:3000", "replaceAll": true}
+      ]
+    },
+    {
+      "id": "json-patch",
+      "name": "Patch JSON response",
+      "enabled": true,
+      "priority": 7,
+      "stage": "response",
+      "match": {
+        "allOf": [
+          {"type": "urlSuffix", "value": "/users"}
+        ]
+      },
+      "actions": [
+        {"type": "patchBodyJson", "patches": [
+          {"op": "add", "path": "/mock", "value": true},
+          {"op": "remove", "path": "/sensitive"}
+        ]}
+      ]
+    },
+    {
+      "id": "inject-element",
+      "name": "Inject debug banner",
+      "enabled": true,
+      "priority": 5,
+      "stage": "response",
+      "match": {
+        "allOf": [
+          {"type": "urlContains", "value": "example.com"},
+          {"type": "resourceType", "values": ["Document"]}
+        ]
+      },
+      "actions": [
+        {
+          "type": "replaceElement",
+          "selector": "body",
+          "value": "<div style='background:red;color:white;padding:4px;text-align:center'>TWIST ACTIVE</div>"
+        }
+      ]
+    }
+  ]
+}

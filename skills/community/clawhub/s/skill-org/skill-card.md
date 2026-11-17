@@ -1,39 +1,53 @@
-## Description: <br>
-Skill Org helps agents convert objectives into executable job descriptions, reusable skill files, and workflow role definitions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Org helps agents turn objectives into executable job descriptions and reusable skill files for new roles, skills, workflows, and responsibility designs.
 
-## Publisher: <br>
-[taxueseek](https://clawhub.ai/user/taxueseek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taxueseek](https://clawhub.ai/user/taxueseek)
 
-## Use Case: <br>
-Developers, operators, and AI workflow designers use this skill to turn a new role, repeated solution, or expert-roundtable conclusion into a structured JD or skill file for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated JDs or skill files may encode unclear boundaries, unsuitable responsibilities, or misleading workflow guidance. <br>
-Mitigation: Review each generated JD or skill against the stated purpose, acceptance criteria, boundaries, and organizational requirements before adopting it. <br>
-Risk: The skill has broad triggers and may activate during general workflow-design conversations. <br>
-Mitigation: Confirm that the user wants a reusable role or skill artifact before applying the full six-step compilation process. <br>
+## Use Case:
 
+Developers, operators, and agent builders use this skill to convert a goal, workflow, role, or expert-roundtable conclusion into an executable job description or reusable skill specification. It is intended for organization and responsibility design, not for maintaining existing systems or one-off prompt edits.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown templates and structured prose for JDs or SKILL.md content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only drafting output; generated JDs and skills should be reviewed before adoption.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may activate for broad planning or task-assignment requests where the user did not intend to define durable responsibilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants organization, job-description, or reusable skill design before applying the full workflow.
+
+Risk: Generated job descriptions or skill files may define authority boundaries that are too broad, unclear, or unsuitable for the target team or agent.
+
+Mitigation: Review generated responsibility boundaries, acceptance criteria, and handoff rules before relying on the output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/taxueseek/skills/skill-org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown templates and structured prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces job descriptions, skill files, boundary definitions, acceptance criteria, and iteration guidance; no executable code is run by the skill.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,26 @@
+{
+  "_comment": "复制为 config.json 后填写。itemId 取大麦详情页 URL 中 id= 后面的数字。",
+  "itemId": "7123456789",
+  "url": "https://detail.damai.cn/item.htm?id=7123456789",
+  "interval": 30,
+  "quiet": false,
+  "stateFile": "state.json",
+  "notify": {
+    "log": true,
+    "logFile": "logs/ticket-monitor.log",
+    "toast": true,
+    "toastOnStart": true,
+    "toastOnError": true,
+    "webhooks": [
+      { "type": "serverchan", "key": "SCTxxxxxxxxxxxx" },
+      { "type": "wecom", "key": "企业微信机器人 key" },
+      { "type": "dingtalk", "key": "钉钉 access_token" },
+      { "type": "generic", "url": "https://example.com/hook" }
+    ]
+  },
+  "damai": {
+    "appKey": "12574478",
+    "ua": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1",
+    "cookie": ""
+  }
+}

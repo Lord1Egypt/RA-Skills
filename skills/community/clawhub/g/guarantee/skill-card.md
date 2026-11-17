@@ -1,37 +1,48 @@
-## Description: <br>
-A comprehensive AI agent skill for understanding, writing, and evaluating guarantees in business and legal contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guarantee helps agents understand, write, and evaluate guarantees in business and legal contexts for businesses and consumers.
 
-## Publisher: <br>
-[Duclawbot](https://clawhub.ai/user/Duclawbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[duclawbot](https://clawhub.ai/user/duclawbot)
 
-## Use Case: <br>
-Businesses use this skill to draft, evaluate, and communicate customer guarantees that support trust and conversion. Consumers use it to understand guarantee coverage, warranty distinctions, enforcement paths, and escalation options. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Guarantee, warranty, refund, and consumer protection obligations can vary by jurisdiction and may create legal or commercial risk. <br>
-Mitigation: Use the skill as drafting and analysis support, then have jurisdiction-specific terms reviewed by qualified counsel before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Duclawbot/guarantee) <br>
+## Use Case:
 
+External users, business teams, and consumers use this skill to design clearer guarantees, compare guarantee structures, understand guarantee and warranty concepts, and draft or evaluate guarantee-related communications.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-language guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include business, consumer, and legal-context explanations; not a substitute for jurisdiction-specific legal advice.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Guarantee or warranty guidance may be mistaken for jurisdiction-specific legal advice.
+
+Mitigation: Treat outputs as drafting and education support, and review important guarantee terms or enforcement decisions with qualified legal counsel or the relevant consumer-protection authority.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duclawbot/skills/guarantee)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational and drafting support; no tool use, persistence, credential handling, or system access is identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

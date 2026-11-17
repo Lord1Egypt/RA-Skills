@@ -1,0 +1,60 @@
+artifact: change_request
+artifact_role: main
+stage: change
+applicable_stages: [change]
+applies_when: 已定基线发生变更时记录影响与授权。
+schema_version: 5.1.0
+change_id: CHG-CORE-001
+title: "{change title}"
+reason: "{why the approved baseline must change}"
+source_refs: [SRC-CHG-001]
+status: proposed
+baseline_version: "1.0"
+target_version: "1.1"
+decision_owner: "{decision owner}"
+request:
+  requester: "{requester}"
+  # requested_at: 仅填写实际提出时间
+  authority: "{minutes/contract/approved request}"
+  seed_refs: [REQ-CORE-001]
+  before: "{approved behavior}"
+  after: "{proposed behavior}"
+diff: []
+impacts:
+  # Every list item uses: {ref: REQ-CORE-001, change_type: modify, reason: "why this ID changes"}
+  # Allowed change_type: add | modify | deprecate | remove | verify_only | none
+  requirements: []
+  roles: []
+  modules: []
+  flows: []
+  views: []
+  actions: []
+  fields: []
+  states: []
+  events: []
+  rules: []
+  interfaces: []
+  acceptance: []
+  tests: []
+  defects: []
+  evidence: []
+  integrations: []
+  documentation: []
+  data_migration:
+    required: false
+    strategy: not_applicable
+    rollback: not_applicable
+    reconciliation: not_applicable
+compatibility:
+  stable_ids_preserved: true
+  deprecated_ids: []
+  replacement_map: {}
+  consumer_actions: []
+approvals: []
+synchronization: []
+audit_log: []
+verification:
+  acceptance_refs: []
+  regression_refs: []
+  evidence_refs: []
+  result: not_run

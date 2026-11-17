@@ -1,0 +1,55 @@
+{
+  "$comment": "Contract fixtures are validated as part of the repository scan. Negative cases pass only when they fail for the declared signatures.",
+  "version": 1,
+  "cases": [
+    {
+      "path": "fixtures/contract/positive/captions.valid.json",
+      "schema": "schemas/captions.schema.json",
+      "expect": "valid"
+    },
+    {
+      "path": "fixtures/contract/negative/captions.multiline.invalid.json",
+      "schema": "schemas/captions.schema.json",
+      "expect": "invalid",
+      "expectedErrorSignatures": [
+        "maximum@/pages/0/lines"
+      ]
+    },
+    {
+      "path": "fixtures/contract/negative/captions.linebreak.invalid.json",
+      "schema": "schemas/captions.schema.json",
+      "expect": "invalid",
+      "expectedErrorSignatures": [
+        "pattern@/pages/0/text"
+      ]
+    },
+    {
+      "path": "fixtures/contract/negative/compatibility.invalid-hash.invalid.json",
+      "schema": "schemas/compatibility.schema.json",
+      "expect": "invalid",
+      "expectedErrorSignatures": [
+        "pattern@/toolSchemaHash",
+        "if@/"
+      ]
+    },
+    {
+      "path": "fixtures/contract/negative/compatibility.validated-without-evidence.invalid.json",
+      "schema": "schemas/compatibility.schema.json",
+      "expect": "invalid",
+      "expectedErrorSignatures": [
+        "pattern@/requiredProbes/0/evidence",
+        "if@/"
+      ]
+    },
+    {
+      "path": "fixtures/runtime/negative/high-risk-auto.invalid.json",
+      "schema": "schemas/runtime/decision-log.schema.json",
+      "expect": "invalid",
+      "expectedErrorSignatures": [
+        "const@/decisions/0/risk",
+        "const@/decisions/0/approvalRequired",
+        "if@/decisions/0"
+      ]
+    }
+  ]
+}

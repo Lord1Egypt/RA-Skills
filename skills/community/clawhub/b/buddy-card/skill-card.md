@@ -1,45 +1,60 @@
-## Description: <br>
-Generates a personalized holographic Claude Buddy trading card using a Claude Code account identity, deterministic buddy attributes, and Gemini image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a personalized Claude Buddy trading card by deriving Buddy attributes from the user's Claude Code account UUID and creating a holographic image with Gemini.
 
-## Publisher: <br>
-[dyz2102](https://clawhub.ai/user/dyz2102) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dyz2102](https://clawhub.ai/user/dyz2102)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to calculate their Claude Buddy attributes, generate a themed trading-card image, and save or regenerate the result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to read a Claude Code OAuth token from macOS Keychain. <br>
-Mitigation: Install only from a trusted publisher, review and explicitly approve credential access, and prefer a design that uses a user-provided non-secret seed instead of OAuth credentials. <br>
-Risk: The workflow makes external network calls to fetch the Claude account UUID and to send generated prompt data to Google/Gemini for image generation. <br>
-Mitigation: Review the exact data being sent before approval, use a dedicated Google API key, and avoid including secrets or personal data in the image prompt. <br>
-Risk: The skill writes the generated card image to the local Downloads folder by default. <br>
-Mitigation: Confirm the output path before running and choose a user-specified path when needed. <br>
+## Use Case:
 
+Claude Code users use this skill to generate a shareable image card showing their assigned Buddy species, rarity, accessories, stats, and card number. The workflow is intended for users who are comfortable letting an agent access local Claude Code credentials and call external image-generation services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dyz2102/buddy-card) <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
-- [Google AI Studio API keys](https://aistudio.google.com/apikey) <br>
-- [Claude Code source leak article referenced by the artifact](https://techstartups.com/2026/03/31/anthropics-claude-source-code-leak-goes-viral-again-after-full-source-hits-npm-registry-revealing-hidden-capybara-models-and-ai-pet/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance, Image file] <br>
-**Output Format:** [Markdown-style agent guidance with shell commands, generated buddy JSON, and a saved JPEG image] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS Keychain access, Claude Code credentials, a Google API key, and Node.js or Bun.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill reads Claude Code credentials from macOS Keychain and uses an OAuth token to request the user's profile UUID.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing this behavior, keep Claude Code credentials local, and stop if the credential lookup or profile request is unexpected.
+
+Risk: The generated image prompt is sent to Google or Gemini using the user's API key.
+
+Mitigation: Use a restricted throwaway Google API key and avoid including personal data in prompts.
+
+Risk: Custom Google base URLs, proxy settings, or the npx Bun fallback can route sensitive requests through untrusted infrastructure or runtime downloads.
+
+Mitigation: Avoid custom GOOGLE_BASE_URL and untrusted proxy settings, and prefer an already installed trusted Bun or Node runtime.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dyz2102/skills/buddy-card)
+- [ClawHub publisher profile](https://clawhub.ai/user/dyz2102)
+- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [Google AI Studio API key setup](https://aistudio.google.com/apikey)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, JSON, files]
+
+**Output Format:** [Markdown-style instructions, shell commands, JSON buddy data, and a generated JPEG image file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the final card image to a user-selected path, defaulting to ~/Downloads/claude-buddy-card.jpg.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, released 2026-03-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,56 @@
-## Description: <br>
-Query employee data, time clock entries, schedules, and requests with authentication that scopes employees to their own data and managers to their team. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query employee data, time clock entries, schedules, and requests. Requires authentication - employees see own data, managers see team.
 
-## Publisher: <br>
-[brianppetty](https://clawhub.ai/user/brianppetty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brianppetty](https://clawhub.ai/user/brianppetty)
 
-## Use Case: <br>
-Farm employees, managers, and admins use this skill to record time-clock activity, capture schedule changes and time-off requests, review team availability, approve requests, and prepare payroll exports within role-scoped access controls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change sensitive employee workforce records, including clock actions, requests, approvals, rejections, and payroll exports. <br>
-Mitigation: Install only in a trusted FarmOS environment and require explicit user confirmation before record-changing actions or payroll exports. <br>
-Risk: Schedule details or personal reasons could be broadcast to an inappropriate audience. <br>
-Mitigation: Verify role mappings, API permissions, and #farm-workforce membership, and avoid posting personal reasons beyond authorized managers. <br>
-Risk: Using the wrong token could expose team-wide employee data to an employee-scoped request. <br>
-Mitigation: Use role-appropriate authenticated tokens and confirm employee, manager, and admin access boundaries before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Farm employees, managers, and admins use this skill to retrieve workforce information, manage time clock and schedule workflows, capture availability or time-off requests, and route approvals with role-scoped access.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and HTTP API request details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires authenticated FarmOS access and role-appropriate tokens for protected employee, time, request, calendar, skills, and payroll endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive employee data, including payroll exports, roles, activity status, and GPS-related time clock fields.
+
+Mitigation: Use only in a controlled FarmOS environment with authenticated employee-directory access, role enforcement, and private or HTTPS-equivalent transport.
+
+Risk: The skill can initiate state-changing workforce actions such as clock events, request submission, approvals, rejections, exports, and shared schedule notifications.
+
+Mitigation: Require explicit confirmation before write, approval, rejection, export, or shared-channel notification actions.
+
+Risk: Manager tokens or elevated access could expose team-wide workforce information to employees.
+
+Mitigation: Use employee tokens for employee-scoped queries and verify role mapping before accessing manager or admin endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brianppetty/skills/farmos-workforce)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown responses with optional shell commands and API request details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include employee counts, date-bounded time entry results, schedule or request status, certification alerts, and explicit error reporting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

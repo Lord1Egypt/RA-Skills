@@ -1,0 +1,39 @@
+{
+  "name": "@yottameta/yotta-recon",
+  "version": "0.1.10",
+  "description": "Yuanxi (元析) — cross-agent network recon skill: zero-dependency in-house port/service/version-fingerprint probing (no nmap) for security testing and asset inventory, with built-in authorization discipline (Scope Guard). Triggers when scanning networks/ports, identifying services or fingerprints, inventorying assets, or running the recon phase. Boundaries: authorized targets only; read-only probing; no attacks or exploitation.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-recon"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "README.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "NOTICE",
+    "CHANGELOG.md",
+    "README.zh-CN.md",
+    "!scripts/test_*.py",
+    "!**/__pycache__",
+    "!**/*.pyc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-recon.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-recon": "bin/install.js"
+  },
+  "scripts": {
+    "test": "python scripts/test_yotta_recon.py"
+  }
+}

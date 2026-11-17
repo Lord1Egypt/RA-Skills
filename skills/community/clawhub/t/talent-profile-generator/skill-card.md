@@ -1,44 +1,58 @@
-## Description: <br>
-Generates enterprise talent profiles and competency portraits for a specified role using role context, company culture, job level, and job-market benchmarks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates enterprise talent profiles, competency portraits, hiring criteria, interview focus areas, and candidate personas for specified roles using provided role context and public job-posting benchmarks.
 
-## Publisher: <br>
-[linuoxu](https://clawhub.ai/user/linuoxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuoxu](https://clawhub.ai/user/linuoxu)
 
-## Use Case: <br>
-HR, recruiting, and talent management users use this skill to turn a role, level, company culture, and market benchmark inputs into a role-specific talent portrait, competency model, hiring criteria table, interview focus, and candidate persona. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports a suspicious review helper that can run a nested reviewer with broad local access. <br>
-Mitigation: Review the workflow before use, prefer the safer no-yolo mode, and avoid running it on repositories or untracked files containing secrets. <br>
-Risk: Market benchmarking can produce weak or misleading talent criteria when job-posting samples are unavailable, stale, or too narrow. <br>
-Mitigation: Disclose sample limitations, prefer user-provided JD samples when platform access is unavailable, and treat benchmark output as a draft for HR review. <br>
-Risk: Talent profiles can introduce discriminatory or non-job-related screening criteria if not constrained. <br>
-Mitigation: Keep criteria tied to role requirements and observable behaviors, and exclude protected traits such as gender, age, marital status, ethnicity, religion, household registration, or disability. <br>
+## Use Case:
 
+HR, recruiting, and talent-management users use this skill to turn a role, level, culture, and business context into a structured talent portrait for JD optimization, interview design, candidate evaluation, and workforce review. It is especially oriented to Chinese-language enterprise hiring workflows and public job-posting benchmarks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linuoxu/talent-profile-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/linuoxu) <br>
-- [Output template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown with structured tables and Mermaid diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided role context first; may summarize public job postings when network access is available and should not copy postings verbatim or collect private personal data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Talent profiles can become misleading if generated from incomplete role, level, culture, or benchmark inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat incomplete outputs as drafts, review the listed missing information, and validate assumptions with current role owners or representative job samples.
+
+Risk: Hiring criteria may introduce inappropriate or discriminatory screening factors if users add non-job-related attributes.
+
+Mitigation: Keep criteria tied to observable job behaviors and avoid protected or non-essential attributes such as gender, age, marital status, ethnicity, religion, household registration, or disability.
+
+Risk: Public job-posting benchmarks may be unavailable, stale, or too limited for a specific market segment.
+
+Mitigation: Disclose benchmark limits, avoid fabricating sources, and request user-provided JD samples when live recruitment-platform access is unavailable.
+
+## Reference(s):
+
+- [Talent profile output template](references/output-template.md)
+- [ClawHub skill page](https://clawhub.ai/linuoxu/skills/talent-profile-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with tables and optional Mermaid diagram]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese output and asks for confirmation when role, level, culture, or benchmark inputs are incomplete.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

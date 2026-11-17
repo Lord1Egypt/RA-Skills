@@ -185,7 +185,7 @@ agent-memory recall "测试查询"
 
 ### Webhook通知
 ```bash
-export AGENT_MEMORY_ALERT_WEBHOOK_URL=https://hooks.slack.com/services/xxx
+export AGENT_MEMORY_ALERT_WEBHOOK_URL=REDACTED-SECRET
 export AGENT_MEMORY_ALERT_MIN_LEVEL=warning
 ```
 

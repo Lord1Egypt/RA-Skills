@@ -1,38 +1,49 @@
-## Description: <br>
-Defines market boundaries using the substitution principle for market sizing, competitive analysis, and strategic positioning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Define market boundaries using substitution principle. Use for market sizing, competitive analysis, and strategic positioning.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-Business strategists, market analysts, product teams, and external users use this skill to define market scope, compare substitutes, document assumptions, and structure market-sizing or competitive analyses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market boundaries and strategic implications may be misleading if assumptions about substitutes, switching costs, customer behavior, or validation data are weak. <br>
-Mitigation: Review the skill's assumptions and validate them with market data or customer evidence before using conclusions for strategy, financial planning, or competitive decisions. <br>
+## Use Case:
 
+Employees and external strategy, product, and market analysis teams use this skill to define market scope, compare substitutes, document assumptions, and support market sizing or competitive analysis.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/linuszz/market-definition) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis with structured tables, scope statements, validation checks, strategic implications, and a boundary map.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or external service calls; conclusions depend on user-provided market assumptions and supporting data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad market-analysis triggers may shape responses for varied market definition requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated market boundaries, substitution assumptions, and validation evidence before using the analysis for strategic or commercial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linuszz/skills/market-definition)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis template with tables, scope statements, validation tests, and strategic implications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential use, local data access, or persistent changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

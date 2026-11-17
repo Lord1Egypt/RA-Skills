@@ -1,0 +1,5 @@
+SYNTHETIC FIXTURE, NOT A REAL SOURCE OR PRODUCT.
+Aster API specification, version 2.0. Fictional demonstration text.
+Transport: HTTPS. Authentication: a bearer token is required.
+Responses use JSON. The service accepts no more than 100 items in a batch.
+No retention period or service-level guarantee is specified in this fixture.

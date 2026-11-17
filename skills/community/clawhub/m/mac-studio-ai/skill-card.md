@@ -1,46 +1,57 @@
-## Description: <br>
-Mac Studio AI helps agents set up and use Mac Studio systems for local LLM inference, image generation, speech-to-text, embeddings, and multi-device routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mac Studio AI helps agents guide users through local AI setup and usage on Mac Studio, including LLM inference, image generation, speech-to-text, embeddings, fleet routing, and monitoring.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and technical operators use this skill to configure Mac Studio local AI workflows, connect client applications to a local router, add generation and transcription tools, and monitor a local AI fleet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup may expose a local or LAN AI router. <br>
-Mitigation: Keep the service on a trusted network and review network exposure before use. <br>
-Risk: Third-party Python packages are referenced for local AI workflows. <br>
-Mitigation: Review the referenced packages before installation and use normal dependency controls. <br>
-Risk: Operational logs and database files under ~/.fleet-manager may reveal local model or request activity. <br>
-Mitigation: Treat ~/.fleet-manager data as operationally sensitive and limit access to trusted users. <br>
+## Use Case:
 
+Developers and AI practitioners use this skill to configure Mac Studio systems for local model serving, route requests across multiple machines, and operate local AI endpoints for chat, image generation, transcription, and embeddings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/mac-studio-ai) <br>
-- [Ollama Herd project](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
-- [Image Generation Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/image-generation.md) <br>
-- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Python examples, curl API calls, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets macOS and references local or LAN services, optional Python tooling, and ~/.fleet-manager operational files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Local AI endpoints shown in the skill use LAN HTTP patterns that can expose prompts, recordings, documents, or generated outputs if reachable from untrusted networks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Expose the Mac Studio API only on a trusted LAN or VPN, and add network controls, authentication, or TLS before sending sensitive data.
+
+Risk: Package installation commands can change the host environment or install unpinned dependencies.
+
+Mitigation: Install packages in an isolated environment where practical, and review or pin package versions for production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/skills/mac-studio-ai)
+- [Ollama Herd GitHub Repository](https://github.com/geeks-accelerator/ollama-herd)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [Image Generation Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/image-generation.md)
+- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, Python, curl, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local endpoint examples, setup commands, model recommendations, and operational checks.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

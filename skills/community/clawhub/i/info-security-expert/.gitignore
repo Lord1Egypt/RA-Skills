@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# WorkBuddy 本地元数据（不属于专家内容，不入库）
+_skillhub_meta.json
+_bm_skillid_migration.json
+
+# 编辑器 / 系统
+*.swp
+.idea/
+.vscode/

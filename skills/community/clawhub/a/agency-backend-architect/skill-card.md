@@ -1,41 +1,49 @@
-## Description: <br>
-Expert AI agent specializing in backend architect. From The Agency (github.com/msitarzewski/agency-agents). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backend Architect provides backend architecture guidance for scalable system design, database architecture, cloud infrastructure, reliability, security, and performance.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Developers and engineering teams use this skill for backend architecture guidance, including scalable system design, database schemas, API patterns, reliability planning, and security-focused implementation advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture, SQL, deployment, or security recommendations may be unsuitable for a specific production environment. <br>
-Mitigation: Have qualified engineers review and adapt the guidance before applying it to live systems. <br>
-Risk: Marketplace capability tags indicate crypto, purchase authority, and OAuth-token requirements even though the artifact is instruction-only. <br>
-Mitigation: Do not grant credentials, payment authority, wallet access, or production access based only on those tags. <br>
+## Use Case:
 
+Developers and engineers use Backend Architect to plan scalable backend systems, database schemas, APIs, cloud infrastructure, reliability controls, and security measures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-backend-architect) <br>
-- [Publisher profile](https://clawhub.ai/user/zhouqkt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with architecture specifications, SQL examples, JavaScript examples, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only advisory output; no executable install steps or runtime tools are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad activation language may select this skill for general backend or architecture requests in mixed-skill setups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it where backend architecture guidance is desired, and review recommendations for task fit before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-backend-architect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with architecture specifications and code or configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No install steps, executable code, credential access, or persistence behavior are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

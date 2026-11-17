@@ -1,41 +1,58 @@
-## Description: <br>
-Use when you need durable, repairable kitchenware, storage jars, tools, or ritual objects made from local clay without electricity, kilns, or commercial supply chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through planning, scheduling, logging, and safety checklists for handbuilt pottery and pit firing from local clay while the user performs the physical craft work.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill to plan, track, and troubleshoot handbuilt pottery projects using local clay and pit firing. The agent provides research, schedules, material lists, checklists, logs, and decision trees while the human performs all physical clay handling and firing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or update local project records containing clay-source notes, schedules, firing logs, inventory, and batch records. <br>
-Mitigation: Use a dedicated project folder and review filesystem changes before sharing or archiving them. <br>
-Risk: Clay sourcing, open-flame pit firing, and functional ware use can involve local fire rules, soil contamination, and food-use safety concerns. <br>
-Mitigation: Independently verify local fire regulations, soil safety, and food-use safety before digging clay, firing outdoors, or using finished ware. <br>
-Risk: Precise location details may be unnecessary for clay assessment and could expose sensitive personal information. <br>
-Mitigation: Avoid sharing exact GPS details unless needed; provide general soil descriptions or coarse location information where possible. <br>
+## Use Case:
 
+External users use this skill to plan local-clay pottery projects, generate material lists and firing schedules, maintain filesystem logs and reminders, and troubleshoot drying, firing, watertightness, and repair issues.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions, checklists, logs, schedules, decision trees, and inline shell command for installation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the filesystem to create and update project records such as clay-source notes, schedules, firing logs, inventory, and batch records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The installer is an unpinned npx command and should be verified before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted ClawHub source, avoid elevated privileges, and review the command before running it.
+
+Risk: The skill may use location, soil, or project-site details for clay sourcing and fire-safety planning.
+
+Mitigation: Share only the details needed for planning and review where filesystem logs and reminders will be written.
+
+Risk: Pit firing and local clay use involve fire, contaminant, and food-safety hazards.
+
+Mitigation: Verify local fire rules, soil-contaminant concerns, and food-safety requirements before following physical protocols.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/handbuilt-pottery-pit-firing-basics)
+- [Publisher profile](https://clawhub.ai/user/howtousehumans)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with checklists, tables, schedules, and decision trees]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write filesystem project logs, inventory trackers, firing schedules, reminders, and safety checklists when the agent has filesystem access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

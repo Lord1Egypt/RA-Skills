@@ -1,42 +1,60 @@
-## Description: <br>
-Pre-process prompts through three compression layers before sending to paid APIs, using a local Ollama model to compress messages and summarize history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-process prompts through three compression layers before sending to paid APIs, using a local Ollama model to compress messages and summarize conversation history.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers use this skill to reduce paid AI API token usage by compressing user messages, summarizing older conversation turns, and checking an in-memory cache before making downstream API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and older conversation turns are sent to the configured Ollama service for compression and summarization. <br>
-Mitigation: Keep Ollama bound to localhost or another trusted private endpoint, and review Ollama logging and host security before using sensitive, regulated, or secret data. <br>
-Risk: Conversation summaries and cached responses are held in memory and can span interactions if reused across conversations or users. <br>
-Mitigation: Call reset() between separate conversations or users, and configure cache size and TTL for the deployment context. <br>
+## Use Case:
 
+Developers and engineers use this skill to reduce paid LLM API token usage by compressing long user messages, summarizing older conversation history, and checking an in-memory response cache before calling an external API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/token-compressor) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Configuration, Guidance] <br>
-**Output Format:** [JavaScript module behavior with Markdown documentation and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Compression uses a configured local Ollama service, in-memory cache settings, and configurable model, host, port, history, and TTL options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Prompts and conversation history may be sent to a configurable HTTP host while the documentation emphasizes localhost-only processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure ollamaHost only to a trusted loopback or local Ollama endpoint, and do not route sensitive or regulated data unless the local service and its logs are trusted.
+
+Risk: Compressed messages and summaries can distort, omit, or inject context into later model calls.
+
+Mitigation: Review compressed outputs in sensitive workflows, keep recent turns verbatim, and disable compression for messages where exact wording is required.
+
+Risk: Cached responses are reused through keyword-based matching and may be stale or mismatched for a later request.
+
+Mitigation: Use conservative cache size and TTL settings, reset the cache between unrelated conversations, and bypass caching for high-impact decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/theshadowrose/skills/token-compressor)
+- [Publisher Profile](https://clawhub.ai/user/theshadowrose)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [JavaScript API results and compressed conversation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Ollama service; compression may fall back to the original input, and cached responses are kept in memory only.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

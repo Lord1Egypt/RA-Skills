@@ -1,39 +1,57 @@
-## Description: <br>
-Automate and manage Twitter/X accounts by posting, scheduling, replying, analyzing, tracking trends, managing followers, and handling media and analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate and manage Twitter/X accounts by posting, scheduling, replying, analyzing, tracking trends, managing followers, handling media, and exporting analytics.
 
-## Publisher: <br>
-[millymilton](https://clawhub.ai/user/millymilton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[millymilton](https://clawhub.ai/user/millymilton)
 
-## Use Case: <br>
-Social media operators and developers can use this skill to manage Twitter/X account workflows such as posting, scheduling, monitoring mentions, analyzing engagement, and coordinating follower and list operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Account-changing actions such as posts, replies, direct messages, follows, blocks, and bulk operations can affect a Twitter/X account without clear built-in approval boundaries. <br>
-Mitigation: Require manual approval before posts, replies, direct messages, follows, blocks, and bulk actions, and use least-privilege OAuth credentials. <br>
-Risk: Credentials, logs, caches, archives, and webhook destinations may expose account or user data. <br>
-Mitigation: Protect credential files, review webhook destinations, and periodically clear or secure local logs, caches, and archives. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/millymilton/twitter-operations) <br>
+## Use Case:
 
+Developers and social media operators use this skill to plan, execute, and monitor Twitter/X account operations through agent-proposed commands, configuration, and workflow guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text with command examples and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed Twitter/X account actions that should be manually approved before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can propose broad live-account actions such as posting, replies, follows, blocks, list changes, and bulk operations.
+
+Mitigation: Require explicit user confirmation before executing account-changing actions, especially bulk operations.
+
+Risk: Twitter/X credentials could be exposed or misused if stored casually.
+
+Mitigation: Keep credentials in a protected store and rotate or revoke tokens if exposure is suspected.
+
+Risk: Auto-reply, streaming, scraping, and mass actions can create compliance, abuse, or account-integrity issues when enabled unintentionally.
+
+Mitigation: Keep these features disabled unless deliberately configured for a reviewed workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/millymilton/skills/twitter-operations)
+- [Publisher profile](https://clawhub.ai/user/millymilton)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with CLI examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose actions that affect a live Twitter/X account and require credentials, rate-limit handling, and user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -29,6 +29,26 @@ groups:      # optional — named groups for partial sweeps
 | `device_timeout` | int (seconds) | 18 | Hard upper bound per device |
 | `ping_count` | int | 1 | ICMP packets sent at L1 |
 | `ping_timeout` | int (seconds) | 2 | Per-packet timeout at L1 |
+| `disk_warn_pct` | int (%) | 90 | DEGRADED when `/` usage ≥ this |
+| `mem_warn_pct` | int (%) | 90 | DEGRADED when memory used ≥ this |
+| `load_warn_per_cpu` | number | 2 | DEGRADED when 1-min load > (cores × this) |
+| `temp_warn_c` | number (°C) | 75 | DEGRADED when CPU temp ≥ this (Pi / thermal-zone hosts) |
+
+### Health status and exit codes
+
+Every probe resolves to one of three states, shown as a coloured tag in the
+output header and reflected in the process exit code:
+
+| State | Meaning | check-device exit | sweep exit (worst of all devices) |
+|-------|---------|-------------------|-----------------------------------|
+| `[OK]` | healthy | 0 | 0 |
+| `[DEGRADED]` | a measured threshold/service/app check failed | 1 | 1 |
+| `[DOWN]` | unreachable at L1 | 2 | 2 |
+
+Thresholds are only applied to layers that were actually measured — an
+`http-only` host or a chroot is never marked degraded for a layer it can't
+report (honest reporting). This makes `sweep.sh` safe to use as a cron/CI
+health gate: a non-zero exit means something genuinely needs attention.
 
 ## Device fields
 

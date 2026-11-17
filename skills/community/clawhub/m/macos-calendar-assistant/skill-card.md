@@ -1,43 +1,58 @@
-## Description: <br>
-Manage macOS Calendar with OpenClaw in IM-first workflows (Telegram/Discord/Feishu/iMessage/Slack), including screenshot-to-schedule extraction, idempotent create/update, move/extend/reschedule, reminders, conflict checks, daily review sync, and duplicate cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage macOS Calendar with OpenClaw in IM-first workflows (Telegram/Discord/Feishu/iMessage/Slack), including screenshot-to-schedule extraction, idempotent create/update, move/extend/reschedule, reminders, conflict checks, daily review sync, and duplicate cleanup.
 
-## Publisher: <br>
-[bryant24hao](https://clawhub.ai/user/bryant24hao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bryant24hao](https://clawhub.ai/user/bryant24hao)
 
-## Use Case: <br>
-External users and developers use this skill to manage macOS Calendar from OpenClaw conversations, including creating, updating, moving, reviewing, and cleaning up events. It is aimed at IM-first scheduling workflows where calendar changes should stay synchronized with daily planning and review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change real macOS Calendar data. <br>
-Mitigation: Grant Calendar access only when needed, keep date ranges narrow, and review proposed changes before applying them. <br>
-Risk: Duplicate cleanup can remove calendar events when run with apply flags. <br>
-Mitigation: Use dry-run first, review the generated cleanup plan, and apply deletion only after explicit confirmation. <br>
-Risk: The installer can add a daily local cron check that continues running until removed. <br>
-Mitigation: Review config.json before installation and run the bundled uninstall script when the recurring check is no longer wanted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bryant24hao/macos-calendar-assistant) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+## Use Case:
 
+External users and developers use this skill to turn chat messages, screenshots, and planning notes into macOS Calendar events, reminders, conflict checks, and cleanup actions. It supports IM-first schedule maintenance and plan-execute-summarize-adjust workflows through OpenClaw.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, script arguments, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Calendar operation guidance and invokes bundled local scripts that may emit text or JSON results such as CREATED, UPDATED, SKIPPED, event lists, cleanup plans, or environment checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requests real macOS Calendar access and can create, update, move, or delete calendar events.
+
+Mitigation: Grant Calendar access only on a Mac account where those changes are acceptable, review proposed writes and cleanup plans first, and use dry-run flows before applying changes.
+
+Risk: The security evidence flags unsafe scripting patterns around cron installation and configuration values that could cause unintended calendar changes or user-level command execution from crafted configuration.
+
+Mitigation: Inspect config.json yourself, use only trusted configuration files, and avoid running the cron installer until cron validation and AppleScript escaping issues are fixed.
+
+Risk: Regression tests and duplicate cleanup can affect live calendar data if run against a personal calendar.
+
+Mitigation: Run tests only against isolated test calendars or accounts, and require snapshot review plus explicit confirmation before using cleanup with --apply.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bryant24hao/skills/macos-calendar-assistant)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or status outputs from bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calendar operations require macOS, Swift command line tools, Python 3.9+, and Calendar permission for the terminal or host process.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

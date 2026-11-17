@@ -1,42 +1,53 @@
-## Description: <br>
-ClassMarker helps agents read ClassMarker groups, links, tests, and recent results through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClassMarker (classmarker.com). Use this skill for ANY ClassMarker request — searching and reading data. Whenever a task involves ClassMarker, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect ClassMarker groups, links, assigned tests, and recent assessment results through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ClassMarker groups, links, tests, and recent results may include sensitive assessment information. <br>
-Mitigation: Install and use the skill only when the agent is intended to read ClassMarker data through the connected OOMOL account, and review outputs before sharing them. <br>
-Risk: First-time setup may require installing the OOMOL CLI from a remote install command. <br>
-Mitigation: Review the OOMOL CLI install command before running it, and use setup steps only after an auth, connection, or missing-CLI failure. <br>
+## Use Case:
 
+People using an agent with a connected ClassMarker account can search and read the groups, links, assigned tests, and recent results available to their API key.
 
-## Reference(s): <br>
-- [ClassMarker homepage](https://www.classmarker.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClassMarker skill on ClawHub](https://clawhub.ai/oomol/oo-classmarker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only ClassMarker connector actions and live action schemas before constructing requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server evidence) <br>
+Risk: Setup directs the agent to run downloaded installation code without a clear approval step; the downloaded installer and hosted connector implementation were not verified. OOMOL is the disclosed intermediary for credentials and requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before enabling it, install a reviewed CLI version yourself, approve changes to other installed agent skills, and use a ClassMarker key limited to the data needed.
+
+## Reference(s):
+
+- [ClassMarker](https://www.classmarker.com)
+- [ClassMarker API documentation](https://www.classmarker.com/online-testing/api/developers/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [ClassMarker ClawHub release](https://clawhub.ai/oomol/skills/oo-classmarker)
+- [OOMOL publisher profile](https://clawhub.ai/user/oomol)
+
+## Skill Output:
+
+**Output Type(s):** [JSON data, Analysis, Guidance]
+
+**Output Format:** [Structured ClassMarker data with text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are limited to the ClassMarker data accessible to the connected API key.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

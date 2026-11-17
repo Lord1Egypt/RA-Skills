@@ -1,46 +1,57 @@
-## Description: <br>
-Ledger-informed persona lifecycle management that replaces low-performing personas with successor personas derived from mistake patterns in board decision history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ledger-informed persona lifecycle management that replaces low-performing personas with successor personas derived from mistake patterns in board decision history while preserving adaptive governance over long-running automation.
 
-## Publisher: <br>
-[kaicianflone](https://clawhub.ai/user/kaicianflone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kaicianflone](https://clawhub.ai/user/kaicianflone)
 
-## Use Case: <br>
-Developers and operators use this skill in long-running consensus systems to replace degraded evaluator personas and preserve auditable governance quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill modifies the configured consensus persona state. <br>
-Mitigation: Run it only against the intended consensus state path and review generated persona_set and persona_respawn artifacts after use. <br>
-Risk: Successor personas are shaped by ledger and decision inputs. <br>
-Mitigation: Keep ledger inputs trusted and inspect the derived learning summary before relying on the updated persona set. <br>
-Risk: Dependency drift can change runtime behavior. <br>
-Mitigation: Use lockfile-based or pinned dependency installs for reproducible deployments. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain long-running consensus persona sets by replacing dead or low-reputation personas with lineage-aware successors derived from decision history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaicianflone/consensus-persona-respawn) <br>
-- [consensus-guard-core package](https://www.npmjs.com/package/consensus-guard-core) <br>
-- [consensus-guard-core repository](https://github.com/kaicianflone/consensus-guard-core) <br>
-- [consensus-tools repository](https://github.com/kaicianflone/consensus-tools) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Configuration] <br>
-**Output Format:** [JSON artifacts and command-line status JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persona_respawn and persona_set artifacts under the configured consensus state path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.13 (source: frontmatter and package.json) <br>
+Risk: Untrusted ledger text may be carried into future persona instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Trust the consensus state writers, review or sanitize decision red_flags before respawn, and require approval before activating generated persona sets.
+
+Risk: Learned persona fields may preserve misleading or excessive text from prior decisions.
+
+Mitigation: Prefer controls or versions that validate learned fields and bound text length before writing successor personas.
+
+## Reference(s):
+
+- [consensus-guard-core package](https://www.npmjs.com/package/consensus-guard-core)
+- [consensus-guard-core repository](https://github.com/kaicianflone/consensus-guard-core)
+- [consensus-tools repository](https://github.com/kaicianflone/consensus-tools)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw repository](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Configuration]
+
+**Output Format:** [JSON artifacts and a JSON command summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persona_respawn and updated persona_set artifacts under the configured consensus state path.]
+
+## Skill Version(s):
+
+1.1.13 (source: frontmatter, package.json, package-lock.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-JobHound is an end-to-end job search coaching skill for resume parsing, job discovery and evaluation, tailored resumes, interview preparation, offer review, negotiation support, and application tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JobHound is a full-process job-search assistant for resume analysis, job discovery and scoring, tailored resumes, interview preparation, interview review, offer evaluation, salary negotiation, and application tracking.
 
-## Publisher: <br>
-[ucrossmym1nd](https://clawhub.ai/user/ucrossmym1nd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ucrossmym1nd](https://clawhub.ai/user/ucrossmym1nd)
 
-## Use Case: <br>
-Job seekers, especially candidates in China campus recruiting and internship markets, use this skill to manage the full search process from resume setup through applications, interviews, and offer decisions. It helps an agent produce structured job evaluations, personalized resume material, interview practice plans, review notes, and tracking records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with China campus and internship workflows as the primary fit <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive career information such as resume details, application status, interview notes, weaknesses, offer details, and salary expectations in local workspace files. <br>
-Mitigation: Use it only in a private workspace, review generated files before sharing them, and delete MEMORY.md, output, report, and application-tracking files when the retained data is no longer needed. <br>
+## Use Case:
 
+External job seekers use this skill to plan and manage a job search from resume parsing through applications, interviews, and offer decisions. It is tailored for China campus recruiting and internships while also supporting other regions and role families.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ucrossmym1nd/jobhound) <br>
-- [A-G evaluation matrix](artifact/references/a-g-matrix.md) <br>
-- [STAR story bank template](artifact/references/star-bank-template.md) <br>
-- [Resume template](artifact/assets/resume-template.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and reports, HTML resume output, YAML configuration, and local tracking files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain local workspace files such as MEMORY.md, cv.md, config/profile.yml, reports, output, and application-tracking records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill maintains persistent plaintext job-search memory that can include sensitive career, salary, and interview notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose a controlled workspace before use, avoid storing unnecessary sensitive details, and review or delete memory files when they are no longer needed.
+
+Risk: Generated HTML resumes may expose unintended personal details or active web content when shared.
+
+Mitigation: Review generated resumes before sharing, sanitize the HTML, or export to a static PDF when appropriate.
+
+## Reference(s):
+
+- [A-G 评估矩阵](references/a-g-matrix.md)
+- [STAR 故事银行模板](references/star-bank-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown reports, HTML resumes, local Markdown/YAML tracking files, and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local memory, application tracking, profile, and output files in the workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

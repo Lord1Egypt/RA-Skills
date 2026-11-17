@@ -1,39 +1,52 @@
-## Description: <br>
-Validates CSV, JSON, and JSONL data files for quality issues, including missing values, duplicates, type inconsistencies, outliers, format violations, whitespace problems, empty columns, and schema drift. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate CSV, JSON, and JSONL data files for missing values, duplicates, type inconsistencies, statistical outliers, format violations, whitespace problems, empty columns, and schema drift.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, data engineers, and analysts use this skill to profile CSV, JSON, and JSONL datasets, surface quality issues, generate severity-ranked reports, and validate data against schemas before using it in downstream workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The checker can overwrite a report or generated schema at a user-specified output path.
+
+Mitigation: Choose output paths deliberately and avoid pointing generated reports or schemas at existing files that should be preserved.
+
+Risk: Data quality reports may expose sensitive dataset contents or derived information when run on protected data.
+
+Mitigation: Run the skill only in a local environment appropriate for the dataset sensitivity and handle generated reports under the same controls as the source data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and data practitioners use this skill to inspect CSV, JSON, and JSONL datasets, generate quality reports, validate data against a schema, and create starter schemas from existing data. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, json, shell commands, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-selected local data files and generated reports may reveal dataset structure or quality issues. <br>
-Mitigation: Run it only on files intended for inspection, choose output paths deliberately, and review reports before sharing them. <br>
-Risk: Generated schemas and quality scores are heuristic outputs that may not capture domain-specific validation requirements. <br>
-Mitigation: Review generated schemas and reported findings against the intended data contract before using them in CI or release gates. <br>
+**Output Format:** [Markdown or JSON reports with command-line guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Reports include severity-ranked issues, a 0-100 quality score, and exit codes suitable for local or CI usage.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration] <br>
-**Output Format:** [Terminal text, Markdown reports, JSON reports, and JSON schema files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes indicate clean, warning, or critical findings; reports may be written to user-selected output paths.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

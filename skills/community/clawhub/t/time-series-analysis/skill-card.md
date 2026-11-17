@@ -1,36 +1,47 @@
-## Description: <br>
-Comprehensive time series data science skill covering feature engineering, model training, and competition-winning strategies for forecasting and prediction problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive time series data science skill covering feature engineering, model training, and competition-winning strategies for forecasting and prediction problems.
 
-## Publisher: <br>
-[dubnium0](https://clawhub.ai/user/dubnium0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dubnium0](https://clawhub.ai/user/dubnium0)
 
-## Use Case: <br>
-Developers and data scientists use this skill to plan and execute time-series forecasting workflows, including EDA, feature engineering, validation, LightGBM training, ensembling, and competition submission checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Forecasting guidance and code templates can produce misleading results if used with unreviewed data, temporal leakage, or weak validation. <br>
-Mitigation: Review any local scripts and datasets before running them, use time-based validation, and independently validate forecasting results before important decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers, data scientists, and external users use this skill to plan and implement time-series forecasting workflows, including feature engineering, validation, LightGBM training patterns, ensembling, and submission checks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Example training and submission commands depend on local files and scripts that are not included in the skill.
+
+Mitigation: Review and adapt each command to the target project before running it, and validate inputs and outputs in the local environment.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides reusable modeling templates, validation patterns, checklist guidance, and example pipeline commands.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with Python, Bash, and Mermaid code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides workflow guidance and example snippets; example commands depend on local project files that are not included in the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

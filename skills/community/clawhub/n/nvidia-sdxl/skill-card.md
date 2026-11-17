@@ -1,39 +1,54 @@
-## Description: <br>
-Generate high-resolution PNG images from detailed text prompts using the NVIDIA Stable Diffusion XL model with customizable style, lighting, and resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-resolution PNG images from detailed text prompts using the NVIDIA Stable Diffusion XL model with customizable style, lighting, and resolution.
 
-## Publisher: <br>
-[zhaoxiasan](https://clawhub.ai/user/zhaoxiasan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhaoxiasan](https://clawhub.ai/user/zhaoxiasan)
 
-## Use Case: <br>
-Developers and agents use this skill to create local image assets from detailed text prompts through NVIDIA's Stable Diffusion XL API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes an embedded NVIDIA API credential and sends prompts to NVIDIA under that credential. <br>
-Mitigation: Remove and rotate the embedded credential before use, and require users to supply their own credential through a secret or environment variable. <br>
-Risk: Prompts are sent to an external image generation API and generated files persist locally. <br>
-Mitigation: Do not submit confidential, personal, or proprietary information in prompts, and review local generated files before sharing or retaining them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaoxiasan/nvidia-sdxl) <br>
+## Use Case:
 
+Developers and content creators use this skill to generate local PNG image assets from detailed prompts, optional negative prompts, and resolution settings via NVIDIA Stable Diffusion XL.
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, API calls] <br>
-**Output Format:** [Plain text status message with an absolute local PNG file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a PNG image file in the local OpenClaw workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes a hardcoded NVIDIA API credential.
+
+Mitigation: Remove and revoke the bundled credential before use, then configure a user-provided secret through the runtime environment or another secret-management mechanism.
+
+Risk: Prompt text is sent to the NVIDIA image-generation service.
+
+Mitigation: Avoid submitting sensitive, confidential, or proprietary prompts unless that data sharing is acceptable for the intended deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaoxiasan/skills/nvidia-sdxl)
+- [Publisher profile](https://clawhub.ai/user/zhaoxiasan)
+- [NVIDIA Stable Diffusion XL API endpoint](https://ai.api.nvidia.com/v1/genai/stabilityai/stable-diffusion-xl-base)
+
+## Skill Output:
+
+**Output Type(s):** [text, files]
+
+**Output Format:** [Plain text status message with an absolute local path to a generated PNG file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a PNG image to the OpenClaw workspace. Width and height default to 1024 and may be set to 1024, 768, or 512.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

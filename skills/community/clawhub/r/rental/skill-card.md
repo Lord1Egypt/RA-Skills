@@ -1,44 +1,52 @@
-## Description: <br>
-Find, negotiate, and manage rentals as tenant, landlord, host, or guest with market analysis, scam detection, and lease review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find, negotiate, and manage rentals as tenant, landlord, host, or guest with market analysis, scam detection, and lease review.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to compare rental options, calculate total costs, identify scam signals, draft rental communications, and review lease or rental terms. It supports tenant, landlord, vacation rental, and equipment rental workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Rental templates may prompt users to include sensitive addresses, access codes, Wi-Fi passwords, financial records, identity documents, or applicant screening data. <br>
-Mitigation: Share only the minimum necessary information, use trusted channels, and remove or redact sensitive details before reusing generated text. <br>
-Risk: Landlord screening, lease, and rental advice can intersect with fair-housing, consumer-reporting, consent, privacy, and local landlord-tenant rules. <br>
-Mitigation: Use generated guidance as drafting and review support, then verify legal requirements with authoritative local sources or qualified counsel before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ivangdavila/rental) <br>
-- [Rental skill definition](artifact/SKILL.md) <br>
-- [Tenant guide](artifact/tenant.md) <br>
-- [Landlord guide](artifact/landlord.md) <br>
-- [Vacation rental guide](artifact/vacation.md) <br>
-- [Equipment and vehicle rental guide](artifact/equipment.md) <br>
+## Use Case:
 
+External renters, landlords, vacation hosts or guests, and equipment renters use this skill to compare options, estimate costs, prepare communications, identify scams or red flags, and review rental terms before acting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance with checklists, comparison tables, calculations, and message templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include rental analysis, red-flag reviews, negotiation drafts, and user-facing templates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Rental, lease, fair-housing, credit, background-check, insurance, and deposit rules vary by jurisdiction and contract.
+
+Mitigation: Verify legal and financial guidance against local rules, policy documents, and qualified professionals before relying on it.
+
+Risk: Rental workflows may involve sensitive applicant documents, addresses, Wi-Fi passwords, lockbox codes, payment details, or dispute evidence.
+
+Mitigation: Share only the minimum necessary information, remove unnecessary personal data, and use secure channels for documents and access credentials.
+
+## Reference(s):
+
+- [Rental skill page](https://clawhub.ai/ivangdavila/skills/rental)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Markdown and plain-language text with checklists, comparison tables, and message templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

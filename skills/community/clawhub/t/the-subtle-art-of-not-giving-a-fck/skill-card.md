@@ -1,47 +1,62 @@
-## Description: <br>
-A self-improvement skill that applies Mark Manson's book framework to help users choose what to care about, accept discomfort, examine entitlement, build values-driven habits, and learn from failure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A self-improvement guidance skill that adapts Mark Manson's framework into prompts and exercises for choosing values, accepting discomfort, handling entitlement, building habits, and learning from failure.
 
-## Publisher: <br>
-[jaysonmeng](https://clawhub.ai/user/jaysonmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaysonmeng](https://clawhub.ai/user/jaysonmeng)
 
-## Use Case: <br>
-External users use this skill as a book-based self-improvement coaching aid for values clarification, discomfort tolerance, failure reflection, and problem-focused habit changes. It is not a substitute for crisis support, mental-health treatment, or professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat blunt self-help guidance as crisis, abuse, trauma, or mental-health treatment advice. <br>
-Mitigation: Use the skill only for reflective book-based coaching and route crisis, abuse, trauma, or treatment decisions to qualified support. <br>
-Risk: Broad activation can cause the skill to respond to general topics such as happiness, values, problems, or suffering. <br>
-Mitigation: Check that the user wants this book framework before relying on its advice for broad or sensitive self-improvement topics. <br>
-Risk: Every skill response includes promotional Heardly attribution. <br>
-Mitigation: Review output policy and user-facing branding requirements before deploying in contexts where promotional attribution is restricted. <br>
+## Use Case:
 
+External users use this skill to receive book-based self-improvement guidance, worksheets, and immediate action prompts about values, discomfort, failure, entitlement, and problem-solving. The skill is intended for conversational guidance, not clinical or professional advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaysonmeng/the-subtle-art-of-not-giving-a-fck) <br>
-- [Core Framework: The Feedback Loop from Hell and the Subtleties](references/1-core-framework.md) <br>
-- [Key Principles](references/2-principles.md) <br>
-- [Techniques: The Practical Tools](references/3-techniques.md) <br>
-- [Anti-Patterns: Common Mistakes and How to Avoid Them](references/4-anti-patterns.md) <br>
-- [Voice & Application](references/5-voice-and-app.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with a specific immediate action and attribution watermark] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies in the user's language when detectable and may activate on broad self-improvement themes such as happiness, values, problems, or suffering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The security summary flags overbroad activation for broad topics such as happiness or values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger and routing behavior before installation, and constrain invocation to explicit book or self-improvement requests when broad activation is not desired.
+
+Risk: The security guidance notes that every answer may include Heardly branding and an external link, including responses outside the book scope.
+
+Mitigation: Confirm that promotional branding and outbound links are acceptable for the deployment context before use.
+
+Risk: The artifact provides self-improvement guidance that can overlap with sensitive emotional or mental-health topics.
+
+Mitigation: Use it as general reflective guidance only, and route requests for clinical, crisis, legal, financial, or other professional advice to appropriate qualified resources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaysonmeng/skills/the-subtle-art-of-not-giving-a-fck)
+- [Core Framework: The Feedback Loop from Hell and the Subtleties](references/1-core-framework.md)
+- [Key Principles](references/2-principles.md)
+- [Techniques: The Practical Tools](references/3-techniques.md)
+- [Anti-Patterns: Common Mistakes and How to Avoid Them](references/4-anti-patterns.md)
+- [Voice & Application](references/5-voice-and-app.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown conversational response with action prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses follow the user's language when possible and may include Heardly branding and an external link.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,64 @@
-## Description: <br>
-Detects AI-generated writing patterns in developer text such as docs, docstrings, commit messages, PR descriptions, and code comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect AI-generated writing patterns in developer text, including docs, docstrings, commit messages, PR descriptions, and code comments.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review repository prose, code comments, docstrings, commit messages, and PR descriptions for AI-like writing patterns and clearer wording. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read repository text files, commit messages, and GitHub PR descriptions while reviewing AI-like wording. <br>
-Mitigation: Run it only in repositories and PRs where that review scope is acceptable. <br>
-Risk: The skill writes a local .beagle report file that may contain excerpts and review findings. <br>
-Mitigation: Review the report before sharing or committing it, especially when scanned text may be sensitive. <br>
-Risk: GitHub PR description review can require an authenticated GitHub CLI session. <br>
-Mitigation: Use the minimum appropriate account access and avoid running PR review commands where OAuth-backed access is not intended. <br>
+## Use Case:
 
+Developers and engineering reviewers use this skill to scan repository text for AI-like writing patterns and receive evidence-backed rewrite guidance.
 
-## Reference(s): <br>
-- [Code Documentation Patterns](references/code-docs-patterns.md) <br>
-- [Communication Patterns](references/communication-patterns.md) <br>
-- [Content Patterns](references/content-patterns.md) <br>
-- [Filler Patterns](references/filler-patterns.md) <br>
-- [Formatting Patterns](references/formatting-patterns.md) <br>
-- [Vocabulary Patterns](references/vocabulary-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with a local JSON report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes .beagle/ai-writing-review.json when findings are produced; may inspect repository text, git history, and GitHub PR descriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Broad scans can inspect repository text such as docs, comments, docstrings, commit messages, and PR bodies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill against a specific path or category when broad coverage is not intended, and use --all only for whole-codebase scans.
+
+Risk: Rewrite suggestions can change tone or meaning if applied without review.
+
+Mitigation: Review each finding and suggestion before applying edits, especially items marked as needing review.
+
+Risk: The skill writes a local .beagle/ai-writing-review.json report.
+
+Mitigation: Check the report contents before sharing repository artifacts outside the review workflow.
+
+## Reference(s):
+
+- [Content Patterns](references/content-patterns.md)
+- [Vocabulary Patterns](references/vocabulary-patterns.md)
+- [Formatting Patterns](references/formatting-patterns.md)
+- [Communication Patterns](references/communication-patterns.md)
+- [Filler Patterns](references/filler-patterns.md)
+- [Code Documentation Patterns](references/code-docs-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/anderskev/skills/review-ai-writing)
+- [Publisher Profile](https://clawhub.ai/user/anderskev)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Files, Markdown, Shell commands, Guidance]
+
+**Output Format:** [JSON report file plus Markdown summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes .beagle/ai-writing-review.json with findings, categories, source locations, suggestions, risk levels, and fix safety.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

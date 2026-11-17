@@ -67,7 +67,7 @@ metadata:
 - `diagnoses`：可选。待审核诊断候选数组；每项包含 `role`、`code`、`name`。
 - `role`：`primary` 表示主诊断；其他值按其他诊断处理。
 - `appkey`：**必填**。内部医疗大模型鉴权 key，由平台分配；调用时使用 Bearer 鉴权。
-- `model`：可选。内部医疗大模型名称，默认 `u1-insuremed`。
+- `model`：可选。内部医疗大模型名称，默认 `u2-med`。
 - `use_llm`：可选，默认 `true`。传 `false` 时不调用模型，仅使用本地回退审核逻辑。
 
 审核规则
@@ -111,7 +111,7 @@ python3 doctor/icd-drg/diagnosis-review/scripts/run.py \
 - 普通 `txt/pdf/doc/docx/xls/xlsx/csv` 文件不会自动知道待审核诊断，必须传 `--diagnosis` 或 `--diagnoses-json`。
 - `--appkey STRING`：**必填**。内部医疗大模型鉴权 key，由平台分配；调用时使用 Bearer 鉴权。
 - `--base URL`：内部大模型 base URL，默认 `https://maas-api.hivoice.cn/v1`。
-- `--model STRING`：模型名称，默认 `u1-insuremed`。
+- `--model STRING`：模型名称，默认 `u2-med`。
 - `--timeout SECONDS`：HTTP 超时秒数；`0` 表示一直等待，默认 `0`。
 - `--no-llm`：可选。禁用 LLM，仅使用本地回退逻辑。
 - `--output-json PATH`：可选。保存响应 JSON；同时传 `--output` 时优先使用该参数。

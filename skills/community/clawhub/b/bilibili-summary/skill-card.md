@@ -1,40 +1,58 @@
-## Description: <br>
-Helps an agent retrieve Bilibili video subtitles, generate summaries, and locate keyword timestamps using local helper scripts and cached subtitle files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents fetch Bilibili video subtitles, generate concise summaries, and locate keyword timestamps from subtitle files.
 
-## Publisher: <br>
-[BAIKEMARK](https://clawhub.ai/user/BAIKEMARK) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baikemark](https://clawhub.ai/user/baikemark)
 
-## Use Case: <br>
-Developers and external users use this skill when they want an agent to analyze Bilibili video content from a BVID or full video link. It supports subtitle extraction, structured video summaries, and timestamp lookup for specific topics mentioned in subtitles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a live Bilibili login session and stores cookies in plaintext. <br>
-Mitigation: Use it only in a private workspace, do not paste cookies into chat, do not commit or share cookie.txt, and delete the cookie file when finished. <br>
-Risk: Subtitle retrieval sends requests to Bilibili using the available login session. <br>
-Mitigation: Invoke the skill only for Bilibili videos you explicitly intend to retrieve or analyze, and review generated files before sharing them. <br>
+## Use Case:
 
+External users and developers use this skill to help an agent analyze Bilibili videos by retrieving subtitles, summarizing video content, and answering timestamp lookup questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BAIKEMARK/bilibili-summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated subtitle files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local cookie.txt and subtitles_output files for cached subtitles and timestamp search.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may create and reuse a local Bilibili session cookie.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; keep cookie.txt out of shared folders and repositories, restrict file permissions, and consider using a separate low-risk Bilibili account.
+
+Risk: The skill can be triggered by incidental Bilibili links.
+
+Mitigation: Confirm the user wants subtitle retrieval or video analysis before running login or fetch commands.
+
+Risk: Unpinned or floating installs can make later behavior harder to review.
+
+Mitigation: Prefer a fixed reviewed version with pinned dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baikemark/skills/bilibili-summary)
+- [skills.sh installer](https://skills.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown responses with shell commands and generated TXT, SRT, and VTT subtitle files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May cache subtitles under subtitles_output/<BVID>/ and may use a local cookie.txt file for authenticated Bilibili subtitle access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

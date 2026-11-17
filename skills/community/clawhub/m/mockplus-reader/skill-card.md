@@ -1,42 +1,55 @@
-## Description: <br>
-Reads and analyzes MockPlus online design pages, extracting project information, page structure, component details, interactions, and comments from MockPlus links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads and analyzes MockPlus online design pages, including page structure, design information, component trees, interaction notes, and comments from MockPlus links.
 
-## Publisher: <br>
-[A-din](https://clawhub.ai/user/A-din) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a-din](https://clawhub.ai/user/a-din)
 
-## Use Case: <br>
-Developers, designers, and agent users use this skill to inspect MockPlus prototypes and summarize design structure, interaction flows, project details, and implementation-relevant notes in a standardized Markdown format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes hardcoded local project paths and npm install/run commands that do not fit a read-only MockPlus analysis workflow. <br>
-Mitigation: Review the skill before installing or executing it, and remove or inspect local path references and npm commands unless the user explicitly wants that app workflow. <br>
-Risk: MockPlus pages may require login or project permissions, so extracted design information may be incomplete. <br>
-Mitigation: Use authenticated, authorized MockPlus access and clearly note missing or inaccessible pages in the analysis output. <br>
+## Use Case:
 
+Developers and product or design teams use this skill to inspect MockPlus prototype links and turn design-page details into structured project, page, component, interaction, and note summaries.
 
-## Reference(s): <br>
-- [ClawHub Mockplus Reader release](https://clawhub.ai/A-din/mockplus-reader) <br>
-- [MockPlus](https://www.mockplus.com/) <br>
-- [MockPlus RP](https://rp.mockplus.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with structured sections and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project information, page structure, interaction notes, comments, access limitations, and implementation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill includes local project run commands that can install and execute npm tooling outside the stated MockPlus reader purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target project and package files before running commands; use a disposable environment for npm install or dev-server execution.
+
+Risk: Restricted MockPlus pages may require login or project permissions, limiting retrieved design details.
+
+Mitigation: Use authorized MockPlus accounts and record access limitations in the generated analysis.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/a-din/skills/mockplus-reader)
+- [MockPlus](https://www.mockplus.com/)
+- [MockPlus RP](https://rp.mockplus.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summary with bullet lists and optional shell-command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require authenticated access to restricted MockPlus pages.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

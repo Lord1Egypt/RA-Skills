@@ -1,45 +1,60 @@
-## Description: <br>
-Monitors a user's Weibo latest timeline, extracts new posts by original posting time, deduplicates by permalink, and writes a daily Markdown digest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors a Weibo following timeline by switching to the latest-posts feed, extracting posts by original publication time, deduplicating by original link, and writing daily Markdown digests.
 
-## Publisher: <br>
-[hwb96](https://clawhub.ai/user/hwb96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hwb96](https://clawhub.ai/user/hwb96)
 
-## Use Case: <br>
-External OpenClaw users and developers with a logged-in Weibo browser profile use this skill to maintain a local Markdown digest of recent followed-account posts and reduce missed updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a logged-in Weibo browser profile and accesses Weibo timeline content. <br>
-Mitigation: Install it only when local timeline monitoring is intended, and do not place account passwords, cookies, or other credentials in prompts, repositories, or output files. <br>
-Risk: A recurring cron task can continue collecting local post digests after the user no longer needs background monitoring. <br>
-Mitigation: Review the cron interval before installation and remove the cron entry when monitoring is no longer desired. <br>
-Risk: Timeline capture may be incomplete or misleading if the latest timeline cannot be reached or post times cannot be parsed. <br>
-Mitigation: Use the documented latest-timeline navigation checks, retry behavior, timestamp parsing rules, and skipped-item summary before relying on the digest. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hwb96/weibo-fresh-posts) <br>
-- [Workflow reference](references/workflow.md) <br>
-- [Markdown schema reference](references/markdown-schema.md) <br>
-- [Cron setup reference](references/cron-setup.md) <br>
-- [Weibo](https://weibo.com) <br>
+## Use Case:
 
+External OpenClaw users use this skill to keep a local Markdown digest of recent posts from their Weibo following timeline, reducing missed updates and preserving the original post text, summary, timestamp, author, and permalink.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration] <br>
-**Output Format:** [Markdown digest rows, plain-text run summaries, and optional shell commands for cron setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes daily files under ~/weibo-digest and deduplicates rows by original post link.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The cron installer creates an ongoing OpenClaw task that continues using the logged-in Weibo browser profile.
+
+Mitigation: Review the task name and schedule before installation, and document or add disable and uninstall steps before routine use.
+
+Risk: The skill writes recurring local digest files that may contain Weibo post content from an authenticated session.
+
+Mitigation: Store the digest directory in an appropriate local location, review retention needs, and avoid including credentials, cookies, or secrets in prompts or output files.
+
+Risk: Timeline navigation or timestamp parsing failures could produce incomplete or misleading digests.
+
+Mitigation: Use the built-in latest-timeline verification, skip unparseable timestamps, and review run summaries for skipped items or navigation failures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hwb96/skills/weibo-fresh-posts)
+- [Publisher profile](https://clawhub.ai/user/hwb96)
+- [Workflow reference](references/workflow.md)
+- [Markdown schema reference](references/markdown-schema.md)
+- [Cron setup reference](references/cron-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files with tabular digest rows and concise run summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes daily digest files under ~/weibo-digest and can create an optional recurring OpenClaw cron task.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata and artifact README publish command)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

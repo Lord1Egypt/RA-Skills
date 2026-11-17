@@ -1,47 +1,63 @@
-## Description: <br>
-Fact-checking tool for verifying the factual accuracy of input statements or suspicious claims, identifying rumors, and returning a verification conclusion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fact-checking tool for verifying the factual accuracy of input statements or suspicious claims, identifying rumors, and assessing content credibility.
 
-## Publisher: <br>
-[tencentnewsteam](https://clawhub.ai/user/tencentnewsteam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tencentnewsteam](https://clawhub.ai/user/tencentnewsteam)
 
-## Use Case: <br>
-External users and agents use this skill to check claims, news items, events, common-knowledge statements, or suspected rumors through Tencent News' Jiaozhen fact-checking CLI. It can guide environment setup, API-key configuration, and fact-check command selection before returning the CLI's Markdown result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install or update a local CLI from remote CDN-hosted scripts. <br>
-Mitigation: Install only when Tencent News and the CDN-hosted installer are trusted; inspect or verify installer scripts before running them. <br>
-Risk: The skill reads and changes API-key state for the Tencent News CLI. <br>
-Mitigation: Treat the API key as a secret and avoid pasting it into chats, logs, screenshots, or shared terminals. <br>
-Risk: An unexpected CLI path could run if multiple installations exist. <br>
-Mitigation: Use the skill's state-check script to confirm which CLI path will execute before running fact-checking commands. <br>
+## Use Case:
 
+External users and agents use this skill to check factual claims, suspicious information, rumors, and short statements with Tencent News Jiaozhen CLI results. It guides environment setup, API-key validation, CLI command selection, and preserves the returned fact-check markdown as the response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tencentnewsteam/jiaozhen-factcheck) <br>
-- [API key setup guide](references/env-setup-guide.md) <br>
-- [Installation guide](references/installation-guide.md) <br>
-- [Update guide](references/update-guide.md) <br>
-- [Tencent News API key page](https://news.qq.com/exchange?scene=appkey) <br>
-- [Jiaozhen AI fact-checking site](https://view.inews.qq.com/ai/agent/UTR2025041800262600?no-redirect=1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with CLI output and inline shell or PowerShell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill preserves the fact-checking CLI's structured Markdown result, including conclusions, process details, confidence assessment, and source links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill can direct users to execute remote installer or update commands for an external Tencent CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the publisher, installer source, and binary integrity before running installation or update commands.
+
+Risk: The installation guide includes OS security-warning bypass steps for the external CLI.
+
+Mitigation: Do not bypass operating-system warnings unless the Tencent distribution channel and downloaded artifact have been independently verified.
+
+Risk: The skill requires local API-key configuration for the external CLI.
+
+Mitigation: Enter keys only in the local terminal, avoid sharing keys with the agent, and clear or rotate keys if exposure is suspected.
+
+## Reference(s):
+
+- [Jiaozhen Factcheck Skill Page](https://clawhub.ai/tencentnewsteam/skills/jiaozhen-factcheck)
+- [TencentNewsTeam Publisher Profile](https://clawhub.ai/user/tencentnewsteam)
+- [API Key Setup Guide](references/env-setup-guide.md)
+- [Installation Guide](references/installation-guide.md)
+- [Update Guide](references/update-guide.md)
+- [API Key Exchange Page](https://news.qq.com/exchange?scene=appkey)
+- [Jiaozhen AI Fact-Check Web Entry](https://view.inews.qq.com/ai/agent/UTR2025041800262600?no-redirect=1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with CLI output and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI status JSON during setup and complete fact-check markdown from the external CLI during verification.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

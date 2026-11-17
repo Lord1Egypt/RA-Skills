@@ -1,45 +1,64 @@
-## Description: <br>
-LoRa CAD air scanner helps configure and operate a LilyGo T3 SX1276 scanner, optional HackRF survey workflow, serial monitoring, packet decoding, local logging, and Telegram alert setup for authorized LoRa band monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LoRa Channel Activity Detection scanner for LilyGo T3 v1.6 and optional HackRF One workflows that helps an agent guide setup, scanning, decoding, local logging, and alerting for LoRa RF monitoring.
 
-## Publisher: <br>
-[arsatyants](https://clawhub.ai/user/arsatyants) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arsatyants](https://clawhub.ai/user/arsatyants)
 
-## Use Case: <br>
-Developers, RF engineers, and authorized operators use this skill to set up a LilyGo T3 and companion Raspberry Pi workflow for LoRa channel activity scanning, packet capture, decoded alerts, and follow-up HackRF band surveys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can capture raw radio packets and device identifiers and store them in local files. <br>
-Mitigation: Monitor only frequencies the operator is authorized to inspect, redact identifiers where possible, and protect, rotate, or delete local capture files according to the operator's data-handling policy. <br>
-Risk: Telegram alerting can export captured RF payloads or identifiers to an external service. <br>
-Mitigation: Enable Telegram delivery only through explicit user configuration, narrow the alert contents, and treat each notification as an external data transfer. <br>
-Risk: Broad RF scanning and reconnaissance workflows may be regulated or inappropriate in some environments. <br>
-Mitigation: Confirm local legal authorization before scanning, narrow the configured frequency range, and avoid monitoring bands or devices outside the approved scope. <br>
+## Use Case:
 
+Developers, engineers, and authorized RF operators use this skill to configure a LilyGo T3 and Raspberry Pi as a persistent LoRa band monitor, optionally using HackRF sweep data to focus the scan range. It supports setup guidance, packet decoding context, local report files, and Telegram alert workflow configuration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/arsatyants/lora-cad-scanner) <br>
-- [Setup Guide](references/setup.md) <br>
-- [SX1276 CAD Register Reference](references/sx1276-cad.md) <br>
-- [HackRF + LilyGo Combined Workflow](references/hackrf-workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Arduino and Python code references, configuration steps, and operational notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may guide hardware flashing, serial monitoring, RF scan configuration, local file handling, and optional Telegram alert delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill can support continuous RF packet capture and decoded payload handling, including device identifiers or packet contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and operate it only for authorized RF monitoring, minimize retained payload data, and treat captured packet contents as untrusted.
+
+Risk: Configured agent or Telegram delivery can forward captured RF metadata or payload details outside the local workspace.
+
+Mitigation: Send structured metadata by default, require explicit user configuration for external delivery, and avoid forwarding raw packet payloads unless they have been reviewed.
+
+Risk: The monitor uses local persistence and a writable workspace import path that can increase execution risk.
+
+Mitigation: Remove the writable workspace import override, pin dependencies, protect local logs and hit databases, and run the monitor under a dedicated low-privilege account.
+
+Risk: A long-running serial monitor can keep collecting data if deployment boundaries are unclear.
+
+Mitigation: Add explicit start, stop, retention, and cleanup procedures before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arsatyants/skills/lora-cad-scanner)
+- [Setup Guide](references/setup.md)
+- [SX1276 CAD Register Reference](references/sx1276-cad.md)
+- [HackRF + LilyGo Combined Workflow](references/hackrf-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code, shell commands, configuration steps, and generated code or file guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe local RF scan logs, decoded packet metadata, alert files, and hardware-specific setup steps.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

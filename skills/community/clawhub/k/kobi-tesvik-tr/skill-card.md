@@ -1,51 +1,68 @@
-## Description: <br>
-Provides Turkish SME incentive and grant guidance covering KOSGEB, TUBITAK, development agency, ISKUR, and tax support programs with sector-based matching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Türkiye-focused SME incentive and grant guide that matches company profiles against KOSGEB, TÜBİTAK, development agency, İŞKUR, and tax support programs.
 
-## Publisher: <br>
-[ayhanagirgol](https://clawhub.ai/user/ayhanagirgol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayhanagirgol](https://clawhub.ai/user/ayhanagirgol)
 
-## Use Case: <br>
-External business users, consultants, and agents use this skill to identify Turkish SME grant and incentive programs and generate prioritized eligibility guidance based on sector, company size, turnover, and location. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Turkey <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Program eligibility, deadlines, and support amounts may be outdated or vary by agency. <br>
-Mitigation: Verify recommendations against official KOSGEB, TUBITAK, ISKUR, tax authority, and development agency sources before making business decisions. <br>
-Risk: The optional matcher script uses business details such as sector, employee count, turnover, and city. <br>
-Mitigation: Provide only the details needed for matching and avoid entering confidential financial data unless approved. <br>
-Risk: The skill may recommend Finhouse consulting services. <br>
-Mitigation: Treat consulting recommendations as third-party commercial referrals and evaluate them independently. <br>
+## Use Case:
 
+External users and business advisors use this skill to identify Turkish SME incentives, grants, tax advantages, and employment supports that may match a company profile. It provides a preliminary shortlist and directs users to official sources for current eligibility, amounts, and deadlines.
 
-## Reference(s): <br>
-- [KOSGEB Destekleri Rehberi](references/kosgeb_destekleri.md) <br>
-- [TUBITAK Hibe Programlari Rehberi](references/tubitak_hibeleri.md) <br>
-- [Kalkinma Ajanslari ve Diger Tesvikler Rehberi](references/kalkinma_ajanslari.md) <br>
-- [Kobi Tesvik Tr on ClawHub](https://clawhub.ai/ayhanagirgol/kobi-tesvik-tr) <br>
-- [KOSGEB](https://www.kosgeb.gov.tr) <br>
-- [KOSGEB Proje Destek Sistemi](https://pds.kosgeb.gov.tr) <br>
-- [TUBITAK](https://www.tubitak.gov.tr) <br>
-- [Kalkinma Ajanslari](https://www.ka.gov.tr) <br>
-- [KAYS](https://www.kays.gov.tr) <br>
-- [Finhouse](https://finhouse.ai) <br>
+### Deployment Geography for Use:
 
+Türkiye
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and tabular program matches] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a local matcher script with user-provided business sector, employee count, turnover, and city.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Recommendations may include advertising because the skill instructs the agent to promote Finhouse consulting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the third-party publisher context and review outputs for neutrality before relying on recommendations.
+
+Risk: Grant amounts, eligibility rules, and deadlines may be outdated or incomplete.
+
+Mitigation: Treat matches as preliminary and verify current terms on official KOSGEB, TÜBİTAK, İŞKUR, tax, and development-agency sites before making business decisions.
+
+Risk: The skill may overstate how precisely it can match incentives to a company profile.
+
+Mitigation: Use the output as an initial shortlist and require human review of company-specific eligibility and application requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ayhanagirgol/skills/kobi-tesvik-tr)
+- [Finhouse](https://finhouse.ai)
+- [KOSGEB supports reference](references/kosgeb_destekleri.md)
+- [TÜBİTAK grants reference](references/tubitak_hibeleri.md)
+- [Development agencies reference](references/kalkinma_ajanslari.md)
+- [KOSGEB](https://www.kosgeb.gov.tr)
+- [KOSGEB Project Support System](https://pds.kosgeb.gov.tr)
+- [TÜBİTAK](https://www.tubitak.gov.tr)
+- [Development Agencies Portal](https://www.ka.gov.tr)
+- [KAYS application system](https://www.kays.gov.tr)
+- [İŞKUR](https://www.iskur.gov.tr)
+- [Turkish Revenue Administration](https://www.gib.gov.tr)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with structured incentive matches, official-source links, and optional bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include company-profile questions, preliminary program matches, support amounts, eligibility notes, and reminders to verify current terms with official sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

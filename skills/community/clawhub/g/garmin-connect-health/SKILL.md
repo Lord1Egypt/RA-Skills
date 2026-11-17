@@ -1,6 +1,6 @@
 ---
 name: garmin-connect-health
-version: 1.0.11
+version: 1.1.0
 description: Fetch health and fitness data from Garmin Connect -- 40+ metrics including sleep, HRV, stress, body battery, SpO2, VO2 Max, training status, and activities. Stores data locally as JSON and SQLite.
 ---
 
@@ -34,7 +34,7 @@ Fetch comprehensive health & fitness data from Garmin Connect for your AI agent.
 
 ### 1. Install dependency
 ```bash
-pip install garminconnect
+pip install "garminconnect>=0.3.11"
 ```
 
 ### 2. Set credentials (choose one method)
@@ -73,6 +73,8 @@ This tells the skill to use `connect.garmin.com.cn` instead of the global endpoi
 
 ### 4. First run
 First login may require MFA verification. You'll be prompted to enter a code sent to your email.
+
+`garminconnect 0.3.x` uses native authentication and cannot reuse legacy Garth token files. Upgrading from `0.2.x` requires one new interactive login and MFA challenge.
 
 ### 5. Use with OpenClaw
 Ask your AI agent:
@@ -127,6 +129,6 @@ All labels and output in English. JSON field names are English by design.
 ## Requirements
 
 - Python 3.10+
-- `garminconnect` library
+- `garminconnect >= 0.3.11`
 - A Garmin Connect account
 - Device: Any Garmin watch/fitness tracker synced to Garmin Connect

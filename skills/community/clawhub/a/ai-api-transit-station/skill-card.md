@@ -1,44 +1,54 @@
-## Description: <br>
-API-Station helps agents query and use a third-party AI API service covering chat, image, video, audio, Midjourney, and related API examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+API-Station helps agents quickly find and use 302+ AI APIs across chat, image, video, audio, Midjourney, and related categories.
 
-## Publisher: <br>
-[QB-Chen](https://clawhub.ai/user/QB-Chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qb-chen](https://clawhub.ai/user/qb-chen)
 
-## Use Case: <br>
-Developers and agent users use this skill to find endpoint patterns, authentication requirements, and example calls for a third-party AI API service that offers chat, image, video, audio, Midjourney, and task-query workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Use of a third-party AI API service may incur charges or expose account activity. <br>
-Mitigation: Use a dedicated API token, monitor usage and billing, and confirm model pricing before running calls. <br>
-Risk: Media upload workflows may send files to external services where URLs could be externally accessible or retained. <br>
-Mitigation: Do not upload private, regulated, or sensitive media unless the provider is trusted and retention expectations are acceptable. <br>
-Risk: The skill provides example calls for external APIs whose availability, limits, and responses can change. <br>
-Mitigation: Check the linked provider documentation, handle failures, and apply conservative polling or rate limiting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QB-Chen/ai-api-transit-station) <br>
-- [API documentation](https://winfull.apifox.cn/) <br>
-- [API service and token management](https://api.winfull.cloud-ip.cc/) <br>
-- [Image upload endpoint](https://imageproxy.zhongzhuan.chat/api/upload) <br>
+## Use Case:
 
+Developers and agent users use this skill to choose endpoints, construct API calls, manage bearer-token authentication, and follow async polling patterns for the API-Station service.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-supplied Bearer token; some workflows upload media to external endpoints and poll asynchronous tasks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local image uploads may expose private or sensitive media to an external image-hosting service.
+
+Mitigation: Use non-sensitive files only, confirm the exact file path before upload, and prefer already-public image URLs when appropriate.
+
+Risk: Bearer tokens used for paid API access may be sent to a separate image-hosting domain.
+
+Mitigation: Use a scoped or disposable token where possible and avoid sending a primary account token to the image-hosting domain unless the provider documents that this is intended and safely scoped.
+
+## Reference(s):
+
+- [API-Station Skill Page](https://clawhub.ai/qb-chen/skills/ai-api-transit-station)
+- [Winfull API Documentation](https://winfull.apifox.cn/)
+- [API-Station Console and Token Management](https://api.winfull.cloud-ip.cc/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with Python and bash code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include endpoint paths, bearer-token headers, request payloads, polling steps, and generated media URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

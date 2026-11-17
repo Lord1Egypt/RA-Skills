@@ -1,39 +1,50 @@
-## Description: <br>
-This skill is deprecated and should not be used. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill is deprecated and should not be used.
 
-## Publisher: <br>
-[eric642](https://clawhub.ai/user/eric642) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eric642](https://clawhub.ai/user/eric642)
 
-## Use Case: <br>
-Agents and users should treat this as a deprecated placeholder for compatibility or record-keeping, not as an active skill for new workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deprecated placeholder content can be mistaken for an active skill. <br>
-Mitigation: Install only when a deprecated placeholder is needed for compatibility or record-keeping; choose an actively maintained skill for functional workflows. <br>
+## Use Case:
 
+External users and developers can identify this release as a deprecated placeholder and avoid relying on it for active workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eric642/deprecated11) <br>
-- [Publisher profile](https://clawhub.ai/user/eric642) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deprecated placeholder; no functional code, install steps, data access, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill is explicitly deprecated and provides no useful operational functionality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when a deprecated placeholder is specifically needed; otherwise use an active skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eric642/skills/deprecated11)
+- [ClawHub publisher profile](https://clawhub.ai/user/eric642)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No operational output; the artifact only states that the skill is deprecated.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

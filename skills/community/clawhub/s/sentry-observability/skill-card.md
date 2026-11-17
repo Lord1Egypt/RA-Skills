@@ -1,45 +1,63 @@
-## Description: <br>
-Adds observability to an OpenClaw instance by sending errors, logs, and traces to Sentry, then supports investigation with the Sentry plugin and `sentry` CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add observability to your OpenClaw instance - errors, logs, and traces sent to Sentry - and investigate issues with the Sentry CLI.
 
-## Publisher: <br>
-[sergical](https://clawhub.ai/user/sergical) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sergical](https://clawhub.ai/user/sergical)
 
-## Use Case: <br>
-Developers and operators use this skill to configure Sentry observability for OpenClaw and investigate errors, traces, structured logs, events, and issues through the Sentry CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Telemetry can include sensitive logs, traces, personal data, or operational details sent to Sentry. <br>
-Mitigation: Use a dedicated Sentry project, scrub secrets and personal data before forwarding telemetry, and lower trace sampling or disable log forwarding when full capture is not appropriate. <br>
-Risk: Sentry CLI and API examples include commands that create, update, resolve, assign, or delete resources. <br>
-Mitigation: Use least-privilege Sentry tokens and require explicit confirmation before running mutation-capable commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sergical/sentry-observability) <br>
-- [Sentry CLI command reference](references/cli-commands.md) <br>
-- [OpenClaw Sentry plugin implementation guide](references/plugin-setup.md) <br>
-- [Sentry CLI docs](https://cli.sentry.dev) <br>
-- [Sentry API docs](https://docs.sentry.io/api/) <br>
-- [Sentry Node SDK docs](https://docs.sentry.io/platforms/javascript/guides/node/) <br>
-- [OpenClaw Sentry plugin source](https://github.com/sergical/openclaw-plugin-sentry) <br>
+## Use Case:
 
+Developers and operators use this skill to configure Sentry telemetry for an OpenClaw instance and investigate errors, logs, traces, issues, and events with the Sentry CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with bash, JSON, and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Sentry CLI binary and Sentry credentials for commands that access or modify Sentry resources.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad Sentry admin/API commands can create, modify, resolve, assign, or delete resources when run with privileged credentials.
+
+Mitigation: Use least-privilege Sentry credentials and require human review for DELETE requests or broad sentry api commands.
+
+Risk: Telemetry forwarding can send secrets or personal data to Sentry if logs and diagnostic events are not scrubbed.
+
+Mitigation: Redact secrets and personal data before forwarding telemetry and review plugin filters before production use.
+
+Risk: Installing or copying third-party plugin code can introduce supply-chain or implementation risk.
+
+Mitigation: Verify or pin plugin code before installation and review the implementation against the documented OpenClaw configuration path.
+
+## Reference(s):
+
+- [Sentry CLI Command Reference](artifact/references/cli-commands.md)
+- [OpenClaw Sentry Plugin Implementation Guide](artifact/references/plugin-setup.md)
+- [Sentry CLI docs](https://cli.sentry.dev)
+- [Sentry API docs](https://docs.sentry.io/api/)
+- [Sentry Node SDK docs](https://docs.sentry.io/platforms/javascript/guides/node/)
+- [Sentry Structured Logs docs](https://docs.sentry.io/platforms/javascript/guides/node/logs/)
+- [Sentry CLI log command docs](https://cli.sentry.dev/commands/log/)
+- [OpenClaw Sentry plugin implementation](https://github.com/sergical/openclaw-plugin-sentry)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash, JSON, and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Sentry CLI and Sentry credentials; some Sentry AI commands require Seer, GitHub integration, and code mappings.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

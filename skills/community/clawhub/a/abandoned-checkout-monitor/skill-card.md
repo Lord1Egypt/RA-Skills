@@ -1,43 +1,54 @@
-## Description: <br>
-Provides cart-to-checkout funnel monitoring, abnormal friction diagnosis, payment troubleshooting, and multi-touch abandoned-checkout recovery playbooks for e-commerce teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides cart-to-checkout funnel diagnostics, checkout friction analysis, payment troubleshooting, and abandoned-cart recovery playbooks for e-commerce merchants.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External e-commerce operators, growth teams, and support teams use this skill to diagnose checkout abandonment, payment failures, shipping-shock drop-offs, and high-value carts that do not convert. It helps produce structured recovery playbooks, testing ideas, and abandoned-cart email copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad trigger can produce a full checkout-abandonment playbook for vague sales or order-conversion questions. <br>
-Mitigation: Ask explicitly for a broader sales analysis or a short answer when checkout abandonment is not the user's focus. <br>
-Risk: Recommendations can be misleading when funnel metrics, payment errors, region data, or cart behavior are missing. <br>
-Mitigation: Label assumptions and instrument add-to-cart, begin-checkout, payment-error, and purchase events before treating hypotheses as confirmed. <br>
-Risk: Recovery email guidance can create compliance or customer-experience issues if frequency, unsubscribe, or incentive rules are ignored. <br>
-Mitigation: Review recovery sequences against the merchant's consent, unsubscribe, frequency, and promotion policies before use. <br>
+## Use Case:
 
+External e-commerce merchants and operators use this skill to diagnose abandoned carts, checkout drop-off, shipping shock, payment failures, and recovery messaging opportunities. It produces a structured playbook with hypotheses, A/B copy tests, troubleshooting steps, and recovery email drafts.
 
-## Reference(s): <br>
-- [Abandonment and checkout friction playbook](references/abandonment_playbook.md) <br>
-- [ClawHub release page](https://clawhub.ai/RIJOYAI/abandoned-checkout-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown playbook with diagnostic tables, checklists, and recovery email copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only advisory output; no code execution, hidden data access, persistence, or account authority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: The skill may answer broad sales-performance questions with checkout-abandonment guidance even when the root issue is traffic quality, pricing, inventory, merchandising, or broader conversion strategy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the question involves orders, checkout, payment, or abandonment before applying the full playbook; redirect to a more relevant analysis when checkout friction is not supported by the available context.
+
+Risk: Recommendations can be incorrect or misleading when funnel metrics, payment errors, regional shipping costs, or recovery compliance requirements are missing.
+
+Mitigation: Label assumptions, request or instrument the missing metrics, and have a qualified operator review proposed recovery copy, incentives, and troubleshooting steps before implementation.
+
+## Reference(s):
+
+- [Abandonment and checkout friction playbook](references/abandonment_playbook.md)
+- [ClawHub skill page](https://clawhub.ai/rijoyai/skills/abandoned-checkout-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown playbook with diagnostic tables, checklists, A/B copy, and email drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory text only; no tool execution, data access, persistence, or destructive behavior.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

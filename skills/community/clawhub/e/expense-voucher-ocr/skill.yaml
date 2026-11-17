@@ -1,0 +1,23 @@
+name: expense_voucher_ocr
+version: 1.0.0
+description: 支持识别企业财务报销场景的常见票据，包括增值税电子普通发票、增值税电子专用发票、增值税普通发票_数电、增值税专用发票_数电、增值税通行费发票、增值税通行费发票_数电、增值税区块链电子发票、增值税专用发票、增值税普通发票、增值税卷票、出租车发票、火车票_红票、火车票_蓝票、火车票_数电、航空运输电子客票行程单、航空运输电子客票行程单_数电、机动车销售统一发票、定额发票、通用机打发票、过路过桥费发票、税收完税证明、非税票据、船票、汽车票、医疗门诊发票、其他票据识别。
+author: SCNet
+license: MIT
+tags:
+  - ocr
+  - 文字提取
+
+required_env_vars:
+  - SCNET_API_KEY
+
+optional_env_vars:
+  - SCNET_API_BASE
+
+primary_credential: SCNET_API_KEY
+
+# 增加项目主页，解决 missing homepage 警告
+homepage: https://github.com/SCNet-sugon/expense_voucher_ocr.git  # 请替换为实际仓库地址
+
+dependencies:
+  - python3
+  - requests

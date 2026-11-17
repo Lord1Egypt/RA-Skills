@@ -105,13 +105,13 @@ export function getDefaultSourcePath(key) {
 export function getDefaultSourceHint(service) {
     const kind = classifyServiceKind(service);
     if (kind === 'analytics') {
-        return '- Preferred: AnalyticsCLI bounded query/export written to JSON.\n- For command mode, output summary JSON in the shared signals[] shape.';
+        return '- Preferred: `analyticscli --format json agent brief --last 14d --focus auto` written to JSON.\n- The versioned `analyticscli.agent-brief` shape and the legacy shared `signals[]` shape are both supported.';
     }
     if (kind === 'revenue') {
         return '- Revenue provider summary with monetization deltas, package/offering signals, and churn notes.\n- Command mode should output JSON in the shared signals[] shape.';
     }
     if (kind === 'seo') {
-        return '- SEO/acquisition summary from Google Search Console, Bing Webmaster, DataForSEO, or CSV exports.\n- Prefer GSC, Bing Webmaster diagnostics, and cached CSVs; only use paid APIs with an explicit request cap.';
+        return '- SEO/acquisition summary from Google Search Console, DataForSEO, or CSV exports.\n- Prefer GSC and cached CSVs; only use paid APIs with an explicit request cap.';
     }
     if (kind === 'crash') {
         return '- Crash/error provider summary with top regressions, affected users, and issue evidence.\n- `issues[]` or shared `signals[]` payloads are both accepted.';
@@ -217,6 +217,24 @@ export function buildGrowthRunnerCommand(configPath, statePath = deriveStatePath
     const normalizedConfigPath = String(configPath || DEFAULT_CONFIG_PATH).trim() || DEFAULT_CONFIG_PATH;
     return `node scripts/openclaw-growth-runner.mjs --config ${quote(normalizedConfigPath)} --state ${quote(statePath)}`;
 }
+export function isGrowthRunnerLockHeldOutput(value) {
+    return /\bduplicate run skipped\b/i.test(String(value || ''));
+}
+function buildNativeNotificationOwnershipInstructions({ nativeDeliveryEnabled, connectorHealthEnabled, growthRunEnabled, }) {
+    return [
+        'Use the newest proof record written by this invocation as the notification decision; never turn an older persisted unhealthy state or old finding into a new chat alert.',
+        'When the proof or state contains an analyticscli.social-notification object, render that exact structured notification (title, summary, items, impact, nextStep, and retry/recovery context) instead of re-summarizing raw logs. Prefer the notification attached to the newest proof or delivery record, including state.lastGrowthRunNotifications[*].notification.',
+        'Respect notifications.connectorHealth.enabled=false and notifications.growthRun.enabled=false: never emit that disabled category, even if old state still contains an incident or finding.',
+        `Configured notification policy for this job: connectorHealth=${connectorHealthEnabled ? 'enabled' : 'disabled'}, growthRun=${growthRunEnabled ? 'enabled' : 'disabled'}, nativeAgentDelivery=${nativeDeliveryEnabled ? 'enabled' : 'disabled'}.`,
+        'If the newest proof has socialOutput HEARTBEAT_OK, notificationEnabled=false, or a suppressed/unchanged/not-due result, reply exactly HEARTBEAT_OK.',
+        'If the newest proof has externalDeliverySent=true or socialOutput EXTERNAL_NOTIFICATION_SENT, the runner-managed social target already owns the notification. Reply exactly HEARTBEAT_OK and do not echo it through the native agent. The only exception is an explicit still-failing required delivery target; report only that delivery failure without repeating the finding.',
+        nativeDeliveryEnabled
+            ? 'Native agent delivery is enabled for this job. Emit a notification only when the newest proof requests an alert, recovery, or unsuppressed runner failure, the relevant notification category is enabled, no runner-managed external target already delivered it, and a native chat delivery is therefore still required.'
+            : 'Native agent delivery is disabled for this job. Do not create a social/chat notification from runner state; reply exactly HEARTBEAT_OK after the runner completes.',
+        'For backwards-compatible proof records that lack the newer ownership fields, use their socialOutput/skippedReason plus the newest delivery records: any successful external delivery means HEARTBEAT_OK; otherwise render only a new/changed structured notification that is intended for native delivery.',
+        'Never paste raw commands, JSON errors, secrets, host paths, successful delivery metadata, message IDs, or internal target identifiers into social/chat output.',
+    ];
+}
 export function buildOpenClawGrowthSystemEvent(configPath, config = {}) {
     const statePath = deriveStatePathFromConfigPath(configPath);
     const proofPath = deriveSchedulerProofPathFromStatePath(statePath);
@@ -229,6 +247,11 @@ export function buildOpenClawGrowthSystemEvent(configPath, config = {}) {
         'If any dependency asks for sudo or a password, stop and report the blocked non-interactive command instead of prompting.',
         'The runner is the source of truth for connector health, 90-minute production healthchecks, daily, weekly, monthly, 3-month, six-month, and yearly cadence decisions.',
         `After the command finishes, inspect ${statePath} and ${proofPath}.`,
+        ...buildNativeNotificationOwnershipInstructions({
+            nativeDeliveryEnabled: automation.openclawCron.delivery.enabled,
+            connectorHealthEnabled: config?.notifications?.connectorHealth?.enabled !== false,
+            growthRunEnabled: config?.notifications?.growthRun?.enabled !== false,
+        }),
         'Always let the runner write state and proof logs. For social/chat output, only summarize new or changed findings, connector-health changes, delivery failures, or runner failures.',
         'Never mention successful delivery metadata, delivery succeeded lines, Discord message IDs, or internal notification targets in social/chat output; only mention delivery failures.',
         'If the runner completes with skippedReason cadence_not_due, issue_set_unchanged, or no_data_change, reply exactly HEARTBEAT_OK and do not repeat old findings.',
@@ -544,11 +567,18 @@ export function buildHermesGrowthPrompt(configPath, config = {}) {
     const proofPath = deriveSchedulerProofPathFromStatePath(statePath);
     const command = buildGrowthRunnerCommand(configPath, statePath);
     const automation = getAutomationConfig(config);
+    const hermesDeliveryMode = String(automation.hermesCron.deliver || '').trim().toLowerCase();
+    const hermesDeliveryEnabled = !['none', 'off', 'disabled', 'false'].includes(hermesDeliveryMode);
     return [
         'Run Growth Engineer for this workspace.',
         `Execute: ${command}`,
         'The runner is the source of truth for connector health, daily, weekly, monthly, quarterly, six-month, and yearly cadence decisions.',
         `After the command finishes, inspect ${statePath} and ${proofPath}.`,
+        ...buildNativeNotificationOwnershipInstructions({
+            nativeDeliveryEnabled: hermesDeliveryEnabled,
+            connectorHealthEnabled: config?.notifications?.connectorHealth?.enabled !== false,
+            growthRunEnabled: config?.notifications?.growthRun?.enabled !== false,
+        }),
         'For social/chat output, only summarize new or changed findings, connector-health changes, delivery failures, or runner failures.',
         'Never mention successful delivery metadata, delivery succeeded lines, Discord message IDs, or internal notification targets in social/chat output; only mention delivery failures.',
         'Persisted connectorHealth.lastStatusOk=false is not by itself a new event. If the latest proof says issue_set_unchanged, no_data_change, connector_health_not_due, connector_health_unchanged, or socialOutput HEARTBEAT_OK, reply exactly HEARTBEAT_OK.',

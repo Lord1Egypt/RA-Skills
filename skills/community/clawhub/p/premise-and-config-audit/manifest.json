@@ -1,0 +1,9 @@
+{
+  "name": "premise-and-config-audit",
+  "normalizedName": "premise-and-config-audit",
+  "description": "「前提验证 + 配置审计」方法论，用于回答「开工前该先验什么」「我现在的工具链配置是不是较优」「方案为什么走偏了」这类问题。开工前先证伪最危险假设（不把预判当事实）；审工具 / 配置时先盘真实状态再对标标准。全程按真实参照法（Grounded Reference Method）执行——假设须可证伪、状态须实测、对标须挂标准条款，无来源不主张；审计过程按证据链审计留痕。是既有铁律「先查标准再主张（输出侧）」的互补补丁「对内假设先验证（问题侧）」。适用要启动一个方案 / 架构、审查当前工具链 / 连接器 / 技能 / 自动化配置、复盘方案走偏原因等场景。触发词：前提验证、假设证伪、配置审计、工具链体检、现状盘点、对标标准、方案走偏复盘、别把预判当事实、premise validation、config audit。本技能为通用方法论工具，非医疗器械 / 非医疗软件，无疗效或临床声明；详见包内免",
+  "author": "诺衡(Krites)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0",
+  "license": "MIT"
+}

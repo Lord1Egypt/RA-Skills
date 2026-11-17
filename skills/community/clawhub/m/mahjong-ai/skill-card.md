@@ -1,43 +1,55 @@
-## Description: <br>
-AI Mahjong assistant that recognizes Sichuan Mahjong hands from photos and provides discard recommendations, tenpai analysis, shanten calculation, safety scoring, dingque advice, swap-3 strategy, and opponent discard-pattern predictions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mahjong AI helps an agent identify Sichuan Mahjong hands from photos or typed tile lists and provide discard, tenpai, shanten, dingque, swap-three, safety, and opponent-pattern analysis.
 
-## Publisher: <br>
-[sceneun1ty](https://clawhub.ai/user/sceneun1ty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sceneun1ty](https://clawhub.ai/user/sceneun1ty)
 
-## Use Case: <br>
-External users use this skill in OpenClaw-connected chat or messaging workflows to analyze Sichuan Mahjong hands, compare discard choices, understand waits, and assess tile safety from hand or table photos. Developers can also run the bundled Python analyzer directly with encoded tile inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mahjong hand or table photos may include faces, documents, location clues, or other private background details when sent through OpenClaw or connected messaging and vision services. <br>
-Mitigation: Crop images to the tiles or table before sending, avoid private background content, and use the bundled analyzer only with Mahjong tile inputs. <br>
-Risk: Tile recognition or strategy analysis can be wrong if the photo is unclear or the recognized hand does not match the actual tiles. <br>
-Mitigation: Confirm the recognized tile list before acting on discard, tenpai, shanten, dingque, swap-3, or opponent-pattern guidance. <br>
+## Use Case:
 
+External users and developers use this skill to support Sichuan Mahjong play by turning hand photos or typed tile lists into strategy guidance, including discard recommendations, tenpai waits, shanten counts, safety scoring, dingque advice, swap-three choices, and opponent discard-pattern analysis.
 
-## Reference(s): <br>
-- [Mahjong Theory Reference](references/mahjong_theory.md) <br>
-- [Tile Visual Guide](references/tile_visual_guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sceneun1ty/mahjong-ai) <br>
-- [Publisher Profile](https://clawhub.ai/user/sceneun1ty) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with tile lists, discard rankings, safety indicators, and optional shell commands for the bundled analyzer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Photo-based workflows should ask users to confirm recognized tiles before relying on strategy analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Hand photos may include incidental personal, location, or table-context details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Crop photos to the tiles before sending them to the assistant.
+
+Risk: Strategy guidance depends on correct tile recognition and accurate typed inputs.
+
+Mitigation: Confirm the recognized hand, discards, and melds before relying on the analysis.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sceneun1ty/skills/mahjong-ai)
+- [Sichuan Mahjong Theory Reference](references/mahjong_theory.md)
+- [Tile Visual Identification Guide](references/tile_visual_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command-line analysis output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided hand photo or typed tile list; analysis is limited to Sichuan Mahjong tile set and rules.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

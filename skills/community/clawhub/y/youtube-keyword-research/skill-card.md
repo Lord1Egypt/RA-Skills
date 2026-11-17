@@ -1,42 +1,50 @@
-## Description: <br>
-Youtube Keyword Reseach Skill helps agents produce structured YouTube keyword ideas, search intent analysis, title suggestions, tags, and content clusters for video planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced YouTube keyword research and content planning assistant.
 
-## Publisher: <br>
-[ervinwynn](https://clawhub.ai/user/ervinwynn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ervinwynn](https://clawhub.ai/user/ervinwynn)
 
-## Use Case: <br>
-Use this skill to help creators, marketers, agencies, educators, and small business owners plan YouTube videos by generating keyword candidates, long-tail variations, search intent labels, optimized titles, recommended tags, content clusters, and follow-up topic ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to the user's platform availability, organizational policies, and local laws. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Keyword suggestions may be inaccurate, outdated, or poorly matched to current search demand. <br>
-Mitigation: Validate important keywords and topics with YouTube Search Autocomplete, Google Trends, or another keyword tool before using them in public content. <br>
-Risk: The skill references an external validation site that may have separate terms, privacy practices, or data handling. <br>
-Mitigation: Treat external validation resources as optional third-party tools and review them before entering sensitive or proprietary channel plans. <br>
+## Use Case:
 
+YouTube creators, content marketers, SEO professionals, agencies, educators, and small business owners use this skill to generate keyword ideas, search-intent labels, title suggestions, tags, and content clusters for video planning and channel growth.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ervinwynn/youtube-keyword-research) <br>
-- [Publisher profile](https://clawhub.ai/user/ervinwynn) <br>
-- [Keyword validation resource mentioned by the skill](https://www.lenostube.com/en/all-tools/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Clear sections with keyword lists, intent labels, video title ideas, tag recommendations, content clusters, follow-up topics, and validation resources.] <br>
-**Output Parameters:** [User-provided YouTube topic, niche, product, or audience segment.] <br>
-**Other Properties Related to Output:** [Outputs are planning recommendations and should be validated against current search volume, competition, audience fit, and external keyword tools before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 <br>
+Risk: The skill repeatedly recommends one external validation resource, which users may mistake for an independent endorsement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the link as a disclosed optional resource and validate keyword volume, competition, and suitability with independent tools before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ervinwynn/skills/youtube-keyword-research)
+- [LenosTube YouTube tools](https://www.lenostube.com/en/all-tools/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style sections with keyword lists, intent labels, title ideas, tags, and content cluster recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a fixed external validation-resource recommendation disclosed in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

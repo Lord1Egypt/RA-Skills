@@ -1,40 +1,50 @@
-## Description: <br>
-Comprehensive security auditing for Clawdbot deployments. Scans for exposed credentials, open ports, weak configs, and vulnerabilities. Auto-fix mode included. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides security auditing for Clawdbot deployments, including checks for exposed credentials, open ports, weak configurations, file permissions, Docker risks, and optional auto-fix remediation.
 
-## Publisher: <br>
-[tianjin-ren](https://clawhub.ai/user/tianjin-ren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianjin-ren](https://clawhub.ai/user/tianjin-ren)
 
-## Use Case: <br>
-Developers and operators use this skill to audit Clawdbot deployments under /root/clawd for exposed credentials, open ports, weak configuration, file-permission issues, Docker risks, and related deployment concerns. They can run a normal audit first, generate a private JSON report, and use the explicit auto-fix mode only for reviewed common fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit reports may expose sensitive paths or credential locations. <br>
-Mitigation: Keep reports private and share them only with people responsible for the Clawdbot deployment. <br>
-Risk: Auto-fix mode can change permissions on .env, JSON, key, and PEM files and create a .gitignore. <br>
-Mitigation: Run the normal audit first and review or back up configuration files before invoking --fix. <br>
+## Use Case:
 
+Developers and operators use this skill to audit Clawdbot deployments before release or on a schedule, generate findings, and optionally run remediation for common issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianjin-ren/security-audit-tianjin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text with optional JSON report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Auto-fix mode can update local file permissions and create a .gitignore after user invocation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Auto-fix mode can broadly change deployment file permissions and may disrupt services that require group-readable JSON, key, or certificate files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the planned changes first, keep backups, use least privilege, and avoid --fix unless you have confirmed the affected files under /root/clawd.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianjin-ren/skills/security-audit-tianjin)
+- [Publisher profile](https://clawhub.ai/user/tianjin-ren)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON audit report output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run read-only audit modes or, with --fix, change file permissions and security-related configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

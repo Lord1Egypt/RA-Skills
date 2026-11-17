@@ -1,44 +1,63 @@
-## Description: <br>
-Reads WeChat Official Account article links through a local WeWe RSS REST API and returns article text for reading, summarization, and subscription lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WeWe RSS Reader helps an agent retrieve full text from WeChat public-account article links through a locally deployed WeWe RSS REST API and use that text for reading comprehension.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to retrieve plain-text content from WeChat Official Account article links, query subscribed accounts, and subscribe new accounts from article URLs through a local WeWe RSS deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may expose WeChat Read login QR codes or confirmation URLs by sending them to a shared Feishu group. <br>
-Mitigation: Send login material only to an approved private channel, get explicit user approval before login, and treat QR codes and confirmation URLs as sensitive temporary credentials. <br>
-Risk: The included AUTH_CODE and localhost services could be misused if the WeWe RSS deployment is not controlled. <br>
-Mitigation: Use only a trusted local WeWe RSS deployment, rotate or replace the AUTH_CODE before use, and keep the REST API bound to localhost or another controlled network boundary. <br>
-Risk: The skill can prompt an agent to start Docker services or manage account login state without clear user control. <br>
-Mitigation: Require explicit approval before running Docker commands, starting services, refreshing subscriptions, or changing account login state. <br>
+## Use Case:
 
+External users and developers use this skill when they need an agent to read, summarize, or answer questions about WeChat public-account articles. The skill is intended for local WeWe RSS deployments that expose article, feed, subscription, refresh, health, and login endpoints on localhost.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/axelhu/wewe-rss-reader) <br>
-- [Deployment guide](artifact/references/deployment.md) <br>
-- [WeWe RSS fork referenced by deployment guide](https://github.com/AxelHu/wewe-rss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with REST API examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Article text retrieval is capped at the first 15000 characters according to the skill instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill relies on an external local WeWe RSS service and deployment commands that may run Docker or Python code from a forked repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the external repository before deployment, and run the service only in an environment where you can maintain and monitor it.
+
+Risk: The documented AUTH_CODE is a shared example value and could allow unwanted access if reused.
+
+Mitigation: Replace the documented AUTH_CODE with a unique secret before exposing or relying on the local service.
+
+Risk: WeChat Reading login QR codes and confirmation URLs can authorize account access if shared in a group chat.
+
+Mitigation: Send login artifacts only through a trusted private channel and avoid posting QR codes or confirmation URLs to shared group chats.
+
+Risk: The service exposes local ports for the REST API and WeWe RSS UI.
+
+Mitigation: Keep ports bound to localhost unless there is a reviewed network-access requirement.
+
+## Reference(s):
+
+- [Deployment guide](artifact/references/deployment.md)
+- [WeWe RSS fork](https://github.com/AxelHu/wewe-rss)
+- [ClawHub skill page](https://clawhub.ai/axelhu/skills/wewe-rss-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with REST API paths, curl examples, and plain-text article content returned from the local service]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Article text may be truncated to the first 15000 characters by the local REST API. The skill expects a local service on port 4001 and a WeWe RSS UI on port 4000.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

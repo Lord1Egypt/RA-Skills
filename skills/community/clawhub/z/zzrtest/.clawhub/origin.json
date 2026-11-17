@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "registry": "https://skillhub.fr24.ai",
+  "slug": "dev-find-log-skill",
+  "installedVersion": "local-copy",
+  "installedAt": 0,
+  "fingerprint": "",
+  "derivedFrom": "prod-find-log-skill"
+}

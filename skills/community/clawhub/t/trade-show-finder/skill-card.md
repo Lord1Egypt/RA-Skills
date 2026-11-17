@@ -1,48 +1,55 @@
-## Description: <br>
-Scores and compares trade shows to help B2B exhibitor teams decide where to exhibit, attend, or skip. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Score and compare trade shows to decide where to exhibit, attend, or skip this year.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-B2B exhibitor, marketing, sales, and go-to-market teams use this skill to evaluate named shows, compare alternatives, build ranked shortlists, and plan annual trade show priorities based on ICP, buyer fit, commercial goal, region, and exhibit posture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trade show recommendations can influence real spending decisions and may be wrong if dates, venues, deadlines, costs, or scale figures are outdated. <br>
-Mitigation: Verify official show websites, exhibitor costs, deadlines, and recent scale before committing budget or staffing. <br>
-Risk: The skill may need sensitive go-to-market details such as target buyers, regions, budget bands, and commercial goals to score shows well. <br>
-Mitigation: Share only the decision-critical details needed for the recommendation, and avoid unnecessary confidential pipeline or customer information. <br>
+## Use Case:
 
+External B2B exhibitor teams use this skill to compare named trade shows, discover shortlists, and build annual event plans. It returns practical exhibit, attend-only, or skip recommendations using ICP, buyer, commercial goal, region, and execution-readiness inputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weilun88313/trade-show-finder) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Show fit framework](artifact/references/show-fit-framework.md) <br>
-- [Show archetypes](artifact/references/show-archetypes.md) <br>
-- [MEDICA go/no-go example](artifact/examples/medica-go-no-go.md) <br>
-- [Interpack vs. PACK EXPO example](artifact/examples/interpack-vs-pack-expo.md) <br>
-- [European medtech shortlist example](artifact/examples/medical-devices-europe.md) <br>
-- [Lensmor](https://www.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=trade-show-finder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown decision memo with an executive recommendation, ICP and goal snapshot, comparison or shortlist table, scoring explanation, execution readiness, tradeoffs, and next-step handoff] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a 0-100 Show Fit Score, recommendation bands, and decisions such as Exhibit, Attend only, or Skip; current event facts should be verified from official show websites where possible.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The security review reports that substantial answers may include a Lensmor promotional link with tracking parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated recommendations before sharing externally and remove promotional or tracked links when they are not appropriate for the audience.
+
+Risk: Trade-show recommendations can be misleading if dates, venue, audience, or exhibitor profile are not verified against current official sources.
+
+Mitigation: Require official event or organizer evidence before issuing a Show Fit Score or exhibit, attend-only, or skip decision.
+
+## Reference(s):
+
+- [Show Fit Framework](references/show-fit-framework.md)
+- [Show Archetypes and Candidate Seeds](references/show-archetypes.md)
+- [Trade Show Finder ClawHub Page](https://clawhub.ai/weilun88313/skills/trade-show-finder)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with comparison tables, scores, evidence links, and recommendation sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Substantial recommendations require current official-source evidence before scoring; uncertain fields are marked as TBC or estimated.]
+
+## Skill Version(s):
+
+0.4.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

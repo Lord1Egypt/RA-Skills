@@ -1,43 +1,57 @@
-## Description: <br>
-Manages static website deployments to subdomains under *.sites.friendify.cloud using Traefik reverse proxy and Docker, with scripts to deploy, list, and delete sites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages static website deployments to subdomains under *.sites.friendify.cloud using Traefik reverse proxy and Docker.
 
-## Publisher: <br>
-[mailo037](https://clawhub.ai/user/mailo037) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mailo037](https://clawhub.ai/user/mailo037)
 
-## Use Case: <br>
-Developers and site operators use this skill to publish static website directories as Docker-hosted Nginx containers behind a Traefik reverse proxy on *.sites.friendify.cloud, then list or delete those deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deployment and deletion scripts have broad host-level Docker and filesystem effects. <br>
-Mitigation: Run the skill only on a host intended for public Docker-based deployments, review generated Docker Compose configuration, and constrain deletion to known skill-owned temporary directories. <br>
-Risk: A website directory may contain secrets or files not intended for publication. <br>
-Mitigation: Deploy from a dedicated build output directory with no credentials, private source files, or environment-specific configuration. <br>
-Risk: Subdomain input is used to form container names, Traefik labels, temporary paths, and public URLs. <br>
-Mitigation: Validate subdomains against an allowlist pattern before running deployment or deletion commands. <br>
+## Use Case:
 
+Developers and operators use this skill to deploy, list, and delete static websites on configured subdomains backed by Docker, Nginx, and Traefik.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mailo037/publish-website-traefik) <br>
-- [Publisher Profile](https://clawhub.ai/user/mailo037) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown with inline shell commands and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deployment scripts generate Docker Compose configuration, update a JSON deployment registry, and print deployment URLs and status messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill expects Docker authority and manages Docker-hosted static sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in an isolated environment and confirm Docker permissions, Traefik routing, and deployment paths before execution.
+
+Risk: The skill includes deletion behavior for deployed site resources.
+
+Mitigation: Add explicit delete confirmation or a backup workflow before making deletion scripts runnable.
+
+Risk: The security summary says the Docker and deletion scripts are under-scoped.
+
+Mitigation: Add strict subdomain validation, confine deployments to an approved directory, and protect state-file permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mailo037/skills/publish-website-traefik)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs deployment commands and operational guidance for Docker-backed static website publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

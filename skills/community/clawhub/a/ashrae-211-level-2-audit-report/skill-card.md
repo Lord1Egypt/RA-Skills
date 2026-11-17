@@ -1,42 +1,56 @@
-## Description: <br>
-Drafts an ASHRAE / ACCA Standard 211 Level 2 commercial building energy audit report with Annex C content, ECM analysis, EUI baseline, financing memo, and an unsigned PE / CEA review block. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a Certified Energy Auditor, CEM, PE, ASHRAE BEMP, 179D consultant, or BPS-compliance consultant needs to draft an ASHRAE / ACCA Standard 211 Level 2 commercial building energy audit report with an Annex C-conformant draft report, ECM table, EUI baseline, financing memo, and PE sign-off block.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-External energy auditors, CEMs, PEs, ASHRAE BEMPs, 179D consultants, BPS compliance teams, and building-owner representatives use this skill to draft a Level 2 commercial building energy audit packet from building, utility, walkthrough, and equipment evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with examples and compliance pathways focused on North American building programs. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process confidential building addresses, tenant details, utility bills, rate schedules, BAS logs, photos, or account identifiers. <br>
-Mitigation: Redact unnecessary PII and account numbers before use, limit shared audit inputs to what the report requires, and keep confidential details out of public outputs. <br>
-Risk: Draft audit, compliance, tax, incentive, or financing claims may be incomplete or unsuitable without professional review. <br>
-Mitigation: Have final outputs reviewed by the responsible PE, CEA, tax adviser, utility program, or authority having jurisdiction before relying on them. <br>
-Risk: The skill drafts reports but cannot stamp, seal, certify eligibility, guarantee compliance, or perform post-installation measurement and verification. <br>
-Mitigation: Use the generated report as a draft work product and preserve the unsigned review block, open questions, and evidence index for qualified reviewer completion. <br>
+## Use Case:
 
+External energy-audit professionals, engineers, and building-performance teams use this skill to draft ASHRAE / ACCA Standard 211 Level 2 commercial building energy audit packets for owner, utility-incentive, building-performance-standard, Section 179D, Title 24, and PACE review. It supports draft reporting only and keeps final professional judgment, compliance claims, tax positions, and signed reports with the responsible qualified reviewer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/ashrae-211-level-2-audit-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft audit report packet with structured tables, appendices, evidence index, and open-questions list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only output intended for owner, utility-program, BPS-compliance-team, and PE / CEA review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence and CHANGELOG, released 2026-05-28) <br>
+Risk: Normal use may involve sensitive building, utility-bill, rate-schedule, tenant, and photo data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sanitized inputs when possible and avoid unnecessary repetition of confidential identifiers in draft material.
+
+Risk: A draft audit, compliance claim, incentive claim, tax position, or signed report could be mistaken for a final professional determination.
+
+Mitigation: Have any final audit, compliance claim, incentive claim, tax position, or signed report reviewed by the responsible PE, CEA, tax counsel, utility, or local administrator.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/ashrae-211-level-2-audit-report)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Artifact changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown draft audit packet with tables, appendices, evidence index, open questions, and an unsigned PE / CEA sign-off block.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-only output for professional review; no stamp, seal, compliance warranty, incentive commitment, or certification.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and CHANGELOG, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

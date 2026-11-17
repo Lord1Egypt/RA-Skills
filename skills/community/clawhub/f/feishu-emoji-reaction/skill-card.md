@@ -1,47 +1,65 @@
-## Description: <br>
-Enables an agent to add Feishu emoji reactions, interpret user reaction events, decide when to reply or stay silent, and maintain learned emoji mappings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent add and interpret Feishu emoji reactions, choose when to respond or stay silent, and learn new reaction types with cultural context.
 
-## Publisher: <br>
-[chargiie](https://clawhub.ai/user/chargiie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chargiie](https://clawhub.ai/user/chargiie)
 
-## Use Case: <br>
-Developers and agents using Feishu through OpenClaw use this skill to acknowledge messages with emoji reactions, respond appropriately to user reaction events, and learn Feishu-specific emoji meanings over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu app credentials may be required for standalone scripts. <br>
-Mitigation: Use a least-privileged Feishu app and store app IDs and secrets only in secure environment or configuration storage. <br>
-Risk: Broad reaction notifications can expose more conversation activity than the agent needs. <br>
-Mitigation: Keep reaction notifications limited to own messages unless broader monitoring is intentional. <br>
-Risk: Learned emoji notes may retain user-specific communication patterns. <br>
-Mitigation: Periodically review or clear learned emoji memory files. <br>
-Risk: Reaction event message IDs include suffixes that can cause Feishu API failures if reused directly. <br>
-Mitigation: Strip the ':reaction:' suffix and call the API with the pure om_xxx message ID. <br>
+## Use Case:
 
+Developers and agent operators use this skill to make Feishu-enabled agents react to messages, interpret user reactions, and decide when a short reply or silence is appropriate.
 
-## Reference(s): <br>
-- [Feishu message reaction API documentation](https://open.feishu.cn/document/server-docs/im-v1/message-reaction/emojis-introduce) <br>
-- [Feishu emoji list](references/emoji-list.md) <br>
-- [OpenClaw messaging tool documentation](https://docs.openclaw.ai/tools/messaging) <br>
-- [OpenClaw Feishu channel configuration](https://docs.openclaw.ai/channels/feishu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript message-tool examples, shell command examples, and JSON configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide the agent to emit Feishu reaction API calls and use NO_REPLY when a text response is not needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Automatic reaction behavior can send unintended social signals in shared or business Feishu workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, require explicit user or workspace opt-in, and disable or constrain automatic reaction learning where it is not expected.
+
+Risk: Credential-bearing scripts use Feishu app identifiers and secrets from the local environment.
+
+Mitigation: Use the smallest required Feishu app permission, keep credentials out of shell history and broad environments, and rotate secrets if exposed.
+
+Risk: Optional CLI and SDK paths may rely on unpinned npm packages or locally installed tooling.
+
+Mitigation: Prefer audited, pinned dependency versions and avoid optional npm CLI or SDK paths unless they can be reviewed in the deployment environment.
+
+Risk: Local learning state may persist user-derived emoji behavior and cultural context.
+
+Mitigation: Store learned reaction notes only in approved locations, review them periodically, and avoid retaining sensitive conversation context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chargiie/skills/feishu-emoji-reaction)
+- [Feishu emoji reference](references/emoji-list.md)
+- [Feishu message reaction API documentation](https://open.feishu.cn/document/server-docs/im-v1/message-reaction/emojis-introduce)
+- [OpenClaw message tool](https://docs.openclaw.ai/tools/messaging)
+- [OpenClaw Feishu channel configuration](https://docs.openclaw.ai/channels/feishu)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript message calls, shell commands, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit NO_REPLY to suppress a text response after adding a reaction.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

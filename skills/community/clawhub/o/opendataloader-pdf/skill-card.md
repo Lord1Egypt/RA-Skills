@@ -1,45 +1,58 @@
-## Description: <br>
-Use when parsing PDFs for RAG pipelines, extracting structured data from PDFs, or converting PDFs to Markdown/JSON with bounding boxes for AI processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when parsing PDFs for RAG pipelines, extracting structured data from PDFs, or converting PDFs to Markdown, JSON, or HTML with bounding boxes for AI processing.
 
-## Publisher: <br>
-[emptyguo](https://clawhub.ai/user/emptyguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emptyguo](https://clawhub.ai/user/emptyguo)
 
-## Use Case: <br>
-Developers and engineers use this skill to parse PDFs for RAG pipelines, extract structured content, and convert documents to Markdown, JSON, or HTML with page and bounding-box metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing unpinned external Python or npm packages can expose production workflows to unexpected package changes. <br>
-Mitigation: Verify package sources before installation and pin package versions in production environments. <br>
-Risk: Extracted Markdown, JSON, or HTML can contain sensitive text from source PDFs. <br>
-Mitigation: Process only intended documents and handle generated outputs with the same sensitivity controls as the original PDFs. <br>
+## Use Case:
 
+Developers and engineers building RAG or document-processing pipelines use this skill to install and run OpenDataLoader PDF, choose the appropriate processing mode, and convert PDFs into AI-ready Markdown, JSON, or HTML outputs with element metadata and bounding boxes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/emptyguo/opendataloader-pdf) <br>
-- [OpenDataLoader PDF GitHub Repository](https://github.com/opendataloader-project/opendataloader-pdf) <br>
-- [OpenDataLoader Quick Start](https://opendataloader.org/docs/quick-start-python) <br>
-- [OpenDataLoader Hybrid Mode Guide](https://opendataloader.org/docs/hybrid-mode) <br>
-- [OpenDataLoader JSON Schema](https://opendataloader.org/docs/json-schema) <br>
-- [LangChain OpenDataLoader PDF Integration](https://docs.langchain.com/oss/python/integrations/document_loaders/opendataloader_pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with shell commands and Python or TypeScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of OpenDataLoader PDF outputs such as Markdown, JSON, HTML, bounding boxes, page numbers, and extracted element metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Installing parser packages and processing untrusted PDFs expands the file-processing and dependency surface.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only trusted, pinned packages in a locked environment and process sensitive or untrusted PDFs in a least-privileged workspace.
+
+Risk: Optional OCR and hybrid modes add runtime dependencies beyond the default local parser path.
+
+Mitigation: Enable hybrid or OCR modes only when needed and isolate those dependencies from unrelated workloads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/emptyguo/skills/opendataloader-pdf)
+- [OpenDataLoader PDF repository](https://github.com/opendataloader-project/opendataloader-pdf)
+- [OpenDataLoader quick start](https://opendataloader.org/docs/quick-start-python)
+- [OpenDataLoader hybrid mode guide](https://opendataloader.org/docs/hybrid-mode)
+- [OpenDataLoader JSON schema](https://opendataloader.org/docs/json-schema)
+- [LangChain OpenDataLoader PDF integration](https://docs.langchain.com/oss/python/integrations/document_loaders/opendataloader_pdf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code examples and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Python, Node.js, CLI, hybrid mode, OCR, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

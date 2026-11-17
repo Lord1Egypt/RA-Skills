@@ -1,39 +1,54 @@
-## Description: <br>
-Static concurrency and race-condition auditor for Go, Java, Python, and Node.js/TypeScript codebases, focused on CWE-362 race conditions and CWE-367 TOCTOU patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Static concurrency and race-condition auditor for Go, Java, Python, Node.js/TypeScript that reports shared-state mutations without synchronization and TOCTOU patterns mapped to CWE-362 and CWE-367.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and security engineers use this skill to review source trees for common race-condition and TOCTOU patterns across Go, Java, Python, and Node.js/TypeScript. It is intended to produce local static-analysis findings and remediation guidance without external API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The embedded scanner appears broken, which can make users believe concurrency or TOCTOU checks ran when they did not. <br>
-Mitigation: Fix the startup failure, add execution tests for the scanner, and review scan results manually before relying on coverage. <br>
+## Use Case:
 
+Developers and security engineers use this skill to audit Go, Java, Python, and Node.js/TypeScript codebases for race-condition and time-of-check-time-of-use patterns before relying on runtime tests alone.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-concurrency-audit) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with embedded Python code and optional JSON scan output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local static scanner output; security evidence says the embedded scanner appears broken and must be fixed and tested before relying on its coverage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and artifact frontmatter) <br>
+Risk: The release security verdict is suspicious because the embedded scanner fails at startup, which can create false confidence in audit coverage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the embedded Python before installing or relying on this skill as a security control.
+
+Risk: The skill reports static findings that may be incomplete or noisy compared with runtime concurrency behavior.
+
+Mitigation: Use findings as review prompts and pair them with runtime tools such as race detectors or thread sanitizers where available.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-concurrency-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, json]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON scanner output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The described scanner is local and dependency-free, but release security evidence says the embedded Python fails at startup and should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence, artifact metadata, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

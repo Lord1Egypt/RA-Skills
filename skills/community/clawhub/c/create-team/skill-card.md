@@ -1,48 +1,56 @@
-## Description: <br>
-Builds a runnable Claude Code Agent Teams skill package that produces SKILL.md as a lead-operator playbook, agents/<role>.md subagent definitions for runtime spawning, references/<role>.md role specs with 8 sections, and optional hooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds a runnable Claude Code Agent Teams skill package that produces a lead-operator SKILL.md playbook, runtime subagent definitions, 8-section role specs, and optional hooks for reusable multi-agent teams.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Developers and engineering leads use this skill to create reusable multi-agent team packages for Claude Code, including lead playbooks, role definitions, role specifications, and optional quality hooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated agent definitions can grant broad tool access or file-editing authority if role allowlists are too permissive. <br>
-Mitigation: Review every generated agents/<role>.md file and keep tool allowlists narrow before installing the team. <br>
-Risk: User-wide installation of generated agents can make them available outside the intended project. <br>
-Mitigation: Prefer project-scoped .claude/agents installation unless reuse across projects is intentional. <br>
-Risk: Optional hook scripts can block or alter workflow behavior when enabled. <br>
-Mitigation: Inspect hook scripts before enabling them and scope them to the intended project. <br>
-Risk: Agent Teams runtime sessions can remain active after the work is finished. <br>
-Mitigation: Run the documented teardown steps when the generated team is finished. <br>
+## Use Case:
 
+Developers and agent-team authors use this skill to create runnable Claude Code Agent Teams packages with coordinated roles, task dependencies, disjoint file ownership, install instructions, and teardown guidance. It is intended for cases where a reusable multi-agent team should run end-to-end rather than only producing static role documentation.
 
-## Reference(s): <br>
-- [create-team on ClawHub](https://clawhub.ai/xiejinsong/create-team) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Templates](artifact/references/templates.md) <br>
-- [Validation checklist](artifact/references/checklist.md) <br>
-- [Claude Code sub-agents documentation](https://code.claude.com/docs/en/sub-agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a structured skill package with SKILL.md, agents/<role>.md, references/<role>.md, and optional hooks/ artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Generated team packages can add agent definitions or hooks under .claude locations, changing how future Claude Code sessions run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer project-scoped .claude/agents installation unless reusable user-wide agents are intended, and review generated tool allowlists and hook commands before enabling them.
+
+Risk: Multi-agent teams can overwrite each other's work when role ownership overlaps or can leave runtime resources behind when teardown is skipped.
+
+Mitigation: Run the included checklist, require disjoint Owned Paths for every role, and complete the documented shutdown sequence before TeamDelete.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/skills/create-team)
+- [Templates](references/templates.md)
+- [Virtual Team Skill Checklist](references/checklist.md)
+- [Claude Code Subagents Documentation](https://code.claude.com/docs/en/sub-agents)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown skill files with inline command examples and optional shell hook scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a skill package structure containing SKILL.md, agents/<role>.md files, references/<role>.md specs, references/member.md, and optional hooks/ files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

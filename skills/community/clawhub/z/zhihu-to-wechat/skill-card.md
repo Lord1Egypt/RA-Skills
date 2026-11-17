@@ -1,44 +1,61 @@
-## Description: <br>
-Automatically turns Zhihu trending topics into IT-style WeChat Official Account article drafts with topic selection, content research, image selection, HTML formatting, and draft creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a workflow that turns Zhihu trending topics into IT-style WeChat Official Account articles with images, WeChat-compatible HTML formatting, and draft publishing.
 
-## Publisher: <br>
-[dachenchen690-droid](https://clawhub.ai/user/dachenchen690-droid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dachenchen690-droid](https://clawhub.ai/user/dachenchen690-droid)
 
-## Use Case: <br>
-External creators, developers, and technical content teams use this skill to turn selected Zhihu hot topics into WeChat-ready IT articles, including research notes, formatted HTML, images, and a WeChat draft workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles WeChat service account credentials and cached access tokens that can create drafts and upload media. <br>
-Mitigation: Use environment variables or a credential vault, avoid sharing credentials in chat, and remove or rotate cached WeChat tokens after use. <br>
-Risk: Generated articles and selected images may be unsuitable, inaccurate, or inappropriate for publication without review. <br>
-Mitigation: Review generated content, images, and WeChat draft previews before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dachenchen690-droid/zhihu-to-wechat) <br>
-- [WeChat Official Account API reference](references/wechat_api.md) <br>
-- [WeChat HTML style guide](references/wechat_html_style.md) <br>
-- [IT article template](assets/it_article_template.md) <br>
-- [WeChat Official Accounts platform](https://mp.weixin.qq.com) <br>
-- [Unsplash Developers](https://unsplash.com/developers) <br>
+## Use Case:
 
+Content creators, technology bloggers, and developers use this skill to select Zhihu trending topics, research the selected topic, generate an IT-focused WeChat article, format it for WeChat, and create a WeChat draft for review.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, HTML, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with generated article text, WeChat-compatible HTML, JSON-like API results, and shell command instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create WeChat drafts and upload media when configured with service account credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow requires powerful WeChat service-account credentials.
+
+Mitigation: Use a dedicated WeChat service account, provide credentials through environment variables or a secret manager, avoid sharing secrets in chat or command-line history, and rotate any secrets already exposed.
+
+Risk: Generated article HTML could include inaccurate, misleading, or unsafe content before publication.
+
+Mitigation: Inspect and edit generated HTML and draft content in the WeChat backend before publishing.
+
+Risk: External image URLs are downloaded and uploaded during publishing.
+
+Mitigation: Use trusted image sources, verify licensing and content, and block untrusted or user-supplied image URLs from reaching the publisher.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dachenchen690-droid/skills/zhihu-to-wechat)
+- [WeChat API reference](artifact/references/wechat_api.md)
+- [WeChat HTML style guide](artifact/references/wechat_html_style.md)
+- [IT article template](artifact/assets/it_article_template.md)
+- [WeChat Official Accounts platform](https://mp.weixin.qq.com)
+- [Unsplash developers](https://unsplash.com/developers)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown articles, WeChat-compatible HTML, JSON script results, and WeChat draft identifiers.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local HTML files and WeChat draft records when account credentials, image URLs, and service-account permissions are provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

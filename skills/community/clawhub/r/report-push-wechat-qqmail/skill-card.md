@@ -1,45 +1,61 @@
-## Description: <br>
-Sends a concise WeChat task summary and the full report by QQ Mail when the user asks to push a report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pushes an agent-generated report summary to WeChat-style notifications and the full report text to QQ Mail when the user explicitly requests report delivery.
 
-## Publisher: <br>
-[liu99012101-bot](https://clawhub.ai/user/liu99012101-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liu99012101-bot](https://clawhub.ai/user/liu99012101-bot)
 
-## Use Case: <br>
-External users and developers use this skill to distribute generated analysis reports through two channels: a short structured WeChat summary and the full report by QQ Mail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses QQ Mail SMTP credentials and a push-service token, and report content leaves the user's environment. <br>
-Mitigation: Install only where those credentials and report contents are acceptable to share with the configured mail and push services. <br>
-Risk: The security guidance flags the PushPlus endpoint as using HTTP. <br>
-Mitigation: Change the push endpoint to HTTPS before using the skill for sensitive reports. <br>
-Risk: The skill can send report content to external channels after user-triggered execution. <br>
-Mitigation: Require explicit confirmation for each send, especially when reports contain sensitive or proprietary information. <br>
-Risk: The artifact instructions reference scripts/push_report.py, while the bundled script path is scripts/ush_report.py. <br>
-Mitigation: Fix the script path mismatch before relying on the documented command. <br>
+## Use Case:
 
+External users and agents use this skill to distribute completed analysis reports through two channels: a concise WeChat-style task summary and a full QQ Mail message.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liu99012101-bot/report-push-wechat-qqmail) <br>
-- [Publisher profile](https://clawhub.ai/user/liu99012101-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, JSON] <br>
-**Output Format:** [Markdown or plain-text report content, a short WeChat summary, a shell command invocation, and JSON delivery status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, requests, QQ Mail SMTP credentials, a target QQ Mail address, and WECHAT_PUSH_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends report summaries to PushPlus and full report text through QQ Mail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for reports that are appropriate for those third-party channels, and verify the recipient address before sending.
+
+Risk: The security evidence states that the PushPlus token and report summaries are handled over plaintext HTTP.
+
+Mitigation: Change the PushPlus endpoint to HTTPS and rotate any PushPlus token previously used with this version before deployment.
+
+Risk: The security evidence identifies overly broad invocation wording.
+
+Mitigation: Require explicit user confirmation before sending reports, especially when report contents are sensitive or externally sourced.
+
+Risk: The security guidance calls out a script filename mismatch and dependency installation pinning issue.
+
+Mitigation: Fix the script path referenced by the skill and pin dependency installation consistently before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liu99012101-bot/skills/report-push-wechat-qqmail)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with a shell command invocation and JSON status interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The WeChat-style summary is constrained to 100 characters or fewer, while QQ Mail receives the full report text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

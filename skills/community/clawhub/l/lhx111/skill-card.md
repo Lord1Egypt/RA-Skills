@@ -1,42 +1,53 @@
-## Description: <br>
-Comprehensive spreadsheet creation, editing, and analysis with support for formulas, formatting, data analysis, and visualization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides spreadsheet creation, editing, analysis, formatting, visualization, and formula recalculation support for Excel-compatible files.
 
-## Publisher: <br>
-[goulonghui](https://clawhub.ai/user/goulonghui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary. LICENSE.txt has complete terms <br>
+## Publisher:
 
+[goulonghui](https://clawhub.ai/user/goulonghui)
 
-## Use Case: <br>
-Developers, analysts, and spreadsheet-heavy users use this skill to create, edit, analyze, format, and recalculate Excel-compatible workbooks while preserving formulas and template conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify and save local spreadsheet workbooks while recalculating formulas. <br>
-Mitigation: Work on copies of important files, keep backups, and review generated or modified workbooks before relying on them. <br>
-Risk: The security review notes that the recalculation helper silently adds a persistent LibreOffice macro to the user's profile. <br>
-Mitigation: Install only in an environment where that profile change is acceptable, or use a sandboxed or dedicated LibreOffice profile and inspect or remove the macro after use. <br>
-Risk: Running LibreOffice on untrusted or sensitive workbooks may expose local documents to tool behavior outside the agent transcript. <br>
-Mitigation: Avoid untrusted or sensitive workbooks unless LibreOffice is sandboxed and the workbook contents are appropriate for local processing. <br>
+## Use Case:
 
+Developers, analysts, and spreadsheet authors use this skill to create, modify, analyze, and validate Excel-compatible workbooks with formulas, formatting, data analysis, visualization, and LibreOffice-based formula recalculation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goulonghui/lhx111) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Shell commands, Guidance] <br>
-**Output Format:** [Spreadsheet files, Markdown guidance, Python code, shell commands, and JSON recalculation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require LibreOffice for formula recalculation and workbook error checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Formula recalculation can persistently modify and execute LibreOffice application macros in the user's profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and run recalculation only in an isolated user account or temporary LibreOffice profile.
+
+Risk: The recalculation helper may overwrite an existing LibreOffice Module1.xba macro.
+
+Mitigation: Back up existing workbooks and LibreOffice macro files before using recalculation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goulonghui/skills/lhx111)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline Python and shell command examples; helper script output is JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Spreadsheet outputs may include .xlsx, .xlsm, .csv, or .tsv files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

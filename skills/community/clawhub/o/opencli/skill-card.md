@@ -1,43 +1,55 @@
-## Description: <br>
-Use the local OpenCLI source install as the primary OpenCLI skill for capability discovery, browser-bridge health checks, Twitter/X routing, and stable command invocation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Opencli helps agents invoke a local OpenCLI installation for adapter discovery, browser-bridge health checks, Twitter/X routing, and external CLI passthrough with stable command patterns.
 
-## Publisher: <br>
-[chaoyang78](https://clawhub.ai/user/chaoyang78) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoyang78](https://clawhub.ai/user/chaoyang78)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route suitable tasks through a local OpenCLI installation, including command discovery, browser bridge diagnostics, Twitter/X retrieval, public-site adapters, and external CLI passthrough. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can route agent work through a local OpenCLI installation with broad command execution authority. <br>
-Mitigation: Review commands before execution and install only when the intended workflow requires local OpenCLI access. <br>
-Risk: Browser-backed adapters may operate through logged-in browser sessions and can expose account or session state. <br>
-Mitigation: Avoid sensitive browser profiles or accounts unless necessary, and verify browser bridge health before using browser-backed adapters. <br>
-Risk: External CLI passthrough commands can read or change local, repository, cloud, or account state. <br>
-Mitigation: Treat passthrough commands as privileged operations and scope them to expected repositories, services, and accounts. <br>
+## Use Case:
 
+Developers and agents use Opencli to route tasks through existing OpenCLI adapters, retrieve structured output, check browser bridge health, and pass through supported external CLI commands when that is a better fit than browser automation.
 
-## Reference(s): <br>
-- [OpenCLI command cookbook](references/commands.md) <br>
-- [Opencli release page](https://clawhub.ai/chaoyang78/opencli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers JSON output for CLI commands when available and asks agents to report exact commands when useful for reuse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The wrapper can delegate to a mutable local source checkout or a PATH-resolved OpenCLI binary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only when the local OpenCLI checkout, update process, and fallback binary are trusted.
+
+Risk: Browser-backed adapters and external CLI passthrough can act through logged-in accounts or affect local systems.
+
+Mitigation: Use account- or system-impacting commands only with clear user intent and review commands before execution.
+
+## Reference(s):
+
+- [OpenCLI command cookbook](references/commands.md)
+- [ClawHub skill page](https://clawhub.ai/chaoyang78/skills/opencli)
+- [Publisher profile](https://clawhub.ai/user/chaoyang78)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and optional JSON-oriented command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prefers JSON output for agent use and returns exact commands when helpful for reuse.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

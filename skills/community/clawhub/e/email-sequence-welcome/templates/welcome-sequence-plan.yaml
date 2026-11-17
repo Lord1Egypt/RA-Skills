@@ -1,0 +1,40 @@
+# Welcome Email Sequence - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+sequence_name: ""
+start_date: ""
+trigger: ""
+audience: ""
+series_goal: ""
+emails:
+  - day: 0
+    name: "Confirmation"
+    goal: ""
+    subject_line: ""
+    cta: ""
+  - day: 1
+    name: ""
+    goal: ""
+    subject_line: ""
+    cta: ""
+  - day: 3
+    name: ""
+    goal: ""
+    subject_line: ""
+    cta: ""
+  - day: 7
+    name: ""
+    goal: ""
+    subject_line: ""
+    cta: ""
+  - day: 14
+    name: ""
+    goal: ""
+    subject_line: ""
+    cta: ""
+canonical_elements:
+  sender_name: ""
+  postal_address: ""
+  unsubscribe_url: ""
+  reason_to_write: ""
+  consent_record: ""
+notes: ""

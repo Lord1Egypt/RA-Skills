@@ -1,44 +1,60 @@
-## Description: <br>
-Generate WeryAI images from text prompts or reference images through the WeryAI image APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate WeryAI images from text prompts or reference images through the WeryAI image APIs.
 
-## Publisher: <br>
-[weryai-developer](https://clawhub.ai/user/weryai-developer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weryai-developer](https://clawhub.ai/user/weryai-developer)
 
-## Use Case: <br>
-Developers and external users use this skill to generate images from prompts, transform reference images, inspect WeryAI model capabilities, and check generation status with bounded polling and paid-run awareness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, selected reference images, and explicitly provided local image files can be sent to WeryAI for processing. <br>
-Mitigation: Prefer public HTTPS image URLs or dry-run previews first, and do not provide sensitive local files. <br>
-Risk: Custom WERYAI_BASE_URL or WERYAI_MODELS_BASE_URL values can redirect API traffic to another host. <br>
-Mitigation: Keep the default WeryAI hosts unless the replacement host is fully trusted. <br>
-Risk: Real submit and wait workflows can create paid generation tasks and are not idempotent. <br>
-Mitigation: Confirm model, prompt, image count, aspect ratio, and resolution before paid submission; use status checks for existing tasks instead of resubmitting. <br>
+## Use Case:
 
+External users and developers use this skill to create text-to-image or image-to-image generations with WeryAI, inspect supported image models, submit asynchronous image tasks, and check image task status with bounded polling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weryai-developer/weryai-image-generator) <br>
-- [WeryAI Image Generation Models](references/api-models.md) <br>
-- [WeryAI Error Codes](references/error-codes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and JSON command results, with user-facing image links or rendered images when generation completes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task IDs, batch IDs, task status, image URLs, balance details, model settings, and errors; default polling is bounded to 300 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Risk: The skill can send API keys, prompts, and local files to network destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted runtimes, keep WERYAI_API_KEY secret, and provide local file paths only when those files are intended for upload.
+
+Risk: Custom WERYAI_BASE_URL and WERYAI_MODELS_BASE_URL values can redirect requests away from the default WeryAI hosts.
+
+Mitigation: Leave host overrides unset unless the replacement endpoints are trusted and reviewed.
+
+Risk: Generic npx/bun launch behavior has lower assurance than the reviewed task, status, and model entry points.
+
+Mitigation: Prefer reviewed commands such as submit, status, models, wait, and balance entry points for normal use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weryai-developer/skills/weryai-image-generator)
+- [WeryAI API keys](https://www.weryai.com/api/keys)
+- [WeryAI Image Generation Models](artifact/references/api-models.md)
+- [WeryAI Error Codes](artifact/references/error-codes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and JSON command output with image links when generation results are ready]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return task IDs, batch IDs, task status, generated image URLs, balance information, model metadata, and structured error details.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

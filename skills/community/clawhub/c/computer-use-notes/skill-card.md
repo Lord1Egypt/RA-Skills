@@ -1,38 +1,53 @@
-## Description: <br>
-Record and classify user observations about computer-use capabilities into can-do, partial, and cannot-do notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record and classify user observations about what computer use can do, partially do, and cannot do.
 
-## Publisher: <br>
-[gift-is-coding](https://clawhub.ai/user/gift-is-coding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gift-is-coding](https://clawhub.ai/user/gift-is-coding)
 
-## Use Case: <br>
-Developers and agents use this skill to keep a categorized notebook of observed computer-use capabilities, limitations, and partial successes during hands-on work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Capability notes are retained in local memory files and may preserve sensitive user-provided text. <br>
-Mitigation: Avoid recording secrets, credentials, or sensitive personal information, and review the local notes before sharing the workspace. <br>
+## Use Case:
 
+Agents use this skill to keep a categorized notebook of computer-use capability observations, test results, limitations, and workarounds. It is intended for users who want concise notes sorted into can-do, partial, and cannot-do categories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gift-is-coding/computer-use-notes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Short confirmation text, JSONL log entries, and a categorized Markdown board] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local memory files for later review] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: User-provided note text is passed through a shell command invocation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Change invocation to pass arguments directly without a shell, and review generated notes before relying on them.
+
+Risk: Capability notes are retained persistently in local memory files.
+
+Mitigation: Use only when persistent retention is acceptable, clearly delimit stored note text as untrusted, and provide a way to view and delete saved notes.
+
+## Reference(s):
+
+- [Computer Use Notes ClawHub skill page](https://clawhub.ai/gift-is-coding/skills/computer-use-notes)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Short text confirmation plus JSONL log entries and a Markdown board]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores notes persistently under memory/computer-use-notes.jsonl and memory/computer-use-notes.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

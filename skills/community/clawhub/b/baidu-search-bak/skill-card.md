@@ -1,45 +1,56 @@
-## Description: <br>
-Search the web using Baidu AI Search Engine (BDSE) for live information, documentation, or research topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using Baidu AI Search Engine (BDSE). Use for live information, documentation, or research topics.
 
-## Publisher: <br>
-[aysun168](https://clawhub.ai/user/aysun168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aysun168](https://clawhub.ai/user/aysun168)
 
-## Use Case: <br>
-External users and developers use this skill to run Baidu web searches from an agent workflow, with optional result count and freshness filters. It is suited for live information lookup, documentation discovery, and research queries where sending the search terms to Baidu is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Baidu using the configured API key. <br>
-Mitigation: Avoid confidential search terms and use the skill only when Baidu search processing is acceptable. <br>
-Risk: The Baidu API key may be exposed if the OpenClaw configuration is shared or committed. <br>
-Mitigation: Keep ~/.openclaw/openclaw.json private, avoid source-control or synced-backup exposure, and rotate the key if it is exposed. <br>
-Risk: Baidu API use may affect account usage or billing. <br>
-Mitigation: Use a dedicated API key where possible and monitor Baidu account usage. <br>
+## Use Case:
 
+Developers and external users can use this skill to send web-search queries to Baidu AI Search Engine for live information, documentation lookup, and research, with optional result count and freshness filters.
 
-## Reference(s): <br>
-- [Baidu API Key Setup Guide](references/apikey-fetch.md) <br>
-- [Baidu AI Search API key console](https://console.bce.baidu.com/ai-search/qianfan/ais/console/apiKey) <br>
-- [Baidu AI Search web search endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search) <br>
-- [ClawHub skill page](https://clawhub.ai/aysun168/baidu-search-bak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search results and Markdown setup guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and BAIDU_API_KEY; accepts query, count, and freshness parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search query text is sent to Baidu's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive, private, or proprietary search terms and review data-handling requirements before use.
+
+Risk: BAIDU_API_KEY is a secret used by the search script.
+
+Mitigation: Store the key only in approved environment or OpenClaw configuration paths, restrict local config access, and do not commit or share the key.
+
+## Reference(s):
+
+- [Baidu API Key Setup Guide](references/apikey-fetch.md)
+- [Baidu AI Search API Key Console](https://console.bce.baidu.com/ai-search/qianfan/ais/console/apiKey)
+- [Baidu AI Search Web Search Endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search)
+- [ClawHub Skill Page](https://clawhub.ai/aysun168/skills/baidu-search-bak)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIDU_API_KEY; accepts query, count, and freshness parameters; returns Baidu reference results with snippets removed.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Skill Forge automates skill creation by analyzing a request and existing skills, then generating fusion plans, SKILL.md scaffolds, test scripts, agent configuration, workflows, deployment scripts, and optional ClawHub publish metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Forge helps agents turn a requirements description into a proposed OpenClaw skill by analyzing existing skills, recommending fusion sources, scaffolding skill files and tests, and preparing agent deployment assets.
 
-## Publisher: <br>
-[freeman88-tch](https://clawhub.ai/user/freeman88-tch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeman88-tch](https://clawhub.ai/user/freeman88-tch)
 
-## Use Case: <br>
-Developers and skill authors use Skill Forge to turn natural-language requirements into generated or optimized OpenClaw skill assets and deployable agent templates. It is suited to active skill factory workflows where generated files are reviewed before use or publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rewrite local skill files and generated assets, including batch optimization of a skill workspace. <br>
-Mitigation: Run it in a backed-up or test workspace and review generated diffs before adopting the results. <br>
-Risk: Publishing options can send generated artifacts to ClawHub with weak review and confirmation boundaries. <br>
-Mitigation: Avoid publish flags until content, metadata, permissions, and destination account are checked. <br>
-Risk: The release requires sensitive credentials for some workflows. <br>
-Mitigation: Use least-privilege or test accounts for browser and publishing workflows, and do not store production secrets in generated files. <br>
+## Use Case:
 
+Developers and skill authors use Skill Forge to draft new OpenClaw skills, fusion plans, generated skill documentation, tests, configuration, and deployment materials from natural-language requirements.
 
-## Reference(s): <br>
-- [Skill Forge ClawHub release](https://clawhub.ai/freeman88-tch/lobster-skill-forge) <br>
-- [Publisher profile: freeman88-tch](https://clawhub.ai/user/freeman88-tch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown, JSON configuration files, Python-generated skill files, shell scripts, and console guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or rewrite local skill files and can prepare or trigger ClawHub publishing when publish options are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: Generated files and executable shell scripts may be created from user-supplied skill names, source selections, or skill text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a contained, non-privileged OpenClaw workspace and review generated SKILL.md files, tests, deployment scripts, and configuration before executing them.
+
+Risk: Publishing flows can submit generated skill packages to ClawHub.
+
+Mitigation: Do not use --publish or browser publishing flows until path validation, shell escaping, overwrite protection, and explicit confirmation gates are present.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/freeman88-tch/skills/lobster-skill-forge)
+- [Publisher Profile](https://clawhub.ai/user/freeman88-tch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown, JSON configuration, generated code files, shell scripts, and HTML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create skill directories, SKILL.md files, tests, agent configuration, deployment scripts, ClawHub configuration, and repository index pages under an OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

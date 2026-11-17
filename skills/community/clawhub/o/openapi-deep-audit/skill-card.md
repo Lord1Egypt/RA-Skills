@@ -1,39 +1,51 @@
-## Description: <br>
-Analyzes OpenAPI or Swagger specifications to produce a structured audit covering API design, security, schemas, CRUD coverage, test strategy, risk scoring, and improvement planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes OpenAPI and Swagger specifications for endpoint structure, security coverage, schemas, CRUD completeness, test strategy, risk scoring, and production-readiness improvements.
 
-## Publisher: <br>
-[Prathameshppawar](https://clawhub.ai/user/Prathameshppawar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[prathameshppawar](https://clawhub.ai/user/prathameshppawar)
 
-## Use Case: <br>
-Backend engineers, CTOs, and technical founders use this skill to review OpenAPI or Swagger specifications before production release and to plan security, validation, CRUD, and automated testing improvements. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may fetch and inspect API specification URLs supplied by the user, which can expose private or unpublished API details if used in an unrestricted environment. <br>
-Mitigation: Use only authorized specifications, avoid private intranet URLs unless the agent environment is sandboxed and approved, and provide raw JSON or YAML when URL access is unnecessary. <br>
-Risk: Audit findings are limited to what is explicitly defined in the OpenAPI or Swagger specification and may not reflect implementation behavior outside the spec. <br>
-Mitigation: Review the report against the running service, source code, and production controls before acting on security or readiness recommendations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Prathameshppawar/openapi-deep-audit) <br>
+## Use Case:
+
+Backend engineers, CTOs, and technical founders use this skill to review OpenAPI or Swagger specifications before production release and to create a structured audit report with test planning and remediation priorities.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Provided API specifications may contain confidential endpoint, schema, or security details.
+
+Mitigation: Use the skill only in a trusted agent environment and avoid submitting sensitive internal specifications to untrusted runtimes.
+
+Risk: Audit findings can be incomplete if the supplied OpenAPI or Swagger specification omits implementation behavior.
+
+Mitigation: Treat the output as specification-grounded review guidance and confirm production decisions against implementation, security, and operational evidence.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured audit report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes factual observations, clearly marked inferences, scored readiness dimensions, and prioritized recommendations.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Structured Markdown audit report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Separates observed facts, logical inferences, and recommendations; requires missing specification details to be stated rather than invented.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

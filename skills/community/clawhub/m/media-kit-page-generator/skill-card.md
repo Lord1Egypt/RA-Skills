@@ -1,37 +1,52 @@
-## Description: <br>
-Creates, optimizes, and audits media kit or press page content, structure, asset checklists, usage guidelines, and press contact details for journalists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in creating, optimizing, and auditing media kit or press pages with journalist-focused structure, brand assets, usage guidance, and press contact content.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, content teams, and marketing operators use this skill to have an agent draft or audit a self-service media kit page for journalists, including page structure, asset checklists, company overview copy, logo usage rules, press contacts, and SEO guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Project context files can contain internal company story, metrics, brand details, or other sensitive press-page inputs.
+
+Mitigation: Review any project-context inputs and the generated media-kit content before sharing externally.
+
+Risk: Generated media-kit guidance may include outdated or incomplete brand asset requirements.
+
+Mitigation: Confirm logos, brand guidelines, team bios, press contacts, and usage rules against current source-of-truth materials before publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing, communications, founders, and web teams use this skill to draft or review self-service media kit pages with company overview copy, logo and brand asset checklists, usage rules, press contacts, and SEO guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated media kit or press page material may include confidential metrics, internal positioning, press contact details, asset-rights assumptions, or content drawn from local project context. <br>
-Mitigation: Review all generated output before publication, remove confidential details, verify press contacts, and confirm usage rights for logos, photos, videos, and brand assets. <br>
+**Output Format:** [Markdown or structured text with outlines, checklists, copy, and recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May reference existing .claude or .cursor project context when available to tailor media-kit content.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with outlines, checklists, copy, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated public-facing details before publication.] <br>
+1.0.1 (source: server release metadata and skill frontmatter metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

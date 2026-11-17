@@ -1,44 +1,59 @@
-## Description: <br>
-Provides a Rust, SeaORM, and frontend development workflow that concentrates API contracts, constants, and database entities into explicit boundaries to prevent implicit contract drift. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Rust, SeaORM, and frontend methodology for centralizing API contracts, constants, and database entities so agents can prevent implicit cross-boundary contract drift.
 
-## Publisher: <br>
-[xiamu-ssr](https://clawhub.ai/user/xiamu-ssr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiamu-ssr](https://clawhub.ai/user/xiamu-ssr)
 
-## Use Case: <br>
-Developers and agents use this skill when working on Rust backends with SeaORM, any frontend, and a database to establish explicit API, constants, and entity contracts and to run local checks that catch drift. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts inspect source files and gen_types.sh runs the local Rust test flow. <br>
-Mitigation: Run the scripts only in the intended Rust/SeaORM workspace and review the script configuration paths before execution. <br>
-Risk: gen_types.sh rewrites the selected frontend types file. <br>
-Mitigation: Point it at a generated file path and review the resulting diff before relying on the output. <br>
-Risk: The artifact examples contain a Cancelled-status documentation mismatch. <br>
-Mitigation: Treat the examples as patterns and align the status enum with documented transitions before adopting them as canonical. <br>
+## Use Case:
 
+Developers and agents use this skill when building Rust backends with SeaORM and any frontend to define API contracts, constants, and entities first, then check changes with bundled scripts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiamu-ssr/implicit-contract-defense) <br>
-- [check_contracts.sh](references/check_contracts.sh) <br>
-- [gen_types.sh](references/gen_types.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project-specific file layout guidance and paths for generated frontend type output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The guidance is primarily in Chinese, which can lead to misunderstanding if the installer cannot read it accurately.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Translate and review the workflow before applying it to a production codebase.
+
+Risk: gen_types.sh executes cargo test and overwrites the frontend type file path provided by the user.
+
+Mitigation: Run it intentionally in a trusted project, pass an explicit output path, and review the working tree afterward.
+
+Risk: check_contracts.sh uses shell-based static checks that can produce warnings requiring project-specific judgment.
+
+Mitigation: Treat script findings as review inputs and confirm any flagged contract issue against the Rust and SeaORM code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiamu-ssr/skills/implicit-contract-defense)
+- [check_contracts.sh](references/check_contracts.sh)
+- [gen_types.sh](references/gen_types.sh)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Rust examples and bash script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local shell helpers for CI-style contract checks and ts-rs TypeScript generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

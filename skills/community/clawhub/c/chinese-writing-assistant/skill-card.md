@@ -1,40 +1,50 @@
-## Description: <br>
-专业中文写稿助手支持中文文本改写、风格仿写和多平台文案优化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专业中文写稿助手，支持洗稿改写、仿写、文案优化功能。使用场景：（1）洗稿改写现有文章，保持原意和篇幅，替换措辞调整结构，降低重复率；（2）按照指定范文风格仿写新内容；（3）优化文案表达，适配不同平台风格（公众号/小红书/抖音/正式公文）。
 
-## Publisher: <br>
-[duzhilei951](https://clawhub.ai/user/duzhilei951) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duzhilei951](https://clawhub.ai/user/duzhilei951)
 
-## Use Case: <br>
-Writers, marketers, and content editors use this skill to rewrite Chinese drafts, imitate a supplied style, and tune copy for platforms such as WeChat, Xiaohongshu, Douyin, Zhihu, and formal business documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is explicitly designed to rewrite copied text to reduce similarity detection and imitate styles, which can support plagiarism, copyright misuse, deceptive imitation, or platform and academic policy evasion. <br>
-Mitigation: Use it only for legitimate editing of content the user owns or has permission to adapt, and review outputs for attribution, copyright, platform, academic, and policy compliance before use. <br>
+## Use Case:
 
+Chinese-language creators, marketers, and business users can use this skill to rewrite drafts, imitate a provided style, or optimize copy for platforms such as WeChat, Xiaohongshu, Douyin, Zhihu, and formal business writing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/duzhilei951/chinese-writing-assistant) <br>
-- [Platform style guide](artifact/references/platform-style-guide.md) <br>
-- [Synonym replacement reference](artifact/references/synonym-replacement.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted Chinese prose with brief revision notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include rewritten copy, style-match notes, optimization notes, word-count comparisons, and estimated repetition metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is designed around rewriting existing text to reduce detectable similarity, which creates a plagiarism-evasion concern.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for legitimate editing, original drafting, or properly attributed transformation; review outputs for originality, attribution, and compliance before use.
+
+## Reference(s):
+
+- [各平台文案风格适配指南](references/platform-style-guide.md)
+- [常用同义替换库（洗稿专用）](references/synonym-replacement.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese prose with structured Markdown-style sections and brief change notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include word-count, style-match, platform-adaptation, or similarity-estimate notes depending on the requested writing task.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

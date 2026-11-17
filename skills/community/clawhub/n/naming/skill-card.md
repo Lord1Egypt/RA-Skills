@@ -1,49 +1,64 @@
-## Description: <br>
-Create, test, and choose names for products, features, APIs, files, and systems with constraint-first briefs and collision checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, test, and choose names for products, features, APIs, files, and systems with constraint-first briefs and collision checks.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees, external users, developers, and product teams use this skill to create decision-ready names for products, features, APIs, files, systems, and renames. It helps structure briefs, compare option families, score finalists, and call out collision or rollout risks before a recommendation is made. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent naming memory can contain sensitive product names, codenames, rejected candidates, and launch constraints. <br>
-Mitigation: Decide whether local persistence is acceptable before using ~/naming/ and ask the agent not to save memory for sensitive work. <br>
-Risk: Generated names and scores do not provide trademark, domain, regulatory, package, repository, or namespace clearance. <br>
-Mitigation: Run explicit live verification before treating a finalist as cleared or externally available. <br>
-Risk: Renaming live assets can break docs, routes, APIs, analytics, onboarding, support material, or user mental models. <br>
-Mitigation: Use the rename playbook to inventory dependencies, define aliases, communicate changes, and set rollback criteria before rollout. <br>
+## Use Case:
 
+Employees, external creators, and developers use this skill to name products, features, APIs, packages, files, folders, taxonomies, and renames with briefs, structured candidate families, scoring, and collision notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/naming) <br>
-- [Skill homepage](https://clawic.com/skills/naming) <br>
-- [RALLY Brief](brief-template.md) <br>
-- [CLASH Scorecard](scorecard.md) <br>
-- [Rename Playbook](rename-playbook.md) <br>
-- [Naming Patterns By Surface](surface-patterns.md) <br>
-- [Memory Template](memory-template.md) <br>
-- [Setup](setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured briefs, scored shortlists, recommendations, risk notes, and optional setup commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local memory files under ~/naming/ when persistence is enabled; live clearance checks require explicit external verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Local naming memory may contain confidential brand, product, or legal naming context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Decide before installation whether to keep local memory in ~/naming/ and avoid saving confidential details unless local persistence is appropriate.
+
+Risk: Generated names do not provide trademark, domain, registry, repository, or legal clearance.
+
+Mitigation: Perform live clearance checks or legal review before registering, publishing, or migrating a public name.
+
+Risk: Rename guidance can affect live systems, documentation, APIs, analytics, or user expectations if applied without a migration plan.
+
+Mitigation: Use the rename playbook to inventory dependencies, define aliases, preserve compatibility where needed, and communicate the change before rollout.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/naming)
+- [Skill Homepage](https://clawic.com/skills/naming)
+- [RALLY Brief](brief-template.md)
+- [CLASH Scorecard](scorecard.md)
+- [Naming Patterns By Surface](surface-patterns.md)
+- [Rename Playbook](rename-playbook.md)
+- [Memory Template - Naming](memory-template.md)
+- [Setup - Naming](setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with tables, recommendation notes, and optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Decision-ready naming deliverables can include a brief summary, option families, scored shortlist, one recommended winner, two backups, and risk notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

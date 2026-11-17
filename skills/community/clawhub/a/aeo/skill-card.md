@@ -1,41 +1,52 @@
-## Description: <br>
-Run AEO audits, preview branch audits, changed-page sitemap audits, local/private preview audits with explicit opt-in, sitemap origin rewriting, static-output audits, regression comparisons, site fixes, schema validation, and llms.txt generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Renamed to agent-readiness. This skill no longer runs audits; it tells the user how to install the agent-readiness skill that replaces it.
 
-## Publisher: <br>
-[arberx](https://clawhub.ai/user/arberx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arberx](https://clawhub.ai/user/arberx)
 
-## Use Case: <br>
-Developers, site owners, and marketing engineers use Aeo to audit websites for AI-answer visibility, schema quality, sitemap coverage, preview-branch regressions, and llms.txt readiness, then apply targeted site fixes when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an external npm audit tool against websites or local build output, including local or private URLs when explicitly enabled. <br>
-Mitigation: Use local/private URL auditing only for systems you control, keep private-target auditing explicit, and review command targets before execution. <br>
-Risk: Fix and generation workflows may write AEO support files such as llms.txt, llms-full.txt, or robots.txt. <br>
-Mitigation: Review generated file changes before committing or deploying them. <br>
+## Use Case:
 
+Developers use this legacy skill to find the replacement agent-readiness skill and learn how to install it or run an audit from the command line.
 
-## Reference(s): <br>
-- [AEO homepage](https://ainyc.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/arberx/skills/aeo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands, JSON or agent-format audit reports from the npm tool, and generated support files when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write llms.txt, llms-full.txt, or robots.txt only when the user asks for generation or fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.2.0 (source: server release metadata) <br>
+Risk: A user may expect this legacy skill to run an audit even though it only explains the rename.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install agent-readiness from ClawHub or run npx @canonry/agent-readiness@8 with the target URL.
+
+## Reference(s):
+
+- [agent-readiness on ClawHub](https://clawhub.ai/arberx/skills/agent-readiness)
+- [agent-readiness changelog](https://github.com/Canonry/agent-readiness/blob/main/CHANGELOG.md#800-2026-11-07)
+- [agent-readiness project](https://github.com/Canonry/agent-readiness)
+- [Canonry homepage](https://canonry.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Migration and installation instructions; does not perform audits.]
+
+## Skill Version(s):
+
+7.6.3 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

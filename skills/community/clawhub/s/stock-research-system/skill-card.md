@@ -1,42 +1,54 @@
-## Description: <br>
-Automates equity research workflows for initiating coverage and quarterly update reports using DataHub-backed market and financial data retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional equity research automation system for generating initiating coverage and quarterly update reports.
 
-## Publisher: <br>
-[cgxxxxxxxxxxxx](https://clawhub.ai/user/cgxxxxxxxxxxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cgxxxxxxxxxxxx](https://clawhub.ai/user/cgxxxxxxxxxxxx)
 
-## Use Case: <br>
-Analysts and agent users use this skill to collect market and financial data, calculate financial and valuation metrics, and draft structured stock research reports. It is intended for analysis drafts that require user review, data verification, and professional judgment before investment use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad financial trigger wording may activate the skill in conversations where a full research workflow is not intended. <br>
-Mitigation: Confirm the stock, company, report type, market, and reporting period before proceeding with data collection or report generation. <br>
-Risk: Research outputs could be mistaken for regulated financial, legal, or investment advice. <br>
-Mitigation: Treat outputs as analyst drafts and require qualified human review before making or distributing investment decisions. <br>
-Risk: Market data, financial statements, or valuation assumptions may be stale, unavailable, or unsuitable for a given company. <br>
-Mitigation: Verify DataHub results against authoritative sources, mark missing values as N/A, and review the data quality and valuation checkpoints before finalizing a report. <br>
+## Use Case:
 
+Equity research analysts and agents use this skill to gather financial data, calculate metrics and valuations, and draft Chinese-language initiating coverage or quarterly update reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cgxxxxxxxxxxxx/stock-research-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown research report drafts with inline Python examples and troubleshooting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports initiating coverage reports and quarterly update reports; includes data quality and valuation assumption checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Financial research outputs may be incomplete, stale, or misleading if source data is unavailable or assumptions are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated investment analysis, verify source data and valuation assumptions, and avoid making investment decisions from the skill output alone.
+
+Risk: Broad finance prompts may route into this structured report workflow even when the user only needs narrower guidance.
+
+Mitigation: Confirm the requested stock, company, report type, market, and reporting period before generating a full research report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cgxxxxxxxxxxxx/skills/stock-research-system)
+- [Publisher profile](https://clawhub.ai/user/cgxxxxxxxxxxxx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python code examples and structured report guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces research workflows and draft investment analysis; users must review data quality, assumptions, and conclusions before relying on outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

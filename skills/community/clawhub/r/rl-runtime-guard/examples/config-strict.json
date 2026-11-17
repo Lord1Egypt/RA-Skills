@@ -1,0 +1,8 @@
+{
+  "complexTaskThreshold": 300,
+  "retryLoopThreshold": 0.35,
+  "maxExecLength": 1500,
+  "recentQueryWindow": 15,
+  "auditLogPath": "~/.openclaw/logs/audit/rl-guard-decisions.jsonl",
+  "enabled": true
+}

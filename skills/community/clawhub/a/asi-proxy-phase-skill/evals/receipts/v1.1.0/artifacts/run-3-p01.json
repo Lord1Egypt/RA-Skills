@@ -1,0 +1,264 @@
+{
+  "authority_boundary": {
+    "allowed_actions": [
+      "inspect the supplied case evidence",
+      "prepare this bounded intervention packet",
+      "run the bundled packet validator"
+    ],
+    "approval_required": [
+      "push",
+      "release",
+      "external communication",
+      "destructive operation"
+    ],
+    "prohibited_actions": [
+      "invent missing observations",
+      "claim real ASI",
+      "execute the intervention before baseline evidence and authorization exist"
+    ]
+  },
+  "candidate_gate": {
+    "candidate_regime": null,
+    "conditions": {
+      "capability_reproduction": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "critical_unknowns": {
+        "criterion": "Zero critical unknowns before any candidate-regime claim.",
+        "evidence_refs": [],
+        "rationale": "Baseline coverage, verifier independence, and intervention authority are unresolved.",
+        "status": "unknown"
+      },
+      "hold_period": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "phase_readiness": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "residual_ratio": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "resource_floor": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "verification_coverage": {
+        "criterion": "Measured verification coverage must meet a predeclared threshold across relevant failure domains.",
+        "evidence_refs": [],
+        "rationale": "The request names a bottleneck but supplies no coverage measurement or threshold.",
+        "status": "unknown"
+      }
+    },
+    "unknowns": [
+      {
+        "critical": true,
+        "description": "No measured baseline verification coverage has been admitted.",
+        "evidence_refs": [],
+        "id": "missing-verification-baseline"
+      },
+      {
+        "critical": true,
+        "description": "No evidence establishes independent verifier failure domains.",
+        "evidence_refs": [],
+        "id": "missing-verifier-independence"
+      }
+    ]
+  },
+  "execution": {
+    "actions": [],
+    "artifacts": [],
+    "status": "not_executed"
+  },
+  "interventions": [
+    {
+      "id": "independent-verification-lane",
+      "title": "Add an independently configured verification lane",
+      "target_dimensions": [
+        "verification_capacity",
+        "effective_independence",
+        "perturbation_robustness"
+      ],
+      "mechanism": "Run a second verifier with separately declared dependencies and failure modes, then compare accepted work, rejected work, disagreement, and unresolved residuals against a frozen baseline.",
+      "effect_overlap_group": "verification-ecology",
+      "cost": {
+        "implementation": 1,
+        "operation": 1,
+        "unit": "bounded trial lane",
+        "uncertainty": "Illustrative planning units only; no workspace-specific cost evidence was supplied."
+      },
+      "dependencies": [
+        "predeclared coverage metric and threshold",
+        "frozen baseline",
+        "evidence of verifier failure-domain separation",
+        "explicit execution authority"
+      ],
+      "expected_effect": "Test whether verified throughput and disagreement handling improve without increasing unresolved residuals.",
+      "evidence_refs": [
+        "github:kadubon/asi-proxy-phase-growth-simulator@24690a225c86fde2a24de4d9f93e2a282789b67d"
+      ],
+      "non_claims": [
+        "Repository relevance does not establish a workspace-specific effect.",
+        "The intervention is planned, not executed or validated."
+      ]
+    }
+  ],
+  "next_binding_dimension": "verification_capacity",
+  "non_claims": [
+    "This packet is protocol-relative.",
+    "It does not predict, detect, or certify real ASI.",
+    "It does not prove a scientific phase transition or real-world causal effect."
+  ],
+  "objective": "Plan a verification-bottleneck intervention without inventing missing evidence.",
+  "outcome_status": "planned",
+  "phase_assessment": {
+    "causal_formation": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "coordination_protocol_integrity": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "dimensional_consistency": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "effective_independence": {
+      "evidence_refs": [],
+      "rationale": "The request supplies no observation of verifier error correlation or failure-domain separation.",
+      "status": "unknown",
+      "value": null
+    },
+    "exact_self_maintenance": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "finite_horizon_resource_persistence": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "perturbation_robustness": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "provenance_integrity": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "structural_reachability": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "target_bound_generative_catalysis": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "temporal_integrity": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "trust_quorum": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "verification_capacity": {
+      "evidence_refs": [],
+      "rationale": "A stated verification bottleneck is not a measured baseline, coverage ratio, or throughput observation.",
+      "status": "unknown",
+      "value": null
+    }
+  },
+  "residuals": {
+    "evidence_refs": [],
+    "status": "unknown",
+    "unresolved": [
+      "All phase dimensions require evidence.",
+      "Verification coverage and verifier independence require baseline measurements.",
+      "Workspace-specific intervention cost and effect remain unknown."
+    ]
+  },
+  "rollback": {
+    "available": true,
+    "steps": [
+      "Stop the trial verification lane.",
+      "Restore the frozen baseline configuration.",
+      "Retain disagreement and residual evidence for review."
+    ],
+    "trigger": "Rollback if predeclared coverage or residual checks fail, if verifier independence is not evidenced, or if resource use exceeds the authorized bound."
+  },
+  "schema_version": "1.0.0",
+  "scope": {
+    "evaluation_horizon": "One bounded trial after baseline and authority are established.",
+    "in_scope": [
+      "verification coverage measurement",
+      "verifier failure-domain independence",
+      "residual tracking",
+      "rollback"
+    ],
+    "out_of_scope": [
+      "real-world ASI certification",
+      "undeclared external systems"
+    ],
+    "systems": [
+      "bounded verification workflow"
+    ],
+    "workspace": "artifacts/indigo/P01"
+  },
+  "sources": {
+    "papers": [],
+    "repositories": [
+      {
+        "url": "https://github.com/kadubon/asi-proxy-phase-growth-simulator",
+        "head_sha": "24690a225c86fde2a24de4d9f93e2a282789b67d"
+      }
+    ]
+  },
+  "validation": {
+    "checks": [
+      {
+        "name": "bundled schema validation",
+        "status": "passed",
+        "evidence_refs": [
+          "variants/indigo/asi-proxy-phase-skill/assets/intervention-packet.schema.json"
+        ]
+      }
+    ],
+    "status": "passed"
+  }
+}

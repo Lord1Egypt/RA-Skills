@@ -1,0 +1,34 @@
+{
+  "project_overview": {
+    "project_name": "Vendor security review",
+    "time_range": "Not provided",
+    "current_phase": "Preparation",
+    "overall_status": "Needs assignment",
+    "summary": "Prepare the vendor security review.",
+    "evidence": "Prepare the vendor security review."
+  },
+  "progress": [],
+  "confirmed_decisions": [],
+  "action_items": [
+    {
+      "task": "Prepare the vendor security review",
+      "owner": "Not provided",
+      "department": "Security",
+      "ddl": "Not provided",
+      "deliverable": "Security review",
+      "status": "Pending",
+      "evidence": "Prepare the vendor security review.",
+      "priority": "P2"
+    }
+  ],
+  "risks_dependencies": [],
+  "cross_department_relationships": [],
+  "needs_human_confirmation": [
+    {
+      "item": "Prepare the vendor security review",
+      "reason": "Draft owner or deadline lacked verbatim source support and was reset",
+      "suggested_confirm_with": "Relevant stakeholder",
+      "evidence": "Not provided"
+    }
+  ]
+}

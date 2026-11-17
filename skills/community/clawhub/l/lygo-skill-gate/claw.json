@@ -1,0 +1,55 @@
+{
+  "name": "lygo-skill-gate",
+  "displayName": "LYGO Skill Gate",
+  "version": "1.0.0",
+  "description": "Local pre-install skill risk scanner for OpenClaw/ClawHub packages. Subprocess, network, secrets, claim mismatches. No auto-install. Pure stdlib.",
+  "slug": "lygo-skill-gate",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-skill-gate",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-skill-gate",
+  "signature": "Delta9Phi963-SKILL-GATE-v1.0.0",
+  "tags": [
+    "latest",
+    "lygo",
+    "security",
+    "audit",
+    "skill-gate",
+    "safe-install",
+    "clawhub",
+    "malware",
+    "preflight",
+    "openclaw",
+    "skillspector",
+    "delta9"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "scan": "scripts/skill_gate.py scan",
+    "self_demo": "scripts/skill_gate.py self-demo",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "🛂",
+    "requires": { "anyBins": ["python", "python3"] },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": false,
+    "subprocess": false,
+    "shell": false,
+    "filesystem": {
+      "read": "user-supplied skill directory",
+      "write": "state/ with --i-consent"
+    },
+    "auto_install": false,
+    "publish": false
+  },
+  "security": {
+    "local_first": true,
+    "no_network": true,
+    "no_subprocess": true,
+    "no_auto_install": true,
+    "version": "1.0.0"
+  }
+}

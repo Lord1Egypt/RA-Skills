@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://text-to-comic.local/schemas/render-task.schema.json",
+  "title": "TextToComic Render Task",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "story_id",
+    "panel_id",
+    "style_id",
+    "attempt",
+    "max_attempts",
+    "seed",
+    "prompt",
+    "negative_prompt",
+    "status",
+    "validation"
+  ],
+  "properties": {
+    "story_id": {
+      "type": "string"
+    },
+    "panel_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "style_id": {
+      "type": "string"
+    },
+    "fallback_style_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "attempt": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "max_attempts": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "prompt": {
+      "type": "string"
+    },
+    "negative_prompt": {
+      "type": "string"
+    },
+    "prompt_mutation_notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "output_path": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "rendered", "retry", "failed", "accepted"]
+    },
+    "failure_reason": {
+      "type": "string"
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "character_consistency",
+        "scene_continuity",
+        "clean_image",
+        "text_budget_ok",
+        "face_ok",
+        "decision"
+      ],
+      "properties": {
+        "character_consistency": {
+          "type": "string",
+          "enum": ["pass", "soft-fail", "fail"]
+        },
+        "scene_continuity": {
+          "type": "string",
+          "enum": ["pass", "soft-fail", "fail"]
+        },
+        "clean_image": {
+          "type": "string",
+          "enum": ["pass", "soft-fail", "fail"]
+        },
+        "text_budget_ok": {
+          "type": "boolean"
+        },
+        "face_ok": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "decision": {
+          "type": "string",
+          "enum": ["accept", "retry", "fallback-style", "escalate-to-user"]
+        }
+      }
+    }
+  }
+}

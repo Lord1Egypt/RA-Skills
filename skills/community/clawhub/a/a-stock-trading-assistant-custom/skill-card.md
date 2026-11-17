@@ -1,48 +1,63 @@
-## Description: <br>
-A Stock Trading Assistant Custom helps agents answer China mainland A-share market questions with real-time quotes, individual stock analysis, market sentiment, hot-sector tracking, trading strategy guidance, and price alert support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Stock Trading Assistant Custom provides Mainland China A-share market quotes, individual stock analysis, market sentiment, hot-sector tracking, trading strategy suggestions, and price alerts.
 
-## Publisher: <br>
-[c595390153-a11y](https://clawhub.ai/user/c595390153-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c595390153-a11y](https://clawhub.ai/user/c595390153-a11y)
 
-## Use Case: <br>
-External users and agents use this skill to analyze China mainland A-share stocks, market indexes, sector momentum, and trading scenarios. It is intended to support market research and decision preparation, not to replace independent financial judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock codes and market queries may be sent to public third-party finance sites. <br>
-Mitigation: Use the skill only when that disclosure is acceptable, and avoid entering sensitive portfolio context unless needed. <br>
-Risk: Configured price alerts can persist locally in a watchlist file. <br>
-Mitigation: Review or delete the watchlist when alerts are no longer needed. <br>
-Risk: Market data and generated trading guidance may be incomplete, delayed, or unsuitable for a user's circumstances. <br>
-Mitigation: Verify data independently and treat outputs as decision support rather than financial advice. <br>
+## Use Case:
 
+External users use this skill to review Mainland China A-share stocks, retrieve real-time quotes, index and sector data, and draft informational trading strategies or price alerts with risk reminders.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/c595390153-a11y/a-stock-trading-assistant-custom) <br>
-- [Stock Analysis Reference](references/analysis.md) <br>
-- [Data Sources Reference](references/data-sources.md) <br>
-- [Sina Finance Quotes API](http://hq.sinajs.cn/list=sh600519) <br>
-- [Eastmoney Quote API](http://push2.eastmoney.com/api/qt/stock/get?secid={market}.{code}&fields=f43,f44,f45,f46,f47,f48,f57,f58,f60,f107,f169,f170,f171,f530) <br>
-- [Tonghuashun Quote Endpoint](https://d.10jqka.com.cn/v4/time/hs_{code}/today.js) <br>
-- [Xueqiu](https://xueqiu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with tables, structured analysis, optional shell commands, and optional JSON from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stock and market data should include source attribution and fetch time when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can produce concrete trading suggestions that may be mistaken for personalized investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational, verify decisions through trusted sources, and do not rely on position sizing or buy/sell guidance as personalized advice.
+
+Risk: The skill queries third-party Chinese financial sites through unauthenticated requests, so prices may be stale, unavailable, or inconsistent.
+
+Mitigation: Show the data source and retrieval time, cross-check prices with trusted market-data sources, and handle failed or incomplete requests conservatively.
+
+Risk: Price alerts and watchlist details may reveal a user's trading interests if persisted.
+
+Mitigation: Store only the alert details needed for the task, avoid sensitive account information, and clear watchlist data when it is no longer needed.
+
+## Reference(s):
+
+- [A Stock Trading Assistant Custom on ClawHub](https://clawhub.ai/c595390153-a11y/skills/a-stock-trading-assistant-custom)
+- [Individual Stock Analysis Method Reference](references/analysis.md)
+- [Data Source API Reference](references/data-sources.md)
+- [Sina Finance](https://finance.sina.com.cn)
+- [Eastmoney](https://www.eastmoney.com)
+- [Tonghuashun](https://www.10jqka.com.cn)
+- [Xueqiu](https://xueqiu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text, with optional JSON from the bundled stock-fetching script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should label data source and retrieval time and include risk reminders for price or trading suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

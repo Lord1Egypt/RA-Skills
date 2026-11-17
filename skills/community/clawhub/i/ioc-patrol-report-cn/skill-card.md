@@ -1,43 +1,60 @@
-## Description: <br>
-Ioc Patrol Report generates daily and weekly IOC patrol reports for smart building and campus operations by analyzing device status, alarm records, energy use, and work order progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ioc Patrol Report generates daily or weekly IOC patrol reports for smart buildings and campuses by analyzing device status, alarms, energy use, and work orders, with Markdown or HTML report output.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-External facilities, property-management, and smart-building operations teams use this skill to produce routine IOC patrol reports from operational database data, covering equipment availability, alarms, energy consumption, work orders, and maintenance recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes a real remote PostgreSQL credential in its bundled database configuration. <br>
-Mitigation: Remove or replace the bundled database configuration before installation, rotate any exposed credential, and use environment-managed secrets for database access. <br>
-Risk: The report generator queries hard-coded operational tables that may include sensitive building operations data. <br>
-Mitigation: Verify the exact tables and fields queried before running the skill, restrict database permissions to the minimum required scope, and test against non-production data first. <br>
-Risk: Generated reports may contain operational status, alarm, energy, or work-order details. <br>
-Mitigation: Store report outputs only in access-controlled locations and review generated content before sharing outside the operations team. <br>
+## Use Case:
 
+Facility operations teams, property managers, and developers use this skill to generate IOC patrol reports for smart buildings, campuses, commercial complexes, industrial parks, hospitals, schools, and data centers. The reports summarize operational status, alert handling, energy trends, work order progress, and maintenance recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onlyloveher/ioc-patrol-report-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/onlyloveher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with command-line and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates daily or weekly report files and may also produce HTML output when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Security evidence says this release ships a plaintext remote PostgreSQL admin-style credential and uses it by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install or run this version until the publisher removes the packaged credential, rotates the exposed password, and replaces the account with a least-privilege reporting role.
+
+Risk: Security evidence says environment or secret-manager credentials do not actually take precedence over the packaged database credential.
+
+Mitigation: Require environment or secret-manager credentials to override packaged defaults before any database connection is attempted.
+
+Risk: Security evidence says generated reports should clearly distinguish live data from mock data.
+
+Mitigation: Label report data sources explicitly and require an intentional mock-data mode for non-production report generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/onlyloveher/skills/ioc-patrol-report-cn)
+- [Report template](assets/report-template.md)
+- [Generated daily report example](reports/daily-2026-03-20.md)
+- [Generated weekly report example](reports/weekly-2026-W10.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates daily or weekly report files in the configured reports directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

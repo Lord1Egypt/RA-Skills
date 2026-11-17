@@ -13,7 +13,7 @@ vod_load_env.py — 腾讯云 VOD Skill 环境变量自动加载工具
     TENCENTCLOUD_SECRET_ID       （必须）
     TENCENTCLOUD_SECRET_KEY      （必须）
     TENCENTCLOUD_VOD_AIGC_TOKEN  （可选，AIGC LLM Chat 专用）
-    TENCENTCLOUD_VOD_SUB_APP_ID  （可选，子应用 ID）
+    TENCENTCLOUD_VOD_SUB_APP_ID  （必须，子应用 ID）
 
 用法（在其他脚本中调用）：
     from vod_load_env import ensure_env_loaded
@@ -21,6 +21,7 @@ vod_load_env.py — 腾讯云 VOD Skill 环境变量自动加载工具
 """
 
 import os
+import re
 import sys
 
 try:
@@ -28,6 +29,77 @@ try:
     _DOTENV_AVAILABLE = True
 except ImportError:
     _DOTENV_AVAILABLE = False
+
+
+def _stdlib_load_dotenv(dotenv_path, override=False):
+    """纯 stdlib 实现的简化版 load_dotenv，兜底用。
+
+    支持的语法（够 99% 场景）：
+    - `KEY=VALUE`（最常用）
+    - `KEY="quoted value"` 或 `KEY='quoted value'`
+    - `export KEY=VALUE`
+    - `# comment` 注释行（含行内 ` # comment`）
+    - 跳过空行
+    - 不支持：变量插值 `${OTHER}`、多行值
+
+    Args:
+        dotenv_path: .env 文件路径
+        override: True 时允许覆盖已存在的环境变量
+
+    Returns:
+        bool: 是否成功加载（文件存在且至少读到 1 个 KEY=VALUE）
+    """
+    if not dotenv_path or not os.path.isfile(dotenv_path):
+        return False
+    loaded_any = False
+    line_re = re.compile(r'^\s*(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)$')
+    try:
+        with open(dotenv_path, 'r', encoding='utf-8') as f:
+            for raw in f:
+                line = raw.strip()
+                if not line or line.startswith('#'):
+                    continue
+                m = line_re.match(line)
+                if not m:
+                    continue
+                key, val = m.group(1), m.group(2)
+                # 处理引号
+                if (len(val) >= 2 and
+                        ((val[0] == '"' and val[-1] == '"') or
+                         (val[0] == "'" and val[-1] == "'"))):
+                    val = val[1:-1]
+                else:
+                    # 去掉行内未引用的 # 注释
+                    if ' #' in val:
+                        val = val.split(' #', 1)[0].rstrip()
+                if (not override) and (key in os.environ):
+                    continue
+                os.environ[key] = val
+                loaded_any = True
+    except (OSError, IOError):
+        return False
+    return loaded_any
+
+
+def _stdlib_find_dotenv(usecwd=True):
+    """从 cwd 向上递归查找 .env 文件。"""
+    cur = os.getcwd() if usecwd else os.path.dirname(os.path.abspath(__file__))
+    while True:
+        candidate = os.path.join(cur, '.env')
+        if os.path.isfile(candidate):
+            return candidate
+        parent = os.path.dirname(cur)
+        if parent == cur:
+            return ''
+        cur = parent
+
+
+# 若 python-dotenv 缺失，使用 stdlib 兜底实现
+if not _DOTENV_AVAILABLE:
+    load_dotenv = lambda dotenv_path=None, override=False, **kw: _stdlib_load_dotenv(  # noqa: E731
+        dotenv_path or _stdlib_find_dotenv(), override=override
+    )
+    _DOTENV_AVAILABLE = True  # 标记为可用（用 stdlib 实现）
 
 # 需要检测的目标变量
 _TARGET_VARS = {
@@ -41,12 +113,12 @@ _TARGET_VARS = {
 _REQUIRED_VARS = [
     "TENCENTCLOUD_SECRET_ID",
     "TENCENTCLOUD_SECRET_KEY",
+    "TENCENTCLOUD_VOD_SUB_APP_ID",
 ]
 
 # 可选的变量（仅在特定场景下需要）
 _OPTIONAL_VARS = {
     "TENCENTCLOUD_VOD_AIGC_TOKEN": "AIGC LLM Chat（vod_aigc_chat.py）专用",
-    "TENCENTCLOUD_VOD_SUB_APP_ID": "子应用操作时使用（可通过 --sub-app-id 参数覆盖）",
 }
 
 # 候选 dotenv 文件列表（按加载顺序，先加载者优先；load_dotenv 默认 override=False）
@@ -69,7 +141,7 @@ def load_env_files(verbose: bool = False) -> dict:
         if verbose:
             print(
                 "[load_env] python-dotenv 未安装，无法加载 .env 文件。"
-                "请运行: pip install -r scripts/requirements.txt",
+                "请运行: python3 -m pip install -r scripts/requirements.txt",
                 file=sys.stderr,
             )
         return {}
@@ -83,12 +155,15 @@ def load_env_files(verbose: bool = False) -> dict:
     try:
         from dotenv import find_dotenv
         default_path = find_dotenv(usecwd=True)
-    except (ImportError, Exception):
+    except ImportError:
+        default_path = _stdlib_find_dotenv(usecwd=True)
+    except Exception:
         default_path = ""
 
     if default_path and os.path.isfile(default_path):
         try:
-            ok = load_dotenv(override=False)
+            # BUG FIX: 必须显式传入 dotenv_path；不传时 python-dotenv 走调用栈查找而非 cwd，常导致找不到文件
+            ok = load_dotenv(dotenv_path=default_path, override=False)
             seen_paths.add(os.path.abspath(default_path))
             if verbose:
                 print(
@@ -189,9 +264,9 @@ VOD 控制台：https://console.cloud.tencent.com/vod
   示例（以 ~/.env 为例）：
     TENCENTCLOUD_SECRET_ID=<您的 SecretId>
     TENCENTCLOUD_SECRET_KEY=<您的 SecretKey>
+    TENCENTCLOUD_VOD_SUB_APP_ID=<您的子应用 ID>
     # 可选
     TENCENTCLOUD_VOD_AIGC_TOKEN=<您的 AIGC Token>
-    TENCENTCLOUD_VOD_SUB_APP_ID=<您的子应用 ID>
 
 ⚠️  安全提示：请通过安全渠道配置密钥，避免提交到代码仓库。
 
@@ -301,7 +376,13 @@ if __name__ == "__main__":
     if args.dry_run:
         print("=== 模拟执行（Dry-run）===\n")
         print("操作：使用 load_dotenv 加载腾讯云 VOD 环境变量")
-        print(f"\npython-dotenv 状态: {'✅ 可用' if _DOTENV_AVAILABLE else '❌ 未安装'}")
+        # 区分：原生 python-dotenv vs stdlib 兜底实现
+        try:
+            import dotenv as _dotenv_mod  # noqa: F401
+            _native = True
+        except ImportError:
+            _native = False
+        print(f"\ndotenv 加载器: {'✅ python-dotenv (原生)' if _native else '✅ stdlib 兜底'}")
         print("\n将要按顺序加载的 dotenv 文件：")
         for filepath in _ENV_FILES:
             exists = "✅ 存在" if os.path.isfile(filepath) else "⚪ 不存在"
@@ -327,7 +408,7 @@ if __name__ == "__main__":
     print("=== 加载 dotenv 文件 ===", flush=True)
     if not _DOTENV_AVAILABLE:
         print(
-            "❌ python-dotenv 未安装。请运行: pip install -r scripts/requirements.txt",
+            "❌ python-dotenv 未安装。请运行: python3 -m pip install -r scripts/requirements.txt",
             file=sys.stderr,
         )
         sys.exit(1)

@@ -1,44 +1,59 @@
-## Description: <br>
-Personal Knowledge Base helps users create document knowledge bases, import supported files, vectorize content, retrieve relevant chunks, answer questions, and manage stored files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+管理个人知识库，基于RAG和文本向量化技术，支持文件的保存、向量化、检索、问答、删除等功能
 
-## Publisher: <br>
-[nancyzhong2024](https://clawhub.ai/user/nancyzhong2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nancyzhong2024](https://clawhub.ai/user/nancyzhong2024)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to organize personal documents into named knowledge bases, search indexed content, and answer questions with retrieved source excerpts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Imported document text, retrieved excerpts, and user questions may be sent to ZhipuAI for embeddings or answers. <br>
-Mitigation: Use the skill only with documents and questions whose data flow to ZhipuAI is acceptable; avoid confidential, regulated, or proprietary files unless approved. <br>
-Risk: Update and delete operations can permanently remove stored source files or indexed chunks from a knowledge base. <br>
-Mitigation: Double-check knowledge-base and file names before update or delete actions and keep backups for important source documents. <br>
-Risk: API keys can be exposed if stored directly in the configuration file. <br>
-Mitigation: Prefer the ZHIPUAI_API_KEY environment variable instead of writing the key into config.txt. <br>
+## Use Case:
 
+External users and developers use this skill to create and manage personal document knowledge bases, import files, vectorize text, retrieve relevant chunks, answer questions with RAG, and update or delete indexed files.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nancyzhong2024/personal-knowledge-base) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text responses with optional Python and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return knowledge-base names, file lists, retrieved text chunks, generated answers, source file references, and operation status messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Crafted knowledge-base metadata or vector files may execute code when loaded through unsafe pickle deserialization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only knowledge bases created in a trusted workspace, do not open shared or untrusted knowledge-base folders, and replace pickle storage with a safe serialized format before using sensitive documents.
+
+Risk: Knowledge-base names or file names may write, update, or delete files outside the intended workspace if paths are not confined.
+
+Mitigation: Validate names against a restrictive allowlist, resolve paths before file operations, require the final path to remain under the configured workspace root, and ask for explicit confirmation before update or delete actions.
+
+Risk: Document text, retrieved chunks, and user questions may be sent to ZhipuAI for embeddings or answer generation.
+
+Mitigation: Use a dedicated low-privilege workspace, configure the API key through an environment variable, and avoid indexing sensitive documents unless external processing has been approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nancyzhong2024/skills/personal-knowledge-base)
+- [Artifact README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Natural-language responses, Python examples, shell commands, configuration snippets, and structured result dictionaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include answer text, related document chunks, source file names, relevance scores, file lists, and operation status messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Looks up Amazon products by ASIN through BrowserAct and returns structured product details such as title, price, ratings, brand, availability, and descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents retrieve structured Amazon product details for a supplied ASIN using BrowserAct's Amazon ASIN Lookup API template.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-Developers, catalog operators, and market analysts use this skill to enrich product records, compare prices, monitor ratings, and validate Amazon ASINs with structured product metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a BrowserAct API key, and the security summary flags unsafe guidance around handling that key. <br>
-Mitigation: Configure the key through environment variables or secret storage, and do not paste it into chat, prompts, logs, or shared transcripts. <br>
-Risk: Lookup requests are sent to BrowserAct to retrieve Amazon product information. <br>
-Mitigation: Use the skill only when sending ASIN lookup requests to BrowserAct is acceptable for the user's data handling requirements. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to look up Amazon product metadata, pricing, ratings, availability, descriptions, images, and specifications from a known ASIN. It is suitable for catalog enrichment, price comparison, review monitoring, availability checks, and market research workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phheng/amazon-asin-lookup-api-skill) <br>
-- [BrowserAct integration console](https://www.browseract.com/reception/integrations) <br>
-- [BrowserAct workflow API endpoint](https://api.browseract.com/v2/workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Terminal logs followed by structured product data as text or JSON] <br>
-**Output Parameters:** [1D; ASIN input string] <br>
-**Other Properties Related to Output:** [Requires Python, BROWSERACT_API_KEY, network access to BrowserAct, and polling until the lookup task finishes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: The skill may expose a BrowserAct API key if the user provides it in chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure BROWSERACT_API_KEY outside chat using a protected local environment or secret manager, and rotate the key if it has already been shared.
+
+Risk: ASIN lookup requests and task metadata are sent to BrowserAct's API.
+
+Mitigation: Review whether the ASINs and related lookup activity are appropriate to send to BrowserAct before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phheng/skills/amazon-asin-lookup-api-skill)
+- [BrowserAct integrations console](https://www.browseract.com/reception/integrations)
+- [BrowserAct workflow API endpoint](https://api.browseract.com/v2/workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Terminal logs followed by structured product data as text or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and a BROWSERACT_API_KEY environment variable; the script polls BrowserAct until the lookup task finishes or fails.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 """Vmake AI SDK - Core algorithm execution library."""
 
-__version__ = "1.3.0"
+__version__ = "2.0.0"
 
 from sdk.core.api import AiApi
 from sdk.core.client import SkillClient, WapiClient, WapiApiError, ConsumeDeniedError

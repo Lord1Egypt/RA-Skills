@@ -1,43 +1,55 @@
-## Description: <br>
-Zzz4ai Search Engine helps agents route Chinese web, academic, news, and video search requests across six public search engines without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A China-focused search aggregation skill that selects among six available search sources for general web, academic, news, and video queries, with advanced search syntax and intent-based routing.
 
-## Publisher: <br>
-[bingshangfei](https://clawhub.ai/user/bingshangfei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingshangfei](https://clawhub.ai/user/bingshangfei)
 
-## Use Case: <br>
-External users and developers can use this skill when an agent needs to search Chinese-language web content, Bilibili or Toutiao results, academic papers, or video tutorials. The skill selects suitable public search engines, builds search URLs, filters duplicate results, and returns a source-linked report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; optimized for Chinese-region search providers. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private or sensitive search terms may be sent to public Chinese search providers. <br>
-Mitigation: Avoid private or sensitive queries unless the user is comfortable sending them to those providers; for privacy, political, medical, or financial searches, confirm scope before searching. <br>
-Risk: Broad trigger terms may cause an agent to invoke the skill for routine informational requests more often than intended. <br>
-Mitigation: Narrow trigger criteria or require a search-specific user intent when deploying the skill in agents with frequent general-question traffic. <br>
+## Use Case:
 
+Developers and agents use this skill to search Chinese-language web, academic, news, and video sources without an API key. It is intended for information lookup, comparison, recommendations, rankings, recent updates, academic-paper discovery, and Bilibili or Toutiao content discovery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bingshangfei/zzz4ai-search-engine) <br>
-- [Advanced search guide](references/advanced-search.md) <br>
-- [Bing search tips](https://cn.bing.com/tips) <br>
-- [360 Search help](https://www.so.com/help.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown search report with source labels and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search URLs are generated from configured public engine templates; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release, metadata.json, CHANGELOG; released 2026-05-18) <br>
+Risk: Broad trigger terms can cause ordinary questions to be routed to third-party search providers without clear user intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the query and selected provider before searching, especially for private, proprietary, legal, employment, credential, or otherwise sensitive topics.
+
+Risk: Search terms are sent to external providers including Bing CN, 360, Toutiao, and Bilibili.
+
+Mitigation: Use the skill only when third-party search disclosure is acceptable and avoid sensitive topics unless the user explicitly approves the search plan.
+
+## Reference(s):
+
+- [Advanced Search Guide](references/advanced-search.md)
+- [ClawHub Skill Page](https://clawhub.ai/bingshangfei/skills/zzz4ai-search-engine)
+- [Publisher Profile](https://clawhub.ai/user/bingshangfei)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown search report with result titles, summaries, source names, and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider failure notes, fallback-engine behavior, and suggestions to refine the query when all engines fail.]
+
+## Skill Version(s):
+
+1.0.6 (source: release evidence and CHANGELOG, released 2026-05-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

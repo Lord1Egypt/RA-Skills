@@ -1,43 +1,57 @@
-## Description: <br>
-OpenClaw skill for RRBD Admin that helps users call RRBD backend APIs and automate account, digital-human, video, task, and finance operations through natural-language conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw skill for RRBD Admin that uses natural-language prompts to call RRBD backend APIs and automate account, digital-human, and video-generation tasks.
 
-## Publisher: <br>
-[zengjwmail](https://clawhub.ai/user/zengjwmail) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zengjwmail](https://clawhub.ai/user/zengjwmail)
 
-## Use Case: <br>
-External users and operators use this skill to interact with RRBD Admin through natural-language requests that map to authenticated API calls, including digital-human listing, video creation, account information, task workflows, and wallet or commission checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plaintext credential storage or hardcoded account usage can expose RRBD account credentials. <br>
-Mitigation: Remove hardcoded credentials, rotate any exposed password, and disable plaintext password persistence before use. <br>
-Risk: The skill can perform real account actions such as video creation, deletion, withdrawal, or other authenticated operations. <br>
-Mitigation: Require explicit confirmation before delete, withdrawal, video-creation, or other account-changing actions. <br>
-Risk: Using the skill sends RRBD account data and video scripts to the configured backend service. <br>
-Mitigation: Use only in environments where sending those credentials, scripts, and account data to the configured RRBD backend is acceptable. <br>
+## Use Case:
 
+External RRBD users and operators use this skill to log in, inspect digital-human assets, list videos, and create RRBD videos through guided natural-language interactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zengjwmail/rrbdagent) <br>
-- [RRBD API base URL](https://rrbd20.yzidea.net/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown or plain text with optional JavaScript, Python, JSON configuration, shell commands, and API response summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform authenticated RRBD API operations and persist login details in local configuration unless changed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; package.json reports 1.0.0) <br>
+Risk: The skill targets a real RRBD admin backend and can execute authenticated account and video operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming the RRBD account, tenant, and allowed task scope; narrow invocation to explicit RRBD requests.
+
+Risk: The package stores passwords in plaintext and includes runnable scripts with hardcoded account credentials.
+
+Mitigation: Remove password persistence, delete and rotate exposed credentials, and require runtime credential entry or a secure secret store before use.
+
+Risk: Runtime history files and media URLs are included in the release.
+
+Mitigation: Exclude runtime memory/history files from packaged releases and treat shipped media URLs as already disclosed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zengjwmail/skills/rrbdagent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and console text with generated API results, setup guidance, and runnable JavaScript or Python command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call authenticated RRBD APIs and return video URLs or status information.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

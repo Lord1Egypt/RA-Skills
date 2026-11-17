@@ -1,40 +1,53 @@
-## Description: <br>
-Creates and edits Feishu cloud Docx documents through Feishu APIs, including document creation, text appending, Markdown import, file upload, and block updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Docx helps an agent create and edit Feishu cloud Docx documents through API workflows for document creation, content insertion, batch block updates, Markdown import, and file cleanup.
 
-## Publisher: <br>
-[cpjhy](https://clawhub.ai/user/cpjhy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cpjhy](https://clawhub.ai/user/cpjhy)
 
-## Use Case: <br>
-Developers and automation users use this skill to create or update Feishu Docx documents from agent workflows, including importing local Markdown content into Feishu cloud documents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports hardcoded Feishu credentials in the skill artifact. <br>
-Mitigation: Do not use or copy embedded credentials; replace them with credentials you control and rotate or revoke any exposed secrets. <br>
-Risk: The security scan reports scripts that can upload local files and change Feishu Drive content. <br>
-Mitigation: Review scripts before execution and require explicit confirmation for local file uploads, Feishu document creation or import, and deletion. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Feishu Docx API Reference](references/api_reference.md) <br>
-- [ClawHub Feishu Docx release page](https://clawhub.ai/cpjhy/feishu-docx) <br>
+## Use Case:
 
+Developers and operators use this skill to automate Feishu Docx creation and editing from agent workflows, including creating documents, appending content, importing Markdown, and managing uploaded files.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline Python and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Feishu document IDs, file tokens, import task status, and Feishu document URLs when scripts are run with valid credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security review reports bundled live-looking Feishu credentials.
+
+Mitigation: Do not use the bundled credentials; revoke and replace them with credentials stored securely outside the skill.
+
+Risk: The security review reports tenant-specific scripts that upload local content to a fixed Feishu destination without clear user control.
+
+Mitigation: Remove or ignore tenant-specific scripts unless the exact local file and Feishu folder are intended, and verify every remote create, upload, import, or delete operation before execution.
+
+## Reference(s):
+
+- [Feishu Docx API Reference](references/api_reference.md)
+- [ClawHub Feishu Docx skill page](https://clawhub.ai/cpjhy/skills/feishu-docx)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python code and shell-oriented execution steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or modify remote Feishu documents and uploaded files when executed with valid credentials.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

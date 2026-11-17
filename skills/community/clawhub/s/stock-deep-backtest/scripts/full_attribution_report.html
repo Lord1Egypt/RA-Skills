@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>均线金叉 · 回测归因分析报告</title>
+<style>
+  :root { --bg:#f5f6fa; --card:#fff; --ink:#1a2233; --mut:#8a94a6; --line:#e6e9f0;
+           --pos:#d93026; --neg:#0f9d58; --acc:#3b6ef5; --warn:#f5a623; --sec:#6a4bf5; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--ink); line-height:1.6; }
+  .wrap { max-width:1060px; margin:0 auto; padding:28px 20px 60px; }
+  header { margin-bottom:16px; }
+  h1 { font-size:24px; font-weight:700; }
+  .sub { color:var(--mut); font-size:13.5px; margin-top:6px; }
+  .disclaimer { background:#fff8ec; border:1px solid #f3dfb0; border-left:4px solid var(--warn);
+                border-radius:10px; padding:12px 16px; font-size:12.5px; color:#7a5c1e; margin-bottom:22px; }
+  .disclaimer b { color:#8a6a00; }
+  .section-head { display:flex; align-items:center; gap:10px; margin:28px 0 16px; }
+  .section-head .badge { background:var(--sec); color:#fff; font-size:12px; font-weight:700;
+                padding:4px 12px; border-radius:16px; }
+  .section-head h2 { font-size:19px; }
+  .banner { background:linear-gradient(135deg,#3b6ef5,#6a4bf5); color:#fff; border-radius:12px; padding:14px 20px; margin:0 0 20px; font-size:13.5px; }
+  .banner b { font-size:15px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:20px 22px; margin-bottom:20px; }
+  .card h3 { font-size:15px; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid var(--line); }
+  .kpi-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; }
+  .kpi { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 10px; text-align:center; }
+  .kpi-v { font-size:20px; font-weight:700; color:var(--acc); }
+  .kpi-l { font-size:12px; color:var(--mut); margin-top:2px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th,td { padding:8px 10px; text-align:right; border-bottom:1px solid var(--line); }
+  th { background:#f0f3fa; font-weight:600; font-size:12px; color:var(--mut); }
+  td:first-child, td:nth-child(2), th:first-child, th:nth-child(2) { text-align:left; }
+  td.k { color:var(--mut); width:40%; }
+  .pos { color:var(--pos); font-weight:600; }
+  .neg { color:var(--neg); font-weight:600; }
+  .muted { color:var(--mut); }
+  .tag { font-size:11px; padding:1px 7px; border-radius:10px; margin-left:6px; }
+  .tag.warn { background:#fef3e0; color:var(--warn); }
+  .note { font-size:12.5px; color:var(--mut); background:#f8f9fc; border-left:3px solid var(--acc); padding:10px 14px; border-radius:0 8px 8px 0; margin-top:12px; }
+  .note b { color:var(--ink); }
+  .qrow { display:flex; align-items:center; gap:10px; margin:5px 0; font-size:12.5px; }
+  .qlab { width:64px; color:var(--mut); }
+  .qbar { flex:1; height:16px; background:#eef1f8; border-radius:8px; overflow:hidden; }
+  .qfill { height:100%; background:linear-gradient(90deg,#3b6ef5,#6a4bf5); border-radius:8px; }
+  .qval { width:56px; text-align:right; font-weight:600; }
+  .concl { background:linear-gradient(135deg,#fff,#f0f4ff); border:1px solid #d7e0ff; border-radius:12px; padding:18px 22px; margin-top:4px; }
+  .concl h3 { font-size:15px; color:var(--acc); margin-bottom:10px; }
+  .concl ul { padding-left:20px; font-size:13.5px; }
+  .concl li { margin:6px 0; }
+  .footer { text-align:center; color:var(--mut); font-size:12px; margin-top:26px; }
+  @media (max-width:720px) { .kpi-grid { grid-template-columns:repeat(3,1fr); } }
+</style></head><body><div class="wrap">
+
+<header>
+  <h1>📊 均线金叉 MA(5,20) · 回测归因分析报告</h1>
+  <div class="sub">2024-08-29 → 2026-08-07 · 5,590 只股票 · backtest-attribution 技能</div>
+</header>
+
+<div class="disclaimer">⚠️ <b>免责声明：</b>本报告由 AI 使用 QuantAll（全A解析）量化分析工具生成。分析流程基于脚本自动化与统计推断，难免存在片面性、假设偏差与样本内局限（含停牌处理、参数敏感性、时段效应等未完全覆盖项）。本报告<b>仅供参考，不构成任何投资建议</b>。据此操作，风险自担。</div>
+
+<div class="banner">🎯 <b>核心问题：</b>买入点那一刻的因子值/入场前行情特征，能否筛选出更优质的持仓片段、改善收益？<br>
+<span style="opacity:.85">基线：金叉片段平均收益仅 <b>1.38%</b>（中位 -2.09%，胜率 34.8%）——趋势策略典型的长尾分布：多数片段小亏、少数大赢。</span></div>
+
+<!-- ==================== A. 基础分析 ==================== -->
+<div class="section-head"><span class="badge">A</span><h2>基础分析：策略本身表现如何</h2></div>
+
+<div class="card">
+  <h3>A1 · summary 成绩单（strategy_backtest · 逐笔截面口径）</h3>
+  <table><tr><td class='k'>盈利比率</td><td class=''>53.27%</td></tr><tr><td class='k'>跑赢基准</td><td class=''>51.72%</td></tr><tr><td class='k'>全局持仓比</td><td class=''>48.12%</td></tr><tr><td class='k'>年化均值</td><td class=''>+9.99%</td></tr><tr><td class='k'>年化中位</td><td class=''>+2.01%</td></tr><tr><td class='k'>夏普均值</td><td class=''>0.231</td></tr><tr><td class='k'>胜率均值</td><td class=''>45.27%</td></tr><tr><td class='k'>盈亏比</td><td class=''>1.178</td></tr><tr><td class='k'>回撤均值</td><td class=''>-35.2%</td></tr></table>
+  <div class="note">📌 逐笔口径：每只股票各自统计后取均值，<b>不是资金连续在场净值</b>（与 B 部分的连续组合口径差异大，见 A2）。</div>
+</div>
+
+<div class="card">
+  <h3>A2 · timeline 净值与择时（连续复利口径 · 更接近资金真实体验）</h3>
+  <table><tr><td class='k'>交易日</td><td>449 天</td></tr><tr><td class='k'>累计收益</td><td>+103.2%</td></tr><tr><td class='k'>年化(复利)</td><td>+48.9%</td></tr><tr><td class='k'>夏普</td><td>1.75</td></tr><tr><td class='k'>最大回撤</td><td>-15.6%</td></tr><tr><td class='k'>日胜率</td><td>59.0%</td></tr><tr><td class='k'>收益排序分位</td><td>0.499（≈0.5=无选股alpha）</td></tr><tr><td class='k'>择时检验</td><td>r≈0（不择时）</td></tr></table>
+  <table style="margin-top:12px"><tr><th>季度</th><th>年化收益</th></tr><tr><td class='muted'>2024Q3</td><td class='pos'>+43.5%</td></tr><tr><td class='muted'>2024Q4</td><td class='pos'>+66.7%</td></tr><tr><td class='muted'>2025Q1</td><td class='pos'>+29.5%</td></tr><tr><td class='muted'>2025Q2</td><td class='pos'>+66.7%</td></tr><tr><td class='muted'>2025Q3</td><td class='pos'>+85.9%</td></tr><tr><td class='muted'>2025Q4</td><td class='pos'>+18.0%</td></tr><tr><td class='muted'>2026Q1</td><td class='pos'>+16.4%</td></tr><tr><td class='muted'>2026Q2</td><td class='pos'>+47.6%</td></tr><tr><td class='muted'>2026Q3</td><td class='neg'>-12.4%</td></tr></table>
+  <div class="note">📌 连续复利年化 <b>+48.9%</b> vs summary 逐笔年化均值 <b>+9.99%</b>——两口径差异巨大（D7 口径敏感性）；<b>收益排序分位 0.499≈0.5</b> = 持仓股当日收益在全市场中位附近，<b>无选股 alpha，纯 beta/暴露驱动</b>；择时检验 r≈0 = 不择时，靠持续持仓暴露。</div>
+</div>
+
+<div class="card">
+  <h3>A3 · detail 个股横截面归因（D8）</h3>
+  <table><tr><td class='k'>波动率vol60相关</td><td>spearman +0.383（最强暴露→高波动赚更多）</td></tr><tr><td class='k'>起始市值相关</td><td>spearman -0.104（弱小盘）</td></tr><tr><td class='k'>行业均值</td><td>半导体 +87% / 机械基件 +69% 最好；百货 -15% / 食品 -10% 最差</td></tr><tr><td class='k'>极端股</td><td>Top1% 集中半导体/元器件；Bot1% 区域地产/乳制品且回撤更深</td></tr></table>
+  <div class="note">📌 因子暴露：<b>波动率 vol60 最强（spearman +0.383）</b>→ 金叉在高波动股上赚更多；行业上制造/科技强、消费/金融弱（与 B 部分片段筛选结论一致）。</div>
+</div>
+
+<!-- ==================== B. 因子筛选改善 ==================== -->
+<div class="section-head"><span class="badge">B</span><h2>因子筛选改善：叠加前期分析或其它因子能否提升收益</h2></div>
+
+
+<div class="kpi-grid">
+  <div class="kpi"><div class="kpi-v">5,590</div><div class="kpi-l">股票数</div></div>
+  <div class="kpi"><div class="kpi-v">69,436</div><div class="kpi-l">持仓片段</div></div>
+  <div class="kpi"><div class="kpi-v">1.38%</div><div class="kpi-l">全局片段收益</div></div>
+  <div class="kpi"><div class="kpi-v">34.8%</div><div class="kpi-l">片段胜率</div></div>
+  <div class="kpi"><div class="kpi-v">48</div><div class="kpi-l">评估因子</div></div>
+  <div class="kpi"><div class="kpi-v">92%</div><div class="kpi-l">方向与IR一致</div></div>
+</div>
+
+<div class="card">
+  <h3>B1 · 单因子筛选改善（每日截面排名 vs 全局排名 双口径）</h3>
+  <table>
+    <tr><th>#</th><th>因子</th><th>IR</th><th>最优30%片段收益</th><th>截面排名改善</th><th>全局排名改善</th><th>时间分布(均/最大)</th><th>样本</th></tr>
+    <tr>
+      <td class="muted">1</td><td><b>GTJA_Alpha74</b></td>
+      <td>-0.62</td>
+      <td class="pos">2.04%</td>
+      <td class="pos">+0.66pp</td>
+      <td class="pos">+0.71pp</td>
+      <td>29.7% / 29.8%</td>
+      <td class="muted">63,841</td></tr><tr>
+      <td class="muted">2</td><td><b>GTJA_Alpha70</b></td>
+      <td>-0.64</td>
+      <td class="pos">2.01%</td>
+      <td class="pos">+0.63pp</td>
+      <td class="pos">+1.25pp</td>
+      <td>29.7% / 29.9%</td>
+      <td class="muted">69,436</td> <span class="tag warn">时段虚增</span></tr><tr>
+      <td class="muted">3</td><td><b>GTJA_Alpha64</b></td>
+      <td>+0.69</td>
+      <td class="pos">1.95%</td>
+      <td class="pos">+0.58pp</td>
+      <td class="pos">+0.77pp</td>
+      <td>30.4% / 30.9%</td>
+      <td class="muted">61,326</td></tr><tr>
+      <td class="muted">4</td><td><b>Alpha#44</b></td>
+      <td>+0.86</td>
+      <td class="pos">1.90%</td>
+      <td class="pos">+0.53pp</td>
+      <td class="pos">+0.78pp</td>
+      <td>30.4% / 30.8%</td>
+      <td class="muted">69,435</td></tr><tr>
+      <td class="muted">5</td><td><b>GTJA_Alpha132</b></td>
+      <td>-0.43</td>
+      <td class="pos">1.86%</td>
+      <td class="pos">+0.48pp</td>
+      <td class="pos">+1.29pp</td>
+      <td>29.7% / 29.9%</td>
+      <td class="muted">69,436</td> <span class="tag warn">时段虚增</span></tr><tr>
+      <td class="muted">6</td><td><b>ANOM_SKEW</b></td>
+      <td>-0.55</td>
+      <td class="pos">1.84%</td>
+      <td class="pos">+0.47pp</td>
+      <td class="pos">+1.73pp</td>
+      <td>29.7% / 29.8%</td>
+      <td class="muted">65,516</td> <span class="tag warn">时段虚增</span></tr><tr>
+      <td class="muted">7</td><td><b>GTJA_Alpha179</b></td>
+      <td>-0.66</td>
+      <td class="pos">1.83%</td>
+      <td class="pos">+0.45pp</td>
+      <td class="pos">+0.46pp</td>
+      <td>29.7% / 29.8%</td>
+      <td class="muted">65,504</td></tr><tr>
+      <td class="muted">8</td><td><b>GTJA_Alpha130</b></td>
+      <td>+0.44</td>
+      <td class="pos">1.82%</td>
+      <td class="pos">+0.45pp</td>
+      <td class="pos">+0.48pp</td>
+      <td>30.4% / 30.9%</td>
+      <td class="muted">66,011</td></tr><tr>
+      <td class="muted">9</td><td><b>WQ_RANK_CORR_OV</b></td>
+      <td>+0.63</td>
+      <td class="pos">1.77%</td>
+      <td class="pos">+0.40pp</td>
+      <td class="pos">+0.56pp</td>
+      <td>30.4% / 30.8%</td>
+      <td class="muted">69,423</td></tr><tr>
+      <td class="muted">10</td><td><b>WVMA20</b></td>
+      <td>-0.55</td>
+      <td class="pos">1.72%</td>
+      <td class="pos">+0.35pp</td>
+      <td class="pos">+0.01pp</td>
+      <td>29.7% / 29.9%</td>
+      <td class="muted">69,436</td></tr><tr>
+      <td class="muted">11</td><td><b>CORR10</b></td>
+      <td>-0.75</td>
+      <td class="pos">1.71%</td>
+      <td class="pos">+0.34pp</td>
+      <td class="pos">+0.56pp</td>
+      <td>29.7% / 29.9%</td>
+      <td class="muted">69,436</td></tr><tr>
+      <td class="muted">12</td><td><b>Alpha#26</b></td>
+      <td>+0.66</td>
+      <td class="pos">1.71%</td>
+      <td class="pos">+0.34pp</td>
+      <td class="pos">+0.43pp</td>
+      <td>30.4% / 30.8%</td>
+      <td class="muted">67,066</td></tr><tr>
+      <td class="muted">13</td><td><b>CORD5</b></td>
+      <td>-0.55</td>
+      <td class="pos">1.71%</td>
+      <td class="pos">+0.33pp</td>
+      <td class="pos">+0.09pp</td>
+      <td>29.7% / 29.9%</td>
+      <td class="muted">69,436</td></tr><tr>
+      <td class="muted">14</td><td><b>QTLD20</b></td>
+      <td>+0.45</td>
+      <td class="pos">1.71%</td>
+      <td class="pos">+0.33pp</td>
+      <td class="neg">-0.28pp</td>
+      <td>29.7% / 29.9%</td>
+      <td class="muted">69,436</td> <span class="tag warn">时段虚增</span></tr><tr>
+      <td class="muted">15</td><td><b>GTJA_Alpha1</b></td>
+      <td>+0.55</td>
+      <td class="pos">1.68%</td>
+      <td class="pos">+0.30pp</td>
+      <td class="pos">+0.48pp</td>
+      <td>30.4% / 30.8%</td>
+      <td class="muted">69,436</td></tr>
+  </table>
+  <div class="note">📌 <b>排名口径说明：</b><b>截面排名</b>=按买入日分组 rank（同日内比较、排除大盘水平，结论可外推）；<b>全局排名</b>=跨全部买点 rank（含牛市时段效应）。两者差异大者标"时段虚增"。修正后无因子改善超 +0.7pp——单因子对买点质量的独立区分力有限；<b>时间分布</b>均值≈30%、最大≤31% = 筛选在时间上均匀，无聚集（截面排名的正确性佐证）。</div>
+</div>
+
+<div class="card">
+  <h3>B2 · 双因子 intersect 组合（各自最优方向前 30% 交集）</h3>
+  <table>
+    <tr><th>#</th><th>组合</th><th>改善</th><th>样本</th></tr>
+    <tr><td class="muted">1</td><td><b>GTJA_Alpha64</b> ∩ <b>GTJA_Alpha132</b></td>
+      <td class="pos">+1.25pp</td><td class="muted">6,589</td></tr><tr><td class="muted">2</td><td><b>GTJA_Alpha132</b> ∩ <b>ANOM_SKEW</b></td>
+      <td class="pos">+1.20pp</td><td class="muted">8,056</td></tr><tr><td class="muted">3</td><td><b>GTJA_Alpha70</b> ∩ <b>GTJA_Alpha64</b></td>
+      <td class="pos">+1.17pp</td><td class="muted">7,714</td></tr><tr><td class="muted">4</td><td><b>Alpha#44</b> ∩ <b>GTJA_Alpha132</b></td>
+      <td class="pos">+1.10pp</td><td class="muted">7,614</td></tr><tr><td class="muted">5</td><td><b>GTJA_Alpha70</b> ∩ <b>ANOM_SKEW</b></td>
+      <td class="pos">+1.04pp</td><td class="muted">8,582</td></tr><tr><td class="muted">6</td><td><b>GTJA_Alpha74</b> ∩ <b>GTJA_Alpha179</b></td>
+      <td class="pos">+0.96pp</td><td class="muted">7,937</td></tr><tr><td class="muted">7</td><td><b>GTJA_Alpha74</b> ∩ <b>GTJA_Alpha132</b></td>
+      <td class="pos">+0.94pp</td><td class="muted">6,525</td></tr><tr><td class="muted">8</td><td><b>GTJA_Alpha64</b> ∩ <b>Alpha#44</b></td>
+      <td class="pos">+0.93pp</td><td class="muted">9,330</td></tr><tr><td class="muted">9</td><td><b>GTJA_Alpha64</b> ∩ <b>ANOM_SKEW</b></td>
+      <td class="pos">+0.91pp</td><td class="muted">6,393</td></tr><tr><td class="muted">10</td><td><b>GTJA_Alpha70</b> ∩ <b>Alpha#44</b></td>
+      <td class="pos">+0.91pp</td><td class="muted">10,355</td></tr><tr><td class="muted">11</td><td><b>GTJA_Alpha70</b> ∩ <b>GTJA_Alpha179</b></td>
+      <td class="pos">+0.90pp</td><td class="muted">7,842</td></tr><tr><td class="muted">12</td><td><b>GTJA_Alpha132</b> ∩ <b>GTJA_Alpha179</b></td>
+      <td class="pos">+0.90pp</td><td class="muted">6,347</td></tr>
+  </table>
+  <div class="note">📌 组合叠加有效：双因子最优 <b>+1.25pp</b> &gt; 单因子最优 +0.66pp，但增量收窄（因子间信息重叠）。</div>
+</div>
+
+<div class="card">
+  <h3>B3 · 多因子贪心叠加（逐步追加，前 30% 交集）</h3>
+  <table>
+    <tr><th>步</th><th>追加因子</th><th>本步增量</th><th>累计改善</th></tr>
+    <tr><td class="muted">1</td><td><b>GTJA_Alpha74</b></td>
+      <td class="pos">+0.66pp</td><td class="pos"><b>+0.66pp</b></td></tr><tr><td class="muted">2</td><td><b>GTJA_Alpha179</b></td>
+      <td class="pos">+0.30pp</td><td class="pos"><b>+0.96pp</b></td></tr><tr><td class="muted">3</td><td><b>GTJA_Alpha70</b></td>
+      <td class="pos">+0.29pp</td><td class="pos"><b>+1.25pp</b></td></tr><tr><td class="muted">4</td><td><b>Alpha#44</b></td>
+      <td class="pos">+0.09pp</td><td class="pos"><b>+1.34pp</b></td></tr><tr><td class="muted">5</td><td><b>GTJA_Alpha64</b></td>
+      <td class="pos">+0.18pp</td><td class="pos"><b>+1.53pp</b></td></tr>
+  </table>
+  <div class="note">📌 5 因子组合累计改善 <b>+1.53pp</b>（片段收益 2.90%）。⚠️ 每步交集筛掉约 2/3 样本，且贪心基于全样本选择——<b>存在样本内过拟合风险</b>，需样本外/MCP 引擎验证。</div>
+</div>
+
+<div class="card">
+  <h3>B4 · 时间分布：买点季度分布（全样本）</h3>
+  <div class="qrow"><span class="qlab">2024Q3</span><div class="qbar"><div class="qfill" style="width:4%"></div></div><span class="qval">0.6%</span></div><div class="qrow"><span class="qlab">2024Q4</span><div class="qbar"><div class="qfill" style="width:62%"></div></div><span class="qval">10.1%</span></div><div class="qrow"><span class="qlab">2025Q1</span><div class="qbar"><div class="qfill" style="width:86%"></div></div><span class="qval">14.0%</span></div><div class="qrow"><span class="qlab">2025Q2</span><div class="qbar"><div class="qfill" style="width:100%"></div></div><span class="qval">16.4%</span></div><div class="qrow"><span class="qlab">2025Q3</span><div class="qbar"><div class="qfill" style="width:89%"></div></div><span class="qval">14.5%</span></div><div class="qrow"><span class="qlab">2025Q4</span><div class="qbar"><div class="qfill" style="width:100%"></div></div><span class="qval">16.3%</span></div><div class="qrow"><span class="qlab">2026Q1</span><div class="qbar"><div class="qfill" style="width:71%"></div></div><span class="qval">11.7%</span></div><div class="qrow"><span class="qlab">2026Q2</span><div class="qbar"><div class="qfill" style="width:85%"></div></div><span class="qval">13.9%</span></div><div class="qrow"><span class="qlab">2026Q3</span><div class="qbar"><div class="qfill" style="width:16%"></div></div><span class="qval">2.6%</span></div>
+  <div class="note">📌 买点在各季度分布相对均匀（2024Q4~2026Q2 各约 10~16%）。时间聚集是市场客观现象：全局排名的改善里含时段效应，不适合直接做未来交易参考；但它定量揭示了因子盈利对市场环境的依赖，可用于 regime 识别与择时参考。</div>
+</div>
+
+<div class="concl">
+  <h3>📝 综合结论</h3>
+  <ul>
+    <li><b>A（基础）</b>：金叉 = 高 beta 趋势策略，连续复利年化 +48.9% 但无选股 alpha（排序分位 0.5）、不择时、收益靠单边市冲量（2025Q3 +85.9% 最强）。</li>
+    <li><b>B（改善）</b>：单因子筛选改善有限（最好 +0.66pp）；组合叠加有效——双因子 +1.25pp、贪心 5 因子 <b>+1.53pp</b>（片段收益 1.38% → 2.91%）。</li>
+    <li><b>口径警示</b>：全局排名改善（最高 +1.73pp）含时段效应，<b>不可直接用于未来交易过滤</b>；时间聚集本身是客观现象，可作 regime 参考但需正确解读。</li>
+    <li><b>风险提示</b>：矩阵算法无法避免停牌（片段中途停牌会被 bfill 拆分）；严谨验证请走全A解析 MCP（引擎自动处理停牌）。</li>
+    <li><b>免责</b>：以上分析仅供研究参考，不构成投资建议。</li>
+  </ul>
+</div>
+
+<div class="footer">backtest-attribution 技能 · run_full_attribution.py + make_report_html.py · 生成于 2026-08-28</div>
+</div></body></html>

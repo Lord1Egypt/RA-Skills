@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "skill-b-pre-brief",
-  "version": "1.0.1",
-  "publishedAt": 1776578383277
+  "name": "skill-b-pre-brief",
+  "version": "1.0.0",
+  "description": "会议全流程自动化 Skill-B：cron 每15分钟触发，扫描待发简报会议，协调 gitea-routine-report + imap-smtp-email 完成会前简报闭环",
+  "author": "mayidan"
 }

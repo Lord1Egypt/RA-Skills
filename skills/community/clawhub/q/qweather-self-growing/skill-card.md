@@ -1,48 +1,58 @@
-## Description: <br>
-Global weather queries powered by QWeather, with real-time weather, multi-day forecasts, trip-friendly summaries, and controlled expansion along official API documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global weather queries powered by QWeather, including real-time weather, multi-day forecasts, and trip-friendly summaries.
 
-## Publisher: <br>
-[gnixner](https://clawhub.ai/user/gnixner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gnixner](https://clawhub.ai/user/gnixner)
 
-## Use Case: <br>
-External users and developers use this skill to query QWeather for current weather, 3-day or 7-day forecasts, and travel-oriented weather summaries. It also guides controlled extensions when a requested QWeather capability is supported by official documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run setup scripts and handle local QWeather credential configuration. <br>
-Mitigation: Require the agent to show exact commands and file paths before setup, use a dedicated QWeather credential, keep local/ and key files out of version control, and store the private key with restrictive permissions. <br>
-Risk: The self-growing workflow can update skill instructions or behavior after consulting documentation. <br>
-Mitigation: Review any proposed SKILL.md or script changes before accepting them, then rerun the bundled setup and smoke tests. <br>
-Risk: Weather results depend on external QWeather APIs, local city data, and cached JWT state. <br>
-Mitigation: Treat forecasts as time-sensitive, rerun queries before travel decisions, and refresh initialization data when city resolution or API connectivity fails. <br>
+## Use Case:
 
+External users and developers use this skill to configure QWeather access, resolve city inputs, and query current weather or 3-day and 7-day forecasts for readable weather and trip summaries.
 
-## Reference(s): <br>
-- [QWeather API Documentation](https://dev.qweather.com/docs/api/) <br>
-- [QWeather Authentication Documentation](https://dev.qweather.com/docs/configuration/authentication/) <br>
-- [QWeather GeoAPI Documentation](https://dev.qweather.com/docs/api/geoapi/) <br>
-- [QWeather Console](https://console.qweather.com) <br>
-- [LocationList](https://github.com/qwd/LocationList) <br>
-- [Setup Reference](references/setup.md) <br>
-- [Publish Reference](references/publish.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON weather output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can present brief, trip-oriented, or raw JSON weather results; setup writes local credential configuration and cache files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles QWeather API credentials and can create or cache bearer tokens in local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an API host copied from the official QWeather console, keep the private key and local directory owner-readable only, and do not commit local files.
+
+Risk: Setup, tests, city lookup fallbacks, and weather queries make network requests and create local state.
+
+Mitigation: Review the skill before installing, run initialization and tests in an appropriate environment, and expect local configuration, cache, and city data files to be created.
+
+## Reference(s):
+
+- [QWeather API documentation](https://dev.qweather.com/docs/api/)
+- [QWeather authentication documentation](https://dev.qweather.com/docs/configuration/authentication/)
+- [QWeather GeoAPI documentation](https://dev.qweather.com/docs/api/geoapi/)
+- [QWeather console](https://console.qweather.com)
+- [LocationList](https://github.com/qwd/LocationList)
+- [setup.md](references/setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON weather payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied QWeather credentials, a local private key path, and network access to QWeather APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

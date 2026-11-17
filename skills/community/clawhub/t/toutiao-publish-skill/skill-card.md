@@ -1,43 +1,64 @@
-## Description: <br>
-Automates Toutiao article publishing by generating an article from user-provided keywords, then guiding login, title and body entry, cover upload, and final publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Toutiao Publish.Skill helps an agent generate an article from user-provided keywords, log in to Toutiao, fill in the title and body, upload a cover image, and publish the article.
 
-## Publisher: <br>
-[liuxucai](https://clawhub.ai/user/liuxucai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuxucai](https://clawhub.ai/user/liuxucai)
 
-## Use Case: <br>
-Content creators or agents managing a Toutiao account use this skill to draft an article from keywords, upload a cover image, and publish it through the Toutiao creator console after reviewing the content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can log into a Toutiao account and publish public content without strong consent boundaries. <br>
-Mitigation: Run it only in a supervised session and require explicit final confirmation before any post is published. <br>
-Risk: Account credentials and authenticated browser sessions are involved in the publishing workflow. <br>
-Mitigation: Provide credentials only when needed, avoid storing them in skill files or logs, and verify the login page before entering them. <br>
-Risk: Generated article text or cover prompts may be inaccurate, unsuitable, or sensitive for third-party image generation. <br>
-Mitigation: Review the generated article and cover image before publishing, and avoid sending sensitive topics to third-party image generation services. <br>
+## Use Case:
 
+Content operators and agents use this skill to create and publish Toutiao articles from keyword prompts, including account login, article drafting, cover upload, publish confirmation, and success checks.
 
-## Reference(s): <br>
-- [Detailed Toutiao publishing rules](references/detailed-rules.md) <br>
-- [ClawHub release page](https://clawhub.ai/liuxucai/toutiao-publish-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local cover image files and issue browser automation commands during a supervised publishing session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version) <br>
+Risk: The skill can operate a logged-in Toutiao account and publish live public content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual preview and explicit user confirmation before any final publish action.
+
+Risk: The workflow involves phone and password login steps for a real account.
+
+Mitigation: Avoid exposing credentials in chat, logs, screenshots, or reusable scripts; prefer secure session handling where available.
+
+Risk: Cover image prompts are sent to an external image generation service and downloaded locally.
+
+Mitigation: Review prompts and generated images before upload, and avoid sending sensitive or private content to the external service.
+
+Risk: Local puppeteer scripts can interact with a shared browser session through CDP.
+
+Mitigation: Review scripts before execution and run them only in the intended browser profile and workspace.
+
+## Reference(s):
+
+- [Toutiao Publish.Skill ClawHub Page](https://clawhub.ai/liuxucai/skills/toutiao-publish-skill)
+- [Detailed Toutiao Publishing Rules](references/detailed-rules.md)
+- [Toutiao Publishing Page](https://mp.toutiao.com/profile_v4/graphic/publish)
+- [Pollinations Image Generation Endpoint](https://image.pollinations.ai/prompt/{prompt}?width=800&height=600&nologo=true)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline JavaScript and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce article title and body text, browser automation snippets, local script commands, and publication verification guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

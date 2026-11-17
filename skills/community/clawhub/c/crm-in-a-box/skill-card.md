@@ -1,43 +1,50 @@
-## Description: <br>
-Bootstrap and manage an open, file-based CRM using the CRM-in-a-Box protocol for contacts, pipeline, and interactions as NDJSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstrap and manage an open, file-based CRM using the CRM-in-a-Box protocol for contacts, pipeline records, and interactions as NDJSON.
 
-## Publisher: <br>
-[taylorhou](https://clawhub.ai/user/taylorhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-BSL 1.1 <br>
+## Publisher:
 
+[taylorhou](https://clawhub.ai/user/taylorhou)
 
-## Use Case: <br>
-Employees, external operators, and developers use this skill to bootstrap and maintain a local file-based CRM, including contacts, deal stages, and interaction logs without a SaaS dependency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+BSL 1.1
 
-## Known Risks and Mitigations: <br>
-Risk: CRM files may contain sensitive contact, pipeline, and interaction data. <br>
-Mitigation: Install and run the skill only in CRM workspaces the agent is allowed to inspect and modify, and avoid storing secrets in CRM files. <br>
-Risk: Agent actions can append or modify local CRM records. <br>
-Mitigation: Use least-privilege repository access and review write or action steps before they run. <br>
-Risk: Adapting shell search examples with untrusted input can create quoting issues. <br>
-Mitigation: Quote search terms and other user-provided values safely when adapting shell commands. <br>
+## Use Case:
 
+Developers, operators, and sales teams use this skill to bootstrap a local CRM, log contacts and leads, track pipeline stages, and record customer interactions without relying on a SaaS CRM.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taylorhou/crm-in-a-box) <br>
-- [biz-in-a-box protocol family](https://biz-in-a-box.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON, YAML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for local CRM files such as contacts.ndjson, pipeline.ndjson, interactions.ndjson, and config.yaml.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: CRM records can contain sensitive customer, contact, sales, and interaction data in plaintext append-only files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep CRM directories private, use restrictive filesystem permissions and encrypted storage or backups, and define correction, redaction, and deletion handling before use.
+
+## Reference(s):
+
+- [biz-in-a-box protocol family](https://biz-in-a-box.org)
+- [CRM-in-a-Box project link from artifact](https://github.com/taylorhou/crm-in-a-box)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, YAML, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to create or append local NDJSON CRM records and customize config.yaml.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

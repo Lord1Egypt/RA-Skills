@@ -2,7 +2,7 @@
 name: project-planning
 description: |
   Converts a specification into a phased, dependency-ordered implementation plan. Use after specification is complete and before execution begins
-version: 1.9.8
+version: 1.10.3
 triggers:
   - planning
   - architecture
@@ -14,12 +14,12 @@ source: claude-night-market
 source_plugin: attune
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 ## Delegation
 
-For detailed task planning workflows, this skill delegates to `spec-kit:task-planning` as the canonical implementation. Use this skill for quick planning needs; use spec-kit for comprehensive project plans.
+For detailed task planning workflows, this skill delegates to `spec-kit:task-planning` as the canonical implementation. Use this skill for quick planning needs and spec-kit for thorough project plans.
 
 ## When To Use
 
@@ -27,7 +27,7 @@ For detailed task planning workflows, this skill delegates to `spec-kit:task-pla
 - Need to design system architecture
 - Need task breakdown for implementation
 - Planning sprints and resource allocation
-- Converting requirements into actionable tasks
+- Converting requirements into concrete tasks
 - Defining component interfaces and dependencies
 
 ## When NOT To Use
@@ -41,7 +41,6 @@ For detailed task planning workflows, this skill delegates to `spec-kit:task-pla
 
 **With superpowers**:
 - Uses `Skill(superpowers:writing-plans)` for structured planning
-- Applies checkpoint-based execution patterns
 - Uses dependency analysis framework
 
 **Without superpowers**:
@@ -63,6 +62,29 @@ Before completing plan:
 - ✅ Critical path identified
 - ✅ Risks assessed with mitigations
 - ✅ Sprints balanced by capacity
+- ✅ Global Constraints block copies the spec's binding rules (version
+  floors, dependency limits, exact values) verbatim for every task
+- ✅ Each task that consumes or produces something another task uses
+  names it in an Interfaces line
+- ✅ Review Focus lists up to five inputs or failure modes the spec
+  implies but no task tests, each pinned by a test in the task that
+  owns the code. An empty section means checked and found none
+- ✅ The plan records decisions, not code: signatures, test assertions
+  and commands with their passing output. A plan several times longer
+  than the spec is a code transcript. Replace bodies with signatures
+
+## Record the Tradeoff (decision journal)
+
+Planning is where architecture and scope decisions get made: the pattern
+chosen, the dependency accepted, the work deferred. Record each decision that
+had real alternatives to `docs/tradeoffs.md` (draft and confirm):
+
+- If leyline is installed, invoke `Skill(leyline:decision-journal)` and append
+  a tradeoff entry with the decision, the options weighed, and what was
+  sacrificed. Set `phase` to `plan`. Show the draft and append it on
+  confirmation.
+- Fallback (leyline absent): append to `docs/tradeoffs.md` using the in-file
+  ENTRY TEMPLATE. Assign the next `TR-NNN` id.
 
 ## Post-Completion: Workflow Continuation (REQUIRED)
 
@@ -85,7 +107,15 @@ Before completing plan:
 - `docs/implementation-plan.md` does not exist or is empty (phase failed)
 - User explicitly requests to stop after planning
 
-**Do NOT prompt the user for confirmation** — this is a lightweight checkpoint, not an interactive gate. The user can always interrupt if needed.
+**Do NOT prompt the user for confirmation**: this is a lightweight checkpoint that continues without waiting. The user can always interrupt if needed.
+
+## Exit Criteria
+
+- [ ] `docs/implementation-plan.md` exists, is non-empty, and passes Quality
+  Checks (acyclic dependencies, FRs mapped, critical path identified).
+- [ ] Architecture and scope decisions with alternatives are recorded to
+  `docs/tradeoffs.md`.
+- [ ] The execution phase is auto-invoked unless a bypass condition holds.
 
 ## Related Skills
 

@@ -1,54 +1,68 @@
-## Description: <br>
-Guides agents through integrating the AMap Android LLM Agent SDK for natural-language map and navigation interactions, including SDK setup, AI queries, result handling, AMap app linking, transport modes, logging, lifecycle management, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Android developers through integrating the AMap LLM Agent SDK for natural-language map and navigation interactions, including quick setup, AI queries, result handling, AMap app linking, transport modes, logging, lifecycle management, and troubleshooting.
 
-## Publisher: <br>
-[lbs-amap](https://clawhub.ai/user/lbs-amap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lbs-amap](https://clawhub.ai/user/lbs-amap)
 
-## Use Case: <br>
-Developers use this skill to have an agent generate Android code and configuration for AMap LLM Agent SDK integration. It helps implement natural-language navigation queries, route and POI result handling, LinkClient communication with the AMap app, transport mode switching, lifecycle cleanup, logging, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated code may start precise location updates or high-accuracy tracking without enough user consent context. <br>
-Mitigation: Require Android runtime permission checks, explicit in-app consent, and privacy-policy acknowledgement before starting location updates; limit high-accuracy updates to active navigation or user-requested map tasks. <br>
-Risk: Generated LinkClient or navigation code may change navigation, route, or authentication state based on agent output. <br>
-Mitigation: Require user confirmation before starting or stopping navigation, switching routes, changing command destination, launching authentication, or opening the AMap app download flow. <br>
-Risk: Generated logging or telemetry examples may expose prompts, routes, POIs, session IDs, or location details. <br>
-Mitigation: Redact sensitive fields, disable verbose logging in production, and only collect route, POI, prompt, session, or location data after clear user notice. <br>
-Risk: Generated dependency snippets may use SDK coordinates that need publisher verification before production use. <br>
-Mitigation: Verify the publisher and Android SDK dependency coordinates with official AMap sources before installing packages or shipping generated code. <br>
+## Use Case:
 
+External Android developers use this skill to integrate AMap's LLM Agent SDK into Android applications and generate code or guidance for SDK initialization, natural-language navigation queries, result handling, AMap app linking, lifecycle cleanup, and troubleshooting.
 
-## Reference(s): <br>
-- [Quick Start](api/quick-start.md) <br>
-- [Agent Query](api/agent-query.md) <br>
-- [Query Result Handling](api/query-result.md) <br>
-- [LinkClient and AMap App Communication](api/link-client.md) <br>
-- [Transport Mode Switching](api/transport-mode.md) <br>
-- [Logger Configuration](api/logger.md) <br>
-- [Lifecycle Management](api/lifecycle.md) <br>
-- [Core Classes](references/core-classes.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Voice Commands](references/voice-commands.md) <br>
-- [AMap Open Platform Console](https://console.amap.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Java, Gradle, XML, text prompt, and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Android dependency coordinates, SDK initialization flows, navigation and location handling, LinkClient operations, logging setup, lifecycle cleanup, and troubleshooting checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Generated integrations can collect or share location and navigation context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent and Android runtime permissions before location updates or data sharing, and call the required privacy policy APIs before SDK use.
+
+Risk: Voice or text commands can trigger navigation-changing actions or remote AMap app control.
+
+Mitigation: Keep command destinations scoped, avoid passive or global voice activation, and add user confirmations before starting or stopping navigation, switching routes, or invoking cross-app actions.
+
+Risk: Dynamic SDK dependencies and verbose logging can introduce supply-chain or sensitive-data exposure risks.
+
+Mitigation: Pin SDK versions for production builds, review generated Android code, and remove or redact production logs that may contain locations, session identifiers, route details, or error payloads.
+
+## Reference(s):
+
+- [Quick Start](artifact/api/quick-start.md)
+- [Agent Query API](artifact/api/agent-query.md)
+- [Query Result Handling](artifact/api/query-result.md)
+- [LinkClient AMap App Communication](artifact/api/link-client.md)
+- [Lifecycle Management](artifact/api/lifecycle.md)
+- [Core Classes](artifact/references/core-classes.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+- [Voice Commands](artifact/references/voice-commands.md)
+- [AMap Open Platform Console](https://console.amap.com/)
+- [Cursor Official Documentation](https://docs.cursor.com/)
+- [ClawHub Skill Page](https://clawhub.ai/lbs-amap/skills/android-llm-agent-sdk)
+- [Publisher Profile](https://clawhub.ai/user/lbs-amap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Java, Gradle, XML, shell, and text examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Android SDK integration snippets, dependency declarations, lifecycle guidance, troubleshooting steps, and navigation command examples.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "review-copywriter",
+  "workflow": "listing",
+  "focus": "full",
+  "outputTemplate": "ops_listing",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

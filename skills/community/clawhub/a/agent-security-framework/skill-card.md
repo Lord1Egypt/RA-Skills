@@ -1,42 +1,56 @@
-## Description: <br>
-Agent Security Framework for OpenClaw provides Docker containerization guidance, fake-agent detection, security scanning, and hardening guidance for AI agent deployments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Security Framework for OpenClaw provides Docker containerization, fake agent detection, security scanning, and security hardening guidance for AI agent deployments.
 
-## Publisher: <br>
-[jeffvsutherland](https://clawhub.ai/user/jeffvsutherland) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeffvsutherland](https://clawhub.ai/user/jeffvsutherland)
 
-## Use Case: <br>
-Developers and security engineers use this skill to assess and harden OpenClaw agent deployments, including container isolation, security scanning, fake-agent detection, and operational security controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes broad autonomous work-claiming, board-polling, status-posting, and persistence instructions beyond a normal security-hardening workflow. <br>
-Mitigation: Review SOUL.md before installation and remove or gate Mission Control, channel announcement, heartbeat, story-claiming, and memory-update instructions when only security scanning or hardening guidance is needed. <br>
-Risk: Some workflows may involve sensitive credentials or security controls for agent deployments. <br>
-Mitigation: Run commands in a controlled environment, avoid sharing secrets in chat or logs, and require human review before applying firewall, authentication, network egress, or deployment changes. <br>
+## Use Case:
 
+Developers and security teams use this skill to assess, harden, and operate OpenClaw agent deployments with security audit, containerization, scanning, and policy guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeffvsutherland/agent-security-framework) <br>
-- [SECURITY-HARDENING.md](artifact/SECURITY-HARDENING.md) <br>
-- [SOUL.md](artifact/SOUL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose security checks, hardening steps, container settings, and operational coordination actions for OpenClaw deployments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The included identity guidance can encourage autonomous task claiming, external script execution, status posting, and persistent memory updates without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or heavily constrain the SOUL.md workflow instructions before installation, and require explicit user approval for external actions, script execution, posting, and memory writes.
+
+Risk: The Docker Compose example is illustrative and uses unpinned container images.
+
+Mitigation: Pin image versions or digests and add normal deployment safeguards before production use.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/jeffvsutherland/skills/agent-security-framework)
+- [Skill definition](artifact/SKILL.md)
+- [Security hardening guide](artifact/SECURITY-HARDENING.md)
+- [Agent identity and operating guidance](artifact/SOUL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Security and deployment guidance should be reviewed before execution in the target environment.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

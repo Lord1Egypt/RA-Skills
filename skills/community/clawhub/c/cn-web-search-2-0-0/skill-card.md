@@ -1,39 +1,49 @@
-## Description: <br>
-Chinese web search skill that helps an agent query free public search engines for web, WeChat Official Accounts, finance, technical, academic, and knowledge content without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Web Search aggregates free Chinese and English search engines for web, WeChat Official Accounts, finance, technical, academic, and knowledge searches without requiring an API key.
 
-## Publisher: <br>
-[zhouhuihui008](https://clawhub.ai/user/zhouhuihui008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouhuihui008](https://clawhub.ai/user/zhouhuihui008)
 
-## Use Case: <br>
-External users and developers use this skill to guide agents toward public Chinese and English search providers, including WeChat, general web, technical, finance, academic, and encyclopedia sources. It is useful when a no-API-key search workflow is preferred and the user can review search terms before they are sent to third-party providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to external public search providers, creating normal search privacy exposure. <br>
-Mitigation: Avoid using the skill for passwords, secrets, private company information, sensitive personal data, or confidential queries. <br>
+## Use Case:
 
+Developers and external users use this skill to choose and invoke free search endpoints for Chinese-language, English, WeChat, technical, academic, finance, and knowledge lookup tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhouhuihui008/cn-web-search-2-0-0) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhouhuihui008) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, markdown] <br>
-**Output Format:** [Markdown guidance with URLs, web_fetch examples, and JSON API response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send user search terms to external public search providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search terms are sent to external search engines and APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, private identifiers, confidential business topics, or regulated personal data unless the relevant provider policies have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouhuihui008/skills/cn-web-search-2-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API call examples]
+
+**Output Format:** [Markdown with URL templates and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search terms are inserted into third-party search URL templates; some examples request JSON from public APIs.]
+
+## Skill Version(s):
+
+2.0.0 (source: artifact SKILL.md and _meta.json; ClawHub release metadata version 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

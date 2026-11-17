@@ -1,47 +1,61 @@
-## Description: <br>
-Find validated alternative reagents based on literature citation data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find validated alternative reagents based on literature citation data.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, lab staff, and scientific workflow developers use this skill to look up candidate substitute reagents by name, CAS number, or formula and review ranked alternatives with citation-oriented evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reagent queries and optional PubMed API credentials may be sent to external NCBI, PubChem, or chemistry data services. <br>
-Mitigation: Use only non-confidential compound names or project details unless organizational policy permits external database lookups. <br>
-Risk: Suggested substitutes depend on public literature and database availability and may be incomplete for specialized reagents. <br>
-Mitigation: Treat results as decision support and verify candidate substitutes against laboratory requirements before use. <br>
-Risk: The skill can write result files to a user-provided path. <br>
-Mitigation: Choose output paths deliberately and avoid locations that could expose sensitive reagent searches or project context. <br>
+## Use Case:
 
+Researchers, lab operations teams, and scientific developers use this skill to identify reagent substitutes from reagent names, CAS numbers, or molecular formulas and generate reviewable reports based on literature and chemical data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/reagent-substitute-scout) <br>
-- [Publisher Profile](https://clawhub.ai/user/aipoch-ai) <br>
-- [Audit Reference](references/audit-reference.md) <br>
-- [NCBI PubMed E-utilities](https://eutils.ncbi.nlm.nih.gov/entrez/eutils) <br>
-- [ChEMBL API](https://www.ebi.ac.uk/chembl/api/data) <br>
-- [PubChem PUG REST](https://pubchem.ncbi.nlm.nih.gov/rest/pug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Table, JSON, or Markdown report with ranked reagent substitutes and supporting citation fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write results to a user-selected output path; default result limit is configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and script header) <br>
+Risk: The output option can overwrite arbitrary writable files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict output to a new file inside the workspace and review paths before execution.
+
+Risk: Install dependencies are not pinned.
+
+Mitigation: Install in a dedicated virtual environment, pin versions, and audit dependencies before use.
+
+Risk: Reagent names, CAS numbers, or research programs may be sent to external PubMed or PubChem services.
+
+Mitigation: Use only with approved network egress and non-confidential inputs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/reagent-substitute-scout)
+- [Audit Reference](references/audit-reference.md)
+- [PubMed E-utilities API](https://eutils.ncbi.nlm.nih.gov/entrez/eutils)
+- [ChEMBL API](https://www.ebi.ac.uk/chembl/api/data)
+- [PubChem PUG REST API](https://pubchem.ncbi.nlm.nih.gov/rest/pug)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Table text, JSON, or Markdown reagent substitute report with optional shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write reports to a specified output path; results may depend on API availability, API keys, RDKit support, and public literature coverage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

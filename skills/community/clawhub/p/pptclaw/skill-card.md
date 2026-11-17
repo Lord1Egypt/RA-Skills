@@ -1,42 +1,58 @@
-## Description: <br>
-PPTClaw helps agents create and edit presentation decks by writing slide JSON files, validating deck structure, and using the pptclaw CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and edit presentations by writing slide JSON files directly.
 
-## Publisher: <br>
-[pptclaw](https://clawhub.ai/user/pptclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pptclaw](https://clawhub.ai/user/pptclaw)
 
-## Use Case: <br>
-Developers and presentation-building agents use this skill to create, inspect, edit, validate, and open local presentation deck folders made of manifest and slide JSON files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or running the pptclaw CLI may execute third-party package code on the local machine. <br>
-Mitigation: Confirm that the pptclaw npm package is trusted before global installation, and approve CLI commands before executing them. <br>
-Risk: Image search and download commands can contact external services and import third-party media into a deck. <br>
-Mitigation: Use image search and downloads only for approved queries and URLs, and review imported media rights and contents before relying on the deck. <br>
-Risk: Direct slide JSON edits can create malformed decks or unreadable slide layouts. <br>
-Mitigation: Run pptclaw validate on the target deck and review rendered slides before presenting or distributing the output. <br>
+## Use Case:
 
+Developers and agent users use this skill to create, edit, validate, and open presentation decks by manipulating PPTClaw deck JSON files and invoking the pptclaw CLI.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pptclaw/pptclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON, TypeScript, HTML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deck-creation and editing guidance for local files, including manifest.json, slide JSON, validation steps, and optional CLI commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks agents to install an unpinned global pptclaw package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, project-local pptclaw install before allowing the agent to run CLI commands.
+
+Risk: The skill can start a background local editor service.
+
+Mitigation: Approve server startup explicitly and stop or remove the background service when the presentation workflow is complete.
+
+Risk: The skill modifies deck files directly and can download image assets.
+
+Mitigation: Review file changes, validate the deck, and approve image downloads before they are added to project assets.
+
+## Reference(s):
+
+- [PPTClaw Skill Page](https://clawhub.ai/pptclaw/skills/pptclaw)
+- [Publisher Profile](https://clawhub.ai/user/pptclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON examples and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces deck file guidance, slide JSON structures, CLI commands, and validation steps for PPTClaw presentation workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

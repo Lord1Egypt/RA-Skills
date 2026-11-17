@@ -1,0 +1,295 @@
+{
+  "_meta": {
+    "schema": 1,
+    "note": "命名主题包:全部来自实证库板/已验收管线(dogfood 出身)。theme apply 输出完整 CSS token 集。"
+  },
+  "themes": [
+    {
+      "name": "素雅金窗",
+      "name_en": "Golden Window Suya",
+      "use_when": "医学教学页/文献解读/查房课件(浅底 daylight 清晰语域)",
+      "source": "dogfood: kd_ivig 页(已验收)/库板 Neutral Harmony Bliss 1.9万赞",
+      "colors": {
+        "bg": "#F7F4EC",
+        "surface": "#FFFFFF",
+        "ink": "#3D405B",
+        "ink2": "#5E6B7A",
+        "accent": "#8A6A1F",
+        "honey": "#F2CC8F",
+        "danger": "#B85C44",
+        "ok": "#4E7A64"
+      },
+      "fonts": {
+        "display": "'Noto Serif SC','Source Han Serif SC','Songti SC',serif",
+        "body": "-apple-system,'PingFang SC','Microsoft YaHei',sans-serif"
+      },
+      "voice": "衬线大标题+大幽灵数字+留白;蜜黄只给'窗口',陶土只给危险",
+      "signature": "金色窗口时间轴"
+    },
+    {
+      "name": "Bees&Honey",
+      "name_en": "Bees and Honey",
+      "use_when": "IEI 病种封面系列/母婴儿科内容(锁定管线勿改)",
+      "source": "dogfood: IEI 系列(用户验收),house 入库",
+      "colors": {
+        "bg": "#FAF3DD",
+        "surface": "#FDF7EE",
+        "ink": "#5E6472",
+        "ink2": "#8A93A3",
+        "accent": "#FFA69E",
+        "mist": "#AED9E0",
+        "mint": "#B8F2E6",
+        "danger": "#E07066"
+      },
+      "fonts": {
+        "display": "'ZCOOL KuaiLe','STXinwei',sans-serif",
+        "body": "-apple-system,'PingFang SC',sans-serif"
+      },
+      "voice": "珊瑚粉毛笔字+白新魏 chip;系列身份色,禁改",
+      "signature": "珊瑚药丸+标本卡"
+    },
+    {
+      "name": "GLM黄蓝",
+      "name_en": "GLM Yellow-Blue",
+      "use_when": "指南解读/教学课件(黄蓝语义:蓝=证据,黄=决策危险)",
+      "source": "dogfood: glm-deck 84 页 judge 全过,house 入库",
+      "colors": {
+        "bg": "#F7F4EC",
+        "surface": "#FFFFFF",
+        "ink": "#16283F",
+        "ink2": "#3D5570",
+        "evidence": "#70A0D0",
+        "evidenceDeep": "#2B5C8F",
+        "decision": "#D79D55",
+        "decisionDeep": "#B47B35"
+      },
+      "fonts": {
+        "display": "-apple-system,'PingFang SC',sans-serif",
+        "body": "-apple-system,'PingFang SC',sans-serif"
+      },
+      "voice": "斜纹警戒条带+蓝黄语义不可反转;≥34px 投影字号",
+      "signature": "黄蓝斜纹"
+    },
+    {
+      "name": "Olive Garden Feast",
+      "name_en": "Olive Garden Feast",
+      "use_when": "自然食材/健康生活/有机主题(97.4K 赞头部板)",
+      "source": "库板头部",
+      "colors": {
+        "bg": "#FEFAE0",
+        "surface": "#FDF6E3",
+        "ink": "#283618",
+        "ink2": "#606C38",
+        "accent": "#BC6C25",
+        "tan": "#DDA15E",
+        "danger": "#9B2226"
+      },
+      "fonts": {
+        "display": "'Noto Serif SC',serif",
+        "body": "-apple-system,'PingFang SC',sans-serif"
+      },
+      "voice": "橄榄深绿压底,焦糖点缀,暖纸衬底",
+      "signature": "橄榄×焦糖"
+    },
+    {
+      "name": "Golden Twilight",
+      "name_en": "Golden Twilight",
+      "use_when": "颁奖/庆典/高端品牌(深底金点缀;⛔需 brief 明示深色)",
+      "source": "库板 2.45万赞;尸检#1 语域教训:仅限奢华/夜场语域",
+      "colors": {
+        "bg": "#000814",
+        "surface": "#001D3D",
+        "ink": "#E8EEF6",
+        "ink2": "#93A7C0",
+        "accent": "#FFC300",
+        "goldHi": "#FFD60A",
+        "danger": "#E85560"
+      },
+      "fonts": {
+        "display": "'Playfair Display','Noto Serif SC',serif",
+        "body": "'Inter',-apple-system,sans-serif"
+      },
+      "voice": "暗海拔显式设计;金 ≤10% 只给焦点",
+      "signature": "深空金辉"
+    },
+    {
+      "name": "Light Steel",
+      "name_en": "Light Steel",
+      "use_when": "极简工具/数据面板/技术文档(灰阶纪律)",
+      "source": "库板 1.92万赞",
+      "colors": {
+        "bg": "#F8F9FA",
+        "surface": "#FFFFFF",
+        "ink": "#212529",
+        "ink2": "#6C757D",
+        "accent": "#495057",
+        "line": "#DEE2E6",
+        "danger": "#C92A2A"
+      },
+      "fonts": {
+        "display": "-apple-system,'SF Pro Text',sans-serif",
+        "body": "-apple-system,sans-serif"
+      },
+      "voice": "纯灰阶+单一强调;幽灵数字弱化到 6%",
+      "signature": "钢灰秩序"
+    },
+    {
+      "name": "Warm Autumn Glow",
+      "name_en": "Warm Autumn Glow",
+      "use_when": "秋收/暖调叙事/人文科普(4.81万赞)",
+      "source": "库板",
+      "colors": {
+        "bg": "#EAE2B7",
+        "surface": "#F3EDD8",
+        "ink": "#003049",
+        "ink2": "#45596B",
+        "accent": "#F77F00",
+        "amberDeep": "#B25A00",
+        "red": "#D62828",
+        "honey": "#FCBF49"
+      },
+      "fonts": {
+        "display": "'Noto Serif SC',serif",
+        "body": "-apple-system,'PingFang SC',sans-serif"
+      },
+      "voice": "藏青压暖纸,橙金双暖点",
+      "signature": "秋叶×藏青"
+    },
+    {
+      "name": "Coral Teal Medical",
+      "name_en": "Coral Teal Medical",
+      "use_when": "医疗封面/医学科普(珊瑚×深青互补;IEI 封面变体验收)",
+      "source": "dogfood: harmony 互补实测,OCR 质检过",
+      "colors": {
+        "bg": "#FEF6EC",
+        "surface": "#FDF9F5",
+        "ink": "#1E1918",
+        "ink2": "#5E6B7A",
+        "accent": "#06818B",
+        "coral": "#FFA69E",
+        "danger": "#C1121F"
+      },
+      "fonts": {
+        "display": "'STXinwei','Noto Serif SC',serif",
+        "body": "-apple-system,'PingFang SC',sans-serif"
+      },
+      "voice": "深青药丸+珊瑚字,互补克制",
+      "signature": "珊瑚×深青"
+    },
+    {
+      "name": "深松苍郁",
+      "name_en": "Deep Pine",
+      "use_when": "户外/木材/咖啡/环保品牌与深色编辑页;冷调苍郁 daylight 可读",
+      "source": "house: 用户点名板 Deep Pine(01161E 系,2026-10-19 入库)",
+      "colors": {
+        "bg": "#EFF6E0",
+        "surface": "#E0E6D3",
+        "ink": "#01161E",
+        "ink2": "#627881",
+        "accent": "#124559",
+        "honey": "#AEC3B0",
+        "danger": "#A65D44",
+        "ok": "#2E7D5B"
+      },
+      "fonts": {
+        "display": "'Noto Serif SC','Source Han Serif SC',Georgia,serif",
+        "body": "-apple-system,'PingFang SC','Microsoft YaHei',sans-serif"
+      },
+      "voice": "苍绿纸底+松墨标题;靛蓝只给链接与重点,鼠尾草只做辅助块",
+      "signature": "深松静边界"
+    },
+    {
+      "name": "晨雾粉彩",
+      "name_en": "Morning Pastel",
+      "use_when": "素雅耐看的落地页/作品集/女性向内容(浅底低饱 daylight)",
+      "source": "house: 用户裁决板 15(Morning Pastel,555B6E 系)",
+      "colors": {
+        "bg": "#FAF9F9",
+        "surface": "#F0EFEF",
+        "ink": "#555B6E",
+        "ink2": "#878DA0",
+        "accent": "#89B0AE",
+        "honey": "#FFD6BA",
+        "danger": "#A65D57",
+        "ok": "#4E7A64"
+      },
+      "fonts": {
+        "display": "'Noto Serif SC','Source Han Serif SC',Georgia,serif",
+        "body": "-apple-system,'PingFang SC','Microsoft YaHei',sans-serif"
+      },
+      "voice": "近白纸底+雾蓝墨阶;鼠尾草给功能强调,蜜桃只做点缀小块",
+      "signature": "雾蓝三分栏"
+    },
+    {
+      "name": "野莓甜室",
+      "name_en": "Wildberry Atelier",
+      "colors": {
+        "bg": "FFFFFF",
+        "ink": "585B56",
+        "ink2": "EA526F",
+        "accent": "E76B74",
+        "sage": "D7AF70",
+        "honey": "937D64"
+      },
+      "use_when": "法式甜品/花艺/婚礼/温暖手作品牌",
+      "voice": "温暖甜蜜而有分寸",
+      "signature": "野莓圆与焦糖弧",
+      "source": "house: 用户裁决板 15(Morning Pastel,555B6E 系)",
+      "fonts": {
+        "display": "'Noto Serif SC','Source Han Serif SC',Georgia,serif",
+        "body": "-apple-system,'PingFang SC','Microsoft YaHei',sans-serif"
+      }
+    }
+  ],
+  "register_recipes": {
+    "morandi": {
+      "name": "莫兰迪",
+      "register": "frontend_soft",
+      "strategy": "全员同族灰化,灰彩只出现在小物件;一支高饱和 accent 混入即语域崩塌",
+      "max_chroma": 0.06,
+      "lightness": [
+        0.34,
+        0.96
+      ]
+    },
+    "guofeng": {
+      "name": "国风宋韵",
+      "register": "frontend_heritage",
+      "strategy": "宣纸底+墨字+矿物彩单点:朱作印/黛作线;糖果三色平铺即促销感",
+      "max_chroma": 0.13,
+      "lightness": [
+        0.26,
+        0.96
+      ],
+      "chroma_budget": 0.05
+    },
+    "oldmoney": {
+      "name": "老钱风",
+      "register": "frontend_deep",
+      "strategy": "象牙底+海军/森绿墨,金只作 1px 线/章/首字;金做 30% 大块=夜场感",
+      "max_chroma": 0.08,
+      "lightness": [
+        0.3,
+        0.985
+      ],
+      "metal_budget": 0.03
+    },
+    "wabisabi": {
+      "name": "侘寂",
+      "register": "frontend_heritage",
+      "strategy": "三级同族表面步进承担层次(ΔL 0.03-0.06),彩声只剩苔点",
+      "max_chroma": 0.05,
+      "lightness": [
+        0.3,
+        0.89
+      ]
+    },
+    "dopamine": {
+      "name": "多巴胺",
+      "register": "frontend_bold",
+      "strategy": "安静奶油底不动摇,高饱和只给 3 个完整形状;高饱做 100% 大底=廉价糖果铺",
+      "vivid_chroma": 0.135,
+      "vivid_budget": 0.25
+    }
+  }
+}

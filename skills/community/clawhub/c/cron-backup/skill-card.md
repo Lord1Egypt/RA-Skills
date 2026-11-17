@@ -1,41 +1,57 @@
-## Description: <br>
-Set up scheduled automated backups with version tracking and cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up scheduled automated backups with version tracking, cleanup, and backup strategies for directories, configuration files, code repositories, or user data.
 
-## Publisher: <br>
-[zfanmy](https://clawhub.ai/user/zfanmy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zfanmy](https://clawhub.ai/user/zfanmy)
 
-## Use Case: <br>
-Developers, operators, and technical users use this skill to create timestamped backups, configure cron schedules, trigger backups when version sources change, and clean up older backup archives. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can install persistent cron jobs that continue running after setup. <br>
-Mitigation: Inspect the generated crontab entry after setup and install only when local cron-based backup automation is intended. <br>
-Risk: Command-string version sources and shell execution paths may run unintended commands if untrusted input is used. <br>
-Mitigation: Use trusted absolute paths and avoid command-string version sources unless the command is fully reviewed. <br>
-Risk: Cleanup operations may permanently delete old backup archives. <br>
-Mitigation: Test cleanup against a dedicated backup directory and confirm retention settings before scheduling cleanup. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cron Backup ClawHub Skill Page](https://clawhub.ai/zfanmy/cron-backup) <br>
+## Use Case:
 
+Developers and operators use this skill to create one-time, scheduled, version-aware, and retention-managed backups using shell scripts and cron.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose cron entries and local filesystem backup, cleanup, and listing commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.3.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unsafe shell and cron construction can turn user-supplied paths or version commands into persistent command execution.
+
+Mitigation: Use only trusted, simple paths and version sources; review generated cron entries before installation; avoid scheduling jobs until unsafe version checks and unquoted cron construction are fixed.
+
+Risk: Running backup or cleanup jobs with elevated privileges can increase the impact of path or command-handling mistakes.
+
+Mitigation: Run scripts as a least-privileged user and do not run them as root.
+
+Risk: Cleanup behavior permanently deletes matching backup archives according to retention settings.
+
+Mitigation: Confirm the backup directory and retention values before cleanup, and list existing backups before deleting old archives.
+
+## Reference(s):
+
+- [Cron Backup on ClawHub](https://clawhub.ai/zfanmy/skills/cron-backup)
+- [zfanmy Publisher Profile](https://clawhub.ai/user/zfanmy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and cron configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose backup, cleanup, listing, and cron setup commands for local shell execution.]
+
+## Skill Version(s):
+
+0.3.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

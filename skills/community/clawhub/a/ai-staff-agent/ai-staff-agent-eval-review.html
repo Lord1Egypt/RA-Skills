@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Staff Agent — Eval Review</title>
+<style>
+  :root {
+    --bg: #f8f7f4; --surface: #fff; --border: #e2dfd6; --text: #1a1a18;
+    --muted: #8a877e; --accent: #c95d2e; --accent-light: #fdf0ea;
+    --green: #3d7a3d; --green-bg: #eaf4ea; --red: #c33; --red-bg: #fdeaea;
+    --radius: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  .header { background: #1a1a18; color: #f8f7f4; padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+  .header h1 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
+  .header .badge { background: var(--accent); color: #fff; padding: 0.2rem 0.75rem; border-radius: 99px; font-size: 0.8rem; font-weight: 500; }
+
+  .tabs { display: flex; gap: 0; border-bottom: 2px solid var(--border); padding: 0 2rem; background: var(--surface); }
+  .tab { padding: 0.75rem 1.25rem; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; font-size: 0.9rem; color: var(--muted); font-weight: 500; transition: all 0.15s; }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .main { max-width: 1100px; margin: 0 auto; padding: 1.5rem 2rem 4rem; }
+
+  /* Eval cards */
+  .eval-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1rem; }
+  .eval-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: box-shadow 0.2s; }
+  .eval-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .eval-card.primary { border-color: var(--accent); }
+  .card-header { padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+  .card-header.primary { background: var(--accent); color: #fff; }
+  .card-header.baseline { background: #e8e6dc; color: var(--text); }
+  .card-body { padding: 1rem; max-height: 500px; overflow-y: auto; }
+  .card-body pre { white-space: pre-wrap; word-break: break-word; font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 0.82rem; line-height: 1.6; color: var(--text); }
+
+  /* Grade badges */
+  .grade-pass { display: inline-block; background: var(--green-bg); color: var(--green); padding: 0.15rem 0.5rem; border-radius: 99px; font-size: 0.75rem; font-weight: 600; }
+  .grade-fail { display: inline-block; background: var(--red-bg); color: var(--red); padding: 0.15rem 0.5rem; border-radius: 99px; font-size: 0.75rem; font-weight: 600; }
+
+  /* Assertion table */
+  .assertion-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; font-size: 0.82rem; }
+  .assertion-table th { text-align: left; padding: 0.5rem 0.75rem; background: #f4f3f0; font-weight: 600; border-bottom: 1px solid var(--border); }
+  .assertion-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #f0eeea; vertical-align: top; }
+  .assertion-table tr:last-child td { border-bottom: none; }
+
+  /* Benchmark summary */
+  .bench-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+  .bench-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; }
+  .bench-card .label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; margin-bottom: 0.5rem; }
+  .bench-card .value { font-size: 1.75rem; font-weight: 700; }
+  .bench-card .sub { font-size: 0.82rem; color: var(--muted); margin-top: 0.25rem; }
+  .delta-positive { color: var(--green); }
+  .delta-negative { color: var(--red); }
+
+  /* File tabs inside cards */
+  .file-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); padding: 0 1rem; }
+  .file-tab { padding: 0.4rem 0.75rem; cursor: pointer; font-size: 0.78rem; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .file-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .file-content { display: none; }
+  .file-content.active { display: block; }
+
+  .eval-section { margin-bottom: 2rem; }
+  .eval-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .eval-prompt { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.75rem; }
+
+  .hidden { display: none !important; }
+
+  @media (max-width: 800px) {
+    .eval-grid { grid-template-columns: 1fr; }
+    .bench-summary { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>AI Staff Agent — Eval Review</h1>
+  <span class="badge">Iteration 1</span>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showPanel('benchmark')">Benchmark</div>
+  <div class="tab" onclick="showPanel('outputs')">Outputs</div>
+</div>
+
+<div class="main">
+
+<!-- BENCHMARK PANEL -->
+<div id="panel-benchmark" class="panel">
+  <div class="bench-summary" id="bench-summary"></div>
+  <div id="bench-detail"></div>
+</div>
+
+<!-- OUTPUTS PANEL -->
+<div id="panel-outputs" class="panel hidden"></div>
+
+</div>
+
+<script>
+const RUNS = [{"id": "eval-0-code-gen", "name": "Code Generation (Next.js API Route)", "prompt": "Scaffold a Next.js App Router API route handler for POST /api/contacts with Zod validation and Prisma.", "with_skill": [{"name": "route.ts", "content": "import { NextRequest, NextResponse } from \"next/server\";\nimport { PrismaClient } from \"@prisma/client\";\nimport { z } from \"zod\";\n\n/**\n * Zod schema for contact creation.\n * All fields are required.\n */\nconst createContactSchema = z.object({\n  name: z\n    .string({ required_error: \"name is required\" })\n    .min(1, \"name must not be empty\")\n    .trim(),\n  email: z\n    .string({ required_error: \"email is required\" })\n    .email(\"email must be a valid email address\")\n    .trim(),\n  company: z\n    .string({ required_error: \"company is required\" })\n    .min(1, \"company must not be empty\")\n    .trim(),\n});\n\n/** Type inferred from the validated Zod schema. */\ntype CreateContactInput = z.infer<typeof createContactSchema>;\n\n/**\n * POST /api/contacts\n *\n * Creates a new contact in the database.\n *\n * Request body (JSON):\n *   - name: string (required)\n *   - email: string (required, must be a valid email)\n *   - company: string (required)\n *\n * Responses:\n *   201 – Contact created successfully\n *   422 – Validation error (missing/invalid fields)\n *   500 – Internal server error (e.g., database failure)\n */\nexport async function POST(request: NextRequest) {\n  // ---------------------------------------------------------------------------\n  // 1. Parse request body\n  // ---------------------------------------------------------------------------\n  let body: unknown;\n  try {\n    body = await request.json();\n  } catch {\n    return NextResponse.json(\n      { error: \"Invalid or missing JSON body\" },\n      { status: 422 },\n    );\n  }\n\n  // ---------------------------------------------------------------------------\n  // 2. Validate with Zod\n  // ---------------------------------------------------------------------------\n  const result = createContactSchema.safeParse(body);\n\n  if (!result.success) {\n    const errors = result.error.issues.map((issue) => ({\n      field: issue.path.join(\".\"),\n      message: issue.message,\n    }));\n\n    return NextResponse.json(\n      { error: \"Validation failed\", details: errors },\n      { status: 422 },\n    );\n  }\n\n  const data: CreateContactInput = result.data;\n\n  // ---------------------------------------------------------------------------\n  // 3. Persist via Prisma\n  // ---------------------------------------------------------------------------\n  try {\n    const prisma = new PrismaClient();\n    const contact = await prisma.contact.create({\n      data: {\n        name: data.name,\n        email: data.email,\n        company: data.company,\n      },\n    });\n    await prisma.$disconnect();\n\n    return NextResponse.json(contact, { status: 201 });\n  } catch (error) {\n    // Log the full error for server-side debugging\n    console.error(\"[POST /api/contacts] Database error:\", error);\n\n    // Handle unique constraint violations (e.g., duplicate email)\n    if (isPrismaUniqueConstraintError(error)) {\n      return NextResponse.json(\n        { error: \"A contact with this email already exists\" },\n        { status: 422 },\n      );\n    }\n\n    return NextResponse.json(\n      { error: \"Internal server error\" },\n      { status: 500 },\n    );\n  }\n}\n\n// ---------------------------------------------------------------------------\n// Helpers\n// ---------------------------------------------------------------------------\n\n/**\n * Type guard to detect Prisma unique-constraint violations.\n * Prisma throws a P2025 (or P2002) error code when a unique constraint fails.\n */\nfunction isPrismaUniqueConstraintError(error: unknown): boolean {\n  return (\n    typeof error === \"object\" &&\n    error !== null &&\n    \"code\" in error &&\n    (error as { code: string }).code === \"P2002\"\n  );\n}"}, {"name": "PRODUCTION-MEMO.md", "content": "Production Memo:\n- Modules activated: Code Gen (2A)\n- Files produced:\n  - app/api/contacts/route.ts (Next.js App Router POST handler with Zod validation + Prisma persistence)\n- Known limitations:\n  - PrismaClient is instantiated per-request. In production, a singleton pattern (e.g., via `lib/prisma.ts`) is recommended to avoid exhausting connection pools under load.\n  - The `Contact` Prisma model must already exist in `schema.prisma` with at least `name`, `email`, and `company` fields. No migration script is provided.\n  - No authentication/authorization middleware is included; the endpoint is open.\n- Recommended QA focus:\n  - Verify Zod error messages match the API contract (422 shape)\n  - Confirm the Prisma model field names align with the handler\n  - Review whether the per-request PrismaClient instantiation should be replaced with a singleton"}, {"name": "grading.json", "content": "{\n  \"eval_id\": \"eval-0-code-gen\",\n  \"config\": \"with_skill\",\n  \"assertions\": [\n    {\n      \"text\": \"Produces a TypeScript file with POST handler\",\n      \"passed\": true,\n      \"evidence\": \"route.ts created with export async function POST\"\n    },\n    {\n      \"text\": \"Zod schema validates all 3 required fields (name, email, company)\",\n      \"passed\": true,\n      \"evidence\": \"createContactSchema with z.string().min(1) for all 3 fields\"\n    },\n    {\n      \"text\": \"Returns 201 on successful creation\",\n      \"passed\": true,\n      \"evidence\": \"NextResponse.json(contact, { status: 201 })\"\n    },\n    {\n      \"text\": \"Returns 422 on validation failure\",\n      \"passed\": true,\n      \"evidence\": \"safeParse failure returns 422 with error details\"\n    },\n    {\n      \"text\": \"Returns 500 on database error\",\n      \"passed\": true,\n      \"evidence\": \"catch block returns 500 with Internal server error\"\n    },\n    {\n      \"text\": \"Handles Prisma unique constraint (P2002) as 422\",\n      \"passed\": true,\n      \"evidence\": \"isPrismaUniqueConstraintError type guard, returns 422\"\n    },\n    {\n      \"text\": \"Includes JSDoc documentation\",\n      \"passed\": true,\n      \"evidence\": \"Full JSDoc with request/response format on POST function\"\n    },\n    {\n      \"text\": \"Includes type annotations\",\n      \"passed\": true,\n      \"evidence\": \"CreateContactInput type inferred from Zod, typed parameters\"\n    },\n    {\n      \"text\": \"Includes production memo\",\n      \"passed\": true,\n      \"evidence\": \"PRODUCTION-MEMO.md created with modules, files, limitations, QA focus\"\n    }\n  ]\n}"}], "without_skill": [{"name": "route.ts", "content": "import { NextRequest, NextResponse } from \"next/server\";\nimport { PrismaClient } from \"@prisma/client\";\nimport { z } from \"zod\";\n\nconst prisma = new PrismaClient();\n\n// ---------------------------------------------------------------------------\n// Request-body schema – all three fields are required\n// ---------------------------------------------------------------------------\nconst createContactSchema = z.object({\n  name: z\n    .string({ required_error: \"name is required\" })\n    .min(1, \"name must not be empty\"),\n\n  email: z\n    .string({ required_error: \"email is required\" })\n    .email(\"invalid email address\"),\n\n  company: z\n    .string({ required_error: \"company is required\" })\n    .min(1, \"company must not be empty\"),\n});\n\n// Type derived from the schema (useful for downstream typing)\ntype CreateContactInput = z.infer<typeof createContactSchema>;\n\n// ---------------------------------------------------------------------------\n// POST /api/contacts\n// ---------------------------------------------------------------------------\nexport async function POST(request: NextRequest) {\n  try {\n    // 1. Parse & validate the request body\n    let body: unknown;\n    try {\n      body = await request.json();\n    } catch {\n      return NextResponse.json(\n        { error: \"Malformed JSON in request body\" },\n        { status: 422 },\n      );\n    }\n\n    const parsed = createContactSchema.safeParse(body);\n\n    if (!parsed.success) {\n      // Flatten Zod errors into a human-readable array\n      const errors = parsed.error.issues.map((issue) => ({\n        field: issue.path.join(\".\"),\n        message: issue.message,\n      }));\n\n      return NextResponse.json({ errors }, { status: 422 });\n    }\n\n    const data: CreateContactInput = parsed.data;\n\n    // 2. Persist the contact via Prisma\n    const contact = await prisma.contact.create({\n      data: {\n        name: data.name,\n        email: data.email,\n        company: data.company,\n      },\n    });\n\n    // 3. Return 201 Created with the newly-created resource\n    return NextResponse.json(contact, { status: 201 });\n  } catch (error) {\n    // Distinguish Prisma-level unique-constraint violations if desired\n    if (\n      error &&\n      typeof error === \"object\" &&\n      \"code\" in error &&\n      (error as { code: string }).code === \"P2002\"\n    ) {\n      return NextResponse.json(\n        { error: \"A contact with this email already exists\" },\n        { status: 422 },\n      );\n    }\n\n    console.error(\"Unexpected error creating contact:\", error);\n    return NextResponse.json(\n      { error: \"Internal server error\" },\n      { status: 500 },\n    );\n  }\n}"}, {"name": "grading.json", "content": "{\n  \"eval_id\": \"eval-0-code-gen\",\n  \"config\": \"without_skill\",\n  \"assertions\": [\n    {\n      \"text\": \"Produces a TypeScript file with POST handler\",\n      \"passed\": true,\n      \"evidence\": \"route.ts created with export async function POST\"\n    },\n    {\n      \"text\": \"Zod schema validates all 3 required fields (name, email, company)\",\n      \"passed\": true,\n      \"evidence\": \"createContactSchema with z.string().min(1) for all 3 fields\"\n    },\n    {\n      \"text\": \"Returns 201 on successful creation\",\n      \"passed\": true,\n      \"evidence\": \"NextResponse.json(contact, { status: 201 })\"\n    },\n    {\n      \"text\": \"Returns 422 on validation failure\",\n      \"passed\": true,\n      \"evidence\": \"safeParse failure returns 422 with errors array\"\n    },\n    {\n      \"text\": \"Returns 500 on database error\",\n      \"passed\": true,\n      \"evidence\": \"catch block returns 500 with Internal server error\"\n    },\n    {\n      \"text\": \"Handles Prisma unique constraint (P2002) as 422\",\n      \"passed\": true,\n      \"evidence\": \"Inline check for error.code === P2002, returns 422\"\n    },\n    {\n      \"text\": \"Includes JSDoc documentation\",\n      \"passed\": false,\n      \"evidence\": \"Only section divider comments, no JSDoc on the POST function\"\n    },\n    {\n      \"text\": \"Includes type annotations\",\n      \"passed\": true,\n      \"evidence\": \"CreateContactInput type, typed parameters\"\n    },\n    {\n      \"text\": \"Includes production memo\",\n      \"passed\": false,\n      \"evidence\": \"No production memo generated\"\n    }\n  ]\n}"}]}, {"id": "eval-1-copy-variants", "name": "Copy Variants (5 Subject Lines)", "prompt": "Create 5 subject line variants for a product launch email targeting existing SaaS customers. AI analytics dashboard.", "with_skill": [{"name": "copy-variants.md", "content": "# Subject line variants — AI-powered analytics dashboard launch\n\n**Brief**: Product launch email for a new AI-powered analytics dashboard, targeting existing SaaS customers. Tone: warm but professional.\n\n---\n\n## Variants\n\n### 1. Benefit-driven\n**Your data, clearer than ever — meet the new AI dashboard**\n\nLeads with the outcome the customer gets. Warm and direct, framing the product as an answer to a need they already feel. Works best for broad sends to the full customer base.\n\n### 2. Feature-driven\n**AI-powered analytics are now built into your dashboard**\n\nStates what changed and where to find it. Matter-of-fact and confident. Best for technically inclined users who respond to concrete feature drops.\n\n### 3. Relationship-driven\n**You asked for better insights. Here they are.**\n\nAcknowledges the customer's voice and delivers on it. Warm, human, and confident without being sentimental. Best for long-tenure customers who have provided feedback.\n\n### 4. Curiosity\n**Something new just landed in your account**\n\nShort and inviting. Creates enough intrigue to earn the open without overpromising. Best for re-engagement segments or customers who haven't logged in recently.\n\n### 5. Direct announcement\n**Introducing the AI analytics dashboard — available today**\n\nClear, confident, and to the point. The most formal of the five. Best for enterprise accounts or segments that prefer straightforward communication.\n\n---\n\n## Recommendation matrix\n\n| Variant | Angle | Best for | Character count |\n|---------|-------|----------|-----------------|\n| 1 | Benefit-driven | Broad send, full customer base | 54 |\n| 2 | Feature-driven | Technical users, power users | 53 |\n| 3 | Relationship-driven | Long-tenure customers, feedback givers | 45 |\n| 4 | Curiosity | Re-engagement, inactive users | 42 |\n| 5 | Direct announcement | Enterprise accounts, formal segments | 56 |\n\n---\n\nProduction memo:\n- Modules activated: Copy Variants (Phase 2C)\n- Files produced: copy-variants.md\n- Known limitations: Subject lines have not been A/B tested. Performance will vary by segment engagement level and send time. Pre-header text was not included in this deliverable but would complement variants 4 and 5.\n- Recommended QA focus: Brand voice compliance (all four attributes), character count fit for common email clients, and angle differentiation across variants."}, {"name": "grading.json", "content": "{\n  \"eval_id\": \"eval-1-copy-variants\",\n  \"config\": \"with_skill\",\n  \"assertions\": [\n    {\n      \"text\": \"Produces at least 5 labeled variants\",\n      \"passed\": true,\n      \"evidence\": \"5 variants: benefit-driven, feature-driven, relationship-driven, curiosity, direct announcement\"\n    },\n    {\n      \"text\": \"Each variant has a descriptive angle label\",\n      \"passed\": true,\n      \"evidence\": \"Each variant labeled with angle and best-fit audience description\"\n    },\n    {\n      \"text\": \"All variants are under 60 characters\",\n      \"passed\": true,\n      \"evidence\": \"Lengths: 54, 53, 45, 42, 56 chars all under 60\"\n    },\n    {\n      \"text\": \"At least 3 distinct angles used\",\n      \"passed\": true,\n      \"evidence\": \"5 distinct: benefit, feature, relationship, curiosity, direct\"\n    },\n    {\n      \"text\": \"Copy is brand-compliant (no buzzwords, concise)\",\n      \"passed\": true,\n      \"evidence\": \"Clean, direct language. No forbidden patterns detected.\"\n    },\n    {\n      \"text\": \"Includes recommendation matrix\",\n      \"passed\": true,\n      \"evidence\": \"Table mapping variant to angle to best-for to character count\"\n    },\n    {\n      \"text\": \"Includes production memo\",\n      \"passed\": true,\n      \"evidence\": \"Production memo at bottom with modules, files, limitations, QA focus\"\n    }\n  ]\n}"}], "without_skill": [{"name": "copy-variants.md", "content": "# Email Subject Line Variants — AI-Powered Analytics Dashboard Launch\n\n**Audience:** Existing SaaS customers\n**Tone:** Warm but professional\n**Product:** New AI-powered analytics dashboard\n\n---\n\n## Variant 1 — Benefit-Led\n\n> Your data just got a lot smarter — meet the new AI Analytics Dashboard\n\n**Angle:** Highlights the direct benefit to the customer (smarter data) while gently introducing the product by name. Feels like good news from a trusted partner.\n\n---\n\n## Variant 2 — Exclusivity & Loyalty\n\n> Something new just for you: AI-powered insights, now inside your account\n\n**Angle:** Rewards existing customers with a sense of first access. \"Just for you\" and \"inside your account\" reinforce belonging and reduce friction to try it.\n\n---\n\n## Variant 3 — Curiosity-Driven\n\n> We've been working on something — and it changes how you see your data\n\n**Angle:** Uses a tease-and-reveal structure to spark open rates. \"Changes how you see your data\" is a bold but credible claim for an AI analytics product.\n\n---\n\n## Variant 4 — Time-Saving / Efficiency\n\n> Less time building reports, more time making decisions — your new AI dashboard is here\n\n**Angle:** Speaks directly to a top-of-mind pain point for analytics users: the manual effort of report creation. Contrasts old work with new capability.\n\n---\n\n## Variant 5 — Invitation-Style\n\n> You're invited: explore the AI Analytics Dashboard we built with your feedback in mind\n\n**Angle:** Frames the launch as an invitation rather than a pitch. Mentioning customer feedback signals that the product was shaped by their needs, which builds goodwill and trust.\n\n---\n\n*Generated without skill — baseline copy variant output.*"}, {"name": "grading.json", "content": "{\n  \"eval_id\": \"eval-1-copy-variants\",\n  \"config\": \"without_skill\",\n  \"assertions\": [\n    {\n      \"text\": \"Produces at least 5 labeled variants\",\n      \"passed\": true,\n      \"evidence\": \"5 variants: benefit-led, exclusivity, curiosity, time-saving, invitation\"\n    },\n    {\n      \"text\": \"Each variant has a descriptive angle label\",\n      \"passed\": true,\n      \"evidence\": \"Each variant has angle label and explanation\"\n    },\n    {\n      \"text\": \"All variants are under 60 characters\",\n      \"passed\": false,\n      \"evidence\": \"Variant 1 approx 65 chars, Variant 4 approx 76 chars exceed 60\"\n    },\n    {\n      \"text\": \"At least 3 distinct angles used\",\n      \"passed\": true,\n      \"evidence\": \"5 distinct angles\"\n    },\n    {\n      \"text\": \"Copy is brand-compliant (no buzzwords, concise)\",\n      \"passed\": true,\n      \"evidence\": \"Clean language, no obvious violations\"\n    },\n    {\n      \"text\": \"Includes recommendation matrix\",\n      \"passed\": false,\n      \"evidence\": \"No matrix, descriptions are in prose per variant\"\n    },\n    {\n      \"text\": \"Includes production memo\",\n      \"passed\": false,\n      \"evidence\": \"No production memo, only a note Generated without skill\"\n    }\n  ]\n}"}]}, {"id": "eval-2-data-clean", "name": "Data Cleaning (Messy CSV)", "prompt": "Clean a CSV with duplicates, inconsistent dates, NaN values, negative revenue, inconsistent country names, column swap.", "with_skill": [{"name": "cleaned.csv", "content": "name,email,signup_date,revenue,plan,country\nAlice Johnson,alice@example.com,2024-01-15,1250.0,Pro,US\nBob Smith,bob.smith@example,2024-02-20,0.0,Starter,GB\nCharlie Brown,charlie_brown@example.com,2024-02-20,450.0,Pro,CA\nDiana Prince,diana@amazon.com,2024-03-10,890.5,Pro,US\nEve Wilson,eve@example.com,2024-04-01,0.0,Enterprise,US\nFrank Castle,frank@example.com,2024-05-15,3200.0,Pro,US\nGrace Hopper,grace@navy.mil,2024-06-01,750.0,Unknown,US\nHenry Ford,henry@ford.com,2024-07-20,5000.0,Enterprise,US\nUnknown,isaac@example.com,2024-08-01,300.0,Starter,GB\nIvy League,ivy@harvard.edu,2024-09-15,900.0,Pro,US\nJack Bauer,jack@company.com,2024-10-01,2100.0,Pro,US\nKaren Page,karen@example.com,,670.0,Starter,CA\nLiam Neeson,liam@example.com,2024-11-30,4200.0,Enterprise,IE\n"}, {"name": "change-summary.md", "content": "# Change Summary: test-input.csv Data Cleaning\n\n## Overview\n| Metric | Value |\n|--------|-------|\n| Original row count | 15 |\n| Final row count | 13 |\n| Rows removed | 2 |\n\n## Changes Applied\n1. Stripped leading/trailing whitespace from all fields\n2. Fixed email/name column swap in 1 row(s) (row index [12])\n3. Filled 1 missing name(s) with 'Unknown'\n4. Standardized dates to YYYY-MM-DD format; 1 unparseable date(s) set to NaN\n5. Set 1 negative revenue value(s) to 0.00\n6. Filled 2 NaN/missing revenue value(s) with 0.00\n7. Standardized 14 country name(s) to ISO 3166-1 alpha-2\n8. Standardized casing for 2 plan value(s)\n9. Removed 2 duplicate row(s) (kept first occurrence)\n\n## Final Dataset Preview\n| name          | email                     | signup_date   |   revenue | plan       | country   |\n|:--------------|:--------------------------|:--------------|----------:|:-----------|:----------|\n| Alice Johnson | alice@example.com         | 2024-01-15    |    1250   | Pro        | US        |\n| Bob Smith     | bob.smith@example         | 2024-02-20    |       0   | Starter    | GB        |\n| Charlie Brown | charlie_brown@example.com | 2024-02-20    |     450   | Pro        | CA        |\n| Diana Prince  | diana@amazon.com          | 2024-03-10    |     890.5 | Pro        | US        |\n| Eve Wilson    | eve@example.com           | 2024-04-01    |       0   | Enterprise | US        |\n| Frank Castle  | frank@example.com         | 2024-05-15    |    3200   | Pro        | US        |\n| Grace Hopper  | grace@navy.mil            | 2024-06-01    |     750   | Unknown    | US        |\n| Henry Ford    | henry@ford.com            | 2024-07-20    |    5000   | Enterprise | US        |\n| Unknown       | isaac@example.com         | 2024-08-01    |     300   | Starter    | GB        |\n| Ivy League    | ivy@harvard.edu           | 2024-09-15    |     900   | Pro        | US        |\n| Jack Bauer    | jack@company.com          | 2024-10-01    |    2100   | Pro        | US        |\n| Karen Page    | karen@example.com         | nan           |     670   | Starter    | CA        |\n| Liam Neeson   | liam@example.com          | 2024-11-30    |    4200   | Enterprise | IE        |\n\n## Output Files\n- **Cleaned CSV**: `/home/z/my-project/ai-staff-agent-workspace/iteration-1/eval-2-data-clean/with_skill/outputs/test-input-cleaned.csv`\n- **This summary**: `/home/z/my-project/ai-staff-agent-workspace/iteration-1/eval-2-data-clean/with_skill/outputs/change-summary.md`\n"}, {"name": "grading.json", "content": "{\n  \"eval_id\": \"eval-2-data-clean\",\n  \"config\": \"with_skill\",\n  \"assertions\": [\n    {\n      \"text\": \"Duplicates removed (15 to fewer rows)\",\n      \"passed\": true,\n      \"evidence\": \"15 to 13 rows, 2 duplicates removed\"\n    },\n    {\n      \"text\": \"Dates standardized to YYYY-MM-DD\",\n      \"passed\": true,\n      \"evidence\": \"All parseable dates converted; 1 unparseable date set to empty\"\n    },\n    {\n      \"text\": \"Country names standardized to ISO 3166-1 alpha-2\",\n      \"passed\": true,\n      \"evidence\": \"US, GB, CA, IE all ISO codes\"\n    },\n    {\n      \"text\": \"NaN/empty revenue handled\",\n      \"passed\": true,\n      \"evidence\": \"2 NaN rows filled with 0.0\"\n    },\n    {\n      \"text\": \"Negative revenue handled\",\n      \"passed\": true,\n      \"evidence\": \"Eve Wilson -100.00 set to 0.0\"\n    },\n    {\n      \"text\": \"Email/name column swap corrected\",\n      \"passed\": true,\n      \"evidence\": \"Jack Bauer row corrected\"\n    },\n    {\n      \"text\": \"Whitespace trimmed from fields\",\n      \"passed\": true,\n      \"evidence\": \"Leading/trailing spaces stripped\"\n    },\n    {\n      \"text\": \"Change summary provided\",\n      \"passed\": true,\n      \"evidence\": \"change-summary.md with 9 categories of fixes\"\n    },\n    {\n      \"text\": \"Reproducible cleaning script saved\",\n      \"passed\": true,\n      \"evidence\": \"clean_eval2_data.py saved to scripts/\"\n    }\n  ]\n}"}], "without_skill": [{"name": "cleaned.csv", "content": "name,email,signup_date,revenue,plan,country\nAlice Johnson,alice@example.com,2024-01-15,1250.00,Pro,US\nBob Smith,bob.smith@example,2024-02-20,0.00,Starter,GB\nCharlie Brown,charlie_brown@example.com,2024-02-20,450.00,Pro,CA\nDiana Prince,diana@amazon.com,2024-03-10,890.50,Pro,US\nFrank Castle,frank@example.com,2024-05-15,3200.00,Pro,US\nGrace Hopper,grace@navy.mil,2024-06-01,750.00,,US\nHenry Ford,henry@ford.com,2024-07-20,5000.00,Enterprise,US\nUnknown,isaac@example.com,2024-08-01,300.00,Starter,GB\nIvy League,ivy@harvard.edu,2024-09-15,900.00,Pro,US\nJack Bauer,jack@company.com,2024-10-01,2100.00,Pro,US\nKaren Page,karen@example.com,,670.00,Starter,CA\nLiam Neeson,liam@example.com,2024-11-30,4200.00,Enterprise,IE\n"}, {"name": "change_summary.txt", "content": "======================================================================\nDATA CLEANING CHANGE SUMMARY\n======================================================================\nInput file:  /home/z/my-project/ai-staff-agent-workspace/iteration-1/eval-2-data-clean/test-input.csv\nOutput file: /home/z/my-project/ai-staff-agent-workspace/iteration-1/eval-2-data-clean/without_skill/outputs/cleaned.csv\nOriginal row count: 15\nCleaned row count:  12\nRows removed:       3\nTotal changes made: 31\n\n----------------------------------------------------------------------\nDETAILED CHANGES:\n----------------------------------------------------------------------\n  Row 12 | name: '  ' -> '' (stripped whitespace)\n  Row 13 | revenue: ' 900.00 ' -> '900.00' (stripped whitespace)\n  Row 14 | name/email swap: 'name='jack@company.com', email='Jack Bauer'' -> 'name='Jack Bauer', email='jack@company.com'' (swapped back to correct columns)\n  Row 12 | name: '' -> 'Unknown' (missing name filled with 'Unknown')\n  Row 4 | revenue: 'NaN' -> '0.00' (NaN/empty replaced with 0.00)\n  Row 5 | revenue: '' -> '0.00' (NaN/empty replaced with 0.00)\n  Row 8 | revenue: '-100.00' -> 'REMOVED' (negative revenue, row dropped)\n  Row 3 | signup_date: '01/15/2024' -> '2024-01-15' (standardized to YYYY-MM-DD)\n  Row 6 | signup_date: '20-Feb-2024' -> '2024-02-20' (standardized to YYYY-MM-DD)\n  Row 7 | signup_date: '2024/03/10' -> '2024-03-10' (standardized to YYYY-MM-DD)\n  Row 12 | signup_date: '2024/09/15' -> '2024-09-15' (standardized to YYYY-MM-DD)\n  Row 14 | signup_date: 'Not a date' -> '' (invalid date cleared)\n  Row 2 | country: 'USA' -> 'US' (standardized to ISO 3166-1 alpha-2)\n  Row 3 | country: 'United States' -> 'US' (standardized to ISO 3166-1 alpha-2)\n  Row 4 | country: 'UK' -> 'GB' (standardized to ISO 3166-1 alpha-2)\n  Row 5 | country: 'UK' -> 'GB' (standardized to ISO 3166-1 alpha-2)\n  Row 6 | country: 'Canada' -> 'CA' (standardized to ISO 3166-1 alpha-2)\n  Row 7 | country: 'USA' -> 'US' (standardized to ISO 3166-1 alpha-2)\n  Row 8 | country: 'U.S.A.' -> 'US' (standardized to ISO 3166-1 alpha-2)\n  Row 9 | country: 'USA' -> 'US' (standardized to ISO 3166-1 alpha-2)\n  Row 10 | country: 'USA' -> 'US' (standardized to ISO 3166-1 alpha-2)\n  Row 11 | country: 'UK' -> 'GB' (standardized to ISO 3166-1 alpha-2)\n  Row 12 | country: 'United States of America' -> 'US' (standardized to ISO 3166-1 alpha-2)\n  Row 13 | country: 'USA' -> 'US' (standardized to ISO 3166-1 alpha-2)\n  Row 14 | country: 'Canada' -> 'CA' (standardized to ISO 3166-1 alpha-2)\n  Row 15 | country: 'ireland' -> 'IE' (standardized to ISO 3166-1 alpha-2)\n  Row 3 | plan: 'pro' -> 'Pro' (standardized plan casing)\n  Row 6 | plan: 'pro' -> 'Pro' (standardized plan casing)\n  Row 3 | ROW: 'entire row' -> 'REMOVED' (duplicate of earlier row (#1))\n  Row 5 | ROW: 'entire row' -> 'REMOVED' (duplicate of earlier row (#2))\n  Row 13 | revenue: '4200' -> '4200.00' (formatted to 2 decimal places)\n\n----------------------------------------------------------------------\nCLEANED DATA PREVIEW:\n----------------------------------------------------------------------\n  name,email,signup_date,revenue,plan,country\n  Alice Johnson,alice@example.com,2024-01-15,1250.00,Pro,US\n  Bob Smith,bob.smith@example,2024-02-20,0.00,Starter,GB\n  Charlie Brown,charlie_brown@example.com,2024-02-20,450.00,Pro,CA\n  Diana Prince,diana@amazon.com,2024-03-10,890.50,Pro,US\n  Frank Castle,frank@example.com,2024-05-15,3200.00,Pro,US\n  Grace Hopper,grace@navy.mil,2024-06-01,750.00,,US\n  Henry Ford,henry@ford.com,2024-07-20,5000.00,Enterprise,US\n  Unknown,isaac@example.com,2024-08-01,300.00,Starter,GB\n  Ivy League,ivy@harvard.edu,2024-09-15,900.00,Pro,US\n  Jack Bauer,jack@company.com,2024-10-01,2100.00,Pro,US\n  Karen Page,karen@example.com,,670.00,Starter,CA\n  Liam Neeson,liam@example.com,2024-11-30,4200.00,Enterprise,IE\n======================================================================\n"}, {"name": "grading.json", "content": "{\n  \"eval_id\": \"eval-2-data-clean\",\n  \"config\": \"without_skill\",\n  \"assertions\": [\n    {\n      \"text\": \"Duplicates removed (15 to fewer rows)\",\n      \"passed\": true,\n      \"evidence\": \"15 to 12 rows, 2 duplicates plus Eve Wilson dropped\"\n    },\n    {\n      \"text\": \"Dates standardized to YYYY-MM-DD\",\n      \"passed\": true,\n      \"evidence\": \"4 dates reformatted; 1 invalid cleared\"\n    },\n    {\n      \"text\": \"Country names standardized to ISO 3166-1 alpha-2\",\n      \"passed\": true,\n      \"evidence\": \"US, GB, CA, IE\"\n    },\n    {\n      \"text\": \"NaN/empty revenue handled\",\n      \"passed\": true,\n      \"evidence\": \"NaN values replaced with 0.00\"\n    },\n    {\n      \"text\": \"Negative revenue handled\",\n      \"passed\": true,\n      \"evidence\": \"Eve Wilson row dropped entirely\"\n    },\n    {\n      \"text\": \"Email/name column swap corrected\",\n      \"passed\": true,\n      \"evidence\": \"Row 14 corrected\"\n    },\n    {\n      \"text\": \"Whitespace trimmed from fields\",\n      \"passed\": true,\n      \"evidence\": \"Leading/trailing spaces stripped\"\n    },\n    {\n      \"text\": \"Change summary provided\",\n      \"passed\": true,\n      \"evidence\": \"change_summary.txt with 31 changes documented\"\n    },\n    {\n      \"text\": \"Reproducible cleaning script saved\",\n      \"passed\": false,\n      \"evidence\": \"No script saved, only output CSV and summary\"\n    }\n  ]\n}"}]}];
+
+function showPanel(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.add('hidden'));
+  event.target.classList.add('active');
+  document.getElementById('panel-' + name).classList.remove('hidden');
+}
+
+function init() {
+  renderBenchmark();
+  renderOutputs();
+}
+
+function renderBenchmark() {
+  let wsPass = 0, wsTotal = 0, bsPass = 0, bsTotal = 0;
+  const rows = [];
+  for (const r of RUNS) {
+    const wGrades = getGrades(r.with_skill);
+    const bGrades = getGrades(r.without_skill);
+    const wRate = wGrades.length ? wGrades.filter(g => g.passed).length / wGrades.length : 0;
+    const bRate = bGrades.length ? bGrades.filter(g => g.passed).length / bGrades.length : 0;
+    wsPass += wGrades.filter(g => g.passed).length; wsTotal += wGrades.length;
+    bsPass += bGrades.filter(g => g.passed).length; bsTotal += bGrades.length;
+    rows.push({ name: r.name, wRate, bRate, wPassed: wGrades.filter(g=>g.passed).length, wTotal: wGrades.length, bPassed: bGrades.filter(g=>g.passed).length, bTotal: bGrades.length });
+  }
+  const wsAvg = wsTotal ? (wsPass/wsTotal) : 0;
+  const bsAvg = bsTotal ? (bsPass/bsTotal) : 0;
+  const delta = wsAvg - bsAvg;
+
+  document.getElementById('bench-summary').innerHTML = `
+    <div class="bench-card">
+      <div class="label">With Skill</div>
+      <div class="value" style="color:var(--green)">${(wsAvg*100).toFixed(0)}%</div>
+      <div class="sub">${wsPass}/${wsTotal} assertions passed</div>
+    </div>
+    <div class="bench-card">
+      <div class="label">Without Skill (Baseline)</div>
+      <div class="value">${(bsAvg*100).toFixed(0)}%</div>
+      <div class="sub">${bsPass}/${bsTotal} assertions passed</div>
+    </div>
+    <div class="bench-card">
+      <div class="label">Delta</div>
+      <div class="value ${delta >= 0 ? 'delta-positive' : 'delta-negative'}">${delta >= 0 ? '+' : ''}{(delta*100).toFixed(1)}%</div>
+      <div class="sub">Skill impact on pass rate</div>
+    </div>
+  `;
+
+  let detail = '<table class="assertion-table"><thead><tr><th>Eval</th><th>With Skill</th><th>Without Skill</th><th>Delta</th></tr></thead><tbody>';
+  for (const r of rows) {
+    const d = r.wRate - r.bRate;
+    detail += `<tr>
+      <td><strong>${esc(r.name)}</strong></td>
+      <td>${r.wRate >= 0.8 ? '<span class="grade-pass">' : '<span>'}${(r.wRate*100).toFixed(0)}% (${r.wPassed}/${r.wTotal})</span></td>
+      <td>${r.bRate >= 0.8 ? '<span class="grade-pass">' : r.bRate < 0.6 ? '<span class="grade-fail">' : '<span>'}${(r.bRate*100).toFixed(0)}% (${r.bPassed}/${r.bTotal})</span></td>
+      <td class="${d >= 0 ? 'delta-positive' : 'delta-negative'}">${d >= 0 ? '+' : ''}{(d*100).toFixed(1)}%</td>
+    </tr>`;
+  }
+  detail += '</tbody></table>';
+  document.getElementById('bench-detail').innerHTML = detail;
+}
+
+function renderOutputs() {
+  const container = document.getElementById('panel-outputs');
+  let html = '';
+  for (const r of RUNS) {
+    html += `<div class="eval-section">
+      <div class="eval-title">${esc(r.name)}</div>
+      <div class="eval-prompt">${esc(r.prompt)}</div>
+      <div class="eval-grid">
+        ${renderCard(r, 'with_skill', true)}
+        ${renderCard(r, 'without_skill', false)}
+      </div>
+    </div>`;
+  }
+  container.innerHTML = html;
+}
+
+function renderCard(run, config, isPrimary) {
+  const outputs = run[config];
+  const grades = getGrades(outputs);
+  const passed = grades.filter(g => g.passed).length;
+  const total = grades.length;
+  const rate = total ? (passed/total*100).toFixed(0) : '—';
+
+  let fileTabs = '';
+  let fileContents = '';
+  for (let i = 0; i < outputs.length; i++) {
+    const f = outputs[i];
+    const isActive = i === 0 ? ' active' : '';
+    fileTabs += `<div class="file-tab${isActive}" onclick="showFile(this, '${esc(run.id)}-${config}-${i}')">${esc(f.name)}</div>`;
+    fileContents += `<div id="${run.id}-${config}-${i}" class="file-content${isActive}"><pre>${esc(f.content)}</pre></div>`;
+  }
+
+  let gradesHtml = '';
+  if (grades.length > 0) {
+    gradesHtml = '<div style="padding:0.75rem 1rem;border-top:1px solid var(--border)"><table class="assertion-table"><thead><tr><th>Assertion</th><th></th></tr></thead><tbody>';
+    for (const g of grades) {
+      gradesHtml += `<tr><td>${esc(g.text)}</td><td>${g.passed ? '<span class="grade-pass">PASS</span>' : '<span class="grade-fail">FAIL</span>'}</td></tr>`;
+    }
+    gradesHtml += `</tbody></table></div>`;
+  }
+
+  return `<div class="eval-card ${isPrimary ? 'primary' : ''}">
+    <div class="card-header ${isPrimary ? 'primary' : 'baseline'}">
+      <span>${config.replace(/_/g, ' ')}</span>
+      <span>${rate}% (${passed}/${total})</span>
+    </div>
+    <div class="file-tabs">${fileTabs}</div>
+    <div class="card-body">${fileContents}</div>
+    ${gradesHtml}
+  </div>`;
+}
+
+function showFile(tab, id) {
+  const parent = tab.closest('.eval-card');
+  parent.querySelectorAll('.file-tab').forEach(t => t.classList.remove('active'));
+  parent.querySelectorAll('.file-content').forEach(c => c.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+function getGrades(outputs) {
+  for (const f of outputs) {
+    if (f.name === 'grading.json') {
+      try { return JSON.parse(f.content).assertions || []; } catch(e) {}
+    }
+  }
+  return [];
+}
+
+init();
+</script>
+</body>
+</html>

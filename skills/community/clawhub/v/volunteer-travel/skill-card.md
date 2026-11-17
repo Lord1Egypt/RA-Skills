@@ -1,44 +1,61 @@
-## Description: <br>
-Book flights for volunteer travel and charity programs, with support for flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, car rental, and related travel tasks powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights for volunteer travel and charity programs, with related travel booking support powered by Fliggy and FlyAI.
 
-## Publisher: <br>
-[liquanyu123](https://clawhub.ai/user/liquanyu123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liquanyu123](https://clawhub.ai/user/liquanyu123)
 
-## Use Case: <br>
-Travelers, volunteers, and agents use this skill to search and compare travel options for volunteer travel or charity program trips. The skill guides an agent to collect route and date parameters, run FlyAI CLI searches, and return booking-ready Markdown results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to install and run a global npm CLI without clear user approval or version pinning. <br>
-Mitigation: Require explicit user approval before npm installation or shell execution, and prefer a pinned, local, or sandboxed FlyAI CLI setup. <br>
-Risk: Travel search details are sent to the FlyAI/Fliggy CLI provider during execution. <br>
-Mitigation: Use the skill only when the user trusts the provider and has agreed to share the needed route, date, and travel preference details. <br>
+## Use Case:
 
+External users and travel coordinators use this skill to search volunteer or charity-trip flight options through the flyai CLI and format real-time results with booking links.
 
-## Reference(s): <br>
-- [Parameter Collection and Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
-- [ClawHub skill page](https://clawhub.ai/liquanyu123/volunteer-travel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Localized to English or Chinese based on user input; each travel result is expected to include a booking link from FlyAI CLI output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may install an unpinned global npm CLI before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installation and prefer a reviewed or pinned package source where deployment policy requires it.
+
+Risk: Travel details are sent to an external flight-booking service.
+
+Mitigation: Confirm user consent and avoid submitting unnecessary personal or sensitive travel data.
+
+Risk: Shell commands are built from user-provided origins, destinations, and dates.
+
+Mitigation: Validate origin, destination, and date inputs before command execution.
+
+## Reference(s):
+
+- [Parameter Collection and Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Localized to English or Chinese; flight results must include flyai booking links.]
+
+## Skill Version(s):
+
+3.2.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

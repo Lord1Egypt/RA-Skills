@@ -1,0 +1,12 @@
+name: wenlv-opportunity-diagnosis
+display_name: 文旅项目机会诊断
+version: 1.0.0
+description: "文旅项目机会诊断能力包。基于五维决策门 + 政策红线一票否决框架，对文旅项目做 go/no-go 前置判断。适用于文旅策划、项目甲方、运营负责人、文旅创业者。"
+category: 文旅策划
+author: 州行旅纪
+tags:
+  - 文旅
+  - 项目诊断
+  - 投资研判
+  - go-no-go
+  - 选址评估

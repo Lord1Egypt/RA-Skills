@@ -33,6 +33,14 @@ python3 plugins/conserve/scripts/detect_duplicates.py . --format json --threshol
 grep -rn "^def " --include="*.py" . | cut -d: -f2 | sort | uniq -c | sort -rn | head -10
 ```
 
+The same report lists **competing implementations**: module-level
+Python functions that share a name across files with different bodies.
+A clone shares a body. A competing implementation is a second model of
+one concern, which later changes must keep in step with the first
+(`docs/knowledge-corpus/decoherence.md`). Names that a framework calls
+by convention, such as `_build_parser`, lead the list and need a
+person's judgment. Test modules, `main` and dunder names are skipped.
+
 **Confidence**: HIGH (85%)
 **Action**: REFACTOR - extract to shared utility
 **Rationale**: AI suggests new implementations rather than reusing existing code
@@ -107,7 +115,7 @@ grep -rL "assert.*Error\|assert.*Exception\|pytest.raises\|with self.assertRaise
 
 **Confidence**: HIGH (90%)
 **Action**: AUGMENT_TESTS before adding more code
-**Rationale**: AI generates happy path; errors require human insight
+**Rationale**: AI generates the happy path. Error cases require human insight
 
 ### 5. Premature Abstraction
 
@@ -175,14 +183,15 @@ done
 
 ```python
 AI_BLOAT_SCORES = {
-    'tab_completion_bloat': 25,
-    'massive_single_commit': 15,
-    'hallucinated_dependency': 35,
-    'happy_path_only': 30,
-    'premature_abstraction': 20,
-    'enterprise_cosplay': 25,
-    'documentation_slop': 10,
+    "tab_completion_bloat": 25,
+    "massive_single_commit": 15,
+    "hallucinated_dependency": 35,
+    "happy_path_only": 30,
+    "premature_abstraction": 20,
+    "enterprise_cosplay": 25,
+    "documentation_slop": 10,
 }
+
 
 def ai_bloat_score(detected_patterns):
     return min(100, sum(AI_BLOAT_SCORES.get(p, 0) for p in detected_patterns))
@@ -224,5 +233,6 @@ When AI bloat is detected, recommend:
 
 - `code-bloat-patterns` - Traditional anti-patterns (God class, Lava flow)
 - `documentation-bloat` - Readability metrics
-- `imbue:anti-cargo-cult` - Understanding verification protocol
+- `imbue:proof-of-work` - Understanding verification protocol (see its
+  `anti-cargo-cult` module)
 - Knowledge corpus: `agent-psychosis-codebase-hygiene.md`

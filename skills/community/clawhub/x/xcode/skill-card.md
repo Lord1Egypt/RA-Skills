@@ -1,37 +1,47 @@
-## Description: <br>
-Avoid common Xcode mistakes: signing issues, build settings traps, and cache corruption fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Avoid common Xcode mistakes - signing issues, build settings traps, and cache corruption fixes.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise Xcode troubleshooting reference for code signing, build settings, cache cleanup, archiving, capabilities, dependencies, and command line builds. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cleanup guidance can remove local build caches or simulator contents if followed without review. <br>
-Mitigation: Prefer targeted cleanup first and confirm that deleting DerivedData or erasing simulators is acceptable before running bulk cleanup commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/xcode) <br>
+## Use Case:
+
+Developers and engineers use this skill to troubleshoot common Xcode signing, build setting, archive, dependency, simulator, and cache issues.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may suggest broad cleanup commands that delete DerivedData or erase simulator data.
+
+Mitigation: Confirm destructive cleanup before running it, and prefer deleting targeted build caches or erasing a specific simulator device instead of all simulators.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with inline shell commands and setting names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS with Xcode command line tools for command examples such as xcodebuild and xcrun.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets macOS Xcode workflows and assumes xcodebuild is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

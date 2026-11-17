@@ -1,52 +1,72 @@
-## Description: <br>
-Design, scaffold, validate, and review Clink standard integrations, new user onboarding, merchant skill for generic agent integrations, merchant skill for OpenClaw integrations, and documentation-backed contracts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clink Integration helps coding agents design, scaffold, validate, and review ClinkBill/Clink payment integrations, including CLI-based setup, checkout and subscription APIs, webhook automation, sandbox validation, and developer handoff artifacts.
 
-## Publisher: <br>
-[dylanclink](https://clawhub.ai/user/dylanclink) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clink](https://clawhub.ai/user/clink)
 
-## Use Case: <br>
-Developers and coding agents use this skill to plan, scaffold, validate, and review Clink payment integrations. It supports standard checkout, onboarding, OpenClaw and generic agent payment paths, documentation-backed API questions, and developer-facing artifacts such as checklists, contracts, and validation reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide use of Clink Secret Keys, webhook signing keys, wallet tooling, or payment tooling. <br>
-Mitigation: Use environment variables or a secret manager and do not paste real secrets into chat, fixtures, generated source, logs, or public repositories. <br>
-Risk: Docs or payment-skill context can be loaded from override URLs or external sources. <br>
-Mitigation: Keep the default Clink documentation sources unless the override location is trusted. <br>
-Risk: LLM-backed tests can send included context to the configured provider. <br>
-Mitigation: Run LLM-backed tests only when the provider and submitted context are acceptable for the release environment. <br>
-Risk: Production payment guidance can affect checkout, webhook, and customer verification behavior. <br>
-Mitigation: Use sandbox defaults and complete the validation workflow before production rollout guidance. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to plan and implement ClinkBill payment integrations, configure sandbox-first authentication, generate or review checkout, subscription, webhook, and catalog artifacts, and validate readiness before production promotion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dylanclink/clink-integ-skills) <br>
-- [Clink official docs export](https://docs.clinkbill.com/llms-full.txt) <br>
-- [README](README.md) <br>
-- [Retrieval protocol](references/retrieval-protocol.md) <br>
-- [Standard integration](references/standard-integration.md) <br>
-- [Generic agent integration](references/generic-agent-integration.md) <br>
-- [OpenClaw agent integration](references/agent-integration.md) <br>
-- [Validation workflow](references/validation-workflow.md) <br>
-- [Output artifacts](references/output-artifacts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown responses with code blocks, JSON contract skeletons, checklists, validation reports, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May load current Clink documentation or payment-skill context before producing integration-specific guidance] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and user changelog) <br>
+Risk: Payment secrets and webhook signing secrets could be exposed or stored unsafely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment-variable references, platform secrets, or OS-managed secret stores; keep .env files ignored and permission-restricted, and do not echo real secrets in final output.
+
+Risk: Remote documentation, payment-skill context overrides, or API host overrides could point the agent at untrusted sources.
+
+Mitigation: Do not set CLINK_DOCS_URL or payment-skill URL/path overrides to untrusted locations, and use only approved Clink API hosts for authenticated commands.
+
+Risk: Automated restart commands can run unsafe shell behavior during agent-run flows.
+
+Mitigation: Avoid --restart-command in agent-run flows unless the restart action is explicit, reviewed, and safe for the current project.
+
+Risk: The release requires review because the security verdict is suspicious.
+
+Mitigation: Install only in a trusted workspace, keep work sandbox-first, and complete review before relying on authenticated payment workflows.
+
+## Reference(s):
+
+- [README](README.md)
+- [Skill Definition](SKILL.md)
+- [Clink Integ CLI Integration](references/clink-integ-cli-integration.md)
+- [Standard Integration](references/standard-integration.md)
+- [Elements Integration](references/elements-integration.md)
+- [New User Onboarding](references/new-user-onboarding.md)
+- [Merchant Skill for OpenClaw Integration](references/agent-integration.md)
+- [Merchant Skill for Generic Agent Integration](references/generic-agent-integration.md)
+- [Validation Workflow](references/validation-workflow.md)
+- [Output Artifacts](references/output-artifacts.md)
+- [Review Checklist](references/review-checklist.md)
+- [Clink Docs Export](https://docs.clinkbill.com/llms-full.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code blocks, JSON contracts, checklists, validation reports, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce developer-facing artifacts such as catalog JSON, payment handoff contracts, webhook checklists, and production promotion plans when gated validation passes.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,65 @@
-## Description: <br>
-OpenClaw repair toolkit for automated diagnostics, backup and restore, and guided AI-assisted recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw repair toolkit - automated diagnostics, backup/restore, and guided AI-assisted recovery.
 
-## Publisher: <br>
-[amrree](https://clawhub.ai/user/amrree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amrree](https://clawhub.ai/user/amrree)
 
-## Use Case: <br>
-External developers and OpenClaw users use this skill to diagnose startup, gateway, configuration, network, and API-key problems, back up and restore OpenClaw state, and request local Ollama repair guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The toolkit can make high-impact local changes, including installing software, starting or stopping OpenClaw, clearing logs, and resetting or restoring session data. <br>
-Mitigation: Run diagnostics first, inspect the scripts before repair or reset paths, and execute destructive recovery commands only after confirming the intended backup or restore target. <br>
-Risk: Backup behavior can copy a GitHub token into the backup directory. <br>
-Mitigation: Avoid backing up secrets unless the backup location is encrypted and access-restricted, and remove or rotate copied tokens when they are no longer needed. <br>
-Risk: The artifact includes an installer path that pipes a remote Ollama install script into the shell. <br>
-Mitigation: Verify installer contents independently or install dependencies through a trusted package manager before running AI-assisted repair setup. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to diagnose startup, gateway, configuration, network, and skill-loading problems, then run guided repair, backup, restore, or reset workflows.
 
-## Reference(s): <br>
-- [SolCal Recovery on ClawHub](https://clawhub.ai/amrree/skills/solcal-recovery) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Ollama install documentation](https://ollama.ai/install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text and Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local backup files and restore OpenClaw configuration, sessions, skills, and selected secrets when the included scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Repair, restore, and reset actions can change local OpenClaw state and overwrite or delete sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected action and backup path before execution, require explicit confirmation for restore/reset steps, and keep a rollback backup outside the working OpenClaw directories.
+
+Risk: Backup behavior can copy a GitHub token into local backups in plaintext.
+
+Mitigation: Exclude secrets from backups by default or encrypt backup archives and scrub token files before sharing or storing them.
+
+Risk: Installer paths can fetch and execute software from live external sources.
+
+Mitigation: Prefer pinned package-manager installs or verified downloads, and remove curl-to-shell install paths before production use.
+
+Risk: Firewall-disable guidance can weaken host network protections.
+
+Mitigation: Use scoped connectivity diagnostics and firewall rules instead of disabling the firewall.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/amrree/skills/solcal-recovery)
+- [Publisher Profile](https://clawhub.ai/user/amrree)
+- [Ollama Install](https://ollama.ai/install)
+- [Homebrew](https://brew.sh)
+- [Minimax API Endpoint](https://api.minimax.io)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Text]
+
+**Output Format:** [Markdown with inline bash code blocks and terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute local shell scripts that inspect or modify OpenClaw configuration, sessions, skills, logs, gateway state, backups, and optional Ollama setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

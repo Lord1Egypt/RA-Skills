@@ -1,40 +1,48 @@
-## Description: <br>
-Generate SEO-optimized, conversion-focused product descriptions for your Mobazha store. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate SEO-optimized, conversion-focused product descriptions for your Mobazha store. Use when creating new listings, improving existing copy, or bulk-generating descriptions for imported products.
 
-## Publisher: <br>
-[fengzie](https://clawhub.ai/user/fengzie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fengzie](https://clawhub.ai/user/fengzie)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Mobazha store owners and listing managers use this skill to draft, improve, translate, and bulk-generate marketplace listing copy with titles, short descriptions, full HTML descriptions, and tags.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Agents may publish or bulk-update live marketplace listings before a user reviews the proposed copy.
+
+Mitigation: Require draft-first workflows, show changed listing fields, obtain explicit approval before create or update calls, and cap or dry-run bulk edits.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External Mobazha sellers use this skill to draft, improve, translate, and bulk-generate product listing copy for new or existing marketplace listings. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may create, update, or bulk-edit live Mobazha listings without enough review. <br>
-Mitigation: Require the agent to show proposed titles, descriptions, tags, affected listing slugs, and a diff before any create, update, or bulk operation. <br>
-Risk: Generated listing copy may include inaccurate claims, fabricated trust signals, or unsuitable SEO language. <br>
-Mitigation: Review listing copy for factual accuracy, product-specific evidence, and compliance with marketplace expectations before publishing. <br>
+**Output Format:** [Markdown with listing copy, HTML description snippets, and tag suggestions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengzie/mobazha-product-description) <br>
+**Other Properties Related to Output:** [May propose direct Mobazha listing create or update actions when live listing tools are available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown listing copy with optional HTML-formatted description snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces title, short description, full description, and suggested tags for Mobazha listings.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

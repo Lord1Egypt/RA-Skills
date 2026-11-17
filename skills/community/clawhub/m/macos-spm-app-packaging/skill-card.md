@@ -1,42 +1,62 @@
-## Description: <br>
-Scaffold, build, and package SwiftPM-based macOS apps without an Xcode project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffold, build, and package SwiftPM-based macOS apps without an Xcode project.
 
-## Publisher: <br>
-[Dimillian](https://clawhub.ai/user/Dimillian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dimillian](https://clawhub.ai/user/dimillian)
 
-## Use Case: <br>
-Developers and engineers use this skill to bootstrap SwiftPM macOS app projects, assemble .app bundles, run local development builds, and prepare optional signing, notarization, and Sparkle appcast release artifacts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Signing helper scripts handle credentials and modify the user's login keychain. <br>
-Mitigation: Review and edit the signing scripts before use, and run setup_dev_signing.sh only when comfortable adding a persistent self-signed signing identity. <br>
-Risk: Notarization workflows require App Store Connect credentials and private-key material. <br>
-Mitigation: Use a securely created temporary private-key file with restrictive permissions or a safer credential mechanism before providing App Store Connect keys. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Dimillian/macos-spm-app-packaging) <br>
-- [Scaffold a SwiftPM macOS app](references/scaffold.md) <br>
-- [Packaging notes](references/packaging.md) <br>
-- [Release and notarization notes](references/release.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to bootstrap SwiftPM macOS app projects and generate packaging, signing, notarization, appcast, launch, and development signing guidance outside Xcode.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Swift code, configuration examples, and reusable script templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project scaffolding and packaging instructions; generated signing and release scripts should be reviewed and adapted before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The scripts handle signing credentials and notarization key material.
+
+Mitigation: Review and harden the scripts before release use; replace fixed /tmp key paths with private mktemp directories and restrictive permissions before using App Store Connect credentials.
+
+Risk: The packaging and launch scripts perform destructive cleanup of generated app bundles and running app instances.
+
+Mitigation: Run them from a disposable or version-controlled project copy, and keep APP_NAME to a simple basename before execution.
+
+Risk: version.env is sourced by shell scripts.
+
+Mitigation: Treat version.env as trusted code unless the scripts are changed to parse strict key-value data.
+
+Risk: setup_dev_signing.sh creates a persistent development signing identity in the login Keychain.
+
+Mitigation: Use it only on development machines where that persistent identity is acceptable, and remove the identity from Keychain when it is no longer needed.
+
+## Reference(s):
+
+- [Scaffold a SwiftPM macOS app](references/scaffold.md)
+- [Packaging notes](references/packaging.md)
+- [Release and notarization notes](references/release.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, code snippets, and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes macOS shell-script templates and SwiftPM project scaffolding guidance; users must provide local app identifiers, signing identities, and optional notarization credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-01-08T09:04:47Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,61 @@
-## Description: <br>
-Turns raw business data from CSV, SQLite, spreadsheets, and pasted tables into clear analytical summaries, trend analysis, and actionable reports with plain-language insights and explicit confidence labels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn raw business data (CSV, SQLite, spreadsheets, pasted tables) into clear analytical summaries, trend analysis, and actionable reports for small business operators, analysts, and decision-makers.
 
-## Publisher: <br>
-[gitcanadabrett](https://clawhub.ai/user/gitcanadabrett) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitcanadabrett](https://clawhub.ai/user/gitcanadabrett)
 
-## Use Case: <br>
-Small business operators, analysts, founders, consultants, and decision-makers use this skill to turn provided business datasets into readable reports, quality notes, trend findings, comparisons, and recommended next steps. It is intended for analytical support, not financial, investment, tax, or audit-grade advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste real PII, secrets, or sensitive production data into the chat while requesting analysis. <br>
-Mitigation: Remove or redact sensitive fields before sharing data, and use the skill's PII detection and exclusion workflow before any analysis. <br>
-Risk: A test prompt contains unmasked SSN-style mock values. <br>
-Mitigation: Treat those examples as unsafe placeholders; the publisher should replace them with clearly synthetic or redacted values. <br>
-Risk: Business analysis output could be mistaken for financial advice, firm forecasts, or audit-grade reporting. <br>
-Mitigation: Use the reports as analytical aids only, keep forecasts labeled with assumptions and confidence, and avoid investment, tax, or audit conclusions. <br>
-Risk: Release metadata includes unrelated crypto and purchase capability tags. <br>
-Mitigation: Do not rely on those tags to determine this skill's behavior; the publisher should remove or correct unrelated capability metadata. <br>
+## Use Case:
 
+External users such as small business owners, operations managers, startup founders, consultants, and non-technical analysts use this skill to turn user-provided business data into plain-language reports, trend analysis, KPI comparisons, and recommended next steps.
 
-## Reference(s): <br>
-- [Data Analysis Reporting Spec](data-analysis-reporting-spec.md) <br>
-- [Business Metrics Reference](references/business-metrics.md) <br>
-- [Data Quality Checks](references/data-quality-checks.md) <br>
-- [Report Templates](references/report-templates.md) <br>
-- [Test Prompts](references/test-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analytical reports with executive summaries, data quality notes, key findings, trend analysis, comparisons, recommended actions, and methodology notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes confidence labels and data-quality caveats; excludes detected PII from analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Business datasets may contain unnecessary personally identifiable information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the data needed for analysis, review datasets for PII before use, and follow the skill's PII flagging and exclusion workflow.
+
+Risk: Reports may be mistaken for financial, tax, investment, or audit-grade advice.
+
+Mitigation: Treat outputs as analytical guidance, verify material conclusions with qualified reviewers, and keep forecasts and recommendations clearly labeled as assumptions-based.
+
+Risk: Private database access could expose data if credentials or connections are provided unintentionally.
+
+Mitigation: Confirm any database access is intentionally configured and prefer sanitized exports or limited-scope datasets when possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gitcanadabrett/skills/data-analysis-reporting)
+- [Business Metrics Reference](references/business-metrics.md)
+- [Data Quality Checks](references/data-quality-checks.md)
+- [Report Templates](references/report-templates.md)
+- [Test Prompts](references/test-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports with executive summaries, data quality notes, findings, trend analysis, confidence labels, methodology notes, and recommended actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are based on user-provided data and should label confidence, assumptions, limitations, and data quality concerns.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

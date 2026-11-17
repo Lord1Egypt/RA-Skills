@@ -1,44 +1,62 @@
-## Description: <br>
-Book Indonesia travel options, including flights to Bali, Jakarta, and Surabaya, by collecting route parameters, running the flyai CLI, and formatting live results with booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights to Indonesia including Bali, Jakarta, and Surabaya. Also supports flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more, powered by Fliggy (Alibaba Group).
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search Indonesia travel routes, compare flight options, and produce Markdown summaries with booking links based on live flyai CLI output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to install and run an unpinned global travel CLI package. <br>
-Mitigation: Require explicit approval before any npm global install, prefer a pinned local or sandboxed install, and run travel-search commands only in a trusted environment. <br>
-Risk: Flight and booking results depend on external CLI output and third-party booking links. <br>
-Mitigation: Verify booking links and itinerary details before entering payment or personal information, and do not fabricate results when the CLI is unavailable. <br>
+## Use Case:
 
+External travelers and travel-support agents use this skill to search Indonesia flight options and prepare booking-oriented Markdown summaries from flyai CLI results. It focuses on Bali, Jakarta, Surabaya, and related Indonesia travel planning workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dingtom336-gif/explore-indonesia) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live flyai CLI results; each travel option should include a booking link when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may install and run the flyai npm CLI before returning travel results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installation, prefer pinned package versions, and run the CLI in a sandboxed environment.
+
+Risk: Travel search details are sent to an external service through the flyai CLI.
+
+Mitigation: Give users a clear privacy disclosure before sending itinerary details and avoid submitting unnecessary personal data.
+
+Risk: Required booking links and flyai branding can introduce commercial-link and URL-safety concerns.
+
+Mitigation: Validate booking URLs before presenting them and make clear that results and links come from the external travel service.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/skills/explore-indonesia)
+- [Parameter Collection and Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, concise guidance, and inline shell commands when setup or execution is required]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output as the data source and requires booking links for listed results.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

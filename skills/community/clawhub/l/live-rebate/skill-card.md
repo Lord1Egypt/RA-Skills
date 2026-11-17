@@ -1,39 +1,53 @@
-## Description: <br>
-直播间购物返利优化工具，追踪各平台热门直播间的商品返利信息，帮助用户在直播购物中获得额外返利。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+直播间购物返利优化工具，追踪各平台热门直播间的商品返利信息，帮助用户在直播购物中获得额外返利。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-External shoppers use this skill to compare live-stream shopping prices, rebate amounts, historical lows, and purchase recommendations across major Chinese live-commerce platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping recommendations may rely on outdated or incorrect prices, rebate rates, or generated rebate links. <br>
-Mitigation: Verify prices, rebate rates, and rebate links on the relevant platform before purchase. <br>
+## Use Case:
 
+External shoppers and shopping-assistant agents use this skill to compare live-shopping prices, rebate amounts, historical pricing, and purchase recommendations before placing orders through live-commerce channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/live-rebate) <br>
-- [Source skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with price comparison, rebate details, and purchase recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Users should independently verify prices, rebate rates, and generated rebate links before relying on shopping advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Price, rebate, and affiliate terms may change or differ across platforms, sellers, or purchase timing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the live price, final checkout price, rebate eligibility, payout timing, and affiliate terms independently before buying.
+
+Risk: Generated rebate-link guidance may influence purchase decisions.
+
+Mitigation: Use the skill's recommendation as decision support and compare against non-rebate purchase options and historical prices before placing an order.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/fangshan101-coder/skills/live-rebate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style shopping analysis with price comparison, rebate information, effective final price, and a purchase recommendation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live-room, product, platform, rebate-rate, rebate-amount, historical-price, and recommendation fields when those inputs are available.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

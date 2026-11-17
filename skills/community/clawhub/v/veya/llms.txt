@@ -1,0 +1,26 @@
+# VEYA
+
+> VEYA is a post-quantum execution and proof layer for autonomous AI agents on Robinhood Chain. Agents run in scoped environments with tool allowlists; results are checked by 2-of-3 consensus or AES-256-GCM sealed execution, hashed with BLAKE3-256, signed with ML-DSA-44, and anchored on the Veya.sol contract. Mainnet (default), Testnet.
+
+- MCP server (Streamable HTTP, 51 `veya_*` tools): https://mcp.veyanet.tech/mcp
+- Mainnet Veya.sol: 0x87dC582eEA544A434a5C1e30Ca3d12c1e548a674 (explorer https://robinhoodchain.blockscout.com)
+- Public tools need no key. Scoped tools need a product API key (`veya_dev_…` / `veya_live_…`) from https://app.veyanet.tech (connect wallet → System → API Keys). On-chain writes also use the funded wallet bound to that key.
+
+## Agent skill
+
+- [SKILL.md](https://github.com/veyanet/veya-skills/blob/main/SKILL.md): install with `npx skills add veyanet/veya-skills`
+- [Tool reference](https://github.com/veyanet/veya-skills/blob/main/references/tools.md): all 51 tools with arguments and returns
+- [Setup](https://github.com/veyanet/veya-skills/blob/main/references/setup.md): connect Cursor, Claude Code, Codex and other clients
+- [Troubleshooting](https://github.com/veyanet/veya-skills/blob/main/references/troubleshooting.md): server error messages and fixes
+
+## Developers
+
+- [VEYA docs](https://veyanet.tech/docs): full product documentation
+- [App](https://app.veyanet.tech): console and API keys
+- [MCP server](https://github.com/veyanet/veya-mcp): source, tools and operator docs
+- [TypeScript SDK](https://github.com/veyanet/veya-sdk): `npm install @veyanet/sdk`
+
+## Optional
+
+- [Website](https://veyanet.tech)
+- [MCP health](https://mcp.veyanet.tech/health)

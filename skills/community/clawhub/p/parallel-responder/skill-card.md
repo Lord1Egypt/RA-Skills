@@ -1,41 +1,49 @@
-## Description: <br>
-Parallel Responder helps an agent classify requests by complexity, estimate response time, choose direct or parallel execution, and report progress while longer work continues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parallel Responder helps an agent classify requests, estimate work duration, choose a direct, reporting, or sub-agent execution posture, and generate progress updates.
 
-## Publisher: <br>
-[lsa03](https://clawhub.ai/user/lsa03) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lsa03](https://clawhub.ai/user/lsa03)
 
-## Use Case: <br>
-Developers and agent users can use this skill to make longer agent tasks more transparent by returning immediate status, estimating duration, and issuing progress updates for medium and complex work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages broad automated task handling, including installs, deletes, restarts, file writes, and child-agent workflows without clear permission boundaries. <br>
-Mitigation: Require explicit user approval before installs, deletes, restarts, sub-agent launches, or file writes. <br>
-Risk: Background-style execution and progress reporting can obscure what context is shared with child agents and when work should stop. <br>
-Mitigation: Document allowed shared context, write locations, cancellation behavior, and cleanup expectations before using the skill for complex tasks. <br>
+## Use Case:
 
+Developers and agent operators can use this skill to add request classification, time estimates, and progress-message patterns for conversational agents handling simple, medium, or complex user tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lsa03/parallel-responder) <br>
-- [Publisher profile](https://clawhub.ai/user/lsa03) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown progress messages with JSON task classification and execution metadata from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose immediate replies, time estimates, task IDs, progress percentages, and completion summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may tell users that background agents and scheduled progress reporting are active when the implementation is incomplete or only returning status messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review behavior before installation, require explicit confirmation before sub-agent use, and add clear cancellation, cleanup, and retention limits before sensitive use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lsa03/skills/parallel-responder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown progress updates, JSON-like task estimates, JavaScript module results, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes time estimates, classification metadata, task IDs, progress percentages, ETA fields, and completion summaries when invoked through its helper scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version section)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

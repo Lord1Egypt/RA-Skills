@@ -1,43 +1,62 @@
-## Description: <br>
-Recall memories from MemOS Cloud before responding when the user needs context about previous conversations, preferences, or decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recall memories from MemOS Cloud before responding when prior conversations, preferences, or decisions may provide useful context.
 
-## Publisher: <br>
-[huamu668](https://clawhub.ai/user/huamu668) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huamu668](https://clawhub.ai/user/huamu668)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to retrieve relevant memories from MemOS Cloud and incorporate prior conversation context into replies. It is intended for recall of user preferences, past decisions, and previous project context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Conversation-derived queries may be sent to a cloud memory service. <br>
-Mitigation: Use only with trusted MemOS Cloud accounts and avoid sending secrets, credentials, regulated data, or sensitive project details. <br>
-Risk: The referenced local helper `memos-api.js` was not included for review in the artifact evidence. <br>
-Mitigation: Verify the local helper implementation before installation or execution. <br>
-Risk: Broad automatic memory recall can surface unrelated or sensitive context. <br>
-Mitigation: Prefer explicit manual memory actions and review recalled memories before including them in responses. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MemOS Cloud](https://memos.memtensor.cn) <br>
-- [MemOS API Dashboard](https://memos-dashboard.openmem.net) <br>
-- [OpenClaw Plugin](https://github.com/MemTensor/MemOS-Cloud-OpenClaw-Plugin) <br>
+## Use Case:
 
+Developers and Claude Code users use this skill to retrieve MemOS Cloud memories when prior conversation context, preferences, or decisions may affect a response.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user query text to retrieve cloud memory results for optional inclusion in the agent response.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Conversation-derived search terms may be sent to MemOS Cloud.
+
+Mitigation: Use the skill only with a trusted MemOS Cloud account and avoid sensitive conversations unless sending related search terms to the service is intended.
+
+Risk: The artifact instructs the agent to pass user-derived search terms through a shell command.
+
+Mitigation: Review commands before execution and replace query interpolation with safe argument passing before deployment.
+
+Risk: Memories recalled from the external service may be stale, incomplete, or untrusted.
+
+Mitigation: Treat recalled memory as context to verify, not as authoritative fact.
+
+Risk: API key configuration can expose or overwrite credentials if handled carelessly.
+
+Mitigation: Store API keys non-destructively with restrictive file permissions or in an approved secret store.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huamu668/skills/huamu668-memos-cloud)
+- [MemOS Cloud](https://memos.memtensor.cn)
+- [MemOS API Dashboard](https://memos-dashboard.openmem.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and response text patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a user query or distilled search terms to retrieve external MemOS Cloud memory results.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

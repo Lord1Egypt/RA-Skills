@@ -1,47 +1,58 @@
-## Description: <br>
-Autonomous trading bot for Polymarket via prob.trade. Run strategies, manage risk, scan markets. Requires the probtrade skill for API access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous trading bot for Polymarket via prob.trade. Run strategies, manage risk, scan markets. Requires the probtrade skill for API access.
 
-## Publisher: <br>
-[vlprosvirkin](https://clawhub.ai/user/vlprosvirkin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vlprosvirkin](https://clawhub.ai/user/vlprosvirkin)
 
-## Use Case: <br>
-External developers and agent operators use this skill to run or preview Polymarket trading strategies through prob.trade, inspect trading status, and configure risk limits before live execution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live mode can automatically spend real funds with limited safeguards. <br>
-Mitigation: Keep dry_run enabled until strategies are tested, start with limited funds, and use strict position, daily spend, exposure, and drawdown limits. <br>
-Risk: The bot depends on prob.trade and optional external APIs that require credentials and outbound integrations. <br>
-Mitigation: Use scoped and revocable API keys, rotate credentials periodically, and verify outbound integrations before enabling optional strategies. <br>
-Risk: Trading strategy descriptions may include profit or arbitrage claims that do not eliminate market, liquidity, execution, or resolution risk. <br>
-Mitigation: Do not rely on guaranteed-profit claims; validate strategy assumptions with scans and small order sizes before any live deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vlprosvirkin/openclaw-bot-prob-trade) <br>
-- [Deployment guide](docs/deployment.md) <br>
-- [Strategy reference](docs/strategies.md) <br>
-- [References: Autonomous Trading on Polymarket](docs/references.md) <br>
-- [probtrade skill on ClawHub](https://clawhub.ai/vlprosvirkin/prob-trade-polymarket-analytics) <br>
-- [prob.trade dashboard](https://app.prob.trade) <br>
-- [Polymarket documentation](https://docs.polymarket.com/) <br>
+## Use Case:
 
+Developers and trading operators use this skill to scan Polymarket markets, run configurable trading strategies through prob.trade, and inspect bot status or dry-run signals before enabling live orders.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, Python strategy examples, and JSON or formatted text command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require Python 3 and the probtrade skill; live trading can place real orders when dry_run is false.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can run persistent live trading and place real Polymarket orders when dry_run is disabled.
+
+Mitigation: Keep dry_run enabled for initial testing, use restricted trading API keys and small exchange-side limits, and review the live-trading path before deployment.
+
+Risk: Safety controls and dependency pinning are weaker than advertised.
+
+Mitigation: Treat the built-in risk manager as incomplete rather than a hard safety boundary, and pin the probtrade dependency to a reviewed version or commit.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vlprosvirkin/skills/openclaw-bot-prob-trade)
+- [probtrade Skill Dependency](https://clawhub.ai/probtrade/prob-trade-polymarket-analytics)
+- [prob.trade](https://app.prob.trade)
+- [Polymarket Documentation](https://docs.polymarket.com/)
+- [Strategy Reference](docs/strategies.md)
+- [Deployment Guide](docs/deployment.md)
+- [Autonomous Polymarket Trading Architecture](https://prob.trade/blog/autonomous-polymarket-trading-architecture)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, code, guidance]
+
+**Output Format:** [Structured JSON and formatted terminal text, with Markdown documentation and inline shell or Python examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands can scan markets, report status, list strategies, or run a persistent trading loop; dry-run mode logs proposed orders without placing them.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

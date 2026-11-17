@@ -1,40 +1,48 @@
-## Description: <br>
-Helps agents design, assess, and operate data pipelines, data models, quality checks, governance workflows, and analytics infrastructure using practical engineering patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and operate scalable data pipelines and architectures using best-fit patterns, tools, and modeling methodologies without external dependencies.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers, data engineers, analytics engineers, and technical teams use this skill to plan data architectures, choose pipeline patterns, model warehouse data, define data quality checks, and prepare operational runbooks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts may contain secrets, credentials, production connection strings, or confidential architecture details. <br>
-Mitigation: Avoid sharing sensitive values unless intentional; replace secrets and private identifiers with placeholders before asking the agent to analyze them. <br>
-Risk: Generated SQL, YAML, pipeline templates, and architecture recommendations may be incomplete or unsuitable for a specific environment. <br>
-Mitigation: Review generated artifacts against local data, compliance, reliability, and operational requirements before implementation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-data-engineering) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
+## Use Case:
 
+Developers, data engineers, and analytics teams use this skill to assess data architecture, choose pipeline patterns and tools, design models, plan migrations and backfills, and improve quality, monitoring, governance, cost, and operations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tables, checklists, YAML templates, SQL examples, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory examples and templates that should be reviewed before production use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad data engineering activation phrases may produce operational recommendations for real infrastructure.
+
+Mitigation: Review generated migration, backfill, deletion, credential-rotation, and production pipeline steps before applying them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-data-engineering)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with templates, decision matrices, SQL examples, YAML configuration examples, and operational checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable payload is included in the skill artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

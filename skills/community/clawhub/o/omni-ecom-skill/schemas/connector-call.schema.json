@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/connector-call-2.0.json",
+  "title": "Omni E-commerce Connector Call Audit Record",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "call_key", "connector_call_id", "action_id", "approval_id"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "connector_call_record"},
+    "contract_name": {"const": "omni-ecom.connector-call"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.connector-call@1.0"], "current_execution_authority": false}},
+    "call_key": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "connector_call_id": {"type": "string", "minLength": 1},
+    "action_id": {"type": "string", "minLength": 1},
+    "approval_id": {"type": "string", "minLength": 1}
+  }
+}

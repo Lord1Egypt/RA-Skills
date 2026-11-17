@@ -1,42 +1,60 @@
-## Description: <br>
-Gateway Guardian helps OpenClaw users monitor gateway configuration, roll back invalid changes, recover crashed gateway services, and send Feishu, Telegram, or Discord notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Three-layer protection for the OpenClaw gateway: real-time config monitoring with auto-rollback, systemd crash recovery, and tiered notifications via Feishu, Telegram, and Discord.
 
-## Publisher: <br>
-[dios-man](https://clawhub.ai/user/dios-man) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dios-man](https://clawhub.ai/user/dios-man)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to install, check, configure, or remove a background gateway guardian. It is intended to protect openclaw.json, restart the gateway after repeated failures, and notify the operator when recovery succeeds or needs manual attention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs persistent user-level services that can modify OpenClaw configuration and restart the gateway. <br>
-Mitigation: Install only when background recovery automation is intended, and review service registration and recovery behavior before enabling it. <br>
-Risk: Recovery alerts may include logs or operational details. <br>
-Mitigation: Review notification destinations before forwarding alerts, and restrict group notifications to trusted channels. <br>
-Risk: Installation and recovery depend on packaged scripts, downloaded files when local files are absent, and guardian.conf values. <br>
-Mitigation: Prefer reviewed packaged files or pinned downloads, verify script sources, and safely quote or validate configuration values before persistent changes. <br>
+## Use Case:
 
+OpenClaw users and administrators use Gateway Guardian to protect gateway availability by validating openclaw.json changes, rolling back invalid configs, restarting failed gateway services, and notifying owners or configured teams.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dios-man/gateway-config-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that create user-level systemd services, OpenClaw config backups, and notification settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.3 (source: server release metadata) <br>
+Risk: Persistent user services and service drop-ins can change gateway restart and recovery behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the systemd user services and gateway drop-in before enabling them, and confirm the uninstall path removes the watcher, recovery service, and drop-in.
+
+Risk: Unsafe install or configuration paths could run unintended commands.
+
+Mitigation: Use bundled release files only, pin or verify any remote downloads, and avoid sourcing user-editable configuration as executable shell where possible.
+
+Risk: Notification channel IDs and bot names can affect where operational alerts are sent.
+
+Mitigation: Validate notification IDs and bot names strictly before writing guardian.conf, and keep fallback notification configuration private.
+
+## Reference(s):
+
+- [Gateway Guardian ClawHub Skill](https://clawhub.ai/dios-man/skills/gateway-config-guardian)
+- [Dios-Man Publisher Profile](https://clawhub.ai/user/dios-man)
+- [README.en.md](artifact/README.en.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include systemd service commands, guardian.conf configuration values, validation checks, uninstall commands, and notification setup guidance.]
+
+## Skill Version(s):
+
+1.6.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

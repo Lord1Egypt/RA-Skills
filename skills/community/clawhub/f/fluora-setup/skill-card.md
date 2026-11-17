@@ -1,46 +1,63 @@
-## Description: <br>
-Interactive setup wizard for Fluora marketplace integration that clones fluora-mcp from GitHub, builds locally, generates a wallet, and configures mcporter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive setup wizard for Fluora marketplace integration that clones fluora-mcp from GitHub, builds locally, generates a wallet, and configures mcporter.
 
-## Publisher: <br>
-[chetan-guevara](https://clawhub.ai/user/chetan-guevara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chetan-guevara](https://clawhub.ai/user/chetan-guevara)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to set up Fluora marketplace access by cloning and building fluora-mcp, creating a local wallet, and configuring mcporter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates a crypto wallet and handles local private-key material. <br>
-Mitigation: Use a small, dedicated wallet, keep only minimal funds in it, and protect the generated wallet file. <br>
-Risk: The setup downloads and builds external code during installation. <br>
-Mitigation: Review the cloned fluora-mcp repository before running it and avoid running the setup with elevated privileges. <br>
-Risk: The setup changes persistent mcporter configuration. <br>
-Mitigation: Back up or inspect mcporter.json before running the setup and review the resulting configuration. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to prepare a local Fluora marketplace integration, including a local fluora-mcp build, wallet setup, funding guidance, and mcporter registry configuration.
 
-## Reference(s): <br>
-- [ClawHub Fluora Setup Listing](https://clawhub.ai/chetan-guevara/fluora-setup) <br>
-- [Fluora Marketplace](https://fluora.ai) <br>
-- [fluora-mcp Repository](https://github.com/fluora-ai/fluora-mcp) <br>
-- [Base Network](https://base.org) <br>
-- [USDC](https://www.circle.com/en/usdc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance, interactive terminal prompts, shell commands, configuration changes, and JSON setup result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, npm, and git; setup may prompt for wallet funding and mcporter configuration choices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: The setup downloads and runs mutable upstream GitHub code and npm dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect or pin the upstream fluora-ai/fluora-mcp revision and review npm dependencies before running the setup.
+
+Risk: The setup handles a real cryptocurrency wallet and private key file.
+
+Mitigation: Use a fresh low-balance wallet, verify wallet file permissions, and avoid storing more funds than needed for testing.
+
+Risk: The setup persistently changes mcporter configuration, and the advertised skip controls are not implemented in the submitted script.
+
+Mitigation: Back up and review mcporter.json after running the setup, and manually remove or adjust the Fluora registry entry if needed.
+
+## Reference(s):
+
+- [Fluora marketplace](https://fluora.ai)
+- [fluora-mcp GitHub repository](https://github.com/fluora-ai/fluora-mcp)
+- [ClawHub skill listing](https://clawhub.ai/chetan-guevara/skills/fluora-setup)
+- [Base network](https://base.org)
+- [Base bridge](https://bridge.base.org)
+- [Base block explorer](https://basescan.org)
+- [USDC information](https://www.circle.com/en/usdc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Interactive terminal text with command guidance, local configuration changes, and a setup result object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, npm, and git; creates or updates local Fluora, wallet, and mcporter files.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata; artifact package.json and _meta.json list 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

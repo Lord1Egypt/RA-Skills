@@ -1,41 +1,54 @@
-## Description: <br>
-Coach professionnel pour préparer des entretiens avec des cabinets de Management de Transition ou des chasseurs de têtes, en analysant profils, fiches de poste et pitchs stratégiques pour Gilles Harpoutian. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coach professionnel expert en accompagnement de dirigeants pour la préparation d'entretiens avec des cabinets de Management de Transition (MdT) ou des chasseurs de têtes généralistes. Utilise ce skill pour analyser des profils de cabinets, des fiches de poste ou préparer des pitchs stratégiques pour Gilles Harpoutian.
 
-## Publisher: <br>
-[gillescv](https://clawhub.ai/user/gillescv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gillescv](https://clawhub.ai/user/gillescv)
 
-## Use Case: <br>
-Gilles Harpoutian and supporting coaches use this skill to prepare Management de Transition and headhunter interviews. It analyzes cabinet, consultant, or role context and produces targeted positioning, pitch language, comparison tables, and strategic questions in French. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Interview strategy and positioning guidance may be incomplete or poorly matched if the submitted cabinet profile, consultant profile, or role description is outdated or ambiguous. <br>
-Mitigation: Review the generated pitch, questions, and comparison tables against current source materials before using them in an interview. <br>
-Risk: Security evidence notes that ClawHub-related tooling can contact external services or mutate registry and repository state when explicitly invoked. <br>
-Mitigation: Install and run the skill only in an intended ClawHub working environment and use authenticated commands only when their effects are understood. <br>
+## Use Case:
 
+External users can use this French coaching skill to prepare executive-search and transition-management conversations for Gilles Harpoutian. It analyzes cabinet profiles, job descriptions, or interview context and produces targeted pitch, positioning, argument, and question guidance.
 
-## Reference(s): <br>
-- [Coach Chasseurs ClawHub page](https://clawhub.ai/gillescv/coach-chasseurs) <br>
-- [Coach Chasseurs coaching guide](references/COACHING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [French Markdown with bold keywords, comparison tables, bullet action plans, pitch scripts, and strategic questions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs adapt to Management de Transition or headhunter context and avoid hyperlinks and footnotes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may process sensitive LinkedIn PDFs, CVs, job materials, or interview context for personalized coaching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only materials that are appropriate for coaching analysis, and redact confidential or unnecessary personal details before use.
+
+Risk: The skill can produce interview strategy or positioning that may be incomplete, stale, or unsuitable for a specific conversation.
+
+Mitigation: Review and adapt generated pitches, arguments, and questions before relying on them in professional interviews.
+
+## Reference(s):
+
+- [COACHING.md](references/COACHING.md)
+- [ClawHub skill page](https://clawhub.ai/gillescv/skills/coach-chasseurs)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [French Markdown with bold keywords, comparison tables, and bullet-point action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated coaching output is intended to avoid hyperlinks and footnotes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

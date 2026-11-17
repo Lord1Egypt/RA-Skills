@@ -13,23 +13,29 @@ import urllib.request
 import urllib.error
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from typing import Optional, Dict, Any, List, Tuple
 
-# Configuration
-WORKSPACE = os.environ.get("OPENCLAW_WORKSPACE", "/home/node/.openclaw/workspace")
+# Configuration — use a writable fallback if OPENCLAW_WORKSPACE doesn't exist
+_WORKSPACE_DEFAULT = "/home/node/.openclaw/workspace"
+_ws = os.environ.get("OPENCLAW_WORKSPACE", _WORKSPACE_DEFAULT)
+if not os.path.isdir(_ws):
+    _ws = os.path.join(os.path.expanduser("~"), ".urbtix_cache")
+    os.makedirs(_ws, exist_ok=True)
+WORKSPACE = _ws
 CACHE_DIR = Path(WORKSPACE) / "urbtix_cache"
-CACHE_DIR.mkdir(exist_ok=True)
+CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
 # Official URBTIX batch XML distribution (cloud host)
 BASE_URL = "https://fs-open-1304240968.cos.ap-hongkong.myqcloud.com/prod/gprd"
 XML_PREFIX = "URBTIX_eventBatch_"
 XML_SUFFIX = ".xml"
 
-# HK timezone offset (GMT+8)
-HK_OFFSET = datetime.timedelta(hours=8)
+# HK timezone offset (GMT+8) - use timezone-aware datetime
+HK_TZ = datetime.timezone(datetime.timedelta(hours=8))
 
 def get_hk_now():
-    """Current time in Hong Kong (GMT+8)"""
-    return datetime.datetime.utcnow() + HK_OFFSET
+    """Current time in Hong Kong (GMT+8) - timezone aware"""
+    return datetime.datetime.now(datetime.timezone.utc).astimezone(HK_TZ)
 
 def parse_date_from_question(question):
     """Extract a date from the question. Returns datetime.date or defaults to today."""
@@ -73,28 +79,35 @@ def get_download_lock_path(date_str):
     return DOWNLOAD_LOCK_DIR / f"download_{date_str}.lock"
 
 def has_downloaded_today(date_str):
-    """Check if we've already attempted a download for this date within the same HK day."""
+    """Check if we've already attempted a download for this date within the same HK day.
+    
+    The lock file is named with the requested batch date. We track the actual day
+    the attempt was made by storing the attempt date in the lock file content.
+    """
     lock_path = get_download_lock_path(date_str)
     if lock_path.exists():
         try:
-            lock_date_str = lock_path.stem.split('_')[1]
-            lock_date = datetime.datetime.strptime(lock_date_str, "%Y%m%d").date()
-            hk_today = get_hk_now().date()
-            if lock_date == hk_today:
-                return True
+            # Read the attempt date from lock file content
+            content = lock_path.read_text().strip()
+            if content:
+                attempt_date = datetime.datetime.strptime(content, "%Y%m%d").date()
+                hk_today = get_hk_now().date()
+                if attempt_date == hk_today:
+                    return True
         except:
             pass
     return False
 
 def record_download_attempt(date_str):
-    """Create a lock file to record that we attempted a download for this date today."""
+    """Create a lock file recording the actual HK date of the attempt."""
     lock_path = get_download_lock_path(date_str)
-    lock_path.touch(exist_ok=True)
+    hk_today_str = get_hk_now().date().strftime("%Y%m%d")
+    lock_path.write_text(hk_today_str)
 
 def download_xml(url, filename, max_retries=2):
     """
-    Download XML with strict rate limiting: at most one download per date per HK day.
-    Also prevents downloading dates prior to today.
+    Download XML with strict rate limiting: at most one download attempt per HK day.
+    Also prevents downloading dates prior to today (unless force_refresh with valid cache).
     Returns True on success, False on failure.
     """
     # Extract date from filename
@@ -115,45 +128,6 @@ def download_xml(url, filename, max_retries=2):
     # Create lock before network call to prevent concurrent downloads
     record_download_attempt(date_str)
 
-    for attempt in range(max_retries + 1):
-        try:
-            req = urllib.request.Request(url, headers={'User-Agent': 'OpenClaw-urbtix-skill/1.0.2'})
-            with urllib.request.urlopen(req, timeout=10) as resp:
-                if resp.status != 200:
-                    continue
-                data = resp.read()
-                # Validate that this is URBTIX XML
-                if b'<BATCH>' not in data or b'URBTIX' not in data:
-                    # Invalid or unexpected content
-                    return False
-                cache_path = get_cache_path(filename)
-                cache_path.write_bytes(data)
-                return True
-        except Exception as e:
-            if attempt == max_retries:
-                return False
-    return False
-    try:
-        date_str = filename.split('_')[-1].split('.')[0]
-        file_date = datetime.datetime.strptime(date_str, "%Y%m%d").date()
-    except:
-        print(f"Invalid filename format: {filename}", file=sys.stderr)
-        return False
-
-    # Reject dates before today
-    hk_today = get_hk_now().date()
-    if file_date < hk_today:
-        print(f"Refusing to download past date: {date_str} (today is {format_date_for_xml(hk_today)})", file=sys.stderr)
-        return False
-
-    # Check if we've already downloaded/attempted today
-    if has_downloaded_today(date_str):
-        print(f"Rate limit: already attempted download for {date_str} today", file=sys.stderr)
-        cache_path = get_cache_path(filename)
-        if cache_path.exists():
-            return True
-        return False
-
     cache_path = get_cache_path(filename)
     temp_path = cache_path.with_suffix('.tmp')
 
@@ -167,9 +141,11 @@ def download_xml(url, filename, max_retries=2):
 
             req = urllib.request.Request(url, headers={'User-Agent': 'OpenClaw-URBTIX-Skill/1.0'})
             with urllib.request.urlopen(req, timeout=30) as resp, open(temp_path, 'wb') as out:
+                if resp.status != 200:
+                    continue
                 out.write(resp.read())
 
-            # Validate
+            # Validate XML content thoroughly
             try:
                 tree = ET.parse(temp_path)
                 root = tree.getroot()
@@ -189,6 +165,7 @@ def download_xml(url, filename, max_retries=2):
                         print(f"Validation failed: SEND_DATE {send_date} != expected {expected_date}", file=sys.stderr)
                         temp_path.unlink()
                         return False
+                
                 total_el = root.find('TOTAL')
                 if total_el is not None:
                     try:
@@ -201,6 +178,7 @@ def download_xml(url, filename, max_retries=2):
                             return False
                     except:
                         pass
+
                 temp_path.rename(cache_path)
                 record_download_attempt(date_str)
                 return True
@@ -238,10 +216,12 @@ def load_xml(filename):
         print(f"Cache parse error: {e}", file=sys.stderr)
         return None
 
-def purge_old_cache():
+def purge_old_cache(verbose=True):
     """
     Background task: purge cached XML files older than 7 days.
-    Runs silently without user notification.
+    
+    Args:
+        verbose: If True, prints notification about purged files.
     """
     hk_now = get_hk_now()
     cutoff_date = hk_now - datetime.timedelta(days=7)
@@ -266,6 +246,9 @@ def purge_old_cache():
                 lock_file.unlink()
         except:
             pass
+    
+    if verbose and purged_count > 0:
+        print(f"[URBTIX] Purged {purged_count} cached XML file(s) older than 7 days", file=sys.stderr)
     
     return purged_count
 
@@ -426,16 +409,27 @@ def search_events(tree, name_keywords=None, venue_keywords=None, date_filter=Non
 
     return matches
 
-def format_answer(matches, total_found, clarification=None):
+def format_answer(matches, total_found, clarification=None, language='en'):
+    """Format answer in requested language (en/zh)."""
     if clarification:
-        return {"answer": clarification, "matches": [], "clarification_needed": clarification}
+        if language == 'zh':
+            return {"answer": clarification, "matches": [], "clarification_needed": clarification}
+        else:
+            return {"answer": clarification, "matches": [], "clarification_needed": clarification}
 
     if not matches:
-        return {
-            "answer": "抱歉，在指定日期/條件下找不到相關演出。請嘗試提供更多細節（例如完整節目名稱、不同日期或場地）。",
-            "matches": [],
-            "clarification_needed": "無法匹配任何演出，請提供更多細節（完整名稱、日期、場地）"
-        }
+        if language == 'zh':
+            return {
+                "answer": "抱歉，在指定日期/條件下找不到相關演出。請嘗試提供更多細節（例如完整節目名稱、不同日期或場地）。",
+                "matches": [],
+                "clarification_needed": "無法匹配任何演出，請提供更多細節（完整名稱、日期、場地）"
+            }
+        else:
+            return {
+                "answer": "Sorry, no performances found for the specified date/conditions. Please try providing more details (e.g., full event name, different date or venue).",
+                "matches": [],
+                "clarification_needed": "No matching performances found. Please provide more details (full name, date, venue)."
+            }
 
     unique = {}
     for m in matches:
@@ -447,15 +441,21 @@ def format_answer(matches, total_found, clarification=None):
     events = list(unique.values())
     events.sort(key=lambda x: x['time'])
 
-    header = "| 時間 | 節目 | 場地 | 購票連結 |\n|------|------|------|----------|"
+    if language == 'zh':
+        header = "| 時間 | 節目 | 場地 | 購票連結 |\n|------|------|------|----------|"
+        time_label = "待定"
+    else:
+        header = "| Time | Event | Venue | Ticket Link |\n|------|-------|-------|-------------|"
+        time_label = "TBD"
+
     rows = []
     for e in events:
-        name = e['event_name_tc'] or e['event_name_en'] or "未提供"
-        venue = e['venue_tc'] or e['venue'] or "未提供"
-        time = e['time'] or "待定"
+        name = e['event_name_tc'] or e['event_name_en'] or ("未提供" if language == 'zh' else "N/A")
+        venue = e['venue_tc'] or e['venue'] or ("未提供" if language == 'zh' else "N/A")
+        time = e['time'] or time_label
         link = e['reference_link']
         if link:
-            link_cell = f"[購票]({link})"
+            link_cell = f"[Ticket]({link})" if language == 'en' else f"[購票]({link})"
         else:
             link_cell = "N/A"
         # Escape pipes in name/venue
@@ -463,22 +463,39 @@ def format_answer(matches, total_found, clarification=None):
         venue = venue.replace('|', '\\|')
         rows.append(f"| {time} | {name} | {venue} | {link_cell} |")
 
-    answer = f"找到 {len(events)} 場演出：\n\n{header}\n" + "\n".join(rows)
+    if language == 'zh':
+        answer = f"找到 {len(events)} 場演出：\n\n{header}\n" + "\n".join(rows)
+    else:
+        answer = f"Found {len(events)} performance(s):\n\n{header}\n" + "\n".join(rows)
+    
     return {"answer": answer, "matches": events, "clarification_needed": None}
 
-def query_events(question, force_refresh=False):
-    """Main entry point."""
-    # Run background cleanup silently
-    purge_old_cache()
+def query_events(question, force_refresh=False, language='en'):
+    """Main entry point.
+    
+    Args:
+        question: Natural language question about events
+        force_refresh: If true, ignore cached XML and re-download
+        language: Response language - 'en' for English, 'zh' for Traditional Chinese
+    """
+    # Run background cleanup (silent unless files purged)
+    purge_old_cache(verbose=False)
     
     target_date, name_keywords, venue_keywords = parse_question(question)
     tree, used_filename, was_fallback = get_batch_xml(target_date, force_refresh)
     if tree is None:
-        return {
-            "answer": f"無法獲取URBTIX資料。請稍後再試或確認日期是否正確。",
-            "matches": [],
-            "clarification_needed": "XML下載失敗，請稍後重試或提供不同日期"
-        }
+        if language == 'zh':
+            return {
+                "answer": f"無法獲取URBTIX資料。請稍後再試或確認日期是否正確。",
+                "matches": [],
+                "clarification_needed": "XML下載失敗，請稍後重試或提供不同日期"
+            }
+        else:
+            return {
+                "answer": f"Unable to fetch URBTIX data. Please try again later or verify the date.",
+                "matches": [],
+                "clarification_needed": "XML download failed, please retry or provide a different date"
+            }
 
     matches = search_events(tree, name_keywords=name_keywords, venue_keywords=venue_keywords, date_filter=target_date)
 
@@ -486,19 +503,33 @@ def query_events(question, force_refresh=False):
         # Search without date filter to see if there are any matches at all
         all_matches = search_events(tree, name_keywords=name_keywords, venue_keywords=venue_keywords, date_filter=None)
         if all_matches:
-            return {
-                "answer": f"在{target_date.strftime('%Y-%m-%d')}沒有找到相關演出。但以下日期有演出：",
-                "matches": all_matches[:10],
-                "clarification_needed": f"指定的日期沒有演出，但其他日期有。請確認是否查詢其他日期？"
-            }
+            if language == 'zh':
+                return {
+                    "answer": f"在{target_date.strftime('%Y-%m-%d')}沒有找到相關演出。但以下日期有演出：",
+                    "matches": all_matches[:10],
+                    "clarification_needed": f"指定的日期沒有演出，但其他日期有。請確認是否查詢其他日期？"
+                }
+            else:
+                return {
+                    "answer": f"No performances found for {target_date.strftime('%Y-%m-%d')}. But performances exist on other dates:",
+                    "matches": all_matches[:10],
+                    "clarification_needed": f"Specified date has no performances, but other dates do. Would you like to check another date?"
+                }
         else:
-            return {
-                "answer": "在可獲得的資料中找不到符合條件的演出。請嘗試提供更多細節。",
-                "matches": [],
-                "clarification_needed": "無法匹配任何演出，請提供更多細節（完整名稱、日期、場地）"
-            }
+            if language == 'zh':
+                return {
+                    "answer": "在可獲得的資料中找不到符合條件的演出。請嘗試提供更多細節。",
+                    "matches": [],
+                    "clarification_needed": "無法匹配任何演出，請提供更多細節（完整名稱、日期、場地）"
+                }
+            else:
+                return {
+                    "answer": "No matching performances found in available data. Please try providing more details.",
+                    "matches": [],
+                    "clarification_needed": "No matching performances found. Please provide more details (full name, date, venue)."
+                }
 
-    return format_answer(matches, len(matches))
+    return format_answer(matches, len(matches), language=language)
 
 def parse_question(question):
     """Parse question to extract date, event name keywords, and venue keywords."""
@@ -522,7 +553,12 @@ def parse_question(question):
             for alias in aliases:
                 q_low = q_low.replace(alias, '')
 
-    q_clean = re.sub(r'\b(when|where|what|is|are|the|for|on|in|at|show|performance|ticket|book|find|tell me|about|event|events)\b', '', q_low)
+    q_clean = q_low
+    # Remove English stop words
+    q_clean = re.sub(r'\b(when|where|what|is|are|the|for|on|in|at|show|performance|performances|ticket|book|find|tell me|about|event|events)\b', '', q_clean)
+    # Remove Chinese stop words/particles
+    for cw in ['有', '什麼', '那些', '哪些', '演', '出', '場次', '場', '嗎', '呢', '什麼', '有哪些']:
+        q_clean = q_clean.replace(cw, '')
     q_clean = re.sub(r'\d{4}[-/]\d{1,2}[-/]\d{1,2}', '', q_clean)
     q_clean = re.sub(r'\s+', ' ', q_clean).strip()
 
@@ -537,12 +573,13 @@ def main():
         payload = json.load(sys.stdin)
         question = payload.get("question", "")
         force_refresh = payload.get("force_refresh", False)
+        language = payload.get("language", "en")  # 'en' or 'zh'
 
         if not question:
             print(json.dumps({"error": "Missing 'question' parameter"}, ensure_ascii=False))
             sys.exit(1)
 
-        result = query_events(question, force_refresh)
+        result = query_events(question, force_refresh, language)
         print(json.dumps(result, ensure_ascii=False, indent=2))
     except Exception as e:
         print(json.dumps({"error": str(e), "answer": f"執行錯誤：{e}"}, ensure_ascii=False))

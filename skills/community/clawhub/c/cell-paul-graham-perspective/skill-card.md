@@ -1,46 +1,60 @@
-## Description: <br>
-Paul Graham 视角 provides a Chinese-first advisory lens for startup, writing, product, founder, and independent-thinking questions using Paul Graham-inspired mental models rather than voice imitation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paul Graham 视角 helps agents analyze startup, writing, product, founder, and independent-thinking questions through Paul Graham's recurring lenses without merely imitating his essay style.
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-External users and developers use this skill to apply a Paul Graham-inspired perspective to startup, writing, product, founder judgment, and work-style questions, with explicit blind-spot notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill offers low-authority advisory framing that may be mistaken for verified startup, market, or business facts. <br>
-Mitigation: Verify time-sensitive or consequential facts separately before applying the perspective to decisions. <br>
-Risk: Paul Graham-inspired guidance can overfit Silicon Valley, English-language startup, or founder-intuition assumptions. <br>
-Mitigation: Use the required blind-spot section to call out context limits and adapt recommendations to the user's market and constraints. <br>
-Risk: The skill defaults to Chinese output, which may not match every user's requested language. <br>
-Mitigation: Override the response language when the user asks for another language or when the surrounding workflow requires it. <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to apply a Paul Graham-style advisory lens to startup, writing, product, founder, team, or work-style decisions. It is best suited for framing tradeoffs, surfacing follow-up questions, and identifying blind spots rather than serving as factual authority.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cellinlab/cell-paul-graham-perspective) <br>
-- [Core Models](references/core-models.md) <br>
-- [Decision Heuristics](references/decision-heuristics.md) <br>
-- [Expression DNA](references/expression-dna.md) <br>
-- [Boundaries](references/boundaries.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text advisory response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to Chinese unless the user asks otherwise; includes a blind spot or limitation of the selected lens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill applies an opinionated Paul Graham lens and may overemphasize that framing for decisions that need broader context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as advisory framing, compare them with other perspectives, and keep the stated blind spot visible.
+
+Risk: The skill is not a current factual authority for fast-changing startup, product, or market questions.
+
+Mitigation: Verify current facts before applying the Paul Graham-style analysis to time-sensitive decisions.
+
+Risk: The skill is designed around Chinese-language advisory output by default.
+
+Mitigation: Ask explicitly for another language when Chinese output is not appropriate.
+
+## Reference(s):
+
+- [Boundaries](references/boundaries.md)
+- [Core Models](references/core-models.md)
+- [Decision Heuristics](references/decision-heuristics.md)
+- [Expression DNA](references/expression-dna.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text advisory analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese-language responses unless the user requests another language.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

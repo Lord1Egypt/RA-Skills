@@ -1,48 +1,61 @@
-## Description: <br>
-Diagnose and repair Microsoft Word DOCX formatting problems, including styles, numbering, section breaks, headers and footers, comments, tracked changes, and OOXML compatibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose and repair Microsoft Word DOCX formatting problems, including styles, numbering, section breaks, headers and footers, comments, tracked changes, and OOXML compatibility.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Knowledge workers, legal and operations teams, documentation maintainers, and developers use this skill to diagnose DOCX formatting failures and plan or implement targeted repairs while preserving document structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive legal or business documents may contain confidential content. <br>
-Mitigation: Use only the files needed for the task, preserve an original backup, and review any repaired copy before relying on it. <br>
-Risk: Broad Word-related activation could apply the skill to requests where document repair is not intended. <br>
-Mitigation: Invoke deliberately for DOCX formatting or automation work and review recommendations before changing documents. <br>
-Risk: Local tooling may not fully reproduce Microsoft Word desktop rendering behavior. <br>
-Mitigation: Validate repaired files by reopening or rendering them when possible, checking page count, styles, numbering, headers, footers, comments, tracked changes, and tables. <br>
+## Use Case:
 
+Knowledge workers, legal and operations teams, documentation maintainers, and developers use this skill to diagnose Word DOCX formatting failures and plan or implement careful repairs to styles, numbering, sections, headers, footers, comments, tracked changes, and OOXML compatibility.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/word-docx-formatting-repair-helper) <br>
-- [Markdown to DOCX/PDF](https://segmentfault.com/a/1190000004887280) <br>
-- [Word Control Read-Only Mode](https://segmentfault.com/a/1190000023469253) <br>
-- [Add Tables to Word with Python](https://segmentfault.com/a/1190000044727832) <br>
-- [PDF/HTML to DOCX](https://segmentfault.com/a/1190000047409513) <br>
-- [Tracked Change Records](https://segmentfault.com/q/1010000005983758/a-1020000005984066) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional code, shell commands, configuration snippets, and document repair notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include diagnosis, repair plans, implementation changes, validation notes, and remaining risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may inspect or modify sensitive DOCX files, including legal or business documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep an original backup, work on a copy, explicitly invoke the skill for confidential files, and review any repaired document before use.
+
+Risk: Broad or unsupported OOXML edits can damage document structure, numbering, comments, or tracked changes.
+
+Mitigation: Apply the smallest safe change, preserve comments and tracked changes unless cleanup is requested, and validate by reopening or rendering the document when possible.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/word-docx-formatting-repair-helper)
+- [Publisher Profile](https://clawhub.ai/user/kyro-ma)
+- [Markdown and Pandoc DOCX/PDF Demand Signal](https://segmentfault.com/a/1190000004887280)
+- [Word Control Read-Only Demand Signal](https://segmentfault.com/a/1190000023469253)
+- [Python Word Table Demand Signal](https://segmentfault.com/a/1190000044727832)
+- [Word Line-Break Demand Signal](https://segmentfault.com/a/1190000040583144)
+- [PDF/HTML to DOCX Demand Signal](https://segmentfault.com/a/1190000047409513)
+- [.NET Track Changes Demand Signal](https://segmentfault.com/q/1010000005983758/a-1020000005984066)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional code, shell commands, configuration notes, and document repair plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include validation notes and remaining risks for repaired DOCX files]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

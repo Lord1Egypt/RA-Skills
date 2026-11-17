@@ -1,40 +1,58 @@
-## Description: <br>
-Generates and edits images with Nano Banana Pro (Gemini 3 Pro Image), supporting text-to-image and image-to-image workflows at 1K, 2K, and 4K resolutions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate/edit images with Nano Banana Pro (Gemini 3 Pro Image). Use for image create/modify requests incl. edits. Supports text-to-image + image-to-image; 1K/2K/4K; use --input-image.
 
-## Publisher: <br>
-[youthzenith](https://clawhub.ai/user/youthzenith) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youthzenith](https://clawhub.ai/user/youthzenith)
 
-## Use Case: <br>
-External users and developers use this skill to generate new PNG images or edit existing images through Google's Gemini image API from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected input images are sent to Google's Gemini image API. <br>
-Mitigation: Use the skill only when that data sharing is acceptable for the content being generated or edited. <br>
-Risk: The skill requires a Gemini API key and supports passing it on the command line. <br>
-Mitigation: Prefer GEMINI_API_KEY from a protected environment or secret store, especially on shared systems or logged terminal sessions. <br>
+## Use Case:
 
+Developers and creative teams use this skill to generate new images from text prompts or edit existing images with targeted instructions. It guides an agent through Gemini API key setup, resolution choices, prompt handling, and saving generated PNG files in the user's working directory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/youthzenith/nanobananapro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated PNG files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are saved as PNG files in the user's current working directory or the requested output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts and input images are sent to Google's Gemini image service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content that is appropriate to share with that service, and review applicable data handling requirements before use.
+
+Risk: API keys can be exposed if pasted into chat or command arguments.
+
+Mitigation: Prefer setting GEMINI_API_KEY in a protected environment and avoid sharing credentials in conversation history or shell history.
+
+Risk: Running with uv may fetch dependency versions at execution time.
+
+Mitigation: Review dependency resolution in controlled environments and pin or lock dependencies where deployment policy requires reproducibility.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/youthzenith/skills/nanobananapro)
+- [Publisher profile](https://clawhub.ai/user/youthzenith)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, files]
+
+**Output Format:** [Markdown guidance with inline bash commands; generated PNG image files when the helper script runs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports text-to-image and image-to-image workflows with 1K, 2K, and 4K resolution options. Requires a Gemini API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,60 @@
-## Description: <br>
-Execute PostgreSQL database operations using psycopg2. List tables, describe schema, execute SQL queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute PostgreSQL database operations using psycopg2, including listing tables, describing schemas, and running SQL queries.
 
-## Publisher: <br>
-[tengshengbo](https://clawhub.ai/user/tengshengbo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tengshengbo](https://clawhub.ai/user/tengshengbo)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect PostgreSQL tables, describe schemas, run SQL queries, generate schema summaries, and make controlled row-level changes when database access is authorized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The schema summary command can print sample rows from every public table, which may expose sensitive database contents. <br>
-Mitigation: Use the skill only with databases the agent is allowed to inspect, prefer a read-only or limited database user, and avoid schema summaries on sensitive production databases. <br>
-Risk: The skill can insert, update, and delete database records. <br>
-Mitigation: Require explicit user confirmation before write operations and use least-privilege database credentials unless writes are necessary. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect PostgreSQL databases, retrieve schema details, run SQL queries, and make reviewed data changes through a Python command-line interface.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tengshengbo/postgresql-skill) <br>
-- [Project homepage](https://gitee.com/tengshengbo/postgre_sql_skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require PostgreSQL connection configuration through config.yaml or DB_* environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata; skill frontmatter reports 1.0.0) <br>
+Risk: The skill can expose database query results, schema details, and sample rows to an agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege PostgreSQL role and avoid production databases unless agent access to returned data is acceptable.
+
+Risk: The skill supports INSERT, UPDATE, and DELETE operations and its advertised SQL safety checks are incomplete.
+
+Mitigation: Require explicit human review before write operations and treat built-in SQL checks as a supporting control, not the primary approval mechanism.
+
+Risk: Database credentials may be configured in local files.
+
+Mitigation: Prefer environment-injected secrets, keep config files out of version control, and do not commit credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tengshengbo/skills/postgresql-skill)
+- [Source homepage](https://gitee.com/tengshengbo/postgre_sql_skill)
+- [Packaged README](artifact/README.md)
+- [Packaged skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus JSON and text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Database results may include schema details, query rows, sample rows, and affected-row counts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

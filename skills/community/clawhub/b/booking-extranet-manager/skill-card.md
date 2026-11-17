@@ -1,43 +1,58 @@
-## Description: <br>
-Manage Booking.com properties by downloading reservations, listing and replying to guest messages, and updating rates through a Python CLI that automates the Booking.com extranet in Chrome. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Booking.com properties by downloading reservations, listing or replying to guest messages, and updating rates through a Python CLI that automates the Booking.com extranet in local Chrome.
 
-## Publisher: <br>
-[matsei-ruka](https://clawhub.ai/user/matsei-ruka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[matsei-ruka](https://clawhub.ai/user/matsei-ruka)
 
-## Use Case: <br>
-Hospitality operators and property managers use this skill to help an agent run Booking.com extranet workflows such as checking properties, reviewing guest conversations, downloading reservation data, and preparing rate updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate with live Booking.com partner account access and may send guest messages or change rates. <br>
-Mitigation: Require manual review before sending guest messages or changing rates, and confirm each target property, conversation, and rate update before execution. <br>
-Risk: The scanned package wraps external automation code that is not included in the scanned artifact. <br>
-Mitigation: Install only after reviewing the external bot code and confirming it matches the expected Booking.com automation behavior. <br>
-Risk: The workflow uses Booking.com credentials, optional TOTP automation, and a persistent Chrome session. <br>
-Mitigation: Protect the .env and .chrome-data directories, restrict local access to the host, and confirm the automation is allowed for the Booking.com account. <br>
+## Use Case:
 
+Property managers and hospitality operators use this skill to have an agent run local Booking.com extranet workflows such as reservation export, guest-message review and replies, and rate updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/matsei-ruka/booking-extranet-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/matsei-ruka) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may produce JSON responses or Excel reservation exports through the external Booking.com automation CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and frontmatter) <br>
+Risk: The skill asks users to install unpinned external code that handles Booking.com credentials and persistent browser sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, audited commit of the external repository, lock and verify dependencies, and protect the .env and .chrome-data files.
+
+Risk: Guest messages and rate changes affect live Booking.com accounts.
+
+Mitigation: Require explicit human approval with a preview before sending guest messages or changing rates.
+
+Risk: Local Chrome automation and persisted browser session data can expose account access if the host is not protected.
+
+Mitigation: Keep Chrome remote debugging bound to localhost, restrict access to the bot directory, and delete persisted session data when access should be revoked.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/matsei-ruka/skills/booking-extranet-manager)
+- [External CLI dependency referenced by the skill](https://github.com/matsei-ruka/booking-extranet-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may produce JSON on stdout or Excel files through the external CLI.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

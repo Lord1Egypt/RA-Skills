@@ -4,7 +4,7 @@ set -o pipefail
 
 # Zotero note reading script
 # Reads a note and converts HTML to plain text
-# Version: 1.3.6
+# Version: 1.3.14
 # Safety: Only calls Zotero API. No eval, no obfuscation.
 
 # Argument handling
@@ -36,7 +36,7 @@ EOF
             exit 0
             ;;
         --version)
-            echo "zotero-enhanced read_note.sh v1.3.8"
+            echo "zotero-enhanced read_note.sh v1.3.14"
             exit 0
             ;;
         --format)

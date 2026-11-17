@@ -1,42 +1,57 @@
-## Description: <br>
-Provides a Node.js command-line Baidu web search tool that returns ranked search results with titles, summaries, and links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Search Node is a Node.js command-line skill that queries Baidu web search and returns ranked result titles, summaries, and links without requiring an API key.
 
-## Publisher: <br>
-[wsh66660](https://clawhub.ai/user/wsh66660) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[wsh66660](https://clawhub.ai/user/wsh66660)
 
-## Use Case: <br>
-Developers and agent builders use this skill to run Baidu web searches from a Node.js script and return ranked result text for downstream review or summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Baidu and may expose secrets, credentials, or confidential project details. <br>
-Mitigation: Avoid using sensitive or confidential information as search queries, and notify users that queries are sent to Baidu. <br>
-Risk: The documented execSync integration can allow crafted search queries to execute unintended local shell commands. <br>
-Mitigation: Use execFile or spawn with an argument array, validate the requested result count, and avoid constructing shell command strings from user input. <br>
+## Use Case:
 
+Developers and agents use this skill to run Baidu web searches from Node.js workflows and receive a small ranked set of titles, summaries, and links. It is useful when Baidu search coverage is needed without configuring a Baidu API key.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/wsh66660/baidu-search-node) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [package.json](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Code] <br>
-**Output Format:** [Plain text search results with setup guidance in Markdown and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include rank, title, abstract, and URL; result count and debug mode are command-line options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: The documented integration example can turn a search query into local shell command execution when copied directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use spawn or execFile with argument arrays, validate the requested result count, and avoid interpolating user search text into shell commands.
+
+Risk: Search queries are sent to Baidu and may expose secrets or sensitive personal data.
+
+Mitigation: Do not submit secrets, credentials, confidential content, or sensitive personal data as search queries.
+
+Risk: Dependency resolution uses package-lock entries from cnpm registry mirrors.
+
+Mitigation: Regenerate the lockfile from the canonical npm registry or review dependencies before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wsh66660/skills/baidu-search-node)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text search results with Markdown documentation examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search result count is configurable with the -n option; debug logging is configurable with the -d option.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

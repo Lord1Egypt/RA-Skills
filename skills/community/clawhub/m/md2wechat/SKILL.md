@@ -16,6 +16,7 @@ Choose the command family before taking any publish or generation action:
 - Article cover or article infographic: prefer `generate_cover` or `generate_infographic` over raw `generate_image` when a bundled preset fits.
 - Host-agent image generation request with no provider configured: use image plan mode (`--plan --json`) to get prompt intent, then hand it to the host image-generation tool if one is available outside md2wechat.
 - WeChat title candidates for an existing article: use `title suggest <article.md> --json`; it emits a host-Agent AI request and does not choose or write the final title.
+- Existing article or draft, user asks what to improve next: run `md2wechat advise <article.md> --json`; treat it as recommendation-only and keep `inspect --json data.readiness.targets/blockers` as the publish gate.
 - Writing in a creator style or removing AI traces: use `write` or `humanize`.
 - Provider, theme, prompt, or layout uncertainty: run discovery first. Do not guess from memory or repository files.
 
@@ -107,7 +108,8 @@ Prefer a confirm-first workflow for article work:
 3. `md2wechat convert <article.md> ...`
 4. Add `--upload`, `--draft`, `--cover`, or `--cover-media-id` only when the user explicitly asks for upload or draft creation.
 
-`inspect` is the source-of-truth command for resolved metadata, readiness, and publish checks. In `--json` output, read `data.readiness.targets` and `data.readiness.blockers` before deciding whether `convert`, `upload`, or `draft` is blocked. Do not invent `data.agent_readiness`, `data.target_readiness`, `ArticleState`, state files, or a second planning object. `preview` is a local preview artifact. It does not upload images, create drafts, or write back to Markdown. `convert --preview` is the convert-path preview flag and is not the same as the standalone `preview` command. `preview --mode ai` is degraded confirmation only and must not be treated as final AI-generated layout.
+`inspect` is the source-of-truth command for resolved metadata, readiness, and publish checks. In `--json` output, read `data.readiness.targets` and `data.readiness.blockers` before deciding whether `convert`, `upload`, or `draft` is blocked. If the requested target is blocked, stop and report the matching blockers; do not continue by guessing from legacy booleans or `checks` alone. Do not invent `data.agent_readiness`, `data.target_readiness`, `ArticleState`, state files, or a second readiness/state object. `preview` is a local preview artifact. It does not upload images, create drafts, or write back to Markdown. `convert --preview` is the convert-path preview flag and is not the same as the standalone `preview` command. `preview --mode ai` is degraded confirmation only and must not be treated as final AI-generated layout.
+When the intended execution path is `convert --mode ai --custom-prompt ...`, run `inspect` with the same `--mode ai --custom-prompt ...` before trusting readiness.
 
 ## Formatting Protocol
 
@@ -144,14 +146,11 @@ Use this decision frame:
 - `memorability`: make one judgment, quote, metric, or brand anchor stick.
 - `conversion`: help readers save, follow, inquire, share, or buy.
 
-Use `layout list --json` and `layout show <name> --json` to inspect `body_format`. It is the module body syntax contract:
+Use CLI discovery as the source of truth for layout syntax instead of memorizing or guessing `body_format` values:
 
-- `fields`
-- `rows`
-- `json_object`
-- `json_array`
-
-Do not infer syntax from examples alone. Use `layout render` when structured variables are enough; otherwise write the block manually according to `body_format` and validate the generated Markdown.
+- Inspect the opener, body schema, canonical executable example, and structurally distinct variants with `layout show <name> --json`. Reuse the canonical witness.
+- Use `layout render` for structured fields and `--body-file` (or `--body-file -` for stdin) for complex bodies, then validate the generated Markdown.
+- Default discovery returns recommended modules. Use `layout list --lifecycle compatibility --json` only for old-content migration. Local validation proves syntax acceptance only; production support is a release-conformance fact.
 
 Default module discipline:
 

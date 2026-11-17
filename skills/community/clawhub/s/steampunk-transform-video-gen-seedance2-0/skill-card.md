@@ -1,44 +1,58 @@
-## Description: <br>
-Transforms text or image briefs into Victorian-industrial steampunk short-video generations using WeryAI Seedance 2.0. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rebuild any brief into Victorian-industrial steampunk: brass, wood, steam plumes, visible mechanisms--WeryAI Seedance 2.0 only.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-Creators and agents use this skill to turn user briefs or single images into confirmed WeryAI video-generation requests with steampunk prompt expansion, fixed Seedance 2.0 settings, and playable video links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video generation requires a WERYAI_API_KEY, network access, paid credits, prompts, and any images provided to WeryAI. <br>
-Mitigation: Install only if the publisher and WeryAI are trusted, keep the API key secret, and review the full prompt and settings before submitting paid generation. <br>
-Risk: Image-to-video inputs can include local image paths that the script reads and uploads to WeryAI. <br>
-Mitigation: Prefer public HTTPS image URLs; use local paths only after explicit user consent and verification that the intended file should be uploaded. <br>
-Risk: The generation script requires a model value but does not enforce this skill's SEEDANCE_2_0-only policy in code. <br>
-Mitigation: Before running generation, confirm the JSON uses model SEEDANCE_2_0 and matches the documented duration, aspect ratio, resolution, and audio options. <br>
+## Use Case:
 
+External creators and developers use this skill to transform text briefs or a single image into short Victorian-industrial steampunk videos through WeryAI Seedance 2.0. It expands prompts, confirms generation settings, runs the bundled Node.js CLI, and returns playable video links or actionable failure details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/steampunk-transform-video-gen-seedance2-0) <br>
-- [Publisher profile](https://clawhub.ai/user/zoucdr) <br>
-- [WeryAI video API reference](artifact/resources/WERYAI_VIDEO_API.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON command payloads and playable video links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18+, SEEDANCE_2_0 parameters, and user confirmation before paid generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: The skill requires a WeryAI API key and sends prompts, image URLs, and chosen attachment files to WeryAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped key where possible, keep the key out of committed files, and run the skill only when third-party video generation is acceptable.
+
+Risk: A local image path may be read and uploaded to WeryAI as a public URL.
+
+Mitigation: Prefer public HTTPS image URLs; use local paths only after verifying the exact file and obtaining explicit consent to upload it.
+
+Risk: Video generation is a paid network operation that may consume credits on each run.
+
+Mitigation: Show the full prompt and settings before submission, require confirmation, and avoid reruns unless the user approves the additional cost.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/steampunk-transform-video-gen-seedance2-0)
+- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline links and JSON status or error details from the CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns playable video links when generation succeeds; may also provide task identifiers, status, or error codes from WeryAI.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

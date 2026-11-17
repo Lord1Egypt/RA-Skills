@@ -1,43 +1,58 @@
-## Description: <br>
-Kannaka Eye runs a local Node.js glyph viewer that classifies text, files, or raw bytes into SGA classes and renders multi-layer Fano-plane visualizations, with optional native classifier, radio bridge, health dashboard, share link, and export features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kannaka Eye helps agents run a local glyph viewer that classifies text, files, or raw bytes into SGA classes and renders multi-layer Fano-plane glyph visualizations.
 
-## Publisher: <br>
-[NickFlach](https://clawhub.ai/user/NickFlach) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickflach](https://clawhub.ai/user/nickflach)
 
-## Use Case: <br>
-Developers and engineers use this skill to launch a local visualization service for inspecting geometric glyphs derived from text, files, raw bytes, and optional audio perception data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The launcher may run a server.js file outside the reviewed package. <br>
-Mitigation: Inspect the exact server.js path before running and ask the publisher to include the intended server file inside the reviewed skill package. <br>
-Risk: Flux publishing can send glyph render event data to a remote endpoint when FLUX_URL is set. <br>
-Mitigation: Leave FLUX_URL unset unless the destination is trusted and expected for the deployment. <br>
-Risk: The local viewer is documented for local or trusted-network use and does not describe authentication. <br>
-Mitigation: Bind and expose the service only in trusted environments, avoid sensitive inputs during review, and stop the background process after testing. <br>
+## Use Case:
 
+Developers and external users use this skill to start and operate a local glyph visualization service for inspecting data geometry, exporting glyph PNG or JSON, and monitoring the Kannaka constellation when related services are available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NickFlach/kannaka-eye) <br>
-- [Publisher profile](https://clawhub.ai/user/NickFlach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and local service outputs including glyph JSON, PNG exports, share links, and status data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local HTTP viewer; optional remote Flux publishing is enabled only when FLUX_URL is set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The packaged launcher may execute server.js from outside the skill directory or fail when that file is absent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run ./scripts/eye.sh start until server.js is packaged inside the skill directory and the exact file has been reviewed.
+
+Risk: The stop and status commands can affect unrelated local services on a shared port.
+
+Mitigation: Use a dedicated port and verify the process identity before running stop or status on shared machines.
+
+Risk: Flux publishing may send glyph event metadata off the local machine when FLUX_URL is enabled.
+
+Mitigation: Leave FLUX_URL unset unless remote event publishing is intended and approved for the data being visualized.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nickflach/skills/kannaka-eye)
+- [Publisher profile](https://clawhub.ai/user/nickflach)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local HTTP/API outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The running viewer can export PNG files and glyph JSON client-side; optional Flux publishing is enabled only when FLUX_URL is set.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

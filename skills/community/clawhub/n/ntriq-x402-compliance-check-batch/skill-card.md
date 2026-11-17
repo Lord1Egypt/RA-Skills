@@ -1,42 +1,55 @@
-## Description: <br>
-Batch compliance analysis for up to 500 texts with flat $9.00 USDC payment via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch compliance analysis for up to 500 texts with flat $9.00 USDC payment via x402.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-Developers and compliance reviewers use this skill to submit batches of text for compliance checks against frameworks such as GDPR, HIPAA, SOX, or a general policy review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected text is sent to the provider's external endpoint for analysis. <br>
-Mitigation: Avoid submitting confidential, regulated, or client-sensitive material unless the provider's privacy, retention, and compliance terms are acceptable. <br>
-Risk: Using the skill can authorize a $9 USDC x402 payment. <br>
-Mitigation: Confirm the payment header, network, and price before execution. <br>
+## Use Case:
 
+External developers and compliance teams use this skill to submit batches of text for compliance review against frameworks such as GDPR, HIPAA, SOX, or a general policy setting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ntriq-gh/ntriq-x402-compliance-check-batch) <br>
-- [Ntriq x402 service homepage](https://x402.ntriq.co.kr) <br>
-- [x402 protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require sending text to an external API and authorizing a $9 USDC x402 payment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Submitted compliance texts may be sent to a remote paid third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit confidential, regulated, customer, employee, health, legal, or proprietary content unless the provider and its privacy, logging, retention, and payment practices have been reviewed.
+
+Risk: The artifact claims local inference while the skill behavior requires using a remote service endpoint.
+
+Mitigation: Treat the service as remote processing unless the provider's deployment and data-handling claims have been independently confirmed.
+
+## Reference(s):
+
+- [Ntriq x402 homepage](https://x402.ntriq.co.kr)
+- [x402 protocol](https://x402.org)
+- [ClawHub skill page](https://clawhub.ai/ntriq-gh/skills/ntriq-x402-compliance-check-batch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with API request examples and parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve paid x402 requests to a remote third-party service.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,62 @@
-## Description: <br>
-Self Evolution Pro helps agents record learnings, analyze root causes, maintain a knowledge graph, synchronize cross-session notes, and promote recurring patterns into reusable skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self Evolution Pro helps an AI agent record lessons from conversations and errors, analyze root causes, maintain a knowledge graph and evolution metrics, sync learnings across sessions, and promote repeated patterns into reusable skills.
 
-## Publisher: <br>
-[windy-001-crypto](https://clawhub.ai/user/windy-001-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windy-001-crypto](https://clawhub.ai/user/windy-001-crypto)
 
-## Use Case: <br>
-Developers and agent operators use this skill to help an agent capture corrections, errors, feature requests, and recurring lessons, then review or promote them into guidance, skills, and ClawHub releases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can preserve long-term self-learning notes and change future agent guidance. <br>
-Mitigation: Require explicit review before saving sensitive content or promoting notes into instruction files; redact secrets and confidential project details from learning logs. <br>
-Risk: Cross-session synchronization and spawned background agents can spread unreviewed learnings. <br>
-Mitigation: Require manual approval before syncing sessions or spawning agents, and share only reviewed summaries. <br>
-Risk: Scheduled reviews and generated-skill publishing may automate changes beyond the immediate task. <br>
-Mitigation: Keep scheduled reviews approval-gated, and review and scan generated skills before publishing. <br>
+## Use Case:
 
+External developers and agent operators use this skill to help an agent capture corrections, errors, and recurring patterns, then organize those learnings into persistent logs, a knowledge graph, review metrics, and reusable skill drafts.
 
-## Reference(s): <br>
-- [Self Evolution Pro ClawHub release](https://clawhub.ai/windy-001-crypto/self-evolution-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with bash command examples and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and reviews local learning, skill, and evolution files in the user's OpenClaw workspace when its scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The security evidence says the skill asks agents to persist, promote, share, and schedule conversation-derived content with too little user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when persistent learning files are desired, and review the exact content before it is saved, promoted, shared, scheduled, or published.
+
+Risk: Automatic promotion can move repeated patterns into broader agent instructions or extracted skills.
+
+Mitigation: Require explicit approval before any promotion to AGENTS.md, SOUL.md, TOOLS.md, CLAUDE.md, or a reusable skill.
+
+Risk: Cross-session history access and subagent spawning can expose or propagate conversation-derived information beyond the current session.
+
+Mitigation: Disable or gate cross-session history access, session messaging, and subagent spawning unless the destination, scope, and content have been reviewed.
+
+Risk: Publishing extracted skills can send generated content to ClawHub.
+
+Mitigation: Require explicit approval after reviewing the final skill content and destination before running any ClawHub publishing command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/windy-001-crypto/skills/self-evolution-pro)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, and generated or updated local files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may maintain persistent learning files, draft extracted skills, schedule review workflows, and publish to ClawHub when explicitly approved.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

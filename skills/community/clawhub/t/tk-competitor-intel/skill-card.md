@@ -1,41 +1,53 @@
-## Description: <br>
-Deep competitive intelligence for analyzing competitor websites, pricing, positioning, tech stacks, content strategies, market gaps, and generating battle cards, SWOT analyses, and positioning recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep competitive intelligence for analyzing competitor websites, pricing, positioning, tech stacks, content strategies, market gaps, and producing battle cards, SWOT analyses, and positioning recommendations.
 
-## Publisher: <br>
-[tktk-ai](https://clawhub.ai/user/tktk-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tktk-ai](https://clawhub.ai/user/tktk-ai)
 
-## Use Case: <br>
-Employees, external business users, founders, sales teams, product managers, agencies, and investors use this skill to structure competitive research, pricing analysis, SWOT analysis, market-gap analysis, and sales battle cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competitive research can produce inaccurate or outdated pricing, review, or tech-stack claims. <br>
-Mitigation: Ask the agent for citations and review time-sensitive claims before using them in sales, pricing, or positioning decisions. <br>
-Risk: Using paywalled, login-only, personal, or terms-restricted sources can create legal or privacy risk. <br>
-Mitigation: Define allowed public sources before use, respect website terms and privacy limits, and avoid collecting personal review data unnecessarily. <br>
+## Use Case:
 
+External business teams, founders, sales teams, product managers, agencies, and investors use this skill to research competitors and generate profiles, battle cards, SWOT analyses, pricing intelligence, gap analyses, and positioning recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tktk-ai/tk-competitor-intel) <br>
-- [Publisher profile: tktk-ai](https://clawhub.ai/user/tktk-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis reports, comparison tables, SWOT summaries, positioning recommendations, and battle cards.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pricing comparisons, content strategy observations, tech-stack notes, and differentiation recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Competitive intelligence outputs may include incorrect, outdated, or misleading claims about competitors, pricing, complaints, technology stacks, or positioning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to cite sources and independently verify important claims before using the output in sales, marketing, product, investment, or legal decisions.
+
+Risk: Research requests may encourage collection of personal, non-public, or otherwise unlawful information, or may conflict with site terms.
+
+Mitigation: Limit research to lawfully available public information, avoid personal and non-public data, and respect applicable site terms and access restrictions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tktk-ai/skills/tk-competitor-intel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces research-oriented competitor profiles, comparison matrices, battle cards, SWOT analyses, pricing recommendations, and positioning recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

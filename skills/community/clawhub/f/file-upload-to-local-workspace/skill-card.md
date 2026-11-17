@@ -1,45 +1,69 @@
-## Description: <br>
-Helps an agent guide users through uploading files to a local OpenClaw workspace through a browser-based service for AI analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+File Upload to Local Workspace provides a web interface and agent guidance for uploading files into a local OpenClaw workspace for AI analysis.
 
-## Publisher: <br>
-[chengwang86](https://clawhub.ai/user/chengwang86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chengwang86](https://clawhub.ai/user/chengwang86)
 
-## Use Case: <br>
-OpenClaw users and agents use this skill to provide a local web upload page, manage uploaded files, and make local workspace files available for AI analysis without using cloud storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a persistent HTTP upload service on port 15170. <br>
-Mitigation: Bind the service to localhost or protect it with firewall rules, and expose it only in environments where local file upload is intended. <br>
-Risk: Authentication may be weakly scoped or absent depending on the user's OpenClaw configuration. <br>
-Mitigation: Verify authentication against the actual OpenClaw configuration and avoid placing long-lived gateway tokens or passwords in shared browser URLs. <br>
-Risk: The service can manage uploaded files and expose installed skill information. <br>
-Mitigation: Install only in workspaces where file management and skill export endpoints are acceptable, and review access controls before deployment. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to run a local upload service, give users upload instructions, and manage uploaded files for later agent analysis.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/chengwang86/file-upload-to-local-workspace) <br>
-- [Security audit](SECURITY-AUDIT.md) <br>
-- [Authentication compatibility](docs/AUTH-COMPATIBILITY.md) <br>
-- [AI reply guide](docs/AI-REPLY-GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with URLs, configuration snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance should avoid exposing real gateway tokens, passwords, or server IP addresses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release evidence) <br>
+Risk: The upload service can be persistent and network-accessible with weak or absent authentication in common configurations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require authentication to fail closed, bind to localhost by default, and make any network exposure an explicit user choice.
+
+Risk: Gateway credentials may be reused in URLs.
+
+Mitigation: Avoid placing reusable tokens or passwords in query strings; prefer short-lived credentials or header-based authentication.
+
+Risk: The service includes endpoints that can list and export installed skills.
+
+Mitigation: Remove or disable skill export endpoints unless they are clearly disclosed, authenticated, and limited to trusted administrators.
+
+Risk: Uploaded content can consume local storage or contain unexpected file types.
+
+Mitigation: Enforce upload size limits, restrict accepted file types where practical, and store uploads in a constrained directory.
+
+Risk: Service installation and removal can leave a persistent process or system service running.
+
+Mitigation: Make service installation, startup, shutdown, and removal steps explicit and verify they complete reliably.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chengwang86/skills/file-upload-to-local-workspace)
+- [AI reply guide](artifact/docs/AI-REPLY-GUIDE.md)
+- [Authentication compatibility guide](artifact/docs/AUTH-COMPATIBILITY.md)
+- [Security audit](artifact/SECURITY-AUDIT.md)
+- [Declared repository metadata](https://github.com/openclaw/openclaw.git)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline URLs, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe local service URLs, authentication placeholders, upload paths, and troubleshooting commands.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

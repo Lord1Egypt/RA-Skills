@@ -1,41 +1,57 @@
-## Description: <br>
-X/Twitter CLI using OpenClaw browser tool. Use when the user wants to interact with X/Twitter: reading timeline, posting tweets, liking, retweeting, replying, or searching. Alternative to bird CLI for environments without Homebrew. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X/Twitter CLI using OpenClaw browser tool for reading timelines, posting tweets, liking, reposting, replying, following profiles, and searching.
 
-## Publisher: <br>
-[zizi-cat](https://clawhub.ai/user/zizi-cat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zizi-cat](https://clawhub.ai/user/zizi-cat)
 
-## Use Case: <br>
-Social media operators, developers, and agents use Chirp to read X/Twitter timelines and perform user-approved actions such as posting, liking, reposting, replying, searching, and following through an OpenClaw browser session. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to perform public, account-changing X/Twitter actions such as posting, replying, reposting, liking, and following. <br>
-Mitigation: Confirm the exact account, target, and content before allowing any public action. <br>
-Risk: The skill operates through a logged-in browser session, which can expose the user's active social media account to unintended actions. <br>
-Mitigation: Use a separate browser profile or test account when possible, and limit use to sessions where the operator expects X/Twitter control. <br>
-Risk: Browser UI references and X/Twitter controls can change between snapshots or sessions. <br>
-Mitigation: Take a fresh browser snapshot before each action and verify that the selected control still matches the intended action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zizi-cat/chirp) <br>
+## Use Case:
 
+Developers and agent users use Chirp to operate a logged-in X/Twitter browser session through OpenClaw when they need timeline inspection, search, or public account actions without installing a separate CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown instructions with browser tool command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenClaw browser profile with an authenticated X/Twitter session.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can operate a logged-in X/Twitter browser session and perform public account actions.
+
+Mitigation: Use it only with an account and browser profile you are comfortable delegating to an agent, and review the session state before use.
+
+Risk: Likes, reposts, replies, follows, and posts may be executed without consistent confirmation.
+
+Mitigation: Require the agent to show the exact target account or post and any generated content, then wait for explicit approval before each public action.
+
+Risk: Browser UI references can change between snapshots, which can cause the agent to act on the wrong control.
+
+Mitigation: Take a fresh compact browser snapshot before each action and verify the current ref, label, target, and enabled state before clicking or typing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zizi-cat/skills/chirp)
+- [Project homepage from artifact frontmatter](https://github.com/zizi-cat/chirp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with browser action command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw browser tooling, an openclaw browser profile, and a logged-in X/Twitter session.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

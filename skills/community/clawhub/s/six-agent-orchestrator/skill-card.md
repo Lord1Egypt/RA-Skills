@@ -1,40 +1,52 @@
-## Description: <br>
-Six Agent Orchestrator is a multi-agent workflow template that defines six collaboration roles, a six-stage delivery pipeline, token quota monitoring, and role-boundary checks for structured agent teamwork. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Six Agent Orchestrator is a Chinese-language workflow template that defines six agent roles, a six-stage task pipeline, token quota monitoring, and role-boundary checks for coordinating software tasks.
 
-## Publisher: <br>
-[xb19960921](https://clawhub.ai/user/xb19960921) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xb19960921](https://clawhub.ai/user/xb19960921)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users can use this skill as a Chinese-language coordination template for breaking coding tasks into planning, execution, verification, fixing, and summary stages with named agent responsibilities.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may rely on the skill as if it automatically spawns independent agents or enforces safety boundaries.
+
+Mitigation: Treat the role and red-line sections as workflow guidance unless the deployment environment independently implements and tests those controls.
+
+Risk: Users may assume token quotas are automatically enforced across model providers.
+
+Mitigation: Verify quota tracking in the target runtime and add provider-level limits or monitoring before using it for cost-sensitive work.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to plan, delegate, execute, verify, fix, and summarize complex work through a defined six-role agent team. It is best suited as a structured workflow template for coding, review, reasoning, monitoring, and token-budget tracking tasks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes automated token limits, red-line checks, dispatch, and verification more strongly than the local helper scripts can enforce. <br>
-Mitigation: Use it as a workflow template, keep a human reviewer in the loop, and treat generated plans, code, and verification reports as proposals that require review. <br>
-Risk: Running the helper scripts can write local log or quota JSON files. <br>
-Mitigation: Run the scripts in an expected project directory and inspect generated log or quota files before relying on them. <br>
+**Output Format:** [Markdown guidance with JSON examples and optional Python and shell command snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xb19960921/six-agent-orchestrator) <br>
+**Other Properties Related to Output:** [Includes JSON configuration files and Python helper scripts; token usage and red-line checks should be treated as advisory unless independently enforced.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and Python/shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local JSON logs and token quota files when helper scripts are run.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

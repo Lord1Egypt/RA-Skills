@@ -1,45 +1,63 @@
-## Description: <br>
-T+0 基金 5 分钟级别实时监控，支持批量代码输入，自动生成买入/卖出信号。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors A-share T+0 funds at a five-minute cadence, maintains a watchlist, calculates technical indicators, and surfaces informational buy/sell signals with optional terminal, DingTalk, or WeCom notifications.
 
-## Publisher: <br>
-[newhackerman](https://clawhub.ai/user/newhackerman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newhackerman](https://clawhub.ai/user/newhackerman)
 
-## Use Case: <br>
-External users and agents use this skill to manage a local watchlist of A-share T+0 fund or ETF codes, monitor market data during trading hours, and surface informational buy/sell signals from MACD, KDJ, RSI, Bollinger Band, and volume indicators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs Python market-data and scheduling dependencies from pip. <br>
-Mitigation: Install in a controlled Python environment and review the declared requirements before use. <br>
-Risk: The skill stores fund codes, logs, and simulated trade history under the fund-monitor skill directory. <br>
-Mitigation: Restrict access to the skill data directory and clean local data when it is no longer needed. <br>
-Risk: Optional DingTalk or WeChat notifications can send signal details through external webhook channels. <br>
-Mitigation: Enable webhooks only for trusted channels and protect webhook secrets in configuration. <br>
-Risk: Generated buy/sell signals can be mistaken for investment advice. <br>
-Mitigation: Treat signals as informational, account for market-data delay, and make investment decisions independently. <br>
+## Use Case:
 
+External users can ask an agent to add or remove fund codes, run a China-market T+0 fund monitor, and review generated technical trading signals. The signals are informational only and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/newhackerman/t0-fund-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/newhackerman) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and terminal text with inline shell commands and YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local watchlist, signal, trade history, PID, and log files under the fund-monitor skill directory when commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Trading signals can influence financial decisions while relying on unauthenticated or delayed third-party market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat alerts as untrusted informational signals, verify market data independently, and require human review before any trade.
+
+Risk: Configured DingTalk or WeCom webhooks may receive fund codes, prices, signal reasons, and confidence values.
+
+Mitigation: Review webhook settings before enabling notifications, restrict webhook access, rotate tokens when exposed, and leave unused channels disabled.
+
+Risk: The skill stores watchlists and simulated trade history locally.
+
+Mitigation: Review local data paths and permissions, disclose retention expectations to users, and clear stored data when it is no longer needed.
+
+Risk: Installer and cleanup scripts modify local skill directories, install Python packages, and delete monitor data files.
+
+Mitigation: Review scripts before execution, avoid running them as root, and prefer pinned dependencies and HTTPS-only data sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/newhackerman/skills/t0-fund-monitor)
+- [Publisher profile](https://clawhub.ai/user/newhackerman)
+- [OpenClaw skills homepage](https://github.com/openclaw/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style CLI guidance with shell commands, YAML configuration examples, terminal notifications, and JSON-backed signal or trade records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Signals depend on delayed third-party market data and are intended for human review before any trading decision.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Provides CAD batch-processing assistance for reading DXF drawing data, replacing text, renaming layers, modifying block attributes, generating simple DXF drawings, backing up project files, renaming CAD files, and watermarking PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides CAD batch-processing support for reading DXF content, replacing drawing text, renaming layers, editing block attributes, changing layer colors, generating simple DXF plans, backing up CAD projects, renaming CAD files, and watermarking PDFs.
 
-## Publisher: <br>
-[137984917-cyber](https://clawhub.ai/user/137984917-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[137984917-cyber](https://clawhub.ai/user/137984917-cyber)
 
-## Use Case: <br>
-Interior design practitioners and CAD automation users can use this skill to inspect drawing contents, batch-update project names or title-block data, normalize layer attributes, generate basic floor-plan DXF files, and prepare project backups or PDF deliverables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Batch text replacement, layer changes, attribute edits, renaming, and PDF watermarking can modify project files in place. <br>
-Mitigation: Work on copies or backups first and test commands on a small folder before running against a full CAD project. <br>
-Risk: Extracted JSON may include text, coordinates, layer names, and block attributes from confidential drawings. <br>
-Mitigation: Use explicit output files and handle extracted JSON under the same access controls as the source CAD files. <br>
-Risk: PDF export depends on local CAD command-line tooling and may require environment-specific configuration. <br>
-Mitigation: Confirm the local CAD export command and review generated PDFs before sharing them. <br>
+## Use Case:
 
+Interior design teams and CAD automation users can use this skill to inspect DXF drawings, apply repeated project-name or standards updates across drawings, generate simple plan geometry, and prepare project files for handoff or archiving.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/137984917-cyber/cad-batch-processing) <br>
-- [Publisher profile](https://clawhub.ai/user/137984917-cyber) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, JSON extraction output, and generated or modified CAD/PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Python scripts operate on user-supplied DXF, DWG, PDF, and folder paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bulk modify and rename operations can change many CAD files in place.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on copied project folders or verified backups, and confirm target folders and replacement values before execution.
+
+Risk: Backup destinations placed inside the source project can mix copies with originals or expand the backup scope.
+
+Mitigation: Choose a backup destination outside the source folder and verify the resulting archive before deleting or overwriting originals.
+
+Risk: Unpinned Python dependencies can produce different behavior across environments.
+
+Mitigation: Use a virtual environment and pin required packages such as ezdxf, PyPDF2, and reportlab before using the scripts on valuable CAD projects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/137984917-cyber/skills/cad-batch-processing)
+- [Publisher profile](https://clawhub.ai/user/137984917-cyber)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples and shell commands; scripts may produce JSON, DXF, PDF, or renamed/copied files when executed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include in-place file changes, copied backup files, generated DXF drawings, extracted JSON metadata, and watermarked PDFs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

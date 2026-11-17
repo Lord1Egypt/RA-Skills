@@ -2,8 +2,8 @@
 
 Use this reference when planning routes affected by holidays, winter closures, rainy seasons, high altitude, desert heat, or peak tourism windows.
 
-> **通用提醒**：暑期 (7–8月) 全国旺季，住宿提前 1–2 周预订、景区拥挤。国庆 (10.1–10.7) 各热门线路住宿极端紧张、价格翻倍，部分路段拥堵严重。  
-> **General rule**: Summer (Jul–Aug) = nationwide peak season — book 1–2 weeks ahead. National Day (Oct 1–7) = extreme crowding and price surges on all popular routes.
+> **通用提醒**：本文件仅提供季节性趋势，不代表当前路况、开放状态、法定假日安排或高速免费政策。暑期（7–8 月）通常是全国旺季；国庆前后热门线路通常拥挤。最终行程必须按出发日期核验官方交通、天气、景区和节假日信息。
+> **General rule**: This file is seasonal guidance, not live status. Verify official traffic, weather, attraction, and holiday information for the actual departure dates before finalizing.
 
 ## 节假日影响 / Holiday Impact
 
@@ -12,15 +12,15 @@ Use this reference when planning routes affected by holidays, winter closures, r
 
 | 节假日 Holiday | 时间 When | 天数 | 自驾影响 Road Trip Impact |
 |---------------|-----------|------|--------------------------|
-| **元旦** New Year | 12.31–1.2 | 3天 | 短途游小高峰，景区中等拥挤，高速不免费 |
+| **元旦** New Year | 当年官方安排 | 以官方安排为准 | 短途游小高峰，景区中等拥挤，高速免费政策以当年安排为准 |
 | **寒假** Winter Break | 1–2月 | 约1月 | 学生家庭出游季，三亚/西双版纳/北海等暖冬目的地旺，东北冰雪游旺季 |
-| **春节** Spring Festival | 1月底–2月中 | 7–8天 | 全国性出行最高峰之一，高速免费，热门景区爆满，大部分商家歇业至初七，除夕/初一加油站可能休息 |
-| **清明** Qingming | 4月初 | 3天 | 短途踏青高峰，高速免费，城郊山路拥堵，墓地周边交通管制 |
-| **五一** Labor Day | 5.1–5.5 | 5天 | 仅次于国庆的出行高峰，高速免费，热门票/住宿需提前 1 月预订，景区限流常见 |
-| **端午** Dragon Boat | 5月底–6月 | 3天 | 短途游为主，高速不免费，影响相对较小；南方进入雨季注意山路 |
+| **春节** Spring Festival | 农历正月前后，以官方安排为准 | 以官方安排为准 | 全国性出行最高峰之一；高速免费政策、商家营业和服务设施以当年公告为准 |
+| **清明** Qingming | 清明节前后，以官方安排为准 | 以官方安排为准 | 短途踏青高峰；高速免费政策和局部交通管制以当年公告为准 |
+| **五一** Labor Day | 5月上旬，以官方安排为准 | 以官方安排为准 | 仅次于国庆的出行高峰；热门票/住宿需早订，限流和高速政策以当年公告为准 |
+| **端午** Dragon Boat | 农历五月，以官方安排为准 | 以官方安排为准 | 短途游为主；高速政策以当年公告为准，南方雨季注意山路 |
 | **暑期** Summer Vacation | 7–8月 | 约2月 | 全国旺季，家庭出游主力，住宿全线紧张，景区排队严重；西北/高原线路集中出行 |
-| **中秋** Mid-Autumn | 9月中–10月初 | 3天 | 短途探亲为主；若与国庆连休可形成 8 天+ 超长假期，出行量倍增 |
-| **国庆** National Day | 10.1–10.7 | 7天 | 全年最大出行高峰，高速免费，热门线路住宿翻 3–5 倍，部分景区限流劝返，G318/独库/青甘等拥堵严重 |
+| **中秋** Mid-Autumn | 农历八月，以官方安排为准 | 以官方安排为准 | 短途探亲为主；若与国庆连休，出行量会明显增加 |
+| **国庆** National Day | 10月上旬，以官方安排为准 | 以官方安排为准 | 全年最大出行高峰；高速免费政策、景区限流和住宿价格以当年实时信息为准 |
 | **胡杨林季** Ejina Poplar | 10月初–10月中 | 约2周 | 额济纳/酒泉/塔里木胡杨林景区周边住宿极端紧张（提前 1 月+），价格数倍上涨 |
 | **林芝桃花节** Nyingchi Peach | 3月底–4月中 | 约3周 | 林芝/波密住宿紧张，G318 川藏线早春进藏车流增多 |
 

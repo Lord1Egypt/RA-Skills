@@ -1,44 +1,60 @@
-## Description: <br>
-Generates institutional-grade corporate credit application memoranda in English from uploaded annual reports, financial statements, or user-provided financial data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates institutional-grade corporate credit application memoranda in English from uploaded annual reports, financial statements, or user-provided financial data.
 
-## Publisher: <br>
-[henrijoe20](https://clawhub.ai/user/henrijoe20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[henrijoe20](https://clawhub.ai/user/henrijoe20)
 
-## Use Case: <br>
-Banking and financial-institution credit teams use this skill to draft credit application memoranda for corporate lending, due diligence, borrower analysis, and credit committee review. It structures uploaded financial statements, deal terms, public research, ratio calculations, risk analysis, monitoring plans, and approval recommendations into an internal credit memo draft. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may process confidential borrower financial statements, facility terms, and internal credit context. <br>
-Mitigation: Use only where organizational policy permits AI-assisted credit drafting, keep outputs internal, and avoid sending confidential facility details through web-search queries. <br>
-Risk: Generated memos may contain incomplete, outdated, or unverified facts from uploaded documents or public web research. <br>
-Mitigation: Treat outputs as drafts; independently verify material facts, source data, web research, and all items marked as unavailable or to be confirmed. <br>
-Risk: The skill does not complete institution-specific credit, legal, compliance, regulatory, RAROC, RWA, PD/LGD, or covenant approvals. <br>
-Mitigation: Require qualified credit, risk, legal, and compliance review before credit committee submission or lending decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Credit Memo Structure Reference](references/credit-memo-structure.md) <br>
-- [Financial Ratios Reference](references/financial-ratios.md) <br>
-- [Risk Framework Reference](references/risk-framework.md) <br>
-- [Standard Disclaimer](assets/disclaimer.md) <br>
+## Use Case:
 
+Banking professionals use this skill to draft corporate credit application memoranda, lending assessments, due diligence reports, borrower analyses, and credit committee materials from borrower financial documents and deal terms.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Formatted .docx credit memorandum with a brief text summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes financial tables, risk ratings, confirmation flags, and a standard disclaimer.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill processes sensitive borrower financial statements, ownership details, and deal terms.
+
+Mitigation: Use it only in authorized environments and handle generated memos as confidential internal drafts.
+
+Risk: Generated memos may include web-sourced facts, extracted figures, and calculated ratios that are incomplete or inaccurate.
+
+Mitigation: Verify material facts, source documents, and calculations before using the memo for review or approval.
+
+Risk: Credit decisions require institution-specific risk, legal, RAROC, RWA, PD/LGD, policy, and approval inputs.
+
+Mitigation: Require qualified bank teams to complete and approve those inputs before any credit committee submission or credit decision.
+
+## Reference(s):
+
+- [Credit Memo Structure Reference](references/credit-memo-structure.md)
+- [Financial Ratios Reference](references/financial-ratios.md)
+- [Risk Assessment Framework](references/risk-framework.md)
+- [Standard Disclaimer](assets/disclaimer.md)
+- [ClawHub Skill Page](https://clawhub.ai/henrijoe20/skills/corporate-credit-memo)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Analysis]
+
+**Output Format:** [Word document (.docx) with a brief text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated memoranda include financial tables, credit-risk analysis, visible confirmation markers for missing internal inputs, and a standard disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

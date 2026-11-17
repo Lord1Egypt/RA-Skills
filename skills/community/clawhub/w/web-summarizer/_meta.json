@@ -1,0 +1,8 @@
+{
+  "name": "web-summarizer",
+  "version": "1.0.0",
+  "description": "Summarize any web page by URL or text. Returns structured summary with key points, entities, and action items.",
+  "openclaw": {
+    "emoji": "📰"
+  }
+}

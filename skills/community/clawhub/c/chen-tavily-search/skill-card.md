@@ -1,42 +1,55 @@
-## Description: <br>
-Web search using Tavily's LLM-optimized API. Returns relevant results with content snippets, scores, and metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search using Tavily's LLM-optimized API. Returns relevant results with content snippets, scores, and metadata.
 
-## Publisher: <br>
-[cs995279497-byte](https://clawhub.ai/user/cs995279497-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cs995279497-byte](https://clawhub.ai/user/cs995279497-byte)
 
-## Use Case: <br>
-Developers and agent users use this skill to run Tavily web searches from an agent workflow and retrieve answer text, source links, snippets, relevance scores, and optional raw JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports a live-looking Tavily API key in metadata and setup instructions. <br>
-Mitigation: Use a personal Tavily API key, keep it out of committed files and screenshots, and prefer installation after the publisher replaces embedded keys with placeholders and rotates any exposed credential. <br>
-Risk: The security verdict is suspicious. <br>
-Mitigation: Review the skill before installing and scan it again after any publisher update. <br>
+## Use Case:
 
+Developers and agents use this skill to run Tavily web searches with configurable result count, depth, topic, time range, domain filters, and optional raw JSON output.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cs995279497-byte/chen-tavily-search) <br>
-- [Tavily](https://tavily.com) <br>
-- [Tavily Search API](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown search results by default, or raw JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a user-provided Tavily API key through TAVILY_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review reports that this release publishes a real-looking Tavily API key in documentation and metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install this version as-is; revoke and replace the exposed key, require TAVILY_API_KEY, and use placeholders in examples.
+
+Risk: Searches and raw-content requests are sent to Tavily.
+
+Mitigation: Add a clear notice before use and avoid submitting confidential queries or content.
+
+## Reference(s):
+
+- [Tavily](https://tavily.com)
+- [ClawHub skill page](https://clawhub.ai/cs995279497-byte/skills/chen-tavily-search)
+- [Publisher profile](https://clawhub.ai/user/cs995279497-byte)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown source summaries by default, or formatted JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search requests are sent to Tavily and may include raw page content when enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

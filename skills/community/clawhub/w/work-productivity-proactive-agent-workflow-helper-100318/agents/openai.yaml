@@ -1,0 +1,7 @@
+interface:
+  display_name: "Work Productivity Proactive Agent Workflow Helper"
+  short_description: "Helps with Agent users show strong demand for Proactive Agent..."
+  default_prompt: "Use $work-productivity-proactive-agent-workflow-helper to help me Agent users show strong demand for Proactive Agent-style workflows on Clawhub. They need practical help fixing bugs, har."
+
+policy:
+  allow_implicit_invocation: true

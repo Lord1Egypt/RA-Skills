@@ -1,41 +1,55 @@
-## Description: <br>
-Builtin Tools is a cross-platform Python standard-library toolkit that gives an agent fallback utilities for filesystem operations, content search, web search and fetch, runtime installation, persistent memory, scheduling, task management, and shell-command orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builtin Tools provides 16 dependency-free Python scripts that give agents cross-platform file, content search, web, runtime installation, memory, scheduling, and task-management utilities when host tools are missing.
 
-## Publisher: <br>
-[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent host lacks basic local tools and needs JSON-driven fallback scripts for files, search, web access, command execution, installation, memory, scheduling, or task tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can grant broad local-tool authority, including shell, file, network, install, memory, and automation actions. <br>
-Mitigation: Install only for agents that intentionally need these privileges, and enforce explicit approval plus strict workspace, host, and path limits. <br>
-Risk: Shell command mode, recursive deletion, arbitrary file writes, runtime downloads, browser opening, memory storage, and automation generation are privileged actions. <br>
-Mitigation: Review requests before execution and restrict these operations to trusted inputs and controlled environments. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add a basic local toolbox when the host agent platform lacks file, search, web, install, memory, scheduling, or task-management tools. It is best suited for trusted workspaces where broad tool access is intentional.
 
-## Reference(s): <br>
-- [Builtin Tools Protocol](references/protocol.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangjiaocheng/builtin-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON tool results, Markdown guidance, code snippets, shell commands, and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts accept JSON input and return JSON success or error objects with exit codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill grants broad local toolbox powers across shell execution, filesystem changes, network access, runtime installation, memory, and scheduled-task configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted workspaces where this access is intentional, and prefer host-provided tools with approval controls when available.
+
+Risk: Delete, install, shell, network, memory, and automation actions can have lasting local effects.
+
+Mitigation: Review every such action before it runs, avoid custom API endpoints with real keys, and do not create scheduled tasks from untrusted prompts.
+
+## Reference(s):
+
+- [builtin-tools interface protocol](artifact/references/protocol.md)
+- [ClawHub skill page](https://clawhub.ai/wangjiaocheng/skills/builtin-tools)
+- [ClawHub publisher profile](https://clawhub.ai/user/wangjiaocheng)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON script results, text, shell command output, file changes, and configuration records depending on the selected tool.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts use JSON input and JSON status responses; some tools can modify files, access the network, install runtimes, or create scheduled-task configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

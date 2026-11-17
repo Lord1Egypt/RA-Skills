@@ -1,40 +1,57 @@
-## Description: <br>
-返利链接推广与佣金管理工具，帮助淘客和推广者生成高转化分享内容，追踪推广佣金收益。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+返利链接推广与佣金管理工具，帮助淘客和推广者生成高转化分享内容，追踪推广佣金收益。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-External affiliate marketers and rebate promoters use this skill to draft product-sharing copy, adapt rebate links for social channels, and summarize commission performance for promotion planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated promotion copy may contain inaccurate prices, rebate links, commission rates, or earnings claims. <br>
-Mitigation: Verify prices, rebate links, commission claims, and availability against the source platform before publishing. <br>
-Risk: Affiliate or rebate promotions may violate platform disclosure, advertising, or anti-spam rules if posted without review. <br>
-Mitigation: Review platform rules and add required affiliate disclosures before using generated copy publicly. <br>
+## Use Case:
 
+External affiliate marketers, rebate promoters, and content creators use this skill to draft rebate product recommendations, adapt promotional copy for social channels, and summarize expected commission outcomes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/rebate-share) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style promotional copy, link variants, and commission summary guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or hidden access; outputs should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Affiliate or rebate promotions may violate platform advertising rules or mislead audiences if commission relationships are not disclosed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose rebate or commission relationships clearly and review each target platform's advertising, anti-spam, and affiliate-link policies before publishing generated content.
+
+Risk: Commission, account, or campaign data may be sensitive when used in generated reports or promotion planning.
+
+Mitigation: Avoid entering sensitive account credentials, private commission records, or customer data unless storage and processing are understood and approved.
+
+Risk: Illustrative earnings examples can be read as guaranteed income claims.
+
+Mitigation: Review generated earnings language before publication and present revenue figures as examples or estimates rather than guaranteed outcomes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/skills/rebate-share)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured product recommendations, promotional copy, channel-specific link variants, and commission summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include illustrative rebate amounts, commission percentages, sales metrics, promotional links, and platform-specific copy suggestions.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,239 @@
+name: ic_agent
+version: 1.0.0
+type: command_agent
+role: Incident Commander
+
+description: |
+  应急响应总指挥智能体，负责全局事件管理、资源调度、决策授权和人类决策者沟通。
+
+responsibilities:
+  - 定义事件范围与优先级
+  - 审批高风险操作（HITL）
+  - 协调各智能体工作
+  - 与人类决策者沟通
+  - 监控全局进度
+  - 处理升级事件
+
+capabilities:
+  - risk_assessment: 风险评估与优先级排序
+  - resource_allocation: 资源分配与调度
+  - decision_making: 决策授权
+  - coordination: 多智能体协调
+  - communication: 人类沟通接口
+  - monitoring: 全局状态监控
+
+decision_authority:
+  approve_containment: true
+  approve_eradication: true
+  approve_recovery: true
+  escalate_to_human: true
+  create_agent: true
+  terminate_agent: true
+  modify_workflow: true
+
+constraints:
+  - 仅在授权范围内决策
+  - 高风险操作必须人工确认
+  - 必须遵守组织策略
+  - 必须记录所有决策
+
+communication:
+  receive:
+    - alerts
+    - status_reports
+    - requests
+    - escalations
+  
+  send:
+    - orders
+    - approvals
+    - rejections
+    - escalations
+  
+  broadcast:
+    - incident_updates
+    - phase_transitions
+    - critical_decisions
+
+tools:
+  - note.py
+  - generate_report.py
+  - risk_assessment.py
+  - resource_manager.py
+
+state_machine:
+  initial: idle
+  states:
+    idle:
+      description: 空闲，等待事件
+      transitions: [initializing]
+    
+    initializing:
+      description: 初始化事件
+      transitions: [triage, idle]
+    
+    triage:
+      description: 事件分流与研判
+      transitions: [contain, initializing]
+    
+    contain:
+      description: 遏制决策
+      transitions: [eradicate, triage]
+    
+    eradicate:
+      description: 清除决策
+      transitions: [recover, contain]
+    
+    recover:
+      description: 恢复决策
+      transitions: [postmortem, eradicate]
+    
+    postmortem:
+      description: 复盘与进化
+      transitions: [completed]
+    
+    completed:
+      description: 事件完成
+      transitions: [idle]
+
+workflows:
+  standard_ir:
+    phases: [detect, triage, contain, eradicate, recover, postmortem, report]
+    transitions:
+      detect_to_triage:
+        condition: "事件确认真实"
+        required_evidence: ["告警详情", "初步范围"]
+      
+      triage_to_contain:
+        condition: "根因明确"
+        required_evidence: ["IOC清单", "时间线"]
+        hitl_required: true
+      
+      contain_to_eradicate:
+        condition: "遏制措施已执行"
+        required_evidence: ["遏制动作记录"]
+      
+      eradicate_to_recover:
+        condition: "威胁已清除"
+        required_evidence: ["清除验证"]
+      
+      recover_to_postmortem:
+        condition: "业务已恢复"
+        required_evidence: ["恢复验证"]
+
+hitl_policy:
+  triggers:
+    - action_type: host_isolation
+      description: 隔离主机
+      timeout: 300
+      
+    - action_type: account_ban
+      description: 封禁账号
+      timeout: 300
+      
+    - action_type: service_shutdown
+      description: 下线服务
+      timeout: 600
+      
+    - action_type: mass_blocking
+      description: 大范围封禁
+      timeout: 900
+      
+    - action_type: system_reboot
+      description: 系统重启
+      timeout: 600
+      
+    - action_type: file_deletion
+      description: 文件删除
+      timeout: 300
+
+  timeout_action: reject
+  escalation_path: [ic_agent, human_commander]
+
+risk_assessment:
+  factors:
+    - business_impact
+    - data_sensitivity
+    - system_criticality
+    - threat_severity
+    - spread_potential
+  
+  scoring:
+    critical: 90-100
+    high: 70-89
+    medium: 50-69
+    low: 0-49
+  
+  response_sla:
+    critical: 15 minutes
+    high: 1 hour
+    medium: 4 hours
+    low: 24 hours
+
+metrics:
+  tracked:
+    - decision_count
+    - hitl_count
+    - escalation_count
+    - avg_response_time
+    - approval_rate
+  
+  targets:
+    avg_response_time: < 30 minutes
+    hitl_response_time: < 10 minutes
+    escalation_rate: < 10%
+
+knowledge_base:
+  required:
+    - incident_response_frameworks
+    - organizational_policies
+    - business_impact_assessment
+    - compliance_requirements
+  
+  access:
+    - ir-patterns.json
+    - playbooks/
+    - organizational_policies/
+
+learning:
+  enabled: true
+  mechanism: retrospective_analysis
+  feedback_sources:
+    - human_feedback
+    - outcome_analysis
+    - performance_metrics
+
+deployment:
+  max_instances: 1
+  min_instances: 1
+  priority: critical
+  dependencies:
+    - scribe_agent
+    - memory_service
+    - communication_service
+
+logging:
+  level: INFO
+  handlers:
+    - file: logs/ic_agent.log
+    - console: stdout
+    - audit: logs/audit.log
+  
+  audit_events:
+    - decision_made
+    - approval_granted
+    - approval_rejected
+    - escalation_triggered
+    - agent_created
+    - agent_terminated
+
+security:
+  authentication: required
+  authorization: role_based
+  encryption: TLS_1.3
+  audit: all_actions
+  
+  secrets:
+    - api_keys
+    - admin_credentials
+    - encryption_keys

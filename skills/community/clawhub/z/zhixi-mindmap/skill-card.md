@@ -1,42 +1,60 @@
-## Description: <br>
-Zhixi Mind Map Cloud File Management lets an agent browse, search, view content, and import Markdown for Zhixi mind-map cloud files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zhixi Mind Map Cloud File Management (知犀思维导图云文件管理): Browse, search, view content, and import Markdown.
 
-## Publisher: <br>
-[mindtwigs](https://clawhub.ai/user/mindtwigs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindtwigs](https://clawhub.ai/user/mindtwigs)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent manage Zhixi cloud mind-map files, including browsing folders, searching by keyword, reading map content, and importing Markdown into a target folder. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API token can grant access to Zhixi cloud files. <br>
-Mitigation: Prefer ZHIXI_API_KEY or a secure secret store, avoid plaintext token files, and rotate the token if it is exposed. <br>
-Risk: The import command uploads Markdown content to Zhixi. <br>
-Mitigation: Run imports only for Markdown files the user intends to upload and confirm the target folder before importing. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent browse, search, preview, and import Markdown into a Zhixi cloud mind-map account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindtwigs/zhixi-mindmap) <br>
-- [Zhixi account center](https://www.zhixi.com/account) <br>
-- [Zhixi pricing](https://www.zhixi.com/pricing?from=openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Zhixi API token and can upload selected Markdown files to Zhixi.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill handles Zhixi cloud credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use ZHIXI_API_KEY from a managed secret or environment variable and avoid storing credentials in a token file.
+
+Risk: Markdown import uploads local file contents to Zhixi.
+
+Mitigation: Import only files you intend to place in the Zhixi cloud account and review sensitive content before upload.
+
+Risk: The skill can perform cloud file actions through the connected account.
+
+Mitigation: Review requested browse, search, content, and import actions before allowing automated execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindtwigs/skills/zhixi-mindmap)
+- [Zhixi account center](https://www.zhixi.com/account)
+- [Zhixi API endpoint](https://www.zhixi.com/api)
+- [Zhixi pricing](https://www.zhixi.com/pricing?from=openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON returned from Zhixi cloud file operations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file titles, folder IDs, file GUIDs, Markdown content, import results, and online access links.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

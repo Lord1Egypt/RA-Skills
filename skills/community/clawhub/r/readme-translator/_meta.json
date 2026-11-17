@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "readme-translator",
+  "schema_version": "1",
+  "name": "readme-translator",
   "version": "1.0.0",
-  "publishedAt": 1772444084282
+  "description": "自动翻译 README 文件",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["readme", "translate", "translation", "i18n"],
+  "license": "MIT"
 }

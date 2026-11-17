@@ -1,42 +1,55 @@
-## Description: <br>
-Generate AI mockup generator images with AI via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI mockup images from text prompts using the Neta AI image generation API and returns a direct image URL.
 
-## Publisher: <br>
-[wkl-nieta](https://clawhub.ai/user/wkl-nieta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wkl-nieta](https://clawhub.ai/user/wkl-nieta)
 
-## Use Case: <br>
-External users and agents use this skill to generate product mockup images from text prompts, optionally with size settings or a reference image UUID, and receive a direct image URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference image identifiers, and generated-image requests are sent to a third-party image generation service. <br>
-Mitigation: Use the skill only with prompts and references suitable for that service, and avoid private, confidential, or sensitive image inputs. <br>
-Risk: The skill requires a Neta API token, and command-line token handling can expose credentials through shell history, logs, or shared terminals. <br>
-Mitigation: Use a limited token, keep it out of logs and shared shells, rotate it if exposed, and install only when you trust the publisher and the Neta/talesofai service. <br>
+## Use Case:
 
+External users and developers use this skill to generate product mockup images from text prompts, optionally selecting output size or a reference image, and receive an image URL for downstream use.
 
-## Reference(s): <br>
-- [Mockup Gen Skill on ClawHub](https://clawhub.ai/wkl-nieta/mockup-gen-skill) <br>
-- [Publisher profile: wkl-nieta](https://clawhub.ai/user/wkl-nieta) <br>
-- [Neta API access](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text URL with command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a generated image URL; requires a Neta API token and sends prompts or reference image UUIDs to the Neta/talesofai service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: package.json and server release evidence) <br>
+Risk: Prompts and API tokens are transmitted to the external api.talesofai.cn service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted source or version, confirm that api.talesofai.cn is the intended Neta endpoint, use a low-scope revocable token, and avoid sensitive or confidential prompts.
+
+Risk: This version requires passing the Neta token on the command line despite documenting NETA_TOKEN support.
+
+Mitigation: Use a temporary low-scope token where possible and review token exposure in shell history, process listings, and logs before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wkl-nieta/skills/mockup-gen-skill)
+- [Neta Open API and Token Page](https://www.neta.art/open/)
+- [Neta Image Generation API Endpoint](https://api.talesofai.cn/v3/make_image)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text image URL with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token and sends the prompt to an external image generation service.]
+
+## Skill Version(s):
+
+1.8.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

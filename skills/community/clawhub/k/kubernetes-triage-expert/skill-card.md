@@ -1,42 +1,50 @@
-## Description: <br>
-Analyze Kubernetes faults from user-provided evidence, classify the fault, rank likely hypotheses, request the next highest-value checks, and keep facts separate from guesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Kubernetes faults using only user-provided evidence by classifying the fault, ranking likely hypotheses, requesting the next highest-value checks, and keeping facts separate from guesses.
 
-## Publisher: <br>
-[ghostwritten](https://clawhub.ai/user/ghostwritten) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ghostwritten](https://clawhub.ai/user/ghostwritten)
 
-## Use Case: <br>
-Developers, SREs, and platform engineers use this skill to triage Kubernetes incidents from supplied statuses, logs, events, and change context without granting cluster access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include secrets, tokens, kubeconfigs, or sensitive operational logs while providing incident evidence. <br>
-Mitigation: Redact sensitive values before using the skill and provide only the minimum evidence needed for triage. <br>
-Risk: Incomplete evidence can lead to premature or incorrect root-cause conclusions. <br>
-Mitigation: Treat the output as advisory, require hypotheses to be tied to supplied evidence, and validate findings with targeted checks before making changes. <br>
-Risk: Unclear language prompts may produce Chinese output by default. <br>
-Mitigation: State the preferred response language explicitly when a specific language is required. <br>
+## Use Case:
 
+Developers, platform engineers, and SREs use this skill to structure Kubernetes incident triage from evidence they provide, separating confirmed facts from hypotheses and identifying the next highest-value checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ghostwritten/kubernetes-triage-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown triage report with canonical sections for assessment, confirmed facts, hypotheses, next checks, and conclusions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limits active hypotheses and next checks to three each; preserves Kubernetes identifiers, status strings, event reasons, and exact error text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake advisory triage for live cluster inspection or remediation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as advisory only; provide evidence explicitly and verify any recommended checks before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ghostwritten/skills/kubernetes-triage-expert)
+- [Ghostwritten publisher profile](https://clawhub.ai/user/ghostwritten)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured triage sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Limits active hypotheses and next checks to three each; preserves Kubernetes identifiers and exact error text.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

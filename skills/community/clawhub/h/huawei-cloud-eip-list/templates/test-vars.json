@@ -1,0 +1,35 @@
+{
+  "skill_name": "huawei-cloud-eip-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "EIP ListPublicips 只读查询",
+      "command": "hcloud EIP ListPublicips --cli-region={region} --limit=1",
+      "expected": "Returns JSON with publicips array (GET /v3/{project_id}/eip/publicips)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "脚本参数帮助（含 --markdown / -o）",
+      "command": "python3 scripts/list_eip.py --help",
+      "expected": "argparse help printed including --markdown and -o/--output, exit 0",
+      "type": "syntax",
+      "executor": "script"
+    },
+    {
+      "id": "TC-03",
+      "name": "离线单元测试",
+      "command": "python3 scripts/run_tests.py",
+      "expected": "All offline unit tests pass (mocked hcloud): guard / commands / parsing / paging / filters / render / Markdown export / SDK fallback / main modes",
+      "type": "unit",
+      "executor": "script"
+    }
+  ],
+  "env_vars_required": [
+    "HUAWEI_ACCESS_KEY",
+    "HUAWEI_SECRET_KEY"
+  ],
+  "notes": "只读操作（EIP ListPublicips，GET /v3/{project_id}/eip/publicips），无创建/删除/更新/绑定/解绑弹性公网IP的写风险。Markdown 导出只写本地文件（临时文件 + 原子重命名），不产生云资源。写意图守卫拦截变更操作，行为由离线单元测试覆盖。真实只读成功路径需要 IAM 授予 vpc:publicIps:list。"
+}

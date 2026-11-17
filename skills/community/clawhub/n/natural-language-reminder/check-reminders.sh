@@ -1,10 +1,6 @@
 #!/bin/bash
 # Check reminders and output due ones (to be sent by the agent)
 
-# Load skill config
-SKILL_DIR="$(cd "$(dirname "$0")" && pwd)"
-[[ -f "$SKILL_DIR/config.env" ]] && source "$SKILL_DIR/config.env"
-
 REMINDERS_FILE="${REMINDERS_FILE:-$HOME/reminders.md}"
 NOW_EPOCH=$(date +%s)
 

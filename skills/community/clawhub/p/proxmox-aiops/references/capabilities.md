@@ -1,6 +1,6 @@
 # proxmox-aiops capabilities
 
-39 MCP tools (22 read / 17 write). Every tool is wrapped with the bundled
+43 MCP tools (25 read / 18 write). Every tool is wrapped with the bundled
 `@governed_tool` harness (audit + budget + risk-tier + undo). Typical response
 sizes are small high-signal summaries, not full API blobs.
 
@@ -68,7 +68,7 @@ sizes are small high-signal summaries, not full API blobs.
 
 | Tool | R/W | Notes |
 |------|:---:|-------|
-| `ha_status` | R | `{configured, entries}`; clear signal when HA absent |
+| `ha_status` | R | `{configured, entries}`; `configured` is true only when HA manages a resource — every cluster reports quorum/master/lrm rows regardless |
 | `ha_resource_list` | R | HA-managed resources; empty when HA absent |
 
 ## Pools (2)
@@ -98,7 +98,21 @@ sizes are small high-signal summaries, not full API blobs.
 | `storage_list` | R | pools: type, total/used/avail |
 | `storage_content` | R | volumes: ISOs, disk images, backups, templates |
 
-## Not yet covered (preview scope)
+## Diagnostics / RCA (2)
+
+| Tool | R/W | Notes |
+|------|:---:|-------|
+| `node_pressure_rca` | R | node CPU/memory/IO pressure: ranked causes + evidence |
+| `guest_health_rca` | R | one guest: ranked causes (resource, agent, disk, task history) |
+
+## Undo (2)
+
+| Tool | R/W | Notes |
+|------|:---:|-------|
+| `undo_list` | R | recorded, not-yet-applied undo tokens (most recent first): original tool, inverse tool, `undoId` |
+| `undo_apply` | W | executes a recorded inverse by `undoId` — itself governed (the inverse re-gates on its own risk tier), single-use, `dry_run=True` previews |
+
+## Not yet covered
 
 VM create-from-scratch / template instantiation, guest agent **exec**
 (intentionally omitted as too risky), container create/clone/destroy, firewall

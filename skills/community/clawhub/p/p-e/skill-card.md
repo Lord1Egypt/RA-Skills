@@ -1,42 +1,58 @@
-## Description: <br>
-P-E extracts structured data from a template image and matching data images, then generates an Excel workbook with embedded images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+P-E extracts structured data from a template image and multiple matching images, then generates an Excel workbook with the extracted rows and embedded source images.
 
-## Publisher: <br>
-[haiou-max](https://clawhub.ai/user/haiou-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haiou-max](https://clawhub.ai/user/haiou-max)
 
-## Use Case: <br>
-External users and agents use this skill to turn product or tabular image batches into a structured Excel workbook. It is intended for workflows where a template image defines fields and subsequent images provide repeated records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install Python packages during dependency checks. <br>
-Mitigation: Review the setup path before use and run dependency installation in a controlled Python environment. <br>
-Risk: The skill can create an Excel file and retain local image copies under `/tmp/p-e-images/`. <br>
-Mitigation: Use only images approved for local storage, choose an appropriate output path, and delete temporary image copies after completion. <br>
-Risk: The skill can write local files automatically without a confirmation step. <br>
-Mitigation: Review requested inputs and output paths before invoking it in a workspace with sensitive files. <br>
+## Use Case:
 
+External users and developers use this skill to turn similarly formatted product or record images into a formatted Excel spreadsheet. It is suited for batch image-to-table extraction where each row should include structured fields and an embedded source image.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haiou-max/p-e) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown status report, JSON intermediate data, shell commands, and Excel workbook file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates an .xlsx workbook with formatted columns and embedded images; may write temporary JSON and image files during execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may install unpinned Python packages from pip when dependencies are missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the dependency installation step before use and install approved versions of openpyxl and Pillow in a controlled environment when required.
+
+Risk: The skill processes local images and may leave uploaded images in the predictable /tmp/p-e-images directory.
+
+Mitigation: Use non-sensitive images when possible, clean /tmp/p-e-images after generating the spreadsheet, and verify the generated workbook before sharing it.
+
+Risk: The generated spreadsheet may contain extraction errors from unclear or incomplete images.
+
+Mitigation: Review cells marked [待确认], blank fields, and embedded images before using or distributing the Excel output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haiou-max/skills/p-e)
+- [Publisher profile](https://clawhub.ai/user/haiou-max)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown status summary plus JSON data preparation, shell commands, and generated Excel files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates an .xlsx workbook with formatted headers, fixed column widths, embedded images, and row and column counts in the final report.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -4,8 +4,144 @@ from .common import *
 
 from .risk_quality import quality_issue
 
+DOCUMENTATION_ONLY_TERMS = {
+    "concept",
+    "concepts",
+    "doc",
+    "docs",
+    "documentation",
+    "explain",
+    "explainer",
+    "guide",
+    "guides",
+    "note",
+    "notes",
+    "tip",
+    "tips",
+    "tutorial",
+    "tutorials",
+}
+
+OPERATIONAL_CAPABILITY_TERMS = {
+    "automate",
+    "call",
+    "connect",
+    "control",
+    "convert",
+    "create",
+    "deploy",
+    "download",
+    "fetch",
+    "install",
+    "manage",
+    "query",
+    "read",
+    "run",
+    "search",
+    "send",
+    "update",
+    "upload",
+    "use",
+    "write",
+}
+DOCUMENTATION_OBJECT_TERMS = {
+    "concept",
+    "concepts",
+    "doc",
+    "docs",
+    "documentation",
+    "explainer",
+    "guide",
+    "guides",
+    "note",
+    "notes",
+    "tip",
+    "tips",
+    "tutorial",
+    "tutorials",
+}
+OPERATIONAL_TERM_PATTERN = "|".join(sorted(OPERATIONAL_CAPABILITY_TERMS))
+OPERATIONAL_LEAD_PATTERN = re.compile(
+    rf"^\s*(?:please\s+)?(?P<operation>{OPERATIONAL_TERM_PATTERN})\b",
+    re.IGNORECASE,
+)
+CJK_API_CAPABILITY_PATTERNS = (
+    re.compile(r"(?:调用|连接|查询|搜索|发送|管理|读取|更新).{0,12}(?:api|接口|邮箱|邮件|日历|数据库|github)", re.I),
+    re.compile(r"(?:api|接口|邮箱|邮件|日历|数据库|github).{0,12}(?:调用|连接|查询|搜索|发送|管理|读取|更新)", re.I),
+)
+CJK_TOOL_CAPABILITY_PATTERNS = (
+    re.compile(r"(?:控制|操作|自动化|打开|访问|浏览|填写|抓取|截图).{0,12}(?:浏览器|网页)", re.I),
+    re.compile(r"(?:浏览器|网页).{0,12}(?:控制|操作|自动化|打开|访问|浏览|填写|抓取|截图)", re.I),
+    re.compile(r"(?:读取|编辑|修改|创建|分析|处理|生成|转换).{0,12}(?:表格|工作簿|电子表格|文档|幻灯片|演示文稿|图片|图像)", re.I),
+    re.compile(r"(?:表格|工作簿|电子表格|文档|幻灯片|演示文稿|图片|图像).{0,12}(?:读取|编辑|修改|创建|分析|处理|生成|转换)", re.I),
+)
+CJK_DOCUMENTATION_TERMS = re.compile(r"教程|指南|说明|介绍|示例|笔记|概念")
+CJK_CLAUSE_BOUNDARY = re.compile(r"[,，;；.!?。！？]")
+OBJECT_PHRASE_BOUNDARY_PATTERN = re.compile(
+    r"\b(?:about|and|following|for|or|then|to|using|via|with)\b|[;,.!?]",
+    re.IGNORECASE,
+)
+DOCUMENTATION_ACTION_BOUNDARY_PATTERN = re.compile(
+    r"\b(?:about|and|following|or|then|to|using|via|with)\b|[;,.!?]",
+    re.IGNORECASE,
+)
+DOCUMENTATION_ACTION_TERMS = {"create", "read", "update", "write"}
+
+
+def has_local_tool_surface(skill: dict[str, object]) -> bool:
+    return (coerce_int(skill.get("scripts_count")) or 0) > 0
+
+
+def operational_lead_targets_capability(description: str, capability_terms: set[str]) -> bool:
+    lead = OPERATIONAL_LEAD_PATTERN.search(description)
+    if not lead:
+        return False
+    operation = lead.group("operation").lower()
+    remainder = description[lead.end() :]
+    object_phrase = OBJECT_PHRASE_BOUNDARY_PATTERN.split(remainder, maxsplit=1)[0]
+    object_terms = extract_terms(object_phrase)
+    if object_terms & DOCUMENTATION_OBJECT_TERMS:
+        return False
+    if object_terms & capability_terms or operation in capability_terms:
+        return True
+    if operation not in DOCUMENTATION_ACTION_TERMS:
+        return False
+    extended_phrase = DOCUMENTATION_ACTION_BOUNDARY_PATTERN.split(remainder, maxsplit=1)[0]
+    extended_terms = extract_terms(extended_phrase)
+    if extended_terms & DOCUMENTATION_OBJECT_TERMS:
+        return False
+    return bool(extended_terms & capability_terms)
+
+
+def looks_documentation_only(skill: dict[str, object], terms: set[str]) -> bool:
+    if not terms & DOCUMENTATION_ONLY_TERMS or has_local_tool_surface(skill):
+        return False
+    capability_terms = API_STRONG_KEYWORDS | API_SUPPORT_KEYWORDS | TOOL_KEYWORDS
+    description = str(skill.get("description", "") or "")
+    if description and operational_lead_targets_capability(description, capability_terms):
+        return False
+    return True
+
+
+def looks_cjk_documentation_only(skill: dict[str, object]) -> bool:
+    if has_local_tool_surface(skill):
+        return False
+    description = str(skill.get("description", "") or "")
+    match = CJK_DOCUMENTATION_TERMS.search(description)
+    if not match:
+        return False
+    return CJK_CLAUSE_BOUNDARY.search(description[: match.start()]) is None
+
+
 def classify_skill(skill: dict[str, object]) -> str:
     terms = set(skill["terms"])
+    description = str(skill.get("description", "") or "")
+    if looks_documentation_only(skill, terms) or looks_cjk_documentation_only(skill):
+        return "general"
+    if any(pattern.search(description) for pattern in CJK_API_CAPABILITY_PATTERNS):
+        return "api"
+    if any(pattern.search(description) for pattern in CJK_TOOL_CAPABILITY_PATTERNS):
+        return "tool"
     if terms & API_STRONG_KEYWORDS:
         return "api"
     if len(terms & API_SUPPORT_KEYWORDS) >= 2:
@@ -81,9 +217,9 @@ def usage_score(usage_record: dict[str, object], evidence_weight: float) -> floa
 
 
 def uniqueness_score(overlap: float) -> float:
-    if overlap >= 0.85:
+    if overlap >= NEAR_DUPLICATE_OVERLAP_THRESHOLD:
         return 0.0
-    if overlap >= 0.65:
+    if overlap >= HIGH_OVERLAP_THRESHOLD:
         return 1.0
     if overlap >= 0.40:
         return 2.0
@@ -105,11 +241,11 @@ def impact_score(
             score += 0.5
         if calls >= 3:
             score += 0.5
-        if overlap >= 0.75:
+        if overlap >= DUPLICATE_OVERLAP_THRESHOLD:
             score -= 1.0
         if calls == 0:
             score -= 0.5
-        return max(0.0, min(4.0, round(score, 2)))
+        return clamp(round(score, 2), 0.0, 4.0)
 
     if not ablation or ablation.get("cases", 0) <= 0:
         return 1.0 if calls <= 0 else 2.0
@@ -132,7 +268,7 @@ def impact_score(
         score += 1.0
     elif worse > better:
         score -= 1.0
-    return max(0.0, min(4.0, round(score, 2)))
+    return clamp(round(score, 2), 0.0, 4.0)
 
 
 def runtime_quality_evidence(
@@ -154,7 +290,7 @@ def runtime_quality_evidence(
                 quality_issue(
                     "overtrigger-low-execution",
                     0.45,
-                    "many activations have little evidence of actual execution",
+                    "many activations did not lead to real execution",
                     metrics={"calls": calls, "executions": executions, "execution_rate": round(execution_rate, 2)},
                 )
             )
@@ -166,7 +302,7 @@ def runtime_quality_evidence(
                 quality_issue(
                     "overtrigger-misfire",
                     0.35,
-                    "usage evidence reports frequent accidental activations",
+                    "usage evidence shows frequent accidental activations",
                     metrics={"calls": calls, "false_triggers": false_triggers, "false_rate": round(false_rate, 2)},
                 )
             )
@@ -174,12 +310,12 @@ def runtime_quality_evidence(
     if calls >= 5 and ablation and ablation.get("cases", 0) > 0:
         consistency = float(ablation.get("consistency_rate", 0.0))
         better = float(ablation.get("better_rate", 0.0))
-        if consistency >= 0.85 and better <= 0.10:
+        if consistency >= NO_IMPACT_CONSISTENCY_THRESHOLD and better <= NO_IMPACT_BETTER_THRESHOLD:
             evidence.append(
                 quality_issue(
                     "overtrigger-no-impact",
                     0.40,
-                    "frequent activation has high ablation consistency and little measured gain",
+                    "frequent activation shows little measured gain in ablation",
                     metrics={"calls": calls, "consistency_rate": round(consistency, 2), "better_rate": round(better, 2)},
                 )
             )
@@ -191,7 +327,7 @@ def runtime_quality_evidence(
                 quality_issue(
                     "reference-overload",
                     0.30,
-                    "usage evidence reports heavy reference loading",
+                    "usage evidence shows heavy reference loading",
                     metrics={
                         "calls": calls,
                         "reference_loads": reference_loads,
@@ -216,7 +352,7 @@ def runtime_quality_evidence(
                 quality_issue(
                     "script-failure-burden",
                     0.45,
-                    "usage evidence reports script failures",
+                    "usage evidence shows script failures",
                     metrics={
                         "script_failures": script_failures,
                         "executions": executions,
@@ -230,7 +366,7 @@ def runtime_quality_evidence(
                 quality_issue(
                     "script-failure-burden",
                     0.20,
-                    "usage evidence reports occasional script failure",
+                    "usage evidence shows occasional script failure",
                     metrics={
                         "script_failures": script_failures,
                         "executions": executions,
@@ -244,7 +380,7 @@ def runtime_quality_evidence(
             quality_issue(
                 "agent-repair-burden",
                 0.30,
-                "usage evidence reports repeated agent repair turns",
+                "usage evidence shows repeated repair turns",
                 metrics={"repair_turns": repair_turns},
             )
         )
@@ -260,7 +396,7 @@ def readiness_quality_evidence(skill: dict[str, object]) -> list[dict[str, objec
         quality_issue(
             "missing-required-env",
             0.90,
-            "declared required environment variables are not configured",
+            "required environment variables are not configured",
             metrics={"missing_env": missing_env, "missing_env_count": len(missing_env)},
         )
     ]
@@ -288,13 +424,13 @@ def quality_penalty(
 
 
 def catalog_quality_evidence(overlap_peer: str | None, overlap_value: float) -> list[dict[str, object]]:
-    if not overlap_peer or overlap_value < 0.85:
+    if not overlap_peer or overlap_value < NEAR_DUPLICATE_OVERLAP_THRESHOLD:
         return []
     return [
         quality_issue(
             "near-duplicate-instructions",
             0.10,
-            "instruction fingerprint closely matches another installed skill",
+            "instructions closely match another installed skill",
             metrics={"peer": overlap_peer, "overlap": round(overlap_value, 2)},
         )
     ]
@@ -349,15 +485,15 @@ def confidence_score(
 
 
 def verdict(total: float, confidence: float | None = None) -> str:
-    if confidence is not None and confidence < 0.55 and total < 4.5:
+    if confidence is not None and confidence < LOW_CONFIDENCE_THRESHOLD and total < SCORE_REVIEW_THRESHOLD:
         return "insufficient-evidence"
-    if total >= 8.0:
+    if total >= SCORE_KEEP_THRESHOLD:
         return "keep"
-    if total >= 6.0:
+    if total >= SCORE_KEEP_NARROW_THRESHOLD:
         return "keep-narrow"
-    if total >= 4.5:
+    if total >= SCORE_REVIEW_THRESHOLD:
         return "review"
-    if total >= 3.0:
+    if total >= SCORE_MERGE_DELETE_THRESHOLD:
         return "merge-delete"
     return "delete"
 
@@ -379,45 +515,45 @@ def recommend_action(
         return "keep-system", "system skill", False
 
     if risk_level == "high":
-        return "quarantine-review", "high-risk patterns require manual review", False
-    if risk_level == "medium" and total >= 6.0:
+        return "quarantine-review", "high-risk patterns need a closer check", False
+    if risk_level == "medium" and total >= SCORE_KEEP_NARROW_THRESHOLD:
         return "keep-review-risk", "useful locally with medium-risk patterns", False
-    if quality_penalty_value >= 1.2 and total >= 6.0:
+    if quality_penalty_value >= QUALITY_BURDEN_REVIEW_THRESHOLD and total >= SCORE_KEEP_NARROW_THRESHOLD:
         return "keep-review-burden", "useful locally but expensive to maintain or load", False
-    if quality_penalty_value >= 1.2 and total >= 4.5:
-        return "review-burden", "quality burden lowers the final score", False
+    if quality_penalty_value >= QUALITY_BURDEN_REVIEW_THRESHOLD and total >= SCORE_REVIEW_THRESHOLD:
+        return "review-burden", "maintenance cost lowers the final score", False
 
-    if total >= 8.0:
+    if total >= SCORE_KEEP_THRESHOLD:
         return "keep", "high final score", False
-    if total >= 6.0:
-        if overlap >= 0.65 and calls <= 1:
+    if total >= SCORE_KEEP_NARROW_THRESHOLD:
+        if overlap >= HIGH_OVERLAP_THRESHOLD and calls <= 1:
             return "keep-narrow", "high overlap suggests narrower scope", False
         return "keep-narrow", "good final score", False
 
     if risk_level == "medium":
         return "review-risk", "medium-risk patterns require review", False
 
-    if confidence < 0.55:
+    if confidence < LOW_CONFIDENCE_THRESHOLD:
         return "observe-30d", "evidence confidence is low", False
 
-    if total >= 4.5:
-        if overlap >= 0.65:
+    if total >= SCORE_REVIEW_THRESHOLD:
+        if overlap >= HIGH_OVERLAP_THRESHOLD:
             return "merge-or-review", "mid score with high overlap", False
-        if community_prior is not None and community_prior >= 0.6:
+        if community_prior is not None and community_prior >= STRONG_COMMUNITY_PRIOR_THRESHOLD:
             return "review-vs-community", "community signal is stronger than final score", False
         return "review", "mid final score", False
 
     if kind in {"api", "tool"}:
-        if calls == 0 and overlap >= 0.75:
+        if calls == 0 and overlap >= DUPLICATE_OVERLAP_THRESHOLD:
             return "merge-delete", "unused duplicate protected skill", True
-        if community_prior is not None and community_prior >= 0.6:
+        if community_prior is not None and community_prior >= STRONG_COMMUNITY_PRIOR_THRESHOLD:
             return "review-vs-community", "protected skill has strong community signal", False
         return "merge-or-review", "protected skill scores low after burden", False
 
-    if community_prior is not None and community_prior >= 0.6:
+    if community_prior is not None and community_prior >= STRONG_COMMUNITY_PRIOR_THRESHOLD:
         return "review-vs-community", "community signal suggests benchmark before removal", False
-    if total < 3.0:
+    if total < SCORE_MERGE_DELETE_THRESHOLD:
         return "delete", "very low final score", True
-    if overlap >= 0.65 and calls <= 1:
+    if overlap >= HIGH_OVERLAP_THRESHOLD and calls <= 1:
         return "merge-delete", "low usage plus high overlap", True
     return "merge-delete", "low final score", True

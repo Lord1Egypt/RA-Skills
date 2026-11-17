@@ -1,47 +1,59 @@
-## Description: <br>
-latex-modular helps agents assemble, refactor, validate, and convert modular LaTeX documents using reusable components and local Python scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LaTeX Modular helps agents extract, compose, refactor, inject, convert, and validate modular LaTeX document components using bundled Python scripts.
 
-## Publisher: <br>
-[ldxs001](https://clawhub.ai/user/ldxs001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ldxs001](https://clawhub.ai/user/ldxs001)
 
-## Use Case: <br>
-Developers and document authors use this skill to generate, modularize, refactor, and validate LaTeX documents, especially LuaLaTeX/XeLaTeX projects with reusable preamble, command, environment, table, graphics, and style components. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify local LaTeX or project files through write, delete, refactor, and inject workflows. <br>
-Mitigation: Use a dedicated workspace, keep backups, and verify output paths before running write, delete, refactor, or inject modes. <br>
-Risk: The skill can run a local LaTeX compiler on generated or user-provided .tex files. <br>
-Mitigation: Avoid compiling untrusted .tex files on a main machine unless the compiler is sandboxed and automatic package installation and shell escape are disabled. <br>
-Risk: The security scan flags a mismatch between local file modification and compiler execution behavior and the declared low permission posture. <br>
-Mitigation: Review the skill and its permissions before deployment, especially in shared or production workspaces. <br>
+## Use Case:
 
+Developers, engineers, and document authors use this skill to build or restructure LaTeX documents from reusable components and validate generated documents with local LaTeX tooling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ldxs001/skills/latex-modular) <br>
-- [Guide](artifact/references/guide.md) <br>
-- [Architecture](artifact/references/architecture.md) <br>
-- [Component specification](artifact/references/component-spec.md) <br>
-- [Permissions](artifact/references/permissions.md) <br>
-- [Changelog](artifact/references/changelog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated LaTeX or JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local .tex files, conversion reports, validation reports, component files, and optional PDFs when a LaTeX engine is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter, release metadata, changelog released 2026-06-11) <br>
+Risk: The skill can run local LaTeX compilers and modify or delete local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a sandboxed or disposable workspace, use trusted LaTeX sources, and review proposed file operations before execution.
+
+Risk: Custom engine values or arbitrary file paths can expand the scope of local execution and file writes.
+
+Mitigation: Keep engine choices to expected LaTeX binaries, pass scoped workspace paths, and avoid allowing arbitrary path or engine arguments.
+
+## Reference(s):
+
+- [Usage Guide](references/guide.md)
+- [Architecture](references/architecture.md)
+- [Component Specification](references/component-spec.md)
+- [Permissions](references/permissions.md)
+- [Antipatterns](references/antipatterns.md)
+- [FAQ](references/faq.md)
+- [Changelog](references/changelog.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples plus generated LaTeX source, validation reports, and configuration updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke local Python and LaTeX tools and may write generated .tex, PDF, component, manifest, and report files.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

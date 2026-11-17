@@ -1,46 +1,59 @@
-## Description: <br>
-Analyzes pet carrier videos through LifeEmergence/SMYX cloud APIs to estimate resting respiratory rate, flag rates above 40 bpm, and return structured non-diagnostic monitoring results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes videos of pets in carriers to estimate breathing rate, flag elevated rates, and provide a report without diagnosing disease.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External users and developers use this skill to analyze videos of cats, dogs, or other pets inside airline carriers or transport crates, monitor resting breathing frequency, and review structured alerts and report links without treating the output as a medical diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pet videos and identity-linked analysis history are sent to LifeEmergence/SMYX cloud services. <br>
-Mitigation: Use only media appropriate for external cloud processing and ask the publisher about media retention, report deletion, and data access controls before installing. <br>
-Risk: The skill silently creates or reuses a workspace identity and stores authentication tokens locally. <br>
-Mitigation: Run the skill in an isolated workspace, review or delete the local workspace data files when finished, and confirm how to revoke stored tokens. <br>
-Risk: Respiratory-rate alerts could be mistaken for veterinary diagnosis. <br>
-Mitigation: Present results as monitoring references only and direct users to qualified veterinary or transport professionals for urgent or persistent concerns. <br>
+## Use Case:
 
+Pet owners and transport staff can submit a carrier video or video URL to check a pet's breathing rate and review alerts during travel. They can also request past cloud reports; results are informational, not a veterinary diagnosis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-pet-carrier-respiratory-rate-analysis) <br>
-- [Publisher Profile](https://clawhub.ai/user/18072937735) <br>
-- [API Documentation](references/api_doc.md) <br>
-- [Shared Analysis API Documentation](skills/smyx_analysis/references/api_doc.md) <br>
-- [Skill Demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report text with JSON analysis content, command examples, and report links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cloud report export links and history lists; local media inputs are limited to mp4, avi, or mov files up to 10 MB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter: 1.0.2) <br>
+Risk: Pet videos or video URLs are sent to a cloud analysis service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for consent before uploading and explain how the service handles and retains videos.
+
+Risk: The skill silently creates or reuses an identity and stores authentication tokens locally.
+
+Mitigation: Disclose account creation and token storage; provide a way to review and delete stored identity data.
+
+Risk: Cloud report history can be retrieved without clear user-facing control.
+
+Mitigation: Request confirmation before history lookups and explain access and deletion options.
+
+## Reference(s):
+
+- [Skill API documentation](artifact/references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub skill release](https://clawhub.ai/18072937735/skills/smyx-pet-carrier-respiratory-rate-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Breathing-rate estimates, alerts, report links, and optional cloud report history.]
+
+## Skill Version(s):
+
+1.0.11 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

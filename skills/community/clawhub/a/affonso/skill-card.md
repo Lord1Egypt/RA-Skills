@@ -1,46 +1,64 @@
-## Description: <br>
-Manage affiliate marketing programs via the Affonso CLI: create affiliates, track referrals, handle commissions, process payouts, and configure program settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage affiliate marketing programs via the Affonso CLI, including affiliates, referrals, commissions, payouts, and program settings.
 
-## Publisher: <br>
-[zilvestro](https://clawhub.ai/user/zilvestro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zilvestro](https://clawhub.ai/user/zilvestro)
 
-## Use Case: <br>
-External affiliate program operators and developers use this skill to administer Affonso programs from an agent workflow, including affiliate onboarding, referral tracking, commission review, payout processing, coupon management, and program configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent live authority over payouts, commissions, program settings, credentials, and tracking data. <br>
-Mitigation: Use a least-privilege API key where available, store it in environment variables or a secret manager, and confirm every payout, approval, deletion, commission, and settings change before execution. <br>
-Risk: Affiliate and referral workflows may involve email, IP, user-agent, and referral tracking data. <br>
-Mitigation: Operate the skill only under applicable privacy notices, consent requirements, and internal data-handling policies. <br>
-Risk: Headless environments cannot complete browser-based authentication. <br>
-Mitigation: Authenticate with AFFONSO_API_KEY and verify access with affonso whoami --json; do not use affonso login. <br>
+## Use Case:
 
+External developers and operators use this skill to manage Affonso affiliate, referral, partner, commission, payout, coupon, marketplace, and program settings workflows from an agent-controlled CLI session.
 
-## Reference(s): <br>
-- [Affonso Homepage](https://affonso.io) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zilvestro/affonso) <br>
-- [Command Reference](references/COMMAND_REFERENCE.md) <br>
-- [Program Settings Guide](references/PROGRAM_SETTINGS_GUIDE.md) <br>
-- [Workflow Recipes](references/WORKFLOWS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should use --json, avoid browser login, and request confirmation before destructive or payout-related actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill enables broad authenticated control over affiliate, commission, payout, tracking, and CLI endpoint settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped Affonso API key and require explicit human approval before payout, commission, auto-approval, auto-payout, delete, or bulk configuration changes.
+
+Risk: Secrets may be exposed if API keys are passed directly on command lines or stored in unsafe shell history.
+
+Mitigation: Use the AFFONSO_API_KEY environment variable and avoid passing secrets as command-line arguments.
+
+Risk: A custom CLI base URL can redirect authenticated requests to an untrusted endpoint.
+
+Mitigation: Do not set a custom base URL unless the endpoint is fully trusted.
+
+Risk: Installing or updating the Affonso CLI package without verification can introduce supply-chain risk.
+
+Mitigation: Pin or otherwise verify the @affonso/cli package before use.
+
+## Reference(s):
+
+- [Affonso homepage](https://affonso.io)
+- [Affonso CLI Command Reference](references/COMMAND_REFERENCE.md)
+- [Program Settings Guide](references/PROGRAM_SETTINGS_GUIDE.md)
+- [Workflow Recipes](references/WORKFLOWS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON-oriented CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require the affonso binary and AFFONSO_API_KEY; every Affonso CLI command should use --json.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

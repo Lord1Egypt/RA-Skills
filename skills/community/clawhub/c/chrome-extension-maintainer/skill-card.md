@@ -1,49 +1,59 @@
-## Description: <br>
-Release-gate and maintenance workflow for Chrome extensions covering Chrome Web Store policy, MV3, privacy, permissions, SEO/GEO, analytics triage, browser E2E evidence, i18n, packaging, and green/yellow/red publish decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Release-gate and maintenance workflow for Chrome extensions covering Chrome Web Store policy, MV3, privacy, permissions, SEO/GEO, analytics triage, browser E2E evidence, i18n, packaging, and green/yellow/red publish decisions.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Chrome extension release candidates, diagnose growth or analytics issues, align public surfaces, assess privacy and permission risk, choose validation gates, and produce a green/yellow/red ship recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide review of private extension code, analytics exports, support messages, and public listing or privacy materials supplied by the user. <br>
-Mitigation: Limit provided inputs to the release evidence needed for the review, avoid unnecessary sensitive data, and review outputs before sharing them outside the project. <br>
-Risk: Release, rollback, upload, submit, unpublish, deletion, registry publish, or broad promotion actions can be irreversible or externally visible. <br>
-Mitigation: Require explicit user approval before any irreversible or external release action and report missing evidence as a blocker instead of inventing proof. <br>
-Risk: Chrome Web Store policy, Chrome platform behavior, competitor claims, and search behavior can change over time. <br>
-Mitigation: Verify current authoritative sources before making policy-sensitive release decisions or public claims. <br>
+## Use Case:
 
+Developers and extension maintainers use this skill to review Chrome extension release candidates, diagnose growth, analytics, privacy, permission, MV3, i18n, packaging, and public-surface issues, and produce green/yellow/red ship recommendations.
 
-## Reference(s): <br>
-- [Chrome Extension Maintenance And Evolution Playbook](references/chrome-extension-maintenance-playbook.md) <br>
-- [Chrome Web Store Program Policies](https://developer.chrome.com/docs/webstore/program-policies) <br>
-- [Chrome Web Store Privacy Guidance](https://developer.chrome.com/docs/webstore/program-policies/privacy) <br>
-- [Declare Extension Permissions](https://developer.chrome.com/docs/extensions/develop/concepts/declare-permissions) <br>
-- [MV3 Service Worker Lifecycle](https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/lifecycle) <br>
-- [Extension End-to-End Testing](https://developer.chrome.com/docs/extensions/how-to/test/end-to-end-testing) <br>
-- [Test Service Worker Termination](https://developer.chrome.com/docs/extensions/how-to/test/test-serviceworker-termination-with-puppeteer) <br>
-- [Chrome Extension i18n API](https://developer.chrome.com/docs/extensions/reference/api/i18n) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, checklists, findings, file-change summaries, and ship-gate decisions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should lead with critical findings, report validation evidence, identify release blockers, and end with a green/yellow/red recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow may ask an agent to inspect extension code, metadata, privacy claims, analytics exports, and local release artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit inputs to intended repositories and release artifacts, review findings before acting, and avoid sharing private or sensitive data unnecessarily.
+
+Risk: Maintenance guidance could be mistaken for approval to upload, submit, unpublish, rollback, publish, or broadly promote an extension or skill package.
+
+Mitigation: Require explicit user approval before irreversible external actions, registry publishing, store submission, unpublishing, rollback, or broad public promotion.
+
+## Reference(s):
+
+- [Chrome Extension Maintenance And Evolution Playbook](references/chrome-extension-maintenance-playbook.md)
+- [Chrome Web Store Program Policies](https://developer.chrome.com/docs/webstore/program-policies)
+- [Chrome Web Store Privacy Policy Guidance](https://developer.chrome.com/docs/webstore/program-policies/privacy)
+- [Declare Permissions](https://developer.chrome.com/docs/extensions/develop/concepts/declare-permissions)
+- [MV3 Service Worker Lifecycle](https://developer.chrome.com/docs/extensions/develop/concepts/service-workers/lifecycle)
+- [Extension End-to-End Testing](https://developer.chrome.com/docs/extensions/how-to/test/end-to-end-testing)
+- [Chrome Web Store Rollback](https://developer.chrome.com/docs/webstore/rollback)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown review reports with command snippets and release-gate decisions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces findings, tests run, verified flows, blockers, rollback or recovery notes, and green/yellow/red recommendations; external publishing actions require explicit user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

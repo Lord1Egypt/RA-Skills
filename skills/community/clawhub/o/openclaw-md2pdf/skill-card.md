@@ -1,40 +1,55 @@
-## Description: <br>
-Converts Markdown files into formatted PDFs with Pandoc and Typst, including support for headings, tables, code blocks, links, emojis, and GitHub-style formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Markdown files to beautifully formatted PDFs using Pandoc and Typst, with support for headings, tables, code blocks, links, emojis, and GitHub-style formatting.
 
-## Publisher: <br>
-[hansschinkenwurst78-dev](https://clawhub.ai/user/hansschinkenwurst78-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hansschinkenwurst78-dev](https://clawhub.ai/user/hansschinkenwurst78-dev)
 
-## Use Case: <br>
-Developers and OpenClaw agent users use this skill to convert local Markdown notes, reports, or generated content into formatted PDF files next to the source Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The conversion script creates hidden temporary Typst files in the input document folder and may overwrite or remove existing files with matching temporary names. <br>
-Mitigation: Run the skill only in folders where hidden files named like .<document>.typ or .<document>_styled.typ are not important, or isolate the input Markdown in a working directory before conversion. <br>
-Risk: The skill runs a local shell script against Markdown files and depends on locally installed Pandoc and Typst binaries. <br>
-Mitigation: Use trusted Pandoc and Typst installations and run the script only on Markdown files from trusted sources. <br>
+## Use Case:
 
+Developers and agent users use this skill to convert local Markdown documents into formatted PDFs through a Pandoc and Typst shell workflow.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/hansschinkenwurst78-dev/openclaw-md2pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Shell command output and a generated PDF file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Pandoc and Typst installations; writes the PDF next to the source Markdown file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The documented install command uses an unpinned npx path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the resolved package and version, or pin the installer version in controlled environments.
+
+Risk: The converter writes output and temporary files in the source Markdown directory and may overwrite same-named files.
+
+Mitigation: Run conversion in a trusted working directory and check for existing PDF or temporary Typst filenames before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hansschinkenwurst78-dev/skills/openclaw-md2pdf)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PDF file with terminal status text and Markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the PDF next to the source Markdown file and uses same-directory temporary Typst files during conversion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

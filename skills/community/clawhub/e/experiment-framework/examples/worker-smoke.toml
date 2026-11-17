@@ -1,0 +1,43 @@
+# TEST-ONLY structural spec. Replace every destination and source commit before execution.
+[run]
+id = "test-only-worker-smoke"
+name = "Structural test only"
+command = ["python3", "examples/smoke_job.py"]
+seed = 0
+phase = "test"
+variant = "worker"
+modality = "systems"
+dataset = "test-only-no-real-dataset"
+reason = "Exercise specification and planning structure."
+notes = "Not scientific evidence; no real dataset or provider account."
+[execution]
+machine = "worker"
+max_hours = 0.1
+source_sync = "git"
+env = { PYTHONUNBUFFERED = "1" }
+[resources]
+gpus = 1
+cpus = 1
+memory_gb = 1
+gpu_type_ids = []
+[wandb]
+entity = "example-owner"
+project = "test-only"
+mode = "online"
+[huggingface]
+checkpoint_repo = "example-owner/test-checkpoints"
+dataset_repo = "example-owner/test-datasets"
+checkpoint_prefix = "checkpoints"
+dataset_prefix = "snapshots"
+revision = "main"
+dataset_revision = "main"
+[github]
+repo = "example-owner/test-repo"
+results_branch = "experiments"
+results_prefix = "experiments/results"
+[source]
+repo_url = "https://github.com/example-owner/test-repo"
+clone_url = "git@github.com:example-owner/test-repo.git"
+repo_dir = "test-repo"
+branch = "main"
+commit = "0123456789abcdef0123456789abcdef01234567"

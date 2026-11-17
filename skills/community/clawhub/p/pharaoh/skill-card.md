@@ -1,48 +1,56 @@
-## Description: <br>
-Pharaoh provides a codebase knowledge graph and MCP-backed developer workflow skills for querying architecture, dependencies, blast radius, dead code, and test coverage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codebase knowledge graph with 8 development workflow skills. Query architecture, dependencies, blast radius and dead code via MCP. Requires GitHub App installation (read-only repo access) and OAuth authentication. Connects to external MCP server at mcp.pharaoh.so.
 
-## Publisher: <br>
-[0xuxdesign](https://clawhub.ai/user/0xuxdesign) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xuxdesign](https://clawhub.ai/user/0xuxdesign)
 
-## Use Case: <br>
-Developers and engineering teams use Pharaoh to give AI agents repository-aware architecture, dependency, blast-radius, dead-code, and test-coverage context before planning or modifying code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository metadata and docstrings are processed and stored on Pharaoh infrastructure. <br>
-Mitigation: Install only for repositories you intend to share with Pharaoh, and use the documented repository deletion or account deletion paths when finished. <br>
-Risk: The skill requires read-only GitHub access and OAuth credentials stored at ~/.pharaoh/credentials.json. <br>
-Mitigation: Limit the GitHub App to selected repositories, keep the credentials file owner-only, and revoke access or run the documented logout command when access is no longer needed. <br>
-Risk: The installer modifies OpenClaw configuration and overwrites existing Pharaoh skill files on reinstall. <br>
-Mitigation: Review the install command before running it, preserve any local Pharaoh skill customizations, and remove the MCP entry and installed skills during uninstall. <br>
+## Use Case:
 
+Developers use Pharaoh to query a connected codebase's architecture, dependencies, blast radius, and unused code, and to guide planning, implementation, debugging, refactoring, and review workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xuxdesign/pharaoh) <br>
-- [Pharaoh documentation](https://pharaoh.so/docs) <br>
-- [Pharaoh homepage](https://pharaoh.so) <br>
-- [Pharaoh MCP server](https://mcp.pharaoh.so) <br>
-- [Pharaoh MCP npm package](https://www.npmjs.com/package/@pharaoh-so/mcp) <br>
-- [Pharaoh GitHub App](https://github.com/apps/pharaoh-so) <br>
-- [GitHub Device Authorization Grant](https://datatracker.ietf.org/doc/html/rfc8628) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses MCP-backed repository context when Pharaoh tools are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.5 (source: frontmatter and server release metadata) <br>
+Risk: The installer may overwrite existing Pharaoh skill files and add a Pharaoh MCP entry to OpenClaw configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up customized Pharaoh skills, review the installer's changes, and pin the exact npm release before installing.
+
+Risk: Selected repository source is cloned remotely for analysis, and structural metadata is stored by the remote Pharaoh service.
+
+Mitigation: Limit GitHub App access to intended repositories and proceed only if remote analysis and metadata storage fit your requirements.
+
+## Reference(s):
+
+- [Pharaoh documentation](https://pharaoh.so/docs)
+- [Pharaoh MCP package on npm](https://www.npmjs.com/package/@pharaoh-so/mcp)
+- [Pharaoh GitHub App](https://github.com/apps/pharaoh-so)
+- [Pharaoh MCP server](https://mcp.pharaoh.so)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Text or Markdown; may include code snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Varies by workflow and codebase query.]
+
+## Skill Version(s):
+
+0.3.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

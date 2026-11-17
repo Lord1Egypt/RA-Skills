@@ -1,0 +1,72 @@
+{
+  "id": "domain-wb-ozon",
+  "label": "WB & Ozon — Russian E-commerce",
+  "emoji": "🛍️",
+  "domain": "wildberries.ru, ozon.ru",
+  "description": "Wildberries and Ozon — largest Russian e-commerce platforms. Product catalog with filters, listing pages, product cards with reviews/ratings, cart, checkout. RU locale. Heavy JS SPAs.",
+  "source_patterns": [
+    "Search with RU-language query: type query (Cyrillic) → wait 1-3s for suggestions → select or submit",
+    "Filter by category/price/brand: click filter panel → select options → apply → wait 2-4s for re-render",
+    "Product grid scroll (infinite on WB, paginated on Ozon): 200-500px per pass, 1.5-3s pause",
+    "Product detail (images, description, reviews, delivery info): open → deep scroll through tabs",
+    "Add to cart: select size/qty → add → confirm toast/modal",
+    "Checkout flow: cart review → delivery address → payment → confirm order",
+    "Login via phone/SMS or social: enter phone (with country code) → wait SMS → enter code → submit"
+  ],
+  "active_hours": {
+    "description": "RU shopping — peaks morning (8-10), lunch (12-14), evening (18-22)",
+    "peak": [8, 10, 12, 14, 18, 22],
+    "off_peak_min": 2
+  },
+  "typing": {
+    "wpm": { "min": 50, "max": 80 },
+    "profile": "natural",
+    "think_prob": 0.02,
+    "think_ms": [500, 2000],
+    "backspace_freq": 0.04,
+    "search_typing_wpm": { "min": 55, "max": 85 },
+    "checkout_typing_wpm": { "min": 35, "max": 55 }
+  },
+  "scroll": {
+    "passes": 5,
+    "description": "Product grid — moderate passes, product detail — deep. Browsing-focused, checkout forms slower.",
+    "speed_px_per_ms": { "min": 20, "max": 45 },
+    "pause_between_passes_ms": { "min": 1500, "max": 3500 },
+    "depth_per_pass": { "min": 0.3, "max": 0.5 },
+    "infinite_scroll_detection": ".product-card, .product-item, .catalog-item, document.body.scrollHeight changes",
+    "scroll_method": "gradual (not jump-to-bottom)"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 2500, "max": 5000 },
+    "pre_click_pause_ms": { "min": 300, "max": 800 },
+    "inter_action_pause_ms": { "min": 500, "max": 1500 },
+    "post_expand_pause_ms": { "min": 1000, "max": 3000 }
+  },
+  "mouse": {
+    "speed": 0.85,
+    "curvature": 0.22,
+    "jitter": 0.3,
+    "description": "Moderate, browsing speed — product comparison and checkout"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "search_input": "input[placeholder*='Поиск'], input.search, .search-bar input",
+      "filter_panel": ".filter, .filter-panel, .filters-section, [class*='filter']",
+      "product_card": ".product-card, .product-item, .catalog-item, .card-item",
+      "cart_button": "button[class*='cart'], [class*='basket'], .cart-icon, [aria-label*='Корзина']",
+      "checkout_form": ".checkout-form, .order-form, .checkout-page",
+      "login_input": "input[type='tel'], input[name='phone'], .phone-input"
+    },
+    "requires_login": false,
+    "login": {
+      "pre_login_pause_ms": 2000,
+      "field_pause_ms": { "min": 400, "max": 900 },
+      "post_login_wait_ms": { "min": 5000, "max": 10000 },
+      "sms_code_fields": 4,
+      "sms_code_type_ms": { "min": 200, "max": 500 }
+    },
+    "purchase_requires_login": true,
+    "locale": "ru-RU",
+    "sequence_hint": "navigate to search → type RU query → apply filters → scroll grid (3-5 passes) → open product → scroll details/reviews → add to cart → login with phone+SMS → checkout"
+  }
+}

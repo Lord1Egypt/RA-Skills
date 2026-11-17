@@ -1,44 +1,61 @@
-## Description: <br>
-Book Lunar New Year flights for Spring Festival reunion and Chinese New Year travel, using FlyAI CLI results for real-time Fliggy-powered booking options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Lunar New Year flights for Spring Festival reunion and Chinese New Year travel, with related travel support for hotels, trains, attractions, itinerary planning, visa information, insurance, and car rental through Fliggy.
 
-## Publisher: <br>
-[bufferstreamer](https://clawhub.ai/user/bufferstreamer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bufferstreamer](https://clawhub.ai/user/bufferstreamer)
 
-## Use Case: <br>
-Travelers and travel-support agents use this skill to search Lunar New Year and Spring Festival flights, compare recommended, cheapest, fastest, or direct options, and return booking-ready Markdown results with links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to install and run a global third-party FlyAI CLI. <br>
-Mitigation: Require explicit user approval before installation or CLI execution, verify the CLI source and version, and avoid using the skill in environments where global npm installs are not allowed. <br>
-Risk: Booking workflows can expose users to external purchase links. <br>
-Mitigation: Confirm route, date, and traveler intent before presenting or following booking links, and make clear that prices and availability come from live CLI output. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to search Lunar New Year and Chinese New Year travel options through the flyai CLI, compare returned flights, and present booking links in Markdown.
 
-## Reference(s): <br>
-- [Parameter Collection and Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Flight results must come from FlyAI CLI output and include booking links when results are shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can install an unpinned global npm package before running travel searches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandbox or low-risk environment and prefer a pinned, reviewed @fly-ai/flyai-cli installation.
+
+Risk: User-provided travel fields are inserted into shell command templates.
+
+Mitigation: Review generated commands and validate origin, destination, and date values before execution.
+
+Risk: Booking links and travel results depend on the trusted behavior of the flyai CLI and its returned URLs.
+
+Mitigation: Use only detailUrl links returned by the CLI and verify route, price, and booking destination before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bufferstreamer/skills/lunar-new-year-flight)
+- [Parameter Collection and Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live flyai CLI output; booking results must include detailUrl links and the flyai brand tag.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

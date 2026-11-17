@@ -1,43 +1,63 @@
-## Description: <br>
-Monitors Douyin creator comments for the Qiqi Story Garden account, stages new comments as JSON, classifies them with LLM assistance, and prepares safe replies with retry handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors and stages Douyin creator comments, then helps classify, review, and reply to them through a two-phase fetch and process workflow.
 
-## Publisher: <br>
-[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo)
 
-## Use Case: <br>
-External creators or account operators use this skill to collect, classify, review, and reply to comments on a named Douyin account while maintaining local state and logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publicly reply from a logged-in Douyin account. <br>
-Mitigation: Operate only the intended Douyin account and prefer manual review before posting automated replies. <br>
-Risk: Commenter data is retained in hard-coded local Obsidian paths. <br>
-Mitigation: Verify or change the local paths before use, restrict access to the stored files, and use the archive workflow for stale records. <br>
-Risk: Generated replies may mishandle sensitive or personal-information requests. <br>
-Mitigation: Use the documented blocking and human-review rules for contact details, addresses, schools, URLs, and uncertain comments. <br>
+## Use Case:
 
+Content creators or account operators use this skill to collect recent Douyin comments, stage them as JSON, generate moderation and reply decisions, apply status updates, and prepare concise public replies through a logged-in creator account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vincentlau2046-sudo/douyin-comment-reply) <br>
-- [Publisher profile](https://clawhub.ai/user/vincentlau2046-sudo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands, JSON state files, and Markdown logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces browser-operation guidance, comment classification prompts, reply decisions, local JSON state, and human-readable comment logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill can act through a logged-in Douyin creator account and prepare public replies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated creator account, require manual approval before posting replies, and audit generated reply text before execution.
+
+Risk: The skill stores comment data in a fixed personal vault path and writes local state and logs.
+
+Mitigation: Run with constrained filesystem access and update storage paths to an approved, isolated workspace before use.
+
+Risk: Model-produced moderation and reply decisions have weak validation.
+
+Mitigation: Validate the LLM JSON action schema, route uncertain comments to manual review, and test moderation rules with representative comments before unattended operation.
+
+Risk: State-validation and retry logic are incomplete or unsafe according to the security evidence.
+
+Mitigation: Correct and test state transitions, retry counters, and failure handling before enabling automatic reply workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vincentlau2046-sudo/skills/douyin-comment-reply)
+- [Douyin Creator Center](https://creator.douyin.com/)
+- [Douyin creator content management](https://creator.douyin.com/creator-micro/content/manage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and Python command-line scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces staged comment JSON, status summaries, LLM prompt text, moderation actions, reply text, and local Markdown comment logs.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

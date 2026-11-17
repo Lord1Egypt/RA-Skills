@@ -1,39 +1,52 @@
-## Description: <br>
-Monitor multiple GitHub repositories with configurable alert policies for releases, PRs, and security, sending low-noise notifications via scheduled cron jobs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor multiple GitHub repos with configurable alert policies for releases, PRs, and security, sending low-noise notifications via scheduled cron jobs.
 
-## Publisher: <br>
-[1yihui](https://clawhub.ai/user/1yihui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[1yihui](https://clawhub.ai/user/1yihui)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to configure recurring monitoring for selected GitHub repositories, with alerts for releases, merged pull requests, security-related changes, and daily digests.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Monitoring the wrong repositories, schedule, or notification target can create unwanted alerts or route update information to the wrong place.
+
+Mitigation: Confirm the repository list, alert policy, schedule, and notification target before installing or updating the skill.
+
+Risk: Recurring monitoring stores cursor and digest state, so an unexpected state file path can create or update state in the wrong workspace location.
+
+Mitigation: Review the configured state file path and keep it isolated for this monitor so deduplication and digest state remain predictable.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, maintainers, and teams use this skill to configure recurring monitoring for one or more GitHub repositories, route release, security, and PR changes by severity, and receive concise alerts or daily digests. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Repository monitoring can produce noisy or misdirected alerts if the repository list, policy mode, interval, or notification target is configured incorrectly. <br>
-Mitigation: Review the repository list, cron interval, policy mode, notification target, and digest behavior before enabling recurring checks. <br>
-Risk: Local monitoring state can cause missed or repeated alerts if it is shared with other workflows, reset unexpectedly, or not scoped to this skill. <br>
-Mitigation: Keep the state file isolated to this skill and retain enough auditability to reset or review notification cursors when needed. <br>
+**Output Format:** [Markdown with concise impact summaries and optional event-level details]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Brief impact summaries are the default; event-level details are expanded only on request.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, markdown] <br>
-**Output Format:** [Markdown impact summaries and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to concise impact-first summaries, with event-level details only on request.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,2045 @@
+aapl-20260627 
+
+ false 2026 Q3 0000320193 --09-26 P1Y P1Y P1Y P1Y http://fasb.org/us-gaap/2025#LongTermDebtCurrent http://fasb.org/us-gaap/2025#LongTermDebtNoncurrent http://fasb.org/us-gaap/2025#LongTermDebtCurrent http://fasb.org/us-gaap/2025#LongTermDebtNoncurrent P367D P156D xbrli:shares iso4217:USD iso4217:USD xbrli:shares xbrli:pure aapl:Customer aapl:Vendor 0000320193 2025-09-28 2026-06-27 0000320193 us-gaap:CommonStockMember 2025-09-28 2026-06-27 0000320193 aapl:A1.625NotesDue2026Member 2025-09-28 2026-06-27 0000320193 aapl:A2.000NotesDue2027Member 2025-09-28 2026-06-27 0000320193 aapl:A1.375NotesDue2029Member 2025-09-28 2026-06-27 0000320193 aapl:A3.050NotesDue2029Member 2025-09-28 2026-06-27 0000320193 aapl:A0.500Notesdue2031Member 2025-09-28 2026-06-27 0000320193 aapl:A3.600NotesDue2042Member 2025-09-28 2026-06-27 0000320193 2026-07-17 0000320193 us-gaap:ProductMember 2026-03-29 2026-06-27 0000320193 us-gaap:ProductMember 2025-03-30 2025-06-28 0000320193 us-gaap:ProductMember 2025-09-28 2026-06-27 0000320193 us-gaap:ProductMember 2024-09-29 2025-06-28 0000320193 us-gaap:ServiceMember 2026-03-29 2026-06-27 0000320193 us-gaap:ServiceMember 2025-03-30 2025-06-28 0000320193 us-gaap:ServiceMember 2025-09-28 2026-06-27 0000320193 us-gaap:ServiceMember 2024-09-29 2025-06-28 0000320193 2026-03-29 2026-06-27 0000320193 2025-03-30 2025-06-28 0000320193 2024-09-29 2025-06-28 0000320193 2026-06-27 0000320193 2025-09-27 0000320193 2026-03-28 0000320193 2025-03-29 0000320193 2024-09-28 0000320193 us-gaap:CommonStockIncludingAdditionalPaidInCapitalMember 2026-03-28 0000320193 us-gaap:CommonStockIncludingAdditionalPaidInCapitalMember 2025-03-29 0000320193 us-gaap:CommonStockIncludingAdditionalPaidInCapitalMember 2025-09-27 0000320193 us-gaap:CommonStockIncludingAdditionalPaidInCapitalMember 2024-09-28 0000320193 us-gaap:CommonStockIncludingAdditionalPaidInCapitalMember 2026-03-29 2026-06-27 0000320193 us-gaap:CommonStockIncludingAdditionalPaidInCapitalMember 2025-03-30 2025-06-28 0000320193 us-gaap:CommonStockIncludingAdditionalPaidInCapitalMember 2025-09-28 2026-06-27 0000320193 us-gaap:CommonStockIncludingAdditionalPaidInCapitalMember 2024-09-29 2025-06-28 0000320193 us-gaap:CommonStockIncludingAdditionalPaidInCapitalMember 2026-06-27 0000320193 us-gaap:CommonStockIncludingAdditionalPaidInCapitalMember 2025-06-28 0000320193 us-gaap:RetainedEarningsMember 2026-03-28 0000320193 us-gaap:RetainedEarningsMember 2025-03-29 0000320193 us-gaap:RetainedEarningsMember 2025-09-27 0000320193 us-gaap:RetainedEarningsMember 2024-09-28 0000320193 us-gaap:RetainedEarningsMember 2026-03-29 2026-06-27 0000320193 us-gaap:RetainedEarningsMember 2025-03-30 2025-06-28 0000320193 us-gaap:RetainedEarningsMember 2025-09-28 2026-06-27 0000320193 us-gaap:RetainedEarningsMember 2024-09-29 2025-06-28 0000320193 us-gaap:RetainedEarningsMember 2026-06-27 0000320193 us-gaap:RetainedEarningsMember 2025-06-28 0000320193 us-gaap:AccumulatedOtherComprehensiveIncomeMember 2026-03-28 0000320193 us-gaap:AccumulatedOtherComprehensiveIncomeMember 2025-03-29 0000320193 us-gaap:AccumulatedOtherComprehensiveIncomeMember 2025-09-27 0000320193 us-gaap:AccumulatedOtherComprehensiveIncomeMember 2024-09-28 0000320193 us-gaap:AccumulatedOtherComprehensiveIncomeMember 2026-03-29 2026-06-27 0000320193 us-gaap:AccumulatedOtherComprehensiveIncomeMember 2025-03-30 2025-06-28 0000320193 us-gaap:AccumulatedOtherComprehensiveIncomeMember 2025-09-28 2026-06-27 0000320193 us-gaap:AccumulatedOtherComprehensiveIncomeMember 2024-09-29 2025-06-28 0000320193 us-gaap:AccumulatedOtherComprehensiveIncomeMember 2026-06-27 0000320193 us-gaap:AccumulatedOtherComprehensiveIncomeMember 2025-06-28 0000320193 2025-06-28 0000320193 aapl:IPhoneMember 2026-03-29 2026-06-27 0000320193 aapl:IPhoneMember 2025-03-30 2025-06-28 0000320193 aapl:IPhoneMember 2025-09-28 2026-06-27 0000320193 aapl:IPhoneMember 2024-09-29 2025-06-28 0000320193 aapl:MacMember 2026-03-29 2026-06-27 0000320193 aapl:MacMember 2025-03-30 2025-06-28 0000320193 aapl:MacMember 2025-09-28 2026-06-27 0000320193 aapl:MacMember 2024-09-29 2025-06-28 0000320193 aapl:IPadMember 2026-03-29 2026-06-27 0000320193 aapl:IPadMember 2025-03-30 2025-06-28 0000320193 aapl:IPadMember 2025-09-28 2026-06-27 0000320193 aapl:IPadMember 2024-09-29 2025-06-28 0000320193 aapl:WearablesHomeandAccessoriesMember 2026-03-29 2026-06-27 0000320193 aapl:WearablesHomeandAccessoriesMember 2025-03-30 2025-06-28 0000320193 aapl:WearablesHomeandAccessoriesMember 2025-09-28 2026-06-27 0000320193 aapl:WearablesHomeandAccessoriesMember 2024-09-29 2025-06-28 0000320193 2026-06-28 2026-06-27 0000320193 2027-06-27 2026-06-27 0000320193 2028-07-02 2026-06-27 0000320193 2029-07-01 2026-06-27 0000320193 us-gaap:CashMember 2026-06-27 0000320193 us-gaap:MoneyMarketFundsMember us-gaap:FairValueInputsLevel1Member 2026-06-27 0000320193 us-gaap:MutualFundMember us-gaap:FairValueInputsLevel1Member 2026-06-27 0000320193 us-gaap:FairValueInputsLevel1Member 2026-06-27 0000320193 us-gaap:USTreasurySecuritiesMember us-gaap:FairValueInputsLevel2Member 2026-06-27 0000320193 us-gaap:USGovernmentAgenciesDebtSecuritiesMember us-gaap:FairValueInputsLevel2Member 2026-06-27 0000320193 us-gaap:ForeignGovernmentDebtSecuritiesMember us-gaap:FairValueInputsLevel2Member 2026-06-27 0000320193 us-gaap:BankTimeDepositsMember us-gaap:FairValueInputsLevel2Member 2026-06-27 0000320193 us-gaap:CommercialPaperMember us-gaap:FairValueInputsLevel2Member 2026-06-27 0000320193 us-gaap:CorporateDebtSecuritiesMember us-gaap:FairValueInputsLevel2Member 2026-06-27 0000320193 us-gaap:AssetBackedSecuritiesMember us-gaap:FairValueInputsLevel2Member 2026-06-27 0000320193 us-gaap:FairValueInputsLevel2Member 2026-06-27 0000320193 us-gaap:CashMember 2025-09-27 0000320193 us-gaap:MoneyMarketFundsMember us-gaap:FairValueInputsLevel1Member 2025-09-27 0000320193 us-gaap:MutualFundMember us-gaap:FairValueInputsLevel1Member 2025-09-27 0000320193 us-gaap:FairValueInputsLevel1Member 2025-09-27 0000320193 us-gaap:USTreasurySecuritiesMember us-gaap:FairValueInputsLevel2Member 2025-09-27 0000320193 us-gaap:USGovernmentAgenciesDebtSecuritiesMember us-gaap:FairValueInputsLevel2Member 2025-09-27 0000320193 us-gaap:ForeignGovernmentDebtSecuritiesMember us-gaap:FairValueInputsLevel2Member 2025-09-27 0000320193 us-gaap:BankTimeDepositsMember us-gaap:FairValueInputsLevel2Member 2025-09-27 0000320193 us-gaap:CommercialPaperMember us-gaap:FairValueInputsLevel2Member 2025-09-27 0000320193 us-gaap:CorporateDebtSecuritiesMember us-gaap:FairValueInputsLevel2Member 2025-09-27 0000320193 us-gaap:USStatesAndPoliticalSubdivisionsMember us-gaap:FairValueInputsLevel2Member 2025-09-27 0000320193 us-gaap:AssetBackedSecuritiesMember us-gaap:FairValueInputsLevel2Member 2025-09-27 0000320193 us-gaap:FairValueInputsLevel2Member 2025-09-27 0000320193 aapl:MarketableDebtSecuritiesOtherThanAssetBackedSecuritiesMember 2026-06-27 0000320193 us-gaap:AssetBackedSecuritiesMember 2026-06-27 0000320193 us-gaap:ForeignExchangeContractMember 2025-09-28 2026-06-27 0000320193 us-gaap:CrossCurrencyInterestRateContractMember 2025-09-28 2026-06-27 0000320193 us-gaap:ForeignExchangeContractMember us-gaap:DesignatedAsHedgingInstrumentMember 2026-06-27 0000320193 us-gaap:ForeignExchangeContractMember us-gaap:DesignatedAsHedgingInstrumentMember 2025-09-27 0000320193 us-gaap:InterestRateContractMember us-gaap:DesignatedAsHedgingInstrumentMember 2026-06-27 0000320193 us-gaap:InterestRateContractMember us-gaap:DesignatedAsHedgingInstrumentMember 2025-09-27 0000320193 us-gaap:ForeignExchangeContractMember us-gaap:NondesignatedMember 2026-06-27 0000320193 us-gaap:ForeignExchangeContractMember us-gaap:NondesignatedMember 2025-09-27 0000320193 us-gaap:CreditConcentrationRiskMember us-gaap:TradeAccountsReceivableMember 2026-06-27 0000320193 us-gaap:CreditConcentrationRiskMember us-gaap:TradeAccountsReceivableMember 2025-09-27 0000320193 aapl:CustomerOneMember us-gaap:CreditConcentrationRiskMember us-gaap:TradeAccountsReceivableMember 2025-09-28 2026-06-27 0000320193 aapl:CustomerOneMember us-gaap:CreditConcentrationRiskMember us-gaap:TradeAccountsReceivableMember 2024-09-29 2025-09-27 0000320193 aapl:CellularNetworkCarriersMember us-gaap:CreditConcentrationRiskMember us-gaap:TradeAccountsReceivableMember 2025-09-28 2026-06-27 0000320193 aapl:CellularNetworkCarriersMember us-gaap:CreditConcentrationRiskMember us-gaap:TradeAccountsReceivableMember 2024-09-29 2025-09-27 0000320193 us-gaap:CreditConcentrationRiskMember aapl:NonTradeReceivableMember 2026-06-27 0000320193 aapl:VendorOneMember us-gaap:CreditConcentrationRiskMember aapl:NonTradeReceivableMember 2025-09-28 2026-06-27 0000320193 aapl:VendorTwoMember us-gaap:CreditConcentrationRiskMember aapl:NonTradeReceivableMember 2025-09-28 2026-06-27 0000320193 us-gaap:CreditConcentrationRiskMember aapl:NonTradeReceivableMember 2025-09-27 0000320193 aapl:VendorOneMember us-gaap:CreditConcentrationRiskMember aapl:NonTradeReceivableMember 2024-09-29 2025-09-27 0000320193 aapl:VendorTwoMember us-gaap:CreditConcentrationRiskMember aapl:NonTradeReceivableMember 2024-09-29 2025-09-27 0000320193 us-gaap:CommercialPaperMember 2026-06-27 0000320193 us-gaap:CommercialPaperMember 2025-09-27 0000320193 us-gaap:RestrictedStockUnitsRSUMember 2025-09-27 0000320193 us-gaap:RestrictedStockUnitsRSUMember 2025-09-28 2026-06-27 0000320193 us-gaap:RestrictedStockUnitsRSUMember 2026-06-27 0000320193 us-gaap:RestrictedStockUnitsRSUMember 2026-03-29 2026-06-27 0000320193 us-gaap:RestrictedStockUnitsRSUMember 2025-03-30 2025-06-28 0000320193 us-gaap:RestrictedStockUnitsRSUMember 2024-09-29 2025-06-28 0000320193 us-gaap:OperatingSegmentsMember aapl:AmericasSegmentMember 2026-03-29 2026-06-27 0000320193 us-gaap:OperatingSegmentsMember aapl:EuropeSegmentMember 2026-03-29 2026-06-27 0000320193 us-gaap:OperatingSegmentsMember aapl:GreaterChinaSegmentMember 2026-03-29 2026-06-27 0000320193 us-gaap:OperatingSegmentsMember aapl:JapanSegmentMember 2026-03-29 2026-06-27 0000320193 us-gaap:OperatingSegmentsMember aapl:RestOfAsiaPacificSegmentMember 2026-03-29 2026-06-27 0000320193 us-gaap:CorporateNonSegmentMember 2026-03-29 2026-06-27 0000320193 us-gaap:OperatingSegmentsMember aapl:AmericasSegmentMember 2025-03-30 2025-06-28 0000320193 us-gaap:OperatingSegmentsMember aapl:EuropeSegmentMember 2025-03-30 2025-06-28 0000320193 us-gaap:OperatingSegmentsMember aapl:GreaterChinaSegmentMember 2025-03-30 2025-06-28 0000320193 us-gaap:OperatingSegmentsMember aapl:JapanSegmentMember 2025-03-30 2025-06-28 0000320193 us-gaap:OperatingSegmentsMember aapl:RestOfAsiaPacificSegmentMember 2025-03-30 2025-06-28 0000320193 us-gaap:CorporateNonSegmentMember 2025-03-30 2025-06-28 0000320193 us-gaap:OperatingSegmentsMember aapl:AmericasSegmentMember 2025-09-28 2026-06-27 0000320193 us-gaap:OperatingSegmentsMember aapl:EuropeSegmentMember 2025-09-28 2026-06-27 0000320193 us-gaap:OperatingSegmentsMember aapl:GreaterChinaSegmentMember 2025-09-28 2026-06-27 0000320193 us-gaap:OperatingSegmentsMember aapl:JapanSegmentMember 2025-09-28 2026-06-27 0000320193 us-gaap:OperatingSegmentsMember aapl:RestOfAsiaPacificSegmentMember 2025-09-28 2026-06-27 0000320193 us-gaap:CorporateNonSegmentMember 2025-09-28 2026-06-27 0000320193 us-gaap:OperatingSegmentsMember aapl:AmericasSegmentMember 2024-09-29 2025-06-28 0000320193 us-gaap:OperatingSegmentsMember aapl:EuropeSegmentMember 2024-09-29 2025-06-28 0000320193 us-gaap:OperatingSegmentsMember aapl:GreaterChinaSegmentMember 2024-09-29 2025-06-28 0000320193 us-gaap:OperatingSegmentsMember aapl:JapanSegmentMember 2024-09-29 2025-06-28 0000320193 us-gaap:OperatingSegmentsMember aapl:RestOfAsiaPacificSegmentMember 2024-09-29 2025-06-28 0000320193 us-gaap:CorporateNonSegmentMember 2024-09-29 2025-06-28 0000320193 aapl:JenniferNewsteadMember 2025-09-28 2026-06-27 0000320193 aapl:JenniferNewsteadMember 2026-03-29 2026-06-27 0000320193 aapl:JenniferNewsteadMember 2026-06-27 0000320193 aapl:TimCookMember 2025-09-28 2026-06-27 0000320193 aapl:TimCookMember 2026-03-29 2026-06-27 0000320193 aapl:TimCookMember 2026-06-27 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ UNITED STATES 
+
+ SECURITIES AND EXCHANGE COMMISSION 
+
+ Washington, D.C. 20549 
+
+ 
+
+ 
+
+ 
+
+ FORM 10-Q 
+
+ 
+
+ 
+
+ 
+
+ (Mark One) 
+
+ ☒ QUARTERLY REPORT PURSUANT TO SECTION 13 OR 15(d) OF THE SECURITIES EXCHANGE ACT OF 1934 
+
+ For the quarterly period ended June 27, 2026 
+
+ or 
+
+ ☐ TRANSITION REPORT PURSUANT TO SECTION 13 OR 15(d) OF THE SECURITIES EXCHANGE ACT OF 1934 
+
+ For the transition period from              to              . 
+
+ Commission File Number: 001-36743 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ Apple Inc. 
+
+ (Exact name of Registrant as specified in its charter) 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ California 94-2404110 
+
+ (State or other jurisdiction of incorporation or organization) (I.R.S. Employer Identification No.) 
+
+ 
+
+ One Apple Park Way 
+
+ 
+
+ Cupertino , California 95014 
+
+ (Address of principal executive offices) (Zip Code) 
+
+ ( 408 ) 996-1010 
+
+ (Registrant’s telephone number, including area code) 
+
+ 
+
+ 
+
+ 
+
+ Securities registered pursuant to Section 12(b) of the Act: 
+
+ 
+
+ 
+
+ Title of each class Trading symbol(s) Name of each exchange on which registered 
+
+ 
+
+ Common Stock, $0.00001 par value per share AAPL The Nasdaq Stock Market LLC 
+
+ 1.625% Notes due 2026 — The Nasdaq Stock Market LLC 
+
+ 2.000% Notes due 2027 — The Nasdaq Stock Market LLC 
+
+ 1.375% Notes due 2029 — The Nasdaq Stock Market LLC 
+
+ 3.050% Notes due 2029 — The Nasdaq Stock Market LLC 
+
+ 0.500% Notes due 2031 — The Nasdaq Stock Market LLC 
+
+ 3.600% Notes due 2042 — The Nasdaq Stock Market LLC 
+
+ 
+
+ 
+
+ 
+
+ Indicate by check mark whether the Registrant (1) has filed all reports required to be filed by Section 13 or 15(d) of the Securities Exchange Act of 1934 during the preceding 12 months (or for such shorter period that the Registrant was required to file such reports), and (2) has been subject to such filing requirements for the past 90 days. 
+
+ Yes    ☒      No   ☐ 
+
+ Indicate by check mark whether the Registrant has submitted electronically every Interactive Data File required to be submitted pursuant to Rule 405 of Regulation S-T (§232.405 of this chapter) during the preceding 12 months (or for such shorter period that the Registrant was required to submit such files). 
+
+ Yes    ☒      No   ☐ 
+
+ Indicate by check mark whether the Registrant is a large accelerated filer, an accelerated filer, a non-accelerated filer, a smaller reporting company, or an emerging growth company. See the definitions of “large accelerated filer,” “accelerated filer,” “smaller reporting company,” and “emerging growth company” in Rule 12b-2 of the Exchange Act. 
+
+ 
+
+ 
+
+ Large accelerated filer ☒ Accelerated filer ☐ 
+
+ Non-accelerated filer ☐ Smaller reporting company ☐ 
+
+ Emerging growth company ☐ 
+
+ If an emerging growth company, indicate by check mark if the Registrant has elected not to use the extended transition period for complying with any new or revised financial accounting standards provided pursuant to Section 13(a) of the Exchange Act. ☐ 
+
+ Indicate by check mark whether the Registrant is a shell company (as defined in Rule 12b-2 of the Exchange Act). 
+
+ Yes   ☐      No   ☒ 
+
+ 14,594,180,000 shares of common stock were issued and outstanding as of July 17, 2026 . 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ Apple Inc. 
+
+ 
+
+ Form 10-Q 
+
+ For the Fiscal Quarter Ended June 27, 2026 
+
+ TABLE OF CONTENTS 
+
+ 
+
+ 
+
+ 
+
+ Page 
+
+ 
+
+ Part I 
+
+ 
+
+ Item 1. 
+
+ Financial Statements 
+
+ 1 
+
+ 
+
+ Item 2. 
+
+ Management’s Discussion and Analysis of Financial Condition and Results of Operations 
+
+ 13 
+
+ 
+
+ Item 3. 
+
+ Quantitative and Qualitative Disclosures About Market Risk 
+
+ 19 
+
+ 
+
+ Item 4. 
+
+ Controls and Procedures 
+
+ 19 
+
+ 
+
+ Part II 
+
+ 
+
+ Item 1. 
+
+ Legal Proceedings 
+
+ 20 
+
+ 
+
+ Item 1A. 
+
+ Risk Factors 
+
+ 21 
+
+ 
+
+ Item 2. 
+
+ Unregistered Sales of Equity Securities and Use of Proceeds 
+
+ 24 
+
+ 
+
+ Item 3. 
+
+ Defaults Upon Senior Securities 
+
+ 24 
+
+ 
+
+ Item 4. 
+
+ Mine Safety Disclosures 
+
+ 24 
+
+ 
+
+ Item 5. 
+
+ Other Information 
+
+ 25 
+
+ 
+
+ Item 6. 
+
+ Exhibits 
+
+ 25 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ PART I — FINANCIAL INFORMATION 
+
+ 
+
+ Item 1.    Financial Statements 
+
+ 
+
+ Apple Inc. 
+
+ CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS (Unaudited) 
+
+ (In millions, except number of shares, which are reflected in thousands, and per-share amounts) 
+
+ 
+
+ 
+
+ 
+
+ Three Months Ended Nine Months Ended 
+
+ June 27, 2026 June 28, 2025 June 27, 2026 June 28, 2025 
+
+ Net sales: 
+
+    Products $ 78,678   $ 66,613   $ 272,629   $ 233,287   
+
+    Services 30,739   27,423   91,728   80,408   
+
+ Total net sales 109,417   94,036   364,357   313,695   
+
+ 
+
+ Cost of sales: 
+
+    Products 47,153   43,620   163,810   147,097   
+
+    Services 7,494   6,698   21,765   19,738   
+
+ Total cost of sales 54,647   50,318   185,575   166,835   
+
+ Gross margin 54,770   43,718   178,782   146,860   
+
+ 
+
+ Operating expenses: 
+
+ Research and development 11,729   8,866   34,035   25,684   
+
+ Selling, general and administrative 7,346   6,650   22,315   20,553   
+
+ Total operating expenses 19,075   15,516   56,350   46,237   
+
+ 
+
+ Operating income 35,695   28,202   122,432   100,623   
+
+ Other income/(expense), net 572   ( 171 ) 670   ( 698 ) 
+
+ Income before provision for income taxes 36,267   28,031   123,102   99,925   
+
+ Provision for income taxes 6,478   4,597   21,638   15,381   
+
+ Net income $ 29,789   $ 23,434   $ 101,464   $ 84,544   
+
+ 
+
+ Earnings per share: 
+
+ Basic $ 2.03   $ 1.57   $ 6.91   $ 5.64   
+
+ Diluted $ 2.02   $ 1.57   $ 6.88   $ 5.62   
+
+ 
+
+ Shares used in computing earnings per share: 
+
+ Basic 14,656,110   14,902,886   14,692,515   14,992,898   
+
+ Diluted 14,714,676   14,948,179   14,750,302   15,051,726   
+
+ See accompanying Notes to Condensed Consolidated Financial Statements. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 1 
+
+ 
+
+ 
+
+ 
+
+ Apple Inc. 
+
+ CONDENSED CONSOLIDATED STATEMENTS OF COMPREHENSIVE INCOME (Unaudited) 
+
+ (In millions) 
+
+ 
+
+ 
+
+ 
+
+ Three Months Ended Nine Months Ended 
+
+ June 27, 2026 June 28, 2025 June 27, 2026 June 28, 2025 
+
+ Net income $ 29,789   $ 23,434   $ 101,464   $ 84,544   
+
+ Other comprehensive income/(loss): 
+
+ Change in foreign currency translation, net of tax ( 24 ) 449   ( 116 ) ( 86 ) 
+
+ 
+
+ Change in unrealized gains/losses on derivative instruments, net of tax: 
+
+ Change in fair value of derivative instruments 356   ( 523 ) 729   810   
+
+ Adjustment for net (gains)/losses realized and included in net income 67   ( 571 ) 348   ( 415 ) 
+
+ Total change in unrealized gains/losses on derivative instruments 423   ( 1,094 ) 1,077   395   
+
+ 
+
+ Change in unrealized gains/losses on marketable debt securities, net of tax: 
+
+ Change in fair value of marketable debt securities 441   640   57   90   
+
+ Adjustment for net (gains)/losses realized and included in net income 27   ( 1 ) 45   404   
+
+ Total change in unrealized gains/losses on marketable debt securities 468   639   102   494   
+
+ 
+
+ Total other comprehensive income/(loss) 867   ( 6 ) 1,063   803   
+
+ Total comprehensive income $ 30,656   $ 23,428   $ 102,527   $ 85,347   
+
+ See accompanying Notes to Condensed Consolidated Financial Statements. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 2 
+
+ 
+
+ 
+
+ 
+
+ Apple Inc. 
+
+ CONDENSED CONSOLIDATED BALANCE SHEETS (Unaudited) 
+
+ (In millions, except number of shares, which are reflected in thousands, and par value) 
+
+ 
+
+ 
+
+ 
+
+ June 27, 2026 September 27, 2025 
+
+ ASSETS: 
+
+ Current assets: 
+
+ Cash and cash equivalents $ 39,544   $ 35,934   
+
+ Marketable securities 22,855   18,763   
+
+ Accounts receivable, net 31,398   39,777   
+
+ Vendor non-trade receivables 27,509   33,180   
+
+ Inventories 11,092   5,718   
+
+ Other current assets 17,420   14,585   
+
+ Total current assets 149,818   147,957   
+
+ 
+
+ Non-current assets: 
+
+ Marketable securities 84,118   77,723   
+
+ Property, plant and equipment, net 51,431   49,834   
+
+ Intangible assets, net 20,342   11,093   
+
+ Other non-current assets 77,557   72,634   
+
+ Total non-current assets 233,448   211,284   
+
+ Total assets $ 383,266   $ 359,241   
+
+ 
+
+ LIABILITIES AND SHAREHOLDERS’ EQUITY: 
+
+ Current liabilities: 
+
+ Accounts payable $ 64,525   $ 69,860   
+
+ Other current liabilities 62,259   66,387   
+
+ Deferred revenue 9,538   9,055   
+
+ Commercial paper 1,997   7,979   
+
+ Term debt 11,007   12,350   
+
+ Total current liabilities 149,326   165,631   
+
+ 
+
+ Non-current liabilities: 
+
+ Term debt 71,340   78,328   
+
+ Other non-current liabilities 55,080   41,549   
+
+ Total non-current liabilities 126,420   119,877   
+
+ Total liabilities 275,746   285,508   
+
+ 
+
+ Commitments and contingencies 
+
+ 
+
+ Shareholders’ equity: 
+
+ 
+
+ Common stock and additional paid-in capital, $ 0.00001 par value: 50,400,000 shares authorized; 14,608,963 and 14,773,260 shares issued and outstanding, respectively 100,702   93,568   
+
+ Retained earnings/(Accumulated deficit) 11,326   ( 14,264 ) 
+
+ Accumulated other comprehensive loss ( 4,508 ) ( 5,571 ) 
+
+ Total shareholders’ equity 107,520   73,733   
+
+ Total liabilities and shareholders’ equity $ 383,266   $ 359,241   
+
+ See accompanying Notes to Condensed Consolidated Financial Statements. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 3 
+
+ 
+
+ 
+
+ 
+
+ Apple Inc. 
+
+ CONDENSED CONSOLIDATED STATEMENTS OF SHAREHOLDERS’ EQUITY (Unaudited) 
+
+ (In millions, except per-share amounts) 
+
+ 
+
+ 
+
+ 
+
+ Three Months Ended Nine Months Ended 
+
+ June 27, 2026 June 28, 2025 June 27, 2026 June 28, 2025 
+
+ Total shareholders’ equity, beginning balances $ 106,491   $ 66,796   $ 73,733   $ 56,950   
+
+ 
+
+ Common stock and additional paid-in capital: 
+
+ Beginning balances 99,507   88,711   93,568   83,276   
+
+ Common stock issued —   —   878   825   
+
+ Common stock withheld related to net share settlement of equity awards ( 2,396 ) ( 2,163 ) ( 4,704 ) ( 4,260 ) 
+
+ Share-based compensation 3,591   3,258   10,960   9,965   
+
+ Ending balances 100,702   89,806   100,702   89,806   
+
+ 
+
+ Retained earnings/(Accumulated deficit): 
+
+ Beginning balances 12,359   ( 15,552 ) ( 14,264 ) ( 19,154 ) 
+
+ Net income 29,789   23,434   101,464   84,544   
+
+ Dividends and dividend equivalents declared ( 3,998 ) ( 3,912 ) ( 11,733 ) ( 11,525 ) 
+
+ Common stock withheld related to net share settlement of equity awards ( 875 ) ( 411 ) ( 1,899 ) ( 1,598 ) 
+
+ Common stock repurchased ( 25,949 ) ( 21,166 ) ( 62,242 ) ( 69,874 ) 
+
+ Ending balances 11,326   ( 17,607 ) 11,326   ( 17,607 ) 
+
+ 
+
+ Accumulated other comprehensive loss: 
+
+ Beginning balances ( 5,375 ) ( 6,363 ) ( 5,571 ) ( 7,172 ) 
+
+ Other comprehensive income/(loss) 867   ( 6 ) 1,063   803   
+
+ Ending balances ( 4,508 ) ( 6,369 ) ( 4,508 ) ( 6,369 ) 
+
+ 
+
+ Total shareholders’ equity, ending balances $ 107,520   $ 65,830   $ 107,520   $ 65,830   
+
+ 
+
+ Dividends and dividend equivalents declared per share or RSU $ 0.27   $ 0.26   $ 0.79   $ 0.76   
+
+ See accompanying Notes to Condensed Consolidated Financial Statements. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 4 
+
+ 
+
+ 
+
+ 
+
+ Apple Inc. 
+
+ CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS (Unaudited) 
+
+ (In millions) 
+
+ 
+
+ 
+
+ 
+
+ Nine Months Ended 
+
+ June 27, 2026 June 28, 2025 
+
+ 
+
+ Cash, cash equivalents, and restricted cash and cash equivalents, beginning balances $ 35,934   $ 29,943   
+
+ 
+
+ Operating activities: 
+
+ Net income 101,464   84,544   
+
+ Adjustments to reconcile net income to cash generated by operating activities: 
+
+ Depreciation and amortization 9,973   8,571   
+
+ Share-based compensation expense 10,523   9,680   
+
+ Other ( 2,037 ) ( 1,748 ) 
+
+ Changes in operating assets and liabilities: 
+
+ Accounts receivable, net 8,316   5,685   
+
+ Vendor non-trade receivables 5,671   13,555   
+
+ Inventories ( 5,461 ) 1,223   
+
+ Other current and non-current assets ( 16,266 ) ( 6,116 ) 
+
+ Accounts payable ( 5,203 ) ( 18,479 ) 
+
+ Other current and non-current liabilities 10,016   ( 15,161 ) 
+
+ Cash generated by operating activities 116,996   81,754   
+
+ 
+
+ Investing activities: 
+
+ Purchases of marketable securities ( 48,752 ) ( 17,591 ) 
+
+ Proceeds from maturities of marketable securities 26,504   35,036   
+
+ Proceeds from sales of marketable securities 12,016   10,785   
+
+ Payments for acquisition of property, plant and equipment ( 6,799 ) ( 9,473 ) 
+
+ 
+
+ Other ( 1,780 ) ( 975 ) 
+
+ Cash generated by/(used in) investing activities ( 18,811 ) 17,782   
+
+ 
+
+ Financing activities: 
+
+ Payments for taxes related to net share settlement of equity awards ( 6,462 ) ( 5,719 ) 
+
+ Payments for dividends and dividend equivalents ( 11,778 ) ( 11,559 ) 
+
+ Repurchases of common stock ( 62,094 ) ( 70,579 ) 
+
+ Proceeds from issuance of term debt, net —   4,481   
+
+ Repayments of term debt ( 8,146 ) ( 9,682 ) 
+
+ Repayments of commercial paper, net ( 5,911 ) ( 65 ) 
+
+ Other ( 184 ) ( 87 ) 
+
+ Cash used in financing activities ( 94,575 ) ( 93,210 ) 
+
+ 
+
+ Increase in cash, cash equivalents, and restricted cash and cash equivalents 3,610   6,326   
+
+ 
+
+ Cash, cash equivalents, and restricted cash and cash equivalents, ending balances $ 39,544   $ 36,269   
+
+ 
+
+ Supplemental cash flow disclosure: 
+
+ Cash paid for income taxes, net $ 26,555   $ 37,332   
+
+ See accompanying Notes to Condensed Consolidated Financial Statements. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 5 
+
+ 
+
+ 
+
+ 
+
+ Apple Inc. 
+
+ Notes to Condensed Consolidated Financial Statements (Unaudited) 
+
+ 
+
+ Note 1 – Summary of Significant Accounting Policies 
+
+ Basis of Presentation and Preparation 
+
+ The condensed consolidated financial statements include the accounts of Apple Inc. and its wholly owned subsidiaries (collectively “Apple” or the “Company”). In the opinion of the Company’s management, the condensed consolidated financial statements reflect all adjustments, which are normal and recurring in nature, necessary for fair financial statement presentation. The preparation of these condensed consolidated financial statements and accompanying notes in conformity with U.S. generally accepted accounting principles (“GAAP”) requires the use of management estimates. Certain prior period amounts in the condensed consolidated financial statements and accompanying notes have been reclassified to conform to the current period’s presentation. These condensed consolidated financial statements and accompanying notes should be read in conjunction with the Company’s annual consolidated financial statements and accompanying notes included in its Annual Report on Form 10-K for the fiscal year ended September 27, 2025 (the “2025 Form 10-K”). 
+
+ The Company’s fiscal year is the 52- or 53-week period that ends on the last Saturday of September. An additional week is included in the first fiscal quarter every five or six years to realign the Company’s fiscal quarters with calendar quarters. The Company’s fiscal years 2026 and 2025 span 52 weeks each. Unless otherwise stated, references to particular years, quarters, months and periods refer to the Company’s fiscal years ended in September and the associated quarters, months and periods of those fiscal years. 
+
+ 
+
+ Note 2 – Revenue 
+
+ The following table shows disaggregated net sales, as well as the portion of total net sales that was previously deferred, for the three- and nine-month periods ended June 27, 2026 and June 28, 2025 (in millions): 
+
+ 
+
+ 
+
+ Three Months Ended Nine Months Ended 
+
+ June 27, 2026 June 28, 2025 June 27, 2026 June 28, 2025 
+
+ 
+
+ iPhone ® $ 54,252   $ 44,582   $ 196,515   $ 160,561   
+
+ 
+
+ Mac ® 10,352   8,046   27,137   24,982   
+
+ 
+
+ iPad ® 6,191   6,581   21,700   21,071   
+
+ Wearables, Home and Accessories 7,883   7,404   27,277   26,673   
+
+ Services 30,739   27,423   91,728   80,408   
+
+ Total net sales $ 109,417   $ 94,036   $ 364,357   $ 313,695   
+
+ 
+
+ 
+
+ Portion of total net sales that was included in deferred revenue as of the beginning of the period $ 4,086   $ 4,015   $ 7,260   $ 6,958   
+
+ The Company’s proportion of net sales by disaggregated revenue source was generally consistent for each reportable segment in Note 10, “Segment Information” for the three- and nine-month periods ended June 27, 2026 and June 28, 2025, except in Greater China, where iPhone revenue represented a moderately higher proportion of net sales. 
+
+ As of June 27, 2026 and September 27, 2025, the Company had total deferred revenue of $ 14.9 billion and $ 13.7  billion, respectively. As of June 27, 2026, the Company expects 64 % of total deferred revenue to be realized in less than a year, 23 % within one-to-two years, 11 % within two-to-three years and 2 % in greater than three years. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 6 
+
+ 
+
+ 
+
+ 
+
+ Note 3 – Earnings Per Share 
+
+ The following table shows the computation of basic and diluted earnings per share for the three- and nine-month periods ended June 27, 2026 and June 28, 2025 (net income in millions and shares in thousands): 
+
+ 
+
+ 
+
+ Three Months Ended Nine Months Ended 
+
+ June 27, 2026 June 28, 2025 June 27, 2026 June 28, 2025 
+
+ Numerator: 
+
+ Net income $ 29,789   $ 23,434   $ 101,464   $ 84,544   
+
+ 
+
+ Denominator: 
+
+ Weighted-average basic shares outstanding 14,656,110   14,902,886   14,692,515   14,992,898   
+
+ 
+
+ Effect of dilutive share-based awards 58,566   45,293   57,787   58,828   
+
+ Weighted-average diluted shares 14,714,676   14,948,179   14,750,302   15,051,726   
+
+ 
+
+ Basic earnings per share $ 2.03   $ 1.57   $ 6.91   $ 5.64   
+
+ Diluted earnings per share $ 2.02   $ 1.57   $ 6.88   $ 5.62   
+
+ 
+
+ Note 4 – Financial Instruments 
+
+ Cash, Cash Equivalents and Marketable Securities 
+
+ The following tables show the Company’s cash, cash equivalents and marketable securities by significant investment category as of June 27, 2026 and September 27, 2025 (in millions): 
+
+ 
+
+ 
+
+ June 27, 2026 
+
+ Adjusted Cost Unrealized Gains Unrealized Losses Fair Value Cash and Cash Equivalents Current Marketable Securities 
+
+ Non-Current Marketable Securities 
+
+ Cash $ 26,777   $ —  $ —  $ 26,777   $ 26,777   $ —  $ —  
+
+ 
+
+ Level 1: 
+
+ Money market funds 7,840   —   —   7,840   7,840   —   —   
+
+ 
+
+ Mutual funds 873   222   ( 1 ) 1,094   —   1,094   —   
+
+ Subtotal 8,713   222   ( 1 ) 8,934   7,840   1,094   —   
+
+ 
+
+ Level 2 (1) : 
+
+ U.S. Treasury securities 20,398   11   ( 253 ) 20,156   735   4,034   15,387   
+
+ U.S. agency securities 6,176   —   ( 100 ) 6,076   988   2,898   2,190   
+
+ Non-U.S. government securities 5,207   71   ( 349 ) 4,929   —   299   4,630   
+
+ Certificates of deposit and time deposits 3,025   —   —   3,025   2,521   504   —   
+
+ Commercial paper 3,828   —   —   3,828   683   3,145   —   
+
+ Corporate debt securities 49,679   121   ( 709 ) 49,091   —   10,808   38,283   
+
+ 
+
+ Mortgage- and asset-backed securities 24,828   65   ( 1,192 ) 23,701   —   73   23,628   
+
+ Subtotal 113,141   268   ( 2,603 ) 110,806   4,927   21,761   84,118   
+
+ 
+
+ Total $ 148,631   $ 490   $ ( 2,604 ) $ 146,517   $ 39,544   $ 22,855   $ 84,118   
+
+ 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 7 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ September 27, 2025 
+
+ Adjusted Cost Unrealized Gains Unrealized Losses Fair Value Cash and Cash Equivalents Current Marketable Securities Non-Current Marketable Securities 
+
+ Cash $ 28,267   $ —  $ —  $ 28,267   $ 28,267   $ —  $ —  
+
+ 
+
+ Level 1: 
+
+ Money market funds 5,272   —   —   5,272   5,272   —   —   
+
+ 
+
+ Mutual funds 679   177   ( 2 ) 854   —   854   —   
+
+ Subtotal 5,951   177   ( 2 ) 6,126   5,272   854   —   
+
+ 
+
+ Level 2 (1) : 
+
+ U.S. Treasury securities 16,074   56   ( 282 ) 15,848   1,190   3,712   10,946   
+
+ U.S. agency securities 5,269   —   ( 149 ) 5,120   251   2,456   2,413   
+
+ Non-U.S. government securities 6,586   111   ( 424 ) 6,273   —   855   5,418   
+
+ Certificates of deposit and time deposits 917   —   —   917   904   —   13   
+
+ Commercial paper 100   —   —   100   50   50   —   
+
+ Corporate debt securities 47,210   266   ( 916 ) 46,560   —   10,623   35,937   
+
+ Municipal securities 207   —   ( 2 ) 205   —   119   86   
+
+ Mortgage- and asset-backed securities 24,130   126   ( 1,252 ) 23,004   —   94   22,910   
+
+ Subtotal 100,493   559   ( 3,025 ) 98,027   2,395   17,909   77,723   
+
+ 
+
+ Total $ 134,711   $ 736   $ ( 3,027 ) $ 132,420   $ 35,934   $ 18,763   $ 77,723   
+
+ (1) The valuation techniques used to measure the fair values of the Company’s Level 2 financial instruments, which generally have counterparties with high credit ratings, are based on quoted market prices or model-driven valuations using significant inputs derived from or corroborated by observable market data. 
+
+ As of June 27, 2026, 81 % of the Company’s non-current marketable debt securities other than mortgage- and asset-backed securities had maturities between 1 and 5 years, 16 % between 5 and 10 years, and 3 % greater than 10 years. As of June 27, 2026, 14 % of the Company’s non-current mortgage- and asset-backed securities had maturities between 1 and 5 years, 21 % between 5 and 10 years, and 65 % greater than 10 years. 
+
+ Derivative Instruments and Hedging 
+
+ The Company may use derivative instruments to partially offset its business exposure to foreign exchange and interest rate risk. However, the Company may choose not to hedge certain exposures for a variety of reasons, including accounting considerations or the prohibitive economic cost of hedging particular exposures. There can be no assurance the hedges will offset more than a portion of the financial impact resulting from movements in foreign exchange or interest rates. 
+
+ Foreign Exchange Rate Risk 
+
+ To protect gross margins from fluctuations in foreign exchange rates, the Company may use forwards, options or other instruments, and may designate these instruments as cash flow hedges. The Company generally hedges portions of its forecasted foreign currency exposure associated with revenue and inventory purchases, typically for up to 12 months. 
+
+ To protect the Company’s foreign currency–denominated term debt or marketable securities from fluctuations in foreign exchange rates, the Company may use forwards, cross-currency swaps or other instruments. The Company designates these instruments as either cash flow or fair value hedges. As of June 27, 2026, the maximum length of time over which the Company is hedging its exposure to the variability in future cash flows for term debt–related foreign currency transactions is 16 years. 
+
+ The Company may also use derivative instruments that are not designated as accounting hedges to protect gross margins from certain fluctuations in foreign exchange rates, as well as to offset a portion of the foreign currency gains and losses generated by the remeasurement of certain assets and liabilities denominated in non-functional currencies. 
+
+ Interest Rate Risk 
+
+ To protect the Company’s term debt or marketable securities from fluctuations in interest rates, the Company may use interest rate swaps, options or other instruments. The Company designates these instruments as either cash flow or fair value hedges. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 8 
+
+ 
+
+ 
+
+ The notional amounts of the Company’s outstanding derivative instruments as of June 27, 2026 and September 27, 2025, were as follows (in millions): 
+
+ 
+
+ 
+
+ June 27, 2026 September 27, 2025 
+
+ Derivative instruments designated as accounting hedges: 
+
+ Foreign exchange contracts $ 61,313   $ 62,647   
+
+ Interest rate contracts $ 10,625   $ 12,875   
+
+ 
+
+ Derivative instruments not designated as accounting hedges: 
+
+ Foreign exchange contracts $ 64,053   $ 109,079   
+
+ As of June 27, 2026 and September 27, 2025, the carrying amount of the Company’s current and non-current term debt subject to fair value hedges was $ 10.4 billion and $ 12.6 billion, respectively. 
+
+ Accounts Receivable 
+
+ Trade Receivables 
+
+ As of both June 27, 2026 and September 27, 2025, the Company had one customer that represented 10% or more of total trade receivables, which accounted for 18 % and 12 %, respectively. The Company’s third-party cellular network carriers accounted for 27 % and 34 % of total trade receivables as of June 27, 2026 and September 27, 2025, respectively. The Company requires third-party credit support or collateral from certain customers to limit credit risk. 
+
+ Vendor Non-Trade Receivables 
+
+ The Company has non-trade receivables from certain of its manufacturing vendors resulting from the sale of components to these vendors who manufacture subassemblies or assemble final products for the Company. The Company purchases these components directly from suppliers. The Company does not reflect the sale of these components in products net sales. Rather, the Company recognizes any gain on these sales as a reduction of products cost of sales when the related final products are sold by the Company. As of June 27, 2026, the Company had two vendors that individually represented 10% or more of total vendor non-trade receivables, which accounted f or 47 % and 22 %. A s of September 27, 2025, the Company had two vendors that individually represented 10% or more of total vendor non-trade receivables, which accounted for 46 % and 23 %. 
+
+ 
+
+ Note 5 – Condensed Consolidated Financial Statement Details 
+
+ The following tables show the Company’s condensed consolidated financial statement details as of June 27, 2026 and September 27, 2025 (in millions): 
+
+ Inventories 
+
+ 
+
+ 
+
+ June 27, 2026 September 27, 2025 
+
+ Components $ 7,645   $ 2,124   
+
+ Finished goods 3,447   3,594   
+
+ Total inventories $ 11,092   $ 5,718   
+
+ Property, Plant and Equipment, Net 
+
+ 
+
+ 
+
+ June 27, 2026 September 27, 2025 
+
+ Gross property, plant and equipment $ 128,175   $ 125,848   
+
+ 
+
+ Accumulated depreciation ( 76,744 ) ( 76,014 ) 
+
+ Total property, plant and equipment, net $ 51,431   $ 49,834   
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 9 
+
+ 
+
+ 
+
+ Intangible Assets, Net 
+
+ 
+
+ 
+
+ June 27, 2026 September 27, 2025 
+
+ Gross intangible assets $ 38,220   $ 24,950   
+
+ Accumulated amortization ( 12,803 ) ( 11,649 ) 
+
+ Total intangible assets, net 25,417   13,301   
+
+ Less: Current portion of intangible assets, net ( 5,075 ) ( 2,208 ) 
+
+ Non-current portion of intangible assets, net $ 20,342   $ 11,093   
+
+ 
+
+ Note 6 – Debt 
+
+ Commercial Paper 
+
+ The Company issues unsecured short-term promissory notes pursuant to a commercial paper program. The Company uses net proceeds from the commercial paper program for general corporate purposes, including dividends and share repurchases. As of June 27, 2026 and September 27, 2025, the Company had $ 2.0 billion and $ 8.0 billion of commercial paper outstanding, respectively. The following table provides a summary of cash flows associated with commercial paper for the nine months ended June 27, 2026 and June 28, 2025 (in millions): 
+
+ 
+
+ 
+
+ Nine Months Ended 
+
+ June 27, 2026 June 28, 2025 
+
+ Maturities 90 days or less: 
+
+ Repayments of commercial paper, net $ ( 2,123 ) $ ( 5,690 ) 
+
+ 
+
+ Maturities greater than 90 days: 
+
+ Proceeds from commercial paper —   5,625   
+
+ Repayments of commercial paper ( 3,788 ) —   
+
+ Proceeds from/(Repayments of) commercial paper, net ( 3,788 ) 5,625   
+
+ 
+
+ Total repayments of commercial paper, net $ ( 5,911 ) $ ( 65 ) 
+
+ Term Debt 
+
+ As of June 27, 2026 and September 27, 2025, the Company had outstanding fixed-rate notes with varying maturities for an aggregate carrying amount of $ 82.3 billion and $ 90.7 billion, respectively (collectively the “Notes”). As of June 27, 2026 and September 27, 2025, the fair value of the Company’s Notes, based on Level 2 inputs, was $ 71.2 billion and $ 80.4 billion, respectively. 
+
+ 
+
+ Note 7 – Shareholders’ Equity 
+
+ Share Repurchase Program 
+
+ During the nine months ended June 27, 2026, the Company repurchased 215 million shares of its common stock for $ 61.8 billion. The Company’s share repurchase programs do not obligate the Company to acquire a minimum amount of shares. Under the programs, shares may be repurchased in privately negotiated or open market transactions, including under plans complying with Rule 10b5-1 under the Securities Exchange Act of 1934, as amended (“Exchange Act”). 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 10 
+
+ 
+
+ 
+
+ 
+
+ Note 8 – Share-Based Compensation 
+
+ Restricted Stock Units 
+
+ A summary of the Company’s restricted stock unit (“RSU”) activity and related information for the nine months ended June 27, 2026, is as follows: 
+
+ 
+
+ 
+
+ 
+
+ Number of 
+
+ RSUs 
+
+ (in thousands) Weighted-Average Grant-Date Fair Value Per RSU 
+
+ Balance as of September 27, 2025 151,574   $ 189.75   
+
+ RSUs granted 72,400   $ 258.16   
+
+ RSUs vested ( 70,594 ) $ 184.72   
+
+ RSUs forfeited ( 9,418 ) $ 213.67   
+
+ Balance as of June 27, 2026 143,962   $ 225.06   
+
+ The total vesting-date fair value of RSUs was $ 8.9 billion and $ 7.0 billion for the three months ended June 27, 2026 and June 28, 2025, respectively, and was $ 18.4 billion and $ 16.3 billion for the nine months ended June 27, 2026 and June 28, 2025, respectively. 
+
+ Share-Based Compensation 
+
+ The following table shows share-based compensation expense and the related income tax benefit included in the Condensed Consolidated Statements of Operations for the three- and nine-month periods ended June 27, 2026 and June 28, 2025 (in millions): 
+
+ 
+
+ 
+
+ Three Months Ended Nine Months Ended 
+
+ June 27, 2026 June 28, 2025 June 27, 2026 June 28, 2025 
+
+ Share-based compensation expense $ 3,401   $ 3,168   $ 10,523   $ 9,680   
+
+ Income tax benefit related to share-based compensation expense $ ( 1,122 ) $ ( 795 ) $ ( 3,217 ) $ ( 2,870 ) 
+
+ As of June 27, 2026, the total unrecognized compensation cost related to outstanding RSUs was $ 26.7 billion, which the Company expects to recognize over a weighted-average period of 2.7 years. 
+
+ 
+
+ Note 9 – Commitments and Contingencies 
+
+ Unconditional Purchase Obligations 
+
+ The Company has entered into certain off–balance sheet commitments that require the future purchase of goods or services (“unconditional purchase obligations”). The Company’s unconditional purchase obligations primarily consist of supplier arrangements, licensed intellectual property and content, and distribution rights. Future payments under unconditional purchase obligations with a remaining term in excess of one year as of June 27, 2026, are as follows (in millions): 
+
+ 
+
+ 
+
+ 2026 (remaining three months) $ 2,053   
+
+ 2027 7,652   
+
+ 2028 6,406   
+
+ 2029 5,421   
+
+ 2030 5,481   
+
+ Thereafter 615   
+
+ Total $ 27,628   
+
+ Contingencies 
+
+ The Company is subject to various legal proceedings and claims that have arisen in the ordinary course of business and that have not been fully resolved. The outcome of litigation is inherently uncertain. In the opinion of management, there was not at least a reasonable possibility the Company may have incurred a material loss, or a material loss greater than a recorded accrual, concerning loss contingencies for asserted legal and other claims. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 11 
+
+ 
+
+ 
+
+ 
+
+ Note 10 – Segment Information 
+
+ The following tables show information by reportable segment for the three- and nine-month periods ended June 27, 2026 and June 28, 2025 (in millions): 
+
+ 
+
+ 
+
+ Three Months Ended June 27, 2026 
+
+ Americas Europe 
+
+ Greater 
+
+ China Japan Rest of Asia Pacific Corporate Total 
+
+ Net sales $ 45,781   $ 29,395   $ 18,816   $ 6,554   $ 8,871   $ —  $ 109,417   
+
+ Cost of sales ( 21,507 ) ( 14,732 ) ( 10,771 ) ( 3,310 ) ( 4,327 ) —  ( 54,647 ) 
+
+ Research and development —  —  —  —  —  ( 11,729 ) ( 11,729 ) 
+
+ Selling and marketing ( 2,573 ) ( 1,220 ) ( 639 ) ( 240 ) ( 362 ) —  ( 5,034 ) 
+
+ General and administrative —  —  —  —  —  ( 2,312 ) ( 2,312 ) 
+
+ Operating income/(loss) $ 21,701   $ 13,443   $ 7,406   $ 3,004   $ 4,182   $ ( 14,041 ) $ 35,695   
+
+ 
+
+ Three Months Ended June 28, 2025 
+
+ Americas Europe Greater China Japan Rest of Asia Pacific Corporate Total 
+
+ Net sales $ 41,198   $ 24,014   $ 15,369   $ 5,782   $ 7,673   $ —  $ 94,036   
+
+ Cost of sales ( 22,174 ) ( 12,379 ) ( 8,970 ) ( 2,695 ) ( 4,100 ) —  ( 50,318 ) 
+
+ Research and development —  —  —  —  —  ( 8,866 ) ( 8,866 ) 
+
+ Selling and marketing ( 2,513 ) ( 1,134 ) ( 577 ) ( 215 ) ( 330 ) —  ( 4,769 ) 
+
+ General and administrative —  —  —  —  —  ( 1,881 ) ( 1,881 ) 
+
+ Operating income/(loss) $ 16,511   $ 10,501   $ 5,822   $ 2,872   $ 3,243   $ ( 10,747 ) $ 28,202   
+
+ 
+
+ 
+
+ Nine Months Ended June 27, 2026 
+
+ Americas Europe 
+
+ Greater 
+
+ China Japan Rest of Asia Pacific Corporate Total 
+
+ Net sales $ 149,403   $ 95,596   $ 64,839   $ 24,368   $ 30,151   $ —  $ 364,357   
+
+ Cost of sales ( 76,470 ) ( 47,549 ) ( 34,434 ) ( 12,088 ) ( 15,034 ) —  ( 185,575 ) 
+
+ Research and development —  —  —  —  —  ( 34,035 ) ( 34,035 ) 
+
+ Selling and marketing ( 7,906 ) ( 3,762 ) ( 2,018 ) ( 824 ) ( 1,122 ) —  ( 15,632 ) 
+
+ General and administrative —  —  —  —  —  ( 6,683 ) ( 6,683 ) 
+
+ Operating income/(loss) $ 65,027   $ 44,285   $ 28,387   $ 11,456   $ 13,995   $ ( 40,718 ) $ 122,432   
+
+ 
+
+ Nine Months Ended June 28, 2025 
+
+ Americas Europe 
+
+ Greater 
+
+ China Japan Rest of Asia Pacific Corporate Total 
+
+ Net sales $ 134,161   $ 82,329   $ 49,884   $ 22,067   $ 25,254   $ —  $ 313,695   
+
+ Cost of sales ( 71,763 ) ( 43,447 ) ( 27,523 ) ( 10,698 ) ( 13,404 ) —  ( 166,835 ) 
+
+ Research and development —  —  —  —  —  ( 25,684 ) ( 25,684 ) 
+
+ Selling and marketing ( 7,604 ) ( 3,458 ) ( 1,753 ) ( 749 ) ( 1,037 ) —  ( 14,601 ) 
+
+ General and administrative —  —  —  —  —  ( 5,952 ) ( 5,952 ) 
+
+ Operating income/(loss) $ 54,794   $ 35,424   $ 20,608   $ 10,620   $ 10,813   $ ( 31,636 ) $ 100,623   
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 12 
+
+ 
+
+ 
+
+ 
+
+ Item 2.    Management’s Discussion and Analysis of Financial Condition and Results of Operations 
+
+ This Item and other sections of this Quarterly Report on Form 10-Q (“Form 10-Q”) contain forward-looking statements, within the meaning of the Private Securities Litigation Reform Act of 1995, that involve risks and uncertainties. Forward-looking statements provide current expectations of future events based on certain assumptions and include any statement that does not directly relate to any historical or current fact. For example, statements in this Form 10-Q regarding the potential future impact of macroeconomic conditions and tariffs and other measures on the Company’s business and results of operations are forward-looking statements . Forward-looking statements can also be identified by words such as “future,” “anticipates,” “believes,” “estimates,” “expects,” “intends,” “plans,” “predicts,” “will,” “would,” “could,” “can,” “may,” and similar terms. Forward-looking statements are not guarantees of future performance and the Company’s actual results may differ significantly from the results discussed in the forward-looking statements. Factors that might cause such differences include, but are not limited to, those discussed in Part I, Item 1A of the 2025 Form 10-K and Part II, Item 1A of this Form 10-Q, in each case under the heading “Risk Factors.” The Company assumes no obligation to revise or update any forward-looking statements for any reason, except as required by law. 
+
+ Unless otherwise stated, all information presented herein is based on the Company’s fiscal calendar, and references to particular years, quarters, months or periods refer to the Company’s fiscal years ended in September and the associated quarters, months and periods of those fiscal years. 
+
+ The following discussion should be read in conjunction with the 2025 Form 10-K filed with the U.S. Securities and Exchange Commission (“SEC”) and the condensed consolidated financial statements and accompanying notes included in Part I, Item 1 of this Form 10-Q. 
+
+ 
+
+ Available Information 
+
+ The Company periodically provides certain information for investors on its corporate website, www.apple.com, and its investor relations website, investor.apple.com. This includes press releases and other information about financial performance, information on corporate governance, and details related to the Company’s annual meeting of shareholders. The information contained on the websites referenced in this Form 10-Q is not incorporated by reference into this filing. Further, the Company’s references to website URLs are intended to be inactive textual references only. 
+
+ 
+
+ Business Seasonality and Product Introductions 
+
+ The Company has historically experienced higher net sales in its first quarter compared to other quarters in its fiscal year due in part to seasonal holiday demand. Additionally, new product and service introductions can significantly impact net sales, cost of sales and operating expenses. The timing of product introductions can also impact the Company’s net sales to its indirect distribution channels as these channels are filled with new inventory following a product launch, and channel inventory of an older product often declines as the launch of a newer product approaches. Net sales can also be affected when consumers and distributors anticipate a product introduction. 
+
+ During the third quarter of 2026, the Company announced iOS 27, macOS ® 27 Golden Gate, iPadOS ® 27, watchOS ® 27, visionOS ® 27 and tvOS ® 27, and introduced Siri AI. 
+
+ 
+
+ Macroeconomic Conditions 
+
+ Macroeconomic conditions, including inflation, interest rates, component pricing and currency fluctuations, have directly and indirectly impacted, and could in the future materially impact, the Company’s results of operations and financial condition. 
+
+ The Company is experiencing a period of supply constraints and increasing costs for components driven by factors such as industry supply-demand imbalances for components, including advanced semiconductors, storage (NAND) and memory (DRAM). The Company expects these trends to intensify, which may materially negatively impact the Company’s revenue, costs, gross margin, results of operations and financial condition. Actions, such as price increases, that have been and may in the future be taken by the Company may not effectively mitigate these negative impacts, and may also reduce demand for the Company’s products and materially adversely affect the Company’s revenue, costs, gross margin, results of operations and financial condition. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 13 
+
+ 
+
+ 
+
+ 
+
+ Tariffs and Other Measures 
+
+ Beginning in the second quarter of 2025, new tariffs were announced on imports to the U.S., including additional tariffs on imports from China, India, Japan, South Korea, Taiwan, Vietnam and the European Union (“EU”), among others. In response, several countries have imposed, or threatened to impose, reciprocal tariffs on imports from the U.S. and other retaliatory measures. On January 14, 2026, initial results were published of the previously announced U.S. Department of Commerce investigation under Section 232 of the Trade Expansion Act of 1962, as amended, into imports of semiconductors, semiconductor manufacturing equipment, and their derivative products, including downstream products that contain semiconductors. The announcement of the initial results of the investigation did not impose any additional tariffs affecting the Company’s products. Separately, on February 20, 2026, the U.S. Supreme Court (“Supreme Court”) issued a ruling striking down certain tariffs previously imposed under the International Emergency Economic Powers Act of 1977. The Company has applied for a refund of tariffs paid, following the processes established by U.S. Customs and Border Protection, and has recognized any refunds received as a reduction of products cost of sales. Various modifications to U.S. tariffs have been announced, including the recent imposition of tariffs under Section 301 of the Trade Act of 1974, and further changes could be made in the future, which may include additional measures under the Section 232 semiconductor sector investigation, additional sector-based tariffs, further actions under Section 301, or other measures. Tariffs and other measures that are applied to the Company’s products or their components can have a material adverse impact on the Company’s business, results of operations and financial condition, including impacting the Company’s supply chain, the availability of rare earths and other raw materials and components, pricing and gross margin. The ultimate impact remains uncertain and will depend on several factors, including whether additional or incremental U.S. tariffs or other measures are announced or imposed, to what extent other countries implement tariffs or other retaliatory measures in response, and the overall magnitude and duration of these measures. Trade and other international disputes can have an adverse impact on the overall macroeconomic environment and result in shifts and reductions in consumer spending and negative consumer sentiment for the Company’s products and services, all of which can further adversely affect the Company’s business and results of operations. 
+
+ 
+
+ Segment Operating Performance 
+
+ The following table shows net sales by reportable segment for the three- and nine-month periods ended June 27, 2026 and June 28, 2025 (dollars in millions): 
+
+ 
+
+ 
+
+ Three Months Ended Nine Months Ended 
+
+ June 27, 2026 June 28, 2025 Change June 27, 2026 June 28, 2025 Change 
+
+ Americas $ 45,781  $ 41,198  11% $ 149,403  $ 134,161  11% 
+
+ Europe 29,395  24,014  22% 95,596  82,329  16% 
+
+ Greater China 18,816  15,369  22% 64,839  49,884  30% 
+
+ Japan 6,554  5,782  13% 24,368  22,067  10% 
+
+ Rest of Asia Pacific 8,871  7,673  16% 30,151  25,254  19% 
+
+ Total net sales $ 109,417  $ 94,036  16% $ 364,357  $ 313,695  16% 
+
+ 
+
+ Americas 
+
+ Americas net sales increased during the third quarter and first nine months of 2026 compared to the same periods in 2025 primarily due to higher net sales of iPhone, Services and Mac. 
+
+ 
+
+ Europe 
+
+ Europe net sales increased during the third quarter and first nine months of 2026 compared to the same periods in 2025 primarily due to higher net sales of iPhone, Services and Mac. The strength in foreign currencies relative to the U.S. dollar had a net favorable year-over-year impact on Europe net sales during the first nine months of 2026. 
+
+ 
+
+ Greater China 
+
+ Greater China net sales increased during the third quarter and first nine months of 2026 compared to the same periods in 2025 primarily due to higher net sales of iPhone. The strength in the renminbi relative to the U.S. dollar had a favorable year-over-year impact on Greater China net sales during the third quarter and first nine months of 2026. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 14 
+
+ 
+
+ 
+
+ 
+
+ Japan 
+
+ Japan net sales increased during the third quarter and first nine months of 2026 compared to the same periods in 2025 due to higher net sales of iPhone. The weakness in the yen relative to the U.S. dollar had an unfavorable year-over-year impact on Japan net sales during the third quarter and first nine months of 2026. 
+
+ 
+
+ Rest of Asia Pacific 
+
+ Rest of Asia Pacific net sales increased during the third quarter and first nine months of 2026 compared to the same periods in 2025 primarily due to higher net sales of iPhone, Services and Mac. The strength in foreign currencies relative to the U.S. dollar had a net favorable year-over-year impact on Rest of Asia Pacific net sales during the third quarter of 2026. 
+
+ 
+
+ Products and Services Performance 
+
+ The following table shows net sales by category for the three- and nine-month periods ended June 27, 2026 and June 28, 2025 (dollars in millions): 
+
+ 
+
+ 
+
+ Three Months Ended Nine Months Ended 
+
+ June 27, 2026 June 28, 2025 Change June 27, 2026 June 28, 2025 Change 
+
+ iPhone $ 54,252  $ 44,582  22% $ 196,515  $ 160,561  22% 
+
+ Mac 10,352  8,046  29% 27,137  24,982  9% 
+
+ iPad 6,191  6,581  (6) % 21,700  21,071  3% 
+
+ Wearables, Home and Accessories 7,883  7,404  6% 27,277  26,673  2% 
+
+ Services 30,739  27,423  12% 91,728  80,408  14% 
+
+ Total net sales $ 109,417  $ 94,036  16% $ 364,357  $ 313,695  16% 
+
+ 
+
+ iPhone 
+
+ iPhone net sales increased during the third quarter and first nine months of 2026 compared to the same periods in 2025 primarily due to higher net sales of Pro models. 
+
+ 
+
+ Mac 
+
+ Mac net sales increased during the third quarter and first nine months of 2026 compared to the same periods in 2025 due to higher net sales of laptops. 
+
+ 
+
+ iPad 
+
+ iPad net sales decreased during the third quarter of 2026 compared to the third quarter of 2025 primarily due to lower net sales of iPad mini ® and iPad Air ® . Year-over-year iPad net sales increased during the first nine months of 2026 primarily due to higher net sales of iPad, partially offset by lower net sales of iPad mini. 
+
+ 
+
+ Wearables, Home and Accessories 
+
+ Wearables, Home and Accessories net sales increased during the third quarter and first nine months of 2026 compared to the same periods in 2025 due to higher net sales of Accessories and Wearables. 
+
+ 
+
+ Services 
+
+ Services net sales increased during the third quarter and first nine months of 2026 compared to the same periods in 2025 primarily due to higher net sales from advertising and cloud services. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 15 
+
+ 
+
+ 
+
+ 
+
+ Gross Margin 
+
+ Products and Services gross margin and gross margin percentage for the three- and nine-month periods ended June 27, 2026 and June 28, 2025, were as follows (dollars in millions): 
+
+ 
+
+ 
+
+ Three Months Ended Nine Months Ended 
+
+ June 27, 2026 June 28, 2025 June 27, 2026 June 28, 2025 
+
+ Gross margin: 
+
+ Products $ 31,525  $ 22,993  $ 108,819  $ 86,190  
+
+ Services 23,245  20,725  69,963  60,670  
+
+ Total gross margin $ 54,770  $ 43,718  $ 178,782  $ 146,860  
+
+ 
+
+ 
+
+ Gross margin percentage: 
+
+ Products 40.1 % 34.5 % 39.9 % 36.9 % 
+
+ Services 75.6 % 75.6 % 76.3 % 75.5 % 
+
+ Total gross margin percentage 50.1 % 46.5 % 49.1 % 46.8 % 
+
+ 
+
+ Products Gross Margin 
+
+ Products gross margin and gross margin percentage increased during the third quarter and first nine months of 2026 compared to the same periods in 2025 primarily due to a different mix of products and tariff refunds, partially offset by higher costs, including memory. 
+
+ 
+
+ Services Gross Margin 
+
+ Services gross margin increased during the third quarter and first nine months of 2026 compared to the same periods in 2025 primarily due to higher Services net sales and a different mix of services, partially offset by higher costs. 
+
+ Services gross margin percentage was flat during the third quarter of 2026 compared to the third quarter of 2025. Year-over-year Services gross margin percentage increased during the first nine months of 2026 primarily due to a different mix of services, partially offset by higher costs. 
+
+ The Company’s future gross margins can be impacted by a variety of factors, as discussed in Part I, Item 1A of the 2025 Form 10-K and Part II, Item 1A of this Form 10-Q, in each case under the heading “Risk Factors.” As a result, the Company believes, in general, gross margins will be subject to volatility and downward pressure. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 16 
+
+ 
+
+ 
+
+ 
+
+ Operating Expenses 
+
+ Operating expenses for the three- and nine-month periods ended June 27, 2026 and June 28, 2025, were as follows (dollars in millions): 
+
+ 
+
+ 
+
+ Three Months Ended Nine Months Ended 
+
+ June 27, 2026 June 28, 2025 Change June 27, 2026 June 28, 2025 Change 
+
+ Research and development $ 11,729  $ 8,866  32 % $ 34,035  $ 25,684  33 % 
+
+ Percentage of total net sales 11 % 9 % 9 % 8 % 
+
+ Selling, general and administrative $ 7,346  $ 6,650  10 % $ 22,315  $ 20,553  9 % 
+
+ Percentage of total net sales 7 % 7 % 6 % 7 % 
+
+ Total operating expenses $ 19,075  $ 15,516  23 % $ 56,350  $ 46,237  22 % 
+
+ Percentage of total net sales 17 % 17 % 15 % 15 % 
+
+ 
+
+ Research and Development 
+
+ Research and development (“R&D”) expense increased during the third quarter and first nine months of 2026 compared to the same periods in 2025 primarily due to higher infrastructure-related costs, including investments in artificial intelligence, and headcount-related expenses. 
+
+ 
+
+ Selling, General and Administrative 
+
+ Selling, general and administrative expense increased during the third quarter and first nine months of 2026 compared to the same periods in 2025. The increases were driven by various factors, none of which were significant individually or in the aggregate. 
+
+ 
+
+ Provision for Income Taxes 
+
+ Provision for income taxes, effective tax rate and statutory federal income tax rate for the three- and nine-month periods ended June 27, 2026 and June 28, 2025, were as follows (dollars in millions): 
+
+ 
+
+ 
+
+ Three Months Ended Nine Months Ended 
+
+ June 27, 2026 June 28, 2025 June 27, 2026 June 28, 2025 
+
+ Provision for income taxes $ 6,478  $ 4,597  $ 21,638  $ 15,381  
+
+ Effective tax rate 17.9 % 16.4 % 17.6 % 15.4 % 
+
+ Statutory federal income tax rate 21 % 21 % 21 % 21 % 
+
+ The Company’s effective tax rate for the third quarter and first nine months of 2026 was lower than the statutory federal income tax rate primarily due to a lower effective tax rate on foreign earnings, including the impact of changes in unrecognized tax benefits, the impact of the U.S. federal R&D credit, and tax benefits from share-based compensation, partially offset by state income taxes. 
+
+ The Company’s effective tax rate for the third quarter of 2026 was higher compared to the third quarter of 2025 primarily due to a higher effective tax rate on foreign earnings, partially offset by the impact of changes in unrecognized tax benefits and tax benefits from share-based compensation. The Company’s effective tax rate for the first nine months of 2026 was higher compared to the same period in 2025 primarily due to a higher effective tax rate on foreign earnings, including the impact of changes in unrecognized tax benefits, the impact of foreign currency loss regulations issued by the U.S. Department of the Treasury in December 2024, and the tax impact from foreign currency revaluations in the first quarter of 2025 related to the State Aid Decision. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 17 
+
+ 
+
+ 
+
+ 
+
+ Liquidity and Capital Resources 
+
+ The Company believes its balances of cash, cash equivalents and marketable securities, along with cash generated by ongoing operations and continued access to debt markets, will be sufficient to satisfy its cash requirements and capital return program over the next 12 months and beyond. 
+
+ The Company’s contractual cash requirements have not changed materially since the 2025 Form 10-K, except for manufacturing purchase obligations, other purchase obligations, and deemed repatriation tax payable. 
+
+ Manufacturing Purchase Obligations 
+
+ The Company utilizes several outsourcing partners to manufacture subassemblies for the Company’s products and to perform final assembly and testing of finished products. The Company also obtains individual components for its products from a wide variety of individual suppliers. As of June 27, 2026, the Company had manufacturing purchase obligations of $57.0 billion, with $56.2 billion payable within 12 months. 
+
+ Other Purchase Obligations 
+
+ The Company’s other purchase obligations primarily consist of noncancelable obligations related to supplier arrangements, licensed intellectual property and content, distribution rights, and the acquisition of capital assets related to product manufacturing. As of June 27, 2026, the Company had other purchase obligations of $29.3 billion, with $9.2 billion payable within 12 months. 
+
+ Deemed Repatriation Tax Payable 
+
+ During the first nine months of 2026, the Company paid the remaining $8.8 billion balance of the deemed repatriation tax payable imposed by the U.S. Tax Cuts and Jobs Act of 2017. 
+
+ Capital Return Program 
+
+ In addition to its contractual cash requirements, the Company has authorized share repurchase programs. The programs do not obligate the Company to acquire a minimum amount of shares. As of June 27, 2026, the Company’s quarterly cash dividend was $0.27 per share. The Company intends to increase its dividend on an annual basis, subject to declaration by the Board of Directors. 
+
+ During the third quarter of 2026, the Company repurchased $25.8 billion of its common stock and paid dividends and dividend equivalents of $4.0 billion. 
+
+ 
+
+ Recent Accounting Pronouncements 
+
+ Internal-Use Software 
+
+ In September 2025, the Financial Accounting Standards Board (“FASB”) issued Accounting Standards Update (“ASU”) No. 2025-06, Intangibles—Goodwill and Other—Internal-Use Software (Subtopic 350-40): Targeted Improvements to the Accounting for Internal-Use Software (“ASU 2025-06”), which modernizes the accounting for internal-use software. ASU 2025-06 removes all references to software development stages and requires capitalization of software costs when management has committed to the software project and it is probable the software will be completed and perform its intended use. ASU 2025-06 will be effective for the Company in its first quarter of 2029, and early adoption is permitted. The Company is currently evaluating the timing and method of its adoption of ASU 2025-06. 
+
+ Disaggregation of Income Statement Expenses 
+
+ In November 2024, the FASB issued ASU No. 2024-03, Income Statement—Reporting Comprehensive Income—Expense Disaggregation Disclosures (Subtopic 220-40): Disaggregation of Income Statement Expenses (“ASU 2024-03”) and in January 2025, the FASB issued ASU No. 2025-01, Income Statement—Reporting Comprehensive Income—Expense Disaggregation Disclosures (Subtopic 220-40): Clarifying the Effective Date , which clarified the effective date of ASU 2024-03. ASU 2024-03 will require the Company to disclose the amounts of purchases of inventory, employee compensation, depreciation and intangible asset amortization, as applicable, included in certain expense captions in the Consolidated Statements of Operations, as well as qualitatively describe remaining amounts included in those captions. ASU 2024-03 will also require the Company to disclose both the amount and the Company’s definition of selling expenses. The Company will adopt ASU 2024-03 in its fourth quarter of 2028 using a prospective transition method. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 18 
+
+ 
+
+ 
+
+ Income Taxes 
+
+ In December 2023, the FASB issued ASU No. 2023-09, Income Taxes (Topic 740): Improvements to Income Tax Disclosures (“ASU 2023-09”), which will require the Company to disclose specified additional information in its income tax rate reconciliation and provide additional information for reconciling items that meet a quantitative threshold. ASU 2023-09 will also require the Company to disaggregate its income taxes paid disclosure by federal, state and foreign taxes, with further disaggregation required for significant individual jurisdictions. The Company will adopt ASU 2023-09 in its fourth quarter of 2026 using a prospective transition method. 
+
+ 
+
+ Critical Accounting Estimates 
+
+ The preparation of financial statements and related disclosures in conformity with GAAP and the Company’s discussion and analysis of its financial condition and operating results require the Company’s management to make judgments, assumptions and estimates that affect the amounts reported. Note 1, “Summary of Significant Accounting Policies” of the Notes to Condensed Consolidated Financial Statements in Part I, Item 1 of this Form 10-Q and in the Notes to Consolidated Financial Statements in Part II, Item 8 of the 2025 Form 10-K describe the significant accounting policies and methods used in the preparation of the Company’s condensed consolidated financial statements. There have been no material changes to the Company’s critical accounting estimates since the 2025 Form 10-K. 
+
+ 
+
+ Item 3.    Quantitative and Qualitative Disclosures About Market Risk 
+
+ There have been no material changes to the Company’s market risk during the first nine months of 2026. For a discussion of the Company’s exposure to market risk, refer to the Company’s market risk disclosures set forth in Part II, Item 7A, “Quantitative and Qualitative Disclosures About Market Risk” of the 2025 Form 10-K. 
+
+ 
+
+ Item 4.    Controls and Procedures 
+
+ Evaluation of Disclosure Controls and Procedures 
+
+ Based on an evaluation under the supervision and with the participation of the Company’s management, the Company’s principal executive officer and principal financial officer have concluded that the Company’s disclosure controls and procedures as defined in Rules 13a-15(e) and 15d-15(e) under the Exchange Act were effective as of June 27, 2026 to provide reasonable assurance that information required to be disclosed by the Company in reports that it files or submits under the Exchange Act is (i) recorded, processed, summarized and reported within the time periods specified in the SEC rules and forms and (ii) accumulated and communicated to the Company’s management, including its principal executive officer and principal financial officer, as appropriate to allow timely decisions regarding required disclosure. 
+
+ Changes in Internal Control over Financial Reporting 
+
+ There were no changes in the Company’s internal control over financial reporting during the third quarter of 2026, which were identified in connection with management’s evaluation required by paragraph (d) of Rules 13a-15 and 15d-15 under the Exchange Act, that have materially affected, or are reasonably likely to materially affect, the Company’s internal control over financial reporting. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 19 
+
+ 
+
+ 
+
+ 
+
+ PART II — OTHER INFORMATION 
+
+ 
+
+ Item 1.    Legal Proceedings 
+
+ Digital Markets Act Investigations 
+
+ On March 25, 2024, the European Commission (“Commission”) announced that it had opened a formal noncompliance investigation against the Company under Article 5(4) of the EU Digital Markets Act (“DMA”) (“Article 5(4) Investigation”). The Article 5(4) Investigation relates to how developers may communicate and promote offers to end users for apps distributed through the App Store ® , as well as how developers may conclude contracts with those end users. On June 24, 2024, the Commission announced that it had opened an additional formal investigation against the Company regarding whether the Company’s new contractual requirements for third-party app developers and app marketplaces may violate the DMA (“Article 6(4) Investigation”). On April 23, 2025, the Commission fined the Company €500 million in the Article 5(4) Investigation and issued a cease and desist order requiring the Company to remove technical and commercial restrictions that prevent developers from steering users to alternative distribution channels outside the App Store. The Company has appealed the Commission’s Article 5(4) decision. Also on April 23, 2025, the Commission issued preliminary findings in the Article 6(4) Investigation. If the Commission makes a final determination in the Article 6(4) Investigation that there has been a violation, it can issue a cease and desist order and may impose fines up to 10% of the Company’s annual worldwide net sales. The Commission may also seek to impose additional fines if it deems that the Company has violated a cease and desist order. The Company believes that it complies with the DMA and has continued to make changes to its compliance plan in response to feedback and engagement with the Commission. 
+
+ Department of Justice Lawsuit 
+
+ On March 21, 2024, the U.S. Department of Justice (“DOJ”) and a number of state and district attorneys general filed a civil antitrust lawsuit in the U.S. District Court for the District of New Jersey against the Company alleging monopolization or attempted monopolization in the markets for “performance smartphones” and “smartphones” in violation of U.S. antitrust laws. The DOJ is seeking equitable relief to redress the alleged anticompetitive behavior. In addition, various civil litigation matters have been filed in state and federal courts in the U.S. alleging similar violations of U.S. antitrust laws and seeking monetary damages and other nonmonetary relief. The Company believes it has substantial defenses and intends to vigorously defend itself. 
+
+ Epic Games 
+
+ Epic Games, Inc. filed a lawsuit in the U.S. District Court for the Northern District of California (“California District Court”) against the Company alleging violations of federal and state antitrust laws and California’s unfair competition law based upon the Company’s operation of its App Store. The California District Court found that certain provisions of the Company’s App Review Guidelines violate California’s unfair competition law and issued an injunction (the “2021 Injunction”) enjoining the Company from prohibiting developers from including in their apps buttons, external links, or other calls to action that direct customers to purchasing mechanisms other than the Company’s in-app purchase system. On April 30, 2025, the California District Court found the Company to be in violation of the 2021 Injunction and enjoined the Company from imposing any commission or any fee on purchases that consumers make outside an app; restricting, conditioning, limiting, or prohibiting how developers guide consumers to purchases outside an app; or otherwise interfering with a consumer’s choice to proceed in or out of an app (the “2025 Injunction”). The Company appealed the California District Court’s April 2025 decision to the U.S. Court of Appeals for the Ninth Circuit (“Ninth Circuit Court”). On December 11, 2025, the Ninth Circuit Court issued an order upholding the 2025 Injunction in part and modifying certain aspects to allow the Company to require parity in size, form and placement between the Company’s in-app purchase and any links for consumers to make purchases outside an app. The Ninth Circuit Court also held that the Company can charge some commission on link-out purchases, and remanded to the California District Court to further amend or modify the 2025 Injunction, consistent with the Ninth Circuit Court’s order. On May 21, 2026, the Company filed a petition seeking Supreme Court review of the Ninth Circuit Court’s opinion. On June 30, 2026, the Supreme Court granted the Company’s petition to review the applicable legal standard for civil contempt. The Company is seeking a stay of the California District Court proceedings pending the Supreme Court’s decision on the question under review. 
+
+ Other Legal Proceedings 
+
+ The Company is subject to other legal proceedings and claims that have not been fully resolved and that have arisen in the ordinary course of business. The Company settled certain matters during the third quarter of 2026 that did not individually or in the aggregate have a material impact on the Company’s financial condition or operating results. The outcome of litigation is inherently uncertain. If one or more legal matters were resolved against the Company in a reporting period for amounts above management’s expectations, the Company’s financial condition and operating results for that reporting period could be materially adversely affected. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 20 
+
+ 
+
+ 
+
+ 
+
+ Item 1A.    Risk Factors 
+
+ The Company’s business, reputation, results of operations, financial condition and stock price can be materially and adversely affected by a number of factors, whether currently known or unknown, including those described in Part I, Item 1A of the 2025 Form 10-K and Part II, Item 1A of the Form 10-Q for the quarter ended March 28, 2026 (the “second quarter 2026 Form 10-Q”), in each case under the heading “Risk Factors.” Except for the risk factors set forth below and those disclosed in Part II, Item 1A of the second quarter 2026 Form 10-Q , which are incorporated by reference herein, there have been no material changes to the Company’s risk factors since the 2025 Form 10-K. 
+
+ Future operating results depend upon the Company’s ability to obtain components and computing resources in sufficient quantities and on commercially reasonable terms. 
+
+ The Company currently obtains certain components from single or limited sources, which exposes it to significant supply and pricing risks. In addition, many components, including those that are available from multiple sources, are at times subject to industry-wide shortages and significant commodity pricing fluctuations that can materially adversely affect the Company’s business, results of operations, financial condition and stock price. For example, the Company is experiencing a period of supply constraints and increasing costs for components driven by factors such as industry supply-demand imbalances for components, including advanced semiconductors, storage (NAND) and memory (DRAM), which adversely affects the Company’s ability to obtain sufficient quantities of components and products on commercially reasonable terms, or at all. The Company expects these trends to intensify, which may materially adversely impact the Company’s revenue, costs, gross margin, results of operations and financial condition. Actions, such as price increases, that have been and may in the future be taken by the Company may not effectively mitigate these negative impacts, and may also reduce demand for the Company’s products and materially adversely affect the Company’s revenue, costs, gross margin, results of operations and financial condition. 
+
+ Additionally, the Company’s new products often utilize custom components available from only one source. When a component or product uses new technologies, initial capacity constraints may exist until the suppliers’ yields have matured or their manufacturing capacities have increased. The Company may not be able to extend or renew agreements for the supply of components on similar terms, or at all, and may not be successful in obtaining sufficient quantities from its suppliers in a timely manner, or in identifying and obtaining sufficient quantities from an alternative source. In addition, component suppliers may fail, be subject to consolidation within a particular industry, or decide to concentrate on the production of common components instead of components customized to meet the Company’s requirements, further limiting the Company’s ability to obtain sufficient quantities of components on commercially reasonable terms, or at all. 
+
+ The Company’s business, including its artificial intelligence and machine learning offerings, also depends on access to sufficient computing resources. Demand for cloud computing and artificial intelligence infrastructure has increased substantially across the technology industry, resulting in constrained supply, extended lead times, and increasing costs. In addition to its own data center infrastructure, the Company relies on third-party cloud service providers to meet these compute needs, and the Company may be unable to secure sufficient capacity on commercially reasonable terms, or at all, to meet customer demand. If the Company is unable to obtain adequate compute capacity in a timely manner or at commercially reasonable rates, this can limit the functionality and availability of its products and services, delay the deployment of new features or offerings, or cause the Company to incur significantly higher costs to operate its business, any of which could materially adversely affect the Company’s revenue, costs, gross margin, results of operations, and financial condition. In addition, the Company may over- or under-estimate requirements, either of which could result in higher-than-expected costs for the Company or an inability to fully satisfy customer demand. Therefore, the Company remains subject to significant risks of supply shortages and price increases that can materially adversely affect its business, results of operations, financial condition and stock price. 
+
+ The Company’s future performance depends in part on support from third-party software developers. 
+
+ The Company believes decisions by customers to purchase its hardware products depend in part on the availability of third-party software applications and services. Third-party developers may discontinue the development and maintenance of software applications and services for the Company’s products. If third-party software applications and services cease to be developed and maintained for the Company’s products, customers may choose not to buy the Company’s products, materially adversely impacting the Company’s business, results of operations, financial condition and stock price. 
+
+ The Company believes that third-party developer support depends on the perceived benefits of creating software and services for the Company’s products compared to competitors’ platforms, such as Android for smartphones and tablets, Windows for personal computers and tablets, and PlayStation, Nintendo and Xbox for gaming platforms. This analysis may be based on factors such as the market position of the Company and its products, the anticipated revenue that may be generated, expected future growth of product sales, and the costs of developing such applications and services. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 21 
+
+ 
+
+ 
+
+ The Company’s minority market share in the global smartphone, personal computer, tablet and wearables markets can make developers less inclined to develop or upgrade software for the Company’s products and more inclined to devote their resources to developing and upgrading software for competitors’ products with larger market share. When developers focus their efforts on these competing platforms, the availability and quality of applications for the Company’s devices can suffer. 
+
+ The Company relies on the continued availability and development of compelling and innovative software applications for its products. The Company’s products and operating systems are subject to rapid technological change, and when third-party developers are unable to or choose not to keep up with this pace of change, their applications can fail to take advantage of these changes to deliver improved customer experiences, can operate incorrectly, and can result in dissatisfied customers and lower customer demand for the Company’s products. 
+
+ The Company distributes third-party applications through the App Store. Where applicable, the Company may retain a commission from sales of applications and sales of digital services or goods initiated within an application. If third-party developers use alternative methods of distribution and payment for their apps and digital content, including direct-to-consumer distribution models, the Company may earn a lower commission on such sales, or may not earn a commission at all, which can materially adversely affect the Company’s revenue, gross margin, results of operations, financial condition and stock price. 
+
+ The technology industry, including, in some instances, the Company, is subject to intense media, political and regulatory scrutiny, which exposes the Company to increasing regulation, government investigations, legal actions and penalties. 
+
+ From time to time, the Company has made changes to its business, including actions taken in response to litigation, competition, market conditions and legal and regulatory requirements. The Company expects to make further business changes in the future. For example, in the U.S., the Company has implemented changes to how developers communicate with consumers within apps on the U.S. storefront of the iOS and iPadOS App Store regarding alternative purchasing mechanisms. The Company is also currently subject to a court order in the U.S. preventing it from imposing any commission or fee on certain purchases that consumers make. The Ninth Circuit Court has instructed the California District Court to further amend or modify its injunction to allow the Company to charge a commission. If the Company is ultimately unsuccessful in defending its commission structure or if similar restrictions are imposed or expanded in other jurisdictions, and as a result the Company’s commission is narrowed or eliminated, the Company’s business, results of operations, and financial condition could be materially and adversely affected. 
+
+ Globally, several jurisdictions have adopted, or may in the future adopt, competition-related laws and regulations imposing wide-ranging obligations on technology companies and significant limitations on businesses, including the Company. For example, the Company has implemented changes to iOS, iPadOS, the App Store and Safari ® in the EU as it seeks to comply with the DMA, including new business terms and alternative fee structures for iOS and iPadOS apps, alternative methods of distribution for iOS and iPadOS apps, alternative payment processing for apps across the Company’s operating systems, and additional tools and application programming interfaces for developers. In addition, the DMA imposes interoperability obligations on the Company requiring it to make certain of its technologies and features available to third-party products and services for free, which increases security and privacy risks, requires significant engineering resources, and can adversely affect the functionality, competitiveness, and user experience of the Company’s products. Interoperability and other requirements have in the past, and may in the future, cause the Company to not launch or maintain products, services and features, such as Siri AI, in certain jurisdictions. Any of these outcomes can have a negative impact on the Company’s competitive advantage and materially adversely affect its business, results of operations, financial condition and stock price. 
+
+ The Company has also continued to make changes to its DMA compliance plan in response to feedback and engagement with the Commission. Although the Company’s DMA compliance plan is intended to address the DMA’s obligations, it has been challenged by the Commission and may be challenged further by private litigants. The DMA provides for significant fines and penalties for noncompliance. While the changes introduced by the Company in the EU are intended to reduce new privacy and security risks that the DMA poses to EU users, many risks will remain. Changes to the Company’s business in response to the DMA or other laws and regulations in the EU or in other jurisdictions, including the U.S., could materially adversely affect the Company’s business, reputation, results of operations, financial condition and stock price. 
+
+ The Company is also currently subject to antitrust investigations and litigation in various jurisdictions around the world, which can result in legal proceedings and claims against the Company that could, individually or in the aggregate, have a material adverse impact on the Company’s business, results of operations, financial condition and stock price. For example, the Company is subject to civil antitrust lawsuits in the U.S. alleging monopolization or attempted monopolization in the markets for “performance smartphones” and “smartphones” generally in violation of U.S. antitrust laws. In addition, the Company is the subject of investigations in Europe and other jurisdictions relating to App Store terms and conditions. If such investigations or litigation are resolved against the Company, the Company can be exposed to significant fines and may be required to make further changes to its business practices, all of which could materially adversely affect the Company’s business, reputation, results of operations, financial condition and stock price. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 22 
+
+ 
+
+ 
+
+ Further, the Company has commercial relationships with other companies in the technology industry that are or may become subject to investigations and litigation that, if resolved against those other companies, could materially adversely affect the Company’s commercial relationships with those business partners and materially adversely affect the Company’s business, results of operations, financial condition and stock price. For example, the Company earns revenue from licensing arrangements with Google LLC (“Google”) and other companies to offer their search services on the Company’s platforms and applications, and certain of these arrangements are currently subject to government investigations and legal proceedings. On August 5, 2024, Google was found to have violated U.S. antitrust laws. In connection with this finding, on September 2, 2025, the U.S. District Court for the District of Columbia (“D.C. District Court”) ordered certain remedies. The court’s order is subject to further proceedings before the D.C. District Court, which may result in changes to the interpretation or application of the remedies ordered by the court, as well as new or changed remedies being ordered. The court’s order was appealed by both the DOJ and Google. A reversal of the order on appeal could result in imposition of certain remedies initially proposed by the DOJ, such as those prohibiting Google from offering the Company commercial terms for search distribution. If implemented, these remedies could materially adversely affect the Company’s ability to earn revenue from such licensing arrangements. 
+
+ The Company’s business, results of operations, financial condition and stock price can be materially adversely affected, individually or in the aggregate, by the outcomes of such investigations, litigation or changes to laws and regulations in the future. Changes to the Company’s business practices to comply with new laws and regulations or in connection with legal proceedings can negatively impact the reputation of the Company’s products for privacy and security. Such changes in business practices can also otherwise adversely affect the experience for users of the Company’s products and services, and result in harm to the Company’s reputation, loss of competitive advantage, poor market acceptance, reduced demand for products and services, lost sales, and lower profit margins. 
+
+ The Company’s business is subject to a variety of U.S. and international laws, rules, policies and other obligations regarding the collection, use, protection and transfer of personal data. 
+
+ The Company is subject to an increasing number of federal, state and international laws relating to the collection, use, retention, protection and transfer of various types of personal data. In many cases, these laws apply not only to third-party transactions, but also restrict transfers of personal data among the Company and its international subsidiaries. Several jurisdictions have passed laws in this area, and additional jurisdictions are considering imposing additional restrictions or have laws that are pending. For example, China has regulatory requirements relating to data processing and localization that govern the Company’s ability to collect, use, and transfer data in China, and could limit the Company’s ability to transfer data outside of China. These laws continue to develop and may be inconsistent from jurisdiction to jurisdiction. Complying with emerging and changing requirements causes the Company to incur substantial costs and has required and may in the future require the Company to change its business practices, including changes to the design of the Company’s products and services and limiting the Company’s ability to offer a product, service or feature to customers. Such changes in business practices can also otherwise adversely affect the experience for users of the Company’s products and services, and result in harm to the Company’s reputation, loss of competitive advantage, poor market acceptance, reduced demand for products and services, lower revenue, and lower profit margins. Noncompliance could result in suspension or revocation of business licenses, significant penalties and legal liability. 
+
+ The Company makes statements about its use and disclosure of personal data through its privacy policy, information provided on its website, press statements and other privacy notices provided to customers. Any failure or perceived failure by the Company to comply with these public statements or with federal, state or international privacy or data protection laws and regulations could result in inquiries, proceedings and penalties from governmental entities or others. Such a failure or perceived failure could also result in reputational impacts, ongoing audit requirements and significant legal liability. The risks of inadvertent disclosure of personal data can increase with the introduction of new and complex technologies, such as artificial intelligence features, further exacerbating such risks. 
+
+ In addition to the risks generally relating to the collection, use, retention, protection and transfer of personal data, the Company is also subject to specific obligations relating to the collection and processing of data associated with minors, as well as information considered sensitive under applicable laws, such as health, biometric, financial and payment card data. Health, biometric, financial and payment card data are subject to additional privacy, security and breach notification requirements, and the Company is subject to audit by governmental authorities regarding the Company’s compliance with these obligations. If the Company fails to adequately comply with these rules and requirements, the Company can be subject to litigation or government investigations, can be liable for associated investigatory expenses, and can incur significant fees or fines. 
+
+ The Company is also subject to new and changing laws, regulations and other legal obligations regarding online safety, including enhanced protections for minors and mandatory age verification requirements. These obligations can increase regulatory risks by requiring complex compliance measures and significant modifications to the Company’s products, services and operations, and may lead to operational disruptions, heightened privacy and data security risks, and increased costs, all of which can have a material adverse impact on the Company’s business, results of operations, financial condition and stock price. Failure to comply with such changing laws, regulations and other legal obligations can also result in significant penalties and fines, and legal liability. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 23 
+
+ 
+
+ 
+
+ 
+
+ Item 2.    Unregistered Sales of Equity Securities and Use of Proceeds 
+
+ Purchases of Equity Securities by the Issuer and Affiliated Purchasers 
+
+ Share repurchase activity during the three months ended June 27, 2026, was as follows (in millions, except number of shares, which are reflected in thousands, and per-share amounts): 
+
+ 
+
+ 
+
+ Periods Total Number of Shares Purchased Average Price Paid Per Share Total Number of Shares Purchased as Part of Publicly Announced Plans or Programs 
+
+ Approximate Dollar Value of 
+
+ Shares That May Yet Be Purchased 
+
+ Under the Plans or Programs (1) 
+
+ 
+
+ March 29, 2026 to May 2, 2026: 
+
+ Open market and privately negotiated purchases —  $ —  —  
+
+ 
+
+ 
+
+ May 3, 2026 to May 30, 2026: 
+
+ May 2026 ASRs 26,468  
+
+ (2) 
+
+ (2) 26,468  
+
+ (2) 
+
+ Open market and privately negotiated purchases 26,920  $ 297.18  26,920  
+
+ 
+
+ 
+
+ May 31, 2026 to June 27, 2026: 
+
+ Open market and privately negotiated purchases 26,223  $ 296.18  26,223  
+
+ Total 79,611  $ 138,004  
+
+ (1) On May 1, 2025, the Company announced a program to repurchase up to $100 billion of the Company’s common stock. As of June 27, 2026, remaining availability under the May 2025 program was $38.0 billion. On April 30, 2026, the Company announced an additional program to repurchase up to $100 billion of the Company’s common stock. The programs do not obligate the Company to acquire a minimum amount of shares. Under the programs, shares may be repurchased in privately negotiated or open market transactions, including under plans complying with Rule 10b5-1 under the Exchange Act. 
+
+ (2) In May 2026, the Company entered into new accelerated share repurchase agreements (“ASRs”). Under the terms of the ASRs, financial institutions committed to deliver shares of the Company’s common stock during the purchase periods in exchange for up-front payments totaling $10.0 billion. The total number of shares ultimately delivered under the ASRs, and therefore the average repurchase price paid per share, is determined based on the volume-weighted average price of the Company’s common stock during the ASRs’ purchase periods, which end in the fourth quarter of 2026. 
+
+ 
+
+ Item 3.    Defaults Upon Senior Securities 
+
+ None. 
+
+ 
+
+ Item 4.    Mine Safety Disclosures 
+
+ Not applicable. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 24 
+
+ 
+
+ 
+
+ 
+
+ Item 5.    Other Information 
+
+ 
+
+ Insider Trading Arrangements 
+
+ On May 5, 2026 , Jennifer Newstead , the Company’s Senior Vice President and General Counsel , entered into a trading plan intended to satisfy the affirmative defense conditions of Rule 10b5-1(c) under the Exchange Act. The plan provides for the sale, subject to certain price limits, of up to 24,912 shares of common stock, as well as up to 90% of shares vesting between June 15, 2026 and March 15, 2027, pursuant to certain equity awards granted to Ms. Newstead, excluding any shares withheld by the Company to satisfy income tax withholding and remittance obligations. Ms. Newstead’s plan will expire on May 6, 2027 , subject to early termination in accordance with the terms of the plan. 
+
+ On May 28, 2026 , Tim Cook , the Company’s Chief Executive Officer , entered into a trading plan intended to satisfy the affirmative defense conditions of Rule 10b5-1(c) under the Exchange Act. The plan provides for the sale, subject to certain price limits, of up to 16,250 shares of common stock, as well as shares vesting during the duration of the plan pursuant to certain equity awards granted to Mr. Cook, excluding any shares withheld by the Company to satisfy income tax withholding and remittance obligations, and for the gifting of up to 37,104 shares. Mr. Cook’s plan will expire on October 30, 2026 , subject to early termination in accordance with the terms of the plan. 
+
+ 
+
+ Item 6.    Exhibits 
+
+ 
+
+ 
+
+ Incorporated by Reference 
+
+ 
+
+ 
+
+ Exhibit 
+
+ Number Exhibit Description Form Exhibit Filing Date/ Period End Date 
+
+ 31.1* 
+
+ Rule 13a-14(a) / 15d-14(a) Certification of Chief Executive Officer. 
+
+ 31.2* 
+
+ Rule 13a-14(a) / 15d-14(a) Certification of Chief Financial Officer. 
+
+ 32.1** 
+
+ Section 1350 Certifications of Chief Executive Officer and Chief Financial Officer. 
+
+ 101* 
+
+ Inline XBRL Document Set for the condensed consolidated financial statements and accompanying notes in Part I, Item 1, “Financial Statements” of this Quarterly Report on Form 10-Q. 
+
+ 104* 
+
+ Inline XBRL for the cover page of this Quarterly Report on Form 10-Q, included in the Exhibit 101 Inline XBRL Document Set. 
+
+ *    Filed herewith. 
+
+ **    Furnished herewith. 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 25 
+
+ 
+
+ 
+
+ 
+
+ SIGNATURE 
+
+ Pursuant to the requirements of the Securities Exchange Act of 1934, the Registrant has duly caused this report to be signed on its behalf by the undersigned thereunto duly authorized. 
+
+ 
+
+ 
+
+ 
+
+ Date: July 31, 2026 Apple Inc. 
+
+ 
+
+ By: 
+
+ /s/ Kevan Parekh 
+
+ 
+
+ Kevan Parekh 
+
+ Senior Vice President, Chief Financial Officer 
+
+ 
+
+ 
+
+ Apple Inc. | Q3 2026 Form 10-Q | 26

@@ -1,50 +1,60 @@
-## Description: <br>
-Chanjing AI creation Open API client: submit image and video tasks, poll task status, list and get tasks, and optionally download outputs when the user runs download_result.py. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chanjing AI creation Open API client for submitting image and video tasks, polling task status, listing and retrieving tasks, and optionally downloading outputs when explicitly requested.
 
-## Publisher: <br>
-[binkes](https://clawhub.ai/user/binkes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binkes](https://clawhub.ai/user/binkes)
 
-## Use Case: <br>
-Developers and creators use this skill to submit Chanjing AI image or video creation jobs, monitor asynchronous task status, inspect prior tasks, and save generated outputs only when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local API credentials and access tokens are stored in credentials.json. <br>
-Mitigation: Protect ~/.chanjing/credentials.json from other users, backups, and sync tools, and use a trusted credentials directory. <br>
-Risk: Raw JSON payloads and callback URLs can submit arbitrary task parameters to the Chanjing Open API. <br>
-Mitigation: Review body-file and body-json content before submitting tasks, especially model parameters, reference URLs, and callbacks. <br>
-Risk: Changing the API base URL can send credentials and task data to an unintended endpoint. <br>
-Mitigation: Keep CHANJING_OPENAPI_BASE_URL or CHANJING_API_BASE pointed only at a trusted Chanjing Open API endpoint. <br>
-Risk: Downloaded result files are fetched from API response URLs and written to local storage. <br>
-Mitigation: Run download_result.py only when the user explicitly wants a file saved, and choose an appropriate output path. <br>
-Risk: The optional credentials-guard login helper may be used when credentials are missing. <br>
-Mitigation: Verify the credentials-guard helper and login flow before relying on browser-assisted credential setup. <br>
+## Use Case:
 
+Developers and agents use this skill to drive Chanjing AI Creation workflows through the Open API: submit image or video generation tasks, poll asynchronous status, inspect task history or details, and download generated media only when explicitly requested.
 
-## Reference(s): <br>
-- [Chanjing AI Creation reference](reference.md) <br>
-- [Chanjing AI Creation examples](examples.md) <br>
-- [Chanjing Open API documentation](https://doc.chanjing.cc) <br>
-- [ClawHub skill page](https://clawhub.ai/binkes/chanjing-ai-creation) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/binkes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, files] <br>
-**Output Format:** [Plain text task identifiers and output URLs, JSON task details, command-line configuration, and downloaded image or video files when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are returned from Chanjing API tasks; files are written locally only through the explicit download_result.py flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: Credentialed network calls and downloads have broader control than the manifest safely scopes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only in a private trusted environment, and leave CHANJING_OPENAPI_BASE_URL and CHANJING_API_BASE unset unless the endpoint is fully trusted.
+
+Risk: The skill reads and writes sensitive credentials and access tokens in ~/.chanjing/credentials.json or the configured credentials directory.
+
+Mitigation: Protect the credentials file and directory, avoid shared or synced hosts for token storage, and do not commit credentials.json to version control.
+
+Risk: download_result.py can fetch user-supplied URLs and write to custom output paths.
+
+Mitigation: Download only trusted API response URLs, prefer the default outputs/ai-creation directory, and avoid custom output paths until downloader constraints are tightened.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/binkes/skills/chanjing-ai-creation)
+- [Chanjing Open API documentation](https://doc.chanjing.cc)
+- [Skill reference](artifact/reference.md)
+- [Skill examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text, JSON task data, URLs, and optional downloaded files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Submits credentialed API requests and only writes generated media locally when download_result.py is explicitly invoked.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

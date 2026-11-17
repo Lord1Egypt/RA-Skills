@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "business-operations",
+  "version": "1.0.0",
+  "extensions": [
+    {
+      "id": "spacesuit.intel",
+      "version": "1.0.0"
+    },
+    {
+      "id": "spacesuit.pipeline",
+      "version": "1.0.0"
+    },
+    {
+      "id": "spacesuit.monetization",
+      "version": "1.0.0"
+    }
+  ]
+}

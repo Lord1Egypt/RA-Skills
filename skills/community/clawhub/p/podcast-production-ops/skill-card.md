@@ -1,47 +1,66 @@
-## Description: <br>
-Organizes podcast production workflows from topic selection through publishing, producing show notes, title options, editing points, publishing checklists, and reusable materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes podcast production workflows from topic selection through publishing and drafts show notes, title options, editing points, publishing checklists, and reusable materials.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Podcast creators, producers, content teams, and agents use this skill to turn episode topics, guest summaries, and recording notes into reviewable production packages. It is suited for drafting structured podcast materials while keeping missing information and publishing decisions explicit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Podcast materials may contain private guest details, unpublished transcripts, or other sensitive information. <br>
-Mitigation: Use only the input needed for the task, redact sensitive material when practical, and review generated Markdown before sharing or publishing. <br>
-Risk: Draft show notes, titles, and editing points may misrepresent guest views or imply facts not present in the source material. <br>
-Mitigation: Treat outputs as reviewable drafts, keep missing information in the confirmation list, and verify claims against the provided recording notes before publication. <br>
-Risk: The helper script can write an output file when an output path is supplied. <br>
-Mitigation: Use stdout or dry-run mode when file writes are not intended, and choose output paths deliberately. <br>
+## Use Case:
 
+Content teams, podcast producers, and publishing operators use this skill to turn episode topics, guest summaries, and recording notes into a reviewable production package. It is intended for drafting and planning, not for inventing guest statements or publishing unauthorized segments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/podcast-production-ops) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [Specification JSON](artifact/resources/spec.json) <br>
-- [Output template](artifact/resources/template.md) <br>
-- [Smoke test](artifact/tests/smoke-test.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Structured Markdown by default, with optional JSON output from the local helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may be printed to stdout, written to a selected file, or produced in dry-run mode for review before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated podcast drafts may contain incomplete, misleading, or unverified production guidance if the input material is sparse.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated production package and resolve any listed confirmation items before editing, publishing, or sharing.
+
+Risk: Inputs may include personal information, guest details, or unreleased episode material.
+
+Mitigation: Use only project-appropriate local files, redact sensitive content when possible, and avoid sharing generated drafts until they have been reviewed.
+
+Risk: The local script may write or overwrite the output path supplied by the user.
+
+Mitigation: Use a dedicated output file or dry-run mode and inspect results before moving them into production workflows.
+
+Risk: The bundled script contains inactive generic audit code that is not central to podcast drafting.
+
+Mitigation: Document or remove the inactive audit code in a future release to reduce reviewer confusion.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/podcast-production-ops)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Specification](artifact/resources/spec.json)
+- [Output Template](artifact/resources/template.md)
+- [Smoke Test](artifact/tests/smoke-test.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON, with optional local shell command usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated drafts should be reviewed before publishing or sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

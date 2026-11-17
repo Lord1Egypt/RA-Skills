@@ -1,38 +1,58 @@
-## Description: <br>
-Horus Lite -- Meeting Intelligence. Paste meeting notes or a transcript and get a clean action item list instantly. Free tier. The only meeting skill on ClawHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Horus Lite extracts a clean action-item checklist and brief summary from pasted meeting notes or transcripts.
 
-## Publisher: <br>
-[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway)
 
-## Use Case: <br>
-Employees and external users can paste raw meeting notes, transcripts, or bullet points to extract assigned action items and a short meeting summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pasted meeting notes or transcripts may be echoed into the agent session output or logs. <br>
-Mitigation: Redact highly confidential content before use, or remove the raw-note print step before running the skill. <br>
+## Use Case:
 
+External users and productivity-focused teams use this skill to turn pasted meeting notes, transcripts, or bullet points into assigned action items and a short meeting summary.
 
-## Reference(s): <br>
-- [Horus Lite ClawHub listing](https://clawhub.ai/occupythemilkyway/horus-lite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown action-item checklist with summary text and inline setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MEETING_NOTES input and local python3, pip3, and rich availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Full meeting notes or transcripts may appear in terminal output or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential transcripts unless that exposure is acceptable, or run the skill in a controlled environment with logging disabled or restricted.
+
+Risk: The setup command installs an unpinned dependency into the system Python environment.
+
+Mitigation: Install dependencies in an isolated virtual environment and pin package versions before operational use.
+
+Risk: The skill output includes promotional upgrade messaging.
+
+Mitigation: Review generated output before sharing it outside the execution context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/occupythemilkyway/skills/horus-lite)
+- [ClawHub metadata homepage](https://clawhub.ai/occupythemilkyway/horus-lite)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown action-item checklist and short summary, with inline shell and Python snippets for setup and execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MEETING_NOTES input; prints the full provided notes before asking the agent to extract action items.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Session Cleaner helps OpenClaw users review and clean obsolete session records and related session files while preserving running sessions and main agent sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw users review and clean obsolete session records, expired session files, and cluttered session lists.
 
-## Publisher: <br>
-[macofee](https://clawhub.ai/user/macofee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[macofee](https://clawhub.ai/user/macofee)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to inspect session state, identify stale or orphaned session files, and clean them after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cleanup can remove local OpenClaw session history, including transcript, trajectory, and checkpoint files. <br>
-Mitigation: Review the proposed agents, sessions, and files before approval, and back up important session data before running cleanup. <br>
-Risk: Deleting running sessions or needed history can interrupt active work or remove records the user still needs. <br>
-Mitigation: Do not approve deletion of running sessions or history that may be needed later; keep main agent sessions unless there is a clear reason to remove them. <br>
+## Use Case:
 
+Developers and operators use this skill to identify stale OpenClaw sessions, preserve active and main sessions, propose deletions, and clean session indexes and transcript files after confirmation.
 
-## Reference(s): <br>
-- [Session Cleaner on ClawHub](https://clawhub.ai/macofee/amiao-session-cleaner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python cleanup code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before deletion and can modify local OpenClaw session files when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can delete OpenClaw session history and rewrite session indexes using broad cleanup rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up each affected sessions.json and related session files before cleanup, review the proposed deletion set, and avoid broad confirmations unless the deletion scope is clear.
+
+Risk: Changing session indexes while OpenClaw Gateway is active can leave the UI or session state inconsistent.
+
+Mitigation: Stop or quiesce the Gateway before modifying session indexes, then restart it after cleanup and verify the session list.
+
+## Reference(s):
+
+- [Session Cleaner README](README.md)
+- [ClawHub skill page](https://clawhub.ai/macofee/skills/amiao-session-cleaner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before deletion; may modify sessions.json and remove session-related files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

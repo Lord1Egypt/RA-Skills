@@ -1,44 +1,58 @@
-## Description: <br>
-Generate academic figures and scientific diagrams from paper text using a multi-agent pipeline powered by Alibaba Cloud DashScope. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates academic figures and scientific diagrams from paper text using a DashScope-powered multi-agent workflow for planning, image generation, and critic refinement.
 
-## Publisher: <br>
-[zdywrnm](https://clawhub.ai/user/zdywrnm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zdywrnm](https://clawhub.ai/user/zdywrnm)
 
-## Use Case: <br>
-Developers, researchers, and academic authors use this skill to configure and run PaperBanana-DashScope for generating diagrams, plots, architecture figures, and academic illustrations from paper text and captions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential confusion because the DashScope setup uses an OpenAI-named environment variable and config key. <br>
-Mitigation: Use a dedicated low-privilege DashScope key, do not reuse an OpenAI key, and verify where the key is sent before running the CLI. <br>
-Risk: Persistent plaintext API key storage may expose credentials if the config file is not protected. <br>
-Mitigation: Prefer an environment variable for short-lived sessions, or restrict permissions on ~/.paperbanana-dashscope/config.yaml if a config file is required. <br>
-Risk: The security review verdict is suspicious for this release. <br>
-Mitigation: Install only after reviewing the referenced npm package and confirming the CLI behavior matches the intended DashScope workflow. <br>
+## Use Case:
 
+Developers, researchers, and technical writers use this skill to turn paper methods, captions, and scientific descriptions into candidate diagrams, plots, and publication-style figures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zdywrnm/paperbanana-dashscope) <br>
-- [npm package](https://www.npmjs.com/package/paperbanana-dashscope) <br>
-- [Project source link](https://github.com/TashanGKD/PaperBanana-DashScope) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated figures are written as PNG files by the referenced CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a DashScope API key; figure output path, task type, model, aspect ratio, candidate count, and critic rounds are user-configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill directs users to globally install and run an unpinned third-party npm package whose reviewed code is not included.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package source and published version before installing, and prefer a pinned or local install when possible.
+
+Risk: Paper text, captions, or unpublished research content may be sent to external DashScope services during figure generation.
+
+Mitigation: Avoid submitting confidential or unpublished paper text unless external DashScope processing is approved for the intended use.
+
+Risk: Credential setup is ambiguous because the skill asks for a DashScope API key but stores it under OPENAI_API_KEY or openai_api_key.
+
+Mitigation: Confirm which API key is required before adding credentials to environment variables or the global config file.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zdywrnm/skills/paperbanana-dashscope)
+- [npm package](https://www.npmjs.com/package/paperbanana-dashscope)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent to install and use a third-party CLI that generates image files from user-provided paper text and captions.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

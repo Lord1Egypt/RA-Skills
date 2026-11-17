@@ -1,44 +1,60 @@
-## Description: <br>
-Provides local Windows image OCR using GLM-OCR and llama.cpp Vulkan to extract text from images, including mixed Chinese and English content, without cloud API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs local image OCR on Windows with GLM-OCR and llama.cpp Vulkan to extract text from images, scanned documents, screenshots, receipts, invoices, tables, business cards, IDs, and mixed Chinese/English content without cloud API calls.
 
-## Publisher: <br>
-[violet17](https://clawhub.ai/user/violet17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[violet17](https://clawhub.ai/user/violet17)
 
-## Use Case: <br>
-Developers and end users use this skill to run on-device OCR for screenshots, scanned documents, invoices, receipts, business cards, IDs, tables, and other image text extraction tasks on Windows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First-use setup may download third-party binaries, Python tooling, and large model files. <br>
-Mitigation: Use a dedicated OCR directory, review download sources before proceeding, and confirm available disk space before setup. <br>
-Risk: The skill processes local image content that may contain sensitive information. <br>
-Mitigation: Avoid highly sensitive images unless the local runtime and model installation are acceptable for the user's environment. <br>
-Risk: OCR quality can be poor on blurry, low-resolution, or unsupported images. <br>
-Mitigation: Ask the user to provide a clearer image or rescan before relying on extracted text. <br>
+## Use Case:
 
+Developers and end users use this skill to set up a local Windows OCR workflow and extract readable text or structured fields from image-based documents. It is suited to local document digitization tasks where cloud OCR is not desired.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/violet17/image-ocr-local-aipc) <br>
-- [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases) <br>
-- [GLM-OCR GGUF model](https://huggingface.co/ggml-org/GLM-OCR-GGUF) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text, Markdown tables, JSON snippets, and PowerShell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May preserve original image layout or return structured fields for receipts, tables, business cards, IDs, and documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The setup flow can install and run third-party executables and broad PowerShell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the setup steps; prefer manual installation or verify downloaded hashes and signatures where available.
+
+Risk: The skill downloads large third-party model and tooling files before first use.
+
+Mitigation: Confirm the download with the user, ensure adequate disk space and network trust, and use manual download fallback when automatic download behavior is not acceptable.
+
+Risk: OCR inputs and outputs may contain sensitive IDs, contracts, financial documents, or other confidential text.
+
+Mitigation: Avoid highly sensitive documents unless local storage and output handling are understood and acceptable for the user's policy.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/violet17/skills/image-ocr-local-aipc)
+- [GLM-OCR GGUF](https://huggingface.co/ggml-org/GLM-OCR-GGUF)
+- [llama.cpp Releases](https://github.com/ggml-org/llama.cpp/releases)
+- [Miniforge Releases](https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Windows-x86_64.exe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text OCR results, Markdown tables, JSON field extraction, and PowerShell setup commands depending on the user request.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [OCR results may preserve layout or be reorganized into task-specific fields for invoices, receipts, tables, business cards, IDs, screenshots, and documents.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

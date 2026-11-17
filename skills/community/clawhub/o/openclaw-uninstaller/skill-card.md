@@ -1,43 +1,54 @@
-## Description: <br>
-OpenClaw 卸载指南，帮你体面告别这只昂贵的龙虾 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Uninstaller guides users through removing OpenClaw with one-command and manual cleanup steps for macOS, Linux, and Windows.
 
-## Publisher: <br>
-[dox012](https://clawhub.ai/user/dox012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dox012](https://clawhub.ai/user/dox012)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to get concise OpenClaw removal guidance across macOS, Linux, and Windows. It provides one-click uninstall commands, manual cleanup steps, service removal commands, and follow-up troubleshooting references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The uninstall guidance includes destructive deletion commands such as non-interactive uninstall and recursive removal of OpenClaw state directories. <br>
-Mitigation: Confirm resolved target paths and back up OpenClaw configuration or workspace data before running one-click, non-interactive, or rm -rf commands. <br>
-Risk: Manual cleanup differs by operating system and installation method, so an incorrect command could leave services or files behind. <br>
-Mitigation: Follow only the section for the active platform and installation method, then verify that OpenClaw gateway services, scheduled tasks, and CLI packages are removed. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to produce uninstall guidance and shell commands for removing the OpenClaw CLI, gateway services, configuration state, and optional workspace files.
 
-## Reference(s): <br>
-- [OpenClaw uninstall documentation](https://docs.openclaw.ai/install/uninstall) <br>
-- [OpenClaw GitHub issues](https://github.com/openclaw/openclaw/issues) <br>
-- [ClawHub skill page](https://clawhub.ai/dox012/openclaw-uninstaller) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/dox012) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and PowerShell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes destructive deletion commands that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Irreversible deletion of OpenClaw state, workspace data, and service files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each deletion path, back up OpenClaw state or workspace data, and avoid elevated shells unless required.
+
+Risk: Unpinned remote package execution through npx could run unexpected package code.
+
+Mitigation: Prefer the local openclaw uninstall command, or review and pin the package source and version before using remote execution.
+
+## Reference(s):
+
+- [OpenClaw uninstall documentation](https://docs.openclaw.ai/install/uninstall)
+- [OpenClaw GitHub Issues](https://github.com/openclaw/openclaw/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash and PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes destructive uninstall commands that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

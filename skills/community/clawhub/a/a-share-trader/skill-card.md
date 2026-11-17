@@ -1,44 +1,58 @@
-## Description: <br>
-A Share Trader helps agents run and inspect a prototype adaptive quantitative trading framework for China A-share strategy simulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Share Trader is an adaptive quantitative trading framework for China A-share market analysis that combines stock-selection strategies, market-state recognition, dynamic strategy weighting, and risk controls.
 
-## Publisher: <br>
-[hmaya](https://clawhub.ai/user/hmaya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hmaya](https://clawhub.ai/user/hmaya)
 
-## Use Case: <br>
-Agents and developers use this skill to analyze and simulate multi-strategy China A-share trading workflows, including market-state detection, strategy weighting, risk controls, and paper or backtest-style outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading authority could be granted to a prototype that uses simulated or fallback market data. <br>
-Mitigation: Run only in local simulation or paper mode, and do not provide brokerage credentials or real trading permissions until live mode is disabled or backed by a reviewed broker adapter. <br>
-Risk: Buy and sell signals may be based on random or mock data and could mislead financial decisions. <br>
-Mitigation: Label outputs as simulation, require verified data sources, and require explicit human confirmation before any real-money action. <br>
-Risk: Performance targets and strategy outputs may be interpreted as investment advice. <br>
-Mitigation: Present results as educational or analytical output only, and require independent validation and backtesting before use. <br>
+## Use Case:
 
+External developers and trading-system reviewers use this skill to inspect, simulate, or adapt an A-share quantitative trading framework with multiple stock-selection strategies and adaptive risk controls. Its outputs should be treated as development or simulation support, not as financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hmaya/a-share-trader) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with Python code and shell commands; runtime examples may emit JSON-like trading status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Trading signals and performance examples should be treated as simulation outputs unless connected to verified real data and reviewed broker controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Trading and live-mode framing could be mistaken for deployable trading automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for inspection, simulation, or paper trading unless live mode is disabled by default and every real order requires explicit user confirmation.
+
+Risk: Synthetic or fallback market data can make analysis and signals unreliable.
+
+Mitigation: Require verified real-data provenance before relying on any generated signal, backtest, or portfolio metric.
+
+Risk: Weak or incomplete risk gates may allow unsafe trading assumptions.
+
+Mitigation: Review risk controls, make them fail closed, and require human approval before connecting any brokerage or execution pathway.
+
+## Reference(s):
+
+- [README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/hmaya/skills/a-share-trader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python snippets, shell commands, and JSON-style status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include trading signals, simulated portfolio metrics, strategy settings, and risk-control guidance; outputs require human review before any real trading use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

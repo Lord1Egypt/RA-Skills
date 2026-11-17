@@ -31,8 +31,8 @@ mcp__lexiang__file_create_hyperlink(
 - 支持乐享的全文检索和 AI 解析（RAG）
 
 **如需附加用户评价/评论**：
-- 创建 hyperlink 后，可用 `entry_import_content_to_entry`（force_write=false）追加评价内容
-- 或用 `block_create_block_descendant` 在文档末尾插入评价 block
+- 优先使用乐享评论能力。
+- 若必须修改页面内容，仅作为少量人工增量维护，并同步本地 Markdown。
 
 **降级方案（当 `file_create_hyperlink` 失败时）**：
 - 如果返回 `finished: false` 或错误码，改用 `fetch_article.py` 本地抓取 + 降级方案 A 导入
@@ -53,17 +53,20 @@ mcp__lexiang__file_create_hyperlink(
 3. **DOM 结构特殊**：正文容器使用 `.iget-articles` 类名，不在 `fetch_article.py` 的默认选择器列表（`article`、`.post-content` 等）中。通用 `article` 选择器只匹配到极少内容（~167 字符），而真正的正文在 `.iget-articles` 中有 6000+ 字符
 4. **内容区混杂**：正文容器中混入了标题重复、音频时长、"划重点"、用户评论等非正文内容，需要清理
 
-**抓取方案**：使用 **CDP 模式**连接已登录得到的 Chrome 浏览器：
+**抓取方案**：使用 **CDP 模式**连接 CDP Chrome（9222 端口）：
 
 ```bash
-# 前提：用户已在 Chrome 中登录得到 APP 且有文章阅读权限
+# 前提：CDP Chrome 在运行，且用户已在 CDP Chrome 窗口（非日常 Chrome）登录得到
+curl -s http://127.0.0.1:9222/json/version   # 预检
+~/.fetch_article/start-cdp-chrome.sh          # 若未运行
 python scripts/fetch_article.py fetch "https://www.dedao.cn/course/article?id=<ID>" --output-dir <目录> --cdp
 ```
 
 **已知限制**：
 - `fetch_article.py` 的通用内容提取逻辑对得到 DOM 结构匹配不佳，**抓取结果可能不完整**
-- **CDP 连接可能失败**（2026-06-20 验证）：`connect_over_cdp` 在某些 Chrome 版本（如 149.0.7827.116）上报 "Browser context management is not supported" 错误。此时 `fetch_article.py` 会自动回退到 Playwright Chromium + Cookie 注入模式，但该模式无法访问已登录的得到会话，提取内容会不完整（~3500 字符 vs 完整 ~6000+ 字符）
-- **WebFetch 降级方案**：当 CDP 失败且 fetch_article.py 回退模式提取不完整时，可直接用 `WebFetch` 工具获取部分文章文本（约 2500 字符），再手动组合 `article.md`（文本 + `![](images/xxx)` 图片引用）。虽然 WebFetch 也受 SPA 限制无法获取全文，但配合手动补全可作为最终兜底方案
+- **CDP 零标签页陷阱**（2026-07-07 修复）：CDP Chrome 所有 tab 关闭时 `connect_over_cdp` 失败；v2.8.3 起自动创建种子 tab。旧版会静默回退到 `Google Chrome for Testing`（无登录态）
+- **CDP 连接失败**：`--cdp` 模式下 v2.8.3 起禁止回退到 Testing Chrome，应修复 CDP 环境（见 SKILL.md Step 0d）后重试
+- **WebFetch 降级方案**：当 CDP 完全不可用时，可用 `WebFetch` 侦察，但若无法证明是完整原文则不得归档；手工补全时也必须生成标准 `source.md`、`images/`、`meta.json`
 - 正确做法是通过 Playwright CDP 连接后，**手动指定 `.iget-articles` 选择器**提取正文：
 
 ```python
@@ -79,57 +82,13 @@ if content_el:
 - 如果是多篇系列文章（如上/下篇），合并时用 `## 上篇` / `## 下篇` 分隔
 - 作者信息需要手动确认（通用提取器可能抓错）
 
-**得到文章转存乐享完整流程（2026-05-09 实战验证 ✅）**：
+**得到文章现行流程**：
 
-> 以下流程已在实际操作中验证通过，确保图文完整转存。
-
-1. **抓取**：`python scripts/fetch_article.py fetch "<URL>" --output-dir articles/dedao_<ID短码> --cdp`
-   - 产出：`article.md` + `images/` 目录（通常 80-100+ 张图，大部分是小于 10KB 的公式/icon 图）
-
-2. **提取纯文字版**（去除图片引用和得到 UI 噪声）：
-   ```bash
-   # 去除图片引用 ![](images/...)
-   # 去除得到 APP 特有 UI 噪声：
-   #   - "展开"/"收起" 按钮文字
-   #   - 点赞数、评论数、分享按钮（如 "25"、"8"、"218"、"分享"）
-   #   - "关注" 按钮
-   #   - 用户昵称 + 日期行（如 "Christy\n05-05"）
-   #   - "划重点" / "添加到笔记" / "写笔记划线删除划线复制" 等功能按钮
-   #   - "首次发布: ..." 行
-   #   - "我的留言" / "用户留言" / "全部 精选 筛选" 等区域标记
-   # 保留正文 + 注释引用
-   ```
-   
-3. **创建在线文档 + 分块导入文字**：
-   - `entry_create_entry`（entry_type="page", parent_entry_id=日期目录, name="<文章标题>（来源描述）"）
-   - 将纯文字版分块（≤4000 chars/块），第一块 force_write=true，后续 force_write=false 追加
-   - 验证导入结果（spot check 关键段落）
-
-4. **筛选并上传关键图片**：
-   ```bash
-   # 找出 >50KB 的关键图片
-   find images/ -size +50k -type f | sort
-   
-   # 排除 SVG/UI 图标（检查文件头）
-   file images/img_04_*.png  # 如果是 SVG XML 则跳过
-   
-   # 查看图片内容（确认哪些有信息价值）
-   # 典型有价值的：概念图、流程图、人物照片、数据图表
-   # 典型无价值的：SVG 格式的得到 APP logo/icon
-   ```
-
-5. **逐张上传图片到文档对应位置**（每张图3步）：
-   ```
-   ① block_apply_block_attachment_upload(entry_id, name, size, mime_type) → session_id + upload_url
-   ② curl -X PUT "<upload_url>" -H "Content-Type: <mime>" -H "Content-Length: <size>" --data-binary @<file>
-   ③ block_create_block_descendant(entry_id, parent_block_id=page_block_id, index=<位置>, descendant=[{block_type:"image", image:{session_id, caption, align:"center"}}])
-   ```
-   
-   **图片位置确定**：
-   - 先用 `block_list_block_children`（entry_id, with_descendants=false）获取所有一级 block
-   - 根据原文 article.md 中 `![](images/xxx)` 的位置，找到对应文字段落的 block_id
-   - 用 index 参数插入（注意：每插入一张图，后面的 block index 都会 +1）
-   - 如果精确位置难以确定，也可以用 index=-1 追加到末尾（所有图集中放在文末也可接受）
+1. `fetch_article.py ... --cdp` 生成标准 `source.md`、`images/`、`meta.json`。
+2. 不在抓取层删除图片或清洗正文；非中文或需复杂清洗时，将整个工作包交给
+   `trans-doc-to-md` Prepared Markdown Package 模式。
+3. 最终标题 Markdown 只交给 `upload-markdown-to-lexiang`，由 uploader 保持图片位置并
+   渲染富元素。
 
 **适用场景**：得到 APP 专栏文章（`www.dedao.cn/course/article?id=xxx`）
 
@@ -262,13 +221,18 @@ await page.pdf({
 
 ### Substack 站点（如 lennysnewsletter.com）
 
-`fetch_article.py` 对 Substack 托管站（`*.substack.com`、`lennysnewsletter.com` 等）有**登录态缓存**：
-1. 登录成功后保存 Playwright `storage_state` 到 `~/.substack/storage_state.json`，后续直接复用，**无需重复登录/邮箱验证**。
-2. 优先级：缓存 `storage_state` > Chrome cookies > 引导登录。
-3. 加载后检查右上角头像（已登录）还是 "Sign in"（未登录）；已登录直接抓全文并刷新缓存；过期则清理重登。
+`fetch_article.py` 对 Substack 托管站（`*.substack.com`、`a16z.news`、
+`lennysnewsletter.com` 等）默认复用 **CDP Chrome profile**：
+1. 每次先连接已配置端口（默认 9222，端口写在 `~/.fetch_article/cdp_port`）的现有
+   Google Chrome 上下文；没有 page target 时创建种子 tab，再连接并复用。若 9222 被
+   Ardot 等非 Google Chrome 进程占用，启动脚本自动选择 9223–9232 的空闲端口。
+2. 不启动 `Google Chrome for Testing`，不另存一套 Playwright `storage_state`。
+3. 公开且正文完整的文章无需登录；仅检测到付费墙或正文过短时才引导用户在 CDP Chrome 登录。
+4. 转 Markdown 时过滤 `Discover more`、订阅组件、相关推荐、newsletter disclaimer
+   及其图片；作者、发布日期优先读取 canonical meta、`time[datetime]` 和 JSON-LD。
 
 ```bash
-python scripts/fetch_article.py login   # 推荐首次先单独登录并缓存，后续自动复用
+python scripts/fetch_article.py login   # 首次在 CDP Chrome 登录，后续直接复用
 ```
 
 **付费墙检测信号**：DOM `[data-testid="paywall"]`/`.paywall`；文本 `This post is for paid subscribers`/`Subscribe to read`/`Upgrade to paid`。不同站点结构不同，抓取不全时检查实际付费墙标识并更新检测逻辑。
@@ -299,11 +263,13 @@ python scripts/fetch_article.py fetch "https://weibo.com/<uid>/<mid>" --output-d
 | 标题 | 默认「微博正文 - 微博」，转存改为 `<作者>：<主题关键词>`（如 `唐杰THU：最近的一些想法`） |
 | 图片 | `sinaimg.cn` CDN，部分需 Referer |
 
-转存用 `entry_import_content` 创建 page（**非** `file_create_hyperlink`，后者仅微信链接可用）。
+转存时生成标准工作包，最终 Markdown 统一交给 uploader；`file_create_hyperlink` 仅用于
+支持的微信链接场景。
 
 ### web_fetch 获取的免费文章
 
-通过 `web_fetch` 拿到完整内容的免费文章，**同样保存原文全文**（不总结/不摘要/不改写）：文件名用原文标题，手动构建 `<标题>_meta.json`（URL/标题/作者/日期），有图尽量下载到 `images/`。
+通过 `web_fetch` 拿到完整内容的免费文章，**同样保存原文全文**（不总结/不摘要/不改写）：
+生成标准 `source.md`、`meta.json` 和可选 `images/`，最终标题文件由编排流程生成。
 
 > ⚠️ `web_fetch` 可能返回**总结版**而非全文。若内容明显被缩写（缺段落/引用/细节），调用时明确要求「返回完整原始全文，不要总结或缩写」。保存的必须是原文全文。
 

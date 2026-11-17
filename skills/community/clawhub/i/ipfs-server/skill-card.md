@@ -1,42 +1,57 @@
-## Description: <br>
-Full IPFS node operations -- install, configure, pin content, publish IPNS, manage peers, and run gateway services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full IPFS node operations - install, configure, pin content, publish IPNS, manage peers, and run gateway services.
 
-## Publisher: <br>
-[apexfork](https://clawhub.ai/user/apexfork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[apexfork](https://clawhub.ai/user/apexfork)
 
-## Use Case: <br>
-Developers, server administrators, and infrastructure operators use this skill to run and maintain IPFS nodes, publish and pin content, configure gateways, manage peers, and troubleshoot node health. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installation and daemon-management commands can change the local system or start long-running network services. <br>
-Mitigation: Review each command before execution, confirm the Kubo download source, and run the skill only when operating an IPFS node is intended. <br>
-Risk: Gateway, API, and swarm configuration can expose services to local networks or the public internet. <br>
-Mitigation: Bind API and gateway endpoints to localhost unless public access is intentional, restrict exposed ports with firewall rules, and monitor bandwidth and storage usage. <br>
-Risk: Remote pinning examples involve service tokens or JWTs. <br>
-Mitigation: Pass real pinning credentials through environment variables or a secret manager instead of typing secrets directly into commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [IPFS Server on ClawHub](https://clawhub.ai/apexfork/ipfs-server) <br>
-- [apexfork Publisher Profile](https://clawhub.ai/user/apexfork) <br>
+## Use Case:
 
+Developers, operators, and server administrators use this skill to install and operate an IPFS node, manage pinned content, publish IPNS records, configure networking, and run gateway services.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include operational cautions for network exposure, storage, bandwidth, and secret handling.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Root-level installer guidance can execute unverified downloaded code with elevated privileges.
+
+Mitigation: Prefer a trusted package manager, or verify Kubo checksums and signatures before using sudo with a downloaded installer.
+
+Risk: Exposing the IPFS API or gateway can increase unauthorized access, abuse, or bandwidth consumption risk.
+
+Mitigation: Keep the API bound to localhost unless firewalling and authentication are in place, and deliberately review public gateway exposure before deployment.
+
+Risk: Remote pinning examples use JWT-style credentials that could be exposed through shell history or shared terminals.
+
+Mitigation: Handle remote-pinning tokens outside shared command history and avoid entering real secrets directly into reusable shell sessions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/apexfork/skills/ipfs-server)
+- [Publisher Profile](https://clawhub.ai/user/apexfork)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the IPFS CLI (Kubo) and sufficient local storage and bandwidth for node operation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

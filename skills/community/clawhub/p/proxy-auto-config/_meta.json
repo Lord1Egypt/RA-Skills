@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7808d7v8764gpwk81dekmtfn833x57",
-  "slug": "proxy-auto-config",
+  "name": "proxy-auto-config",
+  "description": "OpenClaw Skill for proxy auto config",
   "version": "1.0.0",
-  "publishedAt": 1774799915817
+  "author": "MaiiNor",
+  "license": "MIT",
+  "repository": "https://github.com/MaiiNor/proxy-auto-config",
+  "keywords": ["openclaw", "skill", "proxy-auto-config"],
+  "created": "2026-03-29T23:58:31+08:00",
+  "updated": "2026-03-29T23:58:31+08:00"
 }

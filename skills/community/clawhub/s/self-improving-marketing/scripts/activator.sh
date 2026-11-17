@@ -17,7 +17,7 @@ After completing this marketing task, evaluate if extractable knowledge emerged:
 - UTM or attribution tracking broken? → LEARNINGS.md (attribution_gap)
 - Content lost traffic or ranking? → LEARNINGS.md (content_decay)
 
-If recurring pattern (3+ occurrences): promote to brand guidelines or channel playbook.
+If a recurring pattern (3+ occurrences): propose promotion to brand guidelines or channel playbook.; apply only after explicit user approval.
 If broadly applicable: consider skill extraction.
 </marketing-self-improvement-reminder>
 EOF

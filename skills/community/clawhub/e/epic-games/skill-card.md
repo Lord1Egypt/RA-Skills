@@ -1,42 +1,55 @@
-## Description: <br>
-Fetch current and upcoming free games from Epic Games Store. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch current and upcoming free games from Epic Games Store when users ask about Epic giveaways.
 
-## Publisher: <br>
-[cheerwhy](https://clawhub.ai/user/cheerwhy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cheerwhy](https://clawhub.ai/user/cheerwhy)
 
-## Use Case: <br>
-External users and agent operators use this skill to retrieve Epic Games Store's current and upcoming free base-game promotions, then present titles, store links, and localized claim periods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Epic Games' public API and sends locale and country values. <br>
-Mitigation: Use only user-selected or default locale and country values, and do not send credentials or account data. <br>
-Risk: Regional catalog restrictions can make returned listings incomplete or different from the user's local store. <br>
-Mitigation: State the locale and country used for the query and prefer the user's region unless they request a broader catalog. <br>
+## Use Case:
 
+External users ask an agent to retrieve and summarize current or upcoming Epic Games Store free-game offers, including titles, store links, and claim periods adjusted to the user's locale.
 
-## Reference(s): <br>
-- [Epic Games Store free games promotions API](https://store-site-backend-static.ak.epicgames.com/freeGamesPromotions?locale={locale}&country={country}&allowCountries={country}) <br>
-- [Epic Games Store product page URL format](https://store.epicgames.com/{locale}/p/{pageSlug}) <br>
-- [ClawHub skill page](https://clawhub.ai/cheerwhy/epic-games) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with game titles, store links, and localized claim periods] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Groups results into currently free and upcoming free base games; excludes non-base-game offers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The agent makes unauthenticated network requests to Epic's public store API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network access expectations before installation and use only public, non-credentialed Epic Games Store requests.
+
+Risk: Locale and country defaults may produce results that do not match the user's preferred region.
+
+Mitigation: Ask for or provide the desired locale and country when region-specific results matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cheerwhy/skills/epic-games)
+- [Epic Games Store free games promotions API](https://store-site-backend-static.ak.epicgames.com/freeGamesPromotions?locale={locale}&country={country}&allowCountries={country})
+- [Epic Games Store product link format](https://store.epicgames.com/{locale}/p/{pageSlug})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with grouped game listings and store links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes game title, claim period converted to local time, and current or upcoming free status.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

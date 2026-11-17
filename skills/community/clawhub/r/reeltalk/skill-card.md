@@ -1,44 +1,59 @@
-## Description: <br>
-Helper for processing shared video links: it downloads audio, creates a transcript, and produces a summary, with OCR fallback when speech is absent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helper for processing shared video links: it takes a URL, downloads the audio track, creates a text transcript, and produces a summary.
 
-## Publisher: <br>
-[ameshalexk](https://clawhub.ai/user/ameshalexk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ameshalexk](https://clawhub.ai/user/ameshalexk)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to understand shared video links without watching them by generating metadata, transcripts, OCR text when needed, and a plain-English summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches user-supplied video URLs and related media from third-party services, including fxtwitter for X/Twitter links. <br>
-Mitigation: Use only links appropriate for third-party retrieval, avoid sensitive private URLs, and review the generated commands before execution. <br>
-Risk: The skill writes temporary media and transcript files under /tmp/reeltalk_* and uses the local Whisper cache. <br>
-Mitigation: Run it in an environment where local temporary files are acceptable and clear /tmp/reeltalk_* after use when the content is sensitive. <br>
-Risk: Video processing depends on local tools such as yt-dlp, whisper, tesseract, and ffmpeg and may be slow for longer videos. <br>
-Mitigation: Confirm required binaries are installed and warn users before processing videos longer than five minutes. <br>
+## Use Case:
 
+External users and developers use ReelTalk to understand shared video links without watching them by generating a transcript or OCR fallback and a concise plain-English summary.
 
-## Reference(s): <br>
-- [ReelTalk on ClawHub](https://clawhub.ai/ameshalexk/reeltalk) <br>
-- [Publisher profile](https://clawhub.ai/user/ameshalexk) <br>
-- [fxtwitter API endpoint used for X/Twitter media lookup](https://api.fxtwitter.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and plain-text summary output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local temporary media, transcript, OCR, and metadata files under /tmp/reeltalk_work during execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.2 (source: server release evidence) <br>
+Risk: The skill runs local media tools on remote URLs and the release evidence rates it as review-level.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a contained workspace and avoid untrusted or attacker-supplied URLs.
+
+Risk: Release evidence identifies risk from unsafe URL handling and broad temporary-file deletion.
+
+Mitigation: Prefer a version with structural URL parsing, per-run temporary directories, and clear trust boundaries for downloaded text.
+
+Risk: The X/Twitter fallback uses an external fxtwitter API call.
+
+Mitigation: Confirm user consent for the fallback and validate returned media URLs before download.
+
+## Reference(s):
+
+- [ReelTalk on ClawHub](https://clawhub.ai/ameshalexk/skills/reeltalk)
+- [Amesh Alex Kuruvilla ClawHub profile](https://clawhub.ai/user/ameshalexk)
+- [fxtwitter API fallback](https://api.fxtwitter.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summary with transcript or OCR-derived text and inline shell command steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local media tools and may process downloaded media from remote URLs.]
+
+## Skill Version(s):
+
+1.4.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

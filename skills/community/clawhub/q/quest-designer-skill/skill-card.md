@@ -1,40 +1,52 @@
-## Description: <br>
-Guides structured help for Quest Designer using clear templates, checks, and safe defaults (category: Game Design). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Quest Designer using clear templates, checks, and safe defaults (category: Game Design).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[abdullah944](https://clawhub.ai/user/abdullah944)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Game designers, narrative designers, and agents use this skill to turn a quest-design goal into a concise plan, numbered checklist, short next actions, and optional editable draft copy while avoiding secret collection and unsafe commands.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may paste secrets or sensitive personal data into planning prompts.
+
+Mitigation: Keep inputs limited to goals, constraints, and owned notes; do not provide passwords, OTPs, private keys, wallets, seeds, session secrets, or unnecessary personal data.
+
+Risk: The PayPal donation URL is an external support link outside the skill behavior.
+
+Mitigation: Review the donation destination separately before using it; payment is not required for the skill to produce planning guidance.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Game designers and agents use this skill to produce structured Quest Designer guidance, reusable checklists, concise plans, and editable draft copy without requesting secrets or relying on external scraping. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include secrets or sensitive personal data in prompts. <br>
-Mitigation: Avoid pasting passwords, OTPs, private keys, wallets, seeds, session secrets, or unnecessary personal data. <br>
-Risk: The artifact includes an external PayPal donation link. <br>
-Mitigation: Treat the donation link like any external payment link and verify it before use. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Quest Designer Skill on ClawHub](https://clawhub.ai/abdullah944/quest-designer-skill) <br>
+**Other Properties Related to Output:** [Concise plan, numbered checklist, short next actions, and optional editable draft copy blocks.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with concise plans, numbered checklists, next actions, and optional draft copy blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or hidden high-impact behavior found in the release evidence.] <br>
+0.1.0 (source: frontmatter, metadata, server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

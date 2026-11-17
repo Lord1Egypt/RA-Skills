@@ -1,42 +1,56 @@
-## Description: <br>
-File-based todo and task tracking in the todos/ directory for creating, triaging, listing, managing, and checking project work items, status, and dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage persistent project todos in markdown files under the todos/ directory for creating, triaging, tracking dependencies, work logs, and completion status.
 
-## Publisher: <br>
-[iliaal](https://clawhub.ai/user/iliaal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iliaal](https://clawhub.ai/user/iliaal)
 
-## Use Case: <br>
-Developers and agents use this skill to manage persistent markdown todos in a project `todos/` directory. It supports creating new todo files, triaging pending work, tracking dependencies, updating work logs, and marking items complete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to create, edit, copy, or rename local markdown todo files. <br>
-Mitigation: Run it in the intended project workspace and review changes under the todos/ directory before relying on them. <br>
-Risk: The release has capability tags for crypto and purchases that do not match the local todo-tracking behavior described by the security evidence. <br>
-Mitigation: Treat the skill as a local markdown todo manager and have the publisher correct the unrelated tags to avoid scope confusion. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to maintain persistent project todo files for backlog items, code review follow-ups, PR feedback, dependencies, and implementation work logs.
 
-## Reference(s): <br>
-- [Todo Workflows](references/workflows.md) <br>
-- [Quick Reference Commands](references/quick-reference.md) <br>
-- [Todo Template](assets/todo-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with YAML frontmatter examples and bash command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Intended outputs are local markdown todo files and status updates scoped to a project todos/ directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.5 (source: evidence.release.version) <br>
+Risk: The skill is designed to create and rename markdown files under todos/, which can introduce persistent repository changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated or renamed todo files before committing them.
+
+Risk: Todo filenames and YAML frontmatter can drift if status, priority, or issue IDs are edited inconsistently.
+
+Mitigation: Verify that issue_id is unique and that status and priority match both the filename and frontmatter before considering a todo complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iliaal/skills/compound-eng-file-todos)
+- [Todo Workflows](artifact/references/workflows.md)
+- [Quick Reference Commands](artifact/references/quick-reference.md)
+- [Todo Template](artifact/assets/todo-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown todo files with YAML frontmatter plus concise command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists task state by creating, editing, and renaming markdown files under todos/.]
+
+## Skill Version(s):
+
+4.5.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

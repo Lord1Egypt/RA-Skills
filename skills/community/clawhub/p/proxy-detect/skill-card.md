@@ -1,39 +1,48 @@
-## Description: <br>
-Detects active system proxy settings on Windows and macOS, tests proxy availability, and returns results in JSON format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects active system proxy settings on Windows and macOS, tests proxy availability, and returns results in JSON format.
 
-## Publisher: <br>
-[noah-smith-max](https://clawhub.ai/user/noah-smith-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[noah-smith-max](https://clawhub.ai/user/noah-smith-max)
 
-## Use Case: <br>
-Developers and operators use this skill to check whether a machine has an active proxy configuration and to capture the detected proxy address and activity status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can reveal whether a machine uses an active proxy and what address or local port it uses. <br>
-Mitigation: Install and run it only where exposing proxy configuration to the agent is acceptable. <br>
-Risk: Release provenance is unavailable, limiting supply-chain assurance. <br>
-Mitigation: Review the disclosed script before use in environments that require strong provenance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/noah-smith-max/proxy-detect) <br>
+## Use Case:
 
+Developers and engineers use this skill to check whether an environment has an active system or common local proxy and to receive the detected proxy address in JSON.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime output includes JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The reported JSON contains a proxy address and an active-status boolean.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Proxy configuration may be exposed in console output or logs.
+
+Mitigation: Run the skill only where proxy address disclosure is acceptable, and avoid sharing logs that include detected proxy details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/noah-smith-max/skills/proxy-detect)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Console text with a JSON object containing address and isActive fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.6+ and no external dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

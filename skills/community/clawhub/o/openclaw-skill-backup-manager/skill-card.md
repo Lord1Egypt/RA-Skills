@@ -1,42 +1,58 @@
-## Description: <br>
-Manage local and cloud backups with listing, creation, restore, scheduling, health checks, and rclone-based cloud sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage local and cloud backups with listing, creating, restoring, scheduling, and monitoring using Time Machine, rsync, cron, and rclone integration.
 
-## Publisher: <br>
-[ppopen](https://clawhub.ai/user/ppopen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ppopen](https://clawhub.ai/user/ppopen)
 
-## Use Case: <br>
-Developers and operators use this skill to manage backups across local disks, Time Machine, rsync destinations, scheduled cron jobs, and optional cloud remotes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed artifact describes commands for a powerful local backup executable that is not included in the artifact. <br>
-Mitigation: Confirm where the backup-manager executable comes from before running commands, and review it before use. <br>
-Risk: Backup and restore commands can overwrite, expose, or delete important files if paths, remotes, or schedules are wrong. <br>
-Mitigation: Test with non-critical folders first, use explicit paths, verify rclone remotes and cloud permissions, avoid syncing secrets unless encrypted, and remove cron schedules that are no longer needed. <br>
+## Use Case:
 
+Developers and end users use this skill to inspect backup status, create rsync-based backups, restore files, schedule recurring backups, and sync selected backups to configured cloud remotes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ppopen/openclaw-skill-backup-manager) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command guidance for backup listing, creation, restore, scheduling, cloud sync, and configuration review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Restore commands can overwrite or otherwise modify files at the selected destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restore into a staging folder when possible and confirm the destination path is safe before running the command.
+
+Risk: Cloud sync can upload selected backup files to a configured rclone remote.
+
+Mitigation: Review the rclone remote, provider access controls, and file contents before syncing.
+
+Risk: Backups may fail or become incomplete if the destination has insufficient space or required tools are missing.
+
+Mitigation: Check backup status, disk space, and required tools before relying on a backup schedule.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ppopen/skills/openclaw-skill-backup-manager)
+- [Publisher profile](https://clawhub.ai/user/ppopen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command snippets and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include backup, restore, scheduling, and cloud-sync commands that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

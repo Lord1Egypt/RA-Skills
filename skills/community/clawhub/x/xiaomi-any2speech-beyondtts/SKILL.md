@@ -18,7 +18,7 @@ description: >
 
 ```bash
 BASE=https://miplus-tts-public.ai.xiaomi.com
-API_KEY=${API_KEY:-sk-anytospeech-pub-free}
+API_KEY=${API_KEY:-REDACTED-SECRET}
 ```
 
 ## Step 1 · 确认输入

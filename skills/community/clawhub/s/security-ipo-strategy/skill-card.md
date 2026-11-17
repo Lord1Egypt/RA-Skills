@@ -1,37 +1,54 @@
-## Description: <br>
-AI-powered China A-share IPO investment strategy analyst covering IPO calendars, subscription strategy, listing performance analysis, lock-up period management, and red-hot IPO identification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a framework for analyzing specific China A-share IPOs, planning subscription allocations, screening break-issue risks, and tracking lock-up expiries.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-External retail investors, institutional investors, and IPO subscribers use this skill as decision support for China A-share IPO subscription planning, risk-return assessment, capital allocation, and lock-up period monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence real IPO investment decisions and may produce incorrect or outdated dates, prices, rules, issuer data, or regulatory updates. <br>
-Mitigation: Use the output as decision support only; independently verify financial data, market data, issuer disclosures, and current regulations, and do not treat the output as personalized financial advice. <br>
+## Use Case:
 
+Investors and IPO research or compliance staff can use the skill to prepare a structured analysis of a specific China A-share IPO or subscription batch, including valuation, risk signals, allocation assumptions, and lock-up pressure. Outputs are reference material for qualified human review and do not execute subscriptions or guarantee returns.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with analysis narratives, tables, and illustrative Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Decision-support output; users should verify financial, issuer, market, and regulatory data independently.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The security review was benign but incomplete: manifest parsing failed, a tool-misuse check was degraded, and a referenced local path was unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the release contents and any local-path references before installing or relying on the skill.
+
+Risk: Illustrative IPO scores, expected returns, and lock-up estimates may be inaccurate or out of date, and IPOs can list below their issue price.
+
+Mitigation: Verify inputs against current official disclosures and rules, label assumptions, and have qualified research or compliance staff review the analysis before use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/gechengling/skills/security-ipo-strategy)
+- [Publisher profile](https://clawhub.ai/user/gechengling)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, code]
+
+**Output Format:** [Structured IPO analysis with Markdown tables, illustrative calculation examples, and pseudocode]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Methodology and draft analysis based on user-provided information; the skill itself does not fetch market data, execute code, or place orders.]
+
+## Skill Version(s):
+
+3.0.4 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Helps bicycle and e-bike riders diagnose issues, plan maintenance, source compatible parts, track repair history, and prepare safety checklists while the user performs the physical work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent guide bicycle and e-bike maintenance by diagnosing reported symptoms, scheduling mileage-based service, sourcing compatible parts, maintaining local repair logs, and escalating unsafe repairs to a professional shop.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-Gig-delivery cyclists, daily commuters, and emergency-transport riders use this skill to keep bicycles and e-bikes reliable through agent-assisted diagnostics, maintenance scheduling, parts research, local logging, and escalation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for bike details, mileage, riding conditions, symptoms, photos, and maintenance history. <br>
-Mitigation: Share only information needed for the repair task and review what is written to local logs or calendars. <br>
-Risk: Parts recommendations, retailer links, reminder setup, or drafted shop messages could be incorrect or unsuitable for the specific bicycle. <br>
-Mitigation: Review compatibility, prices, and messages before purchase, scheduling, or sending. <br>
-Risk: Maintenance guidance can affect rider safety if a repair is beyond the user's ability or the bicycle has unsafe damage. <br>
-Mitigation: Use the skill's escalation guidance for cracked frames, severe wheel damage, brake or steering issues, e-bike electrical concerns, or any repair that feels unsafe. <br>
+## Use Case:
 
+External riders and delivery workers use this skill to keep a primary bicycle or e-bike roadworthy with agent-assisted diagnostics, maintenance planning, parts logistics, service history, reminders, and safety escalation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance, checklists, maintenance logs, shopping lists, reminder prompts, and install commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local repair logs and maintenance calendars when filesystem access is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The install command uses npx and may resolve a moving package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a least-privileged environment and prefer a pinned, reviewed clawhub version when available.
+
+Risk: The skill can store bike, mileage, parts, reminder, and repair-history details on the local filesystem.
+
+Mitigation: Only provide information suitable for local storage and periodically review or remove generated maintenance files.
+
+Risk: Incorrect or overconfident repair guidance could lead to unsafe riding when brakes, steering, frame integrity, wheels, or e-bike electrical systems are involved.
+
+Mitigation: Stop riding and escalate to a certified shop for cracked frames, bent wheels, brake or steering faults, unsafe workspace, or repairs beyond the rider's confidence; follow manufacturer torque and e-bike battery warnings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/bicycle-maintenance-repair)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with checklists, templates, service-log entries, shopping lists, reminder guidance, and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local filesystem maintenance logs and reminder records when filesystem access is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

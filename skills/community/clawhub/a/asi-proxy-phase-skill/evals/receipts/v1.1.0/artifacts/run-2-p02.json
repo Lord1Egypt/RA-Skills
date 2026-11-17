@@ -1,0 +1,206 @@
+{
+  "authority_boundary": {
+    "allowed_actions": [
+      "inspect the installed skill bundle",
+      "prepare and validate this packet artifact"
+    ],
+    "approval_required": [
+      "any declared-workspace mutation",
+      "any intervention execution"
+    ],
+    "prohibited_actions": [
+      "mutate workspaces/silver/P02",
+      "external communication",
+      "invent missing observations",
+      "claim real ASI"
+    ]
+  },
+  "candidate_gate": {
+    "candidate_regime": false,
+    "conditions": {
+      "capability_reproduction": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "critical_unknowns": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "Workspace state and intervention effects cannot be observed or changed without authority.",
+        "status": "fail"
+      },
+      "hold_period": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "phase_readiness": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "residual_ratio": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "resource_floor": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      },
+      "verification_coverage": {
+        "criterion": "Declare a protocol-relative criterion before evaluation.",
+        "evidence_refs": [],
+        "rationale": "The criterion has not been evaluated.",
+        "status": "unknown"
+      }
+    },
+    "unknowns": [
+      {
+        "critical": true,
+        "description": "No phase evidence has been admitted.",
+        "evidence_refs": [],
+        "id": "initial-evidence-boundary"
+      }
+    ]
+  },
+  "execution": {
+    "actions": [],
+    "artifacts": [],
+    "status": "not_executed"
+  },
+  "interventions": [],
+  "next_binding_dimension": "verification_capacity",
+  "non_claims": [
+    "This packet is protocol-relative.",
+    "It does not predict, detect, or certify real ASI.",
+    "It does not prove a scientific phase transition or real-world causal effect."
+  ],
+  "objective": "Preserve a fail-closed intervention record when workspace mutation authority is absent",
+  "outcome_status": "halted",
+  "phase_assessment": {
+    "causal_formation": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "coordination_protocol_integrity": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "dimensional_consistency": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "effective_independence": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "exact_self_maintenance": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "finite_horizon_resource_persistence": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "perturbation_robustness": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "provenance_integrity": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "structural_reachability": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "target_bound_generative_catalysis": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "temporal_integrity": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "trust_quorum": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    },
+    "verification_capacity": {
+      "evidence_refs": [],
+      "rationale": "No admissible observation has been recorded.",
+      "status": "unknown",
+      "value": null
+    }
+  },
+  "residuals": {
+    "evidence_refs": [],
+    "status": "unknown",
+    "unresolved": [
+      "All 13 phase dimensions require evidence.",
+      "Intervention execution is blocked by absent workspace-mutation authority."
+    ]
+  },
+  "rollback": {
+    "available": false,
+    "steps": [],
+    "trigger": "No workspace mutation occurred, so rollback is not required."
+  },
+  "schema_version": "1.0.0",
+  "scope": {
+    "evaluation_horizon": "Packet preparation and one structural validation run.",
+    "in_scope": [
+      "fail-closed packet preservation",
+      "local structural validation"
+    ],
+    "out_of_scope": [
+      "all declared-workspace mutation",
+      "intervention execution",
+      "external systems",
+      "real-world ASI certification"
+    ],
+    "systems": [
+      "blocked verification intervention"
+    ],
+    "workspace": "workspaces/silver/P02"
+  },
+  "sources": {
+    "papers": [],
+    "repositories": []
+  },
+  "validation": {
+    "checks": [],
+    "status": "not_run"
+  }
+}

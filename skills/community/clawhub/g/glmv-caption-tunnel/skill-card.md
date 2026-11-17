@@ -1,43 +1,54 @@
-## Description: <br>
-Generate captions, summaries, and structured descriptions for images, videos, and documents using Zhipu GLM-V multimodal models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates captions and descriptions for images, videos, and documents using Zhipu GLM-V multimodal models, with support for URLs, local paths, image base64, and optional structured JSON output.
 
-## Publisher: <br>
-[tridefender](https://clawhub.ai/user/tridefender) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tridefender](https://clawhub.ai/user/tridefender)
 
-## Use Case: <br>
-Developers and agent users use this skill to caption, summarize, compare, or interpret media and document inputs, including local files that need temporary URL access for the GLM-V API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local videos and documents can be automatically exposed through a temporary public Cloudflare URL without a strong per-use consent gate. <br>
-Mitigation: Use only files approved for this exposure path, avoid confidential or regulated content, and add explicit per-file consent before processing sensitive local files. <br>
-Risk: Selected media and prompts are sent to Zhipu/BigModel for multimodal processing. <br>
-Mitigation: Submit only content approved for third-party API processing and keep ZHIPU_API_KEY scoped and stored outside committed files. <br>
+## Use Case:
 
+Developers and agents use this skill to caption, summarize, compare, or interpret images, videos, and documents through the Zhipu GLM-V API. It can return plain captions or structured JSON when response_format and a system prompt are provided.
 
-## Reference(s): <br>
-- [GLM-V Caption Source Homepage](https://github.com/zai-org/GLM-V/tree/main/skills/glmv-caption) <br>
-- [BigModel Chat Completions API Docs](https://docs.bigmodel.cn/api-reference/%E6%A8%A1%E5%9E%8B-api/%E5%AF%B9%E8%AF%9D%E8%A1%A5%E5%85%A8) <br>
-- [Cloudflare cloudflared Downloads](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/) <br>
-- [cloudflared GitHub Repository](https://github.com/cloudflare/cloudflared) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI output as JSON or plain caption text, with optional saved JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZHIPU_API_KEY; local videos and documents require cloudflared and may be temporarily exposed through a public tunnel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Local video and document paths may be exposed through a public quick tunnel, and security evidence reports weak scoping and misleading safety assurances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential files, directories, source trees, credentials, or regulated data; prefer remote URLs already intended for sharing, validate regular files only, bind to localhost, add per-file random tokens, verify dependencies, and require explicit consent before creating a public tunnel.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tridefender/skills/glmv-caption-tunnel)
+- [GLM-V Caption Homepage](https://github.com/zai-org/GLM-V/tree/main/skills/glmv-caption)
+- [Zhipu Chat Completions API Docs](https://docs.bigmodel.cn/api-reference/%E6%A8%A1%E5%9E%8B-api/%E5%AF%B9%E8%AF%9D%E8%A1%A5%E5%85%A8)
+- [Zhipu API Keys](https://bigmodel.cn/usercenter/proj-mgmt/apikeys)
+- [Cloudflare cloudflared Downloads](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/)
+- [cloudflared](https://github.com/cloudflare/cloudflared)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON response containing success, caption, usage, warning, or error fields; streaming mode can print caption text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save result JSON to a file; optional JSON-mode output is available through response_format and a system prompt.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

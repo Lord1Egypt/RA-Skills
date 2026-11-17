@@ -1,40 +1,53 @@
-## Description: <br>
-Analyzes images to detect AI generation, extract metadata, identify artifacts, and perform content moderation using local and cloud-based tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes images to detect AI generation, extract metadata, identify artifacts, and perform content moderation using local and cloud-based tools.
 
-## Publisher: <br>
-[raghulpasupathi](https://clawhub.ai/user/raghulpasupathi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[raghulpasupathi](https://clawhub.ai/user/raghulpasupathi)
 
-## Use Case: <br>
-Developers and content review teams use this skill to choose image detection workflows for AI-generated image checks, metadata review, artifact identification, reverse image search, and moderation. It supports local privacy-focused analysis as well as optional cloud API analysis when that fits the use case. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Private, regulated, or sensitive images may be exposed through optional cloud analysis, reverse image search, caching, or retained metadata. <br>
-Mitigation: Use the privacy-focused stack for private or regulated images and review each referenced package or service for what content, metadata, hashes, and results are transmitted or stored before enabling external APIs or caching. <br>
-Risk: Detection results may be inaccurate or misleading when used as the sole basis for moderation or authenticity decisions. <br>
-Mitigation: Treat outputs as decision support and review results before deployment or enforcement. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Image Detection on ClawHub](https://clawhub.ai/raghulpasupathi/image-detection) <br>
-- [Publisher profile](https://clawhub.ai/user/raghulpasupathi) <br>
+## Use Case:
 
+Developers and review teams use this skill to configure image-detection workflows that identify likely AI-generated images, inspect metadata and visible artifacts, and choose between privacy-focused local analysis and cloud-based moderation.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with npm commands and JSON or JavaScript configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend local-only, high-accuracy, or cloud API stacks depending on privacy and speed requirements.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may rely on changing npm packages without pinned versions or a lockfile.
+
+Mitigation: Audit packages before installation, pin dependency versions, and use a lockfile for repeatable installs.
+
+Risk: Hive API and reverse-image-search workflows may send images or metadata to outside services.
+
+Mitigation: Use the privacy-focused configuration for sensitive images and require explicit network and data-flow documentation before broader use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raghulpasupathi/skills/image-detection)
+- [Publisher profile](https://clawhub.ai/user/raghulpasupathi)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell commands and JSON or JavaScript configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local-only and cloud API configuration options for image analysis workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

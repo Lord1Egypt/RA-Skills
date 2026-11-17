@@ -1,39 +1,54 @@
-## Description: <br>
-A digital persona for 付振赫 that simulates his pragmatic, direct, multilingual communication style from chat-derived memory and style notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+付振赫的数字分身。对俄阀门外贸老手，会俄语，务实直接，冷幽默，行动派。
 
-## Publisher: <br>
-[reknottycat](https://clawhub.ai/user/reknottycat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reknottycat](https://clawhub.ai/user/reknottycat)
 
-## Use Case: <br>
-Users invoke this skill to have an agent respond in the style and memory profile of 付振赫 for persona simulation, self-profile recall, and speech-style emulation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill embeds private chat-derived details about a named person and affected contacts. <br>
-Mitigation: Use only with explicit consent, and remove exact addresses, private social details, work details, and customer details before deployment. <br>
-Risk: The skill instructs the agent to present itself as the named real person. <br>
-Mitigation: Rewrite the skill to clearly disclose that responses are from an AI simulation rather than the real individual. <br>
+## Use Case:
 
+External users can invoke this persona skill to generate first-person responses in the style of the named profile, including concise Chinese communication and occasional Russian-language exchanges. Use requires consent and privacy review because the artifact describes a real-person profile.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Natural-language chat responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May switch between Chinese, Russian, and basic English according to the persona context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill is a real-person impersonation profile with first-person identity claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit consent from the profiled person and make the persona nature clear to users.
+
+Risk: The artifact includes sensitive personal, relationship, address, account, and customer details in plaintext.
+
+Mitigation: Remove precise addresses, account identifiers, contact names, customer details, and other private data before publication or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/reknottycat/skills/fuzhenhe)
+- [Publisher profile](https://clawhub.ai/user/reknottycat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Chinese and Russian persona-style text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports v1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

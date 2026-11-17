@@ -1,43 +1,66 @@
-## Description: <br>
-Automate web browser interactions using natural language via CLI commands for browsing websites, navigating pages, extracting data, taking screenshots, filling forms, clicking buttons, and interacting with web applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate web browser interactions using natural language via CLI commands for browsing websites, navigating pages, extracting data, taking screenshots, filling forms, clicking buttons, and interacting with web applications.
 
-## Publisher: <br>
-[peytoncasper](https://clawhub.ai/user/peytoncasper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[peytoncasper](https://clawhub.ai/user/peytoncasper)
 
-## Use Case: <br>
-Developers and operators use this skill to drive a browser from CLI commands when they need an agent to navigate pages, extract structured data, take screenshots, or perform form and click workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad browser and shell-driven authority while reusing sessions, saving page data, and downloading files. <br>
-Mitigation: Use a dedicated browser profile, avoid saved passwords and sensitive accounts, confirm before submitting forms or downloading files, and periodically clear screenshots, downloads, cache, and .chrome-profile data. <br>
-Risk: The skill can switch between local Chrome and remote Browserbase execution based on available configuration. <br>
-Mitigation: Choose local versus Browserbase mode deliberately and verify environment configuration before running sensitive browsing tasks. <br>
-Risk: The security verdict is suspicious and the installed CLI source and dependencies are outside the provided evidence bundle. <br>
-Mitigation: Install only if you trust the publisher and can inspect the actual CLI source and dependency chain behind the npm install and npm link flow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Stagehand Browser CLI on ClawHub](https://clawhub.ai/peytoncasper/stagehand-browser-cli) <br>
-- [EXAMPLES.md](EXAMPLES.md) <br>
-- [REFERENCE.md](REFERENCE.md) <br>
+## Use Case:
 
+Developers and agents use this skill to drive a browser from natural language CLI commands for web navigation, page interaction, structured extraction, screenshots, and form workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, code, configuration, guidance, text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser screenshots, downloaded files, structured extraction JSON, and persistent browser session data depending on the command used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives an agent broad browser control that may interact with sensitive accounts, admin consoles, internal services, or private data.
+
+Mitigation: Use isolated browser profiles, avoid sensitive sites unless explicitly approved, and clear cookies and saved passwords after use.
+
+Risk: Browserbase mode may be selected automatically when configured API keys are present.
+
+Mitigation: Review environment variables and .env configuration before running browser commands so local or remote execution is intentional.
+
+Risk: Persistent browser sessions can retain cookies and passwords between runs.
+
+Mitigation: Use a dedicated profile for automation and remove or reset the profile when handling private or regulated workflows.
+
+Risk: Automatic downloads can save unreviewed files to the workspace.
+
+Mitigation: Inspect downloaded files before opening or executing them and clear the downloads directory after tasks.
+
+Risk: The submitted artifact references implementation files that are not included for review.
+
+Mitigation: Review the installed implementation and dependencies before deploying the skill in a shared or production environment.
+
+## Reference(s):
+
+- [Stagehand Browser CLI on ClawHub](https://clawhub.ai/peytoncasper/skills/stagehand-browser-cli)
+- [Browser Automation CLI Reference](artifact/REFERENCE.md)
+- [Browser Automation Examples](artifact/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands, JSON command outputs, screenshots, and downloaded files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Browser commands can produce screenshots under ./agent/browser_screenshots/ and downloads under ./agent/downloads/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

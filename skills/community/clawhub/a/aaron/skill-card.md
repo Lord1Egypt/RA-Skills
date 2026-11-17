@@ -1,41 +1,57 @@
-## Description: <br>
-Persistent receptionist/orchestrator agent for all CFO dental appointments. Aaron manages scheduling, reminders, pre-appointment prep, post-appointment follow-up, and insurance coordination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent receptionist/orchestrator agent for CFO dental appointments that manages scheduling, reminders, pre-appointment prep, post-appointment follow-up, and insurance coordination.
 
-## Publisher: <br>
-[ironiclawdoctor-design](https://clawhub.ai/user/ironiclawdoctor-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ironiclawdoctor-design](https://clawhub.ai/user/ironiclawdoctor-design)
 
-## Use Case: <br>
-Used by an individual or their delegated agent to manage dental appointments, reminders, insurance details, treatment follow-up, and local dental records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive dental, insurance, and location-related profile details in local plaintext JSON files. <br>
-Mitigation: Use it only when local plaintext storage is acceptable, avoid entering insurance identifiers unless needed, and confirm how to delete records and logs. <br>
-Risk: Built-in commute and location assumptions may be sensitive or inaccurate. <br>
-Mitigation: Review reminder text and travel assumptions before relying on them for appointment timing. <br>
+## Use Case:
 
+Employees or personal operations agents use Aaron to manage dental appointment scheduling, reminders, treatment follow-up, and insurance coordination for a CFO workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ironiclawdoctor-design/aaron) <br>
-- [Publisher profile](https://clawhub.ai/user/ironiclawdoctor-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text status reports, reminders, command examples, and local JSON records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists dental records and logs locally in JSON/JSONL files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Sensitive dental, insurance, identity, appointment, and commute details may be stored in plaintext local files and logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when local persistence is acceptable, verify restrictive file permissions, and define a deletion plan before storing personal or insurance data.
+
+Risk: Insurance member or group identifiers could be entered into persistent records.
+
+Mitigation: Avoid recording insurance identifiers unless the storage location is protected and retention requirements are clear.
+
+Risk: External cron reminders may expose appointment or health-related details through the reminder channel.
+
+Mitigation: Review any cron setup and notification destination before enabling scheduled reminders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ironiclawdoctor-design/skills/aaron)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text status reports and reminders with JSON records and JSONL logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists dental appointment, treatment, dentist, and insurance details in local files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

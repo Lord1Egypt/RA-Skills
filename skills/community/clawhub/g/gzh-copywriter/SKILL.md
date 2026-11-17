@@ -15,7 +15,7 @@ description: 公众号文案创作工具。基于红狐数据公众号爆款雷�
 
 ### 获取 API Key
 
-请前往 [红狐hub](https://redfox.hk/settings/api-keys?source=clawhub) 获取API KEY
+请前往 [红狐hub](https://redfox.hk/settings/api-keys?source=github) 获取API KEY
 
 ### 配置 API Key
 

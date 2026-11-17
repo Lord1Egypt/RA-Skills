@@ -1,52 +1,67 @@
-## Description: <br>
-Secrets-safe encrypted OpenClaw backups to S3/R2/B2/MinIO - lean modes, opt-in cron, staged restore. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secrets-safe encrypted OpenClaw backups to S3/R2/B2/MinIO - lean modes, opt-in cron, staged restore.
 
-## Publisher: <br>
-[obuchowski](https://clawhub.ai/user/obuchowski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[obuchowski](https://clawhub.ai/user/obuchowski)
 
-## Use Case: <br>
-Developers and operators use this skill to set up, run, verify, prune, schedule, and restore encrypted OpenClaw state backups to S3-compatible storage after explicit backup or restore intent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive bucket credentials and a backup encryption passphrase. <br>
-Mitigation: Use a dedicated least-privilege bucket key, keep secrets out of openclaw.json, and store the GPG passphrase in a mode-600 file or OpenClaw SecretRef. <br>
-Risk: Backup, restore, prune, and schedule operations can change local state or remote backup storage. <br>
-Mitigation: Run dry-run commands before first backup, restore, and prune actions, and require explicit user confirmation for state-changing operations. <br>
-Risk: Restoring a backup in place can overwrite existing OpenClaw state. <br>
-Mitigation: Prefer staged restores, review the dry-run file list, and confirm overwritten paths before any in-place restore. <br>
+## Use Case:
 
+Developers and operators use this skill to create, verify, upload, retain, and restore encrypted OpenClaw state backups to S3-compatible storage after explicit backup or restore requests.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/obuchowski/cloud-backup) <br>
-- [Project Homepage](https://github.com/obuchowski/openclaw-cloud-backup) <br>
-- [Credentials](references/credentials.md) <br>
-- [Setup Flow](references/setup-flow.md) <br>
-- [Security](references/security.md) <br>
-- [AWS S3 Provider](references/providers/aws-s3.md) <br>
-- [Backblaze B2 Provider](references/providers/backblaze-b2.md) <br>
-- [Cloudflare R2 Provider](references/providers/cloudflare-r2.md) <br>
-- [DigitalOcean Spaces Provider](references/providers/digitalocean-spaces.md) <br>
-- [MinIO Provider](references/providers/minio.md) <br>
-- [Other S3-Compatible Providers](references/providers/other.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dry-run plans, backup or restore status, exit-code explanations, and confirmation prompts for state-changing actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and changelog, released 2026-06-11) <br>
+Risk: Server security evidence says the implementation can produce plaintext sensitive backups despite claiming forced encryption.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use least-privilege bucket keys, keep access keys and passphrases out of openclaw.json, keep the passphrase file owner-only, and avoid plaintext backup options for full or settings backups unless the encryption policy is fixed.
+
+Risk: Restore, prune, and scheduling actions can overwrite state, delete archives, or create unattended jobs.
+
+Mitigation: Require dry-run output and explicit approval before restore, prune, or cron changes, and prefer staged restores before any in-place restore.
+
+Risk: Credentials stored in OpenClaw config can be copied into every backup archive.
+
+Mitigation: Use an AWS named profile, operator-managed environment, owner-only passphrase file, or OpenClaw SecretRef, and migrate away from plaintext config credentials.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/obuchowski/openclaw-cloud-backup)
+- [ClawHub skill page](https://clawhub.ai/obuchowski/skills/cloud-backup)
+- [Credentials](references/credentials.md)
+- [Setup flow](references/setup-flow.md)
+- [Security](references/security.md)
+- [AWS S3 provider guide](references/providers/aws-s3.md)
+- [Cloudflare R2 provider guide](references/providers/cloudflare-r2.md)
+- [Backblaze B2 provider guide](references/providers/backblaze-b2.md)
+- [DigitalOcean Spaces provider guide](references/providers/digitalocean-spaces.md)
+- [MinIO provider guide](references/providers/minio.md)
+- [Custom S3-compatible provider guide](references/providers/other.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands, configuration values, dry-run plans, and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce encrypted backup archives, verification reports, restore plans, and cron payloads only through user-confirmed workflows.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata and changelog, released 2026-07-02)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

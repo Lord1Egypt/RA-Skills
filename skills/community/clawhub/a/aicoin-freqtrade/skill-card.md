@@ -1,44 +1,64 @@
-## Description: <br>
-Helps agents create, backtest, tune, deploy, and monitor Freqtrade crypto strategies using AiCoin data and Freqtrade daemon/API controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, backtest, tune, deploy, and operate Freqtrade strategies with AiCoin market data integrations across CoinClaw-style agent containers and host-mode environments.
 
-## Publisher: <br>
-[procaross](https://clawhub.ai/user/procaross) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[procaross](https://clawhub.ai/user/procaross)
 
-## Use Case: <br>
-External developers and crypto-bot operators use this skill to manage Freqtrade workflows, including strategy generation, backtesting, hyperopt, strategy and pair switching, dry-run/live mode changes, and bot status, balance, position, and P&L checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live-trading controls can switch modes or place, exit, cancel, or delete real crypto trading actions. <br>
-Mitigation: Keep dry_run enabled until intentionally ready for real trading, and require manual confirmation before live-mode, force-enter, force-exit, cancel, or delete actions. <br>
-Risk: The skill handles sensitive trading and AiCoin credentials. <br>
-Mitigation: Run it only in an environment intended for this bot, avoid unrelated secrets, and do not expose API keys or daemon credentials in chat output. <br>
-Risk: Host-mode deployment can install software, write plaintext credentials, and start a persistent trading daemon. <br>
-Mitigation: Review host-mode deployment steps before use and restrict execution to machines where persistent Freqtrade operation is intended. <br>
+## Use Case:
 
+External developers and trading-bot operators use this skill to generate and manage Freqtrade strategies, run backtests and hyperopt, switch strategies or trading pairs, and query live bot status, balances, positions, and profit/loss. It is intended for users who understand the risks of automated cryptocurrency trading and can review generated strategy files before deployment.
 
-## Reference(s): <br>
-- [AiCoin Open Data](https://www.aicoin.com/opendata) <br>
-- [AiCoin Open API v3 Catalog](https://open.aicoin.com/api/v3/_catalog) <br>
-- [ClawHub Skill Page](https://clawhub.ai/procaross/aicoin-freqtrade) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON snippets, and Python strategy code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May issue local Node.js script commands against Freqtrade and write strategy or configuration files when authorized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.4 (source: server release evidence) <br>
+Risk: The skill can control a Freqtrade bot and may interact with configured exchange credentials, which can lead to real trading losses if used in live mode.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start in dry-run mode, verify exchange credentials and balances separately, and require explicit confirmation before live-mode or manual open/close actions.
+
+Risk: Generated or modified strategy files can affect automated trading behavior.
+
+Mitigation: Review strategy code and configuration changes before deployment, then backtest or dry-run before allowing live trading.
+
+Risk: Crafted action parameters or host-mode setup paths can run unintended commands or code.
+
+Mitigation: Avoid untrusted action inputs, prefer the managed CoinClaw daemon path, and install host prerequisites independently instead of relying on host-mode auto-install.
+
+Risk: Pointing AICOIN_BASE_URL at a non-AiCoin host can redirect API traffic and credentials.
+
+Mitigation: Keep AICOIN_BASE_URL unset or set only to an AiCoin-controlled endpoint.
+
+## Reference(s):
+
+- [AiCoin Open Data](https://www.aicoin.com/opendata)
+- [AiCoin Open API v3 Catalog](https://open.aicoin.com/api/v3/_catalog)
+- [ClawHub skill page](https://clawhub.ai/procaross/skills/aicoin-freqtrade)
+- [Publisher profile](https://clawhub.ai/user/procaross)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON parameters, and generated Python strategy code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify Freqtrade strategy and configuration files when used by an agent with filesystem and command execution access.]
+
+## Skill Version(s):
+
+3.5.4 (source: ClawHub release evidence; artifact package.json reports 3.5.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,64 @@
-## Description: <br>
-Provides guidance and examples for basic DolphinDB CRUD operations, including creating databases and tables, inserting data, querying, updating, and deleting records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through DolphinDB CRUD workflows, including database and table creation, data insertion, querying, updates, deletion, and distributed or in-memory table management.
 
-## Publisher: <br>
-[ugpoor](https://clawhub.ai/user/ugpoor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugpoor](https://clawhub.ai/user/ugpoor)
 
-## Use Case: <br>
-Developers and data engineers use this skill to draft and adapt DolphinDB scripts for common database setup, table management, CRUD operations, and partitioned data workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The examples normalize default administrator credentials for DolphinDB access. <br>
-Mitigation: Replace default credentials with a rotated, least-privilege account before use. <br>
-Risk: The skill includes DELETE, DROP, bulk UPDATE, and partition deletion examples that can irreversibly modify data. <br>
-Mitigation: Require explicit human confirmation, verified backups, and a controlled environment before running destructive examples. <br>
-Risk: The skill references shared helper scripts for DolphinDB environment setup. <br>
-Mitigation: Review the helper scripts in the local DolphinDB skill suite before sourcing or executing them. <br>
+## Use Case:
 
+Developers and database operators use this skill to have an agent draft DolphinDB setup checks, Python SDK calls, and CRUD examples for distributed and in-memory database tables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ugpoor/dolphindb-basic) <br>
-- [DolphinDB website](https://www.dolphindb.cn/) <br>
-- [DolphinDB documentation center](https://docs.dolphindb.cn/zh/) <br>
-- [Create databases and tables](https://docs.dolphindb.cn/zh/db_distr_comp/db_oper/create_db_tb.html) <br>
-- [Insert data](https://docs.dolphindb.cn/zh/db_distr_comp/db_oper/insert_data.html) <br>
-- [Queries](https://docs.dolphindb.cn/zh/db_distr_comp/db_oper/queries.html) <br>
-- [Update data](https://docs.dolphindb.cn/zh/db_distr_comp/mod_data.html) <br>
-- [Drop databases and tables](https://docs.dolphindb.cn/zh/db_distr_comp/db_oper/drop_db_tb.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python, DolphinDB, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Examples may include database-mutating commands that require human review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: The skill requires sourcing setup scripts from a separate dolphindb-skills package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the separate setup scripts before installing or using this skill.
+
+Risk: Examples include default DolphinDB administrator credentials.
+
+Mitigation: Change any default admin password and use least-privileged database accounts.
+
+Risk: Examples include destructive DELETE, DROP, and partition-removal operations.
+
+Mitigation: Require explicit backups, target checks, and operator confirmation before running destructive examples.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ugpoor/skills/dolphindb-basic)
+- [DolphinDB Official Site](https://www.dolphindb.cn/)
+- [DolphinDB Documentation Center](https://docs.dolphindb.cn/zh/)
+- [DolphinDB Create Database and Table](https://docs.dolphindb.cn/zh/db_distr_comp/db_oper/create_db_tb.html)
+- [DolphinDB Insert Data](https://docs.dolphindb.cn/zh/db_distr_comp/db_oper/insert_data.html)
+- [DolphinDB Queries](https://docs.dolphindb.cn/zh/db_distr_comp/db_oper/queries.html)
+- [DolphinDB Modify Data](https://docs.dolphindb.cn/zh/db_distr_comp/mod_data.html)
+- [DolphinDB Drop Database and Table](https://docs.dolphindb.cn/zh/db_distr_comp/db_oper/drop_db_tb.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes DolphinDB Python SDK examples and database operation snippets; users should adapt hosts, credentials, and target databases.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata; changelog: v1.4.0 添加强制环境检测流程，支持全局包装器调用)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Analyze themes/news for stock selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze themes/news for stock selection.
 
-## Publisher: <br>
-[fonilye](https://clawhub.ai/user/fonilye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fonilye](https://clawhub.ai/user/fonilye)
 
-## Use Case: <br>
-External users and developers can use this skill to submit stock-theme, news, keyword, or report queries and receive streamed stock-selection analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the user's API key and stock-analysis query to an unspecified plain-HTTP EasyAlpha endpoint. <br>
-Mitigation: Verify the real EasyAlpha endpoint before use, prefer an HTTPS hostname, use a revocable scoped API key, and avoid sending sensitive trading strategies or confidential business information. <br>
+## Use Case:
 
+Developers and external users can use this skill to send a keyword, news title, or report topic for stock-selection analysis with fast or deep analysis depth.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fonilye/content-stock) <br>
-- [Publisher profile](https://clawhub.ai/user/fonilye) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, API calls] <br>
-**Output Format:** [Streamed text chunks from a stock-analysis API call] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and EASYALPHA_API_KEY; supports fast and deep analysis modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Risk: The skill sends the API key and user stock-analysis queries to an external service over unencrypted HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after changing the endpoint to HTTPS with a trusted hostname, and use a scoped, rotatable EASYALPHA_API_KEY while avoiding sensitive research queries.
+
+Risk: The release evidence reports malformed trailing NUL bytes in SKILL.md.
+
+Mitigation: Remove the trailing NUL bytes from SKILL.md before publishing or installing the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fonilye/skills/content-stock)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Streaming text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EASYALPHA_API_KEY and Node.js; supports fast and deep analysis depth.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

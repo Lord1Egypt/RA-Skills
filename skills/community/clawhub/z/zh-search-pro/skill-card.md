@@ -1,44 +1,55 @@
-## Description: <br>
-Helps agents search Chinese-language content across Baidu, Bing China, WeChat, Zhihu, Toutiao, 360 Search, and other engines with advanced query syntax and time filters, without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文搜索增强工具，整合百度、必应、微信、知乎等中文搜索引擎，支持高级搜索语法和时间过滤。
 
-## Publisher: <br>
-[careytian-ai](https://clawhub.ai/user/careytian-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[careytian-ai](https://clawhub.ai/user/careytian-ai)
 
-## Use Case: <br>
-External users and developers use this skill to find Chinese-language market research, content ideas, academic material, public discussion, and SEO signals through common search engines from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms may be disclosed to the selected third-party search engine. <br>
-Mitigation: Avoid sensitive, confidential, personal, or regulated data in search queries and choose engines appropriate for the user's data handling expectations. <br>
-Risk: The broad search trigger can make the skill available for general search requests. <br>
-Mitigation: Confirm the user wants a Chinese-focused search workflow before applying this skill to broad or ambiguous search requests. <br>
-Risk: Some target search engines may present anti-abuse checks or unavailable results. <br>
-Mitigation: Retry only within acceptable use limits, switch to another listed engine when needed, and treat missing results as a retrieval limitation. <br>
+## Use Case:
 
+Developers, researchers, content creators, and market analysts use this skill to construct Chinese-focused web searches across Baidu, Bing China, WeChat, Zhihu, Toutiao, 360 Search, and related international engines without API keys.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/careytian-ai/zh-search-pro) <br>
-- [Usage examples](artifact/examples/usage-examples.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with web_fetch call examples and search URL patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended to guide agent-issued web_fetch searches against third-party search engines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: CHANGELOG, metadata.json, config.json, and server release metadata) <br>
+Risk: Search terms are sent to the selected external search engines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive or confidential queries, and choose search engines appropriate for the user's privacy and compliance requirements.
+
+Risk: The broad search trigger may activate this skill when a user intended a general search workflow.
+
+Mitigation: Narrow or remove the generic trigger if only explicit Chinese-search activation is desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/careytian-ai/skills/zh-search-pro)
+- [Usage examples](artifact/examples/usage-examples.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands]
+
+**Output Format:** [Markdown guidance with web_fetch call examples and search URL patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires web_fetch; no API key is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, config.json, metadata.json, CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

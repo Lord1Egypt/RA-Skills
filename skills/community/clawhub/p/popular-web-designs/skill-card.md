@@ -1,40 +1,55 @@
-## Description: <br>
-Provides 54 production-quality web design systems and a CLI for browsing, inspecting, exporting CSS tokens, and generating starter HTML/CSS from popular website styles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides 54 web design system templates that help agents generate HTML, CSS, and UI guidance matching recognizable website visual styles.
 
-## Publisher: <br>
-[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte)
 
-## Use Case: <br>
-Developers and frontend builders use this skill to quickly apply recognizable visual systems to landing pages, dashboards, and other HTML/CSS interfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generation and token-export commands can create or overwrite files at user-specified paths. <br>
-Mitigation: Run the CLI in a dedicated project directory and verify output paths before using write options. <br>
+## Use Case:
 
+Developers and agents use this skill to select popular web design templates, inspect design tokens, and generate starter HTML/CSS or design guidance for landing pages, dashboards, documentation sites, and frontend prototypes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/minirr890112-byte/popular-web-designs) <br>
-- [Project homepage](https://github.com/minirr890112-byte/popular-web-designs) <br>
-- [Design systems source collection](https://github.com/VoltAgent/awesome-design-md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, CLI text or JSON, CSS custom properties, and self-contained HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some commands can write CSS or HTML to user-specified output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter, setup.py, package __version__, release metadata) <br>
+Risk: The documented pip install path fetches executable Python from an unpinned GitHub branch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository before installation and prefer a pinned commit, signed release, or trusted package version.
+
+Risk: Generated CSS and HTML may closely imitate recognizable third-party website styles.
+
+Mitigation: Review generated assets for brand, trademark, and originality requirements before using them in public or commercial products.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/minirr890112-byte/skills/popular-web-designs)
+- [Project homepage](https://github.com/minirr890112-byte/popular-web-designs)
+- [Original design-system source](https://github.com/VoltAgent/awesome-design-md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, CSS custom properties, and self-contained HTML/CSS snippets or files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI output can be printed to stdout or written to local CSS and HTML files when an output path is provided.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence, artifact frontmatter, setup.py, and package __version__)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

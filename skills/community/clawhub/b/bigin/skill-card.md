@@ -1,41 +1,56 @@
-## Description: <br>
-Zoho Bigin CRM CLI for searching deals, contacts, and accounts, adding notes, moving deal stages, and updating Bigin records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zoho Bigin CRM CLI support for searching deals, contacts, and accounts, adding notes, moving deal stages, and updating Bigin records.
 
-## Publisher: <br>
-[Ingodibella](https://clawhub.ai/user/Ingodibella) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ingodibella](https://clawhub.ai/user/ingodibella)
 
-## Use Case: <br>
-Employees and operators managing Zoho Bigin CRM use this skill to retrieve pipeline, contact, and account details and, with explicit approval, perform CRM updates such as notes, stage moves, record edits, or raw API calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access and change live CRM data, including notes, deal stages, records, deletes, and raw API calls. <br>
-Mitigation: Keep BIGIN_WRITE unset unless approving one specific CRM change, require BIGIN_CONFIRM for deletes, and review record IDs, endpoints, and payloads before execution. <br>
-Risk: The artifact references a missing bigin.sh helper, so command behavior depends on a helper not present in the reviewed files. <br>
-Mitigation: Install only after verifying the helper source and contents, and confirm it matches the documented read/write/delete guardrails. <br>
-Risk: OAuth credentials may grant access to the intended Bigin account and scopes. <br>
-Mitigation: Use the least-privileged OAuth file for the intended Bigin account and avoid raw API calls unless the endpoint and payload have been reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ingodibella/bigin) <br>
+## Use Case:
 
+Developers, operators, and CRM users use this skill to query Zoho Bigin CRM records, inspect pipeline status, manage notes, and prepare clearly authorized record updates through the documented CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and CRM record or API responses when commands are run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read commands work by default; write and delete operations require explicit environment gates and user approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server-resolved release) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generic CRM terms such as contacts, accounts, deals, and notes could trigger the skill when the user did not intend to access Zoho Bigin CRM data.
+
+Mitigation: Install and activate the skill only for workflows that intentionally involve Zoho Bigin CRM, and confirm CRM intent before acting on ambiguous requests.
+
+Risk: Commands that create, update, move, or delete CRM records can change business data.
+
+Mitigation: Require clear user confirmation before mutation commands and use the documented BIGIN_WRITE and BIGIN_CONFIRM guardrails for write and delete operations.
+
+Risk: The skill uses Zoho Bigin CRM credentials and can expose CRM data in command results.
+
+Mitigation: Use the configured OAuth credential file only in trusted environments and avoid displaying or logging sensitive customer data beyond the user's requested task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ingodibella/skills/bigin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and CRM result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read operations are the default; record creation, update, movement, and deletion require explicit user approval and the documented write or confirmation environment variables.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

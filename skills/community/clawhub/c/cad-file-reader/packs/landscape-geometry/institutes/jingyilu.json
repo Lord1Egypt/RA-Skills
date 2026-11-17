@@ -1,0 +1,17 @@
+{
+  "description": "由 cad_landscape_calibrate 生成，请人工复核补充",
+  "name": "jingyilu",
+  "plant_trees": [
+    "山楂树",
+    "柿树",
+    "紫叶矮樱"
+  ],
+  "plant_shrubs": [
+    "棣棠",
+    "金银木",
+    "黄栌"
+  ],
+  "plant_other": [
+    "淡竹"
+  ]
+}

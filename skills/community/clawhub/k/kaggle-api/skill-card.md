@@ -1,48 +1,60 @@
-## Description: <br>
-Kaggle API integration with managed authentication for accessing datasets, models, competitions, and kernels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search, download, and interact with Kaggle datasets, models, competitions, and notebooks through Maton-managed authentication.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[maton](https://clawhub.ai/user/maton)
 
-## Use Case: <br>
-Developers and agents use this skill to search, download, and interact with Kaggle resources through Maton-managed authentication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on Maton brokering Kaggle requests and handling authentication. <br>
-Mitigation: Install only if you trust Maton for this workflow and connect only the Kaggle account intended for agent use. <br>
-Risk: MATON_API_KEY grants access to Maton-managed Kaggle operations. <br>
-Mitigation: Store MATON_API_KEY securely, avoid exposing it in prompts or logs, and rotate it if disclosure is suspected. <br>
-Risk: Deleting a connection can remove access needed by later Kaggle operations. <br>
-Mitigation: Verify the connection id before using delete examples or automating connection cleanup. <br>
+## Use Case:
 
+Developers and other Kaggle users can use this skill to locate and retrieve datasets, models, competition information, and notebooks through an authorized Maton connection. Optional hosted functions and triggers support user-approved automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/byungkyu/kaggle-api) <br>
-- [Publisher profile](https://clawhub.ai/user/byungkyu) <br>
-- [Maton](https://maton.ai) <br>
-- [Kaggle API documentation](https://www.kaggle.com/docs/api) <br>
-- [Kaggle datasets](https://www.kaggle.com/datasets) <br>
-- [Kaggle models](https://www.kaggle.com/models) <br>
-- [Kaggle competitions](https://www.kaggle.com/competitions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell, Python, JavaScript, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and MATON_API_KEY for live Kaggle operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Kaggle access is mediated by a Maton connection and its authentication permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user intends to connect Kaggle; prefer OAuth to a long-lived API key and use only the access required for the task.
+
+Risk: Writes and hosted automation can modify resources or run under the connected account.
+
+Mitigation: Default to reading and listing; obtain explicit approval for each write, new connection, and hosted function or trigger action.
+
+Risk: Trigger destinations can forward matching event data continuously until removed.
+
+Mitigation: Review and explicitly approve each destination and its recipient before enabling it; remove it when no longer needed.
+
+## Reference(s):
+
+- [Kaggle API documentation](https://www.kaggle.com/docs/api)
+- [Maton](https://maton.ai)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+- [Kaggle skill on ClawHub](https://clawhub.ai/maton/skills/kaggle-api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance]
+
+**Output Format:** [Text or Markdown with CLI commands, API examples, and returned resource information]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the user's authorized Kaggle connection and available network access.]
+
+## Skill Version(s):
+
+1.2.5 (source: ClawHub release; skill frontmatter lists 1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

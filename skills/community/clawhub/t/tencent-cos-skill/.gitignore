@@ -1,0 +1,6 @@
+.env
+.env.enc
+.env.enc.bak
+
+node_modules
+package-lock.json

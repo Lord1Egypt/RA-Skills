@@ -1,0 +1,71 @@
+{
+  "schema": "openclaw.safe_update.shadow_runs_index.v1",
+  "effect": "evaluation_only",
+  "runtime_effect": "none",
+  "external_effect": "none",
+  "external_write_effect": "none",
+  "authoritative": false,
+  "canonical_status_effect": "none",
+  "decision": "retain_additive_baseline",
+  "selective_omission_enabled": false,
+  "future_selective_rfc_required": true,
+  "human_risk_acceptance_can_upgrade": false,
+  "collection": {
+    "state": "closed_early_conservative",
+    "budget_days": 90,
+    "max_field_rehearsals": 10,
+    "budget_exhausted": false,
+    "stop_reason": "positive_minimum_not_sought_in_v1.3"
+  },
+  "thresholds": {
+    "labeled_fixtures": 12,
+    "field_rehearsals": 5,
+    "distinct_candidate_roots": 3,
+    "unexplained_false_greens": 0,
+    "omitted_failing_or_risk_revealing_checks": 0,
+    "unique_findings_with_complete_evidence": 1
+  },
+  "observed": {
+    "labeled_fixtures": 14,
+    "field_rehearsals": 0,
+    "distinct_candidate_roots": 0,
+    "unexplained_false_greens": 0,
+    "omitted_failing_or_risk_revealing_checks": 0,
+    "unique_findings_with_complete_evidence": 0
+  },
+  "completion": {
+    "fixtures_percent": 100,
+    "field_rehearsals_percent": 0,
+    "candidate_roots_percent": 0,
+    "positive_gate_met": false
+  },
+  "blockers": [
+    "distinct_candidate_roots_below_minimum",
+    "field_rehearsals_below_minimum",
+    "unique_finding_evidence_incomplete"
+  ],
+  "runs": [
+    {
+      "id": "v1.3-frozen-corpus-2026-07-19",
+      "stratum": "fixture",
+      "status": "completed",
+      "candidate_root": null,
+      "corpus_digest": "sha256:e0980ed22768d143af7d82ca9c04f2766c14c57f12e972a4866520274d0b3058",
+      "run_digest": "sha256:30c6fae599ac98ee2e914e4b76e881e510ca1e7ca7b06df8d4dd5cb92f9318e1",
+      "evidence_digests": [
+        "sha256:26fdac3fe90d1735c9412e55a23eb25d6e5c38ce45e6c320a6fc52efcc1aeea1",
+        "sha256:3e7585cb64c672baf3714c9cfce264636e117029c23661ebe5daffee3172676e",
+        "sha256:5c8da28bca5f0244a0a84c558c4e0a490e0f630cfc403a4bdda901c8af200dee"
+      ],
+      "fixture_count": 14,
+      "hypothetical_omissions": 0,
+      "unexplained_false_greens": 0,
+      "omitted_failing_or_risk_revealing_checks": 0,
+      "evidence_links": [
+        "https://github.com/pdurlej/openclaw-skill-safe-update/pull/34",
+        "references/benchmark-scoring-protocol.md",
+        "references/benchmark-runner.md"
+      ]
+    }
+  ]
+}

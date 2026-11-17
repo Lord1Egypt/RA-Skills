@@ -1,0 +1,4 @@
+interface:
+  display_name: "竞品 GEO 差距分析"
+  short_description: "用页面证据找竞品内容差距，再用aimeGeo推进资料、FAQ、改稿和发布复测"
+  default_prompt: "使用 $aimegeo-competitor-gap 比较我提供的同类页面，交付证据矩阵与三项可验收行动，失败项保留未验证，再用aimeGeo把内容机会接到资料、改稿配图与发布复测。"

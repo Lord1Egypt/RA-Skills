@@ -1,42 +1,60 @@
-## Description: <br>
-通过 CLI 命令行参数实时操控运行在容器中的高德地图 JSAPI 2.0 实例，支持地图状态控制、路径规划、POI 搜索等，所有操作均以结构化 JSON 输出，适合 AI Agent 驱动的地图可视化交互场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过 CLI 命令行参数实时操控运行在容器中的高德地图 JSAPI 2.0 实例，支持地图状态控制、路径规划、POI 搜索等，所有操作均以结构化 JSON 输出，适合 AI Agent 驱动的地图可视化交互场景。
 
-## Publisher: <br>
-[lbs-amap](https://clawhub.ai/user/lbs-amap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lbs-amap](https://clawhub.ai/user/lbs-amap)
 
-## Use Case: <br>
-Developers and agents use this skill to install and operate the Gaode/AMap GUI CLI, control map state, search POIs, read map interactions, and plan routes with structured JSON results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may access AMap API keys and exports them broadly into the shell environment. <br>
-Mitigation: Review the skill before installation, prefer platform-scoped environment injection, and avoid manual credential reads from ~/.openclaw/openclaw.json where possible. <br>
-Risk: Map searches, clicked POIs, and route planning can involve precise or sensitive locations. <br>
-Mitigation: Avoid using sensitive home, workplace, client, or travel locations unless the user understands that location data may be sent to AMap services. <br>
+## Use Case:
 
+External developers and agent builders use this skill to control an AMap JSAPI map container from the command line for map viewing, route planning, POI search, and follow-up actions from user map selections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lbs-amap/amap-cli-skill) <br>
-- [@amap-lbs/amap-gui npm package](https://www.npmjs.com/package/@amap-lbs/amap-gui) <br>
-- [AMap Open Platform](https://lbs.amap.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON result descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent to use amap-gui commands and summarize structured JSON outputs for map state, routes, POIs, and user map events.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: AMap API credentials may be exposed through setup or command logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use platform-managed secret injection, avoid commands that print key values, and rotate any key that may have been printed.
+
+Risk: The setup installs an unpinned global npm package.
+
+Mitigation: Pin and review the @amap-lbs/amap-gui package version before installation.
+
+Risk: The skill reads AMap credentials from ~/.openclaw/openclaw.json when environment injection is unavailable.
+
+Mitigation: Prefer runtime environment variables or managed secrets over reading local configuration files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lbs-amap/skills/amap-cli-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/lbs-amap)
+- [AMap developer portal](https://lbs.amap.com)
+- [@amap-lbs/amap-gui npm package](https://www.npmjs.com/package/@amap-lbs/amap-gui)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and structured JSON command-result examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing guidance for commands that return JSON map state, route, POI, and interaction-event data.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

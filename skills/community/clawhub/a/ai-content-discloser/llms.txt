@@ -1,0 +1,13 @@
+# ai-content-discloser
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`。
+
+## 关键文件
+
+- [SKILL.md](SKILL.md)：主说明书（frontmatter + 触发条件 + 执行步骤）
+- [AGENTS.md](AGENTS.md)：AI 代理说明书
+- [README.md](README.md)：人类总览（如存在）
+
+## 一句话定位
+
+ai-content-discloser — 为 AI 参与（全生成/辅助/混合）的内容一键生成合规披露声明：显式声明（中/EN）+ 隐式元数据标注 + 平台贴法，依据中国《人工智能生成合成内容标识办法》与 EU AI Act 第 50 条口径。

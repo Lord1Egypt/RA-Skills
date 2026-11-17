@@ -1,37 +1,53 @@
-## Description: <br>
-Command-line JSON processor for extracting, filtering, and transforming JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line JSON processor. Extract, filter, transform JSON.
 
-## Publisher: <br>
-[gumadeiras](https://clawhub.ai/user/gumadeiras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gumadeiras](https://clawhub.ai/user/gumadeiras)
 
-## Use Case: <br>
-Developers and engineers use this skill for concise jq installation, command syntax, filters, flags, and examples when extracting, filtering, and transforming JSON. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing jq from an untrusted source can expose users to tampered command-line binaries. <br>
-Mitigation: Install jq through a trusted package manager or the official jq project download page. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [jq downloads](https://jqlang.org/download/) <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick reference for installing jq and composing command-line filters to extract, reshape, summarize, and pretty-print JSON.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides concise jq command examples and installation guidance; no runtime execution is performed by the skill itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing jq from an untrusted package or binary source could introduce supply-chain risk.
+
+Mitigation: Install jq through a trusted package manager or from a trusted download source.
+
+Risk: jq filters can expose, transform, or print sensitive JSON fields in command output.
+
+Mitigation: Review jq commands before running them on sensitive JSON and avoid printing secrets or regulated data.
+
+## Reference(s):
+
+- [jq downloads](https://jqlang.org/download/)
+- [ClawHub skill page](https://clawhub.ai/gumadeiras/skills/jq)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise jq installation, usage, flag, filter, and example guidance.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

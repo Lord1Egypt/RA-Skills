@@ -1,38 +1,51 @@
-## Description: <br>
-Call GET /api/v1/google/news/search for Google SERP News Search through Just Serp API with query. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/v1/google/news/search for Google SERP News Search through Just Serp API with query.
 
-## Publisher: <br>
-[justserpapi](https://clawhub.ai/user/justserpapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justserpapi](https://clawhub.ai/user/justserpapi)
 
-## Use Case: <br>
-Developers and agents use this skill to query Just Serp API for Google News search results by keyword, with optional country, language, topic, publication, section, and sort filters. It supports media monitoring and news aggregation workflows that need headlines and source metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_news_search&utm_content=project_link) <br>
-- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_news_search&utm_content=project_link) <br>
+Developers and agents use this skill to query Just Serp API's Google News search endpoint for headlines and source metadata for media monitoring or news aggregation.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with optional raw JSON response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_SERP_API_KEY; avoid exposing the API key in chat, screenshots, logs, or command output.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The documented command passes the Just Serp API key through a command-line argument, which can expose it through shell history, process monitoring, or logs.
+
+Mitigation: Prefer a version that reads JUST_SERP_API_KEY directly from the process environment; avoid pasting key values into chat or logs and rotate the key if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/justserpapi/skills/justserpapi-google-news-search)
+- [Just Serp API](https://justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_news_search&utm_content=project_link)
+- [Just Serp API Docs](https://docs.justserpapi.com/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justserpapi_google_news_search&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses query parameters for Google News search and requires JUST_SERP_API_KEY.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

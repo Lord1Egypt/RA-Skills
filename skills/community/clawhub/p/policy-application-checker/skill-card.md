@@ -1,46 +1,60 @@
-## Description: <br>
-Read policies, application requirements, and forms, then turn them into a completeness checklist, risk list, and submission plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read policies, application requirements, and forms, then turn them into a completeness checklist, risk list, and submission plan.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External users and agents use this skill to convert policy text, application requirements, forms, deadlines, applicant details, attachments, and blockers into a practical submission checklist and plan. It is intended to surface missing evidence, ambiguous requirements, and readiness risks before a submission is finalized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Policy documents, application requirements, forms, and applicant profiles may contain sensitive personal or business information. <br>
-Mitigation: Treat input materials as sensitive and provide only the files or excerpts needed for the checklist task. <br>
-Risk: The helper script can write a local checklist file and may overwrite a default output file in the working directory. <br>
-Mitigation: Run the helper only on explicitly selected input files and pass an explicit output path instead of relying on the default checklist.md. <br>
-Risk: The skill structures requirements and flags readiness issues but does not prove legal, financial, or submission compliance. <br>
-Mitigation: Keep assumptions explicit, mark uncertain fields for confirmation, and have responsible reviewers verify requirements before final submission. <br>
+## Use Case:
 
+External users, developers, and operations teams use this skill to turn policy or application materials into actionable submission checklists, risk lists, timelines, and evidence trackers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/policy-application-checker) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [README](README.md) <br>
-- [Example prompt](examples/example-prompt.md) <br>
-- [Checklist template](resources/checklist_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown checklists, risk lists, timelines, evidence trackers, and optional local checklist files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a local Python helper to write a checklist file from explicitly provided JSON requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and CHANGELOG; SKILL.md frontmatter reports 1.1.0) <br>
+Risk: User-provided policy, application, and applicant-profile details may include sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide materials needed for the task and review outputs before relying on them.
+
+Risk: Generated checklists and timelines may omit context or misread ambiguous requirements.
+
+Mitigation: Treat outputs as planning drafts and verify requirements, deadlines, and evidence against the source materials.
+
+Risk: The helper script can overwrite an existing file when the same --out path is reused.
+
+Mitigation: Use a deliberate output filename and confirm before writing over existing work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/policy-application-checker)
+- [README](README.md)
+- [Checklist template](resources/checklist_template.md)
+- [Example prompt](examples/example-prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown checklist, risk list, submission timeline, evidence tracker, and optional generated checklist file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The local helper script accepts an explicit input JSON path and output path; choosing an existing output path may overwrite that file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog; artifact frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

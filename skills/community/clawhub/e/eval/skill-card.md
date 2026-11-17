@@ -1,44 +1,61 @@
-## Description: <br>
-Evaluates a PA agent's tasks, skills, network health, integrations, memory quality, and supervisor performance into a structured report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates PA-managed tasks, skills, network health, billing, calendar connections, and memory quality by combining supervisor status checks with quality scoring.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-PA owners and operators use this skill to run on-demand or scheduled evaluations of task execution, integrations, memory hygiene, and PA network health. The skill produces scores, status checks, and prioritized recommendations for follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads sensitive workspace data, sources local context, and uses stored credentials. <br>
-Mitigation: Review the local context file and credential paths before use, narrow what data the eval may inspect, and require confirmation before credentialed API checks. <br>
-Risk: The skill can create ongoing feedback logs and weekly saved evaluation files without explicit retention controls. <br>
-Mitigation: Make feedback logging and saved eval files opt-in, and define clear retention and deletion rules before deployment. <br>
-Risk: Broad trigger phrases can cause evaluation to run when the user did not intend a full inspection. <br>
-Mitigation: Constrain trigger phrases to explicit eval requests and confirm before running broad workspace or service health checks. <br>
+## Use Case:
 
+Owners and operators of OpenClaw PA workspaces use this skill to run on-demand, weekly, or incident-driven evaluations of task status, integration health, memory health, and PA performance. The skill produces a structured report with scores, findings, and prioritized recommendations.
 
-## Reference(s): <br>
-- [Eval skill listing](https://clawhub.ai/netanel-abergel/eval) <br>
-- [Anthropic Models API](https://api.anthropic.com/v1/models) <br>
-- [monday.com API v2](https://api.monday.com/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with scoring tables, status summaries, shell command snippets, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local workspace files, source local context, call external APIs with stored credentials, and write weekly evaluation files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill can inspect broad workspace state and run local shell checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the paths and commands before use, scope checks to the intended workspace, and require explicit approval before running broad audits.
+
+Risk: The skill can contact external services with local credentials.
+
+Mitigation: Require explicit consent for live credentialed checks, use least-privilege credentials, and avoid printing tokens or sensitive response bodies.
+
+Risk: The skill loads local context through shell source semantics.
+
+Mitigation: Replace shell sourcing with a safe configuration parser before deployment.
+
+Risk: The skill can create ongoing feedback and evaluation records.
+
+Mitigation: Define where logs are stored, who can read them, and how they are retained or deleted.
+
+## Reference(s):
+
+- [ClawHub Eval skill page](https://clawhub.ai/netanel-abergel/skills/eval)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with inline shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scores, counts, integration status checks, memory-health checks, and recommendations.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

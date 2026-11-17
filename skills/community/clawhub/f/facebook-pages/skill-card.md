@@ -1,44 +1,59 @@
-## Description: <br>
-Manage Facebook Pages, posts, comments, messages, and insights via the Facebook Graph API from chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Facebook Pages, posts, comments, messages, and insights via the Facebook Graph API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and developers use this skill to manage Facebook Page content, comments, messages, and insights from an OpenClaw chat through ClawLink-authenticated Facebook Graph API tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A connected Facebook account can manage Pages, including public posts, comments, messages, settings, and analytics. <br>
-Mitigation: Only connect accounts and Pages intended for OpenClaw management, and keep access scoped to the Pages the user expects to manage. <br>
-Risk: Write or destructive actions can change public Page content or interactions. <br>
-Mitigation: Review previews carefully and confirm the target resource and effect before creating, updating, publishing, sending, or deleting content. <br>
+## Use Case:
 
+Page managers and their agents use this skill to publish content, moderate comments, respond to messages, and review engagement insights. They can also read public Facebook data without connecting an account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/facebook-pages) <br>
-- [Facebook Graph API Documentation](https://developers.facebook.com/docs/graph-api/) <br>
-- [Facebook Graph API Reference](https://developers.facebook.com/docs/graph-api/reference/) <br>
-- [Facebook Graph API Changelog](https://developers.facebook.com/docs/graph-api/changelog) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a ClawLink OAuth connection; write and destructive Facebook Page actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Connecting a Facebook account grants access to managed Pages according to approved permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested permissions during the ClawLink and Facebook connection flow.
+
+Risk: Public-data lookups consume paid ClawLink credit even without a connected Facebook account.
+
+Mitigation: Check whether a public-data lookup is needed before making a paid call.
+
+Risk: Publishing, messaging, updating, or deleting can affect public content or real users.
+
+Mitigation: Preview the target and intended effect, then obtain explicit user confirmation before executing a write.
+
+## Reference(s):
+
+- [Facebook skill on ClawHub](https://clawhub.ai/hith3sh/skills/facebook-pages)
+- [Facebook Graph API documentation](https://developers.facebook.com/docs/graph-api/)
+- [ClawLink documentation](https://docs.claw-link.dev/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.7 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

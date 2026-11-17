@@ -1,45 +1,58 @@
-## Description: <br>
-NL emotion tracking and prompt injection via an OpenClaw hook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NL emotion tracking + prompt injection via OpenClaw hook.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add a workspace hook that tracks user and agent emotion summaries, persists state across sessions, and injects a compact emotion_state block into the system prompt. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent emotion profiling can create sensitive user and agent state. <br>
-Mitigation: Install only where users accept persistent emotion tracking, and define how emotion-state.json can be deleted or the hook disabled. <br>
-Risk: Recent conversation content may be sent to SkillBoss API Hub or a configured classifier. <br>
-Mitigation: Use a dedicated limited API key, avoid sensitive conversations, and configure a trusted classifier endpoint when needed. <br>
-Risk: Stored emotion summaries are injected into the system prompt and can influence agent behavior. <br>
-Mitigation: Review the generated prompt context before production use and tune history, confidence, and trend settings for the workspace. <br>
-Risk: The hook reads other agents' emotion state by default. <br>
-Mitigation: Set EMOTION_MAX_OTHER_AGENTS to 0 unless cross-agent sharing is explicitly desired. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install and configure an OpenClaw bootstrap hook that classifies recent user and agent emotions, stores inferred emotion state, and injects a compact emotion summary into future agent context.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/quincygunter/qui-emotion-state) <br>
-- [SkillBoss API Hub classifier endpoint](https://api.heybossai.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [XML-like prompt block with JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists inferred emotion summaries and uses environment variables for classifier and history settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Recent conversation messages may be sent to an external or configured emotion classifier.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only where users understand that data flow, and prefer a trusted local or tightly controlled HTTPS classifier.
+
+Risk: Emotion profiles persist on disk and may be injected into future prompts.
+
+Mitigation: Define deletion and retention practices for stored emotion-state.json files before deployment.
+
+Risk: Stored emotion profiles may be shared across agents when cross-agent entries are enabled.
+
+Mitigation: Set EMOTION_MAX_OTHER_AGENTS to 0 unless cross-agent sharing is explicitly desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quincygunter/skills/qui-emotion-state)
+- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration, and injected emotion_state text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The hook persists inferred emotion entries as JSON state and injects a compact emotion_state block during agent bootstrap.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

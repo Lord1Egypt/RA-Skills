@@ -1,42 +1,55 @@
-## Description: <br>
-Scans WeChat public-account articles for sensitive compliance terms, produces a violation report, and can rewrite flagged wording into safer alternatives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks WeChat public-account articles for sensitive compliance terms, reports matched risks, and can rewrite text into safer phrasing.
 
-## Publisher: <br>
-[clarezoe](https://clawhub.ai/user/clarezoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarezoe](https://clawhub.ai/user/clarezoe)
 
-## Use Case: <br>
-Writers, editors, and developers preparing Chinese-language WeChat public-account articles use this skill to find sensitive terms, review severity and line-numbered findings, and optionally produce safer replacement wording before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic rewrite mode can change article wording and may alter nuance or over-apply conservative replacements. <br>
-Mitigation: Use report-only mode for review drafts, inspect all suggestions and [REVIEW] markers, and rely on the generated backup before accepting file changes. <br>
-Risk: Sensitive-word lists and platform enforcement rules can become outdated or miss context-dependent issues. <br>
-Mitigation: Treat the report as a pre-publication aid, keep the sensitive-words reference current, and perform human compliance review before publishing. <br>
+## Use Case:
 
+Content authors and editors use this skill before publishing WeChat public-account articles to detect risky terms, generate a compliance report, and prepare safer wording.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clarezoe/wechat-compliance-check) <br>
-- [Project homepage](https://github.com/nicekate/wechat-compliance-check) <br>
-- [Sensitive words reference](references/sensitive-words.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Markdown report with line-numbered findings, rewrite suggestions, and optional modified article files with backups.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report-only mode leaves source files unchanged; fix mode backs up the original file and marks context-dependent terms for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: Suggested replacements may change nuance or produce misleading wording in political, technical, medical, or commercial content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the compliance report and rewritten text before publishing.
+
+Risk: Fix mode can modify the input article file.
+
+Mitigation: Use report-only mode when no file changes are desired, or review the timestamped backup before accepting edits.
+
+## Reference(s):
+
+- [Sensitive words reference](references/sensitive-words.md)
+- [Project homepage](https://github.com/nicekate/wechat-compliance-check)
+- [ClawHub skill page](https://clawhub.ai/clarezoe/skills/wechat-compliance-check)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown compliance report with rewritten text or replacement guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify the target file and create a timestamped backup in fix mode; report-only mode avoids file changes.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

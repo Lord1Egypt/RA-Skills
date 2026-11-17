@@ -1,0 +1,13 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_query_app_user",
+		"description": "Query the current user's roles and permissions in this application, including role list and admin status. If the user is admin, they have all permissions on all modules and permissionList will not be returned; otherwise permissionList is returned with format moduleKey_PermissionName. Access permission format: moduleKey_ModuleTypeAccess (e.g. task_TableAccess). Different module types have different permissions: Table: TableQuery, TableInsert, TableUpdate, TableDelete; BpmnData: BpmnDataViewData, BpmnDataViewTask, BpmnDataDeleteProcess, BpmnDataRevokeProcess, BpmnDataEditData, BpmnDataProcessEditStatus, BpmnDataProcessEditVersion, BpmnDataProcessEditStartup; Survey: SurveyEdit; Textindex: TextindexQuery. Example: task_TableInsert means insert permission on the 'task' table module.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+
+			}
+		}
+	}
+}

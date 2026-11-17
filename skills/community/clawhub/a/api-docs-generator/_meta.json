@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "api-docs-generator",
+  "schema_version": "1",
+  "name": "api-docs-generator",
   "version": "1.0.0",
-  "publishedAt": 1772443874005
+  "description": "自动生成 API 文档",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["api", "docs", "openapi", "swagger"],
+  "license": "MIT"
 }

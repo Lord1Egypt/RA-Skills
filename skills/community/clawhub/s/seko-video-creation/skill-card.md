@@ -1,44 +1,51 @@
-## Description: <br>
-Seko Video Creation helps agents create Seko-powered video projects from text prompts, including proposal generation, asset download, proposal revision, and final video generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+All-in-one AI video creation that builds complete, consistent, production-ready long-form videos from simple text prompts using seko.sensetime.com.
 
-## Publisher: <br>
-[sekoplatform](https://clawhub.ai/user/sekoplatform) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sekoplatform](https://clawhub.ai/user/sekoplatform)
 
-## Use Case: <br>
-Creators and production teams use this skill to manage an AI video workflow from an initial idea through a Seko planning proposal and generated video. Agents can submit prompts, poll Seko task status, save JSON and Markdown project records, download image assets, modify proposals, and retrieve generated MP4 files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a Seko API key and may save a .env file in the workspace. <br>
-Mitigation: Use a limited or revocable SEKO_API_KEY and do not share project directories that include .env or other credential-bearing files. <br>
-Risk: The skill downloads generated images and videos from URLs returned by the Seko service. <br>
-Mitigation: Review downloaded media URLs and generated files before using the outputs in sensitive networks or publishing workflows. <br>
-Risk: Generated proposals and videos can contain inaccurate, unwanted, or policy-sensitive creative content. <br>
-Mitigation: Review proposal Markdown, generated JSON, image assets, and final MP4 files before relying on or distributing them. <br>
+## Use Case:
 
+External creators and developers use this skill to turn text prompts into video project plans and generated video assets through the Seko API. It supports planning, proposal updates, status polling, image downloads, and final video downloads for long-form videos, short plays, commercials, social media, education, and product demos.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/sekoplatform/seko-video-creation) <br>
-- [Seko API key page](https://seko.sensetime.com/explore) <br>
-- [Seko creation task page](https://seko.sensetime.com/seko/creation?id=2034207127824871426) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, files] <br>
-**Output Format:** [Chinese-language agent guidance with Python command invocations, saved JSON task results, Markdown proposal files, downloaded images, and MP4 video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and SEKO_API_KEY; writes project files, task queues, generated media, and optional .env content inside the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill may ask the agent to store a real Seko API key in a local .env file, which can expose credentials if the workspace is shared, committed, or retained longer than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer setting SEKO_API_KEY only in the shell or a managed secret store; if a .env file is used, protect it from sharing or source control and delete it after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sekoplatform/skills/seko-video-creation)
+- [Seko API key page](https://seko.sensetime.com/explore)
+- [Seko service endpoint](https://seko.sensetime.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, files, guidance]
+
+**Output Format:** [Markdown guidance with JSON API responses and generated media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and SEKO_API_KEY; writes project plans, task queues, proposal JSON, proposal Markdown, downloaded images, and generated MP4 video files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -244,7 +244,7 @@ def cmd_refresh() -> int:
 def _interactive_login(open_browser: bool = True, site: str = "cn"):
     """交互式登录流程（Skill 中禁止调用，仅供用户终端手动使用）"""
     print()
-    print("  🦞 CloudQ OAuth 登录")
+    print("  ☁️ CloudQ OAuth 登录")
     print("  " + "─" * 36)
     print()
 

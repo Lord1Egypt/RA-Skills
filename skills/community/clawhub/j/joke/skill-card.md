@@ -1,39 +1,52 @@
-## Description: <br>
-Provides concise Chinese-language jokes and humorous responses based on the user's request or conversation context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides concise Chinese jokes, puns, anecdotes, and workplace or programmer humor based on the user's request or conversation context.
 
-## Publisher: <br>
-[mrjeye](https://clawhub.ai/user/mrjeye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mrjeye](https://clawhub.ai/user/mrjeye)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can invoke this skill when they want a short Chinese joke, pun, workplace joke, life anecdote, or programmer joke tailored to the current conversation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on broad humor or cheer-up requests and answer in Chinese when another locale is expected.
+
+Mitigation: Deploy with clear activation criteria or locale expectations when multilingual joke handling is required.
+
+Risk: Humor can still be inappropriate for a user or setting even when the skill avoids sensitive or discriminatory targets.
+
+Mitigation: Use standard content review expectations for user-facing humor and redirect to the main task after work-context jokes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to add brief, context-aware humor in Chinese, including programmer jokes, puns, workplace humor, cold jokes, and everyday anecdotes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may respond broadly to requests for humor or cheering up. <br>
-Mitigation: Use clear routing or activation criteria so the skill is invoked only when a humor response is intended. <br>
-Risk: The skill may produce Chinese jokes even when the surrounding conversation uses another language. <br>
-Mitigation: Confirm or preserve the user's language preference when deploying the skill in multilingual contexts. <br>
+**Output Format:** [Markdown or plain text joke responses, optionally using block quote formatting]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces concise Chinese humor and avoids sensitive or discriminatory targets.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text joke responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use blockquote formatting for emphasis; no shell commands, files, configuration, API calls, or tool execution are produced.] <br>
+1.0.0 (source: server release metadata and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

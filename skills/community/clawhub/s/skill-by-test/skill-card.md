@@ -1,43 +1,58 @@
-## Description: <br>
-Create and manage test payment links for one-time, recurring, payment plan, multi-product, custom plan, and pay-what-you-want scenarios in a sandbox environment. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Create and manage test payment links for one-time, recurring, payment plans, multi-product, custom pricing, and donations in a sandbox environment.
 
-## Publisher: <br>
-[yaggit](https://clawhub.ai/user/yaggit) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yaggit](https://clawhub.ai/user/yaggit)
 
-## Use Case: <br>
-Developers and testers use this skill to create and validate sandbox payment link flows before using a production payment system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Production credentials, customer data, redirect URLs, metadata, or webhook payloads could be sent to a test payment helper. <br>
-Mitigation: Use only local or sandbox payment services, avoid production payment credentials, and review payloads before execution. <br>
-Risk: The skill description lists broader payment-link capabilities than the included script appears to implement. <br>
-Mitigation: Expect only implemented sandbox behavior, and validate the requested payment link type before use. <br>
-Risk: Sandbox payment responses may differ from live payment processor behavior. <br>
-Mitigation: Treat outputs as test evidence only and revalidate payment flows with the intended production provider before launch. <br>
+## Use Case:
 
+Developers and testers use this skill to create sandbox payment-link flows, validate payment-link inputs, and inspect JSON-style responses without processing real payments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yaggit/skill-by-test) <br>
-- [Skill homepage](https://test.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON API responses, concise error text, and command-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves raw service responses when applicable and is intended for local or sandbox payment testing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The helper script sends payment data to a local HTTP API without authenticated HTTPS transport.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only local sandbox data, avoid live webhook endpoints, and require authenticated HTTPS or another secured local channel before production use.
+
+Risk: The script contains a hard-coded placeholder API key and does not use the declared environment secret.
+
+Mitigation: Remove the placeholder key and wire the declared secret into execution before any non-sandbox use.
+
+Risk: Sandbox-only payment behavior could be mistaken for live payment processing.
+
+Mitigation: Keep usage limited to test cards, mock data, and sandbox workflows; do not provide real cardholder, customer, or production API data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yaggit/skills/skill-by-test)
+- [Skill homepage](https://test.com)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, shell commands, guidance]
+
+**Output Format:** [JSON API responses with concise error text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sandbox-only payment-link responses; raw tool responses should be preserved when applicable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

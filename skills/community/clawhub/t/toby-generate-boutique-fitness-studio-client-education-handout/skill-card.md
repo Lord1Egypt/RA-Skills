@@ -1,41 +1,54 @@
-## Description: <br>
-Create a polished client education handout with visuals, FAQs, and clear next steps for a boutique fitness studio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates polished explainer handouts with visuals, FAQs, and clear next steps for boutique fitness studio client education.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External fitness studio owners and wellness marketers use this skill to draft client education handouts that explain services, answer common questions, and provide client next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated fitness, wellness, injury, nutrition, or medical claims may be inaccurate or subject to compliance review. <br>
-Mitigation: Review generated claims before sharing them with clients, and use qualified review for medical, nutrition, injury, or regulated wellness content. <br>
-Risk: The skill does not need broad shell or file access for its stated instruction-only handout workflow. <br>
-Mitigation: Keep runtime tool permissions scoped to the minimum needed for drafting and review. <br>
+## Use Case:
 
+Fitness studio owners and wellness marketers use this skill to create client education handouts that explain studio offerings with visuals, FAQs, and clear next steps. Human review is recommended before distributing content that could be read as medical or regulated claims.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-boutique-fitness-studio-client-education-handout) <br>
-- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-boutique-fitness-studio-client-education-handout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include FAQ copy, visual direction, and client-facing next steps; fitness, wellness, injury, nutrition, and medical claims should be reviewed before client use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill grants shell and file-read access that is not explained by the handout-generation artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer a version that removes Bash and Read or limits them to specific, user-approved files and commands.
+
+Risk: Generated handouts may include inaccurate or regulated health-related claims if used without review.
+
+Mitigation: Have a qualified human review content before sending patient-facing material or relying on medical, safety, or compliance claims.
+
+## Reference(s):
+
+- [SkillBoss skill page](https://www.skillboss.co/skills/generate-boutique-fitness-studio-client-education-handout)
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-boutique-fitness-studio-client-education-handout)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown handout text with suggested visual content, FAQs, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference image-generation output; human review is recommended for accuracy, compliance, and medical or regulated claims.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

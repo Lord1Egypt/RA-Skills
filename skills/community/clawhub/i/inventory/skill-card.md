@@ -1,39 +1,52 @@
-## Description: <br>
-Build a personal inventory system for home items, valuables, and equipment tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a personal inventory system for home items, valuables, and equipment tracking.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to create and maintain a practical local inventory for valuables, home items, warranties, receipts, and storage locations. It supports insurance preparation, moving, decluttering, lending, and maintenance tracking. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Inventory records may contain sensitive details such as valuables, storage locations, serial numbers, receipts, photos, and estimated values. <br>
-Mitigation: Choose the local inventory folder location deliberately, avoid unintended cloud sharing, and confirm before recording high-value or identifying details. <br>
-Risk: Stale item locations, values, or warranty dates can make inventory output misleading for insurance, moving, lending, or maintenance decisions. <br>
-Mitigation: Review records after major purchases or moves, update item locations when they change, and periodically audit values and warranty dates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/inventory) <br>
+## Use Case:
 
+External users use this skill to build and maintain a practical local inventory of valuable, losable, warranted, or insurable personal items.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown and plain-text guidance for local inventory records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local ~/inventory/ folder with item records, photos, receipts, warranty details, and indexes when the user asks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Inventory records can expose sensitive details about valuables, locations, insurance value, serial numbers, receipts, and lending history.
+
+Mitigation: Choose a storage location deliberately, keep the inventory off shared or broadly synced machines when appropriate, and avoid recording unnecessary sensitive details.
+
+Risk: Stale location, value, warranty, or lending records can mislead users during insurance, moving, decluttering, or recovery workflows.
+
+Mitigation: Update records after major purchases, item moves, loans, warranty changes, and periodic value audits.
+
+## Reference(s):
+
+- [Inventory skill page](https://clawhub.ai/ivangdavila/skills/inventory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional local file and folder structure examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local ~/inventory/ workspace when the user chooses to catalog items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -47,11 +47,24 @@ scripts/extract_epub.py
 scripts/extract_pdf.py
 ```
 
-## 作者
+## 关于作者
 
-**guipi888**
+**桂皮 Guipi** — AI Agent 开发者 · 超级个体践行者
+专注 AI 效率工具与一人公司方法论，帮普通人用 AI 成为超级个体
 
+| 平台 | 账号 |
+|------|------|
+| 📱 小红书 | [桂皮AI实战](https://www.xiaohongshu.com/user/profile/5a409dda44363b313b9d7e15) |
+| 🎬 抖音 | [桂皮AI实战](https://v.douyin.com/QJRjHGAtrvA/) |
+| 📺 视频号 | 微信内搜「桂皮AI实战」|
+| 💬 公众号 | 微信搜「桂皮AI实战」|
+| 🌟 知识星球 | [AI超级个体](https://t.zsxq.com/guSUk) — AI工具 · 创作 · 产品 · 流量 · 变现 |
+| 🐙 GitHub | [guipi888](https://github.com/guipi888) |
+| 💬 微信 | guipi996（注明来意）|
 
+## 相关项目
+
+- [video-skill-router](https://github.com/guipi888/video-skill-router) — 视频创作技能路由器：AI video / animation skill 元技能，判定视频类别（商业宣传/知识科普/其他）→ 自动发现并安装 Manim/Remotion/Lottie 等技能包 → 编排执行输出成片。电子书拆解出的技能想变成视频？video-skill-router 一条龙完成找技能→装技能→出片
 
 ## License
 

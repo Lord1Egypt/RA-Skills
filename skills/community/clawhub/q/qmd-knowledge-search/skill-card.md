@@ -1,38 +1,50 @@
-## Description: <br>
-Query the local knowledge base (OpenClaw docs, skills, internal wikis) using the QMD hybrid search engine (BM25 + Vector + LLM Re-ranking). Use this for technical questions about the agent's own capabilities, available skills, or documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query the local knowledge base (OpenClaw docs, skills, internal wikis) using the QMD hybrid search engine (BM25 + Vector + LLM Re-ranking). Use this for technical questions about the agent's own capabilities, available skills, or documentation.
 
-## Publisher: <br>
-[pratiknarola](https://clawhub.ai/user/pratiknarola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pratiknarola](https://clawhub.ai/user/pratiknarola)
 
-## Use Case: <br>
-Developers and agent operators use this skill to search a local QMD knowledge base for OpenClaw documentation, skill definitions, internal wiki content, and related technical answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries may surface sensitive or internal information from the local knowledge base. <br>
-Mitigation: Use the skill only in environments where the local knowledge base is intended for agent access, and review retrieved content before sharing or acting on it. <br>
+## Use Case:
 
+Developers and agents use this skill to search and retrieve local OpenClaw documentation, skill definitions, internal wiki content, and QMD documentation when answering technical questions about available capabilities or documentation.
 
-## Reference(s): <br>
-- [QMD Knowledge Search on ClawHub](https://clawhub.ai/pratiknarola/qmd-knowledge-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands; JSON may be requested from qmd with --json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Searches local QMD knowledge content and can filter results with --min-score.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agents may query or read a local knowledge base that contains internal wiki or capability documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the agent is authorized to access /root/clawd/knowledge before installing or invoking the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pratiknarola/skills/qmd-knowledge-search)
+- [Publisher profile](https://clawhub.ai/user/pratiknarola)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports optional JSON output from qmd commands when the agent adds --json.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

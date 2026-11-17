@@ -1,45 +1,59 @@
-## Description: <br>
-Analyzes pet drying-box video files or video URLs through a remote service to detect early heat-stress signals such as open-mouth panting intensity, tongue color, and body movement frequency, then returns risk levels and intervention suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes pet drying box videos for panting, tongue color, and movement signals associated with heat stress, then reports a risk level and safety guidance.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External users, pet grooming stores, pet hospitals, and developers use this skill to review pet drying-box footage for heat-stress warning signals and receive structured risk observations, safety suggestions, and report links. The output is a safety aid for drying operations, not a veterinary diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pet drying-box videos or URLs are sent to the Life Emergence remote service for analysis, which may expose customer, clinic, or household footage. <br>
-Mitigation: Use only with footage whose remote processing and storage terms are acceptable, and review the service's media and report retention practices before deployment. <br>
-Risk: The skill silently creates or reuses internal user identity state and stores local account data and tokens. <br>
-Mitigation: Deploy only in workspaces where local account and token storage is approved, and restrict access to the workspace data directory and local database. <br>
-Risk: The skill returns heat-stress risk levels and intervention suggestions but does not provide veterinary diagnosis or treatment. <br>
-Mitigation: Treat outputs as operational safety observations; stop drying and seek qualified veterinary help when the animal appears distressed or symptoms persist. <br>
+## Use Case:
 
+Pet drying box operators, groomers, and veterinary teams use video analysis to review visible heat stress signals and receive a risk level with safety guidance. The result is an observational aid, not a veterinary diagnosis.
 
-## Reference(s): <br>
-- [Pet Drying Box Heat Stress API Documentation](references/api_doc.md) <br>
-- [Shared Analysis API Documentation](skills/smyx_analysis/references/api_doc.md) <br>
-- [Skill Demo](https://lifeemergence.com/sample.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-pet-drying-box-heat-stress-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown text with structured JSON report content and report links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save the report text to a local output file when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter states 1.0.3) <br>
+Risk: Videos and URLs may be uploaded to Life Emergence services, including when an export-only setting is expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only footage authorized for upload, verify the effective export and API destination controls, and confirm the services’ retention and access policies before processing private footage.
+
+Risk: Accounts may be reused across users and credentials may be retained.
+
+Mitigation: Use separate accounts for separate users, protect credentials, and prefer a corrected release before using private footage or sharing the installation.
+
+Risk: Server-side analysis accuracy is unverified, so a risk assessment may be incomplete.
+
+Mitigation: Treat results as an observational warning rather than a diagnosis; monitor the animal directly and stop drying, lower the temperature, and ventilate for high or urgent warnings.
+
+## Reference(s):
+
+- [API reference](references/api_doc.md)
+- [Pet heat stress analysis API details](skills/smyx_analysis/references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown]
+
+**Output Format:** [Structured analysis results with observations, a risk level, safety guidance, and report links when available; Markdown tables for history listings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Video observations and recommendations; does not provide diagnosis or treatment advice.]
+
+## Skill Version(s):
+
+1.0.14 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-转化路径优化虾 analyzes sales funnels, mines high-converting sales scripts, and recommends optimization actions for sales teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+转化路径优化虾 analyzes sales funnels, mines high-converting sales scripts, and gives optimization recommendations for sales teams.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Sales operations, revenue operations, and sales enablement teams use this skill to analyze funnel conversion rates, find drop-off points, extract effective sales scripts from CRM or conversation records, and prepare recommendations or training materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CRM exports and sales conversations can contain sensitive customer or business data. <br>
-Mitigation: Use explicit local input and output paths, remove customer identifiers where practical, and review generated reports before sharing. <br>
-Risk: Creating a Feishu document may send selected analysis content to the configured Feishu account. <br>
-Mitigation: Only request Feishu document creation after confirming what data will be included and which account or token will be used. <br>
-Risk: Sales script recommendations are based on observed statistical patterns and may not generalize to every customer segment. <br>
-Mitigation: Validate recommendations with current sales context and use A/B testing or human review before broad rollout. <br>
+## Use Case:
 
+Sales operations teams, revenue leaders, and developers use this skill to analyze CRM exports or conversation records, identify funnel drop-off points, recommend sales scripts, and design A/B tests for sales conversion improvement.
 
-## Reference(s): <br>
-- [销售漏斗建模指南](references/funnel-modeling.md) <br>
-- [行业话术模板库](references/industry-templates.md) <br>
-- [话术效果评估框架](references/script-evaluation.md) <br>
-- [话术挖掘算法库](references/script-mining.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, ranked recommendation lists, script manuals, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local HTML reports or request creation of a Feishu document when the user asks for that output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: CRM exports and conversation logs may contain customer names, phone numbers, or other sensitive business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data the user is allowed to analyze and remove sensitive fields where possible before running the skill.
+
+Risk: Generated reports or Feishu documents may disclose business data if exported without review.
+
+Mitigation: Confirm with the user before exporting reports or creating shared documents that contain CRM-derived information.
+
+Risk: The scripts require local Python dependencies for spreadsheet and CSV processing.
+
+Mitigation: Install dependencies in a virtual environment before executing the bundled analysis scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tujinsama/skills/conversion-path-optimizer-claw)
+- [Sales funnel modeling guide](references/funnel-modeling.md)
+- [Sales script mining algorithms](references/script-mining.md)
+- [Sales script evaluation framework](references/script-evaluation.md)
+- [Industry sales script templates](references/industry-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Code, Files, Guidance]
+
+**Output Format:** [Markdown reports with optional shell commands and generated report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce funnel reports, ranked script recommendations, structured playbooks, and user-requested exported reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

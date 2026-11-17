@@ -1,38 +1,56 @@
-## Description: <br>
-Deep blameless postmortem workflow--timeline, impact, root cause vs contributing factors, what went well/poorly, action items with owners, and follow-through. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep blameless postmortem workflow for timelines, impact, root cause versus contributing factors, what went well or poorly, action items with owners, and follow-through after incidents, outages, or near-misses.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[clawkk](https://clawhub.ai/user/clawkk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Engineering, SRE, incident response, and support teams use this skill to facilitate structured, blameless postmortems after incidents, outages, data-loss scares, or near-misses. It helps teams align facts, separate root causes from contributing factors, assign owned follow-up actions, and prepare internal or policy-driven external summaries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Postmortems can contain sensitive operational, customer, or security details.
+
+Mitigation: Provide only appropriate context, redact PII and sensitive security details, and follow organizational redaction and external-communication policies.
+
+Risk: Security incident postmortems may require special handling before public or broad internal disclosure.
+
+Mitigation: Coordinate with legal and information security teams before sharing security incident details.
+
+Risk: Poorly framed postmortems can assign blame or produce vague actions that do not reduce recurrence.
+
+Mitigation: Use blameless framing, keep causal claims evidence-backed, separate root causes from contributing factors, and create specific owner-dated action items.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Engineering, SRE, incident response, and support teams use this skill after incidents, outages, or near-misses to facilitate a blameless postmortem with a clear timeline, impact assessment, causal analysis, owned action items, and follow-up. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Postmortem discussions can include PII, customer secrets, credentials, private incident details, or sensitive security evidence. <br>
-Mitigation: Redact sensitive details before sharing them with the agent unless the organization permits that data in the agent environment. <br>
+**Output Format:** [Markdown guidance and checklists for postmortem facilitation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawkk/retro) <br>
+**Other Properties Related to Output:** [May include timeline structure, impact summary prompts, root cause analysis guidance, action item criteria, communication guidance, and follow-up checklist items.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style structured facilitation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

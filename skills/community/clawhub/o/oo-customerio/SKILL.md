@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Customer.io"
   author: "OOMOL"
-  version: "1.0.0"
+  version: "1.0.5"
   services: ["customerio"]
   icon: "https://static.oomol.com/logo/third-party/customerio.svg"
 ---
@@ -38,12 +38,12 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `delete_customer` — Delete a Customer.io person and their information through the Track API. [destructive]
-- `identify_customer` — Add or update a Customer.io person through the Track API.
+- `identify_customer` — Add or update a Customer.io person through the Track API. [write]
 - `merge_customers` — Merge two Customer.io people, keeping the primary profile and deleting the secondary profile. [write]
-- `suppress_customer` — Delete and suppress a Customer.io person identifier so it cannot be re-added until unsuppressed.
-- `track_anonymous_event` — Track an event for an anonymous person in Customer.io.
-- `track_customer_event` — Track an event associated with an identified Customer.io person.
-- `unsuppress_customer` — Unsuppress a Customer.io person identifier so a new profile can be created later.
+- `suppress_customer` — Delete and suppress a Customer.io person identifier so it cannot be re-added until unsuppressed. [destructive]
+- `track_anonymous_event` — Track an event for an anonymous person in Customer.io. [write]
+- `track_customer_event` — Track an event associated with an identified Customer.io person. [write]
+- `unsuppress_customer` — Unsuppress a Customer.io person identifier so a new profile can be created later. [write]
 
 ## Safety
 
@@ -74,11 +74,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Customer.io is not connected, or the connection expired or lacks a scope. Connect once (auth type: custom credential) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=customerio
+  https://console.oomol.com/connections/customerio
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Customer.io homepage: https://customer.io/
+- API documentation: https://docs.customer.io/integrations/api/track/

@@ -1,53 +1,65 @@
-## Description: <br>
-Pure Python memory management for AI agents with layered memory decay, context compression, memory extraction, vector retrieval, and self-improvement utilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pure Python memory management with four-layer decay, context compression, extraction, vector retrieval, and self-improving features for AI agents.
 
-## Publisher: <br>
-[relunctance](https://clawhub.ai/user/relunctance) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[relunctance](https://clawhub.ai/user/relunctance)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add persistent task, preference, decision, and document memory to Python-based AI agent workflows. It supports local JSON memory, optional LanceDB retrieval, context compression, and recall workflows across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can store confidential work, credentials, personal data, or agent history. <br>
-Mitigation: Review stored memory paths before deployment, restrict filesystem access, and avoid using the skill on shared or sensitive machines unless retention and deletion practices are approved. <br>
-Risk: The installer can auto-import existing ~/.openclaw/memory content into the Hawk memory store. <br>
-Mitigation: Run installation only after reviewing the import path, or remove or isolate existing memory files before installation if migration is not intended. <br>
-Risk: Optional external providers and custom base URLs may receive extracted conversation or memory content. <br>
-Mitigation: Use the offline keyword mode or only configure API keys and endpoints that are approved for the data being processed. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add persistent memory, task-state recall, context compression, and memory extraction to Python-based AI agents.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/relunctance/hawk-memory-v2) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
-- [Alert System](references/alerting.md) <br>
-- [CLI Reference](references/cli.md) <br>
-- [Compression Strategies](references/compression-strategies.md) <br>
-- [Context Injection Strategies](references/injection-strategies.md) <br>
-- [LanceDB Integration](references/lancedb-integration.md) <br>
-- [Four-Tier Memory Architecture](references/memory-system.md) <br>
-- [Self-Introspection](references/self-introspection.md) <br>
-- [Memory Split Patterns](references/split-patterns.md) <br>
-- [Structured Memory Format](references/structured-memory.md) <br>
-- [Task State Memory](references/task-state.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update persistent local memory, task state, LanceDB, and governance files under user memory directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can persist conversation-derived data and imported markdown memories locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or regulated data, and regularly review and purge the local ~/.hawk memory files.
+
+Risk: Recalled memory may be injected into future prompts as high-priority context.
+
+Mitigation: Review stored memories before use in sensitive workflows and remove stale or untrusted memories.
+
+Risk: Configured AI providers or custom endpoints may receive prompts, recalled memories, markdown memory files, or API credentials.
+
+Mitigation: Use local or keyword modes where possible, and only configure AI providers or endpoints that are explicitly trusted.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/relunctance/skills/hawk-memory-v2)
+- [README](artifact/README.md)
+- [Four-Tier Memory Architecture](artifact/references/memory-system.md)
+- [Task State Memory](artifact/references/task-state.md)
+- [Structured Memory Format](artifact/references/structured-memory.md)
+- [Context Injection Strategies](artifact/references/injection-strategies.md)
+- [Compression Strategies](artifact/references/compression-strategies.md)
+- [CLI Reference](artifact/references/cli.md)
+- [LanceDB Integration](artifact/references/lancedb-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

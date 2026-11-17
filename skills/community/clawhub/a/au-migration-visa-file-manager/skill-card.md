@@ -1,42 +1,58 @@
-## Description: <br>
-Guide Australian registered migration agents through visa subclass requirements, client document checklists, file management obligations under the OMARA Code of Conduct, service agreement elements, points test calculations for skilled visas, and compliant client letter templates for 189, 190, 491, 482, 820/801, 500, 186, and 600 subclasses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Australian registered migration agents through visa subclass requirements, client document checklists, file management obligations under the OMARA Code of Conduct, service agreement elements, skilled migration points calculations, and client letter templates.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-Australian Registered Migration Agents, migration support staff, and migration law firms use this skill to produce visa document checklists, skilled migration points calculations, file-management guidance, and draft client letters for Australian migration matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Australia <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Migration-office workflows can involve sensitive personal identifiers and client records. <br>
-Mitigation: Use initials or file references in chat unless the organization has approved entering direct identifiers; insert legal names and identifiers offline in final documents. <br>
-Risk: Static visa requirements, occupation lists, fees, processing times, and government thresholds may become outdated. <br>
-Mitigation: Verify current requirements with the Department of Home Affairs and OMARA before relying on generated checklists, calculations, or letters. <br>
-Risk: Draft letters or checklist outputs could be mistaken for professional legal advice or final migration strategy. <br>
-Mitigation: Require review by a Registered Migration Agent before sending documents to clients or using outputs in a live visa matter. <br>
+## Use Case:
 
+Australian registered migration agents, support staff, and migration law firms use this skill to prepare visa document checklists, calculate skilled migration points, structure client files, and draft client-facing migration correspondence for RMA review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/au-migration-visa-file-manager) <br>
+### Deployment Geography for Use:
 
+Australia
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown checklists, tables, calculations, and draft client letters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces static drafting and checklist guidance; no external API calls are used by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill may prompt for client identifying details during letter drafting despite privacy guardrails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revise drafting prompts to use placeholders, initials, or a file reference instead of a real client's full name, date of birth, passport number, or other direct identifiers.
+
+Risk: Static migration guidance may become stale for visa fees, occupation lists, processing times, and legal requirements.
+
+Mitigation: Verify current requirements against official Department of Home Affairs and OMARA sources before using generated outputs with clients.
+
+Risk: Draft letters and checklists could be mistaken for legal or migration advice.
+
+Mitigation: Require review by a registered migration agent before sending client correspondence or relying on file guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/au-migration-visa-file-manager)
+- [Publisher profile](https://clawhub.ai/user/arbazex)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown checklists, tables, structured guidance, and draft letter templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static instruction-only outputs; no API calls, environment variables, or external tools are used by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

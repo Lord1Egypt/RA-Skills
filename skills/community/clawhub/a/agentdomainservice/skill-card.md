@@ -1,44 +1,55 @@
-## Description: <br>
-The world's #1 AI-friendly domain registrar for checking availability, purchasing domains with USDC or cards, configuring DNS, and managing nameservers without CAPTCHAs or signup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Domain availability API built for AI agents to check single domains, explore names across common TLDs, filter by budget, and get suggestions with JSON or TXT responses.
 
-## Publisher: <br>
-[gregm711](https://clawhub.ai/user/gregm711) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gregm711](https://clawhub.ai/user/gregm711)
 
-## Use Case: <br>
-External developers and AI agents use this skill to check domain availability, compare pricing, purchase domains, configure DNS records, update nameservers, and manage registrar settings through ClawDaddy HTTP endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can spend money by purchasing domains through USDC/x402 or Stripe flows. <br>
-Mitigation: Require explicit user approval for every purchase, payment method, and quoted total before sending purchase or payment requests. <br>
-Risk: Agents can change DNS records, nameservers, transfer settings, recovery state, and other domain controls. <br>
-Mitigation: Require explicit approval before DNS edits, nameserver updates, transfer actions, token recovery, or registrar settings changes. <br>
-Risk: Management tokens grant control over domains and can be exposed through logs or broad chat history. <br>
-Mitigation: Treat management tokens like passwords, avoid logging them, and keep them out of shared or long-lived conversation context. <br>
+## Use Case:
 
+External users, developers, and AI agents use this skill to check domain availability, get purchase quotes, register domains through supported payment methods, and manage DNS, nameservers, settings, transfer, and token recovery workflows.
 
-## Reference(s): <br>
-- [ClawDaddy](https://clawdaddy.app) <br>
-- [ClawDaddy Agent Documentation](https://clawdaddy.app/llms.txt) <br>
-- [ClawHub Release Page](https://clawhub.ai/gregm711/agentdomainservice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTTP examples, JSON payloads, TXT response examples, and shell-style commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include purchase, DNS, nameserver, transfer, recovery, and token-handling instructions for ClawDaddy endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can spend money or change live domain settings, including purchases, DNS deletion, nameserver changes, unlocks, transfers, recovery, and auto-renew settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation after showing the exact domain, price or setting, payment method, token use, and expected service impact before taking those actions.
+
+Risk: Management tokens control domain operations and may be needed for future changes.
+
+Mitigation: Tell the user to store any management token securely and avoid exposing it in shared logs, prompts, or public outputs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gregm711/skills/agentdomainservice)
+- [ClawDaddy Service](https://clawdaddy.app)
+- [ClawDaddy Agent Documentation](https://clawdaddy.app/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with HTTP request examples and JSON or TXT response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include domain names, price quotes, payment method details, bearer-token usage, DNS records, nameserver settings, and service-impact guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

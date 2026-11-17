@@ -1,41 +1,58 @@
-## Description: <br>
-Use when working with OpenSearch vector search edition via the Python SDK (ha3engine) to push documents and run HA/SQL searches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when working with OpenSearch vector search edition via the Python SDK (ha3engine) to push documents and run HA/SQL searches.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Alibaba Cloud OpenSearch vector search access, push bounded document updates, and run HA or SQL searches for RAG and retrieval workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled quickstart can write sample documents to a live OpenSearch data source. <br>
-Mitigation: Use a test data source first, confirm the operation is intended to be mutating, and avoid running the quickstart against production unless sample document writes are desired. <br>
-Risk: OpenSearch credentials are provided through environment variables and the quickstart evidence notes under-guarded credential handling. <br>
-Mitigation: Use least-privilege credentials, avoid logging secrets, and verify HTTPS/TLS before providing credentials. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Alibaba Cloud OpenSearch vector search access, push sample documents, and run HA or SQL-style searches for RAG and vector retrieval workflows.
 
-## Reference(s): <br>
-- [Skill source list](references/sources.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/aliyun-opensearch-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include environment variable setup, quickstart commands, validation steps, and OpenSearch API usage patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The quickstart uses OpenSearch credentials and a plaintext HTTP client setting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or change the client configuration to use HTTPS and run only with narrowly scoped credentials.
+
+Risk: The quickstart can write sample documents to a live OpenSearch datasource.
+
+Mitigation: Run the quickstart against a test or disposable datasource before using it with production resources.
+
+Risk: The SDK dependency is not pinned in the skill instructions.
+
+Mitigation: Pin and review the alibabacloud-ha3engine package version before relying on the workflow in production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-opensearch-search)
+- [Source list](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include environment-variable setup, quickstart commands, API usage snippets, validation steps, and risk-aware execution guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

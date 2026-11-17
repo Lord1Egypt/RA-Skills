@@ -1,41 +1,57 @@
-## Description: <br>
-Automated GitHub PR code review with diff analysis, lint integration, and structured reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated GitHub PR code review with diff analysis, lint integration, and structured reports for security issues, error handling gaps, test coverage, and code style in Go, Python, and JavaScript/TypeScript repositories.
 
-## Publisher: <br>
-[briancolinger](https://clawhub.ai/user/briancolinger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[briancolinger](https://clawhub.ai/user/briancolinger)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review GitHub pull requests for security findings, error-handling gaps, style issues, test coverage, and optional lint results before merge. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reviewing an untrusted pull request could allow attacker-controlled filenames to influence local command execution. <br>
-Mitigation: Review or patch filename handling before use, and avoid running the skill on untrusted pull requests until filenames are passed through stdin, JSON, or arguments instead of interpolated into Python source. <br>
-Risk: The skill can post generated review content to GitHub pull requests. <br>
-Mitigation: Review generated markdown reports before using the post command, and run with least-privilege GitHub credentials. <br>
-Risk: The skill writes state and markdown reports to local paths. <br>
-Mitigation: Set PR_REVIEW_STATE and PR_REVIEW_OUTDIR to workspace-contained paths before running the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/briancolinger/pr-reviewer) <br>
+## Use Case:
 
+Developers and code reviewers use this skill to inspect GitHub pull requests, summarize changed files, flag common security and quality issues, run optional local linters, and create structured review reports.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, GitHub PR comments, and command-line status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes review state to PR_REVIEW_STATE and markdown reports to PR_REVIEW_OUTDIR when run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A crafted pull-request filename can trigger local Python code execution during review.
+
+Mitigation: Do not run the skill on untrusted pull requests until PR file data is passed through stdin, argv, or JSON rather than embedded in Python source.
+
+Risk: The skill uses GitHub repository access and can post review comments when run with write-capable credentials.
+
+Mitigation: Run it with a low-privilege GitHub account or token and avoid environments that contain unrelated secrets.
+
+Risk: Automated or scheduled review could repeatedly process unsafe pull-request data before human inspection.
+
+Mitigation: Avoid cron or unattended automation until the filename-to-Python injection issue is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/briancolinger/skills/pr-reviewer)
+- [ClawHub publisher profile](https://clawhub.ai/user/briancolinger)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown reports, JSON status summaries, and terminal text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes review state JSON and Markdown reports to configured local paths; can post a saved report as a GitHub PR comment.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

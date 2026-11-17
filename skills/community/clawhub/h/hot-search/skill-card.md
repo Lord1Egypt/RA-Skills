@@ -1,43 +1,54 @@
-## Description: <br>
-Hot Search helps OpenClaw agents query multiple public search engines for financial data, market updates, and news without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hot Search is an OpenClaw search skill for financial data and market information that aggregates Bing CN, Bing Global, Yandex, and Swisscows results without requiring an API key.
 
-## Publisher: <br>
-[fishsome](https://clawhub.ai/user/fishsome) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[fishsome](https://clawhub.ai/user/fishsome)
 
-## Use Case: <br>
-External users and developers use Hot Search to gather public financial, market, and news search results from OpenClaw, command-line, or Python workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to external search engines and may disclose sensitive terms. <br>
-Mitigation: Avoid confidential search terms and verify financial or market results against original sources before acting on them. <br>
-Risk: Image search and image download behavior can fetch remote content and write it to local paths. <br>
-Mitigation: Do not allow agents to call image download methods unless the code is updated to require explicit approval, restrict writable paths, validate content, and pin dependencies. <br>
-Risk: Scraping-style search can be rate-limited, blocked, or produce incomplete results. <br>
-Mitigation: Use conservative request frequency and timeout settings, and treat returned search results as leads rather than authoritative data. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve search result titles, links, and snippets for market, financial, news, and general web queries across multiple public search engines. The artifact also exposes Bing image search and image download helpers, which should be restricted before deployment.
 
-## Reference(s): <br>
-- [Hot Search on ClawHub](https://clawhub.ai/fishsome/hot-search) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, code] <br>
-**Output Format:** [JSON-like search result objects and console text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include title, link, snippet, and optional source fields after deduplication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, skill.json, README changelog) <br>
+Risk: Search queries are disclosed to third-party search engines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive trading, client, proprietary, or regulated queries and review retrieved results before relying on them.
+
+Risk: Image download helpers can fetch arbitrary URLs and write local files.
+
+Mitigation: Expose image downloading only with HTTPS-only public hosts, validated image content, size limits, and a fixed non-overwriting download directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fishsome/skills/hot-search)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, files]
+
+**Output Format:** [JSON-like result dictionaries and command-line text containing titles, links, snippets, engine names, and optional downloaded image paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search behavior depends on third-party search engine availability, HTML structure, timeout settings, and configured request delay.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

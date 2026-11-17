@@ -1,39 +1,50 @@
-## Description: <br>
-Build and manage grocery lists with pantry inventory, household quantities, and dietary restriction safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and manage grocery lists with pantry inventory, household quantities, and dietary restriction safety.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to maintain shopping lists, pantry inventory, household quantity preferences, and dietary restriction checks for grocery shopping. It focuses on what to buy, not meal planning, purchasing, prices, or live store inventory. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may retain grocery-related personal data such as dietary restrictions, household notes, pantry inventory, and shopping history in local markdown files under ~/grocery/. <br>
-Mitigation: Install only if this local storage is acceptable, and periodically review or delete the ~/grocery/ markdown files when that information should no longer be retained. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Grocery skill page](https://clawhub.ai/ivangdavila/grocery) <br>
-- [List Operations](lists.md) <br>
-- [Memory Setup](memory-template.md) <br>
+## Use Case:
 
+External users use this skill to keep shopping lists, pantry notes, household quantities, preferred stores, and dietary restrictions organized for grocery trips. It focuses on what to buy and avoids meal planning, purchasing, price lookup, barcode scanning, and receipt scanning.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with grocery list entries, local file setup commands, and memory template guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose updates to local markdown files under ~/grocery/ for household context, pantry inventory, store notes, and shopping history.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local grocery notes can contain household, pantry, store preference, and dietary restriction information.
+
+Mitigation: Keep ~/grocery local and access-controlled, avoid storing medical-level allergy details unless the user accepts that local storage risk, and ask for confirmation before clearing or starting a list fresh.
+
+## Reference(s):
+
+- [Grocery skill page](https://clawhub.ai/ivangdavila/skills/grocery)
+- [List operations](artifact/lists.md)
+- [Memory setup](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shopping lists, local file setup commands, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local markdown files under ~/grocery for memory, pantry, store, and purchase-history notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

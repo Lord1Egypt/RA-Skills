@@ -1,38 +1,53 @@
-## Description: <br>
-A macOS browser automation skill that opens a specified website in Safari or Chrome through the default browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A macOS browser automation skill that opens a requested website in the default browser from a site name, complete URL, or partial URL.
 
-## Publisher: <br>
-[strike163163](https://clawhub.ai/user/strike163163) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[strike163163](https://clawhub.ai/user/strike163163)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent open a requested website or supported site alias in the user's default macOS browser. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill opens user-provided destinations in the browser, so unfamiliar, shortened, or unexpected links may load unintended content. <br>
-Mitigation: Use specific trusted sites or inspect URLs before invoking the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/strike163163/strike163163-my-browser-control) <br>
-- [Publisher profile](https://clawhub.ai/user/strike163163) <br>
+## Use Case:
 
+Developers and macOS users can use this skill to let an agent open recognized website names, complete URLs, or partial URLs in the local default browser.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Browser action] <br>
-**Output Format:** [JSON status object with browser navigation side effect] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a single website name, complete URL, or incomplete URL and opens the resolved destination in the default macOS browser.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.4 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill opens URLs supplied by the user or agent, which may navigate to unwanted or untrusted sites.
+
+Mitigation: Use it like a browser shortcut and only open links that the user requested or recognizes.
+
+Risk: Browser selection is environment-dependent because the script opens the system default browser.
+
+Mitigation: Do not rely on this skill to choose Safari or Chrome specifically; verify the local default browser when that matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/strike163163/skills/strike163163-my-browser-control)
+- [Publisher profile](https://clawhub.ai/user/strike163163)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON status object and browser open action]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local browser-capable macOS environment; user-provided site names may be mapped to predefined URLs or normalized with an https prefix.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

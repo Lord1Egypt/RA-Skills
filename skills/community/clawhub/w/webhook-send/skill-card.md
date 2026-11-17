@@ -1,39 +1,48 @@
-## Description: <br>
-Sends text or Markdown messages to a configured webhook URL using HTTP POST. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends text or Markdown messages to a configured webhook URL read from WEBHOOK_SEND_URL.
 
-## Publisher: <br>
-[shaowenchen](https://clawhub.ai/user/shaowenchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shaowenchen](https://clawhub.ai/user/shaowenchen)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare text or Markdown webhook notifications for group messages, bot alerts, and message-push integrations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Webhook URLs and message contents can be sensitive because messages are sent outside the local chat. <br>
-Mitigation: Store WEBHOOK_SEND_URL like a secret and avoid sending passwords, tokens, personal data, or confidential business content unless the webhook is approved for that use. <br>
-Risk: An incorrect or untrusted webhook destination can send notifications to the wrong external service. <br>
-Mitigation: Confirm the webhook destination before use and send only to webhooks the user controls or trusts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Webhook message body reference](reference.md) <br>
+## Use Case:
 
+External users and developers use this skill to prepare and send notification messages to a configured webhook endpoint in text or Markdown format.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with JSON request-body examples and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports text and Markdown webhook payloads; messages are limited to 20 requests per minute and 5000 characters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/_meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Messages may be posted accidentally or sent to an unintended external webhook endpoint, including shared group or business channels.
+
+Mitigation: Install only when WEBHOOK_SEND_URL is trusted and controlled, tighten triggers to explicit webhook-send requests, and require clear user confirmation before any POST.
+
+## Reference(s):
+
+- [Webhook message body reference](artifact/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON request bodies and curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Messages are sent to WEBHOOK_SEND_URL; only text and markdown payloads are described, with a 20 requests/minute and 5000-character message limit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

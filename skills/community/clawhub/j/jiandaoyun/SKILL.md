@@ -1,7 +1,7 @@
 ---
 name: "简道云"
-version: "1.0.0"
-description: "简道云低代码开发助手，精通表单设计、流程编排、数据仪表盘、API集成"
+version: "1.1.0"
+description: "简道云零代码平台指南。Use for: (1) 表单/流程/仪表盘三件套的应用搭建方法（帆软系，报表基因强）, (2) 企业微信/钉钉集成场景, (3) 与伙伴云/明道云/氚云的选型对比。Jiandaoyun zero-code guide: form-workflow-dashboard building and ecosystem-integration choices."
 tags: ["lowcode", "form", "workflow", "dashboard"]
 author: "ClawSkills Team"
 category: "productivity"
@@ -96,6 +96,12 @@ category: "productivity"
 - API 调用注意频率限制（默认 100次/分钟）
 - 大数据量查询使用分页（limit + data_id 翻页）
 
+## 工作边界
+
+- 免费版限额与付费定价以官网为准
+- 复杂审批流建议先画流程图再搭建，返工成本高
+- 同类选型参考：`huoban`（表格协作）、`mingdao`（私有化/APaaS）
+
 ---
 
-**最后更新**: 2026-03-16
+**最后更新**: 2026-07-11

@@ -1,43 +1,54 @@
-## Description: <br>
-Generates slides, audio overviews, and documents from text, URLs, and files using Google NotebookLM through Chrome browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate slides, audio overviews, and documents from sources using Google NotebookLM via browser automation.
 
-## Publisher: <br>
-[aoaibiz](https://clawhub.ai/user/aoaibiz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aoaibiz](https://clawhub.ai/user/aoaibiz)
 
-## Use Case: <br>
-External users and developers use this skill to automate NotebookLM workflows that create learning and presentation assets from user-provided text, URLs, and files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The browser relay can act in a logged-in Chrome tab and operate NotebookLM on the user's behalf. <br>
-Mitigation: Enable the relay only on the intended NotebookLM tab and review the browser state before returning or sharing generated links. <br>
-Risk: NotebookLM sources may be sent to Google NotebookLM during content generation. <br>
-Mitigation: Avoid sensitive or regulated material unless approved, and review NotebookLM sharing settings before sending any returned link. <br>
-Risk: The local gateway token grants access to the browser relay. <br>
-Mitigation: Keep the gateway token private and do not paste it into chat or generated content. <br>
+## Use Case:
 
+Developers and external users use this skill to automate Google NotebookLM content generation from text, URLs, and files, including slides, audio overviews, reports, quizzes, mind maps, and shareable notebook links.
 
-## Reference(s): <br>
-- [Chrome Relay Setup Guide](references/chrome-relay-setup.md) <br>
-- [Google NotebookLM](https://notebooklm.google.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and returned NotebookLM links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an active Chrome relay, a logged-in NotebookLM session, and fresh browser snapshots before actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can operate a NotebookLM tab in a logged-in Chrome session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the browser relay only for the specific tab you intend to automate and keep unrelated sensitive content out of browser snapshots and screenshots.
+
+Risk: The setup workflow can expose the local gateway token in terminal output.
+
+Mitigation: Do not paste or share terminal output containing gateway tokens, and rotate the gateway token if it may have been exposed.
+
+## Reference(s):
+
+- [Chrome Relay Setup Guide](references/chrome-relay-setup.md)
+- [Google NotebookLM](https://notebooklm.google.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and generated NotebookLM links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an active OpenClaw Browser Relay connection to a logged-in Chrome session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

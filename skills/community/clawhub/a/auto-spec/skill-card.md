@@ -1,42 +1,55 @@
-## Description: <br>
-Spec-driven development assistant that helps developers write precise behavioral specs before coding or reverse-engineer specs from existing code for understanding and alignment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spec-driven development assistant that helps agents write precise behavioral specs before coding or reverse-engineer specs from existing code for understanding and alignment.
 
-## Publisher: <br>
-[yuanyan](https://clawhub.ai/user/yuanyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanyan](https://clawhub.ai/user/yuanyan)
 
-## Use Case: <br>
-Developers and engineers use AutoSpec to align on behavioral contracts before implementation, or to extract factual module, feature, or function behavior from existing code before changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated specs or implementation suggestions may be incorrect or incomplete for sensitive features, persistence flows, external URLs, network validation, or conversation history handling. <br>
-Mitigation: Review generated specs and code before adoption, especially where sensitive data, network behavior, or persistence is involved. <br>
-Risk: Reverse-engineered specs can reflect current code behavior, including bugs or legacy behavior, rather than intended product behavior. <br>
-Mitigation: Treat reverse specs as a pre-change baseline and confirm flagged notes or open questions before using them as requirements. <br>
+## Use Case:
 
+Developers and engineers use AutoSpec to align on feature behavior before implementation, generate structured behavioral contracts, or extract factual specs from existing code before making changes.
 
-## Reference(s): <br>
-- [AutoSpec ClawHub release](https://clawhub.ai/yuanyan/auto-spec) <br>
-- [Publisher profile](https://clawhub.ai/user/yuanyan) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown behavioral specs in chat, with code output when implementation is explicitly requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Specs are conversational by default and are only written to files when the user explicitly asks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: Generated specs or code may omit security constraints for privacy-sensitive history summarization or network-facing URL validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated specs and any implementation before use, with extra attention to privacy, logging, validation, and external request behavior.
+
+Risk: Benchmark examples contain scanner alerts that could be mistaken for runtime behavior.
+
+Mitigation: Treat evaluation outputs as examples and review the actual skill files when assessing installation or runtime risk.
+
+## Reference(s):
+
+- [AutoSpec ClawHub skill page](https://clawhub.ai/yuanyan/skills/auto-spec)
+- [README](artifact/README.md)
+- [Evaluation summary](artifact/evals/iteration-1/benchmark.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown behavioral specs with optional code when implementation is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Specs are presented conversationally by default and written to files only when explicitly requested.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

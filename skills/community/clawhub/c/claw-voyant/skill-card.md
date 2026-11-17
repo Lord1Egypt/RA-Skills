@@ -1,39 +1,58 @@
-## Description: <br>
-YouTube search and transcript extraction. No API keys required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YouTube search and transcript extraction. No API keys required.
 
-## Publisher: <br>
-[Of-Arte](https://clawhub.ai/user/Of-Arte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[of-arte](https://clawhub.ai/user/of-arte)
 
-## Use Case: <br>
-External users and developers use ClawVoyant to let agents search for YouTube videos and retrieve transcript text for selected videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: YouTube search terms and requested video IDs may be sent to DuckDuckGo and YouTube transcript-related services. <br>
-Mitigation: Avoid confidential research topics or sensitive video IDs unless disclosure to those services is acceptable. <br>
+## Use Case:
 
+Developers and agent users use ClawVoyant to search YouTube and retrieve video transcripts inside OpenClaw or MCP-enabled workflows without configuring API keys.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/Of-Arte/claw-voyant) <br>
-- [Publisher profile](https://clawhub.ai/user/Of-Arte) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text strings containing YouTube search results or transcript text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include titles, URLs, and descriptions; transcript output is concatenated text from the requested video when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search terms and video IDs are sent to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive queries or private video identifiers unless external-service sharing is acceptable.
+
+Risk: Dependency and result-volume controls may change runtime behavior or resource use.
+
+Mitigation: Pin dependency versions, review updates before deployment, and bound max_results in production configurations.
+
+Risk: The install command may start the server instead of only installing dependencies.
+
+Mitigation: Review the install command in a test environment before enabling the skill for agents.
+
+## Reference(s):
+
+- [ClawVoyant ClawHub Skill Page](https://clawhub.ai/of-arte/skills/claw-voyant)
+- [Publisher Profile](https://clawhub.ai/user/of-arte)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text and Markdown-compatible tool responses containing search results, video URLs, descriptions, transcripts, or error messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and transcript retrieval depend on external YouTube, DuckDuckGo, and transcript-service availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

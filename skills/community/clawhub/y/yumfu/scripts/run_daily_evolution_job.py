@@ -122,7 +122,7 @@ def enrich_with_active_route(result: dict, sidecar: dict, lang: str) -> dict:
     meta.setdefault('world_detail_notes', [])
 
     if lang == 'zh':
-        if world_id in {'journey-to-west', 'xiaoao', 'yitian', 'sengoku'}:
+        if world_id in {'journey-to-west', 'xiaoao', 'yitian', 'sengoku', 'ramayana', 'xuanzang'}:
             tail = f" 这一阵风也没有另起炉灶，而是顺着你手边那条已经成形的线继续往深处走：{label or '当前主线'}。"
             if target:
                 tail += f" 真正该先盯住的，还是 {target}。"
@@ -1091,25 +1091,53 @@ def generic_update(save: dict, world: dict, sidecar: dict) -> dict:
     history = sidecar.get('history', [])
     severity = pick_severity(f"{world.get('id')}:{name}:{location}:{len(history)}")
     recap = build_recap(save, world, sidecar)
-    result = {
-        'summary': 'Something in the world shifted while you were away.',
-        'recap_text': recap,
-        'story_text': f"While you were away, the balance around {location} shifted just enough to matter. Rumors moved faster than people, small loyalties bent under pressure, and whatever was quiet yesterday is a little less quiet today. In {world_name}, that is how danger announces itself: not with a trumpet, but with one detail out of place. Something has changed near the thread you were already following, and if you step back in now, you can catch the world before the new shape hardens around you. Do you move toward the disturbance, question the nearest witness, or stay hidden long enough to see who reacts first?",
-        'hooks': ['Step toward the disturbance before the trail cools.'],
-        'meta': {
+    world_id = str(world.get('id') or '')
+    ramayana = world_id == 'ramayana'
+    xuanzang = world_id == 'xuanzang'
+    lang = normalize_lang(save.get('language')) or ('zh' if world.get('default_language') == 'zh' else 'en')
+    if xuanzang and lang == 'zh':
+        hooks = [f'核实{location}下一段路的通行、翻译或补给消息。', '向当地僧院、驿站或商队打听可信的路线与风俗。']
+        story_text = f"你离开这段时间，{location}的行旅消息有了变化：一位译者带来新的路线说法，商队对下一处驿站的补给有不同估计，而当地僧院也愿意接待远道而来的访客。哪一条值得先信，还需要你亲自核实。你的个人使命可以继续推进，但这段支线不会改写玄奘西行的记载；真正的选择，是如何在尊重当地习俗的同时，让同行者安全、清楚地抵达下一站。"
+        image_prompt = f"Historically grounded 7th-century Silk Road travel illustration near {location}, travelers and a local interpreter discussing route notes at a caravanserai, regionally accurate architecture and textiles, subtle manuscript and Dunhuang mural influence, mineral pigments, no fantasy weapons, no text"
+        summary = f"{location}的路线消息与接待安排发生变化，需进一步核实。"
+        meta = {'rumor_threads':['关于前方驿站、通行或补给的新消息'],'faction_movements':['商队与当地接待方正在协调同行安排'],'npc_watchlist':['带来路线消息的译者','愿意接待旅人的僧院或驿站主人'],'item_threads':['行旅札记、通行文书或补给清单'],'world_detail_notes':[f'当前地点：{location}','保持《大唐西域记》的地理连续性；玩家支线为原创虚构，不改写史料']}
+    elif ramayana and lang == 'zh':
+        hooks = [f'沿着{location}最近出现的线索，查明谁先采取了行动。', '找一位可信的盟友核实流放、搜寻或楞伽战局的消息。']
+        story_text = f"你离开这段时间，{location} 附近的局势悄然偏了一寸。阿逾陀的王命、森林中的流言、吉私紧陀的盟约，或楞伽城里的谏言，正有一条线索比往常更早传到你耳边。它未必改变史诗的大方向，却可能改变你眼下能救下谁、该信任谁，以及下一步要付出什么。若你此刻回到故事里，先查清是谁带来了这条消息，便能赶在新的决定落定前看见真正的压力所在。"
+        image_prompt = f"Indian miniature painting inspired Ramayana epic, culturally grounded setting near {location}, a specific new rumor or messenger changes the current chapter's pressure, mineral pigments, layered landscape, delicate outlines, warm indigo vermilion saffron and restrained gold, continuity with the player's existing story, no text"
+        summary = f"{location}附近出现一条可能影响当前史诗篇章的新线索。"
+        meta = {
+            'rumor_threads': ['一条新的宫廷、森林或楞伽线索传到当前地点'],
+            'faction_movements': ['玩家当前一方与其盟友的处境发生轻微变化'],
+            'npc_watchlist': ['送来消息的使者', '最先回应传闻的盟友'],
+            'item_threads': ['这条消息所指向的人、信物或行路'],
+            'world_detail_notes': [f'当前地点：{location}', '沿当前篇章的任务推进，不替代核心人物或抹去其自主性']
+        }
+    else:
+        hooks = ['Step toward the disturbance before the trail cools.']
+        story_text = f"While you were away, the balance around {location} shifted just enough to matter. Rumors moved faster than people, small loyalties bent under pressure, and whatever was quiet yesterday is a little less quiet today. In {world_name}, that is how danger announces itself: not with a trumpet, but with one detail out of place. Something has changed near the thread you were already following, and if you step back in now, you can catch the world before the new shape hardens around you. Do you move toward the disturbance, question the nearest witness, or stay hidden long enough to see who reacts first?"
+        image_prompt = f"{world_name}, continuity-aware evolving tension near {location}, visual callback to the player's current arc, one subtle but meaningful world shift, cinematic fantasy illustration"
+        summary = 'Something in the world shifted while you were away.'
+        meta = {
             'rumor_threads': ['a subtle change has spread through the area'],
             'faction_movements': ['local balance shifted while the player was away'],
             'npc_watchlist': ['whoever reacts first to the disturbance'],
             'item_threads': ['the detail that now feels out of place'],
             'world_detail_notes': [f'Current pressure point: {location}']
-        },
-        "image_prompt": f"{world_name}, continuity-aware evolving tension near {location}, visual callback to the player's current arc, one subtle but meaningful world shift, cinematic fantasy illustration",
+        }
+    result = {
+        'summary': summary,
+        'recap_text': recap,
+        'story_text': story_text,
+        'hooks': hooks,
+        'meta': meta,
+        'image_prompt': image_prompt,
         'severity': severity,
         'world_id': world.get('id'),
         'character_name': name,
         'location_context': location,
     }
-    routes, default_route = build_route_payload('en', result.get('hooks', []), result.get('meta', {}), location, location)
+    routes, default_route = build_route_payload(lang, result.get('hooks', []), result.get('meta', {}), location, location)
     result['suggested_routes'] = routes
     result['default_route'] = default_route
     return result
@@ -1137,6 +1165,9 @@ def main():
     elif args.universe == 'journey-to-west':
         result = journey_to_west_update(save, world, sidecar)
         lang = 'zh'
+    elif args.universe == 'ramayana':
+        result = generic_update(save, world, sidecar)
+        lang = normalize_lang(save.get('language')) or 'zh'
     elif args.universe == 'xiaoao':
         result = xiaoao_update(save, world, sidecar)
         lang = 'zh'

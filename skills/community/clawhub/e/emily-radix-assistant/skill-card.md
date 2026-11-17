@@ -1,44 +1,63 @@
-## Description: <br>
-Query Radix DLT blockchain data including wallet balances and performance, token prices and market movers, validator staking info, transaction history, network statistics, ecosystem news, DeFi yield pools, XRD trading venues, dApp directory, and developer resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Radix DLT blockchain data including wallet balances and performance, token prices and market movers, validator staking info, transaction history, network statistics, ecosystem news, DeFi yield pools, XRD trading venues, dApp directory, and developer resources.
 
-## Publisher: <br>
-[MAvRemu](https://clawhub.ai/user/MAvRemu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mavremu](https://clawhub.ai/user/mavremu)
 
-## Use Case: <br>
-External Radix users, DeFi participants, and developers use this skill to query Radix mainnet wallet, token, validator, transaction, ecosystem, and developer-resource data through Emily. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires installing the mcporter package from npm and connecting to a remote Emily service. <br>
-Mitigation: Install only if you are comfortable with that package and remote service, and review the configured MCP endpoint before use. <br>
-Risk: Wallet addresses, .xrd domains, token IDs, and market queries are sent to Emily and its listed data providers. <br>
-Mitigation: Avoid querying addresses or domains you consider sensitive unless you trust those services and their data handling. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MAvRemu/emily-radix-assistant) <br>
-- [Emily](https://www.ineedemily.com) <br>
-- [Radix Gateway API](https://docs.radixdlt.com/docs/network-apis) <br>
-- [Astrolescent](https://astrolescent.com) <br>
-- [CoinMarketCap](https://coinmarketcap.com) <br>
-- [Attos Earn](https://earn.attos.world) <br>
+## Use Case:
 
+External users, Radix community members, and developers use this skill to query Radix mainnet wallet, token, staking, DeFi, ecosystem, and developer-resource data through Emily's MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and MCP tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the mcporter CLI to connect to the Emily MCP service; service responses may include blockchain, market, ecosystem, and developer-resource data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet addresses, token queries, and timing or IP metadata may be sent to the Emily MCP service and its listed data providers.
+
+Mitigation: Use the skill only with data the user is comfortable exposing to those remote services, and avoid sensitive network contexts where this metadata should remain internal.
+
+Risk: The skill depends on the mcporter npm package for setup and execution.
+
+Mitigation: Pin, mirror, or separately review the mcporter package before deployment in sensitive environments.
+
+Risk: Market, DeFi, and ecosystem responses may reflect provider freshness, caching, or rate limits.
+
+Mitigation: Check source freshness and avoid treating generated responses as the sole basis for financial or operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mavremu/skills/emily-radix-assistant)
+- [Publisher profile](https://clawhub.ai/user/mavremu)
+- [Emily](https://www.ineedemily.com)
+- [Emily MCP service endpoint](https://www.ineedemily.com/api/mcp/mcp)
+- [Radix Gateway API](https://docs.radixdlt.com/docs/network-apis)
+- [Astrolescent](https://astrolescent.com)
+- [CoinMarketCap](https://coinmarketcap.com)
+- [Attos Earn](https://earn.attos.world)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live or cached blockchain, market, DeFi, ecosystem, and wallet data from Emily MCP service data providers.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

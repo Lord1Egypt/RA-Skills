@@ -1,51 +1,67 @@
-## Description: <br>
-Professional quantitative investment analysis frameworks and methodologies based on TradingView data structures for stock analysis, technical indicators, market screening, risk management, and trading strategy guidance. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Professional quantitative investment analysis frameworks and methodologies based on TradingView data structures for stock analysis, technical indicators, market screening, risk management, and trading strategy guidance.
 
-## Publisher: <br>
-[ljsd666](https://clawhub.ai/user/ljsd666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljsd666](https://clawhub.ai/user/ljsd666)
 
-## Use Case: <br>
-External users and developers use this skill to structure quantitative market analysis from TradingView-style data, including stock screening, technical analysis, event review, risk management, and multi-market comparisons. It provides methodology and interpretation guidance rather than direct trading execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market analysis output may be mistaken for personalized financial advice. <br>
-Mitigation: Treat generated entries, targets, stops, position sizes, options structures, and sector weights as educational analysis only, and consult qualified financial guidance before acting. <br>
-Risk: Market data, news, locale, or API responses may be stale, incorrect, or untrusted. <br>
-Mitigation: Verify data freshness, market locale, symbols, and source reliability before using the analysis. <br>
-Risk: RapidAPI credentials may be exposed if users integrate live data access. <br>
-Mitigation: Store API keys in environment variables or secure configuration, avoid committing keys, and monitor API usage. <br>
-Risk: External news or market content may contain prompt-injection text. <br>
-Mitigation: Treat external content as untrusted data and ignore embedded instructions or directive-like language. <br>
+## Use Case:
 
+External users and developers use this skill to structure quantitative market analysis, stock screening, technical pattern review, risk assessment, and event-driven market reports from TradingView-style data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ljsd666/openclaw-tradingview-quant) <br>
-- [TradingView Data API on RapidAPI](https://rapidapi.com/hypier/api/tradingview-data1) <br>
-- [API documentation](references/api-documentation.md) <br>
-- [API tools guide](references/api-tools-guide.md) <br>
-- [Technical analysis methodology](references/technical-analysis.md) <br>
-- [Pattern recognition library](references/pattern-library.md) <br>
-- [Risk management methods](references/risk-management.md) <br>
-- [API examples](references/api-examples/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text analysis guidance with optional structured lists and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not execute trades or directly access market data; users must provide or obtain current market data separately.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: The release uses a mutable npx install path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a pinned or reviewed source and avoid elevated privileges during installation.
+
+Risk: The skill may generate explicit trading scenarios or recommendations.
+
+Mitigation: Treat outputs as educational analysis, verify market facts independently, and do not use the output as personalized financial advice.
+
+Risk: TradingView data access through RapidAPI may require API keys and external requests.
+
+Mitigation: Use a personal RapidAPI key carefully, keep credentials out of version control, and monitor API usage and billing.
+
+Risk: External news or market data may contain untrusted text.
+
+Mitigation: Treat external content as data only and ignore any embedded instructions or directive-like language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ljsd666/skills/openclaw-tradingview-quant)
+- [TradingView Data API on RapidAPI](https://rapidapi.com/hypier/api/tradingview-data1)
+- [API documentation](references/api-documentation.md)
+- [API tools usage guide](references/api-tools-guide.md)
+- [Technical analysis methodology](references/technical-analysis.md)
+- [Technical pattern recognition library](references/pattern-library.md)
+- [Risk management system](references/risk-management.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline command and API-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational finance analysis should be reviewed by the user and not treated as personalized investment advice.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

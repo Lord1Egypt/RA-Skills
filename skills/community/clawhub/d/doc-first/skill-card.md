@@ -1,59 +1,58 @@
-## Description: <br>
-Automatically consults official documentation first to resolve configuration, usage, permission, or error issues with tools and APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically guides an agent to consult official documentation before answering uncertain tool, API, configuration, permission, or error questions.
 
-## Publisher: <br>
-[ekin-chn](https://clawhub.ai/user/ekin-chn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ekin-chn](https://clawhub.ai/user/ekin-chn)
 
-## Use Case: <br>
-Developers and agents use this skill when technical answers depend on current official documentation, such as API usage, CLI options, permissions, authentication, environment variables, and error handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Frequent documentation lookups can add latency or surface documentation for the wrong product version. <br>
-Mitigation: Confirm the relevant product or API version before relying on a result, and cite the documentation version, URL, or access date in user-facing answers. <br>
-Risk: Configuration guidance can affect authentication, permissions, or environment variables. <br>
-Mitigation: Review proposed configuration changes before applying them, especially when credentials, access scopes, or environment variables are involved. <br>
+## Use Case:
 
+Developers and agent operators use this skill to make documentation-grounded decisions when configuring tools and APIs, diagnosing permission or authentication issues, or resolving uncertain command usage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ekin-chn/doc-first) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai/llms.txt) <br>
-- [OpenAI documentation](https://platform.openai.com/docs) <br>
-- [Anthropic documentation](https://docs.anthropic.com/) <br>
-- [GLM API documentation](https://open.bigmodel.cn/dev/api) <br>
-- [MiniMax documentation](https://www.minimaxi.com/document/Guide) <br>
-- [DashScope documentation](https://qianwen-api.aliyun.com/) <br>
-- [Qianfan documentation](https://qianfan.cloud.baidu.com/) <br>
-- [iFlyTek Spark documentation](https://www.xfyun.cn/doc/spark/) <br>
-- [Moonshot platform documentation](https://platform.moonshot.cn/) <br>
-- [Tiangong documentation](https://www.tiangong.cn/) <br>
-- [Coze documentation](https://www.coze.cn/docs/) <br>
-- [WeChat Mini Program documentation](https://developers.weixin.qq.com/miniprogram/dev/framework/) <br>
-- [Telegram Bot API](https://core.telegram.org/bots/api) <br>
-- [DeepSeek documentation](https://api.deepseek.com/docs) <br>
-- [Slack API documentation](https://api.slack.com/) <br>
-- [Discord developer documentation](https://discord.com/developers/docs) <br>
-- [GitHub REST API documentation](https://docs.github.com/rest) <br>
-- [Notion API documentation](https://developers.notion.com/docs/getting-started) <br>
-- [Gmail API documentation](https://developers.google.com/gmail/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with cited documentation references and inline commands or configuration snippets when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Emphasizes official documentation, version awareness, and uncertainty disclosure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill may cause additional external documentation fetches before answering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when documentation lookup is appropriate and narrow trigger language if always-on behavior is too broad.
+
+Risk: Answers can still be wrong if documentation versions are mismatched or official docs are unavailable.
+
+Mitigation: Have the agent state the documentation URL, date or version checked, and uncertainty when official docs do not resolve the question.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ekin-chn/skills/doc-first)
+- [OpenClaw documentation](https://docs.openclaw.ai/llms.txt)
+- [OpenAI API documentation](https://platform.openai.com/docs)
+- [Anthropic documentation](https://docs.anthropic.com/)
+- [GitHub REST API documentation](https://docs.github.com/rest)
+- [Discord Developer documentation](https://discord.com/developers/docs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with cited documentation sources and optional code, command, or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include URLs, dates, or version numbers for checked official documentation.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Generates brand-specific marketing calendar campaign ideas using the 华与华 five-element workflow and produces a visual HTML report for activities scoring 80 or higher. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese marketing-calendar campaign concepts from brand information, scores them with a five-part rubric, and writes a visual HTML report.
 
-## Publisher: <br>
-[CoCokkxy](https://clawhub.ai/user/CoCokkxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cocokkxy](https://clawhub.ai/user/cocokkxy)
 
-## Use Case: <br>
-Marketing and brand teams use this skill to turn brand attributes into seasonal campaign concepts, score them against a five-dimension rubric, and generate a local HTML report for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: When brand details are incomplete, web lookup may add inaccurate or unsuitable public information to campaign proposals. <br>
-Mitigation: Use non-confidential brand information when lookup is acceptable, then review and correct generated claims before sharing them externally. <br>
-Risk: The generated HTML report may contain unreviewed marketing claims, promotions, or brand positioning. <br>
-Mitigation: Review marketing_calendar_report.html for accuracy, policy fit, and legal or brand approval before publication. <br>
+## Use Case:
 
+Marketing teams and brand planners use this skill to turn a brand name and brand profile into seasonal campaign ideas tied to major calendar moments. It is intended for Chinese-language marketing-calendar planning and produces only activities that meet the skill's minimum scoring threshold.
 
-## Reference(s): <br>
-- [marketing-calendar.md](artifact/marketing-calendar.md) <br>
-- [ClawHub skill page](https://clawhub.ai/CoCokkxy/marketing-calendar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Markdown response plus a local HTML report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use web search when brand details are incomplete; writes marketing_calendar_report.html for local review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Incomplete brand information may be supplemented through web search.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential brand strategy unless web-based enrichment is acceptable.
+
+Risk: Generated campaign plans may include unsuitable or inaccurate marketing recommendations.
+
+Mitigation: Review the activity concepts, scoring, and HTML report before using them for customer-facing campaigns.
+
+Risk: The skill writes a local file named marketing_calendar_report.html.
+
+Mitigation: Run it in a workspace where creating or replacing that report file is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cocokkxy/skills/marketing-calendar)
+- [Skill definition](artifact/SKILL.md)
+- [Marketing calendar workflow](artifact/marketing-calendar.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance]
+
+**Output Format:** [Plain text campaign concepts plus a local HTML report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Filters out campaign concepts below the configured minimum score, defaulting to 80.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

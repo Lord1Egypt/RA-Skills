@@ -1,0 +1,37 @@
+{
+  "kind": "live-readonly-preview-and-offline-regression",
+  "date": "2026-10-27",
+  "version": "1.14.1",
+  "live_readonly_preview": {
+    "status": "passed",
+    "cli_flags": ["--preview", "--json"],
+    "result": "skipped-existing",
+    "verified": true,
+    "transport_allowlist": [
+      {"method": "GET", "path": "/sn/timeEntry/details/<record-id>"},
+      {"method": "POST", "path": "/sn/timeEntry/findEveryDayList"}
+    ],
+    "observed_read_requests": 2,
+    "observed_write_requests": 0,
+    "account_credentials_and_business_identifiers": "omitted"
+  },
+  "response_schema_regression": {
+    "observed_live_success_code_type": "string",
+    "accepted_exact_success_codes": [200, "200"],
+    "rejects_float_boolean_padding_and_whitespace": true,
+    "test_first_red_then_green": true
+  },
+  "offline_tests": {
+    "baseline_count": 43,
+    "final_count_before_independent_review": 76,
+    "failures": 0,
+    "errors": 0,
+    "http_transport": "injected fakes; not live mutation evidence"
+  },
+  "limitations": [
+    "No real withdrawal or resubmission was performed by the new implementation.",
+    "The HAR records the user's earlier successful browser workflow, not execution by the new implementation.",
+    "Local locking and persistent intents do not provide cross-client exactly-once transactions.",
+    "Independent review and registry readback are separate release gates."
+  ]
+}

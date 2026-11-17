@@ -1,44 +1,54 @@
-## Description: <br>
-Provides developer-facing JF Tech pet-care integration support for abnormal event alerts, pet behavior reports, cloud video archiving, service controls, pet records, and behavior statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JF Open Pro AI Pet Care helps developers integrate JF Tech pet-care APIs for service status, pet profile management, abnormal alert queries, and pet behavior statistics.
 
-## Publisher: <br>
-[jftech](https://clawhub.ai/user/jftech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jftech](https://clawhub.ai/user/jftech)
 
-## Use Case: <br>
-Developers and integration engineers use this skill to connect applications or automation workflows to JF Tech pet-monitoring APIs for service status, alert querying, pet record management, and behavior reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses powerful account credentials and tokens for JF Tech APIs. <br>
-Mitigation: Store credentials in environment variables or a secret manager, avoid TOOLS.md for shared or committed workflows, and never commit tokens or app secrets. <br>
-Risk: The included tools can change service state, alert settings, and pet records. <br>
-Mitigation: Require explicit human confirmation before service switches, alert configuration changes, or pet record deletion. <br>
-Risk: The integration can modify or delete remote pet-care data without strong built-in safeguards. <br>
-Mitigation: Limit installation to developer-facing workflows that need write access and review requested actions before execution. <br>
+## Use Case:
 
+Developers and integration engineers use this skill to connect applications and automation workflows to JF Tech pet-care services, including pet profile management, abnormal alert retrieval, and behavior reporting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jftech/jf-open-pro-ai-pet-care) <br>
-- [JF Tech developer platform](https://developer.jftech.com) <br>
-- [JF Tech pet-care API endpoints](https://api-cn.jftechws.com/aisvr/v3/gateway/api/scenepet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands, Python examples, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JF Tech credentials and device identifiers supplied by the user or deployment environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Live JF Tech credentials and authorization tokens may be exposed during setup or command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege, revocable credentials; avoid storing secrets in TOOLS.md or shell history; and prefer environment-variable or secret-manager handling.
+
+Risk: Delete, switch, and set-config actions can make real remote changes to pet profiles, monitoring state, and alert behavior.
+
+Mitigation: Review commands before execution and wrap destructive or alert-disabling operations with explicit confirmation checks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jftech/skills/jf-open-pro-ai-pet-care)
+- [JF Tech Developer Platform](https://developer.jftech.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with Python code, shell commands, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live JF Tech credentials and network access to JF Tech APIs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

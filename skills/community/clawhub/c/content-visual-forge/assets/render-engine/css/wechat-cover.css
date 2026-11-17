@@ -1,0 +1,34 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #eee; font-family: "Songti SC", "Noto Serif CJK SC", serif; }
+.cover {
+  width: 1200px;
+  height: 675px;
+  margin: 0 auto;
+  background-image: var(--cover-bg-image), linear-gradient(135deg, #f4efe6 0%, #d8e2d2 100%);
+  background-size: cover;
+  background-position: var(--cover-bg-position, center);
+  position: relative;
+  z-index: 0;
+}
+.cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(246, 240, 228, 0.82), rgba(246, 240, 228, 0.18));
+}
+.overlay {
+  position: absolute;
+  left: 72px;
+  top: 80px;
+  width: 520px;
+  padding: 32px;
+  background: rgba(255, 248, 235, 0.72);
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+.kicker { font-size: 24px; color: #48624d; letter-spacing: .08em; }
+h1 { font-size: 64px; line-height: 1.15; margin: 20px 0; color: #21392c; }
+.subtitle { font-size: 28px; color: #5f6f61; }
+.asset-note {
+  display: none;
+}

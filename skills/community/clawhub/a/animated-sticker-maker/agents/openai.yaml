@@ -1,0 +1,7 @@
+interface:
+  display_name: "Animated Sticker Maker"
+  short_description: "从一张静态参考图和动作提示制作单张透明循环动态表情"
+  default_prompt: "使用 $animated-sticker-maker 根据这张静态参考图和动作提示制作一张透明循环动态表情。"
+
+policy:
+  allow_implicit_invocation: false

@@ -1,39 +1,50 @@
-## Description: <br>
-Npv reference tool. Use when working with npv in finance contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Npv is a command-driven reference tool for finance contexts involving NPV.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Finance practitioners, developers, and external users use this skill as a lightweight local reference for NPV-related concepts, formulas, regulations, risks, instruments, strategies, glossary terms, and due diligence checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may rely on static finance reference text for actual NPV calculations, investment decisions, or regulatory compliance. <br>
-Mitigation: Use this skill only as a lightweight reference and verify calculations, investment decisions, and compliance questions against authoritative finance sources or a qualified professional. <br>
+## Use Case:
 
+External users and finance practitioners can use this skill for quick, generic NPV-related finance reference material, including formulas, risk topics, strategy prompts, glossary terms, and checklists. It should not be treated as authoritative investment appraisal guidance without independent review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/npv) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text printed by local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference output; no API keys or external services detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: The skill's NPV reference content is generic and may omit core NPV concepts users expect for investment appraisal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the output against authoritative finance sources and validate formulas, assumptions, discount rates, and decision criteria before relying on it.
+
+## Reference(s):
+
+- [Npv on ClawHub](https://clawhub.ai/ckchzh/skills/npv)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text emitted by command-selected shell output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected reference sections; finance content is generic and should be independently verified before use in decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

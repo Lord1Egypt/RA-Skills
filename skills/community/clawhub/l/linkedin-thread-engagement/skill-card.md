@@ -1,41 +1,57 @@
-## Description: <br>
-Monitor LinkedIn threads where the user commented for author replies and inbound signals, flag high-value follow-up windows, draft responses, and optionally route dormant warm threads to DM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor LinkedIn threads where the user commented for author replies and inbound signals, flag high-value engagement windows, draft follow-up responses, and optionally route dormant but meaningful threads to DM.
 
-## Publisher: <br>
-[sergebulaev](https://clawhub.ai/user/sergebulaev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergebulaev](https://clawhub.ai/user/sergebulaev)
 
-## Use Case: <br>
-External operators, creators, and growth teams use this skill to monitor recent LinkedIn comment threads, identify author replies and inbound-quality signals, prioritize timely public follow-ups, and draft thread-specific responses or DMs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: LinkedIn profile and comment activity may be sent to external services. <br>
-Mitigation: Verify what HarvestAPI, Publora, and linkedin-reply-handler receive, store, and can do with account data before connecting real LinkedIn or publishing accounts. <br>
-Risk: Reply drafting can delegate to a backend that may auto-post without an explicit approval gate. <br>
-Mitigation: Use a manual copy-paste backend unless automated posting is explicitly intended, and require approval for every public reply or DM. <br>
+## Use Case:
 
+External users and operators use this skill to monitor LinkedIn comment threads where they have participated, identify author replies within the highest-value response windows, and draft timely public replies or DMs.
 
-## Reference(s): <br>
-- [Thread Timing Matrix](references/thread-timing.md) <br>
-- [ClawHub release page](https://clawhub.ai/sergebulaev/linkedin-thread-engagement) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown reports with thread classifications, priorities, suggested responses, and DM guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference LinkedIn profile URLs, post URLs, author-reply timing, inbound-quality signals, and downstream reply-drafting behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Reviewing LinkedIn comments and thread activity may expose personal or sensitive professional context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is comfortable with the workflow reviewing LinkedIn comment and thread data before use.
+
+Risk: Connected posting backends may draft only or may be capable of publishing public replies or DMs.
+
+Mitigation: Verify the active backend behavior and require explicit human approval before public replies or DMs are sent.
+
+Risk: Overusing follow-ups, reply chains, or coordinated engagement patterns can create spam-like behavior.
+
+Mitigation: Follow the skill's timing limits, avoid three or more chained replies under one comment, and use substantive non-reciprocal engagement only.
+
+## Reference(s):
+
+- [Thread Timing Matrix](references/thread-timing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports with suggested response drafts, stage classifications, priorities, and timing guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include daily thread reports, warm-thread previews, reaction targets, weekly roll-ups, and DM draft guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

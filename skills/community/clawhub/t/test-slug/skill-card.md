@@ -1,40 +1,53 @@
-## Description: <br>
-Publishes a local skill to ClawHub using specified slug, name, version, path, and optional changelog parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes a local skill to ClawHub using specified slug, name, version, path, and optional changelog parameters.
 
-## Publisher: <br>
-[wuhaichao87](https://clawhub.ai/user/wuhaichao87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuhaichao87](https://clawhub.ai/user/wuhaichao87)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to prepare and publish local skill directories to ClawHub with release metadata such as slug, display name, version, source path, and changelog. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact embeds a ClawHub API token and can upload local files with limited user control over what is sent. <br>
-Mitigation: Inspect the exact files before use, remove the embedded token, authenticate explicitly with your own credential, and add a dry-run or confirmation step before publishing. <br>
-Risk: Running the publisher on the wrong directory may send unintended local skill files. <br>
-Mitigation: Use it only on a clean skill directory and review the selected files before any upload. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to publish a local skill directory to ClawHub from the command line or from Python code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuhaichao87/test-slug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with bash and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs command-line usage patterns and Python invocation guidance for publishing skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A bundled bearer token could allow unintended use of a publisher credential if the skill is run as-is.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke the bundled token and require each user to authenticate with their own scoped credential before publishing.
+
+Risk: The publishing workflow can upload unintended local files from the selected skill directory.
+
+Mitigation: Review the target directory and generated file list before executing the publisher.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuhaichao87/skills/test-slug)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May issue network API calls and upload files when executed by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

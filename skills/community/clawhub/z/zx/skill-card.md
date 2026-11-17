@@ -1,45 +1,65 @@
-## Description: <br>
-Comprehensive guide for writing, debugging, and refactoring shell scripts with Google zx in JavaScript/TypeScript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive guide for writing shell scripts with Google zx, including JavaScript and TypeScript zx scripts, shell command execution, ProcessPromise and ProcessOutput APIs, stream piping, configuration, and CLI usage.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to write, debug, or refactor zx-based shell scripts, including command execution, ProcessPromise and ProcessOutput patterns, stream piping, CLI usage, and configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes shell command execution patterns that could be harmful if copied without review. <br>
-Mitigation: Review generated or copied commands like shell scripts before running them. <br>
-Risk: Remote URLs and Markdown scripts can execute untrusted content through zx workflows. <br>
-Mitigation: Avoid untrusted remote URLs or Markdown files and use only sources the user explicitly trusts. <br>
-Risk: Auto-install and custom registry options can introduce unexpected package supply-chain exposure. <br>
-Mitigation: Pin package versions where practical and treat auto-install or custom registry settings with caution. <br>
+## Use Case:
 
+Developers and engineers use this skill to write, debug, review, and refactor zx-based shell scripts in JavaScript or TypeScript.
 
-## Reference(s): <br>
-- [Zx API Reference](references/api.md) <br>
-- [Zx CLI Reference](references/cli.md) <br>
-- [Zx Configuration Reference](references/configuration.md) <br>
-- [ProcessPromise & ProcessOutput Reference](references/process.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline JavaScript, TypeScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no automatic command execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated zx examples may execute shell commands or scripts with local file, network, or environment access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands as real shell code before running them.
+
+Risk: Remote or Markdown-based zx scripts can execute code from content the user may not control.
+
+Mitigation: Avoid running remote or Markdown scripts from untrusted sources.
+
+Risk: Environment files and inherited process environments can expose secrets to commands or external services.
+
+Mitigation: Keep secrets out of environment files passed to zx commands and limit command environments to needed variables.
+
+Risk: Unpinned zx or npm dependencies can change behavior across installs.
+
+Mitigation: Pin package versions when possible.
+
+## Reference(s):
+
+- [Zx API Reference](references/api.md)
+- [Zx CLI Reference](references/cli.md)
+- [Zx Configuration Reference](references/configuration.md)
+- [ProcessPromise and ProcessOutput Reference](references/process.md)
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/zx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with JavaScript, TypeScript, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory content only; generated commands and scripts should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Post or schedule content to Threads using the Publora API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post or schedule content to Threads using the Publora API.
 
-## Publisher: <br>
-[sergebulaev](https://clawhub.ai/user/sergebulaev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergebulaev](https://clawhub.ai/user/sergebulaev)
 
-## Use Case: <br>
-External users and developers use this skill to prepare API calls that create or schedule Threads posts through Publora, including text, media upload, scheduling, and reply-control settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent using a Publora key can create or schedule posts for connected Threads accounts. <br>
-Mitigation: Confirm the target account, post text, media, and scheduled time before allowing publish or schedule actions. <br>
-Risk: Threads nested threading is temporarily unavailable, so long content may not publish as a connected reply chain. <br>
-Mitigation: Keep posts under 500 characters when a single standalone post is required, or wait for Publora thread nesting support to be restored. <br>
+## Use Case:
 
+External users, developers, and social media operators use this skill to have an agent draft API calls and guidance for publishing or scheduling Threads posts through Publora, including media upload and reply-control settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sergebulaev/publora-threads) <br>
-- [Publora API base URL](https://api.publora.com/api/v1) <br>
-- [Publora create-post endpoint](https://api.publora.com/api/v1/create-post) <br>
-- [Publora upload URL endpoint](https://api.publora.com/api/v1/get-upload-url) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with JavaScript fetch examples and API parameter guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Publora API base URL, API key header, Threads platform ID format, media limits, scheduling fields, and reply-control settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server-resolved release metadata) <br>
+Risk: A Publora API key could be exposed or reused outside the intended workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the Publora API key as sensitive, keep it out of shared transcripts and committed files, and rotate it if exposure is suspected.
+
+Risk: The agent could prepare a post for the wrong Threads account, content, media, or scheduled time.
+
+Mitigation: Confirm the target platform ID, post text, media attachments, reply-control setting, and scheduled timestamp before allowing publication.
+
+Risk: Nested Threads posts are temporarily unavailable, so long content may not publish as an expected reply chain.
+
+Mitigation: Keep posts under the single-post limit or wait for Publora support to confirm nested threading has been restored.
+
+## Reference(s):
+
+- [Publora API Base URL](https://api.publora.com/api/v1)
+- [Publora Create Post Endpoint](https://api.publora.com/api/v1/create-post)
+- [Publora Upload URL Endpoint](https://api.publora.com/api/v1/get-upload-url)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript fetch examples and concise platform guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers Publora API endpoints, API-key header usage, Threads platform IDs, scheduling fields, media upload flow, reply-control settings, platform limits, and temporary nested-thread restrictions.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

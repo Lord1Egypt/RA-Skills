@@ -1,40 +1,54 @@
-## Description: <br>
-PR Autocheck runs post-submit pull request checks by reviewing code diffs, checking service health, saving a combined report, and syncing a limited summary to Discord when a webhook is configured. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates post-submit pull request checks by running deterministic code review, service health validation, combined JSON reporting, and optional Discord webhook delivery.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and maintainers use this skill in PR and CI workflows to review code changes, validate service health, persist a JSON report, and notify a team Discord channel when delivery is configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted CI inputs could change the health-check command or Discord webhook destination. <br>
-Mitigation: Install only where CI environment variables are controlled by trusted maintainers, and review HEALTHCHECK_CMD and DISCORD_WEBHOOK_URL before enabling automated post-submit use. <br>
-Risk: Discord delivery may be unavailable or fail after the local report is generated. <br>
-Mitigation: Use the saved report and surfaced discord_exit status to distinguish pending or failed delivery from a successful notification. <br>
+## Use Case:
 
+Developers and maintainers use this skill in CI, post-submit hooks, or on demand to review PR diffs, combine service health status, and notify a team Discord channel.
 
-## Reference(s): <br>
-- [PR Autocheck on ClawHub](https://clawhub.ai/terrycarter1985/pr-autocheck) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [JSON report with shell command usage and optional Discord embed summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reports locally under reports/ and surfaces Discord delivery status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: A configurable health-check command can run in the target repository or CI environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Allow only trusted maintainers to set HEALTHCHECK_CMD and the healthcheck skill path, and run the skill in a controlled repository or CI environment.
+
+Risk: Review and health data can be sent to a Discord webhook or saved as report artifacts.
+
+Mitigation: Protect DISCORD_WEBHOOK_URL as a secret and review generated reports for sensitive repository or service details before sharing or publishing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/pr-autocheck)
+- [Publisher profile](https://clawhub.ai/user/terrycarter1985)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, json, markdown, shell commands, configuration]
+
+**Output Format:** [JSON reports, Discord embed payloads, saved files, and concise command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save reports under reports/ and may post a summarized notification when DISCORD_WEBHOOK_URL is configured.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,53 @@
-## Description: <br>
-Deploy applications and set up infrastructure, including CI/CD, Docker, hosting, domains, SSL, monitoring, environment variables, staging, production, rollback, and related deployment work for solo founders without a dedicated ops team. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy applications and set up infrastructure for solo founders using practical guidance for CI/CD, Docker, hosting, domains, SSL, monitoring, backups, and rollback.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-Developers, engineers, and solo founders use this skill to plan and execute practical web application deployments, CI/CD pipelines, environment management, monitoring, rollbacks, and platform choices without a dedicated operations team. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deployment commands can affect cloud resources, production services, costs, or data availability if applied to the wrong account, project, environment, or region. <br>
-Mitigation: Review every command before execution and confirm the target account, project, environment, region, and cost impact before creating resources, scaling services, rolling back deployments, or deleting backups. <br>
-Risk: Secrets or credentials could be exposed if pasted into chat, committed to source control, or baked into Docker images. <br>
-Mitigation: Use provider secret-management interfaces, keep .env files out of git, commit only placeholder .env.example values, and avoid placing secrets in container images. <br>
-Risk: Backup and rollback examples can cause data loss or downtime if used without validation. <br>
-Mitigation: Test restores in a non-production database, verify health checks, and review rollback steps against the specific deployment platform before production use. <br>
+## Use Case:
 
+Developers and solo founders use this skill to choose deployment platforms, define Docker and CI/CD setup, manage environment variables, configure domains and SSL, and plan monitoring, backups, and rollback.
 
-## Reference(s): <br>
-- [Deployment Guides Reference](references/deployment-guides.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/emersonbraun/eb-devops-deploy) <br>
-- [Publisher Profile](https://clawhub.ai/user/emersonbraun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include deployment plans, CI/CD snippets, Dockerfiles, environment variable guidance, rollback steps, and platform recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Deployment examples include commands that can run unverified remote installers or unpinned global CLI installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, prefer verified installers, and pin CLI versions where practical.
+
+Risk: Backup deletion and database restore examples can remove data or affect the wrong environment if copied without checks.
+
+Mitigation: Use dry-run deletion, private temporary files, explicit non-production restore targets, and confirmation before destructive operations.
+
+## Reference(s):
+
+- [Deployment Guides Reference](artifact/references/deployment-guides.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include deployment commands and configuration examples that require user review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,9 @@
+<canvas id="fixture.brief" title="Synthetic daily brief" created="2026-01-15T16:00:00Z" schemaVersion="2.0" tags="synthetic,test-only" version="1">
+  <block id="brief.heading" type="section-header" width="full" title="Synthetic daily brief fixture" subtitle="No current market facts" />
+  <row>
+    <block id="brief.mood" type="market-mood" width="half" score="61" phase="synthetic constructive" asOf="2026-01-15T15:30:00Z" synthetic="true" />
+    <block id="brief.index" type="metric-card" width="half" label="Synthetic index move" value="+0.50%" asOf="2026-01-15T15:45:00Z" synthetic="true" />
+  </row>
+  <block id="brief.watch" type="watchlist" width="full" title="Synthetic movers" items='[{"ticker":"$ALFA","change":"+2.00%"},{"ticker":"$BETA","change":"-1.50%"}]' asOf="2026-01-15T15:45:00Z" synthetic="true" />
+  <block id="brief.summary" type="callout" width="full" tone="neutral" title="Fixture notice">These invented observations exist only to test the daily brief layout.</block>
+</canvas>

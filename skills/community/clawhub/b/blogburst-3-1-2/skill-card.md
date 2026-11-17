@@ -1,42 +1,60 @@
-## Description: <br>
-BlogBurst is an AI marketing agent for generating and repurposing content, managing multi-platform posting, checking analytics, and running SEO/GEO and competitor workflows through the BlogBurst API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BlogBurst is an AI marketing agent that generates and repurposes content, manages social posting and engagement, runs SEO and GEO audits, tracks competitors, and scans communities for marketing opportunities.
 
-## Publisher: <br>
-[0xspeter](https://clawhub.ai/user/0xspeter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xspeter](https://clawhub.ai/user/0xspeter)
 
-## Use Case: <br>
-Developers, marketers, and business operators use this skill to ask an agent for blog drafts, social posts, repurposed content, trend discovery, analytics checks, and marketing automation across connected platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish and engage from connected social or messaging accounts. <br>
-Mitigation: Confirm connected platforms, posting frequency, review process, pause controls, and revocation steps before enabling auto-pilot or auto-engagement. <br>
-Risk: The skill requires a BlogBurst API key and the artifact suggests shell-based setup that may persist credentials. <br>
-Mitigation: Use a safer secret store or session-scoped environment variable, avoid printing the key, and rotate or revoke the key if it is exposed. <br>
+## Use Case:
 
+External users and developers use this skill to connect an OpenClaw assistant to BlogBurst for content generation, content repurposing, social media automation, analytics, and marketing audits.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/0xspeter/blogburst-3-1-2) <br>
-- [BlogBurst website](https://blogburst.ai) <br>
-- [BlogBurst API docs](https://api.blogburst.ai/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, API request examples, and API-returned text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BLOGBURST_API_KEY; actions may publish or engage through connected social and messaging accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact _meta.json lists 3.1.2) <br>
+Risk: The setup flow can expose the BlogBurst API key through command output, shell history, profile files, or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secret manager or a temporary environment variable, avoid printing the key, and rotate any key that has already appeared in output or logs.
+
+Risk: The skill can enable public social-media actions such as posting, replying, liking, following, and running auto-pilot automation.
+
+Mitigation: Connect only accounts the user is comfortable letting BlogBurst manage, and require previews or explicit confirmation before enabling automation or public engagement.
+
+Risk: Prompts, draft content, account state, analytics, and marketing data may be sent to the BlogBurst API.
+
+Mitigation: Avoid sending sensitive or confidential marketing material unless the user has approved the third-party data flow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xspeter/skills/blogburst-3-1-2)
+- [BlogBurst website](https://blogburst.ai)
+- [BlogBurst API docs](https://api.blogburst.ai/docs)
+- [BlogBurst API keys](https://blogburst.ai/dashboard/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text responses with curl commands and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BLOGBURST_API_KEY and sends user marketing requests to the BlogBurst API.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,86 @@
+{
+ "schema": "cad-site-geometry/v1",
+ "source_file": "synthetic-site.dxf",
+ "contract": {
+  "schema": "cad-file-reader/v0",
+  "contract_version": "cad-contract/v1",
+  "contract_id": "CONTRACT-SYNTH-001",
+  "reader_version": "0.41.0"
+ },
+ "scale_unit_audit": [
+  {
+   "file": "synthetic-site.dxf",
+   "scales": [
+    "1:500"
+   ],
+   "units": [
+    "mm"
+   ],
+   "status": "candidate",
+   "review_reason": ""
+  }
+ ],
+ "site_geometry": [
+  {
+   "category": "site_boundary",
+   "layer": "红线",
+   "system": "site",
+   "geometry": [
+    0,
+    0,
+    100000,
+    0
+   ],
+   "status": "candidate"
+  },
+  {
+   "category": "site_boundary",
+   "layer": "红线",
+   "system": "site",
+   "geometry": [
+    100000,
+    0,
+    100000,
+    60000
+   ],
+   "status": "candidate"
+  },
+  {
+   "category": "site_boundary",
+   "layer": "红线",
+   "system": "site",
+   "geometry": [
+    100000,
+    60000,
+    0,
+    60000
+   ],
+   "status": "candidate"
+  },
+  {
+   "category": "site_boundary",
+   "layer": "红线",
+   "system": "site",
+   "geometry": [
+    0,
+    60000,
+    0,
+    0
+   ],
+   "status": "candidate"
+  },
+  {
+   "category": "road",
+   "layer": "道路",
+   "system": "road",
+   "geometry": [
+    0,
+    30000,
+    100000,
+    30000
+   ],
+   "status": "candidate"
+  }
+ ],
+ "review": []
+}

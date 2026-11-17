@@ -1,7 +1,7 @@
 # product-image-generator 配置文件
 
 # ===== 默认 API：Nano Banana（备用方案）=====
-NANO_BANANA_API_KEY = "sk-6fe41fd597614d2686f6d0685b4bd232"
+NANO_BANANA_API_KEY = "REDACTED-SECRET"
 NANO_BANANA_ENDPOINT = "https://grsai.dakka.com.cn"
 NANO_BANANA_MODEL = "nano-banana-pro"
 NANO_BANANA_TIMEOUT = 120  # 超时时间（秒）

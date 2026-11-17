@@ -1,45 +1,57 @@
-## Description: <br>
-Provides Chinese-language paid weather reports for a requested location after order creation and payment verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+clawtip-weather provides paid daily weather reports for a user-specified location after order creation and payment verification.
 
-## Publisher: <br>
-[clawtip](https://clawhub.ai/user/clawtip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawtip](https://clawhub.ai/user/clawtip)
 
-## Use Case: <br>
-External users or agents use this skill to request a weather report for a location through a paid workflow. The workflow creates an order, obtains a payment credential through the separate clawtip payment skill, and then retrieves the report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger payment handling through a separate helper skill. <br>
-Mitigation: Install only if you trust the publisher, the remote payment and weather service, and the exact clawtip payment skill; verify the amount before paying. <br>
-Risk: Payment credentials and order details may be persisted in local order files. <br>
-Mitigation: Delete local order files after use when retention is not needed, and avoid sharing those files. <br>
-Risk: The workflow asks for automatic installation of an unpinned helper skill. <br>
-Mitigation: Review the exact clawtip package before allowing installation or execution. <br>
-Risk: The skill text asks the agent to reveal internal reasoning. <br>
-Mitigation: Provide concise user-facing rationale or status summaries instead of hidden chain-of-thought. <br>
+## Use Case:
 
+External users use this skill to request a paid weather report for a specified location. The agent creates an order, initiates payment through the publisher's payment flow, and runs the weather report script after a payment credential is available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawtip/clawtip-weather) <br>
-- [Remote weather and payment service](https://ms.jr.jd.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Chinese-language Markdown-style guidance with shell command examples and plain-text weather report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a location, an order number, and a payment credential stored in the local order file before report retrieval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence) <br>
+Risk: The skill combines payment and credential handling with instructions that can discourage inspection of the workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the full payment flow and script behavior before installation, and do not treat artifact text that blocks inspection as authoritative.
+
+Risk: The payment flow depends on an external payment skill by name without evidence of version pinning.
+
+Mitigation: Use only a reviewed, trusted, version-pinned payment dependency before running this skill in a production environment.
+
+Risk: Order numbers are used to read local order JSON files, which can be risky if order identifiers or paths are not constrained.
+
+Mitigation: Validate order identifiers and restrict file access to the expected orders directory before use.
+
+## Reference(s):
+
+- [clawtip-weather ClawHub listing](https://clawhub.ai/clawtip/skills/clawtip-weather)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and script output fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces order details, payment status, error messages, and a weather report after payment verification.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

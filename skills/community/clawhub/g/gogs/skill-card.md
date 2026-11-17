@@ -1,50 +1,66 @@
-## Description: <br>
-Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs, plus access to 50+ models for image generation, video generation, text-to-speech, speech-to-text, music, chat, web search, document parsing, email, and SMS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs. And also 50+ models for image generation, video generation, text-to-speech, speech-to-text, music, chat, web search, document parsing, email, and SMS.
 
-## Publisher: <br>
-[QuincyGunter](https://clawhub.ai/user/QuincyGunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-Developers and external users use this skill to call SkillBoss/HeyBoss APIs from an agent for Google Workspace-style automation and multi-provider AI model tasks, including chat, media generation, search, document processing, email, and SMS workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes prompts, documents, audio, images, phone numbers, and other task data through a broad third-party AI/API gateway. <br>
-Mitigation: Use a dedicated limited API key and submit confidential or sensitive data only after confirming the provider terms and internal data-handling requirements. <br>
-Risk: The skill includes email, SMS, batch send, and remote download workflows that can affect external recipients or retrieve untrusted content. <br>
-Mitigation: Require explicit user approval before sending email or SMS, running batch send actions, or downloading remote files. <br>
-Risk: The Google Workspace framing may understate the breadth of non-Google AI and automation capabilities exposed by the skill. <br>
-Mitigation: Review the full model and tool list before installation and use it only when a broad SkillBoss/HeyBoss gateway is intended. <br>
+## Use Case:
 
+Developers and agent operators use this skill to call SkillBoss/HeyBoss endpoints for chat, image, video, audio, web search, document processing, email, SMS, and related model workflows from an agent session.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/QuincyGunter/gogs) <br>
-- [SkillBoss Website](https://www.skillboss.co) <br>
-- [HeyBoss API Base URL](https://api.heybossai.com/v1) <br>
-- [Chat Models](artifact/chat-models.md) <br>
-- [Image Models](artifact/image-models.md) <br>
-- [Video Models](artifact/video-models.md) <br>
-- [Audio Models](artifact/audio-models.md) <br>
-- [Search & Scraping Models](artifact/search-models.md) <br>
-- [Tool Models](artifact/tools-models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is partly presented as a Google Workspace CLI while its artifact behavior is a broad third-party SkillBoss/HeyBoss AI gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the intended use is broad SkillBoss/HeyBoss API access, and verify requested actions against the API endpoints before use.
+
+Risk: Prompts, files, audio, phone numbers, OTP codes, and other inputs may leave the user's environment through third-party API calls.
+
+Mitigation: Require explicit user approval before sending confidential, regulated, or personal data through the skill.
+
+Risk: The skill includes email and SMS actions that can contact external recipients.
+
+Mitigation: Confirm recipient, message content, and purpose with the user before invoking email or SMS operations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/quincygunter/skills/gogs)
+- [SkillBoss Website](https://www.skillboss.co)
+- [HeyBoss API Base URL](https://api.heybossai.com/v1)
+- [Available Models Endpoint](https://api.heybossai.com/v1/models)
+- [Chat Models](artifact/chat-models.md)
+- [Image Models](artifact/image-models.md)
+- [Video Models](artifact/video-models.md)
+- [Audio Models](artifact/audio-models.md)
+- [Search and Scraping Models](artifact/search-models.md)
+- [Tool Models](artifact/tools-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl/bash examples and JSON request and response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for authenticated API calls]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,80 @@
+{
+  "synthetic": true,
+  "nonproduction_notice": "All entities, values and factors are invented for testing; no real factor source, eligibility or completeness is asserted.",
+  "period": 2025,
+  "boundary": "Selected sources at Fictional Sample Plant only; not a complete organizational inventory.",
+  "records": [
+    {
+      "id": "fuel",
+      "classification": "scope1",
+      "activity": "1000",
+      "activity_unit": "L",
+      "factor": "2.5",
+      "factor_unit": "kgCO2e/L",
+      "factor_source": "synthetic-fixture-v1",
+      "factor_year": 2025,
+      "geography": "fictional",
+      "basis": "precharacterized_CO2e",
+      "allocation": "1",
+      "reported_tCO2e": "2.5"
+    },
+    {
+      "id": "power_lb",
+      "classification": "scope2",
+      "method": "location-based",
+      "activity": "10000",
+      "activity_unit": "kWh",
+      "factor": "0.4",
+      "factor_unit": "kgCO2e/kWh",
+      "factor_source": "synthetic-fixture-v1",
+      "factor_year": 2025,
+      "geography": "fictional",
+      "basis": "precharacterized_CO2e",
+      "allocation": "1",
+      "reported_tCO2e": "4"
+    },
+    {
+      "id": "power_mb",
+      "classification": "scope2",
+      "method": "market-based",
+      "same_purchase_as": "power_lb",
+      "activity": "10000",
+      "activity_unit": "kWh",
+      "factor": "0.1",
+      "factor_unit": "kgCO2e/kWh",
+      "factor_source": "synthetic-fixture-v1",
+      "factor_year": 2025,
+      "geography": "fictional",
+      "basis": "precharacterized_CO2e",
+      "allocation": "1",
+      "reported_tCO2e": "1",
+      "contract_evidence": null
+    }
+  ],
+  "claims": [
+    {
+      "id": "combined_total",
+      "value": "7.5",
+      "unit": "tCO2e",
+      "description": "Adds fuel + power_lb + power_mb; deliberately wrong because power entries are alternative presentations."
+    },
+    {
+      "id": "extra_gwp",
+      "source_record": "power_lb",
+      "multiplier": "28",
+      "value": "112",
+      "unit": "tCO2e",
+      "description": "Deliberately reapplies GWP to precharacterized CO2e."
+    }
+  ],
+  "incomplete_records": [
+    {
+      "id": "unknown_transport",
+      "activity": "100",
+      "activity_unit": "km",
+      "factor": null,
+      "reported_tCO2e": null
+    }
+  ],
+  "out_of_scope": "No completeness assertion for Scope 3 or other sources."
+}

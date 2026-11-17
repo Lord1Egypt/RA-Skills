@@ -1,46 +1,60 @@
-## Description: <br>
-Windows C Drive Cleaner helps agents scan and report on C drive usage, identify cleanup candidates, and perform user-confirmed cleanup or migration actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+安全扫描并分析 Windows C 盘空间和文件，支持临时文件清理、重复文件去重及大文件迁移，所有删除或迁移操作都需要用户确认。
 
-## Publisher: <br>
-[zx0018](https://clawhub.ai/user/zx0018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zx0018](https://clawhub.ai/user/zx0018)
 
-## Use Case: <br>
-Users and IT operators use this skill to inspect Windows C drive space, review cleanup candidates, and carry out file cleanup or migration only after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires credentials and network access to inspect a Windows host through WinRM. <br>
-Mitigation: Use secure credential storage, prefer WinRM over HTTPS, restrict access to trusted sources, and avoid plaintext credential files. <br>
-Risk: Migration can copy files from the Windows host to the agent server. <br>
-Mitigation: Set MIGRATION_TARGET only when file export is intended, confirm the destination before migration, and use scan-only mode when files should remain on the Windows host. <br>
-Risk: Cleanup actions can delete or move files if approved incorrectly. <br>
-Mitigation: Review each proposed delete, move, deduplication, or migration action before confirming, and keep protected paths whitelisted. <br>
-Risk: Ignoring server certificate validation can weaken WinRM transport security. <br>
-Mitigation: Change certificate validation to a trusted and verified mode before using the skill in sensitive environments. <br>
+## Use Case:
 
+Windows users and support engineers use this skill to inspect C drive storage usage, identify temporary files, duplicate files, and large files, and prepare cleanup or migration actions. Destructive actions are intended to be performed only after explicit user approval.
 
-## Reference(s): <br>
-- [Path Assumptions](references/path-assumptions.md) <br>
-- [Safety Rules](references/safety-rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zx0018/c-cleaner-zx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, confirmation prompts, configuration snippets, and PowerShell or shell command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operations that delete, move, or migrate files are expected to require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: WinRM credentials are required for remote Windows access, and sample configuration includes certificate validation set to ignore.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged WinRM account, store secrets in environment variables or a secrets manager, and configure certificate validation with a trusted certificate before use.
+
+Risk: Cleanup and deduplication actions can delete files from the Windows host.
+
+Mitigation: Run scan-only mode first, review the reported targets, keep protected path rules enabled, and require explicit approval for each delete or cleanup step.
+
+Risk: Migration transfers files from the Windows host to the agent server, which is a data export.
+
+Mitigation: Use migration only when the destination is approved and trusted, confirm the target path before transfer, and avoid configuring migration when files should remain on the Windows host.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zx0018/skills/c-cleaner-zx)
+- [README](artifact/README.md)
+- [Path assumptions](artifact/references/path-assumptions.md)
+- [Safety rules](artifact/references/safety-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, confirmation prompts, command suggestions, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce scan reports, cleanup plans, migration plans, and operation-log guidance; deletion and migration require explicit confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -7,12 +7,19 @@
  * from older history. This is still lossy, but it preserves the material that
  * usually matters in long agent sessions while keeping prompt tokens bounded.
  *
- * Dependencies: Node.js built-ins only — `node:zlib` (deflate) and
- * `node:crypto` (SHA-256). No network, file I/O, dynamic imports, or
- * third-party packages.
+ * Crypto/compression run through a platform shim (./platform): the Node build
+ * uses `node:zlib` + `node:crypto`; a browser build aliases it to
+ * ./platform.browser (@noble/hashes + pako) so this exact source also runs in a
+ * browser tab. The SHA-256 path is byte-identical across backends, so a capsule's
+ * merkleRoot / capsuleId / injected memory are identical in a browser and in Node
+ * (the audit blob is round-trip-identical) — see test/platform-parity.test.mjs.
+ * No network, file I/O, or dynamic imports.
  */
-import { createHash } from "node:crypto";
-import { deflateSync } from "node:zlib";
+// Crypto/compression go through the platform shim so this exact source runs in
+// Node (node:crypto + node:zlib) AND in a browser tab (a browser build aliases
+// ./platform to ./platform.browser — @noble/hashes + pako; SHA-256 byte-identical,
+// so the merkle root / capsule id / injected memory match across backends).
+import { sha256Bytes, sha256Hex, sha256Concat, deflate, utf8ByteLength, zeroBytes, bytesToHex, } from "./platform.js";
 const DEFAULT_MAX_OUTPUT_TOKENS = 640;
 const MIN_OUTPUT_TOKENS = 120;
 const MAX_OUTPUT_TOKENS = 4000;
@@ -185,7 +192,7 @@ function boundedMessages(messages) {
 //   [REDACTED_<TYPE>#<first 8 hex of sha256(secret)>]
 // ----------------------------------------------------------------------------
 function fingerprint(secret) {
-    return createHash("sha256").update(secret, "utf8").digest("hex").slice(0, 8);
+    return sha256Hex(secret).slice(0, 8);
 }
 function redactTag(type, secret) {
     return `[REDACTED_${type}#${fingerprint(secret)}]`;
@@ -341,17 +348,17 @@ const INJECTION_PATTERNS = [
 function isInjectionLine(text) {
     return INJECTION_PATTERNS.some((re) => re.test(text));
 }
-/** SHA-256 of a UTF-8 string -> Buffer. */
+/** SHA-256 of a UTF-8 string -> 32 bytes. */
 function sha256(data) {
-    return createHash("sha256").update(data, "utf8").digest();
+    return sha256Bytes(data);
 }
 /**
- * Build a SHA-256 Merkle root over an ordered list of leaf buffers.
- * Empty -> 32-byte zero buffer. Single leaf -> that leaf. Odd node duplicates.
+ * Build a SHA-256 Merkle root over an ordered list of leaf hashes.
+ * Empty -> 32-byte zero. Single leaf -> that leaf. Odd node duplicates.
  */
 function buildMerkleRoot(leaves) {
     if (leaves.length === 0)
-        return Buffer.alloc(32, 0);
+        return zeroBytes(32);
     if (leaves.length === 1)
         return leaves[0];
     let level = leaves;
@@ -360,7 +367,7 @@ function buildMerkleRoot(leaves) {
         for (let i = 0; i < level.length; i += 2) {
             const left = level[i];
             const right = i + 1 < level.length ? level[i + 1] : level[i];
-            next.push(createHash("sha256").update(left).update(right).digest());
+            next.push(sha256Concat(left, right));
         }
         level = next;
     }
@@ -390,10 +397,7 @@ function extractTopics(messages, maxTopics = 8) {
 }
 /** Deterministic capsule ID: sha256(sessionId + createdAt + merkleRoot). */
 function buildCapsuleId(sessionId, createdAt, merkleRoot) {
-    return createHash("sha256")
-        .update(`${sessionId}:${createdAt}:${merkleRoot}`)
-        .digest("hex")
-        .slice(0, 32);
+    return sha256Hex(`${sessionId}:${createdAt}:${merkleRoot}`).slice(0, 32);
 }
 function splitSentences(line) {
     if (line.length <= MAX_FACT_CHARS)
@@ -902,6 +906,12 @@ const ATOM_URL_RE = /https?:\/\/[^\s)\]}>"']+/giu;
 const ATOM_PATH_RE = /(?:[.~]?\/)?[\w.-]+\/[\w./@+-]*\.[A-Za-z0-9]{1,8}/giu;
 const ATOM_CMD_RE = /\b(?:pnpm|npm|bun|node|git|gh|openclaw|launchctl|lsof|tail|cat|rg|jq|curl|ssh|docker|kubectl)\s+[\w./@:=-][^\n,;]*/giu;
 const ATOM_HASH_RE = /\b[A-Za-z0-9]{20,}\b/gu;
+// Bare distinctive VALUES the URL/path/command/hash passes miss: a standalone port or
+// code (3+ digits), an issue ref (#42), a version (v2.13), an ISO date, an sk- key, or a
+// hyphenated code carrying digits (NEEDLE-ZX-7742). These are the answer of a fact and are
+// short, so the length gate below would drop them — harvest them separately so a lone
+// `5433` / `#42` / `2026-07-15` survives as its own atom, not only when its line is picked.
+const ATOM_VALUE_RE = /\bsk-[A-Za-z0-9_-]{6,}\b|\b\d{4}-\d{2}-\d{2}\b|#\d{2,}\b|\bv\d+\.\d+(?:\.\d+)?\b|\b\w*-\w*\d{2,}[\w-]*\b|\b\d{3,}\b/giu;
 function extractAtoms(content) {
     const atoms = new Set();
     const harvest = (re) => {
@@ -920,6 +930,14 @@ function extractAtoms(content) {
     for (const m of content.match(ATOM_HASH_RE) ?? []) {
         if (![...atoms].some((a) => a.includes(m)))
             atoms.add(m.slice(0, 60));
+    }
+    // Bare values last, min length 2 (so `#42` survives), skipping any already contained in a
+    // URL/path/hash atom (a port inside a URL is not double-emitted).
+    ATOM_VALUE_RE.lastIndex = 0;
+    for (const m of content.match(ATOM_VALUE_RE) ?? []) {
+        const v = m.trim();
+        if (v.length >= 2 && ![...atoms].some((a) => a.includes(v)))
+            atoms.add(v.slice(0, 60));
     }
     return [...atoms];
 }
@@ -1019,11 +1037,9 @@ export function compressContext(messages, opts = {}) {
     // audit blob carries trapdoor tags in place of credentials — never the raw
     // secret. Token/byte stats are computed on the same redacted view.
     const jsonl = redacted.map((m) => JSON.stringify(m)).join("\n");
-    const compressed = deflateSync(Buffer.from(jsonl, "utf8"), { level: 9 });
-    const compressedBase64 = compressed.toString("base64");
+    const { base64: compressedBase64, bytes: compressedBytes } = deflate(jsonl);
     const originalTokenEstimate = estimateTokens(jsonl);
-    const originalBytes = Buffer.byteLength(jsonl, "utf8");
-    const compressedBytes = compressed.length;
+    const originalBytes = utf8ByteLength(jsonl);
     const compressionRatio = `${(originalBytes / Math.max(1, compressedBytes)).toFixed(1)}x`;
     // INPUT-BUDGET CAPS: every extraction/regex pass below runs on this bounded
     // view, never on the raw (possibly pathological) input.
@@ -1037,7 +1053,7 @@ export function compressContext(messages, opts = {}) {
         .map(scrubSecrets);
     const { facts, dropped } = extractFacts(analyzed, maxFacts);
     const leaves = redacted.map((m) => sha256(JSON.stringify(m)));
-    const merkleRoot = buildMerkleRoot(leaves).toString("hex");
+    const merkleRoot = bytesToHex(buildMerkleRoot(leaves));
     const capsuleId = buildCapsuleId(sessionId, createdAt, merkleRoot);
     return {
         schema: CAPSULE_SCHEMA,

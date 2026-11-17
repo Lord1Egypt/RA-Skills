@@ -25,7 +25,7 @@
 示例：
 
 ```text
-python3 skills/volcengine-troubleshooting/references/domain-guides/compute-container-network/scripts/collect_ecs_network_context.py \
+python3 "${SKILL_ROOT}/references/domain-guides/compute-container-network/scripts/collect_ecs_network_context.py" \
   --region cn-beijing \
   --instance-id i-xxxxxxxx
 ```
@@ -41,7 +41,7 @@ python3 skills/volcengine-troubleshooting/references/domain-guides/compute-conta
 示例：
 
 ```text
-python3 skills/volcengine-troubleshooting/references/domain-guides/compute-container-network/scripts/collect_vke_pod_context.py \
+python3 "${SKILL_ROOT}/references/domain-guides/compute-container-network/scripts/collect_vke_pod_context.py" \
   --region cn-beijing \
   --cluster-id cdxxxxxxxx \
   --namespace default \
@@ -61,7 +61,7 @@ python3 skills/volcengine-troubleshooting/references/domain-guides/compute-conta
 示例：
 
 ```text
-python3 skills/volcengine-troubleshooting/references/domain-guides/compute-container-network/scripts/collect_clb_backend_context.py \
+python3 "${SKILL_ROOT}/references/domain-guides/compute-container-network/scripts/collect_clb_backend_context.py" \
   --region cn-beijing \
   --type clb \
   --load-balancer-id clb-xxxxxxxx
@@ -70,7 +70,7 @@ python3 skills/volcengine-troubleshooting/references/domain-guides/compute-conta
 ALB 示例：
 
 ```text
-python3 skills/volcengine-troubleshooting/references/domain-guides/compute-container-network/scripts/collect_clb_backend_context.py \
+python3 "${SKILL_ROOT}/references/domain-guides/compute-container-network/scripts/collect_clb_backend_context.py" \
   --region cn-beijing \
   --type alb \
   --load-balancer-id alb-xxxxxxxx \

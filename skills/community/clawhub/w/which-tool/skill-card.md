@@ -1,38 +1,49 @@
-## Description: <br>
-Locate the full path of executable commands in the system PATH. Find command locations, verify installation, and resolve command conflicts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Locate the full path of executable commands in the system PATH. Find command locations, verify installation, and resolve command conflicts.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to find executable command paths, verify tool installation, and diagnose PATH ordering or command resolution issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation lists advanced options and multi-command usage that the bundled script does not implement. <br>
-Mitigation: Use the basic single-command lookup behavior, or verify and update the implementation before relying on advanced flags or batch checks. <br>
+## Use Case:
 
+Developers and engineers use this skill to ask an agent to locate executable command paths in PATH, verify that tools are installed, and diagnose command resolution issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/which-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, JSON] <br>
-**Output Format:** [Plain text or JSON command lookup results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Basic implementation performs single-command lookup; documented advanced flags require verification before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The documentation claims options such as --all, --json, and multi-command support that the bundled script does not implement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before relying on advanced options, test the installed skill behavior and treat unsupported options as documentation/implementation mismatches.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/skills/which-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command-path text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May report a resolved executable path or that a command was not found.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

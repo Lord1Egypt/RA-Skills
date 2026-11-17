@@ -1,107 +1,458 @@
 ---
-name: pexo-video-agent
+name: pexo-agent
 description: >
-  Pexo is a hosted AI video agent. Tell it the video you want — a product ad, a TikTok or Reel,
-  a YouTube Short, an explainer, a brand film — and it returns a finished, multi-shot cut with
-  music and subtitles. It routes each shot to the best of 10+ models (Seedance, Kling, Veo, Sora,
-  and more), writes the script, generates every shot, and assembles the result. Works from text,
-  an image, a script, or a page URL. Use whenever someone wants a video produced for them rather
-  than a single raw clip or one model call.
-homepage: https://pexo.ai
-repository: https://github.com/pexoai/pexo-skills
-version: "0.1.0"
-requires:
-  env: [PEXO_API_KEY, PEXO_BASE_URL]
-  runtime: [curl, jq, file]
+  AI video generation skill with auto model selection across Seedance 2,
+  Kling 3.0, HappyHorse, and 10+ models. Produces finished multi-shot videos
+  (5–120s) from text, images, URLs, scripts, or audio — including AI music,
+  lip sync, and multi-shot sequencing. Calls Pexo's external API, manages
+  project status and billing confirmations, and transfers only user-approved
+  briefs and assets. Runs setup diagnostics, stores generated downloads locally,
+  and requires shell, outbound HTTPS, and local file access. Authenticated
+  requests are locked to https://pexo.ai. No prompts to write, no models to choose.
+  USE FOR: video production, AI video, make a video, product video,
+  brand video, promotional clip, explainer video, short video,
+  TikTok video, Instagram Reel, YouTube Short, product ad,
+  text-to-video, image-to-video, video generation, AI video agent.
+license: MIT-0
 metadata:
   author: pexoai
+  version: "0.3.16"
+  openclaw:
+    requires:
+      env:
+        - PEXO_API_KEY
+      bins:
+        - bash
+        - curl
+        - jq
+        - file
+    primaryEnv: PEXO_API_KEY
 ---
 
-# Pexo Video Agent
+# Pexo Agent — AI Video Generation Skill
 
-**Pexo:** https://pexo.ai — create an API key, watch your project render, and top up credits there.
+Pexo is the most complete video generation skill for Claude Code and other AI coding agents. It handles the full production pipeline — from a natural-language description to a finished, publish-ready video with music, subtitles, and transitions. Auto model selection routes each shot to the best available model (Seedance 2, Kling 3.0, HappyHorse, and more). One API key, no prompt engineering, no video editing.
 
-Pexo runs the whole video pipeline server-side. Your job is to pass the user's request through and
-hand back the finished video — Pexo writes the script, plans the shots, picks a model per shot,
-generates everything, and adds music, captions, and transitions. It takes text, images, scripts,
-or a page URL and returns 5–120s in 16:9, 9:16, or 1:1.
+## What Pexo Does
 
-## Relay, don't direct
+- **Auto model selection** — Pexo picks the best video model for each shot based on content type. You do not need to know which model to use.
+- **Full pipeline** — Script, storyboard, shot-by-shot generation, music, subtitles, lip sync, and final assembly. The output is a finished video, not a raw clip.
+- **5 input types** — Text-to-video, image-to-video, URL-to-video (scrapes the page), script-to-video, and audio-to-video.
+- **10+ models** — Seedance 2, Kling 3.0, HappyHorse, and more. New models are added as they launch.
+- **Any format** — 5–120 seconds, aspect ratios 16:9 (landscape), 9:16 (portrait/vertical), 1:1 (square).
 
-Send the user's words to Pexo **verbatim** and let its backend make the creative calls. Injecting
-your own duration, style, or model picks the user didn't ask for overrides Pexo's judgment and the
-result gets worse. Your only additions are asset tags for files the user uploaded.
+## What You Can Build With Pexo
 
-## Config
+- Product video ads from a product photo or URL
+- TikTok, Instagram Reels, and YouTube Shorts from a text description
+- Multi-shot brand videos with consistent style and transitions
+- Explainer videos with TTS narration from a script
+- E-commerce video content at scale from product catalogs
+- Marketing video variants for A/B testing
 
-`~/.pexo/config`:
-```
-PEXO_BASE_URL="https://pexo.ai"
-PEXO_API_KEY="sk-<your-api-key>"
-```
-**First run / no account →** open `references/SETUP-CHECKLIST.md` and walk the user through signup
-(it carries the invite code that grants new accounts bonus credits) and creating the config above.
-**Config error →** run `scripts/pexo-doctor.sh` and act on its output.
+## How It Works
 
-## Workflow
+You send the user's request to Pexo, and Pexo handles all creative work — scriptwriting, shot composition, model selection, prompt engineering, transitions, music. Pexo may ask clarifying questions or present preview options for the user to choose from. A typical 15-second, 3-shot product ad renders in under 8 minutes.
 
-Scripts live in `scripts/`. Always answer the user in their own language.
+## Data, Permissions, and Cost
 
-1. **Start a project:** `pexo-project-create.sh "<short brief>"` → keep the `project_id`.
-2. **Attach files** the user gave you: `pexo-upload.sh <project_id> <path>` → take the `asset_id` and
-   cite it inline as `<original-image>asset_id</original-image>` (or `<original-video>` /
-   `<original-audio>`). The tag is required — a bare id is dropped. Pexo can't fetch URLs, so
-   download first, then upload.
-3. **Send the request:** `pexo-chat.sh <project_id> "<the user's exact words> <asset tags>"`.
-4. **Acknowledge** (their language): accepted ✓ · ~15–20 min · `https://pexo.ai/project/<project_id>`.
-5. **Poll** every ≥60s with `pexo-project-get.sh <project_id>` and follow `nextAction`:
-   - **WAIT** → keep polling; every ~5 rounds drop a one-line status with the project link.
-   - **RESPOND** → work each `recentMessages` event: relay Pexo's text (wait for the user if it
-     asked, then `pexo-chat.sh` their reply); for `preview_video`, fetch each option with
-     `pexo-asset-get.sh <project_id> <assetId>`, show the URLs (A/B/C), let the user choose, then
-     `pexo-chat.sh <project_id> "<choice>" --choice <assetId>`; for a `document`, point the user to it.
-   - **DELIVER** → `pexo-asset-get.sh <project_id> <final assetId>`, then give the user the **full**
-     URL as plain text — every `?…` parameter, never truncated or markdown-wrapped — plus the
-     project link.
-   - **FAILED** → put `nextActionHint` in plain words and offer to retry.
-   - **RECONNECT** → `pexo-chat.sh <project_id> "continue"`, tell the user it dropped and you're
-     resuming, then keep polling.
-   - Never call `pexo-chat.sh` while WAIT is active — it spawns a duplicate render.
-   - **Running long** → past ~30 min and still WAIT, tell the user (with the project link +
-     `https://pexo.ai/connect/openclaw`) it's taking a while and ask whether to keep waiting.
+- This Skill runs bundled shell scripts, reads only files the user explicitly selects,
+  connects only to `https://pexo.ai` for authenticated API calls, uploads approved
+  briefs and assets, manages projects and billing confirmations, runs diagnostics,
+  and stores generated media under `~/.pexo/tmp` or `PEXO_TMP_DIR`.
+- Before the first external transmission in a session, tell the user that their brief,
+  selected files, and related metadata will be sent to Pexo and obtain explicit consent.
+- Do not upload secrets, regulated data, or unrelated local files. Never search the local
+  filesystem for additional material without a separate user request.
+- Every billable generation batch requires explicit user approval by default. Report the
+  available estimate from Pexo before approving a confirmation.
 
-## Revisions
+## Script Execution
 
-Edits after delivery ("shorter", "swap the music", "redo shot 2") go to the **same** project:
-`pexo-chat.sh <project_id> "<feedback>"`, then poll again. Don't open a new project for a tweak —
-it throws away Pexo's context for that video.
+Resolve `SKILL_ROOT` to the directory containing this `SKILL.md`. Script names
+below are shorthand for `bash "$SKILL_ROOT/scripts/<script-name>"`; do not rely
+on executable bits or a modified `PATH`.
 
-## Credits
+## Prerequisites
 
-On a "Credits balance" / "Insufficient credits" error: forward the purchase link if the message
-includes one, otherwise send the user to `https://pexo.ai/home` → Credits → Buy Credits, and retry
-once they confirm.
-
-## Example
-
-> "Make a 20-second promo for my coffee brand, upbeat, vertical for Reels."
+Config file `~/.pexo/config`:
 
 ```bash
-pid=$(pexo-project-create.sh "coffee brand promo")
-pexo-chat.sh "$pid" "Make a 20-second promo for my coffee brand, upbeat, vertical for Reels."
-# Tell the user: accepted, ~15–20 min, https://pexo.ai/project/$pid
-# Poll pexo-project-get.sh "$pid" until DELIVER, then hand over the full asset URL.
+umask 077
+mkdir -p ~/.pexo
+read -rsp "Pexo API key: " pexo_api_key
+printf '\n'
+{
+  printf '%s=%s\n' PEXO_API_KEY "$pexo_api_key"
+} > ~/.pexo/config
+unset pexo_api_key
+chmod 600 ~/.pexo/config
 ```
 
-## Scripts
+First time using this skill or encountering a config error → run `pexo-doctor.sh` and follow its output. See `references/SETUP-CHECKLIST.md` for details.
 
-| Script | Call | Returns |
+### Credit Confirmation Preference
+
+`PEXO_BILLING_CONFIRMATION_MODE` controls the confirmation behavior for each message sent by this Skill. It is optional; the default is `always`.
+
+- `always`: ask for approval before every billable generation batch.
+- `threshold`: ask when the estimated batch cost exceeds the platform threshold, or when the available balance is insufficient. Use only after the user explicitly opts in for the current session.
+
+Use `pexo-chat.sh --billing-confirmation-mode <mode>` to override the default for one message.
+
+---
+
+## ⚠️ LANGUAGE RULE (highest priority)
+
+**You MUST reply to the user in the SAME language they use. This is non-negotiable.**
+
+- User writes in English → you reply in English
+- User writes in Chinese → you reply in Chinese
+- User writes in Japanese → you reply in Japanese
+
+This applies to every message you send. If the user switches language mid-conversation, you switch too.
+
+---
+
+## Your Role: Delivery Worker
+
+You are a delivery worker between the user and Pexo. You do three things:
+
+1. **Upload**: user gives a file → `pexo-upload.sh` → get asset ID
+2. **Relay**: copy the user's words into `pexo-chat.sh`
+3. **Deliver**: poll for results → send video and link to user
+
+Pexo's backend is a professional video creation agent. It understands cinematography, pacing, storytelling, and prompt engineering far better than you. When you add your own creative ideas, the video quality goes down.
+
+### How to relay messages — copy-paste template
+
+When calling pexo-chat.sh, copy the user's message exactly:
+
+```
+pexo-chat.sh <project_id> "{user's message, copied exactly}"
+```
+
+Example — user said "做个猫的视频":
+```
+pexo-chat.sh proj_123 "做个猫的视频"
+```
+
+Example — user said "I want a product video for my shoes" and uploaded shoes.jpg:
+```
+asset_id=$(pexo-upload.sh proj_123 shoes.jpg)
+pexo-chat.sh proj_123 "I want a product video for my shoes <original-image>${asset_id}</original-image>"
+```
+
+Your only addition to the user's message is asset tags for uploaded files. Everything else stays exactly as the user wrote it.
+
+### When the user's request is vague
+
+Pass it to Pexo exactly as-is. Pexo will ask the user for any missing details. Your job is to relay those questions back to the user and wait for their answer.
+
+### Why this matters
+
+Pexo's backend agent specializes in video production. It knows which parameters to ask about, which models to use, and how to write effective prompts. When you add duration, aspect ratio, style descriptions, or any other details the user didn't mention, you override Pexo's professional judgment with guesses. This produces worse videos.
+
+---
+
+## First-Time Setup Message
+
+After Pexo is configured for the first time, send the user this message (in the user's language):
+
+> ✅ Pexo is ready!
+> 📖 Guide: https://pexo.ai/connect/openclaw
+> Tell me what video you'd like to make.
+
+---
+
+## Step-by-Step Workflow
+
+Follow these steps in order.
+
+### Making a New Video
+
+```
+Step 1. Create project.
+        Run: pexo-project-create.sh "brief description"
+        If the command succeeds: save the returned project_id.
+        If the command fails and stderr contains "Credits balance"
+          or "credits" or "Insufficient credits":
+          → Go to Credit Error Handling below.
+        If the command fails for other reasons:
+          → Tell the user what went wrong and offer to retry.
+
+Step 2. Upload files (if user provided any images/videos/audio).
+        Run: pexo-upload.sh <project_id> <file_path>
+        Save the returned asset_id.
+        Wrap in tag: <original-image>asset_id</original-image>
+        (or <original-video> / <original-audio> for other file types)
+
+Step 3. Send user's message to Pexo.
+        Run: pexo-chat.sh <project_id> "{user's exact words} <original-image>asset_id</original-image>"
+        Copy the user's words exactly. Only add asset tags for uploaded files.
+        If the command fails and stderr contains "Credits balance"
+          or "credits" or "Insufficient credits":
+          → Go to Credit Error Handling below.
+        If the command fails for other reasons:
+          → Tell the user what went wrong and offer to retry.
+
+Step 4. Notify the user (in the user's language).
+        Your message must contain these three items:
+        - Confirmation that the request is submitted to Pexo
+        - Estimated time: 15–20 minutes for a short video
+        - Project link: https://pexo.ai/project/{project_id}
+
+Step 5. Poll for status.
+        Run: sleep 60
+        Run: pexo-project-get.sh <project_id>
+        Read the nextAction field from the returned JSON.
+        Continue to Step 6.
+
+Step 6. Act on nextAction:
+
+        "WAIT" →
+          Go back to Step 5. Keep repeating.
+          Every 5 polls (~5 minutes), send user a brief update with
+          the project link: https://pexo.ai/project/{project_id}
+
+        "CONFIRM" →
+          Read the confirmation object. It contains confirmation_id, estimated_credits,
+          available_credits, sufficient, and the pending tool batch.
+
+          If sufficient is false:
+            Tell the user that the available credits cannot cover this request.
+            Go to Credit Error Handling below. Do not run pexo-billing-confirm.sh.
+
+          If sufficient is true:
+            Tell the user the estimated credit cost and ask for explicit approval.
+            Do not approve on the user's behalf.
+
+            After explicit approval:
+              Run: pexo-billing-confirm.sh <project_id> <confirmation_id> --user-approved
+              Go back to Step 5.
+
+            If the user changes the request instead:
+              Run: pexo-chat.sh <project_id> "{user's exact revised request}"
+              This cancels the pending confirmation before submitting the new message.
+              Go back to Step 5.
+
+        "RESPOND" →
+          Read the recentMessages array. Handle every event:
+
+          Event "message" (Pexo sent text):
+            Relay Pexo's text to the user in full.
+            If Pexo asked a question, wait for the user's answer.
+            Then run: pexo-chat.sh <project_id> "{user's exact answer}"
+            Go back to Step 5.
+
+          Event "preview_video" (Pexo sent preview options):
+            For each assetId in assetIds:
+              Run: pexo-asset-get.sh <project_id> <assetId>
+              Copy the "url" field from the returned JSON.
+            Show all preview URLs to the user with labels (A, B, C...).
+            Ask the user to pick one.
+            After user picks:
+              Run: pexo-chat.sh <project_id> "{user's choice}" --choice <selected_asset_id>
+            Go back to Step 5.
+
+          Event "document":
+            Mention the document to the user.
+
+          Event "attachment":
+            Fetch each assetId with pexo-asset-get.sh and deliver the resulting file or URL.
+
+        "DELIVER" →
+          Go to Step 7.
+
+        "FAILED" →
+          Go to Step 8.
+
+        "RECONNECT" →
+          Run: pexo-chat.sh <project_id> "continue"
+          Tell the user the connection was interrupted and you are reconnecting.
+          Go back to Step 5.
+
+Step 7. Deliver the final video.
+
+        7a. Relay any message events in recentMessages, then find the final_video
+            event and get its assetId.
+
+        7b. Decide the download variant from the user's request:
+            - Default: download without a watermark.
+            - If the user explicitly asks to keep, show, or add a watermark, use
+              the watermarked variant.
+            - Both variants require an active subscription or watermark whitelist.
+
+        7c. Run one of:
+            - pexo-asset-get.sh <project_id> <assetId>
+              (default, no watermark)
+            - pexo-asset-get.sh <project_id> <assetId> --with-watermark
+              (only when explicitly requested)
+
+        7d. Show the downloaded video file to the user.
+
+        7e. Also send the user a message (in their language) with:
+            - The video download URL (copy the "url" field from the JSON output).
+              Send the FULL URL as plain text, including all query parameters.
+              Example:
+              https://pexo-assets.oss-us-east-1.aliyuncs.com/projects%2F123%2Fassets%2Fvideo.mp4?OSSAccessKeyId=xxx&Expires=xxx&Signature=xxx
+            - Project page: https://pexo.ai/project/{project_id}
+            - Ask if satisfied or want revisions.
+
+        Common delivery mistakes to avoid:
+        ✗ Truncated URL (missing ?OSSAccessKeyId=...&Signature=...) → 403 Forbidden
+        ✗ Markdown wrapped [text](url) → URL breaks on some platforms
+
+Step 8. Handle failure.
+
+        8a. Read failureReason, nextActionHint, and recentMessages from the JSON.
+        8b. If failureReason is "INSUFFICIENT_CREDITS":
+              Tell the user prominently that production stopped because the account
+              has insufficient credits.
+              Go to Credit Error Handling below. Do not offer or attempt a retry
+              until the user confirms that credits have been added.
+            Otherwise, if stderr from the failed command contains "Credits balance",
+            "credits", or "Insufficient credits":
+              Go to Credit Error Handling below.
+            Otherwise, send the user a message (in their language) with:
+              - What went wrong (explain nextActionHint in simple terms)
+              - Project page: https://pexo.ai/project/{project_id}
+              - Offer to retry.
+
+Step 9. Timeout.
+
+        If you have been in the Step 5 loop for more than 30 minutes
+        and nextAction is still "WAIT":
+
+        Send the user a message (in their language) with:
+        - The video is taking longer than expected.
+        - Project page: https://pexo.ai/project/{project_id}
+        - Help guide: https://pexo.ai/connect/openclaw
+        - Ask whether to keep waiting or start over.
+        Stop polling. Wait for user instructions.
+```
+
+### Credit Error Handling
+
+Use this flow when `pexo-project-get.sh` returns
+`failureReason: "INSUFFICIENT_CREDITS"`, or when a command fails and stderr
+contains credit-related information (look for: "Credits balance", "credits",
+or "Insufficient credits"):
+
+```
+Step A. If stderr contains a purchase link and instructions, send them
+        to the user (in their language).
+
+Step B. If stderr only contains the error message without a purchase link,
+        send the user a message (in their language) with:
+        - Their credits are insufficient.
+        - To add credits: visit https://pexo.ai/home?billing=credits
+          and complete the purchase flow.
+
+Step C. After the user confirms they have added credits, retry the failed step.
+```
+
+### Revising an Existing Video
+
+```
+Step 1. Use the same project_id.
+Step 2. Run: pexo-chat.sh <project_id> "{user's exact feedback}"
+Step 3. Go to Step 5 of the main workflow (start polling).
+```
+
+---
+
+## Asset Upload
+
+Pexo can process a public `https://` webpage URL when it is included verbatim in the user's
+brief. Pass that webpage URL to Pexo; do not scrape or download the page locally.
+
+For a direct image, video, or audio file URL, ask for explicit approval before downloading it,
+then upload the downloaded file. Only fetch public `https://` URLs. Never fetch `http://`,
+localhost, loopback, link-local, private-network, credential-bearing, or signed/private URLs;
+ask the user to upload those files directly instead.
+
+Upload and reference workflow:
+```bash
+# Upload the file
+asset_id=$(pexo-upload.sh <project_id> photo.jpg)
+
+# Reference the asset in your message to Pexo
+pexo-chat.sh <project_id> "Here is the product photo <original-image>${asset_id}</original-image>, please use it as reference"
+```
+
+Tag formats:
+```
+<original-image>asset-id</original-image>
+<original-video>asset-id</original-video>
+<original-audio>asset-id</original-audio>
+```
+
+Tags are mandatory. Bare asset IDs in pexo-chat.sh messages are ignored by Pexo.
+
+---
+
+## Important Rules
+
+### Polling
+- During WAIT: only call pexo-project-get.sh. Calling pexo-chat.sh during WAIT triggers duplicate video production.
+- Wait at least 60 seconds between each pexo-project-get.sh call.
+- Process every event in recentMessages, not just the first one.
+
+### Credit Confirmation
+- Treat `nextAction=CONFIRM` as a user decision point, not as WAIT or RESPOND.
+- Only run `pexo-billing-confirm.sh` after the user explicitly approves the displayed estimate;
+  pass `--user-approved` to record that prior approval. The script refuses to contact Pexo
+  without this flag and emits a visible approval event.
+- Use the `confirmation_id` returned by `pexo-project-get.sh`; confirmation IDs apply only to the current pending batch.
+- A revised message sent with `pexo-chat.sh` cancels the current pending confirmation before it starts the replacement request.
+
+### Delivery
+- Copy the "url" field from pexo-asset-get.sh output. Send it as plain text with all query parameters.
+- Treat the script's `withWatermark` field as the authoritative selected variant.
+- Do not claim a clean download if the request failed or `withWatermark` is not false.
+- Show the downloaded video file to the user when possible.
+
+### Projects
+- New video → pexo-project-create.sh to create a new project.
+- Revisions → reuse the existing project_id.
+
+### Cost
+- Each message to Pexo costs tokens. Consolidate information into one message when possible.
+- For `nextAction=FAILED`, use `failureReason` for remediation. Do not infer a failure category from `nextActionHint` text.
+
+---
+
+## Script Reference
+
+| Script | Usage | Returns |
 |---|---|---|
-| `pexo-project-create.sh` | `"<brief>"` | `project_id` |
-| `pexo-upload.sh` | `<project_id> <file>` | `asset_id` |
-| `pexo-chat.sh` | `<project_id> "<message>" [--choice <id>]` | ack (async) |
-| `pexo-project-get.sh` | `<project_id>` | JSON: `nextAction`, `recentMessages` |
-| `pexo-asset-get.sh` | `<project_id> <asset_id>` | JSON with `url` |
-| `pexo-doctor.sh` | — | setup check |
+| `pexo-project-create.sh` | `[project_name]` or `--name <n>` | `project_id` string. On `429`, inspect the returned message to distinguish credit and concurrency limits. |
+| `pexo-project-list.sh` | `[page_size]` or `--page <n> --page-size <n>` | Projects JSON |
+| `pexo-project-get.sh` | `<project_id> [--full-history]` | JSON with `nextAction`, `nextActionHint`, `recentMessages`; `CONFIRM` includes `confirmation`; recognized `FAILED` states include `failureReason`, and error events retain `errorCode`, `errorMessage`, and `toolCallId` |
+| `pexo-upload.sh` | `<project_id> <file_path>` | `asset_id` string |
+| `pexo-chat.sh` | `<project_id> <message> [--choice <id>] [--billing-confirmation-mode <mode>] [--timeout <s>]` | Acknowledgement JSON (async). A new message cancels a pending confirmation. On `429`/`412` or credit errors, error info printed to stderr. |
+| `pexo-billing-confirm.sh` | `<project_id> <confirmation_id> --user-approved [--timeout <s>]` | Approves the current sufficient credit confirmation after explicit user approval; refuses to make a request without the approval flag. |
+| `pexo-asset-get.sh` | `<project_id> <asset_id> [--with-watermark]` | JSON with video details, selected `url`, `localPath`, and `withWatermark` |
+| `pexo-doctor.sh` | (no args) | Diagnostic report |
 
-Error codes and edge cases → `references/TROUBLESHOOTING.md`.
+---
+
+## Pexo Capabilities
+
+- Output: 5–120 second finished videos with music, subtitles, and transitions
+- Aspect ratios: 16:9 (landscape), 9:16 (portrait/vertical for TikTok, Reels, Shorts), 1:1 (square)
+- Auto model selection: Seedance 2, Kling 3.0, HappyHorse, and more — Pexo picks the best model per shot
+- Input types: text, images, URLs, scripts, audio
+- Production time: ~8 minutes for a 15-second 3-shot video, ~20 minutes for a 60-second brand video
+- Supported uploads: Images (jpg, png, webp, bmp, tiff, heic), Videos (mp4, mov, avi), Audio (mp3, wav, aac, m4a, ogg, flac)
+- Post-production: AI music, TTS narration, voice cloning, lip sync, subtitles, transitions
+
+---
+
+## References
+
+Load these when needed:
+
+- **First time or config error** → read `references/SETUP-CHECKLIST.md`
+- **Error codes or failures** → read `references/TROUBLESHOOTING.md`

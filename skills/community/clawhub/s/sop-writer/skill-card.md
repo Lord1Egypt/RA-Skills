@@ -1,41 +1,54 @@
-## Description: <br>
-SOP标准操作流程编写工具。创建SOP、流程图、检查清单、审核评估、模板库、培训材料。SOP writer with create, flowchart, checklist, audit, template. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sop Writer helps agents generate standard operating procedure documents, flowcharts, checklists, audit reviews, templates, and training materials.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Employees, operations teams, and process owners use this skill to draft SOPs and turn procedures into flowcharts, checklists, audits, templates, and training materials. Outputs should be reviewed and tailored before use in regulated or business-critical workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes an unrelated content-marketing script that logs user arguments locally. <br>
-Mitigation: Use scripts/sop.sh for SOP workflows, avoid scripts/script.sh unless its behavior is acceptable, and do not pass confidential procedures, credentials, customer data, or regulated information to logging commands. <br>
-Risk: Generated SOPs, checklists, audits, templates, and training materials contain generic placeholders and may not match local policy or regulatory requirements. <br>
-Mitigation: Review and customize generated materials against organization policy, process evidence, and applicable compliance requirements before operational use. <br>
+## Use Case:
 
+Employees, operations teams, compliance staff, and process owners use this skill to draft and review SOP materials for business, technical, manufacturing, healthcare, food, and general workflows.
 
-## Reference(s): <br>
-- [ClawHub listing for Sop Writer](https://clawhub.ai/bytesagain3/sop-writer) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown documents with tables, checklists, Mermaid diagrams, ASCII diagrams, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated SOP materials include placeholders and should be reviewed before operational use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The package includes a bundled content-marketing helper that records user input in a local history file without clear disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation, avoid entering confidential process details into that helper unless local persistence is acceptable, and prefer the documented scripts/sop.sh path for SOP generation.
+
+Risk: Generated SOPs, checklists, audits, and training materials can contain generic placeholders or process guidance that may not match local compliance obligations.
+
+Mitigation: Have qualified process, compliance, or operations reviewers validate generated materials before adoption.
+
+## Reference(s):
+
+- [Sop Writer ClawHub page](https://clawhub.ai/bytesagain3/skills/sop-writer)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, tables, checklists, Mermaid diagrams, and plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated materials may include fill-in placeholders for roles, departments, approvers, records, references, and training details.]
+
+## Skill Version(s):
+
+2.0.0 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

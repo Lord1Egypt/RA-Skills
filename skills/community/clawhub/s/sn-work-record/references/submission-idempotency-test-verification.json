@@ -1,0 +1,36 @@
+{
+  "verified_at": "2026-10-10T11:30:09.526530+08:00",
+  "interpreter": "/root/.openclaw/workspace/sn_work_record_env/bin/python",
+  "baseline_tests": 24,
+  "tests_run": 43,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "tests_are_offline": true,
+  "live_proof": "submission-idempotency-live-verification.json",
+  "syntax_compiled_files": [
+    "scripts/submission_guard.py",
+    "scripts/oa_utils.py",
+    "scripts/submit_time_entry.py",
+    "tests/test_submission_guard.py",
+    "tests/test_submission_choices.py",
+    "tests/test_personal_settings.py",
+    "tests/live_duplicate_readonly.py"
+  ],
+  "new_static_scan_issues": [],
+  "existing_static_flags": [
+    {
+      "file": "scripts/oa_utils.py",
+      "line": 163,
+      "kind": "dynamic-execution"
+    },
+    {
+      "file": "scripts/oa_utils.py",
+      "line": 168,
+      "kind": "dynamic-execution"
+    }
+  ],
+  "log_path": "/root/.hermes/cache/scratch/sn-work-record-idempotency-tests.log",
+  "independent_review": "not performed in focused subagent; parent should review final diff"
+}

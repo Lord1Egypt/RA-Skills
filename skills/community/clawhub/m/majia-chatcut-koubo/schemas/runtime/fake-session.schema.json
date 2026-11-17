@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/fake-session.schema.json",
+  "title": "Anonymous fake ChatCut session",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "scenarioId", "intent", "durationSec", "hasScreenCapture", "authenticated", "projectExists", "assetAlreadyImported", "transcriptStatus", "timelineRevision", "decisions", "sampleCandidates", "sampleApproved", "rendererAvailable", "audioMeasured", "humanListening", "exportAuthorized", "injectedFailures", "expectedStage"],
+  "properties": {
+    "$schema": {"const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/fake-session.schema.json"},
+    "schemaVersion": {"const": "majia.koubo.fake-session.v1"},
+    "scenarioId": {"type": "string", "pattern": "^scenario-[a-z0-9-]+$"},
+    "intent": {"type": "string", "minLength": 1, "maxLength": 200},
+    "durationSec": {"type": "integer", "minimum": 1, "maximum": 21600},
+    "hasScreenCapture": {"type": "boolean"},
+    "authenticated": {"type": "boolean"},
+    "projectExists": {"type": "boolean"},
+    "assetAlreadyImported": {"type": "boolean"},
+    "transcriptStatus": {"enum": ["pending", "ready", "failed"]},
+    "timelineRevision": {"type": "string", "pattern": "^rev[-_][A-Za-z0-9._-]+$"},
+    "decisions": {"type": "array", "items": {"type": "object"}},
+    "sampleCandidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "startSec", "endSec", "complexity", "privacy"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+          "kind": {"enum": ["retake", "pause", "visual", "privacy"]},
+          "startSec": {"type": "number", "minimum": 0},
+          "endSec": {"type": "number", "exclusiveMinimum": 0},
+          "complexity": {"type": "integer", "minimum": 0, "maximum": 100},
+          "privacy": {"type": "boolean"}
+        }
+      }
+    },
+    "sampleApproved": {"type": "boolean"},
+    "rendererAvailable": {"type": "boolean"},
+    "audioMeasured": {"type": "boolean"},
+    "humanListening": {"type": "boolean"},
+    "exportAuthorized": {"type": "boolean"},
+    "injectedFailures": {"type": "array", "uniqueItems": true, "items": {"enum": ["timeout-before-commit", "timeout-after-commit", "partial-write", "manual-edit", "stale-timeline-id"]}},
+    "expectedStage": {"$ref": "run-manifest.schema.json#/$defs/stage"}
+  }
+}

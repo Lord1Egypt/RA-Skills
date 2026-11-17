@@ -1,41 +1,61 @@
-## Description: <br>
-Unified heartbeat system for OpenClaw agents that runs parallel health checks, data collectors, and state monitors in one command and returns a single actionable summary optimized for LLM consumption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified heartbeat system for OpenClaw agents that runs parallel health checks, data collectors, and state monitors and returns one actionable summary optimized for LLM consumption.
 
-## Publisher: <br>
-[wrentheai](https://clawhub.ai/user/wrentheai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wrentheai](https://clawhub.ai/user/wrentheai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure recurring OpenClaw heartbeat checks, collect status from external sources, monitor workspace or system state, and produce a concise action-needed or all-clear result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured heartbeat entries can run arbitrary shell commands on a recurring schedule. <br>
-Mitigation: Install only after reviewing every heartbeat.yaml command, keep collectors read-only, avoid inline secrets, use least-privilege API keys, and restrict destinations. <br>
-Risk: Heartbeat results can write files into the workspace and may prompt later agent actions. <br>
-Mitigation: Use controlled output and cache paths, review summaries before acting, and require human confirmation before any action that posts content, deletes data, changes accounts, spends money, or modifies important files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure and run repeatable heartbeat checks that collect workspace, service, and state signals in parallel and summarize whether action is needed.
 
-## Reference(s): <br>
-- [Config Reference](references/config.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wrentheai/wren-heartbeat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown or JSON summaries with stdout status text and process exit codes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a summary file by default and returns exit code 0 for all clear, 1 for errors, or 2 for action needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Workspace configuration can execute broad shell commands and network calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every heartbeat.yaml command and endpoint before running, and execute the skill with a restricted runtime account and minimal environment variables.
+
+Risk: Configured output and cache paths can write files in the workspace.
+
+Mitigation: Keep output and cache paths inside a generated-artifacts or similarly scoped directory, and avoid paths that overwrite source or sensitive files.
+
+Risk: Scheduled heartbeat runs can cause agents to act on summaries automatically.
+
+Mitigation: Require user confirmation before cron-triggered summaries cause follow-up actions, especially when a check returns action-needed status.
+
+Risk: Configuration examples may include API keys or secrets in commands.
+
+Mitigation: Use environment variables or secret stores for credentials and avoid hardcoded API keys in heartbeat.yaml.
+
+## Reference(s):
+
+- [Config Reference](references/config.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, JSON status output, brief text status lines, YAML configuration examples, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exit codes indicate all clear, runtime error, or action needed; summaries may be written to a configured workspace output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

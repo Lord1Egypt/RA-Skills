@@ -1,41 +1,53 @@
-## Description: <br>
-A local-first cryptographic toolkit that claims to execute zero-knowledge proof generation, circuit compilation via SnarkJS/ZoKrates, and formal verification analysis on local files without external API or cloud data transmission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proof is a local-first cryptographic toolkit for zero-knowledge proof generation, circuit compilation with local toolchains, and formal verification analysis on local files.
 
-## Publisher: <br>
-[agenticio](https://clawhub.ai/user/agenticio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agenticio](https://clawhub.ai/user/agenticio)
 
-## Use Case: <br>
-Developers and engineers use this skill to request local cryptographic proof generation, circuit compilation, formal checks, and audit-style manifests for project files. Evidence security review says the current implementation returns placeholder success messages, so outputs should be treated as workflow scaffolding until backed by real proof and verification tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may present placeholder proof generation or formal-check results as if they were real security evidence. <br>
-Mitigation: Treat generated proof, audit, and formal-check messages as non-authoritative until the scripts execute real tools and produce independently verifiable artifacts. <br>
-Risk: The artifact claims SnarkJS and ZoKrates workflows, but scanner guidance says the implementation does not currently provide reliable cryptographic assurance. <br>
-Mitigation: Require manual review of the local toolchain commands and output artifacts before using the skill for security, audit, or compliance decisions. <br>
+## Use Case:
 
+Developers and engineers use Proof to generate local proof artifacts, compile circuits, run formal checks, and audit project files without transmitting data to cloud services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agenticio/proof) <br>
-- [Publisher profile](https://clawhub.ai/user/agenticio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with local command and file guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local workspace files under ~/.openclaw/workspace/proof; current scripts produce placeholder status messages rather than verifiable cryptographic artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and skill.json) <br>
+Risk: Local cryptographic and analysis tools may inspect user-selected files and write generated proof artifacts in the local workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on intended files and review local toolchain commands before enabling SnarkJS, ZoKrates, or Solidity analyzers.
+
+Risk: Proof generation and formal checks depend on the locally installed toolchain and project configuration.
+
+Mitigation: Validate local toolchain versions and review generated proof artifacts or analyzer output before relying on results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agenticio/skills/proof)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with code and shell command snippets, plus local artifact paths when tools generate files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated proof artifacts under ~/.openclaw/workspace/proof; no cloud transmission is disclosed in the evidence.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

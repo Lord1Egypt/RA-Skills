@@ -1,45 +1,58 @@
-## Description: <br>
-Domain and DNS operations across name.com (default), GoDaddy, and Namecheap for registering domains, changing nameservers, managing DNS records, setting up redirects, checking availability, renewals, transfers, and verifying DNS propagation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Domainion Ops guides domain and DNS operations across name.com, GoDaddy, and Namecheap, including domain registration, nameserver changes, DNS records, redirects, availability checks, renewals, transfers, and propagation verification.
 
-## Publisher: <br>
-[iAhmadZain](https://clawhub.ai/user/iAhmadZain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[iahmadzain](https://clawhub.ai/user/iahmadzain)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare and review domain registrar and DNS administration workflows across name.com, GoDaddy, and Namecheap. It helps with availability checks, registrations, nameserver changes, DNS record updates, redirects, renewals, transfers, and propagation verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live registrar credentials can affect real domains and billing. <br>
-Mitigation: Use sandbox accounts where possible, protect API keys, and require explicit review before purchases, renewals, transfers, or auth-code retrieval. <br>
-Risk: Nameserver, DNSSEC, forwarding, full-zone replacement, or record deletion changes can disrupt domain availability. <br>
-Mitigation: Confirm the domain and provider, list current records first, prefer reversible changes, and verify propagation after each change. <br>
-Risk: Incorrect DNS or MX migration guidance can interrupt email or web service delivery. <br>
-Mitigation: Keep at least one valid MX record live during migrations and review planned DNS changes before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [name.com API Reference](references/name-com.md) <br>
-- [GoDaddy API Reference](references/godaddy.md) <br>
-- [Namecheap API Reference](references/namecheap.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/iAhmadZain/domainion-ops) <br>
-- [Publisher Profile](https://clawhub.ai/user/iAhmadZain) <br>
+## Use Case:
 
+External users and developers use this skill to plan and execute registrar and DNS operations across name.com, GoDaddy, and Namecheap accounts. It supports domain availability checks, registrations, renewals, transfers, nameserver changes, DNS record management, redirects, and propagation verification.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks and registrar-specific API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include DNS verification commands and credential setup guidance; should not expose API tokens or secrets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make high-impact registrar changes such as purchases, renewals, DNS replacements, nameserver changes, unlocks, and transfer-code requests.
+
+Mitigation: Use sandbox accounts first and require explicit user confirmation before any purchase, renewal, DNS replacement, nameserver change, unlock, or transfer-code request.
+
+Risk: Registrar credentials may be exposed through visible commands, logs, or command traces.
+
+Mitigation: Store credentials with restrictive permissions, avoid pasting production secrets into visible commands, and rotate any registrar keys that may have appeared in logs or traces.
+
+Risk: A wrong provider, wrong registrar, duplicate DNS record, or unsafe MX migration can cause outages or failed changes.
+
+Mitigation: Confirm the domain and provider, list existing records before changes, keep at least one valid MX record live during migrations, and verify results after each change.
+
+## Reference(s):
+
+- [name.com API Reference](artifact/references/name-com.md)
+- [GoDaddy API Reference](artifact/references/godaddy.md)
+- [Namecheap API Reference](artifact/references/namecheap.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and provider-specific API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider selection, credential setup guidance, confirmation prompts, DNS verification steps, and registrar API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

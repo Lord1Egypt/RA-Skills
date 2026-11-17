@@ -1,41 +1,59 @@
-## Description: <br>
-Create and manage virtual cards via MasterPay Global, including single-use cards for one-time purchases and multi-use cards for repeated use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage virtual cards via MasterPay Global. Supports single-use cards for one-time purchases and multi-use cards for repeated use.
 
-## Publisher: <br>
-[D9m1n1c](https://clawhub.ai/user/D9m1n1c) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[d9m1n1c](https://clawhub.ai/user/d9m1n1c)
 
-## Use Case: <br>
-External users and agents use this skill to create virtual payment cards, view card and application status, retrieve card details when authorized, and lock, unlock, or cancel cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose payment-card secrets such as full card numbers, CVVs, ATM PINs, transaction PINs, bearer tokens, and other payment credentials. <br>
-Mitigation: Use only a trusted payment account and verified API host; do not display, store, or log full card numbers, CVVs, PINs, bearer tokens, or other payment credentials unless a secure reveal workflow is provided. <br>
-Risk: The skill can perform card-changing actions, including creating, revealing, locking, unlocking, and cancelling payment cards. <br>
-Mitigation: Require explicit user confirmation before each card creation, secret reveal, lock, unlock, or cancellation action, and request transaction PINs fresh without caching. <br>
+## Use Case:
 
+External users and developers use this skill to create virtual payment cards, inspect card and wallet status, retrieve card details, and manage card lifecycle actions such as lock, unlock, and cancellation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/D9m1n1c/aiotnetwork-card-management) <br>
-- [Default AIOT Network payment API base URL](https://payment-api-dev.aiotnetwork.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, API calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with endpoint names, request prerequisites, and shell environment configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AIOT_API_BASE_URL for API host selection and authenticated payment-card sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill handles sensitive payment actions and card data, including bearer tokens, full card numbers, CVVs, and PINs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS API base URL, keep bearer tokens and PINs out of logs, and never persist full card numbers or CVVs.
+
+Risk: Card ATM PINs may be exposed by card creation, list, and detail responses without requiring a transaction PIN.
+
+Mitigation: Redact ATM PINs by default and require explicit user confirmation or step-up verification before revealing them.
+
+Risk: Card cancellation is irreversible.
+
+Mitigation: Require clear user confirmation and fresh transaction PIN verification before cancellation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/d9m1n1c/skills/aiotnetwork-card-management)
+- [Publisher profile](https://clawhub.ai/user/d9m1n1c)
+- [Default AIOT payment API base URL](https://payment-api-dev.aiotnetwork.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API endpoint references and environment configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires authentication for payment operations; some sensitive actions require a fresh transaction PIN.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

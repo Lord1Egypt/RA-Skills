@@ -1,0 +1,18 @@
+{
+  "deterministic": {
+    "findings": [{"probe": "firebase_rules", "path": "firestore.rules", "level": "certain"}],
+    "no_certain_findings": false, "compromise_hints": [], "min_deferrals": 1, "min_claims": 1,
+    "unsupported": [], "lang": "en"
+  },
+  "graph": {"nodes": ["src/App.tsx", "src/firebase.ts"], "entries": ["src/App.tsx"], "externals": ["ext:firebase"],
+            "edges": [["src/App.tsx", "src/firebase.ts"], ["src/App.tsx", "ext:firebase"], ["src/firebase.ts", "ext:firebase"]]},
+  "explain": [{"path": "src/firebase.ts", "label": "connects to Firebase", "text_any": ["firebase", "firestore", "数据库", "database"]}],
+  "must_find": [
+    {"label": "each user should only see their own habits", "status": ["broken"],
+     "paths_any": ["firestore.rules"], "text_any": ["rule", "test mode", "firestore", "anyone"]},
+    {"label": "test mode was never locked down", "status": ["pending", "broken"],
+     "paths_any": ["firestore.rules"], "text_any": ["test mode", "rule", "lock"]}
+  ],
+  "must_find_compromises": [],
+  "clean": false
+}

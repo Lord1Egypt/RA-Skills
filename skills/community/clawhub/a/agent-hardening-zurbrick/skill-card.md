@@ -1,48 +1,59 @@
-## Description: <br>
-Lock down any LLM agent against prompt injection, data exfiltration, social engineering, and channel-based attacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lock down LLM agents against prompt injection, data exfiltration, social engineering, channel-based attacks, and risky MCP or tool permissions.
 
-## Publisher: <br>
-[zurbrick](https://clawhub.ai/user/zurbrick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zurbrick](https://clawhub.ai/user/zurbrick)
 
-## Use Case: <br>
-Developers and agent operators use this skill to audit and harden LLM agents that handle sensitive data, use messaging or email channels, connect to MCP servers, or call external tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the skill as an automatic security control rather than guidance. <br>
-Mitigation: Review and apply the recommendations manually, then test the resulting agent behavior before deployment. <br>
-Risk: The optional test runner can send prompts and model behavior to a configured chat completions endpoint. <br>
-Mitigation: Use a trusted endpoint, a low-privilege API key, and avoid sending sensitive system prompts to third-party services unless approved. <br>
-Risk: The email BCC-owner recommendation can create consent, privacy, or retention concerns. <br>
-Mitigation: Treat BCC copying as an organization-specific policy choice and review it with the owner or privacy stakeholder before use. <br>
+## Use Case:
 
+Developers, operators, and security reviewers use this skill to audit and harden agents that handle sensitive data, accept instructions over communication channels, or connect to external tools and MCP servers. It guides attack-surface review, channel controls, MCP permission checks, behavioral rules, testing, and findings documentation.
 
-## Reference(s): <br>
-- [Agent Hardening on ClawHub](https://clawhub.ai/zurbrick/agent-hardening-zurbrick) <br>
-- [Attack Surface Checklist](references/attack-surface-checklist.md) <br>
-- [Channel Hardening](references/channel-hardening.md) <br>
-- [MCP Hardening](references/mcp-hardening.md) <br>
-- [Behavioral Hardening Rules](references/behavioral-rules.md) <br>
-- [Quick Security Test](references/quick-test.md) <br>
-- [Findings Template](references/findings-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, configuration rules, shell commands, and optional JSON findings from the test runner] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional test runner sends prompts to an OpenAI-compatible chat completions endpoint and can write findings as JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The bundled test runner can send API keys and full system prompts to a user-supplied chat-completions endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only controlled, trusted HTTPS endpoints with short-lived test credentials, avoid production API keys and private system prompts, and review the runner before executing it.
+
+Risk: Server security evidence reports that the included Python test runner has syntax errors.
+
+Mitigation: Repair and review the script before relying on automated test results; use the markdown quick-test checklist when the script is not runnable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zurbrick/skills/agent-hardening-zurbrick)
+- [Attack Surface Checklist](references/attack-surface-checklist.md)
+- [Channel Hardening](references/channel-hardening.md)
+- [MCP Hardening](references/mcp-hardening.md)
+- [Behavioral Hardening Rules](references/behavioral-rules.md)
+- [Quick Security Test](references/quick-test.md)
+- [Findings Template](references/findings-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists, configuration rules, test prompts, shell command examples, and optional JSON findings from the bundled test runner.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate audit findings and hardening recommendations for agent operating docs, channel settings, MCP permissions, and security test results.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

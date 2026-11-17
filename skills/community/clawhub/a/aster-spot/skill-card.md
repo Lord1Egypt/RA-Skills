@@ -1,43 +1,59 @@
-## Description: <br>
-Aster Spot request using the Aster API. Authentication requires API key and secret key (HMAC SHA256). Supports mainnet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aster Spot request using the Aster API. Authentication requires API key and secret key (HMAC SHA256). Supports mainnet.
 
-## Publisher: <br>
-[Yuandiaodiaodiao](https://clawhub.ai/user/Yuandiaodiaodiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yuandiaodiaodiao](https://clawhub.ai/user/yuandiaodiaodiao)
 
-## Use Case: <br>
-External users and developers use this skill to query Aster Spot market and account endpoints, prepare authenticated HMAC-signed requests, and manage mainnet spot trading workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through authenticated mainnet exchange actions, including trades, transfers, withdrawals, and API-key creation. <br>
-Mitigation: Install only when Aster account operations are intended; use read-only or narrowly permissioned API keys where possible, avoid withdrawal permissions unless required, and require explicit user confirmation for trades, transfers, withdrawals, and API-key creation. <br>
-Risk: The skill discusses storing API credentials in files, which can expose secrets if real credentials are committed or shared. <br>
-Mitigation: Do not store real secrets in TOOLS.md or repository files; use a secret manager or local environment storage, restrict API keys by IP and permissions, and mask credentials in all agent-visible output. <br>
-Risk: Large unfiltered market-data responses can lead to incomplete or misleading analysis if truncated or parsed manually. <br>
-Mitigation: Use symbol and limit parameters for targeted requests, summarize broad queries before fetching details, and use jq or structured parsing rather than truncating JSON. <br>
+## Use Case:
 
+Developers and trading operators use this skill to query Aster Spot market, account, order, transfer, withdrawal, and API-key endpoints through authenticated Aster API requests.
 
-## Reference(s): <br>
-- [Aster Spot Authentication](references/authentication.md) <br>
-- [Aster Spot Skill Page](https://clawhub.ai/Yuandiaodiaodiao/aster-spot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON examples and shell or Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Aster API request guidance, HMAC signing examples, credential-handling instructions, and JSON response handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill may lead agents to store Aster API keys and secrets in plaintext workspace Markdown.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated secret store instead of project Markdown, and provide only narrowly scoped Aster keys.
+
+Risk: The documented endpoints include trading, transfer, withdrawal, and API-key creation actions on mainnet.
+
+Mitigation: Require explicit user confirmation for each order, transfer, withdrawal, or API-key creation request, and prefer keys without withdrawal permissions.
+
+Risk: Broad market-data endpoints can return large responses when symbol and limit parameters are omitted.
+
+Mitigation: Always provide a specific symbol where supported, set the smallest useful limit, and filter complete JSON with jq.
+
+## Reference(s):
+
+- [Aster Spot Authentication](references/authentication.md)
+- [Aster Spot API mainnet base URL](https://sapi.asterdex.com)
+- [Aster Spot ClawHub skill page](https://clawhub.ai/yuandiaodiaodiao/skills/aster-spot)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance, Configuration]
+
+**Output Format:** [JSON responses with Markdown guidance and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated requests require HMAC SHA256 signing with an Aster API key and secret key.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata; artifact frontmatter metadata.version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

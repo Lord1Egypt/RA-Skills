@@ -1,0 +1,14 @@
+{
+  "name": "tiktok-carousel",
+  "version": "1.0.0",
+  "description": "Generate viral TikTok photo carousels using AI",
+  "scripts": {
+    "generate": "python3 scripts/generate_carousel.py",
+    "post": "python3 scripts/post_carousel.py",
+    "analyze": "python3 scripts/learning_loop.py --analyze",
+    "insights": "python3 scripts/learning_loop.py --insights"
+  },
+  "keywords": ["tiktok", "carousel", "viral", "social-media", "marketing"],
+  "author": "g0atbot",
+  "license": "MIT"
+}

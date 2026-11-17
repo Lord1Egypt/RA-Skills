@@ -1,41 +1,49 @@
-## Description: <br>
-Analyze smart contracts, token mechanics, permissions, fee flows, upgradeability, market risks, and likely attack surfaces for onchain projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze smart contracts, token mechanics, permissions, fee flows, upgradeability, market risks, and likely attack surfaces for onchain projects.
 
-## Publisher: <br>
-[0xRowan](https://clawhub.ai/user/0xRowan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xrowan](https://clawhub.ai/user/0xrowan)
 
-## Use Case: <br>
-Developers, auditors, and analysts use this skill to review onchain tokens, smart contracts, launch modules, vaults, staking systems, routers, and protocol components for permissions, tokenomics, fee movement, upgradeability, and user-facing risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Analysis can become stale or incomplete when contracts are upgradeable or live chain state changes. <br>
-Mitigation: Verify conclusions against current explorer or chain data, especially upgrade authority, admin roles, fee recipients, and deployment addresses. <br>
-Risk: Market-risk or maliciousness conclusions can be overstated if they are based on heuristics rather than contract behavior. <br>
-Mitigation: Distinguish confirmed code behavior from conditional or heuristic risk, and avoid labeling conduct malicious without code-based support. <br>
+## Use Case:
 
+Developers, auditors, and onchain analysts use this skill to review smart contracts, tokens, launch modules, vaults, staking systems, routers, proxies, and related protocol components for control, value-flow, tokenomics, and security risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xRowan/onchain-contract-token-ana) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/0xRowan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured findings, trust model, token and fee flow, and open questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Analysis can be incomplete or misleading when live chain state, offchain identities, or deployment details are missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as analysis rather than financial advice, and verify current chain or explorer data for state-dependent conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xrowan/skills/onchain-contract-token-ana)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with summary, severity-ordered findings, trust model, token and fee flow, and open questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are analytical guidance and should not be treated as financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

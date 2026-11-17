@@ -1,0 +1,5 @@
+interface:
+  display_name: "OpenLX 携程酒店运营助手"
+  short_description: "经营体检、点评回复、房价房态与笔记生产，按真实证据记录每项执行结果"
+  default_prompt: "使用 $openlx-ctrip-hotel-ops 检查指定酒店的经营快照，生成完整HTML报告并列出可执行动作。"
+  brand_color: "#1267E9"

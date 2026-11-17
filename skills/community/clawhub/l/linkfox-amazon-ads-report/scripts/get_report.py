@@ -33,7 +33,7 @@ Optional parameters:
   - timeUnit          DAILY / SUMMARY，默认 SUMMARY
   - format            默认 GZIP_JSON（DSP 等类型支持 CSV）
   - pollInterval      默认 30 秒
-  - maxAttempts       默认 20
+  - maxAttempts       默认 15
   - skipDepCheck      跳过依赖检查（默认 false）
   - serveExtractedFileHttp / serveHost / servePort / serveSeconds
                       本机 HTTP 暴露已解压文件，默认开启 300s
@@ -63,11 +63,10 @@ API_BASE_URL = (
     or os.environ.get("AMAZON_ADS_BASE_URL")
     or "https://tool-gateway.linkfox.com"
 )
-STORE_TOKENS_ENDPOINT = f"{API_BASE_URL}/amazonAds/storeTokens"
 DEVELOPER_PROXY_ENDPOINT = f"{API_BASE_URL}/amazonAds/developerProxy"
 
 DEFAULT_POLL_INTERVAL = 30
-DEFAULT_MAX_ATTEMPTS = 20
+DEFAULT_MAX_ATTEMPTS = 15
 
 REQUIRED_SKILL = "linkfox-amazon-ads-auth"
 DEPENDENCY_EXIT_CODE = 42
@@ -132,11 +131,14 @@ def ensure_auth_skill_available() -> None:
 
 
 def get_api_key():
+    """
+    获取配置在环境变量的API Key。
+    如果获取不到，按 SKILL.md 的 **## 解决认证和算力问题** 处理。
+    """
     key = os.environ.get("LINKFOX_AGENT_API_KEY") or os.environ.get("LINKFOXAGENT_API_KEY")
     if not key:
         print(
-            "❌ API Key not configured. Please set the environment variable:\n"
-            "  export LINKFOXAGENT_API_KEY=your-key-here",
+            "API Key 未配置",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -153,11 +155,15 @@ def call_api(endpoint: str, params: dict) -> dict:
             "Authorization": api_key,
             "Content-Type": "application/json",
             "User-Agent": "LinkFox-Skill/1.0",
+            "SESSION_ID": os.environ.get("SESSION_ID", ""),
+            "MESSAGE_ID": os.environ.get("MESSAGE_ID", ""),
+            "MODE_ID": os.environ.get("MODE_ID", ""),
+            "APP_NAME": os.environ.get("APP_NAME", ""),
         },
         method="POST",
     )
     try:
-        with urlopen(req, timeout=60) as response:
+        with urlopen(req, timeout=150) as response:
             return json.loads(response.read().decode("utf-8"))
     except HTTPError as e:
         body = e.read().decode("utf-8") if e.fp else ""
@@ -166,21 +172,18 @@ def call_api(endpoint: str, params: dict) -> dict:
         return {"error": f"Connection failed: {e.reason}"}
 
 
-def get_store_tokens(profile_id: int) -> dict:
-    print(f"🔑 Fetching access token for profileId={profile_id}...", file=sys.stderr)
-    return call_api(STORE_TOKENS_ENDPOINT, {"profileId": profile_id})
-
-
-def developer_proxy_call(region: str, path: str, method: str, access_token: str, profile_id: int,
+def developer_proxy_call(region: str, path: str, method: str, profile_id: int,
                          query_string: str = None, body: str = None,
-                         content_type: str = "application/json") -> dict:
+                         content_type: str = "application/json",
+                         access_token: str = "") -> dict:
     params = {
         "region": region,
         "path": path,
         "method": method,
-        "amzAccessToken": access_token,
         "profileId": profile_id,
     }
+    if access_token:
+        params["amzAccessToken"] = access_token
     if query_string:
         params["queryString"] = query_string
     if body:
@@ -190,7 +193,7 @@ def developer_proxy_call(region: str, path: str, method: str, access_token: str,
     return call_api(DEVELOPER_PROXY_ENDPOINT, params)
 
 
-def create_report(region: str, access_token: str, profile_id: int,
+def create_report(region: str, profile_id: int,
                   report_type_id: str, start_date: str, end_date: str,
                   name: str, ad_product: str, group_by: list, columns: list,
                   time_unit: str, fmt: str) -> dict:
@@ -212,19 +215,17 @@ def create_report(region: str, access_token: str, profile_id: int,
         region=region,
         path="reporting/reports",
         method="POST",
-        access_token=access_token,
         profile_id=profile_id,
         body=json.dumps(body),
         content_type=SP_CREATE_REPORT_CONTENT_TYPE,
     )
 
 
-def get_report_status(region: str, access_token: str, profile_id: int, report_id: str) -> dict:
+def get_report_status(region: str, profile_id: int, report_id: str) -> dict:
     return developer_proxy_call(
         region=region,
         path=f"reporting/reports/{report_id}",
         method="GET",
-        access_token=access_token,
         profile_id=profile_id,
     )
 
@@ -386,12 +387,6 @@ def main():
     max_attempts = params.get("maxAttempts", DEFAULT_MAX_ATTEMPTS)
 
     # Step 1: 取令牌
-    tokens_result = get_store_tokens(profile_id)
-    if "error" in tokens_result or "accessToken" not in tokens_result:
-        print(f"❌ Failed to get access token: {tokens_result}", file=sys.stderr)
-        sys.exit(1)
-    access_token = tokens_result["accessToken"]
-    print("✓ Access token retrieved", file=sys.stderr)
 
     # Step 2: 获取待轮询的 reportId —— 两种来源
     #   (a) 调用方直接传 reportId（例如上次超时但报告仍在跑）
@@ -400,7 +395,7 @@ def main():
         report_id = provided_report_id
         print(f"↩️  复用已有 reportId={report_id}，跳过创建，直接轮询。", file=sys.stderr)
     else:
-        create_result = create_report(region, access_token, profile_id,
+        create_result = create_report(region, profile_id,
                                       report_type_id, start_date, end_date,
                                       name, ad_product, group_by, columns, time_unit, fmt)
         if "error" in create_result:
@@ -446,7 +441,7 @@ def main():
     # ~5 分钟的提示节点；用 pollInterval 反推，避免用户改 pollInterval 后不准
     progress_nudge_at = max(1, 300 // max(int(poll_interval), 1))
     for attempt in range(1, max_attempts + 1):
-        status_result = get_report_status(region, access_token, profile_id, report_id)
+        status_result = get_report_status(region, profile_id, report_id)
         if "error" in status_result:
             print(f"❌ Failed to check status: {status_result}", file=sys.stderr)
             sys.exit(1)

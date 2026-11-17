@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn7b1bjk878xpagxd2x6yandwn889wb8",
-  "slug": "upcycle-your-job",
+  "name": "upcycle-your-job",
+  "title": "#Upcycle Your Job: The Smart Way to Balance Family Life and Career",
+  "author": "Anna Meller",
   "version": "1.0.0",
-  "publishedAt": 1780956603611
+  "license": "MIT",
+  "tags": [
+    "career",
+    "work-life-balance",
+    "parenting",
+    "women-in-business",
+    "flexible-working"
+  ],
+  "description": "Anna Meller's \"#Upcycle Your Job\" — a research-backed 6-step PROPEL model for working mothers to upcycle their corporate career instead of quitting. Covers 5 use cases: ① Work-life balance clarity — (\"I can't balance work and family\" \"I'm burning out\" \"mom guilt\") ② Flexible working negotiation — (\"how to ask for flexible hours\" \"negotiate part-time\" \"job crafting\") ③ Career continuity after motherhood — (\"back from maternity leave\" \"return to work\" \"mommy track escape\") ④ Corporate culture navigation — (\"man made workplace\" \"implicit bias\" \"always-on culture\") ⑤ Self-coaching through the PROPEL model — (\"PROPEL model\" \"work-life assessment\" \"Balanced Leader\"). Trigger when users say: \"work-life balance\" \"working mom\" \"return to work\" \"flexible working\" \"mommy track\" \"corporate career\" \"maternity leave\" \"job craft\" \"Anna Meller\" \"PROPEL\".",
+  "homepage": "https://github.com/jaysonmeng/book-skills/tree/main/skills/upcycle-your-job",
+  "clawhub": {
+    "slug": "upcycle-your-job",
+    "owner": "jaysonmeng"
+  }
 }

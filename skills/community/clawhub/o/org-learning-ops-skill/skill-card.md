@@ -1,43 +1,50 @@
-## Description: <br>
-Analyzes full OpenClaw session history, prepares daily skill inventory assignments, and produces CEO learning briefs with a hot-skills radar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes organization-wide multi-agent conversation history to produce daily learning briefs, skill radar summaries, and approval-ready Agent x Skill assignment recommendations.
 
-## Publisher: <br>
-[huangluckybao-lab](https://clawhub.ai/user/huangluckybao-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huangluckybao-lab](https://clawhub.ai/user/huangluckybao-lab)
 
-## Use Case: <br>
-Organization leaders and agent administrators use this skill to turn multi-agent collaboration logs into evidence-backed learning briefs, skill recommendations, and daily Agent x Skill assignment decisions. It supports governance workflows where installs, updates, configuration changes, and production activation require approval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reviews OpenClaw session logs and agent configuration data that may contain sensitive organizational information. <br>
-Mitigation: Use it only in intended admin or governance contexts and limit analysis to the agents, sessions, and configurations approved for review. <br>
-Risk: The skill can recommend skill installs, updates, activations, and configuration changes that may alter agent behavior. <br>
-Mitigation: Require human approval before applying installs, updates, activations, or configuration changes, and retain rollback points for each recommendation. <br>
-Risk: External skill radar results may include suspicious or poorly matched skills. <br>
-Mitigation: Keep suspicious candidates in a pending approval list with risk notes and do not promote them to active use until approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangluckybao-lab/org-learning-ops-skill) <br>
-- [README](artifact/README.md) <br>
-- [Daily brief example](artifact/examples/daily-brief-example.md) <br>
+## Use Case:
 
+Teams using multiple agents use this skill to turn visible agent conversation histories and installed-skill inventories into evidence-based organizational learning reports, external skill radar shortlists, and approval-ready assignment plans.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown daily brief with coverage reports, ranked lists, decision panels, and Agent x Skill assignment tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are expected to include evidence, risk notes, approval status, and rollback points.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may inspect organization-wide agent histories and configuration, which can expose raw prompts, tool outputs, secrets, personal data, or data outside the intended review scope.
+
+Mitigation: Before use, restrict the permitted agents and date ranges, require approval for cross-agent access, redact secrets and personal data, and prevent raw prompts, tool outputs, or configuration values from appearing in reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangluckybao-lab/skills/org-learning-ops-skill)
+- [README](artifact/README.md)
+- [Daily brief example](artifact/examples/daily-brief-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown daily brief with coverage reports, skill radar entries, approval queues, and Agent x Skill assignment tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are evidence-gated and include risks, approval status, and rollback points where applicable.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

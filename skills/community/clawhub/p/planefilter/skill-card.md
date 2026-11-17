@@ -1,43 +1,60 @@
-## Description: <br>
-Aviation flight lookup skill for querying aircraft type, equipment changes, and confidence scoring for a flight number. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aviation flight lookup skill that helps an agent query aircraft type, equipment changes, and confidence scoring for a flight number.
 
-## Publisher: <br>
-[ImL1s](https://clawhub.ai/user/ImL1s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iml1s](https://clawhub.ai/user/iml1s)
 
-## Use Case: <br>
-Travel, operations, and aviation users can ask an agent to look up the aircraft assigned to a flight, detect possible equipment changes, and explain confidence from multiple aviation data sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Flight numbers and dates are sent to external aviation APIs, including OpenSky, AeroDataBox/RapidAPI, and optionally AirLabs. <br>
-Mitigation: Use the skill only where sharing those lookup details is acceptable, and avoid entering sensitive itinerary information. <br>
-Risk: API keys and request URLs may be exposed by local logging or shell history, especially when optional AirLabs requests include a key in the URL. <br>
-Mitigation: Use limited API keys, monitor quota, store keys in environment or agent secret storage, and avoid enabling AirLabs in environments that log full URLs. <br>
+## Use Case:
 
+External users and developers use this skill through an OpenClaw agent to look up the likely aircraft assigned to a flight, compare aviation data sources, and identify possible equipment changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ImL1s/planefilter) <br>
-- [AeroDataBox on RapidAPI](https://rapidapi.com/aedbx-aedbx/api/aerodatabox) <br>
-- [AirLabs signup](https://airlabs.co/signup) <br>
-- [OpenSky Network API](https://opensky-network.org/api/states/all) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON flight lookup results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and RAPIDAPI_KEY; AIRLABS_KEY is optional for an additional data source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact package.json) <br>
+Risk: Flight lookup requests are sent to third-party aviation providers using RAPIDAPI_KEY and, optionally, AIRLABS_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide API keys when those providers are approved for the intended use and avoid submitting sensitive operational queries unnecessarily.
+
+Risk: The AirLabs key is placed in a URL query parameter by the artifact behavior identified in the security guidance.
+
+Mitigation: Use a low-privilege or dedicated AirLabs key and rotate it if query logs or shared diagnostics may expose request URLs.
+
+Risk: Aircraft type and equipment-change results depend on external provider availability and may have low or conflicting confidence.
+
+Mitigation: Present confidence, source agreement, and type distribution to users, and avoid treating low-confidence results as operationally authoritative.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/iml1s/skills/planefilter)
+- [AeroDataBox on RapidAPI](https://rapidapi.com/aedbx-aedbx/api/aerodatabox)
+- [AirLabs API Signup](https://airlabs.co/signup)
+- [OpenSky Network API](https://opensky-network.org/api/states/all)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON flight lookup results with agent-facing interpretation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes confidence score, aircraft type distribution, source names, route fields, registration when available, and equipment-change details when detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, package.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

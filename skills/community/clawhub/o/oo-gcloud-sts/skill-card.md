@@ -1,44 +1,56 @@
-## Description: <br>
-Operates Google Cloud STS through an OOMOL-connected `gcloud_sts` connector to exchange an OOMOL OIDC token for a Google Cloud access token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the oo CLI to exchange an OOMOL-connected identity for a Google Cloud STS federated access token.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and engineers use this skill when they need an agent to invoke OOMOL's Google Cloud STS connector and retrieve a federated Google Cloud access token for a requested task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The connector can mint and return Google Cloud access tokens. <br>
-Mitigation: Confirm the user's intent before minting a token, minimize token exposure, and avoid placing returned tokens in logs or chat unless necessary for the task. <br>
-Risk: The artifact presents the token exchange as an untagged safe/read-like action. <br>
-Mitigation: Treat `get_federated_access_token` as credential-sensitive despite the read-like labeling and require explicit user confirmation for token issuance. <br>
-Risk: First-time setup may involve remote installer commands for the oo CLI. <br>
-Mitigation: Review the installer source before execution and run installation only when the CLI is missing and the user approves setup. <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to obtain a Google Cloud federated access token through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [Google Cloud Workload Identity Federation](https://cloud.google.com/iam/docs/workload-identity-federation) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Google Cloud STS on ClawHub](https://clawhub.ai/oomol/oo-gcloud-sts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Google Cloud access tokens that must be treated as secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: The guidance understates that the action returns a sensitive Google Cloud access token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact token output and use narrowly scoped Google Cloud access.
+
+Risk: Installation can run unverified scripts and may install additional agent skills.
+
+Mitigation: Verify the CLI release before installation and review any additional skills separately.
+
+## Reference(s):
+
+- [Google Cloud Workload Identity Federation](https://cloud.google.com/iam/docs/workload-identity-federation)
+- [Google Security Token Service API](https://cloud.google.com/iam/docs/reference/sts/rest/v1/TopLevel/token)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-gcloud-sts)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON payloads or responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a Google Cloud federated access token in the connector response.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Automates financial and business data analysis by profiling and cleaning CSV or Excel files, calculating KPIs and trends, and producing professional reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates financial and business data analysis, including data profiling, cleaning, KPI calculations, trend and variance analysis, and professional report generation.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Developers, data analysts, and business users use this skill to inspect financial or business datasets, clean tabular data, calculate KPIs, run trend and variance analysis, and generate reports for decision support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive financial or business datasets may be read, transformed, or written to local output paths. <br>
-Mitigation: Use the skill only on intended files, keep backups of original data, and choose output paths deliberately. <br>
-Risk: HTML report output may preserve or render untrusted dataset content. <br>
-Mitigation: Prefer Markdown reports when source data may contain untrusted HTML content. <br>
+## Use Case:
 
+Developers, analysts, and business users use this skill to inspect CSV or Excel financial and operational data, calculate KPIs, identify trends and variances, and generate Markdown or HTML reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tujinsama/auto-data-analysis-claw) <br>
-- [Business analysis patterns](references/business-analysis-patterns.md) <br>
-- [Financial metrics](references/financial-metrics.md) <br>
-- [Report templates](references/report-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown, JSON, HTML reports, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write cleaned datasets, analysis results, and reports to user-selected local output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated HTML reports can turn untrusted business data into executable browser content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Markdown output for untrusted data, avoid opening generated HTML reports in privileged browser sessions or shared authenticated origins, and keep input and output paths limited to a working folder.
+
+Risk: Financial and business datasets may contain sensitive information.
+
+Mitigation: Review data handling before use, apply appropriate redaction, and avoid broad input or output paths that could expose or overwrite sensitive files.
+
+## Reference(s):
+
+- [Business Analysis Patterns](references/business-analysis-patterns.md)
+- [Financial Metrics](references/financial-metrics.md)
+- [Report Templates](references/report-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/tujinsama/skills/auto-data-analysis-claw)
+- [Publisher Profile](https://clawhub.ai/user/tujinsama)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell commands; generated reports may be Markdown or HTML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses CSV or Excel inputs and may write cleaned data, analysis output, and report files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

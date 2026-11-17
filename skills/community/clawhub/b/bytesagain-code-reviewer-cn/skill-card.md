@@ -1,42 +1,54 @@
-## Description: <br>
-Review code files for bugs, security issues, style problems, complexity hotspots, and language-specific checklist items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review code files for bugs, security issues, style problems, language-specific checklist items, and complexity signals.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Developers and engineers use this skill before commits, during pull-request review, onboarding, or codebase audits to get pattern-based findings, review checklists, security checks, complexity metrics, and diffs for selected files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan can print matching lines from selected files, which may expose passwords, tokens, API keys, or other sensitive content in the agent session. <br>
-Mitigation: Run the skill only on files you intentionally select, and avoid scanning live secrets or credential-bearing configuration unless that exposure is acceptable. <br>
-Risk: The review and security checks are pattern-based and may miss issues or produce findings that need human judgment. <br>
-Mitigation: Treat output as review assistance, not a substitute for manual review, tests, dedicated security tooling, or project-specific policy checks. <br>
+## Use Case:
 
+Developers and engineers use this skill before commits, during pull request review, onboarding, or codebase audits to run lightweight local checks across Python, JavaScript, Go, Java, and Bash files.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-code-reviewer-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/loutai0307-prog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Terminal text and checklist-style Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-selected local files and prints review findings, checklists, security matches, complexity summaries, or unified diffs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users could get false confidence from broken advertised security, checklist, or complexity behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a lightweight local review aid, verify findings manually, and do not use its checks as release gates until the defects are fixed and tested.
+
+Risk: Pattern-based review output can miss issues or flag benign code.
+
+Mitigation: Use the output as a prompt for human review and supplement it with established linters, tests, and security scanners.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-code-reviewer-cn)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Terminal text with checklist-style review findings and inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local pattern-based checks; manual verification is recommended for failures and release decisions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

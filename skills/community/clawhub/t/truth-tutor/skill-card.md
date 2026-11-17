@@ -1,44 +1,56 @@
-## Description: <br>
-Truth Tutor is a diagnosis-first learning coach that identifies why a learner is stuck and returns blunt gap analysis, reread guidance, and actionable drills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Truth Tutor is a diagnosis-first learning coach that identifies why a learner is stuck and returns evidence-based learning gaps, direct feedback, and actionable drills across general, paper-reading, and alphaXiv recovery modes.
 
-## Publisher: <br>
-[SII-k7](https://clawhub.ai/user/SII-k7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sii-k7](https://clawhub.ai/user/sii-k7)
 
-## Use Case: <br>
-Learners, researchers, and educators use this skill when a learner needs a diagnosis of the real blocker behind confusion, especially for advanced concepts, research papers, or failed alphaXiv follow-up. It produces direct feedback, missing-foundation analysis, reread order, recovery steps, and verification drills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Direct or brutal coaching can be a poor fit for users who need gentle encouragement or simple explanations only. <br>
-Mitigation: Use the skill for diagnostic coaching requests and keep critique attached to the work; avoid it when the user asks only for a simple explanation. <br>
-Risk: Harsh feedback can be inappropriate if a user appears to be in emotional crisis. <br>
-Mitigation: Stop strict or brutal framing when crisis signals appear and route the user toward human support. <br>
+## Use Case:
 
+External learners use this skill when they need diagnosis-first tutoring for a concept, research paper, or failed alphaXiv explanation. It helps identify the root learning gap, choose the right reread or repair path, and produce verification drills.
 
-## Reference(s): <br>
-- [Gap Taxonomy](references/gap-taxonomy.md) <br>
-- [Response Template](references/response-template.md) <br>
-- [Paper Reading Mode](references/paper-reading-mode.md) <br>
-- [alphaXiv Intake Mode](references/alphaxiv-intake.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/SII-k7/truth-tutor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with gap diagnosis, recovery plan, and drills] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, persistence, or privileged behavior requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: Blunt coaching feedback may feel too sharp for users who want gentle tutoring or simple explanations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Respect the skill's safety boundary: keep criticism attached to the work, avoid identity attacks, and avoid harsh modes when the user appears to be in emotional crisis.
+
+Risk: A diagnosis made from thin context may misidentify the learner's actual gap.
+
+Mitigation: Collect the minimum context when possible, label provisional diagnoses when context is incomplete, and include verification drills so the learner can test whether the diagnosis fits.
+
+## Reference(s):
+
+- [Gap Taxonomy](references/gap-taxonomy.md)
+- [Response Template](references/response-template.md)
+- [Paper Reading Mode](references/paper-reading-mode.md)
+- [alphaXiv Intake Mode](references/alphaxiv-intake.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown learning diagnosis with ranked gaps, recovery plan, and drills]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tone varies by requested strictness level while keeping critique attached to the work rather than the learner's identity.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence; artifact frontmatter says 1.0.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-系统化调试 guides agents through hypothesis-driven debugging: observe, hypothesize, isolate, verify, and fix, with binary-search isolation and minimal reproducer generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+系统化调试 - 假设驱动调试：观察→假设→隔离→验证→修复。附带Binary Search调试树、Minimal Reproducer生成
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to investigate bugs, performance issues, regressions, and intermittent failures by collecting evidence before making code changes. It helps structure hypotheses, isolate likely causes, generate minimal reproducers, and document root-cause findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad bug or error reports and slow down tasks that need a narrower workflow. <br>
-Mitigation: Use a more specialized skill explicitly when the task calls for a different debugging or remediation workflow. <br>
-Risk: Premature or weakly supported hypotheses can lead to misleading fixes. <br>
-Mitigation: Require collected evidence, minimal reproduction, and regression validation before applying code changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to apply a hypothesis-driven debugging workflow for production incidents, performance issues, regressions, and intermittent bugs. It guides observation, hypothesis tracking, isolation, minimal reproduction, validation, repair, and regression testing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-systematic-debug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with structured debugging notes and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include hypothesis lists, evidence logs, minimal reproducer guidance, binary-search isolation steps, root-cause reports, and proposed regression tests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: Generic trigger words such as debug may activate the skill broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill explicitly when this systematic debugging workflow is intended.
+
+Risk: Chinese-language presentation may limit usability for readers expecting English-only debugging guidance.
+
+Mitigation: Review generated guidance for audience fit and translate or adapt terminology before operational use when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-systematic-debug)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with optional Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-oriented debugging workflow; Python example requires Python 3.8+ and no third-party dependencies.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

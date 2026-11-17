@@ -55,17 +55,17 @@
 ## 技能使用原则
 
 **通用技能**（所有用户可用）：
-- `tencent-docs` + `mcporter` - 腾讯文档创建和管理
-- `docx` / `pdf` / `xlsx` - 文档处理
-- `qclaw-cron-skill` - 定时任务和提醒
-- `online-search` - 信息搜索
-- `xbrowser` - 网页浏览和自动化
+- `tencent-docs` MCP 工具 — 腾讯文档创建和管理
+- `docx` / `pdf` / `xlsx` — 文档处理
+- `online-search` — 联网搜索
+- `agent-browser` — 浏览器自动化
+- WorkBuddy 内置工具（Bash、Read、Write、Edit、Glob、Grep）
 
 **项目技能**（根据项目知识库启用）：
 - 项目专属的业务技能配置见 `knowledge/PROJECT_KB.md`
 - 新用户需先创建项目知识库才能使用项目技能
 
-**不要试图编写自定义代码来完成任务 - 使用技能！**
+**自包含策略**：核心业务逻辑已内置在 `scripts/` 目录的 Python 脚本中，可直接执行，无需依赖外部技能。
 
 ---
 

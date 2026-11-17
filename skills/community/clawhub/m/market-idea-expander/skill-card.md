@@ -1,42 +1,58 @@
-## Description: <br>
-Generates structured business opportunity ideas from a market segment, including niche maps, pain point research queries, market gap analysis, solution concepts, and BAB landing page copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Business Opportunity Generator guides an agent through niche exploration, pain point research queries, market gap analysis, solution concepts, and BAB-structured landing page generation for new business ideas.
 
-## Publisher: <br>
-[ernestngenest](https://clawhub.ai/user/ernestngenest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ernestngenest](https://clawhub.ai/user/ernestngenest)
 
-## Use Case: <br>
-Entrepreneurs, founders, marketers, and product builders use this skill to explore niches, turn pain points into differentiated product concepts, and draft a landing page for a selected idea. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad business, market, product, and side-hustle trigger phrases may activate the skill when the user made only a vague request. <br>
-Mitigation: Clarify whether the user wants business-idea help before continuing with the ideation workflow. <br>
-Risk: Generated opportunity rankings, market claims, and landing page copy may be speculative. <br>
-Mitigation: Treat outputs as brainstorming drafts and validate customer pain points, competitive claims, and compliance-sensitive copy before use. <br>
+## Use Case:
 
+External users and builders use this skill to turn a market segment or niche into structured business opportunities, customer pain point research queries, solution concepts, and a launch-ready landing page draft.
 
-## Reference(s): <br>
-- [Pain Point Research Query Templates](PAIN_POINT_QUERIES.md) <br>
-- [Landing Page Generator Guide](LANDING_PAGE_GUIDE.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ernestngenest/market-idea-expander) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown responses with optional single-file HTML/CSS/JS code artifact] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate platform-specific search queries and a complete landing page artifact when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill may activate for broad business brainstorming or market research requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended phase and scope with the user before generating outputs.
+
+Risk: Generated social search queries may include language or locale assumptions, such as English-language filters.
+
+Mitigation: Review and adapt search queries for the target language, region, and platform before running them.
+
+Risk: Business concepts and landing page copy can sound more validated than the underlying research supports.
+
+Mitigation: Ground solution selection and public-facing claims in user-provided pain point evidence before using generated copy.
+
+## Reference(s):
+
+- [Pain Point Research Query Templates](PAIN_POINT_QUERIES.md)
+- [Landing Page Generator Guide](LANDING_PAGE_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with structured lists, search query blocks, analysis sections, and single-file HTML code for landing pages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce copy-paste social search queries and complete HTML/CSS/JS landing page artifacts.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

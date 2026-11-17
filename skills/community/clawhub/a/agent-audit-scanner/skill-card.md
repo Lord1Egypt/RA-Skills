@@ -1,44 +1,60 @@
-## Description: <br>
-Security scanner for OpenClaw skills. Detects prompt injection, credential leaks, unsafe code execution, MCP misconfigurations, privilege escalation, obfuscated shell commands, and social engineering patterns. Covers all 10 OWASP Agentic AI threat categories with 49+ detection rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Audit Scanner scans OpenClaw skills for prompt injection, credential leaks, unsafe code execution, MCP misconfiguration, privilege escalation, obfuscated commands, and social-engineering patterns across OWASP Agentic AI threat categories.
 
-## Publisher: <br>
-[HeadyZhang](https://clawhub.ai/user/HeadyZhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[headyzhang](https://clawhub.ai/user/headyzhang)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit OpenClaw skills and OpenClaw configuration before enabling or operating them. It produces severity-tiered findings for prompt injection, credential exposure, unsafe execution, MCP misconfiguration, privilege escalation, obfuscated commands, and related agentic AI risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: One scan wrapper can automatically install the unpinned external agent-audit PyPI package during use. <br>
-Mitigation: Install agent-audit yourself in a virtual environment, pin or review the package version first, and then run the scan locally. <br>
-Risk: The skill reads local OpenClaw skill directories and OpenClaw configuration files during audits. <br>
-Mitigation: Run it only in the intended local environment and review generated findings before acting on them. <br>
-Risk: A clean scan result may miss issues outside the scanner's rules or confidence thresholds. <br>
-Mitigation: Treat scanner output as a triage signal and pair it with manual review before enabling a skill. <br>
+## Use Case:
 
+Developers and operators use this skill to audit OpenClaw skills and local OpenClaw/MCP configuration before enabling or deploying skills.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/HeadyZhang/agent-audit) <br>
-- [Common Threats in OpenClaw Skills](references/common-threats.md) <br>
-- [OWASP Agentic AI Top 10 Agent Audit Rules](references/owasp-asi-mapping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style scan guidance and terminal reports, with JSON available from the underlying agent-audit command.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports findings using BLOCK, WARN, INFO, and CLEAN tiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter) <br>
+Risk: The skill can attempt to install the external agent-audit package without a pinned version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install agent-audit manually from a trusted and pinned source in an isolated environment before running the bundled wrappers.
+
+Risk: A clean result may be misleading if the underlying scanner errors or produces no output.
+
+Mitigation: Treat scanner errors, empty output, or missing scanner dependencies as manual-review conditions rather than as proof that a skill is safe.
+
+Risk: Audits read local OpenClaw skill directories and OpenClaw/MCP configuration files.
+
+Mitigation: Run the audit with least-privilege access in an isolated environment and review which local paths are being scanned.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/headyzhang/skills/agent-audit-scanner)
+- [Project homepage and source](https://github.com/HeadyZhang/agent-audit)
+- [Common Threats in OpenClaw Skills](references/common-threats.md)
+- [OWASP Agentic AI Top 10 Agent Audit Rules](references/owasp-asi-mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and terminal reports, with JSON scanner output available from the underlying scanner command.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports findings with BLOCK, WARN, INFO, and CLEAN severity tiers.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

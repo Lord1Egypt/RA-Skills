@@ -1,0 +1,101 @@
+#!/usr/bin/env python3
+"""
+{{workflow-name}} — {{workflow title}} (executable script)
+
+Ported from: {{source location, e.g. src/services/refund.py::process_refund (lines 45-132)}}
+
+This script must be self-contained: the runtime (OpenClaw/harness) has no
+business codebase. Never reference business source via sys.path or file paths.
+Default is full porting (Pattern C): the script itself is the implementation
+with zero network dependency; only when the user explicitly confirms a reliable
+channel should it reach capabilities via the env-configured business API
+(Pattern A) or a published SDK (Pattern B).
+
+All deterministic logic (ordering, validation, branching, rollback) is enforced
+inside this script; SKILL.md only describes when to run it and with what arguments.
+
+Deps: {{formal PyPI releases with versions; no local paths}}
+Run: python3 {{workflow}}.py --help
+"""
+
+import argparse
+import json
+import os
+import sys
+
+API_BASE = os.environ.get("BUSINESS_API_BASE", "http://localhost:8080")
+API_TOKEN = os.environ.get("BUSINESS_API_TOKEN", "")
+
+
+def out(data: dict, code: int = 0):
+    """Print JSON to stdout and exit with the given code."""
+    print(json.dumps(data, ensure_ascii=False, indent=2))
+    sys.exit(code)
+
+
+def fail(err_code: str, message: str, exit_code: int = 3):
+    out({"ok": False, "error": {"code": err_code, "message": message}}, exit_code)
+
+
+def api(method: str, path: str, **kwargs) -> dict:
+    """[Pattern A only] Call the deployed business API; connection/HTTP errors
+    funnel into fail(). Default Pattern C: delete this function and replace it
+    with the ported local implementation (plus self-managed storage).
+    Pattern B: replace with published-SDK client calls."""
+    import httpx
+    try:
+        r = httpx.request(
+            method, f"{API_BASE}{path}",
+            headers={"Authorization": f"Bearer {API_TOKEN}"},
+            timeout=15, **kwargs,
+        )
+        r.raise_for_status()
+        return r.json()
+    except httpx.HTTPStatusError as e:
+        fail(f"BUSINESS_ERROR_{e.response.status_code}", e.response.text[:300], 4)
+    except httpx.RequestError as e:
+        fail("CONNECTION_ERROR", str(e), 4)
+
+
+def run(args) -> dict:
+    # ===== Step 1: fetch and validate preconditions (in code, not in prompts) =====
+    order = api("GET", f"/api/{{resource}}/{args.{{id_param}}}")
+
+    if order["status"] != "{{required_state}}":
+        fail("INVALID_STATE",
+             f"current status is {order['status']}; this flow requires {{required_state}}")
+
+    # ===== Porting checklist: port ALL validations and branches from the source =====
+    # if args.{{amount_param}} > order["amount"]:
+    #     fail("AMOUNT_EXCEEDED", "...")
+
+    if args.dry_run:
+        return {"dry_run": True, "would_execute": "{{summary of the operation}}",
+                "validated": {"{{check}}": "passed"}}
+
+    # ===== Step 2: execute writes (same order as the source code) =====
+    result = api("POST", "/api/{{resource}}", json={"{{field}}": args.{{field_param}}})
+
+    # ===== Step 3: wrap up (notify/log; on failure report how far execution got) =====
+    # try:
+    #     api("POST", "/api/notify", json={...})
+    # except SystemExit:
+    #     fail("NOTIFY_FAILED", "main operation succeeded but notification failed; manual resend required", 4)
+
+    return {"result": result}
+
+
+def main():
+    p = argparse.ArgumentParser(description="{{workflow title}} — {{one-liner}}")
+    p.add_argument("--{{id_param}}", required=True, help="{{meaning and format}}")
+    # p.add_argument("--{{field_param}}", required=True, help="{{meaning and constraints}}")
+    p.add_argument("--dry-run", action="store_true",
+                   help="validate only; print what would execute without side effects")
+    args = p.parse_args()
+
+    result = run(args)
+    out({"ok": True, "data": result})
+
+
+if __name__ == "__main__":
+    main()

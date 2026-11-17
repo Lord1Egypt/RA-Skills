@@ -1,41 +1,50 @@
-## Description: <br>
-Generates images through the NanaBanana 2 or NanaBanana Pro models using the api.wuyinkeji.com image service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images through the Wuyin Keji API using NanaBanana 2 by default and NanaBanana Pro for high-quality, realistic, or final artwork.
 
-## Publisher: <br>
-[Riage](https://clawhub.ai/user/Riage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[riage](https://clawhub.ai/user/riage)
 
-## Use Case: <br>
-Users ask an agent to create images for daily drawing tasks, text images, drafts, high-quality product artwork, cinematic images, or realistic final artwork. The skill guides the agent to choose NanaBanana 2 by default and NanaBanana Pro when the user explicitly requests higher quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to a third-party image service and may contain private or sensitive details. <br>
-Mitigation: Use only prompts appropriate for the service and avoid sensitive, private, or regulated content. <br>
-Risk: The API key is included in API requests and polling URLs. <br>
-Mitigation: Use a dedicated key with limited exposure, avoid sharing request URLs, and rotate the key if it may have been exposed. <br>
+## Use Case:
 
+External users and developers use this skill to submit English image prompts, select model quality, size, and aspect ratio, poll for completion, and return generated image URLs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Riage/skill-paintinginterface) <br>
-- [Wuyin Keji API host](https://api.wuyinkeji.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, guidance] <br>
-**Output Format:** [Text and Markdown-style instructions with JSON request examples and <qqimg> image URL markup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a user-provided API key, English image prompts, optional size and aspect-ratio parameters, and polling for up to about 60 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: API key exposure in URL query parameters during result polling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited, revocable API key, avoid sensitive prompts, prefer header-based polling when available, and rotate any key already used in query strings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/riage/skills/skill-paintinginterface)
+- [Wuyin Keji API service](https://api.wuyinkeji.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown/text response with <qqimg> image URL tags and model, ratio, and resolution details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Polls every 3 seconds up to 20 attempts; prompts should be translated to detailed English before submission.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

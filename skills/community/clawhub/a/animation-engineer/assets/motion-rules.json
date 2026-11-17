@@ -1,0 +1,16 @@
+{
+  "_comment": "动效 CSS lint 规则 —— 配合 scripts/lint_css_keyframes.py 使用。以 _ 开头的键是注释，脚本自动跳过。复制后按项目调整：start_end_props 是要求的起止 GPU 属性；layout_thrash_props 是应避免的 layout 属性；ignore_name_keywords 是 animation 声明里不算关键帧名的保留词。",
+  "_usage": "python3 scripts/lint_css_keyframes.py --css styles.css --config assets/motion-rules.json",
+
+  "start_end_props": ["transform", "opacity"],
+  "layout_thrash_props": [
+    "top", "left", "right", "bottom", "width", "height",
+    "margin", "padding", "box-shadow", "font-size"
+  ],
+  "ignore_name_keywords": [
+    "none", "normal", "ease", "ease-in", "ease-out", "ease-in-out",
+    "linear", "step-start", "step-end", "infinite", "alternate",
+    "alternate-reverse", "reverse", "forwards", "backwards", "both",
+    "running", "paused", "initial", "inherit", "unset", "auto"
+  ]
+}

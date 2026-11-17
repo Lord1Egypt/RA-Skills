@@ -1,44 +1,55 @@
-## Description: <br>
-Bash Themes is advertised as a Bash configuration and theme helper, while the included runnable command currently focuses on developer workflow actions and status output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bash Themes presents bash configuration and theme-management commands, but current evidence shows placeholder Oh My Bash behavior and a developer workflow CLI rather than a complete configuration framework.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and shell users can use this skill to inspect or invoke Bash-theme-related commands and configuration guidance. Review command behavior before relying on automation because the security evidence notes that the advertised Bash-theme purpose does not clearly match the runnable script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The advertised Bash theme purpose does not clearly match the runnable developer-workflow script. <br>
-Mitigation: Verify which script the bash-themes command will run and review behavior before installation or deployment. <br>
-Risk: Arguments passed to commands may be recorded in local history logs. <br>
-Mitigation: Avoid passing sensitive text as command arguments and review local files under BASH_THEMES_DIR. <br>
-Risk: Auto-update and Bash theme management claims are unsupported by the included runnable code. <br>
-Mitigation: Treat those claims as unverified unless a future release includes matching implementation evidence. <br>
+## Use Case:
 
+Developers and shell users can ask an agent for bash-themes command usage, basic status/help output, and configuration guidance around BASH_THEMES_DIR. Review before installation because the security evidence says the package does not currently provide the advertised Oh My Bash configuration framework.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/xueyetianya/bash-themes) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
-- [Oh My Bash upstream reference](https://github.com/ohmybash/oh-my-bash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance and terminal text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The package is advertised as an Oh My Bash configuration skill, but security evidence says it does not currently provide that framework.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package contents before installing and do not rely on it for production bash configuration until the functionality matches the advertised release.
+
+Risk: A bundled developer workflow script creates local state and logs command usage under BASH_THEMES_DIR or the user's local data directory.
+
+Mitigation: Run it in a controlled workspace and set BASH_THEMES_DIR to an expected disposable location before testing.
+
+## Reference(s):
+
+- [Bash Themes on ClawHub](https://clawhub.ai/xueyetianya/skills/bash-themes)
+- [Publisher profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local shell command suggestions and references to BASH_THEMES_DIR; no API calls or credentials are indicated.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

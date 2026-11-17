@@ -1,0 +1,6 @@
+interface:
+  display_name: "Fable Explanation · 寓言讲概念"
+  short_description: "用寓言故事讲清内容 · Explain ideas with fables."
+  default_prompt: "使用 $fable-explanation，用寓言故事讲清我给出的内容，接近结尾再揭晓，最后解释内容和隐喻。"
+policy:
+  allow_implicit_invocation: false

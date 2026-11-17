@@ -1,45 +1,54 @@
-## Description: <br>
-Comprehensive pre-sale housing purchase guidance for Taiwan, covering red note negotiation, deposits, contract review, construction-stage payments, interior modification requests, final inspection, handover, and common dispute handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive Taiwan pre-sale housing purchase guidance covering red note negotiation, deposits, contract review, construction-stage payments, final inspection, handover, and common disputes.
 
-## Publisher: <br>
-[tsaitepiao-alt](https://clawhub.ai/user/tsaitepiao-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsaitepiao-alt](https://clawhub.ai/user/tsaitepiao-alt)
 
-## Use Case: <br>
-External buyers and real estate advisors use this skill to navigate Taiwan pre-sale housing purchases, review contract and payment checkpoints, prepare for inspection and handover, and identify common dispute paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Taiwan <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Taiwan pre-sale housing guidance may become outdated or differ by contract terms, municipality, lender, or individual facts. <br>
-Mitigation: Use the skill as a checklist and verify material decisions against current official guidance, the signed contract, and qualified Taiwan real estate or legal professionals. <br>
-Risk: Optional analytics commands record skill usage when run. <br>
-Mitigation: Run analytics commands only when usage recording is intended and python3 is available. <br>
+## Use Case:
 
+External buyers, real-estate advisors, and agents use this skill to navigate Taiwan pre-sale property purchases, including contract checks, payment planning, inspection preparation, handover, and dispute handling.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tsaitepiao-alt/taiwan-pre-sale-housing) <br>
-- [Contract Review](references/contract-review.md) <br>
-- [Payment Plan](references/payment-plan.md) <br>
-- [Final Inspection](references/final-inspection.md) <br>
-- [Handover](references/handover.md) <br>
-- [Disputes](references/disputes.md) <br>
+### Deployment Geography for Use:
 
+Taiwan
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with checklists, tables, process flows, and occasional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Taiwan pre-sale housing lifecycle guidance; requires python3 only for optional usage analytics commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The skill asks the agent to run an unverified local analytics script outside the package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove the analytics command before routine use, or replace it with an opt-in package-contained telemetry mechanism.
+
+## Reference(s):
+
+- [Contract Review](references/contract-review.md)
+- [Payment Plan](references/payment-plan.md)
+- [Final Inspection](references/final-inspection.md)
+- [Handover](references/handover.md)
+- [Disputes](references/disputes.md)
+- [ClawHub Skill Page](https://clawhub.ai/tsaitepiao-alt/skills/taiwan-pre-sale-housing)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with checklists, tables, process flows, and occasional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 only for the optional analytics command described in the skill.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

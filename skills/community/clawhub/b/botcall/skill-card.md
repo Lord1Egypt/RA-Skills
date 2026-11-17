@@ -1,45 +1,60 @@
-## Description: <br>
-Phone numbers for AI agents. Provision numbers, receive SMS, extract verification codes. Use when you need to sign up for services, receive 2FA codes, or handle phone verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Phone numbers for AI agents. Provision numbers, receive SMS, extract verification codes. Use when you need to sign up for services, receive 2FA codes, or handle phone verification.
 
-## Publisher: <br>
-[danecodes](https://clawhub.ai/user/danecodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danecodes](https://clawhub.ai/user/danecodes)
 
-## Use Case: <br>
-Developers and agents use this skill to provision Botcall phone numbers, receive SMS messages, extract verification codes, and configure Botcall MCP access for phone verification workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose SMS messages and verification codes to an agent. <br>
-Mitigation: Require explicit approval before retrieving, displaying, or entering codes, and use it only for accounts or services the user owns or is authorized to verify. <br>
-Risk: Number provisioning, release, plan upgrades, and billing actions can change account state or incur charges. <br>
-Mitigation: Require explicit approval before provisioning or releasing numbers, opening billing, or upgrading plans. <br>
-Risk: BOTCALL_API_KEY and received SMS codes are sensitive credentials. <br>
-Mitigation: Store the API key in an environment or secret manager, avoid logging secrets or codes, and rotate credentials if exposed. <br>
+## Use Case:
 
+Developers and external users use this skill to guide agents through Botcall CLI and MCP workflows for provisioning phone numbers, receiving SMS messages, extracting verification codes, and managing plan or billing actions.
 
-## Reference(s): <br>
-- [Botcall website](https://botcall.io) <br>
-- [botcall npm CLI](https://www.npmjs.com/package/botcall) <br>
-- [Botcall MCP npm package](https://www.npmjs.com/package/@botcallio/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/danecodes/botcall) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BOTCALL_API_KEY and the botcall CLI; may output phone numbers, SMS messages, and verification codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Agents may run signup, 2FA, upgrade, or billing commands without enough user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before executing phone verification, plan upgrade, or billing commands.
+
+Risk: The skill requires a Botcall API key for phone-number and SMS workflows.
+
+Mitigation: Use a minimally scoped Botcall API key and avoid exposing the key in logs, prompts, or shared configuration.
+
+Risk: Phone numbers and SMS codes can be misused for account workflows the user does not own or control.
+
+Mitigation: Use the skill only for phone numbers, SMS codes, and account workflows the user owns or is authorized to manage.
+
+## Reference(s):
+
+- [Botcall Website](https://botcall.io)
+- [botcall npm CLI](https://www.npmjs.com/package/botcall)
+- [Botcall MCP npm Package](https://www.npmjs.com/package/@botcallio/mcp)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/danecodes)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes commands that can affect phone-number allocation, SMS access, plan upgrades, and billing; require explicit user confirmation before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

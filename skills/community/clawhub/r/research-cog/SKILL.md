@@ -1,6 +1,6 @@
 ---
-name: research-cog
-description: "AI deep research powered by CellCog. Market research, competitive analysis, investment research, academic research, due diligence, literature reviews with citations, financial analysis, crypto research, news intelligence. Multi-source synthesis across hundreds of sources. #1 on DeepResearch Bench (Apr 2026)."
+name: deep-research-cellcog
+description: "AI deep research powered by CellCog. Market research, competitive analysis, investment research, academic research, due diligence, literature reviews with citations, financial analysis, crypto research, news intelligence. Multi-source synthesis across hundreds of sources. #1 on DeepResearch Bench (October 2026)."
 author: CellCog
 homepage: https://cellcog.ai
 metadata:
@@ -12,9 +12,9 @@ metadata:
       env: [CELLCOG_API_KEY]
 dependencies: [cellcog]
 ---
-# Research Cog - Deep Research Powered by CellCog
+# Deep Research - Powered by CellCog
 
-**#1 on DeepResearch Bench (Apr 2026).** Your AI research analyst for comprehensive, citation-backed research on any topic.
+**#1 on DeepResearch Bench (October 2026).** Your AI research analyst for comprehensive, citation-backed research on any topic.
 
 Leaderboard: https://huggingface.co/spaces/muset-ai/DeepResearch-Bench-Leaderboard
 
@@ -28,7 +28,7 @@ result = client.create_chat(
     prompt="[your task prompt]",
     notify_session_key="agent:main:main",
     task_label="my-task",
-    chat_mode="agent",
+    chat_mode="team",
 )
 ```
 
@@ -39,7 +39,7 @@ client = CellCogClient(agent_provider="openclaw|cursor|claude-code|codex|...")
 result = client.create_chat(
     prompt="[your task prompt]",
     task_label="my-task",
-    chat_mode="agent",
+    chat_mode="team",
 )
 print(result["message"])
 ```
@@ -115,19 +115,17 @@ Specify your preferred format in the prompt:
 
 ---
 
-## Chat Mode for Research
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Trivial lookups, basic facts | `"agent"` |
-| Deep research, competitive analysis, market research, investment analysis | `"agent team"` |
-| Cutting-edge academic research, high-stakes due diligence, institutional-grade analysis | `"agent team max"` |
+**Use `chat_mode="team"` — this is exactly what Agent Team exists for.** Deep research is THE Team use case: multi-source synthesis, cross-validation, citation verification, multiple reasoning passes.
 
-**Use `"agent team"` for most research** (the default). Agent team mode enables multi-source research, cross-referencing, citation verification, and deeper analysis with multiple reasoning passes.
+| Scenario | Recommended |
+|----------|-------------|
+| Deep research, competitive analysis, market research | `chat_mode="team"` (default tier `"core"`) |
+| High-stakes due diligence, institutional-grade analysis | `chat_mode="team", chat_tier="max"` (requires >=2,000 credits) |
+| Quick lookups, simple summaries | `chat_mode="agent"` |
 
-**Use `"agent"` only for trivial lookups** like "What's Apple's stock ticker?"
-
-**Use `"agent team max"` for cutting-edge academic research and high-stakes due diligence** — when the research directly informs costly decisions (investment thesis, M&A, regulatory compliance, PhD-level analysis). All settings maxed for the deepest reasoning. The quality gain is incremental but meaningful when accuracy is critical. Requires ≥2,000 credits.
+Legacy names `"agent team"` / `"agent team max"` still work forever (they map to team core / team max).
 
 ---
 
@@ -191,6 +189,7 @@ Research reports can include:
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

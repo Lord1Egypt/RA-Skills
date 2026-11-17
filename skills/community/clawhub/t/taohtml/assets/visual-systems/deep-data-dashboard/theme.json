@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "id": "deep-data-dashboard",
+  "display_name": "深色数据面板",
+  "description": "深色底、数据图表、系统界面与指标层级，适合经营、产品和技术型汇报",
+  "preview": "preview.svg",
+  "files": {"tokens": "theme.css", "templates": "templates.html"},
+  "identity": {
+    "composition": "16:9 深色系统画布；大标题与数据面板形成左右分栏，重点由荧光信号色定位。",
+    "hierarchy": "先给判断，再给指标与图表，最后落到行动；信息像一个可读的控制面板逐层展开。",
+    "image_treatment": "图片使用深色裁切窗口、冷色叠层与局部信号标记，不使用装饰性库存图片。",
+    "module_language": "细边框、网格、状态标签、数据窗口与硬朗的矩形面板。",
+    "chart_evidence": "使用直接标注的折线、柱状、指标和比较窗口；颜色表达状态而不是装饰。",
+    "motion": "按数据步进显示面板与焦点变化；使用短距离推进，不使用漂浮、弹跳或连续光效。"
+  },
+  "tokens": {
+    "colors": {"canvas": "#0b1020", "ink": "#edf4ff", "signal": "#51e5ff", "risk": "#ff8a5b", "paper": "#121d38", "muted": "#98a8c9"},
+    "font_stacks": {"display": "Arial Black, PingFang SC, sans-serif", "body": "Arial, PingFang SC, sans-serif", "mono": "SFMono-Regular, Consolas, monospace"},
+    "type_scale": {"display": "clamp(58px, 6.2vw, 104px)", "heading": "clamp(40px, 4.2vw, 72px)", "body": "20px", "caption": "13px"},
+    "spacing": {"canvas_x": "68px", "canvas_y": "54px", "module": "24px", "gap": "18px"},
+    "borders": {"hairline": "1px solid #3c4e77", "module": "1px solid #60739d", "radius": "0", "shadow": "0 18px 40px rgba(0,0,0,.22)"}
+  },
+  "canvas": {"aspect_ratio": "16:9", "safe_area": "68px 68px 58px", "grid": "12 columns with an asymmetrical data-panel split", "density": "medium, one dominant statement plus 2-4 evidence modules"},
+  "layout_variants": [
+    {"id": "signal-orbit", "use": "cover or chapter thesis"},
+    {"id": "metric-console", "use": "metrics and dashboard evidence"},
+    {"id": "operating-model", "use": "mechanism or process"},
+    {"id": "focus-window", "use": "one claim with a supporting signal"},
+    {"id": "execution-map", "use": "priority plan and closing claim"}
+  ],
+  "components": {
+    "chart": "Use dark chart windows, electric cyan lines, direct labels and restrained grid lines.",
+    "table": "Use dark table panels with thin rules and a single green or cyan state highlight.",
+    "evidence_card": "Frame source evidence as a console window; place the interpretation in a signal strip.",
+    "image": "Use cool, high-contrast crops inside a dark window with a concise status label."
+  },
+  "motion": {"enter": "translate 18-24px with opacity over 360-480ms", "stagger": "one data panel per data-step", "disabled": ["bounce", "continuous glow", "parallax", "cross-page morph"]},
+  "forbidden": ["pastel gradients", "rounded SaaS cards", "small centered headline", "decorative stock photo", "soft drop shadow", "color-only theme differentiation"],
+  "template_contract": {"placeholder_format": "{{UPPER_SNAKE_CASE}}", "minimum_slides": 5, "required_markers": ["data-layout", "fragment", "data-step"]}
+}

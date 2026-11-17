@@ -1,0 +1,13 @@
+{
+  "implemented_discovery": "passed",
+  "project_count": 4,
+  "complete": true,
+  "dictionary_counts": {
+    "fill_type": 3,
+    "project_phase": 2,
+    "work_type": 11
+  },
+  "chinese_label_checks": 16,
+  "live_cli_preview": "passed; no settings save, no time entry submission",
+  "unknown_label_rejected": true
+}

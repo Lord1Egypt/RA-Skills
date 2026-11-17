@@ -1,0 +1,64 @@
+/* Locale: zh-CN (documented in SKILL.md metadata) — part of "Lan Folder Share",
+ * a LAN knowledge-base tool for Chinese-speaking users; comments are Chinese by
+ * design. 语言声明：本文件面向中文用户，注释默认中文。
+ * ---------------------------------------------------------------------------
+ * 动态侧边栏：折叠箭头 + 当前路由高亮 */
+
+/* 折叠箭头（无子项的目录不显示） */
+.sidebar-nav .kb-nav-toggle {
+  flex: 0 0 auto;
+  width: 16px;
+  margin-right: 2px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 13px;
+  line-height: 1;
+  text-align: center;
+  color: #7a8395;
+  font-weight: 600;
+}
+.sidebar-nav .kb-nav-toggle::before { content: '\25B8'; }   /* 折叠 ▸ */
+.sidebar-nav .kb-nav-dir:not(.is-collapsed) > .kb-nav-toggle::before { content: '\25BE'; }  /* 展开 ▾ */
+.sidebar-nav .kb-nav-toggle:hover { color: #4a6ee0; }
+.sidebar-nav .kb-nav-toggle-empty { cursor: default; visibility: hidden; }
+
+/* 目录行：箭头与目录名同一行（flex），子列表独占下一行 */
+.sidebar-nav li.kb-nav-dir {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.sidebar-nav li.kb-nav-dir > a {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: block;
+  padding: 2px 4px;
+  white-space: normal;      /* 覆盖 docsify 的 nowrap，长文件名允许换行 */
+  word-break: break-all;
+}
+.sidebar-nav li.kb-nav-dir > ul {
+  flex-basis: 100%;
+  width: 100%;
+}
+
+/* 折叠状态：收起子列表 */
+.sidebar-nav .kb-nav-dir.is-collapsed > ul { display: none; }
+
+/* 当前路由高亮（复用 docsify 主题的 active 语义） */
+.sidebar-nav li.is-active > a {
+  color: var(--theme-color, #4a6ee0);
+  font-weight: 600;
+  background: #eef2ff;
+  border-radius: 4px;
+}
+
+/* 层级缩进与可读性 */
+.sidebar-nav ul { padding-left: 0 !important; }
+.sidebar-nav li > ul { padding-left: 18px !important; }
+.sidebar-nav li { margin: 1px 0; }
+.sidebar-nav a {
+  white-space: normal;      /* 长文件名允许换行，避免撑爆侧边栏 */
+  word-break: break-all;
+  padding: 2px 4px;
+  display: block;
+}

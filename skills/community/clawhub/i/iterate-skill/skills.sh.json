@@ -1,0 +1,11 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Iterate",
+      "description": "Fully automated multi-round code iteration with configurable N-dimension parallel review.",
+      "skills": ["iterate"]
+    }
+  ]
+}

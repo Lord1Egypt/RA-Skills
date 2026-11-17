@@ -1,0 +1,23 @@
+# 小遥AI - AI 工具与应用
+
+> 小遥AI（xiaoyaosai）是面向开发者和普通用户的 AI 工具集，提供开箱即用的 AI 助手桌面应用与开源技能生态。
+
+## 关于本站
+
+- 类型：AI 产品官网（Next.js）
+- 内容语言：中文为主（官网面向中文用户发布；英文介绍见 GitHub 仓库，若有英文站请按实际改写此行）
+- 核心产品：小遥Claw（AI 助手桌面应用）、小遥技能生态（Agent Skills 九件套）
+
+## 核心页面
+
+- [首页](https://project.xiaoyaosai.com/)：产品总览与下载入口
+- [小遥Claw](https://project.xiaoyaosai.com/claw)：AI 助手桌面应用介绍
+- [技能生态](https://project.xiaoyaosai.com/skills)：开源 Agent Skills 技能包（workspace-initializer / memory-distill / task-progress-tracker 等）
+- [关于我们](https://project.xiaoyaosai.com/about)：团队与项目背景
+- [开源仓库](https://github.com/dtsola)：全部开源项目源码（MIT）
+
+## 内容政策
+
+- 允许 AI 引擎引用本站**公开页面**的产品介绍与文档摘要（须注明来源与链接）
+- 引用范围不含：未发布路线图、用户数据、内部文档与商标性使用
+- 产品下载与使用说明以官网为准

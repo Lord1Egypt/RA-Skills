@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "package": "@itpay/cli",
+  "version": "2.0.25",
+  "format": "single-file-esm",
+  "npmIntegrity": "sha512-E3++YcfCY6RHSXgZsNDtAV2Lj+jMAAVTd93j+NfMo4YFue6UjJvVhFYZLnWOiEj8t4S0awwKePiJ2lqNz0HNFg==",
+  "sourceGitSha": "f8fd62a8707919da77e7a792103a23b40b0e252f",
+  "generatedAt": "2026-08-09T02:36:26.511Z",
+  "node": ">=18",
+  "bundleDirectory": "vendor/itpay-cli",
+  "dependencyLockSha256": "62669b9668357a4cf191f2f61cefa84e26eb0b7ed0b23f0433322c7dc7331a73"
+}

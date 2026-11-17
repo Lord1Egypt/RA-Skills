@@ -1,42 +1,54 @@
-## Description: <br>
-Shop Shein with price tracking, size guidance, quality assessment, and smart deal finding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shop Shein with price tracking, size guidance, quality assessment, and smart deal finding.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External shoppers use this skill to research Shein products, compare prices, check sizing and reviews, assess quality signals, and build carts with fewer impulse purchases. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent toward shopping actions that affect a user's cart, account, or payment flow. <br>
-Mitigation: Require explicit user confirmation before adding items to a cart, logging in, installing related skills, checking out, or making payment-related changes. <br>
-Risk: Sizing, return, shipping, discount, and product-quality details can become stale or vary by region and product. <br>
-Mitigation: Verify sizing charts, reviews, return terms, shipping estimates, and prices against current Shein product pages before making a recommendation. <br>
-Risk: The artifact references sizing.md and quality.md, but those support files are not included in the release artifact. <br>
-Mitigation: Treat those references as unavailable unless supplied separately, and use current product pages and user-provided measurements as the source of truth. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/shein) <br>
-- [Skill homepage](https://clawic.com/skills/shein) <br>
+## Use Case:
 
+External shoppers use this skill to research Shein products, compare sizing and quality signals, plan price tracking, and find deals before deciding what to buy.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with shopping checklists, comparison criteria, and occasional ClawHub install or sync commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code or hidden access requests were identified in the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Shopping recommendations may be based on incomplete or misleading product photos, reviews, sizing claims, discounts, or return-policy details.
+
+Mitigation: Check review photos, size-chart measurements, low-star reviews, fabric details, shipping expectations, and return-policy limits before acting on the advice.
+
+Risk: The skill can suggest related skill installation commands when the user confirms.
+
+Mitigation: Review any proposed command before execution and install related skills only when they are relevant to the shopping task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/shein)
+- [Publisher Profile](https://clawhub.ai/user/ivangdavila)
+- [Skill Homepage](https://clawic.com/skills/shein)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with optional inline shell commands for related skill installation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides shopping advice only; it does not perform purchases or access user accounts by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Queries Apple Health data stored in a local SQLite database, including heart rate, steps, blood oxygen, VO2 Max, sleep, workouts, resting heart rate, HRV, blood pressure, energy, body metrics, mobility, running metrics, mindful sessions, wrist temperature, and related records through the healthsync CLI or direct SQLite in read-only mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Apple Health export data stored in a local SQLite database through the healthsync CLI or read-only SQLite queries.
 
-## Publisher: <br>
-[BRO3886](https://clawhub.ai/user/BRO3886) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bro3886](https://clawhub.ai/user/bro3886)
 
-## Use Case: <br>
-Developers, technical users, and local agents use this skill to inspect Apple Health export data from a populated local healthsync SQLite database, generate focused CLI or SQL queries, and return health metrics in table, JSON, CSV, or summarized text form. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive Apple Health export records through broad CLI or SQL queries. <br>
-Mitigation: Keep queries narrow, limit date ranges and row counts, and avoid sharing raw JSON or CSV health records unless the user explicitly needs them. <br>
-Risk: Installation can rely on piping a remote installer script into a shell. <br>
-Mitigation: Prefer a verifiable or pinned install method and install only when the user trusts the external healthsync CLI. <br>
-Risk: The optional healthsync HTTP server can receive uploads and expose query endpoints if started without understanding its binding and security posture. <br>
-Mitigation: Do not start the server unless the user requests it and understands how it is bound and secured. <br>
-Risk: Direct SQLite access could modify or delete local health data if write operations are used. <br>
-Mitigation: Use read-only CLI queries or read-only SQL only; do not run INSERT, UPDATE, DELETE, DROP, ALTER, or other write operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/BRO3886/healthsync) <br>
-- [SQLite Schema Reference](references/schema.md) <br>
-- [healthsync Installer](https://healthsync.sidv.dev/install) <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to inspect Apple Health export data in a local healthsync SQLite database, including heart rate, steps, sleep, workouts, energy, body metrics, mobility, and related trends.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, SQL snippets, and optional JSON or CSV query output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only query guidance for a local SQLite database populated by healthsync parse.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The recommended installer executes mutable remote code, and the alternate Go install command is unpinned.
+
+Mitigation: Review the installer before use, prefer a pinned versioned release, and verify checksums or signatures where available.
+
+Risk: Apple Health query results can expose sensitive health information in agent transcripts or logs.
+
+Mitigation: Query only the minimum health fields needed and avoid retaining or sharing unnecessary result data.
+
+Risk: Direct SQLite access could modify the local health database if write statements are issued.
+
+Mitigation: Use read-only queries only and never run INSERT, UPDATE, DELETE, DROP, ALTER, or other write operations.
+
+## Reference(s):
+
+- [SQLite Schema Reference](artifact/references/schema.md)
+- [healthsync installer](https://healthsync.sidv.dev/install)
+- [ClawHub skill page](https://clawhub.ai/bro3886/skills/healthsync)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and SQL code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only query guidance for local Apple Health data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,73 @@
+{
+  "id": "twist-demo-005",
+  "name": "Demo: cookie and query modification",
+  "version": "1.0",
+  "description": "Modify request cookies and URL query parameters",
+  "rules": [
+    {
+      "id": "set-session-cookie",
+      "name": "Override session cookie for testing",
+      "enabled": true,
+      "priority": 10,
+      "stage": "request",
+      "match": {
+        "allOf": [
+          {"type": "urlContains", "value": "example.com"}
+        ]
+      },
+      "actions": [
+        {"type": "setCookie", "name": "session", "value": "test-session-id"}
+      ]
+    },
+    {
+      "id": "remove-tracking-cookie",
+      "name": "Strip tracking cookie",
+      "enabled": true,
+      "priority": 8,
+      "stage": "request",
+      "match": {
+        "allOf": [
+          {"type": "cookieExists", "name": "_ga"}
+        ]
+      },
+      "actions": [
+        {"type": "removeCookie", "name": "_ga"},
+        {"type": "removeCookie", "name": "_gid"}
+      ]
+    },
+    {
+      "id": "override-query-param",
+      "name": "Force page number in query",
+      "enabled": true,
+      "priority": 7,
+      "stage": "request",
+      "match": {
+        "allOf": [
+          {"type": "urlContains", "value": "/api/list"}
+        ]
+      },
+      "actions": [
+        {"type": "setQueryParam", "name": "page", "value": "1"},
+        {"type": "setQueryParam", "name": "size", "value": "50"}
+      ]
+    },
+    {
+      "id": "strip-utm-params",
+      "name": "Remove UTM tracking from URL",
+      "enabled": true,
+      "priority": 5,
+      "stage": "request",
+      "match": {
+        "anyOf": [
+          {"type": "queryExists", "name": "utm_source"},
+          {"type": "queryExists", "name": "utm_medium"}
+        ]
+      },
+      "actions": [
+        {"type": "removeQueryParam", "name": "utm_source"},
+        {"type": "removeQueryParam", "name": "utm_medium"},
+        {"type": "removeQueryParam", "name": "utm_campaign"}
+      ]
+    }
+  ]
+}

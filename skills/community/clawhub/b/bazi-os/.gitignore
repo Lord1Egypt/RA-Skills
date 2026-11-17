@@ -1,0 +1,14 @@
+# Obsidian
+.obsidian/
+.trash/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+
+# Output
+输出/*.md
+!输出/.gitkeep

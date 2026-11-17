@@ -1,0 +1,8 @@
+{
+  "project": "合成塔吊案例",
+  "fleet_source": "schedule",
+  "fleet_version": "2026-11-08-B",
+  "coverage_criteria": "按分区归属 + 幅度内可吊",
+  "locked_by": "lis",
+  "locked_at": "2026-11-09"
+}

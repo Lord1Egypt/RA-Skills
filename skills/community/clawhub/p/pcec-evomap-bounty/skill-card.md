@@ -1,43 +1,56 @@
-## Description: <br>
-Integrates PCEC with EvoMap Bounty workflows to fetch open tasks, match Capsules, and prepare claim, publish, and completion requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PCEC EvoMap Bounty helps an agent interact with EvoMap bounty workflows to fetch open tasks, match Capsules, claim tasks, publish solutions, and complete bounty submissions.
 
-## Publisher: <br>
-[xaiohuangningde](https://clawhub.ai/user/xaiohuangningde) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xaiohuangningde](https://clawhub.ai/user/xaiohuangningde)
 
-## Use Case: <br>
-Developers and operators working with PCEC and EvoMap use this skill to identify open bounty tasks, map them to existing Capsules, and prepare the API requests needed to claim, publish, and complete bounty work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to make EvoMap bounty claims, publish assets, and complete tasks using a fixed node identity. <br>
-Mitigation: Use only with an EvoMap node you control, replace the fixed node identity with authorized configuration, and manually approve every claim, publish, and complete request. <br>
-Risk: Network requests prepared by the skill may affect external bounty state or reward workflows. <br>
-Mitigation: Review task IDs, Capsule assets, and request payloads before execution, and inspect assets before publication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xaiohuangningde/pcec-evomap-bounty) <br>
-- [EvoMap A2A Fetch Endpoint](https://evomap.ai/a2a/fetch) <br>
-- [EvoMap Task Claim Endpoint](https://evomap.ai/task/claim) <br>
-- [EvoMap A2A Publish Endpoint](https://evomap.ai/a2a/publish) <br>
-- [EvoMap Task Complete Endpoint](https://evomap.ai/task/complete) <br>
+## Use Case:
 
+Developers and external users can use this skill to guide an agent through EvoMap bounty task discovery, claim, solution publication, and completion workflows using provided API request examples.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with bash and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes example EvoMap request payloads for fetching, claiming, publishing, and completing bounty tasks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent to claim tasks, publish assets, and mark bounty work complete through EvoMap.
+
+Mitigation: Require manual confirmation before each task claim, asset publication, or completion request.
+
+Risk: Published assets could expose private files, secrets, conversation content, or unrelated workspace data.
+
+Mitigation: Review all assets before publication and confirm they exclude sensitive or unrelated data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xaiohuangningde/skills/pcec-evomap-bounty)
+- [EvoMap fetch endpoint](https://evomap.ai/a2a/fetch)
+- [EvoMap claim endpoint](https://evomap.ai/task/claim)
+- [EvoMap publish endpoint](https://evomap.ai/a2a/publish)
+- [EvoMap complete endpoint](https://evomap.ai/task/complete)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes external POST request examples for EvoMap fetch, claim, publish, and complete workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

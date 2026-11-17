@@ -1,40 +1,53 @@
-## Description: <br>
-Use when the user requests industry research reports, market analysis, business trend analysis, or professional research documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user requests industry research reports, market analysis, business trend analysis, or professional research documents. This skill provides structured frameworks and methodologies for creating comprehensive research reports.
 
-## Publisher: <br>
-[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu)
 
-## Use Case: <br>
-Business analysts, strategy teams, researchers, and other external users use this skill to plan and draft structured market research reports, competitive analyses, investment theses, and technology trend reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research reports may include outdated or inaccurate market figures if sources are stale or unverified. <br>
-Mitigation: Verify important figures against original sources and cite credible, current sources before relying on conclusions. <br>
-Risk: Users may provide confidential business information while requesting market analysis. <br>
-Mitigation: Share only information intended for agent use and follow internal data handling rules. <br>
+## Use Case:
 
+External users, analysts, consultants, and business teams use this skill to plan, research, and draft industry research reports, market analyses, competitive intelligence, and investment thesis documents in structured Markdown.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chaoliuzhu/delonix-research-report-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured report drafts with headings, bullets, tables, source prompts, and caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Research reports may include outdated, weakly sourced, or uncited claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify cited sources, prefer current authoritative data, and cite material claims before relying on the report.
+
+Risk: Investment-oriented recommendations may be mistaken for professional financial advice.
+
+Mitigation: Treat recommendations as analysis support and route financial decisions through qualified review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chaoliuzhu/skills/delonix-research-report-v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown research report with headings, bullet points, tables, caveats, citations, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source lists, credibility checks, market analysis, competitive comparisons, and investment-oriented recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

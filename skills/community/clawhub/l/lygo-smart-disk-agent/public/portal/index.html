@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LYGO SMART DISK AGENT</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <div class="brand">Δ9Φ963 · LYGO SMART DISK AGENT</div>
+  <div class="sub">Kernel-up CLAW · localhost only · local operator token · offline brain</div>
+  <div id="health" class="health">probing…</div>
+</header>
+<main>
+  <section class="chat-panel">
+    <div id="log" class="log" aria-live="polite"></div>
+    <form id="form" class="composer">
+      <input id="msg" type="text" placeholder="Message the local brain…" autocomplete="off" autofocus>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+  <aside>
+    <h2>Limbs</h2>
+    <div class="limbs">
+      <button type="button" data-limb="help">help</button>
+      <button type="button" data-limb="status">status</button>
+      <button type="button" data-limb="health">health</button>
+      <button type="button" data-limb="lattice">lattice</button>
+      <button type="button" data-limb="army-sentinel">army-sentinel</button>
+    </div>
+    <pre id="limb-out" class="limb-out">—</pre>
+    <p class="hint">
+      <strong>Local operator token</strong> (not a cloud password): boot injects it once via URL, or use
+      <code>data/.sda_local_token</code>. Chat history is <strong>not</strong> exported over HTTP.
+      Bind is localhost only.
+    </p>
+  </aside>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,41 +1,54 @@
-## Description: <br>
-Generate GitHub agent-trending project reports as formatted markdown leaderboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate formatted markdown or JSON leaderboards of agent-related GitHub repositories filtered by daily, weekly, or monthly activity and sorted by stars.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Developers and technical users use this skill to generate daily, weekly, or monthly leaderboards of agent-related GitHub repositories for market scanning, project discovery, and comparison. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts GitHub and may use an optional GitHub token for higher rate limits. <br>
-Mitigation: Invoke it intentionally and use a low-privilege GitHub token only when rate limits require authentication. <br>
-Risk: The leaderboard reflects GitHub search relevance and star count, not the official GitHub Trending page. <br>
-Mitigation: Treat results as a discovery signal and verify important repository choices against GitHub before acting on them. <br>
+## Use Case:
 
+Developers and external users use this skill to ask an agent for current GitHub leaderboards of agent-related open-source projects, with optional period, limit, token, and JSON output controls.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mike47512/github-agent-trends) <br>
-- [GitHub Search repositories API endpoint](https://api.github.com/search/repositories) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [Markdown leaderboard or JSON array] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses daily, weekly, or monthly activity windows; results are deduplicated and sorted by star count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The script contacts GitHub and may use a GITHUB_TOKEN environment value or --token argument.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fine-grained, minimal GitHub token only when higher rate limits are needed, or run unauthenticated.
+
+Risk: Results are based on GitHub Search API relevance and stars, not the official GitHub Trending page.
+
+Mitigation: Present the output as a search-based leaderboard and review the generated repository list before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/github-agent-trends)
+- [GitHub Search repositories API endpoint](https://api.github.com/search/repositories)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands]
+
+**Output Format:** [Markdown leaderboard by default, or JSON array when --json is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports daily, weekly, or monthly periods, configurable result limits, and optional GitHub token use; default markdown output includes Chinese labels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

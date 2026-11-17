@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.1",
+  "context_id": "user-controlled-id",
+  "subject": {
+    "type": "person",
+    "id": "user-controlled-id",
+    "display_name": "",
+    "preferred_languages": []
+  },
+  "policy": {
+    "patch_approval_required": true,
+    "default_view_ttl_days": 7,
+    "auto_import_harness_memory": false
+  },
+  "coverage": {
+    "depth": "quick",
+    "included_domains": [],
+    "missing_domains": []
+  },
+  "claims": [],
+  "tensions": [],
+  "unknowns": [],
+  "sources": [],
+  "revision": {
+    "version": 1,
+    "created_at": "",
+    "updated_at": "",
+    "last_reviewed_at": null
+  }
+}

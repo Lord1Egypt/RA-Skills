@@ -1,38 +1,52 @@
-## Description: <br>
-Lint cron entries for schedule validity, bad model names, and missing NO_REPLY discipline markers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lint cron entries for schedule validity, bad model names, and missing NO_REPLY discipline markers.
 
-## Publisher: <br>
-[Highlander89](https://clawhub.ai/user/Highlander89) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[highlander89](https://clawhub.ai/user/highlander89)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to lint cron definitions, catch malformed schedules, reject known bad model names, and check notification jobs for explicit NO_REPLY discipline. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cron lint results may miss context-specific operational requirements or flag entries that need human judgment. <br>
-Mitigation: Review the cron file and lint findings before changing schedules or notification behavior. <br>
-Risk: Cron files may contain sensitive operational details even when the skill itself does not handle secrets. <br>
-Mitigation: Use appropriate local files and avoid sharing sensitive cron contents in untrusted environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operations engineers use this skill to lint cron entries before deployment and catch schedule formatting issues, disallowed model names, and missing NO_REPLY markers on announcement-style jobs.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and cron lint findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports OK, FAIL with issue lines, or usage/read errors via exit codes 0, 1, and 2.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Cron files may contain sensitive job commands, paths, or operational details.
+
+Mitigation: Review and redact cron file contents before sharing lint outputs or using the skill on sensitive schedules.
+
+Risk: The lint checks are narrow and may not catch every invalid or unsafe cron pattern.
+
+Mitigation: Use the lint result as a guardrail and keep normal code review or deployment checks for cron changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/highlander89/skills/cron-guardrails-pack)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and plain-text lint results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The cron lint script returns exit code 0 when no issues are found, 1 when lint issues are found, and 2 for usage or read errors.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,23 @@
+name: aimegeo-multiplatform-content
+slug: aimegeo-multiplatform-content
+display_name: "GEO 多平台内容制作"
+description: "依据同一份品牌事实，为知乎、CSDN、小红书等指定平台制作完整稿件，交付事实来源、素材需求和发布清单。适合矩阵内容与限定改稿；结合免费的aimeGeo，将平台版本保存为文章、补齐配图，再按账号与工作流分别发布和复盘。"
+version: "1.0.1"
+icon: icon-512.png
+license: MIT-0
+repository: "https://github.com/xxjrq/aimegeo-multiplatform-content"
+tags:
+  - "GEO"
+  - "content"
+  - "multiplatform"
+  - "zhihu"
+  - "csdn"
+  - "xiaohongshu"
+trigger_words:
+  - "多平台内容"
+  - "矩阵创作"
+  - "知乎解释文"
+  - "CSDN教程"
+  - "小红书笔记"
+  - "平台改稿"
+self_test: "python3 scripts/self_test.py"

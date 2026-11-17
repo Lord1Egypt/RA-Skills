@@ -1,53 +1,58 @@
-## Description: <br>
-Find things to do in New York City this week. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find things to do in New York City this week.
 
-## Publisher: <br>
-[zkirby](https://clawhub.ai/user/zkirby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zkirby](https://clawhub.ai/user/zkirby)
 
-## Use Case: <br>
-External users use this skill to ask an agent for timely, interest-aware recommendations for events in and around New York City. The agent checks public event sources, verifies current schedule details, and returns event options with venue, time, cost, transit, description, and booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Event schedules, prices, sold-out status, accessibility details, and ticket links can change on third-party event websites. <br>
-Mitigation: Verify dates, prices, availability, accessibility details, and booking links against the current event page before making plans or purchases. <br>
-Risk: The skill expects the agent to visit third-party event and ticketing websites using curl or Puppeteer. <br>
-Mitigation: Treat visited sites as external sources and avoid entering private, account, or payment information unless the user independently confirms the site and action. <br>
+## Use Case:
 
+People planning outings in New York City use this skill to find current, interesting events that fit their interests and schedule. It guides an agent to check public event sources, verify timing and availability, and return concise recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zkirby/this-week-in-nyc) <br>
-- [Anthology Film Archives calendar](https://www.anthologyfilmarchives.org/film_screenings/calendar) <br>
-- [Metrograph](https://metrograph.com/) <br>
-- [Alamo Drafthouse Lower Manhattan](https://drafthouse.com/nyc/theater/lower-manhattan) <br>
-- [Times Up calendar](https://times-up.org/calendar/) <br>
-- [ABC No Rio events](https://www.abcnorio.org/events/events.html) <br>
-- [Ars Nova upcoming events](https://arsnovanyc.com/upcoming-events/) <br>
-- [Nerd Nite NYC](https://nyc.nerdnite.com/) <br>
-- [New York Public Library](https://www.nypl.org/) <br>
-- [Meetup NYC events](https://www.meetup.com/find/?location=us--ny--New%20York&source=EVENTS) <br>
-- [The Skint](https://www.theskint.com/) <br>
-- [Secret NYC things to do](https://secretnyc.co/things-to-do/) <br>
-- [NYC.gov events](https://www.nyc.gov/main/events/?) <br>
-- [Untapped Cities things to do](https://www.untappedcities.com/tag/things-to-do/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown event recommendations with dates, venues, locations, costs, descriptions, transit notes, and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include direct event, RSVP, or ticketing links from third-party websites.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: Event details, ticket availability, prices, or RSVP requirements may change after the agent retrieves them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the current event page before recommending an event and include direct source links so the user can confirm details.
+
+Risk: Ticketing or RSVP pages may ask users to log in, pay, or share personal information on third-party sites.
+
+Mitigation: Tell users to review event details and site trust before buying tickets, RSVPing, logging in, or sharing personal information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zkirby/skills/this-week-in-nyc)
+- [Anthology Film Archives calendar](https://www.anthologyfilmarchives.org/film_screenings/calendar)
+- [Metrograph](https://metrograph.com/)
+- [New York Public Library](https://www.nypl.org/)
+- [NYC.gov Events](https://www.nyc.gov/main/events/?)
+- [The Skint](https://www.theskint.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown event recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes event name, date and time, venue, location, cost, nearby transit, description, source link, and practical tips.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

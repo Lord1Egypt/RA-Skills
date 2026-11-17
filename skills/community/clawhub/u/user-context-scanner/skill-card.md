@@ -1,46 +1,61 @@
-## Description: <br>
-Builds and maintains a local user profile by scanning OpenClaw memory files, detecting preferences and behavior patterns, and updating context from signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+User Context Scanner builds and maintains a local user profile by scanning OpenClaw memory, extracting preferences and behavior patterns, updating confidence scores, detecting contradictions, and generating clarification questions.
 
-## Publisher: <br>
-[zhaoguoqiang-hub](https://clawhub.ai/user/zhaoguoqiang-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaoguoqiang-hub](https://clawhub.ai/user/zhaoguoqiang-hub)
 
-## Use Case: <br>
-External users and developers use this skill to maintain personalization context for an OpenClaw agent by scanning local memories, storing evidence, calculating confidence, detecting contradictions, and generating follow-up quiz prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and maintain a detailed local profile from memory files and questionnaire answers. <br>
-Mitigation: Install only when persistent personalization is intended, review the local memory contents before scanning, and periodically inspect or delete the generated profile and evidence files. <br>
-Risk: Automatic signal-based updates may refresh the profile without clear per-update consent. <br>
-Mitigation: Confirm how to disable automatic scans and signal processing before enabling the skill, and keep consent-oriented configuration such as requireConsentForPatterns enabled. <br>
-Risk: Sensitive personal details may be retained in local evidence records. <br>
-Mitigation: Avoid answering optional sensitive questions unless needed, keep sensitive-topic exclusion enabled where appropriate, and remove local evidence records that should not be retained. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to maintain a local, structured user profile from memory files and direct answers so agents can adapt responses to user preferences, habits, values, and unresolved contradictions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhaoguoqiang-hub/user-context-scanner) <br>
-- [Profile schema](references/profile-schema.md) <br>
-- [Confidence calculation rules](references/confidence-calculation.md) <br>
-- [Contradiction rules](references/contradiction-rules.md) <br>
-- [Quiz examples](references/quiz-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions, CLI output, JSON profile files, and JSONL evidence or signal records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local OpenClaw workspace profile, evidence, state, configuration, and signal files when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.0 (source: server release evidence) <br>
+Risk: The skill can build a persistent profile from private OpenClaw memory and user answers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when the user intentionally wants local profiling, and review the generated profile and evidence files regularly.
+
+Risk: Plaintext profile, evidence, state, configuration, and signal files may contain personal details.
+
+Mitigation: Restrict workspace access, avoid storing secrets or sensitive personal details, and delete generated .soul files when profiling is no longer needed.
+
+Risk: Automatic memory scanning may infer personal details without clear consent or scope.
+
+Mitigation: Keep scanning scope narrow, require explicit user consent for pattern updates, and disable or adjust memory scanning before use in shared or sensitive workspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaoguoqiang-hub/skills/user-context-scanner)
+- [Confidence calculation rules](references/confidence-calculation.md)
+- [Contradiction detection rules](references/contradiction-rules.md)
+- [User profile schema](references/profile-schema.md)
+- [Quiz interaction examples](references/quiz-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [CLI text output, JSON profile and evidence files, Markdown guidance, and signal-style status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local profile, evidence, state, and configuration files under the OpenClaw workspace.]
+
+## Skill Version(s):
+
+0.7.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

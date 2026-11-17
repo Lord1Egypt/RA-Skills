@@ -1,46 +1,62 @@
-## Description: <br>
-Patch OpenClaw to support Microsoft Teams China through endpoint diagnosis, OpenClaw and MSTeams plugin patching, China cloud configuration, and verification reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patches OpenClaw and the @openclaw/msteams plugin to diagnose, repair, and verify Microsoft Teams China/21Vianet endpoint configuration.
 
-## Publisher: <br>
-[yhs666](https://clawhub.ai/user/yhs666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhs666](https://clawhub.ai/user/yhs666)
 
-## Use Case: <br>
-Developers and operators maintaining OpenClaw Microsoft Teams China integrations use this skill to diagnose authentication, Graph API, Bot Framework, and SSRF endpoint problems, then apply and verify the adapter repair workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically rewrite installed OpenClaw and @openclaw/msteams code. <br>
-Mitigation: Review the scripts before use, run only on hosts intended for Microsoft Teams China support, and back up or be ready to reinstall the affected packages. <br>
-Risk: The skill can persist CLOUD and SERVICE_URL environment changes. <br>
-Mitigation: Verify the HKCU, HKLM, or shell profile environment changes after use and remove them if the host should not target Microsoft Teams China endpoints. <br>
-Risk: Heartbeat or cron auto-repair can perform unattended code changes and gateway restarts. <br>
-Mitigation: Avoid unattended auto-repair unless unattended package changes and OpenClaw gateway restarts are acceptable for the deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to support Microsoft Teams China deployments in OpenClaw by diagnosing endpoint issues, applying patch scripts, setting required cloud configuration, and producing repair reports.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Endpoint Reference](references/endpoints.md) <br>
-- [Error Code Reference](references/error-codes.md) <br>
-- [Workflow Reference](references/workflow.md) <br>
-- [Output Standards](references/output-standards.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and structured report tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide code patching, environment variable changes, and gateway restarts for the installed OpenClaw and MSTeams integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-10.0.2 (source: server release metadata; artifact _meta.json and CHANGELOG.md report 10.1.0) <br>
+Risk: The skill rewrites installed OpenClaw and @openclaw/msteams program files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run read-only diagnosis first, back up the affected installations, test against the exact package versions in use, and keep a restore plan before applying patches.
+
+Risk: Persistent CLOUD and SERVICE_URL changes can affect host behavior beyond the immediate repair session.
+
+Mitigation: Record current environment or registry settings before changes and remove or restore those settings if the patch is misapplied.
+
+Risk: Automatic repair and Gateway restart behavior can interrupt a running OpenClaw host.
+
+Mitigation: Avoid scheduled auto-fix until the workflow has been tested on the target host, and run restarts during an approved maintenance window where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yhs666/skills/msteamschinaadapter)
+- [OpenClaw](https://openclaw.ai)
+- [Endpoint reference](references/endpoints.md)
+- [Error code reference](references/error-codes.md)
+- [Workflow reference](references/workflow.md)
+- [Output standards](references/output-standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured repair reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include diagnostic findings, patch status, verification checks, and recovery guidance.]
+
+## Skill Version(s):
+
+10.0.2 (source: server release metadata; artifact metadata reports 10.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

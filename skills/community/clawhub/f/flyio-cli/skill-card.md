@@ -1,42 +1,55 @@
-## Description: <br>
-Use the Fly.io flyctl CLI for deploying and operating apps on Fly.io, starting with read-only diagnostics and requiring explicit approval before deploys, SSH exec, secrets, scaling, machines, volumes, or Postgres changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use Fly.io's flyctl CLI to inspect, deploy, debug, and safely operate Fly.io applications and Postgres resources.
 
-## Publisher: <br>
-[justinburdett](https://clawhub.ai/user/justinburdett) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[justinburdett](https://clawhub.ai/user/justinburdett)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy, inspect, debug, and safely operate Fly.io applications and Fly Postgres resources with flyctl. It is especially useful for diagnosing deploy/build/runtime failures, setting up GitHub Actions deploys or previews, and proposing operational commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: State-changing Fly.io operations can affect deployed apps, secrets, databases, volumes, machines, or production availability. <br>
-Mitigation: Require explicit user approval after reviewing the exact app name, account, command, and expected impact before deploys, SSH commands, secrets changes, scaling, machine, volume, or Postgres operations. <br>
-Risk: Fly.io API tokens can grant access to infrastructure resources. <br>
-Mitigation: Store FLY_API_TOKEN only as a protected, least-privilege secret and avoid exposing token values in logs or generated output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Safety policy](references/safety.md) <br>
-- [Fly + GitHub Actions](references/github-actions.md) <br>
-- [Rails + Docker builds on Fly](references/rails-docker-builds.md) <br>
-- [ClawHub skill page](https://clawhub.ai/justinburdett/flyio-cli) <br>
+## Use Case:
 
+Developers and engineers use this skill to guide Fly.io diagnostics, deployments, GitHub Actions setup, preview environments, and Rails/Docker build troubleshooting while requiring approval for state-changing operations.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only diagnostics are preferred before proposing state-changing operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Fly.io operations can change production application state, secrets, scaling, machines, volumes, or databases.
+
+Mitigation: Use read-only diagnostics first and require explicit user approval before any state-changing operation.
+
+Risk: SSH commands and deploy workflows can execute code in live Fly.io environments.
+
+Mitigation: Confirm the target app and intended command before execution, and capture diagnostic output for review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justinburdett/skills/flyio-cli)
+- [Safety Policy](references/safety.md)
+- [Rails + Docker Builds on Fly](references/rails-docker-builds.md)
+- [Fly + GitHub Actions](references/github-actions.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only diagnostics are preferred first; state-changing Fly.io operations require explicit user approval.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

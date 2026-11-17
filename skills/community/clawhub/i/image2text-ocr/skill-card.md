@@ -1,45 +1,56 @@
-## Description: <br>
-Extracts text from user-specified images, PDFs, or archives by sending the file to the Scnet OCR service and returning structured OCR results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts text from image files by calling the Sugon-Scnet OCR API and returning structured recognition results.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-Developers and agent users use this skill to run OCR on local image, PDF, or archive files and receive structured recognition results for downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images, PDFs, or archives are uploaded to Scnet for OCR and may contain sensitive information. <br>
-Mitigation: Use the skill only for files approved for Scnet processing, and avoid highly sensitive documents unless Scnet's privacy and retention terms meet the deployment requirements. <br>
-Risk: The skill requires a Scnet API key and reads credentials from local configuration. <br>
-Mitigation: Use a dedicated API key where possible, do not paste keys into chat, and keep config/.env permissions restrictive. <br>
-Risk: The skill depends on Python requests and network access to the Scnet OCR API. <br>
-Mitigation: Install dependencies from a trusted package source and verify network access, timeout behavior, and retry limits before deployment. <br>
+## Use Case:
 
+Developers and external users use this skill to extract text and layout data from local images, PDFs, or compressed document inputs through the Sugon-Scnet OCR service.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/scnet-sugon/image2text-ocr) <br>
-- [Scnet Website](https://www.scnet.cn) <br>
-- [Sugon-Scnet OCR API Documentation Summary](references/api-docs.md) <br>
-- [OCR Field Summary](assets/templates/fields-summary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [JSON emitted to standard output, with text error messages for configuration, credential, file, network, and API failures.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCNET_API_KEY and accepts an OCR type plus a local file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata, SKILL.md frontmatter, skill.yaml, CHANGELOG) <br>
+Risk: The skill uploads local OCR files to the SCNet remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for documents appropriate for that provider, and verify the provider's privacy terms before processing sensitive files.
+
+Risk: The API key is read from config/.env and sent to a configurable remote endpoint.
+
+Mitigation: Keep config/.env private, avoid pasting API keys into chat, and change SCNET_API_BASE only to endpoints you fully trust.
+
+## Reference(s):
+
+- [Sugon-Scnet OCR API documentation](artifact/references/api-docs.md)
+- [OCR field summary](artifact/assets/templates/fields-summary.md)
+- [SCNet service](https://www.scnet.cn)
+- [ClawHub skill page](https://clawhub.ai/scnet-sugon/skills/image2text-ocr)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration guidance]
+
+**Output Format:** [JSON emitted to stdout, with human-readable error text on failure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SCNET_API_KEY; uploads a local file to the configured SCNet OCR endpoint and returns the response data array.]
+
+## Skill Version(s):
+
+1.0.4 (source: SKILL.md frontmatter, skill.yaml, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

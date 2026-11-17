@@ -1,44 +1,60 @@
-## Description: <br>
-Call GET /api/instagram/search-hashtag-posts/v1 for Instagram Hashtag Posts Search through JustOneAPI with hashtag. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/instagram/search-hashtag-posts/v1 for Instagram Hashtag Posts Search through JustOneAPI with hashtag.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and analysts use this skill to query JustOneAPI for public Instagram hashtag posts, then summarize captions, author profiles, publish times, and pagination results for hashtag monitoring or competitive analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a JustOneAPI token and sends the token with API requests. <br>
-Mitigation: Use a limited-scope token where available, keep token values out of chat, logs, screenshots, and shared URLs, and rotate the token if exposed. <br>
-Risk: Hashtag searches and returned public Instagram content may reveal sensitive research interests or monitoring targets. <br>
-Mitigation: Use the skill only for lawful, user-directed public-content research and avoid sharing command output when it exposes sensitive queries or results. <br>
-Risk: API results depend on JustOneAPI availability, authorization, and Instagram data returned by the backend. <br>
-Mitigation: Check backend error payloads and operation IDs before acting on results, and verify important findings against an authoritative source when used for decisions. <br>
+## Use Case:
 
+Developers and agents use this skill to call JustOneAPI's Instagram hashtag posts endpoint for public hashtag lookup, then summarize captions, author profiles, and publish times for trend analysis or discussion monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-instagram-search-hashtag-posts) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_instagram_search_hashtag_posts&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON results or JSON error details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, JUST_ONE_API_TOKEN, a hashtag query, and optional endCursor pagination.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A valuable or broad JustOneAPI token could be exposed through command text, request URLs, logs, screenshots, or shared transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped token, pass it from the JUST_ONE_API_TOKEN environment variable, avoid logging commands or request URLs, and rotate the token if exposure is suspected.
+
+Risk: Instagram hashtag monitoring can raise privacy, platform-policy, or local-law concerns when used beyond compliant public-data scenarios.
+
+Mitigation: Use the endpoint only for permitted public-data workflows that comply with Instagram, JustOneAPI, privacy, and local legal requirements.
+
+Risk: Backend error payloads or raw API responses may contain request or response details that should not be broadly shared.
+
+Mitigation: Review backend payloads and raw JSON before sharing, storing, or pasting them into other systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-instagram-search-hashtag-posts)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_instagram_search_hashtag_posts&utm_content=project_link)
+- [Generated operation reference](generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Markdown summary with optional raw JSON response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN, the hashtag query parameter, and optionally endCursor for pagination.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

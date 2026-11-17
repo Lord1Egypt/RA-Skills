@@ -1,42 +1,57 @@
-## Description: <br>
-Self-reflection + Self-criticism + Self-learning + Self-organizing memory. Agent evaluates its own work, catches mistakes, and improves permanently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-reflection + Self-criticism + Self-learning + Self-organizing memory. Agent evaluates its own work, catches mistakes, and improves permanently.
 
-## Publisher: <br>
-[yiyi-9](https://clawhub.ai/user/yiyi-9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yiyi-9](https://clawhub.ai/user/yiyi-9)
 
-## Use Case: <br>
-Developers and agent users use this skill to add local self-reflection and memory routines that capture corrections, preferences, and reusable lessons across sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill keeps local cross-session memory, which can create privacy risk if secrets, sensitive personal data, or overly broad user context are stored. <br>
-Mitigation: Avoid storing secrets or sensitive personal data, inspect ~/self-improving/ periodically, and honor the documented export and deletion controls. <br>
-Risk: Stored preferences or lessons can become stale, too broad, or wrong for a new project context. <br>
-Mitigation: Keep inferred rules tentative until validated, cite memory sources when applying them, and resolve conflicts by specificity and recency. <br>
-Risk: Memory edits, exports, or full-wipe commands can remove or expose local memory unexpectedly. <br>
-Mitigation: Review AGENTS.md, SOUL.md, HEARTBEAT.md, and ~/self-improving/ changes before applying them, and confirm destructive or export actions first. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yiyi-9/self-improving-1-2-10) <br>
-- [Skill homepage](https://clawic.com/skills/self-improving) <br>
+## Use Case:
 
+Developers and agents use this skill to maintain local cross-session memory of explicit corrections, self-reflections, preferences, and reusable workflow lessons so future work can adapt to confirmed patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with file templates and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local files under ~/self-improving/ and emphasizes source-tracked memory actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter: 1.2.10) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Durable agent-wide memory can persist incorrect or unwanted behavior across sessions.
+
+Mitigation: Review proposed AGENTS.md, SOUL.md, and HEARTBEAT.md changes before deployment and prefer strict confirmation mode.
+
+Risk: Local memory can capture sensitive, proprietary, or third-party details if used carelessly.
+
+Mitigation: Do not store credentials, financial data, medical data, biometric data, third-party information, location patterns, or access patterns.
+
+Risk: Automatic memory writes can make agent behavior depend on hidden or stale local state.
+
+Mitigation: Require source tracking, support audit and export on demand, confirm deletions, and check permissions on ~/self-improving/.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yiyi-9/skills/self-improving-1-2-10)
+- [Skill homepage](https://clawic.com/skills/self-improving)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and local file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or updates local memory files under ~/self-improving/ and may propose AGENTS.md, SOUL.md, and HEARTBEAT.md configuration changes.]
+
+## Skill Version(s):
+
+1.2.10 (source: artifact/SKILL.md frontmatter); release 1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

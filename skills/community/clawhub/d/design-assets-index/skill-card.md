@@ -1,50 +1,62 @@
-## Description: <br>
-Index of ready-made design assets - stock photos, icon sets, fonts, color palettes, mockups, UI kits, and templates - sourced from awesome-design and design-resources-for-developers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Indexes ready-made design assets, including stock photos, icons, fonts, color palettes, mockups, UI kits, and templates.
 
-## Publisher: <br>
-[ezra-y](https://clawhub.ai/user/ezra-y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ezra-y](https://clawhub.ai/user/ezra-y)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to find ready-made design assets such as stock photos, icons, fonts, color palettes, mockups, UI kits, and website templates for product and content work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Linked design resources may have different license terms, attribution requirements, or commercial-use limits. <br>
-Mitigation: Review the license and terms on each linked site before downloading or using assets commercially. <br>
-Risk: External design sites may have their own privacy practices or change available content over time. <br>
-Mitigation: Review site privacy practices and asset suitability before sharing sensitive project context or relying on a linked asset. <br>
+## Use Case:
 
+Designers, developers, and agents use this skill to choose ready-made sources for placeholders, stock imagery, icon libraries, fonts, color palettes, mockups, UI kits, and website templates.
 
-## Reference(s): <br>
-- [Server-resolved source repository](https://github.com/Ezra-Y/design-assets-index) <br>
-- [awesome-design](https://github.com/gztchan/awesome-design) <br>
-- [design-resources-for-developers](https://github.com/bradtraversy/design-resources-for-developers) <br>
-- [Awesome](https://github.com/sindresorhus/awesome) <br>
-- [Stock Photos](references/stock-photos.md) <br>
-- [Icons](references/icons.md) <br>
-- [Fonts](references/fonts.md) <br>
-- [Color Palettes](references/color-palettes.md) <br>
-- [Mockups](references/mockups.md) <br>
-- [UI Kits](references/ui-kits.md) <br>
-- [Templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown with categorized links and short resource descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides curated external resource links; linked sites may have their own license terms and privacy practices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may be invoked for broad asset requests and return sources that need additional fit review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review suggested asset sources against the user's actual design need before selecting or downloading assets.
+
+Risk: Linked third-party asset sites can have their own licensing, attribution, and usage terms.
+
+Mitigation: Confirm the license and attribution requirements on the linked site before using assets, especially in commercial work.
+
+## Reference(s):
+
+- [Source repository](https://github.com/Ezra-Y/design-assets-index)
+- [awesome-design](https://github.com/gztchan/awesome-design)
+- [design-resources-for-developers](https://github.com/bradtraversy/design-resources-for-developers)
+- [Stock Photos Reference](references/stock-photos.md)
+- [Icons Reference](references/icons.md)
+- [Fonts Reference](references/fonts.md)
+- [Color Palettes Reference](references/color-palettes.md)
+- [Mockups Reference](references/mockups.md)
+- [UI Kits Reference](references/ui-kits.md)
+- [Templates Reference](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance with external resource links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides curated design-resource links; does not execute commands or access private data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

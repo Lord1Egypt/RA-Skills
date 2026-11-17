@@ -1,41 +1,56 @@
-## Description: <br>
-Real-time web search powered by Alibaba Cloud Bailian (DashScope) MCP service for latest news, current events, and facts that may have changed recently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time web search powered by Alibaba Cloud Bailian (DashScope) MCP service for latest news, real-time information, current events, and facts that may have changed recently.
 
-## Publisher: <br>
-[zengxi](https://clawhub.ai/user/zengxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zengxi](https://clawhub.ai/user/zengxi)
 
-## Use Case: <br>
-Developers and external users use this skill to let an agent retrieve real-time web search results through Alibaba Cloud Bailian's DashScope MCP service. It is intended for current information requests such as news, recent announcements, and other time-sensitive facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and the DashScope API key are sent to Alibaba Cloud during use. <br>
-Mitigation: Use only approved DashScope credentials and avoid submitting secrets, regulated personal data, or confidential business details unless that use is approved. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent retrieve current web search results through Alibaba Cloud Bailian DashScope when answering time-sensitive questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zengxi/bailian-search) <br>
-- [Alibaba Cloud Bailian Console](https://bailian.console.aliyun.com) <br>
-- [DashScope Documentation](https://help.aliyun.com/document_detail/611474.html) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Console text with search result titles, URLs, and snippets; Markdown guidance in documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, python3, and the DASHSCOPE_API_KEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata, package.json, README, and skill documentation) <br>
+Risk: Search queries are sent to Alibaba Cloud DashScope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, private internal data, or regulated personal information as search queries; use this skill only where DashScope use is acceptable.
+
+Risk: Persistently storing DASHSCOPE_API_KEY in a shell profile can leave a long-lived credential on disk.
+
+Mitigation: Prefer a temporary environment variable or managed OpenClaw environment configuration, and rotate the key if it is exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zengxi/skills/bailian-search)
+- [Alibaba Cloud Bailian Console](https://bailian.console.aliyun.com)
+- [DashScope Documentation](https://help.aliyun.com/document_detail/611474.html)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration guidance]
+
+**Output Format:** [Plain text search results with titles, URLs, and snippets; setup guidance may include shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY; optional result count defaults to 5.]
+
+## Skill Version(s):
+
+1.1.0 (source: release metadata, package.json, README.md, search.sh, and changelog dated 2026-03-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,5 +1,20 @@
 # How to Get Started <Badge type="tip" text="Intro" />
 
+::: tip For AI coding assistants: initializing an extension project
+
+If you are using an AI coding assistant (such as Claude Code, OpenCode, QwenCode, GitHub Copilot, etc.) to help initialize an extension project, ask the AI to follow the [For AI initialization document](./how-to-start-for-ai). That document removes GUI steps and is written for AI-driven execution, while this document is intended for human developers.
+
+You can also copy the prompt below directly to your AI coding assistant:
+
+```text
+Please help me initialize a new EasyEDA Pro extension project as follows:
+1. Strictly follow the steps in https://prodocs.easyeda.com/en/api/guide/how-to-start-for-ai;
+2. Confirm the extension information with me first (name, displayName, description, publisher, license, and project purpose);
+3. Verify the result after each key command, then report the path of the .eext artifact and the follow-up steps required to import it into EasyEDA Pro.
+```
+
+:::
+
 In the EasyEDA Professional extension engine, all extensions are independent JavaScript scripts running under their own scope chains.
 
 Each extension requires a UUID as the uniquely identifiable name of the extension, and this UUID exists in two cases:
@@ -21,7 +36,7 @@ All user extensions run locally on the client, which means you can write them in
 
 EasyEDA offers a wide range of extension examples, allowing users to view the source code and compile it for use:
 Extensions source code: [https://github.com/easyeda](https://github.com/easyeda)
-Extensions marketplace (China Site, the global site is under developing): [https://ext.lceda.cn/](https://ext.lceda.cn/)
+Extensions marketplace : [https://jlcext.com/](https://jlcext.com/)
 
 :::
 
@@ -67,9 +82,43 @@ You can check the version of Node.js you have installed by typing `node -v` in t
 
 :::
 
-### IV. Pulling SDK Repository Locally
+### IV. Getting SDK Locally
 
-1. Before you start pulling, you need to first create a subfolder on your local disc where you will keep all your development materials. For example, you can create a subfolder named `easyeda-extension` under the `D:` disc.
+Now you can choose either of the following two ways to get the SDK, you can choose one according to your preference:
+
+::: details Initialize using npx command
+
+1. Before you start, you need to first create a subfolder on your local disc where you will keep all your development materials. For example, you can create a subfolder named `easyeda-extension` under the `D:` disc.
+
+    ::: warning
+
+    Please try not to include `spaces` `non-ASCII characters` in the path to avoid surprises in subsequent operations.
+
+    :::
+
+2. Once created, open the Windows PowerShell tool (right-click on the `Windows Logo Key` and select the `Windows PowerShell (Administrator)` option).
+
+3. Navigate within Windows PowerShell to the folder you just created, in this case the `D:\easyeda-extension` folder, and execute `cd "D:\easyeda-extension"`:
+
+    ![PowerShell cd](/storage/images/en/api/guide/how-to-start/how-to-start_20240802_154933.png)
+
+    ::: tip
+
+    The double quotes `""` here are half-width characters, and they cannot be omitted when the path contains `spaces`.
+
+    :::
+
+4. Execute the following command:
+
+    ```shell
+    npx github:easyeda/pro-api-sdk my-extension
+    ```
+
+:::
+
+::: details Initialize using git command
+
+1. Before you start, you need to first create a subfolder on your local disc where you will keep all your development materials. For example, you can create a subfolder named `easyeda-extension` under the `D:` disc.
 
     ::: warning
 
@@ -92,12 +141,14 @@ You can check the version of Node.js you have installed by typing `node -v` in t
 4. Depending on your network environment, execute one of the following commands:
 
     ```shell
-    git clone --depth=1 https://github.com/easyeda/pro-api-sdk.git
+    git clone --depth=1 https://github.com/easyeda/pro-api-sdk.git my-extension
     ```
+
+:::
 
 ### V. Get VS Code Extension
 
-1. First you need to start VS Code and open the folder of the project you pulled in the previous stage inside it (e.g. `D:\easyeda-extension\pro-api-sdk`).
+1. First you need to start VS Code and open the folder of the project you pulled in the previous stage inside it (e.g. `D:\easyeda-extension\my-extension`).
 
     ![VS Code Open Folder](/storage/images/en/api/guide/how-to-start/how-to-start_20240802_155144.png)
 
@@ -237,21 +288,25 @@ The build will read the `.edaignore` file in the root directory, which controls 
 
 The import operation currently has a different location:
 
-### EasyEDA Pro V2
+::: details EasyEDA Pro V2
 
 **Top Menu Bar** -\> **Settings** -\> **Extensions** -\> **Extension Manager...** -\> **Import Extensions**
 
-![](/storage/images/cn/api/guide/how-to-start/how-to-start_20260209_133454.png)
+![Import Extension](/storage/images/cn/api/guide/how-to-start/how-to-start_20260209_133454.png)
 
 Import the `.eext` file you generated in the `/build/dist/` directory during the last build.
 
-### EasyEDA Pro V3
+:::
+
+::: details EasyEDA Pro V3
 
 **Top Menu Bar** -\> **Advanced** -\> **Extension Manager...** -\> **Import**
 
-![](/storage/images/cn/api/guide/how-to-start/how-to-start_20260209_133418.png)
+![Import Extension](/storage/images/cn/api/guide/how-to-start/how-to-start_20260209_133418.png)
 
 Import the `.eext` file you generated in the `/build/dist/` directory during the last build.
+
+:::
 
 <script setup>
     import { onMounted } from 'vue'

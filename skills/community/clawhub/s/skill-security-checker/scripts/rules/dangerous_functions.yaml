@@ -1,0 +1,20 @@
+name: dangerous_functions
+display_name: 危险函数
+severity: medium
+description: 检测 eval/exec/os.system/pickle.load 等危险函数调用
+
+patterns:
+  - '(?i)eval\s*\('
+  - '(?i)exec\s*\('
+  - '(?i)os\.system\s*\('
+  - '(?i)subprocess\.call\s*\(\s*shell\s*=\s*True'
+  - '(?i)popen\s*\('
+  - '(?i)__import__\s*\('
+  - '(?i)compile\s*\('
+  - '(?i)input\s*\('
+  - '(?i)pickle\.loads?\s*\('
+  - '(?i)yaml\.load\s*\([^)]*\)(?!.*Loader)'
+  - '(?i)marshal\.loads?\s*\('
+
+suggestion: 避免使用 eval/exec，改用 ast.literal_eval 或 json.loads；subprocess 关闭 shell=True
+source: static

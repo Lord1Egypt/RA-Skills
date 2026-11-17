@@ -1,42 +1,63 @@
-## Description: <br>
-Qclaw Workbuddy Bridge connects QClaw's WeChat-facing task intake to WorkBuddy automation through a shared local JSON task queue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qclaw Workbuddy Bridge connects QClaw or WeChat-originated requests to WorkBuddy execution through a local JSON task queue.
 
-## Publisher: <br>
-[liuboacean](https://clawhub.ai/user/liuboacean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuboacean](https://clawhub.ai/user/liuboacean)
 
-## Use Case: <br>
-Developers and operators use this skill to route tasks from QClaw or WeChat into WorkBuddy for execution, then return status and results through the queue workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chat-triggered requests can drive broad WorkBuddy automation through a local task queue. <br>
-Mitigation: Install only for intentional QClaw or WeChat-to-WorkBuddy automation, keep the automation easy to pause or disable, and require confirmation before local-file or account-changing actions. <br>
-Risk: Queue contents may include sensitive business context, file paths, or task results. <br>
-Mitigation: Restrict write access to the queue file, use strict file permissions, and avoid placing secrets or sensitive business data in queued tasks. <br>
+## Use Case:
 
+Developers and operators use this skill to configure QClaw to enqueue remote tasks and WorkBuddy to pick up, execute, and report results through a shared local queue.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liuboacean/qclaw-workbuddy-bridge) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Queue manager script](artifact/scripts/qclaw_queue.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Text] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON queue records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local queue files under ~/.workbuddy/queue.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Broad QClaw or WeChat requests can be forwarded into autonomous WorkBuddy execution through the shared queue.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow dispatch triggers and require explicit confirmation before file access or other side-effecting work.
+
+Risk: The persistent local queue can contain sensitive personal, business, or task context data.
+
+Mitigation: Avoid placing secrets or sensitive data in the queue and enforce owner-only permissions on queue files.
+
+Risk: A shared JSON queue has weak coordination controls for concurrent readers and writers.
+
+Mitigation: Add file locking or replace the JSON queue with SQLite for stronger consistency.
+
+Risk: WorkBuddy may execute queued tasks with more local access than intended.
+
+Mitigation: Run WorkBuddy in a sandboxed, low-privilege environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liuboacean/skills/qclaw-workbuddy-bridge)
+- [Skill Definition](artifact/SKILL.md)
+- [Queue Manager Script](artifact/scripts/qclaw_queue.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local queue operations for adding, polling, completing, failing, and reading tasks.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and target metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

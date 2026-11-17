@@ -1,41 +1,57 @@
-## Description: <br>
-Personal CRM built on monday.com that tracks contacts, interactions, meetings, and topics, syncs daily from Calendar and email, and delivers pre-meeting briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal CRM built on monday.com that tracks contacts, last interactions, next meetings, and topics, syncs daily from Calendar and email, and prepares pre-meeting briefings.
 
-## Publisher: <br>
-[netanel-abergel](https://clawhub.ai/user/netanel-abergel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netanel-abergel](https://clawhub.ai/user/netanel-abergel)
 
-## Use Case: <br>
-Employees or personal CRM users use this skill to keep a monday.com contact board current from calendar and email context, prepare for meetings, and query relationship history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can repeatedly read calendar and CRM data and may expose private meeting notes through outbound briefings. <br>
-Mitigation: Install only for the intended monday.com board, calendar, Gmail context, and WhatsApp destination; redact Notes by default. <br>
-Risk: Automated CRM writes and WhatsApp sends may occur without enough scoping or approval controls. <br>
-Mitigation: Use scoped managed authentication, verify the board and recipient, and require approval before CRM writes or outbound messages. <br>
+## Use Case:
 
+Employees and individual operators use this skill to maintain a monday.com personal CRM from calendar and email activity, answer contact-history questions, add new contacts, and prepare meeting briefings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/netanel-abergel/heleni-personal-crm) <br>
-- [Google Calendar API events endpoint](https://www.googleapis.com/calendar/v3/calendars/netanelab%40monday.com/events?timeMin=${TODAY}T00:00:00Z&timeMax=${TOMORROW}T00:00:00Z&singleEvents=true&orderBy=startTime) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and operational instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CRM updates, meeting briefing text, cron setup commands, and WhatsApp delivery guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Recurring access to calendar, email, CRM data, and local credentials may expose sensitive personal and business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated least-privilege Google and monday.com access, store private values outside the skill text, and review permissions before installing.
+
+Risk: The artifact includes a pattern for sourcing an executable context file, which can run unexpected shell content if the file is modified.
+
+Mitigation: Replace sourced context files with private configuration that is parsed as data, or inspect and restrict the file before use.
+
+Risk: Automated WhatsApp briefings and daily cron tasks can send sensitive or unwanted messages and keep running after installation.
+
+Mitigation: Require confirmation before outbound WhatsApp messages and document how to inspect, modify, and remove the daily cron task.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/netanel-abergel/skills/heleni-personal-crm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose CRM updates, contact summaries, pre-meeting briefing text, cron setup commands, and WhatsApp briefing content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

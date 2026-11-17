@@ -1,40 +1,58 @@
-## Description: <br>
-Parses automotive BMS BLF CAN logs with DBC files to extract and visualize signal time series data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse automotive BMS BLF CAN logs with DBC files to extract time series data for specified signals in CSV, JSON, or text formats.
 
-## Publisher: <br>
-[Muqiong](https://clawhub.ai/user/Muqiong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[muqiong](https://clawhub.ai/user/muqiong)
 
-## Use Case: <br>
-Developers and automotive engineers use this skill to extract, inspect, and visualize battery management system signal time series from BLF CAN logs using matching DBC definitions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency installation and local parsing tools may affect the user's Python environment. <br>
-Mitigation: Install dependencies from trusted sources in an isolated Python virtual environment. <br>
-Risk: The scripts can write local result files or plots when output paths are provided. <br>
-Mitigation: Use explicit output paths and review generated files before sharing or reusing them. <br>
+## Use Case:
 
+Developers and automotive engineers use this skill to inspect Battery Management System CAN logs, extract named signals from BLF recordings with DBC definitions, and prepare time series outputs for analysis or visualization.
 
-## Reference(s): <br>
-- [BMS CAN Analyzer on ClawHub](https://clawhub.ai/Muqiong/bms-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python-oriented workflow notes, and JSON, CSV, text, or PNG analysis outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided BLF logs, DBC definitions, and exact signal names; output files are written only when an output path is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may automatically install Python dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependencies first, then install trusted pinned packages in a virtual environment.
+
+Risk: Parsing untrusted BLF, DBC, or JSON inputs and exporting data can expose the local environment to unsafe files or misleading results.
+
+Mitigation: Use trusted input files, validate signal names against the DBC, and review extracted data before relying on it.
+
+Risk: The plotting and extraction utilities can write generated files to caller-controlled paths.
+
+Mitigation: Always provide explicit safe output paths and avoid writing into sensitive directories.
+
+## Reference(s):
+
+- [BMS CAN Analyzer on ClawHub](https://clawhub.ai/muqiong/skills/bms-skill)
+- [Publisher profile](https://clawhub.ai/user/muqiong)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; analyzer outputs may be CSV, JSON, text, or PNG plots.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied BLF logs, DBC definitions, signal names, and explicit output paths for generated files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

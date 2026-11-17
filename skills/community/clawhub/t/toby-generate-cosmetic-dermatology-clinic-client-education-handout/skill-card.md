@@ -1,45 +1,50 @@
-## Description: <br>
-Create a polished explainer handout with visuals, FAQs, and clear next steps for a cosmetic dermatology clinic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates polished client education handouts with visuals, FAQs, and clear next steps for cosmetic dermatology clinics.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External clinic teams use this skill to draft patient-facing cosmetic dermatology education handouts with visuals, FAQs, and clear next steps. A licensed clinician should review medical claims before publication or client distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafted cosmetic dermatology education content may include incorrect or overly broad medical claims. <br>
-Mitigation: Have a licensed clinician review patient-facing content before distribution. <br>
-Risk: Prompts or drafts could include patient-identifiable information. <br>
-Mitigation: Avoid entering patient-identifiable information when using the skill. <br>
-Risk: Generated visuals may require rights or suitability review before use in clinic materials. <br>
-Mitigation: Verify usage rights and clinical appropriateness for any generated visuals before publication. <br>
-Risk: The skill declares Bash and Read access even though the evidence describes an instruction-only drafting workflow. <br>
-Mitigation: Disable Bash and Read access if local files or shell commands are not needed. <br>
+## Use Case:
 
+Dermatologists and clinic growth teams use this skill to draft client education handouts for cosmetic dermatology topics, including visuals, FAQs, and next steps. Patient-facing content should be reviewed by a qualified human before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-cosmetic-dermatology-clinic-client-education-handout) <br>
-- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-cosmetic-dermatology-clinic-client-education-handout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown handout draft with FAQs, visual guidance, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Patient-facing outputs should be reviewed for medical accuracy, privacy, and rights for any generated visuals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Drafted patient-facing medical content may include inaccurate, misleading, or regulated treatment-related wording.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a qualified human review patient-facing content, regulated claims, and treatment-related wording before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-cosmetic-dermatology-clinic-client-education-handout)
+- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-cosmetic-dermatology-clinic-client-education-handout)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include FAQ sections, visual concepts, and clinic next steps; requires human review before patient-facing use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

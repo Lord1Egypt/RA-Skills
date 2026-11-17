@@ -1,42 +1,57 @@
-## Description: <br>
-Enables OpenClaw to control desktop applications, files, screenshots, screen recording, mouse and keyboard input, automation tasks, and basic system monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enable OpenClaw to control and use the computer like a human for desktop automation, screenshots, screen recording, file management, application control, mouse and keyboard control, scheduled tasks, and system monitoring.
 
-## Publisher: <br>
-[zhmza](https://clawhub.ai/user/zhmza) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhmza](https://clawhub.ai/user/zhmza)
 
-## Use Case: <br>
-Developers and automation users can use this skill to let an agent operate a desktop session, including launching applications, capturing screenshots or recordings, managing files, entering keyboard input, controlling the mouse, and checking system resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over the active desktop session, including screenshots, recordings, clipboard access, typing, file deletion, application launching, and process termination. <br>
-Mitigation: Use a separate user account, isolated desktop session, or disposable environment, and avoid machines that contain private documents, credentials, or production access. <br>
-Risk: The security evidence says the skill lacks the safeguards its documentation describes. <br>
-Mitigation: Review the skill before deployment and enforce confirmations, allowlists, filesystem restrictions, and logging outside the skill before enabling sensitive operations. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to let an agent operate a desktop session through command-line and Python interfaces for GUI automation, screenshots, screen recording, application control, file operations, and system monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhmza/openclaw-computer-use-v2-0-0-tar) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python code examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may propose commands that affect the active desktop session and local filesystem.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: The skill can capture screens, record activity, type into applications, launch commands, delete files, and kill processes in the user's desktop session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a constrained test account or virtual machine, avoid elevated privileges, and review each proposed desktop or file operation before execution.
+
+Risk: Documented confirmation and sandbox controls are not authoritative because the security evidence says they are not actually enforced.
+
+Mitigation: Do not rely on those documented controls unless the implementation is changed to enforce them; apply external OS, account, and filesystem restrictions instead.
+
+Risk: Relaxing display access controls can broaden desktop access.
+
+Mitigation: Avoid using xhost +local: and prefer least-privilege desktop access settings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhmza/skills/openclaw-computer-use-v2-0-0-tar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute desktop-control operations that affect the user's active session and files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

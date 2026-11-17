@@ -1,38 +1,54 @@
-## Description: <br>
-Helps creators plan, script, shoot, edit, and review short videos using authentic source-backed data and trust-preserving content rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent guide Chinese short-video creators through topic selection, scripting, filming, editing, and review using authentic data and practical templates.
 
-## Publisher: <br>
-[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daxiangnaoyang](https://clawhub.ai/user/daxiangnaoyang)
 
-## Use Case: <br>
-Content creators and marketing operators use this skill to select evidence-backed topics, draft short-video scripts, plan filming and editing, and review performance for platforms such as Douyin, WeChat Channels, and Xiaohongshu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts may include the bundled persona, credentials, course offers, or marketing calls to action that do not match the user's real situation. <br>
-Mitigation: Replace those details with the user's own verified facts before publishing or using the script publicly. <br>
+## Use Case:
 
+Content creators and creator-support agents use this skill to plan, script, produce, and optimize short videos for platforms such as Douyin, WeChat Channels, and Xiaohongshu. It is especially tailored to AI-blogger content that relies on verifiable tests, personal experience, public data, and review checklists.
 
-## Reference(s): <br>
-- [Short Video Creation on ClawHub](https://clawhub.ai/daxiangnaoyang/short-video-creation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with short-video scripts, templates, checklists, and review criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language creator workflow emphasizing verified data, non-exaggeration, and platform-specific content planning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may insert a specific promotional identity, credential claims, course offers, private-message calls to action, and scarcity language into generated scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, verify any identity, credentials, course claims, and offers, or replace them with the creator's own substantiated details.
+
+Risk: The workflow is tailored to Chinese AI-blogger short videos and may not fit other creators, brands, audiences, or platforms without changes.
+
+Mitigation: Adapt the persona, platform assumptions, calls to action, and examples to the intended creator and audience before publishing content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daxiangnaoyang/skills/short-video-creation)
+- [Publisher Profile](https://clawhub.ai/user/daxiangnaoyang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style guidance, scripts, templates, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language short-video planning and production advice]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

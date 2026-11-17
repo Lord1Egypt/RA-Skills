@@ -1,43 +1,56 @@
-## Description: <br>
-极客增长SEO is a keyword research skill for searching Douyin, Xiaohongshu, and WeChat keyword data, including search volume, competition, related terms, suggestions, trend signals, audience details, and GEO keyword suitability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jike SEO helps agents research SEO keywords across Douyin, Xiaohongshu, and WeChat by querying keyword volume, competition, related terms, suggestions, trend, and audience data.
 
-## Publisher: <br>
-[mzoob](https://clawhub.ai/user/mzoob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzoob](https://clawhub.ai/user/mzoob)
 
-## Use Case: <br>
-External marketers, SEO practitioners, content teams, and developers use this skill to query keyword metrics, compare platform demand, find low-competition opportunities, and assess GEO-oriented keyword candidates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Keyword queries are sent to a third-party Jike SEO service. <br>
-Mitigation: Avoid submitting confidential client names, campaign plans, unreleased product terms, or other sensitive keywords. <br>
-Risk: The connectivity check displays part of the configured API key. <br>
-Mitigation: Avoid running the check command in shared terminals, recorded sessions, or logs. <br>
+## Use Case:
 
+Content marketers, SEO specialists, and growth teams use this skill to search and analyze keywords, compare platform demand, identify low-competition opportunities, and plan content or GEO keyword strategies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzoob/jike-seo) <br>
-- [Jike SEO homepage](https://dso100.com) <br>
-- [Jike SEO API key portal](https://jike-seo.100.city) <br>
-- [Jike SEO API endpoint](https://dso-dataserver.dso100.com/open/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Chinese Markdown-style analysis with CLI command examples; raw JSON is available from the script with --json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and the JIKE_SEO_API_KEY environment variable; default platform is douyin when no platform is specified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and skill frontmatter) <br>
+Risk: The check command prints part of the configured API key, which could expose a credential fragment in logs or shared agent sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid running the check command in logged terminals or shared sessions; prefer using search or detail commands after configuring the key.
+
+Risk: Keyword queries and the JIKE_SEO_API_KEY are sent to the declared SEO service.
+
+Mitigation: Install and use the skill only when sending those queries and credentials to the Jike SEO service is acceptable for the user's workflow.
+
+## Reference(s):
+
+- [Jike SEO skill page](https://clawhub.ai/mzoob/skills/jike-seo)
+- [Publisher profile](https://clawhub.ai/user/mzoob)
+- [Product homepage](https://dso100.com)
+- [API key portal](https://jike-seo.100.city)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Chinese prose with formatted keyword metrics and optional JSON from the CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and the JIKE_SEO_API_KEY environment variable; the skill queries the declared Jike SEO API service.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

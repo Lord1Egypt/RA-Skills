@@ -1,41 +1,61 @@
-## Description: <br>
-DOCX Toolkit extracts text, tables, and images from .docx and legacy .doc files, including CJK text and complex table structures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract text, tables, and images from .docx and legacy .doc files. Handles large documents, CJK text, and complex table structures. Includes deduplication and filtering for extracted images.
 
-## Publisher: <br>
-[zacjiang](https://clawhub.ai/user/zacjiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zacjiang](https://clawhub.ai/user/zacjiang)
 
-## Use Case: <br>
-Developers and document-processing teams use this skill to extract Word document text, tables, and embedded images for analysis, migration, auditing, or batch processing pipelines. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Extracted text, images, and optional context manifests may contain sensitive document content. <br>
-Mitigation: Process only documents the user is allowed to handle, keep output folders private, and enable context manifests only when needed. <br>
-Risk: Image resizing can overwrite originals when no separate output directory is provided. <br>
-Mitigation: Use a separate output directory when resizing images to preserve source files. <br>
-Risk: The scripts rely on local Python dependencies for document and image processing. <br>
-Mitigation: Install dependencies only in an environment where the user trusts the packages and execution context. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [DOCX Toolkit on ClawHub](https://clawhub.ai/zacjiang/docx-toolkit) <br>
+## Use Case:
 
+Developers and document-processing teams use this skill to extract text, tables, and embedded images from Word documents for analysis, migration, image review, and batch processing. The skill also helps resize extracted images before downstream vision or review workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text files, extracted image files, JSON image manifests, and Markdown guidance with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local document processing; extracted outputs may contain sensitive document text, images, and context snippets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Dependency installation can introduce supply-chain or environment drift risk.
+
+Mitigation: Install python-docx, olefile, and Pillow in an isolated virtual environment with pinned versions.
+
+Risk: Extracted text, images, and manifests can contain sensitive content copied from the original documents.
+
+Mitigation: Store outputs in controlled directories and apply the same access controls and retention rules used for the source documents.
+
+Risk: The optional image context manifest can save nearby paragraph text alongside extracted images.
+
+Mitigation: Enable --context only when saving surrounding document text into image_manifest.json is acceptable.
+
+Risk: Image resizing can overwrite files when no separate output directory is supplied.
+
+Mitigation: Use explicit output directories, especially for compression or batch processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zacjiang/skills/docx-toolkit)
+- [Publisher profile](https://clawhub.ai/user/zacjiang)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash commands; generated artifacts include UTF-8 text files, extracted image files, and optional JSON manifests.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs local Python scripts against user-provided Word documents and image directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

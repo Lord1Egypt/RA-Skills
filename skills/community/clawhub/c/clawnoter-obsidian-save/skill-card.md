@@ -1,44 +1,59 @@
-## Description: <br>
-Saves web articles and links into a local Obsidian vault with webpage extraction, image downloading, Markdown conversion, YAML frontmatter, and optional user notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawnoter Obsidian saves web articles into a local Obsidian vault with image capture, Markdown conversion, YAML frontmatter, and optional user notes.
 
-## Publisher: <br>
-[liz-npa](https://clawhub.ai/user/liz-npa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liz-npa](https://clawhub.ai/user/liz-npa)
 
-## Use Case: <br>
-External OpenClaw users use this skill to collect web articles, optional notes, and article images into a configured local or iCloud-synced Obsidian vault. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill scans common local folders to discover Obsidian vaults. <br>
-Mitigation: Review discovered paths and configure only the intended vault or subfolder before saving articles. <br>
-Risk: Saved article URLs may be sent to Jina.ai and fetched from external websites. <br>
-Mitigation: Avoid private, tokenized, intranet, login-only, or sensitive links unless the user accepts that disclosure risk. <br>
-Risk: The skill writes Markdown notes and image files into a local Obsidian path. <br>
-Mitigation: Use a dedicated save folder and verify the configured path before first use or after reconfiguration. <br>
+## Use Case:
 
+External OpenClaw users use this skill to collect useful web articles, extract page content and images, and save the result as structured notes in a local Obsidian vault.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liz-npa/clawnoter-obsidian-save) <br>
-- [WebNoter Chrome extension](https://chromewebstore.google.com/detail/webnoter/hmijljoffeceeloaigodmlojbfmgfdkp) <br>
-- [WebNoter product introduction](https://mp.weixin.qq.com/s/bwqHGb9WGC6L0wL7qVicSA) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes with YAML frontmatter, Obsidian callouts, local image references, and JSON status from helper scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes Markdown files and downloaded image assets to the user-configured Obsidian vault path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can fetch unrestricted URLs and disclose submitted links to Jina.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public, non-sensitive URLs unless URL validation and a Jina opt-in or local-only mode are added.
+
+Risk: Unsafe configuration can write generated notes outside the intended Obsidian vault.
+
+Mitigation: Confirm the configured vault and subfolder before saving; add vault containment checks before broad deployment.
+
+Risk: The skill downloads page-selected images and scans common local folders for vault discovery.
+
+Mitigation: Run it only with user-approved targets and review downloaded assets and discovered paths before trusting the saved note.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liz-npa/skills/clawnoter-obsidian-save)
+- [WebNoter Chrome Extension](https://chromewebstore.google.com/detail/webnoter/hmijljoffeceeloaigodmlojbfmgfdkp)
+- [WebNoter Product Introduction](https://mp.weixin.qq.com/s/bwqHGb9WGC6L0wL7qVicSA)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes with YAML frontmatter, local image files, JSON command results, and concise setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates Obsidian note files and an images subdirectory in the configured vault path.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

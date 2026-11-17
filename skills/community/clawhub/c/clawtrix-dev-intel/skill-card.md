@@ -1,40 +1,54 @@
-## Description: <br>
-Surfaces the best ClawHub skills for developer-tooling agents, including CI/CD, testing, code review, and developer productivity recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Surfaces up to three ClawHub skill recommendations for developer-tooling agents based on their stack, mission, workflow gaps, recency, community signals, and trust checks.
 
-## Publisher: <br>
-[nicope](https://clawhub.ai/user/nicope) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicope](https://clawhub.ai/user/nicope)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to discover, score, and prioritize ClawHub skills for developer-tooling needs such as CI/CD, testing, code review, Git workflows, and stack-specific productivity gaps. It produces a short ranked recommendation report for onboarding, weekly discovery, or targeted capability-gap reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mission files such as SOUL.md may contain confidential stack, workflow, or internal mission details. <br>
-Mitigation: Review and redact sensitive mission details before sharing generated recommendation reports outside the intended workspace. <br>
-Risk: Recommended third-party skills may be unsuitable or risky for a specific agent despite matching the requested developer-tooling category. <br>
-Mitigation: Manually review each recommended skill's publisher, security status, and install command before installation. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to discover and compare ClawHub skills that support CI/CD, testing, code review, git workflows, and developer productivity for a specific coding agent.
 
-## Reference(s): <br>
-- [Clawtrix Dev Intel on ClawHub](https://clawhub.ai/nicope/clawtrix-dev-intel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with ranked recommendations, rationale, skipped candidates, and install commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limits recommendations to the top 3 skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Recommended skills may be unsuitable, outdated, or carry risks not visible from summary metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each recommended skill's package contents, publisher, requested permissions, and exact version before installation.
+
+Risk: The workflow can create a dated recommendation report in the agent workspace.
+
+Mitigation: Confirm the destination and review the generated report before committing or sharing workspace files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nicope/skills/clawtrix-dev-intel)
+- [Publisher profile](https://clawhub.ai/user/nicope)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, files]
+
+**Output Format:** [Markdown report with ranked recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces no more than three recommendations and may write a dated report under memory/reports/.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

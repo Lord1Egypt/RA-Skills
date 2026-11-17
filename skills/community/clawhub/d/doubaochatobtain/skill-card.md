@@ -1,41 +1,54 @@
-## Description: <br>
-DoubaoChatObtain guides an agent through browser automation to extract the full text of a Doubao chat thread and save it as a local text file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts the full text from Doubao chat thread pages by using browser automation and DOM extraction to work around virtual scrolling.
 
-## Publisher: <br>
-[zenyang-x](https://clawhub.ai/user/zenyang-x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zenyang-x](https://clawhub.ai/user/zenyang-x)
 
-## Use Case: <br>
-External users and developers use this skill to extract complete Doubao conversation text for local review or follow-on analysis when normal page reading is limited by virtual scrolling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Extracted Doubao conversation text may contain private or sensitive information. <br>
-Mitigation: Review the output path before running the skill, keep generated files local, and delete /tmp/doubao_raw.json and the generated text file when they are no longer needed. <br>
-Risk: The workflow depends on agent-browser and a loaded Doubao page, so extraction may fail if the page is not ready or the scroll container is not found. <br>
-Mitigation: Open the target Doubao URL with agent-browser, wait for the page to finish loading, scroll when needed, and retry if the extraction returns NOT_FOUND. <br>
+## Use Case:
 
+Developers and agent users use this skill when they need to capture the full visible text of a Doubao conversation thread and save it locally for follow-on review or analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zenyang-x/doubaochatobtain) <br>
-- [agent-browser package](https://www.npmjs.com/package/agent-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with bash, JavaScript, and Python command examples; extracted Doubao content is saved as a UTF-8 text file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local files, including /tmp/doubao_raw.json and a user-selected text output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill installs and runs an unpinned browser automation dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the agent-browser dependency before installing and running the workflow.
+
+Risk: Extracted conversation data may contain sensitive content and is saved as persistent local data.
+
+Mitigation: Run the workflow only on Doubao conversations intended for extraction and choose a private output location instead of a shared temporary path.
+
+## Reference(s):
+
+- [agent-browser npm package](https://www.npmjs.com/package/agent-browser)
+- [DoubaoChatObtain on ClawHub](https://clawhub.ai/zenyang-x/skills/doubaochatobtain)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; extracted conversation content is written as a plain text file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses agent-browser JSON output as input to a parser script and persists the extracted transcript to a user-selected local path.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

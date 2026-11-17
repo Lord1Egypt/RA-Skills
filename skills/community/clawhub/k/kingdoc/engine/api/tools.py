@@ -43,7 +43,7 @@ class KingDocMcpServer:
         return resp
     
     def kdoc_file_upload_content(self, file_id: str, content: bytes, version: int = None) -> Dict:
-        """上传覆盖文档内容"""
+        """上传覆盖文档内容（纯文本类文档）"""
         if not validate_file_id(file_id):
             raise KingDocError("KD011", "非法 file_id 格式")
         
@@ -55,6 +55,42 @@ class KingDocMcpServer:
         if resp.get("code") != 0:
             raise KingDocError(resp.get("code", "KD010"), resp.get("message", "上传失败"))
         return resp
+
+    def kdoc_file_upload(self, file_path: str, folder_id: str = None, name: str = None) -> Dict:
+        """上传本地文件作为新文档/附件（二进制安全，multipart）。
+
+        默认拦截禁止类型（.exe/.bat/.ps1/.zip 等），仅技能内部生成的
+        docx/pptx/pdf/svg/png 等可上传。
+        """
+        from engine.security import assert_upload_safe
+        assert_upload_safe(file_path, internal=True)
+
+        import requests
+        p = Path(file_path)
+        url = f"{self.client.auth.API_BASE}/personal/files:upload"
+        files = {"file": (name or p.name, p.read_bytes(), "application/octet-stream")}
+        data = {}
+        if folder_id:
+            data["folder_id"] = folder_id
+        resp = self.client.session.post(
+            url, files=files, data=data,
+            headers={"Authorization": self.client.auth.headers["Authorization"]},
+            timeout=120,
+        )
+        try:
+            return resp.json()
+        except Exception:
+            return {"code": 0 if resp.ok else -1, "message": "OK" if resp.ok else resp.text[:200]}
+
+    def kdoc_file_download(self, file_id: str, target_path: str) -> Dict:
+        """导出在线文档内容到本地文件。"""
+        if not validate_file_id(file_id):
+            raise KingDocError("KD011", "非法 file_id 格式")
+        resp = self.client.get(f"/personal/files/{file_id}/content")
+        text = resp.get("data", {}).get("content") or resp.get("content") or ""
+        Path(target_path).parent.mkdir(parents=True, exist_ok=True)
+        Path(target_path).write_text(text, encoding="utf-8")
+        return {"code": 0, "message": "OK", "saved_to": target_path}
     
     def kdoc_file_move(self, file_id: str, folder_id: str) -> Dict:
         """移动文件"""

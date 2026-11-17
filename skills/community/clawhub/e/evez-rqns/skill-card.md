@@ -1,41 +1,53 @@
-## Description: <br>
-Implements a neuromorphic-quantum anomaly-detection pipeline using LIF spike encoding, contextual bandit allocation, adaptive threshold hot-swapping, and append-only event logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements a neuromorphic-style anomaly detection pipeline using LIF spike encoding, contextual bandit backend allocation, and adaptive threshold updates.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers and security or operations engineers can use this skill as a local anomaly-detection simulation for spike encoding, backend allocation, adaptive threshold updates, and event-log replay. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact automatically loads data/qtable_pretrained.pkl if present, and Python pickle files can execute code when loaded. <br>
-Mitigation: Use only trusted local qtable files, remove unexpected data/qtable_pretrained.pkl files before running, and review the skill before installation in sensitive workspaces. <br>
-Risk: The artifact is a local simulation or demo rather than a validated production anomaly-detection system. <br>
-Mitigation: Treat its anomaly decisions and adaptive threshold changes as experimental output until validated against representative data and operational requirements. <br>
+## Use Case:
 
+Developers and engineers can use this skill as a local anomaly-detection pipeline that simulates signal sensing, backend allocation, solver feedback, and adaptive threshold updates.
 
-## Reference(s): <br>
-- [Evez Rqns on ClawHub](https://clawhub.ai/evezart/evez-rqns) <br>
-- [Skill overview](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance for agents, with plain text console telemetry and JSON status output when the included Python simulation is run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The runnable artifact emits per-tick anomaly status, backend selection, latency, energy, learning state, spike counts, event-spine length, and final JSON status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A local data/qtable_pretrained.pkl file can execute attacker-controlled code if loaded with pickle.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the working directory before running the skill, do not run it where untrusted pickle files may exist, and replace pickle loading with a non-executable model format before production use.
+
+Risk: The event log and generated sensor output are demo-quality telemetry and should not be treated as tamper-evident security evidence.
+
+Mitigation: Use the logged events for development visibility only unless independent integrity controls and production telemetry validation are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evezart/skills/evez-rqns)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local simulation output, anomaly metrics, backend-routing decisions, learning updates, and event-log status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

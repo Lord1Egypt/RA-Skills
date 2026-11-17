@@ -1,0 +1,18 @@
+{
+"roles": {
+    "admin":{
+        "name":"超级管理员",
+        "rights":{
+            "user":"*",
+            "power":"*"
+        }
+    },
+    "employee":{
+        "name":"普通员工",
+        "rights":{
+            "user":"base",
+			"power":"base"
+        }
+    }
+}
+}

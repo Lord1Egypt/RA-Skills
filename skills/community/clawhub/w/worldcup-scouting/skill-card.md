@@ -1,39 +1,53 @@
-## Description: <br>
-Collects 12 dimensions of public World Cup pre-match intelligence, including team background, standings context, venue, weather, form, injuries, lineups, referees, news, head-to-head history, Polymarket markets, and betting odds, then produces a sourced text scouting report in the conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+世界杯比赛赛前情报搜集。用户说「A队 vs B队 第X轮」，自动收集 12 维数据（球队背景、赔率、场地、伤病、首发、裁判等），生成一份带来源链接的完整情报报告。不生成卡片。
 
-## Publisher: <br>
-[xiaojay](https://clawhub.ai/user/xiaojay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojay](https://clawhub.ai/user/xiaojay)
 
-## Use Case: <br>
-Football analysts, fans, and content teams use this skill to gather public pre-match context for World Cup fixtures and receive a structured, source-linked scouting report with an entertainment-oriented prediction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs multiple public web searches for match, weather, news, and betting-odds data, which can return stale, incorrect, or inconsistent sources. <br>
-Mitigation: Verify cited sources and timestamps before relying on the report, especially for injuries, lineups, odds, and weather. <br>
-Risk: Odds and prediction sections may surface gambling-market content and could be mistaken for advice. <br>
-Mitigation: Treat predictions as entertainment only and keep the report's disclaimer visible to readers. <br>
+## Use Case:
 
+External users ask for a World Cup match such as "A team vs B team, round X" and receive a structured pre-match scouting report. The skill gathers public football background, standings, venue, weather, form, injuries, news, head-to-head history, odds, referee details, predicted lineups, tactical analysis, and a prediction with source links.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown text report with source links and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source links, odds timestamping, bilingual player names when available, and a prediction disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The report may include public football information that changes quickly, including weather, injuries, lineups, news, odds, and match markets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use current sources, include source links, timestamp odds, and treat predictions as provisional until official data is available.
+
+Risk: Betting and odds coverage may be inappropriate for some users or contexts.
+
+Mitigation: Ask for a narrower report or explicitly request no betting or odds coverage when invoking the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaojay/skills/worldcup-scouting)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown report in the conversation with tables, source links, timestamps, and disclaimers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not create documents, cards, or images.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

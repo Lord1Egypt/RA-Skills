@@ -1,41 +1,58 @@
-## Description: <br>
-Installs and configures the OpenClaw Skill Usage plugin for local skill usage analytics and optional shared leaderboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and set up the OpenClaw Skill Usage plugin.
 
-## Publisher: <br>
-[lucifinil](https://clawhub.ai/user/lucifinil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucifinil](https://clawhub.ai/user/lucifinil)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to install, restart, and verify skill usage analytics, including local usage reports and explicitly requested shared leaderboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the plugin introduces a third-party npm package and requires restarting the OpenClaw Gateway. <br>
-Mitigation: Install only when the operator trusts the publisher and has explicitly agreed to the restart, then verify the plugin with status and top-usage checks. <br>
-Risk: Shared leaderboards can sync operational metadata such as skill names, channel labels, agent labels, timestamps, and routing identifiers. <br>
-Mitigation: Keep analytics local unless shared reporting is explicitly requested, and disclose the synced metadata and TiDB Cloud Zero destination before enabling shared mode. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to install and verify the OpenClaw Skill Usage plugin, enable /skillusage commands, and choose between local-only analytics and shared cloud-backed usage spaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lucifinil/skill-usage) <br>
-- [Publisher profile](https://clawhub.ai/user/lucifinil) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup, restart, verification, privacy, and optional join-token guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can lead an agent to install an external plugin and restart the OpenClaw Gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only invoke installation or restart steps after the user intentionally asks to install or enable the plugin and accepts the restart.
+
+Risk: The installed plugin may use shared cloud-backed analytics where labels, routing identifiers, timestamps, status, and latency can be sensitive metadata.
+
+Mitigation: Use local-only mode unless the user explicitly wants shared analytics, and explain what metadata is sent before shared setup.
+
+Risk: The external plugin package may be unpinned or not independently verified.
+
+Mitigation: Review the plugin package and publisher, and prefer a pinned or verified release before installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lucifinil/skills/skill-usage)
+- [Publisher Profile](https://clawhub.ai/user/lucifinil)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and slash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides plugin installation, gateway restart, verification commands, and optional shared analytics setup.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

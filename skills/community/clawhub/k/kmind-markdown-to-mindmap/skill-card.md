@@ -1,45 +1,62 @@
-## Description: <br>
-Convert Markdown heading outlines into themed KMind mind maps with PNG, SVG, and editable KMind package export options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Markdown heading outlines into themed KMind mind maps. Export PNG or SVG images with theme presets, layouts, edge routes, dark mode, and rainbow branches.
 
-## Publisher: <br>
-[suka233](https://clawhub.ai/user/suka233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suka233](https://clawhub.ai/user/suka233)
 
-## Use Case: <br>
-External users, developers, and teams use this skill to turn Markdown heading outlines for meetings, notes, brainstorming, and proposals into polished KMind mind map images or editable KMind project files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Node code and writes the requested output file. <br>
-Mitigation: Install only from the trusted release, review requested output paths, and keep file writes limited to user-approved locations. <br>
-Risk: PNG and SVG image export can launch Chromium and use a temporary localhost render session. <br>
-Mitigation: Use automatic browser export only when local browser automation is acceptable; use manual mode or editable .kmindz.svg export when automation is unavailable. <br>
-Risk: Release metadata includes crypto and purchasing capability tags that are not supported by the artifacts. <br>
-Mitigation: Treat the skill only as a mind-map renderer and do not grant financial, crypto, or purchasing authority based on those tags. <br>
+## Use Case:
 
+External users, developers, and teams use this skill to turn Markdown heading outlines for meetings, notes, brainstorming, and proposals into polished KMind mind map images or editable KMind project files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/suka233/kmind-markdown-to-mindmap) <br>
-- [KMind Zen](https://kmind.app) <br>
-- [README](artifact/README.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, guidance] <br>
-**Output Format:** [PNG, SVG, editable .kmindz.svg, and concise command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local conversion requires Node.js; automatic PNG or SVG export requires a usable local Chromium browser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter, package.json, CHANGELOG released 2026-05-18, server release metadata) <br>
+Risk: Automatic PNG or SVG export launches a local Chromium browser session to render Markdown.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where local browser rendering is acceptable, and use manual browser mode or .kmindz.svg export when automatic Chromium launch is unavailable.
+
+Risk: Rendered Markdown is visible to the temporary local browser session.
+
+Mitigation: Avoid rendering sensitive content on shared or untrusted machines, and close the browser session after export.
+
+Risk: Untrusted local processes could attempt to race localhost render endpoints during browser-based export.
+
+Mitigation: Run exports on a trusted local machine and avoid concurrent untrusted local processes during rendering.
+
+Risk: Incorrect output paths could overwrite or place generated files somewhere unintended.
+
+Mitigation: Choose explicit output paths and review them before running the generated Node command.
+
+## Reference(s):
+
+- [KMind Zen](https://kmind.app)
+- [ClawHub skill page](https://clawhub.ai/suka233/skills/kmind-markdown-to-mindmap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Node.js shell commands that produce PNG, SVG, or .kmindz.svg files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [PNG is the recommended default image output; automatic PNG and SVG export require local Chromium, while .kmindz.svg export does not depend on browser rendering.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter, package.json, CHANGELOG released 2026-05-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-iFinD投研-金融资讯搜索 helps an agent semantically search market-wide financial news, public sentiment, market updates, industry activity, and company news through the iFinD/Repilot service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches market-wide financial news and related signals from natural-language questions, returning relevant news snippets for research workflows.
 
-## Publisher: <br>
-[wenzisay](https://clawhub.ai/user/wenzisay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenzisay](https://clawhub.ai/user/wenzisay)
 
-## Use Case: <br>
-External users and financial research agents use this skill to retrieve relevant financial-news snippets from natural-language questions, optionally constrained by a date range. The agent can then summarize titles, sources, dates, links, and important details without fabricating market information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and the configured service token are sent over the network to the iFinD/Repilot service. <br>
-Mitigation: Install only when the user trusts the iFinD/Repilot service and is comfortable sending those queries and credentials to that provider. <br>
-Risk: The token is stored in ~/.config/ifind-repilot/config.json. <br>
-Mitigation: Treat the config file as secret-bearing local state and avoid sharing logs, archives, or machine images that include it. <br>
-Risk: The helper script has an under-disclosed --set-url option that can redirect the configured token to another endpoint. <br>
-Mitigation: Keep the default provider URL and use --set-url only for endpoints the user controls and trusts. <br>
+## Use Case:
 
+Financial research users and agents use this skill to retrieve market news, public sentiment, industry updates, company news, and other financial information with natural-language queries and optional date ranges.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wenzisay/ifind-repilot-news-search) <br>
-- [Publisher profile](https://clawhub.ai/user/wenzisay) <br>
-- [iFinD/Repilot platform](https://repilot.51ifind.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON search results from the helper script, commonly reorganized by the agent into concise Markdown or text summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a locally configured iFinD/Repilot auth token; supports optional start and end timestamps in YYYY-MM-DDTHH:MM:SS format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill stores a local plaintext API token and may expose tokens through shell history when configured on the command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated token with limited scope where possible, avoid pasting real tokens into chat or shell commands, restrict access to the local config file, and rotate any token previously entered through command-line history.
+
+Risk: The configurable API base URL can send the configured token to an arbitrary endpoint.
+
+Mitigation: Do not use --set-url unless the endpoint is fully trusted, and verify the configured base URL before running searches with a real token.
+
+Risk: Financial-news results may be incomplete, stale, unavailable, or rejected by the upstream service.
+
+Mitigation: Preserve returned titles, sources, summaries, and dates; do not fabricate missing financial information; and report upstream errors such as 401, 403, or 429 without retrying.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wenzisay/skills/ifind-repilot-news-search)
+- [Feiyan platform](https://repilot.51ifind.com/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [JSON API responses summarized as concise Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a locally configured auth token; accepts a natural-language query and optional start and end dates.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

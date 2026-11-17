@@ -1,47 +1,64 @@
-## Description: <br>
-Eric's Second Brain routes broad engineering, life/career, cognition, AI, and innovation questions through a three-brain framework, then synthesizes the relevant perspectives into actionable guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Eric's Second Brain is a Chinese-language meta-cognition and routing skill that classifies engineering, life, AI, and innovation questions, routes them through a three-brain framework, and synthesizes practical guidance.
 
-## Publisher: <br>
-[shun1989](https://clawhub.ai/user/shun1989) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shun1989](https://clawhub.ai/user/shun1989)
 
-## Use Case: <br>
-External users, developers, and engineers use this skill when a question spans technical judgment, career or life tradeoffs, and AI or product innovation. It helps classify the problem, route it to the relevant knowledge layer, and produce a synthesized advisory answer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can over-activate on broad or generic engineering, career, life, AI, and innovation topics. <br>
-Mitigation: Review activation behavior during installation and ask the agent to confirm scope before applying the framework to high-impact decisions. <br>
-Risk: The skill is intentionally opinionated and may shape responses through Eric-branded personal frameworks. <br>
-Mitigation: Treat outputs as advisory, compare them with domain evidence, and verify technical, business, career, or life guidance before acting. <br>
+## Use Case:
 
+External users and developers use this skill as a first-entry reasoning layer for ambiguous engineering, career, AI-agent, and product-innovation questions. It helps classify the question, select relevant knowledge domains, combine multiple perspectives, and return an actionable answer.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shun1989/skills/erics-second-brain) <br>
-- [Engineering Essence](references/engineering-essence.md) <br>
-- [Wisdom Essence](references/wisdom-essence.md) <br>
-- [Creation Essence](references/creation-essence.md) <br>
-- [Cross-Domain Routes](references/cross-domain-routes.md) <br>
-- [Synthesis Framework](references/synthesis-framework.md) <br>
-- [Eric's Experience](references/erics-experience.md) <br>
-- [Ecosystem Map](references/ecosystem-map.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown advisory response with structured analysis sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include domain-specific frameworks, examples, or recommended next actions; no executable background behavior is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, manifest, server release evidence) <br>
+Risk: The skill has broad activation guidance and can strongly shape answers across engineering, life, AI, and innovation topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where Eric's Chinese-language second-brain framework is desired, and ask clarifying questions when the user's intent or domain is ambiguous.
+
+Risk: The skill includes opinionated life, interpersonal, and career guidance that may be unsuitable for sensitive decisions if treated as authoritative.
+
+Mitigation: Keep outputs advisory, review the guidance before relying on it, and defer high-stakes personal, legal, medical, or financial decisions to qualified professionals.
+
+Risk: The artifact discusses agent memory and persistence concepts even though the security evidence says it has no persistence mechanism.
+
+Mitigation: Require explicit user confirmation before any host agent turns memory suggestions into actual persistent writes.
+
+## Reference(s):
+
+- [Eric's Second Brain on ClawHub](https://clawhub.ai/shun1989/skills/erics-second-brain)
+- [Engineering Essence](references/engineering-essence.md)
+- [Wisdom Essence](references/wisdom-essence.md)
+- [Creation Essence](references/creation-essence.md)
+- [Cross-Domain Routes](references/cross-domain-routes.md)
+- [Synthesis Framework](references/synthesis-framework.md)
+- [Ecosystem Map](references/ecosystem-map.md)
+- [Eric's Experience](references/erics-experience.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown responses with structured analysis, domain routing, synthesized recommendations, and next actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language, framework-driven advisory output; no executable code or host actions are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, manifest, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

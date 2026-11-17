@@ -1,47 +1,61 @@
-## Description: <br>
-OpenClaw skill for Paragraph.com, enabling agents to create, retrieve, and list Web3-native blog posts, manage subscribers, and inspect tokenized post data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw skill enabling automated creation, retrieval, subscriber management, and tokenized engagement with Web3-native blog posts on Paragraph.com.
 
-## Publisher: <br>
-[ClaireAICodes](https://clawhub.ai/user/ClaireAICodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[claireaicodes](https://clawhub.ai/user/claireaicodes)
 
-## Use Case: <br>
-External creators, DAOs, Web3 projects, and developers use this skill to automate Paragraph publishing workflows, manage publication subscribers, and retrieve post, feed, user, and token data through an OpenClaw agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish public or onchain Paragraph posts and optionally send newsletters. <br>
-Mitigation: Install only for publications you control and require human approval before publishing or sending newsletters. <br>
-Risk: The skill can add, list, and import subscribers, including emails and wallet addresses. <br>
-Mitigation: Use a dedicated API key where possible, handle subscriber data as personal data, and import only vetted subscriber lists. <br>
-Risk: The subscriber import flow accepts a caller-chosen local CSV file path. <br>
-Mitigation: Allow imports only from trusted local paths and review the CSV contents before execution. <br>
-Risk: Welcome emails may be sent during subscriber operations. <br>
-Mitigation: Set sendWelcomeEmail deliberately for each workflow and require review before bulk subscriber imports. <br>
+## Use Case:
 
+External creators, DAOs, Web3 project teams, and developers use this skill to automate Paragraph publishing workflows, manage subscribers, inspect publications and posts, and work with tokenized post engagement from OpenClaw agents.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ClaireAICodes/openclaw-paragraph) <br>
-- [Publisher profile](https://clawhub.ai/user/ClaireAICodes) <br>
-- [Paragraph API documentation](https://paragraph.com/docs/api-reference) <br>
-- [Paragraph](https://paragraph.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [JSON tool responses and Markdown content sent to Paragraph APIs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create public or onchain Paragraph posts, send newsletters, import subscriber CSV files, and return publication, subscriber, feed, user, and coin data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Credential-bearing API calls can be redirected if PARAGRAPH_API_BASE_URL is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep PARAGRAPH_API_BASE_URL fixed to the official Paragraph API unless a trusted reviewer approves a controlled test endpoint.
+
+Risk: Post creation, newsletter sending, welcome emails, and subscriber imports can create public or user-facing effects.
+
+Mitigation: Require explicit user approval before running publishing or subscriber-management actions.
+
+Risk: Subscriber CSV import can upload local file contents selected by path.
+
+Mitigation: Use only verified subscriber CSV files and avoid running the skill where sensitive local files are accessible to the agent process.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/claireaicodes/skills/openclaw-paragraph)
+- [Publisher Profile](https://clawhub.ai/user/claireaicodes)
+- [Paragraph API Reference](https://paragraph.com/docs/api-reference)
+- [Paragraph](https://paragraph.com)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, API responses, guidance]
+
+**Output Format:** [JSON API results and Markdown-oriented publishing content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Paragraph API credentials and publication configuration; some operations create public posts or send subscriber emails.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

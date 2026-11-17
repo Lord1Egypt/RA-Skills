@@ -1,41 +1,55 @@
-## Description: <br>
-Provides installation steps, dependency setup, path guidance, and troubleshooting for integrating the memory-tencentdb four-layer memory system with OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供 memory-tencentdb 插件的安装步骤、依赖配置、路径说明及常见问题解决，支持 OpenClaw 四层记忆系统集成。
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and configure the memory-tencentdb plugin, including dependency placement, OpenClaw configuration, Gateway restart steps, and installation checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced memory plugin can retain conversation history and build long-term user profiles without clearly documented review, deletion, retention, or scoping controls. <br>
-Mitigation: Enable it only after confirming where memory data is stored, how users can inspect and delete it, what retention policy applies, and whether broad capture or L3 profiling can be limited or disabled. <br>
-Risk: The installation guidance changes OpenClaw Gateway dependencies and configuration, which can affect the local runtime if applied without review. <br>
-Mitigation: Review the commands and configuration before applying them, install dependencies from trusted sources, and keep a backup of the existing OpenClaw configuration. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this guide to install and configure the memory-tencentdb plugin, including Gateway dependency placement, openclaw.json configuration, restart steps, and troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/memory-tencentdb-setup) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown installation guide with shell command and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language setup guidance for OpenClaw memory-tencentdb integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The plugin is intended to store conversation history and build local user profiles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only when users accept that retention behavior, and document how to delete or disable the memory store.
+
+Risk: The guide installs or copies npm dependencies into the Gateway runtime, which can broaden dependency risk if packages are unconstrained.
+
+Mitigation: Pin and verify npm dependencies before installation, use --ignore-scripts as shown, and review the resulting Gateway node_modules contents.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/paudyyin/skills/memory-tencentdb-setup)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw issue tracker](https://github.com/openclaw/openclaw/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown installation guide with command and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operating-system-specific paths, dependency installation options, validation commands, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

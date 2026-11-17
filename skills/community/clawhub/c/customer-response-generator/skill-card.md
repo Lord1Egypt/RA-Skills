@@ -1,39 +1,56 @@
-## Description: <br>
-Generate professional, empathetic customer service responses in seconds. Handle complaints, questions, refunds, and reviews with consistent quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional, empathetic customer service responses in seconds. Handle complaints, questions, refunds, and reviews with consistent quality.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Customer service teams, e-commerce operators, small business owners, and community managers use this skill to draft professional replies to customer inquiries, complaints, refund requests, and reviews across email, chat, social, and review channels.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Customer or order details pasted into the agent may include sensitive information.
+
+Mitigation: Provide only the details needed to draft the response and avoid unnecessary personal, payment, or account data.
+
+Risk: Drafted replies may create incorrect commitments for refunds, policy exceptions, or public review responses.
+
+Mitigation: Review and edit each response before sending, especially when it discusses refunds, exceptions, policies, or public-facing commitments.
+
+Risk: The activation scope is broad enough that the skill could be used outside customer-service reply drafting.
+
+Mitigation: Use it only for customer communications and rely on business policy or human approval for final decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External customer service teams, e-commerce store owners, small business owners, and community managers use this skill to draft professional replies for customer complaints, questions, refund requests, shipping issues, and reviews. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Customer messages may contain unnecessary personal data, payment details, account identifiers, tracking numbers, or other sensitive information. <br>
-Mitigation: Redact sensitive details unless they are needed to draft the reply. <br>
-Risk: Generated customer-service drafts may include incorrect facts, unsuitable tone, or policy guidance that should not be sent as-is. <br>
-Mitigation: Review each response before sending and verify customer-specific facts, policies, and available remedies. <br>
+**Output Format:** [Markdown or plain text customer-service reply draft]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Requires user-provided customer message, response type, relevant policy or order context, and desired brand tone.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text customer-response drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should be reviewed before sending, especially when customer-specific facts, policies, or sensitive details are involved.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

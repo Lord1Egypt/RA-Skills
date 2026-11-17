@@ -1,42 +1,59 @@
-## Description: <br>
-Screens pharma drug-development candidate targets by ranking disease-target associations using evidence strength, druggability, and safety risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists pharmaceutical R&D teams with drug target screening by ranking candidate targets using target-disease association, evidence strength, druggability, and safety-risk signals.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Pharma R&D teams use this skill to screen and prioritize candidate drug targets for a disease or indication from a supplied target list. It produces ranked structured results and a Markdown analysis for evidence review, not clinical diagnosis or treatment guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Potentially sensitive disease, target, mechanism, evidence, druggability, safety-risk, and reference data may be sent to an external LLM endpoint. <br>
-Mitigation: Install only if your organization approves this data transfer and avoid confidential or regulated data unless that use is explicitly approved. <br>
-Risk: DOC, XLS, PDF, and image inputs can invoke broad local document parsers or converters without strong containment guidance. <br>
-Mitigation: Prefer trusted JSON or CSV inputs; use document and image parsing only in a contained environment. <br>
+## Use Case:
 
+External developers and pharmaceutical R&D teams use this skill to submit a disease or indication with candidate targets, then receive a ranked screening output with basis, target-level rationale, and risk notes. It is intended for research support and does not provide clinical diagnosis, treatment advice, or drug efficacy conclusions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-target-screening) <br>
-- [Open Targets Database skill reference](https://agent-skills.md/skills/x-cmd/skill/opentargets-database) <br>
-- [HiVoice medical LLM chat completions endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Text] <br>
-**Output Format:** [UTF-8 JSON containing structured ranked targets and Markdown natural-language analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an appkey for the documented external medical LLM endpoint; JSON-only input requires no optional parser packages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends target-screening inputs to a remote medical model service, which may expose sensitive research data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with approval for the API key and endpoint terms; avoid confidential, regulated, or proprietary R&D inputs unless retention and access terms are acceptable.
+
+Risk: Untrusted Office, PDF, or image inputs can expand the parsing surface through optional conversion and OCR tools.
+
+Mitigation: Prefer JSON or trusted spreadsheet inputs, and avoid untrusted Office, PDF, and image files.
+
+Risk: A fallback preprocessing path can execute Python code outside the packaged skill if the local parser fails.
+
+Mitigation: Remove or pin the external shared preprocessing fallback before production use.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/unisound-llm/skills/unisound-target-screening)
+- [Open Targets Database reference skill](https://agent-skills.md/skills/x-cmd/skill/opentargets-database)
+- [Remote medical model endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [UTF-8 JSON containing structured ranked targets and Markdown natural-language analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an appkey for the remote medical model service; JSON-only inputs do not require optional document parsing dependencies.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

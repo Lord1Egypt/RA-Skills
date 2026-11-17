@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meowclaw.dev/schemas/v4/narrative-contract.schema.json",
+  "title": "PPT Smith V4 Bespoke Professional Narrative Quality Contract",
+  "description": "Locks audience, claims, evidence and cross-page progression while reserving composition and geometry for the high-capability author.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "source_ir_sha256",
+    "quality_principles",
+    "freedom",
+    "deck",
+    "chapters",
+    "pages"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "contract_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9-]*[a-z0-9])?$"},
+    "source_ir_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "quality_principles": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "audience_decision_alignment",
+          "assertion_evidence",
+          "coherence_progression",
+          "cognitive_load",
+          "semantic_visual_encoding"
+        ]
+      },
+      "allOf": [
+        {"contains": {"const": "audience_decision_alignment"}},
+        {"contains": {"const": "assertion_evidence"}},
+        {"contains": {"const": "coherence_progression"}},
+        {"contains": {"const": "cognitive_load"}},
+        {"contains": {"const": "semantic_visual_encoding"}}
+      ]
+    },
+    "freedom": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model_owns", "engine_verifies", "forbidden_prescriptions"],
+      "properties": {
+        "model_owns": {
+          "const": [
+            "storyline",
+            "page_composition",
+            "visual_encoding",
+            "geometry",
+            "cross_page_rhythm"
+          ]
+        },
+        "engine_verifies": {
+          "const": [
+            "source_fidelity",
+            "page_contract",
+            "native_editability",
+            "render_integrity",
+            "visual_review"
+          ]
+        },
+        "forbidden_prescriptions": {
+          "const": [
+            "composition_enum",
+            "coordinate_grid",
+            "template_slide_mapping",
+            "archetype_selection"
+          ]
+        }
+      }
+    },
+    "deck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["audience_decision", "core_thesis", "narrative_arc"],
+      "properties": {
+        "audience_decision": {"type": "string", "minLength": 1, "maxLength": 1000},
+        "core_thesis": {"type": "string", "minLength": 1, "maxLength": 1500},
+        "narrative_arc": {"type": "string", "minLength": 1, "maxLength": 2000}
+      }
+    },
+    "chapters": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/chapter"}
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/page"}
+    }
+  },
+  "$defs": {
+    "slideId": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"},
+    "chapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["chapter_id", "title", "job", "slide_ids"],
+      "properties": {
+        "chapter_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"},
+        "title": {"type": "string", "minLength": 1, "maxLength": 300},
+        "job": {"type": "string", "minLength": 1, "maxLength": 1000},
+        "slide_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/slideId"}
+        }
+      }
+    },
+    "page": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slide_id",
+        "audience_question",
+        "assertion_ref",
+        "evidence_refs",
+        "narrative_function",
+        "transition_to_next"
+      ],
+      "properties": {
+        "slide_id": {"$ref": "#/$defs/slideId"},
+        "audience_question": {"type": "string", "minLength": 1, "maxLength": 1000},
+        "assertion_ref": {
+          "type": "string",
+          "pattern": "^slide:[a-z0-9][a-z0-9_-]{0,63}:message$"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^block:[a-z0-9][a-z0-9_-]{0,63}:[a-z0-9][a-z0-9_-]{0,63}$"
+          }
+        },
+        "narrative_function": {"type": "string", "minLength": 1, "maxLength": 300},
+        "transition_to_next": {
+          "type": ["string", "null"],
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      }
+    }
+  }
+}

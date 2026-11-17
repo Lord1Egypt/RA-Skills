@@ -1,39 +1,50 @@
-## Description: <br>
-Short alias for external-site-profile-learning. Use this when investigating, adding, validating, or debugging external website profiles for the 99idea Playwright browser demo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Short alias for external-site-profile-learning. Use this when investigating, adding, validating, or debugging external website profiles for the 99idea Playwright browser demo.
 
-## Publisher: <br>
-[allens0104](https://clawhub.ai/user/allens0104) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allens0104](https://clawhub.ai/user/allens0104)
 
-## Use Case: <br>
-Developers and engineers use this skill to investigate, add, validate, and debug reusable external website profiles for the 99idea Playwright browser demo, including heuristic and Gemini planning flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to browse or test external websites. <br>
-Mitigation: Use it only on sites you are authorized to test, and avoid placing special or rate-limited sites in broad regression runs. <br>
-Risk: Generated site profiles can encode incorrect selectors or verification assumptions. <br>
-Mitigation: Review selected selectors and validation commands, then validate both heuristic and Gemini flows before treating a profile as stable. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn already-proven external website flows into stable reusable profiles, classify site behavior, choose exact selectors, and validate heuristic and Gemini modes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with selectors, verification details, validation commands, and final status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include failure or site class, exact selectors with rationale, verification mode, planned or executed validation commands, and stable/blocked/special-case status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may guide an agent to create reusable project profile data and run validation flows against external sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in projects where external website profiling and validation are intended, and review proposed selectors and validation commands before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/allens0104/skills/site-profile)
+- [Publisher profile](https://clawhub.ai/user/allens0104)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with selectors, validation commands, and final status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include the site or failure class, exact selector rationale, verification mode, validation steps, and stable / blocked / special-case status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

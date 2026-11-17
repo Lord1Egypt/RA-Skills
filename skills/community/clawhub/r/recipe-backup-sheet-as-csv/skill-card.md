@@ -1,40 +1,49 @@
-## Description: <br>
-Export a Google Sheets spreadsheet as a CSV file for local backup or processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Export a Google Sheets spreadsheet as a CSV file for local backup or processing.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and operators use this skill to generate Google Workspace CLI commands that export a Google Sheets spreadsheet as CSV for backup, migration, or local processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exported CSV files can contain sensitive spreadsheet data. <br>
-Mitigation: Verify the spreadsheet ID, selected sheet or range, and local destination before running the export command; handle the resulting CSV as sensitive data. <br>
-Risk: The commands require Google Workspace CLI access to Sheets and Drive resources. <br>
-Mitigation: Use an account with appropriate permissions, review the generated command before execution, and follow normal installation caution as recommended by the clean ClawScan security guidance. <br>
+## Use Case:
 
+Developers, operators, and productivity users use this skill to guide an agent through exporting a Google Sheets spreadsheet as CSV for local backup or downstream processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-backup-sheet-as-csv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws binary and the gws-sheets and gws-drive skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release metadata; artifact metadata version: 0.22.5) <br>
+Risk: Exporting a spreadsheet as CSV can create a local copy of sensitive Google Sheets data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the selected sheet is appropriate to store locally and verify where the gws export output is saved or redirected before retaining or sharing the CSV.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/recipe-backup-sheet-as-csv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the gws CLI and the gws-sheets and gws-drive skills to inspect and export a selected spreadsheet.]
+
+## Skill Version(s):
+
+1.0.13 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

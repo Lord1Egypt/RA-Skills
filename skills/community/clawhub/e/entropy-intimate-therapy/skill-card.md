@@ -1,48 +1,65 @@
-## Description: <br>
-Applies entropy, cross-entropy, and KL-divergence metaphors to intimate-relationship teaching, case formulation, and supervised intervention design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language educational skill that maps entropy, KL divergence, and cross-entropy concepts to intimate relationship theory, case analysis, and supervised intervention planning.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-External users, educators, counselors, and students can use this skill to frame relationship dynamics with information-theory concepts, translate common counseling methods into entropy language, and structure non-emergency case analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Relationship-analysis output could be mistaken for clinical diagnosis, therapy, medical advice, or legal advice. <br>
-Mitigation: Use the skill as a teaching and structured-reflection aid; involve qualified professionals for clinical, medical, or legal decisions. <br>
-Risk: Crisis scenarios such as self-harm, domestic violence, child abuse, severe mental illness, or coercive betrayal require immediate safety handling. <br>
-Mitigation: Prioritize emergency resources, local support services, and qualified crisis intervention before returning to the entropy framework. <br>
-Risk: Information-theory analogies may be overread as empirically validated measurements. <br>
-Mitigation: Present entropy and cross-entropy formulas as conceptual scaffolding, not literal bit-level scores or standalone evidence. <br>
+## Use Case:
 
+External users, educators, and supervised counseling practitioners use this skill to explain relationship dynamics with information-theoretic metaphors, structure case analysis, and design non-emergency intervention plans. It is an educational framework, not a substitute for licensed therapy, clinical diagnosis, crisis response, medical advice, or legal advice.
 
-## Reference(s): <br>
-- [Concepts: Entropy](references/concepts-entropy.md) <br>
-- [Concepts: Cross-Entropy and KL Divergence](references/concepts-cross-entropy.md) <br>
-- [Three Relationship Entropies](references/three-entropies.md) <br>
-- [Eight p/q Pairings](references/pq-pairs.md) <br>
-- [Theory Mapping](references/theory-mapping.md) <br>
-- [Interventions](references/interventions.md) <br>
-- [Example Cases](references/cases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose, tables, and structured counseling-analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language responses by default; uses progressive disclosure and treats formulas as conceptual scaffolding rather than numeric measurements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Users may mistake the framework for licensed therapy, clinical diagnosis, or crisis response.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as educational and supervisory support only, and direct self-harm, violence, abuse, severe mental-health, medical, or legal situations to qualified local professionals or emergency resources.
+
+Risk: Information-theoretic formulas could be read as measurable clinical scores rather than analogies.
+
+Mitigation: State that entropy and cross-entropy are structuring metaphors in this skill, not validated numeric diagnostic measures.
+
+Risk: Case guidance could overgeneralize from examples or theory mappings.
+
+Mitigation: Use the skill's crisis screening, progressive disclosure, and case-specific p/q analysis before suggesting any intervention direction.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/junwugit/skills/entropy-intimate-therapy)
+- [Skill definition](artifact/SKILL.md)
+- [Entropy basics](artifact/references/concepts-entropy.md)
+- [Cross-entropy and KL divergence](artifact/references/concepts-cross-entropy.md)
+- [Three relationship entropies](artifact/references/three-entropies.md)
+- [Core p/q pairings](artifact/references/pq-pairs.md)
+- [Theory mapping](artifact/references/theory-mapping.md)
+- [Intervention toolbox](artifact/references/interventions.md)
+- [Case walkthroughs](artifact/references/cases.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown responses with structured explanations, tables, case readings, and safety caveats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses progressive disclosure and may route the agent to specific reference files for deeper explanations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

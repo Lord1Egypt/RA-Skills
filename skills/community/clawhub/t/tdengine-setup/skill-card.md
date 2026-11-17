@@ -1,41 +1,58 @@
-## Description: <br>
-Automates installation and configuration of TDengine 3.3.6.0, including download, installation, service startup, and basic database verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates setup guidance for TDengine 3.3.6.0, including download, installation, service startup, and basic database validation.
 
-## Publisher: <br>
-[johnnyhou327](https://clawhub.ai/user/johnnyhou327) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnyhou327](https://clawhub.ai/user/johnnyhou327)
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy a TDengine time-series database on Linux and verify that the service can list databases from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent database-service changes on the target machine. <br>
-Mitigation: Review the exact commands, confirm the target host, and avoid running on production unless intended. <br>
-Risk: A database service deployment can affect real data or credentials. <br>
-Mitigation: Use least-privilege credentials, maintain backups for real data, and know how to stop, disable, and uninstall the service before installation. <br>
+## Use Case:
 
+Developers and system administrators use this skill to prepare a Linux host for TDengine by following download, installation, service management, and basic validation steps.
 
-## Reference(s): <br>
-- [TDengine 3.3.6.0 Linux x64 server package](https://www.taosdata.com/assets-download/TDengine-server-3.3.6.0-Linux-x64.tar.gz) <br>
-- [ClawHub release page](https://clawhub.ai/johnnyhou327/tdengine-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Linux command-line tools: taos, systemctl, wget, and tar.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill directs users to run an external TDengine installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the downloaded package with a trusted checksum or signature and inspect the installer before using elevated privileges.
+
+Risk: The setup enables TDengine as a persistent system service.
+
+Mitigation: Use it only on a host intended to run TDengine and confirm how to stop and disable the service before proceeding.
+
+Risk: The setup may expose TDengine database ports 6030-6041.
+
+Mitigation: Restrict those ports to trusted networks only.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnnyhou327/skills/tdengine-setup)
+- [TDengine 3.3.6.0 Linux x64 server package](https://www.taosdata.com/assets-download/TDengine-server-3.3.6.0-Linux-x64.tar.gz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Linux command-line tools: taos, systemctl, wget, and tar.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

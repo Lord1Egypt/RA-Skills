@@ -1,147 +1,130 @@
 ---
 name: papi
-description: Complete WhatsApp automation API with microservices architecture. Send messages, interactive buttons, lists, carousels, polls, manage instances, groups, catalogs and webhooks. Features Admin Panel (free), Phone Calls, RCS Messaging, SMS, Virtual Numbers (Pro).
-metadata: {"openclaw":{"emoji":"📱","homepage":"https://papi.api.br","tags":["p-api","papi","whatsapp","automation","messaging","api"]}}
+version: 1.1.0
+description: "PAPI WhatsApp Cloud API - Envio e automação de mensagens WhatsApp (texto, PTT áudio de voz, mídias, botões interativos, enquetes, listas e webhooks)."
+metadata: {"openclaw":{"emoji":"📱","homepage":"https://papi.api.br","tags":["papi","whatsapp","messaging","audio-ptt","ai-agents"]}}
 ---
 
-# PAPI - WhatsApp Connections Hub
+# 📱 PAPI — WhatsApp Cloud API & Voice AI Engine
 
-![PAPI Logo](https://papi.api.br/logo-official.png)
-
-**The WhatsApp automation you've been waiting for.**
-
-Complete redesign with microservices architecture — modular, scalable, and independent.
-
-🌐 **Official Website:** https://papi.api.br  
-🤝 **Partner:** [Mundo Automatik](https://mundoautomatik.com/)
+> 🌐 **Plataforma Oficial:** [https://papi.api.br](https://papi.api.br)
+> 🚀 **Capacidades:** Disparo de mensagens de texto, notas de voz realistas (PTT), botões de resposta rápida, enquetes interativas, mídia HD, envio de contatos/localização e webhooks em tempo real.
 
 ---
 
-## 📑 Table of Contents
+## 🚀 Onboarding & Setup Rápido (Primeiro Uso)
 
-1. [Features](#-features)
-2. [Configuration](#%EF%B8%8F-configuration)
-3. [Authentication](#-authentication)
-4. [Main Endpoints](#-main-endpoints)
-5. [Detailed References](#-detailed-references)
-6. [Credits](#-credits)
+Ao utilizar a skill pela primeira vez ou quando as credenciais não estiverem configuradas:
 
----
+### 📋 Checklist de Credenciais
+- [ ] **1. Chave de API (`PAPI_API_KEY`)**:
+  - Obtenha seu token de acesso no painel de desenvolvedor em [https://papi.api.br](https://papi.api.br).
+- [ ] **2. Identificador da Instância (`PAPI_INSTANCE_ID`)**:
+  - Obtenha o identificador da sua instância pareada no painel PAPI (ex: `instancia_prod`).
+- [ ] **3. URL Base da API (`PAPI_BASE_URL`)**:
+  - Padrão oficial: `https://api.papi.api.br`
 
-## ✨ Features
-
-### 📊 Admin Panel (Free)
-- Multi-language interface (PT-BR, EN, ES)
-- Instance management
-- Real-time monitoring
-- Behavior configuration
-- Usage statistics
-
-### 🔥 Pro Features
-
-| Feature | Capabilities |
-|---------|--------------|
-| 📞 **Phone Calls** | Chip-based calls, WhatsApp calls, Extension system, Call management |
-| 💬 **RCS Messaging** | Rich media sending, Buttons & carousels, Read receipts, Typing indicator |
-| 📱 **Call Center** | Chip rotation (30 ports), Bulk SMS sending, Configurable rate limiting |
-| ✉️ **Professional SMS** | Individual/bulk sending, Smart chip rotation, Port configuration |
-| 🔢 **Virtual Numbers** | Instant purchase, Auto activation, Full management |
-
----
-
-## ⚙️ Configuration
-
-Before using, configure in TOOLS.md:
-
-```markdown
-### PAPI (WhatsApp)
-- Base URL: https://your-server.com
-- API Key: your-api-key
-- Default Instance: instance-name
-```
-
-## 🔐 Authentication
-
-All requests require the `x-api-key` header:
-
+### 🔧 Configuração de Ambiente
+Defina no seu `.env` ou exporte no terminal:
 ```bash
-curl -X GET "https://your-server.com/api/instances" \
-  -H "x-api-key: YOUR_KEY"
+export PAPI_API_KEY="sua_chave_papi_aqui"
+export PAPI_INSTANCE_ID="sua_instancia_aqui"
+export PAPI_BASE_URL="https://api.papi.api.br"
+```
+
+No Hermes / OpenClaw (`config.yaml`):
+```yaml
+env:
+  PAPI_API_KEY: "sua_chave_papi_aqui"
+  PAPI_INSTANCE_ID: "sua_instancia_aqui"
+  PAPI_BASE_URL: "https://api.papi.api.br"
+```
+
+### 🩺 Autodiagnóstico de Conectividade (Doctor)
+```bash
+curl -s "${PAPI_BASE_URL}/api/instances/${PAPI_INSTANCE_ID}/status" \
+  -H "x-api-key: ${PAPI_API_KEY}"
 ```
 
 ---
 
-## 📡 Main Endpoints
+## 📱 Formato de Destinatário (JID)
 
-### Instances
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/instances` | List all instances |
-| POST | `/api/instances` | Create instance `{"id": "name"}` |
-| GET | `/api/instances/:id/qr` | Get QR code |
-| GET | `/api/instances/:id/status` | Instance status |
-| DELETE | `/api/instances/:id` | Remove instance |
+- **Número Individual (Brasil - E.164):** `55DDNNNNNNNNN@s.whatsapp.net`
+  - Exemplo: `5527999999999@s.whatsapp.net`
+- **Grupos:** `ID_DO_GRUPO@g.us`
 
-### Send Messages
+---
 
-JID format: `5511999999999@s.whatsapp.net`
+## 🛠️ Métodos de Envio
 
-| Type | Endpoint | Required Fields |
-|------|----------|-----------------|
-| Text | `POST /send-text` | `jid`, `text` |
-| Image | `POST /send-image` | `jid`, `url` or `base64`, `caption` |
-| Video | `POST /send-video` | `jid`, `url` or `base64` |
-| Audio | `POST /send-audio` | `jid`, `url`, `ptt` |
-| Document | `POST /send-document` | `jid`, `url`, `filename` |
-| Location | `POST /send-location` | `jid`, `latitude`, `longitude` |
-| Contact | `POST /send-contact` | `jid`, `name`, `phone` |
-| Sticker | `POST /send-sticker` | `jid`, `url` |
-| Reaction | `POST /send-reaction` | `jid`, `messageId`, `emoji` |
+### 1. Mensagem de Texto
+```bash
+curl -X POST "${PAPI_BASE_URL}/api/instances/${PAPI_INSTANCE_ID}/send-text" \
+  -H "x-api-key: ${PAPI_API_KEY}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jid": "5527999999999@s.whatsapp.net",
+    "text": "Olá! Sua solicitação foi confirmada com sucesso. 🚀"
+  }'
+```
 
-### Interactive Messages
+### 2. Áudio / Nota de Voz PTT (Push-to-Talk)
+```bash
+curl -X POST "${PAPI_BASE_URL}/api/instances/${PAPI_INSTANCE_ID}/send-audio" \
+  -H "x-api-key: ${PAPI_API_KEY}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jid": "5527999999999@s.whatsapp.net",
+    "url": "https://seu-dominio.com/audio.mp3",
+    "ptt": true
+  }'
+```
 
-| Type | Endpoint | Description |
-|------|----------|-------------|
-| Buttons | `POST /send-buttons` | quick_reply, cta_url, cta_call, cta_copy |
-| List | `POST /send-list` | Menu with sections |
-| Carousel | `POST /send-carousel` | Sliding cards (mobile only) |
-| Poll | `POST /send-poll` | Voting up to 12 options |
+### 3. Imagem com Legenda
+```bash
+curl -X POST "${PAPI_BASE_URL}/api/instances/${PAPI_INSTANCE_ID}/send-image" \
+  -H "x-api-key: ${PAPI_API_KEY}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jid": "5527999999999@s.whatsapp.net",
+    "url": "https://seu-dominio.com/imagem.jpg",
+    "caption": "Segue o relatório atualizado 📊"
+  }'
+```
 
-### Groups
+### 4. Botões Interativos
+```bash
+curl -X POST "${PAPI_BASE_URL}/api/instances/${PAPI_INSTANCE_ID}/send-buttons" \
+  -H "x-api-key: ${PAPI_API_KEY}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jid": "5527999999999@s.whatsapp.net",
+    "text": "Como deseja prosseguir com o seu atendimento?",
+    "footer": "PAPI Cloud",
+    "buttons": [
+      {"type": "quick_reply", "displayText": "Falar com Consultor", "id": "btn_atendimento"},
+      {"type": "quick_reply", "displayText": "Ver Documentação", "id": "btn_docs"},
+      {"type": "cta_url", "displayText": "Acessar Portal", "url": "https://papi.api.br"}
+    ]
+  }'
+```
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/groups/create` | Create group |
-| GET | `/groups/:groupId/metadata` | Group info |
-| POST | `/groups/:groupId/participants` | Manage members (add/remove/promote/demote) |
-
-### Webhook
-
-```json
-POST /api/instances/:id/webhook
-{
-  "url": "https://your-server/webhook",
-  "enabled": true,
-  "events": ["messages", "status"]
-}
+### 5. Enquete Interativa
+```bash
+curl -X POST "${PAPI_BASE_URL}/api/instances/${PAPI_INSTANCE_ID}/send-poll" \
+  -H "x-api-key: ${PAPI_API_KEY}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jid": "5527999999999@s.whatsapp.net",
+    "name": "Qual horário prefere para nossa call técnica?",
+    "options": ["10:00 BRT", "14:30 BRT", "17:00 BRT"],
+    "selectableCount": 1
+  }'
 ```
 
 ---
 
-## 📚 Detailed References
-
-| File | Content |
-|------|---------|
-| `references/interactive.md` | Buttons, lists, carousel, polls examples |
-| `references/groups.md` | Group management |
-| `references/catalog.md` | Product catalog |
-| `references/integrations.md` | Typebot, Chatwoot integrations |
-
----
-
-## 👥 Credits
-
-**Developed by:** Pastorini  
-**Website:** https://papi.api.br  
-**Partner:** [Mundo Automatik](https://mundoautomatik.com/)  
-**Skill maintained by:** @rafacpti23
+## 🔒 Segurança e Privacidade
+* **Stateless Zero-Storage:** As mensagens trafegam diretamente entre a API PAPI e o WhatsApp.
+* **Segurança de Ponta a Ponta:** Suporte a verificação de assinatura HMAC-SHA256 em webhooks.

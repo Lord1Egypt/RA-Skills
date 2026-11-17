@@ -1,39 +1,56 @@
-## Description: <br>
-Scans Freelancer.com for active projects that match a user's skills, drafts personalized bid proposals, and tracks bid history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans Freelancer.com for projects matching a freelancer's skills, drafts personalized bid proposals, and helps track bidding history.
 
-## Publisher: <br>
-[27555402-spec](https://clawhub.ai/user/27555402-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[27555402-spec](https://clawhub.ai/user/27555402-spec)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Freelancers and external users use this skill to find relevant Freelancer.com projects, draft concise bid proposals, and maintain a bidding history.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Proposal drafts may contain inaccurate claims, unsuitable commitments, or details that should not be submitted unchanged.
+
+Mitigation: Review and edit each proposal before using it for a real bid.
+
+Risk: Search and drafting may use freelance profile details, project criteria, or project URLs provided by the user.
+
+Mitigation: Provide only information needed for the bid workflow and avoid secrets or unnecessary sensitive personal data.
+
+Risk: The local bids.md log may record project, budget, status, or profile-related information.
+
+Mitigation: Review log entries before saving them and store the workspace according to the sensitivity of the bidding history.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Freelancers and agents use this skill to find matching Freelancer.com projects, draft concise personalized proposals, estimate bid positioning, and record bid activity. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated proposals, bid prices, or account actions may be inaccurate or unwanted if submitted without review. <br>
-Mitigation: Review every proposal, price, and account action before submitting anything on Freelancer.com. <br>
-Risk: Bid history can be retained in the workspace through bids.md. <br>
-Mitigation: Inspect or delete bids.md when bid history should not be retained. <br>
+**Output Format:** [Markdown project summaries, bid proposal drafts, and optional bids.md log entries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May update a local bids.md bidding history log when requested.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with ranked project summaries, proposal drafts, and bid-history table entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append bid history to bids.md when the user asks to log submissions.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

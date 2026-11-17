@@ -1,41 +1,57 @@
-## Description: <br>
-Reads CSV or Excel data files and generates scatter plots from Result row values with optional Min and Max Limit reference lines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads CSV or Excel data and generates scatter plots from Result values with optional Min/Max Limit reference lines.
 
-## Publisher: <br>
-[matthewhb](https://clawhub.ai/user/matthewhb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[matthewhb](https://clawhub.ai/user/matthewhb)
 
-## Use Case: <br>
-Developers, engineers, and data analysts use this skill to turn structured CSV or Excel measurement data into scatter plot image files, including optional limit reference lines for quick visual inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency versions are specified with minimum bounds, so installations may drift over time. <br>
-Mitigation: Install dependencies from a trusted Python package source and pin versions or use a lock file when reproducible output matters. <br>
-Risk: Generated plot files may overwrite same-named files in the selected output directory. <br>
-Mitigation: Run the skill only with data files and output folders you intend it to access, and review the output directory before batch generation. <br>
+## Use Case:
 
+Developers and analysts use this skill to parse local CSV or Excel test data and produce scatter-plot image files for each item and column combination, including Min/Max Limit context when those rows are present.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/matthewhb/data-scatter-plot) <br>
-- [Publisher profile](https://clawhub.ai/user/matthewhb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Code, Configuration instructions] <br>
-**Output Format:** [PNG plot files and command-line or Python usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local .csv, .xls, and .xlsx files and writes generated plot files to a selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill reads selected CSV or Excel files and writes generated plot images to local storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an environment where the selected input files and configured output directory are approved for that data.
+
+Risk: Runtime dependencies are declared with lower-bound versions rather than pinned versions.
+
+Mitigation: Pin or lock pandas, matplotlib, openpyxl, and xlrd before production use.
+
+Risk: Plots depend on expected spreadsheet rows such as Result, Min Limit, and Max Limit being present and correctly formatted.
+
+Mitigation: Review generated plots against the source spreadsheet before using them for operational or quality decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/matthewhb/skills/data-scatter-plot)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, code, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; generated chart files are PNG by default.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local scatter-plot image files in the configured output directory; default output format is png.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Run on every heartbeat to summarize completed tasks and log them to a Proviras analytics dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run on every heartbeat to summarize completed tasks and log them to your analytics dashboard.
 
-## Publisher: <br>
-[proviras](https://clawhub.ai/user/proviras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[proviras](https://clawhub.ai/user/proviras)
 
-## Use Case: <br>
-Agent users and operators use this skill to record heartbeat-based task activity, model identifiers, skill usage, and agent relationships in a Proviras analytics dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Continuous heartbeat logging sends identifiable agent and task data to Proviras. <br>
-Mitigation: Install and enable the skill only where users have approved continuous analytics collection for the affected agents and tasks. <br>
-Risk: Parent and child agents can be persistently linked when Proviras environment variables are propagated. <br>
-Mitigation: Do not pass PROVIRAS_PARENT_ID or PROVIRAS_USER_ID to sub-agents unless all affected users have approved that tracking. <br>
-Risk: The skill has no built-in consent gate for cross-agent tracking. <br>
-Mitigation: Manage consent and environment-variable propagation outside the skill before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to record agent heartbeat activity, task summaries, outcomes, model identifiers, and skill usage in a Proviras analytics dashboard.
 
-## Reference(s): <br>
-- [Proviras Logger ClawHub Page](https://clawhub.ai/proviras/proviras-logger) <br>
-- [proviras Publisher Profile](https://clawhub.ai/user/proviras) <br>
-- [Payload Schema](references/payload-schema.md) <br>
-- [Configuration Reference](references/config.md) <br>
-- [Proviras Service](https://proviras.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Heartbeat status text plus JSON payloads submitted by shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads session memory and local agent configuration, then submits heartbeat and registration data to Proviras.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill sends identifiable agent activity, task summaries, model identifiers, and stable user or agent IDs to proviras.com on every heartbeat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after workspace-owner approval for continuous telemetry, and avoid use around confidential work unless retention, deletion, and data handling terms are already agreed.
+
+Risk: The skill can create persistent parent-child linkage across spawned agents when parent identifiers are propagated.
+
+Mitigation: Control propagation of PROVIRAS_PARENT_ID and PROVIRAS_USER_ID, and do not pass cross-agent identifiers into spawned agents unless that tracking is intended and approved.
+
+Risk: The skill stores a registered agentId locally in references/config.md.
+
+Mitigation: Review generated configuration before sharing or publishing workspaces, and remove local identifiers where they are not meant to travel with the artifact.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/proviras/skills/proviras-logger)
+- [Proviras publisher profile](https://clawhub.ai/user/proviras)
+- [Proviras service](https://proviras.com)
+- [Payload schema](references/payload-schema.md)
+- [Agent config](references/config.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Structured JSON payloads sent through shell commands, with a short text status on success]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads heartbeat memory and local agent configuration; posts analytics data to Proviras when invoked.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

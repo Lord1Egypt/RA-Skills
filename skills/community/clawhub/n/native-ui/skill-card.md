@@ -1,54 +1,69 @@
-## Description: <br>
-Building native mobile UIs with Expo Router and React Native. Covers routing, navigation, styling, native controls, animations, and platform conventions following Apple Human Interface Guidelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Building native mobile UIs with Expo Router and React Native, covering routing, navigation, styling, native controls, animations, and platform conventions following Apple Human Interface Guidelines.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and engineers use this skill to build Expo Router and React Native mobile apps with native-feeling routing, tabs, controls, animation, media, storage, and iOS-style interface patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated changes may restructure routes or remove old route files in ways that alter navigation behavior. <br>
-Mitigation: Review generated diffs before accepting route deletions or large navigation rewrites. <br>
-Risk: Some guidance may require package installs, native builds, or Expo modules outside Expo Go. <br>
-Mitigation: Approve package installs and native builds deliberately, and try Expo Go first when the requested feature supports it. <br>
-Risk: Examples for camera, microphone, media library, storage, or SecureStore can add sensitive capability surfaces to an app. <br>
-Mitigation: Add permissioned media and storage code only when the app feature clearly requires it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Native UI release](https://clawhub.ai/wpank/native-ui) <br>
-- [Route Structure](references/route-structure.md) <br>
-- [Native Tabs](references/tabs.md) <br>
-- [Icons (SF Symbols)](references/icons.md) <br>
-- [Native Controls](references/controls.md) <br>
-- [Visual Effects](references/visual-effects.md) <br>
-- [Animations](references/animations.md) <br>
-- [Search](references/search.md) <br>
-- [CSS Gradients](references/gradients.md) <br>
-- [Media](references/media.md) <br>
-- [Storage](references/storage.md) <br>
-- [Toolbars and headers](references/toolbar-and-headers.md) <br>
-- [Form Sheets in Expo Router](references/form-sheet.md) <br>
-- [WebGPU & Three.js for Expo](references/webgpu-three.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to build Expo Router and React Native mobile applications with native-style navigation, controls, animations, media handling, storage, and platform conventions.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript, TSX, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide edits to Expo Router and React Native app files, native package choices, navigation structure, permissions, storage, media, animation, and UI configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Skill installation or updates could drift from the reviewed release.
+
+Mitigation: Install from a pinned ClawHub version or a reviewed commit when possible.
+
+Risk: Generated media features may request camera or microphone permissions too early or without clear user intent.
+
+Mitigation: Review generated media code and request camera or microphone access only after a clear user action.
+
+Risk: WebGPU or custom native graphics guidance can add unnecessary native-build complexity.
+
+Mitigation: Use the WebGPU and native-build guidance only for projects that actually need custom native graphics support.
+
+## Reference(s):
+
+- [Native UI ClawHub Skill Page](https://clawhub.ai/wpank/skills/native-ui)
+- [Route Structure](references/route-structure.md)
+- [Tabs](references/tabs.md)
+- [Icons](references/icons.md)
+- [Controls](references/controls.md)
+- [Visual Effects](references/visual-effects.md)
+- [Animations](references/animations.md)
+- [Search](references/search.md)
+- [Gradients](references/gradients.md)
+- [Media](references/media.md)
+- [Storage](references/storage.md)
+- [WebGPU and Three.js](references/webgpu-three.md)
+- [Toolbar and Headers](references/toolbar-and-headers.md)
+- [Form Sheet](references/form-sheet.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline TypeScript, TSX, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing implementation guidance for Expo Router and React Native projects.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

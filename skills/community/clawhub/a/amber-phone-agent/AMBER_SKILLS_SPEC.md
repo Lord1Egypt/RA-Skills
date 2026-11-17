@@ -332,6 +332,8 @@ Allows callers to leave a message for the operator. The message is:
 - Recipient is determined by the operator's configuration — never by caller input
 - Confirmation is required before sending
 - Message content is sanitized (max length enforced, control characters stripped)
+- Tell callers before collection that the message and callback details will be saved locally and delivered to the operator.
+- Store only the details needed for follow-up; avoid sensitive personal, medical, financial, legal, or unrelated details unless the caller explicitly asks to include them.
 
 ## Delivery Failure Handling
 - If messaging delivery fails, the call log entry is marked with `delivery_failed: true`

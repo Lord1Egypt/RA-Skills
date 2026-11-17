@@ -1,42 +1,57 @@
-## Description: <br>
-Feishu Media Delivery helps agents send existing local images and MP4 videos to Feishu/Lark users using the correct image and media message flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delivers already-generated images and videos to Feishu/Lark users and chats using Feishu image and media message flows.
 
-## Publisher: <br>
-[zhy2015](https://clawhub.ai/user/zhy2015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhy2015](https://clawhub.ai/user/zhy2015)
 
-## Use Case: <br>
-Developers and multimodal agents use this skill after generating an image or video locally, when the result must be delivered to a Feishu/Lark user or chat without using the wrong message type. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu app credentials are required to upload and send media. <br>
-Mitigation: Protect the app secret, keep Feishu app permissions narrowly scoped, and avoid exposing credential values in prompts, logs, or shared files. <br>
-Risk: The scripts send user-supplied local files to a recipient open_id. <br>
-Mitigation: Verify the recipient open_id and local file path before execution, and confirm delivery using the returned Feishu response rather than local process success alone. <br>
-Risk: Dependency behavior can change if package versions are resolved differently. <br>
-Mitigation: Install with the bundled lockfile and review dependency updates before deployment. <br>
+## Use Case:
 
+Developers and multimodal agent operators use this skill to deliver existing image and MP4 outputs to Feishu/Lark users without guessing the required image or media message protocol.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhy2015/feishu-media-delivery) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local files, Feishu app credentials, and recipient open_id values; successful delivery should be confirmed from Feishu API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The helper scripts can upload arbitrary readable local files to a caller-supplied Feishu recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not allow untrusted prompts to choose recipient IDs or file paths; restrict execution to an approved generated-media directory and trusted recipients.
+
+Risk: The Feishu app secret is read from an environment-selected or default local secret file.
+
+Mitigation: Protect the secret file, scope the Feishu app permissions, and keep secret-path configuration outside untrusted agent control.
+
+Risk: The Node dependency set should be reviewed before production use.
+
+Mitigation: Pin or update dependencies and review the lockfile as part of release approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhy2015/skills/feishu-media-delivery)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash command snippets; helper scripts return JSON Feishu responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Feishu app credentials and a trusted recipient open_id plus local image or MP4 path.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

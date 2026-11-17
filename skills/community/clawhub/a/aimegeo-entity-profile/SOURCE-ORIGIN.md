@@ -1,0 +1,7 @@
+# Source and rights record — aimegeo-entity-profile
+
+- SkillHub distributor: `user_068e9c11`; package slug `aimegeo-entity-profile`; source release 1.0.1.
+- Downloaded package archive: `aimegeo-entity-profile-skillhub-1.0.1.zip`; SHA-256 `afc668ec1d4b643a29386c6472e97fe2503191466001354188d290762277c730`. The source zip and extraction are not included in this distribution.
+- SkillHub upstream listing: https://skillhub.cn/skills/user_2c0f1e77/entity-optimizer. Source package records Copyright 2024 Aaron He Zhu and says it adapted entity discovery, canonical identity, sameAs, disambiguation, signal-review and priority-action workflows from `entity-optimizer` 16.0.1, Apache-2.0, at https://github.com/aaron-he-zhu/aaron-marketing-skills. Original inspected archive SHA-256 `da2c5d2f734222eb3fa801490fb96716db1d8875f7700ed004731f94a771385b`; no separate upstream NOTICE was present.
+- The original SkillHub `NOTICE.md` identifies `SKILL.md` and the signal/type reference as adapted workflow material; it identifies validator code, remaining docs and fixtures as new/self-authored. Candidate 1.0.2 removes the upstream-derived workflow documents and the fixed signal categories/action prioritization contract. It retains the declared new validator and authored examples, rewritten documentation and a smaller data contract.
+- MIT-0 applies only to `candidate-1.0.2/`. The retained Apache-2.0 source archive is provenance only, not part of the candidate and not relicensed.

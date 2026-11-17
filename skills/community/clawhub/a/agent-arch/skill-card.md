@@ -1,38 +1,52 @@
-## Description: <br>
-Agent loops, memory, tools, and safety boundaries. Use when designing AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured guidance for agent loops, memory, tools, and safety boundaries when designing AI agents.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codenova58](https://clawhub.ai/user/codenova58)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and teams designing AI agents use this skill to structure architecture discussions around goals, memory and state, planning loops, validation, safety monitoring, and operational follow-through.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Architecture guidance may be applied without enough context about goals, constraints, or failure modes.
+
+Mitigation: Use the skill's clarification stage before making decisions and document assumptions, trade-offs, and verification steps.
+
+Risk: Guidance-only output can be mistaken for validated implementation or operational approval.
+
+Mitigation: Review recommendations with project owners and validate changes through tests, peer review, monitoring, and rollback planning before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and teams use this skill to structure AI agent architecture work, including goals, memory and state, validation, safety monitoring, and operational follow-through. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture guidance may be incomplete or mismatched to a user's environment if important constraints are missing. <br>
-Mitigation: Use the skill's clarification and verification stages to gather context, state trade-offs, and review recommendations before relying on them. <br>
+**Output Format:** [Markdown or conversational guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/agent-arch) <br>
+**Other Properties Related to Output:** [Guidance-only output; the skill does not request code execution, credentials, persistence, or broad system access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with staged checklists and concise recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only skill; it does not run commands, access private data, or require privileged access.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,65 @@
-## Description: <br>
-Interact with the Sage Chia blockchain wallet via RPC for XCH transactions, CAT tokens, NFTs, DIDs, offers, options, coin management, and wallet configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sage Wallet lets agents interact with the Sage Chia blockchain wallet over authenticated RPC for XCH transactions, CAT tokens, NFTs, DIDs, offers, options, coin management, and wallet configuration.
 
-## Publisher: <br>
-[Koba42Corp](https://clawhub.ai/user/Koba42Corp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[koba42corp](https://clawhub.ai/user/koba42corp)
 
-## Use Case: <br>
-Developers and wallet operators use this skill to operate a local Sage Chia wallet through natural language or slash commands, including balance checks, transfers, token and NFT operations, offers, WalletConnect actions, and wallet configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate real cryptocurrency assets through wallet RPC actions. <br>
-Mitigation: Use testnet or a low-value wallet first and require explicit review before sends, mints, offers, signing, broadcasts, key deletion, database deletion, or mnemonic retrieval. <br>
-Risk: Wallet secrets, certificate/key files, and mnemonic material can be exposed if handled carelessly. <br>
-Mitigation: Keep cert/key and mnemonic material private, avoid logging secrets, and use only trusted local RPC endpoints. <br>
-Risk: The config loader uses eval-based shell behavior. <br>
-Mitigation: Fix or avoid the eval-based config loader before deployment in sensitive environments. <br>
+## Use Case:
 
+External users and developers use this skill to operate a Sage wallet through agent-mediated slash commands or natural language. It is intended for wallet administration, asset transfers, offer workflows, NFT and DID operations, WalletConnect signing, and network or sync monitoring.
 
-## Reference(s): <br>
-- [Sage RPC Endpoints Quick Reference](artifact/references/endpoints.md) <br>
-- [Sage Wallet project](https://github.com/xch-dev/sage) <br>
-- [Chia Developer Documentation](https://docs.chia.net/) <br>
-- [ClawHub Sage Wallet release](https://clawhub.ai/Koba42Corp/sage-wallet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may reference local Sage RPC endpoints, certificate paths, wallet fingerprints, and transaction payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can control real cryptocurrency assets through authenticated wallet RPC, including transfers, signing, offer acceptance, deletion, and database operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a test wallet first and require manual review of address, amount, fee, network, fingerprint, and asset identifiers before signing, broadcasting, accepting offers, deleting data, or performing database maintenance.
+
+Risk: Remote RPC configuration can expose wallet operations to an endpoint the user does not fully trust.
+
+Mitigation: Prefer the default local RPC endpoint and configure remote RPC only when the endpoint and certificate paths are explicitly trusted.
+
+Risk: Mnemonic and key-management endpoints can expose or alter sensitive wallet secrets.
+
+Mitigation: Do not request mnemonics through chat or logs, avoid plaintext storage, and treat key import, export, deletion, and mnemonic generation as high-risk operations requiring explicit user confirmation.
+
+Risk: Some documented transaction examples use auto-submit behavior, which can sign and broadcast in one call.
+
+Mitigation: Preview transaction details when possible and default to non-auto-submit workflows for high-value, unfamiliar, or multi-asset transactions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/koba42corp/skills/sage-wallet)
+- [Sage RPC Endpoints Quick Reference](references/endpoints.md)
+- [Sage Wallet GitHub](https://github.com/xch-dev/sage)
+- [Chia Developer Documentation](https://docs.chia.net/)
+- [Clawdbot Documentation](https://docs.clawd.bot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with slash commands, JSON payload examples, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include authenticated RPC command examples and configuration values for Sage wallet endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

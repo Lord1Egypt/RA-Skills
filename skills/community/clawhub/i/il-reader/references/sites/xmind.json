@@ -1,0 +1,191 @@
+{
+  "version": "2.4.0",
+  "source_id": "xmind",
+  "status": "blocked",
+  "checked_at": "2026-10-09T09:01:55.421Z",
+  "entry": {
+    "url": "https://xmind.app/",
+    "final_url": "https://xmind.com/",
+    "title": "Xmind - Mind Map Maker & AI Brainstorming Tool",
+    "status": "redirect_identity_pending",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:01:55.421Z",
+    "identity": {
+      "declared_name": "XMind",
+      "hostname": "xmind.com",
+      "domain_matches": false
+    },
+    "links": [
+      {
+        "text": "Help center",
+        "href": "https://xmind.com/help",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Cookie Settings",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Cookie Settings",
+        "exact": true
+      },
+      "observed_url": "https://xmind.com/",
+      "observed_at": "2026-10-09T09:01:53.096Z"
+    },
+    {
+      "tag": "select",
+      "type": null,
+      "text": "Select Language",
+      "label": "Select Language",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": ":R5lalddelp:",
+      "css": "#\\:R5lalddelp\\:",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#\\:R5lalddelp\\:"
+      },
+      "observed_url": "https://xmind.com/",
+      "observed_at": "2026-10-09T09:01:53.096Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "xmind:citation-export",
+      "source_id": "xmind",
+      "task_kind": "citation-export",
+      "status": "blocked",
+      "parameters": [
+        "record_identifier",
+        "citation_style",
+        "export_format"
+      ],
+      "instructions": [
+        "打开本题记录的引用/导出入口，读取当前支持的格式和样式；不得沿用示例引文。"
+      ],
+      "transitions": {},
+      "entry_url": "https://xmind.app/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Cookie Settings",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Cookie Settings",
+            "exact": true
+          },
+          "observed_url": "https://xmind.com/",
+          "observed_at": "2026-10-09T09:01:53.096Z"
+        },
+        {
+          "tag": "select",
+          "type": null,
+          "text": "Select Language",
+          "label": "Select Language",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": ":R5lalddelp:",
+          "css": "#\\:R5lalddelp\\:",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#\\:R5lalddelp\\:"
+          },
+          "observed_url": "https://xmind.com/",
+          "observed_at": "2026-10-09T09:01:53.096Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "redirect_identity_pending",
+      "detail": "入口重定向到目录声明范围外，需根据发布机构核对新身份，未自动授予权威来源身份。"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": "xmind",
+    "quiz_entries": [],
+    "example_ids": [
+      "2025-M38-Q1"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:01:55.421Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/xmind-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/xmind-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

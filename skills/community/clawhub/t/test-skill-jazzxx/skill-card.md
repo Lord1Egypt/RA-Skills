@@ -1,38 +1,54 @@
-## Description: <br>
-A comprehensive test skill for ClawHub publish validation with detailed documentation and practical examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive test skill for ClawHub publish validation with detailed documentation and practical examples.
 
-## Publisher: <br>
-[lalawgwg99](https://clawhub.ai/user/lalawgwg99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lalawgwg99](https://clawhub.ai/user/lalawgwg99)
 
-## Use Case: <br>
-Developers and skill publishers use this documentation-only skill to validate a ClawHub publishing workflow and confirm that skill metadata, examples, configuration notes, support links, and licensing are represented correctly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The current release is documentation-only, but future versions could add scripts, credential handling, automation, or network access that changes the risk profile. <br>
-Mitigation: Verify the publisher and rescan future versions before deployment, especially if executable behavior or sensitive access is added. <br>
+## Use Case:
 
+Developers and skill publishers use this documentation-only test skill to validate ClawHub publish workflows, metadata, installation notes, and usage examples.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/example/test-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable behavior or sensitive access is described in the authoritative security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0-beta.2 (source: server release metadata) <br>
+Risk: Users may expect substantive agent functionality from a package that is mainly a placeholder or validation example.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set expectations that the release provides documentation and publish-validation examples rather than operational automation.
+
+Risk: The skill references README.md for configuration details, but that file is not included in the inspected artifact.
+
+Mitigation: Review the packaged files before use and add complete configuration documentation if this skill is expanded beyond validation.
+
+## Reference(s):
+
+- [Skill homepage](https://github.com/example/test-skill)
+- [ClawHub skill page](https://clawhub.ai/lalawgwg99/skills/test-skill-jazzxx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable behavior in the inspected artifact.]
+
+## Skill Version(s):
+
+1.0.0-beta.2 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

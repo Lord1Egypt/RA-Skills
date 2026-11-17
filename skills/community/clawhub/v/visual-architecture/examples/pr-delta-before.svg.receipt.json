@@ -1,0 +1,50 @@
+{
+  "artifactKind": "svg",
+  "generatedAt": "2026-09-01T00:41:50.817654+00:00",
+  "input": {
+    "bytes": 567,
+    "path": "examples/pr-delta-before.json",
+    "sha256": "2a2c996954d8a1da2aa618aa41bc64936cca5a4523874f655b210137193d937b"
+  },
+  "mode": "architecture",
+  "output": {
+    "bytes": 4564,
+    "path": "examples/pr-delta-before.svg",
+    "sha256": "0517b0ec0bb599401399cbf3590efbcd4c0ee1ffc0790f0b9a92ecc6c13c9e5f"
+  },
+  "tool": "visual-architecture",
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "edgeKinds": [
+        "memory-write",
+        "primary-data"
+      ],
+      "edges": 2,
+      "evidenceItems": 0,
+      "mode": "architecture",
+      "nodeKinds": [
+        "memory",
+        "service"
+      ],
+      "nodes": 3,
+      "quality": {
+        "checks": [],
+        "rating": "excellent",
+        "routeCrossings": 0,
+        "score": 100
+      },
+      "sourceBacked": false,
+      "sourceConfidence": {
+        "high": 0,
+        "low": 0,
+        "medium": 0,
+        "unspecified": 0
+      },
+      "theme": "classic"
+    },
+    "ok": true,
+    "warnings": []
+  },
+  "version": "1.8.0"
+}

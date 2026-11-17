@@ -1,41 +1,58 @@
-## Description: <br>
-Web search via Tavily API for looking up sources, finding links, and returning concise results with optional short answer summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search via Tavily API (alternative to Brave). Use when the user asks to search the web / look up sources / find links and Brave web_search is unavailable or undesired. Returns a small set of relevant results (title, url, snippet) and can optionally include short answer summaries.
 
-## Publisher: <br>
-[Pazzilivo](https://clawhub.ai/user/Pazzilivo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pazzilivo](https://clawhub.ai/user/pazzilivo)
 
-## Use Case: <br>
-Developers and agents use this skill to run Tavily-backed web searches when Brave web_search is unavailable or undesired. It returns compact search results as JSON, a Brave-like schema, or Markdown for quick source review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Tavily and may contain sensitive information if the agent or user includes it in a query. <br>
-Mitigation: Avoid searches containing secrets, private customer data, or sensitive personal information. <br>
-Risk: The skill requires a Tavily API key, and multi-key rotation records a small local index under ~/.openclaw/. <br>
-Mitigation: Install only when Tavily API key use is acceptable and review local credential and rotation-file handling before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to run Tavily web searches when web search is requested, especially when Brave search is unavailable or undesired. It returns concise titles, URLs, snippets, and optional short answer summaries for follow-up review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Pazzilivo/tavily-search-with-multi-key) <br>
-- [Tavily search API endpoint](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON, Brave-compatible JSON, or Markdown search-result lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns title, URL, and snippet/content fields; max results are capped from 1 to 10 and default to 5; optional answer summaries can be included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Search queries and the configured Tavily API key are sent to Tavily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only queries and text approved to leave the environment; avoid secrets, private internal URLs, and proprietary content unless sharing with Tavily is allowed.
+
+Risk: The skill can read a Tavily API key from environment variables or a local ~/.openclaw/.env file.
+
+Mitigation: Store keys in approved secret-management or restricted local configuration, limit file access, and rotate credentials if exposure is suspected.
+
+Risk: Returned snippets and optional summaries may be incomplete for decisions that require source-level accuracy.
+
+Mitigation: Use returned URLs for source review before relying on results in sensitive, external, legal, medical, or financial contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pazzilivo/skills/tavily-search-with-multi-key)
+- [Tavily Search API endpoint](https://api.tavily.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON search results, Brave-like JSON, or compact Markdown list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to concise search results and caps requested results between 1 and 10.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

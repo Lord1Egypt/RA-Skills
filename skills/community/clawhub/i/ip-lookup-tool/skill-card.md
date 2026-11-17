@@ -1,44 +1,58 @@
-## Description: <br>
-Looks up the current public egress IP address, approximate city location including a best-effort Chinese city name, and ISP or autonomous system information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up the current public egress IP address, approximate city, country, and ISP for the running agent session, including a best-effort Chinese city name when coordinates are available.
 
-## Publisher: <br>
-[daguniang](https://clawhub.ai/user/daguniang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daguniang](https://clawhub.ai/user/daguniang)
 
-## Use Case: <br>
-External users and developers use this skill when they need an agent to answer questions about the current session's public IP address, approximate city or country, and ISP. It helps distinguish the public egress IP from local private network addresses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public IP address and approximate location lookup requests are sent to third-party IP and geocoding providers. <br>
-Mitigation: Use the skill only when the user intends to perform an IP or location lookup, and make clear that those providers can observe the request. <br>
-Risk: IP geolocation can reflect a VPN, proxy, or network egress point rather than the user's precise physical location. <br>
-Mitigation: Present the result as the public egress IP and broad location only, without treating it as a precise device location. <br>
+## Use Case:
 
+External users and agents use this skill to answer questions about the current session's public internet-facing IP address and approximate network location. It is intended to report the public egress IP, not a private LAN address.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daguniang/ip-lookup-tool) <br>
-- [ipinfo.io JSON endpoint](https://ipinfo.io/json) <br>
-- [ifconfig.co JSON endpoint](https://ifconfig.co/json) <br>
-- [IP.SB GeoIP endpoint](https://api.ip.sb/geoip) <br>
-- [OpenStreetMap Nominatim reverse geocoding](https://nominatim.openstreetmap.org/reverse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON returned by a Node.js command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON output includes public IP, city, optional Chinese city name, region, country, ISP or autonomous system, source, timestamp, and raw provider data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Third-party IP and geocoding services may receive the user's public IP address, request timing, and approximate location lookup data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only when that disclosure is acceptable, and disclose the contacted services before use in privacy-sensitive environments.
+
+Risk: IP-based geolocation can be approximate or misleading, especially for VPNs, proxies, carrier-grade NAT, or cloud egress addresses.
+
+Mitigation: Present location as approximate public egress information and avoid treating it as the user's exact physical location.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daguniang/skills/ip-lookup-tool)
+- [Publisher Profile](https://clawhub.ai/user/daguniang)
+- [ipinfo.io JSON endpoint](https://ipinfo.io/json)
+- [ifconfig.co JSON endpoint](https://ifconfig.co/json)
+- [ip.sb GeoIP endpoint](https://api.ip.sb/geoip)
+- [OpenStreetMap Nominatim reverse geocoding endpoint](https://nominatim.openstreetmap.org/reverse)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text summary or JSON from a Node.js command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [JSON output may include ip, city, cityZh, region, country, org, loc, source, fetchedAt, and raw provider data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

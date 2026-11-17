@@ -1,45 +1,60 @@
-## Description: <br>
-Reviews clinical trial informed consent forms for compliance, completeness, and ethical reasonableness against GCP, ICH-GCP, FDA, and Chinese regulatory expectations, then produces a structured Markdown review report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+临床试验知情同意书(ICF)全面审查 - 基于GCP/ICH-GCP/FDA/中国法规，对知情同意书进行合规性、完整性、伦理合理性审查，输出结构化审查报告。
 
-## Publisher: <br>
-[kenlcj](https://clawhub.ai/user/kenlcj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenlcj](https://clawhub.ai/user/kenlcj)
 
-## Use Case: <br>
-Clinical research, IRB/EC, compliance, and study operations users use this skill to review informed consent forms against required consent elements and identify missing clauses, non-compliant wording, ethical risks, required revisions, and suggested improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Release metadata includes unrelated wallet, purchase, crypto, and credential capability tags that could be mistaken for actual permissions. <br>
-Mitigation: Confirm the install environment does not grant permissions based only on those tags and rely on the clean security verdict and source review before use. <br>
-Risk: Informed consent forms may contain patient, subject, sponsor, or study-sensitive information. <br>
-Mitigation: Process real consent documents only in environments approved by the user's organization and applicable clinical research privacy controls. <br>
-Risk: The PDF conversion helper depends on a local markitdown installation and creates derived Markdown for review. <br>
-Mitigation: Use a trusted local markitdown installation and review the converted Markdown before relying on the generated compliance report. <br>
+## Use Case:
 
+IRB/EC reviewers, clinical research teams, and compliance staff use this skill to check informed consent forms against GCP, ICH-GCP, FDA, China regulatory, and ethics requirements. It produces a structured Chinese-language review report with pass/fail checks, deficiencies, risk points, and revision suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kenlcj/icf-review) <br>
-- [FDA Informed Consent Guidance 2023](REFERENCES/FDA_Informed_Consent_Guidance_2023.md) <br>
-- [ICF Elements Checklist](REFERENCES/ICF_Elements_Checklist.md) <br>
-- [Sample ICF Report](EXAMPLES/Sample_ICF_Report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown review report with checklist tables, findings, risk notes, and revision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local shell workflow guidance for converting PDF consent forms to Markdown before review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may produce incorrect, incomplete, or jurisdictionally inappropriate ICF review conclusions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use qualified human reviewers to verify all clinical, legal, IRB, and regulatory conclusions before decisions are made.
+
+Risk: The workflow may be mistaken for final ethics committee, legal, medical, or regulatory approval.
+
+Mitigation: Treat outputs as drafting and checking assistance only, not as final approval or professional advice.
+
+Risk: The skill expects Chinese-language review output and may not match users expecting another language or local review format.
+
+Mitigation: Confirm language, jurisdiction, and reporting format requirements before relying on the generated review report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kenlcj/skills/icf-review)
+- [FDA Informed Consent Guidance 2023](artifact/REFERENCES/FDA_Informed_Consent_Guidance_2023.md)
+- [ICF Elements Checklist](artifact/REFERENCES/ICF_Elements_Checklist.md)
+- [Sample ICF Report](artifact/EXAMPLES/Sample_ICF_Report.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown review report with checklist tables and optional shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; conclusions require qualified human review before clinical-trial, ethics-committee, legal, medical, or regulatory decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

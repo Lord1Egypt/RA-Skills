@@ -1,44 +1,60 @@
-## Description: <br>
-Progressive memory management with categorized files, indexed retrieval, and survival-merge evolution to help agents preserve critical context after compaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Soul Dreaming provides progressive memory management with categorized files, indexed retrieval, and survival-merge evolution to reduce context loss after compaction.
 
-## Publisher: <br>
-[xuexian1211](https://clawhub.ai/user/xuexian1211) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuexian1211](https://clawhub.ai/user/xuexian1211)
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain workspace memory files, promote durable decisions into categorized records, and recover context across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead agents to store sensitive workspace notes in plaintext memory files. <br>
-Mitigation: Review every memory write and prohibit passwords, tokens, keys, session cookies, private connection strings, and precise credential locations. <br>
-Risk: The skill includes maintenance behavior that can delete, merge, archive, or otherwise alter memory records. <br>
-Mitigation: Require explicit confirmation before deletion, merging, archival, heartbeat, or cron-style maintenance. <br>
+## Use Case:
 
+Developers and agents use this skill to preserve important decisions, discoveries, pending work, and workspace context across compaction or session boundaries through structured memory files.
 
-## Reference(s): <br>
-- [Memory Lifecycle](references/memory-lifecycle.md) <br>
-- [Anti-Amnesia Checklist](references/anti-amnesia-checklist.md) <br>
-- [Mount Strategy](references/mount-strategy.md) <br>
-- [Survival Merge Protocol](references/survival-merge.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/xuexian1211/soul-dreaming) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with file templates and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and maintains local memory files such as INDEX.md, daily journals, categorized notes, and archive records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent workspace memory can capture sensitive project history, personal preferences, security-sensitive configuration, or credential locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in before memory writes, keep memory files out of source control and broad search indexes, prohibit secrets and credential locations, and redact security-sensitive details.
+
+Risk: Memory cleanup, merge, archive, or deletion cycles can remove useful context or preserve stale records that affect later agent behavior.
+
+Mitigation: Review or back up memory files before cleanup, merge, archive, or deletion, and use the index and fitness metadata to check whether entries are current.
+
+Risk: Incorrect or misleading memory entries can steer future work toward obsolete decisions or repeated mistakes.
+
+Mitigation: Review memory content before relying on it for consequential work, and mark conflicts or superseded records clearly before future sessions consume them.
+
+## Reference(s):
+
+- [Memory Lifecycle](references/memory-lifecycle.md)
+- [Anti-Amnesia Checklist](references/anti-amnesia-checklist.md)
+- [Mount Strategy](references/mount-strategy.md)
+- [Survival Merge Protocol](references/survival-merge.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions and templates for workspace memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a structured memory workflow with categorized files, journals, an index, and archive guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

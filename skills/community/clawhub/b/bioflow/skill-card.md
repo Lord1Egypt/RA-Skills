@@ -1,41 +1,54 @@
-## Description: <br>
-Quick guide for BioFlow backend API usage and integration, covering signup/login, file upload/download, token balance queries, task submission, and result retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quick guide for BioFlow backend API usage and integration, covering signup/login, file upload/download, token balance query, task submission, and result retrieval.
 
-## Publisher: <br>
-[ashipiling](https://clawhub.ai/user/ashipiling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ashipiling](https://clawhub.ai/user/ashipiling)
 
-## Use Case: <br>
-Developers and integration agents use this skill to explain or execute the BioFlow API path from account setup through dataset handling, token balance checks, PTMPred task submission, polling, and result download. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API examples may send credentials, datasets, or task submissions to a BioFlow service and could consume account credits. <br>
-Mitigation: Verify the API host, use only intended credentials and datasets, and confirm task submissions before execution. <br>
-Risk: Endpoint examples may drift from the currently deployed BioFlow backend. <br>
-Mitigation: Confirm the auth flow, endpoint paths, and required parameters against the active BioFlow service before automating calls. <br>
+## Use Case:
 
+Developers and agents use this skill to produce a compact BioFlow API quickstart covering account setup, authentication, dataset transfer, token balance checks, PTMPred task submission, polling, and result download.
 
-## Reference(s): <br>
-- [BioFlow Project Snapshot](references/current-auth-map.md) <br>
-- [BioFlow API Call Flow](references/api-call-flow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, API request examples, configuration] <br>
-**Output Format:** [Markdown with concise endpoint notes and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Bearer-token API examples, required parameters, and key response fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes examples for login tokens, dataset upload, balance checks, and chargeable task submission.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review real hosts, credentials, files, and job requests before allowing an agent to execute the API calls.
+
+Risk: API guidance may become stale if BioFlow endpoints or authentication behavior change.
+
+Mitigation: Check the current API host documentation before using generated requests in production workflows.
+
+## Reference(s):
+
+- [BioFlow API Call Flow](references/api-call-flow.md)
+- [BioFlow Project Snapshot](references/current-auth-map.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, API Calls, Configuration instructions]
+
+**Output Format:** [Markdown with endpoint summaries and minimal request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise responses focused on one demo algorithm path and current Bearer token flow]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -9,7 +9,7 @@ These endpoints publish to Ghost through YouMind. The caller only sends a YouMin
 All requests require:
 
 ```text
-x-api-key: sk-ym-xxxxxxxxxxxxxxxxxxxx
+x-api-key: REDACTED-SECRET
 Content-Type: application/json
 ```
 

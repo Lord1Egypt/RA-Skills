@@ -1,45 +1,54 @@
-## Description: <br>
-Provision a dedicated inbox for your AI agent and manage email safely via thrd.email. Includes instant onboarding, inbound polling, reply/send (idempotent + policy-gated), Proof of Reasoning for cold outbound, Human Claiming for verification, and trust/delivery tracking. Does not persist API keys to disk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provision a dedicated inbox for your AI agent and manage email safely via thrd.email. Includes instant onboarding, inbound polling, reply/send (idempotent + policy-gated), Proof of Reasoning for cold outbound, Human Claiming for verification, and trust/delivery tracking. Does not persist API keys to disk.
 
-## Publisher: <br>
-[SergioRico1](https://clawhub.ai/user/SergioRico1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sergiorico1](https://clawhub.ai/user/sergiorico1)
 
-## Use Case: <br>
-Developers and agent operators use this skill to provision a dedicated Thrd email inbox, poll inbound events, send or reply to email with policy gates, and route billing or verification steps to a responsible human. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill operates an email inbox and can perform outbound email actions. <br>
-Mitigation: Require human approval for outbound email workflows and follow the skill's policy-gated send, reply, Proof of Reasoning, and Prompt Shield acknowledgement steps. <br>
-Risk: THRD_API_KEY grants access to the Thrd inbox tools if exposed. <br>
-Mitigation: Store THRD_API_KEY in a secret manager, avoid writing it to disk, and reveal onboarding keys only in a trusted terminal. <br>
-Risk: Billing checkout and verification flows can affect account state or payment setup. <br>
-Mitigation: Forward Stripe checkout and human-claiming URLs to the responsible human owner instead of completing those flows autonomously. <br>
-Risk: Long-running polling can continue processing inbound events without continuous supervision. <br>
-Mitigation: Supervise the polling daemon, prefer signed wake webhooks when available, and review cursor-file behavior before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Thrd API Reference](references/api.md) <br>
-- [Thrd Email](https://thrd.email) <br>
-- [ClawHub Skill Page](https://clawhub.ai/SergioRico1/thrd) <br>
+## Use Case:
 
+Developers and agent operators use this skill to provision a dedicated THRD email inbox for an AI agent, poll inbound mail, send or reply to messages, manage verification flows, and monitor usage or delivery status.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, API Calls] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and THRD_API_KEY for authenticated tools; onboarding redacts API keys unless explicitly requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A custom poll daemon base URL can receive the THRD_API_KEY during email polling.
+
+Mitigation: Use the default api.thrd.email endpoint unless the alternate endpoint has been reviewed and trusted; run the skill in an isolated environment and keep THRD_API_KEY in a secret manager.
+
+Risk: Authenticated email operations can send, reply to, or poll agent inbox content.
+
+Mitigation: Install only when the THRD service is trusted, review outbound actions before use, monitor monthly usage, and rely on the documented Prompt Shield and security acknowledgement flow for high-risk inbound context.
+
+## Reference(s):
+
+- [Thrd API Reference](references/api.md)
+- [THRD website](https://thrd.email)
+- [ClawHub skill page](https://clawhub.ai/sergiorico1/skills/thrd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and THRD_API_KEY for authenticated email operations; onboarding can emit a redacted API key by default.]
+
+## Skill Version(s):
+
+1.4.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

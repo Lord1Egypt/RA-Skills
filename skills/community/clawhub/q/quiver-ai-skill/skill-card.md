@@ -1,42 +1,61 @@
-## Description: <br>
-Generate SVGs from text prompts and convert raster images (PNG/JPG/WebP) to SVG using QuiverAI's AI models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate SVGs from text prompts and convert raster images (PNG/JPG/WebP) to SVG using QuiverAI's AI models.
 
-## Publisher: <br>
-[lolieatapple](https://clawhub.ai/user/lolieatapple) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lolieatapple](https://clawhub.ai/user/lolieatapple)
 
-## Use Case: <br>
-Developers, designers, and other external users use this skill to generate SVG icons, illustrations, and logos from prompts or to vectorize PNG, JPG, and WebP images with the QuiverAI CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, private URLs, proprietary designs, or sensitive images may be sent to the external QuiverAI service. <br>
-Mitigation: Use the skill only with content approved for processing by QuiverAI, and avoid confidential prompts, sensitive images, and private design assets unless that external use is acceptable. <br>
-Risk: Generated SVG output paths can overwrite existing files if filenames are chosen carelessly. <br>
-Mitigation: Choose deliberate output filenames and inspect the generated file path before running the CLI command. <br>
-Risk: The skill depends on a separately installed QuiverAI CLI and API key configuration. <br>
-Mitigation: Install the CLI from a trusted source, configure the API key intentionally, and run the skill only in workspaces where that dependency is expected. <br>
+## Use Case:
 
+External users and developers use this skill to generate SVG assets from text prompts or vectorize raster images for icons, illustrations, and logos.
 
-## Reference(s): <br>
-- [QuiverAI Skill on ClawHub](https://clawhub.ai/lolieatapple/quiver-ai-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated SVG file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the quiver CLI to save generated or vectorized SVG files to explicit output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow depends on installing and trusting the QuiverAI CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI before use and prefer a pinned or locally installed version.
+
+Risk: API key setup may expose a QuiverAI key through local configuration or shell history.
+
+Mitigation: Avoid pasting secrets into command history and manage the key with the least local exposure available.
+
+Risk: Prompts, reference images, URLs, and raster files may be sent to QuiverAI services.
+
+Mitigation: Do not process sensitive private files or private URLs without explicit approval.
+
+Risk: Pass-through arguments and output paths can affect command behavior and file writes.
+
+Mitigation: Review command arguments and confirm output paths before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lolieatapple/skills/quiver-ai-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and SVG file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs the agent to save generated or vectorized SVGs to .svg files, supports multiple variants, and reports the output path, file size, and a brief summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

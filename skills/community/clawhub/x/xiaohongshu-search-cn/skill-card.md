@@ -1,39 +1,54 @@
-## Description: <br>
-Searches Xiaohongshu public notes through a logged-in Chrome browser session, extracts note metadata and content, and summarizes consumer trend signals for market research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书内容搜索工具。通过 browser 工具操控已登录的 Chrome，搜索小红书公开笔记，提取标题、正文、话题标签、点赞数，分析消费趋势。用于市场调研中的消费者趋势研究。
 
-## Publisher: <br>
-[dxarch1980](https://clawhub.ai/user/dxarch1980) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxarch1980](https://clawhub.ai/user/dxarch1980)
 
-## Use Case: <br>
-Market researchers and business planners use this skill to collect public Xiaohongshu note titles, authors, engagement counts, body text, and hashtags, then turn those observations into consumer trend insights for commercial research reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A browser-controlled logged-in Xiaohongshu session could expose account data or let the agent take unintended account actions. <br>
-Mitigation: Use a separate browser profile or research account, keep the agent on public search, result, and note pages, and require explicit approval for messages, settings, posting, follows, likes, or other account actions. <br>
+## Use Case:
 
+External users and market researchers use this skill to search public Xiaohongshu notes through a logged-in browser session, extract note metadata and content snippets, and synthesize consumer trend insights for commercial market research reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dxarch1980/xiaohongshu-search-cn) <br>
-- [Xiaohongshu search results example](https://www.xiaohongshu.com/search_result?keyword=2025消费趋势&source=web_explore_feed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with browser command examples and structured trend summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires browser automation access to a logged-in Chrome session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill controls a logged-in Xiaohongshu browser session to read public note content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the remote debugging browser session limited to this task and close or isolate the session after use.
+
+Risk: Searches or collected snippets may expose sensitive or personal context if the browser account or queries are not constrained.
+
+Mitigation: Avoid sensitive or personal searches and review collected snippets before using them in reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dxarch1980/skills/xiaohongshu-search-cn)
+- [Xiaohongshu search results](https://www.xiaohongshu.com/search_result?keyword=<keyword>&source=web_explore_feed)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with browser commands and structured trend summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include public note titles, authors, links, engagement counts, topic tags, excerpts, and synthesized trend insights.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

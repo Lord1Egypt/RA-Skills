@@ -23,6 +23,7 @@ Big8 - AI 玄学助手
 import sys
 import json
 import random
+import os
 from datetime import date
 
 
@@ -260,16 +261,51 @@ GUA_LIST = [
     ("火水未济", "䷿", "亨", "未完成", "待"),
 ]
 
+# ── 每日一卦状态文件 ──
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+_GUA_STATE_FILE = os.path.join(_SCRIPT_DIR, ".big8_gua_state.json")
+
+
+def _load_gua_state() -> dict:
+    """从状态文件加载每日一卦记录"""
+    if os.path.exists(_GUA_STATE_FILE):
+        try:
+            with open(_GUA_STATE_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except (json.JSONDecodeError, OSError):
+            pass
+    return {}
+
+
+def _save_gua_state(state: dict):
+    """保存每日一卦记录到状态文件"""
+    with open(_GUA_STATE_FILE, "w", encoding="utf-8") as f:
+        json.dump(state, f, ensure_ascii=False)
+
+
 def random_gua() -> dict:
-    """随机起一卦"""
+    """每日一卦 — 同一天返回同一卦"""
+    today = date.today().isoformat()  # "YYYY-MM-DD"
+    state = _load_gua_state()
+
+    if state.get("date") == today and "gua" in state:
+        # 今天已经有过卦了，返回同一个
+        return state["gua"]
+
+    # 新的一天，随机起一卦并保存
     name, symbol, judgment, meaning, keyword = random.choice(GUA_LIST)
-    return {
+    gua = {
         "gua_name": name,
         "gua_symbol": symbol,
         "gua_judgment": judgment,
         "gua_meaning": meaning,
         "gua_keyword": keyword,
+        "date": today,
     }
+    state["date"] = today
+    state["gua"] = gua
+    _save_gua_state(state)
+    return gua
 
 
 # ─── 老黄历 ───

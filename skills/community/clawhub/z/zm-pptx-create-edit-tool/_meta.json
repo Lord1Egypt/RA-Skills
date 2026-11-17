@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn716ewtc7z7a76wre4bsckgas8398j1",
+  "ownerId": "local-zhumeng-openclaw",
   "slug": "zm-pptx-create-edit-tool",
+  "displayName": "ZM PPTX 创建与编辑工具",
   "version": "0.1.0",
-  "publishedAt": 1782241930069
+  "status": "local",
+  "createdAt": "2026-06-23",
+  "description": "创建、检查和编辑 PPTX 文件，处理版式、模板、占位符、备注、图表和基础视觉 QA。"
 }

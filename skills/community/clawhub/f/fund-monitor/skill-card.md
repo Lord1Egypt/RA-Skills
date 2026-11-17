@@ -1,45 +1,61 @@
-## Description: <br>
-Monitors A-share public mutual fund net values, daily changes, batches, holdings, and daily fund summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries China A-share public fund net values and daily changes, supports batch fund monitoring, and can summarize portfolio performance.
 
-## Publisher: <br>
-[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel)
 
-## Use Case: <br>
-External users can query current fund net values and daily percentage changes, run batch checks, estimate holdings performance, and produce daily fund summaries. The skill is intended for A-share off-exchange public mutual funds and depends on network data from Eastmoney. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes network calls to Eastmoney for fund data, so results may be delayed, unavailable, or affected by upstream changes. <br>
-Mitigation: Treat fund data as informational, verify important values against an authoritative financial source, and expect lookup failures or rate limits. <br>
-Risk: Helper scripts can publish financial summaries to a fixed Feishu document. <br>
-Mitigation: Run Feishu helper scripts only when document publishing is intended and the destination document has been reviewed. <br>
-Risk: Bundled Feishu credentials and document tokens should be considered exposed. <br>
-Mitigation: Rotate or replace the bundled credentials before legitimate use and avoid distributing real secrets in skill artifacts. <br>
+## Use Case:
 
+External users and developers use this skill to query individual or batches of China A-share public funds, monitor daily price movements, estimate portfolio performance, and prepare fund-report summaries.
 
-## Reference(s): <br>
-- [ClawHub fund-monitor release page](https://clawhub.ai/hongjiahao371-pixel/fund-monitor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/hongjiahao371-pixel) <br>
-- [Eastmoney fund data endpoint](https://fund.eastmoney.com/pingzhongdata/{fund_code}.js) <br>
-- [Feishu document append API](https://open.feishu.cn/open-apis/docx/v1/documents/blocks/append) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text fund reports and Markdown financial summaries, with shell commands for running bundled scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Network-dependent output may include fund prices, daily changes, holding estimates, and Feishu document update results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Hardcoded Feishu credentials and a fixed document destination may expose data or give unintended write access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or rotate the embedded credentials before use and require users to configure their own Feishu app and document target.
+
+Risk: Sensitive portfolio summaries can be published outside the local environment.
+
+Mitigation: Review the export destination before running report-update scripts and prefer local-only monitoring unless publication is explicitly intended.
+
+Risk: Fund data may be delayed and batch queries may be rate-limited.
+
+Mitigation: Treat generated summaries as monitoring aids, verify values against authoritative sources, and avoid relying on the skill alone for financial decisions.
+
+## Reference(s):
+
+- [ClawHub fund-monitor skill page](https://clawhub.ai/hongjiahao371-pixel/skills/fund-monitor)
+- [Eastmoney fund data endpoint](https://fund.eastmoney.com/pingzhongdata/{fund_code}.js)
+- [Eastmoney fund page](https://fund.eastmoney.com/{fund_code}.html)
+- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu document append API](https://open.feishu.cn/open-apis/docx/v1/documents/blocks/append)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Terminal text summaries and Markdown report content, with optional shell commands for running bundled scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include fund net values, daily changes, portfolio gain/loss estimates, and Feishu report content.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

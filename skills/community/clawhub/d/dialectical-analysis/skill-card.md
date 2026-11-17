@@ -1,45 +1,58 @@
-## Description: <br>
-辩证分析 uses pro, con, and arbitrator agent roles to generate multilingual business feasibility analysis through structured debate, optional knowledge search, and multi-dimensional scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates bilingual dialectical business analysis by coordinating constructive, critical, and arbitrator perspectives to produce structured feasibility and recommendation reports.
 
-## Publisher: <br>
-[philonis](https://clawhub.ai/user/philonis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[philonis](https://clawhub.ai/user/philonis)
 
-## Use Case: <br>
-Developers, business analysts, and strategy teams use this skill to evaluate business decisions by staging constructive and critical debate, summarizing consensus and disagreement, and producing actionable recommendations. It is suited to market-entry, product, finance, legal, and operational feasibility questions where assumptions need to be challenged. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business topics and constraints may be sent to Tavily, Brave, or DuckDuckGo when knowledge search is enabled. <br>
-Mitigation: Use only topics suitable for external search providers, disable or modify search for confidential work, and use dedicated API keys. <br>
-Risk: Generated local workspace files may retain sensitive strategy, finance, market-entry, or client information. <br>
-Mitigation: Periodically delete generated workspace files when retention matters and review the skill before use on confidential analysis. <br>
+## Use Case:
 
+Business analysts, founders, strategy teams, and agents use this skill to stress-test a business topic through pro/con debate, optional knowledge enhancement, multi-dimensional scoring, and a synthesized recommendation report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/philonis/dialectical-analysis) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Multi-dimensional analysis framework](artifact/prompts/multi_dimensional.md) <br>
-- [V2 report template](artifact/templates/v2_report.md) <br>
-- [Tavily Search API](https://tavily.com) <br>
-- [Brave Search API](https://brave.com/search/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, structured JSON debate records, and CLI usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs match the user's input language and may create local workspace files for debate state, agent rounds, arbitrator summaries, and final reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: release evidence) <br>
+Risk: External search can disclose business topics, constraints, or other sensitive planning context to search providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable search by default in confidential environments and require explicit user consent before sending analysis inputs to Tavily, Brave, or DuckDuckGo.
+
+Risk: A crafted session ID can cause workspace files to be written outside the intended skill workspace.
+
+Mitigation: Validate session IDs against a strict safe-character pattern and enforce that resolved output paths remain under the skill workspace.
+
+Risk: The security verdict is suspicious for confidential business use.
+
+Mitigation: Review and patch the search and session-path behaviors before installing the skill in business environments that handle non-public information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/philonis/skills/dialectical-analysis)
+- [Publisher profile](https://clawhub.ai/user/philonis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and JSON debate state, with CLI commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Matches the user's input language and may include optional search-derived context when enabled.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

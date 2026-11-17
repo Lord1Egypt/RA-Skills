@@ -1,42 +1,57 @@
-## Description: <br>
-Finds lowest prices for Pincode 500081 without freezing. Optimized for memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds lowest prices for pincode 500081 in Hyderabad while limiting platform searches to reduce browser memory usage.
 
-## Publisher: <br>
-[sparshkhandelwal28](https://clawhub.ai/user/sparshkhandelwal28) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sparshkhandelwal28](https://clawhub.ai/user/sparshkhandelwal28)
 
-## Use Case: <br>
-External users in Hyderabad use this skill to compare grocery and shopping prices for pincode 500081 across supported platforms, then receive a checkout handoff for manual payment approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Hyderabad, India (pincode 500081) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can navigate checkout flows and add selected items to merchant carts. <br>
-Mitigation: Require explicit user selection before cart actions and keep manual payment confirmation outside the agent. <br>
-Risk: Checkout screenshots or totals may be sent through Telegram. <br>
-Mitigation: Confirm the Telegram recipient and screenshot content before sending, and avoid logged-in merchant accounts or sensitive delivery details unless the user explicitly wants that workflow. <br>
-Risk: Price or item extraction can be stale, incomplete, or wrong when shopping sites time out or change layout. <br>
-Mitigation: Show timeouts clearly in the final table and have the user verify item, quantity, delivery address, and total on the checkout page before payment. <br>
+## Use Case:
 
+External users use this shopping assistant to compare grocery and commerce prices for Hyderabad pincode 500081 and receive a Markdown summary before choosing whether to proceed to checkout. If asked to buy, the skill prepares the cart but requires the user to complete payment manually.
 
-## Reference(s): <br>
-- [Hyderabad Shopper on ClawHub](https://clawhub.ai/sparshkhandelwal28/hyderabad-shopper) <br>
+### Deployment Geography for Use:
 
+Hyderabad, India (pincode 500081)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown price table with checkout handoff text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May open shopping sites, add selected items to carts, pause before payment, and send checkout screenshots or totals through Telegram.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can prepare carts and send checkout screenshots through Telegram, which may expose order, account, or delivery details outside the shopping site.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if external Telegram handoff is expected, require explicit approval before sending screenshots, and review checkout content before sharing.
+
+Risk: The package contains a hardcoded full delivery address in metadata.
+
+Mitigation: Remove the full address from the package or replace it with user-provided runtime location data before distribution.
+
+Risk: Checkout automation may add items and navigate to the final payment screen.
+
+Mitigation: Keep the documented human-in-the-loop pause and do not allow the agent to click payment or order confirmation controls.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/sparshkhandelwal28/skills/hyderabad-shopper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown table with checkout handoff text when purchase flow is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Searches priority platforms one at a time, reports timeouts, and pauses before payment confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn751cs05f46j016xa7q3519hs83gke6",
+  "name": "a2a-e2ee-encryption",
   "slug": "a2a-e2ee-encryption",
   "version": "1.0.0",
-  "publishedAt": 1774483935395
+  "description": "End-to-end encryption utilities for secure A2A (Agent-to-Agent) communication. Key generation, message encryption/decryption, and key management.",
+  "author": "jpengcheng523-netizen",
+  "tags": ["security", "encryption", "a2a", "e2ee", "cryptography"],
+  "license": "MIT"
 }

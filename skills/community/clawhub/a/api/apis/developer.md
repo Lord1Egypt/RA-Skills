@@ -2,21 +2,22 @@
 
 | API | Line |
 |-----|------|
-| GitHub | 2 |
-| GitLab | 97 |
-| Bitbucket | 169 |
-| Vercel | 243 |
-| Netlify | 342 |
-| Railway | 411 |
-| Render | 490 |
-| Fly.io | 560 |
-| DigitalOcean | 644 |
-| Heroku | 723 |
-| Cloudflare | 804 |
-| CircleCI | 899 |
-| PagerDuty | 982 |
-| LaunchDarkly | 1074 |
-| Statsig | 1226 |
+| GitHub | 24 |
+| GitLab | 119 |
+| Bitbucket | 191 |
+| Vercel | 265 |
+| Netlify | 364 |
+| Railway | 433 |
+| Render | 512 |
+| Fly.io | 582 |
+| DigitalOcean | 666 |
+| Heroku | 745 |
+| Cloudflare | 826 |
+| CircleCI | 921 |
+| PagerDuty | 1004 |
+| LaunchDarkly | 1096 |
+| Split (Harness Feature Flags) | 1169 |
+| Statsig | 1248 |
 
 ---
 

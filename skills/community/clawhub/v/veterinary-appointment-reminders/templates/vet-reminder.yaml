@@ -1,0 +1,13 @@
+# Veterinary Appointment Reminders - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+clinic_name: ""
+clinic_phone: ""
+clinic_address: ""
+pet_name: ""
+owner_first_name: ""
+appointment_date: ""
+appointment_time: ""
+service_type: ""
+prep_instructions:
+  - ""
+cancel_policy: ""

@@ -7,6 +7,7 @@
  */
 
 const fs = require("fs");
+const os = require("os");
 const path = require("path");
 
 const BASE_URL = "https://api.topeasychina.com:6443/TPAiAgentSkill";
@@ -29,7 +30,9 @@ function saveResult(companyName, json) {
   const ts = new Date().toISOString().slice(0, 19).replace(/[:-]/g, "");
   const safeName = companyName.replace(/[^a-zA-Z0-9\u4e00-\u9fa5_-]/g, "_").slice(0, 60) || "company";
   const fileName = `easy_search_company_name_${safeName}_${ts}.json`;
-  const filePath = path.join(process.cwd(), fileName);
+  const outputDir = path.join(os.tmpdir(), "ora-contact-pro");
+  fs.mkdirSync(outputDir, { recursive: true });
+  const filePath = path.join(outputDir, fileName);
   fs.writeFileSync(filePath, JSON.stringify(json, null, 2), "utf-8");
   return { fileName, filePath };
 }
@@ -57,6 +60,7 @@ async function main() {
   const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
   try {
+    console.log("注意: 这将读取本地 OraAgent.key 并向外部服务发送查询，请确保你已获得授权并适用于合规场景。" );
     const response = await fetch(url, { method: "GET", headers, signal: controller.signal });
     const text = await response.text();
     let body;

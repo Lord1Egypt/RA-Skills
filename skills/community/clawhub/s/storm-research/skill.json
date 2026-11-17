@@ -1,0 +1,22 @@
+{
+  "slug": "storm-research",
+  "title": "STORM Research",
+  "category": "content",
+  "summary": "Builds a multi-perspective research map and evidence plan before content drafting.",
+  "keywords": [
+    "research",
+    "storm",
+    "perspectives",
+    "evidence plan"
+  ],
+  "user_needs": [
+    "explore a topic before writing",
+    "find conflicts and blind spots",
+    "prepare evidence gathering questions"
+  ],
+  "source_dir": "skills/content/storm-research",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

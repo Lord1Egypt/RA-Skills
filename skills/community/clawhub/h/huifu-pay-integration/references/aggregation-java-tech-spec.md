@@ -81,7 +81,7 @@ SDK 自动使用汇付 RSA 公钥验证响应签名，验签失败时抛出 `Bas
 - **报文形态**：交易类回调通常提交 `sign` 和 `resp_data` 字段，业务字段位于 `resp_data`
 - **响应要求**：HTTP 200，body 返回 `RECV_ORD_ID_` + req_seq_id（5 秒内）
 - **重试策略**：超时未响应最多重试 3 次
-- **幂等键**：以 `hf_seq_id` 为幂等键，防止重复处理
+- **幂等键**：以 `hf_seq_id` 为最简幂等键，防止重复处理（完整口径见 `references/shared-async-notify.md`，建议复合键）
 
 以下示例为流程片段。`HttpServletRequest` 在 Spring Boot 2.x 使用 `javax.servlet.*`，在 3.x 使用 `jakarta.servlet.*`；`huifuPublicKey` 的注入方式可直接参考 `references/aggregation-async-webhook.md` 中的完整类示例。
 
@@ -143,17 +143,14 @@ SDK 内置 Apache HttpClient 连接池，默认配置：
 可通过 MerConfig 自定义超时：
 
 ```java
-merConfig.setCustomConnectTimeout(30000);
-merConfig.setCustomSocketTimeout(30000);
-merConfig.setCustomConnectionRequestTimeout(40000);
+merConfig.setCustomConnectTimeout("30000");
+merConfig.setCustomSocketTimeout("30000");
+merConfig.setCustomConnectionRequestTimeout("40000");
 ```
 
 ## 重试策略
 
-SDK 内置重试机制：
-- 最多重试 3 次
-- 可重试场景：`NoHttpResponseException`、非实体请求
-- 不重试场景：SSL 错误、Socket 超时、SSL 握手失败
+SDK 内置 HTTP 处理器最多形成 3 次总尝试，即至多 2 次重试；带实体的支付 POST 请求不自动重试。`NoHttpResponseException` 等条件只适用于处理器允许的非实体请求，不能解释成支付业务自动重试。SSL 错误、Socket 超时和 SSL 握手失败不重试；任何网络不确定结果都先按原请求标识查单，不得另造流水重提。
 
 ## API 版本
 

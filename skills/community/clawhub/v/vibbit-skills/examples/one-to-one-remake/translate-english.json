@@ -1,0 +1,20 @@
+{
+  "auto_translate": true,
+  "source_language": "zh-CN",
+  "target_language": "en",
+  "translation_style": "Natural speech; preserve meaning and proper names.",
+  "persona_mode": "voice-only",
+  "subtitle_enabled": true,
+  "lip_sync_enabled": true,
+  "remove_subtitles_enabled": false,
+  "items": [
+    {
+      "source_video": {
+        "url": "https://example.com/replaced-video-with-source-speech.mp4"
+      },
+      "target_languages": [
+        "en"
+      ]
+    }
+  ]
+}

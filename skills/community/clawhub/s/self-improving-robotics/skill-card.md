@@ -1,45 +1,60 @@
-## Description: <br>
-Captures robotics autonomy failures, operational incidents, and engineering learnings to enable continuous improvement across perception, localization, planning, control, simulation, safety, and hardware integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures robotics incidents, autonomy failures, and engineering learnings in persistent logs to support safer, repeatable improvement.
 
-## Publisher: <br>
-[jose-compu](https://clawhub.ai/user/jose-compu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jose-compu](https://clawhub.ai/user/jose-compu)
 
-## Use Case: <br>
-Developers and robotics engineers use this skill to capture autonomy incidents, operational learnings, and feature requests across localization, planning, control, sensor fusion, hardware integration, safety, simulation, and power or thermal constraints. It also guides promotion of recurring patterns into checklists, playbooks, runbooks, or agent guidance files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent robotics learning files and promoted guidance can influence future agent behavior. <br>
-Mitigation: Review entries and require human approval before writing to SOUL.md, AGENTS.md, TOOLS.md, safety checklists, playbooks, runbooks, or extracted skills. <br>
-Risk: Broad automatic hooks can add reminders or react to events beyond the intended robotics workflow. <br>
-Mitigation: Prefer project-level hook setup, avoid global hooks, replace empty matchers with robotics-specific patterns, deduplicate repeated events, and rate-limit reminders. <br>
-Risk: Learning logs or hook inputs may contain sensitive telemetry, logs, stack traces, or infrastructure details. <br>
-Mitigation: Redact secrets, private keys, sensitive endpoints, and raw command output before recording or promoting incident details. <br>
+## Use Case:
 
+Robotics developers and engineers use this skill to document localization, planning, control, sensor, hardware, and safety incidents; track recurring failures; and propose reviewed improvements to operational guidance.
 
-## Reference(s): <br>
-- [Self-Improving Robotics release page](https://clawhub.ai/jose-compu/self-improving-robotics) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [Entry Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with file templates, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update persistent learning logs and reminder hook configuration when the user opts in.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Persistent incident logs could retain sensitive telemetry or infrastructure details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact telemetry, secrets, and infrastructure details before logging; use only a robotics workspace where persistent logs are wanted.
+
+Risk: Optional hooks can trigger unwanted reminders or inspect tool output.
+
+Mitigation: Keep hooks project-scoped and leave PostToolUse disabled unless output-term detection is explicitly needed.
+
+Risk: Unreviewed learnings could become unsafe agent instructions or reusable skills.
+
+Mitigation: Require an approved, reviewed diff before promoting entries into agent memory, prompt documents, hooks, or new skills.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/jose-compu/skills/self-improving-robotics)
+- [OpenClaw integration](references/openclaw-integration.md)
+- [Hook setup](references/hooks-setup.md)
+- [Logging examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown files, Guidance, Shell commands]
+
+**Output Format:** [Markdown entries and instructions with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Project-local learning logs and optional reviewed checklists or reusable skills]
+
+## Skill Version(s):
+
+1.1.2 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

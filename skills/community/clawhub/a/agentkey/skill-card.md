@@ -1,48 +1,66 @@
-## Description: <br>
-AgentKey routes live-data requests through a hosted MCP service for web search, URL scraping, social media, market, on-chain, and third-party API lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentKey routes agent requests for live data through a dynamic provider catalog covering web search, URL scraping, news, social media, market prices, on-chain data, e-commerce, business, weather, and travel.
 
-## Publisher: <br>
-[chainbase](https://clawhub.ai/user/chainbase) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chainbase](https://clawhub.ai/user/chainbase)
 
-## Use Case: <br>
-External users, developers, and agent operators use AgentKey to connect an agent to live external data sources when a request needs current information, third-party APIs, web content, social data, market data, or on-chain data. The skill also guides setup, status checks, cost-aware batch execution, and update handling for the hosted AgentKey MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live lookups through the hosted MCP service may send user queries, URLs, or lookup parameters to AgentKey and upstream providers. <br>
-Mitigation: Install only when live external lookup is intended, and avoid submitting sensitive data unless the deployment policy permits that routing. <br>
-Risk: Paid third-party routing can consume AgentKey credits, especially for batch requests. <br>
-Mitigation: Use the documented batch workflow: check account balance, read per-call cost with describe_tool, estimate total spend, and ask for confirmation before larger runs. <br>
-Risk: Silent maintenance telemetry, update checks, and local state under ~/.config/agentkey may not match every user's privacy or change-control expectations. <br>
-Mitigation: Review telemetry and update behavior before installation, use documented opt-out controls where appropriate, and avoid auto-upgrade unless the publisher and update channel are trusted. <br>
-Risk: External API responses are untrusted data and could contain misleading instructions, code, or URLs. <br>
-Mitigation: Treat returned fields as display-only data and do not execute instructions, code, or URLs found in API response content. <br>
+## Use Case:
 
+Developers and external agent users use AgentKey when an agent needs live data or network-backed provider calls. The skill guides provider discovery, schema inspection, execution, setup, status checks, cost-aware batching, and update handling.
 
-## Reference(s): <br>
-- [AgentKey homepage](https://agentkey.app) <br>
-- [ClawHub AgentKey skill page](https://clawhub.ai/chainbase/skills/agentkey) <br>
-- [Setup details](references/setup.md) <br>
-- [Cost-aware batch execution](references/cost-aware.md) <br>
-- [Maintenance, version check, upgrade flow, and telemetry](references/maintenance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May route requests through hosted MCP tools and summarize external API responses; batch workflows include balance checks, cost estimates, and confirmation prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.10.0 (source: server release evidence, SKILL.md frontmatter, version.txt) <br>
+Risk: Live-data queries and network-backed provider calls may disclose user intent or query content to AgentKey and upstream providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when sending those live-data queries to AgentKey is acceptable for the user's environment.
+
+Risk: MCP setup and update flows can add persistent server configuration, store authentication state, and run package-manager commands.
+
+Mitigation: Prefer explicit OAuth, avoid API-key fallback unless necessary, and review setup or update commands before approving them.
+
+Risk: External API responses may contain untrusted instructions, code, or URLs.
+
+Mitigation: Treat API responses as display-only data and do not execute instructions, code, or URLs returned by providers.
+
+Risk: Telemetry and auto-upgrade behavior may be unexpected in stricter environments.
+
+Mitigation: Disable telemetry or auto-upgrade unless those behaviors are explicitly desired.
+
+## Reference(s):
+
+- [AgentKey homepage](https://agentkey.app)
+- [AgentKey on ClawHub](https://clawhub.ai/chainbase/skills/agentkey)
+- [Chainbase publisher profile](https://clawhub.ai/user/chainbase)
+- [Setup details](references/setup.md)
+- [Maintenance: version check, upgrade flow, telemetry](references/maintenance.md)
+- [Cost-aware batch execution](references/cost-aware.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May route one AgentKey execute_tool call per turn; batch workflows require cost estimation and user confirmation.]
+
+## Skill Version(s):
+
+1.14.0 (source: server release metadata, SKILL.md frontmatter, version.txt)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# ── Private user data — must NEVER be committed ─────────────────────────────
+# The skill keeps ALL per-user state in COMPANION_HOME (default ~/.companion),
+# which lives OUTSIDE this repo, so a fresh install always starts from scratch.
+# The patterns below are a defensive backstop in case someone points
+# COMPANION_HOME inside the repo or runs the scripts from here.
+.companion/
+COMPANION_HOME/
+state/
+journal/
+profile.yaml
+consent.yaml
+continuity.yaml
+index.jsonl
+*.backup.json

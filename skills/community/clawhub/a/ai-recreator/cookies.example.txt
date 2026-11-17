@@ -1,0 +1,12 @@
+# Netscape HTTP Cookie File
+# 从浏览器导出抖音 cookies 后放入此文件
+# 导��方法：
+#   1. Chrome 安装 "Get cookies.txt LOCALLY" 扩展
+#   2. 登录 https://www.douyin.com/
+#   3. 导出 cookies.txt
+#   4. 替换本文件
+# 
+# 本文件已添加到 .gitignore 和 .dockerignore，不会泄露
+# 格式示例（不要直接使用，需从浏览器导出真实 cookie）：
+# .douyin.com	TRUE	/	FALSE	1735689600	passport_csrf_token	xxxx
+# .douyin.com	TRUE	/	TRUE	1735689600	sessionid	xxxx

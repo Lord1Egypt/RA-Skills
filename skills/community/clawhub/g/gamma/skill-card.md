@@ -1,40 +1,53 @@
-## Description: <br>
-Generate AI-powered presentations, documents, and social posts using the Gamma.app API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI-powered presentations, documents, and social posts using Gamma.app API.
 
-## Publisher: <br>
-[lucassynnott](https://clawhub.ai/user/lucassynnott) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lucassynnott](https://clawhub.ai/user/lucassynnott)
 
-## Use Case: <br>
-External users and developers use this skill to generate Gamma presentations, documents, and social posts from provided topics or document text through the Gamma.app API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and document text supplied to the skill are sent to Gamma.app using the configured Gamma API key. <br>
-Mitigation: Use only approved content for Gamma, and do not submit secrets, credentials, private keys, regulated data, or confidential business documents unless that use is approved. <br>
-Risk: The shell script can upload content chosen by the agent or user to the Gamma API. <br>
-Mitigation: Prefer explicit file paths or direct content that the user intended to send, and review generated commands before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Gamma ClawHub skill page](https://clawhub.ai/lucassynnott/gamma) <br>
-- [Gamma API generations endpoint](https://public-api.gamma.app/v1.0/generations) <br>
+## Use Case:
 
+External users and developers use this skill to create Gamma presentations, pitch decks, documents, reports, and social media carousels from topic or content prompts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated Gamma URLs and credit usage may be returned after asynchronous API polling.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The shell wrapper has a confirmed argument-handling flaw that can execute local commands if attacker-controlled options are passed.
+
+Mitigation: Review before installing and avoid untrusted prompts or agent-generated command options until numeric and option fields are validated before API requests or wait loops.
+
+Risk: Submitted content is sent to Gamma's external service.
+
+Mitigation: Avoid regulated, confidential, or secret material unless that use is approved for the configured Gamma account.
+
+## Reference(s):
+
+- [ClawHub Gamma skill page](https://clawhub.ai/lucassynnott/skills/gamma)
+- [Gamma API generations endpoint](https://public-api.gamma.app/v1.0/generations)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and Gamma generation URLs or status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GAMMA_API_KEY and sends submitted content to Gamma's external API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

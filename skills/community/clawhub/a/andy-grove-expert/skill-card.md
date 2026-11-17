@@ -1,39 +1,57 @@
-## Description: <br>
-聚焦安迪·格鲁夫的管理哲学，提供战略拐点识别、建设性对抗、偏执精神、OKR及AI时代决策指导。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language Andrew Grove management persona for strategic inflection point analysis, constructive confrontation, OKR guidance, and AI-era business decision support.
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-Managers, founders, and strategy teams use this skill to apply Andy Grove-inspired management models to strategic inflection points, OKRs, AI disruption, resource focus, and candid decision-making. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business recommendations may be opinionated strategic advice, and quoted or historical claims may be inaccurate or incomplete. <br>
-Mitigation: Verify factual claims and quotes before relying on them, and keep human review for high-impact business decisions. <br>
+## Use Case:
 
+External users and business teams use this skill to receive Chinese-language management guidance inspired by Andrew Grove, especially for strategic inflection points, resource focus, OKRs, constructive disagreement, and AI transformation decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ruiyongwang/andy-grove-expert) <br>
-- [Publisher profile](https://clawhub.ai/user/ruiyongwang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only management advice; no code execution, credentials, file access, network access, persistence, or data changes are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and artifact version history) <br>
+Risk: The skill gives strong, direct strategic and management advice that may be unsuitable for some business contexts if followed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as advisory input and have qualified stakeholders review major business decisions before acting.
+
+Risk: Constructive confrontation and Grove-style high-pressure management may not fit every team culture and can fail without trust or psychological safety.
+
+Mitigation: Adapt the guidance to the organization's culture, decision rights, and employee safety practices before applying it.
+
+Risk: AI-era strategic inflection point analysis can be uncertain because technology adoption, competition, and cost structures change quickly.
+
+Mitigation: Re-check assumptions with current market, customer, and operational data before using the advice for AI strategy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruiyongwang/skills/andy-grove-expert)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with lists, tables, checklists, and dialogue examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory management responses and frameworks; it does not execute code or handle credentials.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata and artifact version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Skill Cortex helps an OpenClaw agent find, validate, install, use, release, and learn from temporary skills when installed skills cannot complete the current task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Cortex helps an OpenClaw agent acquire, use, release, and learn routing patterns for Skills from ClawHub or GitHub when installed Skills cannot complete a task.
 
-## Publisher: <br>
-[ankwu001](https://clawhub.ai/user/ankwu001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ankwu001](https://clawhub.ai/user/ankwu001)
 
-## Use Case: <br>
-Developers and OpenClaw agent users use this skill to add a temporary capability layer that searches for candidate skills, presents safety information for approval, installs approved skills, executes the requested task, and updates short-term routing memory. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can add and run skills from external sources for tasks the current agent cannot handle. <br>
-Mitigation: Install only after reviewing each candidate's source, version, scan status, requested permissions, and side effects. <br>
-Risk: Persistent routing memory can affect future skill selection and reflex behavior. <br>
-Mitigation: Periodically inspect or reset ~/.openclaw/skill-cortex/cortex.json if routing or reflex behavior seems wrong. <br>
-Risk: System dependency installation may broaden the environment's behavior or permissions. <br>
-Mitigation: Require separate explicit approval before installing system dependencies. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ankwu001/skill-cortex-pub) <br>
-- [OpenClaw project](https://github.com/openclaw) <br>
-- [ClawHub](https://clawhub.ai) <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an OpenClaw agent discover suitable skills, request approval before installation, execute the task with the selected skill, and update short-term routing memory for future similar tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline commands and JSON configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose candidate skills, execution plans, side-effect warnings, and updates to short-term cortex memory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can recommend, install, and execute additional third-party skills.
+
+Mitigation: Use it with trusted ClawHub publishers or pinned GitHub sources, inspect proposed skills and safety information, and approve installation only when the candidate is appropriate.
+
+Risk: The skill keeps short-term routing history in local cortex memory.
+
+Mitigation: Periodically review or delete ~/.openclaw/skill-cortex/cortex.json if retained routing history is not desired.
+
+Risk: Candidate skills or dependencies may introduce side effects beyond the current task.
+
+Mitigation: Require separate confirmation for installation and system dependency changes, and keep write operations out of reflex behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ankwu001/skills/skill-cortex-pub)
+- [Publisher profile](https://clawhub.ai/user/ankwu001)
+- [ClawHub](https://clawhub.ai)
+- [OpenClaw](https://github.com/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with candidate summaries, approval prompts, execution plans, shell commands, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose skill installation, candidate switching, and updates to local routing memory after execution.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

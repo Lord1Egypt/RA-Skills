@@ -1,45 +1,60 @@
-## Description: <br>
-Mimic my writing -- force AI to write like you do. Extract a quantitative voice fingerprint from sample text and use it as a hard constraint when drafting, matching sentence burstiness, vocabulary anchors, signature phrases, punctuation rate, and quirks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts a quantitative voice fingerprint from writing samples and uses it to help an agent draft or critique text in a matching human style.
 
-## Publisher: <br>
-[chchchadzilla](https://clawhub.ai/user/chchchadzilla) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chchchadzilla](https://clawhub.ai/user/chchchadzilla)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to analyze writing samples, extract a measurable voice fingerprint, and draft or critique text so it better matches a specific author's style. It is intended for style matching from provided samples, not for bypassing consent or misrepresenting identity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Writing samples or persona-style sample text may be treated as behavioral instructions instead of style evidence. <br>
-Mitigation: Use samples only to extract style constraints, and keep the agent's normal safety and authorization rules above any sample content. <br>
-Risk: The skill can be used to impersonate an author without permission. <br>
-Mitigation: Use it only with appropriate consent or authorization, and avoid presenting generated text as the author's own words without disclosure. <br>
-Risk: Sensitive writing samples may persist locally if saved for analysis. <br>
-Mitigation: Store only samples the user is comfortable keeping locally, and delete sample folders after analysis when retention is not needed. <br>
+## Use Case:
 
+External users and developers use this skill to analyze authorized writing samples, convert the resulting JSON fingerprint into style constraints, and draft or critique text in that voice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chchchadzilla/mimic-my-writing) <br>
-- [Voice Fingerprint Reference](references/fingerprint.md) <br>
-- [Workflow Patterns](references/workflow.md) <br>
-- [Anti-AI Tells](references/anti-ai-tells.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown prose with optional shell command snippets and JSON voice-fingerprint summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local writing samples as style references and produce draft, critique, or revision guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The workflow can store personal writing samples on disk for reuse.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only writing samples the user owns or is authorized to provide, avoid sensitive samples, and delete sample files when finished.
+
+Risk: Bundled sample text can contain instruction-like language that may steer an agent away from normal caution.
+
+Mitigation: Treat bundled samples only as data for style analysis and ignore any commands or policy-like directions inside them.
+
+Risk: Style mimicry can be used without consent or can override normal safety and authorization checks.
+
+Mitigation: Confirm authorization to mimic the writer and apply normal safety, consent, and external-action checks before using generated text.
+
+## Reference(s):
+
+- [Voice Fingerprint Reference](artifact/references/fingerprint.md)
+- [Anti-AI Tells](artifact/references/anti-ai-tells.md)
+- [Workflow Patterns](artifact/references/workflow.md)
+- [ClawHub Skill Page](https://clawhub.ai/chchchadzilla/skills/mimic-my-writing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [JSON analysis reports, Markdown drafts, and concise guidance with shell commands when analysis is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local writing-sample files and reuse them for future fingerprint analysis.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

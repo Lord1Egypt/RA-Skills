@@ -1,0 +1,6 @@
+interface:
+  display_name: "Teaching Diagram Maker"
+  short_description: "Create and visually verify editable teaching diagrams"
+  default_prompt: "Use $teaching-diagram-maker to create a clear editable diagram for this concept, embed it beside the explanation, and visually verify the rendered result."
+policy:
+  allow_implicit_invocation: true

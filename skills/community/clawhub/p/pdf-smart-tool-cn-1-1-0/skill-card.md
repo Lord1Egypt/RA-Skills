@@ -1,42 +1,54 @@
-## Description: <br>
-PDF Smart Tool helps agents handle PDF conversion, OCR, merge and split workflows, digital signatures, batch processing, watermarking, encryption, and decryption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language PDF assistant for conversion, OCR, merging and splitting, digital signatures, batch processing, watermarking, and encryption workflows.
 
-## Publisher: <br>
-[sunyue1977](https://clawhub.ai/user/sunyue1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunyue1977](https://clawhub.ai/user/sunyue1977)
 
-## Use Case: <br>
-External users and document-workflow teams use this skill to ask an agent for PDF conversion, OCR extraction, document assembly, signing, watermarking, encryption, decryption, and batch-processing help. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive PDFs and may expose document contents during OCR, conversion, or extraction workflows. <br>
-Mitigation: Use it only with documents the user is authorized to process and avoid sharing unnecessary sensitive content. <br>
-Risk: Batch operations, decryption, signing, watermark removal, and format conversion can modify important files or remove protections. <br>
-Mitigation: Confirm file lists and requested actions before processing, and keep backups before any destructive or irreversible operation. <br>
-Risk: Password or certificate prompts can involve sensitive credentials. <br>
-Mitigation: Avoid unnecessary password or certificate entry and prefer user-controlled credential handling. <br>
+## Use Case:
 
+External users and business document teams use this skill to guide PDF conversion, OCR, signing, watermarking, encryption, decryption, and batch document handling workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunyue1977/pdf-smart-tool-cn-1-1-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain-language instructions, with shell commands when PDF tools are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local PDF utilities including pdftotext, tesseract, and ghostscript.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and artifact/_meta.json; server release metadata: 1.0.0) <br>
+Risk: PDF workflows may expose confidential documents, passwords, signatures, certificates, or regulated content to agent processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with documents you are comfortable processing in the agent environment, and avoid sensitive files unless the deployment is approved for that content.
+
+Risk: Decryption, watermark removal, batch renaming, signing, and similar document edits may be hard to reverse.
+
+Mitigation: Keep backups and review proposed operations before allowing the agent to modify or generate final PDF outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunyue1977/skills/pdf-smart-tool-cn-1-1-0)
+- [ClawHub publisher profile](https://clawhub.ai/user/sunyue1977)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with file, command, and workflow examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose PDF-processing steps that operate on local documents and depend on pdftotext, tesseract, and ghostscript.]
+
+## Skill Version(s):
+
+1.1.0 (source: artifact/SKILL.md frontmatter and artifact/_meta.json; ClawHub release metadata version: 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

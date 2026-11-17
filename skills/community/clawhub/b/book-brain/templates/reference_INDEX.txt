@@ -1,0 +1,6 @@
+# reference/ — stable facts + outer stubs
+
+- *.ref.txt — pointers (URLs, paths, SHAs)
+- LYGO stack: see references/LATTICE_INTEGRATION.md in skill
+
+ClawHub publisher: https://clawhub.ai/deepseekoracle

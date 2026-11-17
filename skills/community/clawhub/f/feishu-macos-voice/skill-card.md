@@ -1,47 +1,61 @@
-## Description: <br>
-Send voice/audio messages to Feishu (Lark) chats using TTS, using OpenAI TTS when OPENAI_API_KEY is set and macOS say as the fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send voice/audio messages to Feishu (Lark) chats using TTS, using OpenAI TTS when OPENAI_API_KEY is set and macOS say as a fallback.
 
-## Publisher: <br>
-[zihui](https://clawhub.ai/user/zihui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zihui](https://clawhub.ai/user/zihui)
 
-## Use Case: <br>
-Developers and operators use this skill to send generated voice messages to Feishu or Lark recipients from an agent workflow. It handles text-to-speech generation, opus transcoding, Feishu file upload, and audio message delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Feishu bot credentials to upload and send audio messages. <br>
-Mitigation: Install only for trusted workflows and keep the Feishu app credentials scoped and stored in ~/.openclaw/openclaw.json. <br>
-Risk: When OPENAI_API_KEY is set, message text is sent to OpenAI for speech generation. <br>
-Mitigation: Unset OPENAI_API_KEY to use the local macOS say fallback for sensitive content. <br>
-Risk: Generated audio is sent to the selected Feishu open_id or chat_id. <br>
-Mitigation: Review recipient identifiers before execution, especially for group chat delivery. <br>
+## Use Case:
 
+Developers and operators use this skill to send spoken Feishu or Lark messages from an agent workflow, including direct chats and group chats. It is intended for macOS environments with Feishu bot credentials and audio tooling installed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zihui/feishu-macos-voice) <br>
-- [Publisher profile](https://clawhub.ai/user/zihui) <br>
-- [OpenAI audio speech API endpoint](https://api.openai.com/v1/audio/speech) <br>
-- [Feishu tenant access token API endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu file upload API endpoint](https://open.feishu.cn/open-apis/im/v1/files) <br>
-- [Feishu message send API endpoint](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls, audio files] <br>
-**Output Format:** [Command-line execution with text inputs, generated opus audio, and Feishu API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS for local say fallback; uses ffmpeg, ffprobe, curl, python3, and Feishu bot credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Message text and generated audio may be sent to Feishu recipients and to OpenAI when OPENAI_API_KEY is configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive content, choose recipients explicitly, and avoid setting OPENAI_API_KEY when local macOS speech is sufficient.
+
+Risk: The skill reads Feishu bot credentials from the user's OpenClaw configuration.
+
+Mitigation: Run with ordinary user privileges and ensure the Feishu bot has only the permissions and recipient scope required for the message.
+
+Risk: Security evidence reports unsafe shell handling in the bundled script.
+
+Mitigation: Review or revise the script before installation, including mktemp usage, cleanup traps, JSON serialization, and receive_id_type validation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zihui/skills/feishu-macos-voice)
+- [OpenAI audio speech API endpoint](https://api.openai.com/v1/audio/speech)
+- [Feishu tenant access token endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu file upload endpoint](https://open.feishu.cn/open-apis/im/v1/files)
+- [Feishu message send endpoint](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Feishu voice-message guidance and command invocations that may send generated audio through Feishu and, when configured, OpenAI.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,56 @@
-## Description: <br>
-Common style patterns, layer configurations, and recipes for typical mapping scenarios including restaurant finders, real estate, data visualization, navigation, delivery/logistics, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Common style patterns, layer configurations, and recipes for typical mapping scenarios including restaurant finders, real estate, data visualization, navigation, delivery/logistics, and more.
 
-## Publisher: <br>
-[mapbox](https://clawhub.ai/user/mapbox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mapbox](https://clawhub.ai/user/mapbox)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose and adapt Mapbox style recipes, layer configurations, and data-driven styling patterns for POI, real estate, analytics, navigation, dark-mode, and logistics maps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delivery and logistics patterns can expose driver or customer live locations when adapted into a production app. <br>
-Mitigation: Use informed consent, authenticated role-limited access, minimized precision and update frequency, short retention, and clear disclosure of who can view location data. <br>
-Risk: Style recipes may be copied without testing against the app's real data density, zoom levels, device sizes, or accessibility requirements. <br>
-Mitigation: Run visual regression checks across representative zoom levels, mobile and desktop widths, dense and sparse data, label collision cases, color contrast, and loading performance. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose and adapt Mapbox style patterns for POI finders, real estate maps, data visualization, navigation, delivery tracking, dark mode maps, clustering, and common map modifications.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mapbox/mapbox-style-patterns) <br>
-- [Real Estate Map Pattern](references/real-estate.md) <br>
-- [Data Visualization Base Map Pattern](references/data-viz-base.md) <br>
-- [Navigation/Routing Map Pattern](references/navigation.md) <br>
-- [Dark Mode / Night Theme Pattern](references/dark-mode.md) <br>
-- [Delivery/Logistics Map Pattern](references/delivery-logistics.md) <br>
-- [Expressions and Clustering Patterns](references/expressions-clustering.md) <br>
-- [Common Map Style Modifications](references/common-modifications.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with JSON and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces style recommendations and layer configuration examples; users must adapt examples to their map data, access controls, and Mapbox implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Delivery and navigation patterns may be adapted for location tracking workflows that process sensitive user or driver location data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add privacy safeguards before deployment, including clear consent, limited precision and update frequency, restricted visibility, and short retention.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mapbox/skills/mapbox-style-patterns)
+- [Real Estate Map pattern](references/real-estate.md)
+- [Data Visualization Base Map pattern](references/data-viz-base.md)
+- [Navigation/Routing Map pattern](references/navigation.md)
+- [Dark Mode / Night Theme pattern](references/dark-mode.md)
+- [Delivery/Logistics Map pattern](references/delivery-logistics.md)
+- [Expression Patterns and Clustering](references/expressions-clustering.md)
+- [Common Modifications](references/common-modifications.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with JSON and JavaScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides map style layer recipes, pattern selection guidance, testing checklists, and implementation notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

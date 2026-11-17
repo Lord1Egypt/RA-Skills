@@ -1,37 +1,53 @@
-## Description: <br>
-Use when integrating @frank17008/react-jsmind npm package into React applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when integrating @frank17008/react-jsmind npm package into React applications.
 
-## Publisher: <br>
-[frank17008](https://clawhub.ai/user/frank17008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frank17008](https://clawhub.ai/user/frank17008)
 
-## Use Case: <br>
-Developers use this skill when adding @frank17008/react-jsmind to React applications, troubleshooting rendering or TypeScript issues, and applying the correct imports, data formats, ref methods, and configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing an unintended or unreviewed npm package can introduce dependency supply-chain risk. <br>
-Mitigation: Confirm @frank17008/react-jsmind is the intended package, review its npm provenance, and install it in the relevant React project with normal dependency controls such as a lockfile or pinned version. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate @frank17008/react-jsmind into React applications, including installation, imports, TypeScript types, ref methods, data formats, and troubleshooting common rendering issues.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with TypeScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for React integration, installation, data formats, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill recommends installing a third-party npm package and relying on its transitive dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin a known package version, keep a lockfile, and review the package and dependencies before using the command in important projects or CI.
+
+Risk: Package APIs, types, or CSS paths may change after the documented release.
+
+Mitigation: Check the installed package version and TypeScript exports when applying the examples to an existing React application.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frank17008/skills/react-jsmind-usage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with TypeScript/TSX and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides React integration patterns, package installation commands, API usage notes, data-shape examples, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

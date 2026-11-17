@@ -1,40 +1,49 @@
-## Description: <br>
-Truth Check guides an agent to check generated content for hallucinations, fabricated details, and inaccurate information after producing technical content, statistics, people or event references, or code examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Truth Check guides an agent to verify generated technical content, statistics, references, code examples, and external-operation results for hallucinations or inaccuracies.
 
-## Publisher: <br>
-[Jack123255829](https://clawhub.ai/user/Jack123255829) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack123255829](https://clawhub.ai/user/jack123255829)
 
-## Use Case: <br>
-Developers and agent users use this skill as a post-generation verification workflow for checking factual claims, numeric statements, references, code examples, and external-operation results before relying on an answer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may encourage source lookups or verification of external operations. <br>
-Mitigation: Review any resulting tool calls as usual before allowing external access or changes. <br>
-Risk: Fact-checking guidance can still miss subtle inaccuracies or unsupported claims. <br>
-Mitigation: Treat the verification labels as decision support and review important claims against authoritative sources. <br>
+## Use Case:
 
+Developers and agent operators use this skill to prompt verification after generating technical content, numbers, references, code examples, or results from external actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jack123255829/truth-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with verification labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce VERIFIED, LIKELY, or UNCERTAIN confidence labels for checked outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill encourages running generated code for verification without built-in limits or approval steps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code first and run it only in an isolated, disposable environment with no secrets and explicit approval for external side effects.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jack123255829/skills/truth-check)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown text with verification checklists and confidence labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses VERIFIED, LIKELY, and UNCERTAIN labels to summarize confidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

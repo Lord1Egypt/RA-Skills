@@ -1,50 +1,66 @@
-## Description: <br>
-Helps agents manage Tencent Cloud Lighthouse instances with tccli, including instance operations, application deployment, monitoring, firewall rules, snapshots, traffic packages, and remote commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Tencent Cloud Lighthouse administration with tccli, including instance lifecycle management, application deployment, firewall rules, monitoring, snapshots, traffic usage, and TAT remote commands.
 
-## Publisher: <br>
-[lhanyun](https://clawhub.ai/user/lhanyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lhanyun](https://clawhub.ai/user/lhanyun)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to administer Tencent Cloud Lighthouse resources through tccli. It supports routine operations such as listing and creating instances, configuring firewall rules, checking monitoring data, running remote commands, and managing snapshots or traffic packages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can administer real Tencent Cloud Lighthouse resources using powerful cloud credentials. <br>
-Mitigation: Install only on trusted machines and confirm region, instance ID, cost-impacting actions, firewall CIDR ranges, snapshot or blueprint IDs, and remote command contents before modifying resources. <br>
-Risk: OAuth codes, tokens, and long-lived access keys may expose cloud access if shared in chat or stored insecurely. <br>
-Mitigation: Use temporary OAuth credentials when possible, keep codes and tokens out of chat, avoid unnecessary AK/SK use, and check local tccli credential file permissions. <br>
-Risk: Remote command and firewall workflows can change instance behavior or network exposure immediately. <br>
-Mitigation: Review existing state before changes, require explicit confirmation for modifying operations, and restrict firewall rules to necessary ports and trusted CIDR ranges. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to manage Tencent Cloud Lighthouse resources through tccli, including provisioning, deployment checks, remote command execution, firewall changes, monitoring, snapshots, and traffic inspection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lhanyun/tencentcloud-lighthouse-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/lhanyun) <br>
-- [Instance management](references/instance-management.md) <br>
-- [Application deployment](references/application-deployment.md) <br>
-- [Monitoring and alerting](references/monitoring-alerting.md) <br>
-- [Firewall management](references/firewall-management.md) <br>
-- [Remote command with TAT](references/remote-command-tat.md) <br>
-- [Snapshot and blueprint management](references/snapshot-blueprint.md) <br>
-- [Traffic package management](references/traffic-package.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline and fenced shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tccli command proposals, confirmation prompts for modifying actions, and credential setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The skill can guide actions that use real Tencent Cloud credentials and can change billable cloud resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use temporary OAuth credentials where possible, keep credential files restricted to the local user, and require explicit confirmation before mutating or billable actions.
+
+Risk: Remote command execution and deployment steps can alter server state or run unpinned installation commands.
+
+Mitigation: Review commands before execution, prefer pinned packages and images, and avoid the `curl | sudo bash` pattern unless the user accepts the risk.
+
+Risk: Broad firewall rules such as `0.0.0.0/0` can unintentionally expose services.
+
+Mitigation: Review existing rules first and use the narrowest CIDR and port range that satisfies the task.
+
+## Reference(s):
+
+- [Instance Management](references/instance-management.md)
+- [Application Deployment](references/application-deployment.md)
+- [Monitoring and Alerting](references/monitoring-alerting.md)
+- [Firewall Management](references/firewall-management.md)
+- [Remote Command TAT](references/remote-command-tat.md)
+- [Snapshot and Blueprint](references/snapshot-blueprint.md)
+- [Traffic Package](references/traffic-package.md)
+- [Tencent Cloud OAuth Authorization](https://cloud.tencent.com/open/authorize)
+- [Tencent Cloud CLI OAuth](https://cli.cloud.tencent.com/oauth)
+- [Tencent Cloud CLI](https://cli.cloud.tencent.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and operational checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tccli commands, confirmation prompts for mutating cloud actions, and code-block-wrapped command output guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

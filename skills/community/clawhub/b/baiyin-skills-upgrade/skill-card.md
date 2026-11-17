@@ -1,40 +1,57 @@
-## Description: <br>
-Checks local Baiyin skills under the skill/ directory against SkillHub, upgrades eligible skills with backup and rollback, and then resumes the original task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks local Baiyin skills in a skill directory against SkillHub releases, updates them when needed, rolls back failed updates, and then resumes the original skill task.
 
-## Publisher: <br>
-[jiuping520](https://clawhub.ai/user/jiuping520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiuping520](https://clawhub.ai/user/jiuping520)
 
-## Use Case: <br>
-Developers and teams using Baiyin skills use this skill to check installed Baiyin skill directories against SkillHub, upgrade one or more skills when newer versions are available, and continue the original workflow after the update step. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can replace local Baiyin skill files with versions fetched from SkillHub, which may change future agent behavior. <br>
-Mitigation: Install and run it only when the Baiyin SkillHub source is trusted, and review update summaries before relying on changed skills. <br>
-Risk: Automatic upgrades can apply remote changes without a fresh prompt once enabled. <br>
-Mitigation: Keep version control or backups for skill directories and enable automatic upgrades only in environments where unattended skill changes are acceptable. <br>
+## Use Case:
 
+Developers and maintainers of Baiyin skills use this skill to compare installed skill versions with SkillHub releases, apply updates with backup and rollback, and continue the original task afterward.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiuping520/baiyin-skills-upgrade) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown status summaries with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local Baiyin skill files, write backups, restore from rollback, and record upgrade state within the relevant skill directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Remote updates may replace installed skill instructions and scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from the trusted Baiyin SkillHub publisher and review or scan updates before deployment.
+
+Risk: Automatic upgrades can apply remote content without user confirmation.
+
+Mitigation: Keep automatic upgrades disabled unless the environment independently verifies publisher signatures, package integrity, and download origins.
+
+Risk: Failed or interrupted updates could leave a local skill in an inconsistent state.
+
+Mitigation: Use the documented backup, integrity checks, and rollback path before cleaning up the backup directory.
+
+## Reference(s):
+
+- [Baiyin Skills Upgrade on ClawHub](https://clawhub.ai/jiuping520/skills/baiyin-skills-upgrade)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and user prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce status summaries and update local skill configuration, backup, and record files during execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

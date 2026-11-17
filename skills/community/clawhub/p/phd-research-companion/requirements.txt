@@ -1,0 +1,12 @@
+# phd-research-companion 2.4.0
+#
+# Core functionality is stdlib-only. Install nothing and every command still
+# works EXCEPT PDF analysis.
+
+# optional: PDF text extraction for `run.py analyze`
+pypdf>=4.0
+# optional: silences pypdf encoding warnings on some LaTeX-generated PDFs
+fonttools>=4.0
+
+# optional: run the test suite with pytest (unittest works without it)
+pytest>=7.0

@@ -1,0 +1,989 @@
+'''
+4行情函数
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+获取行情数据
+该目录下的函数用于获取实时行情,历史行情
+
+ContextInfo.get_market_data_ex - 获取行情数据
+注意
+
+该函数不建议在init中运行,在init中运行时仅能取到本地数据
+关于获取行情函数之间的区别与注意事项可在 - 常见问题-行情相关 查看
+除实时行情外，该函数还可用于获取特色数据，如资金流向数据,订单流数据等，获取方式见数据字典
+原型
+
+内置python
+
+ContextInfo.get_market_data_ex(
+    fields=[], 
+    stock_code=[], 
+    period='follow', 
+    start_time='', 
+    end_time='', 
+    count=-1, 
+    dividend_type='follow', 
+    fill_data=True, 
+    subscribe=True)
+释义
+
+获取实时行情与历史行情数据
+
+参数
+
+名称	类型	描述
+field	list	数据字段，详情见下方field字段表
+stock_list	list	合约代码列表
+period	str	数据周期，可选字段为:
+"tick"
+"1m"：1分钟线
+"5m"：5分钟线；"15m"：15分钟线；"30m"：30分钟线
+"1h"小时线
+"1d"：日线
+"1w"：周线
+"1mon"：月线
+"1q"：季线
+"1hy"：半年线
+"1y"：年线
+'l2quote'：Level2行情快照
+'l2quoteaux'：Level2行情快照补充
+'l2order'：Level2逐笔委托
+'l2transaction'：Level2逐笔成交
+'l2transactioncount'：Level2大单统计
+'l2orderqueue'：Level2委买委卖队列
+start_time	str	数据起始时间，格式为 %Y%m%d 或 %Y%m%d%H%M%S，填""为获取历史最早一天
+end_time	str	数据结束时间，格式为 %Y%m%d 或 %Y%m%d%H%M%S ，填""为截止到最新一天
+count	int	数据个数
+dividend_type	str	除权方式,可选值为
+'none'：不复权
+'front':前复权
+'back':后复权
+'front_ratio': 等比前复权
+'back_ratio': 等比后复权
+fill_data	bool	是否填充数据
+subscribe	bool	订阅数据开关，默认为True，设置为False时不做数据订阅，只读取本地已有数据。
+field字段可选：
+field	数据类型	含义
+time	int	时间
+open	float	开盘价
+high	float	最高价
+low	float	最低价
+close	float	收盘价
+volume	float	成交量
+amount	float	成交额
+settle	float	今结算
+openInterest	float	持仓量
+preClose	float	前收盘价
+suspendFlag	int	停牌 1停牌，0 不停牌
+period周期为tick时，field字段可选:
+field	数据类型	含义
+time	int	时间
+lastPrice	float	最新价
+lastClose	float	前收盘价
+open	float	开盘价
+high	float	最高价
+low	float	最低价
+close	float	收盘价
+volume	float	成交量
+amount	float	成交额
+settle	float	今结算
+openInterest	float	持仓量
+stockStatus	int	停牌 1停牌，0 不停牌
+period周期为Level2数据时，字段参考数据结构
+返回值
+
+返回dict { stock_code1 : value1, stock_code2 : value2, ... }
+value1, value2, ... ：pd.DataFrame 数据集，index为time_list，columns为fields,可参考Bar字段
+各标的对应的DataFrame维度相同、索引相同
+示例
+
+示例data1返回值data2返回值data3返回值data4返回值历史tick期货五档盘口
+
+# coding:gbk
+import pandas as pd
+import numpy as np
+
+def init(C):	
+	C.stock_list = ["000001.SZ","600519.SH", "510050.SH"]# 指定获取的标的
+	C.start_time = "20230901"# 指定获取数据的开始时间
+	C.end_time = "20231101"# 指定获取数据的结束时间
+	
+def handlebar(C):
+	# 获取多只股票，多个字段，一条数据
+	data1 = C.get_market_data_ex([],C.stock_list, period = "1d",count = 1)
+	# 获取多只股票，多个字段，指定时间数据
+	data2 = C.get_market_data_ex([],C.stock_list, period = "1d", start_time = C.start_time, end_time = C.end_time)
+	# 获取多只股票，多个字段，指定时间15m数据
+	data3 = C.get_market_data_ex([],C.stock_list, period = "15m", start_time = C.start_time, end_time = C.end_time)
+	# 获取多只股票，指定字段，指定时间15m数据
+	data4 = C.get_market_data_ex(["close","open"],C.stock_list, period = "15m", start_time = C.start_time, end_time = C.end_time)
+	# 获取多只股票，历史tick
+	tick = C.get_market_data_ex([],C.stock_list, period = "tick", start_time = C.start_time, end_time = C.end_time)
+	# 获取期货5档盘口tick
+	future_lv2_quote = C.get_market_data_ex([],["rb2405.SF","ec2404.INE"], period = "l2quote", count = 1)
+	print(data1)
+	print(data2["000001.SZ"].tail())
+	print(data3)
+	print(data4["000001.SZ"])
+	print(data4["000001.SZ"].to_csv("your_path")) # 导出文件为csv格式，路径填本机路径
+	print(tick["000001.SZ"])
+	print(future_lv2_quote)
+
+ContextInfo.get_full_tick - 获取全推数据
+提示
+
+不能用于回测 只能取最新的分笔，不能取历史分笔
+
+原型
+
+内置python
+
+ContextInfo.get_full_tick(stock_code=[])
+释义
+
+获取最新分笔数据
+
+参数
+
+名称	类型	描述
+stock_code	list[str]	合约代码列表，如['600000.SH','600036.SH']，不指定时为当前主图合约。
+返回值 根据stock_code返回一个dict，该字典的key值是股票代码，其值仍然是一个dict，在该dict中存放股票代码对应的最新的数据。该字典数据key值参考tick字段
+
+示例
+
+示例返回值
+
+# coding:gbk
+import pandas as pd
+import numpy as np
+
+def init(C):
+	C.stock_list = ["000001.SZ","600519.SH", "510050.SH"]
+	
+def handlebar(C):
+	tick = C.get_full_tick(C.stock_list)
+	print(tick["510050.SH"])
+ContextInfo.subscribe_quote - 订阅行情数据
+提示
+
+该函数属于订阅函数，非VIP用户限制订阅数量
+
+VIP用户支持全推市场指定周期K线
+
+VIP用户权限请参考vip-行情用户优势对比
+
+原型
+
+内置python
+
+ContextInfo.subscribe_quote(
+    stock_code,
+    period='follow',
+    dividend_type='follow',
+    result_type='',
+    callback=None)
+释义
+
+订阅行情数据,关于订阅机制请参考运行机制对比
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	股票代码，'stkcode.market'，如'600000.SH'
+period	string	K线周期类型
+dividend_type	string	除权方式,可选值为
+'none'：不复权
+'front':前复权
+'back':后复权
+'front_ratio': 等比前复权
+'back_ratio': 等比后复权
+注意：分笔周期返回数据均为不复权
+result_type	string	返回数据格式,可选范围：<br>'DataFrame'或''（默认）：返回{code:data}，data为pd.DataFrame数据集，index为字符串格式的时间序列，columns为数据字段<br>'dict'：返回{code:{k1:v1,k2:v2,...}}，k为数据字段名，v为字段值<br>'list'：返回{code:{k1:[v1],k2:[v2],...}}，k为数据字段名，v为字段值
+callback	function	指定推送行情的回调函数
+返回值
+
+int：订阅号，用于反订阅
+
+示例
+
+示例返回值
+
+# conding = gbk
+def call_back(data):
+	print(data)
+	
+def init(C):
+	C.subID = C.subscribe_quote("000001.SZ","1d", callback = call_back)
+def handlebar(C):
+	print("============================")
+	print("C.subID: ",C.subID)
+	
+ContextInfo.subscribe_whole_quote - 订阅全推数据
+提示
+
+内置python
+
+ContextInfo.subscribe_whole_quote(code_list,callback=None)
+释义
+
+订阅全推数据，全推数据只有分笔周期，每次增量推送数据有变化的品种
+
+参数
+
+字段名	数据类型	解释
+code_list	list[str,...]	市场代码列表/品种代码列表,如 ['SH','SZ'] 或 ['600000.SH', '000001.SZ']
+callback	function	数据推送回调
+返回值int，订阅号，可用ContextInfo.unsubscribe_quote做反订阅
+
+示例返回值
+
+# conding = gbk
+def call_back(data):
+	print(data)
+	
+def init(C):
+	C.stock_list = ["000001.SZ","600519.SH", "510050.SH"]
+	C.subID = C.subscribe_whole_quote(C.stock_list,callback=call_back)
+def handlebar(C):
+	print("============================")
+	print("C.subID: ",C.subID)
+ContextInfo.unsubscribe_quote - 反订阅行情数据
+原型
+
+内置python
+
+ContextInfo.unsubscribe_quote(subId)
+释义
+
+反订阅行情数据，配合ContextInfo.subscribe_quote()或ContextInfo.subscribe_whole_quote()使用
+
+参数
+
+字段名	数据类型	解释
+subId	int	行情订阅返回的订阅号
+示例
+
+示例
+
+# conding = gbk
+def call_back(data):
+	print(data)
+def init(C):
+	C.stock_list = ["000001.SZ","600519.SH", "510050.SH"]
+	C.subID = C.subscribe_whole_quote(C.stock_list,callback=call_back)
+
+def handlebar(C):
+	print("============================")
+	print("C.subID: ",C.subID)
+	if C.subID > 0:
+		C.unsubscribe_quote(C.subID) # 取消行情订阅
+subscribe_formula - 订阅模型
+原型
+
+内置python
+
+subscribe_formula(
+   formula_name,stock_code,period
+   ,start_time="",end_time="",count=-1
+   ,dividend_type="none"
+   ,extend_param={}
+   ,callback=None)
+释义 订阅vba模型运行结果，使用前要注意补充本地K线数据或分笔数据
+
+参数
+
+字段名	类型	描述
+formula_name	str	模型名称名
+stock_code	str	模型主图代码形式如'stkcode.market'，如'000300.SH'
+period	str	K线周期类型，可选范围：'tick':分笔线，'1d':日线，'1m':分钟线，'3m':三分钟线，'5m':5分钟线，'15m':15分钟线，'30m':30分钟线，'1h':小时线，'1w':周线，'1mon':月线，'1q':季线，'1hy':半年线，'1y':年线
+start_time	str	模型运行起始时间，形如:'20200101'，默认为空视为最早
+end_time	str	模型运行截止时间，形如:'20200101'，默认为空视为最新
+count	int	模型运行范围为向前 count 根 bar，默认为 -1 运行所有 bar
+dividend_type	str	复权方式，默认为主图除权方式，可选范围：'none':不复权，'front':向前复权，'back':向后复权，'front_ratio':等比向前复权，'back_ratio':等比向后复权
+extend_param	dict	模型的入参，形如 {'a': 1, '__basket': {}}
+__basket	dict	可选参数，组合模型的股票池权重，形如 {'600000.SH': 0.06, '000001.SZ': 0.01}
+返回值 分两块，
+
+subscribe_formula返回模型的订阅号,可用于后续反订阅，失败返回 -1
+
+callback:
+
+timelist： 数据时间戳
+outputs：模型的输出值，结构为{变量名:值}
+示例
+
+示例
+
+#encoding=gbk
+def callback(data):
+    print(data)
+
+def init(ContextInfo):
+    basket={
+       '600000.SH':0.06,
+       '000001.SZ':0.01
+      }
+    argsDict={'a':100,'__basket':basket}
+    subID=subscribe_formula(
+      '单股模型示范','000300.SH','1d',
+      '20240101','20240201',-1,
+      "none",
+      argsDict,
+      callback
+   )
+
+unsubscribe_formula - 反订阅模型
+原型
+
+内置python
+
+unsubscribe_formula(subID)
+释义 反订阅模型
+
+参数
+
+字段名	类型	描述
+subID	int	模型订阅号
+返回值
+
+bool:反订阅成功为True，失败为False
+示例
+
+示例
+
+#encoding=gbk
+def callback(data):
+    print(data)
+
+def init(ContextInfo):
+    basket={
+       '600000.SH':0.06,
+       '000001.SZ':0.01
+      }
+    argsDict={'a':100,'__basket':basket}
+    subID=subscribe_formula(
+      '单股模型示范','000300.SH','1d',
+      '20240101','20240201',-1,
+      "none",
+      argsDict,
+      callback
+   )
+
+	unsubscribe_formula(subID)
+call_formula - 调用模型
+原型
+
+内置python
+
+call_formula(formula_name,stock_code,period,start_time="",end_time="",count=-1,dividend_type="none",extend_param={})
+释义 获取vba模型运行结果，使用前要注意补充本地K线数据或分笔数据
+
+参数
+
+字段名	类型	描述
+formula_name	str	模型名称名
+stock_code	str	模型主图代码形式如'stkcode.market'，如'000300.SH'
+period	str	K线周期类型，可选范围：'tick':分笔线，'1d':日线，'1m':分钟线，'3m':三分钟线，'5m':5分钟线，'15m':15分钟线，'30m':30分钟线，'1h':小时线，'1w':周线，'1mon':月线，'1q':季线，'1hy':半年线，'1y':年线
+start_time	str	模型运行起始时间，形如:'20200101'，默认为空视为最早
+end_time	str	模型运行截止时间，形如:'20200101'，默认为空视为最新
+count	int	模型运行范围为向前 count 根 bar，默认为 -1 运行所有 bar
+dividend_type	str	复权方式，默认为主图除权方式，可选范围：'none':不复权，'front':向前复权，'back':向后复权，'front_ratio':等比向前复权，'back_ratio':等比向后复权
+extend_param	dict	模型的入参,{"模型名:参数名":参数值},例如在跑模型MA时，{'MA:n1':1};入参可以添加__basket:dict,组合模型的股票池权重,形如{'__basket':{'600000.SH':0.06,'000001.SZ':0.01}}，如果在跑一个模型1的时候，模型1调用了模型2，如果只想修改模型2的参数可以传{'模型2:参数':参数值}
+返回值 返回：dict{ 'dbt':0,#返回数据类型，0:全部历史数据 'timelist':[...],#返回数据时间范围list, 'outputs':{'var1':[...],'var2':[...]}#输出变量名：变量值list }
+
+示例
+
+示例
+
+def handlebar(ContextInfo):
+    basket={'600000.SH':0.06,'000001.SZ':0.01}
+    argsDict={'a':100,'__basket':basket}
+    modelRet=call_formula('单股模型示范','000300.SH','1d','20240101','20240201',-1,"none",argsDict)
+    print(modelRet)
+
+call_formula_batch - 批量调用模型
+原型
+
+内置python
+
+call_formula_batch(formula_names,stock_codes,period,start_time="",end_time="",count=-1,dividend_type="none",extend_params=[])
+
+释义 批量获取vba模型运行结果，使用前要注意补充本地K线数据或分笔数据
+
+参数
+
+字段名	类型	描述
+formula_names	list	包含要批量运行的模型名
+stock_codes	list	包含要批量运行的模型主图代码形式'stkcode.market'，如'000300.SH'
+period	str	K线周期类型，可选范围：'tick':分笔线，'1d':日线，'1m':分钟线，'3m':三分钟线，'5m':5分钟线，'15m':15分钟线，'30m':30分钟线，'1h':小时线，'1w':周线，'1mon':月线，'1q':季线，'1hy':半年线，'1y':年线
+start_time	str	模型运行起始时间，形如:'20200101'，默认为空视为最早
+end_time	str	模型运行截止时间，形如:'20200101'，默认为空视为最新
+count	int	模型运行范围为向前 count 根 bar，默认为 -1 运行所有 bar
+dividend_type	str	复权方式，默认为主图除权方式，可选范围：'none':不复权，'front':向前复权，'back':向后复权，'front_ratio':等比向前复权，'back_ratio':等比向后复权
+extend_params	list	包含每个模型的入参,[{"模型名:参数名":参数值}],例如在跑模型MA时，{'MA:n1':1};入参可以添加__basket:dict,组合模型的股票池权重,形如{'__basket':{'600000.SH':0.06,'000001.SZ':0.01}}，如果在跑一个模型1的时候，模型1调用了模型2，如果只想修改模型2的参数可以传{'模型2:参数':参数值}
+返回值
+
+list[dict]
+dict说明:
+formula:模型名
+stock:品种代码
+argument:参数
+result:dict参考call_formula返回结果
+示例
+
+示例
+
+
+def handlebar(ContextInfo):
+    formulas=['testModel1','testModel2']
+    codes=['600000.SH','000001.SZ']
+    basket={'600000.SH':0.06,'000001.SZ':0.01}
+    args=[{'a':100,'__basket':basket},{'a':200,'__basket':basket}]
+    modelRet=call_formula_batch(formulas,codes,'1d',extend_params=args);
+    print(modelRet)
+
+ContextInfo.get_svol - 根据代码获取对应股票的内盘成交量
+原型
+
+内置python
+
+ContextInfo.get_svol(stockcode)
+释义
+
+根据代码获取对应股票的内盘成交量
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	股票代码，如 '000001.SZ'，缺省值''，默认为当前图代码
+返回值int:内盘成交量
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	data = C.get_svol('000001.SZ')
+	print(data)
+ContextInfo.get_bvol - 根据代码获取对应股票的外盘成交量
+原型
+
+内置python
+
+ContextInfo.get_bvol(stockcode)
+释义
+
+根据代码获取对应股票的外盘成交量
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	股票代码，如 '000001.SZ'，缺省值''，默认为当前图代码
+返回值
+
+int:外盘成交量
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	data = C.get_bvol('000001.SZ')
+	print(data)
+ContextInfo.get_turnover_rate - 获取换手率
+提示
+
+使用之前需要下载财务数据(在财务数据下载中)以及日线数据
+
+如果不补充股本数据,将使用最新流通股本计算历史换手率,可能会造成历史换手率不正确
+
+原型
+
+内置python
+
+ContextInfo.get_turnover_rate(stock_list,startTime,endTime)
+释义
+
+获取换手率
+
+参数
+
+字段名	数据类型	解释
+stock_list	list	股票列表，如['600000.SH','000001.SZ']
+startTime	string	起始时间，如'20170101'
+endTime	string	结束时间，如'20180101'
+返回值
+
+pandas.Dataframe
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	data = C.get_turnover_rate(['000002.SZ'],'20170101','20170301')
+	print(data)
+ContextInfo.get_longhubang - 获取龙虎榜数据
+原型
+
+内置python
+
+ContextInfo.get_longhubang(stock_list, startTime, endTime)
+释义
+
+获取龙虎榜数据
+
+参数
+
+参数名称	类型	描述
+stock_list	list	股票列表，如 ['600000.SH', '600036.SH']
+startTime	str	起始时间，如 '20170101'
+endTime	str	结束时间，如 '20180101'
+返回值
+
+格式为pandas.DataFrame:
+参数名称	数据类型	描述
+stockCode	str	股票代码
+stockName	str	股票名称
+date	datetime	上榜日期
+reason	str	上榜原因
+close	float	收盘价
+SpreadRate	float	涨跌幅
+TurnoverVolume	float	成交量
+Turnover_Amount	float	成交金额
+buyTraderBooth	pandas.DataFrame	买方席位
+sellTraderBooth	pandas.DataFrame	卖方席位
+buyTraderBooth 或 sellTraderBooth 包含字段：
+参数名称	数据类型	描述
+traderName	str	交易营业部名称
+buyAmount	float	买入金额
+buyPercent	float	买入金额占总成交占比
+sellAmount	float	卖出金额
+sellPercent	float	卖出金额占总成交占比
+totalAmount	float	该席位总成交金额
+rank	int	席位排行
+direction	int	买卖方向
+示例
+
+示例返回值
+
+# coding:gbk
+
+def init(C):
+    return
+
+def handlebar(C):
+    print(C.get_longhubang(['000002.SZ'],'20100101','20180101'))
+ContextInfo.get_north_finance_change - 获取对应周期的北向数据
+原型
+
+内置python
+
+ContextInfo.get_north_finance_change(period)
+释义
+
+获取对应周期的北向数据
+
+参数
+
+字段名	数据类型	描述
+period	str	数据周期
+返回值
+
+根据period返回一个dict，该字典的key值是北向数据的时间戳，其值仍然是一个dict，其值的key值是北向数据的字段类型，其值是对应字段的值。该字典数据key值有：
+字段名	数据类型	描述
+hgtNorthBuyMoney	int	HGT北向买入资金
+hgtNorthSellMoney	int	HGT北向卖出资金
+hgtSouthBuyMoney	int	HGT南向买入资金
+hgtSouthSellMoney	int	HGT南向卖出资金
+sgtNorthBuyMoney	int	SGT北向买入资金
+sgtNorthSellMoney	int	SGT北向卖出资金
+sgtSouthBuyMoney	int	SGT南向买入资金
+sgtSouthSellMoney	int	SGT南向卖出资金
+hgtNorthNetInFlow	int	HGT北向资金净流入
+hgtNorthBalanceByDay	int	HGT北向当日资金余额
+hgtSouthNetInFlow	int	HGT南向资金净流入
+hgtSouthBalanceByDay	int	HGT南向当日资金余额
+sgtNorthNetInFlow	int	SGT北向资金净流入
+sgtNorthBalanceByDay	int	SGT北向当日资金余额
+sgtSouthNetInFlow	int	SGT南向资金净流入
+sgtSouthBalanceByDay	int	SGT南向当日资金余额
+示例：
+
+示例返回值
+
+# coding = gbk
+def init(C):
+    return
+# 获取市场北向数据
+def handlebar(C):
+    print(C.get_north_finance_change('1d'))
+ContextInfo.get_hkt_details - 获取指定品种的持股明细
+原型
+
+内置python
+
+ContextInfo.get_hkt_details(stockcode)
+释义
+
+获取指定品种的持股明细
+
+参数
+
+参数名称	数据类型	描述
+stockcode	string	必须是'stock.market'形式
+返回值
+
+根据stockcode返回一个dict，该字典的key值是北向持股明细数据的时间戳，其值仍然是一个dict，其值的key值是北向持股明细数据的字段类型，其值是对应字段的值，该字典数据key值有：
+参数名称	数据类型/单位	描述
+stockCode	str	股票代码
+ownSharesCompany	str	机构名称
+ownSharesAmount	int	持股数量
+ownSharesMarketValue	float	持股市值
+ownSharesRatio	float	持股数量占比
+ownSharesNetBuy	float	净买入金额（当日持股-前一日持股）
+示例：
+
+示例返回值
+
+# coding = gbk
+def init(C):
+    return
+def handlebar(C):
+    data = C.get_hkt_details('600000.SH')
+    print(data)
+ContextInfo.get_hkt_statistics - 获取指定品种的持股统计
+原型
+
+内置python
+
+ContextInfo.get_hkt_statistics(stockcode)
+释义
+
+获取指定品种的持股统计
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	必须是'stock.market'形式
+返回值
+
+根据stockcode返回一个dict，该字典的key值是北向持股统计数据的时间戳，其值仍然是一个dict，其值的key值是北向持股统计数据的字段类型，其值是对应字段的值，该字典数据key值有：
+
+字段名	数据类型	解释
+stockCode	string	股票代码
+ownSharesAmount	float	持股数量，单位：股
+ownSharesMarketValue	float	持股市值，单位：元
+ownSharesRatio	float	持股数量占比，单位：%
+ownSharesNetBuy	float	净买入，单位：元，浮点数（当日持股-前一日持股）
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+
+	print(C.get_hkt_statistics('600000.SH'))
+get_etf_info - 根据ETF基金代码获取ETF申赎清单及对应成分股数据
+原型
+
+内置python
+
+get_etf_info(stockcode)
+释义
+
+根据ETF基金代码获取ETF申赎清单及对应成分股数据,每日盘前更新
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	ETF基金代码如"510050.SH"
+返回值
+
+一个多层嵌套的dict
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+    pass
+    
+def handlebar(C):
+    d = get_etf_info("510050.SH")
+    print(d)
+get_etf_iopv - 根据ETF基金代码获取ETF的基金份额参考净值
+原型
+
+内置python
+
+get_etf_iopv(stockcode)
+释义
+
+根据ETF基金代码获取ETF的基金份额参考净值
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	ETF基金代码如"510050.SH"
+返回值
+
+float类型值,IOPV，基金份额参考净值
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	print(get_etf_iopv("510050.SH"))
+ContextInfo.get_local_data - 获取本地行情数据【不推荐】
+注意
+
+本函数用于仅用于获取本地历史行情数据，使用前请确保已通过download_history_data下载过历史行情数据
+
+原型
+
+内置python
+
+ContextInfo.get_local_data(
+    stock_code,
+    start_time='',
+    end_time='',
+    period='1d',
+    divid_type='none',
+    count=-1)
+释义
+
+获取本地行情数据
+
+参数
+
+字段名	数据类型	解释
+stock_code	string	默认参数，合约代码格式为 code.market，不指定时为当前图合约
+start_time	string	默认参数，开始时间，格式为 '20171209' 或 '20171209010101'
+end_time	string	默认参数，结束时间，格式同 start_time
+period	string	默认参数，K线类型，可选值包括：
+'tick'：分笔线（只用于获取'quoter'字段数据）、'realtime': 实时线、'1d'：日线
+'md'：多日线、'1m'：1分钟线、'3m'：3分钟线
+'5m'：5分钟线、'15m'：15分钟线、'30m'：30分钟线
+'mm'：多分钟线、'1h'：小时线、'mh'：多小时线
+'1w'：周线、'1mon'：月线、'1q'：季线
+'1hy'：半年线、'1y'：年线
+dividend_type	string	除复权种类，可选值：
+'none'：不复权
+'front'：向前复权
+'back'：向后复权
+'front_ratio'：等比向前复权
+'back_ratio'：等比向后复权
+count	int	当 count 大于等于0时：
+如果指定了 start_time 和 end_time，则以 end_time 为基准向前取 count 条数据；
+如果 start_time 和 end_time 缺省，则默认取本地数据最新的 count 条数据；
+如果 start_time、end_time 和 count 都缺省时，则默认取本地全部数据。
+返回值
+
+返回一个dict，键值为timetag，value为另一个dict(valuedict)
+
+period='tick'时函数获取分笔数据，valuedict字典数据key值有：
+字段	数据类型	含义
+lastPrice	float	最新价
+open	float	开盘价
+high	float	最高价
+low	float	最低价
+lastClose	float	前收盘价
+amount	float	成交额
+volume	float	成交量
+pvolume	float	原始成交量
+stockStatus	int	作废 参考openInt
+openInt	float	若是股票，则openInt含义为股票状态，非股票则是持仓量openInt字段说明
+lastSettlementPrice	float	昨结算价
+askPrice	list	委卖价
+bidPrice	list	委买价
+askVol	list	委卖量
+bidVol	list	委买量
+settlementPrice	float	今结算价
+period为其他值时，valuedict字典数据key值有：
+字段名	数据类型	解释
+amount	float	成交额
+volume	float	成交量
+open	float	开盘价
+high	float	最高价
+low	float	最低价
+close	float	收盘价
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	data = C.get_local_data(stock_code='600000.SH',start_time='20220101',end_time='20220131',period='1d',divid_type='none')
+	print(data)
+ContextInfo.get_history_data - 获取历史行情数据【不推荐】
+警告
+
+此函数已不推荐使用，推荐使用ContextInfo.get_market_data_ex()
+此函数使用前需要先通过ContextInfo.set_universe()设定股票池
+原型
+
+内置python
+
+ContextInfo.get_history_data(
+    len, 
+    period, 
+    field, 
+    dividend_type = 0,
+    skip_paused = True)
+释义
+
+获取历史行情数据
+
+参数
+
+名称	类型	描述
+len	int	需获取的历史数据长度
+period	string	需获取的历史数据周期，可选值包括：
+'tick'：分笔线、 '1d'：日线、 '1m'：1分钟线
+'3m'：3分钟线、 '5m'：5分钟线、 '15m'：15分钟线
+'30m'：30分钟线、 '1h'：小时线、 '1w'：周线
+'1mon'：月线、 '1q'：季线、 '1hy'：半年线
+'1y'：年线
+field	string	需获取的历史数据的类型，可选值包括：
+'open'：开盘价
+'high'：最高价
+'low'：最低价
+'close'：收盘价
+'quoter'：详细报价（结构见 get_market_data 方法）
+dividend_type	int	默认参数，除复权，默认不复权，可选值包括：
+0：不复权
+1：向前复权
+2：向后复权
+3：等比向前复权
+4：等比向后复权
+skip_paused	bool	默认参数，是否停牌填充，默认填充
+返回值 一个字典dict结构，key 为 stockcode.market, value 为行情数据 list，list 中第 0 位为最早的价格，第 1 位为次早价格，依次下去。
+
+示例
+
+示例返回值
+
+# coding = gbk
+def init(C):
+	C.stock_list = ["000001.SZ","600519.SH", "510050.SH"]
+	C.set_universe(C.stock_list)
+
+def handlebar(C):
+	data = C.get_history_data(2, '1d', 'close')
+	print(data)
+
+ContextInfo.get_market_data() - 获取行情数据【不推荐】
+提示
+
+推荐使用ContextInfo.get_market_data_ex()
+
+原型
+
+内置python
+
+ContextInfo.get_market_data(
+    fields, 
+    stock_code = [], 
+    start_time = '', 
+    end_time = '',
+    skip_paused = True, 
+    period = 'follow', 
+    dividend_type = 'follow', 
+    count = -1)
+释义
+
+获取行情数据
+
+参数
+
+字段名	数据类型	解释
+fields	字段列表	可选值包括：
+'open': 开
+'high': 高
+'low': 低
+'close': 收
+'volume': 成交量
+'amount': 成交额
+'settle': 结算价
+'quoter': 分笔数据（包括历史）
+stock_code	默认参数，合约代码列表	合约格式为 code.market，例如 '600000.SH'，不指定时为当前图合约
+start_time	默认参数，时间戳	开始时间，格式为 '20171209' 或 '20171209010101'
+end_time	默认参数，时间戳	结束时间，格式为 '20171209' 或 '20171209010101'
+skip_paused	默认参数，布尔值	如何处理停牌数据：
+true：如果是停牌股，会自动填充未停牌前的价格作为停牌日的价格
+false：停牌数据为 NaN
+period	string	需获取的历史数据周期，可选值包括：
+'tick'：分笔线、 '1d'：日线、 '1m'：1分钟线
+'3m'：3分钟线、 '5m'：5分钟线、 '15m'：15分钟线
+'30m'：30分钟线、 '1h'：小时线、 '1w'：周线
+'1mon'：月线、 '1q'：季线、 '1hy'：半年线
+'1y'：年线
+dividend_type	默认参数，字符串	缺省值为 'none'，除复权，可选值包括：
+'none'：不复权
+'front'：向前复权
+'back'：向后复权
+'front_ratio'：等比向前复权
+'back_ratio'：等比向后复权
+count	默认参数，整数	缺省值为 -1。当大于等于 0 时，效果与 get_history_data 保持一致
+count参数设置的几种情况
+count 取值	时间设置是否生效	开始时间和结束时间设置效果
+count >= 0	生效	返回数量取决于开始时间与结束时间和count与结束时间的交集
+count = -1	生效	同时设置开始时间和结束时间，在所设置的时间段内取值
+count = -1	生效	开始时间结束时间都不设置，取当前最新bar的值
+count = -1	生效	只设置开始时间，取所设开始时间到当前时间的值
+count = -1	生效	只设置结束时间，取股票上市第一根 bar 到所设结束时间的值
+返回值
+
+返回值根据传入的参数情况，会返回不同类型的结果
+count	字段数量	股票数量	时间点	返回类型
+=-1	=1	=1	=1	float
+=-1	>1	=1	默认值	pandas.Series
+>=-1	>=1	=1	>=1	pandas.DataFrame(字段数量和时间点不同时为1)
+=-1	>=1	>1	默认值	pandas.DataFrame
+>1	=1	=1	=1	pandas.DataFrame
+>=-1	>=1	>1	>=1	pandas.Panel
+示例
+
+示例data1返回值data2返回值data3返回值data4返回值
+
+# coding = gbk
+def init(C):
+    C.stock_list = ["000001.SZ","600519.SH", "510050.SH"]
+	
+def handlebar(C):
+    data1 = C.get_market_data(["close"],["000001.SZ"],start_time = "20231106",end_time = "20231106", count = -1) # 返回float值
+    data2 = C.get_market_data(["close","open"],["000001.SZ"], count = -1) # 返回pandas.Series
+    data3 = C.get_market_data(["close","open"],C.stock_list, count = -1) # 返回pandas.DataFrame
+    data4 = C.get_market_data(["open","high", "low", "close"],C.stock_list,count = 20) # 返回pandas.Panel
+
+    print(data1)
+    print(data2)
+    print(data3)
+    print(data4)
+
+

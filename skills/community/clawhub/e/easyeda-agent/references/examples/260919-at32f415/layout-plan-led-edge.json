@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "units": "mil",
+  "coordinateSemantic": "footprint-anchor",
+  "minGapMil": 6,
+  "apply": {
+    "project": "ceshi",
+    "doc": "2e719e9419653c72"
+  },
+  "keepouts": [
+    {
+      "id": "U3-LCD-measured-footprint-bbox",
+      "minXMil": 379.151,
+      "minYMil": 410.751,
+      "maxXMil": 920.903,
+      "maxYMil": 1552.738,
+      "source": "current-board-live.json: U3 measured rendered bbox; temporary mechanical proxy for 考试说明.pdf p3 LCD outline component keepout, not evidence of a saved footprint region",
+      "layers": [
+        "top"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "rgb-led",
+      "strategy": "edge",
+      "anchorRef": "LED1",
+      "members": [
+        {
+          "ref": "LED1",
+          "allowedRotationsDeg": [
+            0
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "U1",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "R3",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "C1",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "C2",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        }
+      ],
+      "search": {
+        "edges": [
+          "bottom"
+        ],
+        "edgeMember": "LED1",
+        "edgeClearanceMil": 20,
+        "alongRefs": [
+          "USB1"
+        ],
+        "alongOffsetsMil": [
+          -450,
+          -500,
+          -550,
+          -600,
+          -650
+        ],
+        "rotationDeltasDeg": [
+          0
+        ],
+        "gapsMil": [
+          8,
+          20,
+          40
+        ]
+      },
+      "pinAssignments": [
+        {
+          "memberRef": "U1",
+          "memberPad": "4",
+          "memberPadPrimitiveId": "4dca0d373fbfbf99e7",
+          "ownerRef": "LED1",
+          "ownerPad": "4",
+          "ownerPadPrimitiveId": "02b2c694a8cf42d0e23",
+          "side": "top",
+          "source": "原理图.pdf 第1页：U1.4→LED1.4"
+        },
+        {
+          "memberRef": "C2",
+          "memberPad": "1",
+          "memberPadPrimitiveId": "cec45de180b7a7c9e15",
+          "ownerRef": "LED1",
+          "ownerPad": "1",
+          "ownerPadPrimitiveId": "02b2c694a8cf42d0e20",
+          "side": "top",
+          "source": "原理图.pdf 第1页：C2服务LED1.1"
+        },
+        {
+          "memberRef": "C1",
+          "memberPad": "1",
+          "memberPadPrimitiveId": "22f277398c0ecfabe15",
+          "ownerRef": "U1",
+          "ownerPad": "5",
+          "ownerPadPrimitiveId": "4dca0d373fbfbf99e8",
+          "side": "right",
+          "alongOffsetMil": -50,
+          "source": "原理图.pdf 第1页：C1服务U1.5"
+        },
+        {
+          "memberRef": "R3",
+          "memberPad": "2",
+          "memberPadPrimitiveId": "75d029eec947c506e7",
+          "ownerRef": "U1",
+          "ownerPad": "2",
+          "ownerPadPrimitiveId": "4dca0d373fbfbf99e5",
+          "side": "right",
+          "source": "原理图.pdf 第1页：R3.2→U1.2"
+        }
+      ],
+      "relations": [
+        {
+          "kind": "near",
+          "from": "LED1",
+          "to": "USB1",
+          "source": "考试说明.pdf 第4页"
+        },
+        {
+          "kind": "far",
+          "from": "LED1",
+          "to": "R10",
+          "source": "考试说明.pdf 第4页"
+        },
+        {
+          "kind": "far",
+          "from": "LED1",
+          "to": "R11",
+          "source": "考试说明.pdf 第4页"
+        },
+        {
+          "kind": "far",
+          "from": "LED1",
+          "to": "C11",
+          "source": "考试说明.pdf 第4页"
+        }
+      ],
+      "copperPolicy": "ignore"
+    }
+  ]
+}

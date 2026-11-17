@@ -1,45 +1,61 @@
-## Description: <br>
-Generate diverse, non-repetitive image prompts powered by real visual references from Dribbble and design platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate diverse, non-repetitive image prompts using Dribbble-derived visual references, style cards, prompt patterns, and design vocabulary.
 
-## Publisher: <br>
-[Abdullah4AI](https://clawhub.ai/user/Abdullah4AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[abdullah4ai](https://clawhub.ai/user/abdullah4ai)
 
-## Use Case: <br>
-External users, developers, and creative teams use this skill to generate design-informed image prompts from visual references, prompt patterns, and precise visual vocabulary. It is useful when an agent needs to improve prompt variety, avoid repeated visual tropes, or turn a creative goal into a structured image prompt. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch public Dribbble references during reference collection. <br>
-Mitigation: Use manual import or run fetching only in environments where outbound access to public design references is acceptable. <br>
-Risk: The skill keeps local JSON files, including prompt history, for deduplication. <br>
-Mitigation: Avoid sensitive creative briefs and periodically review or clear local prompt-history data according to your retention needs. <br>
-Risk: The optional cron refresh creates recurring background updates. <br>
-Mitigation: Enable scheduled refresh only when recurring reference updates are desired and approved. <br>
+## Use Case:
 
+Developers, designers, and agent users use this skill to create specific, varied image-generation prompts grounded in real visual references. It is also useful for refreshing local design-reference JSON data and building style cards for prompt diversity.
 
-## Reference(s): <br>
-- [Prompt Patterns](references/prompt-patterns.md) <br>
-- [Style Card Schema](references/style-card-schema.md) <br>
-- [Visual Vocabulary](references/visual-vocabulary.md) <br>
-- [Dribbble Popular Shots](https://dribbble.com/shots/popular) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with optional shell commands and JSON file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local style-card and prompt-history JSON files to select references and avoid repetitive prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Public Dribbble/reference metadata, imported titles, descriptions, and URLs may contain untrusted or misleading content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat scraped and imported metadata as untrusted, review generated prompts and source URLs before giving an agent tool access, and avoid following unknown links automatically.
+
+Risk: Optional HTML scraping adds network access and third-party dependencies.
+
+Mitigation: Prefer manual import or RSS where practical, and use a virtual environment with pinned requests and beautifulsoup4 versions when HTML scraping is enabled.
+
+Risk: Local JSON files can accumulate stale, unwanted, or sensitive prompt-history and reference data.
+
+Mitigation: Review data/references.json, data/style_cards.json, and data/prompt_history.json before deployment or sharing, and remove entries that should not guide future prompts.
+
+## Reference(s):
+
+- [Visual Prompt Engine on ClawHub](https://clawhub.ai/abdullah4ai/skills/visual-prompt-engine)
+- [Prompt Patterns](artifact/references/prompt-patterns.md)
+- [Visual Vocabulary](artifact/references/visual-vocabulary.md)
+- [Style Card Schema](artifact/references/style-card-schema.md)
+- [Dribbble Popular Shots](https://dribbble.com/shots/popular)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code]
+
+**Output Format:** [Markdown or plain text image prompts, with optional inline shell commands and JSON configuration guidance for reference collection.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local JSON files for references, style cards, and prompt history.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

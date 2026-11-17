@@ -1,41 +1,55 @@
-## Description: <br>
-Compresses older OpenClaw agent session history into a bounded, lane-change-aware context capsule that keeps recent messages verbatim, flags abandoned directions, quarantines injected instructions, and redacts secrets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Context Capsule compresses older OpenClaw agent session history into a bounded, lane-change-aware context capsule while keeping recent messages verbatim, redacting credential-shaped secrets, and quarantining injected instructions.
 
-## Publisher: <br>
-[parad0x-labs](https://clawhub.ai/user/parad0x-labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parad0x-labs](https://clawhub.ai/user/parad0x-labs)
 
-## Use Case: <br>
-Developers and agent operators use this skill to reduce prompt size in long-running OpenClaw sessions while preserving recent messages and high-value older context such as decisions, tasks, errors, files, links, questions, and durable facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Older session history is compressed into a lossy capsule, so exact wording, nuance, and low-priority details can be lost. <br>
-Mitigation: Use normal history or a retrieval system when verbatim transcript fidelity is required, and review important long-session context before relying on it. <br>
-Risk: Secret and PII redaction is best-effort pattern matching and should not be treated as a formal privacy guarantee. <br>
-Mitigation: Avoid using the skill as the only safeguard for sensitive chats, and keep credential handling controls in place before agent sessions reach the context engine. <br>
+## Use Case:
 
+Developers and agent operators use this skill to reduce prompt tokens in long OpenClaw sessions while keeping recent turns and important older decisions, tasks, errors, paths, links, and durable facts available to the model.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/parad0x-labs/context-capsule) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration] <br>
-**Output Format:** [Plain-text extractive context capsule with configurable plugin settings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Capsule size and activation are controlled by minMessages, keepRecentMessages, maxCapsuleTokens, capsuleTokenRatio, and minCompressTokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release metadata and package.json) <br>
+Risk: Older session history is summarized rather than preserved verbatim, so exact wording, nuance, or low-priority details can be lost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for long-running sessions where bounded context is acceptable; keep original logs or retrieval sources available when exact transcript fidelity is required.
+
+Risk: Credential-shaped secrets are redacted on a best-effort basis, but semantic personal or confidential details may still appear in retained context.
+
+Mitigation: Do not treat the skill as the only privacy control for highly sensitive chats; limit sensitive inputs and apply host-level data handling controls.
+
+## Reference(s):
+
+- [Openclaw Context Capsule ClawHub listing](https://clawhub.ai/parad0x-labs/skills/context-capsule)
+- [README](README.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, configuration]
+
+**Output Format:** [Model-readable text capsule with JSON-compatible capsule metadata and OpenClaw configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Older history is lossy and bounded by maxCapsuleTokens and capsuleTokenRatio; recent messages are retained verbatim.]
+
+## Skill Version(s):
+
+1.6.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

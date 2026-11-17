@@ -1,0 +1,7 @@
+interface:
+  display_name: "小说审稿评分"
+  short_description: "按六个维度评审中文小说，逐项给出原文证据、问题影响和改稿建议"
+  brand_color: "#C8792B"
+  default_prompt: "使用 $novel-review-score 评审这段小说，逐项给证据和修改建议。"
+policy:
+  allow_implicit_invocation: true

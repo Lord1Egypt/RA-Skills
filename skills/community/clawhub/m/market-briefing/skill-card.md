@@ -1,49 +1,64 @@
-## Description: <br>
-Provides scheduled, time-aware market intelligence briefings for A-shares, Hong Kong stocks, US markets, macro policy, and geopolitical news, with deduplication and Feishu delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides scheduled briefings with filtered, deduplicated news on A-shares, HK, US markets, macro policies, and geopolitics via Feishu messaging.
 
-## Publisher: <br>
-[fishisnow](https://clawhub.ai/user/fishisnow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fishisnow](https://clawhub.ai/user/fishisnow)
 
-## Use Case: <br>
-Market watchers and operations teams use this skill to gather current public market news, filter repeated items, and send scheduled briefings through Feishu. It is suited to recurring morning, intraday, and closing summaries, not deep financial modeling or personalized investment analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring Feishu delivery can send briefings to the wrong recipient if the chat target is misconfigured. <br>
-Mitigation: Verify the Feishu chat target before enabling the cron schedule, and keep workspace configuration explicit. <br>
-Risk: Workspace configuration or memory files may expose account tokens, personal holdings, or other sensitive financial details. <br>
-Mitigation: Do not store tokens, portfolio holdings, or sensitive financial details in shared workspace config or memory files. <br>
-Risk: Market news summaries and stock references can be mistaken for financial advice. <br>
-Mitigation: Keep the investment disclaimer in generated briefings and treat outputs as reference material only. <br>
+## Use Case:
 
+External users and developers use this skill to automate Chinese-language market briefings for A-share, Hong Kong, US market, macro policy, and geopolitical news. It is suited to scheduled or user-triggered news collection, summarization, deduplication, and Feishu delivery, not deep financial modeling or individualized stock analysis.
 
-## Reference(s): <br>
-- [Briefing Templates](references/briefing-template.md) <br>
-- [Search Topics Configuration](references/topics.md) <br>
-- [Market Briefing release page](https://clawhub.ai/fishisnow/market-briefing) <br>
-- [CLS Telegraph](https://www.cls.cn/telegraph) <br>
-- [Jin10](https://www.jin10.com/) <br>
-- [Sina Finance](https://finance.sina.com.cn) <br>
-- [AASTOCKS](https://www.aastocks.com) <br>
-- [Caixin](https://www.caixin.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown briefing text with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Briefings are time-aware, deduplicated against a workspace log, and intended for Feishu message delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Scheduled runs or broad market-topic triggers may send Feishu messages automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the Feishu target carefully, test with a private DM first, and add a confirmation or draft-only step before posting to shared chats.
+
+Risk: Live market searches can surface incomplete, stale, or misleading news.
+
+Mitigation: Review important items against the cited market sources before acting on the briefing.
+
+Risk: Briefings include market direction and stock references that could be mistaken for investment advice.
+
+Mitigation: Keep the disclaimer in every briefing and treat the output as reference material, not personalized financial advice.
+
+## Reference(s):
+
+- [Briefing templates](artifact/references/briefing-template.md)
+- [Search topics configuration](artifact/references/topics.md)
+- [Market Briefing ClawHub release](https://clawhub.ai/fishisnow/skills/market-briefing)
+- [CLS telegraph](https://www.cls.cn/telegraph)
+- [Jin10](https://www.jin10.com/)
+- [Sina Finance](https://finance.sina.com.cn)
+- [AAStocks](https://www.aastocks.com)
+- [Caixin](https://www.caixin.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-style Chinese briefing text with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Time-aware morning, intraday, and closing modes; may update a local deduplication log and send Feishu messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7bpsx03tp92gwhq6m1mb06mh8298es",
   "slug": "timehe",
   "version": "1.1.2",
-  "publishedAt": 1774245984645
+  "homepage": "https://www.timehe.com",
+  "repository": "https://www.timehe.com",
+  "author": "时间之河 <ijoyju@126.com>",
+  "license": "MIT-0"
 }

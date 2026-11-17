@@ -1,6 +1,21 @@
 {
-  "ownerId": "kn76tees1ths4qmh2x5yjdhqpx80psmq",
   "slug": "voice-assistant",
+  "name": "Voice Assistant",
   "version": "0.1.0",
-  "publishedAt": 1770455139181
+  "description": "Real-time voice interface for OpenClaw with configurable STT (Deepgram/ElevenLabs) and TTS (Deepgram/ElevenLabs). Sub-2s latency with full streaming.",
+  "tags": [
+    "voice",
+    "speech",
+    "stt",
+    "tts",
+    "realtime",
+    "deepgram",
+    "elevenlabs",
+    "audio",
+    "assistant"
+  ],
+  "author": "charan.mandali",
+  "license": "MIT",
+  "repository": "",
+  "homepage": ""
 }

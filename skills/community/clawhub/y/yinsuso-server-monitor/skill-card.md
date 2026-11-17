@@ -1,40 +1,53 @@
-## Description: <br>
-Monitors Linux server CPU, memory, disk, load, network, and process status with read-only commands, optional thresholds, and scheduled checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Linux server CPU, memory, disk, load, and network resources with native commands, threshold checks, and optional scheduled monitoring.
 
-## Publisher: <br>
-[yinsuso](https://clawhub.ai/user/yinsuso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinsuso](https://clawhub.ai/user/yinsuso)
 
-## Use Case: <br>
-Developers, operators, and site reliability engineers use this skill to inspect Linux server health, summarize resource usage, identify high-load processes, and configure deliberate threshold checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Server status output can expose infrastructure-sensitive details such as hostnames, process names, and resource metrics. <br>
-Mitigation: Share results only with appropriate operators and redact sensitive host or process details before forwarding them. <br>
-Risk: Optional cron, heartbeat, or notification setup can repeat metrics or send alerts unexpectedly if enabled without review. <br>
-Mitigation: Review scheduling and notification configuration before enabling automated checks, and keep alert destinations limited to intended recipients. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Linux server resource health, identify high CPU, memory, disk, load, network, or process conditions, and receive concise status or threshold guidance. Scheduled checks should be used only after the operator approves the exact cron or heartbeat behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinsuso/yinsuso-server-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Linux shell command blocks and concise status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only Linux status commands and may include threshold recommendations for optional monitoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Recurring cron or heartbeat monitoring may persist beyond the immediate session without enough user control, cleanup, or persistence disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact cron or heartbeat change before installation, confirm where it runs and what notifications it sends, and document how to remove it later.
+
+Risk: Server health commands and threshold summaries can be misleading if Linux tools, interface names, or optional utilities differ from the target host.
+
+Mitigation: Confirm command availability and adjust interface names or thresholds for the host before acting on alerts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinsuso/skills/yinsuso-server-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash command blocks and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include threshold findings and scheduled-monitoring instructions when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

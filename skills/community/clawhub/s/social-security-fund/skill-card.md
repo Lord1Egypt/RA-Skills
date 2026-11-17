@@ -1,45 +1,72 @@
-## Description: <br>
-Social Security Fund helps users estimate Chinese social security and housing fund contributions, pensions, take-home pay, employer costs, and official query channels for major Chinese cities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A China social-security and housing-fund assistant that provides local contribution calculations, pension estimates, simulated query outputs, and official-channel lookup guidance for major cities.
 
-## Publisher: <br>
-[testmtcode](https://clawhub.ai/user/testmtcode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[testmtcode](https://clawhub.ai/user/testmtcode)
 
-## Use Case: <br>
-External users and employees use this skill for local estimates of Chinese social security, housing fund, take-home pay, employer cost, and pension planning, plus official-channel lookup guidance. It is not a live account-access tool; query-style outputs are simulated unless the user follows official channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake simulated query outputs or 2024 reference rates for authoritative account or policy data. <br>
-Mitigation: Treat calculations as estimates and verify balances, eligibility, rates, and pension amounts through the official local social security or housing fund channels listed by the skill. <br>
-Risk: Real ID card or housing fund account numbers entered as command-line arguments may be exposed through shell history or process listings. <br>
-Mitigation: Use guide mode or placeholder identifiers unless necessary, and avoid passing sensitive personal identifiers on the command line. <br>
-Risk: Python dependencies and local scripts execute in the user's environment. <br>
-Mitigation: Install dependencies in an isolated Python environment and review the skill before deployment. <br>
+## Use Case:
 
+External users and agents use this skill to estimate social-security, housing-fund, payroll contribution, and pension figures for selected Chinese cities and to find official channels for real account lookup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/testmtcode/social-security-fund) <br>
-- [Publisher profile](https://clawhub.ai/user/testmtcode) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions and official-channel list](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text, with optional JSON from the included scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local estimates and simulated query outputs; official channels are required for authoritative account data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill accepts sensitive identifiers such as ID-card numbers and housing-fund account numbers in command-line arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive test values for simulations and enter real identifiers only through verified official services.
+
+Risk: Some official-service links in the skill use plain HTTP.
+
+Mitigation: Manually verify the destination and use HTTPS before logging in or entering any credentials, verification codes, or personal data.
+
+Risk: Account lookup outputs are simulated and contribution rates may change over time.
+
+Mitigation: Treat generated values as estimates or guidance and confirm real balances, eligibility, and final amounts with official local agencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/testmtcode/skills/social-security-fund)
+- [Publisher profile](https://clawhub.ai/user/testmtcode)
+- [Artifact README](artifact/README.md)
+- [Skill source file](artifact/SKILL.md)
+- [Beijing Human Resources and Social Security Bureau](http://rsj.beijing.gov.cn/)
+- [Beijing Housing Fund](http://gjj.beijing.gov.cn/)
+- [Shanghai Human Resources and Social Security Bureau](http://rsj.sh.gov.cn/)
+- [Shanghai Housing Fund](http://www.shgjj.com/)
+- [Guangzhou Human Resources and Social Security Bureau](http://rsj.gz.gov.cn/)
+- [Guangzhou Housing Fund](http://gjj.gz.gov.cn/)
+- [Shenzhen Social Insurance Fund Administration](http://hrss.sz.gov.cn/szsi/)
+- [Shenzhen Housing Fund](http://zjj.sz.gov.cn/)
+- [Hangzhou Human Resources and Social Security Bureau](http://hrss.hangzhou.gov.cn/)
+- [Hangzhou Housing Fund](http://gjj.hangzhou.gov.cn/)
+- [Chengdu Human Resources and Social Security Bureau](http://cdhrss.chengdu.gov.cn/)
+- [Chengdu Housing Fund](http://gjj.chengdu.gov.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown-style terminal text or JSON from Python command-line tools]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include calculated contribution and pension estimates, simulated account-style summaries, and official lookup-channel guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

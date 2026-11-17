@@ -1,51 +1,60 @@
-## Description: <br>
-Deeptechnic guides investment due diligence agents through independent hard-tech technical validation, team assessment, supply-chain audit, competitor discovery, and structured report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deeptechnic guides investment due-diligence agents through independent technical validation, team assessment, supply-chain audit, competitor discovery, and structured hard-tech risk reporting.
 
-## Publisher: <br>
-[ackiles](https://clawhub.ai/user/ackiles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ackiles](https://clawhub.ai/user/ackiles)
 
-## Use Case: <br>
-Investment due diligence teams and agent developers use this skill to structure technical diligence on hard-tech startups, including claim validation, team review, supplier analysis, competitor discovery, quality checks, and report generation. It is not a substitute for financial due diligence, legal due diligence, or final investment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill normalizes capturing user feedback and diligence content into training datasets. <br>
-Mitigation: Use only with approved non-confidential materials, or remove and disable feedback-to-training steps before using the skill with confidential startup information. <br>
-Risk: The bundled SkillOpt script can use external model credentials and make external model calls. <br>
-Mitigation: Review scripts/run_skillopt.py before execution, control API keys through managed environment variables, and avoid running the script in untrusted projects. <br>
-Risk: The skill produces technical due diligence support, not final investment, legal, or financial decisions. <br>
-Mitigation: Treat reports as technical input and route final investment, legal, and financial judgments to qualified reviewers. <br>
+## Use Case:
 
+Investment analysts, technical reviewers, and due-diligence teams use this skill to evaluate hard-tech startup claims, identify engineering, team, supply-chain, and competitive risks, and produce structured pre-investment technical reports. It is not a substitute for financial due diligence, legal due diligence, or final investment decisions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ackiles/v1-0-0) <br>
-- [Skills Index](references/skills-index.md) <br>
-- [Deep-Tech Due Diligence Analysis](references/skills/deep-tech-dd-analysis.md) <br>
-- [Team Assessment](references/skills/team-assessment.md) <br>
-- [Supply Chain Audit](references/skills/supply-chain-audit.md) <br>
-- [Competitor Discovery](references/skills/competitor-discovery.md) <br>
-- [Quality Gate](references/skills/quality-gate.md) <br>
-- [Feedback Collection](references/skills/feedback-collection.md) <br>
-- [Report Generation](references/skills/report-generation.md) <br>
-- [SkillOpt training script](scripts/run_skillopt.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with report outlines, scoring tables, checklists, optional shell commands, and optional DOCX report generation instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce structured due diligence reports named Deeptechnic_<ProjectEngName>_<Phase>_<Date>.docx when the report-generation workflow is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill directs agents to retain user feedback and project metadata as local training data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit approval for non-confidential or redacted projects, and disable or remove feedback-data writes for sensitive due-diligence work.
+
+Risk: The bundled SkillOpt runner can persist API credentials in plaintext and depends on endpoint configuration.
+
+Mitigation: Do not run the script with real API keys until credential persistence and endpoint-validation issues are fixed; use reviewed endpoints and environment-scoped secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ackiles/skills/v1-0-0)
+- [Skills index](artifact/references/skills-index.md)
+- [Deep-tech due diligence analysis](artifact/references/skills/deep-tech-dd-analysis.md)
+- [Team assessment](artifact/references/skills/team-assessment.md)
+- [Supply-chain audit](artifact/references/skills/supply-chain-audit.md)
+- [Competitor discovery](artifact/references/skills/competitor-discovery.md)
+- [Quality gate](artifact/references/skills/quality-gate.md)
+- [Feedback collection](artifact/references/skills/feedback-collection.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Structured Markdown reports and optional DOCX report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scoring tables, prioritized questions, cited findings, next-round recommendations, and optional local training-data records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

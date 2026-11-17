@@ -1,43 +1,60 @@
-## Description: <br>
-Download videos, torrents, magnet links, and Quark shares to 115 Pan, Quark Pan, or rclone-compatible cloud storage using bundled shell and Python tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download videos, torrents, magnet links, and Quark share links to 115, Quark, or rclone-compatible cloud storage.
 
-## Publisher: <br>
-[graysonzeng](https://clawhub.ai/user/graysonzeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[graysonzeng](https://clawhub.ai/user/graysonzeng)
 
-## Use Case: <br>
-External users and developers use this skill to search for video or torrent resources, submit supported offline-download tasks, and move downloaded media into cloud storage accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installer and runtime commands can install packages, edit user shell PATH configuration, stage media under /tmp, and store cloud account credentials locally. <br>
-Mitigation: Review the installer before execution, run it in a dedicated or isolated environment where practical, and verify cloud destinations before starting downloads. <br>
-Risk: The skill stores powerful rclone tokens and a Quark browser cookie on disk for cloud account access. <br>
-Mitigation: Protect the local configuration files, use dedicated cloud accounts where possible, and rotate or revoke exposed tokens or cookies promptly. <br>
+## Use Case:
 
+External users and developers use this skill to search for media links, submit cloud-side offline download tasks, or download video and torrent content locally before uploading it to configured cloud storage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/graysonzeng/video-fetch-download) <br>
-- [rclone 115 setup guide](references/rclone-setup.md) <br>
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) <br>
-- [rclone 115 fork](https://github.com/gaoyb7/rclone-release) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may create local staging files, update user shell PATH configuration, and write local cloud-storage credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.9 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security review marks the skill as suspicious because setup includes high-impact, under-scoped risks around installation and dependency handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts/install.sh before running it, prefer manual dependency installation or a sandboxed environment, and avoid the documented curl-to-sudo rclone installation pattern.
+
+Risk: The skill stores cloud credentials and Quark cookies locally for access to 115, Quark, and rclone-compatible storage.
+
+Mitigation: Use the skill only in an account or environment where those credentials are acceptable, keep rclone and Quark credential files private, and restrict file permissions.
+
+Risk: Torrent searches, cloud-side transfer tasks, and local staging-directory cleanup may create policy, legal, or data-retention risks depending on the environment.
+
+Mitigation: Use only approved content sources and destinations, confirm torrent-search usage is permitted, and configure the staging directory so cleanup cannot remove unrelated files.
+
+## Reference(s):
+
+- [rclone 115 setup guide](references/rclone-setup.md)
+- [yt-dlp project](https://github.com/yt-dlp/yt-dlp)
+- [rclone 115 fork](https://github.com/gaoyb7/rclone-release)
+- [ClawHub skill page](https://clawhub.ai/graysonzeng/skills/video-fetch-download)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local scripts, environment variables, cloud remotes, credential file paths, and download task status commands.]
+
+## Skill Version(s):
+
+1.1.9 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Analyze a local codebase to explain directory structure, entrypoints, dependencies, call chains, and data flow without modifying code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a local codebase to explain its directory structure, entrypoints, dependencies, call chains, and data flow without modifying code.
 
-## Publisher: <br>
-[sf0799](https://clawhub.ai/user/sf0799) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sf0799](https://clawhub.ai/user/sf0799)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to understand an unfamiliar or changing codebase, including project structure, key entrypoints, module responsibilities, call relationships, and data flow. It is intended for read-only exploration before deciding whether code changes are needed.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill inspects files in the current codebase to explain structure and data flow.
+
+Mitigation: Use it only in workspaces where read-only code inspection is permitted, and review conclusions against the files the agent cites.
+
+Risk: Analysis can be incomplete when relevant files have not been read.
+
+Mitigation: Require the agent to mark unconfirmed areas as uncertain and base conclusions only on inspected files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect a local codebase, locate entrypoints and core files, and explain dependencies, call paths, and data flow without changing project behavior. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read and summarize project files relevant to the user's question. <br>
-Mitigation: Use it only in repositories whose contents are appropriate to analyze in the agent conversation. <br>
-Risk: Codebase explanations can be incomplete or misleading when relevant files have not been inspected. <br>
-Mitigation: Require conclusions to cite code evidence and mark uninspected areas or assumptions as uncertain. <br>
+**Output Format:** [Markdown analysis with concise lists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sf0799/code-explore) <br>
+**Other Properties Related to Output:** [Read-only project exploration; the skill does not request code edits, persistent components, or network use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis with concise summaries and code-grounded findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only codebase analysis; no executable code or install hooks are included in the skill artifact.] <br>
+0.1.0 (source: evidence.release.version)
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

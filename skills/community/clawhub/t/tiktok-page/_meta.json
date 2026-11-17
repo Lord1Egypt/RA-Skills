@@ -1,6 +1,45 @@
 {
-  "ownerId": "kn7824yf4srh3akes6axhmqf5n81q7dh",
-  "slug": "tiktok-page",
-  "version": "1.0.4",
-  "publishedAt": 1772355106385
+    "ownerId":  "kn7824yf4srh3akes6axhmqf5n81q7dh",
+    "slug":  "tiktok-page",
+    "version":  "1.0.4",
+    "publishedAt":  "2026-03-01T08:51:41Z",
+    "requiredEnvVars":  [
+
+                        ],
+    "requiredConfigPaths":  [
+                                "~/.config/tiktok-page/credentials.json"
+                            ],
+    "primaryCredential":  {
+                              "type":  "file",
+                              "path":  "~/.config/tiktok-page/credentials.json",
+                              "fields":  [
+                                             "TIKTOK_ACCESS_TOKEN",
+                                             "TIKTOK_REFRESH_TOKEN",
+                                             "TIKTOK_CLIENT_KEY",
+                                             "TIKTOK_CLIENT_SECRET",
+                                             "TIKTOK_OPEN_ID"
+                                         ],
+                              "sensitive":  true,
+                              "notes":  "Credentials obtained via TikTok OAuth2 flow. TIKTOK_ACCESS_TOKEN expires after 24 hours â€” refresh using TIKTOK_REFRESH_TOKEN + TIKTOK_CLIENT_SECRET. TIKTOK_CLIENT_SECRET is for token refresh only, never used in direct API calls. Rotate all tokens immediately if host is ever compromised; rotate periodically as a best practice. Credentials read fresh from disk at runtime â€” never embedded as literals in scripts. Secrets stay local; no data forwarded to third parties.",
+                              "required":  [
+                                               "TIKTOK_ACCESS_TOKEN",
+                                               "TIKTOK_REFRESH_TOKEN",
+                                               "TIKTOK_CLIENT_KEY",
+                                               "TIKTOK_OPEN_ID"
+                                           ],
+                              "optional":  [
+                                               "TIKTOK_CLIENT_SECRET"
+                                           ]
+                          },
+    "requires":  {
+                     "os":  [
+                                "windows",
+                                "macos",
+                                "linux"
+                            ],
+                     "anyBinaries":  [
+                                         "powershell",
+                                         "pwsh"
+                                     ]
+                 }
 }

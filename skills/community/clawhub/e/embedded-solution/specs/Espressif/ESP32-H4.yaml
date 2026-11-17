@@ -1,0 +1,74 @@
+part: ESP32-H4
+link_status: verified_2026-07-01 (datasheet-html-extracted)
+expected_family: "ESP32-H4 \u2014 Dual-Core RISC-V SoC with BLE 5.4 + 802.15.4"
+main_page: https://www.espressif.com/en/products/socs/esp32-h4
+datasheet_path_expected: references/semiconductor-vendor/Espressif/datasheet-html/esp32-h4.html
+created_at: '2026-06-30T10:06:00+08:00'
+specs:
+  family: ESP32-H (next-gen after ESP32-C)
+  cores:
+  - 2x 32-bit RISC-V @ up to 96 MHz (with DSP extensions)
+  memory:
+    sram: 384 KB
+    rom: 128 KB
+    external_psram_support: true
+    external_memory: true
+  wireless:
+    bluetooth_le_5_4_with_6_0_certification:
+    - LE Audio
+    - LE Isochronous Channels (BIS/CIS)
+    - Connection Subrating
+    - Periodic Advertising with Responses (PAwR)
+    - Direction Finding (AoA/AoD)
+    - Bluetooth Channel Sounding
+    ieee_802_15_4:
+    - Thread 1.4
+    - Zigbee 3.0
+    - Matter-over-Thread
+    - other mesh-based applications
+  power:
+    integrated_dcdc_converter: true
+    low_power_modes: multiple
+    selective_peripheral_activation: true
+    reduced_max_tx_power: yes (for lower RF current)
+    ble_advertising_without_cpu: true
+  security:
+    notes: "Espressif \"Affordable Security\" \u2014 secure boot, flash encryption, crypto accelerators, Digital Signature,\
+      \ Key Manager, TEE (specifics in raw)."
+  software:
+    esp_idf: yes (open-source Espressif SDK)
+    esp_at: yes (co-processor mode)
+    esp_hosted: yes (co-processor mode)
+  use_cases:
+  - Wearables + LE Audio
+  - Healthcare (CGM, ECG patches)
+  - Battery-powered Matter-over-Thread devices
+  - Low-power mesh sensor networks (BLE 5.4 PAwR)
+unverified:
+- exact peripheral count
+- exact supply voltage range
+- exact operating temperature range
+- exact package options / pinout
+- exact flash size (no internal flash in description; flash-less variant)
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from espressif.com ESP32-H4 product page via Firecrawl (9,321 bytes raw)."
+- 'Family differentiator vs ESP32-C6 (existing yaml): C6 is RISC-V single-core + dual-band Wi-Fi 6 + BLE 5 + 802.15.4; H4
+  is dual-core RISC-V + BLE 5.4 + 802.15.4 only (no Wi-Fi) + ultra-low-power focus.'
+- 'Family differentiator vs ESP32-S3 (existing yaml): S3 is dual-core Xtensa LX7 + Wi-Fi + BLE (no 802.15.4); H4 is BLE 5.4
+  + 802.15.4 + low-power RISC-V.'
+- 'Cross-reference: comparable to Nordic nRF54L15 in wearables + Channel Sounding tier. Both are RISC-V/Cortex dual-core low-power
+  wireless.'
+- 'Use case: next-gen wearables (LE Audio), Matter-over-Thread battery devices, large-scale sensor networks (PAwR).'
+- 'Verified 2026-07-01 via firecrawl-html-extract against esp32-h4.html: 13/23 spec fields matched (57%). Source: https://www.espressif.com/en/products/socs/esp32-h4
+  (vendor product page scraped as HTML; no separate PDF available).'
+- "Verified 2026-07-01 via Tavily web search + documentation.espressif.com probe: confirmed that no public chip datasheet\
+  \ exists for ESP32-H4 as of 2026-07-01. documentation.espressif.com/esp32-h4_datasheet_en.pdf returns 302 \u2192 /404 (Espressif\
+  \ docs CDN). espressif.com/main product page is the only authoritative source \u2014 kept as datasheet-html-extracted. When\
+  \ Espressif publishes the datasheet (expected 2026 Q3/Q4 per their product roadmap), this yaml should be re-verified with\
+  \ pdfplumber + keyword-split upgrade."
+extracted_at: '2026-06-30T10:06:00+08:00'
+extraction_method: firecrawl-extract (keyed) of espressif.com product page
+extraction_source: references/semiconductor-vendor/Espressif/firecrawl-snapshots/ESP32-H4-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/Espressif/firecrawl-snapshots/ESP32-H4-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.espressif.com/en/products/socs/esp32-h4

@@ -1,46 +1,53 @@
-## Description: <br>
-Taobao Merchant Ops helps run Taobao merchant operations workflows, including business report capture, shop inspection, report parsing, license activation, and environment checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides customer-facing guidance and scripts for automating Taobao merchant operations, including business report capture, shop inspection, license activation, and local report parsing.
 
-## Publisher: <br>
-[chenjiahui11](https://clawhub.ai/user/chenjiahui11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenjiahui11](https://clawhub.ai/user/chenjiahui11)
 
-## Use Case: <br>
-External Taobao merchants and operators use this skill to automate daily business data collection, shop inspection checks, and conversion of downloaded Taobao reports into structured JSON for operational review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can preserve merchant browser session state, reports, logs, and screenshots on the local machine. <br>
-Mitigation: Use a dedicated browser profile or machine where possible, and protect or delete saved browser state, reports, logs, and screenshots after use. <br>
-Risk: License activation sends a card key and machine fingerprint over plain HTTP according to the security evidence. <br>
-Mitigation: Review this behavior before activation, use a dedicated environment, and avoid running it on sensitive merchant accounts until the publisher is trusted. <br>
-Risk: The authoritative security verdict is suspicious because sensitive session persistence and plaintext license communication are under-disclosed. <br>
-Mitigation: Review before installing, isolate the Python environment, and limit account exposure until the risk is accepted. <br>
+## Use Case:
 
+External Taobao merchants and their operators use this skill to install and run a licensed automation package that captures Taobao business reports, performs shop inspections, and parses downloaded Excel reports into structured JSON for operational review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenjiahui11/taobao-merchant-ops) <br>
-- [Publisher profile](https://clawhub.ai/user/chenjiahui11) <br>
-- [Daily card purchase page](https://www.zhufaka.cn/item/tgcsid) <br>
-- [Monthly card purchase page](https://www.zhufaka.cn/item/i6wfue) <br>
-- [Annual card purchase page](https://www.zhufaka.cn/item/x8ancz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with Python commands and generated JSON/report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create browser state, downloaded reports, run logs, screenshots, license files, and parsed JSON outputs in configured local directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata) <br>
+Risk: The package handles Taobao account session state and license credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher is trusted, run from a non-admin environment, keep the project folder private, and do not share generated license or storage-state JSON files.
+
+Risk: The package depends on remote license activation and runtime dependencies.
+
+Mitigation: Prefer an HTTPS license server and pinned dependency installation before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenjiahui11/skills/taobao-merchant-ops)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, JSON, files]
+
+**Output Format:** [Markdown instructions with inline shell commands; scripts produce local JSON summaries and downloaded report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.9+, Playwright Chromium, a valid card key, and an authenticated Taobao browser session.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata; artifact files list 1.0.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

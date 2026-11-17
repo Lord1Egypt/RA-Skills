@@ -6,6 +6,7 @@ description: >
   units competing for shared capital; investor or board discussion needs a visual portfolio health read.
   Do NOT activate when: firm is a single-product startup with no portfolio to balance; user needs
   competitive analysis within one market (use Porter's Five Forces or VRIO instead).
+  More: deciqai.com/c/bcg-matrix
 ---
 
 # BCG Growth-Share Matrix
@@ -14,13 +15,14 @@ description: >
 
 Maps each business unit on a 2×2 grid of market growth rate vs. relative market share, revealing which units generate cash, which absorb it, and which to invest in, harvest, or exit. Four quadrants: **Stars** (invest), **Cash Cows** (harvest), **Question Marks** (binary decide), **Dogs** (exit or hold minimally). Rests on two empirical anchors: experience curve (high share = lowest cost) and industry life cycle (high growth demands reinvestment; maturity throws off cash).
 
-Composes with: [`porters-five-forces`](../porters-five-forces/SKILL.md) to define industry boundary first · [`swot-analysis`](../swot-analysis/SKILL.md) for internal-capability depth · [`ansoff-matrix`](../ansoff-matrix/SKILL.md) to set growth direction for units worth investing in.
+Composes with: `porters-five-forces` to define industry boundary first · `swot-analysis` for internal-capability depth · `ansoff-matrix` to set growth direction for units worth investing in.
 
 ## When to Use
 
 - Firm operates **≥ 3 distinct business units** competing for a shared capital pool
 - Annual **strategy or budget reviews** need a forcing function for prioritization
 - **PE/VC portfolio** requires a quick health-read across holdings; M&A teams assessing retain vs. divest
+- **AI capital reallocation:** deciding which units to harvest to fund AI capex / AI-native bets, and whether an AI unit is a true Star or an expensive Question Mark amid AI-native competition
 
 **When NOT to use:** single-product startup · highly interdependent units where divesting a Dog may destroy a Cash Cow · market in technology transition with unreliable growth data · firm-level competitive analysis within one market
 
@@ -67,7 +69,8 @@ Strategy: <SBU A>: invest/harvest/exit by <date>
 Key decision: <what the analysis forces>
 ```
 
-*→ Method in Action: [Procter & Gamble's Brand Portfolio Restructuring (2012–2016)](examples/procter-gamble-brand-portfolio-restructuring-2012-2016.md)*
+*→ Method in Action: [Procter & Gamble's Brand Portfolio Restructuring (2012–2016)](examples/procter-gamble-brand-portfolio-restructuring-2012-2016.md) · [GE's "Fix, Sell, or Close" Pruning (1981–1995)](examples/general-electric-fix-sell-or-close-portfolio-pruning-1981-1995.md)*
+*→ 2026 lens: [Microsoft's Portfolio as AI Reallocates Capital (2024–2026)](examples/microsoft-ai-capital-reallocation-portfolio-2024-2026.md) — which units are Stars, which Cash Cows fund the AI capex build, which are Question Marks or Dogs*
 
 ## Portfolio Packs
 
@@ -113,4 +116,6 @@ Key decision: <what the analysis forces>
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/bcg-matrix** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/bcg-matrix.json*

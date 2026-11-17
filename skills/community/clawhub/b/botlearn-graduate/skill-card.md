@@ -1,44 +1,63 @@
-## Description: <br>
-Guides OpenClaw users through a Day 7 graduation retrospective by comparing journey progress, identifying an agent archetype, celebrating achievements, and planning next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides OpenClaw users through a Day 7 graduation ceremony by comparing progress, identifying an agent archetype, and producing a personalized growth plan.
 
-## Publisher: <br>
-[calvinxhk](https://clawhub.ai/user/calvinxhk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[calvinxhk](https://clawhub.ai/user/calvinxhk)
 
-## Use Case: <br>
-OpenClaw learners and agent users use this skill at the end of a 7-day learning journey to generate a personalized graduation report, 4C growth analysis, archetype assessment, and 7/30/90-day growth roadmap. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may review broad OpenClaw memory, session history, configuration history, workspace metadata, and skill usage to create a profile-like graduation report. <br>
-Mitigation: Run it only after an explicit Day 7 request, review the data sources before analysis, and avoid saving reports, sharing journey data, or enabling follow-ups unless the user intentionally opts in. <br>
-Risk: Personalized roadmap and archetype conclusions can be misleading if based on incomplete or unverified journey data. <br>
-Mitigation: Ask the user to confirm the baseline, current state, and data sources before presenting conclusions as final. <br>
+## Use Case:
 
+OpenClaw users and agent operators use this skill at the end of a 7-day learning journey to review progress, understand their agent-building pattern, and choose concrete next steps for continued development.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/calvinxhk/botlearn-graduate) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Domain knowledge](artifact/knowledge/Domain.md) <br>
-- [Graduation strategy](artifact/strategies/Main.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown graduation report with tables, scores, archetype summary, recommendations, and roadmap sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses available Day 1 and Day 7 journey evidence to produce a personalized progress report; no external post-processing is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata, SKILL.md frontmatter, strategies/Main.md, and test files; manifest.json and package.json list 0.1.0) <br>
+Risk: The skill may analyze broad personal and workspace history, including memory, session history, identity files, skill usage, and feedback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only after an explicit graduation request and review what data the host will provide before allowing analysis.
+
+Risk: The skill describes saving graduation reports and scheduling 14-day, 30-day, and 90-day follow-ups.
+
+Mitigation: Allow saved reports, graph contribution, or scheduled follow-ups only when the host clearly asks for consent and provides review, delete, and cancel controls.
+
+Risk: Personalized community and resource recommendations could expose user interests or workflow details if shared externally.
+
+Mitigation: Review any community-facing summary or recommendation before posting or sending it outside the local agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/calvinxhk/skills/botlearn-graduate)
+- [Publisher profile](https://clawhub.ai/user/calvinxhk)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Graduation strategy](artifact/strategies/Main.md)
+- [Best practices](artifact/knowledge/BestPractices.md)
+- [Domain model](artifact/knowledge/Domain.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown report with tables, checklists, recommendations, and optional JSON-like saved summary data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are personalized from available journey, session, memory, workspace, identity, skill usage, and feedback evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, SKILL.md frontmatter, strategies/Main.md, tests/smoke.json, tests/benchmark.json; package.json and manifest.json list 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

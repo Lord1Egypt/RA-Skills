@@ -1,43 +1,59 @@
-## Description: <br>
-Calculates BMI, DuBois body surface area, WHO-style BMI categories, and optional BSA-based dose amounts from weight and height inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates Body Mass Index, DuBois Body Surface Area, basic BMI category, and optional BSA-based dose values from local height and weight inputs.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External clinicians, health operations users, and developers can use this local calculation aid to compute BMI, DuBois BSA, and simple BSA-based dose amounts. Medical or chemotherapy decisions should be independently verified. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation overstates pediatric, multi-formula, and drug-specific clinical workflows beyond the implemented calculator. <br>
-Mitigation: Treat the release as a simple BMI and DuBois BSA calculator, and do not rely on advertised pediatric or drug-specific workflows without separate validation. <br>
-Risk: Medication or chemotherapy calculations based on BSA can affect clinical decisions if accepted without review. <br>
-Mitigation: Independently verify any medication or chemotherapy dose calculation against authoritative clinical protocols before use. <br>
-Risk: The optional output path writes calculation results to a local file. <br>
-Mitigation: Choose output paths deliberately and avoid writing patient-identifying information to unsafe locations. <br>
+## Use Case:
 
+External users and developers use this skill to run a local BMI/BSA calculator for basic anthropometric screening examples and simple BSA-based dose arithmetic. Clinical or medication decisions require independent validation before use.
 
-## Reference(s): <br>
-- [BMI & BSA Calculator Guidelines](references/guidelines.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/AIPOCH-AI/bmi-bsa-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, files, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON calculation results, with optional local file output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses weight in kilograms, height in centimeters, and an optional dose per square meter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Clinical documentation overstates supported pediatric, multi-formula, AUC, dose-cap, and reporting capabilities relative to the implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as unvalidated examples and rely only on the implemented BMI, DuBois BSA, and simple BSA dose arithmetic unless the implementation is corrected and independently validated.
+
+Risk: BMI, BSA, and dose calculations may be misused for real clinical or medication decisions.
+
+Mitigation: Require qualified clinical review, confirm units and formulas, and independently double-check all medication or chemotherapy calculations before use.
+
+Risk: The requirements file lists Python standard-library modules and may be misleading as an installation source.
+
+Mitigation: Do not rely on requirements.txt for package installation; review the script directly and run it in a controlled Python environment.
+
+## Reference(s):
+
+- [BMI & BSA Calculator - References](references/guidelines.md)
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/bmi-bsa-calculator)
+- [Publisher profile](https://clawhub.ai/user/aipoch-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, files]
+
+**Output Format:** [Plain text or JSON CLI output, with optional file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts weight, height, optional dose, output format, and output path parameters.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

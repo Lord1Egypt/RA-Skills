@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  release-ready:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.8", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install pytest
+        run: python -m pip install -q "pytest>=8.3,<9"
+      - name: Self-check (zero-dependency)
+        run: python releaser.py doctor
+      - name: Run test suite
+        run: python -m pytest -q | tee $GITHUB_STEP_SUMMARY
+      - name: Publish readiness gate
+        run: python releaser.py doctor --path .

@@ -1,43 +1,61 @@
-## Description: <br>
-Routes shopping-related queries to Viking AISearch chat or search APIs and helps return product search answers, candidate lists, or Markdown product cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Goods Search V2 helps agents handle shopping requests by choosing between Volcengine Viking AISearch chat search and direct product search, then formatting returned product results without inventing missing fields.
 
-## Publisher: <br>
-[chenyantong429-coder](https://clawhub.ai/user/chenyantong429-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenyantong429-coder](https://clawhub.ai/user/chenyantong429-coder)
 
-## Use Case: <br>
-External users and developers use this skill to handle shopping search, product recall, search question answering, and product-card generation through an external AISearch provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping queries, image URLs, user metadata, nicknames, or location context may be sent to an external AISearch provider. <br>
-Mitigation: Use a scoped provider API key and avoid sending sensitive images or precise location unless needed. <br>
-Risk: The skill depends on an external AISearch service for chat and search behavior. <br>
-Mitigation: Handle provider errors, timeouts, and empty results by clearly telling the user the search service is unavailable or asking whether to retry. <br>
+## Use Case:
 
+External developers and agents use this skill to support shopping search workflows, including product retrieval, conversational product search, product card generation, and structured product list summaries.
 
-## Reference(s): <br>
-- [ChatSearch API Reference](references/chat_search_api.md) <br>
-- [Search API Reference](references/search_api.md) <br>
-- [Volcengine ChatSearch Documentation](https://www.volcengine.com/docs/85296/1873492?lang=zh) <br>
-- [Volcengine Search Documentation](https://www.volcengine.com/docs/85296/1544974?lang=zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown product summaries, JSON API results, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses returned provider fields only; missing product fields are omitted rather than filled with placeholders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill can send API credentials and user query data to a configured remote host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted Volcengine HTTPS endpoints, restrict environment configuration changes, and review the configured API base before deployment.
+
+Risk: Shopping requests may transmit user, session, location, image, or preference data to the remote search service.
+
+Mitigation: Send only data approved for remote processing and avoid sensitive personal information unless that transmission is acceptable.
+
+Risk: API keys may be exposed if supplied through command-line arguments or unmanaged local configuration.
+
+Mitigation: Provide credentials through protected environment variables or secret management, and avoid passing API keys directly on the command line.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenyantong429-coder/skills/goods-search-v2)
+- [ChatSearch API reference](references/chat_search_api.md)
+- [Search API reference](references/search_api.md)
+- [Volcengine ChatSearch API documentation](https://www.volcengine.com/docs/85296/1873492?lang=zh)
+- [Volcengine Search API documentation](https://www.volcengine.com/docs/85296/1544974?lang=zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown product summaries, JSON API responses, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include returned product fields, request identifiers, citations, total item counts, spelling corrections, and omitted fields when source data is absent.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

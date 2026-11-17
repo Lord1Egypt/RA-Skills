@@ -1,0 +1,4 @@
+interface:
+  display_name: "财报引文逐字核对"
+  short_description: "用 Cue Omni Reader 读公司自己的公开披露，找信用恶化线索，每句引文都对回原文和页码"
+  default_prompt: "使用 $cue-lead-pieces 读这家公司的公开披露（先告诉我要用 Cue Omni Reader 解析几份、等我同意），列出最重要的信用恶化信号，每条附逐字原文和页码，并在回答前核对引文。"

@@ -1,43 +1,58 @@
-## Description: <br>
-Registers the Audible skill for organizing public product pages, catalog entry points, membership information, and help content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audible helps agents summarize public Audible product pages, catalog entry points, membership information, help content, and promotional pages.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-External users and agents use this skill to summarize public Audible catalog pages, membership terms, help-center information, promotions, and listening-support details. It is not for piracy, account sharing, private library data, purchase history, reading history, or non-public account information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill could be asked for piracy, account sharing, copyright bypass, or unauthorized download guidance. <br>
-Mitigation: Restrict responses to lawful public Audible information and refuse piracy, account-sharing, copyright-bypass, scraping, or interface-bypass guidance. <br>
-Risk: A user could provide or request private Audible account details, library contents, purchase history, or listening history. <br>
-Mitigation: Do not process or reveal private account data; handle only publicly visible pages, help content, membership descriptions, and catalog information. <br>
-Risk: Membership benefits, availability, device support, and rights information may vary by region or change over time. <br>
-Mitigation: State the page context used and call out regional or time-sensitive uncertainty when summarizing Audible terms or content availability. <br>
+## Use Case:
 
+External users and agents use this skill to research public Audible catalog, membership, help center, and campaign pages. It supports concise summaries, tables, and link lists while staying within copyright and account-safety boundaries.
 
-## Reference(s): <br>
-- [Audible Homepage](https://www.audible.com/) <br>
-- [ClawHub Audible Skill](https://clawhub.ai/mikeclaw007/audible) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries, tables, and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should identify public source context and note when Audible membership, availability, or rights information may vary by region or time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Users may provide private Audible or Amazon account data, purchase history, or credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not request, process, or retain private account data; redirect the task to public Audible pages or general account-safety guidance.
+
+Risk: Audible membership terms, content availability, and download rules can vary by region and time.
+
+Mitigation: State the region and date context when summarizing terms, and verify details against the current public page before making a recommendation.
+
+Risk: Requests may seek pirated downloads, copyright bypass, account sharing, or membership abuse.
+
+Mitigation: Decline bypass or abuse instructions and provide only public, rights-respecting information from Audible and its help content.
+
+## Reference(s):
+
+- [Audible](https://www.audible.com/)
+- [ClawHub Audible Skill](https://clawhub.ai/mikeclaw007/skills/audible)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries, tables, and link lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public Audible information only and does not handle private account data.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

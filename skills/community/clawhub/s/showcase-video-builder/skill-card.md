@@ -1,42 +1,56 @@
-## Description: <br>
-Build polished showcase and demo videos from screenshots, avatars, and text overlays using ffmpeg. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build polished showcase and demo videos from screenshots, avatars, and text overlays using ffmpeg.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Developers, hackathon teams, OSS maintainers, and product teams use this skill to turn static screenshots, avatars, and text into showcase videos, demo reels, product walkthroughs, or social clips without a full video editor. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the helper on the wrong image folder or output path can process unintended local files or overwrite an expected video artifact. <br>
-Mitigation: Run it only on image folders you choose and review the output path before execution. <br>
-Risk: The skill metadata includes sensitive-credential capability tags even though the documented workflow does not require credentials. <br>
-Mitigation: Do not provide OAuth tokens or other sensitive credentials when using this local ffmpeg workflow. <br>
-Risk: The workflow depends on a local ffmpeg installation, and some ffmpeg builds may lack text-rendering support. <br>
-Mitigation: Confirm ffmpeg is installed and test the command on disposable sample images before using it for final media. <br>
+## Use Case:
 
+Developers, hackathon teams, and OSS project maintainers use this skill to turn static screenshots, avatars, and written captions into showcase videos, demo reels, product walkthroughs, and social media clips.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nissan/showcase-video-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with ffmpeg command examples and shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local video-building instructions and commands; generated media files are created by ffmpeg when the user runs the commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Untrusted image filenames may change the ffmpeg command that the bundled script runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted local image directories, or update the script to use shell arrays and quoted path arguments before processing files from other people.
+
+Risk: Screenshots and images may contain sensitive information.
+
+Mitigation: Review and sanitize local media before processing or sharing generated showcase videos.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/showcase-video-builder)
+- [Publisher profile](https://clawhub.ai/user/nissan)
+- [Skill source documentation](artifact/SKILL.md)
+- [Showcase builder script](artifact/scripts/build_showcase.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with ffmpeg command examples and shell script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local ffmpeg; no outbound network requirement is declared in metadata.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

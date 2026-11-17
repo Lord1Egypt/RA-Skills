@@ -1,46 +1,59 @@
-## Description: <br>
-Clawlett enables Base Mainnet token swaps and Trenches token creation or trading through a Gnosis Safe constrained by Zodiac Roles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawlett lets agents preview and, with explicit user confirmation, execute token swaps and Trenches token creation or trading on Base Mainnet through a Gnosis Safe and Zodiac Roles.
 
-## Publisher: <br>
-[0xArdi](https://clawhub.ai/user/0xArdi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xardi](https://clawhub.ai/user/0xardi)
 
-## Use Case: <br>
-Developers and agent operators use Clawlett to initialize a purpose-limited Safe, preview Base Mainnet swaps, and execute confirmed swaps or Trenches token actions. It is intended for wallet-trading workflows where token addresses, fees, permissions, and on-chain execution are reviewed before action. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Real-money on-chain actions can execute when swap, create, buy, or sell commands are run with execution intent. <br>
-Mitigation: Use quote or preview mode by default, require explicit user confirmation before execution, and verify fees, token addresses, contract addresses, and Zodiac Roles permissions before running execution commands. <br>
-Risk: Local wallet and session files such as config/agent.pk and wallet.json grant powerful access to the configured Safe workflow. <br>
-Mitigation: Protect the config directory like wallet secrets, restrict filesystem access, avoid sharing or committing these files, and use a small purpose-limited Safe. <br>
-Risk: Unverified or impersonating tokens can lead to unintended trades or loss of funds. <br>
-Mitigation: Prefer verified Base Mainnet token addresses, display contract address, volume, and liquidity for unverified tokens, and require confirmation before proceeding. <br>
-Risk: Trenches create, buy, and sell commands may cause immediate token-market actions. <br>
-Mitigation: Do not run Trenches create, buy, or sell commands unless the user intends immediate on-chain action and has reviewed all token parameters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawlett ClawHub Page](https://clawhub.ai/0xArdi/clawlett) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
-- [Migration Guide](artifact/MIGRATION_GUIDE.md) <br>
-- [Safe Transaction Builder](https://app.safe.global) <br>
+## Use Case:
 
+Developers and crypto operators use Clawlett to give an agent constrained access to quote balances, prepare swaps through KyberSwap or CoW Protocol, and manage Trenches token workflows from a Safe on Base Mainnet. The skill is intended for workflows where on-chain execution is explicitly confirmed by the user.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce quote summaries, local wallet configuration, transaction hashes, and migration steps for Base Mainnet workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.4.1 (source: server release metadata and release changelog) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The server security summary reports that the Trenches trading script can execute irreversible on-chain transactions without the documented execution flag or slippage protection.
+
+Mitigation: Review carefully before installation, use only small disposable amounts, and require an explicit execution flag, nonzero minimum outputs, and exact token-address confirmations before using larger funds.
+
+Risk: The wallet configuration directory contains an agent private key and may contain backend session cookies.
+
+Mitigation: Restrict access to the configuration directory, avoid sharing generated config files, and rotate or reinitialize credentials if the directory is exposed.
+
+Risk: On-chain actions depend on the Safe and Zodiac Roles permissions being configured as intended.
+
+Mitigation: Verify the Safe owner, role key, scoped helper contracts, and allowed execution paths before funding the Safe or approving token operations.
+
+## Reference(s):
+
+- [Clawlett Skill Page](https://clawhub.ai/0xardi/skills/clawlett)
+- [Publisher Profile](https://clawhub.ai/user/0xardi)
+- [SKILL.md](artifact/SKILL.md)
+- [Migration Guide](artifact/MIGRATION_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include quote previews, transaction commands, balance reports, migration guidance, and setup configuration details.]
+
+## Skill Version(s):
+
+0.4.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

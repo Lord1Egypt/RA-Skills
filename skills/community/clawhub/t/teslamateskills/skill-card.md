@@ -1,40 +1,53 @@
-## Description: <br>
-Query TeslaMate vehicle data via Grafana API for vehicle status, battery information, drives, charges, statistics, driving score, battery health, and trip data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query TeslaMate vehicle data through the Grafana API for vehicle status, battery, drive, charging, route, statistics, driving score, battery health, and trip information.
 
-## Publisher: <br>
-[zengfei88](https://clawhub.ai/user/zengfei88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zengfei88](https://clawhub.ai/user/zengfei88)
 
-## Use Case: <br>
-Developers and TeslaMate users use this skill to query a Grafana-backed TeslaMate PostgreSQL datasource for vehicle telemetry, trip history, charging statistics, efficiency trends, alerts, and route estimates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location and route features can expose precise vehicle coordinates or destination addresses to public map services. <br>
-Mitigation: Avoid address, route, drive-address, and location features unless the user accepts that exposure, or modify the skill to use trusted self-hosted geocoding and routing services. <br>
-Risk: The skill can access TeslaMate vehicle telemetry through Grafana. <br>
-Mitigation: Keep Grafana private and read-only, and verify the workspace configuration points only to the user's intended Grafana instance. <br>
+## Use Case:
 
+Developers and TeslaMate users use this skill to query Grafana-backed Tesla vehicle status, trip, charging, location, route, efficiency, cost, and battery health data from an agent.
 
-## Reference(s): <br>
-- [TeslaMate Database Schema](artifact/references/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text and terminal tables, with Markdown command examples in documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are based on Grafana API responses and may include vehicle telemetry, locations, route estimates, charging statistics, and status summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Exact vehicle locations or route destinations may be sent to external geocoding or routing services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use self-hosted or HTTPS-validated geocoding and routing services, or avoid the location and route features when location sharing is not acceptable.
+
+Risk: Grafana raw SQL access can expose sensitive TeslaMate data if the datasource has broad permissions.
+
+Mitigation: Use a read-only, least-privilege Grafana datasource account and avoid raw-SQL fallback behavior.
+
+## Reference(s):
+
+- [TeslaMate Database Schema](references/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured TeslaMate Grafana PostgreSQL datasource; location and route features may call external geocoding or routing services.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

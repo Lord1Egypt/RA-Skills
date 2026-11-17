@@ -1,43 +1,60 @@
-## Description: <br>
-Helps agents plan and write Chinese-language long-form novels using the Snowflake Method and a three-layer memory workflow, with prompt templates and Node.js scripts for manuscript state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dream Novel Writer helps agents plan and write long-form Chinese novels using the snowflake method, chapter blueprints, and JSON-backed memory state.
 
-## Publisher: <br>
-[waitli](https://clawhub.ai/user/waitli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[waitli](https://clawhub.ai/user/waitli)
 
-## Use Case: <br>
-External users and writing-focused agents use this skill to structure a novel from seed concept through character, world, plot, chapter outline, draft generation, and continuity updates. It is intended for Chinese-language fiction workflows that need persistent local manuscript state across many chapters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill initializes and updates local manuscript state on disk. <br>
-Mitigation: Use a dedicated project directory and confirm the exact path before initialization or resume. <br>
-Risk: Long-form generation can continue across multiple chapters and save outputs after each chapter. <br>
-Mitigation: Require chapter-by-chapter confirmation when the user does not want automatic multi-chapter writing and saving. <br>
+## Use Case:
 
+External writers and agent users use this skill to structure Chinese novels, generate chapter plans, draft chapters, and maintain continuity for characters, plot events, worldbuilding, and foreshadowing across long projects.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/waitli/dream-novel-skill) <br>
-- [Architecture Prompt Templates](artifact/resources/architecture.md) <br>
-- [Chapter Blueprint Template](artifact/resources/chapter.md) <br>
-- [Utility Prompt Templates](artifact/resources/utility.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown prose, JSON state updates, local manuscript files, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local novel project files, including chapter markdown and JSON memory databases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: The skill can read local novel project files and assembled project content may influence later agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated project folder, avoid shared or untrusted project files, and treat assembled prompt text as writing context rather than authorization for tool calls.
+
+Risk: Novel outlines and JSON state databases may contain sensitive personal or creative material.
+
+Mitigation: Keep secrets and confidential material out of outlines, chapter files, and JSON databases before using the skill.
+
+Risk: The workflow can encourage continued batch writing after generated context is assembled.
+
+Mitigation: Require separate user approval before continued chapter generation, file writes, or state updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/waitli/skills/dream-novel-skill)
+- [Architecture prompts](artifact/resources/architecture.md)
+- [Chapter blueprint prompts](artifact/resources/chapter.md)
+- [Memory and update prompts](artifact/resources/utility.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prose, JSON state updates, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended to be scoped to a user-confirmed novel project directory.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

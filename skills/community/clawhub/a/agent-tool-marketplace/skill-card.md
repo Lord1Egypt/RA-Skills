@@ -1,42 +1,51 @@
-## Description: <br>
-Agent Tool Marketplace helps agents discover AgentPMT marketplace tools, inspect schemas and pricing, invoke selected third-party tools with wallet-signed requests, and consume responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Tool Marketplace catalog for AgentPMT - list available paid tools, fetch tool schemas, invoke any tool with a signed request, and consume responses.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to discover paid AgentPMT marketplace tools, prepare wallet authentication, sign requests, invoke matching actions, and handle marketplace responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents through wallet-signed requests and paid marketplace actions. <br>
-Mitigation: Confirm the selected product, action, parameters, request signature, and credit spend before invoking a paid tool. <br>
-Risk: The skill requires sensitive wallet and session authentication material. <br>
-Mitigation: Use only the intended wallet, protect private keys and session nonces, and generate fresh request identifiers to avoid replay errors. <br>
+## Use Case:
 
+Developers and agents use this skill to discover AgentPMT marketplace tools, inspect action schemas and pricing, and invoke selected third-party capabilities through wallet-signed requests.
 
-## Reference(s): <br>
-- [AgentPMT External Agent API](https://www.agentpmt.com/external-agent-api) <br>
-- [AgentPMT Marketplace](https://www.agentpmt.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/agent-tool-marketplace) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, API calls] <br>
-**Output Format:** [Markdown with Python and text code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes endpoint workflow, request signing guidance, marketplace invocation steps, and error handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill enables broad paid third-party tool invocation with wallet-signed requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for the specific product and action, review pricing and provider identity, set a spending limit, and avoid sending secrets, credentials, private files, or unnecessary personal data in tool parameters.
+
+## Reference(s):
+
+- [AgentPMT External Agent API](https://www.agentpmt.com/external-agent-api)
+- [AgentPMT Marketplace](https://www.agentpmt.com)
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/agent-tool-marketplace)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, API calls, configuration]
+
+**Output Format:** [Markdown with Python and text code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes endpoint, signing, request construction, catalog workflow, and error-handling guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Aider is an AI coding assistant for terminal-based pair programming, Git-integrated edits, multi-model workflows, and code refactoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aider is a terminal AI pair-programming guide covering Git-integrated editing, multi-model setup, and code refactoring workflows.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers use this skill to guide terminal-based AI pair programming with Aider, including installing the tool, selecting models, managing file context, running tests, and using Git-integrated code edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Aider can edit files and create commits in local repositories. <br>
-Mitigation: Use a clean branch, review diffs and generated commits before pushing, and keep repository backups or normal Git recovery paths available. <br>
-Risk: Using external model providers can expose prompts, code excerpts, logs, command output, or other sensitive data. <br>
-Mitigation: Avoid sending secrets, private logs, customer data, or sensitive command output to external providers; use isolated environments or local models when privacy requirements demand it. <br>
-Risk: Installing the underlying tool globally can affect the user's Python environment. <br>
-Mitigation: Prefer pipx or a virtual environment for installation. <br>
+## Use Case:
 
+Developers use this skill to set up and operate Aider for terminal-based AI pair programming, including selecting models, managing file context, running tests, and using Architect mode for refactoring.
 
-## Reference(s): <br>
-- [Aider on ClawHub](https://clawhub.ai/zhangifonly/aider) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangifonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands for installing and running Aider, configuration snippets, model-selection guidance, and workflow advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Installing or upgrading aider-chat directly in a shared Python environment can affect other tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install Aider in pipx or a virtual environment and consider pinning a known aider-chat version.
+
+Risk: Aider can modify repository files and create commits based on AI-generated changes.
+
+Mitigation: Work on a branch and review diffs before keeping or merging changes.
+
+Risk: Remote AI providers may receive source code, secrets, logs, or test output shared during a session.
+
+Mitigation: Do not send secrets, private code, or sensitive test output to remote providers unless that is acceptable for the project.
+
+## Reference(s):
+
+- [ClawHub Aider skill page](https://clawhub.ai/zhangifonly/skills/aider)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include package installation commands, API key configuration examples, model selection flags, test commands, and repository-editing workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

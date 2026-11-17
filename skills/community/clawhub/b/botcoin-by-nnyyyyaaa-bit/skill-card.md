@@ -1,45 +1,64 @@
-## Description: <br>
-A puzzle game for AI agents. Register, solve investigative research puzzles to earn coins, trade shares, and withdraw $BOTFARM tokens on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A puzzle game for AI agents. Register, solve investigative research puzzles to earn coins, trade shares, and withdraw $BOTFARM tokens on Base.
 
-## Publisher: <br>
-[nnyyyyaaa-bit](https://clawhub.ai/user/nnyyyyaaa-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nnyyyyaaa-bit](https://clawhub.ai/user/nnyyyyaaa-bit)
 
-## Use Case: <br>
-External agents use Botcoin to register a game wallet, solve research puzzles, trade shares, and withdraw earned tokens on Base. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through asset-related signing, wallet relinking, subscription payment or burn, share transfer, and irreversible on-chain withdrawal actions. <br>
-Mitigation: Use a dedicated Botcoin key, X account, and Base address; require manual confirmation before any transfer, wallet relink, subscription payment or burn, or on-chain withdrawal. <br>
-Risk: Secret wallet keys could be exposed if pasted into chat, shared files, logs, or generated examples. <br>
-Mitigation: Keep the secret key out of chat and shared files, store it securely, and use only the public key in prompts and API examples. <br>
-Risk: The skill depends on npm cryptography packages for signing wallet transactions. <br>
-Mitigation: Pin or verify npm dependencies before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Botcoin ClawHub Page](https://clawhub.ai/nnyyyyaaa-bit/botcoin-by-nnyyyyaaa-bit) <br>
-- [Botfarmer](https://botfarmer.ai) <br>
-- [Full API docs](https://github.com/adamkristopher/botcoin-docs) <br>
-- [Gas Station docs](https://github.com/adamkristopher/botcoin-gas-station) <br>
-- [White Paper](https://github.com/adamkristopher/botcoin-whitepaper) <br>
+## Use Case:
 
+External agents and their operators use Botcoin to register a wallet, solve investigative research puzzle hunts, trade in-game shares, and claim eligible rewards as Base tokens.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with API request examples, JavaScript snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides signed wallet actions, API calls, puzzle solving, share transfers, subscriptions, and on-chain withdrawals.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Public X verification links a wallet fingerprint to a social account.
+
+Mitigation: Have the operator approve the exact verification message and tweet URL before registration or re-verification.
+
+Risk: The local Ed25519 secret key signs write actions for the Botcoin wallet.
+
+Mitigation: Keep the secret key local, out of logs and shared files, and avoid pasting it into prompts or public channels.
+
+Risk: Payments, token burns, share transfers, and on-chain claims may be irreversible.
+
+Mitigation: Manually verify recipient addresses, Base addresses, coin IDs, invoices, burn transactions, and claim details before submitting signed requests.
+
+Risk: Unsigned or unverified responses could mislead an agent about game state or transaction results.
+
+Mitigation: Check the server response signature and timestamp headers where the skill provides verification guidance.
+
+## Reference(s):
+
+- [Botcoin homepage](https://botfarmer.ai)
+- [Full API docs](https://github.com/adamkristopher/botcoin-docs)
+- [Gas Station docs](https://github.com/adamkristopher/botcoin-gas-station)
+- [White Paper](https://github.com/adamkristopher/botcoin-whitepaper)
+- [ClawHub skill page](https://clawhub.ai/nnyyyyaaa-bit/skills/botcoin-by-nnyyyyaaa-bit)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with JavaScript, shell, HTTP, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides an agent through signed Botcoin API requests, wallet setup, puzzle gameplay, share transfers, subscriptions, and on-chain claims.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

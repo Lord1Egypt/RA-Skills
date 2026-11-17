@@ -1,38 +1,53 @@
-## Description: <br>
-Lovable Dev helps agents guide full-stack Lovable app work, including React interfaces, Supabase integration, GitHub sync, and deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lovable Dev helps agents guide natural-language full-stack app building with Lovable, including React interfaces, Supabase integration, GitHub sync, and deployment workflows.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and builders use this skill to plan and iterate Lovable projects, including UI generation, Supabase database and auth setup, GitHub synchronization, and public deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide high-impact GitHub, database, authentication, RLS, and public deployment changes. <br>
-Mitigation: Use non-production projects first, provide least-privilege credentials, review diffs and SQL/RLS changes, and require explicit approval before schema, auth, publishing, or deployment actions. <br>
+## Use Case:
 
+Developers and product builders use this skill to plan and iterate Lovable-generated web apps, including UI structure, Supabase-backed features, GitHub synchronization, and deployment checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/lovable-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with code and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include app-building prompts, implementation guidance, database/auth recommendations, and deployment steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Generated Supabase database policies, authentication settings, or storage rules could expose application data if configured carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review database policies, auth settings, and storage rules before using generated Supabase output.
+
+Risk: Generated GitHub or deployment guidance could expose code, secrets, or an unintended hosting target if adopted without review.
+
+Mitigation: Confirm repository visibility, secret handling, and hosting targets before applying GitHub sync or deployment output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/lovable-dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with prompts, comparison tables, and implementation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled code execution or hidden tool calls were identified in the release evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

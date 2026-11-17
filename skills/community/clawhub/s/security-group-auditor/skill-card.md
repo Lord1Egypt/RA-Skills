@@ -1,39 +1,48 @@
-## Description: <br>
-Audit AWS Security Groups and VPC configurations for dangerous internet exposure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit AWS Security Groups and VPC configurations for dangerous internet exposure.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-Developers, cloud engineers, and security reviewers use this skill to analyze user-provided AWS Security Group, EC2, VPC, and subnet exports for risky internet exposure and to draft tightened rules. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AWS network configuration exports may include sensitive infrastructure details or accidental secrets. <br>
-Mitigation: Use read-only AWS permissions, review exported JSON before sharing it with the agent, and remove credentials, access keys, or unrelated secrets. <br>
-Risk: Generated security group changes may be incomplete or disrupt intended access if applied without review. <br>
-Mitigation: Manually review proposed rule changes, validate business-approved source ranges, and test changes before applying them in production. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anmolnagpal/security-group-auditor) <br>
+## Use Case:
 
+Developers, cloud engineers, and security teams use this skill to review exported AWS security group, EC2, VPC, and subnet data for risky internet exposure and overly broad network access. It helps produce prioritized findings, tightened rule suggestions, and monitoring recommendations without requiring account credentials.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown findings with tables, AWS CLI examples, corrected security group JSON, AWS Config rule recommendations, and remediation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; analyzes user-provided exports and does not access AWS accounts or execute commands directly.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: AWS networking exports may reveal infrastructure layout, and suggested replacement rules could affect connectivity if applied without review.
+
+Mitigation: Do not provide credentials or secret keys; manually review proposed security group changes before applying them in AWS.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anmolnagpal/skills/security-group-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown findings with tables, JSON rule examples, and configuration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only analysis based on user-provided AWS networking exports; does not request credentials or access AWS accounts directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

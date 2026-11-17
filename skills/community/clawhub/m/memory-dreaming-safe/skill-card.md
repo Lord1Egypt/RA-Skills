@@ -1,46 +1,61 @@
-## Description: <br>
-Autonomous memory consolidation for OpenClaw agents that gathers signal from daily logs, session transcripts, learnings, and plan files, then supports curated MEMORY.md updates and optional Obsidian or Markdown knowledge-base sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Dreaming (Safe Edition) helps OpenClaw agents consolidate daily logs, learnings, session signals, and plan notes into long-term memory and optional Obsidian notes with documented confirmation gates.
 
-## Publisher: <br>
-[deathrowsushy](https://clawhub.ai/user/deathrowsushy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deathrowsushy](https://clawhub.ai/user/deathrowsushy)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to review accumulated agent memory, identify durable patterns or contradictions, consolidate useful learnings into MEMORY.md, and optionally sync structured notes to an Obsidian vault or Markdown knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A scheduled agent may read private agent history, including session transcripts and memory logs. <br>
-Mitigation: Disable transcript scanning or limit configured source paths before enabling the cron workflow. <br>
-Risk: Automatic runs may modify persistent memory or vault files without the confirmation promised in the main documentation. <br>
-Mitigation: Require an explicit preview and approval step before any persistent write, and run the first cycles manually until the behavior is reviewed. <br>
-Risk: Broad plan scanning and Obsidian sync can expand the amount of workspace and vault content the skill reads or writes. <br>
-Mitigation: Keep Obsidian sync disabled until reviewed, and constrain plan search paths to the intended workspace. <br>
+## Use Case:
 
+Developers and agent operators use this skill to review and consolidate noisy agent memory, extract durable learnings from logs and transcripts, and optionally sync structured knowledge into an Obsidian or markdown knowledge base.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deathrowsushy/memory-dreaming-safe) <br>
-- [README.md](artifact/README.md) <br>
-- [Architecture - Memory Dreaming](artifact/references/architecture.md) <br>
-- [Dream Prompt](artifact/references/dream-prompt.md) <br>
-- [Obsidian Sync - How It Works](artifact/references/obsidian-sync.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, proposed file changes, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce memory summaries, proposed diffs, cron setup instructions, and optional Markdown notes for long-term memory or vault sync.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Scheduled execution can silently read broad history and modify long-term memory or Obsidian notes despite the documentation's confirmation-gate posture.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing and do not enable the cron job until the scheduled prompt is changed to produce a reviewable proposal instead of writing automatically.
+
+Risk: Transcript scanning and broad workspace plan scans can expose sensitive or unrelated workspace information.
+
+Mitigation: Use a dedicated, non-sensitive memory workspace and disable transcript scanning and broad workspace plan scans unless they are explicitly needed.
+
+Risk: Obsidian sync may copy consolidated memory into a separate knowledge base.
+
+Mitigation: Keep Obsidian sync disabled unless the target vault is private and appropriate for the information being consolidated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deathrowsushy/skills/memory-dreaming-safe)
+- [Architecture - Memory Dreaming](references/architecture.md)
+- [Dream Prompt](references/dream-prompt.md)
+- [Obsidian Sync - How It Works](references/obsidian-sync.md)
+- [Default dreaming configuration](assets/dreaming-config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, proposed diffs, shell commands, and configuration JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce proposed memory updates, dreaming logs, and Obsidian markdown notes depending on configuration and user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

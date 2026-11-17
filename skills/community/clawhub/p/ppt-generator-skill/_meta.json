@@ -1,6 +1,38 @@
 {
-  "ownerId": "kn7456nw63afcmz8rdb1tm7rxn8399s9",
-  "slug": "ppt-generator-skill",
+  "slug": "ppt-generator",
   "version": "4.3.0",
-  "publishedAt": 1775628358119
+  "description": "Generate professional .pptx from topics, documents, or templates. Guided conversation flow, environment auto-check, structured chart rendering, 10 distinct visual style renderers, multi-candidate palette/font recommendations.",
+  "author": "custom",
+  "license": "MIT",
+  "changelog": {
+    "4.3.0": [
+      "BUGFIX: Removed reference to non-existent thumbnail.py in SKILL.md Phase 2.2",
+      "BUGFIX: Fixed template_builder.py original_count calculation — now captured before add_slide loop, preventing slide deletion errors when fill_slide_from_plan raises exceptions",
+      "NEW: Fast-path in Phase 1 — skips redundant questions when user's first message already contains sufficient info (purpose + content + style)",
+      "NEW: Content sizing strategy (Step 3.1b) — tiered rules for controlling token usage based on content length (<5k full, 5-20k trimmed, 20-40k summary+head, >40k summary-only)",
+      "NEW: --patch flag on generate_ppt.py — merge partial slide updates into existing plan without full LLM re-generation",
+      "NEW: Platform Notes section in SKILL.md — guidance for AI IDE environments (Claude Code, Cursor, Windsurf) vs OpenClaw",
+      "NEW: data/colors.csv — 40 color palettes across 10 categories (replaces 10 hardcoded palettes)",
+      "NEW: data/fonts.csv — 22 system-safe font pairings across 10 categories (replaces single Calibri default)",
+      "REWRITE: suggest_style.py — loads palettes/fonts from CSV, returns top-3 palette candidates and top-2 font candidates ranked by content keyword relevance",
+      "NEW: style_renderers.py — 10 category-specific visual layout renderers (corporate sidebar, tech sidebar, academic clean, year-end numbering, minimal keynote, chinese accent strip, art gallery, fresh dots, cartoon circles, creative diagonal) + shared layout primitives",
+      "REWRITE: generate_ppt.py — two-level dispatch: style_category selects renderer, layout selects slide structure. Falls back to legacy corporate renderer if style_renderers.py unavailable",
+      "UPDATED: SKILL.md Phase 2 — presents 3 palette candidates for user selection instead of single fixed choice",
+      "UPDATED: Slide plan JSON schema — added style_category field to control visual renderer selection"
+    ],
+    "4.2.0": [
+      "NEW: check_env.py — first-install dependency checker with platform-specific install commands",
+      "NEW: Phase 0 environment check added as mandatory first step",
+      "NEW: Phase 1 guided conversation flow — purpose → content → template",
+      "NEW: Phase 1.3 template disambiguation",
+      "NEW: Phase 2 style suggestion presented in friendly table format",
+      "RESTRUCTURED: SKILL.md reorganized into Phase 0/1/2/3",
+      "ADDED: Full flow ASCII diagram"
+    ],
+    "4.1.0": [
+      "chart field promoted from visual_hint string to structured dict",
+      "validator.py validates chart field with type/data/value coercion",
+      "chart_builder.py split: chart_to_js() + visual_hint_to_js()"
+    ]
+  }
 }

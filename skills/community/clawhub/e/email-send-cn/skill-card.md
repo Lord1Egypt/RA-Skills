@@ -1,45 +1,58 @@
-## Description: <br>
-Sends email through SMTP with Nodemailer using environment-provided SMTP credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends email through SMTP using Nodemailer, with support for common providers such as 163, QQ, and Gmail.
 
-## Publisher: <br>
-[anbangzhiguo](https://clawhub.ai/user/anbangzhiguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anbangzhiguo](https://clawhub.ai/user/anbangzhiguo)
 
-## Use Case: <br>
-Developers and agent users use this skill to send plain-text or HTML email through a configured SMTP account when an email-sending workflow is requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real email using configured SMTP credentials. <br>
-Mitigation: Require a visible final approval step for each email, including recipients, subject, and body, before executing the send command. <br>
-Risk: SMTP credentials may grant broad mailbox access. <br>
-Mitigation: Use dedicated or least-privilege SMTP credentials and store them in environment variables or a secrets manager instead of command history or source files. <br>
-Risk: The release ships an affected Nodemailer dependency according to the security evidence. <br>
-Mitigation: Prefer an updated release that pins a patched Nodemailer version before production use. <br>
-Risk: Recipients and message content are passed directly to the send script. <br>
-Mitigation: Validate recipients and review generated message content before sending. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent send plain text or HTML email through a configured SMTP account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anbangzhiguo/email-send-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/anbangzhiguo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and environment-variable configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SMTP_HOST, SMTP_USER, SMTP_PASS, and node; SMTP_PORT, SMTP_SECURE, SMTP_FROM, cc, and html are optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence.release.version and package.json) <br>
+Risk: SMTP credentials can be exposed if real secrets are placed directly in command text or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated SMTP app password with minimal permissions and inject it through a secret manager or inherited environment.
+
+Risk: The skill can send outbound email broadly once SMTP credentials are configured.
+
+Mitigation: Require explicit user confirmation before sending and review recipient, subject, body, cc, and html mode.
+
+Risk: Evidence reports a vulnerable Nodemailer dependency.
+
+Mitigation: Update Nodemailer to a patched supported version before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anbangzhiguo/skills/email-send-cn)
+- [Nodemailer package artifact](https://registry.npmjs.org/nodemailer/-/nodemailer-6.10.1.tgz)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Text]
+
+**Output Format:** [Command-line execution with textual success or failure output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SMTP_HOST, SMTP_USER, and SMTP_PASS; SMTP_PORT, SMTP_SECURE, SMTP_FROM, cc, subject, body, and html mode are optional.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

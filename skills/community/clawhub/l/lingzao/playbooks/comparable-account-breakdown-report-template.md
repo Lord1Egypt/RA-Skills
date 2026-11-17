@@ -16,6 +16,11 @@ account, use `benchmark-account-discovery-quality-gate.md` first. Do not
 recommend account-search results as final benchmarks until recent public posts,
 update status, recent high-performing works, and stage fit have been checked.
 
+For formal or deep comparable-account reports, also apply
+`account-report-evidence-visual-contract.md`. That contract defines the
+evidence links, real-cover audit, viral-asset reuse, account-evolution, and
+visual-report delivery baseline.
+
 ## Output Form
 
 Default light deliverable:
@@ -24,24 +29,25 @@ Default light deliverable:
 
 Default deep-report deliverable:
 
-1. HTML preview: browser-friendly visual report for quick reading and internal review.
+1. HTML preview: browser-friendly visual report for quick reading and review.
 2. Word document: official shareable deliverable that the user can send to friends, clients, or team members.
 
 When a full comparable-account report is generated, create both HTML and Word whenever tooling is available. They must come from the same report source. Word is the official shareable deliverable; HTML is the browser preview. If only one format can be created, explain why and prefer Word.
 
-Do not generate a full Word/HTML report by default after one light lookup. First give the short decision summary. If the user wants a full report, explain that it becomes a deeper comparable-account breakdown and may require more Lingzao searches/credits because it needs to inspect more notes and possibly deeper content.
+Do not generate a full Word/HTML report by default after one light lookup. First give the short decision summary. If the user wants a full report, explain that it becomes a deeper comparable-account breakdown and may require more Lingzao searches because it needs to inspect more notes and possibly deeper content.
 
 User-facing upgrade explanation:
 
 如果你只想先判断这个账号值不值得学，我可以先按轻量拆解给你结论；如果你想生成正式报告，就会进入深度拆解。我会同时给你 HTML 预览和 Word 文档：HTML 方便你先看结构，Word 方便你转发给朋友、客户或团队。深度拆解会多看它的近期内容、代表爆款、封面标题、内容结构、可学和不可照抄部分，必要时还会继续看单篇正文、评论区或同阶段对标。
 
-积分上也先说清楚：轻量看一个主页近期内容通常属于基础查看；正式报告如果要用主页深度解析，20 条作品是 50 credits，40 条作品是 100 credits。如果继续打开单篇详情或评论区，会按对应查看范围另外计算。我会先确认范围，不会直接替你扩大搜索。
+范围上也先说清楚：轻量版只看一个主页的近期内容；正式报告可以用 20 条作品做标准深度解析，或用 40 条作品做更深的报告。如果还要打开单篇详情或评论区，我会先确认新增范围，不会直接替你扩大搜索。
 
 The deep report should clearly tell the user what they will get:
 
 - 一页总览：这个账号值不值得学、适合谁、最大可学点、最大风险
 - 爆款内容地图：哪些内容明显高于平均表现
-- 封面标题拆解：封面怎么吸引点击，标题用什么关键词
+- 真实封面审计：封面怎么吸引点击，标题用什么关键词，视觉主体、构图、颜色、可信证据和可复制点分别是什么
+- 爆款资产复用：它有没有反复使用同一类选题、标题句式、封面场景、拍摄结构或栏目资产
 - 爆款机制：为什么能火，用户为什么点赞/收藏/评论
 - 可学和不可照抄：哪些能学，哪些依赖资源/人设/粉丝基础
 - 用户适配判断：小白、起步号、成熟号分别怎么学
@@ -50,7 +56,9 @@ The deep report should clearly tell the user what they will get:
 - 对比入口：如果用户也发自己的账号，继续生成“我和对标账号的差距 / 相似度 / 可学习点”对比
 
 When showing accounts or notes, use direct Xiaohongshu links in user-facing
-tables. Do not make the user copy raw creator IDs or note IDs. For a benchmark
+tables. Do not make the user copy note IDs. For follow-up profile
+verification, keep the 24-character `users[].id` returned by `search-users`;
+do not derive a Xiaohongshu profile URL from `RED ID` in a bio. For a benchmark
 account, include the profile link and the representative high-interaction note
 links that support the judgment.
 
@@ -215,18 +223,20 @@ For a client-facing comparable-account breakdown, include these sections by defa
 
 1. 封面：对标账号名 + 一句话判断 + 报告日期
 2. 一页总览：值不值得学、适合谁、最大可学点、最大风险
-3. 账号记忆点：别人为什么会记住它
-4. 用户画像：谁会关注它、为什么收藏、为什么评论、可能为什么付费
-5. 爆款内容地图：最近/代表性高表现内容、标题、封面、互动信号、内容类型
-6. 爆款机制深拆：2-3 条代表内容，拆标题点击点、封面点击点、收藏理由、评论需求、可复用公式
-7. 封面与视觉系统：画面主体、文字信息、颜色/字体/构图、系列感、可学与不可抄
-8. 内容主线：账号核心栏目、可延展栏目、已经成熟但不适合小白直接模仿的栏目
-9. 可学部分：选题、标题、封面、结构、表达、人设、产品承接
-10. 不可照抄部分：资源、外貌/场景、阅历、粉丝基础、商业条件、平台阶段
-11. 用户适配判断：按用户阶段给出是否适合学，以及该学什么版本
-12. 改成你的版本：3-5 个可测试方向，每个方向给标题、封面文案、内容结构
-13. 下一步行动：是否继续找同阶段低粉对标、是否拆单篇笔记、是否生成选题/标题包
-14. 自己账号对比入口：询问用户是否有自己的账号链接，继续做差距、相似度和内容匹配度分析
+3. 证据与样本边界：公开主页、近期作品、代表爆款、封面样本、评论样本分别来自哪里，哪些字段未获取
+4. 账号记忆点：别人为什么会记住它
+5. 用户画像：谁会关注它、为什么收藏、为什么评论、可能为什么付费
+6. 爆款内容地图：最近/代表性高表现内容、标题、封面、互动信号、内容类型
+7. 真实封面审计：3-5 个代表封面，拆封面文字、视觉主体、构图、颜色、点击钩子、可信证据、可学与不可抄
+8. 爆款资产复用：按选题、标题、封面、场景或栏目判断它是在有效复用、结构迭代、机械复制还是一次性情绪爆款
+9. 爆款机制深拆：2-3 条代表内容，拆标题点击点、封面点击点、收藏理由、评论需求、可复用公式
+10. 内容主线：账号核心栏目、可延展栏目、已经成熟但不适合小白直接模仿的栏目
+11. 可学部分：选题、标题、封面、结构、表达、人设、产品承接
+12. 不可照抄部分：资源、外貌/场景、阅历、粉丝基础、商业条件、平台阶段
+13. 用户适配判断：按用户阶段给出是否适合学，以及该学什么版本
+14. 改成你的版本：3-5 个可测试方向，每个方向给标题、封面文案、内容结构
+15. 下一步行动：是否继续找同阶段低粉对标、是否拆单篇笔记、是否生成选题/标题包
+16. 自己账号对比入口：询问用户是否有自己的账号链接，继续做差距、相似度和内容匹配度分析
 
 For each recommended benchmark in the report appendix, include:
 
@@ -254,11 +264,42 @@ If cover images are available and can render reliably:
 - show the main representative covers
 - place cover analysis in a separate section
 - do not only mention cover features inside paragraphs
+- use the cover-audit fields from `account-report-evidence-visual-contract.md`:
+  cover text, visual subject, composition, click hook, trust evidence, learnable
+  part, and risk
+- include a high-performing vs normal/low-performing visual contrast when
+  enough samples are visible
 
 If images cannot render reliably:
 
 - do not leave blank image boxes
 - use note title, note link, public metrics, and concise visual notes instead
+
+## Viral Asset Reuse Rules
+
+Before judging that an account is "template-like", check whether the repeated
+element came from an earlier high-performing sample. Many strong accounts
+repeat proven assets deliberately.
+
+Separate:
+
+- effective reuse: the same audience demand and structure, with a new case,
+  scene, product, time, or proof
+- structure iteration: a recognizable column or cover system is being tuned
+- mechanical copying: same title/cover/content without new information and
+  declining public signal
+- one-off emotional viral: a dramatic event that is hard for ordinary users to
+  repeat
+
+For each reusable asset, explain:
+
+- original strong sample and link
+- later samples and links
+- what stayed the same
+- what changed
+- what public signal it produced
+- what the user can safely borrow
+- what the user must not copy
 
 ## Adaptation Rules
 

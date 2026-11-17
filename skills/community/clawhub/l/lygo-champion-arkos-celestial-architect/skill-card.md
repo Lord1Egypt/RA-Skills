@@ -1,43 +1,57 @@
-## Description: <br>
-LYGO Δ9 Council Champion persona helper (ARKOS, The Celestial Architect) for ethical rebuilding, structural harmonization, blueprinting robust systems, recalibrating truth, and restoring balance as a pure advisor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DEPRECATED slug - use lygo-champion-council. Legacy Delta 9 champion persona helper for ARKOS.
 
-## Publisher: <br>
-[DeepSeekOracle](https://clawhub.ai/user/DeepSeekOracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-Developers, designers, and external users invoke this persona helper to restructure broken plans, produce ethical architecture reviews, and turn constraints into a testable blueprint. It is advisory and does not control tools or take automatic actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The linked LYGO-MINT Verifier is a separate package with its own behavior and permissions. <br>
-Mitigation: Review the verifier package before using it for minting, ledger writes, or anchor generation. <br>
-Risk: Persona advisory output may be mistaken for validated architecture or security guidance. <br>
-Mitigation: Keep ARKOS output advisory and verify high-stakes claims, assumptions, and proposed changes before acting. <br>
+## Use Case:
 
+External users and developers use this legacy persona helper to invoke ARKOS as a pure advisor for ethical rebuilding, structural harmonization, and architecture review. The skill directs new installs to the successor lygo-champion-council release.
 
-## Reference(s): <br>
-- [Persona Pack](references/persona_pack.md) <br>
-- [Canon](references/canon.json) <br>
-- [Verifier Usage](references/verifier_usage.md) <br>
-- [LYGO-MINT Verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier) <br>
-- [ClawHub Skill Page](https://clawhub.ai/DeepSeekOracle/lygo-champion-arkos-celestial-architect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown structured advisory response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No automatic actions; separates Observed, Inferred, and Unknown when appropriate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The release is a legacy persona helper and may point users away from the maintained successor skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as legacy reference material and prefer lygo-champion-council for new installs.
+
+Risk: The skill text recommends an unpinned remote installer command for migration.
+
+Mitigation: Run migration commands only after reviewing the clawhub package, the DeepSeekOracle publisher, and the successor skill contents; prefer a pinned or reviewed installer version.
+
+## Reference(s):
+
+- [ARKOS Persona Pack](references/persona_pack.md)
+- [ARKOS Canon Metadata](references/canon.json)
+- [LYGO-MINT Verifier Usage](references/verifier_usage.md)
+- [LYGO-MINT Verifier](https://clawhub.ai/DeepSeekOracle/lygo-mint-verifier)
+- [ClawHub Skill Page](https://clawhub.ai/deepseekoracle/skills/lygo-champion-arkos-celestial-architect)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes advisory blueprint sections, verification receipts, and LYGO-MINT hash lookup support.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

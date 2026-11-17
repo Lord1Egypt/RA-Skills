@@ -1,0 +1,215 @@
+---
+name: producer-music
+description: Generate AI music with Producer via AceDataCloud API. Use when creating songs, generating lyrics, extending tracks, creating covers, swapping vocals/instrumentals, replacing song sections, or uploading reference audio. Supports custom lyrics, instrumental-only mode, and multiple creative actions.
+license: Apache-2.0
+metadata:
+  author: acedatacloud
+  version: "1.0"
+compatibility: Requires ACEDATACLOUD_API_TOKEN in .env file (get an API key at https://platform.acedata.cloud/console/applications).
+---
+
+# Producer Music Generation
+
+Generate AI music through AceDataCloud's Producer API.
+
+## First-time setup
+
+1. Install the official Skill with `clawhub install @acedatacloud/producer`. Check that the ClawHub publisher is **@acedatacloud**.
+2. Sign in at [AceDataCloud → Applications](https://platform.acedata.cloud/console/applications), open **General application**, and check Producer access, balance, and current pricing. Copy its API key, or select **Manage Keys → Create** for a separate key. Copy the key value without `Bearer `; a `platform-...` management token is not a service API key.
+3. If you enable **Allowed APIs** restrictions, include `/producer/audios` and `/producer/tasks`. Advanced workflows below may call additional routes.
+4. On the OpenClaw Gateway host, put `ACEDATACLOUD_API_TOKEN=your_api_key_here` in `~/.openclaw/.env`, then restart the Gateway and start a new session. For a direct terminal test, run `export ACEDATACLOUD_API_TOKEN="your_api_key_here"` in that shell. Never put the key in a prompt or commit an `.env` file.
+5. Run the **Quick Start** below. If it returns a task ID, query that same task until it finishes; do not submit a second billable generation just to check progress.
+
+[Illustrated key setup, first run, and troubleshooting](https://github.com/AceDataCloud/Skills#first-run-with-clawhub-and-openclaw) · [Token details](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
+
+## Quick Start
+
+```bash
+curl -X POST https://api.acedata.cloud/producer/audios \
+  -H "Authorization: Bearer $ACEDATACLOUD_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"action": "generate", "lyric": "", "prompt": "upbeat electronic dance track with synth leads"}'
+```
+
+> **Async:** All generation is async. See [async task polling](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/async-tasks.md). Poll via `POST /producer/tasks` with `{"id": "..."}` every 3-5 seconds.
+
+## Models
+
+| Model | Notes |
+|-------|-------|
+| `FUZZ-2.0 Pro` | Default, highest quality |
+| `FUZZ-2.0` | Standard quality |
+| `FUZZ-2.0 Raw` | Raw output variant |
+| `FUZZ-1.1 Pro` | Pro v1.1 |
+| `FUZZ-1.0 Pro` | Pro v1.0 |
+| `FUZZ-1.0` | v1.0 |
+| `FUZZ-1.1` | v1.1 |
+| `FUZZ-0.8` | Legacy |
+
+## Actions
+
+| Action | Description |
+|--------|-------------|
+| `generate` | Create a new song from prompt or custom lyrics |
+| `cover` | Create a cover version of an existing song |
+| `extend` | Continue a song from a specific timestamp |
+| `replace_section` | Replace a time range in an existing song |
+| `swap_vocals` | Extract and swap vocal tracks |
+| `swap_instrumentals` | Extract and swap instrumental tracks |
+| `variation` | Generate a variation of an existing song |
+| `stems` | Separate a song into stems |
+
+## Workflows
+
+### 1. Generate from Prompt
+
+```json
+POST /producer/audios
+{
+  "action": "generate",
+  "lyric": "",
+  "prompt": "chill lo-fi hip hop with rain sounds and soft piano"
+}
+```
+
+### 2. Custom Lyrics Mode
+
+```json
+POST /producer/audios
+{
+  "action": "generate",
+  "custom": true,
+  "title": "Midnight City",
+  "lyric": "[Verse]\nNeon lights reflect on wet streets\n[Chorus]\nMidnight city never sleeps",
+  "prompt": "nocturnal electronic pop",
+  "instrumental": false
+}
+```
+
+### 3. Instrumental Only
+
+```json
+POST /producer/audios
+{
+  "action": "generate",
+  "lyric": "",
+  "prompt": "epic orchestral soundtrack for a movie trailer",
+  "instrumental": true
+}
+```
+
+### 4. Extend Song
+
+```json
+POST /producer/audios
+{
+  "action": "extend",
+  "audio_id": "existing-audio-id",
+  "lyric": "",
+  "prompt": "",
+  "continue_at": 30
+}
+```
+
+### 5. Replace Section
+
+```json
+POST /producer/audios
+{
+  "action": "replace_section",
+  "audio_id": "existing-audio-id",
+  "lyric": "",
+  "prompt": "",
+  "replace_section_start": 15,
+  "replace_section_end": 30
+}
+```
+
+### 6. Separate into Stems
+
+```json
+POST /producer/audios
+{
+  "action": "stems",
+  "audio_id": "existing-audio-id",
+  "lyric": "",
+  "prompt": ""
+}
+```
+
+### 7. Generate Lyrics
+
+```json
+POST /producer/lyrics
+{
+  "prompt": "a love song about stargazing on a summer night"
+}
+```
+
+### 8. Get WAV / Video
+
+```json
+POST /producer/wav
+{"audio_id": "your-audio-id"}
+
+POST /producer/videos
+{"audio_id": "your-audio-id"}
+```
+
+### 9. Upload Reference Audio
+
+```json
+POST /producer/upload
+{
+  "audio_url": "https://example.com/reference.mp3"
+}
+```
+
+## Parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `action` | string | Required for every `/producer/audios` request; see actions table |
+| `prompt` | string | Required for every `/producer/audios` request; use an empty string when an edit action does not use a prompt |
+| `model` | string | Model (e.g., `"FUZZ-2.0 Pro"`) |
+| `custom` | boolean | Enable custom lyrics mode |
+| `instrumental` | boolean | Pure instrumental (no vocals) |
+| `title` | string | Song title |
+| `lyric` | string | Required for every `/producer/audios` request; custom lyrics use `[Verse]`, `[Chorus]` tags, otherwise use an empty string |
+| `audio_id` | string | Existing audio ID (for edit actions) |
+| `continue_at` | number | Seconds — where to extend from |
+| `replace_section_start` | number | Start time of section to replace |
+| `replace_section_end` | number | End time of section to replace |
+| `lyrics_strength` | 0-1 | Lyrics adherence (default: 0.7) |
+| `sound_strength` | 0.2-1 | Sound quality weight (default: 0.7) |
+| `weirdness` | 0-1 | Creative randomness (default: 0.5) |
+| `seed` | string | Seed for reproducibility |
+
+## Response Structure
+
+```json
+{
+  "data": [
+    {
+      "id": "audio-id",
+      "audio_url": "https://cdn.example.com/song.mp3",
+      "video_url": "https://cdn.example.com/video.mp4",
+      "image_url": "https://cdn.example.com/cover.jpg",
+      "title": "Song Title",
+      "lyric": "full lyrics...",
+      "style": "electronic, dance",
+      "model": "FUZZ-2.0 Pro"
+    }
+  ]
+}
+```
+
+## Gotchas
+
+- Use `[Verse]`, `[Chorus]`, `[Bridge]`, `[Outro]` tags in custom lyrics
+- `continue_at` is in **seconds** — the song extends from that point
+- `replace_section_start` / `replace_section_end` define the time range to regenerate
+- `weirdness` at 0 = predictable, at 1 = highly experimental
+- Upload a reference audio via `/producer/upload` to get an audio ID for use with `cover` or `extend`
+- WAV and video downloads are separate endpoints — call them after the main generation completes
+- **CRITICAL:** Check the `state` field in task responses — only `state: "complete"` with `success: true` means done. During `pending`, the API may return intermediate `audio_url` values (streaming previews). Do NOT stop polling just because `audio_url` is non-empty

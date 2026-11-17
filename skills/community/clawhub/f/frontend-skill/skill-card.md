@@ -1,42 +1,56 @@
-## Description: <br>
-Frontend Skill helps agents guide responsive React, Next.js, TypeScript, shadcn/ui, and Tailwind CSS v4 frontend development with attention to interaction design, component reuse, theme consistency, and security review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Frontend Skill helps agents build responsive frontend interfaces and components using modern React, Next.js, TypeScript, Tailwind CSS v4, shadcn/ui, animation libraries, reusable component patterns, theming practices, and injection-aware development guidance.
 
-## Publisher: <br>
-[lumacoder](https://clawhub.ai/user/lumacoder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lumacoder](https://clawhub.ai/user/lumacoder)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and frontend-focused agents use this skill to produce polished, responsive web interfaces, UI components, animations, theme conventions, and implementation guidance for modern frontend projects.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for a broad range of frontend and web-development requests.
+
+Mitigation: Use explicit prompts or routing rules when you want a narrower frontend workflow.
+
+Risk: The skill may default to React, Next.js, TypeScript, Tailwind CSS v4, and shadcn/ui when no stack is specified.
+
+Mitigation: State the desired framework, styling system, component library, and project constraints before asking the agent to implement UI changes.
+
+Risk: Generated frontend code and UI guidance may not match a project's existing conventions or security requirements.
+
+Mitigation: Review generated code, dependency choices, component reuse, responsive behavior, and injection-handling assumptions before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to guide frontend page, component, interaction, animation, and responsive UI development. It is most relevant when the user wants modern frontend implementation guidance and has not specified a different stack. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad frontend defaults may lead the agent to choose a stack, dependency, or UI convention that does not match the project. <br>
-Mitigation: Specify the target framework, package manager, design system, runtime constraints, and project conventions when prompting. <br>
-Risk: Generated frontend code or command suggestions may introduce unsafe patterns, vulnerable dependencies, or misleading implementation guidance. <br>
-Mitigation: Review generated code and commands, run project tests, and scan dependencies before installing or deploying changes. <br>
+**Output Format:** [Markdown with code blocks and implementation guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lumacoder/frontend-skill) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [May default to React, Next.js, TypeScript, Tailwind CSS v4, and shadcn/ui when the user does not specify a stack.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with code snippets and command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is bundled; generated code, commands, and dependency changes should be reviewed before use.] <br>
+1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0)
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

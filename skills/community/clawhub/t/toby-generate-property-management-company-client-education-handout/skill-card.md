@@ -1,43 +1,59 @@
-## Description: <br>
-Create a polished explainer handout with visuals, FAQs, and clear next steps for a property management company. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a polished explainer handout with visuals, FAQs, and clear next steps for a property management company.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Property managers and leasing teams use this skill to draft client education handouts that explain services, answer common questions, and provide clear next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad local Read and Bash authority that is not explained by its document-generation purpose. <br>
-Mitigation: Limit or disable Bash and broad Read access unless local file inspection or command execution is intentionally required. <br>
-Risk: The generated handout may contain incorrect, misleading, or unsuitable client-facing guidance. <br>
-Mitigation: Review the draft for accuracy, readability, and actionability before publishing or sending it to clients. <br>
-Risk: README installation commands and publisher identity may need confirmation before use. <br>
-Mitigation: Verify the server-resolved publisher profile and repository provenance before installing or running commands. <br>
+## Use Case:
 
+Property managers, leasing teams, and their content partners use this skill to draft client education handouts with plain-language explanations, FAQs, visuals, and next steps for property management topics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-property-management-company-client-education-handout) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-property-management-company-client-education-handout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown handout draft with visual guidance, FAQs, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on chat and image generation APIs; review before external publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Generated handouts may include incorrect or overconfident factual claims about property management obligations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all factual and compliance-related content with qualified staff before publishing or sending to clients.
+
+Risk: The skill metadata grants Bash and Read permissions even though the visible workflow is content drafting.
+
+Mitigation: Install and run the skill in an environment where tool permissions are reviewed and limited to the task being performed.
+
+Risk: Generated visuals may be unsuitable for publication or may not match the company brand or client context.
+
+Mitigation: Review visual outputs and prompts before external use, and revise them for brand, accessibility, and accuracy.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/tobeyrebecca/skills/toby-generate-property-management-company-client-education-handout)
+- [SkillBoss skill page](https://www.skillboss.co/skills/generate-property-management-company-client-education-handout)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown handout draft with optional visual prompts and FAQ sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content should be reviewed before publication, especially visuals and factual claims about property management obligations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

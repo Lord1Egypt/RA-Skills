@@ -1,43 +1,53 @@
-## Description: <br>
-Finds Pinduoduo low-price deals, Billion Yuan Subsidy offers, group-buy discounts, coupons, bargaining progress, and cross-platform price comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds Pinduoduo low-price deals, subsidy offers, group-buy discounts, bargain progress, hidden coupons, and cross-platform price comparisons.
 
-## Publisher: <br>
-[275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[275254cl-hash](https://clawhub.ai/user/275254cl-hash)
 
-## Use Case: <br>
-External shoppers and shopping-assistant agents use this skill to discover Pinduoduo deals, monitor item price and stock changes, track group-buy or bargaining progress, and compare prices against Taobao or JD.com. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may fetch shopping pages and compare product prices online. <br>
-Mitigation: Use it only where online shopping lookups are acceptable, and review the pages or domains an agent accesses. <br>
-Risk: Sharing account sessions, login cookies, payment information, or purchase context could expose sensitive shopping data. <br>
-Mitigation: Do not provide login cookies, payment details, or account sessions; keep actions unauthenticated unless explicitly reviewed. <br>
-Risk: Ongoing product monitoring or reminders can create repeated online activity. <br>
-Mitigation: Require confirmation before enabling continuous monitoring, reminders, or push-style deal tracking. <br>
+## Use Case:
 
+External shoppers and shopping assistants use this skill to find Pinduoduo deals, monitor subsidy and group-buy opportunities, track bargain progress, and compare prices before purchase.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/275254cl-hash/pinduoduo-deal-finder) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/275254cl-hash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown deal summaries with prices, stock notes, group-buy progress, coupon suggestions, and price comparisons.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include online shopping lookup results; prices and inventory can change in real time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Live product, price, coupon, stock, and bargain information may change before the user acts on it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current details on the relevant shopping page before purchasing or making business decisions.
+
+Risk: The requests dependency is declared without a pinned version.
+
+Mitigation: Run the skill in an isolated environment and pin or review the dependency before installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/275254cl-hash/skills/pinduoduo-deal-finder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown response with deal summaries, price comparisons, monitoring notes, and shopping recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live price, stock, coupon, group-buy, and bargain-progress details when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,54 +1,77 @@
-## Description: <br>
-Psychology Master provides psychology, learning science, UX, behavior design, and ethical marketing guidance for agents that need to analyze human behavior or produce evidence-informed recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+World-class psychology expertise for human mind optimization, including learning science, cognitive psychology, behavioral economics, and ethical marketing/conversion psychology for learning programs, motivation, user experiences, persuasive messaging, conversion optimization, and behavior analysis.
 
-## Publisher: <br>
-[clarezoe](https://clawhub.ai/user/clarezoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarezoe](https://clawhub.ai/user/clarezoe)
 
-## Use Case: <br>
-External users and developers use this skill to design age-appropriate learning plans, assess behavior and motivation, improve product and team experiences, and create ethical marketing or conversion recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Psychology and conversion guidance can be misused for manipulation, dark patterns, or misleading persuasion. <br>
-Mitigation: Require transparent claims, preserve user autonomy, avoid dark patterns, and run an ethics review before using recommendations in marketing or product flows. <br>
-Risk: Use with minors, vulnerable groups, or personality-based segments can create consent, privacy, or fairness concerns. <br>
-Mitigation: Use conservative guidance, involve guardians where appropriate, minimize personal data, avoid exploitative targeting, and get legal or professional review for sensitive contexts. <br>
-Risk: Educational psychology guidance may be mistaken for clinical, medical, psychiatric, or therapeutic advice. <br>
-Mitigation: Keep outputs educational, avoid diagnosis or treatment recommendations, and refer users to qualified professionals for clinical, crisis, medical, legal, or other high-stakes matters. <br>
-Risk: Behavioral recommendations can be incorrect or overgeneralized when context is incomplete. <br>
-Mitigation: Ask for audience, goals, constraints, and evidence; state assumptions; validate recommendations with measurement, user feedback, and domain review. <br>
+## Use Case:
 
+External users, developers, educators, product teams, and marketing teams use this skill to create learning plans, analyze behavior patterns, improve UX, and design ethical conversion or messaging recommendations. It is guidance-oriented and should not be used as medical, psychiatric, crisis, legal, or major financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/clarezoe/psychology-master) <br>
-- [Safety & Ethics Guidelines](references/safety-ethics.md) <br>
-- [Learning & Development](references/learning-development.md) <br>
-- [Skill Acquisition](references/skill-acquisition.md) <br>
-- [Cognitive Systems](references/cognitive-systems.md) <br>
-- [Motivation Frameworks](references/motivation-frameworks.md) <br>
-- [Marketing Psychology](references/marketing-psychology.md) <br>
-- [Conversion Optimization](references/conversion-optimization.md) <br>
-- [Customer Psychology](references/customer-psychology.md) <br>
-- [UX Psychology](references/ux-psychology.md) <br>
-- [Organizational Psychology](references/organizational-psychology.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance, structured recommendations, optional JSON summaries, and shell command examples for bundled local scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs commonly include learning plans, conversion audits, behavior analyses, ethics checklists, recommendations, and risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server evidence and frontmatter) <br>
+Risk: Persuasion, conversion, or profiling guidance could be applied in ways that manipulate users or reduce autonomy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs transparent and human-reviewed, avoid covert psychological profiling and dark patterns, and use the safety and ethics checklist before deployment.
+
+Risk: Psychology guidance could be mistaken for medical, psychiatric, crisis, legal, or major financial advice.
+
+Mitigation: Treat outputs as educational guidance only and refer clinical, crisis, legal, or major financial decisions to qualified professionals.
+
+Risk: Local helper scripts generate recommendations from limited user-provided inputs.
+
+Mitigation: Review script outputs before acting on them and validate recommendations against real audience, learner, and business context.
+
+## Reference(s):
+
+- [README](README.md)
+- [Safety Ethics](references/safety-ethics.md)
+- [Learning Development](references/learning-development.md)
+- [Skill Acquisition](references/skill-acquisition.md)
+- [Cognitive Systems](references/cognitive-systems.md)
+- [Motivation Frameworks](references/motivation-frameworks.md)
+- [Marketing Psychology](references/marketing-psychology.md)
+- [Conversion Optimization](references/conversion-optimization.md)
+- [Customer Psychology](references/customer-psychology.md)
+- [UX Psychology](references/ux-psychology.md)
+- [Social Psychology](references/social-psychology.md)
+- [Personality Psychology](references/personality-psychology.md)
+- [Emotional Intelligence](references/emotional-intelligence.md)
+- [Communication Psychology](references/communication-psychology.md)
+- [Negotiation Psychology](references/negotiation-psychology.md)
+- [Neuropsychology Basics](references/neuropsychology-basics.md)
+- [Sleep Circadian](references/sleep-circadian.md)
+- [Creativity Psychology](references/creativity-psychology.md)
+- [Stress Resilience](references/stress-resilience.md)
+- [Organizational Psychology](references/organizational-psychology.md)
+- [Color Psychology](references/color-psychology.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, JSON, Shell commands]
+
+**Output Format:** [Markdown guidance, command-line text reports, and optional JSON result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes templates and local helper scripts for learner assessments, conversion audits, bias checks, and reference search.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata and SKILL.md frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

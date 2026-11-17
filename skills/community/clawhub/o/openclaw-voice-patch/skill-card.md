@@ -1,40 +1,58 @@
-## Description: <br>
-Patch OpenClaw Control UI to add hold-for-continuous voice input through one mic button, with short click for auto-send and a 3-second hold for continuous mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patches the OpenClaw Control UI with a single microphone button that supports short-click auto-send voice input, hold-for-continuous dictation, live interim transcript display, and state-aware tooltips.
 
-## Publisher: <br>
-[elzershark](https://clawhub.ai/user/elzershark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elzershark](https://clawhub.ai/user/elzershark)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to patch the local OpenClaw Control UI after updates or when voice input needs auto-send and continuous recording behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill modifies installed OpenClaw Control UI application files, which can break the UI if the target file or OpenClaw version does not match the expected patterns. <br>
-Mitigation: Confirm the exact OpenClaw install path, create a backup of the target JavaScript file, verify the documented compatibility patterns before editing, and restore from backup if verification fails. <br>
-Risk: Permission changes used to access installed files can be broader than necessary. <br>
-Mitigation: Avoid broad chown or chmod commands; prefer copying the target file into the workspace for patching or granting the narrowest needed write access. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to reapply or validate a Control UI voice-input patch after OpenClaw updates overwrite bundled frontend assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/elzershark/openclaw-voice-patch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, PowerShell, and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent through local file discovery, backup, compatibility checks, patch application, verification, restart, and rollback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill may prompt broad filesystem searches to locate OpenClaw's bundled frontend file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the OpenClaw installation path first and prefer a known package location or exact target path over a root-level recursive search.
+
+Risk: The skill text includes a recursive ownership-change command for OpenClaw's dist directory.
+
+Mitigation: Do not run the recursive chown command as written; copy only the exact target file or perform the edit with administrator review while preserving original ownership and permissions.
+
+Risk: The patch edits a minified OpenClaw frontend asset and can break the Control UI if the asset changed between OpenClaw versions.
+
+Mitigation: Back up the target file, verify every documented compatibility pattern before editing, verify all post-patch markers after editing, and use the documented rollback if validation fails.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elzershark/skills/openclaw-voice-patch)
+- [Publisher profile](https://clawhub.ai/user/elzershark)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and exact patch strings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes compatibility checks, backup and rollback steps, restart guidance, and troubleshooting notes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

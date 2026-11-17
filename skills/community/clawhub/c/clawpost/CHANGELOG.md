@@ -6,6 +6,75 @@ Users can generate a fresh `SKILL.md` from the dashboard at [clawpost.net](https
 
 ## [Unreleased]
 
+## [2.3.0] - 2026-11-14
+
+### Added
+
+- **X replies, Facebook comments/threaded replies, LinkedIn comments** documented in the skill capability table and REST sections (`POST /v1/x/reply`, `/v1/facebook/comment`, `/v1/linkedin/comment`). Facebook `comment_id=` URLs create threaded replies with no top-level fallback.
+- **Notifications loop** documented: `check_notifications` → `list_replies` → `reply_to_comment` (or platform tool) → `mark_reply_read`.
+- Full **17 MCP tools** listed for OAuth clients.
+
+### Changed
+
+- **Join policy**: agent may join a Facebook group when the user asks (`join_facebook_group`, 5/day); does not auto-join on its own.
+- **Pricing copy**: plans differ only by monthly post count; every plan covers every platform and action; Free = 25 posts/month.
+- Removed em dashes from public skill copy. Short video guides are built into setup (no tutorial promise).
+
+### Notes
+
+- **ClawHub republish required**: human must republish after merging so the registry listing updates.
+
+## [2.2.1] - 2026-08-31
+
+### Added
+
+- **Bird migration guidance** — skill frontmatter description now mentions bird / steipete bird CLI skill 404 as a trigger. "Why Claw Post" section includes a callout for users coming from the defunct Bird CLI (`steipete/bird` repo, `brew install steipete/tap/bird`, ClawHub `bird` card all return 404). Points users to the full slug `@daydreamnationtechlabs/clawpost` and warns against short-name installs.
+- **Article: Bird skill 404** — new page at `/articles/bird-skill-404` explains the Bird CLI deprecation, clarifies that Birdclaw is an archive (not a posting skill), and lists alternatives (Birdclaw for archives, xurl for official API, Claw Post for browser-based posting).
+
+### Notes
+
+- **ClawHub republish required**: this agent cannot publish to ClawHub. A human must republish the skill after merging to update the registry listing.
+
+## [2.1.0] - 2026-08-27
+
+### Added
+
+- **Reddit comments (browser actions)** — agents can reply on a specific Reddit post or comment via `POST /v1/reddit/comment` with `text` + `targetUrl` (must include `/comments/`). Runs in the user’s logged-in Chrome through the paired extension; no Reddit API key. Poll `GET /v1/jobs/:id`; on success `postUrl` is the live comment permalink.
+- **MCP tool `create_reddit_comment`** — same capability for OAuth MCP clients (`https://mcp.clawpost.net/mcp`).
+- **ClawHub listing** — tagline, description, and tags now include Reddit comments / browser actions.
+
+### Changed
+
+- **Skill frontmatter description**, capabilities table, MCP tools list, and prerequisites now cover Reddit (`reddit.com` login).
+
+## [2.0.0] - 2026-05-05
+
+### Added
+
+- **MCP server** — MCP-compatible agents (Claude, GPT, and others) can now connect directly at `https://mcp.clawpost.net/mcp` via OAuth 2.0. No API key required; the agent authorises once through the Claw Post OAuth flow and receives scoped access tokens. Supported tools: `list_platforms`, `create_post`, `get_upload_url`, `get_post_status`, `get_account_status`.
+- **`get_upload_url` MCP tool** — agents call this tool to get a signed PUT URL for direct-to-storage file uploads. `contentType` is optional and inferred automatically from the filename extension. The response includes `putHeaders` that agents must use verbatim for the PUT request (the signed URL rejects requests with wrong headers). Validates the file type against the target platform before uploading.
+- **`postUrl` reliably returned on success** — `GET /v1/jobs/:id` and the MCP `get_post_status` tool now return `postUrl` containing the live URL of the published post once the job succeeds. Previously this was logged and discarded; it is now persisted on the job record.
+- **`get_account_status` MCP tool** — agents can check if the user has a paired extension before attempting to post, and surface a pairing URL if not.
+
+### Changed
+
+- **All platforms now use remote workflow mode.** X, LinkedIn, Facebook, TikTok, and Instagram all execute via the declarative remote workflow executor. This enables server-side workflow fixes without client releases and unlocks `postUrl` extraction for all platforms.
+- **`contentType` is now optional on `POST /v1/media/upload-url`.** The API infers the MIME type from the filename extension automatically. Passing a `contentType` that conflicts with the filename extension returns a `400` error. A new optional `platform` field validates the file type against the platform's supported formats before the upload URL is issued.
+- **X success detection fixed.** The workflow now waits up to 45 seconds for X to finish processing uploaded media before clicking Post (instead of a fixed 5-second delay). Success is only declared when a tweet URL is extracted from the confirmation toast — eliminating false-positive `succeeded` statuses for failed posts.
+
+## [1.6.0] - 2026-04-14
+
+### Added
+
+- **Instagram posting support.** `platform: "instagram"` now publishes to the Instagram feed via the extension's remote workflow executor. Requires at least one image or video in `mediaPaths`.
+- **TikTok** promoted from preview to GA, including large-file video uploads via the two-step signed URL flow.
+- **Large media upload endpoint** (`POST /v1/media/upload-url`) documented in the capabilities table — returns a signed GCS `uploadUrl` for files that exceed the proxy's direct-upload limit.
+
+### Changed
+
+- **Capabilities table** and platform prose list all five supported platforms (X, LinkedIn, Facebook, TikTok, Instagram).
+- **Prerequisites** mention `instagram.com` as a supported login domain.
+
 ## [1.5.1] - 2026-04-06
 
 ### Security

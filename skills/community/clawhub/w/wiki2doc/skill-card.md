@@ -1,43 +1,60 @@
-## Description: <br>
-Converts internal Confluence Wiki pages into Word documents, analyzes requirements, and generates structured test cases as Markdown, JSON, and Excel outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically logs into an internal Confluence wiki, extracts page content into Word documents, analyzes requirement quality, and generates structured test cases with Markdown, JSON, and Excel outputs.
 
-## Publisher: <br>
-[yontlly](https://clawhub.ai/user/yontlly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yontlly](https://clawhub.ai/user/yontlly)
 
-## Use Case: <br>
-Developers, QA engineers, and product teams use this skill to export Confluence requirements, review requirement quality, and create test-case deliverables for test planning and execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports hardcoded internal Confluence credentials. <br>
-Mitigation: Replace embedded credentials with secure local configuration before use and rotate any exposed credentials if they are real. <br>
-Risk: The security summary reports persistent storage of fetched Confluence content. <br>
-Mitigation: Run only against content you are authorized to access, restrict output directories, and delete generated debug HTML or sensitive exports after review. <br>
+## Use Case:
 
+Developers, QA engineers, and product teams use this skill to convert Confluence requirement pages into editable documents, identify missing or ambiguous requirement details, and produce structured test cases for review or test management workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yontlly/wiki2doc) <br>
-- [README.md](artifact/README.md) <br>
-- [examples.md](artifact/examples.md) <br>
-- [skill.md](artifact/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON reports, Word documents, Excel workbooks, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces demand artifacts such as .docx exports, requirement analysis reports, test-case Markdown/JSON, and .xlsx spreadsheets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release includes embedded/default wiki credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace them with user-provided secrets, rotate any exposed password, and avoid committing credentials in skill files.
+
+Risk: The skill authenticates to Confluence and fetches page content and images that may contain internal information.
+
+Mitigation: Validate the Confluence origin, require HTTPS where available, and restrict use to approved pages and accounts.
+
+Risk: Generated Word, Markdown, JSON, Excel, and debug files may persist sensitive wiki content.
+
+Mitigation: Protect the output directory, disable persistent debug artifacts by default, and clean up generated files according to data handling policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yontlly/skills/wiki2doc)
+- [README](artifact/README.md)
+- [Usage examples](artifact/examples.md)
+- [Skill instructions](artifact/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown/text guidance plus generated .docx, .md, .json, and .xlsx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files are written to a demand output directory and may contain internal Confluence content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

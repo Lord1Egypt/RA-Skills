@@ -1,44 +1,67 @@
-## Description: <br>
-Feishu Sheet helps an agent create, read, edit, format, and manage Feishu spreadsheets through a shell-based OpenClaw skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables an agent to create, read, edit, style, merge, search, and manage Feishu Sheets using configured Feishu app credentials.
 
-## Publisher: <br>
-[siyiding](https://clawhub.ai/user/siyiding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[siyiding](https://clawhub.ai/user/siyiding)
 
-## Use Case: <br>
-Developers and agent users use this skill when they need an OpenClaw agent to automate Feishu spreadsheet workflows, including creating sheets, reading and writing ranges, formatting cells, adding images, managing rows and columns, and finding or replacing values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can overwrite, replace, delete, or otherwise modify spreadsheet content. <br>
-Mitigation: Verify spreadsheet tokens, sheet IDs, ranges, and target operations before running write, replace, or delete commands. <br>
-Risk: The skill uses Feishu app credentials and receives tenant access tokens. <br>
-Mitigation: Use a minimal-permission Feishu app, protect the OpenClaw configuration file, and rotate credentials if exposure is suspected. <br>
-Risk: Image upload and floating-image URL commands can expand data movement beyond basic spreadsheet edits. <br>
-Mitigation: Use local image paths and remote image URLs only from trusted sources, and account for Drive media upload permissions when enabling image workflows. <br>
+## Use Case:
 
+Developers and operators use this skill to let an OpenClaw agent automate Feishu spreadsheet workflows, including report creation, data reads and writes, formatting, worksheet management, images, and find-and-replace actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/siyiding/feishu-sheet) <br>
-- [Skill homepage](https://clawhub.ai/skills/feishu-sheet) <br>
-- [Feishu Open API endpoint](https://open.feishu.cn/open-apis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials in the OpenClaw configuration and returns Feishu API responses or command output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server evidence and skill metadata) <br>
+Risk: Unrestricted image URL fetching may retrieve untrusted remote content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid float_image_url unless URL fetching is sandboxed or restricted to an allowlist.
+
+Risk: Local image path handling can expose unexpected files when untrusted paths are supplied.
+
+Mitigation: Accept only explicit, trusted image paths from the user before insert_image or float_image operations.
+
+Risk: Delete and overwrite commands can permanently alter Feishu spreadsheet content.
+
+Mitigation: Require explicit confirmation before delete, overwrite, merge, or replacement operations.
+
+Risk: Tenant access tokens are cached under the temporary directory.
+
+Mitigation: Harden token cache storage before shared-system use and prefer per-user isolated runtime environments.
+
+Risk: Broad Feishu app permissions increase blast radius if credentials are misused.
+
+Mitigation: Use a minimal-permission Feishu app with only the spreadsheet permissions required for the intended workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/siyiding/skills/feishu-sheet)
+- [Skill metadata homepage](https://clawhub.ai/skills/feishu-sheet)
+- [Feishu Open API endpoint](https://open.feishu.cn/open-apis)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, text]
+
+**Output Format:** [Markdown guidance with inline shell commands; command results are JSON from the Feishu Open API wrapper.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, python3, bash, Feishu app credentials, and sheets:spreadsheet permission.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

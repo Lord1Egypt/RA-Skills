@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7f9mzhtvdmap3maxzvjf9h1981qnzn",
+  "ownerId": "local",
   "slug": "ai-trends-reporter",
   "version": "1.0.0",
-  "publishedAt": 1772589613850
+  "publishedAt": 1772686200000,
+  "keywords": ["ai", "trends", "news", "skills", "recommendation", "openclaw"],
+  "homepage": "https://github.com",
+  "repository": "https://github.com",
+  "license": "MIT"
 }

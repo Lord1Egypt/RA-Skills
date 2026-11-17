@@ -1,0 +1,1 @@
+{"type":"object","required":["id","objective","state","tasks"],"properties":{"id":{"type":"string"},"objective":{"type":"string"},"state":{"enum":["queued","running","paused","blocked","completed","failed","cancelled"]},"tasks":{"type":"array"},"checkpoint":{"type":["string","null"]},"budget":{"type":"object"}}}

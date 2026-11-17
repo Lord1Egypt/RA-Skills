@@ -1,42 +1,54 @@
-## Description: <br>
-Automator helps agents create and manage OpenClaw automation workflows for multi-step tasks, parallel processing, conditional logic, and scheduled operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage OpenClaw automation workflows for multi-step tasks, parallel processing, conditional logic, scheduled automation, data pipelines, business processes, and cross-platform integrations.
 
-## Publisher: <br>
-[Fuczy](https://clawhub.ai/user/Fuczy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuczy](https://clawhub.ai/user/fuczy)
 
-## Use Case: <br>
-Developers, operators, and business users use this skill to design OpenClaw workflows for recurring reports, monitoring, data pipelines, approvals, backups, and notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated workflows can send messages, post publicly, back up data, or affect production systems. <br>
-Mitigation: Test workflows in non-production environments first, limit credentials, verify destinations, and add human approval for high-impact steps. <br>
-Risk: Scheduled workflows may continue running after conditions or recipients change. <br>
-Mitigation: Confirm each workflow can be paused, stopped, and audited before enabling recurring execution. <br>
+## Use Case:
 
+Developers, operators, and workflow owners use Automator to define, schedule, monitor, and troubleshoot recurring OpenClaw workflows for reports, data pipelines, alerts, backups, approvals, and cross-platform notifications.
 
-## Reference(s): <br>
-- [Automator on ClawHub](https://clawhub.ai/Fuczy/clawd-automator) <br>
-- [Automator homepage](https://clawhub.com/skills/automator) <br>
-- [OpenClaw workflow documentation](https://docs.openclaw.ai/workflows) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown with YAML workflow examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workflow design guidance and examples; it does not execute workflows by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Scheduled workflows can persist after setup and continue taking automated actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test workflows with non-production agents first, monitor active schedules, and pause or stop automations when they are no longer needed.
+
+Risk: Workflow notifications, reports, or public posts can send information to unintended recipients or channels.
+
+Mitigation: Review recipients and channels, use least-privilege credentials, and add approval gates for sensitive reports or public posting.
+
+## Reference(s):
+
+- [Automator Skill Page](https://clawhub.ai/fuczy/skills/clawd-automator)
+- [OpenClaw Workflow Documentation](https://docs.openclaw.ai/workflows)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown with YAML workflow examples and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Workflow guidance covers schedules, dependencies, retries, notifications, monitoring, and human approval steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

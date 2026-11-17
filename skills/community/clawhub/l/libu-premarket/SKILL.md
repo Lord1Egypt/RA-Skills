@@ -1,12 +1,12 @@
 ---
 name: libu-premarket
-version: 14.0.4
+version: 14.0.10
 description: 礼部侍郎 - A 股盘前作战地图。基于资金共振与严苛财务筛选的实战级选股工具。
 author: ygbeyond
 license: MIT
 ---
 
-# 📈 礼部侍郎 - 盘前作战地图 (v14.0.4 每周数据焕新版)
+# 📈 礼部侍郎 - 盘前作战地图 (v14.0.8 每周数据焕新版)
 
 > **一句话介绍**：每天早上开盘前，为你提供基于"主力资金流向"与"机构财务排雷"的 A 股核心作战地图。
 
@@ -147,3 +147,19 @@ AI Agent 将基于生成的数据为你撰写如下结构的报告：
 - 更新 basic 数据至 2026-05-14（latest trading day）
 - 更新 finance / closing 数据同步
 - 同步最新 pre_market.py 代码与 config.json
+
+### v14.0.8 (2026-07-04) — 每周数据焕新版
+- 更新 basic 数据至 2026-06-26（latest trading day）
+- 更新 finance 数据至 2026Q1
+- 同步最新 pre_market.py 代码与 config.json
+
+### v14.0.8 (2026-07-04) — 每周数据焕新版
+- 更新 basic 数据至 2026-06-26
+- 更新 finance 数据至 2026Q1
+- 同步最新 pre_market.py 代码与 config.json
+
+### v14.0.10 (2026-07-18) — 每周数据焕新版
+- 更新 basic 数据至 2026-06-26（latest trading day）
+- 更新 finance 数据至 2026Q1
+- 同步最新 pre_market.py 代码与 config.json
+- initial_data.zip 重新打包

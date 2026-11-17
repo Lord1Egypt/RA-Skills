@@ -109,7 +109,7 @@ vim llm_config.yaml     # Linux/macOS
 
 **模板位置**: `assets/llm_config.yaml.example` 已经预填了各大平台的配置，你只需要：
 - 去掉不需要平台的注释（或保留，删掉占位符 `sk-...` 换成你的 Key）
-- 将 `"sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"` 替换成你真实的 API Key
+- 将 `"REDACTED-SECRET"` 替换成你真实的 API Key
 - `.gitignore` 已经默认忽略 `llm_config.yaml`，不用担心密钥泄露
 
 ### 3. 调用 LLM

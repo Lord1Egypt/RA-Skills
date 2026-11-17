@@ -1,38 +1,54 @@
-## Description: <br>
-Use when a session reveals stable user preferences, workflow corrections, or project conventions that should be preserved for future sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a session reveals stable user preferences, workflow corrections, or project conventions that should be preserved for future sessions. Also use when user explicitly asks to remember rules, update guidance, or summarize learnings.
 
-## Publisher: <br>
-[lq434239](https://clawhub.ai/user/lq434239) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lq434239](https://clawhub.ai/user/lq434239)
 
-## Use Case: <br>
-Agents and developers use this skill to identify stable user preferences, workflow corrections, and project conventions, then preserve them as concise CLAUDE.md guidance for future sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mistaken or overly broad session preferences could persist into future agent behavior. <br>
-Mitigation: Review proposed CLAUDE.md changes before accepting them, and keep learned rules specific, durable, and free of secrets or one-off task details. <br>
+## Use Case:
 
+Developers and agent users use this skill to identify stable session learnings, propose concise CLAUDE.md rules, and preserve durable workflow or project conventions for future sessions.
 
-## Reference(s): <br>
-- [Learning Rules](references/learning-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown bullets and CLAUDE.md update proposals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or write durable CLAUDE.md guidance after confirmation; excludes secrets, full prompt bodies, and ephemeral code facts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can write lasting agent instructions into CLAUDE.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed rule before it is written and prefer project-local CLAUDE.md unless a global rule is intentional.
+
+Risk: Automatic end-of-session runs may skip confirmation before persisting guidance.
+
+Mitigation: Avoid automatic end-of-session writes unless the installation policy explicitly allows that behavior.
+
+## Reference(s):
+
+- [Learning Rules](references/learning-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/lq434239/skills/session-learner)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Files]
+
+**Output Format:** [Markdown bullets and CLAUDE.md updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write persistent agent instructions after confirmation, or without confirmation when run from an automatic SessionEnd hook.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

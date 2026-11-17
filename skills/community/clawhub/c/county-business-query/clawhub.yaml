@@ -1,0 +1,12 @@
+name: county-business-query
+version: 8.13.0
+description: 县域商机查询：全国县域招投标公告与企业工商信息查询（含中标企业电话），适合县域生意调研、招投标信息获取、商机挖掘。免费10次/天，注册升级获取API Key。
+author: 郸城县远远网络工作室
+homepage: https://dcbmt.com/county/?src=clawhub
+skill_file: SKILL.md
+tags:
+  - county-business
+  - bidding
+  - china
+  - business-info
+  - 招投标

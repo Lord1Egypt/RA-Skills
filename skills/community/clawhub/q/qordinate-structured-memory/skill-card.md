@@ -1,41 +1,54 @@
-## Description: <br>
-Qordinate is a chat-native assistant that acts as durable, structured memory for OpenClaw agents by storing facts, lists, tasks, contacts, and reminders through WhatsApp, Telegram, or Slack. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qordinate is a chat-native assistant that acts as structured memory for OpenClaw agents by letting them offload long-term facts, tasks, and reminders over WhatsApp, Telegram, or Slack.
 
-## Publisher: <br>
-[SinghCoder](https://clawhub.ai/user/SinghCoder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[singhcoder](https://clawhub.ai/user/singhcoder)
 
-## Use Case: <br>
-Developers and agent builders use this skill to let an OpenClaw agent save and retrieve long-term user facts, tasks, contacts, lists, and reminders through a linked Qordinate chat account. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause an agent to persist user facts, tasks, contacts, and reminders to an external Qordinate account through chat apps. <br>
-Mitigation: Require user confirmation before storing sensitive information and prohibit secrets, OTPs, credentials, financial data, health data, and confidential business data. <br>
-Risk: The release evidence notes insufficient privacy controls for external memory use. <br>
-Mitigation: Verify Qordinate retention and deletion controls before relying on the integration for durable memory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/SinghCoder/qordinate-structured-memory) <br>
-- [Qordinate homepage](https://qordinate.ai) <br>
-- [Qordinate Slack connection](https://qordinate.ai/slack) <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw agent save, update, and query durable facts, list items, tasks, contacts, leads, links, and reminders through a Qordinate chat account.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with structured natural-language message examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the agent environment to send messages through WhatsApp, Telegram, or Slack.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata, released 2026-02-07) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives the agent broad discretion to send durable personal or business information to Qordinate through the user's chat accounts.
+
+Mitigation: Require explicit confirmation before saving sensitive items and use the integration only when the user is comfortable with selected information being stored durably.
+
+Risk: Passwords, tokens, private communications, regulated data, or confidential file contents could be forwarded if the agent treats Qordinate as general memory.
+
+Mitigation: Exclude secrets, regulated data, confidential file contents, and private communications from Qordinate messages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/singhcoder/skills/qordinate-structured-memory)
+- [Qordinate website](https://qordinate.ai)
+- [Qordinate Slack setup](https://qordinate.ai/slack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown instructions with structured natural-language message examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an existing Qordinate account and access to an enabled WhatsApp, Telegram, or Slack channel.]
+
+## Skill Version(s):
+
+1.0.1 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

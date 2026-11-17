@@ -1,44 +1,63 @@
-## Description: <br>
-Uses a reference KV, poster, or face image with gpt-image-2 or Nano Banana models to batch-generate exact-size image assets and optionally check text cropping and element completeness before delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+直接以参考KV/海报/拍脸图为输入，调用 gpt-image-2 或 Nano Banana 模型，按目标规格批量生成精确尺寸的图片文件，交付前AI自检文字裁切、元素完整性等问题。支持自定义规范学习、产品设计语言积累。
 
-## Publisher: <br>
-[siconvip](https://clawhub.ai/user/siconvip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[siconvip](https://clawhub.ai/user/siconvip)
 
-## Use Case: <br>
-Developers, designers, and marketing teams use this skill to adapt a source creative image into platform-specific campaign assets for social, content, and commerce channels. It supports batch output, custom platform sizes, quality options, optional AI self-checks, and cloud handoff through JSON or base64 image payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded images and prompts may be sent to remote AI services. <br>
-Mitigation: Process only assets approved for the configured service, and verify the configured base_url before using confidential or licensed material. <br>
-Risk: The skill requires sensitive API credentials. <br>
-Mitigation: Prefer environment-variable API keys and avoid storing plaintext keys in local configuration files or shared workspaces. <br>
-Risk: Optional native software download and external helper execution can introduce unreviewed code. <br>
-Mitigation: Avoid the Real-ESRGAN install path and default external gpt_image2.py helper unless the files and sources have been independently verified. <br>
+## Use Case:
 
+Marketing, design, and content teams use this skill to adapt a reference campaign image, poster, or face-oriented creative into correctly sized assets for multiple social and commerce platforms. Agents can run it to generate platform-specific PNG files, JSON result summaries, and optional base64 image payloads for cloud delivery.
 
-## Reference(s): <br>
-- [Platform image specifications](references/platform-specs.md) <br>
-- [ClawHub skill page](https://clawhub.ai/siconvip/image-assets-resize) <br>
-- [OpenClaw homepage](https://github.com/openclaw/clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [PNG image files with JSON status objects; cloud mode can include base64-encoded image data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an input image, target platform dimensions, and API credentials for the selected image model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can send user-provided marketing images and prompts to the configured image model provider or gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved providers and avoid sensitive unreleased assets unless provider data handling has been reviewed.
+
+Risk: API keys and base URLs are configurable, and plaintext API keys may be stored locally.
+
+Mitigation: Prefer environment variables for credentials and avoid custom API base URLs unless they are trusted and controlled.
+
+Risk: The optional GPT Image helper and upscaler installer can execute code outside the audited skill package.
+
+Mitigation: Review those helpers before use and require approval before installing or running external helper code.
+
+Risk: The skill may store sensitive configuration and brand history on the local system.
+
+Mitigation: Keep local configuration and brand history files out of shared workspaces and remove sensitive campaign details when they are no longer needed.
+
+## Reference(s):
+
+- [Platform image specification reference](references/platform-specs.md)
+- [OpenClaw ClawHub](https://github.com/openclaw/clawhub)
+- [Real-ESRGAN ncnn Vulkan releases](https://github.com/xinntao/Real-ESRGAN-ncnn-vulkan/releases/download/)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON]
+
+**Output Format:** [JSON object with generated PNG output paths and optional base64 image data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated image files are saved to the configured output directory; cloud mode can include base64-encoded images in the JSON result.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

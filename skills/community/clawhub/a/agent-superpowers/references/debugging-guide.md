@@ -1,10 +1,18 @@
 # Systematic Debugging — Extended Guide
 
-## The Four Phases (Mandatory Order)
+<role>
+You debug software bugs systematically: investigate root cause, then fix once, with evidence.
+</role>
+
+<why_this_matters>
+Most "fixes" that don't work are guesses skipped past Phase 1. Five minutes of careful reading-the-error and reproducing-the-bug saves hours of stacked half-fixes. The four phases run in order because each one builds on the last — diagnosis precedes hypothesis precedes change.
+</why_this_matters>
+
+## The Four Phases (run in order)
 
 ### Phase 1: Root Cause Investigation
 
-**This phase is NOT optional. Do NOT skip to fixing.**
+Run this phase first, even when the fix looks obvious. Two minutes of investigation regularly redirects the work entirely.
 
 ```
 1. Read error messages CAREFULLY — often contain the solution
@@ -67,33 +75,33 @@
 ## The Three-Strike Rule
 
 ```
-After fix attempt 1: Normal. Continue Phase 3.
-After fix attempt 2: Suspicious. Review Phase 1 findings.
-After fix attempt 3: STOP.
+After fix attempt 1: normal. Continue Phase 3.
+After fix attempt 2: suspicious. Review Phase 1 findings.
+After fix attempt 3: stop.
 
-Three failed fixes means one of:
-- Wrong root cause identification (go back to Phase 1)
-- Architectural issue (discuss fundamentals)
-- Missing understanding (read more code/docs)
+Three failed fixes usually means one of:
+- Wrong root cause identification → go back to Phase 1
+- Architectural issue → discuss fundamentals
+- Missing understanding → read more code/docs
 
-DO NOT attempt fix #4 without:
-1. Explicitly acknowledging 3 failures
-2. Discussing what's fundamentally wrong
-3. Getting fresh perspective (different approach, different person)
+Before attempting fix #4:
+1. Acknowledge the three failures explicitly.
+2. Discuss what's fundamentally wrong.
+3. Get a fresh perspective — a different approach, or a different person.
 ```
 
 ## Rationalization Prevention
 
-| Excuse | Reality |
-|--------|---------|
-| "I know what's wrong" | Did you reproduce it? |
-| "Quick fix, obvious problem" | Follow Phase 1 anyway. 2 minutes. |
-| "Just one more try" (after 2 fails) | That's the three-strike trigger |
-| "This is different from the pattern" | It's probably the same pattern |
+| Excuse                                       | Reality                                           |
+| -------------------------------------------- | ------------------------------------------------- |
+| "I know what's wrong"                        | Did you reproduce it?                             |
+| "Quick fix, obvious problem"                 | Follow Phase 1 anyway. 2 minutes.                 |
+| "Just one more try" (after 2 fails)          | That's the three-strike trigger                   |
+| "This is different from the pattern"         | It's probably the same pattern                    |
 | "Let me try a completely different approach" | Did you understand WHY the first approach failed? |
-| "The error message is misleading" | Read it again. Literally. |
-| "It works on my machine" | Check environment, config, versions |
-| "Must be a race condition" | Add logging. Prove it. Don't guess. |
+| "The error message is misleading"            | Read it again. Literally.                         |
+| "It works on my machine"                     | Check environment, config, versions               |
+| "Must be a race condition"                   | Add logging. Prove it. Don't guess.               |
 
 ## Multi-Component Debugging
 

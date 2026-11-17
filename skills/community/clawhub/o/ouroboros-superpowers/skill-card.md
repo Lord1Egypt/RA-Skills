@@ -1,40 +1,49 @@
-## Description: <br>
-Guides coding agents through triggered workflows for interviewing, specification writing, implementation planning, execution, and verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides explicit development requests through an Ouroboros interview for specification and a Superpowers workflow for planning, execution, and verification.
 
-## Publisher: <br>
-[tty444](https://clawhub.ai/user/tty444) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tty444](https://clawhub.ai/user/tty444)
 
-## Use Case: <br>
-Developers use this skill to turn unclear coding requests into a concise spec, plan implementation tasks, execute changes, and verify results. It is intended for explicit workflow triggers such as ouroboros, superpowers, or full-flow requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated specs, plans, or code changes may not match the user's intent or project constraints. <br>
-Mitigation: Review the generated spec, plan, execution mode, diffs, and commits before approving or relying on changes. <br>
-Risk: Broad workflow triggers can lead the agent into planning, editing, testing, or commit behavior when the user expected a narrower response. <br>
-Mitigation: Use explicit triggers such as ouroboros, superpowers, or full-flow requests, and confirm the selected workflow mode before execution. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to clarify ambiguous development requests, turn them into specs and implementation plans, execute work in controlled stages, and verify the result.
 
-## Reference(s): <br>
-- [Ouroboros + Superpowers on ClawHub](https://clawhub.ai/tty444/ouroboros-superpowers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with optional code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose specs, plans, file changes, tests, execution modes, and commits for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The broad Korean trigger "전체" can be interpreted as a request to run the full workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use clearer triggers such as "ouroboros," "superpowers," "스펙부터," or "풀플로우," and review the generated spec and plan before allowing implementation or commits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tty444/skills/ouroboros-superpowers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code and shell-command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce specs under docs/specs and plans under docs/plans when the workflow is followed.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

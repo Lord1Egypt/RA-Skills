@@ -1,43 +1,56 @@
-## Description: <br>
-Plans Huawei Cloud CCE container migrations by inventorying source clusters, mapping dependencies, designing migration batches, assessing risks, and generating rollback and validation plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans Huawei Cloud CCE container migrations by inventorying clusters, workloads, networking, storage, and configuration, then producing dependency maps, migration batches, risk assessments, rollback plans, and validation plans.
 
-## Publisher: <br>
-[pintudeyudi](https://clawhub.ai/user/pintudeyudi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pintudeyudi](https://clawhub.ai/user/pintudeyudi)
 
-## Use Case: <br>
-Developers and cloud migration engineers use this skill to assess Huawei Cloud CCE source clusters, inventory workloads and cloud dependencies, design migration batches, and produce risk, rollback, and validation plans before executing a migration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The ClawHub security scan reports that the package is presented as a read-only CCE migration planner but exposes broader administrative actions and credential-return paths than the stated purpose requires. <br>
-Mitigation: Review the package before installation, use tightly scoped read-only Huawei Cloud credentials, and restrict use to the listed inventory and planning actions. <br>
-Risk: Sensitive Huawei Cloud credentials, raw data, kubeconfig data, or output files could be exposed if unsafe dispatcher options are enabled. <br>
-Mitigation: Avoid passing AK/SK values as command parameters and do not enable include_data, include_raw, output_file, kubeconfig export, or mutating actions unless they have been independently audited and constrained. <br>
+## Use Case:
 
+Developers and cloud migration engineers use this skill to assess Huawei Cloud CCE migration scope, map workload and infrastructure dependencies, and draft migration batches with rollback and validation plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pintudeyudi/huawei-cloud-cce-container-migration-planner) <br>
-- [Workflow](references/workflow.md) <br>
-- [Risk Rules](references/risk-rules.md) <br>
-- [Output Schema](references/output-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured JSON-style migration planning sections and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces inventory summaries, dependency matrices, migration batches, risk lists, rollback plans, validation plans, and manual confirmation checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Packaged dispatcher behavior may perform live cloud or Kubernetes changes despite the skill's read-only migration-planning posture.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and remove or isolate mutation actions before installation, and run only with least-privilege read-only Huawei IAM and Kubernetes RBAC permissions.
+
+Risk: Resource inventory can expose sensitive cluster data, including Secret metadata, project identifiers, tokens, certificates, or credentials.
+
+Mitigation: Do not request Secret data; mask or omit project_id, AK/SK, tokens, and certificates from outputs, logs, files, and responses.
+
+## Reference(s):
+
+- [Workflow](references/workflow.md)
+- [Risk Rules](references/risk-rules.md)
+- [Output Schema](references/output-schema.md)
+- [ClawHub skill page](https://clawhub.ai/pintudeyudi/skills/huawei-cloud-cce-container-migration-planner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Structured JSON migration plan with optional Markdown guidance and dispatcher command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes inventory, dependency matrix, migration batches, risks, rollback plan, and validation plan; sensitive IDs and credentials should be masked or omitted.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

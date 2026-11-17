@@ -38,15 +38,3 @@ class ApiService(ApiServiceBase):
 
     def list(self, *args, **argss):
         return super().list(None, *args, **argss)
-
-    def add(self, item: dict):
-        return super().add(ApiEnum.ADD_URL, item)
-
-    def edit(self, item: dict):
-        return super().edit(ApiEnum.EDIT_URL, item)
-
-    def delete(self, cameraSn):
-        data = {
-            "cameraSn": cameraSn
-        }
-        return super().delete(ApiEnum.DELETE_URL, data, options={"dataAsParams": True})

@@ -1,0 +1,12 @@
+{
+  "source": "nvd",
+  "query": "CVE-2024-30078",
+  "timestamp": 1792049584.7090182,
+  "data": {
+    "cve_id": "CVE-2024-30078",
+    "cvss_score": 8.8,
+    "cvss_vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+    "severity": "HIGH",
+    "description": "Windows Wi-Fi Driver Remote Code Execution Vulnerability"
+  }
+}

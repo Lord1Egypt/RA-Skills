@@ -1,47 +1,70 @@
-## Description: <br>
-Unified search skill with Intelligent Auto-Routing that selects among Serper, Tavily, Exa, Perplexity, You.com, and SearXNG using multi-signal query analysis and confidence scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified search skill with Intelligent Auto-Routing. Uses multi-signal analysis to automatically select between Serper (Google), Tavily (Research), Exa (Neural), Perplexity (AI Answers), You.com (RAG/Real-time), and SearXNG (Privacy/Self-hosted) with confidence scoring.
 
-## Publisher: <br>
-[marsxuc](https://clawhub.ai/user/marsxuc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marsxuc](https://clawhub.ai/user/marsxuc)
 
-## Use Case: <br>
-Developers and agent users use this skill to run current web searches through a single interface that can choose an appropriate provider, return source-linked results, and explain or override routing decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, URLs, and optional full-content retrieval may be sent to the configured external provider and cached locally. <br>
-Mitigation: Configure only providers you intend to use, use SearXNG for privacy-sensitive searches, and use no-cache or cache-clearing options when local retention is not desired. <br>
-Risk: Provider selection can route ambiguous queries to a less suitable search provider. <br>
-Mitigation: Use routing explanations and explicit provider overrides when search intent or privacy requirements are important. <br>
+## Use Case:
 
+Developers and agent users use this skill to route web searches across configured providers for product lookup, research, similar-page discovery, direct answers, real-time search, and privacy-oriented SearXNG searches.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marsxuc/web-search-plus-2-8-6) <br>
-- [Serper](https://serper.dev) <br>
-- [Tavily](https://tavily.com) <br>
-- [Exa](https://exa.ai) <br>
-- [Kilo Gateway](https://kilo.ai) <br>
-- [You.com API](https://api.you.com) <br>
-- [SearXNG documentation](https://docs.searxng.org) <br>
-- [Perplexity](https://www.perplexity.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search results and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output can include provider, query, result titles, URLs, snippets, scores, cache metadata, and routing confidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; skill artifact version 2.8.6) <br>
+Risk: Search queries are sent to whichever external provider is configured or selected by routing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only providers approved for the data being searched and avoid submitting sensitive or confidential queries.
+
+Risk: API keys and cached search history may be stored locally by the skill.
+
+Mitigation: Prefer environment variables or a permissioned secrets store for keys, keep local config files private, and disable or clear caching for sensitive searches.
+
+Risk: A configured SearXNG instance URL may reach internal network services if URL protection is bypassed.
+
+Mitigation: Use a trusted pinned SearXNG deployment and review SearXNG instance configuration before enabling it.
+
+Risk: The included test script may load values from an untrusted .env file.
+
+Mitigation: Run tests only from trusted workspaces and inspect local environment files before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marsxuc/skills/web-search-plus-2-8-6)
+- [Publisher Profile](https://clawhub.ai/user/marsxuc)
+- [Serper](https://serper.dev)
+- [Tavily](https://tavily.com)
+- [Exa](https://exa.ai)
+- [Perplexity](https://www.perplexity.ai)
+- [You.com API](https://api.you.com)
+- [SearXNG Documentation](https://docs.searxng.org)
+- [SearXNG Installation](https://docs.searxng.org/admin/installation.html)
+- [Kilo](https://kilo.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search results plus Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results can include provider, query, result items, scores, routing confidence, fallback status, and cache metadata.]
+
+## Skill Version(s):
+
+2.8.6 (source: SKILL.md frontmatter, package.json, CHANGELOG; ClawHub release 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

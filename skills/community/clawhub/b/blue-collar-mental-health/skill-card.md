@@ -1,47 +1,59 @@
-## Description: <br>
-Mental health support designed for workers in trades, service, and physical occupations. Use when someone in a physical job is struggling with stress, substance use, anger, isolation, or burnout and traditional mental health resources feel inaccessible. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mental health support designed for workers in trades, service, and physical occupations when stress, substance use, anger, isolation, burnout, or inaccessible traditional resources are part of the situation.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-Employees and external users in trades, service, and physical jobs use this skill for non-clinical mental health support, self-checks, stress resets, substance-use reflection, coworker check-ins, and crisis-resource routing. Agents use it to provide practical, stigma-aware guidance when generic mental health advice feels inaccessible. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat non-clinical mental health guidance as diagnosis or a substitute for licensed care. <br>
-Mitigation: Keep responses non-diagnostic, state when professional care is appropriate, and route severe symptoms or substance-use escalation to qualified support. <br>
-Risk: Self-harm or crisis disclosures require immediate trained support. <br>
-Mitigation: Surface crisis resources before other guidance and encourage contacting emergency or crisis services when safety is at risk. <br>
-Risk: Crisis lines, EAP access, and industry resources vary by jurisdiction. <br>
-Mitigation: Localize resources when location is known and present the listed regional options as starting points rather than exhaustive coverage. <br>
+## Use Case:
 
+Employees, supervisors, coworkers, and external users in trades, service, and physical work contexts use this skill for stigma-aware self-checks, quick stress resets, substance-use reflection, coworker support scripts, crisis-resource routing, and practical pathways to professional help.
 
-## Reference(s): <br>
-- [CDC Workplace Mental Health](https://www.cdc.gov/workplacehealthpromotion/) <br>
-- [Construction Industry Alliance for Suicide Prevention](https://preventconstructionsuicide.com) <br>
-- [SAMHSA](https://www.samhsa.gov) <br>
-- [988 Suicide & Crisis Lifeline](https://988lifeline.org) <br>
-- [MATES in Construction](https://mates.org.au) <br>
-- [Anthropic Labor Market Impacts of AI](https://www.anthropic.com/research/labor-market-impacts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with checklists, scripts, resource lists, and direct crisis prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only support content; may include localized crisis resources, self-assessment prompts, and practical conversation scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat mental health guidance as a substitute for licensed care or emergency response.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: The skill should route suicidal thoughts, self-harm, or severe symptoms to crisis resources or professional support before general self-help guidance.
+
+Risk: Installing a ClawHub skill that declares filesystem access can expose sensitive local files or credentials if installed in a broad environment.
+
+Mitigation: Install and run the skill in a least-privileged or sandboxed environment and confirm the ClawHub installer source and version before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/howtousehumans/skills/blue-collar-mental-health)
+- [CDC Workplace Mental Health](https://www.cdc.gov/workplacehealthpromotion/)
+- [Construction Industry Alliance for Suicide Prevention](https://preventconstructionsuicide.com)
+- [SAMHSA](https://www.samhsa.gov)
+- [988 Suicide & Crisis Lifeline](https://988lifeline.org)
+- [MATES in Construction](https://mates.org.au)
+- [Anthropic Labor Market Impacts of AI](https://www.anthropic.com/research/labor-market-impacts)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with checklists, scripts, crisis-resource routing, and YAML state/configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supportive guidance only; not a replacement for licensed care or emergency services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

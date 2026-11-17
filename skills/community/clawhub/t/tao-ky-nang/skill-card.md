@@ -1,42 +1,59 @@
-## Description: <br>
-Vietnamese guide for creating Claude skills, including use case definition, folder structure, YAML frontmatter, validation, troubleshooting, testing, and sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huong dan tao ky nang Claude. Su dung khi muon xay dung skill, tao ky nang, viet YAML, hoac kiểm thu ky nang.
 
-## Publisher: <br>
-[nguyenhoang11032002-ai](https://clawhub.ai/user/nguyenhoang11032002-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nguyenhoang11032002-ai](https://clawhub.ai/user/nguyenhoang11032002-ai)
 
-## Use Case: <br>
-Vietnamese-speaking developers and skill authors use this skill to create, structure, validate, test, and publish Claude-style agent skills, including YAML frontmatter and supporting reference or script files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automation examples can be adapted into workflows that create, assign, notify, or modify external workspace data. <br>
-Mitigation: Require explicit user confirmation before any adapted workflow changes external workspace data. <br>
-Risk: Generated or edited skill instructions may contain incorrect YAML, overbroad triggers, or misleading guidance. <br>
-Mitigation: Review the skill content and run the provided validator before deployment. <br>
+## Use Case:
 
+Developers and skill authors use this Vietnamese guide to plan, write, validate, test, and publish Claude skills with clear frontmatter, folder structure, examples, and troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nguyenhoang11032002-ai/tao-ky-nang) <br>
-- [Template Examples](references/template-examples.md) <br>
-- [YAML Frontmatter](references/yaml-frontmatter.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML, Python, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a local Python validator for skill folder and frontmatter checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Skill templates copied from the guide may trigger too broadly or activate on unrelated requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrow trigger phrases, include negative triggers where useful, and test activation against both obvious and unrelated prompts before publishing.
+
+Risk: Examples involving MCP or external service workflows may lead an agent to propose changes outside the user's intended scope.
+
+Mitigation: Require explicit user confirmation before creating or modifying external resources, and verify the connected MCP server, credentials, and tool names first.
+
+Risk: The bundled validator inspects a local folder and reads SKILL.md content from that path.
+
+Mitigation: Run the validator only on skill folders the user intends to inspect and review reported frontmatter issues before upload.
+
+## Reference(s):
+
+- [Template Examples](references/template-examples.md)
+- [YAML Frontmatter](references/yaml-frontmatter.md)
+- [ClawHub Skill Page](https://clawhub.ai/nguyenhoang11032002-ai/skills/tao-ky-nang)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with YAML, Markdown, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Vietnamese-language instructional output for creating and validating skills.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

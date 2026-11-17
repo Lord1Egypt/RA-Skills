@@ -1,7 +1,9 @@
 # 公众号长文配图生成器 — 核心工作流
 
-> 版本: 6.0 | 输出格式: 纯 HTML → Puppeteer 截图 → PNG 交付
+> 版本: 7.4 | 输出格式: 纯 HTML → Puppeteer 截图 → PNG 交付
 > 触发词: `多图` / `配图` / `全套` / `文章配图` / `封面+配图`
+> v7.4 变更：移除金句图(quote-card/S08/E04)配图类型，配图数量从8张调整为7张
+> v7.2 变更：Pexels API 预下载流程 + Chrome --disable-web-security
 
 ## Core Principles
 
@@ -41,7 +43,6 @@ Step F: 截图交付 + 云盘同步
 | **逻辑链** | 因果/顺序/条件推理 | logic-chain | readability |
 | **流程** | 3+顺序步骤 | process-pipeline | readability |
 | **对比** | A vs B 各3+属性 | versus | readability |
-| **金句** | 脱离上下文仍有冲击力的陈述 | quote-card | memorability |
 | **核心判断** | 作者明确立场/结论 | verdict-card | memorability |
 | **误区vs事实** | 需要纠正的错误认知 | myth-fact-card | memorability |
 | **受众信号** | "适合谁/不适合谁"内容 | audience-fit-card | attention |
@@ -59,9 +60,9 @@ Step F: 截图交付 + 云盘同步
 
 ### 提取规则
 
-- 可视化单元须有 **≥2个数据点** 或 **清晰逻辑结构** 或 **独立金句冲击力**
+- 可视化单元须有 **≥2个数据点** 或 **清晰逻辑结构**
 - 孤立单个数字不可视化（如"48天"单独→不做图；"48天+5000亿+万亿"一起→时间线）
-- 无数据/结构/金句的叙述段落不可视化
+- 无数据/结构的叙述段落不可视化
 - 两个单元来源段落重叠时，**合并**
 
 ---
@@ -111,16 +112,16 @@ Step F: 截图交付 + 云盘同步
 | 内部类型 | Emoji | 用户描述 | 内部类型 | Emoji | 用户描述 |
 |---------|-------|---------|---------|-------|---------|
 | cover | 📷 | 封面 | back-cover | 📷 | 封底 |
-| quote-card | 💬 | 金句图 | verdict-card | ⚖️ | 最终判断卡 |
-| myth-fact-card | 🔍 | 认知纠偏卡 | audience-fit-card | 👥 | 读者匹配卡 |
-| manifesto-card | 🏴 | 宣言卡 | bridge-card | 🌉 | 转场卡 |
-| callout-card | 📢 | 提示框 | definition-card | 📖 | 术语定义卡 |
-| cases-card | 🏆 | 案例卡 | notice-card | 🚨 | 重要通知卡 |
-| series-card | 📚 | 系列说明卡 | subscribe-card | 🔔 | 关注引导卡 |
-| rule-card | ⚡ | 铁律/规则卡片 | checklist-card | 🛡️ | 检查清单 |
-| cheatsheet-card | 🎯 | 速查表 | logic-chain | 💡 | 论证链 |
-| process-pipeline | 🔧 | 流程管道 | version-timeline | 📈 | 版本演进线 |
-| section-divider | ➖ | 章节分隔图 | bar-chart | 📊 | 数据对比图 |
+| verdict-card | ⚖️ | 最终判断卡 | myth-fact-card | 🔍 | 认知纠偏卡 |
+| audience-fit-card | 👥 | 读者匹配卡 | manifesto-card | 🏴 | 宣言卡 |
+| bridge-card | 🌉 | 转场卡 | callout-card | 📢 | 提示框 |
+| definition-card | 📖 | 术语定义卡 | cases-card | 🏆 | 案例卡 |
+| notice-card | 🚨 | 重要通知卡 | series-card | 📚 | 系列说明卡 |
+| subscribe-card | 🔔 | 关注引导卡 | rule-card | ⚡ | 铁律/规则卡片 |
+| checklist-card | 🛡️ | 检查清单 | cheatsheet-card | 🎯 | 速查表 |
+| logic-chain | 💡 | 论证链 | process-pipeline | 🔧 | 流程管道 |
+| version-timeline | 📈 | 版本演进线 | section-divider | ➖ | 章节分隔图 |
+| bar-chart | 📊 | 数据对比图 | | | |
 
 ### Purpose-Based Design Adjustments（内部）
 
@@ -128,7 +129,7 @@ Step F: 截图交付 + 云盘同步
 |---------|---------|-----------|
 | **attention** | 高对比、大字号、品牌色突出、留白充裕 | `--text-hero` +20%, `--color-accent-1` 饱和度+15%, `--space-12` |
 | **readability** | 清晰层级、结构化布局、舒适间距 | 默认token, `--leading-relaxed`, `--space-6` |
-| **memorability** | 单一焦点、金句放大、视觉锚点、极简 | `--text-hero` +30%, 减至1个强调色, `--space-16` |
+| **memorability** | 单一焦点、视觉锚点、极简 | `--text-hero` +30%, 减至1个强调色, `--space-16` |
 | **conversion** | CTA突出、品牌信息完整、行动引导 | `--color-accent-1` 用于CTA, `--radius-md` 按钮 |
 
 **规则**：Purpose 在同一 design-tokens.css 内调整 token，不为每个 purpose 创建独立 token 文件。
@@ -158,19 +159,19 @@ Step F: 截图交付 + 云盘同步
 
 ### 品类路由表（静默，Q1之前）
 
-| 品类 | 检测信号 | 默认模式 | 默认主题 | 推荐 Recipe 序列 | 文图方案 | 图源优先 | 常见坑 |
-|------|---------|---------|---------|-----------------|---------|---------|--------|
-| 深度观察/商业洞察 | "IPO"/"估值"/"财报"/"行业" | Swiss | IKB Blue | S01→S06→S04→S10 | text-beside-image | Unsplash>Wallhaven | 不要用暖色照片做背景 |
-| 科技/产品 | "AI"/"发布"/"功能"/"测评" | Swiss | IKB Blue / Safety Orange | S01→S03→S09→S05→S10 | text-beside-image | Pexels>Unsplash | 不要用emoji代替图标 |
-| 人文/文化 | "历史"/"文学"/"艺术"/"电影" | Editorial | 牛皮纸/森林墨 | E01→E11→E04→E02→E07 | text-beside-image | Unsplash>Pexels | 不要用Swiss做人文 |
-| 职场/干货 | "方法"/"步骤"/"清单"/"工具" | Swiss | Lemon Green | S01→S09→S03→S05→S10 | text-only | Pexels | 不要用照片做背景 |
-| 旅行/生活 | "旅行"/"城市"/"美食"/"探店" | Editorial | 暖色/earth | E01→E02→E11→E04→E07 | text-on-image | 用户照片>Pexels | 不要用Swiss做旅行 |
-| 读书/笔记 | "书评"/"阅读"/"笔记"/"摘录" | Editorial | 墨水经典 | E01→E04→E11→E03→E07 | text-beside-image | Unsplash | 不要用亮色accent |
-| 人物/访谈 | "专访"/"对话"/"人物"/"故事" | Editorial | 沙丘/森林墨 | E01→E10→E04→E11→E07 | text-on-image | Unsplash>用户照片 | 不要裁切人脸 |
-| 数据/研究 | "研究"/"报告"/"调查"/"统计" | Swiss | IKB Blue | S01→S02→S04→S06→S10 | text-only | N/A | 不要用Editorial做纯数据 |
-| 观点/评论 | "我认为"/"其实"/"真相"/"误区" | Editorial | 墨水经典 | E01→E09→E05→E04→E07 | text-beside-image | Unsplash | 不要用Swiss做观点文 |
-| 教程/指南 | "教程"/"指南"/"如何"/"入门" | Swiss | Lemon Green | S01→S09→S03→S05→S10 | text-beside-image | Pexels | 步骤不要超过5步 |
-| 情感/故事 | "回忆"/"成长"/"告别"/"相遇" | Editorial | 沙丘/莫兰迪 | E01→E02→E04→E09→E07 | text-on-image | 用户照片>Unsplash | 不要用Swiss做情感 |
+| 品类 | 检测信号 | 默认模式 | 默认主题 | 推荐 Recipe 序列 | 推荐 Chart | 文图方案 | 图源优先 | 常见坑 |
+|------|---------|---------|---------|-----------------|-----------|---------|---------|--------|
+| 深度观察/商业洞察 | "IPO"/"估值"/"财报"/"行业" | Swiss | IKB Blue | S01→S06→S04→S10 | C04/C08 | text-beside-image | Unsplash>Wallhaven | 不要用暖色照片做背景 |
+| 科技/产品 | "AI"/"发布"/"功能"/"测评" | Swiss | IKB Blue / Safety Orange | S01→S03→S09→S05→S10 | C02/C09 | text-beside-image | Pexels>Unsplash | 不要用emoji代替图标 |
+| 人文/文化 | "历史"/"文学"/"艺术"/"电影" | Editorial | 牛皮纸/森林墨 | E01→E11→E02→E07 | C06 | text-beside-image | Unsplash>Pexels | 不要用Swiss做人文 |
+| 职场/干货 | "方法"/"步骤"/"清单"/"工具" | Swiss | Lemon Green | S01→S09→S03→S05→S10 | C01/C05 | text-only | Pexels | 不要用照片做背景 |
+| 旅行/生活 | "旅行"/"城市"/"美食"/"探店" | Editorial | 暖色/earth | E01→E02→E11→E07 | C05 | text-on-image | 用户照片>Pexels | 不要用Swiss做旅行 |
+| 读书/笔记 | "书评"/"阅读"/"笔记"/"摘录" | Editorial | 墨水经典 | E01→E11→E03→E07 | C06 | text-beside-image | Unsplash | 不要用亮色accent |
+| 人物/访谈 | "专访"/"对话"/"人物"/"故事" | Editorial | 沙丘/森林墨 | E01→E10→E11→E07 | C10 | text-on-image | Unsplash>用户照片 | 不要裁切人脸 |
+| 数据/研究 | "研究"/"报告"/"调查"/"统计" | Swiss | IKB Blue | S01→S02→S04→S06→S10 | C03/C07 | text-only | N/A | 不要用Editorial做纯数据 |
+| 观点/评论 | "我认为"/"其实"/"真相"/"误区" | Editorial | 墨水经典 | E01→E09→E05→E07 | C08 | text-beside-image | Unsplash | 不要用Swiss做观点文 |
+| 教程/指南 | "教程"/"指南"/"如何"/"入门" | Swiss | Lemon Green | S01→S09→S03→S05→S10 | C01/C09 | text-beside-image | Pexels | 步骤不要超过5步 |
+| 情感/故事 | "回忆"/"成长"/"告别"/"相遇" | Editorial | 沙丘/莫兰迪 | E01→E02→E09→E07 | C05 | text-on-image | 用户照片>Unsplash | 不要用Swiss做情感 |
 
 **规则**：品类检测是静默建议。用户Q1回答与检测矛盾时，用户显式回答优先。
 
@@ -220,7 +221,7 @@ Step F: 截图交付 + 云盘同步
 | **hero** | 最大视觉冲击、大字号、强对比 | 封面、封底、关键判断 |
 | **dark** | 深色背景、浅色文字、呼吸空间 | 论证链、认知纠偏、宣言 |
 | **light** | 浅色背景、深色文字、内容密集 | 指标、数据图、清单 |
-| **accent** | 强调色高亮、吸引注意 | 金句图、提示框、CTA |
+| **accent** | 强调色高亮、吸引注意 | 提示框、CTA |
 
 **硬规则**：
 - 不超过3张连续配图使用同一 theme class
@@ -257,8 +258,7 @@ Step F: 截图交付 + 云盘同步
 ├── 04-pipeline.html
 ├── 05-timeline.html
 ├── 06-myth-fact.html
-├── 07-quote.html
-├── 08-back-cover.html
+├── 07-back-cover.html
 └── screenshot.js              ← 一键截图脚本
 ```
 
@@ -276,10 +276,42 @@ Step F: 截图交付 + 云盘同步
 封面和封底是 hero 页面 — 任务是让读者停止滑动。纯色背景做不到。**必须**使用相关照片作为背景。
 
 **强制要求**：
-- 封面：使用 Pexels/Unsplash/Wallhaven 照片作为全出血背景
-- 封底：使用照片或封面照片的暗化版本作为背景
+- 封面：使用 Pexels API 搜索并预下载照片作为全出血背景
+- 封底：使用 Pexels API 搜索并预下载照片（不同搜索词）作为背景
 - 文字放在照片"安静区"（低细节、低对比度区域）
 - 应用图文冲突保护规则
+
+**Pexels 预下载流程（v7.2 必须）**：
+
+封面/封底照片**必须**预下载到本地，不在 HTML 中引用外部 URL。原因：Puppeteer headless Chrome 中外部图片 URL 加载不稳定。
+
+```
+Step D 生成 HTML 前：
+1. 确定搜索关键词（根据文章主题 + 品类路由表）
+2. 调用 Pexels API: GET /v1/search?query={keyword}&orientation=landscape&per_page=5
+3. 从返回 photos 中选择最合适的（优先选 avg_color 偏暗的照片，文字叠加效果更好）
+4. 下载 src.landscape 到 assets/ 目录：
+   - 封面：assets/cover-bg.jpg
+   - 封底：assets/back-bg.jpg
+5. 验证文件大小 > 50KB（排除空文件/HTML错误页）
+6. HTML 中引用本地路径：<img src="assets/cover-bg.jpg" />
+```
+
+**Pexels API 不可用时的降级方案**：
+1. CSS 渐变背景（太空/科技主题用深蓝渐变+星星+几何图形）
+2. Unsplash 尝试（需 Chrome `--disable-web-security` 参数）
+3. 已验证可用的 Unsplash ID（部分 ID 在 headless Chrome 中可加载）
+
+**已验证可用的 Unsplash 照片 ID**（截至 2026-06-13）：
+
+| ID | 主题 | 状态 |
+|----|------|------|
+| `photo-1446776811953-b23d57bd21aa` | 地球/太空 | ✅ 可用 |
+| `photo-1506318137071-a8e063b4bec0` | 星空夜景 | ✅ 可用 |
+| `photo-1485827404703-89b55fcc595e` | AI机器人 | ✅ 可用 |
+| `photo-1540575467063-178a50c2df87` | 会议现场 | ✅ 可用 |
+
+**注意**：Unsplash 照片 ID 可随时失效，不保证长期可用。Pexels API 预下载是首选方案。
 
 **照片搜索关键词**：
 
@@ -290,6 +322,53 @@ Step F: 截图交付 + 云盘同步
 | 人文/文化 | `{topic} culture`, `library`, `bookshelf` | Unsplash |
 | 旅行/生活 | `{topic} travel`, `landscape`, `city` | Pexels > Unsplash |
 | 数据/研究 | `abstract dark`, `data visualization`, `blue technology` | Wallhaven > Unsplash |
+
+**图片去重规则（避免多次配图中封面/封底照片重复）**：
+
+**核心问题**：同一用户多次使用本技能生成配图时，封面/封底照片容易重复出现。需要跨文章全局去重。
+
+**三级去重机制**：
+
+**第1级：搜索词轮换（避免搜索结果重叠）**
+- 封面和封底必须使用不同的搜索词
+- 每个品类维护 8-10 个候选搜索词（见下方词池）
+- 每次生成时，从词池中**随机选取**未用过的搜索词组合
+- 同一品类连续生成时，搜索词不重复
+
+**第2级：Photo ID 全局黑名单（避免同一张照片复用）**
+- 技能目录维护全局文件 `references/used-photos.json`，记录所有已使用的照片 ID
+- 格式：`{ "pexels": [12345, 67890], "pixabay": [11111, 22222], "last_updated": "2026-06-14" }`
+- 每次搜索后，**过滤掉**黑名单中的 photo ID，从剩余结果中选择
+- 如果搜索结果全部在黑名单中，使用 `page=2` 翻页获取新结果
+- 截图完成后，将本次使用的 photo ID 追加到黑名单
+
+**第3级：Pexels API 翻页（获取更多候选）**
+- 搜索时 `per_page=15`（而非默认的 5），获取更多候选
+- 过滤黑名单后如果候选不足 3 张，使用 `page=2` 翻页
+- 最多翻 3 页（`page=1,2,3`），总共最多 45 张候选
+
+**去重执行流程**：
+```
+Step D 生成 HTML 前：
+1. 读取 references/used-photos.json（不存在则初始化空）
+2. 确定搜索关键词（从品类词池随机选取）
+3. 调用 Pexels API: GET /v1/search?query={keyword}&orientation=landscape&per_page=15&page=1
+4. 过滤掉 used-photos.json 中的 photo ID
+5. 候选不足 3 张 → page=2 再搜索
+6. 从过滤后的结果中选择最合适的照片
+7. 下载到 assets/ 目录
+8. 截图完成后，将使用的 photo ID 写入 used-photos.json
+```
+
+**候选搜索词池**（每个品类 8-10 个，封面/封底分开）：
+
+| 品类 | 封面搜索词池 | 封底搜索词池 |
+|------|------------|------------|
+| 科技/产品 | `ai technology`, `server room`, `blue circuit`, `conference stage`, `hologram`, `robot hand`, `quantum computing`, `neural network`, `microchip`, `vr headset` | `night city`, `abstract blue`, `data center`, `network`, `innovation`, `digital transformation`, `futuristic city`, `tech startup`, `code screen`, `automation` |
+| 商业/金融 | `business meeting`, `stock market`, `city skyline`, `office glass`, `startup`, `wall street`, `corporate tower`, `financial district`, `handshake deal`, `growth chart` | `sunset city`, `finance chart`, `corporate`, `skyscraper`, `growth`, `business strategy`, `global economy`, `investment`, `trading floor`, `entrepreneur` |
+| 人文/文化 | `library`, `old books`, `museum`, `calligraphy`, `vintage paper`, `ancient architecture`, `art painting`, `poetry`, `philosophy`, `cultural heritage` | `bookshelf`, `reading`, `antique`, `art gallery`, `typewriter`, `classic literature`, `manuscript`, `ink brush`, `historical`, `cultural artifact` |
+| 旅行/生活 | `landscape`, `city street`, `cafe`, `mountain`, `ocean`, `travel adventure`, `sunset beach`, `urban exploration`, `road trip`, `nature trail` | `sunset`, `aerial view`, `road trip`, `coast`, `forest`, `starry night`, `lake reflection`, `desert dune`, `autumn leaves`, `tropical island` |
+| 数据/研究 | `abstract dark`, `data visualization`, `blue technology`, `network nodes`, `matrix`, `big data`, `analytics dashboard`, `scientific research`, `laboratory`, `statistics` | `dark blue`, `digital grid`, `circuit board`, `fiber optic`, `deep space`, `neural network`, `data flow`, `algorithm`, `binary code`, `quantum dots` |
 
 **文字叠加处理**：
 - 浅色照片 → 深色文字 + 微弱 text-shadow
@@ -321,7 +400,6 @@ Step F: 截图交付 + 云盘同步
 |---------|------|------|------|------|
 | 封面 (cover) | 900px | 383px | 2.35:1 | 文章封面 |
 | 正文配图 (body) | 640px | auto | flexible | 文章内嵌 |
-| 金句图 (quote) | 640px | 640px | 1:1 | 文章内嵌/朋友圈 |
 | 章节分隔 (divider) | 640px | 200px | ~3:1 | 章节间 |
 | 封底 (back-cover) | 900px | 383px | 2.35:1 | 文章结尾 |
 
@@ -474,7 +552,6 @@ html, body {
 |---------|----------|-------------------|------|
 | 封面 (cover) | 900×383 | 2 | PNG |
 | 正文配图 (body) | 640×auto | 2 | PNG |
-| 金句图 (quote, 1:1) | 640×640 | 2 | PNG |
 | 章节分隔 (divider) | 640×200 | 2 | PNG |
 | 封底 (back-cover) | 900×383 | 2 | PNG |
 
@@ -521,14 +598,13 @@ function detectChromePath() {
 const TYPE_CONFIG = {
   cover:        { width: 900, height: 383, fullPage: false },
   'back-cover': { width: 900, height: 383, fullPage: false },
-  quote:        { width: 640, height: 640, fullPage: false },
   divider:      { width: 640, height: 200, fullPage: false },
-  // 正文配图：高度自动检测
-  default:      { width: 640, height: 800, fullPage: true  },
+  // 正文配图：高度自动检测（.page 元素实际高度）
+  default:      { width: 640, height: 800, fullPage: false, autoHeight: true },
 };
 
 function getTypeFromFilename(name) {
-  const known = ['cover','back-cover','quote','divider'];
+  const known = ['cover','back-cover','divider'];
   for (const t of known) {
     if (name.includes(t)) return t;
   }
@@ -543,7 +619,7 @@ function getTypeFromFilename(name) {
   const browser = await puppeteer.launch({
     headless: 'new',
     executablePath: chromePath,
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu']
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu', '--disable-web-security', '--disable-features=IsolateOrigins,site-per-process']
   });
 
   // 输出目录：桌面文件夹（从目录名提取文章名）
@@ -588,7 +664,22 @@ function getTypeFromFilename(name) {
     // 等待外部图片加载（5秒缓冲）
     await new Promise(r => setTimeout(r, 5000));
 
-    // 自动检测高度（正文配图）
+    // 自动检测高度（正文配图：检测 .page 元素实际高度，裁掉空白）
+    let screenshotHeight = config.height;
+    if (config.autoHeight) {
+      screenshotHeight = await page.evaluate(() => {
+        const pageEl = document.querySelector('.page') || document.querySelector('html');
+        const rect = pageEl.getBoundingClientRect();
+        return Math.ceil(rect.height);
+      });
+      // 重新设置 viewport 为实际内容高度
+      await page.setViewport({
+        width: config.width,
+        height: screenshotHeight,
+        deviceScaleFactor: 2
+      });
+    }
+
     const screenshotOpts = {
       path: pngPath,
       type: 'png'
@@ -596,7 +687,7 @@ function getTypeFromFilename(name) {
     if (config.fullPage) {
       screenshotOpts.fullPage = true;
     } else {
-      screenshotOpts.clip = { x: 0, y: 0, width: config.width, height: config.height };
+      screenshotOpts.clip = { x: 0, y: 0, width: config.width, height: screenshotHeight };
     }
 
     await page.screenshot(screenshotOpts);
@@ -725,7 +816,7 @@ lark-cli drive +upload --file "./02-metrics.png" --folder-token <folder_token>
 ### 640px 正文配图
 
 - [ ] 活跃构图 ≥70% 画布高度（非大面积空白）
-- [ ] 每张至少3个内容元素（标题+正文+数据/图片/金句）
+- [ ] 每张至少3个内容元素（标题+正文+数据/图片）
 - [ ] 无纯空白竖条 >30% 画布高度（无设计理由时）
 - [ ] 文字在50%缩放下可读（模拟手机浏览）
 
@@ -734,12 +825,6 @@ lark-cli drive +upload --file "./02-metrics.png" --folder-token <folder_token>
 - [ ] 封面1秒内传达主题（照片+标题+副标题）
 - [ ] 文字不与照片主体/人脸重叠
 - [ ] 标题在360px宽时可读（缩略图测试）
-
-### 640×640 金句图
-
-- [ ] 金句是唯一焦点
-- [ ] 署名清晰在金句下方
-- [ ] 中文文字不超过50字（否则拆分）
 
 ### 内容密度硬规则（Canvas Coverage Rule）
 
@@ -753,10 +838,6 @@ lark-cli drive +upload --file "./02-metrics.png" --folder-token <folder_token>
 - 照片+标题+副标题必须覆盖 ≥60% 画布
 - 标题在 360px 宽缩略图中必须可读
 
-640×640 金句图：
-- 金句+署名+至少1个锚点（kicker/meta/hairline rule）必须存在
-- 纯金句无锚点 = 空洞，不是克制
-
 ---
 
 ## Anti-Patterns（Multi-Illustration 专用）
@@ -767,7 +848,6 @@ lark-cli drive +upload --file "./02-metrics.png" --folder-token <folder_token>
 | **填充配图** | 密度评分 <9 | 跳过或合并；仅用户显式覆盖时生成 |
 | **风格漂移** | 不同配图使用不同调色板/字体 | 强制共享 design-tokens |
 | **信息重复** | 两张配图展示相同数据 | 合并为一张，或按角度拆分 |
-| **依赖上下文的金句** | 金句脱离文章无意义 | 跳过；只用独立有冲击力的金句 |
 | **过度配图** | 配图数超过段落数 | 最大比例：1张配图/2个实质段落 |
 | **配图不足** | 文章5+数据点但无数据图 | Step B 标记为"遗漏机会" |
 | **类型滥用** | 同一类型出现 >1 次 | 强制唯一性约束（见下表） |
@@ -784,6 +864,29 @@ Swiss recipes: S01-S10
 
 **跨模式规则**：一套配图内不应混用 Editorial 和 Swiss recipes（封面/封底除外）。
 
+### Chart Recipe 使用规则
+
+当文章内容包含以下信号时，优先使用 Chart Recipe（C01-C10）而非 Editorial/Swiss Recipe：
+
+| 内容信号 | 推荐 Chart | 说明 |
+|---------|-----------|------|
+| "步骤→步骤→步骤" | C01 流程图 | 线性流程、工作流 |
+| "模块A连接模块B" | C02 架构图 | 系统架构、技术栈 |
+| "实体A有字段X，关联实体B" | C03 ER图 | 数据模型 |
+| "客户细分、价值主张、收入来源" | C04 商业模式画布 | 商业分析 |
+| "用户从XX到XX经历了什么" | C05 用户旅程图 | 体验设计 |
+| 发散式层级结构 | C06 思维导图 | 知识梳理 |
+| 多个产品/功能对比 | C07 竞品分析图 | 市场定位 |
+| "优势、劣势、机会、威胁" | C08 SWOT分析 | 战略分析 |
+| "版本、时间线、里程碑" | C09 产品路线图 | 版本规划 |
+| "团队、角色、汇报关系" | C10 组织架构图 | 团队结构 |
+
+**Chart 与 Editorial/Swiss 混用规则：**
+- 一套配图中可以混用 Chart Recipe 和 Swiss/Editorial Recipe
+- Chart Recipe 用于"结构化信息"（架构/流程/对比等）
+- Swiss/Editorial Recipe 用于"观点表达"（数据/封面等）
+- 同一张配图不能同时是 Chart 和非 Chart 类型
+
 ### Uniqueness Constraint（类型数量上限）
 
 | 类型 | 上限 | 理由 |
@@ -792,7 +895,6 @@ Swiss recipes: S01-S10
 | back-cover | 1 | 一篇文章一个结尾 |
 | verdict-card | 1 | 一篇文章一个核心判断 |
 | manifesto-card | 1 | 一篇文章一个宣言 |
-| quote-card | 2 | 开头+结尾，不再多 |
 | bridge-card | N-1 | N = 章节数 |
 | section-divider | N-1 | 同 bridge |
 | callout-card | 3 | 太多提示=噪音 |
@@ -802,16 +904,13 @@ Swiss recipes: S01-S10
 
 ---
 
-## Illustration Type Templates（20种配图类型模板）
+## Illustration Type Templates（19种配图类型模板）
 
 ### Cover（封面）
 <!-- Layout: hero-center | Content: thesis + author + source + date | Size: 900×383 | Density: low | Purpose: attention | Required: { thesis, author, source, date, accentText } | Gate: ≥6/15 | When: 每篇文章必须有 -->
 
 ### Back Cover（封底）
 <!-- Layout: center-stack | Content: publicationName + author + QR placeholder + CTA | Size: 900×383 | Density: low | Purpose: conversion | Required: { publicationName, author, qrPlaceholder, cta } | Gate: ≥6/15 | When: 文章结尾品牌展示 -->
-
-### Quote Card（金句图）
-<!-- Layout: single-focus | Content: one powerful quote + attribution + contextHint | Size: 640×640 | Density: medium | Purpose: memorability | Required: { quote, attribution, contextHint } | Gate: 金句必须脱离全文仍有冲击力 | When: 脱离上下文仍有力量的陈述 -->
 
 ### Rule Card（铁律/规则卡片）
 <!-- Layout: grid-cards (compact) | Content: numbered rules + consequence per rule | Size: 640px wide | Density: high | Purpose: readability | Required: { title, rules: [{ number, rule, consequence? }] } | Gate: ≥2条规则，内容可操作 | When: "三条铁律"/"5条原则"/"7条红线" -->

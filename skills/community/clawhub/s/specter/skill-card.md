@@ -1,42 +1,59 @@
-## Description: <br>
-Enrich, search, and manage company and professional data, lists, saved searches, and signals using the Specter intelligence platform via CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enrich, search, and manage company and professional data, lists, saved searches, and talent or investor signals using the Specter intelligence platform through the Specter CLI.
 
-## Publisher: <br>
-[FroeMic](https://clawhub.ai/user/FroeMic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[froemic](https://clawhub.ai/user/froemic)
 
-## Use Case: <br>
-Developers, analysts, sales teams, and deal-sourcing users can use this skill to operate the Specter CLI for company and people enrichment, list management, saved-search retrieval, and talent or investor-interest signal lookup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Specter API keys may grant access to account data if exposed or over-privileged. <br>
-Mitigation: Use revocable or least-privileged API keys where possible, store them in environment variables, and rotate them if exposure is suspected. <br>
-Risk: Company, people, LinkedIn, email, and file-input workflows can involve confidential, regulated, or personal data. <br>
-Mitigation: Submit only data approved for Specter processing and avoid regulated or confidential inputs unless organizational policy allows it. <br>
-Risk: Delete and remove commands can affect saved searches, lists, or list contents. <br>
-Mitigation: Confirm exact Specter IDs and intended scope before running remove or delete commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FroeMic/specter) <br>
-- [Specter API Console](https://app.tryspecter.com/settings/api-console) <br>
+## Use Case:
 
+Developers, operators, sales teams, and investment researchers can use this skill to query Specter for company intelligence, professional profiles, curated lists, saved searches, and market signals from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI examples may request JSON, table, or CSV output from Specter.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install and run external CLI code that was flagged as requiring review.
+
+Mitigation: Review the upstream Specter CLI repository before installing and prefer a pinned commit or signed release.
+
+Risk: Specter API keys and business or professional data may be exposed if handled carelessly.
+
+Mitigation: Store the API key in an environment variable, avoid inline --api-key values, and use only data that is allowed to be sent to Specter.
+
+Risk: Delete commands for lists and saved searches can remove user-managed data.
+
+Mitigation: Manually confirm identifiers and intent before running any delete command.
+
+## Reference(s):
+
+- [Specter API Console](https://app.tryspecter.com/settings/api-console)
+- [Specter API Base URL](https://app.tryspecter.com/api/v1)
+- [ClawHub skill page](https://clawhub.ai/froemic/skills/specter)
+- [Publisher profile](https://clawhub.ai/user/froemic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline CLI commands, configuration notes, and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide the agent to request JSON, table, or CSV output from the Specter CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

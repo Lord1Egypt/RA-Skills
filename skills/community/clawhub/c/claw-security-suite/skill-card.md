@@ -1,43 +1,58 @@
-## Description: <br>
-Provides four-layer security support for OpenClaw, including static code scanning, logic audit, runtime input protection, and periodic security patrol reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides four-layer security for OpenClaw including static code scanning, logic audit, runtime protection, and periodic security patrols with automated reports.
 
-## Publisher: <br>
-[kenz1117](https://clawhub.ai/user/kenz1117) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kenz1117](https://clawhub.ai/user/kenz1117)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to inspect skill packages before installation, review code behavior, check runtime inputs for common attack patterns, and run periodic integrity and scan reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can overstate the protection provided by heuristic scanning and runtime pattern checks. <br>
-Mitigation: Treat findings as review aids, keep platform and administrator security rules authoritative, and require human review for deployment decisions. <br>
-Risk: Cloud reputation checks can send the skill name and source label to a configured endpoint. <br>
-Mitigation: Disable or avoid the cloud endpoint in private or privacy-sensitive environments unless that data sharing is acceptable. <br>
-Risk: Local baseline and report files may expose information about installed skills or scan results. <br>
-Mitigation: Restrict access to the baseline and report directories and review who can read generated security reports. <br>
+## Use Case:
 
+Developers and operators use this skill to scan OpenClaw skills before installation, audit code logic for security risks, check user input for runtime attacks, and generate periodic security patrol reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kenz1117/claw-security-suite) <br>
-- [Security policy](references/security-policy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, Python usage snippets, command-line output, and JSON patrol reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Security findings are heuristic and should be reviewed before relying on them as a control.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence, _meta.json, CHANGELOG) <br>
+Risk: The bundled policy claims broad installation authority that may conflict with platform or user rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the policy as advisory skill documentation and keep platform, workspace, and user instructions authoritative.
+
+Risk: Scanner containment and assurance gaps can miss issues or create unsafe assumptions in automated approval paths.
+
+Mitigation: Run scans with low filesystem privileges, avoid untrusted archives that may contain symlinks until containment is reviewed, and require human review for install decisions.
+
+Risk: Cloud reputation checks can contact the configured Tencent endpoint with the skill name and source when a skill_name is supplied.
+
+Mitigation: Disable or override the cloud endpoint when outbound reputation checks are not approved for the environment.
+
+## Reference(s):
+
+- [Claw Security Suite on ClawHub](https://clawhub.ai/kenz1117/skills/claw-security-suite)
+- [Security Policy](artifact/references/security-policy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown reports, text pass/fail summaries, JSON patrol reports, and Python result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include advisory scan verdicts, issue counts, matched attack categories, sanitized input strings, and report file paths.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, artifact _meta.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

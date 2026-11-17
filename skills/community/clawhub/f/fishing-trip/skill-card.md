@@ -1,46 +1,61 @@
-## Description: <br>
-Book flights for fishing trips to prime angling destinations, with support for related travel planning such as hotels, trains, attraction tickets, itineraries, visa information, travel insurance, and car rental through FlyAI and Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights for fishing trips to prime angling destinations, with additional travel-planning support for hotels, trains, attractions, itineraries, visa information, travel insurance, and car rental through Fliggy-powered flyai results.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Travel users and agents use this skill to search live flight options for fishing trips and related travel planning. It guides the agent to run the FlyAI CLI, collect route and date parameters, and present bookable results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to install and run a global third-party npm CLI. <br>
-Mitigation: Review the install and execution commands before allowing them, and run the skill only in environments where a global FlyAI CLI install is acceptable. <br>
-Risk: Travel-search details are sent to FlyAI or Fliggy when the CLI is used. <br>
-Mitigation: Use the skill only for explicit flight or fishing-trip planning requests and avoid submitting sensitive travel details unless the user accepts that data flow. <br>
-Risk: The skill can produce misleading travel results if the agent answers from memory instead of live CLI output. <br>
-Mitigation: Require every displayed option to come from FlyAI CLI output and include a Book link based on detailUrl. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search flight options for fishing trips, compare recommended, cheapest, fastest, or direct routes, and return booking-ready Markdown based on flyai CLI output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/fishing-trip) <br>
-- [Parameter collection and output templates](references/templates.md) <br>
-- [Scenario playbooks](references/playbooks.md) <br>
-- [Failure recovery](references/fallbacks.md) <br>
-- [Execution runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with flight comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live FlyAI CLI output; results must include detailUrl booking links and should not include raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may install a global npm package and run a third-party travel CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation steps before use, prefer explicit install approval, and pin package versions in controlled environments.
+
+Risk: Travel search details may be sent to a third-party provider and returned with mandatory booking links.
+
+Mitigation: Use only in environments where sharing travel-search inputs with the provider and presenting external booking links is acceptable.
+
+Risk: Command templates may be unsafe if user-supplied travel parameters are passed through a shell without validation.
+
+Mitigation: Validate origin, destination, dates, and sort options, and prefer non-shell argument execution where supported.
+
+## Reference(s):
+
+- [Parameter Collection & Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown tables with CLI-derived travel results, booking links, and supporting shell commands when setup or retry steps are needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results must come from flyai CLI output and include booking links when flight options are presented.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-Crypto Arbitrage Monitor monitors cryptocurrency price differences across supported exchanges, calculates fee-adjusted spreads, and sends Feishu or Telegram alerts for potential arbitrage opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto Arbitrage Monitor helps monitor BTC, ETH, SOL, XRP, and DOGE price spreads across major exchanges and send Feishu or Telegram alerts for potential arbitrage opportunities after estimated fees.
 
-## Publisher: <br>
-[OceanKing57](https://clawhub.ai/user/OceanKing57) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oceanking57](https://clawhub.ai/user/oceanking57)
 
-## Use Case: <br>
-External traders and developers use this skill to run a Python-based monitor for cross-exchange cryptocurrency spreads, review fee-adjusted opportunities, and receive alerts through configured Feishu or Telegram destinations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unpinned or broadly pinned Python dependencies may change behavior over time. <br>
-Mitigation: Pin or lock dependency versions before deployment and review package updates before applying them. <br>
-Risk: Feishu or Telegram credentials and webhooks can expose alert channels if shared or committed. <br>
-Mitigation: Keep credentials private, use only alert destinations you control, and rotate any token or webhook that may have been exposed. <br>
-Risk: The monitor continuously polls exchange APIs until stopped, which can create operational load or rate-limit issues. <br>
-Mitigation: Run it in a controlled environment, tune the polling interval, and stop the process when monitoring is no longer needed. <br>
-Risk: Arbitrage alerts are informational and may not reflect executable profit after latency, liquidity, transfer time, or venue limits. <br>
-Mitigation: Treat alerts as monitoring signals only and independently verify prices, fees, balances, liquidity, and execution constraints before trading. <br>
+## Use Case:
 
+External users, developers, and trading operations teams can use this skill to configure and run a crypto price-spread monitor across Binance, OKX, Bybit, and related exchanges. It is intended for market monitoring and alerting, not as investment advice or an automated trading guarantee.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OceanKing57/crypto-arb-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/OceanKing57) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled monitor also emits runtime log text and optional Feishu or Telegram alert messages when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Messaging secrets may be placed directly in source code and could be exposed through committed files or persistent logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure Feishu and Telegram credentials through environment variables or a secret manager, keep arb_monitor.log out of version control, and rotate any token that may have been shared.
+
+Risk: Dependencies are version-ranged rather than pinned, which can change runtime behavior over time.
+
+Mitigation: Install in an isolated virtual environment and pin reviewed dependency versions before production use.
+
+Risk: Crypto spread alerts can become stale quickly and do not account for all trading, withdrawal, liquidity, or execution constraints.
+
+Mitigation: Use alerts as monitoring input only, validate liquidity and fees independently, and avoid treating the tool as investment advice or automated execution approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oceanking57/skills/crypto-arb-monitor)
+- [Publisher profile](https://clawhub.ai/user/oceanking57)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python configuration examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces monitoring setup guidance and alert configuration details; runtime script output includes console/file logs and Feishu or Telegram alert messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

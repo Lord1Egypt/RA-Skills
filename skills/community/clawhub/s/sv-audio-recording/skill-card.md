@@ -1,40 +1,55 @@
-## Description: <br>
-Provides microphone selection, environment setup, level setting, and troubleshooting guidance for optimal short video audio recording. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides microphone selection, environment setup, level setting, and troubleshooting guidance for optimal short video audio recording.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Content creators, vloggers, interviewers, solo shooters, and podcast-to-video creators use this skill to choose microphones, improve recording environments, set levels, and troubleshoot short video audio problems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad audio and recording trigger keywords may route general audio questions to this skill when a narrower skill would be more appropriate. <br>
-Mitigation: Review trigger keywords during installation if precise routing matters in the target agent setup. <br>
-Risk: Audio recording guidance is educational and may not replace professional audio engineering judgment for high-stakes production work. <br>
-Mitigation: Treat recommendations as practical setup guidance and escalate specialized production, compliance, or hearing-safety questions to qualified experts. <br>
+## Use Case:
 
+Content creators, vloggers, interviewers, solo shooters, and podcast-to-video creators use this skill to choose microphones, prepare recording environments, set levels, and troubleshoot audio for short video production.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/sv-audio-recording) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with recommendations, checklists, setup descriptions, and troubleshooting steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Document-only educational guidance; no executable code, APIs, credential handling, persistence, or network behavior according to security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: In environments with many audio-related skills, broad trigger phrases may route user requests to this skill unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow the trigger phrases before installation when similar audio or video skills are present.
+
+Risk: Users may treat educational recording guidance as professional audio engineering advice for critical productions.
+
+Mitigation: Use the recommendations as practical guidance and consult qualified audio support for high-stakes or safety-sensitive recording needs.
+
+## Reference(s):
+
+- [Skill documentation](artifact/SKILL.md)
+- [Quick-start reference](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/sv-audio-recording)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with recommendations, checklists, setup descriptions, and troubleshooting steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Document-only; no executable code, API calls, network access, credential handling, or persistence.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

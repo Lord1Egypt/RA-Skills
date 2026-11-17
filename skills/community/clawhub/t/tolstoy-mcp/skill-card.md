@@ -1,43 +1,58 @@
-## Description: <br>
-Connect OpenClaw to Tolstoy's video commerce platform via MCP to create widgets, manage media, generate AI videos, search products, and publish to Shopify, Instagram, and TikTok. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tolstoy MCP configures OpenClaw to connect to Tolstoy's MCP server for video commerce workflows including widgets, media, AI video, product catalog access, publishing, and analytics.
 
-## Publisher: <br>
-[russell-sketch](https://clawhub.ai/user/russell-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[russell-sketch](https://clawhub.ai/user/russell-sketch)
 
-## Use Case: <br>
-Developers and e-commerce operators use this skill to connect OpenClaw to Tolstoy's remote MCP server, then manage Tolstoy widgets, media, products, AI video workflows, publishing, and analytics through natural-language agent interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A persistent OAuth-backed remote MCP connection can manage Tolstoy commerce assets and publish content. <br>
-Mitigation: Install only for trusted Tolstoy workspaces, start with a least-privilege or test workspace, and confirm the target account before publish or delete actions. <br>
-Risk: The setup script writes a tolstoy MCP server entry into the OpenClaw configuration. <br>
-Mitigation: Review the target OpenClaw config path before setup and remove the tolstoy MCP entry or revoke OAuth access when the integration is no longer needed. <br>
+## Use Case:
 
+Developers and e-commerce operators use this skill to connect OpenClaw to a Tolstoy workspace, then use agent-assisted workflows to create widgets, manage video media, generate AI videos, search products, publish commerce content, and query analytics.
 
-## Reference(s): <br>
-- [Tolstoy MCP Integration Settings](https://platform.gotolstoy.com/settings/integrations/mcp) <br>
-- [Tolstoy Platform](https://platform.gotolstoy.com) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io) <br>
-- [ClawHub Skill Page](https://clawhub.ai/russell-sketch/tolstoy-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell and JSON configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Configures a persistent OAuth-backed remote MCP server entry for OpenClaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, claw.json, clawhub.json, package.json) <br>
+Risk: The agent may be able to publish, delete, or manage live commerce and social content in the connected Tolstoy workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs and requested tool actions before sending content live, especially for store, social, ads, analytics, publish, and delete workflows.
+
+Risk: OAuth authorization can persist across sessions for the selected Tolstoy workspace.
+
+Mitigation: Install only for trusted Tolstoy workspaces and confirm how to revoke the Tolstoy OAuth authorization when access is no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/russell-sketch/skills/tolstoy-mcp)
+- [Tolstoy Platform](https://platform.gotolstoy.com)
+- [Tolstoy MCP Integration Settings](https://platform.gotolstoy.com/settings/integrations/mcp)
+- [Tolstoy Homepage](https://gotolstoy.com)
+- [OpenClaw](https://openclaw.ai)
+- [Model Context Protocol](https://modelcontextprotocol.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update a local OpenClaw configuration file through setup.js when the user runs the provided command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, claw.json, clawhub.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

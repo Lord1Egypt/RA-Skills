@@ -1,0 +1,28 @@
+{
+  "title": "RAG request flow",
+  "direction": "LR",
+  "groups": [
+    {"id": "app", "label": "Application", "color": "blue"},
+    {"id": "data", "label": "Data platform", "color": "green"}
+  ],
+  "nodes": [
+    {"id": "user", "label": "User", "shape": "ellipse", "color": "yellow"},
+    {"id": "api", "label": "API (FastAPI)", "group": "app"},
+    {"id": "guard", "label": "Content safety", "color": "red", "group": "app"},
+    {"id": "retriever", "label": "Retriever", "color": "purple", "group": "app"},
+    {"id": "index", "label": "Vector index", "color": "cyan", "group": "data"},
+    {"id": "docs", "label": "Document store", "color": "cyan", "group": "data"},
+    {"id": "llm", "label": "LLM", "color": "orange"},
+    {"id": "ok", "label": "Grounded?", "shape": "diamond", "color": "yellow"}
+  ],
+  "edges": [
+    {"from": "user", "to": "api", "label": "question"},
+    {"from": "api", "to": "guard"},
+    {"from": "guard", "to": "retriever"},
+    {"from": "retriever", "to": "index", "label": "top-k"},
+    {"from": "index", "to": "docs", "style": "dashed"},
+    {"from": "retriever", "to": "llm", "label": "context"},
+    {"from": "llm", "to": "ok"},
+    {"from": "ok", "to": "user", "label": "answer"}
+  ]
+}

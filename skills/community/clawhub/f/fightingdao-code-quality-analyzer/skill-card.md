@@ -1,42 +1,62 @@
-## Description: <br>
-Analyzes weekly or monthly code repository changes, generates code quality reports, and synchronizes analysis, review, commit, and statistics data to an internal code quality database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes weekly or monthly repository changes, generates code quality delivery reports, performs AI scoring and review, and synchronizes results to a code quality database.
 
-## Publisher: <br>
-[fightingdao](https://clawhub.ai/user/fightingdao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fightingdao](https://clawhub.ai/user/fightingdao)
 
-## Use Case: <br>
-Developers and engineering managers use this skill to analyze weekly or monthly repository changes, score code quality, generate review findings, and sync reporting data for an internal dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can overwrite reporting data for a selected analysis period. <br>
-Mitigation: Confirm the exact period, team, projects, database target, backup, and rollback plan before running synchronization. <br>
-Risk: The skill can delegate code review to a secondary model for detailed analysis. <br>
-Mitigation: Confirm that secondary-model review is allowed for the repository content before including sensitive code changes. <br>
-Risk: The skill references notification channels and local notification scripts. <br>
-Mitigation: Verify notification recipients, webhook or email configuration, and message content before sending reports. <br>
+## Use Case:
 
+Developers and engineering managers use this skill to analyze repository commit history and diffs over weekly or monthly periods, produce code quality reports, review issues, and sync results into a code-quality tracking database.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fightingdao/fightingdao-code-quality-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with code blocks, SQL snippets, command examples, and structured review tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide database synchronization and notification steps through referenced local scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can replace database records for selected reporting periods during synchronization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the reporting period before sync, use a dry run or backup first, and verify that only the intended period is overwritten.
+
+Risk: The skill analyzes repository history and diffs that may contain confidential code.
+
+Mitigation: Use it only in approved workspaces and keep confidential repository review local unless external model review is explicitly approved.
+
+Risk: The skill may delegate code review to a provider-qualified child model without clear consent.
+
+Mitigation: Require explicit user consent before model delegation and document which model or review environment will receive repository content.
+
+Risk: The skill relies on environment-specific paths, localhost services, and team or project identifiers.
+
+Mitigation: Review and replace local configuration before use, and confirm target team and project mappings before writing analysis data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fightingdao/skills/fightingdao-code-quality-analyzer)
+- [FightingDao publisher profile](https://clawhub.ai/user/fightingdao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, structured analysis notes, shell commands, SQL/API sync guidance, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include repository diff analysis, database sync steps, issue tables, and notification guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

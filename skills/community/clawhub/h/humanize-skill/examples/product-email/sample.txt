@@ -1,0 +1,3 @@
+I like launch notes that get to the point.
+
+Tell me what changed, who it helps, and what is still rough. If there is a claim, I want the source nearby. I would rather say "early users told us this helped" than pretend we already know the whole market.

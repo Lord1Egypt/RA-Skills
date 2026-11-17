@@ -1,42 +1,56 @@
-## Description: <br>
-Tushare Cli provides command-line access to Tushare finance data for stock basics, financial indicators, daily market data, and financial news. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tushare data query CLI.
 
-## Publisher: <br>
-[alsoforever](https://clawhub.ai/user/alsoforever) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alsoforever](https://clawhub.ai/user/alsoforever)
 
-## Use Case: <br>
-Developers and analysts use this skill to query Tushare financial data from an agent-accessible CLI after configuring a TUSHARE_TOKEN. It supports quick lookup of stock profile data, financial indicators, daily price data, and recent finance news. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a TUSHARE_TOKEN for external API access. <br>
-Mitigation: Keep the token private and configure it only in trusted execution environments. <br>
-Risk: Tushare API quota, access limits, or dependency behavior can affect query results. <br>
-Mitigation: Review or pin the tushare Python dependency and expect upstream quota or access restrictions to apply. <br>
+## Use Case:
 
+Developers, analysts, and agent users use this skill to query Tushare financial data from the command line, including stock basics, financial indicators, daily market data, and financial news.
 
-## Reference(s): <br>
-- [Tushare Pro](https://tushare.pro) <br>
-- [ClawHub Skill Page](https://clawhub.ai/alsoforever/tushare-cli) <br>
-- [Publisher Profile](https://clawhub.ai/user/alsoforever) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text output and Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the tushare Python package, and a TUSHARE_TOKEN environment variable for API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json) <br>
+Risk: The skill requires a TUSHARE_TOKEN for authenticated requests to an external financial-data API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Tushare access is intended, provide the token through the environment, and avoid exposing it in prompts, logs, or shared command history.
+
+Risk: Unreviewed stock-code input can cause unintended API queries or confusing results.
+
+Mitigation: Use normal Tushare stock-code formats and review generated commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alsoforever/skills/tushare-cli)
+- [Publisher profile](https://clawhub.ai/user/alsoforever)
+- [Tushare](https://tushare.pro)
+- [Project homepage](https://aigogoai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and TUSHARE_TOKEN for authenticated Tushare API requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

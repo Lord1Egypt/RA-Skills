@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://taogeo.github.io/TaoHtml/schemas/report-ir-runtime-patch-v1.json",
+  "title": "TaoHtml Report IR Runtime Patch v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "base_ir_sha256",
+    "report_id",
+    "projection_id",
+    "extraction_contract",
+    "operation_count",
+    "operations"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "kind": {"const": "taohtml-report-ir-runtime-patch"},
+    "base_ir_sha256": {"$ref": "#/$defs/sha256"},
+    "report_id": {"$ref": "#/$defs/id"},
+    "projection_id": {"$ref": "#/$defs/id"},
+    "extraction_contract": {"const": "embedded-html-v1"},
+    "operation_count": {"type": "integer", "minimum": 1},
+    "operations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {"$ref": "#/$defs/replace_text"},
+          {"$ref": "#/$defs/replace_image"}
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,127}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entity", "id", "field", "key"],
+      "properties": {
+        "entity": {
+          "enum": ["block", "claim", "evidence", "page", "narrative_unit", "appendix"]
+        },
+        "id": {"$ref": "#/$defs/id"},
+        "field": {
+          "type": "string",
+          "pattern": "^(?:text|caption|statement|summary|task|takeaway|title|image|items\\.[A-Za-z][A-Za-z0-9._-]{0,127}\\.(?:label|value|detail))$"
+        },
+        "key": {"type": "string", "minLength": 1, "maxLength": 512}
+      }
+    },
+    "image_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["src_fingerprint", "object_position", "aspect_ratio"],
+      "properties": {
+        "src_fingerprint": {"type": "string", "pattern": "^[0-9a-f]{8}$"},
+        "object_position": {"type": "string", "maxLength": 64},
+        "aspect_ratio": {"type": "string", "maxLength": 64}
+      }
+    },
+    "dom_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {"const": "data_ir_edit_key"},
+        "value": {"type": "string", "minLength": 1, "maxLength": 512}
+      }
+    },
+    "image_value": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["src_fingerprint", "object_position", "aspect_ratio", "dom_ref"],
+      "properties": {
+        "src_fingerprint": {"type": "string", "pattern": "^[0-9a-f]{8}$"},
+        "object_position": {"type": "string", "maxLength": 64},
+        "aspect_ratio": {"type": "string", "maxLength": 64},
+        "dom_ref": {"$ref": "#/$defs/dom_ref"}
+      }
+    },
+    "replace_text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "target", "before", "value"],
+      "properties": {
+        "op": {"const": "replace_text"},
+        "target": {"$ref": "#/$defs/target"},
+        "before": {"type": "string"},
+        "value": {"type": "string"}
+      }
+    },
+    "replace_image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "target", "asset_id", "before", "value"],
+      "properties": {
+        "op": {"const": "replace_image"},
+        "target": {"$ref": "#/$defs/target"},
+        "asset_id": {"$ref": "#/$defs/id"},
+        "before": {"$ref": "#/$defs/image_state"},
+        "value": {"$ref": "#/$defs/image_value"}
+      }
+    }
+  }
+}

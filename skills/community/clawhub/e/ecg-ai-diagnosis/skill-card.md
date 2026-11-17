@@ -1,45 +1,59 @@
-## Description: <br>
-Analyzes single-lead and 12-lead ECG JSON files by sending user-selected ECG data to the heartvoice cloud API and returning bilingual structured analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze single-lead and 12-lead ECG signal JSON files through the HeartVoice cloud API and return structured diagnostic results in Chinese or English.
 
-## Publisher: <br>
-[yujiecharles](https://clawhub.ai/user/yujiecharles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yujiecharles](https://clawhub.ai/user/yujiecharles)
 
-## Use Case: <br>
-Developers and agents use this skill to analyze user-provided ECG JSON files, choose single-lead or 12-lead analysis, call heartvoice cloud endpoints, and summarize diagnostic signals in Chinese or English. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ECG and health data are sent to Heartvoice's external cloud service for analysis. <br>
-Mitigation: Use the skill only with explicit user or patient awareness and review Heartvoice privacy and retention terms before sending real medical data. <br>
-Risk: API credentials could be exposed if stored in code or shared logs. <br>
-Mitigation: Keep HEARTVOICE_API_KEY in an environment variable or local secret store and avoid hardcoding it in scripts, prompts, or committed files. <br>
-Risk: AI-assisted ECG analysis can be incomplete or misleading if treated as a clinical diagnosis. <br>
-Mitigation: Present results as decision support and require qualified medical review for diagnosis or treatment decisions. <br>
+## Use Case:
 
+External users and developers use this skill to analyze user-provided ECG JSON files for heart rhythm, interval, signal quality, and abnormality indicators through HeartVoice's cloud ECG service.
 
-## Reference(s): <br>
-- [ECG-AI-Diagnosis on ClawHub](https://clawhub.ai/yujiecharles/ecg-ai-diagnosis) <br>
-- [heartvoice AI ECG Cloud](https://www.heartvoice.com.cn/aiCloud) <br>
-- [heartvoice single-lead ECG API endpoint](https://api.heartvoice.com.cn/api/v1/basic/ecg/1-lead/analyze) <br>
-- [heartvoice 12-lead ECG API endpoint](https://api.heartvoice.com.cn/api/v1/basic/ecg/12-lead/analyze) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and structured JSON analysis results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires HEARTVOICE_API_KEY and a user-provided ECG JSON file; supports Chinese and English output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.1 (source: server release evidence) <br>
+Risk: ECG signal data is transmitted to HeartVoice's external cloud API for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm user intent before upload, avoid identifying metadata in JSON files, and use the skill only when external processing is acceptable.
+
+Risk: The skill requires a HEARTVOICE_API_KEY in the runtime environment.
+
+Mitigation: Store the API key as a runtime secret, avoid hardcoding it, and run the skill in an isolated environment with pinned dependencies where possible.
+
+Risk: AI-assisted ECG analysis can be misunderstood as a definitive medical diagnosis.
+
+Mitigation: Present results as decision support and direct users to qualified medical professionals for diagnosis or treatment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yujiecharles/skills/ecg-ai-diagnosis)
+- [HeartVoice AI ECG Cloud](https://www.heartvoice.com.cn/aiCloud)
+- [HeartVoice official site](https://www.heartvoice.com.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Natural-language report with structured JSON fields from the analysis script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HEARTVOICE_API_KEY and explicit 1-lead or 12-lead mode; supports Chinese and English summaries.]
+
+## Skill Version(s):
+
+0.9.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

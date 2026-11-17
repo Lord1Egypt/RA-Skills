@@ -1,41 +1,51 @@
-## Description: <br>
-Provides configured-location weather reports and optional pollen forecasts using free APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides weather and pollen reports using free APIs for Anna, TX or a configured weather location.
 
-## Publisher: <br>
-[TheSethRose](https://clawhub.ai/user/TheSethRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[thesethrose](https://clawhub.ai/user/thesethrose)
 
-## Use Case: <br>
-External users and agent operators use this skill to answer weather and allergy questions for Anna, TX or another location configured through environment variables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may display a requested location name while using configured coordinates and a built-in Anna, TX pollen ZIP code. <br>
-Mitigation: Confirm or update WEATHER_LAT, WEATHER_LON, WEATHER_LOCATION, and pollen configuration before relying on results for a different location. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve current weather, daily forecast, and pollen conditions for Anna, TX or a configured weather location. Operators should treat the user-supplied location argument as display text unless matching coordinates are configured.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TheSethRose/weather-pollen) <br>
-- [Publisher Profile](https://clawhub.ai/user/TheSethRose) <br>
-- [Pollen.com Forecast Reference](https://www.pollen.com/forecast/current/pollen/75409) <br>
-- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes current weather, same-day forecast values, precipitation, and optional pollen index details when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: package.json and server-resolved release evidence) <br>
+Risk: The skill can label fixed Anna, TX or configured weather and pollen data as if it came from another requested location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure WEATHER_LAT, WEATHER_LON, and WEATHER_LOCATION for the intended location, and do not rely on the location argument for true location-based results until the skill adds geocoding or clearer fixed-location behavior.
+
+## Reference(s):
+
+- [ClawHub Weather Pollen Skill Page](https://clawhub.ai/thesethrose/skills/weather-pollen)
+- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast)
+- [Pollen.com Current Pollen Forecast](https://www.pollen.com/forecast/current/pollen/75409)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown-formatted weather and pollen report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return weather-only text when includePollen is false; requires network access to external weather and pollen APIs.]
+
+## Skill Version(s):
+
+1.0.3 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

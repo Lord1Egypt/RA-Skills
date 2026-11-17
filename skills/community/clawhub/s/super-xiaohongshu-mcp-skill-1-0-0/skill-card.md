@@ -1,44 +1,60 @@
-## Description: <br>
-Manage a Xiaohongshu (RED) account through a local MCP service for account status checks, content search, note publishing, comments, likes, favorites, and related social media operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Efficiently manage a Xiaohongshu (RED) account through a local MCP service for search, publishing, engagement actions, and account status checks.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Content creators, marketers, and developers use this skill to operate a Xiaohongshu account from an agent workflow, including browsing, publishing image or video notes, and performing engagement actions through a local MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a real Xiaohongshu account and perform public actions such as publishing, commenting, liking, favoriting, deleting cookies, or batch interactions. <br>
-Mitigation: Require explicit user confirmation before any public, destructive, or batch account action. <br>
-Risk: The local cookies.json file grants account access if exposed. <br>
-Mitigation: Protect cookies.json like a password, keep it out of shared or synced folders, and reset the login session if exposure is suspected. <br>
-Risk: Deployment depends on a third-party binary downloaded outside the skill artifact. <br>
-Mitigation: Verify the binary source and release before installation or execution. <br>
+## Use Case:
 
+Content creators, marketers, and agent operators use this skill to connect an agent to a local Xiaohongshu MCP service for account management, content discovery, publishing, and engagement workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-xiaohongshu-mcp-skill-1-0-0) <br>
-- [Deployment guide](artifact/references/deploy.md) <br>
-- [Usage guide](artifact/references/usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command snippets, MCP configuration, and tool usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local MCP service at http://localhost:18060/mcp and an authenticated cookies.json session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill asks users to run an unverified native binary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the upstream binary source is trusted and verify release artifacts before use.
+
+Risk: The skill relies on cookies.json for authenticated account access.
+
+Mitigation: Store cookies.json in a private directory with restrictive permissions and rotate it if exposure is suspected.
+
+Risk: The skill can publish content, comment, like, favorite, delete cookies, and perform bulk interaction actions on a live account.
+
+Mitigation: Require explicit user confirmation before publish, comment, like, favorite, cookie deletion, or bulk interaction actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/subaru0573/skills/super-xiaohongshu-mcp-skill-1-0-0)
+- [First deployment guide](references/deploy.md)
+- [Usage guide](references/usage.md)
+- [xiaohongshu-mcp releases](https://github.com/xpzouying/xiaohongshu-mcp/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and MCP tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local MCP service at http://localhost:18060/mcp and an authenticated cookies.json file.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

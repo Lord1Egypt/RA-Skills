@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7c531yf93g9ana1pet4dt0g1842s1k",
+  "owner": "Midu",
   "slug": "public-opinion-insights",
-  "version": "0.0.1",
-  "publishedAt": 1775131640537
+  "displayName": "Public Opinion Insights",
+  "latest": {
+    "version": "0.0.1",
+    "publishedAt": 1775000000000,
+    "commit": ""
+  },
+  "history": []
 }

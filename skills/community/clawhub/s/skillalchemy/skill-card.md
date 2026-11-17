@@ -1,46 +1,56 @@
-## Description: <br>
-Skill Alchemy Main orchestrates Lens and LEAP to turn a user's idea, source person, method, or existing skills into an installable SKILL.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Alchemy Main orchestrates Lens and LEAP to turn a requested person, methodology, or skill-fusion goal into an installable SKILL.md.
 
-## Publisher: <br>
-[agentsope](https://clawhub.ai/user/agentsope) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[agentsope](https://clawhub.ai/user/agentsope)
 
-## Use Case: <br>
-Developers and agent builders use this skill to distill public source material into persona or methodology skills, or to fuse existing skills into a new installable skill. It is intended as the interactive entry point that manages user checkpoints while Lens and LEAP perform analysis and compilation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skills may incorporate untrusted public skill text fetched from public skill indexes or source repositories. <br>
-Mitigation: Review and scan each generated SKILL.md before installing it, especially before using it on private or sensitive tasks. <br>
-Risk: The release metadata advertises financial, purchasing, paid-service, OAuth, and credential-related capability tags that are not clearly scoped by the artifact. <br>
-Mitigation: Do not grant financial authority, purchase permission, OAuth tokens, paid-service access, or secrets unless a local review confirms that the generated skill actually requires them. <br>
-Risk: All-default operation can reduce checkpoints before generated instructions are installed. <br>
-Mitigation: Use step-by-step or deep mode for sensitive work and inspect the research plan, generated skill, and validation notes before use. <br>
+## Use Case:
 
+Developers and agent builders use this skill to brief, route, and run skill distillation or fusion workflows for Claude Code or Codex, with configurable depth and checkpoints.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentsope/skillalchemy) <br>
-- [README_EN.md](README_EN.md) <br>
-- [Technical Documentation](技术文档.md) <br>
-- [Skill Grammar Reference](skills/LEAP/references/skill-grammar.md) <br>
-- [SkillsBench](https://github.com/benchflow-ai/skillsbench) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown files, JSON planning artifacts, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create an output/<target>-skill/ directory containing a generated SKILL.md, intermediate evidence, research plans, and validation notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: ClawHub release metadata; artifact frontmatter, package.json, and CHANGELOG report v1.0) <br>
+Risk: Generated skills may incorporate mutable public skill files or fetched exemplars without strong trust controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review sources before installation, prefer pinned versions or immutable commits, and require approval before using fetched exemplars.
+
+Risk: Some bundled workflows may inspect prompts, responses, or persistent memory stores.
+
+Mitigation: Inspect Lens, LEAP, and any bundled skill before use, and run only in workspaces where the operator has approved the data exposure and state changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentsope/skills/skillalchemy)
+- [README_EN.md](artifact/README_EN.md)
+- [Technical Documentation](artifact/技术文档.md)
+- [LEAP Skill Grammar](artifact/skills/LEAP/references/skill-grammar.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with generated SKILL.md files and install commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create output/<target>-skill/ directories with generated skill files and intermediate evidence when the workflow runs.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

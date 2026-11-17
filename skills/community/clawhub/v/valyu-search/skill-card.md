@@ -1,46 +1,56 @@
-## Description: <br>
-Use Valyu (valyu.ai) to search the web, extract content from web pages, answer with sources, and do deepresearch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Valyu (valyu.ai) to search the web, extract content from web pages, answer with sources, and do deepresearch.
 
-## Publisher: <br>
-[unicodeveloper](https://clawhub.ai/user/unicodeveloper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[unicodeveloper](https://clawhub.ai/user/unicodeveloper)
 
-## Use Case: <br>
-Developers and agents use this skill to run Valyu-powered web, news, academic, financial, patent, and content extraction workflows with sources. It supports quick searches, URL content extraction, grounded answers, and longer DeepResearch reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends search queries, URLs, research prompts, and optional files to Valyu. <br>
-Mitigation: Use only inputs approved for Valyu processing and avoid sending sensitive or regulated data unless permitted by policy. <br>
-Risk: The setup flow can ask for a Valyu API key in chat and save it in plaintext at ~/.valyu/config.json. <br>
-Mitigation: Prefer VALYU_API_KEY from the environment or a secret manager, avoid pasting keys into chat, and avoid the setup command unless plaintext local storage is acceptable. <br>
-Risk: Search, medical, financial, patent, and research outputs may be incomplete, stale, or misleading. <br>
-Mitigation: Review cited sources and authoritative references before using outputs for high-stakes decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Valyu Docs](https://docs.valyu.ai) <br>
-- [Search API Reference](https://docs.valyu.ai/api-reference/endpoint/search) <br>
-- [Contents API Reference](https://docs.valyu.ai/api-reference/endpoint/contents) <br>
-- [Answer API Reference](https://docs.valyu.ai/api-reference/endpoint/answer) <br>
-- [DeepResearch Guide](https://docs.valyu.ai/guides/deepresearch) <br>
-- [ClawHub Skill Page](https://clawhub.ai/unicodeveloper/valyu-search) <br>
+## Use Case:
 
+Developers and external users use this skill to run Valyu-backed web, news, academic, financial, patent, content extraction, answer, and deep research workflows with source-aware results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and shell commands; runtime commands return JSON containing search results, extracted content, answers, citations, task status, and cost metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and VALYU_API_KEY; DeepResearch can return markdown and PDF URLs depending on requested output formats.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Research queries, URLs, and supported file content may be sent to Valyu.
+
+Mitigation: Use the skill only for data you are comfortable sharing with Valyu, and avoid submitting sensitive or restricted content unless approved for that workflow.
+
+Risk: VALYU_API_KEY can be exposed if pasted into chat, command history, logs, or saved through the setup command.
+
+Mitigation: Configure VALYU_API_KEY through the Gateway environment or another secure secret mechanism; use the setup command only if plaintext storage in ~/.valyu/config.json is acceptable.
+
+## Reference(s):
+
+- [Valyu Docs](https://docs.valyu.ai)
+- [Search API Reference](https://docs.valyu.ai/api-reference/endpoint/search)
+- [Contents API Reference](https://docs.valyu.ai/api-reference/endpoint/contents)
+- [Answer API Reference](https://docs.valyu.ai/api-reference/endpoint/answer)
+- [DeepResearch Guide](https://docs.valyu.ai/guides/deepresearch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses and Markdown reports with citations, plus setup and command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and VALYU_API_KEY; API use can send research queries, URLs, and supported file content to Valyu.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,66 @@
-## Description: <br>
-Xiaohongshu Skill is an agent toolkit for searching Xiaohongshu posts, reading post and profile details, browsing recommendation feeds, publishing posts, managing comments, likes and collections, generating writing templates, tracking strategy, and running SOP workflows. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Xiaohongshu Skill helps agents use a Python Playwright CLI to search and read Xiaohongshu content, manage login sessions, publish posts, comment, like, and collect content while requiring explicit confirmation for account-changing actions.
 
-## Publisher: <br>
-[deliciousbuding](https://clawhub.ai/user/deliciousbuding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[deliciousbuding](https://clawhub.ai/user/deliciousbuding)
 
-## Use Case: <br>
-Developers and agent users use this skill to automate Xiaohongshu research, content drafting, publishing preparation, account interaction, and operating workflows through a Python Playwright CLI. It is best handled with explicit user approval for account-changing actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a saved Xiaohongshu account session to publish, comment, reply, like, collect, and run engagement SOPs. <br>
-Mitigation: Require explicit manual approval before any account-changing command and review the target content or post before execution. <br>
-Risk: Saved login cookies, QR codes, and local session data can expose account access. <br>
-Mitigation: Treat ~/.xiaohongshu and generated QR code files as credential material; do not share them and restrict local filesystem access. <br>
-Risk: The artifact includes anti-detection and login-gate bypass behavior that may create platform terms or account-enforcement risk. <br>
-Mitigation: Use only with an account the user is willing to risk, keep rate limits enabled, and stop if verification, captcha, or enforcement prompts appear. <br>
+## Use Case:
 
+Developers and agent operators use this skill to automate Xiaohongshu research, content preparation, publishing, comments, likes, collections, and account-session workflows through a JSON-oriented CLI. It is intended for controlled use with explicit human approval before actions that affect a real account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/deliciousbuding/xiaohongshu-skill) <br>
-- [CLI Command Reference](docs/API.md) <br>
-- [English README](README_EN.md) <br>
-- [AgentSkills Specification](https://agentskills.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime CLI commands output JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and Playwright; account-changing actions should require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: ClawHub release metadata; artifact pyproject.toml reports 1.3.0) <br>
+Risk: The skill can publish, comment, like, collect, and otherwise change a real Xiaohongshu account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated account where possible and require explicit human confirmation before every public post, comment, like, collect, or account-state change.
+
+Risk: Local browser state and Xiaohongshu session data may expose account access or private account information.
+
+Mitigation: Keep ~/.xiaohongshu private, do not share browser profile files or QR codes, and avoid attaching account data or complete security parameters to issues or logs.
+
+Risk: The security scan notes under-scoped local deletion and silent browser-script override behavior.
+
+Mitigation: Review the installed source before use, prefer ClawHub or another pinned and reviewed source, check that ~/.xiaohongshu/stealth.js is absent or intentionally trusted, and avoid passing arbitrary paths to --cookie during logout.
+
+Risk: Unconfirmed submissions or repeated automation can create unintended duplicate or policy-sensitive platform actions.
+
+Mitigation: Manually review submitted_unconfirmed results, do not automatically retry writes, and consider Xiaohongshu platform rules for browser automation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/deliciousbuding/skills/xiaohongshu-skill)
+- [Publisher Profile](https://clawhub.ai/user/deliciousbuding)
+- [CLI API](docs/API.md)
+- [Installation](docs/INSTALL.md)
+- [Security](docs/SECURITY.md)
+- [Integrations](docs/INTEGRATIONS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write operations require explicit user confirmation; command diagnostics are emitted separately from JSON results.]
+
+## Skill Version(s):
+
+1.5.1 (source: server release, pyproject.toml, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

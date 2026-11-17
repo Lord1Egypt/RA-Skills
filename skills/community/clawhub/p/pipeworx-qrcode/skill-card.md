@@ -1,42 +1,49 @@
-## Description: <br>
-Generate QR code image URLs from text or URLs and decode QR codes from publicly accessible image URLs without configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate QR code images from text or URLs and decode QR codes from public image URLs without configuration.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to create QR code image URLs for text or web links and to decode QR contents from public image URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: QR payloads and decode targets are sent to a Pipeworx-hosted service. <br>
-Mitigation: Avoid submitting passwords, API keys, confidential text, private documents, internal network URLs, or signed links unless that service use is acceptable. <br>
-Risk: Decoding requires an image URL that the service can access. <br>
-Mitigation: Use public, non-sensitive image URLs and verify decoded text before acting on it. <br>
+## Use Case:
 
+Developers and agent users use this skill to create QR code image URLs from supplied text or URLs and decode QR codes from publicly accessible images through the Pipeworx-hosted MCP service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-qrcode) <br>
-- [Publisher profile](https://clawhub.ai/user/brucegutman) <br>
-- [Pipeworx QR code MCP endpoint](https://gateway.pipeworx.io/qrcode/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [JSON-compatible tool responses with QR image URLs or decoded QR text, plus Markdown setup examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated QR output is an externally hosted image URL; decoding requires a publicly accessible image URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: QR payload text, URLs, and public image URLs are sent to a Pipeworx-hosted QR service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for secrets, private links, sensitive QR contents, or sensitive image URLs unless the service's handling of that data has been reviewed and accepted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-qrcode)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and shell command examples; tool results return image URLs or decoded text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [QR generation supports image sizes from 10px to 1000px; QR decoding requires a publicly accessible image URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

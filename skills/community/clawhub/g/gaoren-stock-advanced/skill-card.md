@@ -1,47 +1,65 @@
-## Description: <br>
-股票全面分析 v2.1 provides HK, US, and A-share quote lookup, technical indicators, analyst ratings, and a seven-section stock analysis report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates stock quote checks, technical indicators, news summaries, and multi-section analysis reports for HK, US, and A-share symbols using external market and news data sources.
 
-## Publisher: <br>
-[gaoren36-arch](https://clawhub.ai/user/gaoren36-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaoren36-arch](https://clawhub.ai/user/gaoren36-arch)
 
-## Use Case: <br>
-External users and agents use this skill to generate stock quote summaries, technical analysis, analyst-rating context, and action-oriented stock reports for HK, US, and A-share symbols. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports hardcoded API credentials and possible token exposure. <br>
-Mitigation: Rotate or remove embedded credentials before use, keep service tokens in environment variables, and restrict access to least privilege. <br>
-Risk: The security review warns that simulated technical indicators may be presented as normal financial analysis. <br>
-Mitigation: Remove simulated-data paths or label them clearly in generated reports before relying on the output. <br>
-Risk: Stock symbols and market interests may be sent to third-party quote or news services. <br>
-Mitigation: Review network destinations before deployment and avoid submitting confidential portfolio or strategy information. <br>
-Risk: Generated investment recommendations and indicators may be unreliable. <br>
-Mitigation: Treat outputs as informational drafts and require human financial review before any trading or advisory use. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for stock quote checks and summarized technical or news analysis for HK, US, and A-share symbols. Outputs should be treated as informational summaries, not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaoren36-arch/gaoren-stock-advanced) <br>
-- [README.md](artifact/README.md) <br>
-- [README_EN.md](artifact/README_EN.md) <br>
-- [Futu HK stock page pattern](https://www.futunn.com/stock/{code}-HK) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or terminal text stock-analysis report with inline command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include third-party market data, technical indicators, analyst ratings, and trading suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and openclaw metadata) <br>
+Risk: The skill can produce buy, hold, sell, or stop-loss style guidance that may be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label outputs as informational only and require qualified human review before any trading or portfolio decision.
+
+Risk: At least one report path can calculate technical indicators from simulated random historical prices.
+
+Mitigation: Require verified historical market data before presenting RSI, moving averages, MACD, scores, or recommendations as decision-support signals.
+
+Risk: Artifact code includes a bundled Finnhub token in several scripts.
+
+Mitigation: Remove or rotate bundled credentials and require users to provide their own API token through environment configuration.
+
+Risk: The skill depends on external market and news services whose availability, freshness, and coverage may vary.
+
+Mitigation: Show data-source context in reports and handle unavailable or incomplete data without substituting fabricated values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gaoren36-arch/skills/gaoren-stock-advanced)
+- [Skill definition](artifact/SKILL.md)
+- [Chinese README](artifact/README.md)
+- [English README](artifact/README_EN.md)
+- [Futu HK stock page example](https://www.futunn.com/stock/03998-HK)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or terminal-style text stock analysis reports with inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access for external market and news data; Python and curl are declared runtime dependencies.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata, OpenClaw metadata, and artifact version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

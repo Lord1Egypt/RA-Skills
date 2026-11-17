@@ -1,38 +1,52 @@
-## Description: <br>
-Product Desc Writer helps agents draft benefit-led product descriptions, comparison tables, and product copy variants for e-commerce and SaaS products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Product Desc Writer helps ecommerce operators, Shopify merchants, and SaaS teams turn product specifications into benefit-focused descriptions, comparison tables, and calls to action.
 
-## Publisher: <br>
-[cofi295](https://clawhub.ai/user/cofi295) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[cofi295](https://clawhub.ai/user/cofi295)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users such as ecommerce store owners, Shopify merchants, and SaaS teams use this skill to generate product descriptions, feature-to-benefit copy, comparison tables, and sales-oriented calls to action from product details.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill includes visible PayPal and USDT upgrade solicitation that may be inappropriate for some deployment environments.
+
+Mitigation: Review the promotional payment content before installation and decide whether it fits the target audience and deployment policy.
+
+Risk: Benefit-focused product copy can overstate a product if the provided specifications are incomplete or inaccurate.
+
+Mitigation: Review generated descriptions against authoritative product specifications before publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-E-commerce merchants, Shopify store owners, SaaS teams, and other external users use this skill to turn product specs into customer-facing descriptions, feature-benefit copy, and pricing or feature comparison tables. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes paid-upgrade payment links and a crypto wallet address that may take users into third-party payment flows. <br>
-Mitigation: Verify the publisher and payment destination independently before sending money, and do not provide wallet credentials or private keys. <br>
+**Output Format:** [Markdown or plain text product copy]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Product Desc Writer on ClawHub](https://clawhub.ai/cofi295/product-desc-writer) <br>
+**Other Properties Related to Output:** [No code execution; output quality depends on user-provided product details.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text product-copy drafts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include short-form or long-form descriptions, bullet lists, story-driven copy, calls to action, and comparison tables.] <br>
+1.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Use when integrating with the energy-app-middle BFF service, including REST API endpoints, gRPC client setup, authentication headers, multi-tenancy, and downstream service dependencies for the changyuanfeilun energy platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when integrating with the energy-app-middle BFF service - covers REST API endpoints, gRPC client setup, authentication headers, multi-tenancy, and downstream service dependencies for the changyuanfeilun energy platform.
 
-## Publisher: <br>
-[effort02](https://clawhub.ai/user/effort02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[effort02](https://clawhub.ai/user/effort02)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate agents and services with the energy-app-middle BFF service across Owner, Provider, Platform, and internal gRPC interfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests may use incorrect tenant or user headers, causing authorization failures or cross-tenant data access mistakes. <br>
-Mitigation: Verify X-ACCESS-TOKEN, X-App, X-Tenant, X-UID, and X-PUID for each request and use least-privilege tokens. <br>
-Risk: POST or configuration-changing API calls may alter automation, pricing, market, or device settings. <br>
-Mitigation: Require explicit confirmation before POST requests or configuration changes and validate the target resource, tenant, and time range. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate agents or implementation work with the energy-app-middle BFF service, including REST endpoints, gRPC client setup, authentication headers, tenant scoping, downstream dependencies, DTOs, and environment configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/effort02/energy-app-middle-integration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with API endpoint tables and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only integration guidance; no executable installer or hidden behavior reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The plaintext gRPC configuration example may be inappropriate for environments where traffic can carry tokens, tenant context, or user identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the cluster trust boundary before reuse and prefer TLS or mTLS for sensitive service-to-service traffic.
+
+Risk: The guide targets an internal energy-platform integration and may not apply outside environments that intentionally use energy-app-middle and its downstream services.
+
+Mitigation: Install and apply the skill only when this internal energy-platform reference matches the target environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/effort02/skills/energy-app-middle-integration)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Code, Shell commands]
+
+**Output Format:** [Markdown with tables and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only integration guidance; no hidden execution or persistence behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

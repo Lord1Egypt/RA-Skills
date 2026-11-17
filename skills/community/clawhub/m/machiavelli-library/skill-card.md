@@ -1,43 +1,61 @@
-## Description: <br>
-A bilingual Chinese-English searchable library that helps agents answer questions about Machiavelli by returning sourced original passages rather than analysis or advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A bilingual Chinese-English searchable library that helps an agent find and return Machiavelli source passages with citations.
 
-## Publisher: <br>
-[niflhum](https://clawhub.ai/user/niflhum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niflhum](https://clawhub.ai/user/niflhum)
 
-## Use Case: <br>
-Researchers, students, and agents use this skill to locate Machiavelli-related passages in Chinese and English, cite the work and chapter or letter, and avoid unsourced paraphrase. It is intended for source lookup and quotation support, not for persona simulation or strategic advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The released artifact includes search logic and indexes but not the full original text library. <br>
-Mitigation: Install the referenced library content before use, validate the expected files, and report no match rather than fabricating a passage when content is missing. <br>
-Risk: Quoted or indexed passages may be incomplete, mistranslated, or tied to uncertain source status. <br>
-Mitigation: Return citations with each passage, prefer public-domain source material when available, and preserve uncertainty notes such as missing public-domain letter sources. <br>
-Risk: Fallback search executes a local shell command over the library directory. <br>
-Mitigation: Run the provided search command only against local skill files and keep user-supplied keywords as search terms rather than executable shell fragments. <br>
+## Use Case:
 
+External users and researchers use this skill to ask questions about Machiavelli and receive concise, cited passages from indexed bilingual source material rather than analysis or persona-style advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/niflhum/machiavelli-library) <br>
-- [Skill-referenced library content repository](https://github.com/niflhum/machiavelli-library.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with cited passages and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the most relevant passages with work and chapter or letter citations; local grep search can be used as a fallback when indexes are insufficient.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The first-use setup pulls changing content from an unpinned personal GitHub repository into the active skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin a specific commit before installation, or copy only reviewed data into a separate data-only directory.
+
+Risk: Search keywords that look like command options may affect the grep fallback behavior.
+
+Mitigation: Avoid untrusted option-like keywords and harden the search wrapper before relying on arbitrary user-supplied search terms.
+
+Risk: Some included biographies, studies, and user-provided translations may have separate copyright or source-quality considerations.
+
+Mitigation: Confirm rights and source quality for non-public-domain or user-provided materials before broad redistribution or commercial use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/niflhum/skills/machiavelli-library)
+- [Publisher Profile](https://clawhub.ai/user/niflhum)
+- [README](README.md)
+- [Catalog Index](catalog/catalog.json)
+- [Search Guide](index/search-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with cited source passages and optional shell command fallback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns the most relevant 3-5 original passages when available; reports no match rather than fabricating text.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

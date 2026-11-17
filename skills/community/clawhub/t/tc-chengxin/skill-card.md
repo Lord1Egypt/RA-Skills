@@ -1,47 +1,62 @@
-## Description: <br>
-Provides online travel search through Tongcheng Chengxin for flights, trains, hotels, vacation products, trip guides, itinerary planning, bus tickets, scenic spots, and tickets using Tongcheng official data with booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tongcheng Chengxin Travel Search helps agents query Tongcheng travel data for flights, trains, hotels, vacation products, itinerary planning, discounted flights, bus tickets, attractions, and ticketing, with booking links returned in the response.
 
-## Publisher: <br>
-[luckystarry](https://clawhub.ai/user/luckystarry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luckystarry](https://clawhub.ai/user/luckystarry)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to search Tongcheng travel inventory for transportation, lodging, scenic tickets, vacation products, trip guides, and itinerary options, then receive formatted results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel search details such as cities, dates, passenger preferences, and free-text trip intent are sent to Tongcheng's Chengxin API. <br>
-Mitigation: Use the skill only when sharing those travel details with the API provider is acceptable, and avoid including unnecessary sensitive personal information in queries. <br>
-Risk: The optional CHENGXIN_API_KEY can be exposed if pasted into chat or committed in a local config file. <br>
-Mitigation: Configure the API key through OpenClaw secrets/settings or an environment variable, and do not commit config.json containing credentials. <br>
-Risk: Booking links and travel availability can be misleading if an agent rewrites or fabricates results after script execution. <br>
-Mitigation: Use only booking links and availability returned by the scripts/API, and preserve no-result or authentication guidance from the skill's error-handling flow. <br>
+## Use Case:
 
+External travel assistants and agent builders use this skill to answer travel-search requests for transportation, hotels, attractions, vacation packages, and itinerary planning while preserving user travel preferences in the query.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/luckystarry/tc-chengxin) <br>
-- [Tongcheng Travel Homepage](https://www.ly.com) <br>
-- [API Calling Examples](references/api-examples.md) <br>
-- [Configuration Guide](references/config.md) <br>
-- [Error Handling Guide](references/error-handling.md) <br>
-- [Output Format Reference](references/output-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown tables or cards with booking links; plain-text links for WeChat-style channels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and optionally CHENGXIN_API_KEY; sends travel search details to Tongcheng's Chengxin API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.0 (source: server release metadata and user changelog) <br>
+Risk: Travel queries are sent to the disclosed Chengxin API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when users are comfortable sending their travel-search details to that service.
+
+Risk: Responses can include commercial booking links and remote travel content.
+
+Mitigation: Treat returned links and travel content as untrusted until verified before booking or forwarding.
+
+Risk: API keys can be stored in local configuration.
+
+Mitigation: Prefer storing CHENGXIN_API_KEY in the platform environment setting instead of a local config.json file.
+
+## Reference(s):
+
+- [Tongcheng Chengxin Travel Search on ClawHub](https://clawhub.ai/luckystarry/skills/tc-chengxin)
+- [Tongcheng Travel Homepage](https://www.ly.com)
+- [Configuration Reference](artifact/references/config.md)
+- [API Examples](artifact/references/api-examples.md)
+- [Output Format Reference](artifact/references/output-format.md)
+- [Error Handling Guide](artifact/references/error-handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown travel-search results with tables or cards, booking links, and concise guidance for missing parameters or API errors.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output may include Chengxin API booking links and user-generated travel content; format varies by channel and surface.]
+
+## Skill Version(s):
+
+0.9.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

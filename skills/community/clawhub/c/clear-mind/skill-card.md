@@ -1,42 +1,54 @@
-## Description: <br>
-Memory file maintenance and optimization system for moving factual bloat out of MEMORY.md while preserving core rules, indexes, and agent capability information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory file maintenance and optimization system that moves factual content from MEMORY.md into dedicated facts files while preserving core rules, indexes, and agent capability information.
 
-## Publisher: <br>
-[webray1983](https://clawhub.ai/user/webray1983) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[webray1983](https://clawhub.ai/user/webray1983)
 
-## Use Case: <br>
-External users and developers use this skill to reorganize long-term agent memory when factual project, portfolio, technical, or historical details accumulate in MEMORY.md. It guides analysis, migration into facts/ files, quick-index maintenance, verification, and rollback planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can restructure or delete long-term memory content. <br>
-Mitigation: Require a dry-run summary, timestamped backup, explicit approval for migrations or deletions, and a tested restore procedure before changes are applied. <br>
-Risk: Core rules, tool descriptions, or capability definitions could be misclassified as factual content. <br>
-Mitigation: Keep uncertain content in MEMORY.md and verify that all core behavioral rules, capability definitions, tool descriptions, and installed skills remain intact. <br>
-Risk: Sensitive or user-specific facts may be moved into separate files without enough review. <br>
-Mitigation: Review proposed destination files and migrate only factual categories the user has approved. <br>
+## Use Case:
 
+Developers and agent operators use this skill to reorganize long-term agent memory when factual project, portfolio, preference, or event information accumulates in MEMORY.md. It creates a facts directory, updates a Quick Index, and preserves core behavior and capability information in the primary memory file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/webray1983/clear-mind) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with proposed memory file changes and verification steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update MEMORY.md and memory/facts/*.md after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can rewrite persistent memory files and move content between MEMORY.md and memory/facts files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Create a timestamped backup of MEMORY.md and memory/facts before migration, then verify that core rules, tool descriptions, installed skills, and capability definitions remain intact.
+
+Risk: The skill includes deletion guidance for redundant, outdated, or duplicate memory entries.
+
+Mitigation: Require an itemized dry-run list of every keep, move, rewrite, and delete action, and obtain separate approval before deleting any content.
+
+## Reference(s):
+
+- [Clear-Mind Skill on ClawHub](https://clawhub.ai/webray1983/skills/clear-mind)
+- [Publisher profile: webray1983](https://clawhub.ai/user/webray1983)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Files, Configuration]
+
+**Output Format:** [Markdown guidance with file-organization plans and memory file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or modify MEMORY.md and memory/facts files after user review.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

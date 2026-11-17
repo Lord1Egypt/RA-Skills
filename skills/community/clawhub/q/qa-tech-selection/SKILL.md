@@ -1,120 +1,36 @@
 ---
 name: qa-tech-selection
-version: 1.5.0
 description: >-
-  当团队要选测试工具（自动化框架/性能工具/管理平台）、现有工具不能满足需求需要替换、或者公司要求做技术评估时使用此技能。通过多维度对比评估（功能覆盖/学习成本/社区活跃度/维护成本/扩展性）输出推荐方案和迁移实施建议。不要只看 Gartner 象限或者技术网红推荐——工具好不好取决于你的团队能力、技术栈和实际场景。每个推荐方案附带 POC 验证计划和风险提示。
-
-when_to_use: 用户说"技术选型"、"工具选择"、"框架选择"、"用什么工具"、"工具对比"、需要评估测试技术方案、现有工具不能满足需求需要替换时
+  当团队要选测试工具（自动化框架/性能工具/管理平台）、现有工具不能满足需求需要替换、或者公司要求做技术评估时使用此技能。通过多维度对比评估（功能覆盖/学习成本/社区活跃度/维护成本/扩展性）输出推荐方案和迁移实施建议。不要只看 Gartner 象限或者技术网红推荐——工具好不好取决于你的团队能力、技术栈和实际场景。每个推荐方案附带 POC 验证计划和风险提示。 触发场景：技术选型、工具选择、框架选择、用什么工具、工具对比、现有工具不能满足需求需要替换时。 Use when the user asks about: evaluating and selecting QA tooling — automation frameworks, performance tools, and management platforms — and planning the migration.
+license: MIT
 allowed-tools: Read Grep Glob WebFetch
-related_skills:
-  upstream:
-    - qa-test-strategy-design    # 输入：测试策略确定需求
-  downstream:
-    - qa-ci-cd-testing           # 输出：技术选型用于CI/CD集成
-input_format:
-  required:
-    - name: 项目需求
-      type: string
-      description: 项目技术需求和非功能需求
-    - name: 技术约束
-      type: string
-      description: 技术栈限制和团队能力
-  optional:
-    - name: 预算限制
-      type: string
-      description: 工具和资源预算
-output_format:
-  structure:
-    - tech_evaluation: 技术评估报告
-    - comparison_matrix: 对比矩阵
-    - recommendation: 推荐方案
-    - risk_assessment: 技术风险评估
+metadata:
+  display-name: "Tech Selection"
+  version: "1.8.0"
+  when-to-use: "用户说\"技术选型\"、\"工具选择\"、\"框架选择\"、\"用什么工具\"、\"工具对比\"、需要评估测试技术方案、现有工具不能满足需求需要替换时"
+  related-skills: "{\"upstream\":[\"qa-test-strategy-design\"],\"downstream\":[\"qa-ci-cd-testing\",\"qa-test-automation-arch\"]}"
+  references: "[\"references/selection-framework.md\"]"
+  input-format: "{\"required\":[{\"name\":\"项目需求\",\"type\":\"string\",\"description\":\"项目技术需求和非功能需求\"},{\"name\":\"技术约束\",\"type\":\"string\",\"description\":\"技术栈限制和团队能力\"}],\"optional\":[{\"name\":\"预算限制\",\"type\":\"string\",\"description\":\"工具和资源预算\"}]}"
+  output-format: "{\"traceability\":[\"每次选型评估带唯一ID（SEL-XXXX）\"],\"structure\":[\"覆盖率：标注口径（基于现有需求/输入文档），禁止\\\"全覆盖/100%\\\"绝对化表述；缺失模块标注\\\"未覆盖+原因\\\"\",{\"tech_evaluation\":\"技术评估报告\"},{\"comparison_matrix\":\"对比矩阵\"},{\"recommendation\":\"推荐方案\"},{\"risk_assessment\":\"技术风险评估\"}]}"
+  error-recovery-guidance: "{\"on_failure\":\"工具选型遗漏关键维度时回退到测试策略补充需求\",\"retry_behavior\":\"补充需求后重新评估候选工具\"}"
+  categories: "[\"Development\",\"Testing\",\"DevOps\"]"
+  depth-requirement: "{\"reference_value\":\"根据选型复杂度调整评估深度：简单×1/中等×2/复杂×3\",\"minimum\":\"至少对比3个候选工具的核心维度\"}"
 ---
+> ⚠️ 本技能单独使用效果有限，建议配合完整技能集（12 步工作流）使用。安装：npx skills add Kokxi/qa-test-skills
 
 # 测试技术选型
 
 ## 核心原则
 
-你是一位技术选型专家，擅长评估和选择测试工具、框架、平台。
-**核心原则**：工具替换快，思维不过时——选型要基于业务需求，不是技术偏好。
-本技能提供三维选型框架（需求分析/方案评估/决策矩阵）及常见场景指南。
+工具替换快，思维不过时——选型要基于业务需求，不是技术偏好。
 
-## 选型框架
+## 加载时机
 
-### 维度1：需求分析
+| 什么时候读 | 读哪个 |
+|-----------|--------|
+| 做工具选型评估时 | [`references/selection-framework.md`](references/selection-framework.md) |
 
-```text
-需求收集：
-├─ 业务需求
-│   ├─ 测试类型：功能/性能/安全/兼容
-│   ├─ 测试规模：用例数量/执行频率
-│   ├─ 团队规模：人员数量/技能水平
-│   └─ 预算限制：采购预算/维护成本
-│
-├─ 技术需求
-│   ├─ 技术栈：语言/框架/协议
-│   ├─ 集成需求：CI/CD/监控/报告
-│   ├─ 扩展需求：并发/分布式/云化
-│   └─ 维护需求：升级/扩展/迁移
-│
-└─ 约束条件
-    ├─ 时间约束：上线时间
-    ├─ 资源约束：人力/预算
-    ├─ 技术约束：现有技术栈
-    └─ 合规约束：安全/隐私
-```
-
-### 维度2：方案评估
-
-```text
-评估维度：
-├─ 功能性
-│   ├─ 功能覆盖：是否满足需求
-│   ├─ 功能深度：功能完善程度
-│   ├─ 扩展性：是否支持扩展
-│   └─ 定制性：是否支持定制
-│
-├─ 易用性
-│   ├─ 学习成本：上手难度
-│   ├─ 使用体验：操作便捷性
-│   ├─ 文档质量：文档完善程度
-│   └─ 社区支持：社区活跃度
-│
-├─ 性能
-│   ├─ 执行效率：执行速度
-│   ├─ 资源消耗：CPU/内存/磁盘
-│   ├─ 并发能力：支持并发数
-│   └─ 稳定性：长期运行稳定性
-│
-├─ 成本
-│   ├─ 采购成本：License费用
-│   ├─ 实施成本：部署/集成成本
-│   ├─ 维护成本：升级/维护成本
-│   └─ 培训成本：人员培训成本
-│
-└─ 风险
-    ├─ 技术风险：技术成熟度
-    ├─ 供应商风险：供应商稳定性
-    ├─ 迁移风险：迁移难度
-    └─ 锁定风险：厂商锁定
-```
-
-### 维度3：决策矩阵
-
-**决策矩阵：**
-
-| 方案 | 功能性 | 易用性 | 性能 | 成本 | 风险 | 总分 |
-|------|--------|--------|------|------|------|------|
-| 方案A | 9 | 8 | 7 | 6 | 7 | 37 |
-| 方案B | 8 | 9 | 8 | 7 | 8 | 40 |
-| 方案C | 7 | 7 | 9 | 8 | 6 | 37 |
-
-**权重：**
-- 功能性：30%
-- 易用性：25%
-- 性能：20%
-- 成本：15%
-- 风险：10%
+> `选型框架`的完整内容已下沉至 `references/selection-framework.md`，避免每次触发都占用上下文。
 
 ## 常见选型场景
 
@@ -232,6 +148,33 @@ output_format:
 **团队想引入性能测试工具（JMeter vs Locust vs k6）**
 → 按技术栈（Python/Javascript）、协议支持、分布式能力、报告输出综合评估
 
+## 输出示例
+
+**场景：Python 项目的接口自动化框架选型**
+
+**1. 需求分析**：Python 技术栈、需要 REST 接口自动化、需 CI 集成、团队 3 人、预算无（开源优先）
+
+**2. 候选方案**：pytest+requests、Robot Framework、Karate、HttpRunner
+
+**3. 决策矩阵（加权评分）**：
+
+| 维度 | 权重 | pytest+requests | Robot Framework | Karate | HttpRunner |
+|------|:---:|:---:|:---:|:---:|:---:|
+| 技术栈匹配 | 25% | 5 | 4 | 3 | 5 |
+| 自动化能力 | 20% | 5 | 4 | 4 | 4 |
+| CI 集成 | 15% | 5 | 4 | 4 | 5 |
+| 团队上手成本 | 20% | 4 | 3 | 3 | 5 |
+| 维护成本 | 10% | 4 | 3 | 4 | 4 |
+| 生态/社区 | 10% | 5 | 4 | 4 | 4 |
+| **加权总分** | | **4.75** | **3.70** | **3.60** | **4.55** |
+
+**4. 推荐结论**：**pytest+requests**（总分 4.75 最高）——技术栈匹配 + CI 生态成熟；HttpRunner 作为备选（国内社区友好、用例 YAML 化、团队上手快）。
+
+**5. 实施计划**：第1周搭建框架+公共封装 → 第2周接入 CI → 第3周首批 50 条用例 → 第4周推广。
+
+**场景：性能测试工具选型**
+→ 需求（JMeter 全协议 / Locust Python 原生 / k6 云原生）→ 决策矩阵（协议支持/分布式/报告/团队熟悉度）→ 推荐结论（中小团队选 Locust，大规模压测选 JMeter，云原生选 k6）
+
 ## Guidelines
 
 技术选型完成后检查：
@@ -243,3 +186,10 @@ output_format:
 - [ ] 实施计划是否可行？
 
 
+## 检查清单
+
+- [ ] 候选工具是否≥3个？
+- [ ] 核心维度是否对比？
+- [ ] 维护成本是否评估？
+- [ ] 团队适配是否考虑？
+- [ ] 选型报告是否生成？

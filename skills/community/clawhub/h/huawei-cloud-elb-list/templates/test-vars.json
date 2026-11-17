@@ -1,0 +1,34 @@
+{
+  "skill_name": "huawei-cloud-elb-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "CLI 服务可用性检查",
+      "command": "hcloud ELB --help",
+      "expected": "帮助信息正常输出，命令存在",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "ELB ListLoadbalancers 只读列表",
+      "command": "hcloud ELB ListLoadbalancers --cli-region={region} --limit=1",
+      "expected": "返回负载均衡器列表 JSON 或空列表",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "ELB ListLoadbalancers 服务端过滤（数组下标参数）",
+      "command": "hcloud ELB ListLoadbalancers --cli-region={region} --limit=1 --provisioning_status.1=ACTIVE",
+      "expected": "过滤参数以数组下标格式被接受，返回匹配的负载均衡器列表",
+      "type": "readonly",
+      "executor": "cli"
+    }
+  ],
+  "env_vars_required": [
+    "以 HUAWEI/HW/HWC 开头的环境变量中匹配 AK/SK 的键值对"
+  ],
+  "notes": "只读用例使用真实可用的 hcloud 只读命令（ELB ListLoadbalancers），区域 cn-north-4；过滤参数按 KooCLI 数组类型使用下标格式 --provisioning_status.1=ACTIVE（TC-03 为该格式的回归用例）。缺 hcloud/凭据时用例跳过，不产生伪失败；真实只读验证由 QA 带外执行。"
+}

@@ -1,42 +1,63 @@
-## Description: <br>
-The Agent Production Hardening Guide is a step-by-step playbook for taking AI agent systems from pilot to production with SLOs, circuit breakers, cost guardrails, EU AI Act compliance checklists, monitoring, SLA enforcement, and deployment examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Agent Production Hardening Guide provides a step-by-step playbook for taking AI agent systems from pilot to production with SLOs, circuit breakers, cost guardrails, EU AI Act compliance checklists, monitoring, SLA enforcement, code examples, and deployment patterns.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers, platform engineers, and agent operators use this guide to assess and harden agent systems before production release. It provides checklists, monitoring patterns, circuit breaker examples, cost controls, deployment patterns, resilience guidance, and compliance audit scaffolding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is documentation-only, but examples can run live GreenHelix operations with a read/write API key. <br>
-Mitigation: Treat snippets as templates, review them before use, and run only in a sandbox or with a least-privilege GreenHelix key. <br>
-Risk: Examples may change budgets, register webhooks, write ledger records, publish events, send messages, or create escrows. <br>
-Mitigation: Require explicit human approval before executing examples that perform state-changing GreenHelix operations. <br>
+## Use Case:
 
+Developers and platform engineers use this guide to assess and harden AI agent systems before production release. It helps teams define SLOs, monitor cost and latency, add resilience controls, plan deployment rollouts, and prepare operational and compliance review materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-agent-production-hardening) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API endpoint referenced by examples](https://api.greenhelix.net/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guide with inline Python and shell examples, checklists, tables, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; examples may require GREENHELIX_API_KEY and human review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The guide contains live GreenHelix API examples and state-changing workflow examples that could affect an account if run with write-capable credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox or test-only least-privilege credentials, verify whether each endpoint is sandbox or production, and review account effects before running write-capable examples.
+
+Risk: The skill requires GREENHELIX_API_KEY, and mishandled credentials could expose paid or privileged API access.
+
+Mitigation: Provide credentials only through environment variables or a secrets manager, scope them to the minimum required permissions, and rotate them after testing.
+
+Risk: Security evidence flags an unpinned package installation pattern in the guide.
+
+Mitigation: Pin and isolate dependencies before installation, preferably in a temporary virtual environment or locked build workflow.
+
+Risk: The guide includes operational and EU AI Act compliance guidance that may not match a reader's exact production or regulatory obligations.
+
+Mitigation: Treat the material as implementation guidance and route production, legal, and regulated-workload decisions through internal engineering, security, and compliance review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-agent-production-hardening)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API endpoint](https://api.greenhelix.net/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guide with checklists, tables, Python examples, configuration snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires human review before operational use; examples reference GREENHELIX_API_KEY and GreenHelix sandbox or API endpoints.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

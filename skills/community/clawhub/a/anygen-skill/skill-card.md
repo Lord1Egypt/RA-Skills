@@ -1,42 +1,60 @@
-## Description: <br>
-AnyGen is an AI-powered content creation suite that uses the AnyGen CLI to generate slides, documents, diagrams, websites, images, research, financial analysis, and other content server-side. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AnyGen Suite helps agents use the AnyGen CLI to create slides, documents, diagrams, websites, images, research, data visualizations, financial analysis, and related content through AnyGen's server-side service.
 
-## Publisher: <br>
-[logictortoise](https://clawhub.ai/user/logictortoise) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[logictortoise](https://clawhub.ai/user/logictortoise)
 
-## Use Case: <br>
-External users, developers, and content teams use this skill through an agent to create presentations, documents, diagrams, websites, images, research reports, data visualizations, and financial analysis outputs with the AnyGen hosted service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill tells the agent to install the additional anygen-workflow-generate skill when it is not available, which can persistently change agent behavior. <br>
-Mitigation: Review and approve that separate skill and its source/version before allowing installation. <br>
-Risk: The skill uses a hosted AnyGen service for content generation. <br>
-Mitigation: Use AnyGen only for content appropriate to send to that service, and use a revocable API key when possible. <br>
+## Use Case:
 
+Developers and agent users use this skill to route content-generation requests to AnyGen for presentations, documents, diagrams, websites, images, research, and data analysis. It is intended for normal ClawHub use with an AnyGen CLI installation and ANYGEN_API_KEY.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/logictortoise/anygen-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/logictortoise) <br>
-- [AnyGen service](https://www.anygen.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated content outputs from the AnyGen CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ANYGEN_API_KEY and the anygen CLI; generated content is produced by the hosted AnyGen service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: Prompts and files may be sent to AnyGen's remote service during content generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable ANYGEN_API_KEY and avoid regulated or confidential data unless approved.
+
+Risk: The skill can install the anygen-workflow-generate skill without pinning or review.
+
+Mitigation: Review or pin @anygen/cli and anygen-workflow-generate before allowing secondary skill installation.
+
+Risk: Broad activation for many content-generation requests could route unintended user content to the service.
+
+Mitigation: Confirm user intent and data sensitivity before running AnyGen commands.
+
+## Reference(s):
+
+- [ClawHub Skill: AnyGen Suite](https://clawhub.ai/logictortoise/skills/anygen-skill)
+- [ClawHub Publisher: logictortoise](https://clawhub.ai/user/logictortoise)
+- [AnyGen service](https://www.anygen.io)
+- [AnyGen CLI package](https://www.npmjs.com/package/@anygen/cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and shell-command guidance for invoking AnyGen CLI workflows; generated downstream artifacts may include documents, slides, diagrams, websites, images, reports, and visualizations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AnyGen CLI and ANYGEN_API_KEY; generated content may be created server-side at www.anygen.io.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

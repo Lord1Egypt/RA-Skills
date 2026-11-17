@@ -1,40 +1,54 @@
-## Description: <br>
-Draft clear creator payment terms and payment expectation templates before campaign launch. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Draft clear creator payment terms and payment expectation templates before campaign launch.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creator operations teams use this skill to standardize payment expectations before a campaign launches, including payment model, deliverables, acceptance rules, timing, and extra terms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated payment terms may not fit the user's business, campaign, or legal requirements. <br>
-Mitigation: Review the drafted terms for business and legal suitability before sharing them with creators. <br>
-Risk: The artifact states non-commercial CC BY-NC-SA terms and requires a separate paid license for commercial use. <br>
-Mitigation: Confirm the intended use is allowed by the license or obtain separate commercial permission before commercial use. <br>
+## Use Case:
 
+Creator operations teams use this skill to standardize payout expectations, link payment timing to deliverable acceptance, and draft creator-facing payment terms before campaign launch.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown sections with copy-ready payment terms] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a payment structure summary, risk points, copy-ready terms, and a short creator-facing explanation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The generated payment terms may be mistaken for legal advice or a complete contract.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as drafting support and have qualified reviewers confirm legal and commercial terms before use.
+
+Risk: The skill includes non-commercial license terms that may not cover commercial reuse.
+
+Mitigation: Confirm license rights or obtain the separate commercial license described by the publisher before commercial use.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/creator-payment-terms-template)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with a payment structure summary, risk points, copy-ready terms, and a short creator-facing explanation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Treat output as drafting support rather than legal advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

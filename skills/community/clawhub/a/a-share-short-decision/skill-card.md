@@ -1,46 +1,63 @@
-## Description: <br>
-Analyzes CN A-share market sentiment, sector rotation, strong-stock candidates, capital flows, and risk controls to support short-term 1-5 day trading decision research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A-share short-term trading decision skill for 1-5 day market sentiment, sector rotation, stock screening, capital-flow confirmation, signal scoring, prediction logging, and next-day comparison.
 
-## Publisher: <br>
-[kenera](https://clawhub.ai/user/kenera) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kenera](https://clawhub.ai/user/kenera)
 
-## Use Case: <br>
-External users and agent operators use this skill to generate CN A-share short-term market scans, daily recommendations, prediction logs, and next-day comparison reports. Outputs should be treated as automated market research and decision support, not personal financial advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Market-data and dependency behavior may vary across AkShare and pandas versions, affecting reproducibility. <br>
-Mitigation: Install the skill in an isolated environment and pin or review akshare and pandas versions before relying on repeated scans. <br>
-Risk: Recurring scheduled scans can generate ongoing local reports and recommendations. <br>
-Mitigation: Enable scheduler.yaml jobs only when recurring market scans are intended, and periodically review generated files under data/. <br>
-Risk: The config optimization subskill can overwrite future screening behavior when --apply-to-config is used. <br>
-Mitigation: Review optimized configuration artifacts before applying them, and avoid --apply-to-config unless persistent strategy changes are intended. <br>
-Risk: Generated stock recommendations may be mistaken for personal financial advice. <br>
-Mitigation: Present outputs as automated market research and decision support, and require user review before any trading decision. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kenera/a-share-short-decision) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Scheduler configuration](artifact/scheduler.yaml) <br>
+## Use Case:
 
+External users and agents use this skill to generate short-term CN A-share research signals, daily recommendation artifacts, risk controls, and comparison reports for a 1-5 day trading horizon. Outputs should be treated as research signals and decision support, not instructions to trade.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON and Markdown reports with CLI command outputs and local data artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local reports, recommendations, optimized configuration artifacts, and prediction logs under data/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata and config.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: An optional optimization command can overwrite a caller-selected JSON configuration file.
+
+Mitigation: Back up the target configuration and use `--apply-to-config` only when the overwrite is intentional.
+
+Risk: Caller-provided config paths can point outside the skill directory.
+
+Mitigation: Avoid absolute paths and `..` segments for configuration options; review resolved paths before running optimization.
+
+Risk: Generated stock recommendations can be mistaken for trading instructions.
+
+Mitigation: Treat outputs as research signals and decision support, and apply independent review before any trading decision.
+
+Risk: Unpinned dependencies can change runtime behavior.
+
+Mitigation: Run the skill in a virtual environment and pin dependencies where possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kenera/skills/a-share-short-decision)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [requirements.md](artifact/requirements.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, JSON artifacts, and CLI command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write prediction logs, daily recommendation JSON, optimization JSON, and Markdown summaries under data/.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

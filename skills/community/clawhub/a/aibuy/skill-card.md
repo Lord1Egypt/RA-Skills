@@ -1,40 +1,56 @@
-## Description: <br>
-Aibuy helps agents search Shenzhen Shuibei jewelry wholesale listings, estimate gold-product prices from current Shanghai gold quotes, and answer real-time gold and precious-metal price questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aibuy helps agents query Shenzhen Shuibei jewelry wholesale listings, estimate gold product prices from live Shanghai gold quotes, and report current precious-metal and brand gold prices.
 
-## Publisher: <br>
-[plabzzxx](https://clawhub.ai/user/plabzzxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[plabzzxx](https://clawhub.ai/user/plabzzxx)
 
-## Use Case: <br>
-External users and agents use this skill to look up Shenzhen Shuibei jewelry supply, compare concise product facts, and estimate gold item prices from current market quotes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Jewelry searches and price lookups are remote queries, so private names, phone numbers, addresses, confidential budgets, supplier secrets, or private business terms could leave the local environment. <br>
-Mitigation: Use generic product and price terms unless the user is comfortable sending the query to the remote service. <br>
-Risk: Jewelry product details and price estimates are for reference and may differ from merchant inventory, specifications, or live transaction prices. <br>
-Mitigation: Confirm specifications, availability, and final pricing with the merchant or current market quote before relying on the result. <br>
+## Use Case:
 
+External users and shopping assistants use this skill to look up Shuibei jewelry products, compare wholesale listing facts, estimate gold product reference prices, and check current gold or precious-metal quotes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/plabzzxx/aibuy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with concise product listings, linked media anchors, quote summaries, and occasional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results default to five items, cap a single page at ten items, and present image or video URLs as Markdown text links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.6 (source: server release metadata) <br>
+Risk: Jewelry search terms are sent to the skill's remote inventory service and quote requests are sent to a live metal-pricing service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use product-focused search terms and avoid including personal, confidential, or payment information in queries.
+
+Risk: Product, merchant, and metal-price outputs may be incomplete, stale, or inaccurate.
+
+Mitigation: Present results as reference information and tell users to confirm specifications, availability, and final prices with the merchant before purchase.
+
+## Reference(s):
+
+- [Aibuy ClawHub skill page](https://clawhub.ai/plabzzxx/skills/aibuy)
+- [Aibuy publisher profile](https://clawhub.ai/user/plabzzxx)
+- [Jewelry inventory query API](https://wjxggrbemnbuhpmbyyws.supabase.co/functions/v1/query-jewelry)
+- [Gold quote API](https://api-gold.aibuy.cloud/quoteCenter/realTime.htm)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown product summaries and price guidance, with optional JSON returned by bundled helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Product search defaults to 5 results and should not exceed 10 results per request.]
+
+## Skill Version(s):
+
+1.7.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

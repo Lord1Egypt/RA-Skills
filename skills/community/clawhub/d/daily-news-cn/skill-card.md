@@ -1,40 +1,57 @@
-## Description: <br>
-每日新闻自动采集与报告生成，使用双引擎交叉验证、官方媒体优先和 900 秒超时容错生成中文日报。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每日新闻自动采集与报告生成。双引擎交叉验证 + 官方媒体优先 + 900秒超时容错。v2.3 稳定运行版（2026-06-01）。
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Chinese-language users and agent operators use this skill to generate a dated daily public-news report covering politics, finance, AI, technology, consumer electronics, and home appliances. It returns the full Markdown report and saves a dated local copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs multiple web searches and may collect or summarize public news that later changes or proves inaccurate. <br>
-Mitigation: Review cited sources and credibility markers before relying on the report for decisions. <br>
-Risk: The skill saves dated report copies locally under memory/, which may retain news content longer than intended. <br>
-Mitigation: Disable, rotate, or delete the local archive when retention is not desired. <br>
+## Use Case:
 
+External users and developers use this skill to generate Chinese daily news reports across politics, finance, AI, technology, consumer electronics, and home appliances. The skill searches current web sources, cross-checks numeric claims, returns a full Markdown report, and saves a local archive copy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/daily-news-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files] <br>
-**Output Format:** [Markdown report with categorized numbered news items, source labels, and credibility markers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Also saves a dated copy under memory/daily_news_YYYY-MM-DD.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: frontmatter, package.json, server release evidence) <br>
+Risk: The skill performs multiple web searches and may include inaccurate, stale, or unverified source material in a daily report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated report before relying on it, especially items marked as single-source or lower-confidence.
+
+Risk: The skill can save persistent local archives of daily reports.
+
+Mitigation: Delete memory/daily_news_*.md files or disable archiving if historical report retention is not desired.
+
+Risk: The bundled cron example can trigger recurring automated news collection.
+
+Mitigation: Review or disable the cron schedule before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/daily-news-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with source and confidence annotations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Also saves an archive copy under memory/daily_news_YYYY-MM-DD.md when executed.]
+
+## Skill Version(s):
+
+2.3.0 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-HackerRank Work helps agents search and read HackerRank Work tests and candidates through the OOMOL hackerrank_work connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use HackerRank Work to search and read data through a connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Recruiting, talent, and engineering teams use this skill to list HackerRank Work tests and retrieve or search candidate records from a connected OOMOL account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retrieve HackerRank Work test and candidate data, which may include sensitive hiring information. <br>
-Mitigation: Install only for users intended to access HackerRank Work data and review returned content before sharing it. <br>
-Risk: First-time setup includes optional remote installer commands for the OOMOL CLI. <br>
-Mitigation: Prefer the official OOMOL installation guide or inspect the installer before running curl-to-bash or PowerShell commands. <br>
+## Use Case:
 
+Recruiting teams use this skill to search HackerRank Work and read test and candidate information from their connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-hackerrank-work) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI installation guide](https://cli.oomol.com/install-guide.md) <br>
-- [HackerRank Work homepage](https://www.hackerrank.com/work) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only connector actions; live connector schemas are checked before action payloads are built.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and frontmatter) <br>
+Risk: The setup instructions can run unverified downloaded code without separate approval, and remote installer contents and server-side behavior are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall a verified CLI release, require separate approval for installation, and consider disabling managed skill synchronization.
+
+Risk: Connecting HackerRank Work gives OOMOL access to recruiting data.
+
+Mitigation: Review the account and data access before connecting, and use an account approved for this workflow.
+
+## Reference(s):
+
+- [HackerRank Work](https://www.hackerrank.com/work)
+- [HackerRank Work API documentation](https://www.hackerrank.com/work/apidocs)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell command and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-oriented test and candidate lookup actions]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter; server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

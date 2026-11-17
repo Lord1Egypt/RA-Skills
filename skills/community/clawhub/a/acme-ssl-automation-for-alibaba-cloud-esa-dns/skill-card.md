@@ -1,45 +1,59 @@
-## Description: <br>
-Automatically issues and renews HTTPS certificates with Alibaba Cloud ESA DNS and acme.sh, including wildcard domains and optional Nginx installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically issue or renew HTTPS certificates using Alibaba Cloud ESA DNS and acme.sh, including apex and wildcard domains, with optional installation to Nginx.
 
-## Publisher: <br>
-[dogeow](https://clawhub.ai/user/dogeow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dogeow](https://clawhub.ai/user/dogeow)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to issue or renew certificates for domains hosted on Alibaba Cloud ESA DNS, especially wildcard and apex DNS-01 validation where records must be written to ESA rather than AliDNS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow requires cloud credentials that can change DNS records. <br>
-Mitigation: Use a least-privilege RAM sub-account, prefer short-lived STS credentials, and restrict AccessKey use by IP allowlist. <br>
-Risk: Optional certificate installation, reload commands, A-record changes, and cron automation can affect a production host. <br>
-Mitigation: Review any --ensure-a-record, --install-cert, --reload-cmd, and cron settings before running. <br>
-Risk: Cron renewal can store credentials on the host. <br>
-Mitigation: Remove or rotate stored cron credentials when the host is shared or decommissioned. <br>
+## Use Case:
 
+Developers and site operators use this skill to issue or renew acme.sh certificates for domains hosted on Alibaba Cloud ESA DNS, especially apex plus wildcard certificates. It also helps prepare DNS-01 validation records and optional Nginx certificate installation or renewal automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dogeow/acme-ssl-automation-for-alibaba-cloud-esa-dns) <br>
-- [Publisher profile: dogeow](https://clawhub.ai/user/dogeow) <br>
-- [Project homepage](https://github.com/dogeow/ali-esa-acme-ssl-skill) <br>
-- [acme.sh](https://github.com/acmesh-official/acme.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that update ESA DNS records, run acme.sh, install certificates, or configure cron renewal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: release evidence) <br>
+Risk: The root cron installer can create high-impact local and credential exposure risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on a controlled Linux host after reviewing the installer, and prefer copying the Python script and i18n files into a root-owned directory before enabling cron.
+
+Risk: Long-lived Alibaba Cloud credentials may be exposed through local files, shell history, logs, or chat transcripts.
+
+Mitigation: Use least-privilege RAM or short-lived STS credentials limited to the specific ESA zones, avoid primary account keys, and rotate any credentials that may have been exposed.
+
+Risk: A broad or user-controlled reload command can increase the impact of automated renewal runs.
+
+Mitigation: Limit reload behavior to a fixed Nginx validation and reload command on a controlled host.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dogeow/skills/acme-ssl-automation-for-alibaba-cloud-esa-dns)
+- [Project homepage](https://github.com/dogeow/ali-esa-acme-ssl-skill)
+- [acme.sh official project](https://github.com/acmesh-official/acme.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and Nginx configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include domain-specific certificate issuance commands, environment variable setup, DNS propagation checks, and Nginx certificate path guidance.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

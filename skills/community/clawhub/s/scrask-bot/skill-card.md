@@ -1,46 +1,64 @@
-## Description: <br>
-Scrask parses screenshots from chat surfaces for events and tasks, emits structured intent JSON, and lets the OpenClaw agent route calendar or task creation to installed destination skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When a user sends a screenshot through a connected chat surface, Scrask parses it for events and tasks with a configured vision LLM, emits structured intent, and lets the agent delegate calendar or task creation to installed destination skills.
 
-## Publisher: <br>
-[devsandip](https://clawhub.ai/user/devsandip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devsandip](https://clawhub.ai/user/devsandip)
 
-## Use Case: <br>
-External users and developers use Scrask to turn screenshots of invitations, deadlines, bookings, and chat messages into calendar events or task-list items through their configured OpenClaw assistant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshots may contain private chats, credentials, medical, financial, or work-confidential information and can be sent to the configured vision provider or optional Gemini/Claude providers. <br>
-Mitigation: Review provider configuration before installing, avoid sensitive screenshots, and limit use to screenshots the user is comfortable sending to the configured model provider. <br>
-Risk: Calendar or task entries may be created without a final approval step when extracted fields pass the configured confidence thresholds. <br>
-Mitigation: Require explicit confirmation before dispatching writes, tune confidence thresholds conservatively, or disable broad implicit routing for high-sensitivity users. <br>
+## Use Case:
 
+External OpenClaw users use Scrask to turn screenshots from chat, email, social posts, or invitations into calendar events, reminders, or tasks. The skill is useful when users want the agent to extract actionable items and route them to their installed calendar or task tools with targeted clarification when confidence is low.
 
-## Reference(s): <br>
-- [Scrask ClawHub Release](https://clawhub.ai/devsandip/scrask-bot) <br>
-- [Publisher Profile](https://clawhub.ai/user/devsandip) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Architecture Overview](artifact/docs/ARCHITECTURE_OVERVIEW.md) <br>
-- [Decision Flow](artifact/docs/decision-flow.md) <br>
-- [Example Walkthrough](artifact/docs/example-walkthrough.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown/chat text, JSON intent objects, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Parser output includes confidence scores, clarification prompts, routing destinations, and summary text for the agent to relay.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact SKILL.md and CHANGELOG report 4.3.0) <br>
+Risk: Screenshots may be processed by configured external vision providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when users are comfortable sending screenshot content to the configured provider, and redact sensitive screenshots before use.
+
+Risk: Clearly extracted items may be added to calendar or task tools without a final preview approval.
+
+Mitigation: Enable a confirmation-before-write policy or require user confirmation for automatic destination-skill dispatch.
+
+Risk: Broad invocation aliases may cause the skill to run on screenshots the user did not intend to process.
+
+Mitigation: Narrow trigger aliases or prefer explicit invocation in deployments with sensitive chat surfaces.
+
+Risk: Unpinned dependencies can change parser behavior or supply-chain exposure over time.
+
+Mitigation: Pin and review Python dependencies before deployment.
+
+## Reference(s):
+
+- [Scrask ClawHub listing](https://clawhub.ai/devsandip/skills/scrask-bot)
+- [Architecture overview](docs/ARCHITECTURE_OVERVIEW.md)
+- [Decision flow](docs/decision-flow.md)
+- [Example walkthrough](docs/example-walkthrough.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Chat-facing text plus structured JSON intent and shell-command examples in documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Parser output includes confidence scores, clarification prompts, destination routing hints, and summary text for the agent to relay.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter declares 4.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

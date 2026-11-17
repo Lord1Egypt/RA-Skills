@@ -1,38 +1,48 @@
-## Description: <br>
-Master Go 1.21+ with modern patterns, advanced concurrency, performance optimization, and production-ready microservices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master Go 1.21+ with modern patterns, advanced concurrency, performance optimization, and production-ready microservices.
 
-## Publisher: <br>
-[bboydanced](https://clawhub.ai/user/bboydanced) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bboydanced](https://clawhub.ai/user/bboydanced)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill for Go services, CLIs, microservices, concurrency design, performance optimization, architecture review, testing, deployment, and production readiness guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated Go changes could affect credentials, deployment, databases, or production infrastructure.
+
+Mitigation: Review generated changes before applying them, with extra scrutiny for secrets, infrastructure configuration, database access, and production deployment paths.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill for Go services, CLIs, microservices, concurrency design, performance optimization, production readiness reviews, testing, and deployment guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown with code blocks and command examples]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bboydanced/golang-pro) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/bboydanced) <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [May include Go implementation guidance, review findings, tests, profiling steps, deployment notes, and security recommendations.]
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; review proposed code and commands before applying them to repositories.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+1.0.0 (source: server release evidence)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

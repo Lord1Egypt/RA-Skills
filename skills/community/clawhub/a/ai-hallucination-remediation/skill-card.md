@@ -1,42 +1,59 @@
-## Description: <br>
-Routes hallucination-correction, remediation, incident-response, and post-failure-review requests to the canonical VeriClaw install and reference pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes hallucination correction, hallucination remediation, AI error recovery, and post-failure review intents to the canonical VeriClaw install and trust-signal surfaces.
 
-## Publisher: <br>
-[sheygoodbai](https://clawhub.ai/user/sheygoodbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheygoodbai](https://clawhub.ai/user/sheygoodbai)
 
-## Use Case: <br>
-External users, developers, and reviewers use this alias to recognize hallucination-remediation intent and route it to the canonical VeriClaw workflow instead of treating the alias as the main install surface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake this routing alias for the canonical VeriClaw package and rely on it without reviewing the main package. <br>
-Mitigation: Review and install the canonical VeriClaw package separately before relying on it for verification or remediation work. <br>
+## Use Case:
 
+Developers and external users use this alias when their task is framed as hallucination correction, hallucination remediation, AI error recovery, or post-failure review and they need to route to the canonical VeriClaw skill. It helps keep installs, stars, comments, and review links pointed at the official VeriClaw surfaces.
 
-## Reference(s): <br>
-- [Current ClawHub skill page](https://clawhub.ai/sheygoodbai/ai-hallucination-remediation) <br>
-- [Canonical VeriClaw ClawHub page](https://clawhub.ai/sheygoodbai/vericlaw) <br>
-- [VeriClaw hallucination remediation page](https://sheygoodbai.github.io/vericlaw/ai-hallucination-remediation/) <br>
-- [VeriClaw review kit](https://sheygoodbai.github.io/vericlaw/review-kit/) <br>
-- [Search intents](references/search-intents.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes users to canonical VeriClaw resources; does not run code or access user data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Users may install or leave public feedback on the alias instead of the canonical VeriClaw page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the target VeriClaw package or page before running `clawhub install vericlaw` or leaving public feedback.
+
+Risk: Broad hallucination-remediation routing can distract from the user's original recovery task.
+
+Mitigation: Confirm the agent is answering the original recovery task and not only providing referral links.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sheygoodbai/skills/ai-hallucination-remediation)
+- [VeriClaw ClawHub homepage](https://clawhub.ai/sheygoodbai/vericlaw)
+- [VeriClaw hallucination remediation route](https://sheygoodbai.github.io/vericlaw/ai-hallucination-remediation/)
+- [VeriClaw AI agent incident response route](https://sheygoodbai.github.io/vericlaw/ai-agent-incident-response/)
+- [VeriClaw AI error recovery route](https://sheygoodbai.github.io/vericlaw/ai-error-recovery/)
+- [VeriClaw review kit](https://sheygoodbai.github.io/vericlaw/review-kit/)
+- [Search intents](references/search-intents.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with inline shell command references and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; routes users to canonical VeriClaw pages and install commands.]
+
+## Skill Version(s):
+
+0.1.7 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

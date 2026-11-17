@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn7by8h785dz2hyxe3r7f3vesh81399h",
-  "slug": "xiaodi-multi-team-switcher",
+  "name": "xiaodi-multi-team-switcher",
   "version": "1.0.1",
-  "publishedAt": 1774970407758
+  "author": "xiaodi",
+  "homepage": "https://clawhub.ai/skills/xiaodi-multi-team-switcher",
+  "description": "Multi-Team Switcher System - 4 teams + Smart Switcher, 26 professional Agent roles",
+  "category": "multi-agent",
+  "keywords": ["multi-agent", "team", "finance", "ecommerce", "media", "office"],
+  "license": "MIT",
+  "openclaw": {
+    "minVersion": "3.28",
+    "requires": {
+      "tools": ["web_search", "web_fetch", "memory_search", "exec", "browser"]
+    }
+  }
 }

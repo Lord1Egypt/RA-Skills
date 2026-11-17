@@ -1,41 +1,54 @@
-## Description: <br>
-Zapier Recipe helps agents design Zapier and Make automation recipes, including triggers, action chains, conditions, templates, and efficiency analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users browse and draft Zapier-style automation recipes for triggers, actions, chains, conditions, templates, and efficiency analysis.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to draft practical Zapier or Make workflow recipes and command-line recipe templates for common automation scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Command arguments and local helper history may expose private workflow notes or secrets. <br>
-Mitigation: Do not pass secrets or private notes as command arguments; set ZAPIER_RECIPE_DIR to a controlled location when command history should be isolated or deleted. <br>
-Risk: The bundled documentation and helper scripts expose somewhat different command sets. <br>
-Mitigation: Treat generated recipes and command output as drafting aids, and review the specific helper help text before relying on a command in a workflow. <br>
+## Use Case:
 
+External users and developers use this skill to generate practical Zapier or Make automation recipe ideas, including trigger-action flows, conditional logic, templates, and efficiency suggestions.
 
-## Reference(s): <br>
-- [Zapier Recipe on ClawHub](https://clawhub.ai/bytesagain-lab/zapier-recipe) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Text and Markdown with command-line examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helper output is written to stdout; one helper can also write local command history under the configured data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and frontmatter) <br>
+Risk: The bundled script logs command usage locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local history logging behavior before installation and avoid entering sensitive values into commands.
+
+Risk: Documented commands do not reliably match implemented behavior.
+
+Mitigation: Run help commands and test expected flows in a non-production workspace before relying on generated automation guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/zapier-recipe)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and stdout text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some bundled command examples may not match implemented script behavior.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

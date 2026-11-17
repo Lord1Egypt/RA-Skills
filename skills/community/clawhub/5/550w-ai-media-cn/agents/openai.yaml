@@ -1,0 +1,5 @@
+interface:
+  display_name: "550W AI去字幕去水印"
+  short_description: "图片去文字去水印、本地视频去字幕及画面水印，支持平台分享链接解析"
+  icon_small: "./assets/logo.png"
+  icon_large: "./assets/logo.png"

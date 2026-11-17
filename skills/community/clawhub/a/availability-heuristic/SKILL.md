@@ -1,6 +1,6 @@
 ---
 name: availability-heuristic
-description: "Activate when: user says 'we keep hearing about X so it must be common', 'that just happened so it's risky', 'the news is full of stories about this', 'I've seen this a lot lately so it's probable', or is making a risk/frequency estimate driven by memorable examples rather than data. Do NOT activate when: the available evidence is genuinely representative of the reference class; the decision warrants heavy precautionary weight on rare but catastrophic/irreversible risks."
+description: "Activate when: user says 'we keep hearing about X so it must be common', 'that just happened so it's risky', 'the news is full of stories about this', 'I've seen this a lot lately so it's probable', or is making a risk/frequency estimate driven by memorable examples rather than data. Do NOT activate when: the available evidence is genuinely representative of the reference class; the decision warrants heavy precautionary weight on rare but catastrophic/irreversible risks. More: deciqai.com/c/availability-heuristic"
 ---
 
 # Availability Heuristic
@@ -9,7 +9,7 @@ description: "Activate when: user says 'we keep hearing about X so it must be co
 
 The **availability heuristic**: people estimate probability by how easily examples come to mind. Vivid, recent, and media-reported events are systematically overestimated; routine, statistical events are underestimated. Five triggers: **recency**, **vividness**, **media coverage**, **personal experience**, **imaginability**. Structural fix: **reference-class forecasting** — answer from base-rate data, not memory.
 
-Composes with [`bayesian-reasoning`](../bayesian-reasoning/SKILL.md), [`probabilistic-thinking`](../probabilistic-thinking/SKILL.md), [`anchoring`](../anchoring/SKILL.md), [`survivorship-bias`](../survivorship-bias/SKILL.md), [`framing-effect`](../framing-effect/SKILL.md).
+Composes with `bayesian-reasoning`, `probabilistic-thinking`, `anchoring`, `survivorship-bias`, `framing-effect`.
 
 ## When to Use
 
@@ -18,6 +18,7 @@ Composes with [`bayesian-reasoning`](../bayesian-reasoning/SKILL.md), [`probabil
 - Team is preparing for the last disaster rather than the most likely next one
 - Investment or resource-allocation decision follows a recent dramatic event
 - Medical, legal, or technical decision made by anecdote rather than reference class
+- AI capex, AI valuations, or AI-adoption/displacement estimates are driven by a viral demo, a dramatic layoff headline, or a safety scare rather than deployment and labor base rates
 
 **Not when:** available evidence is a representative sample; decision warrants precautionary weight on rare catastrophic risks; no reference-class data exists.
 
@@ -63,7 +64,9 @@ Corrected estimate: <value> | Adjustment rationale:
 Decision implications: | Calibration log:
 ```
 
-*→ Method in Action: [Tversky and Kahneman's 1973 Availability Studies](examples/tversky-and-kahnemans-1973-availability-studies.md)*
+*→ Method in Action: [Tversky and Kahneman's 1973 Availability Studies](examples/tversky-and-kahnemans-1973-availability-studies.md) · [Post-9/11 Flight Avoidance and Road Fatalities](examples/post-9-11-flight-avoidance-and-road-fatalities.md)*
+
+*→ 2026 lens: [Vivid AI Stories vs. Base Rates (2023–2026)](examples/ai-vivid-stories-vs-base-rates-2023-2026.md)*
 
 ## Pack: Availability Bias Patterns
 
@@ -117,4 +120,6 @@ Decision implications: | Calibration log:
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/availability-heuristic** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/availability-heuristic.json*

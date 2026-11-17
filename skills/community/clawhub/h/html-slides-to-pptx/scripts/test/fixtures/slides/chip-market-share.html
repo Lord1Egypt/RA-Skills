@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>芯片——谁控制了AI的心脏</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #FFFFFF;
+      font-family: 'Microsoft YaHei', '微软雅黑', sans-serif;
+    }
+    .slide-container {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background-color: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container" data-screen-label="07 芯片主导">
+    
+    <!-- 顶部红色装饰条 -->
+    <div data-object="true" data-object-type="shape" style="position: absolute; left: 0; top: 0; width: 1920px; height: 16px; background-color: #E1251B; z-index: 5;"></div>
+    
+    <!-- 标题文本框 -->
+    <div data-object="true" data-object-type="textbox" style="position: absolute; left: 120px; top: 60px; width: 1680px; height: 100px; z-index: 10;">
+      <h2 style="margin: 0; font-size: 38px; font-weight: 900; color: #111111; line-height: 1.3;">
+        AI芯片格局：英伟达垄断全球约 80% 份额——这个惊人的集中度在商业史上极为罕见
+      </h2>
+    </div>
+    
+    <!-- 左栏：份额饼图及核心数据 (Think灰卡) -->
+    <div data-object="true" data-object-type="textbox" style="position: absolute; left: 120px; top: 190px; width: 800px; height: 720px; background-color: #F8F9FA; border: 1px solid #E5E5E5; border-left: 6px solid #111111; padding: 45px; box-sizing: border-box; z-index: 10; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <h3 style="margin: 0 0 35px 0; font-size: 26px; font-weight: bold; color: #111111; text-align: center; width: 100%;">
+        全球 AI 计算芯片市场总份额归属 (按年化收入)
+      </h3>
+      
+      <!-- 纯CSS饼图 -->
+      <div style="position: relative; width: 340px; height: 340px; border-radius: 50%; background: conic-gradient(#E1251B 0% 80%, #555555 80% 86%, #CCCCCC 86% 100%); margin-bottom: 30px;">
+        <!-- 内部镂空白圆，形成高逼格环图 -->
+        <div style="position: absolute; left: 50px; top: 50px; width: 240px; height: 240px; background-color: #F8F9FA; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <span style="font-size: 48px; font-weight: 900; color: #E1251B;">~80%</span>
+          <span style="font-size: 16px; font-weight: bold; color: #555555;">NVIDIA 绝对统治</span>
+        </div>
+      </div>
+      
+      <!-- 图例 -->
+      <div style="display: flex; justify-content: space-around; width: 100%; font-size: 16px; font-weight: bold;">
+        <span><span style="color:#E1251B; font-size:20px; margin-right:5px;">■</span>NVIDIA (~80%)</span>
+        <span><span style="color:#555555; font-size:20px; margin-right:5px;">■</span>AMD (~6%)</span>
+        <span><span style="color:#CCCCCC; font-size:20px; margin-right:5px;">■</span>公有云自研及其他 (~14%)</span>
+      </div>
+    </div>
+    
+    <!-- 右栏：统治细节与So What深度解析 (Lenovo红卡) -->
+    <div data-object="true" data-object-type="textbox" style="position: absolute; left: 960px; top: 190px; width: 840px; height: 720px; background-color: #F8F9FA; border: 1px solid #E5E5E5; border-top: 6px solid #E1251B; padding: 45px; box-sizing: border-box; z-index: 10;">
+      <h3 style="margin: 0 0 35px 0; font-size: 28px; font-weight: bold; color: #E1251B;">
+        训练市场的“窒息式垄断”
+      </h3>
+      
+      <div style="font-size: 20px; line-height: 1.7; color: #333333; font-weight: normal;">
+        <p style="margin: 0 0 25px 0;">
+          在企业高管最关心的**“大模型前沿初始训练 (Training) 市场”**中，英伟达的实际出货与算力营收占比甚至**接近并超过 90%** [Silicon Analysts](https://futurumgroup.com/insights/ai-capex-2026-the-690b-infrastructure-sprint/)。
+        </p>
+        
+        <p style="margin: 0 0 25px 0; border-left: 4px solid #111111; padding-left: 15px; font-style: italic; color: #555555;">
+          “这意味着：虽然全球有很多云计算厂商、也有很多自称能开发模型的科学家。但在底层的硬物理大宗材料上，几乎所有买方不得不排队将几百亿、几千亿美金，源源不断地交到黄仁勋的手里。”
+        </p>
+        
+        <p style="margin: 0 0 25px 0;">
+          英伟达 FY2026 最新披露的数据显示，其单季度数据中心净收入就已逼近 **681 亿美元** [NVIDIA Investor Relations](https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2025)。这种史无前例的极度集中，给下游商业变现戴上了沉重的物理成本手铐。
+        </p>
+      </div>
+      
+      <!-- 最终So What -->
+      <div style="background-color: #FFFFFF; border-left: 4px solid #111111; padding: 25px; font-size: 18px; line-height: 1.5; color: #555555; margin-top: 30px;">
+        <strong>So What 核心结论</strong>：高管在评估企业 AI 预算时，必须做好长期支付高昂“英伟达溢价”的心理准备。在这种绝对垄断下，将模型训练轻量化、尽可能使用开源生态和低成本推理芯片进行部署，是控制企业财务风险的战略核心。
+      </div>
+    </div>
+    
+    <!-- 底部来源备注 -->
+    <div data-object="true" data-object-type="textbox" style="position: absolute; left: 120px; top: 945px; width: 1680px; height: 40px; z-index: 10;">
+      <p style="margin: 0; font-size: 16px; color: #888888; text-align: center;">
+        数据与份额核实来源：[NVIDIA](https://www.nvidia.com) 官方 FY2026 Q4 年报季审计财报 [NVIDIA Investor Relations](https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2025) · 硅谷分析师机构 Silicon Analysts (2026年Q1发布)
+      </p>
+    </div>
+    
+  </div>
+</body>
+</html>

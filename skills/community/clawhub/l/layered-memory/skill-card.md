@@ -1,46 +1,66 @@
-## Description: <br>
-Layered Memory manages large memory files with L0 summaries, L1 overviews, and L2 full content so agents can generate, search, and load memory with lower token use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Layered Memory helps OpenClaw users manage large local memory files through L0/L1/L2 summaries so agents can search, read, and maintain memory with lower token use.
 
-## Publisher: <br>
-[yingdadaa](https://clawhub.ai/user/yingdadaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yingdadaa](https://clawhub.ai/user/yingdadaa)
 
-## Use Case: <br>
-Developers and agent users use this skill to maintain layered summaries of local memory files, search memory at lower token cost, and load full details only when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist conversation memory under the user's home directory, which may include sensitive content. <br>
-Mitigation: Use it only in environments where local memory storage is acceptable, avoid saving secrets or credentials, and review retained memory files regularly. <br>
-Risk: The bootstrap hook can inject reminders that steer the agent toward saving or loading memory. <br>
-Mitigation: Review hook behavior before enabling it and prefer manual confirmation for memory-saving workflows until retention controls are tightened. <br>
-Risk: The skill calls hardcoded ~/clawd/scripts paths through shell commands. <br>
-Mitigation: Inspect the referenced scripts and use dry-run or manual commands before enabling automated generation, maintenance, or save workflows. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to generate, maintain, read, and search layered memory files for long-running agent work while reducing token consumption. The OpenClaw hook can remind agents about memory-saving thresholds during session bootstrap.
 
-## Reference(s): <br>
-- [Layered Memory ClawHub release](https://clawhub.ai/yingdadaa/layered-memory) <br>
-- [Integration Guide](INTEGRATION.md) <br>
-- [Auto Trigger Guide](AUTO-TRIGGER.md) <br>
-- [Anti-Duplicate Guide](ANTI-DUPLICATE.md) <br>
-- [Auto Save Guide](AUTO-SAVE-GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local memory layer files under ~/clawd when commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata, package.json, changelog released 2026-03-13) <br>
+Risk: The OpenClaw hook can affect agent startup behavior by injecting memory-management reminders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review hooks/openclaw/handler.js before enabling the hook and enable it only in workspaces where memory reminders are desired.
+
+Risk: The skill can persist conversation-derived notes in local memory files, which may include sensitive chat content.
+
+Mitigation: Avoid unattended auto-save for sensitive conversations, review saved memory files, and use manual save or dry-run workflows when content sensitivity is uncertain.
+
+Risk: Several CLI paths invoke helper scripts under ~/clawd/scripts that are not bundled in the artifact.
+
+Mitigation: Verify or bundle the required helper scripts before running the CLI, and run the skill only in a trusted local environment.
+
+Risk: Scheduled OpenClaw or cron-style checks can repeatedly inspect active sessions.
+
+Mitigation: Install scheduled jobs only when recurring session checks are acceptable, and tune thresholds, cooldowns, or disable scheduling when not needed.
+
+## Reference(s):
+
+- [README](README.md)
+- [Integration Guide](INTEGRATION.md)
+- [Auto Trigger Guide](AUTO-TRIGGER.md)
+- [Auto Save Guide](AUTO-SAVE-GUIDE.md)
+- [Anti-Duplicate Design](ANTI-DUPLICATE.md)
+- [Configuration Example](config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files, plain-text CLI output, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates L0 abstract and L1 overview files from L2 memory content; can also return read, search, stats, maintenance, archive, summary, and dedupe command output.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release evidence, package.json, CHANGELOG, released 2026-03-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn71h18yq7ayrcsa39r02ht4dd82pyc9",
-  "slug": "mech-design-query",
+  "name": "mech-design-query",
   "version": "1.2.0",
-  "publishedAt": 1774378591339
+  "description": "机械设计规范查询助手 - 查询公差配合、表面粗糙度、材料选用、轴承选用、键连接规范，含完整速查表和计算公式，附电机应用场景",
+  "tags": ["机械设计", "公差配合", "表面粗糙度", "材料选用", "轴承", "键连接", "电机结构", "GB标准"],
+  "author": "永杰团队",
+  "license": "MIT",
+  "language": "中文"
 }

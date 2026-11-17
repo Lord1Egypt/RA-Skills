@@ -1,37 +1,53 @@
-## Description: <br>
-Workspace Manager helps ClawPad users set up, organize, and maintain workspaces by creating domain-specific folder structures, spaces, welcome documents, and reusable document templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workspace Manager helps ClawPad users set up and maintain organized workspaces, project folders, and starter Markdown documents.
 
-## Publisher: <br>
-[falaky87](https://clawhub.ai/user/falaky87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[falaky87](https://clawhub.ai/user/falaky87)
 
-## Use Case: <br>
-ClawPad users use this skill during onboarding, project setup, and workspace maintenance to create organized spaces and starter Markdown documents for engineering, research, business, creative, or personal knowledge workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can add persistent folder structure and Markdown documents to an existing ClawPad workspace. <br>
-Mitigation: Ask the agent to preview the exact folders and files before creating them, especially in an important or already-organized workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/falaky87/workspace-manager) <br>
+## Use Case:
 
+ClawPad users use this skill to create domain-specific workspace structures, welcome documents, and reusable project, tracking, and runbook templates. It also helps users decide where new work belongs and apply consistent naming conventions.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown documents, YAML-style workspace configuration files, folder structures, and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create persistent folders, _space.yml files, and starter documents in the user's ClawPad workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad organization requests may cause the agent to propose folder or document changes that do not match the user's intended workspace structure.
+
+Mitigation: Review proposed structure changes before allowing creation, especially after requests such as "new project" or "help me organize."
+
+Risk: Starter Markdown documents may include placeholder project details, owners, dates, or risks.
+
+Mitigation: Replace placeholders and verify generated plans, tracking documents, and runbooks before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/falaky87/skills/workspace-manager)
+- [Publisher profile](https://clawhub.ai/user/falaky87)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown instructions, folder and space configuration snippets, and starter document templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose creating folders, _space.yml files, and Markdown documents for the user's ClawPad workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

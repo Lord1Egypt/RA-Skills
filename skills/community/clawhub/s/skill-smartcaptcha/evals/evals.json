@@ -1,0 +1,201 @@
+{
+  "skill_name": "skill-smartcaptcha",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "У меня простой сайт на HTML + Node.js (Express). Нужно добавить Yandex SmartCaptcha на форму регистрации, чтобы боты не спамили. Капча в облаке уже создана, ключи есть. Сделай интеграцию целиком: виджет на странице и проверку на сервере.",
+      "expected_output": "Виджет подключён автоматическим методом (captcha.js + div.smart-captcha с data-sitekey), на сервере POST-обработчик проверяет токен через https://smartcaptcha.yandexcloud.net/validate (x-www-form-urlencoded: secret/token/ip), решение принимается по полю status, реализован fail-open при недоступности сервиса, ключ сервера берётся из переменной окружения, а не из кода.",
+      "files": [],
+      "assertions": [
+        "Страница подключает скрипт https://smartcaptcha.yandexcloud.net/captcha.js и содержит виджет (div class=\"smart-captcha\" с data-sitekey либо вызов window.smartCaptcha.render)",
+        "Сервер проверяет токен POST-запросом на https://smartcaptcha.yandexcloud.net/validate с параметрами secret, token, ip в формате x-www-form-urlencoded",
+        "Решение о пропуске принимается строго по полю status ответа (\"ok\"), а не по message или HTTP-коду",
+        "Реализован fail-open: при HTTP != 200, таймауте или сетевой ошибке пользователь пропускается (с логированием)",
+        "Ключ сервера берётся из переменной окружения, а не захардкожен в коде",
+        "Код синтаксически корректен (node --check проходит для JS-файлов)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "На лендинге (React + Vite) хочу невидимую капчу: без кнопки «Я не робот», проверка только при отправке формы заявки. Покажи, как это сделать с Yandex SmartCaptcha.",
+      "expected_output": "Использован пакет @yandex/smart-captcha с компонентом InvisibleSmartCaptcha, проверка запускается по submit, токен передаётся на бэкенд, обработаны onSuccess/onTokenExpired, упомянуто обязательное уведомление об обработке данных (shield) и что его нельзя просто скрывать.",
+      "files": [],
+      "assertions": [
+        "Используется официальный пакет @yandex/smart-captcha с компонентом InvisibleSmartCaptcha (не самописная обёртка над script-тегом)",
+        "Проверка капчи запускается по отправке формы (submit), а не при загрузке страницы",
+        "Токен после получения отправляется на бэкенд, и упомянута обязательная серверная проверка через /validate",
+        "Обработаны колбэки onSuccess и onTokenExpired (или эквивалентная обработка устаревания токена)",
+        "Упомянуто уведомление об обработке данных (shield): его нельзя просто скрыть без альтернативного уведомления (hideShield)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Бэкенд на Flask. С фронта прилетает smart-token от Yandex SmartCaptcha. Напиши проверку токена: если капча не пройдена — 403, если сервис капчи лежит — пропускать пользователя, но писать в лог.",
+      "expected_output": "Функция проверки по образцу из документации: POST на https://smartcaptcha.yandexcloud.net/validate с secret/token/ip, таймаут, при HTTP != 200 — fail-open с логированием, решение по status == \"ok\", секрет из переменной окружения.",
+      "files": [],
+      "assertions": [
+        "Проверка выполняется POST-запросом на https://smartcaptcha.yandexcloud.net/validate с secret, token, ip и явным таймаутом",
+        "При status != \"ok\" (капча не пройдена) возвращается HTTP 403",
+        "При недоступности сервиса (HTTP != 200, таймаут, сетевая ошибка) пользователь пропускается, событие пишется в лог (fail-open)",
+        "Секрет берётся из переменной окружения",
+        "Код синтаксически корректен (python -m py_compile проходит)"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Создай капчу Yandex SmartCaptcha через Terraform: сложность высокая, основное задание — слайдер, дополнительное — силуэты, домены my-shop.ru и www.my-shop.ru. Потом объясни, как достать ключи для деплоя.",
+      "expected_output": "Ресурс yandex_smartcaptcha_captcha с корректными полями (complexity, pre_check_type, challenge_type, allowed_sites), команды terraform validate/plan/apply, получение ключей: sitekey из атрибутов ресурса/консоли, ключ сервера через yc smartcaptcha captcha get-secret-key или консоль.",
+      "files": [],
+      "assertions": [
+        "Используется ресурс yandex_smartcaptcha_captcha",
+        "Заданы complexity = \"HARD\", pre_check_type = \"SLIDER\", challenge_type = \"SILHOUETTES\" (именно эти значения enum)",
+        "allowed_sites содержит my-shop.ru и www.my-shop.ru",
+        "Объяснено получение ключа клиента (client_key: атрибут ресурса/data-источника или консоль)",
+        "Объяснено получение ключа сервера (yc smartcaptcha captcha get-secret-key, REST getSecretKey или консоль) и что его нельзя хранить в открытом виде в репозитории"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "В Android-приложении (Kotlin) нужна проверка капчей Яндекса перед отправкой формы обратной связи. Как встроить SmartCaptcha в приложение?",
+      "expected_output": "Интеграция через WebView: HTML-страница с виджетом (параметр webview), настройка WebView (javaScriptEnabled, addJavascriptInterface), JavaScript Interface для передачи токена в нативный код, напоминание что токен проверяется на бэкенде через /validate.",
+      "files": [],
+      "assertions": [
+        "Интеграция через WebView с HTML-страницей, содержащей виджет SmartCaptcha (не выдуманный нативный SDK)",
+        "WebView настроен: javaScriptEnabled = true и addJavascriptInterface с классом-мостом (@JavascriptInterface)",
+        "При отрисовке виджета для WebView используется параметр webview: true (или готовая страница smartcaptcha.yandexcloud.net)",
+        "Токен передаётся из страницы в нативный Kotlin-код через JavaScript-мост",
+        "Упомянуто, что токен обязан проверяться на бэкенде через /validate (не в приложении с ключом сервера)"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "SmartCaptcha на проде перестала отображаться на сайте, в консоли браузера ошибки. Неделю назад переехали на новый домен. Помоги разобраться.",
+      "expected_output": "Диагностика начинается с валидации домена: новый домен должен быть в списке хостов капчи (Список хостов в настройках), проверка sitekey, загрузки captcha.js, упомянуты события network-error/javascript-error и ограниченный режим как возможные причины, даны шаги проверки и исправления.",
+      "files": [],
+      "assertions": [
+        "Первой/приоритетной причиной названо отсутствие нового домена в списке хостов капчи (валидация домена) — с учётом контекста переезда",
+        "Даны конкретные шаги исправления: добавить новый домен в список хостов в настройках капчи (консоль/CLI/Terraform)",
+        "Упомянута проверка sitekey и загрузки скрипта captcha.js",
+        "Упомянуты дополнительные причины: события javascript-error/network-error и/или ограниченный режим (биллинг)",
+        "Ответ структурирован как диагностика: причины в порядке вероятности с шагами проверки"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "хочу понять сколько будет стоить smartcaptcha если у нас примерно 300к проверок форм в месяц, и есть ли лимиты по rps",
+      "expected_output": "Расчёт по правилам тарификации: платны только валидные запросы /validate со status=ok, первые 10 000 в месяц бесплатно, ступенчатые цены (до/свыше 100 000), пример расчёта для 300 000, указание сверить с актуальным прайс-листом, лимиты и квоты сервиса из документации.",
+      "files": [],
+      "assertions": [
+        "Указано, что тарифицируются только валидные запросы /validate со status=ok (не показы виджета)",
+        "Учтён бесплатный порог 10 000 запросов в месяц",
+        "Расчёт ступенчатый: до 100 000 — 109,8 ₽ за 1000, свыше — 76,86 ₽ за 1000; итог для 300 000 ≈ 25 254 ₽ (90×109,8 + 200×76,86)",
+        "Есть оговорка, что цены нужно сверять с актуальным прайс-листом",
+        "Про лимиты: приведены квоты сервиса (например, 10 капч на облако) и указано, что жёсткие лимиты/RPS в документации не определены"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Сайт на чистом PHP (без фреймворков, обычный хостинг с Apache). Добавь Yandex SmartCaptcha на форму обратной связи: страница с виджетом и PHP-обработчик, который проверяет токен на сервере и принимает сообщение только после успешной проверки.",
+      "expected_output": "См. assertions; кейс php-classic-form (группа php).",
+      "files": [],
+      "assertions": [
+        "Страница подключает https://smartcaptcha.yandexcloud.net/captcha.js и содержит виджет (div.smart-captcha с data-sitekey либо render)",
+        "Обработчик проверяет токен POST-запросом на https://smartcaptcha.yandexcloud.net/validate (secret, token, ip; x-www-form-urlencoded) с явным таймаутом",
+        "Решение принимается по полю status == \"ok\"; при HTTP != 200/сетевой ошибке — fail-open с логированием",
+        "Ключ сервера берётся из переменной окружения (getenv), не захардкожен",
+        "php -l проходит для всех .php файлов"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Напиши переиспользуемый PHP-класс SmartCaptchaGuard для проверки smart-token в любом PHP-проекте: при непройденной капче — ответ 403, при недоступности сервиса капчи — пропуск с записью в лог, секрет из переменной окружения. Приложи юнит-тесты (без реальной сети).",
+      "expected_output": "См. assertions; кейс php-guard-helper (группа php).",
+      "files": [],
+      "assertions": [
+        "Класс переиспользуем: явный API проверки токена, 403 при status failed, fail-open + лог при сбоях сервиса",
+        "Явный таймаут HTTP-запроса к /validate",
+        "Решение только по полю status; message используется лишь для логов",
+        "Юнит-тесты приложены, работают без сети (моки/стабы) и синтаксически валидны",
+        "php -l проходит для всех .php файлов"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "PHP-лендинг: нужна невидимая капча (без кнопки «Я не робот») при отправке формы заявки через AJAX (fetch). PHP-обработчик отвечает JSON. Сделай целиком: страницу и бэкенд.",
+      "expected_output": "См. assertions; кейс php-invisible-ajax (группа php).",
+      "files": [],
+      "assertions": [
+        "Невидимая капча подключена расширенным методом: render с invisible: true и запуск проверки execute() по submit формы",
+        "Учтено уведомление об обработке данных (shieldPosition / предупреждение про hideShield)",
+        "Токен уходит AJAX-запросом; PHP-обработчик возвращает JSON и отдаёт 403 при непройденной капче",
+        "Серверная проверка через /validate: решение по status, fail-open с логированием при сбоях, таймаут",
+        "php -l проходит для всех .php файлов"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "На AMPHP v3 (amphp/http-server) сделай неблокирующий HTTP-сервер: страница с формой и виджетом Yandex SmartCaptcha и POST-обработчик, который асинхронно проверяет smart-token через amphp/http-client (без блокирующего cURL). 403 при провале, fail-open при недоступности сервиса.",
+      "expected_output": "См. assertions; кейс amphp-http-server-form (группа amphp).",
+      "files": [],
+      "assertions": [
+        "Используются amphp/http-server v3 (SocketHttpServer) и amphp/http-client для запроса к /validate; блокирующего I/O (curl_exec, file_get_contents) в event loop нет",
+        "Проверка токена: POST x-www-form-urlencoded (secret, token, ip), решение по status, fail-open с логом, таймаут через Cancellation",
+        "Тело HTTP-ответа корректно буферизуется (buffer())",
+        "declare(strict_types=1) во всех PHP-файлах и JSON_THROW_ON_ERROR во всех json_encode/json_decode",
+        "Страница содержит виджет (captcha.js + div.smart-captcha или render); composer.json с зависимостями приложен"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Напиши Middleware для amphp/http-server (AMPHP v3), который до передачи запроса обработчику асинхронно проверяет smart-token Yandex SmartCaptcha: 403 при провале, fail-open с логированием при сбоях сервиса, таймаут около 1 секунды. Покажи, как подключить middleware к серверу.",
+      "expected_output": "См. assertions; кейс amphp-middleware (группа amphp).",
+      "files": [],
+      "assertions": [
+        "Реализован интерфейс Amp\\Http\\Server\\Middleware с асинхронной проверкой токена до вызова RequestHandler",
+        "403 при непройденной капче; fail-open + лог при сбоях; таймаут ~1 с через TimeoutCancellation или эквивалент",
+        "Нет блокирующего I/O внутри event loop; тело ответа /validate буферизуется",
+        "declare(strict_types=1) и JSON_THROW_ON_ERROR везде",
+        "Есть рабочий пример подключения middleware (stackMiddleware/stack) и composer.json"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Есть синхронная проверка токена Yandex SmartCaptcha на cURL — файл C:/Users/Rekryt/Desktop/skill-smartcaptcha/dist/templates/validate.php (только читать). Перепиши её для использования внутри Revolt event loop (AMPHP v3): неблокирующий amphp/http-client, та же семантика (таймаут 1 с, fail-open, решение по status). Объясни, что и почему изменилось.",
+      "expected_output": "См. assertions; кейс amphp-migrate-blocking (группа amphp).",
+      "files": [],
+      "assertions": [
+        "Итоговая версия использует amphp/http-client и пригодна для вызова внутри event loop; блокирующий cURL устранён",
+        "Семантика сохранена: параметры secret/token/ip (x-www-form-urlencoded), решение по status, fail-open при HTTP != 200/сетевых ошибках, таймаут 1 с через Cancellation",
+        "Есть внятное объяснение отличий: что блокировало и как Fibers/Future решают проблему",
+        "declare(strict_types=1); тело ответа буферизуется; JSON-разбор с JSON_THROW_ON_ERROR",
+        "php -l проходит для всех .php файлов"
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "SPA на Vue 3 (Composition API, Vite, TypeScript). Добавь Yandex SmartCaptcha в форму регистрации: виджет в компоненте формы с корректным жизненным циклом (монтирование/размонтирование, роутинг SPA), токен уходит на бэкенд вместе с формой. Покажи законченное решение.",
+      "expected_output": "См. assertions; кейс vue-composition-form (группа vue).",
+      "files": [],
+      "assertions": [
+        "Виджет подключён расширенным методом: скрипт с ?render=onload (или динамическая загрузка), render вызывается когда скрипт загружен и компонент смонтирован (onMounted), с проверкой существования window.smartCaptcha",
+        "Виджет уничтожается при размонтировании компонента (destroy в onUnmounted/onBeforeUnmount) — критично для SPA",
+        "Токен получают через callback/getResponse и отправляют на бэкенд; упомянута обязательная серверная проверка /validate",
+        "Виджет сбрасывается (reset) после использования токена — токен одноразовый",
+        "Контейнер имеет заранее заданную высоту 100px (или объяснён скачок вёрстки)"
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "Лендинг на Vue 3 (Composition API): нужна невидимая капча Yandex SmartCaptcha — без кнопки «Я не робот», проверка запускается при отправке формы заявки. Сделай компонент формы целиком.",
+      "expected_output": "См. assertions; кейс vue-invisible-form (группа vue).",
+      "files": [],
+      "assertions": [
+        "Невидимая капча: render с invisible: true, проверка запускается вызовом execute() по submit формы",
+        "Учтено уведомление об обработке данных (shieldPosition; предупреждение, что hideShield требует альтернативного уведомления)",
+        "Обработаны события/колбэки ошибок и устаревания токена (token-expired, network-error и/или javascript-error)",
+        "destroy при размонтировании компонента; повторная отправка корректна (reset или повторный execute)",
+        "Токен уходит на бэкенд; упомянута обязательная серверная проверка /validate"
+      ]
+    }
+  ]
+}

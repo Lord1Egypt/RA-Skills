@@ -1,41 +1,59 @@
-## Description: <br>
-Find Reddit threads ranking on Google Page 1 for your keywords. AI drafts contextual replies that naturally mention your product. Copy, paste, post. Free organic traffic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find Reddit threads ranking on Google Page 1 for keywords and draft contextual replies that naturally mention a product.
 
-## Publisher: <br>
-[aces1up](https://clawhub.ai/user/aces1up) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aces1up](https://clawhub.ai/user/aces1up)
 
-## Use Case: <br>
-External marketing and growth users use this skill to find Reddit threads related to a product, rank opportunities, and draft contextual replies for manual review and posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and uses a RedditRank API key and may send email, product details, Reddit thread URLs, and draft requests to an external service. <br>
-Mitigation: Keep the local config file private, avoid shared or logged terminals during setup, and rotate the API key if it is exposed. <br>
-Risk: Generated Reddit replies may be promotional, inaccurate, or poorly matched to subreddit expectations. <br>
-Mitigation: Review and edit every draft before posting, and follow Reddit and subreddit rules. <br>
+## Use Case:
 
+External marketers, founders, and growth teams use RedditRank to discover Reddit threads that may drive organic traffic and to draft replies for user review before posting.
 
-## Reference(s): <br>
-- [RedditRank homepage](https://clawagents.dev/redditrank) <br>
-- [RedditRank ClawHub page](https://clawhub.ai/aces1up/redditrank) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, ranked thread lists, and draft reply text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDDITRANK_API_KEY and sends product details, Reddit thread URLs, and draft requests to the RedditRank API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release metadata) <br>
+Risk: The skill sends email, API key, product descriptions, URLs, and Reddit thread context to the RedditRank service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with data the user is comfortable sharing with that service, and review product and thread inputs before submitting requests.
+
+Risk: API keys may be stored or displayed insecurely during setup or local use.
+
+Mitigation: Run setup as a normal user, avoid sharing setup logs or screenshots, prefer environment variables where appropriate, and restrict permissions on ~/.redditrank/config.json.
+
+Risk: Generated replies could be used for covert or spammy Reddit promotion.
+
+Mitigation: Require user review before posting, never auto-post to Reddit, and encourage transparent replies that add genuine value to the conversation.
+
+## Reference(s):
+
+- [RedditRank ClawHub Listing](https://clawhub.ai/aces1up/skills/redditrank)
+- [RedditRank Homepage](https://clawagents.dev/redditrank)
+- [RedditRank API Base](https://clawagents.dev/reddit-rank/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries with thread metadata, reply drafts, and inline setup or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the RedditRank service and may include product descriptions, URLs, Reddit thread context, fit scores, QA scores, usage status, and daily-limit guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

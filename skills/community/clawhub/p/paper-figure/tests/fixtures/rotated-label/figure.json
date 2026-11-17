@@ -1,0 +1,15 @@
+{
+  "name": "bar-rotated",
+  "caption": "图 3  三组处理的均值（误差棒 SD，n = 5）。",
+  "type": "chart",
+  "journal": "plos",
+  "width": "single",
+  "width_mm": 66.8,
+  "height_mm": 60,
+  "dpi": 300,
+  "font": "Arial",
+  "font_size_pt": 8,
+  "palette": "okabe-ito",
+  "panels": [],
+  "notes": "回归样例：y 轴标题用 rotate(-90) 竖排。检查器如果按横排算字宽，就会误报文字溢出画布。"
+}

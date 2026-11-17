@@ -2,7 +2,7 @@
 
 Sift produces journals per spec-ocas-journal.md v1.3. Write a journal at the end of every run. Runs missing journals are invalid.
 
-Journal path: `~/openclaw/journals/ocas-sift/YYYY-MM-DD/{run_id}.json`
+Journal path: `{agent_root}/commons/journals/ocas-sift/YYYY-MM-DD/{run_id}.json`
 
 Written atomically (write to `.tmp`, then rename). Never edit after writing.
 
@@ -27,8 +27,8 @@ Sift emits Observation Journals for search and extraction runs, and Research Jou
     "journal_type": "observation"
   },
   "runtime": {
-    "model": "claude-sonnet-4-6",
-    "provider": "anthropic",
+    "model": "<model-id-from-profile-config>",
+    "provider": "<provider-from-profile-config>",
     "temperature": null,
     "context_window": "200k",
     "node": "macstudio-01",

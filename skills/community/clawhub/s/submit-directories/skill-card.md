@@ -1,42 +1,56 @@
-## Description: <br>
-Use when submitting a product to AI/startup directories - covers the full pipeline from collecting product info, analyzing directories, discovering forms, auto-submitting, handling captchas/OAuth/GitHub PRs, and tracking progress in checkpoint.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when submitting a product to AI/startup directories, covering the full pipeline from collecting product info, analyzing directories, discovering forms, auto-submitting, handling captchas/OAuth/GitHub PRs, and tracking progress.
 
-## Publisher: <br>
-[man0l](https://clawhub.ai/user/man0l) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[man0l](https://clawhub.ai/user/man0l)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, founders, and launch teams use this skill to submit a product or startup to AI and startup directories. It helps collect product details, classify directory targets, discover forms, automate eligible submissions, coordinate manual captcha/OAuth/GitHub PR steps, and track progress.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can send credentials, contact details, product details, and uploaded assets to many third-party websites.
+
+Mitigation: Use only throwaway credentials and non-sensitive submission assets, run in an isolated project with no unrelated secrets, and require manual confirmation before password entry, OAuth, uploads, or final submission.
+
+Risk: Some directory targets may be untrusted or use plaintext HTTP.
+
+Mitigation: Review the directory list and generated submission_plan.json before execution, and remove or disable plaintext HTTP and untrusted targets.
+
+Risk: Generated tracking files can contain contact or product submission data.
+
+Mitigation: Inspect submission_plan.json and checkpoint.md before sharing or committing; keep passwords out of saved files and strip personal data before publishing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, founders, and growth teams use this skill to prepare product submission data, analyze AI and startup directories, discover submission forms, automate eligible submissions, and track manual follow-up work. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON files, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send product details, contact information, optional throwaway credentials, and images to many third-party directory sites. <br>
-Mitigation: Review and prune directories.json before running submissions, use throwaway contact details and credentials, and avoid real personal passwords. <br>
-Risk: The broad directory list can include unintended, low-quality, blocked, paid, or login-gated destinations. <br>
-Mitigation: Require manual approval per destination or category and review the generated submission plan before form discovery or submission. <br>
-Risk: OAuth flows, captcha handling, and GitHub PR creation require user-controlled actions outside simple form filling. <br>
-Mitigation: Treat OAuth login, captcha solving, and GitHub PR creation as explicit confirmation points before proceeding. <br>
+**Output Format:** [Markdown instructions with shell commands and generated local JSON/Markdown tracking files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/man0l/submit-directories) <br>
+**Other Properties Related to Output:** [May create or update submission_plan.json, checkpoint.md, browser_check_list.json, and per-directory status data; credentials are configured through environment variables.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Markdown] <br>
-**Output Format:** [Markdown instructions with shell commands and generated JSON/checkpoint files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates local submission planning, directory analysis, form discovery, submission status, and progress-tracking files.] <br>
+0.1.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

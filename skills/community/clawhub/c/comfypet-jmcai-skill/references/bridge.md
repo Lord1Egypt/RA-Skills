@@ -28,11 +28,13 @@
 
 - `path`: 本地绝对路径；对远程 bridge 场景，skill 会自动下载到当前机器后重写为当前机器路径
 - `download_path`: bridge 侧输出下载接口相对路径
-- `media_kind`: `image | video | file`
+- `media_kind`: `image | video | audio | file`
 - `file_name`: 输出文件名
 - `mime_type`: 可选 MIME 类型
 - `warnings`: 可选；远程任务已成功，但自动下载输出到当前机器失败时返回
 
 对图片 workflow，优先读取 `media_kind == "image"` 的项。  
 对视频 workflow，优先读取 `media_kind == "video"` 的项。  
-对音频或其他文件输出 workflow，优先读取 `media_kind == "file"` 的项。
+对音频输出 workflow，优先读取 `media_kind == "audio"` 的项；对其他文件输出 workflow，读取 `media_kind == "file"` 的项。
+
+`warnings` 的每一项可以是字符串，也可以是结构化对象。结构化告警通常包含 `field`、`stage`、`message`，并可能包含 `nodeId`、`summary`；应把这些字段原样展示给用户。

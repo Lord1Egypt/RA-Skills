@@ -1,40 +1,58 @@
-## Description: <br>
-Bridge Docker containers to host localhost services via socat so containerized AI agents can reach services bound to 127.0.0.1. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bridge Docker containers to host localhost services via socat.
 
-## Publisher: <br>
-[superWorldSavior](https://clawhub.ai/user/superWorldSavior) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[superworldsavior](https://clawhub.ai/user/superworldsavior)
 
-## Use Case: <br>
-Developers and administrators use this skill to plan and manually apply Docker-to-host networking bridges for containerized agents and services that need access to localhost-bound host services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill guides persistent Linux host-networking changes through systemd services and UFW rules. <br>
-Mitigation: Review the generated service, Docker bridge interface, bind address, port, and firewall rule before running commands, and remove the service and rule when they are no longer needed. <br>
-Risk: A wrong bind address, bridge interface, or firewall rule could expose a localhost service beyond the intended container network. <br>
-Mitigation: Confirm the service binds only to the Docker gateway IP, verify the rule is scoped to the expected bridge interface, and test that the port is not reachable from the public network. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [The Localhost Trap](https://casys.ai/blog/the-localhost-trap) <br>
-- [Docker packet filtering and firewalls](https://docs.docker.com/engine/network/packet-filtering-firewalls/) <br>
+## Use Case:
 
+Developers and administrators use this skill to let selected Docker containers reach host services bound to 127.0.0.1, such as AI gateways, MCP servers, Ollama, databases, or cache services.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires manual administrator review before any host networking changes are applied.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A persistent network bridge can expose a host-local service to containers beyond the intended scope.
+
+Mitigation: Use the skill only when an administrator intentionally wants one Docker network to reach one specific localhost service, and review the generated systemd unit before enabling it.
+
+Risk: An incorrect bind address or firewall rule can make the service reachable from places the administrator did not intend.
+
+Mitigation: Confirm the bridge IP, service port, and UFW interface rule before running commands, then test that the service is not publicly reachable.
+
+Risk: Forwarded services may become accessible without enough application-level protection.
+
+Mitigation: Confirm the target service has its own authentication or access controls before exposing it through the bridge.
+
+## Reference(s):
+
+- [Localhost Bridge on ClawHub](https://clawhub.ai/superworldsavior/skills/localhost-bridge)
+- [The Localhost Trap](https://casys.ai/blog/the-localhost-trap)
+- [Docker packet filtering and firewalls](https://docs.docker.com/engine/network/packet-filtering-firewalls/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are intended for manual administrator review before execution.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

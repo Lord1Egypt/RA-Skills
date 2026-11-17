@@ -1,42 +1,59 @@
-## Description: <br>
-Queries real-time weather for China mainland cities by resolving a city name to a CMA station ID and then fetching current conditions from CMA weather services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries current weather for mainland China cities using China Meteorological Administration station lookup and current-weather endpoints.
 
-## Publisher: <br>
-[fy39913](https://clawhub.ai/user/fy39913) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fy39913](https://clawhub.ai/user/fy39913)
 
-## Use Case: <br>
-Agents use this skill when a user asks for current weather, temperature, humidity, wind, visibility, or short travel and clothing advice for a China mainland city. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; weather lookups are limited to China mainland cities. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: City names from weather queries are sent to CMA weather services. <br>
-Mitigation: Avoid unusually precise or sensitive location details when that information should not be shared externally. <br>
-Risk: Weather results depend on CMA endpoint availability and coverage for China mainland cities. <br>
-Mitigation: Tell users when a city is unsupported or weather data cannot be fetched, and suggest retrying later or using a nearby supported city. <br>
+## Use Case:
 
+External users and agents use this skill to answer questions about current weather, temperature, humidity, wind, visibility, forecasts, and lightweight travel or clothing advice for mainland China cities.
 
-## Reference(s): <br>
-- [CMA station lookup endpoint](https://data.cma.cn/kbweb/home/getStationID) <br>
-- [CMA current weather endpoint example](https://weather.cma.cn/api/now/58349) <br>
-- [ClawHub skill page](https://clawhub.ai/fy39913/cn-weather-skill) <br>
+### Deployment Geography for Use:
 
+Mainland China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown weather report with current conditions and optional short travel or clothing advice.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses city-name input, skips missing weather fields, and reports lookup or API failures without requiring credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Shell-based examples can be unsafe if a user-provided city name is inserted directly into a command or JSON body.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate city names, safely serialize JSON request bodies, and prefer a structured HTTP client over direct shell interpolation.
+
+Risk: The skill is narrowly scoped to mainland China weather and may not return appropriate results for unsupported regions.
+
+Mitigation: Invoke it only for mainland China weather requests; for Hong Kong, Macau, Taiwan, or international cities, state that the skill is unsupported and use another source.
+
+Risk: Incorrect or unexpected station IDs could lead to wrong weather results.
+
+Mitigation: Validate returned station IDs and choose the best city match before querying current-weather data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fy39913/skills/cn-weather-skill)
+- [China Meteorological Administration station lookup endpoint](https://data.cma.cn/kbweb/home/getStationID)
+- [China Meteorological Administration current weather endpoint](https://weather.cma.cn/api/now/<station-id>)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown weather summary with optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a human-facing current-weather summary and may include brief travel or clothing advice when supported by returned weather data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

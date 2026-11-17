@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn7fx805jr7zaqah2jqnn2naz98214cz",
-  "slug": "video-sourcing-agent",
+  "name": "video-sourcing",
   "version": "1.0.0",
-  "publishedAt": 1772254144779
+  "description": "Run the Video Sourcing Agent with deterministic, concise chat UX for /video_sourcing using a pinned self-bootstrap runtime.",
+  "author": "Memories.ai Labs",
+  "tags": ["latest", "video", "sourcing", "youtube", "tiktok"],
+  "homepage": "https://github.com/Memories-ai-labs/video-sourcing-agent",
+  "requires": {
+    "bins": ["git", "uv"],
+    "env": ["GOOGLE_API_KEY", "YOUTUBE_API_KEY"]
+  },
+  "os": ["macos", "linux"]
 }

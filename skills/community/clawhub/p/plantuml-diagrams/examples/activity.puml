@@ -1,0 +1,9 @@
+@startuml
+start
+if (登录?) then (yes)
+  :进入主页;
+else (no)
+  :显示错误;
+endif
+stop
+@enduml

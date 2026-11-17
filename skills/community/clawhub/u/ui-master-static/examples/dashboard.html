@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Shell Example — ui-master-static</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="dashboard__sidebar" id="sidebar" data-open="false">
+      <div class="sidebar__brand">Product</div>
+      <nav class="sidebar__nav" aria-label="Primary">
+        <a class="sidebar__link sidebar__link--active" href="#overview">Overview</a>
+        <a class="sidebar__link" href="#team">Team</a>
+        <a class="sidebar__link" href="#settings">Settings</a>
+      </nav>
+    </aside>
+
+    <header class="dashboard__topbar">
+      <button class="topbar__sidebar-toggle" type="button" aria-expanded="false" aria-controls="sidebar">
+        <span class="sr-only">Toggle sidebar</span>
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+          <path d="M2 4h14M2 9h14M2 14h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </button>
+      <input class="topbar__search" type="search" placeholder="Search..." aria-label="Search" />
+      <div class="topbar__user" aria-hidden="true">JD</div>
+    </header>
+
+    <main class="dashboard__main">
+      <h1 class="page-title">Overview</h1>
+
+      <section class="card-grid" aria-label="Metrics">
+        <div class="card">
+          <p class="card__label">Active users</p>
+          <p class="card__value">2,481</p>
+        </div>
+        <div class="card">
+          <p class="card__label">Revenue</p>
+          <p class="card__value">$18,204</p>
+        </div>
+        <div class="card">
+          <p class="card__label">Churn</p>
+          <p class="card__value">1.2%</p>
+        </div>
+      </section>
+
+      <!-- Empty state pattern — always design this, not just the populated case -->
+      <section class="empty-state">
+        <p class="empty-state__title">No recent activity</p>
+        <p class="empty-state__body">Actions from your team will show up here once they happen.</p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById("sidebar");
+    const toggle = document.querySelector(".topbar__sidebar-toggle");
+    toggle.addEventListener("click", () => {
+      const isOpen = sidebar.dataset.open === "true";
+      sidebar.dataset.open = String(!isOpen);
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+    });
+  </script>
+</body>
+</html>

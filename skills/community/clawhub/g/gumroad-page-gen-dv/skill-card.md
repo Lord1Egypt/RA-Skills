@@ -1,43 +1,55 @@
-## Description: <br>
-Generates Gumroad product page content from a simple spec. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates ready-to-publish Gumroad product page markdown from structured product specifications.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-External creators, developers, and launch teams use this skill to draft Gumroad sales page Markdown from structured product specifications, including category-specific disclaimer text for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Referenced generator scripts and disclaimer templates are not included in this package and were not scanned as executable artifacts. <br>
-Mitigation: Review and scan any supplied script or template files before using them in an agent workflow. <br>
-Risk: Generated product-page disclaimers may not satisfy legal or regulatory requirements for financial, investment, health, or other regulated products. <br>
-Mitigation: Treat generated disclaimers as drafts and obtain legal review before publishing a product page. <br>
-Risk: The artifact states that structured product inputs are required and that the skill does not create product features or benefits from scratch. <br>
-Mitigation: Provide accurate product specifications and review the generated sales copy for completeness and truthfulness before publication. <br>
+## Use Case:
 
+External creators and developers use this skill to turn structured product details into Gumroad sales page copy in Markdown, including category-based disclaimers for financial, investment, health, or general products.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/clawdiri-ai/gumroad-page-gen-dv) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/clawdiri-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Guidance] <br>
-**Output Format:** [Natural language and Markdown with example shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Gumroad sales page copy from a supplied product specification; generated disclaimers require human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Generated public product copy for financial, investment, tax, or health products can omit required context or create misleading regulated claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review regulated claims before publication and do not suppress disclaimers for financial, investment, tax, or health product pages.
+
+Risk: The artifact appears incomplete because the README references scripts and template data that are not present in the shipped files.
+
+Mitigation: Verify required implementation files before relying on command examples, and treat this release as a copy-generation aid unless the missing files are supplied.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawdiri-ai/skills/gumroad-page-gen-dv)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown sales page copy generated from structured product input]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include category-specific disclaimer text; regulated financial, investment, tax, or health claims still require review before publication.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

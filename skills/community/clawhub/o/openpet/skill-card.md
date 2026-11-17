@@ -1,43 +1,61 @@
-## Description: <br>
-OpenPet is a Tamagotchi-style virtual pet skill for chat platforms where each user can create, care for, and evolve a pet through chat commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenPet is a Tamagotchi-style virtual pet game for chat platforms where each user has a persistent pet that responds to care commands and evolves over time.
 
-## Publisher: <br>
-[mdealiaga](https://clawhub.ai/user/mdealiaga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mdealiaga](https://clawhub.ai/user/mdealiaga)
 
-## Use Case: <br>
-External chat users and community operators use OpenPet to add a lightweight virtual pet game to OpenClaw channels, with per-user pets that respond to care commands and evolve over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores per-user pet records locally, including platform and user identifiers. <br>
-Mitigation: Operators should document where pet records are stored, how users can delete their records, and how retention is handled. <br>
-Risk: The scheduled decay and reminder behavior can send proactive alerts to users. <br>
-Mitigation: Operators should disclose reminder behavior before deployment and provide an opt-out path for proactive pet alerts. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to add a persistent virtual pet game to chat platforms such as Discord, WhatsApp, and Telegram. It supports per-user pets, care commands, scheduled stat decay, alerts, and evolution over time.
 
-## Reference(s): <br>
-- [OpenPet release page](https://clawhub.ai/mdealiaga/openpet) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Configuration reference](references/config.json) <br>
-- [Sprites reference](references/sprites.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown and chat-response text with JSON configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces chat command responses, pet status displays, setup guidance for local pet records, and scheduled decay behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill keeps per-user pet files that include platform identifiers and owner metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit access to the pet data directory, disclose what is stored, and provide a way to delete a user's pet data.
+
+Risk: The scheduled decay task may continue running and send proactive chat alerts after installation.
+
+Mitigation: Provide controls to pause or remove the cron job and let users opt out of proactive alerts.
+
+Risk: The security review marks the release as suspicious because background behavior and user controls need review.
+
+Mitigation: Install a pinned release only after reviewing the background task, alert behavior, and data deletion controls.
+
+## Reference(s):
+
+- [OpenPet README](README.md)
+- [OpenPet configuration](references/config.json)
+- [OpenPet sprites](references/sprites.json)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [ClawHub OpenPet skill page](https://clawhub.ai/mdealiaga/skills/openpet)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown chat responses with JSON state data and scheduled task guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains per-user pet state and may send proactive chat alerts from a recurring decay task.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

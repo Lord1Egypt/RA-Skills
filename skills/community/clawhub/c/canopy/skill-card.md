@@ -1,50 +1,64 @@
-## Description: <br>
-Canopy lets AI agents make policy-gated USD payments on Base, pay x402 or MPP paywalled APIs, and discover paid services while enforcing spend caps, allowlists, approval thresholds, and human approval for higher-risk payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Canopy lets AI agents make policy-gated USD payments on Base, pay paywalled APIs through x402 or MPP, discover paid services, check budgets, and route higher-risk payments through human approval.
 
-## Publisher: <br>
-[atifazam](https://clawhub.ai/user/atifazam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atifazam](https://clawhub.ai/user/atifazam)
 
-## Use Case: <br>
-Developers and organizations use Canopy to let an agent spend from a Canopy treasury through an MCP server while applying per-agent payment policies. It is intended for agents that need to send USD payments, check paywalled API offers, discover paid services, or manage explicit human approval flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent can initiate real payments through a Canopy treasury wallet. <br>
-Mitigation: Install the skill only for agents that intentionally need treasury access, and configure least-privileged Canopy agents with tight spend caps and allowlists. <br>
-Risk: Approval tools can authorize pending payments if used without clear user intent. <br>
-Mitigation: Require explicit human approval, show the recipient and amount before approval, and never auto-approve on the user's behalf. <br>
-Risk: The MCP server requires sensitive Canopy credentials. <br>
-Mitigation: Store CANOPY_API_KEY and CANOPY_AGENT_ID as secrets, verify the MCP URL and dashboard, and rotate or remove credentials when access is no longer needed. <br>
-Risk: Denied payments could be split into smaller transactions to bypass policy limits. <br>
-Mitigation: Do not chunk denied payments; surface the policy reason and direct the user to adjust the policy in the dashboard if appropriate. <br>
+## Use Case:
 
+Developers and operators use Canopy to connect AI agents to a policy-gated treasury wallet for organizational payments, paywalled API access, paid service discovery, budget checks, and approval workflows.
 
-## Reference(s): <br>
-- [Canopy ClawHub listing](https://clawhub.ai/atifazam/canopy) <br>
-- [Canopy homepage](https://www.trycanopy.ai) <br>
-- [Canopy MCP tools reference](https://www.trycanopy.ai/documentation/reference/mcp-tools) <br>
-- [Payment outcomes](https://www.trycanopy.ai/documentation/concepts/payment-outcomes) <br>
-- [Policies](https://www.trycanopy.ai/documentation/concepts/policies) <br>
-- [x402 protocol](https://www.trycanopy.ai/documentation/concepts/x402) <br>
-- [Connect MCP hosts](https://www.trycanopy.ai/documentation/connect/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CANOPY_API_KEY and CANOPY_AGENT_ID credentials for the Canopy MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: An agent connected to Canopy can move organizational funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when payment capability is intended, use the least-privileged Canopy agent, and configure strict spend caps and allowlists.
+
+Risk: A payment could be sent to the wrong recipient or for the wrong amount.
+
+Mitigation: Verify the recipient and amount before each payment, and use preview behavior when the amount is dynamic or untrusted.
+
+Risk: Pending approvals could be mishandled if an agent approves without explicit user intent.
+
+Mitigation: Do not auto-approve; call approval or denial tools only after a clear user instruction.
+
+## Reference(s):
+
+- [Canopy ClawHub Skill Page](https://clawhub.ai/atifazam/skills/canopy)
+- [Canopy Homepage](https://www.trycanopy.ai)
+- [Canopy Dashboard](https://www.trycanopy.ai/dashboard/agents)
+- [MCP Tools Reference](https://www.trycanopy.ai/documentation/reference/mcp-tools)
+- [Payment Outcomes](https://www.trycanopy.ai/documentation/concepts/payment-outcomes)
+- [Policies](https://www.trycanopy.ai/documentation/concepts/policies)
+- [x402 Protocol](https://www.trycanopy.ai/documentation/concepts/x402)
+- [Connect MCP Hosts](https://www.trycanopy.ai/documentation/connect/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Canopy account plus CANOPY_API_KEY and CANOPY_AGENT_ID; payment actions are policy-gated and may require human approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,61 @@
-## Description: <br>
-Discover Nexez agent pages, compare AI-ready offers, and safely hand off booking, checkout, or negotiation intent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user explicitly asks to discover, compare, shortlist, book, buy, or negotiate products or services through Nexez or the Nexez marketplace.
 
-## Publisher: <br>
-[nexez](https://clawhub.ai/user/nexez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexez](https://clawhub.ai/user/nexez)
 
-## Use Case: <br>
-External users and agents use this skill to discover and compare Nexez marketplace listings, shortlist business offers, and prepare booking, checkout, or negotiation handoffs with explicit approval before side effects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checkout, negotiation, contact sharing, payment, or booking handoffs can affect real businesses or purchases. <br>
-Mitigation: Use dry-run validation when possible and require explicit user approval before any real handoff or seller-facing action. <br>
-Risk: Marketplace listings may omit or change seller details, prices, availability, credentials, or refund terms. <br>
-Mitigation: Verify the seller, offer, price, contact details, and exact action before approving checkout, negotiation, payment, or contact sharing. <br>
+## Use Case:
 
+External users and agents use this skill to find, compare, shortlist, and initiate safe Nexez marketplace actions for products or services. It supports discovery, checkout, booking, and negotiation workflows while requiring approval before seller-facing or payment-related side effects.
 
-## Reference(s): <br>
-- [Nexez Homepage](https://nexez.ai) <br>
-- [Nexez Endpoint Contract](references/endpoint-contract.md) <br>
-- [Nexez Discovery Rubric](references/discovery-rubric.md) <br>
-- [Nexez Skill Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, API calls, Configuration] <br>
-**Output Format:** [Markdown recommendations with structured shortlist details and approval prompts; API request guidance when native tools are unavailable.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses NEXEZ_BASE_URL as an optional base URL override. Real checkout, negotiation, contact sharing, payment, or booking actions require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: An unrestricted NEXEZ_BASE_URL override could redirect checkout, negotiation, or contact details to an unintended endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing or using side-effecting flows, check that NEXEZ_BASE_URL is unset or points to the intended Nexez endpoint.
+
+Risk: Checkout, negotiation, contact sharing, payment handoff, or booking actions can create external commitments or expose buyer information.
+
+Mitigation: Use dry-run or validation tools when available and require explicit approval that names the business, offer, data being sent, destination, and exact action before proceeding.
+
+Risk: Listings may omit price, refund, availability, credential, or service-area details that are important for a safe decision.
+
+Mitigation: Disclose missing details, preserve hard user constraints, and pause or decline emergency, regulated, or high-risk flows when proof or safe handoff details are insufficient.
+
+## Reference(s):
+
+- [Nexez Agent Discovery Skill Page](https://clawhub.ai/nexez/skills/nexez-agent-discovery)
+- [Nexez Homepage](https://nexez.ai)
+- [Nexez Endpoint Contract](references/endpoint-contract.md)
+- [Nexez Discovery Rubric](references/discovery-rubric.md)
+- [Nexez Skill Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Concise Markdown recommendations with structured shortlist details, missing-information notes, and approval prompts before side effects.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use Nexez public endpoints or typed OpenClaw tools; validates checkout or negotiation with dry-run behavior when available.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

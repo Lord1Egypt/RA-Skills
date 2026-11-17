@@ -1,0 +1,24 @@
+name: word-formatter
+version: 1.0.0
+description: "咨询报告 Word 排版引擎 — 配置驱动、5 类交付物（财务尽调/法律尽调/风险评估/财税评估/财务分析）、极度克制黑/白/灰设计语言。自动封面布局、页眉双栏、Heading 1-6、三线表、强制去色、26 项合规校验。"
+category: document-processing
+author: jeffwooo
+tags:
+  - 排版
+  - Word
+  - 咨询报告
+  - 尽职调查
+  - 风险评估
+  - 财务分析
+  - 三线表
+  - 文档格式化
+triggers:
+  - 排版
+  - 规范排版
+  - 财务尽调排版
+  - 法律尽调排版
+  - 风险评估排版
+  - 财务分析排版
+  - 格式校验
+  - 插入图件
+license: MIT

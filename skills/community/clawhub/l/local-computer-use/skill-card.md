@@ -1,43 +1,57 @@
-## Description: <br>
-Intel Local Windows Computer Use helps an agent interpret Chinese or English requests to query or change supported Windows system state and settings through its local client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intel Local Windows Computer Use helps an agent use Chinese or English commands to query or change supported Windows system settings through a local Windows CLI.
 
-## Publisher: <br>
-[makejiang](https://clawhub.ai/user/makejiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[makejiang](https://clawhub.ai/user/makejiang)
 
-## Use Case: <br>
-External users and agent operators on supported Intel AIPC Windows systems use this skill to query or adjust local settings such as power, devices, display, shell appearance, apps, accounts, privacy, notifications, and localization. The skill is intended for local Windows use through its documented client rather than remote or arbitrary system administration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is security-classified as suspicious because it bundles under-disclosed native Windows code, broad local-system capabilities, and a persistent runtime. <br>
-Mitigation: Install only when the publisher is trusted, review the bundled artifacts before use, and limit execution to specific, intentional local Windows settings tasks. <br>
-Risk: The skill can modify local system, account, privacy, app, network, display, and power settings, and some actions may request administrator privileges. <br>
-Mitigation: Approve elevated prompts only for a requested change the user explicitly intends, and avoid using it for unsupported arbitrary PowerShell, registry, or remote-control tasks. <br>
-Risk: First run downloads models and creates persistent runtime files under %USERPROFILE%\.openvino that remain after the skill folder is removed. <br>
-Mitigation: Use the documented server shutdown command before uninstalling and manually remove %USERPROFILE%\.openvino when a fully clean removal is required. <br>
+## Use Case:
 
+External users and agents use this skill on supported Intel Windows systems to query system status and adjust power, device, display, shell, app, language, time, privacy, and notification settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/makejiang/local-computer-use) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/makejiang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands, Guidance] <br>
-**Output Format:** [JSON messages and concise text guidance, with Windows command examples for invoking the local client] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include success, result, and finished fields; some requests require continuation while models download or administrator privileges for specific system changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; artifact meta.json reports packaged runtime version 2.1.2) <br>
+Risk: The skill can change local Windows system settings and some actions may require Administrator privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for the documented supported categories, review the requested action before execution, and rely on normal Windows elevation prompts rather than bypassing permissions.
+
+Risk: The release packages native code, downloads models and binaries, and creates persistent runtime state under %USERPROFILE%\.openvino.
+
+Mitigation: Install only from a trusted publisher, validate downloaded components in the target environment, and remove %USERPROFILE%\.openvino when a clean uninstall is required.
+
+Risk: The security verdict is suspicious because the capability surface is broader than the documentation clearly discloses.
+
+Mitigation: Perform security review and sandboxed testing before broad deployment, especially on machines with sensitive user data or administrative access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/makejiang/skills/local-computer-use)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Windows shell commands and JSON response expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require repeated continuation commands while local models download on first run.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

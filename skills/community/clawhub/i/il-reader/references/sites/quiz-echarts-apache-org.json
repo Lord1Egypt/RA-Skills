@@ -1,0 +1,121 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-echarts-apache-org",
+  "status": "blocked",
+  "checked_at": "2026-10-09T09:08:00.397Z",
+  "entry": {
+    "url": "https://echarts.apache.org/zh/index.html",
+    "final_url": "https://echarts.apache.org/zh/index.html",
+    "title": "",
+    "status": "network_error",
+    "http_status": null,
+    "checked_at": "2026-10-09T09:08:00.397Z",
+    "identity": {
+      "declared_name": "ECharts",
+      "hostname": null,
+      "domain_matches": false
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [],
+  "recipes": [
+    {
+      "id": "quiz-echarts-apache-org:official-guidance",
+      "source_id": "quiz-echarts-apache-org",
+      "task_kind": "official-guidance",
+      "status": "blocked",
+      "parameters": [
+        "topic",
+        "official_publisher",
+        "version",
+        "target_statement"
+      ],
+      "instructions": [
+        "优先发布机构的当前原文/官方帮助，核查完整陈述及版本，不引用题库答案作为依据。"
+      ],
+      "transitions": {},
+      "entry_url": "https://echarts.apache.org/zh/index.html",
+      "controls": [],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "network_error",
+      "attempt": 1,
+      "detail": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://echarts.apache.org/zh/index.html\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "kind": "network_error",
+      "attempt": 2,
+      "detail": "page.goto: net::ERR_CONNECTION_TIMED_OUT at https://echarts.apache.org/zh/index.html\nCall log:\n\u001b[2m  - navigating to \"https://echarts.apache.org/zh/index.html\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "kind": "network_error",
+      "attempt": 3,
+      "detail": "page.goto: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://echarts.apache.org/zh/index.html\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-151"
+    ],
+    "example_ids": [
+      "KH-Q039"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:08:00.397Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": null,
+      "original_entry_snapshot": null,
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

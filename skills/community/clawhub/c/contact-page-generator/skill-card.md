@@ -1,39 +1,52 @@
-## Description: <br>
-When the user wants to create, optimize, or audit contact page and forms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to create, optimize, or audit contact page and forms.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and site teams use this skill to create, optimize, or audit contact pages and contact forms for lead capture, support, general inquiries, and related conversion workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad trigger phrases may activate the skill for general contact-information wording that is not actually a contact-page task.
+
+Mitigation: Confirm the user is asking for contact page, contact form, or inquiry-flow help before applying the full guidance.
+
+Risk: The skill may read local project context files for brand voice when those files exist.
+
+Mitigation: Review any local context before use and avoid placing sensitive information in brand-voice context files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, site builders, and content teams use this skill to plan, optimize, or audit contact pages and contact forms, including field structure, form copy, page layout, SEO metadata, and accessibility checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read `.claude/project-context.md` or `.cursor/project-context.md` to tailor contact page recommendations, which could expose sensitive project information if those files contain secrets or confidential details. <br>
-Mitigation: Before installing or invoking the skill, keep those project context files limited to non-sensitive brand and project guidance. <br>
+**Output Format:** [Markdown guidance with form structure, copy, page layout, SEO metadata, accessibility checklist, and implementation-ready snippets when requested]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/contact-page-generator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kostja94) <br>
+**Other Properties Related to Output:** [May use local project context files for brand voice when present.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured recommendations and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces contact page and form recommendations covering structure, copy, layout, SEO metadata, and accessibility.] <br>
+1.0.1 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

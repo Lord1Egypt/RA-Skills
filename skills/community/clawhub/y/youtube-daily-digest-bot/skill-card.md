@@ -1,45 +1,68 @@
-## Description: <br>
-A Python bot that monitors configured YouTube channels through RSS, summarizes new videos with Google Gemini using transcripts or audio fallback, and sends bilingual Chinese and English summaries to Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Python bot that monitors YouTube channels via RSS, summarizes new videos using Google Gemini AI with transcript extraction or audio fallback, and sends bilingual Chinese and English summaries to a Telegram chat daily.
 
-## Publisher: <br>
-[Inkiy](https://clawhub.ai/user/Inkiy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[inkiy](https://clawhub.ai/user/inkiy)
 
-## Use Case: <br>
-Developers and operators use this skill to run a daily YouTube monitoring workflow that detects new videos from selected channels, summarizes their content, and posts digest messages to a configured Telegram chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitored video transcripts or downloaded audio are sent to Google Gemini for summarization. <br>
-Mitigation: Install only when this external processing is acceptable for the selected channels, and avoid monitoring sensitive or private content. <br>
-Risk: Generated summaries are posted to the configured Telegram chat. <br>
-Mitigation: Restrict the bot token and chat ID to intended destinations and review channel configuration before long-running use. <br>
-Risk: The bot depends on API tokens and third-party Python packages for network operations. <br>
-Mitigation: Provide secrets through environment variables, keep them out of source files, and pin dependency versions before production deployment. <br>
-Risk: Audio fallback can leave downloaded media on local disk. <br>
-Mitigation: Periodically clear temporary audio files when retention is not required. <br>
+## Use Case:
 
+External users, developers, and automation operators use this skill to monitor selected YouTube channels, summarize newly published videos with Gemini, and deliver bilingual daily digests to Telegram.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Inkiy/youtube-daily-digest-bot) <br>
-- [YouTube channel ID helper referenced by the skill](https://commentpicker.com/youtube-channel-id.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration] <br>
-**Output Format:** [Telegram Markdown messages, log text, and local JSON state for processed video IDs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries are chunked for Telegram message length limits and include bilingual Chinese and English sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Telegram bot tokens may be exposed through logs or deployment practices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the bot in an isolated non-privileged environment and redact Telegram tokens from all logs.
+
+Risk: Downloaded audio fallback files may remain on disk after processing.
+
+Mitigation: Delete local audio files after summarization and constrain temporary storage permissions.
+
+Risk: Video transcripts or audio can influence generated summaries.
+
+Mitigation: Treat generated summaries as untrusted, review important outputs, and avoid allowing summary text to trigger privileged actions.
+
+Risk: Unpinned Python dependencies can change behavior across installs.
+
+Mitigation: Pin dependencies before installation and review updates before deployment.
+
+Risk: Network calls to YouTube, Gemini, and Telegram can hang or fail.
+
+Mitigation: Add request timeouts, retry boundaries, and operational monitoring for long-running deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/inkiy/skills/youtube-daily-digest-bot)
+- [Publisher profile](https://clawhub.ai/user/inkiy)
+- [YouTube RSS feed endpoint](https://www.youtube.com/feeds/videos.xml?channel_id={channel_id})
+- [YouTube channel ID helper](https://commentpicker.com/youtube-channel-id.php)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Configuration, Shell commands]
+
+**Output Format:** [Markdown summaries and setup guidance for a Python Telegram bot]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces bilingual Chinese and English digest messages; long Telegram messages are chunked before delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

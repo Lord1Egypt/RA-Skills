@@ -1,42 +1,53 @@
-## Description: <br>
-A Chinese-language thinking partner that applies Liu Bang-inspired leadership, talent, strategy, and decision-making models to team and competition questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Liu Bang's historical leadership practices as a lens for thinking through talent, delegation, teamwork, competition, and decisions.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-External users and leaders use this skill to frame team-building, delegation, strategic patience, competition, and uncertain decisions through Liu Bang-inspired historical models. Its guidance is advisory and should be checked against current facts and the user's own business context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Leadership and strategy recommendations may not fit a user's current organization, market, or decision context. <br>
-Mitigation: Treat outputs as advisory framing and validate recommendations against current facts, stakeholder input, and local constraints before acting. <br>
-Risk: The artifact includes current-looking 2026 claims that may be stale or unsupported by server provenance. <br>
-Mitigation: Verify time-sensitive claims independently and do not infer GitHub or external provenance when the evidence marks provenance as unavailable. <br>
+## Use Case:
 
+For people working through leadership, team, or strategic decision questions. It offers historical thinking frameworks as prompts for reflection, not as a substitute for qualified HR, legal, safety, or financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/liubang-think-partner) <br>
-- [Publisher profile](https://clawhub.ai/user/gechengling) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance in Chinese with occasional English terms] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory leadership and strategy analysis; no executable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server-resolved release evidence) <br>
+Risk: Historical leadership frameworks may be mistaken for authoritative guidance on formal personnel, legal, safety, or financial decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output to organize questions only; follow organizational procedures and consult appropriately qualified people for those decisions.
+
+Risk: The clean security verdict does not guarantee zero risk and covers only the inspected Markdown file.
+
+Mitigation: Review generated guidance before acting on it, and verify important claims against current, authoritative sources.
+
+## Reference(s):
+
+- [Liubang Think Partner on ClawHub](https://clawhub.ai/gechengling/skills/liubang-think-partner)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Text]
+
+**Output Format:** [Text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reflective suggestions based on historical leadership frameworks; the user makes and verifies final decisions.]
+
+## Skill Version(s):
+
+2.0.4 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

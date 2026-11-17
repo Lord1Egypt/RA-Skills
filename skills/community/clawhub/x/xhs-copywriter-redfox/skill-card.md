@@ -1,43 +1,59 @@
-## Description: <br>
-Generates Xiaohongshu note copy by querying RedFox trend data, analyzing high-performing notes, and producing publish-ready titles, body text, tags, and source-pattern rationale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Xiaohongshu writing assistant that analyzes popular posts to generate publish-ready copy and may initiate an Alipay recharge when API credits are insufficient.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-Content creators, content operators, and brand teams use this skill to research current Xiaohongshu trends and generate platform-style promotional or creator notes from a chosen topic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a RedFox API key and sends topic queries to the RedFox service. <br>
-Mitigation: Use a scoped, revocable REDFOX_API_KEY and avoid submitting confidential topics or client-sensitive prompts. <br>
-Risk: Personal writing samples may contain private diaries, unpublished drafts, personal identifiers, or proprietary text. <br>
-Mitigation: Provide only short, redacted excerpts when style matching is needed. <br>
-Risk: The helper script can create local HTML report files. <br>
-Mitigation: Run it from an appropriate working directory and review the output path before using file output options. <br>
+## Use Case:
 
+External Xiaohongshu creators, content operators, and brand teams use this skill to analyze popular posts and produce platform-style titles, post copy, hashtags, and source notes.
 
-## Reference(s): <br>
-- [Xiaohongshu Hot Article Data Format](references/xhs_hot_article_format.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/redfox-data/xhs-copywriter-redfox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with generated titles, body copy, tags, source-pattern rationale, and referenced note summaries; helper script output can also be JSON or HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY and may call the RedFox API with topic queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Insufficient API credits can trigger an Alipay recharge workflow and potential charges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require separate approval to install payment software and for each recharge; verify the payee and amount before paying.
+
+Risk: Search terms are sent to external services.
+
+Mitigation: Avoid searching with confidential or sensitive topics.
+
+Risk: The security review flags unsafe HTML content and filename handling in generated files.
+
+Mitigation: Prefer a corrected version that uses JSON-only output, confines files to one folder, prevents accidental overwrites, and safely displays external text.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/redfox-data/skills/xhs-copywriter-redfox)
+- [小红书热门笔记数据格式说明](references/xhs_hot_article_format.md)
+- [支付宝充值接管流程](references/alipay-recharge.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Markdown with recommended titles, post copy, hashtags, and source notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically includes 3–6 title options, a complete post body, 5–10 hashtags, and 2–3 reference posts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

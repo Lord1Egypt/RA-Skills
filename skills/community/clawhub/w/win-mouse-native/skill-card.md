@@ -1,39 +1,51 @@
-## Description: <br>
-Native Windows mouse control (move, click, drag) via user32.dll. Use when the user asks you to move the mouse, click, drag, or automate pointer actions on Windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Native Windows mouse control (move, click, drag) via user32.dll. Use when the user asks you to move the mouse, click, drag, or automate pointer actions on Windows.
 
-## Publisher: <br>
-[lurklight](https://clawhub.ai/user/lurklight) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lurklight](https://clawhub.ai/user/lurklight)
 
-## Use Case: <br>
-Agents and users on Windows use this skill to move the pointer, click mouse buttons, and perform simple drag-style actions through local command execution. It is intended for explicit, supervised desktop automation where coordinates or deltas are provided by the user. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can move, click, hold, and release mouse buttons on the user's Windows desktop. <br>
-Mitigation: Use explicit coordinates or verified targets, start with small reversible actions, and supervise clicks or drags on payment pages, permission prompts, account settings, or other sensitive screens. <br>
-Risk: The bundle requires saving text files as executable .cmd and PowerShell scripts before use. <br>
-Mitigation: Review the .cmd and .ps1 text before saving them as executable scripts, and install only when local Windows mouse automation is intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lurklight/win-mouse-native) <br>
+## Use Case:
+
+Developers and agent operators use this skill to let an agent perform explicit Windows mouse movements, clicks, and button down/up actions through local scripts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can move and click the Windows pointer, which may trigger unintended UI actions or interact with sensitive prompts.
+
+Mitigation: Use it only for explicit, supervised tasks, start with small reversible actions when uncertain, and avoid sensitive or destructive screens.
+
+Risk: The provided scripts must be saved and run locally, including a PowerShell command that uses ExecutionPolicy Bypass.
+
+Mitigation: Inspect the local script before renaming and running it, and install it only when local Windows mouse automation is intended.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown guidance with command examples; the local script returns one-line JSON results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Windows-only mouse control through local .cmd and PowerShell scripts.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with inline shell commands; the local script returns one-line JSON objects.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows only; supports relative movement, absolute positioning, and left, right, or middle button actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

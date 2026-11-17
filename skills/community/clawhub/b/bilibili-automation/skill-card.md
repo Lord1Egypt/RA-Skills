@@ -1,44 +1,63 @@
-## Description: <br>
-B站自动化 - 观看视频、提取字幕、总结内容. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Bilibili video search, playback, subtitle or danmaku extraction, video information retrieval, and summarization through BrowserWing.
 
-## Publisher: <br>
-[maxsuki](https://clawhub.ai/user/maxsuki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxsuki](https://clawhub.ai/user/maxsuki)
 
-## Use Case: <br>
-Developers and end users use this skill to search Bilibili videos, play selected videos, extract subtitles or danmaku, summarize content, and fetch video metadata through a local BrowserWing service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes Bilibili actions through local BrowserWing scripts that are not included in the artifact for review. <br>
-Mitigation: Install only when you trust the local BrowserWing service and the bilibili-search, bilibili-subtitle, and bilibili-info scripts it runs. <br>
-Risk: Optional Bilibili session cookies can expose account access if shared or logged insecurely. <br>
-Mitigation: Use BILIBILI_SESSDATA and BILIBILI_BILI_JCT only when login is required, treat them like passwords, and rotate the session if exposed. <br>
-Risk: Frequent automated requests may violate Bilibili rules or trigger rate limits. <br>
-Mitigation: Keep request rates low, follow Bilibili rules, and use the artifact guidance to wait between requests. <br>
+## Use Case:
 
+External users and developers use this skill to automate common Bilibili workflows, including finding videos, extracting subtitles or danmaku, retrieving video metadata, and summarizing video content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maxsuki/bilibili-automation) <br>
-- [Bilibili](https://www.bilibili.com) <br>
-- [BrowserWing local API docs](http://localhost:8080/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown with curl examples and structured text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and BROWSERWING_URL; optional Bilibili session cookie variables enable logged-in behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release evidence) <br>
+Risk: Search terms, video URLs, subtitles, and account-linked content may be sent to the configured BrowserWing endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted BrowserWing endpoint and avoid sending sensitive or private Bilibili content.
+
+Risk: Optional Bilibili cookies can expose account access if mishandled.
+
+Mitigation: Configure cookies only when required, store them as secrets, and rotate or remove them after use.
+
+Risk: The documented curl examples can become unsafe if raw user input is interpolated into shell commands.
+
+Mitigation: Serialize request JSON safely and invoke commands without shell interpolation when adapting the examples.
+
+Risk: Automated requests may violate Bilibili usage rules or trigger rate limits.
+
+Mitigation: Use conservative request spacing, respect platform terms, and avoid bulk or unauthorized activity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maxsuki/skills/bilibili-automation)
+- [Bilibili](https://www.bilibili.com)
+- [BrowserWing API documentation](http://localhost:8080/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return Bilibili search results, subtitles, danmaku, video metadata, and concise summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

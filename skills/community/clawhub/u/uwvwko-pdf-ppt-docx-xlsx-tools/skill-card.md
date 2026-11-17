@@ -1,43 +1,57 @@
-## Description: <br>
-Provides local document conversion and processing guidance for PDF, PPTX, DOCX, XLSX, images, text extraction, table extraction, merging, splitting, and watermarking tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document conversion and extraction toolkit for PDF, PPTX, DOCX, and XLSX files, including image rendering, text and table extraction, merge, split, and watermark operations.
 
-## Publisher: <br>
-[uwvwko-zzz](https://clawhub.ai/user/uwvwko-zzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uwvwko-zzz](https://clawhub.ai/user/uwvwko-zzz)
 
-## Use Case: <br>
-Developers and document-processing users use this skill to produce local conversion commands and helper-script guidance for office documents and PDFs. It is suited for file format conversion, text or table extraction, image rendering, document merging or splitting, and watermarking workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document conversion runs local commands and writes output files, so incorrect paths or accidental overwrites can affect user files. <br>
-Mitigation: Use explicit output paths, keep backups of important documents, and review generated commands before execution. <br>
-Risk: Some conversions depend on LibreOffice and Python packages installed from the local environment. <br>
-Mitigation: Use a virtual environment and install LibreOffice and Python dependencies from trusted sources. <br>
-Risk: Generated HTML from untrusted DOCX content can carry active or misleading content when opened in a browser. <br>
-Mitigation: Avoid opening generated HTML from untrusted documents unless it has been reviewed or sandboxed. <br>
+## Use Case:
 
+Developers and document-operations users use this skill to generate local commands and scripts for converting, extracting, merging, splitting, and watermarking PDF and Office documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uwvwko-zzz/uwvwko-pdf-ppt-docx-xlsx-tools) <br>
-- [Publisher profile](https://clawhub.ai/user/uwvwko-zzz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with command examples and Python helper-script guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for local execution and may create converted document files at user-specified paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may require users to install Python packages or LibreOffice before conversions work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package and system install commands before execution and install only the dependencies needed for the chosen conversion.
+
+Risk: Generated HTML from DOCX content can preserve untrusted document text without sanitization.
+
+Mitigation: Do not open, publish, or host generated HTML from untrusted documents until it has been reviewed and sanitized.
+
+Risk: Document parsers and converters process user-selected local files and write to user-selected output paths.
+
+Mitigation: Run conversions only on intended documents in controlled directories and inspect generated outputs before sharing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/uwvwko-zzz/skills/uwvwko-pdf-ppt-docx-xlsx-tools)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration guidance, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local document outputs such as PDF, DOCX, PPTX, XLSX, CSV, JSON, TXT, HTML, and image files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

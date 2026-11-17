@@ -1,39 +1,57 @@
-## Description: <br>
-Provides wealth inheritance strategy, will-drafting guidance, trust-structure planning, and legal-risk prevention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for wealth inheritance strategies, will drafting, trust structuring, and legal risk prevention.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-External users and advisors use this skill to frame estate and wealth-transfer questions, compare asset categories, and prepare will, trust, and legal-risk discussions for professional review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses or implies use of sensitive financial account, tax, billing, or session information. <br>
-Mitigation: Use only minimal, manually selected, redacted information and do not provide bank, brokerage, billing, tax, session, account credentials, or other secrets. <br>
-Risk: Financial, tax, legal, or investment guidance may be incomplete, jurisdiction-specific, or unsuitable for a user's circumstances. <br>
-Mitigation: Verify outputs with qualified legal, tax, and investment professionals before making decisions, transfers, filings, or account changes. <br>
+## Use Case:
 
+External users and agents use this skill for estate-planning and family wealth transfer guidance, including asset category screening, risk-level review, liquidity considerations, and inheritance-related legal planning prompts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with structured bullets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Financial, tax, and legal outputs require qualified professional review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill describes broad financial-account monitoring and sub-hourly personal billing synchronization without clear consent, scope, retention, or revocation limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify consent, data scope, retention period, synchronization behavior, and revocation controls before installation or use.
+
+Risk: The skill may involve detailed account records, statements, tax data, billing data, and other sensitive financial information.
+
+Mitigation: Use only approved secure systems, minimize or redact sensitive data, and avoid sharing credentials or full account records with the agent.
+
+Risk: Estate, investment, tax, and legal guidance can materially affect financial decisions.
+
+Mitigation: Treat outputs as informational drafts and require review by qualified financial, tax, or legal professionals before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/legacy)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, markdown]
+
+**Output Format:** [Markdown or plain-text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include asset summaries, transaction or statement fields, risk assessment status, holding analysis, and allocation suggestions when requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

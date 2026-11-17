@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7efjqjpmxpcs3k0p2qe7mnad828dj0",
-  "slug": "multi-bot-deploy",
+  "name": "multi-bot-deploy",
   "version": "1.0.0",
-  "publishedAt": 1773301881594
+  "description": "OpenClaw 飞书多 Bot 多 Agent 一键搭建技能",
+  "author": "Bacon 大王",
+  "created": "2026-03-12"
 }

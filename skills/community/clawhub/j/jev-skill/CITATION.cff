@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+title: "Jev Skill"
+message: "If Jev Skill helps your work, please cite or link the repository."
+type: software
+authors:
+  - family-names: Ansong
+    given-names: Enoch
+    affiliation: "AI With Enoch / Riverside AI"
+repository-code: "https://github.com/aiwithenoch/Jev-Skill"
+url: "https://clawhub.ai/aiwithenoch/skills/jev-skill"
+license: MIT-0
+version: 1.0.0
+date-released: 2026-09-20
+keywords:
+  - artificial intelligence
+  - typed decisions
+  - large language models
+  - local llm
+  - OpenJev
+  - OpenJev-HF
+  - Qwen3.5
+  - SGLang
+  - LangChain
+  - agent harness
+  - tool safety
+  - LocalJev
+  - DiffusionGemma
+  - Bun
+  - JevBench
+  - MLX
+  - calibrated decisions
+  - model evaluation
+  - structured output

@@ -1,44 +1,59 @@
-## Description: <br>
-Generates professional interior design proposal PowerPoint decks for commercial or residential projects, switching the content structure for business return, consumer psychology, family scenarios, and lifestyle aesthetics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese interior design proposal PowerPoint decks for commercial or residential projects from project details and optional render images.
 
-## Publisher: <br>
-[137984917-cyber](https://clawhub.ai/user/137984917-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[137984917-cyber](https://clawhub.ai/user/137984917-cyber)
 
-## Use Case: <br>
-Interior designers and design studios use this skill to create client-facing proposal decks for commercial and residential interiors from project type, project name, area, style, budget, spaces, and optional render images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording could cause the skill to run for a nearby but unintended presentation task. <br>
-Mitigation: Confirm that the request is specifically for a residential or commercial interior-design proposal deck before running the generator. <br>
-Risk: The optional image folder can include local images in the generated presentation. <br>
-Mitigation: Use only image folders whose contents are approved for inclusion in the client-facing deck. <br>
-Risk: Generated budgets, return estimates, timelines, and design recommendations may be treated as final professional advice. <br>
-Mitigation: Review and adjust financial assumptions, scope, materials, and schedule details before sharing the proposal with clients. <br>
+## Use Case:
 
+Interior designers and proposal teams use this skill to create client-facing PPT proposal decks for commercial spaces or residential projects. It supports project type, name, area, style, budget, spaces, company, designer, and optional local images.
 
-## Reference(s): <br>
-- [Design document template](references/design-doc.md) <br>
-- [PPT outline template](references/ppt-outline.md) <br>
-- [ClawHub release page](https://clawhub.ai/137984917-cyber/interior-proposal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PowerPoint .pptx presentation with console status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires project type, project name, area, style, and output path; optional inputs include image folder, budget, spaces, company, and designer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.1.0 (source: server release metadata and skill.json) <br>
+Risk: Dependency installation may affect a shared Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install python-pptx and Pillow in a virtual environment and consider pinning package versions.
+
+Risk: The generated proposal may not match the user's project context or design requirements.
+
+Mitigation: Use the skill only for Chinese interior-design proposal decks based on provided project details, then review the PPT before client delivery.
+
+Risk: Optional local images may be unsuitable or unintended for inclusion.
+
+Mitigation: Provide only approved local render images and inspect the generated image slides before sharing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/137984917-cyber/skills/interior-proposal)
+- [Design Document Template](references/design-doc.md)
+- [PPT Outline Template](references/ppt-outline.md)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, guidance]
+
+**Output Format:** [PowerPoint presentation file plus console status messages and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 12-14 slide .pptx proposal decks; optional local images can be inserted into rendering pages.]
+
+## Skill Version(s):
+
+4.1.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

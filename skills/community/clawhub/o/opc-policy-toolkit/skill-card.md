@@ -1,44 +1,59 @@
-## Description: <br>
-政策申报全流程工具包，为OPC导师和项目负责人提供政策获取、申报管理和匹配分析的流程、模板与方法。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OPC导师专业Skill: 政策工具包.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-OPC mentors, project leads, and business operators use this skill to structure policy discovery, company eligibility checks, application material planning, department coordination, and policy-project matching for grant, tax, qualification, talent, and innovation program applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; the provided policy examples and application workflows are focused on Chinese government policy programs. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive identity, payroll, banking, credit, employee, and business records during policy-application work. <br>
-Mitigation: Redact unnecessary sensitive fields, restrict where generated Markdown and JSON outputs are stored or shared, and define deletion expectations before use. <br>
-Risk: Agent actions such as web searches, file creation, or handoff to other skills may expose sensitive policy-application context if run without review. <br>
-Mitigation: Require explicit approval before web searches, file creation, or inter-skill handoff, and review generated outputs before deployment or submission. <br>
-Risk: Policy recommendations, eligibility checks, deadlines, and material lists may be incomplete or outdated for a specific jurisdiction or program. <br>
-Mitigation: Verify application requirements and deadlines against the relevant official policy source before relying on generated guidance. <br>
+## Use Case:
 
+OPC mentors, founders, and project leads use this skill to structure China-focused policy application work, including policy discovery, eligibility review, application planning, materials checklists, and project-to-policy matching.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/golngod/opc-policy-toolkit) <br>
-- [Coze platform](https://coze.cn) <br>
-- [OPC platform](https://opc.cn) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists, tables, scoring models, timelines, and handoff-oriented JSON descriptions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include policy ledgers, matching reports, application material lists, timelines, and execution reports for review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may process sensitive business, identity, payroll, bank, and credit materials for policy application workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact unnecessary personal data before use, share only documents required for the specific application, and decide where generated reports should be stored or deleted.
+
+Risk: Policy application guidance can become stale or vary by province, city, agency, or filing window.
+
+Mitigation: Confirm current requirements, deadlines, and eligibility rules against the relevant official policy channel before filing.
+
+Risk: The security verdict is suspicious because handling limits for sensitive materials are not clearly documented.
+
+Mitigation: Install only when comfortable with China-focused policy申报 workflows and review data-handling expectations before providing documents.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/golngod/skills/opc-policy-toolkit)
+- [Coze Platform](https://coze.cn)
+- [OPC Platform](https://opc.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tables, checklists, scoring models, timelines, and application templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference sensitive business, identity, payroll, bank, credit, and policy application materials supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

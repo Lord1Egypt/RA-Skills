@@ -1,41 +1,58 @@
-## Description: <br>
-Fetches recent Binance Square-style posts, filters out verified and institutional accounts, and prints summaries with author, publish time, view count, and comment count. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Binance Square-style hot posts from the last 12 hours, filters out verified and institutional accounts, and prints content summaries, authors, timestamps, views, and comment counts in a table.
 
-## Publisher: <br>
-[taibaiup](https://clawhub.ai/user/taibaiup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taibaiup](https://clawhub.ai/user/taibaiup)
 
-## Use Case: <br>
-External users and analysts can use this skill to inspect recent retail discussion topics from Binance Square-style data and review a compact table of post activity. It is intended for retrieving public-style market discussion summaries, not for account-specific Binance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts a disclosed external bmwweb.cc endpoint to retrieve Binance Square-style data. <br>
-Mitigation: Install only if external requests to that endpoint are acceptable in the target environment. <br>
-Risk: Adding personal Binance cookies, tokens, or account credentials could expose account-specific data. <br>
-Mitigation: Use only the disclosed public-style request headers unless the skill is re-reviewed for credentialed use. <br>
+## Use Case:
 
+External users and agents can use this skill to retrieve recent retail-discussion posts presented as Binance Square content, excluding verified users, special-role accounts, and authors with institution-like keywords.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taibaiup/binancesquare) <br>
-- [Disclosed Binance Square-style endpoint](https://www.bmwweb.cc/bapi/composite/v9/friendly/pgc/feed/feed-recommend/list) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text] <br>
-**Output Format:** [Plain text table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prints up to 15 filtered posts sorted by comment count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill contacts a non-obvious www.bmwweb.cc endpoint while presenting the returned data as Binance Square content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this data source is acceptable; prefer a version that uses a documented official Binance endpoint or clearly discloses the third-party source.
+
+Risk: Requests include fixed bnc-uid and Bnc-Uuid values.
+
+Mitigation: Review and replace fixed identifiers before deployment, and avoid sending identifiers that should not be shared across users or environments.
+
+Risk: Remote feed text is printed directly into terminal output.
+
+Mitigation: Sanitize or escape remote text before displaying or reusing it in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taibaiup/skills/binancesquare)
+- [Declared third-party feed endpoint](https://www.bmwweb.cc/bapi/composite/v9/friendly/pgc/feed/feed-recommend/list)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Plain text table suitable for Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prints up to 15 filtered posts sorted by comment count.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

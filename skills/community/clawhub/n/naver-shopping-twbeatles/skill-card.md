@@ -1,39 +1,53 @@
-## Description: <br>
-Search for products on Naver Shopping. Use when the user wants to find product prices, links, or compare items in the Korean market. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for products on Naver Shopping. Use when the user wants to find product prices, links, or compare items in the Korean market.
 
-## Publisher: <br>
-[twbeatles](https://clawhub.ai/user/twbeatles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twbeatles](https://clawhub.ai/user/twbeatles)
 
-## Use Case: <br>
-External users and developers use this skill to query Naver Shopping for Korean-market product listings, prices, and links from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product search terms are sent to Naver and the script uses Naver Shopping API credentials. <br>
-Mitigation: Use dedicated Naver credentials, store them only in the documented skill-specific locations, and avoid submitting sensitive search terms. <br>
+## Use Case:
 
+External users and developers use this skill to search Naver Shopping for Korean-market product listings, prices, and links, including comparing items by relevance, date, or price sort order.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/twbeatles/naver-shopping-twbeatles) <br>
-- [Naver Shopping Search API endpoint](https://openapi.naver.com/v1/search/shop.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search results and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Naver Shopping API credentials and accepts query, display count, and sort order.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Naver API credentials may be stored in environment variables or local credential files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where Naver Shopping API access is intended, restrict local credential file access, and avoid sharing credential-bearing environments.
+
+Risk: Product search queries are sent to Naver to retrieve shopping results.
+
+Mitigation: Avoid submitting confidential or sensitive search terms unless sharing them with Naver is acceptable.
+
+## Reference(s):
+
+- [Naver Shopping Open API endpoint](https://openapi.naver.com/v1/search/shop.json)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, shell commands, configuration guidance]
+
+**Output Format:** [JSON search results or JSON error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Naver API credentials; display is clamped to 1-100 and sort is one of sim, date, asc, or dsc.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

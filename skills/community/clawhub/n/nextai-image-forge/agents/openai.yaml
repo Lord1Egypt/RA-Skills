@@ -1,0 +1,3 @@
+display_name: ImageForge
+short_description: Generate and edit images with the fixed NextAI Code image API.
+default_prompt: Generate or edit an image using ImageForge, guiding NextAI Code registration and configuring API key/model if needed.

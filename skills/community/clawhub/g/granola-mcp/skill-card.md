@@ -1,43 +1,58 @@
-## Description: <br>
-Access Granola AI meeting notes through MCP, including meeting search, date-range listing, full meeting details, verbatim transcripts, and OAuth token refresh guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Granola AI meeting notes via MCP (mcporter), including meeting search, date-range listing, meeting details, verbatim transcripts, and OAuth token refresh after authentication failures.
 
-## Publisher: <br>
-[bholagabbar](https://clawhub.ai/user/bholagabbar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bholagabbar](https://clawhub.ai/user/bholagabbar)
 
-## Use Case: <br>
-Employees and agents with authorized Granola access use this skill to answer questions about meeting notes, action items, decisions, and transcripts from their workspace. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The OAuth and mcporter configuration files contain access tokens and other secrets. <br>
-Mitigation: Keep config/granola_oauth.json and config/mcporter.json private, and do not commit or share them. <br>
-Risk: The token refresh script posts credentials to the configured token endpoint. <br>
-Mitigation: Verify the token endpoint is Granola's official HTTPS endpoint before refreshing credentials. <br>
-Risk: Periodic token refresh can maintain background access to meeting data. <br>
-Mitigation: Enable scheduled refresh only when the workspace owner is comfortable with ongoing access renewal. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bholagabbar/granola-mcp) <br>
-- [Granola OAuth authorization endpoint](https://mcp-auth.granola.ai/oauth2/authorize) <br>
-- [Granola OAuth token endpoint](https://mcp-auth.granola.ai/oauth2/token) <br>
+## Use Case:
 
+Employees and external users with configured Granola MCP access use this skill to ask agents about meeting discussions, decisions, action items, and verbatim transcripts.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with citation links, plus MCP call arguments and shell commands for token refresh.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Granola citation links and verbatim transcript excerpts when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can access private Granola meeting notes and transcripts through a bearer-token MCP configuration.
+
+Mitigation: Install only for trusted publishers and restrict the Granola OAuth and mcporter configuration files to the owning user.
+
+Risk: The token refresh script reads the token endpoint from local configuration before posting OAuth refresh data.
+
+Mitigation: Hardcode or allowlist the Granola token endpoint before using token refresh.
+
+Risk: The optional cron refresh path can repeatedly handle sensitive OAuth tokens before the refresh-script concerns are fixed.
+
+Mitigation: Avoid enabling optional cron refresh until endpoint trust, response handling, and token interpolation issues are reviewed and corrected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bholagabbar/skills/granola-mcp)
+- [Granola OAuth authorization endpoint](https://mcp-auth.granola.ai/oauth2/authorize)
+- [Granola OAuth token endpoint](https://mcp-auth.granola.ai/oauth2/token)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with MCP tool-call guidance and inline shell commands; configuration is JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mcporter, bash, curl, python3, and local Granola OAuth/MCP configuration files.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

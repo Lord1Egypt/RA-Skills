@@ -1,42 +1,58 @@
-## Description: <br>
-Provides NBA Playoffs coverage with schedules, scores, reminders, team stats, bracket visualization, predictions, watch information, and shareable team flair images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides NBA Playoffs coverage with schedules, scores, reminders, team stats, bracket visualization, predictions, watch information, and shareable flair images.
 
-## Publisher: <br>
-[bgoodwinstudio](https://clawhub.ai/user/bgoodwinstudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bgoodwinstudio](https://clawhub.ai/user/bgoodwinstudio)
 
-## Use Case: <br>
-NBA fans use this skill to follow playoff games in their configured messaging channel, including reminders, scores, brackets, watch information, prediction tracking, and shareable team flair. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill posts scheduled NBA reminders and score updates to the user's configured messaging channel. <br>
-Mitigation: Install only for channels where those messages are wanted, review active jobs with openclaw tasks, and remove them with remove nba when no longer needed. <br>
-Risk: The skill writes local NBA configuration and prediction files in the workspace. <br>
-Mitigation: Review the generated local files and use remove nba to delete NBA-related cron jobs and config files. <br>
+## Use Case:
 
+NBA fans and chat-group users use this skill to follow playoff schedules and scores, receive reminders, track brackets and predictions, find watch information, and generate shareable team flair.
 
-## Reference(s): <br>
-- [ClawHub NBA Playoffs release page](https://clawhub.ai/bgoodwinstudio/nba-playoffs) <br>
-- [ESPN public NBA scoreboard API](https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard) <br>
-- [NBA Teams Broadcast & Radio Reference](references/teams.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown and chat messages with optional SVG flair files and local markdown configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May schedule reminder and score-update tasks through OpenClaw and write local NBA prediction and configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Generated flair files can be written to a user-supplied output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep generated flair output inside a normal workspace or output folder.
+
+Risk: NBA reminder and score-posting cron jobs may continue running after the user stops using the skill.
+
+Mitigation: Review active OpenClaw tasks and use the documented removal command to remove NBA-related cron jobs and local config files.
+
+Risk: Messages are sent through already configured chat channels.
+
+Mitigation: Use only intended existing channels and do not provide new credentials to this skill.
+
+## Reference(s):
+
+- [NBA Teams Broadcast & Radio Reference](artifact/references/teams.md)
+- [ESPN public NBA scoreboard API](https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown and plain text messages, local Markdown configuration files, scheduled reminders, and SVG flair images]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ESPN public NBA data and existing configured messaging channels; no new API key is required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

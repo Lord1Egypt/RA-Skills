@@ -1,46 +1,61 @@
-## Description: <br>
-Agent Token Cost Signal Kit - Find token waste, repeated calls, and risky routing changes before they become real cost. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Token Cost Signal Kit helps find token waste, repeated calls, and risky routing changes before they become real cost.
 
-## Publisher: <br>
-[choosenobody](https://clawhub.ai/user/choosenobody) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[choosenobody](https://clawhub.ai/user/choosenobody)
 
-## Use Case: <br>
-Developers and operators use this skill to review agent token usage, repeated calls, and routing changes before treating them as cost regressions. It supports read-only evaluation of before/after evidence and produces a status, risk level, and recommended next action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive logs may be pasted while gathering token and session evidence. <br>
-Mitigation: Redact sensitive data before sharing logs or session excerpts. <br>
-Risk: Global or force installation can affect the wider OpenClaw installation. <br>
-Mitigation: Use global or force install commands only when the skill is intended to apply beyond the current scope. <br>
-Risk: Incomplete, mixed, or under-sampled evidence can make a cost recommendation misleading. <br>
-Mitigation: Collect comparable before/after samples and perform read-only verification before changing routes, models, schedules, or production configuration. <br>
+## Use Case:
 
+Developers and operators use this skill to evaluate whether agent changes, retries, scheduled jobs, or routing choices create meaningful token waste or cost risk. It returns an evidence-based status, risk level, and recommended next action without changing production configuration.
 
-## Reference(s): <br>
-- [Agent Cost Eval Kit public listing](https://clawhub.ai/choosenobody/agent-cost-eval-kit) <br>
-- [Before/After Input Examples](references/before-after-examples.md) <br>
-- [Evidence-First Skill Design](references/evidence-first-skill-design.md) <br>
-- [OpenClaw Session Inspection Pattern](references/openclaw-session-inspection-pattern.md) <br>
-- [ops_cat Quick Check Case Study](references/ops-cat-quick-check-case-study.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown status report with evidence, risk level, and recommended next action] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only guidance; does not edit configs, switch models, disable jobs, or delete cron tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.4 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Token, session, cron, and before/after evidence may contain sensitive operational details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact secrets and private log contents before sharing evidence with the agent.
+
+Risk: Rollback, routing, model, or schedule changes based on cost findings could affect production behavior.
+
+Mitigation: Treat any configuration change as a separate human-reviewed action; the skill itself should remain read-only.
+
+Risk: Sparse samples, mixed workloads, or cache-heavy sessions can produce misleading cost conclusions.
+
+Mitigation: Use comparable before/after evidence and follow watch or investigate recommendations when evidence is incomplete.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/choosenobody/skills/agent-cost-eval-kit)
+- [Before/After Input Examples](references/before-after-examples.md)
+- [Evidence-First Skill Design](references/evidence-first-skill-design.md)
+- [OpenClaw Session Inspection Pattern](references/openclaw-session-inspection-pattern.md)
+- [ops_cat Quick Check Case Study](references/ops-cat-quick-check-case-study.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown status report with checked evidence, waste signal, risk level, and recommended next action]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only guidance; does not calculate exact billing or apply configuration changes.]
+
+## Skill Version(s):
+
+2.4.4 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Create, read, edit Excel spreadsheets (.xlsx, .xlsm, .csv). Supports formulas, formatting, charts, pivot tables, and data analysis with pandas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, read, edit Excel spreadsheets (.xlsx, .xlsm, .csv). Supports formulas, formatting, charts, pivot tables, and data analysis with pandas.
 
-## Publisher: <br>
-[weaglewang](https://clawhub.ai/user/weaglewang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weaglewang](https://clawhub.ai/user/weaglewang)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to create, read, edit, format, and analyze Excel and CSV spreadsheet files with Python spreadsheet libraries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release has a suspicious security verdict and server guidance warns that related review helpers can expose repository data to local reviewer tools or run with broad local access. <br>
-Mitigation: Review the skill before installing, use sandboxed or no-yolo execution modes for routine work, and run it only in repositories that can be exposed to local reviewer tools. <br>
-Risk: The skill can provide code and commands that create or modify local spreadsheet files. <br>
-Mitigation: Review generated code and commands before execution and keep backups or work in disposable copies when modifying important spreadsheets. <br>
+## Use Case:
 
+Developers and analysts use this skill to generate, inspect, transform, format, and analyze Excel-compatible spreadsheets with Python libraries such as pandas, openpyxl, and xlsxwriter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/weaglewang/xlsx-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include spreadsheet-generation code and commands that create or modify local .xlsx, .xlsm, and .csv files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 2.0.0) <br>
+Risk: Spreadsheet examples can create or overwrite local Excel files when run with existing output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review input and output paths before execution and run examples in a disposable working directory when possible.
+
+Risk: The skill depends on Python spreadsheet packages whose installed versions may vary across environments.
+
+Mitigation: Install dependencies in an isolated environment and pin package versions when reproducibility or enterprise control is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weaglewang/skills/xlsx-skill)
+- [Publisher profile](https://clawhub.ai/user/weaglewang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide the agent to create, read, modify, or overwrite local spreadsheet files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Provides Clausewitz-based strategic analysis for war, competition, friction, concentration of force, culminating points, and AI-era uncertainty. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language Clausewitz-style strategic analysis for war, competition, resource concentration, friction management, culminating-point recognition, and AI-era decision checks.
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-Strategists, analysts, and business decision makers use this skill to frame military or competitive strategy questions with Clausewitzian models, decision heuristics, and AI-era uncertainty checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides military and business strategy guidance that could be mistaken for professional or operational advice. <br>
-Mitigation: Treat outputs as conceptual analysis, validate recommendations with qualified human judgment, and apply domain-specific policy and safety review before acting. <br>
-Risk: The artifact includes an npx install command for a package outside the direct skill artifact. <br>
-Mitigation: Prefer the normal ClawHub install flow, or verify the referenced package before running the command. <br>
+## Use Case:
 
+Developers and external users use this skill to get Clausewitz-inspired strategic guidance for military, business, and AI-era competition scenarios, especially where uncertainty, friction, concentration of force, or stopping points need structured analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ruiyongwang/clausewitz-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text advisory responses with models, checklists, comparisons, and examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only advisory content; no evidence of hidden access, data collection, persistence, or destructive behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server evidence and artifact/SKILL.md) <br>
+Risk: The install command uses an unpinned `npx dlh365` package, which creates supply-chain exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the `dlh365` package source and use a pinned, reviewed version or a sandboxed environment before installation.
+
+Risk: The skill gives strategic advice that may be interpreted as high-confidence despite uncertainty or limited context.
+
+Mitigation: Review outputs against independent sources and keep a human decision-maker responsible for applying the guidance.
+
+Risk: The skill is primarily written for Chinese-language interaction, which can create comprehension issues for other audiences.
+
+Mitigation: Ask for another language when needed and review translated strategic terms for accuracy.
+
+## Reference(s):
+
+- [Clausewitz Skill on ClawHub](https://clawhub.ai/ruiyongwang/skills/clausewitz-expert)
+- [ruiyongwang ClawHub profile](https://clawhub.ai/user/ruiyongwang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown and conversational text with occasional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language strategic advice; users may request another language.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

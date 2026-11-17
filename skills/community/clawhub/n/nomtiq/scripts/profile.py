@@ -161,25 +161,6 @@ def cmd_record(name: str, feeling: str, note: str = '', reasons: list = None):
     # 自动重新分析口味画像，保持画像始终最新
     _auto_analyze(profile)
 
-    # 自动发布到 Moltbook（仅"喜欢"/"常去"，用户同意后，静默执行）
-    if feeling in ('喜欢', '常去') and profile.get('user', {}).get('moltbook_sharing', False):
-        try:
-            import subprocess
-            r = next((x for x in profile.get('restaurants', []) if x['name'] == name), {})
-            tags = ','.join(r.get('tags', []))
-            area = r.get('area', '')
-            price = r.get('avg_price', '')
-            cmd = ['python3', str(Path(__file__).parent / 'moltbook.py'), 'post', name,
-                   '--feeling', feeling, '--area', area]
-            if price:
-                cmd += ['--price', str(price)]
-            if tags:
-                cmd += ['--tags', tags]
-            subprocess.Popen(cmd, cwd=str(Path(__file__).parent.parent),
-                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        except Exception:
-            pass
-
     total = len(profile['restaurants'])
     print(json.dumps({
         'status': 'ok',
@@ -440,19 +421,6 @@ def set_user(city: str = None, areas: list = None, dislikes: list = None):
     print(f"✅ 用户信息已更新")
 
 
-def cmd_moltbook_opt(enabled: bool):
-    """设置 Moltbook 匿名分享偏好（onboarding 完成后问一次）"""
-    profile = load_profile()
-    profile.setdefault('user', {})['moltbook_sharing'] = enabled
-    save_profile(profile)
-    if enabled:
-        print(json.dumps({'status': 'ok', 'moltbook_sharing': True,
-                          'message': '已开启。你喜欢的馆子会匿名分享到 Moltbook，每天最多 2 家。'}, ensure_ascii=False))
-    else:
-        print(json.dumps({'status': 'ok', 'moltbook_sharing': False,
-                          'message': '已关闭。随时可以重新开启。'}, ensure_ascii=False))
-
-
 def cmd_pending_add(name: str):
     """推荐后记录待反馈"""
     profile = load_profile()
@@ -530,10 +498,6 @@ def main():
     rec_p.add_argument('--feeling', choices=['喜欢', '一般', '踩雷'], default='喜欢')
     rec_p.add_argument('--note', default='', help='备注')
     rec_p.add_argument('--reasons', default='', help='踩雷原因，逗号分隔（太贵/难吃/服务差/太吵/太远/太油/太辣/太淡/环境差/排队太长）')
-    opt_p = sub.add_parser('moltbook-opt', help='设置 Moltbook 匿名分享偏好')
-    opt_p.add_argument('--enable', action='store_true', help='开启分享')
-    opt_p.add_argument('--disable', action='store_true', help='关闭分享')
-
     pa_p = sub.add_parser('pending-add', help='记录待反馈推荐')
     pa_p.add_argument('name', help='餐厅名')
     sub.add_parser('pending-list', help='列出超过2天未反馈的推荐')
@@ -548,13 +512,6 @@ def main():
         cmd_count()
     elif args.command == 'show':
         cmd_show()
-    elif args.command == 'moltbook-opt':
-        if args.enable:
-            cmd_moltbook_opt(True)
-        elif args.disable:
-            cmd_moltbook_opt(False)
-        else:
-            print('请指定 --enable 或 --disable')
     elif args.command == 'record':
         reasons = [r.strip() for r in args.reasons.split(',') if r.strip()] if args.reasons else []
         cmd_record(args.name, args.feeling, args.note, reasons)

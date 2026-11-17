@@ -1,49 +1,63 @@
-## Description: <br>
-Turkish locale skill pack for Hermes Agent with Turkish communication guidance, Turkish news aggregation, BIST100 and market tracking, and daily brief automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turkish locale skill pack for Turkish news sources, BIST100 market tracking, daily brief automation, and a Turkish personality template.
 
-## Publisher: <br>
-[erhnysr](https://clawhub.ai/user/erhnysr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erhnysr](https://clawhub.ai/user/erhnysr)
 
-## Use Case: <br>
-External users and developers use this skill to localize Hermes Agent for Turkish-language interactions, Turkish news summaries, Turkish market lookups, and scheduled daily briefings through channels such as Telegram or Discord. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring briefs may send content to the wrong channel or at an unexpected time if the schedule or delivery target is misconfigured. <br>
-Mitigation: Confirm the cron schedule, Istanbul-to-UTC conversion, and Telegram or Discord destination before enabling recurring delivery. <br>
-Risk: Telegram delivery requires a bot token and channel configuration. <br>
-Mitigation: Use a dedicated Telegram bot token, limit its permissions, and keep the token outside prompts and shared logs. <br>
-Risk: The BIST-named helper script fetches cryptocurrency prices rather than BIST100 equity prices. <br>
-Mitigation: Review helper script behavior before relying on it for Turkish equity market data. <br>
-Risk: The skill includes a Turkish personality template that changes assistant tone and locale behavior. <br>
-Mitigation: Review the SOUL.md persona text before copying it into an agent configuration. <br>
+## Use Case:
 
+External users and agent developers use this skill to localize Hermes-style agent interactions for Turkish language, news, market summaries, and scheduled daily brief delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/erhnysr/turkish-locale) <br>
-- [Bloomberg HT BIST100](https://www.bloomberght.com/borsa/endeksler/bist-100) <br>
-- [Bigpara live market data](https://bigpara.hurriyet.com.tr/borsa/canli-borsa/) <br>
-- [Yahoo Finance chart API example](https://query1.finance.yahoo.com/v8/finance/chart/XU100.IS?interval=1d&range=1d) <br>
-- [CoinGecko markets API](https://api.coingecko.com/api/v3/coins/markets) <br>
-- [Telegram Bot API](https://api.telegram.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline code blocks, shell commands, and optional JSON or terminal output from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are primarily Turkish or bilingual Turkish/English and may include market/news timestamps for freshness.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Recurring Telegram or Discord delivery can send summaries to an unintended destination or continue after the user expects it to stop.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target chat or channel, document how to remove the scheduled delivery, and avoid routing sensitive summaries through outbound channels.
+
+Risk: Market tracking behavior and documentation are inconsistent, including BIST100 naming alongside crypto price tooling.
+
+Mitigation: Review market outputs before relying on them, show timestamps and data sources, and avoid treating generated market summaries as financial advice.
+
+Risk: Bundled scripts depend on network data sources and third-party Python packages when executed.
+
+Mitigation: Run scripts in an isolated environment with pinned dependencies and review network destinations before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/erhnysr/skills/turkish-locale)
+- [Publisher Profile](https://clawhub.ai/user/erhnysr)
+- [Bloomberg HT BIST100](https://www.bloomberght.com/borsa/endeksler/bist-100)
+- [Bigpara Live Borsa](https://bigpara.hurriyet.com.tr/borsa/canli-borsa/)
+- [Hürriyet RSS](https://www.hurriyet.com.tr/rss/anasayfa)
+- [NTV Breaking News RSS](https://www.ntv.com.tr/son-dakika.rss)
+- [Bloomberg HT RSS](https://www.bloomberght.com/rss)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and Turkish text with inline shell commands, configuration snippets, and optional JSON or generated image outputs from bundled scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include live news, market data, daily brief content, Telegram or Discord delivery setup, and Turkish locale guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

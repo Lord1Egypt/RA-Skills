@@ -1,0 +1,213 @@
+{
+  "card_id": "WQ-SCI-003",
+  "source_type": "paper",
+  "source_file": "11 Obese Individuals With and Without Phlegm-Dampness Constitution Show Different Gut Microbial Composition Associated With Risk of Metabolic Disorders.pdf",
+  "title": "Obese Individuals With and Without Phlegm-Dampness Constitution Show Different Gut Microbial Composition Associated With Risk of Metabolic Disorders",
+  "authors": [
+    "Juho Shin"
+  ],
+  "year": 2022,
+  "journal": "Frontiers in Cellular and Infection Microbiology",
+  "language": "en",
+  "abstract": "Background: Obesity is conventionally considered a risk factor for multiple metabolic diseases, such as dyslipidemia, type 2 diabetes, hypertension, and cardiovascular disease (CVD). However, not every obese patient will progress to metabolic disease. Phlegm-dampness constitution (PDC), one of the nine TCM constitutions, is considered a high-risk factor for obesity and its complications. Alterations in the gut microbiota have been shown to drive the development and progression of obesity and metabolic disease, however, key microbial changes in obese patients with PDC have a higher risk for metabolic disorders remain elusive. Methods: We carried out fecal 16S rRNA gene sequencing in the present study, including 30 obese subjects with PDC (PDC), 30 individuals without PDC (non-PDC), and 30 healthy controls with balanced constitution (BC). Metagenomic functional prediction of bacterial taxa was achieved using PICRUSt. Results: Obese individuals with PDC had higher BMI, waist circumference, hip circumference, and altered composition of their gut microbiota compared to non-PDC obese individuals. At the phylum level, the gut microbiota was characterized by increased abundance of Bacteroidetes and decreased levels of Firmicutes and Firmicutes/ Bacteroidetes ratio. At the genus level, Faecalibacterium, producing short-chain fatty acid, achieving anti-inﬂammatory effects and strengthening intestinal barrier functions, was depleted in the PDC group, instead, Prevotella was enriched. Most PDC-associated bacteria had a stronger correlation with clinical indicators of metabolic disorders rather than more severe obesity. The PICRUSt analysis demonstrated 70 signiﬁcantly different microbiome community functions between the two groups, which were mainly involved in carbohydrate and amino acid metabolism, such as promoting Arachidonic acid metabolism, mineral absorption, and Lipopolysaccharide biosynthesis, reducing Frontiers in Cellular and Infection Microbiology | www.frontiersin.org June 2022 | Volume 12 | Article 859708 1 Edited by: Rudolf Bauer, University of Graz, Austria Reviewed by: Alinne Castro, Dom Bosco Catholic University, Brazil Julio Plaza-Diaz, Children’s Hospital of Eastern Ontario (CHEO), Canada *Correspondence: Lingru Li lilingru912@163.com Yingshuai Li",
+  "keywords": [
+    "phlegm-dampness constitution",
+    "gut microbiota",
+    "obesity",
+    "obesity subtypes",
+    "16S rRNA"
+  ],
+  "doi": "10.3389/fcimb.2022.859708",
+  "research_focus": {
+    "constitution_type": [
+      "痰湿质"
+    ],
+    "disease": [
+      "肥胖",
+      "高血压",
+      "糖尿病"
+    ],
+    "topic": []
+  },
+  "methods": {
+    "study_design": "队列研究"
+  },
+  "results": {},
+  "conclusions": "Taken together, our study suggests that the composition of the gut microbiota differs between obese individuals with PDC and non-PDC subjects. Alterations in the gut microbiota of the obese population with the two PDCs were associated to a greater extent with more metabolic disturbances rather than more severe obesity. Such alterations in the gut microbiota may lead to systemic metabolic disturbances by affecting bacterial inﬂammatory and immune responses, polysaccharide, carbohydrate, and amino acid metabolism, etc. In addition, speciﬁc bacterial signatures have shown potential diagnostic value in differentiating obese individuals with different constitutions. These ﬁndings may provide a microbiome component to the TCM view that obese individuals with PDC are at high risk for metabolic disease, and also provide a new perspective on obesity typing to aid in more precise prevention and treatment of obesity. DATA AVAILABILITY STATEMENT The datasets presented in this study can be found in online repositories. The names of the repository/repositories and Shin et al.",
+  "knowledge_points": [
+    {
+      "category": "finding",
+      "content": "Taken together, our study suggests that the composition of the gut microbiota differs between obese individuals with PDC and non-PDC subjects",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "DATA AVAILABILITY STATEMENT The datasets presented in this study can be found in online repositories",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "Methods: We carried out fecal 16S rRNA gene sequencing in the present study, including 30 obese subjects with PDC (PDC), 30 individuals without PDC (non-PDC), and 30 healthy controls with balanced constitution (BC)",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "Results: Obese individuals with PDC had higher BMI, waist circumference, hip circumference, and altered composition of their gut microbiota compared to non-PDC obese individuals",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "Alterations in the gut microbiota of the obese population with the two PDCs were associated to a greater extent with more metabolic disturbances rather than more severe obesity",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "Such alterations in the gut microbiota may lead to systemic metabolic disturbances by affecting bacterial inﬂammatory and immune responses, polysaccharide, carbohydrate, and amino acid metabolism, etc",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "In addition, speciﬁc bacterial signatures have shown potential diagnostic value in differentiating obese individuals with different constitutions",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "These ﬁndings may provide a microbiome component to the TCM view that obese individuals with PDC are at high risk for metabolic disease, and also provide a new perspective on obesity typing to aid in more precise prevention and treatment of obesity",
+      "importance": "high",
+      "evidence_level": "B"
+    }
+  ],
+  "related_constitutions": [
+    "痰湿质"
+  ],
+  "related_diseases": [
+    "肥胖",
+    "高血压",
+    "糖尿病"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "Taken together, our study suggests that the composition of the gut microbiota differs between obese individuals with PDC and non-PDC subjects",
+      "section": "conclusions",
+      "claim_type": "finding",
+      "page_num": 11
+    },
+    {
+      "sentence": "DATA AVAILABILITY STATEMENT The datasets presented in this study can be found in online repositories",
+      "section": "conclusions",
+      "claim_type": "finding",
+      "page_num": 11
+    },
+    {
+      "sentence": "Methods: We carried out fecal 16S rRNA gene sequencing in the present study, including 30 obese subjects with PDC (PDC), 30 individuals without PDC (non-PDC), and 30 healthy controls with balanced constitution (BC)",
+      "section": "abstract",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "Results: Obese individuals with PDC had higher BMI, waist circumference, hip circumference, and altered composition of their gut microbiota compared to non-PDC obese individuals",
+      "section": "abstract",
+      "claim_type": "statement",
+      "page_num": 1
+    }
+  ],
+  "page_info": {
+    "total_pages": 13,
+    "sections": {
+      "introduction": {
+        "start": 2,
+        "end": 2
+      },
+      "methods": {
+        "start": 1,
+        "end": 12
+      },
+      "results": {
+        "start": 1,
+        "end": 4
+      },
+      "discussion": {
+        "start": 10,
+        "end": 10
+      }
+    }
+  },
+  "created_at": "2026-04-25T09:39:10.249110",
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "doi": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "keywords": {
+      "confidence": 0.65,
+      "source": "migrated",
+      "level": "low",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "abstract": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "conclusions": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 1,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.415214",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.415224"
+  }
+}

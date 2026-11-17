@@ -1,39 +1,60 @@
-## Description: <br>
-Provides Chinese-language summaries and guidance drawn from Schopenhauer's The Wisdom of Life, including happiness, self-knowledge, solitude, reputation, and practical maxims. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language structured reference for Schopenhauer's The Wisdom of Life, covering happiness, inner character, wealth, reputation, practical maxims, and life stages.
 
-## Publisher: <br>
-[0xcii](https://clawhub.ai/user/0xcii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xcii](https://clawhub.ai/user/0xcii)
 
-## Use Case: <br>
-External users and agents use this skill for Chinese-language wisdom and philosophy prompts, asking for Schopenhauer-inspired summaries, reflections, or practical guidance grounded in the included book extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Natural-language auto-activation could route ordinary discussion about the skill's trigger phrase into this skill unintentionally. <br>
-Mitigation: Invoke the skill deliberately for Chinese-language Schopenhauer wisdom or philosophy prompts, and review outputs as philosophical commentary. <br>
+## Use Case:
 
+External users and agents use this skill as Chinese-language philosophical reference material for retrieving concise Schopenhauer life-wisdom summaries, themes, and quotations during discussion or writing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xcii/skills/schopenhauer-wisdom) <br>
-- [Publisher profile](https://clawhub.ai/user/0xcii) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose, primarily in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool calls or generated files are required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Readers may treat condensed philosophical summaries or quotations as definitive interpretations of the source work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a reference aid and verify sensitive quotations or interpretations against the cited source text before relying on them.
+
+Risk: The artifact footer includes creator attribution, social links, and an affiliate discount link.
+
+Mitigation: Review outbound links against deployment policy and retain only links appropriate for the target environment.
+
+Risk: The material discusses existential pessimism and includes references to self-harm as part of philosophical analysis.
+
+Mitigation: Avoid presenting the skill as clinical, mental-health, legal, or safety advice; route crisis-related user needs to appropriate support resources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xcii/skills/schopenhauer-wisdom)
+- [Publisher profile: 0xcii](https://clawhub.ai/user/0xcii)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Creator attribution: AntCaveClub](https://x.com/AntCaveClub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose, primarily in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no executable tools or privileged actions evidenced.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

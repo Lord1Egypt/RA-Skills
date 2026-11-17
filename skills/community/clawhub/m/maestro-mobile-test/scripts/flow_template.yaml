@@ -1,0 +1,51 @@
+# Maestro flow template
+# Copy this file into your project's .maestro/ directory and edit.
+#
+# Structure:
+#   .maestro/navigation/flow-name.yaml
+#   .maestro/features/flow-name.yaml
+#   .maestro/suites/smoke.yaml
+#
+# Usage:
+#   source ~/.maestro/activate.sh
+#   maestro test .maestro/navigation/flow-name.yaml
+#
+# Or use the runner script:
+#   bash skills/maestro-mobile-test/scripts/run_flow.sh <avd> .maestro/navigation/flow-name.yaml [backend_port]
+
+# ============================================================
+# EDIT: Replace with your app's package ID
+# Find it: grep "package" android/app/build.gradle  (Android)
+#   or:    grep "bundleIdentifier" app.json          (Expo iOS)
+# ============================================================
+appId: com.example.app
+---
+# ============================================================
+# EDIT: Your test steps
+# Each line starting with "- " is one Maestro command.
+# See SKILL.md for the full command reference.
+# ============================================================
+
+# Wait for a specific element to appear (use extendedWaitUntil, NOT assertVisible+timeout)
+- extendedWaitUntil:
+    visible: "Welcome"
+    timeout: 20000
+
+# Tap a visible element by text
+- tapOn: "Get Started"
+
+# Wait for animations to settle
+- waitForAnimationToEnd
+
+# Type into the focused field
+- inputText: "test@example.com"
+
+# Dismiss keyboard by tapping a non-interactive element (NOT hideKeyboard on dev builds)
+- tapOn: "Screen Title"
+- waitForAnimationToEnd
+
+# Assert something is visible (no timeout — use extendedWaitUntil if you need to wait)
+- assertVisible: "Dashboard"
+
+# Take a screenshot for the test report
+- captureScreenshot: "dashboard-loaded"

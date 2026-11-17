@@ -1,0 +1,8 @@
+{
+  "id": "garnish",
+  "version": "0.1.0",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh garnish"
+  ],
+  "trust_level": "workspace"
+}

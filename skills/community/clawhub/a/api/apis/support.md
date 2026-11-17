@@ -2,10 +2,10 @@
 
 | API | Line |
 |-----|------|
-| Intercom | 2 |
-| Zendesk | 100 |
-| Freshdesk | 191 |
-| Help Scout | 274 |
+| Intercom | 12 |
+| Zendesk | 110 |
+| Freshdesk | 201 |
+| Help Scout | 284 |
 
 ---
 

@@ -1,40 +1,54 @@
-## Description: <br>
-Helps agents maintain local memory through write-ahead session notes, a working buffer, context budget zones, and HOT/WARM/COLD memory tiering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ultimate memory optimization for AI agents that combines WAL protocol, Working Buffer, three-tier memory, context budgeting, and a learning log system.
 
-## Publisher: <br>
-[silaszhu](https://clawhub.ai/user/silaszhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silaszhu](https://clawhub.ai/user/silaszhu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to structure persistent local memory for long-running OpenClaw sessions, including session state, learning logs, checkpoints, and archived context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists conversation details, decisions, preferences, and working context in local memory files. <br>
-Mitigation: Use it only when persistent local memory is intended, avoid secrets or confidential data, and add redaction, retention, and deletion controls for sensitive environments. <br>
-Risk: Initialization and tiering scripts can create, reset, archive, or overwrite active memory files such as SESSION-STATE.md, memory/, and .learnings/. <br>
-Mitigation: Back up those paths before running init.sh or tiering.sh and review the configured OpenClaw workspace before execution. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage long OpenClaw sessions by logging active context, preserving decisions and preferences, tiering memories, and creating recovery checkpoints before compaction.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/silaszhu/proactive-memory-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and local file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates local memory files under the configured OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Persistent workspace memory may store conversation details, preferences, IDs, URLs, and error context in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with intentional opt-in, avoid secrets and confidential data, and add redaction plus retention and deletion procedures before use.
+
+Risk: Memory initialization and tiering behavior can create, reset, archive, or overwrite workspace memory files.
+
+Mitigation: Review the affected workspace paths, keep backups, and run initialization or tiering only in workspaces where those file changes are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/silaszhu/skills/proactive-memory-agent)
+- [Publisher profile](https://clawhub.ai/user/silaszhu)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and generated workspace memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify plaintext memory, learning, state, checkpoint, and archive files in the configured OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

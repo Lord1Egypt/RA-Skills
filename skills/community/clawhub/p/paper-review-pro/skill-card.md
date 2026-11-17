@@ -1,45 +1,61 @@
-## Description: <br>
-Paper Review Pro helps researchers retrieve, rank, summarize, and export papers from arXiv and Semantic Scholar with CCF-aware scoring and BibTeX support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper Review Pro helps researchers search arXiv and Semantic Scholar, rank relevant papers, generate structured summaries, export BibTeX entries, and create research review reports.
 
-## Publisher: <br>
-[alfredliang11](https://clawhub.ai/user/alfredliang11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alfredliang11](https://clawhub.ai/user/alfredliang11)
 
-## Use Case: <br>
-Researchers and developers use this skill to find core papers for a topic, rank them by relevance and publication authority, generate structured summaries, and create research reports and BibTeX exports for literature review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries, paper titles, authors, abstracts, DOI/arXiv identifiers, and saved reports may be processed by configured services. <br>
-Mitigation: Use --no-llm and --no-use-api for a more local workflow when external processing is not appropriate. <br>
-Risk: The security summary flags under-disclosed network behavior around configured services and local gateway credentials. <br>
-Mitigation: Verify OPENCLAW_GATEWAY_URL and related gateway credentials before allowing the skill to use an OpenClaw gateway token. <br>
+## Use Case:
 
+Researchers, students, and developers use this skill to discover papers for a topic, compare candidate papers, summarize methods and findings, and export references for literature review workflows.
 
-## Reference(s): <br>
-- [Paper Review Pro on ClawHub](https://clawhub.ai/alfredliang11/paper-review-pro) <br>
-- [LLM Integration](reference/LLM_INTEGRATION.md) <br>
-- [BibTeX Export](reference/BIBTEX_EXPORT.md) <br>
-- [Publication Status and CCF Rating](reference/PUBLICATION_STATUS.md) <br>
-- [Scoring System](reference/SCORING_SYSTEM.md) <br>
-- [Bug Fixes](reference/BUGFIXES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, local report files, and BibTeX exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save local reports, paper metadata, and BibTeX files under the user's OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send paper content and an OpenClaw gateway token to a configurable LLM endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS or local gateway endpoints, use a dedicated limited token, and disable LLM features with --no-llm for confidential, unpublished, or proprietary paper content.
+
+Risk: The skill makes outbound calls to arXiv, Semantic Scholar, OpenClaw Gateway, and possibly Dashscope.
+
+Mitigation: Install and run it only in environments where those outbound network calls are acceptable for the searched topics and paper content.
+
+Risk: The skill writes results under ~/.openclaw/paper-review-pro.
+
+Mitigation: Review generated reports, BibTeX files, and configuration before sharing them or reusing them in other research workflows.
+
+## Reference(s):
+
+- [BibTeX Export Module](reference/BIBTEX_EXPORT.md)
+- [LLM Integration](reference/LLM_INTEGRATION.md)
+- [Publication Status and CCF Ranking](reference/PUBLICATION_STATUS.md)
+- [Scoring System](reference/SCORING_SYSTEM.md)
+- [Bugfix Notes](reference/BUGFIXES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, BibTeX, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown reports, BibTeX files, terminal text, and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes paper records, BibTeX exports, reports, and configuration under ~/.openclaw/paper-review-pro.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,51 @@
-## Description: <br>
-Call GET /api/tiktok/get-user-detail/v1 for TikTok User Profile through JustOneAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/tiktok/get-user-detail/v1 through JustOneAPI to retrieve TikTok profile data such as nickname, unique ID, avatar, and verification status.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve TikTok profile details through JustOneAPI when given a TikTok uniqueId or secUid. It supports profile lookup, audience analysis, account tracking, and verified-status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token could be exposed in chat messages, logs, screenshots, or shell history. <br>
-Mitigation: Pass the token through the JUST_ONE_API_TOKEN environment variable, avoid pasting token values into shared surfaces, and rotate the token if exposure is suspected. <br>
-Risk: TikTok profile lookup results can contain personal data and may be misused for harassment or covert profiling. <br>
-Mitigation: Use the skill only for legitimate profile lookup and analysis, minimize retention and sharing of returned data, and follow applicable privacy and acceptable-use requirements. <br>
-Risk: Requests send TikTok identifiers and the JustOneAPI token to api.justoneapi.com. <br>
-Mitigation: Install and run the skill only when the user trusts JustOneAPI and is comfortable sending lookup requests to that service. <br>
+## Use Case:
 
+Developers and agents use this skill to look up TikTok user profile details through JustOneAPI for influencer profiling, audience analysis, account tracking, and identifying verified or official accounts.
 
-## Reference(s): <br>
-- [JustOneAPI API homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_tiktok_get_user_detail&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses JUST_ONE_API_TOKEN for authentication and may include raw backend JSON after a short endpoint-specific summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The JustOneAPI token and TikTok lookup parameters are sent to api.justoneapi.com, and the token is passed through the command line and URL query string.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped token when available, avoid exposing token values in chats, screenshots, logs, shell history, or process telemetry, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_tiktok_get_user_detail&utm_content=project_link)
+- [TikTok User Profile API on ClawHub](https://clawhub.ai/justoneapi/skills/justoneapi-tiktok-get-user-detail)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and accepts optional uniqueId or secUid query parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Connect AI agents (Claude Code, Claude Desktop, Cursor, MCP Inspector, OpenClaw) to the Millimetric MCP server so they can natively call track_event, query_events, get_stats, top_sources, and compare_projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect AI agents (Claude Code, Claude Desktop, Cursor, MCP Inspector, OpenClaw) to the Millimetric MCP server so they can natively call track_event, query_events, get_stats, top_sources, and compare_projects.
 
-## Publisher: <br>
-[soybelli](https://clawhub.ai/user/soybelli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soybelli](https://clawhub.ai/user/soybelli)
 
-## Use Case: <br>
-Developers and analytics operators use this skill to configure MCP-capable agents so they can read Millimetric analytics, verify connectivity, and optionally write events when an appropriately scoped key is supplied. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An AI agent can access Millimetric analytics through the supplied bearer token. <br>
-Mitigation: Prefer a read-only rk_* key, grant sk_* or ak_* only when the agent truly needs write or account-wide access, and rotate the key if it is exposed. <br>
-Risk: MCP client configuration files can contain sensitive bearer tokens. <br>
-Mitigation: Protect local MCP configuration files, avoid committing them, and limit file access to users and processes that need the key. <br>
-Risk: Account keys can expose analytics across multiple projects. <br>
-Mitigation: Use ak_* keys only for deliberate multi-project workflows and confirm project visibility before allowing an agent to query account-wide data. <br>
+## Use Case:
 
+Developers and operators use this skill to connect MCP-capable agents to Millimetric analytics endpoints for reading analytics data, tracking events when permitted, and verifying client configuration.
 
-## Reference(s): <br>
-- [Millimetric MCP endpoint](https://api.millimetric.ai/mcp) <br>
-- [Millimetric account MCP endpoint](https://api.millimetric.ai/mcp/account) <br>
-- [ClawHub skill page](https://clawhub.ai/soybelli/millimetric-mcp-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes MCP endpoint setup, key-scope guidance, CLI verification commands, tool names, result-shape notes, and error explanations] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: MCP client configuration can expose bearer tokens if committed or shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep configuration files containing Millimetric keys out of source control and rotate any key that may have been exposed.
+
+Risk: Using write-capable or account-wide keys gives an agent broader analytics access than many read-only workflows require.
+
+Mitigation: Default to read-only keys and use write-capable or account-wide keys only when the workflow specifically needs those scopes.
+
+Risk: Running MCP Inspector through an unpinned package can add local execution and supply-chain risk.
+
+Mitigation: Pin or isolate the inspector package and run it only on a trusted machine.
+
+## Reference(s):
+
+- [Millimetric MCP endpoint](https://api.millimetric.ai/mcp)
+- [Millimetric account MCP endpoint](https://api.millimetric.ai/mcp/account)
+- [ClawHub skill page](https://clawhub.ai/soybelli/skills/millimetric-mcp-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown setup guidance with JSON configuration snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Millimetric key and curl for CLI verification examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,52 @@
-## Description: <br>
-Persuasive copy analysis for WeChat Moments. Use when users need to: (1) Evaluate the persuasiveness of WeChat Moments posts, (2) Improve conversion or engagement of social media copy, (3) Get actionable feedback on personal or business WeChat Moments content, (4) Learn what makes copy more convincing and effective <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persuasive copy analysis for WeChat Moments posts, including scoring, actionable rewrite suggestions, and reasoning about what makes social media copy more convincing.
 
-## Publisher: <br>
-[zealiao](https://clawhub.ai/user/zealiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zealiao](https://clawhub.ai/user/zealiao)
 
-## Use Case: <br>
-External creators, marketers, and business users use this skill to evaluate and improve WeChat Moments posts for persuasion, engagement, and conversion. It provides scored critique, concrete rewrite suggestions, and reasoning for stronger hooks, benefits, proof, and calls to action. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated or improved posts could include inaccurate numbers, testimonials, scarcity claims, guarantees, or credibility claims. <br>
-Mitigation: Before using generated posts publicly, verify that these claims are accurate and not misleading. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zealiao/momentspost) <br>
+## Use Case:
 
+External creators, marketers, and business operators use this skill to evaluate and improve WeChat Moments or similar social media copy for engagement, trust building, and conversion. The skill provides a five-part persuasion review, scores the post, suggests rewrites, and explains why each change may improve the message.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown feedback with scores, strengths, weaknesses, improvement suggestions, rewrite versions, and takeaways] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only copy critique; no code execution, credentials, hidden access, or autonomous posting requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Rewritten marketing copy could include misleading claims, fake proof, or artificial urgency.
+
+Mitigation: Review rewritten claims for truthfulness, use only verifiable evidence, and avoid fabricated proof or pressure tactics.
+
+Risk: Generic copy-help requests may produce advice that does not fit the intended platform, audience, or language.
+
+Mitigation: Clarify the target platform, audience, language, and business goal before applying the rewrite guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zealiao/skills/momentspost)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with scores, structured feedback, rewrite examples, and takeaways]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual Chinese and English copy examples depending on the user's input.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

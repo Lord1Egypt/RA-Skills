@@ -1,6 +1,6 @@
 # Tools Catalog — Hostinger MCP
 
-The official tool catalog for the **Hostinger MCP server** (npm `hostinger-api-mcp`), from [hostinger/api-mcp-server](https://github.com/hostinger/api-mcp-server). 127 tools across 7 categories, each also available as a standalone category binary. Tools appear in Claude as `mcp__hostinger-<account>__<tool>`.
+The official tool catalog for the **Hostinger MCP server** (npm `hostinger-api-mcp`), from [hostinger/api-mcp-server](https://github.com/hostinger/api-mcp-server). 127 tools across 6 categories (VPS, hosting, domains, DNS, Reach, billing), each category also available as a standalone binary (6 category binaries + the all-in-one `hostinger-api-mcp` = 7 binaries). Tools appear in Claude as `mcp__hostinger-<account>__<tool>`.
 
 Flags: **R** = read-only · **W** = write (requires confirmation) · **W!** = destructive or money-spending (requires double confirmation).
 
@@ -160,7 +160,7 @@ Flags: **R** = read-only · **W** = write (requires confirmation) · **W!** = de
 | `billing_getCatalogItemListV1` | R | List catalog items available for order (prices in cents). |
 | `billing_getSubscriptionListV1` | R | List all subscriptions on your account. |
 | `billing_getPaymentMethodListV1` | R | List payment methods available for placing orders. |
-| `billing_enableAutoRenewalV1` | W | Enable auto-renewal for a subscription. |
+| `billing_enableAutoRenewalV1` | W! | 💸 Enable auto-renewal for a subscription (charges automatically at renewal). |
 | `billing_disableAutoRenewalV1` | W | Disable auto-renewal for a subscription. |
 | `billing_setDefaultPaymentMethodV1` | W! | 💸 Set the default payment method for future orders. |
 | `billing_deletePaymentMethodV1` | W! | Delete a payment method from your account. |

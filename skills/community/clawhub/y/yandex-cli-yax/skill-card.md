@@ -1,44 +1,60 @@
-## Description: <br>
-CLI tool for Yandex Disk, Calendar, and Mail via Yandex OAuth API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI tool for Yandex Disk, Calendar, and Mail via Yandex OAuth API.
 
-## Publisher: <br>
-[smvlx](https://clawhub.ai/user/smvlx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[smvlx](https://clawhub.ai/user/smvlx)
 
-## Use Case: <br>
-Developers and automation users use this skill to authenticate with Yandex OAuth, inspect and transfer Yandex Disk files, list calendars, and create calendar events from a Node.js command-line workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The OAuth token may carry mail-sending authority even though mail functionality is only informational. <br>
-Mitigation: Create a dedicated Yandex OAuth app, grant only the scopes needed for the intended workflow, and omit mail:smtp unless mail-sending authority is intentionally required. <br>
-Risk: Saved Yandex credentials and tokens can expose account access if the local configuration files are mishandled. <br>
-Mitigation: Protect ~/.openclaw/yax.env and ~/.openclaw/yax-token.json and avoid sharing logs or archives that include those files. <br>
-Risk: Disk upload and download commands can overwrite user-selected local or remote paths. <br>
-Mitigation: Review local and remote path arguments before running file transfer commands, especially in automated workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smvlx/yandex-cli-yax) <br>
-- [Project homepage](https://github.com/smvlx/openclaw-ru-skills) <br>
-- [Yandex OAuth app setup](https://oauth.yandex.ru/client/new) <br>
-- [Yandex OAuth verification code redirect](https://oauth.yandex.ru/verification_code) <br>
+## Use Case:
 
+Developers and agents use this skill to authenticate with Yandex OAuth, inspect and move Yandex Disk files, list or create Yandex Calendar events, and report the documented Yandex Mail limitation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local configuration and token files under ~/.openclaw.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The requested OAuth scopes can include mail:smtp even though mail sending is not implemented.
+
+Mitigation: Use the narrowest Yandex OAuth scopes needed for Disk and Calendar, and omit mail:smtp unless real mail sending is added.
+
+Risk: The local Yandex OAuth environment file may contain secrets and is created without enforcing private file permissions.
+
+Mitigation: Set ~/.openclaw/yax.env to mode 600 after setup and restrict access to the local user account.
+
+Risk: Calendar event text is inserted into generated ICS content.
+
+Mitigation: Avoid untrusted calendar summaries or descriptions until ICS escaping and validation are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smvlx/skills/yandex-cli-yax)
+- [Publisher profile](https://clawhub.ai/user/smvlx)
+- [Project homepage](https://github.com/smvlx/openclaw-ru-skills)
+- [Yandex OAuth app registration](https://oauth.yandex.ru/client/new)
+- [Yandex OAuth verification code](https://oauth.yandex.ru/verification_code)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [CLI text output and Markdown usage examples with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, a Yandex OAuth client ID, and local configuration under ~/.openclaw.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,66 @@
-## Description: <br>
-Uses Alibaba Bailian Paraformer or Fun-ASR to transcribe user-approved audio or video from a public URL, then produce a transcript, meeting-style summary, and OpenClaw ASR delivery block. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes user-approved audio or video transcription through Alibaba Bailian Paraformer/Fun-ASR using a public share URL, then produces verbatim text, summaries, and an OpenClaw ASR delivery block.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-OpenClaw users and agents use this skill when they need cloud ASR for recordings or videos through Alibaba Bailian rather than local Whisper. It is intended for workflows where the user has approved public URL sharing and cloud transcription. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Media is exposed through a public share URL and processed by Alibaba Bailian cloud transcription. <br>
-Mitigation: Confirm user approval before each run, use local Whisper for confidential or offline transcription, and avoid fabricating or manually composing share URLs. <br>
-Risk: The skill requires the sensitive DASHSCOPE_API_KEY credential. <br>
-Mitigation: Keep the key in the runtime environment only and do not write it into chat, skill files, command history examples, or generated artifacts. <br>
-Risk: Cloud transcription may fail or return empty or low-quality text for unsupported formats, inaccessible URLs, or unsuitable model settings. <br>
-Mitigation: Check that the task succeeded and the transcript is non-empty before summarizing; retry with a supported format, a valid URL, or an alternate Bailian model when needed. <br>
+## Use Case:
 
+External users, employees, and OpenClaw agents use this skill after the user approves cloud transcription of audio or video through Alibaba Bailian. The skill guides URL sharing, DashScope ASR execution, transcript checking, summary generation, and optional Markdown or Word delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-openclaw-asr-bailian) <br>
-- [Project homepage](https://cnb.cool/huo15/ai/huo15-skills) <br>
-- [Alibaba Bailian recording file recognition](https://help.aliyun.com/zh/model-studio/recording-file-recognition) <br>
-- [Alibaba Bailian Paraformer Python SDK](https://help.aliyun.com/zh/model-studio/paraformer-recorded-speech-recognition-python-sdk) <br>
-- [Standard operating procedure](docs/SOP.md) <br>
-- [Bailian transcription script notes](scripts/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, transcript text, summary markdown, and an OpenClaw delivery block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY and either a user-provided public media URL or an OpenClaw enhance_share_file public share URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter, _meta.json, server release evidence) <br>
+Risk: Recordings are sent through a public share URL to Alibaba Bailian for cloud transcription.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm user consent before upload and use short-lived share links.
+
+Risk: The workflow requires a DashScope API key.
+
+Mitigation: Keep DASHSCOPE_API_KEY in the environment only and do not write it into skill files, logs, or conversation text.
+
+Risk: Cloud transcription may expose sensitive recording content to an external service.
+
+Mitigation: Review recordings for sensitivity before use and choose a local ASR workflow when cloud processing is not acceptable.
+
+Risk: An unpinned dashscope dependency can change behavior across installs.
+
+Mitigation: Use a pinned dashscope version in an isolated environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-openclaw-asr-bailian)
+- [Publisher homepage](https://cnb.cool/huo15/ai/huo15-skills)
+- [Alibaba Cloud Bailian recording file recognition](https://help.aliyun.com/zh/model-studio/recording-file-recognition)
+- [Alibaba Cloud Paraformer Python SDK](https://help.aliyun.com/zh/model-studio/paraformer-recorded-speech-recognition-python-sdk)
+- [Skill SOP](docs/SOP.md)
+- [Transcription script README](scripts/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, plain text transcripts, and structured OpenClaw ASR delivery blocks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include optional Markdown or Word document output after user confirmation.]
+
+## Skill Version(s):
+
+1.0.3 (source: SKILL.md frontmatter, _meta.json, ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

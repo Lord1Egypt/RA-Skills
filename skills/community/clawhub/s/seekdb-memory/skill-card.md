@@ -1,42 +1,53 @@
-## Description: <br>
-Cloud-native persistent memory for OpenClaw agents that auto-captures conversation facts, auto-recalls relevant context before replies, and supports hybrid search, query rewrite, and experience learning behind one API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cloud-native persistent memory for OpenClaw agents that auto-captures conversation facts, auto-recalls relevant context before replies, and supports hybrid search, query rewrite, and experience learning behind one API key.
 
-## Publisher: <br>
-[frf12](https://clawhub.ai/user/frf12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frf12](https://clawhub.ai/user/frf12)
 
-## Use Case: <br>
-Developers and external users use this skill to give OpenClaw agents persistent, cross-session memory for preferences, decisions, facts, and reusable tool-use experiences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic memory capture can retain conversation-derived facts in a third-party cloud memory system across sessions and devices. <br>
-Mitigation: Use only for data approved for third-party retention, avoid secrets and regulated data, and confirm users can view, correct, and delete stored memories. <br>
-Risk: Auto-recalled memories can place stale, incorrect, or overly broad personal context into future prompts. <br>
-Mitigation: Limit autoRecall and recallLimit where appropriate, review recalled context during sensitive work, and use memory_forget for outdated or incorrect records. <br>
-Risk: The m0 plugin requires an API key and endpoint configuration for the memory service. <br>
-Mitigation: Use a dedicated API key, keep endpoint and key configuration scoped to the intended service, and rotate credentials if exposed. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to add long-term, cross-session memory to an agent through the m0 plugin. It guides agents on when to recall, store, forget, and inspect memory-derived experiences.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/frf12/seekdb-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes memory tool usage examples for recall, storage, deletion, and experience lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: frontmatter and server release evidence) <br>
+Risk: Automatic cloud-based memory can persist conversation-derived facts more broadly than a user expects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only with a trusted m0 plugin and configured cloud endpoint, and avoid secrets, credentials, health, financial, legal, or confidential business information unless separate controls are in place.
+
+Risk: The security review found insufficient documented safeguards for user control over automatic storage and recall.
+
+Mitigation: Use deployments that provide consent, redaction, retention, access review, and deletion controls; honor explicit forget requests promptly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frf12/skills/seekdb-memory)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw >= 2026.2.2 and the m0 plugin configured with a valid API key.]
+
+## Skill Version(s):
+
+0.2.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

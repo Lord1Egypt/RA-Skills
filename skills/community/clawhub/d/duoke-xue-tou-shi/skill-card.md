@@ -1,42 +1,59 @@
-## Description: <br>
-多科学透视 helps agents analyze ideas, conversations, and notes through multiple disciplinary lenses to surface insights, unexpected connections, writing directions, and follow-up questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+多科学透视 is a Chinese-language skill that analyzes ideas, conversations, or notes through cognitive psychology, history and philosophy, education, systems thinking, linguistics, and Chinese traditional culture to surface cross-disciplinary insights.
 
-## Publisher: <br>
-[zyq328328](https://clawhub.ai/user/zyq328328) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zyq328328](https://clawhub.ai/user/zyq328328)
 
-## Use Case: <br>
-External users and employees can use this Chinese-language skill to examine pasted text, conversations, notes, or user-approved file paths through cognitive psychology, history and philosophy, education, systems thinking, linguistics, and Chinese traditional culture. It is best suited for brainstorming, reflective analysis, and drafting richer angles for essays or education content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Cognitive Psychology Analysis Dimension](references/cognitive-psychology.md) <br>
-- [History and Philosophy Analysis Dimension](references/history-philosophy.md) <br>
-- [Education Analysis Dimension](references/education.md) <br>
-- [Systems Thinking Analysis Dimension](references/systems-thinking.md) <br>
-- [Chinese Traditional Culture Analysis Dimension](references/chinese-wisdom.md) <br>
-- [Unexpected Connections Case Library](references/connections.md) <br>
+External users, writers, educators, and analysts use this skill to examine pasted ideas, notes, or conversations from multiple disciplinary perspectives. It helps produce core insights, unexpected connections, writing directions, and deeper follow-up questions.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown narrative analysis with structured sections for insights, disciplinary perspectives, connections, writing directions, and questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no executable behavior. Users should provide only text or file paths they intend the agent to read, and avoid secrets, credentials, regulated data, private system files, and unrelated personal documents.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Users may provide file paths or content that contains secrets, credentials, private account data, or other sensitive information.
+
+Mitigation: Prefer pasted non-sensitive text and avoid asking the skill to read files that may contain private or secret material.
+
+Risk: Package metadata appears malformed and may affect reliable installation.
+
+Mitigation: Confirm and correct package metadata before publishing or depending on installation automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zyq328328/skills/duoke-xue-tou-shi)
+- [Cognitive psychology reference](references/cognitive-psychology.md)
+- [History and philosophy reference](references/history-philosophy.md)
+- [Education reference](references/education.md)
+- [Systems thinking reference](references/systems-thinking.md)
+- [Chinese traditional culture reference](references/chinese-wisdom.md)
+- [Unexpected connections reference](references/connections.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis in Chinese with sections for insights, disciplinary perspectives, unexpected connections, writing directions, and deep questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or persistence is described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

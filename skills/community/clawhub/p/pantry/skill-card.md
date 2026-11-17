@@ -1,39 +1,54 @@
-## Description: <br>
-Organize pantry stock, expiry dates, and shopping lists. Use when adding items, checking inventory, scheduling restocks, setting expiry reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize pantry stock, expiry dates, and shopping lists. Use when adding items, checking inventory, scheduling restocks, setting expiry reminders.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Household users and assistants use Pantry to record pantry items, check inventory, track expiry dates, plan restocks, and export local pantry records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pantry entries, costs, reminders, activity history, and exports are stored as plaintext local files under ~/.local/share/pantry. <br>
-Mitigation: Avoid entering sensitive household details on shared machines, review export files before sharing them, and delete the pantry data directory when clearing history is required. <br>
+## Use Case:
 
+External users and household operators use Pantry to record pantry inventory, expiry reminders, shopping lists, costs, maintenance notes, and recent activity through a local command-line workflow.
 
-## Reference(s): <br>
-- [Pantry on ClawHub](https://clawhub.ai/xueyetianya/pantry) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update plaintext pantry logs and export files under ~/.local/share/pantry.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release metadata) <br>
+Risk: Pantry and household notes are saved as plain local log files in ~/.local/share/pantry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering credentials, financial details, sensitive schedules, or private household information.
+
+Risk: CSV exports can carry sensitive household data and may be risky when opened in spreadsheet software.
+
+Mitigation: Review exported CSV files before sharing or opening them in spreadsheet tools.
+
+## Reference(s):
+
+- [Pantry on ClawHub](https://clawhub.ai/xueyetianya/skills/pantry)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI output; exports may be JSON, CSV, or plain text files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores pantry logs locally under ~/.local/share/pantry and can export logged entries.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

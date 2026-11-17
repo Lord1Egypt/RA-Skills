@@ -1,46 +1,51 @@
-## Description: <br>
-Turn a PDF (whitepaper, ebook chapter, slide deck export, research paper) into a short summary video. Use when the source is a PDF URL or a PDF the agent can upload to public storage first. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a public PDF URL into a short summary video using Revid's article-to-video workflow.
 
-## Publisher: <br>
-[api00](https://clawhub.ai/user/api00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[api00](https://clawhub.ai/user/api00)
 
-## Use Case: <br>
-Developers, content teams, and agents use this skill to turn public PDF URLs into 30-90 second summary videos with Revid. It is useful when a user wants a concise video summary of a whitepaper, research paper, slide export, or ebook chapter and can provide a reachable PDF URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF URLs and document contents are sent to Revid for processing. <br>
-Mitigation: Use only PDFs approved for external processing; avoid confidential, regulated, proprietary, or personal documents unless that exposure is deliberately approved. <br>
-Risk: Local PDFs must be uploaded to public or shared storage before Revid can fetch them. <br>
-Mitigation: Prefer time-limited signed URLs or controlled shared storage, and remove uploaded files after processing when possible. <br>
-Risk: The skill requires a Revid API key. <br>
-Mitigation: Use an environment variable for REVID_API_KEY, prefer a scoped key where available, and avoid exposing the key in prompts, logs, or shared files. <br>
+## Use Case:
 
+Developers and agents use this skill to create 30-90 second narrated summary videos from public whitepapers, research papers, slide exports, ebook chapters, and similar PDF documents.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/api00/revid-pdf-to-video) <br>
-- [Revid Render API Endpoint](https://www.revid.ai/api/public/v3/render) <br>
-- [Revid Status API Endpoint](https://www.revid.ai/api/public/v3/status?pid=$PID) <br>
-- [Example Payload](examples/whitepaper.json) <br>
-- [Example Runner](examples/run.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with HTTP, JSON, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REVID_API_KEY and a public, unauthenticated PDF URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local or login-protected PDFs may become accessible to a third-party video service without adequate consent, access control, or cleanup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only PDFs that are allowed to be shared externally; for local or private PDFs, get explicit user approval, use short-lived private or presigned URLs, revoke or delete access after processing, and review Revid's data handling and retention terms.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/api00/skills/revid-pdf-to-video)
+- [Revid Render API Endpoint](https://www.revid.ai/api/public/v3/render)
+- [Revid Status API Endpoint](https://www.revid.ai/api/public/v3/status)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, JSON, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown instructions with JSON payload examples and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REVID_API_KEY and a PDF URL reachable without authentication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

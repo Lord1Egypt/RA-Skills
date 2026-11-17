@@ -1,40 +1,54 @@
-## Description: <br>
-Proactive skill router that helps an agent select and maintain installed skills through routing tables, enhancer checks, anti-forget gates, onboarding steps, and a coverage-check script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactive skill router that helps an agent map user intent to available skills through a decision tree, enhancer layer, anti-forget checks, and coverage-gap detection.
 
-## Publisher: <br>
-[miantiao1231](https://clawhub.ai/user/miantiao1231) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miantiao1231](https://clawhub.ai/user/miantiao1231)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route user requests to installed skills, detect uncovered skills, and maintain routing coverage as the skill set changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence broad, always-on routing behavior and persistent skill-maintenance state. <br>
-Mitigation: Install it only when a global skill-routing layer is intended, and require explicit user approval before changing core rules, memory, routing tables, packaged skill files, or installed skills. <br>
-Risk: The fallback protocol can direct an agent to search external registries when a local skill is not found. <br>
-Mitigation: Disable external registry search unless the user explicitly requests it for the current task. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep installed skills visible during task routing, detect uncovered skills, and guide onboarding of newly installed skills into a routing table.
 
-## Reference(s): <br>
-- [New Skill Onboarding Protocol](references/onboarding.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with routing tables, procedural guidance, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces routing decisions, onboarding steps, compliance tag guidance, and coverage reports through the bundled script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill is a broad router that can persistently affect future agent behavior and skill selection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when an always-on routing helper is intended, and review routing-table changes before deployment.
+
+Risk: The artifact includes guidance for core-file edits, registry searches, self-editing, repackaging, reinstalling, memory writes, and mandatory output tags.
+
+Mitigation: Require explicit approval or remove these behaviors before operational use, following the server security guidance.
+
+## Reference(s):
+
+- [New Skill Onboarding Protocol](references/onboarding.md)
+- [ClawHub Skill Page](https://clawhub.ai/miantiao1231/skills/skill-dispatcher)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with routing tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require local customization of routing tables, trigger phrases, and covered-skill registry entries before use.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

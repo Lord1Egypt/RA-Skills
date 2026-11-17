@@ -1,44 +1,65 @@
-## Description: <br>
-ADP Global Invoice Extraction Free API sends invoices and receipts to Laiye ADP public cloud endpoints and returns structured JSON extraction results across 100+ languages and international formats. <br>
+## Description:
 
-This skill is for research and development only. <br>
+This skill helps agents call Laiye ADP's free public API to extract structured invoice and receipt data from PDFs, scanned files, images, and other supported document formats across more than 100 languages.
 
-## Publisher: <br>
-[laiye-adp](https://clawhub.ai/user/laiye-adp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Commercial License Agreement <br>
+## Publisher:
 
+[laiye-adp](https://clawhub.ai/user/laiye-adp)
 
-## Use Case: <br>
-Finance teams, automation builders, and system integrators use this skill to extract invoice and receipt fields from scanned images, PDFs, and public file URLs for reconciliation, data entry, and downstream workflow automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global and China regional public cloud endpoints. <br>
+Commercial License Agreement
 
-## Known Risks and Mitigations: <br>
-Risk: Invoices and receipts can contain confidential or regulated data, and this skill submits selected documents or public file URLs to Laiye-operated cloud APIs. <br>
-Mitigation: Submit only documents you are authorized to share, and avoid confidential, regulated, customer, employee, tax, or payment documents unless Laiye data handling, retention, regional processing, and compliance terms have been reviewed. <br>
-Risk: The free API has file size, page count, format, and rate limits that can reject production-scale or multi-page workflows. <br>
-Mitigation: Validate file size, page count, format, and URL accessibility before requests; handle 400 and 429 responses or use a full ADP account when higher quotas or broader document support are required. <br>
+## Use Case:
 
+Finance teams, agent users, and developers use this skill to submit authorized single-page invoice or receipt files by URL or base64 and receive structured extraction results for reimbursement, settlement, data entry, and workflow automation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/laiye-adp/adp-global-invoice-extraction-free) <br>
-- [Open API User Guide](https://laiye-tech.feishu.cn/wiki/S1t2wYR04ivndKkMDxxcp2SFnKd) <br>
-- [ADP Product Manual](https://laiye-tech.feishu.cn/wiki/OfexwgVUQiOpEek4kO7c7NEJnAe) <br>
-- [ADP CLI User Guide](https://laiye-tech.feishu.cn/wiki/YIaawiK2DimisZk5KfDc8a8cnLh) <br>
-- [Laiye ADP Platform](https://laiye.com/en/product/adp-platform) <br>
+### Deployment Geography for Use:
 
+Global, with separate Global and China public cloud endpoints
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API calls, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with curl and Python examples; API responses are structured JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a public file URL or base64-encoded document; free endpoint limits include single-page files under 2 MB and documented per-IP/global request quotas.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Invoices and receipts submitted through the skill are processed by Laiye-operated public cloud services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents you are authorized to upload, avoid regulated or confidential records unless organizational policy permits it, and review Laiye privacy and retention terms before production use.
+
+Risk: Free-tier and input limits can cause failed or rate-limited requests.
+
+Mitigation: Check file size, page count, supported format, URL accessibility, and request volume before submission; handle documented 400 and 429 responses in downstream workflows.
+
+Risk: Public file URL submission can expose documents beyond the agent workflow.
+
+Mitigation: Prefer authorized short-lived HTTPS URLs or base64 upload paths, and do not use private network or internal IP URLs.
+
+Risk: Automated extraction can produce incomplete or incorrect financial fields.
+
+Mitigation: Review extracted invoice numbers, dates, parties, amounts, currency, tax fields, and line items before using results in accounting or payment workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laiye-adp/skills/adp-global-invoice-extraction-free)
+- [Open API User Guide](https://laiye-tech.feishu.cn/wiki/S1t2wYR04ivndKkMDxxcp2SFnKd)
+- [ADP CLI User Guide](https://laiye-tech.feishu.cn/wiki/YIaawiK2DimisZk5KfDc8a8cnLh)
+- [Public Cloud Manual](https://laiye-tech.feishu.cn/wiki/OfexwgVUQiOpEek4kO7c7NEJnAe)
+- [Laiye ADP Product Page](https://laiye.com/en/product/adp-platform)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with curl and Python examples plus JSON request and response structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [API requests provide either one public file URL or one base64-encoded file; the free tier supports single-page files under 2 MB with per-IP and global quotas.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

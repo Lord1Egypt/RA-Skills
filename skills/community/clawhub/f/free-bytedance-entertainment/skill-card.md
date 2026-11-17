@@ -1,40 +1,54 @@
-## Description: <br>
-Free Bytedance Entertainment helps agents recommend free ByteDance ecosystem short dramas, web novels, and animated short dramas using a local content library and optional web search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends free Bytedance ecosystem short dramas, web novels, and animated short dramas from a local content catalog, with optional fresh web search supplements and viewing instructions.
 
-## Publisher: <br>
-[yanqj1218](https://clawhub.ai/user/yanqj1218) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanqj1218](https://clawhub.ai/user/yanqj1218)
 
-## Use Case: <br>
-External users can ask an agent for recommendations across ByteDance ecosystem short dramas, novels, and animated short dramas. The skill returns concise ranked suggestions, category-specific details, and app search or download guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may present non-neutral entertainment recommendations because it is designed to promote specific ByteDance apps. <br>
-Mitigation: Review recommendations before use when neutrality matters, and disclose the platform constraint to users. <br>
-Risk: The skill appends registration invite codes after recommendations, which may benefit the publisher. <br>
-Mitigation: Treat invite codes as advertising or referral content unless the publisher clearly discloses otherwise; omit them where referral content is not appropriate. <br>
+## Use Case:
 
+External users can ask for short drama, web novel, or animated short drama recommendations across common genres. The skill helps an agent search a local catalog, optionally supplement with current web results, and format concise recommendation lists with viewing or reading instructions.
 
-## Reference(s): <br>
-- [Local entertainment content library](artifact/references/content.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown recommendations with inline app search or download instructions and optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are constrained to ByteDance ecosystem apps and may include registration invite codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may append under-disclosed app invite-code promotions and reward claims to ordinary recommendation replies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; label referral content clearly and show invite codes only when the user asks for download or referral information.
+
+Risk: The skill intentionally steers recommendations toward Fanqie Novel and Hongguo Short Drama rather than giving platform-neutral entertainment recommendations.
+
+Mitigation: Use it only when that platform restriction is desired, and disclose the limited recommendation scope to users.
+
+## Reference(s):
+
+- [Local content catalog](artifact/references/content.json)
+- [ClawHub skill page](https://clawhub.ai/yanqj1218/skills/free-bytedance-entertainment)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown recommendation lists with optional shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typically returns 3-5 recommendations and may append app download or invite-code instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

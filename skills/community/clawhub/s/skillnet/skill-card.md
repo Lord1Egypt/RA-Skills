@@ -1,47 +1,64 @@
-## Description: <br>
-Search, download, create, evaluate, and analyze reusable agent skills via SkillNet, an open skill supply chain for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, download, create, evaluate, and analyze reusable agent skills via SkillNet, an open skill supply chain for AI agents.
 
-## Publisher: <br>
-[icarus-chen](https://clawhub.ai/user/icarus-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[icarus-chen](https://clawhub.ai/user/icarus-chen)
 
-## Use Case: <br>
-Developers and agent operators use this skill to find reusable skills before complex work, install reviewed skills, and create, evaluate, or analyze local skill libraries when reuse is warranted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward networked skill-management actions and local library changes. <br>
-Mitigation: Require user approval before download, create, evaluate, analyze, loading downloaded skill content, or running downloaded scripts. <br>
-Risk: Create, evaluate, and analyze workflows may send repository summaries, document text, trajectory logs, or skill snippets to the configured LLM endpoint. <br>
-Mitigation: Disclose the approximate data sent and endpoint before execution; use a local BASE_URL for sensitive content. <br>
-Risk: Downloaded skills are third-party content and may contain unsafe instructions or scripts. <br>
-Mitigation: Treat downloaded files as reference material, preview them with the user, extract only relevant technical patterns, and never auto-execute downloaded scripts. <br>
-Risk: Global pip installation can affect the user's Python environment. <br>
-Mitigation: Prefer the documented pipx installation path for an isolated environment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to find existing reusable skills, download and review relevant third-party skill content, create new skills from repositories, documents, prompts, or logs, and evaluate or organize a local skill library.
 
-## Reference(s): <br>
-- [SkillNet API and CLI Reference](references/api-reference.md) <br>
-- [SkillNet Security and Privacy Reference](references/security-privacy.md) <br>
-- [SkillNet Workflow Patterns](references/workflow-patterns.md) <br>
-- [ClawHub SkillNet release page](https://clawhub.ai/icarus-chen/skillnet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python snippets, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local skill files or relationship reports when the user approves SkillNet create, download, evaluate, or analyze workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata) <br>
+Risk: The skill can send repository metadata, document text, trajectory logs, and skill snippets to the configured LLM endpoint during create, evaluate, and analyze workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact BASE_URL and data volume before use; redact sensitive content or use a local LLM endpoint for confidential material.
+
+Risk: Installation instructions use an unpinned skillnet-ai package, which may change behavior across releases.
+
+Mitigation: Install with pipx in an isolated environment and pin a trusted skillnet-ai version where reproducibility matters.
+
+Risk: Downloaded skills and scripts are third-party content that may contain unsafe operational instructions.
+
+Mitigation: Review file listings, SKILL.md previews, and full scripts before loading or running anything; treat downloaded scripts as reference material unless explicitly approved.
+
+Risk: Credential misuse could expose LLM API keys or GitHub tokens if environment routing is misconfigured.
+
+Mitigation: Use short-lived, least-privilege credentials and verify API_KEY, BASE_URL, and GITHUB_TOKEN scope before sensitive commands.
+
+## Reference(s):
+
+- [SkillNet API and CLI Reference](references/api-reference.md)
+- [SkillNet Security and Privacy Reference](references/security-privacy.md)
+- [SkillNet Workflow Patterns](references/workflow-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/icarus-chen/skills/skillnet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, code snippets, and generated local skill files or JSON reports when helper commands are used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search returns matching skill metadata; create writes skill directories; evaluate returns quality ratings; analyze can write relationships.json.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

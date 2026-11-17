@@ -1,39 +1,54 @@
-## Description: <br>
-Organizes Desktop files into image, document, and archive folders, with a preview mode before moving files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes Desktop files into type-based folders for images, documents, and archives, with a preview mode intended to show planned moves before changes are applied.
 
-## Publisher: <br>
-[578499893](https://clawhub.ai/user/578499893) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[578499893](https://clawhub.ai/user/578499893)
 
-## Use Case: <br>
-Individuals and desktop support agents use this skill to preview and organize Desktop files into common category folders without deleting files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move Desktop files into category folders, which may disrupt a user's preferred organization if run without review. <br>
-Mitigation: Run dry_run first, review the exact proposed folders and file moves, and only allow a real run after the changes match the user's intent. <br>
-Risk: Extension-based categorization may place files into broad folders that are technically correct but not what the user expects. <br>
-Mitigation: Confirm the category mappings and generated move report before permitting file operations. <br>
+## Use Case:
 
+Users and agents use this skill to clean a cluttered Desktop by previewing and optionally moving common file types into Images, Documents, and Archives folders. It is suited for simple personal file organization where the user can review the planned source and destination paths before applying changes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain-text report with shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports a dry_run preview before applying file moves.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can move Desktop files and create destination folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a dry-run preview listing exact source and destination paths before any move, block overwrites, and ask for explicit confirmation before applying changes.
+
+Risk: Bulk organization may place files in folders the user did not intend.
+
+Mitigation: Limit actions to the documented file extensions, skip hidden files and shortcuts, and provide a clear post-action report for review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/578499893/skills/clean-desktop)
+- [Source skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with planned or completed file moves and inline shell commands when execution is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preview mode is the default; applying moves should require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

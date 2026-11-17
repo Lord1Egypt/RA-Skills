@@ -1,48 +1,64 @@
-## Description: <br>
-Helps agents query and manage Teambition projects, tasks, members, comments, attachments, task status, priority, assignees, and sprints through bundled scripts and TQL references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage DingTalk Teambition projects and tasks, including querying todos, creating and updating tasks, adding comments or progress, uploading task files, looking up members, and managing sprints.
 
-## Publisher: <br>
-[qijian2026](https://clawhub.ai/user/qijian2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qijian2026](https://clawhub.ai/user/qijian2026)
 
-## Use Case: <br>
-Employees, project contributors, and operations teams use this skill to inspect and update Teambition work items, find members and projects, manage sprints, and attach files or comments. It is intended for Teambition workflows, not for other project-management platforms or Git operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change live Teambition project and task data, including status, assignee, priority, sprint state, and archive or restore state. <br>
-Mitigation: Require explicit user confirmation that names the exact target before destructive or high-impact changes such as archiving tasks, completing sprints, or changing status, assignee, or priority. <br>
-Risk: The skill requires a Teambition user token that can grant access to account and workspace data. <br>
-Mitigation: Prefer TEAMBITION_USER_TOKEN in the environment, keep any user-token.json file out of source control, and rotate the token if it is exposed. <br>
-Risk: Task, member, and attachment queries can expose sensitive member details and signed download URLs. <br>
-Mitigation: Minimize disclosure in responses and require explicit confirmation before returning attachment links or member contact details. <br>
+## Use Case:
 
+Employees and teams that use Teambition can use this skill to query, create, update, comment on, and archive tasks and to inspect projects, members, statuses, custom fields, files, and sprints.
 
-## Reference(s): <br>
-- [Teambition Open Platform](https://open.teambition.com/) <br>
-- [Teambition User Token](https://open.teambition.com/user-mcp) <br>
-- [TQL Reference](references/tql.md) <br>
-- [Project TQL Reference](references/project-tql.md) <br>
-- [Task Operations Reference](references/task-ops.md) <br>
-- [Project Operations Reference](references/project-ops.md) <br>
-- [Error Handling Reference](references/error-handling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, API calls] <br>
-**Output Format:** [Markdown responses with inline shell commands, Teambition links, and tabular task summaries when listing multiple tasks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should resolve internal IDs to readable names before display and treat member details, tokens, and signed file links as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The skill can modify shared Teambition project and task data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before archive, restore, sprint lifecycle changes, bulk updates, or file uploads, and review proposed changes before execution.
+
+Risk: Teambition workspace data and member profile details may appear in logs or agent transcripts.
+
+Mitigation: Use the least-privileged account available, limit result sharing, and avoid exposing raw IDs, email addresses, phone numbers, employee numbers, or signed file links unless needed.
+
+Risk: A Teambition user token grants access to workspace data and actions.
+
+Mitigation: Prefer an environment variable or secret manager for the token and do not commit user-token.json.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/qijian2026/skills/dingtalk-teambition-project)
+- [Teambition Open Platform](https://open.teambition.com/)
+- [Teambition User Token](https://open.teambition.com/user-mcp)
+- [Task TQL Reference](references/tql.md)
+- [Project TQL Reference](references/project-tql.md)
+- [Task Operations Reference](references/task-ops.md)
+- [Project Operations Reference](references/project-ops.md)
+- [Error Handling Reference](references/error-handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and structured task or project summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TEAMBITION_USER_TOKEN and local python3/uv runtime availability.]
+
+## Skill Version(s):
+
+0.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

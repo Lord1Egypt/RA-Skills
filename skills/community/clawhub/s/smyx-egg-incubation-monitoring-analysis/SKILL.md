@@ -1,7 +1,7 @@
 ---
 name: "smyx-egg-incubation-monitoring-analysis"
 description: "Through a fixed camera (macro or high-resolution) in the incubator, the system periodically captures surface images of turtle or snake eggs and uses AI visual analysis to detect changes in eggshell colour (normally white or pale yellow; after fertilisation, grey spots or a vascular network may appear), blood streaks (early vascular formation in fertilised eggs, appearing as fine red lines), and embryo silhouette (a dark mass. | 通过孵化箱内的固定摄像头（微距或高分辨率），定期拍摄龟蛋或蛇蛋的表面图像，利用 AI 视觉分析技术检测蛋壳颜色变化（正常为白色或淡黄色，受精发育后可能出现灰斑、血管网络）、血丝（受精卵早期血管形成，呈红色细线状）以及胚胎轮廓（后期可见黑影）。系统每日或每两日自动拍照分析，生成孵化报告。"
-version: "1.0.2"
+version: "1.0.23"
 license: "MIT-0"
 ---
 

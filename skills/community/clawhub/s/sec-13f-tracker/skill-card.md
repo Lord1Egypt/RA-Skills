@@ -1,44 +1,56 @@
-## Description: <br>
-Track top fund managers' holdings via SEC 13F filings. Fetches quarterly filings from SEC EDGAR, compares quarter-over-quarter changes (new positions, increases, decreases, exits), and generates analysis reports with cross-fund convergence insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track top fund managers' holdings via SEC 13F filings, compare quarter-over-quarter changes, and generate analysis reports with cross-fund convergence insights.
 
-## Publisher: <br>
-[reed1898](https://clawhub.ai/user/reed1898) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reed1898](https://clawhub.ai/user/reed1898)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to monitor selected institutional investors' public 13F filings, compare quarter-over-quarter position changes, and identify cross-fund convergence in holdings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tracker clears common HTTP and HTTPS proxy environment variables before contacting SEC EDGAR. <br>
-Mitigation: Review whether direct outbound SEC EDGAR access is acceptable for the deployment network, or modify the script before use in environments that require enforced proxies. <br>
-Risk: Cron or channel posting can make SEC report generation recurring and visible to others. <br>
-Mitigation: Enable scheduled runs and channel delivery only when intentional, and review recipients and posting cadence before deployment. <br>
-Risk: The skill writes local holdings caches and Markdown reports. <br>
-Mitigation: Run in an isolated virtual environment or workspace and review generated data/ and reports/ content before sharing or retaining it. <br>
+## Use Case:
 
+Developers and external users use this skill to fetch SEC EDGAR 13F filings for selected fund managers, compare current and prior quarters, and produce holdings-change reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/reed1898/sec-13f-tracker) <br>
-- [SEC EDGAR company search](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany) <br>
-- [SEC submissions endpoint used by tracker](https://data.sec.gov/submissions/CIK{cik}.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, shell commands, configuration] <br>
-**Output Format:** [Markdown reports, JSON cache files, and setup/run command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes cached holdings under data/ and dated plus latest reports under reports/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The tracker clears proxy environment variables before making SEC network requests, which can bypass managed or audited network controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require review or removal of the proxy-clearing behavior before managed-network deployment, or gate it behind an explicit opt-in direct-network mode.
+
+Risk: The Python dependency is specified as requests>=2.28.0, allowing future dependency changes at install time.
+
+Mitigation: Pin and review the requests dependency before production or scheduled use.
+
+## Reference(s):
+
+- [SEC EDGAR Company Search](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany)
+- [SEC submissions endpoint](https://data.sec.gov/submissions/CIK{cik}.json)
+- [ClawHub skill page](https://clawhub.ai/reed1898/skills/sec-13f-tracker)
+- [Publisher profile](https://clawhub.ai/user/reed1898)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON cache files, terminal status text, and setup or run commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates data/ caches and reports/latest.md plus dated 13F report files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

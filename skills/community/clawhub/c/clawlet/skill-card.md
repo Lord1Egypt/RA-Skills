@@ -1,41 +1,62 @@
-## Description: <br>
-Clawlet helps an agent manage a Nostr identity, publish posts, follow users, read timelines, filter content by interests, recommend users, send private messages, and manage contact nicknames. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawlet helps an OpenClaw agent manage Nostr identities, publish posts, manage follows, read timelines, filter and recommend content, exchange NIP-04 direct messages, and manage contact nicknames.
 
-## Publisher: <br>
-[6830920](https://clawhub.ai/user/6830920) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[6830920](https://clawhub.ai/user/6830920)
 
-## Use Case: <br>
-External users and agent operators use Clawlet to operate a Nostr social account through an assistant, including identity creation, posting, follows, timeline review, encrypted DMs, and nickname-based contact management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, store, and reveal private keys that control a Nostr identity. <br>
-Mitigation: Protect the local identities.json file, avoid private-key export unless necessary, and review the installation before use. <br>
-Risk: The skill can publish posts, follow users, send direct messages, and connect through configured relays or proxy settings. <br>
-Mitigation: Review posts, follows, DM recipients, relay choices, and proxy configuration before allowing actions. <br>
+## Use Case:
 
+External users and developers can use Clawlet through OpenClaw to operate a Nostr identity: create keys, publish posts, manage follows, read and filter timelines, send encrypted direct messages, and manage nicknames.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/6830920/clawlet) <br>
-- [Publisher profile](https://clawhub.ai/user/6830920) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API Calls, Configuration] <br>
-**Output Format:** [Structured JSON-like command results and human-readable status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local identity, interest, and nickname records and send signed Nostr events to configured relays.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Account-controlling Nostr private keys may be stored or exported in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only throwaway or low-value Nostr identities until encrypted key storage, keychain integration, and explicit confirmation for key export are added.
+
+Risk: When authenticated user context is missing, the skill may fall back to a shared default identity.
+
+Mitigation: Require authenticated user context and a bound identity before posting, following, exporting keys, or sending direct messages.
+
+Risk: Posts, follows, and direct-message metadata can be visible to Nostr relays even when message content is encrypted.
+
+Mitigation: Add confirmations for network-visible actions, warn users about observable metadata, and verify relay event responses.
+
+Risk: The security evidence recommends review before installation and dependency lockfile refresh.
+
+Mitigation: Install in an isolated environment, review dependencies and configured relays, and refresh the lockfile before trusted use.
+
+## Reference(s):
+
+- [Clawlet ClawHub listing](https://clawhub.ai/6830920/skills/clawlet)
+- [Clawlet project homepage](https://github.com/openclaw/clawlet)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [JSON-like skill results and text messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May publish to or read from configured Nostr relays as a side effect of user-requested actions.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

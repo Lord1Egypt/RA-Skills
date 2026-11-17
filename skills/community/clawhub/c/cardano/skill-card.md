@@ -1,37 +1,51 @@
-## Description: <br>
-Assist with Cardano ADA transactions, staking, native tokens, and UTxO model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assist with Cardano ADA transactions, staking, native tokens, and UTxO model.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill as concise Cardano reference guidance for ADA transactions, staking, native tokens, wallets, smart contracts, NFTs, and governance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cardano transaction, staking, fee, and protocol details may become outdated or affect irreversible blockchain actions. <br>
-Mitigation: Independently verify current network details before acting, and never share seed phrases or private keys. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cardano skill page](https://clawhub.ai/ivangdavila/cardano) <br>
+## Use Case:
+
+External users and developers use this skill as concise reference guidance for Cardano ADA transactions, staking, native tokens, wallets, NFTs, governance, and common UTxO-related issues.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Financial transaction or staking guidance may become outdated as Cardano network parameters, wallets, or protocol behavior change.
+
+Mitigation: Verify current Cardano network parameters and wallet guidance before acting.
+
+Risk: Users may expose seed phrases, private keys, or wallet access while applying wallet or transaction advice.
+
+Mitigation: Never share seed phrases or private keys, and verify transaction details through trusted wallet interfaces before signing.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance and concise text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only reference material; no code execution or credential access.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance and concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only reference guidance; no commands, wallet access, or credential handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

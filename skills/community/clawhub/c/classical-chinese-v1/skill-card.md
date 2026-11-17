@@ -1,38 +1,53 @@
-## Description: <br>
-以文言文压缩输出、节省 token。当用户要求文言回复、节省 token、省输出时触发。支持三档：极致(/e/Extreme)、适度(/m/Medium)、轻微(/l/Light)。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+以文言文压缩输出、节省 token。当用户要求文言回复、节省 token、省输出时触发。支持三档：极致(/e/Extreme)、适度(/m/Medium)、轻微(/l/Light)。
 
-## Publisher: <br>
-[u5bf](https://clawhub.ai/user/u5bf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[u5bf](https://clawhub.ai/user/u5bf)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to answer in concise Classical Chinese, with selectable compression levels to reduce output length while preserving technical terms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Concise Classical Chinese output can reduce readability or obscure precise wording in high-stakes or detail-sensitive tasks. <br>
-Mitigation: Use light compression or disable the skill for medical, legal, security, debugging, and other contexts where exact wording and step-by-step clarity matter. <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to answer in concise Classical Chinese to reduce output length while preserving technical literals such as code, paths, URLs, logs, numbers, and markup.
 
-## Reference(s): <br>
-- [Compression Rules](references/compression_rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text in concise Classical Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports /e, /m, and /l compression levels and may include a brief estimated compression-rate note.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Classical Chinese compression can reduce clarity for safety-critical, legal, medical, financial, or complex troubleshooting tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using this skill for those tasks, or lower the compression level and ask for clear modern-language detail.
+
+Risk: Compression may omit connective language that helps users follow multi-step reasoning.
+
+Mitigation: Use the Light (/l) level or request a detailed explanation when clarity is more important than token reduction.
+
+## Reference(s):
+
+- [Compression rules](artifact/references/compression_rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses, optionally ending with a concise compression note.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports three compression levels: Extreme (/e), Medium (/m, default), and Light (/l).]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

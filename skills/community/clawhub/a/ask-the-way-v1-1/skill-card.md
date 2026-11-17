@@ -1,43 +1,57 @@
-## Description: <br>
-Ask The Way 问道 uses Dao De Jing passages and cognitive reframing to help users turn personal, leadership, creative, and strategic concerns into bilingual reflections and actionable perspective shifts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ask The Way 问道 matches a user's modern decision, stress, or mental block to Dao De Jing wisdom and cognitive reframing, then returns bilingual passages, interpretation, and actionable reflection.
 
-## Publisher: <br>
-[aeroic-w](https://clawhub.ai/user/aeroic-w) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aeroic-w](https://clawhub.ai/user/aeroic-w)
 
-## Use Case: <br>
-External users use this skill to reframe career dilemmas, leadership questions, creative blocks, relationship friction, life uncertainty, and strategic decisions through Dao De Jing passages and modern cognitive reframing. It is intended for reflective guidance, not factual lookup, prediction, or professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat interpretive reflections as authoritative advice for medical, legal, financial, engineering, or other high-stakes decisions. <br>
-Mitigation: Treat outputs as prompts for reflection and consult qualified professionals or authoritative sources before acting in high-stakes contexts. <br>
-Risk: The skill does not query real-time data, databases, or the web, so factual or time-sensitive claims may be incomplete or stale. <br>
-Mitigation: Use factual sources for real-time information, calculations, citations, audits, and other precision-dependent work. <br>
-Risk: Dao De Jing matching and interpretation are suggestive and may not fit the user's concern. <br>
-Mitigation: Review the passage and insights critically, rephrase the concern when the match feels wrong, and treat the result as one possible reading rather than a command. <br>
+## Use Case:
 
+External users use this skill to reframe career dilemmas, leadership questions, creative blocks, interpersonal friction, and life uncertainty through Dao De Jing passages and practical cognitive reframing.
 
-## Reference(s): <br>
-- [Ask The Way on ClawHub](https://clawhub.ai/aeroic-w/ask-the-way-v1-1) <br>
-- [Publisher profile: aeroic-w](https://clawhub.ai/user/aeroic-w) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Bilingual Markdown-style reflective response with a Dao De Jing passage, modern interpretation, three actionable insights, and a mind-flip perspective shift.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interpretive text only; no web lookup, database query, code execution, credential access, or persistent storage is evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter says 1.1.0) <br>
+Risk: Users may treat philosophical reflection as therapy, crisis support, or professional advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as reflective guidance only and direct users to qualified professionals or emergency services for crisis, medical, legal, financial, or time-sensitive decisions.
+
+Risk: Matched chapters and insights are interpretive and may not fit the user's situation.
+
+Mitigation: Encourage users to treat outputs as prompts for reflection, rephrase and retry when a match feels off, and verify factual claims with authoritative sources.
+
+Risk: Bilingual output may be unwanted or add ambiguity for some users.
+
+Mitigation: Ask for a single-language response when bilingual output is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aeroic-w/skills/ask-the-way-v1-1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Bilingual Markdown with a matched passage, modern interpretation, three actionable insights, and a perspective reframe]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or data access is identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Use when the user knows the broad field and reads papers to find concrete, researchable, experimentally testable gaps or research questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user knows the broad field and reads papers to find concrete, researchable, experimentally testable gaps or research questions.
 
-## Publisher: <br>
-[snake-fan](https://clawhub.ai/user/snake-fan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snake-fan](https://clawhub.ai/user/snake-fan)
 
-## Use Case: <br>
-Researchers, students, and research teams use this skill to convert an existing Field Map Workspace into selected candidate angles and evidence-backed Research Question Cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research Question Cards can appear decision-ready even when the underlying field-map evidence is incomplete. <br>
-Mitigation: Use the required source field-map, writing-intent, candidate-selection, and evidence-sufficiency gates; mark unsupported angles as needs more evidence or defer. <br>
-Risk: The workflow creates and updates workspace files, so existing user edits could be overwritten if current artifacts are not inspected first. <br>
-Mitigation: Resume from existing research-question workspace artifacts and preserve user edits before updating files. <br>
+## Use Case:
 
+Researchers and developers use this skill to turn a completed paper-reading field map into concrete, evidence-backed research question cards aligned with writing intent and practical constraints.
 
-## Reference(s): <br>
-- [Server-resolved GitHub source](https://github.com/snake-fan/Paper-Reading-Skills/tree/main/skills/02-research-question) <br>
-- [ClawHub skill page](https://clawhub.ai/snake-fan/skills/02-research-question) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown guidance and workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates a research-question workspace with source, intent, candidate-angle, evidence, card, and summary Markdown files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Generated research questions can overstate gaps if the source papers or evidence notes are incomplete or inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Research Question Cards against the cited Field Map and Supporting Evidence records before treating recommendations as decision-ready.
+
+Risk: The workflow creates or updates markdown artifacts under a research-question workspace.
+
+Mitigation: Run it in the intended workspace and review file changes before relying on the generated artifacts.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/snake-fan/Paper-Reading-Skills/tree/main/skills/02-research-question)
+- [ClawHub release page](https://clawhub.ai/snake-fan/skills/02-research-question)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown files and conversational guided choices]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates a repo-local research-question workspace and preserves user edits when resuming existing work.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

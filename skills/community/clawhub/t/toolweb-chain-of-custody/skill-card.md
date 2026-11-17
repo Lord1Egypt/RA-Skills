@@ -1,43 +1,59 @@
-## Description: <br>
-Generates forensic chain of custody HTML reports for evidence management and legal compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates forensic chain of custody HTML reports for evidence management and legal compliance.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Forensic examiners, incident response teams, corporate security practitioners, law enforcement, and legal professionals use this skill to generate structured chain of custody reports from case, evidence, handler, timestamp, and integrity-hash data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive investigation, identity, evidence-location, and integrity-hash data is sent to a third-party API provider. <br>
-Mitigation: Use sanitized data for testing, confirm organizational approval before live submissions, and verify the provider's retention, access-control, logging, and deletion practices. <br>
-Risk: Generated reports may be used in legal or compliance workflows where incomplete or inaccurate inputs can affect evidentiary value. <br>
-Mitigation: Review generated HTML reports against source case records and evidence logs before relying on them in investigations, litigation, or audits. <br>
+## Use Case:
 
+External forensic examiners, incident response teams, corporate security practitioners, and legal professionals use this skill to generate formal HTML chain-of-custody reports from case details, evidence metadata, custody history, handler information, timestamps, and integrity hashes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-chain-of-custody) <br>
-- [API Documentation](https://api.mkkpro.com:8115/docs) <br>
-- [Kong Route](https://api.mkkpro.com/compliance/chain-of-custody) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, html, api_calls] <br>
-**Output Format:** [JSON response containing a generated HTML custody report string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires structured case metadata, evidence items, custody history, timestamps, user identifiers, and integrity hashes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and OpenAPI info.version) <br>
+Risk: The skill can send sensitive investigation, identity, evidence, hash, location, and custody-history data to an external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only redacted test data unless the organization has approved the service's retention, deletion, access-control, logging, and data-residency practices.
+
+Risk: Generated reports may be used in law-enforcement, legal, corporate investigation, or incident-response workflows where confidentiality and admissibility matter.
+
+Mitigation: Require legal, security, and records-management review before using generated reports in active matters; prefer an internally hosted or local report generator for confidential cases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-chain-of-custody)
+- [Publisher profile](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
+- [Chain of Custody API route](https://api.mkkpro.com/compliance/chain-of-custody)
+- [Chain of Custody API docs](https://api.mkkpro.com:8115/docs)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+- [ToolWeb RapidAPI profile](https://rapidapi.com/user/mkrishna477)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Files]
+
+**Output Format:** [JSON response containing generated HTML report content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns status, reportId, htmlReport, and message; request data includes case, evidence, custody-chain, user, session, and timestamp fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

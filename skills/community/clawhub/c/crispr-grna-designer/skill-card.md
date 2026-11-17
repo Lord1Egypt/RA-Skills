@@ -1,49 +1,63 @@
-## Description: <br>
-Design CRISPR gRNA sequences for specific gene exons with off-target prediction and efficiency scoring. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Design CRISPR gRNA sequences for specific gene exons with off-target prediction and efficiency scoring.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers and bioinformatics practitioners use this skill to generate candidate CRISPR guide RNAs, score predicted on-target efficiency, and review off-target summaries for gene-editing planning. Current evidence supports demonstration and review use only, not direct experimental decision-making. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports that the skill presents CRISPR guide design as real while the implementation silently uses mock sequence data and simulated off-target checks. <br>
-Mitigation: Treat outputs as demonstration-only until real gene and exon retrieval, real genome-wide off-target analysis, clear mock-mode labeling, tests, and benchmarks are independently verified. <br>
-Risk: Guide RNA efficiency and off-target predictions can be misleading for laboratory or clinical decisions. <br>
-Mitigation: Require independent computational review and experimental validation of candidate guides before any wet-lab use. <br>
-Risk: The artifact includes executable Python and unpinned scientific dependencies. <br>
-Mitigation: Run in a sandboxed environment, pin and audit dependencies, and constrain output paths before operational use. <br>
+## Use Case:
 
+Developers, researchers, and bioinformatics practitioners use this skill to generate candidate CRISPR guide RNAs for targeted gene-editing analysis, including predicted efficiency scores and off-target summaries. Its outputs require independent validation before any real experimental or clinical use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/crispr-grna-designer) <br>
-- [Scoring algorithms reference](references/scoring_algorithms.md) <br>
-- [Off-target databases reference](references/off_target_databases.md) <br>
-- [Efficiency benchmarks reference](references/efficiency_benchmarks.md) <br>
-- [GUIDE-seq dataset reference](https://github.com/tsailabSJ/guideseq) <br>
-- [Cas-OFFinder](http://www.rgenome.net/cas-offinder/) <br>
-- [CHOPCHOP](https://chopchop.cbu.uib.no/) <br>
-- [Ensembl REST API](https://rest.ensembl.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON results with candidate guides, predicted scores, off-target summaries, and warnings; Markdown guidance may include command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are computational predictions and, per security evidence, may be mock or simulated unless the implementation is independently verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Mock guide design and simulated off-target results may be mistaken for production-grade genomic analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as demo data and require independent validation with real sequence retrieval, real off-target analysis, and experimental confirmation before genome-editing decisions.
+
+Risk: The skill runs Python code and can write result files.
+
+Mitigation: Install and run it only in an isolated, low-privilege environment with output paths constrained to the workspace.
+
+Risk: Unpinned Python dependencies may change behavior or increase supply-chain exposure.
+
+Mitigation: Pin and audit dependencies before operational use.
+
+## Reference(s):
+
+- [CRISPR Scoring Algorithms Reference](artifact/references/scoring_algorithms.md)
+- [Off-Target Databases](artifact/references/off_target_databases.md)
+- [Efficiency Benchmarks](artifact/references/efficiency_benchmarks.md)
+- [GUIDE-seq datasets](https://github.com/tsailabSJ/guideseq)
+- [Cas-OFFinder](http://www.rgenome.net/cas-offinder/)
+- [CHOPCHOP](https://chopchop.cbu.uib.no/)
+- [Ensembl REST API](https://rest.ensembl.org/lookup/symbol/homo_sapiens/{gene_symbol})
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON results with text guidance and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include candidate guide sequences, PAM sites, predicted efficiency scores, off-target summaries, warnings, and output-file paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

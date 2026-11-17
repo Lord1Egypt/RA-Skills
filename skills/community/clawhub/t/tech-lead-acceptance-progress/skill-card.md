@@ -1,40 +1,52 @@
-## Description: <br>
-Technical Lead skill for first-line acceptance, progress tracking, risk escalation, and evidence review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Technical Lead skill for first-line acceptance, progress tracking, risk escalation, and evidence review.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aiweline](https://clawhub.ai/user/aiweline)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to perform first-line acceptance of specialist work, track progress, review evidence quality, and prepare concise handoffs for final technical review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may be triggered by general review terms in environments with multiple review-oriented skills.
+
+Mitigation: Invoke it explicitly for first-line acceptance and progress tracking when routing ambiguity could affect the review workflow.
+
+Risk: Acceptance decisions can be misleading when specialist claims are not backed by concrete test, runtime, documentation, or diff evidence.
+
+Mitigation: Require real evidence for accepted work, return incomplete items with precise correction criteria, and record unresolved risks before handoff.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering leads use this skill to perform first-level acceptance of specialist work, verify evidence against the original scope, track gaps and blockers, and prepare a concise handoff for final technical review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may cause the skill to be invoked for unrelated status, audit, or review discussions. <br>
-Mitigation: Use it only for engineering acceptance and progress-review workflows with actual specialist outputs, acceptance artifacts, or evidence to review. <br>
-Risk: The skill can reject or return work based on missing or weak evidence, so incomplete inputs may lead to conservative acceptance decisions. <br>
-Mitigation: Provide the original request, decomposition notes, implementation summaries, test outputs, documentation diffs, and known risk waivers before invoking it. <br>
+**Output Format:** [Markdown or structured text with acceptance decisions, progress summaries, missing-evidence lists, risk notes, and handoff notes.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiweline/tech-lead-acceptance-progress) <br>
+**Other Properties Related to Output:** [No executable code or hidden persistence; outputs should preserve specialist evidence and distinguish accepted, partial, returned, and blocked work.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces acceptance decisions, progress summaries, missing-evidence lists, risk notes, and final-review handoff notes.] <br>
+1.1.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Runs a local Python script that queries Hanime1 search results for miuuuuu and prints matching video titles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+当作者提及hanime是否更新时，或者miuuuu是否更新时，h站是否更新，调用此技能。
 
-## Publisher: <br>
-[chgy123](https://clawhub.ai/user/chgy123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chgy123](https://clawhub.ai/user/chgy123)
 
-## Use Case: <br>
-Users can ask an agent to check whether the configured Hanime1 search page appears to have matching updates and receive the script's printed title list. The skill is a local helper for user-initiated checks, and users should confirm that contacting the target site is appropriate from their network. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script contacts hanime1.me from the user's local network. <br>
-Mitigation: Install and run it only where contacting that site is acceptable, and review local network and content policies before execution. <br>
-Risk: The artifact documentation mentions JSON output, wait-time, and custom selector options that the current script does not implement. <br>
-Mitigation: Treat the current release as plain console output from the hard-coded search URL unless the skill is updated. <br>
-Risk: The script depends on locally installed requests and beautifulsoup4 packages. <br>
-Mitigation: Install dependencies only from trusted package sources and review them according to your normal dependency policy. <br>
+## Use Case:
 
+External users or agents use this skill to check current search-result titles for a specific Hanime query when asked whether the referenced content has updated.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chgy123/hanime1-search) <br>
-- [Hanime1 search URL used by the script](https://hanime1.me/search?query=miuuuuu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text console output with status lines and a numbered list of titles] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The current script uses a hard-coded search URL and prints up to 10 matching titles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill makes a request to hanime1.me, which can reveal interest in the configured search query.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only when the user asks for this check and is comfortable with that network request.
+
+Risk: The output is a current list of search-result titles, not a reliable historical update detector.
+
+Mitigation: Treat the result as current page contents and verify updates against another source before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chgy123/skills/hanime1-search)
+- [Hanime1 search page used by the skill](https://hanime1.me/search?query=miuuuuu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands]
+
+**Output Format:** [Plain text terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lists up to 10 current search-result titles from a fixed query.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

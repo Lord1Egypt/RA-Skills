@@ -1,43 +1,57 @@
-## Description: <br>
-Login to Google NotebookLM via Chrome DevTools Protocol and save auth cookies for notebooklm-mcp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logs in to Google NotebookLM via Chrome DevTools Protocol and saves authentication cookies for notebooklm-mcp when credentials are missing or expired.
 
-## Publisher: <br>
-[ou-rock](https://clawhub.ai/user/ou-rock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ou-rock](https://clawhub.ai/user/ou-rock)
 
-## Use Case: <br>
-Developers and operators use this skill to authenticate NotebookLM MCP when normal CLI login is missing, expired, or fails in a non-standard environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and stores reusable Google session cookies in a local NotebookLM MCP profile. <br>
-Mitigation: Run it only on a trusted machine and protect or delete ~/.notebooklm-mcp-cli/profiles/default/ when the reusable profile is no longer needed. <br>
-Risk: A debug-enabled Chromium session exposes browser automation while the login window is open. <br>
-Mitigation: Avoid shared environments during login, then close or kill Chromium after authentication completes. <br>
-Risk: The documented uv installation command fetches and executes a remote installer. <br>
-Mitigation: Prefer a verified uv installation method before running the skill. <br>
+## Use Case:
 
+Developers and operators use this skill to authenticate Google NotebookLM for the notebooklm-mcp CLI or MCP server, especially when the standard login check reports missing or expired credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ou-rock/notebooklm-login) <br>
-- [uv installer](https://astral.sh/uv/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown instructions with shell commands and a Python helper script that creates local profile files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local NotebookLM MCP profile containing cookies.json and metadata.json after user login.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill creates and stores reusable Google/NotebookLM session material that can grant account access until revoked or expired.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a trusted local environment, protect the notebooklm-mcp profile directory, and revoke or delete stale saved cookies when access is no longer needed.
+
+Risk: The browser-debugging setup and temporary Chromium profile can leave session material exposed after login.
+
+Mitigation: Avoid running as root, delete stale /tmp/nlm-chrome-profile data, and stop any Chrome process using port 9222 after use.
+
+Risk: Runtime dependencies and the login workflow should be reviewed before installation.
+
+Mitigation: Pin and review dependencies before use, and scan the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ou-rock/skills/notebooklm-login)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires chromium-browser and uv; saves reusable Google/NotebookLM session cookies and metadata to the local notebooklm-mcp profile.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

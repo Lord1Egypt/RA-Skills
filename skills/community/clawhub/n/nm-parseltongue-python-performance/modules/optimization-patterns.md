@@ -1,6 +1,6 @@
 ---
 name: optimization-patterns
-description: Ten proven optimization patterns for Python code including list comprehensions, generators, caching, and parallel processing
+description: Eleven proven optimization patterns for Python code including list comprehensions, generators, caching, parallel processing, and loop transformations
 category: performance
 tags: [optimization, patterns, performance, best-practices]
 dependencies: []
@@ -21,6 +21,7 @@ def slow_squares(n):
         result.append(i**2)
     return result
 
+
 # Fast (~2x speedup)
 def fast_squares(n):
     return [i**2 for i in range(n)]
@@ -35,7 +36,7 @@ import sys
 list_data = [i**2 for i in range(1000000)]  # ~40MB
 
 # Memory-efficient
-gen_data = (i**2 for i in range(1000000))   # ~200 bytes
+gen_data = (i**2 for i in range(1000000))  # ~200 bytes
 
 # Use generators when you only iterate once
 total = sum(i**2 for i in range(1000000))
@@ -51,6 +52,7 @@ def slow_concat(items):
         result += str(item)
     return result
 
+
 # Fast (O(n))
 def fast_concat(items):
     return "".join(str(item) for item in items)
@@ -63,9 +65,11 @@ def fast_concat(items):
 def list_search(items, target):
     return target in items
 
+
 # O(1) - constant time
 def dict_search(lookup_dict, target):
     return target in lookup_dict
+
 
 # Convert to set/dict for repeated lookups
 lookup_set = set(items)
@@ -77,11 +81,13 @@ lookup_set = set(items)
 # Global access is slower
 GLOBAL_VALUE = 100
 
+
 def use_global():
     total = 0
     for i in range(10000):
         total += GLOBAL_VALUE  # Slower
     return total
+
 
 def use_local():
     local_value = 100  # Cache locally
@@ -96,11 +102,13 @@ def use_local():
 ```python
 from functools import lru_cache
 
+
 @lru_cache(maxsize=None)
 def fibonacci(n):
     if n < 2:
         return n
-    return fibonacci(n-1) + fibonacci(n-2)
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
 
 # Without cache: O(2^n), With cache: O(n)
 ```
@@ -110,11 +118,13 @@ def fibonacci(n):
 ```python
 import numpy as np
 
+
 # Pure Python
 def python_multiply():
     a = list(range(100000))
     b = list(range(100000))
     return [x * y for x, y in zip(a, b)]
+
 
 # NumPy (~100x faster)
 def numpy_multiply():
@@ -132,13 +142,15 @@ class RegularClass:
         self.y = y
         self.z = z
 
+
 class SlottedClass:
-    __slots__ = ['x', 'y', 'z']
+    __slots__ = ["x", "y", "z"]
 
     def __init__(self, x, y, z):
         self.x = x
         self.y = y
         self.z = z
+
 
 # SlottedClass uses ~40% less memory per instance
 ```
@@ -148,8 +160,10 @@ class SlottedClass:
 ```python
 import multiprocessing as mp
 
+
 def cpu_intensive_task(n):
     return sum(i**2 for i in range(n))
+
 
 def parallel_processing():
     with mp.Pool(processes=4) as pool:
@@ -167,9 +181,47 @@ def slow_inserts(conn, data):
         cursor.execute("INSERT INTO items VALUES (?)", (item,))
         conn.commit()  # Commit each insert
 
+
 # Fast: Batch with single commit
 def fast_inserts(conn, data):
     cursor = conn.cursor()
     cursor.executemany("INSERT INTO items VALUES (?)", [(d,) for d in data])
     conn.commit()  # Single commit
 ```
+
+## Pattern 11: Loop Transformations (What Works in Python)
+
+Loop-level tricks that pay in C or Rust mostly do not transfer to
+CPython, where each iteration is dominated by bytecode dispatch, not
+loop control. Manual unrolling and strength reduction (rewriting `*`
+as `<<`) rarely help and hurt readability.
+
+The three Python levers that do work:
+
+```python
+# 1. Hoist loop-invariant lookups (CPython runs no LICM pass).
+#    Slow: re-resolves obj.method and len(data) every iteration.
+def slow(obj, data):
+    out = []
+    for i in range(len(data)):
+        out.append(obj.transform(data[i]))
+    return out
+
+
+# Fast: bind the method and length once outside the loop.
+def fast(obj, data):
+    transform = obj.transform
+    out = []
+    for item in data:
+        out.append(transform(item))
+    return out
+
+
+# 2. Vectorize numeric loops with NumPy (Pattern 7) instead of unrolling.
+# 3. Fuse array passes with numexpr/Numba to cut temporaries, rather
+#    than hand-merging Python loops.
+```
+
+Hand-vs-compiler decision rule for all languages, plus the two
+benchmark traps that invalidate a speedup claim:
+`Skill(leyline:loop-optimization)`.

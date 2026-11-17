@@ -1,37 +1,57 @@
-## Description: <br>
-Avoid common VSCode mistakes - settings conflicts, debugger setup, and extension clashes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents configure, debug, and optimize Visual Studio Code settings, launch and task files, extensions, keybindings, formatting, remote development, workspaces, and editor performance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a VS Code troubleshooting reference for settings precedence, formatter conflicts, debugger setup, extensions, terminals, remote development, workspace trust, and common fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying troubleshooting advice can change workspace trust, SSH configuration, or project settings in ways that affect local development behavior. <br>
-Mitigation: Only trust workspaces, edit SSH configuration, or change project settings when you understand the project and the effect of the change. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose VS Code behavior and produce editor configuration or guidance for settings scopes, formatting, debugging, tasks, extensions, remotes, workspaces, and forks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/vscode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with inline configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; markdown-only troubleshooting reference.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill automatically keeps shared local records about VS Code setup, repositories, extensions, remote hosts, and access-pointer locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this local knowledge base is acceptable; review or disable automatic memory behavior for sensitive work and periodically inspect and prune the declared Clawic data paths.
+
+Risk: Editor settings, task definitions, terminal environments, and dev container files may contain credentials or secret-bearing values.
+
+Mitigation: Store only secret pointers, strip credential values from saved notes, and review generated or persisted configuration before reuse.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/vscode)
+- [Clawic VSCode Skill Page](https://clawic.com/skills/vscode)
+- [VSCode Skill Definition](artifact/SKILL.md)
+- [Security Guidance](artifact/security.md)
+- [Memory Template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON snippets, shell commands, and configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain local VS Code memory and configuration notes under the declared Clawic paths when durable setup facts are produced.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

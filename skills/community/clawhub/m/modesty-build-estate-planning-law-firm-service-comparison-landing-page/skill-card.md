@@ -1,40 +1,54 @@
-## Description: <br>
-Generate a conversion-focused landing page that compares offers, pricing cues, and trust signals for a estate planning law firm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a conversion-focused landing page that compares offers, pricing cues, and trust signals for an estate planning law firm.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Estate planning attorneys, firm operators, and marketing teams use this skill to draft service-comparison landing page content that positions offers, pricing cues, and trust signals. Outputs should be reviewed before client delivery, publication, or legal use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may be mistaken for legal advice, client-specific estate planning guidance, or final attorney advertising copy. <br>
-Mitigation: Require attorney and jurisdiction-specific review before client delivery, publication, advertising use, or legal reliance. <br>
+## Use Case:
 
+External marketers, estate planning attorneys, and firm operators use this skill to draft service comparison landing pages that clarify offers, pricing cues, and trust signals. Outputs should be reviewed by a qualified human before publication, client delivery, or legal use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-build-estate-planning-law-firm-service-comparison-landing-page) <br>
-- [SkillBoss homepage](https://www.skillboss.co/skills/build-estate-planning-law-firm-service-comparison-landing-page) <br>
-- [Publisher profile](https://clawhub.ai/user/modestyrichards) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include landing-page copy, service comparisons, pricing cues, trust-signal recommendations, and review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The generated landing page may be mistaken for legal advice or may include jurisdiction-sensitive legal claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as marketing draft material and have a qualified human review it before publishing, sending to clients, or using it as legal guidance.
+
+Risk: Offer comparisons, pricing cues, or trust claims may overstate the firm's services or conflict with approved positioning.
+
+Mitigation: Provide jurisdiction, audience, approved services, pricing, and claim constraints, then verify all claims before use.
+
+## Reference(s):
+
+- [SkillBoss skill homepage](https://www.skillboss.co/skills/build-estate-planning-law-firm-service-comparison-landing-page)
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-build-estate-planning-law-firm-service-comparison-landing-page)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or landing page code, depending on the agent request.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include marketing copy, page structure, offer comparisons, pricing cues, trust signals, and UI or image generation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

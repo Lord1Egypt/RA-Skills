@@ -1,40 +1,54 @@
-## Description: <br>
-Step-by-step insurance claim filing guide. Walk users through the claim process for health, life, auto, travel, and property insurance. Use when users need to file a claim and don't know where to start or what documents to prepare. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Step-by-step insurance claim filing guide. Walk users through the claim process for health, life, auto, travel, and property insurance. Use when users need to file a claim and don't know where to start or what documents to prepare.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
 
-## Use Case: <br>
-External users and support agents use this skill to explain insurance claim filing steps, document checklists, processing timelines, and appeal options for common health, life, auto, travel, and property claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Insurance claim guidance can vary by insurer, policy terms, jurisdiction, and deadline. <br>
-Mitigation: Confirm requirements against the user's policy documents, insurer instructions, and qualified professional advice before acting. <br>
-Risk: The security summary reports no malicious signals but notes limited artifact-backed review coverage. <br>
-Mitigation: Inspect the visible skill instructions and any requested permissions before installing or using the skill. <br>
+## Use Case:
 
+External users use this skill to get step-by-step insurance claim guidance, document checklists, timeline expectations, and next steps after rejected claims for health, life, auto, travel, and property insurance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiwenbing/claim-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include numbered steps, document checklists, timeline expectations, appeal guidance, and practical claim-success tips.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Insurance deadlines, covered documents, and appeal requirements can vary by policy, insurer, jurisdiction, and claim type.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Advise users to verify requirements against their policy documents, insurer communications, and applicable official guidance before acting.
+
+Risk: Claim preparation can involve medical, financial, or identifying details.
+
+Mitigation: Encourage users to share only the information necessary for the specific claim task and avoid unnecessary sensitive details.
+
+## Reference(s):
+
+- [Claim Guide on ClawHub](https://clawhub.ai/jiwenbing/skills/claim-guide)
+- [Publisher profile](https://clawhub.ai/user/jiwenbing)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown with numbered steps and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include insurance-type-specific claim steps, document checklists, timeline expectations, appeal guidance, and practical filing tips.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

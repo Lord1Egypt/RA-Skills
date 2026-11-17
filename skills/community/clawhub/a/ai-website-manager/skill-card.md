@@ -1,49 +1,68 @@
-## Description: <br>
-Guides Claude Code through discovering, building, deploying, and maintaining bilingual websites with Next.js, Sanity, Vercel, GitHub, and related tooling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Claude Code through building, deploying, and managing websites with step-by-step bilingual onboarding, account setup, design discovery, stack selection, implementation, and maintenance.
 
-## Publisher: <br>
-[pinki42240](https://clawhub.ai/user/pinki42240) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pinki42240](https://clawhub.ai/user/pinki42240)
 
-## Use Case: <br>
-External users, non-developers, and developers use this skill to plan, build, deploy, and maintain personal, portfolio, business, blog, and bilingual websites through Claude Code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides real website deployment account, CMS, domain, and repository changes. <br>
-Mitigation: Use private repositories and preview deployments until ready, and require approval before commits, pushes, deployments, domain updates, or CMS changes. <br>
-Risk: The workflow may involve API keys, tokens, and other deployment credentials. <br>
-Mitigation: Use expiring least-privilege tokens where possible, keep .env.local out of Git, and never paste passwords or secret tokens into chat. <br>
+## Use Case:
 
+External users and developers use this skill to guide website projects from discovery through deployment and ongoing maintenance. It is especially aimed at users who want a structured, low-overwhelm workflow for portfolio, business, blog, personal brand, or content-managed websites.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Phase 1: Discovery and Design Inspiration](references/phase1-discovery.md) <br>
-- [Phase 2: Account Setup Guide](references/phase2-accounts.md) <br>
-- [Phase 3: Tech Stack Decision Guide](references/phase3-tech-stack.md) <br>
-- [Phase 4: Build Patterns and Code Conventions](references/phase4-build-patterns.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
-- [Next.js](https://nextjs.org) <br>
-- [Sanity](https://sanity.io) <br>
-- [Vercel](https://vercel.com) <br>
-- [Tailwind CSS](https://tailwindcss.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational Markdown with code snippets, setup instructions, and step-by-step commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance is staged one decision at a time and may create website project files when the hosting agent has filesystem access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The workflow may involve creating and storing deployment or CMS credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived, least-privilege tokens where possible, store secrets only in local environment files or platform secret stores, and revoke tokens that are pasted into chat, committed, or no longer needed.
+
+Risk: The workflow may run mutable setup, package installation, Git, CMS, and deployment commands.
+
+Mitigation: Review each command before execution and confirm account, repository, CMS, and deployment changes before applying them.
+
+Risk: The server security verdict flags the release as suspicious because of powerful credentials and mutable setup behavior.
+
+Mitigation: Review the skill carefully before installation and use it only when a hands-on website build and deployment workflow is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pinki42240/skills/ai-website-manager)
+- [AI Website Manager README](artifact/README.md)
+- [Phase 1 Discovery and Design Inspiration](artifact/references/phase1-discovery.md)
+- [Phase 2 Account Setup Guide](artifact/references/phase2-accounts.md)
+- [Phase 3 Tech Stack Decision Guide](artifact/references/phase3-tech-stack.md)
+- [Phase 4 Build Patterns](artifact/references/phase4-build-patterns.md)
+- [Troubleshooting Guide](artifact/references/troubleshooting.md)
+- [Next.js](https://nextjs.org)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Sanity](https://sanity.io)
+- [Vercel](https://vercel.com)
+- [Framer Motion](https://framer-motion.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Conversational Markdown with inline commands, configuration steps, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local website project files, environment configuration, commits, and deployment instructions during guided use.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

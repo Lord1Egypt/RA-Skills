@@ -1,39 +1,54 @@
-## Description: <br>
-Automatically selects the best model based on task type and requirements for coding, analysis, multimodal, writing, research, long-context, and cost-performance-sensitive tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically selects the best model based on task type and requirements. Use when: (1) Task requires specific capabilities (coding, analysis, multimodal, writing, research), (2) Need optimal performance/cost balance, (3) Working with long context or complex reasoning.
 
-## Publisher: <br>
-[mrcuo](https://clawhub.ai/user/mrcuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrcuo](https://clawhub.ai/user/mrcuo)
 
-## Use Case: <br>
-Developers and agent users use this skill to route tasks to available provider models based on task type, context length, multimodal needs, reasoning complexity, and cost-performance tradeoffs. It supports manual model overrides when a user specifies a preferred model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic routing may send prompts to configured provider models and create routing metrics logs. <br>
-Mitigation: For sensitive, regulated, or cost-sensitive work, specify the model/provider explicitly and avoid including sensitive details that could be captured in routing metrics. <br>
+## Use Case:
 
+Developers and agent users use this skill to route tasks to configured models based on task type, context length, multimodal needs, and cost-performance tradeoffs. It also preserves manual model override when a user states a preference.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mrcuo/auto-model-switcher) <br>
-- [Project Homepage](https://github.com/mrcuo/auto-model-switcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommends provider model selections and fallback behavior; does not produce standalone files or executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Automatic model switching can send work to a provider or model with different cost, performance, or data-handling expectations than the user intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configured providers and costs before installation, and specify a model manually for sensitive tasks.
+
+Risk: A task may be routed to a model that is unavailable or not configured for the current agent environment.
+
+Mitigation: Validate model names against the configured model list before switching and fall back to the current session model when selection fails.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/mrcuo/auto-model-switcher)
+- [ClawHub skill page](https://clawhub.ai/mrcuo/skills/auto-model-switcher)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with model identifiers and usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes only among configured models and respects explicit user model preferences.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

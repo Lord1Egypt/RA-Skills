@@ -187,6 +187,25 @@ python scripts/rhythm-analyzer.py <文件路径> [-g <类型>] [-o <输出文件
 | 过渡优化 | 添加场景/心理过渡段落 | 切换突兀 | 低 |
 | 伏笔管理 | 建立伏笔追踪表确保回收 | 伏笔遗忘 | 低 |
 
+## v2 增强：基于分布式状态的反向校验
+
+> 当被检查的作品由 **novel-master v2 架构**创作（存在 `~/.qclaw/workspace/novels/<书名>/tracker/ncg.json`
+> 与 `settings/characters/*/state.json`）时，bug-checker 可直接消费这些产物，做**更高精度的定向排查**：
+
+1. **OOC 检测**：拿正文里的角色言行，对照其 `state.json` 的 `cognitive_bias_pack` 与 `relationships`，
+   发现「角色突然说出了不属于自己偏差包的话 / 与关系网矛盾的行为」→ 直接定位 OOC 行。
+2. **地理/时间穿越**：对照 NCG 节点的 `location` 与章节号，标出无过渡的位移（与 auditor 门禁互补，做二次把关）。
+3. **伏笔断裂**：对照 `ncg.json` 的 `伏笔`/`因果` 标签节点与 `foreshadowing.json`，找出「埋了没收」或「收得不在窗口」。
+4. **版本回退告警**：调用 `auditor.py check-version <书名>`，把角色状态版本异常列入 🔴 致命级。
+
+**v2 联动命令**（需 novel-master 脚本存在）：
+```bash
+python ~/.qclaw/skills/novel-master/scripts/auditor.py check-version <书名>
+python ~/.qclaw/skills/novel-master/scripts/ncg.py view <书名> causal
+```
+
+> 若作品并非 v2 架构（无 ncg.json），则回落到 v1 的 `logic/consistency/rhythm` 三脚本分析，不受影响。
+
 ## 动态资源引用
 
 按需加载参考资料：

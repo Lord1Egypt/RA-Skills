@@ -1,41 +1,53 @@
-## Description: <br>
-OpenClaw 自动进化系统帮助 agents perform lightweight local health checks, summarize learned rules, and record learning notes for an OpenClaw workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw 自进化系统 helps an agent check workspace health, summarize learned rules, and record learning notes for an OpenClaw workspace.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect workspace health, review locally stored learned rules, and capture learning notes in a controlled OpenClaw workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores learning notes and reads workspace status from local files. <br>
-Mitigation: Set OPENCLAW_WORKSPACE to a dedicated directory you control and periodically review or delete files under .learnings and state. <br>
-Risk: The self-evolution wording may overstate the governance value of the helper. <br>
-Mitigation: Treat its outputs as lightweight local note-taking and status checks, not as a complete autonomous governance system. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to check workspace health, inspect learned-rule summaries, and record learning notes as part of an agent self-improvement workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/openclaw-auto-evolve) <br>
-- [Publisher profile](https://clawhub.ai/user/xiejianjun000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [JSON responses and Markdown learning files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read workspace state files and append local learning notes under the configured OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and OpenClaw metadata) <br>
+Risk: The skill can persist learning notes and encourage automatic rule or memory behavior without clear user controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, make learning or memory updates opt-in, and inspect the configured OpenClaw workspace for persisted notes.
+
+Risk: The description claims broad self-evolution capabilities that exceed the lightweight implementation.
+
+Mitigation: Treat it as a health, rule-summary, and learning-note helper unless additional controls and validation are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/openclaw-auto-evolve)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, markdown, guidance]
+
+**Output Format:** [JSON status responses and Markdown learning records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist learning notes under the configured OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenClaw frontmatter metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

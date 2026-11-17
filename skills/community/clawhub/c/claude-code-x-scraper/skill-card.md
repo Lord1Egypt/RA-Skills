@@ -1,44 +1,59 @@
-## Description: <br>
-X (Twitter) data extraction and analysis for user timelines, keyword search, tweet details, and social media research workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts and analyzes X/Twitter data by fetching user timelines, searching recent posts, retrieving tweet details, and supporting social media research workflows.
 
-## Publisher: <br>
-[lamtest556-blip](https://clawhub.ai/user/lamtest556-blip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lamtest556-blip](https://clawhub.ai/user/lamtest556-blip)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve and analyze public X/Twitter posts, user timelines, keyword search results, and related social media signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports authenticated browser scraping with persistent cookies and rate-limit bypass language. <br>
-Mitigation: Prefer the API-based scripts over browser scraping, avoid storing main-account cookies or passwords for this skill, and review X/Twitter access rules before use. <br>
-Risk: Usernames, search queries, retrieved content, bearer tokens, and possibly authenticated session cookies may be used in requests to X/Twitter. <br>
-Mitigation: Use a dedicated low-privilege X developer token or test account, avoid sensitive queries, and store credentials only in the intended local credential file or environment variable. <br>
-Risk: The server security verdict is suspicious. <br>
-Mitigation: Review the skill before installing or running it, especially credential handling and any browser-automation workflow. <br>
+## Use Case:
 
+Developers, analysts, and social media researchers use this skill to collect public X/Twitter posts, user timeline data, and recent search results for monitoring, trend analysis, and downstream review.
 
-## Reference(s): <br>
-- [X API Documentation](https://developer.twitter.com/en/docs/twitter-api) <br>
-- [X Developer Portal](https://developer.twitter.com/en/portal/dashboard) <br>
-- [X API v2 Reference](references/x_api_limits.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON responses and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an X API bearer token; some search features may require elevated X API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The security review found that the skill can request and automatically use sensitive X account credentials broader than necessary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a limited X API bearer token, keep credentials outside root-owned browser profiles, and avoid providing a full browser cookie jar unless authenticated scraping is intentional.
+
+Risk: Browser-based scraping may reuse authenticated cookies and blend skill activity with a normal logged-in session.
+
+Mitigation: Run browser scraping in an isolated environment with dedicated credentials or cookies and review any cookie file before use.
+
+Risk: X API access limits and account permissions can cause incomplete results, authorization failures, or rate-limit errors.
+
+Mitigation: Use the minimum requested result count, confirm the account has the needed X API access level, and handle 401, 403, and 429 responses before relying on results.
+
+## Reference(s):
+
+- [X API Documentation](https://developer.twitter.com/en/docs/twitter-api)
+- [X API v2 Reference](references/x_api_limits.md)
+- [ClawHub Skill Page](https://clawhub.ai/lamtest556-blip/skills/claude-code-x-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON tweet, user, search, and metadata payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include post text, account metadata, timestamps, public metrics, query metadata, error messages, and rate-limit or access-level guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

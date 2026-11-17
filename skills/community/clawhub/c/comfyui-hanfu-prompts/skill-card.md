@@ -1,42 +1,59 @@
-## Description: <br>
-14套已验证的 ComfyUI Z-Image 汉服写真/王家卫风格/杂志封面提示词模板，搭配双采样工作流直出高质量图。RTX 5070 12GB+ 可用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+14套已验证的 ComfyUI Z-Image 汉服写真、王家卫风格和杂志封面提示词模板，搭配双采样工作流生成高质量图像。
 
-## Publisher: <br>
-[lantianbaicai](https://clawhub.ai/user/lantianbaicai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lantianbaicai](https://clawhub.ai/user/lantianbaicai)
 
-## Use Case: <br>
-ComfyUI users and image-generation creators use this skill to select ready-made prompt templates for Hanfu portrait, Wong Kar-wai-inspired, and magazine-cover image workflows. It provides local ComfyUI usage guidance and reusable prompt constants for batch generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt templates may produce sensitive or adult-oriented image content when users choose local-only prompts. <br>
-Mitigation: Review prompt content and platform policies before generation or publication; keep local-only prompts off public platforms as the artifact documentation states. <br>
-Risk: The workflow assumes a local ComfyUI service, model files, and companion tooling. <br>
-Mitigation: Use trusted local ComfyUI instances and grant only the filesystem, network, and execution permissions needed for the requested generation task. <br>
+## Use Case:
 
+External creators, designers, and ComfyUI users use this skill to select and run Hanfu portrait, Wong Kar-wai-inspired, and magazine-cover prompt templates for local Z-Image workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lantianbaicai/comfyui-hanfu-prompts) <br>
-- [comfyui-hanfu-prompts GitHub repository](https://github.com/lantianbaicai/comfyui-hanfu-prompts) <br>
-- [comfy-batch companion tool](https://github.com/lantianbaicai/comfy-batch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets plus Python prompt template constants] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes prompt templates for local ComfyUI/Z-Image workflows; generated images are produced by the user's local ComfyUI setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documented workflow depends on the external comfy-batch package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated virtual environment or container, and pin or verify the package version before running commands.
+
+Risk: The skill is a Chinese-language ComfyUI prompt pack, which may be harder for some operators to review accurately.
+
+Mitigation: Translate and review prompts, workflow assumptions, and generated outputs before production or public use.
+
+Risk: Artifact documentation references local NSFW templates and public sharing restrictions.
+
+Mitigation: Keep sensitive outputs local unless they have been reviewed against applicable platform, workplace, and legal policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lantianbaicai/skills/comfyui-hanfu-prompts)
+- [Skill instructions](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with Python import snippets, shell commands, and prompt-template names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local ComfyUI setup with Z-Image models and the external comfy-batch package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

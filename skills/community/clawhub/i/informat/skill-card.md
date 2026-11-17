@@ -1,49 +1,64 @@
-## Description: <br>
-Informat helps agents administer Informat platform workspaces by reading method parameter references, querying existing application structure, and issuing documented system method calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operates the Informat platform for applications, tables, workflows, automations, scripts, APIs, dashboards, records, listeners, schedules, and generated files.
 
-## Publisher: <br>
-[informat365](https://clawhub.ai/user/informat365) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[informat365](https://clawhub.ai/user/informat365)
 
-## Use Case: <br>
-Developers and workspace administrators use this skill to inspect and manage Informat applications, tables, dashboards, automations, workflows, scripts, and records through documented system methods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad live-system administration powers when configured with an Informat agent token. <br>
-Mitigation: Use a least-privilege token, scope access to the intended workspace, and avoid production applications unless the action is necessary and approved. <br>
-Risk: Deletes, publishing, bulk record changes, script execution, JavaScript evaluation, outbound web requests, email, and notifications can have irreversible or external effects. <br>
-Mitigation: Require human confirmation for those actions and review the exact method name, target app, and JSON parameters before execution. <br>
-Risk: Incorrect IDs or field names can modify the wrong Informat object or cause failed operations. <br>
-Mitigation: Follow the documented discovery flow: query existing structures, retrieve full field definitions, and read the matching parameter reference before any create or modify call. <br>
+## Use Case:
 
+Developers and platform operators use this skill to inspect, configure, and automate Informat workspaces, including app structures, data tables, workflows, dashboards, scripts, APIs, schedules, and user-facing records.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/informat365/informat) <br>
-- [Informat platform host](https://ai.ainformat.com/) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Method caller script](artifact/scripts/call.js) <br>
-- [Application publish parameter reference](artifact/references/system_app_publish.json) <br>
-- [JavaScript evaluation parameter reference](artifact/references/system_javascript_eval.json) <br>
-- [Bulk record deletion parameter reference](artifact/references/system_table_record_batch_delete.json) <br>
-- [System email parameter reference](artifact/references/system_send_system_email.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON parameter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct an agent to create JSON parameter files and invoke the bundled Node.js caller against an Informat workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill has broad administrative and mutating access to Informat deployments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted Informat deployments, use a least-privilege revocable agent token, and require explicit user approval before destructive or privileged operations.
+
+Risk: The helper can transmit the agent token over plaintext HTTP if INFORMAT_HOST is not HTTPS.
+
+Mitigation: Require INFORMAT_HOST to use HTTPS before deployment.
+
+Risk: Local environment files can expose secrets if used for agent credentials.
+
+Mitigation: Avoid scripts/.env for secrets and rely on trusted runtime secret injection.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/informat365/skills/informat)
+- [Informat skill instructions](artifact/SKILL.md)
+- [Informat application documentation](artifact/references/doc/markdown/informat.app.md)
+- [Informat table documentation](artifact/references/doc/markdown/informat.table.md)
+- [Informat workflow documentation](artifact/references/doc/markdown/informat.bpmn.md)
+- [Informat dashboard UI preset documentation](artifact/references/doc/markdown/informat.dashboard.uipreset.md)
+- [Informat script documentation](artifact/references/doc/markdown/informat.script.md)
+- [Informat expression documentation](artifact/references/doc/markdown/informat.expression.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured command guidance with JSON parameter files and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke Informat platform methods that read, create, update, delete, publish, execute scripts, manage users or roles, configure listeners, and schedule tasks.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

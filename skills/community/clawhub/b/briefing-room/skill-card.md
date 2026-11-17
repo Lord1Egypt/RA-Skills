@@ -1,46 +1,57 @@
-## Description: <br>
-Daily news briefing generator that produces a conversational radio-host-style audio briefing and DOCX document covering weather, X/Twitter trends, web trends, world news, politics, tech, local news, sports, markets, and crypto; macOS only, using Apple TTS and afplay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily news briefing generator that produces conversational audio briefings and DOCX documents covering weather, X/Twitter trends, web trends, world news, politics, technology, local news, sports, markets, and crypto; it is macOS-only and uses local text-to-speech tools.
 
-## Publisher: <br>
-[matusvojtek](https://clawhub.ai/user/matusvojtek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[matusvojtek](https://clawhub.ai/user/matusvojtek)
 
-## Use Case: <br>
-External users ask their agent for a daily or morning briefing, and the skill gathers public weather, trend, news, market, and crypto information to produce a spoken briefing plus a formatted document. It is intended for configurable personal news briefings on macOS. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends configured weather location and trend regions to public services while gathering briefing data. <br>
-Mitigation: Review the configured location and trend regions before use, and avoid entering sensitive locations if that disclosure is not acceptable. <br>
-Risk: The skill creates local configuration and briefing files and includes a clean helper that permanently removes old date-named briefing folders under the configured output folder. <br>
-Mitigation: Review output.folder before running cleanup; version 1.0.3 validates output.folder against safe directories such as Documents, Desktop, Downloads, .briefing-room, and /tmp. <br>
-Risk: The skill may run a short background task to gather data, compose the briefing, and generate audio and document outputs. <br>
-Mitigation: Run it only when background network access and local file generation are expected, and inspect the generated briefing before relying on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Briefing Room on ClawHub](https://clawhub.ai/matusvojtek/briefing-room) <br>
-- [Publisher profile: matusvojtek](https://clawhub.ai/user/matusvojtek) <br>
-- [MLX-Audio Kokoro](https://github.com/ml-explore/mlx-audio) <br>
-- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast) <br>
-- [Coinbase Spot Price API](https://api.coinbase.com/v2/prices/BTC-USD/spot) <br>
-- [GetDayTrends](https://getdaytrends.com/) <br>
+## Use Case:
 
+External users use Briefing Room through an agent to gather current weather, trends, news, sports, market, and crypto information into a daily spoken briefing and companion document. Developers and power users can configure location, language, voice, sections, and output location for repeated personal briefing workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Agent response plus generated Markdown working text, DOCX document, and MP3 audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local configuration for location, language, sections, voices, and output folder; normal output is saved under a date-named briefing folder.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and changelog, released 2026-02-10) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The cleanup command can permanently delete unrelated date-named folders when output.folder is broad or misconfigured.
+
+Mitigation: Use a dedicated Briefing Room output directory, avoid broad folders such as /tmp, ~/Documents, Desktop, or Downloads, and do not run the clean command until deletion is constrained with confirmation or ownership checks.
+
+Risk: The skill performs web searches and API requests, starts a background generation session, and saves generated files to disk.
+
+Mitigation: Install and run it only in environments where those network, background-session, and file-write behaviors are acceptable, and review the configured location and output folder before generating a briefing.
+
+## Reference(s):
+
+- [Briefing Room on ClawHub](https://clawhub.ai/matusvojtek/skills/briefing-room)
+- [MLX-Audio](https://github.com/ml-explore/mlx-audio)
+- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast)
+- [Coinbase BTC Spot Price API](https://api.coinbase.com/v2/prices/BTC-USD/spot)
+- [GetDayTrends](https://getdaytrends.com/)
+- [Google Trends RSS](https://trends.google.com/trending/rss?geo=US)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash and Python command snippets; generated briefing artifacts are DOCX and MP3 files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads and writes a local configuration file, saves dated briefing outputs under the configured folder, and requires macOS plus internet access for the full workflow.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and changelog, released 2026-02-10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

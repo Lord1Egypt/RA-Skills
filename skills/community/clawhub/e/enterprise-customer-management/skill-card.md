@@ -1,43 +1,58 @@
-## Description: <br>
-Provides Excel-backed customer profile lookup, customer portrait analysis, risk alerts, and customer timelines for an enterprise service assistant. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise customer-management skill that helps agents query customer profiles, assemble customer portraits, surface risk alerts, and produce customer timelines from Excel ledger data.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-Business service employees use this skill to query tenant records, summarize customer activity, identify payment or retention risks, and produce customer timelines from a local Excel ledger. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles real tenant, contact, contract, payment, service, and risk information from a local Excel ledger. <br>
-Mitigation: Use only in an authorized business environment and restrict access to users who are permitted to view the underlying customer records. <br>
-Risk: An embedded WeCom webhook and optional scheduled reports could send customer or risk data outside the local workspace. <br>
-Mitigation: Remove and rotate the exposed webhook, keep local-only mode as the default, and require explicit approval before enabling outbound messages or scheduled pushes. <br>
-Risk: Generated customer portraits, risk lists, or Tencent Docs exports may expose tenant, contact, payment, or risk details. <br>
-Mitigation: Redact sensitive fields and review outputs before sharing them through WeCom, Tencent Docs, or other collaboration channels. <br>
+## Use Case:
 
+Enterprise service and property-management staff use this skill to retrieve tenant records, summarize customer activity, identify fee or renewal risks, and build customer timelines for operational follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/perrykono-debug/enterprise-customer-management) <br>
-- [Publisher profile](https://clawhub.ai/user/perrykono-debug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with structured customer summaries, risk lists, Python examples, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local customer Excel data and optionally produce scheduled risk reports, WeCom group messages, or Tencent Docs outputs when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A WeCom webhook credential appears in the skill content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded credential, rotate the exposed key, and require deployers to provide approved webhook secrets through their own secret-management process.
+
+Risk: Scheduled or group-chat reporting may expose sensitive customer, contract, fee, and risk data.
+
+Mitigation: Require explicit recipient configuration, approved business purpose, data minimization, redaction of sensitive fields, and auditable delivery logs before enabling scheduled reports.
+
+Risk: The packaged executable code is placeholder-like and may not fully represent the runtime behavior described by the skill.
+
+Mitigation: Review the final implementation and test the Excel-reading, risk-scoring, and outbound-notification behavior before deployment.
+
+## Reference(s):
+
+- [Reference Documentation for Customer Management](references/api_reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/perrykono-debug/skills/enterprise-customer-management)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with optional Python snippets, scheduled task configuration, and structured customer-risk summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include customer, contract, fee, repair, and risk data read from configured Excel workbooks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

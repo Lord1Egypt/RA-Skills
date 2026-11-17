@@ -1,46 +1,65 @@
-## Description: <br>
-Fleet Embeddings helps agents generate text embeddings for RAG, semantic search, vector similarity, duplicate detection, and recommendation workflows through a local Ollama fleet router. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fleet Embeddings helps agents generate and batch embeddings across an Ollama device fleet for RAG, semantic search, knowledge-base creation, and vector similarity workflows.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up and call local fleet-routed embedding endpoints for knowledge bases, RAG indexes, semantic search, duplicate detection, and recommendation systems. It provides setup guidance, curl requests, Python examples, and operational guardrails for Ollama Herd embeddings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Embedding text, prompts, tags, audio, image, or transcription requests may move through trusted fleet nodes and appear in local logs or dashboards. <br>
-Mitigation: Use trusted fleet nodes, avoid sensitive request content and tags, and review local logging and dashboard exposure before use. <br>
-Risk: The skill guides use of a local fleet service on port 11435 and optional model pulls or feature endpoints. <br>
-Mitigation: Install and run Ollama Herd only in environments where a local fleet router is acceptable, and confirm before pulling models or enabling optional image or transcription features. <br>
-Risk: Fleet manager configuration and log files under ~/.fleet-manager/ affect local routing state and operational history. <br>
-Mitigation: Do not delete or modify ~/.fleet-manager/ files unless the user explicitly asks and understands the local service impact. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up fleet-routed text embedding workflows for RAG indexes, semantic search, duplicate detection, recommendations, and vector similarity tasks.
 
-## Reference(s): <br>
-- [Fleet Embeddings on ClawHub](https://clawhub.ai/twinsgeeks/fleet-embeddings) <br>
-- [ollama-herd package](https://pypi.org/project/ollama-herd/) <br>
-- [ollama-herd repository](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
-- [Request Tagging Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/request-tagging-analytics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash, Python, JSON, and local HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local Ollama Herd API calls, package installation, router startup commands, and model-pull commands; model pulls should be confirmed by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata; artifact frontmatter states 1.0.1) <br>
+Risk: Installing an unpinned Python package may introduce unexpected dependency or package changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and pin or review the `ollama-herd` package before use.
+
+Risk: Embedding requests may route documents or prompts to any device fleet node.
+
+Mitigation: Only send content to the fleet when every node that may process it is trusted.
+
+Risk: Model pull or delete commands can change local model availability and storage usage.
+
+Mitigation: Require user confirmation before allowing an agent to pull or delete models.
+
+Risk: Skill guidance references files under `~/.fleet-manager/` that may contain operational state or logs.
+
+Mitigation: Do not delete or modify files in `~/.fleet-manager/`.
+
+## Reference(s):
+
+- [Fleet Embeddings ClawHub page](https://clawhub.ai/twinsgeeks/skills/fleet-embeddings)
+- [ollama-herd Python package](https://pypi.org/project/ollama-herd/)
+- [ollama-herd project homepage](https://github.com/geeks-accelerator/ollama-herd)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [Request Tagging Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/request-tagging-analytics.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash, Python, and HTTP API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local API endpoints, model suggestions, setup commands, monitoring commands, and guardrails for file and model operations.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

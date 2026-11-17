@@ -1,40 +1,52 @@
-## Description: <br>
-Generate competitive analysis reports and differentiation talking points based on secondary research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate competitive analysis reports and differentiation talking points based on secondary research
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[findhappy7](https://clawhub.ai/user/findhappy7)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Business leaders, strategy teams, and market researchers use this skill to draft competitive analysis reports, differentiation talking points, and practical recommendations from secondary research and business context.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Business inputs may include confidential strategy, customer, pricing, or partner information.
+
+Mitigation: Review, minimize, and redact sensitive business documents before providing them to the skill.
+
+Risk: Competitive intelligence outputs can be inaccurate or insufficiently tailored when source data is incomplete.
+
+Mitigation: Provide accurate context and have domain experts review recommendations before business use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business users, analysts, and strategy teams use this skill to generate competitive analysis, differentiation talking points, strategic recommendations, and implementation guidance from provided business context and secondary research. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad competitive or business recommendations may be inaccurate, misleading, or unsuitable for a specific strategic, compliance, financial, or operational decision. <br>
-Mitigation: Have qualified staff review recommendations before using them for strategic, compliance, financial, or operational work. <br>
-Risk: Business research prompts may invite users to provide more confidential business information than the task requires. <br>
-Mitigation: Provide only the business information needed for the task and avoid unnecessary confidential data. <br>
+**Output Format:** [Markdown narrative with analysis, recommendations, implementation guidance, and optional ready-to-use deliverables.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Competitive Intelligence on ClawHub](https://clawhub.ai/findhappy7/competitive-intelligence) <br>
+**Other Properties Related to Output:** [Requires user-provided business context, relevant data, requirements, and target audience details for best results.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include analysis, recommendations, ready-to-use documents, scripts or plans, implementation steps, and best practices.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

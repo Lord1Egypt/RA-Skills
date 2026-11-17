@@ -1,40 +1,53 @@
-## Description: <br>
-API Tester Pro helps agents construct and send HTTP or GraphQL requests, validate response status, headers, and bodies, and summarize latency benchmarks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+API Tester Pro helps agents construct and send HTTP, REST, and GraphQL requests, validate status codes, headers, response bodies, and latency, and summarize benchmark results.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and engineers use this skill to test REST and GraphQL APIs, run health checks, validate API responses, and collect basic latency benchmark results for integration or deployment workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API tests can transmit tokens, credentials, private endpoints, or sensitive payloads to the selected target endpoint. <br>
-Mitigation: Use only endpoints and payloads you intend to test, and avoid authenticated or private services unless that exposure is expected. <br>
-Risk: Local request history can retain URLs, statuses, errors, and timing details from tests. <br>
-Mitigation: Avoid including sensitive values in URLs or test names, and clear local history according to the host agent's storage controls. <br>
+## Use Case:
 
+Developers and engineers use this skill to exercise APIs after deployment, generate request examples, check service health, validate API contracts, and compare basic latency measurements.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/534422530/laosi-api-tester) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and JSON-style API test results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe API calls to user-selected endpoints and local request-history behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata, SKILL.md frontmatter, hub.json) <br>
+Risk: The skill can send user-directed HTTP requests from the agent environment to arbitrary URLs, including sensitive internal or cloud-metadata addresses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted endpoints and apply host or network controls that block internal, loopback, link-local, and cloud-metadata ranges when appropriate.
+
+Risk: The implementation saves tested URLs and request history to api_tests.json, which may expose sensitive endpoints or query parameters.
+
+Mitigation: Avoid placing secrets in URLs, prefer protected headers for credentials, and remove or protect api_tests.json after testing sensitive systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-api-tester)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python code blocks, request examples, validation rules, and structured result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled implementation may create api_tests.json containing tested URLs, status values, latency, errors, and timestamps.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,49 @@
-## Description: <br>
-Write git commit messages in Classical Chinese (文言文) when the user explicitly asks for 文言文, 古文, classical Chinese, or 雅驯/骈俪 style commit messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes Classical Chinese (文言文) git commit messages from the current git diff when the user explicitly requests that style.
 
-## Publisher: <br>
-[xing-lin](https://clawhub.ai/user/xing-lin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xing-lin](https://clawhub.ai/user/xing-lin)
 
-## Use Case: <br>
-Developers use this skill to turn staged or unstaged git diffs into concise Classical Chinese commit messages when that style is explicitly requested. It helps produce a commit subject and, for complex changes, an optional body ready for commit tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Git diffs can contain secrets, credentials, or private data that would be exposed to the agent context. <br>
-Mitigation: Avoid using the skill on changes that include secrets, credentials, or private data; review the diff before asking the agent to draft a commit message. <br>
+## Use Case:
 
+Developers use this skill to turn staged or unstaged git diffs into a succinct Classical Chinese commit subject and optional body when they explicitly request that style.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text] <br>
-**Output Format:** [Plain text commit message with optional subject and body] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Subject is limited to 50 Chinese characters; optional body lines are limited to 72 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill reads staged or unstaged git diffs, which may contain secrets or sensitive code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or redact sensitive diff content before invoking the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xing-lin/skills/wenyan-commit-message-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text commit message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Subject line is capped at 50 Chinese characters; optional body lines are capped at 72 characters.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

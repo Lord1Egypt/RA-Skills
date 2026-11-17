@@ -1,41 +1,55 @@
-## Description: <br>
-Performs comprehensive due diligence on a cryptocurrency using CoinMarketCap MCP data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs comprehensive due diligence on a cryptocurrency using CoinMarketCap MCP data.
 
-## Publisher: <br>
-[bryan-cmc](https://clawhub.ai/user/bryan-cmc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bryan-cmc](https://clawhub.ai/user/bryan-cmc)
 
-## Use Case: <br>
-External users and analysts use this skill to research a specific cryptocurrency beyond price checks, including project basics, market data, holder distribution, technical indicators, recent news, and visible risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Cryptocurrency research output may be mistaken for financial advice. <br>
-Mitigation: Present findings as research, include both green flags and red flags, and retain the skill's explicit note that it is not financial advice. <br>
-Risk: CoinMarketCap MCP data, metrics, technical analysis, or news may be missing or unavailable for a token. <br>
-Mitigation: Verify the MCP connection and API key before research, retry critical market data once, and clearly note unavailable sections in the report. <br>
+## Use Case:
 
+External users and analysts use this skill to research a specific cryptocurrency beyond price, combining CoinMarketCap MCP market data, token metadata, holder metrics, technical indicators, and recent news into a balanced report.
 
-## Reference(s): <br>
-- [CoinMarketCap MCP Server](https://mcp.coinmarketcap.com/mcp) <br>
-- [CoinMarketCap API Key Portal](https://pro.coinmarketcap.com/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown research report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured report with overview, market data, supply, holder analysis, technical outlook, recent news, green flags, red flags, and summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Research reports may be mistaken for financial advice when users ask investment-style questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame outputs as research, not financial advice, and present both positive and negative findings.
+
+Risk: CoinMarketCap MCP credentials could be mishandled during setup.
+
+Mitigation: Configure the API key only through MCP settings and avoid placing secrets in generated reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bryan-cmc/skills/crypto-research-using-cmc-mcp)
+- [CoinMarketCap MCP endpoint](https://mcp.coinmarketcap.com/mcp)
+- [CoinMarketCap API key setup](https://pro.coinmarketcap.com/login)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown research report with structured sections and optional JSON configuration snippet]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses CoinMarketCap MCP data and should note missing or unavailable data explicitly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

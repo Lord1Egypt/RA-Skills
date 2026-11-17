@@ -1,51 +1,69 @@
-## Description: <br>
-Interact with the Cal.com API v2 to manage scheduling, bookings, event types, availability, and calendars. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Cal.com API v2 to manage scheduling, bookings, event types, availability, and calendars.
 
-## Publisher: <br>
-[PeerRich](https://clawhub.ai/user/PeerRich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[peerrich](https://clawhub.ai/user/peerrich)
 
-## Use Case: <br>
-Developers and AI agents use this skill to build Cal.com scheduling integrations that check availability, create and manage bookings, configure event types and schedules, manage calendars, and set up webhooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward real Cal.com actions such as creating, cancelling, rescheduling, deleting, or changing webhooks. <br>
-Mitigation: Require user confirmation before mutating bookings, event types, schedules, calendars, or webhooks. <br>
-Risk: The skill requires Cal.com API access and may involve API keys, OAuth client secrets, webhook secrets, and calendar or booking data. <br>
-Mitigation: Use least-privilege credentials, keep secrets out of client-side code and logs, and redact sensitive values in generated examples or diagnostics. <br>
-Risk: Webhook and calendar integrations can send scheduling data to external endpoints. <br>
-Mitigation: Use only trusted HTTPS endpoints, verify webhook signatures, and avoid logging full webhook payloads. <br>
+## Use Case:
 
+Developers and agents use this skill to build Cal.com scheduling integrations that check availability, create and manage bookings, configure event types, manage schedules, connect calendars, and configure webhooks.
 
-## Reference(s): <br>
-- [Cal.com API v2 skill page](https://clawhub.ai/PeerRich/calcom) <br>
-- [Cal.com API v2 documentation](https://cal.com/docs/api-reference/v2) <br>
-- [Cal.com API v2 OpenAPI specification](https://api.cal.com/v2/docs) <br>
-- [Authentication API Reference](references/authentication.md) <br>
-- [Bookings API Reference](references/bookings.md) <br>
-- [Calendars API Reference](references/calendars.md) <br>
-- [Event Types API Reference](references/event-types.md) <br>
-- [Schedules API Reference](references/schedules.md) <br>
-- [Slots and Availability API Reference](references/slots-availability.md) <br>
-- [Webhooks API Reference](references/webhooks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with HTTP examples, JSON request and response bodies, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for Cal.com API v2 operations; agents may turn the guidance into authenticated API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Cal.com API keys and OAuth secrets can expose real scheduling data if placed in prompts, client-side code, logs, or shared examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials in environment variables or a secrets manager, use narrowly scoped keys, and avoid logging or displaying raw credential values.
+
+Risk: Booking, schedule, calendar, and webhook operations can create, cancel, reschedule, delete, disconnect, or forward real user data.
+
+Mitigation: Require explicit user confirmation before state-changing actions and verify the target booking, schedule, calendar, or webhook endpoint before sending requests.
+
+Risk: Requests sent outside the expected Cal.com API endpoint could disclose scheduling data or credentials to an unintended service.
+
+Mitigation: Restrict agent requests to https://api.cal.com/v2 unless a reviewer has approved a different endpoint.
+
+Risk: Webhook payloads may contain booking and attendee details.
+
+Mitigation: Send webhooks only to trusted endpoints and avoid logging raw webhook payloads.
+
+## Reference(s):
+
+- [Authentication API Reference](references/authentication.md)
+- [Bookings API Reference](references/bookings.md)
+- [Calendars API Reference](references/calendars.md)
+- [Event Types API Reference](references/event-types.md)
+- [Schedules API Reference](references/schedules.md)
+- [Slots and Availability API Reference](references/slots-availability.md)
+- [Webhooks API Reference](references/webhooks.md)
+- [Cal.com API v2 Reference](https://cal.com/docs/api-reference/v2)
+- [Cal.com API v2 OpenAPI Specification](https://api.cal.com/v2/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTP, JSON, and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Offline assistant for FDM 3D printer troubleshooting, maintenance guidance, image analysis, calibration G-code, profile management, and log export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Offline assistant for FDM 3D printer troubleshooting, maintenance guidance, image analysis, calibration G-code, profile management, and log export.
 
-## Publisher: <br>
-[redtechsupplylabs](https://clawhub.ai/user/redtechsupplylabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[redtechsupplylabs](https://clawhub.ai/user/redtechsupplylabs)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+3D printer owners, operators, and support technicians use this skill for local troubleshooting, maintenance planning, failed-print analysis, calibration G-code drafting, profile management, and CSV maintenance-log export.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated G-code or maintenance instructions may be incompatible with a specific printer, material, firmware, or operating condition.
+
+Mitigation: Treat outputs as advisory and review printer compatibility, temperatures, motion commands, and file destinations before use.
+
+Risk: The inspected package appears incomplete because most action, workflow, and prompt files are empty.
+
+Mitigation: Verify installed artifact contents and test each workflow locally before relying on the skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-3D printer owners, makers, and operators use this skill to troubleshoot FDM print failures, follow maintenance procedures, analyze failed-print images, generate calibration G-code, manage tuning profiles, and export maintenance logs while keeping work local. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated calibration G-code may contain machine instructions that are unsuitable for a user's exact printer. <br>
-Mitigation: Inspect generated G-code in a slicer or text viewer, verify temperatures and movement limits, and test cautiously before running it. <br>
-Risk: Exported profiles and CSV maintenance logs may include printer-specific settings or maintenance history. <br>
-Mitigation: Review where profiles and logs are saved and check exported CSVs before sharing them. <br>
+**Output Format:** [Text or Markdown guidance, with G-code/configuration-style output and CSV log output when implemented]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redtechsupplylabs/local-3d-printer-maintenance) <br>
-- [Publisher profile](https://clawhub.ai/user/redtechsupplylabs) <br>
+**Other Properties Related to Output:** [Runs locally through OpenClaw/Ollama according to the artifact documentation; current release evidence says most action, workflow, and prompt files are empty.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated printer-related files such as calibration G-code, profiles, and CSV logs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Ollama models through OpenClaw; generated files should be reviewed before use.] <br>
+1.0.0 (source: release evidence and changelog)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

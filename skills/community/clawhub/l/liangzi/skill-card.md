@@ -1,40 +1,55 @@
-## Description: <br>
-良子数字分身 activates an entertainment persona that responds in the Liangzi-style Bilibili food-streamer voice when users ask to mimic or speak as Liangzi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+良子数字分身技能。当用户想以良子的风格说话、互动、模仿良子发言、或问"如果良子会怎么说"时激活。激活后所有回复以良子的土味抽象风格输出。
 
-## Publisher: <br>
-[sxcllllaw11](https://clawhub.ai/user/sxcllllaw11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxcllllaw11](https://clawhub.ai/user/sxcllllaw11)
 
-## Use Case: <br>
-External users use this skill for entertainment roleplay and style transfer, asking an agent to answer in a specific Liangzi-inspired persona voice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona mode can persist and alter the tone or content of later assistant responses. <br>
-Mitigation: Use the mode only when intentionally requested, provide a clear way to exit it, and return to normal assistant behavior for sensitive topics. <br>
-Risk: Conversation summaries may be saved to a markdown memory file without clear consent or retention controls. <br>
-Mitigation: Avoid sensitive conversations while the skill is active, and review, disable, or delete the memory file according to the host agent's controls. <br>
+## Use Case:
 
+External users activate this persona skill to have an agent answer in the Chinese Liangzi roleplay style, including short livestream-like phrasing, recurring catchphrases, and light entertainment responses. The skill is intended for stylistic interaction rather than factual advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sxcllllaw11/liangzi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text responses in a persona style] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append conversation summaries to a local markdown memory file when the persona mode ends.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Roleplay conversations may be summarized into a persistent plaintext memory file without clear consent or retention limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Make memory storage opt-in, tell users when summaries are saved, exclude sensitive details, and provide a way to inspect and delete the memory file.
+
+Risk: Persona roleplay may drift into sensitive topics or targeted personal commentary.
+
+Mitigation: Follow the artifact guidance to switch back to normal assistant behavior for sensitive topics and avoid malicious personal attacks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sxcllllaw11/skills/liangzi)
+- [Skill definition](artifact/SKILL.md)
+- [Liangzi character configuration](artifact/characters/liangzi.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational Chinese text, optionally with lightweight Markdown formatting]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona-styled output may include slang, catchphrases, self-deprecating humor, and Bilibili-style emotive markers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

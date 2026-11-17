@@ -1,39 +1,59 @@
-## Description: <br>
-Generate operational runbooks from project files by scanning Dockerfiles, docker-compose.yml, systemd units, Makefiles, package.json, and config files to produce step-by-step operational procedures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates operational runbooks from project files by scanning Dockerfiles, Docker Compose files, systemd units, Makefiles, package.json, environment files, and nginx configuration.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, SREs, and operations engineers use this skill to generate Markdown or JSON runbooks from a project's local infrastructure and configuration files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated runbooks may expose operational metadata such as environment variable names, absolute paths, service names, ports, scripts, or project structure. <br>
-Mitigation: Review generated Markdown or JSON before sharing, committing, or using it in production documentation. <br>
-Risk: The skill reads files from the project directory supplied by the user. <br>
-Mitigation: Run it only against project directories that the user is comfortable allowing the skill to inspect. <br>
+## Use Case:
 
+Developers, SREs, and operations engineers use this skill to generate first-draft deployment, lifecycle, rollback, troubleshooting, and monitoring runbooks from infrastructure files in a project.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or JSON with operational procedures and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project paths, service names, ports, environment variable names, and generated commands that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill reads infrastructure and environment files in the target project, including .env metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted project directories and review generated environment-variable details before sharing or committing output.
+
+Risk: Generated runbooks may include privileged or disruptive systemctl, Docker, and deployment commands.
+
+Mitigation: Treat generated commands as procedures for human review and obtain separate approval before running privileged or destructive operations.
+
+Risk: Generated operational guidance can be incomplete or misleading because parsing is heuristic and based only on detected files.
+
+Mitigation: Validate runbooks against the actual deployment environment and fill in contacts, health checks, rollback, and monitoring details before production use.
+
+## Reference(s):
+
+- [Runbook Generator Skill Source](artifact/SKILL.md)
+- [Runbook Generator Status](artifact/STATUS.md)
+- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/skills/cm-runbook-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown runbook by default, or structured JSON when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write output to a selected file with -o; generated operational commands require review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

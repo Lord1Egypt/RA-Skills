@@ -1,43 +1,60 @@
-## Description: <br>
-Trades Polymarket weather temperature markets using NOAA and Open-Meteo forecasts as an information edge, buying YES on matching forecast bins and selling NO on bins the forecast disagrees with using micro-sized positions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket weather temperature markets using NOAA and Open-Meteo forecasts as an information edge, using micro-sized positions and paper trading by default.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and developers use this agent skill to run a configurable Polymarket weather-market trading strategy in paper mode by default, with optional live execution when explicitly enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live execution can place real USDC trades on Polymarket when --live is used. <br>
-Mitigation: Keep the skill in paper mode unless live trading is intentional, protect SIMMER_API_KEY as a financial credential, and set conservative position limits before enabling live use. <br>
-Risk: The security summary says live trades can be justified with misleading weather-source provenance. <br>
-Mitigation: Review trade reasoning and provider tracking before relying on audit logs or running unattended live trading. <br>
+## Use Case:
 
+External users and developers use this skill to run an agent-managed Polymarket weather-market trading strategy that compares forecast temperatures with market bins and proposes or places micro-sized trades. It defaults to paper trading and requires explicit live mode for real USDC execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-micro-weather-sniper-trader) <br>
-- [Simmer Markets skills](https://simmer.markets/skills) <br>
-- [simmer-sdk PyPI package](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Console text and trade requests with structured signal data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket trading requires the --live flag and SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Live mode can place real USDC trades on Polymarket when enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode first, require explicit approval before passing --live, and use a least-privilege SIMMER_API_KEY with server-side trade and balance limits.
+
+Risk: Forecast-source disclosure and live-trading safeguards need review before deployment.
+
+Mitigation: Do not enable live mode until the documented risk controls and the wttr.in fallback behavior are fixed or explicitly accepted.
+
+Risk: The skill depends on simmer-sdk for market access and trade execution.
+
+Mitigation: Pin or vet simmer-sdk before deployment and review dependency updates before using live trading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-micro-weather-sniper-trader)
+- [Simmer skills homepage](https://simmer.markets/skills)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May configure paper or live trading mode, environment variables, tunable risk limits, and Simmer SDK execution.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

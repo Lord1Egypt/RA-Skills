@@ -1,41 +1,52 @@
-## Description: <br>
-Helps Amazon sellers and cross-border ecommerce operators analyze sales, inventory, FBA replenishment, listings, PPC advertising, pricing, and order workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon Seller Zh helps Chinese-language Amazon sellers analyze sales, inventory, FBA replenishment, listing quality, PPC advertising, pricing, and order operations.
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[olina1ye](https://clawhub.ai/user/olina1ye)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External Amazon sellers, cross-border ecommerce operators, store managers, and ecommerce team leads use this skill to automate recurring seller operations and generate recommendations for sales diagnostics, replenishment, listing optimization, advertising, pricing, and profitability analysis.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may use Amazon seller, ads, inventory, and order access for operational tasks.
+
+Mitigation: Grant only the Amazon account permissions needed for explicit seller-account workflows and review connected tool access before installation.
+
+Risk: Recommendations could affect pricing, advertising budget, inventory replenishment, or orders.
+
+Mitigation: Require human confirmation before applying pricing, advertising, inventory, or order changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Amazon sellers, cross-border ecommerce operations staff, team leads, and store managers use this skill to review store performance, plan replenishment, optimize listings and ads, and generate operational recommendations. It is intended to support seller operations workflows that may involve sensitive commercial data and account actions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for broad Amazon seller, ads, inventory, and order tooling without clear permission limits or approval rules. <br>
-Mitigation: Use narrowly scoped Amazon permissions, keep access read-only unless a specific workflow requires write access, and require explicit confirmation before changing prices, ads, inventory, listings, or orders. <br>
-Risk: Operational recommendations about pricing, advertising, inventory, or replenishment can affect revenue, ranking, availability, and fulfillment if based on incomplete or stale data. <br>
-Mitigation: Review the underlying sales, advertising, inventory, and competitor data before acting, and treat generated recommendations as decision support rather than automatic instructions. <br>
+**Output Format:** [Markdown reports and recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olina1ye/amazon-seller-zh) <br>
-- [Publisher profile](https://clawhub.ai/user/olina1ye) <br>
+**Other Properties Related to Output:** [May rely on connected Amazon seller, advertising, inventory, and order tools when available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown operational reports with sales analysis, replenishment calculations, pricing guidance, listing recommendations, and advertising optimization steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on authorized Amazon seller, advertising, inventory, and order data; state-changing recommendations should be reviewed before execution.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

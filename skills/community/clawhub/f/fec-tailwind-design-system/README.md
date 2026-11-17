@@ -1,4 +1,4 @@
-# Tailwind 设计系统
+# Tailwind design system
 
 Tailwind CSS design-system workflow for token mapping, theme extension, component variants, class governance, responsive utilities, and dark mode.
 
@@ -6,12 +6,12 @@ Tailwind CSS design-system workflow for token mapping, theme extension, componen
 
 - ID: `fec-tailwind-design-system`
 - Category: `design-ui`
-- Version: `2.5.0`
+- Version: `2.9.0`
 - Source: `skills/fec-tailwind-design-system/SKILL.md`
 
 ## Description
 
-Use when designing, implementing, or reviewing Tailwind CSS design systems, token mapping, theme extension, utility class governance, component variants, dark mode, responsive utilities, safelists, or maintainable class composition; Chinese triggers include Tailwind, 设计 Token, 组件变体, 暗色模式, class 管理.
+Use when designing, implementing, or reviewing Tailwind CSS design systems, token mapping, theme extension, utility class governance, component variants, dark mode, responsive utilities, safelists, or maintainable class composition; Chinese triggers include Tailwind, design Token, component variants, dark mode, class management.
 
 ## Usage
 

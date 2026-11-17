@@ -22,7 +22,7 @@ Location: the root directory of the audited skill
 
 ## Overall score: {score} / {max}　　{PASS ✅ / FAIL ❌}
 
-> Max: L1 static 112 / L2 dryRun 115.
+> Max: L1 static 117 / L2 dryRun 120.
 > Pass criteria (dual gate, both required): total ≥ pass line (L1/L2 dryRun both **≥90**) **and** zero ERR
 
 ---
@@ -30,6 +30,11 @@ Location: the root directory of the audited skill
 ## 🔴 ERR (must fix, {n} total)
 
 > ⚠️ Any ERR means the audit result is FAIL, no matter how high the total score is.
+> **`0*` = zero-point ERR** (`D3-E4` / `D3-E5` / `D3-E6` / `D4-E6`): deducts
+> nothing and does not consume the 120-point budget, but a hit still forces
+> FAIL via the "zero ERR" gate. Because it is invisible in the score, a
+> zero-point ERR **must** be called out explicitly in the summary — otherwise a
+> reader comparing only totals will conclude the skill passed.
 > Every ERR must include the **four elements**: problem description / example (with line number) / fix (full code) / impact scope.
 
 ### [{ID}] {check name} (−{x} pts)
@@ -69,12 +74,12 @@ Location: the root directory of the audited skill
 |------|------|------|-------|--------|
 | D1 Process closure & idempotency | {d1} | 13 | {n} | {n} |
 | D2 Tool & command conventions | {d2} | 10 | {n} | {n} |
-| D3 Portability & defense | {d3} | 15 | {n} | {n} |
-| D4 Skill usability | {d4} | 21 | {n} | {n} |
+| D3 Portability & defense | {d3} | 18 | {n} | {n} |
+| D4 Skill usability | {d4} | 23 | {n} | {n} |
 | D5 Security & operation risk | {d5} | 21 | {n} | {n} |
 | D6 Code & doc quality | {d6} | 31 | {n} | {n} |
 | D7 Dependency & footprint health | {d7} | 4 | {n} | {n} |
-| **Total** | **{total}** | **115** | | |
+| **Total** | **{total}** | **120** | | |
 
 ---
 
@@ -103,9 +108,13 @@ Location: the root directory of the audited skill
 | D3-E1 | No hardcoded local absolute paths | ERR | 3 | L1 | | |
 | D3-E2 | No hardcoded environment-specific constants | ERR | 3 | L1 | | |
 | D3-E3 | No hardcoded column indexes | ERR | 3 | L1 | | |
+| D3-E4 | Cross-skill reference declares its resolution base | ERR | 0* | L1 | | |
+| D3-E5 | Path derivation survives relocation | ERR | 0* | L1 | | |
+| D3-E6 | File I/O has failure handling | ERR | 0* | L1 | | |
 | D3-W1 | No duplicated scripts across skills | WARN | 2 | L1 | | |
 | D3-W2 | Branch-reachability simulation | WARN | 2 | L2 dryRun | ➖ skipped (dryRun item) | |
 | D3-W3 | Actionable error messages | WARN | 2 | L1 | | |
+| D3-W4 | Fixed-hop derivation inside the skill | WARN | 3 | L1 | | |
 | D4-E1 | frontmatter complete | ERR | 3 | L1 | | |
 | D4-E2 | description states trigger timing | ERR | 3 | L1 | | |
 | D4-E3 | Prerequisites documented | ERR | 3 | L1 | | |
@@ -114,6 +123,8 @@ Location: the root directory of the audited skill
 | D4-W1 | Directory-structure conventions | WARN | 2 | L1 | | |
 | D4-W2 | High-risk ops have guardrail declarations | WARN | 3 | L1 | | |
 | D4-W3 | Progress feedback on key steps | WARN | 1 | L1 | | |
+| D4-W6 | SKILL.md length within budget (401-600) | WARN | 2 | L1 | | |
+| D4-E6 | SKILL.md length control (>600) | ERR | 0* | L1 | | |
 | D5-E1 | No plaintext sensitive credentials | ERR | 3 | L1 | | |
 | D5-E2 | No hardcoded --yes/--force passthrough | ERR | 3 | L1 | | |
 | D5-E3 | No hardcoded credentials in URLs | ERR | 3 | L1 | | |

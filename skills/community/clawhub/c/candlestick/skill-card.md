@@ -1,39 +1,54 @@
-## Description: <br>
-Candlestick reference tool. Use when working with candlestick in finance contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Candlestick reference tool. Use when working with candlestick in finance contexts.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users and developers can run this skill as a command-line reference for generic candlestick-related finance topics, including formulas, regulations, risks, instruments, strategies, glossary terms, and checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill's finance-focused candlestick claim is not backed by the generic placeholder content it ships. <br>
-Mitigation: Use it only as a generic finance reference and independently verify any candlestick analysis, trading, regulatory, compliance, or financial guidance before relying on it. <br>
+## Use Case:
 
+Developers, analysts, and finance practitioners use this skill to retrieve concise candlestick reference material, including fundamentals, formulas, regulatory considerations, risks, instruments, strategies, glossary entries, and checklists.
 
-## Reference(s): <br>
-- [Candlestick on ClawHub](https://clawhub.ai/xueyetianya/candlestick) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text from shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-specific reference sections selected by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The security summary says the candlestick-specific content is very generic and may not be useful.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as a lightweight reference and verify finance, trading, and compliance guidance with authoritative sources before relying on it.
+
+Risk: The security guidance says the skill should not be relied on for trading, compliance, or serious candlestick analysis without independent verification.
+
+Mitigation: Use independent review for trading decisions, compliance work, or material financial analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/candlestick)
+- [Publisher homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text emitted by shell command subcommands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no API keys, MCP tools, or credential environment variables were detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

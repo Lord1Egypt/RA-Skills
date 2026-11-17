@@ -1,42 +1,60 @@
-## Description: <br>
-ClawLock-Rank prepares a ClawLock 2.2.1+ local inspection result for leaderboard upload, shows a sanitized preview, and uploads only when the user explicitly confirms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawLock-Rank helps agents run a local ClawLock 2.2.1+ scan, preview the sanitized leaderboard payload, and upload a confirmed score to ClawLockRank.
 
-## Publisher: <br>
-[g1at](https://clawhub.ai/user/g1at) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[g1at](https://clawhub.ai/user/g1at)
 
-## Use Case: <br>
-External users, developers, and security-focused operators use this skill after a local ClawLock inspection when they want to preview and voluntarily publish a score to ClawLockRank. It is scoped to leaderboard submission, not general security scanning, hardening, dependency setup, or leaderboard browsing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The upload sends a sanitized ClawLock score submission to the configured ClawLockRank service, and the public nickname, score, grade, adapter metadata, and finding titles may reveal operational context. <br>
-Mitigation: Review the preview before approving upload, choose a nickname suitable for public display, and avoid uploading from environments where device fingerprint metadata or finding titles could expose sensitive details. <br>
-Risk: Using this skill outside its trigger boundary could publish a result when the user only wanted a local scan, hardening help, debugging, or leaderboard browsing. <br>
-Mitigation: Trigger it only for explicit leaderboard upload intent, run preview mode first, and require a clear confirmation before upload. <br>
+## Use Case:
 
+External users and developers use this skill after a local ClawLock inspection to preview what score metadata will be published and, after explicit confirmation, submit it to the ClawLockRank leaderboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/g1at/clawlock-rank) <br>
-- [Project homepage](https://github.com/g1at/ClawLock-Rank) <br>
-- [Publisher profile](https://clawhub.ai/user/g1at) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and structured JSON preview or upload responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preview mode returns a sanitized payload path, public summary, uploaded-field list, excluded-field list, and confirmation requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, release metadata) <br>
+Risk: Leaderboard submission sends a raw device fingerprint, score, nickname, version data, timestamp, evidence hash, and finding titles to the leaderboard service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the preview first, review the upload fields, and upload only after explicit user confirmation.
+
+Risk: Preview mode can leave sanitized ClawLockRank payload files in the temp directory.
+
+Mitigation: Remove leftover clawlock-rank-preview JSON files after previewing, especially on shared systems.
+
+Risk: The upload destination can be changed by command-line argument, environment variable, or skill configuration.
+
+Mitigation: Confirm the resolved API base is the intended HTTPS Worker before submitting a score.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/g1at/skills/clawlock-rank)
+- [Publisher profile](https://clawhub.ai/user/g1at)
+- [Skill homepage](https://github.com/g1at/ClawLock-Rank)
+- [Leaderboard Worker endpoint](https://clawlock-rank-worker.dyyxml.workers.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON preview summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can produce a local preview JSON file and can submit a sanitized score payload after explicit confirmation.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

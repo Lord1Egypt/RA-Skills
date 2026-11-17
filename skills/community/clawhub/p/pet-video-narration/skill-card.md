@@ -1,41 +1,58 @@
-## Description: <br>
-宠物第一视角视频创作技能。当用户发送宠物视频并希望生成"宠物内心独白"风格的配音视频时激活。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates first-person pet narration videos by analyzing pet body language, writing personality-matched narration, generating speech audio, and merging the audio with the source video.
 
-## Publisher: <br>
-[zhanglinghao01-rakuten](https://clawhub.ai/user/zhanglinghao01-rakuten) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanglinghao01-rakuten](https://clawhub.ai/user/zhanglinghao01-rakuten)
 
-## Use Case: <br>
-External creators and pet owners use this skill to turn pet videos into first-person inner-monologue narration videos. It guides an agent through video analysis, pet body-language interpretation, narration scripting, text-to-speech generation, and ffmpeg-based audio/video merging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may require pet videos and pet profile details. <br>
-Mitigation: Only provide media and profile details the user is comfortable sharing with the agent and any configured media or speech tools. <br>
-Risk: The ffmpeg examples overwrite generated media filenames and may require installing ffmpeg. <br>
-Mitigation: Confirm output paths before running commands and approve environment changes such as ffmpeg installation only when desired. <br>
+## Use Case:
 
+External users and creators use this skill to turn pet videos into humorous first-person narration videos. The agent analyzes visible pet behavior, drafts narration aligned to action timing, generates speech audio, and prepares final media files for review or editing.
 
-## Reference(s): <br>
-- [Pet Body Language Reference](references/pet-body-language.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhanglinghao01-rakuten/pet-video-narration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with narration text and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce text-to-speech audio segments and a merged MP4 when the agent has suitable media tools and user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Pet videos and narration text may be sent to video-understanding or text-to-speech tools selected by the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target tools and data-sharing posture before use, especially when videos contain private homes, people, locations, or other sensitive context.
+
+Risk: The skill is primarily written for Mandarin narration, so voice and language choices may not match user expectations by default.
+
+Mitigation: Confirm narration language, voice, and tone before generating speech audio.
+
+Risk: Local video merging may require ffmpeg installation in the agent environment.
+
+Mitigation: Install or allow ffmpeg only in trusted environments where local media processing is expected.
+
+## Reference(s):
+
+- [Pet Body Language Reference Manual](references/pet-body-language.md)
+- [ClawHub skill page](https://clawhub.ai/zhanglinghao01-rakuten/skills/pet-video-narration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with narration text, timing notes, shell commands, and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce an MP4 video, merged audio file, and segmented audio files when the agent has suitable video, speech, and ffmpeg tooling.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

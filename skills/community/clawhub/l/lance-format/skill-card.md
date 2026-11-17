@@ -1,40 +1,64 @@
-## Description: <br>
-Reference for Lance v8, the open columnar lakehouse format for multimodal AI, covering the Lance Rust crate workspace, file and table formats, indexes, object-store configuration, schema evolution, versioning, and concurrency behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep reference for Lance v15 columnar format, its Rust crates, and pylance - file encodings, table format, indexes, schema evolution, time travel. Use when building on the Lance crates or reading .lance datasets, not the LanceDB product.
 
-## Publisher: <br>
-[tenequm](https://clawhub.ai/user/tenequm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tenequm](https://clawhub.ai/user/tenequm)
 
-## Use Case: <br>
-Developers and engineers use this skill as a technical reference when building directly on Lance crates or working with .lance datasets, manifests, file formats, indexes, object-store configuration, and related Lance engine behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a documentation-only reference pinned to a specific Lance beta tag, so details may be stale or unsuitable for newer Lance releases or production storage decisions. <br>
-Mitigation: Verify format, crate, object-store, and indexing details against the pinned upstream tag or current Lance documentation before applying them to production systems. <br>
+## Use Case:
 
+Developers working with Lance crates or pylance use this reference to understand file and table formats, indexes, schema evolution, version compatibility, and time travel. It does not cover the LanceDB product API.
 
-## Reference(s): <br>
-- [Lance Reference](references/lance-reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tenequm/lance-format) <br>
-- [Publisher Skill Homepage](https://github.com/tenequm/skills/tree/main/skills/lance-format) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with technical references, code-oriented explanations, and command or configuration examples when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output pinned to Lance upstream tag v8.0.0-beta.14] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.0 (source: server release metadata, frontmatter, and changelog, released 2026-06-16) <br>
+Risk: Examples that write or delete data could affect a live Lance dataset if copied directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fresh dataset path and credentials limited to the intended dataset.
+
+Risk: Remote storage examples can expose credentials or use insecure transport when adapted carelessly.
+
+Mitigation: Use HTTPS and credentials scoped to the intended dataset.
+
+Risk: Cleanup and retention changes can make older data unavailable.
+
+Mitigation: Preserve required retention protections and immutable backups; use a suitable separate bucket rather than blindly disabling Object Lock.
+
+Risk: External dependencies and upstream provenance are unverified in the release evidence.
+
+Mitigation: Check relevant upstream documentation and dependencies before relying on version-sensitive guidance.
+
+## Reference(s):
+
+- [Publisher homepage and skill source page](https://github.com/tenequm/skills/tree/main/skills/lance-format)
+- [Lance documentation](https://lance.org)
+- [Lance Java API documentation](https://www.javadoc.io/doc/org.lance/lance-core/latest/index.html)
+- [Lance Python package index](https://pypi.fury.io/lance-format)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with code and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Topic-specific reference answers with version and compatibility details.]
+
+## Skill Version(s):
+
+0.22.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

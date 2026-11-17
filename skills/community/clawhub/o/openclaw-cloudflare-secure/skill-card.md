@@ -1,43 +1,62 @@
-## Description: <br>
-Securely expose an OpenClaw Gateway WebUI on a VPS via Cloudflare Zero Trust Access + Cloudflare Tunnel (cloudflared), including DNS cutover for custom hostnames and optional cleanup of Tailscale Serve. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Securely expose an OpenClaw Gateway WebUI on a VPS via Cloudflare Zero Trust Access + Cloudflare Tunnel (cloudflared), including DNS cutover for custom hostnames and optional cleanup of Tailscale Serve.
 
-## Publisher: <br>
-[jskoiz](https://clawhub.ai/user/jskoiz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jskoiz](https://clawhub.ai/user/jskoiz)
 
-## Use Case: <br>
-Developers and operators use this skill to publish an OpenClaw Gateway WebUI through Cloudflare Tunnel and protect it with Cloudflare Access policies. It also supports DNS cutover for custom hostnames and optional cleanup of a previous Tailscale Serve setup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify Cloudflare DNS records and tunnel routing for the selected zone. <br>
-Mitigation: Use a zone-scoped Cloudflare API token, inspect or back up existing DNS records before cutover, and run it only against the VPS and Cloudflare zone you intend to manage. <br>
-Risk: A public hostname could expose the OpenClaw WebUI if Cloudflare Access is misconfigured. <br>
-Mitigation: Confirm the Cloudflare Access allowlist and block policy before relying on the hostname. <br>
-Risk: The installer fetches a cloudflared package during setup. <br>
-Mitigation: Verify the cloudflared package source where possible before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Cloudflare Secure release page](https://clawhub.ai/jskoiz/openclaw-cloudflare-secure) <br>
-- [cloudflared Linux AMD64 release package](https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb) <br>
-- [Cloudflare API endpoint used by bundled DNS helper](https://api.cloudflare.com/client/v4) <br>
+## Use Case:
 
+Developers and operators use this skill to expose an OpenClaw WebUI on a VPS behind Cloudflare Zero Trust Access and Cloudflare Tunnel while managing DNS records for a custom hostname.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline bash commands and bundled helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational setup guidance for Cloudflare Tunnel, Cloudflare Access, DNS records, and cloudflared service management.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can install and enable a persistent cloudflared system service with root privileges.
+
+Mitigation: Review the service install command before execution, run it only on the intended VPS, and use the documented rollback command to disable the service when needed.
+
+Risk: DNS cutover can delete or overwrite A, AAAA, and CNAME records for the target hostname.
+
+Mitigation: Verify the zone and hostname arguments, keep a rollback record, and avoid production hostnames unless a rollback plan is ready.
+
+Risk: Cloudflare tokens used by the helper scripts can modify DNS or install a tunnel if over-scoped or exposed.
+
+Mitigation: Use narrowly scoped Cloudflare tokens, avoid storing secrets in logs or shell history, and rotate any token that may have been exposed.
+
+Risk: The installer downloads the latest cloudflared package dynamically.
+
+Mitigation: Prefer a pinned and verified cloudflared package in controlled or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jskoiz/skills/openclaw-cloudflare-secure)
+- [Cloudflare API endpoint](https://api.cloudflare.com/client/v4)
+- [cloudflared Linux AMD64 package](https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline bash commands and bundled helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VPS shell access, Cloudflare DNS zone control, a Cloudflare API token, and a Cloudflare Tunnel token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

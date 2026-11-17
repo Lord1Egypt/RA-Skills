@@ -1,37 +1,51 @@
-## Description: <br>
-Organize files and projects using the PARA method (Projects, Areas, Resources, Archives). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize files and projects using the PARA method (Projects, Areas, Resources, Archives).
 
-## Publisher: <br>
-[alitekin1](https://clawhub.ai/user/alitekin1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alitekin1](https://clawhub.ai/user/alitekin1)
 
-## Use Case: <br>
-Agents and users use this skill to organize workspace files into PARA categories for active projects, ongoing areas, reference resources, and archives. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can move workspace files, and relocated files can break existing paths or workflows. <br>
-Mitigation: Ask the agent for a preview before large moves and review proposed file operations before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PARA skill page](https://clawhub.ai/alitekin1/openclaw-para-skill) <br>
+## Use Case:
+
+Developers and workspace users use this skill to keep files and projects organized under PARA categories for active projects, ongoing areas, reference resources, and archives.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to actively enforce PARA organization and move workspace files.
+
+Mitigation: Require the agent to show proposed moves and get confirmation before moving files.
+
+Risk: Automatic file moves can affect active, configuration, hidden, or important files without rollback safeguards.
+
+Mitigation: Avoid overwrites, exclude active/config/hidden files unless explicitly approved, and keep a move log or rollback plan.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with file-organization instructions and shell command proposals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agents should preview large file moves before execution because relocated files can break paths.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [guidance, shell commands]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown text with proposed file-organization actions and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or perform file moves when the agent is allowed to operate on the workspace.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

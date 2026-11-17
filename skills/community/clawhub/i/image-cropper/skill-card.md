@@ -1,39 +1,57 @@
-## Description: <br>
-Crop objects from images using bounding box annotations in COCO, YOLO, VOC, or LabelMe-style workflows, with optional padding and batch processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crop objects from images using bounding box annotations in COCO, YOLO, VOC, or LabelMe formats with optional padding and batch processing.
 
-## Publisher: <br>
-[Mingo-318](https://clawhub.ai/user/Mingo-318) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mingo-318](https://clawhub.ai/user/mingo-318)
 
-## Use Case: <br>
-Developers and dataset maintainers use this skill to extract annotated objects from local image datasets for review, curation, or downstream computer-vision workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated crop filenames can overwrite existing files in the selected output directory. <br>
-Mitigation: Write outputs to a dedicated directory and review existing files before running batch crops. <br>
-Risk: The script depends on Pillow for local image processing. <br>
-Mitigation: Install Pillow from a trusted Python package source and keep the local environment maintained. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mingo-318/image-cropper) <br>
+## Use Case:
 
+Developers and dataset maintainers use this skill to crop annotated object regions from image datasets for inspection, training-data preparation, or downstream processing.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; generated image crop files when commands are run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write cropped image outputs or sprite-style image assets to a selected output directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: COCO annotations can reference image files outside the intended image directory when the annotation file is crafted.
+
+Mitigation: Use trusted annotation files or run the skill in a sandbox with filesystem access limited to the intended image dataset.
+
+Risk: Generated crops are written into the selected output directory and may collide with files the user wants to preserve.
+
+Mitigation: Use a fresh output directory for each run and avoid reusing directories that contain important files.
+
+Risk: Image parsing depends on the local Pillow installation and the input files supplied by the user.
+
+Mitigation: Prefer a pinned Pillow version in the execution environment and process only trusted image datasets.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mingo-318/skills/image-cropper)
+- [Skill Documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Files]
+
+**Output Format:** [Markdown guidance with inline bash commands; the cropper script writes cropped image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports COCO, YOLO, VOC, and LabelMe-style workflows with options for padding, per-object output, minimum crop size, image format, and JPEG quality.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

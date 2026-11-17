@@ -1,0 +1,463 @@
+# ============================================================================
+# Skill Registry — 已知技能注册表
+# ============================================================================
+# 本文件维护已知技能的元数据：版本号、分类、来源。
+# 用途：
+#   1. 版本对比 → 检测已安装技能是否需要更新
+#   2. 分类标记 → 推荐时按类别分组
+#   3. 来源追溯 → 用户可查安装来源
+#
+# 更新方式：手动维护 + ④-bis 版本自动回写（v5.7.0）+ web 搜索辅助验证
+# 版本自动回写规则：
+#   - ④-bis 从各技能 SKILL.md frontmatter 提取 version 字段
+#   - 对比 registry 中记录：一致跳过 / 不一致更新 / 无记录追加
+
+skills:
+  # ---- User Skills (用户技能, .agents/skills/) ----
+
+  - name: "skills-summarize-audit"
+    version: "9.2.2"
+    category: management
+    tags: ["audit", "skill-plugin-issues", "version", "project-scan", "profile", "recommendation", "confidence", "capacity-analysis", "ci-cd", "8dim-scoring", "summarize", "translation", "conflict", "complementarity", "forma", "capability-matrix", "tqi", "health-checkup", "tech-fingerprints"]
+    description: "技能审查 → 中文说明精炼·项目画像·技能插件证据推荐"
+    source: "local"
+    homepage: "https://github.com/gtbwpkwjnb-alt/skills-summarize-audit-skill"
+
+  - name: "summarize"
+    version: "6.8.0"
+    category: docs
+    tags: ["summary", "session", "context", "token-tracking", "error-harvest", "self-evolve", "compress", "cross-agent"]
+    description: "总结 → 错误收割·自进化·可逆压缩 | Summarize → error harvest·self-evolve·compress"
+    source: "local"
+    homepage: "https://github.com/gtbwpkwjnb-alt/summarize-skill"
+
+  - name: "learn"
+    version: "5.1.1"
+    category: docs
+    tags: ["video", "transcript", "knowledge", "OCR", "AI-summary", "flashcard", "obsidian", "siyuan"]
+    description: "学习+分享链接 → 清洗短链·提取字幕·关键帧OCR·AI总结·闪卡·Obsidian/思源导入 | Learn → URL→notes·OCR·AI summary·flashcard"
+    source: "local"
+    homepage: ""
+
+  - name: "agent-reach"
+    version: "1.6.0"
+    category: research
+    tags: ["search", "social-media", "multi-platform", "research"]
+    description: "互联网调研 → 多平台搜索·13渠道·信息获取 | Web research → multi-platform·13 channels·info gathering"
+    source: "local"
+    homepage: "https://github.com/Panniantong/Agent-Reach"
+
+  - name: "last30days"
+    version: "1.0.0"
+    category: research
+    tags: ["aggregator", "trend", "multi-platform", "report"]
+    description: "30天调研 → 15+平台聚合·互动评分·AI报告 | 30d research → 15+ platforms·engagement·AI report"
+    source: "local"
+    homepage: ""
+
+  - name: "scrapling"
+    version: "1.0.0"
+    category: dev
+    tags: ["scraping", "crawler", "anti-bot", "js-render"]
+    description: "高级抓取 → 自适应定位·反反爬·JS渲染 | Scrapling → adaptive·anti-bot·JS render"
+    source: "local"
+    homepage: "https://github.com/D4Vinci/Scrapling"
+
+  # ---- v8.0.0 同步：补齐本地用户技能（之前缺失） ----
+
+  - name: "cangjie-skill"
+    version: "0.1.0"
+    category: docs
+    tags: ["knowledge-distill", "skill-generation", "methodology", "book-to-skill"]
+    description: "知识蒸馏 → 书籍·视频·播客·课程→可执行技能 | Cangjie → distill·book→skill"
+    source: "local"
+    homepage: ""
+
+  - name: "gpt-taste"
+    version: "1.0.0"
+    category: design
+    tags: ["frontend", "awwwards", "gsap", "visual-qa", "aida"]
+    description: "高级界面设计 → AIDA 页面·GSAP 动效·视觉验收 | GPT Taste → AIDA·GSAP·visual QA"
+    source: "local"
+    homepage: ""
+    note: "目录名 gpt-tasteskill，name 字段为 gpt-taste"
+
+  - name: "hatch-pet"
+    version: "1.0.0"
+    category: creation
+    tags: ["pixel-art", "pet", "sprite-sheet", "visual-qa"]
+    description: "宠物生成 → 角色图·精灵表·视觉QA | Hatch Pet → sprite·character·visual QA"
+    source: "local"
+    homepage: ""
+    note: "2026-07-19 从 D:\\codex\\skills\\ 迁移到本地 ~/.agents/skills/"
+
+  - name: "luopan"
+    version: "0.1.0"
+    category: research
+    tags: ["industry-research", "competitive-landscape", "industry-map"]
+    description: "行业研究 → 产业地图·陌生行业入门·竞争格局 | Luopan → industry map·onboarding·landscape"
+    source: "local"
+    homepage: ""
+
+  - name: "ruofeng-adversarial-review"
+    version: "0.1.0"
+    category: review
+    tags: ["adversarial", "counter-example", "vulnerability", "decision-review"]
+    description: "对抗审查 → 方案·代码·决策·漏洞挖掘·反例验证 | Adversarial Review → counter·vuln·counterexample"
+    source: "local"
+    homepage: ""
+
+  # ═══════════════════════════════════════════════════════════════
+  # CodeBuddy 技能栏（UI 中可见的 14 个技能/插件）
+  # description 按 description-quality.md 6步精炼
+  # ═══════════════════════════════════════════════════════════════
+
+  # ---- 6 个已安装技能 (.codebuddy/skills/，含 _skillhub_meta.json) ----
+
+  - name: "humanizer"
+    version: "2.1.1"
+    category: writing
+    tags: ["de-ai", "naturalize", "editing"]
+    description: "去AI味·人味润色 → 检测9类AI痕迹·自然改写 | Humanizer → de-AI·naturalize·9 patterns"
+    source: "codebuddy"
+    description_optimized: "2026-07-04"
+
+  - name: "my-novel-writer"
+    version: "1.0.0"
+    category: writing
+    tags: ["novel", "character", "worldbuilding", "chapter"]
+    description: "小说创作·写小说 → 人物设定·世界观·分章生成 | Novel Writer → character·world·chapter"
+    source: "codebuddy"
+    description_optimized: "2026-07-04"
+
+  - name: "summarize-cli"
+    version: "1.0.0"
+    category: docs
+    tags: ["summarize", "cli", "web", "pdf", "youtube"]
+    description: "内容总结·摘要 → 网页·PDF·图片·音频·视频 | Summarize CLI → web·PDF·img·audio·video"
+    source: "codebuddy"
+    description_optimized: "2026-07-04"
+    note: "与 Agent 通用技能 summarize(会话精炼) 同名不同功能，注册为 summarize-cli 以区分"
+
+  - name: "nuwa-skill"
+    version: "1.0.1"
+    category: creation
+    tags: ["persona", "thinking", "distill", "skill-generation"]
+    description: "女娲·造人·蒸馏 → 人物思维框架·自动生成Skill | Nuwa → persona distill·skill gen"
+    source: "codebuddy"
+    description_optimized: "2026-07-04"
+
+  - name: "capability-evolver"
+    version: "1.53.2"
+    category: management
+    tags: ["evolution", "self-improve", "runtime", "agent"]
+    description: "自演化·进化引擎 → 分析运行历史·自动优化能力 | Evolver → runtime history·auto optimize"
+    source: "codebuddy"
+    description_optimized: "2026-07-04"
+
+  - name: "grill-me"
+    version: "1.0.0"
+    category: review
+    tags: ["interview", "design-review", "decision-tree", "stress-test"]
+    description: "深度追问·方案拷问 → 逐层拆解决策树·达成共识 | Grill Me → interview·decision tree"
+    source: "codebuddy"
+    description_optimized: "2026-07-04"
+
+  # ---- 8 个已启用插件 (settings.json enabledPlugins) ----
+
+  - name: "pptx"
+    version: "1.0.0"
+    category: docs
+    tags: ["pptx", "presentation", "slides", "deck"]
+    description: "PPT·演示文稿 → 创建·编辑·提取·合并·模板 | PPTX → create·edit·extract·template"
+    source: "codebuddy-plugins-official"
+    description_optimized: "2026-07-04"
+
+  - name: "pdf"
+    version: "1.0.0"
+    category: docs
+    tags: ["pdf", "merge", "split", "ocr", "forms"]
+    description: "PDF·文档处理 → 读写·合并·拆分·水印·表单·OCR | PDF → read·merge·split·OCR"
+    source: "codebuddy-plugins-official"
+    description_optimized: "2026-07-04"
+
+  - name: "docx"
+    version: "1.0.0"
+    category: docs
+    tags: ["docx", "word", "report", "memo", "template"]
+    description: "Word·文档编辑 → 创建·排版·替换·批注·报告 | DOCX → create·format·report·memo"
+    source: "codebuddy-plugins-official"
+    description_optimized: "2026-07-04"
+
+  - name: "xlsx"
+    version: "1.0.0"
+    category: docs
+    tags: ["xlsx", "spreadsheet", "csv", "chart", "formula"]
+    description: "Excel·电子表格 → 编辑·公式·图表·清洗·转换 | XLSX → edit·formula·chart·clean"
+    source: "codebuddy-plugins-official"
+    description_optimized: "2026-07-04"
+
+  - name: "agent-browser"
+    version: "1.3.0"
+    category: browser
+    tags: ["browser", "screenshot", "automation", "scrape"]
+    description: "浏览器自动化 → 截图·提取·填表·点击·测试 | Browser → screenshot·scrape·form·test"
+    source: "codebuddy-plugins-official"
+    description_optimized: "2026-07-04"
+
+  - name: "playwright-cli"
+    version: "1.0.0"
+    category: browser
+    tags: ["playwright", "browser", "test", "form", "screenshot"]
+    description: "Playwright浏览器 → 网页测试·填表·截图·提取 | Playwright → test·form·screenshot·scrape"
+    source: "codebuddy-plugins-official"
+    description_optimized: "2026-07-04"
+
+  - name: "find-skills"
+    version: "1.0.0"
+    category: management
+    tags: ["discovery", "install", "skills", "marketplace"]
+    description: "发现技能·安装技能 → 搜索市场·扩展能力 | Find Skills → discover·install·marketplace"
+    source: "codebuddy-plugins-official"
+    description_optimized: "2026-07-04"
+
+  - name: "skills-security-check"
+    version: "1.0.0"
+    category: security
+    tags: ["security", "audit", "skill", "scan"]
+    description: "技能安全检查·审计 → 恶意命令·文件风险·依赖审查 | Security Check → audit·scan·risk"
+    source: "codebuddy-plugins-official"
+    description_optimized: "2026-07-04"
+
+  # ---- Plugin Skills (系统/插件技能) ----
+
+  - name: "skill-creator"
+    version: "0.1.0"
+    category: dev
+    tags: ["skill", "creation", "iteration"]
+    description: "创建新技能、编辑现有技能并迭代措辞"
+    source: "zcode-plugins-official"
+    plugin: "skill-creator"
+
+  - name: "docx"
+    version: "0.1.0"
+    category: docs
+    tags: ["word", "document", "office"]
+    description: "完整的 DOCX 文档创建、编辑与分析"
+    source: "zcode-plugins-official"
+    plugin: "document-skills"
+
+  - name: "pdf"
+    version: "0.1.0"
+    category: docs
+    tags: ["pdf", "document", "report"]
+    description: "专业 PDF 工具集"
+    source: "zcode-plugins-official"
+    plugin: "document-skills"
+
+  - name: "android-dev"
+    version: "0.1.0"
+    category: mobile
+    tags: ["android", "mobile", "emulator"]
+    description: "通过 android-emulator MCP 构建、运行、检查 Android 应用"
+    source: "zcode-plugins-official"
+    plugin: "android-emulator"
+    status: "archived"
+    archived_reason: "Windows 环境无 Android 模拟器，僵尸技能"
+
+  - name: "ios-dev"
+    version: "0.1.0"
+    category: mobile
+    tags: ["ios", "mobile", "simulator"]
+    description: "通过 ios-simulator MCP 构建、运行、检查 iOS 应用"
+    source: "zcode-plugins-official"
+    plugin: "ios-simulator"
+    status: "archived"
+    archived_reason: "Windows 环境无 iOS 模拟器，僵尸技能"
+
+  - name: "restore-legacy-sessions"
+    version: "0.1.0"
+    category: management
+    tags: ["session", "restore", "migration"]
+    description: "检查、规划、执行旧会话的恢复"
+    source: "zcode-plugins-official"
+    plugin: "restore-legacy-sessions"
+    status: "archived"
+    archived_reason: "一次性迁移工具，已完成，无后续使用场景"
+
+  # ---- Superpowers 套件 (v5.1.0) ----
+
+  - name: "brainstorming"
+    version: "5.1.0"
+    category: design
+    tags: ["creative", "design", "planning"]
+    description: "创意工作前的需求、意图和设计探索"
+    source: "zcode-plugins-official"
+    plugin: "superpowers"
+
+  - name: "dispatching-parallel-agents"
+    version: "5.1.0"
+    category: dev
+    tags: ["parallel", "concurrent", "multi-task"]
+    description: "独立任务的并行调度"
+    source: "zcode-plugins-official"
+    plugin: "superpowers"
+
+  - name: "executing-plans"
+    version: "5.1.0"
+    category: dev
+    tags: ["plan", "execution", "implementation"]
+    description: "按实施计划在独立会话中执行"
+    source: "zcode-plugins-official"
+    plugin: "superpowers"
+    status: "archived"
+    archived_reason: "低频使用，被 CodeBuddy 原生 task 工具替代"
+
+  - name: "finishing-a-development-branch"
+    version: "5.1.0"
+    category: dev
+    tags: ["branch", "merge", "cleanup", "pr"]
+    description: "完成开发分支后的集成决策引导"
+    source: "zcode-plugins-official"
+    plugin: "superpowers"
+    status: "archived"
+    archived_reason: "低频使用，常规 git 操作无需技能辅助"
+
+  - name: "receiving-code-review"
+    version: "5.1.0"
+    category: review
+    tags: ["review", "feedback", "code-quality"]
+    description: "接收代码审查反馈时的技术严谨性验证"
+    source: "zcode-plugins-official"
+    plugin: "superpowers"
+    status: "archived"
+    archived_reason: "低频使用，单人项目无审查场景"
+
+  - name: "requesting-code-review"
+    version: "5.1.0"
+    category: review
+    tags: ["review", "code-quality", "checklist"]
+    description: "完成任务或合并前验证工作是否符合要求"
+    source: "zcode-plugins-official"
+    plugin: "superpowers"
+
+  - name: "subagent-driven-development"
+    version: "5.1.0"
+    category: dev
+    tags: ["subagent", "parallel", "implementation"]
+    description: "使用子代理并行执行实施任务"
+    source: "zcode-plugins-official"
+    plugin: "superpowers"
+    status: "archived"
+    archived_reason: "低频使用，被 CodeBuddy 原生 Task 工具替代"
+
+  - name: "systematic-debugging"
+    version: "5.1.0"
+    category: debug
+    tags: ["debug", "bug", "troubleshooting"]
+    description: "遇到 Bug 时的标准化排查流程"
+    source: "zcode-plugins-official"
+    plugin: "superpowers"
+
+  - name: "test-driven-development"
+    version: "5.1.0"
+    category: dev
+    tags: ["test", "tdd", "quality"]
+    description: "实现功能或修复前的测试驱动开发"
+    source: "zcode-plugins-official"
+    plugin: "superpowers"
+
+  - name: "using-git-worktrees"
+    version: "5.1.0"
+    category: dev
+    tags: ["git", "worktree", "isolation"]
+    description: "特性隔离工作区管理"
+    source: "zcode-plugins-official"
+    plugin: "superpowers"
+
+  - name: "using-superpowers"
+    version: "5.1.0"
+    category: management
+    tags: ["superpowers", "discovery", "skills"]
+    description: "建立技能发现和使用规范"
+    source: "zcode-plugins-official"
+    plugin: "superpowers"
+    status: "archived"
+    archived_reason: "仅做技能发现路由，CodeBuddy 已有 built-in 技能发现机制"
+
+  - name: "verification-before-completion"
+    version: "5.1.0"
+    category: dev
+    tags: ["verification", "quality", "completion"]
+    description: "声称完成前的验证流程"
+    source: "zcode-plugins-official"
+    plugin: "superpowers"
+
+  - name: "writing-plans"
+    version: "5.1.0"
+    category: dev
+    tags: ["plan", "design", "architecture"]
+    description: "多步骤任务的实施计划编写"
+    source: "zcode-plugins-official"
+    plugin: "superpowers"
+
+  - name: "writing-skills"
+    version: "5.1.0"
+    category: dev
+    tags: ["skill", "authoring", "best-practice"]
+    description: "创建、编辑和验证技能"
+    source: "zcode-plugins-official"
+    plugin: "superpowers"
+
+  # ---- ZCode Guide 诊断套件 (v0.1.0) ----
+  # 以下 5 个 diagnosing-* 技能仅故障时有用，常年不触发，已归档
+
+  - name: "diagnosing-commands"
+    version: "0.1.0"
+    category: debug
+    tags: ["zcode", "commands", "diagnostic"]
+    description: "诊断和修复 ZCode 自定义斜杠命令配置问题"
+    source: "zcode-plugins-official"
+    plugin: "zcode-guide"
+    status: "archived"
+    archived_reason: "仅故障时有用，常年不触发；保留 zcode-configuration-guide 作为入口即可"
+
+  - name: "diagnosing-hooks"
+    version: "0.1.0"
+    category: debug
+    tags: ["zcode", "hooks", "diagnostic"]
+    description: "诊断和修复 ZCode Hook 配置问题"
+    source: "zcode-plugins-official"
+    plugin: "zcode-guide"
+    status: "archived"
+    archived_reason: "仅故障时有用，常年不触发"
+
+  - name: "diagnosing-mcp"
+    version: "0.1.0"
+    category: debug
+    tags: ["zcode", "mcp", "diagnostic"]
+    description: "诊断和修复 ZCode MCP 服务器配置问题"
+    source: "zcode-plugins-official"
+    plugin: "zcode-guide"
+    status: "archived"
+    archived_reason: "仅故障时有用，常年不触发"
+
+  - name: "diagnosing-plugins"
+    version: "0.1.0"
+    category: debug
+    tags: ["zcode", "plugins", "diagnostic"]
+    description: "诊断和修复 ZCode 插件和市场问题"
+    source: "zcode-plugins-official"
+    plugin: "zcode-guide"
+    status: "archived"
+    archived_reason: "仅故障时有用，常年不触发"
+
+  - name: "diagnosing-skills"
+    version: "0.1.0"
+    category: debug
+    tags: ["zcode", "skills", "diagnostic"]
+    description: "诊断和修复 ZCode 技能配置问题"
+    source: "zcode-plugins-official"
+    plugin: "zcode-guide"
+    status: "archived"
+    archived_reason: "仅故障时有用，常年不触发"

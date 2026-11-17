@@ -1,41 +1,58 @@
-## Description: <br>
-Deploy a media monitoring and intelligence platform with four coordinated agents for crawling, sentiment analysis, trend detection, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a media monitoring and intelligence platform with four coordinated Pilot Protocol agents.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to set up a four-agent media intelligence pipeline for brand monitoring, share-of-voice tracking, PR crisis detection, automated briefings, and dashboard reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The media-monitoring pipeline can send reports or alerts to external services through Slack and webhook bridges. <br>
-Mitigation: Configure allowed destinations, credentials, retention, and redaction rules before sending real monitoring data outside the deployment environment. <br>
-Risk: Installing the setup pulls together multiple pilot-* sub-skills with different data-flow responsibilities. <br>
-Mitigation: Review each role-specific sub-skill before deployment and verify trust relationships with pilotctl before processing live data. <br>
+## Use Case:
 
+Developers and operators use this skill to configure coordinated media crawling, sentiment analysis, trend detection, and reporting agents for brand monitoring, share-of-voice tracking, PR crisis detection, and automated media briefings.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-media-monitoring-setup) <br>
-- [Pilot Protocol Homepage](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent to install role-specific skills, set hostnames, write a media-monitoring manifest, establish handshakes, and verify trust.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup asks the agent to install multiple dependency skills that are not pinned in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect and pin each dependency skill before running the install commands.
+
+Risk: The setup creates trusted links between agents for media mention, sentiment, trend, and reporting data flows.
+
+Mitigation: Use a simple hostname-safe prefix and verify peer identities before accepting trust relationships.
+
+Risk: Reporter outputs may send media briefings or alerts to Slack, webhooks, or other external destinations.
+
+Mitigation: Confirm exact destinations and allowed data before enabling external reporting.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-media-monitoring-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes role-specific manifest JSON, dependency installation commands, hostname setup, peer handshake commands, and connectivity checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

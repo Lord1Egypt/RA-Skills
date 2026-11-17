@@ -1,0 +1,31 @@
+{
+  "name": "paintforge",
+  "version": "1.0.7",
+  "private": true,
+  "type": "module",
+  "description": "JSON-IR diagram renderers: 16 types — architecture, workflow, sequence, dataflow, lifecycle, er, dependency, org, mindmap, flowchart, network, matrix, kanban, venn, gantt, sankey.",
+  "license": "MIT",
+  "author": "AnyForge",
+  "bin": {
+    "paintforge": "./bin/paintforge.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "generate:brand-marks": "node scripts/generate-brand-marks.mjs",
+    "check:brand-marks": "node scripts/generate-brand-marks.mjs --check",
+    "generate:validators": "node scripts/generate-validators.mjs",
+    "check:validators": "node scripts/generate-validators.mjs --check",
+    "render:examples": "node scripts/render-examples.mjs ../examples"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "parse5": "7.3.0",
+    "saxes": "6.0.0",
+    "simple-icons": "16.28.0"
+  },
+  "overrides": {
+    "fast-uri": "^3.1.7"
+  }
+}

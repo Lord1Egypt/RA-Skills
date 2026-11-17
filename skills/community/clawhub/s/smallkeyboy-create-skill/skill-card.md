@@ -1,41 +1,50 @@
-## Description: <br>
-A callable skill factory for programmatic skill creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A callable skill factory for programmatic skill creation that accepts structured parameters and generates a complete, validated skill package.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Developers and automation workflows use this skill to generate complete AgentSkills packages from structured parameters, including SKILL.md plus optional scripts, references, and assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently write skill files, including potentially executable scripts, in caller-controlled output locations. <br>
-Mitigation: Use it in a sandboxed workspace, avoid arbitrary output_dir values and resource filenames, and review generated scripts before allowing created skills to persist or run. <br>
-Risk: Generated skills may contain incorrect, misleading, or unsafe caller-provided instructions or resources. <br>
-Mitigation: Validate, review, and scan generated skills before deployment. <br>
+## Use Case:
 
+Developers and automation agents use this skill to generate new agent skill packages from structured inputs, including SKILL.md plus optional scripts, references, and assets.
 
-## Reference(s): <br>
-- [AgentSkills Specification Reference](references/skill-spec.md) <br>
-- [ClawHub skill page](https://clawhub.ai/smallkeyboy/smallkeyboy-create-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [JSON result plus generated skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates skill directories and optional executable scripts; generated content depends on the structured request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Caller-supplied filenames or output paths can write files outside the intended skill folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Fix filename and path handling before installation; until then, do not feed untrusted skill configs and restrict output locations.
+
+## Reference(s):
+
+- [AgentSkills Specification Reference](artifact/references/skill-spec.md)
+- [ClawHub Skill Page](https://clawhub.ai/smallkeyboy/skills/smallkeyboy-create-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Files, Configuration]
+
+**Output Format:** [JSON result plus generated Markdown, code, and resource files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates SKILL.md and optional scripts, references, assets, and package files when requested.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

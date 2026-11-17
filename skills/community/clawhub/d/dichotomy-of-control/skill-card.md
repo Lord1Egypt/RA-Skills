@@ -1,44 +1,61 @@
-## Description: <br>
-Dichotomy of Control guides an agent to help users separate controllable judgments, intentions, and actions from uncontrollable outcomes, then redirect effort toward concrete action and acceptance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through separating controllable actions from external outcomes when they are anxious, frustrated, or facing uncertainty.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users and agents use this skill to coach through worry, uncertainty, frustration, or setbacks by distinguishing what the user can act on from what they must accept. It is not a substitute for grief processing, clinical help, practical accountability, or needed advocacy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Premature Stoic framing may suppress grief or needed emotional processing. <br>
-Mitigation: Check whether the user needs to feel or grieve first, and pause the exercise when emotional processing is the appropriate next step. <br>
-Risk: A user may mislabel real responsibility or needed advocacy as outside their control. <br>
-Mitigation: Check whether practical action, accountability, or external advocacy is needed, and use the exercise alongside that action rather than instead of it. <br>
-Risk: The coaching may be mistaken for clinical care. <br>
-Mitigation: Do not present the skill as therapy or a replacement for clinical help, and direct users toward appropriate professional support when needed. <br>
+## Use Case:
 
+People dealing with anxiety, frustration, setbacks, or uncertain outcomes can use the skill to clarify what they can influence, choose a concrete next action, and reflect on what they need to accept.
 
-## Reference(s): <br>
-- [Sources - dichotomy-of-control](artifact/references/sources.md) <br>
-- [Method in Action: Epictetus, Marcus Aurelius, Stockdale, and Beck](artifact/examples/epictetus-marcus-aurelius-stockdale-and-beck.md) <br>
-- [Dichotomy of Control on ClawHub](https://clawhub.ai/deciqai/skills/dichotomy-of-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown coaching response or markdown application template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask step-by-step questions and stop at wait points when coaching novices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Personal experiences used as examples could expose private information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid saving identifying or sensitive details in examples and obtain consent before including another person's experience.
+
+Risk: Broad comparisons with clinical approaches could be mistaken for verified treatment guidance.
+
+Mitigation: Present clinical comparisons as educational context, not treatment advice, and direct treatment decisions to qualified professionals.
+
+Risk: Stoic framing could be applied before a user has had space to process grief or emotion.
+
+Mitigation: Check whether the user needs to feel or grieve first, and avoid using the framework to suppress emotion or evade responsibility.
+
+## Reference(s):
+
+- [Sources](artifact/references/sources.md)
+- [Method in Action example](artifact/examples/epictetus-marcus-aurelius-stockdale-and-beck.md)
+- [Dichotomy of Control on ClawHub](https://clawhub.ai/deciqai/skills/dichotomy-of-control)
+- [Dichotomy of Control project page](https://www.deciqai.com/c/dichotomy-of-control)
+- [deciqAI knowledge-skills repository](https://github.com/deciqAI/knowledge-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Conversational coaching and a structured Markdown reflection template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask one reflective question at a time and wait for the user's response.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.
